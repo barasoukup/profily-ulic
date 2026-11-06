@@ -1,0 +1,17 @@
+# Data downloaded or derived from third-party sources: rebuild them locally (see pilot/README.md)
+# instead of publishing them. OSM-derived tiles are an ODbL derivative database, technical-map
+# extracts and cached IPR responses have unclear redistribution terms.
+data/
+pilot/cache/
+pilot/data/
+
+# Copy of the Streetmix repository (AGPL-3.0 code, CC BY-SA illustrations); the pilot only
+# ships the illustrations it uses, in pilot/public/streetmix/ with their LICENSE.
+vendor/
+
+.DS_Store
+
+# Evaluation results (orthophoto crops, cached profiles); the scripts in evaluation/ rebuild them.
+evaluation/data/
+evaluation/snapshot/
+.claude/

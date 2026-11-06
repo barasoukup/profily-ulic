@@ -1,0 +1,61 @@
+# Publishes the app (pilot/public) on GitHub Pages as a static site: the browser asks IPR and
+# Streetmix directly, and the OSM tiles are built here from the BBBike Prague extract on every
+# deploy (they are not kept in the repository). Runs on push to main, by hand, and weekly so the
+# OSM data stays fresh.
+name: GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: "0 4 * * 1"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install GDAL (ogr2ogr)
+        run: sudo apt-get update && sudo apt-get install -y gdal-bin
+      - name: Build OSM tiles
+        run: tools/build_osm_data.sh data/osm/Prag.osm.pbf site-tiles
+      - name: Assemble the site
+        run: |
+          mkdir -p _site/data
+          cp -R pilot/public/. _site/
+          sed -i 's/export const STATIC = false;/export const STATIC = true;/' _site/config.js
+          grep -q "STATIC = true" _site/config.js
+          mv site-tiles _site/data/osm-tiles
+          cp LICENCE-A-ZDROJE.md _site/data/LICENCE-A-ZDROJE.md
+          cat > _site/data/README.txt <<'EOF'
+          data/osm-tiles: dlaždice odvozené z OpenStreetMap (výřez BBBike Praha).
+          © přispěvatelé OpenStreetMap, licence ODbL 1.0 (https://opendatacommons.org/licenses/odbl/).
+          Vytvořeno skriptem tools/build_osm_data.sh v repozitáři této aplikace.
+          EOF
+          touch _site/.nojekyll
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

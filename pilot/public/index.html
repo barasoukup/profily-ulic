@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Profily ulic</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <strong>Profily ulic</strong>
+    <span id="street-name" class="muted">Klikněte na ulici v mapě</span>
+    <span class="spacer"></span>
+    <div class="seg-toggle" role="tablist">
+      <button data-mode="stav" class="active">Stav</button>
+      <button data-mode="navrh">Návrh</button>
+      <button data-mode="porovnat">Porovnat</button>
+    </div>
+    <button id="btn-export-svg">Export SVG</button>
+    <button id="btn-export-png">Export PNG</button>
+    <button id="btn-streetmix" title="Vytvoří veřejnou anonymní ulici na streetmix.net a otevře ji">Streetmix ↗</button>
+    <button id="btn-save">Uložit</button>
+    <label class="btn">Načíst<input id="file-load" type="file" accept=".json,application/json" hidden></label>
+  </header>
+  <main>
+    <section id="map-pane">
+      <div id="map"></div>
+      <div id="cut-info">
+        <span id="cut-pos" class="muted">Řez zatím není.</span>
+        <button id="btn-copy-cut" title="Zkopíruje polohu a azimut řezu">Kopírovat</button>
+        <input id="cut-goto" placeholder="Vložit polohu řezu…" aria-label="Poloha řezu">
+      </div>
+      <div id="map-help" class="muted">Klikněte na ulici. Řez posunete tažením středu. Tažením konce ho natočíte a zároveň zkrátíte nebo prodloužíte profil na té straně.</div>
+    </section>
+    <section id="profile-pane">
+      <div id="status" class="muted"></div>
+      <div id="profile-wrap"><div id="profile"></div></div>
+      <div id="legend">
+        <span class="src src-dtm">změřeno z technické mapy</span>
+        <span class="src src-osm">doplněno z OSM</span>
+        <span class="src src-tsk">úseky parkování TSK</span>
+        <span class="src src-odhad">odhad</span>
+        <span class="src src-user">upraveno ručně</span>
+      </div>
+      <div id="editor"></div>
+      <div id="palette"></div>
+    </section>
+  </main>
+  <footer class="muted">
+    Data: © přispěvatelé <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·
+    technická mapa a MTVU © IPR Praha (CC BY 4.0) · ortofoto © ČÚZK ·
+    ilustrace © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licence
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.cs">CC BY-SA 4.0</a>
+  </footer>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
