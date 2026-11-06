@@ -124,26 +124,6 @@ async function parkovani(bbox) {
 // Building floors (IPR "Podlažnosti"): floors up to the cornice, roof / set-back floors, total.
 const PODLAZNOST = "https://mp.iprpraha.cz/arcgis/rest/services/Hosted/URK_CUR_URK_SS_PODLAZNOST_P/FeatureServer/0/query";
 
-// Paid parking zones (layer 10, zones by tariff): how many lie within ZPS_RADIUS of a point.
-const ZPS_RADIUS = 100; // m
-
-async function zps(lat, lon) {
-  const dLat = ZPS_RADIUS / 110574, dLon = ZPS_RADIUS / (111320 * Math.cos((lat * Math.PI) / 180));
-  const params = new URLSearchParams({
-    geometry: [lon - dLon, lat - dLat, lon + dLon, lat + dLat].join(","),
-    geometryType: "esriGeometryEnvelope",
-    inSR: "4326",
-    spatialRel: "esriSpatialRelIntersects",
-    returnCountOnly: "true",
-    f: "json",
-  });
-  const r = await upstream(`${PARKOVANI.replace("/3/query", "/10/query")}?${params}`);
-  if (!r.ok) throw new Error(`zps ${r.status}`);
-  const json = await r.json();
-  if (json.error) throw new Error(`zps: ${json.error.code} ${json.error.message}`);
-  return JSON.stringify({ count: json.count || 0 });
-}
-
 async function podlaznost(lat, lon) {
   const params = new URLSearchParams({
     geometry: `${lon},${lat}`,
@@ -232,12 +212,6 @@ const server = http.createServer(async (req, res) => {
       res.writeHead(200, { "Content-Type": TYPES[".json"] });
       return res.end(JSON.stringify({ url: `https://streetmix.net/-/${street.namespacedId}`, id: street.id }));
     }
-    if (url.pathname === "/api/zps") {
-      const lat = round(url.searchParams.get("lat"), 4), lon = round(url.searchParams.get("lon"), 4);
-      const body = await cached("zps", `${lat},${lon}`, () => zps(Number(lat), Number(lon)));
-      res.writeHead(200, { "Content-Type": TYPES[".json"] });
-      return res.end(body);
-    }
     if (url.pathname === "/api/podlaznost") {
       const lat = round(url.searchParams.get("lat"), 6), lon = round(url.searchParams.get("lon"), 6);
       const body = await cached("podlaznost", `${lat},${lon}`, () => podlaznost(lat, lon));
@@ -251,8 +225,10 @@ const server = http.createServer(async (req, res) => {
       return res.end(body);
     }
     const rel = url.pathname === "/" ? "index.html" : decodeURIComponent(url.pathname).replace(/^\/+/, "");
-    const file = path.normalize(path.join(PUBLIC, rel));
-    if (!file.startsWith(PUBLIC + path.sep)) throw Object.assign(new Error("forbidden"), { code: "ENOENT" });
+    // data/… (OSM tiles, parking zones) is served from pilot/data, as the web build places it next to the app.
+    const base = rel.startsWith("data/") ? path.join(ROOT, "data") : PUBLIC;
+    const file = path.normalize(path.join(base, rel.startsWith("data/") ? rel.slice(5) : rel));
+    if (!file.startsWith(base + path.sep)) throw Object.assign(new Error("forbidden"), { code: "ENOENT" });
     const data = await fs.readFile(file);
     res.writeHead(200, { "Content-Type": TYPES[path.extname(file)] || "application/octet-stream" });
     res.end(data);

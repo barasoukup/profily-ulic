@@ -24,6 +24,12 @@ Dlaždice OSM si nejdřív vyrobte (stáhne výřez BBBike a potřebuje ogr2ogr 
 tools/build_osm_data.sh
 ```
 
+a hranice zón placeného stání (jednou, soubor `pilot/data/zps.json`):
+
+```bash
+node tools/build_zps.mjs
+```
+
 ## Jak to funguje
 
 - Řez se vede kolmo na osu ulice z OSM, mimo křižovatky a přechody; u ulice ze dvou jednosměrných

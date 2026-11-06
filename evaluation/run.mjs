@@ -60,14 +60,18 @@ async function run(s) {
   const bbox = [Math.min(...lons) - pad, Math.min(...lats) - pad, Math.max(...lons) + pad, Math.max(...lats) + pad].join(",");
   const [m, k, pk, z] = await Promise.allSettled([
     getJSON(`${API}/api/mtvu?bbox=${bbox}`), getJSON(`${API}/api/linie?bbox=${bbox}`), getJSON(`${API}/api/parkovani?bbox=${bbox}`),
-    LIVE ? getJSON(`${API}/api/zps?lat=${clat}&lon=${clon}`) : Promise.reject(new Error("no zps")),
+    LIVE ? fs.readFile(path.join(ROOT, "..", "pilot", "data", "zps.json"), "utf8").then(JSON.parse) : Promise.reject(new Error("no zps")),
   ]);
   const warn = [];
   const polys = m.status === "fulfilled" ? mtvuPolygons(m.value, frame) : (warn.push("MTVU " + m.reason), []);
   const tracks = k.status === "fulfilled" ? trackLines(k.value, frame) : [];
   const lines = k.status === "fulfilled" ? techLines(k.value, frame) : (warn.push("linie " + k.reason), []);
   const parking = pk.status === "fulfilled" ? esriPolygons(pk.value, frame) : (warn.push("parkovani " + pk.reason), []);
-  const inZps = z.status === "fulfilled" ? z.value.count > 0 : undefined;
+  // As sources.zps(): a zone's bounding box within 100 m.
+  const inZps = z.status === "fulfilled" ? z.value.boxes.some(([x0, y0, x1, y1]) => {
+    const dLat = 100 / 110574, dLon = 100 / (111320 * Math.cos((clat * Math.PI) / 180));
+    return clon >= x0 - dLon && clon <= x1 + dLon && clat >= y0 - dLat && clat <= y1 + dLat;
+  }) : undefined;
   const result = deriveProfile({ center: [0, 0], dir, half: HALF, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps });
   for (const side of ["left", "right"]) {
     const info = result.edges[`${side}Info`];

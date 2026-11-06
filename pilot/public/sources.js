@@ -87,16 +87,17 @@ export async function parkovani(bbox) {
   return { features: parts.flat() };
 }
 
-// Is the point within ZPS_RADIUS of a paid parking zone (TSK zones by tariff, layer 10)?
-const ZPS_RADIUS = 100; // m, as in server.mjs
+// Is the point within ZPS_RADIUS of a paid parking zone? The zones' bounding boxes are a file made
+// once by tools/build_zps.mjs (data/zps.json, on the web built at deploy time), so a click never asks
+// IPR. Without the file the answer is unknown (undefined) and the profile falls back to TSK sections.
+const ZPS_RADIUS = 100; // m
+let zpsBoxes;
 export async function zps(lat, lon) {
-  if (!STATIC) return (await getJSON(`/api/zps?lat=${lat}&lon=${lon}`)).count > 0;
+  zpsBoxes ??= fetch("data/zps.json").then((r) => (r.ok ? r.json() : null)).then((j) => j?.boxes || null, () => null);
+  const boxes = await zpsBoxes;
+  if (!boxes) return undefined;
   const dLat = ZPS_RADIUS / 110574, dLon = ZPS_RADIUS / (111320 * Math.cos((lat * Math.PI) / 180));
-  const json = await query(`${PARKOVANI}/10/query`, {
-    geometry: [lon - dLon, lat - dLat, lon + dLon, lat + dLat].join(","), geometryType: "esriGeometryEnvelope",
-    inSR: "4326", spatialRel: "esriSpatialRelIntersects", returnCountOnly: "true", f: "json",
-  });
-  return (json.count || 0) > 0;
+  return boxes.some(([x0, y0, x1, y1]) => lon >= x0 - dLon && lon <= x1 + dLon && lat >= y0 - dLat && lat <= y1 + dLat);
 }
 
 export async function podlaznost(lat, lon) {

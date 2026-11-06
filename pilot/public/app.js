@@ -150,8 +150,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     else console.warn("koleje", k.reason);
     const parking = pk.status === "fulfilled" ? esriPolygons(pk.value, frame) : [];
     if (pk.status !== "fulfilled") console.warn("parkovani", pk.reason);
-    // Unknown (request failed): treated as inside a zone, so no parking is guessed.
-    const inZps = z.status === "fulfilled" ? z.value : true;
+    // Unknown (no zone file): the profile decides from the TSK parking sections around the cut.
+    const inZps = z.status === "fulfilled" ? z.value : undefined;
     const result = deriveProfile({ center: [0, 0], dir, half: HALF, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps });
     const name = near.way.tags.name || near.way.tags.ref || `ulice ${near.way.id}`;
     state.cut = { lat: clat, lon: clon, bearing: (Math.atan2(dir[0], dir[1]) * 180) / Math.PI, wayId: near.way.id, name, reach };

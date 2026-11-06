@@ -73,6 +73,9 @@ jobs:
           fi
       - name: Build OSM tiles
         run: tools/build_osm_data.sh data/osm/Prag.osm.pbf site-tiles
+      - name: Paid parking zones (once per deploy, not on every click)
+        continue-on-error: true
+        run: node tools/build_zps.mjs site-zps.json
       - name: Assemble the site
         run: |
           mkdir -p _site/data
@@ -80,6 +83,7 @@ jobs:
           sed -i 's/export const STATIC = false;/export const STATIC = true;/' _site/config.js
           grep -q "STATIC = true" _site/config.js
           mv site-tiles _site/data/osm-tiles
+          [ -f site-zps.json ] && mv site-zps.json _site/data/zps.json || echo "::warning::no zps.json, the app falls back to TSK sections"
           cp LICENCE-A-ZDROJE.md _site/data/LICENCE-A-ZDROJE.md
           cat > _site/data/README.txt <<'EOF'
           data/osm-tiles: dlaždice odvozené z OpenStreetMap (výřez BBBike Praha).
