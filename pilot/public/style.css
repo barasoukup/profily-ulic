@@ -65,6 +65,14 @@ body.resizing { user-select: none; cursor: col-resize; }
 #width-check[hidden] { display: none; }
 #width-check.ok { background: #eaf3de; color: var(--dtm); }
 #width-check.off { background: #fbe9e7; color: var(--odhad); font-weight: 600; }
+#rule-check { background: #fff7e6; border: 1px solid #f0d8a8; border-radius: 8px; padding: 8px 12px; font-size: 13px; }
+#rule-check[hidden] { display: none; }
+#rule-check ul { margin: 4px 0 0; padding-left: 18px; }
+#rule-check li.min { color: var(--odhad); }
+#rule-check li { cursor: pointer; }
+#rule-check .muted { font-size: 12px; }
+#profile .seg.warn-min rect.ground { stroke: #c0392b; stroke-width: 6; stroke-dasharray: 14 8; }
+#profile .seg.warn-zaklad rect.ground { stroke: #d68910; stroke-width: 4; stroke-dasharray: 10 8; }
 #editor label { display: inline-flex; gap: 6px; align-items: center; }
 #editor input[type=number] { width: 80px; font: inherit; padding: 3px 6px; }
 #editor select { font: inherit; padding: 3px 6px; }

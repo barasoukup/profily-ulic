@@ -129,6 +129,15 @@ Výška se kreslí 3,5 m na podlaží (přesná výška jen z OSM `height`), st�
     profil ukončí jako okraj „plot“; plot do 1 m od fasády budovy ale okrajem zůstává budova.
 11. Server neukládá do cache chybové odpovědi IPR a dotazy na IPR vzdá po 20 s.
 
+## Návrh: šířka ulice a pravidla
+
+V Návrhu se hlídá šířka ulice ze stavu: když ji návrh překročí nebo nevyplní, objeví se upozornění
+a tlačítko Dorovnat (rozdíl dostane vybraná, jinak nejširší část). Šířky částí se porovnávají
+s Manuálem tvorby veřejných prostranství IPR, kap. C.2 (`public/rules.js`): červeně pod minimem
+(chodník 1,5 m, pruh 2,5 m, cyklopruh 1,5 / 1,75 / 2 m podle stání vedle, podélné stání 2 m, kolmé
+4,5 m, dvoukolejný tramvajový pás 6,5 m…), oranžově pod základní šířkou (chodník 2 m, pruh 3 m,
+kolmé stání 5 m…). Kliknutím na upozornění se část vybere.
+
 ## Export do Streetmixu
 
 Tlačítko **Streetmix ↗** převede aktuální profil (stav nebo návrh) na ulici Streetmixu (schéma 35, metrické

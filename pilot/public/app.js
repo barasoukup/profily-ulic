@@ -3,6 +3,7 @@ import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet
 import { loadSprites, buildSvg, mountEditor, svgString, totalWidth } from "./profile.js";
 import { toStreetmix } from "./streetmix.js";
 import * as sources from "./sources.js";
+import { checkRules } from "./rules.js";
 
 const HALF = 40; // half-length of the cut used for reading the data (m)
 const MIN_REACH = 3; // shortest profile side the user can drag the cut end to (m)
@@ -327,7 +328,28 @@ function render() {
   renderEditor(p);
   renderPalette(p);
   renderWidthCheck();
+  renderRuleCheck(p, box);
   fitPhone(box);
+}
+
+// Widths against the IPR manual (rules.js), in Návrh only: a list under the profile and the parts
+// outlined in the drawing (red: below the minimum, orange: below the basic width). A click on a
+// line selects that part.
+function renderRuleCheck(p, box) {
+  const el = $("#rule-check");
+  if (state.mode !== "navrh") { el.hidden = true; return; }
+  const found = checkRules(p);
+  for (const f of found) box.querySelector(`g.seg[data-i="${f.i}"]`)?.classList.add(`warn-${f.level}`);
+  if (!found.length) { el.hidden = true; return; }
+  el.hidden = false;
+  const ul = document.createElement("ul");
+  for (const f of found) {
+    const li = Object.assign(document.createElement("li"), { className: f.level, textContent: f.text });
+    li.onclick = () => { state.selected = f.i; render(); };
+    ul.append(li);
+  }
+  const head = Object.assign(document.createElement("div"), { textContent: "Šířky podle Manuálu tvorby veřejných prostranství IPR (C.2):" });
+  el.replaceChildren(head, ul);
 }
 
 // The street is as wide as the current state (façade to façade): the design must fill exactly that
