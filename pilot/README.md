@@ -103,8 +103,8 @@ Výška se kreslí 3,5 m na podlaží (přesná výška jen z OSM `height`), st�
    obousměrná se rozdělí na dvě poloviny. Úzký vyvýšený zpevněný pás (do 6 m) mezi dvěma vozovkami
    se označí jako dělicí pás / ostrůvek.
 
-5. Pruh je široký nejvýš 3,5 m (dálnice a silnice pro motorová vozidla 3,75 m, místní ulice 4,5 m). Zbytek vozovky
-   od 0,75 m se nakreslí jako **krajnice / šrafy** u okrajů a označí jako odhad: technická mapa neobsahuje
+5. Pruh je široký nejvýš 4 m (dálnice a silnice pro motorová vozidla 3,75 m, místní ulice 4,5 m). Zbytek vozovky
+   od 1 m se nakreslí jako **krajnice / šrafy** u okrajů a označí jako odhad: technická mapa neobsahuje
    vodorovné značení.
 6. U obruby s chodníkem (i za úzkým zeleným pásem do 3 m) v ulicích residential, living_street a unclassified (na hlavních ulicích ne) se přidá **odhadnuté podélné
    stání** 2 m, pokud tam není stání z TSK ani z OSM, tag ho nezakazuje a pruhy zůstanou široké aspoň 3 m.

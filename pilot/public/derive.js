@@ -421,15 +421,16 @@ const bikeWidth = (type, parkOrient) =>
   type !== "cyklopruh" || !parkOrient ? BIKE_WIDTH[type] : parkOrient === "podelne" ? 1.75 : 2;
 const ISLAND_MAX = 6; // widest paved strip between carriageways still taken as an island (m)
 const MIN_LANE = 2.5; // narrowest driving lane kept when curb strips are carved out (m)
-// Widest driving lane before the rest becomes a shoulder / hatched area (m): ČSN 73 6110 lanes
-// are 3.0–3.5 m in town, 3.75 m on motorways and expressways.
+// Widest driving lane before the rest becomes a shoulder / hatched area (m). ČSN 73 6110 lanes
+// are 3.0–3.5 m, but Prague streets commonly have 4 m lanes (Bára: an 8 m street is two 4 m lanes,
+// no shoulder); motorways and expressways 3.75 m with a hard shoulder.
 const LANE_CAP = {
   motorway: 3.75, trunk: 3.75, motorway_link: 3.75, trunk_link: 3.75,
   // Local streets: a wider lane is normal (cars pass the parked ones), no shoulder there.
   residential: 4.5, unclassified: 4.5, service: 4.5,
 };
-const LANE_CAP_DEFAULT = 3.5;
-const KRAJNICE_MIN = 0.75; // narrowest shoulder / hatched strip drawn (m)
+const LANE_CAP_DEFAULT = 4;
+const KRAJNICE_MIN = 1; // narrowest shoulder / hatched strip drawn (m)
 // Streets where cars commonly park at the curb even where neither TSK nor OSM says so.
 // Not on main streets (secondary, tertiary and up): there the curb is mostly kept free (Bára).
 const PARK_GUESS = new Set(["residential", "living_street", "unclassified"]);
