@@ -13,15 +13,6 @@ const cutEnds = (f, normal, reach) => [
   f.toLonLat(normal[0] * reach.left, normal[1] * reach.left),
 ];
 const STORE = "streetdesign-pilot";
-// OSM street classes (highway=*) in Czech, for the street name in the header. They describe the
-// street's role in the network, not its legal road class (třída silnice).
-const HIGHWAY_CS = {
-  motorway: "dálnice", motorway_link: "nájezd dálnice", trunk: "rychlostní silnice", trunk_link: "nájezd",
-  primary: "hlavní ulice", primary_link: "nájezd", secondary: "sběrná ulice", secondary_link: "nájezd",
-  tertiary: "spojovací ulice", tertiary_link: "nájezd", unclassified: "místní komunikace", residential: "místní ulice",
-  living_street: "obytná zóna", pedestrian: "pěší zóna", service: "obslužná komunikace", track: "polní cesta",
-  footway: "chodník", path: "pěšina", cycleway: "cyklostezka", steps: "schody", busway: "busová komunikace",
-};
 
 const state = {
   mode: "stav",
@@ -179,7 +170,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     showCutInfo();
     drawMtvu(polys);
     if (!map.getBounds().contains([clat, clon])) map.panTo([clat, clon]);
-    $("#street-name").textContent = `${name} · ${HIGHWAY_CS[near.way.tags.highway] || near.way.tags.highway}` + (polys.length ? "" : " · mimo technickou mapu, jen odhad");
+    $("#street-name").textContent = name + (polys.length ? "" : " · mimo technickou mapu, jen odhad");
     status(!polys.length ? "Technická mapa tu nic nevrátila, profil je odhad z OSM."
       : result.notice ? result.notice
       : result.junction ? "Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami." : "");
