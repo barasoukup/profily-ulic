@@ -61,6 +61,11 @@ const ipr = (path, attribution, extra = {}) =>
   new ArcgisExport("", { service: `${GS}/${path}`, maxZoom: 21, ...BIG_TILES, attribution: `${attribution} © IPR Praha`, ...extra });
 
 const baseMaps = {
+  // IPR's pre-rendered base map in Web Mercator on ArcGIS Online (the one platba.parkujvpraze.cz
+  // shows as vector tiles): served from a CDN, so it loads at once, unlike the export requests.
+  "Mapa IPR": L.tileLayer("https://tiles.arcgis.com/tiles/SBTXIEUGWbqzUecw/arcgis/rest/services/MTVU_WGS84/MapServer/tile/{z}/{y}/{x}", {
+    maxZoom: 21, maxNativeZoom: 20, attribution: "mapa © IPR Praha",
+  }),
   "Černobílá IPR": ipr("arcgis/rest/services/map/zakladni_mapa_cernobila/MapServer", "základní mapa"),
   // Dark: the black-and-white map inverted in the browser (IPR's dark style is not a public service).
   "Tmavá IPR": ipr("arcgis/rest/services/map/zakladni_mapa_cernobila/MapServer", "základní mapa", { className: "tiles-dark" }),
@@ -74,7 +79,7 @@ const baseMaps = {
   }),
 };
 const BASE_KEY = "streetdesign-basemap";
-let baseName = "Černobílá IPR";
+let baseName = "Mapa IPR";
 try { if (baseMaps[localStorage.getItem(BASE_KEY)]) baseName = localStorage.getItem(BASE_KEY); } catch {}
 baseMaps[baseName].addTo(map);
 map.on("baselayerchange", (e) => { try { localStorage.setItem(BASE_KEY, e.name); } catch {} });
@@ -332,6 +337,64 @@ function fitPhone(box = $("#profile")) {
   box.style.setProperty("--phone-width", `${Math.max(box.clientWidth, vbWidth * PHONE_SCALE)}px`);
 }
 addEventListener("resize", () => fitPhone());
+
+// ---------- splitter between the map and the profile ----------
+// Desktop: the map's width in % of the window; phone (≤ 760 px): the map's height in % of the screen.
+// The share is remembered per layout in localStorage.
+const SPLIT_KEY = "streetdesign-split";
+const splitter = $("#splitter");
+const phoneLayout = () => matchMedia("(max-width: 760px)").matches;
+function applySplit(share) {
+  const phone = phoneLayout();
+  const v = Math.max(phone ? 20 : 15, Math.min(phone ? 80 : 80, share));
+  document.querySelector("main").style.setProperty("--map-size", phone ? `${v}vh` : `${v}%`);
+  map.invalidateSize();
+  fitPhone();
+  return v;
+}
+function savedSplit() {
+  try { return JSON.parse(localStorage.getItem(SPLIT_KEY) || "{}")[phoneLayout() ? "phone" : "desktop"]; } catch { return undefined; }
+}
+function saveSplit(v) {
+  try {
+    const all = JSON.parse(localStorage.getItem(SPLIT_KEY) || "{}");
+    all[phoneLayout() ? "phone" : "desktop"] = v;
+    localStorage.setItem(SPLIT_KEY, JSON.stringify(all));
+  } catch {}
+}
+if (savedSplit() !== undefined) applySplit(savedSplit());
+splitter.addEventListener("pointerdown", (e) => {
+  e.preventDefault();
+  splitter.setPointerCapture(e.pointerId);
+  splitter.classList.add("dragging");
+  document.body.classList.add("resizing");
+  const main = document.querySelector("main").getBoundingClientRect();
+  let last;
+  const move = (ev) => {
+    last = phoneLayout()
+      ? ((ev.clientY - main.top) / innerHeight) * 100
+      : ((ev.clientX - main.left) / main.width) * 100;
+    last = applySplit(last);
+  };
+  const up = () => {
+    splitter.releasePointerCapture(e.pointerId);
+    splitter.classList.remove("dragging");
+    document.body.classList.remove("resizing");
+    splitter.removeEventListener("pointermove", move);
+    if (last !== undefined) saveSplit(last);
+  };
+  splitter.addEventListener("pointermove", move);
+  splitter.addEventListener("pointerup", up, { once: true });
+  splitter.addEventListener("pointercancel", up, { once: true });
+});
+// Keyboard: arrow keys move the splitter by 5 %.
+splitter.addEventListener("keydown", (e) => {
+  const step = { ArrowLeft: -5, ArrowUp: -5, ArrowRight: 5, ArrowDown: 5 }[e.key];
+  if (!step) return;
+  e.preventDefault();
+  const cur = savedSplit() ?? (phoneLayout() ? 55 : 40);
+  saveSplit(applySplit(cur + step));
+});
 
 function edited() {
   if (state.mode === "navrh") state.navrhEdited = true;

@@ -36,8 +36,13 @@ button.danger { color: var(--odhad); }
 .seg-toggle button:first-child { border-radius: 6px 0 0 6px; }
 .seg-toggle button:last-child { border-radius: 0 6px 6px 0; }
 .seg-toggle button.active { background: var(--accent-bg); color: var(--accent); border-color: var(--accent); z-index: 1; position: relative; }
-main { flex: 1; display: grid; grid-template-columns: minmax(320px, 2fr) 3fr; min-height: 0; }
-#map-pane { position: relative; border-right: 1px solid var(--border); display: flex; flex-direction: column; }
+/* --map-size: share of the screen for the map, set by dragging the splitter (app.js). */
+main { flex: 1; display: grid; grid-template-columns: var(--map-size, 40%) 8px minmax(0, 1fr); min-height: 0; }
+#map-pane { position: relative; display: flex; flex-direction: column; min-width: 0; }
+#splitter { cursor: col-resize; background: var(--border); touch-action: none; position: relative; }
+#splitter::after { content: ""; position: absolute; left: 2px; right: 2px; top: 50%; height: 36px; margin-top: -18px; border-radius: 2px; background: #aaa79d; }
+#splitter:hover, #splitter.dragging, #splitter:focus-visible { background: #aaa79d; outline: none; }
+body.resizing { user-select: none; cursor: col-resize; }
 #map { flex: 1; }
 #cut-info { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; padding: 6px 10px; font-size: 12px; background: var(--panel); border-top: 1px solid var(--border); }
 #cut-info #cut-pos { flex-basis: 100%; font-family: ui-monospace, Menlo, monospace; }
@@ -89,8 +94,10 @@ footer a { color: inherit; }
   header .spacer { display: none; }
   header button, header .btn { padding: 6px 8px; font-size: 13px; }
   main { display: flex; flex-direction: column; }
-  #map-pane { border-right: none; border-bottom: 1px solid var(--border); }
-  #map { height: 55vh; flex: none; }
+  #map { height: var(--map-size, 55vh); flex: none; }
+  #splitter { height: 16px; cursor: row-resize; flex: none; }
+  #splitter::after { top: 6px; bottom: auto; height: 4px; margin-top: 0; left: 50%; right: auto; width: 48px; margin-left: -24px; }
+  body.resizing { cursor: row-resize; }
   #map-help { display: none; }
   #profile-pane { overflow: visible; padding: 10px 8px; }
   /* A wide street stays readable: the profile scrolls sideways instead of shrinking. */
