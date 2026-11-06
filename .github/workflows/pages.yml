@@ -51,11 +51,23 @@ jobs:
         if: steps.pbf-cache.outputs.cache-hit != 'true'
         run: |
           mkdir -p data/osm
-          if curl -fL --retry 5 --retry-delay 30 --retry-all-errors --connect-timeout 30 -o /tmp/Prag.osm.pbf \
+          # 1. BBBike's Prague extract (what the app was built on); it sometimes refuses GitHub's runners.
+          if curl -fL --retry 2 --retry-delay 20 --retry-all-errors --connect-timeout 30 -o /tmp/Prag.osm.pbf \
                https://download.bbbike.org/osm/bbbike/Prag/Prag.osm.pbf; then
             mv /tmp/Prag.osm.pbf data/osm/Prag.osm.pbf
-          elif [ -f data/osm/Prag.osm.pbf ]; then
-            echo "::warning::download.bbbike.org unreachable, using the cached extract from an earlier week"
+            exit 0
+          fi
+          # 2. Geofabrik's Czech Republic, cut to the same area as the BBBike extract.
+          echo "::warning::download.bbbike.org unreachable, cutting Prague out of the Geofabrik extract"
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends osmium-tool
+          if curl -fL --retry 3 --retry-delay 20 --connect-timeout 30 -o /tmp/cz.osm.pbf \
+               https://download.geofabrik.de/europe/czech-republic-latest.osm.pbf; then
+            osmium extract --bbox 14.19,49.90,14.76,50.19 --overwrite -o data/osm/Prag.osm.pbf /tmp/cz.osm.pbf
+            exit 0
+          fi
+          # 3. The cached extract from an earlier week.
+          if [ -f data/osm/Prag.osm.pbf ]; then
+            echo "::warning::no fresh OSM extract, using the cached one from an earlier week"
           else
             exit 1
           fi
