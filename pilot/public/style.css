@@ -37,7 +37,7 @@ button.danger { color: var(--odhad); }
 .seg-toggle button:last-child { border-radius: 0 6px 6px 0; }
 .seg-toggle button.active { background: var(--accent-bg); color: var(--accent); border-color: var(--accent); z-index: 1; position: relative; }
 /* --map-size: share of the screen for the map, set by dragging the splitter (app.js). */
-main { flex: 1; display: grid; grid-template-columns: var(--map-size, 40%) 8px minmax(0, 1fr); min-height: 0; }
+main { flex: 1; display: grid; grid-template-columns: var(--map-size, 50%) 8px minmax(0, 1fr); min-height: 0; }
 #map-pane { position: relative; display: flex; flex-direction: column; min-width: 0; }
 #splitter { cursor: col-resize; background: var(--border); touch-action: none; position: relative; }
 #splitter::after { content: ""; position: absolute; left: 2px; right: 2px; top: 50%; height: 36px; margin-top: -18px; border-radius: 2px; background: #aaa79d; }

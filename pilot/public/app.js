@@ -393,7 +393,7 @@ splitter.addEventListener("keydown", (e) => {
   const step = { ArrowLeft: -5, ArrowUp: -5, ArrowRight: 5, ArrowDown: 5 }[e.key];
   if (!step) return;
   e.preventDefault();
-  const cur = savedSplit() ?? (phoneLayout() ? 55 : 40);
+  const cur = savedSplit() ?? (phoneLayout() ? 55 : 50);
   saveSplit(applySplit(cur + step));
 });
 
