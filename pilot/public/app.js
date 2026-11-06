@@ -49,6 +49,9 @@ const ArcgisExport = L.TileLayer.extend({
     return `${this.options.service}/${image ? "exportImage" : "export"}?` + new URLSearchParams({
       bbox: [nw.x, se.y, se.x, nw.y].join(","), bboxSR: 3857, imageSR: 3857, size: `${size},${size}`,
       format: image ? "jpg" : "png", transparent: !image, f: "image",
+      // S-JTSK → WGS 84 the same way everywhere (S_JTSK_To_WGS_1984_1, the default of MTVU and the
+      // technical map): the black-and-white base map defaults to another one and drew a few metres off.
+      ...(image ? {} : { datumTransformations: "[1623]" }),
       ...(this.options.layers ? { layers: this.options.layers } : {}),
     });
   },
