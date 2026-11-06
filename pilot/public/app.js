@@ -564,13 +564,17 @@ $("#btn-streetmix").onclick = async () => {
   if (!state.stav) return;
   const p = state.mode === "navrh" ? state.navrh : state.stav;
   const name = `${state.cut?.name || "Ulice"}${state.mode === "navrh" ? " – návrh" : ""}`;
-  // Open the window right away (popup blockers allow it only within the click).
+  // A new tab opened right away, still inside the click: popup blockers (Safari) allow only that.
+  // The street is created afterwards and the tab is sent to it.
   const win = window.open("about:blank", "_blank");
   status("Vytvářím ulici ve Streetmixu…");
   try {
     const { url } = await sources.streetmix(toStreetmix(p, name));
-    if (win) win.location = url; else window.open(url, "_blank");
-    status(`Ulice ve Streetmixu: ${url}`);
+    if (win) win.location = url;
+    // Always a clickable link too, in case the browser blocked the tab.
+    const a = Object.assign(document.createElement("a"), { href: url, target: "_blank", rel: "noopener", textContent: url });
+    $("#status").replaceChildren("Ulice ve Streetmixu: ", a);
+    document.body.classList.remove("loading");
   } catch (err) {
     win?.close();
     status("Streetmix ulici nevytvořil: " + err.message);
