@@ -61,11 +61,9 @@ const ipr = (path, attribution, extra = {}) =>
   new ArcgisExport("", { service: `${GS}/${path}`, maxZoom: 21, ...BIG_TILES, attribution: `${attribution} © IPR Praha`, ...extra });
 
 const baseMaps = {
-  "Základní mapa IPR": ipr("arcgis/rest/services/map/zakladni_mapa/MapServer", "základní mapa"),
   "Černobílá IPR": ipr("arcgis/rest/services/map/zakladni_mapa_cernobila/MapServer", "základní mapa"),
   // Dark: the black-and-white map inverted in the browser (IPR's dark style is not a public service).
   "Tmavá IPR": ipr("arcgis/rest/services/map/zakladni_mapa_cernobila/MapServer", "základní mapa", { className: "tiles-dark" }),
-  "Zástavba IPR": ipr("arcgis/rest/services/dtmp/dtmp/MapServer", "plochy budov technické mapy", { layers: "show:14", className: "tiles-zastavba" }),
   "Letecká IPR": ipr("imgs/rest/services/ort/letecke_snimkovani/ImageServer", "ortofoto"),
   "Mimovegetační IPR": ipr("imgs/rest/services/ort/mimovegetacni_letecke_snimkovani/ImageServer", "mimovegetační ortofoto"),
   "Ortofoto ČÚZK": L.tileLayer.wms("https://ags.cuzk.gov.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer", {
@@ -76,7 +74,7 @@ const baseMaps = {
   }),
 };
 const BASE_KEY = "streetdesign-basemap";
-let baseName = "Základní mapa IPR";
+let baseName = "Černobílá IPR";
 try { if (baseMaps[localStorage.getItem(BASE_KEY)]) baseName = localStorage.getItem(BASE_KEY); } catch {}
 baseMaps[baseName].addTo(map);
 map.on("baselayerchange", (e) => { try { localStorage.setItem(BASE_KEY, e.name); } catch {} });
