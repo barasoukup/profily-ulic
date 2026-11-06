@@ -882,6 +882,7 @@ const GUARD_RAILS = new Set([71522, 71540]);
 const FENCE_LINES = new Set([61210, 71210, 81210, 91210]);
 const FENCE_BARRIERS = new Set(["fence", "wall", "city_wall", "hedge"]);
 const FENCE_AT_FACADE = 1; // m
+const FENCE_SLIVER = 0.6; // m
 const MEDIAN = 9950;
 const MEDIAN_W = 0.6; // width of a median with a guard rail (m)
 // Dot product of the driving directions of two crossing ways (oneway=-1 runs against the geometry).
@@ -1037,6 +1038,9 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   if (kept.at(-1).e < runs[hi].e - 0.05) edges.left = "volno";
   if (Math.abs(kept[0].s - fenceR) < 0.06) edges.right = "plot";
   if (Math.abs(kept.at(-1).e - fenceL) < 0.06) edges.left = "plot";
+  // A strip under FENCE_SLIVER between the sidewalk and the fence (the fence base, a kerb) joins its neighbour.
+  if (edges.left === "plot" && kept.length > 1 && kept.at(-1).e - kept.at(-1).s < FENCE_SLIVER) { kept.at(-2).e = kept.at(-1).e; kept.pop(); }
+  if (edges.right === "plot" && kept.length > 1 && kept[0].e - kept[0].s < FENCE_SLIVER) { kept[1].s = kept[0].s; kept.shift(); }
   const segs = [];
   const kerbReqs = [];
   // Inside (or within 100 m of) a paid parking zone, from the TSK zone boundaries (caller's inZps);
