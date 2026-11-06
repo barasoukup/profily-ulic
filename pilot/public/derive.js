@@ -475,7 +475,8 @@ function splitRoadway(run, ctx) {
   // where the lanes stay at least GUESS_LANE_MIN wide (one-way streets 6–7 m wide, wide two-way ones).
   // A local street without a lanes tag only needs one shared lane between the parked cars
   // (e.g. Dářská: 6.65 m = parking 2 + lane 2.65 + parking 2).
-  if (!trams.length && PARK_GUESS.has(tags.highway)) {
+  // Only outside the paid parking zones (Bára): inside them TSK has surveyed every stall.
+  if (!trams.length && !ctx.inZps && PARK_GUESS.has(tags.highway)) {
     const shared = LOCAL.has(tags.highway) && !tags.lanes;
     for (const [side, st] of [["R", sideR], ["L", sideL]]) {
       if (!ctx.kerbWalk?.includes(side) || parked.includes(side) || st.parkingNo || edge.some((x) => x.side === side && x.type === "parkovani")) continue;
@@ -1017,6 +1018,9 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   if (kept.at(-1).e < runs[hi].e - 0.05) edges.left = "volno";
   const segs = [];
   const kerbReqs = [];
+  // Inside a paid parking zone (ZPS): TSK parking sections lie around the cut. Their absence is the
+  // cheap test for the city's outskirts, without one more request to IPR for the zone boundaries.
+  const inZps = parking.some((p) => p.kind === "useky");
   for (const r of kept) {
     const type = typeFromMtvu(r.code);
     if (r.code === 701 || r.code === 700) {
@@ -1091,7 +1095,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
         return k === 1 ? p1 : p1 && (kept[ri - 2] || (edges.right === "volno" ? null : before(p1)));
       };
       const kerbWalk = [["L", walkAt(next(1), next(2))], ["R", walkAt(prev(1), prev(2))]].filter(([, ok]) => ok).map(([sd]) => sd);
-      segs.push(...splitRoadway(r, { tags, trams: inside, dirAt, lanesTotal, along: ownAxis ? (ownAxis.along !== (tags.oneway === "-1")) : true, single: new Set(axes.map((a) => a.id)).size === 1, parked, sides: sideTagsLR, kerbWalk }).map((x) => ({ ...x, mtvu: r.code })));
+      segs.push(...splitRoadway(r, { tags, trams: inside, dirAt, lanesTotal, along: ownAxis ? (ownAxis.along !== (tags.oneway === "-1")) : true, single: new Set(axes.map((a) => a.id)).size === 1, parked, sides: sideTagsLR, kerbWalk, inZps }).map((x) => ({ ...x, mtvu: r.code })));
     } else if (r.code === MEDIAN) {
       segs.push({ type: "delici", s: r.s, e: r.e, source: "dtm" });
     } else if (isMinorStructure(r.code)) {

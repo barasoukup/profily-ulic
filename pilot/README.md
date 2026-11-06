@@ -106,7 +106,8 @@ Výška se kreslí 3,5 m na podlaží (přesná výška jen z OSM `height`), st�
 5. Pruh je široký nejvýš 4 m (dálnice a silnice pro motorová vozidla 3,75 m, místní ulice 4,5 m). Zbytek vozovky
    od 1 m se nakreslí jako **krajnice / šrafy** u okrajů a označí jako odhad: technická mapa neobsahuje
    vodorovné značení.
-6. U obruby s chodníkem (i za úzkým zeleným pásem do 3 m) v ulicích residential, living_street a unclassified (na hlavních ulicích ne) se přidá **odhadnuté podélné
+6. U obruby s chodníkem (i za úzkým zeleným pásem do 3 m) v ulicích residential, living_street a unclassified (na hlavních ulicích ne), a to jen mimo zóny placeného
+   stání (kolem řezu nejsou žádné úseky TSK) se přidá **odhadnuté podélné
    stání** 2 m, pokud tam není stání z TSK ani z OSM, tag ho nezakazuje a pruhy zůstanou široké aspoň 3 m.
 7. Obytné zóny (`living_street`) se dělí jako ostatní ulice (Streetmix sdílený prostor nezná). Odhad stání platí i
    v nich; místní ulice bez tagu `lanes` potřebuje mezi odhadnutým stáním jen jeden pruh 2,5 m. Vozovka v pěší
