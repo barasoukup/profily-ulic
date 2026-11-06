@@ -667,7 +667,7 @@ function insertTrees(segs, trees) {
     const i = out.findIndex((x) => x.s <= t && x.e >= t);
     const host = out[i];
     if (host?.type === "zelen") { host.type = "stromorad"; continue; }
-    if (!host || !["chodnik", "plocha"].includes(host.type)) continue;
+    if (!host || !WALK.has(host.type)) continue;
     const s = Math.max(host.s, t - TREE_STRIP / 2), e = Math.min(host.e, t + TREE_STRIP / 2);
     // Leftover sidewalk slivers under 0.5 m join the tree strip.
     const strip = { type: "stromorad", s: s - host.s < 0.5 ? host.s : s, e: host.e - e < 0.5 ? host.e : e, source: "osm" };
@@ -678,6 +678,42 @@ function insertTrees(segs, trees) {
     out = [...out.slice(0, i), ...parts, ...out.slice(i + 1)];
   }
   return out;
+}
+
+// Surfaces people walk on, where trees, platforms and kerb parking can be placed.
+const WALK = new Set(["chodnik", "chodnik_kola", "stezka_sdilena", "plocha"]);
+const BIKE_OK = new Set(["yes", "permissive", "designated"]);
+
+// What cyclists may do on a sidewalk (MTVU 702), from the OSM way running along it:
+// segregated=yes → foot and cycle path side by side (C10: sidewalk + cycle track, split in half),
+// bicycle=designated → shared foot and cycle path (C9), bicycle=yes → sidewalk open to cyclists.
+// Without a way of its own, the street's sidewalk:<side>:bicycle tag tells.
+function sidewalkUse(r, cross, way, axisT, dir) {
+  const plain = [{ type: "chodnik", s: r.s, e: r.e, source: "dtm" }];
+  const c = cross.find((x) => x.t > r.s && x.t < r.e && ["footway", "path", "cycleway", "pedestrian"].includes(x.way.tags?.highway));
+  let t = c?.way.tags;
+  if (!t) {
+    const own = cross.find((x) => x.way.id === way.id);
+    if (!own) return plain;
+    const along = own.d[0] * dir[0] + own.d[1] * dir[1] >= 0;
+    const osmSide = ((r.s + r.e) / 2 > axisT) === along ? "left" : "right";
+    const b = way.tags?.[`sidewalk:${osmSide}:bicycle`] ?? way.tags?.["sidewalk:both:bicycle"] ?? way.tags?.["sidewalk:bicycle"];
+    if (!BIKE_OK.has(b)) return plain;
+    t = { highway: "footway", bicycle: b };
+  }
+  const bikes = t.highway === "cycleway" ? "designated" : t.bicycle;
+  if (!BIKE_OK.has(bikes)) return plain;
+  if (t.segregated === "yes" && r.e - r.s >= 2.5) {
+    const m = (r.s + r.e) / 2;
+    // The cycle half lies on the roadway side (the side nearer the street axis).
+    const bikeLow = Math.abs(r.s - axisT) < Math.abs(r.e - axisT);
+    const halves = [{ type: "cyklostezka", source: "osm" }, { type: "chodnik", source: "osm" }];
+    if (!bikeLow) halves.reverse();
+    return [{ ...halves[0], s: r.s, e: m }, { ...halves[1], s: m, e: r.e }];
+  }
+  // segregated=no is used only on paths shared by both, even when foot is not tagged designated.
+  const shared = bikes === "designated" && (t.highway !== "cycleway" || t.foot === "designated" || t.segregated === "no");
+  return [{ type: shared ? "stezka_sdilena" : "chodnik_kola", s: r.s, e: r.e, source: "dtm" }];
 }
 
 // A cycle track (MTVU 703) takes its direction from the OSM cycleway running in it: one-way
@@ -705,7 +741,7 @@ function cycleTrack(r, cross, dir) {
 const ROADWAY = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj", "cyklopruh", "ochranny_pruh", "parkovani", "krajnice"]);
 function markIslands(segs) {
   segs.forEach((x, i) => {
-    if (!["chodnik", "plocha"].includes(x.type) || x.e - x.s > ISLAND_MAX) return;
+    if (!WALK.has(x.type) || x.e - x.s > ISLAND_MAX) return;
     // Between two carriageways: a parking strip (e.g. a small car park beyond the sidewalk) does not count.
     const lane = (y) => ROADWAY.has(y?.type) && y.type !== "parkovani";
     if (lane(segs[i - 1]) && lane(segs[i + 1])) x.type = "delici";
@@ -720,7 +756,7 @@ function carveKerbParking(segs, reqs) {
   for (const q of reqs) {
     const i = out.findIndex((x) => (q.side === "L" ? Math.abs(x.s - q.at) : Math.abs(x.e - q.at)) < 0.1);
     const host = out[i];
-    if (!host || !["chodnik", "plocha"].includes(host.type) || host.e - host.s < q.w + 0.5) continue;
+    if (!host || !WALK.has(host.type) || host.e - host.s < q.w + 0.5) continue;
     const park = q.side === "L"
       ? { type: "parkovani", s: host.s, e: host.s + q.w, source: "osm", orient: q.orient }
       : { type: "parkovani", s: host.e - q.w, e: host.e, source: "osm", orient: q.orient };
@@ -745,7 +781,7 @@ function insertPlatforms(segs, platforms, axisT) {
   for (const t of platforms) {
     const i = out.findIndex((x) => x.s <= t && x.e >= t);
     const host = out[i];
-    if (!host || !["chodnik", "plocha", "delici", "nezname"].includes(host.type)) continue;
+    if (!host || !(WALK.has(host.type) || ["delici", "nezname"].includes(host.type))) continue;
     if (host.e - host.s <= PLATFORM_STRIP + 1) { host.type = "nastupiste"; host.source = "osm"; continue; }
     const curbAtEnd = (host.s + host.e) / 2 < axisT; // the curb faces the street axis
     const strip = curbAtEnd
@@ -786,7 +822,7 @@ function perpDepth(segs) {
     if (x.type !== "parkovani" || x.e - x.s >= PERP_MIN) return;
     if ((x.orient || orientFromDepth(x.e - x.s)) !== "kolme") return;
     const need = PERP_MIN - (x.e - x.s);
-    const raised = (y) => y && ["chodnik", "zelen", "stromorad", "plocha"].includes(y.type) && y.e - y.s > need + 1;
+    const raised = (y) => y && (WALK.has(y.type) || ["zelen", "stromorad"].includes(y.type)) && y.e - y.s > need + 1;
     const prev = segs[i - 1], next = segs[i + 1];
     // The kerb side is the raised neighbour (the other side is the roadway).
     const host = raised(next) && !raised(prev) ? next : raised(prev) && !raised(next) ? prev : null;
@@ -1140,7 +1176,8 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     } else if (type === "cyklostezka") {
       segs.push(...cycleTrack(r, cross, dir));
     } else {
-      segs.push({ type, s: r.s, e: r.e, source: r.code === null ? "odhad" : "dtm" });
+      if (type === "chodnik") segs.push(...sidewalkUse(r, cross, way, axisT, dir));
+      else segs.push({ type, s: r.s, e: r.e, source: r.code === null ? "odhad" : "dtm" });
     }
   }
   // Roadway outer edges are measured; only the internal split comes from OSM.

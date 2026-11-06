@@ -2,6 +2,8 @@
 // raised: surface sits on the curb (15 cm above the roadway). short: label under the profile drawing.
 export const TYPES = {
   chodnik: { label: "Chodník", short: "Chodník", color: "#d6d1c4", raised: true, sprite: "people" },
+  chodnik_kola: { label: "Chodník s vjezdem cyklistů", short: "Chodník + kola", color: "#d9c9c0", raised: true, sprite: "people" },
+  stezka_sdilena: { label: "Stezka pro chodce a cyklisty (C9)", short: "Stezka C9", color: "#d4b8a8", raised: true, sprite: "people" },
   predzahradka: { label: "Předzahrádka / zahrada", short: "Zahrada", color: "#a7c66b", raised: true, sprite: "bush" },
   zelen: { label: "Zeleň", short: "Zeleň", color: "#8fbf55", raised: true, sprite: "bush" },
   stromorad: { label: "Stromořadí", short: "Stromy", color: "#7fb04a", raised: true, sprite: "tree" },
@@ -46,7 +48,7 @@ export const ITEMS = {
 export const PARKING_USE = { ztp: "ZTP", zasobovani: "zásobování", specialni: "speciální" };
 
 export const DEFAULT_WIDTH = {
-  chodnik: 2.5, predzahradka: 2, zelen: 2, stromorad: 2, nastupiste: 3, cyklostezka: 2.5, cyklopruh: 1.5, ochranny_pruh: 1.25, pruh_piktokoridor: 3.25, parkovani: 2,
+  chodnik: 2.5, chodnik_kola: 2.5, stezka_sdilena: 3, predzahradka: 2, zelen: 2, stromorad: 2, nastupiste: 3, cyklostezka: 2.5, cyklopruh: 1.5, ochranny_pruh: 1.25, pruh_piktokoridor: 3.25, parkovani: 2,
   pruh: 3, obsluzna: 3, bus: 3.5, bus_cyklo: 4.25, tramvaj_v_pruhu: 3.25, tramvaj: 3, delici: 1.5, plocha: 2, zahradka: 3, voda: 5, zed: 0.5, nezname: 2, krajnice: 1,
 };
 

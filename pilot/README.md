@@ -99,7 +99,13 @@ Výška se kreslí 3,5 m na podlaží (přesná výška jen z OSM `height`), st�
    takže sedí i na směrově rozdělených silnicích. Kde vozovkou vedou
    koleje, vznikne kolem každé osy koleje pruh s tramvají a vedle něj jízdní pruhy pro auta.
 
-4. Cyklostezka (MTVU 703) dostane směr z cyklostezky v OSM, která jí vede: jednosměrná jede se svou osou,
+4. Chodník (MTVU 702) s osou OSM, po které smějí kola: `segregated=yes` → oddělená stezka C10 (chodník a
+   cyklostezka, každý na polovinu, kola blíž vozovce), `bicycle=designated` (nebo `segregated=no`) → společná
+   stezka pro chodce a cyklisty C9, `bicycle=yes` → chodník s vjezdem cyklistů. Bez vlastní osy rozhoduje
+   tag ulice `sidewalk:<strana>:bicycle`. Do Streetmixu jde C9 jako cyklopruh v úrovni chodníku, chodník s koly
+   jako chodník.
+
+   Cyklostezka (MTVU 703) dostane směr z cyklostezky v OSM, která jí vede: jednosměrná jede se svou osou,
    obousměrná se rozdělí na dvě poloviny. Úzký vyvýšený zpevněný pás (do 6 m) mezi dvěma vozovkami
    se označí jako dělicí pás / ostrůvek.
 

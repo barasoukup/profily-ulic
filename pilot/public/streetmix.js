@@ -30,6 +30,9 @@ function segment(s, i, segs, total) {
   const side = segs.slice(0, i).reduce((a, x) => a + x.width, 0) + s.width / 2 < total / 2 ? "left" : "right";
   switch (s.type) {
     case "chodnik": return ["sidewalk", "normal"];
+    case "chodnik_kola": return ["sidewalk", "normal"];
+    // Streetmix has no shared foot-and-cycle path: a cycle lane on sidewalk level.
+    case "stezka_sdilena": return ["bike-lane", `${dir}|regular|sidewalk`];
     case "nastupiste": return ["sidewalk", "dense"];
     case "plocha": case "nezname": case "zed": return ["sidewalk", "empty"];
     case "zahradka": return ["outdoor-dining", "occupied|sidewalk"];
