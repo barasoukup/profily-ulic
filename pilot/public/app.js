@@ -50,7 +50,7 @@ const ArcgisExport = L.TileLayer.extend({
       bbox: [nw.x, se.y, se.x, nw.y].join(","), bboxSR: 3857, imageSR: 3857, size: `${size},${size}`,
       format: image ? "jpg" : "png", transparent: !image, f: "image",
       // S-JTSK → WGS 84 the same way everywhere (S_JTSK_To_WGS_1984_1, the default of MTVU and the
-      // technical map): the black-and-white base map defaults to another one and drew a few metres off.
+      // technical map): some IPR map services default to another one and draw a few metres off.
       ...(image ? {} : { datumTransformations: "[1623]" }),
       ...(this.options.layers ? { layers: this.options.layers } : {}),
     });
@@ -66,9 +66,6 @@ const baseMaps = {
   "Mapa IPR": L.tileLayer("https://tiles.arcgis.com/tiles/SBTXIEUGWbqzUecw/arcgis/rest/services/MTVU_WGS84/MapServer/tile/{z}/{y}/{x}", {
     maxZoom: 21, maxNativeZoom: 20, attribution: "mapa © IPR Praha",
   }),
-  "Černobílá IPR": ipr("arcgis/rest/services/map/zakladni_mapa_cernobila/MapServer", "základní mapa"),
-  // Dark: the black-and-white map inverted in the browser (IPR's dark style is not a public service).
-  "Tmavá IPR": ipr("arcgis/rest/services/map/zakladni_mapa_cernobila/MapServer", "základní mapa", { className: "tiles-dark" }),
   "Letecká IPR": ipr("imgs/rest/services/ort/letecke_snimkovani/ImageServer", "ortofoto"),
   "Mimovegetační IPR": ipr("imgs/rest/services/ort/mimovegetacni_letecke_snimkovani/ImageServer", "mimovegetační ortofoto"),
   "Ortofoto ČÚZK": L.tileLayer.wms("https://ags.cuzk.gov.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer", {
