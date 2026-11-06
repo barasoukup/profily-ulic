@@ -252,7 +252,8 @@ export function buildSvg(profile, opts = {}) {
       const contra = s.bikeDir && s.bikeDir !== (s.dir || "forward");
       const label = s.type === "parkovani" && s.use ? `Stání ${PARKING_USE[s.use]}`
         : s.type === "parkovani" && s.orient ? `Stání ${ORIENT_LABEL[s.orient]}`
-        : t.label + (t.directional && s.dir ? (forward ? " ↑" : " ↓") : s.type === "pruh" ? " ↑↓" : "") + (contra ? ", kola v protisměru" : "");
+        : (t.short || t.label) + (t.directional && s.dir ? (forward ? " ↑" : " ↓") : s.type === "pruh" ? " ↑↓" : "") +
+          (contra ? ` kola ${s.bikeDir === "backward" ? "↓" : "↑"}` : "");
       el("text", { x: cx, y: GROUND + 215, "text-anchor": "middle", "font-size": 28, fill: "#5f5e5a" }, g).textContent = label;
     }
     if (s.turn) {
