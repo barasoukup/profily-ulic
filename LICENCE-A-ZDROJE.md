@@ -48,9 +48,9 @@ Obrázky profilů, které aplikace vytváří, obsahují ilustrace Streetmixu. P
 **Už upraveno:**
 - Patička aplikace uvádí OSM (ODbL), IPR (CC BY 4.0), ČÚZK a Streetmix (CC BY-SA 4.0).
 - Exportované SVG a PNG nově nesou řádek se zdroji a licencí obrázku (CC BY-SA 4.0).
+- Vlastní kód je pod licencí MIT (soubor `LICENSE`, © 2026 Bára Soukupová); ilustrace a data mají své licence.
 
 **Doporučuji doplnit při zveřejnění:**
-- licenci vlastního kódu (třeba MIT nebo AGPL, podle toho, zda má zůstat otevřený i v odvozeninách)
 - do README odstavec se zdroji (je níže)
 
 ## Doporučený text uvedení zdrojů

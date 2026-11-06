@@ -143,6 +143,7 @@ do repozitáře neukládají. Jsou to data odvozená z OpenStreetMap, takže na 
 
 ## Licence a uvedení zdrojů
 
+- Kód: MIT, © 2026 Bára Soukupová (`LICENSE` v kořeni repozitáře).
 - Ilustrace: © Streetmix, CC BY-SA 4.0 (`public/streetmix/LICENSE`). Upravené ilustrace musí zůstat pod stejnou licencí.
 - MTVU a technická mapa: © IPR Praha (otevřená data IPR jsou pod CC BY 4.0; podmínky samotné služby gs-pub nejsou ověřené).
 - OSM: © přispěvatelé OpenStreetMap, ODbL. Ortofoto: © ČÚZK.
