@@ -878,6 +878,10 @@ const isUnpaved = (c) => c === null || c === undefined || c === 100 || c === 200
 const REACH_SNAP = 1.5; // a run cut by the reach is kept whole (or dropped) within this much (m)
 // Guard rails of the technical map splitting one MTVU roadway into two carriageways.
 const GUARD_RAILS = new Set([71522, 71540]);
+// Fences and walls ending the street: technical map (fences and walls > 0.3 m) and OSM barriers.
+const FENCE_LINES = new Set([61210, 71210, 81210, 91210]);
+const FENCE_BARRIERS = new Set(["fence", "wall", "city_wall", "hedge"]);
+const FENCE_AT_FACADE = 1; // m
 const MEDIAN = 9950;
 const MEDIAN_W = 0.6; // width of a median with a guard rail (m)
 // Dot product of the driving directions of two crossing ways (oneway=-1 runs against the geometry).
@@ -998,6 +1002,21 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   while (hi < runs.length - 1) { const s = stopAt(runs[hi + 1], reachL); if (s) { left = s; break; } hi++; }
   const edges = { right, left };
 
+  // A fence or wall beyond the outermost carriageway is the edge of the street (Bára: what is behind
+  // the fence is not part of the street profile). Technical-map fences and walls taller than 0.3 m,
+  // and OSM fences, walls and hedges.
+  const fenceTs = [
+    ...lineCrossings(lines.filter((l) => FENCE_LINES.has(l.code)).map((l) => l.pts), center, normal, half),
+    ...cross.filter((c) => FENCE_BARRIERS.has(c.way.tags?.barrier)).map((c) => c.t),
+  ];
+  const isCarriage = (r) => r.code === 700 || r.code === 701 || r.code === 705;
+  const road = runs.slice(lo, hi + 1).filter(isCarriage);
+  const roadMin = Math.min(ref, ...road.map((r) => r.s)), roadMax = Math.max(ref, ...road.map((r) => r.e));
+  // A fence along a building's façade (within FENCE_AT_FACADE of it) leaves the building as the edge.
+  const nearL = edges.left === "budova" ? FENCE_AT_FACADE : 0.05, nearR = edges.right === "budova" ? FENCE_AT_FACADE : 0.05;
+  const fenceL = Math.min(Infinity, ...fenceTs.filter((t) => t > roadMax + 0.3 && t < runs[hi].e - nearL));
+  const fenceR = Math.max(-Infinity, ...fenceTs.filter((t) => t < roadMin - 0.3 && t > runs[lo].s + nearR));
+
   // A run cut by the reach is kept whole when little of it is left out, and dropped when
   // little of it is inside, so the profile does not end in a sliver.
   const clip = (r, lim, isEnd) => {
@@ -1009,13 +1028,15 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   };
   const kept = splitMedians(runs.slice(lo, hi + 1).map((r) => ({
     ...r,
-    s: clip(r, ref - reachR, false),
-    e: clip(r, ref + reachL, true),
+    s: Math.max(clip(r, ref - reachR, false), fenceR),
+    e: Math.min(clip(r, ref + reachL, true), fenceL),
   })).filter((r) => r.e - r.s > 0.05), cross, lineCrossings(lines.filter((l) => GUARD_RAILS.has(l.code)).map((l) => l.pts), center, normal, half));
   // A profile cut short by the user ends in open space, not at the building behind.
   if (!kept.length) return { ...estimateFromOsm(way, axisT), runs };
   if (kept[0].s > runs[lo].s + 0.05) edges.right = "volno";
   if (kept.at(-1).e < runs[hi].e - 0.05) edges.left = "volno";
+  if (Math.abs(kept[0].s - fenceR) < 0.06) edges.right = "plot";
+  if (Math.abs(kept.at(-1).e - fenceL) < 0.06) edges.left = "plot";
   const segs = [];
   const kerbReqs = [];
   // Inside (or within 100 m of) a paid parking zone, from the TSK zone boundaries (caller's inZps);

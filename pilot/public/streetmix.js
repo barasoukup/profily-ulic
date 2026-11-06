@@ -64,7 +64,7 @@ function boundary(kind, info) {
   const floors = Math.max(1, Math.min(20, info?.levels || 4));
   switch (kind) {
     case "budova": return { variant: floors > 4 ? "narrow" : "residential", floors, elevation: CURB };
-    case "stavba": return { variant: "fence", floors: 1, elevation: CURB };
+    case "stavba": case "plot": return { variant: "fence", floors: 1, elevation: CURB };
     case "voda": return { variant: "waterfront", floors: 1, elevation: CURB };
     case "zahrada": case "zelen": return { variant: "grass", floors: 1, elevation: CURB };
     default: return { variant: "parking-lot", floors: 1, elevation: CURB };

@@ -447,7 +447,7 @@ function renderEditor(p) {
     ed.innerHTML = `<span class="muted">Vyberte část profilu kliknutím. Šířky měníte tažením svislých čar. Celková šířka ${totalWidth(p).toFixed(2).replace(".", ",")} m.</span>`;
     for (const [side, text] of [["left", "Levý okraj"], ["right", "Pravý okraj"]]) {
       const sel = document.createElement("select");
-      for (const [k, t] of [["budova", "budova"], ["stavba", "drobná stavba"], ["zahrada", "zahrada, louka"], ["zelen", "zeleň, louka"], ["voda", "voda"], ["parkoviste", "parkoviště"], ["volno", "volný prostor"]]) {
+      for (const [k, t] of [["budova", "budova"], ["stavba", "drobná stavba"], ["zahrada", "zahrada, louka"], ["zelen", "zeleň, louka"], ["voda", "voda"], ["parkoviste", "parkoviště"], ["plot", "plot"], ["volno", "volný prostor"]]) {
         sel.add(new Option(t, k, false, (p.edges?.[side] || "volno") === k));
       }
       sel.onchange = () => { p.edges = { ...p.edges, [side]: sel.value }; edited(); render(); };

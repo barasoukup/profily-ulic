@@ -158,6 +158,12 @@ function drawEdge(svg, x, kind, side, surface, info) {
     sprite(g, "tree", side === "left" ? x + 120 : x + EDGE - 120, surface);
   } else if (kind === "voda") {
     el("rect", { x, y: GROUND + 20, width: EDGE, height: 80, fill: "#7fa9cf" }, g);
+  } else if (kind === "plot") {
+    // Fence or wall: the ground behind it is outside the street.
+    el("rect", { x, y: surface, width: EDGE, height: 60 + GROUND - surface, fill: "#e6e3da" }, g);
+    const fx = side === "left" ? x + EDGE - 10 : x;
+    el("rect", { x: fx, y: surface - 160, width: 10, height: 160, fill: "#6b6a65" }, g);
+    for (let k = 0; k < 3; k++) el("rect", { x: side === "left" ? x + EDGE - 120 : x, y: surface - 150 + k * 50, width: 130, height: 6, fill: "#6b6a65" }, g);
   } else if (kind === "parkoviste") {
     el("rect", { x, y: GROUND, width: EDGE, height: 60, fill: "#7b7b78" }, g);
     sprite(g, "car-sideways-left", x + EDGE / 2, GROUND);
@@ -168,7 +174,7 @@ function drawEdge(svg, x, kind, side, surface, info) {
     el("rect", { x, y: surface, width: EDGE, height: 60 + GROUND - surface, fill: "#e6e3da" }, g);
   }
   el("text", { x: x + EDGE / 2, y: GROUND + 170, "text-anchor": "middle", "font-size": 30, fill: "#8a877e" },
-    g).textContent = { budova: "budova", stavba: "drobná stavba", voda: "vodní tok / plocha", zahrada: "zahrada, louka (mimo ulici)", zelen: "zeleň (mimo ulici)", parkoviste: "parkoviště (mimo ulici)" }[kind] || "";
+    g).textContent = { budova: "budova", stavba: "drobná stavba", voda: "vodní tok / plocha", zahrada: "zahrada, louka (mimo ulici)", zelen: "zeleň (mimo ulici)", parkoviste: "parkoviště (mimo ulici)", plot: "za plotem (mimo ulici)" }[kind] || "";
   return g;
 }
 

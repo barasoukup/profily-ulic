@@ -119,6 +119,8 @@ Výška se kreslí 3,5 m na podlaží (přesná výška jen z OSM `height`), st�
 10. Kde technická mapa pod osou ulice nemá zpevněnou plochu (pole, louka, zeleň, díra v MTVU), profil je odhad
     z OSM a aplikace to napíše. Parkoviště MTVU (704) široké aspoň 8 m profil ukončí jako okraj „parkoviště".
     Úsek useknutý dosahem se celý ponechá nebo vynechá, když by z něj zbylo méně než 1,5 m.
+    Plot nebo zeď (technická mapa: ploty a zdi nad 0,3 m; OSM: fence, wall, hedge) za krajní vozovkou
+    profil ukončí jako okraj „plot“; plot do 1 m od fasády budovy ale okrajem zůstává budova.
 11. Server neukládá do cache chybové odpovědi IPR a dotazy na IPR vzdá po 20 s.
 
 ## Export do Streetmixu
