@@ -170,8 +170,10 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     showCutInfo();
     drawMtvu(polys);
     if (!map.getBounds().contains([clat, clon])) map.panTo([clat, clon]);
-    $("#street-name").textContent = name + (polys.length ? "" : " · mimo technickou mapu, jen odhad");
-    status(!polys.length ? "Technická mapa tu nic nevrátila, profil je odhad z OSM."
+    const mtvuFailed = m.status !== "fulfilled";
+    $("#street-name").textContent = name + (polys.length ? "" : mtvuFailed ? " · technická mapa neodpověděla, jen odhad" : " · mimo technickou mapu, jen odhad");
+    status(mtvuFailed ? "Technická mapa IPR teď neodpovídá (server je přetížený), profil je jen odhad z OSM. Zkuste kliknout znovu za chvíli."
+      : !polys.length ? "Technická mapa tu nic nevrátila, profil je odhad z OSM."
       : result.notice ? result.notice
       : result.junction ? "Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami." : "");
     save();

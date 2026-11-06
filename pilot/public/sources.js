@@ -15,15 +15,30 @@ const LINE_CODES = [55010, 71522, 71540, 61530, 61209, 61210, 71210, 81210, 9121
 // Parking sections (layer 3) and special stalls: ZTP (5, 6), deliveries (7), special (8).
 const PARKING_LAYERS = { 3: "useky", 5: "ztp", 6: "ztp", 7: "zasobovani", 8: "specialni" };
 const TILE = 0.005; // degrees, as in tools/build_osm_tiles.mjs
-const TIMEOUT = 20000;
+const TIMEOUT = 25000;
+// IPR's ArcGIS queues requests and under load answers "503 Wait timeout for the request exceeded"
+// (or not at all): a failed request is tried again after a pause.
+const RETRY_DELAYS = [1500, 4000];
 
-async function getJSON(url) {
+async function getOnce(url) {
   const r = await fetch(url, STATIC ? { signal: AbortSignal.timeout(TIMEOUT) } : undefined);
   if (!r.ok) throw new Error(await r.text());
   const json = await r.json();
   // ArcGIS reports failures with HTTP 200 and an "error" field.
   if (json?.error) throw new Error(`${json.error.code} ${json.error.message}`);
   return json;
+}
+
+async function getJSON(url) {
+  for (let i = 0; ; i++) {
+    try {
+      return await getOnce(url);
+    } catch (err) {
+      if (i >= RETRY_DELAYS.length) throw err;
+      console.warn("opakuji dotaz", url.slice(0, 80), err.message);
+      await new Promise((res) => setTimeout(res, RETRY_DELAYS[i]));
+    }
+  }
 }
 
 const envelope = (bbox) => ({
