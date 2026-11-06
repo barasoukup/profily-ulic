@@ -33,12 +33,18 @@ const status = (msg) => {
 // ---------- map ----------
 const map = L.map("map", { maxZoom: 21 }).setView([50.0817, 14.4176], 18);
 // Base maps. IPR services are drawn through ArcGIS export requests in Web Mercator, one per tile.
+// Each request renders a 512 px image covering four normal tiles (tileSize 512, zoomOffset -1):
+// a quarter of the requests, which IPR renders one by one (0.2–1.5 s each), and the browser's
+// six parallel connections to gs-pub stay free for the profile data.
 const GS = "https://gs-pub.praha.eu";
 const ArcgisExport = L.TileLayer.extend({
   getTileUrl(c) {
-    const size = 512;
-    const nw = this._map.options.crs.project(this._map.unproject([c.x * 256, c.y * 256], c.z));
-    const se = this._map.options.crs.project(this._map.unproject([(c.x + 1) * 256, (c.y + 1) * 256], c.z));
+    // One big tile is 512 CSS px; sharp on retina screens with a 1024 px image.
+    const size = devicePixelRatio > 1.5 ? 1024 : 512;
+    // coords.z is the map zoom; the tile grid is that of the URL zoom (map zoom + zoomOffset).
+    const z = this._getZoomForUrl();
+    const nw = this._map.options.crs.project(this._map.unproject([c.x * 256, c.y * 256], z));
+    const se = this._map.options.crs.project(this._map.unproject([(c.x + 1) * 256, (c.y + 1) * 256], z));
     const image = this.options.service.endsWith("ImageServer");
     return `${this.options.service}/${image ? "exportImage" : "export"}?` + new URLSearchParams({
       bbox: [nw.x, se.y, se.x, nw.y].join(","), bboxSR: 3857, imageSR: 3857, size: `${size},${size}`,
@@ -47,8 +53,9 @@ const ArcgisExport = L.TileLayer.extend({
     });
   },
 });
+const BIG_TILES = { tileSize: 512, zoomOffset: -1 };
 const ipr = (path, attribution, extra = {}) =>
-  new ArcgisExport("", { service: `${GS}/${path}`, maxZoom: 21, attribution: `${attribution} © IPR Praha`, ...extra });
+  new ArcgisExport("", { service: `${GS}/${path}`, maxZoom: 21, ...BIG_TILES, attribution: `${attribution} © IPR Praha`, ...extra });
 
 const baseMaps = {
   "Základní mapa IPR": ipr("arcgis/rest/services/map/zakladni_mapa/MapServer", "základní mapa"),
@@ -73,7 +80,7 @@ map.on("baselayerchange", (e) => { try { localStorage.setItem(BASE_KEY, e.name);
 
 const dtm = new ArcgisExport("", {
   service: `${GS}/arcgis/rest/services/dtmp/dtmp/MapServer`, layers: "show:9,10,14",
-  maxZoom: 21, minZoom: 16, opacity: 0.9, attribution: "technická mapa © IPR Praha",
+  maxZoom: 21, minZoom: 16, ...BIG_TILES, opacity: 0.9, attribution: "technická mapa © IPR Praha",
 });
 const mtvuLayer = L.layerGroup();
 L.control.layers(baseMaps, { "Technická mapa IPR": dtm, "Plochy MTVU u řezu": mtvuLayer }).addTo(map);
