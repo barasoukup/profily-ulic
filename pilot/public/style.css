@@ -107,3 +107,9 @@ footer a { color: inherit; }
   #cut-info input { font-size: 16px; }
   #palette .chip { padding: 6px 10px; font-size: 13px; }
 }
+
+/* Clicking the map makes a cut: a crosshair instead of Leaflet's open hand, which reads as "pan only".
+   Dragging the map still shows the closed hand. */
+#map.leaflet-container, #map .leaflet-grab, #map .leaflet-interactive { cursor: crosshair; }
+#map.leaflet-dragging .leaflet-grab { cursor: grabbing; }
+#map .leaflet-marker-icon.leaflet-interactive { cursor: grab; }
