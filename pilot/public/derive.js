@@ -53,7 +53,7 @@ export function nearestStreet(osm, frame, p) {
   for (const el of osm.elements || []) {
     if (el.type !== "way" || !el.tags?.highway || !el.geometry) continue;
     // Indoor corridors and passages through buildings are never the street being cut.
-    if (el.tags.highway === "corridor" || el.tags.indoor === "yes" || el.tags.tunnel === "building_passage") continue;
+    if (el.tags.highway === "corridor" || el.tags.indoor === "yes" || el.tags.tunnel === "building_passage" || isUnderground(el.tags)) continue;
     const pts = el.geometry.map((g) => frame.toXY(g.lon, g.lat));
     const c = closestOnPolyline(pts, p);
     const sidewalk = ["sidewalk", "crossing"].includes(el.tags.footway);
@@ -205,7 +205,11 @@ const isTskParking = (c) => c >= 9705 && c <= 9708;
 // Restaurant terraces (OSM leisure=outdoor_seating areas) take part of a sidewalk.
 const OSM_OUTDOOR = 9900;
 
-const isPlatformTags = (t) => t?.public_transport === "platform" || t?.railway === "platform" || t?.highway === "platform";
+// Below the street surface: metro platforms and passages (layer/level below 0 in a tunnel), e.g. Můstek
+// under Václavské náměstí. They are not part of the street profile.
+const isUnderground = (t) => (t?.tunnel && t.tunnel !== "no") && (parseFloat(t.layer) < 0 || parseFloat(t.level) < 0) ||
+  t?.subway === "yes" || t?.location === "underground";
+const isPlatformTags = (t) => (t?.public_transport === "platform" || t?.railway === "platform" || t?.highway === "platform") && !isUnderground(t);
 
 function osmPlatformPolygons(osm, frame) {
   return (osm.elements || [])
@@ -727,9 +731,8 @@ function carveKerbParking(segs, reqs) {
 
 // Public transport platforms crossing the cut (OSM lines along the platform edge).
 function platformPositions(osm, frame, center, normal, half) {
-  const isPlatform = (t) => t?.public_transport === "platform" || t?.railway === "platform" || t?.highway === "platform";
   const lines = (osm.elements || [])
-    .filter((el) => el.type === "way" && isPlatform(el.tags))
+    .filter((el) => el.type === "way" && isPlatformTags(el.tags))
     .map((el) => el.geometry.map((g) => frame.toXY(g.lon, g.lat)));
   return lineCrossings(lines, center, normal, half);
 }
