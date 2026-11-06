@@ -37,6 +37,28 @@ jobs:
           sudo apt-get update -q
           sudo -E apt-get install -y -q --no-install-recommends gdal-bin
           ogr2ogr --version
+      # The BBBike extract is kept in the Actions cache: a deploy reuses this week's copy, a new week
+      # downloads a fresh one and falls back to the last copy when download.bbbike.org is unreachable.
+      - id: week
+        run: echo "week=$(date -u +%G-%V)" >> "$GITHUB_OUTPUT"
+      - id: pbf-cache
+        uses: actions/cache@v4
+        with:
+          path: data/osm/Prag.osm.pbf
+          key: osm-pbf-${{ steps.week.outputs.week }}
+          restore-keys: osm-pbf-
+      - name: Download the OSM extract
+        if: steps.pbf-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p data/osm
+          if curl -fL --retry 5 --retry-delay 30 --retry-all-errors --connect-timeout 30 -o /tmp/Prag.osm.pbf \
+               https://download.bbbike.org/osm/bbbike/Prag/Prag.osm.pbf; then
+            mv /tmp/Prag.osm.pbf data/osm/Prag.osm.pbf
+          elif [ -f data/osm/Prag.osm.pbf ]; then
+            echo "::warning::download.bbbike.org unreachable, using the cached extract from an earlier week"
+          else
+            exit 1
+          fi
       - name: Build OSM tiles
         run: tools/build_osm_data.sh data/osm/Prag.osm.pbf site-tiles
       - name: Assemble the site
