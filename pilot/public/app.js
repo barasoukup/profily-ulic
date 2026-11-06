@@ -314,6 +314,7 @@ function render() {
     }
     $("#editor").replaceChildren();
     $("#palette").replaceChildren();
+    renderWidthCheck();
     fitPhone(box);
     return;
   }
@@ -325,7 +326,42 @@ function render() {
   });
   renderEditor(p);
   renderPalette(p);
+  renderWidthCheck();
   fitPhone(box);
+}
+
+// The street is as wide as the current state (façade to façade): the design must fill exactly that
+// width. Shown in Návrh and Porovnat; "Dorovnat" puts the difference into the selected part (or the
+// widest one).
+const fmtM = (v) => `${v.toFixed(2).replace(".", ",")} m`;
+function renderWidthCheck() {
+  const box = $("#width-check");
+  if (!state.stav || !state.navrh || state.mode === "stav") { box.hidden = true; return; }
+  const target = totalWidth(state.stav), now = totalWidth(state.navrh);
+  const diff = +(now - target).toFixed(2);
+  box.hidden = false;
+  box.className = Math.abs(diff) < 0.01 ? "ok" : "off";
+  if (Math.abs(diff) < 0.01) {
+    box.textContent = `Návrh drží šířku ulice ${fmtM(target)}.`;
+    return;
+  }
+  box.textContent = `Návrh je o ${fmtM(Math.abs(diff))} ${diff > 0 ? "širší" : "užší"} než ulice (${fmtM(target)}, návrh ${fmtM(now)}).`;
+  if (state.mode !== "navrh") return;
+  const segs = state.navrh.segments;
+  // The selected part when it can take the difference, else the widest part that can.
+  const fits = (x) => x && x.width - diff >= 0.5;
+  const seg = fits(segs[state.selected]) ? segs[state.selected]
+    : segs.filter(fits).reduce((b, x) => (!b || x.width > b.width ? x : b), null);
+  if (!seg) return;
+  const btn = document.createElement("button");
+  btn.textContent = `Dorovnat: ${TYPES[seg.type]?.label || seg.type} na ${fmtM(seg.width - diff)}`;
+  btn.onclick = () => {
+    seg.width = +(seg.width - diff).toFixed(2);
+    seg.source = "user";
+    edited();
+    render();
+  };
+  box.append(" ", btn);
 }
 
 // On a phone a wide street would shrink to unreadable: the profile keeps a minimum scale

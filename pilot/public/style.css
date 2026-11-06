@@ -61,6 +61,10 @@ body.resizing { user-select: none; cursor: col-resize; }
 .src-dtm { color: var(--dtm); } .src-osm { color: var(--osm); } .src-tsk { color: #0f6e56; } .src-odhad { color: var(--odhad); } .src-user { color: var(--user); }
 #editor { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 #editor:empty { display: none; }
+#width-check { border-radius: 8px; padding: 8px 12px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+#width-check[hidden] { display: none; }
+#width-check.ok { background: #eaf3de; color: var(--dtm); }
+#width-check.off { background: #fbe9e7; color: var(--odhad); font-weight: 600; }
 #editor label { display: inline-flex; gap: 6px; align-items: center; }
 #editor input[type=number] { width: 80px; font: inherit; padding: 3px 6px; }
 #editor select { font: inherit; padding: 3px 6px; }
