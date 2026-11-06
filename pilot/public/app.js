@@ -139,8 +139,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     status("Načítám technickou mapu IPR…");
     const bbox = [Math.min(...lons) - pad, Math.min(...lats) - pad, Math.max(...lons) + pad, Math.max(...lats) + pad].join(",");
     let polys = [], tracks = [];
-    const [m, k, pk] = await Promise.allSettled([
-      sources.mtvu(bbox), sources.linie(bbox), sources.parkovani(bbox),
+    const [m, k, pk, z] = await Promise.allSettled([
+      sources.mtvu(bbox), sources.linie(bbox), sources.parkovani(bbox), sources.zps(clat, clon),
     ]);
     if (m.status === "fulfilled") polys = mtvuPolygons(m.value, frame);
     else console.warn("MTVU", m.reason);
@@ -149,7 +149,9 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     else console.warn("koleje", k.reason);
     const parking = pk.status === "fulfilled" ? esriPolygons(pk.value, frame) : [];
     if (pk.status !== "fulfilled") console.warn("parkovani", pk.reason);
-    const result = deriveProfile({ center: [0, 0], dir, half: HALF, polys, osm, frame, way: near.way, tracks, parking, lines, reach });
+    // Unknown (request failed): treated as inside a zone, so no parking is guessed.
+    const inZps = z.status === "fulfilled" ? z.value : true;
+    const result = deriveProfile({ center: [0, 0], dir, half: HALF, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps });
     const name = near.way.tags.name || near.way.tags.ref || `ulice ${near.way.id}`;
     state.cut = { lat: clat, lon: clon, bearing: (Math.atan2(dir[0], dir[1]) * 180) / Math.PI, wayId: near.way.id, name, reach };
     // Floors of the buildings at both ends from IPR "Podlažnosti" (OSM building:levels as fallback).

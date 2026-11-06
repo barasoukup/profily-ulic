@@ -87,6 +87,18 @@ export async function parkovani(bbox) {
   return { features: parts.flat() };
 }
 
+// Is the point within ZPS_RADIUS of a paid parking zone (TSK zones by tariff, layer 10)?
+const ZPS_RADIUS = 100; // m, as in server.mjs
+export async function zps(lat, lon) {
+  if (!STATIC) return (await getJSON(`/api/zps?lat=${lat}&lon=${lon}`)).count > 0;
+  const dLat = ZPS_RADIUS / 110574, dLon = ZPS_RADIUS / (111320 * Math.cos((lat * Math.PI) / 180));
+  const json = await query(`${PARKOVANI}/10/query`, {
+    geometry: [lon - dLon, lat - dLat, lon + dLon, lat + dLat].join(","), geometryType: "esriGeometryEnvelope",
+    inSR: "4326", spatialRel: "esriSpatialRelIntersects", returnCountOnly: "true", f: "json",
+  });
+  return (json.count || 0) > 0;
+}
+
 export async function podlaznost(lat, lon) {
   if (!STATIC) return getJSON(`/api/podlaznost?lat=${lat}&lon=${lon}`);
   const json = await query(PODLAZNOST, {

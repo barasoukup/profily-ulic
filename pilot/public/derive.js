@@ -926,7 +926,7 @@ export function centerOnStreet(osm, frame, near, half = 40) {
 }
 
 // Main entry: returns {segments (screen left → right), edges, runs}.
-export function deriveProfile({ center, dir, half, polys, osm, frame, way, tracks = [], parking = [], lines = [], reach }) {
+export function deriveProfile({ center, dir, half, polys, osm, frame, way, tracks = [], parking = [], lines = [], reach, inZps: zoneKnown }) {
   const normal = [-dir[1], dir[0]];
   const cross = crossings(osm, frame, center, normal, half);
   const axisT = cross.find((c) => c.way.id === way.id)?.t ?? 0;
@@ -1018,9 +1018,9 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   if (kept.at(-1).e < runs[hi].e - 0.05) edges.left = "volno";
   const segs = [];
   const kerbReqs = [];
-  // Inside a paid parking zone (ZPS): TSK parking sections lie around the cut. Their absence is the
-  // cheap test for the city's outskirts, without one more request to IPR for the zone boundaries.
-  const inZps = parking.some((p) => p.kind === "useky");
+  // Inside (or within 100 m of) a paid parking zone, from the TSK zone boundaries (caller's inZps);
+  // without them, TSK parking sections along the cut stand for the zone.
+  const inZps = zoneKnown ?? parking.some((p) => p.kind === "useky");
   for (const r of kept) {
     const type = typeFromMtvu(r.code);
     if (r.code === 701 || r.code === 700) {
