@@ -26,8 +26,11 @@ const state = {
 
 const $ = (s) => document.querySelector(s);
 // A message ending in "…" means work in progress: it gets a spinner and the profile is dimmed.
-const status = (msg) => {
-  $("#status").textContent = msg || "";
+// kind "error" shows it as a warning, "ok" as a confirmation; screen readers announce it (role=status).
+const status = (msg, kind = "") => {
+  const el = $("#status");
+  el.textContent = msg || "";
+  el.className = kind ? `muted ${kind}` : "muted";
   document.body.classList.toggle("loading", /…$/.test(msg || ""));
 };
 
@@ -119,7 +122,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
       // A click lands the cut away from junctions and crossings; a dragged cut stays where it is put.
       if (near) near = awayFromJunctions(osm, frame, near);
     }
-    if (!near) return status("Tady jsem žádnou ulici nenašla.");
+    if (!near) return status("Tady jsem žádnou ulici nenašla. Data pokrývají jen Prahu; zkuste kliknout přímo na silnici.", "error");
     // A street of two one-way carriageways is cut from its middle (e.g. the tram belt).
     near = centerOnStreet(osm, frame, near);
     // Re-centre the frame on the snapped point.
@@ -174,9 +177,11 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     drawMtvu(polys);
     if (!map.getBounds().contains([clat, clon])) map.panTo([clat, clon]);
     const mtvuFailed = m.status !== "fulfilled";
-    $("#street-name").textContent = name + (polys.length ? "" : mtvuFailed ? " · technická mapa neodpověděla, jen odhad" : " · mimo technickou mapu, jen odhad");
-    status(mtvuFailed ? "Technická mapa IPR teď neodpovídá (server je přetížený), profil je jen odhad z OSM. Zkuste kliknout znovu za chvíli."
-      : !polys.length ? "Technická mapa tu nic nevrátila, profil je odhad z OSM."
+    // An estimate stays marked as one, also when restored from storage or a file.
+    state.cut.note = polys.length ? "" : mtvuFailed ? " · technická mapa neodpověděla, jen odhad" : " · mimo technickou mapu, jen odhad";
+    $("#street-name").textContent = name + state.cut.note;
+    if (mtvuFailed) status("Technická mapa IPR teď neodpovídá (server je přetížený), profil je jen odhad z OSM. Zkuste kliknout znovu za chvíli.", "error");
+    else status(!polys.length ? "Technická mapa tu nic nevrátila, profil je odhad z OSM."
       : result.notice ? result.notice
       : result.junction ? "Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami." : "");
     save();
@@ -185,7 +190,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     if (matchMedia("(max-width: 760px)").matches) $("#profile-head").scrollIntoView({ behavior: "smooth", block: "start" });
   } catch (err) {
     console.error(err);
-    status("Chyba při načítání dat: " + err.message);
+    status("Data se nepodařilo načíst (" + err.message + "). Zkuste kliknout znovu za chvíli.", "error");
   }
 }
 
@@ -215,7 +220,7 @@ function showCutInfo() {
 $("#btn-copy-cut").onclick = async () => {
   if (!state.cut) return;
   const text = `${cutText(state.cut)} (${state.cut.name}) ${location.href}`;
-  try { await navigator.clipboard.writeText(text); status("Poloha řezu je ve schránce."); }
+  try { await navigator.clipboard.writeText(text); status("Poloha řezu je ve schránce.", "ok"); }
   catch { prompt("Zkopírujte polohu řezu:", text); }
 };
 
@@ -230,7 +235,7 @@ function parseCut(text) {
 
 $("#cut-goto").onchange = (e) => {
   const c = parseCut(e.target.value);
-  if (!c) return status("Polohu jsem nepoznala. Vložte třeba: 50.082707, 14.419918 · azimut 344°");
+  if (!c) return status("Polohu jsem nepoznala. Vložte třeba: 50.082707, 14.419918 · azimut 344°", "error");
   map.setView([c.lat, c.lon], 19);
   cutAt(c.lat, c.lon, false, c.bearing, c.reach);
   e.target.value = "";
@@ -699,7 +704,8 @@ function renderEditor(p) {
   const done = (sel = state.selected) => { state.selected = sel; edited(); render(); };
   // A headed card in rows: what it is and how wide, how it is used, what to do with it.
   const head = Object.assign(document.createElement("div"), { className: "ed-head" });
-  head.innerHTML = `<h3>Vybraná část: ${TYPES[s.type]?.label || s.type}</h3><span class="muted">Zdroj: ${SOURCES[s.source]?.label || s.source}</span>`;
+  head.append(Object.assign(document.createElement("h3"), { textContent: `Vybraná část: ${TYPES[s.type]?.label || s.type}` }),
+    Object.assign(document.createElement("span"), { className: "muted", textContent: `Zdroj: ${SOURCES[s.source]?.label || s.source || "–"}` }));
   head.append(btn("×", () => { state.selected = null; render(); }, "close"));
   head.lastChild.setAttribute("aria-label", "Zavřít výběr");
   const row = () => ed.appendChild(Object.assign(document.createElement("div"), { className: "ed-row" }));
@@ -863,10 +869,13 @@ $("#btn-export-svg").onclick = () => {
 $("#btn-export-png").onclick = async () => {
   if (!state.stav) return;
   const text = svgString(exportSvgs());
-  const vb = text.match(/viewBox="([^"]+)"/)[1].split(" ").map(Number);
+  const vb = text.match(/viewBox="([^"]+)"/)?.[1].split(" ").map(Number);
+  if (!vb) return;
   const img = new Image();
-  img.src = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(text)));
-  await img.decode();
+  const url = URL.createObjectURL(new Blob([text], { type: "image/svg+xml" }));
+  img.src = url;
+  try { await img.decode(); } catch { status("Obrázek se nepodařilo vytvořit.", "error"); URL.revokeObjectURL(url); return; }
+  URL.revokeObjectURL(url);
   const scale = 0.6; // px per cm
   const canvas = Object.assign(document.createElement("canvas"), { width: vb[2] * scale, height: vb[3] * scale });
   canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
@@ -890,7 +899,7 @@ $("#btn-streetmix").onclick = async () => {
     document.body.classList.remove("loading");
   } catch (err) {
     win?.close();
-    status("Streetmix ulici nevytvořil: " + err.message);
+    status("Streetmix ulici nevytvořil: " + err.message, "error");
   }
 };
 
@@ -906,13 +915,31 @@ $("#file-load").onchange = async (e) => {
   try {
     restore(JSON.parse(await file.text()));
   } catch (err) {
-    status("Soubor se nepodařilo načíst: " + err.message);
+    status("Soubor se nepodařilo načíst: " + err.message, "error");
   }
   e.target.value = "";
 };
 
+// A profile from storage or a file is checked part by part: unknown types become "nezname", a part
+// without a usable width is an error (a broken file must not break the drawing).
+function cleanProfile(p, what) {
+  if (!Array.isArray(p?.segments) || !p.segments.length) throw new Error(`${what}: chybí části profilu`);
+  for (const s of p.segments) {
+    if (typeof s !== "object" || !s) throw new Error(`${what}: vadná část`);
+    if (!(s.type in TYPES)) s.type = "nezname";
+    if (typeof s.width !== "number" || !(s.width > 0 && s.width < 200)) throw new Error(`${what}: vadná šířka části`);
+    if (s.source && !(s.source in SOURCES)) s.source = "user";
+  }
+  p.edges = typeof p.edges === "object" && p.edges ? p.edges : {};
+  return p;
+}
+
 function restore(data) {
-  if (!data?.stav?.segments) throw new Error("chybí profil");
+  cleanProfile(data?.stav, "stav");
+  if (data.navrh) cleanProfile(data.navrh, "návrh");
+  const c = data.cut;
+  if (c && !(Number.isFinite(c.lat) && Number.isFinite(c.lon) && Number.isFinite(c.bearing))) data.cut = null;
+  else if (c) c.name = String(c.name || "Ulice");
   Object.assign(state, { cut: data.cut, stav: data.stav, navrh: data.navrh || structuredClone(data.stav), navrhEdited: !!data.navrhEdited, selected: null });
   if (state.cut) {
     map.setView([state.cut.lat, state.cut.lon], 19);
@@ -920,7 +947,7 @@ function restore(data) {
     const r = (state.cut.bearing * Math.PI) / 180;
     const n = [-Math.cos(r), Math.sin(r)];
     drawCut(cutEnds(f, n, state.cut.reach || defaultReach()));
-    $("#street-name").textContent = state.cut.name;
+    $("#street-name").textContent = state.cut.name + (state.cut.note || "");
     showCutInfo();
   }
   save();
@@ -933,6 +960,7 @@ function save() {
   } catch {}
 }
 
+render(); // the intro shows at once; the illustrations follow
 await loadSprites();
 const linked = location.hash.startsWith("#rez=") ? parseCut(location.hash) : null;
 try {
@@ -946,3 +974,4 @@ if (linked) {
   map.setView([linked.lat, linked.lon], 19);
   cutAt(linked.lat, linked.lon, false, linked.bearing, linked.reach);
 }
+window.profilyReady = true; // errors.js: from now on a failure is not a failed start

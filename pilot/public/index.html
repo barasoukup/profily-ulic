@@ -4,12 +4,23 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Profily ulic</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <meta name="description" content="Příčné profily pražských ulic od fasády k fasádě z technické mapy IPR a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://gs-pub.praha.eu https://tiles.arcgis.com https://ags.cuzk.gov.cz https://tile.openstreetmap.org https://unpkg.com; connect-src 'self' https://gs-pub.praha.eu https://mp.iprpraha.cz https://streetmix.net; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="theme-color" content="#d8413f">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Profily ulic">
+  <meta property="og:description" content="Příčné profily pražských ulic z dat IPR a OpenStreetMap: od fasády k fasádě, upravitelné, s pražskými ilustracemi.">
+  <meta property="og:locale" content="cs_CZ">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <script src="errors.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <noscript><p class="noscript">Profily ulic potřebují zapnutý JavaScript.</p></noscript>
   <header>
     <a class="brand" href="./" title="Profily ulic – začít znovu">
       <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#d8413f"/><path d="M6 25V12l4-3v16M22 25V9l4 3v13M6 25h20" stroke="#fff" stroke-width="2.4" fill="none" stroke-linejoin="round"/><path d="M12 25v-4h8v4" fill="#fff"/></svg>
@@ -56,7 +67,7 @@
         <span id="profile-sub" class="muted"></span>
         <span id="mode-badge"></span>
       </div>
-      <div id="status" class="muted"></div>
+      <div id="status" class="muted" role="status" aria-live="polite"></div>
       <div id="profile-frame">
         <div id="profile-wrap"><div id="profile"></div></div>
         <button class="scroll-btn l" data-dir="-1" aria-label="Posunout profil doleva" hidden>‹</button>
@@ -82,12 +93,13 @@
   </main>
   <footer class="muted">
     Data: © přispěvatelé <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·
-    technická mapa a MTVU © IPR Praha (CC BY 4.0) · ortofoto © ČÚZK ·
+    technická mapa a MTVU © IPR Praha · podlažnosti © IPR Praha, úseky parkování © TSK hl. m. Prahy (CC BY 4.0) ·
+    ortofoto © ČÚZK (CC BY 4.0) ·
     ilustrace © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licence
     <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.cs">CC BY-SA 4.0</a> ·
-    pražské ilustrace © Profily ulic (MIT)
+    pražské ilustrace a kód © Profily ulic (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>)
   </footer>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script type="module" src="app.js"></script>
 </body>
 </html>

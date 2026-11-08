@@ -12,7 +12,7 @@ const H = 1000;
 const SPRITE_FILES = [
   "car-inbound", "car-outbound", "streetcar-inbound", "streetcar-outbound", "bus-inbound", "bus-outbound",
   "biker-01-inbound", "biker-01-outbound", "people-01", "people-05", "people-12", "people-20", "people-27",
-  "tree", "bush", "lamp-modern-both",
+  "tree", "bush",
   "car-sideways-left", "car-sideways-right", "car-angled-front-left", "car-angled-front-right",
   "bench-center", "cafe-seating-occupied", "bike-rack-perpendicular-left", "bikeshare-left",
   "transit-shelter-01-left", "transit-shelter-01-right", "bollard", "planter-box", "guardrail",
@@ -63,11 +63,19 @@ let art = "praha"; // "praha" or "streetmix"
 export const setArt = (a) => { art = a; };
 export const getArt = () => art;
 
+// A missing or broken illustration is left out of the drawing instead of stopping the app.
 async function loadSprite(key, path) {
-  const text = await (await fetch(path)).text();
-  const vb = text.match(/viewBox="([^"]+)"/)[1].split(/\s+/).map(Number);
-  const uri = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(text)));
-  sprites[key] = { uri, w: vb[2], h: vb[3] };
+  try {
+    const r = await fetch(path);
+    if (!r.ok) throw new Error(`${r.status}`);
+    const text = await r.text();
+    const vb = text.match(/viewBox="([^"]+)"/)?.[1].split(/\s+/).map(Number);
+    if (!vb) throw new Error("bez viewBox");
+    const uri = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(text);
+    sprites[key] = { uri, w: vb[2], h: vb[3] };
+  } catch (err) {
+    console.warn("ilustrace chybí", path, err.message);
+  }
 }
 
 export async function loadSprites() {
@@ -604,12 +612,14 @@ export function buildSvg(profile, opts = {}) {
   // The top row (total width, cut ends A/B) sits above the tallest building and its floor label.
   const y0 = Math.min(0, GROUND - shown - 140) - 110;
   labelTop = y0 + 190;
-  const svg = el("svg", { xmlns: NS, viewBox: `${vx} ${y0} ${view[1]} ${H - y0}`, "font-family": "Inter, system-ui, sans-serif",
+  // An export has no screen fitting: the bottom leaves room for all label rows and the credits line.
+  const bottom = opts.credits ? H + 110 : H;
+  const svg = el("svg", { xmlns: NS, viewBox: `${vx} ${y0} ${view[1]} ${bottom - y0}`, "font-family": "Inter, system-ui, sans-serif",
     role: "img", "aria-label": `Příčný profil, celkem ${fmt(total / 100)}: ` + segs.map((s) => `${TYPES[s.type]?.label || s.type} ${fmt(s.width)}`).join(", ") });
-  el("rect", { class: "bg", x: vx, y: y0, width: view[1], height: H - y0, fill: "#fbfaf6" }, svg);
+  el("rect", { class: "bg", x: vx, y: y0, width: view[1], height: bottom - y0, fill: "#fbfaf6" }, svg);
   if (opts.credits) {
     // Exported pictures carry the attribution their sources require (CC BY-SA for the illustrations).
-    el("text", { x: vx + 30, y: H - 20, "font-size": 24, fill: "#8a877e" }, svg).textContent =
+    el("text", { x: vx + 30, y: bottom - 25, "font-size": 24, fill: "#6b6a65" }, svg).textContent =
       (art === "praha" ? "Ilustrace © Streetmix (CC BY-SA 4.0) a Profily ulic" : "Ilustrace © Streetmix (CC BY-SA 4.0)") + " · data © IPR Praha, TSK hl. m. Prahy (CC BY 4.0) · © přispěvatelé OpenStreetMap (ODbL) · obrázek CC BY-SA 4.0";
   }
 
@@ -701,7 +711,7 @@ export function buildSvg(profile, opts = {}) {
 
   if (opts.title) {
     // A title tag in the top left corner, over the building there.
-    el("rect", { class: "title-bg", x: vx + 16, y: y0 + 34, width: 60 + opts.title.length * 30, height: 80, rx: 16, fill: "#1d1d1b" }, svg);
+    el("rect", { class: "title-bg", x: vx + 16, y: y0 + 34, width: 60 + opts.title.length * 26, height: 80, rx: 16, fill: "#1d1d1b" }, svg);
     el("text", { class: "lbl-title", x: vx + 46, y: y0 + 90, "font-size": 46, "font-weight": 700, fill: "#fff" }, svg).textContent = opts.title;
   }
 
