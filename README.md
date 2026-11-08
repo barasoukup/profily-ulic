@@ -56,8 +56,7 @@ v [evaluation/ZPRAVA.md](evaluation/ZPRAVA.md).
 
 - Kód: MIT, © 2026 Bára Soukupová ([LICENSE](LICENSE)).
 - Ilustrace: © [Streetmix](https://github.com/streetmix/streetmix), CC BY-SA 4.0
-  (`pilot/public/streetmix/LICENSE`); pražské ilustrace (`pilot/public/praha/`) © 2026 Bára Soukupová,
-  CC BY-SA 4.0.
+  (`pilot/public/streetmix/LICENSE`).
 - Technická mapa, MTVU, mapové podklady a ortofoto: © IPR Praha (CC BY 4.0); úseky parkování © TSK
   hl. m. Prahy; ortofoto © ČÚZK.
 - Data OpenStreetMap: © přispěvatelé OpenStreetMap, ODbL 1.0. Dlaždice OSM na webu jsou z nich
