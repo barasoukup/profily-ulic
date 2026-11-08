@@ -3,6 +3,9 @@
 // that the drawing needs must be numbers, a part without a usable width is an error.
 import { TYPES, SOURCES, ITEMS, PARKING_USE } from "./types.js";
 
+const EDGE_KINDS = new Set(["budova", "stavba", "zahrada", "zelen", "voda", "parkoviste", "plot", "volno"]);
+const EDGE_STYLES = new Set(["sikma", "funkce", "moderni", "plocha", "nizky", "hala", "centrum", "centrum-obchod", "sidliste", "sidliste-lodzie", "rd"]);
+
 const num = (v, lo, hi) => typeof v === "number" && Number.isFinite(v) && v >= lo && v <= hi;
 // Building facts at the edges that end up in SVG attributes (heights, floors, area).
 const INFO_NUMBERS = ["height", "levels", "cornice", "roof", "roofType", "iprKind", "area", "km", "period"];
@@ -22,6 +25,10 @@ export function cleanProfile(p, what = "profil") {
     s.items = Array.isArray(s.items) ? s.items.filter((it) => it && it.kind in ITEMS && num(it.f, 0, 1)) : [];
   }
   p.edges = typeof p.edges === "object" && p.edges ? p.edges : {};
+  for (const side of ["left", "right"]) {
+    if (side in p.edges && !EDGE_KINDS.has(p.edges[side])) p.edges[side] = "volno";
+    if (`${side}Style` in p.edges && !EDGE_STYLES.has(p.edges[`${side}Style`])) delete p.edges[`${side}Style`];
+  }
   for (const side of ["leftInfo", "rightInfo"]) {
     const info = p.edges[side];
     if (!info || typeof info !== "object") { delete p.edges[side]; continue; }

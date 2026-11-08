@@ -108,6 +108,7 @@ jobs:
       # a default for the look of flat-roofed houses. Without it the app judges by the house alone.
       - name: Built-up area by period
         continue-on-error: true
+        timeout-minutes: 10
         run: node tools/build_vyvoj.mjs site-vyvoj
       - name: Assemble the site
         env:
@@ -117,7 +118,10 @@ jobs:
           cp -R pilot/public/. _site/
           sed -i 's/export const STATIC = false;/export const STATIC = true;/' _site/config.js
           grep -q "STATIC = true" _site/config.js
-          if [ -n "$MAPY_KEY" ]; then sed -i "s/export const MAPY_KEY = \"\";/export const MAPY_KEY = \"$MAPY_KEY\";/" _site/config.js; fi
+          # The key goes in as a JSON string (any characters are safe); GitHub masks it in the log.
+          node -e 'const fs = require("fs"), f = "_site/config.js", k = process.env.MAPY_KEY || "";
+            if (k) fs.writeFileSync(f, fs.readFileSync(f, "utf8").replace("MAPY_KEY = \"\"", "MAPY_KEY = " + JSON.stringify(k)));'
+          grep -q 'MAPY_KEY = ""' _site/config.js && echo "::warning::no Mapy.com key (secret MAPY_KEY), the panorama falls back to a link" || true
           mv site-tiles _site/data/osm-tiles
           mv site-zps.json _site/data/zps.json
           [ -d site-vyvoj ] && mv site-vyvoj _site/data/vyvoj || echo "::warning::no built-up area tiles, flat roofs judged by the house alone"

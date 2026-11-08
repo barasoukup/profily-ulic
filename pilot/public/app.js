@@ -873,6 +873,8 @@ addEventListener("keydown", (e) => {
 
 function edited() {
   if (state.mode === "navrh") state.navrhEdited = true;
+  // Once the design is changed here, the address no longer holds it: a reload keeps the saved work.
+  if (location.hash.includes("&")) history.replaceState(null, "", location.hash.split("&")[0]);
   const now = snapshot();
   if (baseline && baseline !== now) {
     undoStack.push(baseline);
@@ -1172,9 +1174,13 @@ function save() {
 render(); // the intro shows at once; the illustrations follow
 window.profilyReady = true; // errors.js: from now on a failure is not a failed start
 await loadSprites();
-const linked = location.hash.startsWith("#rez=") ? parseCut(location.hash) : null;
+let linked = location.hash.startsWith("#rez=") ? parseCut(location.hash) : null;
 try {
   const saved = JSON.parse(localStorage.getItem(STORE) || "null");
+  // A reload of the same cut (no design in the link) keeps the work saved in this browser.
+  const same = (a, b) => a && b && a.lat.toFixed(6) === b.lat.toFixed(6) && a.lon.toFixed(6) === b.lon.toFixed(6) && Math.round(a.bearing) === Math.round(b.bearing);
+  const design = linked && designParams(location.hash);
+  if (linked && saved?.stav && !design.navrh && !design.stav && same(linked, saved.cut)) linked = null;
   if (saved?.stav && !linked) restore(saved);
   else render();
 } catch {
@@ -1186,6 +1192,7 @@ async function openLink(hash) {
   const c = parseCut(hash);
   if (!c) return;
   const design = designParams(hash);
+  $("#pano-dialog").close();
   map.setView([c.lat, c.lon], 19);
   await cutAt(c.lat, c.lon, false, c.bearing, c.reach);
   if (!state.stav || (!design.navrh && !design.stav)) return;
@@ -1196,13 +1203,16 @@ async function openLink(hash) {
     };
     if (design.stav) await take(design.stav, "stav");
     if (design.navrh) { await take(design.navrh, "navrh"); state.navrhEdited = true; state.mode = "navrh"; }
-    else state.navrh = structuredClone(state.stav);
+    else { state.navrh = structuredClone(state.stav); state.navrhEdited = false; }
     resetHistory();
     save();
     render();
+    // The address keeps the design (cutAt wrote the bare cut), so the link can be reloaded and passed on.
+    history.replaceState(null, "", location.hash.split("&")[0] + hash.slice(hash.indexOf("&")));
     status("Otevřený návrh ze sdíleného odkazu.", "ok");
   } catch (err) {
-    status("Návrh z odkazu se nepodařilo načíst (" + err.message + "), ukazuji ulici podle dat.", "error");
+    console.warn("odkaz", err);
+    status("Návrh z odkazu se nepodařilo načíst (odkaz je asi poškozený), ukazuji ulici podle dat.", "error");
   }
 }
 if (linked) openLink(location.hash);

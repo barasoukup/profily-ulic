@@ -23,8 +23,12 @@ async function unpack(text) {
 
 export const packProfile = (p) => pack({ s: p.segments.map((s) => pick(s, SEG_KEYS)), e: pick(p.edges, EDGE_KEYS) });
 
+// A link is short; anything far bigger is not a street (and must not freeze the page).
+const MAX_TEXT = 20000, MAX_PARTS = 200;
 export async function unpackProfile(text) {
+  if (text.length > MAX_TEXT) throw new Error("odkaz je příliš dlouhý");
   const o = await unpack(text);
+  if (!Array.isArray(o?.s) || o.s.length > MAX_PARTS) throw new Error("vadný počet částí");
   return { segments: o.s, edges: o.e || {} };
 }
 
