@@ -461,15 +461,23 @@ function splitRoadway(run, ctx) {
   // Curb strips are added while the driving lanes keep at least MIN_LANE each.
   const edge = [];
   let left = width - lanesTotal * MIN_LANE;
+  // With tracks in the roadway a strip at the curb must also stay clear of the tram's swept space
+  // (axis ± TRAM_HALF): parking or a bike lane tagged in OSM where the track runs close to the
+  // curb is not there (e.g. Seifertova), the tram shares the lane with the cars up to the curb.
+  const clear = trams.length
+    ? { R: Math.min(...trams) - TRAM_HALF - s, L: e - Math.max(...trams) - TRAM_HALF }
+    : { R: Infinity, L: Infinity };
+  const fits = (side, w) => left >= w && clear[side] >= w - 0.1;
+  const take = (side, w) => { left -= w; clear[side] -= w; };
   for (const [side, st] of [["L", sideL], ["R", sideR]]) {
     if (!st.bike) continue;
     const w = bikeWidth(st.bike, st.parking || parked.includes(side) ? st.parkingOrient || "podelne" : null);
-    if (left >= w) { edge.push({ side, type: st.bike, w }); left -= w; }
+    if (fits(side, w)) { edge.push({ side, type: st.bike, w }); take(side, w); }
   }
   for (const [side, st] of [["L", sideL], ["R", sideR]]) {
-    if (st.parking && !parked.includes(side) && left >= st.parkingWidth) {
+    if (st.parking && !parked.includes(side) && fits(side, st.parkingWidth)) {
       edge.push({ side, type: "parkovani", w: st.parkingWidth, orient: st.parkingOrient });
-      left -= st.parkingWidth;
+      take(side, st.parkingWidth);
     }
   }
   // Cars parked at a curb with a sidewalk, though no data says so: a parallel strip as an estimate
