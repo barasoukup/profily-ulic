@@ -233,10 +233,11 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
   const factory = style === "hala" && ["industrial", "manufacture"].includes(info?.type);
   const sawtooth = factory && IPR_ROOF[info?.roofType] !== "plocha";
   const shop = style === "hala" && ["retail", "supermarket"].includes(info?.type);
-  const wall = style === "plocha" ? pal("plochaWall") : factory ? BRICK : style === "hala" ? "#cdd4d9" : accent;
-  const shade = tint(wall, 0.88), dark = tint(wall, 0.7), trim = tint(wall, 1.12);
   const office = style === "plocha" && OFFICE_TYPES.has(info?.type);
-  // Balconies take a colour of their own, two steps round the palette from the insulation field.
+  // A panel house is one colour: the light shade of its insulation colour (Bára: no two-tone field).
+  const wall = style === "plocha" ? (office ? pal("plochaWall") : tint(accent, 1.22)) : factory ? BRICK : style === "hala" ? "#cdd4d9" : accent;
+  const shade = tint(wall, 0.88), dark = tint(wall, 0.7), trim = tint(wall, 1.12);
+  // Balconies take a colour of their own, two steps round the palette from the wall's.
   const balcony = PALETTES.plocha[(seed + 2) % PALETTES.plocha.length];
   const X = (d) => (side === "left" ? x + EDGE - d : x + d);
   const poly = (pts, fill, extra = {}) => el("path", { d: "M" + pts.map(([d, z]) => `${X(d)} ${surface - z}`).join(" L") + " Z", fill, ...extra }, g);
@@ -349,11 +350,6 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
   box(0, EDGE, 0, top, wall, outline);
   box(EDGE - 30, EDGE, 0, top, shade); // the wall turns away at the cut
   const plinth = office ? [20, "#8a867d"] : { sikma: [90, STONE], plocha: [80, "#8a867d"], nizky: [60, "#a59c88"] }[style];
-  if (style === "plocha" && !office) {
-    // Prague estate insulation ("parrot" colours): a big coloured field, a quieter ground floor.
-    box(EDGE * 0.45, EDGE - 30, 0, top, tint(accent, 1.22));
-    box(0, EDGE * 0.45, 0, f.ground, tint(wall, 0.92));
-  }
   if (plinth) box(-8, EDGE - 30, 0, plinth[0], plinth[1]);
 
   // Windows and the ground floor.
