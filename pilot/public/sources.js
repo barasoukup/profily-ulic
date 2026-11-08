@@ -104,10 +104,12 @@ export async function podlaznost(lat, lon) {
   if (!STATIC) return getJSON(`/api/podlaznost?lat=${lat}&lon=${lon}`);
   const json = await query(PODLAZNOST, {
     geometry: `${lon},${lat}`, geometryType: "esriGeometryPoint", inSR: "4326", spatialRel: "esriSpatialRelIntersects",
-    outFields: "pocet_podlazi,ustup_stres,podlaz_celk,strecha", returnGeometry: "false", f: "json",
+    outFields: "pocet_podlazi,ustup_stres,podlaz_celk,strecha,typ,SHAPE__Area", returnGeometry: "false", f: "json",
   });
   const a = json.features?.[0]?.attributes;
-  return a ? { cornice: a.pocet_podlazi, roof: a.ustup_stres || 0, total: a.podlaz_celk, roofType: a.strecha } : {};
+  // SHAPE__Area is in Web Mercator square metres: scaled back to the ground by cos² of the latitude.
+  const area = a?.SHAPE__Area ? Math.round(a.SHAPE__Area * Math.cos((lat * Math.PI) / 180) ** 2) : undefined;
+  return a ? { cornice: a.pocet_podlazi, roof: a.ustup_stres || 0, total: a.podlaz_celk, roofType: a.strecha, kind: a.typ, area } : {};
 }
 
 // Creates an anonymous public street on streetmix.net; returns {url, id}.

@@ -130,7 +130,7 @@ async function podlaznost(lat, lon) {
     geometryType: "esriGeometryPoint",
     inSR: "4326",
     spatialRel: "esriSpatialRelIntersects",
-    outFields: "pocet_podlazi,ustup_stres,podlaz_celk,strecha",
+    outFields: "pocet_podlazi,ustup_stres,podlaz_celk,strecha,typ,SHAPE__Area",
     returnGeometry: "false",
     f: "json",
   });
@@ -139,7 +139,9 @@ async function podlaznost(lat, lon) {
   const json = await r.json();
   if (json.error) throw new Error(`podlaznost: ${json.error.code} ${json.error.message}`);
   const a = json.features?.[0]?.attributes;
-  return JSON.stringify(a ? { cornice: a.pocet_podlazi, roof: a.ustup_stres || 0, total: a.podlaz_celk, roofType: a.strecha } : {});
+  // SHAPE__Area is in Web Mercator square metres: scaled back to the ground by cos² of the latitude.
+  const area = a?.SHAPE__Area ? Math.round(a.SHAPE__Area * Math.cos((lat * Math.PI) / 180) ** 2) : undefined;
+  return JSON.stringify(a ? { cornice: a.pocet_podlazi, roof: a.ustup_stres || 0, total: a.podlaz_celk, roofType: a.strecha, kind: a.typ, area } : {});
 }
 
 async function mtvu(bbox) {
@@ -214,7 +216,7 @@ const server = http.createServer(async (req, res) => {
     }
     if (url.pathname === "/api/podlaznost") {
       const lat = round(url.searchParams.get("lat"), 6), lon = round(url.searchParams.get("lon"), 6);
-      const body = await cached("podlaznost", `${lat},${lon}`, () => podlaznost(lat, lon));
+      const body = await cached("podlaznost2", `${lat},${lon}`, () => podlaznost(lat, lon));
       res.writeHead(200, { "Content-Type": TYPES[".json"] });
       return res.end(body);
     }

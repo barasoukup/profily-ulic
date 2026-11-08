@@ -31,7 +31,8 @@ const PRAHA = {
 export const BUILDING_STYLES = { sikma: "dům se šikmou střechou", plocha: "dům s plochou střechou", nizky: "nízký dům", hala: "hala" };
 const OLD_STYLES = { centrum: "sikma", "centrum-obchod": "sikma", sidliste: "plocha", "sidliste-lodzie": "plocha", rd: "nizky" };
 const HOUSE_TYPES = new Set(["house", "detached", "semidetached_house", "terrace", "bungalow", "villa", "farm", "garage", "garages", "shed"]);
-const HALL_TYPES = new Set(["retail", "supermarket", "industrial", "manufacture", "warehouse", "hangar", "sports_hall", "service", "transportation"]);
+const HALL_TYPES = new Set(["retail", "supermarket", "industrial", "manufacture", "warehouse", "hangar", "sports_hall", "service", "commercial_hall"]);
+const HALL_AREA = 1200; // m²: a footprint this big on up to 3 floors reads as a hall
 const FLAT_RESIDENTIAL = new Set(["apartments", "residential", "dormitory"]); // flat-roofed homes get balconies
 // IPR "Podlažnosti" roof shape (domain URK_STRECHA): 1 pitched, 3 flat, 4 atypical (mix), 5 dome, 99 unknown.
 const IPR_ROOF = { 1: "sikma", 3: "plocha", 5: "sikma" };
@@ -162,15 +163,22 @@ export function buildingLevels(info) {
   return { n: info.levels, cornice: info.cornice, roof: info.roof };
 }
 
-// Building style: set by hand, else from the OSM building type, the IPR roof type and the number of floors.
+// Building style: set by hand, else from IPR (roof shape, kind of object, footprint) and the OSM building type.
+// Checked on the 100 sample cuts (evaluation/data/budovy3-hodnoceni-*.md).
 export function buildingStyle(info, chosen) {
   const set = OLD_STYLES[chosen] || chosen;
   if (BUILDING_STYLES[set]) return set;
   const h = buildingHeight(info);
   const n = info?.levels || (h ? Math.round(h / FLOOR) : null);
-  if (HALL_TYPES.has(info?.type) && !(n > 4)) return "hala";
-  if (HOUSE_TYPES.has(info?.type) || (n && n <= 2)) return "nizky";
-  if (IPR_ROOF[info?.roofType]) return IPR_ROOF[info.roofType];
+  const roof = IPR_ROOF[info?.roofType];
+  const cornice = info?.cornice || info?.levels; // a height alone says nothing about floors in a hall
+  // Halls: an OSM shop or works building, or a big low footprint, unless IPR says pitched roof on 3+ floors.
+  const big = info?.area >= HALL_AREA && !HOUSE_TYPES.has(info?.type);
+  if ((HALL_TYPES.has(info?.type) || big || (info?.iprKind === 3 && info?.area >= HALL_AREA / 4)) && !(cornice > 2) && roof !== "sikma") return "hala";
+  if (info?.iprKind === 6 || HOUSE_TYPES.has(info?.type) || (n && n <= 2)) return "nizky";
+  if (roof) return roof;
+  // Nothing known about the building: a tenement in the inner city, a small house elsewhere (least misleading).
+  if (!n) return info?.km > INNER_KM ? "nizky" : "sikma";
   return info?.km > INNER_KM ? "plocha" : "sikma";
 }
 
@@ -187,7 +195,7 @@ function buildingForm(info, style) {
   const ground = style === "sikma" ? storey * 1.2 : storey;
   const body = ground + (n - roofRows - 1) * storey;
   const flat = style === "plocha" || style === "hala" || (style === "nizky" && IPR_ROOF[info?.roofType] === "plocha");
-  const sawtooth = style === "hala" && ["industrial", "manufacture"].includes(info?.type);
+  const sawtooth = style === "hala" && ["industrial", "manufacture"].includes(info?.type) && IPR_ROOF[info?.roofType] !== "plocha";
   // A family house shows its ridge inside the 4 m strip; a tenement's ridge lies deeper, past the cut.
   const pitched = style === "nizky" ? (RIDGE + 55) * PITCH + 45 : (EDGE + 35) * PITCH + 45;
   const roofH = flat ? roofRows * storey + (sawtooth ? 430 : style === "hala" ? 110 : 50) : roofRows ? roofRows * storey + 170 : pitched;
@@ -213,6 +221,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
   const pal = (k) => PALETTES[k][seed % PALETTES[k].length];
   const accent = pal(style === "plocha" ? "plocha" : style === "hala" ? "hala" : style);
   const factory = style === "hala" && ["industrial", "manufacture"].includes(info?.type);
+  const sawtooth = factory && IPR_ROOF[info?.roofType] !== "plocha";
   const shop = style === "hala" && ["retail", "supermarket"].includes(info?.type);
   const wall = style === "plocha" ? pal("plochaWall") : factory ? BRICK : style === "hala" ? "#cdd4d9" : accent;
   const shade = tint(wall, 0.88), dark = tint(wall, 0.7), trim = tint(wall, 1.12);
@@ -323,12 +332,13 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
   const cellar = GROUND + 60 - surface;
   el("rect", { x, y: surface, width: EDGE, height: cellar, fill: SKLEP }, g);
   box(0, EDGE, -8, 0, tint(SKLEP, 0.85));
-  box(32, 98, -cellar * 0.55 - 6, -cellar * 0.55 + 31, FRAME); // a cellar window
-  box(38, 92, -cellar * 0.55, -cellar * 0.55 + 25, GLASS);
+  const dCellar = style === "hala" || office ? 32 : 230; // under the ground-floor window, not under the door
+  box(dCellar, dCellar + 66, -cellar * 0.55 - 6, -cellar * 0.55 + 31, FRAME); // a cellar window
+  box(dCellar + 6, dCellar + 60, -cellar * 0.55, -cellar * 0.55 + 25, GLASS);
   el("rect", { x, y: GROUND + 60, width: EDGE, height: 40, fill: "#9b7f5f" }, g);
   box(0, EDGE, 0, top, wall, outline);
   box(EDGE - 30, EDGE, 0, top, shade); // the wall turns away at the cut
-  const plinth = { sikma: [90, STONE], plocha: [80, "#8a867d"], nizky: [60, "#a59c88"] }[style];
+  const plinth = office ? [20, "#8a867d"] : { sikma: [90, STONE], plocha: [80, "#8a867d"], nizky: [60, "#a59c88"] }[style];
   if (style === "plocha" && !office) {
     // Prague estate insulation ("parrot" colours): a big coloured field, a quieter ground floor.
     box(EDGE * 0.45, EDGE - 30, 0, top, tint(accent, 1.22));
@@ -421,7 +431,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       for (let k = 0; k < f.roofRows; k++) row(back, EDGE - 40, top + k * f.storey + 0.3 * f.storey, 0.45 * f.storey, full + k);
     }
     const zr = top + f.roofRows * f.storey;
-    if (factory) {
+    if (sawtooth) {
       // Saw-tooth roof lights standing on the roof, and a brick chimney behind.
       box(EDGE - 120, EDGE - 70, zr, zr + 420, wall, outline);
       for (let z = zr + 30; z < zr + 420; z += 30) box(EDGE - 120, EDGE - 70, z - 2, z + 2, tint(wall, 0.85));

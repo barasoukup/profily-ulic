@@ -8,7 +8,8 @@ import path from "node:path";
 const LIVE = process.env.DERIVE === "pilot";
 const D = await import(LIVE ? "../pilot/public/derive.js" : "./snapshot/derive.js");
 const { localFrame, nearestStreet, awayFromEnds, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } = D;
-const OUT = LIVE ? "results2" : "results", ORTHO_DIR = LIVE ? "ortho2" : "ortho";
+// OUT overrides the results folder (the orthophotos are reused, so a re-run downloads none).
+const OUT = process.env.OUT || (LIVE ? "results2" : "results"), ORTHO_DIR = LIVE ? "ortho2" : "ortho";
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname);
 const API = process.env.PILOT || "http://localhost:5173";
@@ -78,7 +79,7 @@ async function run(s) {
     if (!info?.point) continue;
     try {
       const p = await getJSON(`${API}/api/podlaznost?lat=${info.point[1]}&lon=${info.point[0]}`);
-      if (p.cornice) Object.assign(info, { cornice: p.cornice, roof: p.roof, levels: p.total || p.cornice + p.roof, src: "ipr" });
+      if (p.cornice) Object.assign(info, { cornice: p.cornice, roof: p.roof, levels: p.cornice + p.roof, roofType: p.roofType, iprKind: p.kind, area: p.area, src: "ipr" });
     } catch {}
   }
   // Nearby OSM tags of the snapped way, for checking what the pilot read.
