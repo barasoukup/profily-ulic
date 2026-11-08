@@ -39,6 +39,10 @@ const INNER_KM = 3; // within this from the centre an unknown building is taken 
 const STOREY = { sikma: 360, plocha: 290, nizky: 300, hala: 700 }; // typical storey (cm); a hall is one tall storey
 const DEFAULT_FLOORS = { sikma: 5, plocha: 8, nizky: 1, hala: 1 };
 const PITCH = Math.tan((40 * Math.PI) / 180);
+// Side windows: width and gap (cm), sill and height as a share of the storey.
+const WINDOWS = { sikma: { w: 80, gap: 55, sill: 0.25, h: 0.55 }, plocha: { w: 120, gap: 45, sill: 0.3, h: 0.45 },
+  nizky: { w: 80, gap: 60, sill: 0.3, h: 0.45 }, hala: {} };
+const GLASS = "#9fb4c2";
 const BUILDING_COLORS = {
   sikma: { wall: "#e8dcc2", line: "#d8caa9", trim: "#f3ead6", roof: "#b8502e", roofDark: "#9c4227", mansard: "#4a5560" },
   plocha: { wall: "#e9e5dc", line: "#d6d0c4", trim: "#d9d3c5", roof: "#c9c3b4", accent: "#e1b23f", sokl: "#8a867d" },
@@ -236,9 +240,20 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     box(EDGE - 150, EDGE - 95, zc + f.chimney - 8, zc + f.chimney, c.line);
   }
 
-  // The side wall, with faint floor lines so the floors can be counted.
+  // The side wall, with faint floor lines and windows like the Streetmix buildings.
   box(0, EDGE, 0, top, c.wall);
-  for (let k = 1; k < f.n - f.roofRows; k++) box(0, EDGE, k * f.storey - 2, k * f.storey + 2, c.line);
+  const full = f.n - f.roofRows;
+  for (let k = 1; k < full; k++) box(0, EDGE, k * f.storey - 2, k * f.storey + 2, c.line);
+  const win = WINDOWS[style];
+  const windowsAt = (d0, d1, z) => {
+    for (let d = d0 + win.gap; d + win.w <= d1 - win.gap / 2; d += win.w + win.gap) {
+      box(d - 5, d + win.w + 5, z - 6, z, c.line); // sill
+      box(d, d + win.w, z, z + win.h * f.storey, GLASS);
+    }
+  };
+  if (style === "hala") box(0, EDGE, top * 0.45, top * 0.45 + Math.min(180, top * 0.3), GLASS); // ribbon window
+  else for (let k = 0; k < full; k++) windowsAt(0, EDGE, k * f.storey + win.sill * f.storey);
+  if (f.flat && f.roofRows) for (let k = 0; k < f.roofRows; k++) windowsAt(220, EDGE, top + k * f.storey + win.sill * f.storey);
 
   box(0, 8, 0, top, c.line); // the street facade, seen edge-on
   // What sticks out towards the street.
