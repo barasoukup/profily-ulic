@@ -282,8 +282,9 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     if (style === "sikma") for (const d of [-eave + 10, -eave / 2 + 2]) box(d - 5, d + 5, top - 16, z(d) - 12, ROOF.tileDark); // brackets
     else dot(-eave + 2, z(-eave) - 16, 10, tint(ROOF.tileDark, 0.9)); // gutter
     if (f.roofRows || style === "nizky") {
-      const zw = top + 70; // a window in the gable (attic)
-      window(RIDGE - 60, zw, 75, 95, 1);
+      // A window in the gable, under the ridge where the gable is highest, kept clear of the roof.
+      const ww = 75, wh = Math.min(95, z(RIDGE - ww / 2 - 10) - 12 - top - 60 - 10);
+      window(RIDGE - ww / 2, top + 50, ww, wh, 1);
     } else {
       dot(260, top + 150, 30, FRAME);
       dot(260, top + 150, 22, GLASS);
