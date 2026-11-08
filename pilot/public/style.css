@@ -129,6 +129,16 @@ button.pano-link { width: 100%; text-align: left; background: var(--panel); bord
 body[data-mode="navrh"] #profile-wrap { box-shadow: inset 4px 0 0 var(--accent), var(--shadow); }
 #stav-cta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 12px 14px; border-radius: var(--radius); background: var(--panel); border: 1px dashed var(--line-strong); color: var(--muted); }
 #stav-cta[hidden] { display: none; }
+#shares { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 14px; display: grid; gap: 6px; }
+#shares[hidden] { display: none; }
+#shares h3 { margin: 0; font-size: 13px; }
+.share-row { display: flex; align-items: center; gap: 8px; }
+.share-title { width: 48px; font-size: 12px; font-weight: 600; color: var(--muted); }
+.share-bar { flex: 1; display: flex; height: 22px; border-radius: 6px; overflow: hidden; }
+.share-bar span { display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #1d1d1b; min-width: 0; overflow: hidden; white-space: nowrap; }
+.share-bar span.dark { color: #fff; }
+.share-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12px; color: var(--muted); }
+.share-legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 3px; background: var(--c); margin-right: 5px; vertical-align: -1px; }
 #stav-cta.fixing { border: 1px solid var(--user); background: #f1effb; color: var(--text); }
 #stav-cta button[hidden] { display: none; }
 .badge-fixing { background: #ece9f8; color: var(--user); }

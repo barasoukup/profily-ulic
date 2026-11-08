@@ -4,6 +4,7 @@ import { loadSprites, buildSvg, mountEditor, svgString, totalWidth, setArt, getA
 import * as sources from "./sources.js";
 import { MAPY_KEY } from "./config.js";
 import { cleanProfile, cleanCut } from "./validate.js";
+import { shares } from "./shares.js";
 import { checkRules } from "./rules.js";
 
 const HALF = 40; // half-length of the cut used for reading the data (m)
@@ -432,6 +433,7 @@ function draw() {
       <li>V režimu Návrh ho upravíte: táhněte hranice, klikněte na část, přidejte novou.</li></ol></div></div>`;
     $("#editor").replaceChildren();
     $("#palette").replaceChildren();
+    renderShares();
     return;
   }
   if (state.mode === "porovnat") {
@@ -443,6 +445,7 @@ function draw() {
       box.append(h, buildSvg(p, opts));
     }
     box.appendChild(diffList(state.stav, state.navrh));
+    renderShares();
     $("#editor").replaceChildren();
     $("#palette").replaceChildren();
     renderWidthCheck();
@@ -462,7 +465,47 @@ function draw() {
   else $("#palette").replaceChildren();
   renderWidthCheck();
   renderRuleCheck(p, box);
+  renderShares();
   fitPhone(box);
+}
+
+// How the street's width is shared out, as one bar per profile (Stav and Návrh side by side in
+// Porovnat), with the groups' metres and per cent.
+function renderShares() {
+  const box = $("#shares");
+  if (!state.stav) { box.hidden = true; return; }
+  box.hidden = false;
+  const rows = state.mode === "porovnat" ? [["Stav", state.stav], ["Návrh", state.navrh]] : [[null, current()]];
+  const pct = (v) => `${Math.round(v)} %`;
+  box.replaceChildren(Object.assign(document.createElement("h3"), { textContent: "Podíl prostoru ulice" }));
+  const before = state.mode === "porovnat" ? Object.fromEntries(shares(state.stav).map((g) => [g.key, g.pct])) : null;
+  for (const [title, p] of rows) {
+    const row = Object.assign(document.createElement("div"), { className: "share-row" });
+    if (title) row.append(Object.assign(document.createElement("span"), { className: "share-title", textContent: title }));
+    const bar = Object.assign(document.createElement("div"), { className: "share-bar", role: "img" });
+    const list = shares(p).filter((g) => g.m > 0);
+    bar.setAttribute("aria-label", list.map((g) => `${g.label} ${pct(g.pct)}`).join(", "));
+    for (const g of list) {
+      const part = Object.assign(document.createElement("span"), { title: `${g.label}: ${fmtM(g.m)} (${pct(g.pct)})` });
+      part.style.flexGrow = g.m;
+      part.style.background = g.color;
+      if (g.pct >= 9) part.textContent = pct(g.pct);
+      if (["auta", "mhd", "kola"].includes(g.key)) part.classList.add("dark");
+      bar.append(part);
+    }
+    row.append(bar);
+    box.append(row);
+  }
+  // The legend: every group with its share (and in Porovnat the change against Stav).
+  const legend = Object.assign(document.createElement("div"), { className: "share-legend" });
+  for (const g of shares(state.mode === "porovnat" ? state.navrh : current())) {
+    if (!g.m && !(before && before[g.key])) continue;
+    const d = before ? Math.round(g.pct - before[g.key]) : 0;
+    const item = Object.assign(document.createElement("span"), { textContent: `${g.label} ${fmtM(g.m)} · ${pct(g.pct)}${d ? ` (${d > 0 ? "+" : "−"}${Math.abs(d)} p. b.)` : ""}` });
+    item.style.setProperty("--c", g.color);
+    legend.append(item);
+  }
+  box.append(legend);
 }
 
 // Parts of the design that differ from the current state: edited by hand, or (same parts in the
