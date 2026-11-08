@@ -292,9 +292,11 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     box(dc - 32, dc + 32, z(dc) + 60, z(dc) + 72, "#8d4a34");
   }
 
-  // --- The side wall ---
+  // --- The side wall, with its plinth (drawn before the door, which stands on the ground) ---
   box(0, EDGE, 0, top, wall, outline);
   box(EDGE - 30, EDGE, 0, top, shade); // the wall turns away at the cut
+  const plinth = { sikma: [90, STONE], plocha: [80, "#8a867d"], nizky: [60, "#a59c88"] }[style];
+  if (plinth) box(-8, EDGE - 30, 0, plinth[0], plinth[1]);
   if (style === "plocha" && !office) {
     // Prague estate insulation ("parrot" colours): a big coloured field and a band along the ground floor.
     box(EDGE * 0.45, EDGE - 30, 0, top, tint(accent, 1.22));
@@ -307,14 +309,23 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     for (let z = 30; z < top; z += 30) box(0, EDGE - 30, z - 2, z + 2, tint(wall, 0.88));
     box(0, EDGE - 30, 0, 70, "#8a5a48");
     const wh = Math.min(top - 220, 420), z0 = 120;
-    for (const d of [40, 210]) {
-      box(d - 8, d + 128, z0 - 8, z0 + wh + 8, FRAME);
-      box(d, d + 120, z0, z0 + wh, GLASS);
-      poly([[d + 60, z0 + wh], [d + 120, z0 + wh], [d + 120, z0 + wh * 0.6]], GLINT);
-      for (let k = 40; k < 120; k += 40) box(d + k - 2, d + k + 2, z0, z0 + wh, FRAME);
-      for (let k = 40; k < wh; k += 40) box(d, d + 120, z0 + k - 2, z0 + k + 2, FRAME);
-      box(d - 14, d + 134, z0 + wh + 8, z0 + wh + 22, tint(wall, 0.75)); // brick lintel
+    for (const d of [130, 255]) {
+      box(d - 8, d + 108, z0 - 8, z0 + wh + 8, FRAME);
+      box(d, d + 100, z0, z0 + wh, GLASS);
+      poly([[d + 50, z0 + wh], [d + 100, z0 + wh], [d + 100, z0 + wh * 0.6]], GLINT);
+      for (let k = 33; k < 100; k += 33) box(d + k - 2, d + k + 2, z0, z0 + wh, FRAME);
+      for (let k = 40; k < wh; k += 40) box(d, d + 100, z0 + k - 2, z0 + k + 2, FRAME);
+      box(d - 14, d + 114, z0 + wh + 8, z0 + wh + 22, tint(wall, 0.75)); // brick lintel
     }
+    // A plank door with an arched brick head, standing on the ground near the street.
+    box(10, 120, 0, 14, "#9a8a7c");
+    box(18, 112, 14, 270, tint(wall, 0.75));
+    box(26, 104, 14, 262, DOOR);
+    for (let d = 39; d < 104; d += 13) box(d - 1, d + 1, 14, 262, tint(DOOR, 0.8));
+    dot(65, 262, 47, tint(wall, 0.75));
+    dot(65, 262, 39, GLASS);
+    box(18, 112, 222, 262, tint(wall, 0.75));
+    box(26, 104, 222, 262, DOOR);
   } else if (style === "hala") {
     const zr = top * 0.55, hr = Math.min(170, top * 0.25);
     for (let d = 20; d < EDGE - 30; d += 30) box(d, d + 3, 0, top - 40, shade); // corrugated cladding
@@ -351,8 +362,9 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
   } else {
     // Door near the street (arched in a tenement), windows behind it, and on every floor above.
     const doorH = Math.min(240, f.ground * 0.72);
-    box(16, 114, 0, doorH + 10, FRAME);
-    box(24, 106, 0, doorH, DOOR);
+    box(10, 120, 0, 14, tint(plinth?.[1] || STONE, 1.15)); // doorstep
+    box(16, 114, 14, doorH + 10, FRAME);
+    box(24, 106, 14, doorH, DOOR);
     box(30, 100, doorH * 0.7, doorH - 8, GLASS);
     dot(94, doorH * 0.4, 5, "#f2d27a");
     if (style === "sikma") { dot(65, doorH + 10, 49, FRAME); dot(65, doorH + 10, 41, GLASS); box(16, 114, doorH - 10, doorH + 10, FRAME); }
@@ -397,14 +409,12 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
   // --- What sticks out towards the street ---
   box(0, 10, 0, top, dark); // the street facade, seen edge-on
   if (style === "sikma") {
-    box(-10, EDGE - 30, 0, 90, STONE); // stone plinth along the side
     box(-18, EDGE - 30, f.ground - 18, f.ground, trim, outline); // string course
     box(-18, EDGE - 30, f.ground - 30, f.ground - 18, shade);
     box(-48, 26, top - 60, top, FRAME, outline); // main cornice
     box(-48, 26, top - 60, top - 46, dark);
     box(0, EDGE - 30, top - 82, top - 60, shade); // its shadow on the wall
   } else if (style === "plocha") {
-    box(-8, EDGE - 30, 0, 80, "#8a867d");
     if (!office) {
       for (let k = 1; k < full; k++) { // balconies with coloured parapets and a pot of flowers now and then
         const z = floorZ(k);
@@ -415,8 +425,6 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
         if (k % 3 === 1) { box(-112, -82, z + 112, z + 134, "#b5714a"); dot(-97, z + 146, 16, "#6fae4f"); dot(-90, z + 158, 7, "#e2607a"); }
       }
     }
-  } else if (style === "nizky") {
-    box(-8, EDGE - 30, 0, 60, "#a59c88");
   } else if (style === "hala") {
     box(-4, 0, 0, top, dark);
     if (shop) {
