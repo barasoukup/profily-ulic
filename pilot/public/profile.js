@@ -56,7 +56,7 @@ const ROOF = { tile: "#c25a3c", tileDark: "#8f3f2b", slate: "#4f5d6b", slateDark
 const BRICK = "#b8644a", SKLEP = "#8e8a82";
 const GLASS = "#2f3557", GLINT = "#454a75", LIT = "#f4d98c", FRAME = "#f6efdf", DOOR = "#7a4f3a", STONE = "#b9ab8f";
 const OFFICE_TYPES = new Set(["office", "commercial", "civic", "government", "public", "school", "university", "hospital", "hotel"]);
-const TALL_SHARE = 0.75; // the most of the view's width a building may rise above the ground
+const TALL_SHARE = 0.45; // the most of the view's width a building may rise above the ground
 let labelTop = -Infinity; // building labels stay below this y (set per drawing in buildSvg)
 const sprites = {};
 let art = "praha"; // "praha" or "streetmix"
@@ -520,7 +520,7 @@ function drawEdge(svg, x, kind, side, surface, info, style) {
     if (lv || h) {
       const text = lv ? (lv.cornice && lv.roof ? `${lv.cornice} + ${lv.roof} NP` : `${lv.n} NP`)
         : buildingStyle(info, style) === "hala" ? "hala" : "";
-      el("text", { x: x + EDGE / 2, y: top - 25, "text-anchor": "middle", "font-size": 32, fill: "#5f5e5a" }, g).textContent =
+      el("text", { x: x + EDGE / 2, y: top - 25, "text-anchor": "middle", "font-size": 32, fill: "#4f4e49", class: "lbl-t", "data-w": EDGE, "data-free": 1 }, g).textContent =
         [text, h ? `${info.height ? "" : "≈ "}${fmt(h).replace(",00", "")}` : ""].filter(Boolean).join(" · ");
     }
   } else if (kind === "budova") {
@@ -548,7 +548,7 @@ function drawEdge(svg, x, kind, side, surface, info, style) {
     }
     if (lv) {
       const text = lv.cornice && lv.roof ? `${lv.cornice} + ${lv.roof} NP` : `${lv.n} NP`;
-      el("text", { x: x + EDGE / 2, y: top - 25, "text-anchor": "middle", "font-size": 32, fill: "#5f5e5a" }, g).textContent =
+      el("text", { x: x + EDGE / 2, y: top - 25, "text-anchor": "middle", "font-size": 32, fill: "#4f4e49", class: "lbl-t", "data-w": EDGE, "data-free": 1 }, g).textContent =
         text + (h ? ` · ${info.height ? "" : "≈ "}${fmt(h).replace(",00", "")}` : "");
     }
   } else if (kind === "stavba") {
@@ -580,7 +580,7 @@ function drawEdge(svg, x, kind, side, surface, info, style) {
   } else {
     el("rect", { x, y: surface, width: EDGE, height: 60 + GROUND - surface, fill: "#e6e3da" }, g);
   }
-  el("text", { x: x + EDGE / 2, y: GROUND + 170, "text-anchor": "middle", "font-size": 30, fill: "#8a877e" },
+  el("text", { class: "lbl-t", "data-row": 1, "data-w": EDGE, x: x + EDGE / 2, y: GROUND + 215, "text-anchor": "middle", "font-size": 30, fill: "#6b6a65" },
     g).textContent = { budova: "budova", stavba: "drobná stavba", voda: "vodní tok / plocha", zahrada: "zahrada, louka (mimo ulici)", zelen: "zeleň (mimo ulici)", parkoviste: "parkoviště (mimo ulici)", plot: "za plotem (mimo ulici)" }[kind] || "";
   return g;
 }
@@ -596,26 +596,17 @@ export function buildSvg(profile, opts = {}) {
     edgeHeight(profile.edges?.[k], profile.edges?.[`${k}Info`], profile.edges?.[`${k}Style`])));
   // A tower beside a narrow street would squash the street into a strip: the view shows at most
   // TALL_SHARE of its width above the ground, and taller buildings are cut with a break line.
-  const shown = Math.min(tallest, Math.max(1600, view[1] * TALL_SHARE));
+  const shown = Math.min(tallest, Math.max(1300, view[1] * TALL_SHARE));
   // The top row (total width, cut ends A/B) sits above the tallest building and its floor label.
   const y0 = Math.min(0, GROUND - shown - 140) - 110;
   labelTop = y0 + 190;
-  const svg = el("svg", { xmlns: NS, viewBox: `${vx} ${y0} ${view[1]} ${H - y0}`, "font-family": "system-ui, sans-serif" });
-  el("rect", { x: vx, y: y0, width: view[1], height: H - y0, fill: "#fbfaf6" }, svg);
-  if (opts.title) {
-    el("text", { x: vx + 30, y: y0 + 70, "font-size": 46, "font-weight": 600, fill: "#1f1f1d" }, svg).textContent = opts.title;
-  }
+  const svg = el("svg", { xmlns: NS, viewBox: `${vx} ${y0} ${view[1]} ${H - y0}`, "font-family": "Inter, system-ui, sans-serif",
+    role: "img", "aria-label": `Příčný profil, celkem ${fmt(total / 100)}: ` + segs.map((s) => `${TYPES[s.type]?.label || s.type} ${fmt(s.width)}`).join(", ") });
+  el("rect", { class: "bg", x: vx, y: y0, width: view[1], height: H - y0, fill: "#fbfaf6" }, svg);
   if (opts.credits) {
     // Exported pictures carry the attribution their sources require (CC BY-SA for the illustrations).
     el("text", { x: vx + 30, y: H - 20, "font-size": 24, fill: "#8a877e" }, svg).textContent =
       (art === "praha" ? "Ilustrace © Streetmix (CC BY-SA 4.0) a Profily ulic" : "Ilustrace © Streetmix (CC BY-SA 4.0)") + " · data © IPR Praha, TSK hl. m. Prahy (CC BY 4.0) · © přispěvatelé OpenStreetMap (ODbL) · obrázek CC BY-SA 4.0";
-  }
-  el("text", { x: total / 2, y: y0 + 70, "text-anchor": "middle", "font-size": 46, fill: "#1f1f1d" }, svg).textContent =
-    `Celkem ${fmt(total / 100)}`;
-  // Ends of the cut, lettered as on the map (A = left end, B = right end).
-  for (const [letter, x] of [["A", 0], ["B", total]]) {
-    el("circle", { cx: x, cy: y0 + 70, r: 52, fill: "#e24b4a", stroke: "#fff", "stroke-width": 8 }, svg);
-    el("text", { x, y: y0 + 94, "text-anchor": "middle", "font-size": 68, "font-weight": 700, fill: "#fff" }, svg).textContent = letter;
   }
 
   const firstRaised = segs[0] && TYPES[segs[0].type]?.raised;
@@ -665,17 +656,17 @@ export function buildSvg(profile, opts = {}) {
     }
     if (t.wall) el("rect", { x, y: top - 90, width: w, height: 90, fill: t.color }, g);
     for (const it of s.items || []) drawItem(g, it, x + it.f * w, top, x + it.f * w > total / 2);
-    el("text", { x: cx, y: GROUND + 170, "text-anchor": "middle", "font-size": 40, fill: "#1f1f1d" }, g).textContent = fmt(s.width);
-    if (w >= 150) {
+    el("text", { class: "lbl-w", "data-row": 0, "data-w": w, x: cx, y: GROUND + 170, "text-anchor": "middle", "font-size": 40, "font-weight": 600, fill: "#1f1f1d" }, g).textContent = fmt(s.width);
+    if (w >= 80) {
       const contra = s.bikeDir && s.bikeDir !== (s.dir || "forward");
       const label = s.type === "parkovani" && s.use ? `Stání ${PARKING_USE[s.use]}`
         : s.type === "parkovani" && s.orient ? `Stání ${ORIENT_LABEL[s.orient]}`
         : (t.short || t.label) + (t.directional && s.dir ? (forward ? " ↑" : " ↓") : s.type === "pruh" ? " ↑↓" : "") +
           (contra ? ` kola ${s.bikeDir === "backward" ? "↓" : "↑"}` : "");
-      el("text", { x: cx, y: GROUND + 215, "text-anchor": "middle", "font-size": 28, fill: "#5f5e5a" }, g).textContent = label;
+      el("text", { class: "lbl-t", "data-row": 1, "data-w": w, x: cx, y: GROUND + 215, "text-anchor": "middle", "font-size": 28, fill: "#4f4e49" }, g).textContent = label;
     }
     if (s.turn) {
-      el("text", { x: cx, y: GROUND + 255, "text-anchor": "middle", "font-size": 28, fill: "#185fa5" }, g).textContent = turnLabel(s.turn);
+      el("text", { class: "lbl-t lbl-turn", "data-row": 2, "data-w": w, x: cx, y: GROUND + 255, "text-anchor": "middle", "font-size": 28, fill: "#185fa5" }, g).textContent = turnLabel(s.turn);
     }
     if (t.sharrow || s.bikeDir || t.bike) {
       // Cyclist sharing the lane (with a painted pictogram on a piktokoridor), possibly in contraflow.
@@ -683,17 +674,38 @@ export function buildSvg(profile, opts = {}) {
       if (t.sharrow) el("rect", { x: cx - 60, y: top - 4, width: 120, height: 6, fill: "#f2f0ea" }, g);
       sprite(g, bikeFwd ? "biker-01-outbound" : "biker-01-inbound", x + Math.min(w * 0.2, 60) + 20, top);
     }
-    if (opts.onSelect) g.addEventListener("click", () => opts.onSelect(i));
+    if (opts.onSelect) {
+      g.setAttribute("tabindex", "0");
+      g.setAttribute("role", "button");
+      g.setAttribute("aria-label", `${t.label}, ${fmt(s.width)}, ${SOURCES[s.source]?.label || ""}`);
+      g.addEventListener("click", () => opts.onSelect(i));
+      g.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); opts.onSelect(i); } });
+    }
     x += w;
     bounds.push(x);
   });
+
+  el("text", { class: "lbl-total", x: total / 2, y: y0 + 70, "text-anchor": "middle", "font-size": 46, "font-weight": 600, fill: "#1f1f1d" }, svg).textContent =
+    `Celkem ${fmt(total / 100)}`;
+  // Ends of the cut, lettered as on the map (A = left end, B = right end), above everything else.
+  for (const [letter, x] of [["A", 0], ["B", total]]) {
+    el("circle", { cx: x, cy: y0 + 70, r: 52, fill: "#d8413f", stroke: "#fff", "stroke-width": 8 }, svg);
+    el("text", { x, y: y0 + 94, "text-anchor": "middle", "font-size": 68, "font-weight": 700, fill: "#fff" }, svg).textContent = letter;
+  }
+
+  if (opts.title) {
+    // A title tag in the top left corner, over the building there.
+    el("rect", { class: "title-bg", x: vx + 16, y: y0 + 34, width: 60 + opts.title.length * 30, height: 80, rx: 16, fill: "#1d1d1b" }, svg);
+    el("text", { class: "lbl-title", x: vx + 46, y: y0 + 90, "font-size": 46, "font-weight": 700, fill: "#fff" }, svg).textContent = opts.title;
+  }
 
   if (opts.editable) {
     bounds.forEach((bx, k) => {
       const h = el("g", { class: "handle", "data-k": k }, svg);
       el("line", { x1: bx, x2: bx, y1: GROUND - 300, y2: GROUND + 120, stroke: "#8a877e", "stroke-width": 2, "stroke-dasharray": "8 6" }, h);
-      el("rect", { x: bx - 25, y: GROUND - 300, width: 50, height: 420, fill: "transparent" }, h);
-      el("circle", { cx: bx, cy: GROUND - 300, r: 14, fill: "#fff", stroke: "#185fa5", "stroke-width": 4 }, h);
+      el("rect", { class: "grab", x: bx - 40, y: GROUND - 340, width: 80, height: 460, fill: "transparent" }, h);
+      el("circle", { class: "knob", cx: bx, cy: GROUND - 300, r: 18, fill: "#fff", stroke: "#185fa5", "stroke-width": 5 }, h);
+      el("path", { class: "knob", d: `M${bx - 8} ${GROUND - 300} h16 M${bx - 8} ${GROUND - 300} l5 -5 M${bx - 8} ${GROUND - 300} l5 5 M${bx + 8} ${GROUND - 300} l-5 -5 M${bx + 8} ${GROUND - 300} l-5 5`, stroke: "#185fa5", "stroke-width": 3, fill: "none" }, h);
     });
   }
   svg.dataset.view = JSON.stringify(view);

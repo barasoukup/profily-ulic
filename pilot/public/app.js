@@ -174,7 +174,6 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     drawMtvu(polys);
     if (!map.getBounds().contains([clat, clon])) map.panTo([clat, clon]);
     const mtvuFailed = m.status !== "fulfilled";
-    $("#street-name").classList.remove("muted");
     $("#street-name").textContent = name + (polys.length ? "" : mtvuFailed ? " · technická mapa neodpověděla, jen odhad" : " · mimo technickou mapu, jen odhad");
     status(mtvuFailed ? "Technická mapa IPR teď neodpovídá (server je přetížený), profil je jen odhad z OSM. Zkuste kliknout znovu za chvíli."
       : !polys.length ? "Technická mapa tu nic nevrátila, profil je odhad z OSM."
@@ -182,6 +181,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
       : result.junction ? "Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami." : "");
     save();
     render();
+    // On a phone the profile is under the map: bring it into view.
+    if (matchMedia("(max-width: 760px)").matches) $("#profile-head").scrollIntoView({ behavior: "smooth", block: "start" });
   } catch (err) {
     console.error(err);
     status("Chyba při načítání dat: " + err.message);
@@ -300,11 +301,23 @@ function current() {
   return state.mode === "navrh" ? state.navrh : state.stav;
 }
 
+const MODE_LABEL = { stav: "Stav", navrh: "Návrh", porovnat: "Stav a návrh" };
 function render() {
-  document.querySelectorAll(".seg-toggle button").forEach((b) => b.classList.toggle("active", b.dataset.mode === state.mode));
+  document.querySelectorAll(".seg-toggle button").forEach((b) => {
+    b.classList.toggle("active", b.dataset.mode === state.mode);
+    b.setAttribute("aria-pressed", String(b.dataset.mode === state.mode));
+  });
   const box = $("#profile");
   document.body.dataset.mode = state.stav ? state.mode : "";
   $("#legend").hidden = !state.stav;
+  $("#profile-head").hidden = !state.stav;
+  $("#map-help").hidden = !state.stav;
+  $("#stav-cta").hidden = !state.stav || state.mode !== "stav";
+  if (state.stav) {
+    $("#profile-sub").textContent = `Celkem ${fmtM(totalWidth(state.mode === "navrh" ? state.navrh : state.stav))}`;
+    $("#mode-badge").textContent = MODE_LABEL[state.mode];
+    $("#mode-badge").className = `badge badge-${state.mode}`;
+  }
   if (!state.stav) {
     box.innerHTML = `<div class="empty">
       <img src="praha/t3-inbound.svg" alt="" width="96" height="126">
@@ -320,6 +333,7 @@ function render() {
     for (const [title, p] of [["Stav", state.stav], ["Návrh", state.navrh]]) {
       box.appendChild(buildSvg(p, { title }));
     }
+    box.appendChild(diffList(state.stav, state.navrh));
     $("#editor").replaceChildren();
     $("#palette").replaceChildren();
     renderWidthCheck();
@@ -333,10 +347,37 @@ function render() {
     onChange: () => { edited(); render(); },
   });
   renderEditor(p);
-  renderPalette(p);
+  if (state.mode === "navrh") renderPalette(p);
+  else $("#palette").replaceChildren();
   renderWidthCheck();
   renderRuleCheck(p, box);
   fitPhone(box);
+}
+
+// What the design changes, part by part: same parts in the same order compare width by width;
+// otherwise the parts that came and went.
+function diffList(a, b) {
+  const div = Object.assign(document.createElement("div"), { className: "diff" });
+  const name = (s) => TYPES[s.type]?.label || s.type;
+  const items = [];
+  if (a.segments.length === b.segments.length && a.segments.every((s, i) => s.type === b.segments[i].type)) {
+    a.segments.forEach((s, i) => {
+      const d = +(b.segments[i].width - s.width).toFixed(2);
+      if (d) items.push(`${name(s)}: ${fmtM(s.width)} → ${fmtM(b.segments[i].width)} (${d > 0 ? "+" : "−"}${fmtM(Math.abs(d))})`);
+    });
+  } else {
+    const count = (p) => p.segments.reduce((m, s) => m.set(name(s), (m.get(name(s)) || 0) + s.width), new Map());
+    const ca = count(a), cb = count(b);
+    for (const k of new Set([...ca.keys(), ...cb.keys()])) {
+      const wa = ca.get(k) || 0, wb = cb.get(k) || 0;
+      if (Math.abs(wa - wb) >= 0.01) items.push(`${k}: ${wa ? fmtM(wa) : "–"} → ${wb ? fmtM(wb) : "–"}`);
+    }
+  }
+  div.innerHTML = `<h3>Změny v návrhu</h3>`;
+  const ul = document.createElement("ul");
+  for (const t of items.length ? items : ["Návrh je zatím stejný jako stav."]) ul.append(Object.assign(document.createElement("li"), { textContent: t }));
+  div.append(ul);
+  return div;
 }
 
 // Widths against the IPR manual (rules.js), in Návrh only: a list under the profile and the parts
@@ -403,8 +444,60 @@ function fitPhone(box = $("#profile")) {
   const width = Math.max(box.clientWidth, vbWidth * scale);
   box.style.setProperty("--fit-width", `${width}px`);
   box.closest("#profile-wrap")?.classList.toggle("scrolls", width > box.clientWidth + 1);
+  scrollFade();
+  requestAnimationFrame(() => fitLabels(box));
+}
+
+// Labels in the drawing keep a readable size on screen (k = drawing units per CSS pixel); a label
+// wider than its part shrinks a little, and a name that still does not fit is left out.
+const LABEL_PX = { "lbl-w": 13, "lbl-t": 11, "lbl-total": 14, "lbl-title": 13 };
+function fitLabels(box) {
+  for (const svg of box.querySelectorAll("svg")) {
+    const [, , vw, vh] = (svg.getAttribute("viewBox") || "").split(" ").map(Number);
+    const rect = svg.getBoundingClientRect();
+    // A height cap shrinks the drawing inside its box (preserveAspectRatio meet): use the tighter fit.
+    const k = Math.max(vw / (rect.width || 1), vh / (rect.height || 1));
+    if (!isFinite(k) || k <= 0) continue;
+    for (const t of svg.querySelectorAll("text.lbl-w, text.lbl-t, text.lbl-total, text.lbl-title")) {
+      const cls = ["lbl-w", "lbl-total", "lbl-t", "lbl-title"].find((c) => t.classList.contains(c));
+      let size = LABEL_PX[cls] * k;
+      const w = Number(t.dataset.w);
+      const est = t.textContent.length * 0.56 * size;
+      if (w && est > w * 0.96) size = Math.max((w * 0.96) / (t.textContent.length * 0.56), cls === "lbl-w" ? 9 * k : 8 * k);
+      t.style.fontSize = `${size}px`;
+      // The floor count above a building may reach past it (data-free), other names are left out.
+      t.style.display = w && t.textContent.length * 0.56 * size > w * 1.05 && cls !== "lbl-w" && !t.dataset.free ? "none" : "";
+    }
+    // Rows under the ground (width, type, turns) are stacked by their screen size; when they need
+    // more room than the drawing has below the ground, the drawing grows downwards.
+    const GROUND = 760, H = 1000;
+    const row = (n) => GROUND + 130 + LABEL_PX["lbl-w"] * k + (n > 0 ? n * 1.3 * LABEL_PX["lbl-t"] * k : 0);
+    for (const t of svg.querySelectorAll("text[data-row]")) t.setAttribute("y", row(Number(t.dataset.row)));
+    const bottom = Math.max(H, row(svg.querySelector("text[data-row='2']") ? 2 : 1) + 0.5 * LABEL_PX["lbl-t"] * k);
+    const [vx, vy] = svg.getAttribute("viewBox").split(" ").map(Number);
+    if (Math.abs(vy + vh - bottom) > 1) {
+      svg.setAttribute("viewBox", `${vx} ${vy} ${vw} ${bottom - vy}`);
+      svg.querySelector("rect.bg")?.setAttribute("height", bottom - vy);
+    }
+    // The title tag (Stav / Návrh in Porovnat) wraps its text at the new size.
+    const title = svg.querySelector("text.lbl-title"), bg = svg.querySelector("rect.title-bg");
+    if (title && bg) {
+      const b = title.getBBox(), pad = 7 * k;
+      Object.entries({ x: b.x - pad * 1.4, y: b.y - pad, width: b.width + pad * 2.8, height: b.height + pad * 2, rx: pad * 1.2 })
+        .forEach(([a, v]) => bg.setAttribute(a, v));
+    }
+  }
 }
 addEventListener("resize", () => fitPhone());
+
+// A wide profile that scrolls fades out on the side where more of it is hidden.
+function scrollFade() {
+  const wrap = $("#profile-wrap");
+  const more = wrap.classList.contains("scrolls");
+  wrap.classList.toggle("fade-l", more && wrap.scrollLeft > 4);
+  wrap.classList.toggle("fade-r", more && wrap.scrollLeft + wrap.clientWidth < wrap.scrollWidth - 4);
+}
+$("#profile-wrap").addEventListener("scroll", scrollFade, { passive: true });
 
 // ---------- splitter between the map and the profile ----------
 // Desktop: the map's width in % of the window; phone (≤ 760 px): the map's height in % of the screen.
@@ -475,7 +568,7 @@ function renderEditor(p) {
   const i = state.selected;
   const s = p.segments[i];
   if (s === undefined) {
-    ed.innerHTML = `<span class="muted">Vyberte část profilu kliknutím. Šířky měníte tažením svislých čar. Celková šířka ${totalWidth(p).toFixed(2).replace(".", ",")} m.</span>`;
+    ed.innerHTML = `<div class="ed-head"><h3>Okraje ulice</h3><span class="muted">Klikněte na část profilu a upravte ji. Šířku změníte tažením modrých úchytů mezi částmi.</span></div>`;
     for (const [side, text] of [["left", "Levý okraj"], ["right", "Pravý okraj"]]) {
       const sel = document.createElement("select");
       // A building can be given its look by hand; "budova" alone lets the app guess it.
@@ -513,15 +606,28 @@ function renderEditor(p) {
   const btn = (text, fn, cls) => { const b = document.createElement("button"); b.textContent = text; b.onclick = fn; if (cls) b.className = cls; return b; };
   const segs = p.segments;
   const done = (sel = state.selected) => { state.selected = sel; edited(); render(); };
-  ed.append(lab("Typ", type), lab("Šířka (m)", width));
+  // A headed card in rows: what it is and how wide, how it is used, what to do with it.
+  const head = Object.assign(document.createElement("div"), { className: "ed-head" });
+  head.innerHTML = `<h3>Vybraná část: ${TYPES[s.type]?.label || s.type}</h3><span class="muted">Zdroj: ${SOURCES[s.source]?.label || s.source}</span>`;
+  head.append(btn("×", () => { state.selected = null; render(); }, "close"));
+  head.lastChild.setAttribute("aria-label", "Zavřít výběr");
+  const row = () => ed.appendChild(Object.assign(document.createElement("div"), { className: "ed-row" }));
+  const step = (d) => btn(d > 0 ? "+" : "−", () => { s.width = Math.max(minW(), +(s.width + d).toFixed(2)); s.source = "user"; done(); }, "step");
+  const minW = () => (s.type === "parkovani" && s.orient === "kolme" ? 4.5 : 0.2);
+  ed.append(head);
+  const r1 = row();
+  const wbox = Object.assign(document.createElement("span"), { className: "stepper" });
+  wbox.append(step(-0.25), width, step(0.25));
+  r1.append(lab("Typ", type), lab("Šířka (m)", wbox));
+  const r2 = row();
   if (TYPES[s.type]?.directional) {
-    ed.append(btn(s.dir === "backward" ? "Směr ↓" : "Směr ↑", () => { s.dir = s.dir === "backward" ? "forward" : "backward"; done(); }));
+    r2.append(lab("Směr jízdy", btn(s.dir === "backward" ? "↓ k divákovi" : "↑ od diváka", () => { s.dir = s.dir === "backward" ? "forward" : "backward"; done(); })));
   }
   if (s.type === "parkovani") {
     const use = document.createElement("select");
     for (const [v, t] of [["", "běžné"], ...Object.entries(PARKING_USE)]) use.add(new Option(t, v, false, (s.use || "") === v));
     use.onchange = () => { if (use.value) s.use = use.value; else delete s.use; s.source = "user"; done(); };
-    ed.append(lab("Účel", use));
+    r2.append(lab("Účel", use));
     const orient = document.createElement("select");
     for (const [v, t] of [["podelne", "podélné"], ["sikme", "šikmé"], ["kolme", "kolmé"]]) {
       orient.add(new Option(t, v, false, (s.orient || "podelne") === v));
@@ -534,7 +640,7 @@ function renderEditor(p) {
       s.source = "user";
       done();
     };
-    ed.append(lab("Stání", orient));
+    r2.append(lab("Stání", orient));
   }
   if (["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu"].includes(s.type)) {
     const turn = document.createElement("select");
@@ -543,55 +649,70 @@ function renderEditor(p) {
       turn.add(new Option(t, v, false, (s.turn || "") === v));
     }
     turn.onchange = () => { if (turn.value) s.turn = turn.value; else delete s.turn; s.source = "user"; done(); };
-    ed.append(lab("Řazení", turn));
+    r2.append(lab("Šipky na vozovce", turn));
   }
-  ed.append(
-    btn("← Posunout", () => { if (i > 0) { [segs[i - 1], segs[i]] = [segs[i], segs[i - 1]]; done(i - 1); } }),
-    btn("Posunout →", () => { if (i < segs.length - 1) { [segs[i + 1], segs[i]] = [segs[i], segs[i + 1]]; done(i + 1); } }),
-    btn("Rozdělit", () => { const h = +(s.width / 2).toFixed(2); segs.splice(i, 1, { ...s, width: h, source: "user" }, { ...s, width: +(s.width - h).toFixed(2), source: "user" }); done(); }),
-    btn("Smazat", () => { segs.splice(i, 1); done(null); }, "danger"),
-    btn("Zavřít", () => { state.selected = null; render(); }),
-  );
   // Items (furniture, barriers) inside the segment: remove, or add one in the middle.
   const items = document.createElement("span");
+  items.className = "items";
   items.textContent = "Prvky: ";
   (s.items || []).forEach((it, k) => {
-    items.append(btn(`${ITEMS[it.kind] || it.kind} ×`, () => { s.items.splice(k, 1); done(); }));
+    items.append(btn(`${ITEMS[it.kind] || it.kind} ×`, () => { s.items.splice(k, 1); done(); }, "tag"));
   });
   const add = document.createElement("select");
   add.add(new Option("+ přidat prvek", ""));
   for (const [k, t] of Object.entries(ITEMS)) add.add(new Option(t, k));
   add.onchange = () => { if (!add.value) return; (s.items ||= []).push({ kind: add.value, f: 0.5 }); done(); };
   items.append(add);
-  ed.append(items);
-  const src = document.createElement("span");
-  src.className = "muted";
-  src.textContent = "Zdroj: " + (SOURCES[s.source]?.label || s.source);
-  ed.append(src);
+  r2.append(items);
+  row().append(
+    btn("← Posunout", () => { if (i > 0) { [segs[i - 1], segs[i]] = [segs[i], segs[i - 1]]; done(i - 1); } }),
+    btn("Posunout →", () => { if (i < segs.length - 1) { [segs[i + 1], segs[i]] = [segs[i], segs[i + 1]]; done(i + 1); } }),
+    btn("Rozdělit na dvě", () => { const h = +(s.width / 2).toFixed(2); segs.splice(i, 1, { ...s, width: h, source: "user" }, { ...s, width: +(s.width - h).toFixed(2), source: "user" }); done(); }),
+    Object.assign(document.createElement("span"), { className: "spacer" }),
+    btn("Smazat část", () => { segs.splice(i, 1); done(null); }, "danger"),
+  );
 }
 
+// Parts to add, grouped as people look for them.
+const PALETTE_GROUPS = [
+  ["Pro pěší", ["chodnik", "chodnik_kola", "stezka_sdilena", "nastupiste"]],
+  ["Kola", ["cyklopruh", "ochranny_pruh", "pruh_piktokoridor", "cyklostezka"]],
+  ["Auta a autobusy", ["pruh", "parkovani", "bus", "bus_cyklo", "obsluzna", "krajnice"]],
+  ["Tramvaj", ["tramvaj_v_pruhu", "tramvaj"]],
+  ["Zeleň a ostatní", ["zelen", "stromorad", "predzahradka", "delici", "plocha", "zahradka", "voda", "zed"]],
+];
 function renderPalette(p) {
   const pal = $("#palette");
   pal.replaceChildren();
-  const hint = document.createElement("span");
-  hint.className = "muted";
-  hint.textContent = state.selected === null ? "Přidat na konec:" : "Přidat vpravo od vybrané části:";
+  const hint = document.createElement("div");
+  hint.className = "pal-title";
+  hint.textContent = state.selected === null ? "Přidat díl na konec" : "Přidat díl vpravo od vybraného";
   pal.append(hint);
-  for (const [k, t] of Object.entries(TYPES)) {
-    const chip = document.createElement("button");
-    chip.className = "chip";
-    chip.style.setProperty("--c", t.color);
-    chip.textContent = t.label;
-    chip.onclick = () => {
-      const at = state.selected === null ? p.segments.length : state.selected + 1;
-      const seg = { type: k, width: DEFAULT_WIDTH[k], source: "user" };
-      if (t.directional) seg.dir = "forward";
-      p.segments.splice(at, 0, seg);
-      state.selected = at;
-      edited();
-      render();
-    };
-    pal.append(chip);
+  const shown = new Set(PALETTE_GROUPS.flatMap(([, ks]) => ks));
+  const rest = Object.keys(TYPES).filter((k) => !shown.has(k) && k !== "nezname");
+  for (const [title, keys] of [...PALETTE_GROUPS, ["Další", rest]]) {
+    const list = keys.filter((k) => TYPES[k]);
+    if (!list.length) continue;
+    const group = Object.assign(document.createElement("div"), { className: "pal-group" });
+    group.append(Object.assign(document.createElement("span"), { className: "pal-name", textContent: title }));
+    for (const k of list) {
+      const t = TYPES[k];
+      const chip = document.createElement("button");
+      chip.className = "chip";
+      chip.style.setProperty("--c", t.color);
+      chip.textContent = t.label;
+      chip.onclick = () => {
+        const at = state.selected === null ? p.segments.length : state.selected + 1;
+        const seg = { type: k, width: DEFAULT_WIDTH[k], source: "user" };
+        if (t.directional) seg.dir = "forward";
+        p.segments.splice(at, 0, seg);
+        state.selected = at;
+        edited();
+        render();
+      };
+      group.append(chip);
+    }
+    pal.append(group);
   }
 }
 
@@ -616,6 +737,8 @@ $("#btn-art").addEventListener("click", () => {
   showArt();
   render();
 });
+
+$("#btn-to-navrh").onclick = () => document.querySelector('.seg-toggle button[data-mode="navrh"]').click();
 
 // The header menus close after a choice or a click elsewhere.
 document.addEventListener("click", (e) => {
@@ -706,7 +829,6 @@ function restore(data) {
     const r = (state.cut.bearing * Math.PI) / 180;
     const n = [-Math.cos(r), Math.sin(r)];
     drawCut(cutEnds(f, n, state.cut.reach || defaultReach()));
-    $("#street-name").classList.remove("muted");
     $("#street-name").textContent = state.cut.name;
     showCutInfo();
   }

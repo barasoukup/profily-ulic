@@ -12,7 +12,8 @@
   --accent: #185fa5;
   --dtm: #3b6d11;
   --osm: #854f0b;
-  --odhad: #a32d2d;
+  --odhad: #8f8b82;
+  --warn: #a32d2d;
   --user: #534ab7;
   --radius: 10px;
   --shadow: 0 1px 2px rgba(29, 29, 27, 0.06), 0 2px 10px rgba(29, 29, 27, 0.05);
@@ -39,11 +40,6 @@ header {
 .brand { display: inline-flex; align-items: center; gap: 8px; color: inherit; text-decoration: none; }
 .brand-mark { width: 30px; height: 30px; flex: none; }
 .brand-name { font-weight: 700; font-size: 16px; letter-spacing: -0.01em; white-space: nowrap; }
-.street {
-  font-weight: 600; color: var(--text); padding-left: 12px; border-left: 1px solid var(--line);
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0;
-}
-.street.muted { font-weight: 400; color: var(--muted); }
 
 button, .btn {
   font: inherit; font-weight: 500; padding: 6px 12px; border: 1px solid var(--line-strong); border-radius: 8px;
@@ -51,7 +47,10 @@ button, .btn {
   transition: background 0.12s, border-color 0.12s;
 }
 button:hover, .btn:hover { background: var(--paper); border-color: #a9a395; }
-button.danger { color: var(--odhad); }
+button.danger { color: var(--warn); border-color: #e6b8b3; }
+button.danger:hover { background: var(--red-bg); }
+button.primary { background: var(--text); color: #fff; border-color: var(--text); }
+button.primary:hover { background: #3a3a37; }
 
 .seg-toggle { display: inline-flex; background: var(--bg); border-radius: 9px; padding: 3px; gap: 2px; }
 .seg-toggle button { border: 0; border-radius: 7px; background: transparent; padding: 5px 14px; color: var(--muted); }
@@ -59,7 +58,7 @@ button.danger { color: var(--odhad); }
 .seg-toggle button.active { background: var(--panel); color: var(--text); box-shadow: var(--shadow); font-weight: 600; }
 
 /* The illustrations switch. */
-.switch { display: inline-flex; align-items: center; gap: 8px; border-color: transparent; background: transparent; padding-left: 6px; }
+.switch { font-size: 13px; display: inline-flex; align-items: center; gap: 8px; border-color: transparent; background: transparent; padding-left: 6px; }
 .switch::before {
   content: ""; width: 30px; height: 18px; border-radius: 9px; background: var(--line-strong); flex: none;
   box-shadow: inset 0 0 0 2px var(--line-strong); transition: background 0.15s;
@@ -96,27 +95,56 @@ main { flex: 1; display: grid; grid-template-columns: min(var(--map-size, 50%), 
 #splitter:hover::after, #splitter.dragging::after { background: var(--muted); }
 body.resizing { user-select: none; cursor: col-resize; }
 #map { flex: 1; }
-#cut-info { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; padding: 8px 12px; font-size: 12px; border-top: 1px solid var(--line); }
+#cut-info { padding: 6px 12px 8px; font-size: 12px; border-top: 1px solid var(--line); }
+#cut-info summary { cursor: pointer; color: var(--muted); font-weight: 500; }
+#cut-info[open] { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+#cut-info[open] summary { flex-basis: 100%; }
 #cut-info #cut-pos { flex-basis: 100%; font-family: ui-monospace, "SF Mono", Menlo, monospace; color: var(--muted); }
 #cut-info input { flex: 1; min-width: 160px; font: inherit; padding: 6px 8px; border: 1px solid var(--line-strong); border-radius: 8px; }
 #cut-info button { padding: 5px 10px; font-size: 12px; }
-#map-help { padding: 0 12px 10px; font-size: 12px; color: var(--muted); }
+#map-help { padding: 8px 12px; font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); }
+#map-help[hidden] { display: none; }
 
 /* ---------- profile pane ---------- */
 #profile-pane { overflow: auto; padding: 14px 18px 18px; display: flex; flex-direction: column; gap: 12px; }
 #profile-pane > * { flex: none; }
+#profile-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; }
+#profile-head[hidden] { display: none; }
+#profile-head h1 { margin: 0; font-size: 24px; line-height: 1.15; font-weight: 700; letter-spacing: -0.02em; }
+#profile-sub { font-size: 14px; }
+.badge { margin-left: auto; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; }
+.badge-stav { background: var(--bg); color: var(--muted); }
+.badge-navrh { background: #e6f1fb; color: var(--accent); }
+.badge-porovnat { background: #efeaf8; color: var(--user); }
+body[data-mode="navrh"] #profile-wrap { box-shadow: inset 4px 0 0 var(--accent), var(--shadow); }
+#stav-cta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 12px 14px; border-radius: var(--radius); background: var(--panel); border: 1px dashed var(--line-strong); color: var(--muted); }
+#stav-cta[hidden] { display: none; }
+#stav-cta span { flex: 1; min-width: 220px; }
+.diff { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 14px; margin-top: 12px; }
+.diff h3 { margin: 0 0 4px; font-size: 13px; }
+.diff ul { margin: 0; padding-left: 18px; }
 #profile-wrap { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px; box-shadow: var(--shadow); }
 /* A wide street keeps a readable scale (app.js fitPhone) and scrolls sideways instead of shrinking. */
 #profile-wrap.scrolls { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+#profile-wrap.fade-r { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 48px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 48px), transparent); }
+#profile-wrap.fade-l { -webkit-mask-image: linear-gradient(to left, #000 calc(100% - 48px), transparent); mask-image: linear-gradient(to left, #000 calc(100% - 48px), transparent); }
+#profile-wrap.fade-l.fade-r { -webkit-mask-image: linear-gradient(to right, transparent, #000 48px, #000 calc(100% - 48px), transparent); mask-image: linear-gradient(to right, transparent, #000 48px, #000 calc(100% - 48px), transparent); }
 #profile-wrap.scrolls::after { content: "Široká ulice: profil posunete do stran."; display: block; font-size: 11px; color: var(--muted); margin-top: 4px; }
 #profile svg { display: block; width: var(--fit-width, 100%); max-width: none; height: auto; user-select: none; }
 #profile svg + svg { margin-top: 14px; }
 /* While editing, a tall profile leaves room for the editor below it (the drawing keeps its proportions). */
 body[data-mode="navrh"] #profile svg { max-height: calc(100dvh - 400px); min-height: 260px; }
+body[data-mode="porovnat"] #profile svg { max-height: calc((100dvh - 330px) / 2); min-height: 200px; }
 #profile .seg { cursor: pointer; }
-#profile .seg.selected rect.ground { stroke: var(--accent); stroke-width: 3; }
+#profile .seg.selected rect.ground { stroke: var(--accent); stroke-width: 3px; vector-effect: non-scaling-stroke; }
+#profile .seg.selected { filter: drop-shadow(0 0 0 transparent); }
+#profile .seg.selected rect.ground { fill-opacity: 0.75; }
 #profile .handle { cursor: ew-resize; }
 #profile .handle:hover line { stroke: var(--accent); stroke-width: 3; }
+#profile .handle:hover .knob { stroke-width: 7; }
+#profile .seg:focus { outline: none; }
+#profile .seg:focus-visible rect.ground { stroke: var(--accent); stroke-width: 5; }
+#profile text { pointer-events: none; }
 .compare-title { font-weight: 600; margin: 4px 0; }
 
 /* Before the first cut: a short how-to with the tram. */
@@ -141,7 +169,18 @@ body.loading #profile { opacity: 0.45; transition: opacity 0.2s; }
 .src-dtm { --c: var(--dtm); } .src-osm { --c: var(--osm); } .src-tsk { --c: #0f6e56; } .src-odhad { --c: var(--odhad); } .src-user { --c: var(--user); }
 
 .card, #editor { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
-#editor { padding: 12px 14px; display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; }
+#editor { padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
+.ed-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 2px 10px; }
+.ed-head h3 { margin: 0; font-size: 15px; }
+.ed-head .close { margin-left: auto; border: 0; font-size: 20px; line-height: 1; padding: 2px 8px; color: var(--muted); }
+.ed-row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.ed-row:empty { display: none; }
+.ed-row .spacer { flex: 1; }
+.stepper { display: inline-flex; align-items: center; gap: 4px; }
+.stepper .step { width: 34px; padding: 6px 0; text-align: center; font-weight: 600; }
+.items { display: inline-flex; flex-wrap: wrap; gap: 6px; align-items: center; color: var(--muted); }
+button.tag { padding: 3px 9px; border-radius: 20px; font-size: 12px; }
+#editor > label { display: flex; }
 #editor:empty { display: none; }
 #editor label { display: inline-flex; gap: 8px; align-items: center; font-weight: 500; max-width: 100%; min-width: 0; }
 #editor select { max-width: 100%; min-width: 0; flex: 1; text-overflow: ellipsis; }
@@ -153,20 +192,22 @@ body.loading #profile { opacity: 0.45; transition: opacity 0.2s; }
 #width-check { border-radius: var(--radius); padding: 10px 14px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 #width-check[hidden] { display: none; }
 #width-check.ok { background: #eaf3de; color: var(--dtm); }
-#width-check.off { background: var(--red-bg); color: var(--odhad); font-weight: 600; }
+#width-check.off { background: var(--red-bg); color: var(--warn); font-weight: 600; }
 #rule-check { background: #fff7e6; border: 1px solid #f0d8a8; border-radius: var(--radius); padding: 10px 14px; font-size: 13px; }
 #rule-check[hidden] { display: none; }
 #rule-check ul { margin: 4px 0 0; padding-left: 18px; }
-#rule-check li.min { color: var(--odhad); }
+#rule-check li.min { color: var(--warn); }
 #rule-check li { cursor: pointer; }
 #rule-check .muted { font-size: 12px; }
 #profile .seg.warn-min rect.ground { stroke: #c0392b; stroke-width: 6; stroke-dasharray: 14 8; }
 #profile .seg.warn-zaklad rect.ground { stroke: #d68910; stroke-width: 4; stroke-dasharray: 10 8; }
 
 /* Parts to add, each with its colour from the drawing. */
-#palette { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+#palette { display: flex; flex-direction: column; gap: 8px; }
 #palette:empty { display: none; }
-#palette > .muted { width: 100%; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+.pal-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+.pal-group { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.pal-name { width: 118px; font-size: 12px; color: var(--muted); font-weight: 500; }
 #palette .chip {
   display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; padding: 5px 10px 5px 8px;
   border-radius: 20px; border: 1px solid var(--line); background: var(--panel); cursor: pointer;
@@ -174,7 +215,7 @@ body.loading #profile { opacity: 0.45; transition: opacity 0.2s; }
 #palette .chip::before { content: ""; width: 12px; height: 12px; border-radius: 4px; background: var(--c, #ccc); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12); }
 #palette .chip:hover { border-color: var(--line-strong); background: var(--paper); }
 
-footer { padding: 5px 14px; font-size: 11px; color: var(--muted); background: var(--panel); border-top: 1px solid var(--line); }
+footer { padding: 5px 14px; font-size: 12px; color: var(--muted); background: var(--panel); border-top: 1px solid var(--line); }
 footer a { color: inherit; }
 .cut-handle { background: var(--red); border: 2px solid #fff; border-radius: 50%; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); }
 .cut-end { color: #fff; font: 600 12px/18px Inter, system-ui, sans-serif; text-align: center; }
@@ -193,7 +234,7 @@ footer a { color: inherit; }
 @media (max-width: 1180px) {
   header { gap: 8px; padding: 8px 10px; }
   .switch { font-size: 0; gap: 0; } /* the switch alone; its title says what it does */
-  .switch::after { content: "Praha"; font-size: 13px; margin-left: 6px; }
+  .switch::after { content: "Ilustrace"; font-size: 13px; margin-left: 6px; }
   .seg-toggle button { padding: 5px 10px; }
 }
 @media (max-width: 960px) and (min-width: 761px) {
@@ -207,9 +248,8 @@ footer a { color: inherit; }
   header { flex-wrap: wrap; gap: 8px; padding: 8px 10px; }
   .brand-name, header .spacer, .menu summary::after, .menu .lbl { display: none; }
   .brand-mark { width: 32px; height: 32px; }
-  .street { flex: 1; border-left: 0; padding-left: 0; font-size: 15px; }
-  .switch { font-size: 0; padding: 6px 4px; }
-  .switch::after { content: "Praha"; font-size: 13px; margin-left: 6px; }
+  header .switch { margin-left: auto; font-size: 0; padding: 6px 4px; }
+  .switch::after { font-size: 13px; margin-left: 6px; }
   .menu summary { padding: 8px 10px; }
   .ico { width: 18px; height: 18px; }
   .seg-toggle { order: 10; flex-basis: 100%; }
@@ -227,7 +267,13 @@ footer a { color: inherit; }
   .empty ol { text-align: left; }
   #editor { padding: 10px; }
   #editor input[type=number], #editor select, #cut-info input { font-size: 16px; } /* no zoom on focus in iOS */
-  #palette .chip { padding: 7px 12px 7px 9px; font-size: 13px; }
+  #palette .chip { min-height: 40px; padding: 8px 12px 8px 9px; font-size: 13px; }
+  .pal-name { width: 100%; }
+  #editor label { flex-direction: column; align-items: stretch; gap: 4px; }
+  #editor .ed-row > label { flex: 1 1 140px; }
+  .ed-row button { min-height: 40px; }
+  #profile-head h1 { font-size: 20px; }
+  .switch::after { content: "Ilustrace"; }
 }
 
 /* Clicking the map makes a cut: a crosshair instead of Leaflet's open hand, which reads as "pan only".

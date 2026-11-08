@@ -32,7 +32,7 @@ export const SOURCES = {
   dtm: { label: "změřeno z technické mapy", color: "#3b6d11" },
   osm: { label: "doplněno z OSM", color: "#854f0b" },
   tsk: { label: "úseky parkování TSK", color: "#0f6e56" },
-  odhad: { label: "odhad", color: "#a32d2d" },
+  odhad: { label: "odhad", color: "#8f8b82" },
   user: { label: "upraveno ručně", color: "#534ab7" },
 };
 

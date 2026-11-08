@@ -15,14 +15,13 @@
       <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#d8413f"/><path d="M6 25V12l4-3v16M22 25V9l4 3v13M6 25h20" stroke="#fff" stroke-width="2.4" fill="none" stroke-linejoin="round"/><path d="M12 25v-4h8v4" fill="#fff"/></svg>
       <span class="brand-name">Profily ulic</span>
     </a>
-    <span id="street-name" class="street muted">Klikněte na ulici v mapě</span>
     <span class="spacer"></span>
-    <div class="seg-toggle" role="tablist" aria-label="Zobrazení">
-      <button data-mode="stav" class="active">Stav</button>
-      <button data-mode="navrh">Návrh</button>
-      <button data-mode="porovnat">Porovnat</button>
+    <div class="seg-toggle" role="group" aria-label="Zobrazení">
+      <button data-mode="stav" class="active" aria-pressed="true" title="Ulice, jak je dnes (z dat IPR a OSM)">Stav</button>
+      <button data-mode="navrh" aria-pressed="false" title="Vaše úprava ulice">Návrh</button>
+      <button data-mode="porovnat" aria-pressed="false" title="Stav a návrh pod sebou se seznamem změn">Porovnat</button>
     </div>
-    <button id="btn-art" class="switch" role="switch" aria-checked="true" title="Pražské obrázky, nebo obrázky Streetmixu">Pražské obrázky</button>
+    <button id="btn-art" class="switch" role="switch" aria-checked="true" title="Kreslit pražskými ilustracemi (vypnuto: ilustrace Streetmixu)">Pražské ilustrace</button>
     <details class="menu">
       <summary class="btn" aria-label="Export"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8M4.5 6.5 8 10l3.5-3.5M3 13h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lbl">Export</span></summary>
       <div class="menu-list">
@@ -42,17 +41,27 @@
   <main>
     <section id="map-pane">
       <div id="map"></div>
-      <div id="cut-info">
+      <div id="map-help" hidden>Řez posunete tažením středu. Tažením konce ho natočíte a zkrátíte nebo prodloužíte profil na té straně.</div>
+      <details id="cut-info">
+        <summary>Poloha řezu</summary>
         <span id="cut-pos" class="muted">Řez zatím není.</span>
         <button id="btn-copy-cut" title="Zkopíruje polohu a azimut řezu">Kopírovat</button>
         <input id="cut-goto" placeholder="Vložit polohu řezu…" aria-label="Poloha řezu">
-      </div>
-      <div id="map-help" class="muted">Klikněte na ulici. Řez posunete tažením středu. Tažením konce ho natočíte a zároveň zkrátíte nebo prodloužíte profil na té straně.</div>
+      </details>
     </section>
     <div id="splitter" role="separator" aria-label="Předěl mezi mapou a profilem (táhněte)" tabindex="0"></div>
     <section id="profile-pane">
+      <div id="profile-head" hidden>
+        <h1 id="street-name">Ulice</h1>
+        <span id="profile-sub" class="muted"></span>
+        <span id="mode-badge"></span>
+      </div>
       <div id="status" class="muted"></div>
       <div id="profile-wrap"><div id="profile"></div></div>
+      <div id="stav-cta" hidden>
+        <span>Profil ukazuje ulici, jak je dnes. Opravit data můžete i tady (klikněte na část), změny navrhujte v Návrhu.</span>
+        <button id="btn-to-navrh" class="primary">Navrhnout změnu →</button>
+      </div>
       <div id="legend">
         <span class="src src-dtm">změřeno z technické mapy</span>
         <span class="src src-osm">doplněno z OSM</span>
