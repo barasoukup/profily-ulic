@@ -65,6 +65,13 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 ## Stav a otevřené věci
 - Stav je jen k prohlížení; data se opravují po tlačítku „Opravit data“ (Bára 8. 11. 2026). Návrh je
   editovatelný vždy. Copyright kódu i pražských ilustrací: © Bára Soukupová (MIT).
+- Budovy: 6 vzhledů (šikmá střecha, funkcionalistický činžák, moderní bytový dům, panelák/kanceláře,
+  nízký dům, hala). Plochá střecha se rozlišuje podle tvaru bloku z OSM, IPR „nová budova“
+  (pole ve stávajícím dotazu na Podlažnosti) a stáří zástavby (IPR Vývoj zástavby, statické dlaždice
+  z `tools/build_vyvoj.mjs` při nasazení; Bára 8. 11. 2026: plošná vrstva je výchozí odhad, který
+  přebijí údaje o domě).
+- Panorama z ulice: Mapy.com Panorama API, klíč jen v tajné proměnné repozitáře `MAPY_KEY` a v
+  lokálním `pilot/public/config.local.js` (git ho ignoruje), nikdy v kódu.
 - Tlačítko „Do Streetmixu“ je vyndané (Bára 8. 11. 2026), protože na Pages nefunguje (API Streetmixu
   nemá CORS). Převod `streetmix.js` zůstává s testy. Dotaz:
   https://github.com/streetmix/streetmix/issues/3828. Proxy přes Cloudflare je odložená do odpovědi.
