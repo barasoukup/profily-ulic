@@ -123,6 +123,33 @@ export async function zps(lat, lon) {
   return boxes.some(([x0, y0, x1, y1]) => lon >= x0 - dLon && lon <= x1 + dLon && lat >= y0 - dLat && lat <= y1 + dLat);
 }
 
+// When the area around a point was first built up, from IPR's "Vývoj zástavby" (built-up area in
+// 1840, 1880, 1920, 1950, 1970, 1990, 2010), cut into static tiles by tools/build_vyvoj.mjs, so a
+// click never asks IPR. Returns the earliest year whose area contains the point, AFTER_2010 when
+// the point lies in none (built later), undefined when there is no tile (data missing).
+export const AFTER_2010 = 2020;
+const VYVOJ_TILE = 0.01;
+const vyvojTiles = new Map();
+const insideRings = (rings, x, y) => {
+  let c = false;
+  for (const r of rings) {
+    for (let i = 0, j = r.length - 1; i < r.length; j = i++) {
+      const [xi, yi] = r[i], [xj, yj] = r[j];
+      if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c;
+    }
+  }
+  return c;
+};
+export async function vyvoj(lat, lon) {
+  const k = `${Math.floor(lon / VYVOJ_TILE)}_${Math.floor(lat / VYVOJ_TILE)}`;
+  if (!vyvojTiles.has(k)) vyvojTiles.set(k, fetch(`data/vyvoj/${k}.json`).then((r) => (r.ok ? r.json() : null), () => null));
+  const polys = await vyvojTiles.get(k);
+  if (!polys) return undefined;
+  let year = AFTER_2010;
+  for (const [rok, rings] of polys) if (rok < year && insideRings(rings, lon, lat)) year = rok;
+  return year;
+}
+
 export async function podlaznost(lat, lon) {
   if (!STATIC) return getJSON(`/api/podlaznost?lat=${lat}&lon=${lon}`);
   const json = await query(PODLAZNOST, {

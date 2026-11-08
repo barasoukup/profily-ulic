@@ -20,6 +20,7 @@ Obrázky profilů, které aplikace vytváří, obsahují ilustrace Streetmixu. P
 | IPR – liniové prvky technické mapy (osy kolejí, svodidla, zábradlí, ploty, svahy), tamtéž `/10` | koleje, bariéry, svahy | Stejné jako MTVU: povinně zveřejňovaná data, uvést „© IPR Praha“ | ✓ |
 | IPR – polohopis technické mapy jako podkladová mapa | jen zobrazení | Povinně zveřejňovaná data, uvést „© IPR Praha“ | ✓ |
 | IPR – Podlažnosti (`URK_CUR_URK_SS_PODLAZNOST_P`) | počet podlaží budov | **CC BY** (otevřená data IPR), uvést „© IPR Praha“ | ✓ |
+| IPR – Vývoj zástavby v Praze 1840–2010 (`URK_CUR_URK_VYVOJZASTAVBY_P`) | stáří zastavěného území jako výchozí odhad vzhledu domu | **CC BY**, uvést „© IPR Praha“. Stahuje se jednou při nasazení do statických dlaždic (`tools/build_vyvoj.mjs`), aplikace se IPR při kliknutí neptá. | ✓ |
 | TSK přes IPR – úseky parkování, ZTP, zásobování, speciální stání (`dop/zony_placeneho_stani`) | parkování | **CC BY** (otevřená data IPR, poskytovatel HMP-TSK) | ✓ |
 | OpenStreetMap (výřez BBBike) | osy ulic a tagy, stromy, mobiliář, budovy… | **ODbL 1.0**: uvést „© přispěvatelé OpenStreetMap“. Odvozená databáze (naše dlaždice) se smí šířit jen pod ODbL. Obrázky z dat jsou „produced work“ a stačí u nich uvedení zdroje. | ✓ s uvedením zdroje |
 | Podkladové dlaždice `tile.openstreetmap.org` | mapa v aplikaci | Zdarma podle [Tile Usage Policy](https://operations.osmfoundation.org/policies/tiles/) OSMF: jen mírný provoz, s atribucí, bez hromadného stahování. U veřejné aplikace s větším provozem je lepší jiný poskytovatel. | ✓ / pozor na provoz |

@@ -209,12 +209,28 @@ export function buildingStyle(info, chosen) {
 // set-backs are an inner-city thing; panel houses have none). Height says nothing: panel houses of
 // 4 floors are common (Bára).
 const PANEL_WIDTH = 16, PANEL_FILL = 0.65, PANEL_PART = 30, PANEL_FLOORS = 8, ESTATE_KM = 7;
+// The age of the area (IPR "Vývoj zástavby", info.period = the first year it shows as built up) is
+// the default, overruled by what is known of the house itself (Bára): built up by 1950 → a
+// functionalist tenement unless the house is a panel slab, a modern set-back block further out or
+// stands in an old village core out on the edge;
+// 1970–1990 → the panel era; 2010 or later → a modern block of flats.
+const OLD_SETBACK_KM = 4.5;
 function flatKind(info, n) {
   if (OFFICE_TYPES.has(info?.type)) return "plocha";
   if (info?.newBuild) return "moderni"; // IPR "nová budova"
   const b = info?.block;
   const slab = b && ((b.fill >= PANEL_FILL && b.width <= PANEL_WIDTH) || (b.parts >= 2 && (b.length + b.width) / b.parts >= PANEL_PART));
-  if (!slab && n < PANEL_FLOORS && info?.roof >= 1 && info?.km > INNER_KM) return "moderni";
+  const setback = !slab && n < PANEL_FLOORS && info?.roof >= 1;
+  const p = info?.period;
+  if (p) {
+    if (p >= 2010) return "moderni";
+    if (p >= 1970) return setback && info?.km > INNER_KM ? "moderni" : "plocha";
+    if (slab) return "plocha";
+    // Out where the old area is a village core, a flat-roofed block of flats is a newer infill.
+    if (info?.km >= ESTATE_KM) return "moderni";
+    return setback && info?.km > OLD_SETBACK_KM ? "moderni" : "funkce";
+  }
+  if (setback && info?.km > INNER_KM) return "moderni";
   if (n >= PANEL_FLOORS || info?.km >= ESTATE_KM) return "plocha";
   if (b) return slab ? "plocha" : "funkce";
   return info?.km > INNER_KM ? "plocha" : "funkce";

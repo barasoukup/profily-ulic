@@ -37,3 +37,18 @@ test("ustupující podlaží mimo centrum je moderní, čtyřpodlažní dům na 
   assert.equal(flat({ levels: 4, cornice: 4, km: 4.1, block: { length: 36, width: 14.2, fill: 0.83, parts: 1 } }), "plocha");
   assert.equal(flat({ levels: 7, cornice: 6, roof: 1, km: 2.8, block: { length: 90, width: 60, fill: 0.5, parts: 9 } }), "funkce");
 });
+
+test("stáří zástavby (IPR) je výchozí odhad, který přebijí údaje o domě", () => {
+  const slab = { length: 144, width: 14.8, fill: 0.84, parts: 1 }, block = { length: 120, width: 80, fill: 0.45, parts: 12 };
+  assert.equal(flat({ period: 1950, block }), "funkce");
+  assert.equal(flat({ period: 1950, block: slab }), "plocha");
+  assert.equal(flat({ period: 1990, block }), "plocha");
+  assert.equal(flat({ period: 2010, block: slab }), "moderni");
+  assert.equal(flat({ period: 2020 }), "moderni");
+  assert.equal(flat({ period: 1950, roof: 1, km: 5.3, levels: 5, cornice: 4 }), "moderni");
+  assert.equal(flat({ period: 1990, newBuild: true }), "moderni");
+});
+
+test("plochá střecha ve staré vesnici na okraji je novější dům, ne funkcionalismus", () => {
+  assert.equal(flat({ period: 1880, levels: 3, cornice: 3, km: 13.7, block: { length: 107, width: 20.6, fill: 0.78, parts: 5 } }), "moderni");
+});

@@ -104,6 +104,11 @@ jobs:
           else
             echo "::error::no zone file (data/zps.json) and none cached"; exit 1
           fi
+      # The age of the built-up area (IPR "Vývoj zástavby", CC BY), once per deploy into static tiles:
+      # a default for the look of flat-roofed houses. Without it the app judges by the house alone.
+      - name: Built-up area by period
+        continue-on-error: true
+        run: node tools/build_vyvoj.mjs site-vyvoj
       - name: Assemble the site
         env:
           MAPY_KEY: ${{ secrets.MAPY_KEY }} # Mapy.com key for the street panorama; empty → a plain link instead
@@ -115,6 +120,7 @@ jobs:
           if [ -n "$MAPY_KEY" ]; then sed -i "s/export const MAPY_KEY = \"\";/export const MAPY_KEY = \"$MAPY_KEY\";/" _site/config.js; fi
           mv site-tiles _site/data/osm-tiles
           mv site-zps.json _site/data/zps.json
+          [ -d site-vyvoj ] && mv site-vyvoj _site/data/vyvoj || echo "::warning::no built-up area tiles, flat roofs judged by the house alone"
           cp LICENCE-A-ZDROJE.md _site/data/LICENCE-A-ZDROJE.md
           cat > _site/data/README.txt <<'EOF'
           data/osm-tiles: dlaždice odvozené z OpenStreetMap (výřez BBBike Praha).

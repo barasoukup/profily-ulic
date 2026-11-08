@@ -30,6 +30,17 @@ async function getJSON(url) {
   }
 }
 
+// The app's sources.vyvoj() on the local tiles (pilot/data/vyvoj, built by tools/build_vyvoj.mjs).
+async function vyvoj(lat, lon) {
+  const k = `${Math.floor(lon / 0.01)}_${Math.floor(lat / 0.01)}`;
+  let polys;
+  try { polys = JSON.parse(await fs.readFile(path.join(ROOT, "..", "pilot", "data", "vyvoj", `${k}.json`), "utf8")); } catch { return undefined; }
+  const inside = (rings, x, y) => { let c = false; for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; } return c; };
+  let year = 2020;
+  for (const [rok, rings] of polys) if (rok < year && inside(rings, lon, lat)) year = rok;
+  return year;
+}
+
 const merc = (lon, lat) => [6378137 * (lon * Math.PI) / 180, 6378137 * Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360))];
 
 async function ortho(lat, lon, file) {
@@ -81,6 +92,8 @@ async function run(s) {
       const p = await getJSON(`${API}/api/podlaznost?lat=${info.point[1]}&lon=${info.point[0]}`);
       if (p.cornice) Object.assign(info, { cornice: p.cornice, roof: p.roof, levels: p.cornice + p.roof, roofType: p.roofType, iprKind: p.kind, newBuild: p.newBuild, area: p.area, src: "ipr" });
     } catch {}
+    const y = await vyvoj(info.point[1], info.point[0]);
+    if (y) info.period = y;
   }
   // Nearby OSM tags of the snapped way, for checking what the pilot read.
   await ortho(clat, clon, path.join(ROOT, "data", ORTHO_DIR, `${s.n}.jpg`));
