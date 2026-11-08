@@ -3,8 +3,8 @@
 // everywhere; under a narrow part it shrinks or is left out). raised: on the curb (15 cm above the roadway).
 export const TYPES = {
   chodnik: { label: "Chodník", color: "#d6d1c4", raised: true, sprite: "people" },
-  chodnik_kola: { label: "Chodník s cyklisty", color: "#d9c9c0", raised: true, sprite: "people" },
-  stezka_sdilena: { label: "Stezka pro chodce a kola", color: "#d4b8a8", raised: true, sprite: "people" },
+  chodnik_kola: { label: "Chodník s cyklisty", color: "#d9c9c0", raised: true, sprite: "people", withBike: true },
+  stezka_sdilena: { label: "Stezka pro chodce a kola", color: "#d4b8a8", raised: true, sprite: "people", withBike: true },
   predzahradka: { label: "Předzahrádka", color: "#a7c66b", raised: true, sprite: "bush" },
   zelen: { label: "Zeleň", color: "#8fbf55", raised: true, sprite: "bush" },
   stromorad: { label: "Stromořadí", color: "#7fb04a", raised: true, sprite: "tree" },

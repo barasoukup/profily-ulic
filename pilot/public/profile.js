@@ -162,6 +162,17 @@ export const ORIENT_LABEL = { podelne: "podélné", sikme: "šikmé", kolme: "ko
 export const turnLabel = (v) => v.split(";").map((x) => TURNS[x] || x).join(" + ");
 
 // anchor: the picture's x (its own units) that stands at cx; the middle when not given.
+// The most even split of a name into two lines (null for one word).
+export function twoLines(text) {
+  const words = text.split(" ");
+  let best = null;
+  for (let j = 1; j < words.length; j++) {
+    const a = words.slice(0, j).join(" "), b = words.slice(j).join(" ");
+    if (!best || Math.max(a.length, b.length) < Math.max(best[0].length, best[1].length)) best = [a, b];
+  }
+  return best;
+}
+
 function sprite(g, name, cx, bottom, flip = false, anchor = null) {
   const s = (art === "praha" && sprites[`praha/${PRAHA[name]}`]) || sprites[name];
   if (!s) return;
@@ -892,7 +903,14 @@ export function buildSvg(profile, opts = {}) {
     if (t.tracks) {
       for (const dx of [-72, 72]) el("rect", { x: cx + dx - 6, y: top - 6, width: 12, height: 8, fill: "#3d3b36" }, g);
     }
-    if (t.sprite === "people") {
+    if (t.sprite === "people" && t.withBike && w >= 140) {
+      // Shared with cyclists: a walker and a cyclist side by side (only the cyclist when narrow).
+      const bike = forward ? "biker-01-outbound" : "biker-01-inbound";
+      if (w >= 240) {
+        sprite(g, PEOPLE[(i * 2) % PEOPLE.length], x + w * 0.3, top);
+        sprite(g, bike, x + w * 0.7, top);
+      } else sprite(g, bike, cx, top);
+    } else if (t.sprite === "people") {
       const n = w >= 300 ? 2 : w >= 140 ? 1 : 0;
       for (let k = 0; k < n; k++) sprite(g, PEOPLE[(i * 2 + k) % PEOPLE.length], x + (w * (k + 1)) / (n + 1), top, k % 2 === 1);
     } else if (s.type === "parkovani" && w >= 180) {
@@ -920,16 +938,23 @@ export function buildSvg(profile, opts = {}) {
     if (t.wall) el("rect", { x, y: top - 90, width: w, height: 90, fill: t.color }, g);
     for (const it of s.items || []) drawItem(g, it, x + it.f * w, top, x + it.f * w > total / 2);
     el("text", { class: "lbl-w", "data-row": 0, "data-w": w, x: cx, y: GROUND + 170, "text-anchor": "middle", "font-size": 40, "font-weight": 600, fill: "#1f1f1d" }, g).textContent = fmt(s.width);
+    let wrapped = false;
     if (w >= 80) {
       const contra = s.bikeDir && s.bikeDir !== (s.dir || "forward");
       const label = s.type === "parkovani" && s.use ? `Parkování ${PARKING_USE[s.use]}`
         : s.type === "parkovani" && s.orient ? `Parkování ${ORIENT_LABEL[s.orient]}`
         : t.label + (t.directional && s.dir ? (forward ? " ↑" : " ↓") : s.type === "pruh" ? " ↑↓" : "") +
           (contra ? ` kola ${s.bikeDir === "backward" ? "↓" : "↑"}` : "");
-      el("text", { class: "lbl-t", "data-row": 1, "data-w": w, x: cx, y: GROUND + 215, "text-anchor": "middle", "font-size": 28, fill: "#4f4e49" }, g).textContent = label;
+      const name = el("text", { class: "lbl-t", "data-row": 1, "data-w": w, "data-full": label, x: cx, y: GROUND + 215, "text-anchor": "middle", "font-size": 28, fill: "#4f4e49" }, g);
+      const lines = twoLines(label);
+      if (label.length * 0.56 * 28 > w && lines) {
+        // A long name under a narrow part goes on two lines (the page refits it to the screen).
+        lines.forEach((line, j) => { el("tspan", { x: cx, dy: j ? "1.15em" : "0" }, name).textContent = line; });
+        wrapped = true;
+      } else name.textContent = label;
     }
     if (s.turn) {
-      el("text", { class: "lbl-t lbl-turn", "data-row": 2, "data-w": w, x: cx, y: GROUND + 255, "text-anchor": "middle", "font-size": 28, fill: "#185fa5" }, g).textContent = turnLabel(s.turn);
+      el("text", { class: "lbl-t lbl-turn", "data-row": 2, "data-w": w, x: cx, y: GROUND + (wrapped ? 290 : 255), "text-anchor": "middle", "font-size": 28, fill: "#185fa5" }, g).textContent = turnLabel(s.turn);
     }
     if (t.sharrow || s.bikeDir || t.bike) {
       // Cyclist sharing the lane (with a painted pictogram on a piktokoridor), possibly in contraflow.

@@ -1,6 +1,6 @@
 import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
-import { loadSprites, buildSvg, mountEditor, svgString, totalWidth, setArt, getArt, buildingStyle, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE } from "./profile.js";
+import { loadSprites, buildSvg, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE } from "./profile.js";
 import * as sources from "./sources.js";
 import { MAPY_KEY } from "./config.js";
 import { cleanProfile, cleanCut } from "./validate.js";
@@ -652,6 +652,8 @@ function fitLabels(box) {
       const short = t.dataset.full.split(" · ")[0];
       t.textContent = t.dataset.full.length * 0.56 * 10 * k > Number(t.dataset.w) ? short : t.dataset.full;
     }
+    // Names drawn on two lines start again from one line (data-full).
+    for (const t of svg.querySelectorAll("text.lbl-t[data-full]:not(.lbl-floor)")) t.textContent = t.dataset.full;
     for (const t of svg.querySelectorAll("text.lbl-w, text.lbl-t, text.lbl-total, text.lbl-title, text.lbl-floor")) {
       const cls = ["lbl-w", "lbl-total", "lbl-t", "lbl-title", "lbl-floor"].find((c) => t.classList.contains(c));
       let size = LABEL_PX[cls] * k;
@@ -661,6 +663,27 @@ function fitLabels(box) {
       t.style.fontSize = `${size}px`;
       // The floor count above a building may reach past it (data-free), other names are left out.
       t.style.display = w && t.textContent.length * 0.56 * size > w * 1.05 && cls !== "lbl-w" && !t.dataset.free ? "none" : "";
+    }
+    // A long name that does not fit under its part goes on two lines before it is left out.
+    for (const n of svg.querySelectorAll("text.lbl-turn")) n.dataset.row = 2;
+    for (const t of svg.querySelectorAll("text.lbl-t[data-row='1'][data-full]:not(.lbl-floor)")) {
+      const w = Number(t.dataset.w), full = t.dataset.full, best = twoLines(full);
+      if (parseFloat(t.style.fontSize) * full.length * 0.56 <= w * 1.05 || !best) continue;
+      const longest = Math.max(best[0].length, best[1].length);
+      const size = Math.max(Math.min(LABEL_PX["lbl-t"] * k, (w * 0.96) / (longest * 0.56)), 10 * k);
+      if (longest * 0.56 * size > w * 1.05) { t.style.display = "none"; continue; }
+      t.textContent = "";
+      t.style.fontSize = `${size}px`;
+      t.style.display = "";
+      best.forEach((line, j) => {
+        const ts = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+        ts.setAttribute("x", t.getAttribute("x"));
+        ts.setAttribute("dy", j ? "1.15em" : "0");
+        ts.textContent = line;
+        t.append(ts);
+      });
+      // The turn arrows under it move one row down.
+      for (const n of t.parentNode.querySelectorAll("text.lbl-turn")) n.dataset.row = 3;
     }
     // Rows under the ground (width, type, turns) are stacked by their screen size; when they need
     // more room than the drawing has below the ground, the drawing grows downwards.
@@ -686,7 +709,9 @@ function fitLabels(box) {
     const GROUND = 760, H = 1000;
     const row = (n) => GROUND + 130 + LABEL_PX["lbl-w"] * k + (n > 0 ? n * 1.3 * LABEL_PX["lbl-t"] * k : 0);
     for (const t of svg.querySelectorAll("text[data-row]")) t.setAttribute("y", row(Number(t.dataset.row)));
-    const bottom = Math.max(H, row(svg.querySelector("text[data-row='2']") ? 2 : 1) + 0.5 * LABEL_PX["lbl-t"] * k);
+    const lowest = Math.max(1, ...[...svg.querySelectorAll("text[data-row]")].filter((t) => t.style.display !== "none")
+      .map((t) => Number(t.dataset.row) + (t.querySelector("tspan") ? 1 : 0)));
+    const bottom = Math.max(H, row(lowest) + 0.5 * LABEL_PX["lbl-t"] * k);
     const [vx, vy] = svg.getAttribute("viewBox").split(" ").map(Number);
     if (Math.abs(vy + vh - bottom) > 1) {
       svg.setAttribute("viewBox", `${vx} ${vy} ${vw} ${bottom - vy}`);
