@@ -5,6 +5,7 @@ import * as sources from "./sources.js";
 import { MAPY_KEY } from "./config.js";
 import { cleanProfile, cleanCut } from "./validate.js";
 import { shares } from "./shares.js";
+import { packProfile, unpackProfile, designParams } from "./share.js";
 import { checkRules } from "./rules.js";
 
 const HALF = 40; // half-length of the cut used for reading the data (m)
@@ -1178,16 +1179,47 @@ try {
 } catch {
   render();
 }
-if (linked) {
-  map.setView([linked.lat, linked.lon], 19);
-  cutAt(linked.lat, linked.lon, false, linked.bearing, linked.reach);
+// A cut link, possibly with a design in it (shareLink): the street is derived from the data as
+// always, then the design (and the hand-corrected Stav) from the link replace the parts.
+async function openLink(hash) {
+  const c = parseCut(hash);
+  if (!c) return;
+  const design = designParams(hash);
+  map.setView([c.lat, c.lon], 19);
+  await cutAt(c.lat, c.lon, false, c.bearing, c.reach);
+  if (!state.stav || (!design.navrh && !design.stav)) return;
+  try {
+    const take = async (text, into) => {
+      const p = cleanProfile(await unpackProfile(text), into === "stav" ? "stav" : "návrh");
+      state[into] = { segments: p.segments, edges: { ...state.stav.edges, ...p.edges } };
+    };
+    if (design.stav) await take(design.stav, "stav");
+    if (design.navrh) { await take(design.navrh, "navrh"); state.navrhEdited = true; state.mode = "navrh"; }
+    else state.navrh = structuredClone(state.stav);
+    resetHistory();
+    save();
+    render();
+    status("Otevřený návrh ze sdíleného odkazu.", "ok");
+  } catch (err) {
+    status("Návrh z odkazu se nepodařilo načíst (" + err.message + "), ukazuji ulici podle dat.", "error");
+  }
 }
+if (linked) openLink(location.hash);
 
 // A cut link pasted into the address bar of an open tab (the app's own updates use replaceState,
 // which fires no hashchange).
 addEventListener("hashchange", () => {
-  const c = location.hash.startsWith("#rez=") ? parseCut(location.hash) : null;
-  if (!c) return;
-  map.setView([c.lat, c.lon], 19);
-  cutAt(c.lat, c.lon, false, c.bearing, c.reach);
+  if (location.hash.startsWith("#rez=")) openLink(location.hash);
 });
+
+// Share: the address of the cut with the design (and a hand-corrected Stav) packed into it.
+$("#btn-share").onclick = async () => {
+  if (!state.stav) return;
+  const base = location.href.split("#")[0] + location.hash.split("&")[0];
+  const stavEdited = state.stav.segments.some((s) => s.source === "user");
+  let url = base;
+  if (state.navrhEdited) url += "&navrh=" + (await packProfile(state.navrh));
+  if (stavEdited) url += "&stav=" + (await packProfile(state.stav));
+  try { await navigator.clipboard.writeText(url); status(state.navrhEdited ? "Odkaz na návrh je ve schránce." : "Odkaz na ulici je ve schránce (návrh zatím nemáte).", "ok"); }
+  catch { prompt("Zkopírujte odkaz:", url); }
+};
