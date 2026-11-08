@@ -507,6 +507,7 @@ function renderShares() {
     legend.append(item);
   }
   box.append(legend);
+  box.append(Object.assign(document.createElement("div"), { className: "share-note", textContent: "Sdílené pruhy a stezky se počítají napůl (např. pruh s tramvají půl MHD, půl auta)." }));
 }
 
 // Parts of the design that differ from the current state: edited by hand, or (same parts in the
