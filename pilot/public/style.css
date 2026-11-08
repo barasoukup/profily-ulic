@@ -126,10 +126,21 @@ body[data-mode="navrh"] #profile-wrap { box-shadow: inset 4px 0 0 var(--accent),
 #profile-wrap { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px; box-shadow: var(--shadow); }
 /* A wide street keeps a readable scale (app.js fitPhone) and scrolls sideways instead of shrinking. */
 #profile-wrap.scrolls { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+#profile-frame { position: relative; }
+.scroll-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; padding: 0; border-radius: 50%;
+  font-size: 22px; line-height: 1; background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow); color: var(--text); z-index: 2; }
+.scroll-btn[hidden] { display: none; }
+.scroll-btn.l { left: 6px; } .scroll-btn.r { right: 6px; }
+.compare-title { margin: 12px 0 4px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+.compare-title:first-child { margin-top: 0; }
+.compare-title .muted { text-transform: none; letter-spacing: 0; font-weight: 400; }
+#profile g.seg.changed rect.ground, #profile g.seg.hover rect.ground { stroke: var(--accent); stroke-width: 3px; vector-effect: non-scaling-stroke; }
+#profile g.seg.hover rect.ground { fill-opacity: .7; }
+#width-check.ok { display: inline-flex; padding: 3px 10px; font-size: 12px; border-radius: 999px; }
 #profile-wrap.fade-r { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 48px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 48px), transparent); }
 #profile-wrap.fade-l { -webkit-mask-image: linear-gradient(to left, #000 calc(100% - 48px), transparent); mask-image: linear-gradient(to left, #000 calc(100% - 48px), transparent); }
 #profile-wrap.fade-l.fade-r { -webkit-mask-image: linear-gradient(to right, transparent, #000 48px, #000 calc(100% - 48px), transparent); mask-image: linear-gradient(to right, transparent, #000 48px, #000 calc(100% - 48px), transparent); }
-#profile-wrap.scrolls::after { content: "Široká ulice: profil posunete do stran."; display: block; font-size: 11px; color: var(--muted); margin-top: 4px; }
+#profile-frame:has(.scrolls)::after { content: "Široká ulice: profil posunete do stran."; display: block; font-size: 11px; color: var(--muted); margin-top: 4px; }
 #profile svg { display: block; width: var(--fit-width, 100%); max-width: none; height: auto; user-select: none; }
 #profile svg + svg { margin-top: 14px; }
 /* While editing, a tall profile leaves room for the editor below it (the drawing keeps its proportions). */

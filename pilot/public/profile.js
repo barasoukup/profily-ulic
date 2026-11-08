@@ -503,6 +503,9 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
   return surface - (top + f.roofH + f.chimney);
 }
 
+// The floor count above an edge building starts at its outer side, clear of the cut end A/B.
+const floorLabelAt = (x, side) => (side === "left" ? { x: x + 12, "text-anchor": "start" } : { x: x + EDGE - 12, "text-anchor": "end" });
+
 function drawEdge(svg, x, kind, side, surface, info, style) {
   const g = el("g", {}, svg);
   if (kind === "budova" && art === "praha") {
@@ -520,7 +523,7 @@ function drawEdge(svg, x, kind, side, surface, info, style) {
     if (lv || h) {
       const text = lv ? (lv.cornice && lv.roof ? `${lv.cornice} + ${lv.roof} NP` : `${lv.n} NP`)
         : buildingStyle(info, style) === "hala" ? "hala" : "";
-      el("text", { x: x + EDGE / 2, y: top - 25, "text-anchor": "middle", "font-size": 32, fill: "#4f4e49", class: "lbl-t", "data-w": EDGE, "data-free": 1 }, g).textContent =
+      el("text", { ...floorLabelAt(x, side), y: top - 25, "font-size": 32, fill: "#4f4e49", class: "lbl-floor", "data-w": EDGE - 24, "data-free": 1 }, g).textContent =
         [text, h ? `${info.height ? "" : "≈ "}${fmt(h).replace(",00", "")}` : ""].filter(Boolean).join(" · ");
     }
   } else if (kind === "budova") {
@@ -548,7 +551,7 @@ function drawEdge(svg, x, kind, side, surface, info, style) {
     }
     if (lv) {
       const text = lv.cornice && lv.roof ? `${lv.cornice} + ${lv.roof} NP` : `${lv.n} NP`;
-      el("text", { x: x + EDGE / 2, y: top - 25, "text-anchor": "middle", "font-size": 32, fill: "#4f4e49", class: "lbl-t", "data-w": EDGE, "data-free": 1 }, g).textContent =
+      el("text", { ...floorLabelAt(x, side), y: top - 25, "font-size": 32, fill: "#4f4e49", class: "lbl-floor", "data-w": EDGE - 24, "data-free": 1 }, g).textContent =
         text + (h ? ` · ${info.height ? "" : "≈ "}${fmt(h).replace(",00", "")}` : "");
     }
   } else if (kind === "stavba") {
@@ -620,7 +623,7 @@ export function buildSvg(profile, opts = {}) {
     const t = TYPES[s.type] || TYPES.nezname;
     const w = s.width * 100;
     const top = t.raised ? GROUND - CURB : GROUND;
-    const g = el("g", { class: "seg" + (opts.selected === i ? " selected" : ""), "data-i": i }, svg);
+    const g = el("g", { class: "seg" + (opts.selected === i ? " selected" : "") + (opts.changed?.has(i) ? " changed" : ""), "data-i": i }, svg);
     el("rect", { class: "ground", x, y: top, width: w, height: GROUND + 60 - top, fill: s.color || t.color }, g);
     el("rect", { x, y: GROUND + 60, width: w, height: 40, fill: "#9b7f5f" }, g);
     el("rect", { x: x + 4, y: GROUND + 104, width: Math.max(w - 8, 1), height: 14, fill: SOURCES[s.source]?.color || "#999" }, g);
@@ -685,12 +688,12 @@ export function buildSvg(profile, opts = {}) {
     bounds.push(x);
   });
 
-  el("text", { class: "lbl-total", x: total / 2, y: y0 + 70, "text-anchor": "middle", "font-size": 46, "font-weight": 600, fill: "#1f1f1d" }, svg).textContent =
+  el("text", { class: "lbl-total top-row", x: total / 2, y: y0 + 70, "text-anchor": "middle", "font-size": 46, "font-weight": 600, fill: "#1f1f1d" }, svg).textContent =
     `Celkem ${fmt(total / 100)}`;
   // Ends of the cut, lettered as on the map (A = left end, B = right end), above everything else.
   for (const [letter, x] of [["A", 0], ["B", total]]) {
-    el("circle", { cx: x, cy: y0 + 70, r: 52, fill: "#d8413f", stroke: "#fff", "stroke-width": 8 }, svg);
-    el("text", { x, y: y0 + 94, "text-anchor": "middle", "font-size": 68, "font-weight": 700, fill: "#fff" }, svg).textContent = letter;
+    el("circle", { class: "top-row", cx: x, cy: y0 + 70, r: 52, fill: "#d8413f", stroke: "#fff", "stroke-width": 8 }, svg);
+    el("text", { class: "top-row", x, y: y0 + 94, "text-anchor": "middle", "font-size": 68, "font-weight": 700, fill: "#fff" }, svg).textContent = letter;
   }
 
   if (opts.title) {

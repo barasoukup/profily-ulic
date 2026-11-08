@@ -330,8 +330,11 @@ function render() {
   }
   if (state.mode === "porovnat") {
     box.replaceChildren();
-    for (const [title, p] of [["Stav", state.stav], ["Návrh", state.navrh]]) {
-      box.appendChild(buildSvg(p, { title }));
+    const changed = changedParts(state.stav, state.navrh);
+    for (const [title, p, opts] of [["Stav", state.stav, {}], ["Návrh", state.navrh, { changed }]]) {
+      const h = Object.assign(document.createElement("h3"), { className: "compare-title", textContent: title });
+      if (opts.changed?.size) h.append(Object.assign(document.createElement("span"), { className: "muted", textContent: " · změněné části jsou obtažené" }));
+      box.append(h, buildSvg(p, opts));
     }
     box.appendChild(diffList(state.stav, state.navrh));
     $("#editor").replaceChildren();
@@ -354,6 +357,17 @@ function render() {
   fitPhone(box);
 }
 
+// Parts of the design that differ from the current state: edited by hand, or (same parts in the
+// same order) of another width.
+function changedParts(a, b) {
+  const same = a.segments.length === b.segments.length && a.segments.every((s, i) => s.type === b.segments[i].type);
+  const out = new Set();
+  b.segments.forEach((s, i) => {
+    if (same ? Math.abs(s.width - a.segments[i].width) >= 0.01 : s.source === "user") out.add(i);
+  });
+  return out;
+}
+
 // What the design changes, part by part: same parts in the same order compare width by width;
 // otherwise the parts that came and went.
 function diffList(a, b) {
@@ -363,19 +377,28 @@ function diffList(a, b) {
   if (a.segments.length === b.segments.length && a.segments.every((s, i) => s.type === b.segments[i].type)) {
     a.segments.forEach((s, i) => {
       const d = +(b.segments[i].width - s.width).toFixed(2);
-      if (d) items.push(`${name(s)}: ${fmtM(s.width)} → ${fmtM(b.segments[i].width)} (${d > 0 ? "+" : "−"}${fmtM(Math.abs(d))})`);
+      if (d) items.push({ i, text: `${name(s)}: ${fmtM(s.width)} → ${fmtM(b.segments[i].width)} (${d > 0 ? "+" : "−"}${fmtM(Math.abs(d))})` });
     });
   } else {
     const count = (p) => p.segments.reduce((m, s) => m.set(name(s), (m.get(name(s)) || 0) + s.width), new Map());
     const ca = count(a), cb = count(b);
     for (const k of new Set([...ca.keys(), ...cb.keys()])) {
       const wa = ca.get(k) || 0, wb = cb.get(k) || 0;
-      if (Math.abs(wa - wb) >= 0.01) items.push(`${k}: ${wa ? fmtM(wa) : "–"} → ${wb ? fmtM(wb) : "–"}`);
+      if (Math.abs(wa - wb) >= 0.01) items.push({ text: `${k}: ${wa ? fmtM(wa) : "–"} → ${wb ? fmtM(wb) : "–"}` });
     }
   }
   div.innerHTML = `<h3>Změny v návrhu</h3>`;
   const ul = document.createElement("ul");
-  for (const t of items.length ? items : ["Návrh je zatím stejný jako stav."]) ul.append(Object.assign(document.createElement("li"), { textContent: t }));
+  for (const it of items.length ? items : [{ text: "Návrh je zatím stejný jako stav." }]) {
+    const li = Object.assign(document.createElement("li"), { textContent: it.text });
+    if (it.i !== undefined) {
+      // Pointing at a change lights up that part in both profiles.
+      const mark = (on) => document.querySelectorAll(`#profile g.seg[data-i="${it.i}"]`).forEach((g) => g.classList.toggle("hover", on));
+      li.onmouseenter = () => mark(true);
+      li.onmouseleave = () => mark(false);
+    }
+    ul.append(li);
+  }
   div.append(ul);
   return div;
 }
@@ -412,7 +435,7 @@ function renderWidthCheck() {
   box.hidden = false;
   box.className = Math.abs(diff) < 0.01 ? "ok" : "off";
   if (Math.abs(diff) < 0.01) {
-    box.textContent = `Návrh drží šířku ulice ${fmtM(target)}.`;
+    box.textContent = `✓ Návrh drží šířku ulice ${fmtM(target)}`;
     return;
   }
   box.textContent = `Návrh je o ${fmtM(Math.abs(diff))} ${diff > 0 ? "širší" : "užší"} než ulice (${fmtM(target)}, návrh ${fmtM(now)}).`;
@@ -450,26 +473,49 @@ function fitPhone(box = $("#profile")) {
 
 // Labels in the drawing keep a readable size on screen (k = drawing units per CSS pixel); a label
 // wider than its part shrinks a little, and a name that still does not fit is left out.
-const LABEL_PX = { "lbl-w": 13, "lbl-t": 11, "lbl-total": 14, "lbl-title": 13 };
+const LABEL_PX = { "lbl-w": 13, "lbl-t": 11, "lbl-total": 14, "lbl-title": 13, "lbl-floor": 11 };
 function fitLabels(box) {
   for (const svg of box.querySelectorAll("svg")) {
+    trimSky(svg);
     const [, , vw, vh] = (svg.getAttribute("viewBox") || "").split(" ").map(Number);
     const rect = svg.getBoundingClientRect();
     // A height cap shrinks the drawing inside its box (preserveAspectRatio meet): use the tighter fit.
     const k = Math.max(vw / (rect.width || 1), vh / (rect.height || 1));
     if (!isFinite(k) || k <= 0) continue;
-    for (const t of svg.querySelectorAll("text.lbl-w, text.lbl-t, text.lbl-total, text.lbl-title")) {
-      const cls = ["lbl-w", "lbl-total", "lbl-t", "lbl-title"].find((c) => t.classList.contains(c));
+    for (const t of svg.querySelectorAll("text.lbl-w")) {
+      // A narrow part shows its width without the unit, and gets its row back each time.
+      t.dataset.full ??= t.textContent;
+      t.textContent = t.dataset.full;
+      t.dataset.row = 0;
+      if (t.textContent.length * 0.56 * LABEL_PX["lbl-w"] * k > Number(t.dataset.w)) t.textContent = t.dataset.full.replace(/ m$/, "");
+    }
+    for (const t of svg.querySelectorAll("text.lbl-floor")) {
+      // Floors over a slim building: the height is left out before the label runs into A/B.
+      t.dataset.full ??= t.textContent;
+      const short = t.dataset.full.split(" · ")[0];
+      t.textContent = t.dataset.full.length * 0.56 * 10 * k > Number(t.dataset.w) ? short : t.dataset.full;
+    }
+    for (const t of svg.querySelectorAll("text.lbl-w, text.lbl-t, text.lbl-total, text.lbl-title, text.lbl-floor")) {
+      const cls = ["lbl-w", "lbl-total", "lbl-t", "lbl-title", "lbl-floor"].find((c) => t.classList.contains(c));
       let size = LABEL_PX[cls] * k;
       const w = Number(t.dataset.w);
       const est = t.textContent.length * 0.56 * size;
-      if (w && est > w * 0.96) size = Math.max((w * 0.96) / (t.textContent.length * 0.56), cls === "lbl-w" ? 9 * k : 8 * k);
+      if (w && est > w * 0.96) size = Math.max((w * 0.96) / (t.textContent.length * 0.56), cls === "lbl-w" ? 11 * k : 8 * k);
       t.style.fontSize = `${size}px`;
       // The floor count above a building may reach past it (data-free), other names are left out.
       t.style.display = w && t.textContent.length * 0.56 * size > w * 1.05 && cls !== "lbl-w" && !t.dataset.free ? "none" : "";
     }
     // Rows under the ground (width, type, turns) are stacked by their screen size; when they need
     // more room than the drawing has below the ground, the drawing grows downwards.
+    // Widths that would run into the one before drop a row (a narrow part has no name there).
+    let prevEnd = -Infinity;
+    for (const t of svg.querySelectorAll("text.lbl-w")) {
+      const half = (t.textContent.length * 0.56 * parseFloat(t.style.fontSize)) / 2, cx = Number(t.getAttribute("x"));
+      if (cx - half < prevEnd + 4 * k) {
+        t.dataset.row = 1;
+        for (const n of t.parentNode.querySelectorAll("text.lbl-t:not(.lbl-floor)")) n.style.display = "none";
+      } else prevEnd = cx + half;
+    }
     const GROUND = 760, H = 1000;
     const row = (n) => GROUND + 130 + LABEL_PX["lbl-w"] * k + (n > 0 ? n * 1.3 * LABEL_PX["lbl-t"] * k : 0);
     for (const t of svg.querySelectorAll("text[data-row]")) t.setAttribute("y", row(Number(t.dataset.row)));
@@ -490,12 +536,38 @@ function fitLabels(box) {
 }
 addEventListener("resize", () => fitPhone());
 
+// A street without tall buildings leaves empty sky over the drawing: the view starts just above the
+// highest thing drawn, with room for the top row (total width, A/B). Runs once per drawing.
+function trimSky(svg) {
+  if (svg.dataset.trimmed) return;
+  svg.dataset.trimmed = 1;
+  const [vx, vy, vw, vh] = svg.getAttribute("viewBox").split(" ").map(Number);
+  let top = Infinity;
+  for (const c of svg.children) {
+    if (c.matches("rect.bg, .top-row, .title-bg, .lbl-title")) continue;
+    const b = c.getBBox();
+    if (b.width && b.height) top = Math.min(top, b.y);
+  }
+  const dy = Math.min(top - 170, 760 - 600) - vy;
+  if (!isFinite(dy) || dy < 20) return;
+  svg.setAttribute("viewBox", `${vx} ${vy + dy} ${vw} ${vh - dy}`);
+  const bg = svg.querySelector("rect.bg");
+  bg?.setAttribute("y", vy + dy);
+  bg?.setAttribute("height", vh - dy);
+  for (const e of svg.querySelectorAll(".top-row")) e.setAttribute("transform", `translate(0 ${dy})`);
+}
+
 // A wide profile that scrolls fades out on the side where more of it is hidden.
 function scrollFade() {
   const wrap = $("#profile-wrap");
   const more = wrap.classList.contains("scrolls");
   wrap.classList.toggle("fade-l", more && wrap.scrollLeft > 4);
   wrap.classList.toggle("fade-r", more && wrap.scrollLeft + wrap.clientWidth < wrap.scrollWidth - 4);
+  document.querySelector(".scroll-btn.l").hidden = !wrap.classList.contains("fade-l");
+  document.querySelector(".scroll-btn.r").hidden = !wrap.classList.contains("fade-r");
+}
+for (const b of document.querySelectorAll(".scroll-btn")) {
+  b.onclick = () => { const wrap = $("#profile-wrap"); wrap.scrollBy({ left: Number(b.dataset.dir) * wrap.clientWidth * 0.7, behavior: "smooth" }); };
 }
 $("#profile-wrap").addEventListener("scroll", scrollFade, { passive: true });
 
