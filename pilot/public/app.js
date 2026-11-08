@@ -141,8 +141,15 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
       dir = [Math.sin(r), Math.cos(r)];
     }
     osmCache = { osm, way: near.way };
-    const normal = [-dir[1], dir[0]];
     reach = reach || (keepWay && state.cut?.reach) || defaultReach();
+    // A is always the western end of the cut and B the eastern (Bára): the profile is then seen
+    // looking northwards, A on the left. A lies left of the street direction, so that direction
+    // points north (a street running exactly east–west points east, A at the north end).
+    if (dir[1] < -1e-9 || (Math.abs(dir[1]) <= 1e-9 && dir[0] < 0)) {
+      dir = [-dir[0], -dir[1]];
+      reach = { left: reach.right, right: reach.left };
+    }
+    const normal = [-dir[1], dir[0]];
     const ends = cutEnds(frame, normal, reach);
     const full = [-1, 1].map((k) => frame.toLonLat(normal[0] * HALF * k, normal[1] * HALF * k));
     const lons = full.map((e) => e[0]), lats = full.map((e) => e[1]);

@@ -49,6 +49,8 @@ test("stáří zástavby (IPR) je výchozí odhad, který přebijí údaje o dom
   assert.equal(flat({ period: 1990, newBuild: true }), "moderni");
 });
 
-test("plochá střecha ve staré vesnici na okraji je novější dům, ne funkcionalismus", () => {
-  assert.equal(flat({ period: 1880, levels: 3, cornice: 3, km: 13.7, block: { length: 107, width: 20.6, fill: 0.78, parts: 5 } }), "moderni");
+test("zastavěno do 1920 je dům starší zástavby, pokud to není panelová deska", () => {
+  assert.equal(flat({ period: 1880, levels: 3, cornice: 3, km: 13.7, block: { length: 107, width: 20.6, fill: 0.78, parts: 5 } }), "sikma");
+  assert.equal(flat({ period: 1920, block: { length: 120, width: 80, fill: 0.45, parts: 12 } }), "sikma");
+  assert.equal(flat({ period: 1840, block: { length: 144, width: 14.8, fill: 0.84, parts: 1 } }), "plocha");
 });
