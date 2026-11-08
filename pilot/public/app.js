@@ -180,6 +180,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     state.stav = { segments: result.segments, edges: result.edges };
     if (!state.navrhEdited) state.navrh = structuredClone(state.stav);
     state.selected = null;
+    resetHistory();
     drawCut(ends);
     showCutInfo();
     drawMtvu(polys);
@@ -508,6 +509,7 @@ function fitPhone(box = $("#profile")) {
   requestAnimationFrame(() => fitLabels(box));
 }
 
+const coarse = matchMedia("(pointer: coarse)").matches;
 // Labels in the drawing keep a readable size on screen (k = drawing units per CSS pixel); a label
 // wider than its part shrinks a little, and a name that still does not fit is left out.
 const LABEL_PX = { "lbl-w": 13, "lbl-t": 11, "lbl-total": 14, "lbl-title": 13, "lbl-floor": 11 };
@@ -576,6 +578,9 @@ function fitLabels(box) {
       const w = Math.max(80, 44 * k), r = Math.max(18, 8 * k);
       grab.setAttribute("x", bx - w / 2);
       grab.setAttribute("width", w);
+      // On a touch screen only the knob takes the finger: a swipe anywhere else scrolls the
+      // profile instead of changing a width by accident.
+      if (coarse) { grab.setAttribute("y", cy - w / 2); grab.setAttribute("height", w); }
       knob.setAttribute("r", r);
       knob.setAttribute("stroke-width", r / 3.6);
       arrow.setAttribute("transform", `translate(${bx} ${cy}) scale(${r / 18}) translate(${-bx} ${-cy})`);
@@ -707,9 +712,61 @@ splitter.addEventListener("keydown", (e) => {
   saveSplit(applySplit(cur + step));
 });
 
+// ---------- undo ----------
+// Every change of the profile (dragging, the editor, the palette, edges) can be taken back: the
+// state before it goes on a stack. A new cut or a loaded file starts a fresh history.
+const UNDO_MAX = 50;
+const undoStack = [], redoStack = [];
+let baseline = null; // the profile as it was after the last change
+const snapshot = () => JSON.stringify({ stav: state.stav, navrh: state.navrh, navrhEdited: state.navrhEdited });
+function resetHistory() {
+  undoStack.length = redoStack.length = 0;
+  baseline = state.stav ? snapshot() : null;
+  showUndo();
+}
+function showUndo() {
+  $("#btn-undo").disabled = !undoStack.length;
+  $("#btn-redo").disabled = !redoStack.length;
+  $("#undo-bar").hidden = !undoStack.length && !redoStack.length;
+}
+function applySnapshot(json) {
+  Object.assign(state, JSON.parse(json), { selected: null });
+  baseline = json;
+  save();
+  render();
+  showUndo();
+}
+function undo() {
+  if (!undoStack.length) return;
+  redoStack.push(snapshot());
+  applySnapshot(undoStack.pop());
+  status("Změna je vrácená.", "ok");
+}
+function redo() {
+  if (!redoStack.length) return;
+  undoStack.push(snapshot());
+  applySnapshot(redoStack.pop());
+  status("");
+}
+$("#btn-undo").onclick = undo;
+$("#btn-redo").onclick = redo;
+addEventListener("keydown", (e) => {
+  if (!(e.ctrlKey || e.metaKey) || e.key.toLowerCase() !== "z" || e.target.closest?.("input, select, textarea")) return;
+  e.preventDefault();
+  if (e.shiftKey) redo(); else undo();
+});
+
 function edited() {
   if (state.mode === "navrh") state.navrhEdited = true;
+  const now = snapshot();
+  if (baseline && baseline !== now) {
+    undoStack.push(baseline);
+    if (undoStack.length > UNDO_MAX) undoStack.shift();
+    redoStack.length = 0;
+  }
+  baseline = now;
   save();
+  showUndo();
 }
 
 function renderEditor(p) {
@@ -957,6 +1014,7 @@ function restore(data) {
   cleanProfile(data?.stav, "stav");
   if (data.navrh) cleanProfile(data.navrh, "návrh");
   data.cut = cleanCut(data.cut);
+  undoStack.length = redoStack.length = 0;
   Object.assign(state, { cut: data.cut, stav: data.stav, navrh: data.navrh || structuredClone(data.stav), navrhEdited: !!data.navrhEdited, selected: null });
   if (state.cut) {
     map.setView([state.cut.lat, state.cut.lon], 19);
@@ -969,6 +1027,7 @@ function restore(data) {
   }
   save();
   render();
+  resetHistory();
 }
 
 function save() {

@@ -167,6 +167,10 @@ body[data-mode="porovnat"] #profile svg { max-height: max(200px, calc((100dvh - 
 #status { font-size: 13px; color: var(--muted); }
 #status:empty { display: none; }
 #profile .handle { touch-action: none; }
+#undo-bar { display: inline-flex; gap: 4px; align-self: center; }
+#undo-bar[hidden] { display: none; }
+#undo-bar button { padding: 4px 10px; font-size: 13px; }
+#undo-bar button:disabled { opacity: .4; }
 #status.error { color: var(--warn); background: var(--red-bg); border-radius: var(--radius); padding: 8px 12px; font-weight: 500; }
 #status.error::before { content: "⚠ "; }
 #status.ok { color: var(--dtm); }
