@@ -43,7 +43,7 @@ export const ITEMS = {
   lampa: "Lampa", lavicka: "Lavička", stojan_kola: "Stojan na kola", sdilena_kola: "Sdílená kola",
   pristresek: "Přístřešek zastávky", rozcestnik: "Rozcestník / mapa", taxi: "Stanoviště taxi",
   sloupek: "Sloupek", kvetinac: "Květináč", svodidlo: "Svodidlo", zabradli: "Zábradlí", plot: "Plot / zeď",
-  oporna_zed: "Opěrná zeď", zivy_plot: "Živý plot", svah: "Hrana svahu", zahradka: "Předzahrádka",
+  oporna_zed: "Opěrná zeď", zivy_plot: "Živý plot", svah: "Hrana svahu", zahradka: "Zahrádka restaurace",
 };
 
 export const PARKING_USE = { ztp: "ZTP", zasobovani: "zásobování", specialni: "speciální" };
