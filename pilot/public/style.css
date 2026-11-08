@@ -191,6 +191,7 @@ body[data-mode="porovnat"] #profile svg { max-height: max(200px, calc((100dvh - 
 #status { font-size: 13px; color: var(--muted); }
 #status:empty { display: none; }
 #profile .handle { touch-action: none; }
+#profile-head .flip { padding: 4px 10px; font-size: 13px; align-self: center; }
 #undo-bar { display: inline-flex; gap: 4px; align-self: center; }
 #undo-bar[hidden] { display: none; }
 #undo-bar button { padding: 4px 10px; font-size: 13px; }

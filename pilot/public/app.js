@@ -144,10 +144,16 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     }
     osmCache = { osm, way: near.way };
     reach = reach || (keepWay && state.cut?.reach) || defaultReach();
-    // A is always the western end of the cut and B the eastern (Bára): the profile is then seen
+    // A new cut has A at its western end and B at the eastern (Bára): the profile is then seen
     // looking northwards, A on the left. A lies left of the street direction, so that direction
-    // points north (a street running exactly east–west points east, A at the north end).
-    if (dir[1] < -1e-9 || (Math.abs(dir[1]) <= 1e-9 && dir[0] < 0)) {
+    // points north (a street running exactly east–west points east, A at the north end). A moved
+    // cut keeps the way it was turned (⇄ or a dragged end), a given bearing (link, drag) is kept.
+    let flip = false;
+    if (bearing === null && keepWay && state.cut) {
+      const r = (state.cut.bearing * Math.PI) / 180;
+      flip = dir[0] * Math.sin(r) + dir[1] * Math.cos(r) < 0;
+    } else if (bearing === null) flip = dir[1] < -1e-9 || (Math.abs(dir[1]) <= 1e-9 && dir[0] < 0);
+    if (flip) {
       dir = [-dir[0], -dir[1]];
       reach = { left: reach.right, right: reach.left };
     }
@@ -1143,6 +1149,38 @@ $("#file-load").onchange = async (e) => {
     status("Soubor se nepodařilo načíst: " + err.message, "error");
   }
   e.target.value = "";
+};
+
+// ⇄: the cut turned round, A and B swapped. The profiles are mirrored as they are (corrections and
+// the design included), with no new data: parts in reverse order, their directions swapped (they
+// are told against the street's direction, which turns too), the edges swapped.
+const OTHER = { forward: "backward", backward: "forward" };
+function mirror(p) {
+  const swap = (k) => (k.startsWith("left") ? "right" + k.slice(4) : k.startsWith("right") ? "left" + k.slice(5) : k);
+  return {
+    ...p,
+    edges: Object.fromEntries(Object.entries(p.edges || {}).map(([k, v]) => [swap(k), v])),
+    segments: [...p.segments].reverse().map((s) => ({
+      ...s,
+      ...(s.dir ? { dir: OTHER[s.dir] || s.dir } : {}),
+      ...(s.bikeDir ? { bikeDir: OTHER[s.bikeDir] || s.bikeDir } : {}),
+      ...(s.items ? { items: s.items.map((it) => ({ ...it, f: +(1 - it.f).toFixed(3) })) } : {}),
+    })),
+  };
+}
+$("#btn-flip").onclick = () => {
+  if (!state.stav || !state.cut) return;
+  state.stav = mirror(state.stav);
+  state.navrh = mirror(state.navrh);
+  const r = state.cut.reach || defaultReach();
+  state.cut = { ...state.cut, bearing: ((state.cut.bearing + 180 + 540) % 360) - 180, reach: { left: r.right, right: r.left } };
+  state.selected = null;
+  const f = localFrame(state.cut.lat, state.cut.lon), b = (state.cut.bearing * Math.PI) / 180;
+  drawCut(cutEnds(f, [-Math.cos(b), Math.sin(b)], state.cut.reach));
+  showCutInfo();
+  resetHistory();
+  save();
+  render();
 };
 
 function restore(data) {
