@@ -865,7 +865,7 @@ export function buildSvg(profile, opts = {}) {
   if (opts.credits) {
     // Exported pictures carry the attribution their sources require (CC BY-SA for the illustrations).
     el("text", { x: vx + 30, y: bottom - 25, "font-size": 24, fill: "#6b6a65" }, svg).textContent =
-      (art === "praha" ? "Ilustrace © Streetmix (CC BY-SA 4.0) a Bára Soukupová (MIT)" : "Ilustrace © Streetmix (CC BY-SA 4.0)") + " · data © IPR Praha a TSK hl. m. Prahy (podlažnosti a parkování CC BY 4.0) · © přispěvatelé OpenStreetMap (ODbL) · obrázek CC BY-SA 4.0";
+      (art === "praha" ? "Ilustrace © Streetmix (CC BY-SA 4.0) a Bára Soukupová (MIT)" : "Ilustrace © Streetmix (CC BY-SA 4.0)") + " · data © IPR Praha (technická mapa, podlažnosti, vývoj zástavby) a TSK hl. m. Prahy (CC BY 4.0) · © přispěvatelé OpenStreetMap (ODbL) · obrázek CC BY-SA 4.0";
   }
 
   const firstRaised = segs[0] && TYPES[segs[0].type]?.raised;

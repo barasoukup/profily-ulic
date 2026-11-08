@@ -48,8 +48,8 @@ Obrázky profilů, které aplikace vytváří, obsahují ilustrace Streetmixu. P
 - `vendor/`: kopie repozitáře Streetmixu (AGPL / CC BY-SA). Pilot používá jen ilustrace v `pilot/public/streetmix/` i s jejich `LICENSE`.
 
 **Už upraveno:**
-- Patička aplikace uvádí OSM (ODbL), technickou mapu a MTVU © IPR Praha, podlažnosti © IPR Praha
-  a úseky parkování © TSK (CC BY 4.0), ortofoto © ČÚZK (CC BY 4.0), Streetmix (CC BY-SA 4.0)
+- Patička aplikace uvádí zdroje IPR pohromadě (technická mapa a MTVU; podlažnosti a vývoj zástavby,
+  CC BY 4.0), úseky parkování © TSK (CC BY 4.0), OSM (ODbL), ortofoto © ČÚZK (CC BY 4.0), Streetmix (CC BY-SA 4.0)
   a pražské ilustrace (MIT).
 - Převod do Streetmixu (až se vrátí) dává do názvu ulice „data © IPR Praha, © přispěvatelé OpenStreetMap“.
 - Exportované SVG a PNG nově nesou řádek se zdroji a licencí obrázku (CC BY-SA 4.0).
@@ -60,6 +60,6 @@ Obrázky profilů, které aplikace vytváří, obsahují ilustrace Streetmixu. P
 
 ## Doporučený text uvedení zdrojů
 
-> Data: technická mapa a MTVU © IPR Praha, podlažnosti © IPR Praha (CC BY 4.0), © TSK hl. m. Prahy (úseky parkování; CC BY 4.0),
+> Data: © IPR Praha (technická mapa a MTVU; podlažnosti a vývoj zástavby, CC BY 4.0), © TSK hl. m. Prahy (úseky parkování; CC BY 4.0),
 > © přispěvatelé OpenStreetMap (ODbL 1.0), ortofoto © ČÚZK (CC BY 4.0).
 > Ilustrace © Streetmix, CC BY-SA 4.0 (https://streetmix.net). Obrázky profilů jsou šířeny pod CC BY-SA 4.0.
