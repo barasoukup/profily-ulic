@@ -19,15 +19,31 @@ const SPRITE_FILES = [
   "lamp-modern-left", "lamp-modern-right",
 ];
 const PEOPLE = ["people-01", "people-05", "people-12", "people-20", "people-27"];
+// Prague illustrations (praha/) standing in for Streetmix ones; the rest stays Streetmix.
+const PRAHA = {
+  "streetcar-inbound": "t3-inbound", "streetcar-outbound": "t3-outbound", "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound",
+  "lamp-modern-left": "lamp-left", "lamp-modern-right": "lamp-right", "bench-center": "bench-center",
+  "bike-rack-perpendicular-left": "bike-rack", "bollard": "bollard",
+  "transit-shelter-01-left": "transit-shelter-left", "transit-shelter-01-right": "transit-shelter-right",
+  "transit-shelter-tram-left": "transit-shelter-tram-left", "transit-shelter-tram-right": "transit-shelter-tram-right",
+};
 const sprites = {};
+let art = "praha"; // "praha" or "streetmix"
+export const setArt = (a) => { art = a; };
+export const getArt = () => art;
+
+async function loadSprite(key, path) {
+  const text = await (await fetch(path)).text();
+  const vb = text.match(/viewBox="([^"]+)"/)[1].split(/\s+/).map(Number);
+  const uri = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(text)));
+  sprites[key] = { uri, w: vb[2], h: vb[3] };
+}
 
 export async function loadSprites() {
-  await Promise.all(SPRITE_FILES.map(async (name) => {
-    const text = await (await fetch(`streetmix/${name}.svg`)).text();
-    const vb = text.match(/viewBox="([^"]+)"/)[1].split(/\s+/).map(Number);
-    const uri = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(text)));
-    sprites[name] = { uri, w: vb[2], h: vb[3] };
-  }));
+  await Promise.all([
+    ...SPRITE_FILES.map((name) => loadSprite(name, `streetmix/${name}.svg`)),
+    ...[...new Set(Object.values(PRAHA))].map((file) => loadSprite(`praha/${file}`, `praha/${file}.svg`)),
+  ]);
 }
 
 const el = (name, attrs = {}, parent) => {
@@ -43,14 +59,18 @@ export const totalWidth = (p) => p.segments.reduce((a, s) => a + s.width, 0);
 const TURNS = { left: "vlevo", slight_left: "mírně vlevo", sharp_left: "ostře vlevo", through: "rovně", right: "vpravo",
   slight_right: "mírně vpravo", sharp_right: "ostře vpravo", reverse: "otočení", merge_to_left: "připojení", merge_to_right: "připojení" };
 // Street furniture and barriers standing at x on a surface at height top.
-function drawItem(g, kind, x, top, right) {
+function drawItem(g, it, x, top, right) {
   const line = (attrs) => el("rect", attrs, g);
-  switch (kind) {
+  switch (it.kind) {
     case "lampa": return sprite(g, right ? "lamp-modern-right" : "lamp-modern-left", x, top);
-    case "lavicka": return sprite(g, "bench-center", x, top);
+    // The Prague bench has its back on the left: on the right half it turns to face the street too.
+    case "lavicka": return sprite(g, "bench-center", x, top, right);
     case "stojan_kola": return sprite(g, "bike-rack-perpendicular-left", x, top);
     case "sdilena_kola": return sprite(g, "bikeshare-left", x, top);
-    case "pristresek": return sprite(g, right ? "transit-shelter-01-right" : "transit-shelter-01-left", x, top);
+    case "pristresek": {
+      const side = right ? "right" : "left";
+      return sprite(g, art === "praha" && it.tram ? `transit-shelter-tram-${side}` : `transit-shelter-01-${side}`, x, top);
+    }
     case "sloupek": return sprite(g, "bollard", x, top);
     case "kvetinac": return sprite(g, "planter-box", x, top);
     case "svodidlo": return sprite(g, "guardrail", x, top);
@@ -96,7 +116,7 @@ export const ORIENT_LABEL = { podelne: "podélné", sikme: "šikmé", kolme: "ko
 export const turnLabel = (v) => v.split(";").map((x) => TURNS[x] || x).join(" + ");
 
 function sprite(g, name, cx, bottom, flip = false) {
-  const s = sprites[name];
+  const s = (art === "praha" && sprites[`praha/${PRAHA[name]}`]) || sprites[name];
   if (!s) return;
   const img = el("image", { href: s.uri, width: s.w, height: s.h, x: cx - s.w / 2, y: bottom - s.h }, g);
   if (flip) img.setAttribute("transform", `translate(${2 * cx} 0) scale(-1 1)`);
@@ -196,7 +216,7 @@ export function buildSvg(profile, opts = {}) {
   if (opts.credits) {
     // Exported pictures carry the attribution their sources require (CC BY-SA for the illustrations).
     el("text", { x: vx + 30, y: H - 20, "font-size": 24, fill: "#8a877e" }, svg).textContent =
-      "Ilustrace © Streetmix (CC BY-SA 4.0) · data © IPR Praha, TSK hl. m. Prahy (CC BY 4.0) · © přispěvatelé OpenStreetMap (ODbL) · obrázek CC BY-SA 4.0";
+      (art === "praha" ? "Ilustrace © Streetmix (CC BY-SA 4.0) a Profily ulic" : "Ilustrace © Streetmix (CC BY-SA 4.0)") + " · data © IPR Praha, TSK hl. m. Prahy (CC BY 4.0) · © přispěvatelé OpenStreetMap (ODbL) · obrázek CC BY-SA 4.0";
   }
   el("text", { x: total / 2, y: y0 + 70, "text-anchor": "middle", "font-size": 46, fill: "#1f1f1d" }, svg).textContent =
     `Celkem ${fmt(total / 100)}`;
@@ -252,7 +272,7 @@ export function buildSvg(profile, opts = {}) {
       sprite(g, "cafe-seating-occupied", cx, top);
     }
     if (t.wall) el("rect", { x, y: top - 90, width: w, height: 90, fill: t.color }, g);
-    for (const it of s.items || []) drawItem(g, it.kind, x + it.f * w, top, x + it.f * w > total / 2);
+    for (const it of s.items || []) drawItem(g, it, x + it.f * w, top, x + it.f * w > total / 2);
     el("text", { x: cx, y: GROUND + 170, "text-anchor": "middle", "font-size": 40, fill: "#1f1f1d" }, g).textContent = fmt(s.width);
     if (w >= 150) {
       const contra = s.bikeDir && s.bikeDir !== (s.dir || "forward");

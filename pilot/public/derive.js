@@ -15,6 +15,7 @@ const CAR_MIN = 2.5; // narrowest leftover space treated as a separate car lane 
 const TREE_REACH = 8; // single trees this close to the cut count as standing in it (m)
 const TREE_STRIP = 1.5; // width of a tree strip carved out of a sidewalk (m)
 const ITEM_REACH = 6; // furniture this close to the cut (along the street) is drawn in the profile (m)
+const STOP_REACH = 40; // a shelter takes the tram/bus kind of the nearest stop node this close (m)
 const PLATFORM_STRIP = 3; // waiting area of a stop along the curb of a wide sidewalk (m)
 const END_CLEARANCE = 12; // keep the cut this far from the ends of a way, away from junctions (m)
 
@@ -875,15 +876,45 @@ function nodeItem(t) {
   return null;
 }
 
+// Tram or bus stop a node marks: true (tram), false (bus), null (neither).
+function stopMode(t) {
+  if (t.railway === "tram_stop" || t.tram === "yes") return true;
+  if (t.highway === "bus_stop" || t.bus === "yes" || t.trolleybus === "yes") return false;
+  return null;
+}
+
+// A shelter belongs to a tram stop when its own tags or the nearest stop node within STOP_REACH say so.
+function shelterIsTram(t, x, y, stops) {
+  const own = stopMode(t);
+  if (own !== null) return own;
+  let best = null, bestD = STOP_REACH;
+  for (const s of stops) {
+    const d = Math.hypot(s.x - x, s.y - y);
+    if (d < bestD) [best, bestD] = [s.tram, d];
+  }
+  return best === true;
+}
+
 function itemPositions(osm, frame, center, normal, half, lines) {
   const items = [];
+  const stops = [];
+  for (const el of osm.elements || []) {
+    if (el.type !== "node") continue;
+    const tram = stopMode(el.tags || {});
+    if (tram === null) continue;
+    const [x, y] = frame.toXY(el.geometry[0].lon, el.geometry[0].lat);
+    stops.push({ x, y, tram });
+  }
   for (const el of osm.elements || []) {
     if (el.type === "node") {
       const kind = nodeItem(el.tags || {});
       if (!kind) continue;
       const [x, y] = frame.toXY(el.geometry[0].lon, el.geometry[0].lat);
       const dx = x - center[0], dy = y - center[1];
-      if (Math.abs(dx * normal[1] - dy * normal[0]) <= ITEM_REACH) items.push({ kind, t: dx * normal[0] + dy * normal[1] });
+      if (Math.abs(dx * normal[1] - dy * normal[0]) > ITEM_REACH) continue;
+      const item = { kind, t: dx * normal[0] + dy * normal[1] };
+      if (kind === "pristresek" && shelterIsTram(el.tags || {}, x, y, stops)) item.tram = true;
+      items.push(item);
     } else if (el.type === "way" && BARRIER_ITEM[el.tags?.barrier]) {
       const pts = el.geometry.map((g) => frame.toXY(g.lon, g.lat));
       for (const t of lineCrossings([pts], center, normal, half)) items.push({ kind: BARRIER_ITEM[el.tags.barrier], t, osm: true });
@@ -902,7 +933,9 @@ function attachItems(segs, items) {
   for (const it of items) {
     const host = segs.find((x) => x.s <= it.t && x.e >= it.t);
     if (!host) continue;
-    (host.items ||= []).push({ kind: it.kind, f: (it.t - host.s) / Math.max(host.e - host.s, 0.01) });
+    const item = { kind: it.kind, f: (it.t - host.s) / Math.max(host.e - host.s, 0.01) };
+    if (it.tram) item.tram = true;
+    (host.items ||= []).push(item);
   }
   return segs;
 }
@@ -1212,7 +1245,7 @@ function toSegment(x) {
   if (x.use && x.use !== "useky") seg.use = x.use;
   if (x.color) seg.color = x.color;
   // Segments are reversed to screen order, so item positions flip too.
-  if (x.items?.length) seg.items = x.items.map((it) => ({ kind: it.kind, f: +(1 - it.f).toFixed(3) }));
+  if (x.items?.length) seg.items = x.items.map((it) => ({ ...it, f: +(1 - it.f).toFixed(3) }));
   if (x.type === "parkovani") {
     seg.orient = x.orient || orientFromDepth(seg.width);
     // Last guard (ČSN 73 6056): perpendicular parking is never shallower than PERP_MIN.

@@ -1,0 +1,76 @@
+<svg viewBox="0 0 270 360" xmlns="http://www.w3.org/2000/svg">
+  <!-- Nový pražský přístřešek zastávky autobusu (soutěž IPR 2018, návrh Olgoj Chorchoj) s tmavým totemem označníku, zadní stěna vpravo, otevřená strana a označník vlevo (k vozovce). 1 px = 1 cm, spodní hrana = chodník. -->
+  <g transform="matrix(-1 0 0 1 270 0)">
+  <!-- přístřešek z čela (návrh Olgoj Chorchoj): zadní sloup a tenká konzolová střecha z litého hliníku -->
+  <g id="pristresek">
+    <!-- pás s názvem zastávky a odjezdy pod střechou u zadní stěny, z boku -->
+    <rect x="30" y="108" width="10" height="42" fill="#18191b"/>
+    <rect x="38" y="109" width="2" height="13" fill="#5f656a"/>
+    <!-- sloup a střecha: v řezu skoro pravý úhel, střecha kousek přesahuje dozadu a dopředu se ztenčuje -->
+    <path d="M13 97 Q13 95 15 95 L198 97 L198 104 L46 109 L34 109 Q30 109 30 113 L30 360 L17 360 L17 103 L13 103 Z" fill="#2c2f32"/>
+    <rect x="26" y="113" width="4" height="247" fill="#1f2124"/>
+    <rect x="17" y="103" width="2" height="257" fill="#3d4144"/>
+    <path d="M15 95 L198 97 L198 99 L15 97 Z" fill="#3d4144"/>
+    <path d="M46 107 L198 102 L198 104 L46 109 Z" fill="#1f2124"/>
+    <rect x="14" y="357" width="19" height="3" fill="#1f2124"/>
+    <!-- boční stěna: reklamní vitrína v tlustém rámu, neutrální plocha -->
+    <rect x="30" y="122" width="134" height="233" fill="#2c2f32"/>
+    <rect x="155" y="122" width="9" height="238" fill="#1f2124"/>
+    <rect x="30" y="355" width="7" height="5" fill="#1f2124"/>
+    <rect x="30" y="122" width="134" height="2" fill="#3d4144"/>
+    <rect x="37" y="132" width="118" height="213" fill="#e6e8e4"/>
+    <path d="M37 280 L120 132 L155 132 L155 150 L64 345 L37 345 Z" fill="#f2f3ef"/>
+    <path d="M76 345 L155 185 L155 194 L83 345 Z" fill="#d9dcd7"/>
+  </g>
+  </g>
+  <!-- označník: tmavý totem, prototyp ROPID (návrh Olgoj Chorchoj, Palackého náměstí), nový standard v zavádění; značka zastávky autobusu (IJ 4a) -->
+  <g id="oznacnik">
+    <!-- bok s červeným proužkem -->
+    <rect x="6" y="30" width="3" height="330" fill="#17191b"/>
+    <rect x="7" y="34" width="1" height="322" fill="#b3261e"/>
+    <!-- líc: tmavé sklo v rámu -->
+    <rect x="9" y="30" width="46" height="330" fill="#26292c"/>
+    <rect x="12" y="33" width="40" height="80" fill="#1b1d20"/>
+    <!-- značka: modré pole s bílou linkou a bílým čtvercem -->
+    <rect x="14" y="37" width="36" height="36" rx="1" fill="#1f56a8"/>
+    <rect x="16" y="39" width="32" height="32" rx="1" fill="none" stroke="#f4f4f0" stroke-width="1"/>
+    <rect x="19.5" y="42.5" width="25" height="23" fill="#f4f4f0"/>
+    <g transform="translate(32.0 54) scale(0.74)">
+      <rect x="-14" y="-6" width="28" height="12" rx="2" fill="#1a1a1a"/>
+      <rect x="-12" y="-4" width="5" height="4" fill="#f4f4f0"/>
+      <rect x="-5" y="-4" width="5" height="4" fill="#f4f4f0"/>
+      <rect x="2" y="-4" width="5" height="4" fill="#f4f4f0"/>
+      <rect x="9" y="-4" width="3" height="7" fill="#f4f4f0"/>
+      <circle cx="-9" cy="6.5" r="2.6" fill="#1a1a1a"/>
+      <circle cx="8" cy="6.5" r="2.6" fill="#1a1a1a"/>
+    </g>
+    <!-- název zastávky (náznak) -->
+    <rect x="16" y="78" width="27" height="5" fill="#e8e9e6"/>
+    <rect x="16" y="85" width="21" height="5" fill="#e8e9e6"/>
+    <!-- odjezdy: tři světlé řádky na tmavém displeji -->
+    <g fill="#c9c6dd">
+      <rect x="15" y="96" width="30" height="2"/>
+      <rect x="15" y="101" width="27" height="2"/>
+      <rect x="15" y="106" width="31" height="2"/>
+      <rect x="47" y="96" width="2" height="12"/>
+    </g>
+    <!-- vitrína: čísla linek, jízdní řády, dole mapa okolí -->
+    <rect x="13" y="117" width="38" height="144" fill="#141618"/>
+    <rect x="15" y="129" width="10" height="8" fill="#f4f4f0"/><rect x="17.5" y="131" width="5" height="4" fill="#8c2a22"/><rect x="27" y="129" width="10" height="8" fill="#f4f4f0"/><rect x="29.5" y="131" width="5" height="4" fill="#8c2a22"/><rect x="39" y="129" width="10" height="8" fill="#8c2a22"/><rect x="41.5" y="131" width="5" height="4" fill="#f4f4f0"/><rect x="15" y="138" width="10" height="8" fill="#f4f4f0"/><rect x="17.5" y="140" width="5" height="4" fill="#8c2a22"/><rect x="27" y="138" width="10" height="8" fill="#f4f4f0"/><rect x="29.5" y="140" width="5" height="4" fill="#8c2a22"/><rect x="39" y="138" width="10" height="8" fill="#8c2a22"/><rect x="41.5" y="140" width="5" height="4" fill="#f4f4f0"/><rect x="15" y="147" width="10" height="8" fill="#f4f4f0"/><rect x="17.5" y="149" width="5" height="4" fill="#8c2a22"/>
+    <rect x="15" y="160" width="16" height="30" fill="#f4f4f0"/>
+    <rect x="33" y="160" width="16" height="30" fill="#f4f4f0"/>
+    <rect x="15" y="192" width="16" height="30" fill="#f2d64b"/>
+    <rect x="33" y="192" width="16" height="30" fill="#f4f4f0"/>
+    <g fill="#a9abad">
+      <rect x="16.5" y="164" width="13" height="1.5"/><rect x="16.5" y="168" width="13" height="1.5"/><rect x="16.5" y="172" width="11" height="1.5"/><rect x="16.5" y="176" width="13" height="1.5"/><rect x="16.5" y="180" width="13" height="1.5"/><rect x="16.5" y="184" width="11" height="1.5"/>
+      <rect x="34.5" y="164" width="13" height="1.5"/><rect x="34.5" y="168" width="13" height="1.5"/><rect x="34.5" y="172" width="11" height="1.5"/><rect x="34.5" y="176" width="13" height="1.5"/><rect x="34.5" y="180" width="13" height="1.5"/><rect x="34.5" y="184" width="11" height="1.5"/>
+      <rect x="34.5" y="196" width="13" height="1.5"/><rect x="34.5" y="200" width="13" height="1.5"/><rect x="34.5" y="204" width="11" height="1.5"/><rect x="34.5" y="208" width="13" height="1.5"/><rect x="34.5" y="212" width="13" height="1.5"/>
+    </g>
+    <g fill="#9a8a3a"><rect x="16.5" y="196" width="13" height="1.5"/><rect x="16.5" y="200" width="13" height="1.5"/><rect x="16.5" y="204" width="11" height="1.5"/></g>
+    <rect x="15" y="225" width="34" height="33" fill="#e3e6e2"/>
+    <path d="M21 225 L28 240 L25 258 H32 L36 240 L28 225 Z" fill="#7fb2dc"/>
+    <path d="M15 236 H49 M15 248 H49 M40 225 V258" stroke="#c4c7c2" stroke-width="1"/>
+    <!-- spodní plná část -->
+    <rect x="9" y="265" width="46" height="1" fill="#17191b"/>
+  </g>
+</svg>

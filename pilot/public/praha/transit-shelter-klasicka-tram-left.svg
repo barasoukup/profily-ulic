@@ -1,0 +1,73 @@
+<svg viewBox="0 0 270 360" xmlns="http://www.w3.org/2000/svg">
+  <!-- Pražský přístřešek zastávky tramvaje v příčném řezu, otevřená strana vpravo (vozovka vpravo). 1 px = 1 cm, spodní hrana = chodník. -->
+  <!-- přístřešek z boku: tmavě šedá ocel, plochá střecha, prosklená čelní stěna s reklamní vitrínou -->
+  <g id="pristresek">
+    <!-- sklo čelní stěny -->
+    <rect x="26" y="109" width="140" height="231" fill="#dfe5e7"/>
+    <!-- sedátko s konzolou u zadní stěny (za sklem) -->
+    <rect x="26" y="315" width="40" height="4" fill="#9aa1a5"/>
+    <path d="M26 319 L44 319 L26 335 Z" fill="#4b5155"/>
+    <!-- zadní a přední sloup -->
+    <rect x="18" y="108" width="8" height="252" fill="#4b5155"/>
+    <rect x="23" y="108" width="3" height="252" fill="#3a3f42"/>
+    <rect x="166" y="108" width="8" height="252" fill="#4b5155"/>
+    <rect x="171" y="108" width="3" height="252" fill="#3a3f42"/>
+    <rect x="15" y="357" width="14" height="3" fill="#3a3f42"/>
+    <rect x="163" y="357" width="14" height="3" fill="#3a3f42"/>
+    <!-- reklamní vitrína v rámu, na dvou nožkách, úchyty ke sloupům -->
+    <rect x="40" y="312" width="4" height="48" fill="#4b5155"/>
+    <rect x="148" y="312" width="4" height="48" fill="#3a3f42"/>
+    <rect x="26" y="136" width="4" height="3" fill="#4b5155"/>
+    <rect x="162" y="136" width="4" height="3" fill="#4b5155"/>
+    <rect x="30" y="114" width="132" height="198" fill="#5d6367"/>
+    <rect x="156" y="114" width="6" height="198" fill="#474c50"/>
+    <rect x="37" y="121" width="118" height="184" fill="#e6e8e4"/>
+    <path d="M37 250 L136 121 L155 121 L155 138 L68 305 L37 305 Z" fill="#f2f3ef"/>
+    <path d="M78 305 L155 158 L155 165 L84 305 Z" fill="#d9dcd7"/>
+    <!-- střecha: tenká deska s přesahem na obě strany -->
+    <rect x="6" y="96" width="198" height="13" fill="#4b5155"/>
+    <rect x="6" y="96" width="198" height="3" fill="#62686c"/>
+    <rect x="6" y="106" width="198" height="3" fill="#3a3f42"/>
+  </g>
+  <!-- označník: červený rám, nahoře značka zastávky tramvaje (IJ 4b) -->
+  <g id="oznacnik">
+    <rect x="222" y="265" width="5" height="95" fill="#d42a22"/>
+    <rect x="261" y="265" width="5" height="95" fill="#d42a22"/>
+    <rect x="264" y="265" width="2" height="95" fill="#a81f19"/>
+    <rect x="220" y="357" width="48" height="3" fill="#a81f19"/>
+    <!-- dvě skříňky s jízdními řády -->
+    <rect x="222" y="146" width="44" height="119" fill="#d42a22"/>
+    <rect x="262" y="146" width="4" height="119" fill="#a81f19"/>
+    <rect x="226" y="150" width="16" height="62" fill="#f2d64b"/>
+    <rect x="244" y="150" width="16" height="62" fill="#f4f4f0"/>
+    <rect x="226" y="218" width="34" height="40" fill="#f4f4f0"/>
+    <rect x="226" y="250" width="34" height="8" fill="#3a63b0"/>
+    <!-- tabule s názvem a linkami -->
+    <rect x="222" y="74" width="44" height="72" fill="#d42a22"/>
+    <rect x="262" y="74" width="4" height="72" fill="#a81f19"/>
+    <rect x="226" y="78" width="34" height="50" fill="#f4f4f0"/>
+    <rect x="230" y="84" width="26" height="4" fill="#2a2b2a"/>
+    <rect x="232" y="92" width="22" height="1.5" fill="#9a9b9c"/>
+    <rect x="230" y="99" width="8" height="8" fill="#2a2b2a"/>
+    <rect x="239" y="99" width="8" height="8" fill="#2a2b2a"/>
+    <rect x="248" y="99" width="8" height="8" fill="#d42a22"/>
+    <rect x="230" y="113" width="26" height="1.5" fill="#9a9b9c"/>
+    <rect x="230" y="118" width="20" height="1.5" fill="#9a9b9c"/>
+    <!-- značka: bílý okraj, modrý pás, bílé pole -->
+    <rect x="221" y="26" width="46" height="46" rx="3" fill="#f4f4f0"/>
+    <rect x="223" y="28" width="42" height="42" rx="2" fill="#1f56a8"/>
+    <rect x="227" y="32" width="34" height="34" rx="1" fill="#f4f4f0"/>
+    <g id="piktogram">
+      <rect x="238" y="37" width="12" height="1.6" fill="#1a1a1a"/>
+      <rect x="243.2" y="38" width="1.6" height="2" fill="#1a1a1a"/>
+      <path d="M244 39.5 L250 43.3 L244 47.2 L238 43.3 Z" fill="#1a1a1a"/>
+      <rect x="229" y="47" width="30" height="13" rx="2" fill="#1a1a1a"/>
+      <rect x="231" y="49" width="5" height="4" fill="#f4f4f0"/>
+      <rect x="238" y="49" width="5" height="4" fill="#f4f4f0"/>
+      <rect x="245" y="49" width="5" height="4" fill="#f4f4f0"/>
+      <rect x="252" y="49" width="5" height="4" fill="#f4f4f0"/>
+      <rect x="231" y="60" width="9" height="2.5" fill="#1a1a1a"/>
+      <rect x="248" y="60" width="9" height="2.5" fill="#1a1a1a"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,55 @@
+<svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
+  <!-- Klasická pražská parková lavička (Karlovo nám., Riegrovy sady…), pohled z čela lavičky.
+       Litinové bočnice tmavě grafitové, latě natřené hnědě: 4 v sedáku, 3 v opěradle. 1 px = 1 cm,
+       sedák 45 cm nad zemí, opěradlo do 83 cm. Opěradlo vlevo, sedí se doprava. -->
+  <g fill="none" stroke="#4c5155" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <!-- zadní noha plynule přechází v podpěru opěradla se závitkem nahoře -->
+    <path d="M18.5 88.6 C22.6 77 28.8 57.5 27 48.5 L15.8 8.2 C15 4.6 11.6 3.6 10.2 5.6 C9 7.4 10.6 9.4 12.4 8.6"/>
+    <!-- přední noha, u paty rozšířená dopředu -->
+    <path d="M73.2 49.5 C74.6 60 73.4 70 74.6 78 C75.4 83 77.6 86.4 80.6 88.6"/>
+    <!-- nosník sedáku pod latěmi -->
+    <path d="M27.6 52.6 L74.6 49.6"/>
+    <!-- spodní oblouk mezi nohama -->
+    <path d="M24 72 C33 59.5 61 59 73.8 70"/>
+    <!-- závitek pod přední hranou sedáku -->
+    <path d="M73.8 57.2 C68 59.4 63.4 56.4 64.6 53.2 C65.8 50.8 69.6 52.2 68.2 54.6" transform="translate(-14.6 -9.8) scale(1.2)" stroke-width="2.17"/>
+  </g>
+  <!-- světlejší horní hrana litiny pro objem -->
+  <g fill="none" stroke="#62686c" stroke-width="0.8" stroke-linecap="round" transform="translate(0.5 -0.4)">
+    <path d="M18.5 88.6 C22.6 77 28.8 57.5 27 48.5 L15.8 8.2"/>
+    <path d="M24 72 C33 59.5 61 59 73.8 70"/>
+  </g>
+  <!-- soustružené prstence na přední noze -->
+  <g fill="#4c5155">
+    <rect x="71.6" y="58.2" width="4.6" height="1.8" rx="0.9"/>
+    <rect x="73.6" y="81.4" width="4.4" height="1.6" rx="0.8"/>
+  </g>
+  <!-- patky -->
+  <rect x="14.6" y="88" width="8" height="2" rx="1" fill="#303336"/>
+  <rect x="76.6" y="88" width="8" height="2" rx="1" fill="#303336"/>
+  <!-- latě sedáku (čela), mírně skloněné dozadu -->
+  <g fill="#6a3a2a">
+    <path d="M65.0 45.7 L76.0 45.0 L76.0 49.0 L65.0 49.7 Z"/>
+    <path d="M53.0 46.5 L64.0 45.8 L64.0 49.8 L53.0 50.5 Z"/>
+    <path d="M41.5 47.2 L52.0 46.6 L52.0 50.6 L41.5 51.2 Z"/>
+    <path d="M30.0 48.0 L40.5 47.3 L40.5 51.3 L30.0 52.0 Z"/>
+  </g>
+  <!-- stín na spodní hraně latí -->
+  <g fill="#4b281c">
+    <path d="M65.0 48.4 L76.0 47.7 L76.0 49.0 L65.0 49.7 Z"/>
+    <path d="M53.0 49.2 L64.0 48.5 L64.0 49.8 L53.0 50.5 Z"/>
+    <path d="M41.5 50.0 L52.0 49.3 L52.0 50.6 L41.5 51.2 Z"/>
+    <path d="M30.0 50.7 L40.5 50.0 L40.5 51.3 L30.0 52.0 Z"/>
+  </g>
+  <!-- latě opěradla -->
+  <g fill="#6a3a2a">
+    <path d="M30.4 41.6 L27.2 30.0 L23.3 31.1 L26.6 42.7 Z"/>
+    <path d="M26.9 29.0 L23.8 17.8 L20.0 18.9 L23.1 30.1 Z"/>
+    <path d="M23.5 16.8 L20.7 6.5 L16.8 7.6 L19.7 17.9 Z"/>
+  </g>
+  <g fill="#4b281c">
+    <path d="M27.8 42.3 L24.6 30.7 L23.3 31.1 L26.6 42.7 Z"/>
+    <path d="M24.3 29.7 L21.2 18.5 L20.0 18.9 L23.1 30.1 Z"/>
+    <path d="M20.9 17.5 L18.1 7.2 L16.8 7.6 L19.7 17.9 Z"/>
+  </g>
+</svg>

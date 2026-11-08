@@ -1,6 +1,6 @@
 import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
-import { loadSprites, buildSvg, mountEditor, svgString, totalWidth } from "./profile.js";
+import { loadSprites, buildSvg, mountEditor, svgString, totalWidth, setArt, getArt } from "./profile.js";
 import { toStreetmix } from "./streetmix.js";
 import * as sources from "./sources.js";
 import { checkRules } from "./rules.js";
@@ -582,6 +582,20 @@ document.querySelectorAll(".seg-toggle button").forEach((b) => b.addEventListene
   if (state.stav && !state.navrhEdited) state.navrh = structuredClone(state.stav);
   render();
 }));
+
+// Illustrations: Prague ones or Streetmix, remembered per browser.
+const ART_KEY = "profily-ilustrace";
+function showArt() {
+  $("#btn-art").textContent = getArt() === "praha" ? "Obrázky: Praha" : "Obrázky: Streetmix";
+}
+try { if (localStorage.getItem(ART_KEY) === "streetmix") setArt("streetmix"); } catch {}
+showArt();
+$("#btn-art").addEventListener("click", () => {
+  setArt(getArt() === "praha" ? "streetmix" : "praha");
+  try { localStorage.setItem(ART_KEY, getArt()); } catch {}
+  showArt();
+  render();
+});
 
 // ---------- export, save, load ----------
 function exportSvgs() {

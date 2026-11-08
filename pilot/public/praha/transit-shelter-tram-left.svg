@@ -1,0 +1,65 @@
+<svg viewBox="0 0 270 360" xmlns="http://www.w3.org/2000/svg">
+  <!-- Nový pražský přístřešek zastávky tramvaje (soutěž IPR 2018, návrh Olgoj Chorchoj) s klasickým červeným označníkem, zadní stěna vlevo, otevřená strana a označník vpravo (k vozovce). 1 px = 1 cm, spodní hrana = chodník. -->
+  <!-- přístřešek z čela (návrh Olgoj Chorchoj): zadní sloup a tenká konzolová střecha z litého hliníku -->
+  <g id="pristresek">
+    <!-- pás s názvem zastávky a odjezdy pod střechou u zadní stěny, z boku -->
+    <rect x="30" y="108" width="10" height="42" fill="#18191b"/>
+    <rect x="38" y="109" width="2" height="13" fill="#5f656a"/>
+    <!-- sloup a střecha: v řezu skoro pravý úhel, střecha kousek přesahuje dozadu a dopředu se ztenčuje -->
+    <path d="M13 97 Q13 95 15 95 L198 97 L198 104 L46 109 L34 109 Q30 109 30 113 L30 360 L17 360 L17 103 L13 103 Z" fill="#2c2f32"/>
+    <rect x="26" y="113" width="4" height="247" fill="#1f2124"/>
+    <rect x="17" y="103" width="2" height="257" fill="#3d4144"/>
+    <path d="M15 95 L198 97 L198 99 L15 97 Z" fill="#3d4144"/>
+    <path d="M46 107 L198 102 L198 104 L46 109 Z" fill="#1f2124"/>
+    <rect x="14" y="357" width="19" height="3" fill="#1f2124"/>
+    <!-- boční stěna: reklamní vitrína v tlustém rámu, neutrální plocha -->
+    <rect x="30" y="122" width="134" height="233" fill="#2c2f32"/>
+    <rect x="155" y="122" width="9" height="238" fill="#1f2124"/>
+    <rect x="30" y="355" width="7" height="5" fill="#1f2124"/>
+    <rect x="30" y="122" width="134" height="2" fill="#3d4144"/>
+    <rect x="37" y="132" width="118" height="213" fill="#e6e8e4"/>
+    <path d="M37 280 L120 132 L155 132 L155 150 L64 345 L37 345 Z" fill="#f2f3ef"/>
+    <path d="M76 345 L155 185 L155 194 L83 345 Z" fill="#d9dcd7"/>
+  </g>
+  <!-- označník: klasický červený rám, nahoře značka zastávky tramvaje (IJ 4b) -->
+  <g id="oznacnik">
+    <rect x="222" y="265" width="5" height="95" fill="#d42a22"/>
+    <rect x="261" y="265" width="5" height="95" fill="#d42a22"/>
+    <rect x="264" y="265" width="2" height="95" fill="#a81f19"/>
+    <rect x="220" y="357" width="48" height="3" fill="#a81f19"/>
+    <!-- dvě skříňky s jízdními řády -->
+    <rect x="222" y="146" width="44" height="119" fill="#d42a22"/>
+    <rect x="262" y="146" width="4" height="119" fill="#a81f19"/>
+    <rect x="226" y="150" width="16" height="62" fill="#f2d64b"/>
+    <rect x="244" y="150" width="16" height="62" fill="#f4f4f0"/>
+    <rect x="226" y="218" width="34" height="40" fill="#f4f4f0"/>
+    <rect x="226" y="250" width="34" height="8" fill="#3a63b0"/>
+    <!-- tabule s názvem a linkami -->
+    <rect x="222" y="74" width="44" height="72" fill="#d42a22"/>
+    <rect x="262" y="74" width="4" height="72" fill="#a81f19"/>
+    <rect x="226" y="78" width="34" height="50" fill="#f4f4f0"/>
+    <rect x="230" y="84" width="26" height="4" fill="#2a2b2a"/>
+    <rect x="232" y="92" width="22" height="1.5" fill="#9a9b9c"/>
+    <rect x="230" y="99" width="8" height="8" fill="#2a2b2a"/>
+    <rect x="239" y="99" width="8" height="8" fill="#2a2b2a"/>
+    <rect x="248" y="99" width="8" height="8" fill="#d42a22"/>
+    <rect x="230" y="113" width="26" height="1.5" fill="#9a9b9c"/>
+    <rect x="230" y="118" width="20" height="1.5" fill="#9a9b9c"/>
+    <!-- značka: bílý okraj, modrý pás, bílé pole -->
+    <rect x="221" y="26" width="46" height="46" rx="3" fill="#f4f4f0"/>
+    <rect x="223" y="28" width="42" height="42" rx="2" fill="#1f56a8"/>
+    <rect x="227" y="32" width="34" height="34" rx="1" fill="#f4f4f0"/>
+    <g id="piktogram">
+      <rect x="238" y="37" width="12" height="1.6" fill="#1a1a1a"/>
+      <rect x="243.2" y="38" width="1.6" height="2" fill="#1a1a1a"/>
+      <path d="M244 39.5 L250 43.3 L244 47.2 L238 43.3 Z" fill="#1a1a1a"/>
+      <rect x="229" y="47" width="30" height="13" rx="2" fill="#1a1a1a"/>
+      <rect x="231" y="49" width="5" height="4" fill="#f4f4f0"/>
+      <rect x="238" y="49" width="5" height="4" fill="#f4f4f0"/>
+      <rect x="245" y="49" width="5" height="4" fill="#f4f4f0"/>
+      <rect x="252" y="49" width="5" height="4" fill="#f4f4f0"/>
+      <rect x="231" y="60" width="9" height="2.5" fill="#1a1a1a"/>
+      <rect x="248" y="60" width="9" height="2.5" fill="#1a1a1a"/>
+    </g>
+  </g>
+</svg>
