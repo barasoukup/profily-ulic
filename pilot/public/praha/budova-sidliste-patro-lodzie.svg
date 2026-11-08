@@ -1,0 +1,36 @@
+<svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Pražský panelový dům (typ VVÚ-ETA / Larsen-Nielsen) po revitalizaci, patro s lodžií, pruh 4 m. 1 px = 1 cm. -->
+  <!-- Lodžie 2,4 m mezi zateplenými čely příčných stěn; čela nesou stejné svislé barevné pásy 0,8 m jako hlavní patro, -->
+  <!-- takže se varianty dají střídat. Vzadu okno – balkonové dveře 0,8 m – okno, vpředu světlý plný parapet 1,05 m. -->
+  <!-- Horní i spodní hrana jen plná barva (navazuje bez švu). Nestřídat po podlažích – lodžie volit pro celou budovu. -->
+
+  <!-- světlá omítka čela stropní desky a barevné pásy na čelech stěn -->
+  <rect x="0" y="0" width="400" height="280" fill="#ebe7dc"/>
+  <rect x="0" y="0" width="80" height="280" fill="#e1b23f"/>
+  <rect x="320" y="0" width="80" height="280" fill="#e1b23f"/>
+
+  <!-- lodžie: zadní stěna tmavší a chladnější, stín podhledu a bočních stěn -->
+  <rect x="80" y="0" width="240" height="262" fill="#cfc8b8"/>
+  <rect x="80" y="0" width="240" height="16" fill="#b4ad9e"/>
+  <rect x="80" y="16" width="10" height="246" fill="#bdb6a7"/>
+  <rect x="310" y="16" width="10" height="246" fill="#bdb6a7"/>
+
+  <!-- levé okno -->
+  <rect x="98" y="40" width="54" height="150" fill="#f5f4f0"/>
+  <rect x="105" y="47" width="40" height="136" fill="#687c88"/>
+  <!-- pravé okno -->
+  <rect x="248" y="40" width="54" height="150" fill="#f5f4f0"/>
+  <rect x="255" y="47" width="40" height="136" fill="#687c88"/>
+  <!-- balkonové dveře 0,8 m -->
+  <rect x="160" y="40" width="80" height="222" fill="#f5f4f0"/>
+  <rect x="167" y="47" width="66" height="215" fill="#687c88"/>
+
+  <!-- plný parapet lodžie z desek, výška 1,05 m, světlý -->
+  <rect x="80" y="157" width="240" height="105" fill="#f1eee6"/>
+  <rect x="80" y="157" width="240" height="5" fill="#d9d5cb"/>
+  <!-- spáry mezi deskami výplně -->
+  <rect x="158" y="162" width="3" height="100" fill="#d9d5cb"/>
+  <rect x="239" y="162" width="3" height="100" fill="#d9d5cb"/>
+  <!-- oplechování pod parapetem -->
+  <rect x="80" y="262" width="240" height="4" fill="#a9a59c"/>
+</svg>

@@ -1,0 +1,43 @@
+<svg viewBox="0 0 360 180" xmlns="http://www.w3.org/2000/svg">
+  <!-- Obecné osobní kombi střední třídy (nejčastější auto v pražských ulicích), zezadu.
+       1 px = 1 cm: délka 4,70 m, šířka 1,83 m (se zrcátky 2,03), výška 1,47 m. Bez loga a značky. -->
+  <!-- pneumatiky pod autem, rozchod 1,54 m -->
+  <rect x="92" y="148" width="22" height="32" rx="4" fill="#2a2b2a"/>
+  <rect x="246" y="148" width="22" height="32" rx="4" fill="#2a2b2a"/>
+  <rect x="114" y="158" width="132" height="8" fill="#2a2b2a"/>
+  <!-- silueta zezadu: střešní spoiler, páté dveře -->
+  <path d="M134 35 H226 Q236 35 240 40 L262 86 L270 92 L272 100 V150 Q272 158 266 160 H94 Q88 158 88 150 V100 L90 92 L98 86 L120 40 Q124 35 134 35 Z" fill="#a9aeb3"/>
+  <path d="M236 38 Q238 38 240 40 L262 86 L270 92 L272 100 V150 Q272 158 266 160 H262 L258 92 Z" fill="#8e9398"/>
+  <rect x="128" y="31" width="5" height="4" fill="#c4c7ca"/>
+  <rect x="227" y="31" width="5" height="4" fill="#c4c7ca"/>
+  <!-- spoiler se třetím brzdovým světlem -->
+  <path d="M124 40 H236 L238 46 H122 Z" fill="#2f3133"/>
+  <rect x="166" y="42" width="28" height="2" fill="#c0272d"/>
+  <!-- zadní okno a stěrač -->
+  <path d="M124 48 H236 L246 82 H114 Z" fill="#1f2a33"/>
+  <path d="M128 51 H232 L240 79 H120 Z" fill="#2e3b46"/>
+  <path d="M136 77 L152 53 H164 L148 77 Z" fill="#46596a" opacity=".6"/>
+  <path d="M180 78 L150 64" stroke="#2f3133" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M100 86 L114 82 L117 86 Z" fill="#1f2a33"/>
+  <path d="M260 86 L246 82 L243 86 Z" fill="#1f2a33"/>
+  <!-- zadní světla přes hranu pátých dveří, spáry dveří -->
+  <path d="M90 90 L130 92 L128 100 L90 103 Z" fill="#c0272d"/>
+  <path d="M270 90 L230 92 L232 100 L270 103 Z" fill="#c0272d"/>
+  <path d="M96 95 L124 96 L123 98 L96 99 Z" fill="#8f1d22"/>
+  <path d="M264 95 L236 96 L237 98 L264 99 Z" fill="#8f1d22"/>
+  <rect x="116" y="84" width="1.5" height="38" fill="#8e9398"/>
+  <rect x="242.5" y="84" width="1.5" height="38" fill="#8e9398"/>
+  <rect x="116" y="121" width="128" height="1.5" fill="#8e9398"/>
+  <!-- registrační značka jen jako náznak -->
+  <rect x="152" y="106" width="56" height="15" rx="2" fill="#8e9398"/>
+  <rect x="154" y="108" width="52" height="11" rx="1" fill="#f2f2ee"/>
+  <rect x="154" y="108" width="5" height="11" fill="#1d4c99"/>
+  <!-- nárazník: odrazky a černý difuzor -->
+  <rect x="96" y="136" width="14" height="3" rx="1" fill="#8f1d22"/>
+  <rect x="250" y="136" width="14" height="3" rx="1" fill="#8f1d22"/>
+  <path d="M106 145 H254 L250 160 H110 Z" fill="#2f3133"/>
+  <rect x="92" y="155" width="176" height="5" rx="2" fill="#3c3f42"/>
+  <!-- zrcátka -->
+  <path d="M90 86 L82 85 Q78 87 78 93 L80 99 L90 99 Z" fill="#a9aeb3"/>
+  <path d="M270 86 L278 85 Q282 87 282 93 L280 99 L270 99 Z" fill="#8e9398"/>
+</svg>

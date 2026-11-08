@@ -1,6 +1,6 @@
 import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
-import { loadSprites, buildSvg, mountEditor, svgString, totalWidth, setArt, getArt } from "./profile.js";
+import { loadSprites, buildSvg, mountEditor, svgString, totalWidth, setArt, getArt, buildingStyle, BUILDING_STYLES } from "./profile.js";
 import { toStreetmix } from "./streetmix.js";
 import * as sources from "./sources.js";
 import { checkRules } from "./rules.js";
@@ -469,10 +469,20 @@ function renderEditor(p) {
     ed.innerHTML = `<span class="muted">Vyberte část profilu kliknutím. Šířky měníte tažením svislých čar. Celková šířka ${totalWidth(p).toFixed(2).replace(".", ",")} m.</span>`;
     for (const [side, text] of [["left", "Levý okraj"], ["right", "Pravý okraj"]]) {
       const sel = document.createElement("select");
-      for (const [k, t] of [["budova", "budova"], ["stavba", "drobná stavba"], ["zahrada", "zahrada, louka"], ["zelen", "zeleň, louka"], ["voda", "voda"], ["parkoviste", "parkoviště"], ["plot", "plot"], ["volno", "volný prostor"]]) {
-        sel.add(new Option(t, k, false, (p.edges?.[side] || "volno") === k));
-      }
-      sel.onchange = () => { p.edges = { ...p.edges, [side]: sel.value }; edited(); render(); };
+      // A building can be given its look by hand; "budova" alone lets the app guess it.
+      const current = (p.edges?.[side] || "volno") + (p.edges?.[`${side}Style`] ? ":" + p.edges[`${side}Style`] : "");
+      const guess = BUILDING_STYLES[buildingStyle(p.edges?.[`${side}Info`])];
+      const kinds = [["budova", `budova (odhad: ${guess})`], ...Object.entries(BUILDING_STYLES).map(([k, t]) => [`budova:${k}`, `budova – ${t}`]),
+        ["stavba", "drobná stavba"], ["zahrada", "zahrada, louka"], ["zelen", "zeleň, louka"], ["voda", "voda"], ["parkoviste", "parkoviště"], ["plot", "plot"], ["volno", "volný prostor"]];
+      for (const [k, t] of kinds) sel.add(new Option(t, k, false, current === k));
+      sel.onchange = () => {
+        const [kind, style] = sel.value.split(":");
+        p.edges = { ...p.edges, [side]: kind };
+        if (style) p.edges[`${side}Style`] = style;
+        else delete p.edges[`${side}Style`];
+        edited();
+        render();
+      };
       const l = document.createElement("label");
       l.append(text, sel);
       ed.append(l);

@@ -27,6 +27,17 @@ const PRAHA = {
   "transit-shelter-01-left": "transit-shelter-left", "transit-shelter-01-right": "transit-shelter-right",
   "transit-shelter-tram-left": "transit-shelter-tram-left", "transit-shelter-tram-right": "transit-shelter-tram-right",
 };
+// Prague buildings are stacked from modules: ground floor, typical floor (repeated), roof or attic.
+const BUILDING_FILES = ["centrum-parter", "centrum-parter-obchod", "centrum-patro", "centrum-strecha", "centrum-podkrovi",
+  "sidliste-parter", "sidliste-parter-vchod", "sidliste-patro", "sidliste-patro-lodzie", "sidliste-strecha",
+  "rd-parter", "rd-patro", "rd-strecha", "rd-podkrovi"].map((m) => `budova-${m}`);
+export const BUILDING_STYLES = { centrum: "činžák", "centrum-obchod": "činžák s obchody", sidliste: "panelák",
+  "sidliste-lodzie": "panelák s lodžiemi", rd: "rodinný dům" };
+const HOUSE_TYPES = new Set(["house", "detached", "semidetached_house", "terrace", "bungalow", "villa", "farm"]);
+const INNER_KM = 3; // within this from the centre, buildings are tenements unless very tall
+const ESTATE_KM = 5; // beyond this from the centre, 3+ floors are more likely a panel house than a tenement
+const DEFAULT_FLOORS = { centrum: 5, sidliste: 8, rd: 2 };
+const SEAM = 3; // modules overlap a little so no hairline shows between them
 const sprites = {};
 let art = "praha"; // "praha" or "streetmix"
 export const setArt = (a) => { art = a; };
@@ -42,7 +53,7 @@ async function loadSprite(key, path) {
 export async function loadSprites() {
   await Promise.all([
     ...SPRITE_FILES.map((name) => loadSprite(name, `streetmix/${name}.svg`)),
-    ...[...new Set(Object.values(PRAHA))].map((file) => loadSprite(`praha/${file}`, `praha/${file}.svg`)),
+    ...[...new Set(Object.values(PRAHA)), ...BUILDING_FILES].map((file) => loadSprite(`praha/${file}`, `praha/${file}.svg`)),
   ]);
 }
 
@@ -134,9 +145,70 @@ export function buildingLevels(info) {
   return { n: info.levels, cornice: info.cornice, roof: info.roof };
 }
 
-function drawEdge(svg, x, kind, side, surface, info) {
+// Building style: set by hand, else guessed from the OSM building type, floors and distance from the centre.
+export function buildingStyle(info, chosen) {
+  if (chosen) return chosen;
+  const h = buildingHeight(info);
+  const n = info?.levels || (h ? Math.round(h / FLOOR) : null);
+  if (HOUSE_TYPES.has(info?.type) || (n && n <= 2)) return "rd";
+  // Inner city (Vinohrady, Žižkov, Karlín…): tall blocks are still mostly tenements.
+  if (info?.km <= INNER_KM) return n >= 12 ? "sidliste" : "centrum";
+  if (n >= 9 || (n >= 3 && info?.km > ESTATE_KM)) return "sidliste";
+  if (!n && info?.km > ESTATE_KM) return "rd";
+  return "centrum";
+}
+
+// Modules of a Prague building from the bottom up, each {s: sprite, h: drawn height}; roof drawn at its own size.
+function buildingPlan(info, style) {
+  const base = style.split("-")[0];
+  const m = (k) => sprites[`praha/budova-${k}`];
+  const parter = m(style === "centrum-obchod" ? "centrum-parter-obchod" : base === "sidliste" ? "sidliste-parter" : `${base}-parter`);
+  const patro = m(style === "sidliste-lodzie" ? "sidliste-patro-lodzie" : `${base}-patro`);
+  const attic = m(`${base}-podkrovi`);
+  const lv = buildingLevels(info);
+  const h = buildingHeight(info);
+  const n = Math.max(1, lv?.n || (h ? Math.round(h / FLOOR) : DEFAULT_FLOORS[base]));
+  const roofRows = attic && lv?.roof && lv.cornice ? Math.min(lv.roof, n - 1) : 0;
+  const body = [parter, ...Array(n - 1 - roofRows).fill(patro)];
+  const atticH = roofRows ? attic.h + (roofRows - 1) * patro.h : 0;
+  const natural = body.reduce((a, s) => a + s.h, 0) + atticH;
+  // Known height: the floors stretch to it (within reason); the roof keeps its size.
+  const k = h ? Math.min(1.4, Math.max(0.7, (h * 100) / natural)) : 1;
+  const parts = body.map((s) => ({ s, h: s.h * k }));
+  if (roofRows) parts.push({ s: attic, h: atticH * k });
+  else parts.push({ s: m(`${base}-strecha`), h: m(`${base}-strecha`).h });
+  return parts;
+}
+
+export function edgeHeight(kind, info, style) {
+  if (kind !== "budova") return 0;
+  if (art !== "praha") return (buildingHeight(info) || 0) * 100;
+  return buildingPlan(info, buildingStyle(info, style)).reduce((a, p) => a + p.h, 0);
+}
+
+function drawPrahaBuilding(g, x, surface, info, style) {
+  const parts = buildingPlan(info, buildingStyle(info, style));
+  let y = surface;
+  const placed = parts.map((p) => ({ ...p, y: (y -= p.h) }));
+  // Top first, so each lower module covers the small overlap of the one above.
+  for (const p of placed.reverse()) {
+    el("image", { href: p.s.uri, x, y: p.y, width: EDGE, height: p.h + SEAM, preserveAspectRatio: "none" }, g);
+  }
+  return y;
+}
+
+function drawEdge(svg, x, kind, side, surface, info, style) {
   const g = el("g", {}, svg);
-  if (kind === "budova") {
+  if (kind === "budova" && art === "praha") {
+    const top = drawPrahaBuilding(g, x, surface, info, style);
+    const lv = buildingLevels(info);
+    const h = buildingHeight(info);
+    if (lv || h) {
+      const text = lv ? (lv.cornice && lv.roof ? `${lv.cornice} + ${lv.roof} NP` : `${lv.n} NP`) : "";
+      el("text", { x: x + EDGE / 2, y: top - 25, "text-anchor": "middle", "font-size": 32, fill: "#5f5e5a" }, g).textContent =
+        [text, h ? `${info.height ? "" : "≈ "}${fmt(h).replace(",00", "")}` : ""].filter(Boolean).join(" · ");
+    }
+  } else if (kind === "budova") {
     const h = buildingHeight(info);
     const lv = buildingLevels(info);
     const top = h ? surface - h * 100 : 120;
@@ -205,9 +277,10 @@ export function buildSvg(profile, opts = {}) {
   const view = opts.view || [-EDGE, Math.max(total + 2 * EDGE, 2400)];
   const vx = view[0] - (view[1] - (total + 2 * EDGE)) / 2;
   // Tall buildings at the edges extend the drawing upwards.
-  const tallest = Math.max(0, ...["left", "right"].map((k) => buildingHeight(profile.edges?.[`${k}Info`]) || 0));
+  const tallest = Math.max(0, ...["left", "right"].map((k) =>
+    edgeHeight(profile.edges?.[k], profile.edges?.[`${k}Info`], profile.edges?.[`${k}Style`])));
   // The top row (total width, cut ends A/B) sits above the tallest building and its floor label.
-  const y0 = Math.min(0, GROUND - tallest * 100 - 140) - 110;
+  const y0 = Math.min(0, GROUND - tallest - 140) - 110;
   const svg = el("svg", { xmlns: NS, viewBox: `${vx} ${y0} ${view[1]} ${H - y0}`, "font-family": "system-ui, sans-serif" });
   el("rect", { x: vx, y: y0, width: view[1], height: H - y0, fill: "#fbfaf6" }, svg);
   if (opts.title) {
@@ -228,8 +301,8 @@ export function buildSvg(profile, opts = {}) {
 
   const firstRaised = segs[0] && TYPES[segs[0].type]?.raised;
   const lastRaised = segs.at(-1) && TYPES[segs.at(-1).type]?.raised;
-  drawEdge(svg, -EDGE, profile.edges?.left || "volno", "left", firstRaised ? GROUND - CURB : GROUND, profile.edges?.leftInfo);
-  drawEdge(svg, total, profile.edges?.right || "volno", "right", lastRaised ? GROUND - CURB : GROUND, profile.edges?.rightInfo);
+  drawEdge(svg, -EDGE, profile.edges?.left || "volno", "left", firstRaised ? GROUND - CURB : GROUND, profile.edges?.leftInfo, profile.edges?.leftStyle);
+  drawEdge(svg, total, profile.edges?.right || "volno", "right", lastRaised ? GROUND - CURB : GROUND, profile.edges?.rightInfo, profile.edges?.rightStyle);
 
   let x = 0;
   const bounds = [0];

@@ -1,0 +1,69 @@
+<svg viewBox="0 0 400 370" xmlns="http://www.w3.org/2000/svg">
+  <!-- Typické patro pražského činžáku kolem 1900 (Vinohrady, Žižkov, Karlín): dvě okenní osy po 2 m, okna 1,1 × 2,2 m. 1 px = 1 cm, výška patra 3,7 m. -->
+  <rect x="0" y="0" width="400" height="370" fill="#ecd8ad"/>
+  <!-- průběžný parapetní pás přes celou šířku -->
+  <rect x="0" y="285" width="400" height="6" fill="#faf3e3"/>
+  <rect x="0" y="291" width="400" height="2" fill="#b39a6c"/>
+  <!-- nadokenní římsa -->
+  <rect x="30" y="32" width="140" height="5" fill="#faf3e3"/>
+  <rect x="32" y="37" width="136" height="8" fill="#f6ecd6"/>
+  <rect x="36" y="45" width="128" height="4" fill="#c9b082"/>
+  <!-- okno v šambráně (otvor 110 × 220 cm) -->
+  <rect x="36" y="53" width="128" height="230" fill="#f6ecd6"/>
+  <rect x="43" y="60" width="114" height="223" fill="#c9b082"/>
+  <rect x="45" y="62" width="110" height="221" fill="#d2ba8c"/>
+  <rect x="45" y="62" width="110" height="9" fill="#b39a6c"/>
+  <rect x="51" y="71" width="98" height="212" fill="#f7f5ef"/>
+  <rect x="58" y="78" width="38.5" height="54.48" fill="#6c818f"/>
+  <rect x="58" y="78" width="38.5" height="13.62" fill="#8da1ad"/>
+  <rect x="103.5" y="78" width="38.5" height="54.48" fill="#6c818f"/>
+  <rect x="103.5" y="78" width="38.5" height="13.62" fill="#8da1ad"/>
+  <rect x="58" y="139.48" width="38.5" height="136.52" fill="#6c818f"/>
+  <rect x="58" y="139.48" width="38.5" height="14" fill="#8da1ad"/>
+  <rect x="103.5" y="139.48" width="38.5" height="136.52" fill="#6c818f"/>
+  <rect x="103.5" y="139.48" width="38.5" height="14" fill="#8da1ad"/>
+  <rect x="58" y="205.74" width="84" height="4" fill="#f7f5ef"/>
+  <rect x="51" y="280" width="98" height="3" fill="#dcd8cd"/>
+  <!-- parapetní římsa s konzolkami a zrcadlo pod oknem -->
+  <rect x="35" y="280" width="130" height="4" fill="#faf3e3"/>
+  <rect x="37" y="284" width="126" height="6" fill="#f6ecd6"/>
+  <rect x="39" y="290" width="122" height="3" fill="#b39a6c"/>
+  <rect x="54" y="306" width="92" height="44" fill="#e5cfa1"/>
+  <rect x="54" y="306" width="92" height="3" fill="#c9b082"/>
+  <rect x="54" y="347" width="92" height="3" fill="#f6ecd6"/>
+  <rect x="40" y="293" width="8" height="14" fill="#f6ecd6"/>
+  <rect x="40" y="307" width="8" height="3" fill="#c9b082"/>
+  <rect x="152" y="293" width="8" height="14" fill="#f6ecd6"/>
+  <rect x="152" y="307" width="8" height="3" fill="#c9b082"/>
+  <!-- nadokenní římsa -->
+  <rect x="230" y="32" width="140" height="5" fill="#faf3e3"/>
+  <rect x="232" y="37" width="136" height="8" fill="#f6ecd6"/>
+  <rect x="236" y="45" width="128" height="4" fill="#c9b082"/>
+  <!-- okno v šambráně (otvor 110 × 220 cm) -->
+  <rect x="236" y="53" width="128" height="230" fill="#f6ecd6"/>
+  <rect x="243" y="60" width="114" height="223" fill="#c9b082"/>
+  <rect x="245" y="62" width="110" height="221" fill="#d2ba8c"/>
+  <rect x="245" y="62" width="110" height="9" fill="#b39a6c"/>
+  <rect x="251" y="71" width="98" height="212" fill="#f7f5ef"/>
+  <rect x="258" y="78" width="38.5" height="54.48" fill="#6c818f"/>
+  <rect x="258" y="78" width="38.5" height="13.62" fill="#8da1ad"/>
+  <rect x="303.5" y="78" width="38.5" height="54.48" fill="#6c818f"/>
+  <rect x="303.5" y="78" width="38.5" height="13.62" fill="#8da1ad"/>
+  <rect x="258" y="139.48" width="38.5" height="136.52" fill="#6c818f"/>
+  <rect x="258" y="139.48" width="38.5" height="14" fill="#8da1ad"/>
+  <rect x="303.5" y="139.48" width="38.5" height="136.52" fill="#6c818f"/>
+  <rect x="303.5" y="139.48" width="38.5" height="14" fill="#8da1ad"/>
+  <rect x="258" y="205.74" width="84" height="4" fill="#f7f5ef"/>
+  <rect x="251" y="280" width="98" height="3" fill="#dcd8cd"/>
+  <!-- parapetní římsa s konzolkami a zrcadlo pod oknem -->
+  <rect x="235" y="280" width="130" height="4" fill="#faf3e3"/>
+  <rect x="237" y="284" width="126" height="6" fill="#f6ecd6"/>
+  <rect x="239" y="290" width="122" height="3" fill="#b39a6c"/>
+  <rect x="254" y="306" width="92" height="44" fill="#e5cfa1"/>
+  <rect x="254" y="306" width="92" height="3" fill="#c9b082"/>
+  <rect x="254" y="347" width="92" height="3" fill="#f6ecd6"/>
+  <rect x="240" y="293" width="8" height="14" fill="#f6ecd6"/>
+  <rect x="240" y="307" width="8" height="3" fill="#c9b082"/>
+  <rect x="352" y="293" width="8" height="14" fill="#f6ecd6"/>
+  <rect x="352" y="307" width="8" height="3" fill="#c9b082"/>
+</svg>

@@ -1,0 +1,24 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Přízemí pražského panelového domu (typ VVÚ-ETA / Larsen-Nielsen) po revitalizaci, pruh 4 m, bez vchodu. -->
+  <!-- Podlaha 0,2 m nad terénem, výška 3,0 m. Okno přízemního bytu ve stejné ose jako v patrech, parapet 1,2 m nad -->
+  <!-- terénem; plný tmavý sokl 0,8 m z mozaikové omítky. 1 px = 1 cm, spodní hrana = chodník. -->
+
+  <!-- omítka a barevné pásy jako v patrech -->
+  <rect x="0" y="0" width="400" height="300" fill="#ebe7dc"/>
+  <rect x="0" y="0" width="80" height="300" fill="#e1b23f"/>
+  <rect x="320" y="0" width="80" height="300" fill="#e1b23f"/>
+
+  <!-- okno přízemního bytu -->
+  <rect x="103" y="28" width="194" height="152" fill="#cbc5b7"/>
+  <rect x="107" y="34" width="186" height="146" fill="#f5f4f0"/>
+  <rect x="114" y="41" width="82" height="132" fill="#687c88"/>
+  <rect x="204" y="41" width="82" height="132" fill="#687c88"/>
+  <rect x="114" y="41" width="82" height="10" fill="#566873"/>
+  <rect x="204" y="41" width="82" height="10" fill="#566873"/>
+  <rect x="101" y="180" width="198" height="5" fill="#c3c4c1"/>
+  <rect x="101" y="185" width="198" height="3" fill="#d9d4c8"/>
+
+  <!-- sokl 0,8 m, tmavá mozaiková omítka, horní hrana s plechovou lištou -->
+  <rect x="0" y="220" width="400" height="80" fill="#77746d"/>
+  <rect x="0" y="220" width="400" height="4" fill="#8f8c85"/>
+</svg>

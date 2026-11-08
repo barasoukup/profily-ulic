@@ -836,6 +836,10 @@ function perpDepth(segs) {
   return segs;
 }
 
+// Distance from the Old Town Square (km): the inner city of tenements versus the outer estates.
+const CENTRE = [14.4208, 50.0875];
+const centreKm = ([lon, lat]) => Math.hypot((lon - CENTRE[0]) * 71.5, (lat - CENTRE[1]) * 111.2);
+
 // OSM building containing a point, with building:levels (+ roof:levels) and height when tagged.
 function buildingAt(osm, frame, p) {
   for (const el of osm.elements || []) {
@@ -846,7 +850,7 @@ function buildingAt(osm, frame, p) {
     const levels = parseInt(el.tags["building:levels"], 10);
     const roof = parseInt(el.tags["roof:levels"], 10);
     const height = parseFloat(el.tags.height);
-    return { levels: levels ? levels + (roof || 0) : undefined, height: height || undefined };
+    return { levels: levels ? levels + (roof || 0) : undefined, height: height || undefined, type: el.tags.building };
   }
   return null;
 }
@@ -1224,7 +1228,9 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   for (const side of ["left", "right"]) {
     if (edges[side] !== "budova") continue;
     const b = buildingAt(osm, frame, probe[side]);
-    edges[`${side}Info`] = { levels: b?.levels, height: b?.height, point: frame.toLonLat(...probe[side]) };
+    const point = frame.toLonLat(...probe[side]);
+    edges[`${side}Info`] = { levels: b?.levels, height: b?.height, point, km: +centreKm(point).toFixed(1) };
+    if (b?.type && b.type !== "yes") edges[`${side}Info`].type = b.type;
   }
   return {
     segments: withItems.reverse().map(toSegment),

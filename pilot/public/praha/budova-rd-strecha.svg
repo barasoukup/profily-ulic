@@ -1,0 +1,45 @@
+<svg viewBox="0 0 400 372" xmlns="http://www.w3.org/2000/svg">
+  <!-- Sedlová/valbová střecha, okapová strana do ulice: čelně je vidět jen obdélník krytiny od okapu k hřebeni. -->
+  <!-- 1 px = 1 cm, krytina 2,7 m (hřeben asi 2,6 m nad okapem při sklonu 35–40°), komín v ose 60 cm nad hřebenem. -->
+  <!-- krytina z pálených tašek, řady po 19 cm (zkrácení ve sklonu), tmavší spáry -->
+  <rect x="0" y="66" width="400" height="270" fill="#b5532f"/>
+  <rect x="0" y="317" width="400" height="3" fill="#9f4527"/>
+  <rect x="0" y="298" width="400" height="3" fill="#9f4527"/>
+  <rect x="0" y="279" width="400" height="3" fill="#9f4527"/>
+  <rect x="0" y="260" width="400" height="3" fill="#9f4527"/>
+  <rect x="0" y="241" width="400" height="3" fill="#9f4527"/>
+  <rect x="0" y="222" width="400" height="3" fill="#9f4527"/>
+  <rect x="0" y="203" width="400" height="3" fill="#9f4527"/>
+  <rect x="0" y="184" width="400" height="3" fill="#9f4527"/>
+  <rect x="0" y="165" width="400" height="3" fill="#9f4527"/>
+  <rect x="0" y="146" width="400" height="3" fill="#9f4527"/>
+  <rect x="0" y="127" width="400" height="3" fill="#9f4527"/>
+  <rect x="0" y="108" width="400" height="3" fill="#9f4527"/>
+  <!-- poslední řada pod hřebenem o odstín světlejší -->
+  <rect x="0" y="76" width="400" height="13" fill="#c4683f"/>
+  <rect x="0" y="89" width="400" height="3" fill="#9f4527"/>
+  <!-- hřeben s hřebenáči -->
+  <rect x="0" y="66" width="400" height="10" fill="#a84a2a"/>
+  <rect x="20" y="66" width="2" height="10" fill="#9f4527"/>
+  <rect x="60" y="66" width="2" height="10" fill="#9f4527"/>
+  <rect x="100" y="66" width="2" height="10" fill="#9f4527"/>
+  <rect x="140" y="66" width="2" height="10" fill="#9f4527"/>
+  <rect x="180" y="66" width="2" height="10" fill="#9f4527"/>
+  <rect x="220" y="66" width="2" height="10" fill="#9f4527"/>
+  <rect x="260" y="66" width="2" height="10" fill="#9f4527"/>
+  <rect x="300" y="66" width="2" height="10" fill="#9f4527"/>
+  <rect x="340" y="66" width="2" height="10" fill="#9f4527"/>
+  <rect x="380" y="66" width="2" height="10" fill="#9f4527"/>
+  <!-- komín v ose: omítnutý, krycí deska s přesahem, pravá strana ve stínu, oplechování u krytiny -->
+  <rect x="179" y="6" width="42" height="90" fill="#d9c79a"/>
+  <rect x="207" y="6" width="14" height="90" fill="#c2ae80"/>
+  <rect x="175" y="0" width="50" height="6" fill="#9a9d9e"/>
+  <rect x="175" y="6" width="50" height="2" fill="#7d8284"/>
+  <rect x="176" y="96" width="48" height="5" fill="#8e9496"/>
+  <!-- okapový žlab (pozinkovaný) -->
+  <rect x="0" y="336" width="400" height="12" fill="#8e9496"/>
+  <rect x="0" y="336" width="400" height="4" fill="#a9aeb0"/>
+  <!-- stín přesahu okapu na fasádě -->
+  <rect x="0" y="348" width="400" height="10" fill="#bba26c"/>
+  <rect x="0" y="358" width="400" height="14" fill="#c4ad78"/>
+</svg>

@@ -1,0 +1,55 @@
+<svg viewBox="0 0 400 450" xmlns="http://www.w3.org/2000/svg">
+  <!-- Přízemí pražského činžáku kolem 1900 s obchody: bosáž, kordonová římsa, kamenný sokl, dvě neutrální výlohy. 1 px = 1 cm, výška 4,5 m. -->
+  <rect x="0" y="0" width="400" height="450" fill="#dfc594"/>
+  <!-- bosáž: vodorovné spáry -->
+  <rect x="0" y="70" width="400" height="6" fill="#bda06c"/>
+  <rect x="0" y="110" width="400" height="6" fill="#bda06c"/>
+  <rect x="0" y="150" width="400" height="6" fill="#bda06c"/>
+  <rect x="0" y="190" width="400" height="6" fill="#bda06c"/>
+  <rect x="0" y="230" width="400" height="6" fill="#bda06c"/>
+  <rect x="0" y="270" width="400" height="6" fill="#bda06c"/>
+  <rect x="0" y="310" width="400" height="6" fill="#bda06c"/>
+  <rect x="0" y="350" width="400" height="6" fill="#bda06c"/>
+  <!-- kordonová římsa nad přízemím -->
+  <rect x="0" y="0" width="400" height="5" fill="#faf3e3"/>
+  <rect x="0" y="5" width="400" height="20" fill="#f6ecd6"/>
+  <rect x="0" y="25" width="400" height="6" fill="#b39a6c"/>
+  <!-- kamenný sokl -->
+  <rect x="0" y="395" width="400" height="55" fill="#a39b8c"/>
+  <rect x="0" y="395" width="400" height="7" fill="#b8b0a1"/>
+  <rect x="0" y="402" width="4" height="48" fill="#8c8577"/>
+  <rect x="198" y="402" width="4" height="48" fill="#8c8577"/>
+  <rect x="396" y="402" width="4" height="48" fill="#8c8577"/>
+  <!-- výloha: tmavý dřevěný portál 150 × 290 cm na kamenném parapetu, sokl 55 cm, světlejší nadsvětlík -->
+  <rect x="17" y="92" width="166" height="8" fill="#f6ecd6"/>
+  <rect x="17" y="100" width="166" height="4" fill="#c9b082"/>
+  <rect x="25" y="100" width="150" height="289" fill="#3e4a43"/>
+  <rect x="25" y="100" width="150" height="6" fill="#2f3833"/>
+  <rect x="33" y="112" width="65" height="40" fill="#8da1ad"/>
+  <rect x="33" y="112" width="65" height="8" fill="#a9b9c2"/>
+  <rect x="102" y="112" width="65" height="40" fill="#8da1ad"/>
+  <rect x="102" y="112" width="65" height="8" fill="#a9b9c2"/>
+  <rect x="33" y="160" width="134" height="210" fill="#6c818f"/>
+  <rect x="33" y="160" width="134" height="18" fill="#8da1ad"/>
+  <rect x="98" y="160" width="4" height="210" fill="#3e4a43"/>
+  <rect x="33" y="376" width="134" height="13" fill="#2f3833"/>
+  <!-- kamenný parapet pod výkladcem -->
+  <rect x="19" y="389" width="162" height="8" fill="#b8b0a1"/>
+  <rect x="21" y="397" width="158" height="3" fill="#8c8577"/>
+  <!-- výloha: tmavý dřevěný portál 150 × 290 cm na kamenném parapetu, sokl 55 cm, světlejší nadsvětlík -->
+  <rect x="217" y="92" width="166" height="8" fill="#f6ecd6"/>
+  <rect x="217" y="100" width="166" height="4" fill="#c9b082"/>
+  <rect x="225" y="100" width="150" height="289" fill="#3e4a43"/>
+  <rect x="225" y="100" width="150" height="6" fill="#2f3833"/>
+  <rect x="233" y="112" width="65" height="40" fill="#8da1ad"/>
+  <rect x="233" y="112" width="65" height="8" fill="#a9b9c2"/>
+  <rect x="302" y="112" width="65" height="40" fill="#8da1ad"/>
+  <rect x="302" y="112" width="65" height="8" fill="#a9b9c2"/>
+  <rect x="233" y="160" width="134" height="210" fill="#6c818f"/>
+  <rect x="233" y="160" width="134" height="18" fill="#8da1ad"/>
+  <rect x="298" y="160" width="4" height="210" fill="#3e4a43"/>
+  <rect x="233" y="376" width="134" height="13" fill="#2f3833"/>
+  <!-- kamenný parapet pod výkladcem -->
+  <rect x="219" y="389" width="162" height="8" fill="#b8b0a1"/>
+  <rect x="221" y="397" width="158" height="3" fill="#8c8577"/>
+</svg>
