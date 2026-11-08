@@ -47,7 +47,8 @@ const WINDOWS = { sikma: { w: 85, gap: 60, sill: 0.24, h: 0.56 }, plocha: { w: 1
 // Streetmix-like colours: saturated pastel walls, dark glass with a diagonal glint, cream frames.
 const PALETTES = {
   sikma: ["#e7b96a", "#d99a86", "#8fb79a", "#86a9c6", "#e0c98f"],
-  plocha: ["#f2b84b", "#5fae7a", "#4f8fc4", "#e9785a"], // accent on a light pastel wall
+  // Panel houses: quiet colours (sand, warm grey, grey-blue, muted terracotta), the wall a lighter shade.
+  plocha: ["#d6b98a", "#c8bcab", "#a9b7c0", "#cfa38c"],
   plochaWall: ["#e6dcc4", "#d6e2e6", "#ecd5c7", "#dfe6cf"],
   nizky: ["#efd29a", "#ece4d2", "#e6bfa9"],
   hala: ["#e0574f", "#3f88c5", "#4caf7d"],
