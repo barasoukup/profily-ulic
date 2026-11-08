@@ -376,22 +376,26 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     arch(65, 270, 47, tint(wall, 0.75));
     arch(65, 270, 39, GLASS);
   } else if (style === "hala") {
-    const zr = top * 0.55, hr = Math.min(170, top * 0.25);
+    // The ribbon window stays above the door or gate (a low hall gets a lower gate and a slimmer band).
+    const gateH = Math.min(340, top * 0.5), shopH = Math.min(310, top * 0.5);
+    const zr = Math.max(top * 0.55, (shop ? shopH : gateH) + 50), hr = Math.min(170, top * 0.25, top - 90 - zr);
     for (let d = 20; d < EDGE - 30; d += 30) box(d, d + 3, 0, top - 40, shade); // corrugated cladding
-    box(0, EDGE - 30, zr - 8, zr + hr + 8, FRAME);
-    box(8, EDGE - 38, zr, zr + hr, GLASS);
-    poly([[EDGE - 170, zr + hr], [EDGE - 120, zr + hr], [EDGE - 180, zr], [EDGE - 230, zr]], GLINT);
-    const span = EDGE - 46, parts = Math.round(span / 120);
-    for (let i = 1; i < parts; i++) box(8 + (i * span) / parts - 3, 8 + (i * span) / parts + 3, zr, zr + hr, FRAME);
+    if (hr >= 40) {
+      box(0, EDGE - 30, zr - 8, zr + hr + 8, FRAME);
+      box(8, EDGE - 38, zr, zr + hr, GLASS);
+      poly([[EDGE - 170, zr + hr], [EDGE - 120, zr + hr], [EDGE - 180, zr], [EDGE - 230, zr]], GLINT);
+      const span = EDGE - 46, parts = Math.round(span / 120);
+      for (let i = 1; i < parts; i++) box(8 + (i * span) / parts - 3, 8 + (i * span) / parts + 3, zr, zr + hr, FRAME);
+    }
     box(0, EDGE - 30, top - 80, top - 40, accent); // coloured band
     if (shop) {
-      box(0, 190, 0, 310, FRAME);
-      box(8, 182, 0, 300, GLASS);
-      box(93, 97, 0, 300, FRAME);
-      poly([[100, 300], [182, 300], [182, 200]], GLINT);
+      box(0, 190, 0, shopH, FRAME);
+      box(8, 182, 0, shopH - 10, GLASS);
+      box(93, 97, 0, shopH - 10, FRAME);
+      poly([[100, shopH - 10], [182, shopH - 10], [182, shopH - 110]], GLINT);
     } else {
-      box(150, 340, 0, 340, "#9aa3aa", outline); // roller door
-      for (let z = 20; z < 340; z += 30) box(150, 340, z, z + 4, "#868f96");
+      box(150, 340, 0, gateH, "#9aa3aa", outline); // roller door
+      for (let z = 20; z < gateH; z += 30) box(150, 340, z, z + 4, "#868f96");
     }
   } else if (office) {
     // Offices: ribbon windows with mullions, a glazed ground floor.
@@ -551,15 +555,19 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     box(-4, 0, 0, top, dark);
     if (shop) {
       // The awning's side: a wedge sloping out over the entrance, stripes along it, a scalloped valance, an arm.
-      const z0 = 420, z1 = 340, reach = 240, za = (d) => z0 - ((z0 - z1) * d) / reach;
+      // It sits just above the shop window, so a low hall gets it lower too.
+      const shopH = Math.min(310, top * 0.5);
+      const z0 = shopH + 110, z1 = z0 - 80, reach = 240;
       const aOut = { stroke: tint(accent, 0.75), "stroke-width": 1.5, "vector-effect": "non-scaling-stroke" };
       poly([[0, z0 + 30], [-reach, z1], [-reach, z1 - 60], [0, z0 - 30]], accent, aOut);
       for (const k of [14, 34]) poly([[0, z0 + 30 - k], [-reach, z1 - k], [-reach, z1 - k - 8], [0, z0 + 22 - k]], "#fbf6ea");
       box(-reach, -reach + 14, z1 - 100, z1 - 60, accent, aOut); // valance
       dot(-reach + 7, z1 - 100, 10, accent); // scalloped hem
-      poly([[0, 300], [-reach + 10, z1 - 60], [-reach + 4, z1 - 66], [0, 292]], "#5f666c");
-      // A projecting sign, seen flat from the side, with a trolley on it.
-      const zs = Math.max(500, top * 0.7);
+      poly([[0, shopH - 10], [-reach + 10, z1 - 60], [-reach + 4, z1 - 66], [0, shopH - 18]], "#5f666c");
+      // A projecting sign, seen flat from the side, with a trolley on it, on the wall above the
+      // awning where there is room, else standing on the roof.
+      const zs = Math.min(Math.max(500, top * 0.7), top - 130) >= z0 + 50 ? Math.min(Math.max(500, top * 0.7), top - 130) : top + 60;
+      if (zs > top) box(-100, -90, top, zs, dark); // the sign's post on the roof edge
       box(-20, 0, zs + 45, zs + 62, dark);
       box(-170, -20, zs, zs + 110, accent, aOut);
       dot(-95, zs + 55, 40, "#fbf6ea");
