@@ -422,8 +422,8 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     const WW = 190, WH = Math.min(175, 150 + Math.max(0, f.storey - 280) * 0.4), WD = (LOG + EDGE - 34 - WW) / 2;
     const SILL = Math.min(90 + Math.max(0, f.storey - 280) * 0.3, f.storey - WH - 30);
     const PVC = "#f6f3ec";
-    // A revitalised window: white plastic, two casements under an undivided top light, in a deep
-    // reveal of the insulation, a grey metal sill; a lit pane or flowers now and then.
+    // A revitalised window: white plastic in three upright panes (Bára), in a deep reveal of the
+    // insulation, a grey metal sill; a lit pane or flowers now and then.
     const panelWindow = (z, n) => {
       const luck = (((n + seed * 31) * 2654435761) >>> 0) % 11;
       const d = WD, w = WW, h = WH;
@@ -432,8 +432,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       box(d + 7, d + w - 7, z + 7, z + h - 7, luck === 4 ? LIT : GLASS);
       box(d + 7, d + w - 7, z + h - 15, z + h - 7, tint(luck === 4 ? LIT : GLASS, 0.75)); // shade of the lintel
       poly([[d + w * 0.62, z + h - 15], [d + w - 7, z + h - 15], [d + w - 7, z + h * 0.45]], luck === 4 ? "#f8e7b5" : GLINT);
-      box(d, d + w, z + h - 43, z + h - 35, PVC); // the top light's transom
-      box(d + w / 2 - 4, d + w / 2 + 4, z, z + h - 43, PVC); // mullion between the casements
+      for (const t of [1 / 3, 2 / 3]) box(d + w * t - 4, d + w * t + 4, z, z + h, PVC); // mullions
       box(d - 12, d + w + 12, z - 9, z - 5, tint(wall, 0.9)); // shadow under the sill
       box(d - 12, d + w + 12, z - 5, z, "#c9ccd0"); // metal sill
       if (luck === 1 || luck === 8) for (let i = 0; i < 5; i++) dot(d + 14 + (i * (w - 28)) / 4, z + 6, 8, i % 2 ? "#d9748a" : "#7f9f6a");
@@ -442,19 +441,20 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     box(200, 290, 30, 70, "#d9d6cf");
     box(206, 284, 36, 64, GLASS);
     // Entrance: two steps up to an anodised aluminium portal: a door leaf with a vertical handle,
-    // a fixed side panel, a top light, a kick plate; a thin concrete canopy over it.
-    const ALU = "#bcbab4", door0 = 8, door1 = 150, doorTop = STEP + 210, lightTop = Math.min(STEP + 270, f.ground - 16);
-    for (let i = 0; i < 2; i++) box(-36 + i * 18, door1 + 10, i * 16, (i + 1) * 16, tint(plinth[1], 1.2 - i * 0.05)); // steps
+    // a fixed side panel, a top light, a kick plate; a thin concrete canopy over it. It stands in
+    // the column of the loggias, inside the facade.
+    const ALU = "#bcbab4", door0 = 16, door1 = LOG - 8, doorTop = STEP + 210, lightTop = Math.min(STEP + 270, f.ground - 16);
+    for (let i = 0; i < 2; i++) box(-30 + i * 15, door1 + 8, i * 16, (i + 1) * 16, tint(plinth[1], 1.2 - i * 0.05)); // steps
     box(door0 - 10, door1 + 10, STEP, lightTop + 10, tint(wall, 0.86)); // reveal around the portal
     box(door0, door1, STEP, lightTop, ALU);
-    const panes = [[door0 + 8, door0 + 98], [door0 + 106, door1 - 8]]; // door leaf 90, side panel
+    const panes = [[door0 + 8, door0 + 68], [door0 + 76, door1 - 8]]; // door leaf, side panel
     const ENTRY_GLASS = "#4a5578"; // lighter than the windows: the lit staircase shows through
     box(door0 + 8, door1 - 8, STEP + 8, STEP + 48, tint(ALU, 0.85)); // kick plate
     for (const [d0, d1] of panes) {
       box(d0, d1, STEP + 48, doorTop - 6, ENTRY_GLASS);
       poly([[d0 + (d1 - d0) * 0.55, doorTop - 6], [d1, doorTop - 6], [d1, doorTop - 60]], "#6a7396");
     }
-    box(door0 + 84, door0 + 92, STEP + 80, STEP + 140, "#7d7a74"); // handle on the leaf
+    box(door0 + 56, door0 + 63, STEP + 80, STEP + 140, "#7d7a74"); // handle on the leaf
     box(door0 + 8, door1 - 8, doorTop + 2, lightTop - 8, ENTRY_GLASS); // top light
     panelWindow(plinth[0] + SILL, 0);
     for (let k = 1; k < full; k++) {
@@ -473,9 +473,9 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     box(0, EDGE - 30, plinth[0] - 2, plinth[0] + 2, tint(plinth[1], 0.8)); // top of the plinth
     box(LOG - 2, LOG + 3, lightTop + 30, top, joint); // the loggia joint starts above the canopy
     box(EDGE - 36, EDGE - 31, plinth[0], top, joint);
-    box(door0 - 40, door1 + 16, lightTop + 4, lightTop + 10, tint(wall, 0.6)); // canopy: shadow, slab, flashing
-    box(door0 - 40, door1 + 16, lightTop + 10, lightTop + 28, "#c4bfb5", outline);
-    box(door0 - 40, door1 + 16, lightTop + 28, lightTop + 31, "#9a9690");
+    box(-40, LOG, lightTop + 4, lightTop + 10, tint(wall, 0.6)); // canopy: shadow, slab, flashing
+    box(-40, LOG, lightTop + 10, lightTop + 28, "#c4bfb5", outline);
+    box(-40, LOG, lightTop + 28, lightTop + 31, "#9a9690");
   } else {
     // Door near the street (arched in a tenement), windows behind it, and on every floor above.
     const doorH = Math.min(240, f.ground * 0.72);
