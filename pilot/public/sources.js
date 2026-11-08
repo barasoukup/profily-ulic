@@ -91,14 +91,19 @@ export const linie = (bbox) => (STATIC
   ? query(TM_LINES, { ...envelope(bbox), where: LINE_WHERE, outFields: "CTMTP_KOD" })
   : getJSON(`/api/linie?bbox=${bbox}`));
 
-// The special stalls (5–8) lie inside paid zones: asked for only where the sections (3) found
-// something, as in server.mjs.
-export async function parkovani(bbox) {
-  if (!STATIC) return getJSON(`/api/parkovani?bbox=${bbox}`);
+// The special stalls (5–8) lie inside paid zones: in a zone (by the zone file, inZone) all layers
+// are asked for at once; elsewhere only where the sections (3) found something, which spares IPR
+// four requests per cut. As in server.mjs.
+export async function parkovani(bbox, inZone) {
+  if (!STATIC) return getJSON(`/api/parkovani?bbox=${bbox}${inZone ? "&zone=1" : ""}`);
   const layer = async (n, kind) => {
     const json = await query(`${PARKOVANI}/${n}/query`, { ...envelope(bbox), outFields: parkingFields(n) });
     return (json.features || []).map((f) => ({ ...f, attributes: { ...f.attributes, KIND: kind } }));
   };
+  if (inZone) {
+    const parts = await Promise.all(Object.entries(PARKING_LAYERS).map(([n, kind]) => layer(n, kind)));
+    return { features: parts.flat() };
+  }
   const sections = await layer("3", PARKING_LAYERS[3]);
   if (!sections.length) return { features: [] };
   const rest = await Promise.all(Object.entries(PARKING_LAYERS).filter(([n]) => n !== "3").map(([n, kind]) => layer(n, kind)));

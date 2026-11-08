@@ -150,7 +150,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     const bbox = [Math.min(...lons) - pad, Math.min(...lats) - pad, Math.max(...lons) + pad, Math.max(...lats) + pad].join(",");
     let polys = [], tracks = [];
     const [m, k, pk, z] = await Promise.allSettled([
-      sources.mtvu(bbox), sources.linie(bbox), sources.parkovani(bbox), sources.zps(clat, clon),
+      // The zone file is local (and loaded once), so knowing the zone first costs nothing.
+      sources.mtvu(bbox), sources.linie(bbox), sources.zps(clat, clon).catch(() => undefined).then((zone) => sources.parkovani(bbox, zone)), sources.zps(clat, clon),
     ]);
     if (m.status === "fulfilled") polys = mtvuPolygons(m.value, frame);
     else console.warn("MTVU", m.reason);

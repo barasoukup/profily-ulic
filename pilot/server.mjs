@@ -96,30 +96,36 @@ async function koleje(bbox) {
 }
 
 // Parking sections (úseky parkovacích stání) of the paid parking zones, by TSK, via IPR, and the
-// special stalls (queries.js).
-// The special stalls (5–8) lie inside paid zones: they are asked for only where the sections (3)
-// found something, which spares IPR four requests per cut outside the zones.
-async function parkovani(bbox) {
-  const features = [];
-  for (const [layer, kind] of Object.entries(PARKING_LAYERS)) {
-    if (layer !== "3" && !features.length) break;
-    const params = new URLSearchParams({
-      geometry: bbox,
-      geometryType: "esriGeometryEnvelope",
-      inSR: "4326",
-      outSR: "4326",
-      spatialRel: "esriSpatialRelIntersects",
-      outFields: parkingFields(layer),
-      f: "json",
-    });
-    const r = await upstream(`${PARKOVANI}/${layer}/query?${params}`);
-    if (!r.ok) throw new Error(`parkovani ${layer} ${r.status}`);
-    const json = await r.json();
-    // Re-serialised below, so an ArcGIS error must be caught here or it would be cached as "no parking".
-    if (json.error) throw new Error(`parkovani ${layer}: ${json.error.code} ${json.error.message}`);
-    for (const f of json.features || []) features.push({ ...f, attributes: { ...f.attributes, KIND: kind } });
+// special stalls (queries.js). The special stalls lie inside paid zones: in a zone (by the zone
+// file, inZone) all layers are asked for at once; elsewhere they are asked for only where the
+// sections found something, which spares IPR four requests per cut.
+async function parkingLayer(bbox, layer, kind) {
+  const params = new URLSearchParams({
+    geometry: bbox,
+    geometryType: "esriGeometryEnvelope",
+    inSR: "4326",
+    outSR: "4326",
+    spatialRel: "esriSpatialRelIntersects",
+    outFields: parkingFields(layer),
+    f: "json",
+  });
+  const r = await upstream(`${PARKOVANI}/${layer}/query?${params}`);
+  if (!r.ok) throw new Error(`parkovani ${layer} ${r.status}`);
+  const json = await r.json();
+  // Re-serialised below, so an ArcGIS error must be caught here or it would be cached as "no parking".
+  if (json.error) throw new Error(`parkovani ${layer}: ${json.error.code} ${json.error.message}`);
+  return (json.features || []).map((f) => ({ ...f, attributes: { ...f.attributes, KIND: kind } }));
+}
+
+async function parkovani(bbox, inZone) {
+  const special = Object.entries(PARKING_LAYERS).filter(([n]) => n !== "3");
+  if (inZone) {
+    const parts = await Promise.all(Object.entries(PARKING_LAYERS).map(([n, kind]) => parkingLayer(bbox, n, kind)));
+    return JSON.stringify({ features: parts.flat() });
   }
-  return JSON.stringify({ features });
+  const sections = await parkingLayer(bbox, "3", PARKING_LAYERS[3]);
+  const rest = sections.length ? await Promise.all(special.map(([n, kind]) => parkingLayer(bbox, n, kind))) : [];
+  return JSON.stringify({ features: [...sections, ...rest.flat()] });
 }
 
 // Building floors (IPR "Podlažnosti", read by podlaznostInfo in queries.js).
@@ -194,7 +200,8 @@ const server = http.createServer(async (req, res) => {
     }
     if (url.pathname === "/api/parkovani") {
       const bbox = bboxParam(url);
-      const body = await cached("parkovani2", bbox, () => parkovani(bbox));
+      // The answer is the same either way, only the order of requests differs: one cache entry.
+      const body = await cached("parkovani2", bbox, () => parkovani(bbox, url.searchParams.get("zone") === "1"));
       res.writeHead(200, { "Content-Type": TYPES[".json"] });
       return res.end(body);
     }
