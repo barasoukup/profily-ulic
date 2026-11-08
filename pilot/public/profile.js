@@ -513,10 +513,11 @@ function drawEdge(svg, x, kind, side, surface, info, style) {
     if (top < labelTop) {
       // Cut off above the view: a torn edge in the background colour says the building goes on.
       const yb = labelTop + 20;
-      let d = `M${x - 4} ${yb - 400} L${x - 4} ${yb}`;
+      let d = `M${x - 4} ${yb - 4000} L${x - 4} ${yb}`;
       for (let i = 0; i <= 8; i++) d += ` L${x + (i * (EDGE + 8)) / 8 - 4} ${yb + (i % 2 ? 22 : 0)}`;
-      el("path", { d: d + ` L${x + EDGE + 4} ${yb - 400} Z`, fill: "#fbfaf6" }, g);
+      el("path", { d: d + ` L${x + EDGE + 4} ${yb - 4000} Z`, fill: "#fbfaf6" }, g);
       top = yb - 10;
+      g.dataset.top = top; // what shows of it, for the page fitting the view (app.js layoutTop)
     }
     const lv = buildingLevels(info);
     const h = buildingHeight(info);

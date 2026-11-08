@@ -459,7 +459,7 @@ function renderWidthCheck() {
 
 // A wide street would shrink to unreadable: the profile keeps a minimum scale (px per cm of the drawing;
 // more on a phone, where fingers need bigger targets) and scrolls sideways instead.
-const MIN_SCALE = { phone: 0.17, desktop: 0.11 };
+const MIN_SCALE = { phone: 0.17, desktop: 0.17 };
 // The width goes into a CSS variable, so drawings the editor redraws while dragging keep it.
 function fitPhone(box = $("#profile")) {
   const vbWidth = Math.max(0, ...[...box.querySelectorAll("svg")].map((svg) => Number(svg.getAttribute("viewBox")?.split(" ")[2]) || 0));
@@ -476,19 +476,16 @@ function fitPhone(box = $("#profile")) {
 const LABEL_PX = { "lbl-w": 13, "lbl-t": 11, "lbl-total": 14, "lbl-title": 13, "lbl-floor": 11 };
 function fitLabels(box) {
   for (const svg of box.querySelectorAll("svg")) {
-    trimSky(svg);
     const [, , vw, vh] = (svg.getAttribute("viewBox") || "").split(" ").map(Number);
     const rect = svg.getBoundingClientRect();
     // A height cap shrinks the drawing inside its box (preserveAspectRatio meet): use the tighter fit.
     const k = Math.max(vw / (rect.width || 1), vh / (rect.height || 1));
     if (!isFinite(k) || k <= 0) continue;
-    for (const t of svg.querySelectorAll("text.lbl-w")) {
-      // A narrow part shows its width without the unit, and gets its row back each time.
-      t.dataset.full ??= t.textContent;
-      t.textContent = t.dataset.full;
-      t.dataset.row = 0;
-      if (t.textContent.length * 0.56 * LABEL_PX["lbl-w"] * k > Number(t.dataset.w)) t.textContent = t.dataset.full.replace(/ m$/, "");
-    }
+    // When any part is too narrow for "3,60 m", all widths go without the unit (it stays at Celkem).
+    const widths = [...svg.querySelectorAll("text.lbl-w")];
+    for (const t of widths) { t.dataset.full ??= t.textContent; t.dataset.row = 0; }
+    const bare = widths.some((t) => t.dataset.full.length * 0.56 * LABEL_PX["lbl-w"] * k > Number(t.dataset.w));
+    for (const t of widths) t.textContent = bare ? t.dataset.full.replace(/ m$/, "") : t.dataset.full;
     for (const t of svg.querySelectorAll("text.lbl-floor")) {
       // Floors over a slim building: the height is left out before the label runs into A/B.
       t.dataset.full ??= t.textContent;
@@ -500,7 +497,7 @@ function fitLabels(box) {
       let size = LABEL_PX[cls] * k;
       const w = Number(t.dataset.w);
       const est = t.textContent.length * 0.56 * size;
-      if (w && est > w * 0.96) size = Math.max((w * 0.96) / (t.textContent.length * 0.56), cls === "lbl-w" ? 11 * k : 8 * k);
+      if (w && est > w * 0.96) size = Math.max((w * 0.96) / (t.textContent.length * 0.56), cls === "lbl-w" ? 11 * k : 10 * k);
       t.style.fontSize = `${size}px`;
       // The floor count above a building may reach past it (data-free), other names are left out.
       t.style.display = w && t.textContent.length * 0.56 * size > w * 1.05 && cls !== "lbl-w" && !t.dataset.free ? "none" : "";
@@ -516,6 +513,16 @@ function fitLabels(box) {
         for (const n of t.parentNode.querySelectorAll("text.lbl-t:not(.lbl-floor)")) n.style.display = "none";
       } else prevEnd = cx + half;
     }
+    // A width in the second row wins over a neighbour's name it would touch.
+    const span = (t) => { const h = (t.textContent.length * 0.56 * parseFloat(t.style.fontSize)) / 2, x = Number(t.getAttribute("x")); return [x - h - 3 * k, x + h + 3 * k]; };
+    for (const t of widths.filter((t) => t.dataset.row === "1")) {
+      const [a, b] = span(t);
+      for (const n of svg.querySelectorAll("text.lbl-t[data-row='1']")) {
+        if (n.style.display === "none") continue;
+        const [c, d] = span(n);
+        if (c < b && d > a) n.style.display = "none";
+      }
+    }
     const GROUND = 760, H = 1000;
     const row = (n) => GROUND + 130 + LABEL_PX["lbl-w"] * k + (n > 0 ? n * 1.3 * LABEL_PX["lbl-t"] * k : 0);
     for (const t of svg.querySelectorAll("text[data-row]")) t.setAttribute("y", row(Number(t.dataset.row)));
@@ -525,6 +532,7 @@ function fitLabels(box) {
       svg.setAttribute("viewBox", `${vx} ${vy} ${vw} ${bottom - vy}`);
       svg.querySelector("rect.bg")?.setAttribute("height", bottom - vy);
     }
+    layoutTop(svg, k);
     // The title tag (Stav / Návrh in Porovnat) wraps its text at the new size.
     const title = svg.querySelector("text.lbl-title"), bg = svg.querySelector("rect.title-bg");
     if (title && bg) {
@@ -536,25 +544,35 @@ function fitLabels(box) {
 }
 addEventListener("resize", () => fitPhone());
 
-// A street without tall buildings leaves empty sky over the drawing: the view starts just above the
-// highest thing drawn, with room for the top row (total width, A/B). Runs once per drawing.
-function trimSky(svg) {
-  if (svg.dataset.trimmed) return;
-  svg.dataset.trimmed = 1;
+// The top row (total width, cut ends A/B) at a readable size, and the view starting just above the
+// highest thing drawn: no empty sky over a street without tall buildings, no label over a roof.
+function layoutTop(svg, k) {
   const [vx, vy, vw, vh] = svg.getAttribute("viewBox").split(" ").map(Number);
   let top = Infinity;
   for (const c of svg.children) {
-    if (c.matches("rect.bg, .top-row, .title-bg, .lbl-title")) continue;
+    if (c.matches("rect.bg, .top-row, .title-bg, .lbl-title, .handle")) continue;
+    if (c.dataset.top) {
+      // A torn building: its visible top and the floor label over it.
+      const label = c.querySelector(".lbl-floor");
+      top = Math.min(top, Number(c.dataset.top), label && label.style.display !== "none" ? label.getBBox().y : Infinity);
+      continue;
+    }
     const b = c.getBBox();
     if (b.width && b.height) top = Math.min(top, b.y);
   }
-  const dy = Math.min(top - 170, 760 - 600) - vy;
-  if (!isFinite(dy) || dy < 20) return;
-  svg.setAttribute("viewBox", `${vx} ${vy + dy} ${vw} ${vh - dy}`);
+  if (!isFinite(top)) return;
+  const r = 10 * k, pad = 8 * k;
+  const y0 = Math.min(top - 2 * r - pad - 10 * k, 160);
+  svg.setAttribute("viewBox", `${vx} ${y0} ${vw} ${vy + vh - y0}`);
   const bg = svg.querySelector("rect.bg");
-  bg?.setAttribute("y", vy + dy);
-  bg?.setAttribute("height", vh - dy);
-  for (const e of svg.querySelectorAll(".top-row")) e.setAttribute("transform", `translate(0 ${dy})`);
+  bg?.setAttribute("y", y0);
+  bg?.setAttribute("height", vy + vh - y0);
+  const cy = y0 + pad + r;
+  for (const e of svg.querySelectorAll(".top-row")) {
+    if (e.tagName === "circle") { e.setAttribute("cy", cy); e.setAttribute("r", r); e.setAttribute("stroke-width", 1.5 * k); }
+    else if (e.classList.contains("lbl-total")) e.setAttribute("y", cy + 0.36 * parseFloat(e.style.fontSize || 14 * k));
+    else { e.style.fontSize = `${13 * k}px`; e.setAttribute("y", cy + 0.36 * 13 * k); }
+  }
 }
 
 // A wide profile that scrolls fades out on the side where more of it is hidden.
@@ -563,6 +581,7 @@ function scrollFade() {
   const more = wrap.classList.contains("scrolls");
   wrap.classList.toggle("fade-l", more && wrap.scrollLeft > 4);
   wrap.classList.toggle("fade-r", more && wrap.scrollLeft + wrap.clientWidth < wrap.scrollWidth - 4);
+  $("#scroll-hint").hidden = !more;
   document.querySelector(".scroll-btn.l").hidden = !wrap.classList.contains("fade-l");
   document.querySelector(".scroll-btn.r").hidden = !wrap.classList.contains("fade-r");
 }
