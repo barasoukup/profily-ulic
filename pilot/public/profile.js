@@ -37,7 +37,7 @@ const FLAT_RESIDENTIAL = new Set(["apartments", "residential", "dormitory"]); //
 // IPR "Podlažnosti" roof shape (domain URK_STRECHA): 1 pitched, 3 flat, 4 atypical (mix), 5 dome, 99 unknown.
 const IPR_ROOF = { 1: "sikma", 3: "plocha", 5: "sikma" };
 const INNER_KM = 3; // within this from the centre an unknown building is taken for a pitched-roof tenement
-const STOREY = { sikma: 360, plocha: 290, nizky: 300, hala: 700 }; // typical storey (cm); a hall is one tall storey
+const STOREY = { sikma: 360, plocha: 280, nizky: 300, hala: 700 }; // typical storey (cm); a hall is one tall storey
 const DEFAULT_FLOORS = { sikma: 5, plocha: 8, nizky: 1, hala: 1 };
 const PITCH = Math.tan((40 * Math.PI) / 180);
 const RIDGE = 260; // ridge of a family house, from its street facade (cm)
@@ -203,7 +203,8 @@ function buildingForm(info, style) {
   // A known height sets the storey (within reason); pitched roofs sit above it.
   const storey = h ? Math.min(S * 1.5, Math.max(S * 0.7, (h * 100) / n)) : S;
   // Tenements have a taller ground floor.
-  const ground = style === "sikma" ? storey * 1.2 : storey;
+  // A panel house stands on a 100 cm plinth (raised ground floor).
+  const ground = style === "sikma" ? storey * 1.2 : style === "plocha" && !OFFICE_TYPES.has(info?.type) ? storey + 90 : storey;
   const body = ground + (n - roofRows - 1) * storey;
   const flat = style === "plocha" || style === "hala" || (style === "nizky" && IPR_ROOF[info?.roofType] === "plocha");
   const sawtooth = style === "hala" && ["industrial", "manufacture"].includes(info?.type) && IPR_ROOF[info?.roofType] !== "plocha";
@@ -343,12 +344,14 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
   el("rect", { x, y: surface, width: EDGE, height: cellar, fill: SKLEP }, g);
   box(0, EDGE, -8, 0, tint(SKLEP, 0.85));
   const dCellar = style === "hala" || office ? 32 : 230; // under the ground-floor window, not under the door
-  box(dCellar, dCellar + 66, -cellar * 0.55 - 6, -cellar * 0.55 + 31, FRAME); // a cellar window
-  box(dCellar + 6, dCellar + 60, -cellar * 0.55, -cellar * 0.55 + 25, GLASS);
+  if (!(style === "plocha" && !OFFICE_TYPES.has(info?.type))) { // a panel house has it in the plinth
+    box(dCellar, dCellar + 66, -cellar * 0.55 - 6, -cellar * 0.55 + 31, FRAME); // a cellar window
+    box(dCellar + 6, dCellar + 60, -cellar * 0.55, -cellar * 0.55 + 25, GLASS);
+  }
   el("rect", { x, y: GROUND + 60, width: EDGE, height: 40, fill: "#9b7f5f" }, g);
   box(0, EDGE, 0, top, wall, outline);
   box(EDGE - 30, EDGE, 0, top, shade); // the wall turns away at the cut
-  const plinth = office ? [20, "#8a867d"] : { sikma: [90, STONE], plocha: [80, "#8a867d"], nizky: [60, "#a59c88"] }[style];
+  const plinth = office ? [20, "#8a867d"] : { sikma: [90, STONE], plocha: [100, "#8a867d"], nizky: [60, "#a59c88"] }[style];
   if (plinth) box(-8, EDGE - 30, 0, plinth[0], plinth[1]);
 
   // Windows and the ground floor.
@@ -408,41 +411,71 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
   } else if (style === "plocha") {
     // A panel house (revitalised): the panel grid of joints, loggias let into the corner by the
     // street with coloured parapets, wide windows in the panel bays, an entrance under a slab.
+    // Sizes of a Czech panel house (cm; T06B, VVÚ-ETA, PS-69): storey 280, a raised ground floor on
+    // a 100 cm plinth, windows 200 × 150 on a 90 cm parapet set deep in the insulation, loggias
+    // 120 deep at the street corner, the entrance two steps up, panel joints showing through.
     const LOG = 120; // depth of the loggias from the street facade
-    const joint = tint(wall, 0.84);
-    for (let k = 1; k <= full; k++) box(0, EDGE - 30, floorZ(k) - 2, floorZ(k) + 2, joint); // horizontal joints
-    for (const d of [LOG + 8, EDGE - 32]) box(d - 2, d + 2, plinth[0], top, joint); // vertical joints
-    // A panel window: wide and low, three panes, a light frame, a sill; a lit pane or flowers now and then.
-    const panelWindow = (z, h, n) => {
-      const w = 170, d = (LOG + 8 + EDGE - 32 - w) / 2;
+    const STEP = 32; // the entrance landing above the pavement
+    const joint = tint(wall, 0.76);
+    // A storey stretched by the building's known height (often 3.3–3.5 m from IPR) gets a taller
+    // window on a higher parapet, so the wall between the rows does not gape.
+    const WW = 190, WH = Math.min(175, 150 + Math.max(0, f.storey - 280) * 0.4), WD = (LOG + EDGE - 34 - WW) / 2;
+    const SILL = Math.min(90 + Math.max(0, f.storey - 280) * 0.3, f.storey - WH - 30);
+    const PVC = "#f6f3ec";
+    // A revitalised window: white plastic, two casements under an undivided top light, in a deep
+    // reveal of the insulation, a grey metal sill; a lit pane or flowers now and then.
+    const panelWindow = (z, n) => {
       const luck = (((n + seed * 31) * 2654435761) >>> 0) % 11;
-      box(d - 8, d + w + 8, z - 18, z - 8, shade);
-      box(d - 6, d + w + 6, z - 6, z + h + 6, FRAME);
-      box(d, d + w, z, z + h, luck === 4 ? LIT : GLASS);
-      poly([[d + w * 0.6, z + h], [d + w, z + h], [d + w, z + h * 0.5]], luck === 4 ? "#f8e7b5" : GLINT);
-      for (const t of [1 / 3, 2 / 3]) box(d + w * t - 3, d + w * t + 3, z, z + h, FRAME);
-      box(d - 10, d + w + 10, z - 10, z - 3, dark);
-      if (luck === 1 || luck === 8) for (let i = 0; i < 5; i++) dot(d + 14 + (i * (w - 28)) / 4, z - 2, 8, i % 2 ? "#d9748a" : "#7f9f6a");
+      const d = WD, w = WW, h = WH;
+      box(d - 8, d + w + 8, z - 2, z + h + 8, tint(wall, 0.82)); // reveal
+      box(d, d + w, z, z + h, PVC);
+      box(d + 7, d + w - 7, z + 7, z + h - 7, luck === 4 ? LIT : GLASS);
+      box(d + 7, d + w - 7, z + h - 15, z + h - 7, tint(luck === 4 ? LIT : GLASS, 0.75)); // shade of the lintel
+      poly([[d + w * 0.62, z + h - 15], [d + w - 7, z + h - 15], [d + w - 7, z + h * 0.45]], luck === 4 ? "#f8e7b5" : GLINT);
+      box(d, d + w, z + h - 43, z + h - 35, PVC); // the top light's transom
+      box(d + w / 2 - 4, d + w / 2 + 4, z, z + h - 43, PVC); // mullion between the casements
+      box(d - 12, d + w + 12, z - 9, z - 5, tint(wall, 0.9)); // shadow under the sill
+      box(d - 12, d + w + 12, z - 5, z, "#c9ccd0"); // metal sill
+      if (luck === 1 || luck === 8) for (let i = 0; i < 5; i++) dot(d + 14 + (i * (w - 28)) / 4, z + 6, 8, i % 2 ? "#d9748a" : "#7f9f6a");
     };
-    // Ground floor: entrance with a slab canopy by the street, a window in the bay behind.
-    const doorH = Math.min(240, f.ground * 0.72);
-    box(10, 120, 0, 14, tint(plinth[1], 1.15));
-    box(16, 114, 14, doorH + 10, FRAME);
-    box(24, 106, 14, doorH, DOOR);
-    box(30, 100, doorH * 0.62, doorH - 8, GLASS);
-    dot(94, doorH * 0.4, 5, "#f2d27a");
-    canopy(16, 114, doorH + 10, dark);
-    panelWindow(f.ground * 0.38, f.ground * 0.4, 0);
+    // Cellar window in the plinth, above the pavement.
+    box(200, 290, 30, 70, "#d9d6cf");
+    box(206, 284, 36, 64, GLASS);
+    // Entrance: two steps up to an anodised aluminium portal: a door leaf with a vertical handle,
+    // a fixed side panel, a top light, a kick plate; a thin concrete canopy over it.
+    const ALU = "#bcbab4", door0 = 8, door1 = 150, doorTop = STEP + 210, lightTop = Math.min(STEP + 270, f.ground - 16);
+    for (let i = 0; i < 2; i++) box(-36 + i * 18, door1 + 10, i * 16, (i + 1) * 16, tint(plinth[1], 1.2 - i * 0.05)); // steps
+    box(door0 - 10, door1 + 10, STEP, lightTop + 10, tint(wall, 0.86)); // reveal around the portal
+    box(door0, door1, STEP, lightTop, ALU);
+    const panes = [[door0 + 8, door0 + 98], [door0 + 106, door1 - 8]]; // door leaf 90, side panel
+    const ENTRY_GLASS = "#4a5578"; // lighter than the windows: the lit staircase shows through
+    box(door0 + 8, door1 - 8, STEP + 8, STEP + 48, tint(ALU, 0.85)); // kick plate
+    for (const [d0, d1] of panes) {
+      box(d0, d1, STEP + 48, doorTop - 6, ENTRY_GLASS);
+      poly([[d0 + (d1 - d0) * 0.55, doorTop - 6], [d1, doorTop - 6], [d1, doorTop - 60]], "#6a7396");
+    }
+    box(door0 + 84, door0 + 92, STEP + 80, STEP + 140, "#7d7a74"); // handle on the leaf
+    box(door0 + 8, door1 - 8, doorTop + 2, lightTop - 8, ENTRY_GLASS); // top light
+    panelWindow(plinth[0] + SILL, 0);
     for (let k = 1; k < full; k++) {
       const z0 = floorZ(k), h = f.storey;
-      // The loggia: a dark recess, its ceiling slab, a solid parapet panel in the accent colour.
-      box(0, LOG, z0, z0 + h, tint(wall, 0.42));
+      // The loggia: a recess, its ceiling slab, a solid parapet in the accent colour under a light coping.
+      box(0, LOG, z0, z0 + h, tint(wall, 0.55));
       box(0, LOG, z0 + h - 18, z0 + h, tint(wall, 0.78));
-      box(0, LOG, z0, z0 + 105, tint(accent, 0.88), outline);
-      box(0, LOG, z0 + 99, z0 + 107, tint(accent, 0.72)); // parapet coping
+      box(0, LOG, z0, z0 + 101, accent, outline);
+      box(0, LOG, z0 + 98, z0 + 101, tint(accent, 0.7));
+      box(-4, LOG, z0 + 101, z0 + 107, "#e8e5de"); // coping
       if ((k + seed) % 4 === 1) { box(28, 58, z0 + 107, z0 + 129, "#b5714a"); dot(43, z0 + 140, 15, "#7f9f6a"); }
-      panelWindow(z0 + 0.32 * h, 0.44 * h, k);
+      panelWindow(z0 + SILL, k);
     }
+    // Joints over everything: one at every floor, one at the loggias, one at the back.
+    for (let k = 1; k <= full; k++) box(0, EDGE - 30, floorZ(k) - 2, floorZ(k) + 3, joint);
+    box(0, EDGE - 30, plinth[0] - 2, plinth[0] + 2, tint(plinth[1], 0.8)); // top of the plinth
+    box(LOG - 2, LOG + 3, lightTop + 30, top, joint); // the loggia joint starts above the canopy
+    box(EDGE - 36, EDGE - 31, plinth[0], top, joint);
+    box(door0 - 40, door1 + 16, lightTop + 4, lightTop + 10, tint(wall, 0.6)); // canopy: shadow, slab, flashing
+    box(door0 - 40, door1 + 16, lightTop + 10, lightTop + 28, "#c4bfb5", outline);
+    box(door0 - 40, door1 + 16, lightTop + 28, lightTop + 31, "#9a9690");
   } else {
     // Door near the street (arched in a tenement), windows behind it, and on every floor above.
     const doorH = Math.min(240, f.ground * 0.72);
