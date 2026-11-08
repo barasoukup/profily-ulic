@@ -48,7 +48,7 @@ const WINDOWS = { sikma: { w: 85, gap: 60, sill: 0.24, h: 0.56 }, plocha: { w: 1
 const PALETTES = {
   sikma: ["#e7b96a", "#d99a86", "#8fb79a", "#86a9c6", "#e0c98f"],
   // Panel houses: quiet colours (sand, warm grey, grey-blue, muted terracotta), the wall a lighter shade.
-  plocha: ["#d6b98a", "#c8bcab", "#a9b7c0", "#cfa38c"],
+  plocha: ["#d2bd97", "#c5bcb0", "#aab6bd", "#c4ab9a"],
   plochaWall: ["#e6dcc4", "#d6e2e6", "#ecd5c7", "#dfe6cf"],
   nizky: ["#efd29a", "#ece4d2", "#e6bfa9"],
   hala: ["#e0574f", "#3f88c5", "#4caf7d"],
@@ -238,8 +238,6 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
   // A panel house is one colour: the light shade of its insulation colour (Bára: no two-tone field).
   const wall = style === "plocha" ? (office ? pal("plochaWall") : tint(accent, 1.22)) : factory ? BRICK : style === "hala" ? "#cdd4d9" : accent;
   const shade = tint(wall, 0.88), dark = tint(wall, 0.7), trim = tint(wall, 1.12);
-  // Balconies take a colour of their own, two steps round the palette from the wall's.
-  const balcony = PALETTES.plocha[(seed + 2) % PALETTES.plocha.length];
   const X = (d) => (side === "left" ? x + EDGE - d : x + d);
   const poly = (pts, fill, extra = {}) => el("path", { d: "M" + pts.map(([d, z]) => `${X(d)} ${surface - z}`).join(" L") + " Z", fill, ...extra }, g);
   const box = (d0, d1, z0, z1, fill, extra) => poly([[d0, z0], [d1, z0], [d1, z1], [d0, z1]], fill, extra);
@@ -407,6 +405,44 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     box(22, 108, 0, 254, GLASS);
     box(63, 67, 0, 254, FRAME);
     canopy(14, 116, 262, dark);
+  } else if (style === "plocha") {
+    // A panel house (revitalised): the panel grid of joints, loggias let into the corner by the
+    // street with coloured parapets, wide windows in the panel bays, an entrance under a slab.
+    const LOG = 120; // depth of the loggias from the street facade
+    const joint = tint(wall, 0.84);
+    for (let k = 1; k <= full; k++) box(0, EDGE - 30, floorZ(k) - 2, floorZ(k) + 2, joint); // horizontal joints
+    for (const d of [LOG + 8, EDGE - 32]) box(d - 2, d + 2, plinth[0], top, joint); // vertical joints
+    // A panel window: wide and low, three panes, a light frame, a sill; a lit pane or flowers now and then.
+    const panelWindow = (z, h, n) => {
+      const w = 170, d = (LOG + 8 + EDGE - 32 - w) / 2;
+      const luck = (((n + seed * 31) * 2654435761) >>> 0) % 11;
+      box(d - 8, d + w + 8, z - 18, z - 8, shade);
+      box(d - 6, d + w + 6, z - 6, z + h + 6, FRAME);
+      box(d, d + w, z, z + h, luck === 4 ? LIT : GLASS);
+      poly([[d + w * 0.6, z + h], [d + w, z + h], [d + w, z + h * 0.5]], luck === 4 ? "#f8e7b5" : GLINT);
+      for (const t of [1 / 3, 2 / 3]) box(d + w * t - 3, d + w * t + 3, z, z + h, FRAME);
+      box(d - 10, d + w + 10, z - 10, z - 3, dark);
+      if (luck === 1 || luck === 8) for (let i = 0; i < 5; i++) dot(d + 14 + (i * (w - 28)) / 4, z - 2, 8, i % 2 ? "#d9748a" : "#7f9f6a");
+    };
+    // Ground floor: entrance with a slab canopy by the street, a window in the bay behind.
+    const doorH = Math.min(240, f.ground * 0.72);
+    box(10, 120, 0, 14, tint(plinth[1], 1.15));
+    box(16, 114, 14, doorH + 10, FRAME);
+    box(24, 106, 14, doorH, DOOR);
+    box(30, 100, doorH * 0.62, doorH - 8, GLASS);
+    dot(94, doorH * 0.4, 5, "#f2d27a");
+    canopy(16, 114, doorH + 10, dark);
+    panelWindow(f.ground * 0.38, f.ground * 0.4, 0);
+    for (let k = 1; k < full; k++) {
+      const z0 = floorZ(k), h = f.storey;
+      // The loggia: a dark recess, its ceiling slab, a solid parapet panel in the accent colour.
+      box(0, LOG, z0, z0 + h, tint(wall, 0.42));
+      box(0, LOG, z0 + h - 18, z0 + h, tint(wall, 0.78));
+      box(0, LOG, z0, z0 + 105, tint(accent, 0.88), outline);
+      box(0, LOG, z0 + 99, z0 + 107, tint(accent, 0.72)); // parapet coping
+      if ((k + seed) % 4 === 1) { box(28, 58, z0 + 107, z0 + 129, "#b5714a"); dot(43, z0 + 140, 15, "#7f9f6a"); }
+      panelWindow(z0 + 0.32 * h, 0.44 * h, k);
+    }
   } else {
     // Door near the street (arched in a tenement), windows behind it, and on every floor above.
     const doorH = Math.min(240, f.ground * 0.72);
@@ -451,6 +487,11 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
         poly([[d0 + 5, zr + 110], [d0 + 5, zr + 140], [d0 + 21, zr + 90], [d0 + 21, zr + 60]], GLINT);
       }
     } else {
+      if (style === "plocha" && !office && !f.roofRows) { // the lift's machine room on the roof
+        box(EDGE - 230, EDGE - 70, zr, zr + 230, tint(wall, 0.92), outline);
+        box(EDGE - 236, EDGE - 64, zr + 222, zr + 236, dark);
+        box(EDGE - 190, EDGE - 150, zr + 120, zr + 170, "#8f979d"); // louvre
+      }
       if (style === "hala") { // an air-handling unit on the roof
         box(EDGE - 150, EDGE - 60, zr, zr + 100, "#aab2b8", outline);
         for (let d = EDGE - 140; d < EDGE - 70; d += 18) box(d, d + 8, zr + 50, zr + 88, "#8f979d");
@@ -473,17 +514,6 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     box(-44, EDGE, top - 22, top, corn, outline);
     box(EDGE - 30, EDGE, top - 58, top, tint(corn, 0.9));
     box(0, EDGE, top - 76, top - 58, shade);
-  } else if (style === "plocha") {
-    if (!office) {
-      for (let k = 1; k < full; k++) { // balconies with coloured parapets and a pot of flowers now and then
-        const z = floorZ(k);
-        box(-130, 0, z - 8, z, tint(wall, 0.75)); // shadow under the slab
-        box(-130, 0, z, z + 16, "#8a867d");
-        box(-130, -4, z + 16, z + 108, balcony, { stroke: tint(accent, 0.75), "stroke-width": 1.5, "vector-effect": "non-scaling-stroke" });
-        box(-130, -4, z + 100, z + 112, tint(balcony, 0.8));
-        if (k % 3 === 1) { box(-112, -82, z + 112, z + 134, "#b5714a"); dot(-97, z + 146, 16, "#6fae4f"); dot(-90, z + 158, 7, "#e2607a"); }
-      }
-    }
   } else if (style === "hala") {
     box(-4, 0, 0, top, dark);
     if (shop) {
