@@ -56,6 +56,8 @@ const ROOF = { tile: "#c25a3c", tileDark: "#8f3f2b", slate: "#4f5d6b", slateDark
 const BRICK = "#b8644a", SKLEP = "#8e8a82";
 const GLASS = "#2f3557", GLINT = "#454a75", LIT = "#f4d98c", FRAME = "#f6efdf", DOOR = "#7a4f3a", STONE = "#b9ab8f";
 const OFFICE_TYPES = new Set(["office", "commercial", "civic", "government", "public", "school", "university", "hospital", "hotel"]);
+const TALL_SHARE = 0.75; // the most of the view's width a building may rise above the ground
+let labelTop = -Infinity; // building labels stay below this y (set per drawing in buildSvg)
 const sprites = {};
 let art = "praha"; // "praha" or "streetmix"
 export const setArt = (a) => { art = a; };
@@ -504,7 +506,15 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
 function drawEdge(svg, x, kind, side, surface, info, style) {
   const g = el("g", {}, svg);
   if (kind === "budova" && art === "praha") {
-    const top = drawPrahaBuilding(g, x, side, surface, info, style);
+    let top = drawPrahaBuilding(g, x, side, surface, info, style);
+    if (top < labelTop) {
+      // Cut off above the view: a torn edge in the background colour says the building goes on.
+      const yb = labelTop + 20;
+      let d = `M${x - 4} ${yb - 400} L${x - 4} ${yb}`;
+      for (let i = 0; i <= 8; i++) d += ` L${x + (i * (EDGE + 8)) / 8 - 4} ${yb + (i % 2 ? 22 : 0)}`;
+      el("path", { d: d + ` L${x + EDGE + 4} ${yb - 400} Z`, fill: "#fbfaf6" }, g);
+      top = yb - 10;
+    }
     const lv = buildingLevels(info);
     const h = buildingHeight(info);
     if (lv || h) {
@@ -584,8 +594,12 @@ export function buildSvg(profile, opts = {}) {
   // Tall buildings at the edges extend the drawing upwards.
   const tallest = Math.max(0, ...["left", "right"].map((k) =>
     edgeHeight(profile.edges?.[k], profile.edges?.[`${k}Info`], profile.edges?.[`${k}Style`])));
+  // A tower beside a narrow street would squash the street into a strip: the view shows at most
+  // TALL_SHARE of its width above the ground, and taller buildings are cut with a break line.
+  const shown = Math.min(tallest, Math.max(1600, view[1] * TALL_SHARE));
   // The top row (total width, cut ends A/B) sits above the tallest building and its floor label.
-  const y0 = Math.min(0, GROUND - tallest - 140) - 110;
+  const y0 = Math.min(0, GROUND - shown - 140) - 110;
+  labelTop = y0 + 190;
   const svg = el("svg", { xmlns: NS, viewBox: `${vx} ${y0} ${view[1]} ${H - y0}`, "font-family": "system-ui, sans-serif" });
   el("rect", { x: vx, y: y0, width: view[1], height: H - y0, fill: "#fbfaf6" }, svg);
   if (opts.title) {

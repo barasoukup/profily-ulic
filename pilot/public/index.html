@@ -5,24 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Profily ulic</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <strong>Profily ulic</strong>
-    <span id="street-name" class="muted">Klikněte na ulici v mapě</span>
+    <a class="brand" href="./" title="Profily ulic – začít znovu">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#d8413f"/><path d="M6 25V12l4-3v16M22 25V9l4 3v13M6 25h20" stroke="#fff" stroke-width="2.4" fill="none" stroke-linejoin="round"/><path d="M12 25v-4h8v4" fill="#fff"/></svg>
+      <span class="brand-name">Profily ulic</span>
+    </a>
+    <span id="street-name" class="street muted">Klikněte na ulici v mapě</span>
     <span class="spacer"></span>
-    <div class="seg-toggle" role="tablist">
+    <div class="seg-toggle" role="tablist" aria-label="Zobrazení">
       <button data-mode="stav" class="active">Stav</button>
       <button data-mode="navrh">Návrh</button>
       <button data-mode="porovnat">Porovnat</button>
     </div>
-    <button id="btn-art" title="Přepne obrázky v profilu mezi pražskými a Streetmixem">Obrázky: Praha</button>
-    <button id="btn-export-svg">Export SVG</button>
-    <button id="btn-export-png">Export PNG</button>
-    <button id="btn-streetmix" title="Vytvoří veřejnou anonymní ulici na streetmix.net a otevře ji">Streetmix ↗</button>
-    <button id="btn-save">Uložit</button>
-    <label class="btn">Načíst<input id="file-load" type="file" accept=".json,application/json" hidden></label>
+    <button id="btn-art" class="switch" role="switch" aria-checked="true" title="Pražské obrázky, nebo obrázky Streetmixu">Pražské obrázky</button>
+    <details class="menu">
+      <summary class="btn" aria-label="Export"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8M4.5 6.5 8 10l3.5-3.5M3 13h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lbl">Export</span></summary>
+      <div class="menu-list">
+        <button id="btn-export-png">Obrázek PNG</button>
+        <button id="btn-export-svg">Vektor SVG</button>
+        <button id="btn-streetmix" title="Vytvoří veřejnou anonymní ulici na streetmix.net a otevře ji">Do Streetmixu ↗</button>
+      </div>
+    </details>
+    <details class="menu">
+      <summary class="btn" aria-label="Soubor"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 2.5h6l4 4v7H3z M9 2.5v4h4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><span class="lbl">Soubor</span></summary>
+      <div class="menu-list">
+        <button id="btn-save">Uložit profil (JSON)</button>
+        <label class="btn">Načíst profil…<input id="file-load" type="file" accept=".json,application/json" hidden></label>
+      </div>
+    </details>
   </header>
   <main>
     <section id="map-pane">

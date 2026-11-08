@@ -174,6 +174,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     drawMtvu(polys);
     if (!map.getBounds().contains([clat, clon])) map.panTo([clat, clon]);
     const mtvuFailed = m.status !== "fulfilled";
+    $("#street-name").classList.remove("muted");
     $("#street-name").textContent = name + (polys.length ? "" : mtvuFailed ? " · technická mapa neodpověděla, jen odhad" : " · mimo technickou mapu, jen odhad");
     status(mtvuFailed ? "Technická mapa IPR teď neodpovídá (server je přetížený), profil je jen odhad z OSM. Zkuste kliknout znovu za chvíli."
       : !polys.length ? "Technická mapa tu nic nevrátila, profil je odhad z OSM."
@@ -302,8 +303,14 @@ function current() {
 function render() {
   document.querySelectorAll(".seg-toggle button").forEach((b) => b.classList.toggle("active", b.dataset.mode === state.mode));
   const box = $("#profile");
+  document.body.dataset.mode = state.stav ? state.mode : "";
+  $("#legend").hidden = !state.stav;
   if (!state.stav) {
-    box.innerHTML = '<p class="muted">Klikněte v mapě na ulici a tady se objeví její příčný profil.</p>';
+    box.innerHTML = `<div class="empty">
+      <img src="praha/t3-inbound.svg" alt="" width="96" height="126">
+      <div><h2>Příčný profil pražské ulice</h2>
+      <ol><li>Klikněte v mapě na ulici.</li><li>Profil od fasády k fasádě se sestaví z dat IPR a OSM.</li>
+      <li>V režimu Návrh ho upravíte: táhněte hranice, klikněte na část, přidejte novou.</li></ol></div></div>`;
     $("#editor").replaceChildren();
     $("#palette").replaceChildren();
     return;
@@ -386,14 +393,16 @@ function renderWidthCheck() {
   box.append(" ", btn);
 }
 
-// On a phone a wide street would shrink to unreadable: the profile keeps a minimum scale
-// (PHONE_SCALE px per cm of the drawing) and scrolls sideways instead.
-const PHONE_SCALE = 0.17;
-// The width goes into a CSS variable (used only by the phone media query), so drawings the editor
-// redraws while dragging keep it and a desktop window ignores it.
+// A wide street would shrink to unreadable: the profile keeps a minimum scale (px per cm of the drawing;
+// more on a phone, where fingers need bigger targets) and scrolls sideways instead.
+const MIN_SCALE = { phone: 0.17, desktop: 0.11 };
+// The width goes into a CSS variable, so drawings the editor redraws while dragging keep it.
 function fitPhone(box = $("#profile")) {
   const vbWidth = Math.max(0, ...[...box.querySelectorAll("svg")].map((svg) => Number(svg.getAttribute("viewBox")?.split(" ")[2]) || 0));
-  box.style.setProperty("--phone-width", `${Math.max(box.clientWidth, vbWidth * PHONE_SCALE)}px`);
+  const scale = matchMedia("(max-width: 760px)").matches ? MIN_SCALE.phone : MIN_SCALE.desktop;
+  const width = Math.max(box.clientWidth, vbWidth * scale);
+  box.style.setProperty("--fit-width", `${width}px`);
+  box.closest("#profile-wrap")?.classList.toggle("scrolls", width > box.clientWidth + 1);
 }
 addEventListener("resize", () => fitPhone());
 
@@ -571,7 +580,8 @@ function renderPalette(p) {
   for (const [k, t] of Object.entries(TYPES)) {
     const chip = document.createElement("button");
     chip.className = "chip";
-    chip.textContent = "+ " + t.label;
+    chip.style.setProperty("--c", t.color);
+    chip.textContent = t.label;
     chip.onclick = () => {
       const at = state.selected === null ? p.segments.length : state.selected + 1;
       const seg = { type: k, width: DEFAULT_WIDTH[k], source: "user" };
@@ -596,7 +606,7 @@ document.querySelectorAll(".seg-toggle button").forEach((b) => b.addEventListene
 // Illustrations: Prague ones or Streetmix, remembered per browser.
 const ART_KEY = "profily-ilustrace";
 function showArt() {
-  $("#btn-art").textContent = getArt() === "praha" ? "Obrázky: Praha" : "Obrázky: Streetmix";
+  $("#btn-art").setAttribute("aria-checked", String(getArt() === "praha"));
 }
 try { if (localStorage.getItem(ART_KEY) === "streetmix") setArt("streetmix"); } catch {}
 showArt();
@@ -605,6 +615,13 @@ $("#btn-art").addEventListener("click", () => {
   try { localStorage.setItem(ART_KEY, getArt()); } catch {}
   showArt();
   render();
+});
+
+// The header menus close after a choice or a click elsewhere.
+document.addEventListener("click", (e) => {
+  for (const d of document.querySelectorAll("details.menu[open]")) {
+    if (!d.contains(e.target) || e.target.closest(".menu-list button")) d.open = false;
+  }
 });
 
 // ---------- export, save, load ----------
@@ -689,6 +706,7 @@ function restore(data) {
     const r = (state.cut.bearing * Math.PI) / 180;
     const n = [-Math.cos(r), Math.sin(r)];
     drawCut(cutEnds(f, n, state.cut.reach || defaultReach()));
+    $("#street-name").classList.remove("muted");
     $("#street-name").textContent = state.cut.name;
     showCutInfo();
   }

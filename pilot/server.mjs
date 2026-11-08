@@ -232,7 +232,8 @@ const server = http.createServer(async (req, res) => {
     const file = path.normalize(path.join(base, rel.startsWith("data/") ? rel.slice(5) : rel));
     if (!file.startsWith(base + path.sep)) throw Object.assign(new Error("forbidden"), { code: "ENOENT" });
     const data = await fs.readFile(file);
-    res.writeHead(200, { "Content-Type": TYPES[path.extname(file)] || "application/octet-stream" });
+    // Local development: the browser always revalidates, so an edited file shows on reload.
+    res.writeHead(200, { "Content-Type": TYPES[path.extname(file)] || "application/octet-stream", "Cache-Control": "no-cache" });
     res.end(data);
   } catch (e) {
     const status = e.status || (e.code === "ENOENT" ? 404 : 502);
