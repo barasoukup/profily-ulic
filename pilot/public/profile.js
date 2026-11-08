@@ -106,7 +106,9 @@ const TURNS = { left: "vlevo", slight_left: "mírně vlevo", sharp_left: "ostře
 function drawItem(g, it, x, top, right) {
   const line = (attrs) => el("rect", attrs, g);
   switch (it.kind) {
-    case "lampa": return sprite(g, right ? "lamp-modern-right" : "lamp-modern-left", x, top);
+    // The lamp's arm reaches over the street: on the right half the arm points left. Its foot (not
+    // the middle of the picture) stands at x: x = 348 in the "left" picture, 22 in the "right" one.
+    case "lampa": return sprite(g, right ? "lamp-modern-left" : "lamp-modern-right", x, top, false, right ? 348 : 22);
     // The Prague bench has its back on the left: on the right half it turns to face the street too.
     case "lavicka": return sprite(g, "bench-center", x, top, right);
     case "stojan_kola": return sprite(g, "bike-rack-perpendicular-left", x, top);
@@ -159,10 +161,11 @@ function laneDir(segs, i) {
 export const ORIENT_LABEL = { podelne: "podélné", sikme: "šikmé", kolme: "kolmé" };
 export const turnLabel = (v) => v.split(";").map((x) => TURNS[x] || x).join(" + ");
 
-function sprite(g, name, cx, bottom, flip = false) {
+// anchor: the picture's x (its own units) that stands at cx; the middle when not given.
+function sprite(g, name, cx, bottom, flip = false, anchor = null) {
   const s = (art === "praha" && sprites[`praha/${PRAHA[name]}`]) || sprites[name];
   if (!s) return;
-  const img = el("image", { href: s.uri, width: s.w, height: s.h, x: cx - s.w / 2, y: bottom - s.h }, g);
+  const img = el("image", { href: s.uri, width: s.w, height: s.h, x: cx - (anchor ?? s.w / 2), y: bottom - s.h }, g);
   if (flip) img.setAttribute("transform", `translate(${2 * cx} 0) scale(-1 1)`);
 }
 
@@ -919,9 +922,9 @@ export function buildSvg(profile, opts = {}) {
     el("text", { class: "lbl-w", "data-row": 0, "data-w": w, x: cx, y: GROUND + 170, "text-anchor": "middle", "font-size": 40, "font-weight": 600, fill: "#1f1f1d" }, g).textContent = fmt(s.width);
     if (w >= 80) {
       const contra = s.bikeDir && s.bikeDir !== (s.dir || "forward");
-      const label = s.type === "parkovani" && s.use ? `Stání ${PARKING_USE[s.use]}`
-        : s.type === "parkovani" && s.orient ? `Stání ${ORIENT_LABEL[s.orient]}`
-        : (t.short || t.label) + (t.directional && s.dir ? (forward ? " ↑" : " ↓") : s.type === "pruh" ? " ↑↓" : "") +
+      const label = s.type === "parkovani" && s.use ? `Parkování ${PARKING_USE[s.use]}`
+        : s.type === "parkovani" && s.orient ? `Parkování ${ORIENT_LABEL[s.orient]}`
+        : t.label + (t.directional && s.dir ? (forward ? " ↑" : " ↓") : s.type === "pruh" ? " ↑↓" : "") +
           (contra ? ` kola ${s.bikeDir === "backward" ? "↓" : "↑"}` : "");
       el("text", { class: "lbl-t", "data-row": 1, "data-w": w, x: cx, y: GROUND + 215, "text-anchor": "middle", "font-size": 28, fill: "#4f4e49" }, g).textContent = label;
     }
