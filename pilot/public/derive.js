@@ -961,7 +961,7 @@ function itemPositions(osm, frame, center, normal, half, lines) {
       const [x, y] = frame.toXY(el.geometry[0].lon, el.geometry[0].lat);
       const dx = x - center[0], dy = y - center[1];
       if (Math.abs(dx * normal[1] - dy * normal[0]) > ITEM_REACH) continue;
-      const item = { kind, t: dx * normal[0] + dy * normal[1] };
+      const item = { kind, t: dx * normal[0] + dy * normal[1], stands: true };
       if (kind === "pristresek" && shelterIsTram(el.tags || {}, x, y, stops)) item.tram = true;
       items.push(item);
     } else if (el.type === "way" && BARRIER_ITEM[el.tags?.barrier]) {
@@ -978,11 +978,26 @@ function itemPositions(osm, frame, center, normal, half, lines) {
   return items.filter((it, i) => !items.slice(0, i).some((o) => o.kind === it.kind && Math.abs(o.t - it.t) < 1));
 }
 
+// Parts where a lamp, bench or other standing thing cannot be: vehicles drive or park there.
+const TRAFFIC = new Set(["pruh", "pruh_piktokoridor", "obsluzna", "krajnice", "bus", "bus_cyklo", "tramvaj_v_pruhu",
+  "cyklopruh", "ochranny_pruh", "parkovani"]);
+const ITEM_SHIFT = 3; // an OSM point this far off a kerb is moved onto it (m); further it is left out
+
 function attachItems(segs, items) {
   for (const it of items) {
-    const host = segs.find((x) => x.s <= it.t && x.e >= it.t);
+    let host = segs.find((x) => x.s <= it.t && x.e >= it.t);
+    let t = it.t;
+    if (it.stands && (!host || TRAFFIC.has(host.type))) {
+      // OSM points are a metre or two off: a lamp drawn in a lane goes to the nearest kerbside part.
+      const gap = (x) => (t < x.s ? x.s - t : t > x.e ? t - x.e : 0);
+      const near = segs.filter((x) => !TRAFFIC.has(x.type) && gap(x) <= ITEM_SHIFT).sort((a, b) => gap(a) - gap(b))[0];
+      if (!near) continue;
+      const inset = Math.min(0.3, (near.e - near.s) / 2);
+      host = near;
+      t = Math.min(Math.max(t, near.s + inset), near.e - inset);
+    }
     if (!host) continue;
-    const item = { kind: it.kind, f: (it.t - host.s) / Math.max(host.e - host.s, 0.01) };
+    const item = { kind: it.kind, f: (t - host.s) / Math.max(host.e - host.s, 0.01) };
     if (it.tram) item.tram = true;
     (host.items ||= []).push(item);
   }
