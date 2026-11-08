@@ -106,6 +106,14 @@ body.resizing { user-select: none; cursor: col-resize; }
 #map-help[hidden] { display: none; }
 .pano-link { display: block; padding: 6px 12px; font-size: 13px; border-top: 1px solid var(--line); color: var(--accent); }
 .pano-link[hidden] { display: none; }
+button.pano-link { width: 100%; text-align: left; background: var(--panel); border: 0; border-top: 1px solid var(--line); border-radius: 0; cursor: pointer; }
+#pano-dialog { width: min(1100px, 94vw); height: min(720px, 86vh); padding: 0; border: 1px solid var(--line); border-radius: var(--radius); flex-direction: column; }
+#pano-dialog[open] { display: flex; }
+#pano-dialog::backdrop { background: rgba(29, 29, 27, 0.5); }
+.pano-head { display: flex; align-items: center; gap: 12px; padding: 8px 12px; border-bottom: 1px solid var(--line); }
+.pano-head .muted { flex: 1; font-size: 13px; }
+#pano-view { flex: 1; position: relative; background: #222; }
+.pano-credit { font-size: 11px; color: var(--muted); padding: 4px 12px; }
 
 /* ---------- profile pane ---------- */
 #profile-pane { overflow: auto; padding: 14px 18px 18px; display: flex; flex-direction: column; gap: 12px; }

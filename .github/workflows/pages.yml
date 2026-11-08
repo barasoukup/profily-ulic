@@ -105,11 +105,14 @@ jobs:
             echo "::error::no zone file (data/zps.json) and none cached"; exit 1
           fi
       - name: Assemble the site
+        env:
+          MAPY_KEY: ${{ secrets.MAPY_KEY }} # Mapy.com key for the street panorama; empty → a plain link instead
         run: |
           mkdir -p _site/data
           cp -R pilot/public/. _site/
           sed -i 's/export const STATIC = false;/export const STATIC = true;/' _site/config.js
           grep -q "STATIC = true" _site/config.js
+          if [ -n "$MAPY_KEY" ]; then sed -i "s/export const MAPY_KEY = \"\";/export const MAPY_KEY = \"$MAPY_KEY\";/" _site/config.js; fi
           mv site-tiles _site/data/osm-tiles
           mv site-zps.json _site/data/zps.json
           cp LICENCE-A-ZDROJE.md _site/data/LICENCE-A-ZDROJE.md

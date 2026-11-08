@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Profily ulic</title>
   <meta name="description" content="Příčné profily pražských ulic od fasády k fasádě z technické mapy IPR a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://gs-pub.praha.eu https://tiles.arcgis.com https://ags.cuzk.gov.cz https://tile.openstreetmap.org https://unpkg.com; connect-src 'self' https://gs-pub.praha.eu https://mp.iprpraha.cz; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com https://api.mapy.cz; style-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://gs-pub.praha.eu https://tiles.arcgis.com https://ags.cuzk.gov.cz https://tile.openstreetmap.org https://unpkg.com https://api.mapy.cz; connect-src 'self' https://gs-pub.praha.eu https://mp.iprpraha.cz https://api.mapy.cz; object-src 'none'; base-uri 'self'; form-action 'none'">
   <meta name="theme-color" content="#d8413f">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Profily ulic">
@@ -52,6 +52,7 @@
     <section id="map-pane">
       <div id="map" role="application" aria-label="Mapa Prahy: kliknutím na ulici vznikne její příčný profil"></div>
       <div id="map-help" hidden>Řez posunete tažením středu. Tažením konce ho natočíte a zkrátíte nebo prodloužíte profil na té straně.</div>
+      <button id="pano-btn" class="pano-link" hidden title="Pohled z ulice v místě řezu, ve směru profilu (Panorama Mapy.com)">Panorama z ulice</button>
       <a id="pano-link" class="pano-link" target="_blank" rel="noopener" hidden title="Otevře Mapy.com v místě řezu se zapnutými panoramaty; panoramu spustíte kliknutím na ulici">Panorama na Mapy.com ↗</a>
       <details id="cut-info">
         <summary>Poloha řezu</summary>
@@ -106,6 +107,16 @@
     <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.cs">CC BY-SA 4.0</a> ·
     pražské ilustrace a kód © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>)
   </footer>
+  <dialog id="pano-dialog" aria-label="Panorama z ulice">
+    <div class="pano-head">
+      <strong>Panorama z ulice</strong>
+      <span class="muted" id="pano-note"></span>
+      <a id="pano-out" target="_blank" rel="noopener">Otevřít na Mapy.com ↗</a>
+      <button id="pano-close" class="close" aria-label="Zavřít panoramu">×</button>
+    </div>
+    <div id="pano-view"></div>
+    <div class="pano-credit">Panorama © <a href="https://mapy.com" target="_blank" rel="noopener">Seznam.cz, a.s. / Mapy.com</a></div>
+  </dialog>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script type="module" src="app.js"></script>
 </body>

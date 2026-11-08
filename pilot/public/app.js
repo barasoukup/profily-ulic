@@ -2,6 +2,7 @@ import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
 import { loadSprites, buildSvg, mountEditor, svgString, totalWidth, setArt, getArt, buildingStyle, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE } from "./profile.js";
 import * as sources from "./sources.js";
+import { MAPY_KEY } from "./config.js";
 import { cleanProfile, cleanCut } from "./validate.js";
 import { checkRules } from "./rules.js";
 
@@ -227,10 +228,53 @@ function showCutInfo() {
   history.replaceState(null, "", `#rez=${state.cut.lat.toFixed(6)},${state.cut.lon.toFixed(6)},${Math.round(state.cut.bearing)},${r.left.toFixed(1)},${r.right.toFixed(1)}`);
   // Mapy.com at the cut with the panorama layer on (ovl=8). A link straight into a panorama needs
   // the photo's id (pid), which only their Panorama API (with a key) gives; one click on the street opens it.
+  // With a Mapy.com key the panorama opens here; without one, a link to Mapy.com at the cut.
   const pano = $("#pano-link");
   pano.href = `https://mapy.com/cs/zakladni?x=${state.cut.lon.toFixed(7)}&y=${state.cut.lat.toFixed(7)}&z=19&ovl=8`;
-  pano.hidden = false;
+  pano.hidden = !!mapyKey;
+  $("#pano-btn").hidden = !mapyKey;
 }
+
+// ---------- street panorama (Mapy.com) ----------
+// The nearest panorama to the cut, looking along the street the way the profile is drawn (A on the
+// left, B on the right): yaw = bearing of the cut − 90°, radians from north. The Mapy.com script is
+// loaded on the first click only, and nothing from it is stored (Mapy.com API terms, 4.6.2).
+const local = ["localhost", "127.0.0.1"].includes(location.hostname);
+const mapyKey = MAPY_KEY || (local ? await import("./config.local.js").then((m) => m.MAPY_KEY, () => "") : "");
+let panoLib, panoView;
+const loadPano = () => (panoLib ??= new Promise((res, rej) => {
+  const s = Object.assign(document.createElement("script"), { src: "https://api.mapy.cz/js/panorama/v1/panorama.js", async: true });
+  s.onload = () => (window.Panorama ? res(window.Panorama) : rej(new Error("Panorama se nenačetla.")));
+  s.onerror = () => { panoLib = null; rej(new Error("Panorama Mapy.com se nenačetla.")); };
+  document.head.append(s);
+}));
+$("#pano-btn").onclick = async () => {
+  if (!state.cut || !mapyKey) return;
+  const { lat, lon, bearing } = state.cut;
+  const dlg = $("#pano-dialog");
+  $("#pano-out").href = $("#pano-link").href;
+  $("#pano-note").textContent = "Načítám…";
+  dlg.showModal();
+  try {
+    const P = await loadPano();
+    panoView?.destroy?.();
+    $("#pano-view").replaceChildren();
+    const yaw = ((((bearing - 90) % 360) + 360) % 360) * (Math.PI / 180);
+    panoView = await P.panoramaFromPosition({
+      parent: $("#pano-view"), lon, lat, apiKey: mapyKey, radius: 60, yaw, pitch: 0, fov: 1.3, showNavigation: true, lang: "cs",
+    });
+    if (panoView?.errorCode && panoView.errorCode !== "NONE") {
+      $("#pano-note").textContent = panoView.errorCode === "PANORAMA_NOT_FOUND" ? "Tady panorama Mapy.com nemají." : `Panorama nejde zobrazit (${panoView.error || panoView.errorCode}).`;
+      return;
+    }
+    const d = panoView?.info?.date;
+    $("#pano-note").textContent = d ? `snímek z ${+d.slice(8, 10)}. ${+d.slice(5, 7)}. ${d.slice(0, 4)}` : "";
+  } catch (err) {
+    $("#pano-note").textContent = err.message;
+  }
+};
+$("#pano-close").onclick = () => $("#pano-dialog").close();
+$("#pano-dialog").addEventListener("close", () => { panoView?.destroy?.(); panoView = null; });
 
 $("#btn-copy-cut").onclick = async () => {
   if (!state.cut) return;

@@ -20,3 +20,6 @@ evaluation/snapshot/
 pilot/public/test-budovy.html
 # OSM-derived table (ODbL), rebuilt by evaluation/budovy-typ/labels.mjs
 evaluation/budovy-typ/labels.tsv
+
+# Local Mapy.com key (export const MAPY_KEY = "…"), never committed
+pilot/public/config.local.js
