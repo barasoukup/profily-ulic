@@ -25,7 +25,7 @@ Obrázky profilů, které aplikace vytváří, obsahují ilustrace Streetmixu. P
 | Podkladové dlaždice `tile.openstreetmap.org` | mapa v aplikaci | Zdarma podle [Tile Usage Policy](https://operations.osmfoundation.org/policies/tiles/) OSMF: jen mírný provoz, s atribucí, bez hromadného stahování. U veřejné aplikace s větším provozem je lepší jiný poskytovatel. | ✓ / pozor na provoz |
 | ČÚZK – ortofoto (WMS) | podkladová mapa | Ortofoto ČR jsou od 1. 7. 2023 otevřená data pod **CC BY 4.0** ([technická zpráva ČÚZK](https://geoportal.cuzk.gov.cz/Dokumenty/TZ_Ortofoto_CR.pdf), [podmínky ČÚZK](https://cuzk.gov.cz/Predpisy/Podminky-poskytovani-prostor-dat-a-sitovych-sluzeb/Podminky-poskytovani-prostorovych-dat-CUZK.aspx)). Uvést „© ČÚZK“. | ✓ |
 | Streetmix – ilustrace (`pilot/public/streetmix/`) | kreslení profilu | **CC BY-SA 4.0** ([FAQ Streetmixu](https://docs.streetmix.net/user-guide/support/faq)): uvést Streetmix, licenci a odkaz na streetmix.net. Odvozené obrázky musí zůstat pod CC BY-SA. | ✓ s podmínkou |
-| Pražské ilustrace (`pilot/public/praha/`) | kreslení profilu (tramvaj T3, autobus, lampa, lavička, stojan, přístřešek, sloupek) | Vlastní ruční SVG, kreslené podle veřejných fotek (Wikimedia Commons, brožura IPR k soutěži na mobiliář); fotky ani cizí kresby nejsou převzaté. Mobiliář podle vítězných návrhů soutěží IPR (Olgoj Chorchoj). Licence jako kód (MIT). Bez log a ochranných známek. | ✓ |
+| Pražské ilustrace (`pilot/public/praha/`) | kreslení profilu (tramvaj T3, autobus, lampa, lavička, stojan, přístřešek, sloupek) | Vlastní ruční SVG, kreslené podle veřejných fotek (Wikimedia Commons, brožura IPR k soutěži na mobiliář); fotky ani cizí kresby nejsou převzaté. Mobiliář podle vítězných návrhů soutěží IPR (Olgoj Chorchoj). Licence CC BY-SA 4.0, © Bára Soukupová (stejně jako ilustrace Streetmixu; kód zůstává MIT). Bez log a ochranných známek. | ✓ |
 | Streetmix – kód | **nepoužíváme**. Převod do Streetmixu (`streetmix.js`) je vlastní kód, ze Streetmixu bere jen názvy segmentů a variant. | AGPL-3.0 by se týkala jen převzatého kódu | ✓ |
 | Streetmix – API (tlačítko „Streetmix ↗“) | vytvoření ulice na streetmix.net | Ulice vzniká jako veřejná anonymní ulice. Obsah Streetmixu je pod CC BY-SA. Podmínky použití API jsem nenašla. | ⚠ při veřejném nasazení ověřit |
 | Leaflet (unpkg) | mapová knihovna | BSD-2-Clause | ✓ |
@@ -58,4 +58,4 @@ Obrázky profilů, které aplikace vytváří, obsahují ilustrace Streetmixu. P
 
 > Data: © IPR Praha (technická mapa, podlažnosti; CC BY 4.0), © TSK hl. m. Prahy (úseky parkování; CC BY 4.0),
 > © přispěvatelé OpenStreetMap (ODbL 1.0), ortofoto © ČÚZK (CC BY 4.0).
-> Ilustrace © Streetmix, CC BY-SA 4.0 (https://streetmix.net). Obrázky profilů jsou šířeny pod CC BY-SA 4.0.
+> Ilustrace © Streetmix, CC BY-SA 4.0 (https://streetmix.net); pražské ilustrace © Bára Soukupová, CC BY-SA 4.0. Obrázky profilů jsou šířeny pod CC BY-SA 4.0.
