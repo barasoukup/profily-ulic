@@ -715,7 +715,7 @@ export function buildSvg(profile, opts = {}) {
 
   if (opts.title) {
     // A title tag in the top left corner, over the building there.
-    el("rect", { class: "title-bg", x: vx + 16, y: y0 + 34, width: 60 + opts.title.length * 22, height: 80, rx: 16, fill: "#1d1d1b" }, svg);
+    el("rect", { class: "title-bg", x: vx + 16, y: y0 + 34, width: 60 + opts.title.length * 25, height: 80, rx: 16, fill: "#1d1d1b" }, svg);
     el("text", { class: "lbl-title", x: vx + 46, y: y0 + 90, "font-size": 46, "font-weight": 700, fill: "#fff" }, svg).textContent = opts.title;
   }
 

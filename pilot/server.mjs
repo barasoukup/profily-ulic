@@ -238,7 +238,7 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-// Only this computer: the server forwards requests to IPR and Streetmix and must not be an open proxy.
+// Only this computer: the server forwards requests to IPR and must not be an open proxy.
 // HOST=0.0.0.0 opens it to the local network (e.g. to try the app on a phone).
 const HOST = process.env.HOST || "127.0.0.1";
 server.listen(PORT, HOST, () => console.log(`Profily ulic běží na http://localhost:${PORT}`));

@@ -1,7 +1,7 @@
 // Checks a saved profile (from the browser's storage or a JSON file) before the app uses it: a broken
 // or edited file must not break the drawing. Unknown types and items are made harmless, numbers
 // that the drawing needs must be numbers, a part without a usable width is an error.
-import { TYPES, SOURCES, ITEMS } from "./types.js";
+import { TYPES, SOURCES, ITEMS, PARKING_USE } from "./types.js";
 
 const num = (v, lo, hi) => typeof v === "number" && Number.isFinite(v) && v >= lo && v <= hi;
 // Building facts at the edges that end up in SVG attributes (heights, floors, area).
@@ -14,6 +14,11 @@ export function cleanProfile(p, what = "profil") {
     if (!(s.type in TYPES)) s.type = "nezname";
     if (!num(s.width, 0.01, 200)) throw new Error(`${what}: vadná šířka části`);
     if (s.source && !(s.source in SOURCES)) s.source = "user";
+    // Values the drawing reads as words: anything else is dropped.
+    for (const k of ["dir", "bikeDir"]) if (k in s && !["forward", "backward"].includes(s[k])) delete s[k];
+    if ("orient" in s && !["podelne", "sikme", "kolme"].includes(s.orient)) delete s.orient;
+    if ("use" in s && !(s.use in PARKING_USE)) delete s.use;
+    if ("turn" in s && typeof s.turn !== "string") delete s.turn;
     s.items = Array.isArray(s.items) ? s.items.filter((it) => it && it.kind in ITEMS && num(it.f, 0, 1)) : [];
   }
   p.edges = typeof p.edges === "object" && p.edges ? p.edges : {};

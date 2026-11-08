@@ -17,6 +17,8 @@
     // The page's own scripts and styles (a module that did not download, Leaflet blocked) are
     // fatal; a broken map tile or illustration is not.
     if (t && t !== window && !/^(SCRIPT|LINK)$/.test(t.tagName)) return;
+    // Web fonts are optional (the app falls back to system fonts): a blocked font server is fine.
+    if (t && t.tagName === "LINK" && !/leaflet|style\.css/.test(t.href)) return;
     show(window.profilyReady ? "Něco se nepovedlo. Zkuste akci zopakovat, případně stránku načíst znovu." : START);
   }, true);
   window.addEventListener("unhandledrejection", function () {

@@ -27,3 +27,10 @@ test("poloha řezu mimo Prahu nebo s vadným dosahem", () => {
   assert.equal(c.reach, undefined);
   assert.deepEqual(cleanCut({ lat: 50.08, lon: 14.42, bearing: 90, reach: { left: 10, right: 22 } }).reach, { left: 10, right: 22 });
 });
+
+test("vadné směry, orientace, účel a odbočení se zahodí", () => {
+  const p = cleanProfile({ segments: [{ type: "parkovani", width: 2, dir: "nahoru", orient: 5, use: "x", turn: 7 }, { type: "pruh", width: 3, dir: "backward", turn: "left|through" }] });
+  assert.deepEqual(Object.keys(p.segments[0]).sort(), ["items", "type", "width"]);
+  assert.equal(p.segments[1].dir, "backward");
+  assert.equal(p.segments[1].turn, "left|through");
+});
