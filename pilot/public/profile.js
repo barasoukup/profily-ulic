@@ -206,14 +206,15 @@ export function buildingStyle(info, chosen) {
 // 1925–45 ones come out right. Offices keep the flat style (drawn as offices by their type).
 // A modern block of flats (after 1995): IPR marks it as new against its base map (rare: only the
 // newest), or, short of a panel slab, it has a set-back floor outside the inner city (functionalist
-// set-backs are an inner-city thing), or it is low (up to 4 floors) out where the estates are.
-const PANEL_WIDTH = 16, PANEL_FILL = 0.65, PANEL_PART = 30, PANEL_FLOORS = 8, ESTATE_KM = 7, LOW_MODERN = 4;
+// set-backs are an inner-city thing; panel houses have none). Height says nothing: panel houses of
+// 4 floors are common (Bára).
+const PANEL_WIDTH = 16, PANEL_FILL = 0.65, PANEL_PART = 30, PANEL_FLOORS = 8, ESTATE_KM = 7;
 function flatKind(info, n) {
   if (OFFICE_TYPES.has(info?.type)) return "plocha";
   if (info?.newBuild) return "moderni"; // IPR "nová budova"
   const b = info?.block;
   const slab = b && ((b.fill >= PANEL_FILL && b.width <= PANEL_WIDTH) || (b.parts >= 2 && (b.length + b.width) / b.parts >= PANEL_PART));
-  if (!slab && n < PANEL_FLOORS && ((info?.roof >= 1 && info?.km > INNER_KM) || (n <= LOW_MODERN && info?.km >= ESTATE_KM))) return "moderni";
+  if (!slab && n < PANEL_FLOORS && info?.roof >= 1 && info?.km > INNER_KM) return "moderni";
   if (n >= PANEL_FLOORS || info?.km >= ESTATE_KM) return "plocha";
   if (b) return slab ? "plocha" : "funkce";
   return info?.km > INNER_KM ? "plocha" : "funkce";
