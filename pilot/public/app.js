@@ -237,7 +237,8 @@ function showCutInfo() {
 
 // ---------- street panorama (Mapy.com) ----------
 // The nearest panorama to the cut, looking along the street the way the profile is drawn (A on the
-// left, B on the right): yaw = bearing of the cut − 90°, radians from north. The Mapy.com script is
+// left, B on the right). state.cut.bearing is the street's direction, and looking along it A lies on
+// the left (checked on Seifertova: the parked cars on the B side show on the right); radians from north. The Mapy.com script is
 // loaded on the first click only, and nothing from it is stored (Mapy.com API terms, 4.6.2).
 const local = ["localhost", "127.0.0.1"].includes(location.hostname);
 const mapyKey = MAPY_KEY || (local ? await import("./config.local.js").then((m) => m.MAPY_KEY, () => "") : "");
@@ -259,7 +260,7 @@ $("#pano-btn").onclick = async () => {
     const P = await loadPano();
     panoView?.destroy?.();
     $("#pano-view").replaceChildren();
-    const yaw = ((((bearing - 90) % 360) + 360) % 360) * (Math.PI / 180);
+    const yaw = (((bearing % 360) + 360) % 360) * (Math.PI / 180);
     panoView = await P.panoramaFromPosition({
       parent: $("#pano-view"), lon, lat, apiKey: mapyKey, radius: 60, yaw, pitch: 0, fov: 1.3, showNavigation: true, lang: "cs",
     });
