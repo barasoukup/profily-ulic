@@ -77,5 +77,5 @@ a exportovat (PNG, SVG, JSON, Streetmix). Lehká samostatná aplikace s ilustrac
 
 ## Licence
 - Kód MIT. Ilustrace Streetmix CC BY-SA 4.0 (s uvedením autora), pražské ilustrace (`pilot/public/praha/`)
-  © Bára Soukupová, CC BY-SA 4.0, kód Streetmixu AGPL-3.0 (jen kopie
+  pod MIT jako kód (Bára rozhodla 8. 11. 2026), kód Streetmixu AGPL-3.0 (jen kopie
   ve `vendor/`, nepublikuje se). OSM ODbL. Podrobnosti v `LICENCE-A-ZDROJE.md`.
