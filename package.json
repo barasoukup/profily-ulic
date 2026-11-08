@@ -1,0 +1,13 @@
+{
+  "name": "profily-ulic",
+  "private": true,
+  "type": "module",
+  "description": "Příčné profily pražských ulic (pilot/public je aplikace, pilot/server.mjs místní server)",
+  "license": "MIT",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node pilot/server.mjs",
+    "check": "for f in pilot/public/*.js pilot/server.mjs; do node --check \"$f\" || exit 1; done",
+    "test": "npm run check && node --test tests/"
+  }
+}

@@ -4,13 +4,14 @@ import http from "node:http";
 import fs from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
+import { fileURLToPath } from "node:url";
+import { MTVU, MTVU_FIELDS, TM_LINES, LINE_WHERE, PARKOVANI, PARKING_LAYERS, parkingFields, PODLAZNOST, PODLAZNOST_FIELDS, podlaznostInfo } from "./public/queries.js";
 
-const ROOT = path.dirname(new URL(import.meta.url).pathname);
+const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const PUBLIC = path.join(ROOT, "public");
 const CACHE = path.join(ROOT, "cache");
 const PORT = Number(process.env.PORT || 5173);
 
-const MTVU = "https://gs-pub.praha.eu/arcgis/rest/services/dtmp/dtmp/MapServer/15/query";
 const UA = "streetdesign-pilot/0.1 (local)";
 
 const TYPES = {
@@ -19,6 +20,11 @@ const TYPES = {
   ".css": "text/css; charset=utf-8",
   ".svg": "image/svg+xml",
   ".json": "application/json",
+  ".png": "image/png",
+  ".jpg": "image/jpeg",
+  ".ico": "image/x-icon",
+  ".webmanifest": "application/manifest+json",
+  ".md": "text/markdown; charset=utf-8",
 };
 
 async function cached(kind, key, fetcher) {
@@ -72,11 +78,7 @@ async function localOsm(lat, lon, radius) {
   return found ? JSON.stringify({ source: "local", elements }) : null;
 }
 
-// Line features of the technical map: tram track axes (55010) plus barriers and slopes
-// (guard rails, railings, fences and walls, retaining walls, hedges, top/bottom edges of slopes).
-const LINE_CODES = [55010, 71522, 71540, 61530, 61209, 61210, 71210, 81210, 91210, 61422, 71422, 81422, 81214, 42105, 42107];
-const TM_LINES = "https://gs-pub.praha.eu/arcgis/rest/services/dtmp/dtmp/MapServer/10/query";
-
+// Tram track axes, barriers and slopes of the technical map (queries.js).
 async function koleje(bbox) {
   const params = new URLSearchParams({
     geometry: bbox,
@@ -84,7 +86,7 @@ async function koleje(bbox) {
     inSR: "4326",
     outSR: "4326",
     spatialRel: "esriSpatialRelIntersects",
-    where: `CTMTP_KOD IN (${LINE_CODES.join(",")})`,
+    where: LINE_WHERE,
     outFields: "CTMTP_KOD",
     f: "json",
   });
@@ -93,25 +95,24 @@ async function koleje(bbox) {
   return r.text();
 }
 
-// Parking sections (úseky parkovacích stání) of the paid parking zones, by TSK, via IPR.
-const PARKOVANI = "https://gs-pub.praha.eu/arcgis/rest/services/dop/zony_placeneho_stani/MapServer/3/query";
-
-// Parking sections (layer 3) and special stalls: ZTP (5, 6), deliveries (7), special (8).
-const PARKING_LAYERS = { 3: "useky", 5: "ztp", 6: "ztp", 7: "zasobovani", 8: "specialni" };
-
+// Parking sections (úseky parkovacích stání) of the paid parking zones, by TSK, via IPR, and the
+// special stalls (queries.js).
+// The special stalls (5–8) lie inside paid zones: they are asked for only where the sections (3)
+// found something, which spares IPR four requests per cut outside the zones.
 async function parkovani(bbox) {
   const features = [];
   for (const [layer, kind] of Object.entries(PARKING_LAYERS)) {
+    if (layer !== "3" && !features.length) break;
     const params = new URLSearchParams({
       geometry: bbox,
       geometryType: "esriGeometryEnvelope",
       inSR: "4326",
       outSR: "4326",
       spatialRel: "esriSpatialRelIntersects",
-      outFields: layer === "3" ? "ZPS_ID,TYPZONY,PS_ZPS" : "ZPS_ID",
+      outFields: parkingFields(layer),
       f: "json",
     });
-    const r = await upstream(`${PARKOVANI.replace("/3/query", `/${layer}/query`)}?${params}`);
+    const r = await upstream(`${PARKOVANI}/${layer}/query?${params}`);
     if (!r.ok) throw new Error(`parkovani ${layer} ${r.status}`);
     const json = await r.json();
     // Re-serialised below, so an ArcGIS error must be caught here or it would be cached as "no parking".
@@ -121,16 +122,14 @@ async function parkovani(bbox) {
   return JSON.stringify({ features });
 }
 
-// Building floors (IPR "Podlažnosti"): floors up to the cornice, roof / set-back floors, total.
-const PODLAZNOST = "https://mp.iprpraha.cz/arcgis/rest/services/Hosted/URK_CUR_URK_SS_PODLAZNOST_P/FeatureServer/0/query";
-
+// Building floors (IPR "Podlažnosti", read by podlaznostInfo in queries.js).
 async function podlaznost(lat, lon) {
   const params = new URLSearchParams({
     geometry: `${lon},${lat}`,
     geometryType: "esriGeometryPoint",
     inSR: "4326",
     spatialRel: "esriSpatialRelIntersects",
-    outFields: "pocet_podlazi,ustup_stres,podlaz_celk,strecha,typ,SHAPE__Area",
+    outFields: PODLAZNOST_FIELDS,
     returnGeometry: "false",
     f: "json",
   });
@@ -138,10 +137,7 @@ async function podlaznost(lat, lon) {
   if (!r.ok) throw new Error(`podlaznost ${r.status}`);
   const json = await r.json();
   if (json.error) throw new Error(`podlaznost: ${json.error.code} ${json.error.message}`);
-  const a = json.features?.[0]?.attributes;
-  // SHAPE__Area is in Web Mercator square metres: scaled back to the ground by cos² of the latitude.
-  const area = a?.SHAPE__Area ? Math.round(a.SHAPE__Area * Math.cos((lat * Math.PI) / 180) ** 2) : undefined;
-  return JSON.stringify(a ? { cornice: a.pocet_podlazi, roof: a.ustup_stres || 0, total: a.podlaz_celk, roofType: a.strecha, kind: a.typ, area } : {});
+  return JSON.stringify(podlaznostInfo(json, Number(lat)));
 }
 
 async function mtvu(bbox) {
@@ -151,7 +147,7 @@ async function mtvu(bbox) {
     inSR: "4326",
     outSR: "4326",
     spatialRel: "esriSpatialRelIntersects",
-    outFields: "CTVUK_KOD,CTVUK_POPIS",
+    outFields: MTVU_FIELDS,
     f: "json",
   });
   const r = await upstream(`${MTVU}?${params}`);
@@ -173,12 +169,18 @@ function round(v, d = 5) {
   return Number(v).toFixed(d);
 }
 
+// A point in or around Prague (the local OSM extract and IPR data cover nothing else).
+function pointParam(url, d = 5) {
+  const lat = Number(url.searchParams.get("lat")), lon = Number(url.searchParams.get("lon"));
+  if (!(lat > 48 && lat < 52 && lon > 12 && lon < 19)) throw Object.assign(new Error("neplatná poloha"), { status: 400 });
+  return [round(lat, d), round(lon, d)];
+}
+
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, `http://localhost:${PORT}`);
   try {
     if (url.pathname === "/api/osm") {
-      const lat = round(url.searchParams.get("lat"));
-      const lon = round(url.searchParams.get("lon"));
+      const [lat, lon] = pointParam(url);
       const radius = Math.min(Number(url.searchParams.get("r") || 80), 200);
       const body = (await localOsm(Number(lat), Number(lon), radius)) ?? JSON.stringify({ source: "local", elements: [] });
       res.writeHead(200, { "Content-Type": TYPES[".json"] });
@@ -215,7 +217,7 @@ const server = http.createServer(async (req, res) => {
       return res.end(JSON.stringify({ url: `https://streetmix.net/-/${street.namespacedId}`, id: street.id }));
     }
     if (url.pathname === "/api/podlaznost") {
-      const lat = round(url.searchParams.get("lat"), 6), lon = round(url.searchParams.get("lon"), 6);
+      const [lat, lon] = pointParam(url, 6);
       const body = await cached("podlaznost2", `${lat},${lon}`, () => podlaznost(lat, lon));
       res.writeHead(200, { "Content-Type": TYPES[".json"] });
       return res.end(body);
@@ -226,7 +228,12 @@ const server = http.createServer(async (req, res) => {
       res.writeHead(200, { "Content-Type": TYPES[".json"] });
       return res.end(body);
     }
-    const rel = url.pathname === "/" ? "index.html" : decodeURIComponent(url.pathname).replace(/^\/+/, "");
+    let rel;
+    try {
+      rel = url.pathname === "/" ? "index.html" : decodeURIComponent(url.pathname).replace(/^\/+/, "");
+    } catch {
+      throw Object.assign(new Error("neplatná adresa"), { status: 400 });
+    }
     // data/… (OSM tiles, parking zones) is served from pilot/data, as the web build places it next to the app.
     const base = rel.startsWith("data/") ? path.join(ROOT, "data") : PUBLIC;
     const file = path.normalize(path.join(base, rel.startsWith("data/") ? rel.slice(5) : rel));
@@ -242,4 +249,7 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-server.listen(PORT, () => console.log(`Profily ulic běží na http://localhost:${PORT}`));
+// Only this computer: the server forwards requests to IPR and Streetmix and must not be an open proxy.
+// HOST=0.0.0.0 opens it to the local network (e.g. to try the app on a phone).
+const HOST = process.env.HOST || "127.0.0.1";
+server.listen(PORT, HOST, () => console.log(`Profily ulic běží na http://localhost:${PORT}`));

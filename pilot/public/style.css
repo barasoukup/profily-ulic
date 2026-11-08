@@ -127,7 +127,7 @@ body[data-mode="navrh"] #profile-wrap { box-shadow: inset 4px 0 0 var(--accent),
 /* A wide street keeps a readable scale (app.js fitPhone) and scrolls sideways instead of shrinking. */
 #profile-wrap.scrolls { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 #profile-frame { position: relative; }
-.scroll-btn { position: absolute; top: 10px; width: 36px; height: 36px; padding: 0; border-radius: 50%;
+.scroll-btn { position: absolute; bottom: 14px; width: 36px; height: 36px; padding: 0; border-radius: 50%;
   font-size: 22px; line-height: 1; background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow); color: var(--text); z-index: 2; }
 .scroll-btn[hidden] { display: none; }
 .scroll-btn.l { left: 6px; } .scroll-btn.r { right: 6px; }
@@ -153,21 +153,20 @@ body[data-mode="porovnat"] #profile svg { max-height: max(200px, calc((100dvh - 
 #profile .seg.selected rect.ground { fill-opacity: 0.75; }
 #profile .handle { cursor: ew-resize; }
 #profile .handle:hover line { stroke: var(--accent); stroke-width: 3; }
-#profile .handle:hover .knob { stroke-width: 7; }
 #profile .seg:focus { outline: none; }
 #profile .seg:focus-visible rect.ground { stroke: var(--accent); stroke-width: 5; }
 #profile text { pointer-events: none; }
-.compare-title { font-weight: 600; margin: 4px 0; }
 
 /* Before the first cut: a short how-to with the tram. */
 .empty { display: flex; gap: 20px; align-items: center; padding: 24px 18px; }
 .empty img { flex: none; }
-.empty h2 { margin: 0 0 8px; font-size: 18px; letter-spacing: -0.01em; }
+.empty h1 { margin: 0 0 8px; font-size: 18px; letter-spacing: -0.01em; }
 .empty ol { margin: 0; padding-left: 20px; color: var(--muted); }
 .empty li { margin: 3px 0; }
 
 #status { font-size: 13px; color: var(--muted); }
 #status:empty { display: none; }
+#profile .handle { touch-action: none; }
 #status.error { color: var(--warn); background: var(--red-bg); border-radius: var(--radius); padding: 8px 12px; font-weight: 500; }
 #status.error::before { content: "⚠ "; }
 #status.ok { color: var(--dtm); }

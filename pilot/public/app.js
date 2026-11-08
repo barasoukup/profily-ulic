@@ -35,7 +35,8 @@ const status = (msg, kind = "") => {
 };
 
 // ---------- map ----------
-const map = L.map("map", { maxZoom: 21 }).setView([50.0817, 14.4176], 18);
+const map = L.map("map", { maxZoom: 21, zoomControl: false }).setView([50.0817, 14.4176], 18);
+L.control.zoom({ zoomInTitle: "Přiblížit", zoomOutTitle: "Oddálit" }).addTo(map);
 // Base maps. IPR services are drawn through ArcGIS export requests in Web Mercator, one per tile.
 // Each request renders a 512 px image covering four normal tiles (tileSize 512, zoomOffset -1):
 // a quarter of the requests, which IPR renders one by one (0.2–1.5 s each), and the browser's
@@ -91,6 +92,8 @@ const dtm = new ArcgisExport("", {
 });
 const mtvuLayer = L.layerGroup();
 L.control.layers(baseMaps, { "Technická mapa IPR": dtm, "Plochy MTVU u řezu": mtvuLayer }).addTo(map);
+document.querySelector(".leaflet-control-layers-toggle")?.setAttribute("title", "Podkladová mapa a vrstvy");
+document.querySelector(".leaflet-control-layers-toggle")?.setAttribute("aria-label", "Podkladová mapa a vrstvy");
 mtvuLayer.addTo(map);
 
 const MTVU_COLORS = { 701: "#5c5c59", 700: "#5c5c59", 702: "#c9a227", 703: "#b5574a", 704: "#7b7b78", 705: "#8c6d3f", 601: "#9b8cc4" };
@@ -106,6 +109,9 @@ let osmCache = null; // {frame, osm, way, wayPts}
 
 
 map.on("click", (e) => cutAt(e.latlng.lat, e.latlng.lng));
+sources.events.addEventListener("retry", (e) => {
+  if (document.body.classList.contains("loading")) status(`Server IPR neodpovídá, zkouším znovu (${e.detail.attempt}/${e.detail.of})…`);
+});
 window.cutAt = cutAt; // handy for testing from the console
 
 async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
@@ -307,7 +313,24 @@ function current() {
 }
 
 const MODE_LABEL = { stav: "Stav", navrh: "Návrh", porovnat: "Stav a návrh" };
+// render() rebuilds the drawing and the editor: keyboard focus inside them is put back on the
+// selected part, or on the editor's first control, instead of falling to the top of the page.
 function render() {
+  const a = document.activeElement;
+  const where = a?.closest?.("#profile") ? "profile" : a?.closest?.("#editor, #palette") ? "editor" : null;
+  draw();
+  if (!where) return;
+  const target = where === "profile"
+    ? $(`#profile g.seg[data-i="${state.selected ?? a.dataset?.i}"]`)
+    : $("#editor .ed-head h3, #editor select, #editor button");
+  if (target) {
+    if (!target.hasAttribute("tabindex") && !/^(BUTTON|SELECT|INPUT)$/.test(target.tagName)) target.setAttribute("tabindex", "-1");
+    target.focus({ preventScroll: true });
+  }
+}
+
+function draw() {
+  document.title = state.stav && state.cut?.name ? `${state.cut.name} – Profily ulic` : "Profily ulic";
   document.querySelectorAll(".seg-toggle button").forEach((b) => {
     b.classList.toggle("active", b.dataset.mode === state.mode);
     b.setAttribute("aria-pressed", String(b.dataset.mode === state.mode));
@@ -326,7 +349,7 @@ function render() {
   if (!state.stav) {
     box.innerHTML = `<div class="empty">
       <img src="praha/t3-inbound.svg" alt="" width="96" height="126">
-      <div><h2>Příčný profil pražské ulice</h2>
+      <div><h1 class="empty-title">Příčný profil pražské ulice</h1>
       <ol><li>Klikněte v mapě na ulici.</li><li>Profil od fasády k fasádě se sestaví z dat IPR a OSM.</li>
       <li>V režimu Návrh ho upravíte: táhněte hranice, klikněte na část, přidejte novou.</li></ol></div></div>`;
     $("#editor").replaceChildren();
@@ -353,6 +376,7 @@ function render() {
     selected: state.selected,
     onSelect: (i) => { state.selected = i; render(); },
     onChange: () => { edited(); render(); },
+    onRedraw: (b) => fitLabels(b),
   });
   renderEditor(p);
   if (state.mode === "navrh") renderPalette(p);
@@ -537,6 +561,17 @@ function fitLabels(box) {
       svg.setAttribute("viewBox", `${vx} ${vy} ${vw} ${bottom - vy}`);
       svg.querySelector("rect.bg")?.setAttribute("height", bottom - vy);
     }
+    // Drag handles: a finger-sized grab area (44 px) and a knob that stays visible on a phone.
+    for (const h of svg.querySelectorAll(".handle")) {
+      const grab = h.querySelector(".grab"), knob = h.querySelector("circle.knob"), arrow = h.querySelector("path.knob");
+      const bx = Number(knob.getAttribute("cx")), cy = Number(knob.getAttribute("cy"));
+      const w = Math.max(80, 44 * k), r = Math.max(18, 8 * k);
+      grab.setAttribute("x", bx - w / 2);
+      grab.setAttribute("width", w);
+      knob.setAttribute("r", r);
+      knob.setAttribute("stroke-width", r / 3.6);
+      arrow.setAttribute("transform", `translate(${bx} ${cy}) scale(${r / 18}) translate(${-bx} ${-cy})`);
+    }
     layoutTop(svg, k);
     // The title tag (Stav / Návrh in Porovnat) wraps its text at the new size.
     const title = svg.querySelector("text.lbl-title"), bg = svg.querySelector("rect.title-bg");
@@ -573,10 +608,17 @@ function layoutTop(svg, k) {
   bg?.setAttribute("y", y0);
   bg?.setAttribute("height", vy + vh - y0);
   const cy = y0 + pad + r;
+  // On a narrow street the total would run into A and B: they step aside, out over the edges.
+  const total = svg.querySelector("text.lbl-total.top-row");
+  const mid = Number(total?.getAttribute("x") || 0);
+  const half = total ? (total.textContent.length * 0.56 * parseFloat(total.style.fontSize || 14 * k)) / 2 : 0;
+  const ends = [Math.min(0, mid - half - 1.4 * r), Math.max(2 * mid, mid + half + 1.4 * r)];
+  let end = 0;
   for (const e of svg.querySelectorAll(".top-row")) {
-    if (e.tagName === "circle") { e.setAttribute("cy", cy); e.setAttribute("r", r); e.setAttribute("stroke-width", 1.5 * k); }
-    else if (e.classList.contains("lbl-total")) e.setAttribute("y", cy + 0.36 * parseFloat(e.style.fontSize || 14 * k));
-    else { e.style.fontSize = `${13 * k}px`; e.setAttribute("y", cy + 0.36 * 13 * k); }
+    if (e.tagName === "circle") {
+      e.setAttribute("cx", ends[end]); e.setAttribute("cy", cy); e.setAttribute("r", r); e.setAttribute("stroke-width", 1.5 * k);
+    } else if (e === total) e.setAttribute("y", cy + 0.36 * parseFloat(e.style.fontSize || 14 * k));
+    else { e.setAttribute("x", ends[end++]); e.style.fontSize = `${13 * k}px`; e.setAttribute("y", cy + 0.36 * 13 * k); }
   }
 }
 
@@ -603,8 +645,10 @@ const splitter = $("#splitter");
 const phoneLayout = () => matchMedia("(max-width: 760px)").matches;
 function applySplit(share) {
   const phone = phoneLayout();
-  const v = Math.max(phone ? 20 : 15, Math.min(phone ? 80 : 80, share));
+  const v = Math.max(phone ? 20 : 15, Math.min(80, share));
   document.querySelector("main").style.setProperty("--map-size", phone ? `${v}vh` : `${v}%`);
+  splitter.setAttribute("aria-orientation", phone ? "horizontal" : "vertical");
+  splitter.setAttribute("aria-valuenow", Math.round(v));
   map.invalidateSize();
   fitPhone();
   return v;
@@ -619,7 +663,9 @@ function saveSplit(v) {
     localStorage.setItem(SPLIT_KEY, JSON.stringify(all));
   } catch {}
 }
-if (savedSplit() !== undefined) applySplit(savedSplit());
+splitter.setAttribute("aria-valuemin", 15);
+splitter.setAttribute("aria-valuemax", 80);
+applySplit(savedSplit() ?? (phoneLayout() ? 55 : 50));
 splitter.addEventListener("pointerdown", (e) => {
   e.preventDefault();
   splitter.setPointerCapture(e.pointerId);
@@ -895,7 +941,8 @@ $("#btn-streetmix").onclick = async () => {
     if (win) win.location = url;
     // Always a clickable link too, in case the browser blocked the tab.
     const a = Object.assign(document.createElement("a"), { href: url, target: "_blank", rel: "noopener", textContent: url });
-    $("#status").replaceChildren("Ulice ve Streetmixu: ", a);
+    $("#status").replaceChildren("Ulice ve Streetmixu: ", a,
+      ". Je veřejná; při sdílení uveďte zdroje: data © IPR Praha a © přispěvatelé OpenStreetMap (ODbL), ilustrace Streetmix (CC BY-SA 4.0).");
     document.body.classList.remove("loading");
   } catch (err) {
     win?.close();

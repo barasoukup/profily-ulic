@@ -732,9 +732,11 @@ export function buildSvg(profile, opts = {}) {
 const minWidth = (seg) => (seg.type === "parkovani" && seg.orient === "kolme" ? 4.5 : 0.2);
 
 // Mount an editable profile with draggable boundaries.
-export function mountEditor(container, profile, { selected, onSelect, onChange }) {
+// onRedraw runs after each drawing (also while a handle is dragged), for the page to fit the labels.
+export function mountEditor(container, profile, { selected, onSelect, onChange, onRedraw }) {
   const draw = (view) => {
     container.replaceChildren(buildSvg(profile, { editable: true, selected, onSelect, view }));
+    onRedraw?.(container);
     return container.firstChild;
   };
   let svg = draw();
@@ -776,13 +778,16 @@ export function mountEditor(container, profile, { selected, onSelect, onChange }
       svg = draw(view);
       svg.addEventListener("pointerdown", startDrag);
     };
+    // A cancelled touch (the browser took the gesture) ends the drag like lifting the finger.
     const up = () => {
       window.removeEventListener("pointermove", move);
       window.removeEventListener("pointerup", up);
+      window.removeEventListener("pointercancel", up);
       onChange();
     };
     window.addEventListener("pointermove", move);
     window.addEventListener("pointerup", up);
+    window.addEventListener("pointercancel", up);
   }
 }
 

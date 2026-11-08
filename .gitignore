@@ -15,3 +15,6 @@ vendor/
 evaluation/data/
 evaluation/snapshot/
 .claude/
+
+# Local test page for building drawings (imports profile.js, never deployed)
+pilot/public/test-budovy.html

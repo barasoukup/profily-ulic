@@ -1,4 +1,4 @@
-# Návrhář profilů ulic – licence a podmínky zdrojů
+# Profily ulic – licence a podmínky zdrojů
 
 Stav k 6. 11. 2026. Nejde o právní posouzení. Jde o přehled licencí, které jsem ověřila v katalozích a dokumentaci zdrojů.
 

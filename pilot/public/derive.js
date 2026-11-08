@@ -1013,7 +1013,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   const tramTs = measured.length ? measured : cross.filter((c) => c.way.tags?.railway === "tram").map((c) => c.t);
   tramTs.measured = measured.length > 0;
 
-  if (!polys.length) return estimateFromOsm(way, axisT);
+  if (!polys.length) return estimateFromOsm(way);
 
   const classifyAll = (osmParking) => absorbParkingSlivers(mergeTiny(classify(center, normal, half, [
     ...osmPlatformPolygons(osm, frame),
@@ -1037,12 +1037,12 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     const near = open.sort((a, b) => Math.min(Math.abs(a.s - axisT), Math.abs(a.e - axisT)) - Math.min(Math.abs(b.s - axisT), Math.abs(b.e - axisT)))[0];
     i0 = runs.indexOf(near);
   }
-  if (i0 < 0) return { ...estimateFromOsm(way, axisT), runs };
+  if (i0 < 0) return { ...estimateFromOsm(way), runs };
   // The technical map has no street surface where OSM draws a street (a new road, a field, a
   // gap in MTVU): the profile falls back to OSM and says so.
   if (!MINOR.has(way.tags?.highway) && isUnpaved(runs[i0]?.code)) {
     const code = runs[i0]?.code;
-    return { ...estimateFromOsm(way, axisT), runs, notice: `Technická mapa tu nemá povrch ulice (${code === null || code === undefined ? "žádná plocha" : `plocha ${code} ${polys.find((p) => p.code === code)?.label || ""}`.trim()}), profil je odhad z OSM.` };
+    return { ...estimateFromOsm(way), runs, notice: `Technická mapa tu nemá povrch ulice (${code === null || code === undefined ? "žádná plocha" : `plocha ${code} ${polys.find((p) => p.code === code)?.label || ""}`.trim()}), profil je odhad z OSM.` };
   }
   // Dual carriageway: the reach counts from the middle between the two carriageways, and green
   // between them is the median, not the end of the street.
@@ -1106,7 +1106,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     e: Math.min(clip(r, ref + reachL, true), fenceL),
   })).filter((r) => r.e - r.s > 0.05), cross, lineCrossings(lines.filter((l) => GUARD_RAILS.has(l.code)).map((l) => l.pts), center, normal, half));
   // A profile cut short by the user ends in open space, not at the building behind.
-  if (!kept.length) return { ...estimateFromOsm(way, axisT), runs };
+  if (!kept.length) return { ...estimateFromOsm(way), runs };
   if (kept[0].s > runs[lo].s + 0.05) edges.right = "volno";
   if (kept.at(-1).e < runs[hi].e - 0.05) edges.left = "volno";
   if (Math.abs(kept[0].s - fenceR) < 0.06) edges.right = "plot";

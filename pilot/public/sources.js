@@ -2,18 +2,10 @@
 // /api endpoints, which cache the answers. On static hosting (STATIC = true) the browser asks the
 // services itself: IPR ArcGIS and Streetmix allow cross-origin requests, and the OSM extract is
 // served as the same tiles the server reads (data/osm-tiles/<ix>_<iy>.json).
-// The queries mirror the ones in server.mjs; change both together.
+// Layers, fields and the reading of answers are shared with server.mjs (queries.js).
 import { STATIC } from "./config.js";
 
-const IPR = "https://gs-pub.praha.eu/arcgis/rest/services";
-const MTVU = `${IPR}/dtmp/dtmp/MapServer/15/query`;
-const TM_LINES = `${IPR}/dtmp/dtmp/MapServer/10/query`;
-const PARKOVANI = `${IPR}/dop/zony_placeneho_stani/MapServer`;
-const PODLAZNOST = "https://mp.iprpraha.cz/arcgis/rest/services/Hosted/URK_CUR_URK_SS_PODLAZNOST_P/FeatureServer/0/query";
-// Line features of the technical map: tram track axes (55010), barriers and slopes (see server.mjs).
-const LINE_CODES = [55010, 71522, 71540, 61530, 61209, 61210, 71210, 81210, 91210, 61422, 71422, 81422, 81214, 42105, 42107];
-// Parking sections (layer 3) and special stalls: ZTP (5, 6), deliveries (7), special (8).
-const PARKING_LAYERS = { 3: "useky", 5: "ztp", 6: "ztp", 7: "zasobovani", 8: "specialni" };
+import { MTVU, MTVU_FIELDS, TM_LINES, LINE_WHERE, PARKOVANI, PARKING_LAYERS, parkingFields, PODLAZNOST, PODLAZNOST_FIELDS, podlaznostInfo } from "./queries.js";
 const TILE = 0.005; // degrees, as in tools/build_osm_tiles.mjs
 const TIMEOUT = 25000;
 // IPR's ArcGIS queues requests and under load answers "503 Wait timeout for the request exceeded"
@@ -29,13 +21,17 @@ async function getOnce(url) {
   return json;
 }
 
+// Retries are announced (the app shows them in its status line). A request that timed out is not
+// repeated: IPR is overloaded then, and another 25 s of waiting would not help.
+export const events = new EventTarget();
 async function getJSON(url) {
   for (let i = 0; ; i++) {
     try {
       return await getOnce(url);
     } catch (err) {
-      if (i >= RETRY_DELAYS.length) throw err;
+      if (i >= RETRY_DELAYS.length || err.name === "TimeoutError" || err.name === "AbortError") throw err;
       console.warn("opakuji dotaz", url.slice(0, 80), err.message);
+      events.dispatchEvent(new CustomEvent("retry", { detail: { attempt: i + 2, of: RETRY_DELAYS.length + 1 } }));
       await new Promise((res) => setTimeout(res, RETRY_DELAYS[i]));
     }
   }
@@ -47,6 +43,17 @@ const envelope = (bbox) => ({
 });
 const query = (base, params) => getJSON(`${base}?${new URLSearchParams(params)}`);
 
+// Tiles stay in memory for the session: the next cut nearby (or a dragged cut) needs no download.
+// A tile that failed to load is asked for again next time.
+const tiles = new Map();
+const tile = (n) => {
+  if (!tiles.has(n)) {
+    tiles.set(n, fetch(`data/osm-tiles/${n}.json`).then((r) => (r.ok ? r.json() : r.status === 404 ? [] : Promise.reject(new Error(`dlaždice OSM ${r.status}`))))
+      .catch((err) => { tiles.delete(n); throw err; }));
+  }
+  return tiles.get(n);
+};
+
 // OSM elements around a point, merged from the tiles it touches (as the server's localOsm()).
 async function osmTiles(lat, lon, radius) {
   const dLat = radius / 110574;
@@ -57,7 +64,7 @@ async function osmTiles(lat, lon, radius) {
   }
   const seen = new Set();
   const elements = [];
-  for (const els of await Promise.all(names.map((n) => fetch(`data/osm-tiles/${n}.json`).then((r) => (r.ok ? r.json() : []), () => [])))) {
+  for (const els of await Promise.all(names.map(tile))) {
     for (const el of els) {
       const key = el.id + ":" + el.geometry[0].lat + ":" + el.geometry[0].lon;
       if (seen.has(key)) continue;
@@ -71,20 +78,25 @@ async function osmTiles(lat, lon, radius) {
 export const osm = (lat, lon, r) => (STATIC ? osmTiles(lat, lon, r) : getJSON(`/api/osm?lat=${lat}&lon=${lon}&r=${r}`));
 
 export const mtvu = (bbox) => (STATIC
-  ? query(MTVU, { ...envelope(bbox), outFields: "CTVUK_KOD,CTVUK_POPIS" })
+  ? query(MTVU, { ...envelope(bbox), outFields: MTVU_FIELDS })
   : getJSON(`/api/mtvu?bbox=${bbox}`));
 
 export const linie = (bbox) => (STATIC
-  ? query(TM_LINES, { ...envelope(bbox), where: `CTMTP_KOD IN (${LINE_CODES.join(",")})`, outFields: "CTMTP_KOD" })
+  ? query(TM_LINES, { ...envelope(bbox), where: LINE_WHERE, outFields: "CTMTP_KOD" })
   : getJSON(`/api/linie?bbox=${bbox}`));
 
+// The special stalls (5–8) lie inside paid zones: asked for only where the sections (3) found
+// something, as in server.mjs.
 export async function parkovani(bbox) {
   if (!STATIC) return getJSON(`/api/parkovani?bbox=${bbox}`);
-  const parts = await Promise.all(Object.entries(PARKING_LAYERS).map(async ([layer, kind]) => {
-    const json = await query(`${PARKOVANI}/${layer}/query`, { ...envelope(bbox), outFields: layer === "3" ? "ZPS_ID,TYPZONY,PS_ZPS" : "ZPS_ID" });
+  const layer = async (n, kind) => {
+    const json = await query(`${PARKOVANI}/${n}/query`, { ...envelope(bbox), outFields: parkingFields(n) });
     return (json.features || []).map((f) => ({ ...f, attributes: { ...f.attributes, KIND: kind } }));
-  }));
-  return { features: parts.flat() };
+  };
+  const sections = await layer("3", PARKING_LAYERS[3]);
+  if (!sections.length) return { features: [] };
+  const rest = await Promise.all(Object.entries(PARKING_LAYERS).filter(([n]) => n !== "3").map(([n, kind]) => layer(n, kind)));
+  return { features: [...sections, ...rest.flat()] };
 }
 
 // Is the point within ZPS_RADIUS of a paid parking zone? The zones' bounding boxes are a file made
@@ -104,12 +116,9 @@ export async function podlaznost(lat, lon) {
   if (!STATIC) return getJSON(`/api/podlaznost?lat=${lat}&lon=${lon}`);
   const json = await query(PODLAZNOST, {
     geometry: `${lon},${lat}`, geometryType: "esriGeometryPoint", inSR: "4326", spatialRel: "esriSpatialRelIntersects",
-    outFields: "pocet_podlazi,ustup_stres,podlaz_celk,strecha,typ,SHAPE__Area", returnGeometry: "false", f: "json",
+    outFields: PODLAZNOST_FIELDS, returnGeometry: "false", f: "json",
   });
-  const a = json.features?.[0]?.attributes;
-  // SHAPE__Area is in Web Mercator square metres: scaled back to the ground by cos² of the latitude.
-  const area = a?.SHAPE__Area ? Math.round(a.SHAPE__Area * Math.cos((lat * Math.PI) / 180) ** 2) : undefined;
-  return a ? { cornice: a.pocet_podlazi, roof: a.ustup_stres || 0, total: a.podlaz_celk, roofType: a.strecha, kind: a.typ, area } : {};
+  return podlaznostInfo(json, lat);
 }
 
 // Creates an anonymous public street on streetmix.net; returns {url, id}.

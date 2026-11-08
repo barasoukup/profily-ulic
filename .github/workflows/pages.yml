@@ -21,7 +21,19 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # Syntax of every script and the unit tests (tests/): a failing check stops the deploy.
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm test
+
   build:
+    needs: test
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
@@ -73,9 +85,25 @@ jobs:
           fi
       - name: Build OSM tiles
         run: tools/build_osm_data.sh data/osm/Prag.osm.pbf site-tiles
+      # The zone file of the last good deploy is kept in the Actions cache: when IPR does not answer
+      # now, that one goes out; with neither, the deploy stops (without it many more cuts would be
+      # guesses).
+      - id: zps-cache
+        uses: actions/cache@v4
+        with:
+          path: data/zps-last.json
+          key: zps-${{ github.run_id }}
+          restore-keys: zps-
       - name: Paid parking zones (once per deploy, not on every click)
-        continue-on-error: true
-        run: node tools/build_zps.mjs site-zps.json
+        run: |
+          if node tools/build_zps.mjs site-zps.json; then
+            mkdir -p data && cp site-zps.json data/zps-last.json
+          elif [ -f data/zps-last.json ]; then
+            echo "::warning::IPR did not answer, using the zone file of an earlier deploy"
+            cp data/zps-last.json site-zps.json
+          else
+            echo "::error::no zone file (data/zps.json) and none cached"; exit 1
+          fi
       - name: Assemble the site
         run: |
           mkdir -p _site/data
@@ -83,7 +111,7 @@ jobs:
           sed -i 's/export const STATIC = false;/export const STATIC = true;/' _site/config.js
           grep -q "STATIC = true" _site/config.js
           mv site-tiles _site/data/osm-tiles
-          [ -f site-zps.json ] && mv site-zps.json _site/data/zps.json || echo "::warning::no zps.json, the app falls back to TSK sections"
+          mv site-zps.json _site/data/zps.json
           cp LICENCE-A-ZDROJE.md _site/data/LICENCE-A-ZDROJE.md
           cat > _site/data/README.txt <<'EOF'
           data/osm-tiles: dlaždice odvozené z OpenStreetMap (výřez BBBike Praha).

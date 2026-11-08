@@ -107,5 +107,7 @@ export function toStreetmix(profile, name) {
     segments,
     editCount: 0,
   };
-  return { name, data: { street, plugins: {} }, clientUpdatedAt: new Date().toISOString() };
+  // The street is public and derived from IPR and OSM data: their credit goes with it in the name
+  // (Streetmix has no description field).
+  return { name: `${name} (data © IPR Praha, © přispěvatelé OSM)`, data: { street, plugins: {} }, clientUpdatedAt: new Date().toISOString() };
 }
