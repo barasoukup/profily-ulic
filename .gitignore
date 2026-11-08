@@ -18,3 +18,5 @@ evaluation/snapshot/
 
 # Local test page for building drawings (imports profile.js, never deployed)
 pilot/public/test-budovy.html
+# OSM-derived table (ODbL), rebuilt by evaluation/budovy-typ/labels.mjs
+evaluation/budovy-typ/labels.tsv

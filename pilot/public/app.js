@@ -1,6 +1,6 @@
 import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
-import { loadSprites, buildSvg, mountEditor, svgString, totalWidth, setArt, getArt, buildingStyle, BUILDING_STYLES } from "./profile.js";
+import { loadSprites, buildSvg, mountEditor, svgString, totalWidth, setArt, getArt, buildingStyle, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE } from "./profile.js";
 import * as sources from "./sources.js";
 import { cleanProfile, cleanCut } from "./validate.js";
 import { checkRules } from "./rules.js";
@@ -804,7 +804,10 @@ function renderEditor(p) {
       const sel = document.createElement("select");
       // A building can be given its look by hand; "budova" alone lets the app guess it.
       const current = (p.edges?.[side] || "volno") + (p.edges?.[`${side}Style`] ? ":" + p.edges[`${side}Style`] : "");
-      const guess = BUILDING_STYLES[buildingStyle(p.edges?.[`${side}Info`])];
+      const info = p.edges?.[`${side}Info`];
+      const style = buildingStyle(info);
+      // A flat-roofed office is drawn as an office, not as a panel house.
+      const guess = style === "plocha" && OFFICE_LIKE.has(info?.type) ? "kancelářská budova" : BUILDING_STYLES[style];
       const kinds = [["budova", `Budova (odhad: ${guess})`], ...Object.entries(BUILDING_STYLES).map(([k, t]) => [`budova:${k}`, `Budova – ${t}`]),
         ["stavba", "Drobná stavba"], ["zahrada", "Zahrada, louka"], ["zelen", "Zeleň, louka"], ["voda", "Voda"], ["parkoviste", "Parkoviště"], ["plot", "Plot"], ["volno", "Volný prostor"]];
       for (const [k, t] of kinds) sel.add(new Option(t, k, false, current === k));

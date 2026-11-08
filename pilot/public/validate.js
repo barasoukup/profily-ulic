@@ -26,6 +26,9 @@ export function cleanProfile(p, what = "profil") {
     const info = p.edges[side];
     if (!info || typeof info !== "object") { delete p.edges[side]; continue; }
     for (const k of INFO_NUMBERS) if (k in info && !num(info[k], 0, 100000)) delete info[k];
+    // The block's shape (derive.js blockShape) decides panel house or tenement: all four numbers or none.
+    const b = info.block;
+    if (b !== undefined && !(b && ["length", "width", "fill", "parts"].every((k) => num(b[k], 0, 100000)))) delete info.block;
   }
   return p;
 }
