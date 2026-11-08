@@ -1048,7 +1048,7 @@ function renderEditor(p) {
 // Parts to add, grouped as people look for them.
 const PALETTE_GROUPS = [
   ["Pro pěší", ["chodnik", "chodnik_kola", "stezka_sdilena", "nastupiste"]],
-  ["Kola", ["cyklopruh", "ochranny_pruh", "pruh_piktokoridor", "cyklostezka"]],
+  ["Pro cyklisty", ["cyklopruh", "ochranny_pruh", "pruh_piktokoridor", "cyklostezka"]],
   ["Auta a autobusy", ["pruh", "parkovani", "bus", "bus_cyklo", "obsluzna", "krajnice"]],
   ["Tramvaj", ["tramvaj_v_pruhu", "tramvaj"]],
   ["Zeleň a ostatní", ["zelen", "stromorad", "predzahradka", "delici", "plocha", "zahradka", "voda", "zed"]],

@@ -4,7 +4,7 @@
 export const TYPES = {
   chodnik: { label: "Chodník", color: "#d6d1c4", raised: true, sprite: "people" },
   chodnik_kola: { label: "Chodník s cyklisty", color: "#d9c9c0", raised: true, sprite: "people", withBike: true },
-  stezka_sdilena: { label: "Stezka pro chodce a kola", color: "#d4b8a8", raised: true, sprite: "people", withBike: true },
+  stezka_sdilena: { label: "Stezka pro chodce a cyklisty", color: "#d4b8a8", raised: true, sprite: "people", withBike: true },
   predzahradka: { label: "Předzahrádka", color: "#a7c66b", raised: true, sprite: "bush" },
   zelen: { label: "Zeleň", color: "#8fbf55", raised: true, sprite: "bush" },
   stromorad: { label: "Stromořadí", color: "#7fb04a", raised: true, sprite: "tree" },
@@ -18,7 +18,7 @@ export const TYPES = {
   obsluzna: { label: "Přístupová cesta", color: "#8a8780", sprite: "car" },
   krajnice: { label: "Krajnice", color: "#77756f" },
   bus: { label: "Pruh BUS", color: "#9c4038", sprite: "bus", directional: true },
-  bus_cyklo: { label: "Pruh BUS a kola", color: "#9c4038", sprite: "bus", directional: true, bike: true },
+  bus_cyklo: { label: "Pruh BUS a cyklisty", color: "#9c4038", sprite: "bus", directional: true, bike: true },
   tramvaj_v_pruhu: { label: "Tramvaj v pruhu", color: "#736a55", sprite: "streetcar", tracks: true, directional: true },
   tramvaj: { label: "Tramvajový pás", color: "#8c8672", sprite: "streetcar", tracks: true, directional: true },
   delici: { label: "Dělicí pás", color: "#b4b2a9", raised: true },

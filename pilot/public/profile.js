@@ -944,7 +944,7 @@ export function buildSvg(profile, opts = {}) {
       const label = s.type === "parkovani" && s.use ? `Parkování ${PARKING_USE[s.use]}`
         : s.type === "parkovani" && s.orient ? `Parkování ${ORIENT_LABEL[s.orient]}`
         : t.label + (t.directional && s.dir ? (forward ? " ↑" : " ↓") : s.type === "pruh" ? " ↑↓" : "") +
-          (contra ? ` kola ${s.bikeDir === "backward" ? "↓" : "↑"}` : "");
+          (contra ? ` cyklisté ${s.bikeDir === "backward" ? "↓" : "↑"}` : "");
       const name = el("text", { class: "lbl-t", "data-row": 1, "data-w": w, "data-full": label, x: cx, y: GROUND + 215, "text-anchor": "middle", "font-size": 28, fill: "#4f4e49" }, g);
       const lines = twoLines(label);
       if (label.length * 0.56 * 28 > w && lines) {

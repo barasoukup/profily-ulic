@@ -93,7 +93,7 @@ Výška se kreslí 3,5 m na podlaží (přesná výška jen z OSM `height`), st�
 3. Vozovka se podle tagů OSM rozdělí na parkovací pruhy, cyklopruhy a jízdní pruhy:
    `cycleway:*=lane` → cyklopruh 1,5 m, `soft_lane` → ochranný pruh 1,25 m, `shared_lane` → piktokoridor
    v krajním pruhu; cyklisté v protisměru (`oneway:bicycle=no` u jednosměrky, `opposite_lane`, `opposite`,
-   `cycleway:*:oneway=-1`) dostanou opačný směr než auta a popisek „kola v protisměru“; `parking:*=lane|street_side` → parkovací pruh (pokud tam už není parkoviště z MTVU
+   `cycleway:*:oneway=-1`) dostanou opačný směr než auta a popisek „cyklisté v protisměru“; `parking:*=lane|street_side` → parkovací pruh (pokud tam už není parkoviště z MTVU
    nebo plocha z OSM); `lanes:forward`/`lanes:backward` určí počty pruhů v každém směru a
    `turn:lanes(:forward|:backward)` řazení (vlevo, rovně, vpravo). Směr pruhů se bere z nejbližší osy OSM,
    takže sedí i na směrově rozdělených silnicích. Kde vozovkou vedou

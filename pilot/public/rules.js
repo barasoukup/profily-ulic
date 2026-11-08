@@ -16,7 +16,7 @@ function limits(s, segs, i) {
       return { min: 2.5, zaklad: 3, why: "jízdní pruh: základ 3 m, ve zklidněné ulici 2,5 m" };
     case "bus": case "bus_cyklo":
       return s.type === "bus_cyklo"
-        ? { min: 4.25, zaklad: 4.25, why: "pruh pro autobus a kola: 4,25–4,5 m" }
+        ? { min: 4.25, zaklad: 4.25, why: "pruh pro autobus a cyklisty: 4,25–4,5 m" }
         : { min: 3, zaklad: 3.25, why: "pruh pro autobusy: 3,25 m" };
     case "cyklopruh": {
       if (parking) {

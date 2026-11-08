@@ -5,7 +5,7 @@
 // lane with sharrows) the part counts for walking or cars alone.
 export const SHARE_GROUPS = [
   { key: "pesi", label: "Pěší", color: "#cbb89a" },
-  { key: "kola", label: "Kola", color: "#c0604f" },
+  { key: "kola", label: "Cyklisté", color: "#c0604f" },
   { key: "mhd", label: "MHD", color: "#d8413f" },
   { key: "auta", label: "Auta v pohybu", color: "#5c5c59" },
   { key: "parkovani", label: "Parkování", color: "#9b9b97" },
