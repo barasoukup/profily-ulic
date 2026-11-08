@@ -27,17 +27,24 @@ const PRAHA = {
   "transit-shelter-01-left": "transit-shelter-left", "transit-shelter-01-right": "transit-shelter-right",
   "transit-shelter-tram-left": "transit-shelter-tram-left", "transit-shelter-tram-right": "transit-shelter-tram-right",
 };
-// Prague buildings are stacked from modules: ground floor, typical floor (repeated), roof or attic.
-const BUILDING_FILES = ["centrum-parter", "centrum-parter-obchod", "centrum-patro", "centrum-strecha", "centrum-podkrovi",
-  "sidliste-parter", "sidliste-parter-vchod", "sidliste-patro", "sidliste-patro-lodzie", "sidliste-strecha",
-  "rd-parter", "rd-patro", "rd-strecha", "rd-podkrovi"].map((m) => `budova-${m}`);
-export const BUILDING_STYLES = { centrum: "činžák", "centrum-obchod": "činžák s obchody", sidliste: "panelák",
-  "sidliste-lodzie": "panelák s lodžiemi", rd: "rodinný dům" };
-const HOUSE_TYPES = new Set(["house", "detached", "semidetached_house", "terrace", "bungalow", "villa", "farm"]);
-const INNER_KM = 3; // within this from the centre, buildings are tenements unless very tall
-const ESTATE_KM = 5; // beyond this from the centre, 3+ floors are more likely a panel house than a tenement
-const DEFAULT_FLOORS = { centrum: 5, sidliste: 8, rd: 2 };
-const SEAM = 3; // modules overlap a little so no hairline shows between them
+// Prague buildings are drawn from the side (we look along the street): the outline tells the type.
+export const BUILDING_STYLES = { sikma: "dům se šikmou střechou", plocha: "dům s plochou střechou", nizky: "nízký dům", hala: "hala" };
+const OLD_STYLES = { centrum: "sikma", "centrum-obchod": "sikma", sidliste: "plocha", "sidliste-lodzie": "plocha", rd: "nizky" };
+const HOUSE_TYPES = new Set(["house", "detached", "semidetached_house", "terrace", "bungalow", "villa", "farm", "garage", "garages", "shed"]);
+const HALL_TYPES = new Set(["retail", "supermarket", "industrial", "manufacture", "warehouse", "hangar", "sports_hall", "service", "transportation"]);
+const FLAT_RESIDENTIAL = new Set(["apartments", "residential", "dormitory"]); // flat-roofed homes get balconies
+// IPR "Podlažnosti" roof shape (domain URK_STRECHA): 1 pitched, 3 flat, 4 atypical (mix), 5 dome, 99 unknown.
+const IPR_ROOF = { 1: "sikma", 3: "plocha", 5: "sikma" };
+const INNER_KM = 3; // within this from the centre an unknown building is taken for a pitched-roof tenement
+const STOREY = { sikma: 360, plocha: 290, nizky: 300, hala: 700 }; // typical storey (cm); a hall is one tall storey
+const DEFAULT_FLOORS = { sikma: 5, plocha: 8, nizky: 1, hala: 1 };
+const PITCH = Math.tan((40 * Math.PI) / 180);
+const BUILDING_COLORS = {
+  sikma: { wall: "#e8dcc2", line: "#d8caa9", trim: "#f3ead6", roof: "#b8502e", roofDark: "#9c4227", mansard: "#4a5560" },
+  plocha: { wall: "#e9e5dc", line: "#d6d0c4", trim: "#d9d3c5", roof: "#c9c3b4", accent: "#e1b23f", sokl: "#8a867d" },
+  nizky: { wall: "#ecdcb0", line: "#dccb9c", trim: "#f3e8c8", roof: "#b8502e", roofDark: "#9c4227", sokl: "#a59c88" },
+  hala: { wall: "#c9ced2", line: "#b7bdc2", trim: "#aeb4b9", roof: "#9aa1a7", glass: "#8fa6b6", canopy: "#5f666c" },
+};
 const sprites = {};
 let art = "praha"; // "praha" or "streetmix"
 export const setArt = (a) => { art = a; };
@@ -53,7 +60,7 @@ async function loadSprite(key, path) {
 export async function loadSprites() {
   await Promise.all([
     ...SPRITE_FILES.map((name) => loadSprite(name, `streetmix/${name}.svg`)),
-    ...[...new Set(Object.values(PRAHA)), ...BUILDING_FILES].map((file) => loadSprite(`praha/${file}`, `praha/${file}.svg`)),
+    ...[...new Set(Object.values(PRAHA))].map((file) => loadSprite(`praha/${file}`, `praha/${file}.svg`)),
   ]);
 }
 
@@ -145,62 +152,123 @@ export function buildingLevels(info) {
   return { n: info.levels, cornice: info.cornice, roof: info.roof };
 }
 
-// Building style: set by hand, else guessed from the OSM building type, floors and distance from the centre.
+// Building style: set by hand, else from the OSM building type, the IPR roof type and the number of floors.
 export function buildingStyle(info, chosen) {
-  if (chosen) return chosen;
+  const set = OLD_STYLES[chosen] || chosen;
+  if (BUILDING_STYLES[set]) return set;
   const h = buildingHeight(info);
   const n = info?.levels || (h ? Math.round(h / FLOOR) : null);
-  if (HOUSE_TYPES.has(info?.type) || (n && n <= 2)) return "rd";
-  // Inner city (Vinohrady, Žižkov, Karlín…): tall blocks are still mostly tenements.
-  if (info?.km <= INNER_KM) return n >= 12 ? "sidliste" : "centrum";
-  if (n >= 9 || (n >= 3 && info?.km > ESTATE_KM)) return "sidliste";
-  if (!n && info?.km > ESTATE_KM) return "rd";
-  return "centrum";
+  if (HALL_TYPES.has(info?.type) && !(n > 4)) return "hala";
+  if (HOUSE_TYPES.has(info?.type) || (n && n <= 2)) return "nizky";
+  if (IPR_ROOF[info?.roofType]) return IPR_ROOF[info.roofType];
+  return info?.km > INNER_KM ? "plocha" : "sikma";
 }
 
-// Modules of a Prague building from the bottom up, each {s: sprite, h: drawn height}; roof drawn at its own size.
-function buildingPlan(info, style) {
-  const base = style.split("-")[0];
-  const m = (k) => sprites[`praha/budova-${k}`];
-  const parter = m(style === "centrum-obchod" ? "centrum-parter-obchod" : base === "sidliste" ? "sidliste-parter" : `${base}-parter`);
-  const patro = m(style === "sidliste-lodzie" ? "sidliste-patro-lodzie" : `${base}-patro`);
-  const attic = m(`${base}-podkrovi`);
+// Side outline of a Prague building: floors, storey height, roof floors and the height of each part (cm).
+function buildingForm(info, style) {
   const lv = buildingLevels(info);
   const h = buildingHeight(info);
-  const n = Math.max(1, lv?.n || (h ? Math.round(h / FLOOR) : DEFAULT_FLOORS[base]));
-  const roofRows = attic && lv?.roof && lv.cornice ? Math.min(lv.roof, n - 1) : 0;
-  const body = [parter, ...Array(n - 1 - roofRows).fill(patro)];
-  const atticH = roofRows ? attic.h + (roofRows - 1) * patro.h : 0;
-  const natural = body.reduce((a, s) => a + s.h, 0) + atticH;
-  // Known height: the floors stretch to it (within reason); the roof keeps its size.
-  const k = h ? Math.min(1.4, Math.max(0.7, (h * 100) / natural)) : 1;
-  const parts = body.map((s) => ({ s, h: s.h * k }));
-  if (roofRows) parts.push({ s: attic, h: atticH * k });
-  else parts.push({ s: m(`${base}-strecha`), h: m(`${base}-strecha`).h });
-  return parts;
+  const n = style === "hala" ? 1 : Math.max(1, lv?.n || (h ? Math.round(h / FLOOR) : DEFAULT_FLOORS[style]));
+  const roofRows = style !== "hala" && lv?.roof && lv.cornice ? Math.min(lv.roof, n - 1) : 0;
+  const S = STOREY[style];
+  // A known height sets the storey (within reason); pitched roofs sit above it.
+  const storey = h ? Math.min(S * 1.5, Math.max(S * 0.7, (h * 100) / n)) : S;
+  const body = (n - roofRows) * storey;
+  const flat = style === "plocha" || style === "hala" || (style === "nizky" && IPR_ROOF[info?.roofType] === "plocha");
+  const sawtooth = style === "hala" && ["industrial", "manufacture"].includes(info?.type);
+  const roofH = flat ? roofRows * storey + (sawtooth ? 230 : 80) : roofRows ? roofRows * storey + 140 : EDGE * PITCH;
+  return { n, roofRows, storey, body, roofH, flat, chimney: flat ? 0 : 70 };
 }
 
 export function edgeHeight(kind, info, style) {
   if (kind !== "budova") return 0;
   if (art !== "praha") return (buildingHeight(info) || 0) * 100;
-  return buildingPlan(info, buildingStyle(info, style)).reduce((a, p) => a + p.h, 0);
+  const f = buildingForm(info, buildingStyle(info, style));
+  return f.body + f.roofH + f.chimney;
 }
 
-function drawPrahaBuilding(g, x, surface, info, style) {
-  const parts = buildingPlan(info, buildingStyle(info, style));
-  let y = surface;
-  const placed = parts.map((p) => ({ ...p, y: (y -= p.h) }));
-  // Top first, so each lower module covers the small overlap of the one above.
-  for (const p of placed.reverse()) {
-    el("image", { href: p.s.uri, x, y: p.y, width: EDGE, height: p.h + SEAM, preserveAspectRatio: "none" }, g);
+// d = distance from the street facade into the building (negative: towards the street), z = height above the surface.
+function drawPrahaBuilding(g, x, side, surface, info, chosen) {
+  const style = buildingStyle(info, chosen);
+  const f = buildingForm(info, style);
+  const c = BUILDING_COLORS[style];
+  const X = (d) => (side === "left" ? x + EDGE - d : x + d);
+  const poly = (pts, fill) => el("path", { d: "M" + pts.map(([d, z]) => `${X(d)} ${surface - z}`).join(" L") + " Z", fill }, g);
+  const box = (d0, d1, z0, z1, fill) => poly([[d0, z0], [d1, z0], [d1, z1], [d0, z1]], fill);
+  const top = f.body;
+
+  // Roof first, so the walls and cornice overlap its foot.
+  if (style === "sikma" && f.roofRows) {
+    // Mansard: a steep lower slope (with a dormer), a shallow upper one.
+    const rise = f.roofRows * f.storey;
+    poly([[0, top], [rise * 0.3, top + rise], [EDGE, top + rise + (EDGE - rise * 0.3) * 0.35], [EDGE, top]], c.mansard);
+    const zd = top + rise * 0.25;
+    box(rise * 0.06, rise * 0.3 + 30, zd, zd + 150, c.trim); // dormer cheek
+    poly([[rise * 0.06 - 8, zd + 150], [rise * 0.3 + 40, zd + 150], [rise * 0.3 + 40, zd + 175]], c.mansard);
+  } else if (!f.flat) {
+    // Pitched roof with the eaves over the street; an attic floor gets a dormer.
+    const eave = style === "nizky" ? 50 : 30;
+    poly([[-eave, top - 15], [EDGE, top + (EDGE + eave) * PITCH - 15], [EDGE, top]], c.roof);
+    poly([[-eave, top - 15], [-eave, top - 3], [EDGE, top + (EDGE + eave) * PITCH - 3], [EDGE, top + (EDGE + eave) * PITCH - 15]], c.roofDark);
+    if (f.roofRows) {
+      const z = top + 90 * PITCH;
+      box(70, 230, z - 20, z + 150, c.wall);
+      poly([[60, z + 150], [240, z + 150], [240, z + 150 + 40]], c.roofDark);
+    }
+  } else {
+    // Flat roof: set-back floors above the cornice, then a parapet.
+    const back = f.roofRows ? 220 : 0;
+    if (f.roofRows) box(back, EDGE, top, top + f.roofRows * f.storey, c.wall);
+    const zr = top + f.roofRows * f.storey;
+    box(back - 5, EDGE, zr, zr + 80, c.trim);
+    if (style === "hala" && ["industrial", "manufacture"].includes(info?.type)) {
+      // Saw-tooth roof lights of a factory.
+      for (const d0 of [0, 200]) {
+        poly([[d0 + 20, zr + 80], [d0 + 20, zr + 230], [d0 + 200, zr + 80]], c.roof);
+        box(d0 + 20, d0 + 30, zr + 80, zr + 230, c.glass);
+      }
+    }
   }
-  return y;
+  if (!f.flat) {
+    const z = top + (EDGE - 120) * PITCH * (f.roofRows && style === "sikma" ? 0.35 : 1);
+    const zc = style === "sikma" && f.roofRows ? top + f.roofRows * f.storey + (EDGE - 120 - f.roofRows * f.storey * 0.3) * 0.35 : z;
+    box(EDGE - 145, EDGE - 100, zc - 40, zc + f.chimney, c.trim);
+    box(EDGE - 150, EDGE - 95, zc + f.chimney - 8, zc + f.chimney, c.line);
+  }
+
+  // The side wall, with faint floor lines so the floors can be counted.
+  box(0, EDGE, 0, top, c.wall);
+  for (let k = 1; k < f.n - f.roofRows; k++) box(0, EDGE, k * f.storey - 2, k * f.storey + 2, c.line);
+
+  box(0, 8, 0, top, c.line); // the street facade, seen edge-on
+  // What sticks out towards the street.
+  if (style === "sikma") {
+    box(-6, 0, 0, 60, c.line); // plinth
+    box(-12, 0, f.storey - 14, f.storey, c.trim); // string course over the ground floor
+    box(-35, 20, top - 45, top, c.trim); // main cornice
+    box(-35, 20, top - 45, top - 38, c.line);
+  } else if (style === "plocha") {
+    box(-6, 0, 0, 80, c.sokl);
+    if (FLAT_RESIDENTIAL.has(info?.type) || !info?.type) {
+      // Balconies or loggia parapets on every floor above the ground floor.
+      for (let k = 1; k < f.n - f.roofRows; k++) {
+        box(-120, 0, k * f.storey, k * f.storey + 16, c.sokl);
+        box(-120, -6, k * f.storey + 16, k * f.storey + 105, c.accent);
+      }
+    }
+  } else if (style === "nizky") {
+    box(-6, 0, 0, 60, c.sokl);
+  } else if (style === "hala") {
+    box(-4, 0, 0, top, c.trim);
+    if (["retail", "supermarket"].includes(info?.type)) box(-250, 0, 330, 360, c.canopy); // entrance canopy
+  }
+  return surface - (top + f.roofH + f.chimney);
 }
 
 function drawEdge(svg, x, kind, side, surface, info, style) {
   const g = el("g", {}, svg);
   if (kind === "budova" && art === "praha") {
-    const top = drawPrahaBuilding(g, x, surface, info, style);
+    const top = drawPrahaBuilding(g, x, side, surface, info, style);
     const lv = buildingLevels(info);
     const h = buildingHeight(info);
     if (lv || h) {

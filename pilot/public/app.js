@@ -162,7 +162,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
       try {
         const [lon, lat] = info.point;
         const p = await sources.podlaznost(lat, lon);
-        if (p.cornice) Object.assign(info, { cornice: p.cornice, roof: p.roof, levels: p.total || p.cornice + p.roof, src: "ipr" });
+        if (p.cornice) Object.assign(info, { cornice: p.cornice, roof: p.roof, levels: p.total || p.cornice + p.roof, roofType: p.roofType, src: "ipr" });
       } catch {}
       delete info.point;
     }));
