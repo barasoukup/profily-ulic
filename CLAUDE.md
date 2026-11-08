@@ -72,6 +72,10 @@ a exportovat (PNG, SVG, JSON, Streetmix). Lehká samostatná aplikace s ilustrac
 - Rešerše: podobné nástroje https://claude.ai/artifact/F2fMQV88XSJJQiHX2YxLb6 (3DStreet pro 3D),
   rozšíření na celou ČR https://claude.ai/artifact/4U8qC5mKb5sTwLnvfYdeWn (proveditelné, začít Brnem).
 
+- Pražské ilustrace: tramvaj T3, autobus SOR NB 12 v klasických bílo-červených barvách, mobiliář podle
+  Olgoj Chorchoj, domy z boku ve 4 typech. Auta zůstávají ze Streetmixu (Bára rozhodla 8. 11. 2026).
+
 ## Licence
-- Kód MIT. Ilustrace Streetmix CC BY-SA 4.0 (s uvedením autora), kód Streetmixu AGPL-3.0 (jen kopie
+- Kód MIT. Ilustrace Streetmix CC BY-SA 4.0 (s uvedením autora), pražské ilustrace (`pilot/public/praha/`)
+  © Bára Soukupová, CC BY-SA 4.0, kód Streetmixu AGPL-3.0 (jen kopie
   ve `vendor/`, nepublikuje se). OSM ODbL. Podrobnosti v `LICENCE-A-ZDROJE.md`.
