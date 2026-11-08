@@ -180,6 +180,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     state.stav = { segments: result.segments, edges: result.edges };
     if (!state.navrhEdited) state.navrh = structuredClone(state.stav);
     state.selected = null;
+    state.fixing = false;
     resetHistory();
     drawCut(ends);
     showCutInfo();
@@ -316,6 +317,9 @@ function current() {
 }
 
 const MODE_LABEL = { stav: "Stav", navrh: "Návrh", porovnat: "Stav a návrh" };
+// Stav is for looking at the street as it is; its data can be corrected only after "Opravit data"
+// (state.fixing), so nothing changes by accident. Návrh is always editable.
+const canEdit = () => state.mode === "navrh" || (state.mode === "stav" && state.fixing);
 // render() rebuilds the drawing, the editor and the palette: keyboard focus inside them goes back
 // to the same place (the selected part, or the control at the same position, so "+ + +" keeps
 // working) instead of falling to the top of the page.
@@ -350,10 +354,16 @@ function draw() {
   $("#profile-head").hidden = !state.stav;
   $("#map-help").hidden = !state.stav;
   $("#stav-cta").hidden = !state.stav || state.mode !== "stav";
+  $("#stav-cta").classList.toggle("fixing", !!state.fixing);
+  $("#stav-text").textContent = state.fixing
+    ? "Opravujete data stavu: táhněte úchyty nebo klikněte na část. Opravené části se označí jako upravené ručně."
+    : "Profil ukazuje ulici, jak je dnes (z dat IPR a OSM). Když data nesedí, opravte je; změny navrhujte v Návrhu.";
+  $("#btn-fix").textContent = state.fixing ? "Hotovo" : "Opravit data";
+  $("#btn-to-navrh").hidden = !!state.fixing;
   if (state.stav) {
     $("#profile-sub").textContent = `Celkem ${fmtM(totalWidth(state.mode === "navrh" ? state.navrh : state.stav))}`;
-    $("#mode-badge").textContent = MODE_LABEL[state.mode];
-    $("#mode-badge").className = `badge badge-${state.mode}`;
+    $("#mode-badge").textContent = state.mode === "stav" && state.fixing ? "Stav · oprava dat" : MODE_LABEL[state.mode];
+    $("#mode-badge").className = `badge badge-${state.mode}${state.mode === "stav" && state.fixing ? " badge-fixing" : ""}`;
   }
   if (!state.stav) {
     box.innerHTML = `<div class="empty">
@@ -382,6 +392,7 @@ function draw() {
   }
   const p = current();
   mountEditor(box, p, {
+    editable: canEdit(),
     selected: state.selected,
     onSelect: (i) => { state.selected = i; render(); },
     onChange: () => { edited(); render(); },
@@ -769,11 +780,24 @@ function edited() {
   showUndo();
 }
 
+// Stav without "Opravit data": a click on a part only tells what it is and where it comes from.
+function renderInfo(ed, s) {
+  if (!s) return;
+  const head = Object.assign(document.createElement("div"), { className: "ed-head" });
+  head.append(Object.assign(document.createElement("h3"), { textContent: `${TYPES[s.type]?.label || s.type}, ${fmtM(s.width)}` }),
+    Object.assign(document.createElement("span"), { className: "muted", textContent: `Zdroj: ${SOURCES[s.source]?.label || s.source || "–"}` }));
+  const close = Object.assign(document.createElement("button"), { className: "close", textContent: "×", onclick: () => { state.selected = null; render(); } });
+  close.setAttribute("aria-label", "Zavřít");
+  head.append(close);
+  ed.append(head);
+}
+
 function renderEditor(p) {
   const ed = $("#editor");
   ed.replaceChildren();
   const i = state.selected;
   const s = p.segments[i];
+  if (!canEdit()) return renderInfo(ed, s);
   if (s === undefined) {
     ed.innerHTML = `<div class="ed-head"><h3>Okraje ulice</h3><span class="muted">Klikněte na část profilu a upravte ji. Šířku změníte tažením modrých úchytů mezi částmi.</span></div>`;
     for (const [side, text] of [["left", "Levý okraj"], ["right", "Pravý okraj"]]) {
@@ -927,6 +951,7 @@ function renderPalette(p) {
 document.querySelectorAll(".seg-toggle button").forEach((b) => b.addEventListener("click", () => {
   state.mode = b.dataset.mode;
   state.selected = null;
+  state.fixing = false;
   // Until the proposal is edited, it follows the current (possibly corrected) existing state.
   if (state.stav && !state.navrhEdited) state.navrh = structuredClone(state.stav);
   render();
@@ -947,6 +972,7 @@ $("#btn-art").addEventListener("click", () => {
 });
 
 $("#btn-to-navrh").onclick = () => document.querySelector('.seg-toggle button[data-mode="navrh"]').click();
+$("#btn-fix").onclick = () => { state.fixing = !state.fixing; state.selected = null; render(); };
 
 // The header menus close after a choice or a click elsewhere.
 document.addEventListener("click", (e) => {

@@ -620,7 +620,7 @@ export function buildSvg(profile, opts = {}) {
   if (opts.credits) {
     // Exported pictures carry the attribution their sources require (CC BY-SA for the illustrations).
     el("text", { x: vx + 30, y: bottom - 25, "font-size": 24, fill: "#6b6a65" }, svg).textContent =
-      (art === "praha" ? "Ilustrace © Streetmix (CC BY-SA 4.0) a Profily ulic" : "Ilustrace © Streetmix (CC BY-SA 4.0)") + " · data © IPR Praha a TSK hl. m. Prahy (podlažnosti a parkování CC BY 4.0) · © přispěvatelé OpenStreetMap (ODbL) · obrázek CC BY-SA 4.0";
+      (art === "praha" ? "Ilustrace © Streetmix (CC BY-SA 4.0) a Bára Soukupová (MIT)" : "Ilustrace © Streetmix (CC BY-SA 4.0)") + " · data © IPR Praha a TSK hl. m. Prahy (podlažnosti a parkování CC BY 4.0) · © přispěvatelé OpenStreetMap (ODbL) · obrázek CC BY-SA 4.0";
   }
 
   const firstRaised = segs[0] && TYPES[segs[0].type]?.raised;
@@ -737,9 +737,9 @@ const minWidth = (seg) => (seg.type === "parkovani" && seg.orient === "kolme" ? 
 
 // Mount an editable profile with draggable boundaries.
 // onRedraw runs after each drawing (also while a handle is dragged), for the page to fit the labels.
-export function mountEditor(container, profile, { selected, onSelect, onChange, onRedraw }) {
+export function mountEditor(container, profile, { editable = true, selected, onSelect, onChange, onRedraw }) {
   const draw = (view) => {
-    container.replaceChildren(buildSvg(profile, { editable: true, selected, onSelect, view }));
+    container.replaceChildren(buildSvg(profile, { editable, selected, onSelect, view }));
     onRedraw?.(container);
     return container.firstChild;
   };

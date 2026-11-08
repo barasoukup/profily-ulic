@@ -119,6 +119,9 @@ body.resizing { user-select: none; cursor: col-resize; }
 body[data-mode="navrh"] #profile-wrap { box-shadow: inset 4px 0 0 var(--accent), var(--shadow); }
 #stav-cta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 12px 14px; border-radius: var(--radius); background: var(--panel); border: 1px dashed var(--line-strong); color: var(--muted); }
 #stav-cta[hidden] { display: none; }
+#stav-cta.fixing { border: 1px solid var(--user); background: #f1effb; color: var(--text); }
+#stav-cta button[hidden] { display: none; }
+.badge-fixing { background: #ece9f8; color: var(--user); }
 #stav-cta span { flex: 1; min-width: 220px; }
 .diff { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 14px; margin-top: 12px; }
 .diff h3 { margin: 0 0 4px; font-size: 13px; }
