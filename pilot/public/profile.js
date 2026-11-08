@@ -413,9 +413,9 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     // street with coloured parapets, wide windows in the panel bays, an entrance under a slab.
     // Sizes of a Czech panel house (cm; T06B, VVÚ-ETA, PS-69): storey 280, a raised ground floor on
     // a 100 cm plinth, windows 200 × 150 on a 90 cm parapet set deep in the insulation, loggias
-    // 120 deep at the street corner, the entrance two steps up, panel joints showing through.
+    // 120 deep at the street corner, the entrance at street level, panel joints showing through.
     const LOG = 120; // depth of the loggias from the street facade
-    const STEP = 32; // the entrance landing above the pavement
+    const STEP = 0; // the entrance is level with the pavement (Bára)
     const joint = tint(wall, 0.76);
     // A storey stretched by the building's known height (often 3.3–3.5 m from IPR) gets a taller
     // window on a higher parapet, so the wall between the rows does not gape.
@@ -440,11 +440,11 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     // Cellar window in the plinth, above the pavement.
     box(200, 290, 30, 70, "#d9d6cf");
     box(206, 284, 36, 64, GLASS);
-    // Entrance: two steps up to an anodised aluminium portal: a door leaf with a vertical handle,
+    // Entrance: level with the pavement, an anodised aluminium portal: a door leaf with a vertical handle,
     // a fixed side panel, a top light, a kick plate; a thin concrete canopy over it. It stands in
     // the column of the loggias, inside the facade.
     const ALU = "#bcbab4", door0 = 16, door1 = LOG - 8, doorTop = STEP + 210, lightTop = Math.min(STEP + 270, f.ground - 16);
-    for (let i = 0; i < 2; i++) box(-30 + i * 15, door1 + 8, i * 16, (i + 1) * 16, tint(plinth[1], 1.2 - i * 0.05)); // steps
+    box(door0 - 6, door1 + 6, 0, 6, tint(plinth[1], 1.15)); // threshold
     box(door0 - 10, door1 + 10, STEP, lightTop + 10, tint(wall, 0.86)); // reveal around the portal
     box(door0, door1, STEP, lightTop, ALU);
     const panes = [[door0 + 8, door0 + 68], [door0 + 76, door1 - 8]]; // door leaf, side panel
