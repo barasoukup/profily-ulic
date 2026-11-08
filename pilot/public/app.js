@@ -781,8 +781,8 @@ function renderEditor(p) {
       // A building can be given its look by hand; "budova" alone lets the app guess it.
       const current = (p.edges?.[side] || "volno") + (p.edges?.[`${side}Style`] ? ":" + p.edges[`${side}Style`] : "");
       const guess = BUILDING_STYLES[buildingStyle(p.edges?.[`${side}Info`])];
-      const kinds = [["budova", `budova (odhad: ${guess})`], ...Object.entries(BUILDING_STYLES).map(([k, t]) => [`budova:${k}`, `budova – ${t}`]),
-        ["stavba", "drobná stavba"], ["zahrada", "zahrada, louka"], ["zelen", "zeleň, louka"], ["voda", "voda"], ["parkoviste", "parkoviště"], ["plot", "plot"], ["volno", "volný prostor"]];
+      const kinds = [["budova", `Budova (odhad: ${guess})`], ...Object.entries(BUILDING_STYLES).map(([k, t]) => [`budova:${k}`, `Budova – ${t}`]),
+        ["stavba", "Drobná stavba"], ["zahrada", "Zahrada, louka"], ["zelen", "Zeleň, louka"], ["voda", "Voda"], ["parkoviste", "Parkoviště"], ["plot", "Plot"], ["volno", "Volný prostor"]];
       for (const [k, t] of kinds) sel.add(new Option(t, k, false, current === k));
       sel.onchange = () => {
         const [kind, style] = sel.value.split(":");

@@ -593,7 +593,7 @@ function drawEdge(svg, x, kind, side, surface, info, style) {
     el("rect", { x, y: surface, width: EDGE, height: 60 + GROUND - surface, fill: "#e6e3da" }, g);
   }
   el("text", { class: "lbl-t", "data-row": 1, "data-w": EDGE, x: x + EDGE / 2, y: GROUND + 215, "text-anchor": "middle", "font-size": 30, fill: "#6b6a65" },
-    g).textContent = { budova: "budova", stavba: "drobná stavba", voda: "vodní tok / plocha", zahrada: "zahrada, louka (mimo ulici)", zelen: "zeleň (mimo ulici)", parkoviste: "parkoviště (mimo ulici)", plot: "za plotem (mimo ulici)" }[kind] || "";
+    g).textContent = { budova: "Budova", stavba: "Drobná stavba", voda: "Vodní tok / plocha", zahrada: "Zahrada, louka (mimo ulici)", zelen: "Zeleň (mimo ulici)", parkoviste: "Parkoviště (mimo ulici)", plot: "Za plotem (mimo ulici)" }[kind] || "";
   return g;
 }
 
