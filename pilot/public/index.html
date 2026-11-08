@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Profily ulic</title>
   <meta name="description" content="Příčné profily pražských ulic od fasády k fasádě z technické mapy IPR a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://gs-pub.praha.eu https://tiles.arcgis.com https://ags.cuzk.gov.cz https://tile.openstreetmap.org https://unpkg.com; connect-src 'self' https://gs-pub.praha.eu https://mp.iprpraha.cz https://streetmix.net; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://gs-pub.praha.eu https://tiles.arcgis.com https://ags.cuzk.gov.cz https://tile.openstreetmap.org https://unpkg.com; connect-src 'self' https://gs-pub.praha.eu https://mp.iprpraha.cz; object-src 'none'; base-uri 'self'; form-action 'none'">
   <meta name="theme-color" content="#d8413f">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Profily ulic">
@@ -38,7 +38,6 @@
       <div class="menu-list">
         <button id="btn-export-png">Obrázek PNG</button>
         <button id="btn-export-svg">Vektor SVG</button>
-        <button id="btn-streetmix" title="Vytvoří veřejnou anonymní ulici na streetmix.net a otevře ji">Do Streetmixu ↗</button>
       </div>
     </details>
     <details class="menu">
@@ -70,10 +69,12 @@
       <div id="status" class="muted" role="status" aria-live="polite"></div>
       <div id="profile-frame">
         <div id="profile-wrap"><div id="profile"></div></div>
+      </div>
+      <p id="scroll-hint" class="muted" hidden>
+        <span>Široká ulice: profil posunete do stran šipkami nebo tažením.</span>
         <button class="scroll-btn l" data-dir="-1" aria-label="Posunout profil doleva" hidden>‹</button>
         <button class="scroll-btn r" data-dir="1" aria-label="Posunout profil doprava" hidden>›</button>
-      </div>
-      <p id="scroll-hint" class="muted" hidden>Široká ulice: profil posunete do stran (šipky nebo tažením).</p>
+      </p>
       <div id="stav-cta" hidden>
         <span>Profil ukazuje ulici, jak je dnes. Opravit data můžete i tady (klikněte na část), změny navrhujte v Návrhu.</span>
         <button id="btn-to-navrh" class="primary">Navrhnout změnu →</button>

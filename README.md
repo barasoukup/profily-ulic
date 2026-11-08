@@ -3,7 +3,7 @@
 Příčné profily pražských ulic na jedno kliknutí. Klikněte v mapě na ulici a aplikace z technické
 mapy IPR Praha (šířky ploch) a z OpenStreetMap (pruhy, tramvaje, cyklopruhy, parkování, stromy,
 mobiliář) sestaví profil od fasády k fasádě. Profil pak můžete upravit, porovnat stav s návrhem,
-vyexportovat jako SVG nebo PNG, uložit jako JSON nebo otevřít ve [Streetmixu](https://streetmix.net).
+vyexportovat jako SVG nebo PNG a uložit jako JSON.
 
 **Aplikace běží na https://barasoukup.github.io/profily-ulic/**
 
@@ -59,7 +59,7 @@ v [evaluation/ZPRAVA.md](evaluation/ZPRAVA.md).
 - `pilot/server.mjs` – lokální server s cache dotazů na IPR
 - `pilot/public/queries.js` – co se ptá IPR (vrstvy, pole), společné pro server i web
 - `pilot/navrhy-ilustraci/` – nepoužívané varianty pražských ilustrací (nenasazují se)
-- `tests/` – testy pravidel, exportu do Streetmixu, dotazů a odhadu profilu z OSM
+- `tests/` – testy pravidel, převodu do Streetmixu, dotazů a odhadu profilu z OSM
 - `tools/` – výroba dlaždic OSM a pomocné skripty
 - `evaluation/` – vyhodnocení na 100 náhodných řezech nad ortofotem
 - `.github/workflows/pages.yml` – nasazení na GitHub Pages (dlaždice OSM se vyrobí při nasazení)
@@ -69,8 +69,9 @@ v [evaluation/ZPRAVA.md](evaluation/ZPRAVA.md).
 - Kód: MIT, © 2026 Bára Soukupová ([LICENSE](LICENSE)).
 - Ilustrace: © [Streetmix](https://github.com/streetmix/streetmix), CC BY-SA 4.0
   (`pilot/public/streetmix/LICENSE`).
-- Technická mapa, MTVU, mapové podklady a ortofoto: © IPR Praha (CC BY 4.0); úseky parkování © TSK
-  hl. m. Prahy; ortofoto © ČÚZK.
+- Technická mapa, MTVU a mapové podklady: © IPR Praha (povinně zveřejňovaná data); podlažnosti
+  © IPR Praha a úseky parkování © TSK hl. m. Prahy (CC BY 4.0); ortofoto © ČÚZK (CC BY 4.0).
+- Pražské ilustrace (`pilot/public/praha/`): MIT jako kód.
 - Data OpenStreetMap: © přispěvatelé OpenStreetMap, ODbL 1.0. Dlaždice OSM na webu jsou z nich
   odvozená databáze pod ODbL.
 

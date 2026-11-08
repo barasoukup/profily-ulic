@@ -1,6 +1,6 @@
 // Data sources of the app. With the local server (config STATIC = false) every call goes to its
 // /api endpoints, which cache the answers. On static hosting (STATIC = true) the browser asks the
-// services itself: IPR ArcGIS and Streetmix allow cross-origin requests, and the OSM extract is
+// services itself: IPR ArcGIS allows cross-origin requests, and the OSM extract is
 // served as the same tiles the server reads (data/osm-tiles/<ix>_<iy>.json).
 // Layers, fields and the reading of answers are shared with server.mjs (queries.js).
 import { STATIC } from "./config.js";
@@ -43,14 +43,20 @@ const envelope = (bbox) => ({
 });
 const query = (base, params) => getJSON(`${base}?${new URLSearchParams(params)}`);
 
-// Tiles stay in memory for the session: the next cut nearby (or a dragged cut) needs no download.
-// A tile that failed to load is asked for again next time.
+// The last TILES_KEPT tiles stay in memory: the next cut nearby (or a dragged cut) needs no
+// download. A tile that failed to load is asked for again next time.
+const TILES_KEPT = 24;
 const tiles = new Map();
 const tile = (n) => {
-  if (!tiles.has(n)) {
-    tiles.set(n, fetch(`data/osm-tiles/${n}.json`).then((r) => (r.ok ? r.json() : r.status === 404 ? [] : Promise.reject(new Error(`dlaždice OSM ${r.status}`))))
-      .catch((err) => { tiles.delete(n); throw err; }));
+  if (tiles.has(n)) {
+    const p = tiles.get(n);
+    tiles.delete(n); // most recently used goes to the end
+    tiles.set(n, p);
+    return p;
   }
+  if (tiles.size >= TILES_KEPT) tiles.delete(tiles.keys().next().value);
+  tiles.set(n, fetch(`data/osm-tiles/${n}.json`).then((r) => (r.ok ? r.json() : r.status === 404 ? [] : Promise.reject(new Error(`dlaždice OSM ${r.status}`))))
+    .catch((err) => { tiles.delete(n); throw err; }));
   return tiles.get(n);
 };
 
@@ -119,15 +125,4 @@ export async function podlaznost(lat, lon) {
     outFields: PODLAZNOST_FIELDS, returnGeometry: "false", f: "json",
   });
   return podlaznostInfo(json, lat);
-}
-
-// Creates an anonymous public street on streetmix.net; returns {url, id}.
-export async function streetmix(street) {
-  const r = await fetch(STATIC ? "https://streetmix.net/api/v1/streets" : "/api/streetmix", {
-    method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(street),
-  });
-  const text = await r.text();
-  if (!r.ok) throw new Error(`Streetmix ${r.status}: ${text.slice(0, 200)}`);
-  const json = JSON.parse(text);
-  return STATIC ? { url: `https://streetmix.net/-/${json.namespacedId}`, id: json.id } : json;
 }

@@ -620,7 +620,7 @@ export function buildSvg(profile, opts = {}) {
   if (opts.credits) {
     // Exported pictures carry the attribution their sources require (CC BY-SA for the illustrations).
     el("text", { x: vx + 30, y: bottom - 25, "font-size": 24, fill: "#6b6a65" }, svg).textContent =
-      (art === "praha" ? "Ilustrace © Streetmix (CC BY-SA 4.0) a Profily ulic" : "Ilustrace © Streetmix (CC BY-SA 4.0)") + " · data © IPR Praha, TSK hl. m. Prahy (CC BY 4.0) · © přispěvatelé OpenStreetMap (ODbL) · obrázek CC BY-SA 4.0";
+      (art === "praha" ? "Ilustrace © Streetmix (CC BY-SA 4.0) a Profily ulic" : "Ilustrace © Streetmix (CC BY-SA 4.0)") + " · data © IPR Praha a TSK hl. m. Prahy (podlažnosti a parkování CC BY 4.0) · © přispěvatelé OpenStreetMap (ODbL) · obrázek CC BY-SA 4.0";
   }
 
   const firstRaised = segs[0] && TYPES[segs[0].type]?.raised;
@@ -704,14 +704,18 @@ export function buildSvg(profile, opts = {}) {
   el("text", { class: "lbl-total top-row", x: total / 2, y: y0 + 70, "text-anchor": "middle", "font-size": 46, "font-weight": 600, fill: "#1f1f1d" }, svg).textContent =
     `Celkem ${fmt(total / 100)}`;
   // Ends of the cut, lettered as on the map (A = left end, B = right end), above everything else.
-  for (const [letter, x] of [["A", 0], ["B", total]]) {
+  // On a narrow street A and B step aside so the total does not run into them (the page redoes
+  // this at screen size in layoutTop, an export keeps it).
+  const half = (`Celkem ${fmt(total / 100)}`.length * 0.56 * 46) / 2;
+  const ends = [Math.min(0, total / 2 - half - 70), Math.max(total, total / 2 + half + 70)];
+  for (const [letter, x] of [["A", ends[0]], ["B", ends[1]]]) {
     el("circle", { class: "top-row", cx: x, cy: y0 + 70, r: 52, fill: "#d8413f", stroke: "#fff", "stroke-width": 8 }, svg);
     el("text", { class: "top-row", x, y: y0 + 94, "text-anchor": "middle", "font-size": 68, "font-weight": 700, fill: "#fff" }, svg).textContent = letter;
   }
 
   if (opts.title) {
     // A title tag in the top left corner, over the building there.
-    el("rect", { class: "title-bg", x: vx + 16, y: y0 + 34, width: 60 + opts.title.length * 26, height: 80, rx: 16, fill: "#1d1d1b" }, svg);
+    el("rect", { class: "title-bg", x: vx + 16, y: y0 + 34, width: 60 + opts.title.length * 22, height: 80, rx: 16, fill: "#1d1d1b" }, svg);
     el("text", { class: "lbl-title", x: vx + 46, y: y0 + 90, "font-size": 46, "font-weight": 700, fill: "#fff" }, svg).textContent = opts.title;
   }
 

@@ -1,8 +1,8 @@
 import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
 import { loadSprites, buildSvg, mountEditor, svgString, totalWidth, setArt, getArt, buildingStyle, BUILDING_STYLES } from "./profile.js";
-import { toStreetmix } from "./streetmix.js";
 import * as sources from "./sources.js";
+import { cleanProfile, cleanCut } from "./validate.js";
 import { checkRules } from "./rules.js";
 
 const HALF = 40; // half-length of the cut used for reading the data (m)
@@ -313,16 +313,22 @@ function current() {
 }
 
 const MODE_LABEL = { stav: "Stav", navrh: "Návrh", porovnat: "Stav a návrh" };
-// render() rebuilds the drawing and the editor: keyboard focus inside them is put back on the
-// selected part, or on the editor's first control, instead of falling to the top of the page.
+// render() rebuilds the drawing, the editor and the palette: keyboard focus inside them goes back
+// to the same place (the selected part, or the control at the same position, so "+ + +" keeps
+// working) instead of falling to the top of the page.
+const FOCUSABLE = "button, select, input, label.btn, [tabindex]";
 function render() {
   const a = document.activeElement;
-  const where = a?.closest?.("#profile") ? "profile" : a?.closest?.("#editor, #palette") ? "editor" : null;
+  const box = a?.closest?.("#profile, #editor, #palette");
+  const index = box && box.id !== "profile" ? [...box.querySelectorAll(FOCUSABLE)].indexOf(a) : -1;
   draw();
-  if (!where) return;
-  const target = where === "profile"
-    ? $(`#profile g.seg[data-i="${state.selected ?? a.dataset?.i}"]`)
-    : $("#editor .ed-head h3, #editor select, #editor button");
+  if (!box) return;
+  let target;
+  if (box.id === "profile") target = $(`#profile g.seg[data-i="${state.selected ?? a.dataset?.i}"]`);
+  else {
+    const all = [...$(`#${box.id}`).querySelectorAll(FOCUSABLE)];
+    target = all[Math.min(index, all.length - 1)] || $("#editor .ed-head h3");
+  }
   if (target) {
     if (!target.hasAttribute("tabindex") && !/^(BUTTON|SELECT|INPUT)$/.test(target.tagName)) target.setAttribute("tabindex", "-1");
     target.focus({ preventScroll: true });
@@ -928,28 +934,6 @@ $("#btn-export-png").onclick = async () => {
   canvas.toBlob((b) => download(`${fileBase()}-${state.mode}.png`, b), "image/png");
 };
 
-$("#btn-streetmix").onclick = async () => {
-  if (!state.stav) return;
-  const p = state.mode === "navrh" ? state.navrh : state.stav;
-  const name = `${state.cut?.name || "Ulice"}${state.mode === "navrh" ? " – návrh" : ""}`;
-  // A new tab opened right away, still inside the click: popup blockers (Safari) allow only that.
-  // The street is created afterwards and the tab is sent to it.
-  const win = window.open("about:blank", "_blank");
-  status("Vytvářím ulici ve Streetmixu…");
-  try {
-    const { url } = await sources.streetmix(toStreetmix(p, name));
-    if (win) win.location = url;
-    // Always a clickable link too, in case the browser blocked the tab.
-    const a = Object.assign(document.createElement("a"), { href: url, target: "_blank", rel: "noopener", textContent: url });
-    $("#status").replaceChildren("Ulice ve Streetmixu: ", a,
-      ". Je veřejná; při sdílení uveďte zdroje: data © IPR Praha a © přispěvatelé OpenStreetMap (ODbL), ilustrace Streetmix (CC BY-SA 4.0).");
-    document.body.classList.remove("loading");
-  } catch (err) {
-    win?.close();
-    status("Streetmix ulici nevytvořil: " + err.message, "error");
-  }
-};
-
 $("#btn-save").onclick = () => {
   if (!state.stav) return;
   const data = { app: "streetdesign-pilot", version: 1, cut: state.cut, stav: state.stav, navrh: state.navrh, navrhEdited: state.navrhEdited };
@@ -967,26 +951,10 @@ $("#file-load").onchange = async (e) => {
   e.target.value = "";
 };
 
-// A profile from storage or a file is checked part by part: unknown types become "nezname", a part
-// without a usable width is an error (a broken file must not break the drawing).
-function cleanProfile(p, what) {
-  if (!Array.isArray(p?.segments) || !p.segments.length) throw new Error(`${what}: chybí části profilu`);
-  for (const s of p.segments) {
-    if (typeof s !== "object" || !s) throw new Error(`${what}: vadná část`);
-    if (!(s.type in TYPES)) s.type = "nezname";
-    if (typeof s.width !== "number" || !(s.width > 0 && s.width < 200)) throw new Error(`${what}: vadná šířka části`);
-    if (s.source && !(s.source in SOURCES)) s.source = "user";
-  }
-  p.edges = typeof p.edges === "object" && p.edges ? p.edges : {};
-  return p;
-}
-
 function restore(data) {
   cleanProfile(data?.stav, "stav");
   if (data.navrh) cleanProfile(data.navrh, "návrh");
-  const c = data.cut;
-  if (c && !(Number.isFinite(c.lat) && Number.isFinite(c.lon) && Number.isFinite(c.bearing))) data.cut = null;
-  else if (c) c.name = String(c.name || "Ulice");
+  data.cut = cleanCut(data.cut);
   Object.assign(state, { cut: data.cut, stav: data.stav, navrh: data.navrh || structuredClone(data.stav), navrhEdited: !!data.navrhEdited, selected: null });
   if (state.cut) {
     map.setView([state.cut.lat, state.cut.lon], 19);
@@ -1008,6 +976,7 @@ function save() {
 }
 
 render(); // the intro shows at once; the illustrations follow
+window.profilyReady = true; // errors.js: from now on a failure is not a failed start
 await loadSprites();
 const linked = location.hash.startsWith("#rez=") ? parseCut(location.hash) : null;
 try {
@@ -1021,4 +990,12 @@ if (linked) {
   map.setView([linked.lat, linked.lon], 19);
   cutAt(linked.lat, linked.lon, false, linked.bearing, linked.reach);
 }
-window.profilyReady = true; // errors.js: from now on a failure is not a failed start
+
+// A cut link pasted into the address bar of an open tab (the app's own updates use replaceState,
+// which fires no hashchange).
+addEventListener("hashchange", () => {
+  const c = location.hash.startsWith("#rez=") ? parseCut(location.hash) : null;
+  if (!c) return;
+  map.setView([c.lat, c.lon], 19);
+  cutAt(c.lat, c.lon, false, c.bearing, c.reach);
+});

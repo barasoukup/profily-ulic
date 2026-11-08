@@ -74,6 +74,9 @@ function boundary(kind, info) {
   }
 }
 
+// Not offered in the app for now: streetmix.net does not accept requests from other websites
+// (no CORS, github.com/streetmix/streetmix/issues/3828), so the button would fail on GitHub Pages.
+// The conversion stays (and is tested) for when it does, or for a small proxy.
 export function toStreetmix(profile, name) {
   const segs = profile.segments;
   const total = segs.reduce((a, s) => a + s.width, 0);
@@ -109,5 +112,5 @@ export function toStreetmix(profile, name) {
   };
   // The street is public and derived from IPR and OSM data: their credit goes with it in the name
   // (Streetmix has no description field).
-  return { name: `${name} (data © IPR Praha, © přispěvatelé OSM)`, data: { street, plugins: {} }, clientUpdatedAt: new Date().toISOString() };
+  return { name: `${name} (data © IPR Praha, © přispěvatelé OpenStreetMap)`, data: { street, plugins: {} }, clientUpdatedAt: new Date().toISOString() };
 }

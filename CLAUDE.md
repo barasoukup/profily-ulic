@@ -10,7 +10,7 @@ nepřenáší, platí jen to, co je tady a v souborech repozitáře.
 ## Cíl
 Nástroj na příčné profily ulic (podobný Streetmixu) propojený s mapou: kliknutí na ulici v Praze
 sestaví profil od fasády k fasádě z dat IPR a OSM, profil jde upravit (Stav / Návrh / porovnání)
-a exportovat (PNG, SVG, JSON, Streetmix). Lehká samostatná aplikace s ilustracemi Streetmixu.
+a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetmixu.
 
 ## Kde to běží
 - Živě: https://barasoukup.github.io/profily-ulic/
@@ -63,8 +63,10 @@ a exportovat (PNG, SVG, JSON, Streetmix). Lehká samostatná aplikace s ilustrac
   název ulice, kurzor křížek. Výchozí podklad „Mapa IPR“ (rychlý rastr z ArcGIS Online).
 
 ## Stav a otevřené věci
-- Export do Streetmixu na Pages nefunguje (API Streetmixu nemá CORS). Dotaz:
+- Tlačítko „Do Streetmixu“ je vyndané (Bára 8. 11. 2026), protože na Pages nefunguje (API Streetmixu
+  nemá CORS). Převod `streetmix.js` zůstává s testy. Dotaz:
   https://github.com/streetmix/streetmix/issues/3828. Proxy přes Cloudflare je odložená do odpovědi.
+- Nasazení zůstává na GitHub Pages; před nasazením běží `npm test`.
 - Naposledy nasazeno (6. 11. 2026): chodník s povolenými cyklisty, stezky C9/C10, varování podle
   pravidel v Návrhu, soubor ZPS.
 - Nápady, Bára zatím nevybrala: zóny (obytná/pěší/30) a rychlosti po pruzích z OSM, povrch,

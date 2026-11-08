@@ -21,5 +21,5 @@ test("veřejná ulice ve Streetmixu nese uvedení zdrojů", () => {
   const { name } = toStreetmix(profile, "Testovací");
   assert.match(name, /^Testovací /);
   assert.match(name, /IPR Praha/);
-  assert.match(name, /OSM/);
+  assert.match(name, /OpenStreetMap/);
 });

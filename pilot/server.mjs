@@ -198,24 +198,6 @@ const server = http.createServer(async (req, res) => {
       res.writeHead(200, { "Content-Type": TYPES[".json"] });
       return res.end(body);
     }
-    if (url.pathname === "/api/streetmix" && req.method === "POST") {
-      // Create an anonymous street on streetmix.net and return its address.
-      let body = "";
-      for await (const chunk of req) {
-        body += chunk;
-        if (body.length > 1e6) throw new Error("Streetmix: ulice je moc velká");
-      }
-      const r = await upstream("https://streetmix.net/api/v1/streets", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body,
-      });
-      const text = await r.text();
-      if (!r.ok) throw new Error(`Streetmix ${r.status}: ${text.slice(0, 200)}`);
-      const street = JSON.parse(text);
-      res.writeHead(200, { "Content-Type": TYPES[".json"] });
-      return res.end(JSON.stringify({ url: `https://streetmix.net/-/${street.namespacedId}`, id: street.id }));
-    }
     if (url.pathname === "/api/podlaznost") {
       const [lat, lon] = pointParam(url, 6);
       const body = await cached("podlaznost2", `${lat},${lon}`, () => podlaznost(lat, lon));

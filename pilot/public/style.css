@@ -127,10 +127,9 @@ body[data-mode="navrh"] #profile-wrap { box-shadow: inset 4px 0 0 var(--accent),
 /* A wide street keeps a readable scale (app.js fitPhone) and scrolls sideways instead of shrinking. */
 #profile-wrap.scrolls { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 #profile-frame { position: relative; }
-.scroll-btn { position: absolute; bottom: 14px; width: 36px; height: 36px; padding: 0; border-radius: 50%;
-  font-size: 22px; line-height: 1; background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow); color: var(--text); z-index: 2; }
-.scroll-btn[hidden] { display: none; }
-.scroll-btn.l { left: 6px; } .scroll-btn.r { right: 6px; }
+.scroll-btn { width: 32px; height: 32px; padding: 0; border-radius: 50%; font-size: 20px; line-height: 1;
+  background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow); color: var(--text); }
+.scroll-btn[hidden] { visibility: hidden; display: inline-block; }
 .compare-title { margin: 12px 0 4px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
 .compare-title:first-child { margin-top: 0; }
 .compare-title .muted { text-transform: none; letter-spacing: 0; font-weight: 400; }
@@ -140,7 +139,8 @@ body[data-mode="navrh"] #profile-wrap { box-shadow: inset 4px 0 0 var(--accent),
 #profile-wrap.fade-r { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 48px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 48px), transparent); }
 #profile-wrap.fade-l { -webkit-mask-image: linear-gradient(to left, #000 calc(100% - 48px), transparent); mask-image: linear-gradient(to left, #000 calc(100% - 48px), transparent); }
 #profile-wrap.fade-l.fade-r { -webkit-mask-image: linear-gradient(to right, transparent, #000 48px, #000 calc(100% - 48px), transparent); mask-image: linear-gradient(to right, transparent, #000 48px, #000 calc(100% - 48px), transparent); }
-#scroll-hint { font-size: 11px; margin: 4px 0 0; }
+#scroll-hint { font-size: 12px; margin: 6px 0 0; display: flex; align-items: center; gap: 6px; }
+#scroll-hint span { flex: 1; }
 #scroll-hint[hidden] { display: none; }
 #profile svg { display: block; width: var(--fit-width, 100%); max-width: none; height: auto; user-select: none; }
 #profile svg + svg { margin-top: 14px; }

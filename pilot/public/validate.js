@@ -1,0 +1,33 @@
+// Checks a saved profile (from the browser's storage or a JSON file) before the app uses it: a broken
+// or edited file must not break the drawing. Unknown types and items are made harmless, numbers
+// that the drawing needs must be numbers, a part without a usable width is an error.
+import { TYPES, SOURCES, ITEMS } from "./types.js";
+
+const num = (v, lo, hi) => typeof v === "number" && Number.isFinite(v) && v >= lo && v <= hi;
+// Building facts at the edges that end up in SVG attributes (heights, floors, area).
+const INFO_NUMBERS = ["height", "levels", "cornice", "roof", "roofType", "iprKind", "area", "km"];
+
+export function cleanProfile(p, what = "profil") {
+  if (!Array.isArray(p?.segments) || !p.segments.length) throw new Error(`${what}: chybí části profilu`);
+  for (const s of p.segments) {
+    if (typeof s !== "object" || !s) throw new Error(`${what}: vadná část`);
+    if (!(s.type in TYPES)) s.type = "nezname";
+    if (!num(s.width, 0.01, 200)) throw new Error(`${what}: vadná šířka části`);
+    if (s.source && !(s.source in SOURCES)) s.source = "user";
+    s.items = Array.isArray(s.items) ? s.items.filter((it) => it && it.kind in ITEMS && num(it.f, 0, 1)) : [];
+  }
+  p.edges = typeof p.edges === "object" && p.edges ? p.edges : {};
+  for (const side of ["leftInfo", "rightInfo"]) {
+    const info = p.edges[side];
+    if (!info || typeof info !== "object") { delete p.edges[side]; continue; }
+    for (const k of INFO_NUMBERS) if (k in info && !num(info[k], 0, 100000)) delete info[k];
+  }
+  return p;
+}
+
+// Position of the cut: numbers in and around Prague, reach of each side 1–40 m; else no cut.
+export function cleanCut(c) {
+  if (!c || !num(c.lat, 48, 52) || !num(c.lon, 12, 19) || !num(c.bearing, -360, 360)) return null;
+  const reach = c.reach && num(c.reach.left, 1, 40) && num(c.reach.right, 1, 40) ? { left: c.reach.left, right: c.reach.right } : undefined;
+  return { ...c, name: String(c.name || "Ulice"), note: typeof c.note === "string" ? c.note : "", reach };
+}
