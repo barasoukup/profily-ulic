@@ -79,7 +79,7 @@ async function run(s) {
     if (!info?.point) continue;
     try {
       const p = await getJSON(`${API}/api/podlaznost?lat=${info.point[1]}&lon=${info.point[0]}`);
-      if (p.cornice) Object.assign(info, { cornice: p.cornice, roof: p.roof, levels: p.cornice + p.roof, roofType: p.roofType, iprKind: p.kind, area: p.area, src: "ipr" });
+      if (p.cornice) Object.assign(info, { cornice: p.cornice, roof: p.roof, levels: p.cornice + p.roof, roofType: p.roofType, iprKind: p.kind, newBuild: p.newBuild, area: p.area, src: "ipr" });
     } catch {}
   }
   // Nearby OSM tags of the snapped way, for checking what the pilot read.

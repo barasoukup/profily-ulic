@@ -13,14 +13,15 @@ export const PARKOVANI = `${IPR}/dop/zony_placeneho_stani/MapServer`;
 export const PARKING_LAYERS = { 3: "useky", 5: "ztp", 6: "ztp", 7: "zasobovani", 8: "specialni" };
 export const parkingFields = (layer) => (String(layer) === "3" ? "ZPS_ID,TYPZONY,PS_ZPS" : "ZPS_ID");
 export const PODLAZNOST = "https://mp.iprpraha.cz/arcgis/rest/services/Hosted/URK_CUR_URK_SS_PODLAZNOST_P/FeatureServer/0/query";
-export const PODLAZNOST_FIELDS = "pocet_podlazi,ustup_stres,podlaz_celk,strecha,typ,SHAPE__Area";
+export const PODLAZNOST_FIELDS = "pocet_podlazi,ustup_stres,podlaz_celk,strecha,typ,nova_budova,SHAPE__Area";
 
 // Building floors from the first "Podlažnosti" feature: floors up to the cornice, roof / set-back
-// floors, total, roof shape, kind of building and footprint. SHAPE__Area is in Web Mercator square
-// metres: scaled back to the ground by cos² of the latitude.
+// floors, total, roof shape, kind of building, whether it is new against IPR's base map
+// (nova_budova 1 = "nová budova": taken for a new build, Bára) and footprint. SHAPE__Area is in Web
+// Mercator square metres: scaled back to the ground by cos² of the latitude.
 export function podlaznostInfo(json, lat) {
   const a = json?.features?.[0]?.attributes;
   if (!a) return {};
   const area = a.SHAPE__Area ? Math.round(a.SHAPE__Area * Math.cos((lat * Math.PI) / 180) ** 2) : undefined;
-  return { cornice: a.pocet_podlazi, roof: a.ustup_stres || 0, total: a.podlaz_celk, roofType: a.strecha, kind: a.typ, area };
+  return { cornice: a.pocet_podlazi, roof: a.ustup_stres || 0, total: a.podlaz_celk, roofType: a.strecha, kind: a.typ, newBuild: a.nova_budova === 1, area };
 }

@@ -20,3 +20,10 @@ test("dotazy: pole parkování a kódy linií", () => {
   assert.equal(parkingFields("7"), "ZPS_ID");
   assert.match(LINE_WHERE, /^CTMTP_KOD IN \(55010,/);
 });
+
+test("podlažnost: nová budova podle IPR", () => {
+  const info = (v) => podlaznostInfo({ features: [{ attributes: { pocet_podlazi: 5, nova_budova: v } }] }, 50).newBuild;
+  assert.equal(info(1), true);
+  assert.equal(info(2), false);
+  assert.equal(info(null), false);
+});

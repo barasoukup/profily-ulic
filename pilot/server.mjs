@@ -207,7 +207,7 @@ const server = http.createServer(async (req, res) => {
     }
     if (url.pathname === "/api/podlaznost") {
       const [lat, lon] = pointParam(url, 6);
-      const body = await cached("podlaznost2", `${lat},${lon}`, () => podlaznost(lat, lon));
+      const body = await cached("podlaznost3", `${lat},${lon}`, () => podlaznost(lat, lon));
       res.writeHead(200, { "Content-Type": TYPES[".json"] });
       return res.end(body);
     }

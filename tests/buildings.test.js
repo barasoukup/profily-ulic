@@ -24,3 +24,15 @@ test("bez tvaru bloku rozhodne vzdálenost od centra, kanceláře zůstávají",
 test("šikmá střecha zůstává činžákem 19. století", () => {
   assert.equal(buildingStyle({ roofType: 1, levels: 5, km: 3, block: { length: 120, width: 80, fill: 0.4, parts: 12 } }), "sikma");
 });
+
+test("plochá střecha a IPR „nová budova“ je moderní bytový dům", () => {
+  assert.equal(flat({ newBuild: true, block: { length: 144, width: 14.8, fill: 0.84, parts: 1 } }), "moderni");
+  assert.equal(flat({ newBuild: true, type: "office" }), "plocha");
+});
+
+test("ustupující podlaží mimo centrum nebo nízký dům na okraji je moderní", () => {
+  assert.equal(flat({ levels: 5, cornice: 4, roof: 1, km: 5.3 }), "moderni");
+  assert.equal(flat({ levels: 3, cornice: 3, km: 13.7, block: { length: 107, width: 20.6, fill: 0.78, parts: 5 } }), "moderni");
+  assert.equal(flat({ levels: 4, cornice: 4, km: 4.1, block: { length: 36, width: 14.2, fill: 0.83, parts: 1 } }), "plocha");
+  assert.equal(flat({ levels: 7, cornice: 6, roof: 1, km: 2.8, block: { length: 90, width: 60, fill: 0.5, parts: 9 } }), "funkce");
+});
