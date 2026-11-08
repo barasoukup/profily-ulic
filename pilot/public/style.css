@@ -104,6 +104,8 @@ body.resizing { user-select: none; cursor: col-resize; }
 #cut-info button { padding: 5px 10px; font-size: 12px; }
 #map-help { padding: 8px 12px; font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); }
 #map-help[hidden] { display: none; }
+.pano-link { display: block; padding: 6px 12px; font-size: 13px; border-top: 1px solid var(--line); color: var(--accent); }
+.pano-link[hidden] { display: none; }
 
 /* ---------- profile pane ---------- */
 #profile-pane { overflow: auto; padding: 14px 18px 18px; display: flex; flex-direction: column; gap: 12px; }

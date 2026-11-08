@@ -225,6 +225,11 @@ function showCutInfo() {
   $("#cut-pos").textContent = cutText(state.cut) + ` · ulice ${Math.round(((state.cut.bearing % 360) + 360) % 360)}°` +
     ` · dosah ${Math.round(r.left)} / ${Math.round(r.right)} m`;
   history.replaceState(null, "", `#rez=${state.cut.lat.toFixed(6)},${state.cut.lon.toFixed(6)},${Math.round(state.cut.bearing)},${r.left.toFixed(1)},${r.right.toFixed(1)}`);
+  // Mapy.com at the cut with the panorama layer on (ovl=8). A link straight into a panorama needs
+  // the photo's id (pid), which only their Panorama API (with a key) gives; one click on the street opens it.
+  const pano = $("#pano-link");
+  pano.href = `https://mapy.com/cs/zakladni?x=${state.cut.lon.toFixed(7)}&y=${state.cut.lat.toFixed(7)}&z=19&ovl=8`;
+  pano.hidden = false;
 }
 
 $("#btn-copy-cut").onclick = async () => {
