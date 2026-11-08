@@ -625,6 +625,8 @@ export function buildSvg(profile, opts = {}) {
     const w = s.width * 100;
     const top = t.raised ? GROUND - CURB : GROUND;
     const g = el("g", { class: "seg" + (opts.selected === i ? " selected" : "") + (opts.changed?.has(i) ? " changed" : ""), "data-i": i }, svg);
+    // Name and width on hover, also for parts too narrow for a label.
+    el("title", {}, g).textContent = `${t.label}, ${fmt(s.width)}`;
     el("rect", { class: "ground", x, y: top, width: w, height: GROUND + 60 - top, fill: s.color || t.color }, g);
     el("rect", { x, y: GROUND + 60, width: w, height: 40, fill: "#9b7f5f" }, g);
     el("rect", { x: x + 4, y: GROUND + 104, width: Math.max(w - 8, 1), height: 14, fill: SOURCES[s.source]?.color || "#999" }, g);
