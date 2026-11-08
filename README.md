@@ -30,6 +30,15 @@ a hranice zón placeného stání (jednou, soubor `pilot/data/zps.json`):
 node tools/build_zps.mjs
 ```
 
+Server poslouchá jen na tomto počítači. Pro vyzkoušení z telefonu ve stejné síti ho spusťte s
+`HOST=0.0.0.0 node pilot/server.mjs`.
+
+Testy (syntaxe všech skriptů a testy v `tests/`; běží i před každým nasazením):
+
+```bash
+npm test
+```
+
 ## Jak to funguje
 
 - Řez se vede kolmo na osu ulice z OSM, mimo křižovatky a přechody; u ulice ze dvou jednosměrných
@@ -48,6 +57,9 @@ v [evaluation/ZPRAVA.md](evaluation/ZPRAVA.md).
 
 - `pilot/public/` – aplikace (bez sestavování, ES moduly; `derive.js` skládá profil)
 - `pilot/server.mjs` – lokální server s cache dotazů na IPR
+- `pilot/public/queries.js` – co se ptá IPR (vrstvy, pole), společné pro server i web
+- `pilot/navrhy-ilustraci/` – nepoužívané varianty pražských ilustrací (nenasazují se)
+- `tests/` – testy pravidel, exportu do Streetmixu, dotazů a odhadu profilu z OSM
 - `tools/` – výroba dlaždic OSM a pomocné skripty
 - `evaluation/` – vyhodnocení na 100 náhodných řezech nad ortofotem
 - `.github/workflows/pages.yml` – nasazení na GitHub Pages (dlaždice OSM se vyrobí při nasazení)
