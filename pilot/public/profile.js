@@ -268,9 +268,10 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
   } else if (!f.flat) {
     const eave = style === "nizky" ? 55 : 35;
     const ridge = style === "nizky" ? RIDGE : EDGE + 200;
-    const z = (d) => top + (Math.min(d, ridge) + eave) * PITCH - Math.max(0, d - ridge) * PITCH;
-    // Gable (the wall's colour, a little darker), then a thick tiled slab with a dark underside and brackets.
-    poly([[0, top], [Math.min(ridge, EDGE), z(Math.min(ridge, EDGE)) - 22], [EDGE, z(EDGE) - 22], [EDGE, top]], shade, outline);
+    // The underside of the roof meets the wall top at the facade; the eaves reach lower, over the street.
+    const z = (d) => top + 12 + Math.min(d, ridge) * PITCH - Math.max(0, d - ridge) * PITCH;
+    // Gable (the wall's colour, a little darker) up to the roof, then a thick tiled slab with a dark underside.
+    poly([[0, top], [Math.min(ridge, EDGE), z(Math.min(ridge, EDGE)) - 12], [EDGE, z(EDGE) - 12], [EDGE, top]], shade, outline);
     const slab = (d0, d1) => {
       poly([[d0, z(d0)], [d1, z(d1)], [d1, z(d1) + 30], [d0, z(d0) + 30]], ROOF.tile);
       poly([[d0, z(d0) - 12], [d1, z(d1) - 12], [d1, z(d1)], [d0, z(d0)]], ROOF.tileDark);
