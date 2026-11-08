@@ -217,11 +217,18 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
   const wall = style === "plocha" ? pal("plochaWall") : factory ? BRICK : style === "hala" ? "#cdd4d9" : accent;
   const shade = tint(wall, 0.88), dark = tint(wall, 0.7), trim = tint(wall, 1.12);
   const office = style === "plocha" && OFFICE_TYPES.has(info?.type);
+  // Balconies take a colour of their own, two steps round the palette from the insulation field.
+  const balcony = PALETTES.plocha[(seed + 2) % PALETTES.plocha.length];
   const X = (d) => (side === "left" ? x + EDGE - d : x + d);
   const poly = (pts, fill, extra = {}) => el("path", { d: "M" + pts.map(([d, z]) => `${X(d)} ${surface - z}`).join(" L") + " Z", fill, ...extra }, g);
   const box = (d0, d1, z0, z1, fill, extra) => poly([[d0, z0], [d1, z0], [d1, z1], [d0, z1]], fill, extra);
   const dot = (d, z, r, fill) => el("circle", { cx: X(d), cy: surface - z, r, fill }, g);
   const outline = { stroke: dark, "stroke-width": 1.5, "vector-effect": "non-scaling-stroke" };
+  // Half disc of radius r standing on z, centred at d (an arched transom).
+  const arch = (d, z, r, fill) => {
+    const [x1, x2] = [X(d - r), X(d + r)].sort((a, b) => a - b);
+    el("path", { d: `M${x1} ${surface - z} A ${r} ${r} 0 0 1 ${x2} ${surface - z} Z`, fill }, g);
+  };
   const top = f.body;
   const full = f.n - f.roofRows;
   const floorZ = (k) => (k === 0 ? 0 : f.ground + (k - 1) * f.storey); // bottom of floor k
@@ -242,7 +249,16 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     if (luck === 2 || luck === 9 || luck === 11) {
       box(d - 4, d + w + 4, z - 28, z - 12, "#9b6a45");
       for (let i = 0; i < 4; i++) dot(d + 6 + (i * (w - 12)) / 3, z - 6, 9, i % 2 ? "#e2607a" : "#6fae4f");
-    } else if (luck === 7) box(d + 4, d + w / 2 - 6, z + 4, z + h - 4, "#f3e6c4");
+    } else if (luck === 7) { // a net curtain with a wavy hem
+      box(d + 4, d + w / 3, z + 14, z + h - 4, "#efe6cf", { "fill-opacity": 0.5 });
+      for (let i = 0; i < 3; i++) dot(d + 4 + ((i + 0.5) * (w / 3 - 4)) / 3, z + 14, 5, "#efe6cf");
+    }
+  };
+  // A canopy over a door on the side wall, seen from the front: a slab, its shadow, two brackets.
+  const canopy = (d0, d1, z, fill) => {
+    box(d0 - 6, d1 + 6, z, z + 12, tint(wall, 0.8));
+    box(d0 - 20, d1 + 20, z + 12, z + 32, fill);
+    for (const d of [d0 - 14, d1 + 14]) poly([[d - 6, z + 12], [d + 6, z + 12], [d, z - 14]], tint(fill, 0.85));
   };
   const row = (d0, d1, z, h, n) => {
     const win = WINDOWS[style];
@@ -256,21 +272,31 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     // Mansard: steep slate slope with a dormer, shallow top; the gable end has the attic windows.
     const rise = f.roofRows * f.storey, run = rise * 0.28, zt = top + rise;
     const zBack = zt + (EDGE - run) * 0.3;
+    // Chimney first: the roof and the gable hide its foot.
+    box(EDGE - 175, EDGE - 125, zt, zBack + 80, "#c46a4b");
+    box(EDGE - 183, EDGE - 117, zBack + 70, zBack + 82, "#8d4a34");
     poly([[0, top], [run, zt], [EDGE, zBack], [EDGE, top]], shade, outline);
-    poly([[-14, top - 4], [run - 12, zt + 16], [EDGE, zBack + 16], [EDGE, zBack], [run, zt], [0, top]], ROOF.slate);
+    // A slate slab as thick as the tiled ones: dark underside, then the slate, a gutter at the foot and at the break.
+    poly([[-30, top - 4], [run - 16, zt + 40], [EDGE, zBack + 40], [EDGE, zBack], [run, zt], [0, top]], ROOF.slate);
+    poly([[-8, top], [run - 4, zt + 10], [EDGE, zBack + 10], [EDGE, zBack], [run, zt], [0, top]], ROOF.slateDark);
+    dot(-26, top - 6, 10, ROOF.slateDark);
+    dot(run - 14, zt + 30, 8, ROOF.slateDark);
     for (let k = 0; k < f.roofRows; k++) row(run + 40, EDGE - 40, top + k * f.storey + 0.25 * f.storey, 0.5 * f.storey, full + k);
-    const zd = top + rise * 0.28, dd = run * 0.28 + 35;
-    box(dd, dd + 95, zd, zd + 150, tint(ROOF.slate, 1.35), outline); // dormer cheek (sheet metal), set back from the facade
-    box(dd, dd + 12, zd, zd + 150, ROOF.slateDark); // the window frame, seen edge-on
-    poly([[dd - 14, zd + 150], [dd + 109, zd + 150], [dd + 109, zd + 178], [dd - 14, zd + 162]], ROOF.slateDark);
-    box(EDGE - 175, EDGE - 125, zBack - 40, zBack + 70, "#c46a4b");
-    box(EDGE - 183, EDGE - 117, zBack + 60, zBack + 72, "#8d4a34");
+    // Dormer: only its cheek shows, between the steep slope and its face, under a little roof.
+    const slopeD = (z) => ((z - top) / rise) * run;
+    const zb = top + rise * 0.3, zc = zb + 140, dF = Math.max(4, slopeD(zb) - 30);
+    poly([[slopeD(zb), zb], [dF, zb], [dF, zc], [slopeD(zc), zc]], tint(ROOF.slate, 1.35), outline);
+    box(dF, dF + 10, zb, zc, ROOF.slateDark); // the window frame, edge-on
+    poly([[dF - 14, zc], [slopeD(zc) + 30, zc + 22], [slopeD(zc) + 30, zc + 34], [dF - 14, zc + 12]], ROOF.slateDark);
   } else if (!f.flat) {
     const eave = style === "nizky" ? 55 : 35;
     const ridge = style === "nizky" ? RIDGE : EDGE + 200;
     // The underside of the roof meets the wall top at the facade; the eaves reach lower, over the street.
     const z = (d) => top + 12 + Math.min(d, ridge) * PITCH - Math.max(0, d - ridge) * PITCH;
-    // Gable (the wall's colour, a little darker) up to the roof, then a thick tiled slab with a dark underside.
+    // Chimney first (the roof hides its foot), then the gable up to the roof, then a thick tiled slab.
+    const dc = style === "nizky" ? RIDGE + 50 : EDGE - 80;
+    box(dc - 24, dc + 24, top, z(dc) + 100, "#c46a4b");
+    box(dc - 32, dc + 32, z(dc) + 90, z(dc) + 102, "#8d4a34");
     poly([[0, top], [Math.min(ridge, EDGE), z(Math.min(ridge, EDGE)) - 12], [EDGE, z(EDGE) - 12], [EDGE, top]], shade, outline);
     const slab = (d0, d1) => {
       poly([[d0, z(d0)], [d1, z(d1)], [d1, z(d1) + 30], [d0, z(d0) + 30]], ROOF.tile);
@@ -286,24 +312,24 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       const ww = 75, wh = Math.min(95, z(RIDGE - ww / 2 - 10) - 12 - top - 60 - 10);
       window(RIDGE - ww / 2, top + 50, ww, wh, 1);
     } else {
-      dot(260, top + 150, 30, FRAME);
-      dot(260, top + 150, 22, GLASS);
+      dot(200, top + 100, 30, FRAME); // a round window in the gable, well under the roof
+      dot(200, top + 100, 22, GLASS);
     }
-    const dc = style === "nizky" ? RIDGE + 50 : EDGE - 140;
-    box(dc - 24, dc + 24, z(dc) - 40, z(dc) + 70, "#c46a4b");
-    box(dc - 32, dc + 32, z(dc) + 60, z(dc) + 72, "#8d4a34");
   }
 
   // --- The side wall, with its plinth (drawn before the door, which stands on the ground) ---
+  // Under the building: a cellar band and the same earth as under the street.
+  el("rect", { x, y: surface, width: EDGE, height: GROUND + 60 - surface, fill: tint(wall, 0.62) }, g);
+  el("rect", { x, y: GROUND + 60, width: EDGE, height: 40, fill: "#9b7f5f" }, g);
   box(0, EDGE, 0, top, wall, outline);
   box(EDGE - 30, EDGE, 0, top, shade); // the wall turns away at the cut
   const plinth = { sikma: [90, STONE], plocha: [80, "#8a867d"], nizky: [60, "#a59c88"] }[style];
-  if (plinth) box(-8, EDGE - 30, 0, plinth[0], plinth[1]);
   if (style === "plocha" && !office) {
-    // Prague estate insulation ("parrot" colours): a big coloured field and a band along the ground floor.
+    // Prague estate insulation ("parrot" colours): a big coloured field, a quieter ground floor.
     box(EDGE * 0.45, EDGE - 30, 0, top, tint(accent, 1.22));
-    box(0, EDGE * 0.45, 80, f.ground, tint(accent, 1.4));
+    box(0, EDGE * 0.45, 0, f.ground, tint(wall, 0.92));
   }
+  if (plinth) box(-8, EDGE - 30, 0, plinth[0], plinth[1]);
 
   // Windows and the ground floor.
   if (factory) {
@@ -324,17 +350,16 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     box(18, 112, 14, 270, tint(wall, 0.75));
     box(26, 104, 14, 262, DOOR);
     for (let d = 39; d < 104; d += 13) box(d - 1, d + 1, 14, 262, tint(DOOR, 0.8));
-    dot(65, 262, 47, tint(wall, 0.75));
-    dot(65, 262, 39, GLASS);
-    box(18, 112, 222, 262, tint(wall, 0.75));
-    box(26, 104, 222, 262, DOOR);
+    arch(65, 270, 47, tint(wall, 0.75));
+    arch(65, 270, 39, GLASS);
   } else if (style === "hala") {
     const zr = top * 0.55, hr = Math.min(170, top * 0.25);
     for (let d = 20; d < EDGE - 30; d += 30) box(d, d + 3, 0, top - 40, shade); // corrugated cladding
     box(0, EDGE - 30, zr - 8, zr + hr + 8, FRAME);
     box(8, EDGE - 38, zr, zr + hr, GLASS);
-    for (let d = 128; d < EDGE - 38; d += 120) box(d - 3, d + 3, zr, zr + hr, FRAME);
     poly([[EDGE - 170, zr + hr], [EDGE - 120, zr + hr], [EDGE - 180, zr], [EDGE - 230, zr]], GLINT);
+    const span = EDGE - 46, parts = Math.round(span / 120);
+    for (let i = 1; i < parts; i++) box(8 + (i * span) / parts - 3, 8 + (i * span) / parts + 3, zr, zr + hr, FRAME);
     box(0, EDGE - 30, top - 80, top - 40, accent); // coloured band
     if (shop) {
       box(0, 190, 0, 310, FRAME);
@@ -351,32 +376,34 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       const z0 = floorZ(k), h = floorH(k);
       box(0, EDGE - 40, z0 + h * 0.08, z0 + h * (k ? 0.82 : 0.9), FRAME);
       box(8, EDGE - 48, z0 + h * 0.12, z0 + h * (k ? 0.78 : 0.86), GLASS);
-      for (let d = 8 + 120; d < EDGE - 48; d += 120) box(d - 3, d + 3, z0 + h * 0.12, z0 + h * 0.86, FRAME);
-      poly([[EDGE - 150, z0 + h * 0.78], [EDGE - 100, z0 + h * 0.78], [EDGE - 160, z0 + h * 0.12], [EDGE - 210, z0 + h * 0.12]], GLINT);
+      const gTop = z0 + h * (k ? 0.78 : 0.86);
+      poly([[EDGE - 150, gTop], [EDGE - 100, gTop], [EDGE - 160, z0 + h * 0.12], [EDGE - 210, z0 + h * 0.12]], GLINT);
+      for (let d = 8 + 120; d < EDGE - 48; d += 120) box(d - 3, d + 3, z0 + h * 0.12, gTop, FRAME);
       if (k) box(0, EDGE - 40, z0 - 4, z0 + h * 0.08, accent); // spandrel band
     }
     box(14, 116, 0, 262, FRAME); // glazed entrance with a flat canopy
     box(22, 108, 0, 254, GLASS);
     box(63, 67, 0, 254, FRAME);
-    box(-120, 0, 268, 288, dark);
-    box(-120, 0, 288, 294, tint(dark, 1.2));
-    poly([[-110, 290], [0, 360], [0, 354], [-104, 290]], dark); // tie rod
+    canopy(14, 116, 262, dark);
   } else {
     // Door near the street (arched in a tenement), windows behind it, and on every floor above.
     const doorH = Math.min(240, f.ground * 0.72);
     box(10, 120, 0, 14, tint(plinth?.[1] || STONE, 1.15)); // doorstep
     box(16, 114, 14, doorH + 10, FRAME);
     box(24, 106, 14, doorH, DOOR);
-    box(30, 100, doorH * 0.7, doorH - 8, GLASS);
     dot(94, doorH * 0.4, 5, "#f2d27a");
-    if (style === "sikma") { dot(65, doorH + 10, 49, FRAME); dot(65, doorH + 10, 41, GLASS); box(16, 114, doorH - 10, doorH + 10, FRAME); }
-    else { // door canopy with a bracket
-      poly([[0, doorH + 22], [150, doorH + 22], [150, doorH + 50], [0, doorH + 40]], style === "nizky" ? ROOF.tile : dark);
-      poly([[140, doorH + 22], [150, doorH + 22], [150, doorH - 18]], style === "nizky" ? ROOF.tileDark : tint(dark, 0.85));
+    if (style === "sikma") { arch(65, doorH + 10, 49, FRAME); arch(65, doorH + 10, 41, GLASS); } // arched transom
+    else {
+      box(30, 100, doorH * 0.7, doorH - 8, GLASS);
+      canopy(16, 114, doorH + 10, style === "nizky" ? ROOF.tile : dark);
     }
+    // The windows above stand in the axes of the door and of the ground-floor window.
     const win = WINDOWS[style];
-    row(125, EDGE - 30, f.ground * win.sill + (style === "sikma" ? 40 : 0), win.h * f.storey, 0);
-    for (let k = 1; k < full; k++) row(0, EDGE - 30, floorZ(k) + win.sill * f.storey, win.h * f.storey, k);
+    const groundAt = (125 + EDGE - 30 - win.w) / 2;
+    window(groundAt, f.ground * win.sill + (style === "sikma" ? 40 : 0), win.w, win.h * f.storey, 0);
+    for (let k = 1; k < full; k++) {
+      for (const [i, c] of [65, groundAt + win.w / 2].entries()) window(c - win.w / 2, floorZ(k) + win.sill * f.storey, win.w, win.h * f.storey, k * 3 + i);
+    }
   }
 
   // --- Flat roof: parapet, set-back floors, factory roof lights ---
@@ -393,10 +420,12 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       box(EDGE - 120, EDGE - 70, zr, zr + 420, wall, outline);
       for (let z = zr + 30; z < zr + 420; z += 30) box(EDGE - 120, EDGE - 70, z - 2, z + 2, tint(wall, 0.85));
       box(EDGE - 126, EDGE - 64, zr + 405, zr + 420, "#8a5a48");
+      const tooth = (d) => zr + 170 - (d * 170) / 180; // height of the tooth's slope
       for (const d0 of [0, 180]) {
         poly([[d0, zr], [d0, zr + 170], [d0 + 180, zr]], ROOF.slate, outline);
-        box(d0, d0 + 26, zr, zr + 170, FRAME);
-        box(d0 + 4, d0 + 22, zr + 6, zr + 164, GLASS);
+        poly([[d0, zr], [d0, zr + 170], [d0 + 26, tooth(26)], [d0 + 26, zr]], FRAME);
+        poly([[d0 + 5, zr + 8], [d0 + 5, zr + 160], [d0 + 21, tooth(21) - 8], [d0 + 21, zr + 8]], GLASS);
+        poly([[d0 + 5, zr + 110], [d0 + 5, zr + 140], [d0 + 21, zr + 90], [d0 + 21, zr + 60]], GLINT);
       }
     } else {
       if (style === "hala") { // an air-handling unit on the roof
@@ -409,21 +438,24 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
   }
 
   // --- What sticks out towards the street ---
-  box(0, 10, 0, top, dark); // the street facade, seen edge-on
+  box(0, 10, plinth ? plinth[0] : 0, top, dark); // the street facade, seen edge-on
   if (style === "sikma") {
     box(-18, EDGE - 30, f.ground - 18, f.ground, trim, outline); // string course
     box(-18, EDGE - 30, f.ground - 30, f.ground - 18, shade);
-    box(-48, 26, top - 60, top, FRAME, outline); // main cornice
-    box(-48, 26, top - 60, top - 46, dark);
-    box(0, EDGE - 30, top - 82, top - 60, shade); // its shadow on the wall
+    // Main cornice in three steps, the wall's colour lightened, with its shadow on the wall.
+    const corn = tint(wall, 1.15);
+    box(-14, EDGE - 30, top - 58, top - 44, corn, outline);
+    box(-28, EDGE - 30, top - 44, top - 22, corn, outline);
+    box(-44, EDGE - 30, top - 22, top, corn, outline);
+    box(0, EDGE - 30, top - 76, top - 58, shade);
   } else if (style === "plocha") {
     if (!office) {
       for (let k = 1; k < full; k++) { // balconies with coloured parapets and a pot of flowers now and then
         const z = floorZ(k);
         box(-130, 0, z - 8, z, tint(wall, 0.75)); // shadow under the slab
         box(-130, 0, z, z + 16, "#8a867d");
-        box(-130, -4, z + 16, z + 108, tint(accent, 0.88), { stroke: tint(accent, 0.75), "stroke-width": 1.5, "vector-effect": "non-scaling-stroke" });
-        box(-130, -4, z + 100, z + 112, tint(accent, 0.8));
+        box(-130, -4, z + 16, z + 108, balcony, { stroke: tint(accent, 0.75), "stroke-width": 1.5, "vector-effect": "non-scaling-stroke" });
+        box(-130, -4, z + 100, z + 112, tint(balcony, 0.8));
         if (k % 3 === 1) { box(-112, -82, z + 112, z + 134, "#b5714a"); dot(-97, z + 146, 16, "#6fae4f"); dot(-90, z + 158, 7, "#e2607a"); }
       }
     }
