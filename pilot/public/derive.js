@@ -262,7 +262,8 @@ function osmParkingPolygons(osm, frame) {
 export function esriPolygons(json, frame) {
   return (json.features || []).map((f) => {
     const rings = f.geometry.rings.map((r) => r.map(([lon, lat]) => frame.toXY(lon, lat)));
-    return { rings, bbox: bboxOf(rings.flat()), count: Number(f.attributes?.PS_ZPS) || 0, kind: f.attributes?.KIND || "useky" };
+    // ODHAD: stalls whose place is estimated (Plzeň: a paid zone tells that people pay, not where they stand).
+    return { rings, bbox: bboxOf(rings.flat()), count: Number(f.attributes?.PS_ZPS) || 0, kind: f.attributes?.KIND || "useky", guess: f.attributes?.ODHAD === 1 };
   });
 }
 
@@ -1377,12 +1378,13 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     edges[`${side}Info`] = { levels: b?.levels, height: b?.height, point, km: +centreKm(point).toFixed(1), block: b?.block, tint: side === "left" ? 0 : 3 };
     if (b?.type && b.type !== "yes") edges[`${side}Info`].type = b.type;
   }
-  // A part lying mostly on an area the technical map leaves open (completed along OSM) is an estimate.
+  // A part lying mostly on an area the technical map leaves open (completed along OSM), or on parking
+  // stalls of a paid zone (Plzeň), is an estimate.
   const guessed = runs.filter((r) => r.guess);
   if (guessed.length) {
     for (const x of withItems) {
       const over = guessed.reduce((a, r) => a + Math.max(0, Math.min(r.e, x.e) - Math.max(r.s, x.s)), 0);
-      if (x.source === "dtm" && over > (x.e - x.s) / 2) x.source = "odhad";
+      if ((x.source === "dtm" || x.source === "tsk") && over > (x.e - x.s) / 2) x.source = "odhad";
     }
   }
   return {

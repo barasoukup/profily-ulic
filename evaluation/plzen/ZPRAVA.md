@@ -36,3 +36,12 @@ v profilu jako 704); technická mapa vodorovné značení nemá. Otevřená data
 „Parkovací zóny“: 341 linií po osách ulic s názvem zóny nebo „Vyhrazené stání“ (42 km, GeoJSON 153 kB, 6. 10. 2026),
 bez počtu a druhu stání. Profil proto bere stání z parkovišť technické mapy, z OSM (1 273 ploch `parking=street_side`,
 značky `parking:left/right/both` jen na 1 % ulic) a mimo ně z odhadu.
+
+Zóny placeného stání (připojeno 9. 11. 2026): `tools/build_zony_plzen.mjs` stáhne zip zón (při nasazení) do
+`data/zony.json`; linie leží na ose ulice (medián 1 m od OSM, datum v pořádku). Podél obrubníků vozovky technické mapy,
+ve které linie leží, vznikne pás podélného stání 2,0 m: u obou obrubníků, když zbude 3,0 m (jednosměrka) nebo 5,0 m
+(obousměrka, 2 × 2,5 m) pro provoz, u jednoho (vpravo ve směru jízdy), když se vejde jen jeden pás, jinak žádný.
+Kde už je parkoviště technické mapy nebo OSM, nebo OSM říká `parking:*=no`, pás nevznikne; „Vyhrazené stání“ jde
+k bližšímu obrubníku jako zvláštní stání. Kontrola 12 řezů v zónách A, B, C, F, G, Petrohrad a Roudná: 10 sedí,
+2 částečně (Pražská: auta stojí vlevo, pás je vpravo; Kamenická u parkoviště: kolmé stání jako podélné). Ve vzorku
+50 řezů se změnil jen č. 34 (Hankova, stání z zóny místo odhadu); u č. 18 (Koperníkova) OSM stání zakazuje.

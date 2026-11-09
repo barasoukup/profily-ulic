@@ -81,11 +81,11 @@ export const SITES = {
     ogDescription: "Příčné profily plzeňských ulic z technické mapy a dat města: od fasády k fasádě, upravitelné.",
     ogAlt: "Příčný profil plzeňské ulice s tramvají, chodníky a domy, vedle název Profily ulic",
     stav: "z technické mapy Plzně a OSM",
-    parking: "parkoviště z technické mapy",
+    parking: "parkoviště z technické mapy a placené zóny",
     img: ["https://ags.plzen.eu"],
     // RÚIAN of ČÚZK for a house outside the city's 3D buildings (gis.js ruianBuilding).
     connect: ["https://ags.plzen.eu", "https://ags.cuzk.gov.cz"],
-    credits: `Data: © <a href="https://ags.plzen.eu/arcgis/rest/services">Statutární město Plzeň</a> (technická mapa, budovy 3D, stromy, lavičky, stojany na kola, sloupky; ortofoto) ·
+    credits: `Data: © <a href="https://ags.plzen.eu/arcgis/rest/services">Statutární město Plzeň</a> (technická mapa, budovy 3D, stromy, lavičky, stojany na kola, sloupky; ortofoto; parkovací zóny, CC0) ·
     ${RUIAN_CREDIT} ·
     ${OSM_CREDIT} ·
     ortofoto © ČÚZK (CC BY 4.0)`,

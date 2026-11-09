@@ -7,7 +7,7 @@
 // A town module (towns/<id>.js, listed in towns/index.js) gives sources.js the five data sources of a
 // click (osm, surfaces, lines, parking, podlaznost; the shapes are those of Prague's answers, see
 // queries.js) and app.js its base maps. See towns/jihlava.js.
-import { query, envelope, osmTiles, boxAround, asMtvu, addPoints, ruianBuilding, RUIAN_HALL, RUIAN_LOW } from "../gis.js";
+import { query, envelope, osmTiles, boxAround, asMtvu, addPoints, ruianBuilding, RUIAN_HALL, RUIAN_LOW, insideRings, metres } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 
 const PL = "https://ags.plzen.eu/arcgis/rest/services";
@@ -116,9 +116,139 @@ async function osm(lat, lon, radius) {
   return addPoints(o, pts, PL_POINTS.map(([, , , tagsOf]) => tagsOf), "Plzeň", lat);
 }
 
-// Parking: the parking areas of the technical map are among the surfaces (704). The city's layer of
-// parking places (GIS_Doprava) holds car parks off the street only, and Plzeň publishes no stalls.
-const parking = async () => none();
+// Parking: the parking areas of the technical map are among the surfaces (704); the city's layer of
+// parking places (GIS_Doprava) holds car parks off the street only, and Plzeň publishes no stalls. What
+// it publishes are its paid parking zones (open data, CC0; tools/build_zony_plzen.mjs → data/zony.json):
+// lines along the street axes, each with the zone's name or „Vyhrazené stání“. A zone says that people pay
+// there, not where the cars stand: its streets get strips of parallel parking (2.0 m) along the curbs of
+// the roadway the line runs in, as an estimate, where the technical map or OSM has no parking already.
+let zonesFile;
+const zones = () => (zonesFile ||= fetch("data/zony.json").then((r) => (r.ok ? r.json() : { lines: [] })).catch(() => ({ lines: [] })));
+
+const STALL = 2.0; // m, parallel parking (CLAUDE.md)
+const STEP = 2.0; // m between the points where the roadway is measured across
+const REACH = 15; // m, the farthest a curb is looked for from the zone line
+// Curbs with parking for a roadway this wide: what is left must carry the traffic, 3.0 m for a one-way
+// street (one lane), 5.0 m for a two-way one (2 × 2.5 m, the narrowed two-way street of the Manual C.2
+// for low traffic, as the profile reads such streets). Both curbs if two strips fit beside it, one if one
+// does, none on a narrower roadway.
+export function zoneCurbs(width, oneway) {
+  const traffic = oneway ? 3.0 : 5.0;
+  return width >= traffic + 2 * STALL ? 2 : width >= traffic + STALL ? 1 : 0;
+}
+
+const STREET_PARKING = new Set(["street_side", "lane", "on_kerb", "half_on_kerb", "shoulder"]);
+const ONEWAY_ROADS = /^(primary|secondary|tertiary|unclassified|residential|living_street|service)(_link)?$/;
+async function parking(bbox) {
+  const [x0, y0, x1, y1] = bbox.split(",").map(Number);
+  const lat = (y0 + y1) / 2, lon = (x0 + x1) / 2;
+  const [kx, ky] = metres(lat);
+  const [z, layers, o] = await Promise.all([
+    zones(), zps(bbox), osmTiles(lat, lon, Math.hypot((x1 - x0) * kx, (y1 - y0) * ky) / 2).catch(() => ({ elements: [] })),
+  ]);
+  const near = (line) => line.some(([x, y]) => x > x0 - 0.002 && x < x1 + 0.002 && y > y0 - 0.0015 && y < y1 + 0.0015);
+  const lines = (z.lines || []).filter(([, line]) => near(line));
+  if (!lines.length) return none();
+  // Local metres around the box; the areas as rings in metres with their boxes.
+  const xy = ([x, y]) => [(x - lon) * kx, (y - lat) * ky];
+  const ll = ([x, y]) => [lon + x / kx, lat + y / ky];
+  const areas = (features) => features.map((f) => {
+    const rings = f.rings.map((r) => r.map(xy));
+    const xs = rings[0].map((q) => q[0]), ys = rings[0].map((q) => q[1]);
+    return { rings, box: [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)] };
+  });
+  const isIn = (as, [x, y]) => as.some((a) => x >= a.box[0] && x <= a.box[2] && y >= a.box[1] && y <= a.box[3] && insideRings(a.rings, x, y));
+  const level0 = (id) => (layers[id]?.features || []).filter((f) => f.geometry?.rings && !(f.attributes?.[LEVEL] > 0)).map((f) => ({ rings: f.geometry.rings }));
+  // The roadway with its tram beds: a curb is where both end (a tram in the middle is no curb).
+  const roadway = areas([...level0(298), ...level0(318), ...level0(307)]);
+  const bays = areas([
+    ...level0(301),
+    ...(o.elements || []).filter((e) => e.type === "area" && e.tags?.amenity === "parking" && STREET_PARKING.has(e.tags.parking))
+      .map((e) => ({ rings: [e.geometry, ...(e.holes || [])].map((r) => r.map((g) => [g.lon, g.lat])) })),
+  ]);
+  // OSM street axes, for one-way streets.
+  const axes = (o.elements || []).filter((e) => e.type === "way" && ONEWAY_ROADS.test(e.tags?.highway || "") && e.geometry?.length > 1)
+    .map((e) => ({ tags: e.tags, pts: e.geometry.map((g) => xy([g.lon, g.lat])) }));
+  const nearestAxis = ([px, py]) => {
+    let best = null;
+    for (const a of axes) {
+      for (let i = 1; i < a.pts.length; i++) {
+        const [ax, ay] = a.pts[i - 1], [bx, by] = a.pts[i], dx = bx - ax, dy = by - ay, l2 = dx * dx + dy * dy || 1;
+        const t = Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / l2));
+        const d = Math.hypot(ax + t * dx - px, ay + t * dy - py);
+        if (!best || d < best.d) best = { d, dir: [dx, dy], tags: a.tags };
+      }
+    }
+    return best && best.d < 8 ? best : null;
+  };
+  const edge = (p, n, sign) => {
+    let t = 0;
+    while (t < REACH && isIn(roadway, [p[0] + n[0] * sign * (t + 0.25), p[1] + n[1] * sign * (t + 0.25)])) t += 0.25;
+    return t < REACH ? t : null;
+  };
+
+  const features = [];
+  for (const [name, line] of lines) {
+    const special = /vyhrazen/i.test(name);
+    const pts = line.map(xy);
+    // Points along the line every STEP m, with the direction there.
+    const samples = [];
+    for (let i = 1; i < pts.length; i++) {
+      const [ax, ay] = pts[i - 1], [bx, by] = pts[i], len = Math.hypot(bx - ax, by - ay);
+      if (len < 0.01) continue;
+      const d = [(bx - ax) / len, (by - ay) / len];
+      for (let s = 0; s < len; s += STEP) samples.push({ p: [ax + d[0] * s, ay + d[1] * s], d });
+      if (i === pts.length - 1) samples.push({ p: [bx, by], d });
+    }
+    // One-way: the OSM axis at the middle of the line (its direction against the line's).
+    const mid = samples[Math.floor(samples.length / 2)];
+    const axis = mid && nearestAxis(mid.p);
+    const ow = axis?.tags?.oneway;
+    const oneway = ow === "yes" || ow === "1" || ow === "-1";
+    const same = axis ? Math.sign(axis.dir[0] * mid.d[0] + axis.dir[1] * mid.d[1]) || 1 : 1;
+    const along = same * (ow === "-1" ? -1 : 1);
+    // A curb where OSM says no parking (parking:left/right/both=no, separate) stays free (Koperníkova č. 18).
+    const t = axis?.tags || {};
+    const noParking = (side) => /^(no|none|separate)$/.test(t[`parking:${side}`] || t[`parking:lane:${side}`] || t["parking:both"] || t["parking:lane:both"] || "");
+    const free = { 1: noParking(same > 0 ? "left" : "right"), [-1]: noParking(same > 0 ? "right" : "left") };
+    // Per point: the curbs (+1 left of the line, -1 right) that get a strip.
+    const marks = samples.map(({ p, d }) => {
+      const n = [-d[1], d[0]];
+      if (!isIn(roadway, p)) return { p, n, sides: [] };
+      const left = edge(p, n, 1), right = edge(p, n, -1);
+      if (left === null || right === null) return { p, n, sides: [] };
+      const k = zoneCurbs(left + right, oneway);
+      // A reserved stall keeps to the nearer curb; one strip of a zone goes on the right in the direction
+      // of travel (as people park in a one-way street; for a two-way one, right of the line).
+      const sides = special ? (k ? [left < right ? 1 : -1] : []) : k === 2 ? [1, -1] : k === 1 ? [-along] : [];
+      const dist = { 1: left, [-1]: right };
+      return {
+        p, n, sides: sides.filter((s) => !free[s]).filter((s) => {
+          const c = [p[0] + n[0] * s * dist[s], p[1] + n[1] * s * dist[s]];
+          // A parking bay behind the curb or on the roadway at the curb: parking is there already.
+          return !isIn(bays, [c[0] + n[0] * s * 0.75, c[1] + n[1] * s * 0.75]) && !isIn(bays, [c[0] - n[0] * s * 1.0, c[1] - n[1] * s * 1.0]);
+        }), dist,
+      };
+    });
+    // Runs of points with a strip on the same curb → a polygon from the curb STALL m into the roadway.
+    for (const s of [1, -1]) {
+      let run = [];
+      const flush = () => {
+        if (run.length >= 2) {
+          const outer = run.map(({ p, n, dist }) => [p[0] + n[0] * s * dist[s], p[1] + n[1] * s * dist[s]]);
+          const inner = run.map(({ p, n, dist }) => [p[0] + n[0] * s * (dist[s] - STALL), p[1] + n[1] * s * (dist[s] - STALL)]);
+          const ring = [...outer, ...inner.reverse()];
+          ring.push(ring[0]);
+          features.push({ attributes: { KIND: special ? "specialni" : "useky", PS_ZPS: 0, ODHAD: 1, ZONA: name }, geometry: { rings: [ring.map(ll)] } });
+        }
+        run = [];
+      };
+      for (const m of marks) (m.sides.includes(s) ? run.push(m) : flush());
+      flush();
+    }
+  }
+  return { features };
+}
 
 // A house from the city's 3D buildings (2024): RÚIAN's floors, use, completion and walls, and the measured
 // heights of eaves and ridge above the ground. Without floors in RÚIAN they come from the height of the

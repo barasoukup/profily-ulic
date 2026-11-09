@@ -184,6 +184,27 @@ jobs:
             NAME=$id tools/build_osm_data.sh "$pbf" "site-$id/data/osm-tiles" && touch "site-$id/ok" ||
               echo "::warning::OSM tiles of $id not built"
           done
+      # Plzeň's paid parking zones: a static file of the city's open data (CC0), built at each deploy;
+      # when it fails, the file of an earlier deploy (cache), else none (the profile estimates).
+      - id: plzen-zones-cache
+        uses: actions/cache@v4
+        with:
+          path: data/zony-plzen-last
+          key: plzen-zones-${{ github.run_id }}
+          restore-keys: plzen-zones-
+      - name: Plzeň parking zones
+        continue-on-error: true
+        timeout-minutes: 5
+        run: |
+          [ -d site-plzen/data ] || exit 0
+          if node tools/build_zony_plzen.mjs site-plzen/data; then
+            mkdir -p data/zony-plzen-last && cp site-plzen/data/zony.json data/zony-plzen-last/
+          elif [ -f data/zony-plzen-last/zony.json ]; then
+            echo "::warning::opendata.plzen.eu did not answer, using the zones of an earlier deploy"
+            cp data/zony-plzen-last/zony.json site-plzen/data/
+          else
+            echo "::warning::no Plzeň parking zones"
+          fi
       - name: Assemble the site
         env:
           MAPY_KEY: ${{ secrets.MAPY_KEY }} # Mapy.com key for the street panorama; empty → a plain link instead
