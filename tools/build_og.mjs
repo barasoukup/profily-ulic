@@ -16,7 +16,7 @@ if (cityId !== "praha") globalThis.PROFILY_CITY = cityId;
 // Words of the card per city: name suffix, "…ulic", data line, credit.
 const T = cityId === "praha"
   ? { name: "", adj: "pražských", data: "z dat IPR a OSM.", credit: "IPR Praha, OSM" }
-  : { name: ` · ${NAMES[cityId]}`, adj: SITES[cityId].adjPl, data: "z dat města a OSM.", credit: `Statutární město ${NAMES[cityId]}, OSM` };
+  : { name: ` · ${NAMES[cityId]}`, adj: SITES[cityId].adjPl, data: SITES[cityId].ogData || "z dat města a OSM.", credit: SITES[cityId].ogCredit || `Statutární město ${NAMES[cityId]}, OSM` };
 
 // A tiny DOM, enough for profile.js to build an SVG (elements, attributes, text, children).
 class Node {
@@ -71,7 +71,7 @@ const card = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}"
 <rect x="56" y="64" width="72" height="72" rx="16" fill="#d8413f"/>
 <path d="M69.5 120V91l9-6.8v36M105.5 120V84.3l9 6.7V120M69.5 120h45" stroke="#fff" stroke-width="5.4" fill="none" stroke-linejoin="round"/>
 <path d="M83 120v-9h18v9" fill="#fff"/>
-<text x="56" y="210" font-size="${T.name ? 44 : 52}" font-weight="700" fill="#1d1d1b" letter-spacing="-1">Profily ulic${T.name}</text>
+<text x="56" y="210" font-size="${T.name ? (T.name.length > 10 ? 36 : 44) : 52}" font-weight="700" fill="#1d1d1b" letter-spacing="-1">Profily ulic${T.name}</text>
 <text font-size="26" fill="#4f4e49"><tspan x="56" y="262">Příčné profily</tspan><tspan x="56" y="298">${T.adj} ulic</tspan><tspan x="56" y="334">od fasády k fasádě</tspan><tspan x="56" y="370">${T.data}</tspan></text>
 <text font-size="22" fill="#6b6a65"><tspan x="56" y="440">Stav, návrh, porovnání</tspan><tspan x="56" y="471">a podíl prostoru ulice.</tspan></text>
 <text font-size="15" fill="#8a877e"><tspan x="56" y="566">Ilustrace © Streetmix (CC BY-SA 4.0)</tspan><tspan x="56" y="586">a Bára Soukupová · data © ${T.credit}</tspan></text>

@@ -44,7 +44,7 @@ function inPrague(lon, lat) {
   return c;
 }
 
-const kx = 111320 * Math.cos((({ praha: 50.08, brno: 49.2, jihlava: 49.4, most: 50.5, opava: 49.94, plzen: 49.75 })[CITY] * Math.PI) / 180), ky = 110574;
+const kx = 111320 * Math.cos((({ praha: 50.08, brno: 49.2, jihlava: 49.4, most: 50.5, opava: 49.94, pardubice: 50.04, plzen: 49.75 })[CITY] * Math.PI) / 180), ky = 110574;
 const dist = (a, b) => Math.hypot((a[0] - b[0]) * kx, (a[1] - b[1]) * ky);
 const tag = (other, k) => other?.match(new RegExp(`"${k}"=>"([^"]*)"`))?.[1];
 

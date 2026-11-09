@@ -1,0 +1,63 @@
+<svg viewBox="0 0 360 560" xmlns="http://www.w3.org/2000/svg">
+  <!-- Pardubický trolejbus DPMP, Škoda 32Tr SOR (nejčastější typ, 33 vozů), čelní pohled podle fotek z Wikimedia
+       Commons: „Škoda 32Tr SOR 429, Pardubice, Palackého třída 03.jpg“ (autor MIGORMCZ) a „32Tr SOR na Hlavním
+       nádraží v Pardubicích (1).jpg“ (autor Felix220). Černé čelo se střechou, velké čelní sklo s oranžovou LED tabulí,
+       stříbrné hrany boků přecházejí pod sklem v mělké „V“ kolem rohových světel, pod ním červená brada se znakem
+       DPMP (bílá okřídlená pečeť), černý nárazník se značkou vpravo od středu. 1 px = 1 cm, šířka 2,55 m;
+       nahoře sběrače k trolejím. -->
+  <!-- sběrače: dvě tyče ze zadní části střechy k trolejím (troleje 5,3–5,5 m nad vozovkou, rozchod 0,6 m) -->
+  <g stroke="#2a2b2a" stroke-linecap="round" fill="none">
+    <path d="M160 262 L148 16" stroke-width="5"/>
+    <path d="M200 262 L212 16" stroke-width="5"/>
+  </g>
+  <rect x="140" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
+  <rect x="204" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
+  <g transform="translate(0 240)">
+    <!-- zpětná zrcátka na ramenech od střechy („králičí uši“) -->
+    <path d="M56 36 Q34 34 32 56" stroke="#1b1d20" stroke-width="5" fill="none"/>
+    <rect x="22" y="54" width="18" height="46" rx="5" fill="#1b1d20"/>
+    <path d="M304 36 Q326 34 328 56" stroke="#1b1d20" stroke-width="5" fill="none"/>
+    <rect x="320" y="54" width="18" height="46" rx="5" fill="#1b1d20"/>
+    <!-- černé čelo od střechy po nárazník, tmavý kryt střechy s obrysovými světly -->
+    <path d="M52 298 V56 Q52 26 84 26 H276 Q308 26 308 56 V298 Z" fill="#1b1d20"/>
+    <path d="M70 30 H290 Q300 32 304 42 H56 Q60 32 70 30 Z" fill="#2c3036"/>
+    <circle cx="96" cy="38" r="2.5" fill="#f2a33a"/><circle cx="264" cy="38" r="2.5" fill="#f2a33a"/>
+    <!-- stříbrné hrany boků -->
+    <path d="M52 64 Q52 54 58 50 V214 H52 Z" fill="#b9bcbf"/>
+    <path d="M308 64 Q308 54 302 50 V214 H308 Z" fill="#b9bcbf"/>
+    <!-- LED tabule: linka 3, cíl Hlavní nádraží -->
+    <g font-family="Arial, sans-serif" font-weight="bold" fill="#f2a33a">
+      <text x="80" y="72" font-size="19">3</text>
+      <text x="192" y="72" font-size="16" text-anchor="middle" letter-spacing=".5">HLAVNÍ NÁDRAŽÍ</text>
+    </g>
+    <!-- čelní sklo (o odstín světlejší než rám) s odlesky a stěrači -->
+    <path d="M64 84 H296 V194 Q180 206 64 194 Z" fill="#2a3642"/>
+    <path d="M80 90 L126 90 L96 192 L78 190 Z" fill="#46596a" opacity=".5"/>
+    <path d="M250 90 L272 90 L262 140 L240 140 Z" fill="#46596a" opacity=".4"/>
+    <g stroke="#0e0f10" stroke-width="2.5" stroke-linecap="round"><path d="M92 196 L168 186"/><path d="M272 196 L196 186"/></g>
+    <!-- znak Škoda nad stříbrným pásem -->
+    <circle cx="180" cy="214" r="6" fill="#2e4f7a" stroke="#c9d3dc" stroke-width="1.5"/>
+    <!-- červená brada mezi světly, po stranách vybíhá do špiček -->
+    <path d="M58 250 Q120 236 180 238 Q240 236 302 250 L304 278 H56 Z" fill="#d2222b"/>
+    <!-- stříbrný pás: z hran boků pod sklem do mělkého „V“ -->
+    <path d="M55 212 Q120 222 180 232 Q240 222 305 212" stroke="#b9bcbf" stroke-width="7" fill="none"/>
+    <!-- rohová světla ve stříbrném pouzdře: řada LED a kulatý světlomet -->
+    <path d="M54 214 Q82 220 104 226 Q102 252 92 262 H56 Q52 240 54 214 Z" fill="#c7c9cb"/>
+    <g fill="#f4f6f8"><circle cx="62" cy="222" r="2.5"/><circle cx="70" cy="224" r="2.5"/><circle cx="78" cy="226" r="2.5"/><circle cx="86" cy="228" r="2.5"/><circle cx="94" cy="230" r="2.5"/></g>
+    <circle cx="74" cy="246" r="9" fill="#eef2f5" stroke="#8d9296" stroke-width="1.5"/><circle cx="93" cy="246" r="4.5" fill="#eef2f5" stroke="#8d9296"/>
+    <path d="M306 214 Q278 220 256 226 Q258 252 268 262 H304 Q308 240 306 214 Z" fill="#c7c9cb"/>
+    <g fill="#f4f6f8"><circle cx="298" cy="222" r="2.5"/><circle cx="290" cy="224" r="2.5"/><circle cx="282" cy="226" r="2.5"/><circle cx="274" cy="228" r="2.5"/><circle cx="266" cy="230" r="2.5"/></g>
+    <circle cx="286" cy="246" r="9" fill="#eef2f5" stroke="#8d9296" stroke-width="1.5"/><circle cx="267" cy="246" r="4.5" fill="#eef2f5" stroke="#8d9296"/>
+    <!-- znak DPMP na bradě: bílá křídla a pečeť -->
+    <g fill="#fff">
+      <path d="M118 256 L136 252 L136 258 Z"/><path d="M162 256 L144 252 L144 258 Z"/>
+      <path d="M134 250 H146 V258 Q146 264 140 266 Q134 264 134 258 Z"/>
+    </g>
+    <circle cx="140" cy="257" r="3" fill="#d2222b"/>
+    <!-- černý nárazník a registrační značka vpravo od středu -->
+    <rect x="54" y="278" width="252" height="20" rx="4" fill="#1b1d20"/>
+    <rect x="176" y="282" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="176" y="282" width="6" height="12" fill="#2a63b8"/>
+    <!-- kola -->
+    <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
+  </g>
+</svg>

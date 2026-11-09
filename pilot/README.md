@@ -178,6 +178,12 @@ pilot/data/<město>/osm-tiles`, kontrola `CITY=<město> node evaluation/sample.m
   nepřijme, posun vstupu. Osy kolejí město nezveřejňuje (z OSM). Ilustrace: tramvaj 40T, trolejbus 26Tr a autobus
   PMDP. Kontrola 50 řezů: `evaluation/plzen/ZPRAVA.md`.
 - Trolejbus se kreslí v bus pruhu pod trolejí (OSM `trolley_wire`, i jen pro jeden směr).
+- **Pardubice** (žádné služby města): plochy živě z **celostátní technické mapy ČÚZK** (IS DMVS, `pilot/public/dmvs.js`,
+  použitelné pro jakékoli město). Služba nevrací tvary, jen obrázky a typ plochy v bodě: modul stáhne obrázek ploch a
+  hraničních linií (0,1 m/px), rozdělí ho podle barev legendy, obtáhne obrysy a typ bílých a šedých ploch na řezu
+  doptá (průměrně 6 dotazů, kliknutí kolem 1 s). Prázdná místa DTM doplní budovy a parcely RÚIAN. Kvalita záleží na
+  kraji: v Pardubicích chybí vozovky mimo zástavbu a plochy uvnitř bloků. Ilustrace: trolejbus 32Tr a autobus Iveco
+  Urbanway DPMP. Kontrola 49 řezů: `evaluation/pardubice/ZPRAVA.md`.
 
 ## Jak se profil skládá
 

@@ -1,0 +1,48 @@
+<svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
+  <!-- Pardubický autobus DPMP, Iveco Urbanway 12M CNG, zadní pohled. Tvar zádě podle fotek z Wikimedia Commons
+       „Roma TPL Iveco Bus Urbanway (9939) - back view.jpg“ a „ATAC Iveco Bus Urbanway (566) - back view.jpg“
+       (autor Kaga tau), bílý nátěr a kryt plynových nádrží podle „Iveco Urbanway 12M CNG 224, Pardubice, Palackého
+       třída 01.jpg“ (autor MIGORMCZ). Nahoře černá věž s mřížkami, pod ní černý pás s malým oknem a číslem linky,
+       nápis IVECO, bílý kryt motoru se znakem DPMP a evidenčním číslem, vlevo dvě svislé mřížky, po stranách
+       vysoká svislá zadní světla, dole černý nárazník s registrační značkou. 1 px = 1 cm, šířka 2,55 m. -->
+  <!-- zrcátka vpředu vyčnívají za boky -->
+  <rect x="24" y="54" width="16" height="44" rx="4" fill="#1d1f22"/>
+  <rect x="320" y="54" width="16" height="44" rx="4" fill="#1d1f22"/>
+  <!-- kryt plynových nádrží na střeše -->
+  <path d="M70 22 Q72 8 90 8 H270 Q288 8 290 22 Z" fill="#e9ebec"/>
+  <!-- bílá skříň -->
+  <path d="M52 296 V40 Q52 20 72 20 H288 Q308 20 308 40 V296 Z" fill="#f6f6f4"/>
+  <path d="M298 22 Q308 26 308 40 V296 H298 Z" fill="#dfe0de"/>
+  <!-- černá věž s mřížkami -->
+  <path d="M66 70 V34 Q66 24 78 24 H282 Q294 24 294 34 V70 Z" fill="#1d1f22"/>
+  <rect x="82" y="38" width="96" height="20" rx="2" fill="#33363b"/>
+  <g stroke="#1d1f22" stroke-width="2"><path d="M82 44 H178"/><path d="M82 50 H178"/></g>
+  <rect x="218" y="32" width="58" height="12" rx="2" fill="#33363b"/>
+  <!-- černý pás s malým zadním oknem a číslem linky -->
+  <path d="M66 68 H294 V110 Q286 122 270 122 H90 Q74 122 66 110 Z" fill="#15171a"/>
+  <rect x="96" y="80" width="168" height="30" rx="3" fill="#2a3642"/>
+  <rect x="164" y="84" width="40" height="22" fill="#0e0f10"/>
+  <text x="184" y="101" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#f2a33a">15</text>
+  <text x="180" y="138" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" letter-spacing="1.5" fill="#1d1f22">IVECO</text>
+  <!-- vysoká svislá zadní světla po stranách -->
+  <path d="M54 66 Q62 66 64 74 V214 Q66 230 78 238 H58 Q54 232 54 220 Z" fill="#b8141c"/>
+  <circle cx="60" cy="196" r="3.5" fill="#f2a33a"/><circle cx="60" cy="212" r="3.5" fill="#eef1f3"/>
+  <path d="M306 66 Q298 66 296 74 V214 Q294 230 282 238 H302 Q306 232 306 220 Z" fill="#b8141c"/>
+  <circle cx="300" cy="196" r="3.5" fill="#f2a33a"/><circle cx="300" cy="212" r="3.5" fill="#eef1f3"/>
+  <!-- dvě svislé mřížky vlevo -->
+  <g fill="#2b2d31"><rect x="72" y="146" width="20" height="34" rx="3"/><rect x="72" y="186" width="20" height="34" rx="3"/></g>
+  <g stroke="#f6f6f4" stroke-width="1.5"><path d="M74 154 H90 M74 162 H90 M74 170 H90 M74 194 H90 M74 202 H90 M74 210 H90"/></g>
+  <!-- kryt motoru: znak DPMP a evidenční číslo -->
+  <g fill="#d2222b">
+    <path d="M156 186 L172 181 V190 Z"/><path d="M204 186 L188 181 V190 Z"/>
+    <path d="M170 176 H190 V189 Q190 197 180 200 Q170 197 170 189 Z"/>
+  </g>
+  <circle cx="180" cy="187" r="3" fill="#fff"/>
+  <text x="266" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#1d1f22">224</text>
+  <!-- černý nárazník s registrační značkou, bílé rohy -->
+  <path d="M84 238 H276 V296 H84 Z" fill="#2a2c2f"/>
+  <path d="M52 278 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#2a2c2f"/>
+  <rect x="152" y="244" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="244" width="6" height="12" fill="#2a63b8"/>
+  <!-- kola -->
+  <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
+</svg>

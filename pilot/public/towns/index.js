@@ -4,6 +4,7 @@
 import * as jihlava from "./jihlava.js";
 import * as most from "./most.js";
 import * as opava from "./opava.js";
+import * as pardubice from "./pardubice.js";
 import * as plzen from "./plzen.js";
 
-export const TOWNS = { jihlava, most, opava, plzen };
+export const TOWNS = { jihlava, most, opava, pardubice, plzen };

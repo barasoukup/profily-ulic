@@ -159,6 +159,33 @@ const CITIES = {
     example: "49.938700, 17.902600",
     artMap: { "trolleybus-inbound": "trolejbus-inbound", "trolleybus-outbound": "trolejbus-outbound", ...TOWN_ART },
   },
+  pardubice: {
+    id: "pardubice",
+    server: "technické mapy ČÚZK", // "Server … neodpovídá"
+    cover: "Pardubice", // "Data pokrývají jen …"
+    dataName: "Technická mapa ČÚZK", // "… teď neodpovídá"
+    view: [50.0383, 15.7791],
+    centre: [15.7791, 50.0383], // Pernštýnské náměstí
+    inCity: "v Pardubicích",
+    adjective: "pardubické",
+    mapLabel: "Mapa Pardubic",
+    dataShort: "technické mapy ČÚZK a OSM",
+    techMap: "technickou mapu ČÚZK",
+    parkingSource: "parkoviště z technické mapy",
+    rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Pardubice orientačně:",
+    art: "pardubice",
+    artLabel: "Pardubické ilustrace",
+    artTitle: "Kreslit pardubickými ilustracemi (vypnuto: ilustrace Streetmixu)",
+    emptyImg: "pardubice/trolejbus-inbound.svg",
+    credit: "technická mapa © Pardubický kraj, IS DMVS ČÚZK, RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
+    storeSuffix: "-pardubice",
+    // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
+    innerKm: 0.9, estateKm: 2,
+    fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
+    example: "50.038300, 15.779100",
+    // No town GIS of its own: the surfaces come from the national DTM of ČÚZK (towns/dmvs.js), any town could.
+    artMap: { "trolleybus-inbound": "trolejbus-inbound", "trolleybus-outbound": "trolejbus-outbound", ...TOWN_ART },
+  },
   plzen: {
     id: "plzen",
     server: "města Plzně", // "Server … neodpovídá"

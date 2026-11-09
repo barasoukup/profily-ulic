@@ -1,0 +1,55 @@
+<svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
+  <!-- Pardubický autobus DPMP, Iveco Urbanway 12M CNG (nejčastější typ, 32 vozů), čelní pohled podle fotky z Wikimedia
+       Commons „Iveco Urbanway 12M CNG 224, Pardubice, Palackého třída 01.jpg“ (autor MIGORMCZ): bílá skříň s krytem
+       plynových nádrží na střeše, velké čelní sklo v černém rámu s oranžovou LED tabulí, pod sklem šedá maska
+       s nápisem IVECO, šikmé světlomety v rozích, mezi nimi červený pruh se znakem DPMP uprostřed,
+       evidenční číslo vpravo, dole bílý nárazník s tmavým spodkem. 1 px = 1 cm, šířka 2,55 m. -->
+  <!-- zpětná zrcátka na ramenech -->
+  <path d="M54 40 H40 Q32 40 32 48 V56" stroke="#1d1f22" stroke-width="4" fill="none"/>
+  <rect x="22" y="54" width="18" height="48" rx="4" fill="#1d1f22"/>
+  <path d="M306 40 H320 Q328 40 328 48 V56" stroke="#1d1f22" stroke-width="4" fill="none"/>
+  <rect x="320" y="54" width="18" height="48" rx="4" fill="#1d1f22"/>
+  <!-- kryt plynových nádrží na střeše -->
+  <path d="M70 22 Q72 8 90 8 H270 Q288 8 290 22 Z" fill="#e9ebec"/>
+  <!-- bílá skříň -->
+  <path d="M52 296 V42 Q52 22 72 22 H288 Q308 22 308 42 V296 Z" fill="#f6f6f4"/>
+  <path d="M298 24 Q308 28 308 42 V296 H298 Z" fill="#dfe0de"/>
+  <!-- čelní sklo v černém rámu, nahoře LED tabule -->
+  <path d="M58 34 Q58 30 64 30 H296 Q302 30 302 34 V196 Q180 202 58 196 Z" fill="#1d1f22"/>
+  <rect x="62" y="34" width="236" height="30" fill="#15171a"/>
+  <g font-family="Arial, sans-serif" font-weight="bold" fill="#f2a33a">
+    <text x="74" y="56" font-size="18">15</text>
+    <text x="196" y="56" font-size="15" text-anchor="middle" letter-spacing=".5">HLAVNÍ NÁDRAŽÍ</text>
+  </g>
+  <path d="M62 66 H298 V192 Q180 198 62 192 Z" fill="#3a4a58"/>
+  <path d="M76 70 L118 70 L90 190 L74 190 Z" fill="#5c6c79" opacity=".5"/>
+  <path d="M250 70 L272 70 L262 120 L240 120 Z" fill="#5c6c79" opacity=".4"/>
+  <g stroke="#0e0f10" stroke-width="2.5" stroke-linecap="round"><path d="M92 194 L166 182"/><path d="M276 194 L210 182"/></g>
+  <!-- šedá maska s nápisem IVECO -->
+  <path d="M112 206 H248 Q244 222 232 226 H128 Q116 222 112 206 Z" fill="#c4c6c9"/>
+  <text x="180" y="221" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" letter-spacing="1.5" fill="#55585e">IVECO</text>
+  <!-- šikmé světlomety v rozích -->
+  <path d="M54 220 Q76 228 100 228 L98 252 H58 Q54 240 54 220 Z" fill="#6b6e73"/>
+  <circle cx="68" cy="240" r="6" fill="#eef1f3"/><circle cx="86" cy="240" r="6" fill="#eef1f3"/>
+  <path d="M60 248 H96" stroke="#f4f6f8" stroke-width="2"/>
+  <path d="M306 220 Q284 228 260 228 L262 252 H302 Q306 240 306 220 Z" fill="#6b6e73"/>
+  <circle cx="292" cy="240" r="6" fill="#eef1f3"/><circle cx="274" cy="240" r="6" fill="#eef1f3"/>
+  <path d="M300 248 H264" stroke="#f4f6f8" stroke-width="2"/>
+  <!-- červený pruh přes čelo se znakem DPMP -->
+  <rect x="100" y="244" width="160" height="9" fill="#d2222b"/>
+  <g fill="#fff">
+    <path d="M156 248 L174 243 V252 Z"/><path d="M204 248 L186 243 V252 Z"/>
+    <path d="M171 239 H189 V252 Q189 260 180 263 Q171 260 171 252 Z"/>
+  </g>
+  <path d="M174 242 H186 V251 Q186 257 180 259 Q174 257 174 251 Z" fill="#d2222b"/>
+  <circle cx="180" cy="249" r="2.5" fill="#fff"/>
+  <!-- evidenční číslo vpravo pod světlometem -->
+  <text x="292" y="270" text-anchor="end" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1d1f22">224</text>
+  <!-- nárazník: mlhovky, tmavý spodek s registrační značkou -->
+  <circle cx="66" cy="276" r="4" fill="#d9dbdd" stroke="#9fa3a6"/><circle cx="294" cy="284" r="4" fill="#d9dbdd" stroke="#9fa3a6"/>
+  <path d="M96 282 H264 V298 H96 Z" fill="#2a2c2f"/>
+  <path d="M52 288 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#2a2c2f"/>
+  <rect x="152" y="284" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="284" width="6" height="12" fill="#2a63b8"/>
+  <!-- kola -->
+  <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
+</svg>

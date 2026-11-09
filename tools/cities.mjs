@@ -8,7 +8,7 @@ const OSM_CREDIT = `© přispěvatelé <a href="https://www.openstreetmap.org/co
 const RUIAN_CREDIT = "budovy RÚIAN © ČÚZK (CC BY 4.0)";
 
 // Order of the city switch.
-export const NAMES = { praha: "Praha", brno: "Brno", jihlava: "Jihlava", most: "Most", opava: "Opava", plzen: "Plzeň" };
+export const NAMES = { praha: "Praha", brno: "Brno", jihlava: "Jihlava", most: "Most", opava: "Opava", pardubice: "Pardubice", plzen: "Plzeň" };
 
 export const SITES = {
   brno: {
@@ -74,6 +74,24 @@ export const SITES = {
     ${OSM_CREDIT} ·
     ortofoto © ČÚZK (CC BY 4.0)`,
     bbox: "17.80,49.86,18.00,49.99",
+  },
+  pardubice: {
+    gen: "Pardubic", adj: "pardubické", adjPl: "pardubických", adjInstr: "pardubickými",
+    description: "Příčné profily pardubických ulic od fasády k fasádě z celostátní technické mapy ČÚZK a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.",
+    ogDescription: "Příčné profily pardubických ulic z technické mapy ČÚZK: od fasády k fasádě, upravitelné.",
+    ogAlt: "Příčný profil pardubické ulice s trolejbusem, chodníky a domy, vedle název Profily ulic",
+    // The card's data line and credit (tools/build_og.mjs): no town data, the DTM of ČÚZK.
+    ogData: "z technické mapy ČÚZK a OSM.", ogCredit: "Pardubický kraj, ČÚZK, OSM",
+    stav: "z technické mapy ČÚZK a OSM",
+    parking: "parkoviště z technické mapy",
+    // The national DTM (map images and the type of a surface) and RÚIAN of ČÚZK; no town GIS.
+    img: ["https://dmvs.cuzk.gov.cz"],
+    connect: ["https://dmvs.cuzk.gov.cz", "https://ags.cuzk.gov.cz"],
+    credits: `Data: technická mapa © Pardubický kraj, <a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a> ·
+    ${RUIAN_CREDIT} ·
+    ${OSM_CREDIT} ·
+    ortofoto © ČÚZK (CC BY 4.0)`,
+    bbox: "15.66,49.97,15.88,50.10",
   },
   plzen: {
     gen: "Plzně", adj: "plzeňské", adjPl: "plzeňských", adjInstr: "plzeňskými",
