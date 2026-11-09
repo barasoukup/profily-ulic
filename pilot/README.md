@@ -139,13 +139,45 @@ CORS povolený):
   a stojany na kola (`doprava_verejnost/150`), kde je OSM nemá do 3 m (přístřešek do 15 m) (vrstva laviček `opendata/18` na dotazy neodpovídá).
 - souřadnice: služby města převádějí S-JTSK do WGS 84 jinou transformací (asi 6 m vedle OSM), dotazy proto žádají `datumTransformation=1623` jako u IPR.
 - lokálně jen dlaždice OSM: výřez z Geofabriku (ČR) přes `osmium extract --bbox 15.48,49.32,15.70,49.47`
-  a `NAME=jihlava tools/build_osm_data.sh data/osm/Jihlava.osm.pbf pilot/data/jihlava/osm-tiles`
+  a `NAME=jihlava tools/build_osm_data.sh data/osm/towns/jihlava.osm.pbf pilot/data/jihlava/osm-tiles`
   (bez osmia `SPAT="15.48 49.32 15.70 49.47"` s celou ČR).
 - úpravy výpočtu jako v Brně (`city.fix`).
 - ilustrace: trolejbus Škoda 32Tr a autobus Citelis DPmJ; trolejbus se sběrači v bus pruhu pod trolejemi
   (OSM `trolley_wire=yes`), jinde autobus; mobiliář zatím jako v Praze.
 - další zajímavé vrstvy města (zatím nepoužité): jednosměrky a cyklo-obousměrky, obytné zóny a zóny 30,
   přechody, trolejové vedení a trakční sloupy, zastávky s vybavením, dopravní značky, mosty.
+
+## Další města: Most, Opava, Plzeň (`/most/`, `/opava/`, `/plzen/`)
+
+Každé malé město je jeden modul `pilot/public/towns/<město>.js` (vzor `towns/jihlava.js`): zdroje dat pro
+kliknutí (`osm`, `surfaces`, `lines`, `parking`, `podlaznost`) ve stejném tvaru jako odpovědi IPR, podkladové
+mapy (`maps`) a ortofoto pro kontrolu řezů (`ortho`). Společné funkce jsou v `pilot/public/gis.js`. Texty aplikace
+jsou v `city.js`, texty stránky, servery pro CSP a výřez OSM v `tools/cities.mjs`; nasazení i místní server berou
+seznam měst odtud. Nové město: záznam v `city.js` a `tools/cities.mjs`, modul v `towns/` (a v `towns/index.js`),
+ilustrace v `pilot/public/<město>/`, dlaždice `NAME=<město> SPAT="x0 y0 x1 y1" tools/build_osm_data.sh <ČR.pbf>
+pilot/data/<město>/osm-tiles`, kontrola `CITY=<město> node evaluation/sample.mjs|run_brno.mjs|render_brno.mjs`.
+
+- **Domy (všechna malá města):** RÚIAN z celostátní služby ČÚZK (`gis.js` `ruianBuilding`, sedí na OSM do
+  0,1 m): podlaží, využití (hala, nízký dům), **rok dokončení** a **druh konstrukce** (stěnové panely = panelák).
+  Rok stojí místo pražského stáří zástavby: do 1919 a 1946–57 šikmá střecha, od 1958 panelová éra, od 1996 moderní
+  dům (staré domy mají v RÚIAN souhrnný rok 1910–1919). Vnitřní město a sídliště podle vzdálenosti od centra má
+  každé město vlastní (`city.js` `innerKm`, `estateKm`; Most vnitřní město nemá).
+- **Most** (`mapy.mesto-most.cz`): plochy z objektové mapy povrchové situace v otevřených datech
+  (`Opendata/OpendataDtmOmps/FeatureServer/9`, kódy `KOD_OMPS`/`KOD`), linie z technické mapy (`DTM/DtmUMPS`:
+  ploty, zdi, zábradlí, svodidla, osy kolejí jen do 3 m od tramvaje v OSM), stromy a lavičky z technické mapy,
+  lampy z otevřených dat; stání s orientací město nemá. Datum sedí (1623). Ilustrace: tramvaj EVO2 a autobus SOR
+  NB 12 DPmML. Kontrola 57 řezů: `evaluation/most/ZPRAVA.md`.
+- **Opava** (`mapy.opava-city.cz`, složka `external`): plochy z účelové mapy povrchové situace
+  (`info_dtm_plochy_find/0`, pole `POPIS`; vozovky ulic jsou čtyři polygony přes celé město, tři s chybným popisem,
+  čtou se zvlášť a zjednodušené), stání placených zón (`dopr_zps`), stromy, lavičky, kryté zastávky, stojany.
+  Služby jsou 4 m vedle OSM, dotazy s `datumTransformation=1623`. Ilustrace: trolejbus Škoda 32Tr a autobus Iveco
+  Urbanway MDPO. Kontrola 50 řezů: `evaluation/opava/ZPRAVA.md`.
+- **Plzeň** (`ags.plzen.eu`): technická mapa ve struktuře JVF DTM (`GIS_DTM/GIS_DTM_ZPS_kesovana/FeatureServer`,
+  jeden dotaz na asi 45 vrstev ploch a linií), 3D budovy s výškou okapu a hřebene (`GIS_3D_budovy`), stromy,
+  lavičky, stojany a sloupky z pasportů, ortofoto 2024. Služby jsou 12 m vedle OSM: dotazy s 1623, kde to vrstva
+  nepřijme, posun vstupu. Osy kolejí město nezveřejňuje (z OSM). Ilustrace: tramvaj 40T, trolejbus 26Tr a autobus
+  PMDP. Kontrola 50 řezů: `evaluation/plzen/ZPRAVA.md`.
+- Trolejbus se kreslí v bus pruhu pod trolejí (OSM `trolley_wire`, i jen pro jeden směr).
 
 ## Jak se profil skládá
 
