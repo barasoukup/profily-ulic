@@ -89,7 +89,8 @@ const pragueMaps = () => ({
 const DMVS = "https://dmvs.cuzk.gov.cz/api/wms";
 const brnoMaps = () => ({
   "Technická mapa": L.tileLayer.wms(`${DMVS}/dtm_zps_plochy_bar`, {
-    layers: "dtm_zps_plochy_bar", format: "image/png", maxZoom: 21, tileSize: 512, zoomOffset: -1, attribution: "DTM Jihomoravského kraje © ČÚZK (IS DMVS)",
+    // The DMVS answers WMS 1.3.0 only (since 11/2026; Leaflet asks 1.1.1 by default).
+    layers: "dtm_zps_plochy_bar", format: "image/png", version: "1.3.0", maxZoom: 21, tileSize: 512, zoomOffset: -1, attribution: "DTM Jihomoravského kraje © ČÚZK (IS DMVS)",
   }),
   "Ortofoto Brno": L.tileLayer("https://gis.brno.cz/ags1/rest/services/OMI/OMI_basemaps_ortofoto_2025_wgs/MapServer/tile/{z}/{y}/{x}", {
     maxZoom: 21, maxNativeZoom: 21, attribution: "ortofoto 2025 © Statutární město Brno",
@@ -110,7 +111,7 @@ map.on("baselayerchange", (e) => { try { localStorage.setItem(BASE_KEY, e.name);
 
 const dtm = isBrno
   ? L.tileLayer.wms(`${DMVS}/dtm_zps_linie_body`, {
-    layers: "dtm_zps_linie_body", format: "image/png", transparent: true, maxZoom: 21, minZoom: 16, tileSize: 512, zoomOffset: -1,
+    layers: "dtm_zps_linie_body", format: "image/png", version: "1.3.0", transparent: true, maxZoom: 21, minZoom: 16, tileSize: 512, zoomOffset: -1,
     attribution: "DTM Jihomoravského kraje © ČÚZK (IS DMVS)",
   })
   : new ArcgisExport("", {
