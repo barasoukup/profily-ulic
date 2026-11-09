@@ -516,6 +516,16 @@ function splitRoadway(run, ctx) {
     else { rightEdge.push({ type: x.type, s, e: s + x.w, orient: x.orient, source: x.source }); s += x.w; }
   }
   const mid = trams.length ? tramLanes(s, e, trams, dirAt) : [];
+  // All the street's lanes fit beside the tracks (Národní: lanes=2, one on each side): cars do not
+  // drive on the tracks, so they are a tram belt of their own, level with the roadway (Bára).
+  if (trams.length && tags.lanes) {
+    const cars = mid.filter((x) => x.type === "pruh");
+    const lo = Math.min(...trams), hi = Math.max(...trams);
+    const bothSides = cars.some((x) => x.e <= lo) && cars.some((x) => x.s >= hi);
+    if (cars.length >= ctx.lanesTotal && (bothSides || isOnewayTags(tags))) {
+      for (const x of mid) if (x.type === "tramvaj_v_pruhu") x.type = "tramvaj";
+    }
+  }
   if (!trams.length) {
     // One lane on a two-way street carries both directions (no arrow).
     const twoWaySingle = lanesTotal === 1 && !isOnewayTags(tags) && tags.junction !== "roundabout";
