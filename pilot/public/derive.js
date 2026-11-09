@@ -95,6 +95,9 @@ const JUNCTION_CLEARANCE = 15; // keep the cut this far from where another stree
 const CROSSING_CLEARANCE = 6; // …and from a pedestrian crossing (m)
 const NOT_JUNCTION_SERVICE = new Set(["driveway", "parking_aisle", "drive-through"]);
 const AXIS_SNAP = 4.5; // m: an OSM axis this close beside the roadway belongs to it (city.fix.axisToRoadway)
+// Streets for those fixes: roads and residential streets, not tracks or bridleways (Brno test č. 99).
+const STREETS = new Set(["motorway", "trunk", "primary", "secondary", "tertiary", "unclassified", "residential", "living_street",
+  "motorway_link", "trunk_link", "primary_link", "secondary_link", "tertiary_link"]);
 
 // Move a snapped point along its way away from junctions and pedestrian crossings, where a
 // perpendicular cut runs along a side street or over a zebra. Junctions are nodes the way shares
@@ -1117,12 +1120,12 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   // A paved area under the axis of a street (not a path) is its roadway, as an estimate (Brno's MTVU
   // codes a rebuilt road as "manipulační plocha", e.g. Žabovřeská).
   // Not a wide one: a 55 m construction site is no roadway to split into lanes.
-  if (city.fix?.roadUnderAxis && !MINOR.has(way.tags?.highway) && (runs[i0].code === 1003 || runs[i0].code === 603) && runs[i0].e - runs[i0].s <= 25) {
+  if (city.fix?.roadUnderAxis && STREETS.has(way.tags?.highway) && (runs[i0].code === 1003 || runs[i0].code === 603) && runs[i0].e - runs[i0].s <= 25) {
     runs[i0] = { ...runs[i0], code: 701, guess: true };
   }
   // An OSM axis a few metres beside the roadway (on its sidewalk or verge) is moved onto it, so the
   // profile does not start beside the street (Brno test of 100 cuts: axes 2–4 m off).
-  if (city.fix?.axisToRoadway && !MINOR.has(way.tags?.highway) && !carriage(runs[i0].code)) {
+  if (city.fix?.axisToRoadway && STREETS.has(way.tags?.highway) && !carriage(runs[i0].code)) {
     const gap = (r) => (axisT < r.s ? r.s - axisT : axisT > r.e ? axisT - r.e : 0);
     const road = runs.filter((r) => carriage(r.code) && gap(r) <= AXIS_SNAP).sort((a, b) => gap(a) - gap(b))[0];
     if (road) {
