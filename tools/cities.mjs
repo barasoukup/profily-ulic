@@ -38,7 +38,7 @@ export const SITES = {
     stav: "z dat města Jihlavy a OSM",
     parking: "parkovací místa města",
     img: ["https://gis.jihlava-city.cz"],
-    connect: ["https://gis.jihlava-city.cz"],
+    connect: ["https://gis.jihlava-city.cz", "https://ags.cuzk.gov.cz"], // RÚIAN of ČÚZK for the houses
     credits: `Data: © <a href="https://gis.jihlava-city.cz">Statutární město Jihlava</a> (pasport komunikací, parkování, technická mapa, stromy, lampy, zastávky, stojany na kola; ortofoto) ·
     budovy RÚIAN a katastr © ČÚZK (CC BY 4.0) ·
     ${OSM_CREDIT} ·
@@ -53,8 +53,8 @@ export const SITES = {
     stav: "z technické mapy Mostu a OSM",
     parking: "parkoviště z technické mapy",
     img: ["https://mapy.mesto-most.cz"],
-    connect: ["https://mapy.mesto-most.cz"],
-    credits: `Data: © <a href="https://mapy.mesto-most.cz">Statutární město Most</a> (technická mapa, otevřená data) ·
+    connect: ["https://mapy.mesto-most.cz", "https://ags.cuzk.gov.cz"],
+    credits: `Data: © <a href="https://mapy.mesto-most.cz">Statutární město Most</a> (objektová mapa povrchové situace a stožáry veřejného osvětlení z otevřených dat; technická mapa: koleje, ploty, zdi, zábradlí, svodidla, stromy, lavičky) ·
     ${RUIAN_CREDIT} ·
     ${OSM_CREDIT} ·
     ortofoto © ČÚZK (CC BY 4.0)`,
@@ -68,8 +68,8 @@ export const SITES = {
     stav: "z účelové mapy Opavy a OSM",
     parking: "parkovací stání města",
     img: ["https://mapy.opava-city.cz"],
-    connect: ["https://mapy.opava-city.cz"],
-    credits: `Data: © <a href="https://mapy.opava-city.cz">Statutární město Opava</a> (účelová mapa povrchové situace, parkování, stromy, mobiliář, MHD) ·
+    connect: ["https://mapy.opava-city.cz", "https://ags.cuzk.gov.cz"],
+    credits: `Data: © <a href="https://mapy.opava-city.cz">Statutární město Opava</a> (účelová mapa povrchové situace a technická mapa, parkovací stání, stromy, lavičky, zastávky MHD, cyklostojany) ·
     ${RUIAN_CREDIT} ·
     ${OSM_CREDIT} ·
     ortofoto © ČÚZK (CC BY 4.0)`,
@@ -81,10 +81,11 @@ export const SITES = {
     ogDescription: "Příčné profily plzeňských ulic z technické mapy a dat města: od fasády k fasádě, upravitelné.",
     ogAlt: "Příčný profil plzeňské ulice s tramvají, chodníky a domy, vedle název Profily ulic",
     stav: "z technické mapy Plzně a OSM",
-    parking: "parkovací plochy města",
+    parking: "parkoviště z technické mapy",
     img: ["https://ags.plzen.eu"],
-    connect: ["https://ags.plzen.eu"],
-    credits: `Data: © <a href="https://ags.plzen.eu/arcgis/rest/services">Statutární město Plzeň</a> (technická mapa, pasport zeleně a mobiliáře, doprava) ·
+    // RÚIAN of ČÚZK for a house outside the city's 3D buildings (gis.js ruianBuilding).
+    connect: ["https://ags.plzen.eu", "https://ags.cuzk.gov.cz"],
+    credits: `Data: © <a href="https://ags.plzen.eu/arcgis/rest/services">Statutární město Plzeň</a> (technická mapa, budovy 3D, stromy, lavičky, stojany na kola, sloupky; ortofoto) ·
     ${RUIAN_CREDIT} ·
     ${OSM_CREDIT} ·
     ortofoto © ČÚZK (CC BY 4.0)`,

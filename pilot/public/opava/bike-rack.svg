@@ -1,0 +1,49 @@
+<svg viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Nový pražský stojan na kola, návrh Olgoj Chorchoj (M. Froněk, J. Němeček), sada lavička–koš–stojan 2017.
+       Obrácené „U“, ohýbaný profil cca 5 cm (prototyp 2017), plochý se zaoblenými hranami, prášková barva
+       tmavě hnědá jako lavička a koš. Nohy zabetonované bez patek.
+       Pohled z boku kola (kolo kolmo k ulici), stojan před kolem. 1 px = 1 cm: stojan 56 × 90 cm, kolo 28", rozvor 108 cm. -->
+  <!-- předloha: brožura IPR k soutěži (str. 15–16), foto prototypu (Pražský deník, Aktuálně.cz 2017) -->
+
+  <!-- kola: plášť, ráfek, dráty -->
+  <g fill="none">
+    <circle cx="35" cy="86" r="32" stroke="#2c2c2c" stroke-width="4"/>
+    <circle cx="143" cy="86" r="32" stroke="#2c2c2c" stroke-width="4"/>
+    <circle cx="35" cy="86" r="29.4" stroke="#a9adaf" stroke-width="1.4"/>
+    <circle cx="143" cy="86" r="29.4" stroke="#a9adaf" stroke-width="1.4"/>
+    <g stroke="#d9dbd9" stroke-width=".6">
+      <path d="M35 57 V115 M6 86 H64 M14.5 65.5 L55.5 106.5 M55.5 65.5 L14.5 106.5 M24 59 L46 113 M46 59 L24 113 M8 75 L62 97 M62 75 L8 97"/>
+      <path d="M143 57 V115 M114 86 H172 M122.5 65.5 L163.5 106.5 M163.5 65.5 L122.5 106.5 M132 59 L154 113 M154 59 L132 113 M116 75 L170 97 M170 75 L116 97"/>
+    </g>
+  </g>
+  <circle cx="35" cy="86" r="2.4" fill="#7c8082"/>
+  <circle cx="143" cy="86" r="3" fill="#7c8082"/>
+
+  <!-- rám: obecné trekové kolo, modrošedý nátěr -->
+  <g fill="none" stroke="#5f7f8e" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M95 93 L143 86 L108 46" stroke-width="2"/>
+    <path d="M48.4 42 L108 44 L95 93 L46 54" stroke-width="3"/>
+    <path d="M49.6 37.6 L44.6 57" stroke-width="3.6"/>
+    <path d="M44.8 56 L35 86" stroke-width="2.2"/>
+  </g>
+  <!-- světlejší hrana horní trubky -->
+  <path d="M49.6 41.2 L107.4 43.2" stroke="#7d9ba8" stroke-width=".8" fill="none"/>
+
+  <!-- řídítka a sedlo -->
+  <path d="M49.6 37.6 L50.4 25 L47.5 24.6 M50.4 25 L57 23.6" fill="none" stroke="#4a4d4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M55.6 23.2 H62" stroke="#2c2c2c" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M108 46 L111.4 24" stroke="#8a8e90" stroke-width="1.8"/>
+  <path d="M101 22.6 Q105 21 113 21.2 H121 Q122.4 21.4 122 23.6 Q117 25.4 110 24.4 Q104 24 101 22.6 Z" fill="#2c2c2c"/>
+
+  <!-- převodník, klika, pedál -->
+  <circle cx="95" cy="93" r="8" fill="#5c6062"/>
+  <circle cx="95" cy="93" r="5.6" fill="#7c8082"/>
+  <path d="M95 93 L86.8 107.9" stroke="#3a3d3f" stroke-width="2.2" stroke-linecap="round"/>
+  <rect x="82.4" y="106.9" width="8.4" height="2.2" rx=".8" fill="#2c2c2c"/>
+  <path d="M95 85 L143 83.4" stroke="#5c6062" stroke-width=".7"/>
+
+  <!-- stojan: plochý profil, jeden světlý pruh (vlevo a nahoře), jeden tmavý (vnější hrana pravé nohy) -->
+  <path d="M64.3 120 V39 A6.5 6.5 0 0 1 70.8 32.5 H109.2 A6.5 6.5 0 0 1 115.7 39 V120" fill="none" stroke="#3a332e" stroke-width="4.8"/>
+  <path d="M62.5 120 V39 A8.3 8.3 0 0 1 70.8 30.7 H109.2 A8.4 8.4 0 0 1 112.4 31.2 M113.9 120 V39 A4.7 4.7 0 0 0 112.5 35.7" fill="none" stroke="#6a5a4e" stroke-width="1.1" stroke-linecap="round"/>
+  <path d="M117.4 120 V39 A8.4 8.4 0 0 0 116.8 35.8" fill="none" stroke="#2a2420" stroke-width="1.2" stroke-linecap="round"/>
+</svg>

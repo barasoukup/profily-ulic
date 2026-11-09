@@ -1,0 +1,43 @@
+<svg viewBox="0 0 320 420" xmlns="http://www.w3.org/2000/svg">
+  <!-- Mostecká tramvaj EVO2 (Pragoimex) dopravního podniku DPmML, zadní pohled. 1 px = 1 cm, šířka vozu 2,50 m.
+       Jednosměrný vůz (Most a Litvínov mají smyčky): zadní čelo podle fotek na Wikimedia Commons („Most tram 2022 3.jpg“)
+       ve stejných barvách jako přední, žlutá skříň s červenou čepicí, menší zadní okno v černém rámu s číslem linky,
+       červená koncová světla, červený spodek. -->
+  <!-- pantograf je na přední části, vzadu jen kryty střešní výzbroje -->
+  <path d="M66 126 L74 108 Q76 104 82 104 H238 Q244 104 246 108 L254 126 Z" fill="#c9cdd0"/>
+  <path d="M234 104 H238 Q244 104 246 108 L254 126 H242 Z" fill="#aeb2b6"/>
+  <rect x="132" y="96" width="56" height="8" rx="2" fill="#9ea2a6"/>
+  <!-- skříň: žlutá, nahoře červená čepice -->
+  <path d="M35 392 V156 Q35 124 68 124 H252 Q285 124 285 156 V392 Z" fill="#f2c51c"/>
+  <path d="M35 186 V156 Q35 124 68 124 H252 Q285 124 285 156 V186 H270 V150 H50 V186 Z" fill="#e2341f"/>
+  <path d="M272 128 Q285 136 285 156 V392 H274 Z" fill="#000" opacity=".08"/>
+  <!-- černý rám zadního okna s LED číslem linky -->
+  <path d="M58 270 V152 Q58 140 70 140 H250 Q262 140 262 152 V270 Z" fill="#141618"/>
+  <rect x="136" y="146" width="48" height="20" rx="2" fill="#0a0b0c"/>
+  <text x="160" y="162" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#43d94c">4</text>
+  <path d="M68 176 Q68 172 72 172 H248 Q252 172 252 176 V262 H68 Z" fill="#2c3944"/>
+  <path d="M84 176 L118 176 L100 258 L80 258 Z" fill="#46596a" opacity=".5"/>
+  <!-- koncová a brzdová světla, couvací světla, číslo vozu -->
+  <rect x="44" y="282" width="12" height="30" rx="3" fill="#b3121b"/>
+  <rect x="264" y="282" width="12" height="30" rx="3" fill="#b3121b"/>
+  <rect x="44" y="316" width="12" height="8" rx="2" fill="#f08a1c"/>
+  <rect x="264" y="316" width="12" height="8" rx="2" fill="#f08a1c"/>
+  <rect x="68" y="300" width="10" height="8" rx="2" fill="#eef1f3"/>
+  <rect x="242" y="300" width="10" height="8" rx="2" fill="#eef1f3"/>
+  <text x="160" y="304" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1b1d20">323</text>
+  <circle cx="160" cy="322" r="6" fill="none" stroke="#e2341f" stroke-width="2"/>
+  <!-- červený spodek -->
+  <path d="M35 346 H285 V384 Q285 392 276 392 H44 Q35 392 35 384 Z" fill="#e2341f"/>
+  <rect x="146" y="372" width="28" height="6" rx="2" fill="#a8261a"/>
+  <!-- zrcátko vpředu vyčnívá za bok -->
+  <rect x="8" y="168" width="14" height="26" rx="3" fill="#1b1d20"/>
+  <!-- černá zástěra skoro ke kolejím -->
+  <path d="M37 392 H283 V400 Q283 406 276 408 L268 410 H52 L44 408 Q37 406 37 400 Z" fill="#26282a"/>
+  <rect x="78" y="410" width="14" height="8" fill="#8f9193"/>
+  <rect x="228" y="410" width="14" height="8" fill="#8f9193"/>
+  <!-- žlábkové kolejnice zapuštěné do vozovky (rozchod 1 435 mm) -->
+  <rect x="74" y="418" width="22" height="2" fill="#a7a9ab"/>
+  <rect x="88" y="418" width="4" height="2" fill="#2a2b2a"/>
+  <rect x="224" y="418" width="22" height="2" fill="#a7a9ab"/>
+  <rect x="228" y="418" width="4" height="2" fill="#2a2b2a"/>
+</svg>

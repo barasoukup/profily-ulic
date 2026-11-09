@@ -54,6 +54,8 @@ for (const id of Object.keys(SITES)) {
     assert.match(html, new RegExp(`<a href="\\./" aria-current="page">${NAMES[id]}</a>`));
     assert.match(html, /<a href="\.\.\/">Praha<\/a>/);
     for (const host of SITES[id].connect) assert.ok(html.match(/connect-src [^;]*/)[0].includes(host));
+    // the towns ask RÚIAN of ČÚZK for their houses (gis.js ruianBuilding)
+    if (SITES[id].bbox) assert.ok(html.match(/connect-src [^;]*/)[0].includes("https://ags.cuzk.gov.cz"));
     const footer = html.match(/<footer[\s\S]*?<\/footer>/)[0];
     assert.doesNotMatch(footer, /IPR|TSK/);
     for (const [other, name] of Object.entries(NAMES)) if (other !== id) assert.match(footer, new RegExp(`Profily ulic ${name}`));

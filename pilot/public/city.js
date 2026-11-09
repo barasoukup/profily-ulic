@@ -94,6 +94,8 @@ const CITIES = {
     emptyImg: "jihlava/trolejbus-inbound.svg",
     credit: "data © Statutární město Jihlava (pasport komunikací, parkování, mobiliář), RÚIAN a katastr © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
     storeSuffix: "-jihlava",
+    // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
+    innerKm: 0.7, estateKm: 1.6,
     // The Brno changes to the profile: Jihlava's surfaces come from a passport of the roads, as Brno's
     // from a technical map, so the same OSM axis fixes apply.
     fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
@@ -123,8 +125,10 @@ const CITIES = {
     artLabel: "Mostecké ilustrace",
     artTitle: "Kreslit mosteckými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "most/tram-inbound.svg",
-    credit: "data © Statutární město Most (technická mapa), RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
+    credit: "data © Statutární město Most (objektová a technická mapa, veřejné osvětlení), RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
     storeSuffix: "-most",
+    // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
+    innerKm: 0, estateKm: 0.5,
     fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
     example: "50.503000, 13.636300",
     artMap: { "streetcar-inbound": "tram-inbound", "streetcar-outbound": "tram-outbound", ...TOWN_ART },
@@ -133,7 +137,7 @@ const CITIES = {
     id: "opava",
     server: "města Opavy", // "Server … neodpovídá"
     cover: "Opavu", // "Data pokrývají jen …"
-    dataName: "Technická mapa Opavy", // "… teď neodpovídá"
+    dataName: "Účelová mapa Opavy", // "… teď neodpovídá"
     view: [49.9387, 17.9026],
     centre: [17.9026, 49.9387], // Horní náměstí
     inCity: "v Opavě",
@@ -147,8 +151,10 @@ const CITIES = {
     artLabel: "Opavské ilustrace",
     artTitle: "Kreslit opavskými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "opava/trolejbus-inbound.svg",
-    credit: "data © Statutární město Opava (technická mapa, parkování, mobiliář), RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
+    credit: "data © Statutární město Opava (účelová mapa, parkování, stromy, lavičky, zastávky), RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
     storeSuffix: "-opava",
+    // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
+    innerKm: 0.7, estateKm: 1.6,
     fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
     example: "49.938700, 17.902600",
     artMap: { "trolleybus-inbound": "trolejbus-inbound", "trolleybus-outbound": "trolejbus-outbound", ...TOWN_ART },
@@ -165,16 +171,20 @@ const CITIES = {
     mapLabel: "Mapa Plzně",
     dataShort: "města Plzně a OSM",
     techMap: "technickou mapu Plzně",
-    parkingSource: "parkovací plochy (město Plzeň)",
+    parkingSource: "parkoviště z technické mapy (město Plzeň)",
     rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Plzeň orientačně:",
     art: "plzen",
     artLabel: "Plzeňské ilustrace",
     artTitle: "Kreslit plzeňskými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "plzen/tram-inbound.svg",
-    credit: "data © Statutární město Plzeň (technická mapa, pasport zeleně a mobiliáře), RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
+    credit: "data © Statutární město Plzeň (technická mapa, budovy 3D, pasport zeleně a mobiliáře), RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
     storeSuffix: "-plzen",
+    // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
+    innerKm: 1.3, estateKm: 3,
     fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
     example: "49.747700, 13.377600",
+    // Plzeň illustrations (plzen/): PMDP's yellow tram Škoda 40T, green trolleybus Škoda 26Tr (Solaris body) and red
+    // bus SOR NS 12; the furniture as in Prague for now.
     artMap: {
       "streetcar-inbound": "tram-inbound", "streetcar-outbound": "tram-outbound",
       "trolleybus-inbound": "trolejbus-inbound", "trolleybus-outbound": "trolejbus-outbound", ...TOWN_ART,

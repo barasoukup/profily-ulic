@@ -1,0 +1,31 @@
+<svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
+  <!-- Mostecký autobus DPmML, SOR NB 12 City, zadní pohled podle fotky na Wikimedia Commons („Most, Rudolická,
+       městský autobus DPmML - SOR.jpg“): žlutá záď, tmavé zadní okno s číslem linky, žlutá mřížka krytu motoru,
+       bílý panel s registrační značkou, světla po stranách, červený nárazník. 1 px = 1 cm, šířka 2,55 m. -->
+  <!-- zrcátka vpředu vyčnívají za boky -->
+  <rect x="24" y="54" width="16" height="44" rx="4" fill="#1d1f22"/>
+  <rect x="320" y="54" width="16" height="44" rx="4" fill="#1d1f22"/>
+  <!-- žlutá skříň, bílá střecha -->
+  <path d="M52 296 V40 Q52 20 72 20 H288 Q308 20 308 40 V296 Z" fill="#f2c51c"/>
+  <path d="M56 22 H304 Q306 24 306 28 H54 Q54 24 56 22 Z" fill="#f4f4f1"/>
+  <path d="M298 22 Q308 26 308 40 V296 H298 Z" fill="#000" opacity=".08"/>
+  <!-- tmavé zadní okno, číslo linky -->
+  <path d="M66 40 Q66 34 72 34 H288 Q294 34 294 40 V120 H66 Z" fill="#262a2e"/>
+  <rect x="72" y="40" width="216" height="76" fill="#3a4a58"/>
+  <path d="M90 44 L118 44 L102 112 L88 112 Z" fill="#5c6c79" opacity=".5"/>
+  <rect x="160" y="60" width="40" height="22" fill="#15171a"/>
+  <text x="180" y="77" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#f5a623">30</text>
+  <!-- mřížka krytu motoru -->
+  <g fill="#c9a316"><rect x="66" y="134" width="228" height="4" rx="1"/><rect x="66" y="142" width="228" height="4" rx="1"/><rect x="66" y="150" width="228" height="4" rx="1"/></g>
+  <!-- bílý panel s registrační značkou a světly po stranách -->
+  <rect x="64" y="168" width="232" height="62" rx="3" fill="#f4f4f1"/>
+  <rect x="152" y="196" width="56" height="12" rx="1" fill="#f4f4f2" stroke="#9fa3a6"/><rect x="152" y="196" width="6" height="12" fill="#2a63b8"/>
+  <text x="180" y="186" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#1d1f22">SORCITY NB12</text>
+  <circle cx="84" cy="184" r="7" fill="none" stroke="#cc2229" stroke-width="2"/>
+  <g><rect x="54" y="170" width="10" height="16" rx="2" fill="#b3121b"/><rect x="54" y="188" width="10" height="12" rx="2" fill="#f2a33a"/><rect x="54" y="202" width="10" height="10" rx="2" fill="#eef1f3"/>
+     <rect x="296" y="170" width="10" height="16" rx="2" fill="#b3121b"/><rect x="296" y="188" width="10" height="12" rx="2" fill="#f2a33a"/><rect x="296" y="202" width="10" height="10" rx="2" fill="#eef1f3"/></g>
+  <!-- červený nárazník -->
+  <path d="M52 244 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#d42a22"/>
+  <!-- kola -->
+  <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
+</svg>

@@ -85,6 +85,7 @@ function pointAt(w, s) {
 const samples = [];
 for (const [hw, n] of Object.entries(QUOTA)) {
   const st = strata[hw];
+  if (!st.ways.length) { console.log(hw, "0 ways"); continue; } // a town without such streets (Most: no secondary)
   let got = 0, tries = 0;
   while (got < n && tries++ < 5000) {
     const x = rnd() * st.total;

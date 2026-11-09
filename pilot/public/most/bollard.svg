@@ -1,0 +1,32 @@
+<svg viewBox="0 0 20 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Pražský litinový sloupek proti parkování (Malá Strana, Staré Město), černý nátěr. -->
+  <!-- 1 px = 1 cm, výška 95 cm. Kulatý mírně kuželový dřík, objímka u paty, dva prstence, talířek, hlavička tvaru žaludu. -->
+  <!-- předloha: Commons, Praha, Malá Strana - Nerudova 239 -->
+  <!-- objímka u paty -->
+  <path d="M4 100 V87.6 Q4 86.6 5 86.4 H15 Q16 86.6 16 87.6 V100 Z" fill="#1f2321"/>
+  <path d="M5.6 100 V87 H8 V100 Z" fill="#3b413e"/>
+  <path d="M12.4 100 V86.4 H15 Q16 86.6 16 87.6 V100 Z" fill="#131615"/>
+  <path d="M4.3 87.4 Q4.5 86.6 5 86.4 H15 Q15.5 86.6 15.7 87.4 Z" fill="#4a504d"/>
+  <!-- dřík: měkké svislé pruhy místo hran -->
+  <path d="M5.2 86.4 L6.4 12 H13.6 L14.8 86.4 Z" fill="#1f2321"/>
+  <path d="M6 86.4 L7 12 H8.6 L8 86.4 Z" fill="#3b413e"/>
+  <path d="M6.6 86.4 L7.5 12 H8.1 L7.4 86.4 Z" fill="#444a47"/>
+  <path d="M11.6 86.4 L11.2 12 H13.6 L14.8 86.4 Z" fill="#131615"/>
+  <!-- dolní a prostřední prstenec, horní ploška světlejší -->
+  <rect x="4.7" y="67" width="10.6" height="1.6" rx=".5" fill="#1f2321"/>
+  <rect x="11.6" y="67" width="3.7" height="1.6" rx=".5" fill="#131615"/>
+  <rect x="4.9" y="67" width="10.2" height=".4" fill="#4a504d"/>
+  <rect x="5.2" y="40" width="9.6" height="1.4" rx=".5" fill="#1f2321"/>
+  <rect x="11.4" y="40" width="3.4" height="1.4" rx=".5" fill="#131615"/>
+  <rect x="5.4" y="40" width="9.2" height=".4" fill="#4a504d"/>
+  <!-- horní talířek se šikmou spodní stranou -->
+  <path d="M5.2 10.6 H14.8 V11.4 L13.4 12.4 H6.6 L5.2 11.4 Z" fill="#1f2321"/>
+  <path d="M11.4 10.6 H14.8 V11.4 L13.4 12.4 H11.2 Z" fill="#131615"/>
+  <path d="M5.4 10.6 H14.6 V11 H5.4 Z" fill="#4a504d"/>
+  <!-- krček -->
+  <rect x="8.4" y="9.4" width="3.2" height="1.2" fill="#131615"/>
+  <!-- hlavička tvaru žaludu -->
+  <path d="M7.4 9.4 Q7.2 7.2 8 6 Q8.8 4.6 10 4.6 Q11.2 4.6 12 6 Q12.8 7.2 12.6 9.4 Z" fill="#1f2321"/>
+  <path d="M10.9 4.9 Q11.5 5.2 12 6 Q12.8 7.2 12.6 9.4 H11 Q11.4 7 10.9 4.9 Z" fill="#131615"/>
+  <path d="M8.2 8.2 Q8 6.4 9.4 5.2 Q8.8 6.6 8.9 8.4 Z" fill="#4a504d"/>
+</svg>

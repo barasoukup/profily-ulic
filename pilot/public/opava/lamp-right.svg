@@ -1,0 +1,43 @@
+<svg viewBox="0 0 370 930" xmlns="http://www.w3.org/2000/svg">
+  <!-- Pražská lampa veřejného osvětlení, výložník doprava nad vozovku, zrcadlo lamp-left.svg. 1 px = 1 cm. -->
+  <!-- Ocelový trubkový stožár odstupňovaný do tří průměrů, světle šedý, tmavší patka; obloukový výložník -->
+  <!-- („labutí krk“), svítidlo LED s plochým sklem v RAL 7021 (standard THMP). Pata v ose x = 22 jako u Streetmixu. -->
+  <!-- Stožár a výložník zesíleno pro čitelnost (asi 1,3×), svítidlo ve skutečné velikosti. -->
+  <g transform="matrix(-1 0 0 1 370 0)">
+
+    <!-- výložník: oblouk stoupá asi 1,5 m, konec téměř vodorovný; stín na pravé spodní straně -->
+    <path d="M348 204 C348 124 330 74 268 62 L214 56" stroke="#b5b9ba" stroke-width="10" fill="none"/>
+    <path d="M351.5 204 C351.5 126 333 78 269 65.5 L214 59.5" stroke="#94989a" stroke-width="3" fill="none"/>
+
+    <!-- svítidlo: korpus klínovitě ke špičce, ploché sklo zapuštěné v rámu na spodní hraně -->
+    <path d="M221 49 L146 48 Q140 48 140 51 L140 57 L221 62 Z" fill="#2f3335"/>
+    <path d="M221 49 L146 48 Q140 48 140 51 L140 52 L221 52.5 Z" fill="#3c4144"/>
+    <path d="M148 55 L210 58.8 L210 61.3 L148 57.5 Z" fill="#b9c2c1"/>
+    <rect x="166" y="44.5" width="10" height="3.5" rx="1" fill="#26292b"/>
+
+    <!-- spoj výložníku se stožárem -->
+    <rect x="341" y="198" width="14" height="10" fill="#b5b9ba"/>
+    <rect x="350" y="198" width="5" height="10" fill="#94989a"/>
+    <!-- horní díl stožáru -->
+    <rect x="342" y="208" width="12" height="132" fill="#b5b9ba"/>
+    <rect x="350" y="208" width="4" height="132" fill="#94989a"/>
+    <!-- kuželový přechod, nahoru se zužuje -->
+    <path d="M342 340 H354 L356 350 H340 Z" fill="#b5b9ba"/>
+    <path d="M350 340 H354 L356 350 H350.7 Z" fill="#94989a"/>
+    <!-- střední díl -->
+    <rect x="340" y="350" width="16" height="240" fill="#b5b9ba"/>
+    <rect x="350.7" y="350" width="5.3" height="240" fill="#94989a"/>
+    <path d="M340 590 H356 L358 600 H338 Z" fill="#b5b9ba"/>
+    <path d="M350.7 590 H356 L358 600 H351.3 Z" fill="#94989a"/>
+    <!-- spodní díl s evidenčním štítkem -->
+    <rect x="338" y="600" width="20" height="222" fill="#b5b9ba"/>
+    <rect x="351.3" y="600" width="6.7" height="222" fill="#94989a"/>
+    <rect x="339" y="770" width="10" height="3" fill="#e6e6e1"/>
+    <!-- patka s protiplakátovým nátěrem, tmavší šedá -->
+    <path d="M334 822 H362 L358 813 H338 Z" fill="#727678"/>
+    <rect x="334" y="822" width="28" height="108" fill="#64686a"/>
+    <rect x="352.7" y="822" width="9.3" height="108" fill="#53575a"/>
+    <!-- dvířka svorkovnice -->
+    <rect x="337" y="852" width="8" height="30" rx="1" fill="#53575a"/>
+  </g>
+</svg>
