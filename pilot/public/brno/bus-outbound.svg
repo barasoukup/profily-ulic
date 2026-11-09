@@ -42,7 +42,7 @@
   </g>
   <text x="80" y="131" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#d8262b">7368</text>
   <rect x="226" y="101" width="46" height="24" rx="1" fill="#16181a"/>
-  <text x="249" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" font-weight="bold" fill="#8be04e">44</text>
+  <text x="249" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" font-weight="bold" fill="#43d94c">44</text>
   <!-- větrací žaluzie nad víkem motoru -->
   <g fill="#a9aba8">
     <rect x="60" y="148" width="78" height="3" rx="1.5"/>

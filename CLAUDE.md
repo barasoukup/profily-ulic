@@ -93,7 +93,9 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   `tools/fetch_dtm_brno.sh` + `tools/build_dtm_brno.py` (polygonizace hranic, typ podle def. bodu,
   kódy MTVU). Parkování, oblasti, budovy (KAM), stromy, lampy, lavičky z data.brno.cz
   (`tools/build_brno_data.mjs`). Při kliknutí se Brno nikoho neptá.
-- Ilustrace DPMB: tramvaj Škoda 13T (stříbrná s červenými pruhy) a autobus (`pilot/public/brno/`).
+- Ilustrace (`pilot/public/brno/`): tramvaj Škoda 45T (výchozí; 13T nakreslená taky), autobus DPMB, mobiliář podle
+  zásad KAM Brno (antracit, dřevo, skleněný přístřešek jako na Joštově, nerezový stojan). Bára: u 13T i 45T
+  není kolem čelního okna svislá červená, jen vodorovný červený pás pod oknem.
 - Otevřené: dotaz na ČÚZK k šíření dlaždic DTM; úseky placeného stání jsou z 2/2024.
 
 ## Licence

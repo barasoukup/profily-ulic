@@ -49,7 +49,7 @@ const CITIES = {
     art: "brno",
     artLabel: "Brněnské ilustrace",
     artTitle: "Kreslit brněnskými ilustracemi (vypnuto: ilustrace Streetmixu)",
-    emptyImg: "brno/13t-inbound.svg",
+    emptyImg: "brno/45t-inbound.svg",
     credit: "data © DTM Jihomoravského kraje (IS DMVS ČÚZK) a Statutární město Brno (CC BY 4.0, parkování CC BY-SA 4.0) · © přispěvatelé OpenStreetMap",
     storeSuffix: "-brno",
     example: "49.195100, 16.608500",

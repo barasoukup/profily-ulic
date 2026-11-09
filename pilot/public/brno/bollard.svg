@@ -1,0 +1,12 @@
+<svg viewBox="0 0 20 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Brněnský sloupek proti parkování: ocelový válec v antracitu s nerezovou hlavou, podle zásad KAM Brno
+       (kap. 9: tmavě šedé odstíny místo černé, doplněk jiným tónem). 1 px = 1 cm, výška 90 cm, průměr 12 cm. -->
+  <rect x="4" y="14" width="12" height="86" fill="#3d4246"/>
+  <rect x="12" y="14" width="4" height="86" fill="#2c3033"/>
+  <rect x="5.2" y="14" width="1.6" height="86" fill="#555b60"/>
+  <!-- reflexní pruh -->
+  <rect x="4" y="26" width="12" height="3" fill="#d9dcd9"/>
+  <!-- nerezová hlava -->
+  <path d="M3.6 14 Q4 10 10 10 Q16 10 16.4 14 Z" fill="#b5bbbf"/>
+  <path d="M11 10.1 Q16 10.4 16.4 14 H13 Q13 11 11 10.1 Z" fill="#8c9297"/>
+</svg>

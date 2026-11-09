@@ -1,0 +1,30 @@
+<svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
+  <!-- Brněnská lavička, pohled z boku. Podle zásad KAM Brno (kap. 9): ocelová bočnice v antracitu (ne čistě černá),
+       dřevěné latě. Rovné tvary: sedák mírně skloněný dozadu, opěradlo odkloněné asi o 15°.
+       1 px = 1 cm, sedák 45 cm, opěradlo do 84 cm. Opěradlo vlevo, sedí se doprava. -->
+  <!-- bočnice: přední noha, sedákový nosník, zadní noha přecházející v páteř opěradla -->
+  <path d="M68 90 V54 L70 52 H32 L22 8 H18 L28 52 V90 H32 V56 H64 V90 Z" fill="#3d4246"/>
+  <path d="M65.5 90 V56 H68 V90 Z" fill="#2c3033"/>
+  <path d="M29.5 90 V56 H32 V90 Z" fill="#2c3033"/>
+  <path d="M18 8 H19.6 L29.6 52 H28 Z" fill="#555b60"/>
+  <!-- čela latí sedáku (dub, 4 × 4 cm) -->
+  <g fill="#8a6440">
+    <rect x="31" y="47" width="5.4" height="4.4" rx="1"/>
+    <rect x="37.4" y="47.2" width="5.4" height="4.4" rx="1"/>
+    <rect x="43.8" y="47.4" width="5.4" height="4.4" rx="1"/>
+    <rect x="50.2" y="47.6" width="5.4" height="4.4" rx="1"/>
+    <rect x="56.6" y="47.8" width="5.4" height="4.4" rx="1"/>
+    <rect x="63" y="48" width="6.4" height="4.4" rx="1.6"/>
+  </g>
+  <!-- latě opěradla podél odkloněné páteře -->
+  <g fill="#8a6440">
+    <rect x="-2.5" y="-2.2" width="5" height="4.4" rx="1" transform="translate(26.5 38) rotate(-13)"/>
+    <rect x="-2.5" y="-2.2" width="5" height="4.4" rx="1" transform="translate(24.8 30.5) rotate(-13)"/>
+    <rect x="-2.5" y="-2.2" width="5" height="4.4" rx="1" transform="translate(23.1 23) rotate(-13)"/>
+    <rect x="-2.5" y="-2.2" width="5" height="4.4" rx="1" transform="translate(21.4 15.5) rotate(-13)"/>
+  </g>
+  <g fill="#6b4c30">
+    <rect x="31" y="50" width="5.4" height="1.4"/><rect x="37.4" y="50.2" width="5.4" height="1.4"/><rect x="43.8" y="50.4" width="5.4" height="1.4"/>
+    <rect x="50.2" y="50.6" width="5.4" height="1.4"/><rect x="56.6" y="50.8" width="5.4" height="1.4"/><rect x="63" y="51" width="6.4" height="1.4"/>
+  </g>
+</svg>

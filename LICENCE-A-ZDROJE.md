@@ -35,7 +35,7 @@ Obrázky profilů, které aplikace vytváří, obsahují ilustrace Streetmixu. P
 | **Brno:** Průzkum budov v Brně (KAM, gis.brno.cz) | počet podlaží, podlaží ve střeše, typ střechy, využití přízemí | **CC BY**, © Statutární město Brno (KAM) | ✓ |
 | **Brno:** Pasport zeleně (stromy), Stožáry veřejného osvětlení, Mobiliář městských částí (lavičky) | stromy, lampy a lavičky v řezu (doplněné do dlaždic OSM) | **CC BY**, © Statutární město Brno | ✓ |
 | **Brno:** Ortofoto 2025 (gis.brno.cz, dlaždice) | podkladová mapa | © Statutární město Brno; v katalogu data.brno.cz je ortofoto pod CC BY | ✓ |
-| Brněnské ilustrace (`pilot/public/brno/`) | tramvaj Škoda 13T a autobus DPMB | Vlastní ruční SVG podle veřejných fotek (Wikimedia Commons); licence jako kód (MIT). Bez log a ochranných známek. | ✓ |
+| Brněnské ilustrace (`pilot/public/brno/`) | tramvaje Škoda 45T a 13T, autobus DPMB; lampa, lavička, stojan, sloupek a přístřešek podle zásad KAM Brno (Principy tvorby veřejných prostranství, kap. 9) | Vlastní ruční SVG podle veřejných fotek (Wikimedia Commons); licence jako kód (MIT). Bez log a ochranných známek. | ✓ |
 | Leaflet (unpkg) | mapová knihovna | BSD-2-Clause | ✓ |
 | ČSN 73 6056, Manuál veřejných prostranství IPR | rozměry (5,0 / 4,5 m stání, 6,5 / 7 m tramvajový pás) | Používáme jen čísla, a ta jsou fakta. Texty ani PDF se nešíří. | ✓ |
 

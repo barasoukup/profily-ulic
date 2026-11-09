@@ -28,10 +28,15 @@ const PRAHA = {
   "transit-shelter-01-left": "transit-shelter-left", "transit-shelter-01-right": "transit-shelter-right",
   "transit-shelter-tram-left": "transit-shelter-tram-left", "transit-shelter-tram-right": "transit-shelter-tram-right",
 };
-// Brno illustrations (brno/): the DPMB tram Škoda 13T and bus; furniture stays Streetmix (Prague's
-// is Olgoj Chorchoj's design for Prague), houses are drawn as in Prague.
+// Brno illustrations (brno/): the DPMB tram Škoda 45T (13T drawn too) and bus, and furniture after the
+// rules of Brno's city architect (KAM, Principy tvorby veřejných prostranství, kap. 9): anthracite steel,
+// wooden slats, a slim glass stop shelter, a stainless bike rack. Houses are drawn as in Prague.
 const BRNO = {
-  "streetcar-inbound": "13t-inbound", "streetcar-outbound": "13t-outbound", "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound",
+  "streetcar-inbound": "45t-inbound", "streetcar-outbound": "45t-outbound", "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound",
+  "lamp-modern-left": "lamp-left", "lamp-modern-right": "lamp-right", "bench-center": "bench-center",
+  "bike-rack-perpendicular-left": "bike-rack", "bollard": "bollard",
+  "transit-shelter-01-left": "transit-shelter-left", "transit-shelter-01-right": "transit-shelter-right",
+  "transit-shelter-tram-left": "transit-shelter-tram-left", "transit-shelter-tram-right": "transit-shelter-tram-right",
 };
 const CITY_ART = { praha: PRAHA, brno: BRNO };
 const cityArt = () => art !== "streetmix"; // the city's own set (Prague or Brno)
@@ -123,7 +128,7 @@ function drawItem(g, it, x, top, right) {
     case "sdilena_kola": return sprite(g, "bikeshare-left", x, top);
     case "pristresek": {
       const side = right ? "right" : "left";
-      return sprite(g, art === "praha" && it.tram ? `transit-shelter-tram-${side}` : `transit-shelter-01-${side}`, x, top);
+      return sprite(g, cityArt() && it.tram ? `transit-shelter-tram-${side}` : `transit-shelter-01-${side}`, x, top);
     }
     case "sloupek": return sprite(g, "bollard", x, top);
     case "kvetinac": return sprite(g, "planter-box", x, top);
