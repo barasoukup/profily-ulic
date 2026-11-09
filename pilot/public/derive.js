@@ -548,7 +548,8 @@ function splitRoadway(run, ctx) {
     if (!twoWaySingle && excess >= KRAJNICE_MIN) {
       // A one-way carriageway (half of a divided road) has its shoulder on the outer edge, the driver's
       // right, not along the median; a two-way roadway at both curbs.
-      const oneway = isOnewayTags(tags) || tags.junction === "roundabout";
+      // One-way by the OSM axis in this roadway (not the clicked street: a divided road's other half).
+      const oneway = single && ctx.axesOneway;
       const both = !oneway && excess >= 2 * KRAJNICE_MIN;
       const outerL = oneway && dirAt((s + e) / 2) === "backward";
       const wR = both ? excess / 2 : outerL ? 0 : excess, wL = both ? excess / 2 : outerL ? excess : 0;
@@ -558,7 +559,9 @@ function splitRoadway(run, ctx) {
     const lw = (e - s) / lanesTotal;
     // A two-way street of one OSM axis has half its lanes each way, wherever the axis lies (an axis off
     // the middle of the roadway turned both lanes one way; Jihlava, Polenská).
-    const halves = single && !isOnewayTags(tags) && tags.junction !== "roundabout" && lanesTotal > 1;
+    // Only for an axis running in this roadway: a divided road mapped as one way on its median keeps the
+    // side of the axis (Prague č. 21, 42).
+    const halves = single && ctx.axisInside && !ctx.axesOneway && lanesTotal > 1;
     for (let i = 0; i < lanesTotal; i++) {
       const ls = s + i * lw, le = ls + lw;
       const half = 2 * i + 1 === lanesTotal ? null : 2 * i + 1 < lanesTotal ? "forward" : "backward";
@@ -1318,7 +1321,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       const kerbWalk = [["L", walkAt(next(1), next(2))], ["R", walkAt(prev(1), prev(2))]].filter(([, ok]) => ok).map(([sd]) => sd);
       // Trolley wires over the street (OSM trolley_wire): its bus lanes carry trolleybuses (Jihlava, Brno).
       const trolley = [tags, ...axes.map((a) => a.tags)].some((t) => t?.trolley_wire === "yes");
-      segs.push(...splitRoadway(r, { tags, trams: inside, dirAt, lanesTotal, along: ownAxis ? (ownAxis.along !== (tags.oneway === "-1")) : true, single: new Set(axes.map((a) => a.id)).size === 1, parked, sides: sideTagsLR, kerbWalk, inZps }).map((x) => ({ ...x, mtvu: r.code, trolley: trolley && (x.type === "bus" || x.type === "bus_cyklo") })));
+      segs.push(...splitRoadway(r, { tags, trams: inside, dirAt, lanesTotal, along: ownAxis ? (ownAxis.along !== (tags.oneway === "-1")) : true, single: new Set(axes.map((a) => a.id)).size === 1, parked, sides: sideTagsLR, kerbWalk, inZps, axesOneway: axes.every((a) => a.oneway), axisInside: here.length > 0 }).map((x) => ({ ...x, mtvu: r.code, trolley: trolley && (x.type === "bus" || x.type === "bus_cyklo") })));
     } else if (r.code === MEDIAN) {
       segs.push({ type: "delici", s: r.s, e: r.e, source: "dtm" });
     } else if (isMinorStructure(r.code)) {
