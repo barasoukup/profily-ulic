@@ -1,6 +1,6 @@
 <svg viewBox="0 0 320 420" xmlns="http://www.w3.org/2000/svg">
   <!-- Brněnská tramvaj Škoda 13T (DPMB, design Porsche), čelní pohled. 1 px = 1 cm, šířka vozu 2,46 m, nízká podlaha.
-       Nátěr podle fotografií: stříbrná skříň, červený oblouk pod čelním sklem a červený pruh dole, černá zástěra, zelená LED tabule. -->
+       Nátěr podle fotografií: stříbrná skříň, souměrný červený oblouk pod čelním sklem a červený pruh dole, černá zástěra, zelená LED tabule. -->
   <!-- jednoramenný pantograf -->
   <g stroke="#55585b" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
     <path d="M134 104 L176 74 L150 46"/>
@@ -26,19 +26,19 @@
   <path d="M234 172 L252 172 L244 212 L228 212 Z" fill="#46596a" opacity=".4"/>
   <!-- stěrač s osou dole -->
   <path d="M176 258 L118 214" stroke="#0e0f10" stroke-width="3" stroke-linecap="round"/>
-  <!-- červený oblouk pod sklem, na pravém rohu stéká dolů -->
-  <path d="M37 270 Q90 280 160 280 Q232 280 283 268 V300 Q276 330 262 384 H250 Q262 330 268 290 Q224 296 160 296 Q92 296 37 286 Z" fill="#d42027"/>
+  <!-- červený oblouk pod sklem, na obou rozích souměrně stéká dolů -->
+  <path d="M37 268 Q88 280 160 280 Q232 280 283 268 V300 Q276 330 262 384 H250 Q262 330 268 290 Q224 296 160 296 Q96 296 52 290 Q58 330 70 384 H58 Q44 330 37 300 Z" fill="#d42027"/>
   <!-- světla po dvou kulatých, znak Škoda, číslo vozu červeně -->
-  <circle cx="58" cy="312" r="7" fill="#eef0ea" stroke="#8f9397" stroke-width="2"/>
-  <circle cx="58" cy="330" r="6" fill="#eef0ea" stroke="#8f9397" stroke-width="2"/>
-  <circle cx="242" cy="312" r="7" fill="#eef0ea" stroke="#8f9397" stroke-width="2"/>
-  <circle cx="242" cy="330" r="6" fill="#eef0ea" stroke="#8f9397" stroke-width="2"/>
+  <circle cx="86" cy="312" r="7" fill="#eef0ea" stroke="#8f9397" stroke-width="2"/>
+  <circle cx="86" cy="330" r="6" fill="#eef0ea" stroke="#8f9397" stroke-width="2"/>
+  <circle cx="234" cy="312" r="7" fill="#eef0ea" stroke="#8f9397" stroke-width="2"/>
+  <circle cx="234" cy="330" r="6" fill="#eef0ea" stroke="#8f9397" stroke-width="2"/>
   <circle cx="160" cy="312" r="8" fill="none" stroke="#3f4245" stroke-width="2.5"/>
   <text x="160" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="bold" fill="#d42027">1913</text>
   <!-- piktogram přístupnosti -->
-  <rect x="80" y="336" width="11" height="11" rx="1" fill="#2a63b8"/>
-  <!-- spodní červený pruh -->
-  <path d="M37 356 H246 Q244 366 241 374 H37 Z" fill="#d42027"/>
+  <rect x="104" y="334" width="11" height="11" rx="1" fill="#2a63b8"/>
+  <!-- spodní červený pruh mezi oblouky -->
+  <path d="M64 356 H256 L253 374 H67 Z" fill="#d42027"/>
   <!-- zpětné zrcátko na rameni vlevo -->
   <path d="M40 160 H22 Q16 160 16 166 V176" stroke="#2a2b2a" stroke-width="3" fill="none"/>
   <rect x="8" y="176" width="14" height="26" rx="3" fill="#2a2b2a"/>
