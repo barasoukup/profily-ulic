@@ -1,0 +1,30 @@
+<svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
+  <!-- Plzeňský autobus PMDP, SOR NS 12, zadní pohled v nátěru PMDP (bílá, červená, černá; barvy podle fotky
+       „Plzeňský autobus SOR NS12.jpg“, Wikimedia Commons): bílá záď s černým zadním sklem a linkovou tabulí,
+       mřížka motoru, svislé svítilny v rozích, červený pás s registrační značkou, černý spodek. 1 px = 1 cm,
+       šířka 2,55 m. -->
+  <!-- zrcátka vpředu vyčnívají za boky -->
+  <rect x="26" y="50" width="16" height="44" rx="5" fill="#1d1f22"/>
+  <rect x="318" y="50" width="16" height="44" rx="5" fill="#1d1f22"/>
+  <!-- bílá záď, červené hrany boků -->
+  <path d="M52 296 V40 Q52 20 74 20 H286 Q308 20 308 40 V296 Z" fill="#d8262b"/>
+  <path d="M58 296 V38 Q58 26 72 26 H288 Q302 26 302 38 V296 Z" fill="#f3f3f1"/>
+  <rect x="140" y="14" width="80" height="10" rx="3" fill="#dadbd9"/>
+  <!-- černé zadní sklo s linkovou tabulí -->
+  <rect x="68" y="42" width="224" height="96" rx="4" fill="#17191c"/>
+  <path d="M84 48 L112 48 L98 132 L84 132 Z" fill="#3a4654" opacity=".55"/>
+  <text x="264" y="66" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#f2a33a">35</text>
+  <!-- mřížka motoru, evidenční číslo -->
+  <g fill="#c9cbcd"><rect x="110" y="160" width="140" height="5" rx="2"/><rect x="110" y="172" width="140" height="5" rx="2"/><rect x="110" y="184" width="140" height="5" rx="2"/><rect x="110" y="196" width="140" height="5" rx="2"/></g>
+  <text x="180" y="226" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#3a3c3e">626</text>
+  <!-- svislé svítilny v rozích -->
+  <rect x="62" y="150" width="14" height="80" rx="6" fill="#8f1218"/><rect x="64" y="196" width="10" height="10" rx="3" fill="#f2a33a"/><rect x="64" y="210" width="10" height="10" rx="3" fill="#eef1f3"/>
+  <rect x="284" y="150" width="14" height="80" rx="6" fill="#8f1218"/><rect x="286" y="196" width="10" height="10" rx="3" fill="#f2a33a"/><rect x="286" y="210" width="10" height="10" rx="3" fill="#eef1f3"/>
+  <!-- červený pás s registrační značkou -->
+  <rect x="52" y="240" width="256" height="34" fill="#d8262b"/>
+  <rect x="152" y="251" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="251" width="6" height="12" fill="#2a63b8"/>
+  <!-- černý spodek -->
+  <path d="M52 274 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#17191c"/>
+  <!-- kola -->
+  <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
+</svg>

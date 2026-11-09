@@ -1,0 +1,41 @@
+<svg viewBox="0 0 360 560" xmlns="http://www.w3.org/2000/svg">
+  <!-- Plzeňský trolejbus PMDP, Škoda 26Tr (Solaris Urbino IV. generace), zadní pohled: bílá záď s kapotou
+       trakční výzbroje na střeše, nahoře černé zadní sklo s linkovou tabulí, bílý panel, svislé svítilny
+       v rozích, dole zelený pás s registrační značkou (barvy podle fotky „Škoda 26Tr s karoserií IV. generace
+       v Plzni.jpg“, Wikimedia Commons). 1 px = 1 cm, šířka 2,55 m; nahoře sběrače k trolejím. -->
+  <!-- sběrače: dvě tyče ze zadní části střechy k trolejím -->
+  <g stroke="#2a2b2a" stroke-linecap="round" fill="none">
+    <path d="M160 266 L148 16" stroke-width="5"/>
+    <path d="M200 266 L212 16" stroke-width="5"/>
+  </g>
+  <rect x="140" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
+  <rect x="204" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
+  <g transform="translate(0 240)">
+    <!-- zrcátka vpředu vyčnívají za boky -->
+    <rect x="26" y="58" width="16" height="42" rx="5" fill="#1b1d20"/>
+    <rect x="318" y="58" width="16" height="42" rx="5" fill="#1b1d20"/>
+    <!-- bílá záď, zelená hrana střechy, kryt výzbroje se základnou sběračů -->
+    <path d="M52 298 V52 Q52 24 82 24 H278 Q308 24 308 52 V298 Z" fill="#f3f4f2"/>
+    <path d="M298 26 Q308 32 308 52 V298 H298 Z" fill="#d9dbd8"/>
+    <path d="M56 40 Q60 28 82 28 H278 Q300 28 304 40 Z" fill="#3fa33a"/>
+    <rect x="132" y="18" width="96" height="14" rx="4" fill="#e2e4e1"/>
+    <!-- černé zadní sklo s linkovou tabulí -->
+    <rect x="66" y="50" width="228" height="104" rx="4" fill="#1b1d20"/>
+    <path d="M82 56 L112 56 L96 148 L82 148 Z" fill="#3a4654" opacity=".55"/>
+    <text x="266" y="76" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#f2a33a">13</text>
+    <!-- bílý panel: mřížka chlazení, znak města, evidenční číslo -->
+    <g fill="#c9ccc9"><rect x="120" y="172" width="120" height="4" rx="2"/><rect x="120" y="182" width="120" height="4" rx="2"/><rect x="120" y="192" width="120" height="4" rx="2"/></g>
+    <path d="M92 204 h14 v12 q-7 6 -14 0 Z" fill="#c8102e" stroke="#e8c21a" stroke-width="1.5"/>
+    <text x="130" y="216" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#5d5a52">595</text>
+    <!-- svislé svítilny v rozích -->
+    <rect x="56" y="168" width="14" height="68" rx="6" fill="#8f1218"/><rect x="58" y="200" width="10" height="10" rx="3" fill="#f2a33a"/><rect x="58" y="214" width="10" height="10" rx="3" fill="#eef1f3"/>
+    <rect x="290" y="168" width="14" height="68" rx="6" fill="#8f1218"/><rect x="292" y="200" width="10" height="10" rx="3" fill="#f2a33a"/><rect x="292" y="214" width="10" height="10" rx="3" fill="#eef1f3"/>
+    <!-- zelený pás s registrační značkou -->
+    <rect x="52" y="244" width="256" height="30" fill="#3fa33a"/>
+    <rect x="152" y="253" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="253" width="6" height="12" fill="#2a63b8"/>
+    <!-- tmavý spodek -->
+    <path d="M52 274 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#33363b"/>
+    <!-- kola -->
+    <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
+  </g>
+</svg>

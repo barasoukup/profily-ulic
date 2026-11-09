@@ -1323,8 +1323,9 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       const k = kept.indexOf(r), isRoad = (x) => x && (x.code === 701 || x.code === 700);
       const sep = (a, b) => isRoad(b) && a && (a.code === MEDIAN || inMedian(a) || (a.code >= 400 && a.code < 500 && a.e - a.s <= 15));
       const divided = sep(kept[k - 1], kept[k - 2]) || sep(kept[k + 1], kept[k + 2]);
-      // Trolley wires over the street (OSM trolley_wire): its bus lanes carry trolleybuses (Jihlava, Brno).
-      const trolley = [tags, ...axes.map((a) => a.tags)].some((t) => t?.trolley_wire === "yes");
+      // Trolley wires over the street (OSM trolley_wire, or over one direction only: trolley_wire:forward /
+      // :backward, Plzeň): its bus lanes carry trolleybuses (Jihlava, Brno).
+      const trolley = [tags, ...axes.map((a) => a.tags)].some((t) => ["", ":forward", ":backward"].some((k) => t?.[`trolley_wire${k}`] === "yes"));
       segs.push(...splitRoadway(r, { tags, trams: inside, dirAt, lanesTotal, along: ownAxis ? (ownAxis.along !== (tags.oneway === "-1")) : true, single: new Set(axes.map((a) => a.id)).size === 1, parked, sides: sideTagsLR, kerbWalk, inZps, axesOneway: axes.every((a) => a.oneway), axisInside: here.length > 0, divided }).map((x) => ({ ...x, mtvu: r.code, trolley: trolley && (x.type === "bus" || x.type === "bus_cyklo") })));
     } else if (r.code === MEDIAN) {
       segs.push({ type: "delici", s: r.s, e: r.e, source: "dtm" });

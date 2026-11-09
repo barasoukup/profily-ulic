@@ -1,0 +1,50 @@
+<svg viewBox="0 0 360 560" xmlns="http://www.w3.org/2000/svg">
+  <!-- Plzeňský trolejbus PMDP, Škoda 26Tr s karoserií Solaris Urbino IV. generace, čelní pohled podle fotky
+       (Wikimedia Commons, „Škoda 26Tr s karoserií IV. generace v Plzni.jpg“): bílá skříň, černé čelo nahoře
+       s oranžovou LED tabulí a velkým sklem, bílý panel pod sklem se zeleným obloukem, světla v černých
+       pásech, zelený nárazník. 1 px = 1 cm, šířka 2,55 m; nahoře sběrače k trolejím. -->
+  <!-- sběrače: dvě tyče ze zadní části střechy k trolejím (troleje 5,3–5,5 m nad vozovkou, rozchod 0,6 m) -->
+  <g stroke="#2a2b2a" stroke-linecap="round" fill="none">
+    <path d="M160 262 L148 16" stroke-width="5"/>
+    <path d="M200 262 L212 16" stroke-width="5"/>
+  </g>
+  <rect x="140" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
+  <rect x="204" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
+  <g transform="translate(0 240)">
+    <!-- zpětná zrcátka na ramenech od střechy -->
+    <path d="M56 40 Q34 38 32 58" stroke="#1b1d20" stroke-width="5" fill="none"/>
+    <rect x="22" y="56" width="18" height="46" rx="5" fill="#1b1d20"/>
+    <path d="M304 40 Q326 38 328 58" stroke="#1b1d20" stroke-width="5" fill="none"/>
+    <rect x="320" y="56" width="18" height="46" rx="5" fill="#1b1d20"/>
+    <!-- bílá skříň, bílý kryt střechy se zelenou hranou -->
+    <path d="M52 298 V52 Q52 24 82 24 H278 Q308 24 308 52 V298 Z" fill="#f3f4f2"/>
+    <path d="M298 26 Q308 32 308 52 V298 H298 Z" fill="#d9dbd8"/>
+    <rect x="140" y="16" width="80" height="12" rx="3" fill="#e2e4e1"/>
+    <path d="M56 40 Q60 28 82 28 H278 Q300 28 304 40 Z" fill="#3fa33a"/>
+    <!-- černé čelo: LED tabule a čelní sklo -->
+    <path d="M56 206 V48 Q56 42 64 42 H296 Q304 42 304 48 V206 Q180 218 56 206 Z" fill="#1b1d20"/>
+    <g font-family="Arial, sans-serif" font-weight="bold" fill="#f2a33a">
+      <text x="80" y="68" font-size="18">13</text>
+      <text x="196" y="68" font-size="16" text-anchor="middle" letter-spacing="1">ČERNICE</text>
+    </g>
+    <path d="M64 82 H296 V198 Q180 210 64 198 Z" fill="#2a3642"/>
+    <path d="M80 88 L126 88 L96 192 L78 190 Z" fill="#46596a" opacity=".5"/>
+    <path d="M250 88 L272 88 L262 136 L240 136 Z" fill="#46596a" opacity=".4"/>
+    <g stroke="#0e0f10" stroke-width="2.5" stroke-linecap="round"><path d="M96 200 L170 190"/><path d="M276 200 L204 190"/></g>
+    <!-- bílý panel: zelený oblouk zleva, evidenční číslo, znak Solaris -->
+    <path d="M56 232 Q120 222 196 236 Q150 232 96 246 Q72 252 56 256 Z" fill="#3fa33a"/>
+    <rect x="98" y="232" width="34" height="14" rx="1" fill="#e2572b"/>
+    <text x="115" y="244" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#f3f4f2">595</text>
+    <circle cx="180" cy="242" r="6" fill="none" stroke="#5b5f63" stroke-width="2"/>
+    <!-- světla v černých pásech v rozích -->
+    <path d="M52 252 H104 Q110 252 110 258 V264 Q110 270 104 270 H52 Z" fill="#1b1d20"/>
+    <rect x="62" y="256" width="18" height="10" rx="3" fill="#eef1f3"/><rect x="84" y="256" width="14" height="10" rx="3" fill="#eef1f3"/>
+    <path d="M308 252 H256 Q250 252 250 258 V264 Q250 270 256 270 H308 Z" fill="#1b1d20"/>
+    <rect x="280" y="256" width="18" height="10" rx="3" fill="#eef1f3"/><rect x="262" y="256" width="14" height="10" rx="3" fill="#eef1f3"/>
+    <!-- zelený nárazník s registrační značkou -->
+    <path d="M52 272 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#3fa33a"/>
+    <rect x="152" y="279" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="279" width="6" height="12" fill="#2a63b8"/>
+    <!-- kola -->
+    <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
+  </g>
+</svg>

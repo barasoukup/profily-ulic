@@ -1,7 +1,7 @@
 // Draws the link preview image (Open Graph, 1200 × 630) from the app's own drawing code: a sample
 // street profile with the Prague illustrations beside the app's name. Writes an SVG; the PNG the
 // page links (pilot/public/og.png) is made from it with any SVG renderer. On a Mac, Quick Look
-// renders squares only, so: set the SVG to viewBox="0 -285 1200 1200", then
+// renders squares only, so: set the SVG to viewBox="0 -285 1200 1200" and height="1200", then
 // qlmanage -t -s 1200 -o . og.svg && sips --cropToHeightWidth 630 1200 og.svg.png --out og.png
 //   node tools/build_og.mjs [out.svg] [brno|jihlava|most|…]   (default og.svg in the current folder; the city's card)
 import fs from "node:fs";
