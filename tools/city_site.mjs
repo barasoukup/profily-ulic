@@ -25,7 +25,8 @@ export function brnoIndex(html) {
     [/(<meta property="og:url" content=")[^"]*"/, `$1${SITE}"`],
     [/(<meta property="og:image" content=")[^"]*"/, `$1${SITE}brno/og.png"`],
     [/(<meta property="og:image:alt" content=")[^"]*"/, '$1Příčný profil brněnské ulice s tramvajemi, chodníky a domy, vedle název Profily ulic"'],
-    [/(<span class="brand-name">)Profily ulic(<\/span>)/, "$1Profily ulic · Brno$2"],
+    // The city switch: Brno is the current page, Prague one level up.
+    [/<a href="\.\/" aria-current="page">Praha<\/a>\s*<a href="brno\/">Brno<\/a>/, '<a href="../">Praha</a>\n      <a href="./" aria-current="page">Brno</a>'],
     [/title="Ulice, jak je dnes \(z dat IPR a OSM\)"/, 'title="Ulice, jak je dnes (z technické mapy, dat Brna a OSM)"'],
     [/title="Kreslit pražskými ilustracemi \(vypnuto: ilustrace Streetmixu\)">Pražské ilustrace/, 'title="Kreslit brněnskými ilustracemi (vypnuto: ilustrace Streetmixu)">Brněnské ilustrace'],
     [/aria-label="Mapa Prahy:/, 'aria-label="Mapa Brna:'],

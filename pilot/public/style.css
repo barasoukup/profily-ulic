@@ -57,6 +57,12 @@ button.primary:hover { background: #3a3a37; }
 .seg-toggle button:hover { background: rgba(255, 255, 255, 0.6); color: var(--text); }
 .seg-toggle button.active { background: var(--panel); color: var(--text); box-shadow: var(--shadow); font-weight: 600; }
 
+/* Prague / Brno: two sites of the same app, the current one marked. */
+.city-toggle { display: inline-flex; background: var(--bg); border-radius: 9px; padding: 3px; gap: 2px; font-size: 13px; }
+.city-toggle a { border-radius: 7px; padding: 4px 10px; color: var(--muted); text-decoration: none; }
+.city-toggle a:hover { background: rgba(255, 255, 255, 0.6); color: var(--text); }
+.city-toggle a[aria-current="page"] { background: var(--panel); color: var(--text); box-shadow: var(--shadow); font-weight: 600; }
+
 /* The illustrations switch. */
 .switch { font-size: 13px; display: inline-flex; align-items: center; gap: 8px; border-color: transparent; background: transparent; padding-left: 6px; }
 .switch::before {

@@ -184,8 +184,8 @@ jobs:
           else
             echo "::warning::no Brno data, the Brno site is left out of this deploy"
           fi
-          # without a Brno site, no link to it from the Prague footer
-          [ -d _site/brno ] || sed -i 's| ·[[:space:]]*<a href="brno/">Profily ulic Brno</a>||' _site/index.html
+          # without a Brno site, no link to it from the Prague footer and no city switch
+          [ -d _site/brno ] || sed -i -e 's| ·[[:space:]]*<a href="brno/">Profily ulic Brno</a>||' -e '/class="city-toggle"/,/<\/nav>/d' _site/index.html
           cat > _site/data/README.txt <<'EOF'
           data/osm-tiles: dlaždice odvozené z OpenStreetMap (výřez BBBike Praha).
           © přispěvatelé OpenStreetMap, licence ODbL 1.0 (https://opendatacommons.org/licenses/odbl/).

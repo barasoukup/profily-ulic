@@ -87,7 +87,15 @@ const pragueMaps = () => ({
 // Brno: the city's orthophoto (tiles in Web Mercator on gis.brno.cz), the public DTM of the region as
 // a map (WMS of IS DMVS ČÚZK, the data the profile is measured from), ČÚZK orthophoto and OSM.
 const DMVS = "https://dmvs.cuzk.gov.cz/api/wms";
+const BRNO_GIS = "https://gis.brno.cz/ags3/rest/services/PUBLIC";
 const brnoMaps = () => ({
+  // The city's map of surfaces (MTVU), drawn by its GIS as export images in Web Mercator (its caches
+  // are in S-JTSK), from 1 : 5 000; OSM underneath for the zoomed-out view. The DTM of the region
+  // (ČÚZK) has wide blank areas in Brno, so it is not the default.
+  "Mapa Brna": L.layerGroup([
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 21, maxNativeZoom: 19, opacity: 0.6, attribution: "© OpenStreetMap" }),
+    new ArcgisExport("", { service: `${BRNO_GIS}/ted_MTVU_plochy_povrch/MapServer`, minZoom: 17, maxZoom: 21, ...BIG_TILES, attribution: "mapa © Statutární město Brno" }),
+  ]),
   "Technická mapa": L.tileLayer.wms(`${DMVS}/dtm_zps_plochy_bar`, {
     // The DMVS answers WMS 1.3.0 only (since 11/2026; Leaflet asks 1.1.1 by default).
     layers: "dtm_zps_plochy_bar", format: "image/png", version: "1.3.0", maxZoom: 21, tileSize: 512, zoomOffset: -1, attribution: "DTM Jihomoravského kraje © ČÚZK (IS DMVS)",
@@ -103,8 +111,9 @@ const brnoMaps = () => ({
   }),
 });
 const baseMaps = isBrno ? brnoMaps() : pragueMaps();
-const BASE_KEY = "streetdesign-basemap" + city.storeSuffix;
-let baseName = isBrno ? "Technická mapa" : "Mapa IPR";
+// Brno's key changed with its default map (the old default, the DTM of the region, was mostly blank).
+const BASE_KEY = "streetdesign-basemap" + (isBrno ? "-brno2" : city.storeSuffix);
+let baseName = isBrno ? "Mapa Brna" : "Mapa IPR";
 try { if (baseMaps[localStorage.getItem(BASE_KEY)]) baseName = localStorage.getItem(BASE_KEY); } catch {}
 baseMaps[baseName].addTo(map);
 map.on("baselayerchange", (e) => { try { localStorage.setItem(BASE_KEY, e.name); } catch {} });

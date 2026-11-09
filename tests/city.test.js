@@ -13,6 +13,7 @@ test("config.js pro Brno má CITY = brno", () => {
 test("index.html pro Brno: titulek, CSP pro mapy Brna a ČÚZK, patička bez IPR", () => {
   const html = brnoIndex(read("index.html"));
   assert.match(html, /<title>Profily ulic · Brno<\/title>/);
+  assert.match(html, /<a href="\.\.\/">Praha<\/a>\s*<a href="\.\/" aria-current="page">Brno<\/a>/);
   assert.match(html, /img-src [^;]*https:\/\/gis\.brno\.cz https:\/\/dmvs\.cuzk\.gov\.cz/);
   assert.match(html, /connect-src [^;]*https:\/\/gis\.brno\.cz https:\/\/services6\.arcgis\.com/);
   const footer = html.match(/<footer[\s\S]*?<\/footer>/)[0];
