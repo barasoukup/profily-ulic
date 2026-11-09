@@ -546,10 +546,10 @@ function splitRoadway(run, ctx) {
     const excess = (e - s) - lanesTotal * cap;
     // Strips under KRAJNICE_MIN are left in the lanes (a lane 3.7 m wide is no error).
     if (!twoWaySingle && excess >= KRAJNICE_MIN) {
-      // A one-way carriageway (half of a divided road) has its shoulder on the outer edge, the driver's
-      // right, not along the median; a two-way roadway at both curbs.
-      // One-way by the OSM axis in this roadway (not the clicked street: a divided road's other half).
-      const oneway = single && ctx.axesOneway;
+      // A carriageway of a divided road has its shoulder on the outer edge, the driver's right, not along
+      // the median; other roadways, one-way town streets too, at both curbs (Bára). One-way by the OSM
+      // axis in this roadway, not the clicked street (a divided road's other half).
+      const oneway = single && ctx.axesOneway && ctx.divided;
       const both = !oneway && excess >= 2 * KRAJNICE_MIN;
       const outerL = oneway && dirAt((s + e) / 2) === "backward";
       const wR = both ? excess / 2 : outerL ? 0 : excess, wL = both ? excess / 2 : outerL ? excess : 0;
@@ -1319,9 +1319,13 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
         return k === 1 ? p1 : p1 && (kept[ri - 2] || (edges.right === "volno" ? null : before(p1)));
       };
       const kerbWalk = [["L", walkAt(next(1), next(2))], ["R", walkAt(prev(1), prev(2))]].filter(([, ok]) => ok).map(([sd]) => sd);
+      // Half of a divided road: across a median or a green strip (up to 15 m) lies another roadway.
+      const k = kept.indexOf(r), isRoad = (x) => x && (x.code === 701 || x.code === 700);
+      const sep = (a, b) => isRoad(b) && a && (a.code === MEDIAN || inMedian(a) || (a.code >= 400 && a.code < 500 && a.e - a.s <= 15));
+      const divided = sep(kept[k - 1], kept[k - 2]) || sep(kept[k + 1], kept[k + 2]);
       // Trolley wires over the street (OSM trolley_wire): its bus lanes carry trolleybuses (Jihlava, Brno).
       const trolley = [tags, ...axes.map((a) => a.tags)].some((t) => t?.trolley_wire === "yes");
-      segs.push(...splitRoadway(r, { tags, trams: inside, dirAt, lanesTotal, along: ownAxis ? (ownAxis.along !== (tags.oneway === "-1")) : true, single: new Set(axes.map((a) => a.id)).size === 1, parked, sides: sideTagsLR, kerbWalk, inZps, axesOneway: axes.every((a) => a.oneway), axisInside: here.length > 0 }).map((x) => ({ ...x, mtvu: r.code, trolley: trolley && (x.type === "bus" || x.type === "bus_cyklo") })));
+      segs.push(...splitRoadway(r, { tags, trams: inside, dirAt, lanesTotal, along: ownAxis ? (ownAxis.along !== (tags.oneway === "-1")) : true, single: new Set(axes.map((a) => a.id)).size === 1, parked, sides: sideTagsLR, kerbWalk, inZps, axesOneway: axes.every((a) => a.oneway), axisInside: here.length > 0, divided }).map((x) => ({ ...x, mtvu: r.code, trolley: trolley && (x.type === "bus" || x.type === "bus_cyklo") })));
     } else if (r.code === MEDIAN) {
       segs.push({ type: "delici", s: r.s, e: r.e, source: "dtm" });
     } else if (isMinorStructure(r.code)) {
