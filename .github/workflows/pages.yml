@@ -113,14 +113,31 @@ jobs:
       # Brno (/brno/): the same app; like Prague it asks the city's services on a click (MTVU and the
       # technical-map drawing on gis.brno.cz, parking and buildings on data.brno.cz). Only the OSM tiles
       # are built here, from the BBBike Brno extract. A failure leaves Brno out; Prague goes out anyway.
+      - id: brno-pbf-cache
+        uses: actions/cache@v4
+        with:
+          path: data/osm/Brno.osm.pbf
+          key: osm-brno-pbf-${{ steps.week.outputs.week }}
+          restore-keys: osm-brno-pbf-
       - name: Brno OSM tiles
         id: brno
         continue-on-error: true
-        timeout-minutes: 15
+        timeout-minutes: 20
         run: |
           mkdir -p data/osm
-          curl -fL --retry 2 --retry-delay 20 --connect-timeout 30 -o data/osm/Brno.osm.pbf \
-            https://download.bbbike.org/osm/bbbike/Brno/Brno.osm.pbf
+          if [ "${{ steps.brno-pbf-cache.outputs.cache-hit }}" != "true" ]; then
+            # BBBike's Brno extract, else Geofabrik's Czech Republic cut to the same area, else last week's copy
+            if curl -fL --retry 2 --retry-delay 20 --retry-all-errors --connect-timeout 30 -o /tmp/Brno.osm.pbf \
+                 https://download.bbbike.org/osm/bbbike/Brno/Brno.osm.pbf; then
+              mv /tmp/Brno.osm.pbf data/osm/Brno.osm.pbf
+            else
+              echo "::warning::download.bbbike.org unreachable, cutting Brno out of the Geofabrik extract"
+              sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends osmium-tool
+              [ -f /tmp/cz.osm.pbf ] || curl -fL --retry 3 --retry-delay 20 --connect-timeout 30 -o /tmp/cz.osm.pbf \
+                https://download.geofabrik.de/europe/czech-republic-latest.osm.pbf
+              osmium extract --bbox 16.42,49.10,16.78,49.30 --overwrite -o data/osm/Brno.osm.pbf /tmp/cz.osm.pbf || [ -f data/osm/Brno.osm.pbf ]
+            fi
+          fi
           NAME=brno tools/build_osm_data.sh data/osm/Brno.osm.pbf site-brno/data/osm-tiles
           touch site-brno/ok
       - name: Assemble the site
@@ -146,10 +163,13 @@ jobs:
             cp _site/config.js _site/brno/config.js
             rm site-brno/ok && mv site-brno/data/* _site/brno/data/
             cp LICENCE-A-ZDROJE.md _site/brno/data/LICENCE-A-ZDROJE.md
-            node tools/build_brno_site.mjs _site/brno
+            # a Brno failure never stops the Prague deploy
+            node tools/build_brno_site.mjs _site/brno || { echo "::warning::Brno site not built"; rm -rf _site/brno; }
           else
             echo "::warning::no Brno data, the Brno site is left out of this deploy"
           fi
+          # without a Brno site, no link to it from the Prague footer
+          [ -d _site/brno ] || sed -i 's| ·[[:space:]]*<a href="brno/">Profily ulic Brno</a>||' _site/index.html
           cat > _site/data/README.txt <<'EOF'
           data/osm-tiles: dlaždice odvozené z OpenStreetMap (výřez BBBike Praha).
           © přispěvatelé OpenStreetMap, licence ODbL 1.0 (https://opendatacommons.org/licenses/odbl/).
