@@ -543,9 +543,13 @@ function splitRoadway(run, ctx) {
       if (wL) { leftEdge.unshift({ type: "krajnice", s: e - wL, e, source: "odhad" }); e -= wL; }
     }
     const lw = (e - s) / lanesTotal;
+    // A two-way street of one OSM axis has half its lanes each way, wherever the axis lies (an axis off
+    // the middle of the roadway turned both lanes one way; Jihlava, Polenská).
+    const halves = single && !isOnewayTags(tags) && tags.junction !== "roundabout" && lanesTotal > 1;
     for (let i = 0; i < lanesTotal; i++) {
       const ls = s + i * lw, le = ls + lw;
-      mid.push({ type: "pruh", s: ls, e: le, dir: twoWaySingle ? undefined : dirAt((ls + le) / 2) });
+      const half = 2 * i + 1 === lanesTotal ? null : 2 * i + 1 < lanesTotal ? "forward" : "backward";
+      mid.push({ type: "pruh", s: ls, e: le, dir: twoWaySingle ? undefined : (halves && half) || dirAt((ls + le) / 2) });
     }
     if (single) applyLaneTags(mid, tags, along);
   }
