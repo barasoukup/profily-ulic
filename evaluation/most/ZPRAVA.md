@@ -34,3 +34,17 @@ Opraveno během kontroly:
 - osy kolejí technické mapy (kód 9) se berou jako tramvajové jen do 3 m od tramvajové trati v OSM; stejný kód mají
   vlečky a koleje v areálech.
 - `sample.mjs` přeskočí skupinu ulic, kterou město nemá (Most: `secondary`).
+
+## Parkování (doplněno 9. 11. 2026)
+
+Vrstvu parkovacích stání Most nemá. Prošel jsem všechny složky mapového serveru města (asi 70 služeb, 1 800 vrstev),
+otevřená data města na data.gov.cz (40 datových sad, nic o parkování) i technickou mapu: žádná stání, úseky, zóny
+placeného stání ani vodorovné značení. Vrstvy „ZPS“ v DTM kraje jsou základní prostorová situace, ne placené stání.
+Vnitřní kresba dopravních ploch (DtmUMPS 48, kód 27) má pro celé město jen 987 převážně krátkých čar, stání z ní
+vyčíst nejdou. Z placeného parkování jsem dohledal jen staré zprávy o automatech na parkovištích (Technické služby
+města Mostu), mapu ani seznam úseků ne. Objektová mapa se podle katalogu NKOD aktualizuje naposledy 6/2024.
+
+Parkování v profilu proto dávají: parkovací plochy objektové mapy (704), tedy zálivy a parkoviště vedle vozovky,
+v sídlištích většinou kolmé (ve vzorku 8 řezů), plochy `parking=street_side|lane` z OSM (88 ploch v Mostě) a
+odhad podélného stání v místních ulicích (asi 12 řezů). Tagy `parking:left/right/both` na osách OSM v Mostě skoro
+nejsou (0,8 km ze 143 km obytných ulic). Stání vyznačené přímo ve vozovce bez vlastní plochy proto chybí.

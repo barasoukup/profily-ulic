@@ -29,3 +29,10 @@ Před kontrolou opraveno: služby města vracejí WGS 84 jinou transformací (as
 žádají `datumTransformation=1623`, dotaz na víc vrstev naráz a 3D budovy posouvají souřadnice o rozdíl.
 Po kontrole opraveno: přidružená plocha pozemní komunikace (polní cesty a krajnice vedle silnice) už není
 vozovka, ale zpevněná plocha nebo zeleň (odhad) podle povrchu; zlepšila řezy 15, 21 a 24.
+
+Parkování (dohledáno 9. 11. 2026): Plzeň stání ani úseky stání živou službou nezveřejňuje. Na ags.plzen.eu jsou
+jen parkovací plochy mimo ulici (`GIS_DOPRAVA_Parkovaci_plochy_SHP`, 72 ploch) a parkoviště technické mapy (301,
+v profilu jako 704); technická mapa vodorovné značení nemá. Otevřená data města (opendata.plzen.eu, CC0) mají
+„Parkovací zóny“: 341 linií po osách ulic s názvem zóny nebo „Vyhrazené stání“ (42 km, GeoJSON 153 kB, 6. 10. 2026),
+bez počtu a druhu stání. Profil proto bere stání z parkovišť technické mapy, z OSM (1 273 ploch `parking=street_side`,
+značky `parking:left/right/both` jen na 1 % ulic) a mimo ně z odhadu.

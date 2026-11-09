@@ -122,8 +122,11 @@ async function osm(lat, lon, radius) {
   return addPoints(o, pts, MO_POINTS.map(([, , , tagsOf]) => tagsOf), "Most", lat);
 }
 
-// No layer of parking stalls: the parking areas of the object map (704) are the parking, their depth
-// tells the orientation (derive.js).
+// No layer of parking stalls: the town's GIS (all folders, 11/2026), its open data (data.gov.cz) and the
+// technical map have no stalls, sections or paid zones (its "ZPS" layers are the základní prostorová
+// situace, the inner drawing of traffic areas, DtmUMPS 48 kód 27, is a few hundred short lines, not
+// stall markings). The parking areas of the object map (704, bays and car parks beside the roadway) and
+// OSM's street_side parking areas are the parking; their depth tells the orientation (derive.js).
 const parking = async () => ({ features: [] });
 
 export const sources = { osm, surfaces, lines, parking, podlaznost: ruianBuilding };
