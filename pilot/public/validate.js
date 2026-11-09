@@ -44,5 +44,6 @@ export function cleanProfile(p, what = "profil") {
 export function cleanCut(c) {
   if (!c || !num(c.lat, 48, 52) || !num(c.lon, 12, 19) || !num(c.bearing, -360, 360)) return null;
   const reach = c.reach && num(c.reach.left, 1, 40) && num(c.reach.right, 1, 40) ? { left: c.reach.left, right: c.reach.right } : undefined;
-  return { ...c, name: String(c.name || "Ulice"), note: typeof c.note === "string" ? c.note : "", reach };
+  const span = c.span && num(c.span.left, 0, 40) && num(c.span.right, 0, 40) ? { left: c.span.left, right: c.span.right } : undefined;
+  return { ...c, name: String(c.name || "Ulice"), note: typeof c.note === "string" ? c.note : "", reach, span };
 }

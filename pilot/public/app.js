@@ -17,6 +17,9 @@ const cutEnds = (f, normal, reach) => [
   f.toLonLat(-normal[0] * reach.right, -normal[1] * reach.right),
   f.toLonLat(normal[0] * reach.left, normal[1] * reach.left),
 ];
+// The cut line and its ends A, B on the map show where the profile ends (facades, fences…), not how
+// far the data was searched (Bára); a profile only estimated from OSM has no ends, so the reach shows.
+const cutSpan = (cut) => cut?.span || cut?.reach || defaultReach();
 const STORE = "streetdesign-pilot" + city.storeSuffix; // Prague and Brno keep their own last cut
 
 const state = {
@@ -194,7 +197,6 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
       reach = { left: reach.right, right: reach.left };
     }
     const normal = [-dir[1], dir[0]];
-    const ends = cutEnds(frame, normal, reach);
     const full = [-1, 1].map((k) => frame.toLonLat(normal[0] * HALF * k, normal[1] * HALF * k));
     const lons = full.map((e) => e[0]), lats = full.map((e) => e[1]);
     const pad = 0.0004;
@@ -217,7 +219,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     const inZps = z.status === "fulfilled" ? z.value : undefined;
     const result = deriveProfile({ center: [0, 0], dir, half: HALF, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps });
     const name = near.way.tags.name || near.way.tags.ref || `ulice ${near.way.id}`;
-    state.cut = { lat: clat, lon: clon, bearing: (Math.atan2(dir[0], dir[1]) * 180) / Math.PI, wayId: near.way.id, name, reach };
+    const span = result.extent && { left: +result.extent[1].toFixed(2), right: +(-result.extent[0]).toFixed(2) };
+    state.cut = { lat: clat, lon: clon, bearing: (Math.atan2(dir[0], dir[1]) * 180) / Math.PI, wayId: near.way.id, name, reach, span };
     // Floors of the buildings at both ends from IPR "Podlažnosti" (OSM building:levels as fallback).
     await Promise.all(["left", "right"].map(async (side) => {
       const info = result.edges[`${side}Info`];
@@ -236,7 +239,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     state.selected = null;
     state.fixing = false;
     resetHistory();
-    drawCut(ends);
+    drawCut(cutEnds(frame, normal, cutSpan(state.cut)));
     showCutInfo();
     drawMtvu(polys);
     if (!map.getBounds().contains([clat, clon])) map.panTo([clat, clon]);
@@ -364,7 +367,7 @@ function drawMtvu(polys) {
 }
 
 // Live preview while dragging: the line follows the handle; the profile is recomputed on drop.
-function previewCut(lat, lon, normal, skip, reach = state.cut.reach || defaultReach()) {
+function previewCut(lat, lon, normal, skip, reach = cutSpan(state.cut)) {
   const f = localFrame(lat, lon);
   const ll = cutEnds(f, normal, reach).map(([x, y]) => [y, x]);
   cutLine.setLatLngs(ll);
@@ -400,7 +403,8 @@ function endDrag(m, i) {
 
 endMarkers.forEach((m, i) => m.on("drag", () => {
   const { normal, reach } = endDrag(m, i);
-  previewCut(state.cut.lat, state.cut.lon, normal, m, reach);
+  const side = i === 0 ? "right" : "left";
+  previewCut(state.cut.lat, state.cut.lon, normal, m, { ...cutSpan(state.cut), [side]: reach[side] });
 }));
 
 centerMarker.on("dragend", () => {
@@ -1234,10 +1238,11 @@ $("#btn-flip").onclick = () => {
   state.stav = mirror(state.stav);
   state.navrh = mirror(state.navrh);
   const r = state.cut.reach || defaultReach();
-  state.cut = { ...state.cut, bearing: ((state.cut.bearing + 180 + 540) % 360) - 180, reach: { left: r.right, right: r.left } };
+  const sp = state.cut.span && { left: state.cut.span.right, right: state.cut.span.left };
+  state.cut = { ...state.cut, bearing: ((state.cut.bearing + 180 + 540) % 360) - 180, reach: { left: r.right, right: r.left }, span: sp };
   state.selected = null;
   const f = localFrame(state.cut.lat, state.cut.lon), b = (state.cut.bearing * Math.PI) / 180;
-  drawCut(cutEnds(f, [-Math.cos(b), Math.sin(b)], state.cut.reach));
+  drawCut(cutEnds(f, [-Math.cos(b), Math.sin(b)], cutSpan(state.cut)));
   showCutInfo();
   resetHistory();
   save();
@@ -1255,7 +1260,7 @@ function restore(data) {
     const f = localFrame(state.cut.lat, state.cut.lon);
     const r = (state.cut.bearing * Math.PI) / 180;
     const n = [-Math.cos(r), Math.sin(r)];
-    drawCut(cutEnds(f, n, state.cut.reach || defaultReach()));
+    drawCut(cutEnds(f, n, cutSpan(state.cut)));
     $("#street-name").textContent = state.cut.name + (state.cut.note || "");
     showCutInfo();
   }
