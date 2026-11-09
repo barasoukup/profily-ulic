@@ -86,27 +86,28 @@ Výška se kreslí 3,5 m na podlaží (přesná výška jen z OSM `height`), st�
 ## Brno (`/brno/`)
 
 Stejná aplikace s `CITY = "brno"` (`city.js`, `tools/city_site.mjs`). Lokálně http://localhost:5173/brno/,
-na webu `…/profily-ulic/brno/`. Brno se nikoho při kliknutí neptá, všechna data jsou soubory v
-`pilot/data/brno/` (na webu `brno/data/`):
+na webu `…/profily-ulic/brno/`. Stejně jako Praha se ptá služeb při kliknutí (přímo z prohlížeče,
+služby povolují CORS); lokálně jsou jen dlaždice OSM (`pilot/data/brno/osm-tiles`, výřez BBBike Brno):
 
-- `dtm-tiles/`: plochy a linie z veřejné DTM Jihomoravského kraje (IS DMVS ČÚZK). V datech jsou plochy
-  jen jako hranice a definiční body; `tools/build_dtm_brno.py` je spojí v polygony, pojmenuje podle
-  definičního bodu a převede na kódy MTVU (chodník 702, vozovka 701, tramvajová dráha 705…), takže
-  `derive.js` čte Brno stejně jako Prahu. Asi 7 % plochy v DTM nemá definiční bod; úzká taková plocha
-  vedle vozovky, parkoviště nebo tramvajové dráhy se bere jako chodník (třeba chodníky Husovy).
-- `osm-tiles/`: výřez OSM BBBike Brno, doplněný o stromy, lampy a lavičky z otevřených dat Brna.
-- `parkovani.json`, `zps.json`: úseky placeného stání a oblasti rezidentního parkování (data.brno.cz).
-- `budovy/`: Průzkum budov v Brně (KAM): podlaží, podlaží ve střeše, střecha. Vývoj zástavby Brno nemá.
-- Koleje: osy z OSM (`railway=tram`). Tramvaj a autobus jsou kresby DPMB (`public/brno/`).
+- plochy: MTVU města (`gis.brno.cz/ags3 … PUBLIC/opendata_mtvu`, vrstva 1). Brněnské kódy 5100xxx
+  (číselník v legendě `PUBLIC/ted_MTVU_plochy_povrch`) převádí `brnoMtvuCode` v `sources.js` na pražské;
+- koleje, svodidla, ploty, zdi, zábradlí, svahy a body (lampy, stromy, lavičky, sloupky): kresba technické
+  mapy UMPS (`PUBLIC/opendata_umps`, jeden dotaz `identify`). Kódy linií mají stejnou soustavu jako IPR
+  s předponou (`brnoLineCode`: 1255010 → 55010);
+- parkování a oblasti: data.brno.cz (Úseky placeného stání, Parkovací oblasti rezidentního parkování);
+- budovy: Průzkum budov v Brně (KAM): podlaží, podlaží ve střeše, střecha. Vývoj zástavby Brno nemá.
 
-Sestavení (QGIS Python pro GDAL):
+Záloha pro města bez vlastní služby: plochy z veřejné DTM kraje (IS DMVS ČÚZK, bez přihlášení).
+`tools/fetch_dtm_brno.sh` stáhne sady ZPS_KR a DI po městských částech, `tools/build_dtm_brno.py` z hranic a
+definičních bodů složí plochy (všechny části najednou, v oknech, s uzavřením mezer do 1 m), kde chybí
+obruby, rozdělí slité plochy podle OSM a nejbližších definičních bodů (označené „odhad“) a zapíše dlaždice
+`{p, l}`. Pro Brno to dalo 10 sedí / 79 částečně / 11 špatně ze 100 řezů (MTVU města je přesnější).
+Spuštění (QGIS Python s GDAL a shapely):
 
 ```
 tools/fetch_dtm_brno.sh
 Q=/Applications/QGIS-final-4_2_3.app/Contents
-PROJ_DATA=$Q/Resources/qgis/proj GDAL_DATA=$Q/Resources/qgis/gdal $Q/MacOS/python tools/build_dtm_brno.py data/dtm-brno/zip pilot/data/brno/dtm-tiles
-NAME=brno OGR=$Q/MacOS/ogr2ogr PROJ_DATA=$Q/Resources/qgis/proj GDAL_DATA=$Q/Resources/qgis/gdal tools/build_osm_data.sh data/osm/Brno.osm.pbf pilot/data/brno/osm-tiles
-node tools/build_brno_data.mjs pilot/data/brno pilot/data/brno/osm-tiles
+PROJ_DATA=$Q/Resources/qgis/proj GDAL_DATA=$Q/Resources/qgis/gdal $Q/MacOS/python tools/build_dtm_brno.py data/dtm-brno/zip data/osm/brno_ways.geojsonl <výstup>
 ```
 
 ## Jak se profil skládá

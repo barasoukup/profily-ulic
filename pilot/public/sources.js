@@ -82,8 +82,8 @@ async function osmTiles(lat, lon, radius) {
   return { source: "local", elements };
 }
 
-// Brno reads only files made at deploy time (no server of its own to ask on a click).
-export const osm = (lat, lon, r) => (STATIC || isBrno ? osmTiles(lat, lon, r) : getJSON(`/api/osm?lat=${lat}&lon=${lon}&r=${r}`));
+// Brno asks the city's services on a click, as Prague asks IPR's; only the OSM tiles are files.
+export const osm = (lat, lon, r) => (isBrno ? brnoOsm(lat, lon, r) : STATIC ? osmTiles(lat, lon, r) : getJSON(`/api/osm?lat=${lat}&lon=${lon}&r=${r}`));
 
 export const mtvu = (bbox) => (isBrno ? brnoSurfaces(bbox) : STATIC
   ? query(MTVU, { ...envelope(bbox), outFields: MTVU_FIELDS })
@@ -94,89 +94,166 @@ export const linie = (bbox) => (isBrno ? brnoLines(bbox) : STATIC
   : getJSON(`/api/linie?bbox=${bbox}`));
 
 // ---------- Brno ----------
-// Surfaces and barrier lines of the DTM of Jihomoravský kraj, polygonized and turned into MTVU codes
-// by tools/build_dtm_brno.py (data/dtm-tiles/<ix>_<iy>.json = {p: [[code, rings]], l: [[code, path]]}).
-const dtmTiles = new Map();
-const dtmTile = (n) => {
-  if (!dtmTiles.has(n)) {
-    if (dtmTiles.size >= TILES_KEPT) dtmTiles.delete(dtmTiles.keys().next().value);
-    dtmTiles.set(n, fetch(`data/dtm-tiles/${n}.json`).then((r) => (r.ok ? r.json() : r.status === 404 ? { p: [], l: [] } : Promise.reject(new Error(`dlaždice DTM ${r.status}`))))
-      .catch((err) => { dtmTiles.delete(n); throw err; }));
-  }
-  return dtmTiles.get(n);
+// The city's GIS (gis.brno.cz) and open data (data.brno.cz) answer the browser directly (CORS):
+// MTVU (Mapa technického využití území) for the surfaces, the drawing of the technical map (UMPS) for
+// tracks, guard rails, fences, walls, railings, slopes, lamps, trees, benches and bollards.
+const BRNO_GIS = "https://gis.brno.cz";
+const BRNO_MTVU = `${BRNO_GIS}/ags3/rest/services/PUBLIC/opendata_mtvu/MapServer/1/query`;
+const BRNO_UMPS = `${BRNO_GIS}/ags3/rest/services/PUBLIC/opendata_umps/MapServer/identify`;
+const BRNO_KAM = `${BRNO_GIS}/ags1/rest/services/Hosted/KAM_pruzkum_budov_OD_WGS_Projekt/FeatureServer/0/query`;
+const BRNO_OD = "https://services6.arcgis.com/fUWVlHWZNxUvTUh8/arcgis/rest/services";
+const TCODE = "ted_work.DBO.MTVU_DIL_P.TCODE";
+
+// Brno's MTVU codes (5100xxx, the classes of the technical map; legend of PUBLIC/ted_MTVU_plochy_povrch)
+// → Prague's MTVU codes that derive.js and types.js know; null: unknown kind.
+export function brnoMtvuCode(code) {
+  const c = code - 5100000;
+  if (c >= 100 && c < 200) return 100; // zemědělská půda
+  if (c === 200) return 200; // les
+  if (c === 320) return 300; // zahrada
+  if (c >= 410 && c < 430) return 401; // parková zeleň, travnatá a okrasná plocha
+  if (c === 440) return 402; // hřbitov
+  if (c === 510 || c === 511) return 501; // vodní tok, upravené koryto
+  if ((c >= 520 && c < 530) || c === 566) return 502; // nádrže
+  if (c === 555) return 402; // meliorační příkop, žlab: along roads a gutter, not water
+  if (c >= 550 && c < 570) return 503; // hráze, protipovodňové stavby
+  if (c === 610) return 601; // budova
+  if (c === 626) return 702; // rampa
+  if (c === 650) return 1003; // neveřejná zpevněná plocha
+  if (c === 652) return 603; // dvůr, nádvoří
+  if (c >= 620 && c < 680) return 602; // ostatní stavby, zdi, drobné stavby
+  if (c >= 710 && c < 720) return 701; // komunikace
+  if (c >= 720 && c < 730) return 702; // chodník, nástupiště, schodiště, signální prvek
+  if (c === 730) return 703; // cyklostezka
+  if (c === 740) return 704; // parkoviště
+  if (c === 751 || c === 752) return 702; // nájezd, dopravní ostrůvek
+  if (c === 753) return 401; // dělící pás
+  if (c === 757) return 701; // přidružená plocha (zálivy, krajnice)
+  if (c === 755) return 402; // příkop, násep, zářez
+  if (c === 750 || c === 754) return 1003; // provozní a manipulační plochy
+  if (c === 761) return 705; // tramvajová dráha
+  if (c === 762 || c === 1100) return 1100; // lanová dráha, železnice
+  if (c === 910) return 901; // hřiště
+  if (c === 1010) return 402; // hospodářsky nevyužívaná plocha
+  if (c >= 1020 && c < 1030) return 1003; // důl, lom, rekultivace
+  return null;
+}
+
+// Line codes of Brno's technical map (UMPS, 7 digits) → those of IPR's line layer: the same scheme
+// with a prefix (1255010 osa kolejí MHD = 55010, 1271522 svodidlo = 71522 …).
+export function brnoLineCode(t) {
+  if (t === 1255010) return 55010; // osa kolejí MHD
+  if (t >= 1271522 && t <= 1271525) return 71522; // svodidlo jednostranné
+  if (t >= 1271540 && t <= 1271543) return 71540; // svodidlo zdvojené
+  if ((t >= 1161530 && t <= 1161533) || t === 1381530) return 61530; // zábradlí
+  if (t === 1661209 || (t >= 1661211 && t <= 1661213)) return 61209; // plot nerozlišený
+  if ([1660215, 1660216, 1660225, 1660226, 1660227, 1381214].includes(t)) return 81214; // živý plot
+  if ([1660217, 1660228, 1660229, 1660230, 1181870].includes(t)) return 71210; // zděný plot, ohradní a protihluková zeď
+  if ((t >= 1660211 && t <= 1660230) || t === 1661210 || (t >= 1661214 && t <= 1661216) || t === 1621904) return 61210; // ploty, podezdívky
+  if (t >= 1661419 && t <= 1661422) return 61422; // opěrná zeď
+  if (t === 1381422) return 81422;
+  if (t === 1381210) return 81210;
+  if (t === 1542105 || t === 1542115) return 42105; // horní hrana svahu
+  if (t === 1542107 || t === 1542117) return 42107; // dolní hrana svahu
+  return null;
+}
+const UMPS_LINES = {
+  36: "TCODE IN (1255010,1271522,1271523,1271524,1271525,1271540,1271541,1271542,1271543)",
+  37: "(TCODE BETWEEN 1660211 AND 1660230) OR (TCODE BETWEEN 1661209 AND 1661216) OR (TCODE BETWEEN 1661419 AND 1661422) OR TCODE = 1621904",
+  38: "TCODE IN (1161530,1161531,1161532,1161533,1181870)",
+  40: "TCODE IN (1542105,1542107,1542115,1542117)",
+  41: "TCODE IN (1381210,1381214,1381422,1381530)",
 };
-const bboxTiles = (bbox) => {
-  const [x0, y0, x1, y1] = bbox.split(",").map(Number);
-  const names = [];
-  for (let ix = Math.floor(x0 / TILE); ix <= Math.floor(x1 / TILE); ix++) for (let iy = Math.floor(y0 / TILE); iy <= Math.floor(y1 / TILE); iy++) names.push(`${ix}_${iy}`);
-  return { names, box: [x0, y0, x1, y1] };
-};
-const meets = (pts, [x0, y0, x1, y1]) => {
-  let a = Infinity, b = Infinity, c = -Infinity, d = -Infinity;
-  for (const [x, y] of pts) { if (x < a) a = x; if (y < b) b = y; if (x > c) c = x; if (y > d) d = y; }
-  return a <= x1 && c >= x0 && b <= y1 && d >= y0;
-};
+// Points of the technical map that stand in a street, as OSM tags (derive.js reads them like OSM nodes).
+const UMPS_POINTS = { 14: "TCODE = 606560", 19: "TCODE = 1274110", 20: "TCODE = 1181850", 23: "TCODE = 1383130" };
+const POINT_TAGS = { 606560: { highway: "street_lamp" }, 1274110: { barrier: "bollard" }, 1181850: { amenity: "bench" }, 1383130: { natural: "tree" } };
+
+// One identify request for several layers of the technical-map drawing, with a filter per layer.
+const umps = ([x0, y0, x1, y1], defs) => query(BRNO_UMPS, {
+  geometry: [x0, y0, x1, y1].join(","), geometryType: "esriGeometryEnvelope", sr: "4326",
+  layers: `all:${Object.keys(defs).join(",")}`, layerDefs: JSON.stringify(defs), tolerance: "0",
+  mapExtent: [x0, y0, x1, y1].join(","), imageDisplay: "800,800,96", returnGeometry: "true", f: "json",
+});
 
 async function brnoSurfaces(bbox) {
-  const { names, box } = bboxTiles(bbox);
+  const json = await query(BRNO_MTVU, { ...envelope(bbox), outFields: TCODE });
   const features = [];
-  for (const t of await Promise.all(names.map(dtmTile))) {
-    for (const [code, rings] of t.p) {
-      if (meets(rings[0], box)) features.push({ attributes: { CTVUK_KOD: code, CTVUK_POPIS: MTVU_LABELS[code] || "" }, geometry: { rings } });
-    }
+  for (const f of json.features || []) {
+    const code = brnoMtvuCode(Number(f.attributes[TCODE]));
+    if (code !== null && f.geometry?.rings) features.push({ attributes: { CTVUK_KOD: code, CTVUK_POPIS: MTVU_LABELS[code] || "" }, geometry: f.geometry });
   }
   return { features };
 }
 
-// Barrier lines from the DTM, and the tram track axes from OSM (the DTM has the tram surface, not the
-// tracks) under IPR's code 55010.
 async function brnoLines(bbox) {
-  const { names, box } = bboxTiles(bbox);
+  const json = await umps(bbox.split(",").map(Number), UMPS_LINES);
   const features = [];
-  for (const t of await Promise.all(names.map(dtmTile))) {
-    for (const [code, path] of t.l) if (meets(path, box)) features.push({ attributes: { CTMTP_KOD: code }, geometry: { paths: [path] } });
-  }
-  const [x0, y0, x1, y1] = box;
-  const lat = (y0 + y1) / 2, lon = (x0 + x1) / 2;
-  const r = Math.max((y1 - y0) * 110574, (x1 - x0) * 111320 * Math.cos((lat * Math.PI) / 180)) / 2;
-  const { elements } = await osmTiles(lat, lon, r);
-  for (const el of elements) {
-    const t = el.tags || {};
-    if (el.type !== "way" || t.railway !== "tram" || (t.tunnel && t.tunnel !== "no") || parseFloat(t.layer) < 0) continue;
-    const path = el.geometry.map((g) => [g.lon, g.lat]);
-    if (meets(path, box)) features.push({ attributes: { CTMTP_KOD: 55010 }, geometry: { paths: [path] } });
+  for (const r of json.results || []) {
+    const code = brnoLineCode(Number(r.attributes?.TCODE));
+    if (code !== null && r.geometry?.paths) features.push({ attributes: { CTMTP_KOD: code }, geometry: r.geometry });
   }
   return { features };
 }
 
-// Paid parking sections of Brno (one file, data/parkovani.json, from tools/build_brno_data.mjs).
-let brnoParking;
-async function brnoParkovani(bbox) {
-  brnoParking ??= fetch("data/parkovani.json").then((r) => (r.ok ? r.json() : { features: [] }), () => ({ features: [] }));
-  const { box } = bboxTiles(bbox);
-  return { features: (await brnoParking).features.filter((f) => meets(f.geometry.rings[0], box)) };
+// OSM around a point plus the lamps, trees, benches and bollards of the technical map, where OSM does
+// not already have the same thing within 3 m.
+async function brnoOsm(lat, lon, radius) {
+  const dLat = radius / 110574, dLon = radius / (111320 * Math.cos((lat * Math.PI) / 180));
+  const [o, p] = await Promise.all([osmTiles(lat, lon, radius), umps([lon - dLon, lat - dLat, lon + dLon, lat + dLat], UMPS_POINTS).catch(() => ({}))]);
+  const kx = 111320 * Math.cos((lat * Math.PI) / 180), ky = 110574;
+  const key = (t) => Object.entries(t).find(([k]) => ["highway", "barrier", "amenity", "natural"].includes(k))?.join("=");
+  const nodes = o.elements.filter((e) => e.type === "node");
+  let id = -1;
+  for (const r of p.results || []) {
+    const tags = POINT_TAGS[Number(r.attributes?.TCODE)];
+    const g = r.geometry;
+    if (!tags || !g || g.x === undefined) continue;
+    const k = key(tags);
+    if (nodes.some((n) => key(n.tags || {}) === k && Math.hypot((n.geometry[0].lon - g.x) * kx, (n.geometry[0].lat - g.y) * ky) < 3)) continue;
+    o.elements.push({ type: "node", id: id--, tags: { ...tags, source: "Brno" }, geometry: [{ lat: g.y, lon: g.x }] });
+  }
+  return o;
 }
 
-// Floors of a Brno building (KAM průzkum budov, data/budovy/<ix>_<iy>.json = [[floors, roof floors,
-// roof, use of the ground floor, rings]]), in the shape podlaznostInfo gives for Prague.
-// Uses that read as a hall (IPR typ 3) or a small low building (typ 6) by profile.js buildingStyle.
+// Paid parking sections still valid (data.brno.cz, Úseky placeného stání).
+async function brnoParkovani(bbox) {
+  const json = await query(`${BRNO_OD}/useky_placeneho_stani/FeatureServer/0/query`, {
+    ...envelope(bbox), where: "platnostdo IS NULL OR platnostdo > CURRENT_TIMESTAMP", outFields: "ObjectId",
+  });
+  return { features: (json.features || []).map((f) => ({ attributes: { KIND: "useky" }, geometry: f.geometry })) };
+}
+
+// Floors of a Brno building (KAM průzkum budov), in the shape podlaznostInfo gives for Prague. Roofs
+// as IPR's codes (profile.js IPR_ROOF): 1 pitched, 3 flat, 4 mixed. Uses of the ground floor that read
+// as a hall (IPR typ 3) or a small low building (typ 6) by profile.js buildingStyle.
+const ROOF = { "rovná střecha": 3, "rovná stŕecha": 3, "šikmá střecha": 1, "využité podkroví": 1, kombinace: 4 };
 const HALL_USES = new Set(["sklad, distribuce, logistika", "průmyslová výroba", "velkoobchod", "nerušící výroba, montáže", "zemědělská a lesnická výroba", "vozovna"]);
 const LOW_USES = new Set(["garáž", "zahrádky", "rekreace"]);
-const budovyTiles = new Map();
 async function brnoPodlaznost(lat, lon) {
-  const k = `${Math.floor(lon / TILE)}_${Math.floor(lat / TILE)}`;
-  if (!budovyTiles.has(k)) budovyTiles.set(k, fetch(`data/budovy/${k}.json`).then((r) => (r.ok ? r.json() : []), () => []));
-  const rec = (await budovyTiles.get(k)).find(([, , , , rings]) => insideRings(rings, lon, lat));
-  if (!rec) return {};
-  const [floors, roofFloors, roof, use, rings] = rec;
+  const json = await query(BRNO_KAM, {
+    geometry: `${lon},${lat}`, geometryType: "esriGeometryPoint", inSR: "4326", outSR: "4326", spatialRel: "esriSpatialRelIntersects",
+    outFields: "npodl,strpodl,strecha,np1_1f", f: "json",
+  });
+  const f = json.features?.[0];
+  if (!f) return {};
+  const { npodl, strpodl, strecha, np1_1f } = f.attributes;
   const kx = 111320 * Math.cos((lat * Math.PI) / 180), ky = 110574;
   let area = 0;
-  const r = rings[0];
+  const r = f.geometry?.rings?.[0] || [];
   for (let i = 0, j = r.length - 1; i < r.length; j = i++) area += (r[j][0] - r[i][0]) * kx * (r[j][1] + r[i][1]) * ky;
   return {
-    cornice: floors || undefined, roof: roofFloors || 0, total: (floors || 0) + (roofFloors || 0), roofType: roof || undefined,
-    kind: HALL_USES.has(use) ? 3 : LOW_USES.has(use) ? 6 : undefined, newBuild: false, area: Math.round(Math.abs(area) / 2),
+    cornice: npodl || undefined, roof: strpodl || 0, total: (npodl || 0) + (strpodl || 0), roofType: ROOF[strecha],
+    kind: HALL_USES.has(np1_1f) ? 3 : LOW_USES.has(np1_1f) ? 6 : undefined, newBuild: false, area: Math.round(Math.abs(area) / 2),
   };
+}
+
+// Within ZPS_RADIUS of a residential parking area (data.brno.cz, Parkovací oblasti rezidentního parkování)?
+async function brnoZps(lat, lon) {
+  const dLat = ZPS_RADIUS / 110574, dLon = ZPS_RADIUS / (111320 * Math.cos((lat * Math.PI) / 180));
+  const json = await query(`${BRNO_OD}/parkovaci_oblasti/FeatureServer/0/query`, {
+    ...envelope([lon - dLon, lat - dLat, lon + dLon, lat + dLat].join(",")), returnCountOnly: "true",
+  });
+  return (json.count || 0) > 0;
 }
 
 // The special stalls (5–8) lie inside paid zones: in a zone (by the zone file, inZone) all layers
@@ -205,6 +282,7 @@ export async function parkovani(bbox, inZone) {
 const ZPS_RADIUS = 100; // m
 let zpsBoxes;
 export async function zps(lat, lon) {
+  if (isBrno) return brnoZps(lat, lon);
   zpsBoxes ??= fetch("data/zps.json").then((r) => (r.ok ? r.json() : null)).then((j) => j?.boxes || null, () => null);
   const boxes = await zpsBoxes;
   if (!boxes) return undefined;

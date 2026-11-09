@@ -110,23 +110,18 @@ jobs:
         continue-on-error: true
         timeout-minutes: 10
         run: node tools/build_vyvoj.mjs site-vyvoj
-      # Brno (/brno/): the same app over files made here, never asked on a click. The OSM extract of
-      # BBBike Brno, the public DTM of Jihomoravský kraj (IS DMVS ČÚZK, no login) polygonized into
-      # tiles, and Brno's open data (parking, buildings, trees, lamps, benches). A failure leaves the
-      # Brno site out of this deploy; Prague goes out either way.
-      - name: Brno data
+      # Brno (/brno/): the same app; like Prague it asks the city's services on a click (MTVU and the
+      # technical-map drawing on gis.brno.cz, parking and buildings on data.brno.cz). Only the OSM tiles
+      # are built here, from the BBBike Brno extract. A failure leaves Brno out; Prague goes out anyway.
+      - name: Brno OSM tiles
         id: brno
         continue-on-error: true
-        timeout-minutes: 30
+        timeout-minutes: 15
         run: |
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends python3-gdal
           mkdir -p data/osm
           curl -fL --retry 2 --retry-delay 20 --connect-timeout 30 -o data/osm/Brno.osm.pbf \
             https://download.bbbike.org/osm/bbbike/Brno/Brno.osm.pbf
           NAME=brno tools/build_osm_data.sh data/osm/Brno.osm.pbf site-brno/data/osm-tiles
-          tools/fetch_dtm_brno.sh data/dtm-brno/zip
-          python3 tools/build_dtm_brno.py data/dtm-brno/zip site-brno/data/dtm-tiles
-          node tools/build_brno_data.mjs site-brno/data site-brno/data/osm-tiles
           touch site-brno/ok
       - name: Assemble the site
         env:

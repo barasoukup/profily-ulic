@@ -25,6 +25,8 @@ fi
 tag() { echo "other_tags LIKE '%\"$1\"=>\"$2\"%'"; }
 
 export_layer() { # file layer where select
+  # GeoJSONSeq does not overwrite: without this a second run appends to the old export
+  rm -f "$DIR/${NAME}_$1.geojsonl"
   "$OGR" -f GeoJSONSeq "$DIR/${NAME}_$1.geojsonl" "$PBF" "$2" -where "$3" -select "$4" -overwrite
 }
 

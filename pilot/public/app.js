@@ -139,7 +139,7 @@ let osmCache = null; // {frame, osm, way, wayPts}
 
 map.on("click", (e) => cutAt(e.latlng.lat, e.latlng.lng));
 sources.events.addEventListener("retry", (e) => {
-  if (document.body.classList.contains("loading")) status(`Server IPR neodpovídá, zkouším znovu (${e.detail.attempt}/${e.detail.of})…`);
+  if (document.body.classList.contains("loading")) status(`Server ${isBrno ? "města Brna" : "IPR"} neodpovídá, zkouším znovu (${e.detail.attempt}/${e.detail.of})…`);
 });
 window.cutAt = cutAt; // handy for testing from the console
 
@@ -234,7 +234,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     // An estimate stays marked as one, also when restored from storage or a file.
     state.cut.note = polys.length ? "" : mtvuFailed ? " · technická mapa neodpověděla, jen odhad" : " · mimo technickou mapu, jen odhad";
     $("#street-name").textContent = name + state.cut.note;
-    if (mtvuFailed) status(isBrno ? "Technickou mapu se nepodařilo načíst, profil je jen odhad z OSM. Zkuste kliknout znovu." : "Technická mapa IPR teď neodpovídá (server je přetížený), profil je jen odhad z OSM. Zkuste kliknout znovu za chvíli.", "error");
+    if (mtvuFailed) status(isBrno ? "Technická mapa města Brna teď neodpovídá, profil je jen odhad z OSM. Zkuste kliknout znovu za chvíli." : "Technická mapa IPR teď neodpovídá (server je přetížený), profil je jen odhad z OSM. Zkuste kliknout znovu za chvíli.", "error");
     else status(!polys.length ? "Technická mapa tu nic nevrátila, profil je odhad z OSM."
       : result.notice ? result.notice
       : result.junction ? "Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami." : "");

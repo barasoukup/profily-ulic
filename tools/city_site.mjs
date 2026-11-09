@@ -16,8 +16,10 @@ export function brnoIndex(html) {
   const swaps = [
     [/<title>Profily ulic<\/title>/, "<title>Profily ulic · Brno</title>"],
     [/(<meta name="description" content=")[^"]*"/, '$1Příčné profily brněnských ulic od fasády k fasádě z technické mapy Jihomoravského kraje, otevřených dat Brna a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek."'],
-    // Map images from Brno's GIS and the DMVS (ČÚZK); the data itself are files next to the page.
+    // Map images from Brno's GIS and the DMVS (ČÚZK).
     [/(img-src [^;]*)/, "$1 https://gis.brno.cz https://dmvs.cuzk.gov.cz"],
+    // The profile asks the city's GIS and open data (ArcGIS Online) on a click, as Prague asks IPR.
+    [/(connect-src [^;]*)/, "$1 https://gis.brno.cz https://services6.arcgis.com"],
     [/(<meta property="og:title" content=")[^"]*"/, '$1Profily ulic · Brno"'],
     [/(<meta property="og:description" content=")[^"]*"/, '$1Příčné profily brněnských ulic z technické mapy a otevřených dat Brna: od fasády k fasádě, upravitelné, s brněnskými ilustracemi."'],
     [/(<meta property="og:url" content=")[^"]*"/, `$1${SITE}"`],
@@ -29,9 +31,9 @@ export function brnoIndex(html) {
     [/aria-label="Mapa Prahy:/, 'aria-label="Mapa Brna:'],
     [/<span class="src src-tsk">úseky parkování TSK<\/span>/, '<span class="src src-tsk">úseky placeného stání</span>'],
     [/<footer class="muted">[\s\S]*?<\/footer>/, `<footer class="muted">
-    Data: technická mapa © <a href="https://dmvs.cuzk.gov.cz">DTM Jihomoravského kraje, IS DMVS ČÚZK</a> ·
-    © <a href="https://data.brno.cz">Statutární město Brno</a> (průzkum budov, pasport zeleně, veřejné osvětlení, mobiliář a ortofoto, CC BY 4.0;
+    Data: © <a href="https://gis.brno.cz">Statutární město Brno</a> (technická mapa a MTVU; průzkum budov a ortofoto, CC BY 4.0;
     úseky placeného stání a oblasti rezidentního parkování, CC BY-SA 4.0) ·
+    podkladová technická mapa © DTM Jihomoravského kraje, IS DMVS ČÚZK ·
     © přispěvatelé <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·
     ortofoto © ČÚZK (CC BY 4.0) ·
     ilustrace © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licence

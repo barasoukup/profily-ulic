@@ -254,6 +254,7 @@ export function mtvuPolygons(json, frame) {
     return {
       code: Number(f.attributes.CTVUK_KOD),
       label: (f.attributes.CTVUK_POPIS || "").trim(),
+      guess: f.attributes.ODHAD === 1, // Brno: an area completed along OSM, not measured
       rings,
       bbox: bboxOf(rings.flat()),
       lonlat: f.geometry.rings.map((r) => r.map(([lon, lat]) => [lat, lon])),
@@ -266,15 +267,15 @@ function classify(center, normal, half, polys) {
   const runs = [];
   for (let t = -half; t <= half + 1e-9; t += STEP) {
     const x = center[0] + normal[0] * t, y = center[1] + normal[1] * t;
-    let code = null, orient, use;
+    let code = null, orient, use, guess;
     for (const p of polys) {
       const [x0, y0, x1, y1] = p.bbox;
       if (x < x0 || x > x1 || y < y0 || y > y1) continue;
-      if (inside(p.rings, x, y)) { code = p.code; orient = p.orient; use = p.use; break; }
+      if (inside(p.rings, x, y)) { code = p.code; orient = p.orient; use = p.use; guess = p.guess; break; }
     }
     const last = runs[runs.length - 1];
-    if (last && last.code === code) last.e = t + STEP / 2;
-    else runs.push({ code, orient, use, s: t - STEP / 2, e: t + STEP / 2 });
+    if (last && last.code === code && !!last.guess === !!guess) last.e = t + STEP / 2;
+    else runs.push({ code, orient, use, guess, s: t - STEP / 2, e: t + STEP / 2 });
   }
   runs[0].s = -half;
   runs[runs.length - 1].e = half;
@@ -1293,6 +1294,14 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     const point = frame.toLonLat(...probe[side]);
     edges[`${side}Info`] = { levels: b?.levels, height: b?.height, point, km: +centreKm(point).toFixed(1), block: b?.block };
     if (b?.type && b.type !== "yes") edges[`${side}Info`].type = b.type;
+  }
+  // A part lying mostly on an area the technical map leaves open (completed along OSM) is an estimate.
+  const guessed = runs.filter((r) => r.guess);
+  if (guessed.length) {
+    for (const x of withItems) {
+      const over = guessed.reduce((a, r) => a + Math.max(0, Math.min(r.e, x.e) - Math.max(r.s, x.s)), 0);
+      if (x.source === "dtm" && over > (x.e - x.s) / 2) x.source = "odhad";
+    }
   }
   return {
     segments: withItems.reverse().map(toSegment),

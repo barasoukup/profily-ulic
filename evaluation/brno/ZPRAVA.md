@@ -1,5 +1,41 @@
 # Profily ulic Brno: kontrola 100 náhodných řezů
 
+## Výsledek po přechodu na služby města (9. 11. 2026, odpoledne)
+
+Brno se teď ptá při kliknutí MTVU města (gis.brno.cz, `opendata_mtvu`) a kresby technické mapy (UMPS),
+stejně jako Praha IPR. Stejných 100 řezů, stejná kritéria:
+
+| Verze | sedí | částečně | špatně |
+|---|---|---|---|
+| 1. DTM kraje, plochy po městských částech | 16 | 65 | 19 |
+| 2. DTM kraje, celé Brno, slité plochy rozdělené podle OSM | 10 | 79 | 11 |
+| **3. MTVU a UMPS města Brna (živě)** | **32** | **61** | **7** |
+| Praha 6. 11. (před opravami) | 51 | 32 | 17 |
+
+| Typ ulice | sedí | částečně | špatně |
+|---|---|---|---|
+| trunk (6) | 2 | 2 | 2 |
+| primary (14) | 5 | 9 | 0 |
+| secondary (14) | 4 | 10 | 0 |
+| tertiary (16) | 8 | 8 | 0 |
+| unclassified (6) | 1 | 5 | 0 |
+| residential (28) | 8 | 17 | 3 |
+| living_street (8) | 3 | 4 | 1 |
+| pedestrian (4) | 1 | 3 | 0 |
+| service a ostatní (4) | 0 | 3 | 1 |
+
+Velké silnice už mají celé profily (vozovka, dělicí pásy, chodníky změřené z MTVU). Zbývající chyby jsou
+hlavně ty, které zná i Praha: příliš široké pruhy tam, kde parkují auta (27 poznámek), chybějící stání (15),
+řez v křižovatce (8). Dále osa OSM posunutá o 2–4 m proti skutečné ulici (11; profil se pak přichytí k
+vedlejší ploše) a „posun“ hranic vůči ortofotu (9), který je z velké části vychýlení střech na ortofotu.
+Špatně: č. 4 (most, pravá vozovka jako krajnice), 5 (Žabovřeská: celá ulice jedna zpevněná plocha), 57 a 58
+(osa OSM mimo cestu), 75 a 92 (křižovatka), 98 (obslužná komunikace jako chodník). Poznámky:
+`brno/data/review-*.md` (předchozí verze v `brno/data/v1` až `v7`).
+
+---
+
+## První verze: technická mapa kraje
+
 9. 11. 2026 · verze z commitu acb3a90 (brněnská verze, zatím nenasazená)
 
 ## Shrnutí

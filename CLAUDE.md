@@ -89,14 +89,15 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 ## Brno (rozpracováno 9. 11. 2026, zatím nenasazeno)
 - Samostatná stránka `/brno/` ze stejného kódu (`pilot/public/city.js`, `config.js` CITY,
   `tools/city_site.mjs`). Lokálně http://localhost:5173/brno/. Popis v `pilot/README.md`.
-- Šířky z veřejné DTM Jihomoravského kraje (IS DMVS ČÚZK, ZPS_KR po 29 MČ, bez přihlášení):
-  `tools/fetch_dtm_brno.sh` + `tools/build_dtm_brno.py` (polygonizace hranic, typ podle def. bodu,
-  kódy MTVU). Parkování, oblasti, budovy (KAM), stromy, lampy, lavičky z data.brno.cz
-  (`tools/build_brno_data.mjs`). Při kliknutí se Brno nikoho neptá.
+- Bára: co nejméně věcí lokálně. Brno se jako Praha ptá služeb při kliknutí: plochy z MTVU města
+  (gis.brno.cz ags3 PUBLIC/opendata_mtvu), linie a body z kresby technické mapy UMPS (opendata_umps),
+  parkování a budovy z data.brno.cz. Lokálně jen dlaždice OSM.
+- Záložní postup z veřejné DTM kraje (`tools/fetch_dtm_brno.sh`, `tools/build_dtm_brno.py`) si Bára
+  přeje schovat pro města bez vlastní služby (DTM kraje má u velkých silnic chybějící obruby).
 - Ilustrace (`pilot/public/brno/`): tramvaj Škoda 45T (výchozí; 13T nakreslená taky), autobus DPMB, mobiliář podle
-  zásad KAM Brno (antracit, dřevo, skleněný přístřešek jako na Joštově, nerezový stojan). Bára: u 13T i 45T
-  není kolem čelního okna svislá červená, jen vodorovný červený pás pod oknem.
-- Otevřené: dotaz na ČÚZK k šíření dlaždic DTM; úseky placeného stání jsou z 2/2024.
+  zásad KAM Brno. Bára: u 13T i 45T není kolem čelního okna svislá červená, jen vodorovný červený pás pod oknem.
+- Test 100 řezů: `evaluation/brno/ZPRAVA.md`, skripty `evaluation/run_brno.mjs`, `render_brno.mjs`.
+- Otevřené: licence služeb města (MTVU, UMPS), úseky placeného stání jsou z 2/2024.
 
 ## Licence
 - Kód MIT. Ilustrace Streetmix CC BY-SA 4.0 (s uvedením autora), pražské ilustrace (`pilot/public/praha/`)
