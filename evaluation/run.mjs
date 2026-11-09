@@ -6,10 +6,12 @@ import fs from "node:fs/promises";
 import path from "node:path";
 // DERIVE=pilot uses the live pilot code (results in data/results2, ortho in data/ortho2).
 const LIVE = process.env.DERIVE === "pilot";
+// FIX=1: the profile changes tried in Brno (city.fix) switched on for this run.
+if (process.env.FIX) globalThis.PROFILY_FIX = { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true };
 const D = await import(LIVE ? "../pilot/public/derive.js" : "./snapshot/derive.js");
 const { localFrame, nearestStreet, awayFromEnds, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } = D;
 // OUT overrides the results folder (the orthophotos are reused, so a re-run downloads none).
-const OUT = process.env.OUT || (LIVE ? "results2" : "results"), ORTHO_DIR = LIVE ? "ortho2" : "ortho";
+const OUT = process.env.OUT || (LIVE ? "results2" : "results"), ORTHO_DIR = process.env.ORTHO_DIR || (LIVE ? "ortho2" : "ortho");
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname);
 const API = process.env.PILOT || "http://localhost:5173";
@@ -48,7 +50,10 @@ async function ortho(lat, lon, file) {
   const [x, y] = merc(lon, lat);
   const h = VIEW / Math.cos((lat * Math.PI) / 180);
   const q = new URLSearchParams({ bbox: [x - h, y - h, x + h, y + h].join(","), bboxSR: 3857, imageSR: 3857, size: `${PX},${PX}`, format: "jpg", f: "image" });
-  const r = await fetch(`${ORTHO}?${q}`);
+  // ORTHO_SRC=cuzk: the ČÚZK orthophoto (WMS) instead of IPR's, to spare IPR on a test run.
+  const r = process.env.ORTHO_SRC === "cuzk"
+    ? await fetch(`https://ags.cuzk.gov.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer?${new URLSearchParams({ service: "WMS", request: "GetMap", version: "1.3.0", layers: "0", styles: "", crs: "EPSG:3857", bbox: [x - h, y - h, x + h, y + h].join(","), width: PX, height: PX, format: "image/jpeg" })}`)
+    : await fetch(`${ORTHO}?${q}`);
   if (!r.ok) throw new Error("ortho " + r.status);
   await fs.writeFile(file, Buffer.from(await r.arrayBuffer()));
 }

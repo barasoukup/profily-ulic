@@ -62,5 +62,7 @@ const CITIES = {
 };
 
 // globalThis.PROFILY_CITY lets a script (tools/build_og.mjs) draw for the other city.
-export const city = CITIES[globalThis.PROFILY_CITY || CITY] || CITIES.praha;
+export const city = { ...(CITIES[globalThis.PROFILY_CITY || CITY] || CITIES.praha) };
+// globalThis.PROFILY_FIX lets a test (evaluation/run.mjs FIX=1) try the Brno fixes on Prague.
+if (globalThis.PROFILY_FIX) city.fix = globalThis.PROFILY_FIX;
 export const isBrno = city.id === "brno";
