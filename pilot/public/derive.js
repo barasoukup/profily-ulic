@@ -93,6 +93,8 @@ export function awayFromEnds(pts, near) {
 
 const JUNCTION_CLEARANCE = 15; // keep the cut this far from where another street joins (m)
 const CROSSING_CLEARANCE = 6; // …and from a pedestrian crossing (m)
+const LOOP_CLEARANCE = 12; // …and from any point of a roundabout's ring or a turning circle (m): a cut there
+// runs over the ring and its island (Jihlava č. 23, 52)
 const NOT_JUNCTION_SERVICE = new Set(["driveway", "parking_aisle", "drive-through"]);
 const AXIS_SNAP = 4.5; // m: an OSM axis this close beside the roadway belongs to it (city.fix.axisToRoadway)
 // Streets for those fixes: roads and residential streets, not tracks or bridleways (Brno test č. 99).
@@ -110,7 +112,15 @@ export function awayFromJunctions(osm, frame, near) {
   const lastI = geom.length - 1;
   const hits = [];
   for (const el of osm.elements || []) {
-    if (el.type !== "way" || el.id === near.way.id || !el.tags?.highway || !el.geometry) continue;
+    if (el.id === near.way.id || !el.tags?.highway || !el.geometry) continue;
+    if (el.type === "node" && ["turning_circle", "turning_loop"].includes(el.tags.highway)) {
+      hits.push({ p: frame.toXY(el.geometry[0].lon, el.geometry[0].lat), clear: LOOP_CLEARANCE });
+      continue;
+    }
+    if (el.type !== "way") continue;
+    if (el.tags.junction === "roundabout" || el.tags.junction === "circular") {
+      for (const g of el.geometry) hits.push({ p: frame.toXY(g.lon, g.lat), clear: LOOP_CLEARANCE });
+    }
     const crossing = el.tags.footway === "crossing" || el.tags.cycleway === "crossing";
     // A service road joins like a street where the city says so (Brno: side streets are often service
     // in OSM, e.g. Kohoutova, Pivoňkova); driveways and parking aisles do not.
@@ -536,10 +546,13 @@ function splitRoadway(run, ctx) {
     const excess = (e - s) - lanesTotal * cap;
     // Strips under KRAJNICE_MIN are left in the lanes (a lane 3.7 m wide is no error).
     if (!twoWaySingle && excess >= KRAJNICE_MIN) {
-      const both = excess >= 2 * KRAJNICE_MIN;
-      const wR = both ? excess / 2 : excess, wL = both ? excess / 2 : 0;
-      rightEdge.push({ type: "krajnice", s, e: s + wR, source: "odhad" });
-      s += wR;
+      // A one-way carriageway (half of a divided road) has its shoulder on the outer edge, the driver's
+      // right, not along the median; a two-way roadway at both curbs.
+      const oneway = isOnewayTags(tags) || tags.junction === "roundabout";
+      const both = !oneway && excess >= 2 * KRAJNICE_MIN;
+      const outerL = oneway && dirAt((s + e) / 2) === "backward";
+      const wR = both ? excess / 2 : outerL ? 0 : excess, wL = both ? excess / 2 : outerL ? excess : 0;
+      if (wR) { rightEdge.push({ type: "krajnice", s, e: s + wR, source: "odhad" }); s += wR; }
       if (wL) { leftEdge.unshift({ type: "krajnice", s: e - wL, e, source: "odhad" }); e -= wL; }
     }
     const lw = (e - s) / lanesTotal;

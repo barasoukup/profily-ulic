@@ -43,7 +43,7 @@ export_layer parking multipolygons "amenity = 'parking'" osm_id,osm_way_id,ameni
 export_layer trees points "$(tag natural tree)" osm_id,other_tags
 export_layer treerows lines "$(tag natural tree_row)" osm_id,other_tags
 export_layer platforms_area multipolygons "$(tag public_transport platform) OR $(tag railway platform) OR $(tag highway platform)" osm_id,osm_way_id,other_tags
-export_layer furniture points "highway IN ('street_lamp', 'bus_stop') OR barrier IN ('bollard', 'planter') OR $(tag amenity bench) OR $(tag amenity bicycle_parking) OR $(tag amenity bicycle_rental) OR $(tag amenity shelter) OR $(tag amenity taxi) OR $(tag information board) OR $(tag information guidepost) OR $(tag information map) OR $(tag railway tram_stop) OR $(tag public_transport platform)" osm_id,highway,barrier,other_tags
+export_layer furniture points "highway IN ('street_lamp', 'bus_stop', 'turning_circle', 'turning_loop') OR barrier IN ('bollard', 'planter') OR $(tag amenity bench) OR $(tag amenity bicycle_parking) OR $(tag amenity bicycle_rental) OR $(tag amenity shelter) OR $(tag amenity taxi) OR $(tag information board) OR $(tag information guidepost) OR $(tag information map) OR $(tag railway tram_stop) OR $(tag public_transport platform)" osm_id,highway,barrier,other_tags
 export_layer barriers lines "barrier IN ('fence', 'wall', 'city_wall', 'retaining_wall', 'hedge', 'guard_rail', 'jersey_barrier', 'handrail')" osm_id,barrier,other_tags
 export_layer outdoor multipolygons "leisure = 'outdoor_seating'" osm_way_id,leisure,other_tags
 export_layer outdoor_pts points "$(tag leisure outdoor_seating)" osm_id,other_tags

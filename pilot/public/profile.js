@@ -38,10 +38,11 @@ const BRNO = {
   "transit-shelter-01-left": "transit-shelter-left", "transit-shelter-01-right": "transit-shelter-right",
   "transit-shelter-tram-left": "transit-shelter-tram-left", "transit-shelter-tram-right": "transit-shelter-tram-right",
 };
-// Jihlava illustrations (jihlava/): the trolleybus of DPmJ with its poles, drawn in bus lanes under trolley
-// wires (other buses stay Streetmix's); the furniture as in Prague for now.
+// Jihlava illustrations (jihlava/): the trolleybus and bus of DPmJ in its cream and red (Bára's photos), the
+// trolleybus with its poles in bus lanes under trolley wires; the furniture as in Prague for now.
 const JIHLAVA = {
   "trolleybus-inbound": "trolejbus-inbound", "trolleybus-outbound": "trolejbus-outbound",
+  "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound",
   "lamp-modern-left": "lamp-left", "lamp-modern-right": "lamp-right", "bench-center": "bench-center",
   "bike-rack-perpendicular-left": "bike-rack", "bollard": "bollard",
   "transit-shelter-01-left": "transit-shelter-left", "transit-shelter-01-right": "transit-shelter-right",

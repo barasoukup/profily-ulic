@@ -328,6 +328,7 @@ const JI_PASPORT = `${JI}/server1/rest/services/ost/Pasporty/MapServer`;
 const JI_ROADS = `${JI_PASPORT}/112/query`;
 const JI_LAWNS = `${JI_PASPORT}/25/query`;
 const JI_BUILDINGS = `${JI}/server/rest/services/ost/ORP_RUIAN/MapServer/7/query`;
+const JI_PARCELS = `${JI}/server/rest/services/ost/Ji_parcely/MapServer/1/query`;
 const JI_DTM_LINES = `${JI}/server1/rest/services/DTM/DTM_ZPS_verejnost/MapServer/12/query`;
 const JI_PARKING = `${JI}/server1/rest/services/verejnost/doprava_verejnost/MapServer/105/query`;
 // The town's services turn S-JTSK into WGS 84 by another transformation than IPR's and the orthophotos
@@ -347,23 +348,41 @@ const jihlavaRoads = (bbox) => {
   return jiRoadsCache.get(bbox);
 };
 
-// Buildings first (the passport passes under some of them), then the roads, then the lawns.
+// Land of the cadastre (druh pozemku, způsob využití) → MTVU codes, for what the layers above leave
+// open: front gardens, yards, verges. Prague's MTVU covers the whole ground; Jihlava's passport only the
+// roads, so without this the rest of a cut was "Neurčeno". The road's own parcel beyond the passport's
+// roadway and sidewalk is mostly a grass verge: green, as an estimate.
+const JI_LAND = [
+  [/^(zahrada|ovocný sad|vinice|chmelnice)/, 300], [/^trvalý travní porost/, 401], [/^orná půda/, 100],
+  [/^lesní pozemek/, 200], [/^vodní plocha/, 501], [/^zastavěná plocha/, 603],
+  [/\((zeleň|neplodná půda)\)/, 401], [/\((ostatní komunikace|silnice)\)/, [401, true]],
+  [/\(manipulační plocha\)/, 1003], [/\(sportoviště/, 901], [/\(dráha\)/, 1100],
+];
+const landCode = (name) => JI_LAND.find(([re]) => re.test(name || ""))?.[1] ?? null;
+
+// Buildings first (the passport passes under some of them), then the roads, the lawns, and the cadastre.
 async function jihlavaSurfaces(bbox) {
-  const [roads, buildings, lawns] = await Promise.all([
+  const [roads, buildings, lawns, parcels] = await Promise.all([
     jihlavaRoads(bbox),
     jiQuery(JI_BUILDINGS, { ...envelope(bbox), outFields: "pocet_podl" }).catch(() => ({ features: [] })),
     jiQuery(JI_LAWNS, { ...envelope(bbox), outFields: "druh_plocha" }).catch(() => ({ features: [] })),
+    jiQuery(JI_PARCELS, { ...envelope(bbox), outFields: "drupoz_naz" }).catch(() => ({ features: [] })),
   ]);
   const features = [];
   const add = (json, code) => {
     for (const f of json.features || []) {
-      const c = typeof code === "function" ? code(f.attributes) : code;
-      if (c && f.geometry?.rings) features.push({ attributes: { CTVUK_KOD: c, CTVUK_POPIS: MTVU_LABELS[c] || "" }, geometry: f.geometry });
+      const v = typeof code === "function" ? code(f.attributes) : code;
+      const [c, guess] = Array.isArray(v) ? v : [v, false];
+      if (c && f.geometry?.rings) features.push({ attributes: { CTVUK_KOD: c, CTVUK_POPIS: MTVU_LABELS[c] || "", ODHAD: guess ? 1 : 0 }, geometry: f.geometry });
     }
   };
   add(buildings, 601);
   add(roads, (a) => (a.typ_useku === "vozovka" ? 701 : a.typ_useku === "chodník" ? 702 : null));
   add(lawns, 401);
+  // Without the passport's roadway around (a road it does not keep) the road parcel stays open: green
+  // there would hide the road the profile then estimates from OSM.
+  const hasRoadway = (roads.features || []).some((f) => f.attributes?.typ_useku === "vozovka");
+  add(parcels, (a) => { const c = landCode(a.drupoz_naz); return Array.isArray(c) && !hasRoadway ? null : c; });
   return { features };
 }
 
@@ -381,29 +400,39 @@ async function jihlavaLines(bbox) {
   return { features };
 }
 
-// OSM around a point plus the city's trees and lamps where OSM has no such thing within 3 m (its layer of
-// benches does not answer queries).
+// OSM around a point plus the city's trees, lamps, stop shelters, benches at stops and bike stands where OSM
+// has no such thing within 3 m (its layer of benches does not answer queries).
+// Each layer: its url, the fields it needs, and the OSM tags of a feature (null: not drawn).
 const JI_POINTS = [
-  [`${JI_PASPORT}/28/query`, { natural: "tree" }],
-  [`${JI_PASPORT}/50/query`, { highway: "street_lamp" }],
+  [`${JI_PASPORT}/28/query`, "objectid", () => ({ natural: "tree" })],
+  [`${JI_PASPORT}/50/query`, "objectid", () => ({ highway: "street_lamp" })],
+  // Stops of the town's passport: the shelter (with its bench) where there is one, else a bench standing
+  // on its own.
+  [`${JI_PASPORT}/127/query`, "pristresek,lavicka,stav", (a) => (a.stav === "Návrh" ? null
+    : a.pristresek === "ano" ? { amenity: "shelter", shelter_type: "public_transport", bus: "yes" }
+    : /Pevně|Volně/.test(a.lavicka || "") ? { amenity: "bench" } : null)],
+  [`${JI}/server1/rest/services/verejnost/doprava_verejnost/MapServer/150/query`, "stav", (a) => (a.stav && a.stav !== "Stávající" ? null : { amenity: "bicycle_parking" })],
 ];
 async function jihlavaOsm(lat, lon, radius) {
   const dLat = radius / 110574, dLon = radius / (111320 * Math.cos((lat * Math.PI) / 180));
   const box = [lon - dLon, lat - dLat, lon + dLon, lat + dLat].join(",");
   const [o, ...pts] = await Promise.all([
     osmTiles(lat, lon, radius),
-    ...JI_POINTS.map(([url]) => jiQuery(url, { ...envelope(box), outFields: "objectid" }).catch(() => ({ features: [] }))),
+    ...JI_POINTS.map(([url, outFields]) => jiQuery(url, { ...envelope(box), outFields }).catch(() => ({ features: [] }))),
   ]);
   const kx = 111320 * Math.cos((lat * Math.PI) / 180), ky = 110574;
   const key = (t) => Object.entries(t).find(([k]) => ["highway", "amenity", "natural"].includes(k))?.join("=");
   const nodes = o.elements.filter((e) => e.type === "node");
   let id = -1;
-  JI_POINTS.forEach(([, tags], i) => {
-    const k = key(tags);
+  JI_POINTS.forEach(([, , tagsOf], i) => {
     for (const f of pts[i].features || []) {
-      const g = f.geometry;
-      if (!g || g.x === undefined) continue;
-      if (nodes.some((n) => key(n.tags || {}) === k && Math.hypot((n.geometry[0].lon - g.x) * kx, (n.geometry[0].lat - g.y) * ky) < 3)) continue;
+      const g = f.geometry, tags = tagsOf(f.attributes || {});
+      if (!tags || !g || g.x === undefined) continue;
+      const k = key(tags);
+      // A stop's shelter may stand in OSM as the stop node (shelter=yes) a few metres off.
+      const shelter = tags.amenity === "shelter";
+      const same = (t) => key(t) === k || (shelter && t.shelter === "yes");
+      if (nodes.some((n) => same(n.tags || {}) && Math.hypot((n.geometry[0].lon - g.x) * kx, (n.geometry[0].lat - g.y) * ky) < (shelter ? 15 : 3))) continue;
       o.elements.push({ type: "node", id: id--, tags: { ...tags, source: "Jihlava" }, geometry: [{ lat: g.y, lon: g.x }] });
     }
   });
