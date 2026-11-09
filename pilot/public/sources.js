@@ -479,9 +479,10 @@ async function jihlavaParkovani(bbox) {
   return { features };
 }
 
-// Floors of a building from RÚIAN (počet podlaží), and its use as the look of the house: industrial and
-// farm buildings read as a hall (IPR typ 3), garages and cottages as small low buildings (typ 6).
-const JI_HALL = new Set([1, 2]), JI_LOW = new Set([8, 10]);
+// Floors of a building from RÚIAN (počet podlaží), and its use (ZpusobVyuzitiObjektu) as the look of the
+// house: industrial, farm, production and storage buildings read as a hall (IPR typ 3), cottages and
+// garages as small low buildings (typ 6).
+const JI_HALL = new Set([1, 2, 12, 13]), JI_LOW = new Set([8, 18]);
 async function jihlavaPodlaznost(lat, lon) {
   const json = await jiQuery(JI_BUILDINGS, {
     geometry: `${lon + JI_IN_SHIFT[0]},${lat + JI_IN_SHIFT[1]}`, geometryType: "esriGeometryPoint", inSR: "4326", outSR: "4326", spatialRel: "esriSpatialRelIntersects",

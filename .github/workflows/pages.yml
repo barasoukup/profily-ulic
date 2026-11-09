@@ -139,9 +139,10 @@ jobs:
             else
               echo "::warning::download.bbbike.org unreachable, cutting Brno out of the Geofabrik extract"
               sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends osmium-tool
-              [ -f /tmp/cz.osm.pbf ] || curl -fL --retry 3 --retry-delay 20 --connect-timeout 30 -o /tmp/cz.osm.pbf \
-                https://download.geofabrik.de/europe/czech-republic-latest.osm.pbf
-              osmium extract --bbox 16.42,49.10,16.78,49.30 --overwrite -o data/osm/Brno.osm.pbf /tmp/cz.osm.pbf || [ -f data/osm/Brno.osm.pbf ]
+              { [ -f /tmp/cz.osm.pbf ] || curl -fL --retry 3 --retry-delay 20 --connect-timeout 30 -o /tmp/cz.osm.pbf \
+                  https://download.geofabrik.de/europe/czech-republic-latest.osm.pbf; } &&
+                osmium extract --bbox 16.42,49.10,16.78,49.30 --overwrite -o data/osm/Brno.osm.pbf /tmp/cz.osm.pbf ||
+                [ -f data/osm/Brno.osm.pbf ]
             fi
           fi
           NAME=brno tools/build_osm_data.sh data/osm/Brno.osm.pbf site-brno/data/osm-tiles
@@ -172,9 +173,11 @@ jobs:
           mkdir -p data/osm
           if [ "${{ steps.jihlava-pbf-cache.outputs.cache-hit }}" != "true" ]; then
             sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends osmium-tool
-            [ -f /tmp/cz.osm.pbf ] || curl -fL --retry 3 --retry-delay 20 --connect-timeout 30 -o /tmp/cz.osm.pbf \
-              https://download.geofabrik.de/europe/czech-republic-latest.osm.pbf
-            osmium extract --bbox 15.48,49.32,15.70,49.47 --overwrite -o data/osm/Jihlava.osm.pbf /tmp/cz.osm.pbf || [ -f data/osm/Jihlava.osm.pbf ]
+            # a failed download or cut falls back to last week's extract (restored from the cache) when there is one
+            { [ -f /tmp/cz.osm.pbf ] || curl -fL --retry 3 --retry-delay 20 --connect-timeout 30 -o /tmp/cz.osm.pbf \
+                https://download.geofabrik.de/europe/czech-republic-latest.osm.pbf; } &&
+              osmium extract --bbox 15.48,49.32,15.70,49.47 --overwrite -o data/osm/Jihlava.osm.pbf /tmp/cz.osm.pbf ||
+              [ -f data/osm/Jihlava.osm.pbf ]
           fi
           NAME=jihlava tools/build_osm_data.sh data/osm/Jihlava.osm.pbf site-jihlava/data/osm-tiles
           touch site-jihlava/ok
