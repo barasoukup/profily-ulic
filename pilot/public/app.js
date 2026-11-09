@@ -7,7 +7,7 @@ import { cleanProfile, cleanCut } from "./validate.js";
 import { shares } from "./shares.js";
 import { packProfile, unpackProfile, designParams } from "./share.js";
 import { checkRules } from "./rules.js";
-import { city, isBrno } from "./city.js";
+import { city, isBrno, isJihlava } from "./city.js";
 
 const HALF = 40; // half-length of the cut used for reading the data (m)
 const MIN_REACH = 3; // shortest profile side the user can drag the cut end to (m)
@@ -113,15 +113,39 @@ const brnoMaps = () => ({
     maxZoom: 21, maxNativeZoom: 19, attribution: "© OpenStreetMap",
   }),
 });
-const baseMaps = isBrno ? brnoMaps() : pragueMaps();
+// Jihlava: the city's orthophoto and technical map, drawn by its GIS as export images in Web Mercator
+// (its caches are in S-JTSK), with OSM underneath for the zoomed-out view.
+const JI_GIS = "https://gis.jihlava-city.cz";
+const jihlavaMaps = () => ({
+  "Ortofoto Jihlava": L.layerGroup([
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 21, maxNativeZoom: 19, attribution: "© OpenStreetMap" }),
+    new ArcgisExport("", { service: `${JI_GIS}/server/rest/services/basemaps/ORP_ortofoto/MapServer`, minZoom: 15, maxZoom: 21, ...BIG_TILES, attribution: "ortofoto © Statutární město Jihlava" }),
+  ]),
+  "Technická mapa": L.layerGroup([
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 21, maxNativeZoom: 19, opacity: 0.5, attribution: "© OpenStreetMap" }),
+    new ArcgisExport("", { service: `${JI_GIS}/server1/rest/services/DTM/DTM_ZPS_verejnost/MapServer`, minZoom: 17, maxZoom: 21, ...BIG_TILES, attribution: "technická mapa © Statutární město Jihlava" }),
+  ]),
+  "Ortofoto ČÚZK": L.tileLayer.wms("https://ags.cuzk.gov.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer", {
+    layers: "0", format: "image/jpeg", maxZoom: 21, attribution: "ortofoto © ČÚZK",
+  }),
+  "OpenStreetMap": L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 21, maxNativeZoom: 19, attribution: "© OpenStreetMap",
+  }),
+});
+const baseMaps = isJihlava ? jihlavaMaps() : isBrno ? brnoMaps() : pragueMaps();
 // Brno's key changed with its default map (the DTM of the region was mostly blank, the MTVU map too pale).
 const BASE_KEY = "streetdesign-basemap" + (isBrno ? "-brno3" : city.storeSuffix);
-let baseName = isBrno ? "Ortofoto Brno" : "Mapa IPR"; // Brno: the city's orthophoto, fast tiles of the whole city (Bára)
+let baseName = isJihlava ? "Ortofoto Jihlava" : isBrno ? "Ortofoto Brno" : "Mapa IPR"; // Brno: the city's orthophoto, fast tiles of the whole city (Bára)
 try { if (baseMaps[localStorage.getItem(BASE_KEY)]) baseName = localStorage.getItem(BASE_KEY); } catch {}
 baseMaps[baseName].addTo(map);
 map.on("baselayerchange", (e) => { try { localStorage.setItem(BASE_KEY, e.name); } catch {} });
 
-const dtm = isBrno
+const dtm = isJihlava
+  ? new ArcgisExport("", {
+    service: `${JI_GIS}/server1/rest/services/DTM/DTM_ZPS_verejnost/MapServer`, maxZoom: 21, minZoom: 16, ...BIG_TILES, opacity: 0.9,
+    attribution: "technická mapa © Statutární město Jihlava",
+  })
+  : isBrno
   ? L.tileLayer.wms(`${DMVS}/dtm_zps_linie_body`, {
     layers: "dtm_zps_linie_body", format: "image/png", version: "1.3.0", transparent: true, maxZoom: 21, minZoom: 16, tileSize: 512, zoomOffset: -1,
     attribution: "DTM Jihomoravského kraje © ČÚZK (IS DMVS)",
@@ -131,7 +155,7 @@ const dtm = isBrno
     maxZoom: 21, minZoom: 16, ...BIG_TILES, opacity: 0.9, attribution: "technická mapa © IPR Praha",
   });
 const mtvuLayer = L.layerGroup();
-L.control.layers(baseMaps, isBrno
+L.control.layers(baseMaps, isBrno || isJihlava
   ? { "Linie technické mapy": dtm, "Plochy u řezu": mtvuLayer }
   : { "Technická mapa IPR": dtm, "Plochy MTVU u řezu": mtvuLayer }).addTo(map);
 document.querySelector(".leaflet-control-layers-toggle")?.setAttribute("title", "Podkladová mapa a vrstvy");
@@ -152,7 +176,7 @@ let osmCache = null; // {frame, osm, way, wayPts}
 
 map.on("click", (e) => cutAt(e.latlng.lat, e.latlng.lng));
 sources.events.addEventListener("retry", (e) => {
-  if (document.body.classList.contains("loading")) status(`Server ${isBrno ? "města Brna" : "IPR"} neodpovídá, zkouším znovu (${e.detail.attempt}/${e.detail.of})…`);
+  if (document.body.classList.contains("loading")) status(`Server ${isJihlava ? "města Jihlavy" : isBrno ? "města Brna" : "IPR"} neodpovídá, zkouším znovu (${e.detail.attempt}/${e.detail.of})…`);
 });
 window.cutAt = cutAt; // handy for testing from the console
 
@@ -170,7 +194,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
       // A click lands the cut away from junctions and crossings; a dragged cut stays where it is put.
       if (near) near = awayFromJunctions(osm, frame, near);
     }
-    if (!near) return status(`Tady jsem žádnou ulici nenašla. Data pokrývají jen ${isBrno ? "Brno" : "Prahu"}; zkuste kliknout přímo na silnici.`, "error");
+    if (!near) return status(`Tady jsem žádnou ulici nenašla. Data pokrývají jen ${isJihlava ? "Jihlavu" : isBrno ? "Brno" : "Prahu"}; zkuste kliknout přímo na silnici.`, "error");
     // A street of two one-way carriageways is cut from its middle (e.g. the tram belt).
     near = centerOnStreet(osm, frame, near);
     // Re-centre the frame on the snapped point.
@@ -247,7 +271,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     // An estimate stays marked as one, also when restored from storage or a file.
     state.cut.note = polys.length ? "" : mtvuFailed ? " · technická mapa neodpověděla, jen odhad" : " · mimo technickou mapu, jen odhad";
     $("#street-name").textContent = name + state.cut.note;
-    if (mtvuFailed) status(isBrno ? "Technická mapa města Brna teď neodpovídá, profil je jen odhad z OSM. Zkuste kliknout znovu za chvíli." : "Technická mapa IPR teď neodpovídá (server je přetížený), profil je jen odhad z OSM. Zkuste kliknout znovu za chvíli.", "error");
+    if (mtvuFailed) status(isJihlava ? "Pasport komunikací Jihlavy teď neodpovídá, profil je jen odhad z OSM. Zkuste kliknout znovu za chvíli." : isBrno ? "Technická mapa města Brna teď neodpovídá, profil je jen odhad z OSM. Zkuste kliknout znovu za chvíli." : "Technická mapa IPR teď neodpovídá (server je přetížený), profil je jen odhad z OSM. Zkuste kliknout znovu za chvíli.", "error");
     else status(!polys.length ? "Technická mapa tu nic nevrátila, profil je odhad z OSM."
       : result.notice ? result.notice
       : result.junction ? "Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami." : "");
@@ -475,7 +499,7 @@ function draw() {
   if (!state.stav) {
     box.innerHTML = `<div class="empty">
       <img src="${city.emptyImg}" alt="" width="96" height="126">
-      <div><h1 class="empty-title">Příčný profil ${isBrno ? "brněnské" : "pražské"} ulice</h1>
+      <div><h1 class="empty-title">Příčný profil ${city.adjective} ulice</h1>
       <ol><li>Klikněte v mapě na ulici.</li><li>Profil od fasády k fasádě se sestaví z dat ${city.dataShort}.</li>
       <li>V režimu Návrh ho upravíte: táhněte hranice, klikněte na část, přidejte novou.</li></ol></div></div>`;
     $("#editor").replaceChildren();

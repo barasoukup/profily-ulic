@@ -156,6 +156,28 @@ jobs:
             echo "::warning::no Brno parking data, profiles estimate the parking"
           fi
           touch site-brno/ok
+      # Jihlava (/jihlava/): the same app asking the town's GIS on a click (passport of the roads, RÚIAN
+      # buildings, parking, technical map on gis.jihlava-city.cz). Built here: only the OSM tiles, cut out
+      # of Geofabrik's Czech Republic (no BBBike extract). A failure leaves Jihlava out.
+      - id: jihlava-pbf-cache
+        uses: actions/cache@v4
+        with:
+          path: data/osm/Jihlava.osm.pbf
+          key: osm-jihlava-pbf-${{ steps.week.outputs.week }}
+          restore-keys: osm-jihlava-pbf-
+      - name: Jihlava OSM tiles
+        continue-on-error: true
+        timeout-minutes: 20
+        run: |
+          mkdir -p data/osm
+          if [ "${{ steps.jihlava-pbf-cache.outputs.cache-hit }}" != "true" ]; then
+            sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends osmium-tool
+            [ -f /tmp/cz.osm.pbf ] || curl -fL --retry 3 --retry-delay 20 --connect-timeout 30 -o /tmp/cz.osm.pbf \
+              https://download.geofabrik.de/europe/czech-republic-latest.osm.pbf
+            osmium extract --bbox 15.48,49.32,15.70,49.47 --overwrite -o data/osm/Jihlava.osm.pbf /tmp/cz.osm.pbf || [ -f data/osm/Jihlava.osm.pbf ]
+          fi
+          NAME=jihlava tools/build_osm_data.sh data/osm/Jihlava.osm.pbf site-jihlava/data/osm-tiles
+          touch site-jihlava/ok
       - name: Assemble the site
         env:
           MAPY_KEY: ${{ secrets.MAPY_KEY }} # Mapy.com key for the street panorama; empty → a plain link instead
@@ -184,8 +206,18 @@ jobs:
           else
             echo "::warning::no Brno data, the Brno site is left out of this deploy"
           fi
-          # without a Brno site, no link to it from the Prague footer and no city switch
-          [ -d _site/brno ] || sed -i -e 's| ·[[:space:]]*<a href="brno/">Profily ulic Brno</a>||' -e '/class="city-toggle"/,/<\/nav>/d' _site/index.html
+          if [ -f site-jihlava/ok ]; then
+            mkdir -p _site/jihlava/data
+            cp -R pilot/public/. _site/jihlava/
+            cp _site/config.js _site/jihlava/config.js
+            rm site-jihlava/ok && mv site-jihlava/data/* _site/jihlava/data/
+            cp LICENCE-A-ZDROJE.md _site/jihlava/data/LICENCE-A-ZDROJE.md
+            node tools/build_brno_site.mjs _site/jihlava jihlava || { echo "::warning::Jihlava site not built"; rm -rf _site/jihlava; }
+          else
+            echo "::warning::no Jihlava data, the Jihlava site is left out of this deploy"
+          fi
+          # a city site that is missing gets no link from the others (city switch and footer)
+          node tools/drop_city_links.mjs _site
           cat > _site/data/README.txt <<'EOF'
           data/osm-tiles: dlaždice odvozené z OpenStreetMap (výřez BBBike Praha).
           © přispěvatelé OpenStreetMap, licence ODbL 1.0 (https://opendatacommons.org/licenses/odbl/).

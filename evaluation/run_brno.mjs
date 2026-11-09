@@ -6,9 +6,11 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname);
-const DATA = path.join(ROOT, "brno", "data");
-const PILOT_DATA = path.join(ROOT, "..", "pilot", "data", "brno");
-globalThis.PROFILY_CITY = "brno";
+// CITY=jihlava runs the Jihlava sample the same way (evaluation/jihlava/data, the town's orthophoto).
+const CITY = process.env.CITY === "jihlava" ? "jihlava" : "brno";
+const DATA = path.join(ROOT, CITY, "data");
+const PILOT_DATA = path.join(ROOT, "..", "pilot", "data", CITY);
+globalThis.PROFILY_CITY = CITY;
 // sources.js reads "data/…" next to the page: here the files in pilot/data/brno.
 const webFetch = globalThis.fetch;
 globalThis.fetch = async (url, opts) => {
@@ -32,9 +34,21 @@ const TILES = "https://gis.brno.cz/ags1/rest/services/OMI/OMI_basemaps_ortofoto_
 const Z = 19, VIEW = 45; // zoom (about 0.2 m/px on the ground), half-size of the window (m)
 const R = 6378137, WORLD = 2 * Math.PI * R;
 const merc = (lon, lat) => [R * (lon * Math.PI) / 180, R * Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360))];
+// Jihlava's orthophoto is a cache in S-JTSK, but its export answers: one image of the window in Web
+// Mercator, saved as one "tile" for render_brno.mjs.
+const JI_ORTHO = "https://gis.jihlava-city.cz/server/rest/services/basemaps/ORP_ortofoto/MapServer/export";
+async function orthoJihlava(lat, lon, dir) {
+  const [x, y] = merc(lon, lat);
+  const scale = Math.cos((lat * Math.PI) / 180), h = VIEW / scale;
+  const r = await webFetch(`${JI_ORTHO}?${new URLSearchParams({ bbox: [x - h, y - h, x + h, y + h].join(","), bboxSR: 3857, imageSR: 3857, size: "900,900", format: "jpg", f: "image" })}`);
+  if (!r.ok) return;
+  await fs.writeFile(path.join(dir, "0.jpg"), Buffer.from(await r.arrayBuffer()));
+  await fs.writeFile(path.join(dir, "tiles.json"), JSON.stringify([{ file: "0.jpg", e: -VIEW, n: VIEW, size: 2 * VIEW }]));
+}
 async function ortho(lat, lon, dir) {
   try { await fs.access(path.join(dir, "tiles.json")); return; } catch {}
   await fs.mkdir(dir, { recursive: true });
+  if (CITY === "jihlava") return orthoJihlava(lat, lon, dir);
   const [x, y] = merc(lon, lat);
   const scale = Math.cos((lat * Math.PI) / 180); // ground metres per Mercator metre
   const h = VIEW / scale, size = WORLD / 2 ** Z;
@@ -81,7 +95,7 @@ async function run(s) {
     const info = result.edges[`${side}Info`];
     if (!info?.point) continue;
     const p = await S.podlaznost(info.point[1], info.point[0]);
-    if (p.cornice) Object.assign(info, { cornice: p.cornice, roof: p.roof, levels: p.cornice + p.roof, roofType: p.roofType, iprKind: p.kind, area: p.area, src: "kam" });
+    if (p.cornice) Object.assign(info, { cornice: p.cornice, roof: p.roof, levels: p.cornice + p.roof, roofType: p.roofType, iprKind: p.kind, area: p.area, src: CITY === "jihlava" ? "ruian" : "kam" });
   }
   await ortho(clat, clon, path.join(DATA, "ortho", String(s.n)));
   return {

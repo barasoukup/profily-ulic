@@ -22,6 +22,7 @@ export function cleanProfile(p, what = "profil") {
     if ("orient" in s && !["podelne", "sikme", "kolme"].includes(s.orient)) delete s.orient;
     if ("use" in s && !(s.use in PARKING_USE)) delete s.use;
     if ("turn" in s && typeof s.turn !== "string") delete s.turn;
+    if ("trolley" in s && s.trolley !== true) delete s.trolley;
     s.items = Array.isArray(s.items) ? s.items.filter((it) => it && it.kind in ITEMS && num(it.f, 0, 1)) : [];
   }
   p.edges = typeof p.edges === "object" && p.edges ? p.edges : {};

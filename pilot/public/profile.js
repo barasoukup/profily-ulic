@@ -38,7 +38,15 @@ const BRNO = {
   "transit-shelter-01-left": "transit-shelter-left", "transit-shelter-01-right": "transit-shelter-right",
   "transit-shelter-tram-left": "transit-shelter-tram-left", "transit-shelter-tram-right": "transit-shelter-tram-right",
 };
-const CITY_ART = { praha: PRAHA, brno: BRNO };
+// Jihlava illustrations (jihlava/): the trolleybus of DPmJ with its poles, drawn in bus lanes under trolley
+// wires (other buses stay Streetmix's); the furniture as in Prague for now.
+const JIHLAVA = {
+  "trolleybus-inbound": "trolejbus-inbound", "trolleybus-outbound": "trolejbus-outbound",
+  "lamp-modern-left": "lamp-left", "lamp-modern-right": "lamp-right", "bench-center": "bench-center",
+  "bike-rack-perpendicular-left": "bike-rack", "bollard": "bollard",
+  "transit-shelter-01-left": "transit-shelter-left", "transit-shelter-01-right": "transit-shelter-right",
+};
+const CITY_ART = { praha: PRAHA, brno: BRNO, jihlava: JIHLAVA };
 const cityArt = () => art !== "streetmix"; // the city's own set (Prague or Brno)
 // Prague buildings are drawn from the side (we look along the street): the outline tells the type.
 export const BUILDING_STYLES = { sikma: "dům se šikmou střechou", funkce: "funkcionalistický činžák", moderni: "moderní bytový dům", plocha: "panelový dům", nizky: "nízký dům", hala: "hala" };
@@ -938,7 +946,9 @@ export function buildSvg(profile, opts = {}) {
     } else if (t.sprite === "streetcar" && w >= 240) {
       sprite(g, forward ? "streetcar-outbound" : "streetcar-inbound", cx, top - 2);
     } else if (t.sprite === "bus" && w >= 250) {
-      sprite(g, forward ? "bus-outbound" : "bus-inbound", cx, top);
+      // Under trolley wires a trolleybus, where the city's illustrations have one (else the bus).
+      const trolley = s.trolley && cityArt() && CITY_ART[art]?.["trolleybus-inbound"];
+      sprite(g, `${trolley ? "trolleybus" : "bus"}-${forward ? "outbound" : "inbound"}`, cx, top);
     } else if (t.sprite === "biker" && w >= 80) {
       sprite(g, forward ? "biker-01-outbound" : "biker-01-inbound", cx, top);
     } else if (t.sprite === "tree" && w >= 100) {

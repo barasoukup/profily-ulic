@@ -5,7 +5,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
-import { brnoConfig, brnoIndex } from "../tools/city_site.mjs";
+import { brnoConfig, brnoIndex, jihlavaConfig, jihlavaIndex } from "../tools/city_site.mjs";
 import { MTVU, MTVU_FIELDS, TM_LINES, LINE_WHERE, PARKOVANI, PARKING_LAYERS, parkingFields, PODLAZNOST, PODLAZNOST_FIELDS, podlaznostInfo } from "./public/queries.js";
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
@@ -226,19 +226,21 @@ const server = http.createServer(async (req, res) => {
     }
     // The Brno site (/brno/): the same app with CITY = "brno" and its data from pilot/data/brno,
     // as the deploy places it in _site/brno (tools/city_site.mjs).
-    if (rel === "brno") {
-      res.writeHead(301, { Location: "/brno/" });
+    // Jihlava (/jihlava/) the same way, data from pilot/data/jihlava.
+    if (rel === "brno" || rel === "jihlava") {
+      res.writeHead(301, { Location: `/${rel}/` });
       return res.end();
     }
-    const brno = rel.startsWith("brno/");
-    if (brno) rel = rel.slice(5) || "index.html";
-    if (brno && (rel === "index.html" || rel === "config.js")) {
+    const site = ["brno", "jihlava"].find((c) => rel.startsWith(c + "/"));
+    if (site) rel = rel.slice(site.length + 1) || "index.html";
+    if (site && (rel === "index.html" || rel === "config.js")) {
       const text = await fs.readFile(path.join(PUBLIC, rel), "utf8");
       res.writeHead(200, { "Content-Type": TYPES[path.extname(rel)], "Cache-Control": "no-cache" });
-      return res.end(rel === "index.html" ? brnoIndex(text) : brnoConfig(text));
+      const [index, config] = site === "brno" ? [brnoIndex, brnoConfig] : [jihlavaIndex, jihlavaConfig];
+      return res.end(rel === "index.html" ? index(text) : config(text));
     }
     // data/… (OSM tiles, parking zones) is served from pilot/data, as the web build places it next to the app.
-    const dataDir = path.join(ROOT, "data", ...(brno ? ["brno"] : []));
+    const dataDir = path.join(ROOT, "data", ...(site ? [site] : []));
     const base = rel.startsWith("data/") ? dataDir : PUBLIC;
     const file = path.normalize(path.join(base, rel.startsWith("data/") ? rel.slice(5) : rel));
     if (!file.startsWith(base + path.sep)) throw Object.assign(new Error("forbidden"), { code: "ENOENT" });

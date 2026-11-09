@@ -1,0 +1,76 @@
+<svg viewBox="0 0 360 560" xmlns="http://www.w3.org/2000/svg">
+  <!-- Jihlavský trolejbus (DPmJ, Škoda 32Tr), čelní pohled. 1 px = 1 cm, šířka 2,55 m, výška skříně 3,2 m se střešní výstrojí; nahoře sběrače k trolejím. Barvy zatím orientační (bílá skříň, červený spodek). -->
+  <!-- sběrače: dvě tyče ze zadní části střechy k trolejím (troleje 5,3–5,5 m nad vozovkou, rozchod 0,6 m) -->
+  <g stroke="#2a2b2a" stroke-linecap="round" fill="none">
+    <path d="M160 262 L148 16" stroke-width="5"/>
+    <path d="M200 262 L212 16" stroke-width="5"/>
+  </g>
+  <rect x="140" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
+  <rect x="204" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
+  <!-- základna sběračů na střeše -->
+  <rect x="140" y="252" width="80" height="14" rx="3" fill="#cbccca"/>
+  <g transform="translate(0 240)">
+
+  <!-- klimatizační jednotka na střeše -->
+  <path d="M118 31 L124 17 Q126 15 130 15 H230 Q234 15 236 17 L242 31 Z" fill="#e4e5e3"/>
+  <path d="M226 15 H230 Q234 15 236 17 L242 31 H232 Z" fill="#cbccca"/>
+  <!-- bílá skříň: zaoblená střecha, svislé boky -->
+  <path d="M52 296 V44 Q52 30 66 30 H294 Q308 30 308 44 V296 Z" fill="#f3f3ef"/>
+  <path d="M298 32 Q308 34 308 44 V296 H298 Z" fill="#dcdcd7"/>
+  <!-- černý rám čelního skla; pod sklem bílý panel (Iveco Urbanway DPMB), žádná černá maska -->
+  <path d="M54 40 Q55 36 62 36 H298 Q305 36 306 40 V218 H54 Z" fill="#1d1f22"/>
+  <!-- čelní sklo: tmavý pruh s cílovou tabulí nahoře, dole světlejší -->
+  <path d="M60 41 H300 V200 Q300 203 297 203 H63 Q60 203 60 200 Z" fill="#2e3b46"/>
+  <rect x="60" y="41" width="240" height="34" fill="#16181a"/>
+  <path d="M74 80 L120 80 L92 196 L74 196 Z" fill="#46596a" opacity=".6"/>
+  <path d="M262 80 L284 80 L276 126 L254 126 Z" fill="#46596a" opacity=".45"/>
+  <!-- cílová LED tabule: linka 44, cíl Mendlovo náměstí -->
+  <g font-family="Arial, sans-serif" font-weight="bold" fill="#43d94c">
+    <text x="78" y="64" font-size="17">A</text>
+    <text x="196" y="64" font-size="15" text-anchor="middle" letter-spacing=".5">CENTRUM</text>
+  </g>
+  <!-- stěrače, oba s osou dole -->
+  <g stroke="#0e0f10" stroke-width="2.5" stroke-linecap="round">
+    <path d="M96 199 L166 187"/>
+    <path d="M276 199 L206 187"/>
+  </g>
+  <!-- piktogramy přístupnosti a evidenční číslo -->
+  <rect x="64" y="207" width="8" height="8" rx="1" fill="#2a63b8"/>
+  <rect x="74" y="207" width="8" height="8" rx="1" fill="#2a63b8"/>
+  <text x="252" y="220" text-anchor="end" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#d8262b">41</text>
+  <!-- šedý nápis výrobce a krátká tmavá mřížka v bílém panelu -->
+  <rect x="150" y="226" width="60" height="6" rx="3" fill="#b9bbbd"/>
+  <path d="M136 240 H224 L220 248 H140 Z" fill="#2c2f33"/>
+  <!-- červená spodní část pod světly, uprostřed klesá k registrační značce -->
+  <path d="M52 250 H112 Q130 266 160 266 H200 Q230 266 248 250 H308 V289 Q308 296 300 296 H60 Q52 296 52 289 Z" fill="#d8262b"/>
+  <path d="M298 250 H308 V289 Q308 296 300 296 H298 Z" fill="#b51e22"/>
+  <!-- světlomety v bílém panelu nad červenou -->
+  <rect x="56" y="226" width="44" height="17" rx="3" fill="#c9cbcd"/>
+  <rect x="59" y="228" width="19" height="13" rx="2" fill="#f7f4ea"/>
+  <rect x="79" y="228" width="18" height="13" rx="2" fill="#eceae2"/>
+  <rect x="260" y="226" width="44" height="17" rx="3" fill="#c9cbcd"/>
+  <rect x="263" y="228" width="18" height="13" rx="2" fill="#eceae2"/>
+  <rect x="282" y="228" width="19" height="13" rx="2" fill="#f7f4ea"/>
+  <!-- mlhovky a denní svícení -->
+  <circle cx="66" cy="276" r="3.5" fill="#2a2b2a"/>
+  <rect x="74" y="273" width="18" height="6" rx="1.5" fill="#e9e7df"/>
+  <circle cx="294" cy="276" r="3.5" fill="#2a2b2a"/>
+  <rect x="268" y="273" width="18" height="6" rx="1.5" fill="#e9e7df"/>
+  <!-- registrační značka -->
+  <rect x="154" y="271" width="52" height="11" rx="1" fill="#f7f7f4"/>
+  <rect x="154" y="271" width="5" height="11" rx="1" fill="#2a63b8"/>
+  <rect x="162" y="274.5" width="38" height="4" rx="1" fill="#a4a6a8"/>
+  <!-- zpětná zrcátka na ramenech od horních rohů, vlevo (dveřní strana) na delším rameni -->
+  <path d="M54 46 H30 Q24 46 24 52 V58" stroke="#1d1f22" stroke-width="3" fill="none"/>
+  <path d="M16 58 H32 Q34 58 34 60 L32 100 Q32 102 30 102 H18 Q16 102 16 100 Z" fill="#1d1f22"/>
+  <path d="M306 46 H320 Q326 46 326 52 V58" stroke="#1d1f22" stroke-width="3" fill="none"/>
+  <path d="M318 58 H332 Q334 58 334 60 V100 Q334 102 332 102 H320 Q318 102 318 100 L316 60 Q316 58 318 58 Z" fill="#1d1f22"/>
+  <!-- přední kola pod nárazníkem, pneumatiky s bokem -->
+  <rect x="64" y="296" width="30" height="24" rx="4" fill="#232425"/>
+  <rect x="68" y="296" width="22" height="22" rx="3" fill="#2f3132"/>
+  <rect x="266" y="296" width="30" height="24" rx="4" fill="#232425"/>
+  <rect x="270" y="296" width="22" height="22" rx="3" fill="#2f3132"/>
+  <!-- podvozek mezi koly -->
+  <rect x="94" y="296" width="172" height="6" fill="#2a2b2a"/>
+  </g>
+</svg>

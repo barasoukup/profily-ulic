@@ -26,7 +26,7 @@ export function brnoIndex(html) {
     [/(<meta property="og:image" content=")[^"]*"/, `$1${SITE}brno/og.png"`],
     [/(<meta property="og:image:alt" content=")[^"]*"/, '$1Příčný profil brněnské ulice s tramvajemi, chodníky a domy, vedle název Profily ulic"'],
     // The city switch: Brno is the current page, Prague one level up.
-    [/<a href="\.\/" aria-current="page">Praha<\/a>\s*<a href="brno\/">Brno<\/a>/, '<a href="../">Praha</a>\n      <a href="./" aria-current="page">Brno</a>'],
+    [/<a href="\.\/" aria-current="page">Praha<\/a>\s*<a href="brno\/">Brno<\/a>\s*<a href="jihlava\/">Jihlava<\/a>/, '<a href="../">Praha</a>\n      <a href="./" aria-current="page">Brno</a>\n      <a href="../jihlava/">Jihlava</a>'],
     [/title="Ulice, jak je dnes \(z dat IPR a OSM\)"/, 'title="Ulice, jak je dnes (z technické mapy, dat Brna a OSM)"'],
     [/title="Kreslit pražskými ilustracemi \(vypnuto: ilustrace Streetmixu\)">Pražské ilustrace/, 'title="Kreslit brněnskými ilustracemi (vypnuto: ilustrace Streetmixu)">Brněnské ilustrace'],
     [/aria-label="Mapa Prahy:/, 'aria-label="Mapa Brna:'],
@@ -40,7 +40,49 @@ export function brnoIndex(html) {
     ilustrace © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licence
     <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.cs">CC BY-SA 4.0</a> ·
     brněnské ilustrace a kód © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
-    <a href="../">Profily ulic Praha</a>
+    <a href="../">Profily ulic Praha</a> · <a href="../jihlava/">Profily ulic Jihlava</a>
+  </footer>`],
+  ];
+  let out = html;
+  for (const [re, to] of swaps) {
+    if (!re.test(out)) throw new Error(`index.html: nenalezeno ${re}`);
+    out = out.replace(re, to);
+  }
+  return out;
+}
+
+// ---------- Jihlava (/jihlava/) ----------
+export function jihlavaConfig(js) {
+  const out = js.replace('export const CITY = "praha";', 'export const CITY = "jihlava";');
+  if (out === js) throw new Error("config.js: řádek CITY nenalezen");
+  return out;
+}
+
+const JI_SITE = "https://barasoukup.github.io/profily-ulic/jihlava/";
+
+export function jihlavaIndex(html) {
+  const swaps = [
+    [/<title>Profily ulic<\/title>/, "<title>Profily ulic · Jihlava</title>"],
+    [/(<meta name="description" content=")[^"]*"/, '$1Příčné profily jihlavských ulic od fasády k fasádě z pasportu komunikací a dat města Jihlavy a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek."'],
+    // Map images and, on a click, the profile's data from the city's GIS.
+    [/(img-src [^;]*)/, "$1 https://gis.jihlava-city.cz"],
+    [/(connect-src [^;]*)/, "$1 https://gis.jihlava-city.cz"],
+    [/(<meta property="og:title" content=")[^"]*"/, '$1Profily ulic · Jihlava"'],
+    [/(<meta property="og:description" content=")[^"]*"/, '$1Příčné profily jihlavských ulic z pasportu komunikací a dat města: od fasády k fasádě, upravitelné."'],
+    [/(<meta property="og:url" content=")[^"]*"/, `$1${JI_SITE}"`],
+    [/<a href="\.\/" aria-current="page">Praha<\/a>\s*<a href="brno\/">Brno<\/a>\s*<a href="jihlava\/">Jihlava<\/a>/, '<a href="../">Praha</a>\n      <a href="../brno/">Brno</a>\n      <a href="./" aria-current="page">Jihlava</a>'],
+    [/title="Ulice, jak je dnes \(z dat IPR a OSM\)"/, 'title="Ulice, jak je dnes (z dat města Jihlavy a OSM)"'],
+    [/title="Kreslit pražskými ilustracemi \(vypnuto: ilustrace Streetmixu\)">Pražské ilustrace/, 'title="Kreslit jihlavskými ilustracemi (vypnuto: ilustrace Streetmixu)">Jihlavské ilustrace'],
+    [/aria-label="Mapa Prahy:/, 'aria-label="Mapa Jihlavy:'],
+    [/<span class="src src-tsk">úseky parkování TSK<\/span>/, '<span class="src src-tsk">parkovací místa města</span>'],
+    [/<footer class="muted">[\s\S]*?<\/footer>/, `<footer class="muted">
+    Data: © <a href="https://gis.jihlava-city.cz">Statutární město Jihlava</a> (pasport komunikací, parkování, budovy RÚIAN, technická mapa, stromy, lampy, lavičky; ortofoto) ·
+    © přispěvatelé <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·
+    ortofoto © ČÚZK (CC BY 4.0) ·
+    ilustrace © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licence
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.cs">CC BY-SA 4.0</a> ·
+    jihlavské ilustrace a kód © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
+    <a href="../">Profily ulic Praha</a> · <a href="../brno/">Profily ulic Brno</a>
   </footer>`],
   ];
   let out = html;

@@ -4,11 +4,12 @@
 //   node evaluation/render_brno.mjs && for f in evaluation/brno/data/png/*.svg; do qlmanage -t -s 1100 -o evaluation/brno/data/png "$f"; done
 import fs from "node:fs/promises";
 import path from "node:path";
-globalThis.PROFILY_CITY = "brno";
+const CITY = process.env.CITY === "jihlava" ? "jihlava" : "brno"; // CITY=jihlava: the Jihlava sample
+globalThis.PROFILY_CITY = CITY;
 const { TYPES } = await import("../pilot/public/types.js");
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname);
-const DATA = path.join(ROOT, "brno", "data");
+const DATA = path.join(ROOT, CITY, "data");
 const PX_M = 10, BOX = 640, SIZE = 1100;
 const [from = 1, to = 100] = process.argv.slice(2).map(Number);
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);

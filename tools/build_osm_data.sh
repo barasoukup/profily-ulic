@@ -3,6 +3,9 @@
 # exports the needed features with ogr2ogr into data/osm/praha_*.geojsonl, then tiles them.
 #   tools/build_osm_data.sh [Prag.osm.pbf] [out dir]
 # Brno: NAME=brno tools/build_osm_data.sh data/osm/Brno.osm.pbf pilot/data/brno/osm-tiles
+# Jihlava (no BBBike extract): NAME=jihlava tools/build_osm_data.sh data/osm/Jihlava.osm.pbf pilot/data/jihlava/osm-tiles,
+# the pbf cut from Geofabrik's Czech Republic with osmium (as the deploy does), or SPAT="x0 y0 x1 y1" to
+# read only that box of a bigger pbf.
 # OGR=/path/to/ogr2ogr overrides the ogr2ogr binary (on a Mac with QGIS:
 # OGR=/Applications/QGIS-final-4_2_3.app/Contents/MacOS/ogr2ogr, with PROJ_DATA/GDAL_DATA set).
 # The tiles are a database derived from OpenStreetMap: © OpenStreetMap contributors, ODbL 1.0.
@@ -14,9 +17,13 @@ OUT=${2:-pilot/data/osm-tiles}
 OGR=${OGR:-ogr2ogr}
 DIR=${DIR:-data/osm} # where the GeoJSONSeq exports go
 NAME=${NAME:-praha} # prefix of the exports; the BBBike extract of that city when PBF is missing
-case "$NAME" in brno) BBBIKE=Brno ;; *) BBBIKE=Prag ;; esac
+case "$NAME" in brno) BBBIKE=Brno ;; jihlava) BBBIKE= ;; *) BBBIKE=Prag ;; esac
 mkdir -p "$DIR"
 
+if [ ! -f "$PBF" ] && [ -z "$BBBIKE" ]; then
+  echo "chybí $PBF (výřez z Geofabriku, osmium extract)" >&2
+  exit 1
+fi
 if [ ! -f "$PBF" ]; then
   mkdir -p "$(dirname "$PBF")"
   curl -fL -o "$PBF" "https://download.bbbike.org/osm/bbbike/$BBBIKE/$BBBIKE.osm.pbf"
@@ -27,7 +34,8 @@ tag() { echo "other_tags LIKE '%\"$1\"=>\"$2\"%'"; }
 export_layer() { # file layer where select
   # GeoJSONSeq does not overwrite: without this a second run appends to the old export
   rm -f "$DIR/${NAME}_$1.geojsonl"
-  "$OGR" -f GeoJSONSeq "$DIR/${NAME}_$1.geojsonl" "$PBF" "$2" -where "$3" -select "$4" -overwrite
+  # shellcheck disable=SC2086
+  "$OGR" -f GeoJSONSeq "$DIR/${NAME}_$1.geojsonl" "$PBF" "$2" -where "$3" -select "$4" -overwrite ${SPAT:+-spat $SPAT}
 }
 
 export_layer ways lines "highway IS NOT NULL OR railway = 'tram'" osm_id,name,highway,railway,other_tags

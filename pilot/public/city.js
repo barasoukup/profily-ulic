@@ -59,6 +59,28 @@ const CITIES = {
     fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
     example: "49.195100, 16.608500",
   },
+  jihlava: {
+    id: "jihlava",
+    view: [49.3961, 15.5912],
+    centre: [15.5912, 49.3961], // Masarykovo náměstí
+    inCity: "v Jihlavě",
+    adjective: "jihlavské",
+    mapLabel: "Mapa Jihlavy",
+    dataShort: "města Jihlavy a OSM",
+    techMap: "pasport komunikací Jihlavy",
+    parkingSource: "parkovací místa (město Jihlava)",
+    rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Jihlavu orientačně:",
+    art: "jihlava",
+    artLabel: "Jihlavské ilustrace",
+    artTitle: "Kreslit jihlavskými ilustracemi (vypnuto: ilustrace Streetmixu)",
+    emptyImg: "jihlava/trolejbus-inbound.svg",
+    credit: "data © Statutární město Jihlava (pasport komunikací, parkování, budovy, mobiliář) · © přispěvatelé OpenStreetMap",
+    storeSuffix: "-jihlava",
+    // The Brno changes to the profile: Jihlava's surfaces come from a passport of the roads, as Brno's
+    // from a technical map, so the same OSM axis fixes apply.
+    fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
+    example: "49.396100, 15.591200",
+  },
 };
 
 // globalThis.PROFILY_CITY lets a script (tools/build_og.mjs) draw for the other city.
@@ -66,3 +88,6 @@ export const city = { ...(CITIES[globalThis.PROFILY_CITY || CITY] || CITIES.prah
 // globalThis.PROFILY_FIX lets a test (evaluation/run.mjs FIX=1) try the Brno fixes on Prague.
 if (globalThis.PROFILY_FIX) city.fix = globalThis.PROFILY_FIX;
 export const isBrno = city.id === "brno";
+export const isJihlava = city.id === "jihlava";
+// Cities whose page asks the city's servers from the browser also on the local server.
+export const isLive = isBrno || isJihlava;

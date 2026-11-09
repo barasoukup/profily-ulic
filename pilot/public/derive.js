@@ -1298,7 +1298,9 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
         return k === 1 ? p1 : p1 && (kept[ri - 2] || (edges.right === "volno" ? null : before(p1)));
       };
       const kerbWalk = [["L", walkAt(next(1), next(2))], ["R", walkAt(prev(1), prev(2))]].filter(([, ok]) => ok).map(([sd]) => sd);
-      segs.push(...splitRoadway(r, { tags, trams: inside, dirAt, lanesTotal, along: ownAxis ? (ownAxis.along !== (tags.oneway === "-1")) : true, single: new Set(axes.map((a) => a.id)).size === 1, parked, sides: sideTagsLR, kerbWalk, inZps }).map((x) => ({ ...x, mtvu: r.code })));
+      // Trolley wires over the street (OSM trolley_wire): its bus lanes carry trolleybuses (Jihlava, Brno).
+      const trolley = [tags, ...axes.map((a) => a.tags)].some((t) => t?.trolley_wire === "yes");
+      segs.push(...splitRoadway(r, { tags, trams: inside, dirAt, lanesTotal, along: ownAxis ? (ownAxis.along !== (tags.oneway === "-1")) : true, single: new Set(axes.map((a) => a.id)).size === 1, parked, sides: sideTagsLR, kerbWalk, inZps }).map((x) => ({ ...x, mtvu: r.code, trolley: trolley && (x.type === "bus" || x.type === "bus_cyklo") })));
     } else if (r.code === MEDIAN) {
       segs.push({ type: "delici", s: r.s, e: r.e, source: "dtm" });
     } else if (isMinorStructure(r.code)) {
@@ -1375,6 +1377,7 @@ function toSegment(x) {
   if (x.bikeDir) seg.bikeDir = x.bikeDir;
   if (x.use && x.use !== "useky") seg.use = x.use;
   if (x.color) seg.color = x.color;
+  if (x.trolley) seg.trolley = true;
   // Segments are reversed to screen order, so item positions flip too.
   if (x.items?.length) seg.items = x.items.map((it) => ({ ...it, f: +(1 - it.f).toFixed(3) }));
   if (x.type === "parkovani") {

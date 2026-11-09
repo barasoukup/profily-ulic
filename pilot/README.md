@@ -117,6 +117,30 @@ Q=/Applications/QGIS-final-4_2_3.app/Contents
 PROJ_DATA=$Q/Resources/qgis/proj GDAL_DATA=$Q/Resources/qgis/gdal $Q/MacOS/python tools/build_dtm_brno.py data/dtm-brno/zip data/osm/brno_ways.geojsonl <výstup>
 ```
 
+## Jihlava (`/jihlava/`)
+
+Stejná aplikace s `CITY = "jihlava"` (`pilot/public/city.js`, `tools/city_site.mjs`), lokálně
+http://localhost:5173/jihlava/. Jako Praha s IPR se při kliknutí ptá služeb města (`gis.jihlava-city.cz`,
+CORS povolený):
+
+- plochy: **pasport komunikací** (`server1/ost/Pasporty/MapServer/112`, úseky „vozovka“ a „chodník“ s
+  povrchem, třídou a názvem ulice) → kódy MTVU 701 a 702; **budovy RÚIAN** (`server/ost/ORP_RUIAN/7`, i s
+  počtem podlaží a využitím) → 601; **trávníky** z pasportu zeleně (`Pasporty/25`) → 401. Zbytek je bez typu.
+  Technická mapa města i kraje mají jen hranice ploch, typy bez definičních bodů vozovek, proto pasport.
+- parkování: **parkovací místa města** (`server1/verejnost/doprava_verejnost/MapServer/105`) jsou čáry s druhem
+  stání (podélné, šikmé, kolmé), režimem a počtem míst. Každá čára je pruh hloubky 2,0 / 4,5 / 5,0 m; leží-li
+  vozovka jen na jedné straně čáry (čára u obrubníku), pruh leží na té straně, jinak je čára jeho osou.
+  Úseky „Zákaz stání / zastavení“ se vynechávají, K+R, taxi a vyhrazená stání jsou „zvláštní stání“.
+- linie: ploty, zábradlí, zdi, svodidla a protihlukové stěny z technické mapy (`server1/DTM/DTM_ZPS_verejnost/12`).
+- body: stromy (`Pasporty/28`), stožáry osvětlení (`Pasporty/50`), lavičky (`opendata/18`), kde je OSM nemá do 3 m.
+- lokálně jen dlaždice OSM: výřez z Geofabriku (ČR) přes `osmium extract --bbox 15.48,49.32,15.70,49.47`
+  a `NAME=jihlava tools/build_osm_data.sh data/osm/Jihlava.osm.pbf pilot/data/jihlava/osm-tiles`
+  (bez osmia `SPAT="15.48 49.32 15.70 49.47"` s celou ČR).
+- úpravy výpočtu jako v Brně (`city.fix`).
+- ilustrace: trolejbus DPmJ se sběrači (Jihlava nemá tramvaje), mobiliář zatím jako v Praze.
+- další zajímavé vrstvy města (zatím nepoužité): jednosměrky a cyklo-obousměrky, obytné zóny a zóny 30,
+  přechody, trolejové vedení a trakční sloupy, zastávky s vybavením, dopravní značky, mosty.
+
 ## Jak se profil skládá
 
 1. Najde se nejbližší ulice z OSM a řez se vede kolmo na její osu (±40 m).

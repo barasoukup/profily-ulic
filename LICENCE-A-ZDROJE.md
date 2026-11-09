@@ -35,6 +35,9 @@ Obrázky profilů, které aplikace vytváří, obsahují ilustrace Streetmixu. P
 | **Brno:** Průzkum budov v Brně (KAM, gis.brno.cz) | počet podlaží, podlaží ve střeše, typ střechy, využití přízemí | **CC BY**, © Statutární město Brno (KAM) | ✓ |
 | **Brno:** Ortofoto 2025 (gis.brno.cz, dlaždice) | podkladová mapa | © Statutární město Brno; v katalogu data.brno.cz je ortofoto pod CC BY | ✓ |
 | Brněnské ilustrace (`pilot/public/brno/`) | tramvaj Tatra T3 v nátěru DPMB (a Škoda 45T a 13T), autobus DPMB; lampa, lavička, stojan, sloupek a přístřešek podle zásad KAM Brno (Principy tvorby veřejných prostranství, kap. 9) | Vlastní ruční SVG podle veřejných fotek (Wikimedia Commons); licence jako kód (MIT). Bez log a ochranných známek. | ✓ |
+| **Jihlava:** pasport komunikací (úseky vozovek a chodníků), parkovací místa, trávníky, stromy, stožáry osvětlení, lavičky, technická mapa města a ortofoto, `gis.jihlava-city.cz` (`server1/ost/Pasporty`, `server1/verejnost/doprava_verejnost`, `server1/opendata`, `server1/DTM`, `server/basemaps`) | plochy v řezu, parkování s orientací, ploty a zábradlí, stromy, lampy, lavičky; podkladová mapa | Veřejné služby města bez přihlášení, licence u nich uvedená není. Uvádět „© Statutární město Jihlava“. Ptá se jich prohlížeč při kliknutí, nic se nešíří. | ✓ / ověřit licenci |
+| **Jihlava:** budovy RÚIAN (stavební objekty s počtem podlaží) přes službu města `server/ost/ORP_RUIAN` | budovy v řezu, počet podlaží, využití | RÚIAN je otevřený (ČÚZK, CC BY 4.0) | ✓ |
+| Jihlavské ilustrace (`pilot/public/jihlava/`) | trolejbus DPmJ (zatím orientační barvy), mobiliář zatím jako v Praze | Vlastní ruční SVG; licence jako kód (MIT) | ✓ |
 | Leaflet (unpkg) | mapová knihovna | BSD-2-Clause | ✓ |
 | ČSN 73 6056, Manuál veřejných prostranství IPR | rozměry (5,0 / 4,5 m stání, 6,5 / 7 m tramvajový pás) | Používáme jen čísla, a ta jsou fakta. Texty ani PDF se nešíří. | ✓ |
 

@@ -1,0 +1,106 @@
+<svg viewBox="0 0 360 560" xmlns="http://www.w3.org/2000/svg">
+  <!-- Jihlavský trolejbus (DPmJ, Škoda 32Tr), zadní pohled. 1 px = 1 cm, šířka 2,55 m, výška skříně 3,2 m se střešní výstrojí; nahoře sběrače k trolejím. Barvy zatím orientační (bílá skříň, červený spodek). -->
+  <!-- sběrače: dvě tyče ze zadní části střechy k trolejím (troleje 5,3–5,5 m nad vozovkou, rozchod 0,6 m) -->
+  <g stroke="#2a2b2a" stroke-linecap="round" fill="none">
+    <path d="M160 262 L148 16" stroke-width="5"/>
+    <path d="M200 262 L212 16" stroke-width="5"/>
+  </g>
+  <rect x="140" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
+  <rect x="204" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
+  <!-- základna sběračů na střeše -->
+  <rect x="140" y="252" width="80" height="14" rx="3" fill="#cbccca"/>
+  <g transform="translate(0 240)">
+
+  <!-- zrcátka vpředu vyčnívají za boky, zezadu je vidět sklo; vpravo (dveřní strana) na delším rameni -->
+  <path d="M54 46 H40 Q34 46 34 52 V58" stroke="#1d1f22" stroke-width="3" fill="none"/>
+  <rect x="26" y="58" width="18" height="44" rx="2" fill="#1d1f22"/>
+  <rect x="28" y="61" width="13" height="38" rx="1.5" fill="#8a9aa6"/>
+  <path d="M306 46 H330 Q336 46 336 52 V58" stroke="#1d1f22" stroke-width="3" fill="none"/>
+  <rect x="326" y="58" width="18" height="44" rx="2" fill="#1d1f22"/>
+  <rect x="329" y="61" width="13" height="38" rx="1.5" fill="#8a9aa6"/>
+  <!-- klimatizační jednotka na střeše -->
+  <path d="M118 31 L124 17 Q126 15 130 15 H230 Q234 15 236 17 L242 31 Z" fill="#e4e5e3"/>
+  <path d="M226 15 H230 Q234 15 236 17 L242 31 H232 Z" fill="#cbccca"/>
+  <!-- bílá zadní stěna, zaoblená střecha -->
+  <path d="M52 292 V44 Q52 30 66 30 H294 Q308 30 308 44 V292 Z" fill="#f3f3ef"/>
+  <path d="M298 32 Q308 34 308 44 V292 H298 Z" fill="#dcdcd7"/>
+  <!-- obrysová světla v horních rozích, kamera uprostřed -->
+  <circle cx="66" cy="41" r="4.5" fill="#c9cbcd"/>
+  <circle cx="66" cy="41" r="3" fill="#d8262b"/>
+  <circle cx="294" cy="41" r="4.5" fill="#c9cbcd"/>
+  <circle cx="294" cy="41" r="3" fill="#d8262b"/>
+  <rect x="134" y="38" width="9" height="5" rx="1" fill="#5a5c5e"/>
+  <!-- zadní okno souměrně přes celou šířku mezi stejnými bílými sloupky; vlevo tmavý panel se sáním motoru -->
+  <rect x="72" y="51" width="216" height="91" rx="3" fill="#1d1f22"/>
+  <rect x="75" y="54" width="210" height="85" rx="2" fill="#2e3b46"/>
+  <rect x="75" y="54" width="78" height="85" fill="#1f2327"/>
+  <rect x="153" y="54" width="3" height="85" fill="#1d1f22"/>
+  <path d="M176 54 L208 54 L184 139 L152 139 Z" fill="#46596a" opacity=".45"/>
+  <rect x="128" y="58" width="16" height="64" fill="#1d1f22"/>
+  <g fill="#3b3e42">
+    <rect x="130" y="61" width="12" height="2.5"/>
+    <rect x="130" y="66" width="12" height="2.5"/>
+    <rect x="130" y="71" width="12" height="2.5"/>
+    <rect x="130" y="76" width="12" height="2.5"/>
+    <rect x="130" y="81" width="12" height="2.5"/>
+    <rect x="130" y="86" width="12" height="2.5"/>
+    <rect x="130" y="91" width="12" height="2.5"/>
+    <rect x="130" y="96" width="12" height="2.5"/>
+    <rect x="130" y="101" width="12" height="2.5"/>
+    <rect x="130" y="106" width="12" height="2.5"/>
+    <rect x="130" y="111" width="12" height="2.5"/>
+    <rect x="130" y="116" width="12" height="2.5"/>
+  </g>
+  <text x="80" y="131" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#d8262b">41</text>
+  <rect x="226" y="101" width="46" height="24" rx="1" fill="#16181a"/>
+  <text x="249" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" font-weight="bold" fill="#43d94c">A</text>
+  <!-- větrací žaluzie nad víkem motoru -->
+  <g fill="#a9aba8">
+    <rect x="60" y="148" width="78" height="3" rx="1.5"/>
+    <rect x="142" y="148" width="78" height="3" rx="1.5"/>
+    <rect x="224" y="148" width="76" height="3" rx="1.5"/>
+    <rect x="60" y="155" width="78" height="3" rx="1.5"/>
+    <rect x="142" y="155" width="78" height="3" rx="1.5"/>
+    <rect x="224" y="155" width="76" height="3" rx="1.5"/>
+    <rect x="60" y="162" width="78" height="3" rx="1.5"/>
+    <rect x="142" y="162" width="78" height="3" rx="1.5"/>
+    <rect x="224" y="162" width="76" height="3" rx="1.5"/>
+    <rect x="60" y="169" width="78" height="3" rx="1.5"/>
+    <rect x="142" y="169" width="78" height="3" rx="1.5"/>
+    <rect x="224" y="169" width="76" height="3" rx="1.5"/>
+  </g>
+  <!-- víko motoru, registrační značka a zámek -->
+  <rect x="90" y="178" width="180" height="70" fill="#ebebe6"/>
+  <rect x="126" y="200" width="52" height="11" rx="1" fill="#f7f7f4"/>
+  <rect x="126" y="200" width="5" height="11" rx="1" fill="#2a63b8"/>
+  <rect x="134" y="203.5" width="38" height="4" rx="1" fill="#a4a6a8"/>
+  <rect x="148" y="224" width="6" height="9" rx="1.5" fill="#3a3b3c"/>
+  <!-- svislé skupiny zadních světel u obou boků -->
+  <rect x="60" y="181" width="28" height="66" rx="3" fill="#c9cbcd"/>
+  <rect x="62" y="183" width="24" height="14" rx="2" fill="#efeee9"/>
+  <rect x="62" y="199" width="24" height="14" rx="2" fill="#c42027"/>
+  <rect x="62" y="215" width="24" height="14" rx="2" fill="#efeee9"/>
+  <rect x="62" y="231" width="24" height="14" rx="2" fill="#c42027"/>
+  <rect x="272" y="181" width="28" height="66" rx="3" fill="#c9cbcd"/>
+  <rect x="274" y="183" width="24" height="14" rx="2" fill="#efeee9"/>
+  <rect x="274" y="199" width="24" height="14" rx="2" fill="#c42027"/>
+  <rect x="274" y="215" width="24" height="14" rx="2" fill="#efeee9"/>
+  <rect x="274" y="231" width="24" height="14" rx="2" fill="#c42027"/>
+  <!-- červený nárazník s odrazkami -->
+  <path d="M52 248 H308 V284 Q308 292 300 292 H60 Q52 292 52 284 Z" fill="#d8262b"/>
+  <path d="M298 248 H308 V284 Q308 292 300 292 H298 Z" fill="#b51e22"/>
+  <rect x="64" y="276" width="14" height="6" rx="1" fill="#a3161b"/>
+  <rect x="282" y="276" width="14" height="6" rx="1" fill="#a3161b"/>
+  <rect x="170" y="284" width="20" height="6" rx="1" fill="#8e1418"/>
+  <!-- zadní náprava: zdvojená kola s pneumatikami -->
+  <rect x="58" y="292" width="27" height="28" rx="4" fill="#232425"/>
+  <rect x="61" y="292" width="21" height="26" rx="3" fill="#2f3132"/>
+  <rect x="87" y="292" width="27" height="28" rx="4" fill="#232425"/>
+  <rect x="90" y="292" width="21" height="26" rx="3" fill="#2f3132"/>
+  <rect x="246" y="292" width="27" height="28" rx="4" fill="#232425"/>
+  <rect x="249" y="292" width="21" height="26" rx="3" fill="#2f3132"/>
+  <rect x="275" y="292" width="27" height="28" rx="4" fill="#232425"/>
+  <rect x="278" y="292" width="21" height="26" rx="3" fill="#2f3132"/>
+  <rect x="114" y="294" width="132" height="8" fill="#2a2b2a"/>
+  </g>
+</svg>
