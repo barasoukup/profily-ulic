@@ -1322,6 +1322,18 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       else segs.push({ type, s: r.s, e: r.e, source: r.code === null ? "odhad" : "dtm" });
     }
   }
+  // Tracks with no car lane beside them in their roadway, while the cars have lanes of their own
+  // elsewhere in the street, lie between the carriageways (Patočkova): a tram belt.
+  if (segs.some((x) => x.type === "pruh")) {
+    for (let i = 0; i < segs.length; i++) {
+      if (segs[i].type !== "tramvaj_v_pruhu") continue;
+      let j = i;
+      while (segs[j + 1]?.type === "tramvaj_v_pruhu") j++;
+      const besideCars = [segs[i - 1], segs[j + 1]].some((x) => x && TRAFFIC.has(x.type) && x.type !== "tramvaj_v_pruhu");
+      if (!besideCars) for (let k = i; k <= j; k++) segs[k].type = "tramvaj";
+      i = j;
+    }
+  }
   // Roadway outer edges are measured; only the internal split comes from OSM.
   const withKerb = carveKerbParking(markIslands(segs), kerbReqs);
   const withPlatforms = insertPlatforms(withKerb, platformPositions(osm, frame, center, normal, half), axisT);
