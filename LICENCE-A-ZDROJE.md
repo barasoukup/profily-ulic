@@ -29,6 +29,13 @@ Obrázky profilů, které aplikace vytváří, obsahují ilustrace Streetmixu. P
 | Pražské ilustrace (`pilot/public/praha/`) | kreslení profilu (tramvaj T3, autobus, lampa, lavička, stojan, přístřešek, sloupek) | Vlastní ruční SVG, kreslené podle veřejných fotek (Wikimedia Commons, brožura IPR k soutěži na mobiliář); fotky ani cizí kresby nejsou převzaté. Mobiliář podle vítězných návrhů soutěží IPR (Olgoj Chorchoj). Licence jako kód (MIT). Bez log a ochranných známek. | ✓ |
 | Streetmix – kód | **nepoužíváme**. Převod do Streetmixu (`streetmix.js`) je vlastní kód, ze Streetmixu bere jen názvy segmentů a variant. | AGPL-3.0 by se týkala jen převzatého kódu | ✓ |
 | Streetmix – API | zatím nepoužíváme: tlačítko „Do Streetmixu“ je z aplikace vyndané (API nepovoluje dotazy z jiných webů). Převod `streetmix.js` zůstává pro pozdější použití. | Ulice by vznikala jako veřejná anonymní ulice. Obsah Streetmixu je pod CC BY-SA. Podmínky použití API jsem nenašla. | – |
+| **Brno:** DTM Jihomoravského kraje, veřejné datové sady IS DMVS ČÚZK (ZPS „kresba“ po městských částech, `tools/fetch_dtm_brno.sh`) | plochy a liniové prvky v řezu (převedené na kódy MTVU, `tools/build_dtm_brno.py`) | Veřejná část DTM, podle vyhlášky 393/2020 Sb. poskytovaná každému bezplatně, ke stažení bez přihlášení. Licenci ČÚZK výslovně neuvádí (stejně jako u MTVU). Uvádět „DTM Jihomoravského kraje, IS DMVS ČÚZK“. Na webu jde o přebalená data (dlaždice), viz rizika. | ✓ / ověřit šíření |
+| **Brno:** DTM kraje jako podkladová mapa (WMS `dtm_zps_plochy_bar`, `dtm_zps_linie_body`) | jen zobrazení | veřejné služby ČÚZK | ✓ |
+| **Brno:** Úseky placeného stání, Parkovací oblasti rezidentního parkování (data.brno.cz) | parkování a oblasti placeného stání | **CC BY-SA 4.0**, © Statutární město Brno. Odvozená data (`parkovani.json`, `zps.json`) šíříme pod stejnou licencí. Úseky jsou exportované 16. 2. 2024, nové oblasti v nich chybí. | ✓ s podmínkou |
+| **Brno:** Průzkum budov v Brně (KAM, gis.brno.cz) | počet podlaží, podlaží ve střeše, typ střechy, využití přízemí | **CC BY**, © Statutární město Brno (KAM) | ✓ |
+| **Brno:** Pasport zeleně (stromy), Stožáry veřejného osvětlení, Mobiliář městských částí (lavičky) | stromy, lampy a lavičky v řezu (doplněné do dlaždic OSM) | **CC BY**, © Statutární město Brno | ✓ |
+| **Brno:** Ortofoto 2025 (gis.brno.cz, dlaždice) | podkladová mapa | © Statutární město Brno; v katalogu data.brno.cz je ortofoto pod CC BY | ✓ |
+| Brněnské ilustrace (`pilot/public/brno/`) | tramvaj Škoda 13T a autobus DPMB | Vlastní ruční SVG podle veřejných fotek (Wikimedia Commons); licence jako kód (MIT). Bez log a ochranných známek. | ✓ |
 | Leaflet (unpkg) | mapová knihovna | BSD-2-Clause | ✓ |
 | ČSN 73 6056, Manuál veřejných prostranství IPR | rozměry (5,0 / 4,5 m stání, 6,5 / 7 m tramvajový pás) | Používáme jen čísla, a ta jsou fakta. Texty ani PDF se nešíří. | ✓ |
 
@@ -38,6 +45,7 @@ Obrázky profilů, které aplikace vytváří, obsahují ilustrace Streetmixu. P
 2. **Dlaždice OSM.** Pro veřejnou aplikaci s větším provozem je vhodné přejít na jiného poskytovatele nebo vlastní dlaždice. U pilotu a mírného provozu to v pořádku je.
 3. **API Streetmixu.** Ulice vytvářené přes API jsou veřejné. Při veřejném nasazení by bylo slušné dát o tom vědět týmu Streetmixu (hello@streetmix.net) a nepouštět automatické hromadné vytváření.
 4. **Cache odpovědí IPR** (`pilot/cache`) nešířit. Každá instance si je stáhne sama.
+5. **DTM Jihomoravského kraje na webu (Brno).** Data jsou veřejná a zdarma, ale ČÚZK výslovně neuvádí podmínky dalšího šíření. Brněnská verze vystavuje odvozené dlaždice (asi 200 MB). Před zveřejněním doporučuji krátký dotaz na ČÚZK (DMVS), jestli je takové šíření v pořádku.
 
 ## Co nepublikovat a co už je upravené
 

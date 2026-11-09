@@ -86,6 +86,16 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Pražské ilustrace: tramvaj T3, autobus SOR NB 12 v klasických bílo-červených barvách, mobiliář podle
   Olgoj Chorchoj, domy z boku ve 4 typech. Auta zůstávají ze Streetmixu (Bára rozhodla 8. 11. 2026).
 
+## Brno (rozpracováno 9. 11. 2026, zatím nenasazeno)
+- Samostatná stránka `/brno/` ze stejného kódu (`pilot/public/city.js`, `config.js` CITY,
+  `tools/city_site.mjs`). Lokálně http://localhost:5173/brno/. Popis v `pilot/README.md`.
+- Šířky z veřejné DTM Jihomoravského kraje (IS DMVS ČÚZK, ZPS_KR po 29 MČ, bez přihlášení):
+  `tools/fetch_dtm_brno.sh` + `tools/build_dtm_brno.py` (polygonizace hranic, typ podle def. bodu,
+  kódy MTVU). Parkování, oblasti, budovy (KAM), stromy, lampy, lavičky z data.brno.cz
+  (`tools/build_brno_data.mjs`). Při kliknutí se Brno nikoho neptá.
+- Ilustrace DPMB: tramvaj Škoda 13T (stříbrná s červenými pruhy) a autobus (`pilot/public/brno/`).
+- Otevřené: dotaz na ČÚZK k šíření dlaždic DTM; úseky placeného stání jsou z 2/2024.
+
 ## Licence
 - Kód MIT. Ilustrace Streetmix CC BY-SA 4.0 (s uvedením autora), pražské ilustrace (`pilot/public/praha/`)
   pod MIT jako kód (Bára rozhodla 8. 11. 2026), kód Streetmixu AGPL-3.0 (jen kopie

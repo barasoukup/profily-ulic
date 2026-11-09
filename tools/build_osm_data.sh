@@ -2,6 +2,7 @@
 # Builds the OSM tiles the app reads (pilot/data/osm-tiles) from the BBBike Prague extract:
 # exports the needed features with ogr2ogr into data/osm/praha_*.geojsonl, then tiles them.
 #   tools/build_osm_data.sh [Prag.osm.pbf] [out dir]
+# Brno: NAME=brno tools/build_osm_data.sh data/osm/Brno.osm.pbf pilot/data/brno/osm-tiles
 # OGR=/path/to/ogr2ogr overrides the ogr2ogr binary (on a Mac with QGIS:
 # OGR=/Applications/QGIS-final-4_2_3.app/Contents/MacOS/ogr2ogr, with PROJ_DATA/GDAL_DATA set).
 # The tiles are a database derived from OpenStreetMap: © OpenStreetMap contributors, ODbL 1.0.
@@ -12,17 +13,19 @@ PBF=${1:-data/osm/Prag.osm.pbf}
 OUT=${2:-pilot/data/osm-tiles}
 OGR=${OGR:-ogr2ogr}
 DIR=${DIR:-data/osm} # where the GeoJSONSeq exports go
+NAME=${NAME:-praha} # prefix of the exports; the BBBike extract of that city when PBF is missing
+case "$NAME" in brno) BBBIKE=Brno ;; *) BBBIKE=Prag ;; esac
 mkdir -p "$DIR"
 
 if [ ! -f "$PBF" ]; then
   mkdir -p "$(dirname "$PBF")"
-  curl -fL -o "$PBF" https://download.bbbike.org/osm/bbbike/Prag/Prag.osm.pbf
+  curl -fL -o "$PBF" "https://download.bbbike.org/osm/bbbike/$BBBIKE/$BBBIKE.osm.pbf"
 fi
 
 tag() { echo "other_tags LIKE '%\"$1\"=>\"$2\"%'"; }
 
 export_layer() { # file layer where select
-  "$OGR" -f GeoJSONSeq "$DIR/praha_$1.geojsonl" "$PBF" "$2" -where "$3" -select "$4" -overwrite
+  "$OGR" -f GeoJSONSeq "$DIR/${NAME}_$1.geojsonl" "$PBF" "$2" -where "$3" -select "$4" -overwrite
 }
 
 export_layer ways lines "highway IS NOT NULL OR railway = 'tram'" osm_id,name,highway,railway,other_tags
@@ -37,4 +40,4 @@ export_layer outdoor_pts points "$(tag leisure outdoor_seating)" osm_id,other_ta
 # Only buildings with a height or number of floors: the rest adds nothing (the technical map has the footprints).
 export_layer buildings multipolygons "building IS NOT NULL AND (other_tags LIKE '%\"building:levels\"%' OR other_tags LIKE '%\"height\"%' OR other_tags LIKE '%\"roof:levels\"%')" osm_id,osm_way_id,building,other_tags
 
-node tools/build_osm_tiles.mjs "$OUT" "$DIR"/praha_{ways,parking,trees,treerows,platforms_area,furniture,barriers,outdoor,outdoor_pts,buildings}.geojsonl
+node tools/build_osm_tiles.mjs "$OUT" "$DIR"/"$NAME"_{ways,parking,trees,treerows,platforms_area,furniture,barriers,outdoor,outdoor_pts,buildings}.geojsonl

@@ -83,6 +83,32 @@ Počet podlaží budov na okrajích profilu se bere z vrstvy IPR *Podlažnosti*
 podlaží, celkem; cache v `pilot/cache/podlaznost`), jinak z OSM `building:levels` (+ `roof:levels`).
 Výška se kreslí 3,5 m na podlaží (přesná výška jen z OSM `height`), střešní podlaží užší a tmavší.
 
+## Brno (`/brno/`)
+
+Stejná aplikace s `CITY = "brno"` (`city.js`, `tools/city_site.mjs`). Lokálně http://localhost:5173/brno/,
+na webu `…/profily-ulic/brno/`. Brno se nikoho při kliknutí neptá, všechna data jsou soubory v
+`pilot/data/brno/` (na webu `brno/data/`):
+
+- `dtm-tiles/`: plochy a linie z veřejné DTM Jihomoravského kraje (IS DMVS ČÚZK). V datech jsou plochy
+  jen jako hranice a definiční body; `tools/build_dtm_brno.py` je spojí v polygony, pojmenuje podle
+  definičního bodu a převede na kódy MTVU (chodník 702, vozovka 701, tramvajová dráha 705…), takže
+  `derive.js` čte Brno stejně jako Prahu. Asi 7 % plochy v DTM nemá definiční bod; úzká taková plocha
+  vedle vozovky, parkoviště nebo tramvajové dráhy se bere jako chodník (třeba chodníky Husovy).
+- `osm-tiles/`: výřez OSM BBBike Brno, doplněný o stromy, lampy a lavičky z otevřených dat Brna.
+- `parkovani.json`, `zps.json`: úseky placeného stání a oblasti rezidentního parkování (data.brno.cz).
+- `budovy/`: Průzkum budov v Brně (KAM): podlaží, podlaží ve střeše, střecha. Vývoj zástavby Brno nemá.
+- Koleje: osy z OSM (`railway=tram`). Tramvaj a autobus jsou kresby DPMB (`public/brno/`).
+
+Sestavení (QGIS Python pro GDAL):
+
+```
+tools/fetch_dtm_brno.sh
+Q=/Applications/QGIS-final-4_2_3.app/Contents
+PROJ_DATA=$Q/Resources/qgis/proj GDAL_DATA=$Q/Resources/qgis/gdal $Q/MacOS/python tools/build_dtm_brno.py data/dtm-brno/zip pilot/data/brno/dtm-tiles
+NAME=brno OGR=$Q/MacOS/ogr2ogr PROJ_DATA=$Q/Resources/qgis/proj GDAL_DATA=$Q/Resources/qgis/gdal tools/build_osm_data.sh data/osm/Brno.osm.pbf pilot/data/brno/osm-tiles
+node tools/build_brno_data.mjs pilot/data/brno pilot/data/brno/osm-tiles
+```
+
 ## Jak se profil skládá
 
 1. Najde se nejbližší ulice z OSM a řez se vede kolmo na její osu (±40 m).

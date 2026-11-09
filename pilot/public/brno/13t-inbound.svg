@@ -1,0 +1,55 @@
+<svg viewBox="0 0 320 420" xmlns="http://www.w3.org/2000/svg">
+  <!-- Brněnská tramvaj Škoda 13T (DPMB, design Porsche), čelní pohled. 1 px = 1 cm, šířka vozu 2,46 m, nízká podlaha.
+       Nátěr podle fotografií: stříbrná skříň, červený oblouk pod čelním sklem a červený pruh dole, černá zástěra, zelená LED tabule. -->
+  <!-- jednoramenný pantograf -->
+  <g stroke="#55585b" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M134 104 L176 74 L150 46"/>
+  </g>
+  <path d="M104 46 H196" stroke="#3f4245" stroke-width="4" stroke-linecap="round"/>
+  <rect x="140" y="98" width="44" height="8" rx="2" fill="#4a4b4c"/>
+  <!-- kryty střešní výzbroje -->
+  <path d="M66 126 L76 106 Q78 102 84 102 H236 Q242 102 244 106 L254 126 Z" fill="#a9adb1"/>
+  <path d="M232 102 H236 Q242 102 244 106 L254 126 H240 Z" fill="#8f9397"/>
+  <!-- stříbrná skříň: svislé boky, zaoblené horní rohy -->
+  <path d="M37 384 V150 Q37 124 64 124 H256 Q283 124 283 150 V384 Z" fill="#c9cdd0"/>
+  <path d="M272 126 Q283 133 283 150 V384 H272 Z" fill="#aeb2b6"/>
+  <!-- velké čelní sklo v černém rámu -->
+  <path d="M46 152 Q48 134 72 133 H248 Q272 134 274 152 L276 262 Q234 270 160 270 Q86 270 44 262 Z" fill="#17191c"/>
+  <path d="M54 160 Q56 142 76 141 H244 Q264 142 266 160 L268 256 Q230 263 160 263 Q90 263 52 256 Z" fill="#2c3944"/>
+  <!-- zelená LED cílová tabule za sklem: linka 1, Řečkovice -->
+  <rect x="70" y="145" width="180" height="20" rx="2" fill="#0d0f10"/>
+  <g font-family="Arial, sans-serif" font-weight="bold" fill="#8be04e">
+    <text x="78" y="160" font-size="14">1</text>
+    <text x="168" y="160" font-size="12" text-anchor="middle" letter-spacing=".5">ŘEČKOVICE</text>
+  </g>
+  <path d="M74 172 L116 172 L92 254 L70 252 Z" fill="#46596a" opacity=".55"/>
+  <path d="M234 172 L252 172 L244 212 L228 212 Z" fill="#46596a" opacity=".4"/>
+  <!-- stěrač s osou dole -->
+  <path d="M176 258 L118 214" stroke="#0e0f10" stroke-width="3" stroke-linecap="round"/>
+  <!-- červený oblouk pod sklem, na pravém rohu stéká dolů -->
+  <path d="M37 270 Q90 280 160 280 Q232 280 283 268 V300 Q276 330 262 384 H250 Q262 330 268 290 Q224 296 160 296 Q92 296 37 286 Z" fill="#d42027"/>
+  <!-- světla po dvou kulatých, znak Škoda, číslo vozu červeně -->
+  <circle cx="58" cy="312" r="7" fill="#eef0ea" stroke="#8f9397" stroke-width="2"/>
+  <circle cx="58" cy="330" r="6" fill="#eef0ea" stroke="#8f9397" stroke-width="2"/>
+  <circle cx="242" cy="312" r="7" fill="#eef0ea" stroke="#8f9397" stroke-width="2"/>
+  <circle cx="242" cy="330" r="6" fill="#eef0ea" stroke="#8f9397" stroke-width="2"/>
+  <circle cx="160" cy="312" r="8" fill="none" stroke="#3f4245" stroke-width="2.5"/>
+  <text x="160" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="bold" fill="#d42027">1913</text>
+  <!-- piktogram přístupnosti -->
+  <rect x="80" y="336" width="11" height="11" rx="1" fill="#2a63b8"/>
+  <!-- spodní červený pruh -->
+  <path d="M37 356 H246 Q244 366 241 374 H37 Z" fill="#d42027"/>
+  <!-- zpětné zrcátko na rameni vlevo -->
+  <path d="M40 160 H22 Q16 160 16 166 V176" stroke="#2a2b2a" stroke-width="3" fill="none"/>
+  <rect x="8" y="176" width="14" height="26" rx="3" fill="#2a2b2a"/>
+  <!-- černá zástěra skoro ke kolejím (nízká podlaha, kola skrytá) -->
+  <path d="M37 384 H283 V396 Q283 404 276 406 L268 410 H52 L44 406 Q37 404 37 396 Z" fill="#26282a"/>
+  <rect x="140" y="390" width="40" height="8" rx="2" fill="#3a3c3e"/>
+  <rect x="78" y="410" width="14" height="8" fill="#8f9193"/>
+  <rect x="228" y="410" width="14" height="8" fill="#8f9193"/>
+  <!-- žlábkové kolejnice zapuštěné do vozovky (rozchod 1 435 mm) -->
+  <rect x="74" y="418" width="22" height="2" fill="#a7a9ab"/>
+  <rect x="88" y="418" width="4" height="2" fill="#2a2b2a"/>
+  <rect x="224" y="418" width="22" height="2" fill="#a7a9ab"/>
+  <rect x="228" y="418" width="4" height="2" fill="#2a2b2a"/>
+</svg>

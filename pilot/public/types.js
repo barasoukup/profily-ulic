@@ -1,6 +1,8 @@
 // Segment types of the street profile. Colors follow Streetmix-like ground tones.
 // label: the one name of the type, in the palette, the editor and under the drawing (Bára: one name
 // everywhere; under a narrow part it shrinks or is left out). raised: on the curb (15 cm above the roadway).
+import { city } from "./city.js";
+
 export const TYPES = {
   chodnik: { label: "Chodník", color: "#d6d1c4", raised: true, sprite: "people" },
   chodnik_kola: { label: "Chodník s cyklisty", color: "#d9c9c0", raised: true, sprite: "people", withBike: true },
@@ -32,7 +34,7 @@ export const TYPES = {
 export const SOURCES = {
   dtm: { label: "změřeno z technické mapy", color: "#3b6d11" },
   osm: { label: "doplněno z OSM", color: "#854f0b" },
-  tsk: { label: "úseky parkování TSK", color: "#0f6e56" },
+  tsk: { label: city.parkingSource, color: "#0f6e56" },
   odhad: { label: "odhad", color: "#8f8b82" },
   user: { label: "upraveno ručně", color: "#534ab7" },
 };

@@ -1,6 +1,7 @@
 // Derive a street profile from a cut line, IPR MTVU surfaces and OSM ways.
 // Geometry works in a local metric frame (x east, y north, metres) around the cut centre.
 import { typeFromMtvu, isBuilding, isMinorStructure, DEFAULT_WIDTH } from "./types.js";
+import { city } from "./city.js";
 
 const STEP = 0.05; // sampling step along the cut (m)
 const MIN_RUN = 0.3; // runs narrower than this merge into a neighbour (m)
@@ -844,9 +845,10 @@ function perpDepth(segs) {
   return segs;
 }
 
-// Distance from the Old Town Square (km): the inner city of tenements versus the outer estates.
-const CENTRE = [14.4208, 50.0875];
-const centreKm = ([lon, lat]) => Math.hypot((lon - CENTRE[0]) * 71.5, (lat - CENTRE[1]) * 111.2);
+// Distance from the city centre (km; Old Town Square in Prague, náměstí Svobody in Brno): the inner
+// city of tenements versus the outer estates.
+const CENTRE = city.centre;
+const centreKm = ([lon, lat]) => Math.hypot((lon - CENTRE[0]) * 111.32 * Math.cos((CENTRE[1] * Math.PI) / 180), (lat - CENTRE[1]) * 111.2);
 
 // OSM building containing a point, with building:levels (+ roof:levels) and height when tagged,
 // and the shape of the block it belongs to (blockShape).

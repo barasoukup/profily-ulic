@@ -7,6 +7,7 @@ import { cleanProfile, cleanCut } from "./validate.js";
 import { shares } from "./shares.js";
 import { packProfile, unpackProfile, designParams } from "./share.js";
 import { checkRules } from "./rules.js";
+import { city, isBrno } from "./city.js";
 
 const HALF = 40; // half-length of the cut used for reading the data (m)
 const MIN_REACH = 3; // shortest profile side the user can drag the cut end to (m)
@@ -16,7 +17,7 @@ const cutEnds = (f, normal, reach) => [
   f.toLonLat(-normal[0] * reach.right, -normal[1] * reach.right),
   f.toLonLat(normal[0] * reach.left, normal[1] * reach.left),
 ];
-const STORE = "streetdesign-pilot";
+const STORE = "streetdesign-pilot" + city.storeSuffix; // Prague and Brno keep their own last cut
 
 const state = {
   mode: "stav",
@@ -38,7 +39,7 @@ const status = (msg, kind = "") => {
 };
 
 // ---------- map ----------
-const map = L.map("map", { maxZoom: 21, zoomControl: false }).setView([50.0817, 14.4176], 18);
+const map = L.map("map", { maxZoom: 21, zoomControl: false }).setView(city.view, 18);
 L.control.zoom({ zoomInTitle: "Přiblížit", zoomOutTitle: "Oddálit" }).addTo(map);
 // Base maps. IPR services are drawn through ArcGIS export requests in Web Mercator, one per tile.
 // Each request renders a 512 px image covering four normal tiles (tileSize 512, zoomOffset -1):
@@ -68,7 +69,7 @@ const BIG_TILES = { tileSize: 512, zoomOffset: -1 };
 const ipr = (path, attribution, extra = {}) =>
   new ArcgisExport("", { service: `${GS}/${path}`, maxZoom: 21, ...BIG_TILES, attribution: `${attribution} © IPR Praha`, ...extra });
 
-const baseMaps = {
+const pragueMaps = () => ({
   // IPR's pre-rendered base map in Web Mercator on ArcGIS Online (the one platba.parkujvpraze.cz
   // shows as vector tiles): served from a CDN, so it loads at once, unlike the export requests.
   "Mapa IPR": L.tileLayer("https://tiles.arcgis.com/tiles/SBTXIEUGWbqzUecw/arcgis/rest/services/MTVU_WGS84/MapServer/tile/{z}/{y}/{x}", {
@@ -82,19 +83,44 @@ const baseMaps = {
   "OpenStreetMap": L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 21, maxNativeZoom: 19, attribution: "© OpenStreetMap",
   }),
-};
-const BASE_KEY = "streetdesign-basemap";
-let baseName = "Mapa IPR";
+});
+// Brno: the city's orthophoto (tiles in Web Mercator on gis.brno.cz), the public DTM of the region as
+// a map (WMS of IS DMVS ČÚZK, the data the profile is measured from), ČÚZK orthophoto and OSM.
+const DMVS = "https://dmvs.cuzk.gov.cz/api/wms";
+const brnoMaps = () => ({
+  "Technická mapa": L.tileLayer.wms(`${DMVS}/dtm_zps_plochy_bar`, {
+    layers: "dtm_zps_plochy_bar", format: "image/png", maxZoom: 21, tileSize: 512, zoomOffset: -1, attribution: "DTM Jihomoravského kraje © ČÚZK (IS DMVS)",
+  }),
+  "Ortofoto Brno": L.tileLayer("https://gis.brno.cz/ags1/rest/services/OMI/OMI_basemaps_ortofoto_2025_wgs/MapServer/tile/{z}/{y}/{x}", {
+    maxZoom: 21, maxNativeZoom: 21, attribution: "ortofoto 2025 © Statutární město Brno",
+  }),
+  "Ortofoto ČÚZK": L.tileLayer.wms("https://ags.cuzk.gov.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer", {
+    layers: "0", format: "image/jpeg", maxZoom: 21, attribution: "ortofoto © ČÚZK",
+  }),
+  "OpenStreetMap": L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 21, maxNativeZoom: 19, attribution: "© OpenStreetMap",
+  }),
+});
+const baseMaps = isBrno ? brnoMaps() : pragueMaps();
+const BASE_KEY = "streetdesign-basemap" + city.storeSuffix;
+let baseName = isBrno ? "Technická mapa" : "Mapa IPR";
 try { if (baseMaps[localStorage.getItem(BASE_KEY)]) baseName = localStorage.getItem(BASE_KEY); } catch {}
 baseMaps[baseName].addTo(map);
 map.on("baselayerchange", (e) => { try { localStorage.setItem(BASE_KEY, e.name); } catch {} });
 
-const dtm = new ArcgisExport("", {
-  service: `${GS}/arcgis/rest/services/dtmp/dtmp/MapServer`, layers: "show:9,10,14",
-  maxZoom: 21, minZoom: 16, ...BIG_TILES, opacity: 0.9, attribution: "technická mapa © IPR Praha",
-});
+const dtm = isBrno
+  ? L.tileLayer.wms(`${DMVS}/dtm_zps_linie_body`, {
+    layers: "dtm_zps_linie_body", format: "image/png", transparent: true, maxZoom: 21, minZoom: 16, tileSize: 512, zoomOffset: -1,
+    attribution: "DTM Jihomoravského kraje © ČÚZK (IS DMVS)",
+  })
+  : new ArcgisExport("", {
+    service: `${GS}/arcgis/rest/services/dtmp/dtmp/MapServer`, layers: "show:9,10,14",
+    maxZoom: 21, minZoom: 16, ...BIG_TILES, opacity: 0.9, attribution: "technická mapa © IPR Praha",
+  });
 const mtvuLayer = L.layerGroup();
-L.control.layers(baseMaps, { "Technická mapa IPR": dtm, "Plochy MTVU u řezu": mtvuLayer }).addTo(map);
+L.control.layers(baseMaps, isBrno
+  ? { "Linie technické mapy": dtm, "Plochy u řezu": mtvuLayer }
+  : { "Technická mapa IPR": dtm, "Plochy MTVU u řezu": mtvuLayer }).addTo(map);
 document.querySelector(".leaflet-control-layers-toggle")?.setAttribute("title", "Podkladová mapa a vrstvy");
 document.querySelector(".leaflet-control-layers-toggle")?.setAttribute("aria-label", "Podkladová mapa a vrstvy");
 mtvuLayer.addTo(map);
@@ -131,7 +157,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
       // A click lands the cut away from junctions and crossings; a dragged cut stays where it is put.
       if (near) near = awayFromJunctions(osm, frame, near);
     }
-    if (!near) return status("Tady jsem žádnou ulici nenašla. Data pokrývají jen Prahu; zkuste kliknout přímo na silnici.", "error");
+    if (!near) return status(`Tady jsem žádnou ulici nenašla. Data pokrývají jen ${isBrno ? "Brno" : "Prahu"}; zkuste kliknout přímo na silnici.`, "error");
     // A street of two one-way carriageways is cut from its middle (e.g. the tram belt).
     near = centerOnStreet(osm, frame, near);
     // Re-centre the frame on the snapped point.
@@ -162,7 +188,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     const full = [-1, 1].map((k) => frame.toLonLat(normal[0] * HALF * k, normal[1] * HALF * k));
     const lons = full.map((e) => e[0]), lats = full.map((e) => e[1]);
     const pad = 0.0004;
-    status("Načítám technickou mapu IPR…");
+    status(`Načítám ${city.techMap}…`);
     const bbox = [Math.min(...lons) - pad, Math.min(...lats) - pad, Math.max(...lons) + pad, Math.max(...lats) + pad].join(",");
     let polys = [], tracks = [];
     const zone = sources.zps(clat, clon).catch(() => undefined);
@@ -208,7 +234,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     // An estimate stays marked as one, also when restored from storage or a file.
     state.cut.note = polys.length ? "" : mtvuFailed ? " · technická mapa neodpověděla, jen odhad" : " · mimo technickou mapu, jen odhad";
     $("#street-name").textContent = name + state.cut.note;
-    if (mtvuFailed) status("Technická mapa IPR teď neodpovídá (server je přetížený), profil je jen odhad z OSM. Zkuste kliknout znovu za chvíli.", "error");
+    if (mtvuFailed) status(isBrno ? "Technickou mapu se nepodařilo načíst, profil je jen odhad z OSM. Zkuste kliknout znovu." : "Technická mapa IPR teď neodpovídá (server je přetížený), profil je jen odhad z OSM. Zkuste kliknout znovu za chvíli.", "error");
     else status(!polys.length ? "Technická mapa tu nic nevrátila, profil je odhad z OSM."
       : result.notice ? result.notice
       : result.junction ? "Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami." : "");
@@ -312,7 +338,7 @@ function parseCut(text) {
 
 $("#cut-goto").onchange = (e) => {
   const c = parseCut(e.target.value);
-  if (!c) return status("Polohu jsem nepoznala. Vložte třeba: 50.082707, 14.419918 · azimut 344°", "error");
+  if (!c) return status(`Polohu jsem nepoznala. Vložte třeba: ${city.example} · azimut 344°`, "error");
   map.setView([c.lat, c.lon], 19);
   cutAt(c.lat, c.lon, false, c.bearing, c.reach);
   e.target.value = "";
@@ -424,7 +450,7 @@ function draw() {
   $("#stav-cta").classList.toggle("fixing", !!state.fixing);
   $("#stav-text").textContent = state.fixing
     ? "Opravujete data stavu: táhněte úchyty nebo klikněte na část. Opravené části se označí jako upravené ručně."
-    : "Profil ukazuje ulici, jak je dnes (z dat IPR a OSM). Když data nesedí, opravte je; změny navrhujte v Návrhu.";
+    : `Profil ukazuje ulici, jak je dnes (z dat ${city.dataShort}). Když data nesedí, opravte je; změny navrhujte v Návrhu.`;
   $("#btn-fix").textContent = state.fixing ? "Hotovo" : "Opravit data";
   $("#btn-to-navrh").hidden = !!state.fixing;
   if (state.stav) {
@@ -434,9 +460,9 @@ function draw() {
   }
   if (!state.stav) {
     box.innerHTML = `<div class="empty">
-      <img src="praha/t3-inbound.svg" alt="" width="96" height="126">
-      <div><h1 class="empty-title">Příčný profil pražské ulice</h1>
-      <ol><li>Klikněte v mapě na ulici.</li><li>Profil od fasády k fasádě se sestaví z dat IPR a OSM.</li>
+      <img src="${city.emptyImg}" alt="" width="96" height="126">
+      <div><h1 class="empty-title">Příčný profil ${isBrno ? "brněnské" : "pražské"} ulice</h1>
+      <ol><li>Klikněte v mapě na ulici.</li><li>Profil od fasády k fasádě se sestaví z dat ${city.dataShort}.</li>
       <li>V režimu Návrh ho upravíte: táhněte hranice, klikněte na část, přidejte novou.</li></ol></div></div>`;
     $("#editor").replaceChildren();
     $("#palette").replaceChildren();
@@ -562,7 +588,7 @@ function diffList(a, b) {
   return div;
 }
 
-// Widths against the IPR manual (rules.js), in Návrh only: a list under the profile and the parts
+// Widths against the IPR manual (rules.js; in Brno only as a guide), in Návrh only: a list under the profile and the parts
 // outlined in the drawing (red: below the minimum, orange: below the basic width). A click on a
 // line selects that part.
 function renderRuleCheck(p, box) {
@@ -578,7 +604,7 @@ function renderRuleCheck(p, box) {
     li.onclick = () => { state.selected = f.i; render(); };
     ul.append(li);
   }
-  const head = Object.assign(document.createElement("div"), { textContent: "Šířky podle Manuálu tvorby veřejných prostranství IPR (C.2):" });
+  const head = Object.assign(document.createElement("div"), { textContent: city.rulesHead });
   el.replaceChildren(head, ul);
 }
 
@@ -1097,15 +1123,15 @@ document.querySelectorAll(".seg-toggle button").forEach((b) => b.addEventListene
   render();
 }));
 
-// Illustrations: Prague ones or Streetmix, remembered per browser.
-const ART_KEY = "profily-ilustrace";
+// Illustrations: the city's own (Prague or Brno) or Streetmix, remembered per browser and city.
+const ART_KEY = "profily-ilustrace" + city.storeSuffix;
 function showArt() {
-  $("#btn-art").setAttribute("aria-checked", String(getArt() === "praha"));
+  $("#btn-art").setAttribute("aria-checked", String(getArt() === city.art));
 }
 try { if (localStorage.getItem(ART_KEY) === "streetmix") setArt("streetmix"); } catch {}
 showArt();
 $("#btn-art").addEventListener("click", () => {
-  setArt(getArt() === "praha" ? "streetmix" : "praha");
+  setArt(getArt() === city.art ? "streetmix" : city.art);
   try { localStorage.setItem(ART_KEY, getArt()); } catch {}
   showArt();
   render();

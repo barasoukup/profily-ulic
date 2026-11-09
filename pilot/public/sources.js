@@ -4,6 +4,7 @@
 // served as the same tiles the server reads (data/osm-tiles/<ix>_<iy>.json).
 // Layers, fields and the reading of answers are shared with server.mjs (queries.js).
 import { STATIC } from "./config.js";
+import { isBrno, MTVU_LABELS } from "./city.js";
 
 import { MTVU, MTVU_FIELDS, TM_LINES, LINE_WHERE, PARKOVANI, PARKING_LAYERS, parkingFields, PODLAZNOST, PODLAZNOST_FIELDS, podlaznostInfo } from "./queries.js";
 const TILE = 0.005; // degrees, as in tools/build_osm_tiles.mjs
@@ -81,20 +82,108 @@ async function osmTiles(lat, lon, radius) {
   return { source: "local", elements };
 }
 
-export const osm = (lat, lon, r) => (STATIC ? osmTiles(lat, lon, r) : getJSON(`/api/osm?lat=${lat}&lon=${lon}&r=${r}`));
+// Brno reads only files made at deploy time (no server of its own to ask on a click).
+export const osm = (lat, lon, r) => (STATIC || isBrno ? osmTiles(lat, lon, r) : getJSON(`/api/osm?lat=${lat}&lon=${lon}&r=${r}`));
 
-export const mtvu = (bbox) => (STATIC
+export const mtvu = (bbox) => (isBrno ? brnoSurfaces(bbox) : STATIC
   ? query(MTVU, { ...envelope(bbox), outFields: MTVU_FIELDS })
   : getJSON(`/api/mtvu?bbox=${bbox}`));
 
-export const linie = (bbox) => (STATIC
+export const linie = (bbox) => (isBrno ? brnoLines(bbox) : STATIC
   ? query(TM_LINES, { ...envelope(bbox), where: LINE_WHERE, outFields: "CTMTP_KOD" })
   : getJSON(`/api/linie?bbox=${bbox}`));
+
+// ---------- Brno ----------
+// Surfaces and barrier lines of the DTM of Jihomoravský kraj, polygonized and turned into MTVU codes
+// by tools/build_dtm_brno.py (data/dtm-tiles/<ix>_<iy>.json = {p: [[code, rings]], l: [[code, path]]}).
+const dtmTiles = new Map();
+const dtmTile = (n) => {
+  if (!dtmTiles.has(n)) {
+    if (dtmTiles.size >= TILES_KEPT) dtmTiles.delete(dtmTiles.keys().next().value);
+    dtmTiles.set(n, fetch(`data/dtm-tiles/${n}.json`).then((r) => (r.ok ? r.json() : r.status === 404 ? { p: [], l: [] } : Promise.reject(new Error(`dlaždice DTM ${r.status}`))))
+      .catch((err) => { dtmTiles.delete(n); throw err; }));
+  }
+  return dtmTiles.get(n);
+};
+const bboxTiles = (bbox) => {
+  const [x0, y0, x1, y1] = bbox.split(",").map(Number);
+  const names = [];
+  for (let ix = Math.floor(x0 / TILE); ix <= Math.floor(x1 / TILE); ix++) for (let iy = Math.floor(y0 / TILE); iy <= Math.floor(y1 / TILE); iy++) names.push(`${ix}_${iy}`);
+  return { names, box: [x0, y0, x1, y1] };
+};
+const meets = (pts, [x0, y0, x1, y1]) => {
+  let a = Infinity, b = Infinity, c = -Infinity, d = -Infinity;
+  for (const [x, y] of pts) { if (x < a) a = x; if (y < b) b = y; if (x > c) c = x; if (y > d) d = y; }
+  return a <= x1 && c >= x0 && b <= y1 && d >= y0;
+};
+
+async function brnoSurfaces(bbox) {
+  const { names, box } = bboxTiles(bbox);
+  const features = [];
+  for (const t of await Promise.all(names.map(dtmTile))) {
+    for (const [code, rings] of t.p) {
+      if (meets(rings[0], box)) features.push({ attributes: { CTVUK_KOD: code, CTVUK_POPIS: MTVU_LABELS[code] || "" }, geometry: { rings } });
+    }
+  }
+  return { features };
+}
+
+// Barrier lines from the DTM, and the tram track axes from OSM (the DTM has the tram surface, not the
+// tracks) under IPR's code 55010.
+async function brnoLines(bbox) {
+  const { names, box } = bboxTiles(bbox);
+  const features = [];
+  for (const t of await Promise.all(names.map(dtmTile))) {
+    for (const [code, path] of t.l) if (meets(path, box)) features.push({ attributes: { CTMTP_KOD: code }, geometry: { paths: [path] } });
+  }
+  const [x0, y0, x1, y1] = box;
+  const lat = (y0 + y1) / 2, lon = (x0 + x1) / 2;
+  const r = Math.max((y1 - y0) * 110574, (x1 - x0) * 111320 * Math.cos((lat * Math.PI) / 180)) / 2;
+  const { elements } = await osmTiles(lat, lon, r);
+  for (const el of elements) {
+    const t = el.tags || {};
+    if (el.type !== "way" || t.railway !== "tram" || (t.tunnel && t.tunnel !== "no") || parseFloat(t.layer) < 0) continue;
+    const path = el.geometry.map((g) => [g.lon, g.lat]);
+    if (meets(path, box)) features.push({ attributes: { CTMTP_KOD: 55010 }, geometry: { paths: [path] } });
+  }
+  return { features };
+}
+
+// Paid parking sections of Brno (one file, data/parkovani.json, from tools/build_brno_data.mjs).
+let brnoParking;
+async function brnoParkovani(bbox) {
+  brnoParking ??= fetch("data/parkovani.json").then((r) => (r.ok ? r.json() : { features: [] }), () => ({ features: [] }));
+  const { box } = bboxTiles(bbox);
+  return { features: (await brnoParking).features.filter((f) => meets(f.geometry.rings[0], box)) };
+}
+
+// Floors of a Brno building (KAM průzkum budov, data/budovy/<ix>_<iy>.json = [[floors, roof floors,
+// roof, use of the ground floor, rings]]), in the shape podlaznostInfo gives for Prague.
+// Uses that read as a hall (IPR typ 3) or a small low building (typ 6) by profile.js buildingStyle.
+const HALL_USES = new Set(["sklad, distribuce, logistika", "průmyslová výroba", "velkoobchod", "nerušící výroba, montáže", "zemědělská a lesnická výroba", "vozovna"]);
+const LOW_USES = new Set(["garáž", "zahrádky", "rekreace"]);
+const budovyTiles = new Map();
+async function brnoPodlaznost(lat, lon) {
+  const k = `${Math.floor(lon / TILE)}_${Math.floor(lat / TILE)}`;
+  if (!budovyTiles.has(k)) budovyTiles.set(k, fetch(`data/budovy/${k}.json`).then((r) => (r.ok ? r.json() : []), () => []));
+  const rec = (await budovyTiles.get(k)).find(([, , , , rings]) => insideRings(rings, lon, lat));
+  if (!rec) return {};
+  const [floors, roofFloors, roof, use, rings] = rec;
+  const kx = 111320 * Math.cos((lat * Math.PI) / 180), ky = 110574;
+  let area = 0;
+  const r = rings[0];
+  for (let i = 0, j = r.length - 1; i < r.length; j = i++) area += (r[j][0] - r[i][0]) * kx * (r[j][1] + r[i][1]) * ky;
+  return {
+    cornice: floors || undefined, roof: roofFloors || 0, total: (floors || 0) + (roofFloors || 0), roofType: roof || undefined,
+    kind: HALL_USES.has(use) ? 3 : LOW_USES.has(use) ? 6 : undefined, newBuild: false, area: Math.round(Math.abs(area) / 2),
+  };
+}
 
 // The special stalls (5–8) lie inside paid zones: in a zone (by the zone file, inZone) all layers
 // are asked for at once; elsewhere only where the sections (3) found something, which spares IPR
 // four requests per cut. As in server.mjs.
 export async function parkovani(bbox, inZone) {
+  if (isBrno) return brnoParkovani(bbox);
   if (!STATIC) return getJSON(`/api/parkovani?bbox=${bbox}${inZone ? "&zone=1" : ""}`);
   const layer = async (n, kind) => {
     const json = await query(`${PARKOVANI}/${n}/query`, { ...envelope(bbox), outFields: parkingFields(n) });
@@ -141,6 +230,7 @@ const insideRings = (rings, x, y) => {
   return c;
 };
 export async function vyvoj(lat, lon) {
+  if (isBrno) return undefined; // Brno has no such layer: the look comes from the house alone
   const k = `${Math.floor(lon / VYVOJ_TILE)}_${Math.floor(lat / VYVOJ_TILE)}`;
   if (!vyvojTiles.has(k)) vyvojTiles.set(k, fetch(`data/vyvoj/${k}.json`).then((r) => (r.ok ? r.json() : null), () => null));
   const polys = await vyvojTiles.get(k);
@@ -151,6 +241,7 @@ export async function vyvoj(lat, lon) {
 }
 
 export async function podlaznost(lat, lon) {
+  if (isBrno) return brnoPodlaznost(lat, lon);
   if (!STATIC) return getJSON(`/api/podlaznost?lat=${lat}&lon=${lon}`);
   const json = await query(PODLAZNOST, {
     geometry: `${lon},${lat}`, geometryType: "esriGeometryPoint", inSR: "4326", spatialRel: "esriSpatialRelIntersects",

@@ -110,6 +110,24 @@ jobs:
         continue-on-error: true
         timeout-minutes: 10
         run: node tools/build_vyvoj.mjs site-vyvoj
+      # Brno (/brno/): the same app over files made here, never asked on a click. The OSM extract of
+      # BBBike Brno, the public DTM of Jihomoravský kraj (IS DMVS ČÚZK, no login) polygonized into
+      # tiles, and Brno's open data (parking, buildings, trees, lamps, benches). A failure leaves the
+      # Brno site out of this deploy; Prague goes out either way.
+      - name: Brno data
+        id: brno
+        continue-on-error: true
+        timeout-minutes: 30
+        run: |
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends python3-gdal
+          mkdir -p data/osm
+          curl -fL --retry 2 --retry-delay 20 --connect-timeout 30 -o data/osm/Brno.osm.pbf \
+            https://download.bbbike.org/osm/bbbike/Brno/Brno.osm.pbf
+          NAME=brno tools/build_osm_data.sh data/osm/Brno.osm.pbf site-brno/data/osm-tiles
+          tools/fetch_dtm_brno.sh data/dtm-brno/zip
+          python3 tools/build_dtm_brno.py data/dtm-brno/zip site-brno/data/dtm-tiles
+          node tools/build_brno_data.mjs site-brno/data site-brno/data/osm-tiles
+          touch site-brno/ok
       - name: Assemble the site
         env:
           MAPY_KEY: ${{ secrets.MAPY_KEY }} # Mapy.com key for the street panorama; empty → a plain link instead
@@ -126,6 +144,17 @@ jobs:
           mv site-zps.json _site/data/zps.json
           [ -d site-vyvoj ] && mv site-vyvoj _site/data/vyvoj || echo "::warning::no built-up area tiles, flat roofs judged by the house alone"
           cp LICENCE-A-ZDROJE.md _site/data/LICENCE-A-ZDROJE.md
+          if [ -f site-brno/ok ]; then
+            # The app files again, with the config made above (STATIC, Mapy.com key), then CITY = "brno".
+            mkdir -p _site/brno/data
+            cp -R pilot/public/. _site/brno/
+            cp _site/config.js _site/brno/config.js
+            rm site-brno/ok && mv site-brno/data/* _site/brno/data/
+            cp LICENCE-A-ZDROJE.md _site/brno/data/LICENCE-A-ZDROJE.md
+            node tools/build_brno_site.mjs _site/brno
+          else
+            echo "::warning::no Brno data, the Brno site is left out of this deploy"
+          fi
           cat > _site/data/README.txt <<'EOF'
           data/osm-tiles: dlaždice odvozené z OpenStreetMap (výřez BBBike Praha).
           © přispěvatelé OpenStreetMap, licence ODbL 1.0 (https://opendatacommons.org/licenses/odbl/).

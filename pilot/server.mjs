@@ -5,6 +5,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
+import { brnoConfig, brnoIndex } from "../tools/city_site.mjs";
 import { MTVU, MTVU_FIELDS, TM_LINES, LINE_WHERE, PARKOVANI, PARKING_LAYERS, parkingFields, PODLAZNOST, PODLAZNOST_FIELDS, podlaznostInfo } from "./public/queries.js";
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
@@ -223,8 +224,22 @@ const server = http.createServer(async (req, res) => {
     } catch {
       throw Object.assign(new Error("neplatná adresa"), { status: 400 });
     }
+    // The Brno site (/brno/): the same app with CITY = "brno" and its data from pilot/data/brno,
+    // as the deploy places it in _site/brno (tools/city_site.mjs).
+    if (rel === "brno") {
+      res.writeHead(301, { Location: "/brno/" });
+      return res.end();
+    }
+    const brno = rel.startsWith("brno/");
+    if (brno) rel = rel.slice(5) || "index.html";
+    if (brno && (rel === "index.html" || rel === "config.js")) {
+      const text = await fs.readFile(path.join(PUBLIC, rel), "utf8");
+      res.writeHead(200, { "Content-Type": TYPES[path.extname(rel)], "Cache-Control": "no-cache" });
+      return res.end(rel === "index.html" ? brnoIndex(text) : brnoConfig(text));
+    }
     // data/… (OSM tiles, parking zones) is served from pilot/data, as the web build places it next to the app.
-    const base = rel.startsWith("data/") ? path.join(ROOT, "data") : PUBLIC;
+    const dataDir = path.join(ROOT, "data", ...(brno ? ["brno"] : []));
+    const base = rel.startsWith("data/") ? dataDir : PUBLIC;
     const file = path.normalize(path.join(base, rel.startsWith("data/") ? rel.slice(5) : rel));
     if (!file.startsWith(base + path.sep)) throw Object.assign(new Error("forbidden"), { code: "ENOENT" });
     const data = await fs.readFile(file);

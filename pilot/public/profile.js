@@ -1,6 +1,7 @@
 // SVG drawing and direct editing of a street profile. Drawing units are centimetres,
 // matching the Streetmix illustrations (1 px = 1 cm).
 import { TYPES, SOURCES, PARKING_USE } from "./types.js";
+import { city } from "./city.js";
 
 const NS = "http://www.w3.org/2000/svg";
 const GROUND = 760; // roadway surface
@@ -27,6 +28,13 @@ const PRAHA = {
   "transit-shelter-01-left": "transit-shelter-left", "transit-shelter-01-right": "transit-shelter-right",
   "transit-shelter-tram-left": "transit-shelter-tram-left", "transit-shelter-tram-right": "transit-shelter-tram-right",
 };
+// Brno illustrations (brno/): the DPMB tram Škoda 13T and bus; furniture stays Streetmix (Prague's
+// is Olgoj Chorchoj's design for Prague), houses are drawn as in Prague.
+const BRNO = {
+  "streetcar-inbound": "13t-inbound", "streetcar-outbound": "13t-outbound", "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound",
+};
+const CITY_ART = { praha: PRAHA, brno: BRNO };
+const cityArt = () => art !== "streetmix"; // the city's own set (Prague or Brno)
 // Prague buildings are drawn from the side (we look along the street): the outline tells the type.
 export const BUILDING_STYLES = { sikma: "dům se šikmou střechou", funkce: "funkcionalistický činžák", moderni: "moderní bytový dům", plocha: "panelový dům", nizky: "nízký dům", hala: "hala" };
 const OLD_STYLES = { centrum: "sikma", "centrum-obchod": "sikma", sidliste: "plocha", "sidliste-lodzie": "plocha", rd: "nizky" };
@@ -64,7 +72,7 @@ export const OFFICE_TYPES = new Set(["office", "commercial", "civic", "governmen
 const TALL_SHARE = 0.45; // the most of the view's width a building may rise above the ground
 let labelTop = -Infinity; // building labels stay below this y (set per drawing in buildSvg)
 const sprites = {};
-let art = "praha"; // "praha" or "streetmix"
+let art = city.art; // "praha", "brno" or "streetmix"
 export const setArt = (a) => { art = a; };
 export const getArt = () => art;
 
@@ -86,7 +94,7 @@ async function loadSprite(key, path) {
 export async function loadSprites() {
   await Promise.all([
     ...SPRITE_FILES.map((name) => loadSprite(name, `streetmix/${name}.svg`)),
-    ...[...new Set(Object.values(PRAHA))].map((file) => loadSprite(`praha/${file}`, `praha/${file}.svg`)),
+    ...[...new Set(Object.values(CITY_ART[city.art]))].map((file) => loadSprite(`${city.art}/${file}`, `${city.art}/${file}.svg`)),
   ]);
 }
 
@@ -174,7 +182,7 @@ export function twoLines(text) {
 }
 
 function sprite(g, name, cx, bottom, flip = false, anchor = null) {
-  const s = (art === "praha" && sprites[`praha/${PRAHA[name]}`]) || sprites[name];
+  const s = (cityArt() && sprites[`${art}/${CITY_ART[art]?.[name]}`]) || sprites[name];
   if (!s) return;
   const img = el("image", { href: s.uri, width: s.w, height: s.h, x: cx - (anchor ?? s.w / 2), y: bottom - s.h }, g);
   if (flip) img.setAttribute("transform", `translate(${2 * cx} 0) scale(-1 1)`);
@@ -272,7 +280,7 @@ function buildingForm(info, style) {
 
 export function edgeHeight(kind, info, style) {
   if (kind !== "budova") return 0;
-  if (art !== "praha") return (buildingHeight(info) || 0) * 100;
+  if (!cityArt()) return (buildingHeight(info) || 0) * 100;
   const f = buildingForm(info, buildingStyle(info, style));
   return f.body + f.roofH + f.chimney;
 }
@@ -772,7 +780,7 @@ const floorLabelAt = (x, side) => (side === "left" ? { x: x + 12, "text-anchor":
 
 function drawEdge(svg, x, kind, side, surface, info, style) {
   const g = el("g", {}, svg);
-  if (kind === "budova" && art === "praha") {
+  if (kind === "budova" && cityArt()) {
     let top = drawPrahaBuilding(g, x, side, surface, info, style);
     if (top < labelTop) {
       // Cut off above the view: a torn edge in the background colour says the building goes on.
@@ -878,7 +886,7 @@ export function buildSvg(profile, opts = {}) {
   if (opts.credits) {
     // Exported pictures carry the attribution their sources require (CC BY-SA for the illustrations).
     el("text", { x: vx + 30, y: bottom - 25, "font-size": 24, fill: "#6b6a65" }, svg).textContent =
-      (art === "praha" ? "Ilustrace © Streetmix (CC BY-SA 4.0) a Bára Soukupová (MIT)" : "Ilustrace © Streetmix (CC BY-SA 4.0)") + " · data © IPR Praha (technická mapa, podlažnosti, vývoj zástavby) a TSK hl. m. Prahy (CC BY 4.0) · © přispěvatelé OpenStreetMap (ODbL) · obrázek CC BY-SA 4.0";
+      (cityArt() ? "Ilustrace © Streetmix (CC BY-SA 4.0) a Bára Soukupová (MIT)" : "Ilustrace © Streetmix (CC BY-SA 4.0)") + ` · ${city.credit} (ODbL) · obrázek CC BY-SA 4.0`;
   }
 
   const firstRaised = segs[0] && TYPES[segs[0].type]?.raised;
