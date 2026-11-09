@@ -74,7 +74,7 @@ const CITIES = {
     artLabel: "Jihlavské ilustrace",
     artTitle: "Kreslit jihlavskými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "jihlava/trolejbus-inbound.svg",
-    credit: "data © Statutární město Jihlava (pasport komunikací, parkování, budovy, mobiliář) · © přispěvatelé OpenStreetMap",
+    credit: "data © Statutární město Jihlava (pasport komunikací, parkování, mobiliář), RÚIAN a katastr © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
     storeSuffix: "-jihlava",
     // The Brno changes to the profile: Jihlava's surfaces come from a passport of the roads, as Brno's
     // from a technical map, so the same OSM axis fixes apply.

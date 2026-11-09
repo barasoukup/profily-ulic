@@ -125,20 +125,25 @@ CORS povolený):
 
 - plochy: **pasport komunikací** (`server1/ost/Pasporty/MapServer/112`, úseky „vozovka“ a „chodník“ s
   povrchem, třídou a názvem ulice) → kódy MTVU 701 a 702; **budovy RÚIAN** (`server/ost/ORP_RUIAN/7`, i s
-  počtem podlaží a využitím) → 601; **trávníky** z pasportu zeleně (`Pasporty/25`) → 401. Zbytek je bez typu.
+  počtem podlaží a využitím) → 601; **trávníky** z pasportu zeleně (`Pasporty/25`) → 401; zbytek z **katastru**
+  (`server/ost/Ji_parcely/1`, druh pozemku): zahrada → 300, travní porost a zeleň → 401, zastavěná plocha a
+  nádvoří → 603, pole, les, voda, manipulační plocha; pozemek komunikace mimo pasport → zeleň (odhad), jen je-li
+  v okolí vozovka z pasportu.
   Technická mapa města i kraje mají jen hranice ploch, typy bez definičních bodů vozovek, proto pasport.
 - parkování: **parkovací místa města** (`server1/verejnost/doprava_verejnost/MapServer/105`) jsou čáry s druhem
   stání (podélné, šikmé, kolmé), režimem a počtem míst. Každá čára je pruh hloubky 2,0 / 4,5 / 5,0 m; leží-li
   vozovka jen na jedné straně čáry (čára u obrubníku), pruh leží na té straně, jinak je čára jeho osou.
   Úseky „Zákaz stání / zastavení“ se vynechávají, K+R, taxi a vyhrazená stání jsou „zvláštní stání“.
 - linie: ploty, zábradlí, zdi, svodidla a protihlukové stěny z technické mapy (`server1/DTM/DTM_ZPS_verejnost/12`).
-- body: stromy (`Pasporty/28`) a stožáry osvětlení (`Pasporty/50`), kde je OSM nemá do 3 m (vrstva laviček `opendata/18` na dotazy neodpovídá).
+- body: stromy (`Pasporty/28`), stožáry osvětlení (`Pasporty/50`), přístřešky a lavičky zastávek (`Pasporty/127`)
+  a stojany na kola (`doprava_verejnost/150`), kde je OSM nemá do 3 m (přístřešek do 15 m) (vrstva laviček `opendata/18` na dotazy neodpovídá).
 - souřadnice: služby města převádějí S-JTSK do WGS 84 jinou transformací (asi 6 m vedle OSM), dotazy proto žádají `datumTransformation=1623` jako u IPR.
 - lokálně jen dlaždice OSM: výřez z Geofabriku (ČR) přes `osmium extract --bbox 15.48,49.32,15.70,49.47`
   a `NAME=jihlava tools/build_osm_data.sh data/osm/Jihlava.osm.pbf pilot/data/jihlava/osm-tiles`
   (bez osmia `SPAT="15.48 49.32 15.70 49.47"` s celou ČR).
 - úpravy výpočtu jako v Brně (`city.fix`).
-- ilustrace: trolejbus DPmJ se sběrači (Jihlava nemá tramvaje), mobiliář zatím jako v Praze.
+- ilustrace: trolejbus Škoda 32Tr a autobus Citelis DPmJ; trolejbus se sběrači v bus pruhu pod trolejemi
+  (OSM `trolley_wire=yes`), jinde autobus; mobiliář zatím jako v Praze.
 - další zajímavé vrstvy města (zatím nepoužité): jednosměrky a cyklo-obousměrky, obytné zóny a zóny 30,
   přechody, trolejové vedení a trakční sloupy, zastávky s vybavením, dopravní značky, mosty.
 

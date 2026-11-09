@@ -70,13 +70,16 @@ export function jihlavaIndex(html) {
     [/(<meta property="og:title" content=")[^"]*"/, '$1Profily ulic · Jihlava"'],
     [/(<meta property="og:description" content=")[^"]*"/, '$1Příčné profily jihlavských ulic z pasportu komunikací a dat města: od fasády k fasádě, upravitelné."'],
     [/(<meta property="og:url" content=")[^"]*"/, `$1${JI_SITE}"`],
+    [/(<meta property="og:image" content=")[^"]*"/, `$1${JI_SITE}jihlava/og.png"`],
+    [/(<meta property="og:image:alt" content=")[^"]*"/, '$1Příčný profil jihlavské ulice s trolejbusem v pruhu pro BUS, chodníky a domy, vedle název Profily ulic"'],
     [/<a href="\.\/" aria-current="page">Praha<\/a>\s*<a href="brno\/">Brno<\/a>\s*<a href="jihlava\/">Jihlava<\/a>/, '<a href="../">Praha</a>\n      <a href="../brno/">Brno</a>\n      <a href="./" aria-current="page">Jihlava</a>'],
     [/title="Ulice, jak je dnes \(z dat IPR a OSM\)"/, 'title="Ulice, jak je dnes (z dat města Jihlavy a OSM)"'],
     [/title="Kreslit pražskými ilustracemi \(vypnuto: ilustrace Streetmixu\)">Pražské ilustrace/, 'title="Kreslit jihlavskými ilustracemi (vypnuto: ilustrace Streetmixu)">Jihlavské ilustrace'],
     [/aria-label="Mapa Prahy:/, 'aria-label="Mapa Jihlavy:'],
     [/<span class="src src-tsk">úseky parkování TSK<\/span>/, '<span class="src src-tsk">parkovací místa města</span>'],
     [/<footer class="muted">[\s\S]*?<\/footer>/, `<footer class="muted">
-    Data: © <a href="https://gis.jihlava-city.cz">Statutární město Jihlava</a> (pasport komunikací, parkování, budovy RÚIAN, technická mapa, stromy, lampy, lavičky; ortofoto) ·
+    Data: © <a href="https://gis.jihlava-city.cz">Statutární město Jihlava</a> (pasport komunikací, parkování, technická mapa, stromy, lampy, zastávky, stojany na kola; ortofoto) ·
+    budovy RÚIAN a katastr © ČÚZK (CC BY 4.0) ·
     © přispěvatelé <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·
     ortofoto © ČÚZK (CC BY 4.0) ·
     ilustrace © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licence

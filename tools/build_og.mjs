@@ -3,15 +3,22 @@
 // page links (pilot/public/og.png) is made from it with any SVG renderer. On a Mac, Quick Look
 // renders squares only, so: set the SVG to viewBox="0 -285 1200 1200", then
 // qlmanage -t -s 1200 -o . og.svg && sips --cropToHeightWidth 630 1200 og.svg.png --out og.png
-//   node tools/build_og.mjs [out.svg] [brno]   (default og.svg in the current folder; "brno": the Brno card)
+//   node tools/build_og.mjs [out.svg] [brno|jihlava]   (default og.svg in the current folder; the city's card)
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "pilot", "public");
 const out = process.argv[2] || "og.svg";
-const brno = process.argv[3] === "brno";
-if (brno) globalThis.PROFILY_CITY = "brno";
+const cityId = ["brno", "jihlava"].includes(process.argv[3]) ? process.argv[3] : "praha";
+const brno = cityId === "brno", jihlava = cityId === "jihlava";
+if (cityId !== "praha") globalThis.PROFILY_CITY = cityId;
+// Words of the card per city: name suffix, "…ulic", data line, credit.
+const T = {
+  praha: { name: "", adj: "pražských", data: "z dat IPR a OSM.", credit: "IPR Praha, OSM" },
+  brno: { name: " · Brno", adj: "brněnských", data: "z dat města a OSM.", credit: "Statutární město Brno, OSM" },
+  jihlava: { name: " · Jihlava", adj: "jihlavských", data: "z dat města a OSM.", credit: "Statutární město Jihlava, OSM" },
+}[cityId];
 
 // A tiny DOM, enough for profile.js to build an SVG (elements, attributes, text, children).
 class Node {
@@ -35,7 +42,15 @@ globalThis.fetch = async (p) => {
 
 const { loadSprites, buildSvg } = await import("../pilot/public/profile.js");
 await loadSprites();
-const profile = {
+// Jihlava has no trams: a bus lane under the trolley wires with the DPmJ trolleybus instead.
+const profile = jihlava ? {
+  segments: [
+    { type: "chodnik", width: 3.5 }, { type: "stromorad", width: 2 }, { type: "pruh", width: 3.25, dir: "backward" },
+    { type: "bus", width: 3.5, dir: "forward", trolley: true }, { type: "parkovani", width: 2, orient: "podelne" },
+    { type: "chodnik", width: 3.5, items: [{ kind: "lampa", f: 0.15 }] },
+  ],
+  edges: { left: "budova", leftInfo: { levels: 4, cornice: 4, roofType: 1, km: 0.5 }, right: "budova", rightInfo: { levels: 3, cornice: 3, roofType: 1, km: 0.6 } },
+} : {
   segments: [
     { type: "chodnik", width: 3.5 }, { type: "stromorad", width: 2 }, { type: "cyklopruh", width: 1.75, dir: "backward" },
     { type: "tramvaj_v_pruhu", width: 3.25, dir: "backward" }, { type: "tramvaj_v_pruhu", width: 3.25, dir: "forward" },
@@ -56,10 +71,10 @@ const card = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}"
 <rect x="56" y="64" width="72" height="72" rx="16" fill="#d8413f"/>
 <path d="M69.5 120V91l9-6.8v36M105.5 120V84.3l9 6.7V120M69.5 120h45" stroke="#fff" stroke-width="5.4" fill="none" stroke-linejoin="round"/>
 <path d="M83 120v-9h18v9" fill="#fff"/>
-<text x="56" y="210" font-size="${brno ? 44 : 52}" font-weight="700" fill="#1d1d1b" letter-spacing="-1">Profily ulic${brno ? " · Brno" : ""}</text>
-<text font-size="26" fill="#4f4e49"><tspan x="56" y="262">Příčné profily</tspan><tspan x="56" y="298">${brno ? "brněnských" : "pražských"} ulic</tspan><tspan x="56" y="334">od fasády k fasádě</tspan><tspan x="56" y="370">${brno ? "z dat města a OSM." : "z dat IPR a OSM."}</tspan></text>
+<text x="56" y="210" font-size="${T.name ? 44 : 52}" font-weight="700" fill="#1d1d1b" letter-spacing="-1">Profily ulic${T.name}</text>
+<text font-size="26" fill="#4f4e49"><tspan x="56" y="262">Příčné profily</tspan><tspan x="56" y="298">${T.adj} ulic</tspan><tspan x="56" y="334">od fasády k fasádě</tspan><tspan x="56" y="370">${T.data}</tspan></text>
 <text font-size="22" fill="#6b6a65"><tspan x="56" y="440">Stav, návrh, porovnání</tspan><tspan x="56" y="471">a podíl prostoru ulice.</tspan></text>
-<text font-size="15" fill="#8a877e"><tspan x="56" y="566">Ilustrace © Streetmix (CC BY-SA 4.0)</tspan><tspan x="56" y="586">a Bára Soukupová · data © ${brno ? "Statutární město Brno, OSM" : "IPR Praha, OSM"}</tspan></text>
+<text font-size="15" fill="#8a877e"><tspan x="56" y="566">Ilustrace © Streetmix (CC BY-SA 4.0)</tspan><tspan x="56" y="586">a Bára Soukupová · data © ${T.credit}</tspan></text>
 </svg>`;
 fs.writeFileSync(out, card);
 console.log(`${out}: ${(card.length / 1024).toFixed(0)} kB`);
