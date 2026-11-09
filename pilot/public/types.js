@@ -20,7 +20,7 @@ export const TYPES = {
   obsluzna: { label: "Přístupová cesta", color: "#8a8780", sprite: "car" },
   krajnice: { label: "Krajnice", color: "#77756f" },
   bus: { label: "Pruh BUS", color: "#9c4038", sprite: "bus", directional: true },
-  bus_cyklo: { label: "Pruh BUS a cyklisty", color: "#9c4038", sprite: "bus", directional: true, bike: true },
+  bus_cyklo: { label: "Pruh pro BUS a cyklisty", color: "#9c4038", sprite: "bus", directional: true, bike: true },
   tramvaj_v_pruhu: { label: "Tramvaj v pruhu", color: "#736a55", sprite: "streetcar", tracks: true, directional: true },
   tramvaj: { label: "Tramvajový pás", color: "#8c8672", sprite: "streetcar", tracks: true, directional: true },
   delici: { label: "Dělicí pás", color: "#b4b2a9", raised: true },
