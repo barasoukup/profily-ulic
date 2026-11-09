@@ -1,12 +1,15 @@
 // Random sample of street cuts across Prague, stratified by OSM highway type.
 // Length-weighted: every metre of a street in a stratum has the same chance.
 // Usage: node evaluation/sample.mjs [seed]  → evaluation/data/samples.json
+// Brno: CITY=brno node evaluation/sample.mjs → evaluation/brno/data/samples.json (OSM Brno, boundary of Brno).
 import fs from "node:fs";
 import readline from "node:readline";
 import path from "node:path";
 
+const BRNO = process.env.CITY === "brno";
 const ROOT = path.dirname(new URL(import.meta.url).pathname);
-const WAYS = path.join(ROOT, "..", "data", "osm", "praha_ways.geojsonl");
+const DATA = path.join(ROOT, ...(BRNO ? ["brno", "data"] : ["data"]));
+const WAYS = path.join(ROOT, "..", "data", "osm", BRNO ? "brno_ways.geojsonl" : "praha_ways.geojsonl");
 const SEED = Number(process.argv[2] || 20261106);
 
 // Number of cuts per street type (sums to 100).
@@ -28,7 +31,7 @@ function mulberry32(a) {
 const rnd = mulberry32(SEED);
 
 // Prague administrative boundary (OSM, admin_level 4/6/8 "Praha").
-const border = JSON.parse(fs.readFileSync(path.join(ROOT, "data", "praha_hranice.geojson"), "utf8"));
+const border = JSON.parse(fs.readFileSync(path.join(DATA, BRNO ? "brno_hranice.geojson" : "praha_hranice.geojson"), "utf8"));
 const rings = border.features.flatMap((f) => (f.geometry.type === "Polygon" ? [f.geometry.coordinates] : f.geometry.coordinates)).flat();
 function inPrague(lon, lat) {
   let c = false;
@@ -39,7 +42,7 @@ function inPrague(lon, lat) {
   return c;
 }
 
-const kx = 111320 * Math.cos((50.08 * Math.PI) / 180), ky = 110574;
+const kx = 111320 * Math.cos(((BRNO ? 49.2 : 50.08) * Math.PI) / 180), ky = 110574;
 const dist = (a, b) => Math.hypot((a[0] - b[0]) * kx, (a[1] - b[1]) * ky);
 const tag = (other, k) => other?.match(new RegExp(`"${k}"=>"([^"]*)"`))?.[1];
 
@@ -96,5 +99,5 @@ for (const [hw, n] of Object.entries(QUOTA)) {
   }
   console.log(hw, `${got}/${n}`, `${st.ways.length} ways, ${(st.total / 1000).toFixed(0)} km`);
 }
-fs.writeFileSync(path.join(ROOT, "data", "samples.json"), JSON.stringify({ seed: SEED, quota: QUOTA, samples }, null, 1));
+fs.writeFileSync(path.join(DATA, "samples.json"), JSON.stringify({ seed: SEED, quota: QUOTA, samples }, null, 1));
 console.log(samples.length, "samples");

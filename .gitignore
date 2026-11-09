@@ -23,3 +23,6 @@ evaluation/budovy-typ/labels.tsv
 
 # Local Mapy.com key (export const MAPY_KEY = "…"), never committed
 pilot/public/config.local.js
+
+# Brno evaluation data (orthophoto tiles, results, review images); the scripts in evaluation/ rebuild them.
+evaluation/brno/data/
