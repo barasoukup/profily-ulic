@@ -31,8 +31,8 @@ export function brnoIndex(html) {
     [/aria-label="Mapa Prahy:/, 'aria-label="Mapa Brna:'],
     [/<span class="src src-tsk">úseky parkování TSK<\/span>/, '<span class="src src-tsk">úseky placeného stání</span>'],
     [/<footer class="muted">[\s\S]*?<\/footer>/, `<footer class="muted">
-    Data: © <a href="https://gis.brno.cz">Statutární město Brno</a> (technická mapa a MTVU; průzkum budov a ortofoto, CC BY 4.0;
-    úseky placeného stání a oblasti rezidentního parkování, CC BY-SA 4.0) ·
+    Data: © <a href="https://gis.brno.cz">Statutární město Brno</a> (technická mapa a MTVU; průzkum budov, cykloopatření a ortofoto, CC BY 4.0) ·
+    úseky placeného stání © <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a> (Brněnské komunikace) ·
     podkladová technická mapa © DTM Jihomoravského kraje, IS DMVS ČÚZK ·
     © přispěvatelé <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·
     ortofoto © ČÚZK (CC BY 4.0) ·

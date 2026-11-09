@@ -86,12 +86,14 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Pražské ilustrace: tramvaj T3, autobus SOR NB 12 v klasických bílo-červených barvách, mobiliář podle
   Olgoj Chorchoj, domy z boku ve 4 typech. Auta zůstávají ze Streetmixu (Bára rozhodla 8. 11. 2026).
 
-## Brno (rozpracováno 9. 11. 2026, zatím nenasazeno)
+## Brno (nasazeno 9. 11. 2026, vylepšení rozpracovaná)
 - Samostatná stránka `/brno/` ze stejného kódu (`pilot/public/city.js`, `config.js` CITY,
   `tools/city_site.mjs`). Lokálně http://localhost:5173/brno/. Popis v `pilot/README.md`.
 - Bára: co nejméně věcí lokálně. Brno se jako Praha ptá služeb při kliknutí: plochy z MTVU města
   (gis.brno.cz ags3 PUBLIC/opendata_mtvu), linie a body z kresby technické mapy UMPS (opendata_umps),
-  parkování a budovy z data.brno.cz. Lokálně jen dlaždice OSM.
+  budovy z KAM. Lokálně dlaždice OSM a parkování z mapy parkovanivbrne.cz (Bára: otevřená data
+  z 2/2024 vynechat, stáhnout aktuální mapu; oblasti nepoužívat, rozhoduje úsek u řezu).
+- Úpravy výpočtu jen pro Brno přes `city.fix` (Bára: do Prahy zatím nezasahovat).
 - Záložní postup z veřejné DTM kraje (`tools/fetch_dtm_brno.sh`, `tools/build_dtm_brno.py`) si Bára
   přeje schovat pro města bez vlastní služby (DTM kraje má u velkých silnic chybějící obruby).
 - Ilustrace (`pilot/public/brno/`): tramvaj Škoda 45T (výchozí; 13T nakreslená taky), autobus DPMB, mobiliář podle

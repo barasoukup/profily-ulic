@@ -110,15 +110,21 @@ jobs:
         continue-on-error: true
         timeout-minutes: 10
         run: node tools/build_vyvoj.mjs site-vyvoj
-      # Brno (/brno/): the same app; like Prague it asks the city's services on a click (MTVU and the
-      # technical-map drawing on gis.brno.cz, parking and buildings on data.brno.cz). Only the OSM tiles
-      # are built here, from the BBBike Brno extract. A failure leaves Brno out; Prague goes out anyway.
+      # Brno (/brno/): the same app; like Prague it asks the city's services on a click (MTVU, the
+      # technical-map drawing and buildings on gis.brno.cz). Built here: the OSM tiles (BBBike Brno) and
+      # the paid parking of parkovanivbrne.cz. A failure leaves Brno out; Prague goes out anyway.
       - id: brno-pbf-cache
         uses: actions/cache@v4
         with:
           path: data/osm/Brno.osm.pbf
           key: osm-brno-pbf-${{ steps.week.outputs.week }}
           restore-keys: osm-brno-pbf-
+      - id: brno-parking-cache
+        uses: actions/cache@v4
+        with:
+          path: data/parkovani-brno-last
+          key: brno-parking-${{ github.run_id }}
+          restore-keys: brno-parking-
       - name: Brno OSM tiles
         id: brno
         continue-on-error: true
@@ -139,6 +145,16 @@ jobs:
             fi
           fi
           NAME=brno tools/build_osm_data.sh data/osm/Brno.osm.pbf site-brno/data/osm-tiles
+          # Paid parking from the parkovanivbrne.cz map (current, unlike the 2/2024 export on data.brno.cz);
+          # when the map does not answer, the files of the last good deploy.
+          if node tools/build_parkovani_brno.mjs site-brno/data; then
+            mkdir -p data/parkovani-brno-last && cp -R site-brno/data/parkovani data/parkovani-brno-last/
+          elif [ -d data/parkovani-brno-last/parkovani ]; then
+            echo "::warning::parkovanivbrne.cz did not answer, using the parking of an earlier deploy"
+            cp -R data/parkovani-brno-last/. site-brno/data/
+          else
+            echo "::warning::no Brno parking data, profiles estimate the parking"
+          fi
           touch site-brno/ok
       - name: Assemble the site
         env:

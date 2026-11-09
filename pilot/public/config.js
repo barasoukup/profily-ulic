@@ -4,7 +4,7 @@
 export const STATIC = false;
 
 // Which city the page is for (city.js): "praha", or "brno" for the Brno site (/brno/), where the
-// deploy workflow and the local server write CITY = "brno". Brno reads only prebuilt files.
+// deploy workflow and the local server write CITY = "brno".
 export const CITY = "praha";
 
 // Mapy.com API key (street panorama). Not kept in the repository: the deploy workflow fills it in

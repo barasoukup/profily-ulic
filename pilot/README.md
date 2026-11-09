@@ -87,14 +87,21 @@ Výška se kreslí 3,5 m na podlaží (přesná výška jen z OSM `height`), st�
 
 Stejná aplikace s `CITY = "brno"` (`city.js`, `tools/city_site.mjs`). Lokálně http://localhost:5173/brno/,
 na webu `…/profily-ulic/brno/`. Stejně jako Praha se ptá služeb při kliknutí (přímo z prohlížeče,
-služby povolují CORS); lokálně jsou jen dlaždice OSM (`pilot/data/brno/osm-tiles`, výřez BBBike Brno):
+služby povolují CORS); lokálně jsou jen dlaždice OSM (`pilot/data/brno/osm-tiles`, výřez BBBike Brno) a
+parkování. Úpravy výpočtu zkoušené zatím jen v Brně zapíná `city.fix` (`city.js`): křižovatky i se
+`service`, osa OSM vedle vozovky se posune na ni, zpevněná plocha do 25 m pod osou silnice je vozovka.
 
 - plochy: MTVU města (`gis.brno.cz/ags3 … PUBLIC/opendata_mtvu`, vrstva 1). Brněnské kódy 5100xxx
   (číselník v legendě `PUBLIC/ted_MTVU_plochy_povrch`) převádí `brnoMtvuCode` v `sources.js` na pražské;
 - koleje, svodidla, ploty, zdi, zábradlí, svahy a body (lampy, stromy, lavičky, sloupky): kresba technické
   mapy UMPS (`PUBLIC/opendata_umps`, jeden dotaz `identify`). Kódy linií mají stejnou soustavu jako IPR
   s předponou (`brnoLineCode`: 1255010 → 55010);
-- parkování a oblasti: data.brno.cz (Úseky placeného stání, Parkovací oblasti rezidentního parkování);
+- parkování: aktuální úseky placeného stání z mapy parkovanivbrne.cz, stažené při nasazení do dlaždic
+  (`tools/build_parkovani_brno.mjs`, `data/parkovani/`); export na data.brno.cz je z 2/2024. Oblasti
+  rezidentního parkování se nepoužívají (ohraničují celé čtvrti, i ulice bez placeného stání): kde u řezu
+  úsek není, profil stání odhadne;
+- cyklopruhy, piktokoridory a protisměr: Cykloopatření – zrealizovaná (data.brno.cz), jen kde OSM nic neříká;
+- mosty: nadzemní plochy MTVU (`PUBLIC/ted_MTVU_plochy_nadzemni`), jen pro řez na mostě;
 - budovy: Průzkum budov v Brně (KAM): podlaží, podlaží ve střeše, střecha. Vývoj zástavby Brno nemá.
 
 Záloha pro města bez vlastní služby: plochy z veřejné DTM kraje (IS DMVS ČÚZK, bez přihlášení).

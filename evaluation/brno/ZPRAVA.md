@@ -2,6 +2,12 @@
 
 ## Výsledek po přechodu na služby města (9. 11. 2026, odpoledne)
 
+Verze 4 (večer): úseky placeného stání z aktuální mapy parkovanivbrne.cz místo exportu z 2/2024 (nově
+mají stání U vodárny, Vohnoutova, Ulrychova, Dunajská, Spodní), oblasti se nepoužívají (rozhoduje úsek u
+řezu, jinak odhad), mosty z nadzemní MTVU, cykloopatření města, křižovatky i se `service` (Kohoutova se
+posunula z křižovatky), osa OSM vedle vozovky se posune na ni. Hrubých chyb ubylo (7 → 5); zbývá hlavně
+posun osy OSM u silnic mimo zástavbu, příliš široké pruhy a stání jen na jedné straně.
+
 Brno se teď ptá při kliknutí MTVU města (gis.brno.cz, `opendata_mtvu`) a kresby technické mapy (UMPS),
 stejně jako Praha IPR. Stejných 100 řezů, stejná kritéria:
 
@@ -9,7 +15,8 @@ stejně jako Praha IPR. Stejných 100 řezů, stejná kritéria:
 |---|---|---|---|
 | 1. DTM kraje, plochy po městských částech | 16 | 65 | 19 |
 | 2. DTM kraje, celé Brno, slité plochy rozdělené podle OSM | 10 | 79 | 11 |
-| **3. MTVU a UMPS města Brna (živě)** | **32** | **61** | **7** |
+| 3. MTVU a UMPS města Brna (živě) | 32 | 61 | 7 |
+| **4. + parkování z mapy parkovanivbrne.cz, úpravy jen pro Brno (`city.fix`)** | **32** | **63** | **5** |
 | Praha 6. 11. (před opravami) | 51 | 32 | 17 |
 
 | Typ ulice | sedí | částečně | špatně |

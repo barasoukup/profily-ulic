@@ -3,7 +3,7 @@
 // same app with CITY = "brno" (written by the deploy workflow and by the local server).
 import { CITY } from "./config.js";
 
-// Labels of the MTVU codes, for the Brno tiles (Prague's MTVU sends its own).
+// Labels of the MTVU codes, for Brno's surfaces (Prague's MTVU sends its own).
 export const MTVU_LABELS = {
   100: "hospodářská půda", 200: "les", 300: "louky, zahrady", 401: "zeleň v zástavbě - veřejná zeleň",
   402: "zeleň v zástavbě - ostatní zeleň", 501: "vodní plochy - řeka, potok", 502: "vodní plochy - rybník, jezírko",
@@ -43,15 +43,20 @@ const CITIES = {
     mapLabel: "Mapa Brna",
     dataShort: "města Brna a OSM",
     techMap: "technickou mapu Brna",
-    parkingSource: "úseky placeného stání Brno",
+    parkingSource: "úseky placeného stání (parkovanivbrne.cz)",
     // rules.js holds the widths of IPR's manual (mostly the ČSN values); Brno has no rules of its own in the app yet.
     rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Brno orientačně:",
     art: "brno",
     artLabel: "Brněnské ilustrace",
     artTitle: "Kreslit brněnskými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "brno/45t-inbound.svg",
-    credit: "data © Statutární město Brno (technická mapa a MTVU; budovy CC BY 4.0, parkování CC BY-SA 4.0) · © přispěvatelé OpenStreetMap",
+    credit: "data © Statutární město Brno (technická mapa a MTVU; budovy CC BY 4.0), parkování © parkovanivbrne.cz · © přispěvatelé OpenStreetMap",
     storeSuffix: "-brno",
+    // Changes to the profile tried in Brno first (derive.js); Prague keeps its behaviour until they are
+    // checked there too. serviceJunctions: a service road joining counts as a junction; axisToRoadway:
+    // an OSM axis up to 4.5 m beside the roadway moves onto it; roadUnderAxis: a paved area under a
+    // street axis is its roadway (estimate).
+    fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
     example: "49.195100, 16.608500",
   },
 };

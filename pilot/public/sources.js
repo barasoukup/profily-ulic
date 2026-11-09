@@ -14,7 +14,8 @@ const TIMEOUT = 25000;
 const RETRY_DELAYS = [1500, 4000];
 
 async function getOnce(url) {
-  const r = await fetch(url, STATIC ? { signal: AbortSignal.timeout(TIMEOUT) } : undefined);
+  // Brno asks the city's servers from the browser also on the local server: with a timeout there too.
+  const r = await fetch(url, STATIC || isBrno ? { signal: AbortSignal.timeout(TIMEOUT) } : undefined);
   if (!r.ok) throw new Error(await r.text());
   const json = await r.json();
   // ArcGIS reports failures with HTTP 200 and an "error" field.
@@ -100,6 +101,7 @@ export const linie = (bbox) => (isBrno ? brnoLines(bbox) : STATIC
 const BRNO_GIS = "https://gis.brno.cz";
 const BRNO_MTVU = `${BRNO_GIS}/ags3/rest/services/PUBLIC/opendata_mtvu/MapServer/1/query`;
 const BRNO_UMPS = `${BRNO_GIS}/ags3/rest/services/PUBLIC/opendata_umps/MapServer/identify`;
+const BRNO_MTVU_ABOVE = `${BRNO_GIS}/ags3/rest/services/PUBLIC/ted_MTVU_plochy_nadzemni/MapServer/0/query`;
 const BRNO_KAM = `${BRNO_GIS}/ags1/rest/services/Hosted/KAM_pruzkum_budov_OD_WGS_Projekt/FeatureServer/0/query`;
 const BRNO_OD = "https://services6.arcgis.com/fUWVlHWZNxUvTUh8/arcgis/rest/services";
 const TCODE = "ted_work.DBO.MTVU_DIL_P.TCODE";
@@ -107,7 +109,7 @@ const TCODE = "ted_work.DBO.MTVU_DIL_P.TCODE";
 // Brno's MTVU codes (5100xxx, the classes of the technical map; legend of PUBLIC/ted_MTVU_plochy_povrch)
 // → Prague's MTVU codes that derive.js and types.js know; null: unknown kind.
 export function brnoMtvuCode(code) {
-  const c = code - 5100000;
+  const c = code % 10000; // 5100xxx on the ground, 5110xxx (and up) above it: the same classes
   if (c >= 100 && c < 200) return 100; // zemědělská půda
   if (c === 200) return 200; // les
   if (c === 320) return 300; // zahrada
@@ -175,12 +177,18 @@ const umps = ([x0, y0, x1, y1], defs) => query(BRNO_UMPS, {
   mapExtent: [x0, y0, x1, y1].join(","), imageDisplay: "800,800,96", returnGeometry: "true", f: "json",
 });
 
+// The ground, and the areas above it (bridge decks; LEVEL 1, used by derive.js only for a cut on a bridge).
 async function brnoSurfaces(bbox) {
-  const json = await query(BRNO_MTVU, { ...envelope(bbox), outFields: TCODE });
+  const [ground, above] = await Promise.all([
+    query(BRNO_MTVU, { ...envelope(bbox), outFields: TCODE }),
+    query(BRNO_MTVU_ABOVE, { ...envelope(bbox), outFields: "tcode" }).catch(() => ({ features: [] })),
+  ]);
   const features = [];
-  for (const f of json.features || []) {
-    const code = brnoMtvuCode(Number(f.attributes[TCODE]));
-    if (code !== null && f.geometry?.rings) features.push({ attributes: { CTVUK_KOD: code, CTVUK_POPIS: MTVU_LABELS[code] || "" }, geometry: f.geometry });
+  for (const [json, field, level] of [[ground, TCODE, 0], [above, "tcode", 1]]) {
+    for (const f of json.features || []) {
+      const code = brnoMtvuCode(Number(f.attributes[field]));
+      if (code !== null && f.geometry?.rings) features.push({ attributes: { CTVUK_KOD: code, CTVUK_POPIS: MTVU_LABELS[code] || "", LEVEL: level }, geometry: f.geometry });
+    }
   }
   return { features };
 }
@@ -195,12 +203,61 @@ async function brnoLines(bbox) {
   return { features };
 }
 
+// Cycling measures of the city (data.brno.cz, Cykloopatření – zrealizovaná) as OSM tags of the street
+// they lie on: what OSM itself says about cycling wins (a street with any cycleway tag is left alone).
+const CYKLO = {
+  "Vyhrazený jízdní pruh pro cyklisty - V14": "lane", "Ochranný jízdní pruh pro cyklisty": "soft_lane",
+  "Piktogramový koridor pro cyklisty - V20": "shared_lane", "Jízda cyklistů v protisměru (jízdní pruh)": "opposite_lane",
+};
+const CONTRAFLOW = /^Jízda cyklistů v protisměru/;
+function addCycling(elements, measures, kx, ky) {
+  const xy = (lon, lat) => [lon * kx, lat * ky];
+  const streets = elements.filter((e) => e.type === "way" && e.tags?.highway && !["footway", "path", "cycleway", "steps", "pedestrian"].includes(e.tags.highway) && e.geometry?.length > 1);
+  for (const m of measures) {
+    const kind = m.attributes?.typ_opatreni || "";
+    if (!CYKLO[kind] && !CONTRAFLOW.test(kind)) continue;
+    const pts = (m.geometry?.paths || []).flat().map(([x, y]) => xy(x, y));
+    if (pts.length < 2) continue;
+    // the street whose axis runs closest along the measure (mean distance of its points, under 8 m)
+    let best = null;
+    for (const w of streets) {
+      const g = w.geometry.map((q) => xy(q.lon, q.lat));
+      let sum = 0, side = 0;
+      for (const p of pts) {
+        let dmin = Infinity, cross = 0;
+        for (let i = 0; i < g.length - 1; i++) {
+          const [ax, ay] = g[i], [bx, by] = g[i + 1], dx = bx - ax, dy = by - ay, l2 = dx * dx + dy * dy || 1;
+          const t = Math.max(0, Math.min(1, ((p[0] - ax) * dx + (p[1] - ay) * dy) / l2));
+          const d = Math.hypot(p[0] - ax - t * dx, p[1] - ay - t * dy);
+          if (d < dmin) { dmin = d; cross = dx * (p[1] - ay) - dy * (p[0] - ax); }
+        }
+        sum += dmin;
+        side += Math.sign(cross);
+      }
+      const mean = sum / pts.length;
+      if (mean < 8 && (!best || mean < best.mean)) best = { w, mean, side };
+    }
+    if (!best || Object.keys(best.w.tags).some((k) => k.startsWith("cycleway") || k === "oneway:bicycle")) continue;
+    const i = elements.indexOf(best.w);
+    const tags = { ...best.w.tags };
+    if (CONTRAFLOW.test(kind)) tags["oneway:bicycle"] = "no";
+    if (CYKLO[kind]) tags[`cycleway:${best.side >= 0 ? "left" : "right"}`] = CYKLO[kind];
+    elements[i] = { ...best.w, tags }; // a copy: the cached tile keeps OSM's own tags
+  }
+}
+
 // OSM around a point plus the lamps, trees, benches and bollards of the technical map, where OSM does
-// not already have the same thing within 3 m.
+// not already have the same thing within 3 m, and the city's cycling measures.
 async function brnoOsm(lat, lon, radius) {
   const dLat = radius / 110574, dLon = radius / (111320 * Math.cos((lat * Math.PI) / 180));
-  const [o, p] = await Promise.all([osmTiles(lat, lon, radius), umps([lon - dLon, lat - dLat, lon + dLon, lat + dLat], UMPS_POINTS).catch(() => ({}))]);
+  const box = [lon - dLon, lat - dLat, lon + dLon, lat + dLat];
+  const [o, p, c] = await Promise.all([
+    osmTiles(lat, lon, radius),
+    umps(box, UMPS_POINTS).catch(() => ({})),
+    query(`${BRNO_OD}/cykloopatreni_realizovana_opendata/FeatureServer/0/query`, { ...envelope(box.join(",")), outFields: "typ_opatreni" }).catch(() => ({})),
+  ]);
   const kx = 111320 * Math.cos((lat * Math.PI) / 180), ky = 110574;
+  addCycling(o.elements, c.features || [], kx, ky);
   const key = (t) => Object.entries(t).find(([k]) => ["highway", "barrier", "amenity", "natural"].includes(k))?.join("=");
   const nodes = o.elements.filter((e) => e.type === "node");
   let id = -1;
@@ -215,12 +272,25 @@ async function brnoOsm(lat, lon, radius) {
   return o;
 }
 
-// Paid parking sections still valid (data.brno.cz, Úseky placeného stání).
+// Paid parking of Brno: the current sections of the parkovanivbrne.cz map, fetched at deploy time into
+// tiles (tools/build_parkovani_brno.mjs; the map's file does not let other pages read it).
+const parkTiles = new Map();
 async function brnoParkovani(bbox) {
-  const json = await query(`${BRNO_OD}/useky_placeneho_stani/FeatureServer/0/query`, {
-    ...envelope(bbox), where: "platnostdo IS NULL OR platnostdo > CURRENT_TIMESTAMP", outFields: "ObjectId",
-  });
-  return { features: (json.features || []).map((f) => ({ attributes: { KIND: "useky" }, geometry: f.geometry })) };
+  const [x0, y0, x1, y1] = bbox.split(",").map(Number);
+  const names = [];
+  for (let ix = Math.floor(x0 / TILE); ix <= Math.floor(x1 / TILE); ix++) for (let iy = Math.floor(y0 / TILE); iy <= Math.floor(y1 / TILE); iy++) names.push(`${ix}_${iy}`);
+  const seen = new Set(), features = [];
+  for (const n of names) {
+    if (!parkTiles.has(n)) parkTiles.set(n, fetch(`data/parkovani/${n}.json`).then((r) => (r.ok ? r.json() : { features: [] }), () => ({ features: [] })));
+    for (const f of (await parkTiles.get(n)).features) {
+      const key = JSON.stringify(f.geometry.rings[0][0]);
+      if (seen.has(key)) continue;
+      seen.add(key);
+      const xs = f.geometry.rings[0].map((q) => q[0]), ys = f.geometry.rings[0].map((q) => q[1]);
+      if (Math.min(...xs) <= x1 && Math.max(...xs) >= x0 && Math.min(...ys) <= y1 && Math.max(...ys) >= y0) features.push(f);
+    }
+  }
+  return { features };
 }
 
 // Floors of a Brno building (KAM průzkum budov), in the shape podlaznostInfo gives for Prague. Roofs
@@ -247,15 +317,6 @@ async function brnoPodlaznost(lat, lon) {
   };
 }
 
-// Within ZPS_RADIUS of a residential parking area (data.brno.cz, Parkovací oblasti rezidentního parkování)?
-async function brnoZps(lat, lon) {
-  const dLat = ZPS_RADIUS / 110574, dLon = ZPS_RADIUS / (111320 * Math.cos((lat * Math.PI) / 180));
-  const json = await query(`${BRNO_OD}/parkovaci_oblasti/FeatureServer/0/query`, {
-    ...envelope([lon - dLon, lat - dLat, lon + dLon, lat + dLat].join(",")), returnCountOnly: "true",
-  });
-  return (json.count || 0) > 0;
-}
-
 // The special stalls (5–8) lie inside paid zones: in a zone (by the zone file, inZone) all layers
 // are asked for at once; elsewhere only where the sections (3) found something, which spares IPR
 // four requests per cut. As in server.mjs.
@@ -277,12 +338,14 @@ export async function parkovani(bbox, inZone) {
 }
 
 // Is the point within ZPS_RADIUS of a paid parking zone? The zones' bounding boxes are a file made
-// once by tools/build_zps.mjs (data/zps.json, on the web built at deploy time), so a click never asks
+// once by tools/build_zps.mjs (Brno: tools/build_parkovani_brno.mjs) (data/zps.json, on the web built at deploy time), so a click never asks
 // IPR. Without the file the answer is unknown (undefined) and the profile falls back to TSK sections.
 const ZPS_RADIUS = 100; // m
 let zpsBoxes;
 export async function zps(lat, lon) {
-  if (isBrno) return brnoZps(lat, lon);
+  // Brno: the areas are rough outlines of whole quarters (Elišky Krásnohorské lies in 6-01 with no paid
+  // section within 360 m), so the profile decides by the sections around the cut, which are current.
+  if (isBrno) return undefined;
   zpsBoxes ??= fetch("data/zps.json").then((r) => (r.ok ? r.json() : null)).then((j) => j?.boxes || null, () => null);
   const boxes = await zpsBoxes;
   if (!boxes) return undefined;

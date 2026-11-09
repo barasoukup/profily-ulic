@@ -93,6 +93,8 @@ export function awayFromEnds(pts, near) {
 
 const JUNCTION_CLEARANCE = 15; // keep the cut this far from where another street joins (m)
 const CROSSING_CLEARANCE = 6; // …and from a pedestrian crossing (m)
+const NOT_JUNCTION_SERVICE = new Set(["driveway", "parking_aisle", "drive-through"]);
+const AXIS_SNAP = 4.5; // m: an OSM axis this close beside the roadway belongs to it (city.fix.axisToRoadway)
 
 // Move a snapped point along its way away from junctions and pedestrian crossings, where a
 // perpendicular cut runs along a side street or over a zebra. Junctions are nodes the way shares
@@ -107,7 +109,10 @@ export function awayFromJunctions(osm, frame, near) {
   for (const el of osm.elements || []) {
     if (el.type !== "way" || el.id === near.way.id || !el.tags?.highway || !el.geometry) continue;
     const crossing = el.tags.footway === "crossing" || el.tags.cycleway === "crossing";
-    if (MINOR.has(el.tags.highway) && !crossing) continue;
+    // A service road joins like a street where the city says so (Brno: side streets are often service
+    // in OSM, e.g. Kohoutova, Pivoňkova); driveways and parking aisles do not.
+    const sideService = city.fix?.serviceJunctions && el.tags.highway === "service" && !NOT_JUNCTION_SERVICE.has(el.tags.service);
+    if (MINOR.has(el.tags.highway) && !crossing && !sideService) continue;
     el.geometry.forEach((g, j) => {
       const i = idx.get(key(g));
       if (i === undefined) return;
@@ -255,6 +260,7 @@ export function mtvuPolygons(json, frame) {
       code: Number(f.attributes.CTVUK_KOD),
       label: (f.attributes.CTVUK_POPIS || "").trim(),
       guess: f.attributes.ODHAD === 1, // Brno: an area completed along OSM, not measured
+      level: Number(f.attributes.LEVEL) || 0, // Brno: 1 above the ground (bridge decks)
       rings,
       bbox: bboxOf(rings.flat()),
       lonlat: f.geometry.rings.map((r) => r.map(([lon, lat]) => [lat, lon])),
@@ -1070,13 +1076,19 @@ export function centerOnStreet(osm, frame, near, half = 40) {
 export function deriveProfile({ center, dir, half, polys, osm, frame, way, tracks = [], parking = [], lines = [], reach, inZps: zoneKnown }) {
   const normal = [-dir[1], dir[0]];
   const cross = crossings(osm, frame, center, normal, half);
-  const axisT = cross.find((c) => c.way.id === way.id)?.t ?? 0;
+  let axisT = cross.find((c) => c.way.id === way.id)?.t ?? 0;
   // Tram track axes: measured ones from the technical map when available, else OSM.
   const measured = lineCrossings(tracks, center, normal, half);
   const tramTs = measured.length ? measured : cross.filter((c) => c.way.tags?.railway === "tram").map((c) => c.t);
   tramTs.measured = measured.length > 0;
 
   if (!polys.length) return estimateFromOsm(way);
+  // Areas above the ground (bridge decks, Brno's MTVU level 1) count only for a cut on a bridge, and
+  // then before the ground under them.
+  if (polys.some((p) => p.level)) {
+    const onBridge = way.tags?.bridge && way.tags.bridge !== "no";
+    polys = onBridge ? [...polys.filter((p) => p.level), ...polys.filter((p) => !p.level)] : polys.filter((p) => !p.level);
+  }
 
   const classifyAll = (osmParking) => absorbParkingSlivers(mergeTiny(classify(center, normal, half, [
     ...osmPlatformPolygons(osm, frame),
@@ -1101,6 +1113,23 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     i0 = runs.indexOf(near);
   }
   if (i0 < 0) return { ...estimateFromOsm(way), runs };
+  const carriage = (c) => c === 700 || c === 701 || c === 705;
+  // A paved area under the axis of a street (not a path) is its roadway, as an estimate (Brno's MTVU
+  // codes a rebuilt road as "manipulační plocha", e.g. Žabovřeská).
+  // Not a wide one: a 55 m construction site is no roadway to split into lanes.
+  if (city.fix?.roadUnderAxis && !MINOR.has(way.tags?.highway) && (runs[i0].code === 1003 || runs[i0].code === 603) && runs[i0].e - runs[i0].s <= 25) {
+    runs[i0] = { ...runs[i0], code: 701, guess: true };
+  }
+  // An OSM axis a few metres beside the roadway (on its sidewalk or verge) is moved onto it, so the
+  // profile does not start beside the street (Brno test of 100 cuts: axes 2–4 m off).
+  if (city.fix?.axisToRoadway && !MINOR.has(way.tags?.highway) && !carriage(runs[i0].code)) {
+    const gap = (r) => (axisT < r.s ? r.s - axisT : axisT > r.e ? axisT - r.e : 0);
+    const road = runs.filter((r) => carriage(r.code) && gap(r) <= AXIS_SNAP).sort((a, b) => gap(a) - gap(b))[0];
+    if (road) {
+      axisT = road.s + (road.e - road.s) / 2;
+      i0 = runs.indexOf(road);
+    }
+  }
   // The technical map has no street surface where OSM draws a street (a new road, a field, a
   // gap in MTVU): the profile falls back to OSM and says so.
   if (!MINOR.has(way.tags?.highway) && isUnpaved(runs[i0]?.code)) {
