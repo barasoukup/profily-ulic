@@ -306,7 +306,8 @@ const tint = (hex, k) => "#" + [1, 3, 5].map((i) => Math.max(0, Math.min(255, Ma
 function drawPrahaBuilding(g, x, side, surface, info, chosen) {
   const style = buildingStyle(info, chosen);
   const f = buildingForm(info, style);
-  const seed = (info?.levels || 0) * 7 + Math.round((info?.km || 0) * 10) + (side === "left" ? 0 : 3);
+  // tint belongs to the house (set by derive.js), so a flipped profile keeps each house's colours.
+  const seed = (info?.levels || 0) * 7 + Math.round((info?.km || 0) * 10) + (info?.tint ?? (side === "left" ? 0 : 3));
   const pal = (k) => PALETTES[k][seed % PALETTES[k].length];
   const accent = pal(style === "plocha" ? "plocha" : style === "hala" ? "hala" : style);
   const factory = style === "hala" && ["industrial", "manufacture"].includes(info?.type);

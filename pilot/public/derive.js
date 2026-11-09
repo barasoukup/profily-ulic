@@ -1348,7 +1348,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     if (edges[side] !== "budova") continue;
     const b = buildingAt(osm, frame, probe[side]);
     const point = frame.toLonLat(...probe[side]);
-    edges[`${side}Info`] = { levels: b?.levels, height: b?.height, point, km: +centreKm(point).toFixed(1), block: b?.block };
+    edges[`${side}Info`] = { levels: b?.levels, height: b?.height, point, km: +centreKm(point).toFixed(1), block: b?.block, tint: side === "left" ? 0 : 3 };
     if (b?.type && b.type !== "yes") edges[`${side}Info`].type = b.type;
   }
   // A part lying mostly on an area the technical map leaves open (completed along OSM) is an estimate.
