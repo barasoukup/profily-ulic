@@ -169,3 +169,26 @@ export function parkingStrip(paths, depth, roadway, lat) {
   }
   return rings;
 }
+
+// A building of RÚIAN (ČÚZK, CORS open, the same WGS 84 as OSM) at a point, for any Czech town: floors,
+// use as the look of the house (industrial, farm, production and storage buildings read as a hall,
+// IPR typ 3; cottages and garages as small low buildings, typ 6), the year it was completed (old
+// houses carry a summary date of 1910–1919, "before 1919") and its walls of panels (druh konstrukce 4,
+// 41–43: a panel house whatever else is known).
+const RUIAN_SO = "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Prohlizeci_sluzba_nad_daty_RUIAN/MapServer/3/query";
+export const RUIAN_HALL = new Set([1, 2, 12, 13]), RUIAN_LOW = new Set([8, 18]);
+const RUIAN_PANEL = new Set([4, 41, 42, 43]);
+export async function ruianBuilding(lat, lon) {
+  const json = await query(RUIAN_SO, {
+    geometry: `${lon},${lat}`, geometryType: "esriGeometryPoint", inSR: "4326", spatialRel: "esriSpatialRelIntersects",
+    outFields: "pocetpodlazi,zpusobvyuzitikod,dokonceni,druhkonstrukcekod,zastavenaplocha", returnGeometry: "false", f: "json",
+  });
+  const a = json.features?.[0]?.attributes;
+  if (!a) return {};
+  const { pocetpodlazi: floors, zpusobvyuzitikod: use, dokonceni, druhkonstrukcekod: walls, zastavenaplocha: area } = a;
+  return {
+    cornice: floors || undefined, roof: 0, total: floors || 0,
+    kind: RUIAN_HALL.has(use) ? 3 : RUIAN_LOW.has(use) ? 6 : undefined, newBuild: false, area: area || undefined,
+    built: dokonceni ? new Date(dokonceni).getUTCFullYear() : undefined, panel: RUIAN_PANEL.has(walls) || undefined,
+  };
+}

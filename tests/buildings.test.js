@@ -54,3 +54,14 @@ test("zastavěno do 1920 je dům starší zástavby, pokud to není panelová de
   assert.equal(flat({ period: 1920, block: { length: 120, width: 80, fill: 0.45, parts: 12 } }), "sikma");
   assert.equal(flat({ period: 1840, block: { length: 144, width: 14.8, fill: 0.84, parts: 1 } }), "plocha");
 });
+
+// RÚIAN (the towns): walls of panels and the year of completion decide where the roof is not known.
+test("RÚIAN: panely a rok dokončení", async () => {
+  const { buildingStyle } = await import("../pilot/public/profile.js");
+  assert.equal(buildingStyle({ levels: 8, panel: 1, km: 0.2 }), "plocha");
+  assert.equal(buildingStyle({ levels: 4, built: 1915, km: 5 }), "sikma");
+  assert.equal(buildingStyle({ levels: 4, built: 1952, km: 5 }), "sikma");
+  assert.equal(buildingStyle({ levels: 4, built: 2005, km: 5 }), "moderni");
+  assert.equal(buildingStyle({ levels: 5, built: 1975, km: 5 }), "plocha");
+  assert.equal(buildingStyle({ levels: 2, panel: 1 }), "nizky");
+});

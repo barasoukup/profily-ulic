@@ -7,7 +7,7 @@
 // A town module (towns/<id>.js, listed in towns/index.js) gives sources.js the five data sources of a
 // click (osm, surfaces, lines, parking, podlaznost; the shapes are those of Prague's answers, see
 // queries.js) and app.js its base maps. Copy this file for another town.
-import { query, envelope, osmTiles, boxAround, ringArea, asMtvu, addPoints, parkingStrip } from "../gis.js";
+import { query, envelope, osmTiles, boxAround, asMtvu, addPoints, parkingStrip, ruianBuilding } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 
 const JI = "https://gis.jihlava-city.cz";
@@ -19,10 +19,9 @@ const JI_PARCELS = `${JI}/server/rest/services/ost/Ji_parcely/MapServer/1/query`
 const JI_DTM = `${JI}/server1/rest/services/DTM/DTM_ZPS_verejnost/MapServer`;
 const JI_PARKING = `${JI}/server1/rest/services/verejnost/doprava_verejnost/MapServer/105/query`;
 // The town's services turn S-JTSK into WGS 84 by another transformation than IPR's and the orthophotos
-// (15965, about 6 m off OSM in Jihlava): answers come with S_JTSK_To_WGS_1984_1 (1623), as IPR's. An
-// input point is moved into their WGS 84 by the difference (it varies by under 0.5 m over the town).
+// (15965, about 6 m off OSM in Jihlava): answers come with S_JTSK_To_WGS_1984_1 (1623), as IPR's. (An
+// input point would have to be moved into their WGS 84 by [3.2e-5, 4.9e-5] lon, lat.)
 const JI_DATUM = { datumTransformation: 1623 };
-const JI_IN_SHIFT = [3.2e-5, 4.9e-5]; // lon, lat
 const jiQuery = (url, params) => query(url, { ...params, ...JI_DATUM });
 const none = () => ({ features: [] });
 
@@ -125,23 +124,10 @@ async function parking(bbox) {
   return { features };
 }
 
-// Floors of a building from RÚIAN (počet podlaží), and its use (ZpusobVyuzitiObjektu) as the look of the
-// house: industrial, farm, production and storage buildings read as a hall (IPR typ 3), cottages and
-// garages as small low buildings (typ 6).
-export const RUIAN_HALL = new Set([1, 2, 12, 13]), RUIAN_LOW = new Set([8, 18]);
-async function podlaznost(lat, lon) {
-  const json = await jiQuery(JI_BUILDINGS, {
-    geometry: `${lon + JI_IN_SHIFT[0]},${lat + JI_IN_SHIFT[1]}`, geometryType: "esriGeometryPoint", inSR: "4326", outSR: "4326", spatialRel: "esriSpatialRelIntersects",
-    outFields: "pocet_podl,zpusob_vyu", f: "json",
-  });
-  const f = json.features?.[0];
-  if (!f) return {};
-  const { pocet_podl: floors, zpusob_vyu: use } = f.attributes;
-  return {
-    cornice: floors || undefined, roof: 0, total: floors || 0,
-    kind: RUIAN_HALL.has(use) ? 3 : RUIAN_LOW.has(use) ? 6 : undefined, newBuild: false, area: ringArea(f.geometry, lat),
-  };
-}
+// Floors, use, year and walls of a building from RÚIAN of ČÚZK (gis.js ruianBuilding): the town's copy
+// of RÚIAN has no year of completion.
+const podlaznost = ruianBuilding;
+export { RUIAN_HALL, RUIAN_LOW } from "../gis.js";
 
 export const sources = { osm, surfaces, lines, parking, podlaznost };
 

@@ -102,6 +102,8 @@ async function run(s) {
     if (!info?.point) continue;
     const p = await S.podlaznost(info.point[1], info.point[0]);
     if (p.cornice) Object.assign(info, { cornice: p.cornice, roof: p.roof, levels: p.cornice + p.roof, roofType: p.roofType, iprKind: p.kind, area: p.area, src: CITY !== "brno" ? "ruian" : "kam" });
+    if (p.built) info.built = p.built;
+    if (p.panel) info.panel = 1;
   }
   await ortho(clat, clon, path.join(DATA, "ortho", String(s.n)));
   return {

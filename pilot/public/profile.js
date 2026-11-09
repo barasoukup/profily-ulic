@@ -50,7 +50,9 @@ const HALL_AREA = 1200; // m²: a footprint this big on up to 3 floors reads as 
 const FLAT_RESIDENTIAL = new Set(["apartments", "residential", "dormitory"]); // flat-roofed homes get balconies
 // IPR "Podlažnosti" roof shape (domain URK_STRECHA): 1 pitched, 3 flat, 4 atypical (mix), 5 dome, 99 unknown.
 const IPR_ROOF = { 1: "sikma", 3: "plocha", 5: "sikma" };
-const INNER_KM = 3; // within this from the centre an unknown building is taken for a pitched-roof tenement
+// Within INNER_KM of the centre an unknown building is taken for a pitched-roof tenement, from ESTATE_KM
+// for a panel house; a town has its own (city.js innerKm, estateKm; Most has no old inner town).
+const INNER_KM = city.innerKm ?? 3;
 const STOREY = { sikma: 360, funkce: 310, moderni: 300, plocha: 280, nizky: 300, hala: 700 }; // typical storey (cm); a hall is one tall storey
 const DEFAULT_FLOORS = { sikma: 5, funkce: 6, moderni: 6, plocha: 8, nizky: 1, hala: 1 };
 const PITCH = Math.tan((40 * Math.PI) / 180);
@@ -219,7 +221,12 @@ export function buildingStyle(info, chosen) {
   const big = info?.area >= HALL_AREA && !HOUSE_TYPES.has(info?.type);
   if ((HALL_TYPES.has(info?.type) || big || (info?.iprKind === 3 && info?.area >= HALL_AREA / 4)) && !(cornice > 2) && roof !== "sikma") return "hala";
   if (info?.iprKind === 6 || HOUSE_TYPES.has(info?.type) || (n && n <= 2)) return "nizky";
+  if (info?.panel) return "plocha"; // RÚIAN: walls of panels
   if (roof) return roof === "plocha" ? flatKind(info, n) : roof;
+  // RÚIAN's year the house was completed, where the roof is not known (the towns): houses up to 1919
+  // and of the early 1950s (socialist realism) have pitched roofs, the rest is told by flatKind.
+  const built = info?.built;
+  if (built) return built < 1920 || (built >= 1946 && built < 1958) ? "sikma" : flatKind(info, n);
   // Nothing known about the building: a tenement in the inner city, a small house elsewhere (least misleading).
   if (!n) return info?.km > INNER_KM ? "nizky" : "sikma";
   return info?.km > INNER_KM ? flatKind(info, n) : "sikma";
@@ -236,7 +243,7 @@ export function buildingStyle(info, chosen) {
 // newest), or, short of a panel slab, it has a set-back floor outside the inner city (functionalist
 // set-backs are an inner-city thing; panel houses have none). Height says nothing: panel houses of
 // 4 floors are common (Bára).
-const PANEL_WIDTH = 16, PANEL_FILL = 0.65, PANEL_PART = 30, PANEL_FLOORS = 8, ESTATE_KM = 7;
+const PANEL_WIDTH = 16, PANEL_FILL = 0.65, PANEL_PART = 30, PANEL_FLOORS = 8, ESTATE_KM = city.estateKm ?? 7;
 // The age of the area (IPR "Vývoj zástavby", info.period = the first year it shows as built up) is
 // the default, overruled by what is known of the house itself (Bára): built up by 1920 → a house of
 // the older town (the tenement look) unless it is a panel slab; by 1950 → a functionalist
@@ -249,9 +256,10 @@ function flatKind(info, n) {
   const b = info?.block;
   const slab = b && ((b.fill >= PANEL_FILL && b.width <= PANEL_WIDTH) || (b.parts >= 2 && (b.length + b.width) / b.parts >= PANEL_PART));
   const setback = !slab && n < PANEL_FLOORS && info?.roof >= 1;
-  const p = info?.period;
+  // The year of the house (RÚIAN) before the age of the area; it is exact, so modern from 1996.
+  const p = info?.built ?? info?.period;
   if (p) {
-    if (p >= 2010) return "moderni";
+    if (p >= (info?.built ? 1996 : 2010)) return "moderni";
     if (p >= 1970) return setback && info?.km > INNER_KM ? "moderni" : "plocha";
     if (slab) return "plocha";
     if (p <= 1920) return "sikma";
