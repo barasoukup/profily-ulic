@@ -1,46 +1,56 @@
-// The Brno site is the Prague app with another config and page text. These two functions turn the
-// Prague files into the Brno ones; the local server (pilot/server.mjs, /brno/) and the deploy
-// workflow (tools/build_brno_site.mjs → _site/brno/) both use them, so the two never differ.
+// A city site (/brno/, /jihlava/, …) is the Prague app with another config and page text. These two
+// functions turn the Prague files into the city's; the local server (pilot/server.mjs, /<city>/) and the
+// deploy workflow (tools/build_city_site.mjs → _site/<city>/) both use them, so the two never differ.
+// The texts of each city are in tools/cities.mjs.
+import { SITES, NAMES } from "./cities.mjs";
 
-// config.js with CITY = "brno" (and STATIC as given).
-export function brnoConfig(js) {
-  const out = js.replace('export const CITY = "praha";', 'export const CITY = "brno";');
+const BASE = "https://barasoukup.github.io/profily-ulic/";
+
+// config.js with CITY = "<city>" (and STATIC as given).
+export function cityConfig(id, js) {
+  const out = js.replace('export const CITY = "praha";', `export const CITY = "${id}";`);
   if (out === js) throw new Error("config.js: řádek CITY nenalezen");
   return out;
 }
 
-const SITE = "https://barasoukup.github.io/profily-ulic/brno/";
+// The city switch as on a page of the city `here` (Prague: the root, the others one level down).
+export function cityNav(here) {
+  const href = (id) => (id === here ? "./" : here === "praha" ? `${id}/` : id === "praha" ? "../" : `../${id}/`);
+  return `<nav class="city-toggle" aria-label="Město">\n${Object.entries(NAMES)
+    .map(([id, name]) => `      <a href="${href(id)}"${id === here ? ' aria-current="page"' : ""}>${name}</a>`).join("\n")}\n    </nav>`;
+}
 
-// index.html with Brno's title, description, map servers in the CSP, legend and credits.
-export function brnoIndex(html) {
+// Links to the other cities' sites, for the footer.
+export const otherSites = (here) => Object.entries(NAMES).filter(([id]) => id !== here)
+  .map(([id, name]) => `<a href="${here === "praha" ? `${id}/` : id === "praha" ? "../" : `../${id}/`}">Profily ulic ${name}</a>`).join(" · ");
+
+// index.html with the city's title, description, map servers in the CSP, legend and credits.
+export function cityIndex(id, html) {
+  const c = SITES[id];
+  if (!c) throw new Error(`neznámé město ${id}`);
+  const name = NAMES[id], site = `${BASE}${id}/`;
+  const Adj = c.adj[0].toUpperCase() + c.adj.slice(1);
   const swaps = [
-    [/<title>Profily ulic<\/title>/, "<title>Profily ulic · Brno</title>"],
-    [/(<meta name="description" content=")[^"]*"/, '$1Příčné profily brněnských ulic od fasády k fasádě z technické mapy Jihomoravského kraje, otevřených dat Brna a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek."'],
-    // Map images from Brno's GIS and the DMVS (ČÚZK).
-    [/(img-src [^;]*)/, "$1 https://gis.brno.cz https://dmvs.cuzk.gov.cz"],
-    // The profile asks the city's GIS and open data (ArcGIS Online) on a click, as Prague asks IPR.
-    [/(connect-src [^;]*)/, "$1 https://gis.brno.cz https://services6.arcgis.com"],
-    [/(<meta property="og:title" content=")[^"]*"/, '$1Profily ulic · Brno"'],
-    [/(<meta property="og:description" content=")[^"]*"/, '$1Příčné profily brněnských ulic z technické mapy a otevřených dat Brna: od fasády k fasádě, upravitelné, s brněnskými ilustracemi."'],
-    [/(<meta property="og:url" content=")[^"]*"/, `$1${SITE}"`],
-    [/(<meta property="og:image" content=")[^"]*"/, `$1${SITE}brno/og.png"`],
-    [/(<meta property="og:image:alt" content=")[^"]*"/, '$1Příčný profil brněnské ulice s tramvajemi, chodníky a domy, vedle název Profily ulic"'],
-    // The city switch: Brno is the current page, Prague one level up.
-    [/<a href="\.\/" aria-current="page">Praha<\/a>\s*<a href="brno\/">Brno<\/a>\s*<a href="jihlava\/">Jihlava<\/a>/, '<a href="../">Praha</a>\n      <a href="./" aria-current="page">Brno</a>\n      <a href="../jihlava/">Jihlava</a>'],
-    [/title="Ulice, jak je dnes \(z dat IPR a OSM\)"/, 'title="Ulice, jak je dnes (z technické mapy, dat Brna a OSM)"'],
-    [/title="Kreslit pražskými ilustracemi \(vypnuto: ilustrace Streetmixu\)">Pražské ilustrace/, 'title="Kreslit brněnskými ilustracemi (vypnuto: ilustrace Streetmixu)">Brněnské ilustrace'],
-    [/aria-label="Mapa Prahy:/, 'aria-label="Mapa Brna:'],
-    [/<span class="src src-tsk">úseky parkování TSK<\/span>/, '<span class="src src-tsk">úseky placeného stání</span>'],
+    [/<title>Profily ulic<\/title>/, `<title>Profily ulic · ${name}</title>`],
+    [/(<meta name="description" content=")[^"]*"/, `$1${c.description}"`],
+    [/(img-src [^;]*)/, `$1 ${c.img.join(" ")}`],
+    [/(connect-src [^;]*)/, `$1 ${c.connect.join(" ")}`],
+    [/(<meta property="og:title" content=")[^"]*"/, `$1Profily ulic · ${name}"`],
+    [/(<meta property="og:description" content=")[^"]*"/, `$1${c.ogDescription}"`],
+    [/(<meta property="og:url" content=")[^"]*"/, `$1${site}"`],
+    [/(<meta property="og:image" content=")[^"]*"/, `$1${site}${id}/og.png"`],
+    [/(<meta property="og:image:alt" content=")[^"]*"/, `$1${c.ogAlt}"`],
+    [/<nav class="city-toggle" aria-label="Město">[\s\S]*?<\/nav>/, cityNav(id)],
+    [/title="Ulice, jak je dnes \(z dat IPR a OSM\)"/, `title="Ulice, jak je dnes (${c.stav})"`],
+    [/title="Kreslit pražskými ilustracemi \(vypnuto: ilustrace Streetmixu\)">Pražské ilustrace/, `title="Kreslit ${c.adjInstr} ilustracemi (vypnuto: ilustrace Streetmixu)">${Adj} ilustrace`],
+    [/aria-label="Mapa Prahy:/, `aria-label="Mapa ${c.gen}:`],
+    [/<span class="src src-tsk">úseky parkování TSK<\/span>/, `<span class="src src-tsk">${c.parking}</span>`],
     [/<footer class="muted">[\s\S]*?<\/footer>/, `<footer class="muted">
-    Data: © <a href="https://gis.brno.cz">Statutární město Brno</a> (technická mapa a MTVU; průzkum budov, cykloopatření a ortofoto, CC BY 4.0) ·
-    úseky placeného stání © <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a> (Brněnské komunikace) ·
-    podkladová technická mapa © DTM Jihomoravského kraje, IS DMVS ČÚZK ·
-    © přispěvatelé <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·
-    ortofoto © ČÚZK (CC BY 4.0) ·
+    ${c.credits} ·
     ilustrace © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licence
     <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.cs">CC BY-SA 4.0</a> ·
-    brněnské ilustrace a kód © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
-    <a href="../">Profily ulic Praha</a> · <a href="../jihlava/">Profily ulic Jihlava</a>
+    ${c.adj} ilustrace a kód © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
+    ${otherSites(id)}
   </footer>`],
   ];
   let out = html;
@@ -51,47 +61,6 @@ export function brnoIndex(html) {
   return out;
 }
 
-// ---------- Jihlava (/jihlava/) ----------
-export function jihlavaConfig(js) {
-  const out = js.replace('export const CITY = "praha";', 'export const CITY = "jihlava";');
-  if (out === js) throw new Error("config.js: řádek CITY nenalezen");
-  return out;
-}
-
-const JI_SITE = "https://barasoukup.github.io/profily-ulic/jihlava/";
-
-export function jihlavaIndex(html) {
-  const swaps = [
-    [/<title>Profily ulic<\/title>/, "<title>Profily ulic · Jihlava</title>"],
-    [/(<meta name="description" content=")[^"]*"/, '$1Příčné profily jihlavských ulic od fasády k fasádě z pasportu komunikací a dat města Jihlavy a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek."'],
-    // Map images and, on a click, the profile's data from the city's GIS.
-    [/(img-src [^;]*)/, "$1 https://gis.jihlava-city.cz"],
-    [/(connect-src [^;]*)/, "$1 https://gis.jihlava-city.cz"],
-    [/(<meta property="og:title" content=")[^"]*"/, '$1Profily ulic · Jihlava"'],
-    [/(<meta property="og:description" content=")[^"]*"/, '$1Příčné profily jihlavských ulic z pasportu komunikací a dat města: od fasády k fasádě, upravitelné."'],
-    [/(<meta property="og:url" content=")[^"]*"/, `$1${JI_SITE}"`],
-    [/(<meta property="og:image" content=")[^"]*"/, `$1${JI_SITE}jihlava/og.png"`],
-    [/(<meta property="og:image:alt" content=")[^"]*"/, '$1Příčný profil jihlavské ulice s trolejbusem v pruhu pro BUS, chodníky a domy, vedle název Profily ulic"'],
-    [/<a href="\.\/" aria-current="page">Praha<\/a>\s*<a href="brno\/">Brno<\/a>\s*<a href="jihlava\/">Jihlava<\/a>/, '<a href="../">Praha</a>\n      <a href="../brno/">Brno</a>\n      <a href="./" aria-current="page">Jihlava</a>'],
-    [/title="Ulice, jak je dnes \(z dat IPR a OSM\)"/, 'title="Ulice, jak je dnes (z dat města Jihlavy a OSM)"'],
-    [/title="Kreslit pražskými ilustracemi \(vypnuto: ilustrace Streetmixu\)">Pražské ilustrace/, 'title="Kreslit jihlavskými ilustracemi (vypnuto: ilustrace Streetmixu)">Jihlavské ilustrace'],
-    [/aria-label="Mapa Prahy:/, 'aria-label="Mapa Jihlavy:'],
-    [/<span class="src src-tsk">úseky parkování TSK<\/span>/, '<span class="src src-tsk">parkovací místa města</span>'],
-    [/<footer class="muted">[\s\S]*?<\/footer>/, `<footer class="muted">
-    Data: © <a href="https://gis.jihlava-city.cz">Statutární město Jihlava</a> (pasport komunikací, parkování, technická mapa, stromy, lampy, zastávky, stojany na kola; ortofoto) ·
-    budovy RÚIAN a katastr © ČÚZK (CC BY 4.0) ·
-    © přispěvatelé <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·
-    ortofoto © ČÚZK (CC BY 4.0) ·
-    ilustrace © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licence
-    <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.cs">CC BY-SA 4.0</a> ·
-    jihlavské ilustrace a kód © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
-    <a href="../">Profily ulic Praha</a> · <a href="../brno/">Profily ulic Brno</a>
-  </footer>`],
-  ];
-  let out = html;
-  for (const [re, to] of swaps) {
-    if (!re.test(out)) throw new Error(`index.html: nenalezeno ${re}`);
-    out = out.replace(re, to);
-  }
-  return out;
-}
+// The earlier names, kept for the tests.
+export const brnoConfig = (js) => cityConfig("brno", js);
+export const brnoIndex = (html) => cityIndex("brno", html);

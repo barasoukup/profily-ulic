@@ -3,22 +3,20 @@
 // page links (pilot/public/og.png) is made from it with any SVG renderer. On a Mac, Quick Look
 // renders squares only, so: set the SVG to viewBox="0 -285 1200 1200", then
 // qlmanage -t -s 1200 -o . og.svg && sips --cropToHeightWidth 630 1200 og.svg.png --out og.png
-//   node tools/build_og.mjs [out.svg] [brno|jihlava]   (default og.svg in the current folder; the city's card)
+//   node tools/build_og.mjs [out.svg] [brno|jihlava|most|…]   (default og.svg in the current folder; the city's card)
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "pilot", "public");
 const out = process.argv[2] || "og.svg";
-const cityId = ["brno", "jihlava"].includes(process.argv[3]) ? process.argv[3] : "praha";
-const brno = cityId === "brno", jihlava = cityId === "jihlava";
+const { NAMES, SITES } = await import("./cities.mjs");
+const cityId = SITES[process.argv[3]] ? process.argv[3] : "praha";
 if (cityId !== "praha") globalThis.PROFILY_CITY = cityId;
 // Words of the card per city: name suffix, "…ulic", data line, credit.
-const T = {
-  praha: { name: "", adj: "pražských", data: "z dat IPR a OSM.", credit: "IPR Praha, OSM" },
-  brno: { name: " · Brno", adj: "brněnských", data: "z dat města a OSM.", credit: "Statutární město Brno, OSM" },
-  jihlava: { name: " · Jihlava", adj: "jihlavských", data: "z dat města a OSM.", credit: "Statutární město Jihlava, OSM" },
-}[cityId];
+const T = cityId === "praha"
+  ? { name: "", adj: "pražských", data: "z dat IPR a OSM.", credit: "IPR Praha, OSM" }
+  : { name: ` · ${NAMES[cityId]}`, adj: SITES[cityId].adjPl, data: "z dat města a OSM.", credit: `Statutární město ${NAMES[cityId]}, OSM` };
 
 // A tiny DOM, enough for profile.js to build an SVG (elements, attributes, text, children).
 class Node {
@@ -42,8 +40,10 @@ globalThis.fetch = async (p) => {
 
 const { loadSprites, buildSvg } = await import("../pilot/public/profile.js");
 await loadSprites();
-// Jihlava has no trams: a bus lane under the trolley wires with the DPmJ trolleybus instead.
-const profile = jihlava ? {
+// A town with trolleybuses and no trams (its illustrations): a bus lane under the trolley wires instead.
+const { city } = await import("../pilot/public/city.js");
+const trolleyOnly = city.artMap?.["trolleybus-inbound"] && !city.artMap["streetcar-inbound"];
+const profile = trolleyOnly ? {
   segments: [
     { type: "chodnik", width: 3.5 }, { type: "stromorad", width: 2 }, { type: "pruh", width: 3.25, dir: "backward" },
     { type: "bus", width: 3.5, dir: "forward", trolley: true }, { type: "parkovani", width: 2, orient: "podelne" },

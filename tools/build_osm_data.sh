@@ -3,7 +3,7 @@
 # exports the needed features with ogr2ogr into data/osm/praha_*.geojsonl, then tiles them.
 #   tools/build_osm_data.sh [Prag.osm.pbf] [out dir]
 # Brno: NAME=brno tools/build_osm_data.sh data/osm/Brno.osm.pbf pilot/data/brno/osm-tiles
-# Jihlava (no BBBike extract): NAME=jihlava tools/build_osm_data.sh data/osm/Jihlava.osm.pbf pilot/data/jihlava/osm-tiles,
+# A town (no BBBike extract; tools/cities.mjs): NAME=jihlava tools/build_osm_data.sh data/osm/towns/jihlava.osm.pbf pilot/data/jihlava/osm-tiles,
 # the pbf cut from Geofabrik's Czech Republic with osmium (as the deploy does), or SPAT="x0 y0 x1 y1" to
 # read only that box of a bigger pbf.
 # OGR=/path/to/ogr2ogr overrides the ogr2ogr binary (on a Mac with QGIS:
@@ -17,7 +17,7 @@ OUT=${2:-pilot/data/osm-tiles}
 OGR=${OGR:-ogr2ogr}
 DIR=${DIR:-data/osm} # where the GeoJSONSeq exports go
 NAME=${NAME:-praha} # prefix of the exports; the BBBike extract of that city when PBF is missing
-case "$NAME" in brno) BBBIKE=Brno ;; jihlava) BBBIKE= ;; *) BBBIKE=Prag ;; esac
+case "$NAME" in praha) BBBIKE=Prag ;; brno) BBBIKE=Brno ;; *) BBBIKE= ;; esac
 mkdir -p "$DIR"
 
 if [ ! -f "$PBF" ] && [ -z "$BBBIKE" ]; then

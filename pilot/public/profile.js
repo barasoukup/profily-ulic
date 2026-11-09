@@ -38,17 +38,9 @@ const BRNO = {
   "transit-shelter-01-left": "transit-shelter-left", "transit-shelter-01-right": "transit-shelter-right",
   "transit-shelter-tram-left": "transit-shelter-tram-left", "transit-shelter-tram-right": "transit-shelter-tram-right",
 };
-// Jihlava illustrations (jihlava/): the trolleybus and bus of DPmJ in its cream and red (Bára's photos), the
-// trolleybus with its poles in bus lanes under trolley wires; the furniture as in Prague for now.
-const JIHLAVA = {
-  "trolleybus-inbound": "trolejbus-inbound", "trolleybus-outbound": "trolejbus-outbound",
-  "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound",
-  "lamp-modern-left": "lamp-left", "lamp-modern-right": "lamp-right", "bench-center": "bench-center",
-  "bike-rack-perpendicular-left": "bike-rack", "bollard": "bollard",
-  "transit-shelter-01-left": "transit-shelter-left", "transit-shelter-01-right": "transit-shelter-right",
-};
-const CITY_ART = { praha: PRAHA, brno: BRNO, jihlava: JIHLAVA };
-const cityArt = () => art !== "streetmix"; // the city's own set (Prague or Brno)
+// A town brings its own map of illustrations (city.js artMap, files in pilot/public/<art>/).
+const CITY_ART = { praha: PRAHA, brno: BRNO, ...(city.artMap ? { [city.art]: city.artMap } : {}) };
+const cityArt = () => art !== "streetmix" && !!CITY_ART[art]; // the city's own set
 // Prague buildings are drawn from the side (we look along the street): the outline tells the type.
 export const BUILDING_STYLES = { sikma: "dům se šikmou střechou", funkce: "funkcionalistický činžák", moderni: "moderní bytový dům", plocha: "panelový dům", nizky: "nízký dům", hala: "hala" };
 const OLD_STYLES = { centrum: "sikma", "centrum-obchod": "sikma", sidliste: "plocha", "sidliste-lodzie": "plocha", rd: "nizky" };

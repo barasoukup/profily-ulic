@@ -4,93 +4,23 @@
 // served as the same tiles the server reads (data/osm-tiles/<ix>_<iy>.json).
 // Layers, fields and the reading of answers are shared with server.mjs (queries.js).
 import { STATIC } from "./config.js";
-import { isBrno, isJihlava, isLive, MTVU_LABELS } from "./city.js";
+import { city, isBrno, isLive, MTVU_LABELS } from "./city.js";
+import { TILE, getJSON, query, envelope, osmTiles, insideRings } from "./gis.js";
+import { TOWNS } from "./towns/index.js";
+export { events } from "./gis.js";
 
 import { MTVU, MTVU_FIELDS, TM_LINES, LINE_WHERE, PARKOVANI, PARKING_LAYERS, parkingFields, PODLAZNOST, PODLAZNOST_FIELDS, podlaznostInfo } from "./queries.js";
-const TILE = 0.005; // degrees, as in tools/build_osm_tiles.mjs
-const TIMEOUT = 25000;
-// IPR's ArcGIS queues requests and under load answers "503 Wait timeout for the request exceeded"
-// (or not at all): a failed request is tried again after a pause.
-const RETRY_DELAYS = [1500, 4000];
-
-async function getOnce(url) {
-  // Brno asks the city's servers from the browser also on the local server: with a timeout there too.
-  const r = await fetch(url, STATIC || isLive ? { signal: AbortSignal.timeout(TIMEOUT) } : undefined);
-  if (!r.ok) throw new Error(await r.text());
-  const json = await r.json();
-  // ArcGIS reports failures with HTTP 200 and an "error" field.
-  if (json?.error) throw new Error(`${json.error.code} ${json.error.message}`);
-  return json;
-}
-
-// Retries are announced (the app shows them in its status line). A request that timed out is not
-// repeated: IPR is overloaded then, and another 25 s of waiting would not help.
-export const events = new EventTarget();
-async function getJSON(url) {
-  for (let i = 0; ; i++) {
-    try {
-      return await getOnce(url);
-    } catch (err) {
-      if (i >= RETRY_DELAYS.length || err.name === "TimeoutError" || err.name === "AbortError") throw err;
-      console.warn("opakuji dotaz", url.slice(0, 80), err.message);
-      events.dispatchEvent(new CustomEvent("retry", { detail: { attempt: i + 2, of: RETRY_DELAYS.length + 1 } }));
-      await new Promise((res) => setTimeout(res, RETRY_DELAYS[i]));
-    }
-  }
-}
-
-const envelope = (bbox) => ({
-  geometry: bbox, geometryType: "esriGeometryEnvelope", inSR: "4326", outSR: "4326",
-  spatialRel: "esriSpatialRelIntersects", f: "json",
-});
-const query = (base, params) => getJSON(`${base}?${new URLSearchParams(params)}`);
-
-// The last TILES_KEPT tiles stay in memory: the next cut nearby (or a dragged cut) needs no
-// download. A tile that failed to load is asked for again next time.
-const TILES_KEPT = 24;
-const tiles = new Map();
-const tile = (n) => {
-  if (tiles.has(n)) {
-    const p = tiles.get(n);
-    tiles.delete(n); // most recently used goes to the end
-    tiles.set(n, p);
-    return p;
-  }
-  if (tiles.size >= TILES_KEPT) tiles.delete(tiles.keys().next().value);
-  tiles.set(n, fetch(`data/osm-tiles/${n}.json`).then((r) => (r.ok ? r.json() : r.status === 404 ? [] : Promise.reject(new Error(`dlaždice OSM ${r.status}`))))
-    .catch((err) => { tiles.delete(n); throw err; }));
-  return tiles.get(n);
-};
-
-// OSM elements around a point, merged from the tiles it touches (as the server's localOsm()).
-async function osmTiles(lat, lon, radius) {
-  const dLat = radius / 110574;
-  const dLon = radius / (111320 * Math.cos((lat * Math.PI) / 180));
-  const names = [];
-  for (let ix = Math.floor((lon - dLon) / TILE); ix <= Math.floor((lon + dLon) / TILE); ix++) {
-    for (let iy = Math.floor((lat - dLat) / TILE); iy <= Math.floor((lat + dLat) / TILE); iy++) names.push(`${ix}_${iy}`);
-  }
-  const seen = new Set();
-  const elements = [];
-  for (const els of await Promise.all(names.map(tile))) {
-    for (const el of els) {
-      const key = el.id + ":" + el.geometry[0].lat + ":" + el.geometry[0].lon;
-      if (seen.has(key)) continue;
-      seen.add(key);
-      elements.push(el);
-    }
-  }
-  return { source: "local", elements };
-}
-
 // Brno asks the city's services on a click, as Prague asks IPR's; only the OSM tiles are files.
-export const osm = (lat, lon, r) => (isJihlava ? jihlavaOsm(lat, lon, r) : isBrno ? brnoOsm(lat, lon, r) : STATIC ? osmTiles(lat, lon, r) : getJSON(`/api/osm?lat=${lat}&lon=${lon}&r=${r}`));
+// A town (towns/<id>.js) brings its own sources.
+const town = TOWNS[city.id]?.sources;
 
-export const mtvu = (bbox) => (isJihlava ? jihlavaSurfaces(bbox) : isBrno ? brnoSurfaces(bbox) : STATIC
+export const osm = (lat, lon, r) => (town ? town.osm(lat, lon, r) : isBrno ? brnoOsm(lat, lon, r) : STATIC ? osmTiles(lat, lon, r) : getJSON(`/api/osm?lat=${lat}&lon=${lon}&r=${r}`));
+
+export const mtvu = (bbox) => (town ? town.surfaces(bbox) : isBrno ? brnoSurfaces(bbox) : STATIC
   ? query(MTVU, { ...envelope(bbox), outFields: MTVU_FIELDS })
   : getJSON(`/api/mtvu?bbox=${bbox}`));
 
-export const linie = (bbox) => (isJihlava ? jihlavaLines(bbox) : isBrno ? brnoLines(bbox) : STATIC
+export const linie = (bbox) => (town ? town.lines(bbox) : isBrno ? brnoLines(bbox) : STATIC
   ? query(TM_LINES, { ...envelope(bbox), where: LINE_WHERE, outFields: "CTMTP_KOD" })
   : getJSON(`/api/linie?bbox=${bbox}`));
 
@@ -317,195 +247,11 @@ async function brnoPodlaznost(lat, lon) {
   };
 }
 
-// ---------- Jihlava ----------
-// The city's GIS (gis.jihlava-city.cz) answers the browser directly (CORS), as IPR does: the passport of
-// the roads (Pasporty, sections of roadway and sidewalk kept by the city, with the street's name and
-// class) for the surfaces, RÚIAN buildings (with floors) and the city's lawns around them, the parking
-// sections of the city with their orientation, fences and railings of the technical map, and trees,
-// lamps and benches of the city's passports.
-const JI = "https://gis.jihlava-city.cz";
-const JI_PASPORT = `${JI}/server1/rest/services/ost/Pasporty/MapServer`;
-const JI_ROADS = `${JI_PASPORT}/112/query`;
-const JI_LAWNS = `${JI_PASPORT}/25/query`;
-const JI_BUILDINGS = `${JI}/server/rest/services/ost/ORP_RUIAN/MapServer/7/query`;
-const JI_PARCELS = `${JI}/server/rest/services/ost/Ji_parcely/MapServer/1/query`;
-const JI_DTM_LINES = `${JI}/server1/rest/services/DTM/DTM_ZPS_verejnost/MapServer/12/query`;
-const JI_PARKING = `${JI}/server1/rest/services/verejnost/doprava_verejnost/MapServer/105/query`;
-// The town's services turn S-JTSK into WGS 84 by another transformation than IPR's and the orthophotos
-// (15965, about 6 m off OSM in Jihlava): answers come with S_JTSK_To_WGS_1984_1 (1623), as IPR's. An
-// input point is moved into their WGS 84 by the difference (it varies by under 0.5 m over the town).
-const JI_DATUM = { datumTransformation: 1623 };
-const JI_IN_SHIFT = [3.2e-5, 4.9e-5]; // lon, lat
-const jiQuery = (url, params) => query(url, { ...params, ...JI_DATUM });
-
-// The passport is asked once per cut for the surfaces and again for the parking: one request.
-const jiRoadsCache = new Map();
-const jihlavaRoads = (bbox) => {
-  if (!jiRoadsCache.has(bbox)) {
-    if (jiRoadsCache.size > 8) jiRoadsCache.delete(jiRoadsCache.keys().next().value);
-    jiRoadsCache.set(bbox, jiQuery(JI_ROADS, { ...envelope(bbox), outFields: "typ_useku" }).catch((err) => { jiRoadsCache.delete(bbox); throw err; }));
-  }
-  return jiRoadsCache.get(bbox);
-};
-
-// Land of the cadastre (druh pozemku, způsob využití) → MTVU codes, for what the layers above leave
-// open: front gardens, yards, verges. Prague's MTVU covers the whole ground; Jihlava's passport only the
-// roads, so without this the rest of a cut was "Neurčeno". The road's own parcel beyond the passport's
-// roadway and sidewalk is mostly a grass verge: green, as an estimate.
-const JI_LAND = [
-  [/^(zahrada|ovocný sad|vinice|chmelnice)/, 300], [/^trvalý travní porost/, 401], [/^orná půda/, 100],
-  [/^lesní pozemek/, 200], [/^vodní plocha/, 501], [/^zastavěná plocha/, 603],
-  [/\((zeleň|neplodná půda)\)/, 401], [/\((ostatní komunikace|silnice)\)/, [401, true]],
-  [/\(manipulační plocha\)/, 1003], [/\(sportoviště/, 901], [/\(dráha\)/, 1100],
-];
-const landCode = (name) => JI_LAND.find(([re]) => re.test(name || ""))?.[1] ?? null;
-
-// Buildings first (the passport passes under some of them), then the roads, the lawns, and the cadastre.
-async function jihlavaSurfaces(bbox) {
-  const [roads, buildings, lawns, parcels] = await Promise.all([
-    jihlavaRoads(bbox),
-    jiQuery(JI_BUILDINGS, { ...envelope(bbox), outFields: "pocet_podl" }).catch(() => ({ features: [] })),
-    jiQuery(JI_LAWNS, { ...envelope(bbox), outFields: "druh_plocha" }).catch(() => ({ features: [] })),
-    jiQuery(JI_PARCELS, { ...envelope(bbox), outFields: "drupoz_naz" }).catch(() => ({ features: [] })),
-  ]);
-  const features = [];
-  const add = (json, code) => {
-    for (const f of json.features || []) {
-      const v = typeof code === "function" ? code(f.attributes) : code;
-      const [c, guess] = Array.isArray(v) ? v : [v, false];
-      if (c && f.geometry?.rings) features.push({ attributes: { CTVUK_KOD: c, CTVUK_POPIS: MTVU_LABELS[c] || "", ODHAD: guess ? 1 : 0 }, geometry: f.geometry });
-    }
-  };
-  add(buildings, 601);
-  add(roads, (a) => (a.typ_useku === "vozovka" ? 701 : a.typ_useku === "chodník" ? 702 : null));
-  add(lawns, 401);
-  // Without the passport's roadway around (a road it does not keep) the road parcel stays open: green
-  // there would hide the road the profile then estimates from OSM.
-  const hasRoadway = (roads.features || []).some((f) => f.attributes?.typ_useku === "vozovka");
-  add(parcels, (a) => { const c = landCode(a.drupoz_naz); return Array.isArray(c) && !hasRoadway ? null : c; });
-  return { features };
-}
-
-// Lines of the technical map → the codes of IPR's line layer (derive.js FENCE_LINES and the rest).
-const JI_LINE_CODES = { Plot: 61210, Zabradli: 61530, "Zed Linie": 71210, Svodidlo: 71522, "Protihlukova Stena": 71210 };
-async function jihlavaLines(bbox) {
-  const json = await jiQuery(JI_DTM_LINES, {
-    ...envelope(bbox), outFields: "nazev", where: `nazev IN (${Object.keys(JI_LINE_CODES).map((k) => `'${k}'`).join(",")})`,
-  });
-  const features = [];
-  for (const f of json.features || []) {
-    const code = JI_LINE_CODES[f.attributes?.nazev];
-    if (code && f.geometry?.paths) features.push({ attributes: { CTMTP_KOD: code }, geometry: f.geometry });
-  }
-  return { features };
-}
-
-// OSM around a point plus the city's trees, lamps, stop shelters, benches at stops and bike stands where OSM
-// has no such thing within 3 m (its layer of benches does not answer queries).
-// Each layer: its url, the fields it needs, and the OSM tags of a feature (null: not drawn).
-const JI_POINTS = [
-  [`${JI_PASPORT}/28/query`, "objectid", () => ({ natural: "tree" })],
-  [`${JI_PASPORT}/50/query`, "objectid", () => ({ highway: "street_lamp" })],
-  // Stops of the town's passport: the shelter (with its bench) where there is one, else a bench standing
-  // on its own.
-  [`${JI_PASPORT}/127/query`, "pristresek,lavicka,stav", (a) => (a.stav === "Návrh" ? null
-    : a.pristresek === "ano" ? { amenity: "shelter", shelter_type: "public_transport", bus: "yes" }
-    : /Pevně|Volně/.test(a.lavicka || "") ? { amenity: "bench" } : null)],
-  [`${JI}/server1/rest/services/verejnost/doprava_verejnost/MapServer/150/query`, "stav", (a) => (a.stav && a.stav !== "Stávající" ? null : { amenity: "bicycle_parking" })],
-];
-async function jihlavaOsm(lat, lon, radius) {
-  const dLat = radius / 110574, dLon = radius / (111320 * Math.cos((lat * Math.PI) / 180));
-  const box = [lon - dLon, lat - dLat, lon + dLon, lat + dLat].join(",");
-  const [o, ...pts] = await Promise.all([
-    osmTiles(lat, lon, radius),
-    ...JI_POINTS.map(([url, outFields]) => jiQuery(url, { ...envelope(box), outFields }).catch(() => ({ features: [] }))),
-  ]);
-  const kx = 111320 * Math.cos((lat * Math.PI) / 180), ky = 110574;
-  const key = (t) => Object.entries(t).find(([k]) => ["highway", "amenity", "natural"].includes(k))?.join("=");
-  const nodes = o.elements.filter((e) => e.type === "node");
-  let id = -1;
-  JI_POINTS.forEach(([, , tagsOf], i) => {
-    for (const f of pts[i].features || []) {
-      const g = f.geometry, tags = tagsOf(f.attributes || {});
-      if (!tags || !g || g.x === undefined) continue;
-      const k = key(tags);
-      // A stop's shelter may stand in OSM as the stop node (shelter=yes) a few metres off.
-      const shelter = tags.amenity === "shelter";
-      const same = (t) => key(t) === k || (shelter && t.shelter === "yes");
-      if (nodes.some((n) => same(n.tags || {}) && Math.hypot((n.geometry[0].lon - g.x) * kx, (n.geometry[0].lat - g.y) * ky) < (shelter ? 15 : 3))) continue;
-      o.elements.push({ type: "node", id: id--, tags: { ...tags, source: "Jihlava" }, geometry: [{ lat: g.y, lon: g.x }] });
-    }
-  });
-  return o;
-}
-
-// The city's parking sections are lines with the kind of stalls: each becomes a strip as deep as its
-// stalls. A line drawn along the curb has roadway on one side only, and the strip lies on that side;
-// a line with roadway (or sidewalk) on both sides is the middle of its stalls.
-const JI_DEPTH = { podélné: 2.0, šikmé: 4.5, kolmé: 5.0 };
-const JI_SPECIAL = new Set(["K+R", "Taxi", "Vyhrazené"]);
-const insideAny = (feats, x, y) => feats.find((f) => insideRings(f.geometry.rings, x, y));
-async function jihlavaParkovani(bbox) {
-  const [park, roads] = await Promise.all([
-    jiQuery(JI_PARKING, { ...envelope(bbox), outFields: "druh_stani,rezim,pocet_mist", where: "stav_prvku = 'Stávající'" }),
-    jihlavaRoads(bbox).catch(() => ({ features: [] })),
-  ]);
-  const lat0 = Number(bbox.split(",")[1]);
-  const kx = 111320 * Math.cos((lat0 * Math.PI) / 180), ky = 110574;
-  const roadway = (roads.features || []).filter((f) => f.attributes?.typ_useku === "vozovka");
-  const features = [];
-  for (const f of park.features || []) {
-    const { druh_stani: kind, rezim, pocet_mist: count } = f.attributes || {};
-    if (!rezim || /^Zákaz/.test(rezim)) continue;
-    const depth = JI_DEPTH[kind] || 2.0;
-    for (const path of f.geometry?.paths || []) {
-      if (path.length < 2) continue;
-      const xy = path.map(([x, y]) => [x * kx, y * ky]);
-      // Normal of the whole line, and on which side the roadway lies 1 m away.
-      const [ax, ay] = xy[0], [bx, by] = xy[xy.length - 1], l = Math.hypot(bx - ax, by - ay) || 1;
-      const n = [-(by - ay) / l, (bx - ax) / l];
-      const mid = xy[Math.floor(xy.length / 2)];
-      const on = (d) => !!insideAny(roadway, (mid[0] + n[0] * d) / kx, (mid[1] + n[1] * d) / ky);
-      const left = on(1), right = on(-1);
-      const [lo, hi] = left === right ? [-depth / 2, depth / 2] : left ? [0, depth] : [-depth, 0];
-      const ring = [...xy.map(([x, y]) => [x + n[0] * lo, y + n[1] * lo]), ...[...xy].reverse().map(([x, y]) => [x + n[0] * hi, y + n[1] * hi])];
-      ring.push(ring[0]);
-      features.push({
-        attributes: { KIND: JI_SPECIAL.has(rezim) ? "specialni" : "useky", PS_ZPS: count || 0 },
-        geometry: { rings: [ring.map(([x, y]) => [x / kx, y / ky])] },
-      });
-    }
-  }
-  return { features };
-}
-
-// Floors of a building from RÚIAN (počet podlaží), and its use (ZpusobVyuzitiObjektu) as the look of the
-// house: industrial, farm, production and storage buildings read as a hall (IPR typ 3), cottages and
-// garages as small low buildings (typ 6).
-const JI_HALL = new Set([1, 2, 12, 13]), JI_LOW = new Set([8, 18]);
-async function jihlavaPodlaznost(lat, lon) {
-  const json = await jiQuery(JI_BUILDINGS, {
-    geometry: `${lon + JI_IN_SHIFT[0]},${lat + JI_IN_SHIFT[1]}`, geometryType: "esriGeometryPoint", inSR: "4326", outSR: "4326", spatialRel: "esriSpatialRelIntersects",
-    outFields: "pocet_podl,zpusob_vyu", f: "json",
-  });
-  const f = json.features?.[0];
-  if (!f) return {};
-  const { pocet_podl: floors, zpusob_vyu: use } = f.attributes;
-  const kx = 111320 * Math.cos((lat * Math.PI) / 180), ky = 110574;
-  let area = 0;
-  const r = f.geometry?.rings?.[0] || [];
-  for (let i = 0, j = r.length - 1; i < r.length; j = i++) area += (r[j][0] - r[i][0]) * kx * (r[j][1] + r[i][1]) * ky;
-  return {
-    cornice: floors || undefined, roof: 0, total: floors || 0,
-    kind: JI_HALL.has(use) ? 3 : JI_LOW.has(use) ? 6 : undefined, newBuild: false, area: Math.round(Math.abs(area) / 2),
-  };
-}
-
 // The special stalls (5–8) lie inside paid zones: in a zone (by the zone file, inZone) all layers
 // are asked for at once; elsewhere only where the sections (3) found something, which spares IPR
 // four requests per cut. As in server.mjs.
 export async function parkovani(bbox, inZone) {
-  if (isJihlava) return jihlavaParkovani(bbox);
+  if (town) return town.parking(bbox);
   if (isBrno) return brnoParkovani(bbox);
   if (!STATIC) return getJSON(`/api/parkovani?bbox=${bbox}${inZone ? "&zone=1" : ""}`);
   const layer = async (n, kind) => {
@@ -545,18 +291,8 @@ export async function zps(lat, lon) {
 export const AFTER_2010 = 2020;
 const VYVOJ_TILE = 0.01;
 const vyvojTiles = new Map();
-const insideRings = (rings, x, y) => {
-  let c = false;
-  for (const r of rings) {
-    for (let i = 0, j = r.length - 1; i < r.length; j = i++) {
-      const [xi, yi] = r[i], [xj, yj] = r[j];
-      if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c;
-    }
-  }
-  return c;
-};
 export async function vyvoj(lat, lon) {
-  if (isLive) return undefined; // Brno and Jihlava have no such layer: the look comes from the house alone
+  if (isLive) return undefined; // Brno and the towns have no such layer: the look comes from the house alone
   const k = `${Math.floor(lon / VYVOJ_TILE)}_${Math.floor(lat / VYVOJ_TILE)}`;
   if (!vyvojTiles.has(k)) vyvojTiles.set(k, fetch(`data/vyvoj/${k}.json`).then((r) => (r.ok ? r.json() : null), () => null));
   const polys = await vyvojTiles.get(k);
@@ -567,7 +303,7 @@ export async function vyvoj(lat, lon) {
 }
 
 export async function podlaznost(lat, lon) {
-  if (isJihlava) return jihlavaPodlaznost(lat, lon);
+  if (town) return town.podlaznost(lat, lon);
   if (isBrno) return brnoPodlaznost(lat, lon);
   if (!STATIC) return getJSON(`/api/podlaznost?lat=${lat}&lon=${lon}`);
   const json = await query(PODLAZNOST, {

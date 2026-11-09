@@ -13,9 +13,21 @@ export const MTVU_LABELS = {
   1003: "ostatní plochy - zpevněné plochy kolem zástavby", 1100: "železnice",
 };
 
+// The rest of a town's illustrations (pilot/public/<art>/): its bus and, until it has its own, Prague's
+// furniture (copies in the town's folder).
+const TOWN_ART = {
+  "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound",
+  "lamp-modern-left": "lamp-left", "lamp-modern-right": "lamp-right", "bench-center": "bench-center",
+  "bike-rack-perpendicular-left": "bike-rack", "bollard": "bollard",
+  "transit-shelter-01-left": "transit-shelter-left", "transit-shelter-01-right": "transit-shelter-right",
+};
+
 const CITIES = {
   praha: {
     id: "praha",
+    server: "IPR", // "Server … neodpovídá"
+    cover: "Prahu", // "Data pokrývají jen …"
+    dataName: "Technická mapa IPR", // "… teď neodpovídá"
     view: [50.0817, 14.4176],
     // Old Town Square: the inner city of tenements versus the outer estates (derive.js centreKm).
     centre: [14.4208, 50.0875],
@@ -36,6 +48,9 @@ const CITIES = {
   },
   brno: {
     id: "brno",
+    server: "města Brna", // "Server … neodpovídá"
+    cover: "Brno", // "Data pokrývají jen …"
+    dataName: "Technická mapa města Brna", // "… teď neodpovídá"
     view: [49.1951, 16.6085],
     centre: [16.6085, 49.1951], // náměstí Svobody
     inCity: "v Brně",
@@ -61,6 +76,9 @@ const CITIES = {
   },
   jihlava: {
     id: "jihlava",
+    server: "města Jihlavy", // "Server … neodpovídá"
+    cover: "Jihlavu", // "Data pokrývají jen …"
+    dataName: "Pasport komunikací Jihlavy", // "… teď neodpovídá"
     view: [49.3961, 15.5912],
     centre: [15.5912, 49.3961], // Masarykovo náměstí
     inCity: "v Jihlavě",
@@ -80,6 +98,87 @@ const CITIES = {
     // from a technical map, so the same OSM axis fixes apply.
     fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
     example: "49.396100, 15.591200",
+    // Jihlava illustrations (jihlava/): the trolleybus and bus of DPmJ in its cream and red (Bára's photos), the
+    // trolleybus with its poles in bus lanes under trolley wires; the furniture as in Prague for now.
+    artMap: {
+      "trolleybus-inbound": "trolejbus-inbound", "trolleybus-outbound": "trolejbus-outbound",
+      ...TOWN_ART,
+    },
+  },
+  most: {
+    id: "most",
+    server: "města Mostu", // "Server … neodpovídá"
+    cover: "Most", // "Data pokrývají jen …"
+    dataName: "Technická mapa Mostu", // "… teď neodpovídá"
+    view: [50.5030, 13.6363],
+    centre: [13.6363, 50.5030], // 1. náměstí
+    inCity: "v Mostě",
+    adjective: "mostecké",
+    mapLabel: "Mapa Mostu",
+    dataShort: "města Mostu a OSM",
+    techMap: "technickou mapu Mostu",
+    parkingSource: "parkoviště z technické mapy",
+    rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Most orientačně:",
+    art: "most",
+    artLabel: "Mostecké ilustrace",
+    artTitle: "Kreslit mosteckými ilustracemi (vypnuto: ilustrace Streetmixu)",
+    emptyImg: "most/tram-inbound.svg",
+    credit: "data © Statutární město Most (technická mapa), RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
+    storeSuffix: "-most",
+    fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
+    example: "50.503000, 13.636300",
+    artMap: { "streetcar-inbound": "tram-inbound", "streetcar-outbound": "tram-outbound", ...TOWN_ART },
+  },
+  opava: {
+    id: "opava",
+    server: "města Opavy", // "Server … neodpovídá"
+    cover: "Opavu", // "Data pokrývají jen …"
+    dataName: "Technická mapa Opavy", // "… teď neodpovídá"
+    view: [49.9387, 17.9026],
+    centre: [17.9026, 49.9387], // Horní náměstí
+    inCity: "v Opavě",
+    adjective: "opavské",
+    mapLabel: "Mapa Opavy",
+    dataShort: "města Opavy a OSM",
+    techMap: "technickou mapu Opavy",
+    parkingSource: "parkovací stání (město Opava)",
+    rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Opavu orientačně:",
+    art: "opava",
+    artLabel: "Opavské ilustrace",
+    artTitle: "Kreslit opavskými ilustracemi (vypnuto: ilustrace Streetmixu)",
+    emptyImg: "opava/trolejbus-inbound.svg",
+    credit: "data © Statutární město Opava (technická mapa, parkování, mobiliář), RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
+    storeSuffix: "-opava",
+    fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
+    example: "49.938700, 17.902600",
+    artMap: { "trolleybus-inbound": "trolejbus-inbound", "trolleybus-outbound": "trolejbus-outbound", ...TOWN_ART },
+  },
+  plzen: {
+    id: "plzen",
+    server: "města Plzně", // "Server … neodpovídá"
+    cover: "Plzeň", // "Data pokrývají jen …"
+    dataName: "Technická mapa Plzně", // "… teď neodpovídá"
+    view: [49.7477, 13.3776],
+    centre: [13.3776, 49.7477], // náměstí Republiky
+    inCity: "v Plzni",
+    adjective: "plzeňské",
+    mapLabel: "Mapa Plzně",
+    dataShort: "města Plzně a OSM",
+    techMap: "technickou mapu Plzně",
+    parkingSource: "parkovací plochy (město Plzeň)",
+    rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Plzeň orientačně:",
+    art: "plzen",
+    artLabel: "Plzeňské ilustrace",
+    artTitle: "Kreslit plzeňskými ilustracemi (vypnuto: ilustrace Streetmixu)",
+    emptyImg: "plzen/tram-inbound.svg",
+    credit: "data © Statutární město Plzeň (technická mapa, pasport zeleně a mobiliáře), RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
+    storeSuffix: "-plzen",
+    fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
+    example: "49.747700, 13.377600",
+    artMap: {
+      "streetcar-inbound": "tram-inbound", "streetcar-outbound": "tram-outbound",
+      "trolleybus-inbound": "trolejbus-inbound", "trolleybus-outbound": "trolejbus-outbound", ...TOWN_ART,
+    },
   },
 };
 
@@ -89,5 +188,6 @@ export const city = { ...(CITIES[globalThis.PROFILY_CITY || CITY] || CITIES.prah
 if (globalThis.PROFILY_FIX) city.fix = globalThis.PROFILY_FIX;
 export const isBrno = city.id === "brno";
 export const isJihlava = city.id === "jihlava";
-// Cities whose page asks the city's servers from the browser also on the local server.
-export const isLive = isBrno || isJihlava;
+// Cities whose page asks the city's servers from the browser also on the local server: all but Prague.
+export const isLive = city.id !== "praha";
+export const CITY_IDS = Object.keys(CITIES);

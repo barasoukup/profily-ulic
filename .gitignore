@@ -26,5 +26,5 @@ pilot/public/config.local.js
 
 # Brno evaluation data (orthophoto tiles, results, review images); the scripts in evaluation/ rebuild them.
 evaluation/brno/data/
-# Jihlava evaluation data (orthophoto, results, review images); the scripts in evaluation/ rebuild them.
-evaluation/jihlava/data/
+# Evaluation data of the towns (orthophoto, results, review images); the scripts in evaluation/ rebuild them.
+evaluation/*/data/

@@ -3,9 +3,10 @@
 //   node tools/drop_city_links.mjs _site
 import fs from "node:fs";
 import path from "node:path";
+import { SITES } from "./cities.mjs";
 
 const site = process.argv[2];
-const CITIES = ["brno", "jihlava"];
+const CITIES = Object.keys(SITES);
 const missing = CITIES.filter((c) => !fs.existsSync(path.join(site, c, "index.html")));
 const pages = [path.join(site, "index.html"), ...CITIES.map((c) => path.join(site, c, "index.html")).filter((f) => fs.existsSync(f))];
 for (const f of pages) {

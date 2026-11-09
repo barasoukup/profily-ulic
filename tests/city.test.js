@@ -42,3 +42,20 @@ test("kódy linií technické mapy Brna na kódy IPR", () => {
   assert.equal(brnoLineCode(1542105), 42105); // hrana svahu
   assert.equal(brnoLineCode(1660800), null); // rozhraní ploch
 });
+
+// Every city site of tools/cities.mjs builds from the Prague page, with its own switch and footer links.
+const { cityIndex, cityConfig } = await import("../tools/city_site.mjs");
+const { SITES, NAMES } = await import("../tools/cities.mjs");
+for (const id of Object.keys(SITES)) {
+  test(`stránka ${id}: titulek, přepínač, CSP, odkazy na ostatní města`, () => {
+    const html = cityIndex(id, read("index.html"));
+    assert.match(cityConfig(id, read("config.js")), new RegExp(`export const CITY = "${id}";`));
+    assert.match(html, new RegExp(`<title>Profily ulic · ${NAMES[id]}</title>`));
+    assert.match(html, new RegExp(`<a href="\\./" aria-current="page">${NAMES[id]}</a>`));
+    assert.match(html, /<a href="\.\.\/">Praha<\/a>/);
+    for (const host of SITES[id].connect) assert.ok(html.match(/connect-src [^;]*/)[0].includes(host));
+    const footer = html.match(/<footer[\s\S]*?<\/footer>/)[0];
+    assert.doesNotMatch(footer, /IPR|TSK/);
+    for (const [other, name] of Object.entries(NAMES)) if (other !== id) assert.match(footer, new RegExp(`Profily ulic ${name}`));
+  });
+}

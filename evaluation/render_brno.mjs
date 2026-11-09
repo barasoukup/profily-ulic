@@ -4,7 +4,7 @@
 //   node evaluation/render_brno.mjs && for f in evaluation/brno/data/png/*.svg; do qlmanage -t -s 1100 -o evaluation/brno/data/png "$f"; done
 import fs from "node:fs/promises";
 import path from "node:path";
-const CITY = process.env.CITY === "jihlava" ? "jihlava" : "brno"; // CITY=jihlava: the Jihlava sample
+const CITY = process.env.CITY || "brno"; // CITY=jihlava (or another town): that town's sample
 globalThis.PROFILY_CITY = CITY;
 const { TYPES } = await import("../pilot/public/types.js");
 

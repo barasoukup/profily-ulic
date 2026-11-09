@@ -157,30 +157,33 @@ jobs:
             echo "::warning::no Brno parking data, profiles estimate the parking"
           fi
           touch site-brno/ok
-      # Jihlava (/jihlava/): the same app asking the town's GIS on a click (passport of the roads, RÚIAN
-      # buildings, parking, technical map on gis.jihlava-city.cz). Built here: only the OSM tiles, cut out
-      # of Geofabrik's Czech Republic (no BBBike extract). A failure leaves Jihlava out.
-      - id: jihlava-pbf-cache
+      # The towns (/jihlava/, /most/, /opava/, /plzen/; tools/cities.mjs): the same app asking the town's
+      # GIS on a click. Built here: only the OSM tiles, cut out of Geofabrik's Czech Republic (no BBBike
+      # extract). A town that fails is left out.
+      - id: towns-pbf-cache
         uses: actions/cache@v4
         with:
-          path: data/osm/Jihlava.osm.pbf
-          key: osm-jihlava-pbf-${{ steps.week.outputs.week }}
-          restore-keys: osm-jihlava-pbf-
-      - name: Jihlava OSM tiles
+          path: data/osm/towns
+          key: osm-towns-pbf-${{ steps.week.outputs.week }}
+          restore-keys: osm-towns-pbf-
+      - name: Town OSM tiles
         continue-on-error: true
-        timeout-minutes: 20
+        timeout-minutes: 30
         run: |
-          mkdir -p data/osm
-          if [ "${{ steps.jihlava-pbf-cache.outputs.cache-hit }}" != "true" ]; then
-            sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends osmium-tool
-            # a failed download or cut falls back to last week's extract (restored from the cache) when there is one
-            { [ -f /tmp/cz.osm.pbf ] || curl -fL --retry 3 --retry-delay 20 --connect-timeout 30 -o /tmp/cz.osm.pbf \
-                https://download.geofabrik.de/europe/czech-republic-latest.osm.pbf; } &&
-              osmium extract --bbox 15.48,49.32,15.70,49.47 --overwrite -o data/osm/Jihlava.osm.pbf /tmp/cz.osm.pbf ||
-              [ -f data/osm/Jihlava.osm.pbf ]
-          fi
-          NAME=jihlava tools/build_osm_data.sh data/osm/Jihlava.osm.pbf site-jihlava/data/osm-tiles
-          touch site-jihlava/ok
+          mkdir -p data/osm/towns
+          node tools/cities.mjs towns | while read -r id bbox; do
+            pbf=data/osm/towns/$id.osm.pbf
+            if [ "${{ steps.towns-pbf-cache.outputs.cache-hit }}" != "true" ] || [ ! -f "$pbf" ]; then
+              command -v osmium >/dev/null || sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends osmium-tool
+              # a failed download or cut falls back to last week's extract (restored from the cache) when there is one
+              { [ -f /tmp/cz.osm.pbf ] || curl -fL --retry 3 --retry-delay 20 --connect-timeout 30 -o /tmp/cz.osm.pbf \
+                  https://download.geofabrik.de/europe/czech-republic-latest.osm.pbf; } &&
+                osmium extract --bbox "$bbox" --overwrite -o "$pbf" /tmp/cz.osm.pbf ||
+                [ -f "$pbf" ] || { echo "::warning::no OSM extract for $id"; continue; }
+            fi
+            NAME=$id tools/build_osm_data.sh "$pbf" "site-$id/data/osm-tiles" && touch "site-$id/ok" ||
+              echo "::warning::OSM tiles of $id not built"
+          done
       - name: Assemble the site
         env:
           MAPY_KEY: ${{ secrets.MAPY_KEY }} # Mapy.com key for the street panorama; empty → a plain link instead
@@ -205,20 +208,22 @@ jobs:
             rm site-brno/ok && mv site-brno/data/* _site/brno/data/
             cp LICENCE-A-ZDROJE.md _site/brno/data/LICENCE-A-ZDROJE.md
             # a Brno failure never stops the Prague deploy
-            node tools/build_brno_site.mjs _site/brno || { echo "::warning::Brno site not built"; rm -rf _site/brno; }
+            node tools/build_city_site.mjs _site/brno brno || { echo "::warning::Brno site not built"; rm -rf _site/brno; }
           else
             echo "::warning::no Brno data, the Brno site is left out of this deploy"
           fi
-          if [ -f site-jihlava/ok ]; then
-            mkdir -p _site/jihlava/data
-            cp -R pilot/public/. _site/jihlava/
-            cp _site/config.js _site/jihlava/config.js
-            rm site-jihlava/ok && mv site-jihlava/data/* _site/jihlava/data/
-            cp LICENCE-A-ZDROJE.md _site/jihlava/data/LICENCE-A-ZDROJE.md
-            node tools/build_brno_site.mjs _site/jihlava jihlava || { echo "::warning::Jihlava site not built"; rm -rf _site/jihlava; }
-          else
-            echo "::warning::no Jihlava data, the Jihlava site is left out of this deploy"
-          fi
+          for id in $(node tools/cities.mjs towns | cut -d' ' -f1); do
+            if [ -f "site-$id/ok" ]; then
+              mkdir -p "_site/$id/data"
+              cp -R pilot/public/. "_site/$id/"
+              cp _site/config.js "_site/$id/config.js"
+              rm "site-$id/ok" && mv "site-$id"/data/* "_site/$id/data/"
+              cp LICENCE-A-ZDROJE.md "_site/$id/data/LICENCE-A-ZDROJE.md"
+              node tools/build_city_site.mjs "_site/$id" "$id" || { echo "::warning::$id site not built"; rm -rf "_site/$id"; }
+            else
+              echo "::warning::no $id data, its site is left out of this deploy"
+            fi
+          done
           # a city site that is missing gets no link from the others (city switch and footer)
           node tools/drop_city_links.mjs _site
           cat > _site/data/README.txt <<'EOF'

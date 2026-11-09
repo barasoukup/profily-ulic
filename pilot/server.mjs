@@ -5,7 +5,8 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
-import { brnoConfig, brnoIndex, jihlavaConfig, jihlavaIndex } from "../tools/city_site.mjs";
+import { cityConfig, cityIndex } from "../tools/city_site.mjs";
+import { SITES } from "../tools/cities.mjs";
 import { MTVU, MTVU_FIELDS, TM_LINES, LINE_WHERE, PARKOVANI, PARKING_LAYERS, parkingFields, PODLAZNOST, PODLAZNOST_FIELDS, podlaznostInfo } from "./public/queries.js";
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
@@ -224,20 +225,18 @@ const server = http.createServer(async (req, res) => {
     } catch {
       throw Object.assign(new Error("neplatná adresa"), { status: 400 });
     }
-    // The Brno site (/brno/): the same app with CITY = "brno" and its data from pilot/data/brno,
-    // as the deploy places it in _site/brno (tools/city_site.mjs).
-    // Jihlava (/jihlava/) the same way, data from pilot/data/jihlava.
-    if (rel === "brno" || rel === "jihlava") {
+    // A city site (/brno/, /jihlava/, …): the same app with CITY = "<city>" and its data from
+    // pilot/data/<city>, as the deploy places it in _site/<city> (tools/city_site.mjs).
+    if (SITES[rel]) {
       res.writeHead(301, { Location: `/${rel}/` });
       return res.end();
     }
-    const site = ["brno", "jihlava"].find((c) => rel.startsWith(c + "/"));
+    const site = Object.keys(SITES).find((c) => rel.startsWith(c + "/"));
     if (site) rel = rel.slice(site.length + 1) || "index.html";
     if (site && (rel === "index.html" || rel === "config.js")) {
       const text = await fs.readFile(path.join(PUBLIC, rel), "utf8");
       res.writeHead(200, { "Content-Type": TYPES[path.extname(rel)], "Cache-Control": "no-cache" });
-      const [index, config] = site === "brno" ? [brnoIndex, brnoConfig] : [jihlavaIndex, jihlavaConfig];
-      return res.end(rel === "index.html" ? index(text) : config(text));
+      return res.end(rel === "index.html" ? cityIndex(site, text) : cityConfig(site, text));
     }
     // data/… (OSM tiles, parking zones) is served from pilot/data, as the web build places it next to the app.
     const dataDir = path.join(ROOT, "data", ...(site ? [site] : []));
