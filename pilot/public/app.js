@@ -111,9 +111,9 @@ const brnoMaps = () => ({
   }),
 });
 const baseMaps = isBrno ? brnoMaps() : pragueMaps();
-// Brno's key changed with its default map (the old default, the DTM of the region, was mostly blank).
-const BASE_KEY = "streetdesign-basemap" + (isBrno ? "-brno2" : city.storeSuffix);
-let baseName = isBrno ? "Mapa Brna" : "Mapa IPR";
+// Brno's key changed with its default map (the DTM of the region was mostly blank, the MTVU map too pale).
+const BASE_KEY = "streetdesign-basemap" + (isBrno ? "-brno3" : city.storeSuffix);
+let baseName = isBrno ? "Ortofoto Brno" : "Mapa IPR"; // Brno: the city's orthophoto, fast tiles of the whole city (Bára)
 try { if (baseMaps[localStorage.getItem(BASE_KEY)]) baseName = localStorage.getItem(BASE_KEY); } catch {}
 baseMaps[baseName].addTo(map);
 map.on("baselayerchange", (e) => { try { localStorage.setItem(BASE_KEY, e.name); } catch {} });
