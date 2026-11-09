@@ -57,9 +57,9 @@ const card = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}"
 <path d="M69.5 120V91l9-6.8v36M105.5 120V84.3l9 6.7V120M69.5 120h45" stroke="#fff" stroke-width="5.4" fill="none" stroke-linejoin="round"/>
 <path d="M83 120v-9h18v9" fill="#fff"/>
 <text x="56" y="210" font-size="${brno ? 44 : 52}" font-weight="700" fill="#1d1d1b" letter-spacing="-1">Profily ulic${brno ? " · Brno" : ""}</text>
-<text font-size="26" fill="#4f4e49"><tspan x="56" y="262">Příčné profily</tspan><tspan x="56" y="298">${brno ? "brněnských" : "pražských"} ulic</tspan><tspan x="56" y="334">od fasády k fasádě</tspan><tspan x="56" y="370">${brno ? "z technické mapy a OSM." : "z dat IPR a OSM."}</tspan></text>
+<text font-size="26" fill="#4f4e49"><tspan x="56" y="262">Příčné profily</tspan><tspan x="56" y="298">${brno ? "brněnských" : "pražských"} ulic</tspan><tspan x="56" y="334">od fasády k fasádě</tspan><tspan x="56" y="370">${brno ? "z dat města a OSM." : "z dat IPR a OSM."}</tspan></text>
 <text font-size="22" fill="#6b6a65"><tspan x="56" y="440">Stav, návrh, porovnání</tspan><tspan x="56" y="471">a podíl prostoru ulice.</tspan></text>
-<text font-size="15" fill="#8a877e"><tspan x="56" y="566">Ilustrace © Streetmix (CC BY-SA 4.0)</tspan><tspan x="56" y="586">a Bára Soukupová · data © ${brno ? "DTM JMK (ČÚZK), Brno, OSM" : "IPR Praha, OSM"}</tspan></text>
+<text font-size="15" fill="#8a877e"><tspan x="56" y="566">Ilustrace © Streetmix (CC BY-SA 4.0)</tspan><tspan x="56" y="586">a Bára Soukupová · data © ${brno ? "Statutární město Brno, OSM" : "IPR Praha, OSM"}</tspan></text>
 </svg>`;
 fs.writeFileSync(out, card);
 console.log(`${out}: ${(card.length / 1024).toFixed(0)} kB`);

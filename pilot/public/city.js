@@ -49,7 +49,7 @@ const CITIES = {
     art: "brno",
     artLabel: "Brněnské ilustrace",
     artTitle: "Kreslit brněnskými ilustracemi (vypnuto: ilustrace Streetmixu)",
-    emptyImg: "brno/45t-inbound.svg",
+    emptyImg: "brno/t3-inbound.svg",
     credit: "data © Statutární město Brno (technická mapa a MTVU; budovy CC BY 4.0), parkování © parkovanivbrne.cz · © přispěvatelé OpenStreetMap",
     storeSuffix: "-brno",
     // Changes to the profile tried in Brno first (derive.js); Prague keeps its behaviour until they are

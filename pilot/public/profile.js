@@ -28,11 +28,11 @@ const PRAHA = {
   "transit-shelter-01-left": "transit-shelter-left", "transit-shelter-01-right": "transit-shelter-right",
   "transit-shelter-tram-left": "transit-shelter-tram-left", "transit-shelter-tram-right": "transit-shelter-tram-right",
 };
-// Brno illustrations (brno/): the DPMB tram Škoda 45T (13T drawn too) and bus, and furniture after the
+// Brno illustrations (brno/): the tram Tatra T3 in DPMB colours (Bára: the nicest; 45T and 13T drawn too) and bus, and furniture after the
 // rules of Brno's city architect (KAM, Principy tvorby veřejných prostranství, kap. 9): anthracite steel,
 // wooden slats, a slim glass stop shelter, a stainless bike rack. Houses are drawn as in Prague.
 const BRNO = {
-  "streetcar-inbound": "45t-inbound", "streetcar-outbound": "45t-outbound", "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound",
+  "streetcar-inbound": "t3-inbound", "streetcar-outbound": "t3-outbound", "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound",
   "lamp-modern-left": "lamp-left", "lamp-modern-right": "lamp-right", "bench-center": "bench-center",
   "bike-rack-perpendicular-left": "bike-rack", "bollard": "bollard",
   "transit-shelter-01-left": "transit-shelter-left", "transit-shelter-01-right": "transit-shelter-right",

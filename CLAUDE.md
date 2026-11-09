@@ -96,7 +96,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Úpravy výpočtu jen pro Brno přes `city.fix` (Bára: do Prahy zatím nezasahovat).
 - Záložní postup z veřejné DTM kraje (`tools/fetch_dtm_brno.sh`, `tools/build_dtm_brno.py`) si Bára
   přeje schovat pro města bez vlastní služby (DTM kraje má u velkých silnic chybějící obruby).
-- Ilustrace (`pilot/public/brno/`): tramvaj Škoda 45T (výchozí; 13T nakreslená taky), autobus DPMB, mobiliář podle
+- Ilustrace (`pilot/public/brno/`): tramvaj Tatra T3 v nátěru DPMB (Bára: je hezčí; 45T a 13T nakreslené taky), autobus DPMB, mobiliář podle
   zásad KAM Brno. Bára: u 13T i 45T není kolem čelního okna svislá červená, jen vodorovný červený pás pod oknem.
 - Test 100 řezů: `evaluation/brno/ZPRAVA.md`, skripty `evaluation/run_brno.mjs`, `render_brno.mjs`.
 - Otevřené: licence služeb města (MTVU, UMPS), úseky placeného stání jsou z 2/2024.
