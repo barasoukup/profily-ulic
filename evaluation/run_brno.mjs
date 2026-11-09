@@ -40,7 +40,7 @@ const JI_ORTHO = "https://gis.jihlava-city.cz/server/rest/services/basemaps/ORP_
 async function orthoJihlava(lat, lon, dir) {
   const [x, y] = merc(lon, lat);
   const scale = Math.cos((lat * Math.PI) / 180), h = VIEW / scale;
-  const r = await webFetch(`${JI_ORTHO}?${new URLSearchParams({ bbox: [x - h, y - h, x + h, y + h].join(","), bboxSR: 3857, imageSR: 3857, size: "900,900", format: "jpg", f: "image" })}`);
+  const r = await webFetch(`${JI_ORTHO}?${new URLSearchParams({ bbox: [x - h, y - h, x + h, y + h].join(","), bboxSR: 3857, imageSR: 3857, size: "900,900", format: "jpg", f: "image", datumTransformations: "[1623]" })}`);
   if (!r.ok) return;
   await fs.writeFile(path.join(dir, "0.jpg"), Buffer.from(await r.arrayBuffer()));
   await fs.writeFile(path.join(dir, "tiles.json"), JSON.stringify([{ file: "0.jpg", e: -VIEW, n: VIEW, size: 2 * VIEW }]));

@@ -132,7 +132,8 @@ CORS povolený):
   vozovka jen na jedné straně čáry (čára u obrubníku), pruh leží na té straně, jinak je čára jeho osou.
   Úseky „Zákaz stání / zastavení“ se vynechávají, K+R, taxi a vyhrazená stání jsou „zvláštní stání“.
 - linie: ploty, zábradlí, zdi, svodidla a protihlukové stěny z technické mapy (`server1/DTM/DTM_ZPS_verejnost/12`).
-- body: stromy (`Pasporty/28`), stožáry osvětlení (`Pasporty/50`), lavičky (`opendata/18`), kde je OSM nemá do 3 m.
+- body: stromy (`Pasporty/28`) a stožáry osvětlení (`Pasporty/50`), kde je OSM nemá do 3 m (vrstva laviček `opendata/18` na dotazy neodpovídá).
+- souřadnice: služby města převádějí S-JTSK do WGS 84 jinou transformací (asi 6 m vedle OSM), dotazy proto žádají `datumTransformation=1623` jako u IPR.
 - lokálně jen dlaždice OSM: výřez z Geofabriku (ČR) přes `osmium extract --bbox 15.48,49.32,15.70,49.47`
   a `NAME=jihlava tools/build_osm_data.sh data/osm/Jihlava.osm.pbf pilot/data/jihlava/osm-tiles`
   (bez osmia `SPAT="15.48 49.32 15.70 49.47"` s celou ČR).

@@ -504,9 +504,10 @@ function splitRoadway(run, ctx) {
       if (rest < (shared ? MIN_LANE : lanesTotal * GUESS_LANE_MIN)) continue;
       edge.push({ side, type: "parkovani", w: GUESS_PARK_W, orient: "podelne", source: "odhad" });
     }
-    // Fewer lanes fit between the estimated parking (two lanes of a local street need 2 × 2.75 m).
+    // Fewer lanes fit between the estimated parking: two lanes from 5.0 m (2 × 2.5 m, IPR's manual C.2 for
+    // two-way traffic at lower volumes, Bára); below that one lane for both directions.
     const rest = width - edge.reduce((a, x) => a + x.w, 0);
-    lanesTotal = Math.max(1, Math.min(lanesTotal, Math.floor(rest / (shared ? 2.75 : MIN_LANE))));
+    lanesTotal = Math.max(1, Math.min(lanesTotal, Math.floor((rest + 1e-6) / MIN_LANE)));
   }
   // Parking sits at the curb, the bike lane between it and the traffic.
   edge.sort((a, b) => (a.type === "parkovani" ? -1 : 0) - (b.type === "parkovani" ? -1 : 0));

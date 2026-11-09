@@ -330,14 +330,19 @@ const JI_LAWNS = `${JI_PASPORT}/25/query`;
 const JI_BUILDINGS = `${JI}/server/rest/services/ost/ORP_RUIAN/MapServer/7/query`;
 const JI_DTM_LINES = `${JI}/server1/rest/services/DTM/DTM_ZPS_verejnost/MapServer/12/query`;
 const JI_PARKING = `${JI}/server1/rest/services/verejnost/doprava_verejnost/MapServer/105/query`;
-const JI_BENCHES = `${JI}/server1/rest/services/opendata/opendata/MapServer/18/query`;
+// The town's services turn S-JTSK into WGS 84 by another transformation than IPR's and the orthophotos
+// (15965, about 6 m off OSM in Jihlava): answers come with S_JTSK_To_WGS_1984_1 (1623), as IPR's. An
+// input point is moved into their WGS 84 by the difference (it varies by under 0.5 m over the town).
+const JI_DATUM = { datumTransformation: 1623 };
+const JI_IN_SHIFT = [3.2e-5, 4.9e-5]; // lon, lat
+const jiQuery = (url, params) => query(url, { ...params, ...JI_DATUM });
 
 // The passport is asked once per cut for the surfaces and again for the parking: one request.
 const jiRoadsCache = new Map();
 const jihlavaRoads = (bbox) => {
   if (!jiRoadsCache.has(bbox)) {
     if (jiRoadsCache.size > 8) jiRoadsCache.delete(jiRoadsCache.keys().next().value);
-    jiRoadsCache.set(bbox, query(JI_ROADS, { ...envelope(bbox), outFields: "typ_useku" }).catch((err) => { jiRoadsCache.delete(bbox); throw err; }));
+    jiRoadsCache.set(bbox, jiQuery(JI_ROADS, { ...envelope(bbox), outFields: "typ_useku" }).catch((err) => { jiRoadsCache.delete(bbox); throw err; }));
   }
   return jiRoadsCache.get(bbox);
 };
@@ -346,8 +351,8 @@ const jihlavaRoads = (bbox) => {
 async function jihlavaSurfaces(bbox) {
   const [roads, buildings, lawns] = await Promise.all([
     jihlavaRoads(bbox),
-    query(JI_BUILDINGS, { ...envelope(bbox), outFields: "pocet_podl" }).catch(() => ({ features: [] })),
-    query(JI_LAWNS, { ...envelope(bbox), outFields: "druh_plocha" }).catch(() => ({ features: [] })),
+    jiQuery(JI_BUILDINGS, { ...envelope(bbox), outFields: "pocet_podl" }).catch(() => ({ features: [] })),
+    jiQuery(JI_LAWNS, { ...envelope(bbox), outFields: "druh_plocha" }).catch(() => ({ features: [] })),
   ]);
   const features = [];
   const add = (json, code) => {
@@ -365,7 +370,7 @@ async function jihlavaSurfaces(bbox) {
 // Lines of the technical map → the codes of IPR's line layer (derive.js FENCE_LINES and the rest).
 const JI_LINE_CODES = { Plot: 61210, Zabradli: 61530, "Zed Linie": 71210, Svodidlo: 71522, "Protihlukova Stena": 71210 };
 async function jihlavaLines(bbox) {
-  const json = await query(JI_DTM_LINES, {
+  const json = await jiQuery(JI_DTM_LINES, {
     ...envelope(bbox), outFields: "nazev", where: `nazev IN (${Object.keys(JI_LINE_CODES).map((k) => `'${k}'`).join(",")})`,
   });
   const features = [];
@@ -376,18 +381,18 @@ async function jihlavaLines(bbox) {
   return { features };
 }
 
-// OSM around a point plus the city's trees, lamps and benches where OSM has no such thing within 3 m.
+// OSM around a point plus the city's trees and lamps where OSM has no such thing within 3 m (its layer of
+// benches does not answer queries).
 const JI_POINTS = [
   [`${JI_PASPORT}/28/query`, { natural: "tree" }],
   [`${JI_PASPORT}/50/query`, { highway: "street_lamp" }],
-  [JI_BENCHES, { amenity: "bench" }],
 ];
 async function jihlavaOsm(lat, lon, radius) {
   const dLat = radius / 110574, dLon = radius / (111320 * Math.cos((lat * Math.PI) / 180));
   const box = [lon - dLon, lat - dLat, lon + dLon, lat + dLat].join(",");
   const [o, ...pts] = await Promise.all([
     osmTiles(lat, lon, radius),
-    ...JI_POINTS.map(([url]) => query(url, { ...envelope(box), outFields: "objectid" }).catch(() => ({ features: [] }))),
+    ...JI_POINTS.map(([url]) => jiQuery(url, { ...envelope(box), outFields: "objectid" }).catch(() => ({ features: [] }))),
   ]);
   const kx = 111320 * Math.cos((lat * Math.PI) / 180), ky = 110574;
   const key = (t) => Object.entries(t).find(([k]) => ["highway", "amenity", "natural"].includes(k))?.join("=");
@@ -413,7 +418,7 @@ const JI_SPECIAL = new Set(["K+R", "Taxi", "Vyhrazené"]);
 const insideAny = (feats, x, y) => feats.find((f) => insideRings(f.geometry.rings, x, y));
 async function jihlavaParkovani(bbox) {
   const [park, roads] = await Promise.all([
-    query(JI_PARKING, { ...envelope(bbox), outFields: "druh_stani,rezim,pocet_mist", where: "stav_prvku = 'Stávající'" }),
+    jiQuery(JI_PARKING, { ...envelope(bbox), outFields: "druh_stani,rezim,pocet_mist", where: "stav_prvku = 'Stávající'" }),
     jihlavaRoads(bbox).catch(() => ({ features: [] })),
   ]);
   const lat0 = Number(bbox.split(",")[1]);
@@ -449,8 +454,8 @@ async function jihlavaParkovani(bbox) {
 // farm buildings read as a hall (IPR typ 3), garages and cottages as small low buildings (typ 6).
 const JI_HALL = new Set([1, 2]), JI_LOW = new Set([8, 10]);
 async function jihlavaPodlaznost(lat, lon) {
-  const json = await query(JI_BUILDINGS, {
-    geometry: `${lon},${lat}`, geometryType: "esriGeometryPoint", inSR: "4326", outSR: "4326", spatialRel: "esriSpatialRelIntersects",
+  const json = await jiQuery(JI_BUILDINGS, {
+    geometry: `${lon + JI_IN_SHIFT[0]},${lat + JI_IN_SHIFT[1]}`, geometryType: "esriGeometryPoint", inSR: "4326", outSR: "4326", spatialRel: "esriSpatialRelIntersects",
     outFields: "pocet_podl,zpusob_vyu", f: "json",
   });
   const f = json.features?.[0];
