@@ -14,9 +14,14 @@ test("kolmé stání pod 4,5 m je pod minimem, do 5 m pod základem", () => {
   assert.deepEqual(levels([{ type: "parkovani", orient: "kolme", width: 4.75 }]), ["0:zaklad"]);
 });
 
-test("dvoukolejný tramvajový pás potřebuje 6,5 m", () => {
-  assert.deepEqual(levels([{ type: "tramvaj", width: 3 }, { type: "tramvaj", width: 3 }]), ["0:min"]);
-  assert.deepEqual(levels([{ type: "tramvaj", width: 3.25 }, { type: "tramvaj", width: 3.25 }]), []);
+test("dvoukolejný tramvajový pás potřebuje 6,5 m, standard 7 m (těleso i vyhrazený pruh)", () => {
+  for (const type of ["tramvaj", "tramvaj_pruh"]) {
+    assert.deepEqual(levels([{ type, width: 3 }, { type, width: 3 }]), ["0:min"]);
+    assert.deepEqual(levels([{ type, width: 3.25 }, { type, width: 3.25 }]), ["0:zaklad"]);
+    assert.deepEqual(levels([{ type, width: 3.5 }, { type, width: 3.5 }]), []);
+  }
+  // A tram in a lane with cars is no belt of its own.
+  assert.deepEqual(levels([{ type: "tramvaj_v_pruhu", width: 3 }, { type: "tramvaj_v_pruhu", width: 3 }]), []);
 });
 
 test("jízdní pruh 3 m a chodník 2 m jsou v pořádku", () => {

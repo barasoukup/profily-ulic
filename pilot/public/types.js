@@ -21,8 +21,11 @@ export const TYPES = {
   krajnice: { label: "Krajnice", color: "#77756f" },
   bus: { label: "Pruh BUS", color: "#9c4038", sprite: "bus", directional: true },
   bus_cyklo: { label: "Pruh pro BUS a cyklisty", color: "#9c4038", sprite: "bus", directional: true, bike: true },
+  // Three kinds of tram (Bára): in a lane shared with cars; a reserved tram lane in the roadway, level with it
+  // and marked off; a separate tram bed, raised behind curbs, of panels, gravel or grass (TRAM_BEDS).
   tramvaj_v_pruhu: { label: "Tramvaj v pruhu", color: "#736a55", sprite: "streetcar", tracks: true, directional: true },
-  tramvaj: { label: "Tramvajový pás", color: "#8c8672", sprite: "streetcar", tracks: true, directional: true },
+  tramvaj_pruh: { label: "Tramvajový pruh", color: "#6f6a5e", sprite: "streetcar", tracks: true, directional: true, marked: true },
+  tramvaj: { label: "Tramvajové těleso", color: "#a39d8c", sprite: "streetcar", tracks: true, directional: true, raised: true, bed: true },
   delici: { label: "Dělicí pás", color: "#b4b2a9", raised: true },
   plocha: { label: "Zpevněná plocha", color: "#cfccc2", raised: true },
   zahradka: { label: "Zahrádka restaurace", color: "#d9c7a8", raised: true, sprite: "cafe" },
@@ -49,11 +52,14 @@ export const ITEMS = {
   oporna_zed: "Opěrná zeď", zivy_plot: "Živý plot", svah: "Hrana svahu", zahradka: "Zahrádka restaurace",
 };
 
+// Surfaces of a separate tram bed (segment.bed); the default is panels.
+export const TRAM_BEDS = { panely: { label: "panely", color: "#b3ada0" }, strk: { label: "štěrk", color: "#9a948a" }, trava: { label: "tráva", color: "#86b552" } };
+
 export const PARKING_USE = { ztp: "ZTP", zasobovani: "zásobování", specialni: "speciální" };
 
 export const DEFAULT_WIDTH = {
   chodnik: 2.5, chodnik_kola: 2.5, stezka_sdilena: 3, predzahradka: 2, zelen: 2, stromorad: 2, nastupiste: 3, cyklostezka: 2.5, cyklopruh: 1.5, ochranny_pruh: 1.25, pruh_piktokoridor: 3.25, parkovani: 2,
-  pruh: 3, obsluzna: 3, bus: 3.5, bus_cyklo: 4.25, tramvaj_v_pruhu: 3.25, tramvaj: 3, delici: 1.5, plocha: 2, zahradka: 3, voda: 5, zed: 0.5, nezname: 2, krajnice: 1,
+  pruh: 3, obsluzna: 3, bus: 3.5, bus_cyklo: 4.25, tramvaj_v_pruhu: 3.25, tramvaj_pruh: 3.25, tramvaj: 3.25, delici: 1.5, plocha: 2, zahradka: 3, voda: 5, zed: 0.5, nezname: 2, krajnice: 1,
 };
 
 // MTVU code (CTVUK_KOD) to segment type.

@@ -1,4 +1,4 @@
-import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE } from "./types.js";
+import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, TRAM_BEDS } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
 import { loadSprites, buildSvg, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE } from "./profile.js";
 import * as sources from "./sources.js";
@@ -1078,6 +1078,19 @@ function renderEditor(p) {
     };
     r2.append(lab("Stání", orient));
   }
+  if (TYPES[s.type]?.bed) {
+    // The surface of a separate tram bed: panels, gravel or grass.
+    const bed = document.createElement("select");
+    for (const [v, t] of Object.entries(TRAM_BEDS)) bed.add(new Option(t.label, v, false, (s.bed || "panely") === v));
+    bed.onchange = () => { s.bed = bed.value; delete s.bedGuess; s.source = "user"; done(); };
+    r2.append(lab("Povrch tělesa", bed));
+  }
+  if (TYPES[s.type]?.tracks) {
+    // Buses may use the tram part (OSM psv / bus on the tracks).
+    const bus = Object.assign(document.createElement("input"), { type: "checkbox", checked: !!s.withBus });
+    bus.onchange = () => { if (bus.checked) s.withBus = true; else delete s.withBus; s.source = "user"; done(); };
+    r2.append(lab("I pro autobusy ", bus));
+  }
   if (["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu"].includes(s.type)) {
     const turn = document.createElement("select");
     for (const [v, t] of [["", "bez šipky"], ["left", "vlevo"], ["left;through", "vlevo + rovně"], ["through", "rovně"],
@@ -1114,7 +1127,7 @@ const PALETTE_GROUPS = [
   ["Pro pěší", ["chodnik", "chodnik_kola", "stezka_sdilena", "nastupiste"]],
   ["Pro cyklisty", ["cyklopruh", "ochranny_pruh", "pruh_piktokoridor", "cyklostezka"]],
   ["Auta a autobusy", ["pruh", "parkovani", "bus", "bus_cyklo", "obsluzna", "krajnice"]],
-  ["Tramvaj", ["tramvaj_v_pruhu", "tramvaj"]],
+  ["Tramvaj", ["tramvaj_v_pruhu", "tramvaj_pruh", "tramvaj"]],
   ["Zeleň a ostatní", ["zelen", "stromorad", "predzahradka", "delici", "plocha", "zahradka", "voda", "zed"]],
 ];
 function renderPalette(p) {

@@ -1,7 +1,7 @@
 // Checks a saved profile (from the browser's storage or a JSON file) before the app uses it: a broken
 // or edited file must not break the drawing. Unknown types and items are made harmless, numbers
 // that the drawing needs must be numbers, a part without a usable width is an error.
-import { TYPES, SOURCES, ITEMS, PARKING_USE } from "./types.js";
+import { TYPES, SOURCES, ITEMS, PARKING_USE, TRAM_BEDS } from "./types.js";
 
 const EDGE_KINDS = new Set(["budova", "stavba", "zahrada", "zelen", "voda", "parkoviste", "plot", "volno"]);
 const EDGE_STYLES = new Set(["sikma", "funkce", "moderni", "plocha", "nizky", "hala", "centrum", "centrum-obchod", "sidliste", "sidliste-lodzie", "rd"]);
@@ -23,6 +23,10 @@ export function cleanProfile(p, what = "profil") {
     if ("use" in s && !(s.use in PARKING_USE)) delete s.use;
     if ("turn" in s && typeof s.turn !== "string") delete s.turn;
     if ("trolley" in s && s.trolley !== true) delete s.trolley;
+    // A profile saved before the three kinds of tram (11/2026) has no bed on its tram belt: panels.
+    if ("bed" in s && !(s.bed in TRAM_BEDS)) delete s.bed;
+    for (const k of ["withBus", "bedGuess"]) if (k in s && s[k] !== true) delete s[k];
+    if ("roadClass" in s && !/^(dalnice|mk[1-4]|sil[1-3])$/.test(s.roadClass)) delete s.roadClass;
     s.items = Array.isArray(s.items) ? s.items.filter((it) => it && it.kind in ITEMS && num(it.f, 0, 1)) : [];
   }
   p.edges = typeof p.edges === "object" && p.edges ? p.edges : {};

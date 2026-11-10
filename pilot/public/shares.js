@@ -15,7 +15,7 @@ export const SHARE_GROUPS = [
 const SHARE_OF = {
   chodnik: "pesi", chodnik_kola: "pesi", stezka_sdilena: ["pesi", "kola"],
   cyklostezka: "kola", cyklopruh: "kola", ochranny_pruh: "kola",
-  nastupiste: "mhd", bus: "mhd", bus_cyklo: ["mhd", "kola"], tramvaj_v_pruhu: ["mhd", "auta"], tramvaj: "mhd",
+  nastupiste: "mhd", bus: "mhd", bus_cyklo: ["mhd", "kola"], tramvaj_v_pruhu: ["mhd", "auta"], tramvaj_pruh: "mhd", tramvaj: "mhd",
   pruh: "auta", pruh_piktokoridor: "auta", obsluzna: "auta", krajnice: "auta",
   parkovani: "parkovani",
   zelen: "zelen", stromorad: "zelen", predzahradka: "zelen",

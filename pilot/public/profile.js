@@ -1,6 +1,6 @@
 // SVG drawing and direct editing of a street profile. Drawing units are centimetres,
 // matching the Streetmix illustrations (1 px = 1 cm).
-import { TYPES, SOURCES, PARKING_USE } from "./types.js";
+import { TYPES, SOURCES, PARKING_USE, TRAM_BEDS } from "./types.js";
 import { city, cityById, CITY_IDS } from "./city.js";
 
 const NS = "http://www.w3.org/2000/svg";
@@ -125,6 +125,24 @@ export const totalWidth = (p) => p.segments.reduce((a, s) => a + s.width, 0);
 const TURNS = { left: "vlevo", slight_left: "mírně vlevo", sharp_left: "ostře vlevo", through: "rovně", right: "vpravo",
   slight_right: "mírně vpravo", sharp_right: "ostře vpravo", reverse: "otočení", merge_to_left: "připojení", merge_to_right: "připojení" };
 // Street furniture and barriers standing at x on a surface at height top.
+// The surface of a separate tram bed, raised behind curbs (Bára): concrete panels with their joints, gravel
+// with the sleepers showing, or grass. A curb stone at each end where the bed meets another part.
+function drawTramBed(g, s, x, w, top, bedBefore, bedAfter) {
+  const kind = TRAM_BEDS[s.bed] ? s.bed : "panely";
+  el("rect", { x, y: top, width: w, height: 14, fill: TRAM_BEDS[kind].color }, g);
+  if (kind === "panely") {
+    for (let u = x + 60; u < x + w - 20; u += 120) el("rect", { x: u, y: top, width: 2, height: 14, fill: "#8d887c" }, g);
+  } else if (kind === "strk") {
+    for (let u = x + 8; u < x + w - 4; u += 14) el("circle", { cx: u, cy: top + 4 + ((u / 14) % 2) * 5, r: 2.5, fill: "#6f6a61" }, g);
+    for (let u = x + 30; u < x + w - 30; u += 60) el("rect", { x: u, y: top - 2, width: 26, height: 5, fill: "#5d5247" }, g);
+  } else {
+    for (let u = x + 5; u < x + w - 3; u += 9) el("path", { d: `M${u} ${top + 2} l3 -9 l3 9`, fill: "#5f9e3a" }, g);
+  }
+  const curb = (cx) => el("rect", { x: cx, y: top, width: 12, height: CURB + 8, fill: "#c9c5ba", stroke: "#8d887c", "stroke-width": 1 }, g);
+  if (!bedBefore) curb(x);
+  if (!bedAfter) curb(x + w - 12);
+}
+
 function drawItem(g, it, x, top, right) {
   const line = (attrs) => el("rect", attrs, g);
   switch (it.kind) {
@@ -954,6 +972,12 @@ export function buildSvg(profile, opts = {}) {
     el("rect", { x: x + 4, y: GROUND + 104, width: Math.max(w - 8, 1), height: 14, fill: SOURCES[s.source]?.color || "#999" }, g);
     const cx = x + w / 2;
     const forward = s.dir !== "backward";
+    if (t.bed) drawTramBed(g, s, x, w, top, TYPES[segs[i - 1]?.type]?.bed, TYPES[segs[i + 1]?.type]?.bed);
+    if (t.marked) {
+      // A reserved tram lane: a wide solid line (25 cm) on the roadway where a part that is no tram lies beside.
+      if (!TYPES[segs[i - 1]?.type]?.tracks) el("rect", { x: x + 4, y: top - 3, width: 25, height: 4, fill: "#f2f0ea" }, g);
+      if (!TYPES[segs[i + 1]?.type]?.tracks) el("rect", { x: x + w - 29, y: top - 3, width: 25, height: 4, fill: "#f2f0ea" }, g);
+    }
     if (t.tracks) {
       for (const dx of [-72, 72]) el("rect", { x: cx + dx - 6, y: top - 6, width: 12, height: 8, fill: "#3d3b36" }, g);
     }
@@ -997,7 +1021,8 @@ export function buildSvg(profile, opts = {}) {
     let wrapped = false;
     if (w >= 80) {
       const contra = s.bikeDir && s.bikeDir !== (s.dir || "forward");
-      const label = s.type === "parkovani" && s.use ? `Parkování ${PARKING_USE[s.use]}`
+      const label = TYPES[s.type]?.tracks && s.withBus ? `${t.label} + BUS` + (t.directional && s.dir ? (forward ? " ↑" : " ↓") : "")
+        : s.type === "parkovani" && s.use ? `Parkování ${PARKING_USE[s.use]}`
         : s.type === "parkovani" && s.orient ? `Parkování ${ORIENT_LABEL[s.orient]}`
         : t.label + (t.directional && s.dir ? (forward ? " ↑" : " ↓") : s.type === "pruh" ? " ↑↓" : "") +
           (contra ? ` cyklisté ${s.bikeDir === "backward" ? "↓" : "↑"}` : "");

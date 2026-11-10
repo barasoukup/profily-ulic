@@ -14,6 +14,23 @@ const OPEN_LAND = 8; // greenery at least this wide ends the profile as open sur
 const TRAM_HALF = 1.75;
 const TRAM_LANE_HALF = 1.5; // a tram kept to a 3.0 m lane, where OSM counts car lanes beside the tracks
 const CAR_MIN = 2.5; // narrowest leftover space treated as a separate car lane (m)
+// The three kinds of tram (Bára): in a lane with cars, a reserved tram lane in the roadway, a separate tram bed.
+const LANE_TYPES = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo"]); // parts that carry the street's class
+const TRAM_KINDS = new Set(["tramvaj_v_pruhu", "tramvaj_pruh", "tramvaj"]);
+const GRASS_BED_MIN = 2.5; // a green area at least this wide with tracks in it is a grass tram bed (m)
+// The surface of a separate tram bed from the OSM tram ways in it: grass, gravel (ballast) or panels (paved:
+// concrete, plates, sett, asphalt); unknown → panels, as an estimate.
+const BED_OF_SURFACE = { grass: "trava", grass_paver: "trava", gravel: "strk", fine_gravel: "strk", ballast: "strk", pebblestone: "strk" };
+function bedOf(cross, r) {
+  const tags = cross.filter((c) => c.t > r.s - 0.3 && c.t < r.e + 0.3 && c.way.tags?.railway === "tram").map((c) => c.way.tags);
+  for (const t of tags) {
+    const v = t["railway:track_bed"] || t["tram:bed"] || t.surface;
+    if (BED_OF_SURFACE[v]) return { kind: BED_OF_SURFACE[v], source: "osm" };
+    if (v) return { kind: "panely", source: "osm" };
+  }
+  return { kind: "panely", source: "odhad" };
+}
+const tramWithBus = (t) => ["yes", "designated"].includes(t.psv) || ["yes", "designated"].includes(t.bus) || t.highway === "busway";
 const TREE_STRIP = 1.5; // width of a tree strip carved out of a sidewalk (m)
 // A cut never hits a point: a point this close to the cut, measured along the street, is drawn in the
 // profile (m), per kind. The nearest one of a row (the same kind at about the same offset) is kept, so a
@@ -420,6 +437,16 @@ export function techLines(json, frame) {
     });
 }
 const OD_TREE = "od_strom", OD_ROW = "od_stromorad", OD_SECTION = "od_usek"; // as sources.js
+// The class of a TSK street section (Prague) as one word: "dalnice", "mk1"–"mk4" (místní komunikace I.–IV.
+// třídy), "sil1"–"sil3" (a road of class I–III without an MK class); null without one. rules.js turns it into
+// the functional group of ČSN 73 6110.
+export function classGroup(cls) {
+  if (!cls) return null;
+  if (cls.motorway) return "dalnice";
+  if (cls.mk >= 1 && cls.mk <= 4) return `mk${cls.mk}`;
+  if (cls.road >= 1 && cls.road <= 3) return `sil${cls.road}`;
+  return null;
+}
 const TM_TREE = 83130; // technical map: strom mimo park
 // Points of the technical map that are drawn as street furniture (TM_TREE is a tree).
 const POINT_ITEM = { 26015: "sloup_trakce", 75240: "oznacnik", 75241: "oznacnik", 74110: "sloupek", 76010: "lampa" };
@@ -493,13 +520,20 @@ const LANE_CAP = {
   residential: 4.5, unclassified: 4.5, service: 4.5,
 };
 const LANE_CAP_DEFAULT = 4;
+// The cap by the class of the street (Prague: TSK's class, classGroup), before OSM's highway: on motorways and
+// MK I (the main network: rapid and the main collector roads) 3.75 m, as on OSM's motorways and trunks (ČSN 73
+// 6110 group A: 3.50 m lanes). A/B on the orthophoto (evaluation/pravidla-11-2026): their marked lanes are about
+// 3.5 m; a cap of 4 m for MK II and 4.5 m for MK IV did not help, so there OSM decides.
+const LANE_CAP_CLASS = { dalnice: 3.75, mk1: 3.75 };
 const KRAJNICE_MIN = 1; // narrowest shoulder / hatched strip drawn (m)
 // Streets where cars commonly park at the curb even where neither TSK nor OSM says so.
 // Not on main streets (secondary, tertiary and up): there the curb is mostly kept free (Bára).
 const PARK_GUESS = new Set(["residential", "living_street", "unclassified"]);
-const LOCAL = new Set(["residential", "living_street", "unclassified"]);
 const GUESS_PARK_W = 2; // estimated parallel parking strip (m)
-const GUESS_LANE_MIN = 3; // a driving lane keeps at least this much next to estimated parking (m)
+// § 25 of act 361/2000 Sb. (silniční provoz): a parked car leaves a lane at least LAW_LANE wide free for each
+// direction (odst. 3) and keeps LAW_RAIL from the nearest tram rail (odst. 2, from 5 to 19 h).
+const LAW_LANE = 3, LAW_RAIL = 3.5;
+const RAIL_HALF = 0.7175; // half the track gauge of 1435 mm: rail from the track axis (m)
 const turnList = (v) => (v ? v.split("|").map((x) => x || "none") : null);
 
 // Split one roadway run [s,e] into parking, bike and driving/tram lanes using OSM tags.
@@ -510,7 +544,7 @@ const turnList = (v) => (v ? v.split("|").map((x) => x || "none") : null);
 function splitRoadway(run, ctx) {
   const { tags, trams, dirAt, along, single, parked, sides } = ctx;
   // A roadway too narrow for the tagged (or default) lanes holds as many as fit, at least one.
-  let lanesTotal = Math.max(1, Math.min(ctx.lanesTotal, Math.floor((run.e - run.s) / MIN_LANE)));
+  const lanesTotal = Math.max(1, Math.min(ctx.lanesTotal, Math.floor((run.e - run.s) / MIN_LANE)));
   let s = run.s, e = run.e;
   const width = e - s;
   // OSM left/right follow the way; L/R here follow the cut's street (L = larger t).
@@ -538,23 +572,27 @@ function splitRoadway(run, ctx) {
       take(side, st.parkingWidth);
     }
   }
-  // Cars parked at a curb with a sidewalk, though no data says so: a parallel strip as an estimate
-  // where the lanes stay at least GUESS_LANE_MIN wide (one-way streets 6–7 m wide, wide two-way ones).
-  // A local street without a lanes tag only needs one shared lane between the parked cars
-  // (e.g. Dářská: 6.65 m = parking 2 + lane 2.65 + parking 2).
+  // Cars parked at the curb, though no data says so: a parallel strip as an estimate where the law allows it
+  // (Bára): § 25(3) of act 361/2000 Sb. leaves a lane of at least LAW_LANE free for each direction, so a two-way
+  // street takes it from 8 m of roadway on one side and from 10 m on both, a one-way street from 5 m and 7 m.
+  // The lanes beside it keep LAW_LANE too (as many as OSM counts). Next to tracks the car keeps LAW_RAIL from the
+  // nearest rail (§ 25(2), from 5 to 19 h). A sidewalk at the curb does not decide; only an outer curb counts
+  // (not one at a median, a tram bed or another roadway, ctx.kerbOpen).
   // Only outside the paid parking zones (Bára): inside them TSK has surveyed every stall.
-  if (!trams.length && !ctx.inZps && (ctx.guessPark ?? PARK_GUESS.has(tags.highway))) {
-    const shared = LOCAL.has(tags.highway) && !tags.lanes;
+  if (!ctx.inZps && (ctx.guessPark ?? PARK_GUESS.has(tags.highway))) {
+    const oneway = isOnewayTags(tags) || tags.junction === "roundabout";
+    const need = LAW_LANE * Math.max(oneway ? 1 : 2, lanesTotal);
+    const lo = trams.length ? Math.min(...trams) - RAIL_HALF : Infinity, hi = trams.length ? Math.max(...trams) + RAIL_HALF : -Infinity;
     for (const [side, st] of [["R", sideR], ["L", sideL]]) {
-      if (!ctx.kerbWalk?.includes(side) || parked.includes(side) || st.parkingNo || edge.some((x) => x.side === side && x.type === "parkovani")) continue;
+      if (!(ctx.kerbOpen ?? ["L", "R"]).includes(side) || parked.includes(side) || st.parkingNo || edge.some((x) => x.side === side && x.type === "parkovani")) continue;
       const rest = width - edge.reduce((a, x) => a + x.w, 0) - GUESS_PARK_W;
-      if (rest < (shared ? MIN_LANE : lanesTotal * GUESS_LANE_MIN)) continue;
+      if (rest < need - 1e-6) continue;
+      // The car's outer side, from the curb strips of this side and the strip itself.
+      const own = edge.filter((x) => x.side === side).reduce((a, x) => a + x.w, 0) + GUESS_PARK_W;
+      const railGap = side === "R" ? lo - (s + own) : (e - own) - hi;
+      if (railGap < LAW_RAIL - 1e-6) continue;
       edge.push({ side, type: "parkovani", w: GUESS_PARK_W, orient: "podelne", source: "odhad" });
     }
-    // Fewer lanes fit between the estimated parking: two lanes from 5.0 m (2 × 2.5 m, IPR's manual C.2 for
-    // two-way traffic at lower volumes, Bára); below that one lane for both directions.
-    const rest = width - edge.reduce((a, x) => a + x.w, 0);
-    lanesTotal = Math.max(1, Math.min(lanesTotal, Math.floor((rest + 1e-6) / MIN_LANE)));
   }
   // Parking sits at the curb, the bike lane between it and the traffic.
   edge.sort((a, b) => (a.type === "parkovani" ? -1 : 0) - (b.type === "parkovani" ? -1 : 0));
@@ -565,8 +603,8 @@ function splitRoadway(run, ctx) {
   }
   let mid = trams.length ? tramLanes(s, e, trams, dirAt) : [];
   // All the street's lanes fit beside the tracks (Národní: lanes=2, one on each side; Spálená: lanes:forward=1
-  // and lanes:backward=1): cars do not drive on the tracks, so they are a tram belt of their own, level with
-  // the roadway (Bára). Only where OSM counts the lanes, so an unmapped parking lane is not taken for one.
+  // and lanes:backward=1): cars do not drive on the tracks, so they are a reserved tram lane in the roadway,
+  // level with it (Bára; the tram in a lane with cars is OSM's embedded_rails where the lanes do not fit). Only where OSM counts the lanes, so an unmapped parking lane is not taken for one.
   // Where the lanes fit only with the tram kept to a 3.0 m lane (axis ± TRAM_LANE_HALF; Spálená: 2.4 m beside
   // the usual envelope, 2.7 m beside this one), the narrower one is taken.
   if (trams.length && (tags.lanes || tags["lanes:forward"] || tags["lanes:backward"])) {
@@ -578,14 +616,14 @@ function splitRoadway(run, ctx) {
     };
     const narrow = !fitsBeside(mid) && tramLanes(s, e, trams, dirAt, TRAM_LANE_HALF);
     if (narrow && fitsBeside(narrow)) mid = narrow;
-    if (fitsBeside(mid)) for (const x of mid) if (x.type === "tramvaj_v_pruhu") x.type = "tramvaj";
+    if (fitsBeside(mid)) for (const x of mid) if (x.type === "tramvaj_v_pruhu") x.type = "tramvaj_pruh";
   }
   if (!trams.length) {
     // One lane on a two-way street carries both directions (no arrow).
     const twoWaySingle = lanesTotal === 1 && !isOnewayTags(tags) && tags.junction !== "roundabout";
     // Lanes wider than the cap leave the rest as a shoulder / hatched area at the curbs (estimate):
     // the technical map has no lane markings, so an even split would make 5–8 m lanes.
-    const cap = LANE_CAP[tags.highway] ?? LANE_CAP_DEFAULT;
+    const cap = LANE_CAP_CLASS[ctx.roadClass] ?? LANE_CAP[tags.highway] ?? LANE_CAP_DEFAULT;
     const excess = (e - s) - lanesTotal * cap;
     // Strips under KRAJNICE_MIN are left in the lanes (a lane 3.7 m wide is no error).
     if (!twoWaySingle && excess >= KRAJNICE_MIN) {
@@ -649,7 +687,8 @@ function splitRoadway(run, ctx) {
     if (lane && !lane.bikeDir) lane.bikeDir = flip(lane.dir);
   }
   return [...rightEdge, ...mid, ...leftEdge]
-    .map((x) => ({ type: x.type, s: x.s, e: x.e, dir: x.dir, turn: x.turn, orient: x.orient, bikeDir: x.bikeDir, color: x.color, source: x.source || "osm" }))
+    .map((x) => ({ type: x.type, s: x.s, e: x.e, dir: x.dir, turn: x.turn, orient: x.orient, bikeDir: x.bikeDir, color: x.color, source: x.source || "osm",
+      ...(TRAM_KINDS.has(x.type) && tags.embedded_rails === "tram" ? { embedded: true } : {}) }))
     .sort((a, b) => a.s - b.s);
 }
 
@@ -840,7 +879,7 @@ function cycleTrack(r, cross, dir) {
 }
 
 // A narrow raised paved strip between two carriageways is a median / traffic island.
-const ROADWAY = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj", "cyklopruh", "ochranny_pruh", "parkovani", "krajnice"]);
+const ROADWAY = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "tramvaj", "cyklopruh", "ochranny_pruh", "parkovani", "krajnice"]);
 function markIslands(segs) {
   segs.forEach((x, i) => {
     if (!WALK.has(x.type) || x.e - x.s > ISLAND_MAX) return;
@@ -1449,23 +1488,19 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       for (const [side, st, at] of [["L", sideTagsLR.L, r.e], ["R", sideTagsLR.R, r.s]]) {
         if (st.kerbDepth && !parked.includes(side)) kerbReqs.push({ side, at, w: st.kerbDepth, orient: st.parkingOrient });
       }
-      // Curbs with a sidewalk behind them, where parked cars are to be expected.
-      // A narrow green strip (up to 3 m) between the curb and the sidewalk counts too.
+      // The neighbours of the roadway, past the profile end too when the end is a real one (a building), not
+      // one cut by the reach.
       const ri = kept.indexOf(r);
-      const walkAt = (x, y) => x?.code === 702 || (x?.code >= 400 && x?.code < 500 && x.e - x.s <= 3 && (y?.code === 702 || isBuilding(y?.code)));
-      // Look past the profile end too: the building behind the green strip ends the profile.
-      // Past the profile end only when the end is a real one (a building), not one cut by the reach.
       const after = (x) => runs.find((y) => y.s >= x.e - 0.01 && y !== x);
       const before = (x) => [...runs].reverse().find((y) => y.e <= x.s + 0.01 && y !== x);
-      const next = (k) => {
-        const n1 = kept[ri + 1] || (edges.left === "volno" ? null : after(r));
-        return k === 1 ? n1 : n1 && (kept[ri + 2] || (edges.left === "volno" ? null : after(n1)));
-      };
-      const prev = (k) => {
-        const p1 = kept[ri - 1] || (edges.right === "volno" ? null : before(r));
-        return k === 1 ? p1 : p1 && (kept[ri - 2] || (edges.right === "volno" ? null : before(p1)));
-      };
-      const kerbWalk = [["L", walkAt(next(1), next(2))], ["R", walkAt(prev(1), prev(2))]].filter(([, ok]) => ok).map(([sd]) => sd);
+      const next = kept[ri + 1] || (edges.left === "volno" ? null : after(r));
+      const prev = kept[ri - 1] || (edges.right === "volno" ? null : before(r));
+      // Outer curbs, where the estimate of parked cars may go: not at a median, a tram bed or another roadway
+      // (a sidewalk there or not, Bára).
+      // A green strip up to 15 m with a roadway behind it is a median too (Ostrava č. 78).
+      const road = (x) => x && (x.code === 700 || x.code === 701);
+      const inner = (x, y) => x && (x.code === MEDIAN || x.code === 705 || road(x) || inMedian(x) || (x.code >= 400 && x.code < 500 && x.e - x.s <= 15 && road(y)));
+      const kerbOpen = [["L", !inner(next, kept[ri + 2])], ["R", !inner(prev, kept[ri - 2])]].filter(([, ok]) => ok).map(([sd]) => sd);
       // Half of a divided road: across a median or a green strip (up to 15 m) lies another roadway.
       const k = kept.indexOf(r), isRoad = (x) => x && (x.code === 701 || x.code === 700);
       const sep = (a, b) => isRoad(b) && a && (a.code === MEDIAN || inMedian(a) || (a.code >= 400 && a.code < 500 && a.e - a.s <= 15));
@@ -1478,7 +1513,8 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       // (A/B: an MK III that OSM calls tertiary had no parked cars in 5 of 6 cuts, evaluation/praha-opendata).
       const cls = streetClass(lines, (r.s + r.e) / 2);
       const guessPark = cls && (cls.road || cls.motorway || cls.mk === 1 || cls.mk === 2) ? false : undefined;
-      segs.push(...splitRoadway(r, { guessPark, tags, trams: inside, dirAt, lanesTotal, along: ownAxis ? (ownAxis.along !== (tags.oneway === "-1")) : true, single: new Set(axes.map((a) => a.id)).size === 1, parked, sides: sideTagsLR, kerbWalk, inZps, axesOneway: axes.every((a) => a.oneway), axisInside: here.length > 0, divided }).map((x) => ({ ...x, mtvu: r.code, trolley: trolley && (x.type === "bus" || x.type === "bus_cyklo") })));
+      const roadClass = classGroup(cls);
+      segs.push(...splitRoadway(r, { guessPark, tags, trams: inside, dirAt, lanesTotal, along: ownAxis ? (ownAxis.along !== (tags.oneway === "-1")) : true, single: new Set(axes.map((a) => a.id)).size === 1, parked, sides: sideTagsLR, kerbOpen, inZps, axesOneway: axes.every((a) => a.oneway), axisInside: here.length > 0, divided, roadClass }).map((x) => ({ ...x, mtvu: r.code, trolley: trolley && (x.type === "bus" || x.type === "bus_cyklo"), roadClass })));
     } else if (r.code === MEDIAN) {
       segs.push({ type: "delici", s: r.s, e: r.e, source: "dtm" });
     } else if (isMinorStructure(r.code)) {
@@ -1491,10 +1527,12 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       segs.push({ type: "zahradka", s: r.s, e: r.e, source: "osm" });
     } else if (r.code === OSM_PARKING) {
       segs.push({ type: "parkovani", s: r.s, e: r.e, source: "osm", orient: r.orient });
-    } else if (type === "tramvaj" && r.e - r.s > 5) {
-      const m = (r.s + r.e) / 2;
-      segs.push({ type, s: r.s, e: m, dir: "forward", source: "dtm" });
-      segs.push({ type, s: m, e: r.e, dir: "backward", source: "dtm" });
+    } else if (type === "tramvaj" || (type === "zelen" && r.e - r.s >= GRASS_BED_MIN && tramTs.some((t) => t > r.s + 0.5 && t < r.e - 0.5))) {
+      // A separate tram bed (MTVU 705 and the towns' equivalents), or a green area with tracks in it: a bed
+      // of grass. Wider than 5 m it carries a track each way.
+      const bed = type === "zelen" ? { kind: "trava", source: "dtm" } : bedOf(cross, r);
+      const parts = r.e - r.s > 5 ? [[r.s, (r.s + r.e) / 2, "forward"], [(r.s + r.e) / 2, r.e, "backward"]] : [[r.s, r.e, undefined]];
+      for (const [a, b, d] of parts) segs.push({ type: "tramvaj", s: a, e: b, dir: d, bed: bed.kind, bedSource: bed.source, source: "dtm" });
     } else if (type === "cyklostezka") {
       segs.push(...cycleTrack(r, cross, dir));
     } else {
@@ -1510,10 +1548,21 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       let j = i;
       while (segs[j + 1]?.type === "tramvaj_v_pruhu") j++;
       const besideCars = [segs[i - 1], segs[j + 1]].some((x) => x && TRAFFIC.has(x.type) && x.type !== "tramvaj_v_pruhu");
-      if (!besideCars) for (let k = i; k <= j; k++) segs[k].type = "tramvaj";
+      // Tracks of a street with rails in its roadway (embedded_rails) are a reserved tram lane, level with it;
+      // without, the tracks lie apart from the carriageway: a separate tram bed (Bára).
+      if (!besideCars) {
+        for (let k = i; k <= j; k++) {
+          if (segs[k].embedded) segs[k].type = "tramvaj_pruh";
+          else Object.assign(segs[k], { type: "tramvaj", bed: "panely", bedSource: "odhad" });
+        }
+      }
       i = j;
     }
   }
+  // Buses on the tram tracks (psv / bus = yes or designated, highway=busway on a tram way): the tram part is
+  // a lane for trams and buses (Prague: about 186 such tracks).
+  const busTracks = cross.filter((c) => c.way.tags?.railway === "tram" && tramWithBus(c.way.tags)).map((c) => c.t);
+  for (const x of segs) if (TRAM_KINDS.has(x.type) && busTracks.some((t) => t >= x.s - 0.3 && t <= x.e + 0.3)) x.withBus = true;
   // Roadway outer edges are measured; only the internal split comes from OSM.
   const withKerb = carveKerbParking(markIslands(segs), kerbReqs);
   const withPlatforms = insertPlatforms(withKerb, platformPositions(osm, frame, center, normal, half), axisT);
@@ -1556,6 +1605,9 @@ function toSegment(x) {
   if (x.use && x.use !== "useky") seg.use = x.use;
   if (x.color) seg.color = x.color;
   if (x.trolley) seg.trolley = true;
+  if (x.type === "tramvaj") { seg.bed = x.bed || "panely"; if (x.bedSource === "odhad") seg.bedGuess = true; }
+  if (x.withBus) seg.withBus = true;
+  if (x.roadClass && LANE_TYPES.has(x.type)) seg.roadClass = x.roadClass;
   // Segments are reversed to screen order, so item positions flip too.
   if (x.items?.length) seg.items = x.items.map((it) => ({ ...it, f: +(1 - it.f).toFixed(3) }));
   if (x.type === "parkovani") {

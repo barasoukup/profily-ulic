@@ -102,12 +102,13 @@ async function loadVariant(name) {
   const mod = await import(path.join(ROOT, "variants", `${name}.mjs`));
   const src = { ...NORMAL };
   for (const k of Object.keys(NORMAL)) if (typeof mod[k] === "function") src[k] = mod[k];
-  // reach: the reach of points per kind (derive.js REACH), e.g. { lampa: 15 }.
-  return { name, about: mod.about || "", src, reach: mod.reach };
+  // reach: the reach of points per kind (derive.js REACH), e.g. { lampa: 15 }. deriveProfile: another copy of
+  // the app's derivation (a rule change tested against the code before it, variants/kod-pred.mjs).
+  return { name, about: mod.about || "", src, reach: mod.reach, deriveProfile: mod.deriveProfile };
 }
 
 // ---------- Measures ----------
-const ROADWAY = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj", "krajnice", "parkovani", "cyklopruh", "ochranny_pruh", "obsluzna"]);
+const ROADWAY = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "tramvaj", "krajnice", "parkovani", "cyklopruh", "ochranny_pruh", "obsluzna"]);
 const SIDEWALK = new Set(["chodnik", "chodnik_kola", "stezka_sdilena"]);
 const sum = (segs, set) => +segs.filter((s) => set.has(s.type)).reduce((a, s) => a + s.width, 0).toFixed(2);
 export function measures(p) {
@@ -122,6 +123,9 @@ export function measures(p) {
     items: p.segments.flatMap((s) => (s.items || []).map((it) => it.kind)).sort().join(","),
     trees: p.segments.filter((s) => s.type === "stromorad").length,
     parking: p.segments.filter((s) => s.type === "parkovani").map((s) => s.source).sort().join(","),
+    // The parts in order with their kind of tram bed and lane widths rounded to 0.25 m (PARTS=1).
+    kinds: p.segments.map((s) => s.type + (s.bed ? `:${s.bed}` : "") + (s.withBus ? "+bus" : "")).join(","),
+    lanes: p.segments.filter((s) => s.type === "pruh" || s.type === "krajnice").map((s) => `${s.type[0]}${Math.round(s.width * 4) / 4}`).join(","),
   };
 }
 export function differs(a, b) {
@@ -136,6 +140,11 @@ export function differs(a, b) {
     if ((a.items ?? "") !== (b.items ?? "")) out.push(`předměty ${a.items || "-"}/${b.items || "-"}`);
     if ((a.trees ?? 0) !== (b.trees ?? 0)) out.push(`stromy ${a.trees}/${b.trees}`);
     if ((a.parking ?? "") !== (b.parking ?? "")) out.push(`stání ${a.parking || "-"}/${b.parking || "-"}`);
+  }
+  // PARTS=1: also the kinds of parts (tram kinds) and the driving lanes and shoulders (lane caps).
+  if (process.env.PARTS === "1") {
+    if ((a.kinds ?? "") !== (b.kinds ?? "")) out.push(`části ${a.kinds}/${b.kinds}`);
+    if ((a.lanes ?? "") !== (b.lanes ?? "")) out.push(`pruhy ${a.lanes || "-"}/${b.lanes || "-"}`);
   }
   return out;
 }
@@ -172,7 +181,7 @@ async function derive(v, at, inZps) {
     v.src.parking(bbox, inZps).catch(() => ({ features: [] })),
   ]);
   const polys = mtvuPolygons(m, frame);
-  const r = deriveProfile({ center: [0, 0], dir, half: HALF, polys, osm, frame, way, tracks: trackLines(k, frame), parking: esriPolygons(pk, frame), lines: techLines(k, frame), reach: { left: MAX_REACH, right: MAX_REACH }, inZps, itemReach: v.reach });
+  const r = (v.deriveProfile || deriveProfile)({ center: [0, 0], dir, half: HALF, polys, osm, frame, way, tracks: trackLines(k, frame), parking: esriPolygons(pk, frame), lines: techLines(k, frame), reach: { left: MAX_REACH, right: MAX_REACH }, inZps, itemReach: v.reach });
   if (process.env.PODLAZNOST === "1") {
     for (const side of ["left", "right"]) {
       const info = r.edges?.[`${side}Info`];
@@ -287,7 +296,7 @@ function bar(p, y, W) {
     x += w; return out;
   }).join("");
 }
-const rows = (p, x, y) => p.segments.map((s, i) => `<text x="${x}" y="${y + i * 15}" font-size="11">${i + 1}. ${esc(TYPES[s.type]?.label || s.type)} ${s.width.toFixed(2)} ${s.dir ? ARROW[s.dir] : ""} · ${esc(s.source)}${s.items?.length ? " · " + esc(s.items.map((it) => it.kind).join(", ")) : ""}</text>`).join("");
+const rows = (p, x, y) => p.segments.map((s, i) => `<text x="${x}" y="${y + i * 15}" font-size="11">${i + 1}. ${esc(TYPES[s.type]?.label || s.type)}${s.bed ? ` (${esc(s.bed)})` : ""}${s.withBus ? " + BUS" : ""} ${s.width.toFixed(2)} ${s.dir ? ARROW[s.dir] : ""} · ${esc(s.source)}${s.items?.length ? " · " + esc(s.items.map((it) => it.kind).join(", ")) : ""}</text>`).join("");
 async function svg(r, A, B) {
   const b = (r.cut.bearing * Math.PI) / 180;
   const dir = [Math.sin(b), Math.cos(b)], normal = [-dir[1], dir[0]];

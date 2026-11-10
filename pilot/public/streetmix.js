@@ -57,7 +57,8 @@ function segment(s, i, segs, total) {
     case "bus": return ["bus-lane", `${dir}|regular|typical`];
     case "bus_cyklo": return ["bus-lane", `${dir}|shared|typical`];
     case "tramvaj_v_pruhu": return ["streetcar", `${dir}|regular`];
-    case "tramvaj": return ["streetcar", `${dir}|colored`];
+    // The reserved lane and the separate bed both go as Streetmix's streetcar on a coloured lane.
+    case "tramvaj_pruh": case "tramvaj": return ["streetcar", `${dir}|colored`];
     case "voda": return null;
     default: return ["sidewalk", "empty"];
   }

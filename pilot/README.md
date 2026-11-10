@@ -249,6 +249,10 @@ Připojená po srovnání s celostátní DTM ČÚZK na 30 řezech v každém mě
   `… node evaluation/ab.mjs --summary` vypíše shodu, mediány rozdílů a součty verdiktů; `--render [n …]` znovu
   nakreslí obrázky.
 - Příklad: pasport komunikací v Jihlavě, `evaluation/jihlava/PASPORT.md`.
+- **Změna pravidla** (ne zdroje): varianta exportuje `deriveProfile` z kopie kódu před změnou
+  (`cp -R pilot/public/*.js pilot/public/towns evaluation/<složka>/data/kod-0`, vzor `variants/pred-zakon.mjs`).
+  `ITEMS=1` počítá i stání a předměty, `PARTS=1` i druhy částí (např. druh tramvaje) a šířky pruhů a krajnic.
+  Příklad: `evaluation/pravidla-11-2026/ZPRAVA.md`.
 
 ## Jak se profil skládá
 
@@ -266,6 +270,18 @@ Připojená po srovnání s celostátní DTM ČÚZK na 30 řezech v každém mě
    takže sedí i na směrově rozdělených silnicích. Kde vozovkou vedou
    koleje, vznikne kolem každé osy koleje pruh s tramvají a vedle něj jízdní pruhy pro auta.
 
+   **Tři druhy tramvaje** (Bára 10. 11. 2026, A/B v `evaluation/pravidla-11-2026/ZPRAVA.md`):
+   - *Tramvaj v pruhu* (`tramvaj_v_pruhu`): koleje ve vozovce (`embedded_rails=tram`) a auta jezdí po nich, protože
+     se vedle nevejdou všechny pruhy, které OSM počítá, nebo je OSM nepočítá.
+   - *Tramvajový pruh* (`tramvaj_pruh`, vyhrazený ve vozovce): všechny pruhy z OSM (`lanes`, `lanes:forward`,
+     `lanes:backward`) se vejdou vedle kolejí (Národní, Spálená), nebo koleje ve vozovce ulice s `embedded_rails`
+     nemají auta vedle sebe. Kreslí se v úrovni vozovky se širokou čarou u pruhů pro auta.
+   - *Tramvajové těleso* (`tramvaj`, samostatné): MTVU 705 a obdobné plochy měst, koleje v zeleni (tráva) a koleje
+     ve vozovce bez aut vedle, když ulice nemá `embedded_rails` (Patočkova). Kreslí se zvýšené mezi obrubami,
+     povrch `bed`: panely (výchozí, označené jako odhad), štěrk nebo tráva podle `surface` tramvajové trati v OSM.
+   - Tramvajová trať s `psv` nebo `bus` = `yes`/`designated` (nebo `highway=busway`) dává části vlastnost
+     `withBus` („+ BUS“). Do Streetmixu jdou všechny tři druhy jako streetcar.
+
 4. Chodník (MTVU 702) s osou OSM, po které smějí kola: `segregated=yes` → oddělená stezka C10 (chodník a
    cyklostezka, každý na polovinu, kola blíž vozovce), `bicycle=designated` (nebo `segregated=no`) → společná
    stezka pro chodce a cyklisty C9, `bicycle=yes` → chodník s vjezdem cyklistů. Bez vlastní osy rozhoduje
@@ -276,17 +292,22 @@ Připojená po srovnání s celostátní DTM ČÚZK na 30 řezech v každém mě
    obousměrná se rozdělí na dvě poloviny. Úzký vyvýšený zpevněný pás (do 6 m) mezi dvěma vozovkami
    se označí jako dělicí pás / ostrůvek.
 
-5. Pruh je široký nejvýš 4 m (dálnice a silnice pro motorová vozidla 3,75 m, místní ulice 4,5 m). Zbytek vozovky
+5. Pruh je široký nejvýš 4 m (dálnice a silnice pro motorová vozidla 3,75 m, místní ulice 4,5 m; v Praze MK I
+   a dálnice podle zatřídění TSK 3,75 m, i když je OSM má za primary nebo residential). Zbytek vozovky
    od 1 m se nakreslí jako **krajnice / šrafy** u okrajů a označí jako odhad: technická mapa neobsahuje
    vodorovné značení.
-6. U obruby s chodníkem (i za úzkým zeleným pásem do 3 m) v ulicích residential, living_street a unclassified (na hlavních ulicích ne), a to jen mimo zóny placeného
-   stání: do 100 m od řezu nesmí být žádná zóna TSK (vrstva „Zóny placeného stání vymezené tarifem“).
-   Hranice zón se stahují jednou skriptem `node tools/build_zps.mjs` do `pilot/data/zps.json` (na webu při
-   nasazení), takže se kvůli nim IPR při kliknutí neptá. Bez souboru rozhodují úseky TSK kolem řezu. se přidá **odhadnuté podélné
-   stání** 2 m, pokud tam není stání z TSK ani z OSM, tag ho nezakazuje a pruhy zůstanou široké aspoň 3 m.
+6. **Odhadnuté podélné stání** 2 m (Bára 10. 11. 2026) podle § 25 zák. 361/2000 Sb.: při stání musí zůstat volný
+   jízdní pruh aspoň 3 m pro každý směr jízdy. Obousměrka ho dostane od 8 m vozovky na jedné straně a od 10 m na
+   obou, jednosměrka od 5 m a od 7 m; pruhy vedle zůstanou široké aspoň 3 m (tolik, kolik jich OSM počítá).
+   U tramvaje zůstane mezi autem a kolejnicí 3,5 m (§ 25 odst. 2). Chodník u obruby nerozhoduje; jen u obruby
+   ke střednímu pásu, tramvajovému tělesu, zeleni do 15 m před další vozovkou nebo k další vozovce se neodhaduje.
+   Platí v ulicích residential, living_street a unclassified (na hlavních ulicích ne; v Praze ani v MK I a II
+   podle TSK), jen mimo zóny placeného stání: do 100 m od řezu nesmí být žádná zóna TSK (vrstva „Zóny placeného
+   stání vymezené tarifem“). Hranice zón se stahují jednou skriptem `node tools/build_zps.mjs` do
+   `pilot/data/zps.json` (na webu při nasazení), takže se kvůli nim IPR při kliknutí neptá. Bez souboru rozhodují
+   úseky TSK kolem řezu. Odhad se nepřidá, kde je stání z TSK nebo z OSM nebo kde ho tag zakazuje.
 7. Obytné zóny (`living_street`) se dělí jako ostatní ulice (Streetmix sdílený prostor nezná). Odhad stání platí i
-   v nich; místní ulice bez tagu `lanes` potřebuje mezi odhadnutým stáním jen jeden pruh 2,5 m. Vozovka v pěší
-   zóně (`highway=pedestrian`) zůstává vozovkou, bez tagu `lanes` jako jeden obousměrný pruh.
+   v nich. Vozovka v pěší zóně (`highway=pedestrian`) zůstává vozovkou, bez tagu `lanes` jako jeden obousměrný pruh.
 8. Svodidlo z technické mapy s osou silnice na obou stranách rozdělí plochu vozovky a vznikne **dělicí pás** 0,6 m.
    U ulice ze dvou jednosměrných os se stejným jménem (protisměrných) se střed řezu posune doprostřed mezi ně
    (třeba na tramvajový pás), dosah se měří odtud a zeleň mezi vozovkami profil neukončí.
@@ -305,7 +326,14 @@ a tlačítko Dorovnat (rozdíl dostane vybraná, jinak nejširší část). Ší
 s Manuálem tvorby veřejných prostranství IPR, kap. C.2 (`public/rules.js`): červeně pod minimem
 (chodník 1,5 m, pruh 2,5 m, cyklopruh 1,5 / 1,75 / 2 m podle stání vedle, podélné stání 2 m, kolmé
 4,5 m, dvoukolejný tramvajový pás 6,5 m…), oranžově pod základní šířkou (chodník 2 m, pruh 3 m,
-kolmé stání 5 m…). Kliknutím na upozornění se část vybere.
+kolmé stání 5 m, tramvajový pás bez sloupů 7 m, se sloupy 8 m…). Kliknutím na upozornění se část vybere.
+Tramvajový pás je vyhrazený tramvajový pruh i samostatné těleso, ne tramvaj v pruhu s auty.
+
+Jízdní pruh v Praze podle zatřídění TSK (skupina ČSN 73 6110; MK I a II jsou podle zák. 13/1997 Sb. sběrné
+nebo rychlostní, TSK to nerozlišuje, proto skupina B): dálnice červeně pod 3 m, oranžově pod 3,5 m; MK I, MK II
+a silnice I. a II. třídy červeně pod 3 m; MK III a silnice III. třídy červeně pod 2,75 m, oranžově pod 3 m;
+MK IV červeně pod 2,5 m, oranžově pod 2,75 m. Bez zatřídění (ostatní města) jako dřív 2,5 / 3 m. Pruh
+přidaný v Návrhu převezme třídu ostatních pruhů ulice.
 
 ## Export do Streetmixu
 
