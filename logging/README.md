@@ -9,8 +9,15 @@ kliknutí na nic nečeká, a když Worker neodpoví, nic se nestane.
   čas a způsob vzniku (klik, posun, odkaz),
 - **akce:** export PNG a SVG, uložení souboru, sdílení odkazu, přepnutí do Návrhu a do Porovnání, oprava dat.
 
-IP adresy ani cookies se neukládají. `session` je náhodné číslo jednoho načtení stránky, aby šlo spočítat
-řezy jedné návštěvy.
+## Soukromí
+
+Zaznamenáváme jen řezy (místo, směr, ulici, čas) a použité funkce, abychom aplikaci zlepšili. IP adresy ani
+cookies neukládáme; `session` je náhodné číslo jednoho načtení stránky (neukládá se v prohlížeči), aby šlo
+spočítat řezy jedné návštěvy. Záznam běží na Cloudflare (Worker a D1), který adresu požadavku vidí; Worker ji drží
+jen 10 s v paměti proti zahlcení a do databáze ji nezapisuje. Mapy a data se načítají přímo ze serverů IPR, ČÚZK, měst a krajů a z podkladové mapy
+OSM; písmo a Leaflet jsou na našem webu.
+
+## Limity
 
 **Bezplatné limity Cloudflare:** 100 000 požadavků na Worker denně a 100 000 zapsaných řádků v D1 denně,
 5 GB místa (jeden řádek má asi 200 B, tedy zhruba 25 milionů záznamů). Nad denní limit se záznamy ten den

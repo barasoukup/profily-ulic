@@ -37,6 +37,35 @@ test("jedna stránka: CSP pro servery všech měst, bez přepínače měst", () 
   for (const c of Object.values(SITES)) for (const host of c.connect) assert.ok(connect.includes(host), host);
   assert.doesNotMatch(html, /city-toggle/);
 });
+// Font and Leaflet from the site itself (no Google Fonts, no unpkg), the CSP without those hosts.
+test("písmo a Leaflet z vlastního webu, CSP bez Googlu a unpkg", () => {
+  const html = read("index.html");
+  assert.doesNotMatch(html, /googleapis|gstatic|unpkg/);
+  assert.match(html, /href="fonts\/inter\.css"/);
+  assert.match(html, /src="leaflet\/leaflet\.js"/);
+  assert.match(html, /font-src 'self'/);
+  for (const f of ["fonts/OFL.txt", "leaflet/LICENSE.txt", "leaflet/leaflet.css", "leaflet/images/layers.png"]) assert.ok(fs.existsSync(new URL(`../pilot/public/${f}`, import.meta.url)), f);
+  for (const m of read("fonts/inter.css").matchAll(/url\(([^)]+)\)/g)) assert.ok(fs.existsSync(new URL(`../pilot/public/fonts/${m[1]}`, import.meta.url)), m[1]);
+  assert.match(html, /neukládáme IP adresy ani cookies/);
+});
+// The credits of an export: the region of the cut, ČÚZK with the year, the DMVS standing in, the orthophoto.
+test("zdroje exportu podle města a kraje řezu", async () => {
+  const { creditLines, cityById } = await import("../pilot/public/city.js");
+  const [cz, art] = creditLines(cityById("cesko"), { region: "Pardubický kraj" });
+  assert.match(cz, /technická mapa © Pardubický kraj, IS DMVS ČÚZK/);
+  assert.match(cz, /RÚIAN © ČÚZK, 2026/);
+  assert.match(cz, /© přispěvatelé OpenStreetMap \(ODbL\)/);
+  assert.match(art, /streetmix\.net/);
+  assert.match(art, /creativecommons\.org\/licenses\/by-sa\/4\.0/);
+  assert.doesNotMatch(art, /Bára/);
+  assert.match(creditLines(cityById("olomouc"), {}, true)[0], /© kraje,/); // the region unknown
+  const [praha, prahaArt] = creditLines(cityById("praha"), { ortho: true, dmvs: true, region: "Středočeský kraj" }, true);
+  assert.match(praha, /MHMP, Geoportál Praha/);
+  assert.match(praha, /ortofoto © ČÚZK, 2025/);
+  assert.match(praha, /technická mapa © Středočeský kraj, IS DMVS ČÚZK/);
+  assert.match(prahaArt, /Bára Soukupová \(MIT\)/);
+  assert.doesNotMatch(creditLines(cityById("praha"))[0], /DMVS|ortofoto/);
+});
 test("bývalé stránky měst přesměrují i s řezem", () => {
   assert.match(redirectPage("brno"), /location\.replace\("\.\.\/\?mesto=brno" \+ location\.hash\)/);
 });

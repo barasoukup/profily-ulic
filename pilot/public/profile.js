@@ -1,7 +1,7 @@
 // SVG drawing and direct editing of a street profile. Drawing units are centimetres,
 // matching the Streetmix illustrations (1 px = 1 cm).
 import { TYPES, SOURCES, PARKING_USE, PARKING_POSITION, TRAM_BEDS } from "./types.js";
-import { city, cityById, CITY_IDS } from "./city.js";
+import { city, cityById, CITY_IDS, creditLines } from "./city.js";
 import { SIGNS, PLATES, signFile, plateFile } from "./signs.js";
 
 const NS = "http://www.w3.org/2000/svg";
@@ -47,6 +47,8 @@ for (const id of CITY_IDS) { const c = cityById(id); if (c.artMap) CITY_ART[c.ar
 let artOn = true;
 const artKey = () => (artOn ? city.art : "streetmix");
 const cityArt = () => artOn && !!CITY_ART[city.art]; // the city's own set
+// The credit lines of an export or a saved file for the current city and art (src: the cut's sources, app.js).
+export const exportCredits = (src) => creditLines(city, src || {}, cityArt());
 // Prague buildings are drawn from the side (we look along the street): the outline tells the type.
 export const BUILDING_STYLES = { sikma: "dům se šikmou střechou", funkce: "funkcionalistický činžák", moderni: "moderní bytový dům", plocha: "panelový dům", nizky: "nízký dům", hala: "hala" };
 const OLD_STYLES = { centrum: "sikma", "centrum-obchod": "sikma", sidliste: "plocha", "sidliste-lodzie": "plocha", rd: "nizky" };
@@ -1288,9 +1290,25 @@ export function buildSvg(profile, opts = {}) {
     if (end > GROUND + 320) bottom += end - H + 20;
   }
   if (opts.credits) {
-    // Exported pictures carry the attribution their sources require (CC BY-SA for the illustrations).
-    el("text", { x: vx + 30, y: bottom - 25, "font-size": 24, fill: "#6b6a65" }, svg).textContent =
-      (cityArt() ? "Ilustrace © Streetmix (CC BY-SA 4.0) a Bára Soukupová (MIT)" : "Ilustrace © Streetmix (CC BY-SA 4.0)") + ` · ${city.credit} (ODbL) · obrázek CC BY-SA 4.0`;
+    // Exported pictures carry the attribution their sources require (CC BY-SA for the illustrations): the
+    // lines of exportCredits (or the given ones), each broken at " · " to the picture's width, the picture
+    // made as tall as they need.
+    const FS = 24, LH = 32, fit = Math.max(40, Math.floor((view[1] - 60) / (FS * 0.52)));
+    const rows = [];
+    for (const line of Array.isArray(opts.credits) ? opts.credits : exportCredits()) {
+      // Pieces with the separator before them; a part too long for a row breaks after its commas.
+      const pieces = line.split(" · ").flatMap((part, i) => (part.length > fit ? part.split(/(?<=,) /) : [part])
+        .map((t, j) => [j ? " " : i ? " · " : "", t]));
+      let row = "";
+      for (const [sep, t] of pieces) {
+        if (row && row.length + sep.length + t.length > fit) { rows.push(row); row = t; } else row += row ? sep + t : t;
+      }
+      if (row) rows.push(row);
+    }
+    bottom += (rows.length - 1) * LH;
+    rows.forEach((row, i) => {
+      el("text", { class: "credits", x: vx + 30, y: bottom - 25 - (rows.length - 1 - i) * LH, "font-size": FS, fill: "#6b6a65" }, svg).textContent = row;
+    });
   }
   svg.setAttribute("viewBox", `${vx} ${yv} ${view[1]} ${bottom - yv}`);
   bg.setAttribute("height", bottom - yv);

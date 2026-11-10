@@ -2,7 +2,7 @@ import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TR
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
 import { deriveSigns, SIGNS, PLATES, MAX_PER_PART } from "./signs.js";
-import { loadSprites, loadSigns, layoutSigns, buildSvg, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE } from "./profile.js";
+import { loadSprites, loadSigns, layoutSigns, buildSvg, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE } from "./profile.js";
 import * as sources from "./sources.js";
 import { MAPY_KEY } from "./config.js";
 import { cleanProfile, cleanCut } from "./validate.js";
@@ -90,7 +90,7 @@ const BIG_TILES = { tileSize: 512, zoomOffset: -1 };
 // One set of base maps for the whole Czech Republic (Bára: one page, no city switch): each kind of map
 // is the national layer with the cities' own on top, each limited to its city (mesta.json).
 const DMVS = "https://dmvs.cuzk.gov.cz/api/wms";
-const osmLayer = (opacity = 1) => L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 21, maxNativeZoom: 19, opacity, attribution: "© OpenStreetMap" });
+const osmLayer = (opacity = 1) => L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 21, maxNativeZoom: 19, opacity, attribution: '© <a href="https://www.openstreetmap.org/copyright">přispěvatelé OpenStreetMap</a>' });
 const cuzkOrtho = () => L.tileLayer.wms("https://ags.cuzk.gov.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer", {
   layers: "0", format: "image/jpeg", maxZoom: 21, attribution: "ortofoto © ČÚZK",
 });
@@ -251,6 +251,10 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     const sameStreet = keepWay || (state.cut && (state.cut.wayId === near.way.id || (name && state.cut.name === name)));
     if (!sameStreet) state.navrhEdited = false;
     state.cut = { lat: clat, lon: clon, bearing: (Math.atan2(dir[0], dir[1]) * 180) / Math.PI, wayId: near.way.id, name, reach, span };
+    // What the export credits beyond the city's own data (city.js creditLines): the region of a national DTM,
+    // the DMVS standing in for the city's map, the orthophoto of a tram bed.
+    const mv = m.status === "fulfilled" ? m.value : null;
+    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.dmvs && { dmvs: true }), ...(ortho && { ortho: true }) };
     // The log of cuts (log.js): the cut exactly, and how it came (a click, a moved cut, a link).
     log("rez", {
       detail: keepWay ? "posun" : bearing !== null ? "odkaz" : "klik", city: city.id, street: name, highway: near.way.tags.highway,
@@ -1264,10 +1268,11 @@ document.addEventListener("click", (e) => {
 const cutLog = () => (state.cut ? { city: city.id, street: state.cut.name, wayId: state.cut.wayId, lat: state.cut.lat, lon: state.cut.lon } : {});
 function exportSvgs() {
   const title = state.cut?.name || "Profil";
+  const credits = exportCredits(state.cut?.sources);
   if (state.mode === "porovnat" || !state.stav) {
-    return [buildSvg(state.stav, { title: `${title} – stav`, credits: true }), buildSvg(state.navrh, { title: `${title} – návrh`, credits: true })];
+    return [buildSvg(state.stav, { title: `${title} – stav`, credits }), buildSvg(state.navrh, { title: `${title} – návrh`, credits })];
   }
-  return [buildSvg(current(), { title: `${title} – ${state.mode === "navrh" ? "návrh" : "stav"}`, credits: true })];
+  return [buildSvg(current(), { title: `${title} – ${state.mode === "navrh" ? "návrh" : "stav"}`, credits })];
 }
 
 function download(name, blob) {
@@ -1304,7 +1309,9 @@ $("#btn-export-png").onclick = async () => {
 $("#btn-save").onclick = () => {
   if (!state.stav) return;
   log("ulozeni", cutLog());
-  const data = { app: "streetdesign-pilot", version: 1, cut: state.cut, stav: state.stav, navrh: state.navrh, navrhEdited: state.navrhEdited };
+  const data = { app: "streetdesign-pilot", version: 1, cut: state.cut, stav: state.stav, navrh: state.navrh, navrhEdited: state.navrhEdited,
+    zdroje: exportCredits(state.cut?.sources).join("\n"),
+    licence: "Data podle zdrojů (CC BY 4.0, ODbL 1.0 a další, viz zdroje); profil s ilustracemi Streetmixu pod CC BY-SA 4.0. Zdroje a licence: https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md" };
   download(`${fileBase()}.json`, new Blob([JSON.stringify(data, null, 2)], { type: "application/json" }));
 };
 

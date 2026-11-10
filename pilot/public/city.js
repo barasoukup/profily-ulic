@@ -46,7 +46,7 @@ const CITIES = {
     artLabel: "Ilustrace",
     artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
     emptyImg: "praha/t3-inbound.svg",
-    credit: "technická mapa © kraje, IS DMVS ČÚZK, RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
+    credit: "technická mapa © {kraj}, IS DMVS ČÚZK, RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     storeSuffix: "",
     innerKm: 0, estateKm: 0.5,
     fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
@@ -73,7 +73,7 @@ const CITIES = {
     artLabel: "Pražské ilustrace",
     artTitle: "Kreslit pražskými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "praha/t3-inbound.svg",
-    credit: "data © IPR Praha (technická mapa, podlažnosti, vývoj zástavby) a TSK hl. m. Prahy (CC BY 4.0) · © přispěvatelé OpenStreetMap",
+    credit: "data © IPR Praha (technická mapa, podlažnosti, vývoj zástavby), TSK hl. m. Prahy (parkování) a MHMP, Geoportál Praha (stromy, zákaz stání, uliční úseky), CC BY 4.0, upraveno",
     storeSuffix: "",
     example: "50.082707, 14.419918",
   },
@@ -96,7 +96,7 @@ const CITIES = {
     artLabel: "Brněnské ilustrace",
     artTitle: "Kreslit brněnskými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "brno/t3-inbound.svg",
-    credit: "data © Statutární město Brno (technická mapa a MTVU; budovy CC BY 4.0), parkování © parkovanivbrne.cz · © přispěvatelé OpenStreetMap",
+    credit: "data © Statutární město Brno (technická mapa a MTVU; budovy a cykloopatření, data.brno.cz, CC BY 4.0, upraveno), parkování © parkovanivbrne.cz",
     storeSuffix: "-brno",
     // Changes to the profile tried in Brno first (derive.js); Prague keeps its behaviour until they are
     // checked there too. serviceJunctions: a service road joining counts as a junction; axisToRoadway:
@@ -123,7 +123,7 @@ const CITIES = {
     artLabel: "Jihlavské ilustrace",
     artTitle: "Kreslit jihlavskými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "jihlava/trolejbus-inbound.svg",
-    credit: "data © Statutární město Jihlava (pasport komunikací, parkování, mobiliář), RÚIAN a katastr © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
+    credit: "data © Statutární město Jihlava (pasport komunikací, parkování, mobiliář), RÚIAN a katastr © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     storeSuffix: "-jihlava",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.7, estateKm: 1.6,
@@ -156,7 +156,7 @@ const CITIES = {
     artLabel: "Mostecké ilustrace",
     artTitle: "Kreslit mosteckými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "most/tram-inbound.svg",
-    credit: "data © Statutární město Most (objektová a technická mapa, veřejné osvětlení), RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
+    credit: "data © Statutární město Most (objektová a technická mapa, veřejné osvětlení), RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     storeSuffix: "-most",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0, estateKm: 0.5,
@@ -182,7 +182,7 @@ const CITIES = {
     artLabel: "Opavské ilustrace",
     artTitle: "Kreslit opavskými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "opava/trolejbus-inbound.svg",
-    credit: "data © Statutární město Opava (účelová mapa, parkování, stromy, lavičky, zastávky), RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
+    credit: "data © Statutární město Opava (účelová mapa, parkování, stromy, lavičky, zastávky), RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     storeSuffix: "-opava",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.7, estateKm: 1.6,
@@ -208,7 +208,7 @@ const CITIES = {
     artLabel: "Pardubické ilustrace",
     artTitle: "Kreslit pardubickými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "pardubice/trolejbus-inbound.svg",
-    credit: "technická mapa © Pardubický kraj, IS DMVS ČÚZK, RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
+    credit: "technická mapa © Pardubický kraj, IS DMVS ČÚZK, RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     storeSuffix: "-pardubice",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.9, estateKm: 2,
@@ -235,7 +235,7 @@ const CITIES = {
     artLabel: "Plzeňské ilustrace",
     artTitle: "Kreslit plzeňskými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "plzen/tram-inbound.svg",
-    credit: "data © Statutární město Plzeň (technická mapa, budovy 3D, pasport zeleně a mobiliáře, parkovací zóny), RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
+    credit: "data © Statutární město Plzeň (technická mapa, budovy 3D, pasport zeleně a mobiliáře, parkovací zóny), RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     storeSuffix: "-plzen",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 1.3, estateKm: 3,
@@ -267,7 +267,7 @@ const CITIES = {
     artLabel: "Ilustrace",
     artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
     emptyImg: "praha/t3-inbound.svg",
-    credit: "technická mapa © Ústecký kraj, IS DMVS ČÚZK, parkovací místa © Statutární město Ústí nad Labem, RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
+    credit: "technická mapa © Ústecký kraj, IS DMVS ČÚZK, parkovací místa © Statutární město Ústí nad Labem, RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     storeSuffix: "-usti",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.7, estateKm: 1.5,
@@ -295,7 +295,7 @@ const CITIES = {
     artLabel: "Ilustrace",
     artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
     emptyImg: "praha/t3-inbound.svg",
-    credit: "data © Statutární město Ostrava (technická mapa – generalizace, osy tramvajových kolejí, úseky placeného stání), RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
+    credit: "data © Statutární město Ostrava (technická mapa – generalizace, osy tramvajových kolejí, úseky placeného stání), RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     storeSuffix: "-ostrava",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 1.0, estateKm: 2.0,
@@ -323,7 +323,7 @@ const CITIES = {
     artLabel: "Ilustrace",
     artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
     emptyImg: "praha/t3-inbound.svg",
-    credit: "data © Statutární město Frýdek-Místek (pasport komunikací, zeleně, mobiliáře a osvětlení), technická mapa © Moravskoslezský kraj, IS DMVS ČÚZK, RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
+    credit: "data © Statutární město Frýdek-Místek (pasport komunikací, zeleně, mobiliáře a osvětlení), technická mapa © Moravskoslezský kraj, IS DMVS ČÚZK, RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     storeSuffix: "-frydek-mistek",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.6, estateKm: 1.2,
@@ -351,7 +351,7 @@ const CITIES = {
     artLabel: "Ilustrace",
     artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
     emptyImg: "praha/t3-inbound.svg",
-    credit: "data © Statutární město Karviná (pasport komunikací a zeleně, technická mapa, mobiliář, osvětlení), technická mapa © Moravskoslezský kraj, IS DMVS ČÚZK, RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
+    credit: "data © Statutární město Karviná (pasport komunikací a zeleně, technická mapa, mobiliář, osvětlení), technická mapa © Moravskoslezský kraj, IS DMVS ČÚZK, RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     storeSuffix: "-karvina",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.5, estateKm: 1.0,
@@ -379,7 +379,7 @@ const CITIES = {
     artLabel: "Ilustrace",
     artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
     emptyImg: "praha/t3-inbound.svg",
-    credit: "data © Město Třebíč (pasport komunikací, veřejné osvětlení, lavičky), technická mapa © Kraj Vysočina, IS DMVS ČÚZK, RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
+    credit: "data © Město Třebíč (pasport komunikací, veřejné osvětlení, lavičky), technická mapa © Kraj Vysočina, IS DMVS ČÚZK, RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     storeSuffix: "-trebic",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.6, estateKm: 1.2,
@@ -407,7 +407,7 @@ const CITIES = {
     artLabel: "Ilustrace",
     artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
     emptyImg: "praha/t3-inbound.svg",
-    credit: "data © Statutární město Přerov (technická mapa, vektorové dlaždice), RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
+    credit: "data © Statutární město Přerov (technická mapa, vektorové dlaždice), RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     storeSuffix: "-prerov",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.7, estateKm: 1.5,
@@ -427,6 +427,24 @@ Object.assign(CITIES, {
   budejovice: artTown("budejovice", "v Českých Budějovicích", "budějovické", TROLLEY),
   zlin: artTown("zlin", "ve Zlíně", "zlínské", TROLLEY),
 });
+
+// The credit lines of an export and of a saved file (Bára 10. 11. 2026): the data of the cut's city with the
+// region of a national DTM by name, the DMVS where it stood in for a city's own map (sources.js national),
+// the orthophoto where it was read (ortho.js), then the illustrations and the licences. src: the cut's
+// { region, dmvs, ortho } (app.js); art: the city's own illustrations are drawn. Two lines: data, then the rest.
+export function creditLines(c, src = {}, art = false) {
+  const kraj = src.region || "kraje";
+  const data = [`Data: ${c.credit.replace(/^data /, "").replace("{kraj}", kraj)}`];
+  if (src.dmvs && !c.credit.includes("IS DMVS")) data.push(`technická mapa © ${kraj}, IS DMVS ČÚZK`);
+  if (src.dmvs && !c.credit.includes("RÚIAN")) data.push("RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)");
+  if (src.ortho) data.push("ortofoto © ČÚZK, 2025 (CC BY 4.0)");
+  data.push("© přispěvatelé OpenStreetMap (ODbL)");
+  return [
+    data.join(" · "),
+    `Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0)${art ? " a Bára Soukupová (MIT)" : ""} · obrázek CC BY-SA 4.0 · `
+      + "licence: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0",
+  ];
+}
 
 export const CITY_IDS = Object.keys(CITIES);
 export const cityById = (id) => CITIES[id];

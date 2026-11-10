@@ -24,7 +24,8 @@ export const osm = (lat, lon, r) => (town() ? town().osm(lat, lon, r) : isBrno()
 const national = async (json, bbox) => {
   if (json?.features?.length || TOWNS[city.id]?.national) return json;
   const { surfaces } = await import("./dmvs.js");
-  return surfaces(bbox, MTVU_LABELS, { wfs: true }).catch(() => json);
+  // dmvs: the export credits the DMVS and the region (city.js creditLines).
+  return surfaces(bbox, MTVU_LABELS, { wfs: true }).then((r) => ({ ...r, dmvs: r.features?.length > 0 })).catch(() => json);
 };
 export const mtvu = (bbox) => (town() ? town().surfaces(bbox) : isBrno() ? brnoSurfaces(bbox) : STATIC
   ? query(MTVU, { ...envelope(bbox), outFields: MTVU_FIELDS })
