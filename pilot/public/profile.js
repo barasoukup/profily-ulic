@@ -981,7 +981,7 @@ export function layoutSigns(svg, size, top) {
     const cx = Number(g.dataset.cx), avail = Number(g.dataset.w);
     const stacks = [...g.querySelectorAll("g.sign")];
     // Each sign with its plate below (at half height): widths at this size, then scaled down to the part's width.
-    const scale = (im) => (im.dataset.plate ? 0.5 : 1);
+    const scale = (im) => Number(im.dataset.plate || 1);
     const ws = stacks.map((st) => Math.max(...[...st.querySelectorAll("image")].map((im) => Number(im.dataset.ar) * size * scale(im))));
     const gap = size * 0.12;
     const need = ws.reduce((a, w) => a + w, 0) + gap * (ws.length - 1);
@@ -1013,7 +1013,8 @@ function drawSigns(svg, profile, bounds) {
     for (const [a, plate] of [[signArtOf(x, seg), false], [plateArtOf(x, seg), true]]) {
       const art = artFor(a);
       if (!art) continue;
-      el("image", { href: art.uri, "data-ar": art.w / art.h, ...(plate ? { "data-plate": 1 } : {}) }, st);
+      // A plate at half the sign's height; a second round symbol (the bike under the bus) nearly as big.
+      el("image", { href: art.uri, "data-ar": art.w / art.h, ...(plate ? { "data-plate": a.file === "C8a" ? 0.8 : 0.5 } : {}) }, st);
     }
     if (!st.querySelector("image")) st.remove();
   };

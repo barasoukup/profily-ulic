@@ -35,7 +35,7 @@ export const SIGNS = {
   cyklozona: "IZ 9a Zóna pro cyklisty",
 };
 // Dodatkové tabulky (plate) of a sign: text of E 13, or a key of a pictogram.
-export const PLATES = { kola: "s cyklisty", protismer: "cyklisté v protisměru", obsluha: "Mimo dopravní obsluhy", podelne: "podélné", kolme: "kolmé", sikme: "šikmé" };
+export const PLATES = { kola: "s cyklisty", kolo: "i pro cyklisty", protismer: "cyklisté v protisměru", obsluha: "Mimo dopravní obsluhy", podelne: "podélné", kolme: "kolmé", sikme: "šikmé" };
 
 const ROAD = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "obsluzna"]);
 const CARRIAGEWAY = new Set([...ROAD, "parkovani", "cyklopruh", "ochranny_pruh", "krajnice", "tramvaj"]);
@@ -89,7 +89,8 @@ export function deriveSigns(profile, tags = {}, ctx = {}) {
     const out = [];
     const t = s.type;
     // Under the lane only the round bus symbol of IP 20a (Bára).
-    if (t === "bus" || t === "bus_cyklo") out.push({ k: "ip20a" });
+    // In a bus and bike lane the blue bike symbol stands under it (Bára).
+    if (t === "bus" || t === "bus_cyklo") out.push({ k: "ip20a", ...(t === "bus_cyklo" ? { plate: "kolo" } : {}) });
     // Road markings (cycle lanes, piktokoridor, tram lane, turn arrows) are in the drawing itself (Bára).
     else if (t === "cyklostezka") out.push({ k: "c8a" });
     else if (t === "stezka_sdilena") out.push({ k: tags.segregated === "yes" ? "c10a" : "c9a" });
@@ -150,6 +151,7 @@ export function signFile(s, seg) {
 export function plateFile(s, seg) {
   if (s.plate === "protismer") return (s.dir ?? seg?.dir) === "backward" ? "E12b" : null; // IP 4c says it itself
   if (s.plate === "obsluha") return "E13";
+  if (s.plate === "kolo") return "C8a"; // the round bike symbol under the bus of IP 20a
   return null;
 }
 

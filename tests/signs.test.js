@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { deriveSigns, signFile, streetSigns } from "../pilot/public/signs.js";
+import { deriveSigns, signFile, plateFile, streetSigns } from "../pilot/public/signs.js";
 
 const keys = (list) => (list || []).map((s) => s.k + (s.v ? `:${s.v}` : "") + (s.plate ? `+${s.plate}` : ""));
 const files = (p) => p.segments.map((s) => (s.signs || []).map((x) => signFile(x, s)));
@@ -50,4 +50,10 @@ test("stání na chodníku a napůl na chodníku: IP 11d až g", () => {
     { type: "parkovani", source: "osm", position: "half_on_kerb" }, { type: "parkovani", source: "osm", position: "half_on_kerb", orient: "sikme" },
   ] }, {});
   assert.deepEqual(files(p), [["IP11e"], ["IP11d"], ["IP11g"], ["IP11f"]]);
+});
+
+test("pruh pro BUS a cyklisty: symbol autobusu a pod ním modré kolo", () => {
+  const p = deriveSigns({ segments: [{ type: "bus_cyklo", dir: "forward" }] }, {});
+  assert.deepEqual(keys(p.segments[0].signs), ["ip20a+kolo"]);
+  assert.equal(plateFile(p.segments[0].signs[0], p.segments[0]), "C8a");
 });
