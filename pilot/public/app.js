@@ -736,7 +736,7 @@ function fitPhone(box = $("#profile")) {
 const coarse = matchMedia("(pointer: coarse)").matches;
 // Labels in the drawing keep a readable size on screen (k = drawing units per CSS pixel); a label
 // wider than its part shrinks a little, and a name that still does not fit is left out.
-const SIGN_PX = 26; // height of a traffic sign under the profile on screen (CSS px)
+const SIGN_PX = 32; // width of a basic traffic sign under the profile on screen (CSS px)
 const LABEL_PX = { "lbl-w": 13, "lbl-t": 11, "lbl-total": 14, "lbl-title": 13, "lbl-floor": 11 };
 function fitLabels(box) {
   for (const svg of box.querySelectorAll("svg")) {

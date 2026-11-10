@@ -6,7 +6,7 @@ import { SIGNS, PLATES, signFile, plateFile } from "./signs.js";
 
 const NS = "http://www.w3.org/2000/svg";
 const GROUND = 760; // roadway surface
-const SIGN_SIZE = 105; // traffic signs under the labels in an export: height of a sign (cm)
+const SIGN_SIZE = 125; // traffic signs under the labels in an export: width of a basic sign (cm)
 const CURB = 15;
 const EDGE = 400; // width drawn for the building / open edge
 const FLOOR = 3.5; // typical floor height for estimating floors from a building's height (m)
@@ -1001,7 +1001,7 @@ const artFor = (a) => (a ? signArt.get(signKey(a.file, a.text)) : null);
 // once under a bracket over them. size: the height of a sign in drawing units; top: the top of the row; px:
 // drawing units per screen pixel (for the bracket and the dot). A part too narrow for its signs gets a grey
 // dot. Returns the bottom (top without signs).
-export function layoutSigns(svg, size, top, px = size / 26) {
+export function layoutSigns(svg, size, top, px = size / 32) {
   const groups0 = [...svg.querySelectorAll("g.sign-group")];
   if (!groups0.length) return top;
   // All signs at one size (Bára): the size that lets every part's signs fit its width, but no smaller than
@@ -1010,7 +1010,7 @@ export function layoutSigns(svg, size, top, px = size / 26) {
   const rowTop = top + 6 * px;
   const groups = groups0.map((g) => {
     const stacks = [...g.querySelectorAll("g.sign")];
-    const ws = stacks.map((st) => Number(st.querySelector("image").dataset.ar) * size);
+    const ws = stacks.map((st) => Number(st.querySelector("image").dataset.u) * size);
     const need = ws.reduce((a, w) => a + w, 0) + gap * (ws.length - 1);
     return { g, stacks, ws, need, fit: (Number(g.dataset.w) * 0.94) / need };
   });
@@ -1041,7 +1041,8 @@ export function layoutSigns(svg, size, top, px = size / 26) {
       for (const im of st.querySelectorAll("image")) {
         const ar = Number(im.dataset.ar);
         const plate = im.dataset.plate === "plate";
-        const h = plate ? sw / ar : size * k, w = plate ? sw : ar * h;
+        // Every sign at one scale: a basic sign is size wide, a plate as wide as its sign.
+        const w = plate ? sw : Number(im.dataset.u) * size * k, h = w / ar;
         im.setAttribute("x", x + (sw - w) / 2); im.dataset.dy = y;
         im.setAttribute("width", w); im.setAttribute("height", h);
         y += h + size * 0.04;
@@ -1079,7 +1080,9 @@ function drawSigns(svg, profile, bounds) {
       const art = artFor(a);
       if (!art) continue;
       // A plate (dodatková tabulka) is drawn as wide as its sign, a second symbol (the bike under the bus) as a sign.
-      el("image", { href: art.uri, "data-ar": art.w / art.h, ...(plate ? { "data-plate": a.file === "C8a" ? "symbol" : "plate" } : {}) }, st);
+      // data-u: the sign's width in units of a basic sign (100 in its viewBox = 500 mm), so a square IP 4b and an
+      // upright IP 11 are as wide as on the street (Bára).
+      el("image", { href: art.uri, "data-ar": art.w / art.h, "data-u": art.w / 100, ...(plate ? { "data-plate": a.file === "C8a" ? "symbol" : "plate" } : {}) }, st);
     }
     if (!st.querySelector("image")) st.remove();
   };
