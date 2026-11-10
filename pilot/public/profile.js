@@ -268,6 +268,8 @@ export function twoLines(text) {
 // picture is drawn up to its roof (PANTO_CUT of the 420 high picture), its own lowered pantograph left out, and a
 // pantograph is drawn from the roof to the wire: lower arm, knee, upper arm and the head with its horns.
 const WIRE_H = 550, PANTO_CUT = 92;
+// Trams with a diamond pantograph (art folder/file, checked on photos); the others have a single-arm one.
+const DIAMOND = new Set(["praha/t3-inbound", "praha/t3-outbound", "brno/t3-inbound", "brno/t3-outbound"]);
 let clipN = 0;
 function tramSprite(g, name, cx, bottom) {
   const s = (cityArt() && sprites[`${artKey()}/${CITY_ART[artKey()]?.[name]}`]) || sprites[name];
@@ -280,13 +282,22 @@ function tramSprite(g, name, cx, bottom) {
   // Insulators and the frame on the roof.
   el("rect", { x: cx - 34, y: roof - 7, width: 68, height: 5, rx: 2, fill: ink, stroke: "none" }, p);
   for (const dx of [-28, 22]) el("rect", { x: cx + dx, y: roof - 13, width: 6, height: 7, rx: 1.5, fill: "#8d8f8c", stroke: "none" }, p);
-  // Lower arm up to the knee (towards one side), upper arm back to the head over the middle.
-  const knee = [cx + 26, roof - rise * 0.55];
-  el("path", { d: `M${cx - 20} ${roof - 8} L${knee[0]} ${knee[1]} L${cx - 2} ${head + 7}`, "stroke-width": 4.5 }, p);
-  el("path", { d: `M${cx - 8} ${roof - 8} L${knee[0] - 6} ${knee[1] + 8}`, "stroke-width": 2 }, p); // the lower arm's rod
+  // Seen from the front a pantograph is symmetric (Bára): its frame stands on two insulators.
+  if (DIAMOND.has(`${artKey()}/${CITY_ART[artKey()]?.[name] || name}`)) {
+    // An older diamond pantograph (Tatra T3): two side frames almost upright, braced crosswise in the middle.
+    const mid = (roof - 8 + head + 8) / 2;
+    el("path", { d: `M${cx - 26} ${roof - 8} L${cx - 20} ${mid} L${cx - 24} ${head + 8} M${cx + 26} ${roof - 8} L${cx + 20} ${mid} L${cx + 24} ${head + 8}`, "stroke-width": 3.5 }, p);
+    el("path", { d: `M${cx - 20} ${mid} H${cx + 20} M${cx - 23} ${roof - 8 - (roof - mid) * 0.5} L${cx + 23} ${mid - (mid - head) * 0.5} M${cx + 23} ${roof - 8 - (roof - mid) * 0.5} L${cx - 23} ${mid - (mid - head) * 0.5}`, "stroke-width": 1.8 }, p);
+  } else {
+    // A single-arm pantograph: the wide lower frame narrows to the knee, the upper arm goes on up to the head.
+    const knee = roof - rise * 0.5;
+    el("path", { d: `M${cx - 28} ${roof - 8} L${cx - 3} ${knee} M${cx + 28} ${roof - 8} L${cx + 3} ${knee}`, "stroke-width": 4 }, p);
+    el("path", { d: `M${cx} ${knee} V${head + 8}`, "stroke-width": 4.5 }, p);
+    el("path", { d: `M${cx - 16} ${roof - 8} L${cx} ${knee + 30} L${cx + 16} ${roof - 8}`, "stroke-width": 1.8 }, p); // the rods
+  }
   // The head: a bar touching the wire, its ends bent down.
   el("path", { d: `M${cx - 58} ${head + 12} Q${cx - 54} ${head + 2} ${cx - 44} ${head + 2} H${cx + 44} Q${cx + 54} ${head + 2} ${cx + 58} ${head + 12}`, "stroke-width": 4 }, p);
-  el("path", { d: `M${cx - 22} ${head + 2} L${cx - 2} ${head + 9} L${cx + 18} ${head + 2}`, "stroke-width": 2 }, p);
+  el("path", { d: `M${cx - 22} ${head + 2} L${cx} ${head + 9} L${cx + 22} ${head + 2}`, "stroke-width": 2 }, p);
   el("image", { href: s.uri, width: s.w, height: s.h, x, y, "clip-path": `url(#${id})` }, g);
 }
 
