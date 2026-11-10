@@ -214,6 +214,11 @@ pilot/data/<město>/osm-tiles`, kontrola `CITY=<město> node evaluation/sample.m
 - Zkoušené a nepřipojené (10. 11. 2026): pasport komunikací Hradce Králové (T-MAPY WFS `geoportal.mmhk.cz/services/
   mapserver/common/pakom/gservice`, vrstva `pk-pov-typ`) dává skoro stejné plochy jako DTM ČÚZK (95 řezů: lepší 4,
   horší 3, stejně 7, obě špatně 2) a nemá CORS; varianta `evaluation/variants/hradec-pasport.mjs`.
+- Zkoušené a nepřipojené (10. 11. 2026): **České Budějovice** nezveřejňují plochy ulic; na ArcGIS Online města
+  (`services9.arcgis.com/8svDug0pVvBQzXWS`, CORS) jsou jen osy pasportu a chodníků bez šířek, trávníky pasportu
+  zeleně, lavičky a úseky placeného stání (čáry bez způsobu stání). DTM kraje (`jck.krajdtm.cz`, i WFS) má stejné
+  díry jako DMVS (22 ze 47 řezů bez ploch). A/B 47 řezů: trávníky a lavičky lepší 0 / horší 0 / stejně 2, se stáním
+  lepší 0 / horší 1 / stejně 3; `evaluation/budejovice/ZPRAVA.md`, varianty `budejovice-mesto`, `budejovice-stani`.
 
 ## Moravská města: Ostrava, Frýdek-Místek, Karviná, Třebíč, Přerov (10. 11. 2026)
 
