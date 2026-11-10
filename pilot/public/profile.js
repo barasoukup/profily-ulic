@@ -1198,7 +1198,8 @@ export function buildSvg(profile, opts = {}) {
         : laneDir(segs, i) === "backward" ? "car-inbound" : "car-outbound";
       if (half) {
         // Across the kerb: the car stands half a kerb up, tilted towards the roadway.
-        const tilt = el("g", { transform: `rotate(${((kerbLeft ? -1 : 1) * Math.atan2(CURB, CAR_TRACK) * 180) / Math.PI} ${cx} ${GROUND - CURB / 2})` }, g);
+        // Higher on the sidewalk side, lower towards the roadway (SVG angles turn clockwise).
+        const tilt = el("g", { transform: `rotate(${((kerbLeft ? 1 : -1) * Math.atan2(CURB, CAR_TRACK) * 180) / Math.PI} ${cx} ${GROUND - CURB / 2})` }, g);
         sprite(tilt, name, cx, GROUND - CURB / 2);
       } else sprite(g, name, cx, top);
     } else if (t.sprite === "car" && w >= 180 && s.trolley && cityArt() && CITY_ART[artKey()]?.["trolleybus-inbound"]) {
