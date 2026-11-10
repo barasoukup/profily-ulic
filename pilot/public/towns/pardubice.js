@@ -38,3 +38,6 @@ export function maps({ L, osm: osmLayer, cuzk }) {
 
 // The orthophoto for the evaluation: ČÚZK's (evaluation/run_brno.mjs).
 export const ortho = null;
+
+// The surfaces already are the national DTM: no fallback to it (sources.js).
+export const national = true;

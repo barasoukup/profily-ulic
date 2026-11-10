@@ -16,9 +16,16 @@ const town = TOWNS[city.id]?.sources;
 
 export const osm = (lat, lon, r) => (town ? town.osm(lat, lon, r) : isBrno ? brnoOsm(lat, lon, r) : STATIC ? osmTiles(lat, lon, r) : getJSON(`/api/osm?lat=${lat}&lon=${lon}&r=${r}`));
 
+// Where the city's own map has nothing (a cut outside the city: Česká Třebová from the Most page, a village
+// beyond Prague), the national DTM of ČÚZK read live (dmvs.js) stands in, as for Pardubice.
+const national = async (json, bbox) => {
+  if (json?.features?.length || TOWNS[city.id]?.national) return json;
+  const { surfaces } = await import("./dmvs.js");
+  return surfaces(bbox, MTVU_LABELS).catch(() => json);
+};
 export const mtvu = (bbox) => (town ? town.surfaces(bbox) : isBrno ? brnoSurfaces(bbox) : STATIC
   ? query(MTVU, { ...envelope(bbox), outFields: MTVU_FIELDS })
-  : getJSON(`/api/mtvu?bbox=${bbox}`));
+  : getJSON(`/api/mtvu?bbox=${bbox}`)).then((json) => national(json, bbox));
 
 export const linie = (bbox) => (town ? town.lines(bbox) : isBrno ? brnoLines(bbox) : STATIC
   ? query(TM_LINES, { ...envelope(bbox), where: LINE_WHERE, outFields: "CTMTP_KOD" })
