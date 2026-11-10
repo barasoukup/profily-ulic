@@ -977,19 +977,17 @@ export async function loadSigns(...profiles) {
 }
 const artFor = (a) => (a ? signArt.get(signKey(a.file, a.text)) : null);
 
-// The row of signs under the labels: a thin rule with a small head "Dopravní značení", each part's signs under
-// the part with their plates, and a sign shared by neighbouring parts once under a bracket over them. size: the
-// height of a sign in drawing units; top: the top of the row; px: drawing units per screen pixel (for the head
+// The row of signs under the labels (no head: the signs are what the data say, not always what is on the
+// street; Bára): each part's signs under the part with their plates, and a sign shared by neighbouring parts once under a bracket over them. size: the
+// height of a sign in drawing units; top: the top of the row; px: drawing units per screen pixel (for the
 // and the lines). A part too narrow for its signs gets a grey dot. Returns the bottom (top without signs).
 export function layoutSigns(svg, size, top, px = size / 26) {
   const groups0 = [...svg.querySelectorAll("g.sign-group")];
-  const head = svg.querySelector("g.signs-head");
   if (!groups0.length) return top;
   // All signs at one size (Bára): the size that lets every part's signs fit its width, but no smaller than
   // MIN_K of the full size; a part too narrow even for that shows a dot.
   const MIN_K = 0.6, gap = size * 0.12;
-  const headH = 10 * px + 6 * px; // the head's text and the rule under it
-  const rowTop = top + headH + 6 * px;
+  const rowTop = top + 6 * px;
   const groups = groups0.map((g) => {
     const stacks = [...g.querySelectorAll("g.sign")];
     const ws = stacks.map((st) => Number(st.querySelector("image").dataset.ar) * size);
@@ -1047,15 +1045,6 @@ export function layoutSigns(svg, size, top, px = size / 26) {
       br.setAttribute("stroke-width", 1.2 * px);
     }
   }
-  if (head) {
-    const rule = head.querySelector("line"), text = head.querySelector("text");
-    const x0 = Number(head.dataset.x0), x1 = Number(head.dataset.x1);
-    rule.setAttribute("x1", x0); rule.setAttribute("x2", x1);
-    rule.setAttribute("y1", top + headH); rule.setAttribute("y2", top + headH);
-    rule.setAttribute("stroke-width", px);
-    text.setAttribute("x", x0); text.setAttribute("y", top + 10 * px);
-    text.style.fontSize = `${10 * px}px`;
-  }
   const rowH = lineH[1] ? lineTop[1] - rowTop + lineH[1] : lineH[0];
   return rowTop + rowH + size * 0.2;
 }
@@ -1092,11 +1081,6 @@ function drawSigns(svg, profile, bounds) {
       for (let m = i; m <= j; m++) own[m] = own[m].filter((y) => id(y, segs[m]) !== key);
     }
   }
-  if (own.some((l) => l.length) || shared.size) {
-    const h = el("g", { class: "signs-head", "data-x0": bounds[0], "data-x1": bounds.at(-1) }, svg);
-    el("line", { stroke: "#d6d2c6" }, h);
-    el("text", { fill: "#8a877e", "font-weight": 500 }, h).textContent = "Dopravní značení";
-  }
   own.forEach((list, i) => {
     if (!list.length) return;
     const g = el("g", { class: "sign-group", "data-line": 0, "data-cx": (bounds[i] + bounds[i + 1]) / 2, "data-w": bounds[i + 1] - bounds[i] }, svg);
@@ -1111,7 +1095,6 @@ function drawSigns(svg, profile, bounds) {
     list.forEach(([x, s]) => stack(g, x, s));
   }
   for (const g of svg.querySelectorAll("g.sign-group")) if (!g.querySelector("image")) g.remove();
-  if (!svg.querySelector("g.sign-group")) svg.querySelector("g.signs-head")?.remove();
 }
 
 export function buildSvg(profile, opts = {}) {
