@@ -264,26 +264,30 @@ export function twoLines(text) {
   return best;
 }
 
-// A tram with its pantograph raised to the contact wire (WIRE_H): the picture's top (the pantograph above
-// PANTO_CUT of the 420 high picture) is lifted by the difference and joined to the roof by the arm (Bára: the
-// trams' and the trolleybuses' wires at one height).
-const WIRE_H = 550, PANTO_CUT = 88, PANTO_TOP = 46;
+// A tram with a single-arm pantograph raised to the contact wire (WIRE_H, as the trolleybuses' wires; Bára): the
+// picture is drawn up to its roof (PANTO_CUT of the 420 high picture), its own lowered pantograph left out, and a
+// pantograph is drawn from the roof to the wire: lower arm, knee, upper arm and the head with its horns.
+const WIRE_H = 550, PANTO_CUT = 92;
 let clipN = 0;
 function tramSprite(g, name, cx, bottom) {
   const s = (cityArt() && sprites[`${artKey()}/${CITY_ART[artKey()]?.[name]}`]) || sprites[name];
   if (!s) return;
-  const k = s.h / 420, x = cx - s.w / 2, y = bottom - s.h, cut = y + PANTO_CUT * k;
-  const lift = WIRE_H - (s.h - PANTO_TOP * k);
-  if (lift <= 0) return sprite(g, name, cx, bottom);
-  const id = `pc${++clipN}`;
-  const defs = el("defs", {}, g);
-  el("rect", { x, y: cut, width: s.w, height: s.h - (cut - y) }, el("clipPath", { id: `${id}b` }, defs));
-  el("rect", { x, y, width: s.w, height: cut - y }, el("clipPath", { id: `${id}t` }, defs));
-  // The arm from the roof up to the lifted head, dark like the pantographs of the pictures.
-  el("path", { d: `M${cx - 18} ${cut + 4} L${cx + 14} ${cut - lift / 2} L${cx - 6} ${cut - lift + 6}`, stroke: "#2a2c2e", "stroke-width": 4, fill: "none", "stroke-linejoin": "round" }, g);
-  el("image", { href: s.uri, width: s.w, height: s.h, x, y, "clip-path": `url(#${id}b)` }, g);
-  el("image", { href: s.uri, width: s.w, height: s.h, x, y: y - lift, "clip-path": `url(#${id}t)`, transform: "" }, g).setAttribute("y", y);
-  g.lastChild.setAttribute("transform", `translate(0 ${-lift})`);
+  const k = s.h / 420, x = cx - s.w / 2, y = bottom - s.h, roof = y + PANTO_CUT * k + 6;
+  const head = bottom - WIRE_H, id = `pc${++clipN}`;
+  el("rect", { x, y: roof - 8, width: s.w, height: bottom - roof + 8 }, el("clipPath", { id }, el("defs", {}, g)));
+  const ink = "#2a2c2e", rise = roof - head;
+  const p = el("g", { stroke: ink, fill: "none", "stroke-linecap": "round", "stroke-linejoin": "round" }, g);
+  // Insulators and the frame on the roof.
+  el("rect", { x: cx - 34, y: roof - 7, width: 68, height: 5, rx: 2, fill: ink, stroke: "none" }, p);
+  for (const dx of [-28, 22]) el("rect", { x: cx + dx, y: roof - 13, width: 6, height: 7, rx: 1.5, fill: "#8d8f8c", stroke: "none" }, p);
+  // Lower arm up to the knee (towards one side), upper arm back to the head over the middle.
+  const knee = [cx + 26, roof - rise * 0.55];
+  el("path", { d: `M${cx - 20} ${roof - 8} L${knee[0]} ${knee[1]} L${cx - 2} ${head + 7}`, "stroke-width": 4.5 }, p);
+  el("path", { d: `M${cx - 8} ${roof - 8} L${knee[0] - 6} ${knee[1] + 8}`, "stroke-width": 2 }, p); // the lower arm's rod
+  // The head: a bar touching the wire, its ends bent down.
+  el("path", { d: `M${cx - 58} ${head + 12} Q${cx - 54} ${head + 2} ${cx - 44} ${head + 2} H${cx + 44} Q${cx + 54} ${head + 2} ${cx + 58} ${head + 12}`, "stroke-width": 4 }, p);
+  el("path", { d: `M${cx - 22} ${head + 2} L${cx - 2} ${head + 9} L${cx + 18} ${head + 2}`, "stroke-width": 2 }, p);
+  el("image", { href: s.uri, width: s.w, height: s.h, x, y, "clip-path": `url(#${id})` }, g);
 }
 
 // The current city's own sprite of a name, or undefined (poles and stop posts have no Streetmix stand-in).
