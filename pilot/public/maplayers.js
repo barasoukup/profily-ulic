@@ -19,7 +19,8 @@ const ZPS_NEAR = 100; // Prague's paid zones this close to the cut (m), as sourc
 const TM_TREE = 83130; // technical map: strom mimo park
 const STORE = "streetdesign-datalayers";
 const GROUPS = [
-  ["parking", "Parkování u řezu", true],
+  ["parking", "Parkování u řezu (místní data)", true],
+  ["parkingOsm", "Parkování u řezu (OSM)", true],
   ["points", "Body u řezu (stromy, lampy…)", true],
   ["lines", "Ploty, zdi a svahy u řezu", false],
   ["tracks", "Koleje u řezu", false],
@@ -113,7 +114,7 @@ export function createDataLayers(map, control) {
       const street = STREET_PARKING.has(el.tags.parking);
       const rings = [el.geometry, ...(el.holes || [])].map((r) => r.map((g) => [g.lat, g.lon]));
       const what = [street ? "stání u ulice" : "parkoviště", ORIENT_OSM[el.tags.orientation], el.tags.capacity && `${el.tags.capacity} míst`].filter(Boolean).join(" · ");
-      tip(L.polygon(rings, shape({ ...P, color: SOURCES.osm.color, fillColor: TYPES.parkovani.color, fillOpacity: street ? 0.35 : 0.12, dashArray: street ? null : "2 3" })).addTo(groups.parking),
+      tip(L.polygon(rings, shape({ ...P, color: SOURCES.osm.color, fillColor: TYPES.parkovani.color, fillOpacity: street ? 0.35 : 0.12, dashArray: street ? null : "2 3" })).addTo(groups.parkingOsm),
         `<b>Parkování (OSM)</b><br>${esc(what)}`);
     }
     // Prague's paid zones near the cut, as a faint tint: the boxes of their parts that the zone file keeps (sources.js
