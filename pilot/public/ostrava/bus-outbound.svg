@@ -1,0 +1,36 @@
+<svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
+  <!-- Ostravský autobus DPO, Solaris Urbino 12 CNG IV. generace, zadní pohled v nátěru DPO od roku 2018 (světle
+       modrá až tyrkysová): kryt plynových lahví na střeše, černé zadní sklo s linkovou tabulí, mřížka motoru, číslo
+       vozu, svislé svítilny v rozích, modrý spodek s registrační značkou. 1 px = 1 cm, šířka 2,55 m.
+       Barvy podle fotek vozů 7235 a 7249 (zboku a zepředu, záď z nich vidět není; tvar zádě jako u karoserie
+       Urbino IV v plzen/trolejbus-outbound.svg):
+       https://commons.wikimedia.org/wiki/File:Ostrava,_Solaris_Urbino_IV_12_CNG_č._7235.jpg
+       https://commons.wikimedia.org/wiki/File:Ostrava,_Solaris_Urbino_IV_12_CNG_č._7249.jpg -->
+  <!-- zrcátka vpředu vyčnívají za boky -->
+  <rect x="26" y="50" width="16" height="44" rx="5" fill="#1d1f22"/>
+  <rect x="318" y="50" width="16" height="44" rx="5" fill="#1d1f22"/>
+  <!-- kryt plynových lahví na střeše -->
+  <path d="M70 22 Q72 6 92 4 H268 Q288 6 290 22 Z" fill="#2db3e6"/>
+  <path d="M262 4 H268 Q288 6 290 22 H274 Z" fill="#1a93c6"/>
+  <!-- modrá záď -->
+  <path d="M52 296 V40 Q52 20 74 20 H286 Q308 20 308 40 V296 Z" fill="#1ba8de"/>
+  <path d="M298 22 Q308 28 308 40 V296 H298 Z" fill="#000" opacity=".1"/>
+  <!-- černé zadní sklo s linkovou tabulí -->
+  <rect x="66" y="36" width="228" height="100" rx="4" fill="#17191c"/>
+  <path d="M84 42 L112 42 L98 130 L84 130 Z" fill="#3a4654" opacity=".55"/>
+  <rect x="246" y="44" width="38" height="22" rx="2" fill="#2a1f14"/>
+  <text x="265" y="61" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="bold" fill="#f2a33a">37</text>
+  <!-- mřížka motoru, číslo vozu -->
+  <g fill="#1590c2"><rect x="110" y="156" width="140" height="5" rx="2"/><rect x="110" y="168" width="140" height="5" rx="2"/><rect x="110" y="180" width="140" height="5" rx="2"/><rect x="110" y="192" width="140" height="5" rx="2"/></g>
+  <text x="180" y="224" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#f4f8fa">7235</text>
+  <!-- svislé svítilny v rozích -->
+  <rect x="58" y="146" width="14" height="84" rx="6" fill="#8f1218"/><rect x="60" y="194" width="10" height="10" rx="3" fill="#f2a33a"/><rect x="60" y="208" width="10" height="10" rx="3" fill="#eef1f3"/>
+  <rect x="288" y="146" width="14" height="84" rx="6" fill="#8f1218"/><rect x="290" y="194" width="10" height="10" rx="3" fill="#f2a33a"/><rect x="290" y="208" width="10" height="10" rx="3" fill="#eef1f3"/>
+  <!-- bílá linka a modrý spodek s registrační značkou -->
+  <path d="M52 240 H308" stroke="#eef3f6" stroke-width="3"/>
+  <path d="M52 246 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#1897cb"/>
+  <rect x="152" y="256" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="256" width="6" height="12" fill="#2a63b8"/>
+  <circle cx="66" cy="284" r="4" fill="#b3161d"/><circle cx="294" cy="284" r="4" fill="#b3161d"/>
+  <!-- kola -->
+  <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
+</svg>

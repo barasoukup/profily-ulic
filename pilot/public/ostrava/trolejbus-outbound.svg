@@ -1,0 +1,50 @@
+<svg viewBox="0 0 360 560" xmlns="http://www.w3.org/2000/svg">
+  <!-- Ostravský trolejbus DPO, Škoda 26Tr (Solaris Urbino III. generace), zadní pohled v nátěru DPO od roku 2018:
+       modrá záď s kryty výzbroje na střeše, velké černé zadní sklo s oranžovou linkovou tabulí, nahoře v rozích
+       kulatá světla, bílé číslo vozu, dvě kapsy tažného zařízení, dole stříbrná lišta s kulatými svítilnami
+       a oranžovým blinkrem, modrý spodek s odrazkami. 1 px = 1 cm, šířka 2,55 m; nahoře sběrače k trolejím.
+       Podle fotky vozu 3734 zezadu:
+       https://commons.wikimedia.org/wiki/File:Trolejbus_ŠKODA_26Tr_DPO_3734_(Ostrava_-_zastávka_Hornická_poliklinika).jpg -->
+  <!-- sběrače: dvě tyče ze zadní části střechy k trolejím -->
+  <g stroke="#2a2b2a" stroke-linecap="round" fill="none">
+    <path d="M160 266 L148 16" stroke-width="5"/>
+    <path d="M200 266 L212 16" stroke-width="5"/>
+  </g>
+  <rect x="140" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
+  <rect x="204" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
+  <g transform="translate(0 240)">
+    <!-- zrcátka vpředu vyčnívají za boky -->
+    <rect x="26" y="58" width="16" height="42" rx="5" fill="#1b1d20"/>
+    <rect x="318" y="58" width="16" height="42" rx="5" fill="#1b1d20"/>
+    <!-- kryty výzbroje a základna sběračů na střeše -->
+    <path d="M78 26 L86 6 Q88 2 94 2 H266 Q272 2 274 6 L282 26 Z" fill="#2db3e6"/>
+    <path d="M262 2 H266 Q272 2 274 6 L282 26 H270 Z" fill="#1a93c6"/>
+    <rect x="132" y="14" width="96" height="14" rx="4" fill="#9aa3a8"/>
+    <!-- modrá záď -->
+    <path d="M52 298 V52 Q52 24 82 24 H278 Q308 24 308 52 V298 Z" fill="#1ba8de"/>
+    <path d="M298 26 Q308 32 308 52 V298 H298 Z" fill="#000" opacity=".1"/>
+    <!-- velké černé zadní sklo s linkovou tabulí a světly v horních rozích -->
+    <path d="M58 168 V48 Q58 36 70 36 H290 Q302 36 302 48 V168 Z" fill="#1b1d20"/>
+    <path d="M82 72 L112 72 L98 162 L82 162 Z" fill="#3a4654" opacity=".55"/>
+    <path d="M232 72 L252 72 L242 120 L226 120 Z" fill="#3a4654" opacity=".4"/>
+    <rect x="160" y="42" width="40" height="22" rx="2" fill="#2a1f14"/>
+    <text x="180" y="59" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="bold" fill="#f2a33a">106</text>
+    <circle cx="74" cy="50" r="6" fill="#5a5e62"/><circle cx="74" cy="66" r="6" fill="#5a5e62"/>
+    <circle cx="286" cy="50" r="6" fill="#5a5e62"/><circle cx="286" cy="66" r="7" fill="#f2a33a"/>
+    <!-- číslo vozu, dělicí spára krytu, kapsy tažného zařízení -->
+    <text x="180" y="196" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#f4f8fa">3734</text>
+    <path d="M144 170 V248 M216 170 V248" stroke="#1590c2" stroke-width="1.5"/>
+    <rect x="136" y="216" width="24" height="18" rx="3" fill="#25b2e6"/><rect x="200" y="216" width="24" height="18" rx="3" fill="#25b2e6"/>
+    <!-- stříbrná lišta se svítilnami -->
+    <rect x="56" y="248" width="248" height="20" rx="3" fill="#d3d8dc"/>
+    <circle cx="70" cy="258" r="6" fill="#8f1218"/><circle cx="86" cy="258" r="5" fill="#9fa3a6"/><circle cx="100" cy="258" r="5" fill="#9fa3a6"/><circle cx="114" cy="258" r="5" fill="#9fa3a6"/>
+    <circle cx="290" cy="258" r="6" fill="#f2a33a"/><circle cx="274" cy="258" r="5" fill="#9fa3a6"/><circle cx="260" cy="258" r="5" fill="#9fa3a6"/><circle cx="246" cy="258" r="5" fill="#9fa3a6"/>
+    <rect x="140" y="254" width="80" height="8" rx="2" fill="#b9bfc4"/>
+    <!-- modrý spodek s odrazkami -->
+    <path d="M52 270 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#1897cb"/>
+    <path d="M100 270 H260 Q256 284 240 286 H120 Q104 284 100 270 Z" fill="#168cbd"/>
+    <circle cx="66" cy="286" r="4" fill="#b3161d"/><circle cx="294" cy="286" r="4" fill="#b3161d"/>
+    <!-- kola -->
+    <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
+  </g>
+</svg>

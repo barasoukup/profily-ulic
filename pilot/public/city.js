@@ -22,6 +22,10 @@ const TOWN_ART = {
   "transit-shelter-01-left": "transit-shelter-left", "transit-shelter-01-right": "transit-shelter-right",
 };
 
+// A town's own vehicles (pilot/public/<art>/tram-*, trolejbus-*) in place of Streetmix's.
+const TRAM = { "streetcar-inbound": "tram-inbound", "streetcar-outbound": "tram-outbound" };
+const TROLLEY = { "trolleybus-inbound": "trolejbus-inbound", "trolleybus-outbound": "trolejbus-outbound" };
+
 const CITIES = {
   // Anywhere outside the cities above: the national DTM of ČÚZK (dmvs.js), RÚIAN houses, OSM.
   cesko: {
@@ -258,8 +262,8 @@ const CITIES = {
     techMap: "technickou mapu ČÚZK",
     parkingSource: "parkovací místa (město Ústí nad Labem)",
     rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Ústí orientačně:",
-    // No Ústí illustrations yet: those of the rest of the country (Prague's furniture, Streetmix's vehicles).
-    art: "cesko",
+    // Its own vehicles (drawn after photos of Wikimedia Commons), Prague's furniture (copies in its folder).
+    art: "usti",
     artLabel: "Ilustrace",
     artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
     emptyImg: "praha/t3-inbound.svg",
@@ -270,7 +274,7 @@ const CITIES = {
     fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
     example: "50.660700, 14.032200",
     // The surfaces are the national DTM (towns/usti.js), only the parking is the town's.
-    artMap: Object.fromEntries(Object.entries(TOWN_ART).filter(([k]) => !k.startsWith("bus-"))),
+    artMap: { ...TROLLEY, ...TOWN_ART },
   },
   ostrava: {
     id: "ostrava",
@@ -286,8 +290,8 @@ const CITIES = {
     techMap: "technickou mapu Ostravy",
     parkingSource: "úseky placeného stání (město Ostrava)",
     rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Ostravu orientačně:",
-    // No illustrations of its own yet: those of the rest of the country (Prague's furniture, Streetmix's vehicles).
-    art: "cesko",
+    // Its own vehicles (drawn after photos of Wikimedia Commons), Prague's furniture (copies in its folder).
+    art: "ostrava",
     artLabel: "Ilustrace",
     artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
     emptyImg: "praha/t3-inbound.svg",
@@ -298,7 +302,7 @@ const CITIES = {
     fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
     example: "49.835500, 18.292400",
     // The surfaces are the city's generalized technical map (towns/ostrava.js, data to 2019).
-    artMap: Object.fromEntries(Object.entries(TOWN_ART).filter(([k]) => !k.startsWith("bus-"))),
+    artMap: { ...TRAM, ...TROLLEY, ...TOWN_ART },
   },
   "frydek-mistek": {
     id: "frydek-mistek",
@@ -413,6 +417,16 @@ const CITIES = {
     artMap: Object.fromEntries(Object.entries(TOWN_ART).filter(([k]) => !k.startsWith("bus-"))),
   },
 };
+
+// Towns with no data of their own (the national DTM of ČÚZK, as "cesko"), only their own vehicles.
+const artTown = (id, inCity, adjective, art) => ({ ...CITIES.cesko, id, inCity, adjective, art: id, artMap: { ...art, ...TOWN_ART } });
+Object.assign(CITIES, {
+  olomouc: artTown("olomouc", "v Olomouci", "olomoucké", TRAM),
+  liberec: artTown("liberec", "v Liberci", "liberecké", TRAM),
+  hradec: artTown("hradec", "v Hradci Králové", "hradecké", TROLLEY),
+  budejovice: artTown("budejovice", "v Českých Budějovicích", "budějovické", TROLLEY),
+  zlin: artTown("zlin", "ve Zlíně", "zlínské", TROLLEY),
+});
 
 export const CITY_IDS = Object.keys(CITIES);
 export const cityById = (id) => CITIES[id];

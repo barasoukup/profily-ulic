@@ -1,0 +1,34 @@
+<svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hradecký autobus DPMHK, Iveco Urbanway 12M, zadní pohled v nátěru DPMHK: bílá horní část s malým černým
+       zadním oknem a jantarovým číslem linky, žaluzie motoru, žlutý dolní panel, svislé svítilny v rozích, červený
+       nárazník s registrační značkou. 1 px = 1 cm, šířka 2,55 m.
+       Podle fotky (Wikimedia Commons):
+       https://commons.wikimedia.org/wiki/File:IVECO_Urbanway_12M_HK.jpg -->
+  <!-- zrcátka vpředu vyčnívají za boky -->
+  <rect x="26" y="50" width="16" height="44" rx="5" fill="#1d1f22"/>
+  <rect x="318" y="50" width="16" height="44" rx="5" fill="#1d1f22"/>
+  <!-- klimatizace na střeše -->
+  <rect x="120" y="12" width="120" height="10" rx="3" fill="#e4e6e3"/>
+  <!-- bílá záď -->
+  <path d="M52 296 V40 Q52 20 74 20 H286 Q308 20 308 40 V296 Z" fill="#f4f5f3"/>
+  <path d="M298 22 Q308 28 308 40 V296 H298 Z" fill="#d9dbd8"/>
+  <rect x="298" y="150" width="10" height="80" fill="#f2c318"/><rect x="298" y="230" width="10" height="66" fill="#d8262b"/>
+  <!-- černé zadní okno s číslem linky -->
+  <path d="M76 108 V40 Q76 32 86 32 H274 Q284 32 284 40 V108 Q180 116 76 108 Z" fill="#1d1f22"/>
+  <path d="M92 38 L118 38 L106 104 L92 104 Z" fill="#3a4654" opacity=".55"/>
+  <text x="256" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#f2a33a">11</text>
+  <!-- žaluzie motoru -->
+  <g fill="#cfd2d0"><rect x="112" y="124" width="136" height="5" rx="2"/><rect x="112" y="135" width="136" height="5" rx="2"/></g>
+  <!-- žlutý dolní panel -->
+  <path d="M74 150 H286 V238 H74 Z" fill="#f2c318"/>
+  <g fill="#e3b40f"><rect x="96" y="160" width="40" height="8" rx="2"/><rect x="96" y="174" width="40" height="8" rx="2"/></g>
+  <!-- svislé svítilny v rozích -->
+  <rect x="56" y="124" width="18" height="114" rx="7" fill="#1d1f22"/><rect x="59" y="130" width="12" height="40" rx="4" fill="#b3151c"/><rect x="59" y="176" width="12" height="12" rx="3" fill="#f2a33a"/><rect x="59" y="192" width="12" height="12" rx="3" fill="#eef1f3"/>
+  <rect x="286" y="124" width="18" height="114" rx="7" fill="#1d1f22"/><rect x="289" y="130" width="12" height="40" rx="4" fill="#b3151c"/><rect x="289" y="176" width="12" height="12" rx="3" fill="#f2a33a"/><rect x="289" y="192" width="12" height="12" rx="3" fill="#eef1f3"/>
+  <!-- červený nárazník s registrační značkou -->
+  <path d="M52 238 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#d8262b"/>
+  <rect x="152" y="252" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="252" width="6" height="12" fill="#2a63b8"/>
+  <rect x="52" y="286" width="256" height="12" rx="5" fill="#9c1418"/>
+  <!-- kola -->
+  <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
+</svg>

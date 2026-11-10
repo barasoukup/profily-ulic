@@ -14,4 +14,6 @@ import * as karvina from "./karvina.js";
 import * as trebic from "./trebic.js";
 import * as prerov from "./prerov.js";
 
-export const TOWNS = { cesko, jihlava, most, opava, pardubice, plzen, usti, ostrava, "frydek-mistek": frydekMistek, karvina, trebic, prerov };
+export const TOWNS = { cesko, jihlava, most, opava, pardubice, plzen, usti, ostrava, "frydek-mistek": frydekMistek, karvina, trebic, prerov,
+  // Towns with only their own vehicles: the national data.
+  olomouc: cesko, liberec: cesko, hradec: cesko, budejovice: cesko, zlin: cesko };

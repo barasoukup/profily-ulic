@@ -1,0 +1,53 @@
+<svg viewBox="0 0 360 560" xmlns="http://www.w3.org/2000/svg">
+  <!-- Ústecký trolejbus DPmÚL, Škoda 27Tr (Solaris Urbino), zadní pohled v nátěru DPmÚL: bílá střecha s krytem
+       výzbroje a rámem sběračů, černá horní část zádě se zadním sklem a modrým číslem linky, bílý panel s
+       krytem motorového prostoru, svítilny po stranách, červený nárazník se značkou. 1 px = 1 cm, šířka 2,55 m;
+       nahoře sběrače k trolejím.
+       Podle fotek (Wikimedia Commons):
+       https://commons.wikimedia.org/wiki/File:TrolejbusyHranicar2.jpg (záď vozu 51)
+       https://commons.wikimedia.org/wiki/File:Trolejbus_%C5%A0koda_27TrNU_%C4%8D.642,_%C3%9Ast%C3%AD_n.L._%C3%BAnor_2024.jpg (bok, barvy) -->
+  <!-- sběrače: dvě tyče ze zadní části střechy k trolejím, žluté konce -->
+  <g stroke="#2a2b2a" stroke-linecap="round" fill="none">
+    <path d="M160 266 L148 16" stroke-width="5"/>
+    <path d="M200 266 L212 16" stroke-width="5"/>
+  </g>
+  <g stroke="#e8c21a" stroke-linecap="round" fill="none" stroke-width="5">
+    <path d="M150 60 L148 22"/><path d="M210 60 L212 22"/>
+  </g>
+  <rect x="140" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
+  <rect x="204" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
+  <g transform="translate(0 240)">
+    <!-- zrcátka vpředu vyčnívají za boky -->
+    <rect x="26" y="58" width="16" height="42" rx="5" fill="#1b1d20"/>
+    <rect x="318" y="58" width="16" height="42" rx="5" fill="#1b1d20"/>
+    <!-- bílá záď a střecha, rám kolem sběračů -->
+    <path d="M52 298 V52 Q52 24 82 24 H278 Q308 24 308 52 V298 Z" fill="#f3f4f2"/>
+    <path d="M298 26 Q308 32 308 52 V298 H298 Z" fill="#d9dbd8"/>
+    <rect x="124" y="16" width="112" height="14" rx="4" fill="#e2e4e1"/>
+    <path d="M110 30 L124 18 H236 L250 30" stroke="#3a3c3e" stroke-width="3" fill="none"/>
+    <!-- bok: červený spodní pás vykukuje za hranou -->
+    <path d="M298 236 H308 V298 H298 Z" fill="#c8102e"/>
+    <!-- černá horní část zádě se sklem a číslem linky -->
+    <path d="M58 166 V46 Q58 36 70 36 H290 Q302 36 302 46 V166 Z" fill="#1b1d20"/>
+    <path d="M70 84 H290 V156 H70 Z" fill="#2a3642"/>
+    <path d="M84 88 L110 88 L98 152 L84 152 Z" fill="#3a4654" opacity=".55"/>
+    <text x="180" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#58c8f0">54</text>
+    <!-- svítilny v černých svislých hranách -->
+    <rect x="58" y="166" width="12" height="72" fill="#1b1d20"/><rect x="290" y="166" width="12" height="72" fill="#1b1d20"/>
+    <rect x="60" y="172" width="8" height="22" rx="3" fill="#b3151c"/><rect x="60" y="198" width="8" height="10" rx="3" fill="#f2a33a"/><rect x="60" y="212" width="8" height="10" rx="3" fill="#eef1f3"/>
+    <rect x="292" y="172" width="8" height="22" rx="3" fill="#b3151c"/><rect x="292" y="198" width="8" height="10" rx="3" fill="#f2a33a"/><rect x="292" y="212" width="8" height="10" rx="3" fill="#eef1f3"/>
+    <!-- bílý panel s vypouklým krytem a úchytem uprostřed -->
+    <path d="M70 238 V190 Q72 172 96 170 H264 Q288 172 290 190 V238 Z" fill="#f6f7f5" stroke="#d4d7d4" stroke-width="2"/>
+    <path d="M150 172 V214 M210 172 V214" stroke="#d4d7d4" stroke-width="2"/>
+    <rect x="148" y="210" width="64" height="20" rx="6" fill="#e9ebe8" stroke="#c4c8c4" stroke-width="2"/>
+    <!-- černá lišta se svítilnami, pod ní červený nárazník s registrační značkou -->
+    <rect x="58" y="238" width="244" height="16" fill="#1b1d20"/>
+    <g fill="#5a5d60"><circle cx="74" cy="246" r="3"/><circle cx="86" cy="246" r="3"/><circle cx="274" cy="246" r="3"/><circle cx="286" cy="246" r="3"/></g>
+    <g fill="#e2474c"><circle cx="98" cy="246" r="3"/><circle cx="262" cy="246" r="3"/></g>
+    <path d="M52 254 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#d62a2e"/>
+    <rect x="152" y="262" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="262" width="6" height="12" fill="#2a63b8"/>
+    <rect x="52" y="284" width="256" height="14" rx="6" fill="#26282b"/>
+    <!-- kola -->
+    <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
+  </g>
+</svg>

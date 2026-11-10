@@ -7,7 +7,9 @@ import fs from "node:fs";
 const OBEC = "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Prohlizeci_sluzba_nad_daty_RUIAN/MapServer/12/query";
 // RÚIAN codes of the cities (obec).
 const CODES = { praha: 554782, brno: 582786, jihlava: 586846, most: 567027, opava: 505927, pardubice: 555134, plzen: 554791, usti: 554804,
-  ostrava: 554821, "frydek-mistek": 598003, karvina: 598917, trebic: 590266, prerov: 511382 };
+  ostrava: 554821, "frydek-mistek": 598003, karvina: 598917, trebic: 590266, prerov: 511382,
+  // Towns with only their own vehicles (city.js artTown).
+  olomouc: 500496, liberec: 563889, hradec: 569810, budejovice: 544256, zlin: 585068 };
 const out = {};
 for (const [id, kod] of Object.entries(CODES)) {
   const q = new URLSearchParams({ where: `kod=${kod}`, outFields: "nazev", outSR: 4326, maxAllowableOffset: 0.0002, geometryPrecision: 5, f: "json" });

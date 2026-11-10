@@ -1,0 +1,84 @@
+<svg viewBox="0 0 320 420" xmlns="http://www.w3.org/2000/svg">
+  <!-- Liberecká tramvaj Tatra T3R.SLF / T3R.PLF (modernizovaná T3 s nízkopodlažním středem; tramvaje odvozené
+       od T3 tvoří skoro celý vozový park DPMLJ), čelní pohled v zeleno-bílém nátěru DPMLJ. 1 px = 1 cm, šířka vozu
+       2,5 m. Podle fotek z Wikimedia Commons:
+       https://commons.wikimedia.org/wiki/File:Tatra_T3R.SLF_č._44,_Liberec.jpg
+       https://commons.wikimedia.org/wiki/File:L08_411_Wendeschleife_Fügnerová,_ET_82.jpg
+       https://commons.wikimedia.org/wiki/File:Liberec,_Mrštíkova,_vozovna_(01).jpg
+       Bílá skříň, zelený okraj střechy, v bílém pásu nad sklem LED tabule s číslem vozu vlevo, zelený rám
+       čelního skla, bílý spodek s kulatými světly, černý nárazník, zelené rohy zástěry. Žlutý držák zrcátka. -->
+  <!-- pantograf zepředu: silný sloupek ze střechy, nahoře ramena do V k širokému sběrači -->
+  <g stroke="#d9b81f" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M160 104 V72" stroke-width="6"/>
+    <path d="M160 72 L128 40 M160 72 L192 40" stroke-width="3"/>
+  </g>
+  <path d="M82 46 Q86 36 96 36 H224 Q234 36 238 46" stroke="#5a5b5c" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <rect x="120" y="34" width="80" height="3" fill="#3a3b3c"/>
+  <rect x="122" y="104" width="76" height="12" rx="3" fill="#4a4b4c"/>
+  <!-- bílý kryt klimatizace nad čelem -->
+  <rect x="128" y="96" width="64" height="12" rx="3" fill="#eceeee"/>
+  <!-- bílá skříň: zaoblená střecha, boky se dolů mírně rozšiřují -->
+  <path d="M39 346 L43 156 Q46 116 100 115 H220 Q274 116 277 156 L281 346 Z" fill="#f4f5f4"/>
+  <!-- zelený okraj střechy -->
+  <path d="M43 156 Q46 116 100 115 H220 Q274 116 277 156 L277 160 Q262 140 220 138 H100 Q58 140 43 160 Z" fill="#1f9a76"/>
+  <!-- LED tabule v bílém pásu a číslo vozu -->
+  <rect x="94" y="142" width="148" height="20" rx="2" fill="#0d0f10"/>
+  <g font-family="Arial, sans-serif" font-weight="bold">
+    <text x="102" y="157" font-size="14" fill="#43d94c">3</text>
+    <text x="178" y="157" font-size="11" text-anchor="middle" letter-spacing=".5" fill="#f2a33a">LIDOVÉ SADY</text>
+    <text x="70" y="158" font-size="15" text-anchor="middle" fill="#22324a">44</text>
+  </g>
+  <!-- zelený rám čelního skla -->
+  <path d="M42 170 Q44 166 52 166 H268 Q276 166 278 170 L280 258 H40 Z" fill="#1f9a76"/>
+  <path d="M50 178 Q52 172 60 172 H260 Q268 172 270 178 L271 246 H49 Z" fill="#1f2a33"/>
+  <path d="M56 180 Q57 177 63 177 H257 Q263 177 264 180 L265 242 H55 Z" fill="#2e3b46"/>
+  <path d="M74 180 L112 180 L92 240 L72 240 Z" fill="#46596a" opacity=".75"/>
+  <path d="M232 180 L248 180 L242 210 L230 210 Z" fill="#46596a" opacity=".5"/>
+  <rect x="68" y="174" width="4" height="72" fill="#c9cccd"/>
+  <rect x="248" y="174" width="4" height="72" fill="#c9cccd"/>
+  <!-- stěrač -->
+  <path d="M150 242 L118 196" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+  <!-- levé zrcátko na žlutém rameni ze střechy -->
+  <path d="M100 126 H34 Q26 126 22 133 L12 166" stroke="#e8b923" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <rect x="4" y="166" width="14" height="30" rx="4" fill="#2a2b2a"/>
+  <!-- pravé malé zrcátko u spodní hrany skla -->
+  <path d="M281 232 L287 236" stroke="#2a2b2a" stroke-width="3"/>
+  <rect x="285" y="228" width="11" height="26" rx="4" fill="#2a2b2a"/>
+  <!-- bílý spodek: kulatá světla, blinkry, poziční světla -->
+  <path d="M270 258 H280 L281 346 H271 Z" fill="#000" opacity=".06"/>
+  <circle cx="98" cy="312" r="12" fill="#c9cbcd"/>
+  <circle cx="98" cy="312" r="9" fill="#f7f4ea"/>
+  <circle cx="222" cy="312" r="12" fill="#c9cbcd"/>
+  <circle cx="222" cy="312" r="9" fill="#f7f4ea"/>
+  <rect x="45" y="282" width="10" height="16" rx="2" fill="#f08a1c"/>
+  <rect x="265" y="282" width="10" height="16" rx="2" fill="#f08a1c"/>
+  <rect x="45" y="302" width="10" height="10" rx="2" fill="#dfe3e6"/>
+  <rect x="265" y="302" width="10" height="10" rx="2" fill="#dfe3e6"/>
+  <rect x="150" y="268" width="20" height="16" rx="2" fill="none" stroke="#b9bdbf" stroke-width="1.5"/>
+  <!-- černý nárazník -->
+  <rect x="36" y="344" width="248" height="16" rx="3" fill="#1d1f20"/>
+  <rect x="150" y="347" width="20" height="9" rx="1.5" fill="#d9b81f"/>
+  <!-- otevřený prostor pod nárazníkem: rám a sklopené spřáhlo -->
+  <rect x="88" y="360" width="144" height="24" fill="#2a2b2a"/>
+  <rect x="96" y="384" width="128" height="5" fill="#3a3b3c"/>
+  <path d="M160 364 L190 388" stroke="#4a4b4c" stroke-width="5" stroke-linecap="round"/>
+  <rect x="182" y="386" width="22" height="10" rx="2" fill="#b39528"/>
+  <!-- zelené rohy zástěry -->
+  <path d="M48 360 H88 V402 H62 Q53 402 52 394 Z" fill="#1f9a76"/>
+  <path d="M232 360 H272 L268 394 Q267 402 258 402 H232 Z" fill="#1f9a76"/>
+  <path d="M260 360 H272 L268 394 Q267 402 258 402 Z" fill="#17805f"/>
+  <!-- podvozek: rám a ložiskové skříně -->
+  <rect x="72" y="402" width="176" height="8" fill="#2a2b2a"/>
+  <rect x="64" y="402" width="12" height="10" rx="2" fill="#3a3b3c"/>
+  <rect x="244" y="402" width="12" height="10" rx="2" fill="#3a3b3c"/>
+  <!-- ocelová kola, okolek na vnitřní hraně -->
+  <path d="M78 402 H92 V420 H88 V418 H78 Z" fill="#8f9193"/>
+  <path d="M228 402 H242 V418 H232 V420 H228 Z" fill="#8f9193"/>
+  <rect x="78" y="402" width="3" height="16" fill="#b5b7b9"/>
+  <rect x="239" y="402" width="3" height="16" fill="#b5b7b9"/>
+  <!-- žlábkové kolejnice zapuštěné do vozovky (rozchod 1 435 mm) -->
+  <rect x="74" y="418" width="22" height="2" fill="#a7a9ab"/>
+  <rect x="88" y="418" width="4" height="2" fill="#2a2b2a"/>
+  <rect x="224" y="418" width="22" height="2" fill="#a7a9ab"/>
+  <rect x="228" y="418" width="4" height="2" fill="#2a2b2a"/>
+</svg>

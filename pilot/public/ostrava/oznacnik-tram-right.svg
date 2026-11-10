@@ -1,0 +1,22 @@
+<svg viewBox="0 0 50 340" xmlns="http://www.w3.org/2000/svg">
+  <!-- Obecný český označník zastávky pro ostatní města (Ostrava, Olomouc, Liberec …) (sloupek, značka, název, jízdní řád; místní podoba neověřena), značka IJ 4d (tramvaj). Stín na straně vlevo (pro pravou stranu ulice). 1 px = 1 cm, výška 3,35 m, spodní hrana = chodník, střed obrázku = osa označníku. -->
+  <!-- Fotky, ze kterých kresba vychází: Commons: „Praha, Zenklova, označník tramvajové zastávky Vychovatelna (1).jpg“ (Jan Polák, CC BY-SA 3.0), „Jindřišská, zastávkový sloupek u Jeruzalémské.jpg“ (ŠJů, CC BY 4.0); pro srovnání nový tmavý označník „Praha, Palackého náměstí, nový zastávkový označník 01.jpg“ a „… 02.jpg“ (Aktron, CC BY-SA 4.0), nekreslen. -->
+  <g transform="matrix(-1 0 0 1 50 0)">
+  <g transform="translate(-219 -20)">
+    <rect x="240" y="40" width="8" height="320" fill="#8f9496"/><rect x="245" y="40" width="3" height="320" fill="#6e7375"/>
+    <rect x="238" y="352" width="12" height="8" fill="#6e7375"/>
+    <!-- vitrína s jízdním řádem -->
+    <rect x="226" y="160" width="36" height="58" rx="2" fill="#8f9496"/><rect x="229" y="163" width="30" height="52" fill="#f4f4f0"/>
+    <rect x="231" y="166" width="12" height="40" fill="#f2d64b"/><rect x="245" y="166" width="12" height="40" fill="#e3e4df"/>
+    <!-- tabule s názvem zastávky -->
+    <rect x="221" y="74" width="46" height="22" fill="#f4f4f0" stroke="#6e7375" stroke-width="1.5"/>
+    <rect x="227" y="80" width="34" height="4" fill="#2a2b2a"/><rect x="231" y="88" width="26" height="2" fill="#9a9b9c"/>
+    <rect x="221" y="98" width="46" height="12" fill="#f4f4f0" stroke="#6e7375" stroke-width="1.5"/>
+    <rect x="226" y="101" width="7" height="6" fill="#2a2b2a"/><rect x="235" y="101" width="7" height="6" fill="#2a2b2a"/>
+    <!-- značka zastávky IJ 4 -->
+    <rect x="221" y="26" width="46" height="46" rx="3" fill="#f4f4f0" stroke="#6e7375" stroke-width="1"/>
+    <rect x="223" y="28" width="42" height="42" rx="2" fill="#1f56a8"/><rect x="227" y="32" width="34" height="34" rx="1" fill="#f4f4f0"/>
+    <rect x="238" y="37" width="12" height="1.6" fill="#1a1a1a"/><rect x="243.2" y="38" width="1.6" height="2" fill="#1a1a1a"/><path d="M244 39.5 L250 43.3 L244 47.2 L238 43.3 Z" fill="#1a1a1a"/><rect x="229" y="47" width="30" height="13" rx="2" fill="#1a1a1a"/><rect x="231" y="49" width="5" height="4" fill="#f4f4f0"/><rect x="238" y="49" width="5" height="4" fill="#f4f4f0"/><rect x="245" y="49" width="5" height="4" fill="#f4f4f0"/><rect x="252" y="49" width="5" height="4" fill="#f4f4f0"/><rect x="231" y="60" width="9" height="2.5" fill="#1a1a1a"/><rect x="248" y="60" width="9" height="2.5" fill="#1a1a1a"/>
+  </g>
+</g>
+</svg>

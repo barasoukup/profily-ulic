@@ -1,0 +1,36 @@
+<svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
+  <!-- Olomoucký autobus DPMO, Solaris Urbino 12 IV. generace, zadní pohled. Fotka zádě olomouckého vozu chybí;
+       nátěr podle bočních pohledů na fotkách z Wikimedia Commons:
+       https://commons.wikimedia.org/wiki/File:SNU12_DPMO_646.jpg
+       https://commons.wikimedia.org/wiki/File:Olomouc,_Solaris_Urbino_IV_12_č._665.jpg
+       https://commons.wikimedia.org/wiki/File:Olomouc,_Hlavní_nádraží,_autobus_621.jpg
+       Bílá skříň s červenou linkou pod střechou, záď podle tvaru Urbino IV: černé zadní okno s číslem linky,
+       bílý kryt motoru s mřížkou, svislé svítilny v černých pásech v rozích, dole červený pás a tmavě modrý
+       nárazník. 1 px = 1 cm, šířka 2,55 m. -->
+  <!-- zrcátka vpředu vyčnívají za boky -->
+  <rect x="24" y="48" width="16" height="46" rx="5" fill="#1d1f22"/>
+  <rect x="320" y="48" width="16" height="46" rx="5" fill="#1d1f22"/>
+  <!-- bílá záď -->
+  <path d="M52 296 V40 Q52 20 74 20 H286 Q308 20 308 40 V296 Z" fill="#f4f4f2"/>
+  <path d="M298 22 Q308 28 308 42 V296 H298 Z" fill="#dededb"/>
+  <rect x="140" y="14" width="80" height="10" rx="3" fill="#dadbd9"/>
+  <!-- černé zadní okno s linkovou tabulí -->
+  <path d="M64 36 Q64 30 70 30 H290 Q296 30 296 36 V140 H64 Z" fill="#17191c"/>
+  <path d="M82 36 L110 36 L96 134 L82 134 Z" fill="#3a4654" opacity=".55"/>
+  <rect x="236" y="104" width="48" height="26" rx="2" fill="#0b0c0d"/>
+  <text x="260" y="124" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#43d94c">15</text>
+  <!-- kryt motoru: mřížka sání a evidenční číslo -->
+  <g fill="#c9cbcd"><rect x="110" y="160" width="140" height="5" rx="2"/><rect x="110" y="172" width="140" height="5" rx="2"/><rect x="110" y="184" width="140" height="5" rx="2"/></g>
+  <text x="180" y="218" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#3a3c3e">665</text>
+  <!-- svislé svítilny v černých pásech v rozích -->
+  <rect x="56" y="146" width="18" height="96" rx="6" fill="#17191c"/>
+  <rect x="59" y="152" width="12" height="40" rx="4" fill="#b3121b"/><rect x="59" y="198" width="12" height="12" rx="3" fill="#f2a33a"/><rect x="59" y="214" width="12" height="12" rx="3" fill="#eef1f3"/>
+  <rect x="286" y="146" width="18" height="96" rx="6" fill="#17191c"/>
+  <rect x="289" y="152" width="12" height="40" rx="4" fill="#b3121b"/><rect x="289" y="198" width="12" height="12" rx="3" fill="#f2a33a"/><rect x="289" y="214" width="12" height="12" rx="3" fill="#eef1f3"/>
+  <!-- červený pás s registrační značkou, tmavě modrý nárazník -->
+  <rect x="52" y="246" width="256" height="30" fill="#d8262f"/>
+  <rect x="152" y="255" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="255" width="6" height="12" fill="#2a63b8"/>
+  <path d="M52 276 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#283a8e"/>
+  <!-- kola -->
+  <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
+</svg>

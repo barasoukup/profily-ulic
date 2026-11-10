@@ -1,0 +1,62 @@
+<svg viewBox="0 0 360 560" xmlns="http://www.w3.org/2000/svg">
+  <!-- Ostravský trolejbus DPO, Škoda 26Tr s karoserií Solaris Urbino III. generace (nejpočetnější typ, 23 vozů),
+       čelní pohled v nátěru DPO od roku 2018 (světle modrá až tyrkysová). 1 px = 1 cm, šířka 2,55 m; nahoře
+       sběrače k trolejím. Podle fotek vozu 3734:
+       https://commons.wikimedia.org/wiki/File:Trolejbus_ŠKODA_26Tr_DPO_3734_(Ostrava_-_Hornická_Poliklinika).jpg
+       https://commons.wikimedia.org/wiki/File:Trolejbus_ŠKODA_26Tr_DPO_3734_(Ostrava_-_Vozovna_trolejbusů).jpg
+       Černé čelo s oranžovou LED tabulí a velkým sklem, jehož spodní hrana stoupá obloukem doprava, modrý panel
+       se znakem dpo (zjednodušeným) a číslem vozu, stříbrná lišta mezi černými pásy světel, modrý nárazník. -->
+  <!-- sběrače: dvě tyče ze zadní části střechy k trolejím (troleje 5,3–5,5 m nad vozovkou, rozchod 0,6 m) -->
+  <g stroke="#2a2b2a" stroke-linecap="round" fill="none">
+    <path d="M160 262 L148 16" stroke-width="5"/>
+    <path d="M200 262 L212 16" stroke-width="5"/>
+  </g>
+  <rect x="140" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
+  <rect x="204" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
+  <g transform="translate(0 240)">
+    <!-- zpětná zrcátka na ramenech od střechy -->
+    <path d="M56 40 Q34 38 32 58" stroke="#1b1d20" stroke-width="5" fill="none"/>
+    <rect x="22" y="56" width="18" height="46" rx="5" fill="#1b1d20"/>
+    <path d="M304 40 Q326 38 328 58" stroke="#1b1d20" stroke-width="5" fill="none"/>
+    <rect x="320" y="56" width="18" height="46" rx="5" fill="#1b1d20"/>
+    <!-- modré kryty výzbroje na střeše -->
+    <path d="M78 26 L86 6 Q88 2 94 2 H266 Q272 2 274 6 L282 26 Z" fill="#2db3e6"/>
+    <path d="M262 2 H266 Q272 2 274 6 L282 26 H270 Z" fill="#1a93c6"/>
+    <!-- modrá skříň -->
+    <path d="M52 298 V52 Q52 24 82 24 H278 Q308 24 308 52 V298 Z" fill="#1ba8de"/>
+    <path d="M298 26 Q308 32 308 52 V298 H298 Z" fill="#000" opacity=".1"/>
+    <!-- černé čelo: LED tabule a čelní sklo, spodní hrana stoupá doprava -->
+    <path d="M56 214 V48 Q56 40 66 40 H294 Q304 40 304 48 V182 Q240 186 196 200 Q140 216 56 214 Z" fill="#1b1d20"/>
+    <rect x="76" y="50" width="208" height="24" rx="2" fill="#2a1f14"/>
+    <text x="84" y="69" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#f2a33a">106</text>
+    <g fill="#f2a33a" opacity=".85">
+      <rect x="126" y="58" width="44" height="8" rx="1"/><rect x="176" y="58" width="64" height="8" rx="1"/>
+    </g>
+    <path d="M64 82 H296 V176 Q236 180 192 194 Q140 208 64 206 Z" fill="#2a3642"/>
+    <path d="M80 88 L126 88 L98 202 L80 202 Z" fill="#46596a" opacity=".5"/>
+    <path d="M250 88 L272 88 L262 136 L240 136 Z" fill="#46596a" opacity=".4"/>
+    <g stroke="#0e0f10" stroke-width="2.5" stroke-linecap="round"><path d="M104 206 L172 194"/><path d="M262 180 L210 188"/></g>
+    <!-- modrý panel: piktogramy přístupnosti, znak Škoda, znak dpo, číslo vozu -->
+    <g fill="#2a63b8"><rect x="66" y="226" width="10" height="10" rx="1"/><rect x="79" y="226" width="10" height="10" rx="1"/><rect x="92" y="226" width="10" height="10" rx="1"/></g>
+    <circle cx="146" cy="232" r="6" fill="none" stroke="#e8eef2" stroke-width="2"/>
+    <g fill="none" stroke="#f4f8fa" stroke-width="2.6" stroke-linecap="round">
+      <circle cx="207" cy="230" r="4.5"/><path d="M211.5 230 V220"/>
+      <circle cx="220" cy="230" r="4.5"/><path d="M215.5 230 V240"/>
+      <circle cx="233" cy="230" r="4.5"/>
+    </g>
+    <text x="290" y="216" text-anchor="end" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#f4f8fa">3734</text>
+    <!-- černé pásy světel v rozích a stříbrná lišta mezi nimi -->
+    <path d="M52 248 H118 Q124 248 124 254 V262 Q124 268 118 268 H52 Z" fill="#1b1d20"/>
+    <circle cx="66" cy="258" r="5" fill="#eef1f3"/><circle cx="82" cy="258" r="5" fill="#eef1f3"/><circle cx="98" cy="258" r="5" fill="#eef1f3"/><circle cx="112" cy="258" r="4" fill="#d6dadd"/>
+    <path d="M308 248 H242 Q236 248 236 254 V262 Q236 268 242 268 H308 Z" fill="#1b1d20"/>
+    <circle cx="294" cy="258" r="5" fill="#eef1f3"/><circle cx="278" cy="258" r="5" fill="#eef1f3"/><circle cx="262" cy="258" r="5" fill="#eef1f3"/><circle cx="248" cy="258" r="4" fill="#d6dadd"/>
+    <rect x="124" y="250" width="112" height="14" rx="2" fill="#d3d8dc"/>
+    <rect x="124" y="262" width="112" height="2" fill="#a9afb4"/>
+    <!-- modrý nárazník s registrační značkou -->
+    <path d="M52 270 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#1897cb"/>
+    <rect x="152" y="278" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="278" width="6" height="12" fill="#2a63b8"/>
+    <circle cx="76" cy="284" r="5" fill="#eef1f3" stroke="#9fa3a6"/><circle cx="284" cy="284" r="5" fill="#eef1f3" stroke="#9fa3a6"/>
+    <!-- kola -->
+    <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
+  </g>
+</svg>

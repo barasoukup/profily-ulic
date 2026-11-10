@@ -1,0 +1,48 @@
+<svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
+  <!-- Ústecký autobus DPmÚL, Iveco Urbanway 12M CNG (30 vozů z roku 2015, nejčetnější dvanáctimetrový typ),
+       čelní pohled v nátěru DPmÚL: bílá skříň s krytem plynových nádrží na střeše, velké čelní sklo v tenkém
+       tmavém rámu s LED tabulí (číslo linky zeleně, cíl oranžově), pod sklem šedý oblouk se znakem výrobce
+       (bez nápisu), šikmá světla, červené rohy nárazníku, uprostřed černý spodek. 1 px = 1 cm, šířka 2,55 m.
+       Podle fotky (Wikimedia Commons):
+       https://commons.wikimedia.org/wiki/File:Iveco_Urbanway_CNG_-_%C3%9Ast%C3%AD_nad_Labem.jpg -->
+  <!-- zpětná zrcátka na ramenech -->
+  <path d="M58 30 Q38 28 34 48" stroke="#1d1f22" stroke-width="5" fill="none"/>
+  <rect x="22" y="46" width="18" height="50" rx="6" fill="#1d1f22"/>
+  <path d="M302 30 Q322 28 326 48" stroke="#1d1f22" stroke-width="5" fill="none"/>
+  <rect x="320" y="46" width="18" height="50" rx="6" fill="#1d1f22"/>
+  <!-- kryt plynových nádrží na střeše -->
+  <path d="M76 22 Q80 8 100 8 H260 Q280 8 284 22 Z" fill="#e4e6e3"/>
+  <!-- bílá skříň -->
+  <path d="M52 296 V40 Q52 20 74 20 H286 Q308 20 308 40 V296 Z" fill="#f4f5f3"/>
+  <path d="M298 22 Q308 28 308 40 V296 H298 Z" fill="#d9dbd8"/>
+  <!-- bok: červený spodní pás vykukuje za hranou -->
+  <path d="M298 236 H308 V296 H298 Z" fill="#d62a2e"/>
+  <!-- tmavé čelní sklo s LED tabulí -->
+  <path d="M58 198 V36 Q58 28 68 28 H292 Q302 28 302 36 V198 Q180 206 58 198 Z" fill="#1d1f22"/>
+  <text x="78" y="56" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#4fd06a">3</text>
+  <g fill="#f2a33a"><rect x="152" y="42" width="96" height="3" rx="1.5"/><rect x="146" y="48" width="104" height="3" rx="1.5" opacity=".8"/><rect x="152" y="54" width="96" height="3" rx="1.5"/></g>
+  <path d="M64 66 H296 V190 Q180 198 64 190 Z" fill="#2c3944"/>
+  <path d="M64 66 H296 V86 H64 Z" fill="#232e37"/>
+  <path d="M80 90 L120 90 L92 186 L76 184 Z" fill="#46596a" opacity=".5"/>
+  <path d="M248 90 L270 90 L260 130 L240 130 Z" fill="#46596a" opacity=".4"/>
+  <rect x="112" y="150" width="34" height="22" rx="1" fill="#e9ecee"/>
+  <g stroke="#0e0f10" stroke-width="2.5" stroke-linecap="round"><path d="M98 194 L172 180"/><path d="M274 194 L206 180"/></g>
+  <!-- šedý oblouk pod sklem, číslo vozu nahrazeno plochou -->
+  <path d="M100 206 Q180 196 260 206 L248 222 Q180 214 112 222 Z" fill="#b9bdc0"/>
+  <!-- šikmá světla v rozích -->
+  <path d="M62 214 L96 220 L102 240 L64 242 Z" fill="#c9cdd0"/>
+  <circle cx="78" cy="230" r="6" fill="#f6f7f8" stroke="#8f9396"/><circle cx="92" cy="232" r="5" fill="#f6f7f8" stroke="#8f9396"/>
+  <path d="M298 214 L264 220 L258 240 L296 242 Z" fill="#c9cdd0"/>
+  <circle cx="282" cy="230" r="6" fill="#f6f7f8" stroke="#8f9396"/><circle cx="268" cy="232" r="5" fill="#f6f7f8" stroke="#8f9396"/>
+  <!-- červené rohy nárazníku, piktogram vozíčkáře -->
+  <path d="M52 246 H104 Q114 246 118 256 L124 284 H52 Z" fill="#d62a2e"/>
+  <path d="M308 246 H256 Q246 246 242 256 L236 284 H308 Z" fill="#d62a2e"/>
+  <circle cx="72" cy="266" r="4" fill="#eef1f3"/><circle cx="288" cy="266" r="4" fill="#eef1f3"/>
+  <rect x="88" y="258" width="10" height="10" rx="1" fill="#2a63b8"/><rect x="99" y="258" width="10" height="10" rx="1" fill="#2a63b8"/>
+  <!-- registrační značka, černý spodek -->
+  <rect x="152" y="254" width="56" height="12" rx="1" fill="#f4f4f2" stroke="#2a2b2a" stroke-width="1"/><rect x="152" y="254" width="6" height="12" fill="#2a63b8"/>
+  <path d="M120 272 H240 L236 284 H124 Z" fill="#1d1f22"/>
+  <path d="M52 284 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#1d1f22"/>
+  <!-- kola -->
+  <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
+</svg>

@@ -1,0 +1,34 @@
+<svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
+  <!-- Zlínský autobus DSZO, Iveco Urbanway 12M, zadní pohled. Barvy nátěru DSZO (žlutá, bílá linka, modrý pás) podle
+       fotek vozů ve Zlíně, tvar zádě (černý horní panel s linkovou tabulí, plocha v barvě vozu, svislé svítilny
+       podél hran, černý nárazník) podle fotky Urbanwaye ATAC v Římě, vše Wikimedia Commons:
+       https://commons.wikimedia.org/wiki/File:Iveco_Urbanway_12M_ve_Zl%C3%ADn%C4%9B_(04).jpg
+       https://commons.wikimedia.org/wiki/File:Iveco_Urbanway_12M_ve_Zl%C3%ADn%C4%9B_(02).jpg
+       https://commons.wikimedia.org/wiki/File:ATAC_Iveco_Bus_Urbanway_(566)_-_back_view.jpg
+       1 px = 1 cm, šířka 2,55 m. -->
+  <!-- zrcátka vpředu vyčnívají za boky -->
+  <rect x="26" y="54" width="16" height="44" rx="5" fill="#1d1f22"/>
+  <rect x="318" y="54" width="16" height="44" rx="5" fill="#1d1f22"/>
+  <!-- žlutá záď -->
+  <path d="M52 296 V40 Q52 22 72 22 H288 Q308 22 308 40 V296 Z" fill="#f4b71e"/>
+  <path d="M298 24 Q308 28 308 42 V296 H298 Z" fill="#dca11a"/>
+  <!-- černý horní panel: větrací mřížka a linková tabule -->
+  <path d="M66 28 H294 Q300 28 300 34 V146 Q296 150 290 150 H70 Q64 150 60 146 V34 Q60 28 66 28 Z" fill="#1d1f22"/>
+  <rect x="84" y="40" width="92" height="22" rx="3" fill="#2c2f34"/><rect x="214" y="36" width="64" height="14" rx="3" fill="#2c2f34"/>
+  <rect x="126" y="96" width="108" height="30" rx="2" fill="#121315"/>
+  <text x="180" y="118" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#e9efe6">33</text>
+  <!-- svislé svítilny podél hran -->
+  <rect x="56" y="70" width="10" height="34" rx="4" fill="#c8102e"/><rect x="294" y="70" width="10" height="34" rx="4" fill="#c8102e"/>
+  <rect x="58" y="164" width="14" height="72" rx="6" fill="#8f1218"/><rect x="60" y="206" width="10" height="10" rx="3" fill="#f2a33a"/><rect x="60" y="220" width="10" height="10" rx="3" fill="#eef1f3"/>
+  <rect x="288" y="164" width="14" height="72" rx="6" fill="#8f1218"/><rect x="290" y="206" width="10" height="10" rx="3" fill="#f2a33a"/><rect x="290" y="220" width="10" height="10" rx="3" fill="#eef1f3"/>
+  <!-- žlutý panel motoru s plochou loga -->
+  <rect x="150" y="164" width="60" height="8" rx="4" fill="#d39c16"/>
+  <!-- bílá linka a modrý pás s registrační značkou -->
+  <rect x="52" y="240" width="256" height="3" fill="#f4f4f2"/>
+  <rect x="52" y="243" width="256" height="33" fill="#1f4fa8"/>
+  <rect x="152" y="254" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="254" width="6" height="12" fill="#2a63b8"/>
+  <!-- černý nárazník -->
+  <path d="M52 276 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#1d1f22"/>
+  <!-- kola -->
+  <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
+</svg>

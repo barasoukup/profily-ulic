@@ -1,0 +1,42 @@
+<svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
+  <!-- Budějovický autobus DPMČB, Solaris Urbino 12 IV. generace CNG, čelní pohled v městském červeném nátěru podle
+       fotky z Wikimedia Commons:
+       https://commons.wikimedia.org/wiki/File:Solaris_Urbino_12_IV_CNG,_linka_1,_DP_%C4%8Cesk%C3%A9_Bud%C4%9Bjovice.jpg
+       Celá skříň červená i s krytem nádrží CNG na střeše, velké čelní sklo v černém rámu s bílou LED tabulí, pod
+       sklem červená maska, šikmá černá pouzdra světel v dolních rozích, červený nárazník s registrační značkou.
+       1 px = 1 cm, šířka 2,55 m. -->
+  <!-- zpětná zrcátka na ramenech („králičí uši“) -->
+  <path d="M58 32 Q36 30 34 50" stroke="#1d1f22" stroke-width="5" fill="none"/>
+  <rect x="22" y="48" width="18" height="50" rx="6" fill="#1d1f22"/>
+  <path d="M302 32 Q324 30 326 50" stroke="#1d1f22" stroke-width="5" fill="none"/>
+  <rect x="320" y="48" width="18" height="50" rx="6" fill="#1d1f22"/>
+  <!-- červený kryt nádrží CNG na střeše -->
+  <path d="M80 24 Q82 8 102 8 H258 Q278 8 280 24 Z" fill="#c21d2a"/>
+  <!-- červená skříň -->
+  <path d="M52 296 V40 Q52 20 74 20 H286 Q308 20 308 40 V296 Z" fill="#d0202e"/>
+  <path d="M298 22 Q308 26 308 42 V296 H298 Z" fill="#b01a26"/>
+  <!-- čelní sklo v černém rámu, nahoře LED tabule -->
+  <path d="M58 34 Q58 28 66 28 H294 Q302 28 302 34 V200 Q180 206 58 200 Z" fill="#1d1f22"/>
+  <rect x="64" y="32" width="232" height="30" fill="#121315"/>
+  <text x="82" y="55" font-family="Arial, sans-serif" font-size="19" font-weight="bold" fill="#e6edf5">1</text>
+  <g fill="#e6edf5" opacity=".75"><rect x="130" y="42" width="106" height="4" rx="2"/><rect x="130" y="50" width="76" height="4" rx="2"/></g>
+  <rect x="262" y="40" width="22" height="16" rx="2" fill="none" stroke="#e6edf5" stroke-width="2" opacity=".75"/>
+  <path d="M64 66 H296 V194 Q180 200 64 194 Z" fill="#2c3944"/>
+  <path d="M80 72 L120 72 L92 190 L76 188 Z" fill="#46596a" opacity=".5"/>
+  <path d="M248 72 L270 72 L260 118 L240 118 Z" fill="#46596a" opacity=".4"/>
+  <g stroke="#0e0f10" stroke-width="2.5" stroke-linecap="round"><path d="M100 196 L170 182"/><path d="M272 196 L206 182"/></g>
+  <!-- červená maska: znak výrobce, piktogramy -->
+  <ellipse cx="180" cy="232" rx="13" ry="7" fill="none" stroke="#e8e9ea" stroke-width="2.5"/>
+  <path d="M122 226 h12 v12 h-12 Z" fill="#2f6fc4"/>
+  <!-- šikmá černá pouzdra světel v dolních rozích -->
+  <path d="M52 244 L104 250 L100 270 Q76 272 52 266 Z" fill="#1d1f22"/>
+  <circle cx="66" cy="256" r="5" fill="#e9eef2"/><circle cx="82" cy="258" r="5" fill="#e9eef2"/><rect x="62" y="264" width="26" height="3" rx="1.5" fill="#f2f4f6"/>
+  <path d="M308 244 L256 250 L260 270 Q284 272 308 266 Z" fill="#1d1f22"/>
+  <circle cx="294" cy="256" r="5" fill="#e9eef2"/><circle cx="278" cy="258" r="5" fill="#e9eef2"/><rect x="272" y="264" width="26" height="3" rx="1.5" fill="#f2f4f6"/>
+  <!-- červený nárazník, tmavá spodní hrana -->
+  <path d="M60 270 Q180 278 300 270" stroke="#a8141f" stroke-width="2" fill="none"/>
+  <rect x="152" y="276" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="276" width="6" height="12" fill="#2a63b8"/>
+  <path d="M52 292 H308 V292 Q308 298 300 298 H60 Q52 298 52 292 Z" fill="#1d1f22"/>
+  <!-- kola -->
+  <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
+</svg>
