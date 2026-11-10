@@ -978,9 +978,10 @@ export async function loadSigns(...profiles) {
 const artFor = (a) => (a ? signArt.get(signKey(a.file, a.text)) : null);
 
 // The row of signs under the labels (no head: the signs are what the data say, not always what is on the
-// street; Bára): each part's signs under the part with their plates, and a sign shared by neighbouring parts once under a bracket over them. size: the
-// height of a sign in drawing units; top: the top of the row; px: drawing units per screen pixel (for the
-// and the lines). A part too narrow for its signs gets a grey dot. Returns the bottom (top without signs).
+// street; Bára): each part's signs under the part with their plates, and a sign shared by neighbouring parts
+// once under a bracket over them. size: the height of a sign in drawing units; top: the top of the row; px:
+// drawing units per screen pixel (for the bracket and the dot). A part too narrow for its signs gets a grey
+// dot. Returns the bottom (top without signs).
 export function layoutSigns(svg, size, top, px = size / 26) {
   const groups0 = [...svg.querySelectorAll("g.sign-group")];
   if (!groups0.length) return top;
