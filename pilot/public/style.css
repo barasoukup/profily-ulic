@@ -326,6 +326,24 @@ footer a { color: inherit; }
   .switch::after { content: "Ilustrace"; }
 }
 
+/* Address search at the map's top left (search.js), above the zoom buttons. */
+#map .search { position: relative; z-index: 801; width: 300px; max-width: calc(100vw - 90px); background: var(--panel); border-radius: 8px; box-shadow: var(--shadow); cursor: auto; }
+#map .search input { width: 100%; font: inherit; padding: 7px 10px; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--panel); color: var(--text); }
+#map .search input:focus-visible { outline: 2px solid var(--accent); outline-offset: 0; }
+#map .search ul { position: absolute; left: 0; right: 0; top: calc(100% + 4px); margin: 0; padding: 4px; list-style: none; max-height: 320px; overflow-y: auto;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); }
+#map .search ul[hidden] { display: none; }
+#map .search li { display: flex; flex-direction: column; padding: 6px 8px; border-radius: 6px; cursor: pointer; line-height: 1.3; }
+#map .search li[aria-selected="true"], #map .search li[role=option]:hover { background: var(--bg); }
+#map .search .search-main { font-weight: 500; }
+#map .search .search-sub, #map .search .search-note { font-size: 12px; }
+#map .search .search-note { cursor: default; }
+@media (max-width: 760px) {
+  #map .search { width: calc(100vw - 80px); }
+  #map .search input { font-size: 16px; padding: 8px 10px; } /* no zoom on focus in iOS */
+  #map .search li { padding: 8px; }
+}
+
 /* Clicking the map makes a cut: a crosshair instead of Leaflet's open hand, which reads as "pan only".
    Dragging the map still shows the closed hand. */
 #map.leaflet-container, #map .leaflet-grab, #map .leaflet-interactive { cursor: crosshair; }

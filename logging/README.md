@@ -7,7 +7,7 @@ kliknutí na nic nečeká, a když Worker neodpoví, nic se nestane.
 **Co se ukládá:**
 - **řez** přesně, tedy střed, azimut a dosah jako v odkazu `#rez=`, dále město, ulice, typ ulice, OSM cesta,
   čas a způsob vzniku (klik, posun, odkaz),
-- **akce:** export PNG a SVG, uložení souboru, sdílení odkazu, přepnutí do Návrhu a do Porovnání, oprava dat.
+- **akce:** export PNG a SVG, uložení souboru, sdílení odkazu, přepnutí do Návrhu a do Porovnání, oprava dat, použití hledání adres (jen druh nalezeného místa: adresa, ulice, jiné místo; nikdy hledaný text).
 
 ## Soukromí
 

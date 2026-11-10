@@ -13,6 +13,7 @@ import { city, setCity, cityAt, loadBounds } from "./city.js";
 import { TOWNS } from "./towns/index.js";
 import { log } from "./log.js";
 import { createDataLayers, PLOCHY_PANE } from "./maplayers.js";
+import { mountSearch } from "./search.js";
 
 const HALF = 40; // half-length of the cut used for reading the data (m)
 const MIN_REACH = 3; // shortest profile side the user can drag the cut end to (m)
@@ -27,8 +28,9 @@ const cutEnds = (f, normal, reach) => [
 const cutSpan = (cut) => cut?.span || cut?.reach || defaultReach();
 const STORE = "streetdesign-pilot"; // the last cut (Prague's key from the time of one page per city)
 // The boundaries of the cities with their own sources (tools/build_mesta.mjs): a cut takes its city by them.
-const MESTA = await fetch("mesta.json").then((r) => (r.ok ? r.json() : {}), () => ({}));
-loadBounds(MESTA);
+const MESTA = await fetch("mesta.json").then((r) => (r.ok ? r.json() : null), () => null);
+// Without the file every cut keeps the current city (rather than all becoming "cesko").
+if (MESTA) loadBounds(MESTA); else console.warn("mesta.json se nenačetl: město se podle polohy nepozná");
 // The city of a point becomes the current one (city.js): its sources, texts and illustrations.
 async function useCity(lat, lon) {
   const id = cityAt(lat, lon);
@@ -62,6 +64,9 @@ const startCity = new URLSearchParams(location.search).get("mesto");
 if (startCity) { setCity(startCity); history.replaceState(null, "", location.pathname + location.hash); }
 const map = L.map("map", { maxZoom: 21, zoomControl: false }).setView(city.view, startCity === "cesko" ? 8 : 18);
 L.control.zoom({ zoomInTitle: "Přiblížit", zoomOutTitle: "Oddálit" }).addTo(map);
+// Address search (search.js, RÚIAN of ČÚZK): the map moves there; an address on a street or a street is cut
+// like a click at the nearest point of that street. The log gets only the kind of place, never the query.
+mountSearch(map, { status, onPick: ({ item, cut }) => { log("hledani", { detail: item.type === "AdresniMisto" ? "adresa" : item.type === "Ulice" ? "ulice" : "misto" }); if (cut) cutAt(cut.lat, cut.lon); } });
 // Base maps. IPR services are drawn through ArcGIS export requests in Web Mercator, one per tile.
 // Each request renders a 512 px image covering four normal tiles (tileSize 512, zoomOffset -1):
 // a quarter of the requests, which IPR renders one by one (0.2–1.5 s each), and the browser's
@@ -243,14 +248,16 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     const inZps = z.status === "fulfilled" ? z.value : undefined;
     const result = deriveProfile({ center: [0, 0], dir, half: HALF, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho });
     // The row of traffic signs from the street's OSM tags and the parts (signs.js).
-    deriveSigns(result, near.way.tags, { inZps });
+    // The way's right is the profile's right when the profile looks along the way's geometry.
+    const alongWay = !near.dir || dir[0] * near.dir[0] + dir[1] * near.dir[1] >= 0;
+    deriveSigns(result, near.way.tags, { inZps, alongWay });
     const name = near.way.tags.name || near.way.tags.ref || `ulice ${near.way.id}`;
     const span = result.extent && { left: +result.extent[1].toFixed(2), right: +(-result.extent[0]).toFixed(2) };
     // A design belongs to its street: moving the cut along the same street keeps it, a cut of another
     // street (a click or a link) starts the design from the new Stav.
-    const sameStreet = keepWay || (state.cut && (state.cut.wayId === near.way.id || (name && state.cut.name === name)));
+    const sameStreet = keepWay || (state.cut && (state.cut.wayId === near.way.id || (name && state.cut.name === name && state.cut.city === city.id)));
     if (!sameStreet) state.navrhEdited = false;
-    state.cut = { lat: clat, lon: clon, bearing: (Math.atan2(dir[0], dir[1]) * 180) / Math.PI, wayId: near.way.id, name, reach, span };
+    state.cut = { lat: clat, lon: clon, bearing: (Math.atan2(dir[0], dir[1]) * 180) / Math.PI, wayId: near.way.id, name, city: city.id, reach, span };
     // What the export credits beyond the city's own data (city.js creditLines): the region of a national DTM,
     // the DMVS standing in for the city's map, the orthophoto of a tram bed.
     const mv = m.status === "fulfilled" ? m.value : null;
@@ -1397,7 +1404,9 @@ try {
   const same = (a, b) => a && b && a.lat.toFixed(6) === b.lat.toFixed(6) && a.lon.toFixed(6) === b.lon.toFixed(6) && Math.round(a.bearing) === Math.round(b.bearing);
   const design = linked && designParams(location.hash);
   if (linked && saved?.stav && !design.navrh && !design.stav && same(linked, saved.cut)) linked = null;
-  if (saved?.stav && !linked) restore(saved);
+  // A former city page (?mesto=) opens over that city, not over a cut saved elsewhere.
+  const elsewhere = startCity && !linked && saved?.cut && cityAt(saved.cut.lat, saved.cut.lon) !== startCity;
+  if (saved?.stav && !linked && !elsewhere) restore(saved);
   else render();
 } catch {
   render();
