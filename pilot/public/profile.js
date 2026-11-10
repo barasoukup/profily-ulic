@@ -987,27 +987,32 @@ export function layoutSigns(svg, size, top) {
     return { g, stacks, ws, need, fit: (Number(g.dataset.w) * 0.94) / need };
   });
   const k = Math.min(1, ...groups.map((x) => x.fit).filter((f) => f >= MIN_K));
+  const lineH = [0, 0];
   for (const { g, stacks, ws, need, fit } of groups) {
-    const cx = Number(g.dataset.cx);
+    const cx = Number(g.dataset.cx), line = Number(g.dataset.line || 0);
     // A plate below is as wide as its sign, a second symbol (the bike under the bus) as big as the sign.
     g.style.display = fit < MIN_K ? "none" : "";
     if (g.style.display) continue;
     let x = cx - (need * k) / 2;
     stacks.forEach((st, j) => {
-      let y = top;
+      let y = 0;
       const sw = ws[j] * k;
       for (const im of st.querySelectorAll("image")) {
         const ar = Number(im.dataset.ar);
         const plate = im.dataset.plate === "plate";
         const h = plate ? sw / ar : size * k, w = plate ? sw : ar * h;
-        im.setAttribute("x", x + (sw - w) / 2); im.setAttribute("y", y);
+        im.setAttribute("x", x + (sw - w) / 2); im.dataset.dy = y;
         im.setAttribute("width", w); im.setAttribute("height", h);
         y += h + size * 0.04;
       }
-      rowH = Math.max(rowH, y - top);
+      lineH[line] = Math.max(lineH[line], y);
       x += (ws[j] + gap) * k;
     });
   }
+  // The second line (shared signs under parts that have their own) starts below the first.
+  const lineTop = [top, top + (lineH[0] ? lineH[0] + size * 0.1 : 0)];
+  for (const { g } of groups) for (const im of g.querySelectorAll("image")) im.setAttribute("y", lineTop[Number(g.dataset.line || 0)] + Number(im.dataset.dy));
+  rowH = lineH[1] ? lineTop[1] - top + lineH[1] : lineH[0];
   return rowH ? top + rowH + size * 0.2 : top;
 }
 
@@ -1025,11 +1030,36 @@ function drawSigns(svg, profile, bounds) {
     }
     if (!st.querySelector("image")) st.remove();
   };
-  segs.forEach((s, i) => {
-    if (!s.signs?.length) return;
-    const g = el("g", { class: "sign-group", "data-row": "p", "data-cx": (bounds[i] + bounds[i + 1]) / 2, "data-w": bounds[i + 1] - bounds[i] }, svg);
-    s.signs.forEach((x) => stack(g, x, s));
+  // A sign shared by neighbouring parts (the street's speed or zone under all its lanes) is drawn once, in the
+  // middle of the run (Bára); signs of one part under it. Same sign = same file, value and plate as drawn.
+  const id = (x, s) => JSON.stringify([signArtOf(x, s), plateArtOf(x, s)]);
+  const ids = segs.map((s) => (s.signs || []).map((x) => id(x, s)));
+  const shared = new Map(); // "i-j" → [[sign, seg]] for runs of 2 and more parts
+  const own = segs.map((s) => [...(s.signs || [])]);
+  for (let i = 0; i < segs.length; i++) {
+    for (const x of [...own[i]]) {
+      const key = id(x, segs[i]);
+      let j = i;
+      while (j + 1 < segs.length && ids[j + 1].includes(key)) j++;
+      if (j === i) continue;
+      const span = `${i}-${j}`;
+      if (!shared.has(span)) shared.set(span, []);
+      shared.get(span).push([x, segs[i]]);
+      for (let m = i; m <= j; m++) own[m] = own[m].filter((y) => id(y, segs[m]) !== key);
+    }
+  }
+  own.forEach((list, i) => {
+    if (!list.length) return;
+    const g = el("g", { class: "sign-group", "data-line": 0, "data-cx": (bounds[i] + bounds[i + 1]) / 2, "data-w": bounds[i + 1] - bounds[i] }, svg);
+    list.forEach((x) => stack(g, x, segs[i]));
   });
+  for (const [span, list] of shared) {
+    const [i, j] = span.split("-").map(Number);
+    // Below the parts' own signs when any of the run's parts has some.
+    const line = own.slice(i, j + 1).some((l) => l.length) ? 1 : 0;
+    const g = el("g", { class: "sign-group", "data-line": line, "data-cx": (bounds[i] + bounds[j + 1]) / 2, "data-w": bounds[j + 1] - bounds[i] }, svg);
+    list.forEach(([x, s]) => stack(g, x, s));
+  }
   for (const g of svg.querySelectorAll("g.sign-group")) if (!g.querySelector("image")) g.remove();
 }
 
@@ -1048,7 +1078,7 @@ export function buildSvg(profile, opts = {}) {
   const y0 = Math.min(0, GROUND - shown - 140) - 110;
   labelTop = y0 + 190;
   // An export has no screen fitting: the bottom leaves room for all label rows and the credits line.
-  const signRows = profile.segments.some((s) => s.signs?.length) ? 1 : 0;
+  const signRows = profile.segments.some((s) => s.signs?.length) ? 2 : 0;
   const bottom = (opts.credits ? H + 110 : H) + (opts.signs === false ? 0 : signRows * SIGN_ROW);
   const svg = el("svg", { xmlns: NS, viewBox: `${vx} ${y0} ${view[1]} ${bottom - y0}`, "font-family": "Inter, system-ui, sans-serif",
     role: "img", "aria-label": `Příčný profil, celkem ${fmt(total / 100)}: ` + segs.map((s) => `${TYPES[s.type]?.label || s.type} ${fmt(s.width)}`).join(", ") });
