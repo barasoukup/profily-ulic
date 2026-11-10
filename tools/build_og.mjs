@@ -1,9 +1,10 @@
 // Draws the link preview image (Open Graph, 1200 × 630) from the app's own drawing code: a sample
-// street profile with the Prague illustrations beside the app's name. Writes an SVG; the PNG the
+// street profile beside the app's name, for the whole Czech Republic (the default, "cesko": the country's
+// illustrations) or for one city. Writes an SVG; the PNG the
 // page links (pilot/public/og.png) is made from it with any SVG renderer. On a Mac, Quick Look
 // renders squares only, so: set the SVG to viewBox="0 -285 1200 1200" and height="1200", then
 // qlmanage -t -s 1200 -o . og.svg && sips --cropToHeightWidth 630 1200 og.svg.png --out og.png
-//   node tools/build_og.mjs [out.svg] [brno|jihlava|most|…]   (default og.svg in the current folder; the city's card)
+//   node tools/build_og.mjs [out.svg] [cesko|praha|brno|jihlava|…]   (default og.svg in the current folder, the country's card)
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -11,10 +12,12 @@ import { fileURLToPath } from "node:url";
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "pilot", "public");
 const out = process.argv[2] || "og.svg";
 const { NAMES, SITES } = await import("./cities.mjs");
-const cityId = SITES[process.argv[3]] ? process.argv[3] : "praha";
+const cityId = SITES[process.argv[3]] || process.argv[3] === "praha" ? process.argv[3] : "cesko";
 if (cityId !== "praha") globalThis.PROFILY_CITY = cityId;
 // Words of the card per city: name suffix, "…ulic", data line, credit.
-const T = cityId === "praha"
+const T = cityId === "cesko"
+  ? { name: "", adj: "českých", data: "z technických map a OSM.", credit: "kraje a města, ČÚZK, IPR Praha, OSM" }
+  : cityId === "praha"
   ? { name: "", adj: "pražských", data: "z dat IPR a OSM.", credit: "IPR Praha, OSM" }
   : { name: ` · ${NAMES[cityId]}`, adj: SITES[cityId].adjPl, data: SITES[cityId].ogData || "z dat města a OSM.", credit: SITES[cityId].ogCredit || `Statutární město ${NAMES[cityId]}, OSM` };
 
@@ -52,13 +55,13 @@ const profile = trolleyOnly ? {
   edges: { left: "budova", leftInfo: { levels: 4, cornice: 4, roofType: 1, km: 0.5 }, right: "budova", rightInfo: { levels: 3, cornice: 3, roofType: 1, km: 0.6 } },
 } : {
   segments: [
-    { type: "chodnik", width: 3.5 }, { type: "stromorad", width: 2 }, { type: "cyklopruh", width: 1.75, dir: "backward" },
+    { type: "chodnik", width: 3.5, items: [{ kind: "lavicka", f: 0.5 }] }, { type: "zelen", width: 2 }, { type: "cyklopruh", width: 1.75, dir: "backward" },
     { type: "tramvaj_v_pruhu", width: 3.25, dir: "backward" }, { type: "tramvaj_v_pruhu", width: 3.25, dir: "forward" },
     { type: "parkovani", width: 2, orient: "podelne" }, { type: "chodnik", width: 3.5, items: [{ kind: "lampa", f: 0.15 }] },
   ],
   edges: { left: "budova", leftInfo: { levels: 5, cornice: 5, roofType: 1, km: 2 }, right: "budova", rightInfo: { levels: 6, cornice: 5, roof: 1, roofType: 3, km: 3, period: 1950, block: { length: 120, width: 80, fill: 0.45, parts: 12 } } },
 };
-const svg = buildSvg(profile, {});
+const svg = buildSvg(profile, { signs: false });
 const [vx, vy, vw, vh] = svg.attrs.viewBox.split(" ").map(Number);
 // The profile fills the right part of the card; the name and a line of text on the left.
 const W = 1200, H = 630, CX = 460, CY = 24, CW = 716, CH = 582, scale = Math.min((CW - 12) / vw, (CH - 12) / vh);
