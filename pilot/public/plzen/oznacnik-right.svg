@@ -1,0 +1,22 @@
+<svg viewBox="0 0 50 340" xmlns="http://www.w3.org/2000/svg">
+  <!-- Obecný český označník zastávky pro Plzeň (sloupek, značka, název, jízdní řád; místní podoba neověřena), značka IJ 4c (autobus). Stín na straně vlevo (pro pravou stranu ulice). 1 px = 1 cm, výška 3,35 m, spodní hrana = chodník, střed obrázku = osa označníku. -->
+  <!-- Fotky, ze kterých kresba vychází: Commons: „Praha, Zenklova, označník tramvajové zastávky Vychovatelna (1).jpg“ (Jan Polák, CC BY-SA 3.0), „Jindřišská, zastávkový sloupek u Jeruzalémské.jpg“ (ŠJů, CC BY 4.0); pro srovnání nový tmavý označník „Praha, Palackého náměstí, nový zastávkový označník 01.jpg“ a „… 02.jpg“ (Aktron, CC BY-SA 4.0), nekreslen. -->
+  <g transform="matrix(-1 0 0 1 50 0)">
+  <g transform="translate(-219 -20)">
+    <rect x="240" y="40" width="8" height="320" fill="#8f9496"/><rect x="245" y="40" width="3" height="320" fill="#6e7375"/>
+    <rect x="238" y="352" width="12" height="8" fill="#6e7375"/>
+    <!-- vitrína s jízdním řádem -->
+    <rect x="226" y="160" width="36" height="58" rx="2" fill="#8f9496"/><rect x="229" y="163" width="30" height="52" fill="#f4f4f0"/>
+    <rect x="231" y="166" width="12" height="40" fill="#f2d64b"/><rect x="245" y="166" width="12" height="40" fill="#e3e4df"/>
+    <!-- tabule s názvem zastávky -->
+    <rect x="221" y="74" width="46" height="22" fill="#f4f4f0" stroke="#6e7375" stroke-width="1.5"/>
+    <rect x="227" y="80" width="34" height="4" fill="#2a2b2a"/><rect x="231" y="88" width="26" height="2" fill="#9a9b9c"/>
+    <rect x="221" y="98" width="46" height="12" fill="#f4f4f0" stroke="#6e7375" stroke-width="1.5"/>
+    <rect x="226" y="101" width="7" height="6" fill="#2a2b2a"/><rect x="235" y="101" width="7" height="6" fill="#2a2b2a"/>
+    <!-- značka zastávky IJ 4 -->
+    <rect x="221" y="26" width="46" height="46" rx="3" fill="#f4f4f0" stroke="#6e7375" stroke-width="1"/>
+    <rect x="223" y="28" width="42" height="42" rx="2" fill="#1f56a8"/><rect x="227" y="32" width="34" height="34" rx="1" fill="#f4f4f0"/>
+    <path d="M229 42 Q229 40 231 40 H257 Q259 40 259 42 V58 Q259 60 257 60 H231 Q229 60 229 58 Z" fill="#1a1a1a"/><rect x="231.5" y="43" width="5" height="6" fill="#f4f4f0"/><rect x="238.5" y="43" width="5" height="6" fill="#f4f4f0"/><rect x="245.5" y="43" width="5" height="6" fill="#f4f4f0"/><rect x="252.5" y="43" width="4.5" height="9" fill="#f4f4f0"/><circle cx="235" cy="60" r="3" fill="#1a1a1a" stroke="#f4f4f0" stroke-width="1"/><circle cx="252" cy="60" r="3" fill="#1a1a1a" stroke="#f4f4f0" stroke-width="1"/>
+  </g>
+</g>
+</svg>

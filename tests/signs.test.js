@@ -13,11 +13,11 @@ test("obytná zóna a zóna 30 jdou přes celou vozovku jednou, bez vlastní B 2
 test("jednosměrka: IP 4b ve směru pohledu, B 2 proti, s cyklisty v protisměru; Otočit je vymění", () => {
   const p = deriveSigns({ segments: [{ type: "parkovani", source: "tsk", orient: "kolme" }, { type: "pruh", dir: "forward" }] }, { highway: "residential", oneway: "yes", "oneway:bicycle": "no" });
   const ow = p.zones.signs.find((s) => s.k === "oneway");
-  assert.equal(signFile(ow), "ip4b");
+  assert.equal(signFile(ow), "IP4b");
   assert.equal(ow.plate, "protismer");
   assert.deepEqual(keys(p.segments[0].signs), ["ip11a+kolme"]);
   mirrorSigns(p);
-  assert.equal(signFile(p.zones.signs.find((s) => s.k === "oneway")), "b2");
+  assert.equal(signFile(p.zones.signs.find((s) => s.k === "oneway")), "B2");
 });
 
 test("pruh BUS, cyklopruhy a odhadnuté stání", () => {

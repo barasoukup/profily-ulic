@@ -19,20 +19,20 @@ export const SIGNS = {
   c8a: "C 8a Stezka pro cyklisty",
   c9a: "C 9a Stezka pro chodce a cyklisty",
   c10a: "C 10a Stezka pro chodce a cyklisty dělená",
-  ip11a: "IP 11a Parkoviště",
+  ip11a: "IP 11a–c Parkoviště",
   ip12: "IP 12 Vyhrazené parkoviště",
   ztp: "IP 12 + O 1 Parkoviště pro ZTP",
-  ip14a: "IP 14a Dálnice",
-  ip15a: "IP 15a Silnice pro motorová vozidla",
+  ip14a: "IZ 1a Dálnice",
+  ip15a: "IZ 2a Silnice pro motorová vozidla",
   ip20a: "IP 20a Vyhrazený jízdní pruh BUS",
-  zona30: "IP 25a Zóna 30",
-  zps: "IP 25a Zóna placeného stání",
-  ip26a: "IP 26a Obytná zóna",
-  ip27a: "IP 27a Pěší zóna",
-  cyklozona: "Cyklistická zóna",
+  zona30: "IZ 8a Zóna 30",
+  zps: "IZ 8a Zóna placeného stání",
+  ip26a: "IZ 5a Obytná zóna",
+  ip27a: "IZ 6a Pěší zóna",
+  cyklozona: "IZ 9a Zóna pro cyklisty",
   v9a: "V 9a Směrové šipky",
-  v11a: "V 11a Nápis BUS",
-  v13: "V 13 Tramvajový pruh",
+  v11a: "V 15 Nápis BUS",
+  v13: "V 15 Nápis TRAM",
   v14: "V 14 Jízdní pruh pro cyklisty",
   v14p: "V 14 Ochranný pruh pro cyklisty",
   v20: "V 20 Piktogramový koridor pro cyklisty",
@@ -136,8 +136,28 @@ export function deriveSigns(profile, tags = {}, ctx = {}) {
 // The file of a sign as drawn for a viewer, and its value: oneway becomes IP 4b or B 2 by the direction of
 // the lanes (forward = away from the viewer).
 export function signFile(s) {
-  if (s.k === "oneway") return s.dir === "backward" ? "b2" : "ip4b";
-  return { ztp: "ip12", zona30: "ip25a-30", zps: "ip25a-zps", v14p: "v14-prerusovana", cyklozona: "cyklozona" }[s.k] || s.k;
+  if (s.k === "oneway") return s.dir === "backward" ? "B2" : "IP4b";
+  if (s.k === "ip11a") return s.plate === "podelne" ? "IP11c" : s.plate ? "IP11b" : "IP11a";
+  if (s.k === "b20a") return [20, 30, 40, 50, 60, 70, 80].includes(s.v) ? `B20a-${s.v}` : "B20a";
+  if (s.k === "v9a") return `V9a-${turnFile(s.v)}`;
+  return { b1: "B1", b2: "B2", b8: "B8", b11: "B11", b28: "B28", b29: "B29", b30: "B30", c8a: "C8a", c9a: "C9a", c10a: "C10a",
+    ip12: "IP12", ztp: "IP12-ztp", ip14a: "IZ1a", ip15a: "IZ2a", ip20a: "IP20a", zona30: "IZ8a-30", zps: "IZ8a-placene-stani",
+    ip26a: "IZ5a", ip27a: "IZ6a", cyklozona: "IZ9a", v11a: "V15-bus", v13: "V15-tram", v14: "V14-souvisla", v14p: "V14-prerusovana", v20: "V20" }[s.k] || s.k;
+}
+// The plate under a sign: contraflow cyclists are E 12a under IP 4b and E 12b under B 2; E 13 carries a text.
+export function plateFile(s) {
+  if (s.plate === "protismer") return s.dir === "backward" ? "E12b" : "E12a";
+  if (s.plate === "obsluha" || s.plate === "kola") return "E13";
+  return null;
+}
+// V 9a arrows from OSM turn values (through, left, right, slight_*, merge_* count as their side).
+function turnFile(v = "") {
+  const t = new Set(String(v).split(";").map((x) => (x.includes("left") ? "vlevo" : x.includes("right") ? "vpravo" : "rovne")));
+  const has = (x) => t.has(x);
+  if (has("rovne") && has("vlevo")) return "rovne-vlevo";
+  if (has("rovne") && has("vpravo")) return "rovne-vpravo";
+  if (has("vlevo") && has("vpravo")) return "vlevo-vpravo";
+  return has("vlevo") ? "vlevo" : has("vpravo") ? "vpravo" : "rovne";
 }
 
 // Mirroring a profile ("Otočit") reverses the parts; zones keep their span, oneway its sense through dir.

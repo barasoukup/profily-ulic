@@ -1,0 +1,25 @@
+<svg viewBox="0 0 370 1010" xmlns="http://www.w3.org/2000/svg">
+  <!-- Pražský sloup trakčního vedení tramvají (DPP) , výložník doleva nad kolej. 1 px = 1 cm, pata v ose x = 348 (jako lampa), spodní hrana = chodník. -->
+  <!-- Ocelový trubkový stožár výšky 9,5 m odstupňovaný do tří průměrů (zesíleno asi 1,3×), tmavší patka s dvířky, štítek s číslem; vodorovný trubkový výložník v 6,5 m s táhlem, hnědé izolátory, věšák s trolejí v 5,9 m asi 2,9 m od osy stožáru. -->
+  <!-- Fotky, ze kterých kresba vychází: Commons: „Smíchov, Plzeňská, natírání sloupu TV.jpg“ (ŠJů, CC BY 4.0), „Reko TT Starý Hloubětín - Lehovec, Sídliště Hloubětín, trakční vedení.jpg“ (Honza Groh, CC BY-SA 3.0), „Trojská, tramvajová trať (01).jpg“ (ŠJů, CC BY-SA 3.0), „Podolské nábřeží, napínák u zastávky Kublov.jpg“ (ŠJů, CC BY-SA 3.0). -->
+  <path d="M340 175 L70 357" stroke="#94989a" stroke-width="3" fill="none"/>
+  <path d="M323.8 185.9 L313 193.2" stroke="#6b4a36" stroke-width="7"/>
+  <rect x="40" y="356.5" width="298" height="7" fill="#b5b9ba"/><rect x="40" y="361" width="298" height="2.5" fill="#94989a"/>
+  <rect x="36" y="355" width="6" height="10" rx="1.5" fill="#94989a"/>
+  <rect x="296" y="353.5" width="13" height="13" rx="2" fill="#6b4a36"/><path d="M299.5 353.5V366.5M305.5 353.5V366.5" stroke="#4e3527" stroke-width="1.2"/>
+  <rect x="58.5" y="363" width="7" height="16" rx="2" fill="#6b4a36"/>
+  <path d="M62 379V417" stroke="#55595b" stroke-width="2.5"/><rect x="55.5" y="415" width="13" height="6" rx="1" fill="#55595b"/>
+  <circle cx="62" cy="424" r="3.4" fill="#2f3234"/>
+  <rect x="334.0" y="580" width="28" height="320" fill="#b5b9ba"/><rect x="352.7" y="580" width="9.3" height="320" fill="#94989a"/>
+  <rect x="337.0" y="290" width="22" height="280" fill="#b5b9ba"/><rect x="351.7" y="290" width="7.3" height="280" fill="#94989a"/>
+  <rect x="340.0" y="60" width="16" height="220" fill="#b5b9ba"/><rect x="350.7" y="60" width="5.3" height="220" fill="#94989a"/>
+  <path d="M337.0 570 H359.0 L362.0 580 H334.0 Z" fill="#b5b9ba"/><path d="M351.7 570 H359.0 L362.0 580 H352.7 Z" fill="#94989a"/>
+  <path d="M340.0 280 H356.0 L359.0 290 H337.0 Z" fill="#b5b9ba"/><path d="M350.7 280 H356.0 L359.0 290 H351.7 Z" fill="#94989a"/>
+  <path d="M340 60 Q348 44 356 60 Z" fill="#b5b9ba"/><path d="M350.7 60 Q352 53 348 52 Q354 51 356 60 Z" fill="#94989a"/>
+  <rect x="335" y="353" width="26" height="14" rx="2" fill="#b5b9ba"/><rect x="352" y="353" width="9" height="14" rx="2" fill="#94989a"/>
+  <rect x="337.5" y="170" width="21" height="10" rx="2" fill="#b5b9ba"/><rect x="351" y="170" width="7.5" height="10" rx="2" fill="#94989a"/>
+  <rect x="336" y="745" width="12" height="16" fill="#f2f2ee"/><rect x="338" y="749" width="8" height="2.5" fill="#2f3234"/><rect x="338" y="754" width="8" height="2.5" fill="#2f3234"/>
+  <path d="M334 900 H362 L364 908 H332 Z" fill="#727678"/>
+  <rect x="332" y="908" width="32" height="102" fill="#727678"/><rect x="353.3" y="908" width="10.7" height="102" fill="#5f6365"/>
+  <rect x="336" y="938" width="9" height="34" rx="1" fill="#5f6365"/>
+</svg>
