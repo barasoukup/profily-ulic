@@ -54,6 +54,12 @@ pamatuje i po zavření.
   zástavba (plochy budov technické mapy), letecká a mimovegetační ortofoto IPR (`imgs/.../ort/*_letecke_snimkovani`),
   ortofoto ČÚZK a OpenStreetMap. Vrstvu „Technická mapa IPR“ jde zapnout navrch. Vybraný podklad si prohlížeč pamatuje.
 
+### OSM mimo výřez (Overpass)
+Dlaždice pokrývají obdélník výřezu města (`data/osm-tiles/extent.json`, píše ho `tools/build_osm_tiles.mjs`). Řez mimo něj
+(např. Litvínov na stránce Mostu) se ptá Overpassu (`gis.js` `osmOverpass`): stejné prvky a tvar jako dlaždice (ověřeno na
+výřezu v Mostě, 207 prvků shodně), instance overpass-api.de, maps.mail.ru a overpass.private.coffee postupně, každá do 25 s,
+odpověď se pamatuje. Veřejné servery bývají večer pomalé (10. 11. 2026: 13–37 s na malé okolí).
+
 ### Aktualizace OSM výřezu
 
 Skript stáhne výřez BBBike (když ještě není v `data/osm/Prag.osm.pbf`), vybere z něj ogr2ogr potřebné prvky

@@ -59,14 +59,25 @@ const tile = (n) => {
   return tiles.get(n);
 };
 
+// The tiles cover the box of the city's extract (data/osm-tiles/extent.json, tile indexes written by
+// tools/build_osm_tiles.mjs). A place beyond it is asked from Overpass. Without the file (an older
+// build) the tiles are taken as they are.
+let extent;
+const covered = async (ix0, ix1, iy0, iy1) => {
+  extent ??= fetch("data/osm-tiles/extent.json").then((r) => (r.ok ? r.json() : null), () => null);
+  const e = await extent;
+  return !e || (ix0 >= e.ix[0] && ix1 <= e.ix[1] && iy0 >= e.iy[0] && iy1 <= e.iy[1]);
+};
+
 // OSM elements around a point, merged from the tiles it touches (as the server's localOsm()).
 export async function osmTiles(lat, lon, radius) {
   const dLat = radius / 110574;
   const dLon = radius / (111320 * Math.cos((lat * Math.PI) / 180));
+  const [ix0, ix1] = [Math.floor((lon - dLon) / TILE), Math.floor((lon + dLon) / TILE)];
+  const [iy0, iy1] = [Math.floor((lat - dLat) / TILE), Math.floor((lat + dLat) / TILE)];
+  if (!(await covered(ix0, ix1, iy0, iy1))) return osmOverpass(lat, lon, radius);
   const names = [];
-  for (let ix = Math.floor((lon - dLon) / TILE); ix <= Math.floor((lon + dLon) / TILE); ix++) {
-    for (let iy = Math.floor((lat - dLat) / TILE); iy <= Math.floor((lat + dLat) / TILE); iy++) names.push(`${ix}_${iy}`);
-  }
+  for (let ix = ix0; ix <= ix1; ix++) for (let iy = iy0; iy <= iy1; iy++) names.push(`${ix}_${iy}`);
   const seen = new Set();
   const elements = [];
   for (const els of await Promise.all(names.map(tile))) {
@@ -80,6 +91,92 @@ export async function osmTiles(lat, lon, radius) {
   return { source: "local", elements };
 }
 
+// Overpass, where the tiles do not reach (Bára: allowed as a fallback; each visitor's browser asks, so the
+// limits per address are far off). The same features as the tiles (tools/build_osm_data.sh), in the same
+// shape: lines as "way", polygons as "area", points as "node". The public servers are slow at times: each
+// is tried once with a short timeout, in turn; an answer is kept for the session.
+const OVERPASS = [
+  "https://overpass-api.de/api/interpreter",
+  "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
+  "https://overpass.private.coffee/api/interpreter",
+];
+const OVERPASS_TIMEOUT = 25000; // in the evening a small box can take 20–37 s
+const BARRIERS = "fence|wall|city_wall|retaining_wall|hedge|guard_rail|jersey_barrier|handrail";
+export const overpassQuery = (b) => `[out:json][timeout:15];(
+way[highway](${b});way[railway=tram](${b});way[barrier~"^(${BARRIERS})$"](${b});way[natural=tree_row](${b});
+nwr[amenity=parking](${b});nwr[public_transport=platform](${b});nwr[railway=platform](${b});way[highway=platform](${b});
+nwr[leisure=outdoor_seating](${b});way[building]["building:levels"](${b});way[building][height](${b});way[building]["roof:levels"](${b});
+node[natural=tree](${b});node[highway~"^(street_lamp|bus_stop|turning_circle|turning_loop)$"](${b});node[barrier~"^(bollard|planter)$"](${b});
+node[amenity~"^(bench|bicycle_parking|bicycle_rental|shelter|taxi)$"](${b});node[information~"^(board|guidepost|map)$"](${b});node[railway=tram_stop](${b});
+);out geom;`;
+// Keys that make a closed way a polygon (GDAL's osmconf.ini, as the exports the tiles are made of).
+const AREA_KEYS = ["aeroway", "amenity", "boundary", "building", "craft", "geological", "historic", "land_area", "landuse", "leisure", "man_made", "military", "natural", "office", "place", "shop", "sport", "tourism"];
+const pt = ({ lat, lon }) => ({ lat: +lat.toFixed(7), lon: +lon.toFixed(7) });
+const isPlatform = (t) => t.public_transport === "platform" || t.railway === "platform" || t.highway === "platform";
+const keepArea = (t) => t.amenity === "parking" || isPlatform(t) || t.leisure === "outdoor_seating"
+  || (t.building && ("building:levels" in t || "height" in t || "roof:levels" in t));
+const keepLine = (t) => t.highway || t.railway === "tram" || new RegExp(`^(${BARRIERS})$`).test(t.barrier || "") || t.natural === "tree_row";
+const keepNode = (t) => t.natural === "tree" || /^(street_lamp|bus_stop|turning_circle|turning_loop)$/.test(t.highway || "")
+  || /^(bollard|planter)$/.test(t.barrier || "") || /^(bench|bicycle_parking|bicycle_rental|shelter|taxi)$/.test(t.amenity || "")
+  || /^(board|guidepost|map)$/.test(t.information || "") || t.railway === "tram_stop" || t.public_transport === "platform" || t.leisure === "outdoor_seating";
+const slim = (t) => (t.building ? Object.fromEntries(Object.entries(t).filter(([k]) => ["building", "building:levels", "roof:levels", "height"].includes(k))) : t);
+// Outer members of a multipolygon joined into closed rings.
+function joinRings(parts) {
+  const rings = [], open = parts.map((p) => [...p]);
+  while (open.length) {
+    let ring = open.shift();
+    for (let grew = true; grew && ring[0] !== ring.at(-1);) {
+      grew = false;
+      const end = ring.at(-1), same = (a, b) => a.lat === b.lat && a.lon === b.lon;
+      if (same(ring[0], end)) break;
+      const i = open.findIndex((p) => same(p[0], end) || same(p.at(-1), end));
+      if (i >= 0) { const p = open.splice(i, 1)[0]; ring = ring.concat((same(p[0], end) ? p : [...p].reverse()).slice(1)); grew = true; }
+    }
+    if (ring.length > 3) rings.push(ring);
+  }
+  return rings;
+}
+export function fromOverpass(json) {
+  const elements = [];
+  for (const e of json.elements || []) {
+    const t = e.tags || {};
+    if (e.type === "node") {
+      if (keepNode(t)) elements.push({ type: "node", id: e.id, tags: t, geometry: [pt(e)] });
+    } else if (e.type === "way" && e.geometry?.length > 1) {
+      const g = e.geometry.map(pt), closed = e.nodes?.[0] === e.nodes?.at(-1) && g.length > 3;
+      const area = closed && t.area !== "no" && (t.area === "yes" || AREA_KEYS.some((k) => k in t));
+      if (area && keepArea(t)) elements.push({ type: "area", id: e.id, tags: slim(t), geometry: g, holes: [] });
+      else if (!area && keepLine(t)) elements.push({ type: "way", id: e.id, tags: t, geometry: g });
+    } else if (e.type === "relation" && t.type === "multipolygon" && keepArea(t)) {
+      const outer = (e.members || []).filter((m) => m.type === "way" && m.role !== "inner" && m.geometry).map((m) => m.geometry.map(pt));
+      for (const ring of joinRings(outer)) elements.push({ type: "area", id: e.id, tags: slim(t), geometry: ring, holes: [] });
+    }
+  }
+  return elements;
+}
+const overpassCache = new Map();
+export function osmOverpass(lat, lon, radius) {
+  // The box rounded out to 0.002° so nearby cuts reuse one answer.
+  const dLat = radius / 110574, dLon = radius / (111320 * Math.cos((lat * Math.PI) / 180)), r = (v, up) => (Math[up ? "ceil" : "floor"](v / 0.002) * 0.002).toFixed(3);
+  const b = [r(lat - dLat), r(lon - dLon), r(lat + dLat, 1), r(lon + dLon, 1)].join(",");
+  if (!overpassCache.has(b)) {
+    overpassCache.set(b, (async () => {
+      let last;
+      for (const url of OVERPASS) {
+        try {
+          const res = await fetch(`${url}?data=${encodeURIComponent(overpassQuery(b))}`, { signal: AbortSignal.timeout(OVERPASS_TIMEOUT) });
+          if (!res.ok) throw new Error(`Overpass ${res.status}`);
+          return { source: "overpass", elements: fromOverpass(await res.json()) };
+        } catch (err) {
+          last = err;
+          events.dispatchEvent(new CustomEvent("overpass", { detail: { url } }));
+        }
+      }
+      throw last;
+    })().catch((err) => { overpassCache.delete(b); throw err; }));
+  }
+  return overpassCache.get(b);
+}
 
 export const insideRings = (rings, x, y) => {
   let c = false;

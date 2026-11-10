@@ -71,4 +71,7 @@ for (const src of sources) {
 fs.rmSync(outDir, { recursive: true, force: true });
 fs.mkdirSync(outDir, { recursive: true });
 for (const [k, els] of tiles) fs.writeFileSync(path.join(outDir, `${k}.json`), JSON.stringify(els));
+// The box the tiles cover (tile indexes): beyond it the app asks Overpass (pilot/public/gis.js).
+const ix = [...tiles.keys()].map((k) => +k.split("_")[0]), iy = [...tiles.keys()].map((k) => +k.split("_")[1]);
+fs.writeFileSync(path.join(outDir, "extent.json"), JSON.stringify({ ix: [Math.min(...ix), Math.max(...ix)], iy: [Math.min(...iy), Math.max(...iy)] }));
 console.log(`${n} features → ${tiles.size} tiles in ${outDir}`);

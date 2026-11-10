@@ -27,7 +27,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   na localhostu.
 - **Žádné další vrstvy ani dotazy na servery IPR** (nepřetěžovat je). Nové funkce jen z OSM nebo
   lokálních dat.
-- OSM jen z lokálního pražského výřezu, **žádný Overpass**.
+- OSM z dlaždic výřezu (Praha, Brno, malá města); **Overpass jen jako záloha** tam, kam dlaždice nesahají
+  (Bára 10. 11. 2026: pravidlo není striktní, limity jsou na uživatele). Volá ho prohlížeč návštěvníka.
 - QGIS je nainstalovaný; všechny soubory patří do této složky.
 
 ## Zdroje dat
