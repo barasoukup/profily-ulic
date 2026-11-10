@@ -997,6 +997,7 @@ export function layoutSigns(svg, size, top, px = size / 26) {
   const k = Math.min(1, ...groups.map((x) => x.fit).filter((f) => f >= MIN_K));
   const lineH = [0, 0];
   const bracket = 8 * px; // room for the bracket above shared signs
+  const anyBracket = [0, 1].map((l) => groups0.some((g) => Number(g.dataset.line || 0) === l && g.querySelector("path.sign-bracket")));
   for (const { g, stacks, ws, need, fit } of groups) {
     const cx = Number(g.dataset.cx), line = Number(g.dataset.line || 0);
     const hidden = fit < MIN_K;
@@ -1011,8 +1012,8 @@ export function layoutSigns(svg, size, top, px = size / 26) {
       continue;
     }
     dot?.remove();
-    const br = g.querySelector("path.sign-bracket");
-    const pad = br ? bracket : 0;
+    // Every sign of the line one under the other's bracket room, so all stand on one line (Bára).
+    const pad = anyBracket[line] ? bracket : 0;
     let x = cx - (need * k) / 2;
     stacks.forEach((st, j) => {
       let y = pad;
