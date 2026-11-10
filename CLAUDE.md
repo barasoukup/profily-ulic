@@ -41,7 +41,9 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   `https://gs-pub.praha.eu/arcgis/rest/services/dop/zony_placeneho_stani/MapServer/3` (jen placené
   zóny). Hranice ZPS jsou statický soubor z `tools/build_zps.mjs` (žádný dotaz na kliknutí).
   Odhadované podélné stání jen mimo ZPS (žádná zóna do 100 m) a jen v místních ulicích,
-  označené „odhad“. Golemio API by potřebovalo Bářin klíč (není).
+  označené „odhad“. **Podle zákona** (Bára 10. 11. 2026; § 25 odst. 3 zák. 361/2000 Sb.: při stání musí zůstat
+  volný pruh aspoň 3 m pro každý směr jízdy): obousměrka stání od 8 m na jedné straně, od 10 m na obou;
+  jednosměrka od 5 m a od 7 m; chodník u obruby rozhodující není. U tramvaje 3,5 m od kolejnice (odst. 2). Golemio API by potřebovalo Bářin klíč (není).
 - MTVU a technická mapa jsou povinně zveřejňovaná data, použití je v pořádku.
 
 ## Normy a limity (schválené Bárou)
