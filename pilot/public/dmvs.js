@@ -26,7 +26,7 @@ const MAX_INFO = 16; // GetFeatureInfo requests per click
 const SIMPLIFY = 0.2; // m, Douglas–Peucker tolerance of the outlines
 const MAX_GAP = 25; // m, the widest blank roadway between areas of the DTM read as a street drawn in part
 const PAD = 0.0004; // degrees around the cut in the envelope app.js and run_brno.mjs ask for
-const TIMEOUT = 20000;
+const TIMEOUT = 8000; // a slower answer is not waited for (srovnani-dmvs: once 21 s in Most)
 
 // ---------- PNG ----------
 export async function inflate(bytes) {
@@ -275,7 +275,7 @@ const ringArea = (r) => {
 const TYPES = [
   [/podchod|tunel|podzemní|zastřešen/, null], // under the ground; roofs over it (a stop's canopy)
   [/tramvajov/, 705], [/cyklostezk/, 703], [/parkovišt|odstavn/, 704],
-  [/mostní konstrukc/, 700],
+  [/mostní konstrukc|mostovk/, 700], // a bridge deck ("plocha mostovky") too (srovnani-dmvs: Hlávkův most)
   [/provozní plocha pozemní komunikace|mostní váh|přidružen/, 701],
   [/chodník|nájezd|nástupišt|ostrůvk|schodišt|ramp/, 702],
   [/děl[ií]c|zelen|travnat|vegetační mís|stromů a keřů/, 401],
@@ -507,7 +507,10 @@ export async function surfaces(bbox, labels, opts = {}) {
   for (const f of fill.features) {
     if (f.attributes.ODHAD && f.attributes.CTVUK_KOD === 701 && !dtm.gap) Object.assign(f.attributes, { CTVUK_KOD: 401, CTVUK_POPIS: labels[401] });
   }
+  // Where the DTM has nothing around the cut (local streets of regions that map only the main roads),
+  // RÚIAN alone is no profile: none of it, so the profile is the admitted estimate from OSM (srovnani-dmvs:
+  // Brno č. 95, one "Neurčeno" of 33 m between RÚIAN's houses).
   const anyDtm = dtm.features.some((f) => f.attributes.level === 0);
-  fill.features = fill.features.filter((f) => !(f.attributes.ODHAD && !anyDtm));
+  if (!anyDtm) fill.features = [];
   return { features: [...ground.features, ...above.features, ...fill.features], region: dtm.region, requests: dtm.requests };
 }
