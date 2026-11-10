@@ -155,7 +155,7 @@ function drawTramBed(g, s, x, w, top, bedBefore, bedAfter) {
   if (!bedAfter) curb(x + w - 12);
 }
 
-const POLE_SCALE = 0.68; // overhead-line poles: the bracket at about 4.4 m, over the drawn pantographs (about 4 m)
+const POLE_SCALE = 0.93; // overhead-line poles: their contact wire (5.9 m in the picture) at WIRE_H
 function drawItem(g, it, x, top, right) {
   const line = (attrs) => el("rect", attrs, g);
   switch (it.kind) {
@@ -179,9 +179,11 @@ function drawItem(g, it, x, top, right) {
       // a pole between the tracks (it.center) carries brackets over both (Bára's photo, Prague).
       const lamp = it.lamp ? "-lamp" : "";
       if (ownSprite(`tram-pole${lamp}-left`)) {
-        // Drawn smaller than life (POLE_SCALE): the trams' pantographs are drawn about 4 m high, so the bracket
-        // comes just above them (Bára).
-        const pg = el("g", { transform: `translate(${x} ${top}) scale(${POLE_SCALE}) translate(${-x} ${-top})` }, g);
+        // Scaled so the wire hangs at WIRE_H, where the trams' pantographs and the trolleybuses' poles reach.
+        // A pole between the tracks reaches with each bracket to the middle of its track (it.reach, cm; the picture's
+        // wire hangs 290 cm from the pole).
+        const sx = it.reach ? it.reach / 290 : POLE_SCALE;
+        const pg = el("g", { transform: `translate(${x} ${top}) scale(${sx} ${POLE_SCALE}) translate(${-x} ${-top})` }, g);
         if (it.center || !right) sprite(pg, `tram-pole${lamp}-right`, x, top, false, 22);
         if (it.center || right) sprite(pg, `tram-pole${lamp}-left`, x, top, false, 348);
         return;
@@ -260,6 +262,28 @@ export function twoLines(text) {
     if (!best || Math.max(a.length, b.length) < Math.max(best[0].length, best[1].length)) best = [a, b];
   }
   return best;
+}
+
+// A tram with its pantograph raised to the contact wire (WIRE_H): the picture's top (the pantograph above
+// PANTO_CUT of the 420 high picture) is lifted by the difference and joined to the roof by the arm (Bára: the
+// trams' and the trolleybuses' wires at one height).
+const WIRE_H = 550, PANTO_CUT = 88, PANTO_TOP = 46;
+let clipN = 0;
+function tramSprite(g, name, cx, bottom) {
+  const s = (cityArt() && sprites[`${artKey()}/${CITY_ART[artKey()]?.[name]}`]) || sprites[name];
+  if (!s) return;
+  const k = s.h / 420, x = cx - s.w / 2, y = bottom - s.h, cut = y + PANTO_CUT * k;
+  const lift = WIRE_H - (s.h - PANTO_TOP * k);
+  if (lift <= 0) return sprite(g, name, cx, bottom);
+  const id = `pc${++clipN}`;
+  const defs = el("defs", {}, g);
+  el("rect", { x, y: cut, width: s.w, height: s.h - (cut - y) }, el("clipPath", { id: `${id}b` }, defs));
+  el("rect", { x, y, width: s.w, height: cut - y }, el("clipPath", { id: `${id}t` }, defs));
+  // The arm from the roof up to the lifted head, dark like the pantographs of the pictures.
+  el("path", { d: `M${cx - 18} ${cut + 4} L${cx + 14} ${cut - lift / 2} L${cx - 6} ${cut - lift + 6}`, stroke: "#2a2c2e", "stroke-width": 4, fill: "none", "stroke-linejoin": "round" }, g);
+  el("image", { href: s.uri, width: s.w, height: s.h, x, y, "clip-path": `url(#${id}b)` }, g);
+  el("image", { href: s.uri, width: s.w, height: s.h, x, y: y - lift, "clip-path": `url(#${id}t)`, transform: "" }, g).setAttribute("y", y);
+  g.lastChild.setAttribute("transform", `translate(0 ${-lift})`);
 }
 
 // The current city's own sprite of a name, or undefined (poles and stop posts have no Streetmix stand-in).
@@ -1212,7 +1236,7 @@ export function buildSvg(profile, opts = {}) {
     } else if (t.sprite === "car" && w >= 180) {
       sprite(g, forward ? "car-outbound" : "car-inbound", cx, top);
     } else if (t.sprite === "streetcar" && w >= 240) {
-      sprite(g, forward ? "streetcar-outbound" : "streetcar-inbound", cx, top - 2);
+      tramSprite(g, forward ? "streetcar-outbound" : "streetcar-inbound", cx, top - 2);
     } else if (t.sprite === "bus" && w >= 250) {
       // Under trolley wires a trolleybus, where the city's illustrations have one (else the bus).
       const trolley = s.trolley && cityArt() && CITY_ART[artKey()]?.["trolleybus-inbound"];
@@ -1242,7 +1266,7 @@ export function buildSvg(profile, opts = {}) {
       }
       // A stop post at the platform's edge stays on the platform (it is 50 cm wide).
       if (it.kind === "oznacnik") ix = Math.min(Math.max(ix, x + 30), x + w - 30);
-      drawItem(g, it, ix, top, onRight);
+      drawItem(g, it.kind === "sloup_trakce" && it.center ? { ...it, reach: w / 2 } : it, ix, top, onRight);
     }
     el("text", { class: "lbl-w", "data-row": 0, "data-w": w, x: cx, y: GROUND + 170, "text-anchor": "middle", "font-size": 40, "font-weight": 600, fill: "#1f1f1d" }, g).textContent = fmt(s.width);
     let wrapped = false;
@@ -1303,7 +1327,7 @@ export function buildSvg(profile, opts = {}) {
   const wired = segs.map((s, i) => (s.wires ? i : -1)).filter((i) => i >= 0);
   if (wired.length) {
     const wg = el("g", { class: "trolley-wires" }, svg);
-    const yContact = GROUND - 540, ySpan = GROUND - 600;
+    const yContact = GROUND - WIRE_H, ySpan = GROUND - WIRE_H - 60;
     el("line", { x1: bounds[wired[0]] + 20, x2: bounds[wired.at(-1) + 1] - 20, y1: ySpan, y2: ySpan, stroke: "#4a4945", "stroke-width": 2.5 }, wg);
     for (const i of wired) {
       const cx = (bounds[i] + bounds[i + 1]) / 2;
