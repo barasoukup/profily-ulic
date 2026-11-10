@@ -33,9 +33,7 @@ export function cleanProfile(p, what = "profil") {
     if (s.signs && !s.signs.length) delete s.signs;
     s.items = Array.isArray(s.items) ? s.items.filter((it) => it && it.kind in ITEMS && num(it.f, 0, 1)) : [];
   }
-  // Zones and rules of the whole roadway: a span of parts and its signs.
-  const z = p.zones, n = p.segments.length;
-  if (z !== undefined && !(z && Number.isInteger(z.from) && Number.isInteger(z.to) && z.from >= 0 && z.from <= z.to && z.to < n && (z.signs = cleanSigns(z.signs)).length)) delete p.zones;
+  delete p.zones; // signs for the whole profile were dropped (Bára 10. 11. 2026)
   p.edges = typeof p.edges === "object" && p.edges ? p.edges : {};
   for (const side of ["left", "right"]) {
     if (side in p.edges && !EDGE_KINDS.has(p.edges[side])) p.edges[side] = "volno";
@@ -56,7 +54,7 @@ export function cleanProfile(p, what = "profil") {
 function cleanSigns(list) {
   if (!Array.isArray(list)) return [];
   return list.filter((x) => x && Object.hasOwn(SIGNS, x.k)).map((x) => ({ k: x.k,
-    ...(num(x.v, 1, 200) ? { v: x.v } : typeof x.v === "string" && /^[a-z_;|]{1,60}$/.test(x.v) ? { v: x.v } : {}),
+    ...(num(x.v, 1, 200) ? { v: x.v } : {}),
     ...(Object.hasOwn(PLATES, x.plate) ? { plate: x.plate } : {}),
     ...(["forward", "backward"].includes(x.dir) ? { dir: x.dir } : {}) })).slice(0, 12);
 }

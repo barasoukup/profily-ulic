@@ -1,50 +1,53 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { deriveSigns, signFile, mirrorSigns, zoneSigns } from "../pilot/public/signs.js";
+import { deriveSigns, signFile, streetSigns } from "../pilot/public/signs.js";
 
 const keys = (list) => (list || []).map((s) => s.k + (s.v ? `:${s.v}` : "") + (s.plate ? `+${s.plate}` : ""));
+const files = (p) => p.segments.map((s) => (s.signs || []).map((x) => signFile(x, s)));
 
-test("obytná zóna a zóna 30 jdou přes celou vozovku jednou, bez vlastní B 20a", () => {
-  const p = deriveSigns({ segments: [{ type: "chodnik" }, { type: "pruh", dir: "backward" }, { type: "pruh" }, { type: "chodnik" }] }, { highway: "living_street", maxspeed: "20" });
-  assert.deepEqual(p.zones, { from: 1, to: 2, signs: [{ k: "ip26a" }] });
-  assert.deepEqual(keys(zoneSigns({ highway: "residential", "zone:maxspeed": "CZ:30", maxspeed: "30" })), ["zona30"]);
+test("žádné značky přes celý profil; zóna, rychlost a jednosměrka pod jízdními pruhy", () => {
+  const p = deriveSigns({ segments: [{ type: "chodnik" }, { type: "pruh", dir: "backward" }, { type: "pruh" }, { type: "chodnik" }] }, { highway: "living_street", maxspeed: "20" }, { inZps: true });
+  assert.equal(p.zones, undefined);
+  assert.deepEqual(p.segments.map((s) => keys(s.signs)), [[], ["ip26a"], ["ip26a"], []]);
+  assert.deepEqual(keys(streetSigns({ highway: "residential", "zone:maxspeed": "CZ:30" })), ["zona30"]);
+  const q = deriveSigns({ segments: [{ type: "pruh" }, { type: "pruh", dir: "backward" }] }, { highway: "primary", maxspeed: "40" });
+  assert.deepEqual(q.segments.map((s) => keys(s.signs)), [["b20a:40"], ["b20a:40"]]);
 });
 
-test("jednosměrka: IP 4b ve směru pohledu, B 2 proti, s cyklisty v protisměru; Otočit je vymění", () => {
+test("jednosměrka pod pruhem: IP 4b ve směru pohledu, IP 4c s cyklisty v protisměru, B 2 proti; Otočit je vymění", () => {
   const p = deriveSigns({ segments: [{ type: "parkovani", source: "tsk", orient: "kolme" }, { type: "pruh", dir: "forward" }] }, { highway: "residential", oneway: "yes", "oneway:bicycle": "no" });
-  const ow = p.zones.signs.find((s) => s.k === "oneway");
-  assert.equal(signFile(ow), "IP4c");
-  assert.equal(ow.plate, "protismer");
-  assert.deepEqual(keys(p.segments[0].signs), ["ip11a+kolme"]);
-  mirrorSigns(p);
-  assert.equal(signFile(p.zones.signs.find((s) => s.k === "oneway")), "B2");
+  assert.deepEqual(files(p), [["IP11b"], ["IP4c"]]);
+  p.segments[1].dir = "backward"; // after Otočit the lane comes towards the viewer
+  assert.deepEqual(files(p)[1], ["B2"]);
+  const q = deriveSigns({ segments: [{ type: "pruh" }] }, { highway: "residential", oneway: "yes" });
+  assert.deepEqual(files(q), [["IP4b"]]);
+});
+
+test("šikmé stání má stejnou značku jako kolmé", () => {
+  const p = deriveSigns({ segments: [{ type: "parkovani", source: "tsk", orient: "sikme" }, { type: "parkovani", source: "tsk", orient: "podelne" }] }, {});
+  assert.deepEqual(files(p), [["IP11b"], ["IP11c"]]);
 });
 
 test("pruh BUS, cyklopruhy a odhadnuté stání", () => {
   const p = deriveSigns({ segments: [{ type: "bus" }, { type: "cyklopruh" }, { type: "ochranny_pruh" }, { type: "parkovani", source: "odhad" }, { type: "parkovani", source: "tsk", use: "ztp" }] }, {});
-  assert.deepEqual(p.segments.map((s) => keys(s.signs)), [["ip20a"], ["v14"], ["v14p"], [], ["ztp"]]);
+  assert.deepEqual(p.segments.map((s) => keys(s.signs)), [["ip20a"], [], [], [], ["ztp"]]);
 });
 
 test("zákaz vjezdu s výjimkou dopravní obsluhy a rychlost po pruzích", () => {
-  assert.deepEqual(keys(zoneSigns({ highway: "residential", motor_vehicle: "destination" })), ["b11+obsluha"]);
-  const p = deriveSigns({ segments: [{ type: "pruh" }, { type: "pruh" }] }, { highway: "primary", oneway: "yes", "maxspeed:lanes": "50|70" });
+  assert.deepEqual(keys(streetSigns({ highway: "residential", motor_vehicle: "destination" })), ["b11+obsluha"]);
+  const p = deriveSigns({ segments: [{ type: "pruh" }, { type: "pruh" }] }, { highway: "primary", "maxspeed:lanes": "50|70" });
   assert.deepEqual(p.segments.map((s) => keys(s.signs)), [["b20a:50"], ["b20a:70"]]);
 });
 
-test("zákaz zastavení u pravé obruby", () => {
+test("zákaz zastavení u pravé obruby na krajním pruhu", () => {
   const p = deriveSigns({ segments: [{ type: "pruh", dir: "backward" }, { type: "pruh" }] }, { highway: "tertiary", "parking:right:restriction": "no_stopping" });
   assert.deepEqual(p.segments.map((s) => keys(s.signs)), [[], ["b28"]]);
 });
 
-test("stání na chodníku IP 11d a IP 11e, částečně na chodníku IP 11f a IP 11g", () => {
+test("stání na chodníku a napůl na chodníku: IP 11d až g", () => {
   const p = deriveSigns({ segments: [
-    { type: "parkovani", source: "osm", orient: "podelne", position: "on_kerb" },
-    { type: "parkovani", source: "osm", orient: "kolme", position: "on_kerb" },
-    { type: "parkovani", source: "osm", orient: "podelne", position: "half_on_kerb" },
-    { type: "parkovani", source: "user", orient: "sikme", position: "half_on_kerb" },
-    { type: "parkovani", source: "osm", position: "half_on_kerb", use: "ztp" },
-    { type: "parkovani", source: "osm", orient: "podelne" },
+    { type: "parkovani", source: "osm", position: "on_kerb" }, { type: "parkovani", source: "osm", position: "on_kerb", orient: "kolme" },
+    { type: "parkovani", source: "osm", position: "half_on_kerb" }, { type: "parkovani", source: "osm", position: "half_on_kerb", orient: "sikme" },
   ] }, {});
-  assert.deepEqual(p.segments.map((s) => keys(s.signs)), [["ip11e"], ["ip11d"], ["ip11g"], ["ip11f"], ["ztp"], ["ip11a+podelne"]]);
-  assert.deepEqual(p.segments.slice(0, 4).map((s) => signFile(s.signs[0])), ["IP11e", "IP11d", "IP11g", "IP11f"]);
+  assert.deepEqual(files(p), [["IP11e"], ["IP11d"], ["IP11g"], ["IP11f"]]);
 });

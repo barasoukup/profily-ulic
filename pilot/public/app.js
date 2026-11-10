@@ -1,7 +1,7 @@
 import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
-import { deriveSigns, mirrorSigns, SIGNS, PLATES, MAX_PER_PART } from "./signs.js";
+import { deriveSigns, SIGNS, PLATES, MAX_PER_PART } from "./signs.js";
 import { loadSprites, loadSigns, layoutSigns, buildSvg, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE } from "./profile.js";
 import * as sources from "./sources.js";
 import { MAPY_KEY } from "./config.js";
@@ -274,7 +274,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
       try { const y = await sources.vyvoj(info.point[1], info.point[0]); if (y) info.period = y; } catch {}
       delete info.point;
     }));
-    state.stav = { segments: result.segments, edges: result.edges, ...(result.zones ? { zones: result.zones } : {}) };
+    state.stav = { segments: result.segments, edges: result.edges };
     if (!state.navrhEdited) state.navrh = structuredClone(state.stav);
     state.selected = null;
     state.fixing = false;
@@ -1046,19 +1046,6 @@ function renderEditor(p) {
       l.append(text, sel);
       ed.append(l);
     }
-    // Zones and rules of the whole roadway: drawn once across the parts from the first to the last of the roadway.
-    const z = p.zones;
-    const zrow = Object.assign(document.createElement("div"), { className: "ed-row" });
-    zrow.append(signTags(z?.signs, 6, (list) => {
-      if (!list.length) delete p.zones;
-      else {
-        const road = p.segments.map((x, k) => (ROADWAY_TYPES.has(x.type) ? k : -1)).filter((k) => k >= 0);
-        p.zones = { from: z?.from ?? road[0] ?? 0, to: z?.to ?? road.at(-1) ?? p.segments.length - 1, signs: list };
-      }
-      edited();
-      render();
-    }, "Značky přes vozovku: "));
-    ed.append(zrow);
     return;
   }
   const type = document.createElement("select");
@@ -1164,13 +1151,11 @@ function renderEditor(p) {
   );
 }
 
-// The parts a zone sign spans by default (the roadway).
-const ROADWAY_TYPES = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "obsluzna", "parkovani", "cyklopruh", "ochranny_pruh", "krajnice", "tramvaj"]);
 // Tags of traffic signs with ×, and a select to add one (a speed limit asks for its number).
-function signTags(list = [], max, set, label = "Značky: ") {
+function signTags(list = [], max, set) {
   const box = Object.assign(document.createElement("span"), { className: "items" });
-  box.textContent = label;
-  const name = (x) => SIGNS[x.k] + (typeof x.v === "number" ? ` ${x.v}` : x.k === "v9a" && x.v ? ` (${x.v})` : "") + (x.plate ? `, ${PLATES[x.plate]}` : "");
+  box.textContent = "Značky: ";
+  const name = (x) => SIGNS[x.k] + (typeof x.v === "number" ? ` ${x.v}` : "") + (x.plate ? `, ${PLATES[x.plate]}` : "");
   list.forEach((x, k) => {
     const b = document.createElement("button");
     b.className = "tag";
@@ -1191,9 +1176,6 @@ function signTags(list = [], max, set, label = "Značky: ") {
         if (!(v > 0 && v <= 200)) return render();
         x.v = Math.round(v);
       }
-      if (k === "v9a") x.v = "through";
-      // A one-way street: the sign follows the lanes, IP 4b when they go away from the viewer.
-      if (k === "oneway") x.dir = "forward";
       set([...list, x]);
     };
     box.append(add);
@@ -1343,7 +1325,7 @@ $("#file-load").onchange = async (e) => {
 const OTHER = { forward: "backward", backward: "forward" };
 function mirror(p) {
   const swap = (k) => (k.startsWith("left") ? "right" + k.slice(4) : k.startsWith("right") ? "left" + k.slice(5) : k);
-  return mirrorSigns({
+  return {
     ...p,
     edges: Object.fromEntries(Object.entries(p.edges || {}).map(([k, v]) => [swap(k), v])),
     segments: [...p.segments].reverse().map((s) => ({
@@ -1352,7 +1334,7 @@ function mirror(p) {
       ...(s.bikeDir ? { bikeDir: OTHER[s.bikeDir] || s.bikeDir } : {}),
       ...(s.items ? { items: s.items.map((it) => ({ ...it, f: +(1 - it.f).toFixed(3) })) } : {}),
     })),
-  });
+  };
 }
 $("#btn-flip").onclick = () => {
   if (!state.stav || !state.cut) return;
@@ -1426,7 +1408,7 @@ async function openLink(hash) {
   try {
     const take = async (text, into) => {
       const p = cleanProfile(await unpackProfile(text), into === "stav" ? "stav" : "návrh");
-      state[into] = { segments: p.segments, edges: { ...state.stav.edges, ...p.edges }, ...(p.zones ? { zones: p.zones } : {}) };
+      state[into] = { segments: p.segments, edges: { ...state.stav.edges, ...p.edges } };
     };
     if (design.stav) await take(design.stav, "stav");
     if (design.navrh) { await take(design.navrh, "navrh"); state.navrhEdited = true; state.mode = "navrh"; }

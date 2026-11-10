@@ -21,7 +21,7 @@ async function unpack(text) {
   return JSON.parse(json);
 }
 
-export const packProfile = (p) => pack({ s: p.segments.map((s) => pick(s, SEG_KEYS)), e: pick(p.edges, EDGE_KEYS), ...(p.zones ? { z: p.zones } : {}) });
+export const packProfile = (p) => pack({ s: p.segments.map((s) => pick(s, SEG_KEYS)), e: pick(p.edges, EDGE_KEYS) });
 
 // A link is short; anything far bigger is not a street (and must not freeze the page).
 const MAX_TEXT = 20000, MAX_PARTS = 200;
@@ -29,7 +29,7 @@ export async function unpackProfile(text) {
   if (text.length > MAX_TEXT) throw new Error("odkaz je příliš dlouhý");
   const o = await unpack(text);
   if (!Array.isArray(o?.s) || o.s.length > MAX_PARTS) throw new Error("vadný počet částí");
-  return { segments: o.s, edges: o.e || {}, ...(o.z ? { zones: o.z } : {}) };
+  return { segments: o.s, edges: o.e || {} };
 }
 
 // The design parameters of a #rez= address: {navrh, stav} as packed strings (either may be missing).
