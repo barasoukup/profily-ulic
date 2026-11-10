@@ -1,55 +1,82 @@
 <svg viewBox="0 0 320 420" xmlns="http://www.w3.org/2000/svg">
-  <!-- Ostravská tramvaj Stadler Tango NF2 „nOVA“ (DPO), zadní pohled: obousměrný vůz, vzadu stejné stanoviště jako vpředu
-       (tram-inbound.svg), svítí červená koncová světla, zrcátko je sklopené. Nátěr DPO od roku 2018. 1 px = 1 cm,
-       šířka 2,5 m. Podle fotek:
-       https://commons.wikimedia.org/wiki/File:Stadler_Tango_NF2_Ostrava_terminál_Hranečník.jpg (konec vozu s koncovými světly)
-       https://commons.wikimedia.org/wiki/File:Ostrava,_Stadler_Tango_NF2_č._1704.jpg -->
-  <!-- jednoramenný pantograf, žlutý -->
-  <g stroke="#f0b323" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M182 104 L140 72 L168 46"/>
+  <!-- Ostravská tramvaj Stadler Tango NF2 „nOVA“ (DPO, 40 vozů 1701–1740), zadní pohled: obousměrný vůz, vzadu
+       stejné stanoviště jako vpředu (tram-inbound.svg), ve světlech svítí po dvou červených koncových lampách, LED
+       tabule ukazuje jen číslo linky, zrcátko je sklopené. Nátěr DPO od roku 2018. 1 px = 1 cm, šířka 2,5 m. Podle fotek:
+       https://commons.wikimedia.org/wiki/File:Stadler_Tango_NF2_Ostrava_terminál_Hranečník.jpg (konec vozu 1719 s koncovými světly,
+       červenými odrazkami a číslem vozu vpravo pod světly; logo dpo jen bledé)
+       https://commons.wikimedia.org/wiki/File:Ostrava,_Stadler_Tango_NF2_č._1704.jpg (tvar nosu, boční skla, pantograf) -->
+  <!-- jednoramenný pantograf: spodní rameno okrově hnědé, horní žlutooranžové, sběrací lišta černá se zahnutými rohy -->
+  <g fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M180 96 L140 70" stroke="#a8641f"/>
+    <path d="M140 70 L168 46" stroke="#e8a22a"/>
   </g>
-  <path d="M106 46 H198" stroke="#3f4245" stroke-width="4" stroke-linecap="round"/>
-  <rect x="140" y="98" width="44" height="8" rx="2" fill="#4a4b4c"/>
-  <!-- modré kryty střešní výzbroje -->
-  <path d="M66 126 L76 106 Q78 102 84 102 H236 Q242 102 244 106 L254 126 Z" fill="#2db3e6"/>
-  <path d="M232 102 H236 Q242 102 244 106 L254 126 H240 Z" fill="#1a93c6"/>
-  <!-- modrá skříň, mírně vyboulená dolů -->
-  <path d="M38 384 V152 Q38 124 66 124 H254 Q282 124 282 152 V300 Q286 340 285 384 Z" fill="#1ba8de"/>
-  <path d="M38 300 Q34 340 35 384 H48 V300 Z" fill="#1ba8de"/>
-  <path d="M272 126 Q282 134 282 152 V300 Q286 340 285 384 H274 Z" fill="#000" opacity=".1"/>
-  <!-- tmavě šedá hrana střechy nad maskou -->
-  <path d="M50 134 Q54 128 66 128 H254 Q266 128 270 134 Z" fill="#3a4047"/>
-  <!-- černá maska: LED tabule, vysoké čelní sklo, spodní obruba těsně nad světly -->
-  <path d="M48 290 V146 Q48 136 60 136 H260 Q272 136 272 146 V290 Q240 298 160 298 Q80 298 48 290 Z" fill="#17191c"/>
-  <!-- oranžová LED tabule: vzadu jen číslo linky -->
-  <rect x="64" y="142" width="192" height="20" rx="2" fill="#2a1f14"/>
-  <text x="160" y="158" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#f2a33a">4</text>
-  <!-- čelní sklo s odlesky a dlouhým stěračem -->
-  <path d="M56 170 H264 L266 280 Q160 290 54 280 Z" fill="#2c3944"/>
-  <path d="M74 174 L114 174 L90 276 L70 274 Z" fill="#46596a" opacity=".55"/>
-  <path d="M230 174 L250 174 L242 220 L224 220 Z" fill="#46596a" opacity=".4"/>
-  <path d="M128 282 L80 200" stroke="#0e0f10" stroke-width="2.5" stroke-linecap="round"/>
-  <!-- dvě šikmé černé „oči“ světel s červenými koncovými světly -->
-  <path d="M50 304 Q50 298 58 299 L120 306 Q128 307 128 314 Q128 322 120 322 H66 Q50 322 50 312 Z" fill="#17191c"/>
-  <circle cx="68" cy="310" r="6" fill="#d8262b"/><circle cx="86" cy="312" r="5" fill="#d8262b"/><circle cx="106" cy="314" r="4" fill="#5a5e62"/>
-  <path d="M270 304 Q270 298 262 299 L200 306 Q192 307 192 314 Q192 322 200 322 H254 Q270 322 270 312 Z" fill="#17191c"/>
-  <circle cx="252" cy="310" r="6" fill="#d8262b"/><circle cx="234" cy="312" r="5" fill="#d8262b"/><circle cx="214" cy="314" r="4" fill="#5a5e62"/>
-  <!-- znak dpo zjednodušený (tři bílé kroužky s nožičkami), pod ním bílé číslo vozu -->
-  <g fill="none" stroke="#f4f8fa" stroke-width="2.6" stroke-linecap="round">
-    <circle cx="147" cy="314" r="4.5"/><path d="M151.5 314 V304"/>
-    <circle cx="160" cy="314" r="4.5"/><path d="M155.5 314 V324"/>
-    <circle cx="173" cy="314" r="4.5"/>
+  <path d="M102 52 Q102 46 108 46 H196 Q202 46 202 52" stroke="#141516" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <rect x="158" y="92" width="30" height="7" rx="2" fill="#4a4b4c"/>
+  <!-- ploché modré kryty střešní výzbroje se šedou horní hranou -->
+  <path d="M74 110 L80 101 Q82 99 86 99 H234 Q238 99 240 101 L246 110 Z" fill="#2db3e6"/>
+  <path d="M82 101 Q83 99 86 99 H234 Q237 99 238 101 Z" fill="#c9ced2" stroke="#c9ced2" stroke-width="2"/>
+  <path d="M232 99 H234 Q238 99 240 101 L246 110 H236 Z" fill="#1a93c6"/>
+  <!-- modrá skříň až ke kolejím, mírně vyboulená dolů -->
+  <path d="M35 410 Q34 360 38 300 V140 Q38 110 66 110 H254 Q282 110 282 140 V300 Q286 360 285 410 Q285 413 281 413 H39 Q35 413 35 410 Z" fill="#1ba8de"/>
+  <path d="M272 114 Q282 122 282 140 V300 Q286 360 285 410 Q285 413 281 413 H274 Z" fill="#000" opacity=".1"/>
+  <path d="M40 413 H280" stroke="#14526b" stroke-width="1.5" opacity=".6"/>
+  <!-- světle šedá lišta střechy a tmavě šedý pruh nad sklem stejně široký jako sklo -->
+  <path d="M62 110 Q64 107 70 107 H250 Q256 107 258 110 Z" fill="#c9ced2"/>
+  <path d="M71 134 L70 114 Q70 111 74 111 H246 Q250 111 250 114 L244 134 Z" fill="#3a4047"/>
+  <!-- čelní sklo (nahoře LED tabule), dolů se zužuje, spodní hrana v mírném oblouku -->
+  <path d="M72 134 H243 L231 305 Q160 321 91 305 Z" fill="#17191c"/>
+  <!-- černá boční skla stanoviště za modrými sloupky (uprostřed úzkými, nahoru se rozšiřují do rohu střechy) -->
+  <path d="M42 196 Q42 171 62 171 H66 L74 326 L42 318 Z" fill="#17191c"/>
+  <path d="M278 196 Q278 171 258 171 H254 L246 326 L278 318 Z" fill="#17191c"/>
+  <path d="M45 200 Q46 180 58 178 L62 178 L66 270 L45 266 Z" fill="#46596a" opacity=".35"/>
+  <!-- stříbrná linka pod bočními skly, šikmo klesá ke středu -->
+  <path d="M38 319 L74 327 L71 333 L38 325 Z" fill="#d3d8dc"/>
+  <path d="M282 319 L246 327 L249 333 L282 325 Z" fill="#c3c8cc"/>
+  <!-- oranžová boční obrysová světla pod linkou a na rohových panelech zástěry -->
+  <g fill="#f07a1a"><rect x="39" y="328" width="8" height="4" rx="1"/><rect x="273" y="328" width="8" height="4" rx="1"/>
+    <rect x="58" y="396" width="8" height="4" rx="1"/><rect x="254" y="396" width="8" height="4" rx="1"/></g>
+  <!-- malá oranžová LED tabulka jen s číslem linky -->
+  <rect x="136" y="138" width="48" height="22" rx="2" fill="#2a1f14"/>
+  <text x="160" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#f2a33a">4</text>
+  <!-- čelní sklo stanoviště s odlesky a dvojitým stěračem (zrcadlově) -->
+  <path d="M78 166 H238 L229 299 Q160 313 93 299 Z" fill="#2c3944"/>
+  <path d="M90 170 L122 170 L106 296 L94 296 Z" fill="#46596a" opacity=".5"/>
+  <path d="M212 170 L230 170 L224 214 L208 214 Z" fill="#46596a" opacity=".35"/>
+  <g stroke="#0e0f10" stroke-width="2" stroke-linecap="round"><path d="M148 306 L102 210"/><path d="M140 306 L96 214"/></g>
+  <!-- vystouplý nos: hrany od patek skla skoro svisle dolů, mírně vyboulené ven, a dál jako okraje středního panelu
+       zástěry až ke kolejím -->
+  <g stroke="#1590c2" stroke-width="1.6" fill="none">
+    <path d="M92 307 Q78 334 86 366 L88 413"/>
+    <path d="M228 307 Q242 334 234 366 L232 413"/>
   </g>
-  <text x="160" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#f4f8fa">1704</text>
-  <!-- prolis zástěry -->
-  <path d="M40 358 Q160 368 280 358" stroke="#1590c2" stroke-width="2" fill="none"/>
+  <!-- dvě šikmé kapky světel po stranách loga: svítí 2 červené koncové lampy, LED denního svícení zhasnuté -->
+  <g>
+    <path d="M89 324 Q91 320 99 321 L130 329 Q138 332 136 339 Q134 344 125 343 L97 338 Q87 336 87 329 Z" fill="#17191c"/>
+    <g fill="#4a5056"><circle cx="89" cy="323" r="2.5"/><circle cx="94" cy="321" r="2.5"/><circle cx="92" cy="327" r="2.5"/><circle cx="87" cy="328" r="2.5"/></g>
+    <circle cx="107" cy="332" r="5" fill="#d8262b" stroke="#7a1418" stroke-width="1.5"/>
+    <circle cx="123" cy="336" r="5" fill="#d8262b" stroke="#7a1418" stroke-width="1.5"/>
+  </g>
+  <path d="M236 324 Q234 320 226 321 L195 329 Q187 332 189 339 Q191 344 200 343 L228 338 Q238 336 238 329 Z" fill="#17191c"/>
+  <g fill="#4a5056"><circle cx="231" cy="323" r="2.5"/><circle cx="226" cy="321" r="2.5"/><circle cx="228" cy="327" r="2.5"/><circle cx="233" cy="328" r="2.5"/></g>
+  <circle cx="218" cy="332" r="5" fill="#d8262b" stroke="#7a1418" stroke-width="1.5"/>
+  <circle cx="202" cy="336" r="5" fill="#d8262b" stroke="#7a1418" stroke-width="1.5"/>
+  <!-- znak dpo zjednodušený (tři kroužky s nožičkami), na tomto konci jen bledý; číslo vozu vpravo pod světly -->
+  <g fill="none" stroke="#bfe6f5" stroke-width="2.6" stroke-linecap="round">
+    <circle cx="147" cy="335" r="4.5"/><path d="M151.5 335 V325"/>
+    <circle cx="160" cy="335" r="4.5"/><path d="M155.5 335 V345"/>
+    <circle cx="173" cy="335" r="4.5"/>
+  </g>
+  <text x="215" y="356" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#e6ecef">1719</text>
+  <!-- červené odrazky po stranách a malá kamera uprostřed -->
+  <circle cx="108" cy="360" r="3.5" fill="#c8202a"/><circle cx="212" cy="360" r="3.5" fill="#c8202a"/>
+  <circle cx="150" cy="358" r="2" fill="#dfe5e8"/>
+  <!-- prolis zástěry: vodorovně pod číslem vozu mezi hranami nosu, ven k bokům šikmo nahoru -->
+  <path d="M38 344 L86 366 H234 L282 344" stroke="#1590c2" stroke-width="2" fill="none" stroke-linejoin="round"/>
   <!-- sklopené zrcátko vpravo -->
   <rect x="282" y="168" width="6" height="26" rx="2" fill="#17191c"/>
-  <!-- tmavý spodek zástěry skoro ke kolejím (nízká podlaha, kola skrytá) -->
-  <path d="M35 384 H285 V396 Q285 404 278 406 L270 410 H50 L42 406 Q35 404 35 396 Z" fill="#26282a"/>
-  <rect x="140" y="390" width="40" height="8" rx="2" fill="#3a3c3e"/>
-  <rect x="78" y="410" width="14" height="8" fill="#8f9193"/>
-  <rect x="228" y="410" width="14" height="8" fill="#8f9193"/>
+  <!-- okraje kol pod zástěrou -->
+  <rect x="78" y="413" width="14" height="5" fill="#8f9193"/>
+  <rect x="228" y="413" width="14" height="5" fill="#8f9193"/>
   <!-- žlábkové kolejnice zapuštěné do vozovky (rozchod 1 435 mm) -->
   <rect x="74" y="418" width="22" height="2" fill="#a7a9ab"/>
   <rect x="88" y="418" width="4" height="2" fill="#2a2b2a"/>

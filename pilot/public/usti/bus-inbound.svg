@@ -1,9 +1,13 @@
 <svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
   <!-- Ústecký autobus DPmÚL, Iveco Urbanway 12M CNG (30 vozů z roku 2015, nejčetnější dvanáctimetrový typ),
        čelní pohled v nátěru DPmÚL: bílá skříň s krytem plynových nádrží na střeše, velké čelní sklo v tenkém
-       tmavém rámu s LED tabulí (číslo linky zeleně, cíl oranžově), pod sklem šedý oblouk se znakem výrobce
-       (bez nápisu), šikmá světla, červené rohy nárazníku, uprostřed černý spodek. 1 px = 1 cm, šířka 2,55 m.
-       Podle fotky (Wikimedia Commons):
+       tmavém rámu s LED tabulí (číslo linky zeleně, cíl oranžově), pod sklem šedá maska s rovnou horní
+       hranou a dolní hranou prohnutou jako miska, s velkým tmavým chromovým nápisem IVECO, pod ní červené
+       číslo vozu a zelený kosočtverec CNG; v rozích šedý klín s malou kulatou svítilnou, pod ním stříbrná
+       pouzdra hlavních světel se 2 projektory a řadou LED, červené rohy nárazníku s vypouklou vnitřní hranou,
+       mlhovkou a piktogramy (vozíčkář, nevidomý), mezi nimi velká bílá plocha a nízko široké černé zapuštění
+       se zaoblenými horními rohy a značkou. 1 px = 1 cm, šířka 2,55 m.
+       Podle fotky (Wikimedia Commons), vůz 96:
        https://commons.wikimedia.org/wiki/File:Iveco_Urbanway_CNG_-_%C3%9Ast%C3%AD_nad_Labem.jpg -->
   <!-- zpětná zrcátka na ramenech -->
   <path d="M58 30 Q38 28 34 48" stroke="#1d1f22" stroke-width="5" fill="none"/>
@@ -16,7 +20,7 @@
   <path d="M52 296 V40 Q52 20 74 20 H286 Q308 20 308 40 V296 Z" fill="#f4f5f3"/>
   <path d="M298 22 Q308 28 308 40 V296 H298 Z" fill="#d9dbd8"/>
   <!-- bok: červený spodní pás vykukuje za hranou -->
-  <path d="M298 236 H308 V296 H298 Z" fill="#d62a2e"/>
+  <path d="M298 246 H308 V290 H298 Z" fill="#d62a2e"/>
   <!-- tmavé čelní sklo s LED tabulí -->
   <path d="M58 198 V36 Q58 28 68 28 H292 Q302 28 302 36 V198 Q180 206 58 198 Z" fill="#1d1f22"/>
   <text x="78" y="56" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#4fd06a">3</text>
@@ -27,22 +31,33 @@
   <path d="M248 90 L270 90 L260 130 L240 130 Z" fill="#46596a" opacity=".4"/>
   <rect x="112" y="150" width="34" height="22" rx="1" fill="#e9ecee"/>
   <g stroke="#0e0f10" stroke-width="2.5" stroke-linecap="round"><path d="M98 194 L172 180"/><path d="M274 194 L206 180"/></g>
-  <!-- šedý oblouk pod sklem, číslo vozu nahrazeno plochou -->
-  <path d="M100 206 Q180 196 260 206 L248 222 Q180 214 112 222 Z" fill="#b9bdc0"/>
-  <!-- šikmá světla v rozích -->
-  <path d="M62 214 L96 220 L102 240 L64 242 Z" fill="#c9cdd0"/>
-  <circle cx="78" cy="230" r="6" fill="#f6f7f8" stroke="#8f9396"/><circle cx="92" cy="232" r="5" fill="#f6f7f8" stroke="#8f9396"/>
-  <path d="M298 214 L264 220 L258 240 L296 242 Z" fill="#c9cdd0"/>
-  <circle cx="282" cy="230" r="6" fill="#f6f7f8" stroke="#8f9396"/><circle cx="268" cy="232" r="5" fill="#f6f7f8" stroke="#8f9396"/>
-  <!-- červené rohy nárazníku, piktogram vozíčkáře -->
-  <path d="M52 246 H104 Q114 246 118 256 L124 284 H52 Z" fill="#d62a2e"/>
-  <path d="M308 246 H256 Q246 246 242 256 L236 284 H308 Z" fill="#d62a2e"/>
-  <circle cx="72" cy="266" r="4" fill="#eef1f3"/><circle cx="288" cy="266" r="4" fill="#eef1f3"/>
-  <rect x="88" y="258" width="10" height="10" rx="1" fill="#2a63b8"/><rect x="99" y="258" width="10" height="10" rx="1" fill="#2a63b8"/>
-  <!-- registrační značka, černý spodek -->
-  <rect x="152" y="254" width="56" height="12" rx="1" fill="#f4f4f2" stroke="#2a2b2a" stroke-width="1"/><rect x="152" y="254" width="6" height="12" fill="#2a63b8"/>
-  <path d="M120 272 H240 L236 284 H124 Z" fill="#1d1f22"/>
-  <path d="M52 284 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#1d1f22"/>
+  <!-- šedá maska pod sklem (rovná horní hrana, dolní prohnutá jako miska) s nápisem IVECO, číslo vozu, znak CNG -->
+  <path d="M98 211 H262 L258 218 Q180 250 102 218 Z" fill="#b9bdc0"/>
+  <text x="180" y="226" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="bold" letter-spacing="1.5" fill="#4f5458">IVECO</text>
+  <text x="180" y="248" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#c8102e">96</text>
+  <rect x="110" y="229" width="12" height="13" rx="1" fill="#fff"/><path d="M116 231 L120.5 235.5 L116 240 L111.5 235.5 Z" fill="#1f9e72"/>
+  <!-- červené rohy nárazníku s vypouklou vnitřní hranou -->
+  <path d="M52 246 H104 Q110 250 112 262 Q114 280 110 292 H52 Z" fill="#d62a2e"/>
+  <path d="M308 246 H256 Q250 250 248 262 Q246 280 250 292 H308 Z" fill="#d62a2e"/>
+  <!-- světla: šedý klín s kulatou svítilnou, stříbrné pouzdro se 2 projektory a LED -->
+  <path d="M62 208 L106 229 V231 H62 Z" fill="#b5b9bc"/><circle cx="70" cy="226" r="3.5" fill="#eef1f3"/>
+  <path d="M298 208 L254 229 V231 H298 Z" fill="#b5b9bc"/><circle cx="290" cy="226" r="3.5" fill="#eef1f3"/>
+  <rect x="64" y="231" width="44" height="20" rx="3" fill="#d5d9dc" stroke="#8f9396"/>
+  <circle cx="76" cy="240" r="5.5" fill="#5b6166" stroke="#eef1f3" stroke-width="1.5"/><circle cx="94" cy="240" r="5.5" fill="#5b6166" stroke="#eef1f3" stroke-width="1.5"/>
+  <path d="M68 248 H104" stroke="#f6f7f8" stroke-width="1.5" stroke-dasharray="2 1.5"/>
+  <rect x="252" y="231" width="44" height="20" rx="3" fill="#d5d9dc" stroke="#8f9396"/>
+  <circle cx="284" cy="240" r="5.5" fill="#5b6166" stroke="#eef1f3" stroke-width="1.5"/><circle cx="266" cy="240" r="5.5" fill="#5b6166" stroke="#eef1f3" stroke-width="1.5"/>
+  <path d="M256 248 H292" stroke="#f6f7f8" stroke-width="1.5" stroke-dasharray="2 1.5"/>
+  <!-- mlhovky a piktogramy (vozíčkář, nevidomý) -->
+  <circle cx="77" cy="275" r="5" fill="#e4e7e9" stroke="#9a9ea2"/><circle cx="283" cy="275" r="5" fill="#e4e7e9" stroke="#9a9ea2"/>
+  <rect x="90" y="266" width="26" height="13" rx="1" fill="#fff"/>
+  <rect x="91.5" y="267.5" width="11" height="10" rx="1" fill="#2b3990"/><rect x="103.5" y="267.5" width="11" height="10" rx="1" fill="#2b3990"/>
+  <g fill="none" stroke="#fff" stroke-width="1.1" stroke-linecap="round"><circle cx="97" cy="273.5" r="2.2"/><path d="M95.6 269.5 V272.5 H98.5"/><path d="M109 271 V274.5 M108.5 272 L112 276"/></g>
+  <circle cx="109" cy="269.6" r="0.9" fill="#fff"/>
+  <!-- široké černé zapuštění se zaoblenými horními rohy, značka, černý spodní pás -->
+  <path d="M114 296 L120 281 Q123 275 131 275 H229 Q237 275 240 281 L246 296 Z" fill="#1d1f22"/>
+  <rect x="152" y="282" width="56" height="12" rx="1" fill="#f4f4f2" stroke="#2a2b2a" stroke-width="1"/><rect x="152" y="282" width="6" height="12" fill="#2a63b8"/>
+  <path d="M52 292 H308 V292 Q308 298 300 298 H60 Q52 298 52 292 Z" fill="#1d1f22"/>
   <!-- kola -->
   <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
 </svg>

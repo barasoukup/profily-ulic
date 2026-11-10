@@ -1,9 +1,12 @@
 <svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
   <!-- Hradecký autobus DPMHK, Iveco Urbanway 12M (nejčetnější typ, 34 vozů), čelní pohled v nátěru DPMHK:
-       bílá skříň a střecha, velké čelní sklo v černém rámu s jantarovou LED tabulí, pod sklem šedý oblouk se
-       znakem výrobce (bez nápisu), šikmá světla, červený spodek čela, který k rohům stoupá, znak podniku
-       zjednodušený na bílou šipku, na boku žlutý pás nad červeným. 1 px = 1 cm, šířka 2,55 m.
-       Podle fotek (Wikimedia Commons):
+       bílá skříň a střecha, velké čelní sklo v černém rámu, jantarová LED tabule za sklem, pod sklem šedá „čočka“
+       s nápisem IVECO (nahoře rovná, dole vypouklá), v rozích vysoké šikmé tmavě šedé pouzdro s malým světlem, zužující se
+       dovnitř, pod ním chromový světlomet (velký kulatý projektor uvnitř, menší reflektor vně), jehož spodní vnější
+       roh je zapuštěný do červené; červený spodek čela vysoko u rohů, široká bílá brada s rovným dnem a krátkým strmým
+       schodem od světel; vlevo bílé evidenční číslo a znak podniku „DP“ s velkou bílou šipkou, kulaté mlhovky v červené
+       pod vnitřní částí světlometů (vlevo hned vedle šipky); na boku černý pás oken, pod ním žlutý pás nad červeným. 1 px = 1 cm, šířka 2,55 m.
+       Podle fotek (Wikimedia Commons), hlavní vzor čela je vůz 185:
        https://commons.wikimedia.org/wiki/File:DPMHK_IVECO_Urbanway_12M.jpg
        https://commons.wikimedia.org/wiki/File:IVECO_Urbanway_12M_HK.jpg -->
   <!-- zpětná zrcátka na ramenech -->
@@ -16,30 +19,37 @@
   <!-- bílá skříň -->
   <path d="M52 296 V40 Q52 20 74 20 H286 Q308 20 308 40 V296 Z" fill="#f4f5f3"/>
   <path d="M298 22 Q308 28 308 40 V296 H298 Z" fill="#d9dbd8"/>
+  <rect x="298" y="30" width="10" height="148" fill="#1d1f22"/>
   <!-- bok: žlutý pás nad červeným vykukuje za hranou -->
-  <rect x="298" y="178" width="10" height="48" fill="#f2c318"/><rect x="298" y="226" width="10" height="70" fill="#d8262b"/>
+  <rect x="298" y="178" width="10" height="48" fill="#f4d020"/><rect x="298" y="226" width="10" height="70" fill="#d8262b"/>
   <!-- tmavé čelní sklo s LED tabulí -->
   <path d="M58 198 V36 Q58 28 68 28 H292 Q302 28 302 36 V198 Q180 206 58 198 Z" fill="#1d1f22"/>
   <text x="78" y="56" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#f2a33a">11</text>
   <g fill="#f2a33a"><rect x="140" y="42" width="120" height="3" rx="1.5"/><rect x="134" y="48" width="130" height="3" rx="1.5" opacity=".8"/><rect x="140" y="54" width="120" height="3" rx="1.5"/></g>
   <path d="M64 66 H296 V190 Q180 198 64 190 Z" fill="#2c3944"/>
-  <path d="M64 66 H296 V86 H64 Z" fill="#232e37"/>
   <path d="M80 90 L120 90 L92 186 L76 184 Z" fill="#46596a" opacity=".5"/>
   <path d="M248 90 L270 90 L260 130 L240 130 Z" fill="#46596a" opacity=".4"/>
   <rect x="112" y="150" width="34" height="22" rx="1" fill="#e9ecee"/>
   <g stroke="#0e0f10" stroke-width="2.5" stroke-linecap="round"><path d="M98 194 L172 180"/><path d="M274 194 L206 180"/></g>
-  <!-- šedý oblouk pod sklem -->
-  <path d="M100 206 Q180 196 260 206 L248 222 Q180 214 112 222 Z" fill="#b9bdc0"/>
-  <!-- šikmá světla v rozích -->
-  <path d="M62 214 L96 220 L102 240 L64 242 Z" fill="#c9cdd0"/>
-  <circle cx="78" cy="230" r="6" fill="#f6f7f8" stroke="#8f9396"/><circle cx="92" cy="232" r="5" fill="#f6f7f8" stroke="#8f9396"/>
-  <path d="M298 214 L264 220 L258 240 L296 242 Z" fill="#c9cdd0"/>
-  <circle cx="282" cy="230" r="6" fill="#f6f7f8" stroke="#8f9396"/><circle cx="268" cy="232" r="5" fill="#f6f7f8" stroke="#8f9396"/>
-  <!-- červený spodek čela: u rohů vysoko, uprostřed nízko -->
-  <path d="M52 246 H100 Q120 246 130 258 Q140 268 160 268 H200 Q220 268 230 258 Q240 246 260 246 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#d8262b"/>
-  <!-- znak podniku zjednodušený (bez písmen): bílá šipka na červeném -->
-  <path d="M70 270 H80 L90 278 L80 286 H70 L78 278 Z" fill="#f4f5f3"/>
-  <circle cx="288" cy="270" r="4" fill="#eef1f3"/>
+  <!-- šedá čočka s nápisem IVECO pod sklem -->
+  <path d="M96 204 Q180 200 264 204 L252 212 Q180 232 108 212 Z" fill="#b9bdc0"/>
+  <text x="180" y="217" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" letter-spacing="1" fill="#5d6266">IVECO</text>
+  <!-- červený spodek čela: u rohů vysoko, široká bílá brada s rovným dnem, od světel krátký strmý schod -->
+  <path d="M52 246 H100 Q110 246 114 254 Q118 262 128 262 H232 Q242 262 246 254 Q250 246 260 246 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#d8262b"/>
+  <!-- světla v rozích: vysoké šikmé pouzdro s malým světlem, pod ním chromový světlomet zapuštěný do červené -->
+  <path d="M60 212 L104 222 V230 H60 Z" fill="#9a9fa3"/><circle cx="72" cy="221" r="3" fill="#f6f7f8" stroke="#6f7478"/>
+  <path d="M64 231 H100 Q102 231 102 233 V249 Q102 251 100 251 H70 L64 245 Z" fill="#dfe3e6" stroke="#8f9396"/>
+  <circle cx="74" cy="240" r="4" fill="#f6f7f8" stroke="#8f9396"/><circle cx="91" cy="240" r="6.5" fill="#f6f7f8" stroke="#8f9396"/>
+  <path d="M300 212 L256 222 V230 H300 Z" fill="#9a9fa3"/><circle cx="288" cy="221" r="3" fill="#f6f7f8" stroke="#6f7478"/>
+  <path d="M296 231 H260 Q258 231 258 233 V249 Q258 251 260 251 H290 L296 245 Z" fill="#dfe3e6" stroke="#8f9396"/>
+  <circle cx="286" cy="240" r="4" fill="#f6f7f8" stroke="#8f9396"/><circle cx="269" cy="240" r="6.5" fill="#f6f7f8" stroke="#8f9396"/>
+  <!-- evidenční číslo a znak podniku: „DP“ s velkou bílou šipkou -->
+  <g fill="#f4f5f3" font-family="Arial, sans-serif" font-weight="bold">
+    <text x="58" y="266" font-size="14">185</text>
+    <text x="58" y="289" font-size="12">DP</text>
+    <path d="M80 272 H90 L104 283 L90 294 H80 L93 283 Z"/>
+  </g>
+  <circle cx="111" cy="280" r="4" fill="#eef1f3"/><circle cx="249" cy="280" r="4" fill="#eef1f3"/>
   <!-- registrační značka -->
   <rect x="152" y="274" width="56" height="12" rx="1" fill="#f4f4f2" stroke="#2a2b2a" stroke-width="1"/><rect x="152" y="274" width="6" height="12" fill="#2a63b8"/>
   <!-- kola -->

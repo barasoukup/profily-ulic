@@ -1,7 +1,9 @@
 <svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
-  <!-- Zlínský autobus DSZO, Iveco Urbanway 12M, zadní pohled. Barvy nátěru DSZO (žlutá, bílá linka, modrý pás) podle
-       fotek vozů ve Zlíně, tvar zádě (černý horní panel s linkovou tabulí, plocha v barvě vozu, svislé svítilny
-       podél hran, černý nárazník) podle fotky Urbanwaye ATAC v Římě, vše Wikimedia Commons:
+  <!-- Zlínský autobus DSZO, Iveco Urbanway 12M, zadní pohled. Tvar zádě (černý horní panel zúžený do jazyka
+       s nápisem IVECO, malá LED tabule s číslem linky, štíhlé svislé svítilny při hranách, dole rozšířené v šikmo seříznutou svítilnu skoro k nárazníku, černý nárazník) podle
+       fotek Urbanwaye ATAC v Římě a PID v Praze; záď vozu DSZO na Commons není, proto je dolní část nátěru DSZO
+       (žlutá přechází rovnou do modrého pásu, logo DSZO, číslo vozu) odhad podle boků a čel vozů ve Zlíně
+       (vůz 677 z boku, vůz 680), vše Wikimedia Commons:
        https://commons.wikimedia.org/wiki/File:Iveco_Urbanway_12M_ve_Zl%C3%ADn%C4%9B_(04).jpg
        https://commons.wikimedia.org/wiki/File:Iveco_Urbanway_12M_ve_Zl%C3%ADn%C4%9B_(02).jpg
        https://commons.wikimedia.org/wiki/File:ATAC_Iveco_Bus_Urbanway_(566)_-_back_view.jpg
@@ -10,23 +12,27 @@
   <rect x="26" y="54" width="16" height="44" rx="5" fill="#1d1f22"/>
   <rect x="318" y="54" width="16" height="44" rx="5" fill="#1d1f22"/>
   <!-- žlutá záď -->
-  <path d="M52 296 V40 Q52 22 72 22 H288 Q308 22 308 40 V296 Z" fill="#f4b71e"/>
-  <path d="M298 24 Q308 28 308 42 V296 H298 Z" fill="#dca11a"/>
-  <!-- černý horní panel: větrací mřížka a linková tabule -->
-  <path d="M66 28 H294 Q300 28 300 34 V146 Q296 150 290 150 H70 Q64 150 60 146 V34 Q60 28 66 28 Z" fill="#1d1f22"/>
+  <path d="M52 296 V40 Q52 22 72 22 H288 Q308 22 308 40 V296 Z" fill="#f5ab0a"/>
+  <path d="M298 24 Q308 28 308 42 V296 H298 Z" fill="#d9950a"/>
+  <!-- černý horní panel zúžený dole do jazyka: větrací mřížky, lišta, LED tabule, nápis IVECO -->
+  <path d="M66 28 H294 Q300 28 300 34 V104 Q300 112 290 118 L236 140 Q230 146 222 146 H138 Q130 146 124 140 L70 118 Q60 112 60 104 V34 Q60 28 66 28 Z" fill="#1d1f22"/>
   <rect x="84" y="40" width="92" height="22" rx="3" fill="#2c2f34"/><rect x="214" y="36" width="64" height="14" rx="3" fill="#2c2f34"/>
-  <rect x="126" y="96" width="108" height="30" rx="2" fill="#121315"/>
-  <text x="180" y="118" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#e9efe6">33</text>
-  <!-- svislé svítilny podél hran -->
-  <rect x="56" y="70" width="10" height="34" rx="4" fill="#c8102e"/><rect x="294" y="70" width="10" height="34" rx="4" fill="#c8102e"/>
-  <rect x="58" y="164" width="14" height="72" rx="6" fill="#8f1218"/><rect x="60" y="206" width="10" height="10" rx="3" fill="#f2a33a"/><rect x="60" y="220" width="10" height="10" rx="3" fill="#eef1f3"/>
-  <rect x="288" y="164" width="14" height="72" rx="6" fill="#8f1218"/><rect x="290" y="206" width="10" height="10" rx="3" fill="#f2a33a"/><rect x="290" y="220" width="10" height="10" rx="3" fill="#eef1f3"/>
-  <!-- žlutý panel motoru s plochou loga -->
-  <rect x="150" y="164" width="60" height="8" rx="4" fill="#d39c16"/>
-  <!-- bílá linka a modrý pás s registrační značkou -->
-  <rect x="52" y="240" width="256" height="3" fill="#f4f4f2"/>
-  <rect x="52" y="243" width="256" height="33" fill="#1f4fa8"/>
+  <rect x="64" y="76" width="232" height="3" fill="#34373c"/>
+  <rect x="152" y="88" width="56" height="22" rx="2" fill="#121315"/>
+  <text x="180" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#d8dc3c">33</text>
+  <text x="180" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" letter-spacing="1" fill="#c4c8cc">IVECO</text>
+  <!-- žlutý panel motoru: logo DSZO a číslo vozu -->
+  <g fill="none" stroke="#5a3a10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M172 182 Q192 178 192 188 Q192 196 182 196 Q172 196 172 189"/><path d="M165 188 H185"/><path d="M175 200 H197"/></g>
+  <text x="288" y="168" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#3a2a10">677</text>
+  <!-- modrý pás s registrační značkou (žlutá přechází rovnou do modré) -->
+  <rect x="52" y="240" width="256" height="36" fill="#0d46a8"/>
   <rect x="152" y="254" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="254" width="6" height="12" fill="#2a63b8"/>
+  <!-- štíhlé svislé svítilny při hranách, dole rozšířené v šikmo seříznutou svítilnu (sahá do modrého pásu) -->
+  <path d="M56 96 Q52 170 56 214 L58 266 L72 266 L66 214 Q60 170 64 96 Z" fill="#c8102e"/>
+  <path d="M304 96 Q308 170 304 214 L302 266 L288 266 L294 214 Q300 170 296 96 Z" fill="#c8102e"/>
+  <g fill="#f2a33a"><rect x="58" y="236" width="8" height="10" rx="1.5"/><rect x="294" y="236" width="8" height="10" rx="1.5"/></g>
+  <g fill="#eef1f3"><rect x="58" y="250" width="8" height="10" rx="1.5"/><rect x="294" y="250" width="8" height="10" rx="1.5"/></g>
   <!-- černý nárazník -->
   <path d="M52 276 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#1d1f22"/>
   <!-- kola -->

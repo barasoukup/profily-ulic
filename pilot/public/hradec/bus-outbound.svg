@@ -1,8 +1,13 @@
 <svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
-  <!-- Hradecký autobus DPMHK, Iveco Urbanway 12M, zadní pohled v nátěru DPMHK: bílá horní část s malým černým
-       zadním oknem a jantarovým číslem linky, žaluzie motoru, žlutý dolní panel, svislé svítilny v rozích, červený
-       nárazník s registrační značkou. 1 px = 1 cm, šířka 2,55 m.
-       Podle fotky (Wikimedia Commons):
+  <!-- Hradecký autobus DPMHK, Iveco Urbanway 12M, zadní pohled v nátěru DPMHK: velké zadní okno v černém
+       rámu skoro přes celou šířku až k hraně střechy, s jantarovým číslem linky, sklo šedozeleně tónované; pod rámem samostatná
+       tmavě šedá maska: nahoře lišta s větracími štěrbinami přes šířku skla, pod ní mísa se šikmými boky a zaoblenými
+       dolními rohy, u boků dvě mřížky s lamelami, uprostřed chromový nápis IVECO; po stranách jen úzké bílé pruhy; mřížky motoru: levá
+       v bílé, pravá vyšší přes hranici bílé a žluté, třetí pod ní na žlutém; žlutý panel až nízko k nárazníku
+       s registrační značkou v tmavé prohlubni přes hranici žluté a červeného nárazníku; podél hran kouřově tmavé svítilny, nahoře úzké a dole
+       rozšířené do kapky se zaobleným hrotem v nárazníku; červený nárazník; bok za zadní nápravou černý.
+       1 px = 1 cm, šířka 2,55 m.
+       Podle fotky (Wikimedia Commons), vůz 180 šikmo zezadu:
        https://commons.wikimedia.org/wiki/File:IVECO_Urbanway_12M_HK.jpg -->
   <!-- zrcátka vpředu vyčnívají za boky -->
   <rect x="26" y="50" width="16" height="44" rx="5" fill="#1d1f22"/>
@@ -11,24 +16,35 @@
   <rect x="120" y="12" width="120" height="10" rx="3" fill="#e4e6e3"/>
   <!-- bílá záď -->
   <path d="M52 296 V40 Q52 20 74 20 H286 Q308 20 308 40 V296 Z" fill="#f4f5f3"/>
-  <path d="M298 22 Q308 28 308 40 V296 H298 Z" fill="#d9dbd8"/>
-  <rect x="298" y="150" width="10" height="80" fill="#f2c318"/><rect x="298" y="230" width="10" height="66" fill="#d8262b"/>
-  <!-- černé zadní okno s číslem linky -->
-  <path d="M76 108 V40 Q76 32 86 32 H274 Q284 32 284 40 V108 Q180 116 76 108 Z" fill="#1d1f22"/>
-  <path d="M92 38 L118 38 L106 104 L92 104 Z" fill="#3a4654" opacity=".55"/>
-  <text x="256" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#f2a33a">11</text>
-  <!-- žaluzie motoru -->
-  <g fill="#cfd2d0"><rect x="112" y="124" width="136" height="5" rx="2"/><rect x="112" y="135" width="136" height="5" rx="2"/></g>
+  <path d="M298 22 Q308 28 308 40 V296 H298 Z" fill="#f4f5f3"/>
+  <path d="M298 26 Q308 30 308 40 V244 H298 Z" fill="#1d1f22"/><rect x="298" y="244" width="10" height="52" fill="#d8262b"/>
+  <!-- velké zadní okno v černém rámu až k hraně střechy, číslo linky -->
+  <path d="M68 92 V40 Q68 22 86 22 H274 Q292 22 292 40 V92 Z" fill="#1d1f22"/>
+  <rect x="80" y="30" width="200" height="58" rx="6" fill="#3f4a47"/>
+  <path d="M92 34 L116 34 L106 84 L92 84 Z" fill="#5b6864" opacity=".5"/>
+  <text x="258" y="54" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#f2a33a">11</text>
+  <!-- tmavě šedá maska pod oknem: lišta se štěrbinami, pod ní zužující se mísa s mřížkami a nápisem IVECO -->
+  <path d="M68 90 H292 V98 L266 122 Q262 126 256 126 H104 Q98 126 94 122 L68 98 Z" fill="#3e4144"/>
+  <g fill="#1d1f22"><rect x="84" y="92" width="44" height="3" rx="1"/><rect x="134" y="92" width="44" height="3" rx="1"/><rect x="182" y="92" width="44" height="3" rx="1"/><rect x="232" y="92" width="44" height="3" rx="1"/></g>
+  <rect x="100" y="102" width="18" height="18" rx="2" fill="#1d1f22"/><rect x="242" y="102" width="18" height="18" rx="2" fill="#1d1f22"/>
+  <g fill="#55595c"><rect x="103" y="104" width="1.6" height="14"/><rect x="107" y="104" width="1.6" height="14"/><rect x="111" y="104" width="1.6" height="14"/><rect x="115" y="104" width="1.6" height="14"/><rect x="245" y="104" width="1.6" height="14"/><rect x="249" y="104" width="1.6" height="14"/><rect x="253" y="104" width="1.6" height="14"/><rect x="257" y="104" width="1.6" height="14"/></g>
+  <text x="180" y="121" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#c4c7c9">IVECO</text>
   <!-- žlutý dolní panel -->
-  <path d="M74 150 H286 V238 H74 Z" fill="#f2c318"/>
-  <g fill="#e3b40f"><rect x="96" y="160" width="40" height="8" rx="2"/><rect x="96" y="174" width="40" height="8" rx="2"/></g>
-  <!-- svislé svítilny v rozích -->
-  <rect x="56" y="124" width="18" height="114" rx="7" fill="#1d1f22"/><rect x="59" y="130" width="12" height="40" rx="4" fill="#b3151c"/><rect x="59" y="176" width="12" height="12" rx="3" fill="#f2a33a"/><rect x="59" y="192" width="12" height="12" rx="3" fill="#eef1f3"/>
-  <rect x="286" y="124" width="18" height="114" rx="7" fill="#1d1f22"/><rect x="289" y="130" width="12" height="40" rx="4" fill="#b3151c"/><rect x="289" y="176" width="12" height="12" rx="3" fill="#f2a33a"/><rect x="289" y="192" width="12" height="12" rx="3" fill="#eef1f3"/>
-  <!-- červený nárazník s registrační značkou -->
-  <path d="M52 238 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#d8262b"/>
-  <rect x="152" y="252" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="252" width="6" height="12" fill="#2a63b8"/>
-  <rect x="52" y="286" width="256" height="12" rx="5" fill="#9c1418"/>
+  <path d="M64 150 H296 V244 H64 Z" fill="#f4d020"/>
+  <!-- mřížky motoru: levá v bílé, pravá vyšší přes hranici bílé a žluté, třetí pod ní na žlutém -->
+  <rect x="112" y="134" width="64" height="16" fill="#d6d8d6"/><rect x="115" y="137" width="58" height="1.6" fill="#a9adab"/><rect x="115" y="141.5" width="58" height="1.6" fill="#a9adab"/><rect x="115" y="146" width="58" height="1.6" fill="#a9adab"/>
+  <rect x="182" y="138" width="80" height="12" fill="#d6d8d6"/><rect x="182" y="150" width="80" height="16" fill="#e3b40f"/><rect x="185" y="141" width="74" height="1.6" fill="#a9adab"/><rect x="185" y="145.5" width="74" height="1.6" fill="#a9adab"/><rect x="185" y="150" width="74" height="1.6" fill="#b8920c"/><rect x="185" y="154.5" width="74" height="1.6" fill="#b8920c"/><rect x="185" y="159" width="74" height="1.6" fill="#b8920c"/><rect x="185" y="163.5" width="74" height="1.6" fill="#b8920c"/>
+  <rect x="182" y="168" width="80" height="28" fill="#e3b40f"/><rect x="185" y="171" width="74" height="1.6" fill="#b8920c"/><rect x="185" y="175.5" width="74" height="1.6" fill="#b8920c"/><rect x="185" y="180" width="74" height="1.6" fill="#b8920c"/><rect x="185" y="184.5" width="74" height="1.6" fill="#b8920c"/><rect x="185" y="189" width="74" height="1.6" fill="#b8920c"/>
+  <!-- červený nárazník od y 244 -->
+  <path d="M52 244 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#d8262b"/>
+  <!-- registrační značka v tmavé prohlubni přes hranici žluté a červené -->
+  <rect x="146" y="236" width="68" height="18" rx="3" fill="#1d1f22"/>
+  <rect x="152" y="239" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="239" width="6" height="12" fill="#2a63b8"/>
+  <!-- kouřové svítilny podél hran: nahoře úzké, dole rozšířené do kapky se zaobleným hrotem v nárazníku -->
+  <path d="M56 70 Q56 66 60 66 Q64 66 64 70 V196 Q70 220 70 248 Q70 266 62 274 Q56 266 56 248 Z" fill="#7a2a30" stroke="#4e171c" stroke-width="1"/>
+  <path d="M58.5 76 V188" stroke="#9a4a50" stroke-width="1.5" stroke-linecap="round"/><path d="M60 210 Q65 228 65 248 Q65 258 62 264" stroke="#9a4a50" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M304 70 Q304 66 300 66 Q296 66 296 70 V196 Q290 220 290 248 Q290 266 298 274 Q304 266 304 248 Z" fill="#7a2a30" stroke="#4e171c" stroke-width="1"/>
+  <path d="M301.5 76 V188" stroke="#9a4a50" stroke-width="1.5" stroke-linecap="round"/><path d="M300 210 Q295 228 295 248 Q295 258 298 264" stroke="#9a4a50" stroke-width="1.5" fill="none" stroke-linecap="round"/>
   <!-- kola -->
   <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
 </svg>

@@ -1,41 +1,63 @@
 <svg viewBox="0 0 360 560" xmlns="http://www.w3.org/2000/svg">
   <!-- Zlínský trolejbus DSZO, Škoda 26Tr/27Tr Solaris (Solaris Urbino III. generace), zadní pohled v nátěru DSZO
-       (žlutá nahoře, modrý pás dole, mezi nimi bílá linka). Barvy podle fotek z Wikimedia Commons (záď na nich
-       není vidět, tvar zádě jako u Urbina):
-       https://commons.wikimedia.org/wiki/File:%C5%A0koda_27Tr_Solaris_ve_Zl%C3%ADn%C4%9B_(05).jpg
-       https://commons.wikimedia.org/wiki/File:%C5%A0koda_27Tr_Solaris_ve_Zl%C3%ADn%C4%9B_(01).jpg
-       Žlutá záď s krytem výzbroje, černé zadní sklo s číslem linky, žlutý panel s mřížkou, svislé svítilny
-       v rozích, modrý pás s registrační značkou. 1 px = 1 cm, šířka 2,55 m; nahoře sběrače k trolejím. -->
+       podle fotek zádě vozu 451 bez reklamy (Commons „Škoda 27Tr Solaris, Zlín.jpg“, linka 8) a vozu 452
+       (s reklamou, tvar zádě), Wikimedia Commons:
+       https://commons.wikimedia.org/wiki/File:%C5%A0koda_27Tr_Solaris,_Zl%C3%ADn.jpg
+       https://commons.wikimedia.org/wiki/File:Zl%C3%ADn,_trolejbus_Poh%C5%99ebn%C3%AD_slu%C5%BEba_nonstop.jpg
+       Kryt výzbroje skoro přes celou šířku se zábradlím a lapači, velké tmavé zadní sklo s červenými obrysovými
+       světly v horních rozích a jantarovým číslem linky uprostřed, žlutý panel s obrysovým logem DSZO, číslem vozu,
+       omezením rychlosti a odraznými hranoly, nápis „SKODA BluDrive“ v dolním okraji skla, lapače sběračů
+       ve tvaru pastýřské hole, světlý pás se světly a nápisem SOLARIS, modrý spodek s vybráním
+       pro registrační značku a žlutými řádky (telefon, www.dszo.cz); žlutá přechází do modré bez bílé linky. 1 px = 1 cm, šířka 2,55 m. -->
   <!-- sběrače: dvě tyče ze zadní části střechy k trolejím -->
   <g stroke="#2a2b2a" stroke-linecap="round" fill="none">
-    <path d="M160 266 L148 16" stroke-width="5"/>
-    <path d="M200 266 L212 16" stroke-width="5"/>
+    <path d="M150 266 L148 16" stroke-width="5"/>
+    <path d="M210 266 L212 16" stroke-width="5"/>
   </g>
   <rect x="140" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
   <rect x="204" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
   <g transform="translate(0 240)">
+    <!-- lapače sběračů a zábradlí na střeše -->
+    <g stroke="#3a3a3a" stroke-width="3" fill="none" stroke-linecap="round"><path d="M150 6 V-14 Q150 -26 140 -26 Q132 -26 132 -18"/><path d="M210 6 V-14 Q210 -26 220 -26 Q228 -26 228 -18"/></g>
+    <g stroke="#3a3a3a" stroke-width="2" fill="none"><path d="M72 8 V-4 H288 V8"/><path d="M128 -4 V8"/><path d="M232 -4 V8"/></g>
     <!-- zrcátka vpředu vyčnívají za boky -->
     <rect x="26" y="62" width="16" height="42" rx="5" fill="#1b1d20"/>
     <rect x="318" y="62" width="16" height="42" rx="5" fill="#1b1d20"/>
-    <!-- žlutá záď, kryt výzbroje s větracími otvory -->
-    <rect x="128" y="12" width="104" height="18" rx="4" fill="#f0b21c"/>
-    <g fill="#2a2b2a"><rect x="140" y="17" width="10" height="7" rx="1"/><rect x="156" y="17" width="10" height="7" rx="1"/><rect x="194" y="17" width="10" height="7" rx="1"/><rect x="210" y="17" width="10" height="7" rx="1"/></g>
-    <path d="M52 298 V52 Q52 24 82 24 H278 Q308 24 308 52 V298 Z" fill="#f4b71e"/>
-    <path d="M298 26 Q308 32 308 52 V298 H298 Z" fill="#dca11a"/>
-    <!-- černé zadní sklo s číslem linky -->
-    <rect x="66" y="46" width="228" height="110" rx="6" fill="#1b1d20"/>
-    <path d="M82 52 L112 52 L96 150 L82 150 Z" fill="#3a4654" opacity=".55"/>
-    <text x="266" y="72" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#e9efe6">8</text>
-    <!-- žlutý panel s mřížkou chlazení -->
-    <g fill="#d39c16"><rect x="120" y="174" width="120" height="4" rx="2"/><rect x="120" y="184" width="120" height="4" rx="2"/><rect x="120" y="194" width="120" height="4" rx="2"/></g>
-    <!-- svislé svítilny v rozích -->
-    <rect x="56" y="166" width="14" height="74" rx="6" fill="#8f1218"/><rect x="58" y="202" width="10" height="10" rx="3" fill="#f2a33a"/><rect x="58" y="216" width="10" height="10" rx="3" fill="#eef1f3"/>
-    <rect x="290" y="166" width="14" height="74" rx="6" fill="#8f1218"/><rect x="292" y="202" width="10" height="10" rx="3" fill="#f2a33a"/><rect x="292" y="216" width="10" height="10" rx="3" fill="#eef1f3"/>
-    <!-- bílá linka a modrý pás s registrační značkou -->
-    <rect x="52" y="243" width="256" height="3" fill="#f4f4f2"/>
-    <path d="M52 246 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#1f4fa8"/>
-    <rect x="152" y="256" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="256" width="6" height="12" fill="#2a63b8"/>
-    <path d="M52 280 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#1a3f86"/>
+    <!-- kryt výzbroje skoro přes celou šířku -->
+    <rect x="64" y="6" width="232" height="24" rx="6" fill="#f5ab0a"/>
+    <rect x="64" y="22" width="232" height="3" fill="#d9950a"/>
+    <!-- žlutá záď -->
+    <path d="M52 298 V44 Q52 24 72 24 H288 Q308 24 308 44 V298 Z" fill="#f5ab0a"/>
+    <path d="M298 26 Q308 30 308 44 V298 H298 Z" fill="#d9950a"/>
+    <!-- velké tmavé zadní sklo: obrysová světla v horních rozích, LED krabička s číslem linky uprostřed -->
+    <rect x="58" y="30" width="244" height="148" rx="10" fill="#1b1d20"/>
+    <path d="M84 64 L108 64 L92 172 L78 172 Z" fill="#3a4654" opacity=".5"/>
+    <circle cx="74" cy="44" r="4.5" fill="#e0262e"/><circle cx="286" cy="44" r="4.5" fill="#e0262e"/>
+    <circle cx="74" cy="56" r="3.5" fill="#6b7076"/><circle cx="286" cy="56" r="3.5" fill="#6b7076"/>
+    <rect x="166" y="36" width="28" height="22" rx="1" fill="#2b2d2f"/>
+    <text x="180" y="54" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#d8dc3c">8</text>
+    <text x="66" y="172" font-family="Arial, sans-serif" font-size="7" font-weight="bold" fill="#e8eaec">SKODA BluDrive</text>
+    <!-- žlutý panel: logo DSZO, nápis dopravce, číslo vozu, omezení rychlosti, odrazné hranoly -->
+    <g fill="none" stroke="#c07f08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M172 186 Q194 182 194 193 Q194 202 182 202 Q172 202 172 194"/><path d="M164 193 H186"/><path d="M174 205 H198"/></g>
+    <g fill="#c07f08"><rect x="146" y="211" width="68" height="3" rx="1.5"/><rect x="150" y="219" width="60" height="3" rx="1.5"/></g>
+    <text x="62" y="226" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#c0601a">451</text>
+    <circle cx="70" cy="196" r="7" fill="#f4f4f2" stroke="#d0202a" stroke-width="2"/>
+    <text x="70" y="198.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" font-weight="bold" fill="#1b1d20">65</text>
+    <rect x="96" y="188" width="12" height="8" rx="1" fill="#1b1d20"/><rect x="252" y="188" width="12" height="8" rx="1" fill="#1b1d20"/>
+    <!-- modrý spodek s vybráním pro registrační značku a odrazkami -->
+    <path d="M52 258 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#0d46a8"/>
+    <rect x="140" y="266" width="80" height="32" rx="3" fill="#0a3a8e"/>
+    <rect x="152" y="274" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="274" width="6" height="12" fill="#2a63b8"/>
+    <!-- žluté řádky: telefon vlevo, www.dszo.cz vpravo -->
+    <g fill="#e9b23a"><rect x="66" y="264" width="58" height="3"/><rect x="248" y="264" width="46" height="3"/></g>
+    <circle cx="62" cy="288" r="3.5" fill="#c8102e"/><circle cx="298" cy="288" r="3.5" fill="#c8102e"/>
+    <!-- světlý pás se světly a nápisem SOLARIS -->
+    <rect x="52" y="240" width="256" height="18" rx="3" fill="#d9dcdf" stroke="#a0a5aa" stroke-width="1"/>
+    <text x="180" y="252.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" letter-spacing="1" fill="#6b7076">SOLARIS</text>
+    <g fill="#eef1f3" stroke="#8d9297" stroke-width="1"><circle cx="62" cy="249" r="5"/><circle cx="298" cy="249" r="5"/>
+      <circle cx="84" cy="249" r="3.5"/><circle cx="92" cy="249" r="3.5"/><circle cx="268" cy="249" r="3.5"/><circle cx="276" cy="249" r="3.5"/></g>
+    <g fill="#d0202a" stroke="#8d9297" stroke-width="1"><circle cx="75" cy="249" r="3.5"/><circle cx="285" cy="249" r="3.5"/></g>
     <!-- kola -->
     <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
   </g>

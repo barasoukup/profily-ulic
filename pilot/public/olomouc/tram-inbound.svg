@@ -1,30 +1,31 @@
 <svg viewBox="0 0 320 420" xmlns="http://www.w3.org/2000/svg">
-  <!-- Olomoucká tramvaj EVO1 (Pragoimex), nejpočetnější typ DPMO (EVO1 a EVO1/o, 18 vozů), čelní pohled v nátěru
-       DPMO. 1 px = 1 cm, šířka vozu 2,50 m, nízká podlaha. Podle fotek z Wikimedia Commons:
-       https://commons.wikimedia.org/wiki/File:Olomouc,_EVO_1_č._214.jpg
-       https://commons.wikimedia.org/wiki/File:EVO_1_Olomouc.jpg
-       https://commons.wikimedia.org/wiki/File:Olomouc_tram_2022_04.jpg
-       https://commons.wikimedia.org/wiki/File:EVO1o_123_121_V_Kotline_Olomouc.jpg
-       Bílá skříň, šedá čepice čela s červeným pásem, který se v horních rozích stáčí do boků, velké černé čelní
-       sklo se zelenou LED tabulí, pod ním šedý panel (logo DPMO zjednodušené), světla ve svislých červených
-       sloupcích, bílý nárazník, dole na bocích tmavě modrá a červená. -->
+  <!-- Olomoucká tramvaj EVO1 (Pragoimex), nejnovější a jeden z nejpočetnějších typů DPMO (EVO1 a EVO1/o, 18 vozů),
+       čelní pohled v nátěru DPMO.
+       1 px = 1 cm, šířka vozu 2,50 m, nízká podlaha. Podle fotek z Wikimedia Commons:
+       https://commons.wikimedia.org/wiki/File:Olomouc,_EVO_1_č._214.jpg (čelo zblízka: čepice, srpky, krabička se zrcátkem, sloupky, logo, vozíček, spřáhlo)
+       https://commons.wikimedia.org/wiki/File:EVO_1_Olomouc.jpg (č. 215 za denního světla, barvy)
+       https://commons.wikimedia.org/wiki/File:Olomoucká_tramvaj_typu_EVO1-o_ev._č._123.jpg (zadní stanoviště: krabičky v horních rozích, zrcátko u horní hrany skla)
+       Bílá skříň, stříbrně šedá celá horní část čela, v horních rozích červené srpky přetékající přes hranu
+       střechy, velké černé čelní sklo se zelenou LED tabulí, pod ním šedý panel se zaobleným spodkem (znak TWT,
+       nápis dpmo, symbol vozíčku), světla v červených sloupcích tvaru U (bílé světlo, oranžová směrovka, řada LED),
+       nárazník se zaoblenými rohy, dole na bocích tmavě modrá a červená. -->
   <!-- jednoramenný pantograf v oranžovožluté barvě -->
   <g stroke="#e3a21e" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
     <path d="M136 104 L180 72 L150 46"/>
   </g>
   <path d="M104 46 H196" stroke="#3f4245" stroke-width="4" stroke-linecap="round"/>
   <rect x="140" y="98" width="44" height="8" rx="2" fill="#4a4b4c"/>
-  <!-- tmavé kryty střešní výzbroje -->
-  <path d="M68 126 L76 108 Q78 104 84 104 H236 Q242 104 244 108 L252 126 Z" fill="#45484c"/>
-  <path d="M232 104 H236 Q242 104 244 108 L252 126 H240 Z" fill="#33363a"/>
+  <!-- kryty střešní výzbroje (z čela skoro schované) -->
+  <path d="M86 126 L93 108 Q95 104 101 104 H219 Q225 104 227 108 L234 126 Z" fill="#6f7377"/>
+  <path d="M216 104 H219 Q225 104 227 108 L234 126 H224 Z" fill="#5f6367"/>
   <!-- bílá skříň -->
   <path d="M35 392 V156 Q35 124 68 124 H252 Q285 124 285 156 V392 Z" fill="#f4f5f5"/>
   <path d="M274 128 Q285 136 285 156 V392 H274 Z" fill="#000" opacity=".07"/>
-  <!-- šedá čepice čela -->
-  <path d="M48 160 Q50 130 74 129 H246 Q270 130 272 160 Z" fill="#9b9fa3"/>
-  <!-- červený pás ze střechy do boků v horních rozích -->
-  <path d="M35 214 V156 Q35 124 68 124 H82 Q50 128 46 160 V214 Z" fill="#d8262f"/>
-  <path d="M285 214 V156 Q285 124 252 124 H238 Q270 128 274 160 V214 Z" fill="#d8262f"/>
+  <!-- stříbrně šedá horní část čela až k hraně střechy -->
+  <path d="M44 160 Q46 124 80 124 H240 Q274 124 276 160 Z" fill="#a2a4a7"/>
+  <!-- červené srpky v horních rozích, přetékají přes roh střechy a končí špičkou ve výšce LED tabule -->
+  <path d="M35 182 V156 Q35 124 68 124 H94 Q58 130 48 160 Z" fill="#d8262f"/>
+  <path d="M285 182 V156 Q285 124 252 124 H226 Q262 130 272 160 Z" fill="#d8262f"/>
   <!-- černé čelní sklo s LED tabulí -->
   <path d="M50 300 V164 Q50 156 58 156 H262 Q270 156 270 164 V300 Z" fill="#15171a"/>
   <rect x="84" y="162" width="152" height="20" rx="2" fill="#0a0b0c"/>
@@ -36,34 +37,45 @@
   <path d="M76 192 L120 192 L98 292 L72 292 Z" fill="#46596a" opacity=".55"/>
   <path d="M226 192 L246 192 L238 232 L222 232 Z" fill="#46596a" opacity=".4"/>
   <path d="M120 292 L164 248" stroke="#0e0f10" stroke-width="2.5" stroke-linecap="round"/>
-  <!-- šedý panel pod sklem se zjednodušeným logem -->
-  <path d="M74 300 H246 V344 H74 Z" fill="#8e9296"/>
-  <circle cx="160" cy="312" r="5" fill="none" stroke="#d9dbdd" stroke-width="1.8"/>
-  <rect x="136" y="322" width="48" height="7" rx="2" fill="#d9dbdd"/>
-  <!-- svislé červené sloupky se světly -->
-  <path d="M42 290 H74 V350 H44 Q42 350 42 346 Z" fill="#d8262f"/>
-  <path d="M278 290 H246 V350 H276 Q278 350 278 346 Z" fill="#d8262f"/>
-  <circle cx="60" cy="322" r="7" fill="#f2f3ee" stroke="#a8221f"/>
-  <circle cx="260" cy="322" r="7" fill="#f2f3ee" stroke="#a8221f"/>
-  <g fill="#f4f4f0"><rect x="50" y="340" width="4" height="4"/><rect x="57" y="340" width="4" height="4"/><rect x="64" y="340" width="4" height="4"/>
-    <rect x="252" y="340" width="4" height="4"/><rect x="259" y="340" width="4" height="4"/><rect x="266" y="340" width="4" height="4"/></g>
-  <!-- červená linka a bílý nárazník -->
-  <rect x="42" y="350" width="236" height="4" fill="#d8262f"/>
-  <path d="M40 354 H280 V384 Q280 392 272 392 H48 Q40 392 40 384 Z" fill="#f4f5f5"/>
-  <path d="M100 364 H220 V386 H100 Z" fill="#202224"/>
-  <rect x="148" y="372" width="24" height="10" rx="2" fill="#b39528"/>
+  <!-- červený tvar U: sloupky u světel, dole spojené pásem pod panelem -->
+  <path d="M36 290 H62 L62 300 H258 L258 290 H284 V354 H36 Z" fill="#d8262f"/>
+  <path d="M157 348 H163 L160 353 Z" fill="#f4f5f5"/>
+  <!-- šedý panel pod sklem se zaobleným spodkem: znak TWT, nápis dpmo, vozíček -->
+  <path d="M62 300 H258 Q258 328 244 338 Q238 340 230 340 H90 Q82 340 76 338 Q62 328 62 300 Z" fill="#a0a2a5"/>
+  <circle cx="160" cy="315" r="7" fill="#3c3e41" stroke="#fff" stroke-width="1.3"/>
+  <text x="160" y="317" font-family="Arial, sans-serif" font-size="4.6" font-weight="bold" fill="#fff" text-anchor="middle">TWT</text>
+  <g stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M124 326.5 H133 M131 324.5 L133 326.5 L131 328.5"/><path d="M133 332 H124 M126 330 L124 332 L126 334"/>
+  </g>
+  <text x="166" y="335" font-family="Arial Black, Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff" text-anchor="middle" textLength="58" lengthAdjust="spacingAndGlyphs">dpmo</text>
+  <!-- vozíček skoro u levého červeného sloupku (asi 8 % šířky panelu) -->
+  <g transform="translate(80 324) scale(1.2) translate(-92 -323)">
+    <rect x="92" y="323" width="10" height="10" rx="1" fill="#1f5fb4"/>
+    <circle cx="96.5" cy="325.3" r=".9" fill="#fff"/><path d="M96.5 326.8 V329.5 H99.5 L100.5 331.5 M98.6 330.6 A2.4 2.4 0 1 1 95 328.5" stroke="#fff" stroke-width=".9" fill="none"/>
+  </g>
+  <circle cx="52" cy="312" r="6" fill="#f6f7f2" stroke="#a8221f" stroke-width=".8"/>
+  <circle cx="54" cy="327" r="5" fill="#f29a1e"/>
+  <circle cx="268" cy="312" r="6" fill="#f6f7f2" stroke="#a8221f" stroke-width=".8"/>
+  <circle cx="266" cy="327" r="5" fill="#f29a1e"/>
+  <g fill="#f6f6f2"><circle cx="44" cy="340" r="1.5"/><circle cx="49" cy="342.5" r="1.5"/><circle cx="54" cy="344.5" r="1.5"/><circle cx="59" cy="346" r="1.5"/><circle cx="64" cy="347" r="1.5"/><circle cx="69" cy="347.5" r="1.5"/><circle cx="276" cy="340" r="1.5"/><circle cx="271" cy="342.5" r="1.5"/><circle cx="266" cy="344.5" r="1.5"/><circle cx="261" cy="346" r="1.5"/><circle cx="256" cy="347" r="1.5"/><circle cx="251" cy="347.5" r="1.5"/></g>
+  <!-- nárazník se zaoblenými rohy, otevřený otvor spřáhla skoro přes celou šířku -->
+  <path d="M40 354 H280 V378 Q280 392 266 392 H54 Q40 392 40 378 Z" fill="#e8e9e8"/>
+  <rect x="62" y="356" width="196" height="32" rx="10" fill="#1c1e20"/>
+  <path d="M136 368 H170 V384 H136 Z" fill="#b8a43e"/><path d="M170 371 H196 V381 H170 Z" fill="#8f9295"/>
+  <rect x="142" y="372" width="10" height="8" fill="#6d6230"/>
   <!-- tmavě modrý a červený spodek na bocích -->
   <path d="M35 330 Q36 360 40 392 H35 Z" fill="#d8262f"/>
-  <path d="M35 352 Q36 376 40 392 H35 Z" fill="#273a8c"/>
+  <path d="M35 352 Q36 376 40 392 H35 Z" fill="#26227a"/>
   <path d="M285 330 Q284 360 280 392 H285 Z" fill="#d8262f"/>
-  <path d="M285 352 Q284 376 280 392 H285 Z" fill="#273a8c"/>
-  <!-- zpětné zrcátko na rameni z horního rohu -->
-  <path d="M38 196 H22 Q16 196 16 202 V210" stroke="#1b1d20" stroke-width="3" fill="none"/>
-  <rect x="8" y="210" width="14" height="26" rx="3" fill="#1b1d20"/>
+  <path d="M285 352 Q284 376 280 392 H285 Z" fill="#26227a"/>
+  <!-- zpětné zrcátko na rameni z bílé krabičky, hlava v horní polovině skla (asi 15–45 % jeho výšky) -->
+  <path d="M30 168 H22 Q16 168 16 174 V176" stroke="#1b1d20" stroke-width="3" fill="none"/>
+  <rect x="8" y="176" width="14" height="36" rx="3" fill="#1b1d20"/>
+  <!-- bílé krabičky u konce srpků ve výšce LED tabule, z nich vychází rameno zrcátka -->
+  <rect x="27" y="158" width="9" height="13" rx="2" fill="#eceded" stroke="#b9bbbd" stroke-width=".6"/>
+  <rect x="284" y="158" width="9" height="13" rx="2" fill="#eceded" stroke="#b9bbbd" stroke-width=".6"/>
   <!-- zástěra skoro ke kolejím (nízká podlaha, kola skrytá) -->
-  <path d="M37 392 H283 V400 Q283 406 276 408 L268 410 H52 L44 408 Q37 406 37 400 Z" fill="#26282a"/>
-  <path d="M37 392 H70 V410 H52 L44 408 Q37 406 37 400 Z" fill="#273a8c"/>
-  <path d="M283 392 H250 V410 H268 L276 408 Q283 406 283 400 Z" fill="#273a8c"/>
+  <path d="M42 392 H278 V400 Q278 406 271 408 L264 410 H56 L49 408 Q42 406 42 400 Z" fill="#26282a"/>
   <rect x="78" y="410" width="14" height="8" fill="#8f9193"/>
   <rect x="228" y="410" width="14" height="8" fill="#8f9193"/>
   <!-- žlábkové kolejnice zapuštěné do vozovky (rozchod 1 435 mm) -->

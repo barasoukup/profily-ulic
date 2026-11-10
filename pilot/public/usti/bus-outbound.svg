@@ -1,7 +1,9 @@
 <svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
-  <!-- Ústecký autobus DPmÚL, Iveco Urbanway 12M CNG, zadní pohled: tvar zádě Urbanway (malé černé zadní okno
-       s číslem linky, bílý kryt motoru se žaluziemi, svislé svítilny v rozích) podle hradecké fotky stejného typu,
-       barvy podle ústeckých vozů DPmÚL (bílá skříň, červený spodní pás jako na boku). 1 px = 1 cm, šířka 2,55 m.
+  <!-- Ústecký autobus DPmÚL, Iveco Urbanway 12M CNG, zadní pohled: tvar zádě Urbanway (černé zadní okno
+       s číslem linky, pod ním skoro stejně široká černá „brada“ se znakem IVECO a svislými štěrbinami po stranách, bílý kryt
+       motoru s žaluziemi z vodorovných lamel ve 3 obdélníkových polích (2 nahoře, 1 vpravo dole), dlouhé úzké svítilny podél svislých hran) podle hradecké fotky stejného typu.
+       Barvy zádě jsou odhad (ústecká fotka zádě chybí): bílá skříň a červený spodní pás jako na boku a čele
+       ústeckých vozů DPmÚL. 1 px = 1 cm, šířka 2,55 m.
        Fotky (Wikimedia Commons):
        https://commons.wikimedia.org/wiki/File:IVECO_Urbanway_12M_HK.jpg (tvar zádě)
        https://commons.wikimedia.org/wiki/File:Iveco_Urbanway_CNG_-_%C3%9Ast%C3%AD_nad_Labem.jpg (barvy boku) -->
@@ -14,15 +16,21 @@
   <path d="M52 296 V40 Q52 20 74 20 H286 Q308 20 308 40 V296 Z" fill="#f4f5f3"/>
   <path d="M298 22 Q308 28 308 40 V296 H298 Z" fill="#d9dbd8"/>
   <!-- černé zadní okno s číslem linky -->
-  <path d="M72 112 V38 Q72 30 82 30 H278 Q288 30 288 38 V112 Q180 120 72 112 Z" fill="#1d1f22"/>
+  <path d="M72 112 V38 Q72 30 82 30 H278 Q288 30 288 38 V112 Z" fill="#1d1f22"/>
   <path d="M88 36 L114 36 L102 108 L88 108 Z" fill="#3a4654" opacity=".55"/>
+  <path d="M80 112 H280 L270 146 H90 Z" fill="#1d1f22"/>
+  <g stroke="#3a3d40" stroke-width="2"><path d="M98 118 V140 M103 118 V140 M108 118 V140 M113 118 V140 M247 118 V140 M252 118 V140 M257 118 V140 M262 118 V140"/></g>
+  <text x="180" y="132" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="bold" letter-spacing="1" fill="#8a8f93">IVECO</text>
   <text x="262" y="58" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#4fd06a">3</text>
-  <!-- kryt motoru se žaluziemi -->
-  <g fill="#cfd2d0"><rect x="108" y="134" width="144" height="5" rx="2"/><rect x="108" y="146" width="144" height="5" rx="2"/><rect x="108" y="158" width="144" height="5" rx="2"/><rect x="108" y="170" width="144" height="5" rx="2"/></g>
-  <path d="M96 128 H264 V210 Q180 218 96 210 Z" fill="none" stroke="#d4d7d4" stroke-width="2"/>
-  <!-- svislé svítilny v rozích -->
-  <rect x="58" y="128" width="16" height="96" rx="7" fill="#1d1f22"/><rect x="61" y="134" width="10" height="34" rx="4" fill="#b3151c"/><rect x="61" y="174" width="10" height="12" rx="3" fill="#f2a33a"/><rect x="61" y="190" width="10" height="12" rx="3" fill="#eef1f3"/>
-  <rect x="286" y="128" width="16" height="96" rx="7" fill="#1d1f22"/><rect x="289" y="134" width="10" height="34" rx="4" fill="#b3151c"/><rect x="289" y="174" width="10" height="12" rx="3" fill="#f2a33a"/><rect x="289" y="190" width="10" height="12" rx="3" fill="#eef1f3"/>
+  <!-- kryt motoru, žaluzie z vodorovných lamel ve 3 polích -->
+  <path d="M96 146 H264 V214 Q180 220 96 214 Z" fill="none" stroke="#d4d7d4" stroke-width="2"/>
+  <g fill="none" stroke="#d4d7d4" stroke-width="1"><rect x="104" y="150" width="72" height="20"/><rect x="184" y="150" width="72" height="20"/><rect x="184" y="180" width="72" height="26"/></g>
+  <g fill="#c6c9c7"><rect x="104" y="152" width="72" height="2"/><rect x="104" y="156" width="72" height="2"/><rect x="104" y="160" width="72" height="2"/><rect x="104" y="164" width="72" height="2"/><rect x="104" y="168" width="72" height="2"/>
+    <rect x="184" y="152" width="72" height="2"/><rect x="184" y="156" width="72" height="2"/><rect x="184" y="160" width="72" height="2"/><rect x="184" y="164" width="72" height="2"/><rect x="184" y="168" width="72" height="2"/>
+    <rect x="184" y="182" width="72" height="2"/><rect x="184" y="186" width="72" height="2"/><rect x="184" y="190" width="72" height="2"/><rect x="184" y="194" width="72" height="2"/><rect x="184" y="198" width="72" height="2"/><rect x="184" y="202" width="72" height="2"/></g>
+  <!-- dlouhé úzké svítilny podél svislých hran -->
+  <rect x="58" y="116" width="12" height="120" rx="6" fill="#1d1f22"/><rect x="60" y="122" width="8" height="58" rx="3" fill="#b3151c"/><rect x="60" y="186" width="8" height="14" rx="3" fill="#f2a33a"/><rect x="60" y="206" width="8" height="14" rx="3" fill="#eef1f3"/>
+  <rect x="290" y="116" width="12" height="120" rx="6" fill="#1d1f22"/><rect x="292" y="122" width="8" height="58" rx="3" fill="#b3151c"/><rect x="292" y="186" width="8" height="14" rx="3" fill="#f2a33a"/><rect x="292" y="206" width="8" height="14" rx="3" fill="#eef1f3"/>
   <!-- červený pás s registrační značkou -->
   <path d="M52 232 H308 V284 H52 Z" fill="#d62a2e"/>
   <rect x="152" y="246" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="246" width="6" height="12" fill="#2a63b8"/>

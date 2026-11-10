@@ -1,10 +1,14 @@
 <svg viewBox="0 0 360 560" xmlns="http://www.w3.org/2000/svg">
   <!-- Ústecký trolejbus DPmÚL, Škoda 27Tr s karoserií Solaris Urbino IV. generace (nejčetnější typ, 52 z 75 vozů),
-       čelní pohled v nátěru DPmÚL: bílá skříň a střecha, černé čelo s velkým sklem a LED tabulí (číslo linky
-       modře, cíl oranžově), bílý panel pod sklem se znakem Solaris, světla v černých pouzdrech nad červenými
-       klínovitými rohy nárazníku, uprostřed bílý nárazník se značkou a černý spodek. 1 px = 1 cm, šířka 2,55 m;
-       nahoře sběrače k trolejím.
-       Podle fotek (Wikimedia Commons):
+       čelní pohled v nátěru DPmÚL (varianta vozu 654): bílá skříň a střecha, černé čelo s velkým sklem a LED
+       tabulí (číslo linky modře, cíl oranžově) a rovnou spodní hranou, pod ním bílý panel od hrany k hraně
+       s tmavě modrými piktogramy (nevidomý, vozíčkář), červeným číslem vozu a znakem Škody (ovál s okřídleným
+       šípem); dolní vnější rohy panelu šikmo useknuté černým klínem se 2 kulatými světly podél hrany, pod
+       klínem červený lichoběžníkový rámeček (vnější strana svislá, vnitřní šikmá) kolem mlhovky, vedle něj
+       3 šedé lamely, pod spárou bílý nárazník se značkou a černý spodek. Vozy 620 a 623 mají navíc zeleného mloka DPmÚL vpravo na panelu
+       a 623 celý spodní nárazník červený (nekresleno). Vozy 654 a 623 na fotkách jsou kloubové 28Tr, čelo mají stejné jako 12m 27Tr.
+       1 px = 1 cm, šířka 2,55 m; nahoře sběrače k trolejím.
+       Podle fotek (Wikimedia Commons), čelo hlavně podle vozů 654 a 623:
        https://commons.wikimedia.org/wiki/File:%C5%A0koda27Tr_654DPmUL_V%C5%A1ebo2025_(cropped).jpg
        https://commons.wikimedia.org/wiki/File:Trolejbus_%C5%A0koda_27TrNU_%C4%8D.642,_%C3%9Ast%C3%AD_n.L._%C3%BAnor_2024.jpg
        https://commons.wikimedia.org/wiki/File:%C3%9Ast%C3%AD_nad_Labem,_Revolu%C4%8Dn%C3%AD_10_(02).jpg
@@ -30,31 +34,39 @@
     <path d="M298 26 Q308 32 308 52 V298 H298 Z" fill="#d9dbd8"/>
     <rect x="140" y="16" width="80" height="12" rx="3" fill="#e2e4e1"/>
     <!-- bok: červený spodní pás vykukuje za hranou -->
-    <path d="M298 250 H308 V298 H298 Z" fill="#c8102e"/>
+    <path d="M298 250 H308 V290 H298 Z" fill="#c8102e"/>
     <!-- černé čelo: LED tabule a čelní sklo -->
-    <path d="M56 214 V46 Q56 34 70 34 H290 Q304 34 304 46 V214 Q180 224 56 214 Z" fill="#1b1d20"/>
+    <path d="M56 212 V46 Q56 34 70 34 H290 Q304 34 304 46 V212 Z" fill="#1b1d20"/>
     <text x="74" y="66" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#58c8f0">54</text>
     <g fill="#f2a33a"><rect x="118" y="52" width="160" height="3" rx="1.5"/><rect x="118" y="58" width="152" height="3" rx="1.5" opacity=".8"/><rect x="118" y="64" width="160" height="3" rx="1.5"/></g>
-    <path d="M64 80 H296 V204 Q180 214 64 204 Z" fill="#2a3642"/>
-    <path d="M80 86 L126 86 L96 198 L78 196 Z" fill="#46596a" opacity=".5"/>
+    <path d="M64 80 H296 V204 H64 Z" fill="#2a3642"/>
+    <path d="M80 86 L126 86 L96 202 L78 202 Z" fill="#46596a" opacity=".5"/>
     <path d="M250 86 L272 86 L262 134 L240 134 Z" fill="#46596a" opacity=".4"/>
     <rect x="118" y="112" width="10" height="34" rx="2" fill="#e8c21a"/>
-    <g stroke="#0e0f10" stroke-width="2.5" stroke-linecap="round"><path d="M96 206 L170 196"/><path d="M276 206 L204 196"/></g>
-    <!-- bílý panel: znak Solaris, piktogram vozíčkáře -->
+    <g stroke="#0e0f10" stroke-width="2.5" stroke-linecap="round"><path d="M70 202 L184 186"/><path d="M286 202 L236 194"/></g>
+    <!-- bílý panel: piktogramy, červené číslo vozu, znak Škody -->
     <ellipse cx="180" cy="236" rx="16" ry="8" fill="none" stroke="#9aa0a4" stroke-width="2"/>
-    <circle cx="180" cy="236" r="4" fill="#5b5f63"/>
-    <rect x="86" y="228" width="12" height="12" rx="1" fill="#2a63b8"/><rect x="100" y="228" width="12" height="12" rx="1" fill="#2a63b8"/>
-    <!-- světla v černých pouzdrech, pod nimi červené klíny rohů -->
-    <path d="M52 250 H108 Q114 252 116 258 L118 266 H52 Z" fill="#1b1d20"/>
-    <circle cx="70" cy="258" r="5" fill="#eef1f3"/><circle cx="92" cy="258" r="5" fill="#eef1f3"/>
-    <path d="M52 266 H118 L128 290 H52 Z" fill="#d62a2e"/>
-    <path d="M60 272 H106 L112 284 H60 Z" fill="#1b1d20"/>
-    <rect x="66" y="276" width="10" height="5" rx="2" fill="#eef1f3"/>
-    <path d="M308 250 H252 Q246 252 244 258 L242 266 H308 Z" fill="#1b1d20"/>
-    <circle cx="290" cy="258" r="5" fill="#eef1f3"/><circle cx="268" cy="258" r="5" fill="#eef1f3"/>
-    <path d="M308 266 H242 L232 290 H308 Z" fill="#d62a2e"/>
-    <path d="M300 272 H254 L248 284 H300 Z" fill="#1b1d20"/>
-    <rect x="284" y="276" width="10" height="5" rx="2" fill="#eef1f3"/>
+    <circle cx="180" cy="236" r="6" fill="#2b3a4a"/>
+    <rect x="86" y="232" width="11" height="10" rx="1" fill="#2b3990"/><rect x="99" y="232" width="11" height="10" rx="1" fill="#2b3990"/>
+    <g fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round"><circle cx="90.5" cy="234.5" r="1" fill="#fff" stroke="none"/><path d="M90.5 236 V239.5 M90 237 L94 241"/><circle cx="104.5" cy="238.5" r="2.4"/><path d="M103 234.5 V237.5 H106"/></g>
+    <text x="134" y="242" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#c8102e">654</text>
+    <!-- dolní vnější rohy panelu: šikmý černý klín se 2 světly, pod ním červený lichoběžníkový rámeček s mlhovkou, 3 lamely -->
+    <path d="M52 248 L102 257 L130 288 H118 L101 264 L52 260 Z" fill="#1b1d20"/>
+    <circle cx="68" cy="254" r="4" fill="#eef1f3"/><circle cx="68" cy="254" r="1.6" fill="#3a3d40"/>
+    <circle cx="89" cy="259" r="4.8" fill="#eef1f3"/><circle cx="89" cy="259" r="2.1" fill="#3a3d40"/>
+    <path d="M52 260 L101 264 L118 288 H52 Z" fill="#d62a2e"/>
+    <path d="M66 266 L97 268 L107 282 H66 Z" fill="#1b1d20"/>
+    <circle cx="79" cy="275" r="3.5" fill="#c9cdd0"/>
+    <g stroke="#5a5d60" stroke-width="2"><path d="M108 272 H115 M111 277 H120 M114 282 H124"/></g>
+    <path d="M308 248 L258 257 L230 288 H242 L259 264 L308 260 Z" fill="#1b1d20"/>
+    <circle cx="292" cy="254" r="4" fill="#eef1f3"/><circle cx="292" cy="254" r="1.6" fill="#3a3d40"/>
+    <circle cx="271" cy="259" r="4.8" fill="#eef1f3"/><circle cx="271" cy="259" r="2.1" fill="#3a3d40"/>
+    <path d="M308 260 L259 264 L242 288 H308 Z" fill="#d62a2e"/>
+    <path d="M294 266 L263 268 L253 282 H294 Z" fill="#1b1d20"/>
+    <circle cx="281" cy="275" r="3.5" fill="#c9cdd0"/>
+    <g stroke="#5a5d60" stroke-width="2"><path d="M252 272 H245 M249 277 H240 M246 282 H236"/></g>
+    <!-- spára mezi panelem a nárazníkem -->
+    <path d="M104 264 H256" stroke="#d0d3d0" stroke-width="1.5"/>
     <!-- registrační značka v bílém nárazníku, černý spodek -->
     <rect x="152" y="270" width="56" height="12" rx="1" fill="#f4f4f2" stroke="#2a2b2a" stroke-width="1"/><rect x="152" y="270" width="6" height="12" fill="#2a63b8"/>
     <path d="M52 290 H308 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#26282b"/>

@@ -1,10 +1,12 @@
 <svg viewBox="0 0 360 560" xmlns="http://www.w3.org/2000/svg">
-  <!-- Ústecký trolejbus DPmÚL, Škoda 27Tr (Solaris Urbino), zadní pohled v nátěru DPmÚL: bílá střecha s krytem
-       výzbroje a rámem sběračů, černá horní část zádě se zadním sklem a modrým číslem linky, bílý panel s
-       krytem motorového prostoru, svítilny po stranách, červený nárazník se značkou. 1 px = 1 cm, šířka 2,55 m;
-       nahoře sběrače k trolejím.
+  <!-- Ústecký trolejbus DPmÚL, Škoda 27Tr s karoserií Solaris Urbino IV. generace (stejný vůz jako čelo),
+       zadní pohled v nátěru DPmÚL: bílá střecha s krytem výzbroje a rámem sběračů, černá horní část zádě se
+       zadním sklem a modrým číslem linky, bílý panel motorového prostoru přes celou šířku (rovná horní hrana,
+       do rohů šikmá zaoblená ramena, rohy nad nimi černé) s velkým deskovým krytem se znakem Solaris (asi ve 2/3 výšky zádě, uprostřed horní hrany vyvýšený díl), vlevo
+       kotouč 65 km a červené číslo vozu, přes sklo dvě tenká lana lapačů sběračů, pod panelem pás svítilen (zvenku šedá, červená, šedá, šedá) a červený
+       nárazník se značkou. 1 px = 1 cm, šířka 2,55 m; nahoře sběrače k trolejím.
        Podle fotek (Wikimedia Commons):
-       https://commons.wikimedia.org/wiki/File:TrolejbusyHranicar2.jpg (záď vozu 51)
+       záď vozu 622 (kloubový 28Tr, Urbino IV, Ústí nad Labem, linka 54; záď stejná jako u 27Tr)
        https://commons.wikimedia.org/wiki/File:Trolejbus_%C5%A0koda_27TrNU_%C4%8D.642,_%C3%9Ast%C3%AD_n.L._%C3%BAnor_2024.jpg (bok, barvy) -->
   <!-- sběrače: dvě tyče ze zadní části střechy k trolejím, žluté konce -->
   <g stroke="#2a2b2a" stroke-linecap="round" fill="none">
@@ -27,26 +29,28 @@
     <path d="M110 30 L124 18 H236 L250 30" stroke="#3a3c3e" stroke-width="3" fill="none"/>
     <!-- bok: červený spodní pás vykukuje za hranou -->
     <path d="M298 236 H308 V298 H298 Z" fill="#c8102e"/>
-    <!-- černá horní část zádě se sklem a číslem linky -->
-    <path d="M58 166 V46 Q58 36 70 36 H290 Q302 36 302 46 V166 Z" fill="#1b1d20"/>
+    <!-- černá horní část zádě se sklem a číslem linky, černé rohy nad rameny panelu -->
+    <path d="M54 200 V46 Q54 36 68 36 H292 Q306 36 306 46 V200 Z" fill="#1b1d20"/>
     <path d="M70 84 H290 V156 H70 Z" fill="#2a3642"/>
     <path d="M84 88 L110 88 L98 152 L84 152 Z" fill="#3a4654" opacity=".55"/>
     <text x="180" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#58c8f0">54</text>
-    <!-- svítilny v černých svislých hranách -->
-    <rect x="58" y="166" width="12" height="72" fill="#1b1d20"/><rect x="290" y="166" width="12" height="72" fill="#1b1d20"/>
-    <rect x="60" y="172" width="8" height="22" rx="3" fill="#b3151c"/><rect x="60" y="198" width="8" height="10" rx="3" fill="#f2a33a"/><rect x="60" y="212" width="8" height="10" rx="3" fill="#eef1f3"/>
-    <rect x="292" y="172" width="8" height="22" rx="3" fill="#b3151c"/><rect x="292" y="198" width="8" height="10" rx="3" fill="#f2a33a"/><rect x="292" y="212" width="8" height="10" rx="3" fill="#eef1f3"/>
-    <!-- bílý panel s vypouklým krytem a úchytem uprostřed -->
-    <path d="M70 238 V190 Q72 172 96 170 H264 Q288 172 290 190 V238 Z" fill="#f6f7f5" stroke="#d4d7d4" stroke-width="2"/>
-    <path d="M150 172 V214 M210 172 V214" stroke="#d4d7d4" stroke-width="2"/>
-    <rect x="148" y="210" width="64" height="20" rx="6" fill="#e9ebe8" stroke="#c4c8c4" stroke-width="2"/>
-    <!-- černá lišta se svítilnami, pod ní červený nárazník s registrační značkou -->
-    <rect x="58" y="238" width="244" height="16" fill="#1b1d20"/>
-    <g fill="#5a5d60"><circle cx="74" cy="246" r="3"/><circle cx="86" cy="246" r="3"/><circle cx="274" cy="246" r="3"/><circle cx="286" cy="246" r="3"/></g>
-    <g fill="#e2474c"><circle cx="98" cy="246" r="3"/><circle cx="262" cy="246" r="3"/></g>
-    <path d="M52 254 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#d62a2e"/>
-    <rect x="152" y="262" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="262" width="6" height="12" fill="#2a63b8"/>
-    <rect x="52" y="284" width="256" height="14" rx="6" fill="#26282b"/>
+    <!-- bílý panel motoru přes celou šířku, deskový kryt se znakem Solaris -->
+    <path d="M52 262 V192 Q56 182 76 176 L100 166 H260 L284 176 Q304 182 308 192 V262 Z" fill="#f6f7f5"/>
+    <!-- lana lapačů sběračů od střechy přes sklo ke krytu (nesouměrně, podle fotky 622) -->
+    <path d="M152 26 L146 196 M232 26 L230 196" stroke="#2a2b2a" stroke-width="1" opacity=".8" fill="none"/>
+    <path d="M128 228 V202 Q128 196 134 196 H160 L166 192 H194 L200 196 H226 Q234 196 234 202 V228 Q234 234 228 234 H134 Q128 234 128 228 Z" fill="#eceeeb" stroke="#c4c8c4" stroke-width="2"/>
+    <ellipse cx="180" cy="215" rx="22" ry="9" fill="none" stroke="#b9bdb9" stroke-width="2.5"/>
+    <path d="M168 218 Q172 210 180 213 Q188 216 192 210" fill="none" stroke="#b9bdb9" stroke-width="2"/>
+    <!-- kotouč 65 km a červené číslo vozu -->
+    <circle cx="68" cy="210" r="10" fill="#fff" stroke="#8a1a1e" stroke-width="2"/>
+    <text x="68" y="213" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#2a2b2a">65</text>
+    <text x="58" y="240" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#c8102e">654</text>
+    <!-- pás se svítilnami, červený nárazník s registrační značkou -->
+    <rect x="52" y="262" width="256" height="12" fill="#1b1d20"/>
+    <g fill="#5a5d60"><circle cx="64" cy="268" r="4"/><circle cx="92" cy="268" r="4"/><circle cx="106" cy="268" r="4"/><circle cx="296" cy="268" r="4"/><circle cx="268" cy="268" r="4"/><circle cx="254" cy="268" r="4"/></g>
+    <g fill="#e2474c"><circle cx="78" cy="268" r="4"/><circle cx="282" cy="268" r="4"/></g>
+    <path d="M52 272 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#d62a2e"/>
+    <rect x="152" y="276" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="276" width="6" height="12" fill="#2a63b8"/>
     <!-- kola -->
     <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
   </g>

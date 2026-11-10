@@ -1,10 +1,15 @@
 <svg viewBox="0 0 360 560" xmlns="http://www.w3.org/2000/svg">
   <!-- Hradecký trolejbus DPMHK, Škoda 30Tr s karoserií SOR (TNB 12, nejčetnější typ, 28 z 41 vozů), čelní
-       pohled v nátěru DPMHK (bílá, žlutá, červená): bílá střecha a horní část, vysoké čelní sklo v černém rámu
-       s jantarovou LED tabulí, pod sklem bílý panel se znakem SOR, spodní polovina čela červená se světly,
-       znak podniku zjednodušený na červenou šipku, na boku žlutý pás nad červeným. 1 px = 1 cm, šířka 2,55 m;
-       nahoře sběrače k trolejím.
-       Podle fotek (Wikimedia Commons):
+       pohled v klasickém nátěru DPMHK (bílá, žlutá, červená): bílá střecha a horní část, vysoké čelní sklo v černém
+       rámu s jantarovou LED tabulí, pod sklem široký bílý pás s kulatým znakem Škody a nápisem ŠKODA těsně pod sklem, v bílém pásu
+       vodorovná rýha na úrovni nápisu; bílá „brada“ je mělké široké „U“ s krátkými esovitými boky a rovným dnem jen
+       kousek pod rohy, u dna stříbrný štítek SOR s mělkými rýhami do stran, spodek čela červený; obdélníkové čiré
+       světlomety (velký projektor uvnitř, menší reflektor vně) se horní hranou dotýkají hranice bílé a červené, pod nimi
+       vodorovné proužky LED denního svícení, v obou dolních rozích bílé evidenční číslo; znak podniku „DP“ se šipkou
+       je až na boku za rohem; na boku černý pás oken, pod ním úzký žlutý pás nad červeným. 1 px = 1 cm, šířka 2,55 m; nahoře sběrače k trolejím.
+       Pozn.: od podzimu 2026 jezdí v Hradci první nové Škody 32Tr a 33Tr v novém jednotném vzhledu DPMHK
+       (svislé pruhy, nový znak města); zatím je jich málo, proto zůstává 30Tr v dnešním nátěru.
+       Podle fotek (Wikimedia Commons), hlavní vzor čela je 31Tr SOR skoro zpředu (vůz 61, linka 1 Nový Hradec):
        https://commons.wikimedia.org/wiki/File:Hradec_Kr%C3%A1lov%C3%A9,_%C5%A0koda_30Tr_SOR_(01).jpg
        https://commons.wikimedia.org/wiki/File:Hradec_Kr%C3%A1lov%C3%A9,_%C5%A0koda_30Tr_SOR_(02).jpg
        https://commons.wikimedia.org/wiki/File:Hradec_Kr%C3%A1lov%C3%A9,_%C5%A0koda_31Tr_SOR_(03).jpg -->
@@ -26,29 +31,41 @@
     <rect x="132" y="14" width="96" height="14" rx="4" fill="#e2e4e1"/>
     <!-- bok: žlutý pás nad červeným vykukuje za hranou -->
     <path d="M298 26 Q308 32 308 50 V298 H298 Z" fill="#d9dbd8"/>
-    <rect x="298" y="190" width="10" height="34" fill="#f2c318"/>
-    <rect x="298" y="224" width="10" height="74" fill="#d8262b"/>
+    <rect x="298" y="60" width="10" height="145" fill="#1b1d20"/>
+    <rect x="298" y="205" width="10" height="20" fill="#f4d020"/>
+    <rect x="298" y="225" width="10" height="73" fill="#d8262b"/>
     <!-- vysoké čelní sklo v černém rámu s LED tabulí -->
-    <path d="M58 212 V44 Q58 34 70 34 H290 Q302 34 302 44 V212 Q180 220 58 212 Z" fill="#1b1d20"/>
+    <path d="M58 202 V44 Q58 34 70 34 H290 Q302 34 302 44 V202 H58 Z" fill="#1b1d20"/>
     <text x="78" y="64" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#f2a33a">1</text>
     <g fill="#f2a33a"><rect x="130" y="50" width="130" height="3" rx="1.5"/><rect x="124" y="56" width="142" height="3" rx="1.5" opacity=".8"/><rect x="130" y="62" width="130" height="3" rx="1.5"/></g>
-    <path d="M64 74 H296 V204 Q180 212 64 204 Z" fill="#2a3642"/>
-    <path d="M80 80 L126 80 L96 198 L78 196 Z" fill="#46596a" opacity=".5"/>
+    <path d="M64 74 H296 V190 H64 Z" fill="#2a3642"/>
+    <path d="M80 80 L126 80 L96 184 L78 182 Z" fill="#46596a" opacity=".5"/>
     <path d="M250 80 L272 80 L262 130 L240 130 Z" fill="#46596a" opacity=".4"/>
-    <g stroke="#0e0f10" stroke-width="2.5" stroke-linecap="round"><path d="M96 206 L170 194"/><path d="M276 206 L204 194"/></g>
-    <!-- bílý panel pod sklem: znak SOR, prohlubeň uprostřed -->
-    <path d="M140 226 Q180 220 220 226 L214 244 Q180 240 146 244 Z" fill="#e4e6e3" stroke="#c9ccc9" stroke-width="1.5"/>
-    <rect x="172" y="228" width="16" height="7" rx="2" fill="#8a8e91"/>
-    <!-- červená spodní polovina čela -->
-    <path d="M52 246 Q120 240 180 240 Q240 240 308 246 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#d8262b"/>
-    <!-- znak podniku zjednodušený (bez písmen): červená šipka na bílém -->
-    <path d="M88 222 H100 L112 232 L100 242 H88 L98 232 Z" fill="#d8262b"/>
-    <!-- světla na červeném -->
-    <path d="M60 252 H104 Q110 252 110 258 V266 Q110 272 104 272 H64 Q60 272 60 268 Z" fill="#c6cacd"/>
-    <circle cx="74" cy="262" r="6" fill="#f6f7f8" stroke="#8f9396"/><circle cx="94" cy="262" r="6" fill="#f6f7f8" stroke="#8f9396"/>
-    <path d="M300 252 H256 Q250 252 250 258 V266 Q250 272 256 272 H296 Q300 272 300 268 Z" fill="#c6cacd"/>
-    <circle cx="286" cy="262" r="6" fill="#f6f7f8" stroke="#8f9396"/><circle cx="266" cy="262" r="6" fill="#f6f7f8" stroke="#8f9396"/>
-    <circle cx="74" cy="284" r="4" fill="#eef1f3"/><circle cx="286" cy="284" r="4" fill="#eef1f3"/>
+    <g stroke="#0e0f10" stroke-width="2.5" stroke-linecap="round"><path d="M96 188 L170 178"/><path d="M276 188 L204 178"/></g>
+    <!-- široký bílý pás pod sklem: kulatý znak Škody (okřídlený šíp) a nápis ŠKODA -->
+    <circle cx="180" cy="211" r="6.5" fill="#2a2b2a"/>
+    <path d="M175 213 L181 208 L185 209 L183 211 L186 211 L180 215 L182 213 Z" fill="#f3f4f2"/>
+    <text x="180" y="228" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#2a2b2a">ŠKODA</text>
+    <!-- vodorovná rýha v bílém pásu na úrovni nápisu -->
+    <path d="M60 222 H158 M202 222 H300" stroke="#dcdedb" stroke-width="1"/>
+    <!-- červený spodek čela, bílá „brada“ jako mělké široké U s krátkými esovitými boky -->
+    <path d="M52 246 H98 C108 246 110 254 120 254 H240 C250 254 252 246 262 246 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#d8262b"/>
+    <path d="M98 246 C108 246 110 254 120 254 H240 C250 254 252 246 262 246" stroke="#c9ccc9" stroke-width="1.5" fill="none"/>
+    <!-- štítek SOR u dna brady, do stran mělké rýhy ve tvaru Λ -->
+    <path d="M173 242 L128 236 M187 242 L232 236" stroke="#dcdedb" stroke-width="1.2" fill="none"/>
+    <rect x="173" y="240" width="14" height="12" rx="2" fill="#c9ccc9"/>
+    <!-- znak podniku „DP“ je až na boku za rohem, na čele z něj u hran vykukuje jen okraj -->
+    <path d="M52 228 H55 Q60 228 60 233 Q60 238 55 238 H52 Z" fill="#d8262b"/>
+    <!-- obdélníkové čiré světlomety, horní hranou na hranici bílé a červené: velký projektor uvnitř, menší reflektor vně -->
+    <rect x="60" y="247" width="42" height="18" rx="4" fill="#dfe3e6" stroke="#8f9396"/>
+    <circle cx="70" cy="256" r="4" fill="#f6f7f8" stroke="#8f9396"/><circle cx="92" cy="256" r="6" fill="#f6f7f8" stroke="#8f9396"/>
+    <rect x="258" y="247" width="42" height="18" rx="4" fill="#dfe3e6" stroke="#8f9396"/>
+    <circle cx="290" cy="256" r="4" fill="#f6f7f8" stroke="#8f9396"/><circle cx="268" cy="256" r="6" fill="#f6f7f8" stroke="#8f9396"/>
+    <!-- proužky LED denního svícení pod světlomety -->
+    <rect x="80" y="281" width="20" height="4" rx="2" fill="#f4f6ff"/><rect x="260" y="281" width="20" height="4" rx="2" fill="#f4f6ff"/>
+    <!-- evidenční číslo vozu v obou dolních rozích -->
+    <text x="58" y="282" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#fff">61</text>
+    <text x="302" y="282" text-anchor="end" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#fff">61</text>
     <!-- registrační značka, tmavá spodní hrana -->
     <rect x="152" y="270" width="56" height="12" rx="1" fill="#f4f4f2" stroke="#2a2b2a" stroke-width="1"/><rect x="152" y="270" width="6" height="12" fill="#2a63b8"/>
     <path d="M52 292 H308 Q308 298 300 298 H60 Q52 298 52 292 Z" fill="#8f1a1e"/>

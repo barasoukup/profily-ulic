@@ -4,13 +4,16 @@
        https://commons.wikimedia.org/wiki/File:%C5%A0koda_27Tr_Solaris_ve_Zl%C3%ADn%C4%9B_(05).jpg
        https://commons.wikimedia.org/wiki/File:%C5%A0koda_27Tr_Solaris_ve_Zl%C3%ADn%C4%9B_(01).jpg
        https://commons.wikimedia.org/wiki/File:%C5%A0koda_26Tr_Solaris_ve_Zl%C3%ADn%C4%9B_(01).jpg
-       Žlutá střecha s krytem výzbroje, černé čelo od střechy pod sklo s bílou LED tabulí, žlutý panel se znakem
-       výrobce a modrými piktogramy, stříbrný pás se světly, modrý nárazník. 1 px = 1 cm, šířka 2,55 m; nahoře
-       sběrače k trolejím. -->
+       a čelo vozu 458 (linka 2, Bartošova čtvrť) a vozu 451 zešikma z Commons.
+       Žlutá skříň s krytem klimatizace (7 lamel), čelo tmavé až ke střeše a k bočním hranám (žlutý jen čumák
+       pod sklem; podle čela vozu 458), horní kryt nad tabulí s modravým nádechem, jantarová LED tabule, stěrače
+       zaparkované do obráceného V, žlutý čumák se znakem ŠKODA a evidenčním číslem, modré piktogramy u dveří,
+       v rozích světlé kapsy se světly, mezi nimi prohnutá stříbrná lišta SOLARIS, modrý nárazník; žlutá přechází
+       do modré bez bílé linky. 1 px = 1 cm, šířka 2,55 m; nahoře sběrače k trolejím. -->
   <!-- sběrače: dvě tyče ze zadní části střechy k trolejím (troleje 5,3–5,5 m nad vozovkou, rozchod 0,6 m) -->
   <g stroke="#2a2b2a" stroke-linecap="round" fill="none">
-    <path d="M160 262 L148 16" stroke-width="5"/>
-    <path d="M200 262 L212 16" stroke-width="5"/>
+    <path d="M150 262 L148 16" stroke-width="5"/>
+    <path d="M210 262 L212 16" stroke-width="5"/>
   </g>
   <rect x="140" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
   <rect x="204" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
@@ -20,30 +23,38 @@
     <rect x="22" y="60" width="18" height="46" rx="5" fill="#1b1d20"/>
     <path d="M304 44 Q326 42 328 62" stroke="#1b1d20" stroke-width="5" fill="none"/>
     <rect x="320" y="60" width="18" height="46" rx="5" fill="#1b1d20"/>
-    <!-- žlutá skříň, žlutý kryt výzbroje s černými větracími otvory -->
-    <rect x="128" y="12" width="104" height="18" rx="4" fill="#f0b21c"/>
-    <g fill="#2a2b2a"><rect x="140" y="17" width="10" height="7" rx="1"/><rect x="156" y="17" width="10" height="7" rx="1"/><rect x="194" y="17" width="10" height="7" rx="1"/><rect x="210" y="17" width="10" height="7" rx="1"/></g>
-    <path d="M52 298 V52 Q52 24 82 24 H278 Q308 24 308 52 V298 Z" fill="#f4b71e"/>
-    <path d="M298 26 Q308 32 308 52 V298 H298 Z" fill="#dca11a"/>
-    <!-- černé čelo: LED tabule a čelní sklo -->
-    <path d="M56 216 V50 Q56 36 70 36 H290 Q304 36 304 50 V196 Q240 192 180 202 Q110 214 56 216 Z" fill="#1b1d20"/>
-    <text x="84" y="68" font-family="Arial, sans-serif" font-size="19" font-weight="bold" fill="#e9efe6">8</text>
-    <g fill="#e9efe6" opacity=".75"><rect x="132" y="54" width="110" height="4" rx="2"/><rect x="146" y="62" width="82" height="4" rx="2"/></g>
+    <!-- žlutý kryt klimatizace a výzbroje s tmavými lamelami -->
+    <rect x="116" y="10" width="128" height="20" rx="4" fill="#eaa409"/>
+    <g fill="#2a2b2a"><rect x="128" y="15" width="8" height="8" rx="1"/><rect x="144" y="15" width="8" height="8" rx="1"/><rect x="160" y="15" width="8" height="8" rx="1"/><rect x="176" y="15" width="8" height="8" rx="1"/><rect x="192" y="15" width="8" height="8" rx="1"/><rect x="208" y="15" width="8" height="8" rx="1"/><rect x="224" y="15" width="8" height="8" rx="1"/></g>
+    <!-- žlutá skříň (zbývá z ní jen čumák pod sklem) -->
+    <path d="M52 298 V52 Q52 24 82 24 H278 Q308 24 308 52 V298 Z" fill="#f5ab0a"/>
+    <path d="M298 196 H308 V298 H298 Z" fill="#d9950a"/>
+    <!-- tmavé čelo až ke střeše: LED tabule a čelní sklo, spodní okraj na straně dveří níž -->
+    <path d="M52 218 V50 Q52 24 82 24 H278 Q308 24 308 50 V196 Q240 192 180 202 Q110 214 52 218 Z" fill="#1b1d20"/>
+    <!-- horní kryt nad tabulí s modravým nádechem -->
+    <path d="M53 40 Q54 25 82 24 H278 Q306 25 307 40 Z" fill="#1c2a4a"/>
+    <text x="84" y="68" font-family="Arial, sans-serif" font-size="19" font-weight="bold" fill="#d8dc3c">8</text>
+    <g fill="#d8dc3c" opacity=".8"><rect x="132" y="54" width="110" height="4" rx="2"/><rect x="146" y="62" width="82" height="4" rx="2"/></g>
     <path d="M64 82 H296 V188 Q240 184 180 194 Q110 206 64 206 Z" fill="#2a3642"/>
     <path d="M80 88 L126 88 L96 190 L78 192 Z" fill="#46596a" opacity=".5"/>
     <path d="M250 88 L272 88 L262 136 L240 136 Z" fill="#46596a" opacity=".4"/>
-    <g stroke="#0e0f10" stroke-width="2.5" stroke-linecap="round"><path d="M150 198 L122 126"/><path d="M196 192 L172 120"/></g>
-    <!-- žlutý panel pod sklem: znak výrobce, modré piktogramy vlevo -->
-    <circle cx="180" cy="224" r="6" fill="none" stroke="#3a3c3e" stroke-width="2"/>
+    <g stroke="#0e0f10" stroke-width="3" stroke-linecap="round"><path d="M86 204 L150 116"/><path d="M222 196 L160 112"/></g>
+    <!-- žlutý čumák: znak a nápis ŠKODA, evidenční číslo, modré piktogramy u dveří -->
+    <circle cx="180" cy="224" r="6.5" fill="#1b1d20" stroke="#f5ab0a" stroke-width="1.5"/>
+    <path d="M176 225 Q180 219 185 222" stroke="#f5ab0a" stroke-width="1.2" fill="none"/>
+    <text x="180" y="240" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" font-weight="bold" fill="#1b1d20">ŠKODA</text>
+    <text x="262" y="232" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#1d3a8a">451</text>
     <g fill="#2f62b8"><rect x="64" y="224" width="12" height="12" rx="1"/><rect x="78" y="224" width="12" height="12" rx="1"/><rect x="92" y="224" width="12" height="12" rx="1"/></g>
-    <!-- bílá linka a stříbrný pás se světly přes celé čelo -->
-    <rect x="52" y="240" width="256" height="3" fill="#f4f4f2"/>
-    <path d="M52 243 H308 V262 Q180 266 52 262 Z" fill="#c9ccd0"/>
-    <g fill="#eef1f3" stroke="#8d9297" stroke-width="1.2"><circle cx="66" cy="252" r="6"/><circle cx="82" cy="253" r="6"/><circle cx="97" cy="254" r="4"/>
-      <circle cx="294" cy="252" r="6"/><circle cx="278" cy="253" r="6"/><circle cx="263" cy="254" r="4"/></g>
-    <!-- modrý nárazník s registrační značkou -->
-    <path d="M52 262 Q180 266 308 262 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#1f4fa8"/>
+    <g fill="#f4f4f2"><rect x="68" y="227" width="4" height="6"/><rect x="82" y="227" width="4" height="6"/><rect x="96" y="227" width="4" height="6"/></g>
+    <!-- modrý nárazník s registrační značkou (žlutá přechází rovnou do modré) -->
+    <path d="M52 260 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#0d46a8"/>
     <rect x="152" y="276" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="276" width="6" height="12" fill="#2a63b8"/>
+    <!-- světlé kapsy se světly v rozích a mezi nimi prohnutá stříbrná lišta SOLARIS -->
+    <path d="M104 246 Q180 258 256 246 V256 Q180 266 104 256 Z" fill="#cfd3d7"/>
+    <path d="M52 238 Q76 236 104 248 V262 H52 Z" fill="#d4d7da" stroke="#9aa0a6" stroke-width="1"/>
+    <path d="M308 238 Q284 236 256 248 V262 H308 Z" fill="#d4d7da" stroke="#9aa0a6" stroke-width="1"/>
+    <g fill="#eef1f3" stroke="#8d9297" stroke-width="1.2"><circle cx="62" cy="246" r="5"/><circle cx="74" cy="249" r="5"/><circle cx="86" cy="252" r="5"/>
+      <circle cx="300" cy="246" r="6"/><circle cx="288" cy="248" r="5"/><circle cx="276" cy="250" r="5"/><circle cx="266" cy="252" r="4"/></g>
     <!-- kola -->
     <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
   </g>

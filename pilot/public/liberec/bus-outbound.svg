@@ -3,8 +3,12 @@
        podle bočních pohledů na fotkách z Wikimedia Commons:
        https://commons.wikimedia.org/wiki/File:Iveco_Urbanway_12M_CNG_ev.č._531,_Liberec.jpg
        https://commons.wikimedia.org/wiki/File:Iveco_Urbanway_ev.č._535,_Liberec_(2).jpg
-       Bílá skříň, zelená linka pod střechou, oranžovožlutý pás a zelený spodek. Záď podle tvaru Urbanway: zadní
-       okno s číslem linky, pod ním kryt motoru s mřížkou, svislá světla v rozích. 1 px = 1 cm, šířka 2,55 m. -->
+       Bílá skříň, zelená linka pod střechou, žlutooranžový pás a zelený spodek (barvy zádě v Liberci neověřené).
+       Tvar zádě podle Urbanway 12 CNG z Laonu přímo zezadu (Commons): nahoře černý panel s tabulí linky vpravo, dole
+       zúžený do lichoběžníku, pod ním stříbrná „bumerangová“ lišta s nápisem IVECO (dole vodorovná, k bokům stoupá),
+       hladké velké dveře motoru se spárou a oválnou síťkou sání vpravo, malé ev. číslo nad síťkou, svítilny v rozích
+       nahoře úzké s oranžovým obrysovým světlem, dole rozšířené dovnitř (hokejka) s červenou LED čarou a oranžovým
+       blinkrem u okraje, značka na horní hraně nárazníku. Výšky pásů podle bočního snímku vozu 531. 1 px = 1 cm, šířka 2,55 m. -->
   <!-- zrcátka vpředu vyčnívají za boky -->
   <rect x="26" y="56" width="16" height="42" rx="5" fill="#1d1f22"/>
   <rect x="318" y="56" width="16" height="42" rx="5" fill="#1d1f22"/>
@@ -13,23 +17,36 @@
   <!-- bílá skříň, zelená linka pod střechou -->
   <path d="M52 296 V40 Q52 22 72 22 H288 Q308 22 308 40 V296 Z" fill="#f4f4f2"/>
   <path d="M298 24 Q308 28 308 42 V296 H298 Z" fill="#dededb"/>
-  <path d="M52 40 Q52 30 58 28 H302 Q308 30 308 40 V44 H52 Z" fill="#1f9a76"/>
-  <!-- zadní okno s číslem linky -->
-  <rect x="70" y="50" width="220" height="88" rx="5" fill="#1d1f22"/>
-  <path d="M84 56 L112 56 L96 132 L84 132 Z" fill="#3a4654" opacity=".55"/>
-  <rect x="238" y="104" width="46" height="26" rx="2" fill="#0b0c0d"/>
-  <text x="261" y="124" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#43d94c">16</text>
-  <!-- kryt motoru: mřížka sání a evidenční číslo -->
-  <rect x="96" y="150" width="168" height="40" rx="4" fill="#d6d8d6"/>
-  <g stroke="#9ea2a3" stroke-width="2.5"><path d="M104 158 H256"/><path d="M104 166 H256"/><path d="M104 174 H256"/><path d="M104 182 H256"/></g>
-  <text x="180" y="214" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#3a3c3e">531</text>
-  <!-- svislá světla v rozích -->
-  <rect x="56" y="150" width="16" height="84" rx="6" fill="#9c1418"/><rect x="58" y="206" width="12" height="12" rx="3" fill="#f2a33a"/><rect x="58" y="190" width="12" height="12" rx="3" fill="#eef1f3"/>
-  <rect x="288" y="150" width="16" height="84" rx="6" fill="#9c1418"/><rect x="290" y="206" width="12" height="12" rx="3" fill="#f2a33a"/><rect x="290" y="190" width="12" height="12" rx="3" fill="#eef1f3"/>
-  <!-- oranžovožlutý pás s registrační značkou, zelený spodek -->
-  <rect x="52" y="240" width="256" height="34" fill="#eba320"/>
-  <rect x="152" y="251" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="251" width="6" height="12" fill="#2a63b8"/>
-  <path d="M52 274 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#1f9a76"/>
+  <path d="M52 40 Q52 30 58 28 H302 Q308 30 308 40 V44 H52 Z" fill="#0f9d82"/>
+  <!-- černý panel nahoře, vpravo tabule s číslem linky; dole se zužuje do lichoběžníku -->
+  <path d="M62 27 H298 V58 H280 L242 80 H118 L80 58 H62 Z" fill="#1d1f22"/>
+  <path d="M82 32 L102 32 L98 64 L84 59 Z" fill="#3a4654" opacity=".45"/>
+  <rect x="238" y="32" width="50" height="26" rx="2" fill="#0b0c0d"/>
+  <text x="263" y="52" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#43d94c">16</text>
+  <!-- stříbrná bumerangová lišta s nápisem IVECO: dole vodorovná, k bokům stoupá -->
+  <path d="M60 56 H80 L118 80 H242 L280 58 H300 V72 Q300 76 296 78 L250 104 Q246 107 240 107 H120 Q114 107 110 104 L64 78 Q60 76 60 72 Z" fill="#c9cbcc"/>
+  <text x="180" y="98" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="bold" letter-spacing="1.5" fill="#4a4e52">IVECO</text>
+  <!-- evidenční číslo vpravo nad síťkou, pod koncem lišty -->
+  <text x="288" y="114" text-anchor="end" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#3a3c3e">531</text>
+  <!-- spára velkých dveří motorového prostoru se zaoblenými dolními rohy -->
+  <path d="M62 110 V232 Q62 244 74 244 H286 Q298 244 298 232 V110" stroke="#d6d6d3" stroke-width=".8" fill="none"/>
+  <!-- hladký kryt motoru, vpravo oválná síťka sání -->
+  <rect x="234" y="124" width="42" height="94" rx="16" fill="#3a3d40"/>
+  <!-- svítilny v rozích: nahoře úzké s malým oranžovým obrysovým světlem, dole se jako hokejka rozšiřují
+       dovnitř; po vnitřní hraně červená LED čára, u vnějšího okraje oranžový blinkr -->
+  <path d="M52 40 Q52 34 58 34 H62 V180 Q64 222 80 245 H58 Q52 245 52 239 Z" fill="#b3141a"/>
+  <path d="M62.5 194 Q65 222 78.5 243" stroke="#ff2a32" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <rect x="53" y="205" width="9" height="39" rx="3" fill="#f5a623"/>
+  <circle cx="58" cy="42" r="3" fill="#f5a623"/>
+  <path d="M308 40 Q308 34 302 34 H298 V180 Q296 222 280 245 H302 Q308 245 308 239 Z" fill="#b3141a"/>
+  <path d="M297.5 194 Q295 222 281.5 243" stroke="#ff2a32" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <rect x="298" y="205" width="9" height="39" rx="3" fill="#f5a623"/>
+  <circle cx="302" cy="42" r="3" fill="#f5a623"/>
+  <!-- žlutooranžový pás a zelený spodek jako na boku vozu 531 (barvy zádě neověřené), registrační značka na
+       horní hraně nárazníku -->
+  <rect x="52" y="245" width="256" height="25" fill="#f6b820"/>
+  <path d="M52 270 H308 V290 Q308 296 302 296 H58 Q52 296 52 290 Z" fill="#0f9d82"/>
+  <rect x="152" y="266" width="56" height="12" rx="1" fill="#f4f4f2" stroke="#3a3c3e" stroke-width=".8"/><rect x="152" y="266" width="6" height="12" fill="#2a63b8"/>
   <!-- kola -->
   <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
 </svg>

@@ -4,7 +4,7 @@
        https://commons.wikimedia.org/wiki/File:SNU12_DPMO_646.jpg
        https://commons.wikimedia.org/wiki/File:Olomouc,_Solaris_Urbino_IV_12_č._665.jpg
        https://commons.wikimedia.org/wiki/File:Olomouc,_Hlavní_nádraží,_autobus_621.jpg
-       Bílá skříň s červenou linkou pod střechou, záď podle tvaru Urbino IV: černé zadní okno s číslem linky,
+       Bílá skříň s červenou linkou pod střechou, tvar zádě je odhad podle Urbino IV: černé zadní okno s číslem linky,
        bílý kryt motoru s mřížkou, svislé svítilny v černých pásech v rozích, dole červený pás a tmavě modrý
        nárazník. 1 px = 1 cm, šířka 2,55 m. -->
   <!-- zrcátka vpředu vyčnívají za boky -->
@@ -30,7 +30,7 @@
   <!-- červený pás s registrační značkou, tmavě modrý nárazník -->
   <rect x="52" y="246" width="256" height="30" fill="#d8262f"/>
   <rect x="152" y="255" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="255" width="6" height="12" fill="#2a63b8"/>
-  <path d="M52 276 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#283a8e"/>
+  <path d="M52 276 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#26227a"/>
   <!-- kola -->
   <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
 </svg>

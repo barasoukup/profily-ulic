@@ -1,10 +1,12 @@
 <svg viewBox="0 0 360 560" xmlns="http://www.w3.org/2000/svg">
   <!-- Hradecký trolejbus DPMHK, Škoda 30Tr (karoserie SOR), zadní pohled v nátěru DPMHK podle fotky zádě vozu
-       stejné řady SOR TNB: bílá horní část s rámem sběračů a kulatými obrysovými světly, černé zadní sklo s
-       jantarovým číslem linky, bílý pás žaluzií, žlutý kryt se svislými svítilnami po stranách, červený nárazník
-       s registrační značkou. 1 px = 1 cm, šířka 2,55 m; nahoře sběrače k trolejím.
+       stejné řady SOR TNB: bílá horní část s rámem sběračů a kulatými obrysovými světly v chromovém kroužku, černé zadní sklo s
+       jantarovým číslem linky, pod ním pás šesti bílých lamel žaluzií, bílý pruh s šedým nápisem SOR TNB, vysoký
+       žlutý kryt s plným tmavším madlem víka, černým evidenčním číslem a úzkým úchytem se svislým zámkem, po stranách svislé svítilny ze
+       čtyř obdélníkových čoček nad sebou (čirá, červená, čirá, červená) v chromovém rámečku, nízký červený nárazník
+       s registrační značkou; na boku černý pás oken, pod ním úzký žlutý pás nad červeným. 1 px = 1 cm, šířka 2,55 m; nahoře sběrače k trolejím.
        Podle fotek (Wikimedia Commons):
-       https://commons.wikimedia.org/wiki/File:Sor31TrHradecKralove.jpg (záď)
+       https://commons.wikimedia.org/wiki/File:Sor31TrHradecKralove.jpg (záď 31Tr SOR TNB, vůz 68)
        https://commons.wikimedia.org/wiki/File:Hradec_Kr%C3%A1lov%C3%A9,_%C5%A0koda_30Tr_SOR_(02).jpg (bok, barvy) -->
   <!-- sběrače: dvě tyče ze zadní části střechy k trolejím -->
   <g stroke="#2a2b2a" stroke-linecap="round" fill="none">
@@ -20,29 +22,34 @@
     <!-- bílá záď, rám kolem sběračů -->
     <path d="M52 298 V50 Q52 24 80 24 H280 Q308 24 308 50 V298 Z" fill="#f3f4f2"/>
     <path d="M298 26 Q308 32 308 50 V298 H298 Z" fill="#d9dbd8"/>
-    <rect x="298" y="170" width="10" height="56" fill="#f2c318"/><rect x="298" y="226" width="10" height="72" fill="#d8262b"/>
+    <rect x="298" y="60" width="10" height="145" fill="#1b1d20"/>
+    <rect x="298" y="205" width="10" height="22" fill="#f4d020"/><rect x="298" y="227" width="10" height="71" fill="#d8262b"/>
     <path d="M84 26 V12 H276 V26 M120 12 V26 M240 12 V26" stroke="#9a9d9f" stroke-width="3" fill="none"/>
-    <circle cx="70" cy="40" r="6" fill="#d8262b" stroke="#f3f4f2" stroke-width="2"/><circle cx="290" cy="40" r="6" fill="#d8262b" stroke="#f3f4f2" stroke-width="2"/>
+    <circle cx="70" cy="40" r="7" fill="#d8262b" stroke="#b9bcbe" stroke-width="2.5"/><circle cx="290" cy="40" r="7" fill="#d8262b" stroke="#b9bcbe" stroke-width="2.5"/>
     <!-- černé zadní sklo s číslem linky -->
-    <rect x="68" y="52" width="224" height="98" rx="8" fill="#1b1d20"/>
-    <path d="M84 58 L112 58 L98 144 L84 144 Z" fill="#3a4654" opacity=".55"/>
-    <text x="268" y="128" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#f2a33a">1</text>
-    <!-- pás žaluzií -->
-    <g fill="#c9ccc9"><rect x="58" y="158" width="244" height="3" rx="1.5"/><rect x="58" y="164" width="244" height="3" rx="1.5"/><rect x="58" y="170" width="244" height="3" rx="1.5"/></g>
-    <rect x="134" y="166" width="16" height="10" rx="2" fill="#e2e4e1"/><rect x="210" y="166" width="16" height="10" rx="2" fill="#e2e4e1"/>
-    <!-- žlutý kryt s prohlubní a úchytem -->
-    <rect x="72" y="182" width="216" height="58" fill="#f2c318"/>
-    <path d="M136 192 H224 L216 216 H144 Z" fill="#e3b40f"/>
-    <rect x="174" y="220" width="12" height="12" rx="2" fill="#2a2b2a"/>
-    <!-- svislé svítilny po stranách -->
-    <rect x="56" y="182" width="16" height="58" fill="#e4e6e3"/>
-    <rect x="58" y="184" width="12" height="12" rx="3" fill="#eef1f3" stroke="#a6aaad"/><rect x="58" y="198" width="12" height="12" rx="3" fill="#b3151c"/><rect x="58" y="212" width="12" height="12" rx="3" fill="#eef1f3" stroke="#a6aaad"/><rect x="58" y="226" width="12" height="12" rx="3" fill="#b3151c"/>
-    <rect x="288" y="182" width="16" height="58" fill="#e4e6e3"/>
-    <rect x="290" y="184" width="12" height="12" rx="3" fill="#eef1f3" stroke="#a6aaad"/><rect x="290" y="198" width="12" height="12" rx="3" fill="#b3151c"/><rect x="290" y="212" width="12" height="12" rx="3" fill="#eef1f3" stroke="#a6aaad"/><rect x="290" y="226" width="12" height="12" rx="3" fill="#b3151c"/>
-    <!-- červený nárazník s registrační značkou -->
-    <path d="M52 240 H308 V288 Q308 298 298 298 H62 Q52 298 52 288 Z" fill="#d8262b"/>
-    <rect x="68" y="254" width="12" height="8" rx="1" fill="#9c1418"/><rect x="280" y="254" width="12" height="8" rx="1" fill="#9c1418"/>
-    <rect x="152" y="256" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="256" width="6" height="12" fill="#2a63b8"/>
+    <rect x="68" y="52" width="224" height="86" rx="8" fill="#1b1d20"/>
+    <path d="M84 58 L112 58 L98 132 L84 132 Z" fill="#3a4654" opacity=".55"/>
+    <text x="268" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#f2a33a">1</text>
+    <!-- pás žaluzií: šest bílých lamel s tmavými mezerami přes celou šířku, dole držáky lan sběračů -->
+    <rect x="58" y="143" width="244" height="26" fill="#2a2b2a"/>
+    <g fill="#f3f4f2"><rect x="58" y="144" width="244" height="2.6"/><rect x="58" y="148" width="244" height="2.6"/><rect x="58" y="152" width="244" height="2.6"/><rect x="58" y="156" width="244" height="2.6"/><rect x="58" y="160" width="244" height="2.6"/><rect x="58" y="164" width="244" height="2.6"/></g>
+    <rect x="134" y="164" width="16" height="10" rx="2" fill="#e2e4e1" stroke="#c9ccc9"/><rect x="210" y="164" width="16" height="10" rx="2" fill="#e2e4e1" stroke="#c9ccc9"/>
+    <!-- bílý pruh s nápisem SOR TNB, žlutý kryt: madlo víka motoru, evidenční číslo, úchyt -->
+    <rect x="72" y="182" width="216" height="72" fill="#f4d020"/>
+    <rect x="72" y="182" width="216" height="7" fill="#f3f4f2"/>
+    <text x="248" y="188.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="bold" font-style="italic" fill="#8a8e91">SOR TNB12</text>
+    <rect x="140" y="199" width="80" height="5" rx="2.5" fill="#c9a70f"/>
+    <text x="180" y="226" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" font-weight="bold" fill="#1b1d20">68</text>
+    <rect x="175" y="230" width="10" height="14" rx="2" fill="#2a2b2a"/><rect x="179" y="233" width="2" height="7" rx="1" fill="#6a6d70"/>
+    <!-- svítilny po stranách: čtyři obdélníkové čočky nad sebou v chromovém rámečku -->
+    <rect x="54" y="185" width="22" height="72" rx="3" fill="#c4c8cb" stroke="#9a9ea1"/>
+    <rect x="56" y="188" width="18" height="15" rx="3" fill="#e8eaec"/><rect x="56" y="205" width="18" height="15" rx="3" fill="#c81a22"/><rect x="56" y="222" width="18" height="15" rx="3" fill="#e8eaec"/><rect x="56" y="239" width="18" height="15" rx="3" fill="#c81a22"/>
+    <rect x="284" y="185" width="22" height="72" rx="3" fill="#c4c8cb" stroke="#9a9ea1"/>
+    <rect x="286" y="188" width="18" height="15" rx="3" fill="#e8eaec"/><rect x="286" y="205" width="18" height="15" rx="3" fill="#c81a22"/><rect x="286" y="222" width="18" height="15" rx="3" fill="#e8eaec"/><rect x="286" y="239" width="18" height="15" rx="3" fill="#c81a22"/>
+    <!-- nízký červený nárazník s registrační značkou -->
+    <path d="M52 254 H308 V288 Q308 298 298 298 H62 Q52 298 52 288 Z" fill="#d8262b"/>
+    <rect x="68" y="264" width="12" height="8" rx="1" fill="#9c1418"/><rect x="280" y="264" width="12" height="8" rx="1" fill="#9c1418"/>
+    <rect x="152" y="268" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="268" width="6" height="12" fill="#2a63b8"/>
     <!-- kola -->
     <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
   </g>
