@@ -18,6 +18,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
 import { execFile } from "node:child_process";
+import { politeFetch } from "./polite.mjs";
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname);
 const CITY = process.env.CITY || "jihlava";
@@ -40,7 +41,8 @@ const reply = (buf, status = 200) => ({
   arrayBuffer: async () => buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength),
 });
 const missing = (status = 404) => reply(Buffer.from(""), status);
-const webFetch = globalThis.fetch;
+// ČÚZK one request at a time with pauses (polite.mjs).
+const webFetch = politeFetch;
 const memo = new Map();
 const DISK = path.join(DATA, "ab-cache");
 export const net = { requests: 0, reused: 0 };
