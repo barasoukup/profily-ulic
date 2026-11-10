@@ -16,9 +16,11 @@ globalThis.PROFILY_CITY = CITY;
 const webFetch = globalThis.fetch;
 globalThis.fetch = async (url, opts) => {
   const u = String(url);
-  if (!u.startsWith("data/")) return webFetch(url, opts);
+  // ../data/…: the shared OSM tiles of the Czech Republic in pilot/data; data/…: the city's own files.
+  const file = u.startsWith("../data/") ? path.join(PILOT_DATA, "..", u.slice(8)) : u.startsWith("data/") ? path.join(PILOT_DATA, u.slice(5)) : null;
+  if (!file) return webFetch(url, opts);
   try {
-    const text = await fs.readFile(path.join(PILOT_DATA, u.slice(5)), "utf8");
+    const text = await fs.readFile(file, "utf8");
     return { ok: true, status: 200, json: async () => JSON.parse(text), text: async () => text };
   } catch {
     return { ok: false, status: 404, json: async () => null, text: async () => "" };

@@ -16,7 +16,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Živě: https://barasoukup.github.io/profily-ulic/
 - Repo: github.com/barasoukup/profily-ulic (MIT, © Bára Soukupová).
 - Push na `main` = nasazení na GitHub Pages (`.github/workflows/pages.yml`), navíc každé pondělí
-  obnova OSM. Výřez OSM se bere z BBBike, když BBBike GitHub blokuje, tak z Geofabriku.
+  obnova OSM. Dlaždice OSM jsou jedna sada pro celou ČR (Geofabrik, asi 760 MB, `../data/osm-tiles` pro
+  všechna města); Cloudflare R2 jen kdyby přerostly limit Pages 1 GB (Bára 10. 11. 2026).
 - Lokálně: `node pilot/server.mjs` → http://localhost:5173 (Node 22+). Dlaždice OSM:
   `tools/build_osm_data.sh`, hranice ZPS: `node tools/build_zps.mjs`.
 - Popis pravidel: `pilot/README.md`, vyhodnocení 100 řezů: `evaluation/ZPRAVA.md`,
@@ -27,8 +28,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   na localhostu.
 - **Žádné další vrstvy ani dotazy na servery IPR** (nepřetěžovat je). Nové funkce jen z OSM nebo
   lokálních dat.
-- OSM z dlaždic výřezu (Praha, Brno, malá města); **Overpass jen jako záloha** tam, kam dlaždice nesahají
-  (Bára 10. 11. 2026: pravidlo není striktní, limity jsou na uživatele). Volá ho prohlížeč návštěvníka.
+- OSM jen z vlastních dlaždic celé ČR. Overpass jsme zkusili jako zálohu a je nepoužitelně pomalý
+  (Bára 10. 11. 2026: „musíme se mu obecně vyhnout“).
 - QGIS je nainstalovaný; všechny soubory patří do této složky.
 
 ## Zdroje dat

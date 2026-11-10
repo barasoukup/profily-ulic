@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-# Builds the OSM tiles the app reads (pilot/data/osm-tiles) from the BBBike Prague extract:
+# Builds the OSM tiles the app reads (pilot/data/osm-tiles): for the whole Czech Republic (as the deploy does)
+#   NAME=cz tools/build_osm_data.sh data/osm/cz.osm.pbf pilot/data/osm-tiles   (Geofabrik's extract)
+# or, as before, from the BBBike Prague extract:
 # exports the needed features with ogr2ogr into data/osm/praha_*.geojsonl, then tiles them.
 #   tools/build_osm_data.sh [Prag.osm.pbf] [out dir]
 # Brno: NAME=brno tools/build_osm_data.sh data/osm/Brno.osm.pbf pilot/data/brno/osm-tiles

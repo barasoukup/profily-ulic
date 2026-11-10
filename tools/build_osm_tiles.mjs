@@ -1,15 +1,16 @@
-// Split GeoJSONSeq exports of OSM data (from ogr2ogr) into small grid tiles in
-// Overpass-like JSON, so the pilot server can answer locally without Overpass.
-// Lines become {type: "way"}, polygons (e.g. parking areas) become {type: "area"},
-// points (e.g. trees) become {type: "node"}.
-//   node tools/build_osm_tiles.mjs pilot/data/osm-tiles data/osm/praha_ways.geojsonl data/osm/praha_parking.geojsonl \
-//     data/osm/praha_trees.geojsonl data/osm/praha_treerows.geojsonl
+// Splits GeoJSONSeq exports of OSM data (from ogr2ogr, tools/build_osm_data.sh) into small grid tiles in
+// the compact form of pilot/public/osmtile.js, for the whole Czech Republic (about 700 MB in 230 000 tiles).
+// Lines become "way" (cut by tiles: a tile keeps the segments touching it), polygons "area" (whole, with
+// holes), points "node". Only what the profile draws, or may draw (Bára: zones, speeds, surface, stops,
+// crossings, kinds of trees, widths, signs), is kept; paths and tracks away from streets are left out.
+// Streams: tiles go to disk in batches, so memory stays small whatever the extract.
+//   node tools/build_osm_tiles.mjs pilot/data/osm-tiles data/osm/cz_ways.geojsonl data/osm/cz_parking.geojsonl …
 import fs from "node:fs";
 import path from "node:path";
 import readline from "node:readline";
+import { TILE } from "../pilot/public/osmtile.js";
 
-export const TILE = 0.005; // degrees
-
+export { TILE };
 const [outDir, ...sources] = process.argv.slice(2);
 
 function parseOtherTags(s) {
@@ -21,57 +22,106 @@ function parseOtherTags(s) {
   return tags;
 }
 
-const tiles = new Map();
-const point = ([lon, lat]) => ({ lat: +lat.toFixed(7), lon: +lon.toFixed(7) });
+// Tags kept: what derive.js and profile.js read, and what the ideas Bára has not picked yet would need.
+const KEEP = /^(highway|name|ref|local_ref|route_ref|railway|oneway|junction|lanes|turn|width|est_width|sidewalk|cycleway|parking|busway|bus|psv|bicycle|footway|service|bridge|tunnel|layer|level|indoor|area|trolley_wire|embedded_rails|surface|smoothness|barrier|natural|amenity|leisure|public_transport|shelter|building|roof:levels|height|orientation|parking_aisle|information|crossing|kerb|tactile_paving|tram|foot|access|motor_vehicle|covered|lit|maxspeed|zone|traffic_sign|leaf_type|leaf_cycle|diameter_crown|cyclestreet|bicycle_road|incline|bench|bin)(:|$)/;
+const BUILDING_KEYS = new Set(["building", "building:levels", "roof:levels", "height"]);
+// Ways the profile never draws: tracks, paths and bridleways in the open, footways that are not a street's
+// sidewalk or crossing, and roads not built (yet).
+const DROP_HW = new Set(["track", "path", "bridleway", "proposed", "construction", "raceway", "abandoned", "corridor", "elevator", "via_ferrata"]);
+const dropWay = (t) => DROP_HW.has(t.highway) || (t.highway === "footway" && !["sidewalk", "crossing", "traffic_island"].includes(t.footway));
 
-function add(el, coords) {
-  // Every tile touched by a segment's bounding box, so long segments are not missed.
-  const keys = new Set();
-  for (let i = 0; i < coords.length; i++) {
-    const [a, b] = [coords[i], coords[Math.min(i + 1, coords.length - 1)]];
-    for (let ix = Math.floor(Math.min(a[0], b[0]) / TILE); ix <= Math.floor(Math.max(a[0], b[0]) / TILE); ix++) {
-      for (let iy = Math.floor(Math.min(a[1], b[1]) / TILE); iy <= Math.floor(Math.max(a[1], b[1]) / TILE); iy++) {
-        keys.add(`${ix}_${iy}`);
-      }
-    }
+const enc = (pts, q) => {
+  const g = [];
+  let px = 0, py = 0;
+  for (const [lon, lat] of pts) {
+    const x = Math.round(lon * q), y = Math.round(lat * q);
+    g.push(x - px, y - py);
+    px = x; py = y;
   }
-  for (const k of keys) {
-    if (!tiles.has(k)) tiles.set(k, []);
-    tiles.get(k).push(el);
-  }
+  return g;
+};
+const tileOf = (x, y) => [Math.floor(x / TILE), Math.floor(y / TILE)];
+// Tiles touched by a segment's bounding box.
+function segTiles(a, b, keys) {
+  const [x0, y0] = tileOf(Math.min(a[0], b[0]), Math.min(a[1], b[1])), [x1, y1] = tileOf(Math.max(a[0], b[0]), Math.max(a[1], b[1]));
+  for (let ix = x0; ix <= x1; ix++) for (let iy = y0; iy <= y1; iy++) keys.add(`${ix}_${iy}`);
 }
 
-let n = 0;
+fs.rmSync(outDir, { recursive: true, force: true });
+fs.mkdirSync(outDir, { recursive: true });
+const FLUSH = 150e6; // bytes held before writing out
+const buf = new Map();
+let held = 0, n = 0;
+const extent = { ix: [Infinity, -Infinity], iy: [Infinity, -Infinity] };
+function put(key, line) {
+  if (!buf.has(key)) buf.set(key, []);
+  buf.get(key).push(line);
+  held += line.length + 1;
+  if (held > FLUSH) flush();
+}
+function flush() {
+  for (const [key, lines] of buf) {
+    fs.appendFileSync(path.join(outDir, `${key}.json`), lines.join("\n") + "\n");
+    const [ix, iy] = key.split("_").map(Number);
+    extent.ix = [Math.min(extent.ix[0], ix), Math.max(extent.ix[1], ix)];
+    extent.iy = [Math.min(extent.iy[0], iy), Math.max(extent.iy[1], iy)];
+  }
+  buf.clear();
+  held = 0;
+}
+
 for (const src of sources) {
-  const rl = readline.createInterface({ input: fs.createReadStream(src) });
+  const rl = readline.createInterface({ input: fs.createReadStream(src), crlfDelay: Infinity });
   for await (const line of rl) {
     if (!line.trim()) continue;
     const f = JSON.parse(line);
     const p = f.properties;
-    const tags = parseOtherTags(p.other_tags);
-    for (const k of ["name", "highway", "railway", "amenity", "barrier", "leisure", "building"]) if (p[k]) tags[k] = p[k];
-    // Buildings only need their height tags; dropping the rest keeps the tiles small.
-    if (tags.building) for (const k of Object.keys(tags)) if (!["building", "building:levels", "roof:levels", "height"].includes(k)) delete tags[k];
+    const all = parseOtherTags(p.other_tags);
+    for (const k of ["name", "highway", "railway", "amenity", "barrier", "leisure", "building"]) if (p[k]) all[k] = p[k];
     const g = f.geometry;
+    const line_ = g.type === "LineString" || g.type === "MultiLineString";
+    if (line_ && all.highway && dropWay(all)) continue;
+    const building = !!all.building && (g.type === "Polygon" || g.type === "MultiPolygon");
+    const tags = Object.fromEntries(Object.entries(all).filter(([k]) => (building ? BUILDING_KEYS.has(k) : KEEP.test(k))));
     if (g.type === "Point") {
-      add({ type: "node", id: Number(p.osm_id), tags, geometry: [point(g.coordinates)] }, [g.coordinates]);
-    } else if (g.type === "LineString" || g.type === "MultiLineString") {
+      const key = tileOf(...g.coordinates).join("_");
+      put(key, JSON.stringify({ t: "n", i: Number(p.osm_id), k: tags, g: enc([g.coordinates], 1e6) }));
+    } else if (line_) {
+      // Each tile gets the runs of segments that touch it, with the index of the run's first point.
       for (const coords of g.type === "LineString" ? [g.coordinates] : g.coordinates) {
-        add({ type: "way", id: Number(p.osm_id), tags, geometry: coords.map(point) }, coords);
+        const runs = new Map(); // tile → [[first point index, last point index], …]
+        for (let i = 0; i < coords.length - 1; i++) {
+          const keys = new Set();
+          segTiles(coords[i], coords[i + 1], keys);
+          for (const k of keys) {
+            if (!runs.has(k)) runs.set(k, []);
+            const r = runs.get(k), last = r[r.length - 1];
+            if (last && last[1] === i) last[1] = i + 1; else r.push([i, i + 1]);
+          }
+        }
+        if (coords.length === 1) runs.set(tileOf(...coords[0]).join("_"), [[0, 0]]);
+        for (const [k, rs] of runs) {
+          for (const [a, b] of rs) put(k, JSON.stringify({ t: "w", i: Number(p.osm_id), k: tags, o: a, g: enc(coords.slice(a, b + 1), 1e6) }));
+        }
       }
     } else if (g.type === "Polygon" || g.type === "MultiPolygon") {
+      // Buildings to 1e-5° (about 1 m): enough for the house at a cut and the shape of its block.
+      const q = building ? 1e5 : 1e6;
       const id = Number(p.osm_way_id || p.osm_id);
       for (const poly of g.type === "Polygon" ? [g.coordinates] : g.coordinates) {
-        add({ type: "area", id, tags, geometry: poly[0].map(point), holes: poly.slice(1).map((r) => r.map(point)) }, poly[0]);
+        const keys = new Set();
+        for (let i = 0; i < poly[0].length; i++) segTiles(poly[0][i], poly[0][Math.min(i + 1, poly[0].length - 1)], keys);
+        const el = { t: "a", i: id, k: tags, g: enc(poly[0], q) };
+        if (poly.length > 1) el.h = poly.slice(1).map((r) => enc(r, q));
+        if (building) el.q = 5;
+        const s = JSON.stringify(el);
+        for (const k of keys) put(k, s);
       }
     }
     n++;
   }
 }
-fs.rmSync(outDir, { recursive: true, force: true });
-fs.mkdirSync(outDir, { recursive: true });
-for (const [k, els] of tiles) fs.writeFileSync(path.join(outDir, `${k}.json`), JSON.stringify(els));
-// The box the tiles cover (tile indexes): beyond it the app asks Overpass (pilot/public/gis.js).
-const ix = [...tiles.keys()].map((k) => +k.split("_")[0]), iy = [...tiles.keys()].map((k) => +k.split("_")[1]);
-fs.writeFileSync(path.join(outDir, "extent.json"), JSON.stringify({ ix: [Math.min(...ix), Math.max(...ix)], iy: [Math.min(...iy), Math.max(...iy)] }));
-console.log(`${n} features → ${tiles.size} tiles in ${outDir}`);
+flush();
+// The box the tiles cover (tile indexes): beyond it there is no OSM for the app.
+fs.writeFileSync(path.join(outDir, "extent.json"), JSON.stringify(extent));
+console.log(`${n} features → ${fs.readdirSync(outDir).length - 1} tiles in ${outDir}`);

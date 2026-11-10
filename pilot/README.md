@@ -54,11 +54,13 @@ pamatuje i po zavření.
   zástavba (plochy budov technické mapy), letecká a mimovegetační ortofoto IPR (`imgs/.../ort/*_letecke_snimkovani`),
   ortofoto ČÚZK a OpenStreetMap. Vrstvu „Technická mapa IPR“ jde zapnout navrch. Vybraný podklad si prohlížeč pamatuje.
 
-### OSM mimo výřez (Overpass)
-Dlaždice pokrývají obdélník výřezu města (`data/osm-tiles/extent.json`, píše ho `tools/build_osm_tiles.mjs`). Řez mimo něj
-(např. Litvínov na stránce Mostu) se ptá Overpassu (`gis.js` `osmOverpass`): stejné prvky a tvar jako dlaždice (ověřeno na
-výřezu v Mostě, 207 prvků shodně), instance overpass-api.de, maps.mail.ru a overpass.private.coffee postupně, každá do 25 s,
-odpověď se pamatuje. Veřejné servery bývají večer pomalé (10. 11. 2026: 13–37 s na malé okolí).
+### OSM pro celou ČR
+Jedna sada dlaždic pro všechna města (`pilot/data/osm-tiles`, na webu `data/osm-tiles`, ze stránky města
+`../data/osm-tiles`): výřez Geofabrik Česká republika, `NAME=cz tools/build_osm_data.sh cz.osm.pbf pilot/data/osm-tiles`
+(exporty ogr2ogr asi 8 min, dlaždice proudově za 1–2 min). Úsporný zápis (`pilot/public/osmtile.js`): jen značky, které
+profil čte nebo by mohl (zóny, rychlosti, povrch, zastávky, přechody, druhy stromů, šířky, značky), bez polních cest,
+stezek a pěšin mimo ulice; souřadnice jako rozdíly celých čísel (budovy na 1 m); dlouhé cesty rozdělené po dlaždicích
+a v aplikaci zase spojené. Asi 760 MB ve 239 000 dlaždicích. Overpass se nepoužívá (pomalý).
 
 ### Aktualizace OSM výřezu
 

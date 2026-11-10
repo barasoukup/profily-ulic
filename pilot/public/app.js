@@ -163,10 +163,6 @@ let osmCache = null; // {frame, osm, way, wayPts}
 
 
 map.on("click", (e) => cutAt(e.latlng.lat, e.latlng.lng));
-// OSM beyond the city's tiles comes from Overpass, whose public servers are slow at times.
-sources.events.addEventListener("overpass", () => {
-  if (document.body.classList.contains("loading")) status("Server OSM (Overpass) neodpovídá, zkouším jiný…");
-});
 sources.events.addEventListener("retry", (e) => {
   if (document.body.classList.contains("loading")) status(`Server ${city.server} neodpovídá, zkouším znovu (${e.detail.attempt}/${e.detail.of})…`);
 });

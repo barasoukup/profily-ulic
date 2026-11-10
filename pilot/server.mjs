@@ -7,6 +7,7 @@ import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { cityConfig, cityIndex } from "../tools/city_site.mjs";
 import { SITES } from "../tools/cities.mjs";
+import { TILE, decodeTile, mergePieces } from "./public/osmtile.js";
 import { MTVU, MTVU_FIELDS, TM_LINES, LINE_WHERE, PARKOVANI, PARKING_LAYERS, parkingFields, PODLAZNOST, PODLAZNOST_FIELDS, podlaznostInfo } from "./public/queries.js";
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
@@ -49,35 +50,22 @@ async function cached(kind, key, fetcher) {
 const TIMEOUT = 20000;
 const upstream = (url, opts = {}) => fetch(url, { ...opts, headers: { "User-Agent": UA, ...opts.headers }, signal: AbortSignal.timeout(TIMEOUT) });
 
-// Local OSM extract split into tiles by tools/build_osm_tiles.mjs. Returns null when
-// the point is outside the extract.
+// OSM tiles of the Czech Republic (tools/build_osm_tiles.mjs, read as the app reads them: osmtile.js).
+// Returns null when no tile around the point exists.
 const TILES = path.join(ROOT, "data", "osm-tiles");
-const TILE = 0.005;
 
 async function localOsm(lat, lon, radius) {
   const dLat = radius / 110574;
   const dLon = radius / (111320 * Math.cos((lat * Math.PI) / 180));
-  const seen = new Set();
-  const elements = [];
-  let found = false;
+  const lists = [];
   for (let ix = Math.floor((lon - dLon) / TILE); ix <= Math.floor((lon + dLon) / TILE); ix++) {
     for (let iy = Math.floor((lat - dLat) / TILE); iy <= Math.floor((lat + dLat) / TILE); iy++) {
-      let els;
       try {
-        els = JSON.parse(await fs.readFile(path.join(TILES, `${ix}_${iy}.json`), "utf8"));
-      } catch {
-        continue;
-      }
-      found = true;
-      for (const el of els) {
-        const key = el.id + ":" + el.geometry[0].lat + ":" + el.geometry[0].lon;
-        if (seen.has(key)) continue;
-        seen.add(key);
-        elements.push(el);
-      }
+        lists.push(decodeTile(await fs.readFile(path.join(TILES, `${ix}_${iy}.json`), "utf8")));
+      } catch {}
     }
   }
-  return found ? JSON.stringify({ source: "local", elements }) : null;
+  return lists.length ? JSON.stringify({ source: "local", elements: mergePieces(lists) }) : null;
 }
 
 // Tram track axes, barriers and slopes of the technical map (queries.js).

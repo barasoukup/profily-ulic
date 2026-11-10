@@ -1,6 +1,6 @@
-# Publishes the app (pilot/public) on GitHub Pages as a static site: the browser asks IPR and
-# Streetmix directly, and the OSM tiles are built here from the BBBike Prague extract on every
-# deploy (they are not kept in the repository). Runs on push to main, by hand, and weekly so the
+# Publishes the app (pilot/public) on GitHub Pages as a static site: the browser asks IPR, the cities'
+# GIS and ČÚZK directly, and the OSM tiles of the whole Czech Republic (one set for every city) are built
+# here from Geofabrik's extract on every deploy (they are not kept in the repository). Runs on push to main, by hand, and weekly so the
 # OSM data stays fresh.
 name: GitHub Pages
 
@@ -35,7 +35,7 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -49,42 +49,32 @@ jobs:
           sudo apt-get update -q
           sudo -E apt-get install -y -q --no-install-recommends gdal-bin
           ogr2ogr --version
-      # The BBBike extract is kept in the Actions cache: a deploy reuses this week's copy, a new week
-      # downloads a fresh one and falls back to the last copy when download.bbbike.org is unreachable.
+      # Geofabrik's Czech Republic is kept in the Actions cache: a deploy reuses this week's copy, a new week
+      # downloads a fresh one and falls back to the last copy when download.geofabrik.de is unreachable.
       - id: week
         run: echo "week=$(date -u +%G-%V)" >> "$GITHUB_OUTPUT"
       - id: pbf-cache
         uses: actions/cache@v4
         with:
-          path: data/osm/Prag.osm.pbf
-          key: osm-pbf-${{ steps.week.outputs.week }}
-          restore-keys: osm-pbf-
+          path: data/osm/cz.osm.pbf
+          key: osm-cz-pbf-${{ steps.week.outputs.week }}
+          restore-keys: osm-cz-pbf-
       - name: Download the OSM extract
         if: steps.pbf-cache.outputs.cache-hit != 'true'
         run: |
           mkdir -p data/osm
-          # 1. BBBike's Prague extract (what the app was built on); it sometimes refuses GitHub's runners.
-          if curl -fL --retry 2 --retry-delay 20 --retry-all-errors --connect-timeout 30 -o /tmp/Prag.osm.pbf \
-               https://download.bbbike.org/osm/bbbike/Prag/Prag.osm.pbf; then
-            mv /tmp/Prag.osm.pbf data/osm/Prag.osm.pbf
-            exit 0
-          fi
-          # 2. Geofabrik's Czech Republic, cut to the same area as the BBBike extract.
-          echo "::warning::download.bbbike.org unreachable, cutting Prague out of the Geofabrik extract"
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends osmium-tool
           if curl -fL --retry 3 --retry-delay 20 --connect-timeout 30 -o /tmp/cz.osm.pbf \
                https://download.geofabrik.de/europe/czech-republic-latest.osm.pbf; then
-            osmium extract --bbox 14.19,49.90,14.76,50.19 --overwrite -o data/osm/Prag.osm.pbf /tmp/cz.osm.pbf
-            exit 0
-          fi
-          # 3. The cached extract from an earlier week.
-          if [ -f data/osm/Prag.osm.pbf ]; then
+            mv /tmp/cz.osm.pbf data/osm/cz.osm.pbf
+          elif [ -f data/osm/cz.osm.pbf ]; then
             echo "::warning::no fresh OSM extract, using the cached one from an earlier week"
           else
             exit 1
           fi
+      # The tiles of the whole country (about 700 MB): every city site reads them from ../data/osm-tiles.
       - name: Build OSM tiles
-        run: tools/build_osm_data.sh data/osm/Prag.osm.pbf site-tiles
+        timeout-minutes: 45
+        run: NAME=cz tools/build_osm_data.sh data/osm/cz.osm.pbf site-tiles
       # The zone file of the last good deploy is kept in the Actions cache: when IPR does not answer
       # now, that one goes out; with neither, the deploy stops (without it many more cuts would be
       # guesses).
@@ -111,41 +101,19 @@ jobs:
         timeout-minutes: 10
         run: node tools/build_vyvoj.mjs site-vyvoj
       # Brno (/brno/): the same app; like Prague it asks the city's services on a click (MTVU, the
-      # technical-map drawing and buildings on gis.brno.cz). Built here: the OSM tiles (BBBike Brno) and
-      # the paid parking of parkovanivbrne.cz. A failure leaves Brno out; Prague goes out anyway.
-      - id: brno-pbf-cache
-        uses: actions/cache@v4
-        with:
-          path: data/osm/Brno.osm.pbf
-          key: osm-brno-pbf-${{ steps.week.outputs.week }}
-          restore-keys: osm-brno-pbf-
+      # technical-map drawing and buildings on gis.brno.cz). Built here: the paid parking of
+      # parkovanivbrne.cz; without it the profiles estimate the parking.
       - id: brno-parking-cache
         uses: actions/cache@v4
         with:
           path: data/parkovani-brno-last
           key: brno-parking-${{ github.run_id }}
           restore-keys: brno-parking-
-      - name: Brno OSM tiles
-        id: brno
+      - name: Brno parking
         continue-on-error: true
         timeout-minutes: 20
         run: |
-          mkdir -p data/osm
-          if [ "${{ steps.brno-pbf-cache.outputs.cache-hit }}" != "true" ]; then
-            # BBBike's Brno extract, else Geofabrik's Czech Republic cut to the same area, else last week's copy
-            if curl -fL --retry 2 --retry-delay 20 --retry-all-errors --connect-timeout 30 -o /tmp/Brno.osm.pbf \
-                 https://download.bbbike.org/osm/bbbike/Brno/Brno.osm.pbf; then
-              mv /tmp/Brno.osm.pbf data/osm/Brno.osm.pbf
-            else
-              echo "::warning::download.bbbike.org unreachable, cutting Brno out of the Geofabrik extract"
-              sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends osmium-tool
-              { [ -f /tmp/cz.osm.pbf ] || curl -fL --retry 3 --retry-delay 20 --connect-timeout 30 -o /tmp/cz.osm.pbf \
-                  https://download.geofabrik.de/europe/czech-republic-latest.osm.pbf; } &&
-                osmium extract --bbox 16.42,49.10,16.78,49.30 --overwrite -o data/osm/Brno.osm.pbf /tmp/cz.osm.pbf ||
-                [ -f data/osm/Brno.osm.pbf ]
-            fi
-          fi
-          NAME=brno tools/build_osm_data.sh data/osm/Brno.osm.pbf site-brno/data/osm-tiles
+          mkdir -p site-brno/data
           # Paid parking from the parkovanivbrne.cz map (current, unlike the 2/2024 export on data.brno.cz);
           # when the map does not answer, the files of the last good deploy.
           if node tools/build_parkovani_brno.mjs site-brno/data; then
@@ -156,34 +124,8 @@ jobs:
           else
             echo "::warning::no Brno parking data, profiles estimate the parking"
           fi
-          touch site-brno/ok
-      # The towns (/jihlava/, /most/, /opava/, /plzen/; tools/cities.mjs): the same app asking the town's
-      # GIS on a click. Built here: only the OSM tiles, cut out of Geofabrik's Czech Republic (no BBBike
-      # extract). A town that fails is left out.
-      - id: towns-pbf-cache
-        uses: actions/cache@v4
-        with:
-          path: data/osm/towns
-          key: osm-towns-pbf-${{ steps.week.outputs.week }}
-          restore-keys: osm-towns-pbf-
-      - name: Town OSM tiles
-        continue-on-error: true
-        timeout-minutes: 30
-        run: |
-          mkdir -p data/osm/towns
-          node tools/cities.mjs towns | while read -r id bbox; do
-            pbf=data/osm/towns/$id.osm.pbf
-            if [ "${{ steps.towns-pbf-cache.outputs.cache-hit }}" != "true" ] || [ ! -f "$pbf" ]; then
-              command -v osmium >/dev/null || sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends osmium-tool
-              # a failed download or cut falls back to last week's extract (restored from the cache) when there is one
-              { [ -f /tmp/cz.osm.pbf ] || curl -fL --retry 3 --retry-delay 20 --connect-timeout 30 -o /tmp/cz.osm.pbf \
-                  https://download.geofabrik.de/europe/czech-republic-latest.osm.pbf; } &&
-                osmium extract --bbox "$bbox" --overwrite -o "$pbf" /tmp/cz.osm.pbf ||
-                [ -f "$pbf" ] || { echo "::warning::no OSM extract for $id"; continue; }
-            fi
-            NAME=$id tools/build_osm_data.sh "$pbf" "site-$id/data/osm-tiles" && touch "site-$id/ok" ||
-              echo "::warning::OSM tiles of $id not built"
-          done
+      # The towns (/jihlava/, /most/, /opava/, /pardubice/, /plzen/; tools/cities.mjs) ask the town's GIS
+      # or the national DTM on a click and read the shared OSM tiles: nothing to build but Plzeň's zones.
       # Plzeň's paid parking zones: a static file of the city's open data (CC0), built at each deploy;
       # when it fails, the file of an earlier deploy (cache), else none (the profile estimates).
       - id: plzen-zones-cache
@@ -196,7 +138,7 @@ jobs:
         continue-on-error: true
         timeout-minutes: 5
         run: |
-          [ -d site-plzen/data ] || exit 0
+          mkdir -p site-plzen/data
           if node tools/build_zony_plzen.mjs site-plzen/data; then
             mkdir -p data/zony-plzen-last && cp site-plzen/data/zony.json data/zony-plzen-last/
           elif [ -f data/zony-plzen-last/zony.json ]; then
@@ -221,34 +163,21 @@ jobs:
           mv site-zps.json _site/data/zps.json
           [ -d site-vyvoj ] && mv site-vyvoj _site/data/vyvoj || echo "::warning::no built-up area tiles, flat roofs judged by the house alone"
           cp LICENCE-A-ZDROJE.md _site/data/LICENCE-A-ZDROJE.md
-          if [ -f site-brno/ok ]; then
-            # The app files again, with the config made above (STATIC, Mapy.com key), then CITY = "brno".
-            mkdir -p _site/brno/data
-            cp -R pilot/public/. _site/brno/
-            cp _site/config.js _site/brno/config.js
-            rm site-brno/ok && mv site-brno/data/* _site/brno/data/
-            cp LICENCE-A-ZDROJE.md _site/brno/data/LICENCE-A-ZDROJE.md
-            # a Brno failure never stops the Prague deploy
-            node tools/build_city_site.mjs _site/brno brno || { echo "::warning::Brno site not built"; rm -rf _site/brno; }
-          else
-            echo "::warning::no Brno data, the Brno site is left out of this deploy"
-          fi
-          for id in $(node tools/cities.mjs towns | cut -d' ' -f1); do
-            if [ -f "site-$id/ok" ]; then
-              mkdir -p "_site/$id/data"
-              cp -R pilot/public/. "_site/$id/"
-              cp _site/config.js "_site/$id/config.js"
-              rm "site-$id/ok" && mv "site-$id"/data/* "_site/$id/data/"
-              cp LICENCE-A-ZDROJE.md "_site/$id/data/LICENCE-A-ZDROJE.md"
-              node tools/build_city_site.mjs "_site/$id" "$id" || { echo "::warning::$id site not built"; rm -rf "_site/$id"; }
-            else
-              echo "::warning::no $id data, its site is left out of this deploy"
-            fi
+          # Every other city: the app files again with the config made above (STATIC, Mapy.com key), its own
+          # data (Brno's parking, Plzeň's zones) when there is some, then its CITY and page (a failure leaves
+          # that city out, never Prague).
+          for id in brno $(node tools/cities.mjs towns | cut -d' ' -f1); do
+            mkdir -p "_site/$id/data"
+            cp -R pilot/public/. "_site/$id/"
+            cp _site/config.js "_site/$id/config.js"
+            [ -d "site-$id/data" ] && cp -R "site-$id/data/." "_site/$id/data/"
+            cp LICENCE-A-ZDROJE.md "_site/$id/data/LICENCE-A-ZDROJE.md"
+            node tools/build_city_site.mjs "_site/$id" "$id" || { echo "::warning::$id site not built"; rm -rf "_site/$id"; }
           done
           # a city site that is missing gets no link from the others (city switch and footer)
           node tools/drop_city_links.mjs _site
           cat > _site/data/README.txt <<'EOF'
-          data/osm-tiles: dlaždice odvozené z OpenStreetMap (výřez BBBike Praha).
+          data/osm-tiles: dlaždice odvozené z OpenStreetMap (výřez Geofabrik Česká republika), pro všechna města.
           © přispěvatelé OpenStreetMap, licence ODbL 1.0 (https://opendatacommons.org/licenses/odbl/).
           Vytvořeno skriptem tools/build_osm_data.sh v repozitáři této aplikace.
           EOF
