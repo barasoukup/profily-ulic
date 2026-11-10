@@ -1218,7 +1218,23 @@ export function buildSvg(profile, opts = {}) {
       sprite(g, "cafe-seating-occupied", cx, top);
     }
     if (t.wall) el("rect", { x, y: top - 90, width: w, height: 90, fill: t.color }, g);
-    for (const it of s.items || []) drawItem(g, it, x + it.f * w, top, x + it.f * w > total / 2);
+    for (const it of s.items || []) {
+      let ix = x + it.f * w, onRight = ix > total / 2;
+      if (it.kind === "pristresek") {
+        // A shelter opens towards the tram or bus beside its platform, its back wall at the platform's other edge,
+        // by the cars (Bára, Jana Želivského).
+        const transit = (n) => n && (TYPES[n.type]?.tracks || n.type === "bus" || n.type === "bus_cyklo");
+        const toR = transit(segs[i + 1]), toL = transit(segs[i - 1]);
+        if (toR !== toL) {
+          onRight = toL;
+          const half = Math.min(135, w / 2);
+          ix = toR ? x + half : x + w - half;
+        }
+      }
+      // A stop post at the platform's edge stays on the platform (it is 50 cm wide).
+      if (it.kind === "oznacnik") ix = Math.min(Math.max(ix, x + 30), x + w - 30);
+      drawItem(g, it, ix, top, onRight);
+    }
     el("text", { class: "lbl-w", "data-row": 0, "data-w": w, x: cx, y: GROUND + 170, "text-anchor": "middle", "font-size": 40, "font-weight": 600, fill: "#1f1f1d" }, g).textContent = fmt(s.width);
     let wrapped = false;
     if (w >= 80) {
