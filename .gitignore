@@ -28,3 +28,6 @@ pilot/public/config.local.js
 evaluation/brno/data/
 # Evaluation data of the towns (orthophoto, results, review images); the scripts in evaluation/ rebuild them.
 evaluation/*/data/
+
+# Wrangler (Cloudflare) working files of logging/
+.wrangler/

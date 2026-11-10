@@ -9,4 +9,4 @@ ALLOWED_ORIGINS = "https://barasoukup.github.io,http://localhost:5173"
 [[d1_databases]]
 binding = "DB"
 database_name = "profily-ulic-log"
-database_id = "DOPLNIT"
+database_id = "6674c597-2e83-4a25-aa8c-e65d7db75ed9"
