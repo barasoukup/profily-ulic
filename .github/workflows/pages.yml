@@ -219,3 +219,7 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # The site has about 245 000 files (the OSM tiles of the Czech Republic): Pages needs more than the
+          # default 10 minutes to sync them.
+          timeout: 3600000
