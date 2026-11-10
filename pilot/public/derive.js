@@ -1605,7 +1605,9 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
         const t2 = c.way.tags || {};
         const oneway = isOnewayTags(t2) || t2.junction === "roundabout";
         const along = (c.d[0] * dir[0] + c.d[1] * dir[1] >= 0) !== (t2.oneway === "-1");
-        const lanes = parseInt(t2.lanes, 10) || (oneway || t2.highway === "pedestrian" ? 1 : 2);
+        // A pedestrian or residential zone has no lanes marked: its roadway is one lane both ways (Bára; třída
+        // Míru in Pardubice), unless OSM counts them.
+        const lanes = parseInt(t2.lanes, 10) || (oneway || t2.highway === "pedestrian" || t2.highway === "living_street" ? 1 : 2);
         const geomAlong = c.d[0] * dir[0] + c.d[1] * dir[1] >= 0;
         return { t: c.t, oneway, along, geomAlong, lanes, id: c.way.id, tags: t2 };
       });
@@ -1785,7 +1787,7 @@ const round = (v) => Math.round(v * 100) / 100;
 function estimateFromOsm(way) {
   const tags = way.tags || {};
   const oneway = isOnewayTags(tags);
-  const lanes = parseInt(tags.lanes, 10) || (oneway ? 1 : 2);
+  const lanes = parseInt(tags.lanes, 10) || (oneway || tags.highway === "pedestrian" || tags.highway === "living_street" ? 1 : 2);
   const total = parseFloat(tags.width) || null;
   const segs = [];
   const sw = tags.sidewalk && tags.sidewalk !== "no" && tags.sidewalk !== "none";
