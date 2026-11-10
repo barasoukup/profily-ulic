@@ -264,12 +264,17 @@ export function twoLines(text) {
   return best;
 }
 
-// A tram with a single-arm pantograph raised to the contact wire (WIRE_H, as the trolleybuses' wires; Bára): the
-// picture is drawn up to its roof (PANTO_CUT of the 420 high picture), its own lowered pantograph left out, and a
-// pantograph is drawn from the roof to the wire: lower arm, knee, upper arm and the head with its horns.
+// A tram with its pantograph raised to the contact wire (WIRE_H, as the trolleybuses' wires; Bára): the picture is
+// drawn up to its roof (PANTO_CUT of the 420 high picture), its own lowered pantograph left out, and the pantograph
+// is drawn from the roof to the wire, seen from the front and so symmetric (Bára), 1 px = 1 cm, after photos of the
+// trams themselves (scratchpad sberace-1): the head 1.95 m wide with its two contact strips and the horns bent down.
 const WIRE_H = 550, PANTO_CUT = 92;
-// Trams with a diamond pantograph (art folder/file, checked on photos); the others have a single-arm one.
-const DIAMOND = new Set(["praha/t3-inbound", "praha/t3-outbound", "brno/t3-inbound", "brno/t3-outbound"]);
+// Trams with the older diamond pantograph (art folder/file, checked on photos): Prague's T3R.P. Brno's T3R.PV and
+// T3R.EV carry a single-arm one today (photos of 1560, 1603, 1658), as the low-floor trams do.
+const DIAMOND = new Set(["praha/t3-inbound", "praha/t3-outbound"]);
+// The frame's paint by city: yellow on the trams of Prague, Brno, Plzeň, Ostrava, Olomouc and Liberec; the Most EVO2
+// and Streetmix's streetcar have a dark one.
+const PANTO_YELLOW = new Set(["praha", "brno", "plzen", "ostrava", "olomouc", "liberec"]);
 let clipN = 0;
 function tramSprite(g, name, cx, bottom) {
   const s = (cityArt() && sprites[`${artKey()}/${CITY_ART[artKey()]?.[name]}`]) || sprites[name];
@@ -277,27 +282,39 @@ function tramSprite(g, name, cx, bottom) {
   const k = s.h / 420, x = cx - s.w / 2, y = bottom - s.h, roof = y + PANTO_CUT * k + 6;
   const head = bottom - WIRE_H, id = `pc${++clipN}`;
   el("rect", { x, y: roof - 8, width: s.w, height: bottom - roof + 8 }, el("clipPath", { id }, el("defs", {}, g)));
-  const ink = "#2a2c2e", rise = roof - head;
-  const p = el("g", { stroke: ink, fill: "none", "stroke-linecap": "round", "stroke-linejoin": "round" }, g);
-  // Insulators and the frame on the roof.
-  el("rect", { x: cx - 34, y: roof - 7, width: 68, height: 5, rx: 2, fill: ink, stroke: "none" }, p);
-  for (const dx of [-28, 22]) el("rect", { x: cx + dx, y: roof - 13, width: 6, height: 7, rx: 1.5, fill: "#8d8f8c", stroke: "none" }, p);
-  // Seen from the front a pantograph is symmetric (Bára): its frame stands on two insulators.
-  if (DIAMOND.has(`${artKey()}/${CITY_ART[artKey()]?.[name] || name}`)) {
-    // An older diamond pantograph (Tatra T3): two side frames almost upright, braced crosswise in the middle.
-    const mid = (roof - 8 + head + 8) / 2;
-    el("path", { d: `M${cx - 26} ${roof - 8} L${cx - 20} ${mid} L${cx - 24} ${head + 8} M${cx + 26} ${roof - 8} L${cx + 20} ${mid} L${cx + 24} ${head + 8}`, "stroke-width": 3.5 }, p);
-    el("path", { d: `M${cx - 20} ${mid} H${cx + 20} M${cx - 23} ${roof - 8 - (roof - mid) * 0.5} L${cx + 23} ${mid - (mid - head) * 0.5} M${cx + 23} ${roof - 8 - (roof - mid) * 0.5} L${cx - 23} ${mid - (mid - head) * 0.5}`, "stroke-width": 1.8 }, p);
+  const ink = "#2a2c2e", rise = roof - head, base = roof - 8;
+  const yellow = PANTO_YELLOW.has(artKey());
+  const col = yellow ? "#e3b324" : "#44474a", edge = yellow ? "#a37f10" : "#1f2123";
+  const p = el("g", { stroke: col, fill: "none", "stroke-linecap": "round", "stroke-linejoin": "round" }, g);
+  const diamond = DIAMOND.has(`${artKey()}/${CITY_ART[artKey()]?.[name] || name}`);
+  // The base frame on the roof, on its insulators (four under a diamond, two under a single arm).
+  const bw = diamond ? 64 : 40;
+  for (const dx of diamond ? [-52, -22, 22, 52] : [-28, 28]) el("rect", { x: cx + dx - 3, y: roof - 13, width: 6, height: 7, rx: 1.5, fill: "#8d8f8c", stroke: "none" }, p);
+  el("rect", { x: cx - bw, y: roof - 8, width: 2 * bw, height: 6, rx: 2, fill: ink, stroke: "none" }, p);
+  if (diamond) {
+    // The diamond (Prague T3R.P): two posts, each in two sections, leaning in from the wide base to the knee and on
+    // to the head; diagonal braces from the base corners across to the knees; the lifting tube in the middle.
+    const knee = roof - rise * 0.45, top = head + 16;
+    el("path", { d: `M${cx - 58} ${base} L${cx + 40} ${knee} M${cx + 58} ${base} L${cx - 40} ${knee}`, "stroke-width": 2 }, p);
+    el("path", { d: `M${cx} ${base} V${head + 10}`, "stroke-width": 2 }, p);
+    el("path", { d: `M${cx - 56} ${base} L${cx - 40} ${knee} L${cx - 26} ${top} M${cx + 56} ${base} L${cx + 40} ${knee} L${cx + 26} ${top}`, "stroke-width": 4 }, p);
+    for (const dx of [-40, 40]) el("circle", { cx: cx + dx, cy: knee, r: 4.5, fill: ink, stroke: "none" }, p);
+    // The rocker holding the head on the post tops.
+    el("path", { d: `M${cx - 26} ${top} L${cx - 40} ${head + 8} M${cx + 26} ${top} L${cx + 40} ${head + 8}`, stroke: ink, "stroke-width": 2.5 }, p);
   } else {
-    // A single-arm pantograph: the wide lower frame narrows to the knee, the upper arm goes on up to the head.
+    // A single-arm pantograph (Škoda, EVO, Stadler, the modernised T3s): from the front the lower arm is one thick
+    // column up to the knee, the upper arm a narrow V opening to the head, with the thin rocker rods crossing it.
     const knee = roof - rise * 0.5;
-    el("path", { d: `M${cx - 28} ${roof - 8} L${cx - 3} ${knee} M${cx + 28} ${roof - 8} L${cx + 3} ${knee}`, "stroke-width": 4 }, p);
-    el("path", { d: `M${cx} ${knee} V${head + 8}`, "stroke-width": 4.5 }, p);
-    el("path", { d: `M${cx - 16} ${roof - 8} L${cx} ${knee + 30} L${cx + 16} ${roof - 8}`, "stroke-width": 1.8 }, p); // the rods
+    el("path", { d: `M${cx - 9} ${base} L${cx - 6} ${knee} H${cx + 6} L${cx + 9} ${base} Z`, fill: col, stroke: edge, "stroke-width": 1 }, p);
+    el("rect", { x: cx - 19, y: knee - 4, width: 38, height: 8, rx: 3, fill: col, stroke: edge, "stroke-width": 1 }, p);
+    el("path", { d: `M${cx - 15} ${knee} L${cx - 44} ${head + 14} M${cx + 15} ${knee} L${cx + 44} ${head + 14}`, "stroke-width": 4.5 }, p);
+    el("path", { d: `M${cx - 36} ${head + 10} L${cx + 12} ${knee - 4} M${cx + 36} ${head + 10} L${cx - 12} ${knee - 4}`, stroke: ink, "stroke-width": 1.2 }, p);
+    el("path", { d: `M${cx - 44} ${head + 14} L${cx - 56} ${head + 8} M${cx + 44} ${head + 14} L${cx + 56} ${head + 8}`, stroke: ink, "stroke-width": 2.5 }, p);
   }
-  // The head: a bar touching the wire, its ends bent down.
-  el("path", { d: `M${cx - 58} ${head + 12} Q${cx - 54} ${head + 2} ${cx - 44} ${head + 2} H${cx + 44} Q${cx + 54} ${head + 2} ${cx + 58} ${head + 12}`, "stroke-width": 4 }, p);
-  el("path", { d: `M${cx - 22} ${head + 2} L${cx} ${head + 9} L${cx + 22} ${head + 2}`, "stroke-width": 2 }, p);
+  // The head: the bow 1.95 m wide with its horns bent down, the two contact strips on it touching the wire.
+  el("path", { d: `M${cx - 97} ${head + 32} Q${cx - 95} ${head + 12} ${cx - 80} ${head + 9} H${cx + 80} Q${cx + 95} ${head + 12} ${cx + 97} ${head + 32}`, stroke: ink, "stroke-width": 4.5 }, p);
+  el("rect", { x: cx - 62, y: head, width: 124, height: 3.5, rx: 1, fill: ink, stroke: "none" }, p);
+  el("rect", { x: cx - 62, y: head + 5, width: 124, height: 2.5, rx: 1, fill: "#6b6e6a", stroke: "none" }, p);
   el("image", { href: s.uri, width: s.w, height: s.h, x, y, "clip-path": `url(#${id})` }, g);
 }
 
