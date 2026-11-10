@@ -26,8 +26,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 ## Pravidla od Báry (dodržuj)
 - **Nepushuj na GitHub, dokud Bára neřekne, že jsou změny odladěné.** Commituj lokálně a testuj
   na localhostu.
-- **Žádné další vrstvy ani dotazy na servery IPR** (nepřetěžovat je). Nové funkce jen z OSM nebo
-  lokálních dat.
+- Služby IPR smíme používat (Bára 10. 11. 2026 zrušila zákaz), **ale ohleduplně**: co jde, stáhnout jednou
+  při nasazení (otevřená data Geoportálu), při kliknutí jen nezbytné dotazy, v testech cache a `evaluation/polite.mjs`.
 - OSM jen z vlastních dlaždic celé ČR. Overpass jsme zkusili jako zálohu a je nepoužitelně pomalý
   (Bára 10. 11. 2026: „musíme se mu obecně vyhnout“).
 - QGIS je nainstalovaný; všechny soubory patří do této složky.
