@@ -57,3 +57,8 @@ test("pruh pro BUS a cyklisty: symbol autobusu a pod ním modré kolo", () => {
   assert.deepEqual(keys(p.segments[0].signs), ["ip20a+kolo"]);
   assert.equal(plateFile(p.segments[0].signs[0], p.segments[0]), "C8a");
 });
+
+test("zákaz zastavení u pravé strany cesty, když se profil dívá proti směru cesty, je vlevo", () => {
+  const p = deriveSigns({ segments: [{ type: "pruh", dir: "backward" }, { type: "pruh" }] }, { highway: "tertiary", "parking:right:restriction": "no_stopping" }, { alongWay: false });
+  assert.deepEqual(p.segments.map((s) => keys(s.signs)), [["b28"], []]);
+});

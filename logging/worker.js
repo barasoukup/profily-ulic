@@ -4,7 +4,7 @@
 //   POST /log      one event as JSON, from the allowed origins only; answers 204
 //   GET  /export   all events as CSV (or ?since=2026-11-01), with the header "Authorization: Bearer <EXPORT_TOKEN>"
 // Setup: logging/README.md.
-const KINDS = new Set(["rez", "export", "ulozeni", "sdileni", "navrh", "porovnat", "oprava"]);
+const KINDS = new Set(["rez", "export", "ulozeni", "sdileni", "navrh", "porovnat", "oprava", "hledani"]);
 const MAX_BODY = 2048;
 // Per address, a few events a second at most (one isolate's memory: a guard against a loop, not a wall).
 const hits = new Map();
@@ -34,7 +34,7 @@ export default {
       if (text.length > MAX_BODY) return new Response("size", { status: 413, headers: cors });
       let e;
       try { e = JSON.parse(text); } catch { return new Response("json", { status: 400, headers: cors }); }
-      if (!KINDS.has(e.kind)) return new Response("kind", { status: 400, headers: cors });
+      if (!e || typeof e !== "object" || !KINDS.has(e.kind)) return new Response("kind", { status: 400, headers: cors });
       await env.DB.prepare(`INSERT INTO events (kind, detail, city, street, highway, way_id, lat, lon, bearing, reach_left, reach_right, session)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`).bind(
         e.kind, str(e.detail, 20), str(e.city, 30), str(e.street, 120), str(e.highway, 40),
