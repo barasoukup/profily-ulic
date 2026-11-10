@@ -9,6 +9,7 @@ import { packProfile, unpackProfile, designParams } from "./share.js";
 import { checkRules } from "./rules.js";
 import { city, setCity, cityAt, loadBounds } from "./city.js";
 import { TOWNS } from "./towns/index.js";
+import { log } from "./log.js";
 
 const HALF = 40; // half-length of the cut used for reading the data (m)
 const MIN_REACH = 3; // shortest profile side the user can drag the cut end to (m)
@@ -223,6 +224,11 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     const name = near.way.tags.name || near.way.tags.ref || `ulice ${near.way.id}`;
     const span = result.extent && { left: +result.extent[1].toFixed(2), right: +(-result.extent[0]).toFixed(2) };
     state.cut = { lat: clat, lon: clon, bearing: (Math.atan2(dir[0], dir[1]) * 180) / Math.PI, wayId: near.way.id, name, reach, span };
+    // The log of cuts (log.js): the cut exactly, and how it came (a click, a moved cut, a link).
+    log("rez", {
+      detail: keepWay ? "posun" : bearing !== null ? "odkaz" : "klik", city: city.id, street: name, highway: near.way.tags.highway,
+      wayId: near.way.id, lat: +clat.toFixed(7), lon: +clon.toFixed(7), bearing: +state.cut.bearing.toFixed(1), reachLeft: reach.left, reachRight: reach.right,
+    });
     // Floors of the buildings at both ends from IPR "Podlažnosti" (OSM building:levels as fallback).
     await Promise.all(["left", "right"].map(async (side) => {
       const info = result.edges[`${side}Info`];
@@ -1135,6 +1141,7 @@ function renderPalette(p) {
 }
 
 document.querySelectorAll(".seg-toggle button").forEach((b) => b.addEventListener("click", () => {
+  if (b.dataset.mode !== state.mode && b.dataset.mode !== "stav") log(b.dataset.mode, cutLog());
   state.mode = b.dataset.mode;
   state.selected = null;
   state.fixing = false;
@@ -1158,7 +1165,7 @@ $("#btn-art").addEventListener("click", () => {
 });
 
 $("#btn-to-navrh").onclick = () => document.querySelector('.seg-toggle button[data-mode="navrh"]').click();
-$("#btn-fix").onclick = () => { state.fixing = !state.fixing; state.selected = null; render(); };
+$("#btn-fix").onclick = () => { state.fixing = !state.fixing; state.selected = null; if (state.fixing) log("oprava", cutLog()); render(); };
 
 // The header menus close after a choice or a click elsewhere.
 document.addEventListener("click", (e) => {
@@ -1168,6 +1175,7 @@ document.addEventListener("click", (e) => {
 });
 
 // ---------- export, save, load ----------
+const cutLog = () => (state.cut ? { city: city.id, street: state.cut.name, wayId: state.cut.wayId, lat: state.cut.lat, lon: state.cut.lon } : {});
 function exportSvgs() {
   const title = state.cut?.name || "Profil";
   if (state.mode === "porovnat" || !state.stav) {
@@ -1185,11 +1193,13 @@ function download(name, blob) {
 const fileBase = () => (state.cut?.name || "profil").replace(/[^\p{L}\p{N}]+/gu, "-").toLowerCase();
 
 $("#btn-export-svg").onclick = () => {
+  log("export", { detail: "svg", ...cutLog() });
   if (!state.stav) return;
   download(`${fileBase()}-${state.mode}.svg`, new Blob([svgString(exportSvgs())], { type: "image/svg+xml" }));
 };
 
 $("#btn-export-png").onclick = async () => {
+  log("export", { detail: "png", ...cutLog() });
   if (!state.stav) return;
   const text = svgString(exportSvgs());
   const vb = text.match(/viewBox="([^"]+)"/)?.[1].split(" ").map(Number);
@@ -1207,6 +1217,7 @@ $("#btn-export-png").onclick = async () => {
 
 $("#btn-save").onclick = () => {
   if (!state.stav) return;
+  log("ulozeni", cutLog());
   const data = { app: "streetdesign-pilot", version: 1, cut: state.cut, stav: state.stav, navrh: state.navrh, navrhEdited: state.navrhEdited };
   download(`${fileBase()}.json`, new Blob([JSON.stringify(data, null, 2)], { type: "application/json" }));
 };
@@ -1337,6 +1348,7 @@ addEventListener("hashchange", () => {
 
 // Share: the address of the cut with the design (and a hand-corrected Stav) packed into it.
 $("#btn-share").onclick = async () => {
+  log("sdileni", cutLog());
   if (!state.stav) return;
   const base = location.href.split("#")[0] + location.hash.split("&")[0];
   const stavEdited = state.stav.segments.some((s) => s.source === "user");

@@ -7,3 +7,7 @@ export const STATIC = false;
 // from the repository secret MAPY_KEY; locally it comes from config.local.js (git-ignored,
 // export const MAPY_KEY = "…"). Without a key the panorama button stays hidden.
 export const MAPY_KEY = "";
+
+// Address of the Worker that keeps the log of cuts (logging/README.md). Filled by the deploy workflow from
+// the repository variable LOG_URL; empty: nothing is logged (a local run).
+export const LOG_URL = "";

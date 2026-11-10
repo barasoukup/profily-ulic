@@ -1,0 +1,12 @@
+# Cloudflare Worker for Profily ulic (logging/README.md). database_id comes from `npx wrangler d1 create profily-ulic-log`.
+name = "profily-ulic-log"
+main = "worker.js"
+compatibility_date = "2026-10-01"
+
+[vars]
+ALLOWED_ORIGINS = "https://barasoukup.github.io,http://localhost:5173"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "profily-ulic-log"
+database_id = "DOPLNIT"

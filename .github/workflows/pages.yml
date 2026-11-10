@@ -150,6 +150,7 @@ jobs:
       - name: Assemble the site
         env:
           MAPY_KEY: ${{ secrets.MAPY_KEY }} # Mapy.com key for the street panorama; empty → a plain link instead
+          LOG_URL: ${{ vars.LOG_URL }} # the Worker keeping the log of cuts (logging/README.md); empty → no log
         run: |
           mkdir -p _site/data
           cp -R pilot/public/. _site/
@@ -159,6 +160,13 @@ jobs:
           node -e 'const fs = require("fs"), f = "_site/config.js", k = process.env.MAPY_KEY || "";
             if (k) fs.writeFileSync(f, fs.readFileSync(f, "utf8").replace("MAPY_KEY = \"\"", "MAPY_KEY = " + JSON.stringify(k)));'
           grep -q 'MAPY_KEY = ""' _site/config.js && echo "::warning::no Mapy.com key (secret MAPY_KEY), the panorama falls back to a link" || true
+          # The log of cuts: the Worker's address into config.js, its origin into the page's CSP (connect-src).
+          node -e 'const fs = require("fs"), u = process.env.LOG_URL || "";
+            if (u) {
+              const c = "_site/config.js"; fs.writeFileSync(c, fs.readFileSync(c, "utf8").replace("LOG_URL = \"\"", "LOG_URL = " + JSON.stringify(u)));
+              const h = "_site/index.html"; fs.writeFileSync(h, fs.readFileSync(h, "utf8").replace(/(connect-src [^;]*)/, "$1 " + new URL(u).origin));
+            }'
+          grep -q 'LOG_URL = ""' _site/config.js && echo "::warning::no log of cuts (repository variable LOG_URL)" || true
           mv site-tiles _site/data/osm-tiles
           mv site-zps.json _site/data/zps.json
           [ -d site-vyvoj ] && mv site-vyvoj _site/data/vyvoj || echo "::warning::no built-up area tiles, flat roofs judged by the house alone"
