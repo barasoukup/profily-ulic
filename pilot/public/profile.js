@@ -1030,8 +1030,10 @@ function drawSigns(svg, profile, bounds) {
     if (!st.querySelector("image")) st.remove();
   };
   const z = profile.zones;
-  if (z?.signs?.length && bounds[z.to + 1] !== undefined) {
-    const x0 = bounds[z.from], x1 = bounds[z.to + 1];
+  if (z?.signs?.length) {
+    // Parts deleted in Návrh may leave the span past the end: it ends at the last part.
+    const to = Math.min(z.to, segs.length - 1), from = Math.min(z.from, to);
+    const x0 = bounds[from], x1 = bounds[to + 1];
     const g = el("g", { class: "sign-group", "data-row": "z", "data-cx": (x0 + x1) / 2, "data-w": Math.max(x1 - x0, 400), "data-x0": x0, "data-x1": x1 }, svg);
     el("path", { class: "zone-bracket", fill: "none", stroke: "#9a978e" }, g);
     z.signs.forEach((x) => stack(g, x));

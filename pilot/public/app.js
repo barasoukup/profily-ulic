@@ -1,7 +1,7 @@
 import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
-import { deriveSigns, mirrorSigns } from "./signs.js";
+import { deriveSigns, mirrorSigns, SIGNS, PLATES, MAX_PER_PART } from "./signs.js";
 import { loadSprites, loadSigns, layoutSigns, buildSvg, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE } from "./profile.js";
 import * as sources from "./sources.js";
 import { MAPY_KEY } from "./config.js";
@@ -1046,6 +1046,19 @@ function renderEditor(p) {
       l.append(text, sel);
       ed.append(l);
     }
+    // Zones and rules of the whole roadway: drawn once across the parts from the first to the last of the roadway.
+    const z = p.zones;
+    const zrow = Object.assign(document.createElement("div"), { className: "ed-row" });
+    zrow.append(signTags(z?.signs, 6, (list) => {
+      if (!list.length) delete p.zones;
+      else {
+        const road = p.segments.map((x, k) => (ROADWAY_TYPES.has(x.type) ? k : -1)).filter((k) => k >= 0);
+        p.zones = { from: z?.from ?? road[0] ?? 0, to: z?.to ?? road.at(-1) ?? p.segments.length - 1, signs: list };
+      }
+      edited();
+      render();
+    }, "Značky přes vozovku: "));
+    ed.append(zrow);
     return;
   }
   const type = document.createElement("select");
@@ -1140,6 +1153,8 @@ function renderEditor(p) {
   add.onchange = () => { if (!add.value) return; (s.items ||= []).push({ kind: add.value, f: 0.5 }); done(); };
   items.append(add);
   r2.append(items);
+  // Traffic signs under this part (at most MAX_PER_PART).
+  row().append(signTags(s.signs, MAX_PER_PART, (list) => { if (list.length) s.signs = list; else delete s.signs; done(); }));
   row().append(
     btn("← Posunout", () => { if (i > 0) { [segs[i - 1], segs[i]] = [segs[i], segs[i - 1]]; done(i - 1); } }),
     btn("Posunout →", () => { if (i < segs.length - 1) { [segs[i + 1], segs[i]] = [segs[i], segs[i + 1]]; done(i + 1); } }),
@@ -1147,6 +1162,43 @@ function renderEditor(p) {
     Object.assign(document.createElement("span"), { className: "spacer" }),
     btn("Smazat část", () => { segs.splice(i, 1); done(null); }, "danger"),
   );
+}
+
+// The parts a zone sign spans by default (the roadway).
+const ROADWAY_TYPES = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "obsluzna", "parkovani", "cyklopruh", "ochranny_pruh", "krajnice", "tramvaj"]);
+// Tags of traffic signs with ×, and a select to add one (a speed limit asks for its number).
+function signTags(list = [], max, set, label = "Značky: ") {
+  const box = Object.assign(document.createElement("span"), { className: "items" });
+  box.textContent = label;
+  const name = (x) => SIGNS[x.k] + (typeof x.v === "number" ? ` ${x.v}` : x.k === "v9a" && x.v ? ` (${x.v})` : "") + (x.plate ? `, ${PLATES[x.plate]}` : "");
+  list.forEach((x, k) => {
+    const b = document.createElement("button");
+    b.className = "tag";
+    b.textContent = `${name(x)} ×`;
+    b.onclick = () => set(list.filter((_, j) => j !== k));
+    box.append(b);
+  });
+  if (list.length < max) {
+    const add = document.createElement("select");
+    add.add(new Option("+ přidat značku", ""));
+    for (const [k, t] of Object.entries(SIGNS)) add.add(new Option(t, k));
+    add.onchange = () => {
+      const k = add.value;
+      if (!k) return;
+      const x = { k };
+      if (k === "b20a") {
+        const v = Number(prompt("Nejvyšší dovolená rychlost (km/h):", "30"));
+        if (!(v > 0 && v <= 200)) return render();
+        x.v = Math.round(v);
+      }
+      if (k === "v9a") x.v = "through";
+      // A one-way street: the sign follows the lanes, IP 4b when they go away from the viewer.
+      if (k === "oneway") x.dir = "forward";
+      set([...list, x]);
+    };
+    box.append(add);
+  }
+  return box;
 }
 
 // Parts to add, grouped as people look for them.
