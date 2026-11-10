@@ -2,7 +2,8 @@
   <!-- Plzeňský trolejbus PMDP, Škoda 26Tr (Solaris Urbino IV. generace), zadní pohled: bílá záď s kapotou
        trakční výzbroje na střeše, nahoře černé zadní sklo s linkovou tabulí, bílý panel, svislé svítilny
        v rozích, dole zelený pás s registrační značkou (barvy podle fotky „Škoda 26Tr s karoserií IV. generace
-       v Plzni.jpg“, Wikimedia Commons). 1 px = 1 cm, šířka 2,55 m; nahoře sběrače k trolejím. -->
+       v Plzni.jpg“, Wikimedia Commons).
+       Horní hrana podle boční fotky vozu 598 (Wikimedia Commons): bílá střecha, zelená linka jen na boku. 1 px = 1 cm, šířka 2,55 m; nahoře sběrače k trolejím. -->
   <!-- sběrače: dvě tyče ze zadní části střechy k trolejím -->
   <g stroke="#2a2b2a" stroke-linecap="round" fill="none">
     <path d="M160 266 L148 16" stroke-width="5"/>
@@ -14,10 +15,11 @@
     <!-- zrcátka vpředu vyčnívají za boky -->
     <rect x="26" y="58" width="16" height="42" rx="5" fill="#1b1d20"/>
     <rect x="318" y="58" width="16" height="42" rx="5" fill="#1b1d20"/>
-    <!-- bílá záď, zelená hrana střechy, kryt výzbroje se základnou sběračů -->
+    <!-- bílá záď, světle šedá hrana střechy (zelená linka z boku jen v rozích), kryt výzbroje se základnou sběračů -->
     <path d="M52 298 V52 Q52 24 82 24 H278 Q308 24 308 52 V298 Z" fill="#f3f4f2"/>
     <path d="M298 26 Q308 32 308 52 V298 H298 Z" fill="#d9dbd8"/>
-    <path d="M56 40 Q60 28 82 28 H278 Q300 28 304 40 Z" fill="#3fa33a"/>
+    <path d="M56 40 Q60 28 82 28 H278 Q300 28 304 40 Z" fill="#dfe1de"/>
+    <path d="M56 40 Q57 34 61 31 L64 40 Z" fill="#3fa33a"/><path d="M304 40 Q303 34 299 31 L296 40 Z" fill="#3fa33a"/>
     <rect x="132" y="18" width="96" height="14" rx="4" fill="#e2e4e1"/>
     <!-- černé zadní sklo s linkovou tabulí -->
     <rect x="66" y="50" width="228" height="104" rx="4" fill="#1b1d20"/>

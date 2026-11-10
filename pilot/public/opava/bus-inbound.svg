@@ -1,8 +1,9 @@
 <svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
-  <!-- Opavský autobus MDPO, Iveco Urbanway 12M CNG, čelní pohled podle fotek z Wikimedia Commons („Opava, IVECO
-       Urbanway 12M CNG č. 171“, „č. 176“): bílá skříň s nádržemi CNG na střeše, velké čelní sklo v černém rámu
-       s LED tabulí, pod sklem šedá lišta s nápisem IVECO, světla v rozích, nápis MDPO, dole červený nárazník
-       s registrační značkou. 1 px = 1 cm, šířka 2,55 m. -->
+  <!-- Opavský autobus MDPO, Iveco Urbanway 12M CNG, čelní pohled podle fotek z Wikimedia Commons „Opava, IVECO
+       Urbanway 12M CNG č. 171“ a „Opava, Horní náměstí, Iveco Urbanway 10,5M CNG č. 166 (2019-08-14; 01)“: bílá skříň
+       s nádržemi CNG na střeše, velké čelní sklo v černém rámu se žlutozelenou LED tabulí, pod sklem stříbrná
+       prohnutá lišta IVECO, úzká tmavá pouzdra světel s čirými kulatými světly, červené jen rohy čela od světel
+       dolů, bílý střed s číslem 171 a nápisem MDPO, dole černé vybrání s registrační značkou. 1 px = 1 cm, šířka 2,55 m. -->
   <!-- zpětná zrcátka na ramenech -->
   <path d="M54 40 H40 Q32 40 32 48 V56" stroke="#1d1f22" stroke-width="4" fill="none"/>
   <rect x="22" y="54" width="18" height="48" rx="4" fill="#1d1f22"/>
@@ -16,7 +17,7 @@
   <!-- čelní sklo v černém rámu, nahoře LED tabule -->
   <path d="M58 32 Q58 28 64 28 H296 Q302 28 302 32 V204 H58 Z" fill="#1d1f22"/>
   <rect x="62" y="32" width="236" height="32" fill="#111214"/>
-  <g font-family="Arial, sans-serif" font-weight="bold" fill="#e6d36a">
+  <g font-family="Arial, sans-serif" font-weight="bold" fill="#c8e05a">
     <text x="78" y="55" font-size="18">213</text>
     <text x="200" y="55" font-size="15" text-anchor="middle" letter-spacing=".5">KARLOVEC</text>
   </g>
@@ -24,20 +25,25 @@
   <path d="M76 70 L118 70 L90 196 L74 196 Z" fill="#5c6c79" opacity=".5"/>
   <rect x="160" y="74" width="110" height="12" fill="#5c6c79" opacity=".5"/>
   <g stroke="#0e0f10" stroke-width="2.5" stroke-linecap="round"><path d="M96 200 L166 186"/><path d="M276 200 L210 186"/></g>
-  <!-- šedá lišta s nápisem IVECO -->
-  <path d="M104 214 H256 L248 230 H112 Z" fill="#a9adb0"/>
-  <text x="180" y="227" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" letter-spacing="2" fill="#f4f4f2">IVECO</text>
-  <!-- světla v rozích -->
-  <path d="M56 218 H100 L96 244 Q72 246 58 240 Z" fill="#d9dcde" stroke="#8d9296" stroke-width="1.5"/>
-  <circle cx="70" cy="230" r="6" fill="#f7f8f9" stroke="#8d9296"/><circle cx="86" cy="231" r="5" fill="#f7f8f9" stroke="#8d9296"/>
-  <path d="M304 218 H260 L264 244 Q288 246 302 240 Z" fill="#d9dcde" stroke="#8d9296" stroke-width="1.5"/>
-  <circle cx="290" cy="230" r="6" fill="#f7f8f9" stroke="#8d9296"/><circle cx="274" cy="231" r="5" fill="#f7f8f9" stroke="#8d9296"/>
-  <!-- evidenční číslo a nápis MDPO -->
-  <text x="66" y="258" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1d1f22">171</text>
-  <text x="180" y="256" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" font-style="italic" fill="#d42027">MDPO</text>
-  <!-- červený nárazník s registrační značkou -->
-  <path d="M52 264 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#d42027"/>
-  <rect x="152" y="274" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="274" width="6" height="12" fill="#2a63b8"/>
+  <!-- stříbrná lišta IVECO od světla ke světlu, mírně prohnutá, horní hrana delší, tmavá chromová písmena -->
+  <path d="M90 212 Q180 218 270 212 L258 232 Q180 236 102 232 Z" fill="#c4c8cc" stroke="#9298a0" stroke-width="1"/>
+  <path d="M92 213 Q180 219 268 213 L266 216 Q180 222 94 216 Z" fill="#e3e6e9"/>
+  <text x="180" y="229" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" letter-spacing="2" fill="#474c53" stroke="#eef0f2" stroke-width=".4">IVECO</text>
+  <!-- světla v rozích: úzká tmavá pouzdra (černý chrom) pod rohy skla, čirá kulatá světla -->
+  <path d="M54 210 L90 216 L92 244 Q72 250 54 246 Z" fill="#26292d" stroke="#5b6066" stroke-width="1.2"/>
+  <circle cx="65" cy="230" r="6" fill="#e9eef2" stroke="#9aa0a6" stroke-width="1.2"/><circle cx="81" cy="232" r="5" fill="#e9eef2" stroke="#9aa0a6" stroke-width="1.2"/>
+  <path d="M306 210 L270 216 L268 244 Q288 250 306 246 Z" fill="#26292d" stroke="#5b6066" stroke-width="1.2"/>
+  <circle cx="295" cy="230" r="6" fill="#e9eef2" stroke="#9aa0a6" stroke-width="1.2"/><circle cx="279" cy="232" r="5" fill="#e9eef2" stroke="#9aa0a6" stroke-width="1.2"/>
+  <!-- červené jen rohy čela od světel dolů k nárazníku, s mlhovkami -->
+  <path d="M52 246 Q72 250 94 246 Q100 246 100 252 V298 H60 Q52 298 52 290 Z" fill="#d42027"/>
+  <path d="M308 246 Q288 250 266 246 Q260 246 260 252 V298 H300 Q308 298 308 290 Z" fill="#d42027"/>
+  <circle cx="80" cy="276" r="4" fill="#e1e4e6" stroke="#8d9296"/><circle cx="280" cy="276" r="4" fill="#e1e4e6" stroke="#8d9296"/>
+  <!-- evidenční číslo a nápis MDPO na bílém středu -->
+  <text x="107" y="266" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1d1f22">171</text>
+  <text x="180" y="254" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" font-style="italic" fill="#d42027">MDPO</text>
+  <!-- černé vybrání dole uprostřed s registrační značkou -->
+  <path d="M104 298 V280 Q104 272 112 272 H248 Q256 272 256 280 V298 Z" fill="#1d1f22"/>
+  <rect x="152" y="279" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="279" width="6" height="12" fill="#2a63b8"/>
   <!-- kola -->
   <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
 </svg>

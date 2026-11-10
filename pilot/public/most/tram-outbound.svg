@@ -1,38 +1,51 @@
 <svg viewBox="0 0 320 420" xmlns="http://www.w3.org/2000/svg">
   <!-- Mostecká tramvaj EVO2 (Pragoimex) dopravního podniku DPmML, zadní pohled. 1 px = 1 cm, šířka vozu 2,50 m.
-       Jednosměrný vůz (Most a Litvínov mají smyčky): zadní čelo podle fotek na Wikimedia Commons („Most tram 2022 3.jpg“)
-       ve stejných barvách jako přední, žlutá skříň s červenou čepicí, menší zadní okno v černém rámu s číslem linky,
-       červená koncová světla, červený spodek. -->
-  <!-- pantograf je na přední části, vzadu jen kryty střešní výzbroje -->
-  <path d="M66 126 L74 108 Q76 104 82 104 H238 Q244 104 246 108 L254 126 Z" fill="#c9cdd0"/>
-  <path d="M234 104 H238 Q244 104 246 108 L254 126 H242 Z" fill="#aeb2b6"/>
-  <rect x="132" y="96" width="56" height="8" rx="2" fill="#9ea2a6"/>
+       Záď odvozená, nepodložená fotkou: na Wikimedia Commons (kategorie „EVO2 in Most and Litvínov“) jsou jen fotky
+       čela a boku („Litvínov tram EVO2.jpg“, „Litvínov tram 2024 2.jpg“, „Litvínov tram 2024 3.jpg“,
+       „Litvínov tram 2024 4.jpg“, „Pragoimex EVO Nr 327 Wendeschleife Chemopetrol 08 26.jpg“). Barvy jako na čele:
+       černá kapota až ke střeše, červená jen v horních rozích a na bocích, tmavé sloupky, žlutý pás a červený spodek;
+       jednosměrný vůz má vzadu menší okno s číslem linky a červená koncová světla. -->
+  <!-- pantograf na předním článku je vidět i zezadu -->
+  <path d="M74 52 L82 40 H238 L246 52" stroke="#2a2c2e" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M150 40 V36 H170 V40" stroke="#2a2c2e" stroke-width="3" fill="none"/>
+  <path d="M142 102 L174 72" stroke="#2a2c2e" stroke-width="6" stroke-linecap="round"/>
+  <path d="M174 72 L158 41" stroke="#2a2c2e" stroke-width="4" stroke-linecap="round"/>
+  <path d="M136 102 L160 86" stroke="#2a2c2e" stroke-width="2" stroke-linecap="round"/>
+  <rect x="128" y="100" width="56" height="8" rx="2" fill="#2a2c2e"/>
+  <!-- nízké tmavé kryty střešní výzbroje, stejné jako vpředu -->
+  <path d="M78 126 L84 112 Q86 108 92 108 H228 Q234 108 236 112 L242 126 Z" fill="#4c5054"/>
+  <path d="M224 108 H228 Q234 108 236 112 L242 126 H232 Z" fill="#3a3d40"/>
   <!-- skříň: žlutá, nahoře červená čepice -->
-  <path d="M35 392 V156 Q35 124 68 124 H252 Q285 124 285 156 V392 Z" fill="#f2c51c"/>
-  <path d="M35 186 V156 Q35 124 68 124 H252 Q285 124 285 156 V186 H270 V150 H50 V186 Z" fill="#e2341f"/>
-  <path d="M272 128 Q285 136 285 156 V392 H274 Z" fill="#000" opacity=".08"/>
-  <!-- černý rám zadního okna s LED číslem linky -->
-  <path d="M58 270 V152 Q58 140 70 140 H250 Q262 140 262 152 V270 Z" fill="#141618"/>
-  <rect x="136" y="146" width="48" height="20" rx="2" fill="#0a0b0c"/>
-  <text x="160" y="162" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#43d94c">4</text>
-  <path d="M68 176 Q68 172 72 172 H248 Q252 172 252 176 V262 H68 Z" fill="#2c3944"/>
-  <path d="M84 176 L118 176 L100 258 L80 258 Z" fill="#46596a" opacity=".5"/>
-  <!-- koncová a brzdová světla, couvací světla, číslo vozu -->
-  <rect x="44" y="282" width="12" height="30" rx="3" fill="#b3121b"/>
-  <rect x="264" y="282" width="12" height="30" rx="3" fill="#b3121b"/>
-  <rect x="44" y="316" width="12" height="8" rx="2" fill="#f08a1c"/>
-  <rect x="264" y="316" width="12" height="8" rx="2" fill="#f08a1c"/>
-  <rect x="68" y="300" width="10" height="8" rx="2" fill="#eef1f3"/>
-  <rect x="242" y="300" width="10" height="8" rx="2" fill="#eef1f3"/>
-  <text x="160" y="304" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1b1d20">323</text>
-  <circle cx="160" cy="322" r="6" fill="none" stroke="#e2341f" stroke-width="2"/>
-  <!-- červený spodek -->
-  <path d="M35 346 H285 V384 Q285 392 276 392 H44 Q35 392 35 384 Z" fill="#e2341f"/>
-  <rect x="146" y="372" width="28" height="6" rx="2" fill="#a8261a"/>
-  <!-- zrcátko vpředu vyčnívá za bok -->
-  <rect x="8" y="168" width="14" height="26" rx="3" fill="#1b1d20"/>
-  <!-- černá zástěra skoro ke kolejím -->
-  <path d="M37 392 H283 V400 Q283 406 276 408 L268 410 H52 L44 408 Q37 406 37 400 Z" fill="#26282a"/>
+  <path d="M35 404 V160 Q35 124 70 124 H250 Q285 124 285 160 V404 Z" fill="#f2c51c"/>
+  <path d="M35 200 V160 Q35 124 70 124 H250 Q285 124 285 160 V200 Z" fill="#e2341f"/>
+  <!-- černá kapota zádi až ke střeše -->
+  <path d="M40 300 V184 Q40 131 96 128 H224 Q280 131 280 184 V300 Z" fill="#141618"/>
+  <path d="M70 136 Q100 129 160 129 Q220 129 250 136 Q220 133 160 133 Q100 133 70 136 Z" fill="#3a3e42"/>
+  <rect x="35" y="196" width="5" height="104" fill="#22272b"/>
+  <rect x="280" y="196" width="5" height="104" fill="#22272b"/>
+  <!-- menší zadní okno s LED číslem linky -->
+  <rect x="136" y="148" width="48" height="20" rx="2" fill="#0d1012"/>
+  <text x="160" y="164" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#43d94c">4</text>
+  <path d="M62 284 V186 Q62 176 72 176 H248 Q258 176 258 186 V284 Z" fill="#2c3944"/>
+  <path d="M80 180 L114 180 L96 280 L76 280 Z" fill="#46596a" opacity=".5"/>
+  <!-- žlutý spodek zádi s koncovými světly, černý panel uprostřed -->
+  <rect x="35" y="300" width="250" height="66" fill="#f2c51c"/>
+  <path d="M64 300 H256 V334 Q256 358 228 358 H92 Q64 358 64 334 Z" fill="#141618"/>
+  <circle cx="160" cy="330" r="8" fill="none" stroke="#e8eaec" stroke-width="2"/>
+  <path d="M155 328 H165 M160 328 V336" stroke="#e8eaec" stroke-width="1.6"/>
+  <rect x="43" y="312" width="12" height="22" rx="3" fill="#b3121b"/>
+  <rect x="265" y="312" width="12" height="22" rx="3" fill="#b3121b"/>
+  <rect x="44" y="337" width="10" height="7" rx="2" fill="#f08a1c"/>
+  <rect x="266" y="337" width="10" height="7" rx="2" fill="#f08a1c"/>
+  <!-- červený spodek skoro ke kolejím -->
+  <path d="M35 366 H285 V398 Q285 404 278 404 H42 Q35 404 35 398 Z" fill="#e2341f"/>
+  <path d="M272 140 Q285 148 285 164 V398 Q285 404 280 404 H278 V160 Z" fill="#000" opacity=".08"/>
+  <rect x="146" y="390" width="28" height="5" rx="2" fill="#a8261a"/>
+  <!-- zrcátka vpředu vyčnívají za boky -->
+  <rect x="294" y="210" width="14" height="30" rx="3" fill="#1b1d20"/>
+  <rect x="12" y="210" width="14" height="30" rx="3" fill="#1b1d20"/>
+  <!-- černá spodní hrana a podvozek -->
+  <path d="M37 404 H283 V406 Q283 410 276 410 H44 Q37 410 37 406 Z" fill="#26282a"/>
   <rect x="78" y="410" width="14" height="8" fill="#8f9193"/>
   <rect x="228" y="410" width="14" height="8" fill="#8f9193"/>
   <!-- žlábkové kolejnice zapuštěné do vozovky (rozchod 1 435 mm) -->

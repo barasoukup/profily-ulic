@@ -1,6 +1,6 @@
 <svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
   <!-- Opavský autobus MDPO, Iveco Urbanway 12M CNG, zadní pohled. Fotka zádě opavského vozu chybí; nátěr
-       podle bočních pohledů na fotkách z Wikimedia Commons („Opava, IVECO Urbanway 12M CNG č. 171“, „č. 176“):
+       podle bočních pohledů na fotkách z Wikimedia Commons („Opava, IVECO Urbanway 12M CNG č. 171“, „Opava, Horní náměstí, Iveco Urbanway 10,5M CNG č. 166 (2019-08-14; 01)“):
        bílá skříň, černý pás oken, červený spodek. Záď podle tvaru Urbanway: zadní okno s číslem linky, pod ním
        kryt motoru s mřížkou, svislá světla v rozích. 1 px = 1 cm, šířka 2,55 m. -->
   <!-- zrcátka vpředu vyčnívají za boky -->
@@ -14,7 +14,7 @@
   <!-- zadní okno s číslem linky -->
   <rect x="70" y="34" width="220" height="100" rx="5" fill="#1d1f22"/>
   <path d="M84 40 L112 40 L96 128 L84 128 Z" fill="#3a4654" opacity=".55"/>
-  <text x="262" y="122" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#e6d36a">213</text>
+  <text x="262" y="122" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#c8e05a">213</text>
   <!-- kryt motoru: mřížka sání a evidenční číslo -->
   <rect x="96" y="150" width="168" height="40" rx="4" fill="#d6d8d6"/>
   <g stroke="#9ea2a3" stroke-width="2.5"><path d="M104 158 H256"/><path d="M104 166 H256"/><path d="M104 174 H256"/><path d="M104 182 H256"/></g>

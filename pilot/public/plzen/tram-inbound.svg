@@ -1,7 +1,8 @@
 <svg viewBox="0 0 320 420" xmlns="http://www.w3.org/2000/svg">
-  <!-- Plzeňská tramvaj Škoda 40T (ForCity Smart, PMDP), čelní pohled podle fotky vozu 385 (Wikimedia Commons,
-       „40T 385 Plzeň.jpg“): žlutá skříň a střecha, černá maska kolem velkého čelního skla až ke světlům, oranžová
-       LED tabule, žluté číslo vozu, pod maskou bílá linka do oblouku a žlutá zástěra. 1 px = 1 cm, šířka 2,5 m. -->
+  <!-- Plzeňská tramvaj Škoda 40T (ForCity Smart, PMDP), čelní pohled podle dvou fotek vozu 385
+       (Wikimedia Commons, „40T 385 Plzeň.jpg“ a nejspíš „Škoda 40T Plzen 385.jpg“): žlutá střecha, černá maska
+       kolem velkého čelního skla až ke světlům, sahá k obrysu vozu a zatáčí na bok, oranžová LED tabule, žluté
+       číslo vozu těsně u levých světel, pod maskou bílá linka do oblouku a čistě žlutá zástěra. 1 px = 1 cm, šířka 2,5 m. -->
   <!-- jednoramenný pantograf ve žluté barvě -->
   <g stroke="#e8c21a" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
     <path d="M134 104 L176 74 L150 46"/>
@@ -14,8 +15,10 @@
   <!-- žlutá skříň: svislé boky, zaoblené horní rohy -->
   <path d="M35 384 V150 Q35 124 62 124 H258 Q285 124 285 150 V384 Z" fill="#f6d81c"/>
   <path d="M274 126 Q285 133 285 150 V384 H274 Z" fill="#dcbf14"/>
-  <!-- černá maska od střechy po světla -->
-  <path d="M42 300 V152 Q44 132 70 131 H250 Q276 132 278 152 V300 Q230 310 160 310 Q90 310 42 300 Z" fill="#17191c"/>
+  <!-- černá maska od střechy po světla, až k obrysu vozu (žlutá jen střecha nad ní a zástěra pod bílou linkou) -->
+  <path d="M35 300 V152 Q35 129 62 129 H258 Q285 129 285 152 V300 Q230 310 160 310 Q90 310 35 300 Z" fill="#17191c"/>
+  <!-- maska zatáčí na bok: tmavší černý pruh boku nad bílou linkou -->
+  <path d="M274 131 Q285 137 285 152 V300 Q280 301 274 302 Z" fill="#0c0d0f"/>
   <!-- oranžová LED tabule: linka 4, Košutka -->
   <g font-family="Arial, sans-serif" font-weight="bold" fill="#f2a33a">
     <text x="74" y="154" font-size="14">4</text>
@@ -31,14 +34,11 @@
   <circle cx="82" cy="284" r="6" fill="#eef0ea" stroke="#8f9397" stroke-width="2"/>
   <circle cx="256" cy="282" r="7" fill="#eef0ea" stroke="#8f9397" stroke-width="2"/>
   <circle cx="238" cy="284" r="6" fill="#eef0ea" stroke="#8f9397" stroke-width="2"/>
-  <text x="112" y="290" font-family="Arial, sans-serif" font-size="17" font-weight="bold" fill="#f6d81c">385</text>
+  <text x="94" y="290" font-family="Arial, sans-serif" font-size="17" font-weight="bold" fill="#f6d81c">385</text>
   <!-- bílá linka pod maskou, do oblouku -->
   <path d="M35 300 Q90 312 160 312 Q230 312 285 300 V310 Q230 322 160 322 Q90 322 35 310 Z" fill="#f4f4f0"/>
-  <!-- žlutá zástěra: znak Škoda, piktogram přístupnosti -->
-  <circle cx="160" cy="346" r="8" fill="none" stroke="#3f4245" stroke-width="2.5"/>
-  <rect x="96" y="340" width="11" height="11" rx="1" fill="#2a63b8"/>
   <!-- zpětné zrcátko na rameni vlevo -->
-  <path d="M38 160 H22 Q16 160 16 166 V176" stroke="#17191c" stroke-width="3" fill="none"/>
+  <path d="M35 160 H22 Q16 160 16 166 V176" stroke="#17191c" stroke-width="3" fill="none"/>
   <rect x="8" y="176" width="14" height="26" rx="3" fill="#17191c"/>
   <!-- tmavý spodek zástěry skoro ke kolejím (nízká podlaha, kola skrytá) -->
   <path d="M35 384 H285 V396 Q285 404 278 406 L270 410 H50 L42 406 Q35 404 35 396 Z" fill="#26282a"/>

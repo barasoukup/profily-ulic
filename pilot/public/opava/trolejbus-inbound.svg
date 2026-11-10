@@ -1,55 +1,69 @@
 <svg viewBox="0 0 360 560" xmlns="http://www.w3.org/2000/svg">
   <!-- Opavský trolejbus MDPO, Škoda 32Tr SOR (nejpočetnější typ, 15 vozů), čelní pohled podle fotek z Wikimedia
-       Commons („Opava, Horní náměstí, Škoda 32Tr SOR č. 314 (2019-08-14; 01)“, „Opava, Škoda 32Tr SOR č. 325“):
-       celé čelo černé, velké sklo se zelenou LED tabulí, po stranách červené hrany od bílé střechy dolů, pod sklem
-       bílá linka do oblouku a pod ní červený „úsměv“ mezi světly, kulatá světla v černých pouzdrech v rozích,
-       nápis MDPO. 1 px = 1 cm, šířka 2,55 m; nahoře sběrače k trolejím. -->
+       Commons „Opava, Horní náměstí, Škoda 32Tr SOR č. 314 (2019-08-14; 01)“ a „(2019-08-14; 02)“: celé čelo
+       černé, nahoře černá kopule (bílá střecha zepředu skoro není vidět), velké sklo se zelenou LED tabulí, po
+       stranách červené hrany, pod sklem znak Škoda a široký bílý pás do oblouku s červeným nápisem MDPO, pod ním
+       velký červený lichoběžník s evidenčním číslem 314 mezi stříbrnými pouzdry světel (dvě kulatá světla a řada
+       LED denního svícení), dole černý nárazník se značkou. 1 px = 1 cm, šířka 2,55 m; nahoře sběrače k trolejím. -->
   <!-- sběrače: dvě tyče ze zadní části střechy k trolejím (troleje 5,3–5,5 m nad vozovkou, rozchod 0,6 m) -->
   <g stroke="#2a2b2a" stroke-linecap="round" fill="none">
-    <path d="M160 262 L148 16" stroke-width="5"/>
-    <path d="M200 262 L212 16" stroke-width="5"/>
+    <path d="M160 252 L148 16" stroke-width="5"/>
+    <path d="M200 252 L212 16" stroke-width="5"/>
   </g>
   <rect x="140" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
   <rect x="204" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
   <g transform="translate(0 240)">
     <!-- zpětná zrcátka na ramenech od střechy -->
-    <path d="M58 40 Q34 36 32 58" stroke="#16181b" stroke-width="5" fill="none"/>
-    <rect x="22" y="56" width="18" height="46" rx="6" fill="#16181b"/>
-    <path d="M302 40 Q326 36 328 58" stroke="#16181b" stroke-width="5" fill="none"/>
-    <rect x="320" y="56" width="18" height="46" rx="6" fill="#16181b"/>
-    <!-- bílá střecha s krytem výzbroje -->
-    <path d="M56 46 Q58 24 86 24 H274 Q302 24 304 46 Z" fill="#f3f3f1"/>
-    <rect x="128" y="16" width="104" height="12" rx="4" fill="#e4e4e1"/>
-    <!-- černé čelo od střechy po nárazník -->
-    <path d="M52 298 V60 Q52 38 76 36 H284 Q308 38 308 60 V298 Z" fill="#16181b"/>
+    <path d="M58 32 Q34 28 32 50" stroke="#16181b" stroke-width="5" fill="none"/>
+    <rect x="22" y="48" width="18" height="46" rx="6" fill="#16181b"/>
+    <path d="M302 32 Q326 28 328 50" stroke="#16181b" stroke-width="5" fill="none"/>
+    <rect x="320" y="48" width="18" height="46" rx="6" fill="#16181b"/>
+    <!-- kryt výzbroje a tenký okraj bílé střechy za černou kopulí -->
+    <rect x="128" y="6" width="104" height="14" rx="4" fill="#e4e4e1"/>
+    <path d="M66 26 Q72 17 96 17 H264 Q288 17 294 26 Z" fill="#f3f3f1"/>
+    <!-- černé čelo od kopule po nárazník -->
+    <path d="M52 298 V52 Q52 26 82 22 H278 Q308 26 308 52 V298 Z" fill="#16181b"/>
     <!-- červené hrany boků od střechy dolů -->
-    <path d="M52 62 Q52 40 74 36 L80 38 Q60 46 60 66 V280 H52 Z" fill="#d42027"/>
-    <path d="M308 62 Q308 40 286 36 L280 38 Q300 46 300 66 V280 H308 Z" fill="#d42027"/>
+    <path d="M52 54 Q52 28 78 23 L84 26 Q60 34 60 58 V272 H52 Z" fill="#d42027"/>
+    <path d="M308 54 Q308 28 282 23 L276 26 Q300 34 300 58 V272 H308 Z" fill="#d42027"/>
     <!-- LED tabule: linka 206, cíl Jaktař -->
-    <rect x="70" y="46" width="220" height="30" fill="#0c0d0e"/>
+    <rect x="70" y="36" width="220" height="30" fill="#0c0d0e"/>
     <g font-family="Arial, sans-serif" font-weight="bold" fill="#52e08a">
-      <text x="86" y="68" font-size="18">206</text>
-      <text x="200" y="68" font-size="17" text-anchor="middle" letter-spacing="1">JAKTAŘ</text>
+      <text x="86" y="58" font-size="18">206</text>
+      <text x="200" y="58" font-size="17" text-anchor="middle" letter-spacing="1">JAKTAŘ</text>
     </g>
     <!-- čelní sklo s odlesky a stěrači -->
-    <path d="M66 80 H294 V192 Q180 206 66 192 Z" fill="#26313b"/>
-    <path d="M82 86 L128 86 L98 186 L80 184 Z" fill="#46596a" opacity=".5"/>
-    <path d="M250 86 L272 86 L262 134 L240 134 Z" fill="#46596a" opacity=".4"/>
-    <g stroke="#0b0c0d" stroke-width="2.5" stroke-linecap="round"><path d="M96 196 L170 186"/><path d="M276 196 L204 186"/></g>
-    <!-- bílá linka do oblouku a pod ní červený úsměv mezi světly -->
-    <path d="M60 226 Q180 270 300 226" stroke="#f3f3f1" stroke-width="4" fill="none"/>
-    <path d="M96 246 Q180 274 264 246 L268 268 Q180 288 92 268 Z" fill="#d42027"/>
-    <!-- nápis MDPO a znak Škoda -->
-    <text x="180" y="262" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" font-style="italic" fill="#f3f3f1">MDPO</text>
-    <circle cx="180" cy="226" r="6" fill="none" stroke="#9fb1bf" stroke-width="2"/>
-    <!-- světla: tři kulatá v černém pouzdře v každém rohu -->
-    <path d="M60 222 Q78 232 98 240 L96 272 Q74 274 60 268 Z" fill="#2b2e33" stroke="#7d8389" stroke-width="1.5"/>
-    <circle cx="72" cy="240" r="6" fill="#eef2f5"/><circle cx="86" cy="248" r="6" fill="#eef2f5"/><circle cx="76" cy="260" r="4.5" fill="#f2a33a"/>
-    <path d="M300 222 Q282 232 262 240 L264 272 Q286 274 300 268 Z" fill="#2b2e33" stroke="#7d8389" stroke-width="1.5"/>
-    <circle cx="288" cy="240" r="6" fill="#eef2f5"/><circle cx="274" cy="248" r="6" fill="#eef2f5"/><circle cx="284" cy="260" r="4.5" fill="#f2a33a"/>
-    <!-- nárazník s registrační značkou -->
-    <rect x="54" y="278" width="252" height="20" rx="4" fill="#16181b"/>
-    <rect x="152" y="282" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="282" width="6" height="12" fill="#2a63b8"/>
+    <path d="M66 70 H294 V180 Q180 192 66 180 Z" fill="#26313b"/>
+    <path d="M82 76 L128 76 L98 176 L80 174 Z" fill="#46596a" opacity=".5"/>
+    <path d="M250 76 L272 76 L262 124 L240 124 Z" fill="#46596a" opacity=".4"/>
+    <g stroke="#0b0c0d" stroke-width="2.5" stroke-linecap="round"><path d="M96 184 L170 176"/><path d="M276 184 L204 176"/></g>
+    <!-- znak Škoda: plné modrostříbrné kolečko -->
+    <circle cx="180" cy="203" r="6.5" fill="#8fb0c6" stroke="#d5dee5" stroke-width="1.2"/>
+    <circle cx="180" cy="203" r="3" fill="#2f5f86"/>
+    <!-- stříbrná pouzdra světel v rozích -->
+    <path d="M60 196 L104 212 L104 258 Q82 264 60 258 Z" fill="#c9cdd2" stroke="#9aa0a6" stroke-width="1.2"/>
+    <path d="M300 196 L256 212 L256 258 Q278 264 300 258 Z" fill="#c9cdd2" stroke="#9aa0a6" stroke-width="1.2"/>
+    <!-- velký červený lichoběžník mezi pouzdry až k nárazníku -->
+    <path d="M102 212 Q180 240 258 212 L264 274 H96 Z" fill="#d42027"/>
+    <!-- široký bílý pás do oblouku s červeným nápisem MDPO -->
+    <path d="M54 194 Q180 236 306 194 L306 198 Q180 256 54 198 Z" fill="#f3f3f1"/>
+    <text x="180" y="225.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="9.5" font-weight="bold" font-style="italic" fill="#d42027">MDPO</text>
+    <!-- evidenční číslo na červené ploše -->
+    <text x="108" y="250" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#16181b">314</text>
+    <!-- světla: dvě kulatá, LED denního svícení podél vnitřní hrany, blinkr -->
+    <g fill="#fdf6dc" stroke="#8a8f94" stroke-width=".6">
+      <circle cx="68" cy="207" r="1.7"/><circle cx="75" cy="210" r="1.7"/><circle cx="82" cy="212.5" r="1.7"/><circle cx="89" cy="215" r="1.7"/><circle cx="96" cy="218" r="1.7"/>
+      <circle cx="94" cy="225" r="1.7"/><circle cx="94" cy="232" r="1.7"/><circle cx="94" cy="239" r="1.7"/>
+      <circle cx="292" cy="207" r="1.7"/><circle cx="285" cy="210" r="1.7"/><circle cx="278" cy="212.5" r="1.7"/><circle cx="271" cy="215" r="1.7"/><circle cx="264" cy="218" r="1.7"/>
+      <circle cx="266" cy="225" r="1.7"/><circle cx="266" cy="232" r="1.7"/><circle cx="266" cy="239" r="1.7"/>
+    </g>
+    <g fill="#eef2f5" stroke="#5b6066" stroke-width="1.5">
+      <circle cx="72" cy="224" r="6"/><circle cx="86" cy="238" r="6"/><circle cx="288" cy="224" r="6"/><circle cx="274" cy="238" r="6"/>
+    </g>
+    <circle cx="70" cy="250" r="3.5" fill="#f2a33a"/><circle cx="290" cy="250" r="3.5" fill="#f2a33a"/>
+    <!-- černý nárazník s registrační značkou -->
+    <rect x="54" y="272" width="252" height="26" rx="4" fill="#16181b"/>
+    <rect x="152" y="279" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="279" width="6" height="12" fill="#2a63b8"/>
     <!-- kola -->
     <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
   </g>

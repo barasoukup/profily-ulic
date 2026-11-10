@@ -1,31 +1,53 @@
 <svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
   <!-- Mostecký autobus DPmML, SOR NB 12 City, zadní pohled podle fotky na Wikimedia Commons („Most, Rudolická,
-       městský autobus DPmML - SOR.jpg“): žlutá záď, tmavé zadní okno s číslem linky, žlutá mřížka krytu motoru,
-       bílý panel s registrační značkou, světla po stranách, červený nárazník. 1 px = 1 cm, šířka 2,55 m. -->
+       městský autobus DPmML - SOR.jpg“): žlutá záď až ke střeše s červenými obrysovými světly v horních rozích,
+       tmavé zadní okno s větrací mřížkou vlevo a číslem linky vpravo, žebrování krytu motoru pod oknem, bílý panel
+       s nápisem SORCITY NB12 vpravo nahoře a registrační značkou, svislé bloky světel na krajích (bílé, oranžové,
+       bílé, červené), červený nárazník. 1 px = 1 cm, šířka 2,55 m. -->
   <!-- zrcátka vpředu vyčnívají za boky -->
   <rect x="24" y="54" width="16" height="44" rx="4" fill="#1d1f22"/>
   <rect x="320" y="54" width="16" height="44" rx="4" fill="#1d1f22"/>
-  <!-- žlutá skříň, bílá střecha -->
+  <!-- žlutá skříň až ke střeše -->
   <path d="M52 296 V40 Q52 20 72 20 H288 Q308 20 308 40 V296 Z" fill="#f2c51c"/>
-  <path d="M56 22 H304 Q306 24 306 28 H54 Q54 24 56 22 Z" fill="#f4f4f1"/>
   <path d="M298 22 Q308 26 308 40 V296 H298 Z" fill="#000" opacity=".08"/>
-  <!-- tmavé zadní okno, číslo linky -->
-  <path d="M66 40 Q66 34 72 34 H288 Q294 34 294 40 V120 H66 Z" fill="#262a2e"/>
-  <rect x="72" y="40" width="216" height="76" fill="#3a4a58"/>
-  <path d="M90 44 L118 44 L102 112 L88 112 Z" fill="#5c6c79" opacity=".5"/>
-  <rect x="160" y="60" width="40" height="22" fill="#15171a"/>
-  <text x="180" y="77" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#f5a623">30</text>
-  <!-- mřížka krytu motoru -->
-  <g fill="#c9a316"><rect x="66" y="134" width="228" height="4" rx="1"/><rect x="66" y="142" width="228" height="4" rx="1"/><rect x="66" y="150" width="228" height="4" rx="1"/></g>
-  <!-- bílý panel s registrační značkou a světly po stranách -->
-  <rect x="64" y="168" width="232" height="62" rx="3" fill="#f4f4f1"/>
-  <rect x="152" y="196" width="56" height="12" rx="1" fill="#f4f4f2" stroke="#9fa3a6"/><rect x="152" y="196" width="6" height="12" fill="#2a63b8"/>
-  <text x="180" y="186" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#1d1f22">SORCITY NB12</text>
-  <circle cx="84" cy="184" r="7" fill="none" stroke="#cc2229" stroke-width="2"/>
-  <g><rect x="54" y="170" width="10" height="16" rx="2" fill="#b3121b"/><rect x="54" y="188" width="10" height="12" rx="2" fill="#f2a33a"/><rect x="54" y="202" width="10" height="10" rx="2" fill="#eef1f3"/>
-     <rect x="296" y="170" width="10" height="16" rx="2" fill="#b3121b"/><rect x="296" y="188" width="10" height="12" rx="2" fill="#f2a33a"/><rect x="296" y="202" width="10" height="10" rx="2" fill="#eef1f3"/></g>
+  <!-- červená obrysová světla v horních rozích -->
+  <circle cx="68" cy="36" r="4.5" fill="#c8241c" stroke="#8a1a14"/>
+  <circle cx="292" cy="36" r="4.5" fill="#c8241c" stroke="#8a1a14"/>
+  <!-- tmavé zadní okno: vlevo větrací mřížka, vpravo číslo linky -->
+  <path d="M62 50 Q62 44 68 44 H286 Q292 44 292 50 V130 H62 Z" fill="#1d2125"/>
+  <rect x="66" y="48" width="222" height="78" fill="#2f3c47"/>
+  <path d="M128 50 L156 50 L140 122 L126 122 Z" fill="#4c5c69" opacity=".45"/>
+  <rect x="88" y="58" width="24" height="62" fill="#15181b"/>
+  <g stroke="#3c444b" stroke-width="1.5">
+    <path d="M90 64 H110 M90 70 H110 M90 76 H110 M90 82 H110 M90 88 H110 M90 94 H110 M90 100 H110 M90 106 H110 M90 112 H110"/>
+  </g>
+  <rect x="224" y="70" width="36" height="24" fill="#15171a"/>
+  <text x="242" y="88" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#f5a623">30</text>
+  <text x="298" y="96" text-anchor="middle" font-family="Georgia, serif" font-size="10" fill="#1d1f22">8</text>
+  <!-- žebrování krytu motoru pod oknem -->
+  <g fill="#c9a316"><rect x="56" y="138" width="248" height="4" rx="1"/><rect x="56" y="146" width="248" height="4" rx="1"/><rect x="56" y="154" width="248" height="4" rx="1"/></g>
+  <!-- bílý panel s nápisem, registrační značkou a nálepkami -->
+  <rect x="70" y="166" width="220" height="80" rx="2" fill="#f4f4f1"/>
+  <text x="276" y="180" text-anchor="end" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#1d1f22" letter-spacing=".4">SORCITY NB12</text>
+  <text x="276" y="240" text-anchor="end" font-family="Arial, sans-serif" font-size="5.5" font-style="italic" font-weight="bold" fill="#1d1f22">EURO 5 EEV</text>
+  <circle cx="82" cy="180" r="7" fill="#f4f4f1" stroke="#cc2229" stroke-width="2"/>
+  <rect x="77" y="194" width="9" height="5" fill="#2a63b8"/><rect x="77" y="201" width="9" height="5" fill="#2a63b8"/>
+  <rect x="146" y="200" width="56" height="12" rx="1" fill="#f4f4f2" stroke="#9fa3a6"/><rect x="146" y="200" width="6" height="12" fill="#2a63b8"/>
+  <rect x="171" y="222" width="6" height="10" rx="1.5" fill="#26282a"/>
+  <!-- svislé bloky světel na krajích panelu -->
+  <g>
+    <rect x="52" y="182" width="18" height="15" rx="2" fill="#eef1f3" stroke="#b9bcbf"/>
+    <rect x="52" y="199" width="18" height="15" rx="2" fill="#f08a1c"/>
+    <rect x="52" y="216" width="18" height="13" rx="2" fill="#eef1f3" stroke="#b9bcbf"/>
+    <rect x="52" y="231" width="18" height="15" rx="2" fill="#b3121b"/>
+    <rect x="290" y="182" width="18" height="15" rx="2" fill="#eef1f3" stroke="#b9bcbf"/>
+    <rect x="290" y="199" width="18" height="15" rx="2" fill="#f08a1c"/>
+    <rect x="290" y="216" width="18" height="13" rx="2" fill="#eef1f3" stroke="#b9bcbf"/>
+    <rect x="290" y="231" width="18" height="15" rx="2" fill="#b3121b"/>
+  </g>
   <!-- červený nárazník -->
-  <path d="M52 244 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#d42a22"/>
+  <path d="M52 248 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#d42a22"/>
+  <rect x="188" y="270" width="14" height="6" rx="1" fill="#b3221b"/>
   <!-- kola -->
   <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
 </svg>
