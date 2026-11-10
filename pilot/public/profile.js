@@ -167,7 +167,8 @@ function drawItem(g, it, x, top, right) {
     case "sdilena_kola": return sprite(g, "bikeshare-left", x, top);
     case "pristresek": {
       const side = right ? "right" : "left";
-      return sprite(g, cityArt() && it.tram ? `transit-shelter-tram-${side}` : `transit-shelter-01-${side}`, x, top);
+      // A tram stop's own shelter where the city has one (Prague, Brno), else the bus stop's.
+      return sprite(g, it.tram && ownSprite(`transit-shelter-tram-${side}`) ? `transit-shelter-tram-${side}` : `transit-shelter-01-${side}`, x, top);
     }
     case "sloupek": return sprite(g, "bollard", x, top);
     // Tram overhead-line pole (technical map): a 9 m steel pole with its bracket over the tracks; a street
