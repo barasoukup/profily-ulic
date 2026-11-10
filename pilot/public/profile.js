@@ -2,9 +2,11 @@
 // matching the Streetmix illustrations (1 px = 1 cm).
 import { TYPES, SOURCES, PARKING_USE, PARKING_POSITION, TRAM_BEDS } from "./types.js";
 import { city, cityById, CITY_IDS } from "./city.js";
+import { SIGNS, PLATES, signFile, plateFile } from "./signs.js";
 
 const NS = "http://www.w3.org/2000/svg";
 const GROUND = 760; // roadway surface
+const SIGN_SIZE = 90, SIGN_ROW = 160; // traffic signs under the labels: height of a sign, room of a row (cm)
 const CURB = 15;
 const EDGE = 400; // width drawn for the building / open edge
 const FLOOR = 3.5; // typical floor height for estimating floors from a building's height (m)
@@ -932,6 +934,116 @@ function drawEdge(svg, x, kind, side, surface, info, style) {
 }
 
 // Build an SVG element. opts: {editable, selected, view: [x0, width], onSelect(i)}
+// Traffic-sign icons (znacky/), loaded on first use: file → { uri, w, h }. A template (B 20a with another speed,
+// E 13 with a text) gets its text filled in before it becomes a data URI.
+const signArt = new Map();
+const signKey = (file, text) => (text ? `${file}|${text}` : file);
+async function loadSignFile(file, text) {
+  const key = signKey(file, text);
+  if (signArt.has(key)) return;
+  signArt.set(key, null);
+  try {
+    const r = await fetch(`znacky/${file}.svg`);
+    if (!r.ok) throw new Error(r.status);
+    let svg = await r.text();
+    if (text) svg = svg.replace(/(<text id="[vt]"[^>]*>)[^<]*/, `$1${text.replace(/[<&]/g, "")}`);
+    const vb = svg.match(/viewBox="([^"]+)"/)?.[1].split(/\s+/).map(Number);
+    signArt.set(key, { uri: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg), w: vb[2], h: vb[3] });
+  } catch (err) {
+    console.warn("značka chybí", file, err.message);
+  }
+}
+// The file (and filled-in text) of a sign and of its plate.
+const signArtOf = (x) => {
+  const file = signFile(x);
+  return { file, text: file === "B20a" ? String(x.v) : null };
+};
+const plateArtOf = (x) => {
+  const file = plateFile(x);
+  return file && { file, text: file === "E13" ? PLATES[x.plate] : null };
+};
+// All signs of the profiles, loaded before drawing (the row is drawn from the cache).
+// Resolves to true when something new was loaded (the drawing then needs redrawing).
+export async function loadSigns(...profiles) {
+  const all = profiles.filter(Boolean).flatMap((p) => [...(p.zones?.signs || []), ...p.segments.flatMap((s) => s.signs || [])]);
+  const todo = all.flatMap((x) => [signArtOf(x), plateArtOf(x)].filter(Boolean)).filter((a) => !signArt.has(signKey(a.file, a.text)));
+  await Promise.all(todo.map((a) => loadSignFile(a.file, a.text)));
+  return todo.length > 0;
+}
+const artFor = (a) => (a ? signArt.get(signKey(a.file, a.text)) : null);
+
+// The row of signs under the labels: the zones of the roadway once across it (a thin bracket over the span),
+// then each part's signs under the part. size: the height of a sign in drawing units; top: the row's top.
+// Signs that do not fit their part are left out. Returns the bottom of the rows (or top without signs).
+export function layoutSigns(svg, size, top) {
+  let y = top;
+  for (const row of ["z", "p"]) {
+    const groups = [...svg.querySelectorAll(`g.sign-group[data-row="${row}"]`)];
+    if (!groups.length) continue;
+    let rowH = 0;
+    for (const g of groups) {
+      const cx = Number(g.dataset.cx), avail = Number(g.dataset.w);
+      const stacks = [...g.querySelectorAll("g.sign")];
+      // Each sign with its plate below: widths at this size, then scaled down to the part's width.
+      const ws = stacks.map((st) => Math.max(...[...st.querySelectorAll("image")].map((im) => Number(im.dataset.ar) * size * (im.dataset.plate ? 0.5 : 1))));
+      const gap = size * 0.12;
+      const need = ws.reduce((a, w) => a + w, 0) + gap * (ws.length - 1);
+      const k = Math.min(1, (avail * 0.94) / need);
+      g.style.display = k * size < size * 0.55 ? "none" : "";
+      if (g.style.display) continue;
+      let x = cx - (need * k) / 2;
+      stacks.forEach((st, j) => {
+        let yy = y;
+        for (const im of st.querySelectorAll("image")) {
+          const h = size * k * (im.dataset.plate ? 0.5 : 1) * (im.dataset.plate ? 1 : 1);
+          const w = Number(im.dataset.ar) * h;
+          im.setAttribute("x", x + (ws[j] * k - w) / 2); im.setAttribute("y", yy);
+          im.setAttribute("width", w); im.setAttribute("height", h);
+          yy += h + size * 0.04;
+        }
+        rowH = Math.max(rowH, yy - y);
+        x += ws[j] * k + gap * k;
+      });
+      const br = g.querySelector("path.zone-bracket");
+      if (br) {
+        const a = Number(g.dataset.x0), b = Number(g.dataset.x1), by = y - size * 0.18;
+        br.setAttribute("d", `M${a} ${by + size * 0.1} V${by} H${b} V${by + size * 0.1}`);
+        br.setAttribute("stroke-width", size * 0.03);
+      }
+    }
+    if (rowH) y += rowH + size * 0.3;
+  }
+  return y;
+}
+
+function drawSigns(svg, profile, bounds) {
+  const segs = profile.segments;
+  const stack = (g, x) => {
+    const st = el("g", { class: "sign" }, g);
+    const title = el("title", {}, st);
+    title.textContent = SIGNS[x.k] + (x.v && typeof x.v === "number" ? ` ${x.v} km/h` : "") + (x.plate ? ` (${PLATES[x.plate]})` : "");
+    for (const [a, plate] of [[signArtOf(x), false], [plateArtOf(x), true]]) {
+      const art = artFor(a);
+      if (!art) continue;
+      el("image", { href: art.uri, "data-ar": art.w / art.h, ...(plate ? { "data-plate": 1 } : {}) }, st);
+    }
+    if (!st.querySelector("image")) st.remove();
+  };
+  const z = profile.zones;
+  if (z?.signs?.length && bounds[z.to + 1] !== undefined) {
+    const x0 = bounds[z.from], x1 = bounds[z.to + 1];
+    const g = el("g", { class: "sign-group", "data-row": "z", "data-cx": (x0 + x1) / 2, "data-w": Math.max(x1 - x0, 400), "data-x0": x0, "data-x1": x1 }, svg);
+    el("path", { class: "zone-bracket", fill: "none", stroke: "#9a978e" }, g);
+    z.signs.forEach((x) => stack(g, x));
+  }
+  segs.forEach((s, i) => {
+    if (!s.signs?.length) return;
+    const g = el("g", { class: "sign-group", "data-row": "p", "data-cx": (bounds[i] + bounds[i + 1]) / 2, "data-w": bounds[i + 1] - bounds[i] }, svg);
+    s.signs.forEach((x) => stack(g, x));
+  });
+  for (const g of svg.querySelectorAll("g.sign-group")) if (!g.querySelector("image")) g.remove();
+}
+
 export function buildSvg(profile, opts = {}) {
   const segs = profile.segments;
   const total = totalWidth(profile) * 100;
@@ -947,7 +1059,8 @@ export function buildSvg(profile, opts = {}) {
   const y0 = Math.min(0, GROUND - shown - 140) - 110;
   labelTop = y0 + 190;
   // An export has no screen fitting: the bottom leaves room for all label rows and the credits line.
-  const bottom = opts.credits ? H + 110 : H;
+  const signRows = (profile.zones?.signs?.length ? 1 : 0) + (profile.segments.some((s) => s.signs?.length) ? 1 : 0);
+  const bottom = (opts.credits ? H + 110 : H) + (opts.signs === false ? 0 : signRows * SIGN_ROW);
   const svg = el("svg", { xmlns: NS, viewBox: `${vx} ${y0} ${view[1]} ${bottom - y0}`, "font-family": "Inter, system-ui, sans-serif",
     role: "img", "aria-label": `Příčný profil, celkem ${fmt(total / 100)}: ` + segs.map((s) => `${TYPES[s.type]?.label || s.type} ${fmt(s.width)}`).join(", ") });
   el("rect", { class: "bg", x: vx, y: y0, width: view[1], height: bottom - y0, fill: "#fbfaf6" }, svg);
@@ -1099,6 +1212,11 @@ export function buildSvg(profile, opts = {}) {
       el("circle", { class: "knob", cx: bx, cy: GROUND - 300, r: 18, fill: "#fff", stroke: "#185fa5", "stroke-width": 5 }, h);
       el("path", { class: "knob", d: `M${bx - 8} ${GROUND - 300} h16 M${bx - 8} ${GROUND - 300} l5 -5 M${bx - 8} ${GROUND - 300} l5 5 M${bx + 8} ${GROUND - 300} l-5 -5 M${bx + 8} ${GROUND - 300} l-5 5`, stroke: "#185fa5", "stroke-width": 3, fill: "none" }, h);
     });
+  }
+  if (opts.signs !== false) {
+    drawSigns(svg, profile, bounds);
+    // Without the page's fitting (an export): the rows below the labels at a fixed size.
+    layoutSigns(svg, SIGN_SIZE, GROUND + 320);
   }
   svg.dataset.view = JSON.stringify(view);
   return svg;

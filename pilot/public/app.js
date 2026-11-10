@@ -1,7 +1,8 @@
 import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
-import { loadSprites, buildSvg, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE } from "./profile.js";
+import { deriveSigns, mirrorSigns } from "./signs.js";
+import { loadSprites, loadSigns, layoutSigns, buildSvg, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE } from "./profile.js";
 import * as sources from "./sources.js";
 import { MAPY_KEY } from "./config.js";
 import { cleanProfile, cleanCut } from "./validate.js";
@@ -241,6 +242,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     // Unknown (no zone file): the profile decides from the TSK parking sections around the cut.
     const inZps = z.status === "fulfilled" ? z.value : undefined;
     const result = deriveProfile({ center: [0, 0], dir, half: HALF, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho });
+    // The row of traffic signs from the street's OSM tags and the parts (signs.js).
+    deriveSigns(result, near.way.tags, { inZps });
     const name = near.way.tags.name || near.way.tags.ref || `ulice ${near.way.id}`;
     const span = result.extent && { left: +result.extent[1].toFixed(2), right: +(-result.extent[0]).toFixed(2) };
     // A design belongs to its street: moving the cut along the same street keeps it, a cut of another
@@ -271,7 +274,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
       try { const y = await sources.vyvoj(info.point[1], info.point[0]); if (y) info.period = y; } catch {}
       delete info.point;
     }));
-    state.stav = { segments: result.segments, edges: result.edges };
+    state.stav = { segments: result.segments, edges: result.edges, ...(result.zones ? { zones: result.zones } : {}) };
     if (!state.navrhEdited) state.navrh = structuredClone(state.stav);
     state.selected = null;
     state.fixing = false;
@@ -470,6 +473,8 @@ const canEdit = () => state.mode === "navrh" || (state.mode === "stav" && state.
 // working) instead of falling to the top of the page.
 const FOCUSABLE = "button, select, input, label.btn, [tabindex]";
 function render() {
+  // Sign icons load on first use; the drawing is redone once they are there.
+  loadSigns(state.stav, state.navrh).then((fresh) => fresh && render(), () => {});
   const a = document.activeElement;
   const box = a?.closest?.("#profile, #editor, #palette");
   const index = box && box.id !== "profile" ? [...box.querySelectorAll(FOCUSABLE)].indexOf(a) : -1;
@@ -711,6 +716,7 @@ function fitPhone(box = $("#profile")) {
 const coarse = matchMedia("(pointer: coarse)").matches;
 // Labels in the drawing keep a readable size on screen (k = drawing units per CSS pixel); a label
 // wider than its part shrinks a little, and a name that still does not fit is left out.
+const SIGN_PX = 26; // height of a traffic sign under the profile on screen (CSS px)
 const LABEL_PX = { "lbl-w": 13, "lbl-t": 11, "lbl-total": 14, "lbl-title": 13, "lbl-floor": 11 };
 function fitLabels(box) {
   for (const svg of box.querySelectorAll("svg")) {
@@ -789,7 +795,9 @@ function fitLabels(box) {
     for (const t of svg.querySelectorAll("text[data-row]")) t.setAttribute("y", row(Number(t.dataset.row)));
     const lowest = Math.max(1, ...[...svg.querySelectorAll("text[data-row]")].filter((t) => t.style.display !== "none")
       .map((t) => Number(t.dataset.row) + (t.querySelector("tspan") ? 1 : 0)));
-    const bottom = Math.max(H, row(lowest) + 0.5 * LABEL_PX["lbl-t"] * k);
+    // The row of traffic signs below the labels, at a readable size on screen (profile.js layoutSigns).
+    const signsEnd = layoutSigns(svg, SIGN_PX * k, row(lowest) + 0.9 * LABEL_PX["lbl-t"] * k);
+    const bottom = Math.max(H, row(lowest) + 0.5 * LABEL_PX["lbl-t"] * k, signsEnd);
     const [vx, vy] = svg.getAttribute("viewBox").split(" ").map(Number);
     if (Math.abs(vy + vh - bottom) > 1) {
       svg.setAttribute("viewBox", `${vx} ${vy} ${vw} ${bottom - vy}`);
@@ -1283,7 +1291,7 @@ $("#file-load").onchange = async (e) => {
 const OTHER = { forward: "backward", backward: "forward" };
 function mirror(p) {
   const swap = (k) => (k.startsWith("left") ? "right" + k.slice(4) : k.startsWith("right") ? "left" + k.slice(5) : k);
-  return {
+  return mirrorSigns({
     ...p,
     edges: Object.fromEntries(Object.entries(p.edges || {}).map(([k, v]) => [swap(k), v])),
     segments: [...p.segments].reverse().map((s) => ({
@@ -1292,7 +1300,7 @@ function mirror(p) {
       ...(s.bikeDir ? { bikeDir: OTHER[s.bikeDir] || s.bikeDir } : {}),
       ...(s.items ? { items: s.items.map((it) => ({ ...it, f: +(1 - it.f).toFixed(3) })) } : {}),
     })),
-  };
+  });
 }
 $("#btn-flip").onclick = () => {
   if (!state.stav || !state.cut) return;
@@ -1366,7 +1374,7 @@ async function openLink(hash) {
   try {
     const take = async (text, into) => {
       const p = cleanProfile(await unpackProfile(text), into === "stav" ? "stav" : "návrh");
-      state[into] = { segments: p.segments, edges: { ...state.stav.edges, ...p.edges } };
+      state[into] = { segments: p.segments, edges: { ...state.stav.edges, ...p.edges }, ...(p.zones ? { zones: p.zones } : {}) };
     };
     if (design.stav) await take(design.stav, "stav");
     if (design.navrh) { await take(design.navrh, "navrh"); state.navrhEdited = true; state.mode = "navrh"; }

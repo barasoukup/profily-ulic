@@ -2,6 +2,7 @@
 // or edited file must not break the drawing. Unknown types and items are made harmless, numbers
 // that the drawing needs must be numbers, a part without a usable width is an error.
 import { TYPES, SOURCES, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS } from "./types.js";
+import { SIGNS, PLATES, MAX_PER_PART } from "./signs.js";
 
 const EDGE_KINDS = new Set(["budova", "stavba", "zahrada", "zelen", "voda", "parkoviste", "plot", "volno"]);
 const EDGE_STYLES = new Set(["sikma", "funkce", "moderni", "plocha", "nizky", "hala", "centrum", "centrum-obchod", "sidliste", "sidliste-lodzie", "rd"]);
@@ -28,8 +29,13 @@ export function cleanProfile(p, what = "profil") {
     if ("bed" in s && !(s.bed in TRAM_BEDS)) delete s.bed;
     for (const k of ["withBus", "bedGuess"]) if (k in s && s[k] !== true) delete s[k];
     if ("roadClass" in s && !/^(dalnice|mk[1-4]|sil[1-3])$/.test(s.roadClass)) delete s.roadClass;
+    if ("signs" in s) s.signs = cleanSigns(s.signs).slice(0, MAX_PER_PART);
+    if (s.signs && !s.signs.length) delete s.signs;
     s.items = Array.isArray(s.items) ? s.items.filter((it) => it && it.kind in ITEMS && num(it.f, 0, 1)) : [];
   }
+  // Zones and rules of the whole roadway: a span of parts and its signs.
+  const z = p.zones, n = p.segments.length;
+  if (z !== undefined && !(z && Number.isInteger(z.from) && Number.isInteger(z.to) && z.from >= 0 && z.from <= z.to && z.to < n && (z.signs = cleanSigns(z.signs)).length)) delete p.zones;
   p.edges = typeof p.edges === "object" && p.edges ? p.edges : {};
   for (const side of ["left", "right"]) {
     if (side in p.edges && !EDGE_KINDS.has(p.edges[side])) p.edges[side] = "volno";
@@ -44,6 +50,15 @@ export function cleanProfile(p, what = "profil") {
     if (b !== undefined && !(b && ["length", "width", "fill", "parts"].every((k) => num(b[k], 0, 100000)))) delete info.block;
   }
   return p;
+}
+
+// Traffic signs (signs.js): known keys, a speed as a number, a known plate, a direction word.
+function cleanSigns(list) {
+  if (!Array.isArray(list)) return [];
+  return list.filter((x) => x && Object.hasOwn(SIGNS, x.k)).map((x) => ({ k: x.k,
+    ...(num(x.v, 1, 200) ? { v: x.v } : typeof x.v === "string" && /^[a-z_;|]{1,60}$/.test(x.v) ? { v: x.v } : {}),
+    ...(Object.hasOwn(PLATES, x.plate) ? { plate: x.plate } : {}),
+    ...(["forward", "backward"].includes(x.dir) ? { dir: x.dir } : {}) })).slice(0, 12);
 }
 
 // Position of the cut: numbers in and around Prague, reach of each side 1–40 m; else no cut.
