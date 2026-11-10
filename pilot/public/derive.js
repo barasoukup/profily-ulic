@@ -14,9 +14,26 @@ const OPEN_LAND = 8; // greenery at least this wide ends the profile as open sur
 const TRAM_HALF = 1.75;
 const TRAM_LANE_HALF = 1.5; // a tram kept to a 3.0 m lane, where OSM counts car lanes beside the tracks
 const CAR_MIN = 2.5; // narrowest leftover space treated as a separate car lane (m)
-const TREE_REACH = 8; // single trees this close to the cut count as standing in it (m)
 const TREE_STRIP = 1.5; // width of a tree strip carved out of a sidewalk (m)
-const ITEM_REACH = 6; // furniture this close to the cut (along the street) is drawn in the profile (m)
+// A cut never hits a point: a point this close to the cut, measured along the street, is drawn in the
+// profile (m), per kind. The nearest one of a row (the same kind at about the same offset) is kept, so a
+// reach of half the usual spacing shows one at most cuts and never two of a row (Bára: tuned on the
+// Prague sample, evaluation/praha-opendata/ZPRAVA.md).
+export const REACH = {
+  strom: 8, // street trees, single (rows crossing the cut always count): about 8–16 m apart
+  lampa: 20, // street lamps (OSM, the technical map's poles without wires): about 25–32 m apart
+  sloup: 20, // tram and trolleybus overhead-line poles: about 22–38 m apart
+  zastavka: 15, // stop poles and shelters: one per stop, a platform is 15–60 m long
+  sloupek: 3, // bollards, planters: 2.5 m apart, a row ending short of the cut is not in it
+  lavicka: 6, // benches: single
+  jine: 6, // everything else standing (bike racks, sign posts, taxi stands, terraces)
+};
+const REACH_GROUP = { lampa: "lampa", lavicka: "lavicka", sloupek: "sloupek", kvetinac: "sloupek", sloup_trakce: "sloup", oznacnik: "zastavka", pristresek: "zastavka" };
+export const reachOf = (kind, reach = REACH) => reach[REACH_GROUP[kind] || (kind === "strom" ? "strom" : "jine")] ?? REACH[REACH_GROUP[kind] || "jine"];
+const ROW_GAP = 1.5; // points of one kind this close across the street stand in one row: one is drawn (m)
+const NO_PARKING_IN = 2.5, NO_PARKING_OUT = 0.5; // a no-parking section counts this far into the roadway from the kerb, and out of it (m)
+const SECTION_NEAR = 12; // the line of a TSK street section within this of the roadway's middle is its section (m)
+const SAME_POINT = 3; // a technical-map or open-data point this close to an OSM one of its kind is the same thing (m)
 const STOP_REACH = 40; // a shelter takes the tram/bus kind of the nearest stop node this close (m)
 const PLATFORM_STRIP = 3; // waiting area of a stop along the curb of a wide sidewalk (m)
 const END_CLEARANCE = 12; // keep the cut this far from the ends of a way, away from junctions (m)
@@ -223,6 +240,9 @@ function orientFromStalls(poly, dir) {
 const TSK_PARKING = 9705;
 const TSK_CODES = { useky: 9705, ztp: 9706, zasobovani: 9707, specialni: 9708 };
 const isTskParking = (c) => c >= 9705 && c <= 9708;
+// No-parking sections of TSK (Prague, "Zákaz stání"): parts of a parking section (the same ZPS_ID) where
+// no car may stand, e.g. in front of a driveway.
+const NO_PARKING = 9709;
 // Restaurant terraces (OSM leisure=outdoor_seating areas) take part of a sidewalk.
 const OSM_OUTDOOR = 9900;
 
@@ -288,10 +308,13 @@ function classify(center, normal, half, polys) {
   const runs = [];
   for (let t = -half; t <= half + 1e-9; t += STEP) {
     const x = center[0] + normal[0] * t, y = center[1] + normal[1] * t;
-    let code = null, orient, use, guess;
+    let code = null, orient, use, guess, free = false;
     for (const p of polys) {
       const [x0, y0, x1, y1] = p.bbox;
       if (x < x0 || x > x1 || y < y0 || y > y1) continue;
+      // A no-parking part of a TSK section (a driveway, a crossing): the section has no stall there.
+      if (p.code === NO_PARKING) { if (!free && inside(p.rings, x, y)) free = true; continue; }
+      if (free && (isTskParking(p.code) || p.code === OSM_PARKING)) continue;
       if (inside(p.rings, x, y)) { code = p.code; orient = p.orient; use = p.use; guess = p.guess; break; }
     }
     const last = runs[runs.length - 1];
@@ -381,14 +404,26 @@ export function trackLines(json, frame) {
     .flatMap((f) => (f.geometry?.paths || []).map((p) => p.map(([lon, lat]) => frame.toXY(lon, lat))));
 }
 
-// Barrier and slope lines of the technical map (everything but track axes), with their code.
+// Barrier and slope lines of the technical map (everything but track axes), with their code; its points
+// (Prague's layer 9: poles, stop poles, bollards, trees) as {code, point}; Prague's open data (sources.js)
+// with string codes: trees (od_strom, points), tree rows (od_stromorad) and street sections of TSK
+// (od_usek, with their class in cls).
 export function techLines(json, frame) {
+  const codeOf = (f) => { const c = f.attributes?.CTMTP_KOD; return typeof c === "string" && isNaN(c) ? c : Number(c); };
   return (json.features || [])
-    .filter((f) => Number(f.attributes?.CTMTP_KOD) !== 55010)
-    .flatMap((f) => (f.geometry?.paths || []).map((p) => ({
-      code: Number(f.attributes.CTMTP_KOD), pts: p.map(([lon, lat]) => frame.toXY(lon, lat)),
-    })));
+    .filter((f) => codeOf(f) !== 55010)
+    .flatMap((f) => {
+      const code = codeOf(f), a = f.attributes;
+      if (f.geometry?.x !== undefined) return [{ code, point: frame.toXY(f.geometry.x, f.geometry.y) }];
+      const cls = code === OD_SECTION ? { mk: a.MK, road: a.SIL, motorway: a.DALNICE, kind: a.TYP } : undefined;
+      return (f.geometry?.paths || []).map((p) => ({ code, pts: p.map(([lon, lat]) => frame.toXY(lon, lat)), ...(cls ? { cls } : {}) }));
+    });
 }
+const OD_TREE = "od_strom", OD_ROW = "od_stromorad", OD_SECTION = "od_usek"; // as sources.js
+const TM_TREE = 83130; // technical map: strom mimo park
+// Points of the technical map that are drawn as street furniture (TM_TREE is a tree).
+const POINT_ITEM = { 26015: "sloup_trakce", 75240: "oznacnik", 75241: "oznacnik", 74110: "sloupek", 76010: "lampa" };
+const isLine = (l) => !!l.pts;
 
 function segIntersect(p, p2, q, q2) {
   const r = [p2[0] - p[0], p2[1] - p[1]];
@@ -508,7 +543,7 @@ function splitRoadway(run, ctx) {
   // A local street without a lanes tag only needs one shared lane between the parked cars
   // (e.g. Dářská: 6.65 m = parking 2 + lane 2.65 + parking 2).
   // Only outside the paid parking zones (Bára): inside them TSK has surveyed every stall.
-  if (!trams.length && !ctx.inZps && PARK_GUESS.has(tags.highway)) {
+  if (!trams.length && !ctx.inZps && (ctx.guessPark ?? PARK_GUESS.has(tags.highway))) {
     const shared = LOCAL.has(tags.highway) && !tags.lanes;
     for (const [side, st] of [["R", sideR], ["L", sideL]]) {
       if (!ctx.kerbWalk?.includes(side) || parked.includes(side) || st.parkingNo || edge.some((x) => x.side === side && x.type === "parkovani")) continue;
@@ -695,41 +730,49 @@ function tramLanes(s, e, trams, dirAt, half = TRAM_HALF) {
   return out;
 }
 
-// Offsets along the cut of OSM trees: tree rows crossing the cut and single trees
-// within TREE_REACH of it (street trees are spaced along the street, rarely on the cut).
-function treePositions(osm, frame, center, normal, half) {
+// Offsets along the cut of trees: tree rows crossing the cut and single trees within the reach of it
+// (street trees are spaced along the street, rarely on the cut). From OSM, and in Prague from the
+// technical map (strom mimo park) and the open data (trees and tree rows of TSK, MHMP and the districts).
+function treePositions(osm, frame, center, normal, half, lines = [], reach = REACH) {
   const rows = (osm.elements || [])
     .filter((el) => el.type === "way" && el.tags?.natural === "tree_row")
     .map((el) => el.geometry.map((g) => frame.toXY(g.lon, g.lat)));
-  const ts = lineCrossings(rows, center, normal, half);
-  for (const el of osm.elements || []) {
-    if (el.type !== "node" || el.tags?.natural !== "tree") continue;
-    const [x, y] = frame.toXY(el.geometry[0].lon, el.geometry[0].lat);
+  const ts = lineCrossings(rows, center, normal, half).map((t) => ({ t, src: "osm" }));
+  ts.push(...lineCrossings(lines.filter((l) => l.code === OD_ROW && l.pts).map((l) => l.pts), center, normal, half).map((t) => ({ t, src: "data" })));
+  const lim = reachOf("strom", reach);
+  const take = ([x, y], src) => {
     const dx = x - center[0], dy = y - center[1];
     const along = Math.abs(dx * normal[1] - dy * normal[0]);
-    if (along <= TREE_REACH) ts.push(dx * normal[0] + dy * normal[1]);
+    if (along <= lim) ts.push({ t: dx * normal[0] + dy * normal[1], src });
+  };
+  for (const el of osm.elements || []) {
+    if (el.type === "node" && el.tags?.natural === "tree") take(frame.toXY(el.geometry[0].lon, el.geometry[0].lat), "osm");
   }
-  // Trees of one row sit at nearly the same offset; keep one position per row.
+  for (const l of lines) if (l.point && (l.code === TM_TREE || l.code === OD_TREE)) take(l.point, l.code === TM_TREE ? "dtm" : "data");
+  // Trees of one row sit at nearly the same offset; keep one position per row, its source the most
+  // exact one (technical map, then the city's open data, then OSM).
+  const RANK = { dtm: 0, data: 1, osm: 2 };
   const out = [];
-  for (const t of ts.sort((a, b) => a - b)) {
-    if (out.length && t - out.at(-1).last < 1.5) { const c = out.at(-1); c.sum += t; c.n++; c.last = t; }
-    else out.push({ sum: t, n: 1, last: t });
+  for (const { t, src } of ts.sort((a, b) => a.t - b.t)) {
+    const c = out.at(-1);
+    if (c && t - c.last < ROW_GAP) { c.sum += t; c.n++; c.last = t; if (RANK[src] < RANK[c.src]) c.src = src; }
+    else out.push({ sum: t, n: 1, last: t, src });
   }
-  return out.map((c) => c.sum / c.n);
+  return out.map((c) => ({ t: c.sum / c.n, src: c.src }));
 }
 
 // Trees turn a green segment into a tree row, or carve a tree strip (TREE_STRIP wide)
 // out of the paved segment holding them.
 function insertTrees(segs, trees) {
   let out = segs;
-  for (const t of trees) {
+  for (const { t, src } of trees) {
     const i = out.findIndex((x) => x.s <= t && x.e >= t);
     const host = out[i];
     if (host?.type === "zelen") { host.type = "stromorad"; continue; }
     if (!host || !WALK.has(host.type)) continue;
     const s = Math.max(host.s, t - TREE_STRIP / 2), e = Math.min(host.e, t + TREE_STRIP / 2);
     // Leftover sidewalk slivers under 0.5 m join the tree strip.
-    const strip = { type: "stromorad", s: s - host.s < 0.5 ? host.s : s, e: host.e - e < 0.5 ? host.e : e, source: "osm" };
+    const strip = { type: "stromorad", s: s - host.s < 0.5 ? host.s : s, e: host.e - e < 0.5 ? host.e : e, source: src };
     const parts = [];
     if (strip.s > host.s) parts.push({ ...host, e: strip.s });
     parts.push(strip);
@@ -998,8 +1041,9 @@ function shelterIsTram(t, x, y, stops) {
   return best === true;
 }
 
-function itemPositions(osm, frame, center, normal, half, lines) {
+function itemPositions(osm, frame, center, normal, half, lines, reach = REACH) {
   const items = [];
+  const osmPoints = [];
   const stops = [];
   for (const el of osm.elements || []) {
     if (el.type !== "node") continue;
@@ -1013,23 +1057,49 @@ function itemPositions(osm, frame, center, normal, half, lines) {
       const kind = nodeItem(el.tags || {});
       if (!kind) continue;
       const [x, y] = frame.toXY(el.geometry[0].lon, el.geometry[0].lat);
+      osmPoints.push({ kind, x, y });
       const dx = x - center[0], dy = y - center[1];
-      if (Math.abs(dx * normal[1] - dy * normal[0]) > ITEM_REACH) continue;
-      const item = { kind, t: dx * normal[0] + dy * normal[1], stands: true };
+      const along = Math.abs(dx * normal[1] - dy * normal[0]);
+      if (along > reachOf(kind, reach)) continue;
+      const item = { kind, t: dx * normal[0] + dy * normal[1], along, stands: true };
       if (kind === "pristresek" && shelterIsTram(el.tags || {}, x, y, stops)) item.tram = true;
       items.push(item);
     } else if (el.type === "way" && BARRIER_ITEM[el.tags?.barrier]) {
       const pts = el.geometry.map((g) => frame.toXY(g.lon, g.lat));
-      for (const t of lineCrossings([pts], center, normal, half)) items.push({ kind: BARRIER_ITEM[el.tags.barrier], t, osm: true });
+      for (const t of lineCrossings([pts], center, normal, half)) items.push({ kind: BARRIER_ITEM[el.tags.barrier], t, along: 0, osm: true });
     }
   }
   for (const l of lines) {
+    if (l.point) {
+      // A point of the technical map, unless OSM has the same thing there (an OSM lamp on a traction pole
+      // stays a lamp of the pole: the pole is drawn with its lamp).
+      const kind = POINT_ITEM[l.code];
+      if (!kind) continue;
+      const [x, y] = l.point;
+      if (osmPoints.some((o) => o.kind === kind && Math.hypot(o.x - x, o.y - y) < SAME_POINT)) continue;
+      const dx = x - center[0], dy = y - center[1];
+      const along = Math.abs(dx * normal[1] - dy * normal[0]);
+      if (along > reachOf(kind, reach)) continue;
+      items.push({ kind, t: dx * normal[0] + dy * normal[1], along, stands: true, dtm: true });
+      continue;
+    }
     const kind = TECH_ITEM[l.code];
-    if (kind) for (const t of lineCrossings([l.pts], center, normal, half)) items.push({ kind, t });
+    if (kind) for (const t of lineCrossings([l.pts], center, normal, half)) items.push({ kind, t, along: 0 });
   }
-  // The technical map and OSM often draw the same fence: keep one item of a kind per metre.
-  items.sort((a, b) => a.t - b.t);
-  return items.filter((it, i) => !items.slice(0, i).some((o) => o.kind === it.kind && Math.abs(o.t - it.t) < 1));
+  // A lamp on a traction pole (within SAME_POINT across the cut, both within reach) is the pole's lamp.
+  for (const p of items) {
+    if (p.kind !== "sloup_trakce") continue;
+    const lamp = items.find((o) => o.kind === "lampa" && Math.abs(o.t - p.t) < SAME_POINT);
+    if (lamp) { p.lamp = true; lamp.drop = true; }
+  }
+  // One item of a row: of the same kind at about the same offset (the technical map and OSM drawing the
+  // same fence, lamps every 30 m along a sidewalk, bollards every 2.5 m) the one nearest the cut stays,
+  // where it stands across the street.
+  const kept = [];
+  for (const it of items.filter((x) => !x.drop).sort((a, b) => a.along - b.along || a.t - b.t)) {
+    if (!kept.some((o) => o.kind === it.kind && Math.abs(o.t - it.t) < (it.along || o.along ? ROW_GAP : 1))) kept.push(it);
+  }
+  return kept.sort((a, b) => a.t - b.t);
 }
 
 // Parts where a lamp, bench or other standing thing cannot be: vehicles drive or park there.
@@ -1053,6 +1123,7 @@ function attachItems(segs, items) {
     if (!host) continue;
     const item = { kind: it.kind, f: (t - host.s) / Math.max(host.e - host.s, 0.01) };
     if (it.tram) item.tram = true;
+    if (it.lamp) item.lamp = true;
     (host.items ||= []).push(item);
   }
   return segs;
@@ -1118,7 +1189,38 @@ export function centerOnStreet(osm, frame, near, half = 40) {
 }
 
 // Main entry: returns {segments (screen left → right), edges, runs}.
-export function deriveProfile({ center, dir, half, polys, osm, frame, way, tracks = [], parking = [], lines = [], reach, inZps: zoneKnown }) {
+export function deriveProfile({ center, dir, half, polys, osm, frame, way, tracks = [], parking = [], lines = [], reach, inZps: zoneKnown, itemReach }) {
+  const reachItems = { ...REACH, ...itemReach };
+  // No-parking sections (Prague, TSK "Zákaz stání"): no surface of their own, they only keep a kerb free.
+  const noParking = parking.filter((p) => p.kind === "zakaz");
+  parking = parking.filter((p) => p.kind !== "zakaz");
+  const at = (t) => [center[0] + normal[0] * t, center[1] + normal[1] * t];
+  // Does the cut cross a no-parking section at the kerb at offset `at` (k = 1: the roadway lies at larger t)?
+  const noParkingAt = (zs, kerb, k) => {
+    if (!zs.length) return false;
+    for (let d = -NO_PARKING_OUT; d <= NO_PARKING_IN + 1e-9; d += 0.25) {
+      const [x, y] = at(kerb + k * d);
+      if (zs.some((z) => x >= z.bbox[0] && x <= z.bbox[2] && y >= z.bbox[1] && y <= z.bbox[3] && inside(z.rings, x, y))) return true;
+    }
+    return false;
+  };
+  // The street section of TSK whose line runs along the street nearest to the point at offset t (within
+  // SECTION_NEAR): its class, or null.
+  const streetClass = (ls, t) => {
+    const [px, py] = at(t);
+    let best = null;
+    for (const l of ls) {
+      if (l.code !== OD_SECTION || !l.pts) continue;
+      for (let i = 0; i < l.pts.length - 1; i++) {
+        const [ax, ay] = l.pts[i], [bx, by] = l.pts[i + 1], dx = bx - ax, dy = by - ay, len = Math.hypot(dx, dy);
+        if (len < 0.5 || Math.abs((dx * dir[0] + dy * dir[1]) / len) < 0.8) continue;
+        const u = Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / (len * len)));
+        const d = Math.hypot(px - ax - u * dx, py - ay - u * dy);
+        if (d < SECTION_NEAR && (!best || d < best.d)) best = { d, cls: l.cls };
+      }
+    }
+    return best?.cls || null;
+  };
   const normal = [-dir[1], dir[0]];
   const cross = crossings(osm, frame, center, normal, half);
   let axisT = cross.find((c) => c.way.id === way.id)?.t ?? 0;
@@ -1137,6 +1239,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
 
   const classifyAll = (osmParking) => absorbParkingSlivers(mergeTiny(classify(center, normal, half, [
     ...osmPlatformPolygons(osm, frame),
+    ...noParking.map((p) => ({ ...p, code: NO_PARKING })),
     // Special stalls (ZTP, deliveries…) before the plain sections that contain them.
     ...parking.filter((p) => p.kind !== "useky").map((p) => ({ ...p, code: TSK_CODES[p.kind] || TSK_PARKING, use: p.kind })),
     ...parking.filter((p) => p.kind === "useky").map((p) => ({ ...p, code: TSK_PARKING, orient: orientFromStalls(p, dir) })),
@@ -1246,7 +1349,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   // the fence is not part of the street profile). Technical-map fences and walls taller than 0.3 m,
   // and OSM fences, walls and hedges.
   const fenceTs = [
-    ...lineCrossings(lines.filter((l) => FENCE_LINES.has(l.code)).map((l) => l.pts), center, normal, half),
+    ...lineCrossings(lines.filter((l) => isLine(l) && FENCE_LINES.has(l.code)).map((l) => l.pts), center, normal, half),
     ...cross.filter((c) => FENCE_BARRIERS.has(c.way.tags?.barrier)).map((c) => c.t),
   ];
   const isCarriage = (r) => r.code === 700 || r.code === 701 || r.code === 705;
@@ -1270,7 +1373,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     ...r,
     s: Math.max(clip(r, ref - reachR, false), fenceR),
     e: Math.min(clip(r, ref + reachL, true), fenceL),
-  })).filter((r) => r.e - r.s > 0.05), cross, lineCrossings(lines.filter((l) => GUARD_RAILS.has(l.code)).map((l) => l.pts), center, normal, half));
+  })).filter((r) => r.e - r.s > 0.05), cross, lineCrossings(lines.filter((l) => isLine(l) && GUARD_RAILS.has(l.code)).map((l) => l.pts), center, normal, half));
   // A profile cut short by the user ends in open space, not at the building behind.
   if (!kept.length) return { ...estimateFromOsm(way), runs };
   if (kept[0].s > runs[lo].s + 0.05) edges.right = "volno";
@@ -1339,6 +1442,10 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
         return sideTags(a.tags || tags, osmSide);
       };
       const sideTagsLR = { L: edgeTags("L"), R: edgeTags("R") };
+      // A no-parking section of TSK at the kerb (Prague): no parking there, whatever OSM says.
+      for (const [side, at, k] of [["L", r.e, -1], ["R", r.s, 1]]) {
+        if (noParkingAt(noParking, at, k)) sideTagsLR[side] = { ...sideTagsLR[side], parking: false, parkingNo: true, kerbDepth: 0 };
+      }
       for (const [side, st, at] of [["L", sideTagsLR.L, r.e], ["R", sideTagsLR.R, r.s]]) {
         if (st.kerbDepth && !parked.includes(side)) kerbReqs.push({ side, at, w: st.kerbDepth, orient: st.parkingOrient });
       }
@@ -1366,7 +1473,12 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       // Trolley wires over the street (OSM trolley_wire, or over one direction only: trolley_wire:forward /
       // :backward, Plzeň): its bus lanes carry trolleybuses (Jihlava, Brno).
       const trolley = [tags, ...axes.map((a) => a.tags)].some((t) => ["", ":forward", ":backward"].some((k) => t?.[`trolley_wire${k}`] === "yes"));
-      segs.push(...splitRoadway(r, { tags, trams: inside, dirAt, lanesTotal, along: ownAxis ? (ownAxis.along !== (tags.oneway === "-1")) : true, single: new Set(axes.map((a) => a.id)).size === 1, parked, sides: sideTagsLR, kerbWalk, inZps, axesOneway: axes.every((a) => a.oneway), axisInside: here.length > 0, divided }).map((x) => ({ ...x, mtvu: r.code, trolley: trolley && (x.type === "bus" || x.type === "bus_cyklo") })));
+      // The class of the street by TSK (Prague): on collector and main roads (MK I, II, roads of the state) cars
+      // do not park at the kerb, whatever OSM calls them, so no parking is estimated there. Elsewhere OSM decides
+      // (A/B: an MK III that OSM calls tertiary had no parked cars in 5 of 6 cuts, evaluation/praha-opendata).
+      const cls = streetClass(lines, (r.s + r.e) / 2);
+      const guessPark = cls && (cls.road || cls.motorway || cls.mk === 1 || cls.mk === 2) ? false : undefined;
+      segs.push(...splitRoadway(r, { guessPark, tags, trams: inside, dirAt, lanesTotal, along: ownAxis ? (ownAxis.along !== (tags.oneway === "-1")) : true, single: new Set(axes.map((a) => a.id)).size === 1, parked, sides: sideTagsLR, kerbWalk, inZps, axesOneway: axes.every((a) => a.oneway), axisInside: here.length > 0, divided }).map((x) => ({ ...x, mtvu: r.code, trolley: trolley && (x.type === "bus" || x.type === "bus_cyklo") })));
     } else if (r.code === MEDIAN) {
       segs.push({ type: "delici", s: r.s, e: r.e, source: "dtm" });
     } else if (isMinorStructure(r.code)) {
@@ -1405,10 +1517,9 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   // Roadway outer edges are measured; only the internal split comes from OSM.
   const withKerb = carveKerbParking(markIslands(segs), kerbReqs);
   const withPlatforms = insertPlatforms(withKerb, platformPositions(osm, frame, center, normal, half), axisT);
-  const withTrees = insertTrees(withPlatforms, treePositions(osm, frame, center, normal, half));
-  const withItems = attachItems(perpDepth(mergeParking(withTrees)), itemPositions(osm, frame, center, normal, half, lines));
+  const withTrees = insertTrees(withPlatforms, treePositions(osm, frame, center, normal, half, lines, reachItems));
+  const withItems = attachItems(perpDepth(mergeParking(withTrees)), itemPositions(osm, frame, center, normal, half, lines, reachItems));
   // Points 4 m inside the buildings at both ends, for their height and number of floors.
-  const at = (t) => [center[0] + normal[0] * t, center[1] + normal[1] * t];
   const probe = { left: at(kept.at(-1).e + 4), right: at(kept[0].s - 4) };
   for (const side of ["left", "right"]) {
     if (edges[side] !== "budova") continue;

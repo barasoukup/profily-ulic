@@ -34,6 +34,7 @@ export const TYPES = {
 export const SOURCES = {
   dtm: { label: "změřeno z technické mapy", color: "#3b6d11" },
   osm: { label: "doplněno z OSM", color: "#854f0b" },
+  data: { label: "otevřená data města", color: "#2f6f8f" }, // Prague: trees of TSK, MHMP and the districts
   tsk: { get label() { return city.parkingSource; }, color: "#0f6e56" }, // the current city's
   odhad: { label: "odhad", color: "#8f8b82" },
   user: { label: "upraveno ručně", color: "#534ab7" },
@@ -44,7 +45,7 @@ export const SOURCES = {
 export const ITEMS = {
   lampa: "Lampa", lavicka: "Lavička", stojan_kola: "Stojan na kola", sdilena_kola: "Sdílená kola",
   pristresek: "Přístřešek zastávky", rozcestnik: "Rozcestník / mapa", taxi: "Stanoviště taxi",
-  sloupek: "Sloupek", kvetinac: "Květináč", svodidlo: "Svodidlo", zabradli: "Zábradlí", plot: "Plot / zeď",
+  sloupek: "Sloupek", sloup_trakce: "Sloup trakčního vedení", oznacnik: "Označník zastávky", kvetinac: "Květináč", svodidlo: "Svodidlo", zabradli: "Zábradlí", plot: "Plot / zeď",
   oporna_zed: "Opěrná zeď", zivy_plot: "Živý plot", svah: "Hrana svahu", zahradka: "Zahrádka restaurace",
 };
 

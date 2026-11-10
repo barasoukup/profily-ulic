@@ -8,7 +8,13 @@ export const TM_LINES = `${IPR}/dtmp/dtmp/MapServer/10/query`;
 // (guard rails, railings, fences and walls, retaining walls, hedges, top/bottom edges of slopes).
 export const LINE_CODES = [55010, 71522, 71540, 61530, 61209, 61210, 71210, 81210, 91210, 61422, 71422, 81422, 81214, 42105, 42107];
 export const LINE_WHERE = `CTMTP_KOD IN (${LINE_CODES.join(",")})`;
-export const PARKOVANI = `${IPR}/dop/zony_placeneho_stani/MapServer`;
+// Point features of the technical map (layer 9, "bodové značky"), one query per cut with the codes in
+// one WHERE: tram overhead-line poles (26015), stop poles (75240, 75241), bollards (74110), trees outside
+// parks (83130), poles without wires (76010).
+export const TM_POINTS = `${IPR}/dtmp/dtmp/MapServer/9/query`;
+export const POINT_CODES = [26015, 75240, 75241, 74110, 83130, 76010];
+export const POINT_WHERE = `CTMTP_KOD IN (${POINT_CODES.join(",")})`;
+export const PARKOVANI =`${IPR}/dop/zony_placeneho_stani/MapServer`;
 // Parking sections (layer 3) and special stalls: ZTP (5, 6), deliveries (7), special (8).
 export const PARKING_LAYERS = { 3: "useky", 5: "ztp", 6: "ztp", 7: "zasobovani", 8: "specialni" };
 export const parkingFields = (layer) => (String(layer) === "3" ? "ZPS_ID,TYPZONY,PS_ZPS" : "ZPS_ID");

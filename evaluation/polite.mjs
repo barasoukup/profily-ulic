@@ -1,11 +1,12 @@
-// Fetch for the evaluation scripts that keeps ČÚZK's servers happy (Bára: they must not cut us off): its
-// requests go one at a time, at least GAP ms apart, and a "too many" (429) or "unavailable" (503) answer
-// pauses them for PAUSE before one more try. Other hosts go straight through. The number of ČÚZK requests
-// is printed when the script ends.
+// Fetch for the evaluation scripts that keeps ČÚZK's and IPR's servers happy (Bára: they must not cut us off):
+// their requests go one at a time, at least GAP ms apart, and a "too many" (429) or "unavailable" (503) answer
+// pauses them for PAUSE before one more try. Other hosts go straight through. The number of requests is
+// printed when the script ends. Only for evaluation scripts: the app never throttles.
 const GAP = 300, PAUSE = 10 * 60 * 1000;
 const native = globalThis.fetch;
 let queue = Promise.resolve(), last = 0, count = 0;
-const isCuzk = (url) => /(^|\.)cuzk\.gov\.cz$/.test(new URL(String(url)).hostname);
+// ČÚZK, and IPR Praha (gs-pub.praha.eu, mp.iprpraha.cz).
+const isCuzk = (url) => /(^|\.)(cuzk\.gov\.cz|gs-pub\.praha\.eu|mp\.iprpraha\.cz)$/.test(new URL(String(url)).hostname);
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 export function politeFetch(url, opts) {
   if (!isCuzk(url)) return native(url, opts);
@@ -14,7 +15,7 @@ export function politeFetch(url, opts) {
     count++;
     let r = await native(url, opts).finally(() => { last = Date.now(); });
     if (r.status === 429 || r.status === 503) {
-      console.warn(`ČÚZK odpověděl ${r.status}, čekám ${PAUSE / 60000} min`);
+      console.warn(`${new URL(String(url)).hostname} odpověděl ${r.status}, čekám ${PAUSE / 60000} min`);
       await wait(PAUSE);
       count++;
       r = await native(url, opts).finally(() => { last = Date.now(); });
@@ -24,4 +25,4 @@ export function politeFetch(url, opts) {
   queue = run.catch(() => {});
   return run;
 }
-process.on("exit", () => { if (count) console.log(`dotazů na ČÚZK: ${count}`); });
+process.on("exit", () => { if (count) console.log(`dotazů na ČÚZK a IPR: ${count}`); });

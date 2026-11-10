@@ -24,7 +24,11 @@ const ROOT = path.dirname(new URL(import.meta.url).pathname);
 const CITY = process.env.CITY || "jihlava";
 const PRAHA = CITY === "praha";
 const DATA = PRAHA ? path.join(ROOT, "praha", "data") : path.join(ROOT, CITY, "data");
-const SAMPLES = PRAHA ? path.join(ROOT, "data", "samples.json") : path.join(DATA, "samples.json");
+// SAMPLES=file: another sample of cuts (e.g. evaluation/praha-opendata/data/samples-zakaz.json); its pairs go
+// to ab-<a>-<b>-<file name>, its orthophotos (fetched like the towns') to ortho-<file name>.
+const OWN = process.env.SAMPLES ? path.basename(process.env.SAMPLES, ".json") : "";
+const SAMPLES = OWN ? path.resolve(process.env.SAMPLES) : PRAHA ? path.join(ROOT, "data", "samples.json") : path.join(DATA, "samples.json");
+const PRAHA_ORTHO = PRAHA && !OWN; // the Prague sample's own orthophotos (evaluation/data/ortho_fix)
 const PILOT = path.join(ROOT, "..", "pilot");
 const PILOT_DATA = path.join(PILOT, "data", CITY);
 const VARIANTS = (process.env.VARIANTS || "city").split(",").map((s) => s.trim()).filter(Boolean);
@@ -51,7 +55,7 @@ globalThis.fetch = async (url, opts) => {
   if (/gs-pub\.praha\.eu|overpass/i.test(u)) throw new Error("IPR and Overpass are not asked by this script");
   if (PRAHA && u.startsWith("/api/")) {
     const q = new URL(u, "http://x");
-    const kind = { "/api/mtvu": "mtvu", "/api/linie": "linie", "/api/parkovani": "parkovani2" }[q.pathname];
+    const kind = { "/api/mtvu": "mtvu", "/api/linie": "linie", "/api/parkovani": "parkovani2", "/api/body": "body" }[q.pathname];
     if (!kind) return missing();
     try { return reply(await fs.readFile(iprCache(kind, q.searchParams.get("bbox")))); } catch { return missing(599); }
   }
@@ -98,7 +102,8 @@ async function loadVariant(name) {
   const mod = await import(path.join(ROOT, "variants", `${name}.mjs`));
   const src = { ...NORMAL };
   for (const k of Object.keys(NORMAL)) if (typeof mod[k] === "function") src[k] = mod[k];
-  return { name, about: mod.about || "", src };
+  // reach: the reach of points per kind (derive.js REACH), e.g. { lampa: 15 }.
+  return { name, about: mod.about || "", src, reach: mod.reach };
 }
 
 // ---------- Measures ----------
@@ -113,6 +118,10 @@ export function measures(p) {
     total: +total.toFixed(2), roadway: sum(p.segments, ROADWAY), sidewalk: sum(p.segments, SIDEWALK),
     edges: [p.edges?.left, p.edges?.right], unknown: +(total ? unknown / total : 0).toFixed(3),
     osmEstimate: /odhad z OSM/.test(p.notice || ""), parts: p.segments.length,
+    // Street furniture by kind, tree strips, parking strips and how many of them are estimates.
+    items: p.segments.flatMap((s) => (s.items || []).map((it) => it.kind)).sort().join(","),
+    trees: p.segments.filter((s) => s.type === "stromorad").length,
+    parking: p.segments.filter((s) => s.type === "parkovani").map((s) => s.source).sort().join(","),
   };
 }
 export function differs(a, b) {
@@ -122,6 +131,12 @@ export function differs(a, b) {
   if (Math.abs(a.sidewalk - b.sidewalk) > 0.5) out.push(`chodník ${a.sidewalk}/${b.sidewalk}`);
   if (a.edges[0] !== b.edges[0] || a.edges[1] !== b.edges[1]) out.push(`okraje ${a.edges.join("+")}/${b.edges.join("+")}`);
   if (a.osmEstimate !== b.osmEstimate) out.push(`odhad OSM ${a.osmEstimate ? "A" : "B"}`);
+  // ITEMS=1: also the street furniture, the tree strips and the parking (sources of new points and stalls).
+  if (process.env.ITEMS === "1") {
+    if ((a.items ?? "") !== (b.items ?? "")) out.push(`předměty ${a.items || "-"}/${b.items || "-"}`);
+    if ((a.trees ?? 0) !== (b.trees ?? 0)) out.push(`stromy ${a.trees}/${b.trees}`);
+    if ((a.parking ?? "") !== (b.parking ?? "")) out.push(`stání ${a.parking || "-"}/${b.parking || "-"}`);
+  }
   return out;
 }
 
@@ -157,7 +172,7 @@ async function derive(v, at, inZps) {
     v.src.parking(bbox, inZps).catch(() => ({ features: [] })),
   ]);
   const polys = mtvuPolygons(m, frame);
-  const r = deriveProfile({ center: [0, 0], dir, half: HALF, polys, osm, frame, way, tracks: trackLines(k, frame), parking: esriPolygons(pk, frame), lines: techLines(k, frame), reach: { left: MAX_REACH, right: MAX_REACH }, inZps });
+  const r = deriveProfile({ center: [0, 0], dir, half: HALF, polys, osm, frame, way, tracks: trackLines(k, frame), parking: esriPolygons(pk, frame), lines: techLines(k, frame), reach: { left: MAX_REACH, right: MAX_REACH }, inZps, itemReach: v.reach });
   if (process.env.PODLAZNOST === "1") {
     for (const side of ["left", "right"]) {
       const info = r.edges?.[`${side}Info`];
@@ -191,13 +206,13 @@ async function run(s, vs) {
 }
 
 // ---------- Orthophoto (the one run_brno.mjs saved, else fetched like it) ----------
-const ORTHO = PRAHA ? path.join(ROOT, "data", "ortho_fix") : path.join(DATA, "ortho");
+const ORTHO = PRAHA_ORTHO ? path.join(ROOT, "data", "ortho_fix") : path.join(DATA, OWN ? `ortho-${OWN}` : "ortho");
 const OLD = PRAHA ? path.join(ROOT, "data", "results_fix") : path.join(DATA, "results");
 const VIEW = 45, R = 6378137;
 const merc = (lon, lat) => [R * (lon * Math.PI) / 180, R * Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360))];
 const CUZK_ORTHO = "https://ags.cuzk.gov.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer";
 async function ensureOrtho(n, cut) {
-  if (PRAHA) return;
+  if (PRAHA_ORTHO) return;
   const dir = path.join(ORTHO, String(n));
   try { await fs.access(path.join(dir, "tiles.json")); return; } catch {}
   await fs.mkdir(dir, { recursive: true });
@@ -220,9 +235,10 @@ const { TYPES } = await import("../pilot/public/types.js");
 const PX_M = 10, BOX = 640, SIZE = 1100;
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 const ARROW = { forward: "↑", backward: "↓" };
+const ITEM_MARK = { lampa: "L", sloup_trakce: "T", oznacnik: "Z", pristresek: "P", sloupek: "s", lavicka: "b", stojan_kola: "k" };
 async function tilesOf(n, cut) {
   let tiles, dir;
-  if (PRAHA) { tiles = [{ file: `${n}.jpg`, e: -40, n: 40, size: 80 }]; dir = ORTHO; }
+  if (PRAHA_ORTHO) { tiles = [{ file: `${n}.jpg`, e: -40, n: 40, size: 80 }]; dir = ORTHO; }
   else { dir = path.join(ORTHO, String(n)); tiles = JSON.parse(await fs.readFile(path.join(dir, "tiles.json"), "utf8")); }
   // The orthophoto's centre is the cut it was saved for: shift it to this cut.
   let de = 0, dn = 0, old;
@@ -249,9 +265,18 @@ function band(p, c, y, label, X) {
   }).join("");
   const dy = y < c ? -1 : 1;
   const ticks = bounds.map((v) => `<line x1="${X(v)}" x2="${X(v)}" y1="${c}" y2="${y + dy * 22}" stroke="${y < c ? "#ff2" : "#f6f"}" stroke-width="2"/>`).join("");
+  // Street furniture: a dot with the item's initial where it stands (letters: ITEM_MARK).
+  let v = -tL;
+  const marks = p.segments.map((s) => {
+    const x0 = v; v += s.width;
+    return (s.items || []).map((it) => {
+      const x = X(x0 + it.f * s.width), m = ITEM_MARK[it.kind] || it.kind[0];
+      return `<circle cx="${x}" cy="${y}" r="7" fill="#fff" stroke="#000"/><text x="${x}" y="${y + 4}" font-size="10" text-anchor="middle">${m}</text>`;
+    }).join("");
+  }).join("");
   const axis = `<line x1="${X(-p.axisT)}" x2="${X(-p.axisT)}" y1="${y - 14}" y2="${y + 14}" stroke="#0ff" stroke-width="2" stroke-dasharray="4 3"/>`;
   const tag = `<text x="6" y="${y + 5}" fill="#fff" font-size="14" font-weight="bold" stroke="#000" stroke-width="3" paint-order="stroke">${esc(label)}</text>`;
-  return bands + ticks + axis + tag;
+  return bands + ticks + marks + axis + tag;
 }
 function bar(p, y, W) {
   const total = p.segments.reduce((a, s) => a + s.width, 0);
@@ -262,7 +287,7 @@ function bar(p, y, W) {
     x += w; return out;
   }).join("");
 }
-const rows = (p, x, y) => p.segments.map((s, i) => `<text x="${x}" y="${y + i * 15}" font-size="11">${i + 1}. ${esc(TYPES[s.type]?.label || s.type)} ${s.width.toFixed(2)} ${s.dir ? ARROW[s.dir] : ""} · ${esc(s.source)}</text>`).join("");
+const rows = (p, x, y) => p.segments.map((s, i) => `<text x="${x}" y="${y + i * 15}" font-size="11">${i + 1}. ${esc(TYPES[s.type]?.label || s.type)} ${s.width.toFixed(2)} ${s.dir ? ARROW[s.dir] : ""} · ${esc(s.source)}${s.items?.length ? " · " + esc(s.items.map((it) => it.kind).join(", ")) : ""}</text>`).join("");
 async function svg(r, A, B) {
   const b = (r.cut.bearing * Math.PI) / 180;
   const dir = [Math.sin(b), Math.cos(b)], normal = [-dir[1], dir[0]];
@@ -294,7 +319,7 @@ const toPng = (dir, file) => new Promise((res) => {
 });
 
 // ---------- Pairs: files, images, review ----------
-const pairDir = (a, b) => path.join(DATA, `ab-${a}-${b}`);
+const pairDir = (a, b) => path.join(DATA, `ab-${a}-${b}${OWN ? `-${OWN}` : ""}`);
 async function readPair(a, b) {
   const dir = pairDir(a, b);
   const files = (await fs.readdir(dir).catch(() => [])).filter((f) => /^\d+\.json$/.test(f)).sort((p, q) => parseInt(p) - parseInt(q));

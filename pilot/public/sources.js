@@ -9,7 +9,7 @@ import { TILE, getJSON, query, envelope, osmTiles, insideRings } from "./gis.js"
 import { TOWNS } from "./towns/index.js";
 export { events } from "./gis.js";
 
-import { MTVU, MTVU_FIELDS, TM_LINES, LINE_WHERE, PARKOVANI, PARKING_LAYERS, parkingFields, PODLAZNOST, PODLAZNOST_FIELDS, podlaznostInfo } from "./queries.js";
+import { MTVU, MTVU_FIELDS, TM_LINES, LINE_WHERE, TM_POINTS, POINT_WHERE, PARKOVANI, PARKING_LAYERS, parkingFields, PODLAZNOST, PODLAZNOST_FIELDS, podlaznostInfo } from "./queries.js";
 // Brno asks the city's services on a click, as Prague asks IPR's; only the OSM tiles are files.
 // A town (towns/<id>.js, also "cesko" anywhere else) brings its own sources; read for the city of the
 // current cut each time.
@@ -30,9 +30,84 @@ export const mtvu = (bbox) => (town() ? town().surfaces(bbox) : isBrno() ? brnoS
   ? query(MTVU, { ...envelope(bbox), outFields: MTVU_FIELDS })
   : getJSON(`/api/mtvu?bbox=${bbox}`)).then((json) => national(json, bbox));
 
-export const linie = (bbox) => (town() ? town().lines(bbox) : isBrno() ? brnoLines(bbox) : STATIC
-  ? query(TM_LINES, { ...envelope(bbox), where: LINE_WHERE, outFields: "CTMTP_KOD" })
-  : getJSON(`/api/linie?bbox=${bbox}`));
+export const linie = (bbox) => (town() ? town().lines(bbox) : isBrno() ? brnoLines(bbox) : prahaLines(bbox));
+
+// ---------- Prague ----------
+// The line layer of IPR's technical map (tracks, barriers, slopes) and, in parallel with it, its point
+// layer (traction poles, stop poles, bollards, trees, poles without wires: one query, the codes in one
+// WHERE) and the static tiles of Prague's open data (trees, tree rows, street classes). All in one answer
+// of line and point features, read by derive.js techLines; what fails is left out, the lines stay.
+// opts (for evaluation/variants): { points: false } without the point layer, { tmTrees: false } without its
+// trees, { opendata: false } without the open data, { trees: false } / { sections: false } without its trees
+// or street sections.
+const POINTS_TIMEOUT = 10000; // ms
+export async function prahaLines(bbox, opts = {}) {
+  const params = (where) => ({ ...envelope(bbox), where, outFields: "CTMTP_KOD" });
+  // The points are asked once, without retries, so a slow answer never holds the profile up for long.
+  const once = (url) => fetch(url, { signal: AbortSignal.timeout(POINTS_TIMEOUT) }).then((r) => (r.ok ? r.json() : null)).then((j) => (j?.error ? null : j));
+  const [lines, points, open] = await Promise.all([
+    STATIC ? query(TM_LINES, params(LINE_WHERE)) : getJSON(`/api/linie?bbox=${bbox}`),
+    opts.points === false ? null : once(STATIC ? `${TM_POINTS}?${new URLSearchParams(params(POINT_WHERE))}` : `/api/body?bbox=${bbox}`)
+      .catch((err) => { console.warn("body technické mapy", err.message); return null; }),
+    opts.opendata === false ? null : prahaOpendata(bbox).catch(() => null),
+  ]);
+  const pts = (points?.features || []).filter((f) => f.geometry?.x !== undefined && (opts.tmTrees !== false || Number(f.attributes?.CTMTP_KOD) !== 83130));
+  return { features: [...(lines.features || []), ...pts, ...(open ? opendataFeatures(open, opts) : [])] };
+}
+
+// Prague open data (Geoportál Praha, CC BY 4.0), built once per deploy by tools/build_praha_opendata.mjs
+// into tiles of PRAHA_TILE degrees (data/praha/opendata/<ix>_<iy>.json; one file holds every dataset):
+// t single trees, r tree rows, z no-parking sections, u street sections of TSK with their class.
+// Coordinates are millionths of a degree from the tile's south-west corner.
+export const PRAHA_TILE = 0.01;
+const prahaTiles = new Map();
+export function decodePrahaTile(json, ix, iy) {
+  const x0 = ix * PRAHA_TILE, y0 = iy * PRAHA_TILE;
+  const pts = (c, from = 0) => { const out = []; for (let i = from; i + 1 < c.length; i += 2) out.push([x0 + c[i] / 1e6, y0 + c[i + 1] / 1e6]); return out; };
+  return {
+    trees: pts(json.t || []),
+    rows: (json.r || []).map((c) => ({ id: c[0], pts: pts(c, 1) })),
+    noParking: (json.z || []).map((c) => ({ id: c[0], ring: pts(c, 1) })),
+    sections: (json.u || []).map((c) => ({ id: c[0], mk: c[1], road: c[2], motorway: c[3], kind: c[4], pts: pts(c, 5) })),
+  };
+}
+// The tiles a bbox "x0,y0,x1,y1" touches, merged (shapes in several tiles once), only what lies in it.
+export async function prahaOpendata(bbox) {
+  const [x0, y0, x1, y1] = bbox.split(",").map(Number);
+  const parts = [];
+  for (let ix = Math.floor(x0 / PRAHA_TILE); ix <= Math.floor(x1 / PRAHA_TILE); ix++) {
+    for (let iy = Math.floor(y0 / PRAHA_TILE); iy <= Math.floor(y1 / PRAHA_TILE); iy++) {
+      const k = `${ix}_${iy}`;
+      if (!prahaTiles.has(k)) {
+        if (prahaTiles.size >= 16) prahaTiles.delete(prahaTiles.keys().next().value);
+        prahaTiles.set(k, fetch(`data/praha/opendata/${k}.json`).then((r) => (r.ok ? r.json() : {}), () => ({})).then((j) => decodePrahaTile(j, ix, iy)));
+      }
+      parts.push(prahaTiles.get(k));
+    }
+  }
+  const tiles = await Promise.all(parts);
+  const inBox = ([x, y]) => x >= x0 && x <= x1 && y >= y0 && y <= y1;
+  const touches = (ps) => { const xs = ps.map((p) => p[0]), ys = ps.map((p) => p[1]); return Math.min(...xs) <= x1 && Math.max(...xs) >= x0 && Math.min(...ys) <= y1 && Math.max(...ys) >= y0; };
+  const once = (key, get) => { const seen = new Set(); return tiles.flatMap((t) => t[key]).filter((x) => !seen.has(x.id) && seen.add(x.id) && touches(get(x))); };
+  return {
+    trees: tiles.flatMap((t) => t.trees).filter(inBox),
+    rows: once("rows", (x) => x.pts), noParking: once("noParking", (x) => x.ring), sections: once("sections", (x) => x.pts),
+  };
+}
+// The open data as features of the technical-map answer: trees and tree rows (code OD_TREE, OD_ROW) and
+// the street sections of TSK (OD_SECTION, with their class). opts.trees / opts.sections false: left out.
+export const OD_TREE = "od_strom", OD_ROW = "od_stromorad", OD_SECTION = "od_usek";
+function opendataFeatures(open, opts = {}) {
+  const out = [];
+  if (opts.trees !== false) {
+    for (const [x, y] of open.trees) out.push({ attributes: { CTMTP_KOD: OD_TREE }, geometry: { x, y } });
+    for (const r of open.rows) out.push({ attributes: { CTMTP_KOD: OD_ROW }, geometry: { paths: [r.pts] } });
+  }
+  if (opts.sections !== false) {
+    for (const u of open.sections) out.push({ attributes: { CTMTP_KOD: OD_SECTION, MK: u.mk, SIL: u.road, DALNICE: u.motorway, TYP: u.kind }, geometry: { paths: [u.pts] } });
+  }
+  return out;
+}
 
 // ---------- Brno ----------
 // The city's GIS (gis.brno.cz) and open data (data.brno.cz) answer the browser directly (CORS):
@@ -260,9 +335,16 @@ async function brnoPodlaznost(lat, lon) {
 // The special stalls (5–8) lie inside paid zones: in a zone (by the zone file, inZone) all layers
 // are asked for at once; elsewhere only where the sections (3) found something, which spares IPR
 // four requests per cut. As in server.mjs.
-export async function parkovani(bbox, inZone) {
+export async function parkovani(bbox, inZone, opts = {}) {
   if (town()) return town().parking(bbox);
   if (isBrno()) return brnoParkovani(bbox);
+  // Prague: the no-parking sections of TSK (open data "Zákaz stání", static tiles) in parallel with IPR's
+  // parking layers, as features of KIND "zakaz" (derive.js: no parking at that kerb). opts.zakaz false: without.
+  const [json, open] = await Promise.all([iprParking(bbox, inZone), opts.zakaz === false ? null : prahaOpendata(bbox).catch(() => null)]);
+  const zakaz = (open?.noParking || []).map((z) => ({ attributes: { KIND: "zakaz" }, geometry: { rings: [z.ring] } }));
+  return zakaz.length ? { ...json, features: [...(json.features || []), ...zakaz] } : json;
+}
+async function iprParking(bbox, inZone) {
   if (!STATIC) return getJSON(`/api/parkovani?bbox=${bbox}${inZone ? "&zone=1" : ""}`);
   const layer = async (n, kind) => {
     const json = await query(`${PARKOVANI}/${n}/query`, { ...envelope(bbox), outFields: parkingFields(n) });

@@ -140,6 +140,22 @@ function drawItem(g, it, x, top, right) {
       return sprite(g, cityArt() && it.tram ? `transit-shelter-tram-${side}` : `transit-shelter-01-${side}`, x, top);
     }
     case "sloupek": return sprite(g, "bollard", x, top);
+    // Tram overhead-line pole (technical map): a 9 m steel pole with its bracket over the tracks; a street
+    // lamp mounted on it (OSM) is drawn with it.
+    case "sloup_trakce": {
+      if (it.lamp) sprite(g, right ? "lamp-modern-left" : "lamp-modern-right", x, top, false, right ? 348 : 22);
+      const arm = right ? -1 : 1;
+      el("path", { d: `M ${x - 14} ${top} L ${x - 9} ${top - 900} L ${x + 9} ${top - 900} L ${x + 14} ${top} Z`, fill: "#5b6460" }, g);
+      line({ x: Math.min(x, x + arm * 260), y: top - 830, width: 260, height: 7, fill: "#5b6460" });
+      el("line", { x1: x, y1: top - 760, x2: x + arm * 260, y2: top - 826, stroke: "#5b6460", "stroke-width": 4 }, g);
+      return;
+    }
+    // Stop pole (označník zastávky, technical map).
+    case "oznacnik":
+      line({ x: x - 4, y: top - 280, width: 8, height: 280, fill: "#3d3b36" });
+      line({ x: x - 26, y: top - 300, width: 52, height: 64, fill: "#fff", stroke: "#b5302a", "stroke-width": 5 });
+      el("text", { x, y: top - 256, "text-anchor": "middle", "font-size": 30, "font-weight": "bold", fill: "#1f1f1d" }, g).textContent = "Z";
+      return;
     case "kvetinac": return sprite(g, "planter-box", x, top);
     case "svodidlo": return sprite(g, "guardrail", x, top);
     case "zahradka": return sprite(g, "cafe-seating-occupied", x, top);

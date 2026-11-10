@@ -100,6 +100,29 @@ jobs:
         continue-on-error: true
         timeout-minutes: 10
         run: node tools/build_vyvoj.mjs site-vyvoj
+      # Prague's open data (Geoportál Praha, CC BY 4.0): trees and tree rows, TSK's no-parking sections and
+      # street classes, downloaded once per deploy from opendata.geoportalpraha.cz into small tiles
+      # (data/praha/opendata, about 6 MB), never on a click. When the download fails, the tiles of the last
+      # good deploy (cache); with neither, the profiles go without them.
+      - id: praha-opendata-cache
+        uses: actions/cache@v4
+        with:
+          path: data/praha-opendata-last
+          key: praha-opendata-${{ github.run_id }}
+          restore-keys: praha-opendata-
+      - name: Prague open data
+        continue-on-error: true
+        timeout-minutes: 30
+        run: |
+          mkdir -p site-praha/data
+          if node tools/build_praha_opendata.mjs site-praha/data; then
+            rm -rf data/praha-opendata-last && mkdir -p data/praha-opendata-last && cp -R site-praha/data/opendata data/praha-opendata-last/
+          elif [ -d data/praha-opendata-last/opendata ]; then
+            echo "::warning::opendata.geoportalpraha.cz did not answer, using the open data of an earlier deploy"
+            rm -rf site-praha/data/opendata && cp -R data/praha-opendata-last/opendata site-praha/data/
+          else
+            echo "::warning::no Prague open data, profiles go without its trees, no-parking sections and street classes"
+          fi
       # Brno (/brno/): the same app; like Prague it asks the city's services on a click (MTVU, the
       # technical-map drawing and buildings on gis.brno.cz). Built here: the paid parking of
       # parkovanivbrne.cz; without it the profiles estimate the parking.
@@ -172,8 +195,8 @@ jobs:
           [ -d site-vyvoj ] && mv site-vyvoj _site/data/vyvoj || echo "::warning::no built-up area tiles, flat roofs judged by the house alone"
           cp LICENCE-A-ZDROJE.md _site/data/LICENCE-A-ZDROJE.md
           # One page for the whole Czech Republic: the cities' own data under data/<city>/ (Brno's parking,
-          # Plzeň's zones), the former city sites as pages sending to it (old links keep working).
-          for id in brno plzen; do
+          # Plzeň's zones, Prague's open data), the former city sites as pages sending to it (old links keep working).
+          for id in brno plzen praha; do
             if [ -d "site-$id/data" ] && [ -n "$(ls -A "site-$id/data")" ]; then mkdir -p "_site/data/$id" && cp -R "site-$id/data/." "_site/data/$id/"; fi
           done
           node tools/build_city_site.mjs _site

@@ -7,7 +7,7 @@ import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { SITES } from "../tools/cities.mjs";
 import { TILE, decodeTile, mergePieces } from "./public/osmtile.js";
-import { MTVU, MTVU_FIELDS, TM_LINES, LINE_WHERE, PARKOVANI, PARKING_LAYERS, parkingFields, PODLAZNOST, PODLAZNOST_FIELDS, podlaznostInfo } from "./public/queries.js";
+import { MTVU, MTVU_FIELDS, TM_LINES, LINE_WHERE, TM_POINTS, POINT_WHERE, PARKOVANI, PARKING_LAYERS, parkingFields, PODLAZNOST, PODLAZNOST_FIELDS, podlaznostInfo } from "./public/queries.js";
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const PUBLIC = path.join(ROOT, "public");
@@ -67,20 +67,21 @@ async function localOsm(lat, lon, radius) {
   return lists.length ? JSON.stringify({ source: "local", elements: mergePieces(lists) }) : null;
 }
 
-// Tram track axes, barriers and slopes of the technical map (queries.js).
-async function koleje(bbox) {
+// Tram track axes, barriers and slopes of the technical map (queries.js); with layer = TM_POINTS its
+// points (traction poles, stop poles, bollards, trees, poles without wires).
+async function koleje(bbox, layer = TM_LINES, where = LINE_WHERE) {
   const params = new URLSearchParams({
     geometry: bbox,
     geometryType: "esriGeometryEnvelope",
     inSR: "4326",
     outSR: "4326",
     spatialRel: "esriSpatialRelIntersects",
-    where: LINE_WHERE,
+    where,
     outFields: "CTMTP_KOD",
     f: "json",
   });
-  const r = await upstream(`${TM_LINES}?${params}`);
-  if (!r.ok) throw new Error(`koleje ${r.status}`);
+  const r = await upstream(`${layer}?${params}`);
+  if (!r.ok) throw new Error(`${layer === TM_LINES ? "koleje" : "body"} ${r.status}`);
   return r.text();
 }
 
@@ -203,6 +204,12 @@ const server = http.createServer(async (req, res) => {
     if (url.pathname === "/api/linie") {
       const bbox = bboxParam(url);
       const body = await cached("linie", bbox, () => koleje(bbox));
+      res.writeHead(200, { "Content-Type": TYPES[".json"] });
+      return res.end(body);
+    }
+    if (url.pathname === "/api/body") {
+      const bbox = bboxParam(url);
+      const body = await cached("body", bbox, () => koleje(bbox, TM_POINTS, POINT_WHERE));
       res.writeHead(200, { "Content-Type": TYPES[".json"] });
       return res.end(body);
     }

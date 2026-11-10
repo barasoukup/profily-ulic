@@ -47,13 +47,17 @@ export function checkRules(profile) {
     if (s.width < l.min - 0.005) out.push({ i, level: "min", text: `${label} ${fmt(s.width)} je pod minimem (${l.why}).` });
     else if (s.width < l.zaklad - 0.005) out.push({ i, level: "zaklad", text: `${label} ${fmt(s.width)} je užší než základ (${l.why}).` });
   });
-  // A tram belt (adjacent tram parts) of two tracks needs 6.5 m.
+  // A tram belt (adjacent tram parts) of two tracks needs 6.5 m, 8 m with the overhead-line poles between
+  // the tracks (Manuál C.2).
   for (let i = 0; i < segs.length; i++) {
     if (!TYPES[segs[i].type]?.tracks) continue;
     let j = i, w = 0;
     while (j < segs.length && TYPES[segs[j].type]?.tracks) w += segs[j++].width;
-    if (j - i >= 2 && segs.slice(i, j).every((x) => x.type === "tramvaj") && w < 6.5 - 0.005) {
-      out.push({ i, level: "min", text: `Tramvajový pás ${fmt(w)} je užší než minimum 6,5 m pro dvě koleje.` });
+    const belt = segs.slice(i, j);
+    if (j - i >= 2 && belt.every((x) => x.type === "tramvaj")) {
+      const poles = belt.some((x) => x.items?.some((it) => it.kind === "sloup_trakce"));
+      if (w < 6.5 - 0.005) out.push({ i, level: "min", text: `Tramvajový pás ${fmt(w)} je užší než minimum 6,5 m pro dvě koleje.` });
+      else if (poles && w < 8 - 0.005) out.push({ i, level: "zaklad", text: `Tramvajový pás se sloupy trakčního vedení ${fmt(w)} je užší než 8 m (Manuál C.2).` });
     }
     i = j - 1;
   }
