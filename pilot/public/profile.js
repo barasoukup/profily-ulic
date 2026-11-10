@@ -977,23 +977,30 @@ const artFor = (a) => (a ? signArt.get(signKey(a.file, a.text)) : null);
 // of the row (or top without signs).
 export function layoutSigns(svg, size, top) {
   let rowH = 0;
-  for (const g of svg.querySelectorAll("g.sign-group")) {
-    const cx = Number(g.dataset.cx), avail = Number(g.dataset.w);
+  // All signs at one size (Bára): the size that lets every part's signs fit its width, but no smaller than
+  // MIN_K of the full size; a part too narrow even for that shows no signs.
+  const MIN_K = 0.6, gap = size * 0.12;
+  const groups = [...svg.querySelectorAll("g.sign-group")].map((g) => {
     const stacks = [...g.querySelectorAll("g.sign")];
-    // Each sign with its plate below (at half height): widths at this size, then scaled down to the part's width.
-    const scale = (im) => Number(im.dataset.plate || 1);
-    const ws = stacks.map((st) => Math.max(...[...st.querySelectorAll("image")].map((im) => Number(im.dataset.ar) * size * scale(im))));
-    const gap = size * 0.12;
+    const ws = stacks.map((st) => Number(st.querySelector("image").dataset.ar) * size);
     const need = ws.reduce((a, w) => a + w, 0) + gap * (ws.length - 1);
-    const k = Math.min(1, (avail * 0.94) / need);
-    g.style.display = k < 0.55 ? "none" : "";
+    return { g, stacks, ws, need, fit: (Number(g.dataset.w) * 0.94) / need };
+  });
+  const k = Math.min(1, ...groups.map((x) => x.fit).filter((f) => f >= MIN_K));
+  for (const { g, stacks, ws, need, fit } of groups) {
+    const cx = Number(g.dataset.cx);
+    // A plate below is as wide as its sign, a second symbol (the bike under the bus) as big as the sign.
+    g.style.display = fit < MIN_K ? "none" : "";
     if (g.style.display) continue;
     let x = cx - (need * k) / 2;
     stacks.forEach((st, j) => {
       let y = top;
+      const sw = ws[j] * k;
       for (const im of st.querySelectorAll("image")) {
-        const h = size * k * scale(im), w = Number(im.dataset.ar) * h;
-        im.setAttribute("x", x + (ws[j] * k - w) / 2); im.setAttribute("y", y);
+        const ar = Number(im.dataset.ar);
+        const plate = im.dataset.plate === "plate";
+        const h = plate ? sw / ar : size * k, w = plate ? sw : ar * h;
+        im.setAttribute("x", x + (sw - w) / 2); im.setAttribute("y", y);
         im.setAttribute("width", w); im.setAttribute("height", h);
         y += h + size * 0.04;
       }
@@ -1013,8 +1020,8 @@ function drawSigns(svg, profile, bounds) {
     for (const [a, plate] of [[signArtOf(x, seg), false], [plateArtOf(x, seg), true]]) {
       const art = artFor(a);
       if (!art) continue;
-      // A plate at half the sign's height; a second round symbol (the bike under the bus) nearly as big.
-      el("image", { href: art.uri, "data-ar": art.w / art.h, ...(plate ? { "data-plate": a.file === "C8a" ? 0.8 : 0.5 } : {}) }, st);
+      // A plate (dodatková tabulka) is drawn as wide as its sign, a second symbol (the bike under the bus) as a sign.
+      el("image", { href: art.uri, "data-ar": art.w / art.h, ...(plate ? { "data-plate": a.file === "C8a" ? "symbol" : "plate" } : {}) }, st);
     }
     if (!st.querySelector("image")) st.remove();
   };
