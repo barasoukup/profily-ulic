@@ -11,9 +11,12 @@
 //   3. connected areas found and their outlines traced (pixel cracks, then Douglas–Peucker);
 //   4. the areas on the cut labelled by one GetFeatureInfo each, in parallel, where their colour does not
 //      tell the type (white: roadway, parking, driveway, bridge; light grey: islands, platforms, medians…).
+// In the nine regions whose DTM answers a WFS (dtmwfs.js) surfaces() takes the polygons from there instead
+// (opts.wfs) and keeps the images for the other regions and when the WFS fails.
 // Where the region has not drawn the DTM (whole blocks are blank in Pardubice in 2026), RÚIAN of ČÚZK
 // fills in: its buildings, then the use of its parcels (gardens, yards, green).
 import { query, envelope, asMtvu, metres } from "./gis.js";
+import { wfsAreas } from "./dtmwfs.js";
 
 const WMS = "https://dmvs.cuzk.gov.cz/api/wms";
 export const DMVS_AREAS = `${WMS}/dtm_zps_plochy_bar`;
@@ -491,9 +494,21 @@ const parcelCode = (a) => LAND_USE[a.zpusobyvyuzitipozemku] ?? LAND_KIND[a.druhp
 
 // Surfaces of a cut as MTVU features (derive.js mtvuPolygons): the DTM first, then RÚIAN's buildings and
 // parcels where the DTM has nothing. labels: MTVU_LABELS of city.js. Areas above the ground carry LEVEL 1.
+// opts.wfs: the region's own WFS first where it has one (dtmwfs.js), the map images where it has none or fails.
+// A region's server stalls now and then for 5 s (Liberec, 11/2026): when the WFS has not answered in HEDGE ms
+// the images are asked too and the first good answer wins.
+const HEDGE = 1500;
+async function wfsOrImages(bbox, opts) {
+  const images = () => dtmAreas(bbox, opts);
+  const wfs = wfsAreas(bbox, opts).catch((err) => { console.warn("DTM WFS", err.message); return null; });
+  const first = await Promise.race([wfs, new Promise((r) => setTimeout(() => r(undefined), HEDGE))]);
+  if (first) return first;
+  if (first === null) return images(); // no WFS here, or it failed
+  return Promise.any([wfs.then((r) => r || Promise.reject(new Error("DTM WFS"))), images()]);
+}
 export async function surfaces(bbox, labels, opts = {}) {
   const [dtm, ruian] = await Promise.all([
-    dtmAreas(bbox, opts),
+    opts.wfs ? wfsOrImages(bbox, opts) : dtmAreas(bbox, opts),
     opts.ruian === false ? null : ruianAreas(bbox),
   ]);
   const at = (level) => (a) => (a.level === level ? (a.guess ? [a.code, true] : a.code) : null);
@@ -512,5 +527,5 @@ export async function surfaces(bbox, labels, opts = {}) {
   // Brno č. 95, one "Neurčeno" of 33 m between RÚIAN's houses).
   const anyDtm = dtm.features.some((f) => f.attributes.level === 0);
   if (!anyDtm) fill.features = [];
-  return { features: [...ground.features, ...above.features, ...fill.features], region: dtm.region, requests: dtm.requests };
+  return { features: [...ground.features, ...above.features, ...fill.features], region: dtm.region, requests: dtm.requests, wfs: !!dtm.wfs };
 }

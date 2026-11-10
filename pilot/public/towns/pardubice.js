@@ -11,9 +11,12 @@ import { surfaces as dmvsSurfaces, DMVS_AREAS, DMVS_LINES } from "../dmvs.js";
 
 const none = async () => ({ features: [] });
 
-// Parking areas of the DTM are among the surfaces (704); fences and walls of its lines are not read (the
-// WMS gives no geometry of a line, only its picture).
-const surfaces = (bbox) => dmvsSurfaces(bbox, MTVU_LABELS);
+// Parking areas of the DTM are among the surfaces (704). In the nine regions with the DTM of T-MAPY the areas
+// come as polygons from the region's WFS (dtmwfs.js; A/B 137 cuts in Budějovice, Pardubice, Hradec and Liberec:
+// better 6, worse 3, the same profile otherwise, a click 0.65 s instead of 1.36 s), elsewhere from the images.
+// Fences and walls are not read: their lines from the WFS cut sidewalks and paths off the profile (A/B
+// variants/dtm-wfs-linie.mjs: worse 3, better 1).
+const surfaces = (bbox) => dmvsSurfaces(bbox, MTVU_LABELS, { wfs: true });
 
 export const sources = { osm: osmTiles, surfaces, lines: none, parking: none, podlaznost: ruianBuilding };
 export { RUIAN_HALL, RUIAN_LOW } from "../gis.js";

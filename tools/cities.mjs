@@ -6,6 +6,9 @@
 
 const OSM_CREDIT = `© přispěvatelé <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL)`;
 const RUIAN_CREDIT = "budovy RÚIAN © ČÚZK (CC BY 4.0)";
+// The regions whose DTM answers WFS (pilot/public/dtmwfs.js REGIONS).
+const DTM_WFS = ["https://jck.krajdtm.cz", "https://pak.krajdtm.cz", "https://vys.krajdtm.cz", "https://msk.krajdtm.cz", "https://khk.krajdtm.cz",
+  "https://dtm.jmk.cz", "https://dtm.kraj-lbc.cz", "https://dtm.kr-karlovarsky.cz", "https://dtm.zlinskykraj.cz"];
 
 // Order of the city switch.
 export const NAMES = { praha: "Praha", brno: "Brno", jihlava: "Jihlava", most: "Most", opava: "Opava", pardubice: "Pardubice", plzen: "Plzeň", usti: "Ústí nad Labem",
@@ -85,9 +88,10 @@ export const SITES = {
     ogData: "z technické mapy ČÚZK a OSM.", ogCredit: "Pardubický kraj, ČÚZK, OSM",
     stav: "z technické mapy ČÚZK a OSM",
     parking: "parkoviště z technické mapy",
-    // The national DTM (map images and the type of a surface) and RÚIAN of ČÚZK; no town GIS.
+    // The national DTM (map images and the type of a surface), the regions' DTM as WFS (dtmwfs.js, anywhere in
+    // the nine regions that have it) and RÚIAN of ČÚZK; no town GIS.
     img: ["https://dmvs.cuzk.gov.cz"],
-    connect: ["https://dmvs.cuzk.gov.cz", "https://ags.cuzk.gov.cz"],
+    connect: ["https://dmvs.cuzk.gov.cz", "https://ags.cuzk.gov.cz", ...DTM_WFS],
     credits: `Data: technická mapa © Pardubický kraj, <a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a> ·
     ${RUIAN_CREDIT} ·
     ${OSM_CREDIT} ·

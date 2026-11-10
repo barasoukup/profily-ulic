@@ -5,8 +5,8 @@
 const GAP = 300, PAUSE = 10 * 60 * 1000;
 const native = globalThis.fetch;
 let queue = Promise.resolve(), last = 0, count = 0;
-// ČÚZK, and IPR Praha (gs-pub.praha.eu, mp.iprpraha.cz).
-const isCuzk = (url) => /(^|\.)(cuzk\.gov\.cz|gs-pub\.praha\.eu|mp\.iprpraha\.cz)$/.test(new URL(String(url)).hostname);
+// ČÚZK, IPR Praha (gs-pub.praha.eu, mp.iprpraha.cz) and the regions' DTM (krajdtm.cz and their own hosts).
+const isCuzk = (url) => /(^|\.)(cuzk\.gov\.cz|gs-pub\.praha\.eu|mp\.iprpraha\.cz|krajdtm\.cz|dtm\.jmk\.cz|dtm\.kraj-lbc\.cz|dtm\.kr-karlovarsky\.cz|dtm\.zlinskykraj\.cz)$/.test(new URL(String(url)).hostname);
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 export function politeFetch(url, opts) {
   if (!isCuzk(url)) return native(url, opts);

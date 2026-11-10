@@ -206,6 +206,12 @@ pilot/data/<město>/osm-tiles`, kontrola `CITY=<město> node evaluation/sample.m
   doptá (průměrně 6 dotazů, kliknutí kolem 1 s). Prázdná místa DTM doplní budovy a parcely RÚIAN. Kvalita záleží na
   kraji: v Pardubicích chybí vozovky mimo zástavbu a plochy uvnitř bloků. Ilustrace: trolejbus 32Tr a autobus Iveco
   Urbanway DPMP. Kontrola 49 řezů: `evaluation/pardubice/ZPRAVA.md`.
+- **DTM krajů z WFS** (10. 11. 2026, `pilot/public/dtmwfs.js`): v devíti krajích s DTM od T-MAPY (Jihočeský,
+  Pardubický, Vysočina, Moravskoslezský, Královéhradecký, Jihomoravský, Liberecký, Karlovarský, Zlínský) dává mapová
+  služba kraje i WFS 2.0 se skutečnými polygony (`…/mapservice/v1/wms/dtm_zps_plochy_bar`, GML v S-JTSK, CORS).
+  `dmvs.js` se ptá nejdřív jí (jeden dotaz, kliknutí medián 0,65 s místo 1,36 s), kraj řezu podle `kraje.json`
+  (`node tools/build_kraje.mjs`); jinde, při chybě nebo když WFS do 1,5 s neodpoví, obrázky DMVS. A/B 137 řezů:
+  lepší 6, horší 3, jinak stejně; ploty a zdi z WFS nepřipojené (uříznou chodníky). `evaluation/dtm-wfs/ZPRAVA.md`.
 - **Ústí nad Labem** (`towns/usti.js`): plochy jako všude v Česku z DTM ČÚZK (Ústecký kraj ji má celou), k tomu
   **parkovací místa města** (`mapy.usti.cz`, `Doprava/Parkovaci_zony_UL/MapServer/3`, řada stání s druhem: podélné,
   kolmé, šikmé, vyhrazené, ZTP; asi 435 řad v centru a okolí, aktualizace 2026). Služba je bez
