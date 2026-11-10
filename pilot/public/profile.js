@@ -226,6 +226,9 @@ export const turnLabel = (v) => v.split(";").map((x) => TURNS[x] || x).join(" + 
 // anchor: the picture's x (its own units) that stands at cx; the middle when not given.
 // The most even split of a name into two lines (null for one word).
 export function twoLines(text) {
+  // A name of two things ("Jízdní pruh ↑, piktokoridor ↓") breaks after the comma.
+  const comma = text.indexOf(", ");
+  if (comma > 0) return [text.slice(0, comma + 1), text.slice(comma + 2)];
   const words = text.split(" ");
   let best = null;
   for (let j = 1; j < words.length; j++) {
@@ -1175,8 +1178,11 @@ export function buildSvg(profile, opts = {}) {
         // Under a narrow part "Napůl na chodníku" alone (the long name would not fit on two lines).
         : s.type === "parkovani" && s.position ? (s.position === "half_on_kerb" && w < 300 ? "Napůl na chodníku" : `Parkování ${PARKING_POSITION[s.position]}`)
         : s.type === "parkovani" && s.orient ? `Parkování ${ORIENT_LABEL[s.orient]}`
+        // A lane with a piktokoridor is first a lane (Bára): "Jízdní pruh ↑, piktokoridor ↓" with the cyclists' direction
+        // when it differs; cyclists in contraflow in a plain lane likewise.
+        : s.type === "pruh_piktokoridor" ? `${TYPES.pruh.label}${s.dir ? (forward ? " ↑" : " ↓") : ""}, piktokoridor${contra ? (s.bikeDir === "backward" ? " ↓" : " ↑") : ""}`
         : t.label + (t.directional && s.dir ? (forward ? " ↑" : " ↓") : s.type === "pruh" ? " ↑↓" : "") +
-          (contra ? ` cyklisté ${s.bikeDir === "backward" ? "↓" : "↑"}` : "");
+          (contra ? `, cyklisté ${s.bikeDir === "backward" ? "↓" : "↑"}` : "");
       const name = el("text", { class: "lbl-t", "data-row": 1, "data-w": w, "data-full": label, x: cx, y: GROUND + 215, "text-anchor": "middle", "font-size": 28, fill: "#4f4e49" }, g);
       const lines = twoLines(label);
       if (label.length * 0.56 * 28 > w && lines) {
