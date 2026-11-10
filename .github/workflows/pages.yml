@@ -1,7 +1,8 @@
 # Publishes the app (pilot/public) on GitHub Pages as a static site: the browser asks IPR, the cities'
 # GIS and ČÚZK directly, and the OSM tiles of the whole Czech Republic (one set for every city) are built
-# here from Geofabrik's extract on every deploy (they are not kept in the repository). Runs on push to main, by hand, and weekly so the
-# OSM data stays fresh.
+# here from Geofabrik's extract once a week (they are not kept in the repository; a deploy in the same week
+# reuses them from the Actions cache unless the tile scripts changed). Runs on push to main, by hand, and weekly
+# so the OSM data stays fresh.
 name: GitHub Pages
 
 on:
@@ -41,7 +42,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      # This week's tiles, built by the same tile scripts: a deploy reuses them and skips the build (Bára:
+      # the weekly refresh is enough while their extent does not change).
+      - id: week
+        run: echo "week=$(date -u +%G-%V)" >> "$GITHUB_OUTPUT"
+      - id: tiles-cache
+        uses: actions/cache@v4
+        with:
+          path: site-tiles
+          key: osm-tiles-${{ steps.week.outputs.week }}-${{ hashFiles('tools/build_osm_tiles.mjs', 'tools/build_osm_data.sh', 'pilot/public/osmtile.js') }}
       - name: Install GDAL (ogr2ogr)
+        if: steps.tiles-cache.outputs.cache-hit != 'true'
         timeout-minutes: 8
         env:
           DEBIAN_FRONTEND: noninteractive
@@ -51,16 +62,15 @@ jobs:
           ogr2ogr --version
       # Geofabrik's Czech Republic is kept in the Actions cache: a deploy reuses this week's copy, a new week
       # downloads a fresh one and falls back to the last copy when download.geofabrik.de is unreachable.
-      - id: week
-        run: echo "week=$(date -u +%G-%V)" >> "$GITHUB_OUTPUT"
       - id: pbf-cache
+        if: steps.tiles-cache.outputs.cache-hit != 'true'
         uses: actions/cache@v4
         with:
           path: data/osm/cz.osm.pbf
           key: osm-cz-pbf-${{ steps.week.outputs.week }}
           restore-keys: osm-cz-pbf-
       - name: Download the OSM extract
-        if: steps.pbf-cache.outputs.cache-hit != 'true'
+        if: steps.tiles-cache.outputs.cache-hit != 'true' && steps.pbf-cache.outputs.cache-hit != 'true'
         run: |
           mkdir -p data/osm
           if curl -fL --retry 3 --retry-delay 20 --connect-timeout 30 -o /tmp/cz.osm.pbf \
@@ -73,6 +83,7 @@ jobs:
           fi
       # The tiles of the whole country (about 700 MB): every city site reads them from ../data/osm-tiles.
       - name: Build OSM tiles
+        if: steps.tiles-cache.outputs.cache-hit != 'true'
         timeout-minutes: 45
         run: NAME=cz tools/build_osm_data.sh data/osm/cz.osm.pbf site-tiles
       # The zone file of the last good deploy is kept in the Actions cache: when IPR does not answer
@@ -190,7 +201,8 @@ jobs:
               const h = "_site/index.html"; fs.writeFileSync(h, fs.readFileSync(h, "utf8").replace(/(connect-src [^;]*)/, "$1 " + new URL(u).origin));
             }'
           grep -q 'LOG_URL = ""' _site/config.js && echo "::warning::no log of cuts (repository variable LOG_URL)" || true
-          mv site-tiles _site/data/osm-tiles
+          # Hard links, not a move: site-tiles stays for the Actions cache (saved after the job) at no extra space.
+          cp -al site-tiles _site/data/osm-tiles
           mv site-zps.json _site/data/zps.json
           [ -d site-vyvoj ] && mv site-vyvoj _site/data/vyvoj || echo "::warning::no built-up area tiles, flat roofs judged by the house alone"
           cp LICENCE-A-ZDROJE.md _site/data/LICENCE-A-ZDROJE.md
