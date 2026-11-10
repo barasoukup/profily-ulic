@@ -309,9 +309,9 @@ function tramSprite(g, name, cx, bottom) {
     el("path", { d: `M${cx - 36} ${head + 10} L${cx + 12} ${knee - 4} M${cx + 36} ${head + 10} L${cx - 12} ${knee - 4}`, stroke: ink, "stroke-width": 1.2 }, p);
     el("path", { d: `M${cx - 44} ${head + 14} L${cx - 56} ${head + 8} M${cx + 44} ${head + 14} L${cx + 56} ${head + 8}`, stroke: ink, "stroke-width": 2.5 }, p);
   }
-  // The head: the bow with its horns bent down (1.95 m wide; the T3's about 1.6 m, its ends bent down and in),
+  // The head: the bow with its horns bent down (1.95 m wide; the T3's about 1.6 m, its ends bent down a little),
   // the two contact strips on it touching the wire.
-  if (diamond) el("path", { d: `M${cx - 70} ${head + 24} L${cx - 80} ${head + 12} L${cx - 72} ${head + 8} H${cx + 72} L${cx + 80} ${head + 12} L${cx + 70} ${head + 24}`, stroke: ink, "stroke-width": 4 }, p);
+  if (diamond) el("path", { d: `M${cx - 82} ${head + 15} L${cx - 76} ${head + 8} H${cx + 76} L${cx + 82} ${head + 15}`, stroke: ink, "stroke-width": 4 }, p);
   else el("path", { d: `M${cx - 97} ${head + 32} Q${cx - 95} ${head + 12} ${cx - 80} ${head + 9} H${cx + 80} Q${cx + 95} ${head + 12} ${cx + 97} ${head + 32}`, stroke: ink, "stroke-width": 4.5 }, p);
   el("rect", { x: cx - 62, y: head, width: 124, height: 3.5, rx: 1, fill: ink, stroke: "none" }, p);
   el("rect", { x: cx - 62, y: head + 5, width: 124, height: 2.5, rx: 1, fill: "#6b6e6a", stroke: "none" }, p);
