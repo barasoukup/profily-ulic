@@ -20,6 +20,11 @@ const TOWN_ART = {
   "lamp-modern-left": "lamp-left", "lamp-modern-right": "lamp-right", "bench-center": "bench-center",
   "bike-rack-perpendicular-left": "bike-rack", "bollard": "bollard",
   "transit-shelter-01-left": "transit-shelter-left", "transit-shelter-01-right": "transit-shelter-right",
+  // Overhead-line poles and stop posts (copies of Prague's, Brno its own).
+  "tram-pole-left": "sloup-trakce-left", "tram-pole-right": "sloup-trakce-right",
+  "tram-pole-lamp-left": "sloup-trakce-lampa-left", "tram-pole-lamp-right": "sloup-trakce-lampa-right",
+  "stop-post-left": "oznacnik-left", "stop-post-right": "oznacnik-right",
+  "stop-post-tram-left": "oznacnik-tram-left", "stop-post-tram-right": "oznacnik-tram-right",
 };
 
 // A town's own vehicles (pilot/public/<art>/tram-*, trolejbus-*) in place of Streetmix's.

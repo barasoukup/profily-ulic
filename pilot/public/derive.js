@@ -1260,17 +1260,30 @@ function itemPositions(osm, frame, center, normal, half, lines, reach = REACH) {
 
 // Parts where a lamp, bench or other standing thing cannot be: vehicles drive or park there.
 const TRAFFIC = new Set(["pruh", "pruh_piktokoridor", "obsluzna", "krajnice", "bus", "bus_cyklo", "tramvaj_v_pruhu",
-  "cyklopruh", "ochranny_pruh", "parkovani"]);
+  "cyklopruh", "ochranny_pruh", "parkovani", "tramvaj", "tramvaj_pruh"]);
 const ITEM_SHIFT = 3; // an OSM point this far off a kerb is moved onto it (m); further it is left out
+// A traction pole or a stop post in the tram bed (between the tracks, or a point a little off) stands on the
+// island or platform beside it, further than ITEM_SHIFT if need be: trams pass where it was drawn (Olšanská).
+const BED_SHIFT = { sloup_trakce: 4, oznacnik: 4 };
+const CENTER_POLE = 1.2; // a traction pole this close to the line between two tracks stands between them (m)
 
 function attachItems(segs, items) {
   for (const it of items) {
     let host = segs.find((x) => x.s <= it.t && x.e >= it.t);
     let t = it.t;
-    if (it.stands && (!host || TRAFFIC.has(host.type))) {
+    let center = false;
+    // A traction pole between two tracks (within CENTER_POLE of where the two track parts meet) stands there,
+    // with brackets over both (Bára's photo): trams pass on either side of it.
+    if (it.kind === "sloup_trakce" && host && /^tramvaj/.test(host.type)) {
+      const k = segs.indexOf(host);
+      const meet = [[segs[k - 1], host.s], [segs[k + 1], host.e]].find(([n, b]) => n && /^tramvaj/.test(n.type) && Math.abs(b - t) <= CENTER_POLE);
+      if (meet) { t = meet[1]; center = true; host = t === host.s ? segs[k - 1] : host; }
+    }
+    if (!center && it.stands && (!host || TRAFFIC.has(host.type))) {
       // OSM points are a metre or two off: a lamp drawn in a lane goes to the nearest kerbside part.
       const gap = (x) => (t < x.s ? x.s - t : t > x.e ? t - x.e : 0);
-      const near = segs.filter((x) => !TRAFFIC.has(x.type) && gap(x) <= ITEM_SHIFT).sort((a, b) => gap(a) - gap(b))[0];
+      const shift = Math.max(ITEM_SHIFT, BED_SHIFT[it.kind] ?? 0);
+      const near = segs.filter((x) => !TRAFFIC.has(x.type) && gap(x) <= shift).sort((a, b) => gap(a) - gap(b))[0];
       if (!near) continue;
       const inset = Math.min(0.3, (near.e - near.s) / 2);
       host = near;
@@ -1280,6 +1293,7 @@ function attachItems(segs, items) {
     const item = { kind: it.kind, f: (t - host.s) / Math.max(host.e - host.s, 0.01) };
     if (it.tram) item.tram = true;
     if (it.lamp) item.lamp = true;
+    if (center) { item.center = true; item.f = 1; }
     (host.items ||= []).push(item);
   }
   return segs;

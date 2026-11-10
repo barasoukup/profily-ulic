@@ -29,6 +29,10 @@ const PRAHA = {
   "bike-rack-perpendicular-left": "bike-rack", "bollard": "bollard",
   "transit-shelter-01-left": "transit-shelter-left", "transit-shelter-01-right": "transit-shelter-right",
   "transit-shelter-tram-left": "transit-shelter-tram-left", "transit-shelter-tram-right": "transit-shelter-tram-right",
+  "tram-pole-left": "sloup-trakce-left", "tram-pole-right": "sloup-trakce-right",
+  "tram-pole-lamp-left": "sloup-trakce-lampa-left", "tram-pole-lamp-right": "sloup-trakce-lampa-right",
+  "stop-post-left": "oznacnik-left", "stop-post-right": "oznacnik-right",
+  "stop-post-tram-left": "oznacnik-tram-left", "stop-post-tram-right": "oznacnik-tram-right",
 };
 // Brno illustrations (brno/): the tram Tatra T3 in DPMB colours (Bára: the nicest; 45T and 13T drawn too) and bus, and furniture after the
 // rules of Brno's city architect (KAM, Principy tvorby veřejných prostranství, kap. 9): anthracite steel,
@@ -39,6 +43,10 @@ const BRNO = {
   "bike-rack-perpendicular-left": "bike-rack", "bollard": "bollard",
   "transit-shelter-01-left": "transit-shelter-left", "transit-shelter-01-right": "transit-shelter-right",
   "transit-shelter-tram-left": "transit-shelter-tram-left", "transit-shelter-tram-right": "transit-shelter-tram-right",
+  "tram-pole-left": "sloup-trakce-left", "tram-pole-right": "sloup-trakce-right",
+  "tram-pole-lamp-left": "sloup-trakce-lampa-left", "tram-pole-lamp-right": "sloup-trakce-lampa-right",
+  "stop-post-left": "oznacnik-left", "stop-post-right": "oznacnik-right",
+  "stop-post-tram-left": "oznacnik-tram-left", "stop-post-tram-right": "oznacnik-tram-right",
 };
 // Every other city brings its own map of illustrations (city.js artMap, files in pilot/public/<art>/).
 const CITY_ART = { praha: PRAHA, brno: BRNO };
@@ -165,6 +173,14 @@ function drawItem(g, it, x, top, right) {
     // Tram overhead-line pole (technical map): a 9 m steel pole with its bracket over the tracks; a street
     // lamp mounted on it (OSM) is drawn with it.
     case "sloup_trakce": {
+      // The city's own pole (praha/sloup-trakce-*): its bracket over the tracks, on the right half pointing left;
+      // a pole between the tracks (it.center) carries brackets over both (Bára's photo, Prague).
+      const lamp = it.lamp ? "-lamp" : "";
+      if (ownSprite(`tram-pole${lamp}-left`)) {
+        if (it.center || !right) sprite(g, `tram-pole${lamp}-right`, x, top, false, 22);
+        if (it.center || right) sprite(g, `tram-pole${lamp}-left`, x, top, false, 348);
+        return;
+      }
       if (it.lamp) sprite(g, right ? "lamp-modern-left" : "lamp-modern-right", x, top, false, right ? 348 : 22);
       const arm = right ? -1 : 1;
       el("path", { d: `M ${x - 14} ${top} L ${x - 9} ${top - 900} L ${x + 9} ${top - 900} L ${x + 14} ${top} Z`, fill: "#5b6460" }, g);
@@ -174,6 +190,7 @@ function drawItem(g, it, x, top, right) {
     }
     // Stop pole (označník zastávky, technical map).
     case "oznacnik":
+      if (ownSprite("stop-post-left")) return sprite(g, `stop-post${it.tram ? "-tram" : ""}-${right ? "right" : "left"}`, x, top);
       line({ x: x - 4, y: top - 280, width: 8, height: 280, fill: "#3d3b36" });
       line({ x: x - 26, y: top - 300, width: 52, height: 64, fill: "#fff", stroke: "#b5302a", "stroke-width": 5 });
       el("text", { x, y: top - 256, "text-anchor": "middle", "font-size": 30, "font-weight": "bold", fill: "#1f1f1d" }, g).textContent = "Z";
@@ -240,6 +257,8 @@ export function twoLines(text) {
   return best;
 }
 
+// The current city's own sprite of a name, or undefined (poles and stop posts have no Streetmix stand-in).
+const ownSprite = (name) => cityArt() && sprites[`${artKey()}/${CITY_ART[artKey()]?.[name]}`];
 function sprite(g, name, cx, bottom, flip = false, anchor = null) {
   const s = (cityArt() && sprites[`${artKey()}/${CITY_ART[artKey()]?.[name]}`]) || sprites[name];
   if (!s) return;
