@@ -12,6 +12,7 @@ const OPEN_LAND = 8; // greenery at least this wide ends the profile as open sur
 // prostranství C.2: double-track belt 6.5 m at 3.0 m track spacing, 7 m at 3.5 m,
 // i.e. 1.75 m from each outer axis; between tracks the space splits at the midpoint.
 const TRAM_HALF = 1.75;
+const TRAM_LANE_HALF = 1.5; // a tram kept to a 3.0 m lane, where OSM counts car lanes beside the tracks
 const CAR_MIN = 2.5; // narrowest leftover space treated as a separate car lane (m)
 const TREE_REACH = 8; // single trees this close to the cut count as standing in it (m)
 const TREE_STRIP = 1.5; // width of a tree strip carved out of a sidewalk (m)
@@ -527,16 +528,22 @@ function splitRoadway(run, ctx) {
     if (x.side === "L") { leftEdge.push({ type: x.type, s: e - x.w, e, orient: x.orient, source: x.source }); e -= x.w; }
     else { rightEdge.push({ type: x.type, s, e: s + x.w, orient: x.orient, source: x.source }); s += x.w; }
   }
-  const mid = trams.length ? tramLanes(s, e, trams, dirAt) : [];
-  // All the street's lanes fit beside the tracks (Národní: lanes=2, one on each side): cars do not
-  // drive on the tracks, so they are a tram belt of their own, level with the roadway (Bára).
-  if (trams.length && tags.lanes) {
-    const cars = mid.filter((x) => x.type === "pruh");
+  let mid = trams.length ? tramLanes(s, e, trams, dirAt) : [];
+  // All the street's lanes fit beside the tracks (Národní: lanes=2, one on each side; Spálená: lanes:forward=1
+  // and lanes:backward=1): cars do not drive on the tracks, so they are a tram belt of their own, level with
+  // the roadway (Bára). Only where OSM counts the lanes, so an unmapped parking lane is not taken for one.
+  // Where the lanes fit only with the tram kept to a 3.0 m lane (axis ± TRAM_LANE_HALF; Spálená: 2.4 m beside
+  // the usual envelope, 2.7 m beside this one), the narrower one is taken.
+  if (trams.length && (tags.lanes || tags["lanes:forward"] || tags["lanes:backward"])) {
     const lo = Math.min(...trams), hi = Math.max(...trams);
-    const bothSides = cars.some((x) => x.e <= lo) && cars.some((x) => x.s >= hi);
-    if (cars.length >= ctx.lanesTotal && (bothSides || isOnewayTags(tags))) {
-      for (const x of mid) if (x.type === "tramvaj_v_pruhu") x.type = "tramvaj";
-    }
+    const fitsBeside = (m) => {
+      const cars = m.filter((x) => x.type === "pruh");
+      const bothSides = cars.some((x) => x.e <= lo) && cars.some((x) => x.s >= hi);
+      return cars.length >= ctx.lanesTotal && (bothSides || isOnewayTags(tags));
+    };
+    const narrow = !fitsBeside(mid) && tramLanes(s, e, trams, dirAt, TRAM_LANE_HALF);
+    if (narrow && fitsBeside(narrow)) mid = narrow;
+    if (fitsBeside(mid)) for (const x of mid) if (x.type === "tramvaj_v_pruhu") x.type = "tramvaj";
   }
   if (!trams.length) {
     // One lane on a two-way street carries both directions (no arrow).
@@ -661,10 +668,10 @@ function applyLaneTags(lanes, tags, along) {
 // Lanes around tram tracks lying in the roadway: each track gets its swept envelope
 // (axis ± TRAM_HALF); leftover space wide enough for a car becomes a driving lane,
 // narrower leftovers are added to the neighbouring tram lane.
-function tramLanes(s, e, trams, dirAt) {
+function tramLanes(s, e, trams, dirAt, half = TRAM_HALF) {
   const ts = [...trams].sort((a, b) => a - b);
   const src = trams.measured ? "dtm" : "osm";
-  const env = ts.map((t) => ({ s: Math.max(s, t - TRAM_HALF), e: Math.min(e, t + TRAM_HALF), t }));
+  const env = ts.map((t) => ({ s: Math.max(s, t - half), e: Math.min(e, t + half), t }));
   for (let i = 0; i < env.length - 1; i++) {
     // Overlapping or close envelopes split the space between them in the middle.
     const gap = env[i + 1].s - env[i].e;
@@ -1182,14 +1189,25 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   const isOpenLand = (c) => c === 100 || c === 200 || (c >= 400 && c < 500);
   // The reach on each side can be shortened by dragging the cut ends (left = larger t).
   const reachL = Math.min(reach?.left ?? MAX_REACH, half - Math.max(0, ref)), reachR = Math.min(reach?.right ?? MAX_REACH, half + Math.min(0, ref));
-  const stopAt = (r, limit) => {
+  // A lawn in front of a house (estates: tř. Budovatelů in Most, Bára) belongs to the street: wide
+  // greenery ends the profile only where no building follows within the reach on that side.
+  const houseAhead = (k, step, limit) => {
+    for (; k >= 0 && k < runs.length; k += step) {
+      const r = runs[k];
+      if (Math.min(Math.abs(r.s - ref), Math.abs(r.e - ref)) > limit) return false;
+      if (isBuilding(r.code)) return true;
+      if ((r.code >= 500 && r.code < 600) || r.code === 300 || (r.code === 704 && r.e - r.s >= OPEN_LAND) || isMinorStructure(r.code)) return false;
+    }
+    return false;
+  };
+  const stopAt = (r, limit, k, step) => {
     if (isBuilding(r.code)) return "budova";
     // A narrow "other structure" is a wall or parapet (e.g. an embankment wall): the profile goes on.
     if (isMinorStructure(r.code) && r.e - r.s >= WALL_MAX) return "stavba";
     if (inMedian(r)) return null;
     if (r.code >= 500 && r.code < 600 && r.e - r.s >= OPEN_LAND) return "voda";
     if (r.code === 300) return "zahrada";
-    if (isOpenLand(r.code) && r.e - r.s >= OPEN_LAND) return "zelen";
+    if (isOpenLand(r.code) && r.e - r.s >= OPEN_LAND && !houseAhead(k + step, step, limit)) return "zelen";
     // A large parking area beside the street is the edge of the profile, not a parking lane.
     if (r.code === 704 && r.e - r.s >= OPEN_LAND) return "parkoviste";
     // No technical-map surface over a wide stretch: nothing more to measure on this side.
@@ -1199,8 +1217,8 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   };
   let lo = i0, hi = i0;
   let right = "volno", left = "volno";
-  while (lo > 0) { const s = stopAt(runs[lo - 1], reachR); if (s) { right = s; break; } lo--; }
-  while (hi < runs.length - 1) { const s = stopAt(runs[hi + 1], reachL); if (s) { left = s; break; } hi++; }
+  while (lo > 0) { const s = stopAt(runs[lo - 1], reachR, lo - 1, -1); if (s) { right = s; break; } lo--; }
+  while (hi < runs.length - 1) { const s = stopAt(runs[hi + 1], reachL, hi + 1, 1); if (s) { left = s; break; } hi++; }
   const edges = { right, left };
 
   // A fence or wall beyond the outermost carriageway is the edge of the street (Bára: what is behind
