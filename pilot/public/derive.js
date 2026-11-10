@@ -345,6 +345,7 @@ export function mtvuPolygons(json, frame) {
       label: (f.attributes.CTVUK_POPIS || "").trim(),
       guess: f.attributes.ODHAD === 1, // Brno: an area completed along OSM, not measured
       level: Number(f.attributes.LEVEL) || 0, // Brno: 1 above the ground (bridge decks)
+      dtmTram: f.attributes.DTM_TRAM === 1, // the national DTM's tram area: tracks in the roadway or apart from it
       rings,
       bbox: bboxOf(rings.flat()),
       lonlat: f.geometry.rings.map((r) => r.map(([lon, lat]) => [lat, lon])),
@@ -1602,6 +1603,8 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     };
     return buildingRings.some((ring) => ring.some((p, i) => i > 0 && hits(uv(ring[i - 1]), uv(p))));
   };
+  // Is a run the national DTM's tram area (dmvs.js: in the roadway or apart from it), not MTVU's separate bed?
+  const dtmTramIn = (r) => { const [x, y] = at((r.s + r.e) / 2); return polys.some((p) => p.dtmTram && x >= p.bbox[0] && x <= p.bbox[2] && y >= p.bbox[1] && y <= p.bbox[3] && inside(p.rings, x, y)); };
   for (const r of kept) {
     const type = typeFromMtvu(r.code);
     if (r.code === 701 || r.code === 700) {
@@ -1714,6 +1717,11 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       segs.push({ type: "zahradka", s: r.s, e: r.e, source: "osm" });
     } else if (r.code === OSM_PARKING) {
       segs.push({ type: "parkovani", s: r.s, e: r.e, source: "osm", orient: r.orient });
+    } else if (type === "tramvaj" && dtmTramIn(r) && [kept[kept.indexOf(r) - 1], kept[kept.indexOf(r) + 1]].every((n) => n && (n.code === 700 || n.code === 701))) {
+      // The national DTM's tram area with the roadway on both sides and no curb or green between: the tracks lie
+      // in the roadway (Olomouc, Sokolská; Bára), a track each way when it is wide enough.
+      const parts = r.e - r.s > 5 ? [[r.s, (r.s + r.e) / 2, "forward"], [(r.s + r.e) / 2, r.e, "backward"]] : [[r.s, r.e, undefined]];
+      for (const [a, b, d] of parts) segs.push({ type: "tramvaj_v_pruhu", s: a, e: b, dir: d, source: "dtm" });
     } else if (type === "tramvaj" || (type === "zelen" && r.e - r.s >= GRASS_BED_MIN && tramTs.some((t) => t > r.s + 0.5 && t < r.e - 0.5))) {
       // A separate tram bed (MTVU 705 and the towns' equivalents), or a green area with tracks in it: a bed
       // of grass. Wider than 5 m it carries a track each way.

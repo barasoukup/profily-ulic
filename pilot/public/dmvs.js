@@ -515,6 +515,8 @@ export async function surfaces(bbox, labels, opts = {}) {
   const ground = asMtvu([[dtm, at(0)]], labels);
   const above = asMtvu([[dtm, at(1)]], labels);
   for (const f of above.features) f.attributes.LEVEL = 1;
+  // The DTM's "tramvajová dráha" is the tracks' area, in the roadway or apart from it (not MTVU's separate bed).
+  for (const f of ground.features) if (f.attributes.CTVUK_KOD === 705) f.attributes.DTM_TRAM = 1;
   const fill = ruian ? asMtvu([[ruian.buildings, 601], [ruian.parcels, parcelCode]], labels) : { features: [] };
   // A road's parcel is a roadway (an estimate) only in the blank gap of a street the DTM has drawn in part;
   // elsewhere it is a verge, and under a street the DTM has not drawn at all it stays open: the profile is
