@@ -78,6 +78,7 @@ export const REACH = {
 const REACH_GROUP = { lampa: "lampa", lavicka: "lavicka", sloupek: "sloupek", kvetinac: "sloupek", sloup_trakce: "sloup", oznacnik: "zastavka", pristresek: "zastavka" };
 export const reachOf = (kind, reach = REACH) => reach[REACH_GROUP[kind] || (kind === "strom" ? "strom" : "jine")] ?? REACH[REACH_GROUP[kind] || "jine"];
 const ROW_GAP = 1.5; // points of one kind this close across the street stand in one row: one is drawn (m)
+const STOP_GAP = { pristresek: 4, oznacnik: 4 }; // a stop's shelter or post: one within this across (m)
 const NO_PARKING_IN = 2.5, NO_PARKING_OUT = 0.5; // a no-parking section counts this far into the roadway from the kerb, and out of it (m)
 const SECTION_NEAR = 12; // the line of a TSK street section within this of the roadway's middle is its section (m)
 const SAME_POINT = 3; // a technical-map or open-data point this close to an OSM one of its kind is the same thing (m)
@@ -1249,7 +1250,10 @@ function itemPositions(osm, frame, center, normal, half, lines, reach = REACH) {
   // where it stands across the street.
   const kept = [];
   for (const it of items.filter((x) => !x.drop).sort((a, b) => a.along - b.along || a.t - b.t)) {
-    if (!kept.some((o) => o.kind === it.kind && Math.abs(o.t - it.t) < (it.along || o.along ? ROW_GAP : 1))) kept.push(it);
+    // A stop has one shelter and one post: two of them within STOP_GAP across (OSM's shelter and the stop's
+    // shelter=yes, two shelters of one platform; Türkova) are one.
+    const gap = STOP_GAP[it.kind] ?? (it.along ? ROW_GAP : 1);
+    if (!kept.some((o) => o.kind === it.kind && Math.abs(o.t - it.t) < (o.along || it.along ? Math.max(gap, ROW_GAP) : gap))) kept.push(it);
   }
   return kept.sort((a, b) => a.t - b.t);
 }
