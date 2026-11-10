@@ -1188,7 +1188,12 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   // not counted in the street width), or once a run starts too far from the axis.
   const isOpenLand = (c) => c === 100 || c === 200 || (c >= 400 && c < 500);
   // The reach on each side can be shortened by dragging the cut ends (left = larger t).
-  const reachL = Math.min(reach?.left ?? MAX_REACH, half - Math.max(0, ref)), reachR = Math.min(reach?.right ?? MAX_REACH, half + Math.min(0, ref));
+  const capL = half - Math.max(0, ref), capR = half + Math.min(0, ref);
+  let reachL = Math.min(reach?.left ?? MAX_REACH, capL), reachR = Math.min(reach?.right ?? MAX_REACH, capR);
+  // What lies between a street and a house on an estate: lawns, paths, roads, a parking lane. A paved
+  // yard, a garden, a field or wood, water or an unknown stretch means a plot of its own (Jihlava č. 53:
+  // a family house behind an overgrown plot and its yard), and the profile does not reach over it.
+  const streetLand = (r) => r.code === 401 || r.code === 402 || (r.code >= 700 && r.code < 800 && !(r.code === 704 && r.e - r.s >= OPEN_LAND)) || r.code >= 9000; // 9xxx: OSM and TSK parking, platforms, medians
   // A lawn in front of a house (estates: tř. Budovatelů in Most, Bára) belongs to the street: wide
   // greenery ends the profile only where no building follows within the reach on that side.
   const houseAhead = (k, step, limit) => {
@@ -1196,10 +1201,23 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       const r = runs[k];
       if (Math.min(Math.abs(r.s - ref), Math.abs(r.e - ref)) > limit) return false;
       if (isBuilding(r.code)) return true;
-      if ((r.code >= 500 && r.code < 600) || r.code === 300 || (r.code === 704 && r.e - r.s >= OPEN_LAND) || isMinorStructure(r.code)) return false;
+      if (!streetLand(r)) return false;
     }
     return false;
   };
+  // Facade to facade (Bára): a house beyond the default reach, across lawns and paths, draws the profile
+  // out to it, up to the end of the data read (half). A reach shortened by hand stays as it is.
+  const facade = (k, step, cap) => {
+    for (; k >= 0 && k < runs.length; k += step) {
+      const r = runs[k], near = step > 0 ? r.s - ref : ref - r.e;
+      if (near > cap) return null;
+      if (isBuilding(r.code)) return near;
+      if (!streetLand(r)) return null;
+    }
+    return null;
+  };
+  if ((reach?.left ?? MAX_REACH) >= MAX_REACH) { const d = facade(i0 + 1, 1, capL); if (d !== null) reachL = Math.max(reachL, Math.min(capL, d + 0.5)); }
+  if ((reach?.right ?? MAX_REACH) >= MAX_REACH) { const d = facade(i0 - 1, -1, capR); if (d !== null) reachR = Math.max(reachR, Math.min(capR, d + 0.5)); }
   const stopAt = (r, limit, k, step) => {
     if (isBuilding(r.code)) return "budova";
     // A narrow "other structure" is a wall or parapet (e.g. an embankment wall): the profile goes on.
