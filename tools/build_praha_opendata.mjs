@@ -3,7 +3,9 @@
 //   - "Sdílená data o zeleni – vegetační prvky – body": single trees (kod_vp 71 "Strom") of TSK, MHMP and
 //     the districts;
 //   - "Stromořadí": tree rows (lines);
-//   - "Zákaz stání": no-parking sections of the paid parking zones (TSK, polygons along the kerb);
+//   - "Zákaz stání": no-parking sections of the paid parking zones (TSK, polygons along the kerb). Taken from
+//     the live TSK/IPR service (layer 9 of dop/zony_placeneho_stani, the same data as the Hub copy but
+//     current), paged one request at a time; when the service fails, from the Hub copy;
 //   - "Uliční úseky TSK včetně zatřídění komunikací": the class of each street section (lines).
 // The GeoJSON links come from the DCAT feed; when the feed does not answer, from the known item ids.
 //   node tools/build_praha_opendata.mjs [outDir]   (default pilot/data/praha; served as data/praha/…)
@@ -23,7 +25,8 @@ const DOWNLOAD = (id) => `https://opendata.geoportalpraha.cz/api/download/v1/ite
 const DATASETS = {
   stromy: { title: "Sdílená data o zeleni - vegetační prvky - body", id: "802a43db41474d4db5789ef5a47f2985", min: 50000 },
   stromorad: { title: "Stromořadí", id: "3615fd648f1f4182b5f42dcdfba03b54", min: 1000 },
-  zakaz: { title: "Zákaz stání", id: "b2be4777cec1443fa1e9b4b0d385fed1", min: 1000 },
+  zakaz: { title: "Zákaz stání", id: "b2be4777cec1443fa1e9b4b0d385fed1", min: 1000,
+    service: "https://gs-pub.praha.eu/arcgis/rest/services/dop/zony_placeneho_stani/MapServer/9" },
   useky: { title: "Uliční úseky TSK včetně zatřídění komunikací", id: "1bbe08c6c9f44c70810957c5e10f22db", min: 10000 },
 };
 const ONLY = process.env.ONLY ? new Set(process.env.ONLY.split(",")) : null;
@@ -42,6 +45,29 @@ async function get(url, ms = 15 * 60000) {
     }
   }
 }
+// A layer of an IPR ArcGIS service as one GeoJSON, paged by OBJECTID (resultOffset/resultRecordCount), one
+// request at a time and PAUSE ms apart, so the server of IPR is asked considerately.
+const PAGE = 1000, PAUSE = 500;
+const pause = () => new Promise((res) => setTimeout(res, PAUSE));
+async function service(url) {
+  const t0 = Date.now();
+  let requests = 1;
+  const { count } = await get(`${url}/query?where=1%3D1&returnCountOnly=true&f=json`, 120000);
+  if (!(count > 0)) throw new Error(`${url}: no count`);
+  const features = [];
+  for (let offset = 0; offset < count; offset += PAGE) {
+    await pause();
+    const q = `where=1%3D1&outFields=OBJECTID&orderByFields=OBJECTID&resultOffset=${offset}&resultRecordCount=${PAGE}&outSR=4326&f=geojson`;
+    const page = await get(`${url}/query?${q}`, 120000);
+    requests++;
+    if (!Array.isArray(page.features)) throw new Error(`${url}: page ${offset} without features`);
+    features.push(...page.features);
+  }
+  if (features.length !== count) throw new Error(`${url}: ${features.length} of ${count} features`);
+  console.log(`${url}: ${count} features, ${requests} requests, ${((Date.now() - t0) / 1000).toFixed(1)} s`);
+  return { type: "FeatureCollection", features };
+}
+
 // The GeoJSON link of each dataset from the DCAT feed (by title), else the known item id.
 async function links() {
   const out = Object.fromEntries(Object.entries(DATASETS).map(([k, d]) => [k, DOWNLOAD(d.id)]));
@@ -151,10 +177,16 @@ const urls = await links();
 const about = { source: "Geoportál Praha, opendata.geoportalpraha.cz (IPR Praha, TSK, MHMP, městské části), CC BY 4.0", built: new Date().toISOString().slice(0, 10), tile: TILE, datasets: {} };
 for (const [k, d] of Object.entries(DATASETS)) {
   if (ONLY && !ONLY.has(k)) continue;
-  const json = process.env.FROM ? JSON.parse(fs.readFileSync(path.join(process.env.FROM, `${k}.geojson`), "utf8")) : await get(urls[k]);
+  let json = null, url = urls[k];
+  if (process.env.FROM) json = JSON.parse(fs.readFileSync(path.join(process.env.FROM, `${k}.geojson`), "utf8"));
+  else if (d.service) {
+    try { json = await service(d.service); url = d.service; }
+    catch (err) { console.warn(`${k}: ${err.message}; the Hub copy used`); }
+  }
+  json ??= await get(url);
   const n = READ[k](json);
   if (n < d.min) throw new Error(`${k}: only ${n} features, not writing ${OUT}`);
-  about.datasets[k] = { title: d.title, url: urls[k], features: n };
+  about.datasets[k] = { title: d.title, url, features: n };
   console.log(`${k}: ${n}`);
 }
 fs.rmSync(OUT, { recursive: true, force: true });
