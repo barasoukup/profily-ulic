@@ -46,10 +46,11 @@ jobs:
       # the weekly refresh is enough while their extent does not change).
       - id: week
         run: echo "week=$(date -u +%G-%V)" >> "$GITHUB_OUTPUT"
+      # One tar file in the cache: actions/cache fails on the 245 000 files themselves (call stack exceeded).
       - id: tiles-cache
         uses: actions/cache@v4
         with:
-          path: site-tiles
+          path: osm-tiles.tar
           key: osm-tiles-${{ steps.week.outputs.week }}-${{ hashFiles('tools/build_osm_tiles.mjs', 'tools/build_osm_data.sh', 'pilot/public/osmtile.js') }}
       - name: Install GDAL (ogr2ogr)
         if: steps.tiles-cache.outputs.cache-hit != 'true'
@@ -85,7 +86,12 @@ jobs:
       - name: Build OSM tiles
         if: steps.tiles-cache.outputs.cache-hit != 'true'
         timeout-minutes: 45
-        run: NAME=cz tools/build_osm_data.sh data/osm/cz.osm.pbf site-tiles
+        run: |
+          NAME=cz tools/build_osm_data.sh data/osm/cz.osm.pbf site-tiles
+          tar -cf osm-tiles.tar site-tiles
+      - name: OSM tiles from the cache
+        if: steps.tiles-cache.outputs.cache-hit == 'true'
+        run: tar -xf osm-tiles.tar && ls site-tiles | wc -l
       # The zone file of the last good deploy is kept in the Actions cache: when IPR does not answer
       # now, that one goes out; with neither, the deploy stops (without it many more cuts would be
       # guesses).
@@ -201,8 +207,7 @@ jobs:
               const h = "_site/index.html"; fs.writeFileSync(h, fs.readFileSync(h, "utf8").replace(/(connect-src [^;]*)/, "$1 " + new URL(u).origin));
             }'
           grep -q 'LOG_URL = ""' _site/config.js && echo "::warning::no log of cuts (repository variable LOG_URL)" || true
-          # Hard links, not a move: site-tiles stays for the Actions cache (saved after the job) at no extra space.
-          cp -al site-tiles _site/data/osm-tiles
+          mv site-tiles _site/data/osm-tiles
           mv site-zps.json _site/data/zps.json
           [ -d site-vyvoj ] && mv site-vyvoj _site/data/vyvoj || echo "::warning::no built-up area tiles, flat roofs judged by the house alone"
           cp LICENCE-A-ZDROJE.md _site/data/LICENCE-A-ZDROJE.md
