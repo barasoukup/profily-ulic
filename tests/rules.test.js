@@ -34,3 +34,10 @@ test("tramvajový pás se sloupy trakčního vedení má mít 8 m", () => {
   assert.deepEqual(levels([{ type: "tramvaj", width: 4 }, { type: "tramvaj", width: 4, items: pole }]), []);
   assert.deepEqual(levels([{ type: "tramvaj", width: 3 }, { type: "tramvaj", width: 3, items: pole }]), ["0:min"]);
 });
+
+test("ochranný cyklopruh: základ 1,5 m, pod 1,25 m červeně, vedle stání jako cyklopruh", () => {
+  assert.deepEqual(levels([{ type: "pruh", width: 3 }, { type: "ochranny_pruh", width: 1.5 }]), []);
+  assert.deepEqual(levels([{ type: "pruh", width: 3 }, { type: "ochranny_pruh", width: 1.3 }]), ["1:zaklad"]);
+  assert.deepEqual(levels([{ type: "pruh", width: 3 }, { type: "ochranny_pruh", width: 1.2 }]), ["1:min"]);
+  assert.deepEqual(levels([{ type: "parkovani", width: 2 }, { type: "ochranny_pruh", width: 1.5 }]), ["1:min"]);
+});

@@ -24,7 +24,9 @@ function limits(s, segs, i) {
   const parking = [segs[i - 1], segs[i + 1]].find((x) => x?.type === "parkovani");
   switch (s.type) {
     case "chodnik": case "chodnik_kola": case "stezka_sdilena":
-      // Minimum narrowed sidewalk 1.5 m (1.2 m in exceptions), basic 2–2.5 m.
+      // Minimum narrowed sidewalk 1.5 m (1.2 m in exceptions), basic 2–2.5 m. Beside cars parked on it (OSM
+      // on_kerb / half_on_kerb) the same holds for what the cars leave free.
+      if (parking?.position) return { min: 1.5, zaklad: 2, why: `zbytek chodníku vedle stání ${parking.position === "on_kerb" ? "na chodníku" : "napůl na chodníku"}: zúžený chodník min. 1,5 m, základ 2–2,5 m` };
       return { min: 1.5, zaklad: 2, why: "chodník: zúžený min. 1,5 m, základ 2–2,5 m" };
     case "pruh": case "pruh_piktokoridor":
       return laneByClass(s.roadClass ?? segs.find((x) => x.roadClass)?.roadClass) || { min: 2.5, zaklad: 3, why: "jízdní pruh: základ 3 m, ve zklidněné ulici 2,5 m" };
@@ -32,14 +34,16 @@ function limits(s, segs, i) {
       return s.type === "bus_cyklo"
         ? { min: 4.25, zaklad: 4.25, why: "pruh pro autobus a cyklisty: 4,25–4,5 m" }
         : { min: 3, zaklad: 3.25, why: "pruh pro autobusy: 3,25 m" };
-    case "cyklopruh": {
+    case "cyklopruh": case "ochranny_pruh": {
       if (parking) {
         const perp = parking.orient === "kolme" || parking.orient === "sikme";
         return perp
           ? { min: 2, zaklad: 2, why: "cyklopruh vedle kolmého nebo šikmého stání: min. 2 m" }
           : { min: 1.75, zaklad: 1.75, why: "cyklopruh vedle podélného stání: min. 1,75 m" };
       }
-      return { min: 1.5, zaklad: 1.5, why: "cyklopruh u obruby: 1,5 m" };
+      return s.type === "ochranny_pruh"
+        ? { min: 1.25, zaklad: 1.5, why: "ochranný cyklopruh: základ 1,5 m, nejméně 1,25 m" }
+        : { min: 1.5, zaklad: 1.5, why: "cyklopruh u obruby: 1,5 m" };
     }
     case "parkovani":
       return s.orient === "kolme" || s.orient === "sikme"

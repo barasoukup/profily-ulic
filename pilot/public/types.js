@@ -57,9 +57,12 @@ export const ITEMS = {
 export const TRAM_BEDS = { panely: { label: "panely", color: "#b3ada0" }, strk: { label: "štěrk", color: "#9a948a" }, trava: { label: "tráva", color: "#86b552" }, asfalt: { label: "asfalt", color: "#5c5c59" } };
 
 export const PARKING_USE = { ztp: "ZTP", zasobovani: "zásobování", specialni: "speciální" };
+// Where parked cars stand besides the roadway (segment.position; OSM parking:<side>=on_kerb|half_on_kerb): fully on
+// the sidewalk, or across the kerb, half on the sidewalk. Without it, in the roadway.
+export const PARKING_POSITION = { on_kerb: "na chodníku", half_on_kerb: "napůl na chodníku" };
 
 export const DEFAULT_WIDTH = {
-  chodnik: 2.5, chodnik_kola: 2.5, stezka_sdilena: 3, predzahradka: 2, zelen: 2, stromorad: 2, nastupiste: 3, cyklostezka: 2.5, cyklopruh: 1.5, ochranny_pruh: 1.25, pruh_piktokoridor: 3.25, parkovani: 2,
+  chodnik: 2.5, chodnik_kola: 2.5, stezka_sdilena: 3, predzahradka: 2, zelen: 2, stromorad: 2, nastupiste: 3, cyklostezka: 2.5, cyklopruh: 1.5, ochranny_pruh: 1.5, pruh_piktokoridor: 3.25, parkovani: 2,
   pruh: 3, obsluzna: 3, bus: 3.5, bus_cyklo: 4.25, tramvaj_v_pruhu: 3.25, tramvaj_pruh: 3.25, tramvaj: 3.25, delici: 1.5, plocha: 2, zahradka: 3, voda: 5, zed: 0.5, nezname: 2, krajnice: 1,
 };
 
