@@ -1470,8 +1470,12 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   };
   if ((reach?.left ?? MAX_REACH) >= MAX_REACH) { const d = facade(i0 + 1, 1, capL); if (d !== null) reachL = Math.max(reachL, Math.min(capL, d + 0.5)); }
   if ((reach?.right ?? MAX_REACH) >= MAX_REACH) { const d = facade(i0 - 1, -1, capR); if (d !== null) reachR = Math.max(reachR, Math.min(capR, d + 0.5)); }
+  // A cut end dragged out past the default reach (by hand) asks for what is out there: the profile goes over
+  // fences, gardens, lawns and yards to the next building, or to the dragged end (Bára, Pardubice, Palackého).
+  const byHand = { L: (reach?.left ?? 0) > MAX_REACH + 0.5, R: (reach?.right ?? 0) > MAX_REACH + 0.5 };
   const stopAt = (r, limit, k, step) => {
     if (isBuilding(r.code)) return "budova";
+    if (byHand[step > 0 ? "L" : "R"]) return Math.min(Math.abs(r.s - ref), Math.abs(r.e - ref)) > limit ? "volno" : null;
     // A narrow "other structure" is a wall or parapet (e.g. an embankment wall): the profile goes on.
     if (isMinorStructure(r.code) && r.e - r.s >= WALL_MAX) return "stavba";
     if (inMedian(r)) return null;
@@ -1503,8 +1507,8 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   const roadMin = Math.min(ref, ...road.map((r) => r.s)), roadMax = Math.max(ref, ...road.map((r) => r.e));
   // A fence along a building's façade (within FENCE_AT_FACADE of it) leaves the building as the edge.
   const nearL = edges.left === "budova" ? FENCE_AT_FACADE : 0.05, nearR = edges.right === "budova" ? FENCE_AT_FACADE : 0.05;
-  const fenceL = Math.min(Infinity, ...fenceTs.filter((t) => t > roadMax + 0.3 && t < runs[hi].e - nearL));
-  const fenceR = Math.max(-Infinity, ...fenceTs.filter((t) => t < roadMin - 0.3 && t > runs[lo].s + nearR));
+  const fenceL = byHand.L ? Infinity : Math.min(Infinity, ...fenceTs.filter((t) => t > roadMax + 0.3 && t < runs[hi].e - nearL));
+  const fenceR = byHand.R ? -Infinity : Math.max(-Infinity, ...fenceTs.filter((t) => t < roadMin - 0.3 && t > runs[lo].s + nearR));
 
   // A run cut by the reach is kept whole when little of it is left out, and dropped when
   // little of it is inside, so the profile does not end in a sliver.

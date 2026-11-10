@@ -59,11 +59,11 @@ function cleanSigns(list) {
     ...(["forward", "backward"].includes(x.dir) ? { dir: x.dir } : {}) })).slice(0, 12);
 }
 
-// Position of the cut: numbers in and around Prague, reach of each side 1–40 m; else no cut.
+// Position of the cut: numbers in and around the Czech Republic, reach of each side 1–70 m; else no cut.
 export function cleanCut(c) {
   if (!c || !num(c.lat, 48, 52) || !num(c.lon, 12, 19) || !num(c.bearing, -360, 360)) return null;
-  const reach = c.reach && num(c.reach.left, 1, 40) && num(c.reach.right, 1, 40) ? { left: c.reach.left, right: c.reach.right } : undefined;
-  const span = c.span && num(c.span.left, 0, 40) && num(c.span.right, 0, 40) ? { left: c.span.left, right: c.span.right } : undefined;
+  const reach = c.reach && num(c.reach.left, 1, 70) && num(c.reach.right, 1, 70) ? { left: c.reach.left, right: c.reach.right } : undefined;
+  const span = c.span && num(c.span.left, 0, 70) && num(c.span.right, 0, 70) ? { left: c.span.left, right: c.span.right } : undefined;
   // What the export credits (app.js, city.js creditLines): a region's name and two flags, nothing else.
   const src = c.sources || {};
   const sources = { ...(typeof src.region === "string" && src.region && { region: src.region.slice(0, 80) }), ...(src.dmvs === true && { dmvs: true }), ...(src.ortho === true && { ortho: true }) };

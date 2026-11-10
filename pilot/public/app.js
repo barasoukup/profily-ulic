@@ -16,6 +16,8 @@ import { createDataLayers, PLOCHY_PANE } from "./maplayers.js";
 import { mountSearch } from "./search.js";
 
 const HALF = 40; // half-length of the cut used for reading the data (m)
+// A cut end dragged further out (a house set back from a wide road) reads that much more, up to MAX_HALF (m).
+const MAX_HALF = 70, HALF_PAD = 3;
 const MIN_REACH = 3; // shortest profile side the user can drag the cut end to (m)
 const defaultReach = () => ({ left: MAX_REACH, right: MAX_REACH });
 // Ends of the cut on the map: right end at -normal, left end at +normal.
@@ -222,7 +224,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
       reach = { left: reach.right, right: reach.left };
     }
     const normal = [-dir[1], dir[0]];
-    const full = [-1, 1].map((k) => frame.toLonLat(normal[0] * HALF * k, normal[1] * HALF * k));
+    const half = Math.min(MAX_HALF, Math.max(HALF, reach.left + HALF_PAD, reach.right + HALF_PAD));
+    const full = [-1, 1].map((k) => frame.toLonLat(normal[0] * half * k, normal[1] * half * k));
     const lons = full.map((e) => e[0]), lats = full.map((e) => e[1]);
     const pad = 0.0004;
     status(`Načítám ${city.techMap}…`);
@@ -234,7 +237,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
       sources.mtvu(bbox), sources.linie(bbox), zone.then((inZone) => sources.parkovani(bbox, inZone)), zone,
       // Where OSM has tram tracks across the cut: one small image of the orthophoto for the surface of the bed
       // (ortho.js, a short timeout; without it the rules decide).
-      bedOrtho({ osm, frame, dir, half: HALF }),
+      bedOrtho({ osm, frame, dir, half }),
     ]);
     const ortho = o.status === "fulfilled" ? o.value : null;
     if (m.status === "fulfilled") polys = mtvuPolygons(m.value, frame);
@@ -246,7 +249,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     if (pk.status !== "fulfilled") console.warn("parkovani", pk.reason);
     // Unknown (no zone file): the profile decides from the TSK parking sections around the cut.
     const inZps = z.status === "fulfilled" ? z.value : undefined;
-    const result = deriveProfile({ center: [0, 0], dir, half: HALF, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho });
+    const result = deriveProfile({ center: [0, 0], dir, half, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho });
     // The row of traffic signs from the street's OSM tags and the parts (signs.js).
     // The way's right is the profile's right when the profile looks along the way's geometry.
     const alongWay = !near.dir || dir[0] * near.dir[0] + dir[1] * near.dir[1] >= 0;
@@ -449,7 +452,7 @@ function endDrag(m, i) {
   const len = Math.hypot(x, y) || 1;
   const normal = i === 0 ? [-x / len, -y / len] : [x / len, y / len];
   const side = i === 0 ? "right" : "left";
-  const reach = { ...(state.cut.reach || defaultReach()), [side]: Math.max(MIN_REACH, Math.min(HALF, len)) };
+  const reach = { ...(state.cut.reach || defaultReach()), [side]: Math.max(MIN_REACH, Math.min(MAX_HALF - HALF_PAD, len)) };
   return { normal, reach };
 }
 
