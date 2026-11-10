@@ -89,7 +89,8 @@ export function deriveSigns(profile, tags = {}, ctx = {}) {
   segs.forEach((s, i) => {
     const out = [];
     const t = s.type;
-    if (t === "bus" || t === "bus_cyklo") out.push({ k: "ip20a" }, { k: "v11a" });
+    // Under the lane only the round bus symbol of IP 20a (Bára).
+    if (t === "bus" || t === "bus_cyklo") out.push({ k: "ip20a" });
     else if (t === "cyklopruh") out.push({ k: "v14" });
     else if (t === "ochranny_pruh") out.push({ k: "v14p" });
     else if (t === "pruh_piktokoridor") out.push({ k: "v20" });
@@ -136,18 +137,21 @@ export function deriveSigns(profile, tags = {}, ctx = {}) {
 // The file of a sign as drawn for a viewer, and its value: oneway becomes IP 4b or B 2 by the direction of
 // the lanes (forward = away from the viewer).
 export function signFile(s) {
-  if (s.k === "oneway") return s.dir === "backward" ? "B2" : "IP4b";
-  if (s.k === "ip11a") return s.plate === "podelne" ? "IP11c" : s.plate ? "IP11b" : "IP11a";
-  if (s.k === "b20a") return [20, 30, 40, 50, 60, 70, 80].includes(s.v) ? `B20a-${s.v}` : "B20a";
+  // IP 4c (vyhl. 205/2025): one-way with contraflow cyclists, in place of IP 4b + E 12a.
+  if (s.k === "oneway") return s.dir === "backward" ? "B2" : s.plate === "protismer" ? "IP4c" : "IP4b";
+  // Oblique stalls have the sign of perpendicular ones (IP 11b), the car turned on the symbol.
+  if (s.k === "ip11a") return s.plate === "podelne" ? "IP11c" : s.plate === "sikme" ? "IP11b-sikme" : s.plate ? "IP11b" : "IP11a";
+  if (s.k === "ip27a" && s.plate === "kola") return "IZ6a-kola";
+  if (s.k === "b20a") return [5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130].includes(s.v) ? `B20a-${s.v}` : "B20a";
   if (s.k === "v9a") return `V9a-${turnFile(s.v)}`;
   return { b1: "B1", b2: "B2", b8: "B8", b11: "B11", b28: "B28", b29: "B29", b30: "B30", c8a: "C8a", c9a: "C9a", c10a: "C10a",
-    ip12: "IP12", ztp: "IP12-ztp", ip14a: "IZ1a", ip15a: "IZ2a", ip20a: "IP20a", zona30: "IZ8a-30", zps: "IZ8a-placene-stani",
+    ip12: "IP12", ztp: "IP12-ztp", ip14a: "IZ1a", ip15a: "IZ2a", ip20a: "IP20a-symbol", zona30: "IZ8a-30", zps: "IZ8a-placene-stani",
     ip26a: "IZ5a", ip27a: "IZ6a", cyklozona: "IZ9a", v11a: "V15-bus", v13: "V15-tram", v14: "V14-souvisla", v14p: "V14-prerusovana", v20: "V20" }[s.k] || s.k;
 }
 // The plate under a sign: contraflow cyclists are E 12a under IP 4b and E 12b under B 2; E 13 carries a text.
 export function plateFile(s) {
-  if (s.plate === "protismer") return s.dir === "backward" ? "E12b" : "E12a";
-  if (s.plate === "obsluha" || s.plate === "kola") return "E13";
+  if (s.plate === "protismer") return s.dir === "backward" ? "E12b" : null; // IP 4c says it itself
+  if (s.plate === "obsluha") return "E13";
   return null;
 }
 // V 9a arrows from OSM turn values (through, left, right, slight_*, merge_* count as their side).

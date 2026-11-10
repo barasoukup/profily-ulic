@@ -13,7 +13,7 @@ test("obytná zóna a zóna 30 jdou přes celou vozovku jednou, bez vlastní B 2
 test("jednosměrka: IP 4b ve směru pohledu, B 2 proti, s cyklisty v protisměru; Otočit je vymění", () => {
   const p = deriveSigns({ segments: [{ type: "parkovani", source: "tsk", orient: "kolme" }, { type: "pruh", dir: "forward" }] }, { highway: "residential", oneway: "yes", "oneway:bicycle": "no" });
   const ow = p.zones.signs.find((s) => s.k === "oneway");
-  assert.equal(signFile(ow), "IP4b");
+  assert.equal(signFile(ow), "IP4c");
   assert.equal(ow.plate, "protismer");
   assert.deepEqual(keys(p.segments[0].signs), ["ip11a+kolme"]);
   mirrorSigns(p);
@@ -22,7 +22,7 @@ test("jednosměrka: IP 4b ve směru pohledu, B 2 proti, s cyklisty v protisměru
 
 test("pruh BUS, cyklopruhy a odhadnuté stání", () => {
   const p = deriveSigns({ segments: [{ type: "bus" }, { type: "cyklopruh" }, { type: "ochranny_pruh" }, { type: "parkovani", source: "odhad" }, { type: "parkovani", source: "tsk", use: "ztp" }] }, {});
-  assert.deepEqual(p.segments.map((s) => keys(s.signs)), [["ip20a", "v11a"], ["v14"], ["v14p"], [], ["ztp"]]);
+  assert.deepEqual(p.segments.map((s) => keys(s.signs)), [["ip20a"], ["v14"], ["v14p"], [], ["ztp"]]);
 });
 
 test("zákaz vjezdu s výjimkou dopravní obsluhy a rychlost po pruzích", () => {
