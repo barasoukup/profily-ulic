@@ -199,6 +199,25 @@ pilot/data/<město>/osm-tiles`, kontrola `CITY=<město> node evaluation/sample.m
   kraji: v Pardubicích chybí vozovky mimo zástavbu a plochy uvnitř bloků. Ilustrace: trolejbus 32Tr a autobus Iveco
   Urbanway DPMP. Kontrola 49 řezů: `evaluation/pardubice/ZPRAVA.md`.
 
+## Test nového zdroje (A/B)
+
+**Pravidlo: nový zdroj (nebo jiné použití starého) jde do aplikace, jen když nad ortofotem vyhraje.**
+
+- Varianta je soubor `evaluation/variants/<název>.mjs`. Exportuje náhrady některých z pěti zdrojů
+  `sources.js` (`osm`, `surfaces`, `lines`, `parking`, `podlaznost`, se stejnými argumenty a odpověďmi) a krátký
+  popis `about`. Co nenahradí, bere se z běžných zdrojů města. Varianta `city` je současný stav (bez souboru).
+- `CITY=jihlava VARIANTS=city,moje-varianta node evaluation/ab.mjs [od] [do]` spočítá každý řez vzorku
+  (`evaluation/<město>/data/samples.json`) jednou za každou variantu, na stejné čáře řezu. Víc variant
+  (`city,x,y`) srovná první s každou další. `ONLY=9,10` jen vybrané řezy; `CACHE=disk` si odpovědi služeb uloží
+  (`data/ab-cache`) a opakovaný běh se už služeb neptá.
+- Výstup `evaluation/<město>/data/ab-<a>-<b>/`: `<n>.json` (oba profily, čas, počet dotazů, míry: šířka celkem,
+  vozovka, chodník, okraje, podíl „Neurčeno“, odhad z OSM), `png/<n>.svg.png` (lišící se řezy nad ortofotem,
+  A nahoře, B dole) a `review.md` (řádek na každý lišící se řez: vozovka nebo chodník o víc než 0,5 m, jiný okraj).
+- Do `review.md` se místo `?` doplní verdikt `a`, `b`, `obě` nebo `žádná`. Pak
+  `… node evaluation/ab.mjs --summary` vypíše shodu, mediány rozdílů a součty verdiktů; `--render [n …]` znovu
+  nakreslí obrázky.
+- Příklad: pasport komunikací v Jihlavě, `evaluation/jihlava/PASPORT.md`.
+
 ## Jak se profil skládá
 
 1. Najde se nejbližší ulice z OSM a řez se vede kolmo na její osu (±40 m).

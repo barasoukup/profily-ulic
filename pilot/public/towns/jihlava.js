@@ -7,7 +7,7 @@
 // A town module (towns/<id>.js, listed in towns/index.js) gives sources.js the five data sources of a
 // click (osm, surfaces, lines, parking, podlaznost; the shapes are those of Prague's answers, see
 // queries.js) and app.js its base maps. Copy this file for another town.
-import { query, envelope, osmTiles, boxAround, asMtvu, addPoints, parkingStrip, ruianBuilding } from "../gis.js";
+import { query, envelope, osmTiles, boxAround, asMtvu, addPoints, parkingStrip, ruianBuilding, metres } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 
 const JI = "https://gis.jihlava-city.cz";
@@ -30,7 +30,7 @@ const roadsCache = new Map();
 const roads = (bbox) => {
   if (!roadsCache.has(bbox)) {
     if (roadsCache.size > 8) roadsCache.delete(roadsCache.keys().next().value);
-    roadsCache.set(bbox, jiQuery(JI_ROADS, { ...envelope(bbox), outFields: "typ_useku" }).catch((err) => { roadsCache.delete(bbox); throw err; }));
+    roadsCache.set(bbox, jiQuery(JI_ROADS, { ...envelope(bbox), outFields: "typ_useku,spravce,povrch" }).catch((err) => { roadsCache.delete(bbox); throw err; }));
   }
   return roadsCache.get(bbox);
 };
@@ -47,6 +47,71 @@ const JI_LAND = [
 ];
 const landCode = (name) => JI_LAND.find(([re]) => re.test(name || ""))?.[1] ?? null;
 
+// Roads of the state and the region (ŘSD, Krajská správa a údržba silnic) with no surface recorded are drawn
+// by the city in places as a strip of the road's nominal crown: I/38 as 13.0 m along kilometres, unpaved
+// verges included, where the asphalt is about 10.5 m. Where such a strip is 13 m across (12.7–13.2 m, over at
+// least SHARE of its edges; the same polygon may narrow to 9 m elsewhere, so it is judged edge by edge) it
+// is narrowed by TRIM on each side (A/B test evaluation/jihlava/PASPORT.md: 3 of 5 changed cuts better, none worse).
+const stateRoad = (a) => a.typ_useku === "vozovka" && /ŘSD|Krajsk/i.test(a.spravce || "") && !(a.povrch || "").trim();
+const TRIM = 1.25, MIN_STRIP = 12.7, MAX_STRIP = 13.2, SHARE = 0.3;
+// Widths of a polygon (metres) across it: from points along each edge, inwards to the next edge hit.
+function widths(ring) {
+  const out = []; // per edge: the median width from its points, or null
+  const n = ring.length - 1;
+  let area = 0;
+  for (let i = 0; i < n; i++) area += ring[i][0] * ring[i + 1][1] - ring[i + 1][0] * ring[i][1];
+  const inward = area > 0 ? 1 : -1; // counter-clockwise: the inside lies to the left
+  for (let i = 0; i < n; i++) {
+    const [ax, ay] = ring[i], [bx, by] = ring[i + 1], len = Math.hypot(bx - ax, by - ay);
+    const here = [];
+    out.push(here);
+    if (len < 0.5) continue;
+    const nx = (-(by - ay) / len) * inward, ny = ((bx - ax) / len) * inward;
+    for (let s = 0.5; s < len; s += 2) {
+      const px = ax + ((bx - ax) * s) / len, py = ay + ((by - ay) * s) / len;
+      let best = Infinity;
+      for (let j = 0; j < n; j++) {
+        if (j === i) continue;
+        const [cx, cy] = ring[j], [dx, dy] = ring[j + 1], ex = dx - cx, ey = dy - cy;
+        const den = nx * ey - ny * ex;
+        if (Math.abs(den) < 1e-9) continue;
+        const t = ((cx - px) * ey - (cy - py) * ex) / den, u = ((cx - px) * ny - (cy - py) * nx) / den;
+        if (t > 0.05 && u >= 0 && u <= 1 && t < best) best = t;
+      }
+      if (best < 60) here.push(best);
+    }
+  }
+  return { out: out.map((w) => (w.length ? w.sort((a, b) => a - b)[Math.floor(w.length / 2)] : null)), inward };
+}
+// A polygon moved inwards along the vertex bisectors, vertex i by d[i].
+function shrink(ring, d, inward) {
+  const n = ring.length - 1, out = [];
+  const normal = (a, b) => { const l = Math.hypot(b[0] - a[0], b[1] - a[1]) || 1; return [(-(b[1] - a[1]) / l) * inward, ((b[0] - a[0]) / l) * inward]; };
+  for (let i = 0; i < n; i++) {
+    const p = ring[(i - 1 + n) % n], c = ring[i], q = ring[i + 1];
+    const n1 = normal(p, c), n2 = normal(c, q);
+    let bx = n1[0] + n2[0], by = n1[1] + n2[1];
+    const bl = Math.hypot(bx, by);
+    if (bl < 1e-6) { bx = n2[0]; by = n2[1]; } else { bx /= bl; by /= bl; }
+    const k = Math.max(0.5, bx * n2[0] + by * n2[1]);
+    out.push([c[0] + (bx * d[i]) / k, c[1] + (by * d[i]) / k]);
+  }
+  out.push(out[0]);
+  return out;
+}
+function narrowStrip(f, lat) {
+  const [kx, ky] = metres(lat);
+  const rings = f.geometry?.rings;
+  if (!rings || rings.length !== 1) return f;
+  const ring = rings[0].map(([x, y]) => [x * kx, y * ky]);
+  const { out: ws, inward } = widths(ring);
+  const n = ws.length, strip = (w) => w !== null && w >= MIN_STRIP && w <= MAX_STRIP;
+  // An edge without a measured width (a short one) takes its neighbours'.
+  const at = (i) => { for (let k = 0; k < n; k++) for (const j of [i - k, i + k]) { const w = ws[(j + n) % n]; if (w !== null) return w; } return null; };
+  const d = ws.map((_, i) => (strip(at((i - 1 + n) % n)) && strip(at(i)) ? TRIM : 0));
+  if (!d.some(Boolean) || ws.filter(strip).length < SHARE * ws.filter((w) => w !== null).length) return f;
+  return { ...f, attributes: { ...f.attributes, narrowed: d.filter(Boolean).length }, geometry: { rings: [shrink(ring, d, inward).map(([x, y]) => [x / kx, y / ky])] } };
+}
 // Buildings first (the passport passes under some of them), then the roads, the lawns, and the cadastre.
 async function surfaces(bbox) {
   const [r, buildings, lawns, parcels] = await Promise.all([
@@ -58,9 +123,11 @@ async function surfaces(bbox) {
   // Without the passport's roadway around (a road it does not keep) the road parcel stays open: green
   // there would hide the road the profile then estimates from OSM.
   const hasRoadway = (r.features || []).some((f) => f.attributes?.typ_useku === "vozovka");
+  const lat = Number(bbox.split(",")[1]);
+  const passport = { features: (r.features || []).map((f) => (stateRoad(f.attributes || {}) ? narrowStrip(f, lat) : f)) };
   return asMtvu([
     [buildings, 601],
-    [r, (a) => (a.typ_useku === "vozovka" ? 701 : a.typ_useku === "chodník" ? 702 : null)],
+    [passport, (a) => (a.typ_useku === "vozovka" ? 701 : a.typ_useku === "chodník" ? 702 : null)],
     [lawns, 401],
     [parcels, (a) => { const c = landCode(a.drupoz_naz); return Array.isArray(c) && !hasRoadway ? null : c; }],
   ], MTVU_LABELS);
