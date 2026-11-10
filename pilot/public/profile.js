@@ -1,7 +1,7 @@
 // SVG drawing and direct editing of a street profile. Drawing units are centimetres,
 // matching the Streetmix illustrations (1 px = 1 cm).
 import { TYPES, SOURCES, PARKING_USE } from "./types.js";
-import { city } from "./city.js";
+import { city, cityById, CITY_IDS } from "./city.js";
 
 const NS = "http://www.w3.org/2000/svg";
 const GROUND = 760; // roadway surface
@@ -38,9 +38,13 @@ const BRNO = {
   "transit-shelter-01-left": "transit-shelter-left", "transit-shelter-01-right": "transit-shelter-right",
   "transit-shelter-tram-left": "transit-shelter-tram-left", "transit-shelter-tram-right": "transit-shelter-tram-right",
 };
-// A town brings its own map of illustrations (city.js artMap, files in pilot/public/<art>/).
-const CITY_ART = { praha: PRAHA, brno: BRNO, ...(city.artMap ? { [city.art]: city.artMap } : {}) };
-const cityArt = () => art !== "streetmix" && !!CITY_ART[art]; // the city's own set
+// Every other city brings its own map of illustrations (city.js artMap, files in pilot/public/<art>/).
+const CITY_ART = { praha: PRAHA, brno: BRNO };
+for (const id of CITY_IDS) { const c = cityById(id); if (c.artMap) CITY_ART[c.art] = c.artMap; }
+// The illustrations of the current cut's city, or Streetmix's (the switch "Ilustrace" off).
+let artOn = true;
+const artKey = () => (artOn ? city.art : "streetmix");
+const cityArt = () => artOn && !!CITY_ART[city.art]; // the city's own set
 // Prague buildings are drawn from the side (we look along the street): the outline tells the type.
 export const BUILDING_STYLES = { sikma: "dům se šikmou střechou", funkce: "funkcionalistický činžák", moderni: "moderní bytový dům", plocha: "panelový dům", nizky: "nízký dům", hala: "hala" };
 const OLD_STYLES = { centrum: "sikma", "centrum-obchod": "sikma", sidliste: "plocha", "sidliste-lodzie": "plocha", rd: "nizky" };
@@ -50,9 +54,9 @@ const HALL_AREA = 1200; // m²: a footprint this big on up to 3 floors reads as 
 const FLAT_RESIDENTIAL = new Set(["apartments", "residential", "dormitory"]); // flat-roofed homes get balconies
 // IPR "Podlažnosti" roof shape (domain URK_STRECHA): 1 pitched, 3 flat, 4 atypical (mix), 5 dome, 99 unknown.
 const IPR_ROOF = { 1: "sikma", 3: "plocha", 5: "sikma" };
-// Within INNER_KM of the centre an unknown building is taken for a pitched-roof tenement, from ESTATE_KM
+// Within innerKm of the centre an unknown building is taken for a pitched-roof tenement, from estateKm
 // for a panel house; a town has its own (city.js innerKm, estateKm; Most has no old inner town).
-const INNER_KM = city.innerKm ?? 3;
+const innerKm = () => city.innerKm ?? 3;
 const STOREY = { sikma: 360, funkce: 310, moderni: 300, plocha: 280, nizky: 300, hala: 700 }; // typical storey (cm); a hall is one tall storey
 const DEFAULT_FLOORS = { sikma: 5, funkce: 6, moderni: 6, plocha: 8, nizky: 1, hala: 1 };
 const PITCH = Math.tan((40 * Math.PI) / 180);
@@ -80,9 +84,8 @@ export const OFFICE_TYPES = new Set(["office", "commercial", "civic", "governmen
 const TALL_SHARE = 0.45; // the most of the view's width a building may rise above the ground
 let labelTop = -Infinity; // building labels stay below this y (set per drawing in buildSvg)
 const sprites = {};
-let art = city.art; // "praha", "brno" or "streetmix"
-export const setArt = (a) => { art = a; };
-export const getArt = () => art;
+export const setArt = (on) => { artOn = on; };
+export const getArt = () => artOn;
 
 // A missing or broken illustration is left out of the drawing instead of stopping the app.
 async function loadSprite(key, path) {
@@ -99,11 +102,14 @@ async function loadSprite(key, path) {
   }
 }
 
+// Streetmix's sprites once, a city's own set when a cut first lands in it.
+const loadedArt = new Set();
 export async function loadSprites() {
-  await Promise.all([
-    ...SPRITE_FILES.map((name) => loadSprite(name, `streetmix/${name}.svg`)),
-    ...[...new Set(Object.values(CITY_ART[city.art]))].map((file) => loadSprite(`${city.art}/${file}`, `${city.art}/${file}.svg`)),
-  ]);
+  const sets = [];
+  if (!loadedArt.has("streetmix")) { loadedArt.add("streetmix"); sets.push(...SPRITE_FILES.map((name) => loadSprite(name, `streetmix/${name}.svg`))); }
+  const a = city.art;
+  if (CITY_ART[a] && !loadedArt.has(a)) { loadedArt.add(a); sets.push(...[...new Set(Object.values(CITY_ART[a]))].map((file) => loadSprite(`${a}/${file}`, `${a}/${file}.svg`))); }
+  await Promise.all(sets);
 }
 
 const el = (name, attrs = {}, parent) => {
@@ -190,7 +196,7 @@ export function twoLines(text) {
 }
 
 function sprite(g, name, cx, bottom, flip = false, anchor = null) {
-  const s = (cityArt() && sprites[`${art}/${CITY_ART[art]?.[name]}`]) || sprites[name];
+  const s = (cityArt() && sprites[`${artKey()}/${CITY_ART[artKey()]?.[name]}`]) || sprites[name];
   if (!s) return;
   const img = el("image", { href: s.uri, width: s.w, height: s.h, x: cx - (anchor ?? s.w / 2), y: bottom - s.h }, g);
   if (flip) img.setAttribute("transform", `translate(${2 * cx} 0) scale(-1 1)`);
@@ -228,8 +234,8 @@ export function buildingStyle(info, chosen) {
   const built = info?.built;
   if (built) return built < 1920 || (built >= 1946 && built < 1958) ? "sikma" : flatKind(info, n);
   // Nothing known about the building: a tenement in the inner city, a small house elsewhere (least misleading).
-  if (!n) return info?.km > INNER_KM ? "nizky" : "sikma";
-  return info?.km > INNER_KM ? flatKind(info, n) : "sikma";
+  if (!n) return info?.km > innerKm() ? "nizky" : "sikma";
+  return info?.km > innerKm() ? flatKind(info, n) : "sikma";
 }
 
 // A flat-roofed house: a panel house, or a functionalist tenement in a city block. Told apart by
@@ -243,7 +249,7 @@ export function buildingStyle(info, chosen) {
 // newest), or, short of a panel slab, it has a set-back floor outside the inner city (functionalist
 // set-backs are an inner-city thing; panel houses have none). Height says nothing: panel houses of
 // 4 floors are common (Bára).
-const PANEL_WIDTH = 16, PANEL_FILL = 0.65, PANEL_PART = 30, PANEL_FLOORS = 8, ESTATE_KM = city.estateKm ?? 7;
+const PANEL_WIDTH = 16, PANEL_FILL = 0.65, PANEL_PART = 30, PANEL_FLOORS = 8, estateKm = () => city.estateKm ?? 7;
 // The age of the area (IPR "Vývoj zástavby", info.period = the first year it shows as built up) is
 // the default, overruled by what is known of the house itself (Bára): built up by 1920 → a house of
 // the older town (the tenement look) unless it is a panel slab; by 1950 → a functionalist
@@ -260,15 +266,15 @@ function flatKind(info, n) {
   const p = info?.built ?? info?.period;
   if (p) {
     if (p >= (info?.built ? 1996 : 2010)) return "moderni";
-    if (p >= 1970) return setback && info?.km > INNER_KM ? "moderni" : "plocha";
+    if (p >= 1970) return setback && info?.km > innerKm() ? "moderni" : "plocha";
     if (slab) return "plocha";
     if (p <= 1920) return "sikma";
     return setback && info?.km > OLD_SETBACK_KM ? "moderni" : "funkce";
   }
-  if (setback && info?.km > INNER_KM) return "moderni";
-  if (n >= PANEL_FLOORS || info?.km >= ESTATE_KM) return "plocha";
+  if (setback && info?.km > innerKm()) return "moderni";
+  if (n >= PANEL_FLOORS || info?.km >= estateKm()) return "plocha";
   if (b) return slab ? "plocha" : "funkce";
-  return info?.km > INNER_KM ? "plocha" : "funkce";
+  return info?.km > innerKm() ? "plocha" : "funkce";
 }
 
 // A low building has a pitched roof where it is known to (IPR's roof shape), or where it is a house:
@@ -958,7 +964,7 @@ export function buildSvg(profile, opts = {}) {
       sprite(g, forward ? "streetcar-outbound" : "streetcar-inbound", cx, top - 2);
     } else if (t.sprite === "bus" && w >= 250) {
       // Under trolley wires a trolleybus, where the city's illustrations have one (else the bus).
-      const trolley = s.trolley && cityArt() && CITY_ART[art]?.["trolleybus-inbound"];
+      const trolley = s.trolley && cityArt() && CITY_ART[artKey()]?.["trolleybus-inbound"];
       sprite(g, `${trolley ? "trolleybus" : "bus"}-${forward ? "outbound" : "inbound"}`, cx, top);
     } else if (t.sprite === "biker" && w >= 80) {
       sprite(g, forward ? "biker-01-outbound" : "biker-01-inbound", cx, top);

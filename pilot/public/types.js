@@ -34,7 +34,7 @@ export const TYPES = {
 export const SOURCES = {
   dtm: { label: "změřeno z technické mapy", color: "#3b6d11" },
   osm: { label: "doplněno z OSM", color: "#854f0b" },
-  tsk: { label: city.parkingSource, color: "#0f6e56" },
+  tsk: { get label() { return city.parkingSource; }, color: "#0f6e56" }, // the current city's
   odhad: { label: "odhad", color: "#8f8b82" },
   user: { label: "upraveno ručně", color: "#534ab7" },
 };

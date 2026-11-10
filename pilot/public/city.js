@@ -1,7 +1,7 @@
-// What differs between the cities the app knows: data sources, map, wording, illustrations.
-// The city comes from config.js (CITY): the Prague site is the default, the Brno site (/brno/) is the
-// same app with CITY = "brno" (written by the deploy workflow and by the local server).
-import { CITY } from "./config.js";
+// What differs between the cities the app knows: data sources, map, wording, illustrations. One page for
+// the whole Czech Republic (Bára 10. 11. 2026): a cut takes the city it lies in (cityAt, by the boundaries
+// of mesta.json), anywhere else "cesko" (the national DTM of ČÚZK, RÚIAN and OSM). `city` is the city of
+// the current cut, changed in place by setCity, so modules read it at the time they need it.
 
 // Labels of the MTVU codes, for Brno's surfaces (Prague's MTVU sends its own).
 export const MTVU_LABELS = {
@@ -23,6 +23,33 @@ const TOWN_ART = {
 };
 
 const CITIES = {
+  // Anywhere outside the cities above: the national DTM of ČÚZK (dmvs.js), RÚIAN houses, OSM.
+  cesko: {
+    id: "cesko",
+    server: "technické mapy ČÚZK",
+    cover: "Českou republiku",
+    dataName: "Technická mapa ČÚZK",
+    view: [49.8, 15.5],
+    centre: null, // no inner town known: houses by RÚIAN and their block
+    inCity: "v Česku",
+    adjective: "české",
+    mapLabel: "Mapa",
+    dataShort: "technické mapy ČÚZK, RÚIAN a OSM",
+    techMap: "technickou mapu ČÚZK",
+    parkingSource: "parkoviště z technické mapy",
+    rulesHead: "Šířky podle pražského Manuálu IPR (C.2), mimo Prahu orientačně:",
+    art: "cesko",
+    artLabel: "Ilustrace",
+    artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
+    emptyImg: "praha/t3-inbound.svg",
+    credit: "technická mapa © kraje, IS DMVS ČÚZK, RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
+    storeSuffix: "",
+    innerKm: 0, estateKm: 0.5,
+    fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
+    example: "49.907481, 16.442219",
+    // Prague's furniture (copies in cesko/); vehicles from Streetmix.
+    artMap: Object.fromEntries(Object.entries(TOWN_ART).filter(([k]) => !k.startsWith("bus-"))),
+  },
   praha: {
     id: "praha",
     server: "IPR", // "Server … neodpovídá"
@@ -219,12 +246,38 @@ const CITIES = {
   },
 };
 
-// globalThis.PROFILY_CITY lets a script (tools/build_og.mjs) draw for the other city.
-export const city = { ...(CITIES[globalThis.PROFILY_CITY || CITY] || CITIES.praha) };
-// globalThis.PROFILY_FIX lets a test (evaluation/run.mjs FIX=1) try the Brno fixes on Prague.
-if (globalThis.PROFILY_FIX) city.fix = globalThis.PROFILY_FIX;
-export const isBrno = city.id === "brno";
-export const isJihlava = city.id === "jihlava";
-// Cities whose page asks the city's servers from the browser also on the local server: all but Prague.
-export const isLive = city.id !== "praha";
 export const CITY_IDS = Object.keys(CITIES);
+export const cityById = (id) => CITIES[id];
+
+// The city of the current cut. globalThis.PROFILY_CITY lets a script (tools/build_og.mjs, the evaluation)
+// start in another city; globalThis.PROFILY_FIX lets a test (evaluation/run.mjs FIX=1) try the Brno fixes on Prague.
+export const city = {};
+export function setCity(id) {
+  for (const k of Object.keys(city)) delete city[k];
+  Object.assign(city, CITIES[id] || CITIES.cesko);
+  if (globalThis.PROFILY_FIX) city.fix = globalThis.PROFILY_FIX;
+  return city;
+}
+setCity(globalThis.PROFILY_CITY || "praha");
+
+// The city a point lies in, by the boundaries of the cities (mesta.json, tools/build_mesta.mjs); "cesko"
+// elsewhere. Before the file has loaded (or without it) the current city.
+let bounds = null;
+export const loadBounds = (json) => {
+  bounds = Object.entries(json).map(([id, rings]) => {
+    const xs = rings.flat().map((p) => p[0]), ys = rings.flat().map((p) => p[1]);
+    return { id, rings, box: [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)] };
+  });
+};
+const inside = (rings, x, y) => {
+  let c = false;
+  for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) {
+    const [xi, yi] = r[i], [xj, yj] = r[j];
+    if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c;
+  }
+  return c;
+};
+export function cityAt(lat, lon) {
+  if (!bounds) return city.id;
+  return bounds.find((b) => lon >= b.box[0] && lon <= b.box[2] && lat >= b.box[1] && lat <= b.box[3] && inside(b.rings, lon, lat))?.id || "cesko";
+}

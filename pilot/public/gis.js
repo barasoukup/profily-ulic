@@ -2,7 +2,7 @@
 // envelope, the OSM tiles around a point, and a few geometry helpers the cities' sources share
 // (sources.js for Prague and Brno, towns/*.js for the towns asking their own GIS on a click).
 import { STATIC } from "./config.js";
-import { city, isLive } from "./city.js";
+import { city } from "./city.js";
 
 import { TILE, decodeTile, mergePieces } from "./osmtile.js";
 export { TILE };
@@ -13,7 +13,7 @@ const RETRY_DELAYS = [1500, 4000];
 
 async function getOnce(url) {
   // Brno asks the city's servers from the browser also on the local server: with a timeout there too.
-  const r = await fetch(url, STATIC || isLive ? { signal: AbortSignal.timeout(TIMEOUT) } : undefined);
+  const r = await fetch(url, STATIC || city.id !== "praha" ? { signal: AbortSignal.timeout(TIMEOUT) } : undefined);
   if (!r.ok) throw new Error(await r.text());
   const json = await r.json();
   // ArcGIS reports failures with HTTP 200 and an "error" field.
@@ -43,9 +43,8 @@ export const envelope = (bbox) => ({
 });
 export const query = (base, params) => getJSON(`${base}?${new URLSearchParams(params)}`);
 
-// The OSM tiles of the whole Czech Republic, one set for every city (tools/build_osm_tiles.mjs, the compact
-// form of osmtile.js), next to the Prague page: data/osm-tiles there, ../data/osm-tiles from a city page.
-const TILES_AT = city.id === "praha" ? "data/osm-tiles" : "../data/osm-tiles";
+// The OSM tiles of the whole Czech Republic (tools/build_osm_tiles.mjs, the compact form of osmtile.js).
+const TILES_AT = "data/osm-tiles";
 // The last TILES_KEPT tiles stay in memory: the next cut nearby (or a dragged cut) needs no
 // download. A tile that failed to load is asked for again next time; a missing tile has nothing in it.
 const TILES_KEPT = 24;

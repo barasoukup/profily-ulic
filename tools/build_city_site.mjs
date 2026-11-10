@@ -1,13 +1,14 @@
-// Turns the copy of the app in a directory (e.g. _site/brno) into that city's site: its config.js
-// (CITY = "<city>") and index.html (tools/city_site.mjs, the same as the local server's /<city>/).
-//   node tools/build_city_site.mjs _site/brno brno
+// Writes the pages of the former city sites into the built site: /<city>/index.html sends to the one page.
+//   node tools/build_city_site.mjs _site
 import fs from "node:fs";
 import path from "node:path";
-import { cityConfig, cityIndex } from "./city_site.mjs";
+import { redirectPage } from "./city_site.mjs";
+import { SITES } from "./cities.mjs";
 
-const [dir, id] = process.argv.slice(2);
-if (!dir || !id) throw new Error("použití: node tools/build_city_site.mjs <adresář> <město>");
-const edit = (f, fn) => fs.writeFileSync(path.join(dir, f), fn(fs.readFileSync(path.join(dir, f), "utf8")));
-edit("config.js", (js) => cityConfig(id, js));
-edit("index.html", (html) => cityIndex(id, html));
-console.log(`${id}: ${dir}/config.js a index.html`);
+const dir = process.argv[2];
+if (!dir) throw new Error("použití: node tools/build_city_site.mjs <adresář webu>");
+for (const id of Object.keys(SITES)) {
+  fs.mkdirSync(path.join(dir, id), { recursive: true });
+  fs.writeFileSync(path.join(dir, id, "index.html"), redirectPage(id));
+}
+console.log(`přesměrování: ${Object.keys(SITES).join(", ")}`);

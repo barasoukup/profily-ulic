@@ -2,24 +2,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { brnoConfig, brnoIndex } from "../tools/city_site.mjs";
 
 const read = (f) => fs.readFileSync(new URL(`../pilot/public/${f}`, import.meta.url), "utf8");
-
-test("config.js pro Brno má CITY = brno", () => {
-  assert.match(brnoConfig(read("config.js")), /export const CITY = "brno";/);
-});
-
-test("index.html pro Brno: titulek, CSP pro mapy Brna a ČÚZK, patička bez IPR", () => {
-  const html = brnoIndex(read("index.html"));
-  assert.match(html, /<title>Profily ulic · Brno<\/title>/);
-  assert.match(html, /<a href="\.\.\/">Praha<\/a>\s*<a href="\.\/" aria-current="page">Brno<\/a>/);
-  assert.match(html, /img-src [^;]*https:\/\/gis\.brno\.cz https:\/\/dmvs\.cuzk\.gov\.cz/);
-  assert.match(html, /connect-src [^;]*https:\/\/gis\.brno\.cz https:\/\/services6\.arcgis\.com/);
-  const footer = html.match(/<footer[\s\S]*?<\/footer>/)[0];
-  assert.doesNotMatch(footer, /IPR|TSK/);
-  assert.match(footer, /DTM Jihomoravského kraje/);
-});
 
 // Brno's codes (MTVU 5100xxx, technical-map lines 1xxxxxx) read as Prague's.
 const { brnoMtvuCode, brnoLineCode } = await import("../pilot/public/sources.js");
@@ -43,21 +27,26 @@ test("kódy linií technické mapy Brna na kódy IPR", () => {
   assert.equal(brnoLineCode(1660800), null); // rozhraní ploch
 });
 
-// Every city site of tools/cities.mjs builds from the Prague page, with its own switch and footer links.
-const { cityIndex, cityConfig } = await import("../tools/city_site.mjs");
-const { SITES, NAMES } = await import("../tools/cities.mjs");
-for (const id of Object.keys(SITES)) {
-  test(`stránka ${id}: titulek, přepínač, CSP, odkazy na ostatní města`, () => {
-    const html = cityIndex(id, read("index.html"));
-    assert.match(cityConfig(id, read("config.js")), new RegExp(`export const CITY = "${id}";`));
-    assert.match(html, new RegExp(`<title>Profily ulic · ${NAMES[id]}</title>`));
-    assert.match(html, new RegExp(`<a href="\\./" aria-current="page">${NAMES[id]}</a>`));
-    assert.match(html, /<a href="\.\.\/">Praha<\/a>/);
-    for (const host of SITES[id].connect) assert.ok(html.match(/connect-src [^;]*/)[0].includes(host));
-    // the towns ask RÚIAN of ČÚZK for their houses (gis.js ruianBuilding)
-    if (SITES[id].bbox) assert.ok(html.match(/connect-src [^;]*/)[0].includes("https://ags.cuzk.gov.cz"));
-    const footer = html.match(/<footer[\s\S]*?<\/footer>/)[0];
-    assert.doesNotMatch(footer, /IPR|TSK/);
-    for (const [other, name] of Object.entries(NAMES)) if (other !== id) assert.match(footer, new RegExp(`Profily ulic ${name}`));
-  });
-}
+// One page for the whole Czech Republic: its CSP lets the browser ask every city's servers, the former
+// city sites send to it, and a point takes the city it lies in.
+const { SITES } = await import("../tools/cities.mjs");
+const { redirectPage } = await import("../tools/city_site.mjs");
+test("jedna stránka: CSP pro servery všech měst, bez přepínače měst", () => {
+  const html = read("index.html");
+  const connect = html.match(/connect-src [^;]*/)[0];
+  for (const c of Object.values(SITES)) for (const host of c.connect) assert.ok(connect.includes(host), host);
+  assert.doesNotMatch(html, /city-toggle/);
+});
+test("bývalé stránky měst přesměrují i s řezem", () => {
+  assert.match(redirectPage("brno"), /location\.replace\("\.\.\/\?mesto=brno" \+ location\.hash\)/);
+});
+test("město podle polohy řezu", async () => {
+  const C = await import("../pilot/public/city.js");
+  C.loadBounds(JSON.parse(read("mesta.json")));
+  assert.equal(C.cityAt(50.0875, 14.4208), "praha");
+  assert.equal(C.cityAt(49.1951, 16.6085), "brno");
+  assert.equal(C.cityAt(50.503, 13.6363), "most");
+  assert.equal(C.cityAt(49.907481, 16.442219), "cesko"); // Česká Třebová
+  assert.equal(C.setCity("plzen").adjective, "plzeňské");
+  C.setCity("praha");
+});

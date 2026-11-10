@@ -7,7 +7,7 @@ import { cleanProfile, cleanCut } from "./validate.js";
 import { shares } from "./shares.js";
 import { packProfile, unpackProfile, designParams } from "./share.js";
 import { checkRules } from "./rules.js";
-import { city, isBrno, isLive } from "./city.js";
+import { city, setCity, cityAt, loadBounds } from "./city.js";
 import { TOWNS } from "./towns/index.js";
 
 const HALF = 40; // half-length of the cut used for reading the data (m)
@@ -21,7 +21,17 @@ const cutEnds = (f, normal, reach) => [
 // The cut line and its ends A, B on the map show where the profile ends (facades, fences…), not how
 // far the data was searched (Bára); a profile only estimated from OSM has no ends, so the reach shows.
 const cutSpan = (cut) => cut?.span || cut?.reach || defaultReach();
-const STORE = "streetdesign-pilot" + city.storeSuffix; // Prague and Brno keep their own last cut
+const STORE = "streetdesign-pilot"; // the last cut (Prague's key from the time of one page per city)
+// The boundaries of the cities with their own sources (tools/build_mesta.mjs): a cut takes its city by them.
+const MESTA = await fetch("mesta.json").then((r) => (r.ok ? r.json() : {}), () => ({}));
+loadBounds(MESTA);
+// The city of a point becomes the current one (city.js): its sources, texts and illustrations.
+async function useCity(lat, lon) {
+  const id = cityAt(lat, lon);
+  if (id === city.id) return;
+  setCity(id);
+  await loadSprites();
+}
 
 const state = {
   mode: "stav",
@@ -43,7 +53,10 @@ const status = (msg, kind = "") => {
 };
 
 // ---------- map ----------
-const map = L.map("map", { maxZoom: 21, zoomControl: false }).setView(city.view, 18);
+// An old city page (/brno/ …) sends its visitors here with ?mesto=brno: the map opens over that city.
+const startCity = new URLSearchParams(location.search).get("mesto");
+if (startCity) { setCity(startCity); history.replaceState(null, "", location.pathname + location.hash); }
+const map = L.map("map", { maxZoom: 21, zoomControl: false }).setView(city.view, startCity === "cesko" ? 8 : 18);
 L.control.zoom({ zoomInTitle: "Přiblížit", zoomOutTitle: "Oddálit" }).addTo(map);
 // Base maps. IPR services are drawn through ArcGIS export requests in Web Mercator, one per tile.
 // Each request renders a 512 px image covering four normal tiles (tileSize 512, zoomOffset -1):
@@ -70,82 +83,58 @@ const ArcgisExport = L.TileLayer.extend({
   },
 });
 const BIG_TILES = { tileSize: 512, zoomOffset: -1 };
-const ipr = (path, attribution, extra = {}) =>
-  new ArcgisExport("", { service: `${GS}/${path}`, maxZoom: 21, ...BIG_TILES, attribution: `${attribution} © IPR Praha`, ...extra });
-
-const pragueMaps = () => ({
-  // IPR's pre-rendered base map in Web Mercator on ArcGIS Online (the one platba.parkujvpraze.cz
-  // shows as vector tiles): served from a CDN, so it loads at once, unlike the export requests.
-  "Mapa IPR": L.tileLayer("https://tiles.arcgis.com/tiles/SBTXIEUGWbqzUecw/arcgis/rest/services/MTVU_WGS84/MapServer/tile/{z}/{y}/{x}", {
-    maxZoom: 21, maxNativeZoom: 20, attribution: "mapa © IPR Praha",
-  }),
-  "Letecká IPR": ipr("imgs/rest/services/ort/letecke_snimkovani/ImageServer", "ortofoto"),
-  "Mimovegetační IPR": ipr("imgs/rest/services/ort/mimovegetacni_letecke_snimkovani/ImageServer", "mimovegetační ortofoto"),
-  "Ortofoto ČÚZK": L.tileLayer.wms("https://ags.cuzk.gov.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer", {
-    layers: "0", format: "image/jpeg", maxZoom: 21, attribution: "ortofoto © ČÚZK",
-  }),
-  "OpenStreetMap": L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 21, maxNativeZoom: 19, attribution: "© OpenStreetMap",
-  }),
-});
-// Brno: the city's orthophoto (tiles in Web Mercator on gis.brno.cz), the public DTM of the region as
-// a map (WMS of IS DMVS ČÚZK, the data the profile is measured from), ČÚZK orthophoto and OSM.
+// One set of base maps for the whole Czech Republic (Bára: one page, no city switch): each kind of map
+// is the national layer with the cities' own on top, each limited to its city (mesta.json).
 const DMVS = "https://dmvs.cuzk.gov.cz/api/wms";
-const BRNO_GIS = "https://gis.brno.cz/ags3/rest/services/PUBLIC";
-const brnoMaps = () => ({
-  // The city's map of surfaces (MTVU), drawn by its GIS as export images in Web Mercator (its caches
-  // are in S-JTSK), from 1 : 5 000; OSM underneath for the zoomed-out view. The DTM of the region
-  // (ČÚZK) has wide blank areas in Brno, so it is not the default.
-  "Mapa Brna": L.layerGroup([
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 21, maxNativeZoom: 19, opacity: 0.6, attribution: "© OpenStreetMap" }),
-    new ArcgisExport("", { service: `${BRNO_GIS}/ted_MTVU_plochy_povrch/MapServer`, minZoom: 17, maxZoom: 21, ...BIG_TILES, attribution: "mapa © Statutární město Brno" }),
-  ]),
-  "Technická mapa": L.tileLayer.wms(`${DMVS}/dtm_zps_plochy_bar`, {
-    // The DMVS answers WMS 1.3.0 only (since 11/2026; Leaflet asks 1.1.1 by default).
-    layers: "dtm_zps_plochy_bar", format: "image/png", version: "1.3.0", maxZoom: 21, tileSize: 512, zoomOffset: -1, attribution: "DTM Jihomoravského kraje © ČÚZK (IS DMVS)",
-  }),
-  "Ortofoto Brno": L.tileLayer("https://gis.brno.cz/ags1/rest/services/OMI/OMI_basemaps_ortofoto_2025_wgs/MapServer/tile/{z}/{y}/{x}", {
-    maxZoom: 21, maxNativeZoom: 21, attribution: "ortofoto 2025 © Statutární město Brno",
-  }),
-  "Ortofoto ČÚZK": L.tileLayer.wms("https://ags.cuzk.gov.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer", {
-    layers: "0", format: "image/jpeg", maxZoom: 21, attribution: "ortofoto © ČÚZK",
-  }),
-  "OpenStreetMap": L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 21, maxNativeZoom: 19, attribution: "© OpenStreetMap",
-  }),
+const osmLayer = (opacity = 1) => L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 21, maxNativeZoom: 19, opacity, attribution: "© OpenStreetMap" });
+const cuzkOrtho = () => L.tileLayer.wms("https://ags.cuzk.gov.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer", {
+  layers: "0", format: "image/jpeg", maxZoom: 21, attribution: "ortofoto © ČÚZK",
 });
-// A town (towns/<id>.js) brings its own base maps and lines of its technical map.
-const town = TOWNS[city.id]?.maps({
-  L, ArcgisExport, BIG_TILES,
-  osm: (opacity) => L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 21, maxNativeZoom: 19, opacity, attribution: "© OpenStreetMap" }),
-  cuzk: () => L.tileLayer.wms("https://ags.cuzk.gov.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer", {
-    layers: "0", format: "image/jpeg", maxZoom: 21, attribution: "ortofoto © ČÚZK",
-  }),
+// The DMVS answers WMS 1.3.0 only (since 11/2026; Leaflet asks 1.1.1 by default).
+const dmvsWms = (layer, opts = {}) => L.tileLayer.wms(`${DMVS}/${layer}`, {
+  layers: layer, format: "image/png", version: "1.3.0", transparent: true, maxZoom: 21, tileSize: 512, zoomOffset: -1,
+  attribution: "technická mapa © kraje, IS DMVS ČÚZK", ...opts,
 });
-const townMaps = () => Object.fromEntries(Object.entries(town.base).map(([name, layers]) => [name, layers.length > 1 ? L.layerGroup(layers) : layers[0]]));
-const baseMaps = town ? townMaps() : isBrno ? brnoMaps() : pragueMaps();
-// Brno's key changed with its default map (the DTM of the region was mostly blank, the MTVU map too pale).
-const BASE_KEY = "streetdesign-basemap" + (isBrno ? "-brno3" : city.storeSuffix);
-let baseName = town ? town.default : isBrno ? "Ortofoto Brno" : "Mapa IPR"; // Brno: the city's orthophoto, fast tiles of the whole city (Bára)
+// The box of a city from its boundary: its layers load tiles only there.
+const within = (id) => {
+  const pts = (MESTA[id] || []).flat();
+  if (!pts.length) return {};
+  const xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]);
+  return { bounds: L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]) };
+};
+const kinds = { map: [osmLayer()], ortho: [cuzkOrtho()], tech: [osmLayer(0.5), dmvsWms("dtm_zps_plochy_bar", { minZoom: 16, transparent: false })], lines: [dmvsWms("dtm_zps_linie_body", { minZoom: 17, opacity: 0.9 })] };
+// Prague: IPR's pre-rendered map in Web Mercator on ArcGIS Online (fast, a CDN) and the lines of its technical map.
+kinds.map.push(L.tileLayer("https://tiles.arcgis.com/tiles/SBTXIEUGWbqzUecw/arcgis/rest/services/MTVU_WGS84/MapServer/tile/{z}/{y}/{x}", {
+  maxZoom: 21, maxNativeZoom: 20, attribution: "mapa © IPR Praha", ...within("praha"),
+}));
+kinds.lines.push(new ArcgisExport("", {
+  service: `${GS}/arcgis/rest/services/dtmp/dtmp/MapServer`, layers: "show:9,10,14",
+  maxZoom: 21, minZoom: 16, ...BIG_TILES, opacity: 0.9, attribution: "technická mapa © IPR Praha", ...within("praha"),
+}));
+// Brno: the city's map of surfaces (MTVU) from 1 : 5 000 and its 2025 orthophoto (tiles in Web Mercator).
+kinds.map.push(new ArcgisExport("", { service: "https://gis.brno.cz/ags3/rest/services/PUBLIC/ted_MTVU_plochy_povrch/MapServer", minZoom: 17, maxZoom: 21, ...BIG_TILES, attribution: "mapa © Statutární město Brno", ...within("brno") }));
+kinds.ortho.push(L.tileLayer("https://gis.brno.cz/ags1/rest/services/OMI/OMI_basemaps_ortofoto_2025_wgs/MapServer/tile/{z}/{y}/{x}", {
+  maxZoom: 21, maxNativeZoom: 21, attribution: "ortofoto 2025 © Statutární město Brno", ...within("brno"),
+}));
+// The towns (towns/<id>.js maps): their orthophoto, technical map and lines, each kept to the town.
+for (const [id, t] of Object.entries(TOWNS)) {
+  if (!t.maps || t.national) continue;
+  const m = t.maps({ L, ArcgisExport, BIG_TILES: { ...BIG_TILES, ...within(id) }, osm: () => null, cuzk: () => null });
+  for (const [name, layers] of Object.entries(m.base)) {
+    const kind = /^Ortofoto (?!ČÚZK)/.test(name) ? "ortho" : /Technická|Účelová/.test(name) ? "tech" : /^Mapa/.test(name) ? "map" : null;
+    if (kind) kinds[kind].push(...layers.filter(Boolean));
+  }
+  if (m.lines) kinds.lines.push(m.lines);
+}
+const baseMaps = { "Mapa": L.layerGroup(kinds.map), "Ortofoto": L.layerGroup(kinds.ortho), "Technická mapa": L.layerGroup(kinds.tech), "OpenStreetMap": osmLayer() };
+const BASE_KEY = "streetdesign-basemap-cr";
+let baseName = "Mapa";
 try { if (baseMaps[localStorage.getItem(BASE_KEY)]) baseName = localStorage.getItem(BASE_KEY); } catch {}
 baseMaps[baseName].addTo(map);
 map.on("baselayerchange", (e) => { try { localStorage.setItem(BASE_KEY, e.name); } catch {} });
-
-const dtm = town
-  ? town.lines
-  : isBrno
-  ? L.tileLayer.wms(`${DMVS}/dtm_zps_linie_body`, {
-    layers: "dtm_zps_linie_body", format: "image/png", version: "1.3.0", transparent: true, maxZoom: 21, minZoom: 16, tileSize: 512, zoomOffset: -1,
-    attribution: "DTM Jihomoravského kraje © ČÚZK (IS DMVS)",
-  })
-  : new ArcgisExport("", {
-    service: `${GS}/arcgis/rest/services/dtmp/dtmp/MapServer`, layers: "show:9,10,14",
-    maxZoom: 21, minZoom: 16, ...BIG_TILES, opacity: 0.9, attribution: "technická mapa © IPR Praha",
-  });
+const dtm = L.layerGroup(kinds.lines);
 const mtvuLayer = L.layerGroup();
-L.control.layers(baseMaps, isLive
-  ? { ...(dtm ? { "Linie technické mapy": dtm } : {}), "Plochy u řezu": mtvuLayer }
-  : { "Technická mapa IPR": dtm, "Plochy MTVU u řezu": mtvuLayer }).addTo(map);
+L.control.layers(baseMaps, { "Linie technické mapy": dtm, "Plochy u řezu": mtvuLayer }).addTo(map);
 document.querySelector(".leaflet-control-layers-toggle")?.setAttribute("title", "Podkladová mapa a vrstvy");
 document.querySelector(".leaflet-control-layers-toggle")?.setAttribute("aria-label", "Podkladová mapa a vrstvy");
 mtvuLayer.addTo(map);
@@ -170,6 +159,7 @@ window.cutAt = cutAt; // handy for testing from the console
 
 async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
   try {
+    await useCity(lat, lon);
     status("Načítám data z OSM…");
     let frame = localFrame(lat, lon);
     let osm = keepWay && osmCache ? osmCache.osm : await sources.osm(lat, lon, 80);
@@ -182,7 +172,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
       // A click lands the cut away from junctions and crossings; a dragged cut stays where it is put.
       if (near) near = awayFromJunctions(osm, frame, near);
     }
-    if (!near) return status(`Tady jsem žádnou ulici nenašla. Data pokrývají jen ${city.cover}; zkuste kliknout přímo na silnici.`, "error");
+    if (!near) return status("Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko).", "error");
     // A street of two one-way carriageways is cut from its middle (e.g. the tram belt).
     near = centerOnStreet(osm, frame, near);
     // Re-centre the frame on the snapped point.
@@ -491,8 +481,8 @@ function draw() {
   if (!state.stav) {
     box.innerHTML = `<div class="empty">
       <img src="${city.emptyImg}" alt="" width="96" height="126">
-      <div><h1 class="empty-title">Příčný profil ${city.adjective} ulice</h1>
-      <ol><li>Klikněte v mapě na ulici.</li><li>Profil od fasády k fasádě se sestaví z dat ${city.dataShort}.</li>
+      <div><h1 class="empty-title">Příčný profil ulice</h1>
+      <ol><li>Klikněte v mapě na ulici kdekoli v Česku.</li><li>Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM.</li>
       <li>V režimu Návrh ho upravíte: táhněte hranice, klikněte na část, přidejte novou.</li></ol></div></div>`;
     $("#editor").replaceChildren();
     $("#palette").replaceChildren();
@@ -1153,16 +1143,16 @@ document.querySelectorAll(".seg-toggle button").forEach((b) => b.addEventListene
   render();
 }));
 
-// Illustrations: the city's own (Prague or Brno) or Streetmix, remembered per browser and city.
-const ART_KEY = "profily-ilustrace" + city.storeSuffix;
+// Illustrations: each city's own (houses, vehicles, furniture) or Streetmix's, remembered per browser.
+const ART_KEY = "profily-ilustrace";
 function showArt() {
-  $("#btn-art").setAttribute("aria-checked", String(getArt() === city.art));
+  $("#btn-art").setAttribute("aria-checked", String(getArt()));
 }
-try { if (localStorage.getItem(ART_KEY) === "streetmix") setArt("streetmix"); } catch {}
+try { if (localStorage.getItem(ART_KEY) === "streetmix") setArt(false); } catch {}
 showArt();
 $("#btn-art").addEventListener("click", () => {
-  setArt(getArt() === city.art ? "streetmix" : city.art);
-  try { localStorage.setItem(ART_KEY, getArt()); } catch {}
+  setArt(!getArt());
+  try { localStorage.setItem(ART_KEY, getArt() ? "mesto" : "streetmix"); } catch {}
   showArt();
   render();
 });
@@ -1271,6 +1261,8 @@ function restore(data) {
   data.cut = cleanCut(data.cut);
   undoStack.length = redoStack.length = 0;
   Object.assign(state, { cut: data.cut, stav: data.stav, navrh: data.navrh || structuredClone(data.stav), navrhEdited: !!data.navrhEdited, selected: null });
+  // The saved cut's city (its illustrations follow once loaded).
+  if (state.cut) { setCity(cityAt(state.cut.lat, state.cut.lon)); loadSprites().then(render); }
   if (state.cut) {
     map.setView([state.cut.lat, state.cut.lon], 19);
     const f = localFrame(state.cut.lat, state.cut.lon);

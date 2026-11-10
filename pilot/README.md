@@ -91,7 +91,13 @@ Počet podlaží budov na okrajích profilu se bere z vrstvy IPR *Podlažnosti*
 podlaží, celkem; cache v `pilot/cache/podlaznost`), jinak z OSM `building:levels` (+ `roof:levels`).
 Výška se kreslí 3,5 m na podlaží (přesná výška jen z OSM `height`), střešní podlaží užší a tmavší.
 
-## Brno (`/brno/`)
+## Jedna stránka pro celou ČR
+Město se bere podle místa řezu (`city.js`: `cityAt` podle hranic obcí v `mesta.json`, `setCity`); mimo města s
+vlastními zdroji platí „cesko“ (`towns/cesko.js`: technická mapa ČÚZK živě, domy z RÚIAN, dlaždice OSM). Moduly čtou
+`city` až při použití, takže zdroje, ilustrace (načtou se při prvním řezu ve městě) i texty sedí na místo řezu. Bývalé
+stránky `/<město>/` jsou přesměrování na `/?mesto=<město>` (`tools/build_city_site.mjs`, místní server totéž).
+
+## Brno
 
 Stejná aplikace s `CITY = "brno"` (`city.js`, `tools/city_site.mjs`). Lokálně http://localhost:5173/brno/,
 na webu `…/profily-ulic/brno/`. Stejně jako Praha se ptá služeb při kliknutí (přímo z prohlížeče,

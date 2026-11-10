@@ -4,17 +4,20 @@
 // served as the same tiles the server reads (data/osm-tiles/<ix>_<iy>.json).
 // Layers, fields and the reading of answers are shared with server.mjs (queries.js).
 import { STATIC } from "./config.js";
-import { city, isBrno, isLive, MTVU_LABELS } from "./city.js";
+import { city, MTVU_LABELS } from "./city.js";
 import { TILE, getJSON, query, envelope, osmTiles, insideRings } from "./gis.js";
 import { TOWNS } from "./towns/index.js";
 export { events } from "./gis.js";
 
 import { MTVU, MTVU_FIELDS, TM_LINES, LINE_WHERE, PARKOVANI, PARKING_LAYERS, parkingFields, PODLAZNOST, PODLAZNOST_FIELDS, podlaznostInfo } from "./queries.js";
 // Brno asks the city's services on a click, as Prague asks IPR's; only the OSM tiles are files.
-// A town (towns/<id>.js) brings its own sources.
-const town = TOWNS[city.id]?.sources;
+// A town (towns/<id>.js, also "cesko" anywhere else) brings its own sources; read for the city of the
+// current cut each time.
+const town = () => TOWNS[city.id]?.sources;
+const isBrno = () => city.id === "brno";
+const isLive = () => city.id !== "praha";
 
-export const osm = (lat, lon, r) => (town ? town.osm(lat, lon, r) : isBrno ? brnoOsm(lat, lon, r) : STATIC ? osmTiles(lat, lon, r) : getJSON(`/api/osm?lat=${lat}&lon=${lon}&r=${r}`));
+export const osm = (lat, lon, r) => (town() ? town().osm(lat, lon, r) : isBrno() ? brnoOsm(lat, lon, r) : STATIC ? osmTiles(lat, lon, r) : getJSON(`/api/osm?lat=${lat}&lon=${lon}&r=${r}`));
 
 // Where the city's own map has nothing (a cut outside the city: Česká Třebová from the Most page, a village
 // beyond Prague), the national DTM of ČÚZK read live (dmvs.js) stands in, as for Pardubice.
@@ -23,11 +26,11 @@ const national = async (json, bbox) => {
   const { surfaces } = await import("./dmvs.js");
   return surfaces(bbox, MTVU_LABELS).catch(() => json);
 };
-export const mtvu = (bbox) => (town ? town.surfaces(bbox) : isBrno ? brnoSurfaces(bbox) : STATIC
+export const mtvu = (bbox) => (town() ? town().surfaces(bbox) : isBrno() ? brnoSurfaces(bbox) : STATIC
   ? query(MTVU, { ...envelope(bbox), outFields: MTVU_FIELDS })
   : getJSON(`/api/mtvu?bbox=${bbox}`)).then((json) => national(json, bbox));
 
-export const linie = (bbox) => (town ? town.lines(bbox) : isBrno ? brnoLines(bbox) : STATIC
+export const linie = (bbox) => (town() ? town().lines(bbox) : isBrno() ? brnoLines(bbox) : STATIC
   ? query(TM_LINES, { ...envelope(bbox), where: LINE_WHERE, outFields: "CTMTP_KOD" })
   : getJSON(`/api/linie?bbox=${bbox}`));
 
@@ -218,7 +221,7 @@ async function brnoParkovani(bbox) {
   for (let ix = Math.floor(x0 / TILE); ix <= Math.floor(x1 / TILE); ix++) for (let iy = Math.floor(y0 / TILE); iy <= Math.floor(y1 / TILE); iy++) names.push(`${ix}_${iy}`);
   const seen = new Set(), features = [];
   for (const n of names) {
-    if (!parkTiles.has(n)) parkTiles.set(n, fetch(`data/parkovani/${n}.json`).then((r) => (r.ok ? r.json() : { features: [] }), () => ({ features: [] })));
+    if (!parkTiles.has(n)) parkTiles.set(n, fetch(`data/brno/parkovani/${n}.json`).then((r) => (r.ok ? r.json() : { features: [] }), () => ({ features: [] })));
     for (const f of (await parkTiles.get(n)).features) {
       const key = JSON.stringify(f.geometry.rings[0][0]);
       if (seen.has(key)) continue;
@@ -258,8 +261,8 @@ async function brnoPodlaznost(lat, lon) {
 // are asked for at once; elsewhere only where the sections (3) found something, which spares IPR
 // four requests per cut. As in server.mjs.
 export async function parkovani(bbox, inZone) {
-  if (town) return town.parking(bbox);
-  if (isBrno) return brnoParkovani(bbox);
+  if (town()) return town().parking(bbox);
+  if (isBrno()) return brnoParkovani(bbox);
   if (!STATIC) return getJSON(`/api/parkovani?bbox=${bbox}${inZone ? "&zone=1" : ""}`);
   const layer = async (n, kind) => {
     const json = await query(`${PARKOVANI}/${n}/query`, { ...envelope(bbox), outFields: parkingFields(n) });
@@ -283,7 +286,7 @@ let zpsBoxes;
 export async function zps(lat, lon) {
   // Brno: the areas are rough outlines of whole quarters (Elišky Krásnohorské lies in 6-01 with no paid
   // section within 360 m), so the profile decides by the sections around the cut, which are current.
-  if (isLive) return undefined;
+  if (isLive()) return undefined;
   zpsBoxes ??= fetch("data/zps.json").then((r) => (r.ok ? r.json() : null)).then((j) => j?.boxes || null, () => null);
   const boxes = await zpsBoxes;
   if (!boxes) return undefined;
@@ -299,7 +302,7 @@ export const AFTER_2010 = 2020;
 const VYVOJ_TILE = 0.01;
 const vyvojTiles = new Map();
 export async function vyvoj(lat, lon) {
-  if (isLive) return undefined; // Brno and the towns have no such layer: the look comes from the house alone
+  if (isLive()) return undefined; // Brno and the towns have no such layer: the look comes from the house alone
   const k = `${Math.floor(lon / VYVOJ_TILE)}_${Math.floor(lat / VYVOJ_TILE)}`;
   if (!vyvojTiles.has(k)) vyvojTiles.set(k, fetch(`data/vyvoj/${k}.json`).then((r) => (r.ok ? r.json() : null), () => null));
   const polys = await vyvojTiles.get(k);
@@ -310,8 +313,8 @@ export async function vyvoj(lat, lon) {
 }
 
 export async function podlaznost(lat, lon) {
-  if (town) return town.podlaznost(lat, lon);
-  if (isBrno) return brnoPodlaznost(lat, lon);
+  if (town()) return town().podlaznost(lat, lon);
+  if (isBrno()) return brnoPodlaznost(lat, lon);
   if (!STATIC) return getJSON(`/api/podlaznost?lat=${lat}&lon=${lon}`);
   const json = await query(PODLAZNOST, {
     geometry: `${lon},${lat}`, geometryType: "esriGeometryPoint", inSR: "4326", spatialRel: "esriSpatialRelIntersects",

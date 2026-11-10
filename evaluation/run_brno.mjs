@@ -12,12 +12,12 @@ const CITY = process.env.CITY || "brno";
 const DATA = path.join(ROOT, CITY, "data");
 const PILOT_DATA = path.join(ROOT, "..", "pilot", "data", CITY);
 globalThis.PROFILY_CITY = CITY;
-// sources.js reads "data/…" next to the page: here the files in pilot/data/brno.
+// sources.js reads "data/…" next to the page: here the files in pilot/data.
 const webFetch = globalThis.fetch;
 globalThis.fetch = async (url, opts) => {
   const u = String(url);
-  // ../data/…: the shared OSM tiles of the Czech Republic in pilot/data; data/…: the city's own files.
-  const file = u.startsWith("../data/") ? path.join(PILOT_DATA, "..", u.slice(8)) : u.startsWith("data/") ? path.join(PILOT_DATA, u.slice(5)) : null;
+  // data/…: pilot/data, as the one page has it (the OSM tiles of the country, data/<city>/ of a city).
+  const file = u.startsWith("data/") ? path.join(PILOT_DATA, "..", u.slice(5)) : null;
   if (!file) return webFetch(url, opts);
   try {
     const text = await fs.readFile(file, "utf8");

@@ -4,18 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Profily ulic</title>
-  <meta name="description" content="Příčné profily pražských ulic od fasády k fasádě z technické mapy IPR a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com https://api.mapy.cz; style-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://gs-pub.praha.eu https://tiles.arcgis.com https://ags.cuzk.gov.cz https://tile.openstreetmap.org https://unpkg.com https://api.mapy.cz; connect-src 'self' https://gs-pub.praha.eu https://mp.iprpraha.cz https://api.mapy.cz https://dmvs.cuzk.gov.cz https://ags.cuzk.gov.cz; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="description" content="Příčné profily ulic v Česku od fasády k fasádě z technických map měst a ČÚZK, RÚIAN a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com https://api.mapy.cz; style-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://gs-pub.praha.eu https://tiles.arcgis.com https://ags.cuzk.gov.cz https://tile.openstreetmap.org https://unpkg.com https://api.mapy.cz https://gis.brno.cz https://dmvs.cuzk.gov.cz https://gis.jihlava-city.cz https://mapy.mesto-most.cz https://mapy.opava-city.cz https://ags.plzen.eu https://services6.arcgis.com; connect-src 'self' https://gs-pub.praha.eu https://mp.iprpraha.cz https://api.mapy.cz https://dmvs.cuzk.gov.cz https://ags.cuzk.gov.cz https://gis.brno.cz https://services6.arcgis.com https://gis.jihlava-city.cz https://mapy.mesto-most.cz https://mapy.opava-city.cz https://ags.plzen.eu; object-src 'none'; base-uri 'self'; form-action 'none'">
   <meta name="theme-color" content="#d8413f">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Profily ulic">
-  <meta property="og:description" content="Příčné profily pražských ulic z dat IPR a OpenStreetMap: od fasády k fasádě, upravitelné, s pražskými ilustracemi.">
+  <meta property="og:description" content="Příčné profily ulic v Česku z technických map měst a ČÚZK: od fasády k fasádě, upravitelné, s místními ilustracemi.">
   <meta property="og:locale" content="cs_CZ">
   <meta property="og:url" content="https://barasoukup.github.io/profily-ulic/">
   <meta property="og:image" content="https://barasoukup.github.io/profily-ulic/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Příčný profil pražské ulice s tramvajemi, chodníky a domy, vedle název Profily ulic">
+  <meta property="og:image:alt" content="Příčný profil ulice s tramvajemi, chodníky a domy, vedle název Profily ulic">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <script src="errors.js"></script>
@@ -32,22 +32,13 @@
       <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#d8413f"/><path d="M6 25V12l4-3v16M22 25V9l4 3v13M6 25h20" stroke="#fff" stroke-width="2.4" fill="none" stroke-linejoin="round"/><path d="M12 25v-4h8v4" fill="#fff"/></svg>
       <span class="brand-name">Profily ulic</span>
     </a>
-    <nav class="city-toggle" aria-label="Město">
-      <a href="./" aria-current="page">Praha</a>
-      <a href="brno/">Brno</a>
-      <a href="jihlava/">Jihlava</a>
-      <a href="most/">Most</a>
-      <a href="opava/">Opava</a>
-      <a href="pardubice/">Pardubice</a>
-      <a href="plzen/">Plzeň</a>
-    </nav>
     <span class="spacer"></span>
     <div class="seg-toggle" role="group" aria-label="Zobrazení">
-      <button data-mode="stav" class="active" aria-pressed="true" title="Ulice, jak je dnes (z dat IPR a OSM)">Stav</button>
+      <button data-mode="stav" class="active" aria-pressed="true" title="Ulice, jak je dnes (z technické mapy města nebo ČÚZK a OSM)">Stav</button>
       <button data-mode="navrh" aria-pressed="false" title="Vaše úprava ulice">Návrh</button>
       <button data-mode="porovnat" aria-pressed="false" title="Stav a návrh pod sebou se seznamem změn">Porovnat</button>
     </div>
-    <button id="btn-art" class="switch" role="switch" aria-checked="true" title="Kreslit pražskými ilustracemi (vypnuto: ilustrace Streetmixu)">Pražské ilustrace</button>
+    <button id="btn-art" class="switch" role="switch" aria-checked="true" title="Kreslit místní ilustrace: domy, tramvaje, trolejbusy, autobusy a mobiliář města (vypnuto: ilustrace Streetmixu)">Ilustrace</button>
     <details class="menu">
       <summary class="btn" aria-label="Export"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8M4.5 6.5 8 10l3.5-3.5M3 13h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lbl">Export</span></summary>
       <div class="menu-list">
@@ -66,7 +57,7 @@
   </header>
   <main>
     <section id="map-pane">
-      <div id="map" role="application" aria-label="Mapa Prahy: kliknutím na ulici vznikne její příčný profil"></div>
+      <div id="map" role="application" aria-label="Mapa: kliknutím na ulici vznikne její příčný profil"></div>
       <div id="map-help" hidden>Řez posunete tažením středu. Tažením konce ho natočíte a zkrátíte nebo prodloužíte profil na té straně.</div>
       <button id="pano-btn" class="pano-link" hidden title="Pohled z ulice v místě řezu, ve směru profilu (Panorama Mapy.com)">Panorama z ulice</button>
       <a id="pano-link" class="pano-link" target="_blank" rel="noopener" hidden title="Otevře Mapy.com v místě řezu se zapnutými panoramaty; panoramu spustíte kliknutím na ulici">Panorama na Mapy.com ↗</a>
@@ -107,7 +98,7 @@
       <div id="legend">
         <span class="src src-dtm">změřeno z technické mapy</span>
         <span class="src src-osm">doplněno z OSM</span>
-        <span class="src src-tsk">úseky parkování TSK</span>
+        <span class="src src-tsk">úseky a zóny parkování</span>
         <span class="src src-odhad">odhad</span>
         <span class="src src-user">upraveno ručně</span>
       </div>
@@ -118,13 +109,14 @@
     </section>
   </main>
   <footer class="muted">
-    Data: © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (technická mapa a MTVU; podlažnosti a vývoj zástavby, CC BY 4.0) ·
-    úseky parkování © TSK hl. m. Prahy (CC BY 4.0) ·
+    Data: technické mapy © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (a podlažnosti, vývoj zástavby, CC BY 4.0), statutárních měst Brna, Jihlavy, Mostu, Opavy a Plzně
+    a krajů (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN, katastr a ortofoto © ČÚZK (CC BY 4.0) ·
+    parkování © TSK hl. m. Prahy (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, město Jihlava, Opava, Plzeň (CC0) ·
     © přispěvatelé <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·
-    ortofoto © ČÚZK (CC BY 4.0) ·
     ilustrace © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licence
     <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.cs">CC BY-SA 4.0</a> ·
-    pražské ilustrace a kód © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) · <a href="brno/">Profily ulic Brno</a> · <a href="jihlava/">Profily ulic Jihlava</a> · <a href="most/">Profily ulic Most</a> · <a href="opava/">Profily ulic Opava</a> · <a href="pardubice/">Profily ulic Pardubice</a> · <a href="plzen/">Profily ulic Plzeň</a>
+    místní ilustrace a kód © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
+    <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">zdroje a licence</a>
   </footer>
   <dialog id="pano-dialog" aria-label="Panorama z ulice">
     <div class="pano-head">

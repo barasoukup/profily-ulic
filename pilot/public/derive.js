@@ -896,8 +896,11 @@ function perpDepth(segs) {
 
 // Distance from the city centre (km; Old Town Square in Prague, náměstí Svobody in Brno): the inner
 // city of tenements versus the outer estates.
-const CENTRE = city.centre;
-const centreKm = ([lon, lat]) => Math.hypot((lon - CENTRE[0]) * 111.32 * Math.cos((CENTRE[1] * Math.PI) / 180), (lat - CENTRE[1]) * 111.2);
+// Distance from the centre of the cut's city (city.js centre); far out where no centre is known ("cesko").
+const centreKm = ([lon, lat]) => {
+  const c = city.centre;
+  return c ? Math.hypot((lon - c[0]) * 111.32 * Math.cos((c[1] * Math.PI) / 180), (lat - c[1]) * 111.2) : 99;
+};
 
 // OSM building containing a point, with building:levels (+ roof:levels) and height when tagged,
 // and the shape of the block it belongs to (blockShape).

@@ -5,7 +5,6 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
-import { cityConfig, cityIndex } from "../tools/city_site.mjs";
 import { SITES } from "../tools/cities.mjs";
 import { TILE, decodeTile, mergePieces } from "./public/osmtile.js";
 import { MTVU, MTVU_FIELDS, TM_LINES, LINE_WHERE, PARKOVANI, PARKING_LAYERS, parkingFields, PODLAZNOST, PODLAZNOST_FIELDS, podlaznostInfo } from "./public/queries.js";
@@ -213,21 +212,15 @@ const server = http.createServer(async (req, res) => {
     } catch {
       throw Object.assign(new Error("neplatná adresa"), { status: 400 });
     }
-    // A city site (/brno/, /jihlava/, …): the same app with CITY = "<city>" and its data from
-    // pilot/data/<city>, as the deploy places it in _site/<city> (tools/city_site.mjs).
-    if (SITES[rel]) {
-      res.writeHead(301, { Location: `/${rel}/` });
+    // A former city site (/brno/, /jihlava/, …): to the one page, over that city (tools/city_site.mjs).
+    // (Only the page: the folder also holds the city's illustrations.)
+    const site = Object.keys(SITES).find((c) => [c, `${c}/`, `${c}/index.html`].includes(rel));
+    if (site) {
+      res.writeHead(302, { Location: `/?mesto=${site}` });
       return res.end();
     }
-    const site = Object.keys(SITES).find((c) => rel.startsWith(c + "/"));
-    if (site) rel = rel.slice(site.length + 1) || "index.html";
-    if (site && (rel === "index.html" || rel === "config.js")) {
-      const text = await fs.readFile(path.join(PUBLIC, rel), "utf8");
-      res.writeHead(200, { "Content-Type": TYPES[path.extname(rel)], "Cache-Control": "no-cache" });
-      return res.end(rel === "index.html" ? cityIndex(site, text) : cityConfig(site, text));
-    }
     // data/… (OSM tiles, parking zones) is served from pilot/data, as the web build places it next to the app.
-    const dataDir = path.join(ROOT, "data", ...(site ? [site] : []));
+    const dataDir = path.join(ROOT, "data");
     const base = rel.startsWith("data/") ? dataDir : PUBLIC;
     const file = path.normalize(path.join(base, rel.startsWith("data/") ? rel.slice(5) : rel));
     if (!file.startsWith(base + path.sep)) throw Object.assign(new Error("forbidden"), { code: "ENOENT" });
