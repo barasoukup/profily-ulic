@@ -292,15 +292,13 @@ function tramSprite(g, name, cx, bottom) {
   for (const dx of diamond ? [-52, -22, 22, 52] : [-28, 28]) el("rect", { x: cx + dx - 3, y: roof - 13, width: 6, height: 7, rx: 1.5, fill: "#8d8f8c", stroke: "none" }, p);
   el("rect", { x: cx - bw, y: roof - 8, width: 2 * bw, height: 6, rx: 2, fill: ink, stroke: "none" }, p);
   if (diamond) {
-    // The diamond (Prague T3R.P): two posts, each in two sections, leaning in from the wide base to the knee and on
-    // to the head; diagonal braces from the base corners across to the knees; the lifting tube in the middle.
-    const knee = roof - rise * 0.45, top = head + 16;
-    el("path", { d: `M${cx - 58} ${base} L${cx + 40} ${knee} M${cx + 58} ${base} L${cx - 40} ${knee}`, "stroke-width": 2 }, p);
-    el("path", { d: `M${cx} ${base} V${head + 10}`, "stroke-width": 2 }, p);
-    el("path", { d: `M${cx - 56} ${base} L${cx - 40} ${knee} L${cx - 26} ${top} M${cx + 56} ${base} L${cx + 40} ${knee} L${cx + 26} ${top}`, "stroke-width": 4 }, p);
-    for (const dx of [-40, 40]) el("circle", { cx: cx + dx, cy: knee, r: 4.5, fill: ink, stroke: "none" }, p);
-    // The rocker holding the head on the post tops.
-    el("path", { d: `M${cx - 26} ${top} L${cx - 40} ${head + 8} M${cx + 26} ${top} L${cx + 40} ${head + 8}`, stroke: ink, "stroke-width": 2.5 }, p);
+    // The diamond (Prague T3R.P) seen from the front is a rectangle (Bára's photos, T3 7232): two upright parallel
+    // posts about 1.15 m apart from the base frame to the head, a thin cross between them.
+    const w = 58, top = head + 12;
+    el("path", { d: `M${cx - w} ${base} V${top} M${cx + w} ${base} V${top}`, "stroke-width": 3 }, p);
+    // The cross only in the upper half (Bára).
+    const mid = (base + top) / 2;
+    el("path", { d: `M${cx - w} ${mid} L${cx + w} ${top} M${cx + w} ${mid} L${cx - w} ${top}`, "stroke-width": 1.5 }, p);
   } else {
     // A single-arm pantograph (Škoda, EVO, Stadler, the modernised T3s): from the front the lower arm is one thick
     // column up to the knee, the upper arm a narrow V opening to the head, with the thin rocker rods crossing it.
@@ -311,8 +309,10 @@ function tramSprite(g, name, cx, bottom) {
     el("path", { d: `M${cx - 36} ${head + 10} L${cx + 12} ${knee - 4} M${cx + 36} ${head + 10} L${cx - 12} ${knee - 4}`, stroke: ink, "stroke-width": 1.2 }, p);
     el("path", { d: `M${cx - 44} ${head + 14} L${cx - 56} ${head + 8} M${cx + 44} ${head + 14} L${cx + 56} ${head + 8}`, stroke: ink, "stroke-width": 2.5 }, p);
   }
-  // The head: the bow 1.95 m wide with its horns bent down, the two contact strips on it touching the wire.
-  el("path", { d: `M${cx - 97} ${head + 32} Q${cx - 95} ${head + 12} ${cx - 80} ${head + 9} H${cx + 80} Q${cx + 95} ${head + 12} ${cx + 97} ${head + 32}`, stroke: ink, "stroke-width": 4.5 }, p);
+  // The head: the bow with its horns bent down (1.95 m wide; the T3's about 1.6 m, its ends bent down and in),
+  // the two contact strips on it touching the wire.
+  if (diamond) el("path", { d: `M${cx - 70} ${head + 24} L${cx - 80} ${head + 12} L${cx - 72} ${head + 8} H${cx + 72} L${cx + 80} ${head + 12} L${cx + 70} ${head + 24}`, stroke: ink, "stroke-width": 4 }, p);
+  else el("path", { d: `M${cx - 97} ${head + 32} Q${cx - 95} ${head + 12} ${cx - 80} ${head + 9} H${cx + 80} Q${cx + 95} ${head + 12} ${cx + 97} ${head + 32}`, stroke: ink, "stroke-width": 4.5 }, p);
   el("rect", { x: cx - 62, y: head, width: 124, height: 3.5, rx: 1, fill: ink, stroke: "none" }, p);
   el("rect", { x: cx - 62, y: head + 5, width: 124, height: 2.5, rx: 1, fill: "#6b6e6a", stroke: "none" }, p);
   el("image", { href: s.uri, width: s.w, height: s.h, x, y, "clip-path": `url(#${id})` }, g);
