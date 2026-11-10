@@ -23,12 +23,23 @@ function parseOtherTags(s) {
 }
 
 // Tags kept: what derive.js and profile.js read, and what the ideas Bára has not picked yet would need.
-const KEEP = /^(highway|name|ref|local_ref|route_ref|railway|oneway|junction|lanes|turn|width|est_width|sidewalk|cycleway|parking|busway|bus|psv|bicycle|footway|service|bridge|tunnel|layer|level|indoor|area|trolley_wire|embedded_rails|surface|smoothness|barrier|natural|amenity|leisure|public_transport|shelter|building|roof:levels|height|orientation|parking_aisle|information|crossing|kerb|tactile_paving|tram|foot|access|motor_vehicle|covered|lit|maxspeed|zone|traffic_sign|leaf_type|leaf_cycle|diameter_crown|cyclestreet|bicycle_road|incline|bench|bin)(:|$)/;
+const KEEP = /^(highway|name|ref|local_ref|route_ref|railway|oneway|junction|lanes|turn|width|est_width|sidewalk|cycleway|parking|busway|bus|psv|bicycle|footway|service|bridge|tunnel|layer|level|indoor|area|trolley_wire|embedded_rails|surface|smoothness|barrier|natural|amenity|leisure|public_transport|shelter|building|roof:levels|height|orientation|parking_aisle|information|crossing|kerb|tactile_paving|tram|foot|access|motor_vehicle|covered|lit|maxspeed|zone|traffic_sign|leaf_type|leaf_cycle|diameter_crown|cyclestreet|bicycle_road|incline|bench|bin|segregated|location|placement|subway)(:|$)/;
 const BUILDING_KEYS = new Set(["building", "building:levels", "roof:levels", "height"]);
-// Ways the profile never draws: tracks, paths and bridleways in the open, footways that are not a street's
-// sidewalk or crossing, and roads not built (yet).
-const DROP_HW = new Set(["track", "path", "bridleway", "proposed", "construction", "raceway", "abandoned", "corridor", "elevator", "via_ferrata"]);
-const dropWay = (t) => DROP_HW.has(t.highway) || (t.highway === "footway" && !["sidewalk", "crossing", "traffic_island"].includes(t.footway));
+// Ways the profile never draws: tracks, roads not built (yet), and footways, paths, steps and bridleways
+// away from the roads (in parks, woods and fields). Near a road (within ROAD_NEAR) they stay: sidewalks
+// are often mapped as plain footways, and the profile reads which side of a street has one.
+const DROP_HW = new Set(["track", "proposed", "construction", "raceway", "abandoned", "corridor", "elevator", "via_ferrata"]);
+const PATHS = new Set(["footway", "path", "steps", "bridleway", "cycleway"]);
+const ROADS = new Set(["motorway", "trunk", "primary", "secondary", "tertiary", "unclassified", "residential", "living_street", "service", "pedestrian",
+  "motorway_link", "trunk_link", "primary_link", "secondary_link", "tertiary_link", "busway", "road"]);
+const CELL = 0.0004, ROAD_NEAR = 1; // cells of about 30 × 45 m; a path counts as near within one cell of a road
+const cell = (x, y) => Math.floor(x / CELL) * 1e6 + Math.floor(y / CELL);
+const roadCells = new Set();
+const nearRoad = (coords) => coords.some(([x, y]) => {
+  for (let dx = -ROAD_NEAR; dx <= ROAD_NEAR; dx++) for (let dy = -ROAD_NEAR; dy <= ROAD_NEAR; dy++) if (roadCells.has(cell(x + dx * CELL, y + dy * CELL))) return true;
+  return false;
+});
+const dropWay = (t, coords) => DROP_HW.has(t.highway) || (PATHS.has(t.highway) && !(t.highway === "cycleway") && !nearRoad(coords));
 
 const enc = (pts, q) => {
   const g = [];
@@ -70,6 +81,23 @@ function flush() {
   held = 0;
 }
 
+// First pass over the ways: the cells the roads run through (segments sampled every ~10 m).
+for (const src of sources.filter((f) => /_ways\.geojsonl$/.test(f))) {
+  const rl = readline.createInterface({ input: fs.createReadStream(src), crlfDelay: Infinity });
+  for await (const line of rl) {
+    if (!line.includes('"highway"')) continue;
+    const f = JSON.parse(line);
+    if (!ROADS.has(f.properties.highway)) continue;
+    const g = f.geometry;
+    for (const c of g.type === "LineString" ? [g.coordinates] : g.coordinates) {
+      for (let i = 0; i < c.length - 1; i++) {
+        const [ax, ay] = c[i], [bx, by] = c[i + 1], n = Math.max(1, Math.ceil(Math.hypot((bx - ax) * 71000, (by - ay) * 111000) / 10));
+        for (let k = 0; k <= n; k++) roadCells.add(cell(ax + ((bx - ax) * k) / n, ay + ((by - ay) * k) / n));
+      }
+    }
+  }
+}
+
 for (const src of sources) {
   const rl = readline.createInterface({ input: fs.createReadStream(src), crlfDelay: Infinity });
   for await (const line of rl) {
@@ -80,7 +108,7 @@ for (const src of sources) {
     for (const k of ["name", "highway", "railway", "amenity", "barrier", "leisure", "building"]) if (p[k]) all[k] = p[k];
     const g = f.geometry;
     const line_ = g.type === "LineString" || g.type === "MultiLineString";
-    if (line_ && all.highway && dropWay(all)) continue;
+    if (line_ && all.highway && dropWay(all, g.type === "LineString" ? g.coordinates : g.coordinates.flat())) continue;
     const building = !!all.building && (g.type === "Polygon" || g.type === "MultiPolygon");
     const tags = Object.fromEntries(Object.entries(all).filter(([k]) => (building ? BUILDING_KEYS.has(k) : KEEP.test(k))));
     if (g.type === "Point") {
