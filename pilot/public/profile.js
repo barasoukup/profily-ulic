@@ -6,7 +6,7 @@ import { SIGNS, PLATES, signFile, plateFile } from "./signs.js";
 
 const NS = "http://www.w3.org/2000/svg";
 const GROUND = 760; // roadway surface
-const SIGN_SIZE = 90, SIGN_ROW = 160; // traffic signs under the labels: height of a sign, room of a row (cm)
+const SIGN_SIZE = 105; // traffic signs under the labels in an export: height of a sign (cm)
 const CURB = 15;
 const EDGE = 400; // width drawn for the building / open edge
 const FLOOR = 3.5; // typical floor height for estimating floors from a building's height (m)
@@ -975,15 +975,20 @@ export async function loadSigns(...profiles) {
 }
 const artFor = (a) => (a ? signArt.get(signKey(a.file, a.text)) : null);
 
-// The row of signs under the labels, each part's signs under the part with their plates. size: the height of a
-// sign in drawing units; top: the row's top. Signs that do not fit their part are left out. Returns the bottom
-// of the row (or top without signs).
-export function layoutSigns(svg, size, top) {
-  let rowH = 0;
+// The row of signs under the labels: a thin rule with a small head "Dopravní značení", each part's signs under
+// the part with their plates, and a sign shared by neighbouring parts once under a bracket over them. size: the
+// height of a sign in drawing units; top: the top of the row; px: drawing units per screen pixel (for the head
+// and the lines). A part too narrow for its signs gets a grey dot. Returns the bottom (top without signs).
+export function layoutSigns(svg, size, top, px = size / 26) {
+  const groups0 = [...svg.querySelectorAll("g.sign-group")];
+  const head = svg.querySelector("g.signs-head");
+  if (!groups0.length) return top;
   // All signs at one size (Bára): the size that lets every part's signs fit its width, but no smaller than
-  // MIN_K of the full size; a part too narrow even for that shows no signs.
+  // MIN_K of the full size; a part too narrow even for that shows a dot.
   const MIN_K = 0.6, gap = size * 0.12;
-  const groups = [...svg.querySelectorAll("g.sign-group")].map((g) => {
+  const headH = 10 * px + 6 * px; // the head's text and the rule under it
+  const rowTop = top + headH + 6 * px;
+  const groups = groups0.map((g) => {
     const stacks = [...g.querySelectorAll("g.sign")];
     const ws = stacks.map((st) => Number(st.querySelector("image").dataset.ar) * size);
     const need = ws.reduce((a, w) => a + w, 0) + gap * (ws.length - 1);
@@ -991,14 +996,26 @@ export function layoutSigns(svg, size, top) {
   });
   const k = Math.min(1, ...groups.map((x) => x.fit).filter((f) => f >= MIN_K));
   const lineH = [0, 0];
+  const bracket = 8 * px; // room for the bracket above shared signs
   for (const { g, stacks, ws, need, fit } of groups) {
     const cx = Number(g.dataset.cx), line = Number(g.dataset.line || 0);
-    // A plate below is as wide as its sign, a second symbol (the bike under the bus) as big as the sign.
-    g.style.display = fit < MIN_K ? "none" : "";
-    if (g.style.display) continue;
+    const hidden = fit < MIN_K;
+    for (const st of stacks) st.style.display = hidden ? "none" : "";
+    let dot = g.querySelector("circle.sign-more");
+    if (hidden) {
+      // Not room for the signs: a dot, their names in the title (and in the editor).
+      dot ??= el("circle", { class: "sign-more", fill: "#a8a397" }, g);
+      dot.setAttribute("cx", cx); dot.setAttribute("r", 3 * px); dot.dataset.dy = 4 * px;
+      dot.querySelector("title") || (el("title", {}, dot).textContent = stacks.map((st) => st.querySelector("title")?.textContent).join(", "));
+      lineH[line] = Math.max(lineH[line], 8 * px);
+      continue;
+    }
+    dot?.remove();
+    const br = g.querySelector("path.sign-bracket");
+    const pad = br ? bracket : 0;
     let x = cx - (need * k) / 2;
     stacks.forEach((st, j) => {
-      let y = 0;
+      let y = pad;
       const sw = ws[j] * k;
       for (const im of st.querySelectorAll("image")) {
         const ar = Number(im.dataset.ar);
@@ -1013,10 +1030,31 @@ export function layoutSigns(svg, size, top) {
     });
   }
   // The second line (shared signs under parts that have their own) starts below the first.
-  const lineTop = [top, top + (lineH[0] ? lineH[0] + size * 0.1 : 0)];
-  for (const { g } of groups) for (const im of g.querySelectorAll("image")) im.setAttribute("y", lineTop[Number(g.dataset.line || 0)] + Number(im.dataset.dy));
-  rowH = lineH[1] ? lineTop[1] - top + lineH[1] : lineH[0];
-  return rowH ? top + rowH + size * 0.2 : top;
+  const lineTop = [rowTop, rowTop + (lineH[0] ? lineH[0] + size * 0.1 : 0)];
+  for (const { g } of groups) {
+    const t = lineTop[Number(g.dataset.line || 0)];
+    for (const im of g.querySelectorAll("image")) im.setAttribute("y", t + Number(im.dataset.dy));
+    const dot = g.querySelector("circle.sign-more");
+    if (dot) dot.setAttribute("cy", t + Number(dot.dataset.dy));
+    const br = g.querySelector("path.sign-bracket");
+    if (br) {
+      // A bracket over the parts a shared sign belongs to, the sign in its middle below.
+      const a = Number(g.dataset.x0) + 6 * px, b = Number(g.dataset.x1) - 6 * px, y = t + 2 * px;
+      br.setAttribute("d", `M${a} ${y + 5 * px} V${y} H${b} V${y + 5 * px}`);
+      br.setAttribute("stroke-width", 1.2 * px);
+    }
+  }
+  if (head) {
+    const rule = head.querySelector("line"), text = head.querySelector("text");
+    const x0 = Number(head.dataset.x0), x1 = Number(head.dataset.x1);
+    rule.setAttribute("x1", x0); rule.setAttribute("x2", x1);
+    rule.setAttribute("y1", top + headH); rule.setAttribute("y2", top + headH);
+    rule.setAttribute("stroke-width", px);
+    text.setAttribute("x", x0); text.setAttribute("y", top + 10 * px);
+    text.style.fontSize = `${10 * px}px`;
+  }
+  const rowH = lineH[1] ? lineTop[1] - rowTop + lineH[1] : lineH[0];
+  return rowTop + rowH + size * 0.2;
 }
 
 function drawSigns(svg, profile, bounds) {
@@ -1051,6 +1089,11 @@ function drawSigns(svg, profile, bounds) {
       for (let m = i; m <= j; m++) own[m] = own[m].filter((y) => id(y, segs[m]) !== key);
     }
   }
+  if (own.some((l) => l.length) || shared.size) {
+    const h = el("g", { class: "signs-head", "data-x0": bounds[0], "data-x1": bounds.at(-1) }, svg);
+    el("line", { stroke: "#d6d2c6" }, h);
+    el("text", { fill: "#8a877e", "font-weight": 500 }, h).textContent = "Dopravní značení";
+  }
   own.forEach((list, i) => {
     if (!list.length) return;
     const g = el("g", { class: "sign-group", "data-line": 0, "data-cx": (bounds[i] + bounds[i + 1]) / 2, "data-w": bounds[i + 1] - bounds[i] }, svg);
@@ -1060,10 +1103,12 @@ function drawSigns(svg, profile, bounds) {
     const [i, j] = span.split("-").map(Number);
     // Below the parts' own signs when any of the run's parts has some.
     const line = own.slice(i, j + 1).some((l) => l.length) ? 1 : 0;
-    const g = el("g", { class: "sign-group", "data-line": line, "data-cx": (bounds[i] + bounds[j + 1]) / 2, "data-w": bounds[j + 1] - bounds[i] }, svg);
+    const g = el("g", { class: "sign-group", "data-line": line, "data-cx": (bounds[i] + bounds[j + 1]) / 2, "data-w": bounds[j + 1] - bounds[i], "data-x0": bounds[i], "data-x1": bounds[j + 1] }, svg);
+    el("path", { class: "sign-bracket", fill: "none", stroke: "#a8a397" }, g);
     list.forEach(([x, s]) => stack(g, x, s));
   }
   for (const g of svg.querySelectorAll("g.sign-group")) if (!g.querySelector("image")) g.remove();
+  if (!svg.querySelector("g.sign-group")) svg.querySelector("g.signs-head")?.remove();
 }
 
 export function buildSvg(profile, opts = {}) {
@@ -1080,17 +1125,13 @@ export function buildSvg(profile, opts = {}) {
   // The top row (total width, cut ends A/B) sits above the tallest building and its floor label.
   const y0 = Math.min(0, GROUND - shown - 140) - 110;
   labelTop = y0 + 190;
-  // An export has no screen fitting: the bottom leaves room for all label rows and the credits line.
-  const signRows = profile.segments.some((s) => s.signs?.length) ? 2 : 0;
-  const bottom = (opts.credits ? H + 110 : H) + (opts.signs === false ? 0 : signRows * SIGN_ROW);
-  const svg = el("svg", { xmlns: NS, viewBox: `${vx} ${y0} ${view[1]} ${bottom - y0}`, "font-family": "Inter, system-ui, sans-serif",
+  // An export's title gets a band of its own above the top row (it covered the A of the cut's end).
+  const yv = opts.title ? y0 - 130 : y0;
+  // The bottom: the label rows, then the signs and the credits line of an export (set after the signs are laid out).
+  let bottom = opts.credits ? H + 110 : H;
+  const svg = el("svg", { xmlns: NS, viewBox: `${vx} ${yv} ${view[1]} ${bottom - yv}`, "font-family": "Inter, system-ui, sans-serif",
     role: "img", "aria-label": `Příčný profil, celkem ${fmt(total / 100)}: ` + segs.map((s) => `${TYPES[s.type]?.label || s.type} ${fmt(s.width)}`).join(", ") });
-  el("rect", { class: "bg", x: vx, y: y0, width: view[1], height: bottom - y0, fill: "#fbfaf6" }, svg);
-  if (opts.credits) {
-    // Exported pictures carry the attribution their sources require (CC BY-SA for the illustrations).
-    el("text", { x: vx + 30, y: bottom - 25, "font-size": 24, fill: "#6b6a65" }, svg).textContent =
-      (cityArt() ? "Ilustrace © Streetmix (CC BY-SA 4.0) a Bára Soukupová (MIT)" : "Ilustrace © Streetmix (CC BY-SA 4.0)") + ` · ${city.credit} (ODbL) · obrázek CC BY-SA 4.0`;
-  }
+  const bg = el("rect", { class: "bg", x: vx, y: yv, width: view[1], height: bottom - yv, fill: "#fbfaf6" }, svg);
 
   const firstRaised = isRaised(segs[0]);
   const lastRaised = isRaised(segs.at(-1));
@@ -1225,8 +1266,8 @@ export function buildSvg(profile, opts = {}) {
 
   if (opts.title) {
     // A title tag in the top left corner, over the building there.
-    el("rect", { class: "title-bg", x: vx + 16, y: y0 + 34, width: 60 + opts.title.length * 25, height: 80, rx: 16, fill: "#1d1d1b" }, svg);
-    el("text", { class: "lbl-title", x: vx + 46, y: y0 + 90, "font-size": 46, "font-weight": 700, fill: "#fff" }, svg).textContent = opts.title;
+    el("rect", { class: "title-bg", x: vx + 16, y: yv + 30, width: 60 + opts.title.length * 25, height: 80, rx: 16, fill: "#1d1d1b" }, svg);
+    el("text", { class: "lbl-title", x: vx + 46, y: yv + 86, "font-size": 46, "font-weight": 700, fill: "#fff" }, svg).textContent = opts.title;
   }
 
   if (opts.editable) {
@@ -1240,9 +1281,18 @@ export function buildSvg(profile, opts = {}) {
   }
   if (opts.signs !== false) {
     drawSigns(svg, profile, bounds);
-    // Without the page's fitting (an export): the rows below the labels at a fixed size.
-    layoutSigns(svg, SIGN_SIZE, GROUND + 320);
+    // Without the page's fitting (an export): the rows below the labels at a fixed size, the picture as tall
+    // as they need.
+    const end = layoutSigns(svg, SIGN_SIZE, GROUND + 320, 3.6);
+    if (end > GROUND + 320) bottom += end - H + 20;
   }
+  if (opts.credits) {
+    // Exported pictures carry the attribution their sources require (CC BY-SA for the illustrations).
+    el("text", { x: vx + 30, y: bottom - 25, "font-size": 24, fill: "#6b6a65" }, svg).textContent =
+      (cityArt() ? "Ilustrace © Streetmix (CC BY-SA 4.0) a Bára Soukupová (MIT)" : "Ilustrace © Streetmix (CC BY-SA 4.0)") + ` · ${city.credit} (ODbL) · obrázek CC BY-SA 4.0`;
+  }
+  svg.setAttribute("viewBox", `${vx} ${yv} ${view[1]} ${bottom - yv}`);
+  bg.setAttribute("height", bottom - yv);
   svg.dataset.view = JSON.stringify(view);
   return svg;
 }

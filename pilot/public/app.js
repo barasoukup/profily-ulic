@@ -796,7 +796,7 @@ function fitLabels(box) {
     const lowest = Math.max(1, ...[...svg.querySelectorAll("text[data-row]")].filter((t) => t.style.display !== "none")
       .map((t) => Number(t.dataset.row) + (t.querySelector("tspan") ? 1 : 0)));
     // The row of traffic signs below the labels, at a readable size on screen (profile.js layoutSigns).
-    const signsEnd = layoutSigns(svg, SIGN_PX * k, row(lowest) + 0.9 * LABEL_PX["lbl-t"] * k);
+    const signsEnd = layoutSigns(svg, SIGN_PX * k, row(lowest) + 0.9 * LABEL_PX["lbl-t"] * k, k);
     const bottom = Math.max(H, row(lowest) + 0.5 * LABEL_PX["lbl-t"] * k, signsEnd);
     const [vx, vy] = svg.getAttribute("viewBox").split(" ").map(Number);
     if (Math.abs(vy + vh - bottom) > 1) {
