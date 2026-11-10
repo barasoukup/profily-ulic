@@ -287,5 +287,6 @@ export async function ruianBuilding(lat, lon) {
     cornice: floors || undefined, roof: 0, total: floors || 0,
     kind: RUIAN_HALL.has(use) ? 3 : RUIAN_LOW.has(use) ? 6 : undefined, newBuild: false, area: area || undefined,
     built: dokonceni ? new Date(dokonceni).getUTCFullYear() : undefined, panel: RUIAN_PANEL.has(walls) || undefined,
+    house: use === 7 || use === 8 || undefined, // rodinný dům, stavba pro rodinnou rekreaci: a pitched roof (profile.js)
   };
 }

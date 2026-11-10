@@ -271,6 +271,15 @@ function flatKind(info, n) {
   return info?.km > INNER_KM ? "plocha" : "funkce";
 }
 
+// A low building has a pitched roof where it is known to (IPR's roof shape), or where it is a house:
+// RÚIAN "rodinný dům" or cottage (info.house), an OSM house type, an IPR family house (typ 6, Prague).
+// Otherwise (a shop, a school, a garage, nothing known) a plain flat roof (Bára: Most, tř. Budovatelů).
+function pitchedLow(info) {
+  const roof = IPR_ROOF[info?.roofType];
+  if (roof) return roof !== "plocha";
+  return !!(info?.house || HOUSE_TYPES.has(info?.type) || (city.id === "praha" && info?.iprKind === 6));
+}
+
 // Side outline of a Prague building: floors, storey height, roof floors and the height of each part (cm).
 function buildingForm(info, style) {
   const lv = buildingLevels(info);
@@ -284,7 +293,7 @@ function buildingForm(info, style) {
   // A panel house stands on a 100 cm plinth (raised ground floor).
   const ground = style === "sikma" ? storey * 1.2 : style === "funkce" ? storey * 1.15 : style === "plocha" && !OFFICE_TYPES.has(info?.type) ? storey + 90 : storey;
   const body = ground + (n - roofRows - 1) * storey;
-  const flat = style === "plocha" || style === "funkce" || style === "moderni" || style === "hala" || (style === "nizky" && IPR_ROOF[info?.roofType] === "plocha");
+  const flat = style === "plocha" || style === "funkce" || style === "moderni" || style === "hala" || (style === "nizky" && !pitchedLow(info));
   const sawtooth = style === "hala" && ["industrial", "manufacture"].includes(info?.type) && IPR_ROOF[info?.roofType] !== "plocha";
   // A family house shows its ridge inside the 4 m strip; a tenement's ridge lies deeper, past the cut.
   const pitched = style === "nizky" ? (RIDGE + 55) * PITCH + 45 : (EDGE + 35) * PITCH + 45;

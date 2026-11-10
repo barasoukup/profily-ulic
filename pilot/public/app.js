@@ -248,6 +248,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
         // RÚIAN (the towns): the year the house was completed and its walls of panels.
         if (p.built) info.built = p.built;
         if (p.panel) info.panel = 1;
+        if (p.house) info.house = 1;
       } catch {}
       // The age of the area (a default for the building's look, overruled by what is known of the house).
       try { const y = await sources.vyvoj(info.point[1], info.point[0]); if (y) info.period = y; } catch {}

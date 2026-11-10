@@ -65,3 +65,10 @@ test("RÚIAN: panely a rok dokončení", async () => {
   assert.equal(buildingStyle({ levels: 5, built: 1975, km: 5 }), "plocha");
   assert.equal(buildingStyle({ levels: 2, panel: 1 }), "nizky");
 });
+
+// A low building keeps a pitched roof only as a house (RÚIAN rodinný dům, OSM house type) or where the roof is known.
+test("nízká budova: sedlová jen u rodinného domu, jinak rovná", async () => {
+  const { buildingStyle } = await import("../pilot/public/profile.js");
+  assert.equal(buildingStyle({ levels: 2, type: "civic", built: 1969, km: 0.4 }), "nizky");
+  assert.equal(buildingStyle({ levels: 2, house: 1, km: 0.4 }), "nizky");
+});
