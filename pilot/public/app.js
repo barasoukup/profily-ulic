@@ -292,6 +292,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     if (!state.navrhEdited) state.navrh = structuredClone(state.stav);
     state.selected = null;
     state.fixing = false;
+    state.fixBase = null;
     resetHistory();
     drawCut(cutEnds(frame, normal, cutSpan(state.cut)));
     showCutInfo();
@@ -685,18 +686,23 @@ function renderRuleCheck(p, box) {
 const fmtM = (v) => `${v.toFixed(2).replace(".", ",")} m`;
 function renderWidthCheck() {
   const box = $("#width-check");
-  if (!state.stav || !state.navrh || state.mode === "stav") { box.hidden = true; return; }
-  const target = totalWidth(state.stav), now = totalWidth(state.navrh);
+  // In Návrh against the street; while correcting the data (Stav), against the width measured before.
+  const fixing = state.mode === "stav" && state.fixing && state.fixBase;
+  if (!state.stav || !state.navrh || (state.mode === "stav" && !fixing)) { box.hidden = true; return; }
+  const edit = fixing ? state.stav : state.navrh;
+  const target = fixing ? state.fixBase : totalWidth(state.stav), now = totalWidth(edit);
   const diff = +(now - target).toFixed(2);
   box.hidden = false;
   box.className = Math.abs(diff) < 0.01 ? "ok" : "off";
   if (Math.abs(diff) < 0.01) {
-    box.textContent = `✓ Návrh drží šířku ulice ${fmtM(target)}`;
+    box.textContent = fixing ? `✓ Opravy drží šířku ulice ${fmtM(target)}` : `✓ Návrh drží šířku ulice ${fmtM(target)}`;
     return;
   }
-  box.textContent = `Návrh je o ${fmtM(Math.abs(diff))} ${diff > 0 ? "širší" : "užší"} než ulice (${fmtM(target)}, návrh ${fmtM(now)}).`;
-  if (state.mode !== "navrh") return;
-  const segs = state.navrh.segments;
+  box.textContent = fixing
+    ? `Po opravách je profil o ${fmtM(Math.abs(diff))} ${diff > 0 ? "širší" : "užší"} než změřená ulice (${fmtM(target)}, teď ${fmtM(now)}).`
+    : `Návrh je o ${fmtM(Math.abs(diff))} ${diff > 0 ? "širší" : "užší"} než ulice (${fmtM(target)}, návrh ${fmtM(now)}).`;
+  if (state.mode !== "navrh" && !fixing) return;
+  const segs = edit.segments;
   // The selected part when it can take the difference, else the widest part that can.
   const fits = (x) => x && x.width - diff >= 0.5;
   const seg = fits(segs[state.selected]) ? segs[state.selected]
@@ -1159,9 +1165,18 @@ function renderEditor(p) {
   row().append(
     btn("← Posunout", () => { if (i > 0) { [segs[i - 1], segs[i]] = [segs[i], segs[i - 1]]; done(i - 1); } }),
     btn("Posunout →", () => { if (i < segs.length - 1) { [segs[i + 1], segs[i]] = [segs[i], segs[i + 1]]; done(i + 1); } }),
+    // Merging gives the part's width to its neighbour, so the street keeps its width (Bára: a shoulder that is
+    // really part of the lane).
+    ...[[i - 1, "← Sloučit"], [i + 1, "Sloučit →"]].filter(([j]) => segs[j]).map(([j, label]) => btn(label, () => {
+      segs[j].width = +(segs[j].width + s.width).toFixed(2);
+      segs[j].source = "user";
+      segs.splice(i, 1);
+      done(j < i ? j : i);
+    })),
     btn("Rozdělit na dvě", () => { const h = +(s.width / 2).toFixed(2); segs.splice(i, 1, { ...s, width: h, source: "user" }, { ...s, width: +(s.width - h).toFixed(2), source: "user" }); done(); }),
     Object.assign(document.createElement("span"), { className: "spacer" }),
-    btn("Smazat část", () => { segs.splice(i, 1); done(null); }, "danger"),
+    // After a delete the neighbour is selected, so "Dorovnat" offers to give it the width (renderWidthCheck).
+    btn("Smazat část", () => { segs.splice(i, 1); done(segs.length ? Math.max(0, i - 1) : null); }, "danger"),
   );
 }
 
@@ -1265,7 +1280,13 @@ $("#btn-art").addEventListener("click", () => {
 });
 
 $("#btn-to-navrh").onclick = () => document.querySelector('.seg-toggle button[data-mode="navrh"]').click();
-$("#btn-fix").onclick = () => { state.fixing = !state.fixing; state.selected = null; if (state.fixing) log("oprava", cutLog()); render(); };
+$("#btn-fix").onclick = () => {
+  state.fixing = !state.fixing;
+  state.selected = null;
+  // Corrections keep the street's width: the width measured before them is the target (renderWidthCheck).
+  if (state.fixing) { state.fixBase ??= totalWidth(state.stav); log("oprava", cutLog()); }
+  render();
+};
 
 // The header menus close after a choice or a click elsewhere.
 document.addEventListener("click", (e) => {
