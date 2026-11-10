@@ -155,6 +155,7 @@ function drawTramBed(g, s, x, w, top, bedBefore, bedAfter) {
   if (!bedAfter) curb(x + w - 12);
 }
 
+const POLE_SCALE = 0.68; // overhead-line poles: the bracket at about 4.4 m, over the drawn pantographs (about 4 m)
 function drawItem(g, it, x, top, right) {
   const line = (attrs) => el("rect", attrs, g);
   switch (it.kind) {
@@ -178,8 +179,11 @@ function drawItem(g, it, x, top, right) {
       // a pole between the tracks (it.center) carries brackets over both (Bára's photo, Prague).
       const lamp = it.lamp ? "-lamp" : "";
       if (ownSprite(`tram-pole${lamp}-left`)) {
-        if (it.center || !right) sprite(g, `tram-pole${lamp}-right`, x, top, false, 22);
-        if (it.center || right) sprite(g, `tram-pole${lamp}-left`, x, top, false, 348);
+        // Drawn smaller than life (POLE_SCALE): the trams' pantographs are drawn about 4 m high, so the bracket
+        // comes just above them (Bára).
+        const pg = el("g", { transform: `translate(${x} ${top}) scale(${POLE_SCALE}) translate(${-x} ${-top})` }, g);
+        if (it.center || !right) sprite(pg, `tram-pole${lamp}-right`, x, top, false, 22);
+        if (it.center || right) sprite(pg, `tram-pole${lamp}-left`, x, top, false, 348);
         return;
       }
       if (it.lamp) sprite(g, right ? "lamp-modern-left" : "lamp-modern-right", x, top, false, right ? 348 : 22);
