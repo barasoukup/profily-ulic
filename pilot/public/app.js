@@ -127,6 +127,18 @@ for (const [id, t] of Object.entries(TOWNS)) {
   }
   if (m.lines) kinds.lines.push(m.lines);
 }
+// A city's layer credits its city only while the map shows that city (Leaflet would list every layer of the
+// group): its attribution is kept aside and added or removed as the view moves.
+const cityCredited = Object.values(kinds).flat().filter((l) => l.options?.bounds && l.options.attribution);
+for (const l of cityCredited) { l.options.cityAttribution = l.options.attribution; delete l.options.attribution; }
+const credited = new Set();
+function creditCities() {
+  const view = map.getBounds(), want = new Set();
+  for (const l of cityCredited) if (map.hasLayer(l) && L.latLngBounds(l.options.bounds).intersects(view)) want.add(l.options.cityAttribution);
+  for (const a of credited) if (!want.has(a)) { map.attributionControl.removeAttribution(a); credited.delete(a); }
+  for (const a of want) if (!credited.has(a)) { map.attributionControl.addAttribution(a); credited.add(a); }
+}
+map.on("moveend layeradd layerremove", creditCities);
 const baseMaps = { "Mapa": L.layerGroup(kinds.map), "Ortofoto": L.layerGroup(kinds.ortho), "Technická mapa": L.layerGroup(kinds.tech), "OpenStreetMap": osmLayer() };
 const BASE_KEY = "streetdesign-basemap-cr";
 let baseName = "Mapa";
