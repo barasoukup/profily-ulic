@@ -81,6 +81,10 @@ přečíslování: https://cs.wikipedia.org/wiki/Seznam_dopravn%C3%ADch_zna%C4%8
 | `IP11b.svg` | IP 11b | Parkoviště (kolmé nebo šikmé stání), auto z boku vodorovně = kolmé stání | vzor vyhlášky | úřední dílo / MIT |
 | `IP11b-sikme.svg` | IP 11b | Parkoviště, šikmé stání: auto z boku natočené o 30° | vzor vyhlášky, poloha symbolu podle textu přílohy | úřední dílo / MIT |
 | `IP11c.svg` | IP 11c | Parkoviště (podélné stání), auto zepředu | vzor vyhlášky, auto z B 11 | úřední dílo / PD |
+| `IP11d.svg` | IP 11d | Parkoviště (stání na chodníku kolmé nebo šikmé): auto z boku na zvýšeném chodníku, obruba vlevo | vzor vyhlášky, auto z IP 11b | úřední dílo / MIT |
+| `IP11e.svg` | IP 11e | Parkoviště (stání na chodníku podélné): auto zepředu na zvýšeném chodníku | vzor vyhlášky, auto z IP 11c | úřední dílo / PD |
+| `IP11f.svg` | IP 11f | Parkoviště (částečné stání na chodníku kolmé nebo šikmé): auto z boku nakloněné, přední kola na chodníku | vzor vyhlášky, auto z IP 11b | úřední dílo / MIT |
+| `IP11g.svg` | IP 11g | Parkoviště (částečné stání na chodníku podélné): auto zepředu nakloněné, pravá kola na chodníku | vzor vyhlášky, auto z IP 11c | úřední dílo / PD |
 | `IP12.svg` | IP 12 | Vyhrazené parkoviště (šablona textu) | vzor vyhlášky | úřední dílo / MIT |
 | `IP12-ztp.svg` | IP 12 | Vyhrazené parkoviště se symbolem osoby na vozíku | vzor vyhlášky | úřední dílo / MIT |
 | `IP13c.svg` | IP 13c | Parkoviště s parkovacím automatem (automat podle vzoru 2025) | vzor vyhlášky 205/2025 Sb. | úřední dílo / MIT |
@@ -136,6 +140,11 @@ přečíslování: https://cs.wikipedia.org/wiki/Seznam_dopravn%C3%ADch_zna%C4%8
   IP 26a → IZ 5a, IP 27a → IZ 6a. Staré podoby platily jen do 31. 12. 2025, soubory proto nesou nová čísla.
 - Cyklistická zóna je **IZ 9a Zóna pro cyklisty** (vyhláška 84/2016 Sb.), ne „IP 37a“.
 - „Cyklisté v protisměru“ je **E 12a** (pod IP 4) a **E 12b** (pod B 2); **E 12c** je Povolený směr jízdy cyklistů.
+- **Stání na chodníku** má vlastní značky IP 11d až IP 11g (vyhláška 294/2015 Sb., novela 205/2025 Sb. je
+  neměnila): IP 11d na chodníku kolmé nebo šikmé, IP 11e na chodníku podélné, IP 11f částečně na chodníku kolmé
+  nebo šikmé, IP 11g částečně na chodníku podélné. Nesmí tam stát vozidla nad 3,5 t. Symbol ukazuje způsob stání,
+  smí být zrcadlově. Kresba je zjednodušená (bílá čára chodníku se schodem obruby pod autem), s předlohou
+  z Commons (`IP11dcr.jpg` až `IP11gcr.jpg`, PD) zatím neporovnaná.
 - Způsob stání na svislé značce: **IP 11b** (kolmé nebo šikmé, auto z boku) a **IP 11c** (podélné, auto zepředu);
   na vozovce **V 10a/b/c**. E 2 je tvar křižovatky, ke stání nepatří.
 - **V 13** jsou šikmé rovnoběžné čáry (šrafy), ne značení tramvajového pruhu; pro pruh tramvaje se užívá nápis

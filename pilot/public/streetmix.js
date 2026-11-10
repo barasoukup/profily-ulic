@@ -90,7 +90,8 @@ export function toStreetmix(profile, name) {
       type: m[0],
       variantString: m[1],
       width: +s.width.toFixed(2),
-      elevation: TYPES[s.type]?.raised ? CURB : 0,
+      // Streetmix has no parking on the sidewalk: a parking lane, raised when the cars stand fully on it.
+      elevation: TYPES[s.type]?.raised || (s.type === "parkovani" && s.position === "on_kerb") ? CURB : 0,
       slope: { on: false, values: [] },
     });
   });

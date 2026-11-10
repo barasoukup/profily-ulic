@@ -1,6 +1,6 @@
 // SVG drawing and direct editing of a street profile. Drawing units are centimetres,
 // matching the Streetmix illustrations (1 px = 1 cm).
-import { TYPES, SOURCES, PARKING_USE, TRAM_BEDS } from "./types.js";
+import { TYPES, SOURCES, PARKING_USE, PARKING_POSITION, TRAM_BEDS } from "./types.js";
 import { city, cityById, CITY_IDS } from "./city.js";
 
 const NS = "http://www.w3.org/2000/svg";
@@ -215,6 +215,10 @@ function laneDir(segs, i) {
 }
 
 export const ORIENT_LABEL = { podelne: "podélné", sikme: "šikmé", kolme: "kolmé" };
+const CAR_TRACK = 170; // wheel to wheel of the parked car's sprite (cm), for its tilt across the kerb
+const KERB_PAVING = "#c4c0b4"; // the sidewalk's paving under parked cars, a shade darker than the sidewalk
+// On the curb: raised types, and cars parked fully on the sidewalk.
+const isRaised = (s) => !!s && (!!TYPES[s.type]?.raised || (s.type === "parkovani" && s.position === "on_kerb"));
 export const turnLabel = (v) => v.split(";").map((x) => TURNS[x] || x).join(" + ");
 
 // anchor: the picture's x (its own units) that stands at cx; the middle when not given.
@@ -953,8 +957,8 @@ export function buildSvg(profile, opts = {}) {
       (cityArt() ? "Ilustrace © Streetmix (CC BY-SA 4.0) a Bára Soukupová (MIT)" : "Ilustrace © Streetmix (CC BY-SA 4.0)") + ` · ${city.credit} (ODbL) · obrázek CC BY-SA 4.0`;
   }
 
-  const firstRaised = segs[0] && TYPES[segs[0].type]?.raised;
-  const lastRaised = segs.at(-1) && TYPES[segs.at(-1).type]?.raised;
+  const firstRaised = isRaised(segs[0]);
+  const lastRaised = isRaised(segs.at(-1));
   drawEdge(svg, -EDGE, profile.edges?.left || "volno", "left", firstRaised ? GROUND - CURB : GROUND, profile.edges?.leftInfo, profile.edges?.leftStyle);
   drawEdge(svg, total, profile.edges?.right || "volno", "right", lastRaised ? GROUND - CURB : GROUND, profile.edges?.rightInfo, profile.edges?.rightStyle);
 
@@ -963,11 +967,20 @@ export function buildSvg(profile, opts = {}) {
   segs.forEach((s, i) => {
     const t = TYPES[s.type] || TYPES.nezname;
     const w = s.width * 100;
-    const top = t.raised ? GROUND - CURB : GROUND;
+    const top = isRaised(s) ? GROUND - CURB : GROUND;
+    // Cars across the kerb (half_on_kerb): the half on the sidewalk side is raised (kerbLeft: the sidewalk is
+    // on the left of the part).
+    const half = s.type === "parkovani" && s.position === "half_on_kerb";
+    const kerbLeft = half && (isRaised(segs[i - 1]) !== isRaised(segs[i + 1]) ? isRaised(segs[i - 1]) : x + w / 2 < total / 2);
     const g = el("g", { class: "seg" + (opts.selected === i ? " selected" : "") + (opts.changed?.has(i) ? " changed" : ""), "data-i": i }, svg);
     // Name and width on hover, also for parts too narrow for a label.
     el("title", {}, g).textContent = `${t.label}, ${fmt(s.width)}`;
-    el("rect", { class: "ground", x, y: top, width: w, height: GROUND + 60 - top, fill: s.color || t.color }, g);
+    el("rect", { class: "ground", x, y: top, width: w, height: GROUND + 60 - top, fill: s.color || (s.position === "on_kerb" ? KERB_PAVING : t.color) }, g);
+    if (half) {
+      // The sidewalk half in the sidewalk's paving, with the kerb stone in the middle of the car.
+      el("rect", { x: kerbLeft ? x : x + w / 2, y: GROUND - CURB, width: w / 2, height: CURB + 60, fill: KERB_PAVING }, g);
+      el("rect", { x: x + w / 2 - (kerbLeft ? 12 : 0), y: GROUND - CURB, width: 12, height: CURB + 8, fill: "#c9c5ba", stroke: "#8d887c", "stroke-width": 1 }, g);
+    }
     el("rect", { x, y: GROUND + 60, width: w, height: 40, fill: "#9b7f5f" }, g);
     el("rect", { x: x + 4, y: GROUND + 104, width: Math.max(w - 8, 1), height: 14, fill: SOURCES[s.source]?.color || "#999" }, g);
     const cx = x + w / 2;
@@ -991,13 +1004,17 @@ export function buildSvg(profile, opts = {}) {
     } else if (t.sprite === "people") {
       const n = w >= 300 ? 2 : w >= 140 ? 1 : 0;
       for (let k = 0; k < n; k++) sprite(g, PEOPLE[(i * 2 + k) % PEOPLE.length], x + (w * (k + 1)) / (n + 1), top, k % 2 === 1);
-    } else if (s.type === "parkovani" && w >= 180) {
+    } else if (s.type === "parkovani" && w >= (s.position ? 150 : 180)) {
       // Parked car drawn by orientation: front view (parallel), side view (perpendicular), angled.
       const right = cx > total / 2;
       const name = s.orient === "kolme" ? `car-sideways-${right ? "right" : "left"}`
         : s.orient === "sikme" ? `car-angled-front-${right ? "right" : "left"}`
         : laneDir(segs, i) === "backward" ? "car-inbound" : "car-outbound";
-      sprite(g, name, cx, top);
+      if (half) {
+        // Across the kerb: the car stands half a kerb up, tilted towards the roadway.
+        const tilt = el("g", { transform: `rotate(${((kerbLeft ? -1 : 1) * Math.atan2(CURB, CAR_TRACK) * 180) / Math.PI} ${cx} ${GROUND - CURB / 2})` }, g);
+        sprite(tilt, name, cx, GROUND - CURB / 2);
+      } else sprite(g, name, cx, top);
     } else if (t.sprite === "car" && w >= 180) {
       sprite(g, forward ? "car-outbound" : "car-inbound", cx, top);
     } else if (t.sprite === "streetcar" && w >= 240) {
@@ -1023,6 +1040,8 @@ export function buildSvg(profile, opts = {}) {
       const contra = s.bikeDir && s.bikeDir !== (s.dir || "forward");
       const label = TYPES[s.type]?.tracks && s.withBus ? `${t.label} + BUS` + (t.directional && s.dir ? (forward ? " ↑" : " ↓") : "")
         : s.type === "parkovani" && s.use ? `Parkování ${PARKING_USE[s.use]}`
+        // Under a narrow part "Napůl na chodníku" alone (the long name would not fit on two lines).
+        : s.type === "parkovani" && s.position ? (s.position === "half_on_kerb" && w < 300 ? "Napůl na chodníku" : `Parkování ${PARKING_POSITION[s.position]}`)
         : s.type === "parkovani" && s.orient ? `Parkování ${ORIENT_LABEL[s.orient]}`
         : t.label + (t.directional && s.dir ? (forward ? " ↑" : " ↓") : s.type === "pruh" ? " ↑↓" : "") +
           (contra ? ` cyklisté ${s.bikeDir === "backward" ? "↓" : "↑"}` : "");

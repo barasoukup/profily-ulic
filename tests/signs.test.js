@@ -35,3 +35,16 @@ test("zákaz zastavení u pravé obruby", () => {
   const p = deriveSigns({ segments: [{ type: "pruh", dir: "backward" }, { type: "pruh" }] }, { highway: "tertiary", "parking:right:restriction": "no_stopping" });
   assert.deepEqual(p.segments.map((s) => keys(s.signs)), [[], ["b28"]]);
 });
+
+test("stání na chodníku IP 11d a IP 11e, částečně na chodníku IP 11f a IP 11g", () => {
+  const p = deriveSigns({ segments: [
+    { type: "parkovani", source: "osm", orient: "podelne", position: "on_kerb" },
+    { type: "parkovani", source: "osm", orient: "kolme", position: "on_kerb" },
+    { type: "parkovani", source: "osm", orient: "podelne", position: "half_on_kerb" },
+    { type: "parkovani", source: "user", orient: "sikme", position: "half_on_kerb" },
+    { type: "parkovani", source: "osm", position: "half_on_kerb", use: "ztp" },
+    { type: "parkovani", source: "osm", orient: "podelne" },
+  ] }, {});
+  assert.deepEqual(p.segments.map((s) => keys(s.signs)), [["ip11e"], ["ip11d"], ["ip11g"], ["ip11f"], ["ztp"], ["ip11a+podelne"]]);
+  assert.deepEqual(p.segments.slice(0, 4).map((s) => signFile(s.signs[0])), ["IP11e", "IP11d", "IP11g", "IP11f"]);
+});

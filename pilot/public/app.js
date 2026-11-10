@@ -1,4 +1,4 @@
-import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, TRAM_BEDS } from "./types.js";
+import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
 import { loadSprites, buildSvg, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE } from "./profile.js";
@@ -11,6 +11,7 @@ import { checkRules } from "./rules.js";
 import { city, setCity, cityAt, loadBounds } from "./city.js";
 import { TOWNS } from "./towns/index.js";
 import { log } from "./log.js";
+import { createDataLayers, PLOCHY_PANE } from "./maplayers.js";
 
 const HALF = 40; // half-length of the cut used for reading the data (m)
 const MIN_REACH = 3; // shortest profile side the user can drag the cut end to (m)
@@ -148,10 +149,12 @@ baseMaps[baseName].addTo(map);
 map.on("baselayerchange", (e) => { try { localStorage.setItem(BASE_KEY, e.name); } catch {} });
 const dtm = L.layerGroup(kinds.lines);
 const mtvuLayer = L.layerGroup();
-L.control.layers(baseMaps, { "Linie technické mapy": dtm, "Plochy u řezu": mtvuLayer }).addTo(map);
+const layersControl = L.control.layers(baseMaps, { "Linie technické mapy": dtm, "Plochy u řezu": mtvuLayer }).addTo(map);
 document.querySelector(".leaflet-control-layers-toggle")?.setAttribute("title", "Podkladová mapa a vrstvy");
 document.querySelector(".leaflet-control-layers-toggle")?.setAttribute("aria-label", "Podkladová mapa a vrstvy");
 mtvuLayer.addTo(map);
+// The other data of the cut (parking, points, lines, tracks, axes, buildings) as overlays (maplayers.js).
+const dataLayers = createDataLayers(map, layersControl);
 
 const MTVU_COLORS = { 701: "#5c5c59", 700: "#5c5c59", 702: "#c9a227", 703: "#b5574a", 704: "#7b7b78", 705: "#8c6d3f", 601: "#9b8cc4" };
 const cutLine = L.polyline([], { color: "#e24b4a", weight: 4 }).addTo(map);
@@ -240,12 +243,17 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     const result = deriveProfile({ center: [0, 0], dir, half: HALF, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho });
     const name = near.way.tags.name || near.way.tags.ref || `ulice ${near.way.id}`;
     const span = result.extent && { left: +result.extent[1].toFixed(2), right: +(-result.extent[0]).toFixed(2) };
+    // A design belongs to its street: moving the cut along the same street keeps it, a cut of another
+    // street (a click or a link) starts the design from the new Stav.
+    const sameStreet = keepWay || (state.cut && (state.cut.wayId === near.way.id || (name && state.cut.name === name)));
+    if (!sameStreet) state.navrhEdited = false;
     state.cut = { lat: clat, lon: clon, bearing: (Math.atan2(dir[0], dir[1]) * 180) / Math.PI, wayId: near.way.id, name, reach, span };
     // The log of cuts (log.js): the cut exactly, and how it came (a click, a moved cut, a link).
     log("rez", {
       detail: keepWay ? "posun" : bearing !== null ? "odkaz" : "klik", city: city.id, street: name, highway: near.way.tags.highway,
       wayId: near.way.id, lat: +clat.toFixed(7), lon: +clon.toFixed(7), bearing: +state.cut.bearing.toFixed(1), reachLeft: reach.left, reachRight: reach.right,
     });
+    const facades = ["left", "right"].map((side) => result.edges[`${side}Info`]?.point).filter(Boolean); // for the map (maplayers.js)
     // Floors of the buildings at both ends from IPR "Podlažnosti" (OSM building:levels as fallback).
     await Promise.all(["left", "right"].map(async (side) => {
       const info = result.edges[`${side}Info`];
@@ -271,6 +279,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     drawCut(cutEnds(frame, normal, cutSpan(state.cut)));
     showCutInfo();
     drawMtvu(polys);
+    dataLayers.draw({ frame, dir, osm, way: near.way, polys, tracks, lines, parking, span: cutSpan(state.cut), facades });
     if (!map.getBounds().contains([clat, clon])) map.panTo([clat, clon]);
     const mtvuFailed = m.status !== "fulfilled";
     // An estimate stays marked as one, also when restored from storage or a file.
@@ -390,7 +399,7 @@ function drawMtvu(polys) {
   mtvuLayer.clearLayers();
   for (const p of polys) {
     L.polygon(p.lonlat, {
-      color: MTVU_COLORS[p.code] || "#8fbf55", weight: 1, fillOpacity: 0.25, interactive: false,
+      color: MTVU_COLORS[p.code] || "#8fbf55", weight: 1, fillOpacity: 0.25, interactive: false, pane: PLOCHY_PANE,
     }).addTo(mtvuLayer);
   }
 }
@@ -1082,6 +1091,11 @@ function renderEditor(p) {
       done();
     };
     r2.append(lab("Stání", orient));
+    // Where the cars stand: in the roadway, on the sidewalk, or across the kerb (half on the sidewalk).
+    const pos = document.createElement("select");
+    for (const [v, t] of [["", "ve vozovce"], ...Object.entries(PARKING_POSITION)]) pos.add(new Option(t, v, false, (s.position || "") === v));
+    pos.onchange = () => { if (pos.value) s.position = pos.value; else delete s.position; s.source = "user"; done(); };
+    r2.append(lab("Poloha", pos));
   }
   if (TYPES[s.type]?.bed) {
     // The surface of a separate tram bed: panels, gravel or grass.

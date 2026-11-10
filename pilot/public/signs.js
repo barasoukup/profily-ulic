@@ -20,6 +20,10 @@ export const SIGNS = {
   c9a: "C 9a Stezka pro chodce a cyklisty",
   c10a: "C 10a Stezka pro chodce a cyklisty dělená",
   ip11a: "IP 11a–c Parkoviště",
+  ip11d: "IP 11d Parkoviště (stání na chodníku kolmé nebo šikmé)",
+  ip11e: "IP 11e Parkoviště (stání na chodníku podélné)",
+  ip11f: "IP 11f Parkoviště (částečné stání na chodníku kolmé nebo šikmé)",
+  ip11g: "IP 11g Parkoviště (částečné stání na chodníku podélné)",
   ip12: "IP 12 Vyhrazené parkoviště",
   ztp: "IP 12 + O 1 Parkoviště pro ZTP",
   ip14a: "IZ 1a Dálnice",
@@ -99,7 +103,11 @@ export function deriveSigns(profile, tags = {}, ctx = {}) {
     else if (t === "parkovani" && s.source !== "odhad") {
       if (s.use === "ztp") out.push({ k: "ztp" });
       else if (s.use) out.push({ k: "ip12" });
-      else out.push({ k: "ip11a", ...(s.orient ? { plate: s.orient } : {}) });
+      // Cars on the sidewalk (IP 11d, e) or partly on it (IP 11f, g): parallel, or perpendicular and oblique.
+      else if (s.position) {
+        const along = (s.orient || "podelne") === "podelne";
+        out.push({ k: s.position === "on_kerb" ? (along ? "ip11e" : "ip11d") : along ? "ip11g" : "ip11f" });
+      } else out.push({ k: "ip11a", ...(s.orient ? { plate: s.orient } : {}) });
     } else if (/^tramvaj_vyhrazen/.test(t)) out.push({ k: "v13" });
     if (s.turn && ROAD.has(t)) out.push({ k: "v9a", v: s.turn });
     // Speed per lane (maxspeed:lanes counts the lanes from the left in the way's direction).
@@ -145,6 +153,7 @@ export function signFile(s) {
   if (s.k === "b20a") return [5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130].includes(s.v) ? `B20a-${s.v}` : "B20a";
   if (s.k === "v9a") return `V9a-${turnFile(s.v)}`;
   return { b1: "B1", b2: "B2", b8: "B8", b11: "B11", b28: "B28", b29: "B29", b30: "B30", c8a: "C8a", c9a: "C9a", c10a: "C10a",
+    ip11d: "IP11d", ip11e: "IP11e", ip11f: "IP11f", ip11g: "IP11g",
     ip12: "IP12", ztp: "IP12-ztp", ip14a: "IZ1a", ip15a: "IZ2a", ip20a: "IP20a-symbol", zona30: "IZ8a-30", zps: "IZ8a-placene-stani",
     ip26a: "IZ5a", ip27a: "IZ6a", cyklozona: "IZ9a", v11a: "V15-bus", v13: "V15-tram", v14: "V14-souvisla", v14p: "V14-prerusovana", v20: "V20" }[s.k] || s.k;
 }

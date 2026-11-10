@@ -365,12 +365,13 @@ async function iprParking(bbox, inZone) {
 // IPR. Without the file the answer is unknown (undefined) and the profile falls back to TSK sections.
 const ZPS_RADIUS = 100; // m
 let zpsBoxes;
+// The boxes [lon0, lat0, lon1, lat1] of Prague's zones, loaded once (also drawn on the map, maplayers.js); null without the file.
+export const zpsZones = () => (zpsBoxes ??= fetch("data/zps.json").then((r) => (r.ok ? r.json() : null)).then((j) => j?.boxes || null, () => null));
 export async function zps(lat, lon) {
   // Brno: the areas are rough outlines of whole quarters (Elišky Krásnohorské lies in 6-01 with no paid
   // section within 360 m), so the profile decides by the sections around the cut, which are current.
   if (isLive()) return undefined;
-  zpsBoxes ??= fetch("data/zps.json").then((r) => (r.ok ? r.json() : null)).then((j) => j?.boxes || null, () => null);
-  const boxes = await zpsBoxes;
+  const boxes = await zpsZones();
   if (!boxes) return undefined;
   const dLat = ZPS_RADIUS / 110574, dLon = ZPS_RADIUS / (111320 * Math.cos((lat * Math.PI) / 180));
   return boxes.some(([x0, y0, x1, y1]) => lon >= x0 - dLon && lon <= x1 + dLon && lat >= y0 - dLat && lat <= y1 + dLat);

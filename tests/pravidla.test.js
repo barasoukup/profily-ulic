@@ -5,6 +5,8 @@ import assert from "node:assert/strict";
 import { localFrame, deriveProfile, techLines, classGroup } from "../pilot/public/derive.js";
 import { checkRules } from "../pilot/public/rules.js";
 import { cleanProfile } from "../pilot/public/validate.js";
+import { packProfile, unpackProfile } from "../pilot/public/share.js";
+import { toStreetmix } from "../pilot/public/streetmix.js";
 import { bedOrtho, bedPixels, classifyBed, sleeperRepeat, tramOffsets } from "../pilot/public/ortho.js";
 import { deflateSync } from "node:zlib";
 
@@ -241,4 +243,53 @@ test("ortofoto tělesa: jeden obrázek jen u řezu přes koleje, chyba nechá pr
   assert.equal(await bedOrtho({ osm, frame, dir: [0, 1], fetchImpl: () => Promise.resolve(new Response("", { status: 503 })) }), null);
   assert.equal(await bedOrtho({ osm, frame, dir: [0, 1], fetchImpl: () => Promise.reject(new Error("timeout")) }), null);
   assert.equal(await bedOrtho({ osm, frame, dir: [0, 1], fetchImpl: () => Promise.resolve(new Response("<html>")) }), null);
+});
+
+// Parking on the sidewalk from OSM (on_kerb, half_on_kerb; Bára 10. 11. 2026): the car's strip comes out of the
+// sidewalk at the kerb (on_kerb), or half of it out of the sidewalk and half out of the roadway (half_on_kerb).
+const parts = (p) => p.segments.map((s) => `${s.type}${s.position ? "/" + s.position : ""} ${s.width}`);
+
+test("stání na chodníku: auto z chodníku u obruby, zbytek chodníku zůstává, vozovka beze změny", () => {
+  assert.deepEqual(parts(road(6, { "parking:both": "on_kerb" })),
+    ["chodnik 1", "parkovani/on_kerb 2", "pruh 3", "pruh 3", "parkovani/on_kerb 2", "chodnik 1"]);
+  // One side only; the old scheme parking:lane:<side>:parallel=on_kerb alike.
+  assert.deepEqual(parts(road(6, { "parking:right": "on_kerb" })).filter((x) => x.startsWith("parkovani")), ["parkovani/on_kerb 2"]);
+  assert.deepEqual(parts(road(6, { "parking:lane:right": "parallel", "parking:lane:right:parallel": "on_kerb" })).filter((x) => x.startsWith("parkovani")), ["parkovani/on_kerb 2"]);
+  // No estimate in the roadway beside cars on the sidewalk.
+  assert.equal(guessed(road(10, { "parking:both": "on_kerb" })), 0);
+});
+
+test("stání napůl na chodníku: jedna část přes obrubu, 1 m z chodníku a 1 m z vozovky", () => {
+  const p = road(8, { "parking:both": "half_on_kerb" });
+  assert.deepEqual(parts(p), ["chodnik 2", "parkovani/half_on_kerb 2", "pruh 3", "pruh 3", "parkovani/half_on_kerb 2", "chodnik 2"]);
+  assert.equal(p.notice, undefined);
+  assert.deepEqual(parts(road(8, { "parking:lane:both": "parallel", "parking:lane:both:parallel": "half_on_kerb" })), parts(p));
+  // § 25(3) holds here too: a two-way street of 6 m keeps 4 m; the cars stay (the data say so), the notice says it.
+  const narrow = road(6, { "parking:both": "half_on_kerb" });
+  assert.deepEqual(parts(narrow), ["chodnik 2", "parkovani/half_on_kerb 2", "pruh 4", "parkovani/half_on_kerb 2", "chodnik 2"]);
+  assert.match(narrow.notice, /zůstává 4,00 m, § 25 odst\. 3 .* žádá 6,00 m/);
+});
+
+test("stání na úzkém chodníku: auto užší, chodníku zůstane 0,5 m; na příliš úzkém žádné", () => {
+  // Perpendicular on a sidewalk of 3 m: 2.5 m of the 5 m, the notice says so, the rules warn.
+  const p = road(6, { "parking:right": "on_kerb", "parking:right:orientation": "perpendicular" });
+  assert.deepEqual(parts(p).filter((x) => /parkovani|chodnik/.test(x)), ["chodnik 3", "parkovani/on_kerb 2.5", "chodnik 0.5"]);
+  assert.match(p.notice, /užší a chodníku zbývá 0,50 m/);
+  const warn = checkRules(p).map((f) => f.text).join(" ");
+  assert.match(warn, /zbytek chodníku vedle stání na chodníku/);
+  // Sidewalks of 1.2 m between the houses and a roadway of 6 m: no car fits, none is drawn, the notice says so.
+  const polys = [rect(601, -15, -4.2), rect(702, -4.2, -3), rect(701, -3, 3), rect(702, 3, 4.2), rect(601, 4.2, 15)];
+  const way = { type: "way", id: 1, tags: { highway: "residential", "parking:both": "on_kerb" }, geometry: line(0) };
+  const tight = deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys, osm: { elements: [way] }, frame, way, inZps: false });
+  assert.equal(tight.segments.filter((s) => s.type === "parkovani").length, 0);
+  assert.match(tight.notice, /chodník má jen 1,20 m, auta nejsou nakreslena/);
+});
+
+test("poloha stání projde kontrolou, odkazem a do Streetmixu", async () => {
+  const p = cleanProfile({ segments: [{ type: "parkovani", width: 2, position: "half_on_kerb" }, { type: "parkovani", width: 2, position: "vedle" }, { type: "chodnik", width: 2, position: "on_kerb" }, { type: "parkovani", width: 2, position: "on_kerb" }] });
+  assert.deepEqual(p.segments.map((s) => s.position), ["half_on_kerb", undefined, undefined, "on_kerb"]);
+  const back = await unpackProfile(await packProfile(p));
+  assert.equal(back.segments[0].position, "half_on_kerb");
+  const sm = toStreetmix(p, "Test").data.street.segments;
+  assert.deepEqual(sm.map((s) => [s.type, s.elevation > 0]), [["parking-lane", false], ["parking-lane", false], ["sidewalk", true], ["parking-lane", true]]);
 });

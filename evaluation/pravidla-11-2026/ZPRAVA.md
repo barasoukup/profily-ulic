@@ -205,6 +205,39 @@ Okem: 22 štěrk, 14 panely nebo dlažba, 8 asfalt, 3 tráva.
 
 Tučně je chyba. „Mezi vozovkami“ znamená vozovku na obou stranách tělesa, „u kraje“ jen na jedné.
 
+## 5. Stání na chodníku a napůl na chodníku z OSM: připojeno
+
+Bára: technická mapa kreslí chodník i tam, kde na něm stojí auta. OSM `parking:<strana>=on_kerb|half_on_kerb`
+(i staré `parking:lane:<strana>:<orientace>=…`) se dřív počítalo jako „bez stání“ (`half_on_kerb` jen jako proužek
+1 m z chodníku). Teď `on_kerb` vyčlení z chodníku celé auto (2 / 4,5 / 5 m) na úrovni chodníku a `half_on_kerb`
+udělá jednu část přes obrubu: polovina z chodníku, polovina z vozovky. Chodníku zůstane aspoň 0,5 m (užší auto
+a hláška), pruhy se dělí podle zbytku vozovky. § 25 odst. 3 platí i tady: když po polovině aut zůstane méně
+než 3 m pro každý směr, auta se kreslí (data to tvrdí) a hláška u profilu to řekne. U úseku TSK, MTVU 704
+nebo úseku parkovanivbrne.cz zůstává jejich šířka a z OSM se bere jen poloha.
+
+Kód před změnou je `data/kod-5`, varianty `pred-chodnik` a `po-chodnik`, `ITEMS=1 PARTS=1`. Řezy uprostřed
+cest s těmi tagy: Praha 20 (`data/samples-chodnik-praha.json`, z 57 cest; IPR přes místní server jako 20 kliknutí,
+pak jen cache), Brno 17 (`data/samples-chodnik-brno.json`, všechny; `CACHE=disk`, 121 dotazů na služby města a
+11 na ortofoto ČÚZK přes `polite.mjs`, opakovaný běh 0).
+
+| vzorek | liší se | lepší po (B) | lepší před (A) | obě | žádná |
+|---|---|---|---|---|---|
+| Praha, 20 řezů | 19 | 4 | 0 | 14 | 1 |
+| Brno, 17 | 12 | 0 | 0 | 11 | 1 |
+
+- Šířka se změnila jen v 5 řezech v Praze (č. 2, 7, 13, 14, 15) a v 1 v Brně (č. 11). Ve zbytku stání už bylo
+  z úseků TSK nebo z dat města, přibyla jen poloha `position` (kreslí se na chodníku), což ortofoto neověří.
+- Lepší B: Bruslařská a Sáňkařská (auta po obou stranách přes obrubu, dřív proužky 1 m), Golfová (vlevo 2 m
+  místo 1 m), Ke Zděři (auto na zpevněném pásu bez chodníku, dřív žádné stání).
+- Žádná: Před Cibulkami (šikmé stání 4,5 m z chodníku 5 m, řez ve stínu stromů) a Brno Veveří (stání z pásu se
+  stromy, auta mezi stromy nejsou jistě vidět).
+- Hlášky: Bruslařská a Sáňkařská mají užší chodník (zbývá 0,5 m), Bruslařská, Sáňkařská a Golfová nesplní § 25
+  (zbývá 2,5–2,9 m v jednosměrce).
+- Opraveno při testu: úsek TSK „Zákaz stání“ u obruby teď ruší i stání na chodníku (Na Žvahově). `ab.mjs` hledal
+  pražskou cache s jinak zaokrouhleným bbox (bez koncových nul, server je píše) a část řezů nenašel.
+- Kontrola v prohlížeči: Bruslařská (šikmé napůl na chodníku 3,9 m, pruh 2,9 m, hláška), Golfová (napůl na
+  chodníku, auto nakloněné přes obrubu), Brno Skřivanova (úseky města na úrovni chodníku), v Návrhu výběr „Poloha“.
+
 ## Otevřené
 
 1. Povrch tělesa (bod 4): asfalt bez autobusů a panely mezi širokými vozovkami pravidlo nepozná. Pomohl by
@@ -216,3 +249,5 @@ Tučně je chyba. „Mezi vozovkami“ znamená vozovku na obou stranách těles
 5. Cyklisté v protisměru jednosměrky: § 25 počítá pruh pro každý směr jízdy, odhad bere jednosměrku jako jeden směr.
 6. Červená u pruhů 2,7–2,95 m v MK I a II je přísná. Odvozené pruhy vedle tramvaje jsou dělení vozovky, ne
    změřená čára.
+7. Stání na chodníku: zbytek chodníku aspoň 0,5 m, nebo přísněji (např. 1,5 m volného průchodu) a jinak auta
+   nekreslit? Kresba IP 11d–g není porovnaná s předlohou z Commons.

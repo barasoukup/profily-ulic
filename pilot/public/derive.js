@@ -49,7 +49,7 @@ export function bedSurfaces(segs, { rails = [], ortho, at, dir, highway } = {}) 
     const between = segs.slice(0, i).some((x) => ROADWAY_PART.has(x.type)) && segs.slice(j + 1).some((x) => ROADWAY_PART.has(x.type));
     const kind = seen === "trava" ? "trava"
       : bus ? "asfalt"
-      : highway === "pedestrian" ? "panely"
+      : highway === "pedestrian" || city.fix?.bedPanels ? "panely" // Plzeň: mostly panel beds about 6 m wide (A/B)
       : !between || e - s >= BED_WIDE - 1e-9 ? "strk" : "panely";
     for (const x of bed) Object.assign(x, { bed: kind, bedSource: "odhad" });
     i = j;
@@ -253,6 +253,7 @@ const STREET_PARKING = new Set(["street_side", "lane", "on_kerb", "half_on_kerb"
 
 const OSM_PLATFORM = 9800;
 const ORIENT = { parallel: "podelne", diagonal: "sikme", perpendicular: "kolme" };
+const KERB_POSITIONS = new Set(["on_kerb", "half_on_kerb"]);
 // Without a tag, the depth of the parking strip tells the orientation (a car is ~2 m wide, ~4.5 m long).
 const orientFromDepth = (w) => (w < 3.2 ? "podelne" : w < PERP_MIN ? "sikme" : "kolme");
 // ČSN 73 6056: perpendicular stalls are 5.0 m deep, 4.5 m where cars overhang the kerb.
@@ -262,7 +263,7 @@ export const PERP_MIN = 4.5;
 // street per stall tells the orientation (parallel ~5.5–6.5 m, angled ~3.5 m, perpendicular
 // ~2.5 m, more with driveways and trees in between). The depth across the street settles
 // borderline cases: a perpendicular stall needs ~5 m, a parallel one ~2–2.5 m.
-function orientFromStalls(poly, dir) {
+export function orientFromStalls(poly, dir) {
   const ring = poly.rings[0];
   const along = ring.map(([x, y]) => x * dir[0] + y * dir[1]);
   const length = Math.max(...along) - Math.min(...along);
@@ -475,7 +476,7 @@ export function classGroup(cls) {
 }
 const TM_TREE = 83130; // technical map: strom mimo park
 // Points of the technical map that are drawn as street furniture (TM_TREE is a tree).
-const POINT_ITEM = { 26015: "sloup_trakce", 75240: "oznacnik", 75241: "oznacnik", 74110: "sloupek", 76010: "lampa" };
+export const POINT_ITEM = { 26015: "sloup_trakce", 75240: "oznacnik", 75241: "oznacnik", 74110: "sloupek", 76010: "lampa" };
 const isLine = (l) => !!l.pts;
 
 function segIntersect(p, p2, q, q2) {
@@ -500,6 +501,11 @@ function sideTags(tags, side) {
   // New scheme: parking:<side>=lane|street_side|yes + parking:<side>:orientation; old: parking:lane:<side>=parallel…
   const parking = tag(tags, `parking:${side}`, "parking:both", `parking:lane:${side}`, "parking:lane:both");
   const orientation = tag(tags, `parking:${side}:orientation`, "parking:both:orientation") || parking;
+  // Cars up on the sidewalk: parking:<side>=on_kerb|half_on_kerb (new scheme), or the old
+  // parking:lane:<side>=parallel|diagonal|perpendicular with parking:lane:<side>:<orientation>=on_kerb|half_on_kerb.
+  const oldPos = ORIENT[parking] ? tag(tags, `parking:lane:${side}:${parking}`, `parking:lane:both:${parking}`) : undefined;
+  const kerbPos = KERB_POSITIONS.has(parking) ? parking : KERB_POSITIONS.has(oldPos) ? oldPos : null;
+  const depth = orientation === "perpendicular" ? 5 : orientation === "diagonal" ? 4.5 : 2;
   // On a one-way street the side-less tags (cycleway=*, busway=*) describe its right side.
   const generic = !(isOnewayTags(tags) && side === drivingLeft(tags));
   // …except opposite_* values, which describe the contraflow on its left.
@@ -507,14 +513,16 @@ function sideTags(tags, side) {
   const cycle = tag(tags, `cycleway:${side}`, "cycleway:both") ??
     (generic ? (opposite ? undefined : tags.cycleway) : opposite ? tags.cycleway : undefined);
   return {
-    parking: ["lane", "street_side", "yes", "parallel", "diagonal", "perpendicular"].includes(parking),
-    // Tagged as no parking here, or mapped as separate areas (which then would have crossed the cut).
-    parkingNo: ["no", "none", "separate", "on_kerb", "half_on_kerb"].includes(parking),
-    parkingWidth: orientation === "perpendicular" ? 5 : orientation === "diagonal" ? 4.5 : 2,
+    parking: !kerbPos && ["lane", "street_side", "yes", "parallel", "diagonal", "perpendicular"].includes(parking),
+    // Tagged as no parking here, or mapped as separate areas (which then would have crossed the cut); cars on
+    // the sidewalk are no parking in the roadway either (no estimate there).
+    parkingNo: !!kerbPos || ["no", "none", "separate"].includes(parking),
+    parkingWidth: depth,
     parkingOrient: ORIENT[orientation],
-    // Cars parked up on the sidewalk: fully (on_kerb) or with two wheels (half_on_kerb).
-    kerbDepth: parking === "on_kerb" ? (orientation === "perpendicular" ? 5 : orientation === "diagonal" ? 4.5 : 2)
-      : parking === "half_on_kerb" ? 1 : 0,
+    // Cars parked up on the sidewalk: fully (on_kerb, the whole car on the sidewalk) or across the kerb
+    // (half_on_kerb, half the car on the sidewalk, half in the roadway). kerbDepth: the car's depth.
+    kerbPos,
+    kerbDepth: kerbPos ? depth : 0,
     bike: ["lane", "opposite_lane"].includes(cycle) ? "cyklopruh" : cycle === "soft_lane" ? "ochranny_pruh" : null,
     sharrow: cycle === "shared_lane",
     // Cyclists allowed in the bus lane along this curb (vyhrazený pruh BUS + cyklisté).
@@ -530,11 +538,11 @@ function sideTags(tags, side) {
   };
 }
 
-const BIKE_WIDTH = { cyklopruh: 1.5, ochranny_pruh: 1.25 };
+const BIKE_WIDTH = { cyklopruh: 1.5, ochranny_pruh: 1.5 }; // basic widths (Bára: the protective lane too 1.5 m)
 // A bike lane next to parking includes the door-opening clearance (TP 179 tab. 2, IPR Manuál
 // C.2): 1.75 m beside parallel parking, 2.0 m beside perpendicular or angled parking.
 const bikeWidth = (type, parkOrient) =>
-  type !== "cyklopruh" || !parkOrient ? BIKE_WIDTH[type] : parkOrient === "podelne" ? 1.75 : 2;
+  !parkOrient ? BIKE_WIDTH[type] : parkOrient === "podelne" ? 1.75 : 2;
 const ISLAND_MAX = 6; // widest paved strip between carriageways still taken as an island (m)
 const MIN_LANE = 2.5; // narrowest driving lane kept when curb strips are carved out (m)
 // Widest driving lane before the rest becomes a shoulder / hatched area (m). ČSN 73 6110 lanes
@@ -576,23 +584,35 @@ const turnList = (v) => (v ? v.split("|").map((x) => x || "none") : null);
 // ctx.parked: sides ("L"/"R") already having a parking bay next to this run.
 function splitRoadway(run, ctx) {
   const { tags, trams, dirAt, along, single, parked, sides } = ctx;
-  // A roadway too narrow for the tagged (or default) lanes holds as many as fit, at least one.
-  const lanesTotal = Math.max(1, Math.min(ctx.lanesTotal, Math.floor((run.e - run.s) / MIN_LANE)));
   let s = run.s, e = run.e;
   const width = e - s;
   // OSM left/right follow the way; L/R here follow the cut's street (L = larger t).
   const sideL = sides?.L ?? sideTags(tags, along ? "left" : "right");
   const sideR = sides?.R ?? sideTags(tags, along ? "right" : "left");
-  // Curb strips are added while the driving lanes keep at least MIN_LANE each.
-  const edge = [];
-  let left = width - lanesTotal * MIN_LANE;
   // With tracks in the roadway a strip at the curb must also stay clear of the tram's swept space
   // (axis ± TRAM_HALF): parking or a bike lane tagged in OSM where the track runs close to the
   // curb is not there (e.g. Seifertova), the tram shares the lane with the cars up to the curb.
   const clear = trams.length
     ? { R: Math.min(...trams) - TRAM_HALF - s, L: e - Math.max(...trams) - TRAM_HALF }
     : { R: Infinity, L: Infinity };
-  const fits = (side, w) => left >= w && clear[side] >= w - 0.1;
+  const edge = [];
+  // Cars across the kerb (half_on_kerb, Bára 10. 11. 2026): the roadway half of the car at the curb, the other
+  // half is taken from the sidewalk later (carveKerbParking). The data say the cars stand there, so they come
+  // first, while one lane of MIN_LANE stays; the lanes then share what is left, as many as fit.
+  let room = width - MIN_LANE;
+  for (const [side, st] of [["R", sideR], ["L", sideL]]) {
+    if (st.kerbPos !== "half_on_kerb" || parked.includes(side) || !(ctx.kerbOpen ?? ["L", "R"]).includes(side)) continue;
+    const w = st.kerbDepth / 2;
+    if (room < w - 1e-6 || clear[side] < w - 0.1) continue;
+    edge.push({ side, type: "parkovani", w, orient: st.parkingOrient, source: "osm", position: "half_on_kerb" });
+    room -= w; clear[side] -= w;
+  }
+  const inner = width - edge.reduce((a, x) => a + x.w, 0);
+  // A roadway too narrow for the tagged (or default) lanes holds as many as fit, at least one.
+  const lanesTotal = Math.max(1, Math.min(ctx.lanesTotal, Math.floor(inner / MIN_LANE + 1e-9)));
+  // Curb strips are added while the driving lanes keep at least MIN_LANE each.
+  let left = inner - lanesTotal * MIN_LANE;
+  const fits = (side, w) => left >= w - 1e-9 && clear[side] >= w - 0.1;
   const take = (side, w) => { left -= w; clear[side] -= w; };
   for (const [side, st] of [["L", sideL], ["R", sideR]]) {
     if (!st.bike) continue;
@@ -630,9 +650,14 @@ function splitRoadway(run, ctx) {
   // Parking sits at the curb, the bike lane between it and the traffic.
   edge.sort((a, b) => (a.type === "parkovani" ? -1 : 0) - (b.type === "parkovani" ? -1 : 0));
   const leftEdge = [], rightEdge = [];
+  // § 25(3) holds for cars across the kerb too: the free width left beside them (lawFree), for the notice.
+  const oneway = isOnewayTags(tags) || tags.junction === "roundabout";
+  const lawFree = edge.some((x) => x.position) ? width - edge.reduce((a, x) => a + x.w, 0) : null;
+  const lawNeed = LAW_LANE * Math.max(oneway ? 1 : 2, lanesTotal);
   for (const x of edge) {
-    if (x.side === "L") { leftEdge.push({ type: x.type, s: e - x.w, e, orient: x.orient, source: x.source }); e -= x.w; }
-    else { rightEdge.push({ type: x.type, s, e: s + x.w, orient: x.orient, source: x.source }); s += x.w; }
+    const extra = x.position ? { position: x.position, ...(lawFree < lawNeed - 1e-6 ? { lawFree, lawNeed } : {}) } : {};
+    if (x.side === "L") { leftEdge.push({ type: x.type, s: e - x.w, e, orient: x.orient, source: x.source, ...extra }); e -= x.w; }
+    else { rightEdge.push({ type: x.type, s, e: s + x.w, orient: x.orient, source: x.source, ...extra }); s += x.w; }
   }
   let mid = trams.length ? tramLanes(s, e, trams, dirAt) : [];
   // All the street's lanes fit beside the tracks (Národní: lanes=2, one on each side; Spálená: lanes:forward=1
@@ -721,7 +746,8 @@ function splitRoadway(run, ctx) {
   }
   return [...rightEdge, ...mid, ...leftEdge]
     .map((x) => ({ type: x.type, s: x.s, e: x.e, dir: x.dir, turn: x.turn, orient: x.orient, bikeDir: x.bikeDir, color: x.color, source: x.source || "osm",
-      ...(TRAM_KINDS.has(x.type) && tags.embedded_rails === "tram" ? { embedded: true } : {}) }))
+      ...(TRAM_KINDS.has(x.type) && tags.embedded_rails === "tram" ? { embedded: true } : {}),
+      ...(x.position ? { position: x.position, lawFree: x.lawFree, lawNeed: x.lawNeed } : {}) }))
     .sort((a, b) => a.s - b.s);
 }
 
@@ -923,19 +949,61 @@ function markIslands(segs) {
   return segs;
 }
 
-// Parking on the sidewalk (on_kerb / half_on_kerb in OSM): the strip of the sidewalk along
-// the curb becomes parking, as deep as the parking orientation needs.
-function carveKerbParking(segs, reqs) {
+// Parking on the sidewalk (on_kerb / half_on_kerb in OSM; Bára 10. 11. 2026). The technical map draws a sidewalk
+// there, as it does not know that cars stand on it, so the car's strip is taken out of the sidewalk at the kerb:
+// on_kerb the whole car (2 m parallel, 4.5 m oblique, 5 m perpendicular), raised; half_on_kerb half of it, the
+// other half being the roadway strip splitRoadway left at the curb; both halves make one part across the kerb.
+// The sidewalk keeps KERB_REST at least: on a narrower one the car's strip is narrowed (the data say cars stand
+// there), down to KERB_CAR_MIN (on_kerb) or KERB_HALF_MIN (the sidewalk half); below that nothing is carved and the
+// profile's notice says so. A part beside the kerb that is no sidewalk (green, a paved area) takes the car alike.
+const KERB_REST = 0.5, KERB_CAR_MIN = 1, KERB_HALF_MIN = 0.3;
+const KERB_HOST = new Set([...WALK, "zelen", "nezname"]);
+const fmtM = (v) => `${v.toFixed(2).replace(".", ",")} m`;
+function carveKerbParking(segs, reqs, notes = []) {
   let out = segs;
+  const say = (text) => { if (!notes.includes(text)) notes.push(text); };
   for (const q of reqs) {
-    const i = out.findIndex((x) => (q.side === "L" ? Math.abs(x.s - q.at) : Math.abs(x.e - q.at)) < 0.1);
-    const host = out[i];
-    if (!host || !WALK.has(host.type) || host.e - host.s < q.w + 0.5) continue;
-    const park = q.side === "L"
-      ? { type: "parkovani", s: host.s, e: host.s + q.w, source: "osm", orient: q.orient }
-      : { type: "parkovani", s: host.e - q.w, e: host.e, source: "osm", orient: q.orient };
-    const rest = q.side === "L" ? { ...host, s: park.e } : { ...host, e: park.s };
-    out = [...out.slice(0, i), ...(q.side === "L" ? [park, rest] : [rest, park]), ...out.slice(i + 1)];
+    const L = q.side === "L"; // L: the sidewalk lies at larger offsets, beyond q.at
+    const gap = (x) => (L ? x.s - q.at : q.at - x.e);
+    if (q.bay) {
+      const bay = out.find((x) => x.type === "parkovani" && Math.abs(gap(x)) < 0.1);
+      if (bay && !bay.position) bay.position = q.pos;
+      continue;
+    }
+    const hi = out.findIndex((x) => KERB_HOST.has(x.type) && gap(x) > -0.1 && gap(x) < 0.6);
+    const host = out[hi];
+    const half = q.pos === "half_on_kerb";
+    const pi = half ? out.findIndex((x) => x.position === "half_on_kerb" && Math.abs((L ? x.e : x.s) - q.at) < 0.1) : -1;
+    const piece = out[pi];
+    const avail = host ? host.e - host.s : 0;
+    const want = half ? q.w / 2 : q.w;
+    const take = Math.min(want, avail - KERB_REST);
+    const what = half ? "napůl na chodníku" : "na chodníku";
+    if (half && !piece) {
+      if (host) say(`Stání ${what} z OSM: vozovka nemá místo na polovinu auta, auta nejsou nakreslena.`);
+      continue;
+    }
+    if (!host || take < (half ? KERB_HALF_MIN : KERB_CAR_MIN) - 1e-9) {
+      if (host || !half) say(`Stání ${what} z OSM: ${host ? `chodník má jen ${fmtM(avail)}` : "u obruby není chodník"}, auta nejsou nakreslena.`);
+      if (piece) {
+        // The roadway half goes back to the lane beside it.
+        const lane = out[L ? pi - 1 : pi + 1];
+        if (lane && ROADWAY.has(lane.type)) { if (L) lane.e = piece.e; else lane.s = piece.s; }
+        else Object.assign(piece, { position: undefined });
+        if (lane && ROADWAY.has(lane.type)) out = out.filter((_, k) => k !== pi);
+      }
+      continue;
+    }
+    if (take < want - 1e-9) say(`Stání ${what} z OSM: chodník má jen ${fmtM(avail)}, auta jsou kreslena užší a chodníku zbývá ${fmtM(avail - take)}.`);
+    // From the roadway half (or the kerb) to the cut edge in the sidewalk; thin parts between go with the car.
+    const from = L ? (piece ? piece.s : host.s) : host.e - take;
+    const to = L ? host.s + take : (piece ? piece.e : host.e);
+    const park = { type: "parkovani", s: from, e: to, source: "osm", orient: q.orient, position: q.pos };
+    if (piece?.lawFree !== undefined) Object.assign(park, { lawFree: piece.lawFree, lawNeed: piece.lawNeed });
+    const rest = L ? { ...host, s: park.e } : { ...host, e: park.s };
+    const lo = Math.min(hi, pi < 0 ? hi : pi), up = Math.max(hi, pi < 0 ? hi : pi);
+    out = [...out.slice(0, lo), ...(L ? [park, rest] : [rest, park]), ...out.slice(up + 1)];
+    if (park.lawFree !== undefined) say(`Stání napůl na chodníku z OSM: ve vozovce zůstává ${fmtM(park.lawFree)}, § 25 odst. 3 zák. 361/2000 Sb. žádá ${fmtM(park.lawNeed)} (3 m pro každý směr).`);
   }
   return out;
 }
@@ -983,6 +1051,7 @@ function mergeParking(segs) {
       keep.s = Math.min(keep.s, extra.s);
       keep.e = Math.max(keep.e, extra.e);
     }
+    keep.position ??= extra.position;
     segs.splice(extraIdx, 1);
     i--;
   }
@@ -1070,17 +1139,17 @@ function blockShape(start, all) {
 }
 
 // Street furniture, barriers and slopes found along the cut, as {kind, t}.
-const TECH_ITEM = {
+export const TECH_ITEM = {
   71522: "svodidlo", 71540: "svodidlo", 61530: "zabradli", 61209: "plot", 61210: "plot", 71210: "plot",
   81210: "plot", 91210: "plot", 61422: "oporna_zed", 71422: "oporna_zed", 81422: "oporna_zed", 81214: "zivy_plot",
   42105: "svah", 42107: "svah",
 };
-const BARRIER_ITEM = {
+export const BARRIER_ITEM = {
   guard_rail: "svodidlo", jersey_barrier: "svodidlo", fence: "plot", wall: "plot", city_wall: "plot",
   retaining_wall: "oporna_zed", hedge: "zivy_plot", handrail: "zabradli",
 };
 
-function nodeItem(t) {
+export function nodeItem(t) {
   if (t.highway === "street_lamp") return "lampa";
   if (t.amenity === "bench") return "lavicka";
   if (t.amenity === "bicycle_parking") return "stojan_kola";
@@ -1556,10 +1625,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       const sideTagsLR = { L: edgeTags("L"), R: edgeTags("R") };
       // A no-parking section of TSK at the kerb (Prague): no parking there, whatever OSM says.
       for (const [side, at, k] of [["L", r.e, -1], ["R", r.s, 1]]) {
-        if (noParkingAt(noParking, at, k)) sideTagsLR[side] = { ...sideTagsLR[side], parking: false, parkingNo: true, kerbDepth: 0 };
-      }
-      for (const [side, st, at] of [["L", sideTagsLR.L, r.e], ["R", sideTagsLR.R, r.s]]) {
-        if (st.kerbDepth && !parked.includes(side)) kerbReqs.push({ side, at, w: st.kerbDepth, orient: st.parkingOrient });
+        if (noParkingAt(noParking, at, k)) sideTagsLR[side] = { ...sideTagsLR[side], parking: false, parkingNo: true, kerbPos: null, kerbDepth: 0 };
       }
       // The neighbours of the roadway, past the profile end too when the end is a real one (a building), not
       // one cut by the reach.
@@ -1574,6 +1640,11 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       const road = (x) => x && (x.code === 700 || x.code === 701);
       const inner = (x, y) => x && (x.code === MEDIAN || x.code === 705 || road(x) || inMedian(x) || (x.code >= 400 && x.code < 500 && x.e - x.s <= 15 && road(y)));
       const kerbOpen = [["L", !inner(next, kept[ri + 2])], ["R", !inner(prev, kept[ri - 2])]].filter(([, ok]) => ok).map(([sd]) => sd);
+      // Cars on the sidewalk at an outer kerb: carved out of it after the split; where a bay is measured or mapped
+      // there (parked), the bay keeps its width and only takes the position from OSM.
+      for (const [side, st, at] of [["L", sideTagsLR.L, r.e], ["R", sideTagsLR.R, r.s]]) {
+        if (st.kerbPos && kerbOpen.includes(side)) kerbReqs.push({ side, at, w: st.kerbDepth, orient: st.parkingOrient, pos: st.kerbPos, bay: parked.includes(side) });
+      }
       // Kerbs without a sidewalk outside the built-up area (Bára): no parking is estimated there.
       const kerbBare = kerbOpen.filter((sd) => !walkBeyond(r, sd, after, before, edgeTags(sd), tags) && !builtUp(sd === "L" ? r.e : r.s, sd === "L" ? 1 : -1, edges[sd === "L" ? "left" : "right"]));
       // Half of a divided road: across a median or a green strip (up to 15 m) lies another roadway.
@@ -1641,7 +1712,8 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   // The surface of the beds nobody describes: the orthophoto (ortho: ortho.js bedOrtho) and the rules.
   bedSurfaces(segs, { rails: tramTs, ortho, at, dir, highway: way.tags?.highway });
   // Roadway outer edges are measured; only the internal split comes from OSM.
-  const withKerb = carveKerbParking(markIslands(segs), kerbReqs);
+  const kerbNotes = [];
+  const withKerb = carveKerbParking(markIslands(segs), kerbReqs, kerbNotes);
   const withPlatforms = insertPlatforms(withKerb, platformPositions(osm, frame, center, normal, half), axisT);
   const withTrees = insertTrees(withPlatforms, treePositions(osm, frame, center, normal, half, lines, reachItems));
   const withItems = attachItems(perpDepth(mergeParking(withTrees)), itemPositions(osm, frame, center, normal, half, lines, reachItems));
@@ -1671,6 +1743,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     extent: [kept[0].s, kept.at(-1).e], // offsets of the right and left profile ends along the cut
     // A roadway this wide along the cut usually means the cut crosses a junction.
     junction: kept.some((r) => (r.code === 701 || r.code === 700) && r.e - r.s > 25),
+    ...(kerbNotes.length ? { notice: kerbNotes.join(" ") } : {}),
   };
 }
 
@@ -1688,6 +1761,8 @@ function toSegment(x) {
   // Segments are reversed to screen order, so item positions flip too.
   if (x.items?.length) seg.items = x.items.map((it) => ({ ...it, f: +(1 - it.f).toFixed(3) }));
   if (x.type === "parkovani") {
+    // Cars on the sidewalk (on_kerb) or across the kerb (half_on_kerb), from OSM.
+    if (x.position) seg.position = x.position;
     seg.orient = x.orient || orientFromDepth(seg.width);
     // Last guard (ČSN 73 6056): perpendicular parking is never shallower than PERP_MIN.
     if (seg.orient === "kolme" && seg.width < PERP_MIN) seg.orient = "sikme";

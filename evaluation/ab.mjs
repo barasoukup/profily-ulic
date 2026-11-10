@@ -38,8 +38,8 @@ globalThis.PROFILY_CITY = CITY;
 
 // ---------- fetch: local data files, Prague's cache, and the web (counted, optionally reused) ----------
 const sha1 = (s) => crypto.createHash("sha1").update(s).digest("hex");
-const round = (v) => Math.round(v * 1e5) / 1e5; // server.mjs bboxParam
-const iprCache = (kind, bbox) => path.join(PILOT, "cache", kind, sha1(bbox.split(",").map(Number).map(round).join(",")) + ".json");
+// server.mjs bboxParam: toFixed(5), trailing zeros kept ("50.05200"), or the cache entry is missed.
+const iprCache = (kind, bbox) => path.join(PILOT, "cache", kind, sha1(bbox.split(",").map((v) => Number(v).toFixed(5)).join(",")) + ".json");
 const reply = (buf, status = 200) => ({
   ok: status < 400, status, json: async () => JSON.parse(buf.toString("utf8")), text: async () => buf.toString("utf8"),
   arrayBuffer: async () => buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength),
@@ -125,7 +125,7 @@ export function measures(p) {
     trees: p.segments.filter((s) => s.type === "stromorad").length,
     parking: p.segments.filter((s) => s.type === "parkovani").map((s) => s.source).sort().join(","),
     // The parts in order with their kind of tram bed and lane widths rounded to 0.25 m (PARTS=1).
-    kinds: p.segments.map((s) => s.type + (s.bed ? `:${s.bed}` : "") + (s.withBus ? "+bus" : "")).join(","),
+    kinds: p.segments.map((s) => s.type + (s.bed ? `:${s.bed}` : "") + (s.withBus ? "+bus" : "") + (s.position ? `@${s.position}` : "")).join(","),
     lanes: p.segments.filter((s) => s.type === "pruh" || s.type === "krajnice").map((s) => `${s.type[0]}${Math.round(s.width * 4) / 4}`).join(","),
   };
 }
@@ -299,7 +299,7 @@ function bar(p, y, W) {
     x += w; return out;
   }).join("");
 }
-const rows = (p, x, y) => p.segments.map((s, i) => `<text x="${x}" y="${y + i * 15}" font-size="11">${i + 1}. ${esc(TYPES[s.type]?.label || s.type)}${s.bed ? ` (${esc(s.bed)})` : ""}${s.withBus ? " + BUS" : ""} ${s.width.toFixed(2)} ${s.dir ? ARROW[s.dir] : ""} · ${esc(s.source)}${s.items?.length ? " · " + esc(s.items.map((it) => it.kind).join(", ")) : ""}</text>`).join("");
+const rows = (p, x, y) => p.segments.map((s, i) => `<text x="${x}" y="${y + i * 15}" font-size="11">${i + 1}. ${esc(TYPES[s.type]?.label || s.type)}${s.bed ? ` (${esc(s.bed)})` : ""}${s.position ? ` (${esc(s.position)})` : ""}${s.withBus ? " + BUS" : ""} ${s.width.toFixed(2)} ${s.dir ? ARROW[s.dir] : ""} · ${esc(s.source)}${s.items?.length ? " · " + esc(s.items.map((it) => it.kind).join(", ")) : ""}</text>`).join("");
 async function svg(r, A, B) {
   const b = (r.cut.bearing * Math.PI) / 180;
   const dir = [Math.sin(b), Math.cos(b)], normal = [-dir[1], dir[0]];

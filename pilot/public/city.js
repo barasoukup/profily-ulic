@@ -239,7 +239,7 @@ const CITIES = {
     storeSuffix: "-plzen",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 1.3, estateKm: 3,
-    fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
+    fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true, bedPanels: true },
     example: "49.747700, 13.377600",
     // Plzeň illustrations (plzen/): PMDP's yellow tram Škoda 40T, green trolleybus Škoda 26Tr (Solaris body) and red
     // bus SOR NS 12; the furniture as in Prague for now.
