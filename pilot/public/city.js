@@ -244,6 +244,174 @@ const CITIES = {
       "trolleybus-inbound": "trolejbus-inbound", "trolleybus-outbound": "trolejbus-outbound", ...TOWN_ART,
     },
   },
+  usti: {
+    id: "usti",
+    server: "technické mapy ČÚZK", // "Server … neodpovídá"
+    cover: "Ústí nad Labem", // "Data pokrývají jen …"
+    dataName: "Technická mapa ČÚZK", // "… teď neodpovídá"
+    view: [50.6607, 14.0322],
+    centre: [14.0322, 50.6607], // Mírové náměstí
+    inCity: "v Ústí nad Labem",
+    adjective: "ústecké",
+    mapLabel: "Mapa Ústí",
+    dataShort: "technické mapy ČÚZK, města Ústí a OSM",
+    techMap: "technickou mapu ČÚZK",
+    parkingSource: "parkovací místa (město Ústí nad Labem)",
+    rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Ústí orientačně:",
+    // No Ústí illustrations yet: those of the rest of the country (Prague's furniture, Streetmix's vehicles).
+    art: "cesko",
+    artLabel: "Ilustrace",
+    artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
+    emptyImg: "praha/t3-inbound.svg",
+    credit: "technická mapa © Ústecký kraj, IS DMVS ČÚZK, parkovací místa © Statutární město Ústí nad Labem, RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
+    storeSuffix: "-usti",
+    // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
+    innerKm: 0.7, estateKm: 1.5,
+    fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
+    example: "50.660700, 14.032200",
+    // The surfaces are the national DTM (towns/usti.js), only the parking is the town's.
+    artMap: Object.fromEntries(Object.entries(TOWN_ART).filter(([k]) => !k.startsWith("bus-"))),
+  },
+  ostrava: {
+    id: "ostrava",
+    server: "města Ostravy", // "Server … neodpovídá"
+    cover: "Ostravu", // "Data pokrývají jen …"
+    dataName: "Technická mapa Ostravy", // "… teď neodpovídá"
+    view: [49.8355, 18.2924],
+    centre: [18.2924, 49.8355], // Masarykovo náměstí
+    inCity: "v Ostravě",
+    adjective: "ostravské",
+    mapLabel: "Mapa Ostravy",
+    dataShort: "města Ostravy a OSM",
+    techMap: "technickou mapu Ostravy",
+    parkingSource: "úseky placeného stání (město Ostrava)",
+    rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Ostravu orientačně:",
+    // No illustrations of its own yet: those of the rest of the country (Prague's furniture, Streetmix's vehicles).
+    art: "cesko",
+    artLabel: "Ilustrace",
+    artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
+    emptyImg: "praha/t3-inbound.svg",
+    credit: "data © Statutární město Ostrava (technická mapa – generalizace, osy tramvajových kolejí, úseky placeného stání), RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
+    storeSuffix: "-ostrava",
+    // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
+    innerKm: 1.0, estateKm: 2.0,
+    fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
+    example: "49.835500, 18.292400",
+    // The surfaces are the city's generalized technical map (towns/ostrava.js, data to 2019).
+    artMap: Object.fromEntries(Object.entries(TOWN_ART).filter(([k]) => !k.startsWith("bus-"))),
+  },
+  "frydek-mistek": {
+    id: "frydek-mistek",
+    server: "města Frýdku-Místku", // "Server … neodpovídá"
+    cover: "Frýdek-Místek", // "Data pokrývají jen …"
+    dataName: "Pasport komunikací Frýdku-Místku", // "… teď neodpovídá"
+    view: [49.6837, 18.3504],
+    centre: [18.3504, 49.6837], // náměstí Svobody (Místek)
+    inCity: "ve Frýdku-Místku",
+    adjective: "frýdecko-místecké",
+    mapLabel: "Mapa Frýdku-Místku",
+    dataShort: "města Frýdku-Místku, technické mapy ČÚZK a OSM",
+    techMap: "pasport komunikací Frýdku-Místku",
+    parkingSource: "parkoviště z technické mapy",
+    rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Frýdek-Místek orientačně:",
+    // No illustrations of its own yet: those of the rest of the country (Prague's furniture, Streetmix's vehicles).
+    art: "cesko",
+    artLabel: "Ilustrace",
+    artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
+    emptyImg: "praha/t3-inbound.svg",
+    credit: "data © Statutární město Frýdek-Místek (pasport komunikací, zeleně, mobiliáře a osvětlení), technická mapa © Moravskoslezský kraj, IS DMVS ČÚZK, RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
+    storeSuffix: "-frydek-mistek",
+    // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
+    innerKm: 0.6, estateKm: 1.2,
+    fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
+    example: "49.683700, 18.350400",
+    // The town's road passport over the national DTM (towns/frydek-mistek.js, towns/overlay.js).
+    artMap: Object.fromEntries(Object.entries(TOWN_ART).filter(([k]) => !k.startsWith("bus-"))),
+  },
+  karvina: {
+    id: "karvina",
+    server: "města Karviné", // "Server … neodpovídá"
+    cover: "Karvinou", // "Data pokrývají jen …"
+    dataName: "Pasport komunikací Karviné", // "… teď neodpovídá"
+    view: [49.8542, 18.542],
+    centre: [18.542, 49.8542], // Masarykovo náměstí (Fryštát)
+    inCity: "v Karviné",
+    adjective: "karvinské",
+    mapLabel: "Mapa Karviné",
+    dataShort: "města Karviné, technické mapy ČÚZK a OSM",
+    techMap: "pasport komunikací Karviné",
+    parkingSource: "parkoviště z technické mapy",
+    rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Karvinou orientačně:",
+    // No illustrations of its own yet: those of the rest of the country (Prague's furniture, Streetmix's vehicles).
+    art: "cesko",
+    artLabel: "Ilustrace",
+    artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
+    emptyImg: "praha/t3-inbound.svg",
+    credit: "data © Statutární město Karviná (pasport komunikací a zeleně, technická mapa, mobiliář, osvětlení), technická mapa © Moravskoslezský kraj, IS DMVS ČÚZK, RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
+    storeSuffix: "-karvina",
+    // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
+    innerKm: 0.5, estateKm: 1.0,
+    fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
+    example: "49.854200, 18.542000",
+    // The town's road passport (part of the town) over the national DTM (towns/karvina.js, towns/overlay.js).
+    artMap: Object.fromEntries(Object.entries(TOWN_ART).filter(([k]) => !k.startsWith("bus-"))),
+  },
+  trebic: {
+    id: "trebic",
+    server: "města Třebíče", // "Server … neodpovídá"
+    cover: "Třebíč", // "Data pokrývají jen …"
+    dataName: "Pasport komunikací Třebíče", // "… teď neodpovídá"
+    view: [49.215, 15.8799],
+    centre: [15.8799, 49.215], // Karlovo náměstí
+    inCity: "v Třebíči",
+    adjective: "třebíčské",
+    mapLabel: "Mapa Třebíče",
+    dataShort: "města Třebíče, technické mapy ČÚZK a OSM",
+    techMap: "pasport komunikací Třebíče",
+    parkingSource: "parkoviště z pasportu a technické mapy",
+    rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Třebíč orientačně:",
+    // No illustrations of its own yet: those of the rest of the country (Prague's furniture, Streetmix's vehicles).
+    art: "cesko",
+    artLabel: "Ilustrace",
+    artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
+    emptyImg: "praha/t3-inbound.svg",
+    credit: "data © Město Třebíč (pasport komunikací, veřejné osvětlení, lavičky), technická mapa © Kraj Vysočina, IS DMVS ČÚZK, RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
+    storeSuffix: "-trebic",
+    // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
+    innerKm: 0.6, estateKm: 1.2,
+    fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
+    example: "49.215000, 15.879900",
+    // The town's road passport over the national DTM (towns/trebic.js, towns/overlay.js).
+    artMap: Object.fromEntries(Object.entries(TOWN_ART).filter(([k]) => !k.startsWith("bus-"))),
+  },
+  prerov: {
+    id: "prerov",
+    server: "města Přerova", // "Server … neodpovídá"
+    cover: "Přerov", // "Data pokrývají jen …"
+    dataName: "Technická mapa Přerova", // "… teď neodpovídá"
+    view: [49.4555, 17.451],
+    centre: [17.451, 49.4555], // náměstí T. G. Masaryka
+    inCity: "v Přerově",
+    adjective: "přerovské",
+    mapLabel: "Mapa Přerova",
+    dataShort: "města Přerova a OSM",
+    techMap: "technickou mapu Přerova",
+    parkingSource: "parkoviště z technické mapy",
+    rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Přerov orientačně:",
+    // No illustrations of its own yet: those of the rest of the country (Prague's furniture, Streetmix's vehicles).
+    art: "cesko",
+    artLabel: "Ilustrace",
+    artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
+    emptyImg: "praha/t3-inbound.svg",
+    credit: "data © Statutární město Přerov (technická mapa, vektorové dlaždice), RÚIAN © ČÚZK (CC BY 4.0) · © přispěvatelé OpenStreetMap",
+    storeSuffix: "-prerov",
+    // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
+    innerKm: 0.7, estateKm: 1.5,
+    fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
+    example: "49.455500, 17.451000",
+    // The surfaces are the city's technical map read from its vector tiles (towns/prerov.js).
+    artMap: Object.fromEntries(Object.entries(TOWN_ART).filter(([k]) => !k.startsWith("bus-"))),
+  },
 };
 
 export const CITY_IDS = Object.keys(CITIES);

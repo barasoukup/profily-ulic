@@ -7,5 +7,11 @@ import * as most from "./most.js";
 import * as opava from "./opava.js";
 import * as pardubice from "./pardubice.js";
 import * as plzen from "./plzen.js";
+import * as usti from "./usti.js";
+import * as ostrava from "./ostrava.js";
+import * as frydekMistek from "./frydek-mistek.js";
+import * as karvina from "./karvina.js";
+import * as trebic from "./trebic.js";
+import * as prerov from "./prerov.js";
 
-export const TOWNS = { cesko, jihlava, most, opava, pardubice, plzen };
+export const TOWNS = { cesko, jihlava, most, opava, pardubice, plzen, usti, ostrava, "frydek-mistek": frydekMistek, karvina, trebic, prerov };

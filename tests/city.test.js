@@ -46,6 +46,7 @@ test("město podle polohy řezu", async () => {
   assert.equal(C.cityAt(50.0875, 14.4208), "praha");
   assert.equal(C.cityAt(49.1951, 16.6085), "brno");
   assert.equal(C.cityAt(50.503, 13.6363), "most");
+  assert.equal(C.cityAt(50.6607, 14.0322), "usti"); // Mírové náměstí
   assert.equal(C.cityAt(49.907481, 16.442219), "cesko"); // Česká Třebová
   assert.equal(C.setCity("plzen").adjective, "plzeňské");
   C.setCity("praha");

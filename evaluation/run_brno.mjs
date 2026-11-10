@@ -4,6 +4,7 @@
 // Usage: node evaluation/run_brno.mjs [from] [to] → evaluation/brno/data/results/<n>.json, ortho/<n>.jpg
 import fs from "node:fs/promises";
 import path from "node:path";
+import { politeFetch } from "./polite.mjs";
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname);
 // CITY=jihlava (or another town, tools/cities.mjs) runs that town's sample the same way
@@ -13,7 +14,8 @@ const DATA = path.join(ROOT, CITY, "data");
 const PILOT_DATA = path.join(ROOT, "..", "pilot", "data", CITY);
 globalThis.PROFILY_CITY = CITY;
 // sources.js reads "data/…" next to the page: here the files in pilot/data.
-const webFetch = globalThis.fetch;
+// ČÚZK one request at a time with pauses (polite.mjs).
+const webFetch = politeFetch;
 globalThis.fetch = async (url, opts) => {
   const u = String(url);
   // data/…: pilot/data, as the one page has it (the OSM tiles of the country, data/<city>/ of a city).
@@ -118,7 +120,9 @@ async function run(s) {
   };
 }
 
-for (const s of samples.filter((x) => x.n >= from && x.n <= to)) {
+// ONLY=3,10,17: just these cuts.
+const only = process.env.ONLY ? new Set(process.env.ONLY.split(",").map(Number)) : null;
+for (const s of samples.filter((x) => x.n >= from && x.n <= to && (!only || only.has(x.n)))) {
   const out = path.join(DATA, "results", `${s.n}.json`);
   try {
     const r = await run(s);

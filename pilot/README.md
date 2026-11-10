@@ -198,6 +198,38 @@ pilot/data/<město>/osm-tiles`, kontrola `CITY=<město> node evaluation/sample.m
   doptá (průměrně 6 dotazů, kliknutí kolem 1 s). Prázdná místa DTM doplní budovy a parcely RÚIAN. Kvalita záleží na
   kraji: v Pardubicích chybí vozovky mimo zástavbu a plochy uvnitř bloků. Ilustrace: trolejbus 32Tr a autobus Iveco
   Urbanway DPMP. Kontrola 49 řezů: `evaluation/pardubice/ZPRAVA.md`.
+- **Ústí nad Labem** (`towns/usti.js`): plochy jako všude v Česku z DTM ČÚZK (Ústecký kraj ji má celou), k tomu
+  **parkovací místa města** (`mapy.usti.cz`, `Doprava/Parkovaci_zony_UL/MapServer/3`, řada stání s druhem: podélné,
+  kolmé, šikmé, vyhrazené, ZTP; asi 435 řad v centru a okolí, aktualizace 2026). Služba je bez
+  `datumTransformation=1623` asi 12 m vedle OSM. A/B nad ortofotem (`evaluation/variants/usti-stani.mjs`, 36 řezů u
+  stání): lepší se stáním města 6, horší 1, stejně 3. Ilustrace zatím celostátní.
+- Zkoušené a nepřipojené (10. 11. 2026): pasport komunikací Hradce Králové (T-MAPY WFS `geoportal.mmhk.cz/services/
+  mapserver/common/pakom/gservice`, vrstva `pk-pov-typ`) dává skoro stejné plochy jako DTM ČÚZK (95 řezů: lepší 4,
+  horší 3, stejně 7, obě špatně 2) a nemá CORS; varianta `evaluation/variants/hradec-pasport.mjs`.
+
+## Moravská města: Ostrava, Frýdek-Místek, Karviná, Třebíč, Přerov (10. 11. 2026)
+
+Připojená po srovnání s celostátní DTM ČÚZK na 30 řezech v každém městě (`evaluation/<město>/data/ab-*/review.md`).
+
+- **Ostrava** (`towns/ostrava.js`, `mapy.ostrava.cz`): plochy z generalizované technické mapy města
+  (`MAPPA/Polohopis_DTM_generalizace/MapServer/0`, pole `POPIS`, data do 2019), zpevněná plocha s osou koleje
+  (`BaseMap/podkladova_mapa_OSTRAVA/MapServer/25`) je tramvajový pás, zdi a ploty z obrysů ploch, úseky placeného
+  stání (`SMO/parkovaci_mista/MapServer/9`). Dotazy s `datumTransformation=1623` (jinak 1,5 m vedle OSM).
+- **Frýdek-Místek** (`towns/frydek-mistek.js`) a **Karviná** (`towns/karvina.js`): pasport komunikací na serverech
+  T-MAPY (WFS 2.0 `…/common/pakom/gservice`, typ `ms:pk-pov`), zeleň z pasportu zeleně (`pazel`) jen tam, kde DTM
+  nic nemá, stromy, lavičky, stojany a lampy z pasportů. Pasport leží nad celostátní DTM (`towns/overlay.js`);
+  kde ta nemá nic, doplní domy a parcely RÚIAN. WFS se ptá v WGS 84 a odpovídá ve Web Mercatoru (`srsName=EPSG:4326`
+  s boxem vrací nic). Frýdek-Místek je pak 0,5 m vedle RÚIAN (posun v modulu), Karviná sedí. Pasport Karviné
+  pokrývá jen část města (Fryštát, část Nového Města a Ráje), jinde zůstává DMVS. Karviná má i linie technické
+  mapy (`dtmm`, `ms:dtm-umps-l`): ploty a opěrné zdi. Server Frýdku-Místku posílá neúplný řetěz certifikátů
+  (Chrome si ho doplní; skripty v Node potřebují `NODE_EXTRA_CA_CERTS` s mezilehlým certifikátem Alpiro).
+- **Třebíč** (`towns/trebic.js`, `gis.trebic.cz`): pasport komunikací PaKom 2020 (`public/PaKom2020/MapServer/6`,
+  `typ_pov_05`; parkoviště podle poznámky) nad celostátní DTM, lampy (`public/VO`) a lavičky. Dotazy s 1623.
+- **Přerov** (`towns/prerov.js`): technická mapa 2024 jen jako vektorové dlaždice v S-JTSK
+  (`DTM_polohopis_vector/VectorTileServer`). Modul čte dlaždice úrovně 7 kolem řezu (`towns/mvt.js`), převede je
+  do WGS 84 (`towns/sjtsk.js`, Křovák + EPSG 1623, sedí s PROJ na 1 mm) a druh plochy bere z názvu vrstvy.
+- Ilustrace zatím jako ve zbytku ČR (`art: "cesko"`).
+- Bez vlastního zdroje zůstávají Olomouc, Zlín, Havířov, Třinec, Prostějov, Znojmo, Kroměříž (jen WMS nebo nic).
 
 ## Test nového zdroje (A/B)
 
