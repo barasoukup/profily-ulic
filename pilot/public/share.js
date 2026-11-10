@@ -1,7 +1,7 @@
 // A design carried in the address: the parts of Návrh (and of Stav when its data were corrected by
 // hand), packed small (deflate, base64url) after the cut in the link: #rez=…&navrh=…&stav=….
 // Only what the drawing needs travels: types, widths and their settings, edge kinds and looks.
-const SEG_KEYS = ["type", "width", "dir", "bikeDir", "orient", "use", "turn", "items", "source", "bed", "withBus", "roadClass", "position", "signs"];
+const SEG_KEYS = ["type", "width", "dir", "bikeDir", "orient", "use", "turn", "items", "source", "bed", "withBus", "roadClass", "position", "signs", "trolley", "wires"];
 const EDGE_KEYS = ["left", "right", "leftStyle", "rightStyle"];
 
 const pick = (o, keys) => Object.fromEntries(keys.filter((k) => o?.[k] !== undefined && o[k] !== null).map((k) => [k, o[k]]));

@@ -1178,6 +1178,9 @@ export function buildSvg(profile, opts = {}) {
         const tilt = el("g", { transform: `rotate(${((kerbLeft ? -1 : 1) * Math.atan2(CURB, CAR_TRACK) * 180) / Math.PI} ${cx} ${GROUND - CURB / 2})` }, g);
         sprite(tilt, name, cx, GROUND - CURB / 2);
       } else sprite(g, name, cx, top);
+    } else if (t.sprite === "car" && w >= 180 && s.trolley && cityArt() && CITY_ART[artKey()]?.["trolleybus-inbound"]) {
+      // A lane only public transport may use (a zone with trolley wires): its trolleybus.
+      sprite(g, `trolleybus-${forward ? "outbound" : "inbound"}`, cx, top);
     } else if (t.sprite === "car" && w >= 180) {
       sprite(g, forward ? "car-outbound" : "car-inbound", cx, top);
     } else if (t.sprite === "streetcar" && w >= 240) {
@@ -1249,6 +1252,22 @@ export function buildSvg(profile, opts = {}) {
   for (const [letter, x] of [["A", ends[0]], ["B", ends[1]]]) {
     el("circle", { class: "top-row", cx: x, cy: y0 + 70, r: 52, fill: "#d8413f", stroke: "#fff", "stroke-width": 8 }, svg);
     el("text", { class: "top-row", x, y: y0 + 94, "text-anchor": "middle", "font-size": 68, "font-weight": 700, fill: "#fff" }, svg).textContent = letter;
+  }
+
+  // Trolley wires over the lanes under them (OSM trolley_wire): a span wire across, from the first wired lane
+  // to the last, and the two contact wires (0.6 m apart, 5.4 m above the road) over each lane, hung from it.
+  const wired = segs.map((s, i) => (s.wires ? i : -1)).filter((i) => i >= 0);
+  if (wired.length) {
+    const wg = el("g", { class: "trolley-wires" }, svg);
+    const yContact = GROUND - 540, ySpan = GROUND - 600;
+    el("line", { x1: bounds[wired[0]] + 20, x2: bounds[wired.at(-1) + 1] - 20, y1: ySpan, y2: ySpan, stroke: "#4a4945", "stroke-width": 2.5 }, wg);
+    for (const i of wired) {
+      const cx = (bounds[i] + bounds[i + 1]) / 2;
+      for (const dx of [-30, 30]) {
+        el("line", { x1: cx + dx, x2: cx + dx, y1: ySpan, y2: yContact, stroke: "#4a4945", "stroke-width": 1.5 }, wg);
+        el("circle", { cx: cx + dx, cy: yContact, r: 5, fill: "#2b2a27" }, wg);
+      }
+    }
   }
 
   if (opts.title) {
