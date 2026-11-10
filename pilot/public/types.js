@@ -52,8 +52,9 @@ export const ITEMS = {
   oporna_zed: "Opěrná zeď", zivy_plot: "Živý plot", svah: "Hrana svahu", zahradka: "Zahrádka restaurace",
 };
 
-// Surfaces of a separate tram bed (segment.bed); the default is panels.
-export const TRAM_BEDS = { panely: { label: "panely", color: "#b3ada0" }, strk: { label: "štěrk", color: "#9a948a" }, trava: { label: "tráva", color: "#86b552" } };
+// Surfaces of a separate tram bed (segment.bed); the default is panels. Asphalt (beds used by buses) is drawn
+// like the roadway.
+export const TRAM_BEDS = { panely: { label: "panely", color: "#b3ada0" }, strk: { label: "štěrk", color: "#9a948a" }, trava: { label: "tráva", color: "#86b552" }, asfalt: { label: "asfalt", color: "#5c5c59" } };
 
 export const PARKING_USE = { ztp: "ZTP", zasobovani: "zásobování", specialni: "speciální" };
 

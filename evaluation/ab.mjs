@@ -104,7 +104,8 @@ async function loadVariant(name) {
   for (const k of Object.keys(NORMAL)) if (typeof mod[k] === "function") src[k] = mod[k];
   // reach: the reach of points per kind (derive.js REACH), e.g. { lampa: 15 }. deriveProfile: another copy of
   // the app's derivation (a rule change tested against the code before it, variants/kod-pred.mjs).
-  return { name, about: mod.about || "", src, reach: mod.reach, deriveProfile: mod.deriveProfile };
+  // ortho: the orthophoto of the tram beds (ortho.js bedOrtho), asked in parallel with the sources as app.js does.
+  return { name, about: mod.about || "", src, reach: mod.reach, deriveProfile: mod.deriveProfile, ortho: mod.ortho };
 }
 
 // ---------- Measures ----------
@@ -174,14 +175,15 @@ async function derive(v, at, inZps) {
   if (!at.osmBy.has(v.src.osm)) at.osmBy.set(v.src.osm, await v.src.osm(cut.lat, cut.lon, 80));
   const osm = at.osmBy.get(v.src.osm);
   const way = osm.elements.find((e) => e.type === "way" && e.id === at.wayId) || at.way;
-  let surfMs;
-  const [m, k, pk] = await Promise.all([
+  let surfMs, orthoMs;
+  const [m, k, pk, ortho] = await Promise.all([
     (async () => { const t = performance.now(); try { return await v.src.surfaces(bbox); } finally { surfMs = Math.round(performance.now() - t); } })(),
     v.src.lines(bbox).catch(() => ({ features: [] })),
     v.src.parking(bbox, inZps).catch(() => ({ features: [] })),
+    v.ortho ? (async () => { const t = performance.now(); try { return await v.ortho({ osm, frame, dir, half: HALF }); } finally { orthoMs = Math.round(performance.now() - t); } })() : null,
   ]);
   const polys = mtvuPolygons(m, frame);
-  const r = (v.deriveProfile || deriveProfile)({ center: [0, 0], dir, half: HALF, polys, osm, frame, way, tracks: trackLines(k, frame), parking: esriPolygons(pk, frame), lines: techLines(k, frame), reach: { left: MAX_REACH, right: MAX_REACH }, inZps, itemReach: v.reach });
+  const r = (v.deriveProfile || deriveProfile)({ center: [0, 0], dir, half: HALF, polys, osm, frame, way, tracks: trackLines(k, frame), parking: esriPolygons(pk, frame), lines: techLines(k, frame), reach: { left: MAX_REACH, right: MAX_REACH }, inZps, itemReach: v.reach, ortho });
   if (process.env.PODLAZNOST === "1") {
     for (const side of ["left", "right"]) {
       const info = r.edges?.[`${side}Info`];
@@ -192,6 +194,7 @@ async function derive(v, at, inZps) {
   }
   return {
     variant: v.name, ms: Math.round(performance.now() - t0), surfacesMs: surfMs, requests: net.requests - n0,
+    ...(v.ortho ? { orthoMs, orthoSeen: ortho?.seen || null } : {}),
     mtvuCount: polys.length, region: m?.region || null,
     runs: r.runs?.map((x) => ({ code: x.code, s: +x.s.toFixed(2), e: +x.e.toFixed(2) })),
     axisT: r.axisT, extent: r.extent, junction: !!r.junction, segments: r.segments, edges: r.edges, notice: r.notice,

@@ -18,9 +18,9 @@ const CAR_MIN = 2.5; // narrowest leftover space treated as a separate car lane 
 const LANE_TYPES = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo"]); // parts that carry the street's class
 const TRAM_KINDS = new Set(["tramvaj_v_pruhu", "tramvaj_pruh", "tramvaj"]);
 const GRASS_BED_MIN = 2.5; // a green area at least this wide with tracks in it is a grass tram bed (m)
-// The surface of a separate tram bed from the OSM tram ways in it: grass, gravel (ballast) or panels (paved:
-// concrete, plates, sett, asphalt); unknown → panels, as an estimate.
-const BED_OF_SURFACE = { grass: "trava", grass_paver: "trava", gravel: "strk", fine_gravel: "strk", ballast: "strk", pebblestone: "strk" };
+// The surface of a separate tram bed from the OSM tram ways in it: grass, gravel (ballast), asphalt or panels
+// (other paving: concrete, plates, sett); unknown → decided by bedSurfaces below, as an estimate.
+const BED_OF_SURFACE = { grass: "trava", grass_paver: "trava", gravel: "strk", fine_gravel: "strk", ballast: "strk", pebblestone: "strk", asphalt: "asfalt" };
 function bedOf(cross, r) {
   const tags = cross.filter((c) => c.t > r.s - 0.3 && c.t < r.e + 0.3 && c.way.tags?.railway === "tram").map((c) => c.way.tags);
   for (const t of tags) {
@@ -29,6 +29,32 @@ function bedOf(cross, r) {
     if (v) return { kind: "panely", source: "osm" };
   }
   return { kind: "panely", source: "odhad" };
+}
+// A bed no source describes (Bára 10. 11. 2026, A/B in evaluation/pravidla-11-2026/ZPRAVA.md, section 4): grass
+// where the orthophoto is green (ortho.js), else the rules: asphalt where buses use the tracks (nowadays mostly
+// asphalt); panels in a pedestrian street; gravel for a bed beside the street (a roadway on one side only) or
+// BED_WIDE or more between two carriageways; panels in a narrower bed between carriageways. Each stays marked
+// as an estimate. segs: the parts in cut order (s, e); rails: track axes; ortho: the
+// orthophoto (ortho.js bedOrtho, or none); at: offset → point; dir: along the street; highway: the street's.
+const BED_WIDE = 6;
+const ROADWAY_PART = new Set(["pruh", "pruh_piktokoridor", "obsluzna", "krajnice", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "parkovani", "cyklopruh", "ochranny_pruh"]);
+export function bedSurfaces(segs, { rails = [], ortho, at, dir, highway } = {}) {
+  for (let i = 0; i < segs.length; i++) {
+    if (segs[i].type !== "tramvaj" || segs[i].bedSource !== "odhad") continue;
+    let j = i;
+    while (segs[j + 1]?.type === "tramvaj" && segs[j + 1].bedSource === "odhad") j++;
+    const bed = segs.slice(i, j + 1), s = bed[0].s, e = bed.at(-1).e;
+    const seen = ortho?.look && at ? ortho.look(s, e, rails.filter((t) => t > s && t < e), at, dir)?.kind : null;
+    const bus = bed.some((x) => x.withBus);
+    const between = segs.slice(0, i).some((x) => ROADWAY_PART.has(x.type)) && segs.slice(j + 1).some((x) => ROADWAY_PART.has(x.type));
+    const kind = seen === "trava" ? "trava"
+      : bus ? "asfalt"
+      : highway === "pedestrian" ? "panely"
+      : !between || e - s >= BED_WIDE - 1e-9 ? "strk" : "panely";
+    for (const x of bed) Object.assign(x, { bed: kind, bedSource: "odhad" });
+    i = j;
+  }
+  return segs;
 }
 const tramWithBus = (t) => ["yes", "designated"].includes(t.psv) || ["yes", "designated"].includes(t.bus) || t.highway === "busway";
 const TREE_STRIP = 1.5; // width of a tree strip carved out of a sidewalk (m)
@@ -528,11 +554,18 @@ const LANE_CAP_CLASS = { dalnice: 3.75, mk1: 3.75 };
 const KRAJNICE_MIN = 1; // narrowest shoulder / hatched strip drawn (m)
 // Streets where cars commonly park at the curb even where neither TSK nor OSM says so.
 // Not on main streets (secondary, tertiary and up): there the curb is mostly kept free (Bára).
-const PARK_GUESS = new Set(["residential", "living_street", "unclassified"]);
+// Not in a residential zone (living_street, Bára): § 39 of act 361/2000 Sb. allows parking there only in marked
+// places, so only parking from OSM or the city's data is drawn.
+const PARK_GUESS = new Set(["residential", "unclassified"]);
 const GUESS_PARK_W = 2; // estimated parallel parking strip (m)
 // § 25 of act 361/2000 Sb. (silniční provoz): a parked car leaves a lane at least LAW_LANE wide free for each
 // direction (odst. 3) and keeps LAW_RAIL from the nearest tram rail (odst. 2, from 5 to 19 h).
 const LAW_LANE = 3, LAW_RAIL = 3.5;
+// Outside the built-up area a kerb without a sidewalk gets no estimate (Bára): no building of OSM or of the
+// city's surfaces within BUILT_ALONG along the street and BUILT_OUT out from the kerb on that side. A sidewalk
+// is a footway surface beyond the kerb, past a green strip up to WALK_GREEN, or OSM's sidewalk tags or a
+// footway along the street within WALK_OSM of the kerb.
+const BUILT_ALONG = 40, BUILT_OUT = 40, WALK_GREEN = 10, WALK_OSM = 12;
 const RAIL_HALF = 0.7175; // half the track gauge of 1435 mm: rail from the track axis (m)
 const turnList = (v) => (v ? v.split("|").map((x) => x || "none") : null);
 
@@ -584,7 +617,7 @@ function splitRoadway(run, ctx) {
     const need = LAW_LANE * Math.max(oneway ? 1 : 2, lanesTotal);
     const lo = trams.length ? Math.min(...trams) - RAIL_HALF : Infinity, hi = trams.length ? Math.max(...trams) + RAIL_HALF : -Infinity;
     for (const [side, st] of [["R", sideR], ["L", sideL]]) {
-      if (!(ctx.kerbOpen ?? ["L", "R"]).includes(side) || parked.includes(side) || st.parkingNo || edge.some((x) => x.side === side && x.type === "parkovani")) continue;
+      if (!(ctx.kerbOpen ?? ["L", "R"]).includes(side) || ctx.kerbBare?.includes(side) || parked.includes(side) || st.parkingNo || edge.some((x) => x.side === side && x.type === "parkovani")) continue;
       const rest = width - edge.reduce((a, x) => a + x.w, 0) - GUESS_PARK_W;
       if (rest < need - 1e-6) continue;
       // The car's outer side, from the curb strips of this side and the strip itself.
@@ -1228,7 +1261,7 @@ export function centerOnStreet(osm, frame, near, half = 40) {
 }
 
 // Main entry: returns {segments (screen left → right), edges, runs}.
-export function deriveProfile({ center, dir, half, polys, osm, frame, way, tracks = [], parking = [], lines = [], reach, inZps: zoneKnown, itemReach }) {
+export function deriveProfile({ center, dir, half, polys, osm, frame, way, tracks = [], parking = [], lines = [], reach, inZps: zoneKnown, itemReach, ortho }) {
   const reachItems = { ...REACH, ...itemReach };
   // No-parking sections (Prague, TSK "Zákaz stání"): no surface of their own, they only keep a kerb free.
   const noParking = parking.filter((p) => p.kind === "zakaz");
@@ -1427,6 +1460,46 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   // Inside (or within 100 m of) a paid parking zone, from the TSK zone boundaries (caller's inZps);
   // without them, TSK parking sections along the cut stand for the zone.
   const inZps = zoneKnown ?? parking.some((p) => p.kind === "useky");
+  // A sidewalk beyond the kerb of roadway r on side sd (L: larger t): a footway or cycle path surface, past a
+  // green strip; or the street's OSM sidewalk tags on that side (st.osmSide) or a footway along the street.
+  const walkBeyond = (r, sd, after, before, st, tags) => {
+    const step = sd === "L" ? after : before;
+    let x = step(r), green = 0;
+    while (x && ((x.code >= 400 && x.code < 500) || x.e - x.s < 0.5) && green + x.e - x.s <= WALK_GREEN) { green += x.e - x.s; x = step(x); }
+    if (x && (x.code === 702 || x.code === 703)) return true;
+    const t = tags || {}, osmSide = st?.osmSide;
+    if (["both", "yes", "separate", osmSide].includes(t.sidewalk) || ["yes", "separate"].includes(t[`sidewalk:${osmSide}`]) || ["yes", "separate"].includes(t["sidewalk:both"])) return true;
+    const kerb = sd === "L" ? r.e : r.s, k = sd === "L" ? 1 : -1;
+    return cross.some((c) => {
+      const h = c.way.tags?.highway, d = (c.t - kerb) * k;
+      return d > -0.5 && d <= WALK_OSM && Math.abs(c.d[0] * dir[0] + c.d[1] * dir[1]) >= 0.8 &&
+        (c.way.tags.footway === "sidewalk" || ["footway", "path", "cycleway", "pedestrian"].includes(h));
+    });
+  };
+  // Built-up area at a kerb (offset kerb, k = 1 outwards to larger t): the profile ends at a building there,
+  // or a building of OSM or of the surfaces has a corner within BUILT_ALONG along the street and BUILT_OUT out.
+  let buildingRings = null;
+  const builtUp = (kerb, k, edge) => {
+    if (edge === "budova") return true;
+    buildingRings ??= [
+      ...(osm.elements || []).filter((el) => el.type === "area" && el.tags?.building).map((el) => el.geometry.map((g) => frame.toXY(g.lon, g.lat))),
+      ...polys.filter((p) => isBuilding(p.code)).flatMap((p) => p.rings || []),
+    ];
+    const [cx, cy] = at(kerb);
+    const uv = ([x, y]) => [(x - cx) * dir[0] + (y - cy) * dir[1], ((x - cx) * normal[0] + (y - cy) * normal[1]) * k];
+    // An outline edge reaching into the box [−BUILT_ALONG, BUILT_ALONG] × [0, BUILT_OUT] (clipped, Liang–Barsky).
+    const hits = ([u0, v0], [u1, v1]) => {
+      let a = 0, b = 1;
+      for (const [p, q] of [[u0 - u1, u0 + BUILT_ALONG], [u1 - u0, BUILT_ALONG - u0], [v0 - v1, v0], [v1 - v0, BUILT_OUT - v0]]) {
+        if (Math.abs(p) < 1e-12) { if (q < 0) return false; continue; }
+        const r = q / p;
+        if (p < 0) a = Math.max(a, r); else b = Math.min(b, r);
+        if (a > b) return false;
+      }
+      return true;
+    };
+    return buildingRings.some((ring) => ring.some((p, i) => i > 0 && hits(uv(ring[i - 1]), uv(p))));
+  };
   for (const r of kept) {
     const type = typeFromMtvu(r.code);
     if (r.code === 701 || r.code === 700) {
@@ -1501,6 +1574,8 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       const road = (x) => x && (x.code === 700 || x.code === 701);
       const inner = (x, y) => x && (x.code === MEDIAN || x.code === 705 || road(x) || inMedian(x) || (x.code >= 400 && x.code < 500 && x.e - x.s <= 15 && road(y)));
       const kerbOpen = [["L", !inner(next, kept[ri + 2])], ["R", !inner(prev, kept[ri - 2])]].filter(([, ok]) => ok).map(([sd]) => sd);
+      // Kerbs without a sidewalk outside the built-up area (Bára): no parking is estimated there.
+      const kerbBare = kerbOpen.filter((sd) => !walkBeyond(r, sd, after, before, edgeTags(sd), tags) && !builtUp(sd === "L" ? r.e : r.s, sd === "L" ? 1 : -1, edges[sd === "L" ? "left" : "right"]));
       // Half of a divided road: across a median or a green strip (up to 15 m) lies another roadway.
       const k = kept.indexOf(r), isRoad = (x) => x && (x.code === 701 || x.code === 700);
       const sep = (a, b) => isRoad(b) && a && (a.code === MEDIAN || inMedian(a) || (a.code >= 400 && a.code < 500 && a.e - a.s <= 15));
@@ -1514,7 +1589,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       const cls = streetClass(lines, (r.s + r.e) / 2);
       const guessPark = cls && (cls.road || cls.motorway || cls.mk === 1 || cls.mk === 2) ? false : undefined;
       const roadClass = classGroup(cls);
-      segs.push(...splitRoadway(r, { guessPark, tags, trams: inside, dirAt, lanesTotal, along: ownAxis ? (ownAxis.along !== (tags.oneway === "-1")) : true, single: new Set(axes.map((a) => a.id)).size === 1, parked, sides: sideTagsLR, kerbOpen, inZps, axesOneway: axes.every((a) => a.oneway), axisInside: here.length > 0, divided, roadClass }).map((x) => ({ ...x, mtvu: r.code, trolley: trolley && (x.type === "bus" || x.type === "bus_cyklo"), roadClass })));
+      segs.push(...splitRoadway(r, { guessPark, tags, trams: inside, dirAt, lanesTotal, along: ownAxis ? (ownAxis.along !== (tags.oneway === "-1")) : true, single: new Set(axes.map((a) => a.id)).size === 1, parked, sides: sideTagsLR, kerbOpen, kerbBare, inZps, axesOneway: axes.every((a) => a.oneway), axisInside: here.length > 0, divided, roadClass }).map((x) => ({ ...x, mtvu: r.code, trolley: trolley && (x.type === "bus" || x.type === "bus_cyklo"), roadClass })));
     } else if (r.code === MEDIAN) {
       segs.push({ type: "delici", s: r.s, e: r.e, source: "dtm" });
     } else if (isMinorStructure(r.code)) {
@@ -1563,6 +1638,8 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   // a lane for trams and buses (Prague: about 186 such tracks).
   const busTracks = cross.filter((c) => c.way.tags?.railway === "tram" && tramWithBus(c.way.tags)).map((c) => c.t);
   for (const x of segs) if (TRAM_KINDS.has(x.type) && busTracks.some((t) => t >= x.s - 0.3 && t <= x.e + 0.3)) x.withBus = true;
+  // The surface of the beds nobody describes: the orthophoto (ortho: ortho.js bedOrtho) and the rules.
+  bedSurfaces(segs, { rails: tramTs, ortho, at, dir, highway: way.tags?.highway });
   // Roadway outer edges are measured; only the internal split comes from OSM.
   const withKerb = carveKerbParking(markIslands(segs), kerbReqs);
   const withPlatforms = insertPlatforms(withKerb, platformPositions(osm, frame, center, normal, half), axisT);

@@ -299,15 +299,18 @@ Připojená po srovnání s celostátní DTM ČÚZK na 30 řezech v každém mě
 6. **Odhadnuté podélné stání** 2 m (Bára 10. 11. 2026) podle § 25 zák. 361/2000 Sb.: při stání musí zůstat volný
    jízdní pruh aspoň 3 m pro každý směr jízdy. Obousměrka ho dostane od 8 m vozovky na jedné straně a od 10 m na
    obou, jednosměrka od 5 m a od 7 m; pruhy vedle zůstanou široké aspoň 3 m (tolik, kolik jich OSM počítá).
-   U tramvaje zůstane mezi autem a kolejnicí 3,5 m (§ 25 odst. 2). Chodník u obruby nerozhoduje; jen u obruby
-   ke střednímu pásu, tramvajovému tělesu, zeleni do 15 m před další vozovkou nebo k další vozovce se neodhaduje.
-   Platí v ulicích residential, living_street a unclassified (na hlavních ulicích ne; v Praze ani v MK I a II
+   U tramvaje zůstane mezi autem a kolejnicí 3,5 m (§ 25 odst. 2). U obruby ke střednímu pásu, tramvajovému
+   tělesu, zeleni do 15 m před další vozovkou nebo k další vozovce se neodhaduje. Mimo zástavbu bez chodníku také
+   ne (Bára 10. 11. 2026): u obruby není chodník (plocha chodníku nebo stezky za ní, i za zelení do 10 m, tag OSM
+   `sidewalk` nebo pěší cesta OSM podél ulice do 12 m) a na té straně není dům (OSM ani plochy města) do 40 m od
+   obruby a ±40 m podél ulice. Ve vesnici a v úzkých uličkách se domy najdou, odhad tam zůstává.
+   Platí v ulicích residential a unclassified (na hlavních ulicích ne; v Praze ani v MK I a II
    podle TSK), jen mimo zóny placeného stání: do 100 m od řezu nesmí být žádná zóna TSK (vrstva „Zóny placeného
    stání vymezené tarifem“). Hranice zón se stahují jednou skriptem `node tools/build_zps.mjs` do
    `pilot/data/zps.json` (na webu při nasazení), takže se kvůli nim IPR při kliknutí neptá. Bez souboru rozhodují
    úseky TSK kolem řezu. Odhad se nepřidá, kde je stání z TSK nebo z OSM nebo kde ho tag zakazuje.
-7. Obytné zóny (`living_street`) se dělí jako ostatní ulice (Streetmix sdílený prostor nezná). Odhad stání platí i
-   v nich. Vozovka v pěší zóně (`highway=pedestrian`) zůstává vozovkou, bez tagu `lanes` jako jeden obousměrný pruh.
+7. Obytné zóny (`living_street`) se dělí jako ostatní ulice (Streetmix sdílený prostor nezná). Odhad stání v nich
+   není (§ 39: stání jen na vyznačených místech), stání z OSM nebo z dat města zůstává. Vozovka v pěší zóně (`highway=pedestrian`) zůstává vozovkou, bez tagu `lanes` jako jeden obousměrný pruh.
 8. Svodidlo z technické mapy s osou silnice na obou stranách rozdělí plochu vozovky a vznikne **dělicí pás** 0,6 m.
    U ulice ze dvou jednosměrných os se stejným jménem (protisměrných) se střed řezu posune doprostřed mezi ně
    (třeba na tramvajový pás), dosah se měří odtud a zeleň mezi vozovkami profil neukončí.

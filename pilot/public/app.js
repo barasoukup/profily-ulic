@@ -1,5 +1,6 @@
 import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, TRAM_BEDS } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
+import { bedOrtho } from "./ortho.js";
 import { loadSprites, buildSvg, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE } from "./profile.js";
 import * as sources from "./sources.js";
 import { MAPY_KEY } from "./config.js";
@@ -219,10 +220,14 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     const bbox = [Math.min(...lons) - pad, Math.min(...lats) - pad, Math.max(...lons) + pad, Math.max(...lats) + pad].join(",");
     let polys = [], tracks = [];
     const zone = sources.zps(clat, clon).catch(() => undefined);
-    const [m, k, pk, z] = await Promise.allSettled([
+    const [m, k, pk, z, o] = await Promise.allSettled([
       // The zone file is local (and loaded once), so knowing the zone first costs nothing.
       sources.mtvu(bbox), sources.linie(bbox), zone.then((inZone) => sources.parkovani(bbox, inZone)), zone,
+      // Where OSM has tram tracks across the cut: one small image of the orthophoto for the surface of the bed
+      // (ortho.js, a short timeout; without it the rules decide).
+      bedOrtho({ osm, frame, dir, half: HALF }),
     ]);
+    const ortho = o.status === "fulfilled" ? o.value : null;
     if (m.status === "fulfilled") polys = mtvuPolygons(m.value, frame);
     else console.warn("MTVU", m.reason);
     let lines = [];
@@ -232,7 +237,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     if (pk.status !== "fulfilled") console.warn("parkovani", pk.reason);
     // Unknown (no zone file): the profile decides from the TSK parking sections around the cut.
     const inZps = z.status === "fulfilled" ? z.value : undefined;
-    const result = deriveProfile({ center: [0, 0], dir, half: HALF, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps });
+    const result = deriveProfile({ center: [0, 0], dir, half: HALF, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho });
     const name = near.way.tags.name || near.way.tags.ref || `ulice ${near.way.id}`;
     const span = result.extent && { left: +result.extent[1].toFixed(2), right: +(-result.extent[0]).toFixed(2) };
     state.cut = { lat: clat, lon: clon, bearing: (Math.atan2(dir[0], dir[1]) * 180) / Math.PI, wayId: near.way.id, name, reach, span };
