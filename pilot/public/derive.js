@@ -774,13 +774,18 @@ function applyLaneTags(lanes, tags, along) {
   if (bwdTurns?.length === bwd.length) bwd.forEach((l, i) => (l.turn = bwdTurns[i]));
   // bus:lanes / psv:lanes list lanes like turn:lanes; "designated" marks a bus lane.
   const busList = (suffix) => turnList(tags[`bus:lanes${suffix}`] || tags[`psv:lanes${suffix}`]);
-  // Only "designated" is a bus lane; "yes" / "permissive" just let buses use an ordinary lane.
-  const isBus = (v) => v === "designated";
+  // "designated" is a bus lane; "yes" / "permissive" just let buses use an ordinary lane, unless the lane is
+  // closed to other traffic (access:lanes / motor_vehicle:lanes = no, e.g. Českobrodská: bus:lanes:forward=|yes
+  // with access:lanes:forward=|no).
+  const closedList = (suffix) => turnList(tags[`access:lanes${suffix}`] || tags[`motor_vehicle:lanes${suffix}`] || tags[`vehicle:lanes${suffix}`]);
+  const isBus = (v, closed) => v === "designated" || (["yes", "permissive"].includes(v) && closed === "no");
   const wayFwdBus = busList(":forward") || (oneway ? busList("") : null);
   const wayBwdBus = busList(":backward");
+  const wayFwdClosed = closedList(":forward") || (oneway ? closedList("") : null), wayBwdClosed = closedList(":backward");
   const fwdBus = sameAsWay ? wayFwdBus : wayBwdBus, bwdBus = sameAsWay ? wayBwdBus : wayFwdBus;
-  if (fwdBus?.length === fwd.length) fwd.forEach((l, i) => { if (isBus(fwdBus[i])) l.type = "bus"; });
-  if (bwdBus?.length === bwd.length) bwd.forEach((l, i) => { if (isBus(bwdBus[i])) l.type = "bus"; });
+  const fwdClosed = sameAsWay ? wayFwdClosed : wayBwdClosed, bwdClosed = sameAsWay ? wayBwdClosed : wayFwdClosed;
+  if (fwdBus?.length === fwd.length) fwd.forEach((l, i) => { if (isBus(fwdBus[i], fwdClosed?.[i])) l.type = "bus"; });
+  if (bwdBus?.length === bwd.length) bwd.forEach((l, i) => { if (isBus(bwdBus[i], bwdClosed?.[i])) l.type = "bus"; });
   // bicycle:lanes marks the bus lanes cyclists may use.
   const bikeList = (suffix) => turnList(tags[`bicycle:lanes${suffix}`]);
   const wayFwdBike = bikeList(":forward") || (oneway ? bikeList("") : null);

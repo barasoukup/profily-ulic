@@ -293,3 +293,13 @@ test("poloha stání projde kontrolou, odkazem a do Streetmixu", async () => {
   const sm = toStreetmix(p, "Test").data.street.segments;
   assert.deepEqual(sm.map((s) => [s.type, s.elevation > 0]), [["parking-lane", false], ["parking-lane", false], ["sidewalk", true], ["parking-lane", true]]);
 });
+
+test("pruh BUS z bus:lanes=yes se zavřeným pruhem (access:lanes=no), s cyklisty (share_busway)", () => {
+  // Českobrodská (way 112501241).
+  const tags = { highway: "primary", lanes: "3", "lanes:forward": "2", "lanes:backward": "1", "bus:lanes:forward": "|yes", "access:lanes:forward": "|no", "cycleway:right": "share_busway" };
+  const types = (t) => road(13.5, t).segments.map((s) => s.type).filter((x) => x !== "krajnice");
+  assert.equal(types(tags).filter((x) => x === "bus_cyklo").length, 1);
+  // Without the closed lane buses only may use an ordinary lane.
+  const open = { ...tags }; delete open["access:lanes:forward"];
+  assert.equal(types(open).filter((x) => x.startsWith("bus")).length, 0);
+});
