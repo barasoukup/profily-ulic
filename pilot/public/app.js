@@ -1099,7 +1099,30 @@ function renderEditor(p) {
   r1.append(lab("Typ", type), lab("Šířka (m)", wbox));
   const r2 = row();
   if (TYPES[s.type]?.directional) {
-    r2.append(lab("Směr jízdy", btn(s.dir === "backward" ? "↓ k divákovi" : "↑ od diváka", () => { s.dir = s.dir === "backward" ? "forward" : "backward"; done(); })));
+    // Away from or towards the viewer; a lane of a two-way street with one axis has no direction and is drawn
+    // "↑↓" (derive.js), so it can be made and kept here too. Another part without a direction says so.
+    const dir = document.createElement("select");
+    const both = s.type === "pruh" ? [["", "↑↓ obousměrný"]] : s.dir ? [] : [["", "bez směru"]];
+    for (const [v, t] of [["forward", "↑ od diváka"], ["backward", "↓ k divákovi"], ...both]) dir.add(new Option(t, v, false, (s.dir || "") === v));
+    dir.onchange = () => { if (dir.value) s.dir = dir.value; else delete s.dir; done(); };
+    r2.append(lab("Směr jízdy", dir));
+  }
+  if (s.type === "pruh" || s.type === "pruh_piktokoridor") {
+    // Cyclists sharing the lane (drawn with the cars, "cyklisté ↓" in contraflow; a piktokoridor has them anyway).
+    const bike = document.createElement("select");
+    for (const [v, t] of [["", s.type === "pruh" ? "ne" : "po směru pruhu"], ["forward", "↑ od diváka"], ["backward", "↓ k divákovi"]]) bike.add(new Option(t, v, false, (s.bikeDir || "") === v));
+    bike.onchange = () => { if (bike.value) s.bikeDir = bike.value; else delete s.bikeDir; s.source = "user"; done(); };
+    r2.append(lab("Cyklisté v pruhu", bike));
+  }
+  if (["pruh", "pruh_piktokoridor", "bus", "bus_cyklo"].includes(s.type)) {
+    // Trolley wires over the lane (OSM trolley_wire): drawn above it; a bus lane under them carries the trolleybus.
+    const wires = Object.assign(document.createElement("input"), { type: "checkbox", checked: !!s.wires });
+    wires.onchange = () => {
+      if (wires.checked) { s.wires = true; if (s.type.startsWith("bus")) s.trolley = true; } else { delete s.wires; delete s.trolley; }
+      s.source = "user";
+      done();
+    };
+    r2.append(lab("Troleje ", wires));
   }
   if (s.type === "parkovani") {
     const use = document.createElement("select");
