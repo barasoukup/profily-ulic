@@ -1099,7 +1099,12 @@ function renderEditor(p) {
   r1.append(lab("Typ", type), lab("Šířka (m)", wbox));
   const r2 = row();
   if (TYPES[s.type]?.directional) {
-    r2.append(lab("Směr jízdy", btn(s.dir === "backward" ? "↓ k divákovi" : "↑ od diváka", () => { s.dir = s.dir === "backward" ? "forward" : "backward"; done(); })));
+    r2.append(lab("Směr jízdy", btn(s.dir === "backward" ? "↓ k divákovi" : "↑ od diváka", () => {
+      s.dir = s.dir === "backward" ? "forward" : "backward";
+      // Cyclists in the lane turn with it, so contraflow stays contraflow (Bára).
+      if (s.bikeDir) s.bikeDir = s.bikeDir === "backward" ? "forward" : "backward";
+      done();
+    })));
   }
   if (s.type === "parkovani") {
     const use = document.createElement("select");
