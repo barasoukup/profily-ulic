@@ -1,5 +1,5 @@
 // Draws the link preview image (Open Graph, 1200 × 630) from the app's own drawing code: a sample
-// street profile beside the app's name, for the whole Czech Republic (the default, "cesko": the country's
+// street profile beside the app's name, for the whole Czech Republic (the default, "cesko", drawn with Prague's
 // illustrations) or for one city. Writes an SVG; the PNG the
 // page links (pilot/public/og.png) is made from it with any SVG renderer. On a Mac, Quick Look
 // renders squares only, so: set the SVG to viewBox="0 -285 1200 1200" and height="1200", then
@@ -13,7 +13,9 @@ const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "pilo
 const out = process.argv[2] || "og.svg";
 const { NAMES, SITES } = await import("./cities.mjs");
 const cityId = SITES[process.argv[3]] || process.argv[3] === "praha" ? process.argv[3] : "cesko";
-if (cityId !== "praha") globalThis.PROFILY_CITY = cityId;
+// The country's card is drawn with Prague's illustrations (T3, Prague's furniture; Bára: not Streetmix's green trams).
+const artCity = cityId === "cesko" ? "praha" : cityId;
+if (artCity !== "praha") globalThis.PROFILY_CITY = artCity;
 // Words of the card per city: name suffix, "…ulic", data line, credit.
 const T = cityId === "cesko"
   ? { name: "", adj: "českých", data: "z technických map a OSM.", credit: "kraje a města, ČÚZK, IPR Praha, OSM" }
