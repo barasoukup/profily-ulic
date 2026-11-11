@@ -29,6 +29,8 @@ function limits(s, segs, i) {
       if (parking?.position) return { min: 1.5, zaklad: 2, why: `zbytek chodníku vedle stání ${parking.position === "on_kerb" ? "na chodníku" : "napůl na chodníku"}: zúžený chodník min. 1,5 m, základ 2–2,5 m` };
       return { min: 1.5, zaklad: 2, why: "chodník: zúžený min. 1,5 m, základ 2–2,5 m" };
     case "pruh": case "pruh_piktokoridor":
+      // A turning lane: about 2.5 m in tight places (Manuál C.2); narrower is orange (Bára 11. 11. 2026).
+      if (s.turn) return { min: 0, zaklad: 2.5, why: "řadicí pruh: cca 2,5 m ve stísněných poměrech (Manuál C.2)" };
       return laneByClass(s.roadClass ?? segs.find((x) => x.roadClass)?.roadClass) || { min: 2.5, zaklad: 3, why: "jízdní pruh: základ 3 m, ve zklidněné ulici 2,5 m" };
     case "bus": case "bus_cyklo":
       return s.type === "bus_cyklo"
@@ -45,7 +47,14 @@ function limits(s, segs, i) {
         ? { min: 1.25, zaklad: 1.5, why: "ochranný cyklopruh: základ 1,5 m, nejméně 1,25 m" }
         : { min: 1.5, zaklad: 1.5, why: "cyklopruh u obruby: 1,5 m" };
     }
+    // Below these widths orange only (Bára 11. 11. 2026).
+    case "cyklostezka":
+      return { min: 0, zaklad: 2.5, why: "cyklostezka: 2,5 m" };
+    case "nastupiste":
+      return { min: 0, zaklad: 2, why: "nástupiště zastávky: světlá šířka nejméně 2 m (Manuál C.2)" };
     case "parkovani":
+      // Angled stalls keep the rules of perpendicular ones, their depth by the angle (Manuál C.2): 2.5 × 5 m at 45°
+      // is about 5.3 m deep, at 30° 4.7 m.
       return s.orient === "kolme" || s.orient === "sikme"
         ? { min: 4.5, zaklad: 5, why: "kolmé a šikmé stání: 5 m (4,5 m s přesahem nad chodník)" }
         : { min: 2, zaklad: 2, why: "podélné stání: 2 m" };

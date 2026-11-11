@@ -1112,9 +1112,9 @@ function renderEditor(p) {
     }
     orient.onchange = () => {
       s.orient = orient.value;
-      // ČSN 73 6056: perpendicular stalls 5.0 m deep (4.5 m with overhang), angled about 4.5 m.
-      if (s.orient === "kolme" && s.width < 4.5) s.width = 5;
-      if (s.orient === "sikme" && s.width < 3.5) s.width = 4.5;
+      // ČSN 73 6056 and Manuál C.2: perpendicular stalls 5.0 m deep (4.5 m with overhang); angled ones keep the rules
+      // of perpendicular stalls (rules.js), so they start at 5.0 m too.
+      if ((s.orient === "kolme" || s.orient === "sikme") && s.width < 4.5) s.width = 5;
       s.source = "user";
       done();
     };

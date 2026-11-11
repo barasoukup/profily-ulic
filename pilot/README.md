@@ -402,6 +402,11 @@ pruh 3 m, ochranný cyklopruh 1,5 m, kolmé stání 5 m, tramvajový pás bez sl
 upozornění se část vybere. Tramvajový pás je vyhrazený tramvajový pruh i samostatné těleso, ne tramvaj v pruhu
 s auty.
 
+Šikmé stání se posuzuje jako kolmé (Manuál C.2: hloubka podle úhlu; stání 2,5 × 5 m pod 45° je hluboké asi 5,3 m,
+pod 30° 4,7 m), v Návrhu začíná na 5 m; tramvajová kolej v Návrhu na 3,5 m (pás 7 m). Jen oranžově (Bára 11. 11. 2026):
+cyklostezka pod 2,5 m, nástupiště pod 2 m (světlá šířka zastávky), řadicí pruh (se šipkami) pod 2,5 m místo
+běžného pruhu.
+
 Jednosměrka s cyklisty v protisměru (značka IP 4c pod pruhem) bez vlastního cyklopruhu: vozovka, tedy pruhy
 s krajnicí a šrafami bez stání, červeně pod 3 m, oranžově pod 4 m (Manuál C.2: základ 4 m, při velmi nízké
 intenzitě 3 m, při vyšší až 4,5 m; Bára 11. 11. 2026). Nahrazuje varování jednotlivých pruhů.

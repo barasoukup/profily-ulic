@@ -158,6 +158,16 @@ test("jednosměrka s cyklisty v protisměru: vozovka 4 m, nejméně 3 m (Manuál
   assert.equal(lvl([{ type: "pruh", width: 3.5, signs: [{ k: "oneway" }] }]), "");
 });
 
+test("menší než cyklostezka 2,5 m, nástupiště 2 m a řadicí pruh 2,5 m: oranžově", () => {
+  const lvl = (seg) => checkRules({ segments: [seg] }).map((f) => f.level).join();
+  assert.equal(lvl({ type: "cyklostezka", width: 1.2 }), "zaklad");
+  assert.equal(lvl({ type: "cyklostezka", width: 2.5 }), "");
+  assert.equal(lvl({ type: "nastupiste", width: 1.5 }), "zaklad");
+  assert.equal(lvl({ type: "nastupiste", width: 2 }), "");
+  assert.equal(lvl({ type: "pruh", width: 2.6, turn: "left", roadClass: "mk1" }), "", "řadicí pruh od 2,5 m");
+  assert.equal(lvl({ type: "pruh", width: 2.2, turn: "left" }), "zaklad");
+});
+
 test("strop pruhu v MK I je 3,75 m, zbytek je krajnice", () => {
   const section = techLines({ features: [{ attributes: { CTMTP_KOD: "od_usek", MK: 1, SIL: 0, DALNICE: 0, TYP: 3 }, geometry: { paths: [[[ll(0.5, -50).lon, ll(0.5, -50).lat], [ll(0.5, 50).lon, ll(0.5, 50).lat]]] } }] }, frame);
   const p = road(10.5, { highway: "secondary" }, { lines: section });
