@@ -339,9 +339,11 @@ async function brnoPodlaznost(lat, lon) {
 export async function parkovani(bbox, inZone, opts = {}) {
   if (town()) return town().parking(bbox);
   if (isBrno()) return brnoParkovani(bbox);
-  // Prague: the no-parking sections of TSK (open data "Zákaz stání", static tiles) in parallel with IPR's
-  // parking layers, as features of KIND "zakaz" (derive.js: no parking at that kerb). opts.zakaz false: without.
-  const [json, open] = await Promise.all([iprParking(bbox, inZone), opts.zakaz === false ? null : prahaOpendata(bbox).catch(() => null)]);
+  // Prague: the no-parking sections of TSK (open data "Zákaz stání", static tiles) as features of KIND "zakaz"
+  // (derive.js: no parking at that kerb), only when asked (opts.zakaz). Off by default (Bára 11. 11. 2026): they are
+  // gaps of a few metres inside continuous parking (driveways, bins, trees between the stalls; 99 of 101 in Vinohrady
+  // lie inside a TSK section, median length 5.6 m), below what a street profile shows.
+  const [json, open] = await Promise.all([iprParking(bbox, inZone), opts.zakaz ? prahaOpendata(bbox).catch(() => null) : null]);
   const zakaz = (open?.noParking || []).map((z) => ({ attributes: { KIND: "zakaz" }, geometry: { rings: [z.ring] } }));
   return zakaz.length ? { ...json, features: [...(json.features || []), ...zakaz] } : json;
 }

@@ -16,7 +16,7 @@ Je to jedna stránka pro celou Českou republiku. Město se pozná podle místa 
 ilustrace i texty. Staré adresy `/brno/`, `/jihlava/`… přesměrují na hlavní stránku i s řezem.
 
 - **Praha:** technická mapa IPR (MTVU, koleje, bariéry, body), úseky parkování TSK, otevřená data Geoportálu
-  Praha (stromy, zákaz stání, třídy ulic), podlažnosti a vývoj zástavby IPR.
+  Praha (stromy, třídy ulic), podlažnosti a vývoj zástavby IPR.
 - **Města s vlastními zdroji:** Brno, Jihlava, Most, Opava, Plzeň, Ostrava, Frýdek-Místek, Karviná, Třebíč,
   Přerov a Ústí nad Labem (technické mapy, pasporty komunikací nebo parkovací místa měst).
 - **Zbytek Česka** (i Pardubice): celostátní technická mapa ČÚZK (v devíti krajích jako polygony z WFS kraje),

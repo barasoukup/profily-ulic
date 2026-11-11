@@ -49,8 +49,10 @@ Streetmixu). Bývalé stránky `/<město>/` přesměrují na `/?mesto=<město>` 
 - **Body technické mapy IPR** (`dtmp/MapServer/9`, jeden dotaz na řez): sloupy trakčního vedení, označníky zastávek,
   sloupky, stožáry osvětlení bez vedení a stromy.
 - **Otevřená data Geoportálu Praha** (CC BY 4.0, staženo při nasazení do dlaždic `data/praha/opendata`, při
-  kliknutí žádný dotaz): stromy a stromořadí, úseky zákazu stání TSK (vyříznou se z úseků parkování) a uliční úseky
-  TSK se zatříděním (dálnice, MK I–IV) pro šířky pruhů, varování a odhad stání.
+  kliknutí žádný dotaz): stromy a stromořadí a uliční úseky
+  TSK se zatříděním (dálnice, MK I–IV) pro šířky pruhů, varování a odhad stání. Úseky „Zákaz stání“ TSK se
+  stahují také, ale profil je nepoužívá: jsou to mezery pár metrů uvnitř souvislého stání (vjezdy, kontejnery, stromy
+  mezi stáními), pod rozlišením profilu (Bára 11. 11. 2026).
 - **Parkování v zónách placeného stání:** úseky parkovacích stání TSK (`gs-pub.praha.eu/.../dop/zony_placeneho_stani/MapServer/3`,
   polygony). Stejná data používá i Golemio, ale bez API klíče. Mají přednost před plochami parkování z OSM.
   **Zásobování, ZTP, speciální stání:** vrstvy 5–8 stejné služby; parkovací pruh dostane účel.

@@ -78,7 +78,7 @@ const CITIES = {
     artLabel: "Pražské ilustrace",
     artTitle: "Kreslit pražskými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "praha/t3-inbound.svg",
-    credit: "data © IPR Praha (technická mapa, podlažnosti, vývoj zástavby), TSK hl. m. Prahy (parkování) a MHMP, Geoportál Praha (stromy, zákaz stání, uliční úseky), CC BY 4.0, upraveno",
+    credit: "data © IPR Praha (technická mapa, podlažnosti, vývoj zástavby), TSK hl. m. Prahy (parkování) a MHMP, Geoportál Praha (stromy, uliční úseky), CC BY 4.0, upraveno",
     storeSuffix: "",
     example: "50.082707, 14.419918",
   },

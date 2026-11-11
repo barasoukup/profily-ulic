@@ -48,6 +48,9 @@ z tagů OSM ani odhad a místo se kreslí jako vozovka nebo krajnice.
   je novější. Při nasazení se proto může hodit brát ho z ní (je to 13 tisíc ploch, jednou za nasazení).
 - **Rozhodnutí: připojeno** (vyhrálo 9 : 5). Profil v mezeře mezi stáními ukazuje, že tam se nestojí. Je to
   pravda, ale pro typický profil ulice je to méně reprezentativní. Bára může chtít opak.
+- **Vypnuto 11. 11. 2026 (Bára):** na Vinohradech leží 99 ze 101 úseků uvnitř úseku stání TSK, v celé Praze je
+  medián délky 5,6 m (90 % do 13 m) a asi 780 z 13 234 drží strom mezi stáními (Laubova). Jsou pod rozlišením
+  profilu, takže je profil ani mapa nepoužívají.
 
 ## 4. Uliční úseky TSK se zatříděním – připojeno jen pro odhad stání
 
