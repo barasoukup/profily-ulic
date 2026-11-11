@@ -456,7 +456,9 @@ po doladění polohy, bílý pruh nahoře = část „odhad“. <span style="bac
 ${rows}</body></html>`;
 }
 
-// ---------- main ----------
+// ---------- main (also imported by cary.mjs for its helpers) ----------
+export { ALL, frameOf, strip, median, layout, align, encodePng, markings, ROAD };
+if (import.meta.url === `file://${process.argv[1]}`) {
 const list = (await fs.readdir(AB)).filter((f) => /^\d+\.json$/.test(f)).map((f) => +f.slice(0, -5)).sort((a, b) => a - b).filter((n) => !ONLY || ONLY.has(n));
 const results = [];
 for (const n of list) {
@@ -469,3 +471,4 @@ await fs.mkdir(OUT, { recursive: true });
 await fs.writeFile(path.join(OUT, "results.json"), JSON.stringify(results, null, 1));
 await fs.writeFile(path.join(OUT, "index.html"), page(results));
 console.log(`hotovo: ${results.length} řezů, ${path.join(OUT, "index.html")}`);
+}

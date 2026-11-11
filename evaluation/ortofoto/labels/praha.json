@@ -1,0 +1,23 @@
+{
+ "_": "Čáry vodorovného značení odečtené okem na IPR 10 cm (label/<n>-<vozovka>.jpg, px při 20 px/m od 'from' v data/praha/label/candidates.json), u přerušovaných v polovině výšky. Křižovatky a vozovky mimo obrázek: skip. 11. 11. 2026.",
+ "1-0": { "px": [99, 176, 251] },
+ "1-1": { "px": [51, 127, 207] },
+ "4-0": { "px": [155, 220, 410, 485] },
+ "4-1": { "skip": "stejná vozovka jako 4-0" },
+ "6-0": { "px": [75, 148, 225, 300, 374, 386, 465, 541, 616, 694] },
+ "11-0": { "px": [236, 263] },
+ "11-1": { "px": [75, 150, 223] },
+ "14-0": { "skip": "stejný obrázek jako 14-1" },
+ "14-1": { "px": [72, 124, 188, 323, 380, 466] },
+ "17-0": { "px": [42, 125, 197], "oblouk": true },
+ "17-1": { "px": [40, 122, 198], "oblouk": true },
+ "20-0": { "px": [121] },
+ "20-1": { "px": [43, 125, 190] },
+ "25-0": { "skip": "vozovka profilu mimo skutečnou" },
+ "28-0": { "px": [52, 125], "stin": true },
+ "32-0": { "skip": "rozplétání pruhů u křižovatky" },
+ "36-0": { "px": [193] },
+ "41-0": { "px": [40, 135] },
+ "45-0": { "skip": "křižovatka" },
+ "59-0": { "px": [] }
+}

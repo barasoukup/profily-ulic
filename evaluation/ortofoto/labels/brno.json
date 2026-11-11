@@ -1,0 +1,12 @@
+{
+ "_": "Čáry vodorovného značení odečtené okem na ortofotu Brna 2025 (label/<n>-<vozovka>.jpg, px při 20 px/m od 'from' v data/brno/label/candidates.json). 11. 11. 2026.",
+ "3-0": { "px": [47, 120, 190, 266] },
+ "3-1": { "px": [30, 102, 174, 238] },
+ "8-0": { "px": [153, 214, 280] },
+ "12-1": { "px": [44, 115, 186] },
+ "12-2": { "px": [], "pozn": "tramvajová trať, profil ji má jako pruhy" },
+ "18-0": { "skip": "oblouk, čáry nejisté" },
+ "30-0": { "px": [135], "pozn": "vybledlé" },
+ "37-0": { "skip": "křižovatka" },
+ "44-0": { "px": [35, 122, 195], "stin": true }
+}

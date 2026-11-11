@@ -73,3 +73,46 @@ V aplikaci by stačil úzký pás a JPEG, tedy zhruba desetina těchto velikost�
 - **Pás u obruby a výplň:** v každém metru podél ulice podíl bodů na hranách (změna jasu o 18 %) nebo rozptyl
   jasu. Zelené body jsou zakryté stromem a nepočítají se. Řada aut je, když auta vycházejí aspoň ve třetině metrů.
   Šrafy jsou světlá plocha bez řady aut a asfalt je pás bez hran.
+
+## Druhé kolo: čáry proti ruční kontrole (`cary.mjs`, 11. 11. 2026)
+
+Bez kontroly okem se nedalo poznat, který detektor má pravdu. Čáry jsem proto odečetla okem na 22 vozovkách
+se dvěma a více pruhy (Praha 15 na IPR 10 cm, 46 čar; Brno 7 na městském ortofotu, 18 čar; křižovatky
+a vozovky, kde profil neleží na skutečné vozovce, vynechané). Štítky jsou v `labels/<město>.json`, obrázky ke
+kontrole vytvoří `cary.mjs --label`. Pozor: štítky vznikly na nejjemnějším ortofotu a z jeho kandidátů, takže
+toto ortofoto je ve srovnání mírně zvýhodněné. Vzorek je malý, čísla berte jako orientační.
+
+Zkoušené způsoby:
+- **m1**: detektor z prvního kola (směr ulice podle OSM);
+- **m2**: totéž, ale každá čára hledaná i pootočená (±3°) a v oblouku (poloměr od 50 m; Bára: řezy v zatáčce);
+- **m4**: jeden společný směr a oblouk pro celou vozovku (čáry jedné vozovky jsou rovnoběžné);
+- **m3**: čára platí, jen když ji vidí dvě ortofota (IPR 10 cm a ČÚZK 12,5 cm).
+
+| Praha, 46 čar | nalezeno (recall) | správných z nalezených (precision) |
+|---|---|---|
+| ČÚZK 25 cm m1 / m4 | 54 % / 59 % | 66 % / 63 % |
+| ČÚZK 12,5 cm m1 / m4 | 72 % / 78 % | 69 % / 69 % |
+| IPR 10 cm m1 / m4 | 87 % / 89 % | 71 % / 73 % |
+| IPR 5 cm (jaro, stíny) m1 / m4 | 67 % / 70 % | 61 % / 60 % |
+| m2 (každá čára zvlášť natočená), IPR 10 cm | 96 % | 43 % |
+| m3 (IPR 10 + ČÚZK 12,5 cm) | 85 % | 54 % |
+
+Brno (18 čar): městské ortofoto m4 100 % / 62 %, ČÚZK 12,5 cm 67 % / 48 %, ČÚZK 25 cm 78 % / 56 %.
+
+Co z toho plyne:
+1. **Falešné čáry jsou skoro všechny u obruby** (obrubníky, vodicí čáry). Pro šířky pruhů rozhodují
+   **dělicí čáry uvnitř vozovky** (aspoň 0,7 m od obruby): ty IPR 10 cm najde v 97 % (precision 84 %),
+   ČÚZK 12,5 cm v 84 % (73 %), ČÚZK 25 cm v 63 % (67 %); v Brně městské ortofoto 100 % (68 %), ČÚZK 12,5 cm 62 %.
+2. **Natáčení každé čáry zvlášť škodí** (hodně falešných). Jeden směr a oblouk pro celou vozovku (m4) pomůže
+   málo, ale nic nezkazí; oblouky pomáhají hlavně v zatáčkách (Karlovarská).
+3. **Spojení dvou ortofot nepomohlo**: shoda dvou snímků vyřadí i pravé čáry.
+4. **Ortofota mezi sebou sedí**: ČÚZK proti IPR je u 11 z 15 vozovek posunuté jen o 0–0,2 m (Brno: městské
+   ortofoto proti ČÚZK o 2,2 m). Velké a nestálé posuny z prvního kola jsou chyba napojení profilu na MTVU
+   (doladění podle obrub), ne snímků.
+5. **Aplikace proti ortofotu:** když profil posunu jako celek tak, aby co nejlépe seděl, rozdělí aplikace
+   vozovku správně (do 0,3 m) u 24 z 32 dělicích čar v Praze a 11 z 13 v Brně; ortofoto IPR 10 cm u 31 z 32,
+   ČÚZK 12,5 cm u 27 z 32, brněnské u 13 z 13. Počet pruhů podle čar sedí u 8–10 z 15 pražských vozovek, aplikace
+   u 6 z 15. Zlepšení tedy je, ale hlavně tam, kde aplikace špatně odhadne počet pruhů nebo krajnici.
+
+Další krok: napojení profilu na snímek (bez něj nejde ortofoto do profilu promítnout) a větší ověřovací vzorek
+s měřením šířek, ne jen poloh čar.
