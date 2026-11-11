@@ -1,8 +1,8 @@
 // Checks a saved profile (from the browser's storage or a JSON file) before the app uses it: a broken
 // or edited file must not break the drawing. Unknown types and items are made harmless, numbers
 // that the drawing needs must be numbers, a part without a usable width is an error.
-import { TYPES, SOURCES, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS } from "./types.js";
-import { SIGNS, PLATES, MAX_PER_PART } from "./signs.js";
+import { TYPES, SOURCES, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, isTurn } from "./types.js";
+import { SIGNS, signChoice, MAX_PER_PART } from "./signs.js";
 
 const EDGE_KINDS = new Set(["budova", "stavba", "zahrada", "zelen", "voda", "parkoviste", "plot", "volno"]);
 const EDGE_STYLES = new Set(["sikma", "funkce", "moderni", "plocha", "nizky", "hala", "centrum", "centrum-obchod", "sidliste", "sidliste-lodzie", "rd"]);
@@ -23,7 +23,9 @@ export function cleanProfile(p, what = "profil") {
     if ("orient" in s && !["podelne", "sikme", "kolme"].includes(s.orient)) delete s.orient;
     if ("use" in s && !(s.use in PARKING_USE)) delete s.use;
     if ("position" in s && !(s.type === "parkovani" && Object.hasOwn(PARKING_POSITION, s.position))) delete s.position;
-    if ("turn" in s && typeof s.turn !== "string") delete s.turn;
+    if ("turn" in s && !isTurn(s.turn)) delete s.turn; // only words the drawing can name (TURNS)
+    // The surface colour of a cycle lane (OSM, derive.js COLOURS) goes into the SVG as it is: a hex colour only.
+    if ("color" in s && !/^#[0-9a-f]{6}$/i.test(String(s.color))) delete s.color;
     for (const k of ["trolley", "wires"]) if (k in s && s[k] !== true) delete s[k];
     // A profile saved before the three kinds of tram (11/2026) has no bed on its tram belt: panels.
     if ("bed" in s && !(s.bed in TRAM_BEDS)) delete s.bed;
@@ -50,12 +52,31 @@ export function cleanProfile(p, what = "profil") {
   return p;
 }
 
-// Traffic signs (signs.js): known keys, a speed as a number, a known plate, a direction word.
+// The parts a setting belongs to (derive.js sets it there, profile.js and streetmix.js read it there). On a part
+// of another type it is a leftover of a type change in Návrh, and the drawing would still follow it (the sidewalk
+// paving of position under a lane, the arrows and the cyclist of a lane under a sidewalk).
+const LANES = ["pruh", "pruh_piktokoridor", "bus", "bus_cyklo"];
+const FIELD_TYPES = {
+  dir: Object.keys(TYPES).filter((k) => TYPES[k].directional), bikeDir: ["pruh", "pruh_piktokoridor"], turn: [...LANES, "tramvaj_v_pruhu"],
+  orient: ["parkovani"], use: ["parkovani"], position: ["parkovani"], color: ["cyklopruh", "ochranny_pruh"],
+  bed: Object.keys(TYPES).filter((k) => TYPES[k].bed), bedGuess: Object.keys(TYPES).filter((k) => TYPES[k].bed),
+  withBus: Object.keys(TYPES).filter((k) => TYPES[k].tracks), trolley: LANES, wires: LANES, roadClass: LANES,
+};
+// Gives a part a new type and drops the settings that do not belong to it; a directional type gets a direction.
+export function retype(s, type) {
+  s.type = type;
+  for (const [k, types] of Object.entries(FIELD_TYPES)) if (k in s && !types.includes(type)) delete s[k];
+  if (TYPES[type]?.directional && !s.dir) s.dir = "forward";
+  return s;
+}
+
+// Traffic signs (signs.js): known keys, a speed as a number, a plate only in a known pair (SIGN_CHOICES), a
+// direction word.
 function cleanSigns(list) {
   if (!Array.isArray(list)) return [];
   return list.filter((x) => x && Object.hasOwn(SIGNS, x.k)).map((x) => ({ k: x.k,
     ...(num(x.v, 1, 200) ? { v: x.v } : {}),
-    ...(Object.hasOwn(PLATES, x.plate) ? { plate: x.plate } : {}),
+    ...(signChoice(x) ? { plate: x.plate } : {}),
     ...(["forward", "backward"].includes(x.dir) ? { dir: x.dir } : {}) })).slice(0, 12);
 }
 

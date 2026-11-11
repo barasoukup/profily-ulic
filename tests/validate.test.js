@@ -29,8 +29,42 @@ test("poloha řezu mimo Prahu nebo s vadným dosahem", () => {
 });
 
 test("vadné směry, orientace, účel a odbočení se zahodí", () => {
-  const p = cleanProfile({ segments: [{ type: "parkovani", width: 2, dir: "nahoru", orient: 5, use: "x", turn: 7 }, { type: "pruh", width: 3, dir: "backward", turn: "left|through" }] });
+  const p = cleanProfile({ segments: [{ type: "parkovani", width: 2, dir: "nahoru", orient: 5, use: "x", turn: 7 }, { type: "pruh", width: 3, dir: "backward", turn: "left|through" },
+    { type: "pruh", width: 3, turn: "slight_left;through" }] });
   assert.deepEqual(Object.keys(p.segments[0]).sort(), ["items", "type", "width"]);
   assert.equal(p.segments[1].dir, "backward");
-  assert.equal(p.segments[1].turn, "left|through");
+  // Only words the drawing can name (TURNS), joined by ";" as in OSM turn:lanes.
+  assert.equal(p.segments[1].turn, undefined);
+  assert.equal(p.segments[2].turn, "slight_left;through");
+});
+
+test("tabulka zůstane jen u známé dvojice značky a tabulky", () => {
+  const p = cleanProfile({ segments: [{ type: "pruh", width: 3, signs: [{ k: "oneway", plate: "protismer" }, { k: "b1", plate: "kolme" }] },
+    { type: "parkovani", width: 2, signs: [{ k: "ip11a", plate: "sikme" }, { k: "b20a", v: 30, plate: "obsluha" }] }] });
+  assert.deepEqual(p.segments[0].signs, [{ k: "oneway", plate: "protismer" }, { k: "b1" }]);
+  assert.deepEqual(p.segments[1].signs, [{ k: "ip11a", plate: "sikme" }, { k: "b20a", v: 30 }]);
+});
+
+test("změna typu části v Návrhu odloží, co k novému typu nepatří", async () => {
+  const { retype } = await import("../pilot/public/validate.js");
+  // Parking on the sidewalk made a lane: no position (the lane would be drawn in the sidewalk's paving), a direction.
+  const lane = retype({ type: "parkovani", width: 5, orient: "kolme", position: "on_kerb", use: "ztp", items: [], signs: [{ k: "ip11d" }] }, "pruh");
+  assert.deepEqual(lane, { type: "pruh", width: 5, dir: "forward", items: [], signs: [{ k: "ip11d" }] });
+  // A lane made a sidewalk: no arrows, cyclist, wires or class; a tram bed made a lane: no bed or buses.
+  const walk = retype({ type: "pruh", width: 3, dir: "backward", turn: "left", bikeDir: "forward", trolley: true, wires: true, roadClass: "mk3" }, "chodnik");
+  assert.deepEqual(walk, { type: "chodnik", width: 3 });
+  assert.deepEqual(retype({ type: "tramvaj", width: 3.5, dir: "forward", bed: "trava", bedGuess: true, withBus: true }, "pruh"), { type: "pruh", width: 3.5, dir: "forward" });
+  // Between lanes everything stays; a bus lane keeps its wires.
+  assert.deepEqual(retype({ type: "pruh", width: 3, dir: "forward", turn: "right", wires: true }, "bus"), { type: "bus", width: 3, dir: "forward", turn: "right", wires: true });
+});
+
+test("šipky nabízené v Návrhu mají jméno a převod do Streetmixu", async () => {
+  const { TURN_CHOICES, TURNS, isTurn } = await import("../pilot/public/types.js");
+  const { turnLabel } = await import("../pilot/public/profile.js");
+  const { toStreetmix } = await import("../pilot/public/streetmix.js");
+  for (const v of TURN_CHOICES) {
+    assert.ok(isTurn(v), v);
+    assert.ok(v.split(";").every((x) => turnLabel(v).includes(TURNS[x])), v);
+    assert.equal(toStreetmix({ segments: [{ type: "pruh", width: 3, turn: v }] }, "T").data.street.segments[0].type, "turn-lane", v);
+  }
 });

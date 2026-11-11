@@ -1,11 +1,11 @@
-import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS } from "./types.js";
+import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
 import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, signFits, MAX_PER_PART } from "./signs.js";
-import { loadSprites, loadSigns, layoutSigns, buildSvg, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE } from "./profile.js";
+import { loadSprites, loadSigns, layoutSigns, buildSvg, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
 import * as sources from "./sources.js";
 import { MAPY_KEY } from "./config.js";
-import { cleanProfile, cleanCut } from "./validate.js";
+import { cleanProfile, cleanCut, retype } from "./validate.js";
 import { shares } from "./shares.js";
 import { packProfile, unpackProfile, designParams } from "./share.js";
 import { checkRules } from "./rules.js";
@@ -1070,7 +1070,7 @@ function renderEditor(p) {
   }
   const type = document.createElement("select");
   for (const [k, t] of Object.entries(TYPES)) type.add(new Option(t.label, k, false, k === s.type));
-  type.onchange = () => { s.type = type.value; s.source = "user"; done(); };
+  type.onchange = () => { retype(s, type.value); s.source = "user"; done(); };
   const width = Object.assign(document.createElement("input"), { type: "number", step: 0.05, min: 0.2, value: s.width });
   width.onchange = () => {
     // Perpendicular parking keeps at least 4.5 m (ČSN 73 6056).
@@ -1099,12 +1099,36 @@ function renderEditor(p) {
   r1.append(lab("Typ", type), lab("Šířka (m)", wbox));
   const r2 = row();
   if (TYPES[s.type]?.directional) {
-    r2.append(lab("Směr jízdy", btn(s.dir === "backward" ? "↓ k divákovi" : "↑ od diváka", () => {
-      s.dir = s.dir === "backward" ? "forward" : "backward";
+    // Away from or towards the viewer; a lane of a two-way street with one axis has no direction and is drawn
+    // "↑↓" (derive.js), so it can be made and kept here too. Another part without a direction says so.
+    const dir = document.createElement("select");
+    const both = s.type === "pruh" ? [["", "↑↓ obousměrný"]] : s.dir ? [] : [["", "bez směru"]];
+    for (const [v, t] of [["forward", "↑ od diváka"], ["backward", "↓ k divákovi"], ...both]) dir.add(new Option(t, v, false, (s.dir || "") === v));
+    dir.onchange = () => {
+      const was = s.dir;
+      if (dir.value) s.dir = dir.value; else delete s.dir;
       // Cyclists in the lane turn with it, so contraflow stays contraflow (Bára).
-      if (s.bikeDir) s.bikeDir = s.bikeDir === "backward" ? "forward" : "backward";
+      if (s.bikeDir && was && s.dir && was !== s.dir) s.bikeDir = s.bikeDir === "backward" ? "forward" : "backward";
       done();
-    })));
+    };
+    r2.append(lab("Směr jízdy", dir));
+  }
+  if (s.type === "pruh" || s.type === "pruh_piktokoridor") {
+    // Cyclists sharing the lane (drawn with the cars, "cyklisté ↓" in contraflow; a piktokoridor has them anyway).
+    const bike = document.createElement("select");
+    for (const [v, t] of [["", s.type === "pruh" ? "ne" : "po směru pruhu"], ["forward", "↑ od diváka"], ["backward", "↓ k divákovi"]]) bike.add(new Option(t, v, false, (s.bikeDir || "") === v));
+    bike.onchange = () => { if (bike.value) s.bikeDir = bike.value; else delete s.bikeDir; s.source = "user"; done(); };
+    r2.append(lab("Cyklisté v pruhu", bike));
+  }
+  if (["pruh", "pruh_piktokoridor", "bus", "bus_cyklo"].includes(s.type)) {
+    // Trolley wires over the lane (OSM trolley_wire): drawn above it; a bus lane under them carries the trolleybus.
+    const wires = Object.assign(document.createElement("input"), { type: "checkbox", checked: !!s.wires });
+    wires.onchange = () => {
+      if (wires.checked) { s.wires = true; if (s.type.startsWith("bus")) s.trolley = true; } else { delete s.wires; delete s.trolley; }
+      s.source = "user";
+      done();
+    };
+    r2.append(lab("Troleje ", wires));
   }
   if (s.type === "parkovani") {
     const use = document.createElement("select");
@@ -1144,9 +1168,10 @@ function renderEditor(p) {
     r2.append(lab("I pro autobusy ", bus));
   }
   if (["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu"].includes(s.type)) {
+    // The usual arrows, and the lane's own from OSM when it is another combination (named as drawn).
     const turn = document.createElement("select");
-    for (const [v, t] of [["", "bez šipky"], ["left", "vlevo"], ["left;through", "vlevo + rovně"], ["through", "rovně"],
-      ["through;right", "rovně + vpravo"], ["right", "vpravo"], ["left;right", "vlevo + vpravo"]]) {
+    const turns = s.turn && !TURN_CHOICES.includes(s.turn) ? [...TURN_CHOICES, s.turn] : TURN_CHOICES;
+    for (const [v, t] of [["", "bez šipky"], ...turns.map((v) => [v, turnLabel(v)])]) {
       turn.add(new Option(t, v, false, (s.turn || "") === v));
     }
     turn.onchange = () => { if (turn.value) s.turn = turn.value; else delete s.turn; s.source = "user"; done(); };

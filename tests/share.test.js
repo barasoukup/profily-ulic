@@ -18,3 +18,12 @@ test("parametry návrhu z adresy", () => {
   assert.deepEqual(designParams("#rez=50.1,14.4,10,22.0,22.0&navrh=abc&stav=def"), { navrh: "abc", stav: "def" });
   assert.deepEqual(designParams("#rez=50.1,14.4,10,22.0,22.0"), { navrh: null, stav: null });
 });
+
+test("barva cyklopruhu z OSM projde odkazem a kontrolou, jiná než hex se zahodí", async () => {
+  const { cleanProfile } = await import("../pilot/public/validate.js");
+  const p = { segments: [{ type: "cyklopruh", width: 1.5, dir: "forward", color: "#c0503f", source: "osm" }], edges: {} };
+  const back = await unpackProfile(await packProfile(p));
+  assert.equal(back.segments[0].color, "#c0503f");
+  assert.equal(cleanProfile(back).segments[0].color, "#c0503f");
+  assert.equal(cleanProfile({ segments: [{ type: "cyklopruh", width: 1.5, color: "url(#x)" }] }).segments[0].color, undefined);
+});

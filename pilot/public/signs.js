@@ -19,7 +19,7 @@ export const SIGNS = {
   c8a: "C 8a Stezka pro cyklisty",
   c9a: "C 9a Stezka pro chodce a cyklisty",
   c10a: "C 10a Stezka pro chodce a cyklisty dělená",
-  ip11a: "IP 11a–c Parkoviště",
+  ip11a: "IP 11a Parkoviště",
   ip11d: "IP 11d Parkoviště (stání na chodníku kolmé nebo šikmé)",
   ip11e: "IP 11e Parkoviště (stání na chodníku podélné)",
   ip11f: "IP 11f Parkoviště (částečné stání na chodníku kolmé nebo šikmé)",
@@ -50,12 +50,24 @@ const SIGN_PARTS = {
 export const signFits = (k, type) => !SIGN_PARTS[k] || SIGN_PARTS[k].includes(type);
 // Dodatkové tabulky (plate) of a sign: text of E 13, or a key of a pictogram.
 export const PLATES = { kola: "s cyklisty", kolo: "i pro cyklisty", protismer: "cyklisté v protisměru", obsluha: "Mimo dopravní obsluhy", podelne: "podélné", kolme: "kolmé", sikme: "šikmé" };
-// Signs the palette offers with a plate, as signs of their own: one-way with contraflow cyclists is IP 4c (B 2 +
-// E 12b when the lane comes towards the viewer), not IP 4b with a plate (a user, 11. 11. 2026).
-export const SIGN_CHOICES = { "oneway+protismer": { k: "oneway", plate: "protismer", label: "IP 4c / B 2 + E 12b Jednosměrný provoz, cyklisté v protisměru" } };
+// Every sign with a plate that deriveSigns makes, as a sign of its own in the palette of Návrh (so that what the
+// data draw can be chosen by hand too), labelled as drawn: one-way with contraflow cyclists is IP 4c (B 2 +
+// E 12b when the lane comes towards the viewer), not IP 4b with a plate (a user, 11. 11. 2026); the manner of
+// parking makes IP 11b or IP 11c. Other plates are dropped (validate.js).
+export const SIGN_CHOICES = {
+  "oneway+protismer": { k: "oneway", plate: "protismer", label: "IP 4c / B 2 + E 12b Jednosměrný provoz, cyklisté v protisměru" },
+  "ip11a+podelne": { k: "ip11a", plate: "podelne", label: "IP 11c Parkoviště (podélné stání)" },
+  "ip11a+kolme": { k: "ip11a", plate: "kolme", label: "IP 11b Parkoviště (kolmé stání)" },
+  "ip11a+sikme": { k: "ip11a", plate: "sikme", label: "IP 11b Parkoviště (šikmé stání)" },
+  "ip20a+kolo": { k: "ip20a", plate: "kolo", label: "IP 20a Vyhrazený jízdní pruh BUS i pro cyklisty" },
+  "ip27a+kola": { k: "ip27a", plate: "kola", label: "IZ 6a Pěší zóna s cyklisty" },
+  "b1+obsluha": { k: "b1", plate: "obsluha", label: "B 1 + E 13 Zákaz vjezdu všech vozidel mimo dopravní obsluhy" },
+  "b11+obsluha": { k: "b11", plate: "obsluha", label: "B 11 + E 13 Zákaz vjezdu všech motorových vozidel mimo dopravní obsluhy" },
+};
+export const signChoice = (x) => SIGN_CHOICES[`${x.k}+${x.plate}`];
 // The label of a sign in Návrh and in the title of a drawn sign.
 export function signLabel(x) {
-  const own = Object.values(SIGN_CHOICES).find((c) => c.k === x.k && c.plate === x.plate);
+  const own = signChoice(x);
   if (own) return own.label;
   return SIGNS[x.k] + (typeof x.v === "number" ? ` ${x.v} km/h` : "") + (x.plate ? ` (${PLATES[x.plate]})` : "");
 }

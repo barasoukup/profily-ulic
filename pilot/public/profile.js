@@ -1,6 +1,6 @@
 // SVG drawing and direct editing of a street profile. Drawing units are centimetres,
 // matching the Streetmix illustrations (1 px = 1 cm).
-import { TYPES, SOURCES, PARKING_USE, PARKING_POSITION, TRAM_BEDS } from "./types.js";
+import { TYPES, SOURCES, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURNS } from "./types.js";
 import { city, cityById, CITY_IDS, creditLines } from "./city.js";
 import { PLATES, signFile, plateFile, signLabel } from "./signs.js";
 
@@ -134,8 +134,6 @@ const el = (name, attrs = {}, parent) => {
 const fmt = (m) => m.toFixed(2).replace(".", ",") + " m";
 export const totalWidth = (p) => p.segments.reduce((a, s) => a + s.width, 0);
 
-const TURNS = { left: "vlevo", slight_left: "mírně vlevo", sharp_left: "ostře vlevo", through: "rovně", right: "vpravo",
-  slight_right: "mírně vpravo", sharp_right: "ostře vpravo", reverse: "otočení", merge_to_left: "připojení", merge_to_right: "připojení" };
 // Street furniture and barriers standing at x on a surface at height top.
 // The surface of a separate tram bed, raised behind curbs (Bára): concrete panels with their joints, gravel
 // with the sleepers showing, grass, or asphalt like the roadway (beds used by buses). A curb stone at each end where the bed meets another part.

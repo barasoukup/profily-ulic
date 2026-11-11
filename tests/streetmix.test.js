@@ -23,3 +23,9 @@ test("veřejná ulice ve Streetmixu nese uvedení zdrojů", () => {
   assert.match(name, /IPR Praha/);
   assert.match(name, /OpenStreetMap/);
 });
+
+test("tramvajové těleso v trávě jde do Streetmixu jako tramvaj na trávě, ostatní na barevném pásu", () => {
+  const segs = (bed) => toStreetmix({ segments: [{ type: "tramvaj", width: 3.5, dir: "forward", bed }, { type: "tramvaj", width: 3.5, dir: "backward", bed }] }, "T").data.street.segments;
+  assert.deepEqual(segs("trava").map((s) => s.variantString), ["outbound|grass", "inbound|grass"]);
+  assert.deepEqual(segs("panely").map((s) => s.variantString), ["outbound|colored", "inbound|colored"]);
+});
