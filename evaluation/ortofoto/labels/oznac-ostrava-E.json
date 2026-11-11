@@ -1,0 +1,17 @@
+{
+ "2-0": { "edges": [46, 281], "lines": [[110, "edge"], [184, "dashed"], [260, "edge"]], "hatch": [], "parking": [], "quality": "ok", "note": "vlevo světlý zpevněný pás asi 3 m bez obruby (krajnice/odstavný pruh), vpravo krajnice 1 m" },
+ "2-1": { "edges": [52, 276], "lines": [[66, "edge"], [140, "dashed"], [213, "edge"]], "hatch": [], "parking": [], "quality": "ok", "note": "vpravo světlá zpevněná krajnice asi 3 m" },
+ "5-0": { "edges": [55, 280], "lines": [[111, "edge"], [186, "dashed"], [260, "edge"]], "hatch": [], "parking": [], "quality": "ok", "note": "vlevo nahoře stromy přes krajnici" },
+ "5-1": { "edges": [52, 272], "lines": [[64, "edge"], [139, "dashed"], [213, "edge"]], "hatch": [], "parking": [], "quality": "ok", "note": "" },
+ "6-0": { "edges": [67, 275], "lines": [[113, "edge"], [192, "dashed"], [268, "edge"]], "hatch": [], "parking": [], "quality": "ok", "note": "vpravo tramvajová trať; vlevo krajnice 2 m" },
+ "6-1": { "edges": [82, 287], "lines": [[155, "dashed"], [233, "edge"]], "hatch": [], "parking": [], "quality": "ok", "note": "vlevo tramvajová trať za obrubou; vpravo krajnice 2,7 m" },
+ "8-0": { "edges": [52, 345], "lines": [[111, "edge"], [199, "dashed"], [285, "edge"]], "hatch": [], "parking": [], "quality": "ok", "note": "široké světlé krajnice po obou stranách; stín stromu vpravo" },
+ "9-0": { "edges": [42, 305], "lines": [[53, "edge"], [125, "solid"], [196, "dashed"], [275, "edge"]], "hatch": [], "parking": [], "quality": "ok", "note": "šipky v pruzích" },
+ "11-0": { "edges": [55, 246], "lines": [[155, "dashed"]], "hatch": [], "parking": [[56, 100]], "quality": "ok", "note": "vlevo podélně stojící auta u obruby" },
+ "11-1": { "edges": [60, 248], "lines": [], "hatch": [], "parking": [], "quality": "ok", "note": "betonové desky bez značení (spáry nepočítám)" },
+ "14-0": { "edges": [46, 296], "lines": [[71, "edge"], [163, "dashed"], [257, "edge"]], "hatch": [], "parking": [], "quality": "ok", "note": "" },
+ "15-0": { "edges": [66, 358], "lines": [[137, "dashed"], [211, "double"], [283, "dashed"]], "hatch": [[355, 415]], "parking": [], "quality": "ok", "note": "auta vlevo jedou v koloně (ne parkování); šipkové šrafy vpravo dole za okrajem (rozšíření); dvojitost čáry 211 nejistá" },
+ "16-0": { "edges": [40, 228], "lines": [[72, "edge"], [142, "dashed"], [207, "edge"]], "hatch": [], "parking": [], "quality": "ok", "note": "vpravo za obrubou chodník se zastávkou" },
+ "21-1": { "edges": [52, 242], "lines": [[68, "edge"], [143, "dashed"], [215, "edge"]], "hatch": [], "parking": [], "quality": "ok", "note": "vpravo krátce přerušovaná vodicí čára a světlý pás u obruby; šipky v pruzích" },
+ "69-0": { "edges": [180], "lines": [], "hatch": [], "parking": [[182, 240]], "quality": "occluded", "note": "vozovku zakrývá strom; vpravo parkoviště se šikmými stáními" }
+}

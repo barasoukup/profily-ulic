@@ -233,3 +233,36 @@ hlavní příčina vynechaných čar (jarní IPR 5 cm v Praze jen 45 %).
 3. **Stín** zůstává hlavní slabinou (46 % obrázků se nedalo posoudit ani okem); ortofoto ČÚZK je letní, s kratšími
    stíny, a pro celou ČR dává 53–80 %.
 4. Vzorek je pořád malý (56 posouditelných vozovek se 127 čarami, 14 z nich označených dvakrát); čísla po městech berte orientačně.
+
+## Čtvrté kolo: krajnice a šrafy (11. 11. 2026)
+
+Bára: „A co ty krajnice a šrafy?“ Ve třetím kole bylo na 56 posouditelných vozovkách šrafování jen jednou, proto
+vlastní vzorky: (1) vozovky, kde aplikace odhaduje krajnici, a kde run.mjs hlásí šrafy, v pěti městech
+(pomocníci D a E, 75 obrázků); (2) Hradec, řezy na šrafovaných plochách z pasportu (vrstva `pk-dzv-p`, druh 500,
+272 ploch; `ab.mjs` s `KEEP=1`, aby řez zůstal u křižovatky; pomocník F, 46 obrázků). Značili stejně jako ve
+třetím kole, se zvláštním důrazem na šrafy, stání a vodicí čáry. Vyhodnocení `krajnice.mjs`.
+
+**Krajnice odhadem (106 v šesti vzorcích):** skutečně je v 97 prázdný asfalt (92 %), v 5 šrafy, ve 4 stojí auta.
+Detektor povrchu pásu z prvního kola (řada aut, světlé body, hrany) určí asfalt správně jen v 52 z 97 (54 %),
+jinak hlásí „šrafy“ (21×) nebo „auta“ (19×): je horší, než krajnici prostě nechat. **Vodicí čára** na hranici
+pruhu a krajnice: skutečně u 19 krajnic, ortofoto ji najde u 15 (79 %) a falešně jen jednou. Krajnice se tedy
+dá potvrdit (a změřit) čarou, ne povrchem.
+
+**Šrafy.** Dva detektory: plošina světlých sloupců (`hatchRuns`) a malá okna 0,8 × 3 m se šikmými střídavými
+pruhy (`hatchRuns2`; stripes, které se od sloupce ke sloupci posouvají, ne čára, obrubník ani auto):
+
+| | vozovek se šrafami | nalezeno | vozovek bez šraf | falešně |
+|---|---|---|---|---|
+| plošina | 26 | 13 (50 %) | 119 | 18 (15 %) |
+| okna | 26 | 18 (69 %) | 119 | 32 (27 %) |
+
+Šrafy jsou vzácné (na náhodných řezech asi jedna vozovka z dvaceti), takže by i 15 % falešných nálezů znamenalo,
+že většina hlášených šraf by byla falešná (správných z hlášených 36–42 %). **Šrafy z ortofota proto do profilu
+automaticky nedávat.** Hlavní potíže: obrubníky a odvodňovací proužky se stínem, přechody, šipky, bílá auta;
+šrafy u křižovatek jsou krátké (trojúhelník pár metrů).
+
+**Pasport Hradce proti značkám (F):** šrafy vidí obojí u 23 obrázků, jen pasport u 16 (vybledlé, mimo výřez
+±15 m, nebo v pasportu přebývají), jen značkovatel u žádného. Kde pasport je, je pro šrafy lepší než ortofoto.
+
+**Pro aplikaci:** krajnici dál odhadovat pravidly, ortofotem jen potvrdit vodicí čárou a zpřesnit její šířku
+(stejný krok jako pruhy). Povrch krajnice z ortofota neurčovat. Šrafy jen z dat města (pasport), kde jsou.

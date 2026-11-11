@@ -1,0 +1,10 @@
+{
+ "1-0": { "edges": [66, 248], "lines": [[97, "edge"], [170, "dashed"], [244, "edge"]], "hatch": [], "parking": [], "quality": "ok", "note": "stín stromů vlevo; vlevo za vodicí čárou zpevněná krajnice asi 1,5 m, vpravo štěrk" },
+ "4-0": { "edges": [60, 290], "lines": [[67, "edge"], [143, "solid"], [210, "dashed"], [284, "edge"]], "hatch": [[148, 192]], "parking": [], "quality": "junction", "note": "řadicí pruhy se šipkami, šrafy nahoře (y < 170); levý okraj nejistý (vlevo světlý pás, snad cyklostezka)" },
+ "11-0": { "edges": [53, 170], "lines": [[95, "dashed"]], "hatch": [], "parking": [], "quality": "ok", "note": "jedna vozovka směrově dělené silnice, vlevo se rozšiřuje (přídatný pruh za drobně přerušovanou čarou); stín stromů" },
+ "16-0": { "edges": [66, 218], "lines": [[143, "dashed"]], "hatch": [], "parking": [], "quality": "ok", "note": "po stranách betonové odvodňovací proužky u obrubníku, bez vodicích čar" },
+ "17-1": { "edges": [63, 230], "lines": [], "hatch": [[138, 157], [218, 250]], "parking": [], "quality": "ok", "note": "uprostřed úzký šrafovaný pás mezi pruhy; šrafy vpravo jen nahoře (y < 60); vpravo za obrubou chodník" },
+ "25-0": { "edges": [150], "lines": [], "hatch": [], "parking": [[50, 95]], "quality": "occluded", "note": "většina vozovky ve stínu budov; vlevo podélně stojící auta na světlé ploše za chodníkem, pravý okraj nevidět" },
+ "23-0": { "edges": [60, 402], "lines": [[116, "edge"], [182, "solid"], [316, "solid"], [392, "edge"]], "hatch": [[317, 362]], "parking": [[62, 116]], "quality": "junction", "note": "vlevo pruh podélného stání za přerušovanou čarou; vpravo odbočovací pruh oddělený šrafami (dole); dělicí čáry mezi 182 a 316 nejsou zřetelné" },
+ "46-0": { "edges": [60, 228], "lines": [], "hatch": [], "parking": [[60, 102], [173, 228]], "quality": "ok", "note": "obytná zóna; asfalt 102–173, po obou stranách dlážděné podélné stání" }
+}

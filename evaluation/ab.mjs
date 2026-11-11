@@ -156,7 +156,8 @@ async function place(s, src) {
   const osm = await src.osm(s.lat, s.lon, 80);
   let near = nearestStreet(osm, frame, [0, 0]);
   if (!near) return null;
-  near = awayFromJunctions(osm, frame, near);
+  // KEEP=1: the cut stays where the sample puts it (a sample aimed at something near a junction, e.g. hatching).
+  if (process.env.KEEP !== "1") near = awayFromJunctions(osm, frame, near);
   near = centerOnStreet(osm, frame, near);
   const [clon, clat] = frame.toLonLat(...near.point);
   frame = localFrame(clat, clon);

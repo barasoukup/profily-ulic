@@ -1,0 +1,20 @@
+{
+ "1-0": { "edges": [134, 359], "lines": [[210, "solid"], [282, "dashed"], [353, "edge"]], "hatch": [], "parking": [], "quality": "ok", "note": "vlevo svodidlo ~123; čára 210 nahoře přerušovaná, dole plná; vpravo za čárou betonový pás" },
+ "2-1": { "edges": [10, 243, 294], "lines": [[86, "solid"], [157, "dashed"], [229, "edge"], [306, "edge"]], "hatch": [[14, 86]], "parking": [], "quality": "ok", "note": "vlevo šipkové šrafy (připojovací klín) za plnou čárou; střední travnatý pás 243–294, vpravo kus protisměrné vozovky" },
+ "2-2": { "edges": [10, 246], "lines": [[22, "edge"], [95, "dashed"], [165, "dashed"], [227, "edge"]], "hatch": [], "parking": [], "quality": "ok", "note": "nápisy na vozovce; 165 krátké čárky; za vodicími čarami světlé pásy u okrajů" },
+ "3-1": { "edges": [14, 266], "lines": [[35, "edge"], [105, "dashed"], [177, "solid"], [242, "edge"]], "hatch": [], "parking": [], "quality": "ok", "note": "177 nahoře přerušovaná, dole plná; vpravo zpevněná krajnice 245–266" },
+ "4-2": { "edges": [70, 272], "lines": [[113, "solid"], [184, "dashed"], [217, "dashed"]], "hatch": [[70, 114]], "parking": [], "quality": "ok", "note": "vlevo pás 70–113 za plnou čárou se šrafovanými úseky (bez aut); vpravo betonový odvodňovací proužek u obruby" },
+ "6-1": { "edges": [50, 295], "lines": [[87, "edge"], [165, "dashed"], [244, "edge"]], "hatch": [], "parking": [], "quality": "ok", "note": "zpevněné krajnice za vodicími čarami; vlevo za svodidlem okraj protisměrné vozovky (nezahrnuto); vpravo stín stromů" },
+ "9-0": { "edges": [78, 269], "lines": [[97, "dashed"], [173, "dashed"]], "hatch": [], "parking": [], "quality": "ok", "note": "obruby po obou stranách bez vodicí čáry" },
+ "9-1": { "edges": [79, 321], "lines": [[148, "solid"], [227, "solid"]], "hatch": [[245, 313]], "parking": [], "quality": "junction", "note": "odbočení vpravo, šipka, dole šipkové šrafy mezi pruhy; v y=300 vpravo nákladní auto (okraj odečten výš)" },
+ "15-0": { "edges": [122, 384], "lines": [[188, "dashed"], [256, "dashed"], [320, "dashed"]], "hatch": [], "parking": [], "quality": "ok", "note": "čtyři pruhy se směrovými šipkami před křižovatkou; vlevo chodník za obrubou" },
+ "16-2": { "edges": [62, 221, 240], "lines": [[72, "edge"], [145, "dashed"], [219, "edge"], [273, "solid"]], "hatch": [[242, 273]], "parking": [], "quality": "ok", "note": "vpravo úzký betonový střední ostrůvek 221–240 a za ním šrafovaný pás 242–273 u protisměru" },
+ "20-0": { "edges": [55, 281], "lines": [], "hatch": [], "parking": [], "quality": "occluded", "note": "plocha u autobusového nádraží, levá část ve stínu budovy (možná stojí auta, nelze posoudit); vpravo obruba s ostrůvkem" },
+ "23-0": { "edges": [32, 214], "lines": [[118, "solid"]], "hatch": [], "parking": [], "quality": "ok", "note": "oblouk, obruby po obou stranách" },
+ "25-0": { "edges": [58, 278], "lines": [[106, "edge"], [184, "dashed"], [257, "edge"]], "hatch": [], "parking": [], "quality": "ok", "note": "zpevněné krajnice za vodicími čarami, levý okraj krajnice nevýrazný" },
+ "25-1": { "edges": [38, 234], "lines": [[71, "edge"], [143, "dashed"], [220, "edge"]], "hatch": [], "parking": [], "quality": "ok", "note": "zpevněné krajnice; pravý okraj ve stínu stromů (odhad)" },
+ "11-2": { "edges": [57, 93, 257], "lines": [[10, "dashed"], [47, "edge"], [103, "edge"], [177, "dashed"]], "hatch": [], "parking": [], "quality": "ok", "note": "vlevo travnatý střední pás 57–93 a protisměrná vozovka; vpravo obruba a zeleň" },
+ "59-2": { "edges": [37, 113], "lines": [], "hatch": [], "parking": [], "quality": "occluded", "note": "úzká ulice, pravá polovina ve stínu domů; okraj vpravo odečten dole" },
+ "69-0": { "edges": [], "lines": [], "hatch": [], "parking": [[112, 150]], "quality": "occluded", "note": "celá ulice ve stínu domů (asi 78–180 mezi světlou plochou a fasádou), řada zaparkovaných aut 112–150; okraje vozovky nerozeznám" },
+ "88-0": { "edges": [12, 126], "lines": [], "hatch": [], "parking": [], "quality": "ok", "note": "obytná zóna bez obrub; vlevo tmavá spára/žlábek (beru jako okraj, nejisté), vpravo přechod do růžové dlažby vjezdů a zahrad" }
+}
