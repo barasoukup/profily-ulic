@@ -131,3 +131,24 @@ Co z toho plyne:
 
 Další krok: napojení profilu na snímek (bez něj nejde ortofoto do profilu promítnout) a větší ověřovací vzorek
 s měřením šířek, ne jen poloh čar.
+
+## Auta u obruby: hotový model (`dl/`, 11. 11. 2026)
+
+Předtrénovaný detektor vozidel z leteckých snímků (Ultralytics YOLO11-OBB, trénovaný na DOTA) na našich
+výřezech, proti kontrole okem: 22 řezů, 223 pásů u obruby, z toho 95 s auty (`dl/truth.json`). Skripty
+`dl/strip.py`, `dl/detect.py`, `dl/review.py`, `dl/eval.py`; Python ve vlastním venv mimo repozitář,
+výsledky v `data/<město>/dl/` (git je ignoruje).
+
+| metoda | správně z nalezených | nalezeno z aut |
+|---|---|---|
+| ruční detektor (`run.mjs`) | 56 % | 64 % |
+| YOLO11n-OBB, auto zasahuje do pásu | 79 % | 84 % |
+| YOLO11n-OBB, aspoň 2 auta | 92 % | 69 % |
+| YOLO11x-OBB, aspoň 2 auta | 94 % | 76 % |
+
+Na ČÚZK 12,5 cm vychází model skoro stejně jako na IPR 10 cm. Nejmenší model má po převodu na ONNX INT8 asi
+3 MB.
+
+**Rozhodnutí (Bára 11. 11. 2026): do aplikace ne.** 3 MB nechceme posílat uživatelům a licence nesedí (váhy
+AGPL-3.0, data DOTA jen pro akademické použití). Strana stání zůstává podle zákona jako odhad. Kdyby se
+k autům někdy vracelo: spočítat je jednou při nasazení a ukládat jen výsledek, s vyjasněnou licencí dat.
