@@ -36,6 +36,15 @@ export const SIGNS = {
 };
 // Dodatkové tabulky (plate) of a sign: text of E 13, or a key of a pictogram.
 export const PLATES = { kola: "s cyklisty", kolo: "i pro cyklisty", protismer: "cyklisté v protisměru", obsluha: "Mimo dopravní obsluhy", podelne: "podélné", kolme: "kolmé", sikme: "šikmé" };
+// Signs the palette offers with a plate, as signs of their own: one-way with contraflow cyclists is IP 4c (B 2 +
+// E 12b when the lane comes towards the viewer), not IP 4b with a plate (a user, 11. 11. 2026).
+export const SIGN_CHOICES = { "oneway+protismer": { k: "oneway", plate: "protismer", label: "IP 4c / B 2 + E 12b Jednosměrný provoz, cyklisté v protisměru" } };
+// The label of a sign in Návrh and in the title of a drawn sign.
+export function signLabel(x) {
+  const own = Object.values(SIGN_CHOICES).find((c) => c.k === x.k && c.plate === x.plate);
+  if (own) return own.label;
+  return SIGNS[x.k] + (typeof x.v === "number" ? ` ${x.v} km/h` : "") + (x.plate ? ` (${PLATES[x.plate]})` : "");
+}
 
 const ROAD = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "obsluzna"]);
 const CARRIAGEWAY = new Set([...ROAD, "parkovani", "cyklopruh", "ochranny_pruh", "krajnice", "tramvaj"]);

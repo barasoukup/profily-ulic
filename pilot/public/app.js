@@ -1,7 +1,7 @@
 import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
-import { deriveSigns, SIGNS, PLATES, MAX_PER_PART } from "./signs.js";
+import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, MAX_PER_PART } from "./signs.js";
 import { loadSprites, loadSigns, layoutSigns, buildSvg, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE } from "./profile.js";
 import * as sources from "./sources.js";
 import { MAPY_KEY } from "./config.js";
@@ -1184,7 +1184,7 @@ function renderEditor(p) {
 function signTags(list = [], max, set) {
   const box = Object.assign(document.createElement("span"), { className: "items" });
   box.textContent = "Značky: ";
-  const name = (x) => SIGNS[x.k] + (typeof x.v === "number" ? ` ${x.v}` : "") + (x.plate ? `, ${PLATES[x.plate]}` : "");
+  const name = signLabel;
   list.forEach((x, k) => {
     const b = document.createElement("button");
     b.className = "tag";
@@ -1195,11 +1195,14 @@ function signTags(list = [], max, set) {
   if (list.length < max) {
     const add = document.createElement("select");
     add.add(new Option("+ přidat značku", ""));
-    for (const [k, t] of Object.entries(SIGNS)) add.add(new Option(t, k));
+    for (const [k, t] of Object.entries(SIGNS)) {
+      add.add(new Option(t, k));
+      for (const [ck, c] of Object.entries(SIGN_CHOICES)) if (c.k === k) add.add(new Option(c.label, ck));
+    }
     add.onchange = () => {
       const k = add.value;
       if (!k) return;
-      const x = { k };
+      const { label, ...x } = SIGN_CHOICES[k] || { k };
       if (k === "b20a") {
         const v = Number(prompt("Nejvyšší dovolená rychlost (km/h):", "30"));
         if (!(v > 0 && v <= 200)) return render();
