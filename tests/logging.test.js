@@ -25,11 +25,23 @@ test("záznam řezu: uloží se přesně, cizí původ a neznámý druh se odmí
   const db = fakeDb();
   const cut = { kind: "rez", detail: "klik", city: "most", street: "tř. Budovatelů", highway: "secondary", wayId: 46195319, lat: 50.4998439, lon: 13.6384523, bearing: 25, reachLeft: 22, reachRight: 37.6, session: "s1" };
   assert.equal((await worker.fetch(post(cut), env(db))).status, 204);
-  assert.deepEqual(db.rows[0], ["rez", "klik", "most", "tř. Budovatelů", "secondary", 46195319, 50.4998439, 13.6384523, 25, 22, 37.6, "s1"]);
+  assert.deepEqual(db.rows[0], ["rez", "klik", "most", "tř. Budovatelů", "secondary", 46195319, 50.4998439, 13.6384523, 25, 22, 37.6, "s1", null]);
   assert.equal((await worker.fetch(post(cut, "https://evil.example"), env(db))).status, 403);
   assert.equal((await worker.fetch(post({ ...cut, kind: "x" }), env(db))).status, 400);
   for (const body of [null, 123, []]) assert.equal((await worker.fetch(post(body), env(db))).status, 400);
   assert.equal(db.rows.length, 1);
+});
+
+test("záznam úprav: dva krátké profily, jen u druhu upravy", async () => {
+  const db = fakeDb();
+  const { shortProfile } = await import("../pilot/public/log.js");
+  const pred = shortProfile({ edges: { left: "budova", right: "budova" }, segments: [{ type: "chodnik", width: 3, items: [{ kind: "lampa" }] }, { type: "pruh", width: 6.5, dir: "forward", signs: [{ k: "b20a", v: 30 }] }] });
+  assert.deepEqual(pred, { l: "budova", r: "budova", s: [{ t: "chodnik", w: 3 }, { t: "pruh", w: 6.5, d: "forward", z: ["b20a:30"] }] });
+  const po = { ...pred, s: [pred.s[0], { t: "cyklopruh", w: 1.5 }, { t: "pruh", w: 5 }] };
+  assert.equal((await worker.fetch(post({ kind: "upravy", detail: "navrh", profile: { pred, po } }), env(db))).status, 204);
+  assert.deepEqual(JSON.parse(db.rows[0][12]), { pred, po });
+  await worker.fetch(post({ kind: "rez", profile: { pred, po } }), env(db));
+  assert.equal(db.rows[1][12], null);
 });
 
 test("export jen s tokenem", async () => {

@@ -11,7 +11,7 @@ import { packProfile, unpackProfile, designParams } from "./share.js";
 import { checkRules } from "./rules.js";
 import { city, setCity, cityAt, loadBounds } from "./city.js";
 import { TOWNS } from "./towns/index.js";
-import { log } from "./log.js";
+import { log, shortProfile } from "./log.js";
 import { createDataLayers, PLOCHY_PANE } from "./maplayers.js";
 import { mountSearch } from "./search.js";
 
@@ -183,6 +183,7 @@ sources.events.addEventListener("retry", (e) => {
 window.cutAt = cutAt; // handy for testing from the console
 
 async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
+  logEdits(); // what was done with the previous cut, before it is replaced
   try {
     await useCity(lat, lon);
     status("Načítám data z OSM…");
@@ -289,6 +290,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
       delete info.point;
     }));
     state.stav = { segments: result.segments, edges: result.edges };
+    state.computed = structuredClone(state.stav); // the detection, for the log of corrections
+    state.stavEdited = false;
     if (!state.navrhEdited) state.navrh = structuredClone(state.stav);
     state.selected = null;
     state.fixing = false;
@@ -1010,6 +1013,7 @@ addEventListener("keydown", (e) => {
 
 function edited() {
   if (state.mode === "navrh") state.navrhEdited = true;
+  else if (state.fixing) state.stavEdited = true;
   // Once the design is changed here, the address no longer holds it: a reload keeps the saved work.
   if (location.hash.includes("&")) history.replaceState(null, "", location.hash.split("&")[0]);
   const now = snapshot();
@@ -1292,6 +1296,7 @@ function renderPalette(p) {
 
 document.querySelectorAll(".seg-toggle button").forEach((b) => b.addEventListener("click", () => {
   if (b.dataset.mode !== state.mode && b.dataset.mode !== "stav") log(b.dataset.mode, cutLog());
+  if (b.dataset.mode !== state.mode) logEdits();
   state.mode = b.dataset.mode;
   state.selected = null;
   state.fixing = false;
@@ -1318,6 +1323,7 @@ $("#btn-to-navrh").onclick = () => document.querySelector('.seg-toggle button[da
 $("#btn-fix").onclick = () => {
   state.fixing = !state.fixing;
   state.selected = null;
+  if (!state.fixing) logEdits();
   // Corrections keep the street's width: the width measured before them is the target (renderWidthCheck).
   if (state.fixing) { state.fixBase ??= totalWidth(state.stav); log("oprava", cutLog()); }
   render();
@@ -1332,6 +1338,23 @@ document.addEventListener("click", (e) => {
 
 // ---------- export, save, load ----------
 const cutLog = () => (state.cut ? { city: city.id, street: state.cut.name, wayId: state.cut.wayId, lat: state.cut.lat, lon: state.cut.lon } : {});
+// How visitors corrected the data (the detection against the corrected Stav) and what they designed
+// (Stav against Návrh), each sent once per change: on Hotovo, on leaving a mode, on a new cut and when
+// the page is left. The log shows where the detection fails and what people want of their streets (Bára).
+const sentEdits = {};
+function logEdits() {
+  if (!state.cut || !state.stav) return;
+  const send = (detail, pred, po) => {
+    const key = `${state.cut.wayId}|${state.cut.lat}|${detail}`, text = JSON.stringify(po);
+    if (JSON.stringify(pred) === text || sentEdits[key] === text) return;
+    sentEdits[key] = text;
+    log("upravy", { detail, ...cutLog(), bearing: +state.cut.bearing.toFixed(1), profile: { pred, po } });
+  };
+  const stav = shortProfile(state.stav);
+  if (state.stavEdited && state.computed) send("oprava", shortProfile(state.computed), stav);
+  if (state.navrhEdited) send("navrh", stav, shortProfile(state.navrh));
+}
+addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") logEdits(); });
 function exportSvgs() {
   const title = state.cut?.name || "Profil";
   const credits = exportCredits(state.cut?.sources);
@@ -1413,6 +1436,7 @@ $("#btn-flip").onclick = () => {
   if (!state.stav || !state.cut) return;
   state.stav = mirror(state.stav);
   state.navrh = mirror(state.navrh);
+  if (state.computed) state.computed = mirror(state.computed);
   const r = state.cut.reach || defaultReach();
   const sp = state.cut.span && { left: state.cut.span.right, right: state.cut.span.left };
   state.cut = { ...state.cut, bearing: ((state.cut.bearing + 180 + 540) % 360) - 180, reach: { left: r.right, right: r.left }, span: sp };

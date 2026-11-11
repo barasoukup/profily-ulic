@@ -5,8 +5,8 @@
 CREATE TABLE IF NOT EXISTS events (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   ts TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
-  kind TEXT NOT NULL,        -- rez | export | ulozeni | sdileni | navrh | porovnat | oprava
-  detail TEXT,               -- rez: klik | posun | odkaz; export: png | svg
+  kind TEXT NOT NULL,        -- rez | export | ulozeni | sdileni | navrh | porovnat | oprava | hledani | upravy
+  detail TEXT,               -- rez: klik | posun | odkaz; export: png | svg; upravy: oprava | navrh
   city TEXT,                 -- city.js id: praha, brno, … or cesko
   street TEXT,
   highway TEXT,              -- OSM highway of the street
@@ -14,7 +14,9 @@ CREATE TABLE IF NOT EXISTS events (
   lat REAL, lon REAL,        -- the cut's centre (WGS 84)
   bearing REAL,              -- degrees, as in #rez=
   reach_left REAL, reach_right REAL,
-  session TEXT
+  session TEXT,
+  profile TEXT               -- upravy: {pred, po} short profiles (log.js shortProfile)
 );
+-- Added 11. 11. 2026 to the existing database: ALTER TABLE events ADD COLUMN profile TEXT;
 CREATE INDEX IF NOT EXISTS events_ts ON events (ts);
 CREATE INDEX IF NOT EXISTS events_kind_city ON events (kind, city);

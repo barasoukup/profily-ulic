@@ -8,6 +8,10 @@ kliknutí na nic nečeká, a když Worker neodpoví, nic se nestane.
 - **řez** přesně, tedy střed, azimut a dosah jako v odkazu `#rez=`, dále město, ulice, typ ulice, OSM cesta,
   čas a způsob vzniku (klik, posun, odkaz),
 - **akce:** export PNG a SVG, uložení souboru, sdílení odkazu, přepnutí do Návrhu a do Porovnání, oprava dat, použití hledání adres (jen druh nalezeného místa: adresa, ulice, jiné místo; nikdy hledaný text).
+- **úpravy** (od 11. 11. 2026): jak návštěvník opravil data (vypočtený Stav → opravený Stav) a jak ulici navrhl
+  (Stav → Návrh). Uloží se jen zkrácený profil: druh a šířka každé části, směr, cyklisté, způsob stání, těleso
+  tramvaje, šipky a značky, druhy okrajů. Posílá se při „Hotovo“, při odchodu z Návrhu nebo z oprav, při dalším
+  řezu a při zavření stránky, a jen když se něco změnilo.
 
 ## Soukromí
 
@@ -63,6 +67,16 @@ Potřebuješ účet na cloudflare.com (stačí bezplatný) a Node. Všechny př�
   ```bash
   npx wrangler d1 execute profily-ulic-log --remote --command "SELECT city, count(*) FROM events WHERE kind='rez' GROUP BY city ORDER BY 2 DESC"
   ```
+- **Co lidé opravují a navrhují:** `node upravy.mjs` (nebo `node upravy.mjs oprava`, `node upravy.mjs navrh`) vypíše
+  každý záznam úprav jako seznam změn (i s odkazem `#rez=`) a nakonec nejčastější změny.
 - Přehled dotazů a spotřeby je i v nástěnce Cloudflare (Workers & Pages, D1).
+
+Úpravy potřebují ve stávající databázi sloupec `profile` a nový Worker (jednou, 11. 11. 2026):
+```bash
+npx wrangler d1 execute profily-ulic-log --remote --command "ALTER TABLE events ADD COLUMN profile TEXT"
+```
+```bash
+npx wrangler deploy
+```
 
 Lokálně (`node pilot/server.mjs`) se nic nezaznamenává, `LOG_URL` je tam prázdné.

@@ -15,3 +15,21 @@ export function log(kind, data = {}) {
     }
   } catch {}
 }
+
+// A profile in short, for the log of edits: per part its type and width, and what else tells it apart
+// (direction, cyclists, parking orientation and position, tram bed, turn arrows, signs); the edges' kinds.
+// Furniture and buildings' looks are left out, so a record stays a few hundred bytes.
+const SIGN = (g) => g.k + (g.v ? ":" + g.v : "") + (g.plate ? "+" + g.plate : "");
+export function shortProfile(p) {
+  if (!p) return null;
+  return {
+    l: p.edges?.left || null,
+    r: p.edges?.right || null,
+    s: p.segments.map((x) => {
+      const o = { t: x.type, w: +(+x.width).toFixed(2) };
+      for (const [k, f] of [["d", "dir"], ["b", "bikeDir"], ["o", "orient"], ["p", "position"], ["e", "bed"], ["n", "turn"]]) if (x[f]) o[k] = x[f];
+      if (x.signs?.length) o.z = x.signs.map(SIGN);
+      return o;
+    }),
+  };
+}
