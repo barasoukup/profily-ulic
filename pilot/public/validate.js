@@ -1,7 +1,7 @@
 // Checks a saved profile (from the browser's storage or a JSON file) before the app uses it: a broken
 // or edited file must not break the drawing. Unknown types and items are made harmless, numbers
 // that the drawing needs must be numbers, a part without a usable width is an error.
-import { TYPES, SOURCES, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS } from "./types.js";
+import { TYPES, SOURCES, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, isTurn } from "./types.js";
 import { SIGNS, signChoice, MAX_PER_PART } from "./signs.js";
 
 const EDGE_KINDS = new Set(["budova", "stavba", "zahrada", "zelen", "voda", "parkoviste", "plot", "volno"]);
@@ -23,7 +23,7 @@ export function cleanProfile(p, what = "profil") {
     if ("orient" in s && !["podelne", "sikme", "kolme"].includes(s.orient)) delete s.orient;
     if ("use" in s && !(s.use in PARKING_USE)) delete s.use;
     if ("position" in s && !(s.type === "parkovani" && Object.hasOwn(PARKING_POSITION, s.position))) delete s.position;
-    if ("turn" in s && typeof s.turn !== "string") delete s.turn;
+    if ("turn" in s && !isTurn(s.turn)) delete s.turn; // only words the drawing can name (TURNS)
     for (const k of ["trolley", "wires"]) if (k in s && s[k] !== true) delete s[k];
     // A profile saved before the three kinds of tram (11/2026) has no bed on its tram belt: panels.
     if ("bed" in s && !(s.bed in TRAM_BEDS)) delete s.bed;

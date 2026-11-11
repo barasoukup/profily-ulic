@@ -29,10 +29,13 @@ test("poloha řezu mimo Prahu nebo s vadným dosahem", () => {
 });
 
 test("vadné směry, orientace, účel a odbočení se zahodí", () => {
-  const p = cleanProfile({ segments: [{ type: "parkovani", width: 2, dir: "nahoru", orient: 5, use: "x", turn: 7 }, { type: "pruh", width: 3, dir: "backward", turn: "left|through" }] });
+  const p = cleanProfile({ segments: [{ type: "parkovani", width: 2, dir: "nahoru", orient: 5, use: "x", turn: 7 }, { type: "pruh", width: 3, dir: "backward", turn: "left|through" },
+    { type: "pruh", width: 3, turn: "slight_left;through" }] });
   assert.deepEqual(Object.keys(p.segments[0]).sort(), ["items", "type", "width"]);
   assert.equal(p.segments[1].dir, "backward");
-  assert.equal(p.segments[1].turn, "left|through");
+  // Only words the drawing can name (TURNS), joined by ";" as in OSM turn:lanes.
+  assert.equal(p.segments[1].turn, undefined);
+  assert.equal(p.segments[2].turn, "slight_left;through");
 });
 
 test("tabulka zůstane jen u známé dvojice značky a tabulky", () => {
@@ -40,4 +43,15 @@ test("tabulka zůstane jen u známé dvojice značky a tabulky", () => {
     { type: "parkovani", width: 2, signs: [{ k: "ip11a", plate: "sikme" }, { k: "b20a", v: 30, plate: "obsluha" }] }] });
   assert.deepEqual(p.segments[0].signs, [{ k: "oneway", plate: "protismer" }, { k: "b1" }]);
   assert.deepEqual(p.segments[1].signs, [{ k: "ip11a", plate: "sikme" }, { k: "b20a", v: 30 }]);
+});
+
+test("šipky nabízené v Návrhu mají jméno a převod do Streetmixu", async () => {
+  const { TURN_CHOICES, TURNS, isTurn } = await import("../pilot/public/types.js");
+  const { turnLabel } = await import("../pilot/public/profile.js");
+  const { toStreetmix } = await import("../pilot/public/streetmix.js");
+  for (const v of TURN_CHOICES) {
+    assert.ok(isTurn(v), v);
+    assert.ok(v.split(";").every((x) => turnLabel(v).includes(TURNS[x])), v);
+    assert.equal(toStreetmix({ segments: [{ type: "pruh", width: 3, turn: v }] }, "T").data.street.segments[0].type, "turn-lane", v);
+  }
 });

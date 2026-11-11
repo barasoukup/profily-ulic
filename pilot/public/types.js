@@ -56,6 +56,13 @@ export const ITEMS = {
 // like the roadway.
 export const TRAM_BEDS = { panely: { label: "panely", color: "#b3ada0" }, strk: { label: "štěrk", color: "#9a948a" }, trava: { label: "tráva", color: "#86b552" }, asfalt: { label: "asfalt", color: "#5c5c59" } };
 
+// Turn arrows on a lane (segment.turn; OSM turn:lanes values joined by ";"): the words and their names, and the
+// combinations Návrh offers (a lane from the data may carry any other combination of the words).
+export const TURNS = { left: "vlevo", slight_left: "mírně vlevo", sharp_left: "ostře vlevo", through: "rovně", right: "vpravo",
+  slight_right: "mírně vpravo", sharp_right: "ostře vpravo", reverse: "otočení", merge_to_left: "připojení", merge_to_right: "připojení" };
+export const TURN_CHOICES = ["left", "left;through", "through", "through;right", "right", "left;right", "left;through;right"];
+export const isTurn = (v) => typeof v === "string" && v.split(";").every((x) => x in TURNS);
+
 export const PARKING_USE = { ztp: "ZTP", zasobovani: "zásobování", specialni: "speciální" };
 // Where parked cars stand besides the roadway (segment.position; OSM parking:<side>=on_kerb|half_on_kerb): fully on
 // the sidewalk, or across the kerb, half on the sidewalk. Without it, in the roadway.
