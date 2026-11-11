@@ -1,7 +1,7 @@
 import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
-import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, MAX_PER_PART } from "./signs.js";
+import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, signFits, MAX_PER_PART } from "./signs.js";
 import { loadSprites, loadSigns, layoutSigns, buildSvg, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE } from "./profile.js";
 import * as sources from "./sources.js";
 import { MAPY_KEY } from "./config.js";
@@ -1166,7 +1166,7 @@ function renderEditor(p) {
   items.append(add);
   r2.append(items);
   // Traffic signs under this part (at most MAX_PER_PART).
-  row().append(signTags(s.signs, MAX_PER_PART, (list) => { if (list.length) s.signs = list; else delete s.signs; done(); }));
+  row().append(signTags(s.signs, MAX_PER_PART, s.type, (list) => { if (list.length) s.signs = list; else delete s.signs; done(); }));
   row().append(
     btn("← Posunout", () => { if (i > 0) { [segs[i - 1], segs[i]] = [segs[i], segs[i - 1]]; done(i - 1); } }),
     btn("Posunout →", () => { if (i < segs.length - 1) { [segs[i + 1], segs[i]] = [segs[i], segs[i + 1]]; done(i + 1); } }),
@@ -1186,8 +1186,10 @@ function renderEditor(p) {
 }
 
 // Tags of traffic signs with ×, and a select to add one (a speed limit asks for its number).
-function signTags(list = [], max, set) {
+function signTags(list = [], max, type, set) {
   const box = Object.assign(document.createElement("span"), { className: "items" });
+  const fits = Object.keys(SIGNS).filter((k) => signFits(k, type));
+  if (!fits.length && !list.length) return box; // no sign fits a green strip, a wall…
   box.textContent = "Značky: ";
   const name = signLabel;
   list.forEach((x, k) => {
@@ -1197,11 +1199,11 @@ function signTags(list = [], max, set) {
     b.onclick = () => set(list.filter((_, j) => j !== k));
     box.append(b);
   });
-  if (list.length < max) {
+  if (list.length < max && fits.length) {
     const add = document.createElement("select");
     add.add(new Option("+ přidat značku", ""));
-    for (const [k, t] of Object.entries(SIGNS)) {
-      add.add(new Option(t, k));
+    for (const k of fits) {
+      add.add(new Option(SIGNS[k], k));
       for (const [ck, c] of Object.entries(SIGN_CHOICES)) if (c.k === k) add.add(new Option(c.label, ck));
     }
     add.onchange = () => {

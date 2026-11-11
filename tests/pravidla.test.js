@@ -4,6 +4,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { localFrame, deriveProfile, techLines, classGroup } from "../pilot/public/derive.js";
 import { checkRules } from "../pilot/public/rules.js";
+import { signFits } from "../pilot/public/signs.js";
 import { cleanProfile } from "../pilot/public/validate.js";
 import { packProfile, unpackProfile } from "../pilot/public/share.js";
 import { toStreetmix } from "../pilot/public/streetmix.js";
@@ -325,4 +326,14 @@ test("pruh BUS z bus:lanes=yes se zavřeným pruhem (access:lanes=no), s cyklist
   // Without the closed lane buses only may use an ordinary lane.
   const open = { ...tags }; delete open["access:lanes:forward"];
   assert.equal(types(open).filter((x) => x.startsWith("bus")).length, 0);
+});
+
+test("nabídka značek podle části: dálnice ne pod chodníkem, parkoviště jen u stání", () => {
+  assert.equal(signFits("ip14a", "chodnik"), false);
+  assert.equal(signFits("ip14a", "pruh"), true);
+  assert.equal(signFits("ip11a", "parkovani"), true);
+  assert.equal(signFits("ip11a", "pruh"), false);
+  assert.equal(signFits("b30", "chodnik"), true);
+  assert.equal(signFits("ip20a", "bus_cyklo"), true);
+  assert.equal(signFits("b29", "zelen"), false);
 });

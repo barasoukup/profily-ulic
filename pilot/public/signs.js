@@ -34,6 +34,20 @@ export const SIGNS = {
   ip27a: "IZ 6a Pěší zóna",
   cyklozona: "IZ 9a Zóna pro cyklisty",
 };
+// The parts each sign can stand under in Návrh (Bára: no motorway under a sidewalk). Signs drawn from the data stay
+// whatever part they are on.
+const LANE = ["pruh", "pruh_piktokoridor", "obsluzna", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh"];
+const WALK = ["chodnik", "chodnik_kola", "stezka_sdilena", "nastupiste"];
+const PARKING = ["parkovani"];
+const SIGN_PARTS = {
+  b1: LANE, b11: LANE, b20a: LANE, oneway: LANE, ip14a: LANE, ip15a: LANE, zona30: LANE, ip26a: LANE, cyklozona: LANE,
+  b8: [...LANE, ...WALK], b30: [...WALK, "cyklostezka"], ip27a: [...LANE, ...WALK],
+  b28: [...LANE, ...PARKING], b29: [...LANE, ...PARKING],
+  c8a: ["cyklostezka"], c9a: ["stezka_sdilena", "chodnik_kola", "chodnik", "cyklostezka"], c10a: ["stezka_sdilena", "chodnik_kola", "chodnik", "cyklostezka"],
+  ip11a: PARKING, ip11d: PARKING, ip11e: PARKING, ip11f: PARKING, ip11g: PARKING, ip12: PARKING, ztp: PARKING,
+  ip20a: ["bus", "bus_cyklo"],
+};
+export const signFits = (k, type) => !SIGN_PARTS[k] || SIGN_PARTS[k].includes(type);
 // Dodatkové tabulky (plate) of a sign: text of E 13, or a key of a pictogram.
 export const PLATES = { kola: "s cyklisty", kolo: "i pro cyklisty", protismer: "cyklisté v protisměru", obsluha: "Mimo dopravní obsluhy", podelne: "podélné", kolme: "kolmé", sikme: "šikmé" };
 // Signs the palette offers with a plate, as signs of their own: one-way with contraflow cyclists is IP 4c (B 2 +
