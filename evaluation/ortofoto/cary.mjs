@@ -331,7 +331,10 @@ async function compare() {
   console.log(`Počet pruhů správně: aplikace ${lanes("appLanes")}/${rows.length}, ${FINE} ${lanes(`lanes_${FINE}`)}/${rows.length}, cuzk12 ${lanes("lanes_cuzk12")}/${rows.length}`);
 }
 
-if (process.argv.includes("--label")) {
+export { load, brightMap, m4, m5, offset, markings };
+if (import.meta.url !== `file://${process.argv[1]}`) {
+  // imported (oznac-eval.mjs): helpers only
+} else if (process.argv.includes("--label")) {
   const ns = process.argv.slice(process.argv.indexOf("--label") + 1).map(Number).filter(Boolean);
   await labelImages(ns);
 } else await compare();

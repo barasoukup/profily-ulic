@@ -1,0 +1,9 @@
+{
+ "70-0": { "edges": [], "lines": [], "hatch": [], "parking": [[75, 125]], "quality": "occluded", "note": "většina ve stínu domu a stromů, okraje nelze určit" },
+ "53-0": { "edges": [], "lines": [], "hatch": [], "parking": [], "quality": "occluded", "note": "lesní cesta pod stromy, pravý okraj asi 123, levý nejasný" },
+ "14-1": { "edges": [86, 313], "lines": [[167, "dashed"], [237, "solid"]], "hatch": [], "parking": [], "quality": "ok", "note": "vlevo zelený dělicí pás; v pruhu 95–167 šipky; u 245 řada sloupků se stíny; v pravém pruhu světlé symboly" },
+ "33-0": { "edges": [173, 357], "lines": [[261, "dashed"]], "hatch": [], "parking": [[60, 172]], "quality": "ok", "note": "vlevo šikmé stání za obrubou; 173–198 světlejší pás" },
+ "11-0": { "edges": [93, 258], "lines": [], "hatch": [], "parking": [[95, 140]], "quality": "occluded", "note": "vlevo stín domů, vpravo stromy, pravý okraj rozmazaný (240–267); nahoře přechod/šrafy" },
+ "26-1": { "edges": [73, 276], "lines": [[184, "dashed"]], "hatch": [], "parking": [], "quality": "ok", "note": "u obou okrajů světlý pás (žlab?) 73–87 a 251–276; bez něj by okraje byly 87/251; tmavá spára u 157" },
+ "6-0": { "edges": [100, 319], "lines": [[171, "edge"], [242, "dashed"], [314, "edge"]], "hatch": [], "parking": [], "quality": "ok", "note": "vlevo odstavný pruh se světlejším povrchem, po obou stranách svodidla" }
+}

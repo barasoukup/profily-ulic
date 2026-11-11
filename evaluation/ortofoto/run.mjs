@@ -35,6 +35,7 @@ const ALL = {
   cuzk12: { label: "ČÚZK 12,5 cm", res: 0.125, cities: null, get: (b, w, h) => `${CUZK}?${new URLSearchParams({ service: "WMS", request: "GetMap", version: "1.3.0", layers: "0", styles: "", crs: "EPSG:3857", bbox: b.join(","), width: w, height: h, format: "image/png" })}` },
   ipr10: { label: "IPR léto 2024, 10 cm", res: 0.1, cities: ["praha"], get: (b, w, h) => `${IPR("letecke_snimkovani")}?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: "png", f: "image" })}` },
   ipr05: { label: "IPR jaro 2025 bez listí, 5 cm", res: 0.05, cities: ["praha"], get: (b, w, h) => `${IPR("mimovegetacni_letecke_snimkovani")}?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: "png", f: "image" })}` },
+  plzen10: { label: "Plzeň 2024 bez listí, 10 cm", res: 0.1, cities: ["plzen"], get: (b, w, h) => `https://ags.plzen.eu/arcgis/rest/services/Orto_2024_5cm_RGB_mimoveg/MapServer/export?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: "png", f: "image", datumTransformations: "[1623]" })}` },
   brno25: { label: "Brno 2025, 10 cm", res: 0.1, cities: ["brno"], tiles: "https://gis.brno.cz/ags1/rest/services/OMI/OMI_basemaps_ortofoto_2025_wgs/MapServer/tile", z: 20 },
 };
 const SOURCES = (process.env.SOURCES ? process.env.SOURCES.split(",") : Object.keys(ALL)).filter((k) => !ALL[k].cities || ALL[k].cities.includes(CITY));

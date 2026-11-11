@@ -1,0 +1,9 @@
+{
+ "34-0": { "edges": [62, 247], "lines": [], "hatch": [], "parking": [], "quality": "junction", "note": "bez podélných čar; od 201 světlejší povrch se šipkami a červenobílým trojúhelníkem; za 247 koleje/zábradlí" },
+ "15-0": { "edges": [], "lines": [], "hatch": [], "parking": [], "quality": "occluded", "note": "levá polovina obrázku černá (chybí data); pravá obruba asi 367, nahoře světlý pás 197–260 (nástupiště?)" },
+ "14-1": { "edges": [208, 333, 481], "lines": [[24, "dashed"], [88, "dashed"], [139, "dashed"], [202, "edge"], [338, "edge"], [398, "dashed"]], "hatch": [], "parking": [], "quality": "ok", "note": "most s tramvají uprostřed (208–333); levý okraj vozovky mimo obrázek, vlevo nahoře piktogram kola" },
+ "27-1": { "edges": [67, 208], "lines": [[139, "dashed"]], "hatch": [], "parking": [], "quality": "junction", "note": "horní polovina tmavá (stín/most), uprostřed křižovatka, dole přechod a stání" },
+ "27-0": { "edges": [60, 192], "lines": [[126, "dashed"]], "hatch": [], "parking": [], "quality": "ok", "note": "piktogramy kola (piktokoridor) v levém pruhu; vlevo obruba 53–61; dole vpravo vjezd na parkoviště" },
+ "15-1": { "edges": [62, 195], "lines": [[126, "dashed"]], "hatch": [], "parking": [], "quality": "ok", "note": "" },
+ "33-0": { "edges": [53, 207], "lines": [[87, "dashed"], [137, "dashed"]], "hatch": [], "parking": [], "quality": "ok", "note": "vlevo cyklopruh (krátké čárky 87, piktogram kola), vpravo tramvajové těleso se štěrkem" }
+}

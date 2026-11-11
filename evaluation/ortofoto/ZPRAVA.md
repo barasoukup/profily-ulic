@@ -152,3 +152,84 @@ Na ČÚZK 12,5 cm vychází model skoro stejně jako na IPR 10 cm. Nejmenší mo
 **Rozhodnutí (Bára 11. 11. 2026): do aplikace ne.** 3 MB nechceme posílat uživatelům a licence nesedí (váhy
 AGPL-3.0, data DOTA jen pro akademické použití). Strana stání zůstává podle zákona jako odhad. Kdyby se
 k autům někdy vracelo: spočítat je jednou při nasazení a ukládat jen výsledek, s vyjasněnou licencí dat.
+
+## Třetí kolo: nezávislá kontrola v pěti městech (11. 11. 2026)
+
+Bára: větší vzorek, víc nezávislých testů, víc míst; napojení profilu na snímek musí jít.
+
+**Data.** Praha, Brno, Plzeň, Hradec Králové a Ostrava (vzorky 50–100 řezů každého města, profily z `ab.mjs`).
+Ortofota ČÚZK 25 a 12,5 cm všude, k tomu IPR 10 a 5 cm (Praha), městské ortofoto Brna 2025 a Plzně 2024
+(5 cm, bez listí; staženo po 10 cm).
+
+**Nezávislá kontrola.** Obrázky jednotlivých vozovek bez čehokoli od programu, jen s měřítkem (`oznac.mjs`,
+návod `OZNACOVANI.md`). Označili je tři pomocníci (A: Praha, Brno; B: Hradec, Ostrava; C: Plzeň a 14 obrázků
+z Prahy a Brna podruhé), každý bez přístupu k výsledkům a k ostatním značkám: okraje vozovky a podélné čáry
+v pixelech, se zvětšovátkem. Celkem 104 vozovek, z toho 56 posouditelných (ostatní stín, stromy, křižovatka).
+**Shoda dvou značkovatelů** na společných obrázcích: čáry se shodují všechny, rozdíl 0–1 px (do 5 cm); okraje
+vozovky 2–8 px (0,1–0,4 m), protože u obruby bývá světlý pruh (odvodňovací proužek, obrubník, vodicí čára) a
+není jasné, kde vozovka končí. Čáry jsou tedy spolehlivá kontrola, okraje jen na ±0,3 m.
+
+**Pasport Hradce** (`vdz.mjs`, `vdz-eval.mjs`; vrstva `pk-dzv-l`, přes 20 000 čar, s datem obnovy): pokrývá jen
+komunikace města, malé ohraničení dotazu vrací prázdno (dotazovat ±80 m). Proti značkám B: z čar viditelných na
+ortofotu je v pasportu 71 %, z čar pasportu je na ortofotu vidět 60 %, kde sedí, tak do 0,1 m. Jako kontrola
+proto slouží jen orientačně (Bára: nevěřit mu zcela): ortofoto najde 20–30 % jeho čar a 35–50 % nalezených v
+něm je; na obrázcích jsou vidět ulice s čarami, které pasport nemá (Brněnská), i posunuté čáry.
+
+### 1. Napojení profilu na snímek
+
+Skutečný posun mapy (MTVU, mapy měst, DTM ČÚZK) proti ortofotu podle označených okrajů vozovky:
+
+| město, ortofoto | medián \|posun\| | do 0,3 m |
+|---|---|---|
+| Praha, IPR 10 cm | 0,20 m | 15 z 22 |
+| Hradec, ČÚZK 12,5 cm | 0,10 m | 12 z 16 |
+| Ostrava, ČÚZK 12,5 cm | 0,25 m | 13 z 18 |
+| Plzeň, městské 2024 | 0,50 m | 5 z 16 |
+| Brno, městské 2025 | 2,0–2,6 m | 0 z 14 |
+
+To je na úrovni přesnosti značek samotných (okraje ±0,3 m) a odpovídá střední chybě Ortofota ČR 0,18 m
+(LITERATURA.md). **Mapa a ortofoto ČÚZK (i IPR) k sobě sedí bez doladění.** Doladění podle hran (r0, r1, r2;
+`napojeni.mjs`) to nezlepší: v Praze, Hradci a Ostravě bylo „bez posunu“ stejně dobré nebo lepší (63–75 % do
+0,3 m proti 44–73 %). Doladění se vyplatí jen pro ortofota s jinou transformací souřadnic (Brno 2025 asi 2–2,6 m,
+Plzeň asi 0,5 m), kde r2 při jistém výsledku sedí v 80–86 %; jednodušší je tam vzít ČÚZK nebo posun změřit
+jednou pro celé ortofoto. Vnitřní testy to potvrzují: kde r1 vyjde jistě, shodnou se dvě nezávislá ortofota
+(IPR × ČÚZK) do 0,4 m ve 20 z 20 a 21 z 22 řezů a medián posunu mapy proti ČÚZK je ve všech pěti městech 0–0,1 m.
+
+Velké posuny z prvního kola tedy nebyly chybou dat: (1) profil drží celkovou šířku, ale tramvajová tělesa a
+pruhy dostanou normové šířky, takže se části posunou proti skutečné obrubě o 1–2 m (řeší položení profilu na
+vozovky mapy, `layout`), (2) doladění podle obrub bylo nespolehlivé, (3) brněnské městské ortofoto je posunuté.
+
+### 2. Čáry a pruhy proti nezávislé kontrole
+
+Hranice pruhů (podélné čáry uvnitř vozovky, aspoň 0,7 m od okraje) do 0,3 m od označené čáry:
+
+| město | aplikace dnes | ortofoto (nejjemnější) | ortofoto ČÚZK 12,5 cm |
+|---|---|---|---|
+| Praha | 23 % | 90 % (IPR 10 cm) | 53 % |
+| Brno | 13 % | 67 % (městské, posunuté) | 53 % |
+| Plzeň | 30 % | 70 % (městské) | 80 % |
+| Hradec | 24 % | – | 71 % |
+| Ostrava | 25 % | – | 70 % |
+
+„Aplikace dnes“ je profil položený na mapu s odhadnutým posunem; i s posunem odečteným ze značek je to jen
+0–50 %. Aplikace navíc kreslí hranice, které na vozovce namalované nejsou (stání, krajnice), v tabulce je
+nepočítám jako chybu. **Ortofoto určí polohu pruhů zhruba třikrát lépe.** Počet pruhů je ale vyrovnanější:
+správně ho má aplikace u 36–73 % vozovek, ortofoto u 45–89 %; v Ostravě je aplikace lepší (73 % proti 45 %),
+protože ortofoto vynechá vybledlou nebo zakrytou čáru. Kombinace: „aplikace + ortofoto“ (čáry z ortofota, kde
+našlo řadu pruhů, jinak aplikace) drží polohy ortofota; „aplikace přichycená“ (počet z aplikace, hranice
+posunuté k čáře do 1,2 m) zachová počet aplikace a polohy zlepší jen částečně (40–70 %).
+
+Nalezené čáry (recall / precision, m5): Praha IPR 10 cm 76 % / 89 %; Ostrava ČÚZK 12,5 cm 72 % / 92 %, 25 cm 78 %
+/ 96 %; Hradec ČÚZK 12,5 cm 65 % / 83 %; Plzeň ČÚZK 12,5 cm 82 % / 82 %; Brno městské 60 % / 55 %. Stín je
+hlavní příčina vynechaných čar (jarní IPR 5 cm v Praze jen 45 %).
+
+### Co z toho plyne pro aplikaci
+
+1. **Napojení je vyřešené:** ortofoto ČÚZK (a IPR) brát tak, jak je, bez doladění; čáry promítat na vozovky mapy
+   (profil položený na skutečné okraje). Městská ortofota s jinou transformací nepoužívat, nebo jim jednou změřit
+   posun.
+2. **Pruhy:** polohy hranic z ortofota (m5), počet pruhů z ortofota jen tam, kde najde celou řadu čar a souhlasí
+   se šířkou vozovky; jinak počet z aplikace a hranice přichytit. Zdroj „ortofoto“, při nejistotě pravidla.
+3. **Stín** zůstává hlavní slabinou (46 % obrázků se nedalo posoudit ani okem); ortofoto ČÚZK je letní, s kratšími
+   stíny, a pro celou ČR dává 53–80 %.
+4. Vzorek je pořád malý (56 posouditelných vozovek se 127 čarami, 14 z nich označených dvakrát); čísla po městech berte orientačně.
