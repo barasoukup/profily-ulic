@@ -1335,7 +1335,10 @@ export function buildSvg(profile, opts = {}) {
       // Cyclist sharing the lane (with a painted pictogram on a piktokoridor), possibly in contraflow.
       const bikeFwd = (s.bikeDir || s.dir) !== "backward";
       if (t.sharrow) el("rect", { x: cx - 60, y: top - 4, width: 120, height: 6, fill: "#f2f0ea" }, g);
-      sprite(g, bikeFwd ? "biker-01-outbound" : "biker-01-inbound", x + Math.min(w * 0.2, 60) + 20, top);
+      // A cyclist keeps to the right of their direction: the lane's right edge riding away from the viewer, its left
+      // edge riding towards them (Bára, Optátova in contraflow).
+      const edge = Math.min(w * 0.2, 60) + 20;
+      sprite(g, bikeFwd ? "biker-01-outbound" : "biker-01-inbound", bikeFwd ? x + w - edge : x + edge, top);
     }
     if (opts.onSelect) {
       g.setAttribute("tabindex", "0");
