@@ -2,7 +2,7 @@
 // or edited file must not break the drawing. Unknown types and items are made harmless, numbers
 // that the drawing needs must be numbers, a part without a usable width is an error.
 import { TYPES, SOURCES, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS } from "./types.js";
-import { SIGNS, PLATES, MAX_PER_PART } from "./signs.js";
+import { SIGNS, signChoice, MAX_PER_PART } from "./signs.js";
 
 const EDGE_KINDS = new Set(["budova", "stavba", "zahrada", "zelen", "voda", "parkoviste", "plot", "volno"]);
 const EDGE_STYLES = new Set(["sikma", "funkce", "moderni", "plocha", "nizky", "hala", "centrum", "centrum-obchod", "sidliste", "sidliste-lodzie", "rd"]);
@@ -50,12 +50,13 @@ export function cleanProfile(p, what = "profil") {
   return p;
 }
 
-// Traffic signs (signs.js): known keys, a speed as a number, a known plate, a direction word.
+// Traffic signs (signs.js): known keys, a speed as a number, a plate only in a known pair (SIGN_CHOICES), a
+// direction word.
 function cleanSigns(list) {
   if (!Array.isArray(list)) return [];
   return list.filter((x) => x && Object.hasOwn(SIGNS, x.k)).map((x) => ({ k: x.k,
     ...(num(x.v, 1, 200) ? { v: x.v } : {}),
-    ...(Object.hasOwn(PLATES, x.plate) ? { plate: x.plate } : {}),
+    ...(signChoice(x) ? { plate: x.plate } : {}),
     ...(["forward", "backward"].includes(x.dir) ? { dir: x.dir } : {}) })).slice(0, 12);
 }
 

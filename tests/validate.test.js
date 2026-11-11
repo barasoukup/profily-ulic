@@ -34,3 +34,10 @@ test("vadné směry, orientace, účel a odbočení se zahodí", () => {
   assert.equal(p.segments[1].dir, "backward");
   assert.equal(p.segments[1].turn, "left|through");
 });
+
+test("tabulka zůstane jen u známé dvojice značky a tabulky", () => {
+  const p = cleanProfile({ segments: [{ type: "pruh", width: 3, signs: [{ k: "oneway", plate: "protismer" }, { k: "b1", plate: "kolme" }] },
+    { type: "parkovani", width: 2, signs: [{ k: "ip11a", plate: "sikme" }, { k: "b20a", v: 30, plate: "obsluha" }] }] });
+  assert.deepEqual(p.segments[0].signs, [{ k: "oneway", plate: "protismer" }, { k: "b1" }]);
+  assert.deepEqual(p.segments[1].signs, [{ k: "ip11a", plate: "sikme" }, { k: "b20a", v: 30 }]);
+});
