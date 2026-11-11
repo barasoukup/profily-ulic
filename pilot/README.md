@@ -111,6 +111,8 @@ Podélné, šikmé a kolmé stání se bere z OSM (`orientation` u ploch parkov�
 z dat města. U úseků TSK se dopočítá z průměrné hloubky úseku (plocha / délka) a počtu stání (`PS_ZPS`): hloubka
 od 4,9 m = kolmé, pod 3 m = podélné, jinak podle délky na stání (pod 3,4 m kolmé, 3,4–4,8 m šikmé, víc podélné).
 Kde nic z toho není, odhadne se z hloubky pásu: do 3,2 m podélné, do 4,6 m šikmé, jinak kolmé.
+Odhad „kolmé“ vedle vozovky užší než 5 m je šikmé: do kolmého stání se zajíždí z asi 6 m, do šikmého pod 45° ze 3,5 m
+(ČSN 73 6056; Laubova, kde stromy mezi stáními kazí délku na stání).
 V editoru jde orientace změnit ručně. Kolmé stání má podle ČSN 73 6056 hloubku 5,0 m, s přesahem vozidel
 přes obrubník 4,5 m; užší změřený pás kolmého stání se doplní na 4,5 m z chodníku nebo zeleně za obrubníkem.
 

@@ -1790,7 +1790,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     }
   }
   return {
-    segments: withItems.reverse().map(toSegment),
+    segments: aisleOrient(withItems.reverse().map(toSegment)),
     edges: { ...edges },
     runs,
     axisT,
@@ -1826,6 +1826,23 @@ function toSegment(x) {
 }
 
 const round = (v) => Math.round(v * 100) / 100;
+
+// Cars drive into perpendicular stalls from an aisle about 6 m wide, into stalls at 45° from about 3.5 m (ČSN 73 6056).
+// A "perpendicular" guess (from the depth, or from the stalls of a TSK section, which trees and driveways between
+// the stalls mislead) beside a carriageway narrower than PERP_AISLE is angled parking (Laubova: 4.3 m, Bára).
+const PERP_AISLE = 5;
+const AISLE = new Set(["pruh", "pruh_piktokoridor", "obsluzna", "krajnice", "bus", "bus_cyklo", "tramvaj_v_pruhu"]);
+function aisleOrient(segs) {
+  segs.forEach((s, i) => {
+    if (s.type !== "parkovani" || s.orient !== "kolme") return;
+    for (const step of [-1, 1]) {
+      let w = 0, j = i + step;
+      while (segs[j] && AISLE.has(segs[j].type)) w += segs[j].width, j += step;
+      if (w > 0 && w < PERP_AISLE) { s.orient = "sikme"; return; }
+    }
+  });
+  return segs;
+}
 
 // Fallback outside MTVU coverage: a typical profile from OSM tags.
 function estimateFromOsm(way) {
