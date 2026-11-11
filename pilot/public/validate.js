@@ -50,6 +50,24 @@ export function cleanProfile(p, what = "profil") {
   return p;
 }
 
+// The parts a setting belongs to (derive.js sets it there, profile.js and streetmix.js read it there). On a part
+// of another type it is a leftover of a type change in Návrh, and the drawing would still follow it (the sidewalk
+// paving of position under a lane, the arrows and the cyclist of a lane under a sidewalk).
+const LANES = ["pruh", "pruh_piktokoridor", "bus", "bus_cyklo"];
+const FIELD_TYPES = {
+  dir: Object.keys(TYPES).filter((k) => TYPES[k].directional), bikeDir: ["pruh", "pruh_piktokoridor"], turn: [...LANES, "tramvaj_v_pruhu"],
+  orient: ["parkovani"], use: ["parkovani"], position: ["parkovani"], color: ["cyklopruh", "ochranny_pruh"],
+  bed: Object.keys(TYPES).filter((k) => TYPES[k].bed), bedGuess: Object.keys(TYPES).filter((k) => TYPES[k].bed),
+  withBus: Object.keys(TYPES).filter((k) => TYPES[k].tracks), trolley: LANES, wires: LANES, roadClass: LANES,
+};
+// Gives a part a new type and drops the settings that do not belong to it; a directional type gets a direction.
+export function retype(s, type) {
+  s.type = type;
+  for (const [k, types] of Object.entries(FIELD_TYPES)) if (k in s && !types.includes(type)) delete s[k];
+  if (TYPES[type]?.directional && !s.dir) s.dir = "forward";
+  return s;
+}
+
 // Traffic signs (signs.js): known keys, a speed as a number, a plate only in a known pair (SIGN_CHOICES), a
 // direction word.
 function cleanSigns(list) {

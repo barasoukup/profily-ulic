@@ -5,7 +5,7 @@ import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, MAX_PER_PART } from "./sig
 import { loadSprites, loadSigns, layoutSigns, buildSvg, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
 import * as sources from "./sources.js";
 import { MAPY_KEY } from "./config.js";
-import { cleanProfile, cleanCut } from "./validate.js";
+import { cleanProfile, cleanCut, retype } from "./validate.js";
 import { shares } from "./shares.js";
 import { packProfile, unpackProfile, designParams } from "./share.js";
 import { checkRules } from "./rules.js";
@@ -1070,7 +1070,7 @@ function renderEditor(p) {
   }
   const type = document.createElement("select");
   for (const [k, t] of Object.entries(TYPES)) type.add(new Option(t.label, k, false, k === s.type));
-  type.onchange = () => { s.type = type.value; s.source = "user"; done(); };
+  type.onchange = () => { retype(s, type.value); s.source = "user"; done(); };
   const width = Object.assign(document.createElement("input"), { type: "number", step: 0.05, min: 0.2, value: s.width });
   width.onchange = () => {
     // Perpendicular parking keeps at least 4.5 m (ČSN 73 6056).
