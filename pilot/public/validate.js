@@ -87,6 +87,6 @@ export function cleanCut(c) {
   const span = c.span && num(c.span.left, 0, 70) && num(c.span.right, 0, 70) ? { left: c.span.left, right: c.span.right } : undefined;
   // What the export credits (app.js, city.js creditLines): a region's name and two flags, nothing else.
   const src = c.sources || {};
-  const sources = { ...(typeof src.region === "string" && src.region && { region: src.region.slice(0, 80) }), ...(src.dmvs === true && { dmvs: true }), ...(src.ortho === true && { ortho: true }) };
+  const sources = { ...(typeof src.region === "string" && src.region && { region: src.region.slice(0, 80) }), ...(src.dmvs === true && { dmvs: true }), ...(src.ortho === true && { ortho: true }), ...(["ipr", "brno", "plzen"].includes(src.orthoCity) && { orthoCity: src.orthoCity }) };
   return { ...c, name: String(c.name || "Ulice"), note: typeof c.note === "string" ? c.note : "", reach, span, sources };
 }

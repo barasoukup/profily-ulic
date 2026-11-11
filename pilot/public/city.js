@@ -443,6 +443,8 @@ export function creditLines(c, src = {}, art = false) {
   if (src.dmvs && !c.credit.includes("IS DMVS")) data.push(`technická mapa © ${kraj}, IS DMVS ČÚZK`);
   if (src.dmvs && !c.credit.includes("RÚIAN")) data.push("RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)");
   if (src.ortho) data.push("ortofoto © ČÚZK, 2025 (CC BY 4.0)");
+  const ORTHO_CITY = { ipr: "ortofoto © IPR Praha, 2024", brno: "ortofoto © Statutární město Brno, 2025", plzen: "ortofoto © Statutární město Plzeň, 2024" };
+  if (ORTHO_CITY[src.orthoCity]) data.push(ORTHO_CITY[src.orthoCity]);
   data.push("© přispěvatelé OpenStreetMap (ODbL)");
   return [
     data.join(" · "),
