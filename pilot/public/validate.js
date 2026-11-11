@@ -24,6 +24,8 @@ export function cleanProfile(p, what = "profil") {
     if ("use" in s && !(s.use in PARKING_USE)) delete s.use;
     if ("position" in s && !(s.type === "parkovani" && Object.hasOwn(PARKING_POSITION, s.position))) delete s.position;
     if ("turn" in s && !isTurn(s.turn)) delete s.turn; // only words the drawing can name (TURNS)
+    // The surface colour of a cycle lane (OSM, derive.js COLOURS) goes into the SVG as it is: a hex colour only.
+    if ("color" in s && !/^#[0-9a-f]{6}$/i.test(String(s.color))) delete s.color;
     for (const k of ["trolley", "wires"]) if (k in s && s[k] !== true) delete s[k];
     // A profile saved before the three kinds of tram (11/2026) has no bed on its tram belt: panels.
     if ("bed" in s && !(s.bed in TRAM_BEDS)) delete s.bed;
