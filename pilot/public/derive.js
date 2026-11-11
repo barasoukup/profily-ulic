@@ -873,13 +873,15 @@ function treePositions(osm, frame, center, normal, half, lines = [], reach = REA
 }
 
 // Trees turn a green segment into a tree row, or carve a tree strip (TREE_STRIP wide)
-// out of the paved segment holding them.
-function insertTrees(segs, trees) {
+// out of the paved segment holding them. A tree standing in the parking strip (trees between the stalls,
+// Bára) is an item of the parking (parked: given to attachItems).
+function insertTrees(segs, trees, parked = []) {
   let out = segs;
   for (const { t, src } of trees) {
     const i = out.findIndex((x) => x.s <= t && x.e >= t);
     const host = out[i];
     if (host?.type === "zelen") { host.type = "stromorad"; continue; }
+    if (host?.type === "parkovani") { parked.push({ kind: "strom", t, along: 0, parked: true }); continue; }
     if (!host || !WALK.has(host.type)) continue;
     const s = Math.max(host.s, t - TREE_STRIP / 2), e = Math.min(host.e, t + TREE_STRIP / 2);
     // Leftover sidewalk slivers under 0.5 m join the tree strip.
@@ -1290,7 +1292,9 @@ function attachItems(segs, items) {
       host = near;
       t = Math.min(Math.max(t, near.s + inset), near.e - inset);
     }
-    if (!host) continue;
+    if (!host || (it.parked && host.type !== "parkovani")) continue;
+    // One tree per parking part: it stands in the middle, behind the car.
+    if (it.parked) { if (!host.items?.some((o) => o.kind === "strom")) (host.items ||= []).push({ kind: "strom", f: 0.5 }); continue; }
     const item = { kind: it.kind, f: (t - host.s) / Math.max(host.e - host.s, 0.01) };
     if (it.tram) item.tram = true;
     if (it.lamp) item.lamp = true;
@@ -1764,8 +1768,9 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   const kerbNotes = [];
   const withKerb = carveKerbParking(markIslands(segs), kerbReqs, kerbNotes);
   const withPlatforms = insertPlatforms(withKerb, platformPositions(osm, frame, center, normal, half), axisT);
-  const withTrees = insertTrees(withPlatforms, treePositions(osm, frame, center, normal, half, lines, reachItems));
-  const withItems = attachItems(perpDepth(mergeParking(withTrees)), itemPositions(osm, frame, center, normal, half, lines, reachItems));
+  const parkedTrees = [];
+  const withTrees = insertTrees(withPlatforms, treePositions(osm, frame, center, normal, half, lines, reachItems), parkedTrees);
+  const withItems = attachItems(perpDepth(mergeParking(withTrees)), [...itemPositions(osm, frame, center, normal, half, lines, reachItems), ...parkedTrees]);
   // Points 4 m inside the buildings at both ends, for their height and number of floors.
   const probe = { left: at(kept.at(-1).e + 4), right: at(kept[0].s - 4) };
   for (const side of ["left", "right"]) {

@@ -59,7 +59,8 @@ Streetmixu). Bývalé stránky `/<město>/` přesměrují na `/?mesto=<město>` 
   nebo chodníku vedle nich se k parkování přičtou.
 - **Stromy:** z otevřených dat, z technické mapy a z OSM (`natural=tree_row`, `natural=tree`) do 8 m od řezu.
   V chodníku se kolem nich vyčlení stromořadí široké 1,5 m; zelený pás se stromy se označí jako stromořadí,
-  bez stromů jako zeleň.
+  bez stromů jako zeleň. Strom v pruhu stání (stromy střídající se se stáním) je prvek „Strom“ parkování: kreslí se
+  za autem a popisek zní „… se stromy“. Prvek „Strom“ jde v Návrhu přidat i ručně.
 - **Nástupiště MHD:** nástupiště z OSM (`public_transport=platform`, `railway=platform`, `highway=platform`;
   čáry i plochy). Ostrůvek s nástupištěm se celý označí jako nástupiště, na širokém chodníku jen pás 3 m
   u obruby.

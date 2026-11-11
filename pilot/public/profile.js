@@ -164,6 +164,7 @@ function drawItem(g, it, x, top, right) {
     case "lampa": return sprite(g, right ? "lamp-modern-left" : "lamp-modern-right", x, top, false, right ? 348 : 22);
     // The Prague bench has its back on the left: on the right half it turns to face the street too.
     case "lavicka": return sprite(g, "bench-center", x, top, right);
+    case "strom": return sprite(g, "tree", x, top);
     case "stojan_kola": return sprite(g, "bike-rack-perpendicular-left", x, top);
     case "sdilena_kola": return sprite(g, "bikeshare-left", x, top);
     case "pristresek": {
@@ -1240,6 +1241,8 @@ export function buildSvg(profile, opts = {}) {
     if (t.tracks) {
       for (const dx of [-72, 72]) el("rect", { x: cx + dx - 6, y: top - 6, width: 12, height: 8, fill: "#3d3b36" }, g);
     }
+    // Trees between the stalls (a tree item of a parking part, Bára): the tree stands behind the car, along the street.
+    if (s.type === "parkovani") for (const it of s.items || []) if (it.kind === "strom") sprite(g, "tree", x + it.f * w, GROUND);
     if (t.sprite === "people" && t.withBike && w >= 140) {
       // Shared with cyclists: a walker and a cyclist side by side (only the cyclist when narrow).
       const bike = forward ? "biker-01-outbound" : "biker-01-inbound";
@@ -1284,6 +1287,7 @@ export function buildSvg(profile, opts = {}) {
     }
     if (t.wall) el("rect", { x, y: top - 90, width: w, height: 90, fill: t.color }, g);
     for (const it of s.items || []) {
+      if (it.kind === "strom" && s.type === "parkovani") continue; // drawn behind the car
       let ix = x + it.f * w, onRight = ix > total / 2;
       if (it.kind === "pristresek") {
         // A shelter opens towards the tram or bus beside its platform, its back wall at the platform's other edge,
@@ -1304,7 +1308,7 @@ export function buildSvg(profile, opts = {}) {
     let wrapped = false;
     if (w >= 80) {
       const contra = s.bikeDir && s.bikeDir !== (s.dir || "forward");
-      const label = TYPES[s.type]?.tracks && s.withBus ? `${t.label} + BUS` + (t.directional && s.dir ? (forward ? " ↑" : " ↓") : "")
+      let label = TYPES[s.type]?.tracks && s.withBus ? `${t.label} + BUS` + (t.directional && s.dir ? (forward ? " ↑" : " ↓") : "")
         : s.type === "parkovani" && s.use ? `Parkování ${PARKING_USE[s.use]}`
         // Under a narrow part "Napůl na chodníku" alone (the long name would not fit on two lines).
         : s.type === "parkovani" && s.position ? (s.position === "half_on_kerb" && w < 300 ? "Napůl na chodníku" : `Parkování ${PARKING_POSITION[s.position]}`)
@@ -1314,6 +1318,8 @@ export function buildSvg(profile, opts = {}) {
         : s.type === "pruh_piktokoridor" ? `${TYPES.pruh.label}${s.dir ? (forward ? " ↑" : " ↓") : ""}, piktokoridor${contra ? (s.bikeDir === "backward" ? " ↓" : " ↑") : ""}`
         : t.label + (t.directional && s.dir ? (forward ? " ↑" : " ↓") : s.type === "pruh" ? " ↑↓" : "") +
           (contra ? `, cyklisté ${s.bikeDir === "backward" ? "↓" : "↑"}` : "");
+      // Trees between the stalls are named with the parking (Bára).
+      if (s.type === "parkovani" && s.items?.some((it) => it.kind === "strom")) label += " se stromy";
       const name = el("text", { class: "lbl-t", "data-row": 1, "data-w": w, "data-full": label, x: cx, y: GROUND + 215, "text-anchor": "middle", "font-size": 28, fill: "#4f4e49" }, g);
       const lines = twoLines(label);
       if (label.length * 0.56 * 28 > w && lines) {

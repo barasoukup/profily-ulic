@@ -46,7 +46,7 @@ export const SOURCES = {
 // Default widths (m) for newly added segments.
 // Items drawn inside a segment (street furniture, barriers, slopes).
 export const ITEMS = {
-  lampa: "Lampa", lavicka: "Lavička", stojan_kola: "Stojan na kola", sdilena_kola: "Sdílená kola",
+  strom: "Strom", lampa: "Lampa", lavicka: "Lavička", stojan_kola: "Stojan na kola", sdilena_kola: "Sdílená kola",
   pristresek: "Přístřešek zastávky", rozcestnik: "Rozcestník / mapa", taxi: "Stanoviště taxi",
   sloupek: "Sloupek", sloup_trakce: "Sloup trakčního vedení", oznacnik: "Označník zastávky", kvetinac: "Květináč", svodidlo: "Svodidlo", zabradli: "Zábradlí", plot: "Plot / zeď",
   oporna_zed: "Opěrná zeď", zivy_plot: "Živý plot", svah: "Hrana svahu", zahradka: "Zahrádka restaurace",
