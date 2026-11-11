@@ -114,5 +114,20 @@ Co z toho plyne:
    ČÚZK 12,5 cm u 27 z 32, brněnské u 13 z 13. Počet pruhů podle čar sedí u 8–10 z 15 pražských vozovek, aplikace
    u 6 z 15. Zlepšení tedy je, ale hlavně tam, kde aplikace špatně odhadne počet pruhů nebo krajnici.
 
+6. **Pruhy vybrané dohromady (m5)**, podle rešerše (`LITERATURA.md`, Máttyus a kol. 2016): z nalezených čar
+   se vybere taková sada, aby mezery vypadaly jako pruhy (2,5–4,75 m, u okraje do 7,5 m na krajnici nebo
+   stání; mezera přes dva pruhy, kde čára chybí, s malou srážkou), dynamickým programováním. Dělicí čáry:
+
+   | uvnitř vozovky | m4 recall / precision | m5 recall / precision |
+   |---|---|---|
+   | Praha IPR 10 cm | 97 % / 84 % | 94 % / 91 % |
+   | Praha ČÚZK 12,5 cm | 84 % / 73 % | 81 % / 79 % |
+   | Praha ČÚZK 25 cm | 63 % / 67 % | 59 % / 73 % |
+   | Praha IPR 5 cm | 75 % / 71 % | 66 % / 72 % |
+   | Brno městské | 100 % / 68 % | 92 % / 80 % |
+   | Brno ČÚZK 12,5 cm | 62 % / 47 % | 54 % / 64 % |
+
+   Falešných čar ubude víc než pravých, pro šířky pruhů je to lepší volba.
+
 Další krok: napojení profilu na snímek (bez něj nejde ortofoto do profilu promítnout) a větší ověřovací vzorek
 s měřením šířek, ne jen poloh čar.

@@ -67,6 +67,31 @@ function m4(st, H, s, e) {
   }
   return peaks(best.sh, st.res).map((m) => ({ ...m, deg: best.deg, R: best.k ? Math.round(1 / best.k) : null }));
 }
+// m5: the lanes chosen together (LITERATURA.md, Máttyus et al. 2016): of m4's lines inside the roadway, the set
+// whose gaps look like lanes (inner gaps LANE_MIN–LANE_MAX, the outer ones up to OUTER_MAX for a shoulder or
+// parking), with the most line strength; a line that would make a 1 m "lane" is left out. Dynamic programming
+// over the lines sorted across the street.
+const LANE_MIN = 2.5, LANE_MAX = 4.75, OUTER_MAX = 7.5, OUTER_MIN = 1.0, MISSED = 0.1;
+function m5(st, H, s, e) {
+  const c = m4(st, H, s, e).filter((m) => m.t > s + 0.7 && m.t < e - 0.7);
+  const n = c.length;
+  // best[i]: the best score of a chain from the kerb A to line i; prev[i] the line before it (−1: the kerb).
+  const best = new Array(n).fill(-Infinity), prev = new Array(n).fill(-1);
+  for (let i = 0; i < n; i++) {
+    // A gap may also be two lanes whose line was not found (a small penalty).
+    const first = c[i].t - s;
+    if (first >= OUTER_MIN && first <= OUTER_MAX + LANE_MAX) best[i] = c[i].share - (first > OUTER_MAX ? MISSED : 0);
+    for (let q = 0; q < i; q++) {
+      const g = c[i].t - c[q].t, v = best[q] + c[i].share - (g > LANE_MAX ? MISSED : 0);
+      if (g >= LANE_MIN && g <= 2 * LANE_MAX && v > best[i]) { best[i] = v; prev[i] = q; }
+    }
+  }
+  let end = -1, top = 0; // no line at all is allowed (score 0), when the roadway is one lane or unmarked
+  for (let i = 0; i < n; i++) { const last = e - c[i].t, v = best[i] - (last > OUTER_MAX ? MISSED : 0); if (last >= OUTER_MIN && last <= OUTER_MAX + LANE_MAX && v > top) { top = v; end = i; } }
+  const out = [];
+  for (let i = end; i >= 0; i = prev[i]) out.unshift(c[i]);
+  return out;
+}
 function shareCurve(st, H, s, e, tan, k) {
   const { nt, nu, res, t0 } = st;
   const i0 = Math.max(0, Math.floor((s - WIDER - t0) / res)), i1 = Math.min(nt - 1, Math.floor((e + WIDER - t0) / res));
@@ -249,6 +274,7 @@ async function compare() {
         const inside = (ts) => ts.filter((t) => t > w.s + EDGE && t < w.e - EDGE);
         add(`${k} uvnitř m1`, score(inside(clean(markings(x.st, w))), inside(tr)));
         add(`${k} uvnitř m4`, score(inside(clean(m4(x.st, H[k], w.s, w.e))), inside(tr)));
+        add(`${k} uvnitř m5 pruhy dohromady`, score(inside(clean(m5(x.st, H[k], w.s, w.e))), inside(tr)));
         if (process.env.FP === k) {
           const f4 = clean(m4(x.st, H[k], w.s, w.e));
           const fp = f4.filter((t) => !tr.some((q) => Math.abs(q - t) <= MATCH)).map((t) => `${(t - w.s).toFixed(2)} od A (šířka ${(w.e - w.s).toFixed(1)})`);
