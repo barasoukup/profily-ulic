@@ -49,6 +49,7 @@
       <div class="menu-list">
         <button id="btn-share" title="Zkopíruje odkaz, který otevře tuto ulici i s vaším návrhem">Sdílet odkaz na návrh</button>
         <button id="btn-save">Uložit profil (JSON)</button>
+        <button id="menu-report" hidden>Nahlásit chybu v datech…</button>
         <label class="btn">Načíst profil…<input id="file-load" type="file" accept=".json,application/json" hidden></label>
       </div>
     </details>
@@ -92,7 +93,7 @@
         <span id="stav-text">Profil ukazuje ulici, jak je dnes.</span>
         <button id="btn-fix">Opravit data</button>
         <button id="btn-to-navrh" class="primary">Navrhnout změnu →</button>
-        <button id="btn-report" class="link">Nahlásit chybu</button>
+        <button id="btn-report" class="link" hidden>Nahlásit chybu</button>
       </div>
       <div id="legend">
         <span class="src src-dtm">změřeno z technické mapy</span>
@@ -116,7 +117,7 @@
     <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.cs">CC BY-SA 4.0</a> ·
     místní ilustrace a kód © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">zdroje a licence</a><br>
-    Zaznamenáváme jen řezy (místo, směr, ulici, čas) a použité funkce, neukládáme IP adresy ani cookies; mapy a data
+    Zaznamenáváme jen řezy (místo, směr, ulici, čas), použité funkce a hlášení chyb, která sami napíšete, neukládáme IP adresy ani cookies; mapy a data
     se načítají přímo ze serverů IPR, ČÚZK, měst, krajů a OSM (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">soukromí</a>).
   </footer>
   <dialog id="report-dialog" aria-labelledby="report-title">
@@ -129,7 +130,7 @@
       <label for="report-text" class="muted">Popis (co je jinak a kde, např. „vlevo chybí cyklopruh, chodník je širší“)</label>
       <textarea id="report-text" rows="5" maxlength="1000"></textarea>
       <p class="muted report-note">Odešle se poloha řezu, jeho profil a váš text, nic dalšího. Nepište prosím osobní údaje.</p>
-      <div class="report-buttons"><span id="report-status" class="muted" role="status"></span><button id="report-cancel">Zrušit</button><button id="report-send" class="primary">Odeslat</button></div>
+      <div class="report-buttons"><span id="report-status" class="muted" role="status" aria-live="assertive"></span><button id="report-cancel">Zrušit</button><button id="report-send" class="primary">Odeslat</button></div>
     </div>
   </dialog>
   <dialog id="pano-dialog" aria-label="Panorama z ulice">

@@ -461,8 +461,10 @@ v aplikaci není: API Streetmixu nemá CORS, takže ze statického webu nefunguj
 Po každém řezu a u několika akcí (export, uložení, sdílení, Návrh, Porovnání, oprava dat, hledání) pošle
 `public/log.js` krátkou zprávu přes `navigator.sendBeacon` do Cloudflare Workeru s databází D1 (`logging/`, návod
 v `logging/README.md`). Řez se ukládá přesně (střed, azimut, dosah, město, ulice, typ ulice, čas), bez IP adres
-a cookies. Adresa Workeru je v proměnné repozitáře `LOG_URL`; bez ní (i lokálně) se nic neposílá. Krátké
-upozornění je v patičce aplikace.
+a cookies. Dál úpravy (jak návštěvník opravil data a co navrhl, zkrácené profily) a hlášení chyb: tlačítko
+„Nahlásit chybu“ ve Stavu a v menu Soubor pošle kategorie, text návštěvníka, řez a profil a počká na odpověď
+Workeru (při chybě text v okně zůstane). Adresa Workeru je v proměnné repozitáře `LOG_URL`; bez ní (i lokálně) se
+nic neposílá a tlačítko hlášení se neukáže. Krátké upozornění je v patičce aplikace.
 
 ## Publikace na GitHub Pages
 

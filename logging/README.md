@@ -13,8 +13,10 @@ kliknutí na nic nečeká, a když Worker neodpoví, nic se nestane.
   tramvaje, šipky a značky, druhy okrajů. Posílá se při „Hotovo“, při odchodu z Návrhu nebo z oprav, při dalším
   řezu a při zavření stránky, a jen když se něco změnilo.
 - **hlášení chyb** (od 11. 11. 2026): co návštěvník u řezu označil za špatné (kategorie a vlastní text, nejvýš
-  1 000 znaků) spolu s řezem a profilem, jak ho aplikace sestavila (a jak ho opravil, pokud opravoval). V okně je
-  upozornění, ať nepíše osobní údaje.
+  1 000 znaků) spolu s řezem a profilem, jak je na stránce, a profilem, jak ho aplikace při té návštěvě sestavila
+  (chybí u profilu obnoveného nebo načteného ze souboru). V okně je
+  upozornění, ať nepíše osobní údaje. Hlášení smaže na požádání Bára (`DELETE FROM events WHERE id = …`);
+  výpis `hlaseni.mjs` se nikam nesdílí.
 
 ## Soukromí
 

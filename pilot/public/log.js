@@ -6,6 +6,21 @@ import { LOG_URL } from "./config.js";
 
 const SESSION = globalThis.crypto?.randomUUID?.() || String(Math.random()).slice(2); // one page load, never stored
 
+// Whether anything is logged at all (the report button shows only then, so it never thanks for nothing).
+export const logOn = !!LOG_URL;
+
+// A report the visitor waits for: a plain POST whose answer is read (the Worker allows our origin), so a failure
+// can be told. Text, so the browser sends no preflight. Resolves to true when the Worker kept it.
+export async function sendReport(kind, data = {}) {
+  if (!LOG_URL) return false;
+  try {
+    const r = await fetch(LOG_URL, { method: "POST", body: JSON.stringify({ kind, session: SESSION, ...data }), headers: { "Content-Type": "text/plain" }, signal: AbortSignal.timeout(10000) });
+    return r.ok;
+  } catch {
+    return false;
+  }
+}
+
 export function log(kind, data = {}) {
   if (!LOG_URL) return;
   try {
