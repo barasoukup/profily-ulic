@@ -4,8 +4,8 @@
 //   POST /log      one event as JSON, from the allowed origins only; answers 204
 //   GET  /export   all events as CSV (or ?since=2026-11-01), with the header "Authorization: Bearer <EXPORT_TOKEN>"
 // Setup: logging/README.md.
-const KINDS = new Set(["rez", "export", "ulozeni", "sdileni", "navrh", "porovnat", "oprava", "hledani", "upravy"]);
-// An edit record carries two short profiles (log.js shortProfile).
+const KINDS = new Set(["rez", "export", "ulozeni", "sdileni", "navrh", "porovnat", "oprava", "hledani", "upravy", "hlaseni"]);
+// An edit record carries two short profiles (log.js shortProfile), a report a visitor's text and the profile.
 const MAX_BODY = 16384;
 // Per address, a few events a second at most (one isolate's memory: a guard against a loop, not a wall).
 const hits = new Map();
@@ -42,7 +42,7 @@ export default {
         Number.isSafeInteger(e.wayId) ? e.wayId : null,
         num(e.lat, 47, 52), num(e.lon, 11, 20), num(e.bearing, -360, 360),
         num(e.reachLeft, 0, 100), num(e.reachRight, 0, 100), str(e.session, 40),
-        e.kind === "upravy" && e.profile && typeof e.profile === "object" ? JSON.stringify(e.profile).slice(0, 15000) : null,
+        (e.kind === "upravy" || e.kind === "hlaseni") && e.profile && typeof e.profile === "object" ? JSON.stringify(e.profile).slice(0, 15000) : null,
       ).run();
       return new Response(null, { status: 204, headers: cors });
     }

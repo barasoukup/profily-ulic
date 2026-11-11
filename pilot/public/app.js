@@ -1329,6 +1329,36 @@ $("#btn-fix").onclick = () => {
   render();
 };
 
+// Reporting a badly built cut (Bára): what is wrong, in the visitor's words, with the cut and its profile as the
+// app built it (and as corrected, if the visitor corrected it), into the log (kind "hlaseni", logging/hlaseni.mjs).
+const REPORT_WHAT = ["šířky", "pruhy", "chodník", "parkování", "tramvaj", "cyklisté", "zeleň a stromy", "domy", "značky", "jiné"];
+$("#report-what").append(...REPORT_WHAT.map((w) => {
+  const l = document.createElement("label");
+  l.append(Object.assign(document.createElement("input"), { type: "checkbox", value: w }), w);
+  return l;
+}));
+$("#btn-report").onclick = () => {
+  $("#report-status").textContent = "";
+  $("#report-send").disabled = false;
+  $("#report-dialog").showModal();
+  $("#report-text").focus();
+};
+$("#report-close").onclick = $("#report-cancel").onclick = () => $("#report-dialog").close();
+$("#report-send").onclick = () => {
+  const co = [...document.querySelectorAll("#report-what input:checked")].map((i) => i.value);
+  const text = $("#report-text").value.trim().slice(0, 1000);
+  if (!text && !co.length) { $("#report-status").textContent = "Napište prosím, co je špatně."; return; }
+  log("hlaseni", {
+    ...cutLog(), bearing: +state.cut.bearing.toFixed(1), reachLeft: state.cut.reach?.left, reachRight: state.cut.reach?.right,
+    profile: { co, text, vypocet: shortProfile(state.computed), ...(state.stavEdited && { stav: shortProfile(state.stav) }) },
+  });
+  $("#report-send").disabled = true;
+  $("#report-status").textContent = "Děkujeme, hlášení jsme dostali.";
+  $("#report-text").value = "";
+  for (const i of document.querySelectorAll("#report-what input")) i.checked = false;
+  setTimeout(() => $("#report-dialog").close(), 1500);
+};
+
 // The header menus close after a choice or a click elsewhere.
 document.addEventListener("click", (e) => {
   for (const d of document.querySelectorAll("details.menu[open]")) {

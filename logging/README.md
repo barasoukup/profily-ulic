@@ -12,10 +12,13 @@ kliknutí na nic nečeká, a když Worker neodpoví, nic se nestane.
   (Stav → Návrh). Uloží se jen zkrácený profil: druh a šířka každé části, směr, cyklisté, způsob stání, těleso
   tramvaje, šipky a značky, druhy okrajů. Posílá se při „Hotovo“, při odchodu z Návrhu nebo z oprav, při dalším
   řezu a při zavření stránky, a jen když se něco změnilo.
+- **hlášení chyb** (od 11. 11. 2026): co návštěvník u řezu označil za špatné (kategorie a vlastní text, nejvýš
+  1 000 znaků) spolu s řezem a profilem, jak ho aplikace sestavila (a jak ho opravil, pokud opravoval). V okně je
+  upozornění, ať nepíše osobní údaje.
 
 ## Soukromí
 
-Zaznamenáváme jen řezy (místo, směr, ulici, čas) a použité funkce, abychom aplikaci zlepšili. IP adresy ani
+Zaznamenáváme jen řezy (místo, směr, ulici, čas), použité funkce a hlášení chyb, která návštěvník sám napíše, abychom aplikaci zlepšili. IP adresy ani
 cookies neukládáme; `session` je náhodné číslo jednoho načtení stránky (neukládá se v prohlížeči), aby šlo
 spočítat řezy jedné návštěvy. Záznam běží na Cloudflare (Worker a D1), který adresu požadavku vidí; Worker ji drží
 jen 10 s v paměti proti zahlcení a do databáze ji nezapisuje. Mapy a data se načítají přímo ze serverů IPR, ČÚZK, měst a krajů a z podkladové mapy
@@ -67,6 +70,8 @@ Potřebuješ účet na cloudflare.com (stačí bezplatný) a Node. Všechny př�
   ```bash
   npx wrangler d1 execute profily-ulic-log --remote --command "SELECT city, count(*) FROM events WHERE kind='rez' GROUP BY city ORDER BY 2 DESC"
   ```
+- **Hlášení chyb** (tlačítko „Nahlásit chybu“ pod profilem): `node hlaseni.mjs` vypíše posledních 50 hlášení
+  (nebo `node hlaseni.mjs 200`) s textem, odkazem na řez a profilem, jak ho aplikace sestavila.
 - **Co lidé opravují a navrhují:** `node upravy.mjs` (nebo `node upravy.mjs oprava`, `node upravy.mjs navrh`) vypíše
   každý záznam úprav jako seznam změn (i s odkazem `#rez=`) a nakonec nejčastější změny.
 - Přehled dotazů a spotřeby je i v nástěnce Cloudflare (Workers & Pages, D1).

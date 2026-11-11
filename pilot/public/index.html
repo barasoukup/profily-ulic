@@ -92,6 +92,7 @@
         <span id="stav-text">Profil ukazuje ulici, jak je dnes.</span>
         <button id="btn-fix">Opravit data</button>
         <button id="btn-to-navrh" class="primary">Navrhnout změnu →</button>
+        <button id="btn-report" class="link">Nahlásit chybu</button>
       </div>
       <div id="legend">
         <span class="src src-dtm">změřeno z technické mapy</span>
@@ -118,6 +119,19 @@
     Zaznamenáváme jen řezy (místo, směr, ulici, čas) a použité funkce, neukládáme IP adresy ani cookies; mapy a data
     se načítají přímo ze serverů IPR, ČÚZK, měst, krajů a OSM (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">soukromí</a>).
   </footer>
+  <dialog id="report-dialog" aria-labelledby="report-title">
+    <div class="pano-head">
+      <strong id="report-title">Co je na tomto řezu špatně?</strong>
+      <button id="report-close" class="close" aria-label="Zavřít hlášení">×</button>
+    </div>
+    <div class="report-body">
+      <div id="report-what" class="report-what" role="group" aria-label="Čeho se chyba týká"></div>
+      <label for="report-text" class="muted">Popis (co je jinak a kde, např. „vlevo chybí cyklopruh, chodník je širší“)</label>
+      <textarea id="report-text" rows="5" maxlength="1000"></textarea>
+      <p class="muted report-note">Odešle se poloha řezu, jeho profil a váš text, nic dalšího. Nepište prosím osobní údaje.</p>
+      <div class="report-buttons"><span id="report-status" class="muted" role="status"></span><button id="report-cancel">Zrušit</button><button id="report-send" class="primary">Odeslat</button></div>
+    </div>
+  </dialog>
   <dialog id="pano-dialog" aria-label="Panorama z ulice">
     <div class="pano-head">
       <strong>Panorama z ulice</strong>
