@@ -119,6 +119,20 @@ button.pano-link { width: 100%; text-align: left; background: var(--panel); bord
 .pano-head { display: flex; align-items: center; gap: 12px; padding: 8px 12px; border-bottom: 1px solid var(--line); }
 .pano-head .muted { flex: 1; font-size: 13px; }
 #pano-view { flex: 1; position: relative; background: #222; }
+#report-dialog { width: min(520px, 94vw); padding: 0; border: 1px solid var(--line); border-radius: var(--radius); }
+#report-dialog::backdrop { background: rgba(29, 29, 27, 0.5); }
+#report-dialog .pano-head strong { flex: 1; }
+.report-body { display: flex; flex-direction: column; gap: 8px; padding: 12px; }
+.report-what { display: flex; flex-wrap: wrap; gap: 6px; }
+.report-what label { display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border: 1px solid var(--line); border-radius: 20px; font-size: 13px; cursor: pointer; }
+.report-what label:has(input:checked) { border-color: var(--accent); background: #e6f1fb; }
+.report-what input { margin: 0; }
+#report-text { width: 100%; box-sizing: border-box; font: inherit; padding: 8px; border: 1px solid var(--line-strong); border-radius: 8px; resize: vertical; }
+.report-note { margin: 0; font-size: 12px; }
+.report-buttons { display: flex; align-items: center; gap: 8px; }
+.report-buttons span { flex: 1; font-size: 13px; }
+#stav-cta button.link[hidden], .menu-list button[hidden] { display: none; }
+#stav-cta button.link { border: 0; background: none; padding: 0; color: var(--accent); text-decoration: underline; cursor: pointer; font-size: 13px; }
 .pano-credit { font-size: 11px; color: var(--muted); padding: 4px 12px; }
 
 /* ---------- profile pane ---------- */
@@ -222,7 +236,7 @@ body.loading #profile { opacity: 0.45; transition: opacity 0.2s; }
 #editor { padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
 .ed-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 2px 10px; }
 .ed-head h3 { margin: 0; font-size: 15px; }
-.ed-head .close { margin-left: auto; border: 0; font-size: 20px; line-height: 1; padding: 2px 8px; color: var(--muted); }
+.ed-head .close, .pano-head .close { margin-left: auto; border: 0; font-size: 20px; line-height: 1; padding: 2px 8px; color: var(--muted); }
 .ed-row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
 .ed-row:empty { display: none; }
 .ed-row .spacer { flex: 1; }
@@ -316,7 +330,7 @@ footer a { color: inherit; }
   .empty { flex-direction: column; text-align: center; padding: 16px 8px; }
   .empty ol { text-align: left; }
   #editor { padding: 10px; }
-  #editor input[type=number], #editor select, #cut-info input { font-size: 16px; } /* no zoom on focus in iOS */
+  #editor input[type=number], #editor select, #cut-info input, #report-text { font-size: 16px; } /* no zoom on focus in iOS */
   #palette .chip { min-height: 40px; padding: 8px 12px 8px 9px; font-size: 13px; }
   .pal-name { width: 100%; }
   #editor label { flex-direction: column; align-items: stretch; gap: 4px; }

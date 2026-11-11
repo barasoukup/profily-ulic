@@ -4,8 +4,8 @@
 //   POST /log      one event as JSON, from the allowed origins only; answers 204
 //   GET  /export   all events as CSV (or ?since=2026-11-01), with the header "Authorization: Bearer <EXPORT_TOKEN>"
 // Setup: logging/README.md.
-const KINDS = new Set(["rez", "export", "ulozeni", "sdileni", "navrh", "porovnat", "oprava", "hledani", "upravy"]);
-// An edit record carries two short profiles (log.js shortProfile).
+const KINDS = new Set(["rez", "export", "ulozeni", "sdileni", "navrh", "porovnat", "oprava", "hledani", "upravy", "hlaseni"]);
+// An edit record carries two short profiles (log.js shortProfile), a report a visitor's text and the profile.
 const MAX_BODY = 16384;
 // Per address, a few events a second at most (one isolate's memory: a guard against a loop, not a wall).
 const hits = new Map();
@@ -16,7 +16,11 @@ const tooMany = (ip) => {
   if (hits.size > 5000) hits.clear();
   return h.length > 30;
 };
+// Stored whole or not at all (a cut-off JSON could not be read back).
+const profileText = (p) => { const s = JSON.stringify(p); return s.length <= 15000 ? s : null; };
 const num = (v, lo, hi) => (typeof v === "number" && Number.isFinite(v) && v >= lo && v <= hi ? v : null);
+// A report's profile kept within bounds whatever the page sent: the text 1 000 characters, ten short categories.
+const reportOf = (p) => ({ ...p, text: str(p.text, 1000), co: Array.isArray(p.co) ? p.co.slice(0, 10).map((c) => str(c, 30)).filter(Boolean) : [] });
 const str = (v, n) => (typeof v === "string" && v ? v.slice(0, n) : null);
 
 export default {
@@ -42,7 +46,7 @@ export default {
         Number.isSafeInteger(e.wayId) ? e.wayId : null,
         num(e.lat, 47, 52), num(e.lon, 11, 20), num(e.bearing, -360, 360),
         num(e.reachLeft, 0, 100), num(e.reachRight, 0, 100), str(e.session, 40),
-        e.kind === "upravy" && e.profile && typeof e.profile === "object" ? JSON.stringify(e.profile).slice(0, 15000) : null,
+        e.profile && typeof e.profile === "object" && (e.kind === "upravy" || e.kind === "hlaseni") ? profileText(e.kind === "hlaseni" ? reportOf(e.profile) : e.profile) : null,
       ).run();
       return new Response(null, { status: 204, headers: cors });
     }

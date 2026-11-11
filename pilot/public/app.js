@@ -11,7 +11,7 @@ import { packProfile, unpackProfile, designParams } from "./share.js";
 import { checkRules } from "./rules.js";
 import { city, setCity, cityAt, loadBounds } from "./city.js";
 import { TOWNS } from "./towns/index.js";
-import { log, shortProfile } from "./log.js";
+import { log, logOn, sendReport, shortProfile } from "./log.js";
 import { createDataLayers, PLOCHY_PANE } from "./maplayers.js";
 import { mountSearch } from "./search.js";
 
@@ -525,7 +525,7 @@ function draw() {
   $("#stav-cta").classList.toggle("fixing", !!state.fixing);
   $("#stav-text").textContent = state.fixing
     ? "Opravujete data stavu: táhněte úchyty nebo klikněte na část. Opravené části se označí jako upravené ručně."
-    : `Profil ukazuje ulici, jak je dnes (z dat ${city.dataShort}). Když data nesedí, opravte je; změny navrhujte v Návrhu.`;
+    : `Profil ukazuje ulici, jak je dnes (z dat ${city.dataShort}). Když data nesedí, opravte je nebo nám chybu nahlaste; změny navrhujte v Návrhu.`;
   $("#btn-fix").textContent = state.fixing ? "Hotovo" : "Opravit data";
   $("#btn-to-navrh").hidden = !!state.fixing;
   if (state.stav) {
@@ -1327,6 +1327,50 @@ $("#btn-fix").onclick = () => {
   // Corrections keep the street's width: the width measured before them is the target (renderWidthCheck).
   if (state.fixing) { state.fixBase ??= totalWidth(state.stav); log("oprava", cutLog()); }
   render();
+};
+
+// Reporting a badly built cut (Bára): what is wrong, in the visitor's words, with the cut and its profile as the
+// app built it (and as corrected, if the visitor corrected it), into the log (kind "hlaseni", logging/hlaseni.mjs).
+const REPORT_WHAT = ["šířky", "pruhy", "chodník", "parkování", "tramvaj", "cyklisté", "zeleň a stromy", "domy", "značky", "jiné"];
+$("#report-what").append(...REPORT_WHAT.map((w) => {
+  const l = document.createElement("label");
+  l.append(Object.assign(document.createElement("input"), { type: "checkbox", value: w }), w);
+  return l;
+}));
+// Only where the log runs (the web, not a local run), so the dialog never thanks for a report nobody got; from
+// the Stav bar and from the Soubor menu (also in Návrh, where wrong widths are often noticed).
+for (const b of ["#btn-report", "#menu-report"]) $(b).hidden = !logOn;
+const openReport = () => {
+  if (!state.cut || !state.stav) return status("Nejdřív klikněte na ulici v mapě.", "error");
+  $("#report-title").textContent = `${state.cut.name || "Ulice"} – co je na tomto řezu špatně?`;
+  $("#report-status").textContent = "";
+  $("#report-send").disabled = false;
+  $("#report-dialog").showModal();
+  $("#report-text").focus();
+};
+$("#btn-report").onclick = $("#menu-report").onclick = openReport;
+$("#report-close").onclick = $("#report-cancel").onclick = () => $("#report-dialog").close();
+$("#report-send").onclick = async () => {
+  const co = [...document.querySelectorAll("#report-what input:checked")].map((i) => i.value);
+  const text = $("#report-text").value.trim().slice(0, 1000);
+  if (!text && !co.length) { $("#report-status").textContent = "Napište prosím, co je špatně."; $("#report-text").focus(); return; }
+  $("#report-send").disabled = true;
+  $("#report-status").textContent = "Odesílám…";
+  // The Stav as it is now always goes along; what the app built, when this page built it (a restored or loaded
+  // profile has no such record).
+  const ok = await sendReport("hlaseni", {
+    ...cutLog(), bearing: +state.cut.bearing.toFixed(1), reachLeft: state.cut.reach?.left, reachRight: state.cut.reach?.right,
+    profile: { co, text, stav: shortProfile(state.stav), ...(state.computed && { vypocet: shortProfile(state.computed) }), opraveno: !!state.stavEdited },
+  });
+  if (!ok) {
+    $("#report-send").disabled = false;
+    $("#report-status").textContent = "Hlášení se nepodařilo odeslat, zkuste to prosím za chvíli.";
+    return;
+  }
+  $("#report-text").value = "";
+  for (const i of document.querySelectorAll("#report-what input")) i.checked = false;
+  $("#report-dialog").close();
+  status("Děkujeme, hlášení je odesláno.", "ok");
 };
 
 // The header menus close after a choice or a click elsewhere.

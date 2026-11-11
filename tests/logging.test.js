@@ -44,6 +44,18 @@ test("záznam úprav: dva krátké profily, jen u druhu upravy", async () => {
   assert.equal(db.rows[1][12], null);
 });
 
+test("hlášení chyby: text a profil se uloží", async () => {
+  const db = fakeDb();
+  const profile = { co: ["pruhy"], text: "vlevo chybí cyklopruh", vypocet: { l: "budova", r: "budova", s: [{ t: "pruh", w: 3.5 }] } };
+  assert.equal((await worker.fetch(post({ kind: "hlaseni", street: "Národní", profile }), env(db))).status, 204);
+  assert.deepEqual(JSON.parse(db.rows[0][12]), profile);
+  // The text is cut to 1 000 characters and the categories to ten, so the record is always whole JSON.
+  await worker.fetch(post({ kind: "hlaseni", profile: { ...profile, text: "x".repeat(5000), co: Array(50).fill("pruhy") } }), env(db));
+  const long = JSON.parse(db.rows[1][12]);
+  assert.equal(long.text.length, 1000);
+  assert.equal(long.co.length, 10);
+});
+
 test("export jen s tokenem", async () => {
   const db = fakeDb();
   await worker.fetch(post({ kind: "export", detail: "png" }), env(db));
