@@ -2,7 +2,7 @@ import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TR
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes } from "./lanes-ortho.js";
-// Lanes and shoulders from the road markings of the orthophoto (prototype); ?orto=0 leaves the rules' profile.
+// Lanes and shoulders from the road markings of the orthophoto (lanes-ortho.js); ?orto=0 leaves the rules' profile.
 const LANES_ORTHO = new URLSearchParams(location.search).get("orto") !== "0";
 import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, signFits, MAX_PER_PART } from "./signs.js";
 import { loadSprites, loadSigns, layoutSigns, buildSvg, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
@@ -31,7 +31,7 @@ const cutEnds = (f, normal, reach) => [
 // The cut line and its ends A, B on the map show where the profile ends (facades, fences…), not how
 // far the data was searched (Bára); a profile only estimated from OSM has no ends, so the reach shows.
 const cutSpan = (cut) => cut?.span || cut?.reach || defaultReach();
-const STORE = "streetdesign-pilot" + (LANES_ORTHO ? "" : "-bez-orto"); // the last cut (Prague's key from the time of one page per city); ?orto=0 (prototype) its own
+const STORE = "streetdesign-pilot" + (LANES_ORTHO ? "" : "-bez-orto"); // the last cut (Prague's key from the time of one page per city); ?orto=0 its own
 // The boundaries of the cities with their own sources (tools/build_mesta.mjs): a cut takes its city by them.
 const MESTA = await fetch("mesta.json").then((r) => (r.ok ? r.json() : null), () => null);
 // Without the file every cut keeps the current city (rather than all becoming "cesko").
@@ -275,9 +275,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     const inZps = z.status === "fulfilled" ? z.value : undefined;
     const result = deriveProfile({ center: [0, 0], dir, half, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho });
     const laneImg = li.status === "fulfilled" ? li.value : null;
-    const rulesSegs = structuredClone(result.segments);
+    // Lanes, shoulders and parking on its own paving measured on the orthophoto (lanes-ortho.js).
     const lanesFromOrtho = laneImg ? applyLanes(result, laneImg) : 0;
-    window.lanesOrtho = { img: laneImg, changed: lanesFromOrtho, runs: result.runs, extent: result.extent, before: rulesSegs, after: structuredClone(result.segments) }; // DEBUG prototype
     // The row of traffic signs from the street's OSM tags and the parts (signs.js).
     // The way's right is the profile's right when the profile looks along the way's geometry.
     const alongWay = !near.dir || dir[0] * near.dir[0] + dir[1] * near.dir[1] >= 0;

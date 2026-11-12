@@ -40,7 +40,7 @@ export const SOURCES = {
   data: { label: "otevřená data města", color: "#2f6f8f" }, // Prague: trees of TSK, MHMP and the districts
   tsk: { get label() { return city.parkingSource; }, color: "#0f6e56" }, // the current city's
   odhad: { label: "odhad", color: "#8f8b82" },
-  ortofoto: { label: "podle čar na ortofotu", color: "#c07a12" }, // lanes-ortho.js (prototype)
+  ortofoto: { label: "podle čar na ortofotu", color: "#c07a12" }, // lanes-ortho.js
   user: { label: "upraveno ručně", color: "#534ab7" },
 };
 

@@ -390,9 +390,24 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
     Úsek useknutý dosahem se celý ponechá nebo vynechá, když by z něj zbylo méně než 1,5 m.
     Plot nebo zeď (technická mapa: ploty a zdi nad 0,3 m; OSM: fence, wall, hedge) za krajní vozovkou
     profil ukončí jako okraj „plot“; plot do 1 m od fasády budovy ale okrajem zůstává budova.
-11. Konec A je vždy západní, B východní; tlačítko **⇄ Otočit** je prohodí (zrcadlí stav, návrh i opravy, domy si
+11. **Pruhy z ortofota** (`public/lanes-ortho.js`, vyhodnocení `evaluation/ortofoto/ZPRAVA.md`): při kliknutí se
+    souběžně stáhne výřez ortofota ±25 m kolem středu řezu (zarovnaný na pixely zdroje, takže tažení konců řezu
+    výsledek nemění): Praha IPR 10 cm, Brno 2025 (posun 1,06 m na východ a 3,09 m na sever), Plzeň 2024, jinde ČÚZK
+    12,5 cm. Na každé vozovce technické mapy se najdou čáry podél ulice (jeden směr a oblouk na vozovku, plné
+    a přerušované podle mezer) a vybere se sada, jejíž mezery vypadají jako pruhy (2,5–4,75 m). Podle nich se
+    přeměří pruhy a krajnice (zdroj „podle čar na ortofotu“, v legendě oranžovohnědá):
+    - plná vodicí čára u obruby dělá krajnici i úzkou (od 10 cm; Bára 12. 11. 2026), za plnou čarou je krajnice
+      i do šířky pruhu, kde ji měla pravidla; za přerušovanou čarou je pruh (úzký kus se přidá k pruhu: přidávání
+      pruhu);
+    - pás mezi dvěma plnými čarami s pruhy po obou stranách je středová krajnice (zpevněný střední pás);
+    - na ČÚZK dělá čára krajnici jen u obou obrub zároveň (u jedné bývá obrubou nebo ojetým asfaltem); na
+      městských ortofotech se zahodí čára o 45 % slabší než nejsilnější (ojetý asfalt mezi stopami kol);
+    - přerušovaná čára skoro zakrytá autem se vezme, kde bez ní pruhy nevycházejí;
+    - pás u obruby 1,6–2,8 m, jiný a nerovnoměrný proti hladkému asfaltu (dlažba stání), je podélné stání.
+    Co nevychází (pruh pod 2,3 m nebo nad 5 m), nechá profil podle pravidel. `?orto=0` ukáže profil bez ortofota.
+12. Konec A je vždy západní, B východní; tlačítko **⇄ Otočit** je prohodí (zrcadlí stav, návrh i opravy, domy si
     nechají barvy).
-12. Lokální server neukládá do cache chybové odpovědi IPR a dotazy na IPR vzdá po 20 s; server IPR často vrací
+13. Lokální server neukládá do cache chybové odpovědi IPR a dotazy na IPR vzdá po 20 s; server IPR často vrací
     503, aplikace dotaz opakuje.
 
 ## Stav, Návrh a úpravy
@@ -457,7 +472,8 @@ pamatuje.
 nebo ulice rovnou udělá řez na své ulici.
 
 Barevný proužek pod každou částí ukazuje původ: zelená = změřeno z technické mapy, hnědá = doplněno z OSM,
-modrá = otevřená data města, tyrkysová = parkování z dat města, šedá = odhad, fialová = upraveno ručně.
+modrá = otevřená data města, tyrkysová = parkování z dat města, šedá = odhad, oranžovohnědá = podle čar na ortofotu,
+fialová = upraveno ručně. Vybraná část profilu se vyznačí modře na čáře řezu v mapě.
 
 ## Export do Streetmixu
 

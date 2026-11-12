@@ -1,13 +1,14 @@
-// Lanes and shoulders from the orthophoto (prototype, Bára 11. 11. 2026; evaluation/ortofoto/ZPRAVA.md, rounds 2–4):
-// the road markings along the street split the carriageway, where the rules only divide it evenly. On a click one
-// image of the orthophoto around the cut (IPR 10 cm in Prague, else ČÚZK 12.5 cm) is asked in parallel with the
-// other sources; once the profile is derived, the lines running along each carriageway of the surface map are
-// found and the profile's lanes and estimated shoulders between them are redrawn (source "ortofoto"). The map and
-// these orthophotos agree within about 0.2 m, so the image is used as it is, without fitting.
+// Lanes and shoulders from the orthophoto (Bára 11.–12. 11. 2026; evaluation/ortofoto/ZPRAVA.md): the road markings
+// along the street split the carriageway, where the rules only divide it evenly. On a click one image of the
+// orthophoto around the cut (±25 m, snapped to the source's pixels: Prague IPR 10 cm, Brno 2025 with its shift,
+// Plzeň 2024, else ČÚZK 12.5 cm) is asked in parallel with the other sources; once the profile is derived, the
+// lines running along each carriageway of the surface map are found and the profile's lanes and shoulders between
+// them are redrawn (source "ortofoto"), and parking paved apart from the asphalt is split off. The map and these
+// orthophotos agree within about 0.2 m, so the image is used as it is, without fitting.
 // The detector (evaluation/ortofoto/cary.mjs m4, m5): per pixel "brighter than its row's surroundings", per column
 // the share of such pixels along ±20 m in pieces of 5 m (a line repeats, an arrow does not), searched turned and
-// bent (one direction and curve per carriageway), narrow peaks; then the lines whose gaps look like lanes, chosen
-// together. Anything doubtful leaves the rules' profile as it is.
+// bent (one direction and curve per carriageway), narrow peaks, solid or dashed by their gaps; then the lines whose
+// gaps look like lanes, chosen together. Anything doubtful leaves the rules' profile as it is.
 
 const R = 6378137, ALONG = 20, TIMEOUT = 4000;
 const merc = (lon, lat) => [(R * lon * Math.PI) / 180, R * Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360))];
