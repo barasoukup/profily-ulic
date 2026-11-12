@@ -57,7 +57,8 @@ const tile = (n) => {
     return p;
   }
   if (tiles.size >= TILES_KEPT) tiles.delete(tiles.keys().next().value);
-  tiles.set(n, fetch(`${TILES_AT}/${n}.json`).then((r) => (r.ok ? r.text().then(decodeTile) : r.status === 404 ? [] : Promise.reject(new Error(`dlaždice OSM ${r.status}`))))
+  // With a timeout: a tile that does not come would otherwise hold the cut up for good.
+  tiles.set(n, fetch(`${TILES_AT}/${n}.json`, { signal: AbortSignal.timeout(TIMEOUT) }).then((r) => (r.ok ? r.text().then(decodeTile) : r.status === 404 ? [] : Promise.reject(new Error(`dlaždice OSM ${r.status}`))))
     .catch((err) => { tiles.delete(n); throw err; }));
   return tiles.get(n);
 };

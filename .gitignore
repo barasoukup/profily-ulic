@@ -31,3 +31,6 @@ evaluation/*/data/
 
 # Wrangler (Cloudflare) working files of logging/
 .wrangler/
+
+# Certificates joined for one run of tools/check_sources.mjs
+tools/.ca-check.pem

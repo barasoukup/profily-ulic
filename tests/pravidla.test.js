@@ -92,6 +92,9 @@ test("odhad stání u tramvaje: od kolejnice 3,5 m", () => {
   const tram = (x) => ({ type: "way", id: 10 + x, tags: { railway: "tram" }, geometry: line(x) });
   const withTracks = (w) => road(w, { embedded_rails: "tram" }, { extra: [tram(-1.5), tram(1.5)] });
   assert.equal(guessed(withTracks(14)), 0, "obruba 4,8 m od kolejnice");
+  // Right at the limit: a stall of 2 m and 3.5 m to the rail need 5.5 m from the rail to the kerb.
+  assert.equal(guessed(withTracks(15.2)), 0, "obruba 5,38 m od kolejnice");
+  assert.equal(guessed(withTracks(15.6)), 2, "obruba 5,58 m od kolejnice");
   assert.equal(guessed(withTracks(16)), 2, "obruba 5,8 m od kolejnice");
 });
 
@@ -336,4 +339,40 @@ test("nabídka značek podle části: dálnice ne pod chodníkem, parkoviště j
   assert.equal(signFits("b30", "chodnik"), true);
   assert.equal(signFits("ip20a", "bus_cyklo"), true);
   assert.equal(signFits("b29", "zelen"), false);
+});
+
+// The widths of CLAUDE.md, each tried on both sides of its limit.
+const kinds = (p) => p.segments.map((s) => s.type);
+const widthsOf = (p, type) => p.segments.filter((s) => s.type === type).map((s) => +s.width.toFixed(2));
+
+test("cyklopruh z OSM: 1,50 u obruby, 1,75 vedle podélného stání, 2,00 vedle kolmého", () => {
+  const bike = { highway: "tertiary", "cycleway:right": "lane" };
+  assert.deepEqual(widthsOf(road(12, bike), "cyklopruh"), [1.5]);
+  assert.deepEqual(widthsOf(road(14, { ...bike, "parking:right": "lane" }), "cyklopruh"), [1.75]);
+  assert.deepEqual(widthsOf(road(16, { ...bike, "parking:right": "lane", "parking:right:orientation": "perpendicular" }), "cyklopruh"), [2]);
+});
+
+test("krajnice se kreslí až od 1 m, menší zbytek zůstane v pruzích (strop pruhu 4 m)", () => {
+  // Secondary: lanes of 4 m at most. 8.8 m leaves 0.8 m, kept in the lanes; 9.6 m leaves 1.6 m, one shoulder.
+  assert.deepEqual(widthsOf(road(8.8, { highway: "secondary" }), "pruh"), [4.4, 4.4]);
+  assert.ok(!kinds(road(8.8, { highway: "secondary" })).includes("krajnice"));
+  assert.deepEqual(widthsOf(road(9.6, { highway: "secondary" }), "krajnice"), [1.6]);
+  // From 2 m on, one at each curb.
+  assert.deepEqual(widthsOf(road(10.2, { highway: "secondary" }), "krajnice"), [1.1, 1.1]);
+});
+
+test("v místní ulici je strop pruhu 4,5 m", () => {
+  const p = road(9.5, { "parking:both": "no" });
+  assert.deepEqual(widthsOf(p, "pruh"), [4.75, 4.75], "0,5 m navíc zůstane v pruzích");
+  assert.deepEqual(widthsOf(road(10.6, { "parking:both": "no" }), "krajnice"), [1.6]);
+});
+
+test("dvousměrná ulice s jednou osou má polovinu pruhů každým směrem, jeden pruh bez šipky", () => {
+  const dirs = (p) => lanes(p).map((s) => s.dir ?? "-");
+  assert.deepEqual(dirs(road(7, { highway: "tertiary", lanes: "2" })), ["backward", "forward"]);
+  assert.deepEqual(dirs(road(14, { highway: "secondary", lanes: "4" })), ["backward", "backward", "forward", "forward"]);
+  // The axis off the middle of the roadway changes nothing (Jihlava, Polenská).
+  assert.deepEqual(dirs(road(7, { highway: "tertiary", lanes: "2" }, { axis: 2.5 })), ["backward", "forward"]);
+  assert.deepEqual(dirs(road(4, { highway: "residential", lanes: "1", "parking:both": "no" })), ["-"]);
+  assert.deepEqual(dirs(road(7, { highway: "secondary", oneway: "yes", lanes: "2" })), ["forward", "forward"]);
 });

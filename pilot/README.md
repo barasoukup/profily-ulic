@@ -268,6 +268,14 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
 - Prázdná místa DTM doplní budovy a parcely RÚIAN; kde DTM kolem řezu nemá nic, je profil odhad z OSM. Kvalita
   záleží na kraji: v Pardubicích chybí vozovky mimo zástavbu a plochy uvnitř bloků. Mosty jsou vozovka.
   Tramvajová plocha DTM s vozovkou po obou stranách bez obruby nebo zeleně mezi nimi jsou koleje ve vozovce.
+- **Náhrada za mapu města** (`sources.js` `national`): kde technická mapa města nic nevrátí (řez kousek za
+  hranicí), nebo když neodpoví (IPR přetížený, 503 i po opakování), vezmou se plochy z celostátní technické mapy
+  stejnou cestou. V Národní při simulovaném výpadku IPR vyšel profil skoro stejně (chodník 3,80 místo 3,90 m).
+  Uživatel to vidí za názvem ulice („plochy z technické mapy ČÚZK“) a ve stavovém řádku, export uvede ČÚZK.
+  Kde neodpoví ani ČÚZK, je profil odhad z OSM s poznámkou „technická mapa neodpověděla“. Výpadek linií
+  (koleje, ploty, svahy), parkování a otevřených dat Prahy aplikace také řekne („Chybí data parkovacích stání
+  (server neodpověděl)“, `sources.js` `outage`), jinak by ulice vypadala jako bez tramvaje nebo bez aut.
+  Testy: `tests/vypadky.test.js`; týdenní kontrola živých služeb viz Publikace.
 - Pardubice (`towns/pardubice.js`) nemají vlastní služby, mají jen vlastní ilustrace. Kontrola 49 řezů:
   `evaluation/pardubice/ZPRAVA.md`.
 
@@ -480,6 +488,19 @@ zástavby, otevřená data Prahy, parkování v Brně a zóny v Plzni (při výp
 nasazení), doplní klíč Mapy.com (`MAPY_KEY`, tajná proměnná) a `LOG_URL`, přidá přesměrování starých stránek měst
 a vystaví vše na GitHub Pages. Dlaždice se do repozitáře neukládají. Jsou to data odvozená z OpenStreetMap, takže
 na webu leží pod ODbL 1.0 (viz `data/README.txt` na webu a patičku aplikace).
+
+### Kontrola zdrojů dat
+
+Každé pondělí ráno (po nasazení) a ručně běží `.github/workflows/zdroje.yml`: `node tools/check_sources.mjs` udělá
+v každém městě jeden řez v jeho ukázkovém bodě (`example` v `city.js`) stejnými moduly jako zveřejněná aplikace
+(`STATIC = true`, dlaždice OSM a soubory `data/` z webu) a stáhne po jednom obrázku podkladových map. Vypíše
+tabulku zdroj × stav: `ok`, `prázdné`, `náhrada ČÚZK` (služba města nic nevrátila, plochy jsou z technické mapy
+ČÚZK), `tichá chyba` (dotaz selhal, ale zdroj pokračoval bez něj, takže by si toho návštěvník nevšiml),
+`varování` (jen neúplný řetězec certifikátů serveru; prohlížeče si poradí) a `CHYBA`. Chyba, tichá chyba nebo
+prázdné plochy či OSM běh shodí a GitHub pošle e-mail; tabulka je v souhrnu běhu. Je to asi sto malých dotazů
+týdně, město po městě. Lokálně proti místnímu serveru: `SITE=http://localhost:5173/ node tools/check_sources.mjs`,
+jen některá města: `node tools/check_sources.mjs praha brno podklad`. Mezilehlé certifikáty, které některé
+servery neposílají (Frýdek-Místek), jsou v `tools/ca/`.
 
 ## Licence a uvedení zdrojů
 

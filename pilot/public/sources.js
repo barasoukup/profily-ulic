@@ -20,16 +20,52 @@ const isLive = () => city.id !== "praha";
 export const osm = (lat, lon, r) => (town() ? town().osm(lat, lon, r) : isBrno() ? brnoOsm(lat, lon, r) : STATIC ? osmTiles(lat, lon, r) : getJSON(`/api/osm?lat=${lat}&lon=${lon}&r=${r}`));
 
 // Where the city's own map has nothing (a cut outside the city: Česká Třebová from the Most page, a village
-// beyond Prague), the national DTM of ČÚZK read live (dmvs.js) stands in, as for Pardubice.
-const national = async (json, bbox) => {
-  if (json?.features?.length || TOWNS[city.id]?.national) return json;
-  const { surfaces } = await import("./dmvs.js");
-  // dmvs: the export credits the DMVS and the region (city.js creditLines).
-  return surfaces(bbox, MTVU_LABELS, { wfs: true }).then((r) => ({ ...r, dmvs: r.features?.length > 0 })).catch(() => json);
+// beyond Prague) or does not answer (IPR overloaded), the national DTM of ČÚZK read live (dmvs.js) stands in,
+// as for Pardubice. dmvs: the export credits the DMVS and the region (city.js creditLines); fallback: the city's
+// own service failed (app.js says so); dmvsFailed: the city's map was empty and the DMVS did not answer either.
+// When the DMVS has nothing either, the city's failure stands (the profile is an estimate from OSM).
+// read: the DMVS reader (dmvs.js surfaces), given by the tests.
+export const national = async (json, bbox, err, read) => {
+  if (!err && json?.features?.length) return json;
+  if (TOWNS[city.id]?.national) { if (err) throw err; return json; }
+  const surfaces = read || (await import("./dmvs.js")).surfaces;
+  let r;
+  try { r = await surfaces(bbox, MTVU_LABELS, { wfs: true }); } catch {
+    if (err) throw err;
+    return { ...json, dmvsFailed: true };
+  }
+  if (!r.features?.length) { if (err) throw err; return json; }
+  return { ...r, dmvs: true, ...(err && { fallback: true }) };
 };
 export const mtvu = (bbox) => (town() ? town().surfaces(bbox) : isBrno() ? brnoSurfaces(bbox) : STATIC
   ? query(MTVU, { ...envelope(bbox), outFields: MTVU_FIELDS })
-  : getJSON(`/api/mtvu?bbox=${bbox}`)).then((json) => national(json, bbox));
+  : getJSON(`/api/mtvu?bbox=${bbox}`)).then((json) => national(json, bbox), (err) => national({ features: [] }, bbox, err));
+
+// What a cut lacks because a source did not answer, from the settled requests of app.js cutAt (surfaces,
+// lines, parking): the note after the street's name and the status line. Without the surfaces the
+// profile is an estimate from OSM; without the lines it lacks tram tracks, fences and slopes; without the
+// parking it lacks the stalls (and in a paid zone none are estimated). Prague's lines carry missing
+// "opendata" when the tiles of its open data failed (street classes of TSK, trees).
+export function outage({ surfaces, lines, parking }, dataName = city.dataName) {
+  const s = surfaces.status === "fulfilled" ? surfaces.value : null;
+  const lacks = [];
+  if (lines.status !== "fulfilled") lacks.push("kolejí, plotů a svahů");
+  if (parking.status !== "fulfilled") lacks.push("parkovacích stání");
+  if (lines.status === "fulfilled" && lines.value?.missing?.includes("opendata")) lacks.push("stromů a tříd ulic TSK");
+  const without = lacks.length ? ` Chybí data ${lacks.join(", ")} (server neodpověděl).` : "";
+  const failed = !s;
+  const empty = s && !s.features?.length;
+  const note = failed ? " · technická mapa neodpověděla, jen odhad"
+    : s.fallback ? " · plochy z technické mapy ČÚZK"
+    : empty ? (s.dmvsFailed ? " · technická mapa neodpověděla, jen odhad" : " · mimo technickou mapu, jen odhad")
+    : lacks.length ? " · neúplná data" : "";
+  const text = failed ? `${dataName} teď neodpovídá${city.id === "praha" ? " (server je přetížený)" : ""}, profil je jen odhad z OSM.${without} Zkuste kliknout znovu za chvíli.`
+    : s.fallback ? `${dataName} teď neodpovídá, plochy jsou z technické mapy ČÚZK.${without}`
+    : empty && s.dmvsFailed ? `Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.${without} Zkuste kliknout znovu za chvíli.`
+    : empty ? `Technická mapa tu nic nevrátila, profil je odhad z OSM.${without}`
+    : without ? without.trim() + " Zkuste kliknout znovu za chvíli." : "";
+  return { note, text, error: failed || !!s.fallback || !!s.dmvsFailed || lacks.length > 0 };
+}
 
 export const linie = (bbox) => (town() ? town().lines(bbox) : isBrno() ? brnoLines(bbox) : prahaLines(bbox));
 
@@ -50,10 +86,11 @@ export async function prahaLines(bbox, opts = {}) {
     STATIC ? query(TM_LINES, params(LINE_WHERE)) : getJSON(`/api/linie?bbox=${bbox}`),
     opts.points === false ? null : once(STATIC ? `${TM_POINTS}?${new URLSearchParams(params(POINT_WHERE))}` : `/api/body?bbox=${bbox}`)
       .catch((err) => { console.warn("body technické mapy", err.message); return null; }),
-    opts.opendata === false ? null : prahaOpendata(bbox).catch(() => null),
+    opts.opendata === false ? null : prahaOpendata(bbox).catch(() => undefined),
   ]);
   const pts = (points?.features || []).filter((f) => f.geometry?.x !== undefined && (opts.tmTrees !== false || Number(f.attributes?.CTMTP_KOD) !== 83130));
-  return { features: [...(lines.features || []), ...pts, ...(open ? opendataFeatures(open, opts) : [])] };
+  // undefined: the tiles failed (outage tells the visitor), null: not asked.
+  return { features: [...(lines.features || []), ...pts, ...(open ? opendataFeatures(open, opts) : [])], ...(open === undefined && { missing: ["opendata"] }) };
 }
 
 // Prague open data (Geoportál Praha, CC BY 4.0), built once per deploy by tools/build_praha_opendata.mjs
