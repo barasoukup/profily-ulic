@@ -800,7 +800,7 @@ const coarse = matchMedia("(pointer: coarse)").matches;
 const SIGN_PX = 32; // width of a basic traffic sign under the profile on screen (CSS px)
 const LABEL_PX = { "lbl-w": 13, "lbl-t": 11, "lbl-total": 14, "lbl-title": 13, "lbl-floor": 11 };
 function fitLabels(box) {
-  for (const svg of box.querySelectorAll("svg")) {
+  for (const svg of box.querySelectorAll("svg:not(.underground)")) { // the networks' band keeps its own box
     const [, , vw, vh] = (svg.getAttribute("viewBox") || "").split(" ").map(Number);
     const rect = svg.getBoundingClientRect();
     // A height cap shrinks the drawing inside its box (preserveAspectRatio meet): use the tighter fit.

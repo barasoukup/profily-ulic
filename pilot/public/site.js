@@ -14,15 +14,16 @@ const DEPTH_OK = [0.2, 8];
 const R = 6378137;
 
 // The kinds, by the first word of the line's description (CTMTP_POPIS), with a colour (the usual colours of the
-// networks on plans) and a usual depth to the top (m) when the measured one is not believed.
+// networks on plans), a usual depth to the top (m) when the measured one is not believed, and a usual size (DN,
+// mm; a cable or a bundle of them as a sleeve) when the line has none.
 export const KINDS = {
-  kanalizace: { label: "kanalizace", color: "#8a5a2b", usual: 2.5 },
-  vodovod: { label: "vodovod", color: "#1f6fd1", usual: 1.5 },
-  plynovod: { label: "plynovod", color: "#e0a800", usual: 1.0 },
-  teplovod: { label: "teplovod", color: "#c0392b", usual: 1.0 },
-  silnoproud: { label: "silnoproud", color: "#d6336c", usual: 0.7 },
-  slaboproud: { label: "slaboproud", color: "#2f9e44", usual: 0.5 },
-  jine: { label: "jiné", color: "#7a7a7a", usual: 1.0 },
+  kanalizace: { label: "kanalizace", color: "#8a5a2b", usual: 2.5, dn: 300 },
+  vodovod: { label: "vodovod", color: "#1f6fd1", usual: 1.5, dn: 150 },
+  plynovod: { label: "plynovod", color: "#e0a800", usual: 1.0, dn: 110 },
+  teplovod: { label: "teplovod", color: "#c0392b", usual: 1.0, dn: 250 },
+  silnoproud: { label: "silnoproud", color: "#d6336c", usual: 0.7, dn: 60 },
+  slaboproud: { label: "slaboproud", color: "#2f9e44", usual: 0.5, dn: 40 },
+  jine: { label: "jiné", color: "#7a7a7a", usual: 1.0, dn: 60 },
 };
 const kindOf = (popis = "") => {
   const w = popis.split(" ")[0];
@@ -94,7 +95,20 @@ export async function underground({ frame, dir, half, cityId }) {
         fromPoints: Number.isFinite(fromPoints) ? +fromPoints.toFixed(2) : null, fromDmr: Number.isFinite(fromDmr) ? +fromDmr.toFixed(2) : null });
     }
   }
-  // The same line twice (both layers, a sleeve and its pipe): one within 0.2 m of another of its kind and depth.
+  // One network drawn more than once (verified and not, both layers, a cable and the axis of its sleeve, cables
+  // side by side in one trench: Bára, Voršilská): lines of a kind within SAME of each other are one, the best of
+  // them kept (a believed depth, then verified, then the larger size).
   out.sort((a, b) => a.t - b.t);
-  return out.filter((x, i) => !out.slice(0, i).some((y) => y.kind === x.kind && Math.abs(y.t - x.t) < 0.2 && Math.abs(y.depth - x.depth) < 0.2));
+  const rank = (x) => (x.measured ? 4 : 0) + (/ověř\./.test(x.popis) && !/neověř/.test(x.popis) ? 2 : 0) + (/chráni/.test(x.popis) ? 0 : 1);
+  const groups = [];
+  for (const x of out) {
+    const g = groups.find((q) => q.kind === x.kind && x.t - q.e <= SAME);
+    if (g) { g.list.push(x); g.e = x.t; } else groups.push({ kind: x.kind, e: x.t, list: [x] });
+  }
+  return groups.map(({ list }) => {
+    const best = list.reduce((a, x) => (rank(x) > rank(a) ? x : a));
+    const size = Math.max(0, ...list.map((x) => (x.profil > 20 && x.profil < 3000 ? x.profil : 0)));
+    return { ...best, t: +(list.reduce((a, x) => a + x.t, 0) / list.length).toFixed(2), profil: size || best.profil, lines: list.length };
+  });
 }
+const SAME = 0.5;

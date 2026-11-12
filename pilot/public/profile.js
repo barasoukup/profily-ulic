@@ -1582,36 +1582,43 @@ export function buildUnderground(profile, items, span, view, kinds) {
   const total = totalWidth(profile) * 100, len = span.left + span.right;
   const vx = view[0] - (view[1] - (total + 2 * EDGE)) / 2;
   const x = (t) => ((span.left - t) / len) * total;
-  const V = 3, shownMax = 4, deepest = Math.min(shownMax, Math.max(2, ...items.map((i) => i.depth)));
-  const top = 110, height = top + (deepest + 0.4) * 100 * V + 150;
+  const V = 1, shownMax = 4, deepest = Math.min(shownMax, Math.max(2, ...items.map((i) => i.depth)));
+  const top = 110, height = top + (deepest + 0.4) * 100 * V + 150; // grows with the legend's rows below
   const svg = el("svg", { xmlns: NS, class: "underground", viewBox: `${vx} 0 ${view[1]} ${height}`, "font-family": "Inter, system-ui, sans-serif", role: "img", "aria-label": "Sítě pod zemí" });
   el("rect", { x: vx, y: 0, width: view[1], height, fill: "#fbfaf6" }, svg);
   el("rect", { x: 0, y: top, width: total, height: (deepest + 0.4) * 100 * V, fill: "#e9e1d3" }, svg);
   el("line", { x1: 0, x2: total, y1: top, y2: top, stroke: "#6b5a45", "stroke-width": 4 }, svg);
-  el("text", { x: 0, y: top - 30, "font-size": 56, "font-weight": 600, fill: "#3d3b36" }, svg).textContent = "Pod zemí (zkušebně, IPR Praha; hloubka převýšená 3×)";
+  el("text", { x: 0, y: top - 30, "font-size": 56, "font-weight": 600, fill: "#3d3b36" }, svg).textContent = "Pod zemí (zkušebně, IPR Praha)";
   for (let m = 1; m <= deepest; m++) {
     el("line", { x1: 0, x2: total, y1: top + m * 100 * V, y2: top + m * 100 * V, stroke: "#c9bda8", "stroke-width": 1.5, "stroke-dasharray": "10 8" }, svg);
     el("text", { x: -16, y: top + m * 100 * V + 18, "text-anchor": "end", "font-size": 48, fill: "#6b6a65" }, svg).textContent = `${m} m`;
   }
   for (const it of items) {
     const k = kinds[it.kind] || kinds.jine, cx = x(it.t), deep = it.depth > shownMax;
-    const r = Math.max(22, Math.min(60, (it.profil > 20 ? it.profil / 20 : 0) * V));
+    // The pipe at its real size (DN in mm, a radius of DN/20 drawing units), else the kind's usual one; at least
+    // 6 cm across, so a cable shows.
+    const dn = it.profil > 20 && it.profil < 3000 ? it.profil : k.dn, r = Math.max(3, dn / 20);
     const cy = top + Math.min(it.depth, shownMax) * 100 * V + r;
     const g = el("g", {}, svg);
-    el("title", {}, g).textContent = `${it.popis}${it.profil > 1 ? `, DN ${it.profil}` : ""}: ${it.measured ? `hloubka ${String(it.depth).replace(".", ",")} m` : `hloubka neznámá, obvyklá ${String(it.depth).replace(".", ",")} m`}`;
-    el("circle", { cx, cy, r, fill: it.measured ? k.color : "#fbfaf6", stroke: k.color, "stroke-width": it.measured ? 3 : 7, "stroke-dasharray": it.measured ? "" : "10 7" }, g);
+    el("title", {}, g).textContent = `${it.popis}${it.profil > 20 ? `, DN ${it.profil}` : ""}${it.lines > 1 ? ` (v datech ${it.lines}× vedle sebe)` : ""}: ${it.measured ? `hloubka ${String(it.depth).replace(".", ",")} m` : `hloubka neznámá, obvyklá ${String(it.depth).replace(".", ",")} m`}`;
+    el("circle", { cx, cy, r, fill: it.measured ? k.color : "#fbfaf6", stroke: k.color, "stroke-width": it.measured ? 2 : 4, "stroke-dasharray": it.measured ? "" : "6 4" }, g);
     if (deep) el("text", { x: cx, y: cy + r + 50, "text-anchor": "middle", "font-size": 44, fill: "#3d3b36" }, g).textContent = `${String(it.depth).replace(".", ",")} m`;
   }
   // The legend: the kinds in this cut, and what a full and an empty ring mean.
-  let lx = 0;
-  const ly = height - 50;
-  for (const kind of [...new Set(items.map((i) => i.kind))]) {
-    const k = kinds[kind] || kinds.jine;
-    el("circle", { cx: lx + 24, cy: ly - 16, r: 22, fill: k.color }, svg);
-    el("text", { x: lx + 58, y: ly, "font-size": 48, fill: "#3d3b36" }, svg).textContent = k.label;
-    lx += 100 + k.label.length * 27;
+  // Entries in rows as wide as the picture.
+  const entries = [...new Set(items.map((i) => i.kind))].map((kind) => ({ k: kinds[kind] || kinds.jine }));
+  entries.push({ empty: true, k: { label: "hloubka neznámá (obvyklá podle druhu)", color: "#6b6a65" } });
+  const right = vx + view[1] - 20, ly0 = top + (deepest + 0.4) * 100 * V + 80;
+  let lx = Math.max(vx + 20, 0), ly = ly0;
+  for (const e of entries) {
+    const w = 100 + e.k.label.length * 27;
+    if (lx + w > right && lx > Math.max(vx + 20, 0)) { lx = Math.max(vx + 20, 0); ly += 70; }
+    el("circle", { cx: lx + 24, cy: ly - 16, r: 22, fill: e.empty ? "#fbfaf6" : e.k.color, stroke: e.empty ? e.k.color : "none", "stroke-width": 7, "stroke-dasharray": e.empty ? "10 7" : "" }, svg);
+    el("text", { x: lx + 58, y: ly, "font-size": 48, fill: "#3d3b36" }, svg).textContent = e.k.label;
+    lx += w;
   }
-  el("circle", { cx: lx + 40, cy: ly - 16, r: 22, fill: "#fbfaf6", stroke: "#6b6a65", "stroke-width": 7, "stroke-dasharray": "10 7" }, svg);
-  el("text", { x: lx + 74, y: ly, "font-size": 48, fill: "#3d3b36" }, svg).textContent = "hloubka neznámá (obvyklá podle druhu)";
+  const h = ly + 40;
+  svg.setAttribute("viewBox", `${vx} 0 ${view[1]} ${h}`);
+  svg.firstChild.setAttribute("height", h);
   return svg;
 }
