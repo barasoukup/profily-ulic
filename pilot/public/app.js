@@ -1218,7 +1218,7 @@ function renderEditor(p) {
   const lab = (text, input) => { const l = document.createElement("label"); l.append(text, input); return l; };
   const btn = (text, fn, cls) => { const b = document.createElement("button"); b.textContent = text; b.onclick = fn; if (cls) b.className = cls; return b; };
   const segs = p.segments;
-  const done = (sel = state.selected) => { if (state.mode === "navrh") mergeHoles(segs); state.selected = Math.min(sel ?? -1, segs.length - 1) < 0 ? null : Math.min(sel, segs.length - 1); edited(); render(); };
+  const done = (sel = state.selected) => { if (keepsPlace()) mergeHoles(segs); state.selected = Math.min(sel ?? -1, segs.length - 1) < 0 ? null : Math.min(sel, segs.length - 1); edited(); render(); };
   // A headed card in rows: what it is and how wide, how it is used, what to do with it.
   const head = Object.assign(document.createElement("div"), { className: "ed-head" });
   head.append(Object.assign(document.createElement("h3"), { textContent: tr("Vybraná část: {type}", { type: TYPES[s.type]?.label || s.type }) }),
@@ -1342,11 +1342,11 @@ function renderEditor(p) {
     btn(tr("Rozdělit na dvě"), () => { const h = +(s.width / 2).toFixed(2); segs.splice(i, 1, { ...s, width: h, source: "user" }, { ...s, width: +(s.width - h).toFixed(2), source: "user" }); done(); }),
     Object.assign(document.createElement("span"), { className: "spacer" }),
     // After a delete the neighbour is selected, so "Dorovnat" offers to give it the width (renderWidthCheck).
-    // In Návrh a deleted part leaves a hole of its width, so what lies beyond it stays in its place (Bára: the
+    // In Návrh and in a correction a deleted part leaves a hole of its width, so what lies beyond it stays in its place (Bára: the
     // surface must not drift from what is under it).
     btn(tr("Smazat část"), () => {
       if (isHole(s)) return; // a hole is already the empty place
-      if (state.mode === "navrh") { segs.splice(i, 1, { type: HOLE, width: s.width, source: "user" }); done(i); }
+      if (keepsPlace()) { segs.splice(i, 1, { type: HOLE, width: s.width, source: "user" }); done(i); }
       else { segs.splice(i, 1); done(segs.length ? Math.max(0, i - 1) : null); }
     }, "danger"),
   );
@@ -1722,6 +1722,8 @@ function undergroundFor() {
 // its width (Neurčeno drawn by the user, at road level), so the parts beyond keep their places (and the networks
 // under them their places under them). The design keeps the street's width.
 const HOLE = "nezname";
+// Where edits keep the street's places: Návrh and correcting the data in Stav (Bára).
+const keepsPlace = () => state.mode === "navrh" || (state.mode === "stav" && state.fixing);
 const isHole = (s) => s?.type === HOLE && s.source === "user";
 function mergeHoles(segs) {
   for (let k = segs.length - 1; k > 0; k--) if (isHole(segs[k]) && isHole(segs[k - 1])) {
@@ -1732,12 +1734,12 @@ function mergeHoles(segs) {
 }
 // The room on the right of part i: holes whole, other parts down to their least width.
 const roomRight = (segs, i) => segs.slice(i + 1).reduce((a, x) => a + Math.max(0, x.width - (isHole(x) ? 0 : minWidth(x))), 0);
-// A part's new width: in Návrh the rest keeps its place: a narrower part leaves a hole after it, a wider one takes
+// A part's new width: in Návrh and in a correction the rest keeps its place: a narrower part leaves a hole after it, a wider one takes
 // the room from the right (a hole first, then the next parts down to their least width) and grows no more than
 // there is room; elsewhere just the width.
 function setWidth(segs, i, w) {
   const s = segs[i];
-  if (state.mode !== "navrh") { s.width = w; return; }
+  if (!keepsPlace()) { s.width = w; return; }
   const d = +(Math.min(w, s.width + roomRight(segs, i)) - s.width).toFixed(2);
   if (!d) return;
   s.width = +(s.width + d).toFixed(2);
