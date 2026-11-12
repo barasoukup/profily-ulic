@@ -192,8 +192,9 @@ function drawWaterPart(g, s, x, w, top, before, after) {
   }
   // The rain running in from the paved parts beside it.
   const arrow = (ax, dir) => el("path", { d: `M${ax - dir * 26} ${top - 26} q${dir * 14} 0 ${dir * 22} 16 m${-dir * 8} -2 l${dir * 8} 2 l2 -8`, fill: "none", stroke: WATER, "stroke-width": 3.5, "stroke-linecap": "round", "stroke-linejoin": "round" }, g);
-  if (RUNOFF.has(before?.type)) arrow(x + 6, 1);
-  if (RUNOFF.has(after?.type)) arrow(x + w - 6, -1);
+  // Not from permeable paving: no other water is led onto it, and its own soaks away (5.1.2).
+  if (RUNOFF.has(before?.type) && !before.permeable) arrow(x + 6, 1);
+  if (RUNOFF.has(after?.type) && !after.permeable) arrow(x + w - 6, -1);
 }
 // A rainwater object under a part (segment.under): in the earth below its surface, schematically.
 function drawUnder(g, s, x, w, top) {
@@ -295,7 +296,8 @@ function drawItem(g, it, x, top, right) {
     case "pristresek": case "pristresek_zeleny": {
       const side = right ? "right" : "left";
       // A green roof (rainwater management 5.1.1): the city's own picture of it where there is one.
-      if (it.kind === "pristresek_zeleny" && ownSprite(`transit-shelter-green-${side}`)) return sprite(g, `transit-shelter-green-${side}`, x, top);
+      // (A tram stop keeps its own shelter, with the roof laid on it.)
+      if (it.kind === "pristresek_zeleny" && !it.tram && ownSprite(`transit-shelter-green-${side}`)) return sprite(g, `transit-shelter-green-${side}`, x, top);
       // A tram stop's own shelter where the city has one (Prague, Brno), else the bus stop's.
       const name = it.tram && ownSprite(`transit-shelter-tram-${side}`) ? `transit-shelter-tram-${side}` : `transit-shelter-01-${side}`;
       sprite(g, name, x, top);
@@ -1365,7 +1367,7 @@ export function buildSvg(profile, opts = {}) {
   }
 
   let x = 0;
-  const bounds = [0];
+  const bounds = [0], undersLater = [];
   segs.forEach((s, i) => {
     const t = TYPES[s.type] || TYPES.nezname;
     const w = s.width * 100;
@@ -1388,7 +1390,8 @@ export function buildSvg(profile, opts = {}) {
     const cx = x + w / 2;
     const forward = s.dir !== "backward";
     if (t.bed) drawTramBed(g, s, x, w, top, TYPES[segs[i - 1]?.type]?.bed, TYPES[segs[i + 1]?.type]?.bed);
-    if (s.under) drawUnder(g, s, x, w, top);
+    // Under the part: drawn after the networks' earth (below), which would cover it.
+    if (s.under) undersLater.push([s, x, w, top]);
     if (t.water) drawWaterPart(g, s, x, w, top, segs[i - 1], segs[i + 1]);
     if (s.permeable) drawPermeable(g, x, w, top);
     if (t.marked) {
@@ -1486,8 +1489,8 @@ export function buildSvg(profile, opts = {}) {
       // Trees between the stalls are named with the parking (Bára).
       if (s.type === "parkovani" && s.items?.some((it) => it.kind === "strom")) label += tr(" se stromy");
       // What lies under it (rainwater, types.js HDV_UNDER) and permeable paving, in the name.
-      if (s.under && HDV_UNDER[s.under]) label += ` + ${HDV_UNDER[s.under].label}`;
-      if (s.permeable) label += tr(", propustný povrch");
+      if (s.under && HDV_UNDER[s.under]) label += ` + ${HDV_UNDER[s.under].short}`;
+      if (s.permeable) label += tr(", propustný");
       const name = el("text", { class: "lbl-t", "data-row": 1, "data-w": w, "data-full": label, x: cx, y: GROUND + DROP + 215, "text-anchor": "middle", "font-size": 28, fill: "#4f4e49" }, g);
       const lines = twoLines(label);
       if (label.length * 0.56 * 28 > w && lines) {
@@ -1555,6 +1558,8 @@ export function buildSvg(profile, opts = {}) {
   }
 
   if (under) drawNetworks(svg, under, total);
+  // Rainwater objects under the parts, over the networks' earth (Fable's review).
+  if (undersLater.length) { const ug = el("g", { class: "under" }, svg); for (const [s, x, w, top] of undersLater) drawUnder(ug, s, x, w, top); }
   svg.dataset.drop = DROP;
 
   if (opts.title) {

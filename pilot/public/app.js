@@ -680,12 +680,14 @@ function renderShares() {
 }
 
 // Parts of the design that differ from the current state: edited by hand, or (same parts in the
-// same order) of another width.
+// same order) of another width, or with another rainwater object under them, paving or items (Fable's review:
+// changes a width does not show).
+const hidden = (s) => JSON.stringify([s.under || "", !!s.permeable, (s.items || []).map((it) => it.kind)]);
 function changedParts(a, b) {
   const same = a.segments.length === b.segments.length && a.segments.every((s, i) => s.type === b.segments[i].type);
   const out = new Set();
   b.segments.forEach((s, i) => {
-    if (same ? Math.abs(s.width - a.segments[i].width) >= 0.01 : s.source === "user") out.add(i);
+    if (same ? Math.abs(s.width - a.segments[i].width) >= 0.01 || hidden(a.segments[i]) !== hidden(s) : s.source === "user") out.add(i);
   });
   return out;
 }
@@ -700,6 +702,7 @@ function diffList(a, b) {
     a.segments.forEach((s, i) => {
       const d = +(b.segments[i].width - s.width).toFixed(2);
       if (d) items.push({ i, text: `${name(s)}: ${fmtM(s.width)} → ${fmtM(b.segments[i].width)} (${d > 0 ? "+" : "−"}${fmtM(Math.abs(d))})` });
+      else if (hidden(s) !== hidden(b.segments[i])) items.push({ i, text: tr("{type}: jiné prvky, povrch nebo co je pod povrchem", { type: name(s) }) });
     });
   } else {
     const count = (p) => p.segments.reduce((m, s) => m.set(name(s), (m.get(name(s)) || 0) + s.width), new Map());
@@ -1328,7 +1331,8 @@ function renderEditor(p) {
     r2.append(lab(tr("Propustný povrch") + " ", perm));
   }
   // The standard's chapter of a rainwater object, to read up on it.
-  const hdv = [TYPES[s.type]?.hdv, s.under && HDV_UNDER[s.under]?.hdv, s.permeable && "5.1.2"].filter(Boolean);
+  // A swale with an underground trench is its own object of the standard (5.1.8).
+  const hdv = s.type === "pruleh" && s.under === "ryha" ? ["5.1.8"] : [TYPES[s.type]?.hdv, s.under && HDV_UNDER[s.under]?.hdv, s.permeable && "5.1.2"].filter(Boolean);
   if (hdv.length) {
     const a = Object.assign(document.createElement("a"), { href: HDV_SOURCE, target: "_blank", rel: "noopener", className: "muted",
       textContent: tr("Standardy hospodaření se srážkovými vodami (Praha), kap. {ch} ↗", { ch: hdv.join(", ") }) });

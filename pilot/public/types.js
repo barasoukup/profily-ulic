@@ -43,9 +43,10 @@ export const TYPES = {
 
 // Rainwater objects under a part (segment.under; the standard's chapter): under green, a sidewalk, parking…
 export const HDV_UNDER = {
-  ryha: { label: t("podzemní rýha"), hdv: "5.1.7" },
-  nadrz: { label: t("podzemní retenční nádrž"), hdv: "5.1.11" },
-  sachta: { label: t("vsakovací šachta"), hdv: "5.1.9" },
+  // short: in the label under the drawing (the full name in the editor).
+  ryha: { label: t("podzemní rýha"), short: t("rýha"), hdv: "5.1.7" },
+  nadrz: { label: t("podzemní retenční nádrž"), short: t("nádrž"), hdv: "5.1.11" },
+  sachta: { label: t("vsakovací šachta"), short: t("šachta"), hdv: "5.1.9" },
 };
 // The parts that may have one; with a průleh above, a rýha under it is the standard's "průleh s podzemní rýhou" (5.1.8).
 export const UNDER_TYPES = ["zelen", "stromorad", "predzahradka", "delici", "pruleh", "chodnik", "chodnik_kola", "stezka_sdilena", "plocha", "parkovani", "nastupiste", "zahradka"];

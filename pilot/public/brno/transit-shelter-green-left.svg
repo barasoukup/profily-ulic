@@ -7,7 +7,7 @@
        https://commons.wikimedia.org/wiki/File:A_JCDecaux_bus_shelter_outside_the_Jardin_du_Luxembourg.jpg (Paříž),
        utrechtské „bijenhaltes“ (https://commons.wikimedia.org/wiki/Category:Bus_shelters_in_the_Netherlands),
        rostliny https://commons.wikimedia.org/wiki/Category:Sedum_album, https://commons.wikimedia.org/wiki/Category:Sedum_acre,
-       https://commons.wikimedia.org/wiki/Category:Festuca_glauca; souvrství podle Standardů HDV Praha, kap. 5.1.2.
+       https://commons.wikimedia.org/wiki/Category:Festuca_glauca; souvrství podle Standardů HDV Praha, kap. 5.1.1.
        Stín vpravo: tmavší pravá část polštářů. -->
   <!-- přístřešek z čela podle zásad KAM Brno (kap. 9, foto Joštova): subtilní kovová konstrukce a sklo, tenká plochá
        střecha s přesahem dopředu, rám v tmavě šedé s hnědozlatým tónem jako na Joštově, sklo s pruhem grafiky proti nárazu -->
@@ -38,7 +38,7 @@
     <rect x="34" y="311" width="4" height="49" fill="#3d4246"/>
     <rect x="78" y="311" width="4" height="49" fill="#3d4246"/>
   </g>
-  <!-- extenzivní vegetační střecha (Standardy HDV Praha, kap. 5.1.2): drenážní a hydroizolační vrstva 2 cm,
+  <!-- extenzivní vegetační střecha (Standardy HDV Praha, kap. 5.1.1): drenážní a hydroizolační vrstva 2 cm,
        substrát 8 cm, rozchodníky a nízké traviny; obrubový profil (hliníkový lem) na obou koncích vany -->
   <g id="zelena-strecha">
     <!-- drenážní rohož a hydroizolace -->
