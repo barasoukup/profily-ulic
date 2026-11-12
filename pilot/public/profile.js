@@ -1630,11 +1630,12 @@ function drawNetworks(svg, { items, span, kinds }, total) {
       el("circle", { class: "net", cx, cy, r, fill: k.color, "fill-opacity": 0.35, stroke: k.color, "stroke-width": 3, "stroke-dasharray": "4 3" }, n);
     }
   }
-  // The legend: one column under the right edge, on a card, the kinds in their usual order from the top.
+  // The legend: one column under the right edge, a panel as wide as the edge and flush with the depth-0 line (Bára:
+  // not floating), the kinds in their usual order from the top.
   const entries = netEntries(items, kinds);
-  el("rect", { x: total + 24, y: NET_TOP + 24, width: EDGE - 48, height: entries.length * LEGEND_ROW + 16, rx: 8, fill: "#fbfaf6", opacity: 0.9, stroke: "#e2ded4", "stroke-width": 1.5 }, g);
+  el("rect", { x: total, y: zero, width: EDGE, height: entries.length * LEGEND_ROW + 20, fill: "#fbfaf6", stroke: "#e2ded4", "stroke-width": 1.5 }, g);
   entries.forEach((e, i) => {
-    const lx = total + 24, ly = NET_TOP + 24 + 8 + (i + 0.5) * LEGEND_ROW;
+    const lx = total + 16, ly = zero + 10 + (i + 0.5) * LEGEND_ROW;
     if (e.empty) el("circle", { cx: lx + 22, cy: ly, r: 11, fill: "#6b6a65", "fill-opacity": 0.35, stroke: e.k.color, "stroke-width": 3, "stroke-dasharray": "4 3" }, g);
     else el("circle", { cx: lx + 22, cy: ly, r: 11, fill: e.k.color, stroke: "#2a2622", "stroke-opacity": 0.35, "stroke-width": 2 }, g);
     el("text", { x: lx + 44, y: ly + 9, "font-size": 26, fill: "#4f4e49" }, g).textContent = e.k.label;
