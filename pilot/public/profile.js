@@ -218,34 +218,21 @@ function drawUnder(g, s, x, w, top) {
     el("rect", { x: bx + 3, y: lvl + 3, width: bw - 6, height: y1 - lvl - 6, rx: 7, fill: "#9cc3e4", opacity: 0.7 }, g);
   }
 }
-// Permeable paving (segment.permeable, 5.1.2): open joints with grass in the paving; an unpaved surface (fine
-// gravel, compacted earth): its gravel in a band under the top.
+// Permeable paving (segment.permeable, 5.1.2) and unpaved surfaces: no concrete slab under them (Bára), but a gravel
+// bed down to the earth; grass pavers as concrete blocks with grass between them (at first sight something between
+// parking and a lawn), an unpaved surface gravel all through.
+const GRAVEL_BED = "#cdbf9f", GRAVEL_DOT = "#8e8170";
 function drawPermeable(g, x, w, top, unpaved) {
-  if (unpaved) {
-    el("rect", { x, y: top, width: w, height: 22, fill: "#cbbd9f" }, g);
-    for (let v = top + 4; v < top + 20; v += 6) for (let u = x + 4 + ((v / 6) % 2) * 3; u < x + w - 3; u += 7) el("circle", { cx: u, cy: v, r: 1.6, fill: "#8e8170" }, g);
-    return;
+  el("rect", { x, y: top, width: w, height: GROUND + 60 - top, fill: GRAVEL_BED }, g);
+  for (let v = top + (unpaved ? 5 : 32); v < GROUND + 56; v += 8) {
+    for (let u = x + 4 + ((v / 8) % 2) * 4; u < x + w - 3; u += 9) el("circle", { cx: u, cy: v, r: unpaved ? 1.8 : 2.2, fill: GRAVEL_DOT }, g);
   }
-  // Grass pavers (Bára: at first sight something between parking and a lawn): a band of concrete blocks with grass
-  // between them, blades showing over the joints.
+  if (unpaved) return;
   el("rect", { x, y: top, width: w, height: 26, fill: "#7fae55" }, g);
   for (let u = x + 4; u < x + w - 12; u += 24) {
     el("rect", { x: u, y: top + 2, width: 14, height: 24, fill: "#b9b5ab", stroke: "#9a968b", "stroke-width": 1.5 }, g);
     el("path", { d: `M${u + 17} ${top + 1} l2 -7 l2 7 M${u + 20} ${top + 1} l2 -5 l1 5`, fill: "#5f9e3a", stroke: "#5f9e3a", "stroke-width": 1.5 }, g);
   }
-}
-
-// A green roof laid on a shelter picture that has none of its own: substrate and low plants on its roof (the
-// roof of Prague's shelter, which the towns copy, lies 95 cm under its top over 13–198 cm of its width; another
-// shelter gets it on the top of its picture).
-function greenRoof(g, name, x, top, right) {
-  const s = (cityArt() && sprites[`${artKey()}/${CITY_ART[artKey()]?.[name]}`]) || sprites[name];
-  if (!s) return;
-  const prague = s.w === 270 && s.h === 360, x0 = x - s.w / 2;
-  const [a, b] = prague ? (right ? [s.w - 198, s.w - 13] : [13, 198]) : [s.w * 0.08, s.w * 0.92];
-  const y = top - s.h + (prague ? 95 : 0);
-  el("rect", { x: x0 + a, y: y - 9, width: b - a, height: 9, rx: 2, fill: "#7a6a52" }, g);
-  for (let u = x0 + a + 6; u < x0 + b - 4; u += 12) el("circle", { cx: u, cy: y - 10, r: 6, fill: (u / 12) % 2 < 1 ? "#6aa84f" : "#86b55a" }, g);
 }
 
 // Street furniture and barriers standing at x on a surface at height top.
