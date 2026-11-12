@@ -1279,8 +1279,11 @@ const ITEM_SHIFT = 3; // an OSM point this far off a kerb is moved onto it (m); 
 const BED_SHIFT = { sloup_trakce: 4, oznacnik: 4 };
 const CENTER_POLE = 1.2; // a traction pole this close to the line between two tracks stands between them (m)
 
+// One of these in a part, the nearest to the cut along the street (Bára, náměstí Jana Palacha: three traction poles
+// of the technical map along a sidewalk drawn side by side in the cut; one is enough).
+const ONE_PER_PART = new Set(["sloup_trakce", "lampa"]);
 function attachItems(segs, items) {
-  for (const it of items) {
+  for (const it of [...items].sort((a, b) => Math.abs(a.along ?? 0) - Math.abs(b.along ?? 0))) {
     let host = segs.find((x) => x.s <= it.t && x.e >= it.t);
     let t = it.t;
     let center = false;
@@ -1304,6 +1307,7 @@ function attachItems(segs, items) {
     if (!host || (it.parked && host.type !== "parkovani")) continue;
     // One tree per parking part: it stands in the middle, behind the car.
     if (it.parked) { if (!host.items?.some((o) => o.kind === "strom")) (host.items ||= []).push({ kind: "strom", f: 0.5 }); continue; }
+    if (!center && ONE_PER_PART.has(it.kind) && host.items?.some((o) => o.kind === it.kind && !o.center)) continue;
     const item = { kind: it.kind, f: (t - host.s) / Math.max(host.e - host.s, 0.01) };
     if (it.tram) item.tram = true;
     if (it.lamp) item.lamp = true;

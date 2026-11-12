@@ -480,8 +480,8 @@ Bára: mlatové cyklostezky a pěšiny také vsakují) zvlášť „nezpevněný
 nejsou (OSM 0, otevřená data měst nic; Brno má jen body dotovaných zelených střech a dešťovek, Bára: nevyužívat),
 retenční nádrže zůstávají vodou.
 Kreslí se zjednodušeně (Magdalena: kvůli měřítku zjednodušit): průleh jako mělká prohlubeň s výsadbou, nádrž s vodou
-a rákosem, podzemní objekty jako schéma v zemině, modré šipky ukazují přítok ze zpevněných ploch vedle. V editoru je
-u prvku odkaz na kapitolu standardů. Ilustrace (zelená střecha přístřešku, výsadba průlehu, rákos) kreslila
+a rákosem, podzemní objekty jako schéma v zemině, modré šipky ukazují přítok ze zpevněných ploch vedle; zatravňovací
+dlažba jako pás betonových tvárnic s trávou mezi nimi (Bára: na první pohled něco mezi parkováním a trávníkem). Ilustrace (zelená střecha přístřešku, výsadba průlehu, rákos) kreslila
 „kreslířka“ ve třech kolech s „kritikem“ podle fotek z Wikimedia Commons.
 
 ### Okraje ulice

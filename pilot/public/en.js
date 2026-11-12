@@ -499,7 +499,6 @@ export const EN = {
   "rýha": "trench",
   "nádrž": "tank",
   "šachta": "soakaway",
-  "Standardy hospodaření se srážkovými vodami (Praha), kap. {ch} ↗": "Prague rainwater management standards, ch. {ch} ↗ (in Czech)",
   "Hospodaření s vodou": "Rainwater",
   "{type}: jiné prvky, povrch nebo co je pod povrchem": "{type}: other items, paving or what lies below the surface",
 

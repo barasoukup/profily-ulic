@@ -1,4 +1,4 @@
-import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, SURFACES, HDV_SOURCE } from "./types.js";
+import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, SURFACES } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes } from "./lanes-ortho.js";
@@ -1219,8 +1219,13 @@ function renderEditor(p) {
     }
     return;
   }
+  // Grouped as the palette below (Bára: the long list grouped the same way); the rest under "Další".
   const type = document.createElement("select");
-  for (const [k, t] of Object.entries(TYPES)) type.add(new Option(t.label, k, false, k === s.type));
+  for (const [title, keys] of paletteGroups(true)) {
+    const og = Object.assign(document.createElement("optgroup"), { label: title });
+    for (const k of keys) og.append(new Option(TYPES[k].label, k, false, k === s.type));
+    type.append(og);
+  }
   type.onchange = () => { retype(s, type.value); s.source = "user"; done(); };
   const width = Object.assign(document.createElement("input"), { type: "number", step: 0.05, min: 0.2, value: s.width });
   width.onchange = () => {
@@ -1332,14 +1337,6 @@ function renderEditor(p) {
     perm.onchange = () => { const v = perm.value; if (v === "true") s.permeable = true; else if (v) s.permeable = v; else delete s.permeable; s.source = "user"; done(); };
     r2.append(lab(tr("Povrch"), perm));
   }
-  // The standard's chapter of a rainwater object, to read up on it.
-  // A swale with an underground trench is its own object of the standard (5.1.8).
-  const hdv = s.type === "pruleh" && s.under === "ryha" ? ["5.1.8"] : [TYPES[s.type]?.hdv, s.under && HDV_UNDER[s.under]?.hdv, s.permeable === true && "5.1.2"].filter(Boolean);
-  if (hdv.length) {
-    const a = Object.assign(document.createElement("a"), { href: HDV_SOURCE, target: "_blank", rel: "noopener", className: "muted",
-      textContent: tr("Standardy hospodaření se srážkovými vodami (Praha), kap. {ch} ↗", { ch: hdv.join(", ") }) });
-    r2.append(a);
-  }
   if (TYPES[s.type]?.tracks) {
     // Buses may use the tram part (OSM psv / bus on the tracks).
     const bus = Object.assign(document.createElement("input"), { type: "checkbox", checked: !!s.withBus });
@@ -1434,13 +1431,21 @@ function signTags(list = [], max, type, set) {
 
 // Parts to add, grouped as people look for them.
 const PALETTE_GROUPS = [
-  [tr("Pro pěší"), ["chodnik", "chodnik_kola", "stezka_sdilena", "nastupiste"]],
-  [tr("Pro cyklisty"), ["cyklopruh", "ochranny_pruh", "pruh_piktokoridor", "cyklostezka"]],
+  [tr("Pro pěší"), ["chodnik", "chodnik_kola", "nastupiste"]],
+  // The shared path is first a cycling path in the lists (Bára).
+  [tr("Pro cyklisty"), ["cyklopruh", "ochranny_pruh", "pruh_piktokoridor", "cyklostezka", "stezka_sdilena"]],
   [tr("Auta a autobusy"), ["pruh", "parkovani", "bus", "bus_cyklo", "obsluzna", "krajnice"]],
   [tr("Tramvaj"), ["tramvaj_v_pruhu", "tramvaj_pruh", "tramvaj"]],
-  [tr("Zeleň a ostatní"), ["zelen", "stromorad", "predzahradka", "delici", "plocha", "zahradka", "voda", "zed"]],
-  [tr("Hospodaření s vodou"), ["pruleh", "ryha", "nadrz"]],
+  [tr("Zeleň a ostatní"), ["zelen", "stromorad", "predzahradka", "delici", "plocha", "zahradka", "zed"]],
+  [tr("Hospodaření s vodou"), ["pruleh", "ryha", "nadrz", "voda"]],
 ];
+// The palette's groups with the types in none of them under "Další" (withUnknown: the editor's list also offers
+// "Neurčeno", the palette does not add it).
+function paletteGroups(withUnknown = false) {
+  const shown = new Set(PALETTE_GROUPS.flatMap(([, ks]) => ks));
+  const rest = Object.keys(TYPES).filter((k) => !shown.has(k) && (withUnknown || k !== "nezname"));
+  return [...PALETTE_GROUPS, [tr("Další"), rest]].map(([t, ks]) => [t, ks.filter((k) => TYPES[k])]).filter(([, ks]) => ks.length);
+}
 function renderPalette(p) {
   const pal = $("#palette");
   pal.replaceChildren();
@@ -1451,11 +1456,7 @@ function renderPalette(p) {
     : state.mode === "navrh" ? (state.selected === null ? tr("Přidat díl do volného místa (nebo na úkor posledního dílu)") : tr("Přidat díl vpravo od vybraného (na jeho úkor)"))
     : state.selected === null ? tr("Přidat díl na konec") : tr("Přidat díl vpravo od vybraného");
   pal.append(hint);
-  const shown = new Set(PALETTE_GROUPS.flatMap(([, ks]) => ks));
-  const rest = Object.keys(TYPES).filter((k) => !shown.has(k) && k !== "nezname");
-  for (const [title, keys] of [...PALETTE_GROUPS, [tr("Další"), rest]]) {
-    const list = keys.filter((k) => TYPES[k]);
-    if (!list.length) continue;
+  for (const [title, list] of paletteGroups()) {
     const group = Object.assign(document.createElement("div"), { className: "pal-group" });
     group.append(Object.assign(document.createElement("span"), { className: "pal-name", textContent: title }));
     for (const k of list) {

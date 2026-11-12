@@ -55,8 +55,6 @@ export const UNDER_TYPES = ["zelen", "stromorad", "predzahradka", "delici", "pru
 // rain soaks in too; Bára 12. 11. 2026).
 export const SURFACES = { "": t("běžný"), true: t("propustná dlažba"), nezpevneny: t("nezpevněný (mlat, štěrk)") };
 export const PERMEABLE_TYPES = ["chodnik", "chodnik_kola", "stezka_sdilena", "plocha", "parkovani", "zahradka", "cyklostezka"];
-// The Prague standard of rainwater management, cited by its chapters.
-export const HDV_SOURCE = "https://iprpraha.cz/assets/files/files/bddf4f520d27099cbc0f7a3609918e90.pdf";
 
 export const SOURCES = {
   dtm: { label: t("změřeno z technické mapy"), color: "#3b6d11" },

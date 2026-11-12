@@ -152,6 +152,7 @@ export const totalWidth = (p) => p.segments.reduce((a, s) => a + s.width, 0);
 // with water, a surface trench gravel to the top; under a part, a trench of gravel, a tank or a shaft in the earth
 // below it (schematic depths, not to scale); permeable paving shows its open joints. Blue arrows show where the
 // rain runs in from the paved parts beside a swale, a trench or a pond.
+const MEDIAN_LAMP = new Set(["delici", "zelen", "stromorad", "tramvaj"]); // parts where a lamp lights both roadways
 const PAPER = "#fbfaf6", WATER = "#5b93c7", GRAVEL = "#b8b1a2", PEBBLE = "#8e8778";
 const RUNOFF = new Set(["chodnik", "chodnik_kola", "stezka_sdilena", "plocha", "parkovani", "pruh", "pruh_piktokoridor", "obsluzna", "krajnice", "bus", "bus_cyklo", "cyklopruh", "ochranny_pruh", "cyklostezka", "nastupiste"]);
 function pebbles(g, x, y, w, h, r = 2.5) {
@@ -225,7 +226,13 @@ function drawPermeable(g, x, w, top, unpaved) {
     for (let v = top + 4; v < top + 20; v += 6) for (let u = x + 4 + ((v / 6) % 2) * 3; u < x + w - 3; u += 7) el("circle", { cx: u, cy: v, r: 1.6, fill: "#8e8170" }, g);
     return;
   }
-  for (let u = x + 14; u < x + w - 6; u += 26) el("rect", { x: u, y: top, width: 4, height: 9, fill: "#6f9e48" }, g);
+  // Grass pavers (Bára: at first sight something between parking and a lawn): a band of concrete blocks with grass
+  // between them, blades showing over the joints.
+  el("rect", { x, y: top, width: w, height: 26, fill: "#7fae55" }, g);
+  for (let u = x + 4; u < x + w - 12; u += 24) {
+    el("rect", { x: u, y: top + 2, width: 14, height: 24, fill: "#b9b5ab", stroke: "#9a968b", "stroke-width": 1.5 }, g);
+    el("path", { d: `M${u + 17} ${top + 1} l2 -7 l2 7 M${u + 20} ${top + 1} l2 -5 l1 5`, fill: "#5f9e3a", stroke: "#5f9e3a", "stroke-width": 1.5 }, g);
+  }
 }
 
 // A green roof laid on a shelter picture that has none of its own: substrate and low plants on its roof (the
@@ -1474,7 +1481,9 @@ export function buildSvg(profile, opts = {}) {
       if (it.kind === "lampa") {
         const near = nearestRoadway(segs, i, it.f);
         if (near) onRight = near === "left";
-        if (ROADWAY.has(segs[i - 1]?.type) && ROADWAY.has(segs[i + 1]?.type)) drawItem(g, it, ix, top, !onRight);
+        // Only on a true median (a dividing strip, green or a tram bed between two roadways of a big road), not on a
+        // walkway island by a turn (Bára, náměstí Jana Palacha).
+        if (MEDIAN_LAMP.has(s.type) && ROADWAY.has(segs[i - 1]?.type) && ROADWAY.has(segs[i + 1]?.type)) drawItem(g, it, ix, top, !onRight);
       }
       drawItem(g, it.kind === "sloup_trakce" && it.center ? { ...it, reach: w / 2 } : it, ix, top, onRight);
     }
