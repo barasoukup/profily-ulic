@@ -1217,7 +1217,7 @@ function renderEditor(p) {
   const lab = (text, input) => { const l = document.createElement("label"); l.append(text, input); return l; };
   const btn = (text, fn, cls) => { const b = document.createElement("button"); b.textContent = text; b.onclick = fn; if (cls) b.className = cls; return b; };
   const segs = p.segments;
-  const done = (sel = state.selected) => { state.selected = sel; edited(); render(); };
+  const done = (sel = state.selected) => { if (state.mode === "navrh") mergeHoles(segs); state.selected = Math.min(sel ?? -1, segs.length - 1) < 0 ? null : Math.min(sel, segs.length - 1); edited(); render(); };
   // A headed card in rows: what it is and how wide, how it is used, what to do with it.
   const head = Object.assign(document.createElement("div"), { className: "ed-head" });
   head.append(Object.assign(document.createElement("h3"), { textContent: tr("Vybraná část: {type}", { type: TYPES[s.type]?.label || s.type }) }),
@@ -1278,7 +1278,7 @@ function renderEditor(p) {
       s.orient = orient.value;
       // ČSN 73 6056 and Manuál C.2: perpendicular stalls 5.0 m deep (4.5 m with overhang); angled ones keep the rules
       // of perpendicular stalls (rules.js), so they start at 5.0 m too.
-      if ((s.orient === "kolme" || s.orient === "sikme") && s.width < 4.5) s.width = 5;
+      if ((s.orient === "kolme" || s.orient === "sikme") && s.width < 4.5) setWidth(segs, segs.indexOf(s), 5);
       s.source = "user";
       done();
     };
@@ -1344,7 +1344,8 @@ function renderEditor(p) {
     // In Návrh a deleted part leaves a hole of its width, so what lies beyond it stays in its place (Bára: the
     // surface must not drift from what is under it).
     btn(tr("Smazat část"), () => {
-      if (state.mode === "navrh") { segs.splice(i, 1, { type: HOLE, width: s.width, source: "user" }); mergeHoles(segs); done(Math.min(i, segs.length - 1)); }
+      if (isHole(s)) return; // a hole is already the empty place
+      if (state.mode === "navrh") { segs.splice(i, 1, { type: HOLE, width: s.width, source: "user" }); done(i); }
       else { segs.splice(i, 1); done(segs.length ? Math.max(0, i - 1) : null); }
     }, "danger"),
   );
@@ -1400,7 +1401,10 @@ function renderPalette(p) {
   pal.replaceChildren();
   const hint = document.createElement("div");
   hint.className = "pal-title";
-  hint.textContent = state.selected === null ? tr("Přidat díl na konec") : tr("Přidat díl vpravo od vybraného");
+  const selSeg = p.segments[state.selected];
+  hint.textContent = state.mode === "navrh" && isHole(selSeg) ? tr("Přidat díl do vybraného volného místa")
+    : state.mode === "navrh" ? (state.selected === null ? tr("Přidat díl do volného místa (nebo na úkor posledního dílu)") : tr("Přidat díl vpravo od vybraného (na jeho úkor)"))
+    : state.selected === null ? tr("Přidat díl na konec") : tr("Přidat díl vpravo od vybraného");
   pal.append(hint);
   const shown = new Set(PALETTE_GROUPS.flatMap(([, ks]) => ks));
   const rest = Object.keys(TYPES).filter((k) => !shown.has(k) && k !== "nezname");
@@ -1416,21 +1420,12 @@ function renderPalette(p) {
       chip.style.setProperty("--c", t.color);
       chip.textContent = t.label;
       chip.onclick = () => {
-        const sel = p.segments[state.selected];
-        const seg = { type: k, width: DEFAULT_WIDTH[k], source: "user" };
+        const segs = p.segments, seg = { type: k, width: DEFAULT_WIDTH[k], source: "user" };
         if (t.directional) seg.dir = "forward";
-        let at = state.selected === null ? p.segments.length : state.selected + 1;
-        // In Návrh a new part takes its room from the selected hole (in its place) or part, so the rest stays put.
-        if (state.mode === "navrh" && sel) {
-          const room = sel.type === HOLE ? sel.width : Math.max(0, sel.width - 0.5);
-          seg.width = +Math.min(seg.width, room || seg.width).toFixed(2);
-          if (room) {
-            sel.width = +(sel.width - seg.width).toFixed(2);
-            if (sel.type === HOLE) at = state.selected;
-            if (sel.width < 0.01) { p.segments.splice(state.selected, 1); if (at > state.selected) at--; }
-          }
-        }
-        p.segments.splice(at, 0, seg);
+        let at = state.selected === null ? segs.length : state.selected + 1;
+        if (state.mode === "navrh" && segs.length) at = placeNew(segs, state.selected, seg);
+        if (at < 0) { status(tr("Na nový díl tu není místo: uvolněte ho zúžením nebo smazáním jiného dílu."), "error"); return; }
+        segs.splice(at, 0, seg);
         state.selected = at;
         edited();
         render();
@@ -1632,7 +1627,14 @@ $("#btn-flip").onclick = () => {
   if (state.computed) state.computed = mirror(state.computed);
   const r = state.cut.reach || defaultReach();
   const sp = state.cut.span && { left: state.cut.span.right, right: state.cut.span.left };
+  const before = state.cut;
   state.cut = { ...state.cut, bearing: ((state.cut.bearing + 180 + 540) % 360) - 180, reach: { left: r.right, right: r.left }, span: sp };
+  // The networks turn round with the cut (t across it changes sign), not asked again.
+  if (state.underground?.cut === before && state.underground.items) {
+    const items = state.underground.items.map((x) => ({ ...x, t: -x.t }));
+    items.lines = state.underground.items.lines;
+    state.underground = { cut: state.cut, items };
+  }
   state.selected = null;
   const f = localFrame(state.cut.lat, state.cut.lon), b = (state.cut.bearing * Math.PI) / 180;
   drawCut(cutEnds(f, [-Math.cos(b), Math.sin(b)], cutSpan(state.cut)));
@@ -1716,32 +1718,64 @@ function undergroundFor() {
 }
 
 // Holes in a design (Bára): a deleted part, a narrowed one or what a new part did not fill stays an empty part of
-// its width, so the parts beyond keep their places (and the networks under them their places under them).
+// its width (Neurčeno drawn by the user, at road level), so the parts beyond keep their places (and the networks
+// under them their places under them). The design keeps the street's width.
 const HOLE = "nezname";
+const isHole = (s) => s?.type === HOLE && s.source === "user";
 function mergeHoles(segs) {
-  for (let k = segs.length - 1; k > 0; k--) if (segs[k].type === HOLE && segs[k - 1].type === HOLE && segs[k].source === "user" && segs[k - 1].source === "user") {
+  for (let k = segs.length - 1; k > 0; k--) if (isHole(segs[k]) && isHole(segs[k - 1])) {
     segs[k - 1].width = +(segs[k - 1].width + segs[k].width).toFixed(2);
     segs.splice(k, 1);
   }
+  for (let k = segs.length - 1; k >= 0; k--) if (isHole(segs[k]) && segs[k].width < 0.01) segs.splice(k, 1);
 }
+// The room on the right of part i: holes whole, other parts down to their least width.
+const roomRight = (segs, i) => segs.slice(i + 1).reduce((a, x) => a + Math.max(0, x.width - (isHole(x) ? 0 : minWidth(x))), 0);
 // A part's new width: in Návrh the rest keeps its place: a narrower part leaves a hole after it, a wider one takes
-// the room from the right (a hole first, then the next parts down to their least width); elsewhere just the width.
+// the room from the right (a hole first, then the next parts down to their least width) and grows no more than
+// there is room; elsewhere just the width.
 function setWidth(segs, i, w) {
-  const s = segs[i], d = +(w - s.width).toFixed(2);
-  s.width = w;
-  if (state.mode !== "navrh" || !d) return;
+  const s = segs[i];
+  if (state.mode !== "navrh") { s.width = w; return; }
+  const d = +(Math.min(w, s.width + roomRight(segs, i)) - s.width).toFixed(2);
+  if (!d) return;
+  s.width = +(s.width + d).toFixed(2);
   if (d < 0) {
-    if (segs[i + 1]?.type === HOLE) segs[i + 1].width = +(segs[i + 1].width - d).toFixed(2);
+    if (isHole(segs[i + 1])) segs[i + 1].width = +(segs[i + 1].width - d).toFixed(2);
     else segs.splice(i + 1, 0, { type: HOLE, width: -d, source: "user" });
     return;
   }
   let need = d;
-  for (let k = i + 1; k < segs.length && need > 0.001; k++) {
-    const least = segs[k].type === HOLE ? 0 : minWidth(segs[k]), take = Math.min(need, Math.max(0, segs[k].width - least));
+  for (const pass of [isHole, (x) => !isHole(x)]) for (let k = i + 1; k < segs.length && need > 0.001; k++) {
+    if (!pass(segs[k])) continue;
+    const take = Math.min(need, Math.max(0, segs[k].width - (isHole(segs[k]) ? 0 : minWidth(segs[k]))));
     segs[k].width = +(segs[k].width - take).toFixed(2);
     need = +(need - take).toFixed(2);
   }
-  for (let k = segs.length - 1; k > i; k--) if (segs[k].type === HOLE && segs[k].width < 0.01) segs.splice(k, 1);
+  mergeHoles(segs);
+}
+// Where a new part from the palette goes in Návrh, taking its room so the street keeps its width: into the selected
+// hole; after the selected part, from a hole right after it, then from the part down to its least width; with
+// nothing selected into the widest hole, else from the last part. Its width is cut to the room; -1: no room.
+function placeNew(segs, sel, seg) {
+  const holes = segs.map((x, k) => (isHole(x) ? k : -1)).filter((k) => k >= 0);
+  let from, at;
+  if (sel !== null && isHole(segs[sel])) { from = [sel]; at = sel; }
+  else if (sel !== null) { from = [...(isHole(segs[sel + 1]) ? [sel + 1] : []), sel]; at = sel + 1; }
+  else if (holes.length) { const k = holes.reduce((b, x) => (segs[x].width > segs[b].width ? x : b)); from = [k]; at = k; }
+  else { from = [segs.length - 1]; at = segs.length; }
+  const room = from.reduce((a, k) => a + Math.max(0, segs[k].width - (isHole(segs[k]) ? 0 : minWidth(segs[k]))), 0);
+  if (room < 0.2) return -1;
+  seg.width = +Math.min(seg.width, room).toFixed(2);
+  let need = seg.width;
+  for (const k of from) {
+    const take = Math.min(need, Math.max(0, segs[k].width - (isHole(segs[k]) ? 0 : minWidth(segs[k]))));
+    segs[k].width = +(segs[k].width - take).toFixed(2);
+    need = +(need - take).toFixed(2);
+  }
+  // A hole used up goes; the new part takes its place.
+  if (isHole(segs[at]) && segs[at].width < 0.01) segs.splice(at, 1);
+  return at;
 }
 const minWidth = (seg) => (seg.type === "parkovani" && seg.orient === "kolme" ? 4.5 : 0.2);
 

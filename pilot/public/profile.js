@@ -277,7 +277,9 @@ export const ORIENT_LABEL = { podelne: tr("podélné"), sikme: tr("šikmé"), ko
 const CAR_TRACK = 170; // wheel to wheel of the parked car's sprite (cm), for its tilt across the kerb
 const KERB_PAVING = "#c4c0b4"; // the sidewalk's paving under parked cars, a shade darker than the sidewalk
 // On the curb: raised types, and cars parked fully on the sidewalk.
-const isRaised = (s) => !!s && (!!TYPES[s.type]?.raised || (s.type === "parkovani" && s.position === "on_kerb"));
+// An empty place left in a design (a deleted part: Neurčeno by the user) lies at road level, no kerbs (Fable).
+const isHole = (s) => s?.type === "nezname" && s.source === "user";
+const isRaised = (s) => !!s && !isHole(s) && (!!TYPES[s.type]?.raised || (s.type === "parkovani" && s.position === "on_kerb"));
 export const turnLabel = (v) => v.split(";").map((x) => TURNS[x] || x).join(" + ");
 
 // anchor: the picture's x (its own units) that stands at cx; the middle when not given.
@@ -1523,12 +1525,13 @@ export function mountEditor(container, profile, { editable = true, selected, onS
       pt.x = e.clientX; pt.y = e.clientY;
       return pt.matrixTransform(svg.getScreenCTM().inverse()).x;
     };
-    let last = toCm(ev);
+    let last = toCm(ev), moved = false;
     const segs = profile.segments;
     const move = (e) => {
       const xcm = toCm(e);
       let d = Math.round((xcm - last) / 5) * 0.05; // 5 cm steps
       if (!d) return;
+      moved = true;
       const a = segs[k - 1], b = segs[k];
       if (a && b) {
         d = Math.max(-(a.width - minWidth(a)), Math.min(b.width - minWidth(b), d));
@@ -1549,11 +1552,16 @@ export function mountEditor(container, profile, { editable = true, selected, onS
       svg.addEventListener("pointerdown", startDrag);
     };
     // A cancelled touch (the browser took the gesture) ends the drag like lifting the finger.
-    const up = () => {
+    const up = (e) => {
       window.removeEventListener("pointermove", move);
       window.removeEventListener("pointerup", up);
       window.removeEventListener("pointercancel", up);
-      onChange();
+      if (moved) { onChange(); return; }
+      // A click on a handle's wide grab area (narrow parts lie under it: Fable) selects the part under the pointer.
+      const xcm = toCm(e);
+      let x = 0;
+      const i = segs.findIndex((s) => (x += s.width * 100) > xcm);
+      if (i >= 0 && xcm >= 0) onSelect?.(i);
     };
     window.addEventListener("pointermove", move);
     window.addEventListener("pointerup", up);
