@@ -179,6 +179,10 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   směrem, ulice na mostě končí za krajním chodníkem, `slight_right/left` jako vpravo/vlevo, výběr části profilu
   vyznačený v mapě, Plzeň: „stavba pro zpevnění povrchu“ je zpevněná plocha.
 
+## Jazyky (Bára 12. 11. 2026)
+- Čeština a angličtina: `pilot/public/i18n.js` (`t("český text")`), překlady v `pilot/public/en.js`, přepínač EN / CS
+  v hlavičce, `?lang=en`. Nový text vždy přes `t()` a s překladem (hlídá `tests/i18n.test.js`). Popis v `pilot/README.md`.
+
 ## Licence
 - Kód MIT. Ilustrace Streetmix CC BY-SA 4.0 (s uvedením autora), pražské ilustrace (`pilot/public/praha/`)
   pod MIT jako kód (Bára rozhodla 8. 11. 2026), kód Streetmixu AGPL-3.0 (jen kopie

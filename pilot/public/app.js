@@ -17,6 +17,17 @@ import { TOWNS } from "./towns/index.js";
 import { log, logOn, sendReport, shortProfile } from "./log.js";
 import { createDataLayers, PLOCHY_PANE } from "./maplayers.js";
 import { mountSearch } from "./search.js";
+// tr: t is a common name of a text or a type here.
+import { t as tr, num, lang, LANGS, setLang, translatePage, attribution } from "./i18n.js";
+
+translatePage();
+// The other language, as its own name (one more language: a menu).
+{
+  const other = lang === "cs" ? "en" : "cs";
+  const b = document.querySelector("#btn-lang");
+  Object.assign(b, { textContent: other.toUpperCase(), title: LANGS[other], lang: other, onclick: () => setLang(other) });
+  b.setAttribute("aria-label", LANGS[other]);
+}
 
 const HALF = 40; // half-length of the cut used for reading the data (m)
 // A cut end dragged further out (a house set back from a wide road) reads that much more, up to MAX_HALF (m).
@@ -68,7 +79,12 @@ const status = (msg, kind = "") => {
 const startCity = new URLSearchParams(location.search).get("mesto");
 if (startCity) { setCity(startCity); history.replaceState(null, "", location.pathname + location.hash); }
 const map = L.map("map", { maxZoom: 21, zoomControl: false }).setView(city.view, startCity === "cesko" ? 8 : 18);
-L.control.zoom({ zoomInTitle: "Přiblížit", zoomOutTitle: "Oddálit" }).addTo(map);
+// The layers' credits are written in Czech: in another language they are translated as they are added and removed.
+if (lang !== "cs") for (const m of ["addAttribution", "removeAttribution"]) {
+  const own = map.attributionControl[m].bind(map.attributionControl);
+  map.attributionControl[m] = (text) => own(text && attribution(text));
+}
+L.control.zoom({ zoomInTitle: tr("Přiblížit"), zoomOutTitle: tr("Oddálit") }).addTo(map);
 // Address search (search.js, RÚIAN of ČÚZK): the map moves there; an address on a street or a street is cut
 // like a click at the nearest point of that street. The log gets only the kind of place, never the query.
 mountSearch(map, { status, onPick: ({ item, cut }) => { log("hledani", { detail: item.type === "AdresniMisto" ? "adresa" : item.type === "Ulice" ? "ulice" : "misto" }); if (cut) cutAt(cut.lat, cut.lon); } });
@@ -100,7 +116,7 @@ const BIG_TILES = { tileSize: 512, zoomOffset: -1 };
 // One set of base maps for the whole Czech Republic (Bára: one page, no city switch): each kind of map
 // is the national layer with the cities' own on top, each limited to its city (mesta.json).
 const DMVS = "https://dmvs.cuzk.gov.cz/api/wms";
-const osmLayer = (opacity = 1) => L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 21, maxNativeZoom: 19, opacity, attribution: '© <a href="https://www.openstreetmap.org/copyright">přispěvatelé OpenStreetMap</a>' });
+const osmLayer = (opacity = 1) => L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 21, maxNativeZoom: 19, opacity, attribution: `© <a href="https://www.openstreetmap.org/copyright">${tr("přispěvatelé OpenStreetMap")}</a>` });
 const cuzkOrtho = () => L.tileLayer.wms("https://ags.cuzk.gov.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer", {
   layers: "0", format: "image/jpeg", maxZoom: 21, attribution: "ortofoto © ČÚZK",
 });
@@ -152,17 +168,17 @@ function creditCities() {
   for (const a of want) if (!credited.has(a)) { map.attributionControl.addAttribution(a); credited.add(a); }
 }
 map.on("moveend layeradd layerremove", creditCities);
-const baseMaps = { "Mapa": L.layerGroup(kinds.map), "Ortofoto": L.layerGroup(kinds.ortho), "Technická mapa": L.layerGroup(kinds.tech), "OpenStreetMap": osmLayer() };
+const baseMaps = { [tr("Mapa")]: L.layerGroup(kinds.map), [tr("Ortofoto")]: L.layerGroup(kinds.ortho), [tr("Technická mapa")]: L.layerGroup(kinds.tech), "OpenStreetMap": osmLayer() };
 const BASE_KEY = "streetdesign-basemap-cr";
-let baseName = "Mapa";
+let baseName = tr("Mapa");
 try { if (baseMaps[localStorage.getItem(BASE_KEY)]) baseName = localStorage.getItem(BASE_KEY); } catch {}
 baseMaps[baseName].addTo(map);
 map.on("baselayerchange", (e) => { try { localStorage.setItem(BASE_KEY, e.name); } catch {} });
 const dtm = L.layerGroup(kinds.lines);
 const mtvuLayer = L.layerGroup();
-const layersControl = L.control.layers(baseMaps, { "Linie technické mapy": dtm, "Plochy u řezu": mtvuLayer }).addTo(map);
-document.querySelector(".leaflet-control-layers-toggle")?.setAttribute("title", "Podkladová mapa a vrstvy");
-document.querySelector(".leaflet-control-layers-toggle")?.setAttribute("aria-label", "Podkladová mapa a vrstvy");
+const layersControl = L.control.layers(baseMaps, { [tr("Linie technické mapy")]: dtm, [tr("Plochy u řezu")]: mtvuLayer }).addTo(map);
+document.querySelector(".leaflet-control-layers-toggle")?.setAttribute("title", tr("Podkladová mapa a vrstvy"));
+document.querySelector(".leaflet-control-layers-toggle")?.setAttribute("aria-label", tr("Podkladová mapa a vrstvy"));
 mtvuLayer.addTo(map);
 // The other data of the cut (parking, points, lines, tracks, axes, buildings) as overlays (maplayers.js).
 const dataLayers = createDataLayers(map, layersControl);
@@ -199,7 +215,7 @@ let osmCache = null; // {frame, osm, way, wayPts}
 
 map.on("click", (e) => cutAt(e.latlng.lat, e.latlng.lng));
 sources.events.addEventListener("retry", (e) => {
-  if (document.body.classList.contains("loading")) status(`Server ${city.server} neodpovídá, zkouším znovu (${e.detail.attempt}/${e.detail.of})…`);
+  if (document.body.classList.contains("loading")) status(tr("Server {server} neodpovídá, zkouším znovu ({n}/{of})…", { server: city.server, n: e.detail.attempt, of: e.detail.of }));
 });
 window.cutAt = cutAt; // handy for testing from the console
 
@@ -207,7 +223,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
   logEdits(); // what was done with the previous cut, before it is replaced
   try {
     await useCity(lat, lon);
-    status("Načítám data z OSM…");
+    status(tr("Načítám data z OSM…"));
     let frame = localFrame(lat, lon);
     let osm = keepWay && osmCache ? osmCache.osm : await sources.osm(lat, lon, 80);
     let near;
@@ -219,7 +235,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
       // A click lands the cut away from junctions and crossings; a dragged cut stays where it is put.
       if (near) near = awayFromJunctions(osm, frame, near);
     }
-    if (!near) return status("Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko).", "error");
+    if (!near) return status(tr("Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko)."), "error");
     // A street of two one-way carriageways is cut from its middle (e.g. the tram belt).
     near = centerOnStreet(osm, frame, near);
     // Re-centre the frame on the snapped point.
@@ -250,7 +266,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     const full = [-1, 1].map((k) => frame.toLonLat(normal[0] * half * k, normal[1] * half * k));
     const lons = full.map((e) => e[0]), lats = full.map((e) => e[1]);
     const pad = 0.0004;
-    status(`Načítám ${city.techMap}…`);
+    status(tr("Načítám {map}…", { map: city.techMap }));
     const bbox = [Math.min(...lons) - pad, Math.min(...lats) - pad, Math.max(...lons) + pad, Math.max(...lats) + pad].join(",");
     let polys = [], tracks = [];
     const zone = sources.zps(clat, clon).catch(() => undefined);
@@ -281,7 +297,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     // The way's right is the profile's right when the profile looks along the way's geometry.
     const alongWay = !near.dir || dir[0] * near.dir[0] + dir[1] * near.dir[1] >= 0;
     deriveSigns(result, near.way.tags, { inZps, alongWay });
-    const name = near.way.tags.name || near.way.tags.ref || `ulice ${near.way.id}`;
+    const name = near.way.tags.name || near.way.tags.ref || tr("ulice {id}", { id: near.way.id });
     const span = result.extent && { left: +result.extent[1].toFixed(2), right: +(-result.extent[0]).toFixed(2) };
     // A design belongs to its street: moving the cut along the same street keeps it, a cut of another
     // street (a click or a link) starts the design from the new Stav.
@@ -335,14 +351,14 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     $("#street-name").textContent = name + state.cut.note;
     if (out.text) status(out.text, out.error ? "error" : undefined);
     else status(result.notice ? result.notice
-      : result.junction ? "Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami." : "");
+      : result.junction ? tr("Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami.") : "");
     save();
     render();
     // On a phone the profile is under the map: bring it into view.
     if (matchMedia("(max-width: 760px)").matches) $("#profile-head").scrollIntoView({ behavior: "smooth", block: "start" });
   } catch (err) {
     console.error(err);
-    status("Data se nepodařilo načíst (" + err.message + "). Zkuste kliknout znovu za chvíli.", "error");
+    status(tr("Data se nepodařilo načíst ({error}). Zkuste kliknout znovu za chvíli.", { error: err.message }), "error");
   }
 }
 
@@ -386,8 +402,8 @@ const mapyKey = MAPY_KEY || (local ? await import("./config.local.js").then((m) 
 let panoLib, panoView;
 const loadPano = () => (panoLib ??= new Promise((res, rej) => {
   const s = Object.assign(document.createElement("script"), { src: "https://api.mapy.cz/js/panorama/v1/panorama.js", async: true });
-  s.onload = () => (window.Panorama ? res(window.Panorama) : rej(new Error("Panorama se nenačetla.")));
-  s.onerror = () => { panoLib = null; rej(new Error("Panorama Mapy.com se nenačetla.")); };
+  s.onload = () => (window.Panorama ? res(window.Panorama) : rej(new Error(tr("Panorama se nenačetla."))));
+  s.onerror = () => { panoLib = null; rej(new Error(tr("Panorama Mapy.com se nenačetla."))); };
   document.head.append(s);
 }));
 $("#pano-btn").onclick = async () => {
@@ -395,7 +411,7 @@ $("#pano-btn").onclick = async () => {
   const { lat, lon, bearing } = state.cut;
   const dlg = $("#pano-dialog");
   $("#pano-out").href = $("#pano-link").href;
-  $("#pano-note").textContent = "Načítám…";
+  $("#pano-note").textContent = tr("Načítám…");
   dlg.showModal();
   try {
     const P = await loadPano();
@@ -403,14 +419,14 @@ $("#pano-btn").onclick = async () => {
     $("#pano-view").replaceChildren();
     const yaw = (((bearing % 360) + 360) % 360) * (Math.PI / 180);
     panoView = await P.panoramaFromPosition({
-      parent: $("#pano-view"), lon, lat, apiKey: mapyKey, radius: 60, yaw, pitch: 0, fov: 1.3, showNavigation: true, lang: "cs",
+      parent: $("#pano-view"), lon, lat, apiKey: mapyKey, radius: 60, yaw, pitch: 0, fov: 1.3, showNavigation: true, lang: lang === "cs" ? "cs" : "en",
     });
     if (panoView?.errorCode && panoView.errorCode !== "NONE") {
-      $("#pano-note").textContent = panoView.errorCode === "PANORAMA_NOT_FOUND" ? "Tady panorama Mapy.com nemají." : `Panorama nejde zobrazit (${panoView.error || panoView.errorCode}).`;
+      $("#pano-note").textContent = panoView.errorCode === "PANORAMA_NOT_FOUND" ? tr("Tady panorama Mapy.com nemají.") : tr("Panorama nejde zobrazit ({error}).", { error: panoView.error || panoView.errorCode });
       return;
     }
     const d = panoView?.info?.date;
-    $("#pano-note").textContent = d ? `snímek z ${+d.slice(8, 10)}. ${+d.slice(5, 7)}. ${d.slice(0, 4)}` : "";
+    $("#pano-note").textContent = d ? tr("snímek z {d}. {m}. {y}", { d: +d.slice(8, 10), m: +d.slice(5, 7), y: d.slice(0, 4) }) : "";
   } catch (err) {
     $("#pano-note").textContent = err.message;
   }
@@ -421,8 +437,8 @@ $("#pano-dialog").addEventListener("close", () => { panoView?.destroy?.(); panoV
 $("#btn-copy-cut").onclick = async () => {
   if (!state.cut) return;
   const text = `${cutText(state.cut)} (${state.cut.name}) ${location.href}`;
-  try { await navigator.clipboard.writeText(text); status("Poloha řezu je ve schránce.", "ok"); }
-  catch { prompt("Zkopírujte polohu řezu:", text); }
+  try { await navigator.clipboard.writeText(text); status(tr("Poloha řezu je ve schránce."), "ok"); }
+  catch { prompt(tr("Zkopírujte polohu řezu:"), text); }
 };
 
 // Paste "lat, lon · azimut N°" (or a #rez= link) to jump to a cut.
@@ -436,7 +452,7 @@ function parseCut(text) {
 
 $("#cut-goto").onchange = (e) => {
   const c = parseCut(e.target.value);
-  if (!c) return status(`Polohu jsem nepoznala. Vložte třeba: ${city.example} · azimut 344°`, "error");
+  if (!c) return status(tr("Polohu jsem nepoznala. Vložte třeba: {example} · azimut 344°", { example: city.example }), "error");
   map.setView([c.lat, c.lon], 19);
   cutAt(c.lat, c.lon, false, c.bearing, c.reach);
   e.target.value = "";
@@ -509,7 +525,7 @@ function current() {
   return state.mode === "navrh" ? state.navrh : state.stav;
 }
 
-const MODE_LABEL = { stav: "Stav", navrh: "Návrh", porovnat: "Stav a návrh" };
+const MODE_LABEL = { stav: tr("Stav"), navrh: tr("Návrh"), porovnat: tr("Stav a návrh") };
 // Stav is for looking at the street as it is; its data can be corrected only after "Opravit data"
 // (state.fixing), so nothing changes by accident. Návrh is always editable.
 const canEdit = () => state.mode === "navrh" || (state.mode === "stav" && state.fixing);
@@ -552,21 +568,21 @@ function draw() {
   $("#stav-cta").hidden = !state.stav || state.mode !== "stav";
   $("#stav-cta").classList.toggle("fixing", !!state.fixing);
   $("#stav-text").textContent = state.fixing
-    ? "Opravujete data stavu: táhněte úchyty nebo klikněte na část. Opravené části se označí jako upravené ručně."
-    : `Profil ukazuje ulici, jak je dnes (z dat ${city.dataShort}). Když data nesedí, opravte je nebo nám chybu nahlaste; změny navrhujte v Návrhu.`;
-  $("#btn-fix").textContent = state.fixing ? "Hotovo" : "Opravit data";
+    ? tr("Opravujete data stavu: táhněte úchyty nebo klikněte na část. Opravené části se označí jako upravené ručně.")
+    : tr("Profil ukazuje ulici, jak je dnes (z dat {data}). Když data nesedí, opravte je nebo nám chybu nahlaste; změny navrhujte v Návrhu.", { data: city.dataShort });
+  $("#btn-fix").textContent = state.fixing ? tr("Hotovo") : tr("Opravit data");
   $("#btn-to-navrh").hidden = !!state.fixing;
   if (state.stav) {
-    $("#profile-sub").textContent = `Celkem ${fmtM(totalWidth(state.mode === "navrh" ? state.navrh : state.stav))}`;
-    $("#mode-badge").textContent = state.mode === "stav" && state.fixing ? "Stav · oprava dat" : MODE_LABEL[state.mode];
+    $("#profile-sub").textContent = tr("Celkem {w}", { w: fmtM(totalWidth(state.mode === "navrh" ? state.navrh : state.stav)) });
+    $("#mode-badge").textContent = state.mode === "stav" && state.fixing ? tr("Stav · oprava dat") : MODE_LABEL[state.mode];
     $("#mode-badge").className = `badge badge-${state.mode}${state.mode === "stav" && state.fixing ? " badge-fixing" : ""}`;
   }
   if (!state.stav) {
     box.innerHTML = `<div class="empty">
       <img src="${city.emptyImg}" alt="" width="96" height="126">
-      <div><h1 class="empty-title">Příčný profil ulice</h1>
-      <ol><li>Klikněte v mapě na ulici kdekoli v Česku.</li><li>Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM.</li>
-      <li>V režimu Návrh ho upravíte: táhněte hranice, klikněte na část, přidejte novou.</li></ol></div></div>`;
+      <div><h1 class="empty-title">${tr("Příčný profil ulice")}</h1>
+      <ol><li>${tr("Klikněte v mapě na ulici kdekoli v Česku.")}</li><li>${tr("Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM.")}</li>
+      <li>${tr("V režimu Návrh ho upravíte: táhněte hranice, klikněte na část, přidejte novou.")}</li></ol></div></div>`;
     $("#editor").replaceChildren();
     $("#palette").replaceChildren();
     renderShares();
@@ -575,9 +591,9 @@ function draw() {
   if (state.mode === "porovnat") {
     box.replaceChildren();
     const changed = changedParts(state.stav, state.navrh);
-    for (const [title, p, opts] of [["Stav", state.stav, {}], ["Návrh", state.navrh, { changed }]]) {
+    for (const [title, p, opts] of [[tr("Stav"), state.stav, {}], [tr("Návrh"), state.navrh, { changed }]]) {
       const h = Object.assign(document.createElement("h3"), { className: "compare-title", textContent: title });
-      if (opts.changed?.size) h.append(Object.assign(document.createElement("span"), { className: "muted", textContent: " · změněné části jsou obtažené" }));
+      if (opts.changed?.size) h.append(Object.assign(document.createElement("span"), { className: "muted", textContent: tr(" · změněné části jsou obtažené") }));
       box.append(h, buildSvg(p, opts));
     }
     box.appendChild(diffList(state.stav, state.navrh));
@@ -611,9 +627,9 @@ function renderShares() {
   const box = $("#shares");
   if (!state.stav) { box.hidden = true; return; }
   box.hidden = false;
-  const rows = state.mode === "porovnat" ? [["Stav", state.stav], ["Návrh", state.navrh]] : [[null, current()]];
+  const rows = state.mode === "porovnat" ? [[tr("Stav"), state.stav], [tr("Návrh"), state.navrh]] : [[null, current()]];
   const pct = (v) => `${Math.round(v)} %`;
-  box.replaceChildren(Object.assign(document.createElement("h3"), { textContent: "Podíl prostoru ulice" }));
+  box.replaceChildren(Object.assign(document.createElement("h3"), { textContent: tr("Podíl prostoru ulice") }));
   const before = state.mode === "porovnat" ? Object.fromEntries(shares(state.stav).map((g) => [g.key, g.pct])) : null;
   for (const [title, p] of rows) {
     const row = Object.assign(document.createElement("div"), { className: "share-row" });
@@ -637,12 +653,12 @@ function renderShares() {
   for (const g of shares(state.mode === "porovnat" ? state.navrh : current())) {
     if (!g.m && !(before && before[g.key])) continue;
     const d = before ? Math.round(g.pct - before[g.key]) : 0;
-    const item = Object.assign(document.createElement("span"), { textContent: `${g.label} ${fmtM(g.m)} · ${pct(g.pct)}${d ? ` (${d > 0 ? "+" : "−"}${Math.abs(d)} p. b.)` : ""}` });
+    const item = Object.assign(document.createElement("span"), { textContent: `${g.label} ${fmtM(g.m)} · ${pct(g.pct)}${d ? ` (${d > 0 ? "+" : "−"}${tr("{n} p. b.", { n: Math.abs(d) })})` : ""}` });
     item.style.setProperty("--c", g.color);
     legend.append(item);
   }
   box.append(legend);
-  box.append(Object.assign(document.createElement("div"), { className: "share-note", textContent: "Sdílené pruhy a stezky se počítají napůl (např. pruh s tramvají půl MHD, půl auta)." }));
+  box.append(Object.assign(document.createElement("div"), { className: "share-note", textContent: tr("Sdílené pruhy a stezky se počítají napůl (např. pruh s tramvají půl MHD, půl auta).") }));
 }
 
 // Parts of the design that differ from the current state: edited by hand, or (same parts in the
@@ -675,9 +691,9 @@ function diffList(a, b) {
       if (Math.abs(wa - wb) >= 0.01) items.push({ text: `${k}: ${wa ? fmtM(wa) : "–"} → ${wb ? fmtM(wb) : "–"}` });
     }
   }
-  div.innerHTML = `<h3>Změny v návrhu</h3>`;
+  div.innerHTML = `<h3>${tr("Změny v návrhu")}</h3>`;
   const ul = document.createElement("ul");
-  for (const it of items.length ? items : [{ text: "Návrh je zatím stejný jako stav." }]) {
+  for (const it of items.length ? items : [{ text: tr("Návrh je zatím stejný jako stav.") }]) {
     const li = Object.assign(document.createElement("li"), { textContent: it.text });
     if (it.i !== undefined) {
       // Pointing at a change lights up that part in both profiles.
@@ -714,7 +730,7 @@ function renderRuleCheck(p, box) {
 // The street is as wide as the current state (façade to façade): the design must fill exactly that
 // width. Shown in Návrh and Porovnat; "Dorovnat" puts the difference into the selected part (or the
 // widest one).
-const fmtM = (v) => `${v.toFixed(2).replace(".", ",")} m`;
+const fmtM = (v) => `${num(v)} m`;
 function renderWidthCheck() {
   const box = $("#width-check");
   // In Návrh against the street; while correcting the data (Stav), against the width measured before.
@@ -726,12 +742,13 @@ function renderWidthCheck() {
   box.hidden = false;
   box.className = Math.abs(diff) < 0.01 ? "ok" : "off";
   if (Math.abs(diff) < 0.01) {
-    box.textContent = fixing ? `✓ Opravy drží šířku ulice ${fmtM(target)}` : `✓ Návrh drží šířku ulice ${fmtM(target)}`;
+    box.textContent = fixing ? tr("✓ Opravy drží šířku ulice {w}", { w: fmtM(target) }) : tr("✓ Návrh drží šířku ulice {w}", { w: fmtM(target) });
     return;
   }
+  const v = { d: fmtM(Math.abs(diff)), w: fmtM(target), now: fmtM(now) };
   box.textContent = fixing
-    ? `Po opravách je profil o ${fmtM(Math.abs(diff))} ${diff > 0 ? "širší" : "užší"} než změřená ulice (${fmtM(target)}, teď ${fmtM(now)}).`
-    : `Návrh je o ${fmtM(Math.abs(diff))} ${diff > 0 ? "širší" : "užší"} než ulice (${fmtM(target)}, návrh ${fmtM(now)}).`;
+    ? (diff > 0 ? tr("Po opravách je profil o {d} širší než změřená ulice ({w}, teď {now}).", v) : tr("Po opravách je profil o {d} užší než změřená ulice ({w}, teď {now}).", v))
+    : (diff > 0 ? tr("Návrh je o {d} širší než ulice ({w}, návrh {now}).", v) : tr("Návrh je o {d} užší než ulice ({w}, návrh {now}).", v));
   if (state.mode !== "navrh" && !fixing) return;
   const segs = edit.segments;
   // The selected part when it can take the difference, else the widest part that can.
@@ -740,7 +757,7 @@ function renderWidthCheck() {
     : segs.filter(fits).reduce((b, x) => (!b || x.width > b.width ? x : b), null);
   if (!seg) return;
   const btn = document.createElement("button");
-  btn.textContent = `Dorovnat: ${TYPES[seg.type]?.label || seg.type} na ${fmtM(seg.width - diff)}`;
+  btn.textContent = tr("Dorovnat: {type} na {w}", { type: TYPES[seg.type]?.label || seg.type, w: fmtM(seg.width - diff) });
   btn.onclick = () => {
     seg.width = +(seg.width - diff).toFixed(2);
     seg.source = "user";
@@ -1023,7 +1040,7 @@ function undo() {
   if (!undoStack.length) return;
   redoStack.push(snapshot());
   applySnapshot(undoStack.pop());
-  status("Změna je vrácená.", "ok");
+  status(tr("Změna je vrácená."), "ok");
 }
 function redo() {
   if (!redoStack.length) return;
@@ -1060,9 +1077,9 @@ function renderInfo(ed, s) {
   if (!s) return;
   const head = Object.assign(document.createElement("div"), { className: "ed-head" });
   head.append(Object.assign(document.createElement("h3"), { textContent: `${TYPES[s.type]?.label || s.type}, ${fmtM(s.width)}` }),
-    Object.assign(document.createElement("span"), { className: "muted", textContent: `Zdroj: ${SOURCES[s.source]?.label || s.source || "–"}` }));
+    Object.assign(document.createElement("span"), { className: "muted", textContent: tr("Zdroj: {source}", { source: SOURCES[s.source]?.label || s.source || "–" }) }));
   const close = Object.assign(document.createElement("button"), { className: "close", textContent: "×", onclick: () => { state.selected = null; render(); } });
-  close.setAttribute("aria-label", "Zavřít");
+  close.setAttribute("aria-label", tr("Zavřít"));
   head.append(close);
   ed.append(head);
 }
@@ -1074,17 +1091,17 @@ function renderEditor(p) {
   const s = p.segments[i];
   if (!canEdit()) return renderInfo(ed, s);
   if (s === undefined) {
-    ed.innerHTML = `<div class="ed-head"><h3>Okraje ulice</h3><span class="muted">Klikněte na část profilu a upravte ji. Šířku změníte tažením modrých úchytů mezi částmi.</span></div>`;
-    for (const [side, text] of [["left", "Levý okraj"], ["right", "Pravý okraj"]]) {
+    ed.innerHTML = `<div class="ed-head"><h3>${tr("Okraje ulice")}</h3><span class="muted">${tr("Klikněte na část profilu a upravte ji. Šířku změníte tažením modrých úchytů mezi částmi.")}</span></div>`;
+    for (const [side, text] of [["left", tr("Levý okraj")], ["right", tr("Pravý okraj")]]) {
       const sel = document.createElement("select");
       // A building can be given its look by hand; "budova" alone lets the app guess it.
       const current = (p.edges?.[side] || "volno") + (p.edges?.[`${side}Style`] ? ":" + p.edges[`${side}Style`] : "");
       const info = p.edges?.[`${side}Info`];
       const style = buildingStyle(info);
       // A flat-roofed office is drawn as an office, not as a panel house.
-      const guess = style === "plocha" && OFFICE_LIKE.has(info?.type) ? "kancelářská budova" : BUILDING_STYLES[style];
-      const kinds = [["budova", `Budova (odhad: ${guess})`], ...Object.entries(BUILDING_STYLES).map(([k, t]) => [`budova:${k}`, `Budova – ${t}`]),
-        ["stavba", "Drobná stavba"], ["zahrada", "Zahrada, louka"], ["zelen", "Zeleň, louka"], ["voda", "Voda"], ["parkoviste", "Parkoviště"], ["plot", "Plot"], ["volno", "Volný prostor"]];
+      const guess = style === "plocha" && OFFICE_LIKE.has(info?.type) ? tr("kancelářská budova") : BUILDING_STYLES[style];
+      const kinds = [["budova", tr("Budova (odhad: {guess})", { guess })], ...Object.entries(BUILDING_STYLES).map(([k, t]) => [`budova:${k}`, tr("Budova – {style}", { style: t })]),
+        ["stavba", tr("Drobná stavba")], ["zahrada", tr("Zahrada, louka")], ["zelen", tr("Zeleň, louka")], ["voda", tr("Voda")], ["parkoviste", tr("Parkoviště")], ["plot", tr("Plot")], ["volno", tr("Volný prostor")]];
       for (const [k, t] of kinds) sel.add(new Option(t, k, false, current === k));
       sel.onchange = () => {
         const [kind, style] = sel.value.split(":");
@@ -1117,10 +1134,10 @@ function renderEditor(p) {
   const done = (sel = state.selected) => { state.selected = sel; edited(); render(); };
   // A headed card in rows: what it is and how wide, how it is used, what to do with it.
   const head = Object.assign(document.createElement("div"), { className: "ed-head" });
-  head.append(Object.assign(document.createElement("h3"), { textContent: `Vybraná část: ${TYPES[s.type]?.label || s.type}` }),
-    Object.assign(document.createElement("span"), { className: "muted", textContent: `Zdroj: ${SOURCES[s.source]?.label || s.source || "–"}` }));
+  head.append(Object.assign(document.createElement("h3"), { textContent: tr("Vybraná část: {type}", { type: TYPES[s.type]?.label || s.type }) }),
+    Object.assign(document.createElement("span"), { className: "muted", textContent: tr("Zdroj: {source}", { source: SOURCES[s.source]?.label || s.source || "–" }) }));
   head.append(btn("×", () => { state.selected = null; render(); }, "close"));
-  head.lastChild.setAttribute("aria-label", "Zavřít výběr");
+  head.lastChild.setAttribute("aria-label", tr("Zavřít výběr"));
   const row = () => ed.appendChild(Object.assign(document.createElement("div"), { className: "ed-row" }));
   const step = (d) => btn(d > 0 ? "+" : "−", () => { s.width = Math.max(minW(), +(s.width + d).toFixed(2)); s.source = "user"; done(); }, "step");
   const minW = () => (s.type === "parkovani" && s.orient === "kolme" ? 4.5 : 0.2);
@@ -1128,14 +1145,14 @@ function renderEditor(p) {
   const r1 = row();
   const wbox = Object.assign(document.createElement("span"), { className: "stepper" });
   wbox.append(step(-0.25), width, step(0.25));
-  r1.append(lab("Typ", type), lab("Šířka (m)", wbox));
+  r1.append(lab(tr("Typ"), type), lab(tr("Šířka (m)"), wbox));
   const r2 = row();
   if (TYPES[s.type]?.directional) {
     // Away from or towards the viewer; a lane of a two-way street with one axis has no direction and is drawn
     // "↑↓" (derive.js), so it can be made and kept here too. Another part without a direction says so.
     const dir = document.createElement("select");
-    const both = s.type === "pruh" ? [["", "↑↓ obousměrný"]] : s.dir ? [] : [["", "bez směru"]];
-    for (const [v, t] of [["forward", "↑ od diváka"], ["backward", "↓ k divákovi"], ...both]) dir.add(new Option(t, v, false, (s.dir || "") === v));
+    const both = s.type === "pruh" ? [["", tr("↑↓ obousměrný")]] : s.dir ? [] : [["", tr("bez směru")]];
+    for (const [v, t] of [["forward", tr("↑ od diváka")], ["backward", tr("↓ k divákovi")], ...both]) dir.add(new Option(t, v, false, (s.dir || "") === v));
     dir.onchange = () => {
       const was = s.dir;
       if (dir.value) s.dir = dir.value; else delete s.dir;
@@ -1143,14 +1160,14 @@ function renderEditor(p) {
       if (s.bikeDir && was && s.dir && was !== s.dir) s.bikeDir = s.bikeDir === "backward" ? "forward" : "backward";
       done();
     };
-    r2.append(lab("Směr jízdy", dir));
+    r2.append(lab(tr("Směr jízdy"), dir));
   }
   if (s.type === "pruh" || s.type === "pruh_piktokoridor") {
     // Cyclists sharing the lane (drawn with the cars, "cyklisté ↓" in contraflow; a piktokoridor has them anyway).
     const bike = document.createElement("select");
-    for (const [v, t] of [["", s.type === "pruh" ? "ne" : "po směru pruhu"], ["forward", "↑ od diváka"], ["backward", "↓ k divákovi"]]) bike.add(new Option(t, v, false, (s.bikeDir || "") === v));
+    for (const [v, t] of [["", s.type === "pruh" ? tr("ne") : tr("po směru pruhu")], ["forward", tr("↑ od diváka")], ["backward", tr("↓ k divákovi")]]) bike.add(new Option(t, v, false, (s.bikeDir || "") === v));
     bike.onchange = () => { if (bike.value) s.bikeDir = bike.value; else delete s.bikeDir; s.source = "user"; done(); };
-    r2.append(lab("Cyklisté v pruhu", bike));
+    r2.append(lab(tr("Cyklisté v pruhu"), bike));
   }
   if (["pruh", "pruh_piktokoridor", "bus", "bus_cyklo"].includes(s.type)) {
     // Trolley wires over the lane (OSM trolley_wire): drawn above it; a bus lane under them carries the trolleybus.
@@ -1160,15 +1177,15 @@ function renderEditor(p) {
       s.source = "user";
       done();
     };
-    r2.append(lab("Troleje ", wires));
+    r2.append(lab(tr("Troleje") + " ", wires));
   }
   if (s.type === "parkovani") {
     const use = document.createElement("select");
-    for (const [v, t] of [["", "běžné"], ...Object.entries(PARKING_USE)]) use.add(new Option(t, v, false, (s.use || "") === v));
+    for (const [v, t] of [["", tr("běžné")], ...Object.entries(PARKING_USE)]) use.add(new Option(t, v, false, (s.use || "") === v));
     use.onchange = () => { if (use.value) s.use = use.value; else delete s.use; s.source = "user"; done(); };
-    r2.append(lab("Účel", use));
+    r2.append(lab(tr("Účel"), use));
     const orient = document.createElement("select");
-    for (const [v, t] of [["podelne", "podélné"], ["sikme", "šikmé"], ["kolme", "kolmé"]]) {
+    for (const [v, t] of [["podelne", tr("podélné")], ["sikme", tr("šikmé")], ["kolme", tr("kolmé")]]) {
       orient.add(new Option(t, v, false, (s.orient || "podelne") === v));
     }
     orient.onchange = () => {
@@ -1179,45 +1196,45 @@ function renderEditor(p) {
       s.source = "user";
       done();
     };
-    r2.append(lab("Stání", orient));
+    r2.append(lab(tr("Stání"), orient));
     // Where the cars stand: in the roadway, on the sidewalk, or across the kerb (half on the sidewalk).
     const pos = document.createElement("select");
-    for (const [v, t] of [["", "ve vozovce"], ...Object.entries(PARKING_POSITION)]) pos.add(new Option(t, v, false, (s.position || "") === v));
+    for (const [v, t] of [["", tr("ve vozovce")], ...Object.entries(PARKING_POSITION)]) pos.add(new Option(t, v, false, (s.position || "") === v));
     pos.onchange = () => { if (pos.value) s.position = pos.value; else delete s.position; s.source = "user"; done(); };
-    r2.append(lab("Poloha", pos));
+    r2.append(lab(tr("Poloha"), pos));
   }
   if (TYPES[s.type]?.bed) {
     // The surface of a separate tram bed: panels, gravel or grass.
     const bed = document.createElement("select");
     for (const [v, t] of Object.entries(TRAM_BEDS)) bed.add(new Option(t.label, v, false, (s.bed || "panely") === v));
     bed.onchange = () => { s.bed = bed.value; delete s.bedGuess; s.source = "user"; done(); };
-    r2.append(lab("Povrch tělesa", bed));
+    r2.append(lab(tr("Povrch tělesa"), bed));
   }
   if (TYPES[s.type]?.tracks) {
     // Buses may use the tram part (OSM psv / bus on the tracks).
     const bus = Object.assign(document.createElement("input"), { type: "checkbox", checked: !!s.withBus });
     bus.onchange = () => { if (bus.checked) s.withBus = true; else delete s.withBus; s.source = "user"; done(); };
-    r2.append(lab("I pro autobusy ", bus));
+    r2.append(lab(tr("I pro autobusy") + " ", bus));
   }
   if (["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu"].includes(s.type)) {
     // The usual arrows, and the lane's own from OSM when it is another combination (named as drawn).
     const turn = document.createElement("select");
     const turns = s.turn && !TURN_CHOICES.includes(s.turn) ? [...TURN_CHOICES, s.turn] : TURN_CHOICES;
-    for (const [v, t] of [["", "bez šipky"], ...turns.map((v) => [v, turnLabel(v)])]) {
+    for (const [v, t] of [["", tr("bez šipky")], ...turns.map((v) => [v, turnLabel(v)])]) {
       turn.add(new Option(t, v, false, (s.turn || "") === v));
     }
     turn.onchange = () => { if (turn.value) s.turn = turn.value; else delete s.turn; s.source = "user"; done(); };
-    r2.append(lab("Šipky na vozovce", turn));
+    r2.append(lab(tr("Šipky na vozovce"), turn));
   }
   // Items (furniture, barriers) inside the segment: remove, or add one in the middle.
   const items = document.createElement("span");
   items.className = "items";
-  items.textContent = "Prvky: ";
+  items.textContent = tr("Prvky: ");
   (s.items || []).forEach((it, k) => {
     items.append(btn(`${ITEMS[it.kind] || it.kind} ×`, () => { s.items.splice(k, 1); done(); }, "tag"));
   });
   const add = document.createElement("select");
-  add.add(new Option("+ přidat prvek", ""));
+  add.add(new Option(tr("+ přidat prvek"), ""));
   for (const [k, t] of Object.entries(ITEMS)) add.add(new Option(t, k));
   add.onchange = () => { if (!add.value) return; (s.items ||= []).push({ kind: add.value, f: 0.5 }); done(); };
   items.append(add);
@@ -1225,20 +1242,20 @@ function renderEditor(p) {
   // Traffic signs under this part (at most MAX_PER_PART).
   row().append(signTags(s.signs, MAX_PER_PART, s.type, (list) => { if (list.length) s.signs = list; else delete s.signs; done(); }));
   row().append(
-    btn("← Posunout", () => { if (i > 0) { [segs[i - 1], segs[i]] = [segs[i], segs[i - 1]]; done(i - 1); } }),
-    btn("Posunout →", () => { if (i < segs.length - 1) { [segs[i + 1], segs[i]] = [segs[i], segs[i + 1]]; done(i + 1); } }),
+    btn(tr("← Posunout"), () => { if (i > 0) { [segs[i - 1], segs[i]] = [segs[i], segs[i - 1]]; done(i - 1); } }),
+    btn(tr("Posunout →"), () => { if (i < segs.length - 1) { [segs[i + 1], segs[i]] = [segs[i], segs[i + 1]]; done(i + 1); } }),
     // Merging gives the part's width to its neighbour, so the street keeps its width (Bára: a shoulder that is
     // really part of the lane).
-    ...[[i - 1, "← Sloučit"], [i + 1, "Sloučit →"]].filter(([j]) => segs[j]).map(([j, label]) => btn(label, () => {
+    ...[[i - 1, tr("← Sloučit")], [i + 1, tr("Sloučit →")]].filter(([j]) => segs[j]).map(([j, label]) => btn(label, () => {
       segs[j].width = +(segs[j].width + s.width).toFixed(2);
       segs[j].source = "user";
       segs.splice(i, 1);
       done(j < i ? j : i);
     })),
-    btn("Rozdělit na dvě", () => { const h = +(s.width / 2).toFixed(2); segs.splice(i, 1, { ...s, width: h, source: "user" }, { ...s, width: +(s.width - h).toFixed(2), source: "user" }); done(); }),
+    btn(tr("Rozdělit na dvě"), () => { const h = +(s.width / 2).toFixed(2); segs.splice(i, 1, { ...s, width: h, source: "user" }, { ...s, width: +(s.width - h).toFixed(2), source: "user" }); done(); }),
     Object.assign(document.createElement("span"), { className: "spacer" }),
     // After a delete the neighbour is selected, so "Dorovnat" offers to give it the width (renderWidthCheck).
-    btn("Smazat část", () => { segs.splice(i, 1); done(segs.length ? Math.max(0, i - 1) : null); }, "danger"),
+    btn(tr("Smazat část"), () => { segs.splice(i, 1); done(segs.length ? Math.max(0, i - 1) : null); }, "danger"),
   );
 }
 
@@ -1247,7 +1264,7 @@ function signTags(list = [], max, type, set) {
   const box = Object.assign(document.createElement("span"), { className: "items" });
   const fits = Object.keys(SIGNS).filter((k) => signFits(k, type));
   if (!fits.length && !list.length) return box; // no sign fits a green strip, a wall…
-  box.textContent = "Značky: ";
+  box.textContent = tr("Značky: ");
   const name = signLabel;
   list.forEach((x, k) => {
     const b = document.createElement("button");
@@ -1258,7 +1275,7 @@ function signTags(list = [], max, type, set) {
   });
   if (list.length < max && fits.length) {
     const add = document.createElement("select");
-    add.add(new Option("+ přidat značku", ""));
+    add.add(new Option(tr("+ přidat značku"), ""));
     for (const k of fits) {
       add.add(new Option(SIGNS[k], k));
       for (const [ck, c] of Object.entries(SIGN_CHOICES)) if (c.k === k) add.add(new Option(c.label, ck));
@@ -1268,7 +1285,7 @@ function signTags(list = [], max, type, set) {
       if (!k) return;
       const { label, ...x } = SIGN_CHOICES[k] || { k };
       if (k === "b20a") {
-        const v = Number(prompt("Nejvyšší dovolená rychlost (km/h):", "30"));
+        const v = Number(prompt(tr("Nejvyšší dovolená rychlost (km/h):"), "30"));
         if (!(v > 0 && v <= 200)) return render();
         x.v = Math.round(v);
       }
@@ -1281,22 +1298,22 @@ function signTags(list = [], max, type, set) {
 
 // Parts to add, grouped as people look for them.
 const PALETTE_GROUPS = [
-  ["Pro pěší", ["chodnik", "chodnik_kola", "stezka_sdilena", "nastupiste"]],
-  ["Pro cyklisty", ["cyklopruh", "ochranny_pruh", "pruh_piktokoridor", "cyklostezka"]],
-  ["Auta a autobusy", ["pruh", "parkovani", "bus", "bus_cyklo", "obsluzna", "krajnice"]],
-  ["Tramvaj", ["tramvaj_v_pruhu", "tramvaj_pruh", "tramvaj"]],
-  ["Zeleň a ostatní", ["zelen", "stromorad", "predzahradka", "delici", "plocha", "zahradka", "voda", "zed"]],
+  [tr("Pro pěší"), ["chodnik", "chodnik_kola", "stezka_sdilena", "nastupiste"]],
+  [tr("Pro cyklisty"), ["cyklopruh", "ochranny_pruh", "pruh_piktokoridor", "cyklostezka"]],
+  [tr("Auta a autobusy"), ["pruh", "parkovani", "bus", "bus_cyklo", "obsluzna", "krajnice"]],
+  [tr("Tramvaj"), ["tramvaj_v_pruhu", "tramvaj_pruh", "tramvaj"]],
+  [tr("Zeleň a ostatní"), ["zelen", "stromorad", "predzahradka", "delici", "plocha", "zahradka", "voda", "zed"]],
 ];
 function renderPalette(p) {
   const pal = $("#palette");
   pal.replaceChildren();
   const hint = document.createElement("div");
   hint.className = "pal-title";
-  hint.textContent = state.selected === null ? "Přidat díl na konec" : "Přidat díl vpravo od vybraného";
+  hint.textContent = state.selected === null ? tr("Přidat díl na konec") : tr("Přidat díl vpravo od vybraného");
   pal.append(hint);
   const shown = new Set(PALETTE_GROUPS.flatMap(([, ks]) => ks));
   const rest = Object.keys(TYPES).filter((k) => !shown.has(k) && k !== "nezname");
-  for (const [title, keys] of [...PALETTE_GROUPS, ["Další", rest]]) {
+  for (const [title, keys] of [...PALETTE_GROUPS, [tr("Další"), rest]]) {
     const list = keys.filter((k) => TYPES[k]);
     if (!list.length) continue;
     const group = Object.assign(document.createElement("div"), { className: "pal-group" });
@@ -1359,18 +1376,20 @@ $("#btn-fix").onclick = () => {
 
 // Reporting a badly built cut (Bára): what is wrong, in the visitor's words, with the cut and its profile as the
 // app built it (and as corrected, if the visitor corrected it), into the log (kind "hlaseni", logging/hlaseni.mjs).
-const REPORT_WHAT = ["šířky", "pruhy", "chodník", "parkování", "tramvaj", "cyklisté", "zeleň a stromy", "domy", "značky", "jiné"];
-$("#report-what").append(...REPORT_WHAT.map((w) => {
+// [value in the log, label]
+const REPORT_WHAT = [["šířky", tr("šířky")], ["pruhy", tr("pruhy")], ["chodník", tr("chodník")], ["parkování", tr("parkování")], ["tramvaj", tr("tramvaj")],
+  ["cyklisté", tr("cyklisté")], ["zeleň a stromy", tr("zeleň a stromy")], ["domy", tr("domy")], ["značky", tr("značky")], ["jiné", tr("jiné")]];
+$("#report-what").append(...REPORT_WHAT.map(([w, label]) => {
   const l = document.createElement("label");
-  l.append(Object.assign(document.createElement("input"), { type: "checkbox", value: w }), w);
+  l.append(Object.assign(document.createElement("input"), { type: "checkbox", value: w }), label);
   return l;
 }));
 // Only where the log runs (the web, not a local run), so the dialog never thanks for a report nobody got; from
 // the Stav bar and from the Soubor menu (also in Návrh, where wrong widths are often noticed).
 for (const b of ["#btn-report", "#menu-report"]) $(b).hidden = !logOn;
 const openReport = () => {
-  if (!state.cut || !state.stav) return status("Nejdřív klikněte na ulici v mapě.", "error");
-  $("#report-title").textContent = `${state.cut.name || "Ulice"} – co je na tomto řezu špatně?`;
+  if (!state.cut || !state.stav) return status(tr("Nejdřív klikněte na ulici v mapě."), "error");
+  $("#report-title").textContent = tr("{street} – co je na tomto řezu špatně?", { street: state.cut.name || tr("Ulice") });
   $("#report-status").textContent = "";
   $("#report-send").disabled = false;
   $("#report-dialog").showModal();
@@ -1381,9 +1400,9 @@ $("#report-close").onclick = $("#report-cancel").onclick = () => $("#report-dial
 $("#report-send").onclick = async () => {
   const co = [...document.querySelectorAll("#report-what input:checked")].map((i) => i.value);
   const text = $("#report-text").value.trim().slice(0, 1000);
-  if (!text && !co.length) { $("#report-status").textContent = "Napište prosím, co je špatně."; $("#report-text").focus(); return; }
+  if (!text && !co.length) { $("#report-status").textContent = tr("Napište prosím, co je špatně."); $("#report-text").focus(); return; }
   $("#report-send").disabled = true;
-  $("#report-status").textContent = "Odesílám…";
+  $("#report-status").textContent = tr("Odesílám…");
   // The Stav as it is now always goes along; what the app built, when this page built it (a restored or loaded
   // profile has no such record).
   const ok = await sendReport("hlaseni", {
@@ -1392,13 +1411,13 @@ $("#report-send").onclick = async () => {
   });
   if (!ok) {
     $("#report-send").disabled = false;
-    $("#report-status").textContent = "Hlášení se nepodařilo odeslat, zkuste to prosím za chvíli.";
+    $("#report-status").textContent = tr("Hlášení se nepodařilo odeslat, zkuste to prosím za chvíli.");
     return;
   }
   $("#report-text").value = "";
   for (const i of document.querySelectorAll("#report-what input")) i.checked = false;
   $("#report-dialog").close();
-  status("Děkujeme, hlášení je odesláno.", "ok");
+  status(tr("Děkujeme, hlášení je odesláno."), "ok");
 };
 
 // The header menus close after a choice or a click elsewhere.
@@ -1428,12 +1447,12 @@ function logEdits() {
 }
 addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") logEdits(); });
 function exportSvgs() {
-  const title = state.cut?.name || "Profil";
+  const title = state.cut?.name || tr("Profil");
   const credits = exportCredits(state.cut?.sources);
   if (state.mode === "porovnat" || !state.stav) {
-    return [buildSvg(state.stav, { title: `${title} – stav`, credits }), buildSvg(state.navrh, { title: `${title} – návrh`, credits })];
+    return [buildSvg(state.stav, { title: `${title} – ${tr("stav")}`, credits }), buildSvg(state.navrh, { title: `${title} – ${tr("návrh")}`, credits })];
   }
-  return [buildSvg(current(), { title: `${title} – ${state.mode === "navrh" ? "návrh" : "stav"}`, credits })];
+  return [buildSvg(current(), { title: `${title} – ${state.mode === "navrh" ? tr("návrh") : tr("stav")}`, credits })];
 }
 
 function download(name, blob) {
@@ -1459,7 +1478,7 @@ $("#btn-export-png").onclick = async () => {
   const img = new Image();
   const url = URL.createObjectURL(new Blob([text], { type: "image/svg+xml" }));
   img.src = url;
-  try { await img.decode(); } catch { status("Obrázek se nepodařilo vytvořit.", "error"); URL.revokeObjectURL(url); return; }
+  try { await img.decode(); } catch { status(tr("Obrázek se nepodařilo vytvořit."), "error"); URL.revokeObjectURL(url); return; }
   URL.revokeObjectURL(url);
   const scale = 0.6; // px per cm
   const canvas = Object.assign(document.createElement("canvas"), { width: vb[2] * scale, height: vb[3] * scale });
@@ -1472,7 +1491,7 @@ $("#btn-save").onclick = () => {
   log("ulozeni", cutLog());
   const data = { app: "streetdesign-pilot", version: 1, cut: state.cut, stav: state.stav, navrh: state.navrh, navrhEdited: state.navrhEdited,
     zdroje: exportCredits(state.cut?.sources).join("\n"),
-    licence: "Data podle zdrojů (CC BY 4.0, ODbL 1.0 a další, viz zdroje); profil s ilustracemi Streetmixu pod CC BY-SA 4.0. Zdroje a licence: https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md" };
+    licence: tr("Data podle zdrojů (CC BY 4.0, ODbL 1.0 a další, viz zdroje); profil s ilustracemi Streetmixu pod CC BY-SA 4.0. Zdroje a licence: https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md") };
   download(`${fileBase()}.json`, new Blob([JSON.stringify(data, null, 2)], { type: "application/json" }));
 };
 
@@ -1482,7 +1501,7 @@ $("#file-load").onchange = async (e) => {
   try {
     restore(JSON.parse(await file.text()));
   } catch (err) {
-    status("Soubor se nepodařilo načíst: " + err.message, "error");
+    status(tr("Soubor se nepodařilo načíst: {error}", { error: err.message }), "error");
   }
   e.target.value = "";
 };
@@ -1523,7 +1542,7 @@ $("#btn-flip").onclick = () => {
 
 function restore(data) {
   cleanProfile(data?.stav, "stav");
-  if (data.navrh) cleanProfile(data.navrh, "návrh");
+  if (data.navrh) cleanProfile(data.navrh, tr("návrh"));
   data.cut = cleanCut(data.cut);
   undoStack.length = redoStack.length = 0;
   Object.assign(state, { cut: data.cut, stav: data.stav, navrh: data.navrh || structuredClone(data.stav), navrhEdited: !!data.navrhEdited, selected: null });
@@ -1578,7 +1597,7 @@ async function openLink(hash) {
   if (!state.stav || (!design.navrh && !design.stav)) return;
   try {
     const take = async (text, into) => {
-      const p = cleanProfile(await unpackProfile(text), into === "stav" ? "stav" : "návrh");
+      const p = cleanProfile(await unpackProfile(text), into === "stav" ? tr("stav") : tr("návrh"));
       state[into] = { segments: p.segments, edges: { ...state.stav.edges, ...p.edges } };
     };
     if (design.stav) await take(design.stav, "stav");
@@ -1589,10 +1608,10 @@ async function openLink(hash) {
     render();
     // The address keeps the design (cutAt wrote the bare cut), so the link can be reloaded and passed on.
     history.replaceState(null, "", location.hash.split("&")[0] + hash.slice(hash.indexOf("&")));
-    status("Otevřený návrh ze sdíleného odkazu.", "ok");
+    status(tr("Otevřený návrh ze sdíleného odkazu."), "ok");
   } catch (err) {
     console.warn("odkaz", err);
-    status("Návrh z odkazu se nepodařilo načíst (odkaz je asi poškozený), ukazuji ulici podle dat.", "error");
+    status(tr("Návrh z odkazu se nepodařilo načíst (odkaz je asi poškozený), ukazuji ulici podle dat."), "error");
   }
 }
 if (linked) openLink(location.hash);
@@ -1612,6 +1631,6 @@ $("#btn-share").onclick = async () => {
   let url = base;
   if (state.navrhEdited) url += "&navrh=" + (await packProfile(state.navrh));
   if (stavEdited) url += "&stav=" + (await packProfile(state.stav));
-  try { await navigator.clipboard.writeText(url); status(state.navrhEdited ? "Odkaz na návrh je ve schránce." : "Odkaz na ulici je ve schránce (návrh zatím nemáte).", "ok"); }
-  catch { prompt("Zkopírujte odkaz:", url); }
+  try { await navigator.clipboard.writeText(url); status(state.navrhEdited ? tr("Odkaz na návrh je ve schránce.") : tr("Odkaz na ulici je ve schránce (návrh zatím nemáte)."), "ok"); }
+  catch { prompt(tr("Zkopírujte odkaz:"), url); }
 };

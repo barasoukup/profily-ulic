@@ -3,6 +3,8 @@
 import { TYPES, SOURCES, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURNS } from "./types.js";
 import { city, cityById, CITY_IDS, creditLines } from "./city.js";
 import { PLATES, signFile, plateFile, signLabel } from "./signs.js";
+// tr: t is a part's type here.
+import { t as tr, num } from "./i18n.js";
 
 const NS = "http://www.w3.org/2000/svg";
 const GROUND = 760; // roadway surface
@@ -58,7 +60,7 @@ const cityArt = () => artOn && !!CITY_ART[city.art]; // the city's own set
 // The credit lines of an export or a saved file for the current city and art (src: the cut's sources, app.js).
 export const exportCredits = (src) => creditLines(city, src || {}, cityArt());
 // Prague buildings are drawn from the side (we look along the street): the outline tells the type.
-export const BUILDING_STYLES = { sikma: "dům se šikmou střechou", funkce: "funkcionalistický činžák", moderni: "moderní bytový dům", plocha: "panelový dům", nizky: "nízký dům", hala: "hala" };
+export const BUILDING_STYLES = { sikma: tr("dům se šikmou střechou"), funkce: tr("funkcionalistický činžák"), moderni: tr("moderní bytový dům"), plocha: tr("panelový dům"), nizky: tr("nízký dům"), hala: tr("hala") };
 const OLD_STYLES = { centrum: "sikma", "centrum-obchod": "sikma", sidliste: "plocha", "sidliste-lodzie": "plocha", rd: "nizky" };
 const HOUSE_TYPES = new Set(["house", "detached", "semidetached_house", "terrace", "bungalow", "villa", "farm", "garage", "garages", "shed"]);
 const HALL_TYPES = new Set(["retail", "supermarket", "industrial", "manufacture", "warehouse", "hangar", "sports_hall", "service", "commercial_hall"]);
@@ -131,7 +133,7 @@ const el = (name, attrs = {}, parent) => {
   return e;
 };
 
-const fmt = (m) => m.toFixed(2).replace(".", ",") + " m";
+const fmt = (m) => num(m) + " m";
 export const totalWidth = (p) => p.segments.reduce((a, s) => a + s.width, 0);
 
 // Street furniture and barriers standing at x on a surface at height top.
@@ -268,7 +270,7 @@ function laneDir(segs, i) {
   return "forward";
 }
 
-export const ORIENT_LABEL = { podelne: "podélné", sikme: "šikmé", kolme: "kolmé" };
+export const ORIENT_LABEL = { podelne: tr("podélné"), sikme: tr("šikmé"), kolme: tr("kolmé") };
 const CAR_TRACK = 170; // wheel to wheel of the parked car's sprite (cm), for its tilt across the kerb
 const KERB_PAVING = "#c4c0b4"; // the sidewalk's paving under parked cars, a shade darker than the sidewalk
 // On the curb: raised types, and cars parked fully on the sidewalk.
@@ -977,10 +979,10 @@ function drawEdge(svg, x, kind, side, surface, info, style) {
     const lv = buildingLevels(info);
     const h = buildingHeight(info);
     if (lv || h) {
-      const text = lv ? (lv.cornice && lv.roof ? `${lv.cornice} + ${lv.roof} NP` : `${lv.n} NP`)
-        : buildingStyle(info, style) === "hala" ? "hala" : "";
+      const text = lv ? (lv.cornice && lv.roof ? tr("{n} + {roof} NP", { n: lv.cornice, roof: lv.roof }) : tr("{n} NP", { n: lv.n }))
+        : buildingStyle(info, style) === "hala" ? tr("hala") : "";
       el("text", { ...floorLabelAt(x, side), y: top - 25, "font-size": 32, fill: "#4f4e49", class: "lbl-floor", "data-w": EDGE - 24, "data-free": 1 }, g).textContent =
-        [text, h ? `${info.height ? "" : "≈ "}${fmt(h).replace(",00", "")}` : ""].filter(Boolean).join(" · ");
+        [text, h ? `${info.height ? "" : "≈ "}${fmt(h).replace(/[,.]00 /, " ")}` : ""].filter(Boolean).join(" · ");
     }
   } else if (kind === "budova") {
     const h = buildingHeight(info);
@@ -1006,9 +1008,9 @@ function drawEdge(svg, x, kind, side, surface, info, style) {
       }
     }
     if (lv) {
-      const text = lv.cornice && lv.roof ? `${lv.cornice} + ${lv.roof} NP` : `${lv.n} NP`;
+      const text = lv.cornice && lv.roof ? tr("{n} + {roof} NP", { n: lv.cornice, roof: lv.roof }) : tr("{n} NP", { n: lv.n });
       el("text", { ...floorLabelAt(x, side), y: top - 25, "font-size": 32, fill: "#4f4e49", class: "lbl-floor", "data-w": EDGE - 24, "data-free": 1 }, g).textContent =
-        text + (h ? ` · ${info.height ? "" : "≈ "}${fmt(h).replace(",00", "")}` : "");
+        text + (h ? ` · ${info.height ? "" : "≈ "}${fmt(h).replace(/[,.]00 /, " ")}` : "");
     }
   } else if (kind === "stavba") {
     // Minor structure (garage, kiosk, wall): a low block.
@@ -1040,7 +1042,7 @@ function drawEdge(svg, x, kind, side, surface, info, style) {
     el("rect", { x, y: surface, width: EDGE, height: 60 + GROUND - surface, fill: "#e6e3da" }, g);
   }
   el("text", { class: "lbl-t", "data-row": 1, "data-w": EDGE, x: x + EDGE / 2, y: GROUND + 215, "text-anchor": "middle", "font-size": 30, fill: "#6b6a65" },
-    g).textContent = { budova: "Budova", stavba: "Drobná stavba", voda: "Vodní tok / plocha", zahrada: "Zahrada, louka (mimo ulici)", zelen: "Zeleň (mimo ulici)", parkoviste: "Parkoviště (mimo ulici)", plot: "Za plotem (mimo ulici)" }[kind] || "";
+    g).textContent = { budova: tr("Budova"), stavba: tr("Drobná stavba"), voda: tr("Vodní tok / plocha"), zahrada: tr("Zahrada, louka (mimo ulici)"), zelen: tr("Zeleň (mimo ulici)"), parkoviste: tr("Parkoviště (mimo ulici)"), plot: tr("Za plotem (mimo ulici)") }[kind] || "";
   return g;
 }
 
@@ -1226,7 +1228,7 @@ export function buildSvg(profile, opts = {}) {
   // The bottom: the label rows, then the signs and the credits line of an export (set after the signs are laid out).
   let bottom = opts.credits ? H + 110 : H;
   const svg = el("svg", { xmlns: NS, viewBox: `${vx} ${yv} ${view[1]} ${bottom - yv}`, "font-family": "Inter, system-ui, sans-serif",
-    role: "img", "aria-label": `Příčný profil, celkem ${fmt(total / 100)}: ` + segs.map((s) => `${TYPES[s.type]?.label || s.type} ${fmt(s.width)}`).join(", ") });
+    role: "img", "aria-label": tr("Příčný profil, celkem {w}: ", { w: fmt(total / 100) }) + segs.map((s) => `${TYPES[s.type]?.label || s.type} ${fmt(s.width)}`).join(", ") });
   const bg = el("rect", { class: "bg", x: vx, y: yv, width: view[1], height: bottom - yv, fill: "#fbfaf6" }, svg);
 
   const firstRaised = isRaised(segs[0]);
@@ -1341,17 +1343,17 @@ export function buildSvg(profile, opts = {}) {
     if (w >= 80) {
       const contra = s.bikeDir && s.bikeDir !== (s.dir || "forward");
       let label = TYPES[s.type]?.tracks && s.withBus ? `${t.label} + BUS` + (t.directional && s.dir ? (forward ? " ↑" : " ↓") : "")
-        : s.type === "parkovani" && s.use ? `Parkování ${PARKING_USE[s.use]}`
+        : s.type === "parkovani" && s.use ? tr("Parkování {what}", { what: PARKING_USE[s.use] })
         // Under a narrow part "Napůl na chodníku" alone (the long name would not fit on two lines).
-        : s.type === "parkovani" && s.position ? (s.position === "half_on_kerb" && w < 300 ? "Napůl na chodníku" : `Parkování ${PARKING_POSITION[s.position]}`)
-        : s.type === "parkovani" && s.orient ? `Parkování ${ORIENT_LABEL[s.orient]}`
+        : s.type === "parkovani" && s.position ? (s.position === "half_on_kerb" && w < 300 ? tr("Napůl na chodníku") : tr("Parkování {what}", { what: PARKING_POSITION[s.position] }))
+        : s.type === "parkovani" && s.orient ? tr("Parkování {what}", { what: ORIENT_LABEL[s.orient] })
         // A lane with a piktokoridor is first a lane (Bára): "Jízdní pruh ↑, piktokoridor ↓" with the cyclists' direction
         // when it differs; cyclists in contraflow in a plain lane likewise.
-        : s.type === "pruh_piktokoridor" ? `${TYPES.pruh.label}${s.dir ? (forward ? " ↑" : " ↓") : ""}, piktokoridor${contra ? (s.bikeDir === "backward" ? " ↓" : " ↑") : ""}`
+        : s.type === "pruh_piktokoridor" ? `${TYPES.pruh.label}${s.dir ? (forward ? " ↑" : " ↓") : ""}, ${tr("piktokoridor")}${contra ? (s.bikeDir === "backward" ? " ↓" : " ↑") : ""}`
         : t.label + (t.directional && s.dir ? (forward ? " ↑" : " ↓") : s.type === "pruh" ? " ↑↓" : "") +
-          (contra ? `, cyklisté ${s.bikeDir === "backward" ? "↓" : "↑"}` : "");
+          (contra ? `, ${tr("cyklisté")} ${s.bikeDir === "backward" ? "↓" : "↑"}` : "");
       // Trees between the stalls are named with the parking (Bára).
-      if (s.type === "parkovani" && s.items?.some((it) => it.kind === "strom")) label += " se stromy";
+      if (s.type === "parkovani" && s.items?.some((it) => it.kind === "strom")) label += tr(" se stromy");
       const name = el("text", { class: "lbl-t", "data-row": 1, "data-w": w, "data-full": label, x: cx, y: GROUND + 215, "text-anchor": "middle", "font-size": 28, fill: "#4f4e49" }, g);
       const lines = twoLines(label);
       if (label.length * 0.56 * 28 > w && lines) {
@@ -1391,11 +1393,11 @@ export function buildSvg(profile, opts = {}) {
   });
 
   el("text", { class: "lbl-total top-row", x: total / 2, y: y0 + 70, "text-anchor": "middle", "font-size": 46, "font-weight": 600, fill: "#1f1f1d" }, svg).textContent =
-    `Celkem ${fmt(total / 100)}`;
+    tr("Celkem {w}", { w: fmt(total / 100) });
   // Ends of the cut, lettered as on the map (A = left end, B = right end), above everything else.
   // On a narrow street A and B step aside so the total does not run into them (the page redoes
   // this at screen size in layoutTop, an export keeps it).
-  const half = (`Celkem ${fmt(total / 100)}`.length * 0.56 * 46) / 2;
+  const half = (tr("Celkem {w}", { w: fmt(total / 100) }).length * 0.56 * 46) / 2;
   const ends = [Math.min(0, total / 2 - half - 70), Math.max(total, total / 2 + half + 70)];
   for (const [letter, x] of [["A", ends[0]], ["B", ends[1]]]) {
     el("circle", { class: "top-row", cx: x, cy: y0 + 70, r: 52, fill: "#d8413f", stroke: "#fff", "stroke-width": 8 }, svg);

@@ -11,6 +11,8 @@ import { TYPES, SOURCES, ITEMS } from "./types.js";
 import { REACH, reachOf, classGroup, orientFromStalls, nodeItem, POINT_ITEM, TECH_ITEM, BARRIER_ITEM } from "./derive.js";
 import { OD_TREE, OD_ROW, OD_SECTION, zpsZones } from "./sources.js";
 import { city } from "./city.js";
+// tr: t is the name of the tags and of a point's place here.
+import { t as tr } from "./i18n.js";
 
 export const PLOCHY_PANE = "rezPlochy"; // the technical map's areas (app.js drawMtvu)
 const PANES = { rezZps: 390, [PLOCHY_PANE]: 391, rezBudovy: 392, rezParkovani: 393, rezLinie: 394, rezBody: 395 }; // under the cut (overlayPane 400)
@@ -19,18 +21,18 @@ const ZPS_NEAR = 100; // Prague's paid zones this close to the cut (m), as sourc
 const TM_TREE = 83130; // technical map: strom mimo park
 const STORE = "streetdesign-datalayers";
 const GROUPS = [
-  ["parking", "Parkování u řezu (místní data)", true],
-  ["parkingOsm", "Parkování u řezu (OSM)", true],
-  ["points", "Body u řezu (stromy, lampy…)", true],
-  ["lines", "Ploty, zdi a svahy u řezu", false],
-  ["tracks", "Koleje u řezu", false],
-  ["axes", "Osy ulic z OSM", false],
-  ["buildings", "Budovy u řezu", false],
-  ["reach", "Dosah bodů od řezu", false],
+  ["parking", tr("Parkování u řezu (místní data)"), true],
+  ["parkingOsm", tr("Parkování u řezu (OSM)"), true],
+  ["points", tr("Body u řezu (stromy, lampy…)"), true],
+  ["lines", tr("Ploty, zdi a svahy u řezu"), false],
+  ["tracks", tr("Koleje u řezu"), false],
+  ["axes", tr("Osy ulic z OSM"), false],
+  ["buildings", tr("Budovy u řezu"), false],
+  ["reach", tr("Dosah bodů od řezu"), false],
 ];
-const ORIENT_LABEL = { podelne: "podélné", sikme: "šikmé", kolme: "kolmé" };
-const ORIENT_OSM = { parallel: "podélné", diagonal: "šikmé", perpendicular: "kolmé" };
-const PARKING_KIND = { useky: "úsek placeného stání", ztp: "stání ZTP", zasobovani: "zásobování", specialni: "vyhrazené stání" };
+const ORIENT_LABEL = { podelne: tr("podélné"), sikme: tr("šikmé"), kolme: tr("kolmé") };
+const ORIENT_OSM = { parallel: tr("podélné"), diagonal: tr("šikmé"), perpendicular: tr("kolmé") };
+const PARKING_KIND = { useky: tr("úsek placeného stání"), ztp: tr("stání ZTP"), zasobovani: tr("zásobování"), specialni: tr("vyhrazené stání") };
 const STREET_PARKING = new Set(["street_side", "lane", "on_kerb", "half_on_kerb", "shoulder"]); // as derive.js
 const LINE_COLOR = { plot: "#6d6a62", oporna_zed: "#6d6a62", zabradli: "#4a6f8a", svodidlo: "#8a8780", zivy_plot: "#5f8f3a", svah: "#a08a5a" };
 const TREE = TYPES.stromorad.color, FURNITURE = "#3d3d3a";
@@ -97,15 +99,15 @@ export function createDataLayers(map, control) {
       const rings = p.rings.map((r) => r.map(ll));
       if (p.kind === "zakaz") {
         tip(L.polygon(rings, shape({ ...P, color: "#c0392b", fillColor: "#e24b4a", fillOpacity: 0.22, dashArray: "3 3", weight: 1.5 })).addTo(groups.parking),
-          `<b>Zákaz stání</b><br>${esc(city.parkingSource)}`);
+          `<b>${tr("Zákaz stání")}</b><br>${esc(city.parkingSource)}`);
         continue;
       }
       const orient = p.kind === "useky" ? orientFromStalls(p, dir) : undefined;
-      const what = [PARKING_KIND[p.kind] || "parkování", orient && `${ORIENT_LABEL[orient]} stání (podle počtu míst)`, p.count > 1 && `${p.count} míst`, p.guess && "poloha odhadnutá"].filter(Boolean).join(" · ");
+      const what = [PARKING_KIND[p.kind] || tr("parkování"), orient && tr("{orient} stání (podle počtu míst)", { orient: ORIENT_LABEL[orient] }), p.count > 1 && tr("{n} míst", { n: p.count }), p.guess && tr("poloha odhadnutá")].filter(Boolean).join(" · ");
       tip(L.polygon(rings, shape({
         ...P, color: p.guess ? SOURCES.odhad.color : SOURCES.tsk.color, fillColor: TYPES.parkovani.color,
         fillOpacity: p.guess ? 0.15 : 0.4, ...(p.kind !== "useky" || p.guess ? { dashArray: "4 3" } : {}),
-      })).addTo(groups.parking), `<b>Parkování</b><br>${esc(what)}<br>${esc(city.parkingSource)}`);
+      })).addTo(groups.parking), `<b>${tr("Parkování")}</b><br>${esc(what)}<br>${esc(city.parkingSource)}`);
     }
     for (const el of elements) {
       if (el.type !== "area" || el.tags?.amenity !== "parking") continue;
@@ -113,9 +115,9 @@ export function createDataLayers(map, control) {
       if (!nearAny(ring)) continue;
       const street = STREET_PARKING.has(el.tags.parking);
       const rings = [el.geometry, ...(el.holes || [])].map((r) => r.map((g) => [g.lat, g.lon]));
-      const what = [street ? "stání u ulice" : "parkoviště", ORIENT_OSM[el.tags.orientation], el.tags.capacity && `${el.tags.capacity} míst`].filter(Boolean).join(" · ");
+      const what = [street ? tr("stání u ulice") : tr("parkoviště"), ORIENT_OSM[el.tags.orientation], el.tags.capacity && tr("{n} míst", { n: el.tags.capacity })].filter(Boolean).join(" · ");
       tip(L.polygon(rings, shape({ ...P, color: SOURCES.osm.color, fillColor: TYPES.parkovani.color, fillOpacity: street ? 0.35 : 0.12, dashArray: street ? null : "2 3" })).addTo(groups.parkingOsm),
-        `<b>Parkování (OSM)</b><br>${esc(what)}`);
+        `<b>${tr("Parkování (OSM)")}</b><br>${esc(what)}`);
     }
     // Prague's paid zones near the cut, as a faint tint: the boxes of their parts that the zone file keeps (sources.js
     // zpsZones); their edge is roughly the zone's boundary.
@@ -139,13 +141,13 @@ export function createDataLayers(map, control) {
         || (t.highway === "bus_stop" || t.railway === "tram_stop" || (t.public_transport === "platform" && !t.amenity) ? "zastavka" : null);
       if (!kind) continue;
       const city_ = el.id < 0 && t.source; // a point of the city's own data (towns, Brno: gis.js addPoints)
-      points.push({ kind, xy: xyOf(el.geometry[0]), src: city_ ? "data" : "osm", srcLabel: city_ ? `data města (${city_})` : "OSM" });
+      points.push({ kind, xy: xyOf(el.geometry[0]), src: city_ ? "data" : "osm", srcLabel: city_ ? tr("data města ({name})", { name: city_ }) : "OSM" });
     }
     for (const l of lines) {
       if (!l.point) continue;
       const kind = l.code === TM_TREE || l.code === OD_TREE ? "strom" : POINT_ITEM[l.code];
       if (!kind) continue;
-      points.push({ kind, xy: l.point, src: l.code === OD_TREE ? "data" : "dtm", srcLabel: l.code === OD_TREE ? "otevřená data Prahy (stromy)" : "technická mapa" });
+      points.push({ kind, xy: l.point, src: l.code === OD_TREE ? "data" : "dtm", srcLabel: l.code === OD_TREE ? tr("otevřená data Prahy (stromy)") : tr("technická mapa") });
     }
     for (const p of points) {
       if (!near(p.xy)) continue;
@@ -154,8 +156,9 @@ export function createDataLayers(map, control) {
       const lim = p.kind === "zastavka" ? -1 : reachOf(p.kind);
       const inReach = along <= lim && inSpan(t);
       const tree = p.kind === "strom";
-      const label = tree ? "Strom" : p.kind === "zastavka" ? "Zastávka" : ITEMS[p.kind] || p.kind;
-      const note = p.kind === "zastavka" ? "jen určuje druh přístřešku" : inReach ? `v dosahu řezu (${lim} m), v profilu` : `mimo dosah řezu (${lim} m od řezu, ${Math.round(along)} m)`;
+      const label = tree ? tr("Strom") : p.kind === "zastavka" ? tr("Zastávka") : ITEMS[p.kind] || p.kind;
+      const note = p.kind === "zastavka" ? tr("jen určuje druh přístřešku") : inReach ? tr("v dosahu řezu ({lim} m), v profilu", { lim })
+        : tr("mimo dosah řezu ({lim} m od řezu, {d} m)", { lim, d: Math.round(along) });
       tip(L.circleMarker(ll(p.xy), shape({
         pane: "rezBody", radius: tree ? 4 : 3, weight: 1.5, color: SOURCES[p.src].color, opacity: inReach ? 1 : 0.75,
         fillColor: inReach ? (tree ? TREE : FURNITURE) : "#ffffff", fillOpacity: inReach ? 0.95 : 0.7,
@@ -164,17 +167,17 @@ export function createDataLayers(map, control) {
     // Tree rows (OSM, Prague's open data): a row crossing the cut always counts.
     const rows = [
       ...elements.filter((el) => el.type === "way" && el.tags?.natural === "tree_row").map((el) => ({ pts: el.geometry.map(xyOf), src: "osm", label: "OSM" })),
-      ...lines.filter((l) => l.code === OD_ROW && l.pts).map((l) => ({ pts: l.pts, src: "data", label: "otevřená data Prahy" })),
+      ...lines.filter((l) => l.code === OD_ROW && l.pts).map((l) => ({ pts: l.pts, src: "data", label: tr("otevřená data Prahy") })),
     ];
     for (const r of rows) {
       if (!nearAny(r.pts)) continue;
       tip(L.polyline(r.pts.map(ll), shape({ pane: "rezLinie", color: TREE, weight: 3, opacity: 0.8, dashArray: "1 5", lineCap: "round" })).addTo(groups.points),
-        `<b>Stromořadí</b><br>${esc(r.label)}`);
+        `<b>${tr("Stromořadí")}</b><br>${esc(r.label)}`);
     }
 
     // ---------- barrier and slope lines ----------
     const barriers = [
-      ...lines.filter((l) => l.pts && TECH_ITEM[l.code]).map((l) => ({ kind: TECH_ITEM[l.code], pts: l.pts, src: "dtm", label: city.dataName || "technická mapa" })),
+      ...lines.filter((l) => l.pts && TECH_ITEM[l.code]).map((l) => ({ kind: TECH_ITEM[l.code], pts: l.pts, src: "dtm", label: city.dataName || tr("technická mapa") })),
       ...elements.filter((el) => el.type === "way" && BARRIER_ITEM[el.tags?.barrier]).map((el) => ({ kind: BARRIER_ITEM[el.tags.barrier], pts: el.geometry.map(xyOf), src: "osm", label: "OSM" })),
     ];
     for (const b of barriers) {
@@ -189,14 +192,14 @@ export function createDataLayers(map, control) {
     for (const pts of tracks) {
       if (!nearAny(pts)) continue;
       tip(L.polyline(pts.map(ll), shape({ pane: "rezLinie", color: TYPES.tramvaj_v_pruhu.color, weight: 2, opacity: 0.95 })).addTo(groups.tracks),
-        `<b>Osa koleje</b><br>${esc(city.dataName || "technická mapa")}`);
+        `<b>${tr("Osa koleje")}</b><br>${esc(city.dataName || tr("technická mapa"))}`);
     }
     for (const el of elements) {
       if (el.type !== "way" || !["tram", "light_rail", "rail"].includes(el.tags?.railway) || !el.geometry) continue;
       const pts = el.geometry.map(xyOf);
       if (!nearAny(pts)) continue;
       tip(L.polyline(el.geometry.map((g) => [g.lat, g.lon]), shape({ pane: "rezLinie", color: SOURCES.osm.color, weight: 1.5, opacity: 0.85, dashArray: "6 4" })).addTo(groups.tracks),
-        `<b>Kolej (OSM)</b><br>${esc(el.tags.railway)}${el.tags.embedded_rails ? " · ve vozovce" : ""}`);
+        `<b>${tr("Kolej (OSM)")}</b><br>${esc(el.tags.railway)}${el.tags.embedded_rails ? tr(" · ve vozovce") : ""}`);
     }
 
     // ---------- street axes ----------
@@ -209,13 +212,13 @@ export function createDataLayers(map, control) {
     }
     if (way?.geometry) {
       tip(L.polyline(way.geometry.map((g) => [g.lat, g.lon]), shape({ pane: "rezLinie", color: SOURCES.osm.color, weight: 3, opacity: 0.9 })).addTo(groups.axes),
-        `<b>${esc(way.tags?.name || way.tags?.highway || "ulice")}</b><br>osa ulice řezu (OSM · ${esc(way.tags?.highway || "")})`);
+        `<b>${esc(way.tags?.name || way.tags?.highway || tr("ulice"))}</b><br>${tr("osa ulice řezu")} (OSM · ${esc(way.tags?.highway || "")})`);
     }
     for (const l of lines) {
       if (l.code !== OD_SECTION || !l.pts || !nearAny(l.pts)) continue;
       const g = classGroup(l.cls);
       tip(L.polyline(l.pts.map(ll), shape({ pane: "rezLinie", color: SOURCES.data.color, weight: 1.5, opacity: 0.7, dashArray: "2 4" })).addTo(groups.axes),
-        `<b>Úsek TSK</b><br>${g ? esc(g.replace(/^mk(\d)/, "místní komunikace $1. třídy").replace(/^sil(\d)/, "silnice $1. třídy").replace("dalnice", "dálnice")) : "bez třídy"} · otevřená data Prahy`);
+        `<b>${tr("Úsek TSK")}</b><br>${g ? esc(g.replace(/^mk(\d)/, (m, n) => tr("místní komunikace {n}. třídy", { n })).replace(/^sil(\d)/, (m, n) => tr("silnice {n}. třídy", { n })).replace("dalnice", tr("dálnice"))) : tr("bez třídy")} · ${tr("otevřená data Prahy")}`);
     }
 
     // ---------- buildings ----------
@@ -227,14 +230,14 @@ export function createDataLayers(map, control) {
       const rings = [el.geometry, ...(el.holes || [])].map((r) => r.map(xyOf));
       if (!nearAny(rings[0])) continue;
       const f = isFacade(rings);
-      const levels = el.tags["building:levels"] ? ` · ${el.tags["building:levels"]} podl.` : "";
+      const levels = el.tags["building:levels"] ? tr(" · {n} podl.", { n: el.tags["building:levels"] }) : "";
       tip(L.polygon(rings.map((r) => r.map(ll)), shape({ ...B, color: f ? "#3d3d3a" : "#8a8780", weight: f ? 2 : 1, fillColor: "#9b8cc4", fillOpacity: f ? 0.3 : 0.06 })).addTo(groups.buildings),
-        `<b>Budova (OSM)</b><br>${esc(el.tags.building === "yes" ? "budova" : el.tags.building)}${esc(levels)}${f ? " · fasáda profilu" : ""}`);
+        `<b>${tr("Budova (OSM)")}</b><br>${esc(el.tags.building === "yes" ? tr("budova") : el.tags.building)}${esc(levels)}${f ? tr(" · fasáda profilu") : ""}`);
     }
     for (const p of polys) {
       if (![600, 601, 604].includes(p.code) || !isFacade(p.rings)) continue;
       tip(L.polygon(p.lonlat, shape({ ...B, color: SOURCES.dtm.color, weight: 2, fill: false })).addTo(groups.buildings),
-        `<b>Budova</b><br>${esc(p.label || "budova")} · ${esc(city.dataName || "technická mapa")} · fasáda profilu`);
+        `<b>${tr("Budova")}</b><br>${esc(p.label || tr("budova"))} · ${esc(city.dataName || tr("technická mapa"))}${tr(" · fasáda profilu")}`);
     }
 
     // ---------- the reach of points from the cut ----------

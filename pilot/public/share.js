@@ -1,6 +1,7 @@
 // A design carried in the address: the parts of Návrh (and of Stav when its data were corrected by
 // hand), packed small (deflate, base64url) after the cut in the link: #rez=…&navrh=…&stav=….
 // Only what the drawing needs travels: types, widths and their settings, edge kinds and looks.
+import { t } from "./i18n.js";
 const SEG_KEYS = ["type", "width", "dir", "bikeDir", "orient", "use", "turn", "items", "source", "bed", "withBus", "roadClass", "position", "signs", "trolley", "wires", "color"];
 const EDGE_KEYS = ["left", "right", "leftStyle", "rightStyle"];
 
@@ -26,9 +27,9 @@ export const packProfile = (p) => pack({ s: p.segments.map((s) => pick(s, SEG_KE
 // A link is short; anything far bigger is not a street (and must not freeze the page).
 const MAX_TEXT = 20000, MAX_PARTS = 200;
 export async function unpackProfile(text) {
-  if (text.length > MAX_TEXT) throw new Error("odkaz je příliš dlouhý");
+  if (text.length > MAX_TEXT) throw new Error(t("odkaz je příliš dlouhý"));
   const o = await unpack(text);
-  if (!Array.isArray(o?.s) || o.s.length > MAX_PARTS) throw new Error("vadný počet částí");
+  if (!Array.isArray(o?.s) || o.s.length > MAX_PARTS) throw new Error(t("vadný počet částí"));
   return { segments: o.s, edges: o.e || {} };
 }
 

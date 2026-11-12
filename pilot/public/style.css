@@ -52,6 +52,9 @@ button.danger:hover { background: var(--red-bg); }
 button.primary { background: var(--text); color: #fff; border-color: var(--text); }
 button.primary:hover { background: #3a3a37; }
 
+/* The other language, as a short code. */
+button.lang { padding: 6px 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: var(--muted); }
+
 .seg-toggle { display: inline-flex; background: var(--bg); border-radius: 9px; padding: 3px; gap: 2px; }
 .seg-toggle button { border: 0; border-radius: 7px; background: transparent; padding: 5px 14px; color: var(--muted); }
 .seg-toggle button:hover { background: rgba(255, 255, 255, 0.6); color: var(--text); }
@@ -315,6 +318,7 @@ footer a { color: inherit; }
   header .switch { margin-left: auto; font-size: 0; padding: 6px 4px; }
   .switch::after { font-size: 13px; margin-left: 6px; }
   .menu summary { padding: 8px 10px; }
+  button.lang { padding: 8px 8px; }
   .ico { width: 18px; height: 18px; }
   .seg-toggle { order: 10; flex-basis: 100%; }
   .seg-toggle button { flex: 1; padding: 8px 6px; font-size: 14px; }

@@ -7,6 +7,7 @@ import { STATIC } from "./config.js";
 import { city, MTVU_LABELS } from "./city.js";
 import { TILE, getJSON, query, envelope, osmTiles, insideRings } from "./gis.js";
 import { TOWNS } from "./towns/index.js";
+import { t } from "./i18n.js";
 export { events } from "./gis.js";
 
 import { MTVU, MTVU_FIELDS, TM_LINES, LINE_WHERE, TM_POINTS, POINT_WHERE, PARKOVANI, PARKING_LAYERS, parkingFields, PODLAZNOST, PODLAZNOST_FIELDS, podlaznostInfo } from "./queries.js";
@@ -49,21 +50,23 @@ export const mtvu = (bbox) => (town() ? town().surfaces(bbox) : isBrno() ? brnoS
 export function outage({ surfaces, lines, parking }, dataName = city.dataName) {
   const s = surfaces.status === "fulfilled" ? surfaces.value : null;
   const lacks = [];
-  if (lines.status !== "fulfilled") lacks.push("kolejí, plotů a svahů");
-  if (parking.status !== "fulfilled") lacks.push("parkovacích stání");
-  if (lines.status === "fulfilled" && lines.value?.missing?.includes("opendata")) lacks.push("stromů a tříd ulic TSK");
-  const without = lacks.length ? ` Chybí data ${lacks.join(", ")} (server neodpověděl).` : "";
+  if (lines.status !== "fulfilled") lacks.push(t("kolejí, plotů a svahů"));
+  if (parking.status !== "fulfilled") lacks.push(t("parkovacích stání"));
+  if (lines.status === "fulfilled" && lines.value?.missing?.includes("opendata")) lacks.push(t("stromů a tříd ulic TSK"));
+  const without = lacks.length ? " " + t("Chybí data {what} (server neodpověděl).", { what: lacks.join(", ") }) : "";
+  const again = " " + t("Zkuste kliknout znovu za chvíli.");
   const failed = !s;
   const empty = s && !s.features?.length;
-  const note = failed ? " · technická mapa neodpověděla, jen odhad"
-    : s.fallback ? " · plochy z technické mapy ČÚZK"
-    : empty ? (s.dmvsFailed ? " · technická mapa neodpověděla, jen odhad" : " · mimo technickou mapu, jen odhad")
-    : lacks.length ? " · neúplná data" : "";
-  const text = failed ? `${dataName} teď neodpovídá${city.id === "praha" ? " (server je přetížený)" : ""}, profil je jen odhad z OSM.${without} Zkuste kliknout znovu za chvíli.`
-    : s.fallback ? `${dataName} teď neodpovídá, plochy jsou z technické mapy ČÚZK.${without}`
-    : empty && s.dmvsFailed ? `Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.${without} Zkuste kliknout znovu za chvíli.`
-    : empty ? `Technická mapa tu nic nevrátila, profil je odhad z OSM.${without}`
-    : without ? without.trim() + " Zkuste kliknout znovu za chvíli." : "";
+  const note = failed ? t(" · technická mapa neodpověděla, jen odhad")
+    : s.fallback ? t(" · plochy z technické mapy ČÚZK")
+    : empty ? (s.dmvsFailed ? t(" · technická mapa neodpověděla, jen odhad") : t(" · mimo technickou mapu, jen odhad"))
+    : lacks.length ? t(" · neúplná data") : "";
+  const text = failed ? (city.id === "praha" ? t("{name} teď neodpovídá (server je přetížený), profil je jen odhad z OSM.", { name: dataName })
+      : t("{name} teď neodpovídá, profil je jen odhad z OSM.", { name: dataName })) + without + again
+    : s.fallback ? t("{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.", { name: dataName }) + without
+    : empty && s.dmvsFailed ? t("Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.") + without + again
+    : empty ? t("Technická mapa tu nic nevrátila, profil je odhad z OSM.") + without
+    : without ? without.trim() + again : "";
   return { note, text, error: failed || !!s.fallback || !!s.dmvsFailed || lacks.length > 0 };
 }
 

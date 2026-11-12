@@ -3,6 +3,7 @@
 // that the drawing needs must be numbers, a part without a usable width is an error.
 import { TYPES, SOURCES, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, isTurn } from "./types.js";
 import { SIGNS, signChoice, MAX_PER_PART } from "./signs.js";
+import { t } from "./i18n.js";
 
 const EDGE_KINDS = new Set(["budova", "stavba", "zahrada", "zelen", "voda", "parkoviste", "plot", "volno"]);
 const EDGE_STYLES = new Set(["sikma", "funkce", "moderni", "plocha", "nizky", "hala", "centrum", "centrum-obchod", "sidliste", "sidliste-lodzie", "rd"]);
@@ -12,11 +13,11 @@ const num = (v, lo, hi) => typeof v === "number" && Number.isFinite(v) && v >= l
 const INFO_NUMBERS = ["height", "levels", "cornice", "roof", "roofType", "iprKind", "area", "km", "period", "built", "panel", "house", "tint"];
 
 export function cleanProfile(p, what = "profil") {
-  if (!Array.isArray(p?.segments) || !p.segments.length) throw new Error(`${what}: chybí části profilu`);
+  if (!Array.isArray(p?.segments) || !p.segments.length) throw new Error(`${what}: ${t("chybí části profilu")}`);
   for (const s of p.segments) {
-    if (typeof s !== "object" || !s) throw new Error(`${what}: vadná část`);
+    if (typeof s !== "object" || !s) throw new Error(`${what}: ${t("vadná část")}`);
     if (!(s.type in TYPES)) s.type = "nezname";
-    if (!num(s.width, 0.01, 200)) throw new Error(`${what}: vadná šířka části`);
+    if (!num(s.width, 0.01, 200)) throw new Error(`${what}: ${t("vadná šířka části")}`);
     if (s.source && !(s.source in SOURCES)) s.source = "user";
     // Values the drawing reads as words: anything else is dropped.
     for (const k of ["dir", "bikeDir"]) if (k in s && !["forward", "backward"].includes(s[k])) delete s[k];

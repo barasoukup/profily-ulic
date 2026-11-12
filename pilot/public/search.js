@@ -3,6 +3,7 @@
 // origin, open data under CC BY 4.0. Considerate to ČÚZK: nothing under 3 characters, 300 ms debounce, a stale
 // request is cancelled, recent answers are kept in memory.
 // The top half is pure (parsing, ranking, labels, geometry; tests/search.test.js), mountSearch() is the UI.
+import { t } from "./i18n.js";
 
 export const RUIAN_SEARCH = "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer";
 const GEOCODE = `${RUIAN_SEARCH}/exts/GeocodeSOE`;
@@ -14,17 +15,17 @@ const TIMEOUT = 10000;
 
 // The service's layers, as the magicKey's prefix ("1_1199065" = layer 1, objectid 1199065).
 export const KINDS = {
-  AdresniMisto: { label: "adresa", zoom: 19, rank: 25 },
-  Ulice: { label: "ulice", zoom: 19, rank: 30 },
-  Obec: { label: "obec", zoom: 15, rank: 28 },
-  CastObce: { label: "část obce", zoom: 16, rank: 20 },
-  MestskyObvodMestskaCastVeStatutarnimMesteAHlavnimMestePraze: { label: "městská část", zoom: 15, rank: 18 },
-  SpravniObvodVHlavnimMestePraze: { label: "správní obvod", zoom: 14, rank: 6 },
-  KatastralniUzemi: { label: "katastrální území", zoom: 15, rank: 12 },
-  ZakladniSidelniJednotka: { label: "sídelní jednotka", zoom: 17, rank: 8 },
-  ParcelaDefinicniBod: { label: "parcela", zoom: 19, rank: 5 },
-  Okres: { label: "okres", zoom: 11, rank: 4 },
-  VyssiUzemneSamospravnyCelek: { label: "kraj", zoom: 9, rank: 3 },
+  AdresniMisto: { label: t("adresa"), zoom: 19, rank: 25 },
+  Ulice: { label: t("ulice"), zoom: 19, rank: 30 },
+  Obec: { label: t("obec"), zoom: 15, rank: 28 },
+  CastObce: { label: t("část obce"), zoom: 16, rank: 20 },
+  MestskyObvodMestskaCastVeStatutarnimMesteAHlavnimMestePraze: { label: t("městská část"), zoom: 15, rank: 18 },
+  SpravniObvodVHlavnimMestePraze: { label: t("správní obvod"), zoom: 14, rank: 6 },
+  KatastralniUzemi: { label: t("katastrální území"), zoom: 15, rank: 12 },
+  ZakladniSidelniJednotka: { label: t("sídelní jednotka"), zoom: 17, rank: 8 },
+  ParcelaDefinicniBod: { label: t("parcela"), zoom: 19, rank: 5 },
+  Okres: { label: t("okres"), zoom: 11, rank: 4 },
+  VyssiUzemneSamospravnyCelek: { label: t("kraj"), zoom: 9, rank: 3 },
 };
 // The same town again as the seat of an office: dropped.
 const DUPLICATES = new Set(["ObecSPoverenymObecnimUradem", "ObecSRozsirenouPusobnosti"]);
@@ -54,7 +55,7 @@ export function parseSuggestions(json) {
 // "Mánesova 409/12, Vinohrady, 12000 Praha 2" → main "Mánesova 409/12", sub "Vinohrady, 12000 Praha 2";
 // "Manětín (Plzeň-sever)" → "Manětín", "Plzeň-sever".
 export function formatLabel(item) {
-  const kind = KINDS[item.type]?.label || "místo";
+  const kind = KINDS[item.type]?.label || t("místo");
   const p = /^(.*?) \(([^)]*)\)$/.exec(item.text);
   if (p) return { main: p[1], sub: p[2], kind };
   const i = item.text.indexOf(", ");
@@ -180,8 +181,8 @@ export function mountSearch(map, { status, onPick }) {
   const L = globalThis.L;
   const el = L.DomUtil.create("div", "search leaflet-bar");
   el.innerHTML = `<input id="search-input" type="search" role="combobox" aria-autocomplete="list" aria-expanded="false"
-    aria-controls="search-list" aria-label="Hledat adresu nebo ulici (RÚIAN © ČÚZK)" placeholder="Hledat adresu nebo ulici"
-    autocomplete="off" spellcheck="false" enterkeyhint="search"><ul id="search-list" role="listbox" aria-label="Návrhy" hidden></ul>`;
+    aria-controls="search-list" aria-label="${t("Hledat adresu nebo ulici (RÚIAN © ČÚZK)")}" placeholder="${t("Hledat adresu nebo ulici")}"
+    autocomplete="off" spellcheck="false" enterkeyhint="search"><ul id="search-list" role="listbox" aria-label="${t("Návrhy")}" hidden></ul>`;
   const input = el.querySelector("input"), list = el.querySelector("ul");
   L.DomEvent.disableClickPropagation(el);
   L.DomEvent.disableScrollPropagation(el);
@@ -229,18 +230,18 @@ export function mountSearch(map, { status, onPick }) {
   async function ask(text) {
     const key = norm(text);
     if (key.length < MIN_CHARS) { ctrl?.abort(); return show([]); }
-    if (cache.has(key)) return show(cache.get(key), "Nic jsem nenašla.");
+    if (cache.has(key)) return show(cache.get(key), t("Nic jsem nenašla."));
     ctrl?.abort();
     const mine = (ctrl = new AbortController());
     try {
       const found = rankResults(parseSuggestions(await getJSON(suggestUrl(text.trim()), mine.signal)), text);
       cache.set(key, found);
       if (cache.size > 40) cache.delete(cache.keys().next().value);
-      if (mine === ctrl && document.activeElement === input) show(found, "Nic jsem nenašla.");
+      if (mine === ctrl && document.activeElement === input) show(found, t("Nic jsem nenašla."));
     } catch (err) {
       if (err.name === "AbortError") return;
       console.warn("hledání", err);
-      if (mine === ctrl) show([], "Vyhledávání ČÚZK teď neodpovídá.");
+      if (mine === ctrl) show([], t("Vyhledávání ČÚZK teď neodpovídá."));
     }
   }
 
@@ -260,7 +261,7 @@ export function mountSearch(map, { status, onPick }) {
     } catch (err) {
       if (err.name === "AbortError") return;
       console.warn("hledání", err);
-      status("Místo se nepodařilo načíst z RÚIAN ČÚZK. Zkuste to znovu.", "error");
+      status(t("Místo se nepodařilo načíst z RÚIAN ČÚZK. Zkuste to znovu."), "error");
     }
   }
 

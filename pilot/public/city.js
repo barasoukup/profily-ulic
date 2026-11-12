@@ -3,6 +3,9 @@
 // of mesta.json), anywhere else "cesko" (the national DTM of ČÚZK, RÚIAN and OSM). `city` is the city of
 // the current cut, changed in place by setCity, so modules read it at the time they need it.
 
+import { t, lang } from "./i18n.js";
+import { EN_CITY } from "./en.js";
+
 // Labels of the MTVU codes, for Brno's surfaces (Prague's MTVU sends its own).
 export const MTVU_LABELS = {
   100: "hospodářská půda", 200: "les", 300: "louky, zahrady", 401: "zeleň v zástavbě - veřejná zeleň",
@@ -424,7 +427,7 @@ const CITIES = {
 };
 
 // Towns with no data of their own (the national DTM of ČÚZK, as "cesko"), only their own vehicles.
-const artTown = (id, inCity, adjective, art) => ({ ...CITIES.cesko, id, inCity, adjective, art: id, artMap: { ...art, ...TOWN_ART } });
+const artTown = (id, inCity, adjective, art) => ({ ...CITIES.cesko, id, like: "cesko", inCity, adjective, art: id, artMap: { ...art, ...TOWN_ART } });
 Object.assign(CITIES, {
   olomouc: artTown("olomouc", "v Olomouci", "olomoucké", TRAM),
   liberec: artTown("liberec", "v Liberci", "liberecké", TRAM),
@@ -438,18 +441,19 @@ Object.assign(CITIES, {
 // the orthophoto where it was read (ortho.js), then the illustrations and the licences. src: the cut's
 // { region, dmvs, ortho } (app.js); art: the city's own illustrations are drawn. Two lines: data, then the rest.
 export function creditLines(c, src = {}, art = false) {
-  const kraj = src.region || "kraje";
-  const data = [`Data: ${c.credit.replace(/^data /, "").replace("{kraj}", kraj)}`];
-  if (src.dmvs && !c.credit.includes("IS DMVS")) data.push(`technická mapa © ${kraj}, IS DMVS ČÚZK`);
-  if (src.dmvs && !c.credit.includes("RÚIAN")) data.push("RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)");
-  if (src.ortho) data.push("ortofoto © ČÚZK, 2025 (CC BY 4.0)");
-  const ORTHO_CITY = { ipr: "ortofoto © IPR Praha, 2024", brno: "ortofoto © Statutární město Brno, 2025", plzen: "ortofoto © Statutární město Plzeň, 2024" };
+  const kraj = src.region || t("kraje");
+  const data = [t("Data: {data}", { data: c.credit.replace(/^data /, "").replace("{kraj}", kraj) })];
+  if (src.dmvs && !c.credit.includes("IS DMVS")) data.push(t("technická mapa © {kraj}, IS DMVS ČÚZK", { kraj }));
+  if (src.dmvs && !c.credit.includes("RÚIAN")) data.push(t("RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)"));
+  if (src.ortho) data.push(t("ortofoto © ČÚZK, 2025 (CC BY 4.0)"));
+  const ORTHO_CITY = { ipr: t("ortofoto © IPR Praha, 2024"), brno: t("ortofoto © Statutární město Brno, 2025"), plzen: t("ortofoto © Statutární město Plzeň, 2024") };
   if (ORTHO_CITY[src.orthoCity]) data.push(ORTHO_CITY[src.orthoCity]);
-  data.push("© přispěvatelé OpenStreetMap (ODbL)");
+  data.push(t("© přispěvatelé OpenStreetMap (ODbL)"));
   return [
     data.join(" · "),
-    `Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0)${art ? " a Bára Soukupová (MIT)" : ""} · obrázek CC BY-SA 4.0 · `
-      + "licence: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0",
+    (art ? t("Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) a Bára Soukupová (MIT) · obrázek CC BY-SA 4.0 · ")
+      : t("Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) · obrázek CC BY-SA 4.0 · "))
+      + t("licence: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0"),
   ];
 }
 
@@ -461,7 +465,9 @@ export const cityById = (id) => CITIES[id];
 export const city = {};
 export function setCity(id) {
   for (const k of Object.keys(city)) delete city[k];
-  Object.assign(city, CITIES[id] || CITIES.cesko);
+  const c = CITIES[id] || CITIES.cesko;
+  // In English the city's texts of en.js (its name in sentences, its data, its credits).
+  Object.assign(city, c, lang === "cs" ? null : EN_CITY[c.id] || EN_CITY[c.like]);
   if (globalThis.PROFILY_FIX) city.fix = globalThis.PROFILY_FIX;
   return city;
 }

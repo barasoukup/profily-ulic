@@ -2,6 +2,7 @@
 // Geometry works in a local metric frame (x east, y north, metres) around the cut centre.
 import { typeFromMtvu, isBuilding, isMinorStructure, DEFAULT_WIDTH } from "./types.js";
 import { city } from "./city.js";
+import { t, num } from "./i18n.js";
 
 const STEP = 0.05; // sampling step along the cut (m)
 const MIN_RUN = 0.3; // runs narrower than this merge into a neighbour (m)
@@ -975,7 +976,7 @@ function markIslands(segs) {
 // profile's notice says so. A part beside the kerb that is no sidewalk (green, a paved area) takes the car alike.
 const KERB_REST = 0.5, KERB_CAR_MIN = 1, KERB_HALF_MIN = 0.3;
 const KERB_HOST = new Set([...WALK, "zelen", "nezname"]);
-const fmtM = (v) => `${v.toFixed(2).replace(".", ",")} m`;
+const fmtM = (v) => `${num(v)} m`;
 function carveKerbParking(segs, reqs, notes = []) {
   let out = segs;
   const say = (text) => { if (!notes.includes(text)) notes.push(text); };
@@ -995,13 +996,14 @@ function carveKerbParking(segs, reqs, notes = []) {
     const avail = host ? host.e - host.s : 0;
     const want = half ? q.w / 2 : q.w;
     const take = Math.min(want, avail - KERB_REST);
-    const what = half ? "napůl na chodníku" : "na chodníku";
     if (half && !piece) {
-      if (host) say(`Stání ${what} z OSM: vozovka nemá místo na polovinu auta, auta nejsou nakreslena.`);
+      if (host) say(t("Stání napůl na chodníku z OSM: vozovka nemá místo na polovinu auta, auta nejsou nakreslena."));
       continue;
     }
     if (!host || take < (half ? KERB_HALF_MIN : KERB_CAR_MIN) - 1e-9) {
-      if (host || !half) say(`Stání ${what} z OSM: ${host ? `chodník má jen ${fmtM(avail)}` : "u obruby není chodník"}, auta nejsou nakreslena.`);
+      if (host || !half) say(!host ? t("Stání na chodníku z OSM: u obruby není chodník, auta nejsou nakreslena.")
+        : half ? t("Stání napůl na chodníku z OSM: chodník má jen {w}, auta nejsou nakreslena.", { w: fmtM(avail) })
+        : t("Stání na chodníku z OSM: chodník má jen {w}, auta nejsou nakreslena.", { w: fmtM(avail) }));
       if (piece) {
         // The roadway half goes back to the lane beside it.
         const lane = out[L ? pi - 1 : pi + 1];
@@ -1011,7 +1013,11 @@ function carveKerbParking(segs, reqs, notes = []) {
       }
       continue;
     }
-    if (take < want - 1e-9) say(`Stání ${what} z OSM: chodník má jen ${fmtM(avail)}, auta jsou kreslena užší a chodníku zbývá ${fmtM(avail - take)}.`);
+    if (take < want - 1e-9) {
+      const v = { w: fmtM(avail), rest: fmtM(avail - take) };
+      say(half ? t("Stání napůl na chodníku z OSM: chodník má jen {w}, auta jsou kreslena užší a chodníku zbývá {rest}.", v)
+        : t("Stání na chodníku z OSM: chodník má jen {w}, auta jsou kreslena užší a chodníku zbývá {rest}.", v));
+    }
     // From the roadway half (or the kerb) to the cut edge in the sidewalk; thin parts between go with the car.
     const from = L ? (piece ? piece.s : host.s) : host.e - take;
     const to = L ? host.s + take : (piece ? piece.e : host.e);
@@ -1020,7 +1026,7 @@ function carveKerbParking(segs, reqs, notes = []) {
     const rest = L ? { ...host, s: park.e } : { ...host, e: park.s };
     const lo = Math.min(hi, pi < 0 ? hi : pi), up = Math.max(hi, pi < 0 ? hi : pi);
     out = [...out.slice(0, lo), ...(L ? [park, rest] : [rest, park]), ...out.slice(up + 1)];
-    if (park.lawFree !== undefined) say(`Stání napůl na chodníku z OSM: ve vozovce zůstává ${fmtM(park.lawFree)}, § 25 odst. 3 zák. 361/2000 Sb. žádá ${fmtM(park.lawNeed)} (3 m pro každý směr).`);
+    if (park.lawFree !== undefined) say(t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, § 25 odst. 3 zák. 361/2000 Sb. žádá {need} (3 m pro každý směr).", { free: fmtM(park.lawFree), need: fmtM(park.lawNeed) }));
   }
   return out;
 }
@@ -1459,7 +1465,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   // gap in MTVU): the profile falls back to OSM and says so.
   if (!MINOR.has(way.tags?.highway) && isUnpaved(runs[i0]?.code)) {
     const code = runs[i0]?.code;
-    return { ...estimateFromOsm(way), runs, notice: `Technická mapa tu nemá povrch ulice (${code === null || code === undefined ? "žádná plocha" : `plocha ${code} ${polys.find((p) => p.code === code)?.label || ""}`.trim()}), profil je odhad z OSM.` };
+    return { ...estimateFromOsm(way), runs, notice: t("Technická mapa tu nemá povrch ulice ({what}), profil je odhad z OSM.", { what: code === null || code === undefined ? t("žádná plocha") : `${t("plocha")} ${code} ${polys.find((p) => p.code === code)?.label || ""}`.trim() }) };
   }
   // Dual carriageway: the reach counts from the middle between the two carriageways, and green
   // between them is the median, not the end of the street.

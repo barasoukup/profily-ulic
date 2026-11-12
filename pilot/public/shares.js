@@ -3,14 +3,16 @@
 // shared by two counts half for each (Bára): the shared path for walking and cycling, the bus lane
 // open to cyclists, the lane with a tram. Where cyclists are only let in (a sidewalk open to them, a
 // lane with sharrows) the part counts for walking or cars alone.
+import { t } from "./i18n.js";
+
 export const SHARE_GROUPS = [
-  { key: "pesi", label: "Pěší", color: "#cbb89a" },
-  { key: "kola", label: "Cyklisté", color: "#c0604f" },
-  { key: "mhd", label: "MHD", color: "#d8413f" },
-  { key: "auta", label: "Auta v pohybu", color: "#5c5c59" },
-  { key: "parkovani", label: "Parkování", color: "#9b9b97" },
-  { key: "zelen", label: "Zeleň", color: "#7fb04a" },
-  { key: "ostatni", label: "Ostatní", color: "#dcd8cd" },
+  { key: "pesi", label: t("Pěší"), color: "#cbb89a" },
+  { key: "kola", label: t("Cyklisté"), color: "#c0604f" },
+  { key: "mhd", label: t("MHD"), color: "#d8413f" },
+  { key: "auta", label: t("Auta v pohybu"), color: "#5c5c59" },
+  { key: "parkovani", label: t("Parkování"), color: "#9b9b97" },
+  { key: "zelen", label: t("Zeleň"), color: "#7fb04a" },
+  { key: "ostatni", label: t("Ostatní"), color: "#dcd8cd" },
 ];
 const SHARE_OF = {
   chodnik: "pesi", chodnik_kola: "pesi", stezka_sdilena: ["pesi", "kola"],

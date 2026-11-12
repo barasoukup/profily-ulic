@@ -480,6 +480,22 @@ fialová = upraveno ručně. Vybraná část profilu se vyznačí modře na čá
 Převod profilu na ulici Streetmixu (schéma 35, metrické jednotky) je v `public/streetmix.js` a má testy. Tlačítko
 v aplikaci není: API Streetmixu nemá CORS, takže ze statického webu nefunguje.
 
+## Jazyky
+
+Aplikace je česky a anglicky (Bára 12. 11. 2026). Jazyk určí `?lang=en` (nebo `?lang=cs`) v adrese, jinak poslední volba
+návštěvníka (tlačítko EN / CS v hlavičce, pamatuje se v prohlížeči), jinak jazyk prohlížeče: čeština a slovenština
+dostanou češtinu, ostatní angličtinu. Přepnutí stránku znovu načte, řez i návrh zůstanou.
+
+- `i18n.js`: `t("český text", { jméno })` vrátí anglický text z `en.js`, nebo český, když překlad chybí. Český text je
+  klíč, `{jméno}` se doplní. `num()` píše desetinnou čárku česky a tečku anglicky. `translatePage()` přeloží texty
+  `index.html`; patička se nahrazuje celá (`data-i18n="footer"`, `EN_HTML`).
+- `en.js`: anglické texty, texty měst (`EN_CITY`: server, data, kredity) a slova v kreditech mapových vrstev.
+- Nový text v kódu: obalit `t("…")` (v `app.js`, `profile.js` a `maplayers.js` se funkce jmenuje `tr`) a doplnit
+  do `en.js`. `tests/i18n.test.js` hlídá, že každý text má překlad se stejnými `{jmény}` a že `en.js` nemá nic navíc;
+  `tests/i18n-en.test.js` pouští moduly anglicky.
+- Česky zůstávají vlastní jména (ČÚZK, RÚIAN, IPR, úřady měst, kraje), čísla značek a text na dodatkové tabulce E 13
+  (je to česká značka), hodnoty v záznamu řezů a hlášení chyb.
+
 ## Záznam řezů
 
 Po každém řezu a u několika akcí (export, uložení, sdílení, Návrh, Porovnání, oprava dat, hledání) pošle
