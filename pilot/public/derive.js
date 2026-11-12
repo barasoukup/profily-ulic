@@ -1379,8 +1379,38 @@ export function centerOnStreet(osm, frame, near, half = 40) {
 // sidewalk:<side>; "separate" is one drawn apart, still there), none where it says no; without a tag where the
 // street is built up: a building within BUILT_NEAR m on that side and no speed over 50. The piece nearest the
 // roadway is then the sidewalk, the others are green (estimates all).
-const BUILT_NEAR = 30;
-export function linePieces(polys, tags, center, normal) {
+// With the orthophoto of the click (lanes-ortho.js laneImage st) the colour decides first (Bára 12. 11. 2026): a
+// piece that is green, or yellow as the dry grass of ČÚZK's summer images (Kolín: the verges of a road in the
+// fields), is green; a grey one (asphalt, concrete paving) a sidewalk where the side has one and else a paved area;
+// only where the colour is unclear (red paving, shade, a mix) the nearest-piece rule stays. Means over the piece,
+// measured on 50 cuts of Kolín and Mladá Boleslav: green grass G 10–14, dry grass Y 23–26, paving G 0–1 and Y 6–15.
+const BUILT_NEAR = 30, LOOK_ALONG = 8;
+const looksGreen = (m) => m.G > 8 || (m.Y > 20 && m.D > -25);
+const looksPaved = (m) => m.G < 4 && m.Y < 17 && m.D > -25;
+// "green", "paved" or null (no image, too narrow, unclear): the means of a piece on the orthophoto (rows along the
+// street within ±LOOK_ALONG m, its stretch of the cut less 0.25 m at each edge).
+export function surfaceLook(st, rings, center, normal) {
+  if (!st?.G || !st.Y) return null;
+  let lo = Infinity, hi = -Infinity;
+  for (let t = st.t0; t <= st.t0 + st.nt * st.res; t += 0.1) {
+    if (inside(rings, center[0] + normal[0] * t, center[1] + normal[1] * t)) { lo = Math.min(lo, t); hi = Math.max(hi, t); }
+  }
+  lo += 0.25; hi -= 0.25;
+  if (!(hi - lo >= 0.3)) return null;
+  const half = st.nu / 2, rows = Math.round(LOOK_ALONG / st.res), m = { G: 0, Y: 0, D: 0 };
+  let n = 0;
+  for (let i = Math.ceil((lo - st.t0) / st.res); i <= Math.floor((hi - st.t0) / st.res); i++) {
+    for (let j = Math.max(0, Math.floor(half - rows)); j < Math.min(st.nu, half + rows); j++) {
+      const k = j * st.nt + i;
+      if (Number.isNaN(st.G[k])) continue;
+      m.G += st.G[k]; m.Y += st.Y[k]; m.D += st.D[k]; n++;
+    }
+  }
+  if (!n) return null;
+  for (const c of "GYD") m[c] /= n;
+  return looksGreen(m) ? "green" : looksPaved(m) ? "paved" : null;
+}
+export function linePieces(polys, tags, center, normal, st = null) {
   const pieces = polys.filter((p) => p.fromLines && p.code === 702);
   if (!pieces.length) return polys;
   const off = (p) => ((p.bbox[0] + p.bbox[2]) / 2 - center[0]) * normal[0] + ((p.bbox[1] + p.bbox[3]) / 2 - center[1]) * normal[1];
@@ -1395,16 +1425,24 @@ export function linePieces(polys, tags, center, normal) {
   };
   const fast = parseInt(tags.maxspeed, 10) > 50;
   const built = (sign) => !fast && polys.some((p) => p.code === 601 && off(p) * sign > 0 && Math.abs(off(p)) < BUILT_NEAR);
-  const verge = new Set();
+  const code = new Map();
   for (const [side, sign] of [["left", 1], ["right", -1]]) {
     const mine = pieces.filter((p) => off(p) * sign > 0).sort((a, b) => Math.abs(off(a)) - Math.abs(off(b)));
     const walk = says(side) ?? built(sign);
-    mine.forEach((p, k) => { if (!walk || k > 0) verge.add(p); });
+    const look = mine.map((p) => surfaceLook(st, p.rings, center, normal));
+    let walked = false;
+    mine.forEach((p, k) => {
+      if (look[k] === "green") code.set(p, 401);
+      else if (look[k] === "paved") { code.set(p, walk ? 702 : 1003); walked ||= walk; }
+      // Unclear: the nearest piece a sidewalk where the side has one and none paved is seen.
+      else if (!walk || walked || k > 0) code.set(p, 401);
+      else walked = true;
+    });
   }
-  return polys.map((p) => (verge.has(p) ? { ...p, code: 401, label: "" } : p));
+  return polys.map((p) => (code.has(p) && code.get(p) !== p.code ? { ...p, code: code.get(p), label: "" } : p));
 }
 
-export function deriveProfile({ center, dir, half, polys, osm, frame, way, tracks = [], parking = [], lines = [], reach, inZps: zoneKnown, itemReach, ortho }) {
+export function deriveProfile({ center, dir, half, polys, osm, frame, way, tracks = [], parking = [], lines = [], reach, inZps: zoneKnown, itemReach, ortho, lanesImage }) {
   const reachItems = { ...REACH, ...itemReach };
   // No-parking sections (Prague, TSK "Zákaz stání"): no surface of their own, they only keep a kerb free.
   const noParking = parking.filter((p) => p.kind === "zakaz");
@@ -1437,7 +1475,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     return best?.cls || null;
   };
   const normal = [-dir[1], dir[0]];
-  polys = linePieces(polys, way?.tags || {}, center, normal);
+  polys = linePieces(polys, way?.tags || {}, center, normal, lanesImage);
   const cross = crossings(osm, frame, center, normal, half);
   let axisT = cross.find((c) => c.way.id === way.id)?.t ?? 0;
   // Tram track axes: measured ones from the technical map when available, else OSM.

@@ -134,3 +134,30 @@ test("kusy z čar vedle vozovky: chodník podle OSM nebo v zástavbě, jinak zel
   assert.deepEqual(kinds({ sidewalk: "both", maxspeed: "90" }), [701, 702, 401, 702]);
   assert.deepEqual(kinds({ "sidewalk:left": "no", "sidewalk:right": "separate" }, [road, left1, right1, house]), [701, 401, 702, 601]);
 });
+
+test("kusy z čar podle barvy ortofota: tráva je zeleň, dlažba chodník (za zeleným pruhem taky)", async () => {
+  const { linePieces } = await import("../pilot/public/derive.js");
+  // The cut along x (normal [1, 0], left +x); pieces 2 m wide.
+  const piece = (x, code) => ({ code, fromLines: true, bbox: [x - 1, -10, x + 1, 10], rings: [[[x - 1, -10], [x + 1, -10], [x + 1, 10], [x - 1, 10], [x - 1, -10]]] });
+  const road = piece(0, 701), grass = piece(4, 702), paving = piece(7, 702);
+  const house = { code: 601, bbox: [12, -5, 20, 5] };
+  // The orthophoto on the cut's grid: green from 3 to 5 m (Mladá Boleslav č. 17: a grass strip before the sidewalk).
+  // Grass green there, or dry and yellow (ČÚZK's summer images), grey paving elsewhere.
+  const image = (grass) => {
+    const res = 0.1, t0 = -12, nt = 240, nu = 400, G = new Float32Array(nt * nu), Y = new Float32Array(nt * nu), D = new Float32Array(nt * nu);
+    for (let j = 0; j < nu; j++) for (let i = 0; i < nt; i++) {
+      const t = t0 + (i + 0.5) * res, k = j * nt + i;
+      [G[k], Y[k], D[k]] = t > 3 && t < 5 ? grass : [1, 8, -4];
+    }
+    return { t0, res, nt, nu, G, Y, D };
+  };
+  const st = image([12, 18, 8]);
+  const kinds = (tags, image) => linePieces([road, grass, paving, house], tags, [0, 0], [1, 0], image).map((p) => p.code);
+  assert.deepEqual(kinds({}, st), [701, 401, 702, 601], "zelený pruh a za ním chodník");
+  assert.deepEqual(kinds({}, null), [701, 702, 401, 601], "bez ortofota nejbližší kus");
+  // Paving where the side has no sidewalk: a paved area.
+  assert.deepEqual(kinds({ sidewalk: "no" }, st), [701, 401, 1003, 601]);
+  assert.deepEqual(kinds({}, image([4, 25, -10])), [701, 401, 702, 601], "suchá tráva");
+  // Red paving tells nothing by its colour: the nearest piece, as without the image.
+  assert.deepEqual(kinds({}, image([-40, 70, -80])), [701, 702, 702, 601]);
+});

@@ -20,13 +20,16 @@ const SOURCES = {
   brno: { res: 0.1, tiles: "https://gis.brno.cz/ags1/rest/services/OMI/OMI_basemaps_ortofoto_2025_wgs/MapServer/tile", z: 20, shift: [1.06, 3.09] },
   plzen: { res: 0.1, url: (b, w, h) => `https://ags.plzen.eu/arcgis/rest/services/Orto_2024_5cm_RGB_mimoveg/MapServer/export?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: "jpg", f: "image", datumTransformations: "[1623]" })}` },
   ipr: { res: 0.1, url: (b, w, h) => `https://gs-pub.praha.eu/imgs/rest/services/ort/letecke_snimkovani/ImageServer/exportImage?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: "jpg", f: "image" })}` },
-  cuzk: { res: 0.125, url: (b, w, h) => `https://ags.cuzk.gov.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer?${new URLSearchParams({ service: "WMS", request: "GetMap", version: "1.3.0", layers: "0", styles: "", crs: "EPSG:3857", bbox: b.join(","), width: w, height: h, format: "image/jpeg" })}` },
+  cuzk: { res: 0.125, url: (b, w, h, format = "image/jpeg") => `https://ags.cuzk.gov.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer?${new URLSearchParams({ service: "WMS", request: "GetMap", version: "1.3.0", layers: "0", styles: "", crs: "EPSG:3857", bbox: b.join(","), width: w, height: h, format })}` },
 };
 const median = (a) => { const b = a.filter((v) => !Number.isNaN(v)).sort((x, y) => x - y); return b.length ? b[b.length >> 1] : NaN; };
 
 // ---------- the image: one request, sampled on the cut's grid (t across, u along) ----------
 // t0, t1: the stretch across the cut wanted (m). Returns { source, st } or null (no answer in time, a bad image).
-export async function laneImage({ frame, dir, t0, t1, cityId, timeout = TIMEOUT, fetchImpl = fetch }) {
+// st.L: the brightness per pixel; st.G: how much greener than red and blue it is, st.Y: how much yellower than blue,
+// st.D: green less red (derive.js surfaceLook: grass, dry grass or paving beside a roadway read from the lines). decode: a PNG decoder for Node (no canvas there; the evaluation),
+// which asks ČÚZK for a PNG.
+export async function laneImage({ frame, dir, t0, t1, cityId, timeout = TIMEOUT, fetchImpl = fetch, decode = null }) {
   const key = BY_CITY[cityId] || "cuzk", src = SOURCES[key], normal = [-dir[1], dir[0]];
   const k = Math.cos((frame.toLonLat(0, 0)[1] * Math.PI) / 180);
   // A point on the ground is read where the image shows it: moved by the orthophoto's shift (Web Mercator metres).
@@ -56,23 +59,32 @@ export async function laneImage({ frame, dir, t0, t1, cityId, timeout = TIMEOUT,
       img = g.getImageData(0, 0, canvas.width, canvas.height);
       x0 = tx0 * size - Math.PI * R; x1 = (tx1 + 1) * size - Math.PI * R; y1 = Math.PI * R - ty0 * size; y0 = Math.PI * R - (ty1 + 1) * size;
     } else {
-      const r = await fetchImpl(src.url([x0, y0, x1, y1], w, h), { signal: AbortSignal.timeout(timeout) });
+      const r = await fetchImpl(src.url([x0, y0, x1, y1], w, h, decode ? "image/png" : undefined), { signal: AbortSignal.timeout(timeout) });
       if (!r.ok) return null;
-      const bmp = await createImageBitmap(await r.blob());
-      const canvas = new OffscreenCanvas(bmp.width, bmp.height), g = canvas.getContext("2d");
-      g.drawImage(bmp, 0, 0);
-      img = g.getImageData(0, 0, bmp.width, bmp.height);
+      if (decode) {
+        const png = await decode(await r.arrayBuffer());
+        img = { width: png.width, height: png.height, data: png.rgba };
+      } else {
+        const bmp = await createImageBitmap(await r.blob());
+        const canvas = new OffscreenCanvas(bmp.width, bmp.height), g = canvas.getContext("2d");
+        g.drawImage(bmp, 0, 0);
+        img = g.getImageData(0, 0, bmp.width, bmp.height);
+      }
     }
     // Resample on the grid of the cut.
-    const res = src.res, nt = Math.round((t1 - t0) / res), nu = Math.round((2 * ALONG) / res), L = new Float32Array(nt * nu);
+    const res = src.res, nt = Math.round((t1 - t0) / res), nu = Math.round((2 * ALONG) / res), L = new Float32Array(nt * nu), G = new Float32Array(nt * nu), Y = new Float32Array(nt * nu), D = new Float32Array(nt * nu);
     for (let j = 0; j < nu; j++) for (let i = 0; i < nt; i++) {
       const [mx, my] = at(t0 + (i + 0.5) * res, ALONG - (j + 0.5) * res);
       const px = Math.floor(((mx - x0) / (x1 - x0)) * img.width), py = Math.floor(((y1 - my) / (y1 - y0)) * img.height);
-      if (px < 0 || py < 0 || px >= img.width || py >= img.height) { L[j * nt + i] = NaN; continue; }
+      if (px < 0 || py < 0 || px >= img.width || py >= img.height) { L[j * nt + i] = G[j * nt + i] = Y[j * nt + i] = D[j * nt + i] = NaN; continue; }
       const o = (py * img.width + px) * 4;
       L[j * nt + i] = 0.299 * img.data[o] + 0.587 * img.data[o + 1] + 0.114 * img.data[o + 2];
+      const [r, g, b] = [img.data[o], img.data[o + 1], img.data[o + 2]];
+      G[j * nt + i] = g - (r + b) / 2;
+      Y[j * nt + i] = (r + g) / 2 - b;
+      D[j * nt + i] = g - r;
     }
-    return { source: key, st: { nt, nu, res, t0, L, fine: key !== "cuzk" } };
+    return { source: key, st: { nt, nu, res, t0, L, G, Y, D, fine: key !== "cuzk" } };
   } catch {
     return null;
   }

@@ -291,8 +291,9 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     if (pk.status !== "fulfilled") console.warn("parkovani", pk.reason);
     // Unknown (no zone file): the profile decides from the TSK parking sections around the cut.
     const inZps = z.status === "fulfilled" ? z.value : undefined;
-    const result = deriveProfile({ center: [0, 0], dir, half, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho });
     const laneImg = li.status === "fulfilled" ? li.value : null;
+    // The same image tells grass from paving beside a roadway read from the DTM's lines (derive.js linePieces).
+    const result = deriveProfile({ center: [0, 0], dir, half, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho, lanesImage: laneImg?.st });
     // Lanes, shoulders and parking on its own paving measured on the orthophoto (lanes-ortho.js).
     const lanesFromOrtho = laneImg ? applyLanes(result, laneImg) : 0;
     // The row of traffic signs from the street's OSM tags and the parts (signs.js).

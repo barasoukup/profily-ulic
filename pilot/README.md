@@ -289,7 +289,12 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
   „technická mapa tu má jen čáry“ místo „mimo technickou mapu“.
   Kontrola 50 řezů (Kolín, Mladá Boleslav, `CITY=kolin OUT=results-linie2 node evaluation/run_brno.mjs 1 25`): změřená
   vozovka u 25 místo 8, šířky vozovek sedí na asfalt; zbylé jsou silnice, které technická mapa nemá vůbec (čáry jen jinde).
-  Druh kusů u vozovky sedí asi napůl (zelený pruh před chodníkem bývá vzat za chodník, souběžná cesta za zeleň).
+  Druh kusů u vozovky rozhodne nejdřív barva ortofota (to samé, co se při kliknutí stahuje kvůli pruhům, `lanes-ortho.js`
+  si drží i zelenost a žlutost pixelů; `derive.js` `surfaceLook`, průměr kusu ±8 m podél ulice): zelený nebo žlutý
+  (suchá tráva na letních snímcích ČÚZK) je zeleň, šedý chodník (kde ho strana má) nebo zpevněná plocha; nejasná barva
+  (červená dlažba, stín, směs) nechá pravidlo nejbližšího kusu. Na 50 řezech se tím opravil zelený pruh před chodníkem
+  (Mladá Boleslav 17, 20); stín stromů na krajnici se ale čte jako dlažba (Kolín 22). Hodnocení v Node bere ortofoto jako
+  PNG (`laneImage` `decode`), aplikace dál JPEG.
 
 ### Zkoušené a nepřipojené zdroje
 

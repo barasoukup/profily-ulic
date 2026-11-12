@@ -100,9 +100,15 @@ async function run(s) {
   const pad = 0.0004;
   const bbox = [Math.min(...lons) - pad, Math.min(...lats) - pad, Math.max(...lons) + pad, Math.max(...lats) + pad].join(",");
   const inZps = await S.zps(clat, clon);
+  // The orthophoto of the lanes (lanes-ortho.js), as PNG decoded here (no canvas in Node): ČÚZK's where the city
+  // has no better one; it also tells grass from paving beside a roadway read from lines (derive.js linePieces).
+  const { laneImage } = await import("../pilot/public/lanes-ortho.js");
+  const { decodePng } = await import("../pilot/public/dmvs.js");
+  // After the others: polite.mjs asks ČÚZK one request at a time, and the image would hold the DTM's up past their timeout.
   const [m, k, pk] = await Promise.all([S.mtvu(bbox), S.linie(bbox), S.parkovani(bbox, inZps)]);
+  const li = await laneImage({ frame, dir, t0: -25, t1: 25, cityId: "cesko", fetchImpl: webFetch, decode: decodePng, timeout: 30000 });
   const polys = mtvuPolygons(m, frame);
-  const result = deriveProfile({ center: [0, 0], dir, half: HALF, polys, osm, frame, way: near.way, tracks: trackLines(k, frame), parking: esriPolygons(pk, frame), lines: techLines(k, frame), reach, inZps });
+  const result = deriveProfile({ center: [0, 0], dir, half: HALF, polys, osm, frame, way: near.way, tracks: trackLines(k, frame), parking: esriPolygons(pk, frame), lines: techLines(k, frame), reach, inZps, lanesImage: li?.st });
   for (const side of ["left", "right"]) {
     const info = result.edges[`${side}Info`];
     if (!info?.point) continue;
