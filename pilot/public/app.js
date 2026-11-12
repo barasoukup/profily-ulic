@@ -302,10 +302,10 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     deriveSigns(result, near.way.tags, { inZps, alongWay });
     const name = near.way.tags.name || near.way.tags.ref || "";
     const span = result.extent && { left: +result.extent[1].toFixed(2), right: +(-result.extent[0]).toFixed(2) };
-    // A design belongs to its street: moving the cut along the same street keeps it, a cut of another
-    // street (a click or a link) starts the design from the new Stav.
-    const sameStreet = keepWay || (state.cut && (state.cut.wayId === near.way.id || (name && state.cut.name === name && state.cut.city === city.id)));
-    if (!sameStreet) state.navrhEdited = false;
+    // A design belongs to its cut: dragging the cut (its middle or an end) keeps it, a new cut (a click, even on
+    // the same street, or a link) starts the design from the new Stav, as its widths would not add up (Bára).
+    const dropped = !keepWay && state.navrhEdited;
+    if (!keepWay) state.navrhEdited = false;
     state.cut = { lat: clat, lon: clon, bearing: (Math.atan2(dir[0], dir[1]) * 180) / Math.PI, wayId: near.way.id, name, city: city.id, reach, span };
     // What the export credits beyond the city's own data (city.js creditLines): the region of a national DTM,
     // the DMVS standing in for the city's map, the orthophoto of a tram bed.
@@ -354,6 +354,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     state.cut.note = out.note;
     $("#street-name").textContent = streetName(state.cut) + tr(state.cut.note);
     if (out.text) status(out.text, out.error ? "error" : undefined);
+    else if (dropped) status(tr("Nový řez: návrh začíná znovu od stavu ulice (předchozí návrh zůstává ve sdíleném odkazu nebo uloženém souboru, pokud jste ho uložili)."));
     else status(result.notice ? result.notice
       : result.junction ? tr("Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami.") : "");
     save();

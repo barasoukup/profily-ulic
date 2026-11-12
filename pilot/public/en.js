@@ -63,6 +63,8 @@ export const EN = {
   "Návrh je o {d} užší než ulice ({w}, návrh {now}).": "The proposal is {d} narrower than the street ({w}, proposal {now}).",
   "Dorovnat: {type} na {w}": "Balance: {type} to {w}",
   "Změna je vrácená.": "Change undone.",
+  "Nový řez: návrh začíná znovu od stavu ulice (předchozí návrh zůstává ve sdíleném odkazu nebo uloženém souboru, pokud jste ho uložili).":
+    "New cut: the proposal starts again from the street as it is (the previous one is kept in a shared link or saved file, if you made one).",
 
   // ---------- app.js: editor ----------
   "Zdroj: {source}": "Source: {source}",
