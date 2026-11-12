@@ -552,6 +552,7 @@ function render() {
   draw();
   drawSelection();
   loadUnderground(); // a cut restored from storage or a link asks for its networks too (once per cut)
+  drawNetLines();
   if (!box) return;
   let target;
   if (box.id === "profile") target = $(`#profile g.seg[data-i="${state.selected ?? a.dataset?.i}"]`);
@@ -1638,6 +1639,19 @@ function loadUnderground() {
   underground({ frame: localFrame(cut.lat, cut.lon), dir: [Math.sin(b), Math.cos(b)], half: Math.max(span.left, span.right) + 1, cityId: cut.city })
     .then((items) => { if (state.underground?.cut === cut) { state.underground.items = items || []; render(); } })
     .catch((err) => { console.warn("sítě", err); if (state.underground?.cut === cut) state.underground.items = []; });
+}
+// The networks on the map too, in the band's colours (Bára): the lines around the cut, dashed where not verified.
+const netLayer = L.layerGroup().addTo(map);
+let netDrawn = null;
+function drawNetLines() {
+  const items = siteOn() && state.underground?.cut === state.cut ? state.underground.items : null;
+  if (netDrawn === items) return;
+  netDrawn = items;
+  netLayer.clearLayers();
+  for (const l of items?.lines || []) {
+    L.polyline(l.coords, { color: (NET_KINDS[l.kind] || NET_KINDS.jine).color, weight: 3, opacity: 0.9, dashArray: l.verified ? null : "4 5" })
+      .bindTooltip(l.popis, { sticky: true }).addTo(netLayer);
+  }
 }
 function appendUnderground(box) {
   const items = state.underground?.cut === state.cut ? state.underground.items : null;

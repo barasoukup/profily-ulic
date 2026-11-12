@@ -15,11 +15,10 @@ const R = 6378137;
 
 // The kinds, by the first word of the line's description (CTMTP_POPIS), with a colour (the usual colours of the
 // networks on plans), a usual depth to the top (m) when the measured one is not believed, and a usual size (DN,
-// mm; cables as their sleeve, 110 mm) when the line has none; same: how near two lines of the kind are one network
-// (a sewer drawn twice a metre apart is still one: Bára, Voršilská).
+// mm; cables as their sleeve, 110 mm) when the line has none.
 export const KINDS = {
-  kanalizace: { label: "kanalizace", color: "#8a5a2b", usual: 2.5, dn: 300, same: 1.2 },
-  vodovod: { label: "vodovod", color: "#1f6fd1", usual: 1.5, dn: 150, same: 0.8 },
+  kanalizace: { label: "kanalizace", color: "#8a5a2b", usual: 2.5, dn: 300 },
+  vodovod: { label: "vodovod", color: "#1f6fd1", usual: 1.5, dn: 150 },
   plynovod: { label: "plynovod", color: "#e0a800", usual: 1.0, dn: 110 },
   teplovod: { label: "teplovod", color: "#c0392b", usual: 1.0, dn: 250 },
   silnoproud: { label: "silnoproud", color: "#d6336c", usual: 0.7, dn: 110 },
@@ -77,11 +76,13 @@ export async function underground({ frame, dir, half, cityId }) {
     ...LAYERS.map((l) => query(`${IPR}/${l}/query`, { geometry: box.join(","), geometryType: "esriGeometryEnvelope", inSR: 4326, spatialRel: "esriSpatialRelIntersects", outFields: "CTMTP_POPIS,PROFIL", returnGeometry: true, returnZ: true, outSR: 4326, f: "json" })),
   ]);
   const surface = surfacePoints(points.features || [], frame);
-  const out = [];
-  for (const a of answers) for (const f of a.features || []) {
-    const popis = f.attributes?.CTMTP_POPIS || "";
+  const out = [], lines = [];
+  for (const [li, a] of answers.entries()) for (const f of a.features || []) {
+    const popis = f.attributes?.CTMTP_POPIS || "", layer = LAYERS[li];
     // Left out: lines taken out of use and the outlines of underground objects (a chamber is no crossing).
     if (/vyřaz|objekty/.test(popis)) continue;
+    // For the map: the lines as they run, in the colours of their kinds.
+    for (const path of f.geometry?.paths || []) lines.push({ kind: kindOf(popis), popis, verified: !/neověř/.test(popis), coords: path.map(([lon, lat]) => [lat, lon]) });
     for (const path of f.geometry?.paths || []) for (let i = 0; i + 1 < path.length; i++) {
       const p = frame.toXY(path[i][0], path[i][1]), q = frame.toXY(path[i + 1][0], path[i + 1][1]);
       const u1 = p[0] * dir[0] + p[1] * dir[1], u2 = q[0] * dir[0] + q[1] * dir[1];
@@ -92,24 +93,30 @@ export async function underground({ frame, dir, half, cityId }) {
       const kind = kindOf(popis), fromPoints = surface(x, y) - z, fromDmr = height(lon, lat) - z;
       const ok = (d) => Number.isFinite(d) && d >= DEPTH_OK[0] && d <= DEPTH_OK[1];
       const d = Number.isFinite(fromPoints) ? fromPoints : fromDmr, measured = ok(d);
-      out.push({ t: +t.toFixed(2), depth: +(measured ? d : KINDS[kind].usual).toFixed(2), measured, kind, popis, profil: f.attributes?.PROFIL ?? null,
+      out.push({ t: +t.toFixed(2), depth: +(measured ? d : KINDS[kind].usual).toFixed(2), measured, kind, popis, layer, profil: f.attributes?.PROFIL ?? null,
         fromPoints: Number.isFinite(fromPoints) ? +fromPoints.toFixed(2) : null, fromDmr: Number.isFinite(fromDmr) ? +fromDmr.toFixed(2) : null });
     }
   }
-  // One network drawn more than once (verified and not, both layers, a cable and the axis of its sleeve, cables
-  // side by side in one trench: Bára, Voršilská): lines of a kind within SAME of each other are one, the best of
-  // them kept (a believed depth, then verified, then the larger size).
+  // One network drawn more than once (Bára, Voršilská; 41 Prague cuts: a sewer is mostly in both layers, the
+  // operator's authorised copy without heights and the other with them, 0.1–0.6 m apart; a storm and a foul sewer
+  // 0.9 m apart are two): lines of a kind and the same sort (jednotná, dešťová…; "bez rozl." goes with any) are one
+  // within OTHER_LAYER of a line of the other layer, within SAME of one of the same layer (a cable and its sleeve,
+  // cables in one trench); the best of them kept (a believed depth, then verified, then the larger size).
   out.sort((a, b) => a.t - b.t);
   const rank = (x) => (x.measured ? 4 : 0) + (/ověř\./.test(x.popis) && !/neověř/.test(x.popis) ? 2 : 0) + (/chráni/.test(x.popis) ? 0 : 1);
   const groups = [];
   for (const x of out) {
-    const g = groups.find((q) => q.kind === x.kind && x.t - q.e <= (KINDS[x.kind].same ?? SAME));
-    if (g) { g.list.push(x); g.e = x.t; } else groups.push({ kind: x.kind, e: x.t, list: [x] });
+    const g = groups.find((q) => q.kind === x.kind && q.list.some((y) => sortsMatch(y, x) && x.t - y.t <= (y.layer === x.layer ? SAME : OTHER_LAYER)));
+    if (g) g.list.push(x); else groups.push({ kind: x.kind, list: [x] });
   }
-  return groups.map(({ list }) => {
+  const items = groups.map(({ list }) => {
     const best = list.reduce((a, x) => (rank(x) > rank(a) ? x : a));
     const size = Math.max(0, ...list.map((x) => (x.profil > 20 && x.profil < 3000 ? x.profil : 0)));
     return { ...best, t: +(list.reduce((a, x) => a + x.t, 0) / list.length).toFixed(2), profil: size || best.profil, lines: list.length };
   });
+  items.lines = lines;
+  return items;
 }
-const SAME = 0.5;
+const SAME = 0.5, OTHER_LAYER = 1.0;
+const sortOf = (x) => x.popis.split(" - ")[1]?.trim() || "";
+const sortsMatch = (a, b) => { const p = sortOf(a), q = sortOf(b); return p === q || p === "bez rozl." || q === "bez rozl." || a.kind !== "kanalizace"; };
