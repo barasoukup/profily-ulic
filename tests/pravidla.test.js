@@ -396,3 +396,12 @@ test("zatravňovací dlažba z OSM (surface=grass_paver) je propustný povrch", 
   assert.ok(!p.segments.some((s) => s.type === "pruh" && s.permeable), "vozovka zůstává");
   assert.ok(!street([[701, 7]], {}).segments.some((s) => s.permeable));
 });
+
+test("nezpevněný povrch z OSM (mlat, štěrk, hlína) je zvlášť od propustné dlažby", () => {
+  // Bára: unpaved cycle paths and footways soak the rain in too, but are no paving (5.1.2).
+  const path = (x, surface) => ({ type: "way", id: 10 + x, tags: { highway: "cycleway", surface }, geometry: line(x) });
+  const p = street([[701, 7]], {}, { extra: [path(5, "compacted"), path(-5, "grass_paver")] });
+  // The cycleways make the sidewalks paths for cyclists (derive.js); their surfaces follow the ways.
+  assert.deepEqual(p.segments.filter((s) => s.permeable).map((s) => s.permeable), [true, "nezpevneny"], p.segments.map((s) => `${s.type} ${s.permeable}`).join(" | "));
+  assert.ok(!street([[701, 7]], {}, { extra: [path(5, "asphalt")] }).segments.some((s) => s.permeable));
+});

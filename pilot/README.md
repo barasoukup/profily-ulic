@@ -473,8 +473,10 @@ Do Návrhu lze přidat prvky modrozelené infrastruktury podle pražských Stand
 - „Pod povrchem“ u zeleně, chodníků, parkování a dalších částí: podzemní rýha (5.1.7), podzemní retenční nádrž (5.1.11),
   vsakovací šachta (5.1.9); průleh s rýhou pod sebou je 5.1.8;
 - „Propustný povrch“ u chodníků, ploch a parkování (5.1.2) a přístřešek zastávky se zelenou střechou (5.1.1).
-Ze všeho jen propustný povrch umí i Stav: zatravňovací dlažba z OSM (`surface=grass_paver`, v Česku asi 300 parkovišť
-a 900 cest; `derive.js` podle plochy pod středem části nebo cesty, která ji kříží). Průlehy, rýhy ani šachty v datech
+Ze všeho jen povrch umí i Stav: zatravňovací dlažba z OSM (`surface=grass_paver`, v Česku asi 300 parkovišť a 900 cest)
+je propustná dlažba, nezpevněný povrch (`unpaved, compacted, fine_gravel, gravel, ground, dirt, earth, woodchips…`;
+Bára: mlatové cyklostezky a pěšiny také vsakují) zvlášť „nezpevněný“ (`segment.permeable` `true` / `"nezpevneny"`);
+`derive.js` podle plochy pod středem části nebo cesty, která ji kříží. V editoru výběr „Povrch“. Průlehy, rýhy ani šachty v datech
 nejsou (OSM 0, otevřená data měst nic; Brno má jen body dotovaných zelených střech a dešťovek, Bára: nevyužívat),
 retenční nádrže zůstávají vodou.
 Kreslí se zjednodušeně (Magdalena: kvůli měřítku zjednodušit): průleh jako mělká prohlubeň s výsadbou, nádrž s vodou

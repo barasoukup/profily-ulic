@@ -217,8 +217,14 @@ function drawUnder(g, s, x, w, top) {
     el("rect", { x: bx + 3, y: lvl + 3, width: bw - 6, height: y1 - lvl - 6, rx: 7, fill: "#9cc3e4", opacity: 0.7 }, g);
   }
 }
-// Permeable paving (segment.permeable, 5.1.2): open joints with grass in the paving.
-function drawPermeable(g, x, w, top) {
+// Permeable paving (segment.permeable, 5.1.2): open joints with grass in the paving; an unpaved surface (fine
+// gravel, compacted earth): its gravel in a band under the top.
+function drawPermeable(g, x, w, top, unpaved) {
+  if (unpaved) {
+    el("rect", { x, y: top, width: w, height: 22, fill: "#cbbd9f" }, g);
+    for (let v = top + 4; v < top + 20; v += 6) for (let u = x + 4 + ((v / 6) % 2) * 3; u < x + w - 3; u += 7) el("circle", { cx: u, cy: v, r: 1.6, fill: "#8e8170" }, g);
+    return;
+  }
   for (let u = x + 14; u < x + w - 6; u += 26) el("rect", { x: u, y: top, width: 4, height: 9, fill: "#6f9e48" }, g);
 }
 
@@ -1393,7 +1399,7 @@ export function buildSvg(profile, opts = {}) {
     // Under the part: drawn after the networks' earth (below), which would cover it.
     if (s.under) undersLater.push([s, x, w, top]);
     if (t.water) drawWaterPart(g, s, x, w, top, segs[i - 1], segs[i + 1]);
-    if (s.permeable) drawPermeable(g, x, w, top);
+    if (s.permeable) drawPermeable(g, x, w, top, s.permeable === "nezpevneny");
     if (t.marked) {
       // A reserved tram lane: a wide solid line (25 cm) on the roadway where a part that is no tram lies beside.
       if (!TYPES[segs[i - 1]?.type]?.tracks) el("rect", { x: x + 4, y: top - 3, width: 25, height: 4, fill: "#f2f0ea" }, g);
@@ -1490,7 +1496,7 @@ export function buildSvg(profile, opts = {}) {
       if (s.type === "parkovani" && s.items?.some((it) => it.kind === "strom")) label += tr(" se stromy");
       // What lies under it (rainwater, types.js HDV_UNDER) and permeable paving, in the name.
       if (s.under && HDV_UNDER[s.under]) label += ` + ${HDV_UNDER[s.under].short}`;
-      if (s.permeable) label += tr(", propustný");
+      if (s.permeable) label += s.permeable === "nezpevneny" ? tr(", nezpevněný") : tr(", propustný");
       const name = el("text", { class: "lbl-t", "data-row": 1, "data-w": w, "data-full": label, x: cx, y: GROUND + DROP + 215, "text-anchor": "middle", "font-size": 28, fill: "#4f4e49" }, g);
       const lines = twoLines(label);
       if (label.length * 0.56 * 28 > w && lines) {

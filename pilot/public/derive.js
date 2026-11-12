@@ -1326,6 +1326,8 @@ const FENCE_BARRIERS = new Set(["fence", "wall", "city_wall", "hedge"]);
 const FENCE_AT_FACADE = 1; // m
 const FENCE_SLIVER = 0.6; // m
 const PAVERS = new Set(["grass_paver"]); // OSM surfaces of permeable paving
+// OSM surfaces of no paving (Bára: unpaved cycle paths and footways soak the rain in too).
+const UNPAVED = new Set(["unpaved", "compacted", "fine_gravel", "gravel", "pebblestone", "ground", "dirt", "earth", "mud", "sand", "woodchips", "grass"]);
 const APRON = 1; // a paved strip narrower than this at a building's wall is its apron, not a sidewalk (m)
 const APRON_BEYOND = new Set(["zelen", "predzahradka", "stromorad"]);
 const MEDIAN = 9950;
@@ -1889,14 +1891,16 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   // Permeable paving from OSM (Bára 12. 11. 2026, rainwater 5.1.2): grass pavers (surface=grass_paver) of an area the
   // part's middle lies on (parking: about 300 in Czechia), or of a way crossing the part (service roads, footways,
   // paths: about 900). The only rainwater object the data show along streets.
-  const paver = (t) => PAVERS.has(t?.surface);
-  const paverRings = (osm.elements || []).filter((el) => el.type === "area" && paver(el.tags) && el.geometry)
-    .map((el) => [el.geometry, ...(el.holes || [])].map((r) => r.map((g) => frame.toXY(g.lon, g.lat))));
-  const paverTs = cross.filter((c) => paver(c.way.tags)).map((c) => c.t);
+  // Unpaved surfaces of the same (fine gravel, compacted earth…) are "nezpevneny".
+  const kindOf = (t) => (PAVERS.has(t?.surface) ? true : UNPAVED.has(t?.surface) ? "nezpevneny" : null);
+  const surfAreas = (osm.elements || []).filter((el) => el.type === "area" && kindOf(el.tags) && el.geometry)
+    .map((el) => ({ kind: kindOf(el.tags), rings: [el.geometry, ...(el.holes || [])].map((r) => r.map((g) => frame.toXY(g.lon, g.lat))) }));
+  const surfWays = cross.filter((c) => kindOf(c.way.tags)).map((c) => ({ kind: kindOf(c.way.tags), t: c.t }));
   for (const x of withItems) {
     if (!PERMEABLE_TYPES.includes(x.type)) continue;
     const [px, py] = at((x.s + x.e) / 2);
-    if (paverTs.some((t) => t > x.s && t < x.e) || paverRings.some((rings) => inside(rings, px, py))) x.permeable = true;
+    const hit = surfWays.find((w) => w.t > x.s && w.t < x.e) || surfAreas.find((a) => inside(a.rings, px, py));
+    if (hit) x.permeable = hit.kind;
   }
   // A strip of paving under APRON along a building's wall (an apron, "okapový chodník") with green past it is no
   // sidewalk but a paved area (the rest of a sidewalk beside cars parked on it stays one): it is not walked along (Bára, Vysoké Mýto, Komenského: 0.70 m was warned as a
@@ -1937,7 +1941,7 @@ function toSegment(x) {
   if (x.wires) seg.wires = true;
   if (x.type === "tramvaj") { seg.bed = x.bed || "panely"; if (x.bedSource === "odhad") seg.bedGuess = true; }
   if (x.withBus) seg.withBus = true;
-  if (x.permeable) seg.permeable = true;
+  if (x.permeable) seg.permeable = x.permeable;
   if (x.roadClass && LANE_TYPES.has(x.type)) seg.roadClass = x.roadClass;
   // Segments are reversed to screen order, so item positions flip too.
   if (x.items?.length) seg.items = x.items.map((it) => ({ ...it, f: +(1 - it.f).toFixed(3) }));

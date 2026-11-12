@@ -50,7 +50,10 @@ export const HDV_UNDER = {
 };
 // The parts that may have one; with a průleh above, a rýha under it is the standard's "průleh s podzemní rýhou" (5.1.8).
 export const UNDER_TYPES = ["zelen", "stromorad", "predzahradka", "delici", "pruleh", "chodnik", "chodnik_kola", "stezka_sdilena", "plocha", "parkovani", "nastupiste", "zahradka"];
-// The paved parts that may be permeable (segment.permeable: joints, porous paving; 5.1.2).
+// The paved parts that may be permeable (segment.permeable): true for permeable paving (joints, porous paving;
+// 5.1.2), "nezpevneny" for an unpaved surface (fine gravel, compacted earth, woodchips…: no paving at all, but the
+// rain soaks in too; Bára 12. 11. 2026).
+export const SURFACES = { "": t("běžný"), true: t("propustná dlažba"), nezpevneny: t("nezpevněný (mlat, štěrk)") };
 export const PERMEABLE_TYPES = ["chodnik", "chodnik_kola", "stezka_sdilena", "plocha", "parkovani", "zahradka", "cyklostezka"];
 // The Prague standard of rainwater management, cited by its chapters.
 export const HDV_SOURCE = "https://iprpraha.cz/assets/files/files/bddf4f520d27099cbc0f7a3609918e90.pdf";

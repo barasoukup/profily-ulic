@@ -33,6 +33,10 @@ test("co pod povrchem a propustný povrch projde souborem i odkazem, nesmysly se
   const bad = cleanProfile({ segments: [{ type: "zelen", width: 2, under: "bazen" }, { type: "pruh", width: 3, under: "ryha", permeable: true }] }, "x");
   assert.deepEqual(bad.segments.map((s) => [s.under, s.permeable]), [[undefined, undefined], [undefined, undefined]]);
   assert.ok(!UNDER_TYPES.includes("pruh") && !PERMEABLE_TYPES.includes("pruh"));
+  // Unpaved is a surface of its own; another word is dropped.
+  const u = cleanProfile({ segments: [{ type: "cyklostezka", width: 2.5, dir: "forward", permeable: "nezpevneny" }, { type: "chodnik", width: 2, permeable: "asfalt" }] }, "x");
+  assert.deepEqual(u.segments.map((s) => s.permeable), ["nezpevneny", undefined]);
+  assert.equal((await unpackProfile(await packProfile(u))).segments[0].permeable, "nezpevneny");
 });
 
 test("změna typu odebere, co k novému typu nepatří", () => {

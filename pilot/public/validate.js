@@ -30,7 +30,8 @@ export function cleanProfile(p, what = "profil") {
     for (const k of ["trolley", "wires"]) if (k in s && s[k] !== true) delete s[k];
     // A profile saved before the three kinds of tram (11/2026) has no bed on its tram belt: panels.
     if ("bed" in s && !(s.bed in TRAM_BEDS)) delete s.bed;
-    for (const k of ["withBus", "bedGuess", "permeable"]) if (k in s && s[k] !== true) delete s[k];
+    for (const k of ["withBus", "bedGuess"]) if (k in s && s[k] !== true) delete s[k];
+    if ("permeable" in s && s.permeable !== true && s.permeable !== "nezpevneny") delete s.permeable;
     // A rainwater object under the part (types.js HDV_UNDER), a known one on a part that may have it.
     if ("under" in s && !(Object.hasOwn(HDV_UNDER, s.under) && UNDER_TYPES.includes(s.type))) delete s.under;
     if (s.permeable && !PERMEABLE_TYPES.includes(s.type)) delete s.permeable;

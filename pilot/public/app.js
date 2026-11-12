@@ -1,4 +1,4 @@
-import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, HDV_SOURCE } from "./types.js";
+import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, SURFACES, HDV_SOURCE } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes } from "./lanes-ortho.js";
@@ -682,7 +682,7 @@ function renderShares() {
 // Parts of the design that differ from the current state: edited by hand, or (same parts in the
 // same order) of another width, or with another rainwater object under them, paving or items (Fable's review:
 // changes a width does not show).
-const hidden = (s) => JSON.stringify([s.under || "", !!s.permeable, (s.items || []).map((it) => it.kind)]);
+const hidden = (s) => JSON.stringify([s.under || "", s.permeable || "", (s.items || []).map((it) => it.kind)]);
 function changedParts(a, b) {
   const same = a.segments.length === b.segments.length && a.segments.every((s, i) => s.type === b.segments[i].type);
   const out = new Set();
@@ -1326,13 +1326,15 @@ function renderEditor(p) {
     r2.append(lab(tr("Pod povrchem"), under));
   }
   if (PERMEABLE_TYPES.includes(s.type)) {
-    const perm = Object.assign(document.createElement("input"), { type: "checkbox", checked: !!s.permeable });
-    perm.onchange = () => { if (perm.checked) s.permeable = true; else delete s.permeable; s.source = "user"; done(); };
-    r2.append(lab(tr("Propustný povrch") + " ", perm));
+    // Ordinary, permeable paving (5.1.2) or unpaved.
+    const perm = document.createElement("select");
+    for (const [v, label] of Object.entries(SURFACES)) perm.add(new Option(label, v, false, String(s.permeable || "") === v));
+    perm.onchange = () => { const v = perm.value; if (v === "true") s.permeable = true; else if (v) s.permeable = v; else delete s.permeable; s.source = "user"; done(); };
+    r2.append(lab(tr("Povrch"), perm));
   }
   // The standard's chapter of a rainwater object, to read up on it.
   // A swale with an underground trench is its own object of the standard (5.1.8).
-  const hdv = s.type === "pruleh" && s.under === "ryha" ? ["5.1.8"] : [TYPES[s.type]?.hdv, s.under && HDV_UNDER[s.under]?.hdv, s.permeable && "5.1.2"].filter(Boolean);
+  const hdv = s.type === "pruleh" && s.under === "ryha" ? ["5.1.8"] : [TYPES[s.type]?.hdv, s.under && HDV_UNDER[s.under]?.hdv, s.permeable === true && "5.1.2"].filter(Boolean);
   if (hdv.length) {
     const a = Object.assign(document.createElement("a"), { href: HDV_SOURCE, target: "_blank", rel: "noopener", className: "muted",
       textContent: tr("Standardy hospodaření se srážkovými vodami (Praha), kap. {ch} ↗", { ch: hdv.join(", ") }) });
