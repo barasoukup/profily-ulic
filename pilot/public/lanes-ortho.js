@@ -171,9 +171,11 @@ const SHOULDER_MAX = 3.6; // a boundary of other parts (parking, bike lane…) m
 export function applyLanes(result, img) {
   if (!img || !result?.segments?.length || !result.runs?.length || !result.extent) return 0;
   const H = brightMap(img.st);
-  // The profile's parts with their positions, and its roadways (runs of parts at road level).
+  // The profile's parts with their positions, and its roadways (runs of parts at road level). The segments are in
+  // screen order, from extent[1] down to extent[0] (derive.js), the runs along the cut: the parts are laid from
+  // extent[0] up.
   let t = result.extent[0];
-  const parts = result.segments.map((s) => { const o = { seg: s, s: t, e: t + s.width }; t += s.width; return o; });
+  const parts = [...result.segments].reverse().map((s) => { const o = { seg: s, s: t, e: t + s.width }; t += s.width; return o; });
   const ways = [];
   for (const p of parts) {
     if (RAISED.has(p.seg.type)) continue;
@@ -202,10 +204,10 @@ export function applyLanes(result, img) {
     const segs = w.parts.every((p) => BLOCK.has(p.seg.type)) ? measured(w, c, found) : redraw(w, found.map(toProfile));
     if (segs) { out.push({ w, segs }); changed++; }
   }
-  // Put the new parts in place of the roadways' old ones.
-  for (const { w, segs } of out.reverse()) {
-    const i = result.segments.indexOf(w.parts[0].seg);
-    result.segments.splice(i, w.parts.length, ...segs);
+  // Put the new parts in place of the roadways' old ones (back in screen order).
+  for (const { w, segs } of out) {
+    const i = result.segments.indexOf(w.parts.at(-1).seg);
+    result.segments.splice(i, w.parts.length, ...segs.reverse());
   }
   return changed;
 }
@@ -214,6 +216,18 @@ export function applyLanes(result, img) {
 function measured(w, c, lines) {
   const cuts = [c.s, ...lines, c.e], pieces = cuts.slice(1).map((x, q) => ({ s: cuts[q], e: x, w: x - cuts[q] }));
   const kinds = pieces.map((p, q) => ((q === 0 || q === pieces.length - 1) && p.w < 1 ? "join" : (q === 0 || q === pieces.length - 1) && p.w < LANE_MIN ? "krajnice" : p.w >= LANE_MIN && p.w <= LANE_MAX ? "pruh" : null));
+  // A piece of two lanes whose dashed line was not found (a car on it: Olomoucká) is two lanes, while that does not
+  // give more lanes than the rules had.
+  const had = w.parts.filter((p) => p.seg.type === "pruh").length;
+  for (let q = pieces.length - 1; q >= 0; q--) {
+    const p = pieces[q];
+    if (kinds[q] !== null || p.w < 2 * LANE_MIN || p.w > 2 * LANE_MAX) continue;
+    const lanes = kinds.filter((k, i) => k === "pruh" || (k === null && i !== q)).length + 2;
+    if (lanes > had) continue;
+    const m = (p.s + p.e) / 2;
+    pieces.splice(q, 1, { s: p.s, e: m, w: m - p.s }, { s: m, e: p.e, w: p.e - m });
+    kinds.splice(q, 1, "pruh", "pruh");
+  }
   if (kinds.includes(null) || pieces.length < 2) return null;
   if (kinds[0] === "join") { pieces[1].s = pieces[0].s; pieces[1].w = pieces[1].e - pieces[1].s; }
   if (kinds.at(-1) === "join") { const o = pieces.at(-2); o.e = pieces.at(-1).e; o.w = o.e - o.s; }
@@ -221,7 +235,6 @@ function measured(w, c, lines) {
   if (list.some((p) => p.kind === "pruh" && p.w > LANE_MAX)) return null;
   // More lanes than the rules had: a piece at a kerb where the rules had a shoulder, up to SHOULDER_MAX wide, is the
   // shoulder behind an edge line (Rozvadovská spojka: 3 m behind the line), not one more lane.
-  const had = w.parts.filter((p) => p.seg.type === "pruh").length;
   for (const side of ["s", "e"]) {
     const ruled = (side === "s" ? w.parts[0] : w.parts.at(-1)).seg.type === "krajnice", end = side === "s" ? list[0] : list.at(-1);
     if (ruled && end.kind === "pruh" && end.w <= SHOULDER_MAX && list.filter((p) => p.kind === "pruh").length > had) end.kind = "krajnice";
