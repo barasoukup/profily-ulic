@@ -15,7 +15,10 @@ const BRNO = "https://gis.brno.cz/ags3/rest/services/PUBLIC/opendata_umps/MapSer
 // Brno's layers of network lines → their kind and a description.
 const BRNO_LAYERS = { 25: ["kanalizace", "kanalizace"], 26: ["jine", "kolektor"], 27: ["jine", "neurčená síť"], 28: ["plynovod", "plynovod"], 29: ["jine", "potrubní pošta"],
   30: ["jine", "produktovod"], 31: ["silnoproud", "silnoproud"], 32: ["slaboproud", "slaboproud"], 33: ["teplovod", "teplovod"], 34: ["vodovod", "vodovod"] };
-export const NET_CITIES = { praha: () => t("Data © IPR Praha."), brno: () => t("Data © Statutární město Brno; hloubky jen obvyklé (technická mapa Brna je nemá).") };
+// Brno is left out (12. 11. 2026): its technical map publishes only pieces of the networks' drawing (577 pieces of
+// water mains in the whole city, none around a cut of Olomoucká), not their routes; the code stays for when it does.
+export const NET_CITIES = { praha: () => t("Data © IPR Praha.") };
+export const NET_BRNO = () => t("Data © Statutární město Brno; hloubky jen obvyklé (technická mapa Brna je nemá).");
 const DMR = "https://ags.cuzk.gov.cz/arcgis2/rest/services/dmr5g/ImageServer/exportImage";
 const DEPTH_OK = [0.2, 8];
 const R = 6378137;
