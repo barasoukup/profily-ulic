@@ -202,7 +202,7 @@ export const EN = {
   "Oddálit profil": "Zoom out of the profile",
   "Lupa profilu": "Profile magnifier",
   "◍ Sítě": "◍ Networks",
-  "Sítě pod zemí – zkušebně, jen v Praze: sítě technické mapy IPR pod ulicí a v mapě": "Underground networks – trial, Prague only: the networks of IPR's technical map under the street and on the map",
+  "Sítě pod zemí, jen v Praze: sítě technické mapy IPR pod ulicí a v mapě": "Underground networks, Prague only: the networks of IPR's technical map under the street and on the map",
   "kanalizace": "sewer",
   "vodovod": "water main",
   "plynovod": "gas main",
@@ -578,7 +578,7 @@ export const EN = {
   "Nový díl přijde vpravo od vybraného, na jeho úkor.": "The new part goes to the right of the selected one and takes room from it.",
   "Nový díl přijde na konec.": "The new part goes at the end.",
   "Nový díl přijde vpravo od vybraného.": "The new part goes to the right of the selected one.",
-  "Sítě pod zemí (zkušebně, ne v exportu); čárkovaně: obvyklá hloubka, v datech chybí.": "Underground networks (a trial, not in exports); dashed: the usual depth, missing from the data.",
+  "Sítě pod zemí (ne v exportu); čárkovaně: obvyklá hloubka, v datech chybí.": "Underground networks (not in exports); dashed: the usual depth, missing from the data.",
   "{label} {w}: pod minimem": "{label} {w}: below the minimum",
   "{label} {w}: užší než základ": "{label} {w}: narrower than the basic width",
   "Vozovka": "Carriageway",
@@ -588,7 +588,7 @@ export const EN = {
   "Data © IPR Praha, ČÚZK, města a kraje, OpenStreetMap · ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí":
     "Data © IPR Praha, ČÚZK, cities and regions, OpenStreetMap · illustrations Streetmix (CC BY-SA 4.0) and © Bára Soukupová · sources, licences and privacy",
   // Rainwater objects at their size, with the networks.
-  "Pod povrchem a sítě (zkušebně):": "Below the surface and the networks (a trial):",
+  "Pod povrchem a sítě:": "Below the surface and the networks:",
   "šířka": "width",
   "od hloubky": "from a depth of",
   "výška": "height",

@@ -749,7 +749,7 @@ function renderRuleCheck(p, box) {
   if (!found.length) { el.hidden = true; return; }
   el.hidden = false;
   el.replaceChildren();
-  for (const [head, list] of [[city.rulesHead, widths], [tr("Pod povrchem a sítě (zkušebně):"), clashes]]) if (list.length) el.append(Object.assign(document.createElement("div"), { textContent: head }), warnList(list));
+  for (const [head, list] of [[city.rulesHead, widths], [tr("Pod povrchem a sítě:"), clashes]]) if (list.length) el.append(Object.assign(document.createElement("div"), { textContent: head }), warnList(list));
 }
 function warnList(found) {
   const ul = document.createElement("ul");
@@ -1819,7 +1819,7 @@ function loadUnderground() {
   if (here !== netInControl) { if (here) layersControl.addOverlay(netLayer, tr("Sítě pod zemí")); else layersControl.removeLayer(netLayer); netInControl = here; }
   $("#site-btn").hidden = !here || state.mode === "porovnat";
   $("#net-hint").hidden = !undergroundFor();
-  if (here) $("#net-hint").textContent = `${tr("Sítě pod zemí (zkušebně, ne v exportu); čárkovaně: obvyklá hloubka, v datech chybí.")} ${NET_CITIES[state.cut.city]()}`;
+  if (here) $("#net-hint").textContent = `${tr("Sítě pod zemí (ne v exportu); čárkovaně: obvyklá hloubka, v datech chybí.")} ${NET_CITIES[state.cut.city]()}`;
   if (!siteOn() || !here || state.underground?.cut === state.cut) return;
   const cut = state.cut, b = (cut.bearing * Math.PI) / 180, span = cutSpan(cut);
   state.underground = { cut, items: null };
