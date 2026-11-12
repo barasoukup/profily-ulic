@@ -1223,7 +1223,7 @@ export function buildSvg(profile, opts = {}) {
   const segs = profile.segments;
   const total = totalWidth(profile) * 100;
   const under = opts.underground?.items?.length ? opts.underground : null;
-  DROP = under ? undergroundDrop(under.items) : 0;
+  DROP = under ? undergroundDrop(under.items, under.kinds) : 0;
   const view = opts.view || [-EDGE, Math.max(total + 2 * EDGE, 2400)];
   const vx = view[0] - (view[1] - (total + 2 * EDGE)) / 2;
   // Tall buildings at the edges extend the drawing upwards.
@@ -1582,35 +1582,37 @@ export function svgString(svgs, gap = 40) {
   return new XMLSerializer().serializeToString(out);
 }
 
-// The networks right under the street, at their real depth under the roadway's surface (GROUND) and real size (a
-// trial, Bára): the earth goes on below the profile's own band, the rows of labels move down by DROP.
-const NET_V = 100; // drawing units per metre of depth, as across
-function undergroundDrop(items) {
+// The networks right under the street, at their real depth and size (a trial, Bára): the depth counts from the
+// bottom of the drawn roadway (schematically, GROUND + 60), where light earth starts and goes on below the profile's
+// band; the rows of labels move down by DROP; the legend in one column under the right edge (its house).
+const NET_V = 100, NET_TOP = GROUND + 60, LEGEND_ROW = 46; // drawing units per metre of depth, as across
+const netEntries = (items, kinds) => [...[...new Set(items.map((i) => i.kind))].map((kind) => ({ k: kinds[kind] || kinds.jine })),
+  { empty: true, k: { label: "hloubka neznámá", color: "#6b6a65" } }];
+function undergroundDrop(items, kinds) {
   const deepest = Math.min(4, Math.max(1.5, ...items.map((i) => i.depth + 0.2)));
-  return Math.max(0, (deepest + 0.25) * NET_V - 100) + 90; // + a row for the legend
+  const depth = (deepest + 0.15) * NET_V, legend = 30 + netEntries(items, kinds).length * LEGEND_ROW;
+  return Math.max(0, NET_TOP + Math.max(depth, legend) - (GROUND + 100));
 }
 function drawNetworks(svg, { items, span, kinds }, total) {
   const len = span.left + span.right, x = (t) => ((span.left - t) / len) * total;
-  const g = el("g", { class: "networks" }, svg), base = GROUND + 100 + DROP - 90;
-  el("rect", { x: 0, y: GROUND + 100, width: total, height: base - GROUND - 100, fill: "#b49a78" }, g);
-  for (let m = 1; GROUND + m * NET_V < base; m++) {
-    el("line", { x1: 0, x2: total, y1: GROUND + m * NET_V, y2: GROUND + m * NET_V, stroke: "#d8cbb6", "stroke-width": 1.5, "stroke-dasharray": "10 8", opacity: 0.8 }, g);
-    el("text", { x: -14, y: GROUND + m * NET_V + 10, "text-anchor": "end", "font-size": 28, fill: "#6b6a65" }, g).textContent = `${m} m`;
+  const g = el("g", { class: "networks" }, svg), base = GROUND + 100 + DROP;
+  el("rect", { x: 0, y: NET_TOP, width: total, height: base - NET_TOP, fill: "#d9c4a3" }, g);
+  for (let m = 1; NET_TOP + m * NET_V < base - 10; m++) {
+    el("line", { x1: 0, x2: total, y1: NET_TOP + m * NET_V, y2: NET_TOP + m * NET_V, stroke: "#b9a383", "stroke-width": 1.5, "stroke-dasharray": "10 8" }, g);
+    el("text", { x: 12, y: NET_TOP + m * NET_V - 8, "font-size": 26, fill: "#7a6a52" }, g).textContent = `${m} m`;
   }
   for (const it of items) {
     const k = kinds[it.kind] || kinds.jine, dn = it.profil > 20 && it.profil < 3000 ? it.profil : k.dn, r = Math.max(8, dn / 20);
-    const cy = Math.min(base - r - 4, GROUND + it.depth * NET_V + r), n = el("g", {}, g);
+    const cy = Math.min(base - r - 4, NET_TOP + it.depth * NET_V + r), n = el("g", {}, g);
     el("title", {}, n).textContent = `${it.popis}${it.profil > 20 ? `, DN ${it.profil}` : ""}${it.lines > 1 ? ` (v datech ${it.lines}× vedle sebe)` : ""}: ${it.measured ? `hloubka ${String(it.depth).replace(".", ",")} m` : `hloubka neznámá, obvyklá ${String(it.depth).replace(".", ",")} m`}`;
     el("circle", { cx: x(it.t), cy, r, fill: it.measured ? k.color : "#fbfaf6", stroke: k.color, "stroke-width": it.measured ? 2 : 4, "stroke-dasharray": it.measured ? "" : "6 4" }, n);
   }
-  // The legend in the last row of the earth.
-  let lx = 20;
-  const ly = base + 56;
-  const entries = [...new Set(items.map((i) => i.kind))].map((kind) => ({ k: kinds[kind] || kinds.jine }));
-  entries.push({ empty: true, k: { label: "hloubka neznámá", color: "#6b6a65" } });
-  for (const e of entries) {
-    el("circle", { cx: lx + 16, cy: ly - 10, r: 14, fill: e.empty ? "#fbfaf6" : e.k.color, stroke: e.empty ? e.k.color : "none", "stroke-width": 4, "stroke-dasharray": e.empty ? "6 4" : "" }, g);
+  // The legend: one column under the right edge, on a light card over its earth.
+  const entries = netEntries(items, kinds);
+  el("rect", { x: total + 16, y: NET_TOP + 8, width: EDGE - 32, height: entries.length * LEGEND_ROW + 14, rx: 10, fill: "#fbfaf6", opacity: 0.92 }, g);
+  entries.forEach((e, i) => {
+    const lx = total + 30, ly = NET_TOP + 40 + i * LEGEND_ROW;
+    el("circle", { cx: lx + 14, cy: ly - 10, r: 14, fill: e.empty ? "#fbfaf6" : e.k.color, stroke: e.empty ? e.k.color : "none", "stroke-width": 4, "stroke-dasharray": e.empty ? "6 4" : "" }, g);
     el("text", { x: lx + 38, y: ly, "font-size": 30, fill: "#3d3b36" }, g).textContent = e.k.label;
-    lx += 70 + e.k.label.length * 17;
-  }
+  });
 }
