@@ -57,7 +57,7 @@ export function underSize(s) {
   if (!d) return null;
   const own = s.underSize || {};
   const room = Math.max(0.3, s.width - 0.2);
-  return { w: Math.min(room, own.w ?? d.w ?? Math.max(0.3, s.width - 0.6)), top: own.top ?? d.top, h: own.h ?? d.h };
+  return { w: +Math.min(room, own.w ?? d.w ?? Math.max(0.3, s.width - 0.6)).toFixed(2), top: own.top ?? d.top, h: own.h ?? d.h };
 }
 // The parts that may have one; with a průleh above, a rýha under it is the standard's "průleh s podzemní rýhou" (5.1.8).
 export const UNDER_TYPES = ["zelen", "stromorad", "predzahradka", "delici", "pruleh", "chodnik", "chodnik_kola", "stezka_sdilena", "plocha", "parkovani", "nastupiste", "zahradka"];

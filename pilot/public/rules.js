@@ -135,6 +135,8 @@ export function checkUnder(profile, under) {
   profile.segments.forEach((s, i) => {
     const z = s.under && underSize(s);
     if (z) {
+      // One warning per object (Fable: one per network repeated itself), red when it runs into any.
+      const hits = new Set(), near = new Set();
       const cx = x + s.width / 2;
       for (const it of under.items) {
         const k = under.kinds?.[it.kind];
@@ -143,11 +145,16 @@ export function checkUnder(profile, under) {
         // How far the pipe's rim is from the object, across and down (0 inside it).
         const gap = Math.hypot(Math.max(0, Math.abs(m - cx) - z.w / 2), Math.max(0, z.top - depth, depth - z.top - z.h)) - r;
         if (gap >= NEAR) continue;
-        const hit = gap <= 0;
+        (gap <= 0 ? hits : near).add(t("{net} v hloubce {d}", { net: k?.label || it.kind, d: fmt(it.depth) }));
+      }
+      if (hits.size || near.size) {
         const name = HDV_UNDER[s.under].label;
-        const v = { obj: name[0].toUpperCase() + name.slice(1), part: TYPES[s.type]?.label || s.type, net: k?.label || it.kind, d: fmt(it.depth) };
-        out.push({ i, level: hit ? "min" : "zaklad", short: hit ? t("{obj} pod částí {part} narazí na {net} ({d} pod povrchem)", v) : t("{obj} pod částí {part} je blíž než {near} od sítě {net} ({d} pod povrchem)", { ...v, near: fmt(NEAR) }),
-          why: t("střet se sítí a jejím ochranným pásmem posuďte se správcem sítě (Standardy HDV, kap. 6.2.9)") });
+        const v = { obj: name[0].toUpperCase() + name.slice(1), part: (TYPES[s.type]?.label || s.type).toLowerCase(), near: fmt(NEAR) };
+        const nearText = (list) => t("blíž než {near} od: {list}", { ...v, list });
+        const short = hits.size
+          ? t("{obj} pod částí {part} narazí na: {list}", { ...v, list: [...hits].join(", ") }) + (near.size ? `; ${nearText([...near].join(", "))}` : "")
+          : t("{obj} pod částí {part}: {what}", { ...v, what: nearText([...near].join(", ")) });
+        out.push({ i, level: hits.size ? "min" : "zaklad", short, why: t("střet se sítí a jejím ochranným pásmem posuďte se správcem sítě (Standardy HDV, kap. 6.2.9)") });
       }
     }
     x += s.width;

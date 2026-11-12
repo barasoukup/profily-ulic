@@ -6,7 +6,7 @@ import { underground, KINDS as NET_KINDS, NET_CITIES } from "./site.js";
 // Lanes and shoulders from the road markings of the orthophoto (lanes-ortho.js); ?orto=0 leaves the rules' profile.
 const LANES_ORTHO = new URLSearchParams(location.search).get("orto") !== "0";
 import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, signFits, MAX_PER_PART } from "./signs.js";
-import { loadSprites, loadSigns, layoutSigns, buildSvg, isHole, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, edgeInfo, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
+import { loadSprites, loadSigns, layoutSigns, buildSvg, isHole, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, edgeInfo, underDepth, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
 import * as sources from "./sources.js";
 import { MAPY_KEY } from "./config.js";
 import { cleanProfile, cleanCut, retype } from "./validate.js";
@@ -445,7 +445,7 @@ $("#btn-copy-cut").onclick = async () => {
   if (!state.cut) return;
   const text = `${cutText(state.cut)} (${streetName(state.cut)}) ${location.href}`;
   try { await navigator.clipboard.writeText(text); status(tr("Poloha řezu je ve schránce."), "ok"); }
-  catch { prompt(tr("Zkopírujte polohu řezu:"), text); }
+  catch { try { prompt(tr("Zkopírujte polohu řezu:"), text); } catch { status(text, "ok"); } } // no prompt in some web views
 };
 
 // Paste "lat, lon · azimut N°" (or a #rez= link) to jump to a cut.
@@ -552,13 +552,20 @@ const canEdit = () => state.mode === "navrh" || (state.mode === "stav" && state.
 // render() rebuilds the drawing, the editor and the palette: keyboard focus inside them goes back
 // to the same place (the selected part, or the control at the same position, so "+ + +" keeps
 // working) instead of falling to the top of the page.
+// A field changed by Tab has lost the focus when its change redraws the editor (Fable: the size fields could not be
+// filled in one after another): the focus goes on from that field, to the next one (or back with Shift).
 const FOCUSABLE = "button, select, input, label.btn, [tabindex]";
+let changed = null, tabbed = 0;
+addEventListener("change", (e) => { changed = e.target; }, true);
+addEventListener("keydown", (e) => { tabbed = e.key === "Tab" ? (e.shiftKey ? -1 : 1) : 0; }, true);
 function render() {
   // Sign icons load on first use; the drawing is redone once they are there.
   loadSigns(state.stav, state.navrh).then((fresh) => fresh && render(), () => {});
-  const a = document.activeElement;
+  const left = document.activeElement === document.body && changed?.isConnected;
+  const a = left ? changed : document.activeElement;
+  changed = null;
   const box = a?.closest?.("#profile, #editor, #palette");
-  const index = box && box.id !== "profile" ? [...box.querySelectorAll(FOCUSABLE)].indexOf(a) : -1;
+  const index = box && box.id !== "profile" ? [...box.querySelectorAll(FOCUSABLE)].indexOf(a) + (left ? tabbed : 0) : -1;
   draw();
   drawSelection();
   loadUnderground(); // a cut restored from storage or a link asks for its networks too (once per cut)
@@ -611,7 +618,9 @@ function draw() {
   if (state.mode === "porovnat") {
     box.replaceChildren();
     const changed = changedParts(state.stav, state.navrh);
-    for (const [title, p, opts] of [[tr("Stav"), state.stav, {}], [tr("Návrh"), state.navrh, { changed }]]) {
+    // One depth of earth for both, so they keep one scale (a rainwater object in the design only, Fable).
+    const deep = Math.max(underDepth(state.stav), underDepth(state.navrh));
+    for (const [title, p, opts] of [[tr("Stav"), state.stav, { deep }], [tr("Návrh"), state.navrh, { changed, deep }]]) {
       const h = Object.assign(document.createElement("h3"), { className: "compare-title", textContent: title });
       if (opts.changed?.size) h.append(Object.assign(document.createElement("span"), { className: "muted", textContent: tr(" · změněné části jsou obtažené") }));
       box.append(h, buildSvg(p, opts));
@@ -689,7 +698,7 @@ function renderShares() {
 // Parts of the design that differ from the current state: edited by hand, or (same parts in the
 // same order) of another width, or with another rainwater object under them, paving or items (Fable's review:
 // changes a width does not show).
-const hidden = (s) => JSON.stringify([s.under || "", s.permeable || "", (s.items || []).map((it) => it.kind)]);
+const hidden = (s) => JSON.stringify([s.under || "", s.under ? underSize(s) : "", s.permeable || "", (s.items || []).map((it) => it.kind)]);
 function changedParts(a, b) {
   const same = a.segments.length === b.segments.length && a.segments.every((s, i) => s.type === b.segments[i].type);
   const out = new Set();
@@ -709,6 +718,7 @@ function diffList(a, b) {
     a.segments.forEach((s, i) => {
       const d = +(b.segments[i].width - s.width).toFixed(2);
       if (d) items.push({ i, text: `${name(s)}: ${fmtM(s.width)} → ${fmtM(b.segments[i].width)} (${d > 0 ? "+" : "−"}${fmtM(Math.abs(d))})` });
+      else if ((s.under || "") !== (b.segments[i].under || "")) items.push({ i, text: tr("{type}: pod povrchem {what}", { type: name(s), what: HDV_UNDER[b.segments[i].under]?.label || tr("nic") }) });
       else if (hidden(s) !== hidden(b.segments[i])) items.push({ i, text: tr("{type}: jiné prvky, povrch nebo co je pod povrchem", { type: name(s) }) });
     });
   } else {
@@ -746,7 +756,7 @@ function renderRuleCheck(p, box) {
   const widths = checkRules(p), clashes = checkUnder(p, undergroundFor());
   const found = [...widths, ...clashes];
   for (const f of found) box.querySelector(`g.seg[data-i="${f.i}"]`)?.classList.add(`warn-${f.level}`);
-  if (!found.length) { el.hidden = true; return; }
+  if (!found.length) { el.hidden = true; el.replaceChildren(); return; }
   el.hidden = false;
   el.replaceChildren();
   for (const [head, list] of [[city.rulesHead, widths], [tr("Pod povrchem a sítě:"), clashes]]) if (list.length) el.append(Object.assign(document.createElement("div"), { textContent: head }), warnList(list));
@@ -759,6 +769,8 @@ function warnList(found) {
     if (f.short) li.append(Object.assign(document.createElement("strong"), { textContent: f.short }), " ", Object.assign(document.createElement("span"), { className: "muted", textContent: f.why }));
     else li.textContent = f.text;
     li.onclick = () => { state.selected = f.i; render(); };
+    li.tabIndex = 0;
+    li.onkeydown = (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); li.onclick(); } };
     ul.append(li);
   }
   return ul;
@@ -1160,6 +1172,7 @@ function edgeKindSelect(p, side) {
   const current = p.edges?.[side] || "volno";
   for (const [k, t] of [["budova", tr("Budova")], ...EDGE_KINDS()]) sel.add(new Option(t, k, false, current === k));
   sel.onchange = () => {
+    if (sel.value === current) return;
     p.edges = { ...p.edges, [side]: sel.value };
     delete p.edges[`${side}Style`];
     edited();
@@ -1414,8 +1427,13 @@ function renderEditor(p) {
       for (const [k, text, lo, hi] of [["w", tr("šířka"), 0.3, Math.max(0.3, s.width - 0.2)], ["top", tr("od hloubky"), 0, 5], ["h", tr("výška"), 0.2, 5]]) {
         const inp = Object.assign(document.createElement("input"), { type: "number", step: 0.1, min: lo, max: +hi.toFixed(2), value: z[k] });
         inp.onchange = () => {
-          const v = Math.min(hi, Math.max(lo, +(+inp.value).toFixed(2)));
-          if (Number.isFinite(v)) s.underSize = { ...s.underSize, [k]: v };
+          // An emptied field goes back to the default (Fable: it gave 0).
+          if (inp.value === "" || !Number.isFinite(+inp.value)) { if (s.underSize) delete s.underSize[k]; }
+          else s.underSize = { ...s.underSize, [k]: Math.min(hi, Math.max(lo, +(+inp.value).toFixed(2))) };
+          // Only what differs from the default travels in a link.
+          const d = HDV_UNDER[s.under].size;
+          if (s.underSize?.[k] === d[k]) delete s.underSize[k];
+          if (s.underSize && !Object.keys(s.underSize).length) delete s.underSize;
           s.source = "user";
           done();
         };
@@ -1652,7 +1670,7 @@ $("#report-send").onclick = async () => {
 // The header menus close after a choice or a click elsewhere.
 document.addEventListener("click", (e) => {
   for (const d of document.querySelectorAll("details.menu[open]")) {
-    if (!d.contains(e.target) || e.target.closest(".menu-list button")) d.open = false;
+    if (!d.contains(e.target) || e.target.closest(".menu-list button:not(.switch)")) d.open = false;
   }
 });
 
@@ -1934,10 +1952,8 @@ try {
   const elsewhere = startCity && !linked && saved?.cut && cityAt(saved.cut.lat, saved.cut.lon) !== startCity;
   if (saved?.stav && !linked && !elsewhere) {
     restore(saved);
-    const mode = sessionStorage.getItem("profily-rezim");
-    if (["navrh", "porovnat"].includes(mode)) { state.mode = mode; render(); }
+    takeMode();
   } else render();
-  sessionStorage.removeItem("profily-rezim");
 } catch {
   render();
 }
@@ -1970,7 +1986,13 @@ async function openLink(hash) {
     status(tr("Návrh z odkazu se nepodařilo načíst (odkaz je asi poškozený), ukazuji ulici podle dat."), "error");
   }
 }
-if (linked) openLink(location.hash);
+// The mode kept over a change of language (the lang button) applies once the cut is there, from storage or a link.
+function takeMode() {
+  let mode = null;
+  try { mode = sessionStorage.getItem("profily-rezim"); sessionStorage.removeItem("profily-rezim"); } catch {}
+  if (state.stav && ["navrh", "porovnat"].includes(mode)) { state.mode = mode; render(); }
+}
+if (linked) openLink(location.hash).then(takeMode);
 
 // A cut link pasted into the address bar of an open tab (the app's own updates use replaceState,
 // which fires no hashchange).
@@ -1988,5 +2010,5 @@ $("#btn-share").onclick = async () => {
   if (state.navrhEdited) url += "&navrh=" + (await packProfile(state.navrh));
   if (stavEdited) url += "&stav=" + (await packProfile(state.stav));
   try { await navigator.clipboard.writeText(url); status(state.navrhEdited ? tr("Odkaz na návrh je ve schránce.") : tr("Odkaz na ulici je ve schránce (návrh zatím nemáte)."), "ok"); }
-  catch { prompt(tr("Zkopírujte odkaz:"), url); }
+  catch { try { prompt(tr("Zkopírujte odkaz:"), url); } catch { status(url, "ok"); } } // no prompt in some web views
 };

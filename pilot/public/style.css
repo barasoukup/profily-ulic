@@ -268,7 +268,7 @@ button.tag { padding: 3px 9px; border-radius: 20px; font-size: 12px; }
 #rule-check li { cursor: pointer; }
 #rule-check .muted { font-size: 12px; }
 #profile .seg.warn-min rect.ground { stroke: #c0392b; stroke-width: 6; stroke-dasharray: 14 8; }
-#profile .seg.warn-zaklad rect.ground { stroke: #d68910; stroke-width: 4; stroke-dasharray: 10 8; }
+#profile .seg.warn-zaklad:not(.warn-min) rect.ground { stroke: #d68910; stroke-width: 4; stroke-dasharray: 10 8; }
 
 /* Parts to add, each with its colour from the drawing. */
 #palette { display: flex; flex-direction: column; gap: 8px; }
@@ -332,7 +332,8 @@ footer a { color: inherit; }
   .empty { flex-direction: column; text-align: center; padding: 16px 8px; }
   .empty ol { text-align: left; }
   #editor { padding: 10px; }
-  #editor input[type=number], #editor select,   #palette .chip { min-height: 40px; padding: 8px 12px 8px 9px; font-size: 13px; }
+  #editor input[type=number], #editor select, .menu-list input, #report-text { font-size: 16px; } /* no zoom on focus in iOS */
+  #palette .chip { min-height: 40px; padding: 8px 12px 8px 9px; font-size: 13px; }
   .pal-name { width: 100%; }
   #editor label { flex-direction: column; align-items: stretch; gap: 4px; }
   #editor .ed-row > label { flex: 1 1 140px; }

@@ -81,3 +81,13 @@ test("střet objektu pod povrchem se sítí: jen když se překrývají", () => 
   assert.equal(checkUnder(p, at(5, 0.8)).length, 0); // under the lane
   assert.equal(checkUnder(p, null).length, 0);
 });
+
+test("jeden objekt má jedno varování: červeně, když narazí na kteroukoli síť, stejné sítě jednou", () => {
+  const kinds = { vodovod: { label: "vodovod", dn: 150 }, slaboproud: { label: "slaboproud", dn: 110 } };
+  const p = { segments: [{ type: "chodnik", width: 4, under: "ryha" }] };
+  const items = [{ t: 8, depth: 0.8, kind: "vodovod" }, { t: 6.8, depth: 0.5, kind: "slaboproud" }, { t: 6.8, depth: 0.5, kind: "slaboproud" }];
+  const found = checkUnder(p, { items, span: { left: 10 }, kinds });
+  assert.equal(found.length, 1);
+  assert.equal(found[0].level, "min");
+  assert.match(found[0].short, /narazí na: vodovod v hloubce 0,80 m; blíž než 0,50 m od: slaboproud v hloubce 0,50 m$/);
+});

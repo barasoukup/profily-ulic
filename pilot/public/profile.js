@@ -1325,13 +1325,16 @@ function drawSigns(svg, profile, bounds) {
   for (const g of svg.querySelectorAll("g.sign-group")) if (!g.querySelector("image")) g.remove();
 }
 
+// How deep the rainwater objects under a profile's parts reach (m), 0 without any.
+export const underDepth = (p) => Math.max(0, ...p.segments.filter((s) => s.under).map((s) => { const z = underSize(s); return z ? z.top + z.h : 0; }));
 export function buildSvg(profile, opts = {}) {
   const segs = profile.segments;
   const total = totalWidth(profile) * 100;
   // The earth under the street, with its metres: for the networks (a trial, Prague) and for a rainwater object
   // under a part, which is drawn at its depth and size (with the networks or alone, also in Porovnat and exports).
   const nets = opts.underground?.items?.length ? opts.underground : null;
-  const deepest = Math.max(0, ...segs.filter((s) => s.under).map((s) => { const z = underSize(s); return z.top + z.h; }));
+  // In Porovnat both profiles take the deeper one's earth (opts.deep), so they keep one scale (Fable).
+  const deepest = Math.max(opts.deep || 0, underDepth(profile));
   const under = nets || (deepest ? { items: [], span: { left: total / 100 }, kinds: {} } : null);
   DROP = under ? undergroundDrop(under.items, under.kinds, deepest) : 0;
   const view = opts.view || [-EDGE, Math.max(total + 2 * EDGE, 2400)];
@@ -1573,6 +1576,7 @@ export function buildSvg(profile, opts = {}) {
     // The networks over them, so a pipe running through a tank shows (and its tooltip works).
     const over = el("g", { class: "networks" }, svg);
     for (const n of [...svg.querySelectorAll("g.networks > g")]) if (n.dataset.tip) over.append(n);
+    if (!over.childNodes.length) over.remove();
   }
   svg.dataset.drop = DROP;
 
@@ -1728,7 +1732,8 @@ const netEntries = (items, kinds) => [
   ...(items.some((i) => !i.measured) ? [{ empty: true, k: { label: tr("hloubka neznámá"), color: "#6b6a65" } }] : []),
 ];
 function undergroundDrop(items, kinds, objects = 0) {
-  const deepest = Math.min(5, Math.max(items.length ? 2 : 1, objects + 0.2, ...items.map((i) => i.depth + 0.2)));
+  // The networks to 4 m at most (deeper ones sit at the bottom); a rainwater object to its bottom (editor: 10 m).
+  const deepest = Math.max(Math.min(4, Math.max(items.length ? 2 : 1, ...items.map((i) => i.depth + 0.2))), objects + 0.2);
   const depth = BASE_COURSE + (deepest + 0.15) * NET_V + 40, legend = 30 + netEntries(items, kinds).length * LEGEND_ROW;
   return Math.max(0, NET_TOP + Math.max(depth, legend) - (GROUND + 104));
 }
