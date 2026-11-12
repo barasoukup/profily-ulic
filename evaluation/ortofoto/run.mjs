@@ -150,8 +150,9 @@ const ROAD = new Set(Object.entries(TYPES).filter(([k, v]) => !v.raised && k !==
 // it overlaps most (runs of codes 700/701/704 and parking stalls 97xx, the geometry): its parts stretched to the carriageway's real edges.
 const CARRIAGE = (c) => c === 700 || c === 701 || c === 704 || (c >= 9700 && c < 9800); // road, parking lots, parking stalls laid over
 function layout(p) {
+  // The segments are in screen order, from extent[1] down to extent[0] (derive.js); laid from extent[0] up.
   let t = p.extent[0];
-  const parts = p.segments.map((s, i) => { const o = { i, type: s.type, source: s.source, s: t, e: t + s.width, w: s.width, orient: s.orient }; t += s.width; return o; });
+  const parts = p.segments.map((s, i) => ({ s, i })).reverse().map(({ s, i }) => { const o = { i, type: s.type, source: s.source, s: t, e: t + s.width, w: s.width, orient: s.orient }; t += s.width; return o; });
   const carriages = [];
   for (const r of p.runs || []) {
     const last = carriages.at(-1);
