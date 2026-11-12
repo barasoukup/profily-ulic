@@ -68,16 +68,17 @@ export async function laneImage({ frame, dir, t0, t1, cityId, timeout = TIMEOUT,
       const o = (py * img.width + px) * 4;
       L[j * nt + i] = 0.299 * img.data[o] + 0.587 * img.data[o + 1] + 0.114 * img.data[o + 2];
     }
-    return { source: key, st: { nt, nu, res, t0, L } };
+    return { source: key, st: { nt, nu, res, t0, L, fine: key !== "cuzk" } };
   } catch {
     return null;
   }
 }
 
 // ---------- the lines ----------
-const REL = 0.14, MIN_DL = 10, SHARE = 0.1, MAX_W = 0.6, BLOCKS = 8, MIN_SPREAD = 3, WIDER = 1.5;
+const FAINT = 0.6, LONG = 0.3, REL = 0.14, MIN_DL = 10, SHARE = 0.1, MAX_W = 0.6, BLOCKS = 8, MIN_SPREAD = 3, WIDER = 1.5;
 const CURVES = [0, 1 / 200, -1 / 200, 1 / 100, -1 / 100, 1 / 50, -1 / 50]; // 1/R: the street may bend (Bára)
-// Pixels brighter than the median of their row's surroundings (±0.75 m) by REL of it.
+// Pixels brighter than the median of their row's surroundings (±0.75 m) by REL of it; the value is by how much
+// (paint stands out about twice as much as worn, lighter asphalt).
 export function brightMap(st) {
   const { nt, nu, res, L } = st, win = Math.max(2, Math.round(0.75 / res)), H = new Uint8Array(nt * nu), step = Math.max(1, win >> 2);
   for (let j = 0; j < nu; j++) for (let i = win; i < nt - win; i++) {
@@ -86,7 +87,7 @@ export function brightMap(st) {
     const around = [];
     for (let d = -win; d <= win; d += step) if (Math.abs(d) > 1) around.push(L[j * nt + i + d]);
     const m = median(around);
-    if (v - m > Math.max(MIN_DL, REL * m)) H[j * nt + i] = 1;
+    if (v - m > Math.max(MIN_DL, REL * m)) H[j * nt + i] = Math.min(255, Math.round(v - m));
   }
   return H;
 }
@@ -95,7 +96,7 @@ function shareCurve(st, H, s, e, tan, k) {
   const i0 = Math.max(0, Math.floor((s - WIDER - t0) / res)), i1 = Math.min(nt - 1, Math.floor((e + WIDER - t0) / res));
   const out = [];
   for (let i = i0; i <= i1; i++) {
-    let n = 0, hit = 0;
+    let n = 0, hit = 0, dl = 0;
     const bk = new Array(BLOCKS).fill(0), bn = new Array(BLOCKS).fill(0);
     for (let j = 0; j < nu; j++) {
       const u = ALONG - (j + 0.5) * res, ii = i + Math.round((u * tan + (k * u * u) / 2) / res);
@@ -103,9 +104,9 @@ function shareCurve(st, H, s, e, tan, k) {
       n++;
       const b = Math.min(BLOCKS - 1, Math.floor((j / nu) * BLOCKS));
       bn[b]++;
-      if (H[j * nt + ii]) { hit++; bk[b]++; }
+      if (H[j * nt + ii]) { hit++; bk[b]++; dl += H[j * nt + ii]; }
     }
-    out.push({ t: t0 + (i + 0.5) * res, v: n ? hit / n : 0, spread: bk.filter((x, q) => bn[q] && x / bn[q] >= 0.1).length });
+    out.push({ t: t0 + (i + 0.5) * res, v: n ? hit / n : 0, dl: hit ? dl / hit : 0, spread: bk.filter((x, q) => bn[q] && x / bn[q] >= 0.1).length });
   }
   return out;
 }
@@ -124,7 +125,7 @@ function peaks(share, res) {
     const ring = share.slice(Math.max(0, k - 2 * sep), Math.min(share.length, k + 2 * sep + 1)).map((x) => x.v);
     if (v - Math.min(...ring) < SHARE * 0.8) continue;
     if (Math.max(...share.slice(a, e + 1).map((x) => x.spread)) < MIN_SPREAD) continue;
-    out.push({ t: share[k].t, share: v });
+    out.push({ t: share[k].t, share: v, dl: share[k].dl });
   }
   return out;
 }
@@ -136,7 +137,13 @@ function linesOf(st, H, s, e) {
     const q = sh.reduce((a, x) => a + x.v * x.v, 0);
     if (!best || q > best.q) best = { q, sh };
   }
-  return best ? peaks(best.sh, st.res) : [];
+  // On a city's orthophoto (10 cm, paint fills its pixels) a line standing out less than FAINT of the carriageway's
+  // strongest long line is worn, lighter asphalt between the wheel tracks, not paint (Jateční, Plzeň). On ČÚZK's
+  // 12.5 cm a thin edge line looks as faint (Bohumínská), so there it stays.
+  const found = best ? peaks(best.sh, st.res) : [];
+  if (!st.fine) return found;
+  const top = Math.max(0, ...found.filter((m) => m.share >= LONG).map((m) => m.dl));
+  return found.filter((m) => m.dl >= FAINT * top);
 }
 // Of those inside the carriageway, the set whose gaps look like lanes (2.5–4.75 m; at the kerbs 1–7.5 m for a
 // shoulder; a gap of two lanes whose line is missing with a small penalty), the most line strength.

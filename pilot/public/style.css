@@ -230,7 +230,7 @@ body.loading #profile { opacity: 0.45; transition: opacity 0.2s; }
 #legend[hidden] { display: none; }
 #legend { display: flex; gap: 6px 14px; flex-wrap: wrap; font-size: 12px; color: var(--muted); padding: 0 2px; }
 .src::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; background: var(--c); }
-.src-dtm { --c: var(--dtm); } .src-osm { --c: var(--osm); } .src-tsk { --c: #0f6e56; } .src-odhad { --c: var(--odhad); } .src-user { --c: var(--user); }
+.src-dtm { --c: var(--dtm); } .src-osm { --c: var(--osm); } .src-tsk { --c: #0f6e56; } .src-odhad { --c: var(--odhad); } .src-user { --c: var(--user); } .src-ortofoto { --c: #c07a12; }
 
 .card, #editor { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
 #editor { padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
