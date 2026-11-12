@@ -1508,12 +1508,12 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   const stopAt = (r, limit, k, step) => {
     if (isBuilding(r.code)) return "budova";
     if (byHand[step > 0 ? "L" : "R"]) return Math.min(Math.abs(r.s - ref), Math.abs(r.e - ref)) > limit ? "volno" : null;
-    // A street on a bridge ends with the bridge: past its outer sidewalk lies the ground under it or a road
-    // beside it (Bára, Hlávkův most).
-    if (onBridgeWay && SIDEWALKS.has(runs[k - step]?.code) && !SIDEWALKS.has(r.code)) return "volno";
     // A narrow "other structure" is a wall or parapet (e.g. an embankment wall): the profile goes on.
     if (isMinorStructure(r.code) && r.e - r.s >= WALL_MAX) return "stavba";
     if (inMedian(r)) return null;
+    // A street on a bridge ends with the bridge: past its outer sidewalk lies the ground under it (Bára, Hlávkův
+    // most); a roadway right after a sidewalk is the other half of the bridge (Brno, a paved median).
+    if (onBridgeWay && SIDEWALKS.has(runs[k - step]?.code) && !SIDEWALKS.has(r.code) && !carriage(r.code)) return "volno";
     if (r.code >= 500 && r.code < 600 && r.e - r.s >= OPEN_LAND) return "voda";
     if (r.code === 300) return "zahrada";
     if (isOpenLand(r.code) && r.e - r.s >= OPEN_LAND && !houseAhead(k + step, step, limit)) return "zelen";

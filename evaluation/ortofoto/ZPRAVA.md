@@ -266,3 +266,31 @@ automaticky nedávat.** Hlavní potíže: obrubníky a odvodňovací proužky se
 
 **Pro aplikaci:** krajnici dál odhadovat pravidly, ortofotem jen potvrdit vodicí čárou a zpřesnit její šířku
 (stejný krok jako pruhy). Povrch krajnice z ortofota neurčovat. Šrafy jen z dat města (pasport), kde jsou.
+
+## Prototyp v aplikaci proti značkám (12. 11. 2026)
+
+`proto-eval.mjs`: 117 vozovek označených okem (kvalita „ok“, obě obruby), profil podle pravidel proti profilu po
+`applyLanes()` na ortofotu, které bere aplikace (Praha IPR 10 cm, Brno 2025 s posunem, Plzeň 2024, jinde ČÚZK 12,5 cm).
+Hranice uvnitř vozovky (≥ 0,7 m od obrub) proti označeným čarám, obojí posunuté o skutečný posun mapy proti snímku.
+
+| | čáry do 0,3 m: pravidla | ortofoto | počet pruhů správně: pravidla | ortofoto |
+|---|---|---|---|---|
+| Praha (30) | 32 % | 51 % | 50 % | 53 % |
+| Brno (24) | 21 % | 27 % | 42 % | 58 % |
+| Plzeň (14) | 43 % | 57 % | 71 % | 57 % |
+| Hradec (24) | 19 % | 23 % | 50 % | 38 % |
+| Ostrava (25) | 20 % | 44 % | 56 % | 52 % |
+| celkem (117) | 25 % | 40 % | 52 % | 51 % |
+
+Ortofoto lépe u 33 vozovek, hůře u 11, stejně u 73 (většinou je nezmění). Hranic navíc 190 → 157. Počet pruhů se
+nezlepšil: hůř hlavně tam, kde ortofoto najde čáru u obruby (úzká krajnice) nebo pruh navíc (Hradec, Plzeň).
+
+Oprava: `layout()` v `run.mjs` kladl části profilu v pořadí obrazovky od `extent[0]`, tedy zrcadlově (části jsou
+od `extent[1]` dolů). Starší čísla „aplikace“ v kolech 2–4 se tak počítala se zrcadlovým profilem; tady už správně.
+
+Změny mimo ortofoto, porovnání 100 řezů na město (`VARIANTS=city,stejne2`) se staršími profily: Praha 2 jinak
+(Hlávkův most a Wilsonova končí za krajním chodníkem, šipky `slight_right` jako vpravo), Brno 1 (šipka), Ostrava 1
+(most bez 0,35 m za chodníkem), Hradec 6 (posuny o 5 cm, ne z těchto změn), Plzeň 9 (vrstva 348 „stavba pro
+zpevnění povrchu“ už není zeď: úzké pásy na kraji profilu jsou zpevněná plocha, u č. 48 profil o 5,7 m delší).
+První verze pravidla pro mosty uřízla v Brně (č. 4) druhou polovinu mostu za dlážděným středem; opraveno (za chodníkem
+končí jen tam, kde nenásleduje vozovka).
