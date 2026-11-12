@@ -1621,19 +1621,21 @@ function restore(data) {
   resetHistory();
 }
 
-// Networks under the street (site.js, a trial, Prague only): asked for the cut when the switch is on, drawn as a
-// band under the Stav profile.
+// Networks under the street (site.js, a trial, Prague only): off by default; the switch by the profile asks for
+// them, draws them under the Stav profile and turns on their own layer of the map (which the layer control can
+// then turn off alone).
 function siteOn() { try { return localStorage.getItem("profily-site") === "1"; } catch { return false; } }
 // ?site=1 in a link turns it on (for trying it out).
 if (new URLSearchParams(location.search).get("site") === "1") try { localStorage.setItem("profily-site", "1"); } catch {}
 $("#site-on").checked = siteOn();
 $("#site-on").onchange = (e) => {
   try { localStorage.setItem("profily-site", e.target.checked ? "1" : "0"); } catch {}
+  if (e.target.checked) map.addLayer(netLayer); else map.removeLayer(netLayer);
   loadUnderground();
   render();
 };
 function loadUnderground() {
-  $("#site-switch").hidden = state.cut?.city !== "praha";
+  $("#site-switch").hidden = state.cut?.city !== "praha" || state.mode !== "stav";
   if (!siteOn() || !state.cut || state.cut.city !== "praha" || state.underground?.cut === state.cut) return;
   const cut = state.cut, b = (cut.bearing * Math.PI) / 180, span = cutSpan(cut);
   state.underground = { cut, items: null };
@@ -1642,10 +1644,12 @@ function loadUnderground() {
     .catch((err) => { console.warn("sítě", err); if (state.underground?.cut === cut) state.underground.items = []; });
 }
 // The networks on the map too, in the band's colours (Bára): the lines around the cut, dashed where not verified.
-const netLayer = L.layerGroup().addTo(map);
+const netLayer = L.layerGroup();
+layersControl.addOverlay(netLayer, tr("Sítě pod zemí"));
+if (siteOn()) netLayer.addTo(map);
 let netDrawn = null;
 function drawNetLines() {
-  const items = siteOn() && state.underground?.cut === state.cut ? state.underground.items : null;
+  const items = state.underground?.cut === state.cut ? state.underground.items : null;
   if (netDrawn === items) return;
   netDrawn = items;
   netLayer.clearLayers();
