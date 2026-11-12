@@ -82,6 +82,11 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Nasazení zůstává na GitHub Pages; před nasazením běží `npm test`.
 - Naposledy nasazeno 10. 11. 2026: celá ČR (dlaždice OSM ČR, WFS krajů), nová města, značky, vrstvy, hledání,
   záznam řezů (zapisuje se, ověřeno). Nasazení Pages potřebuje delší timeout (245 000 souborů, `timeout` v pages.yml).
+- Sítě pod zemí (větev site-pod-zemi, Bára 12. 11. 2026): jen Praha (IPR TMIS; Brno publikuje jen kousky kresby, ne
+  trasy), tlačítko ◍ Sítě u profilu (výchozí vypnuto, dotazy jen po zapnutí, zapne i vrstvu v mapě), kreslí se pod
+  vozovkou ve skutečné hloubce a velikosti, ve Stavu i Návrhu, ne v Porovnat. `?site=1` zapne sítě, dokud je
+  uživatel nevypne; přiblížení lupou zůstává i na dalším řezu; v Návrhu i v opravě dat se ulice nezužuje (díry
+  „Neurčeno“), díra v opraveném Stavu se v Porovnat počítá jako změna (vše Bára 12. 11. 2026).
 - Na příště (Bára 12. 11. 2026): výšky povrchu (výškové body technické mapy, DMR 5G) i pro samotný profil: kreslit ho
   ve skutečné výšce (jedna strana ulice výš než druhá, vyvýšená cyklostezka nad vozovkou).
 - Na příště (Bára 12. 11. 2026): ortofoto má rozeznat vodorovné značení od nevyježděných světlých pásů uprostřed pruhů
