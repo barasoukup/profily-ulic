@@ -279,11 +279,25 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
 - Pardubice (`towns/pardubice.js`) nemají vlastní služby, mají jen vlastní ilustrace. Kontrola 49 řezů:
   `evaluation/pardubice/ZPRAVA.md`.
 
-- **Jen čáry bez ploch** (Středočeský kraj, 12. 11. 2026): kraj do DMVS dodává linie (hranice dopravních ploch, ploty,
-  budovy), ale žádné plochy. `dmvs.js` `fromLines` pak rozdělí obrázek čar na plochy, ta pod středem řezu (osa OSM) je
-  vozovka, kusy mezi dvěma hranicemi dopravní plochy směrem ven jsou chodníky (do 6 m), za první jinou čarou (plot, budova)
-  doplní RÚIAN. Druh čáry se ptá GetFeatureInfo (nejvýš 4 na stranu). Šířky jsou z technické mapy, druhy odhad; aplikace
-  to řekne. Když se ani tak vozovka nenajde, hlásí „technická mapa tu má jen čáry“ místo „mimo technickou mapu“.
+- **Ulice jen z čar** (Bára 12. 11. 2026, obecný postup): kde pod středem řezu technická mapa nemá plochu, ale okolo jsou
+  čáry (Středočeský kraj dodává do DMVS jen linie; Kolín a Mladá Boleslav mají plochy okolo, ale ulici jen čarami),
+  `dmvs.js` `fromLines` rozdělí obrázek čar (a hotových ploch) na kusy: ten pod středem řezu (osa OSM) je vozovka, kusy
+  mezi dvěma hranicemi dopravní plochy směrem ven (do 4,5 m) chodník nebo krajnice. Čáry to nerozliší, takže rozhodne
+  `derive.js` `linePieces`: chodník podle OSM `sidewalk`, bez tagu v zástavbě (budova do 30 m, rychlost do 50), a to jen
+  kus nejblíž vozovce; ostatní zeleň. Za první jinou čarou (plot, budova) doplní RÚIAN. Druh čáry se ptá GetFeatureInfo
+  (po třech na stranu, další jen když jsou všechny tři hranicí dopravní plochy, nejvýš 6). Kus uzavře i hotová plocha
+  technické mapy za ním (cesta mezi krajnicí a polem, Mladá Boleslav, Revoluční); zelený pruh profil neukončí, když za ním
+  je chodník nebo stezka; za dlažbu se bere šedý kus světlejší než 100 a hladký (rozptyl jasu pod 35), ne hluboký ani
+  skvrnitý stín stromů. Šířky jsou z technické mapy, druhy odhad; aplikace to řekne. Když se vozovka nenajde, hlásí
+  „technická mapa tu má jen čáry“ místo „mimo technickou mapu“.
+  Kontrola 50 řezů (Kolín, Mladá Boleslav, `CITY=kolin OUT=results-linie2 node evaluation/run_brno.mjs 1 25`): změřená
+  vozovka u 25 místo 8, šířky vozovek sedí na asfalt; zbylé jsou silnice, které technická mapa nemá vůbec (čáry jen jinde).
+  Druh kusů u vozovky rozhodne nejdřív barva ortofota (to samé, co se při kliknutí stahuje kvůli pruhům, `lanes-ortho.js`
+  si drží i zelenost a žlutost pixelů; `derive.js` `surfaceLook`, průměr kusu ±8 m podél ulice): zelený nebo žlutý
+  (suchá tráva na letních snímcích ČÚZK) je zeleň, šedý chodník (kde ho strana má) nebo zpevněná plocha; nejasná barva
+  (červená dlažba, stín, směs) nechá pravidlo nejbližšího kusu. Na 50 řezech se tím opravil zelený pruh před chodníkem
+  (Mladá Boleslav 17, 20); stín stromů na krajnici se ale čte jako dlažba (Kolín 22). Hodnocení v Node bere ortofoto jako
+  PNG (`laneImage` `decode`), aplikace dál JPEG.
 
 ### Zkoušené a nepřipojené zdroje
 

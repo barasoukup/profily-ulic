@@ -347,6 +347,7 @@ export function mtvuPolygons(json, frame) {
       guess: f.attributes.ODHAD === 1, // Brno: an area completed along OSM, not measured
       level: Number(f.attributes.LEVEL) || 0, // Brno: 1 above the ground (bridge decks)
       dtmTram: f.attributes.DTM_TRAM === 1, // the national DTM's tram area: tracks in the roadway or apart from it
+      fromLines: f.attributes.Z_CAR === 1, // read from the DTM's lines (dmvs.js fromLines), its kind a guess
       rings,
       bbox: bboxOf(rings.flat()),
       lonlat: f.geometry.rings.map((r) => r.map(([lon, lat]) => [lat, lon])),
@@ -1324,6 +1325,8 @@ const FENCE_LINES = new Set([61210, 71210, 81210, 91210]);
 const FENCE_BARRIERS = new Set(["fence", "wall", "city_wall", "hedge"]);
 const FENCE_AT_FACADE = 1; // m
 const FENCE_SLIVER = 0.6; // m
+const APRON = 1; // a paved strip narrower than this at a building's wall is its apron, not a sidewalk (m)
+const APRON_BEYOND = new Set(["zelen", "predzahradka", "stromorad"]);
 const MEDIAN = 9950;
 const MEDIAN_W = 0.6; // width of a median with a guard rail (m)
 // Dot product of the driving directions of two crossing ways (oneway=-1 runs against the geometry).
@@ -1372,7 +1375,82 @@ export function centerOnStreet(osm, frame, near, half = 40) {
 }
 
 // Main entry: returns {segments (screen left → right), edges, runs}.
-export function deriveProfile({ center, dir, half, polys, osm, frame, way, tracks = [], parking = [], lines = [], reach, inZps: zoneKnown, itemReach, ortho }) {
+// Pieces read from the DTM's lines beside a roadway (dmvs.js fromLines) are sidewalks or verges: the lines do
+// not tell (Bára 12. 11. 2026; Kolín, Mladá Boleslav: the grass verges and ditches of a road in the fields are
+// pieces between "boundaries of a transport area" as well). A side has a sidewalk where OSM says so (sidewalk,
+// sidewalk:<side>; "separate" is one drawn apart, still there), none where it says no; without a tag where the
+// street is built up: a building within BUILT_NEAR m on that side and no speed over 50. The piece nearest the
+// roadway is then the sidewalk, the others are green (estimates all).
+// With the orthophoto of the click (lanes-ortho.js laneImage st) the colour decides first (Bára 12. 11. 2026): a
+// piece that is green, or yellow as the dry grass of ČÚZK's summer images (Kolín: the verges of a road in the
+// fields), is green; a grey, light and even one (asphalt, concrete paving) a sidewalk: paving between two boundaries
+// of a transport area beside the roadway; only where the colour is unclear (red paving, the shade of trees, a mix)
+// the nearest-piece rule stays. Means over the piece, measured on 50 cuts of Kolín and Mladá Boleslav: green grass
+// G 10–14, dry grass Y 23–26, paving G 0–5, Y −1–18, brightness L 110–220 and its spread SD 2–28; the deep shade
+// of trees L 81 (Mladá Boleslav, Revoluční: no sidewalk there, Bára), their dappled shade on a verge SD 42 (Kolín, Osecká).
+const BUILT_NEAR = 30, LOOK_ALONG = 8;
+const looksGreen = (m) => m.G > 8 || (m.Y > 20 && m.D > -25);
+const looksPaved = (m) => m.G < 6 && m.Y < 19 && m.D > -25 && m.L > 100 && m.SD < 35;
+// "green", "paved" or null (no image, too narrow, unclear): the means of a piece on the orthophoto (rows along the
+// street within ±LOOK_ALONG m, its stretch of the cut less 0.25 m at each edge).
+export function surfaceLook(st, rings, center, normal) {
+  if (!st?.G || !st.Y) return null;
+  let lo = Infinity, hi = -Infinity;
+  for (let t = st.t0; t <= st.t0 + st.nt * st.res; t += 0.1) {
+    if (inside(rings, center[0] + normal[0] * t, center[1] + normal[1] * t)) { lo = Math.min(lo, t); hi = Math.max(hi, t); }
+  }
+  lo += 0.25; hi -= 0.25;
+  if (!(hi - lo >= 0.3)) return null;
+  const half = st.nu / 2, rows = Math.round(LOOK_ALONG / st.res), m = { G: 0, Y: 0, D: 0, L: 0, LL: 0 };
+  let n = 0;
+  for (let i = Math.ceil((lo - st.t0) / st.res); i <= Math.floor((hi - st.t0) / st.res); i++) {
+    for (let j = Math.max(0, Math.floor(half - rows)); j < Math.min(st.nu, half + rows); j++) {
+      const k = j * st.nt + i;
+      if (Number.isNaN(st.G[k])) continue;
+      m.G += st.G[k]; m.Y += st.Y[k]; m.D += st.D[k]; m.L += st.L[k]; m.LL += st.L[k] * st.L[k]; n++;
+    }
+  }
+  if (!n) return null;
+  for (const c of "GYDL") m[c] /= n;
+  m.SD = Math.sqrt(Math.max(0, m.LL / n - m.L * m.L)); // how even its brightness is: paving even, dappled shade not
+  return looksGreen(m) ? "green" : looksPaved(m) ? "paved" : null;
+}
+// along: the way's geometry runs along the cut's direction (OSM's left is then the cut's left, +normal); after
+// "Otočit" or a link from the other side it runs against it (Fable's review).
+export function linePieces(polys, tags, center, normal, st = null, along = true) {
+  const pieces = polys.filter((p) => p.fromLines && p.code === 702);
+  if (!pieces.length) return polys;
+  const off = (p) => ((p.bbox[0] + p.bbox[2]) / 2 - center[0]) * normal[0] + ((p.bbox[1] + p.bbox[3]) / 2 - center[1]) * normal[1];
+  const says = (cutSide) => {
+    const side = along ? cutSide : cutSide === "left" ? "right" : "left";
+    const own = tags[`sidewalk:${side}`] ?? tags["sidewalk:both"];
+    if (own) return !["no", "none"].includes(own);
+    const s = tags.sidewalk;
+    if (!s) return undefined;
+    if (["both", "yes", "separate"].includes(s)) return true;
+    if (["no", "none"].includes(s)) return false;
+    return s === side;
+  };
+  const fast = parseInt(tags.maxspeed, 10) > 50;
+  const built = (sign) => !fast && polys.some((p) => p.code === 601 && off(p) * sign > 0 && Math.abs(off(p)) < BUILT_NEAR);
+  const code = new Map();
+  for (const [side, sign] of [["left", 1], ["right", -1]]) {
+    const mine = pieces.filter((p) => off(p) * sign > 0).sort((a, b) => Math.abs(off(a)) - Math.abs(off(b)));
+    const walk = says(side) ?? built(sign);
+    const look = mine.map((p) => surfaceLook(st, p.rings, center, normal));
+    let walked = false;
+    mine.forEach((p, k) => {
+      if (look[k] === "green") code.set(p, 401);
+      else if (look[k] === "paved") { code.set(p, 702); walked = true; }
+      // Unclear: the nearest piece a sidewalk where the side has one and none paved is seen.
+      else if (!walk || walked || k > 0) code.set(p, 401);
+      else walked = true;
+    });
+  }
+  return polys.map((p) => (code.has(p) && code.get(p) !== p.code ? { ...p, code: code.get(p), label: "" } : p));
+}
+
+export function deriveProfile({ center, dir, half, polys, osm, frame, way, tracks = [], parking = [], lines = [], reach, inZps: zoneKnown, itemReach, ortho, lanesImage }) {
   const reachItems = { ...REACH, ...itemReach };
   // No-parking sections (Prague, TSK "Zákaz stání"): no surface of their own, they only keep a kerb free.
   const noParking = parking.filter((p) => p.kind === "zakaz");
@@ -1406,6 +1484,8 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   };
   const normal = [-dir[1], dir[0]];
   const cross = crossings(osm, frame, center, normal, half);
+  const own = cross.find((c) => c.way.id === way?.id);
+  polys = linePieces(polys, way?.tags || {}, center, normal, lanesImage, own ? own.d[0] * dir[0] + own.d[1] * dir[1] >= 0 : true);
   let axisT = cross.find((c) => c.way.id === way.id)?.t ?? 0;
   // Tram track axes: measured ones from the technical map when available, else OSM.
   const measured = lineCrossings(tracks, center, normal, half);
@@ -1509,6 +1589,8 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   if ((reach?.right ?? MAX_REACH) >= MAX_REACH) { const d = facade(i0 - 1, -1, capR); if (d !== null) reachR = Math.max(reachR, Math.min(capR, d + 0.5)); }
   // A cut end dragged out past the default reach (by hand) asks for what is out there: the profile goes over
   // fences, gardens, lawns and yards to the next building, or to the dragged end (Bára, Pardubice, Palackého).
+  // Also a reach set by hand short of that, but past where the profile would end by itself (Bára, Mladá Boleslav,
+  // Revoluční: an end dragged from 16 m to 20 m sprang back to the grass where the profile had stopped).
   const byHand = { L: (reach?.left ?? 0) > MAX_REACH + 0.5, R: (reach?.right ?? 0) > MAX_REACH + 0.5 };
   const onBridgeWay = way.tags?.bridge && way.tags.bridge !== "no", SIDEWALKS = new Set([702, 703]);
   const stopAt = (r, limit, k, step) => {
@@ -1530,10 +1612,21 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     if (Math.min(Math.abs(r.s - ref), Math.abs(r.e - ref)) > limit) return "volno";
     return null;
   };
-  let lo = i0, hi = i0;
-  let right = "volno", left = "volno";
-  while (lo > 0) { const s = stopAt(runs[lo - 1], reachR, lo - 1, -1); if (s) { right = s; break; } lo--; }
-  while (hi < runs.length - 1) { const s = stopAt(runs[hi + 1], reachL, hi + 1, 1); if (s) { left = s; break; } hi++; }
+  const walk = () => {
+    let lo = i0, hi = i0, right = "volno", left = "volno";
+    while (lo > 0) { const s = stopAt(runs[lo - 1], reachR, lo - 1, -1); if (s) { right = s; break; } lo--; }
+    while (hi < runs.length - 1) { const s = stopAt(runs[hi + 1], reachL, hi + 1, 1); if (s) { left = s; break; } hi++; }
+    return { lo, hi, right, left };
+  };
+  let { lo, hi, right, left } = walk();
+  const handSet = (v) => typeof v === "number" && Math.abs(v - MAX_REACH) > 0.05;
+  const pastL = !byHand.L && handSet(reach?.left) && left !== "budova" && reach.left > runs[hi].e - ref + 0.5;
+  const pastR = !byHand.R && handSet(reach?.right) && right !== "budova" && reach.right > ref - runs[lo].s + 0.5;
+  if (pastL || pastR) {
+    byHand.L ||= pastL;
+    byHand.R ||= pastR;
+    ({ lo, hi, right, left } = walk());
+  }
   const edges = { right, left };
 
   // A fence or wall beyond the outermost carriageway is the edge of the street (Bára: what is behind
@@ -1791,6 +1884,13 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     const point = frame.toLonLat(...probe[side]);
     edges[`${side}Info`] = { levels: b?.levels, height: b?.height, point, km: +centreKm(point).toFixed(1), block: b?.block, tint: side === "left" ? 0 : 3 };
     if (b?.type && b.type !== "yes") edges[`${side}Info`].type = b.type;
+  }
+  // A strip of paving under APRON along a building's wall (an apron, "okapový chodník") with green past it is no
+  // sidewalk but a paved area (the rest of a sidewalk beside cars parked on it stays one): it is not walked along (Bára, Vysoké Mýto, Komenského: 0.70 m was warned as a
+  // sidewalk below the minimum). withItems runs from the right end (edges.right) to the left one.
+  for (const [k, side, step] of [[0, "right", 1], [withItems.length - 1, "left", -1]]) {
+    const x = withItems[k], beyond = withItems[k + step];
+    if (edges[side] === "budova" && x?.type === "chodnik" && x.e - x.s < APRON && APRON_BEYOND.has(beyond?.type)) x.type = "plocha";
   }
   // A part lying mostly on an area the technical map leaves open (completed along OSM), or on parking
   // stalls of a paid zone (Plzeň), is an estimate.

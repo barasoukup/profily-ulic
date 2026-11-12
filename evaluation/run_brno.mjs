@@ -78,7 +78,9 @@ async function ortho(lat, lon, dir) {
 
 const { samples } = JSON.parse(await fs.readFile(path.join(DATA, "samples.json"), "utf8"));
 const [from = 1, to = samples.length] = process.argv.slice(2).map(Number);
-await fs.mkdir(path.join(DATA, "results"), { recursive: true });
+// OUT=results-linie: the results in another folder (a new rule beside the old results).
+const RESULTS = process.env.OUT || "results";
+await fs.mkdir(path.join(DATA, RESULTS), { recursive: true });
 await fs.mkdir(path.join(DATA, "ortho"), { recursive: true });
 
 async function run(s) {
@@ -98,9 +100,15 @@ async function run(s) {
   const pad = 0.0004;
   const bbox = [Math.min(...lons) - pad, Math.min(...lats) - pad, Math.max(...lons) + pad, Math.max(...lats) + pad].join(",");
   const inZps = await S.zps(clat, clon);
+  // The orthophoto of the lanes (lanes-ortho.js), as PNG decoded here (no canvas in Node): ČÚZK's where the city
+  // has no better one; it also tells grass from paving beside a roadway read from lines (derive.js linePieces).
+  const { laneImage } = await import("../pilot/public/lanes-ortho.js");
+  const { decodePng } = await import("../pilot/public/dmvs.js");
+  // After the others: polite.mjs asks ČÚZK one request at a time, and the image would hold the DTM's up past their timeout.
   const [m, k, pk] = await Promise.all([S.mtvu(bbox), S.linie(bbox), S.parkovani(bbox, inZps)]);
+  const li = await laneImage({ frame, dir, t0: -25, t1: 25, cityId: "cesko", fetchImpl: webFetch, decode: decodePng, timeout: 30000 });
   const polys = mtvuPolygons(m, frame);
-  const result = deriveProfile({ center: [0, 0], dir, half: HALF, polys, osm, frame, way: near.way, tracks: trackLines(k, frame), parking: esriPolygons(pk, frame), lines: techLines(k, frame), reach, inZps });
+  const result = deriveProfile({ center: [0, 0], dir, half: HALF, polys, osm, frame, way: near.way, tracks: trackLines(k, frame), parking: esriPolygons(pk, frame), lines: techLines(k, frame), reach, inZps, lanesImage: li?.st });
   for (const side of ["left", "right"]) {
     const info = result.edges[`${side}Info`];
     if (!info?.point) continue;
@@ -123,7 +131,7 @@ async function run(s) {
 // ONLY=3,10,17: just these cuts.
 const only = process.env.ONLY ? new Set(process.env.ONLY.split(",").map(Number)) : null;
 for (const s of samples.filter((x) => x.n >= from && x.n <= to && (!only || only.has(x.n)))) {
-  const out = path.join(DATA, "results", `${s.n}.json`);
+  const out = path.join(DATA, RESULTS, `${s.n}.json`);
   try {
     const r = await run(s);
     await fs.writeFile(out, JSON.stringify({ sample: s, ...r }, null, 1));

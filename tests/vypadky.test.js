@@ -117,3 +117,63 @@ test("dlaždice pražských otevřených dat: chyba se ohlásí a příště se 
     globalThis.fetch = real;
   }
 });
+
+test("kusy z čar vedle vozovky: chodník podle OSM nebo v zástavbě, jinak zeleň", async () => {
+  const { linePieces } = await import("../pilot/public/derive.js");
+  // The cut runs along y (normal [1, 0]: left is +x); a piece is a box at its offset.
+  const box = (x, code, extra = {}) => ({ code, bbox: [x - 0.5, -5, x + 0.5, 5], fromLines: true, ...extra });
+  const road = box(0, 701), left1 = box(5, 702), left2 = box(8, 702), right1 = box(-5, 702);
+  const house = { code: 601, bbox: [12, -5, 20, 5] };
+  const kinds = (tags, polys = [road, left1, left2, right1]) => linePieces(polys, tags, [0, 0], [1, 0]).map((p) => p.code);
+  // A road in the fields (Kolín 24): verges.
+  assert.deepEqual(kinds({ maxspeed: "90" }), [701, 401, 401, 401]);
+  // Built up on the left only: the nearest piece there a sidewalk.
+  assert.deepEqual(kinds({}, [road, left1, left2, right1, house]), [701, 702, 401, 401, 601]);
+  // OSM decides: sidewalk=right, or both, or none.
+  assert.deepEqual(kinds({ sidewalk: "right" }, [road, left1, left2, right1, house]), [701, 401, 401, 702, 601]);
+  assert.deepEqual(kinds({ sidewalk: "both", maxspeed: "90" }), [701, 702, 401, 702]);
+  assert.deepEqual(kinds({ "sidewalk:left": "no", "sidewalk:right": "separate" }, [road, left1, right1, house]), [701, 401, 702, 601]);
+});
+
+test("kusy z čar podle barvy ortofota: tráva je zeleň, dlažba chodník (za zeleným pruhem taky)", async () => {
+  const { linePieces } = await import("../pilot/public/derive.js");
+  // The cut along x (normal [1, 0], left +x); pieces 2 m wide.
+  const piece = (x, code) => ({ code, fromLines: true, bbox: [x - 1, -10, x + 1, 10], rings: [[[x - 1, -10], [x + 1, -10], [x + 1, 10], [x - 1, 10], [x - 1, -10]]] });
+  const road = piece(0, 701), grass = piece(4, 702), paving = piece(7, 702);
+  const house = { code: 601, bbox: [12, -5, 20, 5] };
+  // The orthophoto on the cut's grid: green from 3 to 5 m (Mladá Boleslav č. 17: a grass strip before the sidewalk).
+  // Grass green there, or dry and yellow (ČÚZK's summer images), grey paving elsewhere.
+  const image = (grass) => {
+    const res = 0.1, t0 = -12, nt = 240, nu = 400, G = new Float32Array(nt * nu), Y = new Float32Array(nt * nu), D = new Float32Array(nt * nu), L = new Float32Array(nt * nu);
+    for (let j = 0; j < nu; j++) for (let i = 0; i < nt; i++) {
+      const t = t0 + (i + 0.5) * res, k = j * nt + i;
+      // A dappled piece alternates its brightness by ±spread (its 5th value), row by row.
+      const [g, y, d, l, sd = 0] = t > 3 && t < 5 ? grass : [1, 8, -4, 180];
+      [G[k], Y[k], D[k], L[k]] = [g, y, d, l + (j % 2 ? sd : -sd)];
+    }
+    return { t0, res, nt, nu, G, Y, D, L };
+  };
+  const st = image([12, 18, 8, 110]);
+  const kinds = (tags, image) => linePieces([road, grass, paving, house], tags, [0, 0], [1, 0], image).map((p) => p.code);
+  assert.deepEqual(kinds({}, st), [701, 401, 702, 601], "zelený pruh a za ním chodník");
+  assert.deepEqual(kinds({}, null), [701, 702, 401, 601], "bez ortofota nejbližší kus");
+  // Paving between the boundaries of a transport area is a sidewalk even where OSM has none (Revoluční, 90 km/h).
+  assert.deepEqual(kinds({ sidewalk: "no", maxspeed: "90" }, st), [701, 401, 702, 601]);
+  // Deep shade (Revoluční) and dappled shade on a verge (Kolín, Osecká) are unclear: the nearest-piece rule.
+  assert.deepEqual(kinds({ maxspeed: "90" }, image([2, -1, 4, 81, 10])), [701, 401, 702, 601]);
+  assert.deepEqual(kinds({ maxspeed: "90" }, image([3, 14, -5, 125, 42])), [701, 401, 702, 601]);
+  assert.deepEqual(kinds({}, image([4, 25, -10, 140])), [701, 401, 702, 601], "suchá tráva");
+  // Red paving tells nothing by its colour: the nearest piece, as without the image.
+  assert.deepEqual(kinds({}, image([-40, 70, -80, 130])), [701, 702, 702, 601]);
+});
+
+test("kusy z čar: OSM sidewalk:left/right podle směru ulice, i po Otočit", async () => {
+  const { linePieces } = await import("../pilot/public/derive.js");
+  const box = (x, code) => ({ code, fromLines: true, bbox: [x - 0.5, -5, x + 0.5, 5] });
+  const polys = [box(0, 701), box(5, 702), box(-5, 702)];
+  const tags = { "sidewalk:left": "yes", "sidewalk:right": "no" };
+  // The way along the cut: OSM's left is the cut's left (+x).
+  assert.deepEqual(linePieces(polys, tags, [0, 0], [1, 0], null, true).map((p) => p.code), [701, 702, 401]);
+  // Against it (Otočit): OSM's left is the cut's right.
+  assert.deepEqual(linePieces(polys, tags, [0, 0], [1, 0], null, false).map((p) => p.code), [701, 401, 702]);
+});

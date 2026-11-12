@@ -17,12 +17,12 @@ const frame = localFrame(50.08, 14.42);
 const rect = (code, x0, x1) => ({ code, label: "", rings: [[[x0, -60], [x1, -60], [x1, 60], [x0, 60]]], bbox: [x0, -60, x1, 60] });
 const ll = (x, y) => { const [lon, lat] = frame.toLonLat(x, y); return { lon, lat }; };
 const line = (x) => [ll(x, -60), ll(x, 60)];
-function street(middle, tags, { extra = [], lines = [], axis = 0, ortho } = {}) {
+function street(middle, tags, { extra = [], lines = [], axis = 0, ortho, walk = 3 } = {}) {
   const total = middle.reduce((a, [, w]) => a + w, 0);
   let x = -total / 2;
-  const polys = [rect(601, x - 8, x - 3), rect(702, x - 3, x)];
+  const polys = [rect(601, x - 5 - walk, x - walk), rect(702, x - walk, x)];
   for (const [code, w] of middle) { polys.push(rect(code, x, x + w)); x += w; }
-  polys.push(rect(702, x, x + 3), rect(601, x + 3, x + 8));
+  polys.push(rect(702, x, x + walk), rect(601, x + walk, x + walk + 5));
   const way = { type: "way", id: 1, tags: { highway: "residential", ...tags }, geometry: line(axis) };
   return deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys, osm: { elements: [way, ...extra] }, frame, way, inZps: false, lines, ortho });
 }
@@ -375,4 +375,13 @@ test("dvousměrná ulice s jednou osou má polovinu pruhů každým směrem, jed
   assert.deepEqual(dirs(road(7, { highway: "tertiary", lanes: "2" }, { axis: 2.5 })), ["backward", "forward"]);
   assert.deepEqual(dirs(road(4, { highway: "residential", lanes: "1", "parking:both": "no" })), ["-"]);
   assert.deepEqual(dirs(road(7, { highway: "secondary", oneway: "yes", lanes: "2" })), ["forward", "forward"]);
+});
+
+test("úzký pruh dlažby u domu se zelení za ním je okapový chodník (zpevněná plocha), ne chodník pod minimem", () => {
+  // Bára, Vysoké Mýto, Komenského: house · 0,70 m · green 6,30 m · sidewalk · roadway.
+  const p = street([[400, 6.3], [702, 2.25], [701, 7]], {}, { walk: 0.7 });
+  assert.deepEqual(parts(p).slice(0, 3), ["plocha 0.7", "zelen 6.3", "chodnik 2.25"]);
+  assert.ok(!checkRules(p).some((x) => x.i === 0), "u domu žádné varování (to na druhé straně u vozovky zůstává)");
+  // A sidewalk of 0.7 m beside the roadway stays a sidewalk (too narrow, and the rules say so).
+  assert.equal(parts(street([[701, 7]], {}, { walk: 0.7 }))[0], "chodnik 0.7");
 });

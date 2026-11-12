@@ -292,8 +292,9 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     if (pk.status !== "fulfilled") console.warn("parkovani", pk.reason);
     // Unknown (no zone file): the profile decides from the TSK parking sections around the cut.
     const inZps = z.status === "fulfilled" ? z.value : undefined;
-    const result = deriveProfile({ center: [0, 0], dir, half, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho });
     const laneImg = li.status === "fulfilled" ? li.value : null;
+    // The same image tells grass from paving beside a roadway read from the DTM's lines (derive.js linePieces).
+    const result = deriveProfile({ center: [0, 0], dir, half, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho, lanesImage: laneImg?.st });
     // Lanes, shoulders and parking on its own paving measured on the orthophoto (lanes-ortho.js).
     const lanesFromOrtho = laneImg ? applyLanes(result, laneImg) : 0;
     // The row of traffic signs from the street's OSM tags and the parts (signs.js).
@@ -302,10 +303,10 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     deriveSigns(result, near.way.tags, { inZps, alongWay });
     const name = near.way.tags.name || near.way.tags.ref || "";
     const span = result.extent && { left: +result.extent[1].toFixed(2), right: +(-result.extent[0]).toFixed(2) };
-    // A design belongs to its street: moving the cut along the same street keeps it, a cut of another
-    // street (a click or a link) starts the design from the new Stav.
-    const sameStreet = keepWay || (state.cut && (state.cut.wayId === near.way.id || (name && state.cut.name === name && state.cut.city === city.id)));
-    if (!sameStreet) state.navrhEdited = false;
+    // A design belongs to its cut: dragging the cut (its middle or an end) keeps it, a new cut (a click, even on
+    // the same street, or a link) starts the design from the new Stav, as its widths would not add up (Bára).
+    const dropped = !keepWay && state.navrhEdited;
+    if (!keepWay) state.navrhEdited = false;
     state.cut = { lat: clat, lon: clon, bearing: (Math.atan2(dir[0], dir[1]) * 180) / Math.PI, wayId: near.way.id, name, city: city.id, reach, span };
     // What the export credits beyond the city's own data (city.js creditLines): the region of a national DTM,
     // the DMVS standing in for the city's map, the orthophoto of a tram bed.
@@ -339,6 +340,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     state.stavEdited = false;
     if (!state.navrhEdited) state.navrh = structuredClone(state.stav);
     state.selected = null;
+    state.edge = null;
     state.fixing = false;
     state.fixBase = null;
     resetHistory();
@@ -353,6 +355,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     state.cut.note = out.note;
     $("#street-name").textContent = streetName(state.cut) + tr(state.cut.note);
     if (out.text) status(out.text, out.error ? "error" : undefined);
+    else if (dropped) status(tr("Nový řez: návrh začíná znovu od stavu ulice (předchozí návrh zůstává ve sdíleném odkazu nebo uloženém souboru, pokud jste ho uložili)."));
     else status(result.notice ? result.notice
       : result.junction ? tr("Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami.") : "");
     save();
@@ -385,8 +388,8 @@ function cutText(cut) {
 function showCutInfo() {
   if (!state.cut) return;
   const r = state.cut.reach || defaultReach();
-  $("#cut-pos").textContent = cutText(state.cut) + ` · ulice ${Math.round(((state.cut.bearing % 360) + 360) % 360)}°` +
-    ` · dosah ${Math.round(r.left)} / ${Math.round(r.right)} m`;
+  $("#cut-pos").textContent = cutText(state.cut) + " · " + tr("ulice {deg}° · dosah {left} / {right} m",
+    { deg: Math.round(((state.cut.bearing % 360) + 360) % 360), left: Math.round(r.left), right: Math.round(r.right) });
   history.replaceState(null, "", `#rez=${state.cut.lat.toFixed(6)},${state.cut.lon.toFixed(6)},${Math.round(state.cut.bearing)},${r.left.toFixed(1)},${r.right.toFixed(1)}`);
   // Mapy.com at the cut with the panorama layer on (ovl=8). A link straight into a panorama needs
   // the photo's id (pid), which only their Panorama API (with a key) gives; one click on the street opens it.
@@ -1151,6 +1154,26 @@ function edgeKindSelect(p, side) {
   return sel;
 }
 
+// Floors above the ground of the building at an edge: set by hand they stand for the data's floors and height
+// (profile.js edgeInfo); emptied, the data's again.
+function floorsInput(p, side) {
+  const data = p.edges?.[`${side}Info`]?.levels;
+  const floors = Object.assign(document.createElement("input"), { type: "number", min: 1, max: 60, step: 1, value: p.edges?.[`${side}Levels`] || data || "", placeholder: "–", className: "floors" });
+  floors.setAttribute("aria-label", tr("Podlaží"));
+  floors.onchange = () => {
+    const n = Math.round(Number(floors.value));
+    // The look guessed so far stays: other floors would make the guess another house (a panel house of 2
+    // floors a hall).
+    const look = p.edges?.[`${side}Style`] || buildingStyle(edgeInfo(p.edges, side));
+    p.edges = { ...p.edges, [`${side}Style`]: look };
+    if (n >= 1 && n <= 60 && n !== data) p.edges[`${side}Levels`] = n;
+    else delete p.edges[`${side}Levels`];
+    edited();
+    render();
+  };
+  return floors;
+}
+
 // A selected edge (Bára 12. 11. 2026: a "panel house" that is a two-storey town house, or a garden): what stands
 // there and the building's floors; in Stav without "Opravit data" only what it is.
 function renderEdge(ed, p, side) {
@@ -1172,20 +1195,7 @@ function renderEdge(ed, p, side) {
   const lab = (text, input) => { const l = document.createElement("label"); l.append(text, input); return l; };
   const row = ed.appendChild(Object.assign(document.createElement("div"), { className: "ed-row" }));
   row.append(lab(tr("Co tu stojí"), edgeKindSelect(p, side)));
-  if (kind === "budova") {
-    // Floors above the ground: set by hand they stand for the data's floors and height (profile.js edgeInfo).
-    const data = p.edges?.[`${side}Info`]?.levels;
-    const floors = Object.assign(document.createElement("input"), { type: "number", min: 1, max: 60, step: 1, value: p.edges?.[`${side}Levels`] || data || "", placeholder: "–" });
-    floors.onchange = () => {
-      const n = Math.round(Number(floors.value));
-      p.edges = { ...p.edges };
-      if (n >= 1 && n <= 60 && n !== data) p.edges[`${side}Levels`] = n;
-      else delete p.edges[`${side}Levels`];
-      edited();
-      render();
-    };
-    row.append(lab(tr("Podlaží"), floors));
-  }
+  if (kind === "budova") row.append(lab(tr("Podlaží"), floorsInput(p, side)));
 }
 
 function renderEditor(p) {
@@ -1200,6 +1210,8 @@ function renderEditor(p) {
     for (const [side, text] of [["left", tr("Levý okraj")], ["right", tr("Pravý okraj")]]) {
       const l = document.createElement("label");
       l.append(text, edgeKindSelect(p, side));
+      // The floors of a building right there too (Bára).
+      if ((p.edges?.[side] || "volno") === "budova") l.append(floorsInput(p, side), tr("NP"));
       ed.append(l);
     }
     return;

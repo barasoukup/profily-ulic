@@ -63,6 +63,8 @@ export const EN = {
   "Návrh je o {d} užší než ulice ({w}, návrh {now}).": "The proposal is {d} narrower than the street ({w}, proposal {now}).",
   "Dorovnat: {type} na {w}": "Balance: {type} to {w}",
   "Změna je vrácená.": "Change undone.",
+  "Nový řez: návrh začíná znovu od stavu ulice (předchozí návrh zůstává ve sdíleném odkazu nebo uloženém souboru, pokud jste ho uložili).":
+    "New cut: the proposal starts again from the street as it is (the previous one is kept in a shared link or saved file, if you made one).",
 
   // ---------- app.js: editor ----------
   "Zdroj: {source}": "Source: {source}",
@@ -75,6 +77,7 @@ export const EN = {
   "Změníte v Návrhu, chybu v datech opravíte tlačítkem Opravit data.": "Change it in Proposal; correct an error in the data with Correct the data.",
   "Co tu stojí": "What stands here",
   "Podlaží": "Floors",
+  "NP": "fl.",
   "Pravý okraj": "Right edge",
   "kancelářská budova": "office building",
   "Budova (odhad: {guess})": "Building (estimate: {guess})",
@@ -164,11 +167,11 @@ export const EN = {
   "kolmé": "perpendicular",
   "cyklisté": "cyclists",
   "Budova": "Building",
-  "dům se šikmou střechou": "house with a pitched roof",
+  "činžovní dům se šikmou střechou": "tenement with a pitched roof",
   "funkcionalistický činžák": "functionalist apartment block",
   "moderní bytový dům": "modern apartment building",
   "panelový dům": "prefab panel block",
-  "nízký dům": "low-rise house",
+  "městský dům": "town house",
   "hala": "hall",
   "{n} + {roof} NP": "{n} + {roof} fl.",
   "{n} NP": "{n} fl.",
@@ -479,6 +482,7 @@ export const EN = {
 
   // ---------- the cut's position, servers' errors ----------
   "azimut": "azimuth",
+  "ulice {deg}° · dosah {left} / {right} m": "street {deg}° · reach {left} / {right} m",
   "dlaždice OSM {status}": "OSM tile {status}",
   "chyba": "error",
 

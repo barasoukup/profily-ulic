@@ -63,7 +63,9 @@ const cityArt = () => artOn && !!CITY_ART[city.art]; // the city's own set
 // The credit lines of an export or a saved file for the current city and art (src: the cut's sources, app.js).
 export const exportCredits = (src) => creditLines(city, src || {}, cityArt());
 // Prague buildings are drawn from the side (we look along the street): the outline tells the type.
-export const BUILDING_STYLES = { sikma: tr("dům se šikmou střechou"), funkce: tr("funkcionalistický činžák"), moderni: tr("moderní bytový dům"), plocha: tr("panelový dům"), nizky: tr("nízký dům"), hala: tr("hala") };
+// nizky: a smaller town house (lower storeys and windows, mostly a gabled tile roof), with any number of floors
+// (Bára: "nízký" was wrong on 4 floors).
+export const BUILDING_STYLES = { sikma: tr("činžovní dům se šikmou střechou"), funkce: tr("funkcionalistický činžák"), moderni: tr("moderní bytový dům"), plocha: tr("panelový dům"), nizky: tr("městský dům"), hala: tr("hala") };
 const OLD_STYLES = { centrum: "sikma", "centrum-obchod": "sikma", sidliste: "plocha", "sidliste-lodzie": "plocha", rd: "nizky" };
 const HOUSE_TYPES = new Set(["house", "detached", "semidetached_house", "terrace", "bungalow", "villa", "farm", "garage", "garages", "shed"]);
 const HALL_TYPES = new Set(["retail", "supermarket", "industrial", "manufacture", "warehouse", "hangar", "sports_hall", "service", "commercial_hall"]);
