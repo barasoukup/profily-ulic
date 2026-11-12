@@ -154,6 +154,23 @@ function drawTramBed(g, s, x, w, top, bedBefore, bedAfter) {
 }
 
 const ROADWAY = new Set(["pruh", "krajnice", "obsluzna", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "cyklopruh", "ochranny_pruh", "parkovani"]);
+// The lanes the contact wires hang over: one each way (Bára, Olomoucká: not over every lane), the trolleybus's own
+// (a bus lane under the wires) where there is one, else the outer lane of that direction, the farthest from the
+// middle of the wired street; a lane both ways keeps its wires.
+function wiredLanes(segs, bounds) {
+  const all = segs.map((s, i) => (s.wires ? i : -1)).filter((i) => i >= 0);
+  if (!all.length) return all;
+  const mid = (bounds[all[0]] + bounds[all.at(-1) + 1]) / 2, off = (i) => Math.abs((bounds[i] + bounds[i + 1]) / 2 - mid);
+  const keep = new Set(all.filter((i) => !segs[i].dir));
+  for (const dir of ["forward", "backward"]) {
+    const way = all.filter((i) => segs[i].dir === dir);
+    if (!way.length) continue;
+    const own = way.filter((i) => segs[i].trolley);
+    for (const i of own.length ? own : [way.reduce((b, i) => (off(i) > off(b) ? i : b))]) keep.add(i);
+  }
+  return all.filter((i) => keep.has(i));
+}
+
 // Which side of an item (at f of part i) the nearest roadway lies on, "left" or "right" (by metres along the
 // profile), or null when there is none.
 function nearestRoadway(segs, i, f) {
@@ -1387,7 +1404,7 @@ export function buildSvg(profile, opts = {}) {
 
   // Trolley wires over the lanes under them (OSM trolley_wire): a span wire across, from the first wired lane
   // to the last, and the two contact wires (0.6 m apart, 5.4 m above the road) over each lane, hung from it.
-  const wired = segs.map((s, i) => (s.wires ? i : -1)).filter((i) => i >= 0);
+  const wired = wiredLanes(segs, bounds);
   if (wired.length) {
     const wg = el("g", { class: "trolley-wires" }, svg);
     const yContact = GROUND - WIRE_H, ySpan = GROUND - WIRE_H - 60;
