@@ -13,6 +13,9 @@ const CURB = 15;
 const EDGE = 400; // width drawn for the building / open edge
 const FLOOR = 3.5; // typical floor height for estimating floors from a building's height (m)
 const H = 1000;
+// How far the rows under the ground (sources, labels, signs) move down to make room for the networks under the
+// street (site.js, a trial): 0 without them.
+let DROP = 0;
 
 const SPRITE_FILES = [
   "car-inbound", "car-outbound", "streetcar-inbound", "streetcar-outbound", "bus-inbound", "bus-outbound",
@@ -602,7 +605,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     box(dCellar, dCellar + 66, -cellar * 0.55 - 6, -cellar * 0.55 + 31, FRAME); // a cellar window
     box(dCellar + 6, dCellar + 60, -cellar * 0.55, -cellar * 0.55 + 25, GLASS);
   }
-  el("rect", { x, y: GROUND + 60, width: EDGE, height: 40, fill: "#9b7f5f" }, g);
+  el("rect", { x, y: GROUND + 60, width: EDGE, height: 40 + DROP, fill: "#9b7f5f" }, g);
   box(0, EDGE, 0, top, wall, outline);
   box(EDGE - 30, EDGE, 0, top, shade); // the wall turns away at the cut
   const plinth = office ? [20, "#8a867d"] : { sikma: [90, STONE], funkce: [60, "#8f887c"], moderni: [30, "#56585b"], plocha: [100, "#8a867d"], nizky: [60, "#a59c88"] }[style];
@@ -1048,7 +1051,7 @@ function drawEdge(svg, x, kind, side, surface, info, style) {
   } else {
     el("rect", { x, y: surface, width: EDGE, height: 60 + GROUND - surface, fill: "#e6e3da" }, g);
   }
-  el("text", { class: "lbl-t", "data-row": 1, "data-w": EDGE, x: x + EDGE / 2, y: GROUND + 215, "text-anchor": "middle", "font-size": 30, fill: "#6b6a65" },
+  el("text", { class: "lbl-t", "data-row": 1, "data-w": EDGE, x: x + EDGE / 2, y: GROUND + DROP + 215, "text-anchor": "middle", "font-size": 30, fill: "#6b6a65" },
     g).textContent = { budova: tr("Budova"), stavba: tr("Drobná stavba"), voda: tr("Vodní tok / plocha"), zahrada: tr("Zahrada, louka (mimo ulici)"), zelen: tr("Zeleň (mimo ulici)"), parkoviste: tr("Parkoviště (mimo ulici)"), plot: tr("Za plotem (mimo ulici)") }[kind] || "";
   return g;
 }
@@ -1219,6 +1222,8 @@ function drawSigns(svg, profile, bounds) {
 export function buildSvg(profile, opts = {}) {
   const segs = profile.segments;
   const total = totalWidth(profile) * 100;
+  const under = opts.underground?.items?.length ? opts.underground : null;
+  DROP = under ? undergroundDrop(under.items) : 0;
   const view = opts.view || [-EDGE, Math.max(total + 2 * EDGE, 2400)];
   const vx = view[0] - (view[1] - (total + 2 * EDGE)) / 2;
   // Tall buildings at the edges extend the drawing upwards.
@@ -1233,7 +1238,7 @@ export function buildSvg(profile, opts = {}) {
   // An export's title gets a band of its own above the top row (it covered the A of the cut's end).
   const yv = opts.title ? y0 - 130 : y0;
   // The bottom: the label rows, then the signs and the credits line of an export (set after the signs are laid out).
-  let bottom = opts.credits ? H + 110 : H;
+  let bottom = (opts.credits ? H + 110 : H) + DROP;
   const svg = el("svg", { xmlns: NS, viewBox: `${vx} ${yv} ${view[1]} ${bottom - yv}`, "font-family": "Inter, system-ui, sans-serif",
     role: "img", "aria-label": tr("Příčný profil, celkem {w}: ", { w: fmt(total / 100) }) + segs.map((s) => `${TYPES[s.type]?.label || s.type} ${fmt(s.width)}`).join(", ") });
   const bg = el("rect", { class: "bg", x: vx, y: yv, width: view[1], height: bottom - yv, fill: "#fbfaf6" }, svg);
@@ -1249,7 +1254,7 @@ export function buildSvg(profile, opts = {}) {
     g.classList.add("edge");
     if (opts.selectedEdge === side) g.classList.add("selected");
     // Its whole column is the target, the open ground of "volno" too.
-    g.prepend(el("rect", { x, y: yv, width: EDGE, height: GROUND + 260 - yv, fill: "transparent" }));
+    g.prepend(el("rect", { x, y: yv, width: EDGE, height: GROUND + DROP + 260 - yv, fill: "transparent" }));
     g.setAttribute("tabindex", "0");
     g.setAttribute("role", "button");
     g.setAttribute("aria-label", side === "left" ? tr("Levý okraj") : tr("Pravý okraj"));
@@ -1276,8 +1281,8 @@ export function buildSvg(profile, opts = {}) {
       el("rect", { x: kerbLeft ? x : x + w / 2, y: GROUND - CURB, width: w / 2, height: CURB + 60, fill: KERB_PAVING }, g);
       el("rect", { x: x + w / 2 - (kerbLeft ? 12 : 0), y: GROUND - CURB, width: 12, height: CURB + 8, fill: "#c9c5ba", stroke: "#8d887c", "stroke-width": 1 }, g);
     }
-    el("rect", { x, y: GROUND + 60, width: w, height: 40, fill: "#9b7f5f" }, g);
-    el("rect", { x: x + 4, y: GROUND + 104, width: Math.max(w - 8, 1), height: 14, fill: SOURCES[s.source]?.color || "#999" }, g);
+    el("rect", { x, y: GROUND + 60, width: w, height: 40 + DROP, fill: "#9b7f5f" }, g);
+    el("rect", { x: x + 4, y: GROUND + DROP + 104, width: Math.max(w - 8, 1), height: 14, fill: SOURCES[s.source]?.color || "#999" }, g);
     const cx = x + w / 2;
     const forward = s.dir !== "backward";
     if (t.bed) drawTramBed(g, s, x, w, top, TYPES[segs[i - 1]?.type]?.bed, TYPES[segs[i + 1]?.type]?.bed);
@@ -1359,7 +1364,7 @@ export function buildSvg(profile, opts = {}) {
       }
       drawItem(g, it.kind === "sloup_trakce" && it.center ? { ...it, reach: w / 2 } : it, ix, top, onRight);
     }
-    el("text", { class: "lbl-w", "data-row": 0, "data-w": w, x: cx, y: GROUND + 170, "text-anchor": "middle", "font-size": 40, "font-weight": 600, fill: "#1f1f1d" }, g).textContent = fmt(s.width);
+    el("text", { class: "lbl-w", "data-row": 0, "data-w": w, x: cx, y: GROUND + DROP + 170, "text-anchor": "middle", "font-size": 40, "font-weight": 600, fill: "#1f1f1d" }, g).textContent = fmt(s.width);
     let wrapped = false;
     if (w >= 80) {
       const contra = s.bikeDir && s.bikeDir !== (s.dir || "forward");
@@ -1375,7 +1380,7 @@ export function buildSvg(profile, opts = {}) {
           (contra ? `, ${tr("cyklisté")} ${s.bikeDir === "backward" ? "↓" : "↑"}` : "");
       // Trees between the stalls are named with the parking (Bára).
       if (s.type === "parkovani" && s.items?.some((it) => it.kind === "strom")) label += tr(" se stromy");
-      const name = el("text", { class: "lbl-t", "data-row": 1, "data-w": w, "data-full": label, x: cx, y: GROUND + 215, "text-anchor": "middle", "font-size": 28, fill: "#4f4e49" }, g);
+      const name = el("text", { class: "lbl-t", "data-row": 1, "data-w": w, "data-full": label, x: cx, y: GROUND + DROP + 215, "text-anchor": "middle", "font-size": 28, fill: "#4f4e49" }, g);
       const lines = twoLines(label);
       if (label.length * 0.56 * 28 > w && lines) {
         // A long name under a narrow part goes on two lines (the page refits it to the screen).
@@ -1384,7 +1389,7 @@ export function buildSvg(profile, opts = {}) {
       } else name.textContent = label;
     }
     if (s.turn) {
-      el("text", { class: "lbl-t lbl-turn", "data-row": 2, "data-w": w, x: cx, y: GROUND + (wrapped ? 290 : 255), "text-anchor": "middle", "font-size": 28, fill: "#185fa5" }, g).textContent = turnLabel(s.turn);
+      el("text", { class: "lbl-t lbl-turn", "data-row": 2, "data-w": w, x: cx, y: GROUND + DROP + (wrapped ? 290 : 255), "text-anchor": "middle", "font-size": 28, fill: "#185fa5" }, g).textContent = turnLabel(s.turn);
     }
     if (t.sharrow || s.bikeDir || t.bike) {
       // Cyclist sharing the lane (with a painted pictogram on a piktokoridor), possibly in contraflow.
@@ -1441,6 +1446,9 @@ export function buildSvg(profile, opts = {}) {
     }
   }
 
+  if (under) drawNetworks(svg, under, total);
+  svg.dataset.drop = DROP;
+
   if (opts.title) {
     // A title tag in the top left corner, over the building there.
     el("rect", { class: "title-bg", x: vx + 16, y: yv + 30, width: 60 + opts.title.length * 25, height: 80, rx: 16, fill: "#1d1d1b" }, svg);
@@ -1460,8 +1468,8 @@ export function buildSvg(profile, opts = {}) {
     drawSigns(svg, profile, bounds);
     // Without the page's fitting (an export): the rows below the labels at a fixed size, the picture as tall
     // as they need.
-    const end = layoutSigns(svg, SIGN_SIZE, GROUND + 320, 3.6);
-    if (end > GROUND + 320) bottom += end - H + 20;
+    const end = layoutSigns(svg, SIGN_SIZE, GROUND + DROP + 320, 3.6);
+    if (end > GROUND + DROP + 320) bottom += end - H - DROP + 20;
   }
   if (opts.credits) {
     // Exported pictures carry the attribution their sources require (CC BY-SA for the illustrations): the
@@ -1495,9 +1503,9 @@ const minWidth = (seg) => (seg.type === "parkovani" && seg.orient === "kolme" ? 
 
 // Mount an editable profile with draggable boundaries.
 // onRedraw runs after each drawing (also while a handle is dragged), for the page to fit the labels.
-export function mountEditor(container, profile, { editable = true, selected, onSelect, selectedEdge, onEdge, onChange, onRedraw }) {
+export function mountEditor(container, profile, { editable = true, selected, onSelect, selectedEdge, onEdge, onChange, onRedraw, underground }) {
   const draw = (view) => {
-    container.replaceChildren(buildSvg(profile, { editable, selected, onSelect, selectedEdge, onEdge, view }));
+    container.replaceChildren(buildSvg(profile, { editable, selected, onSelect, selectedEdge, onEdge, view, underground }));
     onRedraw?.(container);
     return container.firstChild;
   };
@@ -1574,51 +1582,35 @@ export function svgString(svgs, gap = 40) {
   return new XMLSerializer().serializeToString(out);
 }
 
-// Networks under the street (site.js, a trial): a band under the profile on its scale, the networks the cut crosses
-// at their depth (a filled ring measured, an empty one at the kind's usual depth), lines every metre. view: the
-// profile's own (its svg's dataset.view), so the band lies under its parts; span: the cut's ends (m from the
-// centre, A = left).
-export function buildUnderground(profile, items, span, view, kinds) {
-  const total = totalWidth(profile) * 100, len = span.left + span.right;
-  const vx = view[0] - (view[1] - (total + 2 * EDGE)) / 2;
-  const x = (t) => ((span.left - t) / len) * total;
-  const V = 1, shownMax = 4, deepest = Math.min(shownMax, Math.max(2, ...items.map((i) => i.depth)));
-  const top = 110, height = top + (deepest + 0.4) * 100 * V + 150; // grows with the legend's rows below
-  const svg = el("svg", { xmlns: NS, class: "underground", viewBox: `${vx} 0 ${view[1]} ${height}`, "font-family": "Inter, system-ui, sans-serif", role: "img", "aria-label": "Sítě pod zemí" });
-  el("rect", { x: vx, y: 0, width: view[1], height, fill: "#fbfaf6" }, svg);
-  el("rect", { x: 0, y: top, width: total, height: (deepest + 0.4) * 100 * V, fill: "#e9e1d3" }, svg);
-  el("line", { x1: 0, x2: total, y1: top, y2: top, stroke: "#6b5a45", "stroke-width": 4 }, svg);
-  el("text", { x: 0, y: top - 30, "font-size": 56, "font-weight": 600, fill: "#3d3b36" }, svg).textContent = "Pod zemí (zkušebně, IPR Praha)";
-  for (let m = 1; m <= deepest; m++) {
-    el("line", { x1: 0, x2: total, y1: top + m * 100 * V, y2: top + m * 100 * V, stroke: "#c9bda8", "stroke-width": 1.5, "stroke-dasharray": "10 8" }, svg);
-    el("text", { x: -16, y: top + m * 100 * V + 18, "text-anchor": "end", "font-size": 48, fill: "#6b6a65" }, svg).textContent = `${m} m`;
+// The networks right under the street, at their real depth under the roadway's surface (GROUND) and real size (a
+// trial, Bára): the earth goes on below the profile's own band, the rows of labels move down by DROP.
+const NET_V = 100; // drawing units per metre of depth, as across
+function undergroundDrop(items) {
+  const deepest = Math.min(4, Math.max(1.5, ...items.map((i) => i.depth + 0.2)));
+  return Math.max(0, (deepest + 0.25) * NET_V - 100) + 90; // + a row for the legend
+}
+function drawNetworks(svg, { items, span, kinds }, total) {
+  const len = span.left + span.right, x = (t) => ((span.left - t) / len) * total;
+  const g = el("g", { class: "networks" }, svg), base = GROUND + 100 + DROP - 90;
+  el("rect", { x: 0, y: GROUND + 100, width: total, height: base - GROUND - 100, fill: "#b49a78" }, g);
+  for (let m = 1; GROUND + m * NET_V < base; m++) {
+    el("line", { x1: 0, x2: total, y1: GROUND + m * NET_V, y2: GROUND + m * NET_V, stroke: "#d8cbb6", "stroke-width": 1.5, "stroke-dasharray": "10 8", opacity: 0.8 }, g);
+    el("text", { x: -14, y: GROUND + m * NET_V + 10, "text-anchor": "end", "font-size": 28, fill: "#6b6a65" }, g).textContent = `${m} m`;
   }
   for (const it of items) {
-    const k = kinds[it.kind] || kinds.jine, cx = x(it.t), deep = it.depth > shownMax;
-    // The pipe at its real size (DN in mm, a radius of DN/20 drawing units), else the kind's usual one; at least
-    // 16 cm across, so a cable shows.
-    const dn = it.profil > 20 && it.profil < 3000 ? it.profil : k.dn, r = Math.max(8, dn / 20);
-    const cy = top + Math.min(it.depth, shownMax) * 100 * V + r;
-    const g = el("g", {}, svg);
-    el("title", {}, g).textContent = `${it.popis}${it.profil > 20 ? `, DN ${it.profil}` : ""}${it.lines > 1 ? ` (v datech ${it.lines}× vedle sebe)` : ""}: ${it.measured ? `hloubka ${String(it.depth).replace(".", ",")} m` : `hloubka neznámá, obvyklá ${String(it.depth).replace(".", ",")} m`}`;
-    el("circle", { cx, cy, r, fill: it.measured ? k.color : "#fbfaf6", stroke: k.color, "stroke-width": it.measured ? 2 : 4, "stroke-dasharray": it.measured ? "" : "6 4" }, g);
-    if (deep) el("text", { x: cx, y: cy + r + 50, "text-anchor": "middle", "font-size": 44, fill: "#3d3b36" }, g).textContent = `${String(it.depth).replace(".", ",")} m`;
+    const k = kinds[it.kind] || kinds.jine, dn = it.profil > 20 && it.profil < 3000 ? it.profil : k.dn, r = Math.max(8, dn / 20);
+    const cy = Math.min(base - r - 4, GROUND + it.depth * NET_V + r), n = el("g", {}, g);
+    el("title", {}, n).textContent = `${it.popis}${it.profil > 20 ? `, DN ${it.profil}` : ""}${it.lines > 1 ? ` (v datech ${it.lines}× vedle sebe)` : ""}: ${it.measured ? `hloubka ${String(it.depth).replace(".", ",")} m` : `hloubka neznámá, obvyklá ${String(it.depth).replace(".", ",")} m`}`;
+    el("circle", { cx: x(it.t), cy, r, fill: it.measured ? k.color : "#fbfaf6", stroke: k.color, "stroke-width": it.measured ? 2 : 4, "stroke-dasharray": it.measured ? "" : "6 4" }, n);
   }
-  // The legend: the kinds in this cut, and what a full and an empty ring mean.
-  // Entries in rows as wide as the picture.
+  // The legend in the last row of the earth.
+  let lx = 20;
+  const ly = base + 56;
   const entries = [...new Set(items.map((i) => i.kind))].map((kind) => ({ k: kinds[kind] || kinds.jine }));
-  entries.push({ empty: true, k: { label: "hloubka neznámá (obvyklá podle druhu)", color: "#6b6a65" } });
-  const right = vx + view[1] - 20, ly0 = top + (deepest + 0.4) * 100 * V + 80;
-  let lx = Math.max(vx + 20, 0), ly = ly0;
+  entries.push({ empty: true, k: { label: "hloubka neznámá", color: "#6b6a65" } });
   for (const e of entries) {
-    const w = 100 + e.k.label.length * 27;
-    if (lx + w > right && lx > Math.max(vx + 20, 0)) { lx = Math.max(vx + 20, 0); ly += 70; }
-    el("circle", { cx: lx + 24, cy: ly - 16, r: 22, fill: e.empty ? "#fbfaf6" : e.k.color, stroke: e.empty ? e.k.color : "none", "stroke-width": 7, "stroke-dasharray": e.empty ? "10 7" : "" }, svg);
-    el("text", { x: lx + 58, y: ly, "font-size": 48, fill: "#3d3b36" }, svg).textContent = e.k.label;
-    lx += w;
+    el("circle", { cx: lx + 16, cy: ly - 10, r: 14, fill: e.empty ? "#fbfaf6" : e.k.color, stroke: e.empty ? e.k.color : "none", "stroke-width": 4, "stroke-dasharray": e.empty ? "6 4" : "" }, g);
+    el("text", { x: lx + 38, y: ly, "font-size": 30, fill: "#3d3b36" }, g).textContent = e.k.label;
+    lx += 70 + e.k.label.length * 17;
   }
-  const h = ly + 40;
-  svg.setAttribute("viewBox", `${vx} 0 ${view[1]} ${h}`);
-  svg.firstChild.setAttribute("height", h);
-  return svg;
 }

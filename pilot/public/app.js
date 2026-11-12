@@ -6,7 +6,7 @@ import { underground, KINDS as NET_KINDS } from "./site.js";
 // Lanes and shoulders from the road markings of the orthophoto (lanes-ortho.js); ?orto=0 leaves the rules' profile.
 const LANES_ORTHO = new URLSearchParams(location.search).get("orto") !== "0";
 import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, signFits, MAX_PER_PART } from "./signs.js";
-import { loadSprites, loadSigns, layoutSigns, buildSvg, buildUnderground, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, edgeInfo, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
+import { loadSprites, loadSigns, layoutSigns, buildSvg, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, edgeInfo, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
 import * as sources from "./sources.js";
 import { MAPY_KEY } from "./config.js";
 import { cleanProfile, cleanCut, retype } from "./validate.js";
@@ -624,7 +624,8 @@ function draw() {
     selectedEdge: state.edge,
     onEdge: (side) => { state.edge = side; state.selected = null; render(); },
     onChange: () => { edited(); render(); },
-    onRedraw: (b) => { fitLabels(b); appendUnderground(b); },
+    onRedraw: (b) => fitLabels(b),
+    underground: undergroundFor(),
   });
   renderEditor(p);
   if (state.mode === "navrh") renderPalette(p);
@@ -872,7 +873,7 @@ function fitLabels(box) {
         if (c < b && d > a) n.style.display = "none";
       }
     }
-    const GROUND = 760, H = 1000;
+    const DROP = Number(svg.dataset.drop) || 0, GROUND = 760 + DROP, H = 1000 + DROP; // the networks' room (site.js)
     const row = (n) => GROUND + 130 + LABEL_PX["lbl-w"] * k + (n > 0 ? n * 1.3 * LABEL_PX["lbl-t"] * k : 0);
     for (const t of svg.querySelectorAll("text[data-row]")) t.setAttribute("y", row(Number(t.dataset.row)));
     const lowest = Math.max(1, ...[...svg.querySelectorAll("text[data-row]")].filter((t) => t.style.display !== "none")
@@ -1653,12 +1654,9 @@ function drawNetLines() {
       .bindTooltip(l.popis, { sticky: true }).addTo(netLayer);
   }
 }
-function appendUnderground(box) {
+function undergroundFor() {
   const items = state.underground?.cut === state.cut ? state.underground.items : null;
-  if (!siteOn() || state.mode !== "stav" || !items?.length) return;
-  const svg = box.querySelector("svg");
-  if (!svg?.dataset.view) return;
-  box.appendChild(buildUnderground(current(), items, cutSpan(state.cut), JSON.parse(svg.dataset.view), NET_KINDS));
+  return siteOn() && state.mode === "stav" && items?.length ? { items, span: cutSpan(state.cut), kinds: NET_KINDS } : null;
 }
 
 function save() {
