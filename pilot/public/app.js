@@ -555,7 +555,7 @@ function render() {
 }
 
 function draw() {
-  document.title = state.stav && state.cut?.name ? `${state.cut.name} – Profily ulic` : "Profily ulic";
+  document.title = state.stav && state.cut?.name ? `${state.cut.name} – ${tr("Profily ulic")}` : tr("Profily ulic");
   document.querySelectorAll(".seg-toggle button").forEach((b) => {
     b.classList.toggle("active", b.dataset.mode === state.mode);
     b.setAttribute("aria-pressed", String(b.dataset.mode === state.mode));

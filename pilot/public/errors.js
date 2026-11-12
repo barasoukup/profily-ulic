@@ -37,7 +37,7 @@
     show(window.profilyReady ? T("Něco se nepovedlo. Zkuste stránku načíst znovu.", "Something went wrong. Try reloading the page.") : START);
   });
   if (!("noModule" in HTMLScriptElement.prototype)) {
-    show(T("Tento prohlížeč je na Profily ulic příliš starý. Otevřete je prosím v aktuálním Chrome, Firefoxu, Safari nebo Edge.", "This browser is too old for Profily ulic. Please open the app in a current Chrome, Firefox, Safari or Edge."));
+    show(T("Tento prohlížeč je na Profily ulic příliš starý. Otevřete je prosím v aktuálním Chrome, Firefoxu, Safari nebo Edge.", "This browser is too old for Street Profile. Please open it in a current Chrome, Firefox, Safari or Edge."));
   }
   // Nothing has started after a while (a module that silently failed): say so.
   window.addEventListener("load", function () {

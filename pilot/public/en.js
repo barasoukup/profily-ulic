@@ -446,6 +446,8 @@ export const EN = {
   "Technická mapa tu nic nevrátila, profil je odhad z OSM.": "The technical map returned nothing here, the profile is an estimate from OSM.",
 
   // ---------- index.html ----------
+  // The app's name (Bára 12. 11. 2026); the picture of the link preview keeps the Czech one.
+  "Profily ulic": "Street Profile",
   "Příčné profily ulic v Česku od fasády k fasádě z technických map měst a ČÚZK, RÚIAN a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.":
     "Street cross-sections in Czechia from facade to facade, from the technical maps of the cities and of ČÚZK, RÚIAN and OpenStreetMap. Edit a profile, compare it with the street today and save it as an image.",
   "Příčné profily ulic v Česku z technických map měst a ČÚZK: od fasády k fasádě, upravitelné, s místními ilustracemi.":
@@ -483,7 +485,7 @@ export const EN = {
   "Zrušit": "Cancel",
   "Odeslat": "Send",
   "Otevřít na Mapy.com ↗": "Open on Mapy.com ↗",
-  "Profily ulic – začít znovu": "Profily ulic – start again",
+  "Profily ulic – začít znovu": "Street Profile – start again",
   "Zobrazení": "View",
   "Ulice, jak je dnes (z technické mapy města nebo ČÚZK a OSM)": "The street as it is today (from the technical map of the city or of ČÚZK, and OSM)",
   "Vaše úprava ulice": "Your redesign of the street",

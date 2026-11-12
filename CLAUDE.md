@@ -180,7 +180,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   vyznačený v mapě, Plzeň: „stavba pro zpevnění povrchu“ je zpevněná plocha.
 
 ## Jazyky (Bára 12. 11. 2026)
-- Čeština a angličtina: `pilot/public/i18n.js` (`t("český text")`), překlady v `pilot/public/en.js`, přepínač EN / CS
+- Anglicky se aplikace jmenuje **Street Profile**. Čeština a angličtina: `pilot/public/i18n.js` (`t("český text")`), překlady v `pilot/public/en.js`, přepínač EN / CS
   v hlavičce, `?lang=en`. Nový text vždy přes `t()` a s překladem (hlídá `tests/i18n.test.js`). Popis v `pilot/README.md`.
 
 ## Licence
