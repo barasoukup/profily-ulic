@@ -1,7 +1,7 @@
 // Width rules for a street design, after IPR Praha: Manuál tvorby veřejných prostranství, kap. C.2
 // (text in data/zdroje/ipr_manual_C2.txt). "min": below the minimum the manual allows;
 // "zaklad": narrower than the manual's basic (recommended) width.
-import { TYPES } from "./types.js";
+import { TYPES, HDV_UNDER, underSize } from "./types.js";
 import { t, num } from "./i18n.js";
 
 const fmt = (v) => `${num(v)} m`;
@@ -119,5 +119,33 @@ export function checkRules(profile) {
     }
     i = j - 1;
   }
+  return out;
+}
+
+// A rainwater object under a part that runs into a network as drawn (Bára 12. 11. 2026): [{i, level, short, why}].
+// The standard asks for the conflicts with the networks and their protection zones to be checked (Standardy HDV,
+// kap. 6.2.9) but gives no distances, so only an overlap counts, not a distance (that is the networks' owners'
+// to say). under: the networks of the cut (app.js undergroundFor: items with t across the cut, depth to the top,
+// profil DN in mm; span.left the cut's reach on the A side), or null.
+export function checkUnder(profile, under) {
+  if (!under?.items?.length) return [];
+  const out = [];
+  let x = 0;
+  profile.segments.forEach((s, i) => {
+    const z = s.under && underSize(s);
+    if (z) {
+      const cx = x + s.width / 2;
+      for (const it of under.items) {
+        const k = under.kinds?.[it.kind];
+        const dn = it.profil > 20 && it.profil < 3000 ? it.profil : k?.dn || 110, r = dn / 2000;
+        const m = under.span.left - it.t, depth = it.depth + r; // the network's centre: across from A, and down
+        if (Math.abs(m - cx) > z.w / 2 + r || depth < z.top - r || depth > z.top + z.h + r) continue;
+        const name = HDV_UNDER[s.under].label;
+        const v = { obj: name[0].toUpperCase() + name.slice(1), part: TYPES[s.type]?.label || s.type, net: k?.label || it.kind, d: fmt(it.depth) };
+        out.push({ i, level: "zaklad", short: t("{obj} pod částí {part} narazí na {net} ({d} pod povrchem)", v), why: t("střet se sítí a jejím ochranným pásmem posuďte se správcem sítě (Standardy HDV, kap. 6.2.9)") });
+      }
+    }
+    x += s.width;
+  });
   return out;
 }

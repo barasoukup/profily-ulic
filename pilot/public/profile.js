@@ -1,6 +1,6 @@
 // SVG drawing and direct editing of a street profile. Drawing units are centimetres,
 // matching the Streetmix illustrations (1 px = 1 cm).
-import { TYPES, SOURCES, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURNS, HDV_UNDER } from "./types.js";
+import { TYPES, SOURCES, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURNS, HDV_UNDER, underSize } from "./types.js";
 import { city, cityById, CITY_IDS, creditLines } from "./city.js";
 import { PLATES, signFile, plateFile, signLabel } from "./signs.js";
 // tr: t is a part's type here.
@@ -197,25 +197,27 @@ function drawWaterPart(g, s, x, w, top, before, after) {
   if (RUNOFF.has(before?.type) && !before.permeable) arrow(x + 6, 1);
   if (RUNOFF.has(after?.type) && !after.permeable) arrow(x + w - 6, -1);
 }
-// A rainwater object under a part (segment.under): in the earth below its surface, schematically.
-function drawUnder(g, s, x, w, top) {
-  const y0 = Math.max(top + 34, GROUND + 18), y1 = GROUND + 96;
+// A rainwater object under a part (segment.under): in the earth below the street at its size and depth (types.js
+// underSize; Bára: to see it with the networks), on the same scale and from the same depth 0 as the networks
+// (drawNetworks), centred under the part.
+function drawUnder(g, s, x, w) {
+  const z = underSize(s), zero = NET_TOP + BASE_COURSE, base = GROUND + 104 + DROP;
+  const bw = Math.min(w - 8, z.w * 100), bx = x + (w - bw) / 2;
+  const y0 = zero + z.top * NET_V, y1 = Math.min(base - 4, y0 + z.h * NET_V);
+  const box = el("g", {}, g);
+  el("title", {}, box).textContent = tr("{name} {w} × {h} m, {from}–{to} m pod povrchem", { name: HDV_UNDER[s.under].label, w: num(z.w), h: num(z.h), from: num(z.top), to: num(+(z.top + z.h).toFixed(2)) });
   if (s.under === "sachta") {
-    const cx = x + w / 2, sw = Math.min(46, w * 0.5);
-    el("rect", { x: cx - sw / 2, y: top + 20, width: sw, height: y1 - top - 20, fill: "#d9d4c8", stroke: "#7d776b", "stroke-width": 2 }, g);
-    for (let v = top + 40; v < y1 - 10; v += 22) el("line", { x1: cx - sw / 2, x2: cx + sw / 2, y1: v, y2: v, stroke: "#7d776b", "stroke-width": 1.5 }, g);
-    el("rect", { x: cx - sw / 2 + 3, y: y1 - 24, width: sw - 6, height: 21, fill: "#9cc3e4" }, g);
-    return;
-  }
-  const inset = Math.min(30, w * 0.12), bx = x + inset, bw = Math.max(20, w - 2 * inset);
-  if (s.under === "ryha") {
-    el("rect", { x: bx, y: y0, width: bw, height: y1 - y0, fill: GRAVEL, stroke: "#7d776b", "stroke-width": 2, "stroke-dasharray": "8 5" }, g);
-    pebbles(g, bx, y0, bw, y1 - y0, 2);
+    el("rect", { x: bx, y: y0, width: bw, height: y1 - y0, fill: "#d9d4c8", stroke: "#7d776b", "stroke-width": 2 }, box);
+    for (let v = y0 + 20; v < y1 - 10; v += 22) el("line", { x1: bx, x2: bx + bw, y1: v, y2: v, stroke: "#7d776b", "stroke-width": 1.5 }, box);
+    el("rect", { x: bx + 3, y: y1 - 24, width: bw - 6, height: 21, fill: "#9cc3e4" }, box);
+  } else if (s.under === "ryha") {
+    el("rect", { x: bx, y: y0, width: bw, height: y1 - y0, fill: GRAVEL, stroke: "#7d776b", "stroke-width": 2, "stroke-dasharray": "8 5" }, box);
+    pebbles(box, bx, y0, bw, y1 - y0, 2);
   } else if (s.under === "nadrz") {
-    el("rect", { x: bx, y: y0, width: bw, height: y1 - y0, rx: 10, fill: "#cfe2f1", stroke: "#4a7fae", "stroke-width": 3 }, g);
+    el("rect", { x: bx, y: y0, width: bw, height: y1 - y0, rx: 10, fill: "#cfe2f1", stroke: "#4a7fae", "stroke-width": 3 }, box);
     const lvl = y0 + (y1 - y0) * 0.45;
-    el("path", { d: `M${bx + 6} ${lvl} q${bw / 8} -6 ${bw / 4} 0 t${bw / 4} 0 t${bw / 4} 0 t${bw / 4 - 12} 0`, fill: "none", stroke: WATER, "stroke-width": 2.5 }, g);
-    el("rect", { x: bx + 3, y: lvl + 3, width: bw - 6, height: y1 - lvl - 6, rx: 7, fill: "#9cc3e4", opacity: 0.7 }, g);
+    el("path", { d: `M${bx + 6} ${lvl} q${bw / 8} -6 ${bw / 4} 0 t${bw / 4} 0 t${bw / 4} 0 t${bw / 4 - 12} 0`, fill: "none", stroke: WATER, "stroke-width": 2.5 }, box);
+    el("rect", { x: bx + 3, y: lvl + 3, width: bw - 6, height: y1 - lvl - 6, rx: 7, fill: "#9cc3e4", opacity: 0.7 }, box);
   }
 }
 // Permeable paving (segment.permeable, 5.1.2) and unpaved surfaces: no concrete slab under them (Bára), but a gravel
@@ -1326,8 +1328,12 @@ function drawSigns(svg, profile, bounds) {
 export function buildSvg(profile, opts = {}) {
   const segs = profile.segments;
   const total = totalWidth(profile) * 100;
-  const under = opts.underground?.items?.length ? opts.underground : null;
-  DROP = under ? undergroundDrop(under.items, under.kinds) : 0;
+  // The earth under the street, with its metres: for the networks (a trial, Prague) and for a rainwater object
+  // under a part, which is drawn at its depth and size (with the networks or alone, also in Porovnat and exports).
+  const nets = opts.underground?.items?.length ? opts.underground : null;
+  const deepest = Math.max(0, ...segs.filter((s) => s.under).map((s) => { const z = underSize(s); return z.top + z.h; }));
+  const under = nets || (deepest ? { items: [], span: { left: total / 100 }, kinds: {} } : null);
+  DROP = under ? undergroundDrop(under.items, under.kinds, deepest) : 0;
   const view = opts.view || [-EDGE, Math.max(total + 2 * EDGE, 2400)];
   const vx = view[0] - (view[1] - (total + 2 * EDGE)) / 2;
   // Tall buildings at the edges extend the drawing upwards.
@@ -1391,7 +1397,7 @@ export function buildSvg(profile, opts = {}) {
     const forward = s.dir !== "backward";
     if (t.bed) drawTramBed(g, s, x, w, top, TYPES[segs[i - 1]?.type]?.bed, TYPES[segs[i + 1]?.type]?.bed);
     // Under the part: drawn after the networks' earth (below), which would cover it.
-    if (s.under) undersLater.push([s, x, w, top]);
+    if (s.under) undersLater.push([s, x, w]);
     if (t.water) drawWaterPart(g, s, x, w, top, segs[i - 1], segs[i + 1]);
     if (s.permeable) drawPermeable(g, x, w, top, s.permeable === "nezpevneny");
     if (t.marked) {
@@ -1561,7 +1567,13 @@ export function buildSvg(profile, opts = {}) {
 
   if (under) drawNetworks(svg, under, total);
   // Rainwater objects under the parts, over the networks' earth (Fable's review).
-  if (undersLater.length) { const ug = el("g", { class: "under" }, svg); for (const [s, x, w, top] of undersLater) drawUnder(ug, s, x, w, top); }
+  if (undersLater.length) {
+    const ug = el("g", { class: "under" }, svg);
+    for (const [s, x, w] of undersLater) drawUnder(ug, s, x, w);
+    // The networks over them, so a pipe running through a tank shows (and its tooltip works).
+    const over = el("g", { class: "networks" }, svg);
+    for (const n of [...svg.querySelectorAll("g.networks > g")]) if (n.dataset.tip) over.append(n);
+  }
   svg.dataset.drop = DROP;
 
   if (opts.title) {
@@ -1715,8 +1727,8 @@ const netEntries = (items, kinds) => [
   ...NET_ORDER.filter((kind) => items.some((i) => i.kind === kind)).map((kind) => ({ k: kinds[kind] || kinds.jine })),
   ...(items.some((i) => !i.measured) ? [{ empty: true, k: { label: tr("hloubka neznámá"), color: "#6b6a65" } }] : []),
 ];
-function undergroundDrop(items, kinds) {
-  const deepest = Math.min(4, Math.max(2, ...items.map((i) => i.depth + 0.2)));
+function undergroundDrop(items, kinds, objects = 0) {
+  const deepest = Math.min(5, Math.max(items.length ? 2 : 1, objects + 0.2, ...items.map((i) => i.depth + 0.2)));
   const depth = BASE_COURSE + (deepest + 0.15) * NET_V + 40, legend = 30 + netEntries(items, kinds).length * LEGEND_ROW;
   return Math.max(0, NET_TOP + Math.max(depth, legend) - (GROUND + 104));
 }
@@ -1754,6 +1766,7 @@ function drawNetworks(svg, { items, span, kinds }, total) {
   // The legend: one column under the right edge, a panel as wide as the edge and flush with the depth-0 line (Bára:
   // not floating), the kinds in their usual order from the top.
   const entries = netEntries(items, kinds);
+  if (!entries.length) return; // the earth for a rainwater object alone
   el("rect", { x: total, y: zero, width: EDGE, height: entries.length * LEGEND_ROW + 20, fill: "#fbfaf6", stroke: "#e2ded4", "stroke-width": 1.5 }, g);
   entries.forEach((e, i) => {
     const lx = total + 16, ly = zero + 10 + (i + 0.5) * LEGEND_ROW;

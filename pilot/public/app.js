@@ -1,4 +1,4 @@
-import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, SURFACES } from "./types.js";
+import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, SURFACES, underSize } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes } from "./lanes-ortho.js";
@@ -12,7 +12,7 @@ import { MAPY_KEY } from "./config.js";
 import { cleanProfile, cleanCut, retype } from "./validate.js";
 import { shares } from "./shares.js";
 import { packProfile, unpackProfile, designParams } from "./share.js";
-import { checkRules } from "./rules.js";
+import { checkRules, checkUnder } from "./rules.js";
 import { city, setCity, cityAt, loadBounds } from "./city.js";
 import { TOWNS } from "./towns/index.js";
 import { log, logOn, sendReport, shortProfile } from "./log.js";
@@ -741,10 +741,17 @@ function diffList(a, b) {
 function renderRuleCheck(p, box) {
   const el = $("#rule-check");
   if (state.mode !== "navrh") { el.hidden = true; return; }
-  const found = checkRules(p);
+  // The widths by the manual, and (with the networks on) rainwater objects running into a network: each under its
+  // own head.
+  const widths = checkRules(p), clashes = checkUnder(p, undergroundFor());
+  const found = [...widths, ...clashes];
   for (const f of found) box.querySelector(`g.seg[data-i="${f.i}"]`)?.classList.add(`warn-${f.level}`);
   if (!found.length) { el.hidden = true; return; }
   el.hidden = false;
+  el.replaceChildren();
+  for (const [head, list] of [[city.rulesHead, widths], [tr("Pod povrchem a sítě (zkušebně):"), clashes]]) if (list.length) el.append(Object.assign(document.createElement("div"), { textContent: head }), warnList(list));
+}
+function warnList(found) {
   const ul = document.createElement("ul");
   for (const f of found) {
     const li = Object.assign(document.createElement("li"), { className: f.level });
@@ -754,8 +761,7 @@ function renderRuleCheck(p, box) {
     li.onclick = () => { state.selected = f.i; render(); };
     ul.append(li);
   }
-  const head = Object.assign(document.createElement("div"), { textContent: city.rulesHead });
-  el.replaceChildren(head, ul);
+  return ul;
 }
 
 // The street is as wide as the current state (façade to façade): the design must fill exactly that
@@ -1398,9 +1404,26 @@ function renderEditor(p) {
   if (UNDER_TYPES.includes(s.type)) {
     const under = document.createElement("select");
     for (const [v, t] of [["", tr("nic")], ...Object.entries(HDV_UNDER).map(([k, u]) => [k, u.label])]) under.add(new Option(t, v, false, (s.under || "") === v));
-    under.onchange = () => { if (under.value) s.under = under.value; else delete s.under; s.source = "user"; done(); };
+    // Another object starts from its own default size.
+    under.onchange = () => { if (under.value) s.under = under.value; else delete s.under; delete s.underSize; s.source = "user"; done(); };
     r2.append(lab(tr("Pod povrchem"), under));
-    if (s.under) set.push(opt(under));
+    if (s.under) {
+      set.push(opt(under));
+      // Its size (types.js underSize; the standard sizes it by calculation): wide, from what depth, how high.
+      const z = underSize(s), size = Object.assign(document.createElement("span"), { className: "under-size" });
+      for (const [k, text, lo, hi] of [["w", tr("šířka"), 0.3, Math.max(0.3, s.width - 0.2)], ["top", tr("od hloubky"), 0, 5], ["h", tr("výška"), 0.2, 5]]) {
+        const inp = Object.assign(document.createElement("input"), { type: "number", step: 0.1, min: lo, max: +hi.toFixed(2), value: z[k] });
+        inp.onchange = () => {
+          const v = Math.min(hi, Math.max(lo, +(+inp.value).toFixed(2)));
+          if (Number.isFinite(v)) s.underSize = { ...s.underSize, [k]: v };
+          s.source = "user";
+          done();
+        };
+        size.append(lab(text, inp));
+      }
+      size.append(Object.assign(document.createElement("span"), { className: "muted", textContent: tr("m; výchozí odhad, rozměr dá výpočet podle Standardů HDV") }));
+      row(moreBox).append(size);
+    }
   }
   if (TYPES[s.type]?.tracks) {
     // Buses may use the tram part (OSM psv / bus on the tracks).

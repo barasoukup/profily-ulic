@@ -406,3 +406,6 @@ footer summary { cursor: pointer; }
 footer details[open] summary { margin-bottom: 4px; }
 #editor .items select { flex: 0 1 auto; width: 11.5em; } /* closed it says only "+ přidat…"; the list opens wider */
 .ed-acts .close { margin-left: 2px; padding: 2px 6px; }
+#editor .under-size { display: inline-flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; }
+#editor .under-size input[type=number] { width: 72px; }
+#editor .under-size .muted { font-size: 12px; }

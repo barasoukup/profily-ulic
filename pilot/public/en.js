@@ -587,6 +587,15 @@ export const EN = {
   "Místní ilustrace": "Local illustrations",
   "Data © IPR Praha, ČÚZK, města a kraje, OpenStreetMap · ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí":
     "Data © IPR Praha, ČÚZK, cities and regions, OpenStreetMap · illustrations Streetmix (CC BY-SA 4.0) and © Bára Soukupová · sources, licences and privacy",
+  // Rainwater objects at their size, with the networks.
+  "Pod povrchem a sítě (zkušebně):": "Below the surface and the networks (a trial):",
+  "šířka": "width",
+  "od hloubky": "from a depth of",
+  "výška": "height",
+  "m; výchozí odhad, rozměr dá výpočet podle Standardů HDV": "m; a default estimate, the size comes from a calculation by the Prague rainwater standards",
+  "{name} {w} × {h} m, {from}–{to} m pod povrchem": "{name} {w} × {h} m, {from}–{to} m below the surface",
+  "{obj} pod částí {part} narazí na {net} ({d} pod povrchem)": "{obj} under the {part} runs into the {net} ({d} below the surface)",
+  "střet se sítí a jejím ochranným pásmem posuďte se správcem sítě (Standardy HDV, kap. 6.2.9)": "have the network's owner assess the clash with it and its protection zone (Prague rainwater standards, ch. 6.2.9)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

@@ -491,7 +491,13 @@ Bára: mlatové cyklostezky a pěšiny také vsakují) zvlášť „nezpevněný
 nejsou (OSM 0, otevřená data měst nic; Brno má jen body dotovaných zelených střech a dešťovek, Bára: nevyužívat),
 retenční nádrže zůstávají vodou.
 Kreslí se zjednodušeně (Magdalena: kvůli měřítku zjednodušit): průleh jako mělká prohlubeň s výsadbou, nádrž s vodou
-a rákosem, podzemní objekty jako schéma v zemině, modré šipky ukazují přítok ze zpevněných ploch vedle; zatravňovací
+a rákosem; podzemní objekty ve skutečné velikosti a hloubce, ve stejném měřítku a od stejné nuly jako sítě pod zemí
+(Bára 12. 11. 2026), i bez sítí se pod ulicí ukáže zemina s metry. Rozměr se nastaví v „Další volby“ (šířka, od hloubky,
+výška; `segment.underSize`), výchozí je odhad: rýha 1,5 m široká v hloubce 0,4–1,4 m (příklad ve Standardech má rýhu
+1,5 m s nadržením 0,5 m), nádrž přes šířku části bez 0,3 m z každé strany v hloubce 0,8–2,3 m, šachta 1 m v hloubce
+0,5–3 m; Standardy rozměry neurčují, dává je výpočet. Se zapnutými sítěmi Návrh upozorní, když objekt narazí na síť
+(překryv s kreslenou sítí; Standardy kap. 6.2.9 jen žádají střety se sítěmi a ochrannými pásmy prověřit, odstupy
+nedávají, takže je aplikace nehádá), sítě se kreslí přes objekty, aby byl střet vidět. modré šipky ukazují přítok ze zpevněných ploch vedle; zatravňovací
 dlažba jako pás betonových tvárnic s trávou mezi nimi (Bára: na první pohled něco mezi parkováním a trávníkem). Ilustrace (zelená střecha přístřešku, výsadba průlehu, rákos) kreslila
 „kreslířka“ ve třech kolech s „kritikem“ podle fotek z Wikimedia Commons.
 

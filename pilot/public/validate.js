@@ -34,6 +34,13 @@ export function cleanProfile(p, what = "profil") {
     if ("permeable" in s && s.permeable !== true && s.permeable !== "nezpevneny") delete s.permeable;
     // A rainwater object under the part (types.js HDV_UNDER), a known one on a part that may have it.
     if ("under" in s && !(Object.hasOwn(HDV_UNDER, s.under) && UNDER_TYPES.includes(s.type))) delete s.under;
+    // Its size set by hand (types.js underSize): numbers in metres, only with an object.
+    if ("underSize" in s) {
+      const z = s.underSize;
+      const ok = s.under && z && typeof z === "object" && Object.keys(z).every((k) => ["w", "top", "h"].includes(k))
+        && (z.w === undefined || num(z.w, 0.3, 50)) && (z.top === undefined || num(z.top, 0, 5)) && (z.h === undefined || num(z.h, 0.2, 5));
+      if (!ok) delete s.underSize;
+    }
     if (s.permeable && !PERMEABLE_TYPES.includes(s.type)) delete s.permeable;
     if ("roadClass" in s && !/^(dalnice|mk[1-4]|sil[1-3])$/.test(s.roadClass)) delete s.roadClass;
     if ("signs" in s) s.signs = cleanSigns(s.signs).slice(0, MAX_PER_PART);
@@ -69,7 +76,7 @@ const FIELD_TYPES = {
   orient: ["parkovani"], use: ["parkovani"], position: ["parkovani"], color: ["cyklopruh", "ochranny_pruh"],
   bed: Object.keys(TYPES).filter((k) => TYPES[k].bed), bedGuess: Object.keys(TYPES).filter((k) => TYPES[k].bed),
   withBus: Object.keys(TYPES).filter((k) => TYPES[k].tracks), trolley: LANES, wires: LANES, roadClass: LANES,
-  under: UNDER_TYPES, permeable: PERMEABLE_TYPES,
+  under: UNDER_TYPES, underSize: UNDER_TYPES, permeable: PERMEABLE_TYPES,
 };
 // Gives a part a new type and drops the settings that do not belong to it; a directional type gets a direction.
 export function retype(s, type) {

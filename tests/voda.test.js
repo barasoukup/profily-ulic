@@ -2,7 +2,8 @@
 // srážkovými vodami, ch. 5.1): the parts, what lies under a part, permeable paving, and how they travel and count.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { TYPES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, ITEMS } from "../pilot/public/types.js";
+import { TYPES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, ITEMS, underSize } from "../pilot/public/types.js";
+import { checkUnder } from "../pilot/public/rules.js";
 import { cleanProfile, retype } from "../pilot/public/validate.js";
 import { packProfile, unpackProfile } from "../pilot/public/share.js";
 import { shares } from "../pilot/public/shares.js";
@@ -51,4 +52,29 @@ test("ve sdílení prostoru se počítají k zeleni, do Streetmixu jako zeleň",
   assert.equal(g.zelen, 7);
   const kinds = toStreetmix(design(), "x").data.street.segments.map((s) => s.type);
   assert.deepEqual(kinds.slice(1), ["divider", "drive-lane", "divider", "divider"]);
+});
+
+test("rozměr objektu pod povrchem: výchozí, vlastní, nejvýš šířka části; projde odkazem, nesmysl se zahodí", async () => {
+  assert.deepEqual(underSize({ under: "ryha", width: 3 }), { w: 1.5, top: 0.4, h: 1 });
+  assert.equal(underSize({ under: "nadrz", width: 4 }).w, 3.4); // the part less 0.3 m a side
+  assert.equal(underSize({ under: "ryha", width: 1 }).w, 0.8); // never wider than the part
+  assert.deepEqual(underSize({ under: "sachta", width: 3, underSize: { top: 1.2 } }), { w: 1, top: 1.2, h: 2.5 });
+  const p = { segments: [{ type: "chodnik", width: 3, under: "ryha", underSize: { w: 2, h: 1.2 } }, { type: "zelen", width: 2, underSize: { w: 1 } }, { type: "chodnik", width: 2, under: "nadrz", underSize: { h: "x" } }], edges: {} };
+  const back = cleanProfile(await unpackProfile(await packProfile(p)));
+  assert.deepEqual(back.segments[0].underSize, { w: 2, h: 1.2 });
+  assert.equal(back.segments[1].underSize, undefined); // nothing under it
+  assert.equal(back.segments[2].underSize, undefined);
+});
+
+test("střet objektu pod povrchem se sítí: jen když se překrývají", () => {
+  const kinds = { vodovod: { label: "vodovod", dn: 150 }, kanalizace: { label: "kanalizace", dn: 300 } };
+  // A sidewalk 0–4 m from A with a trench 1.5 m wide in its middle (1.25–2.75 m), 0.4–1.4 m deep.
+  const p = { segments: [{ type: "chodnik", width: 4, under: "ryha" }, { type: "pruh", width: 3 }] };
+  const at = (m, depth, kind = "vodovod") => ({ items: [{ t: 10 - m, depth, kind, profil: null }], span: { left: 10 }, kinds });
+  assert.equal(checkUnder(p, at(2, 0.8)).length, 1); // in it
+  assert.equal(checkUnder(p, at(2, 2.5, "kanalizace")).length, 0); // below it
+  assert.equal(checkUnder(p, at(3.5, 0.8)).length, 0); // beside it
+  assert.equal(checkUnder(p, at(2.8, 0.8)).length, 1); // touching its side (the pipe's radius)
+  assert.equal(checkUnder(p, at(5, 0.8)).length, 0); // under the lane
+  assert.equal(checkUnder(p, null).length, 0);
 });

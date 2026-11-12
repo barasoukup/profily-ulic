@@ -43,11 +43,22 @@ export const TYPES = {
 
 // Rainwater objects under a part (segment.under; the standard's chapter): under green, a sidewalk, parking…
 export const HDV_UNDER = {
-  // short: in the label under the drawing (the full name in the editor).
-  ryha: { label: t("podzemní rýha"), short: t("rýha"), hdv: "5.1.7" },
-  nadrz: { label: t("podzemní retenční nádrž"), short: t("nádrž"), hdv: "5.1.11" },
-  sachta: { label: t("vsakovací šachta"), short: t("šachta"), hdv: "5.1.9" },
+  // short: in the label under the drawing (the full name in the editor). size: the default size in metres (w wide,
+  // its top at top under the surface, h high; w null: the part's width less 0.3 m a side). The standard sizes them
+  // by calculation, not by a fixed size; its worked example has a trench 1.5 m wide holding 0.5 m of water. The
+  // defaults are a first guess to be set by the design (segment.underSize).
+  ryha: { label: t("podzemní rýha"), short: t("rýha"), hdv: "5.1.7", size: { w: 1.5, top: 0.4, h: 1 } },
+  nadrz: { label: t("podzemní retenční nádrž"), short: t("nádrž"), hdv: "5.1.11", size: { w: null, top: 0.8, h: 1.5 } },
+  sachta: { label: t("vsakovací šachta"), short: t("šachta"), hdv: "5.1.9", size: { w: 1, top: 0.5, h: 2.5 } },
 };
+// The size of the object under a part (m): set in the design, else the default; never wider than the part.
+export function underSize(s) {
+  const d = HDV_UNDER[s.under]?.size;
+  if (!d) return null;
+  const own = s.underSize || {};
+  const room = Math.max(0.3, s.width - 0.2);
+  return { w: Math.min(room, own.w ?? d.w ?? Math.max(0.3, s.width - 0.6)), top: own.top ?? d.top, h: own.h ?? d.h };
+}
 // The parts that may have one; with a průleh above, a rýha under it is the standard's "průleh s podzemní rýhou" (5.1.8).
 export const UNDER_TYPES = ["zelen", "stromorad", "predzahradka", "delici", "pruleh", "chodnik", "chodnik_kola", "stezka_sdilena", "plocha", "parkovani", "nastupiste", "zahradka"];
 // The paved parts that may be permeable (segment.permeable): true for permeable paving (joints, porous paving;
