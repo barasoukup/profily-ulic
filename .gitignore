@@ -34,3 +34,6 @@ evaluation/*/data/
 
 # Certificates joined for one run of tools/check_sources.mjs
 tools/.ca-check.pem
+
+# Bářiny dokumenty (Plus přístup), nepatří do repozitáře
+Profily-ulic-Plus.docx
