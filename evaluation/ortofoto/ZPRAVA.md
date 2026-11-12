@@ -297,3 +297,7 @@ končí jen tam, kde nenásleduje vozovka).
 
 Po úpravě (na ČÚZK krajnice z čáry jen u obou obrub zároveň): celkem čáry 40 %, počet pruhů 53 % (pravidla 52 %),
 Hradec počet pruhů 38 → 46 %; ortofoto lépe u 33 vozovek, hůře u 10.
+
+Na příště: značení proti nevyježděným pásům uprostřed pruhů (řez 324, Hradec): na ČÚZK mají pásy (+22 až +27) a
+přerušovaná středová čára (+35) skoro stejný jas i šířku (0,6–0,7 m); rozliší je spíš geometrie (pás uprostřed mezi
+stopami kol) a vlastnosti naučené z doznačených příkladů.
