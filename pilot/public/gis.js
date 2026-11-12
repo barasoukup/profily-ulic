@@ -1,6 +1,7 @@
 // What every data source needs: requests with retries (announced to the app), ArcGIS queries in an
 // envelope, the OSM tiles around a point, and a few geometry helpers the cities' sources share
 // (sources.js for Prague and Brno, towns/*.js for the towns asking their own GIS on a click).
+import { t } from "./i18n.js";
 import { STATIC } from "./config.js";
 import { city } from "./city.js";
 
@@ -58,7 +59,7 @@ const tile = (n) => {
   }
   if (tiles.size >= TILES_KEPT) tiles.delete(tiles.keys().next().value);
   // With a timeout: a tile that does not come would otherwise hold the cut up for good.
-  tiles.set(n, fetch(`${TILES_AT}/${n}.json`, { signal: AbortSignal.timeout(TIMEOUT) }).then((r) => (r.ok ? r.text().then(decodeTile) : r.status === 404 ? [] : Promise.reject(new Error(`dlaždice OSM ${r.status}`))))
+  tiles.set(n, fetch(`${TILES_AT}/${n}.json`, { signal: AbortSignal.timeout(TIMEOUT) }).then((r) => (r.ok ? r.text().then(decodeTile) : r.status === 404 ? [] : Promise.reject(new Error(t("dlaždice OSM {status}", { status: r.status })))))
     .catch((err) => { tiles.delete(n); throw err; }));
   return tiles.get(n);
 };

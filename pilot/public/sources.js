@@ -7,7 +7,7 @@ import { STATIC } from "./config.js";
 import { city, MTVU_LABELS } from "./city.js";
 import { TILE, getJSON, query, envelope, osmTiles, insideRings } from "./gis.js";
 import { TOWNS } from "./towns/index.js";
-import { t } from "./i18n.js";
+import { t, mark } from "./i18n.js";
 export { events } from "./gis.js";
 
 import { MTVU, MTVU_FIELDS, TM_LINES, LINE_WHERE, TM_POINTS, POINT_WHERE, PARKOVANI, PARKING_LAYERS, parkingFields, PODLAZNOST, PODLAZNOST_FIELDS, podlaznostInfo } from "./queries.js";
@@ -42,6 +42,7 @@ export const mtvu = (bbox) => (town() ? town().surfaces(bbox) : isBrno() ? brnoS
   ? query(MTVU, { ...envelope(bbox), outFields: MTVU_FIELDS })
   : getJSON(`/api/mtvu?bbox=${bbox}`)).then((json) => national(json, bbox), (err) => national({ features: [] }, bbox, err));
 
+// The note is the Czech text (mark): the cut keeps it so, app.js translates it when it shows it.
 // What a cut lacks because a source did not answer, from the settled requests of app.js cutAt (surfaces,
 // lines, parking): the note after the street's name and the status line. Without the surfaces the
 // profile is an estimate from OSM; without the lines it lacks tram tracks, fences and slopes; without the
@@ -57,11 +58,11 @@ export function outage({ surfaces, lines, parking }, dataName = city.dataName) {
   const again = " " + t("Zkuste kliknout znovu za chvíli.");
   const failed = !s;
   const empty = s && !s.features?.length;
-  const note = failed ? t(" · technická mapa neodpověděla, jen odhad")
-    : s.fallback ? t(" · plochy z technické mapy ČÚZK")
-    : empty ? (s.dmvsFailed ? t(" · technická mapa neodpověděla, jen odhad") : s.linesOnly ? t(" · technická mapa tu má jen čáry, jen odhad") : t(" · mimo technickou mapu, jen odhad"))
-    : s.fromLines ? t(" · plochy odvozené z čar technické mapy")
-    : lacks.length ? t(" · neúplná data") : "";
+  const note = failed ? mark(" · technická mapa neodpověděla, jen odhad")
+    : s.fallback ? mark(" · plochy z technické mapy ČÚZK")
+    : empty ? (s.dmvsFailed ? mark(" · technická mapa neodpověděla, jen odhad") : s.linesOnly ? mark(" · technická mapa tu má jen čáry, jen odhad") : mark(" · mimo technickou mapu, jen odhad"))
+    : s.fromLines ? mark(" · plochy odvozené z čar technické mapy")
+    : lacks.length ? mark(" · neúplná data") : "";
   const text = failed ? (city.id === "praha" ? t("{name} teď neodpovídá (server je přetížený), profil je jen odhad z OSM.", { name: dataName })
       : t("{name} teď neodpovídá, profil je jen odhad z OSM.", { name: dataName })) + without + again
     : s.fallback ? t("{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.", { name: dataName }) + without
@@ -115,6 +116,14 @@ export function decodePrahaTile(json, ix, iy) {
     sections: (json.u || []).map((c) => ({ id: c[0], mk: c[1], road: c[2], motorway: c[3], kind: c[4], pts: pts(c, 5) })),
   };
 }
+// A tile of the site's own data: a missing one (404) is empty ground, any other failure is one (the caller
+// reports it, sources.js outage) and is not kept, so the next click asks again (Fable's review).
+function staticTile(cache, k, url, empty, read = (j) => j) {
+  const p = fetch(url).then((r) => (r.ok ? r.json() : r.status === 404 ? empty : Promise.reject(new Error(`${url} ${r.status}`)))).then(read);
+  p.catch(() => { if (cache.get(k) === p) cache.delete(k); });
+  cache.set(k, p);
+  return p;
+}
 // The tiles a bbox "x0,y0,x1,y1" touches, merged (shapes in several tiles once), only what lies in it.
 export async function prahaOpendata(bbox) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
@@ -124,7 +133,7 @@ export async function prahaOpendata(bbox) {
       const k = `${ix}_${iy}`;
       if (!prahaTiles.has(k)) {
         if (prahaTiles.size >= 16) prahaTiles.delete(prahaTiles.keys().next().value);
-        prahaTiles.set(k, fetch(`data/praha/opendata/${k}.json`).then((r) => (r.ok ? r.json() : {}), () => ({})).then((j) => decodePrahaTile(j, ix, iy)));
+        staticTile(prahaTiles, k, `data/praha/opendata/${k}.json`, {}, (j) => decodePrahaTile(j, ix, iy));
       }
       parts.push(prahaTiles.get(k));
     }
@@ -340,7 +349,7 @@ async function brnoParkovani(bbox) {
   for (let ix = Math.floor(x0 / TILE); ix <= Math.floor(x1 / TILE); ix++) for (let iy = Math.floor(y0 / TILE); iy <= Math.floor(y1 / TILE); iy++) names.push(`${ix}_${iy}`);
   const seen = new Set(), features = [];
   for (const n of names) {
-    if (!parkTiles.has(n)) parkTiles.set(n, fetch(`data/brno/parkovani/${n}.json`).then((r) => (r.ok ? r.json() : { features: [] }), () => ({ features: [] })));
+    if (!parkTiles.has(n)) staticTile(parkTiles, n, `data/brno/parkovani/${n}.json`, { features: [] });
     for (const f of (await parkTiles.get(n)).features) {
       const key = JSON.stringify(f.geometry.rings[0][0]);
       if (seen.has(key)) continue;

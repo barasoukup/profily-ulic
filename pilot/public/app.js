@@ -299,7 +299,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     // The way's right is the profile's right when the profile looks along the way's geometry.
     const alongWay = !near.dir || dir[0] * near.dir[0] + dir[1] * near.dir[1] >= 0;
     deriveSigns(result, near.way.tags, { inZps, alongWay });
-    const name = near.way.tags.name || near.way.tags.ref || tr("ulice {id}", { id: near.way.id });
+    const name = near.way.tags.name || near.way.tags.ref || "";
     const span = result.extent && { left: +result.extent[1].toFixed(2), right: +(-result.extent[0]).toFixed(2) };
     // A design belongs to its street: moving the cut along the same street keeps it, a cut of another
     // street (a click or a link) starts the design from the new Stav.
@@ -350,7 +350,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     // also when restored from storage or a file.
     const out = sources.outage({ surfaces: m, lines: k, parking: pk });
     state.cut.note = out.note;
-    $("#street-name").textContent = name + state.cut.note;
+    $("#street-name").textContent = streetName(state.cut) + tr(state.cut.note);
     if (out.text) status(out.text, out.error ? "error" : undefined);
     else status(result.notice ? result.notice
       : result.junction ? tr("Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami.") : "");
@@ -376,7 +376,7 @@ function drawCut(ends) {
 // profile, clockwise from north); the street runs at azimut + 90°.
 function cutText(cut) {
   const az = (((cut.bearing - 90) % 360) + 360) % 360;
-  return `${cut.lat.toFixed(6)}, ${cut.lon.toFixed(6)} · azimut ${Math.round(az)}°`;
+  return `${cut.lat.toFixed(6)}, ${cut.lon.toFixed(6)} · ${tr("azimut")} ${Math.round(az)}°`;
 }
 
 function showCutInfo() {
@@ -438,7 +438,7 @@ $("#pano-dialog").addEventListener("close", () => { panoView?.destroy?.(); panoV
 
 $("#btn-copy-cut").onclick = async () => {
   if (!state.cut) return;
-  const text = `${cutText(state.cut)} (${state.cut.name}) ${location.href}`;
+  const text = `${cutText(state.cut)} (${streetName(state.cut)}) ${location.href}`;
   try { await navigator.clipboard.writeText(text); status(tr("Poloha řezu je ve schránce."), "ok"); }
   catch { prompt(tr("Zkopírujte polohu řezu:"), text); }
 };
@@ -527,6 +527,11 @@ function current() {
   return state.mode === "navrh" ? state.navrh : state.stav;
 }
 
+// The cut's street as shown: its name, or "ulice 123" in the page's language. The cut keeps the name of the data
+// only (empty for a street without one) and its note as the Czech text, so a saved cut reads in either language
+// and the log gets the same name whatever the visitor's language (Fable's review).
+const streetName = (c) => c?.name || (c?.wayId ? tr("ulice {id}", { id: c.wayId }) : tr("Ulice"));
+
 const MODE_LABEL = { stav: tr("Stav"), navrh: tr("Návrh"), porovnat: tr("Stav a návrh") };
 // Stav is for looking at the street as it is; its data can be corrected only after "Opravit data"
 // (state.fixing), so nothing changes by accident. Návrh is always editable.
@@ -557,7 +562,7 @@ function render() {
 }
 
 function draw() {
-  document.title = state.stav && state.cut?.name ? `${state.cut.name} – ${tr("Profily ulic")}` : tr("Profily ulic");
+  document.title = state.stav && state.cut ? `${streetName(state.cut)} – ${tr("Profily ulic")}` : tr("Profily ulic");
   document.querySelectorAll(".seg-toggle button").forEach((b) => {
     b.classList.toggle("active", b.dataset.mode === state.mode);
     b.setAttribute("aria-pressed", String(b.dataset.mode === state.mode));
@@ -1437,7 +1442,7 @@ $("#report-what").append(...REPORT_WHAT.map(([w, label]) => {
 for (const b of ["#btn-report", "#menu-report"]) $(b).hidden = !logOn;
 const openReport = () => {
   if (!state.cut || !state.stav) return status(tr("Nejdřív klikněte na ulici v mapě."), "error");
-  $("#report-title").textContent = tr("{street} – co je na tomto řezu špatně?", { street: state.cut.name || tr("Ulice") });
+  $("#report-title").textContent = tr("{street} – co je na tomto řezu špatně?", { street: streetName(state.cut) });
   $("#report-status").textContent = "";
   $("#report-send").disabled = false;
   $("#report-dialog").showModal();
@@ -1495,7 +1500,7 @@ function logEdits() {
 }
 addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") logEdits(); });
 function exportSvgs() {
-  const title = state.cut?.name || tr("Profil");
+  const title = state.cut ? streetName(state.cut) : tr("Profil");
   const credits = exportCredits(state.cut?.sources);
   if (state.mode === "porovnat" || !state.stav) {
     return [buildSvg(state.stav, { title: `${title} – ${tr("stav")}`, credits }), buildSvg(state.navrh, { title: `${title} – ${tr("návrh")}`, credits })];
@@ -1509,7 +1514,7 @@ function download(name, blob) {
   setTimeout(() => URL.revokeObjectURL(a.href), 2000);
 }
 
-const fileBase = () => (state.cut?.name || "profil").replace(/[^\p{L}\p{N}]+/gu, "-").toLowerCase();
+const fileBase = () => (state.cut ? streetName(state.cut) : "profil").replace(/[^\p{L}\p{N}]+/gu, "-").toLowerCase();
 
 $("#btn-export-svg").onclick = () => {
   log("export", { detail: "svg", ...cutLog() });
@@ -1602,7 +1607,7 @@ function restore(data) {
     const r = (state.cut.bearing * Math.PI) / 180;
     const n = [-Math.cos(r), Math.sin(r)];
     drawCut(cutEnds(f, n, cutSpan(state.cut)));
-    $("#street-name").textContent = state.cut.name + (state.cut.note || "");
+    $("#street-name").textContent = streetName(state.cut) + tr(state.cut.note || "");
     showCutInfo();
   }
   save();

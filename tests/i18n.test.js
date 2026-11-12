@@ -15,9 +15,9 @@ export function codeTexts() {
   const out = new Map();
   for (const f of FILES) {
     const src = fs.readFileSync(new URL(f, DIR), "utf8");
-    for (const m of src.matchAll(/\b(?:t|tr)\(\s*"((?:[^"\\]|\\.)*)"/g)) out.set(JSON.parse(`"${m[1]}"`), f);
+    for (const m of src.matchAll(/\b(?:t|tr|mark)\(\s*"((?:[^"\\]|\\.)*)"/g)) out.set(JSON.parse(`"${m[1]}"`), f);
     // A t() of anything but a plain text could not be checked here.
-    for (const m of src.matchAll(/\b(?:t|tr)\(\s*([`'])/g)) assert.fail(`${f}: t(${m[1]}…) – texty pro překlad v "…"`);
+    for (const m of src.matchAll(/\b(?:t|tr|mark)\(\s*([`'])/g)) assert.fail(`${f}: t(${m[1]}…) – texty pro překlad v "…"`);
   }
   return out;
 }

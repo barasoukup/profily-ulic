@@ -100,3 +100,20 @@ test("plochy z čar: vozovka pod středem, chodníky mezi hranicemi dopravní pl
   // Without lines near the centre there is no roadway to read.
   assert.equal(await fromLines(v, { width: w, height: h, rgba: new Uint8Array(w * h * 4) }, info), null);
 });
+
+test("dlaždice pražských otevřených dat: chyba se ohlásí a příště se zkusí znovu, chybějící dlaždice je prázdno", async () => {
+  const { prahaOpendata } = await import("../pilot/public/sources.js");
+  const real = globalThis.fetch;
+  let status = 500;
+  globalThis.fetch = async () => ({ ok: status === 200, status, json: async () => ({ t: [500, 500] }) });
+  try {
+    const bbox = "14.4201,50.0801,14.4209,50.0809";
+    await assert.rejects(prahaOpendata(bbox), /500/, "outage pak řekne, že chybí stromy a třídy ulic");
+    status = 200;
+    assert.equal((await prahaOpendata(bbox)).trees.length, 1, "chyba se nezapamatovala");
+    status = 404;
+    assert.deepEqual((await prahaOpendata("14.5101,50.0101,14.5109,50.0109")).trees, []);
+  } finally {
+    globalThis.fetch = real;
+  }
+});

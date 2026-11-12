@@ -14,8 +14,8 @@ const { shares } = await import("../pilot/public/shares.js");
 const CZECH = /[ěščřžůňťďáíéýú]/i;
 
 test("popisky částí, zdrojů a podílů", () => {
-  assert.equal(TYPES.chodnik.label, "Sidewalk");
-  assert.equal(TYPES.cyklopruh.label, "Bike lane");
+  assert.equal(TYPES.chodnik.label, "Pavement");
+  assert.equal(TYPES.cyklopruh.label, "Cycle lane");
   assert.equal(SOURCES.odhad.label, "estimate");
   for (const [k, v] of Object.entries(TYPES)) assert.doesNotMatch(v.label, CZECH, k);
   assert.deepEqual(shares({ segments: [{ type: "chodnik", width: 3 }] }).map((g) => g.label)[0], "Walking");
@@ -23,7 +23,7 @@ test("popisky částí, zdrojů a podílů", () => {
 
 test("normy: anglicky, s desetinnou tečkou", () => {
   const out = checkRules({ segments: [{ type: "chodnik", width: 1.4 }, { type: "pruh", width: 3 }] });
-  assert.equal(out[0].text, "Sidewalk 1.40 m is below the minimum (sidewalk: narrowed min. 1.5 m, basic 2–2.5 m).");
+  assert.equal(out[0].text, "Pavement 1.40 m is below the minimum (pavement: narrowed min. 1.5 m, standard 2–2.5 m).");
 });
 
 test("výpadky zdrojů a texty měst", () => {

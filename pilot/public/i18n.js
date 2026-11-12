@@ -29,6 +29,9 @@ export const t = (cs, vars) => {
   return vars ? s.replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m)) : s;
 };
 
+// A text to be translated later, by t(variable): only marks it for en.js (and tests/i18n.test.js).
+export const mark = (cs) => cs;
+
 // A map layer's credit, written in Czech ("technická mapa © Statutární město Brno"): its common words replaced.
 export const attribution = (text) => (lang === "cs" ? text : EN_ATTRIBUTION.reduce((a, [cs, en]) => a.replaceAll(cs, en), text));
 
