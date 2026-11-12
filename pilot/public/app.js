@@ -816,6 +816,7 @@ function fitPhone(box = $("#profile")) {
   const scale = matchMedia("(max-width: 760px)").matches ? MIN_SCALE.phone : MIN_SCALE.desktop;
   const width = Math.max(box.clientWidth, vbWidth * scale) * zoom;
   box.style.setProperty("--fit-width", `${width}px`);
+  box.classList.toggle("zoomed", zoom > 1);
   $("#zoom-ctl [data-z='-1']").disabled = zoom <= 1;
   $("#zoom-ctl [data-z='1']").disabled = zoom >= ZOOM_MAX;
   box.closest("#profile-wrap")?.classList.toggle("scrolls", width > box.clientWidth + 1);

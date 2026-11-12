@@ -387,3 +387,6 @@ footer a { color: inherit; }
 .zoom-ctl { position: absolute; top: 8px; right: 8px; display: flex; flex-direction: column; gap: 4px; z-index: 5; }
 .zoom-ctl button { width: 30px; height: 30px; padding: 0; font-size: 18px; line-height: 1; border-radius: 8px; background: var(--paper); border: 1px solid var(--line); box-shadow: var(--shadow); }
 .zoom-ctl button:disabled { opacity: .4; }
+
+/* The magnifier: a zoomed drawing keeps its full height (Návrh and Porovnat otherwise cap it, which undid the zoom). */
+#profile.zoomed svg { max-height: none !important; }
