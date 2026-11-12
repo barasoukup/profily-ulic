@@ -1325,6 +1325,8 @@ const FENCE_LINES = new Set([61210, 71210, 81210, 91210]);
 const FENCE_BARRIERS = new Set(["fence", "wall", "city_wall", "hedge"]);
 const FENCE_AT_FACADE = 1; // m
 const FENCE_SLIVER = 0.6; // m
+const APRON = 1; // a paved strip narrower than this at a building's wall is its apron, not a sidewalk (m)
+const APRON_BEYOND = new Set(["zelen", "predzahradka", "stromorad"]);
 const MEDIAN = 9950;
 const MEDIAN_W = 0.6; // width of a median with a guard rail (m)
 // Dot product of the driving directions of two crossing ways (oneway=-1 runs against the geometry).
@@ -1882,6 +1884,13 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     const point = frame.toLonLat(...probe[side]);
     edges[`${side}Info`] = { levels: b?.levels, height: b?.height, point, km: +centreKm(point).toFixed(1), block: b?.block, tint: side === "left" ? 0 : 3 };
     if (b?.type && b.type !== "yes") edges[`${side}Info`].type = b.type;
+  }
+  // A strip of paving under APRON along a building's wall (an apron, "okapový chodník") with green past it is no
+  // sidewalk but a paved area (the rest of a sidewalk beside cars parked on it stays one): it is not walked along (Bára, Vysoké Mýto, Komenského: 0.70 m was warned as a
+  // sidewalk below the minimum). withItems runs from the right end (edges.right) to the left one.
+  for (const [k, side, step] of [[0, "right", 1], [withItems.length - 1, "left", -1]]) {
+    const x = withItems[k], beyond = withItems[k + step];
+    if (edges[side] === "budova" && x?.type === "chodnik" && x.e - x.s < APRON && APRON_BEYOND.has(beyond?.type)) x.type = "plocha";
   }
   // A part lying mostly on an area the technical map leaves open (completed along OSM), or on parking
   // stalls of a paid zone (Plzeň), is an estimate.
