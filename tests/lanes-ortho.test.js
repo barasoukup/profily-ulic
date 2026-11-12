@@ -108,3 +108,12 @@ test("ortofoto: stání z dlažby u obruby se oddělí od pruhu jako podélné s
   assert.ok(r.segments.indexOf(park) > r.segments.findIndex((s) => s.type === "pruh"));
   assert.ok(Math.abs(r.segments.reduce((a, s) => a + s.width, 0) - 12) < 0.011);
 });
+
+test("ortofoto: na ČÚZK čára jen u jedné obruby krajnici nedělá (bývá to obruba nebo ojetý asfalt), na městském ortofotu ano", () => {
+  const lanes = () => road(4, [{ type: "pruh", width: 4, source: "osm", dir: "forward" }, { type: "pruh", width: 4, source: "osm", dir: "backward" }]);
+  const cuzk = lanes(), city = lanes();
+  applyLanes(cuzk, drawn({ lines: [{ t: -2.8 }, { t: 0, dashed: true }] }));
+  applyLanes(city, drawn({ fine: true, lines: [{ t: -2.8 }, { t: 0, dashed: true }] }));
+  assert.ok(!cuzk.segments.some((s) => s.type === "krajnice"));
+  assert.deepEqual(kinds(city), ["pruh", "pruh", "krajnice"]);
+});

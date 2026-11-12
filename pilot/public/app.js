@@ -169,6 +169,21 @@ const dataLayers = createDataLayers(map, layersControl);
 
 const MTVU_COLORS = { 701: "#5c5c59", 700: "#5c5c59", 702: "#c9a227", 703: "#b5574a", 704: "#7b7b78", 705: "#8c6d3f", 601: "#9b8cc4" };
 const cutLine = L.polyline([], { color: "#e24b4a", weight: 4 }).addTo(map);
+// The part selected in the profile, shown on the cut line (Bára): its stretch between the profile's ends A and B.
+const selLine = L.polyline([], { color: "#185fa5", weight: 9, opacity: 0.85, interactive: false }).addTo(map);
+function drawSelection() {
+  const p = state.mode === "porovnat" ? null : current(), seg = p?.segments?.[state.selected];
+  if (!seg || !state.cut) { selLine.setLatLngs([]); return; }
+  // The parts lie from A (+normal, span.left) to B (-normal, span.right), stretched to the cut's length (a design
+  // may be wider or narrower than the street).
+  const span = cutSpan(state.cut), total = p.segments.reduce((x, q) => x + q.width, 0) || 1, len = span.left + span.right;
+  const from = p.segments.slice(0, state.selected).reduce((x, q) => x + q.width, 0);
+  const b = (state.cut.bearing * Math.PI) / 180, normal = [-Math.cos(b), Math.sin(b)], f = localFrame(state.cut.lat, state.cut.lon);
+  selLine.setLatLngs([from, from + seg.width].map((a) => {
+    const t = span.left - (a / total) * len, [lon, lat] = f.toLonLat(normal[0] * t, normal[1] * t);
+    return [lat, lon];
+  }));
+}
 const handleIcon = L.divIcon({ className: "cut-handle", iconSize: [14, 14] });
 const centerMarker = L.marker([0, 0], { draggable: true, icon: handleIcon, opacity: 0 }).addTo(map);
 // Cut ends are lettered like the profile: A = left end of the profile (endMarkers[1]), B = right end.
@@ -439,6 +454,7 @@ function previewCut(lat, lon, normal, skip, reach = cutSpan(state.cut)) {
   const f = localFrame(lat, lon);
   const ll = cutEnds(f, normal, reach).map(([x, y]) => [y, x]);
   cutLine.setLatLngs(ll);
+  selLine.setLatLngs([]);
   if (skip !== centerMarker) centerMarker.setLatLng([lat, lon]);
   endMarkers.forEach((m, i) => { if (m !== skip) m.setLatLng(ll[i]); });
 }
@@ -506,6 +522,7 @@ function render() {
   const box = a?.closest?.("#profile, #editor, #palette");
   const index = box && box.id !== "profile" ? [...box.querySelectorAll(FOCUSABLE)].indexOf(a) : -1;
   draw();
+  drawSelection();
   if (!box) return;
   let target;
   if (box.id === "profile") target = $(`#profile g.seg[data-i="${state.selected ?? a.dataset?.i}"]`);

@@ -307,7 +307,7 @@ export function applyLanes(result, img) {
     // (its roadway is wider or narrower than the map's) goes to a shoulder. Else the lines are stretched onto the
     // profile and only move its boundaries.
     const k = (w.e - w.s) / (c.e - c.s), toProfile = (g) => w.s + (g - c.s) * k;
-    const segs = w.parts.every((p) => BLOCK.has(p.seg.type)) ? measured(w, c, found, found.solid) : redraw(w, found.map(toProfile));
+    const segs = w.parts.every((p) => BLOCK.has(p.seg.type)) ? measured(w, c, found, found.solid, img.st.fine) : redraw(w, found.map(toProfile), img.st.fine);
     if (segs) { out.push({ w, segs }); changed++; }
   }
   // Put the new parts in place of the roadways' old ones (back in screen order).
@@ -319,7 +319,7 @@ export function applyLanes(result, img) {
 }
 
 // A roadway of only lanes and shoulders, laid on the map's carriageway c: pieces between the kerbs and the lines.
-function measured(w, c, lines, solid = []) {
+function measured(w, c, lines, solid = [], fine = true) {
   const cuts = [c.s, ...lines, c.e], pieces = cuts.slice(1).map((x, q) => ({ s: cuts[q], e: x, w: x - cuts[q] }));
   // At a kerb a piece under LANE_MIN is a shoulder, but behind a dashed line it belongs to the lane: a lane being
   // added widens there (Jedovnická; Bára).
@@ -343,6 +343,12 @@ function measured(w, c, lines, solid = []) {
     kinds.splice(q, 1, "pruh", "pruh");
   }
   if (kinds.includes(null) || pieces.length < 2) return null;
+  // On ČÚZK's 12.5 cm a line near one kerb only is as often the kerb itself (the map's carriageway a metre off) or
+  // worn asphalt as an edge line: a shoulder only where both kerbs have one (Hradec; Bára).
+  if (!fine && (kinds[0] === "krajnice") !== (kinds.at(-1) === "krajnice")) {
+    const q = kinds[0] === "krajnice" ? 0 : kinds.length - 1;
+    if (pieces.length > 2) kinds[q] = "join";
+  }
   if (kinds[0] === "join") { pieces[1].s = pieces[0].s; pieces[1].w = pieces[1].e - pieces[1].s; pieces[1].wide = true; }
   if (kinds.at(-1) === "join") { const o = pieces.at(-2); o.e = pieces.at(-1).e; o.w = o.e - o.s; o.wide = true; }
   const list = pieces.map((p, q) => ({ ...p, kind: kinds[q] })).filter((p) => p.kind !== "join");
@@ -393,7 +399,7 @@ function measured(w, c, lines, solid = []) {
 }
 
 // One roadway redrawn by the lines (profile positions), or null when the lines do not fit.
-function redraw(w, lines) {
+function redraw(w, lines, fine = true) {
   const used = new Set();
   // Boundaries: between two parts of the roadway. One between a lane or shoulder and anything else (parking, bike
   // lane, bus lane…) only moves to a line within SNAP; the lanes and shoulders between them are split by the rest.
@@ -425,6 +431,12 @@ function redraw(w, lines) {
     const atKerb = (p) => Math.abs(p.s - w.s) < 0.01 || Math.abs(p.e - w.e) < 0.01;
     const kinds = pieces.map((p) => (atKerb(p) && p.w < EDGE_MIN ? "join" : atKerb(p) && p.w < LANE_MIN ? "krajnice" : p.w >= LANE_MIN && p.w <= LANE_MAX ? "pruh" : null));
     if (kinds.includes(null) || pieces.length < 2) { keep(); continue; }
+    // ČÚZK: a shoulder only where both kerbs of the roadway have one (as in measured()).
+    if (!fine && pieces.length > 2) {
+      const ends = [0, kinds.length - 1].filter((q) => kinds[q] === "krajnice" && atKerb(pieces[q]));
+      const kerbs = [0, kinds.length - 1].filter((q) => atKerb(pieces[q]));
+      if (ends.length === 1 && kerbs.length === 2) kinds[ends[0]] = "join";
+    }
     // A sliver at a kerb (only the first or the last piece can be one) widens its neighbour.
     if (kinds[0] === "join") { pieces[1].s = pieces[0].s; pieces[1].w = pieces[1].e - pieces[1].s; }
     if (kinds.at(-1) === "join") { const o = pieces.at(-2); o.e = pieces.at(-1).e; o.w = o.e - o.s; }

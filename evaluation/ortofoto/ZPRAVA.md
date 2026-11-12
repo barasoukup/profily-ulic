@@ -294,3 +294,6 @@ Změny mimo ortofoto, porovnání 100 řezů na město (`VARIANTS=city,stejne2`)
 zpevnění povrchu“ už není zeď: úzké pásy na kraji profilu jsou zpevněná plocha, u č. 48 profil o 5,7 m delší).
 První verze pravidla pro mosty uřízla v Brně (č. 4) druhou polovinu mostu za dlážděným středem; opraveno (za chodníkem
 končí jen tam, kde nenásleduje vozovka).
+
+Po úpravě (na ČÚZK krajnice z čáry jen u obou obrub zároveň): celkem čáry 40 %, počet pruhů 53 % (pravidla 52 %),
+Hradec počet pruhů 38 → 46 %; ortofoto lépe u 33 vozovek, hůře u 10.
