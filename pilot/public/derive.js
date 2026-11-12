@@ -1413,11 +1413,14 @@ export function surfaceLook(st, rings, center, normal) {
   m.SD = Math.sqrt(Math.max(0, m.LL / n - m.L * m.L)); // how even its brightness is: paving even, dappled shade not
   return looksGreen(m) ? "green" : looksPaved(m) ? "paved" : null;
 }
-export function linePieces(polys, tags, center, normal, st = null) {
+// along: the way's geometry runs along the cut's direction (OSM's left is then the cut's left, +normal); after
+// "Otočit" or a link from the other side it runs against it (Fable's review).
+export function linePieces(polys, tags, center, normal, st = null, along = true) {
   const pieces = polys.filter((p) => p.fromLines && p.code === 702);
   if (!pieces.length) return polys;
   const off = (p) => ((p.bbox[0] + p.bbox[2]) / 2 - center[0]) * normal[0] + ((p.bbox[1] + p.bbox[3]) / 2 - center[1]) * normal[1];
-  const says = (side) => {
+  const says = (cutSide) => {
+    const side = along ? cutSide : cutSide === "left" ? "right" : "left";
     const own = tags[`sidewalk:${side}`] ?? tags["sidewalk:both"];
     if (own) return !["no", "none"].includes(own);
     const s = tags.sidewalk;
@@ -1478,8 +1481,9 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     return best?.cls || null;
   };
   const normal = [-dir[1], dir[0]];
-  polys = linePieces(polys, way?.tags || {}, center, normal, lanesImage);
   const cross = crossings(osm, frame, center, normal, half);
+  const own = cross.find((c) => c.way.id === way?.id);
+  polys = linePieces(polys, way?.tags || {}, center, normal, lanesImage, own ? own.d[0] * dir[0] + own.d[1] * dir[1] >= 0 : true);
   let axisT = cross.find((c) => c.way.id === way.id)?.t ?? 0;
   // Tram track axes: measured ones from the technical map when available, else OSM.
   const measured = lineCrossings(tracks, center, normal, half);
@@ -1568,17 +1572,6 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     }
     return false;
   };
-  // A sidewalk or cycle path right past a green strip belongs to the street too (Bára, Mladá Boleslav, Revoluční:
-  // the path behind a 3 m verge): the green does not end the profile when one follows it within the reach.
-  const pathAhead = (k, step, limit) => {
-    for (; k >= 0 && k < runs.length; k += step) {
-      const r = runs[k];
-      if (Math.min(Math.abs(r.s - ref), Math.abs(r.e - ref)) > limit) return false;
-      if (r.code === 702 || r.code === 703) return true;
-      if (!(r.code >= 400 && r.code < 500) && r.e - r.s >= 0.5) return false;
-    }
-    return false;
-  };
   // Facade to facade (Bára): a house beyond the default reach, across lawns and paths, draws the profile
   // out to it, up to the end of the data read (half). A reach shortened by hand stays as it is.
   const facade = (k, step, cap) => {
@@ -1609,7 +1602,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     if (onBridgeWay && SIDEWALKS.has(runs[k - step]?.code) && !SIDEWALKS.has(r.code) && !carriage(r.code)) return "volno";
     if (r.code >= 500 && r.code < 600 && r.e - r.s >= OPEN_LAND) return "voda";
     if (r.code === 300) return "zahrada";
-    if (isOpenLand(r.code) && r.e - r.s >= OPEN_LAND && !houseAhead(k + step, step, limit) && !pathAhead(k + step, step, limit)) return "zelen";
+    if (isOpenLand(r.code) && r.e - r.s >= OPEN_LAND && !houseAhead(k + step, step, limit)) return "zelen";
     // A large parking area beside the street is the edge of the profile, not a parking lane.
     if (r.code === 704 && r.e - r.s >= OPEN_LAND) return "parkoviste";
     // No technical-map surface over a wide stretch: nothing more to measure on this side.

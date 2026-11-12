@@ -457,6 +457,7 @@ export const EN = {
 
   // ---------- the cut's position, servers' errors ----------
   "azimut": "azimuth",
+  "ulice {deg}° · dosah {left} / {right} m": "street {deg}° · reach {left} / {right} m",
   "dlaždice OSM {status}": "OSM tile {status}",
   "chyba": "error",
 

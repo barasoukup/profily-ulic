@@ -166,3 +166,14 @@ test("kusy z čar podle barvy ortofota: tráva je zeleň, dlažba chodník (za z
   // Red paving tells nothing by its colour: the nearest piece, as without the image.
   assert.deepEqual(kinds({}, image([-40, 70, -80, 130])), [701, 702, 702, 601]);
 });
+
+test("kusy z čar: OSM sidewalk:left/right podle směru ulice, i po Otočit", async () => {
+  const { linePieces } = await import("../pilot/public/derive.js");
+  const box = (x, code) => ({ code, fromLines: true, bbox: [x - 0.5, -5, x + 0.5, 5] });
+  const polys = [box(0, 701), box(5, 702), box(-5, 702)];
+  const tags = { "sidewalk:left": "yes", "sidewalk:right": "no" };
+  // The way along the cut: OSM's left is the cut's left (+x).
+  assert.deepEqual(linePieces(polys, tags, [0, 0], [1, 0], null, true).map((p) => p.code), [701, 702, 401]);
+  // Against it (Otočit): OSM's left is the cut's right.
+  assert.deepEqual(linePieces(polys, tags, [0, 0], [1, 0], null, false).map((p) => p.code), [701, 401, 702]);
+});

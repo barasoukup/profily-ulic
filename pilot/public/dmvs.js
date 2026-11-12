@@ -374,7 +374,7 @@ export async function dtmAreas(bbox, { cut } = {}) {
   // found, nothing, said so (linesOnly).
   const hasLines = lines?.width === w && lines.height === h && lines.rgba.some((x, i) => (i & 3) === 3 && x >= 64);
   let fromLinesPart = null;
-  if (hasLines && blankCentre(label, w, h, 1 / v.res)) {
+  if (hasLines && blankCentre(label, w, h, Math.round(1 / v.res))) {
     fromLinesPart = await fromLines(v, lines, undefined, count ? (i) => label[i] >= 0 : null);
     if (!count) return fromLinesPart ? { ...fromLinesPart, requests: 2 + fromLinesPart.requests } : { features: [], gap: false, requests: 2, linesOnly: true };
   }
@@ -524,7 +524,7 @@ export async function fromLines(v, lines, info = (px) => get(lineInfoUrl(v, px),
   }
   if (road < 0) return null;
   // Its direction near the centre (the main axis of its pixels within 10 m); the cut runs across it.
-  const R = 10 / res;
+  const R = Math.round(10 / res);
   let sx = 0, sy = 0, sxx = 0, syy = 0, sxy = 0, k = 0;
   for (let y = Math.max(0, cy - R); y < Math.min(h, cy + R); y++) {
     for (let x = Math.max(0, cx - R); x < Math.min(w, cx + R); x++) {
@@ -552,7 +552,8 @@ export async function fromLines(v, lines, info = (px) => get(lineInfoUrl(v, px),
         steps.push({ px: null, from: cur, to: -1, at: at * res, area: true });
         break;
       }
-      if (onLine(i)) { lineAt ??= t; continue; }
+      // A pixel of no area (a gap between two close lines, left out of the areas) is part of the line (Fable's review).
+      if (onLine(i) || label[i] < 0) { lineAt ??= t; continue; }
       if (lineAt !== null) {
         const mid = Math.round((lineAt + t) / 2);
         steps.push({ px: [Math.floor(cx + sign * ux * mid), Math.floor(cy + sign * uy * mid)], from: cur, to: label[i], at: mid * res });
@@ -592,7 +593,7 @@ export async function fromLines(v, lines, info = (px) => get(lineInfoUrl(v, px),
   for (const st of sides) {
     for (let j = 0; j < st.length && transport(st[j]); j++) {
       const next = st[j + 1];
-      if (!closes(next) || next.at - st[j].at > WALK_MAX || codes.has(st[j].to)) break;
+      if (!closes(next) || next.at - st[j].at > WALK_MAX || codes.has(st[j].to) || st[j].to < 0) break;
       codes.set(st[j].to, 702);
     }
   }

@@ -339,6 +339,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     state.stavEdited = false;
     if (!state.navrhEdited) state.navrh = structuredClone(state.stav);
     state.selected = null;
+    state.edge = null;
     state.fixing = false;
     state.fixBase = null;
     resetHistory();
@@ -383,8 +384,8 @@ function cutText(cut) {
 function showCutInfo() {
   if (!state.cut) return;
   const r = state.cut.reach || defaultReach();
-  $("#cut-pos").textContent = cutText(state.cut) + ` · ulice ${Math.round(((state.cut.bearing % 360) + 360) % 360)}°` +
-    ` · dosah ${Math.round(r.left)} / ${Math.round(r.right)} m`;
+  $("#cut-pos").textContent = cutText(state.cut) + " · " + tr("ulice {deg}° · dosah {left} / {right} m",
+    { deg: Math.round(((state.cut.bearing % 360) + 360) % 360), left: Math.round(r.left), right: Math.round(r.right) });
   history.replaceState(null, "", `#rez=${state.cut.lat.toFixed(6)},${state.cut.lon.toFixed(6)},${Math.round(state.cut.bearing)},${r.left.toFixed(1)},${r.right.toFixed(1)}`);
   // Mapy.com at the cut with the panorama layer on (ovl=8). A link straight into a panorama needs
   // the photo's id (pid), which only their Panorama API (with a key) gives; one click on the street opens it.
