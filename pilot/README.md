@@ -279,6 +279,12 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
 - Pardubice (`towns/pardubice.js`) nemají vlastní služby, mají jen vlastní ilustrace. Kontrola 49 řezů:
   `evaluation/pardubice/ZPRAVA.md`.
 
+- **Jen čáry bez ploch** (Středočeský kraj, 12. 11. 2026): kraj do DMVS dodává linie (hranice dopravních ploch, ploty,
+  budovy), ale žádné plochy. `dmvs.js` `fromLines` pak rozdělí obrázek čar na plochy, ta pod středem řezu (osa OSM) je
+  vozovka, kusy mezi dvěma hranicemi dopravní plochy směrem ven jsou chodníky (do 6 m), za první jinou čarou (plot, budova)
+  doplní RÚIAN. Druh čáry se ptá GetFeatureInfo (nejvýš 4 na stranu). Šířky jsou z technické mapy, druhy odhad; aplikace
+  to řekne. Když se ani tak vozovka nenajde, hlásí „technická mapa tu má jen čáry“ místo „mimo technickou mapu“.
+
 ### Zkoušené a nepřipojené zdroje
 
 - Pasport komunikací Hradce Králové (T-MAPY WFS `geoportal.mmhk.cz/services/mapserver/common/pakom/gservice`,

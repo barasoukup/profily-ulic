@@ -439,6 +439,12 @@ export const EN = {
   " · plochy z technické mapy ČÚZK": " · surfaces from the ČÚZK technical map",
   " · mimo technickou mapu, jen odhad": " · outside the technical map, estimate only",
   " · neúplná data": " · incomplete data",
+  " · technická mapa tu má jen čáry, jen odhad": " · the technical map has only lines here, estimate only",
+  " · plochy odvozené z čar technické mapy": " · surfaces read from the technical map's lines",
+  "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává), profil je odhad z OSM.":
+    "The technical map has only lines here, no areas (the region does not supply them), the profile is an estimate from OSM.",
+  "Technická mapa tu má jen čáry bez ploch: šířky jsou změřené mezi nimi, vozovka a chodníky odhadnuté.":
+    "The technical map has only lines here, no areas: the widths are measured between them, the roadway and sidewalks are estimated.",
   "{name} teď neodpovídá (server je přetížený), profil je jen odhad z OSM.": "{name} is not responding right now (the server is overloaded), the profile is only an estimate from OSM.",
   "{name} teď neodpovídá, profil je jen odhad z OSM.": "{name} is not responding right now, the profile is only an estimate from OSM.",
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} is not responding right now, the surfaces are from the ČÚZK technical map.",

@@ -59,13 +59,16 @@ export function outage({ surfaces, lines, parking }, dataName = city.dataName) {
   const empty = s && !s.features?.length;
   const note = failed ? t(" · technická mapa neodpověděla, jen odhad")
     : s.fallback ? t(" · plochy z technické mapy ČÚZK")
-    : empty ? (s.dmvsFailed ? t(" · technická mapa neodpověděla, jen odhad") : t(" · mimo technickou mapu, jen odhad"))
+    : empty ? (s.dmvsFailed ? t(" · technická mapa neodpověděla, jen odhad") : s.linesOnly ? t(" · technická mapa tu má jen čáry, jen odhad") : t(" · mimo technickou mapu, jen odhad"))
+    : s.fromLines ? t(" · plochy odvozené z čar technické mapy")
     : lacks.length ? t(" · neúplná data") : "";
   const text = failed ? (city.id === "praha" ? t("{name} teď neodpovídá (server je přetížený), profil je jen odhad z OSM.", { name: dataName })
       : t("{name} teď neodpovídá, profil je jen odhad z OSM.", { name: dataName })) + without + again
     : s.fallback ? t("{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.", { name: dataName }) + without
     : empty && s.dmvsFailed ? t("Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.") + without + again
+    : empty && s.linesOnly ? t("Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává), profil je odhad z OSM.") + without
     : empty ? t("Technická mapa tu nic nevrátila, profil je odhad z OSM.") + without
+    : s.fromLines ? t("Technická mapa tu má jen čáry bez ploch: šířky jsou změřené mezi nimi, vozovka a chodníky odhadnuté.") + without
     : without ? without.trim() + again : "";
   return { note, text, error: failed || !!s.fallback || !!s.dmvsFailed || lacks.length > 0 };
 }

@@ -367,6 +367,11 @@ export async function dtmAreas(bbox, { cut } = {}) {
   const { w, h } = v;
   const cls = classify(areas, lines && lines.width === w && lines.height === h ? lines : null);
   const { label, count, colour } = components(cls, w, h);
+  // No areas at all, but lines: the Středočeský kraj sends the DTM's lines to ČÚZK without its areas (Bára,
+  // Kolín 12. 11. 2026). The surfaces are then read from the lines (fromLines), or nothing, said so (linesOnly).
+  if (!count && lines?.width === w && lines.height === h && lines.rgba.some((x, i) => (i & 3) === 3 && x >= 64)) {
+    return (await fromLines(v, lines)) || { features: [], gap: false, requests: 2, linesOnly: true };
+  }
 
   // The areas the cut crosses, with the pixel in the middle of their longest stretch and how near the
   // centre they come.
@@ -472,6 +477,110 @@ export async function dtmAreas(bbox, { cut } = {}) {
   return { features, region, gap, requests: 2 + ask.length, size: [w, h], areas: count };
 }
 
+// ---------- Surfaces from the lines alone ----------
+// Where a region sends only the DTM's lines, the pieces between them still give the widths: the lines split the
+// image into areas (as the boundary lines part the areas above), the one under the cut's centre (the OSM axis the
+// cut is snapped to) is the roadway, and outwards from it each piece between two boundaries of a transport area
+// ("Hranice dopravní stavby nebo plochy") is a sidewalk, up to the first other line (a fence, a building): what
+// lies beyond is left to RÚIAN (gardens, yards, buildings, green verges). The direction across the street is the
+// roadway's own (its pixels near the centre). The types are estimates, the widths the DTM's.
+const LINE_GAP = PALETTE.length; // the class of every pixel off the lines
+const TRANSPORT_LINE = /dopravní/i;
+const LINE_REACH = 25, LINE_SIDE = 4, WALK_MAX = 6; // m along the cut each way; crossings asked per side; widest sidewalk (m)
+const lineInfoUrl = (v, [i, j]) => `${DMVS_LINES}?${new URLSearchParams({
+  ...v.params, request: "GetFeatureInfo", layers: BOUNDARY_LAYERS, query_layers: BOUNDARY_LAYERS,
+  info_format: "application/json", feature_count: 3, i, j,
+})}`;
+export async function fromLines(v, lines, info = (px) => get(lineInfoUrl(v, px), "json")) {
+  const { w, h, res } = v, n = w * h;
+  const onLine = (i) => lines.rgba[i * 4 + 3] >= 64;
+  const cls = new Int16Array(n);
+  for (let i = 0; i < n; i++) cls[i] = onLine(i) ? OPEN : LINE_GAP;
+  const { label } = components(cls, w, h);
+  // The roadway: the area nearest the centre, off the lines.
+  const cx = Math.floor(w / 2), cy = Math.floor(h / 2);
+  let road = -1;
+  for (let r = 0; r < 3 / res && road < 0; r++) {
+    for (let dy = -r; dy <= r && road < 0; dy++) for (let dx = -r; dx <= r; dx++) {
+      const x = cx + dx, y = cy + dy, i = y * w + x;
+      if (x >= 0 && y >= 0 && x < w && y < h && label[i] >= 0 && !onLine(i)) { road = label[i]; break; }
+    }
+  }
+  if (road < 0) return null;
+  // Its direction near the centre (the main axis of its pixels within 10 m); the cut runs across it.
+  const R = 10 / res;
+  let sx = 0, sy = 0, sxx = 0, syy = 0, sxy = 0, k = 0;
+  for (let y = Math.max(0, cy - R); y < Math.min(h, cy + R); y++) {
+    for (let x = Math.max(0, cx - R); x < Math.min(w, cx + R); x++) {
+      if (label[y * w + x] !== road || (x - cx) ** 2 + (y - cy) ** 2 > R * R) continue;
+      sx += x; sy += y; sxx += x * x; syy += y * y; sxy += x * y; k++;
+    }
+  }
+  // An area filling the whole disc is no roadway between lines (no lines near the centre).
+  if (!k || k > 0.9 * Math.PI * R * R) return null;
+  const vx = sxx / k - (sx / k) ** 2, vy = syy / k - (sy / k) ** 2, cxy = sxy / k - (sx / k) * (sy / k);
+  const along = 0.5 * Math.atan2(2 * cxy, vx - vy);
+  const [ux, uy] = [-Math.sin(along), Math.cos(along)]; // across the roadway
+  // Walk each way from the centre: the areas passed and the lines crossed between them.
+  const sides = [1, -1].map((sign) => {
+    const steps = [];
+    let cur = road, lineAt = null;
+    for (let t = 0; t <= LINE_REACH / res; t++) {
+      const x = Math.floor(cx + sign * ux * t), y = Math.floor(cy + sign * uy * t);
+      if (x < 0 || y < 0 || x >= w || y >= h) break;
+      const i = y * w + x;
+      if (onLine(i)) { lineAt ??= t; continue; }
+      if (lineAt !== null) {
+        const mid = Math.round((lineAt + t) / 2);
+        steps.push({ px: [Math.floor(cx + sign * ux * mid), Math.floor(cy + sign * uy * mid)], from: cur, to: label[i], at: mid * res });
+        cur = label[i];
+        lineAt = null;
+        if (steps.length >= LINE_SIDE) break;
+      }
+    }
+    return steps;
+  });
+  const first = sides.map((st) => st[0]?.at);
+  if (first.some((a) => a === undefined) || first[0] + first[1] < 2.5 || first[0] + first[1] > 30) return null;
+  // The type of each line crossed.
+  let region, requests = 2;
+  await Promise.all(sides.flat().map(async (st) => {
+    requests++;
+    try {
+      const json = await info(st.px);
+      region ||= json.isDtmk?.nazev;
+      st.names = (json.features || []).map((f) => f.properties?.objektovytypnazev || "");
+    } catch (err) {
+      console.warn("DMVS GetFeatureInfo", err.message);
+    }
+  }));
+  const transport = (st) => st?.names?.some((x) => TRANSPORT_LINE.test(x));
+  const codes = new Map([[road, 701]]);
+  for (const st of sides) {
+    for (let j = 0; j < st.length && transport(st[j]); j++) {
+      const next = st[j + 1];
+      if (!transport(next) || next.at - st[j].at > WALK_MAX || codes.has(st[j].to)) break;
+      codes.set(st[j].to, 702);
+    }
+  }
+  // The outlines of the areas typed, in degrees.
+  const boxes = new Map([...codes.keys()].map((id) => [id, [w, h, -1, -1]]));
+  for (let i = 0; i < n; i++) {
+    const b = boxes.get(label[i]);
+    if (!b) continue;
+    const x = i % w, y = (i - x) / w;
+    if (x < b[0]) b[0] = x; if (y < b[1]) b[1] = y; if (x > b[2]) b[2] = x; if (y > b[3]) b[3] = y;
+  }
+  const features = [];
+  for (const [id, code] of codes) {
+    const rings = trace(label, w, h, id, boxes.get(id)).map((r) => simplify(r, SIMPLIFY / res))
+      .filter((r) => r.length >= 3 && ringArea(r) * res ** 2 >= 0.05)
+      .map((r) => { const ll = r.map(v.toLonLat); ll.push(ll[0]); return ll; });
+    if (rings.length) features.push({ attributes: { code, guess: true, level: 0, type: "z čar technické mapy" }, geometry: { rings } });
+  }
+  return features.length ? { features, region, gap: false, requests, fromLines: true } : null;
+}
+
 // ---------- RÚIAN for what the DTM leaves blank ----------
 const RUIAN = "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Prohlizeci_sluzba_nad_daty_RUIAN/MapServer";
 // Kinds of land (druh pozemku) and uses (způsob využití) of a parcel → MTVU codes; [code, true] an estimate.
@@ -529,5 +638,6 @@ export async function surfaces(bbox, labels, opts = {}) {
   // Brno č. 95, one "Neurčeno" of 33 m between RÚIAN's houses).
   const anyDtm = dtm.features.some((f) => f.attributes.level === 0);
   if (!anyDtm) fill.features = [];
-  return { features: [...ground.features, ...above.features, ...fill.features], region: dtm.region, requests: dtm.requests, wfs: !!dtm.wfs };
+  return { features: [...ground.features, ...above.features, ...fill.features], region: dtm.region, requests: dtm.requests, wfs: !!dtm.wfs,
+    ...(dtm.fromLines && { fromLines: true }), ...(dtm.linesOnly && { linesOnly: true }) };
 }

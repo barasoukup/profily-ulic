@@ -64,3 +64,39 @@ test("co řezu chybí, aplikace řekne", () => {
   assert.equal(cuzk.note, " · technická mapa neodpověděla, jen odhad");
   assert.match(cuzk.text, /^Technická mapa ČÚZK teď neodpovídá/);
 });
+
+test("technická mapa jen s čarami (Středočeský kraj): hláška podle toho, co z nich vzešlo", () => {
+  setCity("cesko");
+  const ok = (value) => ({ status: "fulfilled", value });
+  const lines = outage({ surfaces: ok({ features: [], linesOnly: true }), lines: ok({}), parking: ok({}) });
+  assert.equal(lines.note, " · technická mapa tu má jen čáry, jen odhad");
+  assert.match(lines.text, /^Technická mapa tu má jen čáry bez ploch \(kraj plochy do ní nedodává\)/);
+  assert.ok(!lines.error, "kraj za to nemůže, žádná chyba");
+  const read = outage({ surfaces: ok({ features: [area], fromLines: true }), lines: ok({}), parking: ok({}) });
+  assert.equal(read.note, " · plochy odvozené z čar technické mapy");
+  assert.match(read.text, /šířky jsou změřené mezi nimi/);
+});
+
+test("plochy z čar: vozovka pod středem, chodníky mezi hranicemi dopravní plochy, za plotem nic", async () => {
+  const { fromLines, view } = await import("../pilot/public/dmvs.js");
+  // Fügnerova in Kolín across (Bára 12. 11. 2026): the lines crossed from the left, in metres from the axis.
+  const v = view("15.1934,50.0255,15.1944,50.0261");
+  const { w, h, res } = v, cx = Math.floor(w / 2);
+  const LINES = [[-7.45, "Plot"], [-5, "Hranice dopravní stavby nebo plochy"], [-3.6, "Hranice dopravní stavby nebo plochy"],
+    [3.3, "Hranice dopravní stavby nebo plochy"], [4.6, "Hranice dopravní stavby nebo plochy"], [7.5, "Plot"], [11.45, "Hranice budovy"]];
+  const rgba = new Uint8Array(w * h * 4);
+  const col = (m) => cx + Math.round(m / res);
+  for (const [m] of LINES) for (let y = 0; y < h; y++) for (const x of [col(m), col(m) + 1]) rgba[(y * w + x) * 4 + 3] = 255;
+  const info = async ([x]) => ({ features: [{ properties: { objektovytypnazev: LINES.find(([m]) => Math.abs(col(m) - x) <= 3)?.[1] } }] });
+  const r = await fromLines(v, { width: w, height: h, rgba }, info);
+  assert.ok(r.fromLines);
+  const widths = r.features.map((f) => {
+    const xs = f.geometry.rings.flat().map((p) => p[0]);
+    return [f.attributes.code, +(((Math.max(...xs) - Math.min(...xs)) / (v.toLonLat([w, 0])[0] - v.toLonLat([0, 0])[0])) * w * res).toFixed(1)];
+  }).sort((a, b) => a[1] - b[1]);
+  assert.deepEqual(widths.map(([c]) => c).sort(), [701, 702, 702]);
+  assert.ok(Math.abs(widths.find(([c]) => c === 701)[1] - 6.9) < 0.4, `vozovka ${widths}`);
+  assert.ok(r.features.every((f) => f.attributes.guess), "druhy ploch jsou odhad");
+  // Without lines near the centre there is no roadway to read.
+  assert.equal(await fromLines(v, { width: w, height: h, rgba: new Uint8Array(w * h * 4) }, info), null);
+});
