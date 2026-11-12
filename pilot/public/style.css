@@ -192,7 +192,7 @@ body[data-mode="navrh"] #profile-wrap { box-shadow: inset 4px 0 0 var(--accent),
 #profile svg { display: block; width: var(--fit-width, 100%); max-width: none; height: auto; user-select: none; }
 #profile svg + svg { margin-top: 14px; }
 /* While editing, a tall profile leaves room for the editor below it (the drawing keeps its proportions). */
-body[data-mode="navrh"] #profile svg { max-height: max(260px, calc(100dvh - 400px)); }
+/* Návrh is drawn at the same size as Stav (Bára: switching must not change the zoom). */
 body[data-mode="porovnat"] #profile svg { max-height: max(200px, calc((100dvh - 330px) / 2)); }
 #profile .seg { cursor: pointer; }
 #profile .seg.selected rect.ground { stroke: var(--accent); stroke-width: 3px; vector-effect: non-scaling-stroke; }
