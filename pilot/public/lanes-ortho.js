@@ -75,7 +75,7 @@ export async function laneImage({ frame, dir, t0, t1, cityId, timeout = TIMEOUT,
 }
 
 // ---------- the lines ----------
-const FAINT = 0.6, LONG = 0.3, REL = 0.14, MIN_DL = 10, SHARE = 0.1, MAX_W = 0.6, BLOCKS = 8, MIN_SPREAD = 3, WIDER = 1.5;
+const FAINT = 0.55, LONG = 0.3, REL = 0.14, MIN_DL = 10, SHARE = 0.1, MAX_W = 0.6, BLOCKS = 8, MIN_SPREAD = 3, WIDER = 1.5;
 const CURVES = [0, 1 / 200, -1 / 200, 1 / 100, -1 / 100, 1 / 50, -1 / 50]; // 1/R: the street may bend (Bára)
 // Pixels brighter than the median of their row's surroundings (±0.75 m) by REL of it; the value is by how much
 // (paint stands out about twice as much as worn, lighter asphalt).
@@ -147,9 +147,9 @@ function linesOf(st, H, s, e) {
 }
 // Of those inside the carriageway, the set whose gaps look like lanes (2.5–4.75 m; at the kerbs 1–7.5 m for a
 // shoulder; a gap of two lanes whose line is missing with a small penalty), the most line strength.
-const LANE_MIN = 2.5, LANE_MAX = 4.75, OUTER_MIN = 1, OUTER_MAX = 7.5, MISSED = 0.1;
+const LANE_MIN = 2.5, LANE_MAX = 4.75, OUTER_MIN = 1, OUTER_MAX = 7.5, MISSED = 0.1, EDGE_MIN = 0.1, EDGE_SHARE = 0.5;
 export function laneLines(st, H, s, e) {
-  const c = linesOf(st, H, s, e).filter((m) => m.t > s + 0.7 && m.t < e - 0.7), n = c.length;
+  const all = linesOf(st, H, s, e), c = all.filter((m) => m.t > s + 0.7 && m.t < e - 0.7), n = c.length;
   const best = new Array(n).fill(-Infinity), prev = new Array(n).fill(-1);
   for (let i = 0; i < n; i++) {
     const first = c[i].t - s;
@@ -163,6 +163,13 @@ export function laneLines(st, H, s, e) {
   for (let i = 0; i < n; i++) { const last = e - c[i].t, v = best[i] - (last > OUTER_MAX ? MISSED : 0); if (last >= OUTER_MIN && last <= OUTER_MAX + LANE_MAX && v > top) { top = v; end = i; } }
   const out = [];
   for (let i = end; i >= 0; i = prev[i]) out.unshift(c[i].t);
+  // The edge lines close to the kerbs (a narrow shoulder, even 20 cm: Bára): a solid line within EDGE_NEAR of a kerb,
+  // a lane's width from the next line.
+  if (!out.length) return out;
+  const edge = (lo, hi) => all.filter((m) => m.t > lo && m.t < hi && m.share >= EDGE_SHARE).sort((a, b) => b.share - a.share)[0]?.t;
+  const a = edge(s + EDGE_MIN, Math.min(s + 1, out[0] - LANE_MIN)), b = edge(Math.max(e - 1, out.at(-1) + LANE_MIN), e - EDGE_MIN);
+  if (a !== undefined) out.unshift(a);
+  if (b !== undefined) out.push(b);
   return out;
 }
 
@@ -222,7 +229,7 @@ export function applyLanes(result, img) {
 // A roadway of only lanes and shoulders, laid on the map's carriageway c: pieces between the kerbs and the lines.
 function measured(w, c, lines) {
   const cuts = [c.s, ...lines, c.e], pieces = cuts.slice(1).map((x, q) => ({ s: cuts[q], e: x, w: x - cuts[q] }));
-  const kinds = pieces.map((p, q) => ((q === 0 || q === pieces.length - 1) && p.w < 1 ? "join" : (q === 0 || q === pieces.length - 1) && p.w < LANE_MIN ? "krajnice" : p.w >= LANE_MIN && p.w <= LANE_MAX ? "pruh" : null));
+  const kinds = pieces.map((p, q) => ((q === 0 || q === pieces.length - 1) && p.w < EDGE_MIN ? "join" : (q === 0 || q === pieces.length - 1) && p.w < LANE_MIN ? "krajnice" : p.w >= LANE_MIN && p.w <= LANE_MAX ? "pruh" : null));
   // A piece of two lanes whose dashed line was not found (a car on it: Olomoucká) is two lanes, while that does not
   // give more lanes than the rules had.
   const had = w.parts.filter((p) => p.seg.type === "pruh").length;
@@ -258,7 +265,7 @@ function measured(w, c, lines) {
       if (end.kind === "krajnice" || !sides.length || share < 1) end.w += share;
       else if (side === "s") list.unshift({ w: share, kind: "krajnice", rules: true }); else list.push({ w: share, kind: "krajnice", rules: true });
     }
-    if (list.some((p) => p.w < 0.3)) return null;
+    if (list.some((p) => p.w < EDGE_MIN)) return null;
   }
   // After that every lane must still look like one, or the rules' profile stays.
   if (list.some((p) => p.kind === "pruh" && (p.w < LANE_MIN - 0.2 || p.w > LANE_MAX + 0.25))) return null;
@@ -306,10 +313,10 @@ function redraw(w, lines) {
     const inside = lines.filter((l) => !used.has(l) && l > s + 0.3 && l < e - 0.3);
     if (!inside.length) { keep(); continue; }
     const cuts = [s, ...inside, e], pieces = cuts.slice(1).map((x, q) => ({ s: cuts[q], e: x, w: x - cuts[q] }));
-    // At a kerb (the roadway's own edge) a piece of 1–2.5 m is a shoulder, a narrower one joins its neighbour;
+    // At a kerb (the roadway's own edge) a piece up to 2.5 m is a shoulder (a sliver under EDGE_MIN joins its neighbour);
     // anything else must be a lane (2.5–4.75 m), or the block stays as the rules drew it.
     const atKerb = (p) => Math.abs(p.s - w.s) < 0.01 || Math.abs(p.e - w.e) < 0.01;
-    const kinds = pieces.map((p) => (atKerb(p) && p.w < 1 ? "join" : atKerb(p) && p.w < LANE_MIN ? "krajnice" : p.w >= LANE_MIN && p.w <= LANE_MAX ? "pruh" : null));
+    const kinds = pieces.map((p) => (atKerb(p) && p.w < EDGE_MIN ? "join" : atKerb(p) && p.w < LANE_MIN ? "krajnice" : p.w >= LANE_MIN && p.w <= LANE_MAX ? "pruh" : null));
     if (kinds.includes(null) || pieces.length < 2) { keep(); continue; }
     // A sliver at a kerb (only the first or the last piece can be one) widens its neighbour.
     if (kinds[0] === "join") { pieces[1].s = pieces[0].s; pieces[1].w = pieces[1].e - pieces[1].s; }
