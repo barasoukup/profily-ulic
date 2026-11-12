@@ -2,7 +2,7 @@ import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TR
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes } from "./lanes-ortho.js";
-import { underground, KINDS as NET_KINDS } from "./site.js";
+import { underground, KINDS as NET_KINDS, NET_CITIES } from "./site.js";
 // Lanes and shoulders from the road markings of the orthophoto (lanes-ortho.js); ?orto=0 leaves the rules' profile.
 const LANES_ORTHO = new URLSearchParams(location.search).get("orto") !== "0";
 import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, signFits, MAX_PER_PART } from "./signs.js";
@@ -1680,9 +1680,12 @@ $("#site-btn").onclick = () => {
   render();
 };
 function loadUnderground() {
-  $("#site-btn").hidden = state.cut?.city !== "praha" || state.mode === "porovnat";
+  // Only where a city publishes its networks (Prague, Brno): elsewhere no switch at all; asked only when switched on.
+  const here = !!NET_CITIES[state.cut?.city];
+  $("#site-btn").hidden = !here || state.mode === "porovnat";
   $("#net-hint").hidden = !undergroundFor();
-  if (!siteOn() || !state.cut || state.cut.city !== "praha" || state.underground?.cut === state.cut) return;
+  if (here) $("#net-hint").textContent = `${tr("Sítě pod zemí: hloubka od spodku vozovky; čárkovaný kroužek = hloubka v datech chybí, kreslena obvyklá.")} ${NET_CITIES[state.cut.city]()}`;
+  if (!siteOn() || !here || state.underground?.cut === state.cut) return;
   const cut = state.cut, b = (cut.bearing * Math.PI) / 180, span = cutSpan(cut);
   state.underground = { cut, items: null };
   underground({ frame: localFrame(cut.lat, cut.lon), dir: [Math.sin(b), Math.cos(b)], half: Math.max(span.left, span.right) + 1, cityId: cut.city })
@@ -1697,7 +1700,7 @@ layersControl.addOverlay(netLayer, tr("Sítě pod zemí"));
 if (siteOn()) netLayer.addTo(map);
 let netDrawn = null;
 function drawNetLines() {
-  const items = state.underground?.cut === state.cut ? state.underground.items : null;
+  const items = state.underground?.cut === state.cut && NET_CITIES[state.cut?.city] ? state.underground.items : null;
   if (netDrawn === items) return;
   netDrawn = items;
   netLayer.clearLayers();

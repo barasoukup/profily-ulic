@@ -1,14 +1,21 @@
-// Networks under the street (a trial, Bára 12. 11. 2026): where the cut crosses the lines of IPR's technical map of
-// the networks (Prague only: TMIS, authorised and not), with their depth. The lines carry the height above sea
+// Networks under the street (a trial, Bára 12. 11. 2026): where the cut crosses the lines of the networks of the
+// cities that publish them (NET_CITIES): Prague (IPR's technical map TMIS, authorised and not, with heights) and
+// Brno (the drawing of its technical map UMPS, by kind, without heights: the kind's usual depth), with their depth. The lines carry the height above sea
 // level of each vertex (Z, Bpv); the depth is the surface's height there minus it: from the heights of the technical
 // map's own surveyed points nearby (výškopis, kerbs, trees…: Bára's idea, the street's real surface), else from the
 // ground model (ČÚZK DMR 5G, one raw image along the cut). Not every Z is the pipe: where the line was not measured in depth it lies on the surface (depth about
 // 0), so a depth outside DEPTH_OK is not believed and the network is drawn at its kind's usual depth (ČSN 73 6005,
 // indicative), marked as such.
 import { query } from "./gis.js";
+import { t } from "./i18n.js";
 
 const IPR = "https://gs-pub.praha.eu/arcgis/rest/services/dtmp/dtmp/MapServer";
 const LAYERS = [7, 3]; // průběh linií TMIS (neautorizované), TMIS ADS (autorizované)
+const BRNO = "https://gis.brno.cz/ags3/rest/services/PUBLIC/opendata_umps/MapServer/identify";
+// Brno's layers of network lines → their kind and a description.
+const BRNO_LAYERS = { 25: ["kanalizace", "kanalizace"], 26: ["jine", "kolektor"], 27: ["jine", "neurčená síť"], 28: ["plynovod", "plynovod"], 29: ["jine", "potrubní pošta"],
+  30: ["jine", "produktovod"], 31: ["silnoproud", "silnoproud"], 32: ["slaboproud", "slaboproud"], 33: ["teplovod", "teplovod"], 34: ["vodovod", "vodovod"] };
+export const NET_CITIES = { praha: () => t("Data © IPR Praha."), brno: () => t("Data © Statutární město Brno; hloubky jen obvyklé (technická mapa Brna je nemá).") };
 const DMR = "https://ags.cuzk.gov.cz/arcgis2/rest/services/dmr5g/ImageServer/exportImage";
 const DEPTH_OK = [0.2, 8];
 const R = 6378137;
@@ -65,36 +72,52 @@ function surfacePoints(features, frame) {
 // The networks the cut crosses: [{ t, depth, measured, kind, popis, profil }] with t across the cut (m, +normal = A),
 // or null outside Prague.
 export async function underground({ frame, dir, half, cityId }) {
-  if (cityId !== "praha") return null;
+  if (!NET_CITIES[cityId]) return null;
   const normal = [-dir[1], dir[0]];
   // A square around the cut's centre, ±1.5 times its half length (at least 30 m): the lines on the map then end
   // outside the first view (Fable), the crossings are the same.
   const reach = Math.max(30, 1.5 * half), [clon, clat] = frame.toLonLat(0, 0), dLat = reach / 110574, dLon = reach / (111320 * Math.cos((clat * Math.PI) / 180));
   const box = [clon - dLon, clat - dLat, clon + dLon, clat + dLat];
-  const [height, points, ...answers] = await Promise.all([
-    ground(box).catch(() => () => NaN),
-    query(`${IPR}/9/query`, { geometry: box.join(","), geometryType: "esriGeometryEnvelope", inSR: 4326, spatialRel: "esriSpatialRelIntersects", outFields: "OBJECTID", returnGeometry: true, returnZ: true, outSR: 4326, f: "json" }).catch(() => ({ features: [] })),
-    ...LAYERS.map((l) => query(`${IPR}/${l}/query`, { geometry: box.join(","), geometryType: "esriGeometryEnvelope", inSR: 4326, spatialRel: "esriSpatialRelIntersects", outFields: "CTMTP_POPIS,PROFIL", returnGeometry: true, returnZ: true, outSR: 4326, f: "json" })),
-  ]);
-  const surface = surfacePoints(points.features || [], frame);
+  // The lines of the city: { kind, popis, profil, layer, verified, paths (lon, lat, z) }.
+  let feats, height = () => NaN, surface = () => NaN;
+  if (cityId === "brno") {
+    // One identify over all the networks' layers (a query is per layer); no heights there.
+    const b = box.join(","), a = await query(BRNO, { geometry: b, geometryType: "esriGeometryEnvelope", sr: 4326, layers: `all:${Object.keys(BRNO_LAYERS).join(",")}`, tolerance: 0, mapExtent: b, imageDisplay: "400,400,96", returnGeometry: true, f: "json" });
+    feats = (a.results || []).filter((r) => BRNO_LAYERS[r.layerId]).map((r) => {
+      const [kind, popis] = BRNO_LAYERS[r.layerId];
+      return { kind, popis: `${popis} (technická mapa Brna)`, profil: null, layer: r.layerId, verified: true, paths: (r.geometry?.paths || []).map((p) => p.map(([x, y]) => [x, y, NaN])) };
+    });
+  } else {
+    const [h, points, ...answers] = await Promise.all([
+      ground(box).catch(() => () => NaN),
+      query(`${IPR}/9/query`, { geometry: box.join(","), geometryType: "esriGeometryEnvelope", inSR: 4326, spatialRel: "esriSpatialRelIntersects", outFields: "OBJECTID", returnGeometry: true, returnZ: true, outSR: 4326, f: "json" }).catch(() => ({ features: [] })),
+      ...LAYERS.map((l) => query(`${IPR}/${l}/query`, { geometry: box.join(","), geometryType: "esriGeometryEnvelope", inSR: 4326, spatialRel: "esriSpatialRelIntersects", outFields: "CTMTP_POPIS,PROFIL", returnGeometry: true, returnZ: true, outSR: 4326, f: "json" })),
+    ]);
+    height = h;
+    surface = surfacePoints(points.features || [], frame);
+    feats = answers.flatMap((a, li) => (a.features || []).map((f) => {
+      const popis = f.attributes?.CTMTP_POPIS || "";
+      return { kind: kindOf(popis), popis, profil: f.attributes?.PROFIL ?? null, layer: LAYERS[li], verified: !/neověř/.test(popis), paths: f.geometry?.paths || [] };
+    }));
+  }
   const out = [], lines = [];
-  for (const [li, a] of answers.entries()) for (const f of a.features || []) {
-    const popis = f.attributes?.CTMTP_POPIS || "", layer = LAYERS[li];
+  for (const f of feats) {
+    const { popis, layer } = f;
     // Left out: lines taken out of use and the outlines of underground objects (a chamber is no crossing).
     if (/vyřaz|objekty/.test(popis)) continue;
     // For the map: the lines as they run, in the colours of their kinds.
-    for (const path of f.geometry?.paths || []) lines.push({ kind: kindOf(popis), popis, verified: !/neověř/.test(popis), coords: path.map(([lon, lat]) => [lat, lon]) });
-    for (const path of f.geometry?.paths || []) for (let i = 0; i + 1 < path.length; i++) {
+    for (const path of f.paths) lines.push({ kind: f.kind, popis, verified: f.verified, coords: path.map(([lon, lat]) => [lat, lon]) });
+    for (const path of f.paths) for (let i = 0; i + 1 < path.length; i++) {
       const p = frame.toXY(path[i][0], path[i][1]), q = frame.toXY(path[i + 1][0], path[i + 1][1]);
       const u1 = p[0] * dir[0] + p[1] * dir[1], u2 = q[0] * dir[0] + q[1] * dir[1];
       if (u1 === u2 || u1 * u2 > 0) continue;
       const k = u1 / (u1 - u2), x = p[0] + k * (q[0] - p[0]), y = p[1] + k * (q[1] - p[1]), t = x * normal[0] + y * normal[1];
       if (Math.abs(t) > half) continue;
       const z = path[i][2] + k * (path[i + 1][2] - path[i][2]), [lon, lat] = frame.toLonLat(x, y);
-      const kind = kindOf(popis), fromPoints = surface(x, y) - z, fromDmr = height(lon, lat) - z;
+      const kind = f.kind, fromPoints = surface(x, y) - z, fromDmr = height(lon, lat) - z;
       const ok = (d) => Number.isFinite(d) && d >= DEPTH_OK[0] && d <= DEPTH_OK[1];
       const d = Number.isFinite(fromPoints) ? fromPoints : fromDmr, measured = ok(d);
-      out.push({ t: +t.toFixed(2), depth: +(measured ? d : KINDS[kind].usual).toFixed(2), measured, kind, popis, layer, profil: f.attributes?.PROFIL ?? null,
+      out.push({ t: +t.toFixed(2), depth: +(measured ? d : KINDS[kind].usual).toFixed(2), measured, kind, popis, layer, profil: f.profil,
         fromPoints: Number.isFinite(fromPoints) ? +fromPoints.toFixed(2) : null, fromDmr: Number.isFinite(fromDmr) ? +fromDmr.toFixed(2) : null });
     }
   }
