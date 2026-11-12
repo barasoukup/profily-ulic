@@ -1622,6 +1622,8 @@ function restore(data) {
 // Networks under the street (site.js, a trial, Prague only): asked for the cut when the switch is on, drawn as a
 // band under the Stav profile.
 function siteOn() { try { return localStorage.getItem("profily-site") === "1"; } catch { return false; } }
+// ?site=1 in a link turns it on (for trying it out).
+if (new URLSearchParams(location.search).get("site") === "1") try { localStorage.setItem("profily-site", "1"); } catch {}
 $("#site-on").checked = siteOn();
 $("#site-on").onchange = (e) => {
   try { localStorage.setItem("profily-site", e.target.checked ? "1" : "0"); } catch {}
