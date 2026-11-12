@@ -347,6 +347,7 @@ export function mtvuPolygons(json, frame) {
       guess: f.attributes.ODHAD === 1, // Brno: an area completed along OSM, not measured
       level: Number(f.attributes.LEVEL) || 0, // Brno: 1 above the ground (bridge decks)
       dtmTram: f.attributes.DTM_TRAM === 1, // the national DTM's tram area: tracks in the roadway or apart from it
+      fromLines: f.attributes.Z_CAR === 1, // read from the DTM's lines (dmvs.js fromLines), its kind a guess
       rings,
       bbox: bboxOf(rings.flat()),
       lonlat: f.geometry.rings.map((r) => r.map(([lon, lat]) => [lat, lon])),
@@ -1372,6 +1373,37 @@ export function centerOnStreet(osm, frame, near, half = 40) {
 }
 
 // Main entry: returns {segments (screen left → right), edges, runs}.
+// Pieces read from the DTM's lines beside a roadway (dmvs.js fromLines) are sidewalks or verges: the lines do
+// not tell (Bára 12. 11. 2026; Kolín, Mladá Boleslav: the grass verges and ditches of a road in the fields are
+// pieces between "boundaries of a transport area" as well). A side has a sidewalk where OSM says so (sidewalk,
+// sidewalk:<side>; "separate" is one drawn apart, still there), none where it says no; without a tag where the
+// street is built up: a building within BUILT_NEAR m on that side and no speed over 50. The piece nearest the
+// roadway is then the sidewalk, the others are green (estimates all).
+const BUILT_NEAR = 30;
+export function linePieces(polys, tags, center, normal) {
+  const pieces = polys.filter((p) => p.fromLines && p.code === 702);
+  if (!pieces.length) return polys;
+  const off = (p) => ((p.bbox[0] + p.bbox[2]) / 2 - center[0]) * normal[0] + ((p.bbox[1] + p.bbox[3]) / 2 - center[1]) * normal[1];
+  const says = (side) => {
+    const own = tags[`sidewalk:${side}`] ?? tags["sidewalk:both"];
+    if (own) return !["no", "none"].includes(own);
+    const s = tags.sidewalk;
+    if (!s) return undefined;
+    if (["both", "yes", "separate"].includes(s)) return true;
+    if (["no", "none"].includes(s)) return false;
+    return s === side;
+  };
+  const fast = parseInt(tags.maxspeed, 10) > 50;
+  const built = (sign) => !fast && polys.some((p) => p.code === 601 && off(p) * sign > 0 && Math.abs(off(p)) < BUILT_NEAR);
+  const verge = new Set();
+  for (const [side, sign] of [["left", 1], ["right", -1]]) {
+    const mine = pieces.filter((p) => off(p) * sign > 0).sort((a, b) => Math.abs(off(a)) - Math.abs(off(b)));
+    const walk = says(side) ?? built(sign);
+    mine.forEach((p, k) => { if (!walk || k > 0) verge.add(p); });
+  }
+  return polys.map((p) => (verge.has(p) ? { ...p, code: 401, label: "" } : p));
+}
+
 export function deriveProfile({ center, dir, half, polys, osm, frame, way, tracks = [], parking = [], lines = [], reach, inZps: zoneKnown, itemReach, ortho }) {
   const reachItems = { ...REACH, ...itemReach };
   // No-parking sections (Prague, TSK "Zákaz stání"): no surface of their own, they only keep a kerb free.
@@ -1405,6 +1437,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     return best?.cls || null;
   };
   const normal = [-dir[1], dir[0]];
+  polys = linePieces(polys, way?.tags || {}, center, normal);
   const cross = crossings(osm, frame, center, normal, half);
   let axisT = cross.find((c) => c.way.id === way.id)?.t ?? 0;
   // Tram track axes: measured ones from the technical map when available, else OSM.

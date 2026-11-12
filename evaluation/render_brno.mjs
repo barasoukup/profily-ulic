@@ -12,6 +12,8 @@ const ROOT = path.dirname(new URL(import.meta.url).pathname);
 const DATA = path.join(ROOT, CITY, "data");
 const PX_M = 10, BOX = 640, SIZE = 1100;
 const [from = 1, to = 100] = process.argv.slice(2).map(Number);
+// OUT=results-linie: the results of run_brno.mjs in another folder, the images in png-<OUT>.
+const RESULTS = process.env.OUT || "results", PNG = process.env.OUT ? `png-${process.env.OUT}` : "png";
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 const ARROW = { forward: "↑", backward: "↓" };
 
@@ -62,13 +64,13 @@ ${rows}${tagText}${bar}
 </svg>`;
 }
 
-await fs.mkdir(path.join(DATA, "png"), { recursive: true });
+await fs.mkdir(path.join(DATA, PNG), { recursive: true });
 let done = 0;
 for (let i = from; i <= to; i++) {
   let r;
-  try { r = JSON.parse(await fs.readFile(path.join(DATA, "results", `${i}.json`), "utf8")); } catch { continue; }
+  try { r = JSON.parse(await fs.readFile(path.join(DATA, RESULTS, `${i}.json`), "utf8")); } catch { continue; }
   if (r.error || !r.segments) { console.log(i, "skip", r.error?.slice(0, 80)); continue; }
-  await fs.writeFile(path.join(DATA, "png", `${i}.svg`), await svg(r, i));
+  await fs.writeFile(path.join(DATA, PNG, `${i}.svg`), await svg(r, i));
   done++;
 }
 console.log("written", done);

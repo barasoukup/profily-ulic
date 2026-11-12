@@ -279,11 +279,17 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
 - Pardubice (`towns/pardubice.js`) nemají vlastní služby, mají jen vlastní ilustrace. Kontrola 49 řezů:
   `evaluation/pardubice/ZPRAVA.md`.
 
-- **Jen čáry bez ploch** (Středočeský kraj, 12. 11. 2026): kraj do DMVS dodává linie (hranice dopravních ploch, ploty,
-  budovy), ale žádné plochy. `dmvs.js` `fromLines` pak rozdělí obrázek čar na plochy, ta pod středem řezu (osa OSM) je
-  vozovka, kusy mezi dvěma hranicemi dopravní plochy směrem ven jsou chodníky (do 6 m), za první jinou čarou (plot, budova)
-  doplní RÚIAN. Druh čáry se ptá GetFeatureInfo (nejvýš 4 na stranu). Šířky jsou z technické mapy, druhy odhad; aplikace
-  to řekne. Když se ani tak vozovka nenajde, hlásí „technická mapa tu má jen čáry“ místo „mimo technickou mapu“.
+- **Ulice jen z čar** (Bára 12. 11. 2026, obecný postup): kde pod středem řezu technická mapa nemá plochu, ale okolo jsou
+  čáry (Středočeský kraj dodává do DMVS jen linie; Kolín a Mladá Boleslav mají plochy okolo, ale ulici jen čarami),
+  `dmvs.js` `fromLines` rozdělí obrázek čar (a hotových ploch) na kusy: ten pod středem řezu (osa OSM) je vozovka, kusy
+  mezi dvěma hranicemi dopravní plochy směrem ven (do 4,5 m) chodník nebo krajnice. Čáry to nerozliší, takže rozhodne
+  `derive.js` `linePieces`: chodník podle OSM `sidewalk`, bez tagu v zástavbě (budova do 30 m, rychlost do 50), a to jen
+  kus nejblíž vozovce; ostatní zeleň. Za první jinou čarou (plot, budova) doplní RÚIAN. Druh čáry se ptá GetFeatureInfo
+  (nejvýš 4 na stranu). Šířky jsou z technické mapy, druhy odhad; aplikace to řekne. Když se vozovka nenajde, hlásí
+  „technická mapa tu má jen čáry“ místo „mimo technickou mapu“.
+  Kontrola 50 řezů (Kolín, Mladá Boleslav, `CITY=kolin OUT=results-linie2 node evaluation/run_brno.mjs 1 25`): změřená
+  vozovka u 25 místo 8, šířky vozovek sedí na asfalt; zbylé jsou silnice, které technická mapa nemá vůbec (čáry jen jinde).
+  Druh kusů u vozovky sedí asi napůl (zelený pruh před chodníkem bývá vzat za chodník, souběžná cesta za zeleň).
 
 ### Zkoušené a nepřipojené zdroje
 

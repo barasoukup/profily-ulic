@@ -78,7 +78,9 @@ async function ortho(lat, lon, dir) {
 
 const { samples } = JSON.parse(await fs.readFile(path.join(DATA, "samples.json"), "utf8"));
 const [from = 1, to = samples.length] = process.argv.slice(2).map(Number);
-await fs.mkdir(path.join(DATA, "results"), { recursive: true });
+// OUT=results-linie: the results in another folder (a new rule beside the old results).
+const RESULTS = process.env.OUT || "results";
+await fs.mkdir(path.join(DATA, RESULTS), { recursive: true });
 await fs.mkdir(path.join(DATA, "ortho"), { recursive: true });
 
 async function run(s) {
@@ -123,7 +125,7 @@ async function run(s) {
 // ONLY=3,10,17: just these cuts.
 const only = process.env.ONLY ? new Set(process.env.ONLY.split(",").map(Number)) : null;
 for (const s of samples.filter((x) => x.n >= from && x.n <= to && (!only || only.has(x.n)))) {
-  const out = path.join(DATA, "results", `${s.n}.json`);
+  const out = path.join(DATA, RESULTS, `${s.n}.json`);
   try {
     const r = await run(s);
     await fs.writeFile(out, JSON.stringify({ sample: s, ...r }, null, 1));

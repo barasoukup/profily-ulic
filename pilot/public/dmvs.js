@@ -367,10 +367,16 @@ export async function dtmAreas(bbox, { cut } = {}) {
   const { w, h } = v;
   const cls = classify(areas, lines && lines.width === w && lines.height === h ? lines : null);
   const { label, count, colour } = components(cls, w, h);
-  // No areas at all, but lines: the Středočeský kraj sends the DTM's lines to ČÚZK without its areas (Bára,
-  // Kolín 12. 11. 2026). The surfaces are then read from the lines (fromLines), or nothing, said so (linesOnly).
-  if (!count && lines?.width === w && lines.height === h && lines.rgba.some((x, i) => (i & 3) === 3 && x >= 64)) {
-    return (await fromLines(v, lines)) || { features: [], gap: false, requests: 2, linesOnly: true };
+  // The street drawn only as lines: the Středočeský kraj sends the DTM's lines to ČÚZK without its areas, and
+  // where a region has areas around a street but not the street's own (Kolín, Mladá Boleslav), its roadway is
+  // lines too (Bára 12. 11. 2026: the general way whenever only the lines are there). The blank ground under the
+  // cut's centre is then read from the lines (fromLines), the areas around kept; without any area or roadway
+  // found, nothing, said so (linesOnly).
+  const hasLines = lines?.width === w && lines.height === h && lines.rgba.some((x, i) => (i & 3) === 3 && x >= 64);
+  let fromLinesPart = null;
+  if (hasLines && blankCentre(label, w, h, 1 / v.res)) {
+    fromLinesPart = await fromLines(v, lines, undefined, count ? (i) => label[i] >= 0 : null);
+    if (!count) return fromLinesPart ? { ...fromLinesPart, requests: 2 + fromLinesPart.requests } : { features: [], gap: false, requests: 2, linesOnly: true };
   }
 
   // The areas the cut crosses, with the pixel in the middle of their longest stretch and how near the
@@ -474,7 +480,9 @@ export async function dtmAreas(bbox, { cut } = {}) {
     if (code) features.push({ attributes: { code, guess: own === null && !t, level: 0, type }, geometry: { rings } });
     if (t?.above) features.push({ attributes: { code: t.above, guess: false, level: 1, type }, geometry: { rings } });
   }
-  return { features, region, gap, requests: 2 + ask.length, size: [w, h], areas: count };
+  if (fromLinesPart) features.push(...fromLinesPart.features);
+  return { features, region: region || fromLinesPart?.region, gap, requests: 2 + ask.length + (fromLinesPart?.requests || 0), size: [w, h], areas: count,
+    ...(fromLinesPart && { fromLines: true }) };
 }
 
 // ---------- Surfaces from the lines alone ----------
@@ -486,14 +494,21 @@ export async function dtmAreas(bbox, { cut } = {}) {
 // roadway's own (its pixels near the centre). The types are estimates, the widths the DTM's.
 const LINE_GAP = PALETTE.length; // the class of every pixel off the lines
 const TRANSPORT_LINE = /dopravní/i;
-const LINE_REACH = 25, LINE_SIDE = 4, WALK_MAX = 6; // m along the cut each way; crossings asked per side; widest sidewalk (m)
+const LINE_REACH = 25, LINE_SIDE = 4, WALK_MAX = 4.5; // m along the cut each way; crossings asked per side; widest sidewalk (m)
 const lineInfoUrl = (v, [i, j]) => `${DMVS_LINES}?${new URLSearchParams({
   ...v.params, request: "GetFeatureInfo", layers: BOUNDARY_LAYERS, query_layers: BOUNDARY_LAYERS,
   info_format: "application/json", feature_count: 3, i, j,
 })}`;
-export async function fromLines(v, lines, info = (px) => get(lineInfoUrl(v, px), "json")) {
+// No area of the DTM within r pixels of the image's centre (the cut's centre).
+function blankCentre(label, w, h, r) {
+  const cx = Math.floor(w / 2), cy = Math.floor(h / 2);
+  for (let y = Math.max(0, cy - r); y <= Math.min(h - 1, cy + r); y++) for (let x = Math.max(0, cx - r); x <= Math.min(w - 1, cx + r); x++) if (label[y * w + x] >= 0) return false;
+  return true;
+}
+// taken(i): a pixel of an area the DTM has (left as it is, a boundary like a line).
+export async function fromLines(v, lines, info = (px) => get(lineInfoUrl(v, px), "json"), taken = null) {
   const { w, h, res } = v, n = w * h;
-  const onLine = (i) => lines.rgba[i * 4 + 3] >= 64;
+  const onLine = taken ? (i) => lines.rgba[i * 4 + 3] >= 64 || taken(i) : (i) => lines.rgba[i * 4 + 3] >= 64;
   const cls = new Int16Array(n);
   for (let i = 0; i < n; i++) cls[i] = onLine(i) ? OPEN : LINE_GAP;
   const { label } = components(cls, w, h);
@@ -543,7 +558,7 @@ export async function fromLines(v, lines, info = (px) => get(lineInfoUrl(v, px),
   const first = sides.map((st) => st[0]?.at);
   if (first.some((a) => a === undefined) || first[0] + first[1] < 2.5 || first[0] + first[1] > 30) return null;
   // The type of each line crossed.
-  let region, requests = 2;
+  let region, requests = 0; // GetFeatureInfo requests of its own (the two images are the caller's)
   await Promise.all(sides.flat().map(async (st) => {
     requests++;
     try {
@@ -576,7 +591,7 @@ export async function fromLines(v, lines, info = (px) => get(lineInfoUrl(v, px),
     const rings = trace(label, w, h, id, boxes.get(id)).map((r) => simplify(r, SIMPLIFY / res))
       .filter((r) => r.length >= 3 && ringArea(r) * res ** 2 >= 0.05)
       .map((r) => { const ll = r.map(v.toLonLat); ll.push(ll[0]); return ll; });
-    if (rings.length) features.push({ attributes: { code, guess: true, level: 0, type: "z čar technické mapy" }, geometry: { rings } });
+    if (rings.length) features.push({ attributes: { code, guess: true, level: 0, type: "z čar technické mapy", fromLines: true }, geometry: { rings } });
   }
   return features.length ? { features, region, gap: false, requests, fromLines: true } : null;
 }
@@ -622,6 +637,9 @@ export async function surfaces(bbox, labels, opts = {}) {
   ]);
   const at = (level) => (a) => (a.level === level ? (a.guess ? [a.code, true] : a.code) : null);
   const ground = asMtvu([[dtm, at(0)]], labels);
+  // The areas read from the lines keep their mark (derive.js linePieces).
+  const ground0 = dtm.features.filter((f) => f.attributes.level === 0 && f.attributes.code && f.geometry?.rings);
+  ground.features.forEach((f, k) => { if (ground0[k]?.attributes.fromLines) f.attributes.Z_CAR = 1; });
   const above = asMtvu([[dtm, at(1)]], labels);
   for (const f of above.features) f.attributes.LEVEL = 1;
   // The DTM's "tramvajová dráha" is the tracks' area, in the roadway or apart from it (not MTVU's separate bed).
