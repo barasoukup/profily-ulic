@@ -1,6 +1,6 @@
 // Derive a street profile from a cut line, IPR MTVU surfaces and OSM ways.
 // Geometry works in a local metric frame (x east, y north, metres) around the cut centre.
-import { typeFromMtvu, isBuilding, isMinorStructure, DEFAULT_WIDTH } from "./types.js";
+import { typeFromMtvu, isBuilding, isMinorStructure, DEFAULT_WIDTH, PERMEABLE_TYPES } from "./types.js";
 import { city } from "./city.js";
 import { t, num } from "./i18n.js";
 
@@ -1325,6 +1325,7 @@ const FENCE_LINES = new Set([61210, 71210, 81210, 91210]);
 const FENCE_BARRIERS = new Set(["fence", "wall", "city_wall", "hedge"]);
 const FENCE_AT_FACADE = 1; // m
 const FENCE_SLIVER = 0.6; // m
+const PAVERS = new Set(["grass_paver"]); // OSM surfaces of permeable paving
 const APRON = 1; // a paved strip narrower than this at a building's wall is its apron, not a sidewalk (m)
 const APRON_BEYOND = new Set(["zelen", "predzahradka", "stromorad"]);
 const MEDIAN = 9950;
@@ -1885,6 +1886,18 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     edges[`${side}Info`] = { levels: b?.levels, height: b?.height, point, km: +centreKm(point).toFixed(1), block: b?.block, tint: side === "left" ? 0 : 3 };
     if (b?.type && b.type !== "yes") edges[`${side}Info`].type = b.type;
   }
+  // Permeable paving from OSM (Bára 12. 11. 2026, rainwater 5.1.2): grass pavers (surface=grass_paver) of an area the
+  // part's middle lies on (parking: about 300 in Czechia), or of a way crossing the part (service roads, footways,
+  // paths: about 900). The only rainwater object the data show along streets.
+  const paver = (t) => PAVERS.has(t?.surface);
+  const paverRings = (osm.elements || []).filter((el) => el.type === "area" && paver(el.tags) && el.geometry)
+    .map((el) => [el.geometry, ...(el.holes || [])].map((r) => r.map((g) => frame.toXY(g.lon, g.lat))));
+  const paverTs = cross.filter((c) => paver(c.way.tags)).map((c) => c.t);
+  for (const x of withItems) {
+    if (!PERMEABLE_TYPES.includes(x.type)) continue;
+    const [px, py] = at((x.s + x.e) / 2);
+    if (paverTs.some((t) => t > x.s && t < x.e) || paverRings.some((rings) => inside(rings, px, py))) x.permeable = true;
+  }
   // A strip of paving under APRON along a building's wall (an apron, "okapový chodník") with green past it is no
   // sidewalk but a paved area (the rest of a sidewalk beside cars parked on it stays one): it is not walked along (Bára, Vysoké Mýto, Komenského: 0.70 m was warned as a
   // sidewalk below the minimum). withItems runs from the right end (edges.right) to the left one.
@@ -1924,6 +1937,7 @@ function toSegment(x) {
   if (x.wires) seg.wires = true;
   if (x.type === "tramvaj") { seg.bed = x.bed || "panely"; if (x.bedSource === "odhad") seg.bedGuess = true; }
   if (x.withBus) seg.withBus = true;
+  if (x.permeable) seg.permeable = true;
   if (x.roadClass && LANE_TYPES.has(x.type)) seg.roadClass = x.roadClass;
   // Segments are reversed to screen order, so item positions flip too.
   if (x.items?.length) seg.items = x.items.map((it) => ({ ...it, f: +(1 - it.f).toFixed(3) }));

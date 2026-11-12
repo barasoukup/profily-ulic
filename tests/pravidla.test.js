@@ -385,3 +385,14 @@ test("úzký pruh dlažby u domu se zelení za ním je okapový chodník (zpevn�
   // A sidewalk of 0.7 m beside the roadway stays a sidewalk (too narrow, and the rules say so).
   assert.equal(parts(street([[701, 7]], {}, { walk: 0.7 }))[0], "chodnik 0.7");
 });
+
+test("zatravňovací dlažba z OSM (surface=grass_paver) je propustný povrch", () => {
+  // Bára 12. 11. 2026: the one rainwater object the data show along streets (about 300 car parks and 900 ways in Czechia).
+  const area = { type: "area", id: 9, tags: { amenity: "parking", surface: "grass_paver" }, geometry: [ll(-6.5, -10), ll(-3.5, -10), ll(-3.5, 10), ll(-6.5, 10), ll(-6.5, -10)] };
+  const path = { type: "way", id: 8, tags: { highway: "footway", surface: "grass_paver" }, geometry: line(5) };
+  const p = street([[701, 7]], {}, { extra: [area, path] });
+  const walks = p.segments.filter((s) => s.type === "chodnik");
+  assert.deepEqual(walks.map((s) => !!s.permeable), [true, true], parts(p).join(" | "));
+  assert.ok(!p.segments.some((s) => s.type === "pruh" && s.permeable), "vozovka zůstává");
+  assert.ok(!street([[701, 7]], {}).segments.some((s) => s.permeable));
+});
