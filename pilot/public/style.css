@@ -390,3 +390,4 @@ footer a { color: inherit; }
 
 /* The magnifier: a zoomed drawing keeps its full height (Návrh and Porovnat otherwise cap it, which undid the zoom). */
 #profile.zoomed svg { max-height: none !important; }
+@media (max-width: 760px) { .zoom-ctl { top: 52px; } } /* clear of the A/B marks and the top of the houses */

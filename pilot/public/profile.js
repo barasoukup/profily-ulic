@@ -278,7 +278,7 @@ const CAR_TRACK = 170; // wheel to wheel of the parked car's sprite (cm), for it
 const KERB_PAVING = "#c4c0b4"; // the sidewalk's paving under parked cars, a shade darker than the sidewalk
 // On the curb: raised types, and cars parked fully on the sidewalk.
 // An empty place left in a design (a deleted part: Neurčeno by the user) lies at road level, no kerbs (Fable).
-const isHole = (s) => s?.type === "nezname" && s.source === "user";
+export const isHole = (s) => s?.type === "nezname" && s.source === "user";
 const isRaised = (s) => !!s && !isHole(s) && (!!TYPES[s.type]?.raised || (s.type === "parkovani" && s.position === "on_kerb"));
 export const turnLabel = (v) => v.split(";").map((x) => TURNS[x] || x).join(" + ");
 
@@ -1600,7 +1600,7 @@ const SOIL = "#e4d6bf", NET_ORDER = ["slaboproud", "silnoproud", "plynovod", "te
 const lighten = (hex, k) => "#" + [1, 3, 5].map((i) => Math.round(parseInt(hex.slice(i, i + 2), 16) + (251 - parseInt(hex.slice(i, i + 2), 16)) * k).toString(16).padStart(2, "0")).join("");
 const netEntries = (items, kinds) => [
   ...NET_ORDER.filter((kind) => items.some((i) => i.kind === kind)).map((kind) => ({ k: kinds[kind] || kinds.jine })),
-  ...(items.some((i) => !i.measured) ? [{ empty: true, k: { label: "hloubka neznámá", color: "#6b6a65" } }] : []),
+  ...(items.some((i) => !i.measured) ? [{ empty: true, k: { label: tr("hloubka neznámá"), color: "#6b6a65" } }] : []),
 ];
 function undergroundDrop(items, kinds) {
   const deepest = Math.min(4, Math.max(2, ...items.map((i) => i.depth + 0.2)));
@@ -1623,13 +1623,12 @@ function drawNetworks(svg, { items, span, kinds }, total) {
     el("line", { x1: 0, x2: total, y1: y, y2: y, stroke: "#c9b696", "stroke-width": 1.5, "stroke-dasharray": "6 6" }, g);
     for (const [lx, anchor] of at) el("text", { x: lx, y: y - 6, "text-anchor": anchor, "font-size": 24, fill: "#6b5a44" }, g).textContent = `${m} m`;
   }
-  const num = (v) => String(v).replace(".", ",");
   for (const it of items) {
     const cx = x(it.t);
     if (cx < -EDGE || cx > total + EDGE) continue;
     const k = kinds[it.kind] || kinds.jine, dn = it.profil > 20 && it.profil < 3000 ? it.profil : k.dn, r = Math.max(8, dn / 20);
     const cy = Math.min(base - r - 4, zero + it.depth * NET_V + r), n = el("g", {}, g);
-    n.dataset.tip = `${k.label}${it.profil > 20 ? ` DN ${it.profil}` : ""} · ${it.measured ? `hloubka ${num(it.depth)} m` : `hloubka neznámá (obvyklá ${num(it.depth)} m)`}${it.lines > 1 ? ` (v datech ${it.lines}× vedle sebe)` : ""}\n${it.popis}`;
+    n.dataset.tip = `${k.label}${it.profil > 20 ? ` DN ${it.profil}` : ""} · ${it.measured ? tr("hloubka {d} m", { d: num(it.depth) }) : tr("hloubka neznámá (obvyklá {d} m)", { d: num(it.depth) })}${it.lines > 1 ? ` ${tr("(v datech {n}× vedle sebe)", { n: it.lines })}` : ""}\n${it.popis}`;
     el("circle", { cx, cy, r: Math.max(r, 24), fill: "transparent" }, n); // a target big enough for the tooltip
     if (it.measured) {
       el("circle", { cx, cy, r: r + 6, fill: "#fbfaf6", opacity: 0.55 }, n);

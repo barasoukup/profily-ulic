@@ -1,6 +1,6 @@
 // Networks under the street (a trial, Bára 12. 11. 2026): where the cut crosses the lines of the networks of the
 // cities that publish them (NET_CITIES): Prague (IPR's technical map TMIS, authorised and not, with heights) and
-// Brno (the drawing of its technical map UMPS, by kind, without heights: the kind's usual depth), with their depth. The lines carry the height above sea
+// (Brno was tried, see NET_CITIES), with their depth. The lines carry the height above sea
 // level of each vertex (Z, Bpv); the depth is the surface's height there minus it: from the heights of the technical
 // map's own surveyed points nearby (výškopis, kerbs, trees…: Bára's idea, the street's real surface), else from the
 // ground model (ČÚZK DMR 5G, one raw image along the cut). Not every Z is the pipe: where the line was not measured in depth it lies on the surface (depth about
@@ -11,14 +11,10 @@ import { t } from "./i18n.js";
 
 const IPR = "https://gs-pub.praha.eu/arcgis/rest/services/dtmp/dtmp/MapServer";
 const LAYERS = [7, 3]; // průběh linií TMIS (neautorizované), TMIS ADS (autorizované)
-const BRNO = "https://gis.brno.cz/ags3/rest/services/PUBLIC/opendata_umps/MapServer/identify";
-// Brno's layers of network lines → their kind and a description.
-const BRNO_LAYERS = { 25: ["kanalizace", "kanalizace"], 26: ["jine", "kolektor"], 27: ["jine", "neurčená síť"], 28: ["plynovod", "plynovod"], 29: ["jine", "potrubní pošta"],
-  30: ["jine", "produktovod"], 31: ["silnoproud", "silnoproud"], 32: ["slaboproud", "slaboproud"], 33: ["teplovod", "teplovod"], 34: ["vodovod", "vodovod"] };
-// Brno is left out (12. 11. 2026): its technical map publishes only pieces of the networks' drawing (577 pieces of
-// water mains in the whole city, none around a cut of Olomoucká), not their routes; the code stays for when it does.
+// Brno was tried and left out (12. 11. 2026): its technical map publishes only pieces of the networks' drawing (577
+// pieces of water mains in the whole city, none around a cut of Olomoucká), not their routes (commit 3beb56d has
+// the code that read them: one identify over the layers 25–34 of PUBLIC/opendata_umps).
 export const NET_CITIES = { praha: () => t("Data © IPR Praha.") };
-export const NET_BRNO = () => t("Data © Statutární město Brno; hloubky jen obvyklé (technická mapa Brna je nemá).");
 const DMR = "https://ags.cuzk.gov.cz/arcgis2/rest/services/dmr5g/ImageServer/exportImage";
 const DEPTH_OK = [0.2, 8];
 const R = 6378137;
@@ -27,13 +23,13 @@ const R = 6378137;
 // networks on plans), a usual depth to the top (m) when the measured one is not believed, and a usual size (DN,
 // mm; cables as their sleeve, 110 mm) when the line has none.
 export const KINDS = {
-  kanalizace: { label: "kanalizace", color: "#5a3e26", usual: 2.5, dn: 300 },
-  vodovod: { label: "vodovod", color: "#1d5fb8", usual: 1.5, dn: 150 },
-  plynovod: { label: "plynovod", color: "#d99a00", usual: 1.0, dn: 110 },
-  teplovod: { label: "teplovod", color: "#b5302a", usual: 1.0, dn: 250 },
-  silnoproud: { label: "silnoproud", color: "#6a3fb5", usual: 0.7, dn: 110 },
-  slaboproud: { label: "slaboproud", color: "#1e8a5a", usual: 0.5, dn: 110 },
-  jine: { label: "jiné", color: "#6f6a62", usual: 1.0, dn: 110 },
+  kanalizace: { get label() { return t("kanalizace"); }, color: "#5a3e26", usual: 2.5, dn: 300 },
+  vodovod: { get label() { return t("vodovod"); }, color: "#1d5fb8", usual: 1.5, dn: 150 },
+  plynovod: { get label() { return t("plynovod"); }, color: "#d99a00", usual: 1.0, dn: 110 },
+  teplovod: { get label() { return t("teplovod"); }, color: "#b5302a", usual: 1.0, dn: 250 },
+  silnoproud: { get label() { return t("silnoproud"); }, color: "#6a3fb5", usual: 0.7, dn: 110 },
+  slaboproud: { get label() { return t("slaboproud"); }, color: "#1e8a5a", usual: 0.5, dn: 110 },
+  jine: { get label() { return t("jiné"); }, color: "#6f6a62", usual: 1.0, dn: 110 },
 };
 const kindOf = (popis = "") => {
   const w = popis.split(" ")[0];
@@ -83,14 +79,7 @@ export async function underground({ frame, dir, half, cityId }) {
   const box = [clon - dLon, clat - dLat, clon + dLon, clat + dLat];
   // The lines of the city: { kind, popis, profil, layer, verified, paths (lon, lat, z) }.
   let feats, height = () => NaN, surface = () => NaN;
-  if (cityId === "brno") {
-    // One identify over all the networks' layers (a query is per layer); no heights there.
-    const b = box.join(","), a = await query(BRNO, { geometry: b, geometryType: "esriGeometryEnvelope", sr: 4326, layers: `all:${Object.keys(BRNO_LAYERS).join(",")}`, tolerance: 0, mapExtent: b, imageDisplay: "400,400,96", returnGeometry: true, f: "json" });
-    feats = (a.results || []).filter((r) => BRNO_LAYERS[r.layerId]).map((r) => {
-      const [kind, popis] = BRNO_LAYERS[r.layerId];
-      return { kind, popis: `${popis} (technická mapa Brna)`, profil: null, layer: r.layerId, verified: true, paths: (r.geometry?.paths || []).map((p) => p.map(([x, y]) => [x, y, NaN])) };
-    });
-  } else {
+  {
     const [h, points, ...answers] = await Promise.all([
       ground(box).catch(() => () => NaN),
       query(`${IPR}/9/query`, { geometry: box.join(","), geometryType: "esriGeometryEnvelope", inSR: 4326, spatialRel: "esriSpatialRelIntersects", outFields: "OBJECTID", returnGeometry: true, returnZ: true, outSR: 4326, f: "json" }).catch(() => ({ features: [] })),

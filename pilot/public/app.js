@@ -6,7 +6,7 @@ import { underground, KINDS as NET_KINDS, NET_CITIES } from "./site.js";
 // Lanes and shoulders from the road markings of the orthophoto (lanes-ortho.js); ?orto=0 leaves the rules' profile.
 const LANES_ORTHO = new URLSearchParams(location.search).get("orto") !== "0";
 import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, signFits, MAX_PER_PART } from "./signs.js";
-import { loadSprites, loadSigns, layoutSigns, buildSvg, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, edgeInfo, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
+import { loadSprites, loadSigns, layoutSigns, buildSvg, isHole, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, edgeInfo, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
 import * as sources from "./sources.js";
 import { MAPY_KEY } from "./config.js";
 import { cleanProfile, cleanCut, retype } from "./validate.js";
@@ -830,7 +830,7 @@ const coarse = matchMedia("(pointer: coarse)").matches;
 const SIGN_PX = 32; // width of a basic traffic sign under the profile on screen (CSS px)
 const LABEL_PX = { "lbl-w": 13, "lbl-t": 11, "lbl-total": 14, "lbl-title": 13, "lbl-floor": 11 };
 function fitLabels(box) {
-  for (const svg of box.querySelectorAll("svg:not(.underground)")) { // the networks' band keeps its own box
+  for (const svg of box.querySelectorAll("svg")) {
     const [, , vw, vh] = (svg.getAttribute("viewBox") || "").split(" ").map(Number);
     const rect = svg.getBoundingClientRect();
     // A height cap shrinks the drawing inside its box (preserveAspectRatio meet): use the tighter fit.
@@ -1218,7 +1218,13 @@ function renderEditor(p) {
   const lab = (text, input) => { const l = document.createElement("label"); l.append(text, input); return l; };
   const btn = (text, fn, cls) => { const b = document.createElement("button"); b.textContent = text; b.onclick = fn; if (cls) b.className = cls; return b; };
   const segs = p.segments;
-  const done = (sel = state.selected) => { if (keepsPlace()) mergeHoles(segs); state.selected = Math.min(sel ?? -1, segs.length - 1) < 0 ? null : Math.min(sel, segs.length - 1); edited(); render(); };
+  const done = (sel = state.selected) => {
+    if (keepsPlace()) mergeHoles(segs);
+    // The selection stays on a part that is still there (holes merge, so the index may be past the end).
+    state.selected = sel === null || sel === undefined || !segs.length ? null : Math.min(sel, segs.length - 1);
+    edited();
+    render();
+  };
   // A headed card in rows: what it is and how wide, how it is used, what to do with it.
   const head = Object.assign(document.createElement("div"), { className: "ed-head" });
   head.append(Object.assign(document.createElement("h3"), { textContent: tr("Vybraná část: {type}", { type: TYPES[s.type]?.label || s.type }) }),
@@ -1685,9 +1691,10 @@ $("#site-btn").onclick = () => {
 function loadUnderground() {
   // Only where a city publishes its networks (Prague, Brno): elsewhere no switch at all; asked only when switched on.
   const here = !!NET_CITIES[state.cut?.city];
+  if (here !== netInControl) { if (here) layersControl.addOverlay(netLayer, tr("Sítě pod zemí")); else layersControl.removeLayer(netLayer); netInControl = here; }
   $("#site-btn").hidden = !here || state.mode === "porovnat";
   $("#net-hint").hidden = !undergroundFor();
-  if (here) $("#net-hint").textContent = `${tr("Sítě pod zemí: hloubka od spodku vozovky; čárkovaný kroužek = hloubka v datech chybí, kreslena obvyklá.")} ${NET_CITIES[state.cut.city]()}`;
+  if (here) $("#net-hint").textContent = `${tr("Sítě pod zemí: hloubka od spodku vozovky; čárkovaný kroužek = hloubka v datech chybí, kreslena obvyklá. V exportu zatím nejsou.")} ${NET_CITIES[state.cut.city]()}`;
   if (!siteOn() || !here || state.underground?.cut === state.cut) return;
   const cut = state.cut, b = (cut.bearing * Math.PI) / 180, span = cutSpan(cut);
   state.underground = { cut, items: null };
@@ -1699,7 +1706,7 @@ function loadUnderground() {
 // Under the cut's line (overlayPane, 400) and over the data layers of maplayers.js (390–395).
 map.createPane("rezSite").style.zIndex = 396;
 const netLayer = L.layerGroup();
-layersControl.addOverlay(netLayer, tr("Sítě pod zemí"));
+let netInControl = false; // in the layer control only where the city's networks can be had (loadUnderground)
 if (siteOn()) netLayer.addTo(map);
 let netDrawn = null;
 function drawNetLines() {
@@ -1724,7 +1731,6 @@ function undergroundFor() {
 const HOLE = "nezname";
 // Where edits keep the street's places: Návrh and correcting the data in Stav (Bára).
 const keepsPlace = () => state.mode === "navrh" || (state.mode === "stav" && state.fixing);
-const isHole = (s) => s?.type === HOLE && s.source === "user";
 function mergeHoles(segs) {
   for (let k = segs.length - 1; k > 0; k--) if (isHole(segs[k]) && isHole(segs[k - 1])) {
     segs[k - 1].width = +(segs[k - 1].width + segs[k].width).toFixed(2);
@@ -1768,7 +1774,8 @@ function placeNew(segs, sel, seg) {
   else if (holes.length) { const k = holes.reduce((b, x) => (segs[x].width > segs[b].width ? x : b)); from = [k]; at = k; }
   else { from = [segs.length - 1]; at = segs.length; }
   const room = from.reduce((a, k) => a + Math.max(0, segs[k].width - (isHole(segs[k]) ? 0 : minWidth(segs[k]))), 0);
-  if (room < 0.2) return -1;
+  // Not a sliver: at least 1 m (or the new part's own least width, if more), else "no room".
+  if (room < Math.max(Math.min(1, seg.width), minWidth(seg))) return -1;
   seg.width = +Math.min(seg.width, room).toFixed(2);
   let need = seg.width;
   for (const k of from) {
