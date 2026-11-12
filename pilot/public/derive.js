@@ -1502,9 +1502,13 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   // A cut end dragged out past the default reach (by hand) asks for what is out there: the profile goes over
   // fences, gardens, lawns and yards to the next building, or to the dragged end (Bára, Pardubice, Palackého).
   const byHand = { L: (reach?.left ?? 0) > MAX_REACH + 0.5, R: (reach?.right ?? 0) > MAX_REACH + 0.5 };
+  const onBridgeWay = way.tags?.bridge && way.tags.bridge !== "no", SIDEWALKS = new Set([702, 703]);
   const stopAt = (r, limit, k, step) => {
     if (isBuilding(r.code)) return "budova";
     if (byHand[step > 0 ? "L" : "R"]) return Math.min(Math.abs(r.s - ref), Math.abs(r.e - ref)) > limit ? "volno" : null;
+    // A street on a bridge ends with the bridge: past its outer sidewalk lies the ground under it or a road
+    // beside it (Bára, Hlávkův most).
+    if (onBridgeWay && SIDEWALKS.has(runs[k - step]?.code) && !SIDEWALKS.has(r.code)) return "volno";
     // A narrow "other structure" is a wall or parapet (e.g. an embankment wall): the profile goes on.
     if (isMinorStructure(r.code) && r.e - r.s >= WALL_MAX) return "stavba";
     if (inMedian(r)) return null;

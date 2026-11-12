@@ -153,6 +153,7 @@ function drawTramBed(g, s, x, w, top, bedBefore, bedAfter) {
   if (!bedAfter) curb(x + w - 12);
 }
 
+const ROADWAY = new Set(["pruh", "krajnice", "obsluzna", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "cyklopruh", "ochranny_pruh", "parkovani"]);
 const POLE_SCALE = 0.93; // overhead-line poles: their contact wire (5.9 m in the picture) at WIRE_H
 function drawItem(g, it, x, top, right) {
   const line = (attrs) => el("rect", attrs, g);
@@ -1300,6 +1301,8 @@ export function buildSvg(profile, opts = {}) {
       }
       // A stop post at the platform's edge stays on the platform (it is 50 cm wide).
       if (it.kind === "oznacnik") ix = Math.min(Math.max(ix, x + 30), x + w - 30);
+      // A lamp in a median between two roadways lights both (Bára, Wilsonova): its arms reach over both sides.
+      if (it.kind === "lampa" && ROADWAY.has(segs[i - 1]?.type) && ROADWAY.has(segs[i + 1]?.type)) drawItem(g, it, ix, top, !onRight);
       drawItem(g, it.kind === "sloup_trakce" && it.center ? { ...it, reach: w / 2 } : it, ix, top, onRight);
     }
     el("text", { class: "lbl-w", "data-row": 0, "data-w": w, x: cx, y: GROUND + 170, "text-anchor": "middle", "font-size": 40, "font-weight": 600, fill: "#1f1f1d" }, g).textContent = fmt(s.width);
