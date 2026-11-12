@@ -196,6 +196,10 @@ body[data-mode="navrh"] #profile svg { max-height: max(260px, calc(100dvh - 400p
 body[data-mode="porovnat"] #profile svg { max-height: max(200px, calc((100dvh - 330px) / 2)); }
 #profile .seg { cursor: pointer; }
 #profile .seg.selected rect.ground { stroke: var(--accent); stroke-width: 3px; vector-effect: non-scaling-stroke; }
+/* An edge of the street (a building, a fence, a garden), selected like a part. */
+#profile g.edge { cursor: pointer; }
+#profile g.edge:hover, #profile g.edge:focus-visible { filter: drop-shadow(0 0 4px var(--accent)); outline: none; }
+#profile g.edge.selected { filter: drop-shadow(0 0 6px var(--accent)); }
 #profile .seg.selected { filter: drop-shadow(0 0 0 transparent); }
 #profile .seg.selected rect.ground { fill-opacity: 0.75; }
 #profile .handle { cursor: ew-resize; }

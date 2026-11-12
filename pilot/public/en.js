@@ -68,9 +68,13 @@ export const EN = {
   "Zdroj: {source}": "Source: {source}",
   "Zavřít": "Close",
   "Okraje ulice": "Edges of the street",
-  "Klikněte na část profilu a upravte ji. Šířku změníte tažením modrých úchytů mezi částmi.":
-    "Click a part of the profile to edit it. Change widths by dragging the blue handles between the parts.",
   "Levý okraj": "Left edge",
+  "Klikněte na část profilu nebo na dům, plot či zahradu na kraji a upravte je. Šířku změníte tažením modrých úchytů mezi částmi.":
+    "Click a part of the profile, or the building, fence or garden at an edge, to edit it. Change widths by dragging the blue handles between the parts.",
+  "{n} podlaží": "{n} floors",
+  "Změníte v Návrhu, chybu v datech opravíte tlačítkem Opravit data.": "Change it in Proposal; correct an error in the data with Correct the data.",
+  "Co tu stojí": "What stands here",
+  "Podlaží": "Floors",
   "Pravý okraj": "Right edge",
   "kancelářská budova": "office building",
   "Budova (odhad: {guess})": "Building (estimate: {guess})",

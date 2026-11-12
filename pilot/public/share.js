@@ -3,7 +3,7 @@
 // Only what the drawing needs travels: types, widths and their settings, edge kinds and looks.
 import { t } from "./i18n.js";
 const SEG_KEYS = ["type", "width", "dir", "bikeDir", "orient", "use", "turn", "items", "source", "bed", "withBus", "roadClass", "position", "signs", "trolley", "wires", "color"];
-const EDGE_KEYS = ["left", "right", "leftStyle", "rightStyle"];
+const EDGE_KEYS = ["left", "right", "leftStyle", "rightStyle", "leftLevels", "rightLevels"];
 
 const pick = (o, keys) => Object.fromEntries(keys.filter((k) => o?.[k] !== undefined && o[k] !== null).map((k) => [k, o[k]]));
 

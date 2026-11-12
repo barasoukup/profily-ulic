@@ -451,6 +451,13 @@ Pod profilem je pruh **podílu šířky ulice** (chůze, kola, MHD, jedoucí aut
 řezem), uložit do souboru JSON a zase načíst. U řezu je **panorama z ulice** Mapy.com (s klíčem v dialogu, bez
 něj odkaz na Mapy.com).
 
+### Okraje ulice
+
+Na dům, plot, zahradu či jiný okraj profilu jde kliknout jako na část (Bára 12. 11. 2026: „panelák“, který je dvoupatrový
+městský dům, nebo zahrada). V Návrhu a po „Opravit data“ se dá změnit, co tam stojí (budova s vybraným vzhledem nebo
+s odhadem, drobná stavba, zahrada, zeleň, voda, parkoviště, plot, volný prostor), a u budovy počet podlaží
+(`edges.leftLevels`, nahradí podlaží i výšku z dat, jde i do sdíleného odkazu). Ve Stavu karta jen řekne, co tam je.
+
 ## Dopravní značky
 
 Pod popisky částí je řádek dopravních značek podle vyhl. 294/2015 Sb. (`public/signs.js`, obrázky v `public/znacky/`,

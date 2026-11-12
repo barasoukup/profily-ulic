@@ -41,6 +41,9 @@ export function cleanProfile(p, what = "profil") {
   for (const side of ["left", "right"]) {
     if (side in p.edges && !EDGE_KINDS.has(p.edges[side])) p.edges[side] = "volno";
     if (`${side}Style` in p.edges && !EDGE_STYLES.has(p.edges[`${side}Style`])) delete p.edges[`${side}Style`];
+    // Floors of the building set by hand (app.js renderEdge).
+    const lv = p.edges[`${side}Levels`];
+    if (lv !== undefined && !(Number.isInteger(lv) && lv >= 1 && lv <= 60)) delete p.edges[`${side}Levels`];
   }
   for (const side of ["leftInfo", "rightInfo"]) {
     const info = p.edges[side];

@@ -5,7 +5,7 @@ import { laneImage, applyLanes } from "./lanes-ortho.js";
 // Lanes and shoulders from the road markings of the orthophoto (lanes-ortho.js); ?orto=0 leaves the rules' profile.
 const LANES_ORTHO = new URLSearchParams(location.search).get("orto") !== "0";
 import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, signFits, MAX_PER_PART } from "./signs.js";
-import { loadSprites, loadSigns, layoutSigns, buildSvg, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
+import { loadSprites, loadSigns, layoutSigns, buildSvg, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, edgeInfo, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
 import * as sources from "./sources.js";
 import { MAPY_KEY } from "./config.js";
 import { cleanProfile, cleanCut, retype } from "./validate.js";
@@ -608,7 +608,9 @@ function draw() {
   mountEditor(box, p, {
     editable: canEdit(),
     selected: state.selected,
-    onSelect: (i) => { state.selected = i; render(); },
+    onSelect: (i) => { state.selected = i; state.edge = null; render(); },
+    selectedEdge: state.edge,
+    onEdge: (side) => { state.edge = side; state.selected = null; render(); },
     onChange: () => { edited(); render(); },
     onRedraw: (b) => fitLabels(b),
   });
@@ -1084,35 +1086,79 @@ function renderInfo(ed, s) {
   ed.append(head);
 }
 
+// What stands at an edge of the street, and the look of a building ("budova" alone lets the app guess it).
+const EDGE_KINDS = () => [["stavba", tr("Drobná stavba")], ["zahrada", tr("Zahrada, louka")], ["zelen", tr("Zeleň, louka")], ["voda", tr("Voda")],
+  ["parkoviste", tr("Parkoviště")], ["plot", tr("Plot")], ["volno", tr("Volný prostor")]];
+function edgeKindSelect(p, side) {
+  const sel = document.createElement("select");
+  const current = (p.edges?.[side] || "volno") + (p.edges?.[`${side}Style`] ? ":" + p.edges[`${side}Style`] : "");
+  const info = edgeInfo(p.edges, side);
+  const style = buildingStyle(info);
+  // A flat-roofed office is drawn as an office, not as a panel house.
+  const guess = style === "plocha" && OFFICE_LIKE.has(info?.type) ? tr("kancelářská budova") : BUILDING_STYLES[style];
+  const kinds = [["budova", tr("Budova (odhad: {guess})", { guess })], ...Object.entries(BUILDING_STYLES).map(([k, t]) => [`budova:${k}`, tr("Budova – {style}", { style: t })]),
+    ...EDGE_KINDS()];
+  for (const [k, t] of kinds) sel.add(new Option(t, k, false, current === k));
+  sel.onchange = () => {
+    const [kind, look] = sel.value.split(":");
+    p.edges = { ...p.edges, [side]: kind };
+    if (look) p.edges[`${side}Style`] = look;
+    else delete p.edges[`${side}Style`];
+    edited();
+    render();
+  };
+  return sel;
+}
+
+// A selected edge (Bára 12. 11. 2026: a "panel house" that is a two-storey town house, or a garden): what stands
+// there and the building's floors; in Stav without "Opravit data" only what it is.
+function renderEdge(ed, p, side) {
+  const kind = p.edges?.[side] || "volno";
+  const info = edgeInfo(p.edges, side);
+  const name = kind === "budova" ? BUILDING_STYLES[buildingStyle(info, p.edges?.[`${side}Style`])]
+    : Object.fromEntries(EDGE_KINDS())[kind] || kind;
+  const head = Object.assign(document.createElement("div"), { className: "ed-head" });
+  head.append(Object.assign(document.createElement("h3"), { textContent: `${side === "left" ? tr("Levý okraj") : tr("Pravý okraj")}: ${name}` }));
+  const close = Object.assign(document.createElement("button"), { className: "close", textContent: "×", onclick: () => { state.edge = null; render(); } });
+  close.setAttribute("aria-label", tr("Zavřít výběr"));
+  head.append(close);
+  ed.append(head);
+  if (!canEdit()) {
+    if (info?.levels) ed.append(Object.assign(document.createElement("span"), { className: "muted", textContent: tr("{n} podlaží", { n: info.levels }) + " · " }));
+    ed.append(Object.assign(document.createElement("span"), { className: "muted", textContent: tr("Změníte v Návrhu, chybu v datech opravíte tlačítkem Opravit data.") }));
+    return;
+  }
+  const lab = (text, input) => { const l = document.createElement("label"); l.append(text, input); return l; };
+  const row = ed.appendChild(Object.assign(document.createElement("div"), { className: "ed-row" }));
+  row.append(lab(tr("Co tu stojí"), edgeKindSelect(p, side)));
+  if (kind === "budova") {
+    // Floors above the ground: set by hand they stand for the data's floors and height (profile.js edgeInfo).
+    const data = p.edges?.[`${side}Info`]?.levels;
+    const floors = Object.assign(document.createElement("input"), { type: "number", min: 1, max: 60, step: 1, value: p.edges?.[`${side}Levels`] || data || "", placeholder: "–" });
+    floors.onchange = () => {
+      const n = Math.round(Number(floors.value));
+      p.edges = { ...p.edges };
+      if (n >= 1 && n <= 60 && n !== data) p.edges[`${side}Levels`] = n;
+      else delete p.edges[`${side}Levels`];
+      edited();
+      render();
+    };
+    row.append(lab(tr("Podlaží"), floors));
+  }
+}
+
 function renderEditor(p) {
   const ed = $("#editor");
   ed.replaceChildren();
   const i = state.selected;
   const s = p.segments[i];
+  if (state.edge) return renderEdge(ed, p, state.edge);
   if (!canEdit()) return renderInfo(ed, s);
   if (s === undefined) {
-    ed.innerHTML = `<div class="ed-head"><h3>${tr("Okraje ulice")}</h3><span class="muted">${tr("Klikněte na část profilu a upravte ji. Šířku změníte tažením modrých úchytů mezi částmi.")}</span></div>`;
+    ed.innerHTML = `<div class="ed-head"><h3>${tr("Okraje ulice")}</h3><span class="muted">${tr("Klikněte na část profilu nebo na dům, plot či zahradu na kraji a upravte je. Šířku změníte tažením modrých úchytů mezi částmi.")}</span></div>`;
     for (const [side, text] of [["left", tr("Levý okraj")], ["right", tr("Pravý okraj")]]) {
-      const sel = document.createElement("select");
-      // A building can be given its look by hand; "budova" alone lets the app guess it.
-      const current = (p.edges?.[side] || "volno") + (p.edges?.[`${side}Style`] ? ":" + p.edges[`${side}Style`] : "");
-      const info = p.edges?.[`${side}Info`];
-      const style = buildingStyle(info);
-      // A flat-roofed office is drawn as an office, not as a panel house.
-      const guess = style === "plocha" && OFFICE_LIKE.has(info?.type) ? tr("kancelářská budova") : BUILDING_STYLES[style];
-      const kinds = [["budova", tr("Budova (odhad: {guess})", { guess })], ...Object.entries(BUILDING_STYLES).map(([k, t]) => [`budova:${k}`, tr("Budova – {style}", { style: t })]),
-        ["stavba", tr("Drobná stavba")], ["zahrada", tr("Zahrada, louka")], ["zelen", tr("Zeleň, louka")], ["voda", tr("Voda")], ["parkoviste", tr("Parkoviště")], ["plot", tr("Plot")], ["volno", tr("Volný prostor")]];
-      for (const [k, t] of kinds) sel.add(new Option(t, k, false, current === k));
-      sel.onchange = () => {
-        const [kind, style] = sel.value.split(":");
-        p.edges = { ...p.edges, [side]: kind };
-        if (style) p.edges[`${side}Style`] = style;
-        else delete p.edges[`${side}Style`];
-        edited();
-        render();
-      };
       const l = document.createElement("label");
-      l.append(text, sel);
+      l.append(text, edgeKindSelect(p, side));
       ed.append(l);
     }
     return;

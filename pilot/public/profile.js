@@ -362,6 +362,13 @@ export function buildingHeight(info) {
 }
 
 // Floors: IPR "Podlažnosti" (cornice + roof floors) or OSM building:levels.
+// A building's data with the floors set by hand (edges.leftLevels, Bára 12. 11. 2026): they stand for the data's
+// floors and height.
+export const edgeInfo = (edges, side) => {
+  const info = edges?.[`${side}Info`], n = edges?.[`${side}Levels`];
+  return n ? { ...info, levels: n, cornice: undefined, roof: undefined, height: undefined } : info;
+};
+
 export function buildingLevels(info) {
   if (!info?.levels) return null;
   return { n: info.levels, cornice: info.cornice, roof: info.roof };
@@ -1046,7 +1053,7 @@ function drawEdge(svg, x, kind, side, surface, info, style) {
   return g;
 }
 
-// Build an SVG element. opts: {editable, selected, view: [x0, width], onSelect(i)}
+// Build an SVG element. opts: {editable, selected, view: [x0, width], onSelect(i), selectedEdge, onEdge(side)}
 // Traffic-sign icons (znacky/), loaded on first use: file → { uri, w, h }. A template (B 20a with another speed,
 // E 13 with a text) gets its text filled in before it becomes a data URI.
 const signArt = new Map();
@@ -1233,8 +1240,22 @@ export function buildSvg(profile, opts = {}) {
 
   const firstRaised = isRaised(segs[0]);
   const lastRaised = isRaised(segs.at(-1));
-  drawEdge(svg, -EDGE, profile.edges?.left || "volno", "left", firstRaised ? GROUND - CURB : GROUND, profile.edges?.leftInfo, profile.edges?.leftStyle);
-  drawEdge(svg, total, profile.edges?.right || "volno", "right", lastRaised ? GROUND - CURB : GROUND, profile.edges?.rightInfo, profile.edges?.rightStyle);
+  // The edges (a building, a fence, a garden…): selected by a click like the parts (Bára: a panel house that is a
+  // two-storey town house, or a garden).
+  for (const [side, x, raised] of [["left", -EDGE, firstRaised], ["right", total, lastRaised]]) {
+    const kind = profile.edges?.[side] || "volno";
+    const g = drawEdge(svg, x, kind, side, raised ? GROUND - CURB : GROUND, edgeInfo(profile.edges, side), profile.edges?.[`${side}Style`]);
+    if (!opts.onEdge) continue;
+    g.classList.add("edge");
+    if (opts.selectedEdge === side) g.classList.add("selected");
+    // Its whole column is the target, the open ground of "volno" too.
+    g.prepend(el("rect", { x, y: yv, width: EDGE, height: GROUND + 260 - yv, fill: "transparent" }));
+    g.setAttribute("tabindex", "0");
+    g.setAttribute("role", "button");
+    g.setAttribute("aria-label", side === "left" ? tr("Levý okraj") : tr("Pravý okraj"));
+    g.addEventListener("click", () => opts.onEdge(side));
+    g.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); opts.onEdge(side); } });
+  }
 
   let x = 0;
   const bounds = [0];
@@ -1474,9 +1495,9 @@ const minWidth = (seg) => (seg.type === "parkovani" && seg.orient === "kolme" ? 
 
 // Mount an editable profile with draggable boundaries.
 // onRedraw runs after each drawing (also while a handle is dragged), for the page to fit the labels.
-export function mountEditor(container, profile, { editable = true, selected, onSelect, onChange, onRedraw }) {
+export function mountEditor(container, profile, { editable = true, selected, onSelect, selectedEdge, onEdge, onChange, onRedraw }) {
   const draw = (view) => {
-    container.replaceChildren(buildSvg(profile, { editable, selected, onSelect, view }));
+    container.replaceChildren(buildSvg(profile, { editable, selected, onSelect, selectedEdge, onEdge, view }));
     onRedraw?.(container);
     return container.firstChild;
   };

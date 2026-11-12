@@ -27,3 +27,16 @@ test("barva cyklopruhu z OSM projde odkazem a kontrolou, jiná než hex se zahod
   assert.equal(cleanProfile(back).segments[0].color, "#c0503f");
   assert.equal(cleanProfile({ segments: [{ type: "cyklopruh", width: 1.5, color: "url(#x)" }] }).segments[0].color, undefined);
 });
+
+test("okraj upravený ručně: podlaží jdou do odkazu, nahradí data a vadná se zahodí", async () => {
+  const { packProfile, unpackProfile } = await import("../pilot/public/share.js");
+  const { edgeInfo } = await import("../pilot/public/profile.js");
+  const { cleanProfile } = await import("../pilot/public/validate.js");
+  // Bára 12. 11. 2026: a "panel house" that is a two-storey town house.
+  const p = { segments: [{ type: "chodnik", width: 3 }], edges: { left: "budova", leftStyle: "nizky", leftLevels: 2, leftInfo: { levels: 8, height: 25, cornice: 7, roof: 1 } } };
+  const back = await unpackProfile(await packProfile(p));
+  assert.equal(back.edges.leftLevels, 2);
+  assert.deepEqual(edgeInfo(p.edges, "left"), { levels: 2, cornice: undefined, roof: undefined, height: undefined });
+  assert.equal(edgeInfo(p.edges, "right"), undefined);
+  for (const bad of [0, 2.5, 99, "3"]) assert.equal(cleanProfile({ ...p, edges: { left: "budova", leftLevels: bad } }, "x").edges.leftLevels, undefined, String(bad));
+});
