@@ -39,7 +39,7 @@ export function pageTexts() {
   for (const m of head.matchAll(/<meta (?:name="description"|property="og:(?:title|description|image:alt)") content="([^"]*)"/g)) out.add(m[1]);
   const body = html.slice(html.indexOf("<body"));
   for (const m of body.matchAll(/>([^<]+)</g)) if (/\p{L}/u.test(m[1])) out.add(m[1].trim().replace(/\s+/g, " "));
-  for (const m of body.matchAll(/\s(?:title|aria-label|placeholder|alt)="([^"]+)"/g)) if (/\p{L}/u.test(m[1])) out.add(m[1]);
+  for (const m of body.matchAll(/\s(?:title|aria-label|placeholder|alt|data-label)="([^"]+)"/g)) if (/\p{L}/u.test(m[1])) out.add(m[1]);
   return out;
 }
 
@@ -64,6 +64,11 @@ test("texty stránky (index.html) mají anglický překlad", () => {
   assert.deepEqual(missing, []);
   const html = fs.readFileSync(new URL("index.html", DIR), "utf8");
   for (const m of html.matchAll(/data-i18n="([^"]+)"/g)) assert.ok(EN_HTML[m[1]], `EN_HTML.${m[1]}`);
+});
+
+test("styly nepíšou texty (překládají se jen v HTML a v kódu)", () => {
+  const css = fs.readFileSync(new URL("style.css", DIR), "utf8");
+  assert.deepEqual([...css.matchAll(/content:\s*"([^"]*\p{L}[^"]*)"/gu)].map((m) => m[1]), []);
 });
 
 test("anglické texty jsou anglicky", () => {

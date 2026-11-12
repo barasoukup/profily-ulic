@@ -46,7 +46,7 @@ export function setLang(l) {
 
 // The page's own texts (index.html): its text nodes and the attributes people read, looked up whole; an element
 // with data-i18n gets the HTML of EN_HTML under that name (the footer with its links).
-const ATTRS = ["title", "aria-label", "placeholder", "content", "alt"];
+const ATTRS = ["title", "aria-label", "placeholder", "content", "alt", "data-label"];
 export function translatePage(root = document) {
   document.documentElement.lang = lang;
   if (lang === "cs") return;
