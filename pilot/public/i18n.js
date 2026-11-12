@@ -13,11 +13,11 @@ function pick() {
   if (globalThis.PROFILY_LANG) return globalThis.PROFILY_LANG;
   if (typeof location === "undefined") return "cs";
   const asked = new URLSearchParams(location.search).get("lang");
-  if (LANGS[asked]) {
+  if (Object.hasOwn(LANGS, asked ?? "")) {
     try { localStorage.setItem(KEY, asked); } catch {}
     return asked;
   }
-  try { if (LANGS[localStorage.getItem(KEY)]) return localStorage.getItem(KEY); } catch {}
+  try { if (Object.hasOwn(LANGS, localStorage.getItem(KEY) ?? "")) return localStorage.getItem(KEY); } catch {}
   const browser = (typeof navigator !== "undefined" && (navigator.languages || [navigator.language])) || [];
   return browser.some((l) => /^(cs|sk)\b/i.test(l || "")) || !browser.length ? "cs" : "en";
 }

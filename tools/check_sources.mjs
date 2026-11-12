@@ -8,6 +8,7 @@
 //   node tools/check_sources.mjs praha brno      only these cities
 import { register } from "node:module";
 import { spawnSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
 import fs from "node:fs";
 
 // Intermediate certificates some towns' servers do not send (Frýdek-Místek sends an old one): browsers find
@@ -17,7 +18,7 @@ if (!process.env.NODE_EXTRA_CA_CERTS) {
   const pem = fs.readdirSync(dir).filter((f) => f.endsWith(".pem")).map((f) => fs.readFileSync(new URL(f, dir), "utf8")).join("\n");
   const file = new URL("../.ca-check.pem", dir);
   fs.writeFileSync(file, pem);
-  const r = spawnSync(process.execPath, process.argv.slice(1), { stdio: "inherit", env: { ...process.env, NODE_EXTRA_CA_CERTS: file.pathname } });
+  const r = spawnSync(process.execPath, process.argv.slice(1), { stdio: "inherit", env: { ...process.env, NODE_EXTRA_CA_CERTS: fileURLToPath(file) } });
   fs.rmSync(file, { force: true });
   process.exit(r.status ?? 1);
 }

@@ -170,10 +170,12 @@ function creditCities() {
 map.on("moveend layeradd layerremove", creditCities);
 const baseMaps = { [tr("Mapa")]: L.layerGroup(kinds.map), [tr("Ortofoto")]: L.layerGroup(kinds.ortho), [tr("Technická mapa")]: L.layerGroup(kinds.tech), "OpenStreetMap": osmLayer() };
 const BASE_KEY = "streetdesign-basemap-cr";
+// Remembered by its Czech name, so that the choice holds in either language.
+const baseCs = Object.fromEntries(["Mapa", "Ortofoto", "Technická mapa", "OpenStreetMap"].map((cs) => [tr(cs), cs]));
 let baseName = tr("Mapa");
-try { if (baseMaps[localStorage.getItem(BASE_KEY)]) baseName = localStorage.getItem(BASE_KEY); } catch {}
+try { const saved = tr(localStorage.getItem(BASE_KEY) || ""); if (baseMaps[saved]) baseName = saved; } catch {}
 baseMaps[baseName].addTo(map);
-map.on("baselayerchange", (e) => { try { localStorage.setItem(BASE_KEY, e.name); } catch {} });
+map.on("baselayerchange", (e) => { try { localStorage.setItem(BASE_KEY, baseCs[e.name] || e.name); } catch {} });
 const dtm = L.layerGroup(kinds.lines);
 const mtvuLayer = L.layerGroup();
 const layersControl = L.control.layers(baseMaps, { [tr("Linie technické mapy")]: dtm, [tr("Plochy u řezu")]: mtvuLayer }).addTo(map);
@@ -1587,7 +1589,7 @@ $("#btn-flip").onclick = () => {
 };
 
 function restore(data) {
-  cleanProfile(data?.stav, "stav");
+  cleanProfile(data?.stav, tr("stav"));
   if (data.navrh) cleanProfile(data.navrh, tr("návrh"));
   data.cut = cleanCut(data.cut);
   undoStack.length = redoStack.length = 0;
