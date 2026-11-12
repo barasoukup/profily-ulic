@@ -154,6 +154,15 @@ function drawTramBed(g, s, x, w, top, bedBefore, bedAfter) {
 }
 
 const ROADWAY = new Set(["pruh", "krajnice", "obsluzna", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "cyklopruh", "ochranny_pruh", "parkovani"]);
+// Which side of an item (at f of part i) the nearest roadway lies on, "left" or "right" (by metres along the
+// profile), or null when there is none.
+function nearestRoadway(segs, i, f) {
+  let left = Infinity, right = Infinity, d = (f ?? 0.5) * segs[i].width;
+  for (let k = i - 1; k >= 0; d += segs[k].width, k--) if (ROADWAY.has(segs[k].type)) { left = d; break; }
+  d = (1 - (f ?? 0.5)) * segs[i].width;
+  for (let k = i + 1; k < segs.length; d += segs[k].width, k++) if (ROADWAY.has(segs[k].type)) { right = d; break; }
+  return left === Infinity && right === Infinity ? null : left <= right ? "left" : "right";
+}
 const POLE_SCALE = 0.93; // overhead-line poles: their contact wire (5.9 m in the picture) at WIRE_H
 function drawItem(g, it, x, top, right) {
   const line = (attrs) => el("rect", attrs, g);
@@ -1301,8 +1310,13 @@ export function buildSvg(profile, opts = {}) {
       }
       // A stop post at the platform's edge stays on the platform (it is 50 cm wide).
       if (it.kind === "oznacnik") ix = Math.min(Math.max(ix, x + 30), x + w - 30);
-      // A lamp in a median between two roadways lights both (Bára, Wilsonova): its arms reach over both sides.
-      if (it.kind === "lampa" && ROADWAY.has(segs[i - 1]?.type) && ROADWAY.has(segs[i + 1]?.type)) drawItem(g, it, ix, top, !onRight);
+      // A lamp reaches over the nearest roadway, not over the grass (Bára, VMO Dobrovského); in a median between
+      // two roadways it lights both (Wilsonova): its arms reach over both sides.
+      if (it.kind === "lampa") {
+        const near = nearestRoadway(segs, i, it.f);
+        if (near) onRight = near === "left";
+        if (ROADWAY.has(segs[i - 1]?.type) && ROADWAY.has(segs[i + 1]?.type)) drawItem(g, it, ix, top, !onRight);
+      }
       drawItem(g, it.kind === "sloup_trakce" && it.center ? { ...it, reach: w / 2 } : it, ix, top, onRight);
     }
     el("text", { class: "lbl-w", "data-row": 0, "data-w": w, x: cx, y: GROUND + 170, "text-anchor": "middle", "font-size": 40, "font-weight": 600, fill: "#1f1f1d" }, g).textContent = fmt(s.width);
