@@ -74,8 +74,10 @@
         <h1 id="street-name">Ulice</h1>
         <span id="profile-sub" class="muted"></span>
         <span id="mode-badge"></span>
-        <button id="btn-flip" class="flip" title="Otočit pohled: prohodí konce A a B">⇄ Otočit</button>
-        <label id="site-switch" class="site-switch" title="Zkušebně, jen v Praze: sítě technické mapy IPR pod ulicí a v mapě" hidden><input type="checkbox" id="site-on"> Sítě pod zemí</label>
+        <span class="head-tools">
+          <button id="site-btn" class="flip" aria-pressed="false" aria-label="Sítě pod zemí" title="Sítě pod zemí – zkušebně, jen v Praze: sítě technické mapy IPR pod ulicí a v mapě" hidden>◍ Sítě</button>
+          <button id="btn-flip" class="flip" title="Otočit pohled: prohodí konce A a B">⇄ Otočit</button>
+        </span>
         <span id="undo-bar" hidden>
           <button id="btn-undo" title="Vrátit poslední změnu (Ctrl+Z)" disabled>↶ Zpět</button>
           <button id="btn-redo" title="Zopakovat vrácenou změnu (Ctrl+Shift+Z)" aria-label="Znovu" disabled>↷</button>
@@ -90,6 +92,7 @@
         <button class="scroll-btn l" data-dir="-1" aria-label="Posunout profil doleva" hidden>‹</button>
         <button class="scroll-btn r" data-dir="1" aria-label="Posunout profil doprava" hidden>›</button>
       </p>
+      <p id="net-hint" class="muted" hidden>Sítě pod zemí: hloubka od spodku vozovky; čárkovaný kroužek = hloubka v datech chybí, kreslena obvyklá. Data © IPR Praha.</p>
       <div id="shares" hidden></div>
       <div id="stav-cta" hidden>
         <span id="stav-text">Profil ukazuje ulici, jak je dnes.</span>

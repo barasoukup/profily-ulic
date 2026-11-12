@@ -1458,7 +1458,7 @@ export function buildSvg(profile, opts = {}) {
   if (opts.editable) {
     bounds.forEach((bx, k) => {
       const h = el("g", { class: "handle", "data-k": k }, svg);
-      el("line", { x1: bx, x2: bx, y1: GROUND - 300, y2: GROUND + 120, stroke: "#8a877e", "stroke-width": 2, "stroke-dasharray": "8 6" }, h);
+      el("line", { x1: bx, x2: bx, y1: GROUND - 300, y2: DROP ? NET_TOP : GROUND + 120, stroke: "#8a877e", "stroke-width": 2, "stroke-dasharray": "8 6" }, h);
       el("rect", { class: "grab", x: bx - 40, y: GROUND - 340, width: 80, height: 460, fill: "transparent" }, h);
       el("circle", { class: "knob", cx: bx, cy: GROUND - 300, r: 18, fill: "#fff", stroke: "#185fa5", "stroke-width": 5 }, h);
       el("path", { class: "knob", d: `M${bx - 8} ${GROUND - 300} h16 M${bx - 8} ${GROUND - 300} l5 -5 M${bx - 8} ${GROUND - 300} l5 5 M${bx + 8} ${GROUND - 300} l-5 -5 M${bx + 8} ${GROUND - 300} l-5 5`, stroke: "#185fa5", "stroke-width": 3, fill: "none" }, h);
@@ -1597,11 +1597,11 @@ const netEntries = (items, kinds) => [
 function undergroundDrop(items, kinds) {
   const deepest = Math.min(4, Math.max(2, ...items.map((i) => i.depth + 0.2)));
   const depth = BASE_COURSE + (deepest + 0.15) * NET_V + 40, legend = 30 + netEntries(items, kinds).length * LEGEND_ROW;
-  return Math.max(0, NET_TOP + Math.max(depth, legend) - (GROUND + 100)) + 20;
+  return Math.max(0, NET_TOP + Math.max(depth, legend) - (GROUND + 104));
 }
 function drawNetworks(svg, { items, span, kinds }, total) {
   const len = span.left + span.right, x = (t) => ((span.left - t) / len) * total;
-  const g = el("g", { class: "networks" }, svg), base = GROUND + 100 + DROP - 20, zero = NET_TOP + BASE_COURSE;
+  const g = el("g", { class: "networks" }, svg), base = GROUND + 104 + DROP, zero = NET_TOP + BASE_COURSE; // the sources' strips sit on its bottom
   // The earth: under the whole picture below the edges' foundations, under the street from the roadway down.
   el("rect", { x: -EDGE, y: GROUND + 100, width: total + 2 * EDGE, height: base - GROUND - 100, fill: SOIL }, g);
   el("rect", { x: 0, y: NET_TOP, width: total, height: GROUND + 100 - NET_TOP, fill: SOIL }, g);
@@ -1609,7 +1609,8 @@ function drawNetworks(svg, { items, span, kinds }, total) {
   el("line", { x1: 0, x2: total, y1: zero, y2: zero, stroke: "#a8906e", "stroke-width": 1.5 }, g);
   // Every metre: a dashed line, labelled at both ends (and in the middle of a wide street).
   for (let m = 1; zero + m * NET_V < base - 10; m++) {
-    const y = zero + m * NET_V, at = [[10, "start"], [total - 10, "end"], ...(total >= 2000 ? [[total / 2, "middle"]] : [])];
+    const y = zero + m * NET_V, at = [[10, "start"], [total - 10, "end"]];
+    for (let mx = 1500; mx < total - 500; mx += 1500) at.push([mx, "middle"]); // and every 15 m
     el("line", { x1: 0, x2: total, y1: y, y2: y, stroke: "#c9b696", "stroke-width": 1.5, "stroke-dasharray": "6 6" }, g);
     for (const [lx, anchor] of at) el("text", { x: lx, y: y - 6, "text-anchor": anchor, "font-size": 24, fill: "#6b5a44" }, g).textContent = `${m} m`;
   }
@@ -1621,23 +1622,21 @@ function drawNetworks(svg, { items, span, kinds }, total) {
     const cy = Math.min(base - r - 4, zero + it.depth * NET_V + r), n = el("g", {}, g);
     el("title", {}, n).textContent = `${k.label}${it.profil > 20 ? ` DN ${it.profil}` : ""} · ${it.measured ? `hloubka ${num(it.depth)} m` : `hloubka neznámá (obvyklá ${num(it.depth)} m)`}${it.lines > 1 ? ` (v datech ${it.lines}× vedle sebe)` : ""}\n${it.popis}`;
     el("circle", { cx, cy, r: Math.max(r, 24), fill: "transparent" }, n); // a target big enough for the tooltip
-    el("circle", { cx, cy, r: r + 6, fill: "#fbfaf6", opacity: 0.55 }, n);
     if (it.measured) {
+      el("circle", { cx, cy, r: r + 6, fill: "#fbfaf6", opacity: 0.55 }, n);
       el("circle", { class: "net", cx, cy, r, fill: k.color, stroke: "#2a2622", "stroke-opacity": 0.35, "stroke-width": 2 }, n);
       if (r >= 12) el("circle", { cx, cy, r: r - 4, fill: lighten(k.color, 0.55) }, n); // a pipe is hollow, a cable full
     } else {
-      el("circle", { class: "net", cx, cy, r, fill: k.color, "fill-opacity": 0.25, stroke: k.color, "stroke-width": 3, "stroke-dasharray": "5 4" }, n);
+      el("circle", { class: "net", cx, cy, r, fill: k.color, "fill-opacity": 0.35, stroke: k.color, "stroke-width": 3, "stroke-dasharray": "4 3" }, n);
     }
   }
   // The legend: one column under the right edge, on a card, the kinds in their usual order from the top.
   const entries = netEntries(items, kinds);
-  el("rect", { x: total + 16, y: NET_TOP + 10, width: EDGE - 32, height: entries.length * LEGEND_ROW + 16, rx: 8, fill: "#fbfaf6", opacity: 0.9, stroke: "#e2ded4", "stroke-width": 1.5 }, g);
+  el("rect", { x: total + 24, y: NET_TOP + 24, width: EDGE - 48, height: entries.length * LEGEND_ROW + 16, rx: 8, fill: "#fbfaf6", opacity: 0.9, stroke: "#e2ded4", "stroke-width": 1.5 }, g);
   entries.forEach((e, i) => {
-    const lx = total + 16, ly = NET_TOP + 10 + 8 + (i + 0.5) * LEGEND_ROW;
-    if (e.empty) el("circle", { cx: lx + 22, cy: ly, r: 11, fill: "#6b6a65", "fill-opacity": 0.25, stroke: e.k.color, "stroke-width": 3, "stroke-dasharray": "5 4" }, g);
+    const lx = total + 24, ly = NET_TOP + 24 + 8 + (i + 0.5) * LEGEND_ROW;
+    if (e.empty) el("circle", { cx: lx + 22, cy: ly, r: 11, fill: "#6b6a65", "fill-opacity": 0.35, stroke: e.k.color, "stroke-width": 3, "stroke-dasharray": "4 3" }, g);
     else el("circle", { cx: lx + 22, cy: ly, r: 11, fill: e.k.color, stroke: "#2a2622", "stroke-opacity": 0.35, "stroke-width": 2 }, g);
     el("text", { x: lx + 44, y: ly + 9, "font-size": 26, fill: "#4f4e49" }, g).textContent = e.k.label;
   });
-  // One line for a viewer new to it.
-  el("text", { x: 10, y: base - 14, "font-size": 22, fill: "#8a7a62" }, g).textContent = "Hloubka od spodku vozovky; čárkovaný kroužek = hloubka v datech chybí, kreslena obvyklá.";
 }

@@ -1627,15 +1627,18 @@ function restore(data) {
 function siteOn() { try { return localStorage.getItem("profily-site") === "1"; } catch { return false; } }
 // ?site=1 in a link turns it on (for trying it out).
 if (new URLSearchParams(location.search).get("site") === "1") try { localStorage.setItem("profily-site", "1"); } catch {}
-$("#site-on").checked = siteOn();
-$("#site-on").onchange = (e) => {
-  try { localStorage.setItem("profily-site", e.target.checked ? "1" : "0"); } catch {}
-  if (e.target.checked) map.addLayer(netLayer); else map.removeLayer(netLayer);
+$("#site-btn").setAttribute("aria-pressed", String(siteOn()));
+$("#site-btn").onclick = () => {
+  const on = !siteOn();
+  try { localStorage.setItem("profily-site", on ? "1" : "0"); } catch {}
+  $("#site-btn").setAttribute("aria-pressed", String(on));
+  if (on) map.addLayer(netLayer); else map.removeLayer(netLayer);
   loadUnderground();
   render();
 };
 function loadUnderground() {
-  $("#site-switch").hidden = state.cut?.city !== "praha" || state.mode !== "stav";
+  $("#site-btn").hidden = state.cut?.city !== "praha" || state.mode !== "stav";
+  $("#net-hint").hidden = !undergroundFor();
   if (!siteOn() || !state.cut || state.cut.city !== "praha" || state.underground?.cut === state.cut) return;
   const cut = state.cut, b = (cut.bearing * Math.PI) / 180, span = cutSpan(cut);
   state.underground = { cut, items: null };
@@ -1644,6 +1647,8 @@ function loadUnderground() {
     .catch((err) => { console.warn("sítě", err); if (state.underground?.cut === cut) state.underground.items = []; });
 }
 // The networks on the map too, in the band's colours (Bára): the lines around the cut, dashed where not verified.
+// Under the cut's line (overlayPane, 400) and over the data layers of maplayers.js (390–395).
+map.createPane("rezSite").style.zIndex = 396;
 const netLayer = L.layerGroup();
 layersControl.addOverlay(netLayer, tr("Sítě pod zemí"));
 if (siteOn()) netLayer.addTo(map);
@@ -1654,7 +1659,7 @@ function drawNetLines() {
   netDrawn = items;
   netLayer.clearLayers();
   for (const l of items?.lines || []) {
-    L.polyline(l.coords, { color: (NET_KINDS[l.kind] || NET_KINDS.jine).color, weight: 3, opacity: 0.9, dashArray: l.verified ? null : "4 5" })
+    L.polyline(l.coords, { pane: "rezSite", color: (NET_KINDS[l.kind] || NET_KINDS.jine).color, weight: l.kind === "jine" ? 1.5 : 2, opacity: 0.85, dashArray: l.verified ? null : "6 5" })
       .bindTooltip(l.popis, { sticky: true }).addTo(netLayer);
   }
 }

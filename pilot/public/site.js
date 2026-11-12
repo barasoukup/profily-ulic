@@ -23,7 +23,7 @@ export const KINDS = {
   teplovod: { label: "teplovod", color: "#b5302a", usual: 1.0, dn: 250 },
   silnoproud: { label: "silnoproud", color: "#6a3fb5", usual: 0.7, dn: 110 },
   slaboproud: { label: "slaboproud", color: "#1e8a5a", usual: 0.5, dn: 110 },
-  jine: { label: "jiné (potrubní pošta…)", color: "#6f6a62", usual: 1.0, dn: 110 },
+  jine: { label: "jiné", color: "#6f6a62", usual: 1.0, dn: 110 },
 };
 const kindOf = (popis = "") => {
   const w = popis.split(" ")[0];
@@ -67,9 +67,10 @@ function surfacePoints(features, frame) {
 export async function underground({ frame, dir, half, cityId }) {
   if (cityId !== "praha") return null;
   const normal = [-dir[1], dir[0]];
-  const ends = [-half, half].map((t) => frame.toLonLat(normal[0] * t, normal[1] * t));
-  const pad = 2 / 111320;
-  const box = [Math.min(ends[0][0], ends[1][0]) - pad, Math.min(ends[0][1], ends[1][1]) - pad, Math.max(ends[0][0], ends[1][0]) + pad, Math.max(ends[0][1], ends[1][1]) + pad];
+  // A square around the cut's centre, ±1.5 times its half length (at least 30 m): the lines on the map then end
+  // outside the first view (Fable), the crossings are the same.
+  const reach = Math.max(30, 1.5 * half), [clon, clat] = frame.toLonLat(0, 0), dLat = reach / 110574, dLon = reach / (111320 * Math.cos((clat * Math.PI) / 180));
+  const box = [clon - dLon, clat - dLat, clon + dLon, clat + dLat];
   const [height, points, ...answers] = await Promise.all([
     ground(box).catch(() => () => NaN),
     query(`${IPR}/9/query`, { geometry: box.join(","), geometryType: "esriGeometryEnvelope", inSR: 4326, spatialRel: "esriSpatialRelIntersects", outFields: "OBJECTID", returnGeometry: true, returnZ: true, outSR: 4326, f: "json" }).catch(() => ({ features: [] })),

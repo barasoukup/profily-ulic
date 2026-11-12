@@ -219,9 +219,11 @@ body[data-mode="porovnat"] #profile svg { max-height: max(200px, calc((100dvh - 
 #status:empty { display: none; }
 #profile .handle { touch-action: none; }
 #profile-head .flip { padding: 4px 10px; font-size: 13px; align-self: center; }
-#profile-head .site-switch { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; font-size: 13px; align-self: center; border: 1px solid var(--line); border-radius: 999px; background: var(--paper); cursor: pointer; white-space: nowrap; }
-#profile-head .site-switch[hidden] { display: none; }
-#profile-head .site-switch input { margin: 0; accent-color: #8a5a2b; }
+#profile-head .head-tools { display: inline-flex; gap: 8px; align-self: center; white-space: nowrap; margin-left: auto; }
+#profile-head .badge + .head-tools { margin-left: 0; }
+#profile-head #site-btn[hidden] { display: none; }
+#profile-head #site-btn[aria-pressed="true"] { background: var(--paper); border-color: #a9a395; box-shadow: inset 0 0 0 1px #a9a395; }
+#net-hint { margin: 6px 2px 0; font-size: 12px; }
 #undo-bar { display: inline-flex; gap: 4px; align-self: center; }
 #undo-bar[hidden] { display: none; }
 #undo-bar button { padding: 4px 10px; font-size: 13px; }
