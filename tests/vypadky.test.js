@@ -159,8 +159,8 @@ test("kusy z čar podle barvy ortofota: tráva je zeleň, dlažba chodník (za z
   assert.deepEqual(kinds({}, null), [701, 702, 401, 601], "bez ortofota nejbližší kus");
   // Paving between the boundaries of a transport area is a sidewalk even where OSM has none (Revoluční, 90 km/h).
   assert.deepEqual(kinds({ sidewalk: "no", maxspeed: "90" }, st), [701, 401, 702, 601]);
-  // Dark paving in shade is paving (Revoluční); dappled shade on a verge is unclear: the nearest piece (Kolín, Osecká).
-  assert.deepEqual(kinds({ maxspeed: "90" }, image([2, -1, 4, 81, 10])), [701, 702, 702, 601]);
+  // Deep shade (Revoluční) and dappled shade on a verge (Kolín, Osecká) are unclear: the nearest-piece rule.
+  assert.deepEqual(kinds({ maxspeed: "90" }, image([2, -1, 4, 81, 10])), [701, 401, 702, 601]);
   assert.deepEqual(kinds({ maxspeed: "90" }, image([3, 14, -5, 125, 42])), [701, 401, 702, 601]);
   assert.deepEqual(kinds({}, image([4, 25, -10, 140])), [701, 401, 702, 601], "suchá tráva");
   // Red paving tells nothing by its colour: the nearest piece, as without the image.

@@ -1381,14 +1381,14 @@ export function centerOnStreet(osm, frame, near, half = 40) {
 // roadway is then the sidewalk, the others are green (estimates all).
 // With the orthophoto of the click (lanes-ortho.js laneImage st) the colour decides first (Bára 12. 11. 2026): a
 // piece that is green, or yellow as the dry grass of ČÚZK's summer images (Kolín: the verges of a road in the
-// fields), is green; a grey and even one (asphalt, concrete paving, also in shade) a sidewalk: paving between two
-// boundaries of a transport area beside the roadway (Bára, Mladá Boleslav, Revoluční at 90 km/h); only where the
-// colour is unclear (red paving, the dappled shade of trees: Kolín, Osecká, a mix) the nearest-piece rule stays.
-// Means over the piece, measured on 50 cuts of Kolín and Mladá Boleslav: green grass G 10–14, dry grass Y 23–26,
-// paving G 0–2 and Y −1–18 with an even brightness (its spread SD 2–28), dappled shade on a verge SD 42.
+// fields), is green; a grey, light and even one (asphalt, concrete paving) a sidewalk: paving between two boundaries
+// of a transport area beside the roadway; only where the colour is unclear (red paving, the shade of trees, a mix)
+// the nearest-piece rule stays. Means over the piece, measured on 50 cuts of Kolín and Mladá Boleslav: green grass
+// G 10–14, dry grass Y 23–26, paving G 0–5, Y −1–18, brightness L 110–220 and its spread SD 2–28; the deep shade
+// of trees L 81 (Mladá Boleslav, Revoluční: no sidewalk there, Bára), their dappled shade on a verge SD 42 (Kolín, Osecká).
 const BUILT_NEAR = 30, LOOK_ALONG = 8;
 const looksGreen = (m) => m.G > 8 || (m.Y > 20 && m.D > -25);
-const looksPaved = (m) => m.G < 4 && m.Y < 19 && m.D > -25 && m.SD < 35;
+const looksPaved = (m) => m.G < 6 && m.Y < 19 && m.D > -25 && m.L > 100 && m.SD < 35;
 // "green", "paved" or null (no image, too narrow, unclear): the means of a piece on the orthophoto (rows along the
 // street within ±LOOK_ALONG m, its stretch of the cut less 0.25 m at each edge).
 export function surfaceLook(st, rings, center, normal) {
@@ -1568,6 +1568,17 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     }
     return false;
   };
+  // A sidewalk or cycle path right past a green strip belongs to the street too (Bára, Mladá Boleslav, Revoluční:
+  // the path behind a 3 m verge): the green does not end the profile when one follows it within the reach.
+  const pathAhead = (k, step, limit) => {
+    for (; k >= 0 && k < runs.length; k += step) {
+      const r = runs[k];
+      if (Math.min(Math.abs(r.s - ref), Math.abs(r.e - ref)) > limit) return false;
+      if (r.code === 702 || r.code === 703) return true;
+      if (!(r.code >= 400 && r.code < 500) && r.e - r.s >= 0.5) return false;
+    }
+    return false;
+  };
   // Facade to facade (Bára): a house beyond the default reach, across lawns and paths, draws the profile
   // out to it, up to the end of the data read (half). A reach shortened by hand stays as it is.
   const facade = (k, step, cap) => {
@@ -1598,7 +1609,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     if (onBridgeWay && SIDEWALKS.has(runs[k - step]?.code) && !SIDEWALKS.has(r.code) && !carriage(r.code)) return "volno";
     if (r.code >= 500 && r.code < 600 && r.e - r.s >= OPEN_LAND) return "voda";
     if (r.code === 300) return "zahrada";
-    if (isOpenLand(r.code) && r.e - r.s >= OPEN_LAND && !houseAhead(k + step, step, limit)) return "zelen";
+    if (isOpenLand(r.code) && r.e - r.s >= OPEN_LAND && !houseAhead(k + step, step, limit) && !pathAhead(k + step, step, limit)) return "zelen";
     // A large parking area beside the street is the edge of the profile, not a parking lane.
     if (r.code === 704 && r.e - r.s >= OPEN_LAND) return "parkoviste";
     // No technical-map surface over a wide stretch: nothing more to measure on this side.

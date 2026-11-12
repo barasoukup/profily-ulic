@@ -494,7 +494,8 @@ export async function dtmAreas(bbox, { cut } = {}) {
 // roadway's own (its pixels near the centre). The types are estimates, the widths the DTM's.
 const LINE_GAP = PALETTE.length; // the class of every pixel off the lines
 const TRANSPORT_LINE = /dopravní/i;
-const LINE_REACH = 25, LINE_SIDE = 4, WALK_MAX = 4.5; // m along the cut each way; crossings asked per side; widest sidewalk (m)
+// LINE_SIDE: a path beyond a kerb, a grass strip and its own edges is the 5th line out (Bára, Revoluční).
+const LINE_REACH = 25, LINE_SIDE = 6, LINE_BATCH = 3, WALK_MAX = 4.5; // m along the cut each way; crossings asked per side; widest sidewalk (m)
 const lineInfoUrl = (v, [i, j]) => `${DMVS_LINES}?${new URLSearchParams({
   ...v.params, request: "GetFeatureInfo", layers: BOUNDARY_LAYERS, query_layers: BOUNDARY_LAYERS,
   info_format: "application/json", feature_count: 3, i, j,
@@ -544,6 +545,13 @@ export async function fromLines(v, lines, info = (px) => get(lineInfoUrl(v, px),
       const x = Math.floor(cx + sign * ux * t), y = Math.floor(cy + sign * uy * t);
       if (x < 0 || y < 0 || x >= w || y >= h) break;
       const i = y * w + x;
+      // An area the DTM has (a field, a garden) closes the piece before it, as a line would (Bára, Revoluční: the
+      // path between a verge and a field); the walk ends there.
+      if (taken?.(i)) {
+        const at = lineAt ?? t;
+        steps.push({ px: null, from: cur, to: -1, at: at * res, area: true });
+        break;
+      }
       if (onLine(i)) { lineAt ??= t; continue; }
       if (lineAt !== null) {
         const mid = Math.round((lineAt + t) / 2);
@@ -555,11 +563,15 @@ export async function fromLines(v, lines, info = (px) => get(lineInfoUrl(v, px),
     }
     return steps;
   });
-  const first = sides.map((st) => st[0]?.at);
+  const first = sides.map((st) => st.find((x) => !x.area)?.at);
   if (first.some((a) => a === undefined) || first[0] + first[1] < 2.5 || first[0] + first[1] > 30) return null;
   // The type of each line crossed.
+  // The type of each line crossed, LINE_BATCH a side at a time in parallel: the next ones only where all of these
+  // bound transport areas (most cuts: 6 requests, considerate to ČÚZK).
   let region, requests = 0; // GetFeatureInfo requests of its own (the two images are the caller's)
-  await Promise.all(sides.flat().map(async (st) => {
+  const transport = (st) => st?.names?.some((x) => TRANSPORT_LINE.test(x));
+  const closes = (st) => transport(st) || st?.area;
+  const ask = async (st) => {
     requests++;
     try {
       const json = await info(st.px);
@@ -568,13 +580,19 @@ export async function fromLines(v, lines, info = (px) => get(lineInfoUrl(v, px),
     } catch (err) {
       console.warn("DMVS GetFeatureInfo", err.message);
     }
+  };
+  await Promise.all(sides.map(async (st) => {
+    for (let k = 0; k < st.length; k += LINE_BATCH) {
+      const batch = st.slice(k, k + LINE_BATCH);
+      await Promise.all(batch.filter((x) => x.px).map(ask));
+      if (!batch.every(closes)) break;
+    }
   }));
-  const transport = (st) => st?.names?.some((x) => TRANSPORT_LINE.test(x));
   const codes = new Map([[road, 701]]);
   for (const st of sides) {
     for (let j = 0; j < st.length && transport(st[j]); j++) {
       const next = st[j + 1];
-      if (!transport(next) || next.at - st[j].at > WALK_MAX || codes.has(st[j].to)) break;
+      if (!closes(next) || next.at - st[j].at > WALK_MAX || codes.has(st[j].to)) break;
       codes.set(st[j].to, 702);
     }
   }

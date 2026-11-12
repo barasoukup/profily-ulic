@@ -285,7 +285,10 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
   mezi dvěma hranicemi dopravní plochy směrem ven (do 4,5 m) chodník nebo krajnice. Čáry to nerozliší, takže rozhodne
   `derive.js` `linePieces`: chodník podle OSM `sidewalk`, bez tagu v zástavbě (budova do 30 m, rychlost do 50), a to jen
   kus nejblíž vozovce; ostatní zeleň. Za první jinou čarou (plot, budova) doplní RÚIAN. Druh čáry se ptá GetFeatureInfo
-  (nejvýš 4 na stranu). Šířky jsou z technické mapy, druhy odhad; aplikace to řekne. Když se vozovka nenajde, hlásí
+  (po třech na stranu, další jen když jsou všechny tři hranicí dopravní plochy, nejvýš 6). Kus uzavře i hotová plocha
+  technické mapy za ním (cesta mezi krajnicí a polem, Mladá Boleslav, Revoluční); zelený pruh profil neukončí, když za ním
+  je chodník nebo stezka; za dlažbu se bere šedý kus světlejší než 100 a hladký (rozptyl jasu pod 35), ne hluboký ani
+  skvrnitý stín stromů. Šířky jsou z technické mapy, druhy odhad; aplikace to řekne. Když se vozovka nenajde, hlásí
   „technická mapa tu má jen čáry“ místo „mimo technickou mapu“.
   Kontrola 50 řezů (Kolín, Mladá Boleslav, `CITY=kolin OUT=results-linie2 node evaluation/run_brno.mjs 1 25`): změřená
   vozovka u 25 místo 8, šířky vozovek sedí na asfalt; zbylé jsou silnice, které technická mapa nemá vůbec (čáry jen jinde).
