@@ -581,7 +581,9 @@ const LAW_LANE = 3, LAW_RAIL = 3.5;
 // footway along the street within WALK_OSM of the kerb.
 const BUILT_ALONG = 40, BUILT_OUT = 40, WALK_GREEN = 10, WALK_OSM = 12;
 const RAIL_HALF = 0.7175; // half the track gauge of 1435 mm: rail from the track axis (m)
-const turnList = (v) => (v ? v.split("|").map((x) => x || "none") : null);
+// A slight turn is drawn as the turn itself (Bára: "slight_right" with the arrow to the right).
+const SLIGHT = { slight_right: "right", slight_left: "left" };
+const turnList = (v) => (v ? v.split("|").map((x) => [...new Set((x || "none").split(";").map((y) => SLIGHT[y] || y))].join(";")) : null);
 
 // Split one roadway run [s,e] into parking, bike and driving/tram lanes using OSM tags.
 // ctx.dirAt(t): driving direction ("forward"/"backward" relative to the cut's street) at offset t,
