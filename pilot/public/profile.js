@@ -1596,8 +1596,8 @@ export function buildUnderground(profile, items, span, view, kinds) {
   for (const it of items) {
     const k = kinds[it.kind] || kinds.jine, cx = x(it.t), deep = it.depth > shownMax;
     // The pipe at its real size (DN in mm, a radius of DN/20 drawing units), else the kind's usual one; at least
-    // 6 cm across, so a cable shows.
-    const dn = it.profil > 20 && it.profil < 3000 ? it.profil : k.dn, r = Math.max(3, dn / 20);
+    // 16 cm across, so a cable shows.
+    const dn = it.profil > 20 && it.profil < 3000 ? it.profil : k.dn, r = Math.max(8, dn / 20);
     const cy = top + Math.min(it.depth, shownMax) * 100 * V + r;
     const g = el("g", {}, svg);
     el("title", {}, g).textContent = `${it.popis}${it.profil > 20 ? `, DN ${it.profil}` : ""}${it.lines > 1 ? ` (v datech ${it.lines}× vedle sebe)` : ""}: ${it.measured ? `hloubka ${String(it.depth).replace(".", ",")} m` : `hloubka neznámá, obvyklá ${String(it.depth).replace(".", ",")} m`}`;

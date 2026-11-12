@@ -15,15 +15,16 @@ const R = 6378137;
 
 // The kinds, by the first word of the line's description (CTMTP_POPIS), with a colour (the usual colours of the
 // networks on plans), a usual depth to the top (m) when the measured one is not believed, and a usual size (DN,
-// mm; a cable or a bundle of them as a sleeve) when the line has none.
+// mm; cables as their sleeve, 110 mm) when the line has none; same: how near two lines of the kind are one network
+// (a sewer drawn twice a metre apart is still one: Bára, Voršilská).
 export const KINDS = {
-  kanalizace: { label: "kanalizace", color: "#8a5a2b", usual: 2.5, dn: 300 },
-  vodovod: { label: "vodovod", color: "#1f6fd1", usual: 1.5, dn: 150 },
+  kanalizace: { label: "kanalizace", color: "#8a5a2b", usual: 2.5, dn: 300, same: 1.2 },
+  vodovod: { label: "vodovod", color: "#1f6fd1", usual: 1.5, dn: 150, same: 0.8 },
   plynovod: { label: "plynovod", color: "#e0a800", usual: 1.0, dn: 110 },
   teplovod: { label: "teplovod", color: "#c0392b", usual: 1.0, dn: 250 },
-  silnoproud: { label: "silnoproud", color: "#d6336c", usual: 0.7, dn: 60 },
-  slaboproud: { label: "slaboproud", color: "#2f9e44", usual: 0.5, dn: 40 },
-  jine: { label: "jiné", color: "#7a7a7a", usual: 1.0, dn: 60 },
+  silnoproud: { label: "silnoproud", color: "#d6336c", usual: 0.7, dn: 110 },
+  slaboproud: { label: "slaboproud", color: "#2f9e44", usual: 0.5, dn: 110 },
+  jine: { label: "jiné", color: "#7a7a7a", usual: 1.0, dn: 110 },
 };
 const kindOf = (popis = "") => {
   const w = popis.split(" ")[0];
@@ -102,7 +103,7 @@ export async function underground({ frame, dir, half, cityId }) {
   const rank = (x) => (x.measured ? 4 : 0) + (/ověř\./.test(x.popis) && !/neověř/.test(x.popis) ? 2 : 0) + (/chráni/.test(x.popis) ? 0 : 1);
   const groups = [];
   for (const x of out) {
-    const g = groups.find((q) => q.kind === x.kind && x.t - q.e <= SAME);
+    const g = groups.find((q) => q.kind === x.kind && x.t - q.e <= (KINDS[x.kind].same ?? SAME));
     if (g) { g.list.push(x); g.e = x.t; } else groups.push({ kind: x.kind, e: x.t, list: [x] });
   }
   return groups.map(({ list }) => {
