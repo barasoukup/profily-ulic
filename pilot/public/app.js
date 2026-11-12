@@ -1664,7 +1664,7 @@ $("#site-btn").onclick = () => {
   render();
 };
 function loadUnderground() {
-  $("#site-btn").hidden = state.cut?.city !== "praha" || state.mode !== "stav";
+  $("#site-btn").hidden = state.cut?.city !== "praha" || state.mode === "porovnat";
   $("#net-hint").hidden = !undergroundFor();
   if (!siteOn() || !state.cut || state.cut.city !== "praha" || state.underground?.cut === state.cut) return;
   const cut = state.cut, b = (cut.bearing * Math.PI) / 180, span = cutSpan(cut);
@@ -1692,7 +1692,8 @@ function drawNetLines() {
 }
 function undergroundFor() {
   const items = state.underground?.cut === state.cut ? state.underground.items : null;
-  return siteOn() && state.mode === "stav" && items?.length ? { items, span: cutSpan(state.cut), kinds: NET_KINDS } : null;
+  // In Stav and Návrh (a design wider or narrower than the street has them stretched to it), not in Porovnat.
+  return siteOn() && state.mode !== "porovnat" && items?.length ? { items, span: cutSpan(state.cut), kinds: NET_KINDS } : null;
 }
 
 function save() {
