@@ -38,6 +38,9 @@ const PRAHA = {
   "tram-pole-lamp-left": "sloup-trakce-lampa-left", "tram-pole-lamp-right": "sloup-trakce-lampa-right",
   "stop-post-left": "oznacnik-left", "stop-post-right": "oznacnik-right",
   "stop-post-tram-left": "oznacnik-tram-left", "stop-post-tram-right": "oznacnik-tram-right",
+  // Rainwater management (Bára 12. 11. 2026): a shelter with a green roof, the planting of a swale, reeds of a pond.
+  "transit-shelter-green-left": "transit-shelter-green-left", "transit-shelter-green-right": "transit-shelter-green-right",
+  "swale-plants": "pruleh-rostliny", "reeds-left": "rakos-left", "reeds-right": "rakos-right",
 };
 // Brno illustrations (brno/): the tram Tatra T3 in DPMB colours (Bára: the nicest; 45T and 13T drawn too) and bus, and furniture after the
 // rules of Brno's city architect (KAM, Principy tvorby veřejných prostranství, kap. 9): anthracite steel,
@@ -52,6 +55,9 @@ const BRNO = {
   "tram-pole-lamp-left": "sloup-trakce-lampa-left", "tram-pole-lamp-right": "sloup-trakce-lampa-right",
   "stop-post-left": "oznacnik-left", "stop-post-right": "oznacnik-right",
   "stop-post-tram-left": "oznacnik-tram-left", "stop-post-tram-right": "oznacnik-tram-right",
+  // Rainwater management (Bára 12. 11. 2026): a shelter with a green roof, the planting of a swale, reeds of a pond.
+  "transit-shelter-green-left": "transit-shelter-green-left", "transit-shelter-green-right": "transit-shelter-green-right",
+  "swale-plants": "pruleh-rostliny", "reeds-left": "rakos-left", "reeds-right": "rakos-right",
 };
 // Every other city brings its own map of illustrations (city.js artMap, files in pilot/public/<art>/).
 const CITY_ART = { praha: PRAHA, brno: BRNO };
@@ -155,6 +161,8 @@ function drawWaterPart(g, s, x, w, top, before, after) {
   const edge = Math.min(40, w * 0.2);
   if (s.type === "pruleh" || s.type === "nadrz") {
     const depth = s.type === "pruleh" ? 26 : 62;
+    // A pond's banks and bottom are earth with grass (its blue is the palette's, for the water).
+    if (s.type === "nadrz") el("rect", { x, y: top, width: w, height: GROUND + 60 - top, fill: "#86b46a" }, g);
     // The dip: the air over it in the paper's colour, its bottom a darker band.
     el("path", { d: `M${x} ${top - 1} L${x + w} ${top - 1} L${x + w - edge} ${top + depth} L${x + edge} ${top + depth} Z`, fill: PAPER }, g);
     el("path", { d: `M${x} ${top} L${x + edge} ${top + depth} L${x + w - edge} ${top + depth} L${x + w} ${top}`, fill: "none", stroke: "#5f8f3a", "stroke-width": 5, "stroke-linejoin": "round" }, g);
@@ -163,11 +171,15 @@ function drawWaterPart(g, s, x, w, top, before, after) {
       el("path", { d: `M${x + edge * k} ${lvl} L${x + w - edge * k} ${lvl} L${x + w - edge} ${top + depth - 2} L${x + edge} ${top + depth - 2} Z`, fill: "#9cc3e4", opacity: 0.9 }, g);
       el("line", { x1: x + edge * k, x2: x + w - edge * k, y1: lvl, y2: lvl, stroke: WATER, "stroke-width": 3 }, g);
     }
-    // Perennials and grasses on the bottom (a swale), reeds at the banks (a pond).
-    const plants = s.type === "pruleh" ? Math.max(1, Math.floor((w - 2 * edge) / 70)) : 2;
+    // Perennials and grasses on the bottom (a swale), reeds at the banks (a pond): the city's pictures where it has
+    // them (swale-plants about 1 m wide, reeds-left/right), else a few strokes.
+    const swale = s.type === "pruleh", pic = swale ? "swale-plants" : null;
+    const plants = swale ? Math.max(1, Math.floor((w - 2 * edge) / (ownSprite("swale-plants") ? 110 : 70))) : 2;
     for (let k = 0; k < plants; k++) {
-      const px = s.type === "pruleh" ? x + edge + ((k + 0.5) * (w - 2 * edge)) / plants : k ? x + w - edge * 0.8 : x + edge * 0.8;
-      const py = s.type === "pruleh" ? top + depth : top + depth * 0.5;
+      const px = swale ? x + edge + ((k + 0.5) * (w - 2 * edge)) / plants : k ? x + w - edge * 0.8 : x + edge * 0.8;
+      const py = swale ? top + depth : top + depth * 0.5;
+      const own = pic || (k ? "reeds-right" : "reeds-left");
+      if (ownSprite(own)) { sprite(g, own, px, py); continue; }
       for (const [dx, h, c] of [[-12, 34, "#4f8a35"], [-4, 46, "#3f7a2d"], [5, 40, "#5f9e3a"], [13, 30, "#4f8a35"]]) {
         el("path", { d: `M${px + dx} ${py} q${dx / 3} ${-h / 2} ${dx / 2} ${-h}`, fill: "none", stroke: c, "stroke-width": 3.5, "stroke-linecap": "round" }, g);
       }

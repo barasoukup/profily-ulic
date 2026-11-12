@@ -1,0 +1,36 @@
+<svg viewBox="0 0 50 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Orobinec, rákos a ostřice na pravém břehu povrchové retenční nádrže
+       (Standardy HDV Praha, Povrchové retenční nádrže: nádrže s vegetací a umělé mokřady). Trs se kloní doleva ke středu
+       nádrže, lata rákosu doprava od středu.
+       Měřítko 1 px = 1 cm, viewBox 50 × 120 cm (šířka 50 cm, výška 1,2 m), spodní hrana = hladina / břeh, vodorovný střed = osa trsu.
+       Předlohy: https://commons.wikimedia.org/wiki/Category:Typha_latifolia
+       (např. https://commons.wikimedia.org/wiki/File:Typha_latifolia_Finland.jpg),
+       https://commons.wikimedia.org/wiki/Category:Phragmites_australis, https://commons.wikimedia.org/wiki/Category:Carex_acutiformis.
+       Zrcadlový obraz rakos-left.svg přes transform, proto stín vlevo (tmavší listy na straně ke středu nádrže). -->
+  <g transform="matrix(-1 0 0 1 50 0)">
+  <!-- ostřice u vody (Carex acutiformis / C. riparia): nízký trs, listy převislé -->
+  <path d="M6 120 Q3 106 1.5 102 M9 120 Q8 104 5 96 M12 120 Q14 106 18 101" fill="none" stroke="#7d9a4a" stroke-width="2" stroke-linecap="round"/>
+  <!-- rákos obecný (Phragmites australis) vzadu: stéblo, zúžené mírně převislé listy a plná lata
+       zavěšená z vrcholu stébla dolů a ven od středu nádrže -->
+  <path d="M7 120 Q7 80 7.5 20" fill="none" stroke="#86b46a" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M8.1 73.4 L6.9 71.3 L5.7 69.4 L4.7 67.9 L3.9 66.7 L3.1 65.9 L2.5 65.3 L1.8 65.2 L1.2 65.4 L2.1 66.6 L2.6 67.5 L3.2 68.8 L4 70.4 L4.9 72.3 L5.9 74.6 Z" fill="#86b46a"/>
+  <path d="M8 56.7 L9.5 54.5 L10.8 52.6 L12 51 L13.2 49.9 L14.3 49.1 L15.3 48.6 L16.2 48.4 L17.1 48.5 L18.1 49.1 L19 50 L19 50 L18.2 48.9 L17.4 48.1 L16.3 47.6 L15.1 47.6 L13.7 47.9 L12.3 48.7 L10.8 49.8 L9.3 51.3 L7.7 53.1 L6 55.3 Z" fill="#86b46a"/>
+  <path d="M7.5 20 Q2.5 21 1.5 33 Q4.5 31 6 26 Q7.5 23 7.5 20 Z" fill="#8d6a5a"/>
+  <path d="M7.5 20 Q2.5 21 1.5 33 Q3.5 25 7.5 20 Z" fill="#a88b78"/>
+  <!-- orobinec širokolistý (Typha latifolia): ploché zúžené listy do 1,1 m, trs se kloní doprava ke středu nádrže;
+       tmavší listy vpravo = stín (před zrcadlením) -->
+  <path d="M15.5 119.9 L15 111.9 L14.4 103.9 L13.9 95.8 L13.4 87.6 L12.9 79.5 L12.3 71.2 L11.8 63 L11.3 54.7 L10.8 46.4 L10.2 38 L9.8 38 L10 46.4 L10.3 54.7 L10.6 63.1 L10.9 71.3 L11.1 79.5 L11.4 87.7 L11.7 95.9 L12 104 L12.2 112 L12.5 120.1 Z" fill="#5f8f3a"/>
+  <path d="M22.5 120.1 L23 112.9 L23.6 105.7 L24.4 98.4 L25.2 91 L26.1 83.6 L27.1 76.2 L28.3 68.7 L29.5 61.2 L30.8 53.7 L32.2 46.1 L31.8 45.9 L30.1 53.5 L28.5 61 L27 68.5 L25.7 76 L24.4 83.4 L23.2 90.7 L22.1 98.1 L21.2 105.4 L20.3 112.6 L19.5 119.9 Z" fill="#5f8f3a"/>
+  <path d="M26.5 120.3 L27.4 114.7 L28.5 109.2 L29.7 103.7 L31.1 98.2 L32.6 92.8 L34.2 87.4 L36 82 L37.9 76.7 L40 71.4 L42.2 66.1 L41.8 65.9 L39.3 71.1 L37 76.3 L34.8 81.6 L32.8 86.9 L30.9 92.2 L29.2 97.6 L27.5 103.1 L26.1 108.6 L24.7 114.1 L23.5 119.7 Z" fill="#5f8f3a"/>
+  <path d="M18.7 120 L18.8 111.1 L19 102.1 L19.2 92.8 L19.4 83.3 L19.7 73.6 L20.1 63.6 L20.6 53.5 L21.1 43.2 L21.6 32.7 L22.2 22 L21.8 22 L20.8 32.7 L20 43.2 L19.2 53.5 L18.4 63.6 L17.8 73.4 L17.1 83.1 L16.6 92.6 L16.1 101.9 L15.6 111.1 L15.3 120 Z" fill="#5f8f3a"/>
+  <path d="M20.7 120.1 L21.2 110 L21.8 99.7 L22.5 89.2 L23.3 78.5 L24.2 67.6 L25.2 56.5 L26.3 45.2 L27.5 33.7 L28.8 22 L30.2 10 L29.8 10 L28.1 21.8 L26.5 33.5 L25 45 L23.6 56.3 L22.3 67.4 L21.1 78.3 L20 89 L19 99.5 L18.1 109.8 L17.3 119.9 Z" fill="#3f7a2d"/>
+  <path d="M24.7 120.2 L25.7 112.2 L26.7 104 L27.9 95.7 L29.3 87.2 L30.7 78.7 L32.4 70 L34.1 61.2 L36 52.3 L38.1 43.2 L40.2 34.1 L39.8 33.9 L37.3 43 L34.9 52 L32.7 60.9 L30.7 69.7 L28.8 78.3 L27 86.8 L25.3 95.2 L23.8 103.5 L22.5 111.7 L21.3 119.8 Z" fill="#3f7a2d"/>
+  <path d="M29.4 120.4 L30.6 116.1 L31.9 111.9 L33.3 107.9 L34.8 104.1 L36.5 100.4 L38.4 96.9 L40.4 93.5 L42.5 90.2 L44.8 87.1 L47.2 84.2 L46.8 83.8 L44.2 86.6 L41.7 89.6 L39.3 92.8 L37.1 96.1 L35 99.6 L33 103.3 L31.2 107.1 L29.5 111.1 L28 115.3 L26.6 119.6 Z" fill="#3f7a2d"/>
+  <!-- stvoly s hnědými palicemi (samičí klas) a tenkou špičkou (samčí klas) -->
+  <path d="M16 120 Q17 70 21 14 M24 120 Q27 76 33 26" fill="none" stroke="#6c7a2a" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M20 34 Q19.6 26 21.6 14" fill="none" stroke="#6b4426" stroke-width="5" stroke-linecap="round"/>
+  <path d="M21.6 14 L22.3 4" fill="none" stroke="#9a7a4e" stroke-width="1.4" stroke-linecap="round"/>
+  <path d="M30.6 44 Q31.4 36 33.4 26" fill="none" stroke="#6b4426" stroke-width="5" stroke-linecap="round"/>
+  <path d="M33.4 26 L35 17" fill="none" stroke="#9a7a4e" stroke-width="1.4" stroke-linecap="round"/>
+  </g>
+</svg>

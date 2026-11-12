@@ -465,6 +465,19 @@ Pod profilem je pruh **podílu šířky ulice** (chůze, kola, MHD, jedoucí aut
 řezem), uložit do souboru JSON a zase načíst. U řezu je **panorama z ulice** Mapy.com (s klíčem v dialogu, bez
 něj odkaz na Mapy.com).
 
+### Hospodaření s vodou
+
+Do Návrhu lze přidat prvky modrozelené infrastruktury podle pražských Standardů hospodaření se srážkovými vodami
+(MHMP, ČVUT FSv, kap. 5.1; podnět Magdaleny, Bára 12. 11. 2026). Data je neznají, takže jsou jen v návrhu:
+- části v paletě „Hospodaření s vodou“: vsakovací průleh (5.1.5), vsakovací rýha (5.1.6), retenční nádrž (5.1.10);
+- „Pod povrchem“ u zeleně, chodníků, parkování a dalších částí: podzemní rýha (5.1.7), podzemní retenční nádrž (5.1.11),
+  vsakovací šachta (5.1.9); průleh s rýhou pod sebou je 5.1.8;
+- „Propustný povrch“ u chodníků, ploch a parkování (5.1.2) a přístřešek zastávky se zelenou střechou (5.1.1).
+Kreslí se zjednodušeně (Magdalena: kvůli měřítku zjednodušit): průleh jako mělká prohlubeň s výsadbou, nádrž s vodou
+a rákosem, podzemní objekty jako schéma v zemině, modré šipky ukazují přítok ze zpevněných ploch vedle. V editoru je
+u prvku odkaz na kapitolu standardů. Ilustrace (zelená střecha přístřešku, výsadba průlehu, rákos) kreslila
+„kreslířka“ ve třech kolech s „kritikem“ podle fotek z Wikimedia Commons.
+
 ### Okraje ulice
 
 Na dům, plot, zahradu či jiný okraj profilu jde kliknout jako na část (Bára 12. 11. 2026: „panelák“, který je dvoupatrový

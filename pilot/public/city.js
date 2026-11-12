@@ -28,6 +28,9 @@ const TOWN_ART = {
   "tram-pole-lamp-left": "sloup-trakce-lampa-left", "tram-pole-lamp-right": "sloup-trakce-lampa-right",
   "stop-post-left": "oznacnik-left", "stop-post-right": "oznacnik-right",
   "stop-post-tram-left": "oznacnik-tram-left", "stop-post-tram-right": "oznacnik-tram-right",
+  // Rainwater management (Bára 12. 11. 2026): a shelter with a green roof, the planting of a swale, reeds of a pond.
+  "transit-shelter-green-left": "transit-shelter-green-left", "transit-shelter-green-right": "transit-shelter-green-right",
+  "swale-plants": "pruleh-rostliny", "reeds-left": "rakos-left", "reeds-right": "rakos-right",
 };
 
 // A town's own vehicles (pilot/public/<art>/tram-*, trolejbus-*) in place of Streetmix's.

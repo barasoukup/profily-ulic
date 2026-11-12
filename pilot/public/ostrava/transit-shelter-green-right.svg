@@ -1,0 +1,143 @@
+<svg viewBox="0 0 270 360" xmlns="http://www.w3.org/2000/svg">
+  <!-- Nový pražský přístřešek zastávky autobusu (soutěž IPR 2018, návrh Olgoj Chorchoj) s extenzivní vegetační střechou
+       a klasickým červeným označníkem, zadní stěna vpravo, otevřená strana a označník vlevo (k vozovce).
+       Měřítko 1 px = 1 cm, viewBox 270 × 360 cm, spodní hrana = chodník; zelená střecha 12 cm (substrát 8 cm + drenáž 2 cm
+       + lem) na desce od zadního sloupu po x 190, špička konzoly (posledních 8 cm) zůstává holá; vrch rostlin asi 2,8 m nad chodníkem.
+       Přístřešek a označník beze změny z transit-shelter-left.svg; střecha podle fotek zelených zastávek:
+       https://commons.wikimedia.org/wiki/File:A_JCDecaux_bus_shelter_outside_the_Jardin_du_Luxembourg.jpg (Paříž),
+       utrechtské „bijenhaltes“ (https://commons.wikimedia.org/wiki/Category:Bus_shelters_in_the_Netherlands),
+       rostliny https://commons.wikimedia.org/wiki/Category:Sedum_album, https://commons.wikimedia.org/wiki/Category:Sedum_acre,
+       https://commons.wikimedia.org/wiki/Category:Festuca_glauca; souvrství podle Standardů HDV Praha, kap. 5.1.2.
+       Zrcadlový obraz -left přes transform, proto stín vlevo: tmavší levá část polštářů. -->
+  <g transform="matrix(-1 0 0 1 270 0)">
+  <!-- přístřešek z čela (návrh Olgoj Chorchoj): zadní sloup a tenká konzolová střecha z litého hliníku -->
+  <g id="pristresek">
+    <!-- pás s názvem zastávky a odjezdy pod střechou u zadní stěny, z boku -->
+    <rect x="30" y="108" width="10" height="42" fill="#18191b"/>
+    <rect x="38" y="109" width="2" height="13" fill="#5f656a"/>
+    <!-- sloup a střecha: v řezu skoro pravý úhel, střecha kousek přesahuje dozadu a dopředu se ztenčuje -->
+    <path d="M13 97 Q13 95 15 95 L198 97 L198 104 L46 109 L34 109 Q30 109 30 113 L30 360 L17 360 L17 103 L13 103 Z" fill="#2c2f32"/>
+    <rect x="26" y="113" width="4" height="247" fill="#1f2124"/>
+    <rect x="17" y="103" width="2" height="257" fill="#3d4144"/>
+    <path d="M15 95 L198 97 L198 99 L15 97 Z" fill="#3d4144"/>
+    <path d="M46 107 L198 102 L198 104 L46 109 Z" fill="#1f2124"/>
+    <rect x="14" y="357" width="19" height="3" fill="#1f2124"/>
+    <!-- boční stěna: reklamní vitrína v tlustém rámu, neutrální plocha -->
+    <rect x="30" y="122" width="134" height="233" fill="#2c2f32"/>
+    <rect x="155" y="122" width="9" height="238" fill="#1f2124"/>
+    <rect x="30" y="355" width="7" height="5" fill="#1f2124"/>
+    <rect x="30" y="122" width="134" height="2" fill="#3d4144"/>
+    <rect x="37" y="132" width="118" height="213" fill="#e6e8e4"/>
+    <path d="M37 280 L120 132 L155 132 L155 150 L64 345 L37 345 Z" fill="#f2f3ef"/>
+    <path d="M76 345 L155 185 L155 194 L83 345 Z" fill="#d9dcd7"/>
+  </g>
+  <!-- extenzivní vegetační střecha (Standardy HDV Praha, kap. 5.1.2): drenážní a hydroizolační vrstva 2 cm,
+       substrát 8 cm, rozchodníky a nízké traviny; obrubový profil (hliníkový lem) na obou koncích vany -->
+  <g id="zelena-strecha">
+    <!-- drenážní rohož a hydroizolace -->
+    <path d="M17 95 L186 96.9 L186 94.9 L17 93 Z" fill="#4a4036"/>
+    <!-- substrát -->
+    <path d="M17 93 L186 94.9 L186 86.9 L17 85 Z" fill="#8a7458"/>
+    <path d="M17 93 L186 94.9 L186 92.4 L17 90.5 Z" fill="#6e5c45"/>
+    <!-- rozchodníky (Sedum album, S. acre; dva polštáře S. spurium ‚Coccineum‘ karmínové): tmavší pravá část = stín (před zrcadlením) -->
+    <path d="M17.5 86.6 Q22 76.9 26.5 86.6 Z" fill="#4f8a35"/>
+    <path d="M17.5 86.6 Q21.3 76.9 24 86.6 Z" fill="#6aa84f"/>
+    <path d="M24.5 86.7 Q30.3 79.4 36 86.7 Z" fill="#5f8f3a"/>
+    <path d="M24.5 86.7 Q29.3 79.4 32.8 86.7 Z" fill="#86b46a"/>
+    <path d="M33.5 86.8 Q41.4 77.3 49.4 86.8 Z" fill="#3f7a2d"/>
+    <path d="M33.5 86.8 Q40.2 77.3 44.9 86.8 Z" fill="#5f8f3a"/>
+    <path d="M45.9 86.9 Q52.4 77.1 59 86.9 Z" fill="#6c7a2a"/>
+    <path d="M45.9 86.9 Q51.4 77.1 55.3 86.9 Z" fill="#8f9a3c"/>
+    <path d="M56.1 87 Q62.5 78.3 68.9 87 Z" fill="#4f8a35"/>
+    <path d="M56.1 87 Q61.5 78.3 65.3 87 Z" fill="#6aa84f"/>
+    <path d="M66.1 87.1 Q71.5 75.8 76.8 87.1 Z" fill="#9e3b3b"/>
+    <path d="M66.1 87.1 Q70.6 75.8 73.8 87.1 Z" fill="#c05a55"/>
+    <path d="M74.5 87.2 Q79.5 77.9 84.6 87.2 Z" fill="#4f8a35"/>
+    <path d="M74.5 87.2 Q78.7 77.9 81.8 87.2 Z" fill="#6aa84f"/>
+    <path d="M82.4 87.3 Q89.2 75.4 96.1 87.3 Z" fill="#5f8f3a"/>
+    <path d="M82.4 87.3 Q88.1 75.4 92.2 87.3 Z" fill="#86b46a"/>
+    <path d="M93.1 87.4 Q99.1 79.9 105.1 87.4 Z" fill="#3f7a2d"/>
+    <path d="M93.1 87.4 Q98.1 79.9 101.7 87.4 Z" fill="#5f8f3a"/>
+    <path d="M102.5 87.5 Q107.8 76.1 113.2 87.5 Z" fill="#6c7a2a"/>
+    <path d="M102.5 87.5 Q107 76.1 110.2 87.5 Z" fill="#8f9a3c"/>
+    <path d="M110.8 87.6 Q117.7 77.3 124.6 87.6 Z" fill="#4f8a35"/>
+    <path d="M110.8 87.6 Q116.6 77.3 120.7 87.6 Z" fill="#6aa84f"/>
+    <path d="M121.6 87.7 Q128 79.3 134.4 87.7 Z" fill="#5f8f3a"/>
+    <path d="M121.6 87.7 Q127 79.3 130.8 87.7 Z" fill="#86b46a"/>
+    <path d="M131.6 87.8 Q137.3 76.1 143 87.8 Z" fill="#4f8a35"/>
+    <path d="M131.6 87.8 Q136.4 76.1 139.8 87.8 Z" fill="#6aa84f"/>
+    <path d="M140.5 87.9 Q145.1 79.8 149.6 87.9 Z" fill="#5f8f3a"/>
+    <path d="M140.5 87.9 Q144.3 79.8 147.1 87.9 Z" fill="#86b46a"/>
+    <path d="M147.6 88 Q154.4 76.7 161.2 88 Z" fill="#9e3b3b"/>
+    <path d="M147.6 88 Q153.3 76.7 157.4 88 Z" fill="#c05a55"/>
+    <path d="M158.2 88.1 Q162.8 78.8 167.3 88.1 Z" fill="#6c7a2a"/>
+    <path d="M158.2 88.1 Q162 78.8 164.8 88.1 Z" fill="#8f9a3c"/>
+    <path d="M165.3 88.2 Q173.4 78.1 181.4 88.2 Z" fill="#4f8a35"/>
+    <path d="M165.3 88.2 Q172.1 78.1 176.9 88.2 Z" fill="#6aa84f"/>
+    <path d="M177.9 88.3 Q181.9 77.7 186 88.3 Z" fill="#5f8f3a"/>
+    <path d="M177.9 88.3 Q181.3 77.7 183.7 88.3 Z" fill="#86b46a"/>
+    <!-- kvítky rozchodníků: žluté (S. acre) a růžovobílé (S. album) -->
+    <circle cx="29.1" cy="82.2" r="1.7" fill="#f2c94c"/>
+    <circle cx="50.5" cy="81.2" r="1.7" fill="#f1dfe0"/>
+    <circle cx="61.2" cy="81.9" r="1.7" fill="#f2c94c"/>
+    <circle cx="72" cy="80.5" r="1.7" fill="#f2c94c"/>
+    <circle cx="97.3" cy="82.9" r="1.7" fill="#f1dfe0"/>
+    <circle cx="116.3" cy="81.7" r="1.7" fill="#f2c94c"/>
+    <circle cx="144.1" cy="83" r="1.7" fill="#f2c94c"/>
+    <circle cx="151.7" cy="83" r="1.7" fill="#f1dfe0"/>
+    <circle cx="157" cy="82.4" r="1.7" fill="#f2c94c"/>
+    <!-- nízké traviny (kostřava sivá, Festuca glauca): trsy 10–15 cm, nepravidelně, jeden nižší, jeden zrcadlený -->
+    <path d="M41 86.3 Q40 79.7 38 75.3 M42.2 86.3 Q41.8 77.9 41 72.3 M43.4 86.3 Q43.6 77.3 44 71.3 M44.6 86.3 Q45.4 79.1 47 74.3 M45.4 86.3 Q46.6 80.9 49 77.3" fill="none" stroke="#7d9a6a" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M44 86.3 Q46 79.3 48 75.3" fill="none" stroke="#5f7a52" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M79 86.7 Q78 81.4 76 77.9 M80.2 86.7 Q79.8 80 79 75.5 M81.4 86.7 Q81.6 79.5 82 74.7 M82.6 86.7 Q83.4 81 85 77.1 M83.4 86.7 Q84.6 82.4 87 79.5" fill="none" stroke="#7d9a6a" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M82 86.7 Q84 81.1 86 77.9" fill="none" stroke="#5f7a52" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M138 87.3 Q139 80.7 141 76.3 M136.8 87.3 Q137.2 78.9 138 73.3 M135.6 87.3 Q135.4 78.3 135 72.3 M134.4 87.3 Q133.6 80.1 132 75.3 M133.6 87.3 Q132.4 81.9 130 78.3" fill="none" stroke="#7d9a6a" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M135 87.3 Q133 80.3 131 76.3" fill="none" stroke="#5f7a52" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M164 87.7 Q163 81.1 161 76.7 M165.2 87.7 Q164.8 79.3 164 73.7 M166.4 87.7 Q166.6 78.7 167 72.7 M167.6 87.7 Q168.4 80.5 170 75.7 M168.4 87.7 Q169.6 82.3 172 78.7" fill="none" stroke="#7d9a6a" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M167 87.7 Q169 80.7 171 76.7" fill="none" stroke="#5f7a52" stroke-width="1.6" stroke-linecap="round"/>
+    <!-- obrubový profil: hliníkový lem, drží substrát, světlejší horní hrana -->
+    <rect x="13" y="83" width="4" height="14" fill="#3d4144"/>
+    <rect x="13" y="83" width="4" height="1.2" fill="#5f656a"/>
+    <rect x="186" y="84.8" width="4" height="12.1" fill="#3d4144"/>
+    <rect x="186" y="84.8" width="4" height="1.2" fill="#5f656a"/>
+  </g>
+  <!-- označník: klasický červený rám, nahoře značka zastávky autobusu (IJ 4a) -->
+  <g id="oznacnik">
+    <rect x="222" y="265" width="5" height="95" fill="#d42a22"/>
+    <rect x="261" y="265" width="5" height="95" fill="#d42a22"/>
+    <rect x="264" y="265" width="2" height="95" fill="#a81f19"/>
+    <rect x="220" y="357" width="48" height="3" fill="#a81f19"/>
+    <!-- dvě skříňky s jízdními řády -->
+    <rect x="222" y="146" width="44" height="119" fill="#d42a22"/>
+    <rect x="262" y="146" width="4" height="119" fill="#a81f19"/>
+    <rect x="226" y="150" width="16" height="62" fill="#f2d64b"/>
+    <rect x="244" y="150" width="16" height="62" fill="#f4f4f0"/>
+    <rect x="226" y="218" width="34" height="40" fill="#f4f4f0"/>
+    <rect x="226" y="250" width="34" height="8" fill="#3a63b0"/>
+    <!-- tabule s názvem a linkami -->
+    <rect x="222" y="74" width="44" height="72" fill="#d42a22"/>
+    <rect x="262" y="74" width="4" height="72" fill="#a81f19"/>
+    <rect x="226" y="78" width="34" height="50" fill="#f4f4f0"/>
+    <rect x="230" y="84" width="26" height="4" fill="#2a2b2a"/>
+    <rect x="232" y="92" width="22" height="1.5" fill="#9a9b9c"/>
+    <rect x="230" y="99" width="8" height="8" fill="#2a2b2a"/>
+    <rect x="239" y="99" width="8" height="8" fill="#2a2b2a"/>
+    <rect x="248" y="99" width="8" height="8" fill="#d42a22"/>
+    <rect x="230" y="113" width="26" height="1.5" fill="#9a9b9c"/>
+    <rect x="230" y="118" width="20" height="1.5" fill="#9a9b9c"/>
+    <!-- značka: bílý okraj, modrý pás, bílé pole -->
+    <rect x="221" y="26" width="46" height="46" rx="3" fill="#f4f4f0"/>
+    <rect x="223" y="28" width="42" height="42" rx="2" fill="#1f56a8"/>
+    <rect x="227" y="32" width="34" height="34" rx="1" fill="#f4f4f0"/>
+    <g id="piktogram" transform="matrix(-1 0 0 1 488 0)">
+      <rect x="230" y="45" width="28" height="13" rx="2" fill="#1a1a1a"/>
+      <rect x="232" y="47" width="5" height="4" fill="#f4f4f0"/>
+      <rect x="239" y="47" width="5" height="4" fill="#f4f4f0"/>
+      <rect x="246" y="47" width="5" height="4" fill="#f4f4f0"/>
+      <rect x="253" y="47" width="3" height="7" fill="#f4f4f0"/>
+      <circle cx="235" cy="58.5" r="2.6" fill="#1a1a1a"/>
+      <circle cx="252" cy="58.5" r="2.6" fill="#1a1a1a"/>
+    </g>
+  </g>
+  </g>
+</svg>

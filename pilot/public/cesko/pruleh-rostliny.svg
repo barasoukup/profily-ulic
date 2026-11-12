@@ -1,0 +1,51 @@
+<svg viewBox="0 0 110 70" xmlns="http://www.w3.org/2000/svg">
+  <!-- Výsadba dna vsakovacího průlehu (rain garden) podle Standardů HDV Praha, kap. 5.1 Průlehy: průlehy jsou zatravněné
+       nebo osázené trvalkami. Jeden trs se souměrnou siluetou (polovina vpravo ručně obměněná): na krajích kakost,
+       ostřice, kosatec sibiřský a rudbekie, vzadu uprostřed třtina.
+       Měřítko 1 px = 1 cm, viewBox 110 × 70 cm (šířka 110 cm, výška 70 cm s latami třtiny), spodní hrana = dno průlehu,
+       vodorovný střed (x = 55) = osa trsu.
+       Předlohy: https://commons.wikimedia.org/wiki/Category:Rain_gardens, https://commons.wikimedia.org/wiki/Category:Bioswale,
+       https://commons.wikimedia.org/wiki/Category:Iris_sibirica, https://commons.wikimedia.org/wiki/Category:Calamagrostis_×_acutiflora,
+       https://commons.wikimedia.org/wiki/Category:Rudbeckia_fulgida, https://commons.wikimedia.org/wiki/Category:Geranium_sanguineum.
+       Souměrné, proto bez stínu do strany; tmavší jen spodek polštářů a pravý okraj lat. -->
+  <!-- třtina ostrokvětá (Calamagrostis ×acutiflora ‚Karl Foerster‘) vzadu uprostřed: přímý trs, nahoře úzké vřetenovité
+       béžové laty rozevřené do vějíře -->
+  <g id="trtina">
+    <path d="M49 70 Q49 52 48 40 M52 70 Q52 50 51 30 M55 70 L55 26 M58 70 Q58 50 59 30 M61 70 Q61 52 62 40" fill="none" stroke="#5f8f3a" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M48 6 Q51.5 15 52.5 30 L49.5 30 Q47.6 16 48 6 Z" fill="#d8c48e"/><path d="M48 6 Q51.5 15 52.5 30 L51.5 30 Q50.4 15 48 6 Z" fill="#b8a26c"/>
+    <path d="M55 2 Q57 12 56.5 26 L53.5 26 Q53 12 55 2 Z" fill="#d8c48e"/><path d="M55 2 Q57 12 56.5 26 L55.5 26 Q56 12 55 2 Z" fill="#b8a26c"/>
+    <path d="M62 6 Q62.4 16 60.5 30 L57.5 30 Q58.5 15 62 6 Z" fill="#d8c48e"/><path d="M62 6 Q62.4 16 60.5 30 L59.5 30 Q61.3 16 62 6 Z" fill="#b8a26c"/>
+  </g>
+  <g id="leva-polovina">
+    <!-- kakost (Geranium sanguineum): nízký polštář na kraji, růžovofialové květy -->
+    <path d="M6 70 Q4 54 14 51 Q20 45 27 51 Q33 55 31 70 Z" fill="#4f8a35"/>
+    <path d="M8 70 Q7 57 15 54 Q20 49 25 54 Q28 58 27 70 Z" fill="#6aa84f"/>
+    <circle cx="13" cy="53" r="2.4" fill="#c06aa8"/><circle cx="21" cy="49" r="2.4" fill="#c06aa8"/><circle cx="27" cy="55" r="2.2" fill="#c06aa8"/>
+    <!-- ostřice (Carex): nízký převislý trs mezi kakostem a kosatcem -->
+    <path d="M30 70 Q27 60 22 58 M31 70 Q31 58 28 52 M33 70 Q35 58 38 55" fill="none" stroke="#7d9a4a" stroke-width="2" stroke-linecap="round"/>
+    <!-- kosatec sibiřský (Iris sibirica): úzké mečovité listy do 55 cm, modrofialový květ na stvolu -->
+    <path d="M36 70 Q33 45 29 24 M39 70 Q38 44 37 20 M42 70 Q43 48 46 28" fill="none" stroke="#3f7a2d" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M38 70 Q36 40 33 15" fill="none" stroke="#5f8f3a" stroke-width="1.4"/>
+    <path d="M33 15 Q27 14 26.5 20 Q30.5 19.5 33 16.5 Q35.5 19.5 39.5 20 Q39 14 33 15 Z" fill="#4b5fb3"/><path d="M31 15.5 Q33 6 35 15.5 Z" fill="#7b8ad0"/>
+    <!-- rudbekie (Rudbeckia fulgida): žluté úbory s tmavým středem, před třtinou -->
+    <path d="M44 70 Q44 48 41 34 M46 70 Q46 52 45 42" fill="none" stroke="#4f8a35" stroke-width="1.6" stroke-linecap="round"/>
+    <circle cx="41" cy="33" r="3.6" fill="#e8b830"/><circle cx="41" cy="33" r="1.4" fill="#2a2b2a"/>
+    <circle cx="45" cy="39" r="3.6" fill="#e8b830"/><circle cx="45" cy="39" r="1.4" fill="#2a2b2a"/>
+  </g>
+  <g id="prava-polovina">
+    <!-- kakost: dva květy -->
+    <path d="M104 70 Q106 54 96 51 Q90 45 83 51 Q77 55 79 70 Z" fill="#4f8a35"/>
+    <path d="M102 70 Q103 57 95 54 Q90 49 85 54 Q82 58 83 70 Z" fill="#6aa84f"/>
+    <circle cx="97" cy="53" r="2.4" fill="#c06aa8"/><circle cx="87" cy="51" r="2.4" fill="#c06aa8"/>
+    <!-- ostřice -->
+    <path d="M80 70 Q83 60 88 58 M79 70 Q79 58 82 52 M77 70 Q75 58 72 55" fill="none" stroke="#7d9a4a" stroke-width="2" stroke-linecap="round"/>
+    <!-- kosatec: jen jeden květ, o 5 cm níž -->
+    <path d="M74 70 Q77 45 81 24 M71 70 Q72 44 73 20 M68 70 Q67 48 64 28" fill="none" stroke="#3f7a2d" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M72 70 Q74 44 77 20" fill="none" stroke="#5f8f3a" stroke-width="1.4"/>
+    <path d="M77 20 Q83 19 83.5 25 Q79.5 24.5 77 21.5 Q74.5 24.5 70.5 25 Q71 19 77 20 Z" fill="#4b5fb3"/><path d="M79 20.5 Q77 11 75 20.5 Z" fill="#7b8ad0"/>
+    <!-- rudbekie ve výškách 30 a 40 cm pod vrchem -->
+    <path d="M66 70 Q66 46 69 31 M64 70 Q64 52 65 43" fill="none" stroke="#4f8a35" stroke-width="1.6" stroke-linecap="round"/>
+    <circle cx="69" cy="30" r="3.6" fill="#e8b830"/><circle cx="69" cy="30" r="1.4" fill="#2a2b2a"/>
+    <circle cx="65" cy="40" r="3.6" fill="#e8b830"/><circle cx="65" cy="40" r="1.4" fill="#2a2b2a"/>
+  </g>
+</svg>
