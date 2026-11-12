@@ -1620,7 +1620,7 @@ function drawNetworks(svg, { items, span, kinds }, total) {
     if (cx < -EDGE || cx > total + EDGE) continue;
     const k = kinds[it.kind] || kinds.jine, dn = it.profil > 20 && it.profil < 3000 ? it.profil : k.dn, r = Math.max(8, dn / 20);
     const cy = Math.min(base - r - 4, zero + it.depth * NET_V + r), n = el("g", {}, g);
-    el("title", {}, n).textContent = `${k.label}${it.profil > 20 ? ` DN ${it.profil}` : ""} · ${it.measured ? `hloubka ${num(it.depth)} m` : `hloubka neznámá (obvyklá ${num(it.depth)} m)`}${it.lines > 1 ? ` (v datech ${it.lines}× vedle sebe)` : ""}\n${it.popis}`;
+    n.dataset.tip = `${k.label}${it.profil > 20 ? ` DN ${it.profil}` : ""} · ${it.measured ? `hloubka ${num(it.depth)} m` : `hloubka neznámá (obvyklá ${num(it.depth)} m)`}${it.lines > 1 ? ` (v datech ${it.lines}× vedle sebe)` : ""}\n${it.popis}`;
     el("circle", { cx, cy, r: Math.max(r, 24), fill: "transparent" }, n); // a target big enough for the tooltip
     if (it.measured) {
       el("circle", { cx, cy, r: r + 6, fill: "#fbfaf6", opacity: 0.55 }, n);

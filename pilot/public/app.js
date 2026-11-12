@@ -786,11 +786,38 @@ function renderWidthCheck() {
 // more on a phone, where fingers need bigger targets) and scrolls sideways instead.
 const MIN_SCALE = { phone: 0.17, desktop: 0.17 };
 // The width goes into a CSS variable, so drawings the editor redraws while dragging keep it.
+// The magnifier (Bára: wide streets and the networks under them): the drawing's width times zoom, the wrap
+// scrolling; the view keeps its middle.
+const ZOOM_MAX = 6;
+let zoom = 1;
+for (const b of document.querySelectorAll("#zoom-ctl button")) b.onclick = () => {
+  const wrap = $("#profile-wrap"), mid = (wrap.scrollLeft + wrap.clientWidth / 2) / (wrap.scrollWidth || 1);
+  zoom = Math.min(ZOOM_MAX, Math.max(1, zoom * (b.dataset.z === "1" ? 1.5 : 1 / 1.5)));
+  if (zoom < 1.05) zoom = 1;
+  fitPhone();
+  wrap.scrollLeft = mid * wrap.scrollWidth - wrap.clientWidth / 2;
+};
+// The networks' tip: the name and depth by the pointer at once (no waiting for a title), a tap on a phone.
+function netTip(e) {
+  const g = e.target.closest?.(".networks g[data-tip]"), tip = $("#net-tip");
+  if (!g) { tip.hidden = true; return; }
+  tip.textContent = g.dataset.tip;
+  tip.hidden = false;
+  const x = Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8), y = Math.max(8, e.clientY - tip.offsetHeight - 12);
+  tip.style.left = `${x}px`;
+  tip.style.top = `${y}px`;
+}
+$("#profile").addEventListener("pointermove", netTip);
+$("#profile").addEventListener("pointerdown", netTip);
+$("#profile").addEventListener("pointerleave", () => { $("#net-tip").hidden = true; });
+
 function fitPhone(box = $("#profile")) {
   const vbWidth = Math.max(0, ...[...box.querySelectorAll("svg")].map((svg) => Number(svg.getAttribute("viewBox")?.split(" ")[2]) || 0));
   const scale = matchMedia("(max-width: 760px)").matches ? MIN_SCALE.phone : MIN_SCALE.desktop;
-  const width = Math.max(box.clientWidth, vbWidth * scale);
+  const width = Math.max(box.clientWidth, vbWidth * scale) * zoom;
   box.style.setProperty("--fit-width", `${width}px`);
+  $("#zoom-ctl [data-z='-1']").disabled = zoom <= 1;
+  $("#zoom-ctl [data-z='1']").disabled = zoom >= ZOOM_MAX;
   box.closest("#profile-wrap")?.classList.toggle("scrolls", width > box.clientWidth + 1);
   scrollFade();
   requestAnimationFrame(() => fitLabels(box));

@@ -378,5 +378,12 @@ footer a { color: inherit; }
 #map .leaflet-marker-icon.leaflet-interactive { cursor: grab; }
 
 /* Networks under the street (a trial): a hand over them, their ring darker on hover. */
-#profile .networks g { cursor: help; }
+#profile .networks g { cursor: pointer; }
 #profile .networks g:hover circle.net { stroke: #1d1d1b; stroke-opacity: 1; stroke-width: 3; }
+
+#net-tip { position: fixed; z-index: 1000; pointer-events: none; max-width: 280px; padding: 6px 9px; border-radius: 8px; background: #1d1d1b; color: #fbfaf6; font-size: 12px; line-height: 1.35; box-shadow: 0 4px 14px rgba(0,0,0,.18); white-space: pre-line; }
+#net-tip[hidden] { display: none; }
+/* The profile's magnifier: + and − in its top right corner. */
+.zoom-ctl { position: absolute; top: 8px; right: 8px; display: flex; flex-direction: column; gap: 4px; z-index: 5; }
+.zoom-ctl button { width: 30px; height: 30px; padding: 0; font-size: 18px; line-height: 1; border-radius: 8px; background: var(--paper); border: 1px solid var(--line); box-shadow: var(--shadow); }
+.zoom-ctl button:disabled { opacity: .4; }
