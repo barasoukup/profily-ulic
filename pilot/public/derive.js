@@ -1381,12 +1381,14 @@ export function centerOnStreet(osm, frame, near, half = 40) {
 // roadway is then the sidewalk, the others are green (estimates all).
 // With the orthophoto of the click (lanes-ortho.js laneImage st) the colour decides first (Bára 12. 11. 2026): a
 // piece that is green, or yellow as the dry grass of ČÚZK's summer images (Kolín: the verges of a road in the
-// fields), is green; a grey one (asphalt, concrete paving) a sidewalk where the side has one and else a paved area;
-// only where the colour is unclear (red paving, shade, a mix) the nearest-piece rule stays. Means over the piece,
-// measured on 50 cuts of Kolín and Mladá Boleslav: green grass G 10–14, dry grass Y 23–26, paving G 0–1 and Y 6–15.
+// fields), is green; a grey and even one (asphalt, concrete paving, also in shade) a sidewalk: paving between two
+// boundaries of a transport area beside the roadway (Bára, Mladá Boleslav, Revoluční at 90 km/h); only where the
+// colour is unclear (red paving, the dappled shade of trees: Kolín, Osecká, a mix) the nearest-piece rule stays.
+// Means over the piece, measured on 50 cuts of Kolín and Mladá Boleslav: green grass G 10–14, dry grass Y 23–26,
+// paving G 0–2 and Y −1–18 with an even brightness (its spread SD 2–28), dappled shade on a verge SD 42.
 const BUILT_NEAR = 30, LOOK_ALONG = 8;
 const looksGreen = (m) => m.G > 8 || (m.Y > 20 && m.D > -25);
-const looksPaved = (m) => m.G < 4 && m.Y < 17 && m.D > -25;
+const looksPaved = (m) => m.G < 4 && m.Y < 19 && m.D > -25 && m.SD < 35;
 // "green", "paved" or null (no image, too narrow, unclear): the means of a piece on the orthophoto (rows along the
 // street within ±LOOK_ALONG m, its stretch of the cut less 0.25 m at each edge).
 export function surfaceLook(st, rings, center, normal) {
@@ -1397,17 +1399,18 @@ export function surfaceLook(st, rings, center, normal) {
   }
   lo += 0.25; hi -= 0.25;
   if (!(hi - lo >= 0.3)) return null;
-  const half = st.nu / 2, rows = Math.round(LOOK_ALONG / st.res), m = { G: 0, Y: 0, D: 0 };
+  const half = st.nu / 2, rows = Math.round(LOOK_ALONG / st.res), m = { G: 0, Y: 0, D: 0, L: 0, LL: 0 };
   let n = 0;
   for (let i = Math.ceil((lo - st.t0) / st.res); i <= Math.floor((hi - st.t0) / st.res); i++) {
     for (let j = Math.max(0, Math.floor(half - rows)); j < Math.min(st.nu, half + rows); j++) {
       const k = j * st.nt + i;
       if (Number.isNaN(st.G[k])) continue;
-      m.G += st.G[k]; m.Y += st.Y[k]; m.D += st.D[k]; n++;
+      m.G += st.G[k]; m.Y += st.Y[k]; m.D += st.D[k]; m.L += st.L[k]; m.LL += st.L[k] * st.L[k]; n++;
     }
   }
   if (!n) return null;
-  for (const c of "GYD") m[c] /= n;
+  for (const c of "GYDL") m[c] /= n;
+  m.SD = Math.sqrt(Math.max(0, m.LL / n - m.L * m.L)); // how even its brightness is: paving even, dappled shade not
   return looksGreen(m) ? "green" : looksPaved(m) ? "paved" : null;
 }
 export function linePieces(polys, tags, center, normal, st = null) {
@@ -1433,7 +1436,7 @@ export function linePieces(polys, tags, center, normal, st = null) {
     let walked = false;
     mine.forEach((p, k) => {
       if (look[k] === "green") code.set(p, 401);
-      else if (look[k] === "paved") { code.set(p, walk ? 702 : 1003); walked ||= walk; }
+      else if (look[k] === "paved") { code.set(p, 702); walked = true; }
       // Unclear: the nearest piece a sidewalk where the side has one and none paved is seen.
       else if (!walk || walked || k > 0) code.set(p, 401);
       else walked = true;
@@ -1580,6 +1583,8 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   if ((reach?.right ?? MAX_REACH) >= MAX_REACH) { const d = facade(i0 - 1, -1, capR); if (d !== null) reachR = Math.max(reachR, Math.min(capR, d + 0.5)); }
   // A cut end dragged out past the default reach (by hand) asks for what is out there: the profile goes over
   // fences, gardens, lawns and yards to the next building, or to the dragged end (Bára, Pardubice, Palackého).
+  // Also a reach set by hand short of that, but past where the profile would end by itself (Bára, Mladá Boleslav,
+  // Revoluční: an end dragged from 16 m to 20 m sprang back to the grass where the profile had stopped).
   const byHand = { L: (reach?.left ?? 0) > MAX_REACH + 0.5, R: (reach?.right ?? 0) > MAX_REACH + 0.5 };
   const onBridgeWay = way.tags?.bridge && way.tags.bridge !== "no", SIDEWALKS = new Set([702, 703]);
   const stopAt = (r, limit, k, step) => {
@@ -1601,10 +1606,21 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     if (Math.min(Math.abs(r.s - ref), Math.abs(r.e - ref)) > limit) return "volno";
     return null;
   };
-  let lo = i0, hi = i0;
-  let right = "volno", left = "volno";
-  while (lo > 0) { const s = stopAt(runs[lo - 1], reachR, lo - 1, -1); if (s) { right = s; break; } lo--; }
-  while (hi < runs.length - 1) { const s = stopAt(runs[hi + 1], reachL, hi + 1, 1); if (s) { left = s; break; } hi++; }
+  const walk = () => {
+    let lo = i0, hi = i0, right = "volno", left = "volno";
+    while (lo > 0) { const s = stopAt(runs[lo - 1], reachR, lo - 1, -1); if (s) { right = s; break; } lo--; }
+    while (hi < runs.length - 1) { const s = stopAt(runs[hi + 1], reachL, hi + 1, 1); if (s) { left = s; break; } hi++; }
+    return { lo, hi, right, left };
+  };
+  let { lo, hi, right, left } = walk();
+  const handSet = (v) => typeof v === "number" && Math.abs(v - MAX_REACH) > 0.05;
+  const pastL = !byHand.L && handSet(reach?.left) && left !== "budova" && reach.left > runs[hi].e - ref + 0.5;
+  const pastR = !byHand.R && handSet(reach?.right) && right !== "budova" && reach.right > ref - runs[lo].s + 0.5;
+  if (pastL || pastR) {
+    byHand.L ||= pastL;
+    byHand.R ||= pastR;
+    ({ lo, hi, right, left } = walk());
+  }
   const edges = { right, left };
 
   // A fence or wall beyond the outermost carriageway is the edge of the street (Bára: what is behind

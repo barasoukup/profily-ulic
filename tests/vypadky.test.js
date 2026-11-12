@@ -144,20 +144,25 @@ test("kusy z čar podle barvy ortofota: tráva je zeleň, dlažba chodník (za z
   // The orthophoto on the cut's grid: green from 3 to 5 m (Mladá Boleslav č. 17: a grass strip before the sidewalk).
   // Grass green there, or dry and yellow (ČÚZK's summer images), grey paving elsewhere.
   const image = (grass) => {
-    const res = 0.1, t0 = -12, nt = 240, nu = 400, G = new Float32Array(nt * nu), Y = new Float32Array(nt * nu), D = new Float32Array(nt * nu);
+    const res = 0.1, t0 = -12, nt = 240, nu = 400, G = new Float32Array(nt * nu), Y = new Float32Array(nt * nu), D = new Float32Array(nt * nu), L = new Float32Array(nt * nu);
     for (let j = 0; j < nu; j++) for (let i = 0; i < nt; i++) {
       const t = t0 + (i + 0.5) * res, k = j * nt + i;
-      [G[k], Y[k], D[k]] = t > 3 && t < 5 ? grass : [1, 8, -4];
+      // A dappled piece alternates its brightness by ±spread (its 5th value), row by row.
+      const [g, y, d, l, sd = 0] = t > 3 && t < 5 ? grass : [1, 8, -4, 180];
+      [G[k], Y[k], D[k], L[k]] = [g, y, d, l + (j % 2 ? sd : -sd)];
     }
-    return { t0, res, nt, nu, G, Y, D };
+    return { t0, res, nt, nu, G, Y, D, L };
   };
-  const st = image([12, 18, 8]);
+  const st = image([12, 18, 8, 110]);
   const kinds = (tags, image) => linePieces([road, grass, paving, house], tags, [0, 0], [1, 0], image).map((p) => p.code);
   assert.deepEqual(kinds({}, st), [701, 401, 702, 601], "zelený pruh a za ním chodník");
   assert.deepEqual(kinds({}, null), [701, 702, 401, 601], "bez ortofota nejbližší kus");
-  // Paving where the side has no sidewalk: a paved area.
-  assert.deepEqual(kinds({ sidewalk: "no" }, st), [701, 401, 1003, 601]);
-  assert.deepEqual(kinds({}, image([4, 25, -10])), [701, 401, 702, 601], "suchá tráva");
+  // Paving between the boundaries of a transport area is a sidewalk even where OSM has none (Revoluční, 90 km/h).
+  assert.deepEqual(kinds({ sidewalk: "no", maxspeed: "90" }, st), [701, 401, 702, 601]);
+  // Dark paving in shade is paving (Revoluční); dappled shade on a verge is unclear: the nearest piece (Kolín, Osecká).
+  assert.deepEqual(kinds({ maxspeed: "90" }, image([2, -1, 4, 81, 10])), [701, 702, 702, 601]);
+  assert.deepEqual(kinds({ maxspeed: "90" }, image([3, 14, -5, 125, 42])), [701, 401, 702, 601]);
+  assert.deepEqual(kinds({}, image([4, 25, -10, 140])), [701, 401, 702, 601], "suchá tráva");
   // Red paving tells nothing by its colour: the nearest piece, as without the image.
-  assert.deepEqual(kinds({}, image([-40, 70, -80])), [701, 702, 702, 601]);
+  assert.deepEqual(kinds({}, image([-40, 70, -80, 130])), [701, 702, 702, 601]);
 });
