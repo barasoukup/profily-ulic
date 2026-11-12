@@ -255,6 +255,7 @@ button.tag { padding: 3px 9px; border-radius: 20px; font-size: 12px; }
 #editor > label { display: flex; }
 #editor:empty { display: none; }
 #editor label { display: inline-flex; gap: 8px; align-items: center; font-weight: 500; max-width: 100%; min-width: 0; }
+#editor input.floors { width: 4.5em; } /* the floors of a building at an edge */
 #editor select { max-width: 100%; min-width: 0; flex: 1; text-overflow: ellipsis; }
 #editor input[type=number], #editor select, #editor input[type=text] {
   font: inherit; font-weight: 400; padding: 6px 8px; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--panel);

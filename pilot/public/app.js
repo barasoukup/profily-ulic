@@ -1119,6 +1119,26 @@ function edgeKindSelect(p, side) {
   return sel;
 }
 
+// Floors above the ground of the building at an edge: set by hand they stand for the data's floors and height
+// (profile.js edgeInfo); emptied, the data's again.
+function floorsInput(p, side) {
+  const data = p.edges?.[`${side}Info`]?.levels;
+  const floors = Object.assign(document.createElement("input"), { type: "number", min: 1, max: 60, step: 1, value: p.edges?.[`${side}Levels`] || data || "", placeholder: "–", className: "floors" });
+  floors.setAttribute("aria-label", tr("Podlaží"));
+  floors.onchange = () => {
+    const n = Math.round(Number(floors.value));
+    // The look guessed so far stays: other floors would make the guess another house (a panel house of 2
+    // floors a hall).
+    const look = p.edges?.[`${side}Style`] || buildingStyle(edgeInfo(p.edges, side));
+    p.edges = { ...p.edges, [`${side}Style`]: look };
+    if (n >= 1 && n <= 60 && n !== data) p.edges[`${side}Levels`] = n;
+    else delete p.edges[`${side}Levels`];
+    edited();
+    render();
+  };
+  return floors;
+}
+
 // A selected edge (Bára 12. 11. 2026: a "panel house" that is a two-storey town house, or a garden): what stands
 // there and the building's floors; in Stav without "Opravit data" only what it is.
 function renderEdge(ed, p, side) {
@@ -1140,20 +1160,7 @@ function renderEdge(ed, p, side) {
   const lab = (text, input) => { const l = document.createElement("label"); l.append(text, input); return l; };
   const row = ed.appendChild(Object.assign(document.createElement("div"), { className: "ed-row" }));
   row.append(lab(tr("Co tu stojí"), edgeKindSelect(p, side)));
-  if (kind === "budova") {
-    // Floors above the ground: set by hand they stand for the data's floors and height (profile.js edgeInfo).
-    const data = p.edges?.[`${side}Info`]?.levels;
-    const floors = Object.assign(document.createElement("input"), { type: "number", min: 1, max: 60, step: 1, value: p.edges?.[`${side}Levels`] || data || "", placeholder: "–" });
-    floors.onchange = () => {
-      const n = Math.round(Number(floors.value));
-      p.edges = { ...p.edges };
-      if (n >= 1 && n <= 60 && n !== data) p.edges[`${side}Levels`] = n;
-      else delete p.edges[`${side}Levels`];
-      edited();
-      render();
-    };
-    row.append(lab(tr("Podlaží"), floors));
-  }
+  if (kind === "budova") row.append(lab(tr("Podlaží"), floorsInput(p, side)));
 }
 
 function renderEditor(p) {
@@ -1168,6 +1175,8 @@ function renderEditor(p) {
     for (const [side, text] of [["left", tr("Levý okraj")], ["right", tr("Pravý okraj")]]) {
       const l = document.createElement("label");
       l.append(text, edgeKindSelect(p, side));
+      // The floors of a building right there too (Bára).
+      if ((p.edges?.[side] || "volno") === "budova") l.append(floorsInput(p, side), tr("NP"));
       ed.append(l);
     }
     return;
