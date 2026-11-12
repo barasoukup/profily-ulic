@@ -92,6 +92,9 @@ button.lang { padding: 6px 8px; font-size: 12px; font-weight: 600; letter-spacin
 }
 .menu-list button, .menu-list .btn { border: 0; text-align: left; border-radius: 6px; padding: 8px 10px; font-weight: 500; }
 .menu-list button:hover, .menu-list .btn:hover { background: var(--bg); }
+.menu-list hr { border: 0; border-top: 1px solid var(--line); margin: 4px 2px; width: auto; }
+.menu-list input { font: inherit; font-size: 13px; padding: 6px 8px; margin: 2px 4px; border: 1px solid var(--line-strong); border-radius: 8px; }
+.menu-list .switch { padding-left: 10px; font-size: 14px; }
 
 /* ---------- layout ---------- */
 /* --map-size: share of the screen for the map, set by dragging the splitter (app.js). */
@@ -104,13 +107,6 @@ main { flex: 1; display: grid; grid-template-columns: min(var(--map-size, 50%), 
 #splitter:hover::after, #splitter.dragging::after { background: var(--muted); }
 body.resizing { user-select: none; cursor: col-resize; }
 #map { flex: 1; }
-#cut-info { padding: 6px 12px 8px; font-size: 12px; border-top: 1px solid var(--line); }
-#cut-info summary { cursor: pointer; color: var(--muted); font-weight: 500; }
-#cut-info[open] { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
-#cut-info[open] summary { flex-basis: 100%; }
-#cut-info #cut-pos { flex-basis: 100%; font-family: ui-monospace, "SF Mono", Menlo, monospace; color: var(--muted); }
-#cut-info input { flex: 1; min-width: 160px; font: inherit; padding: 6px 8px; border: 1px solid var(--line-strong); border-radius: 8px; }
-#cut-info button { padding: 5px 10px; font-size: 12px; }
 #map-help { padding: 8px 12px; font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); }
 #map-help[hidden] { display: none; }
 .pano-link { display: block; padding: 6px 12px; font-size: 13px; border-top: 1px solid var(--line); color: var(--accent); }
@@ -145,10 +141,6 @@ button.pano-link { width: 100%; text-align: left; background: var(--panel); bord
 #profile-head[hidden] { display: none; }
 #profile-head h1 { margin: 0; font-size: 24px; line-height: 1.15; font-weight: 700; letter-spacing: -0.02em; }
 #profile-sub { font-size: 14px; }
-.badge { margin-left: auto; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; }
-.badge-stav { background: var(--bg); color: var(--muted); }
-.badge-navrh { background: #e6f1fb; color: var(--accent); }
-.badge-porovnat { background: #efeaf8; color: var(--user); }
 body[data-mode="navrh"] #profile-wrap { box-shadow: inset 4px 0 0 var(--accent), var(--shadow); }
 #stav-cta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 12px 14px; border-radius: var(--radius); background: var(--panel); border: 1px dashed var(--line-strong); color: var(--muted); }
 #stav-cta[hidden] { display: none; }
@@ -165,7 +157,6 @@ body[data-mode="navrh"] #profile-wrap { box-shadow: inset 4px 0 0 var(--accent),
 .share-legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 3px; background: var(--c); margin-right: 5px; vertical-align: -1px; }
 #stav-cta.fixing { border: 1px solid var(--user); background: #f1effb; color: var(--text); }
 #stav-cta button[hidden] { display: none; }
-.badge-fixing { background: #ece9f8; color: var(--user); }
 #stav-cta span { flex: 1; min-width: 220px; }
 .diff { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 14px; margin-top: 12px; }
 .diff h3 { margin: 0 0 4px; font-size: 13px; }
@@ -221,7 +212,6 @@ body[data-mode="porovnat"] #profile svg { max-height: max(200px, calc((100dvh - 
 #profile .handle { touch-action: none; }
 #profile-head .flip { padding: 4px 10px; font-size: 13px; align-self: center; }
 #profile-head .head-tools { display: inline-flex; gap: 8px; align-self: center; white-space: nowrap; margin-left: auto; }
-#profile-head .badge + .head-tools { margin-left: 0; }
 #profile-head #site-btn[hidden] { display: none; }
 #profile-head #site-btn[aria-pressed="true"] { background: var(--paper); border-color: #a9a395; box-shadow: inset 0 0 0 1px #a9a395; }
 #net-hint { margin: 6px 2px 0; font-size: 12px; }
@@ -311,8 +301,6 @@ footer a { color: inherit; }
 /* Laptops and tablets: a lighter header. */
 @media (max-width: 1180px) {
   header { gap: 8px; padding: 8px 10px; }
-  .switch { font-size: 0; gap: 0; } /* the switch alone; its title says what it does */
-  .switch::after { content: attr(data-label); font-size: 13px; margin-left: 6px; }
   .seg-toggle button { padding: 5px 10px; }
 }
 @media (max-width: 960px) and (min-width: 761px) {
@@ -324,10 +312,9 @@ footer a { color: inherit; }
 @media (max-width: 760px) {
   body { height: auto; min-height: 100vh; }
   header { flex-wrap: wrap; gap: 8px; padding: 8px 10px; }
-  .brand-name, header .spacer, .menu summary::after, .menu .lbl { display: none; }
+  .brand-name, header .spacer, .menu summary::after, header .lbl { display: none; }
   .brand-mark { width: 32px; height: 32px; }
-  header .switch { margin-left: auto; font-size: 0; padding: 6px 4px; }
-  .switch::after { font-size: 13px; margin-left: 6px; }
+  #btn-share { margin-left: auto; }
   .menu summary { padding: 8px 10px; }
   button.lang { padding: 8px 8px; }
   .ico { width: 18px; height: 18px; }
@@ -345,14 +332,12 @@ footer a { color: inherit; }
   .empty { flex-direction: column; text-align: center; padding: 16px 8px; }
   .empty ol { text-align: left; }
   #editor { padding: 10px; }
-  #editor input[type=number], #editor select, #cut-info input, #report-text { font-size: 16px; } /* no zoom on focus in iOS */
-  #palette .chip { min-height: 40px; padding: 8px 12px 8px 9px; font-size: 13px; }
+  #editor input[type=number], #editor select,   #palette .chip { min-height: 40px; padding: 8px 12px 8px 9px; font-size: 13px; }
   .pal-name { width: 100%; }
   #editor label { flex-direction: column; align-items: stretch; gap: 4px; }
   #editor .ed-row > label { flex: 1 1 140px; }
   .ed-row button { min-height: 40px; }
   #profile-head h1 { font-size: 20px; }
-  .switch::after { content: attr(data-label); }
 }
 
 /* Address search at the map's top left (search.js), above the zoom buttons. */
@@ -393,3 +378,31 @@ footer a { color: inherit; }
 /* The magnifier: a zoomed drawing keeps its full height (Návrh and Porovnat otherwise cap it, which undid the zoom). */
 #profile.zoomed svg { max-height: none !important; }
 @media (max-width: 760px) { .zoom-ctl { top: 52px; } } /* clear of the A/B marks and the top of the houses */
+#btn-share { display: inline-flex; align-items: center; gap: 6px; }
+
+/* The card of a part (Fable's look at the interface): its moves in the head, the rarer choices folded. */
+.ed-acts { display: inline-flex; gap: 4px; margin-left: auto; align-self: center; }
+.ed-acts button { padding: 4px 9px; font-size: 13px; min-width: 32px; }
+.ed-acts button:disabled { opacity: 0.35; cursor: default; }
+.ed-hint { margin: -4px 0 0; font-size: 13px; }
+#editor.hint-only { background: none; border: 0; box-shadow: none; padding: 0 2px; }
+#editor.hint-only .ed-hint { margin: 0; }
+.ed-more { border-top: 1px solid var(--line); padding-top: 8px; display: flex; flex-direction: column; gap: 10px; }
+.ed-more:not([open]) { gap: 0; }
+.ed-more summary { cursor: pointer; font-size: 13px; font-weight: 600; color: var(--muted); }
+.ed-more[open] summary { margin-bottom: 2px; }
+/* The palette folded into one button. */
+#palette details { display: flex; flex-direction: column; gap: 8px; }
+#palette details > summary { list-style: none; align-self: flex-start; font-weight: 600; cursor: pointer; }
+#palette details > summary::-webkit-details-marker { display: none; }
+#palette details[open] > summary { background: var(--paper); }
+.pal-note { font-size: 12px; margin: 8px 0 4px; }
+@media (max-width: 760px) {
+  .ed-head { row-gap: 6px; }
+  .ed-acts { order: 5; margin-left: 0; flex-basis: 100%; }
+  .ed-acts button { min-height: 40px; flex: 1; }
+}
+footer summary { cursor: pointer; }
+footer details[open] summary { margin-bottom: 4px; }
+#editor .items select { flex: 0 1 auto; width: 11.5em; } /* closed it says only "+ přidat…"; the list opens wider */
+.ed-acts .close { margin-left: 2px; padding: 2px 6px; }

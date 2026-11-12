@@ -26,7 +26,8 @@ translatePage();
 {
   const other = lang === "cs" ? "en" : "cs";
   const b = document.querySelector("#btn-lang");
-  Object.assign(b, { textContent: other.toUpperCase(), title: LANGS[other], lang: other, onclick: () => setLang(other) });
+  // The page reloads in the other language: the mode goes along (Fable: Návrh fell back to Stav).
+  Object.assign(b, { textContent: other.toUpperCase(), title: LANGS[other], lang: other, onclick: () => { try { sessionStorage.setItem("profily-rezim", state.mode); } catch {} setLang(other); } });
   b.setAttribute("aria-label", LANGS[other]);
 }
 
@@ -388,8 +389,6 @@ function cutText(cut) {
 function showCutInfo() {
   if (!state.cut) return;
   const r = state.cut.reach || defaultReach();
-  $("#cut-pos").textContent = cutText(state.cut) + " · " + tr("ulice {deg}° · dosah {left} / {right} m",
-    { deg: Math.round(((state.cut.bearing % 360) + 360) % 360), left: Math.round(r.left), right: Math.round(r.right) });
   history.replaceState(null, "", `#rez=${state.cut.lat.toFixed(6)},${state.cut.lon.toFixed(6)},${Math.round(state.cut.bearing)},${r.left.toFixed(1)},${r.right.toFixed(1)}`);
   // Mapy.com at the cut with the panorama layer on (ovl=8). A link straight into a panorama needs
   // the photo's id (pid), which only their Panorama API (with a key) gives; one click on the street opens it.
@@ -475,8 +474,17 @@ function drawMtvu(polys) {
   }
 }
 
+// The hint on dragging the cut shows until the cut is first dragged (Fable: not for good under the map).
+const HELP_KEY = "profily-napoveda";
+const helpSeen = () => { try { return localStorage.getItem(HELP_KEY) === "1"; } catch { return false; } };
+function markHelp() {
+  if (helpSeen()) return;
+  try { localStorage.setItem(HELP_KEY, "1"); } catch {}
+  $("#map-help").hidden = true;
+}
 // Live preview while dragging: the line follows the handle; the profile is recomputed on drop.
 function previewCut(lat, lon, normal, skip, reach = cutSpan(state.cut)) {
+  markHelp();
   const f = localFrame(lat, lon);
   const ll = cutEnds(f, normal, reach).map(([x, y]) => [y, x]);
   cutLine.setLatLngs(ll);
@@ -538,7 +546,6 @@ function current() {
 // and the log gets the same name whatever the visitor's language (Fable's review).
 const streetName = (c) => c?.name || (c?.wayId ? tr("ulice {id}", { id: c.wayId }) : tr("Ulice"));
 
-const MODE_LABEL = { stav: tr("Stav"), navrh: tr("Návrh"), porovnat: tr("Stav a návrh") };
 // Stav is for looking at the street as it is; its data can be corrected only after "Opravit data"
 // (state.fixing), so nothing changes by accident. Návrh is always editable.
 const canEdit = () => state.mode === "navrh" || (state.mode === "stav" && state.fixing);
@@ -577,20 +584,18 @@ function draw() {
   });
   const box = $("#profile");
   document.body.dataset.mode = state.stav ? state.mode : "";
-  $("#legend").hidden = !state.stav;
+  // Where the parts come from matters while looking at the data, not while designing (Fable's look at the interface).
+  $("#legend").hidden = !state.stav || state.mode !== "stav";
   $("#profile-head").hidden = !state.stav;
-  $("#map-help").hidden = !state.stav;
+  $("#map-help").hidden = !state.stav || helpSeen();
   $("#stav-cta").hidden = !state.stav || state.mode !== "stav";
   $("#stav-cta").classList.toggle("fixing", !!state.fixing);
   $("#stav-text").textContent = state.fixing
     ? tr("Opravujete data stavu: táhněte úchyty nebo klikněte na část. Opravené části se označí jako upravené ručně.")
-    : tr("Profil ukazuje ulici, jak je dnes (z dat {data}). Když data nesedí, opravte je nebo nám chybu nahlaste; změny navrhujte v Návrhu.", { data: city.dataShort });
+    : tr("Takhle ulice vypadá podle dat {data}. Nesedí? Opravte je, nebo nám chybu nahlaste.", { data: city.dataShort });
   $("#btn-fix").textContent = state.fixing ? tr("Hotovo") : tr("Opravit data");
-  $("#btn-to-navrh").hidden = !!state.fixing;
   if (state.stav) {
     $("#profile-sub").textContent = tr("Celkem {w}", { w: fmtM(totalWidth(state.mode === "navrh" ? state.navrh : state.stav)) });
-    $("#mode-badge").textContent = state.mode === "stav" && state.fixing ? tr("Stav · oprava dat") : MODE_LABEL[state.mode];
-    $("#mode-badge").className = `badge badge-${state.mode}${state.mode === "stav" && state.fixing ? " badge-fixing" : ""}`;
   }
   if (!state.stav) {
     box.innerHTML = `<div class="empty">
@@ -615,6 +620,7 @@ function draw() {
     renderShares();
     $("#editor").replaceChildren();
     $("#palette").replaceChildren();
+    $("#rule-check").hidden = true; // the design's warnings belong to Návrh (they stayed from another street, Fable)
     renderWidthCheck();
     fitPhone(box);
     return;
@@ -671,7 +677,8 @@ function renderShares() {
   for (const g of shares(state.mode === "porovnat" ? state.navrh : current())) {
     if (!g.m && !(before && before[g.key])) continue;
     const d = before ? Math.round(g.pct - before[g.key]) : 0;
-    const item = Object.assign(document.createElement("span"), { textContent: `${g.label} ${fmtM(g.m)} · ${pct(g.pct)}${d ? ` (${d > 0 ? "+" : "−"}${tr("{n} p. b.", { n: Math.abs(d) })})` : ""}` });
+    // The change as the share before (Fable: "p. b." is for experts).
+    const item = Object.assign(document.createElement("span"), { textContent: `${g.label} ${fmtM(g.m)} · ${pct(g.pct)}${d ? ` (${tr("bylo {p}", { p: pct(before[g.key] || 0) })})` : ""}` });
     item.style.setProperty("--c", g.color);
     legend.append(item);
   }
@@ -740,7 +747,10 @@ function renderRuleCheck(p, box) {
   el.hidden = false;
   const ul = document.createElement("ul");
   for (const f of found) {
-    const li = Object.assign(document.createElement("li"), { className: f.level, textContent: f.text });
+    const li = Object.assign(document.createElement("li"), { className: f.level });
+    // Short, with the rule after it in grey (Fable: the long sentences with brackets in brackets read badly).
+    if (f.short) li.append(Object.assign(document.createElement("strong"), { textContent: f.short }), " ", Object.assign(document.createElement("span"), { className: "muted", textContent: f.why }));
+    else li.textContent = f.text;
     li.onclick = () => { state.selected = f.i; render(); };
     ul.append(li);
   }
@@ -762,10 +772,8 @@ function renderWidthCheck() {
   const diff = +(now - target).toFixed(2);
   box.hidden = false;
   box.className = Math.abs(diff) < 0.01 ? "ok" : "off";
-  if (Math.abs(diff) < 0.01) {
-    box.textContent = fixing ? tr("✓ Opravy drží šířku ulice {w}", { w: fmtM(target) }) : tr("✓ Návrh drží šířku ulice {w}", { w: fmtM(target) });
-    return;
-  }
+  // Only when the width does not fit (Fable: "drží šířku" all the time said nothing).
+  if (Math.abs(diff) < 0.01) { box.hidden = true; return; }
   const v = { d: fmtM(Math.abs(diff)), w: fmtM(target), now: fmtM(now) };
   box.textContent = fixing
     ? (diff > 0 ? tr("Po opravách je profil o {d} širší než změřená ulice ({w}, teď {now}).", v) : tr("Po opravách je profil o {d} užší než změřená ulice ({w}, teď {now}).", v))
@@ -1028,6 +1036,9 @@ function saveSplit(v) {
 splitter.setAttribute("aria-valuemin", 15);
 splitter.setAttribute("aria-valuemax", 80);
 applySplit(savedSplit() ?? (phoneLayout() ? 55 : 50));
+// A window turned or narrowed into the phone layout (or back) takes that layout's share: the desktop's "50%" as the
+// phone map's height left it no height at all (Fable).
+matchMedia("(max-width: 760px)").addEventListener("change", () => applySplit(savedSplit() ?? (phoneLayout() ? 55 : 50)));
 splitter.addEventListener("pointerdown", (e) => {
   e.preventDefault();
   splitter.setPointerCapture(e.pointerId);
@@ -1134,22 +1145,32 @@ function renderInfo(ed, s) {
 }
 
 // What stands at an edge of the street, and the look of a building ("budova" alone lets the app guess it).
-const EDGE_KINDS = () => [["stavba", tr("Drobná stavba")], ["zahrada", tr("Zahrada, louka")], ["zelen", tr("Zeleň, louka")], ["voda", tr("Voda")],
+const EDGE_KINDS = () => [["stavba", tr("Drobná stavba")], ["zahrada", tr("Zahrada, louka")], ["zelen", tr("Park, zeleň")], ["voda", tr("Voda")],
   ["parkoviste", tr("Parkoviště")], ["plot", tr("Plot")], ["volno", tr("Volný prostor")]];
+// What stands there first, the look of a building in a select of its own (Fable: one list of 13, most of them
+// "Budova – …").
 function edgeKindSelect(p, side) {
   const sel = document.createElement("select");
-  const current = (p.edges?.[side] || "volno") + (p.edges?.[`${side}Style`] ? ":" + p.edges[`${side}Style`] : "");
+  const current = p.edges?.[side] || "volno";
+  for (const [k, t] of [["budova", tr("Budova")], ...EDGE_KINDS()]) sel.add(new Option(t, k, false, current === k));
+  sel.onchange = () => {
+    p.edges = { ...p.edges, [side]: sel.value };
+    delete p.edges[`${side}Style`];
+    edited();
+    render();
+  };
+  return sel;
+}
+function edgeLookSelect(p, side) {
+  const sel = document.createElement("select");
   const info = edgeInfo(p.edges, side);
   const style = buildingStyle(info);
   // A flat-roofed office is drawn as an office, not as a panel house.
   const guess = style === "plocha" && OFFICE_LIKE.has(info?.type) ? tr("kancelářská budova") : BUILDING_STYLES[style];
-  const kinds = [["budova", tr("Budova (odhad: {guess})", { guess })], ...Object.entries(BUILDING_STYLES).map(([k, t]) => [`budova:${k}`, tr("Budova – {style}", { style: t })]),
-    ...EDGE_KINDS()];
-  for (const [k, t] of kinds) sel.add(new Option(t, k, false, current === k));
+  for (const [k, t] of [["", tr("odhad: {guess}", { guess })], ...Object.entries(BUILDING_STYLES)]) sel.add(new Option(t, k, false, (p.edges?.[`${side}Style`] || "") === k));
   sel.onchange = () => {
-    const [kind, look] = sel.value.split(":");
-    p.edges = { ...p.edges, [side]: kind };
-    if (look) p.edges[`${side}Style`] = look;
+    p.edges = { ...p.edges };
+    if (sel.value) p.edges[`${side}Style`] = sel.value;
     else delete p.edges[`${side}Style`];
     edited();
     render();
@@ -1198,32 +1219,47 @@ function renderEdge(ed, p, side) {
   const lab = (text, input) => { const l = document.createElement("label"); l.append(text, input); return l; };
   const row = ed.appendChild(Object.assign(document.createElement("div"), { className: "ed-row" }));
   row.append(lab(tr("Co tu stojí"), edgeKindSelect(p, side)));
-  if (kind === "budova") row.append(lab(tr("Podlaží"), floorsInput(p, side)));
+  if (kind === "budova") row.append(lab(tr("Vzhled domu"), edgeLookSelect(p, side)), lab(tr("Podlaží"), floorsInput(p, side)));
 }
 
+// Whether the card's "Další volby" is open, for the visit: once opened it stays open from part to part.
+let moreOpen = false;
+// What a part with a term for a name is, in plain words (Fable: for lay people as well as experts).
+const TYPE_HINTS = {
+  pruleh: tr("Mělký zatravněný příkop, do kterého stéká dešťová voda a vsakuje se."),
+  ryha: tr("Rýha vyplněná štěrkem, do které se vsakuje dešťová voda."),
+  nadrz: tr("Nádrž, která zadrží dešťovou vodu a pomalu ji pouští dál."),
+  pruh_piktokoridor: tr("Jízdní pruh se značkami kola: cyklisté jezdí s auty."),
+  ochranny_pruh: tr("Cyklopruh za přerušovanou čarou: auta ho smějí přejet."),
+  cyklopruh: tr("Cyklopruh za plnou čarou, jen pro cyklisty."),
+  tramvaj: tr("Koleje mimo vozovku, oddělené obrubou nebo zelení."),
+  tramvaj_pruh: tr("Pruh vozovky jen pro tramvaje."),
+  tramvaj_v_pruhu: tr("Koleje v pruhu, kde jezdí i auta."),
+  krajnice: tr("Okraj vozovky mimo jízdní pruhy."),
+  obsluzna: tr("Úzká cesta k domům nebo k parkování, odděleně od jízdních pruhů."),
+  delici: tr("Pás mezi jízdními směry nebo mezi vozovkou a chodníkem."),
+  nastupiste: tr("Místo, kde se čeká a nastupuje do tramvaje nebo autobusu."),
+};
 function renderEditor(p) {
   const ed = $("#editor");
   ed.replaceChildren();
+  ed.classList.remove("hint-only");
   const i = state.selected;
   const s = p.segments[i];
   if (state.edge) return renderEdge(ed, p, state.edge);
   if (!canEdit()) return renderInfo(ed, s);
+  // Nothing selected: one line of what to do (Fable: the panel of the edges was in the way; a click on a house
+  // at the edge opens its own card).
   if (s === undefined) {
-    ed.innerHTML = `<div class="ed-head"><h3>${tr("Okraje ulice")}</h3><span class="muted">${tr("Klikněte na část profilu nebo na dům, plot či zahradu na kraji a upravte je. Šířku změníte tažením modrých úchytů mezi částmi.")}</span></div>`;
-    for (const [side, text] of [["left", tr("Levý okraj")], ["right", tr("Pravý okraj")]]) {
-      const l = document.createElement("label");
-      l.append(text, edgeKindSelect(p, side));
-      // The floors of a building right there too (Bára).
-      if ((p.edges?.[side] || "volno") === "budova") l.append(floorsInput(p, side), tr("NP"));
-      ed.append(l);
-    }
+    ed.append(Object.assign(document.createElement("p"), { className: "ed-hint muted", textContent: tr("Klikněte na část profilu nebo na dům či zahradu na kraji. Šířku změníte tažením modrých úchytů.") }));
+    ed.classList.add("hint-only");
     return;
   }
   // Grouped as the palette below (Bára: the long list grouped the same way); the rest under "Další".
   const type = document.createElement("select");
   for (const [title, keys] of paletteGroups(true)) {
     const og = Object.assign(document.createElement("optgroup"), { label: title });
-    for (const k of keys) og.append(new Option(TYPES[k].label, k, false, k === s.type));
+    for (const k of keys) { const o = new Option(TYPES[k].label, k, false, k === s.type); if (TYPE_HINTS[k]) o.title = TYPE_HINTS[k]; og.append(o); }
     type.append(og);
   }
   type.onchange = () => { retype(s, type.value); s.source = "user"; done(); };
@@ -1245,21 +1281,44 @@ function renderEditor(p) {
     edited();
     render();
   };
-  // A headed card in rows: what it is and how wide, how it is used, what to do with it.
+  // A headed card (Fable's look at the interface): the part and its moves in the head; the type, the width and
+  // the one choice the part is mostly about; its items and signs; the rarer choices folded under "Další volby".
   const head = Object.assign(document.createElement("div"), { className: "ed-head" });
-  head.append(Object.assign(document.createElement("h3"), { textContent: tr("Vybraná část: {type}", { type: TYPES[s.type]?.label || s.type }) }),
+  head.append(Object.assign(document.createElement("h3"), { textContent: TYPES[s.type]?.label || s.type }),
     Object.assign(document.createElement("span"), { className: "muted", textContent: tr("Zdroj: {source}", { source: SOURCES[s.source]?.label || s.source || "–" }) }));
-  head.append(btn("×", () => { state.selected = null; render(); }, "close"));
-  head.lastChild.setAttribute("aria-label", tr("Zavřít výběr"));
-  const row = () => ed.appendChild(Object.assign(document.createElement("div"), { className: "ed-row" }));
+  const acts = Object.assign(document.createElement("span"), { className: "ed-acts" });
+  const act = (text, title, fn, cls, off) => { const b = btn(text, fn, cls); b.title = title; b.setAttribute("aria-label", title); b.disabled = !!off; return b; };
+  acts.append(
+    act("←", tr("Posunout doleva"), () => { if (i > 0) { [segs[i - 1], segs[i]] = [segs[i], segs[i - 1]]; done(i - 1); } }, "", i === 0),
+    act("→", tr("Posunout doprava"), () => { if (i < segs.length - 1) { [segs[i + 1], segs[i]] = [segs[i], segs[i + 1]]; done(i + 1); } }, "", i === segs.length - 1),
+    act(tr("Rozdělit"), tr("Rozdělit na dvě"), () => { const h = +(s.width / 2).toFixed(2); segs.splice(i, 1, { ...s, width: h, source: "user" }, { ...s, width: +(s.width - h).toFixed(2), source: "user" }); done(); }),
+    // After a delete the neighbour is selected, so "Dorovnat" offers to give it the width (renderWidthCheck).
+    // In Návrh and in a correction a deleted part leaves a hole of its width, so what lies beyond it stays in its place (Bára: the
+    // surface must not drift from what is under it).
+    act(tr("Smazat"), tr("Smazat část"), () => {
+      if (keepsPlace()) { segs.splice(i, 1, { type: HOLE, width: s.width, source: "user" }); done(i); }
+      else { segs.splice(i, 1); done(segs.length ? Math.max(0, i - 1) : null); }
+    }, "danger", isHole(s)), // a hole is already the empty place
+  );
+  acts.append(btn("×", () => { state.selected = null; render(); }, "close"));
+  acts.lastChild.setAttribute("aria-label", tr("Zavřít výběr"));
+  head.append(acts);
+  const row = (into = ed) => into.appendChild(Object.assign(document.createElement("div"), { className: "ed-row" }));
   const step = (d) => btn(d > 0 ? "+" : "−", () => { setWidth(segs, i, Math.max(minW(), +(s.width + d).toFixed(2))); s.source = "user"; done(); }, "step");
   const minW = () => (s.type === "parkovani" && s.orient === "kolme" ? 4.5 : 0.2);
   ed.append(head);
+  // What the part is, in plain words, where its name is a term (Fable: průleh, piktokoridor… for lay people).
+  if (TYPE_HINTS[s.type]) ed.append(Object.assign(document.createElement("p"), { className: "ed-hint muted", textContent: TYPE_HINTS[s.type] }));
   const r1 = row();
   const wbox = Object.assign(document.createElement("span"), { className: "stepper" });
   wbox.append(step(-0.25), width, step(0.25));
   r1.append(lab(tr("Typ"), type), lab(tr("Šířka (m)"), wbox));
-  const r2 = row();
+  // The rarer choices: their row inside the folded box, and what is set in them named on the fold.
+  const moreBox = Object.assign(document.createElement("details"), { className: "ed-more", open: moreOpen });
+  moreBox.ontoggle = () => { moreOpen = moreBox.open; };
+  const summary = moreBox.appendChild(document.createElement("summary"));
+  const r2 = row(moreBox), set = [];
+  const opt = (sel) => sel.selectedOptions[0]?.textContent;
   if (TYPES[s.type]?.directional) {
     // Away from or towards the viewer; a lane of a two-way street with one axis has no direction and is drawn
     // "↑↓" (derive.js), so it can be made and kept here too. Another part without a direction says so.
@@ -1273,7 +1332,7 @@ function renderEditor(p) {
       if (s.bikeDir && was && s.dir && was !== s.dir) s.bikeDir = s.bikeDir === "backward" ? "forward" : "backward";
       done();
     };
-    r2.append(lab(tr("Směr jízdy"), dir));
+    r1.append(lab(tr("Směr jízdy"), dir));
   }
   if (s.type === "pruh" || s.type === "pruh_piktokoridor") {
     // Cyclists sharing the lane (drawn with the cars, "cyklisté ↓" in contraflow; a piktokoridor has them anyway).
@@ -1281,6 +1340,7 @@ function renderEditor(p) {
     for (const [v, t] of [["", s.type === "pruh" ? tr("ne") : tr("po směru pruhu")], ["forward", tr("↑ od diváka")], ["backward", tr("↓ k divákovi")]]) bike.add(new Option(t, v, false, (s.bikeDir || "") === v));
     bike.onchange = () => { if (bike.value) s.bikeDir = bike.value; else delete s.bikeDir; s.source = "user"; done(); };
     r2.append(lab(tr("Cyklisté v pruhu"), bike));
+    if (s.bikeDir) set.push(tr("cyklisté {dir}", { dir: opt(bike) }));
   }
   if (["pruh", "pruh_piktokoridor", "bus", "bus_cyklo"].includes(s.type)) {
     // Trolley wires over the lane (OSM trolley_wire): drawn above it; a bus lane under them carries the trolleybus.
@@ -1291,12 +1351,9 @@ function renderEditor(p) {
       done();
     };
     r2.append(lab(tr("Troleje") + " ", wires));
+    if (s.wires) set.push(tr("troleje"));
   }
   if (s.type === "parkovani") {
-    const use = document.createElement("select");
-    for (const [v, t] of [["", tr("běžné")], ...Object.entries(PARKING_USE)]) use.add(new Option(t, v, false, (s.use || "") === v));
-    use.onchange = () => { if (use.value) s.use = use.value; else delete s.use; s.source = "user"; done(); };
-    r2.append(lab(tr("Účel"), use));
     const orient = document.createElement("select");
     for (const [v, t] of [["podelne", tr("podélné")], ["sikme", tr("šikmé")], ["kolme", tr("kolmé")]]) {
       orient.add(new Option(t, v, false, (s.orient || "podelne") === v));
@@ -1309,26 +1366,25 @@ function renderEditor(p) {
       s.source = "user";
       done();
     };
-    r2.append(lab(tr("Stání"), orient));
+    r1.append(lab(tr("Stání"), orient));
+    const use = document.createElement("select");
+    for (const [v, t] of [["", tr("běžné")], ...Object.entries(PARKING_USE)]) use.add(new Option(t, v, false, (s.use || "") === v));
+    use.onchange = () => { if (use.value) s.use = use.value; else delete s.use; s.source = "user"; done(); };
+    r2.append(lab(tr("Účel"), use));
+    if (s.use) set.push(opt(use));
     // Where the cars stand: in the roadway, on the sidewalk, or across the kerb (half on the sidewalk).
     const pos = document.createElement("select");
     for (const [v, t] of [["", tr("ve vozovce")], ...Object.entries(PARKING_POSITION)]) pos.add(new Option(t, v, false, (s.position || "") === v));
     pos.onchange = () => { if (pos.value) s.position = pos.value; else delete s.position; s.source = "user"; done(); };
     r2.append(lab(tr("Poloha"), pos));
+    if (s.position) set.push(opt(pos));
   }
   if (TYPES[s.type]?.bed) {
     // The surface of a separate tram bed: panels, gravel or grass.
     const bed = document.createElement("select");
     for (const [v, t] of Object.entries(TRAM_BEDS)) bed.add(new Option(t.label, v, false, (s.bed || "panely") === v));
     bed.onchange = () => { s.bed = bed.value; delete s.bedGuess; s.source = "user"; done(); };
-    r2.append(lab(tr("Povrch tělesa"), bed));
-  }
-  // Rainwater management (Bára after Magdalena): what lies under the part, and permeable paving.
-  if (UNDER_TYPES.includes(s.type)) {
-    const under = document.createElement("select");
-    for (const [v, t] of [["", tr("nic")], ...Object.entries(HDV_UNDER).map(([k, u]) => [k, u.label])]) under.add(new Option(t, v, false, (s.under || "") === v));
-    under.onchange = () => { if (under.value) s.under = under.value; else delete s.under; s.source = "user"; done(); };
-    r2.append(lab(tr("Pod povrchem"), under));
+    r1.append(lab(tr("Povrch tělesa"), bed));
   }
   if (PERMEABLE_TYPES.includes(s.type)) {
     // Ordinary, permeable paving (5.1.2) or unpaved.
@@ -1336,12 +1392,22 @@ function renderEditor(p) {
     for (const [v, label] of Object.entries(SURFACES)) perm.add(new Option(label, v, false, String(s.permeable || "") === v));
     perm.onchange = () => { const v = perm.value; if (v === "true") s.permeable = true; else if (v) s.permeable = v; else delete s.permeable; s.source = "user"; done(); };
     r2.append(lab(tr("Povrch"), perm));
+    if (s.permeable) set.push(opt(perm));
+  }
+  // Rainwater management (Bára after Magdalena): what lies under the part.
+  if (UNDER_TYPES.includes(s.type)) {
+    const under = document.createElement("select");
+    for (const [v, t] of [["", tr("nic")], ...Object.entries(HDV_UNDER).map(([k, u]) => [k, u.label])]) under.add(new Option(t, v, false, (s.under || "") === v));
+    under.onchange = () => { if (under.value) s.under = under.value; else delete s.under; s.source = "user"; done(); };
+    r2.append(lab(tr("Pod povrchem"), under));
+    if (s.under) set.push(opt(under));
   }
   if (TYPES[s.type]?.tracks) {
     // Buses may use the tram part (OSM psv / bus on the tracks).
     const bus = Object.assign(document.createElement("input"), { type: "checkbox", checked: !!s.withBus });
     bus.onchange = () => { if (bus.checked) s.withBus = true; else delete s.withBus; s.source = "user"; done(); };
     r2.append(lab(tr("I pro autobusy") + " ", bus));
+    if (s.withBus) set.push(tr("i pro autobusy"));
   }
   if (["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu"].includes(s.type)) {
     // The usual arrows, and the lane's own from OSM when it is another combination (named as drawn).
@@ -1352,53 +1418,44 @@ function renderEditor(p) {
     }
     turn.onchange = () => { if (turn.value) s.turn = turn.value; else delete s.turn; s.source = "user"; done(); };
     r2.append(lab(tr("Šipky na vozovce"), turn));
+    if (s.turn) set.push(tr("šipka {turn}", { turn: opt(turn) }));
   }
-  // Items (furniture, barriers) inside the segment: remove, or add one in the middle.
+  // Merging gives the part's width to its neighbour, so the street keeps its width (Bára: a shoulder that is
+  // really part of the lane).
+  const merge = [[i - 1, tr("Sloučit s levou")], [i + 1, tr("Sloučit s pravou")]].filter(([j]) => segs[j]).map(([j, label]) => btn(label, () => {
+    segs[j].width = +(segs[j].width + s.width).toFixed(2);
+    segs[j].source = "user";
+    segs.splice(i, 1);
+    done(j < i ? j : i);
+  }));
+  if (merge.length) row(moreBox).append(...merge);
+  summary.append(tr("Další volby"));
+  if (set.length) summary.append(Object.assign(document.createElement("span"), { className: "muted", textContent: ` · ${set.join(", ")}` }));
+  // Items (furniture, barriers) inside the segment and its traffic signs (at most MAX_PER_PART): one row of tags.
   const items = document.createElement("span");
   items.className = "items";
-  items.textContent = tr("Prvky: ");
   (s.items || []).forEach((it, k) => {
     items.append(btn(`${ITEMS[it.kind] || it.kind} ×`, () => { s.items.splice(k, 1); done(); }, "tag"));
   });
   const add = document.createElement("select");
+  add.setAttribute("aria-label", tr("Přidat prvek"));
   add.add(new Option(tr("+ přidat prvek"), ""));
   for (const [k, t] of Object.entries(ITEMS)) add.add(new Option(t, k));
   add.onchange = () => { if (!add.value) return; (s.items ||= []).push({ kind: add.value, f: 0.5 }); done(); };
   items.append(add);
-  r2.append(items);
-  // Traffic signs under this part (at most MAX_PER_PART).
-  row().append(signTags(s.signs, MAX_PER_PART, s.type, (list) => { if (list.length) s.signs = list; else delete s.signs; done(); }));
-  row().append(
-    btn(tr("← Posunout"), () => { if (i > 0) { [segs[i - 1], segs[i]] = [segs[i], segs[i - 1]]; done(i - 1); } }),
-    btn(tr("Posunout →"), () => { if (i < segs.length - 1) { [segs[i + 1], segs[i]] = [segs[i], segs[i + 1]]; done(i + 1); } }),
-    // Merging gives the part's width to its neighbour, so the street keeps its width (Bára: a shoulder that is
-    // really part of the lane).
-    ...[[i - 1, tr("← Sloučit")], [i + 1, tr("Sloučit →")]].filter(([j]) => segs[j]).map(([j, label]) => btn(label, () => {
-      segs[j].width = +(segs[j].width + s.width).toFixed(2);
-      segs[j].source = "user";
-      segs.splice(i, 1);
-      done(j < i ? j : i);
-    })),
-    btn(tr("Rozdělit na dvě"), () => { const h = +(s.width / 2).toFixed(2); segs.splice(i, 1, { ...s, width: h, source: "user" }, { ...s, width: +(s.width - h).toFixed(2), source: "user" }); done(); }),
-    Object.assign(document.createElement("span"), { className: "spacer" }),
-    // After a delete the neighbour is selected, so "Dorovnat" offers to give it the width (renderWidthCheck).
-    // In Návrh and in a correction a deleted part leaves a hole of its width, so what lies beyond it stays in its place (Bára: the
-    // surface must not drift from what is under it).
-    btn(tr("Smazat část"), () => {
-      if (isHole(s)) return; // a hole is already the empty place
-      if (keepsPlace()) { segs.splice(i, 1, { type: HOLE, width: s.width, source: "user" }); done(i); }
-      else { segs.splice(i, 1); done(segs.length ? Math.max(0, i - 1) : null); }
-    }, "danger"),
-  );
+  row().append(items, signTags(s.signs, MAX_PER_PART, s.type, (list) => { if (list.length) s.signs = list; else delete s.signs; done(); }));
+  ed.append(moreBox);
 }
 
+// "IP 11b Parkoviště (kolmé stání)" as "Parkoviště (kolmé stání) · IP 11b".
+const codeLast = (label) => label.replace(/^((?:[A-Z]{1,2} \d+[a-z]?)(?: [/+] (?:[A-Z]{1,2} \d+[a-z]?))*) (.+)$/, "$2 · $1");
 // Tags of traffic signs with ×, and a select to add one (a speed limit asks for its number).
 function signTags(list = [], max, type, set) {
   const box = Object.assign(document.createElement("span"), { className: "items" });
   const fits = Object.keys(SIGNS).filter((k) => signFits(k, type));
   if (!fits.length && !list.length) return box; // no sign fits a green strip, a wall…
-  box.textContent = tr("Značky: ");
-  const name = signLabel;
+  // The name first and the sign's number after it (Fable: "IP 11b" first says nothing to most).
+  const name = (x) => codeLast(signLabel(x));
   list.forEach((x, k) => {
     const b = document.createElement("button");
     b.className = "tag";
@@ -1410,8 +1467,8 @@ function signTags(list = [], max, type, set) {
     const add = document.createElement("select");
     add.add(new Option(tr("+ přidat značku"), ""));
     for (const k of fits) {
-      add.add(new Option(SIGNS[k], k));
-      for (const [ck, c] of Object.entries(SIGN_CHOICES)) if (c.k === k) add.add(new Option(c.label, ck));
+      add.add(new Option(codeLast(SIGNS[k]), k));
+      for (const [ck, c] of Object.entries(SIGN_CHOICES)) if (c.k === k) add.add(new Option(codeLast(c.label), ck));
     }
     add.onchange = () => {
       const k = add.value;
@@ -1446,16 +1503,22 @@ function paletteGroups(withUnknown = false) {
   const rest = Object.keys(TYPES).filter((k) => !shown.has(k) && (withUnknown || k !== "nezname"));
   return [...PALETTE_GROUPS, [tr("Další"), rest]].map(([t, ks]) => [t, ks.filter((k) => TYPES[k])]).filter(([, ks]) => ks.length);
 }
+// The palette folded into "+ Přidat díl" (Fable: 27 parts always under the card made two screens of it); once
+// opened it stays open for the visit.
+let paletteOpen = false;
 function renderPalette(p) {
   const pal = $("#palette");
   pal.replaceChildren();
+  const box = pal.appendChild(Object.assign(document.createElement("details"), { open: paletteOpen }));
+  box.ontoggle = () => { paletteOpen = box.open; };
+  box.append(Object.assign(document.createElement("summary"), { className: "btn", textContent: tr("+ Přidat díl") }));
   const hint = document.createElement("div");
-  hint.className = "pal-title";
+  hint.className = "pal-note muted";
   const selSeg = p.segments[state.selected];
-  hint.textContent = state.mode === "navrh" && isHole(selSeg) ? tr("Přidat díl do vybraného volného místa")
-    : state.mode === "navrh" ? (state.selected === null ? tr("Přidat díl do volného místa (nebo na úkor posledního dílu)") : tr("Přidat díl vpravo od vybraného (na jeho úkor)"))
-    : state.selected === null ? tr("Přidat díl na konec") : tr("Přidat díl vpravo od vybraného");
-  pal.append(hint);
+  hint.textContent = state.mode === "navrh" && isHole(selSeg) ? tr("Nový díl vyplní vybrané volné místo.")
+    : state.mode === "navrh" ? (state.selected === null ? tr("Nový díl přijde do volného místa, jinak na úkor posledního dílu.") : tr("Nový díl přijde vpravo od vybraného, na jeho úkor."))
+    : state.selected === null ? tr("Nový díl přijde na konec.") : tr("Nový díl přijde vpravo od vybraného.");
+  box.append(hint);
   for (const [title, list] of paletteGroups()) {
     const group = Object.assign(document.createElement("div"), { className: "pal-group" });
     group.append(Object.assign(document.createElement("span"), { className: "pal-name", textContent: title }));
@@ -1465,6 +1528,7 @@ function renderPalette(p) {
       chip.className = "chip";
       chip.style.setProperty("--c", t.color);
       chip.textContent = t.label;
+      if (TYPE_HINTS[k]) chip.title = TYPE_HINTS[k];
       chip.onclick = () => {
         const segs = p.segments, seg = { type: k, width: DEFAULT_WIDTH[k], source: "user" };
         if (t.directional) seg.dir = "forward";
@@ -1478,7 +1542,7 @@ function renderPalette(p) {
       };
       group.append(chip);
     }
-    pal.append(group);
+    box.append(group);
   }
 }
 
@@ -1507,7 +1571,6 @@ $("#btn-art").addEventListener("click", () => {
   render();
 });
 
-$("#btn-to-navrh").onclick = () => document.querySelector('.seg-toggle button[data-mode="navrh"]').click();
 $("#btn-fix").onclick = () => {
   state.fixing = !state.fixing;
   state.selected = null;
@@ -1733,7 +1796,7 @@ function loadUnderground() {
   if (here !== netInControl) { if (here) layersControl.addOverlay(netLayer, tr("Sítě pod zemí")); else layersControl.removeLayer(netLayer); netInControl = here; }
   $("#site-btn").hidden = !here || state.mode === "porovnat";
   $("#net-hint").hidden = !undergroundFor();
-  if (here) $("#net-hint").textContent = `${tr("Sítě pod zemí: hloubka od spodku vozovky; čárkovaný kroužek = hloubka v datech chybí, kreslena obvyklá. V exportu zatím nejsou.")} ${NET_CITIES[state.cut.city]()}`;
+  if (here) $("#net-hint").textContent = `${tr("Sítě pod zemí (zkušebně, ne v exportu); čárkovaně: obvyklá hloubka, v datech chybí.")} ${NET_CITIES[state.cut.city]()}`;
   if (!siteOn() || !here || state.underground?.cut === state.cut) return;
   const cut = state.cut, b = (cut.bearing * Math.PI) / 180, span = cutSpan(cut);
   state.underground = { cut, items: null };
@@ -1846,8 +1909,12 @@ try {
   if (linked && saved?.stav && !design.navrh && !design.stav && same(linked, saved.cut)) linked = null;
   // A former city page (?mesto=) opens over that city, not over a cut saved elsewhere.
   const elsewhere = startCity && !linked && saved?.cut && cityAt(saved.cut.lat, saved.cut.lon) !== startCity;
-  if (saved?.stav && !linked && !elsewhere) restore(saved);
-  else render();
+  if (saved?.stav && !linked && !elsewhere) {
+    restore(saved);
+    const mode = sessionStorage.getItem("profily-rezim");
+    if (["navrh", "porovnat"].includes(mode)) { state.mode = mode; render(); }
+  } else render();
+  sessionStorage.removeItem("profily-rezim");
 } catch {
   render();
 }

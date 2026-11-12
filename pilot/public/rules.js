@@ -80,8 +80,10 @@ export function checkRules(profile) {
     const l = limits(s, segs, i);
     if (!l) return;
     const label = TYPES[s.type]?.label || s.type;
-    if (s.width < l.min - 0.005) out.push({ i, level: "min", text: t("{label} {w} je pod minimem ({why}).", { label, w: fmt(s.width), why: l.why }) });
-    else if (s.width < l.zaklad - 0.005) out.push({ i, level: "zaklad", text: t("{label} {w} je užší než základ ({why}).", { label, w: fmt(s.width), why: l.why }) });
+    // short and why: the warning in two pieces for the list in Návrh (the short one bold, the rule after it).
+    const v = { label, w: fmt(s.width), why: l.why };
+    if (s.width < l.min - 0.005) out.push({ i, level: "min", text: t("{label} {w} je pod minimem ({why}).", v), short: t("{label} {w}: pod minimem", v), why: l.why });
+    else if (s.width < l.zaklad - 0.005) out.push({ i, level: "zaklad", text: t("{label} {w} je užší než základ ({why}).", v), short: t("{label} {w}: užší než základ", v), why: l.why });
   });
   // A one-way carriageway with contraflow cyclists and no cycle lane of their own (IP 4c): its lanes with the
   // hard shoulder and hatching, without parking, 4 m as the basic width and 3 m at very low volumes (Manuál
@@ -95,8 +97,9 @@ export function checkRules(profile) {
     if (!bikeLane && run.some((x) => x.signs?.some((g) => g.k === "oneway" && g.plate === "protismer"))) {
       for (let k = out.length - 1; k >= 0; k--) if (out[k].i >= i && out[k].i < j) out.splice(k, 1);
       const why = t("jednosměrka s cyklisty v protisměru: základ 4 m, při velmi nízké intenzitě 3 m, při vyšší až 4,5 m (Manuál C.2)");
-      if (w < 3 - 0.005) out.push({ i, level: "min", text: t("Vozovka {w} je pod minimem ({why}).", { w: fmt(w), why }) });
-      else if (w < 4 - 0.005) out.push({ i, level: "zaklad", text: t("Vozovka {w} je užší než základ ({why}).", { w: fmt(w), why }) });
+      const v = { label: t("Vozovka"), w: fmt(w), why };
+      if (w < 3 - 0.005) out.push({ i, level: "min", text: t("Vozovka {w} je pod minimem ({why}).", v), short: t("{label} {w}: pod minimem", v), why });
+      else if (w < 4 - 0.005) out.push({ i, level: "zaklad", text: t("Vozovka {w} je užší než základ ({why}).", v), short: t("{label} {w}: užší než základ", v), why });
     }
     i = j - 1;
   }

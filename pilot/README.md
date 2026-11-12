@@ -433,10 +433,21 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
 ## Stav, Návrh a úpravy
 
 Stav je jen k prohlížení; kliknutí na část řekne, co to je a odkud pochází. Data se opravují po tlačítku
-**Opravit data**. Návrh je editovatelný vždy. Úpravy drží šířku ulice: **← Sloučit** / **Sloučit →** dá šířku
+**Opravit data**. Návrh je editovatelný vždy. Úpravy drží šířku ulice: **Sloučit s levou / s pravou** dá šířku
 části sousedovi, po smazání se vybere soused. Hlídá se šířka ulice: v Návrhu proti stavu, při opravě dat proti
 šířce změřené před opravou. Když ji profil překročí nebo nevyplní, objeví se upozornění a tlačítko Dorovnat (rozdíl
-dostane vybraná, jinak nejširší část).
+dostane vybraná, jinak nejširší část); když sedí, nic se neukazuje.
+
+Rozhraní po kritice Fable (12. 11. 2026), aby nepřibývalo do jednoho sloupce: karta vybrané části má v hlavičce
+←, →, Rozdělit, Smazat; pod ní typ, šířku a jednu volbu podle typu (směr, způsob stání, povrch tělesa), řádek prvků
+a značek (název značky před číslem) a sbalené **Další volby** (cyklisté, troleje, účel a poloha stání, povrch, co je
+pod povrchem, autobusy na kolejích, šipky, sloučení; na sbalené liště je vidět, co je v nich nastavené). U částí
+s odborným názvem (průleh, piktokoridor…) je věta, co to je. Paleta dílů je za tlačítkem **+ Přidat díl**. Bez výběru
+je místo panelu okrajů jen řádek nápovědy. Legenda zdrojů jen ve Stavu, štítek režimu vedle názvu ulice není,
+nápověda k tažení řezu zmizí po prvním tažení. V hlavičce **Sdílet** a jedno menu **Soubor** (PNG, SVG, JSON,
+kopírovat a vložit polohu řezu, nahlásit chybu, místní ilustrace). Patička se zdroji je jeden řádek, celá po
+rozbalení. Podíl prostoru ukazuje v Porovnání předchozí podíl („bylo 28 %“) místo procentních bodů. Přepnutí jazyka
+zachová režim.
 
 Šířky částí se porovnávají s Manuálem tvorby veřejných prostranství IPR, kap. C.2 (`public/rules.js`): červeně pod
 minimem (chodník 1,5 m, pruh 2,5 m, cyklopruh 1,5 / 1,75 / 2 m podle stání vedle, ochranný cyklopruh 1,25 m,
@@ -487,8 +498,8 @@ dlažba jako pás betonových tvárnic s trávou mezi nimi (Bára: na první poh
 ### Okraje ulice
 
 Na dům, plot, zahradu či jiný okraj profilu jde kliknout jako na část (Bára 12. 11. 2026: „panelák“, který je dvoupatrový
-městský dům, nebo zahrada). V Návrhu a po „Opravit data“ se dá změnit, co tam stojí (budova s vybraným vzhledem nebo
-s odhadem, drobná stavba, zahrada, zeleň, voda, parkoviště, plot, volný prostor), a u budovy počet podlaží
+městský dům, nebo zahrada). V Návrhu a po „Opravit data“ se dá změnit, co tam stojí (budova, drobná stavba, zahrada, park, voda,
+parkoviště, plot, volný prostor), u budovy zvlášť vzhled domu (nebo odhad) a počet podlaží
 (`edges.leftLevels`, nahradí podlaží i výšku z dat, jde i do sdíleného odkazu). Ve Stavu karta jen řekne, co tam je.
 
 ## Dopravní značky
