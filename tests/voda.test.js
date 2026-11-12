@@ -71,10 +71,13 @@ test("střet objektu pod povrchem se sítí: jen když se překrývají", () => 
   // A sidewalk 0–4 m from A with a trench 1.5 m wide in its middle (1.25–2.75 m), 0.4–1.4 m deep.
   const p = { segments: [{ type: "chodnik", width: 4, under: "ryha" }, { type: "pruh", width: 3 }] };
   const at = (m, depth, kind = "vodovod") => ({ items: [{ t: 10 - m, depth, kind, profil: null }], span: { left: 10 }, kinds });
-  assert.equal(checkUnder(p, at(2, 0.8)).length, 1); // in it
-  assert.equal(checkUnder(p, at(2, 2.5, "kanalizace")).length, 0); // below it
-  assert.equal(checkUnder(p, at(3.5, 0.8)).length, 0); // beside it
-  assert.equal(checkUnder(p, at(2.8, 0.8)).length, 1); // touching its side (the pipe's radius)
+  const level = (m, d, kind) => checkUnder(p, at(m, d, kind)).map((f) => f.level).join();
+  assert.equal(level(2, 0.8), "min"); // in it
+  assert.equal(level(2.8, 0.8), "min"); // touching its side (the pipe's radius)
+  assert.equal(level(3.1, 0.8), "zaklad"); // 0.27 m beside it (rim 0.28 m from the trench): within 0.5 m
+  assert.equal(level(3.5, 0.8), ""); // 0.67 m beside it
+  assert.equal(level(2, 1.7, "kanalizace"), "zaklad"); // 0.3 m below it
+  assert.equal(level(2, 2.5, "kanalizace"), ""); // well below it
   assert.equal(checkUnder(p, at(5, 0.8)).length, 0); // under the lane
   assert.equal(checkUnder(p, null).length, 0);
 });

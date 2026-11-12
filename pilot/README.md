@@ -496,8 +496,9 @@ a rákosem; podzemní objekty ve skutečné velikosti a hloubce, ve stejném mě
 výška; `segment.underSize`), výchozí je odhad: rýha 1,5 m široká v hloubce 0,4–1,4 m (příklad ve Standardech má rýhu
 1,5 m s nadržením 0,5 m), nádrž přes šířku části bez 0,3 m z každé strany v hloubce 0,8–2,3 m, šachta 1 m v hloubce
 0,5–3 m; Standardy rozměry neurčují, dává je výpočet. Se zapnutými sítěmi Návrh upozorní, když objekt narazí na síť
-(překryv s kreslenou sítí; Standardy kap. 6.2.9 jen žádají střety se sítěmi a ochrannými pásmy prověřit, odstupy
-nedávají, takže je aplikace nehádá), sítě se kreslí přes objekty, aby byl střet vidět. modré šipky ukazují přítok ze zpevněných ploch vedle; zatravňovací
+(červeně, překryv s kreslenou sítí) nebo je k ní blíž než 0,5 m (oranžově; Bára 12. 11. 2026: varovat i při blízkosti;
+Standardy kap. 6.2.9 jen žádají střety se sítěmi a ochrannými pásmy prověřit, odstupy nedávají, 0,5 m je hranice
+upozornění, ne ochranné pásmo), sítě se kreslí přes objekty, aby byl střet vidět. modré šipky ukazují přítok ze zpevněných ploch vedle; zatravňovací
 dlažba jako pás betonových tvárnic s trávou mezi nimi (Bára: na první pohled něco mezi parkováním a trávníkem). Ilustrace (zelená střecha přístřešku, výsadba průlehu, rákos) kreslila
 „kreslířka“ ve třech kolech s „kritikem“ podle fotek z Wikimedia Commons.
 

@@ -122,11 +122,12 @@ export function checkRules(profile) {
   return out;
 }
 
-// A rainwater object under a part that runs into a network as drawn (Bára 12. 11. 2026): [{i, level, short, why}].
-// The standard asks for the conflicts with the networks and their protection zones to be checked (Standardy HDV,
-// kap. 6.2.9) but gives no distances, so only an overlap counts, not a distance (that is the networks' owners'
-// to say). under: the networks of the cut (app.js undergroundFor: items with t across the cut, depth to the top,
+// A rainwater object under a part that runs into a network as drawn, red, or comes within NEAR of it, orange (Bára
+// 12. 11. 2026): [{i, level, short, why}]. The standard asks for the conflicts with the networks and their
+// protection zones to be checked (Standardy HDV, kap. 6.2.9) but gives no distances; NEAR is Bára's warning
+// distance, not a protection zone (that is the networks' owners' to say). under: the networks of the cut (app.js undergroundFor: items with t across the cut, depth to the top,
 // profil DN in mm; span.left the cut's reach on the A side), or null.
+const NEAR = 0.5;
 export function checkUnder(profile, under) {
   if (!under?.items?.length) return [];
   const out = [];
@@ -139,10 +140,14 @@ export function checkUnder(profile, under) {
         const k = under.kinds?.[it.kind];
         const dn = it.profil > 20 && it.profil < 3000 ? it.profil : k?.dn || 110, r = dn / 2000;
         const m = under.span.left - it.t, depth = it.depth + r; // the network's centre: across from A, and down
-        if (Math.abs(m - cx) > z.w / 2 + r || depth < z.top - r || depth > z.top + z.h + r) continue;
+        // How far the pipe's rim is from the object, across and down (0 inside it).
+        const gap = Math.hypot(Math.max(0, Math.abs(m - cx) - z.w / 2), Math.max(0, z.top - depth, depth - z.top - z.h)) - r;
+        if (gap >= NEAR) continue;
+        const hit = gap <= 0;
         const name = HDV_UNDER[s.under].label;
         const v = { obj: name[0].toUpperCase() + name.slice(1), part: TYPES[s.type]?.label || s.type, net: k?.label || it.kind, d: fmt(it.depth) };
-        out.push({ i, level: "zaklad", short: t("{obj} pod částí {part} narazí na {net} ({d} pod povrchem)", v), why: t("střet se sítí a jejím ochranným pásmem posuďte se správcem sítě (Standardy HDV, kap. 6.2.9)") });
+        out.push({ i, level: hit ? "min" : "zaklad", short: hit ? t("{obj} pod částí {part} narazí na {net} ({d} pod povrchem)", v) : t("{obj} pod částí {part} je blíž než {near} od sítě {net} ({d} pod povrchem)", { ...v, near: fmt(NEAR) }),
+          why: t("střet se sítí a jejím ochranným pásmem posuďte se správcem sítě (Standardy HDV, kap. 6.2.9)") });
       }
     }
     x += s.width;
