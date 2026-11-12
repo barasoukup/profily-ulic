@@ -268,6 +268,14 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
 - Prázdná místa DTM doplní budovy a parcely RÚIAN; kde DTM kolem řezu nemá nic, je profil odhad z OSM. Kvalita
   záleží na kraji: v Pardubicích chybí vozovky mimo zástavbu a plochy uvnitř bloků. Mosty jsou vozovka.
   Tramvajová plocha DTM s vozovkou po obou stranách bez obruby nebo zeleně mezi nimi jsou koleje ve vozovce.
+- **Náhrada za mapu města** (`sources.js` `national`): kde technická mapa města nic nevrátí (řez kousek za
+  hranicí), nebo když neodpoví (IPR přetížený, 503 i po opakování), vezmou se plochy z celostátní technické mapy
+  stejnou cestou. V Národní při simulovaném výpadku IPR vyšel profil skoro stejně (chodník 3,80 místo 3,90 m).
+  Uživatel to vidí za názvem ulice („plochy z technické mapy ČÚZK“) a ve stavovém řádku, export uvede ČÚZK.
+  Kde neodpoví ani ČÚZK, je profil odhad z OSM s poznámkou „technická mapa neodpověděla“. Výpadek linií
+  (koleje, ploty, svahy), parkování a otevřených dat Prahy aplikace také řekne („Chybí data parkovacích stání
+  (server neodpověděl)“, `sources.js` `outage`), jinak by ulice vypadala jako bez tramvaje nebo bez aut.
+  Testy: `tests/vypadky.test.js`; týdenní kontrola živých služeb viz Publikace.
 - Pardubice (`towns/pardubice.js`) nemají vlastní služby, mají jen vlastní ilustrace. Kontrola 49 řezů:
   `evaluation/pardubice/ZPRAVA.md`.
 

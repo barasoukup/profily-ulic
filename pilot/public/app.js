@@ -302,13 +302,13 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     drawMtvu(polys);
     dataLayers.draw({ frame, dir, osm, way: near.way, polys, tracks, lines, parking, span: cutSpan(state.cut), facades });
     if (!map.getBounds().contains([clat, clon])) map.panTo([clat, clon]);
-    const mtvuFailed = m.status !== "fulfilled";
-    // An estimate stays marked as one, also when restored from storage or a file.
-    state.cut.note = polys.length ? "" : mtvuFailed ? " · technická mapa neodpověděla, jen odhad" : " · mimo technickou mapu, jen odhad";
+    // What the cut lacks because a source did not answer (sources.js outage). An estimate stays marked as one,
+    // also when restored from storage or a file.
+    const out = sources.outage({ surfaces: m, lines: k, parking: pk });
+    state.cut.note = out.note;
     $("#street-name").textContent = name + state.cut.note;
-    if (mtvuFailed) status(`${city.dataName} teď neodpovídá${city.id === "praha" ? " (server je přetížený)" : ""}, profil je jen odhad z OSM. Zkuste kliknout znovu za chvíli.`, "error");
-    else status(!polys.length ? "Technická mapa tu nic nevrátila, profil je odhad z OSM."
-      : result.notice ? result.notice
+    if (out.text) status(out.text, out.error ? "error" : undefined);
+    else status(result.notice ? result.notice
       : result.junction ? "Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami." : "");
     save();
     render();
