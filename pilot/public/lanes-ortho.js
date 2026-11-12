@@ -33,8 +33,11 @@ export async function laneImage({ frame, dir, t0, t1, cityId, timeout = TIMEOUT,
   const at = (t, u) => { const [mx, my] = merc(...frame.toLonLat(normal[0] * t + dir[0] * u, normal[1] * t + dir[1] * u)); return [mx + sx, my + sy]; };
   const corners = [];
   for (const t of [t0, t1]) for (const u of [-ALONG, ALONG]) corners.push(at(t, u));
-  let x0 = Math.min(...corners.map((c) => c[0])), x1 = Math.max(...corners.map((c) => c[0]));
-  let y0 = Math.min(...corners.map((c) => c[1])), y1 = Math.max(...corners.map((c) => c[1]));
+  // The box snapped to the source's pixel grid (in Web Mercator metres), so a place gets the same pixels however
+  // the cut lies around it.
+  const px = src.res / k, snap = (v, up) => (up ? Math.ceil(v / px) : Math.floor(v / px)) * px;
+  let x0 = snap(Math.min(...corners.map((c) => c[0])), false), x1 = snap(Math.max(...corners.map((c) => c[0])), true);
+  let y0 = snap(Math.min(...corners.map((c) => c[1])), false), y1 = snap(Math.max(...corners.map((c) => c[1])), true);
   const w = Math.round(((x1 - x0) * k) / src.res), h = Math.round(((y1 - y0) * k) / src.res);
   if (w > 2000 || h > 2000) return null;
   try {
@@ -170,7 +173,7 @@ function linesOf(st, H, s, e) {
 }
 // Of those inside the carriageway, the set whose gaps look like lanes (2.5–4.75 m; at the kerbs 1–7.5 m for a
 // shoulder; a gap of two lanes whose line is missing with a small penalty), the most line strength.
-const LANE_MIN = 2.5, LANE_MAX = 4.75, OUTER_MIN = 1, OUTER_MAX = 7.5, MISSED = 0.1, EDGE_MIN = 0.1, EDGE_SHARE = 0.5;
+const LANE_MIN = 2.5, LANE_MAX = 4.75, OUTER_MIN = 1, OUTER_MAX = 7.5, MISSED = 0.1, EDGE_MIN = 0.1, EDGE_SHARE = 0.5, DASHED_MAX = 0.6;
 export function laneLines(st, H, s, e) {
   const all = linesOf(st, H, s, e), c = all.filter((m) => m.t > s + 0.7 && m.t < e - 0.7), n = c.length;
   const best = new Array(n).fill(-Infinity), prev = new Array(n).fill(-1);
@@ -194,10 +197,11 @@ export function laneLines(st, H, s, e) {
   const a = edge(s + EDGE_MIN, Math.min(s + 1, chain[0].t - LANE_MIN)), b = edge(Math.max(e - 1, chain.at(-1).t + LANE_MIN), e - EDGE_MIN);
   if (a) chain.unshift(a);
   if (b) chain.push(b);
-  // The positions, and which of them are solid lines (true: an edge line, false: dashed, dividing lanes, or a line
-  // mostly hidden, which an edge line is not; undefined: a faint line, not known).
+  // The positions, and which of them are solid lines (true: an edge line, also one broken by short gaps, over
+  // DASHED_MAX of its length, at a slip road: Rozvadovská spojka; false: dashed with long gaps, dividing lanes, or a
+  // line mostly hidden, which an edge line is not; undefined: a faint line, not known).
   const out = chain.map((m) => m.t);
-  out.solid = chain.map((m) => (m.dashed || m.weak ? false : m.share >= EDGE_SHARE ? true : undefined));
+  out.solid = chain.map((m) => (m.weak || (m.dashed && m.share < DASHED_MAX) ? false : m.share >= EDGE_SHARE ? true : undefined));
   return out;
 }
 

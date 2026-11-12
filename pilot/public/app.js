@@ -168,6 +168,9 @@ mtvuLayer.addTo(map);
 const dataLayers = createDataLayers(map, layersControl);
 
 const MTVU_COLORS = { 701: "#5c5c59", 700: "#5c5c59", 702: "#c9a227", 703: "#b5574a", 704: "#7b7b78", 705: "#8c6d3f", 601: "#9b8cc4" };
+// The orthophoto for the lanes (lanes-ortho.js) is read over the same ±25 m whatever the cut's ends, so dragging an
+// end out into a field does not change the roadway (Bára).
+const ORTHO_HALF = 25;
 const cutLine = L.polyline([], { color: "#e24b4a", weight: 4 }).addTo(map);
 // The part selected in the profile, shown on the cut line (Bára): its stretch between the profile's ends A and B.
 const selLine = L.polyline([], { color: "#185fa5", weight: 9, opacity: 0.85, interactive: false }).addTo(map);
@@ -258,7 +261,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
       // (ortho.js, a short timeout; without it the rules decide).
       bedOrtho({ osm, frame, dir, half }),
       // One image of the orthophoto across the whole cut for the road markings (lanes-ortho.js).
-      LANES_ORTHO ? laneImage({ frame, dir, t0: -Math.min(half, reach.right + 3), t1: Math.min(half, reach.left + 3), cityId: city.id }) : null,
+      LANES_ORTHO ? laneImage({ frame, dir, t0: -Math.min(half, ORTHO_HALF), t1: Math.min(half, ORTHO_HALF), cityId: city.id }) : null,
     ]);
     const ortho = o.status === "fulfilled" ? o.value : null;
     if (m.status === "fulfilled") polys = mtvuPolygons(m.value, frame);
