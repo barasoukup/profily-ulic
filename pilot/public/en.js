@@ -216,6 +216,7 @@ export const EN = {
   "odhad": "estimate",
   "podle čar na ortofotu": "from road markings on the orthophoto",
   "upraveno ručně": "edited by hand",
+  "Sítě pod zemí (zkušebně, jen Praha)": "Networks underground (trial, Prague only)",
   "Strom": "Tree",
   "Lampa": "Street light",
   "Lavička": "Bench",

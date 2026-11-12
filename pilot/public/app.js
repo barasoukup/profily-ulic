@@ -2,10 +2,11 @@ import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TR
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes } from "./lanes-ortho.js";
+import { underground, KINDS as NET_KINDS } from "./site.js";
 // Lanes and shoulders from the road markings of the orthophoto (lanes-ortho.js); ?orto=0 leaves the rules' profile.
 const LANES_ORTHO = new URLSearchParams(location.search).get("orto") !== "0";
 import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, signFits, MAX_PER_PART } from "./signs.js";
-import { loadSprites, loadSigns, layoutSigns, buildSvg, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, edgeInfo, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
+import { loadSprites, loadSigns, layoutSigns, buildSvg, buildUnderground, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, edgeInfo, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
 import * as sources from "./sources.js";
 import { MAPY_KEY } from "./config.js";
 import { cleanProfile, cleanCut, retype } from "./validate.js";
@@ -355,6 +356,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     else status(result.notice ? result.notice
       : result.junction ? tr("Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami.") : "");
     save();
+    state.underground = null;
+    loadUnderground();
     render();
     // On a phone the profile is under the map: bring it into view.
     if (matchMedia("(max-width: 760px)").matches) $("#profile-head").scrollIntoView({ behavior: "smooth", block: "start" });
@@ -548,6 +551,7 @@ function render() {
   const index = box && box.id !== "profile" ? [...box.querySelectorAll(FOCUSABLE)].indexOf(a) : -1;
   draw();
   drawSelection();
+  loadUnderground(); // a cut restored from storage or a link asks for its networks too (once per cut)
   if (!box) return;
   let target;
   if (box.id === "profile") target = $(`#profile g.seg[data-i="${state.selected ?? a.dataset?.i}"]`);
@@ -619,7 +623,7 @@ function draw() {
     selectedEdge: state.edge,
     onEdge: (side) => { state.edge = side; state.selected = null; render(); },
     onChange: () => { edited(); render(); },
-    onRedraw: (b) => fitLabels(b),
+    onRedraw: (b) => { fitLabels(b); appendUnderground(b); },
   });
   renderEditor(p);
   if (state.mode === "navrh") renderPalette(p);
@@ -1613,6 +1617,32 @@ function restore(data) {
   save();
   render();
   resetHistory();
+}
+
+// Networks under the street (site.js, a trial, Prague only): asked for the cut when the switch is on, drawn as a
+// band under the Stav profile.
+function siteOn() { try { return localStorage.getItem("profily-site") === "1"; } catch { return false; } }
+$("#site-on").checked = siteOn();
+$("#site-on").onchange = (e) => {
+  try { localStorage.setItem("profily-site", e.target.checked ? "1" : "0"); } catch {}
+  loadUnderground();
+  render();
+};
+function loadUnderground() {
+  $("#site-switch").hidden = state.cut?.city !== "praha";
+  if (!siteOn() || !state.cut || state.cut.city !== "praha" || state.underground?.cut === state.cut) return;
+  const cut = state.cut, b = (cut.bearing * Math.PI) / 180, span = cutSpan(cut);
+  state.underground = { cut, items: null };
+  underground({ frame: localFrame(cut.lat, cut.lon), dir: [Math.sin(b), Math.cos(b)], half: Math.max(span.left, span.right) + 1, cityId: cut.city })
+    .then((items) => { if (state.underground?.cut === cut) { state.underground.items = items || []; render(); } })
+    .catch((err) => { console.warn("sítě", err); if (state.underground?.cut === cut) state.underground.items = []; });
+}
+function appendUnderground(box) {
+  const items = state.underground?.cut === state.cut ? state.underground.items : null;
+  if (!siteOn() || state.mode !== "stav" || !items?.length) return;
+  const svg = box.querySelector("svg");
+  if (!svg?.dataset.view) return;
+  box.appendChild(buildUnderground(current(), items, cutSpan(state.cut), JSON.parse(svg.dataset.view), NET_KINDS));
 }
 
 function save() {
