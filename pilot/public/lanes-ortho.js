@@ -201,6 +201,63 @@ export function laneLines(st, H, s, e) {
   return out;
 }
 
+// ---------- parking on its own surface ----------
+// Parking bays paved differently from the roadway (paving stones beside asphalt: Konopná, Plzeň; Bára): a band at
+// a kerb, BAND_MIN–BAND_MAX wide, whose columns differ from the middle of the carriageway in brightness and are far
+// more uneven (the stones, the cars on them), while the middle is smooth asphalt. Returns its width or 0.
+const BAND_MIN = 1.6, BAND_MAX = 2.8, LANE_LEFT = 2.75;
+function surfaceBand(st, s, e, side) {
+  const { nt, nu, res, t0, L } = st, col = (t) => {
+    const i = Math.round((t - t0) / res - 0.5), v = [];
+    for (let j = 0; j < nu; j++) { const x = L[j * nt + i]; if (!Number.isNaN(x)) v.push(x); }
+    v.sort((a, b) => a - b);
+    return v.length < nu / 2 ? null : { med: v[v.length >> 1], iqr: v[(3 * v.length) >> 2] - v[v.length >> 2] };
+  };
+  const cols = [];
+  for (let t = s + res / 2; t < e; t += res) cols.push({ t, ...col(t) });
+  if (cols.some((c) => c.med === undefined)) return 0;
+  const core = cols.filter((c) => c.t > s + (e - s) / 3 && c.t < e - (e - s) / 3);
+  const coreMed = median(core.map((c) => c.med)), coreIqr = median(core.map((c) => c.iqr));
+  if (!(coreIqr < 20)) return 0; // shade or cars over the middle: no smooth roadway to compare with
+  const odd = (c) => Math.abs(c.med - coreMed) >= 0.08 * coreMed && c.iqr >= 3 * coreIqr + 8;
+  const seq = side === "s" ? cols : [...cols].reverse(), from = (c) => Math.abs(c.t - (side === "s" ? s : e));
+  let end = 0, miss = 0, hits = 0, n = 0;
+  for (const c of seq) {
+    if (from(c) < 0.2) continue; // the kerb itself
+    if (from(c) > BAND_MAX + 0.5) break;
+    n++;
+    if (odd(c)) { hits++; miss = 0; end = from(c) + res / 2; } else if (++miss >= Math.round(0.3 / res)) break;
+  }
+  return end >= BAND_MIN && end <= BAND_MAX && hits >= 0.8 * (end - 0.2) / res && (e - s) - end >= LANE_LEFT ? end : 0;
+}
+// Splits a lane of the profile at a carriageway's kerb into parking on its own surface and the rest. Returns the
+// number of bands found.
+function parkingBands(result, st, carriages) {
+  let found = 0;
+  for (const c of carriages) {
+    if (c.s <= st.t0 || c.e >= st.t0 + st.nt * st.res) continue;
+    for (const side of ["s", "e"]) {
+      const w = surfaceBand(st, c.s, c.e, side);
+      if (!w) continue;
+      // The profile's part at that kerb (laid from extent[0] up, as below).
+      let t = result.extent[0], at = null;
+      for (const seg of [...result.segments].reverse()) {
+        const ps = t, pe = t + seg.width;
+        t = pe;
+        const edge = side === "s" ? c.s + 0.1 : c.e - 0.1;
+        if (edge >= ps && edge <= pe) { at = seg; break; }
+      }
+      if (!at || at.type !== "pruh" || at.width < w + LANE_LEFT) continue;
+      const i = result.segments.indexOf(at), park = { type: "parkovani", width: +w.toFixed(2), source: "ortofoto", orient: "podelne" };
+      at.width = +(at.width - park.width).toFixed(2);
+      // Screen order runs from extent[1] down: the low kerb (s) comes after the lane, the high one (e) before.
+      result.segments.splice(side === "s" ? i + 1 : i, 0, park);
+      found++;
+    }
+  }
+  return found;
+}
+
 // ---------- the profile ----------
 const CARRIAGE = (c) => c === 700 || c === 701 || c === 704 || (c >= 9700 && c < 9800);
 const RAISED = new Set(["chodnik", "chodnik_kola", "stezka_sdilena", "predzahradka", "zelen", "stromorad", "nastupiste", "cyklostezka", "tramvaj", "delici", "plocha", "zahradka", "voda", "zed", "nezname"]);
@@ -213,6 +270,13 @@ const SHOULDER_MAX = 3.6; // a boundary of other parts (parking, bike lane…) m
 export function applyLanes(result, img) {
   if (!img || !result?.segments?.length || !result.runs?.length || !result.extent) return 0;
   const H = brightMap(img.st);
+  const mapped = [];
+  for (const r of result.runs) {
+    if (!CARRIAGE(r.code)) continue;
+    const last = mapped.at(-1);
+    if (last && Math.abs(last.e - r.s) < 0.05) last.e = r.e; else mapped.push({ s: r.s, e: r.e });
+  }
+  const bands = parkingBands(result, img.st, mapped);
   // The profile's parts with their positions, and its roadways (runs of parts at road level). The segments are in
   // screen order, from extent[1] down to extent[0] (derive.js), the runs along the cut: the parts are laid from
   // extent[0] up.
@@ -251,7 +315,7 @@ export function applyLanes(result, img) {
     const i = result.segments.indexOf(w.parts.at(-1).seg);
     result.segments.splice(i, w.parts.length, ...segs.reverse());
   }
-  return changed;
+  return changed + bands;
 }
 
 // A roadway of only lanes and shoulders, laid on the map's carriageway c: pieces between the kerbs and the lines.
