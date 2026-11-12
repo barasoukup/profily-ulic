@@ -2,6 +2,7 @@
 // Streetmix segments are listed left to right like ours; "outbound" points away from the viewer
 // (our "forward"), "inbound" towards them.
 import { TYPES } from "./types.js";
+import { city, creditLines } from "./city.js";
 
 const SCHEMA_VERSION = 35;
 const CURB = 0.15; // sidewalk elevation (m)
@@ -78,7 +79,7 @@ function boundary(kind, info) {
 // Not offered in the app for now: streetmix.net does not accept requests from other websites
 // (no CORS, github.com/streetmix/streetmix/issues/3828), so the button would fail on GitHub Pages.
 // The conversion stays (and is tested) for when it does, or for a small proxy.
-export function toStreetmix(profile, name) {
+export function toStreetmix(profile, name, src = {}) {
   const segs = profile.segments;
   const total = segs.reduce((a, s) => a + s.width, 0);
   const segments = [];
@@ -112,7 +113,9 @@ export function toStreetmix(profile, name) {
     segments,
     editCount: 0,
   };
-  // The street is public and derived from IPR and OSM data: their credit goes with it in the name
-  // (Streetmix has no description field).
-  return { name: `${name} (data © IPR Praha, © přispěvatelé OpenStreetMap)`, data: { street, plugins: {} }, clientUpdatedAt: new Date().toISOString() };
+  // The street is public and derived from the data of the cut's city and OSM: their credit goes with it in the
+  // name (Streetmix has no description field), as the export's data line (city.js creditLines; src: the cut's
+  // sources, the region of a national DTM, the orthophoto).
+  const credit = creditLines(city, src)[0].replace(/^Data: /, "data ");
+  return { name: `${name} (${credit})`, data: { street, plugins: {} }, clientUpdatedAt: new Date().toISOString() };
 }

@@ -17,11 +17,20 @@ test("export do Streetmixu zachová šířku ulice", () => {
   assert.ok(data.street.segments.every((s) => typeof s.type === "string" && s.width > 0));
 });
 
-test("veřejná ulice ve Streetmixu nese uvedení zdrojů", () => {
+test("veřejná ulice ve Streetmixu nese uvedení zdrojů", async () => {
   const { name } = toStreetmix(profile, "Testovací");
   assert.match(name, /^Testovací /);
   assert.match(name, /IPR Praha/);
   assert.match(name, /OpenStreetMap/);
+  // The credit is the cut's city's (Bára 12. 11. 2026: not always IPR).
+  const { setCity } = await import("../pilot/public/city.js");
+  setCity("brno");
+  const brno = toStreetmix(profile, "Testovací").name;
+  assert.match(brno, /Statutární město Brno/);
+  assert.doesNotMatch(brno, /IPR/);
+  setCity("cesko");
+  assert.match(toStreetmix(profile, "Testovací", { region: "Středočeský kraj" }).name, /technická mapa © Středočeský kraj, IS DMVS ČÚZK/);
+  setCity("praha");
 });
 
 test("tramvajové těleso v trávě jde do Streetmixu jako tramvaj na trávě, ostatní na barevném pásu", () => {
