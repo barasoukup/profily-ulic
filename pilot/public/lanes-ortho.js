@@ -345,12 +345,14 @@ function measured(w, c, lines, solid = [], fine = true) {
   if (kinds.includes(null) || pieces.length < 2) return null;
   // On ČÚZK's 12.5 cm a line near one kerb only is as often the kerb itself (the map's carriageway a metre off) or
   // worn asphalt as an edge line: a shoulder only where both kerbs have one (Hradec; Bára).
+  // The lane it joins must still look like one (else the rules stay: 324, worn asphalt taken for the centre line).
+  let strict = -1;
   if (!fine && (kinds[0] === "krajnice") !== (kinds.at(-1) === "krajnice")) {
     const q = kinds[0] === "krajnice" ? 0 : kinds.length - 1;
-    if (pieces.length > 2) kinds[q] = "join";
+    if (pieces.length > 2) { kinds[q] = "join"; strict = q; }
   }
-  if (kinds[0] === "join") { pieces[1].s = pieces[0].s; pieces[1].w = pieces[1].e - pieces[1].s; pieces[1].wide = true; }
-  if (kinds.at(-1) === "join") { const o = pieces.at(-2); o.e = pieces.at(-1).e; o.w = o.e - o.s; o.wide = true; }
+  if (kinds[0] === "join") { pieces[1].s = pieces[0].s; pieces[1].w = pieces[1].e - pieces[1].s; pieces[1].wide = strict !== 0; }
+  if (kinds.at(-1) === "join") { const o = pieces.at(-2); o.e = pieces.at(-1).e; o.w = o.e - o.s; o.wide = strict !== kinds.length - 1; }
   const list = pieces.map((p, q) => ({ ...p, kind: kinds[q] })).filter((p) => p.kind !== "join");
   if (list.some((p) => p.kind === "pruh" && p.w > (p.wide ? LANE_MAX + LANE_MIN : LANE_MAX))) return null;
   // A piece at a kerb where the rules had a shoulder, behind a solid line, is the shoulder behind an edge line
