@@ -481,6 +481,19 @@ nasazení), doplní klíč Mapy.com (`MAPY_KEY`, tajná proměnná) a `LOG_URL`,
 a vystaví vše na GitHub Pages. Dlaždice se do repozitáře neukládají. Jsou to data odvozená z OpenStreetMap, takže
 na webu leží pod ODbL 1.0 (viz `data/README.txt` na webu a patičku aplikace).
 
+### Kontrola zdrojů dat
+
+Každé pondělí ráno (po nasazení) a ručně běží `.github/workflows/zdroje.yml`: `node tools/check_sources.mjs` udělá
+v každém městě jeden řez v jeho ukázkovém bodě (`example` v `city.js`) stejnými moduly jako zveřejněná aplikace
+(`STATIC = true`, dlaždice OSM a soubory `data/` z webu) a stáhne po jednom obrázku podkladových map. Vypíše
+tabulku zdroj × stav: `ok`, `prázdné`, `náhrada ČÚZK` (služba města nic nevrátila, plochy jsou z technické mapy
+ČÚZK), `tichá chyba` (dotaz selhal, ale zdroj pokračoval bez něj, takže by si toho návštěvník nevšiml),
+`varování` (jen neúplný řetězec certifikátů serveru; prohlížeče si poradí) a `CHYBA`. Chyba, tichá chyba nebo
+prázdné plochy či OSM běh shodí a GitHub pošle e-mail; tabulka je v souhrnu běhu. Je to asi sto malých dotazů
+týdně, město po městě. Lokálně proti místnímu serveru: `SITE=http://localhost:5173/ node tools/check_sources.mjs`,
+jen některá města: `node tools/check_sources.mjs praha brno podklad`. Mezilehlé certifikáty, které některé
+servery neposílají (Frýdek-Místek), jsou v `tools/ca/`.
+
 ## Licence a uvedení zdrojů
 
 - Kód: MIT, © 2026 Bára Soukupová (`LICENSE` v kořeni repozitáře).

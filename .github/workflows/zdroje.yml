@@ -1,0 +1,23 @@
+# Weekly check of the data sources (tools/check_sources.mjs): one cut in every city asks the sources as the
+# published app does, plus one image of each base map. A failed or quietly skipped source fails the run, so
+# GitHub sends its e-mail; the table is in the run's summary. Monday morning, after the weekly deploy; also by hand.
+name: Kontrola zdrojů dat
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "13 7 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node tools/check_sources.mjs
