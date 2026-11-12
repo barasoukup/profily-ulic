@@ -347,14 +347,14 @@ function measured(w, c, lines, solid = []) {
   if (kinds.at(-1) === "join") { const o = pieces.at(-2); o.e = pieces.at(-1).e; o.w = o.e - o.s; o.wide = true; }
   const list = pieces.map((p, q) => ({ ...p, kind: kinds[q] })).filter((p) => p.kind !== "join");
   if (list.some((p) => p.kind === "pruh" && p.w > (p.wide ? LANE_MAX + LANE_MIN : LANE_MAX))) return null;
-  // A piece at a kerb where the rules had a shoulder, up to SHOULDER_MAX wide, behind a solid line is the shoulder
-  // behind an edge line (Rozvadovská spojka: 3 m behind the line; Brněnská), behind a dashed line a lane
-  // (Poděbradská); when that is not known, a shoulder if it would be one lane more than the rules had.
+  // A piece at a kerb where the rules had a shoulder, behind a solid line, is the shoulder behind an edge line
+  // (Rozvadovská spojka: 3 m behind the line; Brněnská; Brno, Hradecká: 3.6 m), behind a dashed line a lane
+  // (Poděbradská); when that is not known, a shoulder up to SHOULDER_MAX if it would be one lane more than the rules had.
   for (const side of ["s", "e"]) {
     const ruled = (side === "s" ? w.parts[0] : w.parts.at(-1)).seg.type === "krajnice", end = side === "s" ? list[0] : list.at(-1);
     const line = side === "s" ? lines.indexOf(end.e) : lines.indexOf(end.s);
     const more = list.filter((p) => p.kind === "pruh").length > had;
-    if (ruled && end.kind === "pruh" && end.w <= SHOULDER_MAX && (solid[line] === true || (solid[line] === undefined && more))) end.kind = "krajnice";
+    if (ruled && end.kind === "pruh" && ((solid[line] === true && end.w <= LANE_MAX) || (solid[line] === undefined && more && end.w <= SHOULDER_MAX))) end.kind = "krajnice";
   }
   // The profile's roadway against the map's: the difference to the shoulder the rules had on that side (or a new
   // one, from 1 m), else to the outer lanes evenly.
