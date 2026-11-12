@@ -41,7 +41,8 @@ const PL_SURFACES = [
   // paved as a paved area, else as green (estimate).
   [305, (a) => (a.PrevazujiciPovrch >= 1 && a.PrevazujiciPovrch <= 4 ? 1003 : [402, true])],
   [297, 601], // budova
-  [339, 602], [337, 602], [340, 602], [343, 602], [344, 602], [345, 602], [347, 602], [334, 602], [336, 602], [348, 602],
+  [339, 602], [337, 602], [340, 602], [343, 602], [344, 602], [345, 602], [347, 602], [334, 602], [336, 602],
+  [348, 1003], // stavba pro zpevnění povrchu: a paved strip (Jateční, between the roadway and the path), not a wall
   [349, 603], // dvůr, nádvoří
   [303, 401], [358, 401], [359, 401], // dělicí pás, udržovaná zeleň, vegetační mísa
   [310, 402], [326, 402], [335, 402], [357, 402], // příkop, násep; meliorační žlab; hřbitov; nevyužívaná plocha
