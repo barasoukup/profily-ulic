@@ -17,13 +17,13 @@ const R = 6378137;
 // networks on plans), a usual depth to the top (m) when the measured one is not believed, and a usual size (DN,
 // mm; cables as their sleeve, 110 mm) when the line has none.
 export const KINDS = {
-  kanalizace: { label: "kanalizace", color: "#8a5a2b", usual: 2.5, dn: 300 },
-  vodovod: { label: "vodovod", color: "#1f6fd1", usual: 1.5, dn: 150 },
-  plynovod: { label: "plynovod", color: "#e0a800", usual: 1.0, dn: 110 },
-  teplovod: { label: "teplovod", color: "#c0392b", usual: 1.0, dn: 250 },
-  silnoproud: { label: "silnoproud", color: "#d6336c", usual: 0.7, dn: 110 },
-  slaboproud: { label: "slaboproud", color: "#2f9e44", usual: 0.5, dn: 110 },
-  jine: { label: "jiné", color: "#7a7a7a", usual: 1.0, dn: 110 },
+  kanalizace: { label: "kanalizace", color: "#5a3e26", usual: 2.5, dn: 300 },
+  vodovod: { label: "vodovod", color: "#1d5fb8", usual: 1.5, dn: 150 },
+  plynovod: { label: "plynovod", color: "#d99a00", usual: 1.0, dn: 110 },
+  teplovod: { label: "teplovod", color: "#b5302a", usual: 1.0, dn: 250 },
+  silnoproud: { label: "silnoproud", color: "#6a3fb5", usual: 0.7, dn: 110 },
+  slaboproud: { label: "slaboproud", color: "#1e8a5a", usual: 0.5, dn: 110 },
+  jine: { label: "jiné (potrubní pošta…)", color: "#6f6a62", usual: 1.0, dn: 110 },
 };
 const kindOf = (popis = "") => {
   const w = popis.split(" ")[0];

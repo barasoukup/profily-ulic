@@ -374,3 +374,7 @@ footer a { color: inherit; }
 #map.leaflet-container, #map .leaflet-grab, #map .leaflet-interactive { cursor: crosshair; }
 #map.leaflet-dragging .leaflet-grab { cursor: grabbing; }
 #map .leaflet-marker-icon.leaflet-interactive { cursor: grab; }
+
+/* Networks under the street (a trial): a hand over them, their ring darker on hover. */
+#profile .networks g { cursor: help; }
+#profile .networks g:hover circle.net { stroke: #1d1d1b; stroke-opacity: 1; stroke-width: 3; }
