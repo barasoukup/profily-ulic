@@ -1600,7 +1600,8 @@ function undergroundDrop(items, kinds) {
   return Math.max(0, NET_TOP + Math.max(depth, legend) - (GROUND + 104));
 }
 function drawNetworks(svg, { items, span, kinds }, total) {
-  const len = span.left + span.right, x = (t) => ((span.left - t) / len) * total;
+  // At their place in metres from A (a design keeps the street's places: holes, Bára), not stretched.
+  const x = (t) => (span.left - t) * 100;
   const g = el("g", { class: "networks" }, svg), base = GROUND + 104 + DROP, zero = NET_TOP + BASE_COURSE; // the sources' strips sit on its bottom
   // The earth: under the whole picture below the edges' foundations, under the street from the roadway down.
   el("rect", { x: -EDGE, y: GROUND + 100, width: total + 2 * EDGE, height: base - GROUND - 100, fill: SOIL }, g);
