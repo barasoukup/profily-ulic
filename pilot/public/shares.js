@@ -21,6 +21,8 @@ const SHARE_OF = {
   pruh: "auta", pruh_piktokoridor: "auta", obsluzna: "auta", krajnice: "auta",
   parkovani: "parkovani",
   zelen: "zelen", stromorad: "zelen", predzahradka: "zelen",
+  // Rainwater objects (types.js water) count with the green: they are green and blue infrastructure.
+  pruleh: "zelen", ryha: "zelen", nadrz: "zelen",
 };
 
 export function shares(profile) {

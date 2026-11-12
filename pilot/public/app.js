@@ -1,4 +1,4 @@
-import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES } from "./types.js";
+import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, HDV_SOURCE } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes } from "./lanes-ortho.js";
@@ -1315,6 +1315,25 @@ function renderEditor(p) {
     bed.onchange = () => { s.bed = bed.value; delete s.bedGuess; s.source = "user"; done(); };
     r2.append(lab(tr("Povrch tělesa"), bed));
   }
+  // Rainwater management (Bára after Magdalena): what lies under the part, and permeable paving.
+  if (UNDER_TYPES.includes(s.type)) {
+    const under = document.createElement("select");
+    for (const [v, t] of [["", tr("nic")], ...Object.entries(HDV_UNDER).map(([k, u]) => [k, u.label])]) under.add(new Option(t, v, false, (s.under || "") === v));
+    under.onchange = () => { if (under.value) s.under = under.value; else delete s.under; s.source = "user"; done(); };
+    r2.append(lab(tr("Pod povrchem"), under));
+  }
+  if (PERMEABLE_TYPES.includes(s.type)) {
+    const perm = Object.assign(document.createElement("input"), { type: "checkbox", checked: !!s.permeable });
+    perm.onchange = () => { if (perm.checked) s.permeable = true; else delete s.permeable; s.source = "user"; done(); };
+    r2.append(lab(tr("Propustný povrch") + " ", perm));
+  }
+  // The standard's chapter of a rainwater object, to read up on it.
+  const hdv = [TYPES[s.type]?.hdv, s.under && HDV_UNDER[s.under]?.hdv, s.permeable && "5.1.2"].filter(Boolean);
+  if (hdv.length) {
+    const a = Object.assign(document.createElement("a"), { href: HDV_SOURCE, target: "_blank", rel: "noopener", className: "muted",
+      textContent: tr("Standardy hospodaření se srážkovými vodami (Praha), kap. {ch} ↗", { ch: hdv.join(", ") }) });
+    r2.append(a);
+  }
   if (TYPES[s.type]?.tracks) {
     // Buses may use the tram part (OSM psv / bus on the tracks).
     const bus = Object.assign(document.createElement("input"), { type: "checkbox", checked: !!s.withBus });
@@ -1414,6 +1433,7 @@ const PALETTE_GROUPS = [
   [tr("Auta a autobusy"), ["pruh", "parkovani", "bus", "bus_cyklo", "obsluzna", "krajnice"]],
   [tr("Tramvaj"), ["tramvaj_v_pruhu", "tramvaj_pruh", "tramvaj"]],
   [tr("Zeleň a ostatní"), ["zelen", "stromorad", "predzahradka", "delici", "plocha", "zahradka", "voda", "zed"]],
+  [tr("Hospodaření s vodou"), ["pruleh", "ryha", "nadrz"]],
 ];
 function renderPalette(p) {
   const pal = $("#palette");

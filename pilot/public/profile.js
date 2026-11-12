@@ -1,6 +1,6 @@
 // SVG drawing and direct editing of a street profile. Drawing units are centimetres,
 // matching the Streetmix illustrations (1 px = 1 cm).
-import { TYPES, SOURCES, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURNS } from "./types.js";
+import { TYPES, SOURCES, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURNS, HDV_UNDER } from "./types.js";
 import { city, cityById, CITY_IDS, creditLines } from "./city.js";
 import { PLATES, signFile, plateFile, signLabel } from "./signs.js";
 // tr: t is a part's type here.
@@ -141,6 +141,87 @@ const el = (name, attrs = {}, parent) => {
 const fmt = (m) => num(m) + " m";
 export const totalWidth = (p) => p.segments.reduce((a, s) => a + s.width, 0);
 
+// ---------- Rainwater management (types.js water, HDV_UNDER; Bára after Magdalena, 12. 11. 2026) ----------
+// Simplified, as Magdalena advised at this scale: a swale is a shallow dip with perennials, a pond a deeper one
+// with water, a surface trench gravel to the top; under a part, a trench of gravel, a tank or a shaft in the earth
+// below it (schematic depths, not to scale); permeable paving shows its open joints. Blue arrows show where the
+// rain runs in from the paved parts beside a swale, a trench or a pond.
+const PAPER = "#fbfaf6", WATER = "#5b93c7", GRAVEL = "#b8b1a2", PEBBLE = "#8e8778";
+const RUNOFF = new Set(["chodnik", "chodnik_kola", "stezka_sdilena", "plocha", "parkovani", "pruh", "pruh_piktokoridor", "obsluzna", "krajnice", "bus", "bus_cyklo", "cyklopruh", "ochranny_pruh", "cyklostezka", "nastupiste"]);
+function pebbles(g, x, y, w, h, r = 2.5) {
+  for (let v = y + 5; v < y + h - 2; v += 9) for (let u = x + 5 + ((v / 9) % 2) * 5; u < x + w - 3; u += 11) el("circle", { cx: u, cy: v, r, fill: PEBBLE }, g);
+}
+function drawWaterPart(g, s, x, w, top, before, after) {
+  const edge = Math.min(40, w * 0.2);
+  if (s.type === "pruleh" || s.type === "nadrz") {
+    const depth = s.type === "pruleh" ? 26 : 62;
+    // The dip: the air over it in the paper's colour, its bottom a darker band.
+    el("path", { d: `M${x} ${top - 1} L${x + w} ${top - 1} L${x + w - edge} ${top + depth} L${x + edge} ${top + depth} Z`, fill: PAPER }, g);
+    el("path", { d: `M${x} ${top} L${x + edge} ${top + depth} L${x + w - edge} ${top + depth} L${x + w} ${top}`, fill: "none", stroke: "#5f8f3a", "stroke-width": 5, "stroke-linejoin": "round" }, g);
+    if (s.type === "nadrz") {
+      const lvl = top + depth * 0.45, k = (lvl - top) / depth; // the water's level, the banks at that height
+      el("path", { d: `M${x + edge * k} ${lvl} L${x + w - edge * k} ${lvl} L${x + w - edge} ${top + depth - 2} L${x + edge} ${top + depth - 2} Z`, fill: "#9cc3e4", opacity: 0.9 }, g);
+      el("line", { x1: x + edge * k, x2: x + w - edge * k, y1: lvl, y2: lvl, stroke: WATER, "stroke-width": 3 }, g);
+    }
+    // Perennials and grasses on the bottom (a swale), reeds at the banks (a pond).
+    const plants = s.type === "pruleh" ? Math.max(1, Math.floor((w - 2 * edge) / 70)) : 2;
+    for (let k = 0; k < plants; k++) {
+      const px = s.type === "pruleh" ? x + edge + ((k + 0.5) * (w - 2 * edge)) / plants : k ? x + w - edge * 0.8 : x + edge * 0.8;
+      const py = s.type === "pruleh" ? top + depth : top + depth * 0.5;
+      for (const [dx, h, c] of [[-12, 34, "#4f8a35"], [-4, 46, "#3f7a2d"], [5, 40, "#5f9e3a"], [13, 30, "#4f8a35"]]) {
+        el("path", { d: `M${px + dx} ${py} q${dx / 3} ${-h / 2} ${dx / 2} ${-h}`, fill: "none", stroke: c, "stroke-width": 3.5, "stroke-linecap": "round" }, g);
+      }
+      if (s.type === "pruleh" && k % 2 === 0) el("circle", { cx: px + 2, cy: py - 44, r: 5, fill: "#c98bc4" }, g); // a flower
+    }
+  } else if (s.type === "ryha") {
+    // A surface trench: gravel to the top, a little below the edges.
+    el("rect", { x, y: top + 4, width: w, height: 56, fill: GRAVEL }, g);
+    pebbles(g, x, top + 4, w, 56);
+  }
+  // The rain running in from the paved parts beside it.
+  const arrow = (ax, dir) => el("path", { d: `M${ax - dir * 26} ${top - 26} q${dir * 14} 0 ${dir * 22} 16 m${-dir * 8} -2 l${dir * 8} 2 l2 -8`, fill: "none", stroke: WATER, "stroke-width": 3.5, "stroke-linecap": "round", "stroke-linejoin": "round" }, g);
+  if (RUNOFF.has(before?.type)) arrow(x + 6, 1);
+  if (RUNOFF.has(after?.type)) arrow(x + w - 6, -1);
+}
+// A rainwater object under a part (segment.under): in the earth below its surface, schematically.
+function drawUnder(g, s, x, w, top) {
+  const y0 = Math.max(top + 34, GROUND + 18), y1 = GROUND + 96;
+  if (s.under === "sachta") {
+    const cx = x + w / 2, sw = Math.min(46, w * 0.5);
+    el("rect", { x: cx - sw / 2, y: top + 20, width: sw, height: y1 - top - 20, fill: "#d9d4c8", stroke: "#7d776b", "stroke-width": 2 }, g);
+    for (let v = top + 40; v < y1 - 10; v += 22) el("line", { x1: cx - sw / 2, x2: cx + sw / 2, y1: v, y2: v, stroke: "#7d776b", "stroke-width": 1.5 }, g);
+    el("rect", { x: cx - sw / 2 + 3, y: y1 - 24, width: sw - 6, height: 21, fill: "#9cc3e4" }, g);
+    return;
+  }
+  const inset = Math.min(30, w * 0.12), bx = x + inset, bw = Math.max(20, w - 2 * inset);
+  if (s.under === "ryha") {
+    el("rect", { x: bx, y: y0, width: bw, height: y1 - y0, fill: GRAVEL, stroke: "#7d776b", "stroke-width": 2, "stroke-dasharray": "8 5" }, g);
+    pebbles(g, bx, y0, bw, y1 - y0, 2);
+  } else if (s.under === "nadrz") {
+    el("rect", { x: bx, y: y0, width: bw, height: y1 - y0, rx: 10, fill: "#cfe2f1", stroke: "#4a7fae", "stroke-width": 3 }, g);
+    const lvl = y0 + (y1 - y0) * 0.45;
+    el("path", { d: `M${bx + 6} ${lvl} q${bw / 8} -6 ${bw / 4} 0 t${bw / 4} 0 t${bw / 4} 0 t${bw / 4 - 12} 0`, fill: "none", stroke: WATER, "stroke-width": 2.5 }, g);
+    el("rect", { x: bx + 3, y: lvl + 3, width: bw - 6, height: y1 - lvl - 6, rx: 7, fill: "#9cc3e4", opacity: 0.7 }, g);
+  }
+}
+// Permeable paving (segment.permeable, 5.1.2): open joints with grass in the paving.
+function drawPermeable(g, x, w, top) {
+  for (let u = x + 14; u < x + w - 6; u += 26) el("rect", { x: u, y: top, width: 4, height: 9, fill: "#6f9e48" }, g);
+}
+
+// A green roof laid on a shelter picture that has none of its own: substrate and low plants on its roof (the
+// roof of Prague's shelter, which the towns copy, lies 95 cm under its top over 13–198 cm of its width; another
+// shelter gets it on the top of its picture).
+function greenRoof(g, name, x, top, right) {
+  const s = (cityArt() && sprites[`${artKey()}/${CITY_ART[artKey()]?.[name]}`]) || sprites[name];
+  if (!s) return;
+  const prague = s.w === 270 && s.h === 360, x0 = x - s.w / 2;
+  const [a, b] = prague ? (right ? [s.w - 198, s.w - 13] : [13, 198]) : [s.w * 0.08, s.w * 0.92];
+  const y = top - s.h + (prague ? 95 : 0);
+  el("rect", { x: x0 + a, y: y - 9, width: b - a, height: 9, rx: 2, fill: "#7a6a52" }, g);
+  for (let u = x0 + a + 6; u < x0 + b - 4; u += 12) el("circle", { cx: u, cy: y - 10, r: 6, fill: (u / 12) % 2 < 1 ? "#6aa84f" : "#86b55a" }, g);
+}
+
 // Street furniture and barriers standing at x on a surface at height top.
 // The surface of a separate tram bed, raised behind curbs (Bára): concrete panels with their joints, gravel
 // with the sleepers showing, grass, or asphalt like the roadway (beds used by buses). A curb stone at each end where the bed meets another part.
@@ -199,10 +280,15 @@ function drawItem(g, it, x, top, right) {
     case "strom": return sprite(g, "tree", x, top);
     case "stojan_kola": return sprite(g, "bike-rack-perpendicular-left", x, top);
     case "sdilena_kola": return sprite(g, "bikeshare-left", x, top);
-    case "pristresek": {
+    case "pristresek": case "pristresek_zeleny": {
       const side = right ? "right" : "left";
+      // A green roof (rainwater management 5.1.1): the city's own picture of it where there is one.
+      if (it.kind === "pristresek_zeleny" && ownSprite(`transit-shelter-green-${side}`)) return sprite(g, `transit-shelter-green-${side}`, x, top);
       // A tram stop's own shelter where the city has one (Prague, Brno), else the bus stop's.
-      return sprite(g, it.tram && ownSprite(`transit-shelter-tram-${side}`) ? `transit-shelter-tram-${side}` : `transit-shelter-01-${side}`, x, top);
+      const name = it.tram && ownSprite(`transit-shelter-tram-${side}`) ? `transit-shelter-tram-${side}` : `transit-shelter-01-${side}`;
+      sprite(g, name, x, top);
+      if (it.kind === "pristresek_zeleny") greenRoof(g, name, x, top, right);
+      return;
     }
     case "sloupek": return sprite(g, "bollard", x, top);
     // Tram overhead-line pole (technical map): a 9 m steel pole with its bracket over the tracks; a street
@@ -1290,6 +1376,9 @@ export function buildSvg(profile, opts = {}) {
     const cx = x + w / 2;
     const forward = s.dir !== "backward";
     if (t.bed) drawTramBed(g, s, x, w, top, TYPES[segs[i - 1]?.type]?.bed, TYPES[segs[i + 1]?.type]?.bed);
+    if (s.under) drawUnder(g, s, x, w, top);
+    if (t.water) drawWaterPart(g, s, x, w, top, segs[i - 1], segs[i + 1]);
+    if (s.permeable) drawPermeable(g, x, w, top);
     if (t.marked) {
       // A reserved tram lane: a wide solid line (25 cm) on the roadway where a part that is no tram lies beside.
       if (!TYPES[segs[i - 1]?.type]?.tracks) el("rect", { x: x + 4, y: top - 3, width: 25, height: 4, fill: "#f2f0ea" }, g);
@@ -1346,7 +1435,7 @@ export function buildSvg(profile, opts = {}) {
     for (const it of s.items || []) {
       if (it.kind === "strom" && s.type === "parkovani") continue; // drawn behind the car
       let ix = x + it.f * w, onRight = ix > total / 2;
-      if (it.kind === "pristresek") {
+      if (it.kind === "pristresek" || it.kind === "pristresek_zeleny") {
         // A shelter opens towards the tram or bus beside its platform, its back wall at the platform's other edge,
         // by the cars (Bára, Jana Želivského).
         const transit = (n) => n && (TYPES[n.type]?.tracks || n.type === "bus" || n.type === "bus_cyklo");
@@ -1384,6 +1473,9 @@ export function buildSvg(profile, opts = {}) {
           (contra ? `, ${tr("cyklisté")} ${s.bikeDir === "backward" ? "↓" : "↑"}` : "");
       // Trees between the stalls are named with the parking (Bára).
       if (s.type === "parkovani" && s.items?.some((it) => it.kind === "strom")) label += tr(" se stromy");
+      // What lies under it (rainwater, types.js HDV_UNDER) and permeable paving, in the name.
+      if (s.under && HDV_UNDER[s.under]) label += ` + ${HDV_UNDER[s.under].label}`;
+      if (s.permeable) label += tr(", propustný povrch");
       const name = el("text", { class: "lbl-t", "data-row": 1, "data-w": w, "data-full": label, x: cx, y: GROUND + DROP + 215, "text-anchor": "middle", "font-size": 28, fill: "#4f4e49" }, g);
       const lines = twoLines(label);
       if (label.length * 0.56 * 28 > w && lines) {

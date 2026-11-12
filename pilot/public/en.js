@@ -480,6 +480,21 @@ export const EN = {
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "The ČÚZK technical map is not responding right now, the profile is an estimate from OSM.",
   "Technická mapa tu nic nevrátila, profil je odhad z OSM.": "The technical map returned nothing here, the profile is an estimate from OSM.",
 
+  // ---------- rainwater management (types.js water, HDV_UNDER) ----------
+  "Vsakovací průleh": "Infiltration swale",
+  "Vsakovací rýha": "Infiltration trench",
+  "Retenční nádrž": "Retention basin",
+  "podzemní rýha": "underground trench",
+  "podzemní retenční nádrž": "underground retention tank",
+  "vsakovací šachta": "soakaway",
+  "Přístřešek zastávky se zelenou střechou": "Stop shelter with a green roof",
+  "nic": "nothing",
+  "Pod povrchem": "Below the surface",
+  "Propustný povrch": "Permeable paving",
+  ", propustný povrch": ", permeable paving",
+  "Standardy hospodaření se srážkovými vodami (Praha), kap. {ch} ↗": "Prague rainwater management standards, ch. {ch} ↗ (in Czech)",
+  "Hospodaření s vodou": "Rainwater",
+
   // ---------- the cut's position, servers' errors ----------
   "azimut": "azimuth",
   "ulice {deg}° · dosah {left} / {right} m": "street {deg}° · reach {left} / {right} m",

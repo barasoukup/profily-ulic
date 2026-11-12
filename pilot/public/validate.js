@@ -1,7 +1,7 @@
 // Checks a saved profile (from the browser's storage or a JSON file) before the app uses it: a broken
 // or edited file must not break the drawing. Unknown types and items are made harmless, numbers
 // that the drawing needs must be numbers, a part without a usable width is an error.
-import { TYPES, SOURCES, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, isTurn } from "./types.js";
+import { TYPES, SOURCES, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, isTurn } from "./types.js";
 import { SIGNS, signChoice, MAX_PER_PART } from "./signs.js";
 import { t } from "./i18n.js";
 
@@ -30,7 +30,10 @@ export function cleanProfile(p, what = "profil") {
     for (const k of ["trolley", "wires"]) if (k in s && s[k] !== true) delete s[k];
     // A profile saved before the three kinds of tram (11/2026) has no bed on its tram belt: panels.
     if ("bed" in s && !(s.bed in TRAM_BEDS)) delete s.bed;
-    for (const k of ["withBus", "bedGuess"]) if (k in s && s[k] !== true) delete s[k];
+    for (const k of ["withBus", "bedGuess", "permeable"]) if (k in s && s[k] !== true) delete s[k];
+    // A rainwater object under the part (types.js HDV_UNDER), a known one on a part that may have it.
+    if ("under" in s && !(Object.hasOwn(HDV_UNDER, s.under) && UNDER_TYPES.includes(s.type))) delete s.under;
+    if (s.permeable && !PERMEABLE_TYPES.includes(s.type)) delete s.permeable;
     if ("roadClass" in s && !/^(dalnice|mk[1-4]|sil[1-3])$/.test(s.roadClass)) delete s.roadClass;
     if ("signs" in s) s.signs = cleanSigns(s.signs).slice(0, MAX_PER_PART);
     if (s.signs && !s.signs.length) delete s.signs;
@@ -65,6 +68,7 @@ const FIELD_TYPES = {
   orient: ["parkovani"], use: ["parkovani"], position: ["parkovani"], color: ["cyklopruh", "ochranny_pruh"],
   bed: Object.keys(TYPES).filter((k) => TYPES[k].bed), bedGuess: Object.keys(TYPES).filter((k) => TYPES[k].bed),
   withBus: Object.keys(TYPES).filter((k) => TYPES[k].tracks), trolley: LANES, wires: LANES, roadClass: LANES,
+  under: UNDER_TYPES, permeable: PERMEABLE_TYPES,
 };
 // Gives a part a new type and drops the settings that do not belong to it; a directional type gets a direction.
 export function retype(s, type) {

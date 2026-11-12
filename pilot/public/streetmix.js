@@ -39,6 +39,9 @@ function segment(s, i, segs, total) {
     case "zahradka": return ["outdoor-dining", "occupied|sidewalk"];
     case "stromorad": return ["sidewalk-tree", "big"];
     case "zelen": return ["divider", "planting-strip"];
+    // Streetmix has no rainwater objects: green as green, the gravel trench as a median.
+    case "pruleh": case "nadrz": return ["divider", "planting-strip"];
+    case "ryha": return ["divider", "median"];
     case "predzahradka": return ["divider", "bush"];
     case "delici": return ["divider", "median"];
     case "cyklostezka": return ["bike-lane", `${dir}|regular|sidewalk`];

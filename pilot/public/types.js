@@ -30,10 +30,29 @@ export const TYPES = {
   delici: { label: t("Dělicí pás"), color: "#b4b2a9", raised: true },
   plocha: { label: t("Zpevněná plocha"), color: "#cfccc2", raised: true },
   zahradka: { label: t("Zahrádka restaurace"), color: "#d9c7a8", raised: true, sprite: "cafe" },
+  // Rainwater management (Bára 12. 11. 2026, after Magdalena; Standardy hospodaření se srážkovými vodami na území
+  // hl. m. Prahy, MHMP, ČVUT FSv, chap. 5.1): the surface objects as parts of their own, hdv: the standard's chapter.
+  // Only in a design: the data do not tell them. What lies under a part is its "under" (HDV_UNDER).
+  pruleh: { label: t("Vsakovací průleh"), color: "#86b46a", raised: true, hdv: "5.1.5", water: true },
+  ryha: { label: t("Vsakovací rýha"), color: "#b8b1a2", raised: true, hdv: "5.1.6", water: true },
+  nadrz: { label: t("Retenční nádrž"), color: "#7fa9cf", raised: true, hdv: "5.1.10", water: true },
   voda: { label: t("Voda"), color: "#7fa9cf" },
   zed: { label: t("Zeď"), color: "#a39e92", raised: true, wall: true },
   nezname: { label: t("Neurčeno"), color: "#ebe8df", raised: true },
 };
+
+// Rainwater objects under a part (segment.under; the standard's chapter): under green, a sidewalk, parking…
+export const HDV_UNDER = {
+  ryha: { label: t("podzemní rýha"), hdv: "5.1.7" },
+  nadrz: { label: t("podzemní retenční nádrž"), hdv: "5.1.11" },
+  sachta: { label: t("vsakovací šachta"), hdv: "5.1.9" },
+};
+// The parts that may have one; with a průleh above, a rýha under it is the standard's "průleh s podzemní rýhou" (5.1.8).
+export const UNDER_TYPES = ["zelen", "stromorad", "predzahradka", "delici", "pruleh", "chodnik", "chodnik_kola", "stezka_sdilena", "plocha", "parkovani", "nastupiste", "zahradka"];
+// The paved parts that may be permeable (segment.permeable: joints, porous paving; 5.1.2).
+export const PERMEABLE_TYPES = ["chodnik", "chodnik_kola", "stezka_sdilena", "plocha", "parkovani", "zahradka", "cyklostezka"];
+// The Prague standard of rainwater management, cited by its chapters.
+export const HDV_SOURCE = "https://iprpraha.cz/assets/files/files/bddf4f520d27099cbc0f7a3609918e90.pdf";
 
 export const SOURCES = {
   dtm: { label: t("změřeno z technické mapy"), color: "#3b6d11" },
@@ -51,6 +70,7 @@ export const ITEMS = {
   strom: t("Strom"), lampa: t("Lampa"), lavicka: t("Lavička"), stojan_kola: t("Stojan na kola"), sdilena_kola: t("Sdílená kola"),
   pristresek: t("Přístřešek zastávky"), rozcestnik: t("Rozcestník / mapa"), taxi: t("Stanoviště taxi"),
   sloupek: t("Sloupek"), sloup_trakce: t("Sloup trakčního vedení"), oznacnik: t("Označník zastávky"), kvetinac: t("Květináč"), svodidlo: t("Svodidlo"), zabradli: t("Zábradlí"), plot: t("Plot / zeď"),
+  pristresek_zeleny: t("Přístřešek zastávky se zelenou střechou"),
   oporna_zed: t("Opěrná zeď"), zivy_plot: t("Živý plot"), svah: t("Hrana svahu"), zahradka: t("Zahrádka restaurace"),
 };
 
@@ -72,7 +92,7 @@ export const PARKING_POSITION = { on_kerb: t("na chodníku"), half_on_kerb: t("n
 
 export const DEFAULT_WIDTH = {
   chodnik: 2.5, chodnik_kola: 2.5, stezka_sdilena: 3, predzahradka: 2, zelen: 2, stromorad: 2, nastupiste: 3, cyklostezka: 2.5, cyklopruh: 1.5, ochranny_pruh: 1.5, pruh_piktokoridor: 3.25, parkovani: 2,
-  pruh: 3, obsluzna: 3, bus: 3.5, bus_cyklo: 4.25, tramvaj_v_pruhu: 3.25, tramvaj_pruh: 3.5, tramvaj: 3.5, delici: 1.5, plocha: 2, zahradka: 3, voda: 5, zed: 0.5, nezname: 2, krajnice: 1,
+  pruleh: 2, ryha: 1, nadrz: 4, pruh: 3, obsluzna: 3, bus: 3.5, bus_cyklo: 4.25, tramvaj_v_pruhu: 3.25, tramvaj_pruh: 3.5, tramvaj: 3.5, delici: 1.5, plocha: 2, zahradka: 3, voda: 5, zed: 0.5, nezname: 2, krajnice: 1,
 };
 
 // MTVU code (CTVUK_KOD) to segment type.
