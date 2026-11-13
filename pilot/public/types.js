@@ -65,7 +65,8 @@ export const UNDER_TYPES = ["zelen", "stromorad", "predzahradka", "delici", "pru
 // 5.1.2), "nezpevneny" for an unpaved surface (fine gravel, compacted earth, woodchips…: no paving at all, but the
 // rain soaks in too; Bára 12. 11. 2026).
 export const SURFACES = { "": t("běžný"), true: t("propustná dlažba"), nezpevneny: t("nezpevněný (mlat, štěrk)") };
-export const PERMEABLE_TYPES = ["chodnik", "chodnik_kola", "stezka_sdilena", "plocha", "parkovani", "zahradka", "cyklostezka"];
+// (Fable: an unpaved shoulder, access road or dividing strip could not be marked.)
+export const PERMEABLE_TYPES = ["chodnik", "chodnik_kola", "stezka_sdilena", "plocha", "parkovani", "zahradka", "cyklostezka", "krajnice", "obsluzna", "delici"];
 
 export const SOURCES = {
   dtm: { label: t("změřeno z technické mapy"), color: "#3b6d11" },
@@ -89,11 +90,12 @@ export const ITEMS = {
 
 // Surfaces of a separate tram bed (segment.bed); the default is panels. Asphalt (beds used by buses) is drawn
 // like the roadway.
+export const TRAM_BEDS = { panely: { label: t("panely"), color: "#b3ada0" }, strk: { label: t("štěrk"), color: "#9a948a" }, trava: { label: t("tráva"), color: "#86b552" }, asfalt: { label: t("asfalt"), color: "#5c5c59" } };
+
 // The heights a street lamp can be given (item.h, m; Magdalena: 6–8 m usually, 4 m in narrow streets); the picture's
 // luminaire hangs at LAMP_H (m) when none is set.
 export const LAMP_HEIGHTS = [4, 5, 6, 8, 10];
 export const LAMP_H = 8.75;
-export const TRAM_BEDS = { panely: { label: t("panely"), color: "#b3ada0" }, strk: { label: t("štěrk"), color: "#9a948a" }, trava: { label: t("tráva"), color: "#86b552" }, asfalt: { label: t("asfalt"), color: "#5c5c59" } };
 
 // Turn arrows on a lane (segment.turn; OSM turn:lanes values joined by ";"): the words and their names, and the
 // combinations Návrh offers (a lane from the data may carry any other combination of the words).

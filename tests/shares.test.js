@@ -28,3 +28,10 @@ test("povrch ulice: propustné, částečně propustné, nepropustné (Magdalena
   const m = Object.fromEntries(surfaces(p).map((g) => [g.key, g.m]));
   assert.deepEqual(m, { propustne: 7, castecne: 2, nepropustne: 9, jine: 2 });
 });
+
+test("povrch ulice: štěrkové těleso, těleso bez povrchu, rýha, nádrž, zeď a díra", () => {
+  const p = { segments: [{ type: "tramvaj", width: 3, bed: "strk" }, { type: "tramvaj", width: 3 }, { type: "ryha", width: 1 }, { type: "nadrz", width: 2 },
+    { type: "zed", width: 0.5 }, { type: "nezname", width: 1.5 }, { type: "krajnice", width: 1, permeable: "nezpevneny" }] };
+  const m = Object.fromEntries(surfaces(p).map((g) => [g.key, g.m]));
+  assert.deepEqual(m, { propustne: 5, castecne: 0, nepropustne: 3, jine: 4 });
+});

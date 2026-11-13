@@ -6,7 +6,7 @@ import { underground, KINDS as NET_KINDS, NET_CITIES } from "./site.js";
 // Lanes and shoulders from the road markings of the orthophoto (lanes-ortho.js); ?orto=0 leaves the rules' profile.
 const LANES_ORTHO = new URLSearchParams(location.search).get("orto") !== "0";
 import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, signFits, MAX_PER_PART } from "./signs.js";
-import { loadSprites, loadSigns, layoutSigns, buildSvg, isHole, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, edgeInfo, underDepth, ROADWAY, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
+import { loadSprites, loadSigns, layoutSigns, buildSvg, isHole, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, edgeInfo, underDepth, ROADWAY, nearestRoadway, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
 import * as sources from "./sources.js";
 import { MAPY_KEY } from "./config.js";
 import { cleanProfile, cleanCut, retype } from "./validate.js";
@@ -706,7 +706,7 @@ function shareBars(box, heading, fn, dark, note) {
 // Parts of the design that differ from the current state: edited by hand, or (same parts in the
 // same order) of another width, or with another rainwater object under them, paving or items (Fable's review:
 // changes a width does not show).
-const hidden = (s) => JSON.stringify([s.under || "", s.under ? underSize(s) : "", s.permeable || "", (s.items || []).map((it) => it.kind)]);
+const hidden = (s) => JSON.stringify([s.under || "", s.under ? underSize(s) : "", s.permeable || "", s.bed || "", (s.items || []).map((it) => [it.kind, it.h || 0, !!it.along])]);
 function changedParts(a, b) {
   const same = a.segments.length === b.segments.length && a.segments.every((s, i) => s.type === b.segments[i].type);
   const out = new Set();
@@ -726,6 +726,7 @@ function diffList(a, b) {
     a.segments.forEach((s, i) => {
       const d = +(b.segments[i].width - s.width).toFixed(2);
       if (d) items.push({ i, text: `${name(s)}: ${fmtM(s.width)} → ${fmtM(b.segments[i].width)} (${d > 0 ? "+" : "−"}${fmtM(Math.abs(d))})` });
+      else if (TYPES[s.type]?.bed && (s.bed || "panely") !== (b.segments[i].bed || "panely")) items.push({ i, text: tr("{type}: povrch tělesa {from} → {to}", { type: name(s), from: TRAM_BEDS[s.bed || "panely"]?.label, to: TRAM_BEDS[b.segments[i].bed || "panely"]?.label }) });
       else if ((s.under || "") !== (b.segments[i].under || "")) items.push({ i, text: tr("{type}: pod povrchem {what}", { type: name(s), what: HDV_UNDER[b.segments[i].under]?.label || tr("nic") }) });
       else if (hidden(s) !== hidden(b.segments[i])) items.push({ i, text: tr("{type}: jiné prvky, povrch nebo co je pod povrchem", { type: name(s) }) });
     });
@@ -1295,6 +1296,7 @@ function renderEditor(p) {
     // Perpendicular parking keeps at least 4.5 m (ČSN 73 6056).
     const min = s.type === "parkovani" && s.orient === "kolme" ? 4.5 : 0.2;
     setWidth(segs, segs.indexOf(s), Math.max(min, +(+width.value).toFixed(2)));
+    spreadAll(s);
     s.source = "user";
     done();
   };
@@ -1331,7 +1333,7 @@ function renderEditor(p) {
   acts.lastChild.setAttribute("aria-label", tr("Zavřít výběr"));
   head.append(acts);
   const row = (into = ed) => into.appendChild(Object.assign(document.createElement("div"), { className: "ed-row" }));
-  const step = (d) => btn(d > 0 ? "+" : "−", () => { setWidth(segs, i, Math.max(minW(), +(s.width + d).toFixed(2))); s.source = "user"; done(); }, "step");
+  const step = (d) => btn(d > 0 ? "+" : "−", () => { setWidth(segs, i, Math.max(minW(), +(s.width + d).toFixed(2))); spreadAll(s); s.source = "user"; done(); }, "step");
   const minW = () => (s.type === "parkovani" && s.orient === "kolme" ? 4.5 : 0.2);
   ed.append(head);
   // What the part is, in plain words, where its name is a term (Fable: průleh, piktokoridor… for lay people).
@@ -1483,10 +1485,14 @@ function renderEditor(p) {
   // Items (furniture, barriers) inside the segment and its traffic signs (at most MAX_PER_PART): one row of tags.
   const items = document.createElement("span");
   items.className = "items";
+  // The tags in the order the items stand (Fable: with three racks it was not clear which select was whose).
+  if (s.items) s.items.sort((a, b) => a.f - b.f);
   (s.items || []).forEach((it, k) => {
-    items.append(btn(`${ITEMS[it.kind] || it.kind} ×`, () => { s.items.splice(k, 1); done(); }, "tag"));
+    // A tag and its select stay together on one line (Fable).
+    const pair = items.appendChild(Object.assign(document.createElement("span"), { className: "item-pair" }));
+    pair.append(btn(`${ITEMS[it.kind] || it.kind} ×`, () => { s.items.splice(k, 1); spreadItems(s, it.kind); s.source = "user"; done(); }, "tag"));
     // A lamp's height and a bike rack's direction (Magdalena): a small select by its tag.
-    const opts = it.kind === "lampa" ? [["", tr("výška: obvyklá (asi 9 m)")], ...LAMP_HEIGHTS.map((h) => [String(h), tr("výška {h} m", { h })])]
+    const opts = it.kind === "lampa" ? [["", tr("výška: obvyklá")], ...LAMP_HEIGHTS.map((h) => [String(h), tr("výška {h} m", { h })])]
       : it.kind === "stojan_kola" ? [["", tr("napříč ulicí")], ["along", tr("podél ulice")]] : null;
     if (!opts) return;
     const sel = Object.assign(document.createElement("select"), { className: "item-opt" });
@@ -1498,13 +1504,13 @@ function renderEditor(p) {
       s.source = "user";
       done();
     };
-    items.append(sel);
+    pair.append(sel);
   });
   const add = document.createElement("select");
   add.setAttribute("aria-label", tr("Přidat prvek"));
   add.add(new Option(tr("+ přidat prvek"), ""));
   for (const [k, t] of Object.entries(ITEMS)) add.add(new Option(t, k));
-  add.onchange = () => { if (!add.value) return; (s.items ||= []).push({ kind: add.value, f: itemPlace(segs, i, add.value) }); spreadItems(s, add.value); done(); };
+  add.onchange = () => { if (!add.value) return; (s.items ||= []).push({ kind: add.value, f: itemPlace(segs, i, add.value) }); spreadItems(s, add.value); s.source = "user"; done(); };
   items.append(add);
   row().append(items, signTags(s.signs, MAX_PER_PART, s.type, (list) => { if (list.length) s.signs = list; else delete s.signs; done(); }));
   ed.append(moreBox);
@@ -1512,8 +1518,6 @@ function renderEditor(p) {
 
 // "IP 11b Parkoviště (kolmé stání)" as "Parkoviště (kolmé stání) · IP 11b".
 const codeLast = (label) => label.replace(/^((?:[A-Z]{1,2} \d+[a-z]?)(?: [/+] (?:[A-Z]{1,2} \d+[a-z]?))*) (.+)$/, "$2 · $1");
-// Where a new item stands across its part (f): a lamp or a traction pole KERB_SET from the kerb of the nearer roadway
-// beside the part, to light it or hold its wire (Bára: lamps stand by the road), else in the middle.
 // Items of a kind that stand in a row (racks, benches, planters, bollards) are set side by side across their part,
 // each as wide as it is (Bára: two or three bike racks on top of each other), around where they stood; when they do
 // not fit, closer together.
@@ -1528,14 +1532,21 @@ function spreadItems(s, kind) {
   let x = mid - (need * k) / 2;
   row.forEach((it, j) => { it.f = +((x + (ws[j] * k) / 2) / s.width).toFixed(3); x += ws[j] * k; });
 }
+// After a part's width changed: its rows again (Fable: narrowed, they overlapped).
+const spreadAll = (s) => Object.keys(ITEM_W).forEach((kind) => spreadItems(s, kind));
 // Where a new item stands across its part (f): a lamp or a traction pole KERB_SET from the kerb of the nearer roadway
 // beside the part, to light it or hold its wire (Bára: lamps stand by the road), else in the middle.
+// The roadway is looked for across the parts between, as the drawing turns the lamp's arm (nearestRoadway); a second
+// lamp or pole in the part stands at the other edge, a third and more in the middle (Fable: they stood on each other).
 function itemPlace(segs, i, kind) {
   const s = segs[i];
   if (!["lampa", "sloup_trakce"].includes(kind) || s.width < 2 * KERB_SET) return 0.5;
-  const left = ROADWAY.has(segs[i - 1]?.type), right = ROADWAY.has(segs[i + 1]?.type);
-  if (left === right) return 0.5;
-  return +(left ? KERB_SET / s.width : 1 - KERB_SET / s.width).toFixed(3);
+  const kerb = KERB_SET / s.width, n = (s.items || []).filter((it) => it.kind === kind).length;
+  const side = nearestRoadway(segs, i, 0.5);
+  const both = ROADWAY.has(segs[i - 1]?.type) && ROADWAY.has(segs[i + 1]?.type);
+  if (!side || both) return n === 0 ? 0.5 : n === 1 ? kerb : 1 - kerb;
+  const near = side === "left" ? kerb : 1 - kerb;
+  return +(n === 0 ? near : n === 1 ? 1 - near : 0.5).toFixed(3);
 }
 // Tags of traffic signs with ×, and a select to add one (a speed limit asks for its number).
 function signTags(list = [], max, type, set) {

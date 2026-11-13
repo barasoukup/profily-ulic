@@ -70,11 +70,13 @@ test("šipky nabízené v Návrhu mají jméno a převod do Streetmixu", async (
 });
 
 test("výška lampy a stojan podél ulice projdou, nesmysly se zahodí", () => {
-  const p = cleanProfile({ segments: [{ type: "chodnik", width: 3, items: [{ kind: "lampa", f: 0.2, h: 6 }, { kind: "lampa", f: 0.5, h: 7 }, { kind: "stojan_kola", f: 0.8, along: true }, { kind: "lavicka", f: 0.9, along: true, h: 4 }] }] });
+  const p = cleanProfile({ segments: [{ type: "chodnik", width: 3, items: [{ kind: "lampa", f: 0.2, h: 6 }, { kind: "lampa", f: 0.5, h: 7 }, { kind: "stojan_kola", f: 0.8, along: true }, { kind: "lavicka", f: 0.9, along: true, h: 4 }, { kind: "lampa", f: 0.6, h: "6" }, { kind: "stojan_kola", f: 0.7, along: false }] }] });
   const it = p.segments[0].items;
   assert.equal(it[0].h, 6);
   assert.equal(it[1].h, undefined);
   assert.equal(it[2].along, true);
   assert.equal(it[3].along, undefined);
   assert.equal(it[3].h, undefined);
+  assert.equal(it[4].h, undefined); // a string
+  assert.equal("along" in it[5], false);
 });

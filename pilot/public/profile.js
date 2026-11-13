@@ -290,13 +290,16 @@ function wiredLanes(segs, bounds) {
 
 // Which side of an item (at f of part i) the nearest roadway lies on, "left" or "right" (by metres along the
 // profile), or null when there is none.
-function nearestRoadway(segs, i, f) {
+export function nearestRoadway(segs, i, f) {
   let left = Infinity, right = Infinity, d = (f ?? 0.5) * segs[i].width;
   for (let k = i - 1; k >= 0; d += segs[k].width, k--) if (ROADWAY.has(segs[k].type)) { left = d; break; }
   d = (1 - (f ?? 0.5)) * segs[i].width;
   for (let k = i + 1; k < segs.length; d += segs[k].width, k++) if (ROADWAY.has(segs[k].type)) { right = d; break; }
   return left === Infinity && right === Infinity ? null : left <= right ? "left" : "right";
 }
+// Where the luminaire of the city's lamp picture hangs (m): Brno's at 7.4 m, the others' (Prague's and its copies,
+// Streetmix's) at LAMP_H (Fable: Brno's "6 m" came out lower than a 5 m post-top lamp).
+const lampLight = () => (artKey() === "brno" ? 7.4 : LAMP_H);
 const POLE_SCALE = 0.93; // overhead-line poles: their contact wire (5.9 m in the picture) at WIRE_H
 // A span wire (spanPlan) from a pole across the tracks to its other end, with an insulator by each end and a hanger
 // down to the contact wire over each track (as the poles' brackets); on a building, a wall rosette.
@@ -336,7 +339,7 @@ function drawItem(g, it, x, top, right) {
         el("rect", { x: x - 3, y: head, width: 6, height: 9, rx: 2, fill: dark ? "#3d4246" : "#2f3335" }, g);
         return;
       }
-      const d = it.h * 100 - LAMP_H * 100, base = top - 930;
+      const d = it.h * 100 - lampLight() * 100, base = top - 930;
       const part = (y0, y1, transform) => {
         const id = `lamp${++clipN}`, og = el("g", transform ? { transform } : {}, g);
         el("rect", { x: x - 400, y: base + y0, width: 800, height: y1 - y0 }, el("clipPath", { id }, og));
@@ -351,7 +354,7 @@ function drawItem(g, it, x, top, right) {
     case "lavicka": return sprite(g, "bench-center", x, top, right);
     case "strom": return sprite(g, "tree", x, top);
     // A rack across the street shows a bike from its side; one along it (it.along, Magdalena) a bike from the front
-    // behind the rack seen edge-on: 60 cm wide instead of 180.
+    // beside the rack seen edge-on (about 0.8 m of room in a row instead of 1.9 m; app.js spreadItems).
     case "stojan_kola": {
       if (!it.along) return sprite(g, "bike-rack-perpendicular-left", x, top);
       const rack = artKey() === "praha" ? "#3a332e" : "#7c8082", tyre = "#2c2c2c", frame = "#5f7f8e";
@@ -362,7 +365,7 @@ function drawItem(g, it, x, top, right) {
       for (const d of [-30, 30]) el("rect", { x: x + d - 3, y: top - 93, width: 6, height: 7, rx: 2, fill: tyre }, g); // the grips
       el("circle", { cx: x, cy: top - 82, r: 3.5, fill: "#f2e9a0", stroke: tyre, "stroke-width": 1 }, g); // the lamp
       // The rack beside the wheel, seen edge-on: one tube.
-      el("rect", { x: x + 12, y: top - 80, width: 6, height: 80, rx: 3, fill: rack }, g);
+      el("rect", { x: right ? x - 18 : x + 12, y: top - 80, width: 6, height: 80, rx: 3, fill: rack }, g);
       return;
     }
     case "sdilena_kola": return sprite(g, "bikeshare-left", x, top);
@@ -1481,8 +1484,10 @@ export function buildSvg(profile, opts = {}) {
   const view = opts.view || [-EDGE, Math.max(total + 2 * EDGE, 2400)];
   const vx = view[0] - (view[1] - (total + 2 * EDGE)) / 2;
   // Tall buildings at the edges extend the drawing upwards.
+  // Tall lamps and traction poles too (Fable: a 10 m lamp was cut off above a street without houses).
   const tallest = Math.max(0, ...["left", "right"].map((k) =>
-    edgeHeight(profile.edges?.[k], profile.edges?.[`${k}Info`], profile.edges?.[`${k}Style`])));
+    edgeHeight(profile.edges?.[k], profile.edges?.[`${k}Info`], profile.edges?.[`${k}Style`])),
+    ...segs.flatMap((s) => (s.items || []).map((it) => (it.kind === "lampa" ? (it.h || lampLight()) * 100 + 80 : it.kind === "sloup_trakce" ? 960 : 0))));
   // A tower beside a narrow street would squash the street into a strip: the view shows at most
   // TALL_SHARE of its width above the ground, and taller buildings are cut with a break line.
   const shown = Math.min(tallest, Math.max(1300, view[1] * TALL_SHARE));
@@ -1623,7 +1628,8 @@ export function buildSvg(profile, opts = {}) {
         if (near) onRight = near === "left";
         // Only on a true median (a dividing strip, green or a tram bed between two roadways of a big road), not on a
         // walkway island by a turn (Bára, náměstí Jana Palacha).
-        if (MEDIAN_LAMP.has(s.type) && ROADWAY.has(segs[i - 1]?.type) && ROADWAY.has(segs[i + 1]?.type)) drawItem(g, it, ix, top, !onRight);
+        // (A post-top lamp has no arms: once is enough.)
+        if (MEDIAN_LAMP.has(s.type) && ROADWAY.has(segs[i - 1]?.type) && ROADWAY.has(segs[i + 1]?.type) && !(it.h <= 5)) drawItem(g, it, ix, top, !onRight);
       }
       const key = `${i}:${s.items.indexOf(it)}`;
       if (spans.free.has(key)) { drawItem(g, { ...it, span: true }, ix, top, spans.free.get(key)); continue; }
@@ -1647,7 +1653,8 @@ export function buildSvg(profile, opts = {}) {
       if (s.type === "parkovani" && s.items?.some((it) => it.kind === "strom")) label += tr(" se stromy");
       // What lies under it (rainwater, types.js HDV_UNDER) and permeable paving, in the name.
       if (s.under && HDV_UNDER[s.under]) label += ` + ${HDV_UNDER[s.under].short}`;
-      if (s.permeable) label += s.permeable === "nezpevneny" ? tr(", nezpevněný") : tr(", propustný");
+      // "propustná dlažba": the surface graph counts it as partly permeable (Fable: two meanings of "propustný").
+      if (s.permeable) label += s.permeable === "nezpevneny" ? tr(", nezpevněný") : tr(", propustná dlažba");
       const name = el("text", { class: "lbl-t", "data-row": 1, "data-w": w, "data-full": label, x: cx, y: GROUND + DROP + 215, "text-anchor": "middle", "font-size": 28, fill: "#4f4e49" }, g);
       const lines = twoLines(label);
       if (label.length * 0.56 * 28 > w && lines) {

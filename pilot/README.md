@@ -477,18 +477,25 @@ a silnice I. a II. třídy červeně pod 3 m; MK III a silnice III. třídy čer
 MK IV červeně pod 2,5 m, oranžově pod 2,75 m. Bez zatřídění (ostatní města) 2,5 / 3 m. Pruh přidaný v Návrhu
 převezme třídu ostatních pruhů ulice.
 
-Lampa jde v Návrhu nastavit na výšku 4, 5, 6, 8 nebo 10 m (do 5 m parková lampa se svítidlem na sloupku, od 6 m
-lampa města s kratším či delším stožárem, výložník, svítidlo a patka ve skutečné velikosti; bez nastavení asi 9 m) a stojan na kola otočit podél ulice (kolo zepředu, stojan z boku); obojí u značky prvku v kartě části
-(Magdalena, 13. 11. 2026). Stojany, lavičky, květináče a sloupky téže části se po přidání či otočení srovnají
-vedle sebe podle své šířky (stojan podél ulice 0,8 m, napříč 1,9 m, lavička 2,2 m…), kolem místa, kde byly; když se
-nevejdou, blíž k sobě (Bára: tři stojany přes sebe). Nová lampa nebo trakční sloup se postaví 0,6 m od obruby na straně vozovky (Bára:
-lampy stojí u silnice), mezi dvěma vozovkami doprostřed. Travnaté a štěrkové tramvajové těleso, zeleň a průleh nemají pod sebou betonový blok,
-ale zeminu, štěrkové lože s pražci nebo štěrk.
+Prvky v Návrhu (Magdalena a Bára, 13. 11. 2026):
+- lampa jde nastavit na výšku 4, 5, 6, 8 nebo 10 m: do 5 m parková lampa se svítidlem na sloupku, od 6 m lampa města
+  s kratším či delším stožárem (výložník, svítidlo a patka ve skutečné velikosti); bez nastavení obrázek města
+  (svítidlo v Praze asi 8,75 m, v Brně 7,4 m);
+- stojan na kola jde otočit podél ulice (kolo zepředu, trubka stojanu vedle); obojí u štítku prvku v kartě části,
+  štítky v pořadí, v jakém prvky stojí;
+- stojany, lavičky, květináče a sloupky téže části se po přidání, smazání, otočení či změně šířky části srovnají
+  vedle sebe podle své šířky (stojan podél ulice 0,8 m, napříč 1,9 m, lavička 2,2 m…) kolem místa, kde byly; když se
+  nevejdou, blíž k sobě (Bára: tři stojany přes sebe);
+- nová lampa nebo trakční sloup stojí 0,6 m od obruby na straně nejbližší vozovky (i přes části mezi nimi; Bára:
+  lampy stojí u silnice), druhá u protější hrany části, další uprostřed; bez vozovky vedle a mezi dvěma vozovkami
+  první uprostřed.
 
 Pod profilem je pruh **podílu šířky ulice** (chůze, kola, MHD, jedoucí auta, parkování, zeleň, ostatní; sdílené
-části napůl), v Porovnání se změnou. Pod ním **povrch ulice** (`shares.js surfaces`): propustné (zeleň, průleh, rýha, nádrž,
-travnaté a štěrkové těleso, nezpevněný povrch), částečně propustné (propustná dlažba), nepropustné a voda s ostatním;
-skupina bez plochy se neukazuje. Návrh (i ručně opravený stav) jde **sdílet odkazem** (je zabalený v adrese za
+části napůl), v Porovnání se změnou. Pod ním **povrch ulice** (`shares.js surfaces`, Magdalena): propustný (zeleň,
+průleh, povrchová rýha, travnaté a štěrkové těleso, nezpevněný povrch), částečně propustný (propustná dlažba; v popisku
+části „propustná dlažba“), nepropustný a voda s ostatním (retenční nádrž zadržuje, nevsakuje); co je pod povrchem se
+nepočítá, skupina bez plochy se neukazuje, v Porovnání „bylo X %“. Nezpevněný může být i chodník, plocha, parkování,
+cyklostezka, krajnice, přístupová cesta a dělicí pás. Návrh (i ručně opravený stav) jde **sdílet odkazem** (je zabalený v adrese za
 řezem), uložit do souboru JSON a zase načíst. U řezu je **panorama z ulice** Mapy.com (s klíčem v dialogu, bez
 něj odkaz na Mapy.com).
 
@@ -526,7 +533,8 @@ mezi sítě pod zemí neberou; kabel protikorozní ochrany plynovodu je kabel; s
 stoka neznámého průměru bere 2,5 m; strom mezi dvěma stěnami „tělesa kolektoru“ stojí nad kolektorem; kolektor
 neznámé hloubky nejvýš oranžově. Za stávající se strom bere podle polohy od A (do 1 m), takže strom posunutý
 v Návrhu rozšířením sousední části o víc se hlásí jako nový.
-Dále modré šipky ukazují přítok ze zpevněných ploch vedle; zatravňovací
+Dále modré šipky ukazují přítok ze zpevněných ploch vedle; pod zelení, stromořadím, předzahrádkou a průlehem je ornice, pod travnatým tramvajovým tělesem ornice a štěrkové lože
+s pražci, štěrkové těleso je štěrkové až dolů (Bára: žádný beton pod zelení); zatravňovací
 dlažba jako pás betonových tvárnic s trávou mezi nimi (Bára: na první pohled něco mezi parkováním a trávníkem). Ilustrace (zelená střecha přístřešku, výsadba průlehu, rákos) kreslila
 „kreslířka“ ve třech kolech s „kritikem“ podle fotek z Wikimedia Commons.
 

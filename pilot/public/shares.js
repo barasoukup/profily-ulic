@@ -35,7 +35,7 @@ export function shares(profile) {
   return SHARE_GROUPS.map((g) => ({ ...g, m: +m[g.key].toFixed(2), pct: (100 * m[g.key]) / total }));
 }
 
-// How much of the street lets the rain in (Magdalena, 13. 11. 2026): permeable (green, swales, trenches and ponds,
+// How much of the street lets the rain in (Magdalena, 13. 11. 2026): permeable (green, swales, trenches,
 // a grass or gravel tram bed, an unpaved surface), partly permeable (permeable paving, grass pavers), sealed (asphalt,
 // paving, concrete, tram panels) and the rest (water, walls, unknown). By the part's surface; what lies under it does
 // not count.
@@ -45,8 +45,9 @@ export const SURFACE_GROUPS = [
   { key: "nepropustne", label: t("Nepropustný"), color: "#7c7a74" },
   { key: "jine", label: t("Voda a ostatní"), color: "#dcd8cd" },
 ];
-const GREEN = new Set(["zelen", "stromorad", "predzahradka", "pruleh", "ryha", "nadrz"]);
-const OTHER = new Set(["voda", "zed", "nezname"]);
+// A retention pond holds water back, it does not soak it away (Fable): with water.
+const GREEN = new Set(["zelen", "stromorad", "predzahradka", "pruleh", "ryha"]);
+const OTHER = new Set(["voda", "nadrz", "zed", "nezname"]);
 function surfaceOf(s) {
   if (GREEN.has(s.type)) return "propustne";
   if (OTHER.has(s.type)) return "jine";

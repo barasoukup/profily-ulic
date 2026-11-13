@@ -204,6 +204,15 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   Soubor, patička na jeden řádek. Žádné texty „zkušebně“ v aplikaci (Bára). Pěší, přechody a průchozí šířka chodníku
   na pozdější brainstorming.
 
+## Podnět Magdaleny k prvkům a povrchu (Bára 13. 11. 2026)
+- Lampa ve výšce 4–10 m (do 5 m parková na sloupku, výš lampa města s delším/kratším stožárem; Bára: malá lampa není
+  zmenšená velká), stojí 0,6 m od obruby u vozovky. Stojan na kola napříč/podél; stojany, lavičky, květináče a sloupky
+  se v části řadí vedle sebe. Povrch tramvajového tělesa jen u samostatného tělesa (tráva stačí, rozchodníky ne).
+- Pod zelení a travnatým/štěrkovým tělesem žádný beton (ornice, štěrkové lože).
+- Graf „Povrch ulice“: propustný / částečně propustný / nepropustný / voda a ostatní (shoda s „povrch“), bez poznámky.
+- Nedělat: pokryvnost korunami a parametry stromů (Bára: moc složité). IPR Praha oslovit s připomínkami (nápad
+  Magdaleny), Slovensko jen při zájmu.
+
 ## Licence
 - Kód MIT. Ilustrace Streetmix CC BY-SA 4.0 (s uvedením autora), pražské ilustrace (`pilot/public/praha/`)
   pod MIT jako kód (Bára rozhodla 8. 11. 2026), kód Streetmixu AGPL-3.0 (jen kopie

@@ -411,5 +411,7 @@ footer details[open] summary { margin-bottom: 4px; }
 #editor .under-size input[type=number] { width: 72px; }
 #editor .under-size .muted { font-size: 12px; }
 #editor .items select.item-opt { width: auto; font-size: 13px; padding: 3px 6px; }
+#editor .item-pair { display: inline-flex; gap: 4px; align-items: center; white-space: nowrap; }
+@media (max-width: 760px) { #editor .items select.item-opt { font-size: 16px; min-height: 40px; } } /* no zoom on focus in iOS */
 .share-sec { display: grid; gap: 6px; }
 .share-sec + .share-sec { border-top: 1px solid var(--line); padding-top: 10px; margin-top: 4px; }
