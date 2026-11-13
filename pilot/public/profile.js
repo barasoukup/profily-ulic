@@ -270,7 +270,7 @@ function drawTramBed(g, s, x, w, top, bedBefore, bedAfter) {
   if (!bedAfter) curb(x + w - 12);
 }
 
-const ROADWAY = new Set(["pruh", "krajnice", "obsluzna", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "cyklopruh", "ochranny_pruh", "parkovani"]);
+export const ROADWAY = new Set(["pruh", "krajnice", "obsluzna", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "cyklopruh", "ochranny_pruh", "parkovani"]);
 // The lanes the contact wires hang over: one each way (Bára, Olomoucká: not over every lane), the trolleybus's own
 // (a bus lane under the wires) where there is one, else the outer lane of that direction, the farthest from the
 // middle of the wired street; a lane both ways keeps its wires.

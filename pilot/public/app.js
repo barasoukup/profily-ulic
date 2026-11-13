@@ -6,7 +6,7 @@ import { underground, KINDS as NET_KINDS, NET_CITIES } from "./site.js";
 // Lanes and shoulders from the road markings of the orthophoto (lanes-ortho.js); ?orto=0 leaves the rules' profile.
 const LANES_ORTHO = new URLSearchParams(location.search).get("orto") !== "0";
 import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, signFits, MAX_PER_PART } from "./signs.js";
-import { loadSprites, loadSigns, layoutSigns, buildSvg, isHole, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, edgeInfo, underDepth, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
+import { loadSprites, loadSigns, layoutSigns, buildSvg, isHole, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, edgeInfo, underDepth, ROADWAY, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
 import * as sources from "./sources.js";
 import { MAPY_KEY } from "./config.js";
 import { cleanProfile, cleanCut, retype } from "./validate.js";
@@ -1503,7 +1503,7 @@ function renderEditor(p) {
   add.setAttribute("aria-label", tr("Přidat prvek"));
   add.add(new Option(tr("+ přidat prvek"), ""));
   for (const [k, t] of Object.entries(ITEMS)) add.add(new Option(t, k));
-  add.onchange = () => { if (!add.value) return; (s.items ||= []).push({ kind: add.value, f: 0.5 }); done(); };
+  add.onchange = () => { if (!add.value) return; (s.items ||= []).push({ kind: add.value, f: itemPlace(segs, i, add.value) }); done(); };
   items.append(add);
   row().append(items, signTags(s.signs, MAX_PER_PART, s.type, (list) => { if (list.length) s.signs = list; else delete s.signs; done(); }));
   ed.append(moreBox);
@@ -1511,6 +1511,16 @@ function renderEditor(p) {
 
 // "IP 11b Parkoviště (kolmé stání)" as "Parkoviště (kolmé stání) · IP 11b".
 const codeLast = (label) => label.replace(/^((?:[A-Z]{1,2} \d+[a-z]?)(?: [/+] (?:[A-Z]{1,2} \d+[a-z]?))*) (.+)$/, "$2 · $1");
+// Where a new item stands across its part (f): a lamp or a traction pole KERB_SET from the kerb of the nearer roadway
+// beside the part, to light it or hold its wire (Bára: lamps stand by the road), else in the middle.
+const KERB_SET = 0.6;
+function itemPlace(segs, i, kind) {
+  const s = segs[i];
+  if (!["lampa", "sloup_trakce"].includes(kind) || s.width < 2 * KERB_SET) return 0.5;
+  const left = ROADWAY.has(segs[i - 1]?.type), right = ROADWAY.has(segs[i + 1]?.type);
+  if (left === right) return 0.5;
+  return +(left ? KERB_SET / s.width : 1 - KERB_SET / s.width).toFixed(3);
+}
 // Tags of traffic signs with ×, and a select to add one (a speed limit asks for its number).
 function signTags(list = [], max, type, set) {
   const box = Object.assign(document.createElement("span"), { className: "items" });

@@ -479,7 +479,8 @@ převezme třídu ostatních pruhů ulice.
 
 Lampa jde v Návrhu nastavit na výšku 4, 5, 6, 8 nebo 10 m (obrázek se zmenší či zvětší kolem paty; bez nastavení
 asi 9 m) a stojan na kola otočit podél ulice (kolo zepředu, stojan z boku); obojí u značky prvku v kartě části
-(Magdalena, 13. 11. 2026). Travnaté a štěrkové tramvajové těleso, zeleň a průleh nemají pod sebou betonový blok,
+(Magdalena, 13. 11. 2026). Nová lampa nebo trakční sloup se postaví 0,6 m od obruby na straně vozovky (Bára:
+lampy stojí u silnice), mezi dvěma vozovkami doprostřed. Travnaté a štěrkové tramvajové těleso, zeleň a průleh nemají pod sebou betonový blok,
 ale zeminu, štěrkové lože s pražci nebo štěrk.
 
 Pod profilem je pruh **podílu šířky ulice** (chůze, kola, MHD, jedoucí auta, parkování, zeleň, ostatní; sdílené
