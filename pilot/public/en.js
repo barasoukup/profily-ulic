@@ -588,7 +588,6 @@ export const EN = {
   "Data © IPR Praha, ČÚZK, města a kraje, OpenStreetMap · ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí":
     "Data © IPR Praha, ČÚZK, cities and regions, OpenStreetMap · illustrations Streetmix (CC BY-SA 4.0) and © Bára Soukupová · sources, licences and privacy",
   // Rainwater objects at their size, with the networks.
-  "Pod povrchem a sítě:": "Below the surface and the networks:",
   "šířka": "width",
   "od hloubky": "top at depth",
   "výška": "height",
@@ -600,6 +599,11 @@ export const EN = {
   "blíž než {near} od: {list}": "closer than {near} to: {list}",
   "{obj} pod částí {part} narazí na: {list}": "{obj} under the {part} runs into: {list}",
   "{obj} pod částí {part}: {what}": "{obj} under the {part}: {what}",
+  "{net} {d} od kmene": "{net} {d} from the trunk",
+  "Nový strom v části {part}: blíž než {near} k sítím: {list}": "New tree in the {part}: closer than {near} to networks: {list}",
+  "kořeny a síť: umístění stromu posuďte se správcem sítě": "roots and networks: have the network's owner assess where the tree goes",
+  "{net} přímo pod stromem": "{net} right under the tree",
+  "Sítě pod zemí:": "Underground networks:",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

@@ -12,7 +12,7 @@ import { MAPY_KEY } from "./config.js";
 import { cleanProfile, cleanCut, retype } from "./validate.js";
 import { shares } from "./shares.js";
 import { packProfile, unpackProfile, designParams } from "./share.js";
-import { checkRules, checkUnder } from "./rules.js";
+import { checkRules, checkUnder, checkTrees } from "./rules.js";
 import { city, setCity, cityAt, loadBounds } from "./city.js";
 import { TOWNS } from "./towns/index.js";
 import { log, logOn, sendReport, shortProfile } from "./log.js";
@@ -751,15 +751,15 @@ function diffList(a, b) {
 function renderRuleCheck(p, box) {
   const el = $("#rule-check");
   if (state.mode !== "navrh") { el.hidden = true; return; }
-  // The widths by the manual, and (with the networks on) rainwater objects running into a network: each under its
-  // own head.
-  const widths = checkRules(p), clashes = checkUnder(p, undergroundFor());
+  // The widths by the manual, and (with the networks on) rainwater objects and new trees near a network: each under
+  // its own head.
+  const nets = undergroundFor(), widths = checkRules(p), clashes = [...checkUnder(p, nets), ...checkTrees(p, state.stav, nets)];
   const found = [...widths, ...clashes];
   for (const f of found) box.querySelector(`g.seg[data-i="${f.i}"]`)?.classList.add(`warn-${f.level}`);
   if (!found.length) { el.hidden = true; el.replaceChildren(); return; }
   el.hidden = false;
   el.replaceChildren();
-  for (const [head, list] of [[city.rulesHead, widths], [tr("Pod povrchem a sítě:"), clashes]]) if (list.length) el.append(Object.assign(document.createElement("div"), { textContent: head }), warnList(list));
+  for (const [head, list] of [[city.rulesHead, widths], [tr("Sítě pod zemí:"), clashes]]) if (list.length) el.append(Object.assign(document.createElement("div"), { textContent: head }), warnList(list));
 }
 function warnList(found) {
   const ul = document.createElement("ul");

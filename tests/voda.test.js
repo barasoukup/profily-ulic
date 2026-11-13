@@ -3,7 +3,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { TYPES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, ITEMS, underSize } from "../pilot/public/types.js";
-import { checkUnder } from "../pilot/public/rules.js";
+import { checkUnder, checkTrees } from "../pilot/public/rules.js";
 import { cleanProfile, retype } from "../pilot/public/validate.js";
 import { packProfile, unpackProfile } from "../pilot/public/share.js";
 import { shares } from "../pilot/public/shares.js";
@@ -90,4 +90,20 @@ test("jeden objekt má jedno varování: červeně, když narazí na kteroukoli 
   assert.equal(found.length, 1);
   assert.equal(found[0].level, "min");
   assert.match(found[0].short, /narazí na: vodovod v hloubce 0,80 m; blíž než 0,50 m od: slaboproud v hloubce 0,50 m$/);
+});
+
+test("nový strom blízko sítě: varování, stávající strom ne", () => {
+  const kinds = { vodovod: { label: "vodovod", dn: 150 } };
+  const nets = (m) => ({ items: [{ t: 10 - m, depth: 1.2, kind: "vodovod", profil: 200 }], span: { left: 10 }, kinds });
+  const stav = { segments: [{ type: "chodnik", width: 4, items: [{ kind: "strom", f: 0.25 }] }, { type: "pruh", width: 3 }] };
+  const navrh = { segments: [{ type: "chodnik", width: 4, items: [{ kind: "strom", f: 0.25 }, { kind: "strom", f: 0.75 }] }, { type: "stromorad", width: 2 }, { type: "pruh", width: 1 }] };
+  // A water main (DN 200) 3.3 m from A: the new tree at 3 m is 0.2 m from its rim, the old one at 1 m is left alone,
+  // the stromořadí's at 5 m 1.6 m from it.
+  const found = checkTrees(navrh, stav, nets(3.3));
+  assert.equal(found.length, 1);
+  assert.equal(found[0].i, 0);
+  assert.match(found[0].short, /vodovod 0,20 m od kmene/);
+  assert.equal(checkTrees(navrh, stav, nets(4.8)).map((f) => f.i).join(), "1"); // the stromořadí's tree at 5 m
+  assert.equal(checkTrees(navrh, stav, nets(8)).length, 0);
+  assert.equal(checkTrees(navrh, stav, null).length, 0);
 });

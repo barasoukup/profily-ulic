@@ -209,6 +209,10 @@ Služby města (`gis.jihlava-city.cz`, CORS povolený):
   `datumTransformation=1623` jako u IPR.
 - další vrstvy města (nepoužité): jednosměrky a cyklo-obousměrky, obytné zóny a zóny 30, přechody, trolejové
   vedení a trakční sloupy, zastávky s vybavením, dopravní značky, mosty.
+  Trakční sloup dál než 4 m od kolejí (mezi nimi pruhy pro auta, 17. listopadu) nemá výložník, ale drží vodorovné
+  příčné lano nad koleje (věšáky s trolejí nad každou kolejí): na druhé straně ke sloupu za kolejemi, jinak k domu
+  na kraji (růžice na fasádě), jinak lano končí za poslední kolejí. Koleje se sloupy mezi sebou (Olšanská) lano
+  nemají. Řídí se sloupy a okraji profilu, takže v Návrhu ho změní přidání či smazání sloupu nebo jiný okraj (Bára 13. 11. 2026).
 
 ### Most, Opava, Plzeň
 
@@ -498,7 +502,10 @@ výška; `segment.underSize`), výchozí je odhad: rýha 1,5 m široká v hloubc
 0,5–3 m; Standardy rozměry neurčují, dává je výpočet. Se zapnutými sítěmi Návrh upozorní, když objekt narazí na síť
 (červeně, překryv s kreslenou sítí) nebo je k ní blíž než 0,5 m (oranžově; Bára 12. 11. 2026: varovat i při blízkosti;
 Standardy kap. 6.2.9 jen žádají střety se sítěmi a ochrannými pásmy prověřit, odstupy nedávají, 0,5 m je hranice
-upozornění, ne ochranné pásmo), sítě se kreslí přes objekty, aby byl střet vidět. modré šipky ukazují přítok ze zpevněných ploch vedle; zatravňovací
+upozornění, ne ochranné pásmo), sítě se kreslí přes objekty, aby byl střet vidět. Stejně se hlídají nové stromy
+z Návrhu (strom v části i stromořadí, kde Stav do 1 m strom nemá): síť blíž než 1,5 m vodorovně od kmene je oranžové
+upozornění (Bára 13. 11. 2026; TSK pro výsadbu odstup nedává, brněnské stavební předpisy chtějí 2,5 m od vodovodu).
+Dále modré šipky ukazují přítok ze zpevněných ploch vedle; zatravňovací
 dlažba jako pás betonových tvárnic s trávou mezi nimi (Bára: na první pohled něco mezi parkováním a trávníkem). Ilustrace (zelená střecha přístřešku, výsadba průlehu, rákos) kreslila
 „kreslířka“ ve třech kolech s „kritikem“ podle fotek z Wikimedia Commons.
 

@@ -161,3 +161,43 @@ export function checkUnder(profile, under) {
   });
   return out;
 }
+
+// Trees planted in the design (in a part, or a stromořadí's own, in its middle) near a network (Bára 13. 11. 2026):
+// [{i, level, short, why}], one per part. A tree counts as planted where the existing street has none within 1 m.
+// Only the distance across the street from the trunk to the network's rim counts (the roots spread wide and are
+// mostly shallow). TREE_NEAR is Bára's warning distance; the Prague rules (TSK) give none for planting, Brno's
+// building rules ask 2.5 m from a water main (1 m with protective measures).
+const TREE_NEAR = 1.5;
+const treesOf = (p) => {
+  const out = [];
+  let x = 0;
+  p.segments.forEach((s, i) => {
+    if (s.type === "stromorad") out.push({ i, x: x + s.width / 2 });
+    for (const it of s.items || []) if (it.kind === "strom") out.push({ i, x: x + it.f * s.width });
+    x += s.width;
+  });
+  return out;
+};
+export function checkTrees(design, stav, under) {
+  if (!under?.items?.length) return [];
+  const old = treesOf(stav);
+  const byPart = new Map();
+  for (const tree of treesOf(design)) {
+    if (old.some((o) => Math.abs(o.x - tree.x) < 1)) continue;
+    for (const it of under.items) {
+      const k = under.kinds?.[it.kind];
+      const dn = it.profil > 20 && it.profil < 3000 ? it.profil : k?.dn || 110;
+      const gap = Math.abs(under.span.left - it.t - tree.x) - dn / 2000;
+      if (gap >= TREE_NEAR) continue;
+      const list = byPart.get(tree.i) || new Set();
+      const net = k?.label || it.kind;
+      list.add(gap <= 0 ? t("{net} přímo pod stromem", { net }) : t("{net} {d} od kmene", { net, d: fmt(+gap.toFixed(2)) }));
+      byPart.set(tree.i, list);
+    }
+  }
+  return [...byPart].map(([i, list]) => ({
+    i, level: "zaklad",
+    short: t("Nový strom v části {part}: blíž než {near} k sítím: {list}", { part: (TYPES[design.segments[i].type]?.label || "").toLowerCase(), near: fmt(TREE_NEAR), list: [...list].join(", ") }),
+    why: t("kořeny a síť: umístění stromu posuďte se správcem sítě"),
+  }));
+}
