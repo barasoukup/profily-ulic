@@ -477,8 +477,14 @@ a silnice I. a II. třídy červeně pod 3 m; MK III a silnice III. třídy čer
 MK IV červeně pod 2,5 m, oranžově pod 2,75 m. Bez zatřídění (ostatní města) 2,5 / 3 m. Pruh přidaný v Návrhu
 převezme třídu ostatních pruhů ulice.
 
+Lampa jde v Návrhu nastavit na výšku 4, 5, 6, 8 nebo 10 m (obrázek se zmenší či zvětší kolem paty; bez nastavení
+asi 9 m) a stojan na kola otočit podél ulice (kolo zepředu, stojan z boku); obojí u značky prvku v kartě části
+(Magdalena, 13. 11. 2026). Travnaté a štěrkové tramvajové těleso, zeleň a průleh nemají pod sebou betonový blok,
+ale zeminu, štěrkové lože s pražci nebo štěrk.
+
 Pod profilem je pruh **podílu šířky ulice** (chůze, kola, MHD, jedoucí auta, parkování, zeleň, ostatní; sdílené
-části napůl), v Porovnání se změnou. Návrh (i ručně opravený stav) jde **sdílet odkazem** (je zabalený v adrese za
+části napůl), v Porovnání se změnou. Pod ním **povrch ulice** (`shares.js surfaces`): propustné (zeleň, průleh, rýha, nádrž,
+travnaté a štěrkové těleso, nezpevněný povrch), částečně propustné (propustná dlažba), nepropustné a voda s ostatním. Návrh (i ručně opravený stav) jde **sdílet odkazem** (je zabalený v adrese za
 řezem), uložit do souboru JSON a zase načíst. U řezu je **panorama z ulice** Mapy.com (s klíčem v dialogu, bez
 něj odkaz na Mapy.com).
 

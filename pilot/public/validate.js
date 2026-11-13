@@ -1,7 +1,7 @@
 // Checks a saved profile (from the browser's storage or a JSON file) before the app uses it: a broken
 // or edited file must not break the drawing. Unknown types and items are made harmless, numbers
 // that the drawing needs must be numbers, a part without a usable width is an error.
-import { TYPES, SOURCES, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, isTurn } from "./types.js";
+import { TYPES, SOURCES, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, LAMP_HEIGHTS, isTurn } from "./types.js";
 import { SIGNS, signChoice, MAX_PER_PART } from "./signs.js";
 import { t } from "./i18n.js";
 
@@ -46,6 +46,11 @@ export function cleanProfile(p, what = "profil") {
     if ("signs" in s) s.signs = cleanSigns(s.signs).slice(0, MAX_PER_PART);
     if (s.signs && !s.signs.length) delete s.signs;
     s.items = Array.isArray(s.items) ? s.items.filter((it) => it && it.kind in ITEMS && num(it.f, 0, 1)) : [];
+    // A lamp's height (types.js LAMP_HEIGHTS) and a bike rack along the street (Magdalena, 13. 11. 2026).
+    for (const it of s.items) {
+      if ("h" in it && !(it.kind === "lampa" && LAMP_HEIGHTS.includes(it.h))) delete it.h;
+      if ("along" in it && !(it.kind === "stojan_kola" && it.along === true)) delete it.along;
+    }
   }
   delete p.zones; // signs for the whole profile were dropped (Bára 10. 11. 2026)
   p.edges = typeof p.edges === "object" && p.edges ? p.edges : {};

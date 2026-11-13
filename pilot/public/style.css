@@ -410,3 +410,6 @@ footer details[open] summary { margin-bottom: 4px; }
 #editor .under-size { display: inline-flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; }
 #editor .under-size input[type=number] { width: 72px; }
 #editor .under-size .muted { font-size: 12px; }
+#editor .items select.item-opt { width: auto; font-size: 13px; padding: 3px 6px; }
+.share-sec { display: grid; gap: 6px; }
+.share-sec + .share-sec { border-top: 1px solid var(--line); padding-top: 10px; margin-top: 4px; }

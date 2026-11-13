@@ -1,4 +1,4 @@
-import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, SURFACES, underSize } from "./types.js";
+import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, SURFACES, LAMP_HEIGHTS, underSize } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes } from "./lanes-ortho.js";
@@ -10,7 +10,7 @@ import { loadSprites, loadSigns, layoutSigns, buildSvg, isHole, exportCredits, m
 import * as sources from "./sources.js";
 import { MAPY_KEY } from "./config.js";
 import { cleanProfile, cleanCut, retype } from "./validate.js";
-import { shares } from "./shares.js";
+import { shares, surfaces } from "./shares.js";
 import { packProfile, unpackProfile, designParams } from "./share.js";
 import { checkRules, checkUnder, checkTrees } from "./rules.js";
 import { city, setCity, cityAt, loadBounds } from "./city.js";
@@ -660,39 +660,46 @@ function renderShares() {
   const box = $("#shares");
   if (!state.stav) { box.hidden = true; return; }
   box.hidden = false;
+  box.replaceChildren();
+  shareBars(box, tr("Podíl prostoru ulice"), shares, ["auta", "mhd", "kola"], tr("Sdílené pruhy a stezky se počítají napůl (např. pruh s tramvají půl MHD, půl auta)."));
+  // How much of it lets the rain in (Magdalena, 13. 11. 2026), by the parts' surfaces.
+  shareBars(box, tr("Povrch ulice"), surfaces, ["nepropustne"], tr("Podle povrchu částí: zeleň, průlehy, travnaté a štěrkové těleso, nezpevněný povrch propouštějí, propustná dlažba částečně."));
+}
+// One bar per profile (Stav and Návrh in Porovnat) of the groups of fn (shares.js), with the groups' metres and per
+// cent, in Porovnat with the share before; dark: groups with white figures.
+function shareBars(box, heading, fn, dark, note) {
   const rows = state.mode === "porovnat" ? [[tr("Stav"), state.stav], [tr("Návrh"), state.navrh]] : [[null, current()]];
   const pct = (v) => `${Math.round(v)} %`;
-  box.replaceChildren(Object.assign(document.createElement("h3"), { textContent: tr("Podíl prostoru ulice") }));
-  const before = state.mode === "porovnat" ? Object.fromEntries(shares(state.stav).map((g) => [g.key, g.pct])) : null;
+  const sec = box.appendChild(Object.assign(document.createElement("section"), { className: "share-sec" }));
+  sec.append(Object.assign(document.createElement("h3"), { textContent: heading }));
+  const before = state.mode === "porovnat" ? Object.fromEntries(fn(state.stav).map((g) => [g.key, g.pct])) : null;
   for (const [title, p] of rows) {
     const row = Object.assign(document.createElement("div"), { className: "share-row" });
     if (title) row.append(Object.assign(document.createElement("span"), { className: "share-title", textContent: title }));
     const bar = Object.assign(document.createElement("div"), { className: "share-bar", role: "img" });
-    const list = shares(p).filter((g) => g.m > 0);
-    bar.setAttribute("aria-label", list.map((g) => `${g.label} ${pct(g.pct)}`).join(", "));
+    const list = fn(p).filter((g) => g.m > 0);
+    bar.setAttribute("aria-label", `${heading}: ` + list.map((g) => `${g.label} ${pct(g.pct)}`).join(", "));
     for (const g of list) {
       const part = Object.assign(document.createElement("span"), { title: `${g.label}: ${fmtM(g.m)} (${pct(g.pct)})` });
       part.style.flexGrow = g.m;
       part.style.background = g.color;
       if (g.pct >= 9) part.textContent = pct(g.pct);
-      if (["auta", "mhd", "kola"].includes(g.key)) part.classList.add("dark");
+      if (dark.includes(g.key)) part.classList.add("dark");
       bar.append(part);
     }
     row.append(bar);
-    box.append(row);
+    sec.append(row);
   }
-  // The legend: every group with its share (and in Porovnat the change against Stav).
+  // The legend: every group with its share (and in Porovnat the share before, Fable: "p. b." is for experts).
   const legend = Object.assign(document.createElement("div"), { className: "share-legend" });
-  for (const g of shares(state.mode === "porovnat" ? state.navrh : current())) {
+  for (const g of fn(state.mode === "porovnat" ? state.navrh : current())) {
     if (!g.m && !(before && before[g.key])) continue;
     const d = before ? Math.round(g.pct - before[g.key]) : 0;
-    // The change as the share before (Fable: "p. b." is for experts).
     const item = Object.assign(document.createElement("span"), { textContent: `${g.label} ${fmtM(g.m)} · ${pct(g.pct)}${d ? ` (${tr("bylo {p}", { p: pct(before[g.key] || 0) })})` : ""}` });
     item.style.setProperty("--c", g.color);
     legend.append(item);
   }
-  box.append(legend);
-  box.append(Object.assign(document.createElement("div"), { className: "share-note", textContent: tr("Sdílené pruhy a stezky se počítají napůl (např. pruh s tramvají půl MHD, půl auta).") }));
+  sec.append(legend, Object.assign(document.createElement("div"), { className: "share-note", textContent: note }));
 }
 
 // Parts of the design that differ from the current state: edited by hand, or (same parts in the
@@ -1477,6 +1484,20 @@ function renderEditor(p) {
   items.className = "items";
   (s.items || []).forEach((it, k) => {
     items.append(btn(`${ITEMS[it.kind] || it.kind} ×`, () => { s.items.splice(k, 1); done(); }, "tag"));
+    // A lamp's height and a bike rack's direction (Magdalena): a small select by its tag.
+    const opts = it.kind === "lampa" ? [["", tr("výška: obvyklá")], ...LAMP_HEIGHTS.map((h) => [String(h), tr("výška {h} m", { h })])]
+      : it.kind === "stojan_kola" ? [["", tr("napříč ulicí")], ["along", tr("podél ulice")]] : null;
+    if (!opts) return;
+    const sel = Object.assign(document.createElement("select"), { className: "item-opt" });
+    sel.setAttribute("aria-label", it.kind === "lampa" ? tr("Výška lampy") : tr("Směr stojanu"));
+    for (const [v, t] of opts) sel.add(new Option(t, v, false, v === (it.kind === "lampa" ? String(it.h || "") : it.along ? "along" : "")));
+    sel.onchange = () => {
+      if (it.kind === "lampa") { if (sel.value) it.h = Number(sel.value); else delete it.h; }
+      else if (sel.value) it.along = true; else delete it.along;
+      s.source = "user";
+      done();
+    };
+    items.append(sel);
   });
   const add = document.createElement("select");
   add.setAttribute("aria-label", tr("Přidat prvek"));

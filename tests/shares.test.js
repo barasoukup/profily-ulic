@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { shares } from "../pilot/public/shares.js";
+import { shares, surfaces } from "../pilot/public/shares.js";
 
 test("podíl prostoru sečte šířky podle skupin a dá 100 %", () => {
   const s = shares({ segments: [
@@ -17,4 +17,14 @@ test("sdílené části se dělí napůl", () => {
   assert.equal(by.pesi, 4);
   assert.equal(by.kola, 4);
   assert.equal(by.mhd, 2);
+});
+
+test("povrch ulice: propustné, částečně propustné, nepropustné (Magdalena)", () => {
+  const p = { segments: [
+    { type: "chodnik", width: 3 }, { type: "chodnik", width: 2, permeable: true }, { type: "cyklostezka", width: 2, permeable: "nezpevneny" },
+    { type: "zelen", width: 2 }, { type: "tramvaj", width: 3, bed: "trava" }, { type: "tramvaj", width: 3, bed: "panely" },
+    { type: "pruh", width: 3 }, { type: "voda", width: 2 },
+  ] };
+  const m = Object.fromEntries(surfaces(p).map((g) => [g.key, g.m]));
+  assert.deepEqual(m, { propustne: 7, castecne: 2, nepropustne: 9, jine: 2 });
 });

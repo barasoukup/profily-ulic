@@ -34,3 +34,30 @@ export function shares(profile) {
   }
   return SHARE_GROUPS.map((g) => ({ ...g, m: +m[g.key].toFixed(2), pct: (100 * m[g.key]) / total }));
 }
+
+// How much of the street lets the rain in (Magdalena, 13. 11. 2026): permeable (green, swales, trenches and ponds,
+// a grass or gravel tram bed, an unpaved surface), partly permeable (permeable paving, grass pavers), sealed (asphalt,
+// paving, concrete, tram panels) and the rest (water, walls, unknown). By the part's surface; what lies under it does
+// not count.
+export const SURFACE_GROUPS = [
+  { key: "propustne", label: t("Propustné"), color: "#7fb04a" },
+  { key: "castecne", label: t("Částečně propustné"), color: "#b8c98a" },
+  { key: "nepropustne", label: t("Nepropustné"), color: "#7c7a74" },
+  { key: "jine", label: t("Voda a ostatní"), color: "#dcd8cd" },
+];
+const GREEN = new Set(["zelen", "stromorad", "predzahradka", "pruleh", "ryha", "nadrz"]);
+const OTHER = new Set(["voda", "zed", "nezname"]);
+function surfaceOf(s) {
+  if (GREEN.has(s.type)) return "propustne";
+  if (OTHER.has(s.type)) return "jine";
+  if (s.type === "tramvaj") return ["trava", "strk"].includes(s.bed) ? "propustne" : "nepropustne";
+  if (s.permeable === "nezpevneny") return "propustne";
+  if (s.permeable) return "castecne";
+  return "nepropustne";
+}
+export function surfaces(profile) {
+  const total = profile.segments.reduce((a, s) => a + s.width, 0) || 1;
+  const m = Object.fromEntries(SURFACE_GROUPS.map((g) => [g.key, 0]));
+  for (const s of profile.segments) m[surfaceOf(s)] += s.width;
+  return SURFACE_GROUPS.map((g) => ({ ...g, m: +m[g.key].toFixed(2), pct: (100 * m[g.key]) / total }));
+}

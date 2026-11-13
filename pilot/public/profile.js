@@ -1,6 +1,6 @@
 // SVG drawing and direct editing of a street profile. Drawing units are centimetres,
 // matching the Streetmix illustrations (1 px = 1 cm).
-import { TYPES, SOURCES, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURNS, HDV_UNDER, underSize } from "./types.js";
+import { TYPES, SOURCES, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURNS, HDV_UNDER, LAMP_H, underSize } from "./types.js";
 import { city, cityById, CITY_IDS, creditLines } from "./city.js";
 import { PLATES, signFile, plateFile, signLabel } from "./signs.js";
 // tr: t is a part's type here.
@@ -318,11 +318,25 @@ function drawItem(g, it, x, top, right) {
   switch (it.kind) {
     // The lamp's arm reaches over the street: on the right half the arm points left. Its foot (not
     // the middle of the picture) stands at x: x = 348 in the "left" picture, 22 in the "right" one.
-    case "lampa": return sprite(g, right ? "lamp-modern-left" : "lamp-modern-right", x, top, false, right ? 348 : 22);
+    case "lampa": {
+      // A lamp of its own height (it.h, m): the picture scaled about its foot (it stands for LAMP_H).
+      const lg = it.h ? el("g", { transform: `translate(${x} ${top}) scale(${it.h / LAMP_H}) translate(${-x} ${-top})` }, g) : g;
+      return sprite(lg, right ? "lamp-modern-left" : "lamp-modern-right", x, top, false, right ? 348 : 22);
+    }
     // The Prague bench has its back on the left: on the right half it turns to face the street too.
     case "lavicka": return sprite(g, "bench-center", x, top, right);
     case "strom": return sprite(g, "tree", x, top);
-    case "stojan_kola": return sprite(g, "bike-rack-perpendicular-left", x, top);
+    // A rack across the street shows a bike from its side; one along it (it.along, Magdalena) a bike from the front
+    // behind the rack seen edge-on: 60 cm wide instead of 180.
+    case "stojan_kola": {
+      if (!it.along) return sprite(g, "bike-rack-perpendicular-left", x, top);
+      const rack = artKey() === "praha" ? "#3a332e" : "#7c8082", tyre = "#2c2c2c";
+      el("rect", { x: x - 3, y: top - 64, width: 6, height: 64, rx: 3, fill: tyre }, g); // the wheels, one behind the other
+      el("path", { d: `M${x} ${top - 64} L${x} ${top - 92} M${x - 28} ${top - 95} H${x + 28}`, stroke: "#4a4d4f", "stroke-width": 3, "stroke-linecap": "round", fill: "none" }, g);
+      el("rect", { x: x - 9, y: top - 93, width: 18, height: 3, rx: 1.5, fill: tyre }, g); // the saddle's edge, behind
+      el("rect", { x: x - 5, y: top - 90, width: 10, height: 90, rx: 4, fill: rack }, g); // the rack, edge-on
+      return;
+    }
     case "sdilena_kola": return sprite(g, "bikeshare-left", x, top);
     case "pristresek": case "pristresek_zeleny": {
       const side = right ? "right" : "left";
