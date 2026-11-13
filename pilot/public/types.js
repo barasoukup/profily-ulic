@@ -89,10 +89,10 @@ export const ITEMS = {
 
 // Surfaces of a separate tram bed (segment.bed); the default is panels. Asphalt (beds used by buses) is drawn
 // like the roadway.
-// The heights a street lamp can be given (item.h, m; Magdalena: 6–8 m usually, 4 m in narrow streets); the picture
-// stands for LAMP_H when none is set.
+// The heights a street lamp can be given (item.h, m; Magdalena: 6–8 m usually, 4 m in narrow streets); the picture's
+// luminaire hangs at LAMP_H (m) when none is set.
 export const LAMP_HEIGHTS = [4, 5, 6, 8, 10];
-export const LAMP_H = 9;
+export const LAMP_H = 8.75;
 export const TRAM_BEDS = { panely: { label: t("panely"), color: "#b3ada0" }, strk: { label: t("štěrk"), color: "#9a948a" }, trava: { label: t("tráva"), color: "#86b552" }, asfalt: { label: t("asfalt"), color: "#5c5c59" } };
 
 // Turn arrows on a lane (segment.turn; OSM turn:lanes values joined by ";"): the words and their names, and the

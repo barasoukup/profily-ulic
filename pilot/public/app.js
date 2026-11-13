@@ -663,7 +663,7 @@ function renderShares() {
   box.replaceChildren();
   shareBars(box, tr("Podíl prostoru ulice"), shares, ["auta", "mhd", "kola"], tr("Sdílené pruhy a stezky se počítají napůl (např. pruh s tramvají půl MHD, půl auta)."));
   // How much of it lets the rain in (Magdalena, 13. 11. 2026), by the parts' surfaces.
-  shareBars(box, tr("Povrch ulice"), surfaces, ["nepropustne"], tr("Podle povrchu částí: zeleň, průlehy, travnaté a štěrkové těleso, nezpevněný povrch propouštějí, propustná dlažba částečně."));
+  shareBars(box, tr("Povrch ulice"), surfaces, ["nepropustne"]);
 }
 // One bar per profile (Stav and Návrh in Porovnat) of the groups of fn (shares.js), with the groups' metres and per
 // cent, in Porovnat with the share before; dark: groups with white figures.
@@ -699,7 +699,8 @@ function shareBars(box, heading, fn, dark, note) {
     item.style.setProperty("--c", g.color);
     legend.append(item);
   }
-  sec.append(legend, Object.assign(document.createElement("div"), { className: "share-note", textContent: note }));
+  sec.append(legend);
+  if (note) sec.append(Object.assign(document.createElement("div"), { className: "share-note", textContent: note }));
 }
 
 // Parts of the design that differ from the current state: edited by hand, or (same parts in the
@@ -1485,7 +1486,7 @@ function renderEditor(p) {
   (s.items || []).forEach((it, k) => {
     items.append(btn(`${ITEMS[it.kind] || it.kind} ×`, () => { s.items.splice(k, 1); done(); }, "tag"));
     // A lamp's height and a bike rack's direction (Magdalena): a small select by its tag.
-    const opts = it.kind === "lampa" ? [["", tr("výška: obvyklá")], ...LAMP_HEIGHTS.map((h) => [String(h), tr("výška {h} m", { h })])]
+    const opts = it.kind === "lampa" ? [["", tr("výška: obvyklá (asi 9 m)")], ...LAMP_HEIGHTS.map((h) => [String(h), tr("výška {h} m", { h })])]
       : it.kind === "stojan_kola" ? [["", tr("napříč ulicí")], ["along", tr("podél ulice")]] : null;
     if (!opts) return;
     const sel = Object.assign(document.createElement("select"), { className: "item-opt" });
@@ -1513,9 +1514,18 @@ function renderEditor(p) {
 const codeLast = (label) => label.replace(/^((?:[A-Z]{1,2} \d+[a-z]?)(?: [/+] (?:[A-Z]{1,2} \d+[a-z]?))*) (.+)$/, "$2 · $1");
 // Where a new item stands across its part (f): a lamp or a traction pole KERB_SET from the kerb of the nearer roadway
 // beside the part, to light it or hold its wire (Bára: lamps stand by the road), else in the middle.
-const KERB_SET = 0.6;
+// Another item of a kind already in the part stands beside the last of them (Bára: two bike racks side by side),
+// ITEM_STEP (m) further, towards the side with room.
+const KERB_SET = 0.6, ITEM_STEP = { stojan_kola: 0.8, lavicka: 2.2, kvetinac: 1.2, sloupek: 1.0, strom: 3.0 };
 function itemPlace(segs, i, kind) {
-  const s = segs[i];
+  const s = segs[i], same = (s.items || []).filter((it) => it.kind === kind);
+  if (same.length) {
+    // A rack across the street holds a bike 1.8 m long, one along it is 0.6 m wide.
+    const m = kind === "stojan_kola" && !same.at(-1).along ? 1.9 : ITEM_STEP[kind] ?? 1.0;
+    const step = m / s.width, last = same.at(-1).f;
+    const f = last + step <= 0.97 ? last + step : Math.min(...same.map((it) => it.f)) - step;
+    return +Math.min(0.97, Math.max(0.03, f)).toFixed(3);
+  }
   if (!["lampa", "sloup_trakce"].includes(kind) || s.width < 2 * KERB_SET) return 0.5;
   const left = ROADWAY.has(segs[i - 1]?.type), right = ROADWAY.has(segs[i + 1]?.type);
   if (left === right) return 0.5;

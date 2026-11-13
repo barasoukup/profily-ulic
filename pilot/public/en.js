@@ -607,7 +607,7 @@ export const EN = {
   "kolektor": "utility tunnel",
   "{net} {d} od kmene (bez opatření od {free}, s opatřením od {barrier})": "{net} {d} from the trunk (at least {free}; {barrier} with a technical measure)",
   "{net} {d} od kmene (bez opatření od {free}, blíž jen s opatřením)": "{net} {d} from the trunk (at least {free}; closer only with a technical measure)",
-  "výška: obvyklá": "height: usual",
+  "výška: obvyklá (asi 9 m)": "height: usual (about 9 m)",
   "výška {h} m": "height {h} m",
   "napříč ulicí": "across the street",
   "podél ulice": "along the street",
@@ -618,7 +618,6 @@ export const EN = {
   "Nepropustné": "Sealed",
   "Voda a ostatní": "Water and other",
   "Povrch ulice": "Street surface",
-  "Podle povrchu částí: zeleň, průlehy, travnaté a štěrkové těleso, nezpevněný povrch propouštějí, propustná dlažba částečně.": "By the parts' surfaces: greenery, swales, grass and gravel tram beds and unpaved surfaces let water through, permeable paving partly.",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

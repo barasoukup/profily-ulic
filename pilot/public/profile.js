@@ -319,9 +319,33 @@ function drawItem(g, it, x, top, right) {
     // The lamp's arm reaches over the street: on the right half the arm points left. Its foot (not
     // the middle of the picture) stands at x: x = 348 in the "left" picture, 22 in the "right" one.
     case "lampa": {
-      // A lamp of its own height (it.h, m): the picture scaled about its foot (it stands for LAMP_H).
-      const lg = it.h ? el("g", { transform: `translate(${x} ${top}) scale(${it.h / LAMP_H}) translate(${-x} ${-top})` }, g) : g;
-      return sprite(lg, right ? "lamp-modern-left" : "lamp-modern-right", x, top, false, right ? 348 : 22);
+      // A lamp of its own height (it.h, m; Bára: a small lamp is not a big one made smaller). From 6 m the city's
+      // lamp with its mast longer or shorter: the bracket and luminaire (the top 300 cm of the 930 cm picture) and
+      // the foot (its bottom 130 cm) at their size, the mast between them stretched. Up to 5 m a post-top lamp: a
+      // slim pole with the luminaire on top, as in parks and quiet streets.
+      const name = right ? "lamp-modern-left" : "lamp-modern-right", anchor = right ? 348 : 22;
+      if (!it.h) return sprite(g, name, x, top, false, anchor);
+      const dark = artKey() === "brno", pole = dark ? "#3d4246" : "#b5b9ba", shade = dark ? "#2c3033" : "#94989a";
+      if (it.h <= 5) {
+        const head = top - it.h * 100;
+        el("path", { d: `M${x - 15} ${top} L${x - 13} ${top - 70} H${x + 13} L${x + 15} ${top} Z`, fill: dark ? "#33373a" : "#727678" }, g);
+        el("rect", { x: x - 6, y: head + 30, width: 12, height: it.h * 100 - 100, fill: pole }, g);
+        el("rect", { x: x + 2, y: head + 30, width: 4, height: it.h * 100 - 100, fill: shade }, g);
+        el("path", { d: `M${x - 30} ${head + 30} L${x - 22} ${head + 8} H${x + 22} L${x + 30} ${head + 30} Z`, fill: dark ? "#3d4246" : "#2f3335" }, g); // the luminaire
+        el("rect", { x: x - 26, y: head + 26, width: 52, height: 4, fill: "#b9c2c1" }, g); // its glass, facing down
+        el("rect", { x: x - 3, y: head, width: 6, height: 9, rx: 2, fill: dark ? "#3d4246" : "#2f3335" }, g);
+        return;
+      }
+      const d = it.h * 100 - LAMP_H * 100, base = top - 930;
+      const part = (y0, y1, transform) => {
+        const id = `lamp${++clipN}`, og = el("g", transform ? { transform } : {}, g);
+        el("rect", { x: x - 400, y: base + y0, width: 800, height: y1 - y0 }, el("clipPath", { id }, og));
+        sprite(el("g", { "clip-path": `url(#${id})` }, og), name, x, top, false, anchor);
+      };
+      part(0, 301, `translate(0 ${-d})`); // the top up or down by d
+      part(299, 801, `translate(0 ${base + 800}) scale(1 ${(500 + d) / 500}) translate(0 ${-(base + 800)})`); // the mast
+      part(799, 930); // the foot
+      return;
     }
     // The Prague bench has its back on the left: on the right half it turns to face the street too.
     case "lavicka": return sprite(g, "bench-center", x, top, right);
