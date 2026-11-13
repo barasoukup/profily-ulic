@@ -479,8 +479,9 @@ převezme třídu ostatních pruhů ulice.
 
 Lampa jde v Návrhu nastavit na výšku 4, 5, 6, 8 nebo 10 m (do 5 m parková lampa se svítidlem na sloupku, od 6 m
 lampa města s kratším či delším stožárem, výložník, svítidlo a patka ve skutečné velikosti; bez nastavení asi 9 m) a stojan na kola otočit podél ulice (kolo zepředu, stojan z boku); obojí u značky prvku v kartě části
-(Magdalena, 13. 11. 2026). Další prvek téhož druhu v části se postaví vedle předchozího (stojan podél ulice
-o 0,8 m, napříč o 1,9 m, lavička o 2,2 m…). Nová lampa nebo trakční sloup se postaví 0,6 m od obruby na straně vozovky (Bára:
+(Magdalena, 13. 11. 2026). Stojany, lavičky, květináče a sloupky téže části se po přidání či otočení srovnají
+vedle sebe podle své šířky (stojan podél ulice 0,8 m, napříč 1,9 m, lavička 2,2 m…), kolem místa, kde byly; když se
+nevejdou, blíž k sobě (Bára: tři stojany přes sebe). Nová lampa nebo trakční sloup se postaví 0,6 m od obruby na straně vozovky (Bára:
 lampy stojí u silnice), mezi dvěma vozovkami doprostřed. Travnaté a štěrkové tramvajové těleso, zeleň a průleh nemají pod sebou betonový blok,
 ale zeminu, štěrkové lože s pražci nebo štěrk.
 

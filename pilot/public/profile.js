@@ -354,11 +354,15 @@ function drawItem(g, it, x, top, right) {
     // behind the rack seen edge-on: 60 cm wide instead of 180.
     case "stojan_kola": {
       if (!it.along) return sprite(g, "bike-rack-perpendicular-left", x, top);
-      const rack = artKey() === "praha" ? "#3a332e" : "#7c8082", tyre = "#2c2c2c";
-      el("rect", { x: x - 3, y: top - 64, width: 6, height: 64, rx: 3, fill: tyre }, g); // the wheels, one behind the other
-      el("path", { d: `M${x} ${top - 64} L${x} ${top - 92} M${x - 28} ${top - 95} H${x + 28}`, stroke: "#4a4d4f", "stroke-width": 3, "stroke-linecap": "round", fill: "none" }, g);
-      el("rect", { x: x - 9, y: top - 93, width: 18, height: 3, rx: 1.5, fill: tyre }, g); // the saddle's edge, behind
-      el("rect", { x: x - 5, y: top - 90, width: 10, height: 90, rx: 4, fill: rack }, g); // the rack, edge-on
+      const rack = artKey() === "praha" ? "#3a332e" : "#7c8082", tyre = "#2c2c2c", frame = "#5f7f8e";
+      el("rect", { x: x - 8, y: top - 104, width: 16, height: 5, rx: 2.5, fill: tyre }, g); // the saddle, behind and higher
+      el("ellipse", { cx: x, cy: top - 33, rx: 4, ry: 32, fill: "none", stroke: tyre, "stroke-width": 4 }, g); // the wheel, edge-on
+      el("path", { d: `M${x} ${top - 66} L${x} ${top - 92}`, stroke: frame, "stroke-width": 4, "stroke-linecap": "round" }, g); // the fork
+      el("path", { d: `M${x - 30} ${top - 90} Q${x} ${top - 99} ${x + 30} ${top - 90}`, fill: "none", stroke: "#4a4d4f", "stroke-width": 3, "stroke-linecap": "round" }, g);
+      for (const d of [-30, 30]) el("rect", { x: x + d - 3, y: top - 93, width: 6, height: 7, rx: 2, fill: tyre }, g); // the grips
+      el("circle", { cx: x, cy: top - 82, r: 3.5, fill: "#f2e9a0", stroke: tyre, "stroke-width": 1 }, g); // the lamp
+      // The rack beside the wheel, seen edge-on: one tube.
+      el("rect", { x: x + 12, y: top - 80, width: 6, height: 80, rx: 3, fill: rack }, g);
       return;
     }
     case "sdilena_kola": return sprite(g, "bikeshare-left", x, top);
