@@ -613,9 +613,9 @@ export const EN = {
   "podél ulice": "along the street",
   "Výška lampy": "Lamp height",
   "Směr stojanu": "Rack direction",
-  "Propustné": "Permeable",
-  "Částečně propustné": "Partly permeable",
-  "Nepropustné": "Sealed",
+  "Propustný": "Permeable",
+  "Částečně propustný": "Partly permeable",
+  "Nepropustný": "Sealed",
   "Voda a ostatní": "Water and other",
   "Povrch ulice": "Street surface",
 };

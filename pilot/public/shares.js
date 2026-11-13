@@ -40,9 +40,9 @@ export function shares(profile) {
 // paving, concrete, tram panels) and the rest (water, walls, unknown). By the part's surface; what lies under it does
 // not count.
 export const SURFACE_GROUPS = [
-  { key: "propustne", label: t("Propustné"), color: "#7fb04a" },
-  { key: "castecne", label: t("Částečně propustné"), color: "#b8c98a" },
-  { key: "nepropustne", label: t("Nepropustné"), color: "#7c7a74" },
+  { key: "propustne", label: t("Propustný"), color: "#7fb04a" },
+  { key: "castecne", label: t("Částečně propustný"), color: "#b8c98a" },
+  { key: "nepropustne", label: t("Nepropustný"), color: "#7c7a74" },
   { key: "jine", label: t("Voda a ostatní"), color: "#dcd8cd" },
 ];
 const GREEN = new Set(["zelen", "stromorad", "predzahradka", "pruleh", "ryha", "nadrz"]);
