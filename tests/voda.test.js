@@ -107,11 +107,26 @@ test("nový strom u sítě podle pražských stavebních předpisů (příloha 1
   assert.equal(level(0.5, "plynovod", { popis: "plynovod - STL - podz." }), "min"); // 1 m, no measures
   assert.equal(level(3, "plynovod", { popis: "plynovod - VTL - podz." }), "min"); // 4 m
   assert.equal(level(1, "kanalizace"), "zaklad"); // a sewer to DN 500: 1.5 m, closer with a barrier
-  assert.equal(level(1, "kanalizace", { depth: 7 }), ""); // deeper than 6 m
+  assert.equal(level(1, "kanalizace", { depth: 7, measured: true }), ""); // deeper than 6 m
+  assert.equal(level(2, "kanalizace", { profil: null }), "zaklad"); // of an unknown size: 2.5 m
+  assert.equal(level(0.6, "silnoproud", { popis: "silnoproud - osa chráničky - podz." }), ""); // in a duct: 0.5 m
+  assert.equal(level(0.7, "plynovod", { popis: "plynovod - E_PK_PKKAB - kabel PKO" }), "zaklad"); // a cable
   assert.equal(level(0.7, "silnoproud", { popis: "silnoproud - VN - podz." }), "zaklad"); // to 22 kV: 1.0 m, 0.5 m with measures
   assert.equal(level(0.7, "silnoproud", { popis: "silnoproud - VVN - podz." }), "min"); // 110 kV: 1.5 m, 1.0 m with measures
-  assert.match(checkTrees(navrh, stav, at(2, "vodovod"))[0].short, /vodovod 2,00 m od kmene \(2,50 m, s technickým opatřením 1,00 m\)/);
+  assert.match(checkTrees(navrh, stav, at(2, "vodovod"))[0].short, /vodovod 2,00 m od kmene \(bez opatření od 2,50 m, s opatřením od 1,00 m\)/);
   // The old tree alone: no warning.
   assert.equal(checkTrees(stav, stav, at(0.2, "vodovod")).length, 0);
   assert.equal(checkTrees(navrh, stav, null).length, 0);
+});
+
+test("strom nad kolektorem (mezi jeho stěnami) a kolektor neznámé hloubky", () => {
+  const kinds = { jine: { label: "jiné", dn: 110 } };
+  const navrh = { segments: [{ type: "chodnik", width: 6, items: [{ kind: "strom", f: 0.5 }] }] };
+  const stav = { segments: [{ type: "chodnik", width: 6 }] };
+  const wall = (m, measured) => ({ t: 10 - m, depth: 1, measured, kind: "jine", popis: "kolektor - těleso kolektoru - podz." });
+  const over = checkTrees(navrh, stav, { items: [wall(1.5, true), wall(4.5, true)], span: { left: 10 }, kinds });
+  assert.match(over[0].short, /kolektor přímo pod stromem/);
+  assert.equal(over[0].level, "min");
+  // One wall 1 m from the tree, its depth unknown: orange at most.
+  assert.equal(checkTrees(navrh, stav, { items: [wall(4.1, false)], span: { left: 10 }, kinds })[0].level, "zaklad");
 });

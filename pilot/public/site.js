@@ -95,8 +95,9 @@ export async function underground({ frame, dir, half, cityId }) {
   const out = [], lines = [];
   for (const f of feats) {
     const { popis, layer } = f;
-    // Left out: lines taken out of use and the outlines of underground objects (a chamber is no crossing).
-    if (/vyřaz|objekty/.test(popis)) continue;
+    // Left out: lines taken out of use, the outlines of underground objects (a chamber is no crossing) and lines
+    // overhead ("nadz.": a lamp's cable over the street, Fable).
+    if (/vyřaz|objekty|nadz/.test(popis)) continue;
     // For the map: the lines as they run, in the colours of their kinds.
     for (const path of f.paths) lines.push({ kind: f.kind, popis, verified: f.verified, coords: path.map(([lon, lat]) => [lat, lon]) });
     for (const path of f.paths) for (let i = 0; i + 1 < path.length; i++) {

@@ -169,19 +169,24 @@ export function checkUnder(profile, under) {
 // the network's rim: ok without measures from free, possible with technical measures (a root barrier or a duct) from
 // barrier, else red; null barrier: no measures allowed. By the network's kind and its description (CTMTP_POPIS).
 function treeRule(it) {
-  const p = it.popis || "", dn = it.profil > 20 ? it.profil : null;
-  switch (it.kind) {
-    case "vodovod": return { free: 2.5, barrier: 1.0 };
-    // A sewer deeper than 6 m allows trees in its protection zone (point b) 4).
-    case "kanalizace": return it.depth > 6 ? null : dn && dn > 500 ? { free: 2.5, barrier: 0 } : { free: 1.5, barrier: 0 };
-    case "plynovod": return /VTL/.test(p) ? { free: 4, barrier: null } : { free: 1, barrier: null };
-    case "teplovod": return { free: 2.5, barrier: null };
-    case "silnoproud": return /VVN/.test(p) ? { free: 1.5, barrier: 1.0 } : { free: 1.0, barrier: 0.5 };
-    case "slaboproud": return { free: 1.0, barrier: 0.5 };
-    // A collector under less than 5 m of cover.
-    case "jine": return /kolektor/.test(p) && it.depth < 5 ? { free: 3.0, barrier: 1.5 } : null;
-    default: return null;
-  }
+  const p = it.popis || "", dn = it.profil > 20 && it.profil < 3000 ? it.profil : null;
+  const rule = (() => {
+    switch (it.kind) {
+      case "vodovod": return { free: 2.5, barrier: 1.0 };
+      // A sewer deeper than 6 m allows trees in its protection zone (point b) 4); of an unknown size, the larger one's.
+      case "kanalizace": return it.measured && it.depth > 6 ? null : dn && dn <= 500 ? { free: 1.5, barrier: 0 } : { free: 2.5, barrier: 0 };
+      // The cathodic protection's cable along a gas main is a cable.
+      case "plynovod": return /kabel/.test(p) ? { free: 1.0, barrier: 0.5 } : /VTL/.test(p) ? { free: 4, barrier: null } : { free: 1, barrier: null };
+      case "teplovod": return { free: 2.5, barrier: null };
+      case "silnoproud": return /VVN/.test(p) ? { free: 1.5, barrier: 1.0 } : { free: 1.0, barrier: 0.5 };
+      case "slaboproud": return { free: 1.0, barrier: 0.5 };
+      // A collector under less than 5 m of cover (an unknown depth counts as shallow).
+      case "jine": return /kolektor/.test(p) && !(it.measured && it.depth >= 5) ? { free: 3.0, barrier: 1.5 } : null;
+      default: return null;
+    }
+  })();
+  // A network in a duct has its technical measure already (point I: laying it in a duct).
+  return rule && /chráničk/.test(p) && rule.barrier !== null ? { free: rule.barrier, barrier: rule.barrier } : rule;
 }
 const treesOf = (p) => {
   const out = [];
@@ -197,30 +202,44 @@ export function checkTrees(design, stav, under) {
   if (!under?.items?.length) return [];
   const old = treesOf(stav);
   const byPart = new Map();
+  const where = (it) => under.span.left - it.t;
+  // A collector's body is drawn as its two walls: a tree between two of them (up to 6 m apart) stands over it.
+  const walls = under.items.filter((it) => it.kind === "jine" && /těleso kolektoru/.test(it.popis || "")).map(where).sort((a, b) => a - b);
   for (const tree of treesOf(design)) {
     if (old.some((o) => Math.abs(o.x - tree.x) < 1)) continue;
+    // The nearest network of each kind (one line of each, Fable), red ones first.
+    const found = new Map();
+    const overCollector = walls.some((w, k) => k + 1 < walls.length && w < tree.x && walls[k + 1] > tree.x && walls[k + 1] - w <= 6);
     for (const it of under.items) {
       const rule = treeRule(it);
       if (!rule) continue;
+      const collector = it.kind === "jine";
+      if (collector && overCollector) { found.set("kolektor", { gap: 0, rule, it, red: true }); continue; }
       const k = under.kinds?.[it.kind];
       const dn = it.profil > 20 && it.profil < 3000 ? it.profil : k?.dn || 110;
-      const gap = Math.abs(under.span.left - it.t - tree.x) - dn / 2000;
+      const gap = Math.abs(where(it) - tree.x) - dn / 2000;
       if (gap >= rule.free - 0.005) continue;
-      const red = rule.barrier === null || gap < rule.barrier - 0.005 || gap <= 0;
-      const v = { net: it.kind === "jine" ? t("kolektor") : k?.label || it.kind, d: fmt(+Math.max(0, gap).toFixed(2)), free: fmt(rule.free), barrier: fmt(rule.barrier ?? 0) };
+      // An unknown depth of a collector: orange at most (it may lie deep).
+      const red = (rule.barrier === null || gap < rule.barrier - 0.005 || gap <= 0) && !(collector && !it.measured);
+      const name = collector ? "kolektor" : it.kind, was = found.get(name);
+      if (!was || gap < was.gap) found.set(name, { gap, rule, it, red });
+    }
+    if (!found.size) continue;
+    const part = byPart.get(tree.i) || { red: false, list: [] };
+    for (const [name, { gap, rule, red }] of [...found].sort((q, r) => r[1].red - q[1].red || q[1].gap - r[1].gap)) {
+      const v = { net: name === "kolektor" ? t("kolektor") : under.kinds?.[name]?.label || name, d: fmt(+Math.max(0, gap).toFixed(2)), free: fmt(rule.free), barrier: fmt(rule.barrier ?? 0) };
       const text = gap <= 0 ? t("{net} přímo pod stromem", v)
         : rule.barrier === null ? t("{net} {d} od kmene (nejméně {free})", v)
-        : rule.barrier ? t("{net} {d} od kmene ({free}, s technickým opatřením {barrier})", v)
-        : t("{net} {d} od kmene ({free}, blíž jen s technickým opatřením)", v);
-      const part = byPart.get(tree.i) || { red: false, list: new Set() };
+        : rule.barrier ? t("{net} {d} od kmene (bez opatření od {free}, s opatřením od {barrier})", v)
+        : t("{net} {d} od kmene (bez opatření od {free}, blíž jen s opatřením)", v);
       part.red ||= red;
-      part.list.add(text);
-      byPart.set(tree.i, part);
+      if (!part.list.includes(text)) part.list.push(text);
     }
+    byPart.set(tree.i, part);
   }
   return [...byPart].map(([i, { red, list }]) => ({
     i, level: red ? "min" : "zaklad",
-    short: t("Nový strom v části {part} je blízko sítí: {list}", { part: (TYPES[design.segments[i].type]?.label || "").toLowerCase(), list: [...list].join(", ") }),
+    short: t("Nový strom v části {part} je blízko sítí: {list}", { part: (TYPES[design.segments[i].type]?.label || "").toLowerCase(), list: list.join(", ") }),
     why: t("Pražské stavební předpisy, příloha č. 1, bod I: vzdálenost sítě od paty kmene; technickým opatřením je kořenová bariéra nebo chránička"),
   }));
 }

@@ -599,14 +599,14 @@ export const EN = {
   "blíž než {near} od: {list}": "closer than {near} to: {list}",
   "{obj} pod částí {part} narazí na: {list}": "{obj} under the {part} runs into: {list}",
   "{obj} pod částí {part}: {what}": "{obj} under the {part}: {what}",
-  "{net} přímo pod stromem": "{net} right under the tree",
+  "{net} přímo pod stromem": "{net} directly beneath the tree",
   "Sítě pod zemí:": "Underground networks:",
   "{net} {d} od kmene (nejméně {free})": "{net} {d} from the trunk (at least {free})",
-  "Nový strom v části {part} je blízko sítí: {list}": "New tree in the {part} is close to networks: {list}",
-  "Pražské stavební předpisy, příloha č. 1, bod I: vzdálenost sítě od paty kmene; technickým opatřením je kořenová bariéra nebo chránička": "Prague building regulations, annex 1, point I: a network's distance from the foot of the trunk; a technical measure is a root barrier or a duct",
-  "{net} {d} od kmene ({free}, s technickým opatřením {barrier})": "{net} {d} from the trunk ({free}, with a technical measure {barrier})",
-  "{net} {d} od kmene ({free}, blíž jen s technickým opatřením)": "{net} {d} from the trunk ({free}, closer only with a technical measure)",
+  "Nový strom v části {part} je blízko sítí: {list}": "A new tree in the {part} is too close to networks: {list}",
+  "Pražské stavební předpisy, příloha č. 1, bod I: vzdálenost sítě od paty kmene; technickým opatřením je kořenová bariéra nebo chránička": "Prague Building Regulations, Annex 1, point I: a network's distance from the foot of the trunk; technical measures: a root barrier or a protective duct",
   "kolektor": "utility tunnel",
+  "{net} {d} od kmene (bez opatření od {free}, s opatřením od {barrier})": "{net} {d} from the trunk (at least {free}; {barrier} with a technical measure)",
+  "{net} {d} od kmene (bez opatření od {free}, blíž jen s opatřením)": "{net} {d} from the trunk (at least {free}; closer only with a technical measure)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

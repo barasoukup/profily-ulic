@@ -349,6 +349,7 @@ function drawItem(g, it, x, top, right) {
       if (it.lamp) sprite(g, right ? "lamp-modern-left" : "lamp-modern-right", x, top, false, right ? 348 : 22);
       const arm = right ? -1 : 1;
       el("path", { d: `M ${x - 14} ${top} L ${x - 9} ${top - 900} L ${x + 9} ${top - 900} L ${x + 14} ${top} Z`, fill: "#5b6460" }, g);
+      if (it.span) return; // a span wire instead of the bracket (spanPlan)
       line({ x: Math.min(x, x + arm * 260), y: top - 830, width: 260, height: 7, fill: "#5b6460" });
       el("line", { x1: x, y1: top - 760, x2: x + arm * 260, y2: top - 826, stroke: "#5b6460", "stroke-width": 4 }, g);
       return;
@@ -599,6 +600,12 @@ function buildingForm(info, style) {
   return { n, roofRows, storey, ground, body, roofH, flat, chimney: flat ? 0 : 70 };
 }
 
+// How high the facades at the edges are (cm), for a span wire fixed to one.
+const facades = (edges) => Object.fromEntries(["left", "right"].map((side) => {
+  if (edges?.[side] !== "budova") return [side, 0];
+  const info = edgeInfo(edges, side);
+  return [side, cityArt() ? buildingForm(info, buildingStyle(info, edges[`${side}Style`])).body : (buildingHeight(info) || 0) * 100];
+}));
 export function edgeHeight(kind, info, style) {
   if (kind !== "budova") return 0;
   if (!cityArt()) return (buildingHeight(info) || 0) * 100;
@@ -1352,13 +1359,15 @@ function drawSigns(svg, profile, bounds) {
 export const underDepth = (p) => Math.max(0, ...p.segments.filter((s) => s.under).map((s) => { const z = underSize(s); return z ? z.top + z.h : 0; }));
 // Span wires across the street (Bára, 17. listopadu): a traction pole whose bracket would not reach a track
 // (further than BRACKET_REACH from the nearest one) holds a span wire over the nearest run of tram parts to the
-// other side: to the nearest pole beyond them, else to the building at that edge, else ending past the last track;
-// not over tracks held by poles between them.
-// The poles and edges come from the profile, so adding a pole or changing an edge in Návrh changes the wire.
+// other side: to the nearest pole beyond them (before the next run), else to the building at that edge when its
+// facade reaches the wire (walls: the facades' heights, cm), else ending at the run's edge; not over tracks held by
+// poles between them (Olšanská). One wire a side of a run: the pole nearest to it holds it, the further ones stand
+// without a bracket (Fable). The wire hangs a contact wire over every track it crosses. It follows the profile's
+// poles and edges, so adding a pole or changing an edge in Návrh changes it.
 // free: the poles drawn without a bracket ("part:item" → on the right of the tracks); wires: what spanWire draws.
 // The wire level at both ends (Bára: not slanting): where the poles' brackets are, above a sidewalk.
 const BRACKET_REACH = 400, SPAN_Y = GROUND - CURB - 640 * POLE_SCALE;
-function spanPlan(segs, edges, total) {
+export function spanPlan(segs, edges, total, walls = {}) {
   const at = [];
   let a = 0;
   for (const s of segs) { at.push(a); a += s.width * 100; }
@@ -1374,25 +1383,32 @@ function spanPlan(segs, edges, total) {
     else runs.push({ j, x0: at[j], x1: at[j] + s.width * 100, xs: [mid], held });
   });
   const dist = (r, x) => Math.min(...r.xs.map((m) => Math.abs(m - x)));
-  const free = new Map(), wires = [], used = new Set();
-  for (const p of poles) {
-    if (used.has(p.key)) continue;
-    const run = [...runs].sort((q, r) => dist(q, p.x) - dist(r, p.x))[0];
-    if (!run || dist(run, p.x) <= BRACKET_REACH) continue;
-    const right = p.x > run.x1;
+  const nearest = (x) => [...runs].sort((q, r) => dist(q, x) - dist(r, x))[0];
+  const free = new Map(), wires = [], sides = new Set(), used = new Set();
+  // The poles nearest to their tracks first, so they hold the wires.
+  const plan = poles.map((p) => ({ p, run: nearest(p.x) })).filter((q) => q.run).sort((q, r) => dist(q.run, q.p.x) - dist(r.run, r.p.x));
+  for (const { p, run } of plan) {
+    if (used.has(p.key) || dist(run, p.x) <= BRACKET_REACH) continue;
+    const right = p.x > run.x1, n = runs.indexOf(run);
     free.set(p.key, right);
-    // Tracks with poles between them (Olšanská) hang on those: no wire across the street (Bára), the pole at the
-    // edge without a bracket over the cars.
-    if (run.held) continue;
-    const across = poles.filter((q) => (right ? q.x < run.x0 : q.x > run.x1)).sort((q, r) => Math.abs(q.x - p.x) - Math.abs(r.x - p.x))[0];
+    if (run.held || sides.has(`${n}:${right}`)) continue;
+    sides.add(`${n}:${right}`);
+    // Across: a pole beyond the run, before the next run of tracks on that side, the nearest to the run.
+    const next = runs[right ? n - 1 : n + 1], edge = right ? run.x0 : run.x1;
+    const across = poles.filter((q) => !used.has(q.key) && (right ? q.x < run.x0 && (!next || q.x > next.x1) : q.x > run.x1 && (!next || q.x < next.x0)))
+      .sort((q, r) => Math.abs(q.x - edge) - Math.abs(r.x - edge))[0];
+    const wallSide = right ? "left" : "right";
     let end;
     if (across) {
       end = { x: across.x, y: SPAN_Y, kind: "pole" };
       used.add(across.key);
-      if (dist(run, across.x) > BRACKET_REACH) free.set(across.key, !right);
-    } else if (edges?.[right ? "left" : "right"] === "budova") end = { x: right ? 0 : total, y: SPAN_Y, kind: "wall" };
-    else end = { x: right ? run.xs[0] - 30 : run.xs.at(-1) + 30, y: SPAN_Y, kind: "free" };
-    wires.push({ x: p.x, y: SPAN_Y, end, xs: run.xs });
+      sides.add(`${n}:${!right}`);
+      free.set(across.key, !right); // its bracket gives way to the wire (Fable: both over one track)
+    } else if (edges?.[wallSide] === "budova" && (walls[wallSide] || 0) >= GROUND - SPAN_Y + 40) end = { x: right ? 0 : total, y: SPAN_Y, kind: "wall" };
+    else end = { x: edge, y: SPAN_Y, kind: "free" };
+    // A contact wire over every track the span crosses (two runs under one wire, Fable).
+    const lo = Math.min(p.x, end.x), hi = Math.max(p.x, end.x);
+    wires.push({ x: p.x, y: SPAN_Y, end, xs: runs.filter((r) => !r.held).flatMap((r) => r.xs).filter((m) => m > lo && m < hi) });
   }
   return { free, wires };
 }
@@ -1445,7 +1461,7 @@ export function buildSvg(profile, opts = {}) {
   }
 
   let x = 0;
-  const bounds = [0], undersLater = [], spans = spanPlan(segs, profile.edges, total);
+  const bounds = [0], undersLater = [], spans = spanPlan(segs, profile.edges, total, facades(profile.edges));
   segs.forEach((s, i) => {
     const t = TYPES[s.type] || TYPES.nezname;
     const w = s.width * 100;
@@ -1623,7 +1639,7 @@ export function buildSvg(profile, opts = {}) {
     el("text", { class: "top-row", x, y: y0 + 94, "text-anchor": "middle", "font-size": 68, "font-weight": 700, fill: "#fff" }, svg).textContent = letter;
   }
 
-  if (spans.wires.length) { const sg = el("g", { class: "span-wires" }, svg); for (const w of spans.wires) spanWire(sg, w); }
+  if (spans.wires.length) { const sg = el("g", { class: "span-wires", "pointer-events": "none" }, svg); for (const w of spans.wires) spanWire(sg, w); }
 
   // Trolley wires over the lanes under them (OSM trolley_wire): a span wire across, from the first wired lane
   // to the last, and the two contact wires (0.6 m apart, 5.4 m above the road) over each lane, hung from it.

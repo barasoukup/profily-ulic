@@ -209,10 +209,6 @@ Služby města (`gis.jihlava-city.cz`, CORS povolený):
   `datumTransformation=1623` jako u IPR.
 - další vrstvy města (nepoužité): jednosměrky a cyklo-obousměrky, obytné zóny a zóny 30, přechody, trolejové
   vedení a trakční sloupy, zastávky s vybavením, dopravní značky, mosty.
-  Trakční sloup dál než 4 m od kolejí (mezi nimi pruhy pro auta, 17. listopadu) nemá výložník, ale drží vodorovné
-  příčné lano nad koleje (věšáky s trolejí nad každou kolejí): na druhé straně ke sloupu za kolejemi, jinak k domu
-  na kraji (růžice na fasádě), jinak lano končí za poslední kolejí. Koleje se sloupy mezi sebou (Olšanská) lano
-  nemají. Řídí se sloupy a okraji profilu, takže v Návrhu ho změní přidání či smazání sloupu nebo jiný okraj (Bára 13. 11. 2026).
 
 ### Most, Opava, Plzeň
 
@@ -431,7 +427,13 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
     Co nevychází (pruh pod 2,3 m nebo nad 5 m), nechá profil podle pravidel. `?orto=0` ukáže profil bez ortofota.
 12. Konec A je vždy západní, B východní; tlačítko **⇄ Otočit** je prohodí (zrcadlí stav, návrh i opravy, domy si
     nechají barvy).
-13. Lokální server neukládá do cache chybové odpovědi IPR a dotazy na IPR vzdá po 20 s; server IPR často vrací
+13. Trakční sloup dál než 4 m od kolejí (mezi nimi pruhy pro auta, 17. listopadu) nemá výložník, ale drží vodorovné
+    příčné lano nad koleje (`spanPlan` v `profile.js`, věšák s trolejí nad každou kolejí pod lanem): na druhé straně ke
+    sloupu za kolejemi (před další řadou kolejí; ten pak také nemá výložník), jinak k domu na kraji, sahá-li fasáda
+    do výšky lana (růžice), jinak lano končí u kraje kolejí. Na každé straně řady kolejí drží lano jen sloup nejbližší
+    kolejím, další stojí bez výložníku. Koleje se sloupy mezi sebou (Olšanská) lano nemají. Řídí se sloupy a okraji
+    profilu, takže v Návrhu ho změní přidání či smazání sloupu nebo jiný okraj (Bára 13. 11. 2026).
+14. Lokální server neukládá do cache chybové odpovědi IPR a dotazy na IPR vzdá po 20 s; server IPR často vrací
     503, aplikace dotaz opakuje.
 
 ## Stav, Návrh a úpravy
@@ -509,7 +511,11 @@ napříč ulicí k okraji sítě): vodovod 2,5 m (1,0 m s technickým opatření
 (blíž s kořenovou bariérou, hlubší než 6 m nevadí), plynovod NTL a STL 1 m, VTL 4 m, teplovod 2,5 m (oboje bez
 opatření), silnoproud do 22 kV, veřejné osvětlení a elektronické komunikace 1,0 m (0,5 m), 110 kV 1,5 m (1,0 m),
 kolektor s nadložím pod 5 m 3,0 m (1,5 m). Blíž než bez opatření oranžově (jen s kořenovou bariérou nebo chráničkou),
-blíž i než s opatřením červeně. Produktovody a potrubní pošta v předpisech nejsou.
+blíž i než s opatřením červeně. Produktovody a potrubní pošta v předpisech nejsou; nadzemní vedení („nadz.“) se
+mezi sítě pod zemí neberou; kabel protikorozní ochrany plynovodu je kabel; síť v chráničce má opatření už v sobě;
+stoka neznámého průměru bere 2,5 m; strom mezi dvěma stěnami „tělesa kolektoru“ stojí nad kolektorem; kolektor
+neznámé hloubky nejvýš oranžově. Za stávající se strom bere podle polohy od A (do 1 m), takže strom posunutý
+v Návrhu rozšířením sousední části o víc se hlásí jako nový.
 Dále modré šipky ukazují přítok ze zpevněných ploch vedle; zatravňovací
 dlažba jako pás betonových tvárnic s trávou mezi nimi (Bára: na první pohled něco mezi parkováním a trávníkem). Ilustrace (zelená střecha přístřešku, výsadba průlehu, rákos) kreslila
 „kreslířka“ ve třech kolech s „kritikem“ podle fotek z Wikimedia Commons.

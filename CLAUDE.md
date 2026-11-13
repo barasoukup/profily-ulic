@@ -195,6 +195,11 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   podzemní rýha, nádrž, šachta (ve skutečné velikosti a hloubce, rozměr v „Další volby“, výchozí odhad schválený Bárou);
   propustná dlažba a nezpevněný povrch (i ve Stavu z OSM `surface`). Retenční nádrže z dat zůstávají vodou.
 - Se sítěmi varování: překryv červeně, blíž než 0,5 m oranžově (Bářina hranice upozornění, Standardy odstupy nedávají).
+- Nové stromy v Návrhu u sítí podle Pražských stavebních předpisů, příloha č. 1, bod I (vzdálenost od paty kmene po
+  druzích sítí; oranžově jen s kořenovou bariérou/chráničkou, červeně blíž). Bára 13. 11. 2026: „to někde musí být
+  pečlivě rozepsáno“.
+- Trakční sloup dál než 4 m od kolejí drží vodorovné příčné lano (ke sloupu naproti, jinak k domu, jinak končí u
+  kolejí), ne výložník nad auty; koleje se sloupy mezi sebou (Olšanská) lano nemají (Bára 13. 11. 2026).
 - Rozhraní po kritice Fable: karta části s „Další volby“, paleta za „+ Přidat díl“, bez panelu okrajů, Sdílet + menu
   Soubor, patička na jeden řádek. Žádné texty „zkušebně“ v aplikaci (Bára). Pěší, přechody a průchozí šířka chodníku
   na pozdější brainstorming.
