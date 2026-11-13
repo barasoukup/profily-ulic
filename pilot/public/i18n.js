@@ -37,6 +37,13 @@ export const attribution = (text) => (lang === "cs" ? text : EN_ATTRIBUTION.redu
 
 // A number in the language's way: 3,50 in Czech, 3.50 in English.
 export const num = (v, digits = 2) => (lang === "cs" ? v.toFixed(digits).replace(".", ",") : v.toFixed(digits));
+// Per cent as written in the language: "44 %" in Czech, "44%" in English (Fable).
+export const pct = (v) => (lang === "cs" ? `${Math.round(v)} %` : `${Math.round(v)}%`);
+// A number for a field the user types into, without trailing zeros ("2,5", "3"), and back from what was typed (a
+// comma or a point); NaN when it is no number. The fields are text, not number, inputs: those show the browser's
+// own decimal mark whatever the page's language (Fable: "5,1" in English).
+export const numField = (v) => num(v).replace(/[,.]?0+$/, "");
+export const readNum = (text) => (/^\s*-?\d*[,.]?\d+\s*$/.test(text) ? Number(text.replace(",", ".")) : NaN);
 
 // Switch the language: remembered, the address loses its ?lang (so it does not win next time), the page reloads.
 export function setLang(l) {

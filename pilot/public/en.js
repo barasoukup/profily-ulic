@@ -616,7 +616,7 @@ export const EN = {
   "Propustný": "Permeable",
   "Částečně propustný": "Partly permeable",
   "Nepropustný": "Impermeable",
-  "Voda a ostatní": "Water and other",
+  "Vodní plocha": "Water surface",
   "Povrch ulice": "Street surface",
   "{type}: povrch tělesa {from} → {to}": "{type}: track bed surface {from} → {to}",
 };

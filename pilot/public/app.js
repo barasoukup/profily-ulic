@@ -19,7 +19,7 @@ import { log, logOn, sendReport, shortProfile } from "./log.js";
 import { createDataLayers, PLOCHY_PANE } from "./maplayers.js";
 import { mountSearch } from "./search.js";
 // tr: t is a common name of a text or a type here.
-import { t as tr, num, lang, LANGS, setLang, translatePage, attribution } from "./i18n.js";
+import { t as tr, num, pct, numField, readNum, lang, LANGS, setLang, translatePage, attribution } from "./i18n.js";
 
 translatePage();
 // The other language, as its own name (one more language: a menu).
@@ -669,7 +669,7 @@ function renderShares() {
 // cent, in Porovnat with the share before; dark: groups with white figures.
 function shareBars(box, heading, fn, dark, note) {
   const rows = state.mode === "porovnat" ? [[tr("Stav"), state.stav], [tr("Návrh"), state.navrh]] : [[null, current()]];
-  const pct = (v) => `${Math.round(v)} %`;
+
   const sec = box.appendChild(Object.assign(document.createElement("section"), { className: "share-sec" }));
   sec.append(Object.assign(document.createElement("h3"), { textContent: heading }));
   const before = state.mode === "porovnat" ? Object.fromEntries(fn(state.stav).map((g) => [g.key, g.pct])) : null;
@@ -1291,11 +1291,13 @@ function renderEditor(p) {
     type.append(og);
   }
   type.onchange = () => { retype(s, type.value); s.source = "user"; done(); };
-  const width = Object.assign(document.createElement("input"), { type: "number", step: 0.05, min: 0.2, value: s.width });
+  const width = Object.assign(document.createElement("input"), { type: "text", inputMode: "decimal", value: numField(s.width), className: "num" });
   width.onchange = () => {
     // Perpendicular parking keeps at least 4.5 m (ČSN 73 6056).
     const min = s.type === "parkovani" && s.orient === "kolme" ? 4.5 : 0.2;
-    setWidth(segs, segs.indexOf(s), Math.max(min, +(+width.value).toFixed(2)));
+    const v = readNum(width.value);
+    if (!Number.isFinite(v)) return render(); // not a number: the width stays
+    setWidth(segs, segs.indexOf(s), Math.max(min, +v.toFixed(2)));
     spreadAll(s);
     s.source = "user";
     done();
@@ -1435,11 +1437,12 @@ function renderEditor(p) {
       // Its size (types.js underSize; the standard sizes it by calculation): wide, from what depth, how high.
       const z = underSize(s), size = Object.assign(document.createElement("span"), { className: "under-size" });
       for (const [k, text, lo, hi] of [["w", tr("šířka"), 0.3, Math.max(0.3, s.width - 0.2)], ["top", tr("od hloubky"), 0, 5], ["h", tr("výška"), 0.2, 5]]) {
-        const inp = Object.assign(document.createElement("input"), { type: "number", step: 0.1, min: lo, max: +hi.toFixed(2), value: z[k] });
+        const inp = Object.assign(document.createElement("input"), { type: "text", inputMode: "decimal", value: numField(z[k]), className: "num" });
         inp.onchange = () => {
           // An emptied field goes back to the default (Fable: it gave 0).
-          if (inp.value === "" || !Number.isFinite(+inp.value)) { if (s.underSize) delete s.underSize[k]; }
-          else s.underSize = { ...s.underSize, [k]: Math.min(hi, Math.max(lo, +(+inp.value).toFixed(2))) };
+          const v = readNum(inp.value);
+          if (!Number.isFinite(v)) { if (s.underSize) delete s.underSize[k]; }
+          else s.underSize = { ...s.underSize, [k]: Math.min(hi, Math.max(lo, +v.toFixed(2))) };
           // Only what differs from the default travels in a link.
           const d = HDV_UNDER[s.under].size;
           if (s.underSize?.[k] === d[k]) delete s.underSize[k];

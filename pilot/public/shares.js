@@ -37,19 +37,22 @@ export function shares(profile) {
 
 // How much of the street lets the rain in (Magdalena, 13. 11. 2026): permeable (green, swales, trenches,
 // a grass or gravel tram bed, an unpaved surface), partly permeable (permeable paving, grass pavers), sealed (asphalt,
-// paving, concrete, tram panels) and the rest (water, walls, unknown). By the part's surface; what lies under it does
+// paving, concrete, tram panels), water, and the rest (walls, unknown). By the part's surface; what lies under it does
 // not count.
 export const SURFACE_GROUPS = [
   { key: "propustne", label: t("Propustný"), color: "#7fb04a" },
   { key: "castecne", label: t("Částečně propustný"), color: "#b8c98a" },
   { key: "nepropustne", label: t("Nepropustný"), color: "#7c7a74" },
-  { key: "jine", label: t("Voda a ostatní"), color: "#dcd8cd" },
+  { key: "voda", label: t("Vodní plocha"), color: "#7fa9cf" },
+  { key: "jine", label: t("Ostatní"), color: "#dcd8cd" },
 ];
-// A retention pond holds water back, it does not soak it away (Fable): with water.
+// A retention pond holds water back, it does not soak it away (Fable): with water. "Voda a ostatní" read like the
+// palette's rainwater group (Bára): water and the rest apart.
 const GREEN = new Set(["zelen", "stromorad", "predzahradka", "pruleh", "ryha"]);
-const OTHER = new Set(["voda", "nadrz", "zed", "nezname"]);
+const WATER = new Set(["voda", "nadrz"]), OTHER = new Set(["zed", "nezname"]);
 function surfaceOf(s) {
   if (GREEN.has(s.type)) return "propustne";
+  if (WATER.has(s.type)) return "voda";
   if (OTHER.has(s.type)) return "jine";
   if (s.type === "tramvaj") return ["trava", "strk"].includes(s.bed) ? "propustne" : "nepropustne";
   if (s.permeable === "nezpevneny") return "propustne";

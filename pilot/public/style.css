@@ -252,10 +252,10 @@ button.tag { padding: 3px 9px; border-radius: 20px; font-size: 12px; }
 #editor label { display: inline-flex; gap: 8px; align-items: center; font-weight: 500; max-width: 100%; min-width: 0; }
 #editor input.floors { width: 4.5em; } /* the floors of a building at an edge */
 #editor select { max-width: 100%; min-width: 0; flex: 1; text-overflow: ellipsis; }
-#editor input[type=number], #editor select, #editor input[type=text] {
+#editor input[type=number], #editor select, #editor input[type=text], #editor input.num {
   font: inherit; font-weight: 400; padding: 6px 8px; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--panel);
 }
-#editor input[type=number] { width: 88px; }
+#editor input[type=number], #editor input.num { width: 88px; }
 
 #width-check { border-radius: var(--radius); padding: 10px 14px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 #width-check[hidden] { display: none; }
@@ -332,7 +332,7 @@ footer a { color: inherit; }
   .empty { flex-direction: column; text-align: center; padding: 16px 8px; }
   .empty ol { text-align: left; }
   #editor { padding: 10px; }
-  #editor input[type=number], #editor select, .menu-list input, #report-text { font-size: 16px; } /* no zoom on focus in iOS */
+  #editor input[type=number], #editor input.num, #editor select, .menu-list input, #report-text { font-size: 16px; } /* no zoom on focus in iOS */
   #palette .chip { min-height: 40px; padding: 8px 12px 8px 9px; font-size: 13px; }
   .pal-name { width: 100%; }
   #editor label { flex-direction: column; align-items: stretch; gap: 4px; }
@@ -408,7 +408,7 @@ footer details[open] summary { margin-bottom: 4px; }
 #editor .items select { flex: 0 1 auto; width: 11.5em; } /* closed it says only "+ přidat…"; the list opens wider */
 .ed-acts .close { margin-left: 2px; padding: 2px 6px; }
 #editor .under-size { display: inline-flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; }
-#editor .under-size input[type=number] { width: 72px; }
+#editor .under-size input.num { width: 72px; }
 #editor .under-size .muted { font-size: 12px; }
 #editor .items select.item-opt { width: auto; font-size: 13px; padding: 3px 6px; }
 #editor .item-pair { display: inline-flex; gap: 4px; align-items: center; white-space: nowrap; }

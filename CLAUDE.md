@@ -209,7 +209,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   zmenšená velká), stojí 0,6 m od obruby u vozovky. Stojan na kola napříč/podél; stojany, lavičky, květináče a sloupky
   se v části řadí vedle sebe. Povrch tramvajového tělesa jen u samostatného tělesa (tráva stačí, rozchodníky ne).
 - Pod zelení a travnatým/štěrkovým tělesem žádný beton (ornice, štěrkové lože).
-- Graf „Povrch ulice“: propustný / částečně propustný / nepropustný / voda a ostatní (shoda s „povrch“), bez poznámky.
+- Graf „Povrch ulice“: propustný / částečně propustný / nepropustný / vodní plocha / ostatní (shoda s „povrch“;
+  „voda a ostatní“ se pletlo s hospodařením s vodou), bez poznámky.
 - Nedělat: pokryvnost korunami a parametry stromů (Bára: moc složité). IPR Praha oslovit s připomínkami (nápad
   Magdaleny), Slovensko jen při zájmu.
 

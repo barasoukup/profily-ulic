@@ -493,7 +493,7 @@ Prvky v Návrhu (Magdalena a Bára, 13. 11. 2026):
 Pod profilem je pruh **podílu šířky ulice** (chůze, kola, MHD, jedoucí auta, parkování, zeleň, ostatní; sdílené
 části napůl), v Porovnání se změnou. Pod ním **povrch ulice** (`shares.js surfaces`, Magdalena): propustný (zeleň,
 průleh, povrchová rýha, travnaté a štěrkové těleso, nezpevněný povrch), částečně propustný (propustná dlažba; v popisku
-části „propustná dlažba“), nepropustný a voda s ostatním (retenční nádrž zadržuje, nevsakuje); co je pod povrchem se
+části „propustná dlažba“), nepropustný, vodní plocha (i retenční nádrž: zadržuje, nevsakuje) a ostatní (zeď, Neurčeno); co je pod povrchem se
 nepočítá, skupina bez plochy se neukazuje, v Porovnání „bylo X %“. Nezpevněný může být i chodník, plocha, parkování,
 cyklostezka, krajnice, přístupová cesta a dělicí pás. Návrh (i ručně opravený stav) jde **sdílet odkazem** (je zabalený v adrese za
 řezem), uložit do souboru JSON a zase načíst. U řezu je **panorama z ulice** Mapy.com (s klíčem v dialogu, bez
