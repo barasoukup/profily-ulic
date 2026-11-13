@@ -223,7 +223,8 @@ function drawUnder(g, s, x, w) {
 // Permeable paving (segment.permeable, 5.1.2) and unpaved surfaces: no concrete slab under them (Bára), but a gravel
 // bed down to the earth; grass pavers as concrete blocks with grass between them (at first sight something between
 // parking and a lawn), an unpaved surface gravel all through.
-const GRAVEL_BED = "#cdbf9f", GRAVEL_DOT = "#8e8170";
+const GRAVEL_BED = "#cdbf9f", GRAVEL_DOT = "#8e8170", TOPSOIL = "#7a5f43";
+const SOIL_PARTS = new Set(["zelen", "stromorad", "predzahradka", "pruleh"]);
 function drawPermeable(g, x, w, top, unpaved) {
   el("rect", { x, y: top, width: w, height: GROUND + 60 - top, fill: GRAVEL_BED }, g);
   for (let v = top + (unpaved ? 5 : 32); v < GROUND + 56; v += 8) {
@@ -246,9 +247,22 @@ function drawTramBed(g, s, x, w, top, bedBefore, bedAfter) {
   if (kind === "panely") {
     for (let u = x + 60; u < x + w - 20; u += 120) el("rect", { x: u, y: top, width: 2, height: 14, fill: "#8d887c" }, g);
   } else if (kind === "strk") {
+    // A gravel bed all the way down (Bára: no concrete under it).
+    el("rect", { x, y: top + 14, width: w, height: GROUND + 60 - top - 14, fill: GRAVEL_BED }, g);
+    for (let v = top + 20; v < GROUND + 56; v += 8) {
+      for (let u = x + 4 + ((v / 8) % 2) * 4; u < x + w - 3; u += 9) el("circle", { cx: u, cy: v, r: 2, fill: GRAVEL_DOT }, g);
+    }
     for (let u = x + 8; u < x + w - 4; u += 14) el("circle", { cx: u, cy: top + 4 + ((u / 14) % 2) * 5, r: 2.5, fill: "#6f6a61" }, g);
     for (let u = x + 30; u < x + w - 30; u += 60) el("rect", { x: u, y: top - 2, width: 26, height: 5, fill: "#5d5247" }, g);
   } else if (kind === "trava") {
+    // A green track: no concrete under the grass (Bára, as under permeable paving): topsoil, then a gravel bed with
+    // the sleepers in it, down to the earth.
+    el("rect", { x, y: top + 14, width: w, height: 22, fill: TOPSOIL }, g);
+    el("rect", { x, y: top + 36, width: w, height: GROUND + 60 - top - 36, fill: GRAVEL_BED }, g);
+    for (let v = top + 42; v < GROUND + 56; v += 8) {
+      for (let u = x + 4 + ((v / 8) % 2) * 4; u < x + w - 3; u += 9) el("circle", { cx: u, cy: v, r: 2, fill: GRAVEL_DOT }, g);
+    }
+    for (let u = x + 30; u < x + w - 30; u += 60) el("rect", { x: u, y: top + 30, width: 26, height: 10, fill: "#8d887c" }, g);
     for (let u = x + 5; u < x + w - 3; u += 9) el("path", { d: `M${u} ${top + 2} l3 -9 l3 9`, fill: "#5f9e3a" }, g);
   }
   const curb = (cx) => el("rect", { x: cx, y: top, width: 12, height: CURB + 8, fill: "#c9c5ba", stroke: "#8d887c", "stroke-width": 1 }, g);
@@ -1474,6 +1488,9 @@ export function buildSvg(profile, opts = {}) {
     // Name and width on hover, also for parts too narrow for a label.
     el("title", {}, g).textContent = `${t.label}, ${fmt(s.width)}`;
     el("rect", { class: "ground", x, y: top, width: w, height: GROUND + 60 - top, fill: s.color || (s.position === "on_kerb" ? KERB_PAVING : t.color) }, g);
+    // Green parts: grass on topsoil, not a green block all the way down (Bára: nothing that looks like a slab under
+    // the green).
+    if (SOIL_PARTS.has(s.type)) el("rect", { x, y: top + 12, width: w, height: GROUND + 60 - top - 12, fill: TOPSOIL }, g);
     if (half) {
       // The sidewalk half in the sidewalk's paving, with the kerb stone in the middle of the car.
       el("rect", { x: kerbLeft ? x : x + w / 2, y: GROUND - CURB, width: w / 2, height: CURB + 60, fill: KERB_PAVING }, g);
