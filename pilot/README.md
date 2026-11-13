@@ -503,8 +503,13 @@ výška; `segment.underSize`), výchozí je odhad: rýha 1,5 m široká v hloubc
 (červeně, překryv s kreslenou sítí) nebo je k ní blíž než 0,5 m (oranžově; Bára 12. 11. 2026: varovat i při blízkosti;
 Standardy kap. 6.2.9 jen žádají střety se sítěmi a ochrannými pásmy prověřit, odstupy nedávají, 0,5 m je hranice
 upozornění, ne ochranné pásmo), sítě se kreslí přes objekty, aby byl střet vidět. Stejně se hlídají nové stromy
-z Návrhu (strom v části i stromořadí, kde Stav do 1 m strom nemá): síť blíž než 1,5 m vodorovně od kmene je oranžové
-upozornění (Bára 13. 11. 2026; TSK pro výsadbu odstup nedává, brněnské stavební předpisy chtějí 2,5 m od vodovodu).
+z Návrhu (strom v části i stromořadí, kde Stav do 1 m strom nemá; Bára 13. 11. 2026) podle Pražských stavebních
+předpisů (souhrnné znění IPR 2025/01, příloha č. 1, bod I, minimální vzdálenost podzemní sítě od paty kmene, měřeno
+napříč ulicí k okraji sítě): vodovod 2,5 m (1,0 m s technickým opatřením), kanalizace 2,5 m, stoka do DN 500 1,5 m
+(blíž s kořenovou bariérou, hlubší než 6 m nevadí), plynovod NTL a STL 1 m, VTL 4 m, teplovod 2,5 m (oboje bez
+opatření), silnoproud do 22 kV, veřejné osvětlení a elektronické komunikace 1,0 m (0,5 m), 110 kV 1,5 m (1,0 m),
+kolektor s nadložím pod 5 m 3,0 m (1,5 m). Blíž než bez opatření oranžově (jen s kořenovou bariérou nebo chráničkou),
+blíž i než s opatřením červeně. Produktovody a potrubní pošta v předpisech nejsou.
 Dále modré šipky ukazují přítok ze zpevněných ploch vedle; zatravňovací
 dlažba jako pás betonových tvárnic s trávou mezi nimi (Bára: na první pohled něco mezi parkováním a trávníkem). Ilustrace (zelená střecha přístřešku, výsadba průlehu, rákos) kreslila
 „kreslířka“ ve třech kolech s „kritikem“ podle fotek z Wikimedia Commons.

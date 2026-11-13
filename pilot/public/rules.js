@@ -164,10 +164,25 @@ export function checkUnder(profile, under) {
 
 // Trees planted in the design (in a part, or a stromořadí's own, in its middle) near a network (Bára 13. 11. 2026):
 // [{i, level, short, why}], one per part. A tree counts as planted where the existing street has none within 1 m.
-// Only the distance across the street from the trunk to the network's rim counts (the roots spread wide and are
-// mostly shallow). TREE_NEAR is Bára's warning distance; the Prague rules (TSK) give none for planting, Brno's
-// building rules ask 2.5 m from a water main (1 m with protective measures).
-const TREE_NEAR = 1.5;
+// The distances are the Prague building rules' (Pražské stavební předpisy, souhrnné znění IPR 2025/01, příloha č. 1,
+// bod I: the least distance of an underground network from the foot of a tree's trunk), measured across the street to
+// the network's rim: ok without measures from free, possible with technical measures (a root barrier or a duct) from
+// barrier, else red; null barrier: no measures allowed. By the network's kind and its description (CTMTP_POPIS).
+function treeRule(it) {
+  const p = it.popis || "", dn = it.profil > 20 ? it.profil : null;
+  switch (it.kind) {
+    case "vodovod": return { free: 2.5, barrier: 1.0 };
+    // A sewer deeper than 6 m allows trees in its protection zone (point b) 4).
+    case "kanalizace": return it.depth > 6 ? null : dn && dn > 500 ? { free: 2.5, barrier: 0 } : { free: 1.5, barrier: 0 };
+    case "plynovod": return /VTL/.test(p) ? { free: 4, barrier: null } : { free: 1, barrier: null };
+    case "teplovod": return { free: 2.5, barrier: null };
+    case "silnoproud": return /VVN/.test(p) ? { free: 1.5, barrier: 1.0 } : { free: 1.0, barrier: 0.5 };
+    case "slaboproud": return { free: 1.0, barrier: 0.5 };
+    // A collector under less than 5 m of cover.
+    case "jine": return /kolektor/.test(p) && it.depth < 5 ? { free: 3.0, barrier: 1.5 } : null;
+    default: return null;
+  }
+}
 const treesOf = (p) => {
   const out = [];
   let x = 0;
@@ -185,19 +200,27 @@ export function checkTrees(design, stav, under) {
   for (const tree of treesOf(design)) {
     if (old.some((o) => Math.abs(o.x - tree.x) < 1)) continue;
     for (const it of under.items) {
+      const rule = treeRule(it);
+      if (!rule) continue;
       const k = under.kinds?.[it.kind];
       const dn = it.profil > 20 && it.profil < 3000 ? it.profil : k?.dn || 110;
       const gap = Math.abs(under.span.left - it.t - tree.x) - dn / 2000;
-      if (gap >= TREE_NEAR) continue;
-      const list = byPart.get(tree.i) || new Set();
-      const net = k?.label || it.kind;
-      list.add(gap <= 0 ? t("{net} přímo pod stromem", { net }) : t("{net} {d} od kmene", { net, d: fmt(+gap.toFixed(2)) }));
-      byPart.set(tree.i, list);
+      if (gap >= rule.free - 0.005) continue;
+      const red = rule.barrier === null || gap < rule.barrier - 0.005 || gap <= 0;
+      const v = { net: it.kind === "jine" ? t("kolektor") : k?.label || it.kind, d: fmt(+Math.max(0, gap).toFixed(2)), free: fmt(rule.free), barrier: fmt(rule.barrier ?? 0) };
+      const text = gap <= 0 ? t("{net} přímo pod stromem", v)
+        : rule.barrier === null ? t("{net} {d} od kmene (nejméně {free})", v)
+        : rule.barrier ? t("{net} {d} od kmene ({free}, s technickým opatřením {barrier})", v)
+        : t("{net} {d} od kmene ({free}, blíž jen s technickým opatřením)", v);
+      const part = byPart.get(tree.i) || { red: false, list: new Set() };
+      part.red ||= red;
+      part.list.add(text);
+      byPart.set(tree.i, part);
     }
   }
-  return [...byPart].map(([i, list]) => ({
-    i, level: "zaklad",
-    short: t("Nový strom v části {part}: blíž než {near} k sítím: {list}", { part: (TYPES[design.segments[i].type]?.label || "").toLowerCase(), near: fmt(TREE_NEAR), list: [...list].join(", ") }),
-    why: t("kořeny a síť: umístění stromu posuďte se správcem sítě"),
+  return [...byPart].map(([i, { red, list }]) => ({
+    i, level: red ? "min" : "zaklad",
+    short: t("Nový strom v části {part} je blízko sítí: {list}", { part: (TYPES[design.segments[i].type]?.label || "").toLowerCase(), list: [...list].join(", ") }),
+    why: t("Pražské stavební předpisy, příloha č. 1, bod I: vzdálenost sítě od paty kmene; technickým opatřením je kořenová bariéra nebo chránička"),
   }));
 }

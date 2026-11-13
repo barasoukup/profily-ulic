@@ -599,11 +599,14 @@ export const EN = {
   "blíž než {near} od: {list}": "closer than {near} to: {list}",
   "{obj} pod částí {part} narazí na: {list}": "{obj} under the {part} runs into: {list}",
   "{obj} pod částí {part}: {what}": "{obj} under the {part}: {what}",
-  "{net} {d} od kmene": "{net} {d} from the trunk",
-  "Nový strom v části {part}: blíž než {near} k sítím: {list}": "New tree in the {part}: closer than {near} to networks: {list}",
-  "kořeny a síť: umístění stromu posuďte se správcem sítě": "roots and networks: have the network's owner assess where the tree goes",
   "{net} přímo pod stromem": "{net} right under the tree",
   "Sítě pod zemí:": "Underground networks:",
+  "{net} {d} od kmene (nejméně {free})": "{net} {d} from the trunk (at least {free})",
+  "Nový strom v části {part} je blízko sítí: {list}": "New tree in the {part} is close to networks: {list}",
+  "Pražské stavební předpisy, příloha č. 1, bod I: vzdálenost sítě od paty kmene; technickým opatřením je kořenová bariéra nebo chránička": "Prague building regulations, annex 1, point I: a network's distance from the foot of the trunk; a technical measure is a root barrier or a duct",
+  "{net} {d} od kmene ({free}, s technickým opatřením {barrier})": "{net} {d} from the trunk ({free}, with a technical measure {barrier})",
+  "{net} {d} od kmene ({free}, blíž jen s technickým opatřením)": "{net} {d} from the trunk ({free}, closer only with a technical measure)",
+  "kolektor": "utility tunnel",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

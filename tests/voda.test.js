@@ -92,18 +92,26 @@ test("jeden objekt má jedno varování: červeně, když narazí na kteroukoli 
   assert.match(found[0].short, /narazí na: vodovod v hloubce 0,80 m; blíž než 0,50 m od: slaboproud v hloubce 0,50 m$/);
 });
 
-test("nový strom blízko sítě: varování, stávající strom ne", () => {
-  const kinds = { vodovod: { label: "vodovod", dn: 150 } };
-  const nets = (m) => ({ items: [{ t: 10 - m, depth: 1.2, kind: "vodovod", profil: 200 }], span: { left: 10 }, kinds });
-  const stav = { segments: [{ type: "chodnik", width: 4, items: [{ kind: "strom", f: 0.25 }] }, { type: "pruh", width: 3 }] };
-  const navrh = { segments: [{ type: "chodnik", width: 4, items: [{ kind: "strom", f: 0.25 }, { kind: "strom", f: 0.75 }] }, { type: "stromorad", width: 2 }, { type: "pruh", width: 1 }] };
-  // A water main (DN 200) 3.3 m from A: the new tree at 3 m is 0.2 m from its rim, the old one at 1 m is left alone,
-  // the stromořadí's at 5 m 1.6 m from it.
-  const found = checkTrees(navrh, stav, nets(3.3));
-  assert.equal(found.length, 1);
-  assert.equal(found[0].i, 0);
-  assert.match(found[0].short, /vodovod 0,20 m od kmene/);
-  assert.equal(checkTrees(navrh, stav, nets(4.8)).map((f) => f.i).join(), "1"); // the stromořadí's tree at 5 m
-  assert.equal(checkTrees(navrh, stav, nets(8)).length, 0);
+test("nový strom u sítě podle pražských stavebních předpisů (příloha 1, bod I), stávající strom ne", () => {
+  const kinds = { vodovod: { label: "vodovod", dn: 150 }, plynovod: { label: "plynovod", dn: 110 }, kanalizace: { label: "kanalizace", dn: 300 }, silnoproud: { label: "silnoproud", dn: 110 } };
+  const stav = { segments: [{ type: "chodnik", width: 4, items: [{ kind: "strom", f: 0.25 }] }, { type: "pruh", width: 6 }] };
+  // A new tree at 3 m from A, the old one at 1 m.
+  const navrh = { segments: [{ type: "chodnik", width: 4, items: [{ kind: "strom", f: 0.25 }, { kind: "strom", f: 0.75 }] }, { type: "pruh", width: 6 }] };
+  // A network whose rim is gap m from the new tree, on the street side (DN 200: radius 0.1 m).
+  const at = (gap, kind, more = {}) => ({ items: [{ t: 10 - (3 + gap + 0.1), depth: 1.2, kind, profil: 200, popis: "", ...more }], span: { left: 10 }, kinds });
+  const level = (gap, kind, more) => checkTrees(navrh, stav, at(gap, kind, more)).map((f) => f.level).join();
+  assert.equal(level(2.6, "vodovod"), ""); // 2.5 m without measures
+  assert.equal(level(2, "vodovod"), "zaklad"); // 1.0–2.5 m with a root barrier
+  assert.equal(level(0.8, "vodovod"), "min");
+  assert.equal(level(1.2, "plynovod", { popis: "plynovod - NTL - podz. - ověř." }), "");
+  assert.equal(level(0.5, "plynovod", { popis: "plynovod - STL - podz." }), "min"); // 1 m, no measures
+  assert.equal(level(3, "plynovod", { popis: "plynovod - VTL - podz." }), "min"); // 4 m
+  assert.equal(level(1, "kanalizace"), "zaklad"); // a sewer to DN 500: 1.5 m, closer with a barrier
+  assert.equal(level(1, "kanalizace", { depth: 7 }), ""); // deeper than 6 m
+  assert.equal(level(0.7, "silnoproud", { popis: "silnoproud - VN - podz." }), "zaklad"); // to 22 kV: 1.0 m, 0.5 m with measures
+  assert.equal(level(0.7, "silnoproud", { popis: "silnoproud - VVN - podz." }), "min"); // 110 kV: 1.5 m, 1.0 m with measures
+  assert.match(checkTrees(navrh, stav, at(2, "vodovod"))[0].short, /vodovod 2,00 m od kmene \(2,50 m, s technickým opatřením 1,00 m\)/);
+  // The old tree alone: no warning.
+  assert.equal(checkTrees(stav, stav, at(0.2, "vodovod")).length, 0);
   assert.equal(checkTrees(navrh, stav, null).length, 0);
 });
