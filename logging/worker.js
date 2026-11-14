@@ -4,7 +4,7 @@
 //   POST /log      one event as JSON, from the allowed origins only; answers 204
 //   GET  /export   all events as CSV (or ?since=2026-11-01), with the header "Authorization: Bearer <EXPORT_TOKEN>"
 // Setup: logging/README.md.
-const KINDS = new Set(["rez", "export", "ulozeni", "sdileni", "navrh", "porovnat", "oprava", "hledani", "upravy", "hlaseni"]);
+const KINDS = new Set(["rez", "export", "ulozeni", "sdileni", "navrh", "porovnat", "oprava", "hledani", "upravy", "hlaseni", "bez_ulice"]);
 // An edit record carries two short profiles (log.js shortProfile), a report a visitor's text and the profile.
 const MAX_BODY = 16384;
 // Per address, a few events a second at most (one isolate's memory: a guard against a loop, not a wall).

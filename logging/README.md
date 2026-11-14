@@ -12,6 +12,9 @@ kliknutí na nic nečeká, a když Worker neodpoví, nic se nestane.
   (Stav → Návrh). Uloží se jen zkrácený profil: druh a šířka každé části, směr, cyklisté, způsob stání, těleso
   tramvaje, šipky a značky, druhy okrajů. Posílá se při „Hotovo“, při odchodu z Návrhu nebo z oprav, při dalším
   řezu a při zavření stránky, a jen když se něco změnilo.
+- **kliknutí bez ulice** (od 14. 11. 2026, Bára: kolik lidí zkouší klikat mimo Česko): když aplikace u kliknutí žádnou
+  ulici nenajde, uloží se jen místo zaokrouhlené na setiny stupně (asi 1 km), město a jestli tam vůbec byla data OSM
+  (`bez_dat`: mimo Česko žádná nejsou, `bez_ulice`: data jsou, ulice ne), bez ulice a bez profilu.
 - **hlášení chyb** (od 11. 11. 2026): co návštěvník u řezu označil za špatné (kategorie a vlastní text, nejvýš
   1 000 znaků) spolu s řezem a profilem, jak je na stránce, a profilem, jak ho aplikace při té návštěvě sestavila
   (chybí u profilu obnoveného nebo načteného ze souboru). V okně je
@@ -20,7 +23,7 @@ kliknutí na nic nečeká, a když Worker neodpoví, nic se nestane.
 
 ## Soukromí
 
-Zaznamenáváme jen řezy (místo, směr, ulici, čas), použité funkce a hlášení chyb, která návštěvník sám napíše, abychom aplikaci zlepšili. IP adresy ani
+Zaznamenáváme jen řezy (místo, směr, ulici, čas), kliknutí, u kterých se ulice nenašla (místo zhruba na kilometr), použité funkce a hlášení chyb, která návštěvník sám napíše, abychom aplikaci zlepšili. IP adresy ani
 cookies neukládáme; `session` je náhodné číslo jednoho načtení stránky (neukládá se v prohlížeči), aby šlo
 spočítat řezy jedné návštěvy. Záznam běží na Cloudflare (Worker a D1), který adresu požadavku vidí; Worker ji drží
 jen 10 s v paměti proti zahlcení a do databáze ji nezapisuje. Mapy a data se načítají přímo ze serverů IPR, ČÚZK, měst a krajů a z podkladové mapy
@@ -71,6 +74,10 @@ Potřebuješ účet na cloudflare.com (stačí bezplatný) a Node. Všechny př�
 - **Rychlé dotazy přímo v databázi**, např. řezy podle měst:
   ```bash
   npx wrangler d1 execute profily-ulic-log --remote --command "SELECT city, count(*) FROM events WHERE kind='rez' GROUP BY city ORDER BY 2 DESC"
+  ```
+- **Kliknutí mimo data** po dnech:
+  ```bash
+  npx wrangler d1 execute profily-ulic-log --remote --command "SELECT date(ts,'+1 hour') den, detail, count(*), count(DISTINCT session) FROM events WHERE kind='bez_ulice' GROUP BY 1, 2 ORDER BY 1"
   ```
 - **Hlášení chyb** (tlačítko „Nahlásit chybu“ pod profilem): `node hlaseni.mjs` vypíše posledních 50 hlášení
   (nebo `node hlaseni.mjs 200`) s textem, odkazem na řez a profilem, jak ho aplikace sestavila.

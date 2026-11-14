@@ -5,8 +5,8 @@
 CREATE TABLE IF NOT EXISTS events (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   ts TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
-  kind TEXT NOT NULL,        -- rez | export | ulozeni | sdileni | navrh | porovnat | oprava | hledani | upravy | hlaseni
-  detail TEXT,               -- rez: klik | posun | odkaz; export: png | svg; upravy: oprava | navrh
+  kind TEXT NOT NULL,        -- rez | export | ulozeni | sdileni | navrh | porovnat | oprava | hledani | upravy | hlaseni | bez_ulice
+  detail TEXT,               -- rez: klik | posun | odkaz; export: png | svg; upravy: oprava | navrh; bez_ulice: bez_ulice | bez_dat
   city TEXT,                 -- city.js id: praha, brno, … or cesko
   street TEXT,
   highway TEXT,              -- OSM highway of the street

@@ -631,7 +631,7 @@ export const EN_HTML = {
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
     local illustrations and code © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">sources and licences</a> (in Czech)<br>
-    We record only cuts (place, direction, street, time), the features used and the error reports you write yourself; we store no IP addresses and no cookies. The maps and data
+    We record only cuts (place, direction, street, time), clicks where no street was found (the place to about a kilometre), the features used and the error reports you write yourself; we store no IP addresses and no cookies. The maps and data
     load straight from the servers of IPR, ČÚZK, the cities, the regions and OSM (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">privacy</a>, in Czech).`,
 };
 

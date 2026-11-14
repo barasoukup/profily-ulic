@@ -28,6 +28,9 @@ test("záznam řezu: uloží se přesně, cizí původ a neznámý druh se odmí
   assert.deepEqual(db.rows[0], ["rez", "klik", "most", "tř. Budovatelů", "secondary", 46195319, 50.4998439, 13.6384523, 25, 22, 37.6, "s1", null]);
   assert.equal((await worker.fetch(post(cut, "https://evil.example"), env(db))).status, 403);
   assert.equal((await worker.fetch(post({ ...cut, kind: "x" }), env(db))).status, 400);
+  // A click with no street (outside the data): only where, rounded, and why.
+  assert.equal((await worker.fetch(post({ kind: "bez_ulice", detail: "bez_dat", city: "cesko", lat: 48.21, lon: 16.37, session: "s1" }), env(db))).status, 204);
+  db.rows.pop();
   for (const body of [null, 123, []]) assert.equal((await worker.fetch(post(body), env(db))).status, 400);
   assert.equal(db.rows.length, 1);
 });
