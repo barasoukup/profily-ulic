@@ -16,8 +16,8 @@ import path from "node:path";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { ROOT, cuts, truthOf, osmAround, osmAlong, stripOf, SOURCES, ALONG, median } from "./lib.mjs";
-import { osmRoad, withRails, limits, m0, m1, m2, columns, lanesOf, sidewalkOf } from "./methods.mjs";
-import { markings, encodePng } from "../ortofoto/run.mjs";
+import { strongLines, osmRoad, withRails, limits, m0, m1, m2, columns, lanesOf, sidewalkOf } from "./methods.mjs";
+import { encodePng } from "../ortofoto/run.mjs";
 
 const run = promisify(execFile);
 const CITIES = process.argv.slice(2).filter((a) => /^[a-z]+$/.test(a));
@@ -96,7 +96,7 @@ async function cityRun(city) {
       const cols = columns(st);
       const lo = Math.max(lim.A, st.t0 + 0.5), hi = Math.min(lim.B, st.t0 + st.nt * st.res - 0.5);
       // Lines across the whole street: candidates for the edge lines.
-      const lines = markings(st, { s: lo + 1.5, e: hi - 1.5 }).filter((m) => m.solid || m.share >= 0.3).map((m) => m.t);
+      const lines = hi - lo > 4 ? strongLines(st, lo + 1.5, hi - 1.5) : [];
       const k1 = m1(cols, axis, lim), k2 = m2(cols, axis, lim, road, lines);
       const by = { m1: k1, m2: k2 && { A: k2.A, B: k2.B }, why: k2?.why, flags: flags(st, truth, axis) };
       // Lanes on the M2 carriageway (the lines whose gaps look like lanes), and on the true one.

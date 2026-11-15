@@ -3,8 +3,7 @@
 // within 1 m, over all of a city's orthophotos.
 //   node evaluation/ortofoto-osm/tune.mjs        → printed; the best set goes into methods.mjs P by hand
 import { cuts, truthOf, osmAround, osmAlong, stripOf, SOURCES, ALONG } from "./lib.mjs";
-import { osmRoad, withRails, limits, m1, m2, m3, columns, P } from "./methods.mjs";
-import { markings } from "../ortofoto/run.mjs";
+import { strongLines, osmRoad, withRails, limits, m1, m2, m3, columns, P } from "./methods.mjs";
 
 const CAR = /^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|living_street|service)(_link)?$/;
 async function prepare(city) {
@@ -20,7 +19,7 @@ async function prepare(city) {
       if (!st) continue;
       st.at = (t, u) => [Math.floor((t - st.t0) / st.res), Math.floor((ALONG - u) / st.res)];
       const lo = Math.max(lim.A, st.t0 + 0.5), hi = Math.min(lim.B, st.t0 + st.nt * st.res - 0.5);
-      const lines = markings(st, { s: lo + 1.5, e: hi - 1.5 }).filter((m) => m.solid || m.share >= 0.3).map((m) => m.t);
+      const lines = hi - lo > 4 ? strongLines(st, lo + 1.5, hi - 1.5) : [];
       out.push({ key, cols: columns(st), axis, lim, road, lines, truth });
     }
   }

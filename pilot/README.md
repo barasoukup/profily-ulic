@@ -425,6 +425,19 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
     - přerušovaná čára skoro zakrytá autem se vezme, kde bez ní pruhy nevycházejí;
     - pás u obruby 1,6–2,8 m, jiný a nerovnoměrný proti hladkému asfaltu (dlažba stání), je podélné stání.
     Co nevychází (pruh pod 2,3 m nebo nad 5 m), nechá profil podle pravidel. `?orto=0` ukáže profil bez ortofota.
+11a. **Bez technické mapy: ortofoto a OSM** (`public/ortho-osm.js`, Bára 15. 11. 2026, vyhodnocení
+    `evaluation/ortofoto-osm/ZPRAVA.md`). Když technická mapa neodpoví, nic nevrátí nebo nemá u osy povrch ulice,
+    profil se místo odhadu jen z OSM poskládá z ploch, které se vyrobí z ortofota (stejný výřez jako u bodu 11)
+    a OSM:
+    - **vozovka:** obruby jsou hrany jasu nebo zeleně, které drží podél ulice (v kusech po 5 m na ±20 m). Mezi
+      kandidáty se vybírá podle asfaltu mezi osou a hranou a podle toho, kde obrubu čeká OSM: `width`, jinak
+      `lanes` × 3,5 / 3,25 / 3,0 / 2,75 m podle třídy, plus stání (`parking:*`), cyklopruhy a koleje OSM ve
+      vozovce. Místo 0,4 m za plnou čarou je taky kandidát. Kde hrana není, platí šířka podle OSM;
+    - **domy:** budovy OSM (čtené i ±1 a ±2 m podél ulice). **Chodník** vede od obruby k domu, nejvýš 6 m. Zbytek
+      je zeleň, kde je ortofoto převážně zelené (podíl ≥ 0,1), jinak plocha. Bez domu je chodník jen podle OSM
+      (`sidewalk*`, šířka `sidewalk:width` nebo 2,5 m) a za ním profil končí; `sidewalk=no` dá plochu;
+    - všechno kromě domů je „odhad“ a hláška dodá „Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.“
+      Přesnost proti MTVU: obruba do 0,5 m u 39–49 % stran, do 1 m u 57–69 %. Samotné OSM má 26–35 % a 51–59 %.
 12. Konec A je vždy západní, B východní; tlačítko **⇄ Otočit** je prohodí (zrcadlí stav, návrh i opravy, domy si
     nechají barvy).
 13. Trakční sloup dál než 4 m od kolejí (mezi nimi pruhy pro auta, 17. listopadu) nemá výložník, ale drží vodorovné

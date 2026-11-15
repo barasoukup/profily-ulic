@@ -2009,5 +2009,6 @@ function estimateFromOsm(way) {
     segs.push({ type: "pruh", width: round(lw), source: total ? "osm" : "odhad", dir: oneway || i >= lanes / 2 ? "forward" : "backward" });
   }
   if (sw) segs.push({ type: "chodnik", width: DEFAULT_WIDTH.chodnik, source: "odhad" });
-  return { segments: segs, edges: { left: "volno", right: "volno" }, runs: [], axisT: 0 };
+  // estimate: no surface to derive from (app.js then tries the orthophoto and OSM, ortho-osm.js).
+  return { segments: segs, edges: { left: "volno", right: "volno" }, runs: [], axisT: 0, estimate: true };
 }

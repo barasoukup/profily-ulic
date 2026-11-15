@@ -27,7 +27,8 @@ const median = (a) => { const b = a.filter((v) => !Number.isNaN(v)).sort((x, y) 
 // ---------- the image: one request, sampled on the cut's grid (t across, u along) ----------
 // t0, t1: the stretch across the cut wanted (m). Returns { source, st } or null (no answer in time, a bad image).
 // st.L: the brightness per pixel; st.G: how much greener than red and blue it is, st.Y: how much yellower than blue,
-// st.D: green less red (derive.js surfaceLook: grass, dry grass or paving beside a roadway read from the lines). decode: a PNG decoder for Node (no canvas there; the evaluation),
+// st.D: green less red (derive.js surfaceLook: grass, dry grass or paving beside a roadway read from the lines),
+// st.S: the saturation (max less min of the channels; ortho-osm.js: does a column look like the roadway). decode: a PNG decoder for Node (no canvas there; the evaluation),
 // which asks ČÚZK for a PNG.
 export async function laneImage({ frame, dir, t0, t1, cityId, timeout = TIMEOUT, fetchImpl = fetch, decode = null }) {
   const key = BY_CITY[cityId] || "cuzk", src = SOURCES[key], normal = [-dir[1], dir[0]];
@@ -72,19 +73,20 @@ export async function laneImage({ frame, dir, t0, t1, cityId, timeout = TIMEOUT,
       }
     }
     // Resample on the grid of the cut.
-    const res = src.res, nt = Math.round((t1 - t0) / res), nu = Math.round((2 * ALONG) / res), L = new Float32Array(nt * nu), G = new Float32Array(nt * nu), Y = new Float32Array(nt * nu), D = new Float32Array(nt * nu);
+    const res = src.res, nt = Math.round((t1 - t0) / res), nu = Math.round((2 * ALONG) / res), L = new Float32Array(nt * nu), G = new Float32Array(nt * nu), Y = new Float32Array(nt * nu), D = new Float32Array(nt * nu), S = new Float32Array(nt * nu);
     for (let j = 0; j < nu; j++) for (let i = 0; i < nt; i++) {
       const [mx, my] = at(t0 + (i + 0.5) * res, ALONG - (j + 0.5) * res);
       const px = Math.floor(((mx - x0) / (x1 - x0)) * img.width), py = Math.floor(((y1 - my) / (y1 - y0)) * img.height);
-      if (px < 0 || py < 0 || px >= img.width || py >= img.height) { L[j * nt + i] = G[j * nt + i] = Y[j * nt + i] = D[j * nt + i] = NaN; continue; }
+      if (px < 0 || py < 0 || px >= img.width || py >= img.height) { L[j * nt + i] = G[j * nt + i] = Y[j * nt + i] = D[j * nt + i] = S[j * nt + i] = NaN; continue; }
       const o = (py * img.width + px) * 4;
       L[j * nt + i] = 0.299 * img.data[o] + 0.587 * img.data[o + 1] + 0.114 * img.data[o + 2];
       const [r, g, b] = [img.data[o], img.data[o + 1], img.data[o + 2]];
       G[j * nt + i] = g - (r + b) / 2;
       Y[j * nt + i] = (r + g) / 2 - b;
       D[j * nt + i] = g - r;
+      S[j * nt + i] = Math.max(r, g, b) - Math.min(r, g, b);
     }
-    return { source: key, st: { nt, nu, res, t0, L, G, Y, D, fine: key !== "cuzk" } };
+    return { source: key, st: { nt, nu, res, t0, L, G, Y, D, S, fine: key !== "cuzk" } };
   } catch {
     return null;
   }
@@ -184,6 +186,8 @@ function linesOf(st, H, s, e) {
   const top = Math.max(0, ...found.filter((m) => m.share >= LONG).map((m) => m.dl));
   return found.filter((m) => m.dl >= FAINT * top);
 }
+// Strong lines anywhere across [s, e] (ortho-osm.js: an edge line V 4 lies just inside a kerb): their offsets.
+export const strongLines = (st, s, e, min = 0.3) => linesOf(st, brightMap(st), s, e).filter((m) => m.share >= min).map((m) => m.t);
 // Of those inside the carriageway, the set whose gaps look like lanes (2.5–4.75 m; at the kerbs 1–7.5 m for a
 // shoulder; a gap of two lanes whose line is missing with a small penalty), the most line strength.
 const LANE_MIN = 2.5, LANE_MAX = 4.75, OUTER_MIN = 1, OUTER_MAX = 7.5, MISSED = 0.1, EDGE_MIN = 0.1, EDGE_SHARE = 0.5, DASHED_MAX = 0.6;

@@ -186,6 +186,13 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   směrem, ulice na mostě končí za krajním chodníkem, `slight_right/left` jako vpravo/vlevo, výběr části profilu
   vyznačený v mapě, Plzeň: „stavba pro zpevnění povrchu“ je zpevněná plocha.
 
+## Bez technické mapy: ortofoto a OSM (Bára 15. 11. 2026)
+- Pokus `evaluation/ortofoto-osm/ZPRAVA.md` (profil jen z ortofota a OSM proti MTVU, Praha a Brno): kombinace je
+  lepší než samotné OSM (obruba do 0,5 m 39–49 % proti 26–35 %), ale zůstává hrubým odhadem. Rozlišení 20 cm stačí.
+- Bára: použít jako záložní případ, když technická mapa chybí. `pilot/public/ortho-osm.js`, zapojené v `app.js`, když
+  `deriveProfile` vrátí odhad z OSM (`estimate`). Plochy jsou označené jako odhad. Popis v `pilot/README.md` (bod 11a).
+- Pro rozšíření do ciziny: nejdřív hledat místní mapy povrchů (NL BGT, Vídeň FMZK…), tohle je až záloha.
+
 ## Jazyky (Bára 12. 11. 2026)
 - Anglicky se aplikace jmenuje **Street Profile**. Čeština a angličtina: `pilot/public/i18n.js` (`t("český text")`), překlady v `pilot/public/en.js`, přepínač EN / CS
   v hlavičce, `?lang=en`. Nový text vždy přes `t()` a s překladem (hlídá `tests/i18n.test.js`). Popis v `pilot/README.md`.

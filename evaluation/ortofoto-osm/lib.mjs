@@ -6,6 +6,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { decodePng } from "../../pilot/public/dmvs.js";
 import { TILE, decodeTile, mergePieces } from "../../pilot/public/osmtile.js";
+import { osmAlong as appOsmAlong } from "../../pilot/public/ortho-osm.js";
 
 export const ROOT = path.dirname(new URL(import.meta.url).pathname);
 const EVAL = path.join(ROOT, "..");
@@ -86,56 +87,9 @@ export async function osmAround(lat, lon, radius = 60) {
     for (let iy = Math.floor((lat - dLat) / TILE); iy <= Math.floor((lat + dLat) / TILE); iy++) names.push(`${ix}_${iy}`);
   return mergePieces(await Promise.all(names.map(tile)));
 }
-const underground = (tags) => Number(tags.layer) < 0 || Number(tags.level) < 0 || tags.location === "underground" || tags.tunnel === "yes";
-// Where a ring or a line crosses the cut (u = 0) within |t| ≤ half.
-function crossT(pts, half, u0 = 0) {
-  const out = [];
-  for (let i = 0; i < pts.length - 1; i++) {
-    const [t1, u1] = pts[i], [t2, u2] = pts[i + 1];
-    if ((u1 > u0) === (u2 > u0) || u1 === u2) continue;
-    const t = t1 + ((u0 - u1) / (u2 - u1)) * (t2 - t1);
-    if (Math.abs(t) <= half) out.push({ t, d: [t2 - t1, u2 - u1] });
-  }
-  return out;
-}
-// What OSM says along the cut: the clicked way (its crossing, direction and tags), the buildings' intervals,
-// the other ways crossing it (separately mapped sidewalks, a partner carriageway, rails). The buildings are read on
-// lines u = 0, ±1 and ±2 m (u: the line's offset along the street): OSM's outlines are simpler than the map's, a row
-// of houses may have a gap of a metre exactly at the cut (K Verneráku).
-export const BUILDING_U = [0, -1, 1, -2, 2];
+// What OSM says along the cut: the app's own reading (pilot/public/ortho-osm.js osmAlong) in the cut's frame.
 export function osmAlong(elements, c, half = 45) {
-  const f = frame(c.cut);
-  const toTU = (g) => g.map((p) => f.tu(p.lon, p.lat));
-  const buildings = [], ways = [];
-  let own = null;
-  for (const el of elements) {
-    const tags = el.tags || {};
-    if (el.type === "area" && tags.building && tags.building !== "no" && tags.building !== "roof" && !underground(tags)) {
-      // Even-odd over the ring and its holes: the stretches of the cut inside the building.
-      const rings = [toTU(el.geometry), ...(el.holes || []).map(toTU)];
-      for (const u of BUILDING_U) {
-        const xs = rings.flatMap((r) => crossT([...r, r[0]], half + 20, u).map((x) => x.t)).sort((a, b) => a - b);
-        for (let i = 0; i + 1 < xs.length; i += 2) buildings.push({ s: xs[i], e: xs[i + 1], id: el.id, u });
-      }
-      continue;
-    }
-    if (el.type !== "way") continue;
-    for (const x of crossT(toTU(el.geometry), half)) {
-      const w = { t: x.t, along: Math.sign(x.d[1]) || 1, tags, id: el.id };
-      if (el.id === c.cut.wayId) { if (!own || Math.abs(w.t) < Math.abs(own.t)) own = w; } else ways.push(w);
-    }
-  }
-  // The facade on each side of the street's axis: on the first line u (in BUILDING_U's order) that meets a
-  // building within 40 m; null where none.
-  const facade = {};
-  if (own) for (const [side, sg] of [["A", -1], ["B", 1]]) {
-    facade[side] = null;
-    for (const u of BUILDING_U) {
-      const hits = buildings.filter((b) => b.u === u && (sg < 0 ? b.e < own.t : b.s > own.t)).map((b) => (sg < 0 ? b.e : b.s)).filter((x) => Math.abs(x - own.t) < 40);
-      if (hits.length) { facade[side] = hits.reduce((a, b) => (Math.abs(b - own.t) < Math.abs(a - own.t) ? b : a)); break; }
-    }
-  }
-  return { own, buildings, ways, facade };
+  return appOsmAlong(elements, frame(c.cut).tu, c.cut.wayId, half);
 }
 
 // ---------- the orthophoto: the cached image sampled on the cut's grid ----------
@@ -184,9 +138,14 @@ export async function stripOf(city, key, c) {
   }
   let st = { nt, nu, res, t0, L, rgb };
   if (src.down) st = downsample(st, src.down);
-  // As lanes-ortho.js laneImage: G (green), and fine = a city's orthophoto (paint fills its pixels).
+  // As lanes-ortho.js laneImage: G (green), S (saturation), and fine = a city's orthophoto (paint fills its pixels).
   st.G = new Float32Array(st.nt * st.nu);
-  for (let q = 0; q < st.nt * st.nu; q++) st.G[q] = st.rgb[q * 3 + 1] - (st.rgb[q * 3] + st.rgb[q * 3 + 2]) / 2;
+  st.S = new Float32Array(st.nt * st.nu);
+  for (let q = 0; q < st.nt * st.nu; q++) {
+    const r = st.rgb[q * 3], g = st.rgb[q * 3 + 1], b = st.rgb[q * 3 + 2];
+    st.G[q] = Number.isNaN(st.L[q]) ? NaN : g - (r + b) / 2;
+    st.S[q] = Number.isNaN(st.L[q]) ? NaN : Math.max(r, g, b) - Math.min(r, g, b);
+  }
   st.fine = !key.startsWith("cuzk") && !src.down;
   return st;
 }

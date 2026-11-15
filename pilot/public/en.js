@@ -452,6 +452,7 @@ export const EN = {
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} is not responding right now, the surfaces are from the ČÚZK technical map.",
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "The ČÚZK technical map is not responding right now, the profile is an estimate from OSM.",
   "Technická mapa tu nic nevrátila, profil je odhad z OSM.": "The technical map returned nothing here, the profile is an estimate from OSM.",
+  "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "The kerbs are estimated from the orthophoto and the buildings from OSM, check the widths.",
 
   // ---------- rainwater management (types.js water, HDV_UNDER) ----------
   "Vsakovací průleh": "Infiltration swale",

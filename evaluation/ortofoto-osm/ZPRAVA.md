@@ -176,6 +176,16 @@ příklady, kde to vyjde. Všechny řezy jsou v `data/<město>/img/` (git je ign
   ([wien.gv.at](https://www.wien.gv.at/stadtentwicklung/stadtvermessung/geodaten/fmzk/)). Licence je třeba ověřit
   zdroj od zdroje.
 
+## V aplikaci (Bára 15. 11. 2026: „lepší než jen OSM, udělat jako záložní případ“)
+
+M2 je teď v aplikaci (`pilot/public/ortho-osm.js`, popis v `pilot/README.md` bod 11a). Spustí se tam, kde
+technická mapa nic nedá. Vyhodnocení (`run.mjs`, `tune.mjs`) bere obruby z téhož kódu; čísla se proti pokusu
+změnila nejvýš o 1 bod. Navíc oproti pokusu:
+- chodník nejvýš 6 m od obruby (90 % chodníků v MTVU je do 6 m; z úseků obruba–dům přes 6 m je u 34 ze 42
+  chodník do 6 m);
+- zbytek k domu je zeleň, kde je ortofoto převážně zelené. Mez 0,1 podílu zelených bodů je změřená proti MTVU
+  (`zelen.mjs`): na ČÚZK 12,5 cm správně 67 % metrů v Praze a 82 % v Brně.
+
 ## Doporučení
 
 1. **Jako fallback: ano, ale jen jako zřetelný odhad**, ne jako měřený profil. Co se dá převzít:

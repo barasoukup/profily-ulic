@@ -2,6 +2,7 @@ import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TR
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes } from "./lanes-ortho.js";
+import { orthoOsmPolys } from "./ortho-osm.js";
 import { underground, KINDS as NET_KINDS, NET_CITIES } from "./site.js";
 // Lanes and shoulders from the road markings of the orthophoto (lanes-ortho.js); ?orto=0 leaves the rules' profile.
 const LANES_ORTHO = new URLSearchParams(location.search).get("orto") !== "0";
@@ -300,7 +301,19 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     const inZps = z.status === "fulfilled" ? z.value : undefined;
     const laneImg = li.status === "fulfilled" ? li.value : null;
     // The same image tells grass from paving beside a roadway read from the DTM's lines (derive.js linePieces).
-    const result = deriveProfile({ center: [0, 0], dir, half, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho, lanesImage: laneImg?.st, roadOnPath: city.id === "praha" });
+    const args = { center: [0, 0], dir, half, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho, lanesImage: laneImg?.st, roadOnPath: city.id === "praha" };
+    let result = deriveProfile(args);
+    // No surface of the street from the technical map (no answer, nothing here, nothing at the axis): the carriageway
+    // read on the orthophoto near where OSM expects it, sidewalks to the OSM buildings (ortho-osm.js; Bára 15. 11.
+    // 2026: better than OSM alone), all an estimate. The map's own surfaces, where there are any, stay behind it.
+    let orthoOsm = null;
+    if (result.estimate && laneImg?.st) {
+      const fb = orthoOsmPolys({ osm, frame, dir, way: near.way, st: laneImg.st });
+      if (fb) {
+        const again = deriveProfile({ ...args, polys: [fb[0], ...polys, ...fb.slice(1)] });
+        if (!again.estimate) { result = again; orthoOsm = fb; }
+      }
+    }
     // Lanes, shoulders and parking on its own paving measured on the orthophoto (lanes-ortho.js).
     const lanesFromOrtho = laneImg ? applyLanes(result, laneImg) : 0;
     // The row of traffic signs from the street's OSM tags and the parts (signs.js).
@@ -317,7 +330,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     // What the export credits beyond the city's own data (city.js creditLines): the region of a national DTM,
     // the DMVS standing in for the city's map, the orthophoto of a tram bed.
     const mv = m.status === "fulfilled" ? m.value : null;
-    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.dmvs && { dmvs: true }), ...((ortho || (lanesFromOrtho && laneImg.source === "cuzk")) && { ortho: true }), ...(lanesFromOrtho && laneImg.source !== "cuzk" && { orthoCity: laneImg.source }) };
+    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.dmvs && { dmvs: true }), ...((ortho || ((lanesFromOrtho || orthoOsm) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm) && laneImg.source !== "cuzk" && { orthoCity: laneImg.source }) };
     // The log of cuts (log.js): the cut exactly, and how it came (a click, a moved cut, a link).
     log("rez", {
       detail: keepWay ? "posun" : bearing !== null ? "odkaz" : "klik", city: city.id, street: name, highway: near.way.tags.highway,
@@ -360,7 +373,9 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     const out = sources.outage({ surfaces: m, lines: k, parking: pk });
     state.cut.note = out.note;
     $("#street-name").textContent = streetName(state.cut) + tr(state.cut.note);
-    if (out.text) status(out.text, out.error ? "error" : undefined);
+    const orthoNote = orthoOsm ? tr("Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.") : "";
+    if (out.text) status(out.text + (orthoNote && " " + orthoNote), out.error ? "error" : undefined);
+    else if (orthoOsm) status(orthoNote);
     else if (dropped) status(tr("Nový řez: návrh začíná znovu od stavu ulice (předchozí návrh zůstává ve sdíleném odkazu nebo uloženém souboru, pokud jste ho uložili)."));
     else status(result.notice ? result.notice
       : result.junction ? tr("Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami.") : "");
