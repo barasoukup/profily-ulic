@@ -2,6 +2,7 @@
 // boundary from RÚIAN of ČÚZK (evaluation/<city>/data/<city>_hranice.geojson) and its streets from the app's OSM
 // tiles of the whole country (data/osm/<city>_ways.geojsonl, as the GeoJSONSeq of ogr2ogr that sample.mjs reads).
 //   node evaluation/town_prep.mjs sumperk Šumperk   → then CITY=sumperk node evaluation/sample.mjs
+//   node evaluation/town_prep.mjs slapanice 583952  (by the RÚIAN code)
 import fs from "node:fs";
 import path from "node:path";
 import { decodeTile, mergePieces, TILE } from "../pilot/public/osmtile.js";
@@ -12,7 +13,8 @@ const ROOT = path.dirname(new URL(import.meta.url).pathname);
 const DATA = path.join(ROOT, city, "data");
 fs.mkdirSync(DATA, { recursive: true });
 
-const q = new URLSearchParams({ where: `nazev='${name}'`, outFields: "nazev,kod", outSR: 4326, f: "geojson" });
+// A name, or the municipality's RÚIAN code where two share it (Šlapanice: 583952 by Brno, 532916 by Kladno).
+const q = new URLSearchParams({ where: /^\d+$/.test(name) ? `kod=${name}` : `nazev='${name}'`, outFields: "nazev,kod", outSR: 4326, f: "geojson" });
 const border = await fetch(`https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Prohlizeci_sluzba_nad_daty_RUIAN/MapServer/12/query?${q}`).then((r) => r.json());
 if (!border.features?.length) throw new Error(`obec ${name} nenalezena`);
 fs.writeFileSync(path.join(DATA, `${city}_hranice.geojson`), JSON.stringify(border));
