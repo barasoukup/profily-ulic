@@ -16,8 +16,12 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Živě: https://barasoukup.github.io/profily-ulic/
 - Repo: github.com/barasoukup/profily-ulic (MIT, © Bára Soukupová).
 - Push na `main` = nasazení na GitHub Pages (`.github/workflows/pages.yml`), navíc každé pondělí
-  obnova OSM. Dlaždice OSM jsou jedna sada pro celou ČR (Geofabrik, asi 760 MB, `../data/osm-tiles` pro
-  všechna města); Cloudflare R2 jen kdyby přerostly limit Pages 1 GB (Bára 10. 11. 2026).
+  obnova OSM. Dlaždice OSM ČR a Slovenska (Geofabrik) jsou zabalené do jednoho souboru na stát (`tools/pack_osm_tiles.mjs`,
+  `pilot/public/osmpack.js`, čtení přes HTTP Range) na Cloudflare R2: kbelík `profily-ulic-osm` v Bářině účtu, doména
+  `https://data.streetspace.eu/osm/` (DNS v Cloudflaru, Cache Rule), tytéž soubory na Pages (`data/osm-pack/`) jako
+  záloha. Nahrává workflow přes S3 API (tajné `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, proměnná `R2_ACCOUNT_ID`).
+  ČR 281 MB, SK 107 MB (Bára 15. 11. 2026, zpráva `evaluation/osm-r2/ZPRAVA.md`). Lokálně server čte dlaždice
+  `pilot/data/osm-tiles` jako dřív, `?osm=balik` balík z `pilot/data/osm-pack`, `?osm=r2` z R2.
 - Lokálně: `node pilot/server.mjs` → http://localhost:5173 (Node 22+). Dlaždice OSM:
   `tools/build_osm_data.sh`, hranice ZPS: `node tools/build_zps.mjs`.
 - Popis pravidel: `pilot/README.md`, vyhodnocení 100 řezů: `evaluation/ZPRAVA.md`,
@@ -194,8 +198,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Pro rozšíření do ciziny: nejdřív hledat místní mapy povrchů (NL BGT, Vídeň FMZK…), tohle je až záloha.
 - Dlaždice OSM (Bára 15. 11. 2026): všechny budovy (ne jen s výškou; v ČR dál primárně RÚIAN, OSM navíc pro zahraničí),
   zeleň, voda, zahrádky, hřbitovy, obruby `barrier=kerb`, `area:highway`, u budov rok a střecha. Změřeno na celé ČR:
-  1,39 GB proti dnešním 0,84 GB (domy bez výšky 279 MB, zeleň 236 MB): na Pages (1 GB) se nevejde. **Bára: zatím
-  nepushovat, počkat na dlaždice na R2** (session dlaždic na R2 má čísla i postup). Popis v `pilot/README.md` (Dlaždice OSM).
+  1,39 GB proti dřívějším 0,84 GB (domy bez výšky 279 MB, zeleň 236 MB): na Pages (1 GB) se nevejde, proto jsou na R2
+  (zabalené 281 MB). Popis v `pilot/README.md` (Dlaždice OSM).
 
 ## Jazyky (Bára 12. 11. 2026)
 - Anglicky se aplikace jmenuje **Street Profile**. Čeština a angličtina: `pilot/public/i18n.js` (`t("český text")`), překlady v `pilot/public/en.js`, přepínač EN / CS
