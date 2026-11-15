@@ -177,3 +177,16 @@ test("kusy z čar: OSM sidewalk:left/right podle směru ulice, i po Otočit", as
   // Against it (Otočit): OSM's left is the cut's right.
   assert.deepEqual(linePieces(polys, tags, [0, 0], [1, 0], null, false).map((p) => p.code), [701, 401, 702]);
 });
+
+test("mimo Česko se technické mapy ČÚZK neptá a neříká, že neodpovídá", async () => {
+  setCity("slovensko");
+  const { sources } = await import("../pilot/public/towns/slovensko.js");
+  const s = await sources.surfaces("17.1,48.14,17.11,48.15");
+  // The national DTM is not tried (sources.js national): nothing to fail.
+  assert.deepEqual(await national(s, "x", undefined, failing), s);
+  const r = outage({ surfaces: ok(s), lines: ok(await sources.lines()), parking: ok(await sources.parking()) });
+  assert.equal(r.note, " · mimo Česko, jen odhad z OSM");
+  assert.match(r.text, /^Mimo Česko technickou mapu nemáme/);
+  assert.equal(r.error, false);
+  setCity("praha");
+});

@@ -305,6 +305,7 @@ export const EN = {
   "ortofoto © IPR Praha, 2024": "orthophoto © IPR Praha, 2024",
   "ortofoto © Statutární město Brno, 2025": "orthophoto © Statutární město Brno, 2025",
   "ortofoto © Statutární město Plzeň, 2024": "orthophoto © Statutární město Plzeň, 2024",
+  "ortofoto © ÚGKK SR, GKÚ, NLC (ZBGIS, CC BY 4.0)": "orthophoto © ÚGKK SR, GKÚ, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© OpenStreetMap contributors (ODbL)",
   "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) a Bára Soukupová (MIT) · obrázek CC BY-SA 4.0 · ":
     "Illustrations © Streetmix, streetmix.net (CC BY-SA 4.0) and Bára Soukupová (MIT) · image CC BY-SA 4.0 · ",
@@ -630,7 +631,7 @@ export const EN = {
 // Elements of index.html replaced whole (data-i18n): the footer with its links.
 export const EN_HTML = {
   footer: `Data: technical maps © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (and building heights and development history, CC BY 4.0), of the statutory cities of Brno, Jihlava, Most, Opava and Plzeň
-    and of the regions (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (and the address search), cadastre and orthophoto © ČÚZK (CC BY 4.0) ·
+    and of the regions (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (and the address search), cadastre and orthophoto © ČÚZK (CC BY 4.0) · orthophoto of Slovakia © <a href="https://www.geoportal.sk">ÚGKK SR</a> (ZBGIS, CC BY 4.0) ·
     parking © TSK hl. m. Prahy (CC BY 4.0), no-parking areas, trees and street classes from <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, the cities of Jihlava, Opava, Plzeň (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors (ODbL) ·
     illustrations © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licence

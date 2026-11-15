@@ -33,7 +33,10 @@ export function tramOffsets(osm, frame, center, dir, half) {
 
 // The orthophoto around the tracks the cut crosses, or null (no tracks, no answer in time, a bad image).
 // Returns { look(s, e, rails, at, dir) → { kind, green, … } | null } for derive.js, and ms (the request's time).
-export async function bedOrtho({ osm, frame, center = [0, 0], dir, half = 40, timeout = TIMEOUT, res = RES, fetchImpl = fetch }) {
+// source: "sk" for the ZBGIS orthophoto of Slovakia (its MapServer export, a PNG too), null for none (abroad).
+export const SK_EXPORT = "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ortofoto_hres/MapServer/export";
+export async function bedOrtho({ osm, frame, center = [0, 0], dir, half = 40, timeout = TIMEOUT, res = RES, fetchImpl = fetch, source = "cuzk" }) {
+  if (!source) return null;
   const ts = tramOffsets(osm, frame, center, dir, half);
   if (!ts.length) return null;
   const normal = [-dir[1], dir[0]], lo = Math.min(...ts) - PAD, hi = Math.max(...ts) + PAD;
@@ -44,7 +47,8 @@ export async function bedOrtho({ osm, frame, center = [0, 0], dir, half = 40, ti
   const [y0, y1] = [Math.min(...ms.map((m) => m[1])), Math.max(...ms.map((m) => m[1]))];
   const k = Math.cos((corners[0][1] * Math.PI) / 180); // Web Mercator metres per ground metre
   const width = Math.max(8, Math.round(((x1 - x0) * k) / res)), height = Math.max(8, Math.round(((y1 - y0) * k) / res));
-  const url = `${ORTHO_WMS}?${new URLSearchParams({ service: "WMS", request: "GetMap", version: "1.3.0", layers: "0", styles: "", crs: "EPSG:3857", bbox: [x0, y0, x1, y1].join(","), width, height, format: "image/png" })}`;
+  const url = source === "sk" ? `${SK_EXPORT}?${new URLSearchParams({ bbox: [x0, y0, x1, y1].join(","), bboxSR: 3857, imageSR: 3857, size: `${width},${height}`, format: "png24", f: "image" })}`
+    : `${ORTHO_WMS}?${new URLSearchParams({ service: "WMS", request: "GetMap", version: "1.3.0", layers: "0", styles: "", crs: "EPSG:3857", bbox: [x0, y0, x1, y1].join(","), width, height, format: "image/png" })}`;
   const t0 = Date.now();
   try {
     const r = await fetchImpl(url, { signal: AbortSignal.timeout(timeout) });

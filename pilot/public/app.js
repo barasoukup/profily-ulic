@@ -1,7 +1,7 @@
 import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, SURFACES, LAMP_HEIGHTS, underSize } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
-import { laneImage, applyLanes } from "./lanes-ortho.js";
+import { laneImage, applyLanes, SK_ORTHO } from "./lanes-ortho.js";
 import { orthoOsmPolys } from "./ortho-osm.js";
 import { underground, KINDS as NET_KINDS, NET_CITIES } from "./site.js";
 // Lanes and shoulders from the road markings of the orthophoto (lanes-ortho.js); ?orto=0 leaves the rules' profile.
@@ -154,6 +154,14 @@ kinds.map.push(new ArcgisExport("", { service: "https://gis.brno.cz/ags3/rest/se
 kinds.ortho.push(L.tileLayer("https://gis.brno.cz/ags1/rest/services/OMI/OMI_basemaps_ortofoto_2025_wgs/MapServer/tile/{z}/{y}/{x}", {
   maxZoom: 21, maxNativeZoom: 21, attribution: "ortofoto 2025 © Statutární město Brno", ...within("brno"),
 }));
+// Slovakia: the ZBGIS orthophoto of ÚGKK SR (tiles in Web Mercator to level 19), only there (staty.json).
+if (STATY?.slovensko) {
+  const pts = STATY.slovensko.flat(), xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]);
+  kinds.ortho.push(L.tileLayer(`${SK_ORTHO}/tile/{z}/{y}/{x}`, {
+    maxZoom: 21, maxNativeZoom: 19, attribution: "ortofoto © ÚGKK SR, GKÚ, NLC (ZBGIS)",
+    bounds: L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]),
+  }));
+}
 // The towns (towns/<id>.js maps): their orthophoto, technical map and lines, each kept to the town.
 for (const [id, t] of Object.entries(TOWNS)) {
   if (!t.maps || t.national) continue;
@@ -290,7 +298,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
       sources.mtvu(bbox), sources.linie(bbox), zone.then((inZone) => sources.parkovani(bbox, inZone)), zone,
       // Where OSM has tram tracks across the cut: one small image of the orthophoto for the surface of the bed
       // (ortho.js, a short timeout; without it the rules decide).
-      bedOrtho({ osm, frame, dir, half }),
+      // Slovakia: its own orthophoto; elsewhere abroad none (ČÚZK's is blank there).
+      bedOrtho({ osm, frame, dir, half, source: city.id === "slovensko" ? "sk" : city.abroad ? null : "cuzk" }),
       // One image of the orthophoto across the whole cut for the road markings (lanes-ortho.js).
       LANES_ORTHO ? laneImage({ frame, dir, t0: -Math.min(half, ORTHO_HALF), t1: Math.min(half, ORTHO_HALF), cityId: city.id }) : null,
     ]);
@@ -335,7 +344,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     // What the export credits beyond the city's own data (city.js creditLines): the region of a national DTM,
     // the DMVS standing in for the city's map, the orthophoto of a tram bed.
     const mv = m.status === "fulfilled" ? m.value : null;
-    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.dmvs && { dmvs: true }), ...((ortho || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" && { orthoCity: laneImg.source }) };
+    const bedSk = ortho && city.id === "slovensko"; // the tram bed read on Slovakia's orthophoto
+    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.dmvs && { dmvs: true }), ...(((ortho && !bedSk) || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" ? { orthoCity: laneImg.source } : bedSk && { orthoCity: "sk" }) };
     // The log of cuts (log.js): the cut exactly, and how it came (a click, a moved cut, a link).
     log("rez", {
       detail: keepWay ? "posun" : bearing !== null ? "odkaz" : "klik", city: city.id, street: name, highway: near.way.tags.highway,
