@@ -344,12 +344,16 @@ function measured(w, c, lines, solid = [], fine = true) {
   const kinds = pieces.map((p, q) => ((q === 0 || q === pieces.length - 1) && (p.w < EDGE_MIN || (p.w < LANE_MIN && kerbLine(q) === false)) ? "join" : (q === 0 || q === pieces.length - 1) && p.w < LANE_MIN ? "krajnice" : p.w >= LANE_MIN && p.w <= LANE_MAX ? "pruh" : null));
   // A lane-wide piece between two solid lines with lanes on both sides is a paved median, not a lane (Brněnská: a
   // crash barrier between edge lines; Bára).
+  // Only one such piece, and only where it would be a lane more than the rules had: solid lines between all the
+  // lanes (Barrandovský most, 4 lanes each way) are no median (report of 14. 11. 2026).
+  const had = w.parts.filter((p) => p.seg.type === "pruh").length;
+  const median = [];
   for (let q = 1; q < pieces.length - 1; q++) {
-    if (kinds[q] === "pruh" && solid[q - 1] && solid[q] && kinds[q - 1] !== "krajnice" && kinds[q + 1] !== "krajnice") kinds[q] = "stred";
+    if (kinds[q] === "pruh" && solid[q - 1] && solid[q] && kinds[q - 1] !== "krajnice" && kinds[q + 1] !== "krajnice") median.push(q);
   }
+  if (median.length === 1 && kinds.filter((k) => k === "pruh").length > had) kinds[median[0]] = "stred";
   // A piece of two lanes whose dashed line was not found (a car on it: Olomoucká) is two lanes, while that does not
   // give more lanes than the rules had.
-  const had = w.parts.filter((p) => p.seg.type === "pruh").length;
   for (let q = pieces.length - 1; q >= 0; q--) {
     const p = pieces[q];
     if (kinds[q] !== null || p.w < 2 * LANE_MIN || p.w > 2 * LANE_MAX) continue;
