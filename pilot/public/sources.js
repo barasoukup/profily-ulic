@@ -5,7 +5,7 @@
 // Layers, fields and the reading of answers are shared with server.mjs (queries.js).
 import { STATIC } from "./config.js";
 import { city, MTVU_LABELS } from "./city.js";
-import { TILE, getJSON, query, envelope, osmTiles, insideRings } from "./gis.js";
+import { TILE, getJSON, query, envelope, osmTiles, insideRings, OSM_PACK } from "./gis.js";
 import { TOWNS } from "./towns/index.js";
 import { t, mark } from "./i18n.js";
 export { events } from "./gis.js";
@@ -18,7 +18,7 @@ const town = () => TOWNS[city.id]?.sources;
 const isBrno = () => city.id === "brno";
 const isLive = () => city.id !== "praha";
 
-export const osm = (lat, lon, r) => (town() ? town().osm(lat, lon, r) : isBrno() ? brnoOsm(lat, lon, r) : STATIC ? osmTiles(lat, lon, r) : getJSON(`/api/osm?lat=${lat}&lon=${lon}&r=${r}`));
+export const osm = (lat, lon, r) => (town() ? town().osm(lat, lon, r) : isBrno() ? brnoOsm(lat, lon, r) : STATIC || OSM_PACK ? osmTiles(lat, lon, r) : getJSON(`/api/osm?lat=${lat}&lon=${lon}&r=${r}`));
 
 // Where the city's own map has nothing (a cut outside the city: Česká Třebová from the Most page, a village
 // beyond Prague) or does not answer (IPR overloaded), the national DTM of ČÚZK read live (dmvs.js) stands in,

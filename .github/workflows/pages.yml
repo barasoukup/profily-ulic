@@ -1,8 +1,9 @@
 # Publishes the app (pilot/public) on GitHub Pages as a static site: the browser asks IPR, the cities'
-# GIS and ČÚZK directly, and the OSM tiles of the whole Czech Republic (one set for every city) are built
-# here from Geofabrik's extract once a week (they are not kept in the repository; a deploy in the same week
-# reuses them from the Actions cache unless the tile scripts changed). Runs on push to main, by hand, and weekly
-# so the OSM data stays fresh.
+# GIS and ČÚZK directly, and the OSM tiles of the Czech Republic and Slovakia are built here from Geofabrik's
+# extracts once a week, packed into one file per country (tools/pack_osm_tiles.mjs) and uploaded to Cloudflare R2
+# (data.streetspace.eu), with the same files on Pages as a fallback (they are not kept in the repository; a deploy
+# in the same week reuses them from the Actions cache unless the tile scripts changed). Runs on push to main, by
+# hand, and weekly so the OSM data stays fresh.
 name: GitHub Pages
 
 on:
@@ -36,22 +37,25 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    # Building the tiles of both countries takes most of it (about 40–60 min without the cache).
+    timeout-minutes: 150
+    env:
+      # Whether the keys for R2 are set (a step's if cannot read secrets).
+      R2_KEYS: ${{ secrets.R2_ACCESS_KEY_ID != '' && secrets.R2_SECRET_ACCESS_KEY != '' && vars.R2_ACCOUNT_ID != '' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      # This week's tiles, built by the same tile scripts: a deploy reuses them and skips the build (Bára:
-      # the weekly refresh is enough while their extent does not change).
       - id: week
         run: echo "week=$(date -u +%G-%V)" >> "$GITHUB_OUTPUT"
-      # One tar file in the cache: actions/cache fails on the 245 000 files themselves (call stack exceeded).
+      # This week's packed tiles (site-osm: <country>-<date>.posm and index.json), built by the same scripts: a deploy
+      # reuses them and skips the build (Bára: the weekly refresh is enough while their extent does not change).
       - id: tiles-cache
         uses: actions/cache@v4
         with:
-          path: osm-tiles.tar
-          key: osm-tiles-${{ steps.week.outputs.week }}-${{ hashFiles('tools/build_osm_tiles.mjs', 'tools/build_osm_data.sh', 'pilot/public/osmtile.js') }}
+          path: site-osm
+          key: osm-pack-${{ steps.week.outputs.week }}-${{ hashFiles('tools/build_osm_tiles.mjs', 'tools/build_osm_data.sh', 'tools/pack_osm_tiles.mjs', 'pilot/public/osmtile.js', 'pilot/public/osmpack.js') }}
       - name: Install GDAL (ogr2ogr)
         if: steps.tiles-cache.outputs.cache-hit != 'true'
         timeout-minutes: 8
@@ -61,37 +65,77 @@ jobs:
           sudo apt-get update -q
           sudo -E apt-get install -y -q --no-install-recommends gdal-bin
           ogr2ogr --version
-      # Geofabrik's Czech Republic is kept in the Actions cache: a deploy reuses this week's copy, a new week
-      # downloads a fresh one and falls back to the last copy when download.geofabrik.de is unreachable.
+      # Geofabrik's extracts are kept in the Actions cache: a deploy reuses this week's copies, a new week downloads
+      # fresh ones and falls back to the last copies when download.geofabrik.de is unreachable.
       - id: pbf-cache
         if: steps.tiles-cache.outputs.cache-hit != 'true'
         uses: actions/cache@v4
         with:
-          path: data/osm/cz.osm.pbf
-          key: osm-cz-pbf-${{ steps.week.outputs.week }}
-          restore-keys: osm-cz-pbf-
-      - name: Download the OSM extract
+          path: |
+            data/osm/cz.osm.pbf
+            data/osm/sk.osm.pbf
+          key: osm-pbf-${{ steps.week.outputs.week }}
+          restore-keys: osm-pbf-
+      - name: Download the OSM extracts
         if: steps.tiles-cache.outputs.cache-hit != 'true' && steps.pbf-cache.outputs.cache-hit != 'true'
         run: |
           mkdir -p data/osm
-          if curl -fL --retry 3 --retry-delay 20 --connect-timeout 30 -o /tmp/cz.osm.pbf \
-               https://download.geofabrik.de/europe/czech-republic-latest.osm.pbf; then
-            mv /tmp/cz.osm.pbf data/osm/cz.osm.pbf
-          elif [ -f data/osm/cz.osm.pbf ]; then
-            echo "::warning::no fresh OSM extract, using the cached one from an earlier week"
-          else
-            exit 1
-          fi
-      # The tiles of the whole country (about 700 MB): every city site reads them from ../data/osm-tiles.
-      - name: Build OSM tiles
+          for c in cz:czech-republic sk:slovakia; do
+            if curl -fL --retry 3 --retry-delay 20 --connect-timeout 30 -o "/tmp/${c%%:*}.osm.pbf" \
+                 "https://download.geofabrik.de/europe/${c#*:}-latest.osm.pbf"; then
+              mv "/tmp/${c%%:*}.osm.pbf" "data/osm/${c%%:*}.osm.pbf"
+            elif [ -f "data/osm/${c%%:*}.osm.pbf" ]; then
+              echo "::warning::no fresh OSM extract of ${c#*:}, using the cached one from an earlier week"
+            else
+              exit 1
+            fi
+          done
+      # The tiles of each country (Czechia about 1.3 GB in 246 000 files, Slovakia 0.5 GB), each packed into one file
+      # (281 MB and 107 MB) named by the date, so a reader never mixes two weeks; the loose tiles are not kept.
+      - name: Build and pack OSM tiles
         if: steps.tiles-cache.outputs.cache-hit != 'true'
-        timeout-minutes: 45
+        timeout-minutes: 75
         run: |
-          NAME=cz tools/build_osm_data.sh data/osm/cz.osm.pbf site-tiles
-          tar -cf osm-tiles.tar site-tiles
-      - name: OSM tiles from the cache
-        if: steps.tiles-cache.outputs.cache-hit == 'true'
-        run: tar -xf osm-tiles.tar && ls site-tiles | wc -l
+          mkdir -p site-osm
+          for c in cz sk; do
+            NAME=$c tools/build_osm_data.sh "data/osm/$c.osm.pbf" "tiles-$c"
+            node tools/pack_osm_tiles.mjs "tiles-$c" "site-osm/$c-$(date -u +%F).posm"
+            rm -rf "tiles-$c" data/osm/${c}_*.geojsonl
+          done
+          ls -l site-osm && cat site-osm/index.json
+      # To Cloudflare R2 (bucket profily-ulic-osm in Bára's account, served at data.streetspace.eu): the files first,
+      # index.json last, so the new week appears whole; files of older weeks than the last two are deleted. Only the
+      # files not there yet go up (a deploy in the same week uploads nothing). Without the keys (secrets
+      # R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY and variable R2_ACCOUNT_ID) the step is skipped and the app reads the
+      # files on Pages. Each file is one write (Class A) and a few more for the parts of a large one.
+      - name: Upload OSM tiles to R2
+        if: env.R2_KEYS == 'true'
+        continue-on-error: true
+        timeout-minutes: 20
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          AWS_REQUEST_CHECKSUM_CALCULATION: when_required
+          AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
+          R2: s3://profily-ulic-osm/osm
+          ENDPOINT: https://${{ vars.R2_ACCOUNT_ID }}.r2.cloudflarestorage.com
+        run: |
+          aws configure set default.s3.multipart_chunksize 64MB
+          for f in site-osm/*.posm; do
+            if aws s3api head-object --endpoint-url "$ENDPOINT" --bucket profily-ulic-osm --key "osm/$(basename "$f")" > /dev/null 2>&1; then
+              echo "$(basename "$f") is there"
+            else
+              aws s3 cp --endpoint-url "$ENDPOINT" "$f" "$R2/" --content-type application/octet-stream --cache-control "public, max-age=31536000, immutable"
+            fi
+          done
+          aws s3 cp --endpoint-url "$ENDPOINT" site-osm/index.json "$R2/index.json" --content-type application/json --cache-control "public, max-age=300"
+          # Older weeks: each country keeps its two newest files.
+          for c in cz sk; do
+            aws s3 ls --endpoint-url "$ENDPOINT" "$R2/" | awk '{print $4}' | grep -E "^$c-[0-9-]+\.posm$" | sort -r | tail -n +3 | while read -r old; do
+              aws s3 rm --endpoint-url "$ENDPOINT" "$R2/$old"
+            done
+          done
       # The zone file of the last good deploy is kept in the Actions cache: when IPR does not answer
       # now, that one goes out; with neither, the deploy stops (without it many more cuts would be
       # guesses).
@@ -207,7 +251,8 @@ jobs:
               const h = "_site/index.html"; fs.writeFileSync(h, fs.readFileSync(h, "utf8").replace(/(connect-src [^;]*)/, "$1 " + new URL(u).origin));
             }'
           grep -q 'LOG_URL = ""' _site/config.js && echo "::warning::no log of cuts (repository variable LOG_URL)" || true
-          mv site-tiles _site/data/osm-tiles
+          # The packed OSM tiles also on Pages: where R2 does not answer, the app reads them here (gis.js).
+          cp -R site-osm _site/data/osm-pack
           mv site-zps.json _site/data/zps.json
           [ -d site-vyvoj ] && mv site-vyvoj _site/data/vyvoj || echo "::warning::no built-up area tiles, flat roofs judged by the house alone"
           cp LICENCE-A-ZDROJE.md _site/data/LICENCE-A-ZDROJE.md
@@ -218,9 +263,10 @@ jobs:
           done
           node tools/build_city_site.mjs _site
           cat > _site/data/README.txt <<'EOF'
-          data/osm-tiles: dlaždice odvozené z OpenStreetMap (výřez Geofabrik Česká republika), pro všechna města.
+          data/osm-pack: dlaždice odvozené z OpenStreetMap (výřezy Geofabrik Česká republika a Slovensko), jeden
+          soubor na stát (index.json, formát v pilot/public/osmpack.js); tytéž soubory jsou na data.streetspace.eu/osm.
           © přispěvatelé OpenStreetMap, licence ODbL 1.0 (https://opendatacommons.org/licenses/odbl/).
-          Vytvořeno skriptem tools/build_osm_data.sh v repozitáři této aplikace.
+          Vytvořeno skripty tools/build_osm_data.sh a tools/pack_osm_tiles.mjs v repozitáři této aplikace.
           EOF
           touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v3
@@ -237,6 +283,6 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v4
         with:
-          # The site has about 245 000 files (the OSM tiles of the Czech Republic): Pages needs more than the
-          # default 10 minutes to sync them.
+          # The site used to have about 245 000 files (the OSM tiles); packed (osm-pack) they are two, but the long
+          # timeout stays in case Pages is slow.
           timeout: 3600000

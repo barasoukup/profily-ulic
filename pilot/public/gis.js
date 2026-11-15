@@ -6,6 +6,7 @@ import { STATIC } from "./config.js";
 import { city } from "./city.js";
 
 import { TILE, decodeTile, mergePieces } from "./osmtile.js";
+import { PackSet } from "./osmpack.js";
 export { TILE };
 const TIMEOUT = 25000;
 // IPR's ArcGIS queues requests and under load answers "503 Wait timeout for the request exceeded"
@@ -44,7 +45,8 @@ export const envelope = (bbox) => ({
 });
 export const query = (base, params) => getJSON(`${base}?${new URLSearchParams(params)}`);
 
-// The OSM tiles of the whole Czech Republic (tools/build_osm_tiles.mjs, the compact form of osmtile.js).
+// The OSM tiles of the whole Czech Republic (tools/build_osm_tiles.mjs, the compact form of osmtile.js), one file
+// each, as the local server has them (on the web they come packed, below).
 const TILES_AT = "data/osm-tiles";
 // The last TILES_KEPT tiles stay in memory: the next cut nearby (or a dragged cut) needs no
 // download. A tile that failed to load is asked for again next time; a missing tile has nothing in it.
@@ -64,6 +66,18 @@ const tile = (n) => {
   return tiles.get(n);
 };
 
+// The OSM tiles of each country in one file (osmpack.js, tools/pack_osm_tiles.mjs), read in pieces over HTTP Range
+// (Bára 15. 11. 2026): on the web from Cloudflare R2 (data.streetspace.eu), the same files on Pages when R2 fails.
+// ?osm=r2 reads R2 only (its r2.dev address as the second place), ?osm=balik the files of the local server
+// (pilot/data/osm-pack); the local server otherwise keeps to the tiles of data/osm-tiles.
+export const OSM_R2 = "https://data.streetspace.eu/osm", OSM_R2_DEV = "https://pub-a2b7312aca0a4dfe8a49583ae59ddbc6.r2.dev/osm";
+export const OSM_PACK = (() => {
+  const v = typeof location === "undefined" ? null : new URLSearchParams(location.search).get("osm");
+  return v === "r2" || v === "balik" ? v : STATIC ? "web" : null;
+})();
+const PACK_AT = { web: [OSM_R2, "data/osm-pack"], r2: [OSM_R2, OSM_R2_DEV], balik: ["data/osm-pack"] }[OSM_PACK];
+const packs = PACK_AT && new PackSet(PACK_AT, { timeout: TIMEOUT });
+
 // OSM elements around a point, from the tiles it touches, lines joined back across them (as the server's localOsm()).
 export async function osmTiles(lat, lon, radius) {
   const dLat = radius / 110574;
@@ -72,6 +86,7 @@ export async function osmTiles(lat, lon, radius) {
   for (let ix = Math.floor((lon - dLon) / TILE); ix <= Math.floor((lon + dLon) / TILE); ix++) {
     for (let iy = Math.floor((lat - dLat) / TILE); iy <= Math.floor((lat + dLat) / TILE); iy++) names.push(`${ix}_${iy}`);
   }
+  if (packs) return { source: "local", elements: mergePieces(await packs.tiles(names)) };
   return { source: "local", elements: mergePieces(await Promise.all(names.map(tile))) };
 }
 

@@ -115,6 +115,16 @@ zahrádky a hřbitovy** se rozřežou po dlaždicích (každá dlaždice má sv�
 vede silnice. Pražský výřez: 88 → 116 MB (+32 %), celá ČR 0,84 → 1,39 GB (domy bez výšky 279 MB, zeleň 236 MB):
 přes limit GitHub Pages 1 GB, proto se čeká na dlaždice na Cloudflare R2 (Bára 15. 11. 2026: zatím nepushovat).
 
+Na webu (Bára 15. 11. 2026) jsou dlaždice každého státu (ČR, Slovensko) zabalené do jednoho souboru
+(`tools/pack_osm_tiles.mjs`, formát v `pilot/public/osmpack.js`: slovník tagů, krátký zápis prvků, každá dlaždice
+zvlášť gzip, dvouúrovňový index) a aplikace z něj čte jen potřebné kousky přes HTTP Range. Soubory leží na
+Cloudflare R2 (kbelík `profily-ulic-osm`, `https://data.streetspace.eu/osm/`) a tytéž na Pages (`data/osm-pack/`),
+kam aplikace sáhne, když R2 neodpovídá. `index.json` vedle nich jmenuje soubor každého státu; týdenní obnova je
+nahrává pod novým jménem s datem. ČR asi 281 MB místo 1,3 GB ve 246 000 souborech, Slovensko 107 MB.
+Lokálně: `node tools/pack_osm_tiles.mjs pilot/data/osm-tiles pilot/data/osm-pack/cz.posm` a aplikace s `?osm=balik`
+(soubory z místního serveru) nebo `?osm=r2` (z R2); bez přepínače čte místní server dlaždice jako dřív.
+Kontrola balíku proti dlaždicím: `node evaluation/osm_pack_check.mjs <dlaždice> <soubor nebo URL> [samples.json …] --all`.
+
 ### Orientace stání
 
 Podélné, šikmé a kolmé stání se bere z OSM (`orientation` u ploch parkování, `parking:*:orientation` u ulic) nebo
