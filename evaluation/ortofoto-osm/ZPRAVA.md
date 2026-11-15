@@ -29,7 +29,9 @@ Brna (99 řezů), ke kterým máme pravdu z MTVU. Aplikaci jsem neměnila.
   souřadnice zaokrouhlené na 1e-5° (asi 1 m), což chybu fasád zvětšuje.
 - **Ortofota:** z cache `evaluation/ortofoto/data/<město>/img`, žádný nový dotaz. Praha: IPR 10 cm, ČÚZK 12,5 cm
   a 25 cm. Brno: městské 2025 (10 cm, s posunem 1,06 / 3,09 m z `lanes-ortho.js`), ČÚZK 12,5 a 25 cm. Navíc
-  **20 cm** zprůměrované z 10 cm jako náhrada typického evropského ortofota. Ortofoto ČÚZK běží (ověřeno jedním
+  **20 cm** zprůměrované z 10 cm jako náhrada typického evropského ortofota. Posun brněnského snímku je ověřený:
+  proti ČÚZK 12,5 cm napříč řezem medián |posunu| 0,30 m s ním a 2,60 m bez něj (60 řezů). Snímky v cache jsou
+  stažené bez posunu, takže po něm chybí asi 3 m z výřezu ±20 m podél ulice. Ortofoto ČÚZK běží (ověřeno jedním
   dotazem 15. 11.).
 - **Pruhy:** proti nezávislým značkám okem (`evaluation/ortofoto/labels/oznac-*`). Pruh je mezera 2,4–5,5 m mezi
   okraji a čarami. Vzorek je malý: 12 vozovek v Praze, 7 v Brně.
