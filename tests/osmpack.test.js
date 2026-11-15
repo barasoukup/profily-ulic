@@ -1,0 +1,68 @@
+// The OSM tiles of a country in one file (osmpack.js, tools/pack_osm_tiles.mjs): the shorter form decodes to the
+// same elements as the tiles of osmtile.js, read in pieces as over HTTP Range.
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import { decodeTile, mergePieces } from "../pilot/public/osmtile.js";
+import { Pack, encodeElement, decodePackedTile } from "../pilot/public/osmpack.js";
+import { packTiles } from "../tools/pack_osm_tiles.mjs";
+
+const diff = (pts) => pts.flatMap(([x, y], i) => (i ? [x - pts[i - 1][0], y - pts[i - 1][1]] : [x, y]));
+const way = (id, o, pts, k = { highway: "residential", name: "Ječná" }) => JSON.stringify({ t: "w", i: id, k, o, g: diff(pts) });
+// Tiles 2884_10016 and 2885_10016 (Prague), a line across their border, a building with a hole, a tree.
+const TILES = {
+  "2884_10016": [
+    way(7, 0, [[14420000, 50080000], [14424000, 50080100], [14426000, 50080200]]),
+    JSON.stringify({ t: "a", i: 9, k: { building: "yes", "building:levels": "5" }, q: 5, g: diff([[1442100, 5008010], [1442110, 5008010], [1442110, 5008020]]), h: [diff([[1442102, 5008012], [1442104, 5008012], [1442104, 5008014]])] }),
+    JSON.stringify({ t: "n", i: 11, k: { natural: "tree", leaf_type: "broadleaved" }, g: [14421000, 50081000] }),
+    JSON.stringify({ t: "a", i: 12, k: {}, g: diff([[14421000, 50081000], [14421100, 50081000], [14421000, 50081100]]) }),
+  ],
+  "2885_10016": [
+    way(7, 1, [[14424000, 50080100], [14426000, 50080200], [14427000, 50080300]]),
+    way(8, 0, [[14426000, 50082000], [14427000, 50082000]], { highway: "residential", oneway: "yes", "unusual:key": "x\"y" }),
+  ],
+};
+const text = (n) => TILES[n].join("\n") + "\n";
+const memory = (buf) => async (start, end) => ({ bytes: new Uint8Array(buf.subarray(start, end + 1)), etag: "a" });
+
+test("krátký zápis prvku: slovník, klíč ze slovníku, vlastní klíč, první bod od rohu dlaždice", () => {
+  const head = { keys: ["highway", "name"], pairs: [[0, "residential"]] };
+  const dict = { pair: (k, v) => (k === "highway" && v === "residential" ? 0 : undefined), key: (k) => ({ highway: 0, name: 1 })[k] };
+  const el = JSON.parse(way(7, 3, [[14420000, 50080000], [14424000, 50080100]], { highway: "residential", name: "Ječná", foo: "bar" }));
+  const short = encodeElement(el, dict, 2884, 10016);
+  assert.deepEqual(short, [0, 7, [0, -2, "Ječná", "foo", "bar"], [0, 0, 4000, 100], 3]);
+  assert.deepEqual(decodePackedTile(JSON.stringify([short]), head, 2884, 10016), decodeTile(JSON.stringify(el)));
+});
+
+test("balík: každá dlaždice se přečte stejně jako soubor dlaždice, i bez slovníku", async () => {
+  for (const opts of [{ minPair: 1, minKey: 1 }, {}]) {
+    const { file } = packTiles(Object.keys(TILES), text, opts);
+    const pack = new Pack(memory(file), 64); // short first read: the head comes in two
+    const names = [...Object.keys(TILES), "2886_10016", "1_1"];
+    const got = await pack.tiles(names);
+    names.forEach((n, i) => assert.deepEqual(got[i], TILES[n] ? decodeTile(text(n)) : []));
+    // The line across the border joins as from the tiles.
+    assert.deepEqual(mergePieces(got), mergePieces(Object.keys(TILES).map((n) => decodeTile(text(n)))));
+  }
+});
+
+test("sousední dlaždice jedním čtením, hlava a list bloku jen jednou", async () => {
+  const { file } = packTiles(Object.keys(TILES), text);
+  const reads = [];
+  const pack = new Pack(async (s, e) => { reads.push([s, e]); return memory(file)(s, e); });
+  await pack.tiles(["2884_10016", "2885_10016"]);
+  assert.equal(reads.length, 3); // head, leaf, both tiles
+  await pack.tiles(["2885_10016"]);
+  assert.equal(reads.length, 4);
+});
+
+test("soubor vyměněný mezitím (jiné ETag) se přečte znovu od hlavy", async () => {
+  const one = packTiles(["2884_10016"], text).file, two = packTiles(Object.keys(TILES), text).file;
+  let now = { file: one, etag: "1" };
+  const pack = new Pack(async (s, e) => ({ bytes: new Uint8Array(now.file.subarray(s, e + 1)), etag: now.etag }));
+  assert.deepEqual(await pack.tiles(["2885_10016"]), [[]]);
+  now = { file: two, etag: "2" };
+  assert.deepEqual(await pack.tiles(["2885_10016"]), [[]]); // the head is still the old one: no tile there
+  const got = await pack.tiles(["2884_10016"]); // a leaf read now sees the other ETag
+  assert.deepEqual(got[0], decodeTile(text("2884_10016")));
+  assert.deepEqual((await pack.tiles(["2885_10016"]))[0], decodeTile(text("2885_10016")));
+});

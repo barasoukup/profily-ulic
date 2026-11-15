@@ -233,6 +233,22 @@ const server = http.createServer(async (req, res) => {
     const base = rel.startsWith("data/") ? dataDir : PUBLIC;
     const file = path.normalize(path.join(base, rel.startsWith("data/") ? rel.slice(5) : rel));
     if (!file.startsWith(base + path.sep)) throw Object.assign(new Error("forbidden"), { code: "ENOENT" });
+    // A byte range (the packed OSM tiles of a country, ?osm=balik: osmpack.js reads them in pieces, as from R2).
+    const range = /^bytes=(\d+)-(\d+)$/.exec(req.headers.range || "");
+    if (range && rel.startsWith("data/")) {
+      const fh = await fs.open(file);
+      try {
+        const { size, mtimeMs } = await fh.stat();
+        const start = Number(range[1]), end = Math.min(Number(range[2]), size - 1);
+        if (start > end) { res.writeHead(416, { "Content-Range": `bytes */${size}` }); return res.end(); }
+        const buf = Buffer.alloc(end - start + 1);
+        await fh.read(buf, 0, buf.length, start);
+        res.writeHead(206, { "Content-Type": "application/octet-stream", "Content-Range": `bytes ${start}-${end}/${size}`, ETag: `"${size}-${Math.round(mtimeMs)}"`, "Cache-Control": "no-cache" });
+        return res.end(buf);
+      } finally {
+        await fh.close();
+      }
+    }
     const data = await fs.readFile(file);
     // Local development: the browser always revalidates, so an edited file shows on reload.
     res.writeHead(200, { "Content-Type": TYPES[path.extname(file)] || "application/octet-stream", "Cache-Control": "no-cache" });

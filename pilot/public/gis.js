@@ -6,6 +6,7 @@ import { STATIC } from "./config.js";
 import { city } from "./city.js";
 
 import { TILE, decodeTile, mergePieces } from "./osmtile.js";
+import { Pack, rangeFetch } from "./osmpack.js";
 export { TILE };
 const TIMEOUT = 25000;
 // IPR's ArcGIS queues requests and under load answers "503 Wait timeout for the request exceeded"
@@ -64,6 +65,23 @@ const tile = (n) => {
   return tiles.get(n);
 };
 
+// Trial (Bára 15. 11. 2026): the tiles of each country in one file (osmpack.js, tools/pack_osm_tiles.mjs) on
+// Cloudflare R2, read in pieces over HTTP Range. ?osm=r2 reads them from R2, ?osm=balik from the local server
+// (data/osm-pack/, node pilot/server.mjs); without it nothing changes. Countries read for every cut and joined
+// as the tiles of a cut are (a tile on a border may be in both files).
+export const OSM_PACK = (() => {
+  const v = typeof location === "undefined" ? null : new URLSearchParams(location.search).get("osm");
+  return v === "r2" || v === "balik" ? v : null;
+})();
+export const R2_OSM = "https://pub-REPLACE.r2.dev/osm";
+const PACKS = ["cz", "sk"];
+let packs;
+const packTiles = async (names) => {
+  packs ??= PACKS.map((c) => new Pack(rangeFetch(`${OSM_PACK === "r2" ? R2_OSM : "data/osm-pack"}/${c}.posm`, TIMEOUT)));
+  const per = await Promise.all(packs.map((p) => p.tiles(names)));
+  return names.map((_, i) => per.flatMap((list) => (list[i].length ? [list[i]] : []))).flat();
+};
+
 // OSM elements around a point, from the tiles it touches, lines joined back across them (as the server's localOsm()).
 export async function osmTiles(lat, lon, radius) {
   const dLat = radius / 110574;
@@ -72,6 +90,7 @@ export async function osmTiles(lat, lon, radius) {
   for (let ix = Math.floor((lon - dLon) / TILE); ix <= Math.floor((lon + dLon) / TILE); ix++) {
     for (let iy = Math.floor((lat - dLat) / TILE); iy <= Math.floor((lat + dLat) / TILE); iy++) names.push(`${ix}_${iy}`);
   }
+  if (OSM_PACK) return { source: "local", elements: mergePieces(await packTiles(names)) };
   return { source: "local", elements: mergePieces(await Promise.all(names.map(tile))) };
 }
 
