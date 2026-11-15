@@ -22,3 +22,13 @@ test("kusy jedné cesty ze sousedních dlaždic se spojí, vzdálené zůstanou 
   assert.deepEqual(out[0].geometry.map((p) => p.lon * 1e6), [0, 10, 20, 30, 40]);
   assert.equal(out[1].geometry.length, 2);
 });
+
+test("dlaždice: kusy jedné plochy oříznuté na dvou dlaždicích se stejným prvním bodem na hranici zůstanou oba", () => {
+  // A lawn over the border x = 0 of two tiles, cut by tiles: both pieces start at the border point (0, 0).
+  const left = [{ lat: 0, lon: 0 }, { lat: 0, lon: -1 }, { lat: 1, lon: -1 }, { lat: 1, lon: 0 }, { lat: 0, lon: 0 }];
+  const right = [{ lat: 0, lon: 0 }, { lat: 1, lon: 0 }, { lat: 1, lon: 1 }, { lat: 0, lon: 1 }, { lat: 0, lon: 0 }];
+  const a = { type: "area", id: 5, tags: { landuse: "grass" }, geometry: left }, b = { type: "area", id: 5, tags: { landuse: "grass" }, geometry: right };
+  assert.equal(mergePieces([[a], [b]]).length, 2);
+  // The same building in two tiles stays once.
+  assert.equal(mergePieces([[a], [{ ...a }]]).length, 1);
+});

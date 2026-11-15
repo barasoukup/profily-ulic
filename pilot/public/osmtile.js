@@ -40,7 +40,10 @@ export function mergePieces(lists) {
   for (const els of lists) {
     for (const el of els) {
       if (el.o === undefined) {
-        const key = `${el.type}:${el.id}:${el.geometry[0].lat}:${el.geometry[0].lon}`;
+        // The same element in several tiles (a building over a border) is the same whole shape; pieces of a green area
+        // or water cut by tiles (tools/build_osm_tiles.mjs) share the id and may start at the same point on the border,
+        // so the key holds the second point and the length too.
+        const g = el.geometry, key = `${el.type}:${el.id}:${g[0].lat}:${g[0].lon}:${g[1]?.lat}:${g[1]?.lon}:${g.length}`;
         if (!seen.has(key)) { seen.add(key); out.push(el); }
         continue;
       }

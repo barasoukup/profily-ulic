@@ -1116,8 +1116,13 @@ const centreKm = ([lon, lat]) => {
 
 // OSM building containing a point, with building:levels (+ roof:levels) and height when tagged,
 // and the shape of the block it belongs to (blockShape).
+// The OSM buildings the look of a house and the built-up test were tuned on: until 15. 11. 2026 the tiles held only
+// those with floors or a height (tools/build_osm_tiles.mjs now keeps all, for the profile without a technical map,
+// ortho-osm.js). Keeping to them leaves the cities as they were, until all buildings are checked
+// (evaluation/budovy-typ, the 100 cuts).
+const TUNED_BUILDING = (t) => !!t?.building && (t["building:levels"] !== undefined || t.height !== undefined || t["roof:levels"] !== undefined);
 export function buildingAt(osm, frame, p) {
-  const all = (osm.elements || []).filter((el) => el.type === "area" && el.tags?.building)
+  const all = (osm.elements || []).filter((el) => el.type === "area" && TUNED_BUILDING(el.tags))
     .map((el) => {
       const ring = el.geometry.map((g) => frame.toXY(g.lon, g.lat));
       return { el, ring, rings: [ring, ...(el.holes || []).map((r) => r.map((g) => frame.toXY(g.lon, g.lat)))], bbox: bboxOf(ring) };
@@ -1716,7 +1721,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   const builtUp = (kerb, k, edge) => {
     if (edge === "budova") return true;
     buildingRings ??= [
-      ...(osm.elements || []).filter((el) => el.type === "area" && el.tags?.building).map((el) => el.geometry.map((g) => frame.toXY(g.lon, g.lat))),
+      ...(osm.elements || []).filter((el) => el.type === "area" && TUNED_BUILDING(el.tags)).map((el) => el.geometry.map((g) => frame.toXY(g.lon, g.lat))),
       ...polys.filter((p) => isBuilding(p.code)).flatMap((p) => p.rings || []),
     ];
     const [cx, cy] = at(kerb);

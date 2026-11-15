@@ -76,7 +76,8 @@ test("odhad stání: mimo zástavbu jen u obruby s chodníkem, v obytné zóně 
   // OSM's sidewalk tags count too.
   assert.equal(guessed(field(green, green, { sidewalk: "both" })), 2);
   // A house of OSM 15 m from the kerb (village street): built-up, the estimate by the law stays on that side.
-  const house = { type: "area", id: 5, tags: { building: "house" }, geometry: [ll(20, -5), ll(28, -5), ll(28, 5), ll(20, 5), ll(20, -5)] };
+  // With floors: the built-up test counts the OSM houses it was tuned on (derive.js TUNED_BUILDING).
+  const house = { type: "area", id: 5, tags: { building: "house", "building:levels": "1" }, geometry: [ll(20, -5), ll(28, -5), ll(28, 5), ll(20, 5), ll(20, -5)] };
   assert.equal(guessed(field(green, green, {}, [house])), 1);
   // A house of the surfaces 30 m out counts, one 45 m out does not.
   assert.equal(guessed(field(green, [[400, 30], [601, 8]])), 1);
