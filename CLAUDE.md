@@ -209,11 +209,20 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - ZBGIS ÚGKK SR (CC BY 4.0, GKÚ Bratislava; `/query` vrací 503, funguje identify/find/export/dlaždice): ortofoto
   `Ortofoto_hres` (asi 10 cm, s vyvážením barev, jinak asfalt vypadá jako tráva), budovy (druh, výška), hledání
   ulic, obcí a adres (`search-sk.js`). Vyhodnocení `evaluation/slovensko/ZPRAVA.md` (ortofoto lépe 10, hůř 2, stejně 16
-  z 39). Slovenské značky a ilustrace jen jako návrh, čeká na Bářin souhlas.
+  z 39). Slovenské ilustrace jen jako návrh, čeká na Bářin souhlas.
+- Jazyk a stát nikdy nemíchat a psát kódy ISO: jazyky malými (cs, sk, en), státy velkými (CZ, SK, AT) (Bára 15. 11. 2026).
+- Značky státu SK (vyhl. 30/2020 Z. z.): `pilot/public/znacky-SK/` (piktogramy podle přílohy „Symboly“, tabulka klíčů
+  v README), řádek značek podle `city.country` (`signFile/plateFile/signLabel(…, country)`); název značky v jazyce
+  stránky, číslo podle státu. SK nemá způsob stání (jen 272), IP 4c (321 + 514, z druhé strany 230 + 507),
+  vyhrazené stání je 270 + 531, sdílenou zónu nemá. Obě sady (CZ i SK) zkontroloval Fable proti vyhláškám a opravené.
+- Značky (Bára 15. 11. 2026): C 10a ukazuje chodce na jejich straně (dál od vozovky, při „Otočit“ se prohodí, bez dat
+  jako vzor: chodci vpravo); IZ 10a Sdílená zóna jen podle `traffic_sign` v OSM; C 7a Stezka pro chodce na pěší cestě;
+  E 13 „Mimo dopravní obsluhy“ (2. pád, gramaticky správně).
 
-## Jazyky (Bára 12. 11. 2026)
-- Anglicky se aplikace jmenuje **Street Profile**. Čeština a angličtina: `pilot/public/i18n.js` (`t("český text")`), překlady v `pilot/public/en.js`, přepínač EN / CS
-  v hlavičce, `?lang=en`. Nový text vždy přes `t()` a s překladem (hlídá `tests/i18n.test.js`). Popis v `pilot/README.md`.
+## Jazyky (Bára 12. 11. 2026, slovenčina 15. 11. 2026)
+- Anglicky se aplikace jmenuje **Street Profile**, slovensky **Profily ulíc**. Čeština, slovenčina a angličtina: `pilot/public/i18n.js`
+  (`t("český text")`), překlady v `pilot/public/en.js` a `sk.js`, tlačítka ostatních jazyků v hlavičce, `?lang=sk`. Jazyk podle
+  prohlížeče (první z jeho jazyků, který aplikace umí; všichni ostatní angličtina), ne podle místa řezu (Bára). Nový text vždy přes `t()` a s překladem (hlídá `tests/i18n.test.js`). Popis v `pilot/README.md`.
 
 ## Hospodaření s vodou a jednodušší rozhraní (Bára 12. 11. 2026)
 - Podnět Magdaleny podle pražských Standardů HDV (kap. 5.1): v Návrhu průleh, rýha, retenční nádrž; pod povrchem
