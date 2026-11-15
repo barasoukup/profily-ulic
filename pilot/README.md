@@ -112,7 +112,8 @@ bez technické mapy (`ortho-osm.js`) a kvůli zahraničí. U budov se drží i `
 `building:material` a `building:min_level`. **Zelené plochy** (`landuse` grass, meadow, village_green, flowerbed,
 forest, orchard, recreation_ground; `leisure` park, garden; `natural` grass, grassland, scrub, wood, heath) a **voda,
 zahrádky a hřbitovy** se rozřežou po dlaždicích (každá dlaždice má svůj kus, na 1 m) a drží se jen v dlaždicích, kudy
-vede silnice. Pražský výřez: 88 → 116 MB (+32 %), celá ČR tedy asi 1 GB: na hraně limitu GitHub Pages.
+vede silnice. Pražský výřez: 88 → 116 MB (+32 %), celá ČR 0,84 → 1,39 GB (domy bez výšky 279 MB, zeleň 236 MB):
+přes limit GitHub Pages 1 GB, proto se čeká na dlaždice na Cloudflare R2 (Bára 15. 11. 2026: zatím nepushovat).
 
 ### Orientace stání
 
