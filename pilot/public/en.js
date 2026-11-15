@@ -423,6 +423,8 @@ export const EN = {
   "IZ 5a Obytná zóna": "IZ 5a Home zone",
   "IZ 6a Pěší zóna": "IZ 6a Pedestrian zone",
   "IZ 9a Zóna pro cyklisty": "IZ 9a Cycle zone",
+  "IZ 10a Sdílená zóna": "IZ 10a Shared zone",
+  "C 7a Stezka pro chodce": "C 7a Footpath",
   "IP 4c / B 2 + E 12b Jednosměrný provoz, cyklisté v protisměru": "IP 4c / B 2 + E 12b One-way traffic, contraflow cycling",
   "IP 11c Parkoviště (podélné stání)": "IP 11c Parking (parallel)",
   "IP 11b Parkoviště (kolmé stání)": "IP 11b Parking (perpendicular)",

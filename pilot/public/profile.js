@@ -1287,7 +1287,7 @@ const plateArtOf = (x, seg) => {
 // Resolves to true when something new was loaded (the drawing then needs redrawing).
 export async function loadSigns(...profiles) {
   const all = profiles.filter(Boolean).flatMap((p) => p.segments.flatMap((s) => (s.signs || []).map((x) => [x, s])));
-  const todo = all.flatMap(([x, s]) => [signArtOf(x, s), plateArtOf(x, s)].filter(Boolean)).filter((a) => !signArt.has(signKey(a)));
+  const todo = all.flatMap(([x, s]) => [signArtOf(x, s), plateArtOf(x, s)].filter((a) => a?.file)).filter((a) => !signArt.has(signKey(a)));
   await Promise.all(todo.map(loadSignFile));
   return todo.length > 0;
 }

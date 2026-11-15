@@ -141,3 +141,21 @@ test("značky státu SK: každá značka a tabulka má soubor, popisek se sloven
   assert.equal(signFile({ k: "b20a", v: 25 }, {}, "SK"), "253");
   assert.equal(signLabel({ k: "b1" }), "B 1 Zákaz vjezdu všech vozidel", "CZ beze změny");
 });
+
+test("C 10a ukazuje chodce na jejich straně (dál od vozovky), IZ 10a podle značky, C 7a na pěší cestě", () => {
+  const seg = (type, width = 3) => ({ type, width });
+  const p = { segments: [seg("budova"), seg("stezka_sdilena"), seg("pruh"), seg("pruh"), seg("chodnik")] };
+  deriveSigns(p, { highway: "residential", segregated: "yes" });
+  const c10 = p.segments[1].signs.find((x) => x.k === "c10a");
+  assert.equal(c10.walk, "left", "vozovka vpravo: chodci vlevo");
+  assert.equal(signFile(c10, p.segments[1]), "C10a");
+  assert.equal(signFile({ ...c10, walk: "right" }, p.segments[1]), "C10a-chodci-vpravo");
+  assert.equal(signFile({ k: "c10a" }, {}), "C10a-chodci-vpravo", "bez dat jako vzor vyhlášky");
+  assert.equal(signFile(c10, p.segments[1], "SK"), "223-51");
+  assert.equal(signFile({ ...c10, walk: "right" }, p.segments[1], "SK"), "223-50");
+  assert.deepEqual(streetSigns({ highway: "residential", traffic_sign: "CZ:IZ10a" }), [{ k: "sdilena" }]);
+  assert.equal(signFile({ k: "sdilena" }, {}, "SK"), null, "SK sdílenou zónu nemá");
+  const f = { segments: [seg("zelen"), seg("chodnik", 2.5), seg("zelen")] };
+  deriveSigns(f, { highway: "footway" });
+  assert.deepEqual(f.segments[1].signs, [{ k: "c7a" }]);
+});

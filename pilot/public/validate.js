@@ -98,7 +98,8 @@ function cleanSigns(list) {
   return list.filter((x) => x && Object.hasOwn(SIGNS, x.k)).map((x) => ({ k: x.k,
     ...(num(x.v, 1, 200) ? { v: x.v } : {}),
     ...(signChoice(x) ? { plate: x.plate } : {}),
-    ...(["forward", "backward"].includes(x.dir) ? { dir: x.dir } : {}) })).slice(0, 12);
+    ...(["forward", "backward"].includes(x.dir) ? { dir: x.dir } : {}),
+    ...(["left", "right"].includes(x.walk) ? { walk: x.walk } : {}) })).slice(0, 12);
 }
 
 // Position of the cut: numbers in and around the Czech Republic, reach of each side 1–70 m; else no cut.

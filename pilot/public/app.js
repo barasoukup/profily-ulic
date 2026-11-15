@@ -1880,6 +1880,8 @@ function mirror(p) {
       ...(s.dir ? { dir: OTHER[s.dir] || s.dir } : {}),
       ...(s.bikeDir ? { bikeDir: OTHER[s.bikeDir] || s.bikeDir } : {}),
       ...(s.items ? { items: s.items.map((it) => ({ ...it, f: +(1 - it.f).toFixed(3) })) } : {}),
+      // The pedestrians' side of a divided path (C 10a) turns with the view.
+      ...(s.signs ? { signs: s.signs.map((x) => (x.walk ? { ...x, walk: x.walk === "left" ? "right" : "left" } : x)) } : {}),
     })),
   };
 }

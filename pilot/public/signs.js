@@ -35,6 +35,8 @@ export const SIGNS = {
   ip26a: t("IZ 5a Obytná zóna"),
   ip27a: t("IZ 6a Pěší zóna"),
   cyklozona: t("IZ 9a Zóna pro cyklisty"),
+  sdilena: t("IZ 10a Sdílená zóna"),
+  c7a: t("C 7a Stezka pro chodce"),
 };
 // The parts each sign can stand under in Návrh (Bára: no motorway under a sidewalk). Signs drawn from the data stay
 // whatever part they are on.
@@ -42,10 +44,10 @@ const LANE = ["pruh", "pruh_piktokoridor", "obsluzna", "bus", "bus_cyklo", "tram
 const WALK = ["chodnik", "chodnik_kola", "stezka_sdilena", "nastupiste"];
 const PARKING = ["parkovani"];
 const SIGN_PARTS = {
-  b1: LANE, b11: LANE, b20a: LANE, oneway: LANE, ip14a: LANE, ip15a: LANE, zona30: LANE, ip26a: LANE, cyklozona: LANE,
+  b1: LANE, b11: LANE, b20a: LANE, oneway: LANE, ip14a: LANE, ip15a: LANE, zona30: LANE, ip26a: LANE, cyklozona: LANE, sdilena: LANE,
   b8: [...LANE, ...WALK], b30: [...WALK, "cyklostezka"], ip27a: [...LANE, ...WALK],
   b28: [...LANE, ...PARKING], b29: [...LANE, ...PARKING],
-  c8a: ["cyklostezka"], c9a: ["stezka_sdilena", "chodnik_kola", "chodnik", "cyklostezka"], c10a: ["stezka_sdilena", "chodnik_kola", "chodnik", "cyklostezka"],
+  c8a: ["cyklostezka"], c7a: WALK, c9a: ["stezka_sdilena", "chodnik_kola", "chodnik", "cyklostezka"], c10a: ["stezka_sdilena", "chodnik_kola", "chodnik", "cyklostezka"],
   ip11a: PARKING, ip11d: PARKING, ip11e: PARKING, ip11f: PARKING, ip11g: PARKING, ip12: PARKING, ztp: PARKING,
   ip20a: ["bus", "bus_cyklo"],
 };
@@ -88,12 +90,12 @@ const CZ_CODE = /^(?:[A-Z]{1,2} \d+[a-z]?(?: [/+] |\s))+/;
 // space under Zákaz zastavenia (270 + plate 531).
 const SK_CODE = { b1: "231", b11: "232", b8: "233", b30: "233", b20a: "253", b28: "270", b29: "271", oneway: "321 / 230",
   c8a: "221", c9a: "222", c10a: "223", ip11a: "272", ip11d: "273", ip11e: "273", ip11f: "273", ip11g: "273",
-  ip12: "270 + 531", ztp: "272", ip14a: "309", ip15a: "311", ip20a: "224", zona30: "268", ip26a: "315", ip27a: "317", cyklozona: "323" };
+  ip12: "270 + 531", ztp: "272", ip14a: "309", ip15a: "311", ip20a: "224", zona30: "268", ip26a: "315", ip27a: "317", cyklozona: "323", c7a: "220" };
 const SK_CHOICE_CODE = { "oneway+protismer": "321 + 514 / 230 + 507", "ip20a+kolo": "224 + 515", "ip27a+kola": "317 + 515",
   "b1+obsluha": "231 + 507", "b11+obsluha": "232 + 507" };
 const SK_FILE = { b1: "231", b11: "232", b8: "233-58", b30: "233-60", b28: "270", b29: "271", c8a: "221", c9a: "222", c10a: "223-51",
   ip11a: "272", ip11d: "273-85", ip11e: "273-65", ip11f: "273-75", ip11g: "273-55", ip12: "270", ztp: "272",
-  ip14a: "309", ip15a: "311", ip20a: "224", zona30: "268-30", ip26a: "315", ip27a: "317", cyklozona: "323" };
+  ip14a: "309", ip15a: "311", ip20a: "224", zona30: "268-30", ip26a: "315", ip27a: "317", cyklozona: "323", c7a: "220" };
 const SK_SPEEDS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130];
 // The folder of a state's signs.
 export const signDir = (country = "CZ") => (country === "SK" ? "znacky-SK" : "znacky");
@@ -106,7 +108,7 @@ const yes = (v) => ["yes", "designated", "permissive"].includes(v);
 const num = (v) => { const m = /^(\d+)/.exec(String(v ?? "")); return m ? Number(m[1]) : undefined; };
 
 // The speed that the zone sign already says (no B 20a of its own).
-const ZONE_SPEED = { ip26a: 20, ip27a: 20, zona30: 30, cyklozona: 30 };
+const ZONE_SPEED = { ip26a: 20, ip27a: 20, zona30: 30, cyklozona: 30, sdilena: 20 };
 
 // The rules of the street that belong to its driving lanes (Bára: no signs for the whole profile; speed and
 // one-way under the lanes they concern), in order of importance: the kind of road or zone, an entry ban.
@@ -119,6 +121,8 @@ export function streetSigns(tags = {}) {
   if (hw === "living_street") z.push({ k: "ip26a" });
   else if (hw === "pedestrian") z.push(yes(tags.bicycle) ? { k: "ip27a", plate: "kola" } : { k: "ip27a" });
   else if (tags.cyclestreet === "yes" || tags.bicycle_road === "yes") z.push({ k: "cyklozona" });
+  // The shared zone (IZ 10a, vyhl. 386/2023): OSM has no tag of its own, only the sign itself (Bára: when the data say it).
+  else if (/\bIZ ?10a\b/i.test(String(tags.traffic_sign || ""))) z.push({ k: "sdilena" });
   else if (/zone:?30$|:30$/.test(zone) && !/rural|urban$/.test(zone)) z.push({ k: "zona30" });
   // Entry bans of the whole street, with the exception of local traffic (destination).
   const ban = (v) => v === "no" || v === "destination" || v === "private";
@@ -196,7 +200,9 @@ export function deriveSigns(profile, tags = {}, ctx = {}) {
     if (t === "bus" || t === "bus_cyklo") out.push({ k: "ip20a", ...(t === "bus_cyklo" ? { plate: "kolo" } : {}) });
     // Road markings (cycle lanes, piktokoridor, tram lane, turn arrows) are in the drawing itself (Bára).
     else if (t === "cyklostezka") out.push({ k: "c8a" });
-    else if (t === "stezka_sdilena") out.push({ k: tags.segregated === "yes" ? "c10a" : "c9a" });
+    // A divided path (C 10a) shows its pedestrians on their real side (vyhláška: the symbols as the halves lie):
+    // OSM does not say which, so the pedestrians away from the roadway and the cyclists beside it (Bára).
+    else if (t === "stezka_sdilena") out.push(tags.segregated === "yes" ? { k: "c10a", walk: walkSide(segs, i) } : { k: "c9a" });
     else if (t === "parkovani" && s.source !== "odhad") {
       if (s.use === "ztp") out.push({ k: "ztp" });
       else if (s.use) out.push({ k: "ip12" });
@@ -209,6 +215,13 @@ export function deriveSigns(profile, tags = {}, ctx = {}) {
     if (ruleOf.has(i)) out.push(...ruleOf.get(i));
     if (out.length) s.signs = out.slice(0, MAX_PER_PART);
   });
+  // A path for pedestrians (C 7a): the clicked way is a footway, or a path for pedestrians only; under its widest
+  // walking part when the profile has no lanes of its own (Bára).
+  const footway = tags.highway === "footway" || (tags.highway === "path" && tags.foot === "designated" && !yes(tags.bicycle));
+  if (footway && !lanes.length && tags.segregated !== "yes") {
+    const walk = segs.map((s, i) => [s, i]).filter(([s]) => s.type === "chodnik").sort((a, b) => b[0].width - a[0].width)[0];
+    if (walk && (walk[0].signs || []).length < MAX_PER_PART) walk[0].signs = [...(walk[0].signs || []), { k: "c7a" }];
+  }
   // No parking / no stopping on a kerb: on the outermost lane of that side (parking:<side>:restriction=
   // no_stopping|no_parking). The way's right is the profile's right when the profile looks along the way
   // (ctx.alongWay), else its left. It takes the place of the lane's last sign.
@@ -226,6 +239,14 @@ export function deriveSigns(profile, tags = {}, ctx = {}) {
   return profile;
 }
 
+// The side of a divided path where its pedestrians walk, as the viewer sees it: away from the nearest roadway part
+// (none: as the decree's design, pedestrians right).
+function walkSide(segs, i) {
+  let best = null;
+  segs.forEach((s, j) => { if (CARRIAGEWAY.has(s.type) && (best === null || Math.abs(j - i) < Math.abs(best - i))) best = j; });
+  return best === null ? "right" : best > i ? "left" : "right";
+}
+
 // The file of a sign as drawn for a viewer, and its value: oneway becomes IP 4b or B 2 by the direction of
 // the lanes (forward = away from the viewer).
 // seg: the part the sign stands under (a one-way sign follows its lane's direction).
@@ -234,18 +255,21 @@ export function signFile(s, seg, country = "CZ") {
   if (country === "SK") {
     if (s.k === "oneway") return dir === "backward" ? "230" : "321-30";
     if (s.k === "b20a") return SK_SPEEDS.includes(s.v) ? `253-${s.v}` : "253";
-    return SK_FILE[s.k] || s.k;
+    if (s.k === "c10a") return s.walk === "left" ? "223-51" : "223-50";
+    return SK_FILE[s.k] || null; // a sign SK has not (the shared zone): none
   }
   // IP 4c (vyhl. 205/2025): one-way with contraflow cyclists, in place of IP 4b + E 12a.
   if (s.k === "oneway") return dir === "backward" ? "B2" : s.plate === "protismer" ? "IP4c" : "IP4b";
   // Oblique stalls have the sign of perpendicular ones (IP 11b, Bára).
   if (s.k === "ip11a") return s.plate === "podelne" ? "IP11c" : s.plate ? "IP11b" : "IP11a";
   if (s.k === "ip27a" && s.plate === "kola") return "IZ6a-kola";
+  // C 10a: the design has the pedestrians on the right; the side of the path (walk) when the data know it.
+  if (s.k === "c10a") return s.walk === "left" ? "C10a" : "C10a-chodci-vpravo";
   if (s.k === "b20a") return [5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130].includes(s.v) ? `B20a-${s.v}` : "B20a";
   return { b1: "B1", b2: "B2", b8: "B8", b11: "B11", b28: "B28", b29: "B29", b30: "B30", c8a: "C8a", c9a: "C9a", c10a: "C10a",
     ip11d: "IP11d", ip11e: "IP11e", ip11f: "IP11f", ip11g: "IP11g",
     ip12: "IP12", ztp: "IP12-ztp", ip14a: "IZ1a", ip15a: "IZ2a", ip20a: "IP20a-symbol", zona30: "IZ8a-30",
-    ip26a: "IZ5a", ip27a: "IZ6a", cyklozona: "IZ9a" }[s.k] || s.k;
+    ip26a: "IZ5a", ip27a: "IZ6a", cyklozona: "IZ9a", sdilena: "IZ10a", c7a: "C7a" }[s.k] || s.k;
 }
 // The plate under a sign: contraflow cyclists are E 12a under IP 4b and E 12b under B 2; E 13 carries a text.
 export function plateFile(s, seg, country = "CZ") {

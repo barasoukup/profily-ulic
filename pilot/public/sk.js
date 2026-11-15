@@ -431,6 +431,8 @@ export const SK = {
   "IZ 5a Obytná zóna": "IZ 5a Obytná zóna",
   "IZ 6a Pěší zóna": "IZ 6a Pešia zóna",
   "IZ 9a Zóna pro cyklisty": "IZ 9a Zóna pre cyklistov",
+  "IZ 10a Sdílená zóna": "IZ 10a Zdieľaná zóna",
+  "C 7a Stezka pro chodce": "C 7a Cestička pre chodcov",
   "IP 4c / B 2 + E 12b Jednosměrný provoz, cyklisté v protisměru": "IP 4c / B 2 + E 12b Jednosmerná premávka, cyklisti v protismere",
   "IP 11c Parkoviště (podélné stání)": "IP 11c Parkovisko (pozdĺžne státie)",
   "IP 11b Parkoviště (kolmé stání)": "IP 11b Parkovisko (kolmé státie)",

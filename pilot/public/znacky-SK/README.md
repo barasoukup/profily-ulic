@@ -72,6 +72,7 @@ Sloupec „naše značka“ je klíč české podoby v aplikaci (typ značky pod
 | b29 zákaz stání | 271 Zákaz státia | `271.svg` |
 | ip4b jednosměrka (viděná podél) | 321-30 Jednosmerná cesta (priamo) | `321-30.svg` |
 | c8a stezka pro cyklisty | 221 Cyklistická komunikácia | `221.svg` |
+| c7a stezka pro chodce | 220 Cestička pre chodcov | `220.svg` |
 | c9a stezka pro chodce a cyklisty společná | 222 Spoločná cestička pre chodcov a cyklistov | `222.svg` |
 | c10a stezka pro chodce a cyklisty dělená (cyklisté vpravo) | 223-51 Oddelená cestička pre chodcov a cyklistov (cyklisti vpravo) | `223-51.svg` |
 | ip11a parkoviště | 272 Parkovanie | `272.svg` |

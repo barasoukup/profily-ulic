@@ -71,6 +71,7 @@ přečíslování: https://cs.wikipedia.org/wiki/Seznam_dopravn%C3%ADch_zna%C4%8
 | `B28.svg` | B 28 | Zákaz zastavení | vzor vyhlášky | úřední dílo / MIT |
 | `B29.svg` | B 29 | Zákaz stání | vzor vyhlášky | úřední dílo / MIT |
 | `B30.svg` | B 30 | Zákaz vstupu chodců | Commons CZ_road_sign_B-30.svg | PD |
+| `C7a.svg` | C 7a | Stezka pro chodce (dospělý s dítětem, vzor 2025) | vzor vyhlášky, dvojice z C09a (CC0) | úřední dílo / CC0 |
 | `C8a.svg` | C 8a | Stezka pro cyklisty | vzor vyhlášky, kolo z B 8 | úřední dílo / PD |
 | `C9a.svg` | C 9a | Stezka pro chodce a cyklisty společná (dospělý s dítětem nahoře, kolo dole, bez čáry; vzor 2025) | vzor vyhlášky, dvojice z C09a (CC0), kolo z B 8 | úřední dílo / CC0 / PD |
 | `C10a.svg` | C 10a | Stezka pro chodce a cyklisty dělená (chodci vlevo, kolo vpravo: strany vyměněné, dvojice i kolo nezrcadlené, dítě vlevo a dospělý vpravo jako ve vzoru) | jako C 9a | úřední dílo / CC0 / PD |
@@ -101,6 +102,7 @@ přečíslování: https://cs.wikipedia.org/wiki/Seznam_dopravn%C3%ADch_zna%C4%8
 | `IZ8a-zakaz-stani.svg` | IZ 8a | Zóna s dopravním omezením, B 29 (zóna zákazu stání) | vzor vyhlášky | úřední dílo / MIT |
 | `IZ8a-zakaz-zastaveni.svg` | IZ 8a | Zóna s dopravním omezením, B 28 | vzor vyhlášky | úřední dílo / MIT |
 | `IZ8a-placene-stani.svg` | IZ 8a | Zóna s dopravním omezením se symbolem IP 13c (placené stání) | vzor vyhlášky | úřední dílo / MIT |
+| `IZ10a.svg` | IZ 10a | Sdílená zóna (nápis ZÓNA, auto, cyklista, chodec, B 20a 20; vzor 386/2023 Sb., poměr 100 × 131, asi 5,8 kB s nápisem na křivkách) | vzor vyhlášky, auto z IZ 5a, chodec z B 30 (hlava překreslená), kolo z B 8, rámy a cyklista vlastní kresba | úřední dílo / PD / MIT |
 | `IZ9a.svg` | IZ 9a | Zóna pro cyklisty (nápis „CYKLISTICKÁ ZÓNA“ na dva řádky, od vyhlášky 84/2016 Sb.) | vzor vyhlášky, kolo z B 8 | úřední dílo / PD |
 | `O1.svg` | O 1 | Symbol osoby na vozíku (označení vozidla ZTP, symbol z IP 12 a V 10f) | vlastní kresba mezinárodního symbolu | MIT |
 | `E12a.svg` | E 12a | Jízda cyklistů v protisměru (pod IP 4a/IP 4b) | vzor vyhlášky (podoba od 2016) | úřední dílo / PD |
