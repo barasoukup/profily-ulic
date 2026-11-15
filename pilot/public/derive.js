@@ -1676,6 +1676,9 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   if (edges.right === "plot" && kept.length > 1 && kept[0].e - kept[0].s < FENCE_SLIVER) { kept[1].s = kept[0].s; kept.shift(); }
   const segs = [];
   const kerbReqs = [];
+  // Each roadway with the tags of its own OSM way, for the signs of its lanes (signs.js): on a street of two
+  // roadways the other one's rules are not the clicked way's (Hradec, Hlavní: a living street beside the road).
+  const roads = [];
   // Inside (or within 100 m of) a paid parking zone, from the TSK zone boundaries (caller's inZps);
   // without them, TSK parking sections along the cut stand for the zone.
   const inZps = zoneKnown ?? parking.some((p) => p.kind === "useky");
@@ -1815,6 +1818,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       const cls = streetClass(lines, (r.s + r.e) / 2);
       const guessPark = cls && (cls.road || cls.motorway || cls.mk === 1 || cls.mk === 2) ? false : undefined;
       const roadClass = classGroup(cls);
+      roads.push({ s: r.s, e: r.e, tags });
       segs.push(...splitRoadway(r, { guessPark, tags, trams: inside, dirAt, lanesTotal, along: ownAxis ? (ownAxis.along !== (tags.oneway === "-1")) : true, single: new Set(axes.map((a) => a.id)).size === 1, parked, sides: sideTagsLR, kerbOpen, kerbBare, inZps, axesOneway: axes.every((a) => a.oneway), axisInside: here.length > 0, divided, roadClass }).map((x) => ({ ...x, mtvu: r.code,
         // Bus lanes carry trolleybuses; so does the lane of a zone closed to cars but open to public transport
         // (třída Míru in Pardubice: motor_vehicle=delivery, psv=yes).
@@ -1927,6 +1931,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     edges: { ...edges },
     runs,
     axisT,
+    roads,
     extent: [kept[0].s, kept.at(-1).e], // offsets of the right and left profile ends along the cut
     // A roadway this wide along the cut usually means the cut crosses a junction.
     junction: kept.some((r) => (r.code === 701 || r.code === 700) && r.e - r.s > 25),

@@ -87,3 +87,20 @@ test("každá značka s tabulkou z dat jde v Návrhu vybrat jako vlastní polož
   assert.equal(signLabel({ k: "ip11a", plate: "kolme" }), "IP 11b Parkoviště (kolmé stání)");
   assert.equal(signLabel({ k: "ip11a" }), "IP 11a Parkoviště");
 });
+
+test("ulice ze dvou vozovek: každá má značky své cesty z OSM (Hradec, Hlavní: obytná zóna jen u jednopruhové vozovky)", () => {
+  // Screen order from extent[1] = 12 down to extent[0] = 0: the living street (2.9 m) right of the main road.
+  const living = { highway: "living_street", oneway: "yes" };
+  const main = { highway: "residential", maxspeed: "30" };
+  const p = deriveSigns({
+    segments: [{ type: "chodnik", width: 2 }, { type: "pruh", width: 2.55, dir: "backward" }, { type: "pruh", width: 2.55 },
+      { type: "zelen", width: 2 }, { type: "pruh", width: 2.9 }],
+    extent: [0, 12],
+    roads: [{ s: 0, e: 2.9, tags: living }, { s: 4.9, e: 10, tags: main }],
+  }, living);
+  const keys = (s) => (s.signs || []).map((x) => x.k);
+  assert.deepEqual(keys(p.segments[1]), ["b20a"]);
+  assert.deepEqual(keys(p.segments[2]), ["b20a"]);
+  assert.deepEqual(keys(p.segments[4]), ["ip26a"]);
+  assert.equal(p.roads, undefined);
+});
