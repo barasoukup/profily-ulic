@@ -73,7 +73,7 @@ export const OSM_PACK = (() => {
   const v = typeof location === "undefined" ? null : new URLSearchParams(location.search).get("osm");
   return v === "r2" || v === "balik" ? v : null;
 })();
-export const R2_OSM = "https://pub-REPLACE.r2.dev/osm";
+export const R2_OSM = "https://pub-a2b7312aca0a4dfe8a49583ae59ddbc6.r2.dev/osm";
 const PACKS = ["cz", "sk"];
 let packs;
 const packTiles = async (names) => {
