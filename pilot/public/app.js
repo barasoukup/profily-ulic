@@ -158,7 +158,7 @@ kinds.ortho.push(L.tileLayer("https://gis.brno.cz/ags1/rest/services/OMI/OMI_bas
 if (STATY?.slovensko) {
   const pts = STATY.slovensko.flat(), xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]);
   kinds.ortho.push(L.tileLayer(`${SK_ORTHO}/tile/{z}/{y}/{x}`, {
-    maxZoom: 21, maxNativeZoom: 19, attribution: "ortofoto © ÚGKK SR, GKÚ, NLC (ZBGIS)",
+    maxZoom: 21, maxNativeZoom: 19, attribution: "ortofoto © GKÚ Bratislava, NLC (ZBGIS)",
     bounds: L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]),
   }));
 }

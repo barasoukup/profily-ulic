@@ -36,6 +36,29 @@ při prvním řezu ve městě), texty i uvedení zdrojů v exportu sedí na mís
 Streetmixu). Bývalé stránky `/<město>/` přesměrují na `/?mesto=<město>` i s řezem v odkazu
 (`tools/city_site.mjs`, `tools/build_city_site.mjs`; místní server totéž).
 
+### Slovensko a cizina (Bára 15. 11. 2026)
+
+Mimo města platí stát řezu (`staty.json` z `node tools/build_staty.mjs`: Česko z RÚIAN, Slovensko ze ZBGIS ÚGKK SR,
+asi 30 m): „cesko“, „slovensko“, jinde „cizina“ (okraje výřezů OSM za hranicí). Bez `staty.json` je všechno mimo
+města „cesko“ jako dřív. Mimo Česko (`towns/slovensko.js`, `city.abroad`) se aplikace neptá technické mapy ČÚZK ani
+RÚIAN (DMVS za hranicí odpovídá bez CORS a vypadalo to jako výpadek). Profil je odhad z OSM a ortofota
+(`ortho-osm.js`), hláška „Mimo Česko technickou mapu nemáme, profil je jen odhad“, u názvu „mimo Česko, jen odhad
+z OSM“.
+
+- **Ortofoto Slovenska:** ZBGIS `Ortofoto_hres` (GKÚ Bratislava, NLC, CC BY 4.0), dlaždice Web Mercator do úrovně 19 po
+  512 px (asi 10 cm; Bratislava 2023, Košice 2025), CORS, cache na den. Čte se pro pruhy a obruby
+  (`lanes-ortho.js`, zdroj `sk`), pro tramvajové těleso (`ortho.js`, export PNG) a je i v podkladové mapě (jen na
+  Slovensku, mimo něj vrací průhledné dlaždice). Mozaika je světlá a do žluta: asfalt v Košicích měl jas 200 a o 10
+  zelenější než červená a modrá, takže vypadal jako tráva a profil nevznikl (11 ze 40 řezů). Odstín se proto
+  bere vůči šedým pixelům snímku (`balance`, jen pro `sk`). Vyhodnocení `evaluation/slovensko/ZPRAVA.md`.
+- **Domy:** ZBGIS vrstva Budova (`identify`, `/query` ZBGIS vrací 503): druh stavby (hala, nízká stavba, rodinný dům)
+  a výška nad terénem; podlaží = výška / 3,3 m, ale `building:levels` z OSM má přednost. Rok stavby ani podlaží
+  ZBGIS nemá.
+- **Hledání:** ZBGIS `find` (ulice MV SR s osou, obce, adresní body Registra adries), jen když mapa ukazuje
+  Slovensko, dotaz má slovenská písmena (ä ô ľ ĺ ŕ) nebo RÚIAN nic nenašel (`search-sk.js`). „Hlavná 12 Košice“
+  najde adresu, „Hlavná Košice“ ulici v Košicích.
+- Ilustrace, mobiliář a značky zůstávají české (návrh slovenských v `evaluation/slovensko/ZPRAVA.md`).
+
 ## Odkud jsou data (Praha)
 
 - **Šířky:** IPR Praha, *Mapa technického využití území* (MTVU), služba

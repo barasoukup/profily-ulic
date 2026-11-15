@@ -92,7 +92,7 @@ test("stát podle polohy řezu: Česko, Slovensko, cizina", async () => {
   assert.equal(C.cityAt(48.2082, 16.3738), "cizina"); // Wien
   const sk = C.setCity("slovensko");
   assert.ok(sk.abroad && !sk.techMap && !sk.dataName);
-  assert.match(C.creditLines(sk, { orthoCity: "sk" })[0], /^Data: budovy © GKÚ Bratislava \(ZBGIS, CC BY 4\.0\) · ortofoto © ÚGKK SR/);
+  assert.match(C.creditLines(sk, { orthoCity: "sk" })[0], /^Data: budovy © GKÚ Bratislava \(ZBGIS, CC BY 4\.0\) · ortofoto © GKÚ Bratislava, NLC/);
   // Elsewhere abroad no data of its own to credit: the line starts with OSM.
   assert.match(C.creditLines(C.setCity("cizina"))[0], /^Data: © přispěvatelé OpenStreetMap/);
   C.setCity("praha");

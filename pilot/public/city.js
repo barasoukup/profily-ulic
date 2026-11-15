@@ -470,7 +470,7 @@ export function creditLines(c, src = {}, art = false) {
   if (src.dmvs && !c.credit.includes("RÚIAN")) data.push(t("RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)"));
   if (src.ortho) data.push(t("ortofoto © ČÚZK, 2025 (CC BY 4.0)"));
   const ORTHO_CITY = { ipr: t("ortofoto © IPR Praha, 2024"), brno: t("ortofoto © Statutární město Brno, 2025"), plzen: t("ortofoto © Statutární město Plzeň, 2024"),
-    sk: t("ortofoto © ÚGKK SR, GKÚ, NLC (ZBGIS, CC BY 4.0)") };
+    sk: t("ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)") };
   if (ORTHO_CITY[src.orthoCity]) data.push(ORTHO_CITY[src.orthoCity]);
   data.push(data.length ? t("© přispěvatelé OpenStreetMap (ODbL)") : t("Data: {data}", { data: t("© přispěvatelé OpenStreetMap (ODbL)") }));
   return [
