@@ -115,16 +115,52 @@ function streetSpeed(tags, zones) {
 // Signs of the parts of a derived profile (segments from the viewer's left to right), at most MAX_PER_PART each.
 export function deriveSigns(profile, tags = {}, ctx = {}) {
   const segs = profile.segments;
-  const rules = streetSigns(tags);
   const road = segs.map((s, i) => (ROAD.has(s.type) ? i : -1)).filter((i) => i >= 0);
   const lanes = road.filter((i) => segs[i].type !== "obsluzna");
-  // One-way: all the lanes go one way; contraflow cyclists when OSM opens it (oneway:bicycle=no) or a part
-  // carries cyclists against the cars. The sign follows the lane's direction when drawn (signFile).
+  // The tags of each lane's roadway (derive.js roads, by position: the segments run from extent[1] down to
+  // extent[0], the roadways along the cut), the clicked way's where it is not known.
+  const own = new Map();
+  if (profile.roads?.length && profile.extent) {
+    let t = profile.extent[1];
+    segs.forEach((s, i) => {
+      const mid = t - s.width / 2;
+      t -= s.width;
+      const r = profile.roads.find((x) => mid >= x.s && mid <= x.e);
+      if (r && lanes.includes(i)) own.set(i, r.tags);
+    });
+  }
+  const tagsOf = (i) => own.get(i) || tags;
+  // The rules of each roadway, for all its lanes together (one-way, speed per lane).
+  const groups = new Map();
+  for (const i of lanes) {
+    const tg = tagsOf(i);
+    if (!groups.has(tg)) groups.set(tg, []);
+    groups.get(tg).push(i);
+  }
+  // One-way: all the lanes of the profile go one way (not the halves of a divided road); contraflow cyclists
+  // when OSM opens it (oneway:bicycle=no) or a part carries cyclists against the cars. The sign follows the
+  // lane's direction when drawn (signFile).
   const dirs = new Set(lanes.map((i) => segs[i].dir || "forward"));
-  const oneway = lanes.length && ["yes", "1", "true", "-1"].includes(tags.oneway) && dirs.size === 1;
-  const contra = oneway && (tags["oneway:bicycle"] === "no" || segs.some((s) => s.bikeDir && s.bikeDir !== [...dirs][0]));
-  const lanesSpeed = String(tags["maxspeed:lanes"] || "").split("|").map(num);
-  const speed = streetSpeed(tags, rules);
+  const ruleOf = new Map();
+  for (const [tg, ls] of groups) {
+    const rules = streetSigns(tg);
+    const oneway = ["yes", "1", "true", "-1"].includes(tg.oneway) && dirs.size === 1;
+    const contra = oneway && (tg["oneway:bicycle"] === "no" || segs.some((s) => s.bikeDir && s.bikeDir !== [...dirs][0]));
+    const lanesSpeed = String(tg["maxspeed:lanes"] || "").split("|").map(num);
+    const forward = ls.filter((j) => (segs[j].dir || "forward") === "forward");
+    const speed = streetSpeed(tg, rules);
+    for (const i of ls) {
+      const out = [];
+      if (oneway) out.push({ k: "oneway", ...(contra ? { plate: "protismer" } : {}) });
+      // Speed per lane (maxspeed:lanes counts the lanes from the left in the way's direction), per direction,
+      // or of the street; a zone sign says its own speed.
+      const v = lanesSpeed.length === ls.length && forward.length === ls.length ? lanesSpeed[ls.indexOf(i)]
+        : num(tg[(segs[i].dir || "forward") === "forward" ? "maxspeed:forward" : "maxspeed:backward"]) ?? speed;
+      if (v) out.push({ k: "b20a", v });
+      out.push(...rules);
+      ruleOf.set(i, out);
+    }
+  }
   segs.forEach((s, i) => {
     const out = [];
     const t = s.type;
@@ -143,16 +179,7 @@ export function deriveSigns(profile, tags = {}, ctx = {}) {
         out.push({ k: s.position === "on_kerb" ? (along ? "ip11e" : "ip11d") : along ? "ip11g" : "ip11f" });
       } else out.push({ k: "ip11a", ...(s.orient ? { plate: s.orient } : {}) });
     }
-    if (lanes.includes(i)) {
-      if (oneway) out.push({ k: "oneway", ...(contra ? { plate: "protismer" } : {}) });
-      // Speed per lane (maxspeed:lanes counts the lanes from the left in the way's direction), per direction,
-      // or of the street; a zone sign says its own speed.
-      const forward = lanes.filter((j) => (segs[j].dir || "forward") === "forward");
-      const v = lanesSpeed.length === lanes.length && forward.length === lanes.length ? lanesSpeed[lanes.indexOf(i)]
-        : num(tags[(s.dir || "forward") === "forward" ? "maxspeed:forward" : "maxspeed:backward"]) ?? speed;
-      if (v) out.push({ k: "b20a", v });
-      out.push(...rules);
-    }
+    if (ruleOf.has(i)) out.push(...ruleOf.get(i));
     if (out.length) s.signs = out.slice(0, MAX_PER_PART);
   });
   // No parking / no stopping on a kerb: on the outermost lane of that side (parking:<side>:restriction=
@@ -168,6 +195,7 @@ export function deriveSigns(profile, tags = {}, ctx = {}) {
     s.signs = [...list.slice(0, MAX_PER_PART - 1), { k }];
   }
   delete profile.zones;
+  delete profile.roads;
   return profile;
 }
 
