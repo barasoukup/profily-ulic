@@ -1,9 +1,11 @@
 // Address search on the map: the RÚIAN search service of ČÚZK ("Vyhledávací služba nad daty RÚIAN",
 // GeocodeSOE: suggest while typing, then the chosen place from the service's own layers). No key, CORS for any
 // origin, open data under CC BY 4.0. Considerate to ČÚZK: nothing under 3 characters, 300 ms debounce, a stale
-// request is cancelled, recent answers are kept in memory.
+// request is cancelled, recent answers are kept in memory. Slovakia from ZBGIS of ÚGKK SR (search-sk.js), asked only
+// where it is likely: the map shows Slovakia, the query is Slovak, or RÚIAN found nothing.
 // The top half is pure (parsing, ranking, labels, geometry; tests/search.test.js), mountSearch() is the UI.
 import { t } from "./i18n.js";
+import { findSk, locateSk, looksSlovak } from "./search-sk.js";
 
 export const RUIAN_SEARCH = "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer";
 const GEOCODE = `${RUIAN_SEARCH}/exts/GeocodeSOE`;
@@ -80,7 +82,11 @@ export function score(item, query) {
   let s = KINDS[item.type]?.rank ?? 0;
   if (name && (q === name || q.startsWith(name + " "))) s += 40; // the whole name typed
   else if (name && name.startsWith(q)) s += 20; // still typing it
-  const townNamed = town && ` ${q} `.includes(` ${town} `);
+  // Slovakia: the town of a street is a municipality or a city district ("Košice-Staré Mesto"); the words of the
+  // query beyond the street's name may name it.
+  const extra = words.filter((w) => w && !/^\d/.test(w) && !` ${name} `.includes(` ${w} `));
+  const townWords = ` ${town} `;
+  const townNamed = town && (` ${q} `.includes(` ${town} `) || (item.sk && extra.length > 0 && extra.every((w) => townWords.includes(` ${w} `))));
   if (townNamed) s += 30;
   else if (item.type === "Ulice" && BIG.has(town)) s += 10; // addresses stay after the streets of other towns
   if (qNumbers.length) {
@@ -152,6 +158,14 @@ const streetGeometry = (params) => layerQuery(4, { ...params, outFields: "kod", 
 // a street, a street), or null (a town, a district, an address without a street).
 export async function locate(item, signal) {
   const zoom = KINDS[item.type]?.zoom || 16;
+  if (item.sk) {
+    const { point, paths } = await locateSk(item, getJSON, signal);
+    // A street: its middle; an address: the point of its street nearest to it; a town: its middle, no cut.
+    const at = item.type === "Ulice" ? streetMiddle(paths) : point;
+    if (!at) throw new Error("bez polohy");
+    const cut = item.type === "Ulice" ? at : item.type === "AdresniMisto" ? (paths && nearestOnPaths(paths, point)) || point : null;
+    return { lon: at[0], lat: at[1], zoom, cut: cut && { lon: cut[0], lat: cut[1] } };
+  }
   if (item.type === "AdresniMisto") {
     const a = (await getJSON(layerQuery(1, { objectIds: item.oid, outFields: "ulice" }), signal)).features?.[0];
     if (!a?.geometry) throw new Error("adresa bez polohy");
@@ -177,11 +191,12 @@ export async function locate(item, signal) {
 
 // ---------- UI: a Leaflet control at the map's top left ----------
 // onPick({ item, lat, lon, cut }) after the map has moved; status(msg, kind) for a failure.
-export function mountSearch(map, { status, onPick }) {
+// inSlovakia(): does the map show Slovakia (Slovak places are then asked of ZBGIS along with RÚIAN).
+export function mountSearch(map, { status, onPick, inSlovakia = () => false }) {
   const L = globalThis.L;
   const el = L.DomUtil.create("div", "search leaflet-bar");
   el.innerHTML = `<input id="search-input" type="search" role="combobox" aria-autocomplete="list" aria-expanded="false"
-    aria-controls="search-list" aria-label="${t("Hledat adresu nebo ulici (RÚIAN © ČÚZK)")}" placeholder="${t("Hledat adresu nebo ulici")}"
+    aria-controls="search-list" aria-label="${t("Hledat adresu nebo ulici (RÚIAN © ČÚZK, ZBGIS © ÚGKK SR)")}" placeholder="${t("Hledat adresu nebo ulici")}"
     autocomplete="off" spellcheck="false" enterkeyhint="search"><ul id="search-list" role="listbox" aria-label="${t("Návrhy")}" hidden></ul>`;
   const input = el.querySelector("input"), list = el.querySelector("ul");
   L.DomEvent.disableClickPropagation(el);
@@ -234,7 +249,11 @@ export function mountSearch(map, { status, onPick }) {
     ctrl?.abort();
     const mine = (ctrl = new AbortController());
     try {
-      const found = rankResults(parseSuggestions(await getJSON(suggestUrl(text.trim()), mine.signal)), text);
+      // RÚIAN, and ZBGIS where Slovakia is likely (with RÚIAN, or after it when it found nothing).
+      const sk = () => findSk(text.trim(), getJSON, mine.signal).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání ZBGIS", err); return []; });
+      const both = inSlovakia() || looksSlovak(text);
+      const [cz, skNow] = await Promise.all([getJSON(suggestUrl(text.trim()), mine.signal).then(parseSuggestions, (err) => { if (both && err.name !== "AbortError") return []; throw err; }), both ? sk() : []]);
+      const found = rankResults([...cz, ...(both || cz.length ? skNow : await sk())], text);
       cache.set(key, found);
       if (cache.size > 40) cache.delete(cache.keys().next().value);
       if (mine === ctrl && document.activeElement === input) show(found, t("Nic jsem nenašla."));
@@ -261,7 +280,7 @@ export function mountSearch(map, { status, onPick }) {
     } catch (err) {
       if (err.name === "AbortError") return;
       console.warn("hledání", err);
-      status(t("Místo se nepodařilo načíst z RÚIAN ČÚZK. Zkuste to znovu."), "error");
+      status(item.sk ? t("Místo se nepodařilo načíst ze ZBGIS. Zkuste to znovu.") : t("Místo se nepodařilo načíst z RÚIAN ČÚZK. Zkuste to znovu."), "error");
     }
   }
 

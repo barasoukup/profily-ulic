@@ -341,12 +341,13 @@ export const EN = {
   "okres": "district",
   "kraj": "region",
   "místo": "place",
-  "Hledat adresu nebo ulici (RÚIAN © ČÚZK)": "Search an address or a street (RÚIAN © ČÚZK)",
+  "Hledat adresu nebo ulici (RÚIAN © ČÚZK, ZBGIS © ÚGKK SR)": "Search an address or a street (RÚIAN © ČÚZK, ZBGIS © ÚGKK SR)",
   "Hledat adresu nebo ulici": "Search an address or a street",
   "Návrhy": "Suggestions",
   "Nic jsem nenašla.": "Nothing found.",
   "Vyhledávání ČÚZK teď neodpovídá.": "The ČÚZK search is not responding right now.",
   "Místo se nepodařilo načíst z RÚIAN ČÚZK. Zkuste to znovu.": "The place could not be loaded from RÚIAN ČÚZK. Try again.",
+  "Místo se nepodařilo načíst ze ZBGIS. Zkuste to znovu.": "The place could not be loaded from ZBGIS. Try again.",
 
   // ---------- rules.js: widths after IPR's manual and ČSN ----------
   "jízdní pruh dálnice: ČSN 73 6110 skupina A 3,5 m": "motorway lane: ČSN 73 6110 group A 3.5 m",
