@@ -104,3 +104,23 @@ test("ulice ze dvou vozovek: každá má značky své cesty z OSM (Hradec, Hlavn
   assert.deepEqual(keys(p.segments[4]), ["ip26a"]);
   assert.equal(p.roads, undefined);
 });
+
+test("ulice ze dvou vozovek: padesátka se kreslí, když druhá vozovka má jinou rychlost (Bára, Poncarova)", () => {
+  const a = { highway: "secondary", oneway: "yes", maxspeed: "70" };
+  const b = { highway: "secondary", oneway: "yes", maxspeed: "50" };
+  const make = (tb) => deriveSigns({
+    segments: [{ type: "pruh", width: 4, dir: "backward" }, { type: "pruh", width: 4, dir: "backward" }, { type: "zelen", width: 3 },
+      { type: "pruh", width: 4 }, { type: "pruh", width: 4 }],
+    extent: [0, 19],
+    roads: [{ s: 0, e: 8, tags: tb }, { s: 11, e: 19, tags: a }],
+  }, a);
+  const speeds = (p) => p.segments.map((s) => (s.signs || []).find((x) => x.k === "b20a")?.v);
+  assert.deepEqual(speeds(make(b)), [70, 70, undefined, 50, 50]);
+  // Both roadways at the town's 50: no sign, as before.
+  const both50 = deriveSigns({
+    segments: [{ type: "pruh", width: 4, dir: "backward" }, { type: "zelen", width: 3 }, { type: "pruh", width: 4 }],
+    extent: [0, 11],
+    roads: [{ s: 0, e: 4, tags: b }, { s: 7, e: 11, tags: { ...a, maxspeed: "50" } }],
+  }, a);
+  assert.deepEqual(speeds(both50), [undefined, undefined, undefined]);
+});

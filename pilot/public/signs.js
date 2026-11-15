@@ -104,11 +104,12 @@ export function streetSigns(tags = {}) {
   return z;
 }
 // The street's speed limit unless a zone sign says it, or it is the town's default 50 without a sign.
-function streetSpeed(tags, zones) {
+// showDefault: the town's 50 is drawn too (another roadway of the profile has a sign of its own speed).
+function streetSpeed(tags, zones, showDefault = false) {
   const speed = num(tags.maxspeed);
   const zoned = zones.find((s) => ZONE_SPEED[s.k]);
   if (!speed || (zoned && ZONE_SPEED[zoned.k] === speed)) return undefined;
-  if (speed === 50 && !/sign/.test(String(tags["source:maxspeed"] || "")) && !tags.traffic_sign) return undefined;
+  if (speed === 50 && !showDefault && !/sign/.test(String(tags["source:maxspeed"] || "")) && !tags.traffic_sign) return undefined;
   return speed;
 }
 
@@ -141,6 +142,9 @@ export function deriveSigns(profile, tags = {}, ctx = {}) {
   // when OSM opens it (oneway:bicycle=no) or a part carries cyclists against the cars. The sign follows the
   // lane's direction when drawn (signFile).
   const dirs = new Set(lanes.map((i) => segs[i].dir || "forward"));
+  // Where one roadway has a speed sign, the town's 50 of another is drawn too, so the difference shows (Bára,
+  // Poncarova: 70 one way, 50 the other).
+  const signed = [...groups.keys()].some((tg) => streetSpeed(tg, streetSigns(tg)) && num(tg.maxspeed) !== 50);
   const ruleOf = new Map();
   for (const [tg, ls] of groups) {
     const rules = streetSigns(tg);
@@ -148,7 +152,7 @@ export function deriveSigns(profile, tags = {}, ctx = {}) {
     const contra = oneway && (tg["oneway:bicycle"] === "no" || segs.some((s) => s.bikeDir && s.bikeDir !== [...dirs][0]));
     const lanesSpeed = String(tg["maxspeed:lanes"] || "").split("|").map(num);
     const forward = ls.filter((j) => (segs[j].dir || "forward") === "forward");
-    const speed = streetSpeed(tg, rules);
+    const speed = streetSpeed(tg, rules, signed && groups.size > 1);
     for (const i of ls) {
       const out = [];
       if (oneway) out.push({ k: "oneway", ...(contra ? { plate: "protismer" } : {}) });
