@@ -60,3 +60,15 @@ test("ortofoto a OSM: chodník (pěšina) se nepočítá, bez obrázku nic", () 
   assert.equal(orthoOsmPolys({ osm: els, frame, dir, way: els.elements[0], st: image() }), null);
   assert.equal(orthoOsmPolys({ osm: osm(), frame, dir, way: osm().elements[0], st: null }), null);
 });
+
+test("ortofoto a OSM: trávník z OSM mezi obrubou a domem je zeleň, voda konec profilu", () => {
+  const lawn = { type: "area", id: 7, tags: { landuse: "grass" }, geometry: [ll(-6, -20), ll(-4, -20), ll(-4, 20), ll(-6, 20), ll(-6, -20)] };
+  const river = { type: "area", id: 8, tags: { natural: "water" }, geometry: [ll(4, -20), ll(30, -20), ll(30, 20), ll(4, 20), ll(4, -20)] };
+  const els = { elements: [osm().elements[0], house(-16, -8), lawn, river] };
+  const polys = orthoOsmPolys({ osm: els, frame, dir, way: els.elements[0], st: image() });
+  assert.deepEqual(polys.slice(1, 3).map((p) => p.code), [401, 501]);
+  const p = deriveProfile({ center: [0, 0], dir, half: 40, polys, osm: els, frame, way: els.elements[0] });
+  // t = −x: the lawn (x −6…−4) lies at t 4…6, past the 3.5 m kerb on the west side; the river (x 4…30) east, the profile's right.
+  assert.ok(p.segments.some((s) => s.type === "zelen" && Math.abs(s.width - 2) < 0.2), JSON.stringify(p.segments.map((s) => [s.type, s.width])));
+  assert.equal(p.edges.right, "voda");
+});

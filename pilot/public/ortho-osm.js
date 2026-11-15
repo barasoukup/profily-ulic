@@ -25,17 +25,22 @@ function crossT(pts, half, u0 = 0) {
 // The buildings are read on lines u = 0, ±1 and ±2 m: OSM's outlines are simpler than the map's, a row of houses
 // may have a gap of a metre exactly at the cut.
 export const BUILDING_U = [0, -1, 1, -2, 2];
+// Green areas of OSM (tools/build_osm_tiles.mjs keeps them near the roads, cut by tiles): lawns, parks, gardens, woods.
+// Water, allotments and cemeteries (kept alike): where a profile ends, as MTVU's water (501) and gardens (300).
+export const WATER = (t) => t.natural === "water" || ["reservoir", "basin", "allotments", "cemetery"].includes(t.landuse) || t.waterway === "riverbank";
+export const GREEN = (t) => ["grass", "meadow", "village_green", "flowerbed", "forest", "orchard", "recreation_ground"].includes(t.landuse) || ["park", "garden"].includes(t.leisure) || ["grass", "grassland", "scrub", "wood", "heath"].includes(t.natural);
 // tu: (lon, lat) → [t across the cut, u along it]; wayId: the clicked street. Returns the clicked way's crossing
 // { t, along (+1 when it runs with u), tags }, the other ways crossing the cut, the buildings' stretches on the lines
 // u, the nearest facade on each side of the axis (A: t below it, B: above; null where none within 40 m) and the
 // buildings' outlines (in [t, u]).
 export function osmAlong(elements, tu, wayId, half = 45) {
   const toTU = (g) => g.map((p) => tu(p.lon, p.lat));
-  const buildings = [], ways = [], outlines = [];
+  const buildings = [], ways = [], outlines = [], greens = [];
   let own = null;
   for (const el of elements || []) {
     const tags = el.tags || {};
     if (!el.geometry) continue;
+    if (el.type === "area" && !tags.building && (GREEN(tags) || WATER(tags))) { greens.push(el); continue; }
     if (el.type === "area" && tags.building && tags.building !== "no" && tags.building !== "roof" && !underground(tags)) {
       const rings = [toTU(el.geometry), ...(el.holes || []).map(toTU)];
       let hit = false;
@@ -60,7 +65,7 @@ export function osmAlong(elements, tu, wayId, half = 45) {
       if (hits.length) { facade[side] = hits.reduce((a, b) => (Math.abs(b - own.t) < Math.abs(a - own.t) ? b : a)); break; }
     }
   }
-  return { own, buildings, ways, facade, outlines };
+  return { own, buildings, ways, facade, outlines, greens };
 }
 
 // ---------- the carriageway OSM implies ----------
@@ -245,6 +250,13 @@ export function orthoOsmPolys({ osm, frame, dir, way, st }) {
   const bboxOf = (pts) => [Math.min(...pts.map((p) => p[0])), Math.min(...pts.map((p) => p[1])), Math.max(...pts.map((p) => p[0])), Math.max(...pts.map((p) => p[1]))];
   const rect = (code, label, s, e) => { const ring = [xy(s, -ALONG), xy(e, -ALONG), xy(e, ALONG), xy(s, ALONG), xy(s, -ALONG)]; return { code, label, guess: true, orthoOsm: true, rings: [ring], bbox: bboxOf(ring) }; };
   const polys = [rect(701, "vozovka (ortofoto a OSM)", k.A, k.B)];
+  // OSM's green areas, water and allotments before the sidewalks: where OSM has a lawn or a park it is greenery, water
+  // or allotments end the profile (the carriageway stays).
+  for (const el of o.greens) {
+    const rings = [el.geometry, ...(el.holes || [])].map((r) => r.map((g) => frame.toXY(g.lon, g.lat)));
+    const [code, label] = GREEN(el.tags) ? [401, "zeleň (OSM)"] : ["allotments", "cemetery"].includes(el.tags.landuse) ? [300, "zahrady (OSM)"] : [501, "voda (OSM)"];
+    polys.push({ code, label, guess: true, orthoOsm: true, rings, bbox: bboxOf(rings[0]) });
+  }
   for (const [side, sg] of [["A", -1], ["B", 1]]) {
     const kerb = k[side], f = o.facade[side], says = road.sidewalk[side];
     const far = f !== null ? f : says === "no" ? null : says || road.sidewalkW[side] ? kerb + sg * (road.sidewalkW[side] || SIDEWALK) : null;

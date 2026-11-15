@@ -192,6 +192,9 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Bára: použít jako záložní případ, když technická mapa chybí. `pilot/public/ortho-osm.js`, zapojené v `app.js`, když
   `deriveProfile` vrátí odhad z OSM (`estimate`). Plochy jsou označené jako odhad. Popis v `pilot/README.md` (bod 11a).
 - Pro rozšíření do ciziny: nejdřív hledat místní mapy povrchů (NL BGT, Vídeň FMZK…), tohle je až záloha.
+- Dlaždice OSM (Bára 15. 11. 2026): všechny budovy (ne jen s výškou; v ČR dál primárně RÚIAN, OSM navíc pro zahraničí),
+  zeleň, voda, zahrádky, hřbitovy, obruby `barrier=kerb`, `area:highway`, u budov rok a střecha. Asi +32 % velikosti
+  (celá ČR ~1 GB, hrana limitu Pages). Popis v `pilot/README.md` (Dlaždice OSM). Předáno session dlaždic na R2.
 
 ## Jazyky (Bára 12. 11. 2026)
 - Anglicky se aplikace jmenuje **Street Profile**. Čeština a angličtina: `pilot/public/i18n.js` (`t("český text")`), překlady v `pilot/public/en.js`, přepínač EN / CS

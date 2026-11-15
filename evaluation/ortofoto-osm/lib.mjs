@@ -10,7 +10,8 @@ import { osmAlong as appOsmAlong } from "../../pilot/public/ortho-osm.js";
 
 export const ROOT = path.dirname(new URL(import.meta.url).pathname);
 const EVAL = path.join(ROOT, "..");
-const TILES = path.join(EVAL, "..", "pilot", "data", "osm-tiles");
+// OSM_TILES: another build of the tiles (e.g. with all buildings and green areas, before it is the app's).
+const TILES = process.env.OSM_TILES || path.join(EVAL, "..", "pilot", "data", "osm-tiles");
 export const median = (a) => { const b = a.filter((v) => Number.isFinite(v)).sort((x, y) => x - y); return b.length ? b[b.length >> 1] : NaN; };
 export const mean = (a) => (a.length ? a.reduce((x, y) => x + y, 0) / a.length : NaN);
 

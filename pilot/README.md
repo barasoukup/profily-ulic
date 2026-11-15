@@ -101,9 +101,18 @@ PROJ_DATA=…/Resources/qgis/proj GDAL_DATA=…/Resources/qgis/gdal`. Exporty og
 (`tools/build_osm_tiles.mjs`) se zapisují proudově za 1–2 min. Úsporný zápis (`pilot/public/osmtile.js`): jen značky,
 které profil čte nebo by mohl (zóny, rychlosti, povrch, zastávky, přechody, druhy stromů, šířky, značky), chodníky
 a pěšiny jen u ulic (v parcích, lesích a polích ne), bez polních cest; souřadnice jako rozdíly celých čísel (budovy
-na 1 m); dlouhé cesty rozdělené po dlaždicích a v aplikaci zase spojené. Asi 800 MB ve 245 000 dlaždicích.
-Přesné výběry (ulice, parkování, stromy, nástupiště, mobiliář, bariéry, předzahrádky, budovy s počtem podlaží)
-jsou ve skriptu `tools/build_osm_data.sh`. Overpass se nepoužívá.
+na 1 m); dlouhé cesty rozdělené po dlaždicích a v aplikaci zase spojené. Do 15. 11. 2026 asi 800 MB ve 245 000
+dlaždicích.
+Přesné výběry jsou ve skriptu `tools/build_osm_data.sh`: ulice, parkování, stromy, nástupiště, mobiliář, bariéry
+(i obruby `barrier=kerb`), předzahrádky, budovy, zeleň, voda a plochy vozovek (`area:highway`). Overpass se nepoužívá.
+
+Od 15. 11. 2026 (Bára) jsou v dlaždicích **všechny budovy**, nejen ty s výškou nebo počtem podlaží; ty bez výšky
+jen do 60–90 m od silnice. V Česku zůstává hlavním zdrojem domů RÚIAN a technická mapa, OSM je tam kvůli místům
+bez technické mapy (`ortho-osm.js`) a kvůli zahraničí. U budov se drží i `start_date`, `roof:shape`,
+`building:material` a `building:min_level`. **Zelené plochy** (`landuse` grass, meadow, village_green, flowerbed,
+forest, orchard, recreation_ground; `leisure` park, garden; `natural` grass, grassland, scrub, wood, heath) a **voda,
+zahrádky a hřbitovy** se rozřežou po dlaždicích (každá dlaždice má svůj kus, na 1 m) a drží se jen v dlaždicích, kudy
+vede silnice. Pražský výřez: 88 → 116 MB (+32 %), celá ČR tedy asi 1 GB: na hraně limitu GitHub Pages.
 
 ### Orientace stání
 

@@ -40,16 +40,24 @@ export_layer() { # file layer where select
   "$OGR" -f GeoJSONSeq "$DIR/${NAME}_$1.geojsonl" "$PBF" "$2" -where "$3" -select "$4" -overwrite ${SPAT:+-spat $SPAT}
 }
 
-export_layer ways lines "highway IS NOT NULL OR railway = 'tram'" osm_id,name,highway,railway,other_tags
+export_layer ways lines "highway IS NOT NULL OR railway IN ('tram', 'light_rail')" osm_id,name,highway,railway,other_tags
 export_layer parking multipolygons "amenity = 'parking'" osm_id,osm_way_id,amenity,other_tags
 export_layer trees points "$(tag natural tree)" osm_id,other_tags
 export_layer treerows lines "$(tag natural tree_row)" osm_id,other_tags
 export_layer platforms_area multipolygons "$(tag public_transport platform) OR $(tag railway platform) OR $(tag highway platform)" osm_id,osm_way_id,other_tags
 export_layer furniture points "highway IN ('street_lamp', 'bus_stop', 'turning_circle', 'turning_loop') OR barrier IN ('bollard', 'planter') OR $(tag amenity bench) OR $(tag amenity bicycle_parking) OR $(tag amenity bicycle_rental) OR $(tag amenity shelter) OR $(tag amenity taxi) OR $(tag information board) OR $(tag information guidepost) OR $(tag information map) OR $(tag railway tram_stop) OR $(tag public_transport platform)" osm_id,highway,barrier,other_tags
-export_layer barriers lines "barrier IN ('fence', 'wall', 'city_wall', 'retaining_wall', 'hedge', 'guard_rail', 'jersey_barrier', 'handrail')" osm_id,barrier,other_tags
+export_layer barriers lines "barrier IN ('fence', 'wall', 'city_wall', 'retaining_wall', 'hedge', 'guard_rail', 'jersey_barrier', 'handrail', 'kerb')" osm_id,barrier,other_tags
 export_layer outdoor multipolygons "leisure = 'outdoor_seating'" osm_way_id,leisure,other_tags
 export_layer outdoor_pts points "$(tag leisure outdoor_seating)" osm_id,other_tags
-# Only buildings with a height or number of floors: the rest adds nothing (the technical map has the footprints).
-export_layer buildings multipolygons "building IS NOT NULL AND (other_tags LIKE '%\"building:levels\"%' OR other_tags LIKE '%\"height\"%' OR other_tags LIKE '%\"roof:levels\"%')" osm_id,osm_way_id,building,other_tags
+# All buildings (Bára 15. 11. 2026): without a technical map (ortho-osm.js) the OSM footprints are the facades. Those
+# with no height or floors are kept near the roads only (build_osm_tiles.mjs).
+export_layer buildings multipolygons "building IS NOT NULL" osm_id,osm_way_id,building,other_tags
+# Green areas (Bára 15. 11. 2026): lawns, parks, gardens, woods beside a street, for the profile without a technical
+# map (ortho-osm.js); cut by tiles and kept near the roads only (build_osm_tiles.mjs).
+# Without a technical map (abroad) OSM has to tell the rest too (Bára 15. 11. 2026): the outlines of carriageways and
+# sidewalks where they are mapped (area:highway), water and the plots that end a profile (allotments, cemeteries).
+export_layer areas multipolygons "other_tags LIKE '%\"area:highway\"%'" osm_id,osm_way_id,other_tags
+export_layer water multipolygons "natural = 'water' OR landuse IN ('reservoir', 'basin', 'allotments', 'cemetery') OR other_tags LIKE '%\"waterway\"=>\"riverbank\"%' OR other_tags LIKE '%\"water\"=>\"river\"%'" osm_id,osm_way_id,landuse,natural,other_tags
+export_layer green multipolygons "landuse IN ('grass', 'meadow', 'village_green', 'flowerbed', 'forest', 'orchard', 'recreation_ground') OR leisure IN ('park', 'garden') OR natural IN ('grass', 'grassland', 'scrub', 'wood', 'heath')" osm_id,osm_way_id,landuse,leisure,natural,other_tags
 
-node tools/build_osm_tiles.mjs "$OUT" "$DIR"/"$NAME"_{ways,parking,trees,treerows,platforms_area,furniture,barriers,outdoor,outdoor_pts,buildings}.geojsonl
+node tools/build_osm_tiles.mjs "$OUT" "$DIR"/"$NAME"_{ways,parking,trees,treerows,platforms_area,furniture,barriers,outdoor,outdoor_pts,buildings,green,areas,water}.geojsonl
