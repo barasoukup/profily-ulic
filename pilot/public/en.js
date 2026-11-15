@@ -658,7 +658,7 @@ const ABROAD = {
   rulesHead: "Widths per the IPR Prague manual (C.2), only indicative outside Czechia:", credit: "",
 };
 export const EN_CITY = {
-  slovensko: ABROAD,
+  slovensko: { ...ABROAD, dataShort: "ZBGIS and OSM", credit: "buildings © GKÚ Bratislava (ZBGIS, CC BY 4.0)" },
   cizina: ABROAD,
   cesko: {
     server: "ČÚZK technical map", dataName: "The ČÚZK technical map", dataShort: "the ČÚZK technical map, RÚIAN and OSM", techMap: NATIONAL,

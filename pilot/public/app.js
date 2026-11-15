@@ -359,7 +359,9 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
       try {
         const [lon, lat] = info.point;
         const p = await sources.podlaznost(lat, lon);
-        if (p.cornice) Object.assign(info, { cornice: p.cornice, roof: p.roof, levels: p.cornice + p.roof, roofType: p.roofType, iprKind: p.kind, newBuild: p.newBuild, area: p.area, src: "ipr" });
+        // Floors only estimated from a height (ZBGIS, Slovakia) yield to OSM's building:levels; the use stays.
+        if (p.fromHeight && info.levels) Object.assign(info, { iprKind: p.kind, area: p.area });
+        else if (p.cornice) Object.assign(info, { cornice: p.cornice, roof: p.roof, levels: p.cornice + p.roof, roofType: p.roofType, iprKind: p.kind, newBuild: p.newBuild, area: p.area, src: "ipr" });
         // RÚIAN (the towns): the year the house was completed and its walls of panels.
         if (p.built) info.built = p.built;
         if (p.panel) info.panel = 1;

@@ -83,8 +83,8 @@ test("každé město má anglické texty", async () => {
     const en = EN_CITY[id] || EN_CITY[cityById(id).like];
     assert.ok(en, id);
     // Abroad (city.js abroad) there is no technical map to name and no data of the city to credit.
-    const none = cityById(id).abroad ? ["dataName", "techMap", "credit"] : [];
-    for (const k of FIELDS) assert.ok(none.includes(k) ? !en[k] : typeof en[k] === "string" && en[k], `${id}.${k}`);
+    const none = cityById(id).abroad ? ["dataName", "techMap"] : [];
+    for (const k of FIELDS) assert.ok(none.includes(k) ? !en[k] : typeof en[k] === "string" && (en[k] || (k === "credit" && !cityById(id).credit)), `${id}.${k}`);
     // The credit names the same sources as the Czech one (the export adds the DMVS and RÚIAN when they are missing).
     for (const src of ["IS DMVS", "RÚIAN"]) assert.equal(en.credit.includes(src), cityById(id).credit.includes(src), `${id}: ${src}`);
   }

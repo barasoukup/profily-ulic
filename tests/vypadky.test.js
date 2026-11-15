@@ -190,3 +190,13 @@ test("mimo Česko se technické mapy ČÚZK neptá a neříká, že neodpovídá
   assert.equal(r.error, false);
   setCity("praha");
 });
+
+test("domy na Slovensku: druh a výška ze ZBGIS", async () => {
+  const { zbgisBuilding } = await import("../pilot/public/towns/slovensko.js");
+  // Suché mýto 6, Bratislava (identify 15. 11. 2026).
+  const b = zbgisBuilding({ results: [{ layerId: 41, attributes: { "Typ, účel využitia budovy": "Administratívna budova", "Výška nad povrchom (m)": "27,8", "Plocha (m²)": "633,9888" } }] });
+  assert.deepEqual([b.cornice, b.fromHeight, b.area, b.kind, b.house], [8, true, 634, undefined, undefined]);
+  assert.equal(zbgisBuilding({ results: [{ layerId: 41, attributes: { "Typ, účel využitia budovy": "Sklad", "Výška nad povrchom (m)": "9" } }] }).kind, 3);
+  assert.ok(zbgisBuilding({ results: [{ layerId: 41, attributes: { "Typ, účel využitia budovy": "Rodinný dom", "Výška nad povrchom (m)": "7,5" } }] }).house);
+  assert.deepEqual(zbgisBuilding({ results: [] }), {});
+});
