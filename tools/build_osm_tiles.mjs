@@ -23,8 +23,9 @@ function parseOtherTags(s) {
 }
 
 // Tags kept: what derive.js and profile.js read, and what the ideas Bára has not picked yet would need.
-const KEEP = /^(highway|name|ref|local_ref|route_ref|railway|oneway|junction|lanes|turn|width|est_width|sidewalk|cycleway|parking|busway|bus|psv|bicycle|footway|service|bridge|tunnel|layer|level|indoor|area|trolley_wire|embedded_rails|surface|smoothness|barrier|natural|amenity|leisure|public_transport|shelter|building|roof:levels|height|orientation|parking_aisle|information|crossing|kerb|tactile_paving|tram|foot|access|motor_vehicle|covered|lit|maxspeed|zone|traffic_sign|leaf_type|leaf_cycle|diameter_crown|cyclestreet|bicycle_road|incline|bench|bin|segregated|location|placement|subway)(:|$)/;
-const BUILDING_KEYS = new Set(["building", "building:levels", "roof:levels", "height"]);
+const KEEP = /^(highway|landuse|water|waterway|name|ref|local_ref|route_ref|railway|oneway|junction|lanes|turn|width|est_width|sidewalk|cycleway|parking|busway|bus|psv|bicycle|footway|service|bridge|tunnel|layer|level|indoor|area|trolley_wire|embedded_rails|surface|smoothness|barrier|natural|amenity|leisure|public_transport|shelter|building|roof:levels|height|orientation|parking_aisle|information|crossing|kerb|tactile_paving|tram|foot|access|motor_vehicle|covered|lit|maxspeed|zone|traffic_sign|leaf_type|leaf_cycle|diameter_crown|cyclestreet|bicycle_road|incline|bench|bin|segregated|location|placement|subway)(:|$)/;
+// Of a building: its floors and height, and (abroad, where no RÚIAN tells the year or panels) its year, roof and walls.
+const BUILDING_KEYS = new Set(["building", "building:levels", "roof:levels", "height", "start_date", "roof:shape", "building:material", "building:min_level"]);
 // Ways the profile never draws: tracks, roads not built (yet), and footways, paths, steps and bridleways
 // away from the roads (in parks, woods and fields). Near a road (within ROAD_NEAR) they stay: sidewalks
 // are often mapped as plain footways, and the profile reads which side of a street has one.
@@ -35,10 +36,34 @@ const ROADS = new Set(["motorway", "trunk", "primary", "secondary", "tertiary", 
 const CELL = 0.0004, ROAD_NEAR = 1; // cells of about 30 × 45 m; a path counts as near within one cell of a road
 const cell = (x, y) => Math.floor(x / CELL) * 1e6 + Math.floor(y / CELL);
 const roadCells = new Set();
-const nearRoad = (coords) => coords.some(([x, y]) => {
-  for (let dx = -ROAD_NEAR; dx <= ROAD_NEAR; dx++) for (let dy = -ROAD_NEAR; dy <= ROAD_NEAR; dy++) if (roadCells.has(cell(x + dx * CELL, y + dy * CELL))) return true;
+const nearRoad = (coords, near = ROAD_NEAR) => coords.some(([x, y]) => {
+  for (let dx = -near; dx <= near; dx++) for (let dy = -near; dy <= near; dy++) if (roadCells.has(cell(x + dx * CELL, y + dy * CELL))) return true;
   return false;
 });
+// Buildings with no height or floors only near a road (within two cells, 60–90 m: a cut reaches 40 m from its street).
+const BUILDING_NEAR = 2;
+const hasLevels = (t) => t["building:levels"] !== undefined || t.height !== undefined || t["roof:levels"] !== undefined;
+// Green areas (lawns, parks, woods) and water: only their pieces in the tiles a road runs through, each piece cut to its tile.
+// Water and plots that end a profile, cut alike.
+const WATER = (t) => t.natural === "water" || ["reservoir", "basin", "allotments", "cemetery"].includes(t.landuse) || t.waterway === "riverbank";
+const GREEN = (t) => ["grass", "meadow", "village_green", "flowerbed", "forest", "orchard", "recreation_ground"].includes(t.landuse) || ["park", "garden"].includes(t.leisure) || ["grass", "grassland", "scrub", "wood", "heath"].includes(t.natural);
+const roadTiles = new Set();
+// A ring cut to a box (Sutherland–Hodgman): the box's edges close it where it leaves; null when nothing is left.
+function clipRing(ring, [x0, y0, x1, y1]) {
+  let pts = ring.slice(0, -1);
+  const edges = [[(p) => p[0] >= x0, (a, b) => [x0, a[1] + ((x0 - a[0]) * (b[1] - a[1])) / (b[0] - a[0])]], [(p) => p[0] <= x1, (a, b) => [x1, a[1] + ((x1 - a[0]) * (b[1] - a[1])) / (b[0] - a[0])]],
+    [(p) => p[1] >= y0, (a, b) => [a[0] + ((y0 - a[1]) * (b[0] - a[0])) / (b[1] - a[1]), y0]], [(p) => p[1] <= y1, (a, b) => [a[0] + ((y1 - a[1]) * (b[0] - a[0])) / (b[1] - a[1]), y1]]];
+  for (const [inside, cut] of edges) {
+    const out = [];
+    for (let i = 0; i < pts.length; i++) {
+      const a = pts[(i + pts.length - 1) % pts.length], b = pts[i];
+      if (inside(b)) { if (!inside(a)) out.push(cut(a, b)); out.push(b); } else if (inside(a)) out.push(cut(a, b));
+    }
+    pts = out;
+    if (pts.length < 3) return null;
+  }
+  return [...pts, pts[0]];
+}
 const dropWay = (t, coords) => DROP_HW.has(t.highway) || (PATHS.has(t.highway) && !(t.highway === "cycleway") && !nearRoad(coords));
 
 const enc = (pts, q) => {
@@ -92,7 +117,7 @@ for (const src of sources.filter((f) => /_ways\.geojsonl$/.test(f))) {
     for (const c of g.type === "LineString" ? [g.coordinates] : g.coordinates) {
       for (let i = 0; i < c.length - 1; i++) {
         const [ax, ay] = c[i], [bx, by] = c[i + 1], n = Math.max(1, Math.ceil(Math.hypot((bx - ax) * 71000, (by - ay) * 111000) / 10));
-        for (let k = 0; k <= n; k++) roadCells.add(cell(ax + ((bx - ax) * k) / n, ay + ((by - ay) * k) / n));
+        for (let k = 0; k <= n; k++) { const x = ax + ((bx - ax) * k) / n, y = ay + ((by - ay) * k) / n; roadCells.add(cell(x, y)); roadTiles.add(tileOf(x, y).join("_")); }
       }
     }
   }
@@ -105,11 +130,13 @@ for (const src of sources) {
     const f = JSON.parse(line);
     const p = f.properties;
     const all = parseOtherTags(p.other_tags);
-    for (const k of ["name", "highway", "railway", "amenity", "barrier", "leisure", "building"]) if (p[k]) all[k] = p[k];
+    for (const k of ["name", "highway", "railway", "amenity", "barrier", "leisure", "building", "landuse", "natural"]) if (p[k]) all[k] = p[k];
     const g = f.geometry;
     const line_ = g.type === "LineString" || g.type === "MultiLineString";
     if (line_ && all.highway && dropWay(all, g.type === "LineString" ? g.coordinates : g.coordinates.flat())) continue;
     const building = !!all.building && (g.type === "Polygon" || g.type === "MultiPolygon");
+    if (building && !hasLevels(all) && !nearRoad(g.type === "Polygon" ? g.coordinates[0] : g.coordinates.flatMap((pl) => pl[0]), BUILDING_NEAR)) continue;
+    const green = !building && (g.type === "Polygon" || g.type === "MultiPolygon") && (GREEN(all) || WATER(all));
     const tags = Object.fromEntries(Object.entries(all).filter(([k]) => (building ? BUILDING_KEYS.has(k) : KEEP.test(k))));
     if (g.type === "Point") {
       const key = tileOf(...g.coordinates).join("_");
@@ -130,6 +157,23 @@ for (const src of sources) {
         if (coords.length === 1) runs.set(tileOf(...coords[0]).join("_"), [[0, 0]]);
         for (const [k, rs] of runs) {
           for (const [a, b] of rs) put(k, JSON.stringify({ t: "w", i: Number(p.osm_id), k: tags, o: a, g: enc(coords.slice(a, b + 1), 1e6) }));
+        }
+      }
+    } else if (green) {
+      const id = Number(p.osm_way_id || p.osm_id), tags = Object.fromEntries(Object.entries(all).filter(([k]) => /^(landuse|leisure|natural|water|waterway|name)$/.test(k)));
+      for (const poly of g.type === "Polygon" ? [g.coordinates] : g.coordinates) {
+        const xs = poly[0].map((c) => c[0]), ys = poly[0].map((c) => c[1]);
+        const [tx0, ty0] = tileOf(Math.min(...xs), Math.min(...ys)), [tx1, ty1] = tileOf(Math.max(...xs), Math.max(...ys));
+        for (let ix = tx0; ix <= tx1; ix++) for (let iy = ty0; iy <= ty1; iy++) {
+          const key = `${ix}_${iy}`;
+          if (!roadTiles.has(key)) continue;
+          const box = [ix * TILE, iy * TILE, (ix + 1) * TILE, (iy + 1) * TILE];
+          const outer = clipRing(poly[0], box);
+          if (!outer) continue;
+          const holes = poly.slice(1).map((r) => clipRing(r, box)).filter(Boolean);
+          const el = { t: "a", i: id, k: tags, g: enc(outer, 1e5), q: 5 };
+          if (holes.length) el.h = holes.map((r) => enc(r, 1e5));
+          put(key, JSON.stringify(el));
         }
       }
     } else if (g.type === "Polygon" || g.type === "MultiPolygon") {
