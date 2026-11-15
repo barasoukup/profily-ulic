@@ -1,0 +1,23 @@
+výchozí P {"tolL":0.2,"tolS":18,"greenMax":0.3,"stopRun":0.8,"snap":0.4,"minEdge":1.6,"alpha":1.5,"beta":0.5,"gamma":0.8,"sigmaMin":1,"sigmaRel":0.3,"lineOff":0.4}
+M1 Praha 25 % / 38 % Brno 34 % / 47 %
+M2 Praha 44 % / 58 % Brno 47 % / 66 %
+M3 Praha 42 % / 58 % Brno 41 % / 60 %
+   ipr10 M2 46 % / 58 % M3 43 % / 56 %
+   ipr20 M2 48 % / 61 % M3 44 % / 59 %
+   cuzk12 M2 39 % / 57 % M3 42 % / 59 %
+   cuzk25 M2 41 % / 57 % M3 39 % / 56 %
+   brno10 M2 48 % / 68 % M3 40 % / 60 %
+   brno20 M2 49 % / 68 % M3 41 % / 62 %
+   cuzk12 M2 47 % / 69 % M3 40 % / 62 %
+   cuzk25 M2 43 % / 59 % M3 41 % / 59 %
+M1 nejlepší na Praze {"tolL":0.12,"tolS":12,"stopRun":0.5} Praha 36 % / 50 % Brno 31 % / 46 %
+M2 nejlepší na Praze {"alpha":0.5,"beta":0.1,"gamma":0.8,"sigmaRel":0.3,"minEdge":1.6} Praha 48 % / 62 % Brno 43 % / 62 %
+M2 nejlepší na Brně {"alpha":0.5,"beta":1,"gamma":1.5,"sigmaRel":0.5,"minEdge":1.2} Brno 47 % / 67 % Praha 42 % / 59 %
+Praha ipr10 hrana u obruby do 0,3 m 65 %, do 0,5 m 85 % (náhodně 1,5 m ve vozovce 39 %); M2 se skutečnou šířkou 68 % / 81 %; i s osou uprostřed 72 % / 87 %
+Praha ipr20 hrana u obruby do 0,3 m 75 %, do 0,5 m 92 % (náhodně 1,5 m ve vozovce 41 %); M2 se skutečnou šířkou 71 % / 85 %; i s osou uprostřed 75 % / 90 %
+Praha cuzk12 hrana u obruby do 0,3 m 65 %, do 0,5 m 83 % (náhodně 1,5 m ve vozovce 38 %); M2 se skutečnou šířkou 62 % / 78 %; i s osou uprostřed 67 % / 85 %
+Praha cuzk25 hrana u obruby do 0,3 m 57 %, do 0,5 m 78 % (náhodně 1,5 m ve vozovce 33 %); M2 se skutečnou šířkou 60 % / 76 %; i s osou uprostřed 62 % / 80 %
+Brno brno10 hrana u obruby do 0,3 m 66 %, do 0,5 m 81 % (náhodně 1,5 m ve vozovce 55 %); M2 se skutečnou šířkou 65 % / 85 %; i s osou uprostřed 69 % / 92 %
+Brno brno20 hrana u obruby do 0,3 m 71 %, do 0,5 m 83 % (náhodně 1,5 m ve vozovce 56 %); M2 se skutečnou šířkou 66 % / 84 %; i s osou uprostřed 69 % / 91 %
+Brno cuzk12 hrana u obruby do 0,3 m 64 %, do 0,5 m 80 % (náhodně 1,5 m ve vozovce 42 %); M2 se skutečnou šířkou 61 % / 82 %; i s osou uprostřed 65 % / 88 %
+Brno cuzk25 hrana u obruby do 0,3 m 50 %, do 0,5 m 69 % (náhodně 1,5 m ve vozovce 38 %); M2 se skutečnou šířkou 56 % / 76 %; i s osou uprostřed 59 % / 80 %
