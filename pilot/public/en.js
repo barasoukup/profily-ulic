@@ -587,8 +587,9 @@ export const EN = {
   "Sdílet": "Share",
   "Kopírovat polohu řezu": "Copy the cut's position",
   "Místní ilustrace": "Local illustrations",
-  "Data © IPR Praha, ČÚZK, města a kraje, OpenStreetMap · ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí":
-    "Data © IPR Praha, ČÚZK, cities and regions, OpenStreetMap · illustrations Streetmix (CC BY-SA 4.0) and © Bára Soukupová · sources, licences and privacy",
+  "Data © IPR Praha, ČÚZK, města a kraje, OpenStreetMap · ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·":
+    "Data © IPR Praha, ČÚZK, cities and regions, OpenStreetMap · illustrations Streetmix (CC BY-SA 4.0) and © Bára Soukupová · sources, licences and privacy ·",
+  "kontakt": "contact",
   // Rainwater objects at their size, with the networks.
   "šířka": "width",
   "od hloubky": "top at depth",
@@ -632,7 +633,8 @@ export const EN_HTML = {
     illustrations © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licence
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
     local illustrations and code © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
-    <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">sources and licences</a> (in Czech)<br>
+    <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">sources and licences</a> (in Czech) ·
+    contact <a href="mailto:bara.so@email.cz">bara.so@email.cz</a><br>
     We record only cuts (place, direction, street, time), clicks where no street was found (the place to about a kilometre), the features used and the error reports you write yourself; we store no IP addresses and no cookies. The maps and data
     load straight from the servers of IPR, ČÚZK, the cities, the regions and OSM (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">privacy</a>, in Czech).`,
 };
