@@ -1,0 +1,242 @@
+[
+ {
+  "id": 1,
+  "town": "bratislava",
+  "lat": 48.1484,
+  "lon": 17.10467
+ },
+ {
+  "id": 2,
+  "town": "bratislava",
+  "lat": 48.145943,
+  "lon": 17.111786
+ },
+ {
+  "id": 3,
+  "town": "bratislava",
+  "lat": 48.150234,
+  "lon": 17.11527
+ },
+ {
+  "id": 4,
+  "town": "bratislava",
+  "lat": 48.14568,
+  "lon": 17.11832
+ },
+ {
+  "id": 5,
+  "town": "bratislava",
+  "lat": 48.139127,
+  "lon": 17.121799
+ },
+ {
+  "id": 6,
+  "town": "bratislava",
+  "lat": 48.140335,
+  "lon": 17.095069
+ },
+ {
+  "id": 7,
+  "town": "bratislava",
+  "lat": 48.143917,
+  "lon": 17.119425
+ },
+ {
+  "id": 8,
+  "town": "bratislava",
+  "lat": 48.142224,
+  "lon": 17.099564
+ },
+ {
+  "id": 9,
+  "town": "bratislava",
+  "lat": 48.133515,
+  "lon": 17.108092
+ },
+ {
+  "id": 10,
+  "town": "bratislava",
+  "lat": 48.154414,
+  "lon": 17.108898
+ },
+ {
+  "id": 11,
+  "town": "bratislava",
+  "lat": 48.148986,
+  "lon": 17.105326
+ },
+ {
+  "id": 12,
+  "town": "bratislava",
+  "lat": 48.140055,
+  "lon": 17.106276
+ },
+ {
+  "id": 13,
+  "town": "kosice",
+  "lat": 48.71856,
+  "lon": 21.258694
+ },
+ {
+  "id": 14,
+  "town": "kosice",
+  "lat": 48.722983,
+  "lon": 21.272019
+ },
+ {
+  "id": 15,
+  "town": "kosice",
+  "lat": 48.718956,
+  "lon": 21.249946
+ },
+ {
+  "id": 16,
+  "town": "kosice",
+  "lat": 48.719996,
+  "lon": 21.265777
+ },
+ {
+  "id": 17,
+  "town": "kosice",
+  "lat": 48.723327,
+  "lon": 21.244242
+ },
+ {
+  "id": 18,
+  "town": "kosice",
+  "lat": 48.716271,
+  "lon": 21.258068
+ },
+ {
+  "id": 19,
+  "town": "kosice",
+  "lat": 48.711976,
+  "lon": 21.257786
+ },
+ {
+  "id": 20,
+  "town": "kosice",
+  "lat": 48.71867,
+  "lon": 21.266699
+ },
+ {
+  "id": 21,
+  "town": "kosice",
+  "lat": 48.722924,
+  "lon": 21.269839
+ },
+ {
+  "id": 22,
+  "town": "kosice",
+  "lat": 48.719424,
+  "lon": 21.268652
+ },
+ {
+  "id": 23,
+  "town": "zilina",
+  "lat": 49.217979,
+  "lon": 18.72909
+ },
+ {
+  "id": 24,
+  "town": "zilina",
+  "lat": 49.217357,
+  "lon": 18.736205
+ },
+ {
+  "id": 25,
+  "town": "zilina",
+  "lat": 49.223205,
+  "lon": 18.723713
+ },
+ {
+  "id": 26,
+  "town": "zilina",
+  "lat": 49.230949,
+  "lon": 18.733352
+ },
+ {
+  "id": 27,
+  "town": "zilina",
+  "lat": 49.21448,
+  "lon": 18.746083
+ },
+ {
+  "id": 28,
+  "town": "nitra",
+  "lat": 48.303927,
+  "lon": 18.092535
+ },
+ {
+  "id": 29,
+  "town": "nitra",
+  "lat": 48.303419,
+  "lon": 18.086156
+ },
+ {
+  "id": 30,
+  "town": "nitra",
+  "lat": 48.314842,
+  "lon": 18.097688
+ },
+ {
+  "id": 31,
+  "town": "nitra",
+  "lat": 48.309432,
+  "lon": 18.095569
+ },
+ {
+  "id": 32,
+  "town": "nitra",
+  "lat": 48.317549,
+  "lon": 18.090221
+ },
+ {
+  "id": 33,
+  "town": "banska-bystrica",
+  "lat": 48.732038,
+  "lon": 19.159478
+ },
+ {
+  "id": 34,
+  "town": "banska-bystrica",
+  "lat": 48.736424,
+  "lon": 19.143769
+ },
+ {
+  "id": 35,
+  "town": "banska-bystrica",
+  "lat": 48.743813,
+  "lon": 19.155045
+ },
+ {
+  "id": 36,
+  "town": "banska-bystrica",
+  "lat": 48.744935,
+  "lon": 19.148663
+ },
+ {
+  "id": 37,
+  "town": "presov",
+  "lat": 48.994708,
+  "lon": 21.244403
+ },
+ {
+  "id": 38,
+  "town": "presov",
+  "lat": 48.992625,
+  "lon": 21.249372
+ },
+ {
+  "id": 39,
+  "town": "presov",
+  "lat": 48.993728,
+  "lon": 21.246776
+ },
+ {
+  "id": 40,
+  "town": "presov",
+  "lat": 48.988815,
+  "lon": 21.237721
+ }
+]

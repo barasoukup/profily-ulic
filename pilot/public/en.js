@@ -14,9 +14,12 @@ export const EN = {
   "Podkladová mapa a vrstvy": "Base map and layers",
   "Server {server} neodpovídá, zkouším znovu ({n}/{of})…": "The {server} server is not responding, trying again ({n}/{of})…",
   "Načítám data z OSM…": "Loading OSM data…",
-  "Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko).":
-    "No street found here. Try clicking right on a road (the data cover Czechia).",
+  "Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko a Slovensko).":
+    "No street found here. Try clicking right on a road (the data cover Czechia and Slovakia).",
   "Načítám {map}…": "Loading {map}…",
+  "Načítám ortofoto…": "Loading the orthophoto…",
+  "Mimo Česko technickou mapu nemáme, profil je jen odhad.": "Outside Czechia we have no technical map: the profile is only an estimate.",
+  " · mimo Česko, jen odhad z OSM": " · outside Czechia, only an estimate from OSM",
   "ulice {id}": "street {id}",
   "Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami.":
     "The cut probably runs through a junction. Drag its middle to a stretch between junctions.",
@@ -302,6 +305,7 @@ export const EN = {
   "ortofoto © IPR Praha, 2024": "orthophoto © IPR Praha, 2024",
   "ortofoto © Statutární město Brno, 2025": "orthophoto © Statutární město Brno, 2025",
   "ortofoto © Statutární město Plzeň, 2024": "orthophoto © Statutární město Plzeň, 2024",
+  "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "orthophoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© OpenStreetMap contributors (ODbL)",
   "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) a Bára Soukupová (MIT) · obrázek CC BY-SA 4.0 · ":
     "Illustrations © Streetmix, streetmix.net (CC BY-SA 4.0) and Bára Soukupová (MIT) · image CC BY-SA 4.0 · ",
@@ -337,12 +341,13 @@ export const EN = {
   "okres": "district",
   "kraj": "region",
   "místo": "place",
-  "Hledat adresu nebo ulici (RÚIAN © ČÚZK)": "Search an address or a street (RÚIAN © ČÚZK)",
+  "Hledat adresu nebo ulici (RÚIAN © ČÚZK, ZBGIS © ÚGKK SR)": "Search an address or a street (RÚIAN © ČÚZK, ZBGIS © ÚGKK SR)",
   "Hledat adresu nebo ulici": "Search an address or a street",
   "Návrhy": "Suggestions",
   "Nic jsem nenašla.": "Nothing found.",
   "Vyhledávání ČÚZK teď neodpovídá.": "The ČÚZK search is not responding right now.",
   "Místo se nepodařilo načíst z RÚIAN ČÚZK. Zkuste to znovu.": "The place could not be loaded from RÚIAN ČÚZK. Try again.",
+  "Místo se nepodařilo načíst ze ZBGIS. Zkuste to znovu.": "The place could not be loaded from ZBGIS. Try again.",
 
   // ---------- rules.js: widths after IPR's manual and ČSN ----------
   "jízdní pruh dálnice: ČSN 73 6110 skupina A 3,5 m": "motorway lane: ČSN 73 6110 group A 3.5 m",
@@ -634,7 +639,7 @@ export const EN = {
 // Elements of index.html replaced whole (data-i18n): the footer with its links.
 export const EN_HTML = {
   footer: `Data: technical maps © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (and building heights and development history, CC BY 4.0), of the statutory cities of Brno, Jihlava, Most, Opava and Plzeň
-    and of the regions (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (and the address search), cadastre and orthophoto © ČÚZK (CC BY 4.0) ·
+    and of the regions (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (and the address search), cadastre and orthophoto © ČÚZK (CC BY 4.0) · orthophoto, buildings and borders of Slovakia © <a href="https://www.geoportal.sk">GKÚ Bratislava</a>, NLC (ZBGIS, CC BY 4.0), streets and addresses of Slovakia © MV SR ·
     parking © TSK hl. m. Prahy (CC BY 4.0), no-parking areas, trees and street classes from <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, the cities of Jihlava, Opava, Plzeň (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors (ODbL) ·
     illustrations © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licence
@@ -654,7 +659,14 @@ const own = (name, of, map, data, parking, credit) => ({
 const NATIONAL = "the ČÚZK technical map";
 const TECH_PARKING = "car parks from the technical map";
 const RUIAN = "RÚIAN © ČÚZK, 2026 (CC BY 4.0, modified)";
+// Outside the Czech Republic (city.js abroad): no technical map, OSM only.
+const ABROAD = {
+  server: "OpenStreetMap", dataName: null, dataShort: "OSM", techMap: null, parkingSource: "estimated by the rules",
+  rulesHead: "Widths per the IPR Prague manual (C.2), only indicative outside Czechia:", credit: "",
+};
 export const EN_CITY = {
+  slovensko: { ...ABROAD, dataShort: "ZBGIS and OSM", credit: "buildings © GKÚ Bratislava (ZBGIS, CC BY 4.0)" },
+  cizina: ABROAD,
   cesko: {
     server: "ČÚZK technical map", dataName: "The ČÚZK technical map", dataShort: "the ČÚZK technical map, RÚIAN and OSM", techMap: NATIONAL,
     parkingSource: TECH_PARKING, rulesHead: "Widths per the IPR Prague manual (C.2), indicative outside Prague:",

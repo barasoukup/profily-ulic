@@ -15,8 +15,14 @@ const merc = (lon, lat) => [(R * lon * Math.PI) / 180, R * Math.log(Math.tan(Mat
 // Each city's best orthophoto (evaluation/ortofoto/ZPRAVA.md): Prague IPR 10 cm (summer 2024), Brno's 2025 (tiles of
 // about 10 cm, shifted against ČÚZK by 1.06 m east and 3.09 m north: evaluation/ortofoto/posun.mjs), Plzeň's 2024
 // (5 cm, asked at 10 cm, no shift), elsewhere ČÚZK 12.5 cm. shift: where the image shows a point, east and north (m).
-const BY_CITY = { praha: "ipr", brno: "brno", plzen: "plzen" };
+// Slovakia (Bára 15. 11. 2026): the ZBGIS orthophoto mosaic of ÚGKK SR (GKÚ, NLC), its cache in Web Mercator to level 19
+// (about 10 cm on the ground; Bratislava 2023, Košice 2025), CORS for any origin, tiles cached a day.
+const BY_CITY = { praha: "ipr", brno: "brno", plzen: "plzen", slovensko: "sk" };
+export const SK_ORTHO = "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ortofoto_hres/MapServer";
 const SOURCES = {
+  // The grid of z19, tiles of 512 px (about 10 cm). balance: the mosaic is bright and tinted (Košice 2025: asphalt
+  // 200 bright and 10 greener than red and blue, read as grass), so the tints are taken relative to its grey pixels.
+  sk: { res: 0.1, tiles: `${SK_ORTHO}/tile`, z: 19, px: 512, balance: true },
   brno: { res: 0.1, tiles: "https://gis.brno.cz/ags1/rest/services/OMI/OMI_basemaps_ortofoto_2025_wgs/MapServer/tile", z: 20, shift: [1.06, 3.09] },
   plzen: { res: 0.1, url: (b, w, h) => `https://ags.plzen.eu/arcgis/rest/services/Orto_2024_5cm_RGB_mimoveg/MapServer/export?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: "jpg", f: "image", datumTransformations: "[1623]" })}` },
   ipr: { res: 0.1, url: (b, w, h) => `https://gs-pub.praha.eu/imgs/rest/services/ort/letecke_snimkovani/ImageServer/exportImage?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: "jpg", f: "image" })}` },
@@ -53,9 +59,10 @@ export async function laneImage({ frame, dir, t0, t1, cityId, timeout = TIMEOUT,
       const tx0 = Math.floor((x0 + Math.PI * R) / size), tx1 = Math.floor((x1 + Math.PI * R) / size);
       const ty0 = Math.floor((Math.PI * R - y1) / size), ty1 = Math.floor((Math.PI * R - y0) / size);
       if ((tx1 - tx0 + 1) * (ty1 - ty0 + 1) > 30) return null;
-      const canvas = new OffscreenCanvas((tx1 - tx0 + 1) * 256, (ty1 - ty0 + 1) * 256), g = canvas.getContext("2d");
+      const tp = src.px || 256; // pixels of a tile
+      const canvas = new OffscreenCanvas((tx1 - tx0 + 1) * tp, (ty1 - ty0 + 1) * tp), g = canvas.getContext("2d");
       const signal = AbortSignal.timeout(timeout), jobs = [];
-      for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) jobs.push(fetchImpl(`${src.tiles}/${src.z}/${ty}/${tx}`, { signal }).then(async (r) => { if (r.ok) g.drawImage(await createImageBitmap(await r.blob()), (tx - tx0) * 256, (ty - ty0) * 256); }));
+      for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) jobs.push(fetchImpl(`${src.tiles}/${src.z}/${ty}/${tx}`, { signal }).then(async (r) => { if (r.ok) g.drawImage(await createImageBitmap(await r.blob()), (tx - tx0) * tp, (ty - ty0) * tp, tp, tp); }));
       await Promise.all(jobs);
       img = g.getImageData(0, 0, canvas.width, canvas.height);
       x0 = tx0 * size - Math.PI * R; x1 = (tx1 + 1) * size - Math.PI * R; y1 = Math.PI * R - ty0 * size; y0 = Math.PI * R - (ty1 + 1) * size;
@@ -86,10 +93,21 @@ export async function laneImage({ frame, dir, t0, t1, cityId, timeout = TIMEOUT,
       D[j * nt + i] = g - r;
       S[j * nt + i] = Math.max(r, g, b) - Math.min(r, g, b);
     }
+    if (src.balance) balance(G, Y, D, S);
     return { source: key, st: { nt, nu, res, t0, L, G, Y, D, S, fine: key !== "cuzk" } };
   } catch {
     return null;
   }
+}
+
+// A grey world for a tinted mosaic: the median tint of the greyish pixels (saturation under 40: asphalt, paving,
+// roofs) is no tint; strong colours (lawns, treetops) keep theirs.
+function balance(G, Y, D, S) {
+  const g = [], y = [], d = [];
+  for (let q = 0; q < G.length; q += 5) if (S[q] < 40) { g.push(G[q]); y.push(Y[q]); d.push(D[q]); }
+  if (g.length < 100) return;
+  const [mg, my, md] = [median(g), median(y), median(d)];
+  for (let q = 0; q < G.length; q++) { G[q] -= mg; Y[q] -= my; D[q] -= md; }
 }
 
 // ---------- the lines ----------

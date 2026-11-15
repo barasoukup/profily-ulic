@@ -80,3 +80,25 @@ test("město podle polohy řezu", async () => {
   assert.equal(C.setCity("plzen").adjective, "plzeňské");
   C.setCity("praha");
 });
+test("stát podle polohy řezu: Česko, Slovensko, cizina", async () => {
+  const C = await import("../pilot/public/city.js");
+  C.loadBounds(JSON.parse(read("mesta.json")));
+  C.loadStates(JSON.parse(read("staty.json")));
+  assert.equal(C.cityAt(49.907481, 16.442219), "cesko"); // Česká Třebová
+  assert.equal(C.cityAt(49.7477, 18.6262), "cesko"); // Český Těšín, Hlavní třída (the border is the Olza)
+  assert.equal(C.cityAt(48.146736, 17.106998), "slovensko"); // Bratislava, Suché mýto
+  assert.equal(C.cityAt(48.7206, 21.258), "slovensko"); // Košice, Hlavná
+  assert.equal(C.cityAt(49.7497, 18.6328), "cizina"); // Cieszyn
+  assert.equal(C.cityAt(48.2082, 16.3738), "cizina"); // Wien
+  const sk = C.setCity("slovensko");
+  assert.ok(sk.abroad && !sk.techMap && !sk.dataName);
+  assert.equal(sk.country, "SK");
+  assert.equal(C.setCity("brno").country, "CZ");
+  assert.equal(C.setCity("cesko").country, "CZ");
+  assert.equal(C.setCity("cizina").country, null);
+  C.setCity("slovensko");
+  assert.match(C.creditLines(sk, { orthoCity: "sk" })[0], /^Data: budovy © GKÚ Bratislava \(ZBGIS, CC BY 4\.0\) · ortofoto © GKÚ Bratislava, NLC/);
+  // Elsewhere abroad no data of its own to credit: the line starts with OSM.
+  assert.match(C.creditLines(C.setCity("cizina"))[0], /^Data: © přispěvatelé OpenStreetMap/);
+  C.setCity("praha");
+});

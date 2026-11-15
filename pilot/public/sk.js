@@ -2,6 +2,19 @@
 // stay Czech (ČÚZK, RÚIAN, IPR, TSK, the cities' offices, the regions), the signs keep their Czech codes.
 // tests/i18n.test.js checks that every text of en.js is here and nothing else.
 export const SK = {
+  // ---------- outside Czechia, Slovakia (ZBGIS), sources not answering ----------
+  "Načítám ortofoto…": "Načítavam ortofoto…",
+  "Mimo Česko technickou mapu nemáme, profil je jen odhad.": "Mimo Česka technickú mapu nemáme, profil je len odhad.",
+  " · mimo Česko, jen odhad z OSM": " · mimo Česka, len odhad z OSM",
+  "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
+  "Místo se nepodařilo načíst ze ZBGIS. Zkuste to znovu.": "Miesto sa nepodarilo načítať zo ZBGIS. Skúste to znova.",
+  "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Obrubníky sú podľa OSM a domy z OSM, šírky overte.",
+  "Technická mapa tu nemá povrch ulice.": "Technická mapa tu nemá povrch ulice.",
+  "{name} teď neodpovídá (server je přetížený).": "{name} teraz neodpovedá (server je preťažený).",
+  "{name} teď neodpovídá.": "{name} teraz neodpovedá.",
+  "Technická mapa ČÚZK teď neodpovídá.": "Technická mapa ČÚZK teraz neodpovedá.",
+  "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "Technická mapa tu má len čiary bez plôch (kraj do nej plochy nedodáva).",
+  "Technická mapa tu nic nevrátila.": "Technická mapa tu nič nevrátila.",
   // ---------- app.js: map, loading, panorama ----------
   "Přiblížit": "Priblížiť",
   "Oddálit": "Oddialiť",
@@ -14,8 +27,8 @@ export const SK = {
   "Podkladová mapa a vrstvy": "Podkladová mapa a vrstvy",
   "Server {server} neodpovídá, zkouším znovu ({n}/{of})…": "Server {server} neodpovedá, skúšam znova ({n}/{of})…",
   "Načítám data z OSM…": "Načítavam údaje z OSM…",
-  "Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko).":
-    "Tu som nenašla žiadnu ulicu. Skúste kliknúť priamo na cestu (údaje pokrývajú Česko).",
+  "Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko a Slovensko).":
+    "Tu som nenašla žiadnu ulicu. Skúste kliknúť priamo na cestu (údaje pokrývajú Česko a Slovensko).",
   "Načítám {map}…": "Načítavam {map}…",
   "ulice {id}": "ulica {id}",
   "Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami.":
@@ -337,7 +350,7 @@ export const SK = {
   "okres": "okres",
   "kraj": "kraj",
   "místo": "miesto",
-  "Hledat adresu nebo ulici (RÚIAN © ČÚZK)": "Hľadať adresu alebo ulicu (RÚIAN © ČÚZK)",
+  "Hledat adresu nebo ulici (RÚIAN © ČÚZK, ZBGIS © ÚGKK SR)": "Hľadať adresu alebo ulicu (RÚIAN © ČÚZK, ZBGIS © ÚGKK SR)",
   "Hledat adresu nebo ulici": "Hľadať adresu alebo ulicu",
   "Návrhy": "Návrhy",
   "Nic jsem nenašla.": "Nič som nenašla.",
@@ -648,7 +661,14 @@ const own = (name, of, map, data, parking, credit) => ({
 const NATIONAL = "technickú mapu ČÚZK";
 const TECH_PARKING = "parkoviská z technickej mapy";
 const RUIAN = "RÚIAN © ČÚZK, 2026 (CC BY 4.0, upravené)";
+// Outside the Czech Republic (city.js abroad): no technical map, OSM only.
+const ABROAD = {
+  server: "OpenStreetMap", dataName: null, dataShort: "OSM", techMap: null, parkingSource: "odhadnuté podľa pravidiel",
+  rulesHead: "Šírky podľa pražského Manuálu IPR (C.2), mimo Česka len orientačne:", credit: "",
+};
 export const SK_CITY = {
+  slovensko: { ...ABROAD, dataShort: "ZBGIS a OSM", credit: "budovy © GKÚ Bratislava (ZBGIS, CC BY 4.0)" },
+  cizina: ABROAD,
   cesko: {
     server: "technickej mapy ČÚZK", dataName: "Technická mapa ČÚZK", dataShort: "technickej mapy ČÚZK, RÚIAN a OSM", techMap: NATIONAL,
     parkingSource: TECH_PARKING, rulesHead: "Šírky podľa pražského Manuálu IPR (C.2), mimo Prahy orientačne:",

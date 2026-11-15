@@ -1,7 +1,7 @@
 import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, SURFACES, LAMP_HEIGHTS, underSize } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
-import { laneImage, applyLanes } from "./lanes-ortho.js";
+import { laneImage, applyLanes, SK_ORTHO } from "./lanes-ortho.js";
 import { orthoOsmPolys } from "./ortho-osm.js";
 import { underground, KINDS as NET_KINDS, NET_CITIES } from "./site.js";
 // Lanes and shoulders from the road markings of the orthophoto (lanes-ortho.js); ?orto=0 leaves the rules' profile.
@@ -14,7 +14,7 @@ import { cleanProfile, cleanCut, retype } from "./validate.js";
 import { shares, surfaces } from "./shares.js";
 import { packProfile, unpackProfile, designParams } from "./share.js";
 import { checkRules, checkUnder, checkTrees } from "./rules.js";
-import { city, setCity, cityAt, loadBounds } from "./city.js";
+import { city, setCity, cityAt, loadBounds, loadStates } from "./city.js";
 import { TOWNS } from "./towns/index.js";
 import { log, logOn, sendReport, shortProfile } from "./log.js";
 import { createDataLayers, PLOCHY_PANE } from "./maplayers.js";
@@ -51,9 +51,14 @@ const cutEnds = (f, normal, reach) => [
 const cutSpan = (cut) => cut?.span || cut?.reach || defaultReach();
 const STORE = "streetdesign-pilot" + (LANES_ORTHO ? "" : "-bez-orto"); // the last cut (Prague's key from the time of one page per city); ?orto=0 its own
 // The boundaries of the cities with their own sources (tools/build_mesta.mjs): a cut takes its city by them.
+const statyJson = fetch("staty.json").then((r) => (r.ok ? r.json() : null), () => null);
 const MESTA = await fetch("mesta.json").then((r) => (r.ok ? r.json() : null), () => null);
 // Without the file every cut keeps the current city (rather than all becoming "cesko").
 if (MESTA) loadBounds(MESTA); else console.warn("mesta.json se nenačetl: město se podle polohy nepozná");
+// The states (tools/build_staty.mjs): a cut outside the cities is in Czechia, in Slovakia or elsewhere (city.js cityAt).
+// Loaded with the cities' file (both before the first cut, a linked one included).
+const STATY = await statyJson;
+if (STATY) loadStates(STATY); else console.warn("staty.json se nenačetl: stát se podle polohy nepozná");
 // The city of a point becomes the current one (city.js): its sources, texts and illustrations.
 async function useCity(lat, lon) {
   const id = cityAt(lat, lon);
@@ -94,7 +99,7 @@ if (lang !== "cs") for (const m of ["addAttribution", "removeAttribution"]) {
 L.control.zoom({ zoomInTitle: tr("Přiblížit"), zoomOutTitle: tr("Oddálit") }).addTo(map);
 // Address search (search.js, RÚIAN of ČÚZK): the map moves there; an address on a street or a street is cut
 // like a click at the nearest point of that street. The log gets only the kind of place, never the query.
-mountSearch(map, { status, onPick: ({ item, cut }) => { log("hledani", { detail: item.type === "AdresniMisto" ? "adresa" : item.type === "Ulice" ? "ulice" : "misto" }); if (cut) cutAt(cut.lat, cut.lon); } });
+mountSearch(map, { status, inSlovakia: () => { const c = map.getCenter(); return cityAt(c.lat, c.lng) === "slovensko"; }, onPick: ({ item, cut }) => { log("hledani", { detail: item.type === "AdresniMisto" ? "adresa" : item.type === "Ulice" ? "ulice" : "misto" }); if (cut) cutAt(cut.lat, cut.lon); } });
 // Base maps. IPR services are drawn through ArcGIS export requests in Web Mercator, one per tile.
 // Each request renders a 512 px image covering four normal tiles (tileSize 512, zoomOffset -1):
 // a quarter of the requests, which IPR renders one by one (0.2–1.5 s each), and the browser's
@@ -153,6 +158,14 @@ kinds.map.push(new ArcgisExport("", { service: "https://gis.brno.cz/ags3/rest/se
 kinds.ortho.push(L.tileLayer("https://gis.brno.cz/ags1/rest/services/OMI/OMI_basemaps_ortofoto_2025_wgs/MapServer/tile/{z}/{y}/{x}", {
   maxZoom: 21, maxNativeZoom: 21, attribution: "ortofoto 2025 © Statutární město Brno", ...within("brno"),
 }));
+// Slovakia: the ZBGIS orthophoto of ÚGKK SR (tiles in Web Mercator to level 19), only there (staty.json).
+if (STATY?.slovensko) {
+  const pts = STATY.slovensko.flat(), xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]);
+  kinds.ortho.push(L.tileLayer(`${SK_ORTHO}/tile/{z}/{y}/{x}`, {
+    maxZoom: 21, maxNativeZoom: 19, attribution: "ortofoto © GKÚ Bratislava, NLC (ZBGIS)",
+    bounds: L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]),
+  }));
+}
 // The towns (towns/<id>.js maps): their orthophoto, technical map and lines, each kept to the town.
 for (const [id, t] of Object.entries(TOWNS)) {
   if (!t.maps || t.national) continue;
@@ -248,7 +261,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
       // A click with no street found is logged too (Bára: how many try outside the Czech Republic): only where, to
       // about a kilometre, and whether there were any OSM data there at all (outside the country there are none).
       if (!keepWay) log("bez_ulice", { detail: osm?.elements?.length ? "bez_ulice" : "bez_dat", city: city.id, lat: Math.round(lat * 100) / 100, lon: Math.round(lon * 100) / 100 });
-      return status(tr("Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko)."), "error");
+      return status(tr("Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko a Slovensko)."), "error");
     }
     // A street of two one-way carriageways is cut from its middle (e.g. the tram belt).
     near = centerOnStreet(osm, frame, near);
@@ -280,7 +293,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     const full = [-1, 1].map((k) => frame.toLonLat(normal[0] * half * k, normal[1] * half * k));
     const lons = full.map((e) => e[0]), lats = full.map((e) => e[1]);
     const pad = 0.0004;
-    status(tr("Načítám {map}…", { map: city.techMap }));
+    status(city.techMap ? tr("Načítám {map}…", { map: city.techMap }) : tr("Načítám ortofoto…"));
     const bbox = [Math.min(...lons) - pad, Math.min(...lats) - pad, Math.max(...lons) + pad, Math.max(...lats) + pad].join(",");
     let polys = [], tracks = [];
     const zone = sources.zps(clat, clon).catch(() => undefined);
@@ -289,7 +302,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
       sources.mtvu(bbox), sources.linie(bbox), zone.then((inZone) => sources.parkovani(bbox, inZone)), zone,
       // Where OSM has tram tracks across the cut: one small image of the orthophoto for the surface of the bed
       // (ortho.js, a short timeout; without it the rules decide).
-      bedOrtho({ osm, frame, dir, half }),
+      // Slovakia: its own orthophoto; elsewhere abroad none (ČÚZK's is blank there).
+      bedOrtho({ osm, frame, dir, half, source: city.id === "slovensko" ? "sk" : city.abroad ? null : "cuzk" }),
       // One image of the orthophoto across the whole cut for the road markings (lanes-ortho.js).
       LANES_ORTHO ? laneImage({ frame, dir, t0: -Math.min(half, ORTHO_HALF), t1: Math.min(half, ORTHO_HALF), cityId: city.id }) : null,
     ]);
@@ -335,7 +349,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     // What the export credits beyond the city's own data (city.js creditLines): the region of a national DTM,
     // the DMVS standing in for the city's map, the orthophoto of a tram bed.
     const mv = m.status === "fulfilled" ? m.value : null;
-    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.dmvs && { dmvs: true }), ...((ortho || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" && { orthoCity: laneImg.source }) };
+    const bedSk = ortho && city.id === "slovensko"; // the tram bed read on Slovakia's orthophoto
+    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.dmvs && { dmvs: true }), ...(((ortho && !bedSk) || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" ? { orthoCity: laneImg.source } : bedSk && { orthoCity: "sk" }) };
     // The log of cuts (log.js): the cut exactly, and how it came (a click, a moved cut, a link).
     log("rez", {
       detail: keepWay ? "posun" : bearing !== null ? "odkaz" : "klik", city: city.id, street: name, highway: near.way.tags.highway,
@@ -349,7 +364,9 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
       try {
         const [lon, lat] = info.point;
         const p = await sources.podlaznost(lat, lon);
-        if (p.cornice) Object.assign(info, { cornice: p.cornice, roof: p.roof, levels: p.cornice + p.roof, roofType: p.roofType, iprKind: p.kind, newBuild: p.newBuild, area: p.area, src: "ipr" });
+        // Floors only estimated from a height (ZBGIS, Slovakia) yield to OSM's building:levels; the use stays.
+        if (p.fromHeight && info.levels) Object.assign(info, { iprKind: p.kind, area: p.area });
+        else if (p.cornice) Object.assign(info, { cornice: p.cornice, roof: p.roof, levels: p.cornice + p.roof, roofType: p.roofType, iprKind: p.kind, newBuild: p.newBuild, area: p.area, src: "ipr" });
         // RÚIAN (the towns): the year the house was completed and its walls of panels.
         if (p.built) info.built = p.built;
         if (p.panel) info.panel = 1;

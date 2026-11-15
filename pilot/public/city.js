@@ -428,6 +428,25 @@ const CITIES = {
   },
 };
 
+// Outside the Czech Republic (Bára 15. 11. 2026): Slovakia, whose OSM tiles the app has, and anywhere else
+// ("cizina": the margins of the OSM extracts beyond the borders). No technical map, no RÚIAN: the profile is the
+// estimate from OSM and the orthophoto (ortho-osm.js), the houses are OSM's (towns/slovensko.js). dataName null: no
+// map to fail. Prague's furniture and Streetmix's vehicles, as in "cesko".
+const abroad = (id, country, cover, inCity, adjective, view, example) => ({
+  ...CITIES.cesko, id, like: "cesko", abroad: true, country, cover, inCity, adjective, view, example,
+  server: "OpenStreetMap", dataName: null, dataShort: "OSM", techMap: null,
+  parkingSource: "odhad podle pravidel",
+  rulesHead: "Šířky podle pražského Manuálu IPR (C.2), mimo Česko jen orientačně:",
+  credit: "",
+  centre: null, innerKm: 0, estateKm: 0.5,
+});
+Object.assign(CITIES, {
+  // The houses of ZBGIS (towns/slovensko.js); the orthophoto is credited where it was read (creditLines).
+  slovensko: { ...abroad("slovensko", "SK", "Slovensko", "na Slovensku", "slovenské", [48.7, 19.7], "48.146736, 17.106998"),
+    dataShort: "ZBGIS a OSM", credit: "budovy © GKÚ Bratislava (ZBGIS, CC BY 4.0)" },
+  cizina: abroad("cizina", null, "cizinu", "v cizině", "zahraniční", [49.8, 15.5], "48.146736, 17.106998"),
+});
+
 // Towns with no data of their own (the national DTM of ČÚZK, as "cesko"), only their own vehicles.
 const artTown = (id, inCity, adjective, art) => ({ ...CITIES.cesko, id, like: "cesko", inCity, adjective, art: id, artMap: { ...art, ...TOWN_ART } });
 Object.assign(CITIES, {
@@ -444,13 +463,15 @@ Object.assign(CITIES, {
 // { region, dmvs, ortho } (app.js); art: the city's own illustrations are drawn. Two lines: data, then the rest.
 export function creditLines(c, src = {}, art = false) {
   const kraj = src.region || t("kraje");
-  const data = [t("Data: {data}", { data: c.credit.replace(/^data /, "").replace("{kraj}", kraj) })];
+  // Abroad the city has no data of its own (credit ""): the line starts with OSM.
+  const data = c.credit ? [t("Data: {data}", { data: c.credit.replace(/^data /, "").replace("{kraj}", kraj) })] : [];
   if (src.dmvs && !c.credit.includes("IS DMVS")) data.push(t("technická mapa © {kraj}, IS DMVS ČÚZK", { kraj }));
   if (src.dmvs && !c.credit.includes("RÚIAN")) data.push(t("RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)"));
   if (src.ortho) data.push(t("ortofoto © ČÚZK, 2025 (CC BY 4.0)"));
-  const ORTHO_CITY = { ipr: t("ortofoto © IPR Praha, 2024"), brno: t("ortofoto © Statutární město Brno, 2025"), plzen: t("ortofoto © Statutární město Plzeň, 2024") };
+  const ORTHO_CITY = { ipr: t("ortofoto © IPR Praha, 2024"), brno: t("ortofoto © Statutární město Brno, 2025"), plzen: t("ortofoto © Statutární město Plzeň, 2024"),
+    sk: t("ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)") };
   if (ORTHO_CITY[src.orthoCity]) data.push(ORTHO_CITY[src.orthoCity]);
-  data.push(t("© přispěvatelé OpenStreetMap (ODbL)"));
+  data.push(data.length ? t("© přispěvatelé OpenStreetMap (ODbL)") : t("Data: {data}", { data: t("© přispěvatelé OpenStreetMap (ODbL)") }));
   return [
     data.join(" · "),
     (art ? t("Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) a Bára Soukupová (MIT) · obrázek CC BY-SA 4.0 · ")
@@ -467,7 +488,9 @@ export const cityById = (id) => CITIES[id];
 export const city = {};
 export function setCity(id) {
   for (const k of Object.keys(city)) delete city[k];
-  const c = CITIES[id] || CITIES.cesko;
+  // country: the state of the cut (ISO 3166-1: "CZ", "SK"; null elsewhere), for its data, norms and signs; the
+  // language of the interface is the visitor's (i18n.js), not the place's.
+  const c = { country: "CZ", ...(CITIES[id] || CITIES.cesko) };
   // In English and Slovak the city's texts of en.js and sk.js (its name in sentences, its data, its credits).
   Object.assign(city, c, cityTexts(c.id, c.like));
   if (globalThis.PROFILY_FIX) city.fix = globalThis.PROFILY_FIX;
@@ -475,15 +498,10 @@ export function setCity(id) {
 }
 setCity(globalThis.PROFILY_CITY || "praha");
 
-// The city a point lies in, by the boundaries of the cities (mesta.json, tools/build_mesta.mjs); "cesko"
-// elsewhere. Before the file has loaded (or without it) the current city.
+// The city a point lies in, by the boundaries of the cities (mesta.json, tools/build_mesta.mjs); elsewhere its
+// state (below). Before the file has loaded (or without it) the current city.
 let bounds = null;
-export const loadBounds = (json) => {
-  bounds = Object.entries(json).map(([id, rings]) => {
-    const xs = rings.flat().map((p) => p[0]), ys = rings.flat().map((p) => p[1]);
-    return { id, rings, box: [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)] };
-  });
-};
+export const loadBounds = (json) => { bounds = Object.entries(json).map(([id, rings]) => boxed(id, rings)); };
 const inside = (rings, x, y) => {
   let c = false;
   for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) {
@@ -492,7 +510,16 @@ const inside = (rings, x, y) => {
   }
   return c;
 };
+// The states (staty.json, tools/build_staty.mjs): the Czech Republic (RÚIAN) and Slovakia; a point in neither is
+// "cizina". Without the file (or before it has loaded) a point outside the cities is "cesko", as before.
+let states = null;
+export const loadStates = (json) => { states = Object.entries(json).map(([id, rings]) => boxed(id, rings)); };
+const boxed = (id, rings) => {
+  const xs = rings.flat().map((p) => p[0]), ys = rings.flat().map((p) => p[1]);
+  return { id, rings, box: [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)] };
+};
+const within = (list, lat, lon) => list.find((b) => lon >= b.box[0] && lon <= b.box[2] && lat >= b.box[1] && lat <= b.box[3] && inside(b.rings, lon, lat))?.id;
 export function cityAt(lat, lon) {
   if (!bounds) return city.id;
-  return bounds.find((b) => lon >= b.box[0] && lon <= b.box[2] && lat >= b.box[1] && lat <= b.box[3] && inside(b.rings, lon, lat))?.id || "cesko";
+  return within(bounds, lat, lon) || (states ? within(states, lat, lon) || "cizina" : "cesko");
 }
