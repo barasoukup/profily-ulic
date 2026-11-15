@@ -1,7 +1,8 @@
 // Packs a folder of OSM tiles (tools/build_osm_tiles.mjs, the form of osmtile.js) into one file per country
 // in the shorter form of pilot/public/osmpack.js (a dictionary of tags, shorter elements, each tile gzipped,
-// a two-level index), for a trial of the tiles on Cloudflare R2 (?osm=r2). The folder stays as it is.
-//   node tools/pack_osm_tiles.mjs pilot/data/osm-tiles data/osm-pack/cz.posm
+// a two-level index), for the web: Cloudflare R2 and, as a fallback, Pages (gis.js). The folder stays as it is.
+//   node tools/pack_osm_tiles.mjs pilot/data/osm-tiles pilot/data/osm-pack/cz-2026-11-16.posm
+// and writes the file's name into index.json beside it (the key "cz": the name up to "-" or ".").
 // The file is a database derived from OpenStreetMap: © OpenStreetMap contributors, ODbL 1.0.
 import fs from "node:fs";
 import path from "node:path";
@@ -93,6 +94,13 @@ if (process.argv[1] && import.meta.url.endsWith(path.basename(process.argv[1])))
   const r = packTiles(names, (n) => fs.readFileSync(path.join(dir, `${n}.json`), "utf8"), { source: path.basename(dir) });
   fs.mkdirSync(path.dirname(out), { recursive: true });
   fs.writeFileSync(out, r.file);
+  // index.json beside it names the file of each country (the part of the name before "-" or "."; osmpack.js PackSet).
+  const indexFile = path.join(path.dirname(out), "index.json");
+  let index = { files: {} };
+  try { index = JSON.parse(fs.readFileSync(indexFile, "utf8")); } catch {}
+  index.files[path.basename(out).split(/[-.]/)[0]] = path.basename(out);
+  index.attribution = "© OpenStreetMap contributors, ODbL 1.0";
+  fs.writeFileSync(indexFile, JSON.stringify(index, null, 1) + "\n");
   const mb = (n) => (n / 1e6).toFixed(1) + " MB";
   console.log(`${r.tiles} dlaždic, ${r.blocks} bloků, slovník ${r.keys} klíčů a ${r.pairs} dvojic`);
   console.log(`dnes ${mb(r.raw)} → krátký zápis ${mb(r.json)} → ${out} ${mb(r.file.length)} (hlava ${(r.head / 1e3).toFixed(0)} kB)`);

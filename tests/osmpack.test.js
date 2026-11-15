@@ -3,7 +3,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { decodeTile, mergePieces } from "../pilot/public/osmtile.js";
-import { Pack, encodeElement, decodePackedTile } from "../pilot/public/osmpack.js";
+import { Pack, PackSet, encodeElement, decodePackedTile } from "../pilot/public/osmpack.js";
 import { packTiles } from "../tools/pack_osm_tiles.mjs";
 
 const diff = (pts) => pts.flatMap(([x, y], i) => (i ? [x - pts[i - 1][0], y - pts[i - 1][1]] : [x, y]));
@@ -65,4 +65,28 @@ test("soubor vyměněný mezitím (jiné ETag) se přečte znovu od hlavy", asyn
   const got = await pack.tiles(["2884_10016"]); // a leaf read now sees the other ETag
   assert.deepEqual(got[0], decodeTile(text("2884_10016")));
   assert.deepEqual((await pack.tiles(["2885_10016"]))[0], decodeTile(text("2885_10016")));
+});
+
+test("státy podle index.json; když R2 selže, čte se tentýž balík odjinud (Pages)", async () => {
+  const cz = packTiles(["2884_10016"], text).file, sk = packTiles(["2885_10016"], text).file;
+  const index = { files: { cz: "cz-1.posm", sk: "sk-1.posm" } };
+  const hosts = { pages: { "index.json": index, "cz-1.posm": cz, "sk-1.posm": sk }, r2: null };
+  const asked = [];
+  const f = async (url, opts) => {
+    const [host, file] = url.split("/");
+    asked.push(host);
+    const at = hosts[host];
+    if (!at) return new Response("", { status: 503 });
+    if (file === "index.json") return Response.json(at[file]);
+    const [, s, e] = /bytes=(\d+)-(\d+)/.exec(opts.headers.Range).map(Number);
+    return new Response(at[file].subarray(s, e + 1), { status: 206, headers: { ETag: "x" } });
+  };
+  const set = new PackSet(["r2", "pages"], { fetch: f });
+  const lists = await set.tiles(["2884_10016", "2885_10016", "9_9"]);
+  assert.deepEqual(lists, [decodeTile(text("2884_10016")), decodeTile(text("2885_10016"))]);
+  assert.deepEqual([...new Set(asked)], ["r2", "pages"]);
+  hosts.pages = null; // both down: an error, and the next cut tries R2 first again
+  set.packs = null;
+  await assert.rejects(set.tiles(["2884_10016"]));
+  assert.equal(set.at, 0);
 });

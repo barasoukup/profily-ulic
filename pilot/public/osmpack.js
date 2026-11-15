@@ -181,10 +181,46 @@ export class Pack {
 }
 
 // A read() for Pack over fetch with a Range header (timeout: ms for each request).
-export const rangeFetch = (url, timeout) => async (start, end) => {
-  const r = await fetch(url, { headers: { Range: `bytes=${start}-${end}` }, signal: timeout ? AbortSignal.timeout(timeout) : undefined });
+export const rangeFetch = (url, timeout, f = (...a) => fetch(...a)) => async (start, end) => {
+  const r = await f(url, { headers: { Range: `bytes=${start}-${end}` }, signal: timeout ? AbortSignal.timeout(timeout) : undefined });
   if (r.status !== 206 && r.status !== 200) throw new Error(`dlaždice OSM ${r.status}`);
   let bytes = new Uint8Array(await r.arrayBuffer());
   if (r.status === 200) bytes = bytes.subarray(start, end + 1); // a server without Range: the whole file came
   return { bytes, etag: r.headers.get("ETag") || undefined };
 };
+
+// The files of all countries at one of several places (R2, then the same files on Pages): index.json there names
+// them, { "files": { "cz": "cz-2026-11-16.posm", … } } (tools/pack_osm_tiles.mjs). A new week's files get new
+// names, so a reader never mixes two weeks. A place that fails (its index or a piece) gives way to the next; when
+// the last one fails too, the next cut starts again from the first.
+export class PackSet {
+  constructor(bases, { timeout, fetch: f = (...a) => fetch(...a) } = {}) {
+    Object.assign(this, { bases, timeout, f, at: 0, packs: null });
+  }
+
+  open() {
+    const base = this.bases[this.at];
+    this.packs ??= (async () => {
+      const r = await this.f(`${base}/index.json`, { cache: "no-cache", signal: this.timeout ? AbortSignal.timeout(this.timeout) : undefined });
+      if (!r.ok) throw new Error(`dlaždice OSM ${r.status}`);
+      const { files } = await r.json();
+      return Object.values(files).map((file) => new Pack(rangeFetch(`${base}/${file}`, this.timeout, this.f)));
+    })();
+    return this.packs;
+  }
+
+  // The element lists of the tiles names ("ix_iy") in all countries (a tile on a border may be in two), for mergePieces.
+  async tiles(names) {
+    for (;;) {
+      try {
+        const per = await Promise.all((await this.open()).map((p) => p.tiles(names)));
+        return names.flatMap((_, i) => per.map((list) => list[i]).filter((els) => els.length));
+      } catch (err) {
+        this.packs = null;
+        if (this.at >= this.bases.length - 1) { this.at = 0; throw err; }
+        console.warn("dlaždice OSM jinde", this.bases[this.at], err.message);
+        this.at++;
+      }
+    }
+  }
+}
