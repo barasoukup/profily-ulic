@@ -433,8 +433,8 @@ const CITIES = {
 // ("cizina": the margins of the OSM extracts beyond the borders). No technical map, no RÚIAN: the profile is the
 // estimate from OSM and the orthophoto (ortho-osm.js), the houses are OSM's (towns/slovensko.js). dataName null: no
 // map to fail. Prague's furniture and Streetmix's vehicles, as in "cesko".
-const abroad = (id, cover, inCity, adjective, view, example) => ({
-  ...CITIES.cesko, id, like: "cesko", abroad: true, cover, inCity, adjective, view, example,
+const abroad = (id, country, cover, inCity, adjective, view, example) => ({
+  ...CITIES.cesko, id, like: "cesko", abroad: true, country, cover, inCity, adjective, view, example,
   server: "OpenStreetMap", dataName: null, dataShort: "OSM", techMap: null,
   parkingSource: "odhad podle pravidel",
   rulesHead: "Šířky podle pražského Manuálu IPR (C.2), mimo Česko jen orientačně:",
@@ -443,9 +443,9 @@ const abroad = (id, cover, inCity, adjective, view, example) => ({
 });
 Object.assign(CITIES, {
   // The houses of ZBGIS (towns/slovensko.js); the orthophoto is credited where it was read (creditLines).
-  slovensko: { ...abroad("slovensko", "Slovensko", "na Slovensku", "slovenské", [48.7, 19.7], "48.146736, 17.106998"),
+  slovensko: { ...abroad("slovensko", "SK", "Slovensko", "na Slovensku", "slovenské", [48.7, 19.7], "48.146736, 17.106998"),
     dataShort: "ZBGIS a OSM", credit: "budovy © GKÚ Bratislava (ZBGIS, CC BY 4.0)" },
-  cizina: abroad("cizina", "cizinu", "v cizině", "zahraniční", [49.8, 15.5], "48.146736, 17.106998"),
+  cizina: abroad("cizina", null, "cizinu", "v cizině", "zahraniční", [49.8, 15.5], "48.146736, 17.106998"),
 });
 
 // Towns with no data of their own (the national DTM of ČÚZK, as "cesko"), only their own vehicles.
@@ -489,7 +489,9 @@ export const cityById = (id) => CITIES[id];
 export const city = {};
 export function setCity(id) {
   for (const k of Object.keys(city)) delete city[k];
-  const c = CITIES[id] || CITIES.cesko;
+  // country: the state of the cut (ISO 3166-1: "CZ", "SK"; null elsewhere), for its data, norms and signs; the
+  // language of the interface is the visitor's (i18n.js), not the place's.
+  const c = { country: "CZ", ...(CITIES[id] || CITIES.cesko) };
   // In English the city's texts of en.js (its name in sentences, its data, its credits).
   Object.assign(city, c, lang === "cs" ? null : EN_CITY[c.id] || EN_CITY[c.like]);
   if (globalThis.PROFILY_FIX) city.fix = globalThis.PROFILY_FIX;
