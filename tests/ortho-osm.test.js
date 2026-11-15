@@ -29,8 +29,8 @@ test("ortofoto a OSM: obruby z hran snímku, chodníky k domům OSM, vše odhad"
   assert.ok(polys);
   // OSM expects 2 × 2.75 m; the image shows 7 m.
   assert.ok(Math.abs(polys.kerbs.A + 3.5) < 0.15 && Math.abs(polys.kerbs.B - 3.5) < 0.15, JSON.stringify(polys.kerbs));
-  assert.deepEqual(polys.slice(0, 3).map((p) => p.code), [701, 702, 702]);
-  assert.equal(polys.filter((p) => p.code === 601).length, 2);
+  // The order is the priority: the carriageway, the houses, then the sidewalks.
+  assert.deepEqual(polys.map((p) => p.code), [701, 601, 601, 702, 702]);
   const p = deriveProfile({ center: [0, 0], dir, half: 40, polys, osm: osm(), frame, way: osm().elements[0] });
   assert.ok(!p.estimate);
   assert.deepEqual(p.edges, { left: "budova", right: "budova", ...Object.fromEntries(Object.entries(p.edges).filter(([k]) => k.endsWith("Info"))) });
@@ -78,9 +78,47 @@ test("ortofoto a OSM: trávník z OSM mezi obrubou a domem je zeleň, voda konec
   const river = { type: "area", id: 8, tags: { natural: "water" }, geometry: [ll(4, -20), ll(30, -20), ll(30, 20), ll(4, 20), ll(4, -20)] };
   const els = { elements: [osm().elements[0], house(-16, -8), lawn, river] };
   const polys = orthoOsmPolys({ osm: els, frame, dir, way: els.elements[0], st: image() });
-  assert.deepEqual(polys.slice(1, 3).map((p) => p.code), [401, 501]);
+  assert.deepEqual(polys.slice(1, 4).map((p) => p.code), [601, 401, 501]);
   const p = deriveProfile({ center: [0, 0], dir, half: 40, polys, osm: els, frame, way: els.elements[0] });
   // t = −x: the lawn (x −6…−4) lies at t 4…6, past the 3.5 m kerb on the west side; the river (x 4…30) east, the profile's right.
   assert.ok(p.segments.some((s) => s.type === "zelen" && Math.abs(s.width - 2) < 0.2), JSON.stringify(p.segments.map((s) => [s.type, s.width])));
   assert.equal(p.edges.right, "voda");
+});
+
+test("ortofoto a OSM: dům v parku zůstane domem, sidewalk=no a daleký dům nedá desítky metrů plochy", () => {
+  const park = { type: "area", id: 9, tags: { leisure: "park" }, geometry: [ll(-30, -30), ll(-4, -30), ll(-4, 30), ll(-30, 30), ll(-30, -30)] };
+  const els = { elements: [osm().elements[0], house(-16, -8), park] };
+  const polys = orthoOsmPolys({ osm: els, frame, dir, way: els.elements[0], st: image() });
+  const p = deriveProfile({ center: [0, 0], dir, half: 40, polys, osm: els, frame, way: els.elements[0] });
+  assert.equal(p.edges.left, "budova"); // west (t > 0): the house inside the park
+  // A village road without sidewalks, houses 30 m off on a plain image: no 26 m of paving, the profile ends.
+  const far = { elements: [{ ...osm({ sidewalk: "no" }).elements[0] }, house(30, 40), house(-40, -30)] };
+  const q = orthoOsmPolys({ osm: far, frame, dir, way: far.elements[0], st: image(3.5, 0) });
+  assert.ok(!q.some((x) => x.code === 1003 || x.code === 702), JSON.stringify(q.map((x) => x.code)));
+});
+
+test("ortofoto a OSM: koruny nad osou (nic nezeleného u osy) nechají obruby podle OSM, nespadne to", () => {
+  const st = image();
+  for (let q = 0; q < st.G.length; q++) st.G[q] = 20; // green all over
+  const polys = orthoOsmPolys({ osm: osm(), frame, dir, way: osm().elements[0], st });
+  assert.ok(polys && polys.image === false);
+  assert.deepEqual([polys.kerbs.A, polys.kerbs.B], [-2.75, 2.75]);
+});
+
+test("ortofoto a OSM: bílý okraj pokrytí snímku není obruba", () => {
+  const st = image(6); // asphalt to ±6 m, OSM expects ±2.75
+  for (let j = 0; j < st.nu; j++) for (let i = 0; i < st.nt; i++) if (st.t0 + (i + 0.5) * st.res > 2) st.L[j * st.nt + i] = 255;
+  const polys = orthoOsmPolys({ osm: osm(), frame, dir, way: osm().elements[0], st });
+  assert.notEqual(polys.kerbs.why.B, "hrana");
+});
+
+test("ortofoto a OSM: staré značky zákazu stání nerozšíří vozovku, mapa svými chodníky omezí obruby", () => {
+  const els = { elements: [osm({ "parking:lane:both": "no_parking" }).elements[0]] };
+  const o = osmAlong(els.elements, (lon, lat) => { const [x, y] = frame.toXY(lon, lat); return [-x, y]; }, 1);
+  assert.equal(osmRoad(o.own).w, 5.5);
+  const old = osmAlong(osm({ "parking:lane:both": "parallel", "parking:lane:both:parallel": "on_kerb" }).elements, (lon, lat) => { const [x, y] = frame.toXY(lon, lat); return [-x, y]; }, 1);
+  assert.equal(osmRoad(old.own).w, 5.5);
+  // The map's sidewalks from ±2 m: the kerbs stay inside, though the image shows 7 m.
+  const polys = orthoOsmPolys({ osm: osm(), frame, dir, way: osm().elements[0], st: image(), mapRuns: [{ code: 702, s: -5, e: -2 }, { code: null, s: -2, e: 2 }, { code: 702, s: 2, e: 5 }] });
+  assert.ok(polys.kerbs.A >= -2 && polys.kerbs.B <= 2, JSON.stringify(polys.kerbs));
 });

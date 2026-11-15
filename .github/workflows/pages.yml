@@ -283,6 +283,5 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v4
         with:
-          # The site used to have about 245 000 files (the OSM tiles); packed (osm-pack) they are two, but the long
-          # timeout stays in case Pages is slow.
-          timeout: 3600000
+          # The longest deploy-pages allows (10 min); with the OSM tiles packed (two files) it takes under a minute.
+          timeout: 600000

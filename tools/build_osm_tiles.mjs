@@ -45,9 +45,10 @@ const BUILDING_NEAR = 2;
 const hasLevels = (t) => t["building:levels"] !== undefined || t.height !== undefined || t["roof:levels"] !== undefined;
 // Green areas (lawns, parks, woods) and water: only their pieces in the tiles a road runs through, each piece cut to its tile.
 // Water and plots that end a profile, cut alike.
-const WATER = (t) => t.natural === "water" || ["reservoir", "basin", "allotments", "cemetery"].includes(t.landuse) || t.waterway === "riverbank";
+const WATER = (t) => t.natural === "water" || t.water !== undefined || ["reservoir", "basin", "allotments", "cemetery"].includes(t.landuse) || t.waterway === "riverbank";
 const GREEN = (t) => ["grass", "meadow", "village_green", "flowerbed", "forest", "orchard", "recreation_ground"].includes(t.landuse) || ["park", "garden"].includes(t.leisure) || ["grass", "grassland", "scrub", "wood", "heath"].includes(t.natural);
 const roadTiles = new Set();
+const ringArea = (r) => { let a = 0; for (let i = 0; i + 1 < r.length; i++) a += r[i][0] * r[i + 1][1] - r[i + 1][0] * r[i][1]; return a / 2; };
 // A ring cut to a box (Sutherland–Hodgman): the box's edges close it where it leaves; null when nothing is left.
 function clipRing(ring, [x0, y0, x1, y1]) {
   let pts = ring.slice(0, -1);
@@ -136,6 +137,8 @@ for (const src of sources) {
     if (line_ && all.highway && dropWay(all, g.type === "LineString" ? g.coordinates : g.coordinates.flat())) continue;
     const building = !!all.building && (g.type === "Polygon" || g.type === "MultiPolygon");
     if (building && !hasLevels(all) && !nearRoad(g.type === "Polygon" ? g.coordinates[0] : g.coordinates.flatMap((pl) => pl[0]), BUILDING_NEAR)) continue;
+    // Buildings under the ground (a garage under a yard: layer < 0, location=underground) are no facades.
+    if (building && (Number(all.layer) < 0 || Number(all.level) < 0 || ["underground", "underwater"].includes(all.location) || all.building === "underground")) continue;
     const green = !building && (g.type === "Polygon" || g.type === "MultiPolygon") && (GREEN(all) || WATER(all));
     const tags = Object.fromEntries(Object.entries(all).filter(([k]) => (building ? BUILDING_KEYS.has(k) : KEEP.test(k))));
     if (g.type === "Point") {
@@ -162,8 +165,10 @@ for (const src of sources) {
     } else if (green) {
       const id = Number(p.osm_way_id || p.osm_id), tags = Object.fromEntries(Object.entries(all).filter(([k]) => /^(landuse|leisure|natural|water|waterway|name)$/.test(k)));
       for (const poly of g.type === "Polygon" ? [g.coordinates] : g.coordinates) {
-        const xs = poly[0].map((c) => c[0]), ys = poly[0].map((c) => c[1]);
-        const [tx0, ty0] = tileOf(Math.min(...xs), Math.min(...ys)), [tx1, ty1] = tileOf(Math.max(...xs), Math.max(...ys));
+        // The box of the ring by a loop: a spread of a big wood or lake (over ~125 000 points) overflows the stack.
+        let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+        for (const [x, y] of poly[0]) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+        const [tx0, ty0] = tileOf(x0, y0), [tx1, ty1] = tileOf(x1, y1);
         for (let ix = tx0; ix <= tx1; ix++) for (let iy = ty0; iy <= ty1; iy++) {
           const key = `${ix}_${iy}`;
           if (!roadTiles.has(key)) continue;
@@ -171,6 +176,8 @@ for (const src of sources) {
           const outer = clipRing(poly[0], box);
           if (!outer) continue;
           const holes = poly.slice(1).map((r) => clipRing(r, box)).filter(Boolean);
+          // A hole over the whole tile (a lake in a wood) leaves nothing of the area there.
+          if (holes.some((h) => Math.abs(ringArea(h)) >= 0.999 * Math.abs(ringArea(outer)))) continue;
           const el = { t: "a", i: id, k: tags, g: enc(outer, 1e5), q: 5 };
           if (holes.length) el.h = holes.map((r) => enc(r, 1e5));
           put(key, JSON.stringify(el));

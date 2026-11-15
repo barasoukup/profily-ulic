@@ -312,7 +312,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     // 2026: better than OSM alone), all an estimate. The map's own surfaces, where there are any, stay behind it.
     let orthoOsm = null;
     if (result.estimate) {
-      const fb = orthoOsmPolys({ osm, frame, dir, way: near.way, st: laneImg?.st });
+      // The map's runs where it has surfaces but none at the axis: its sidewalks and buildings bound the estimate.
+      const fb = orthoOsmPolys({ osm, frame, dir, way: near.way, st: laneImg?.st, mapRuns: result.runs || [] });
       if (fb) {
         const again = deriveProfile({ ...args, polys: [fb[0], ...polys, ...fb.slice(1)] });
         if (!again.estimate) { result = again; orthoOsm = fb; }
@@ -374,14 +375,22 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     if (!map.getBounds().contains([clat, clon])) map.panTo([clat, clon]);
     // What the cut lacks because a source did not answer (sources.js outage). An estimate stays marked as one,
     // also when restored from storage or a file.
-    const out = sources.outage({ surfaces: m, lines: k, parking: pk });
+    // The profile made without the map (ortho-osm.js): where its kerbs come from. A blank or missing orthophoto (outside
+    // its coverage, no answer): OSM's; ?orto=0 asks for none.
+    const orthoNote = !orthoOsm ? "" : orthoOsm.image ? tr("Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.")
+      : LANES_ORTHO ? tr("Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.")
+      : tr("Obruby jsou podle OSM a domy z OSM, šířky ověřte.");
+    const out = sources.outage({ surfaces: m, lines: k, parking: pk }, undefined, { fallback: orthoNote });
     state.cut.note = out.note;
     $("#street-name").textContent = streetName(state.cut) + tr(state.cut.note);
-    // A blank or missing orthophoto (outside its coverage, no answer): the kerbs are OSM's, and the note says so.
-    const orthoNote = !orthoOsm ? "" : orthoOsm.image ? tr("Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.")
-      : tr("Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.");
-    if (out.text) status(out.text + (orthoNote && " " + orthoNote), out.error ? "error" : undefined);
-    else if (orthoOsm) status(orthoNote);
+    const junctionNote = tr("Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami.");
+    const droppedNote = tr("Nový řez: návrh začíná znovu od stavu ulice (předchozí návrh zůstává ve sdíleném odkazu nebo uloženém souboru, pokud jste ho uložili).");
+    // With the profile made without the map, the other notes come after its own (a junction, a design started anew).
+    const extra = orthoOsm ? [result.junction && junctionNote, dropped && droppedNote].filter(Boolean).map((x) => " " + x).join("") : "";
+    // The map has surfaces here, none at the axis (the outage says nothing of it): that comes first.
+    const axisNote = orthoOsm && !out.text.includes(orthoNote) ? tr("Technická mapa tu nemá povrch ulice.") + " " + orthoNote + (out.text ? " " + out.text : "") : "";
+    if (axisNote) status(axisNote + extra, out.error ? "error" : undefined);
+    else if (out.text) status(out.text + extra, out.error ? "error" : undefined);
     else if (dropped) status(tr("Nový řez: návrh začíná znovu od stavu ulice (předchozí návrh zůstává ve sdíleném odkazu nebo uloženém souboru, pokud jste ho uložili)."));
     else status(result.notice ? result.notice
       : result.junction ? tr("Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami.") : "");

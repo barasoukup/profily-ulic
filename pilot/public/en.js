@@ -452,6 +452,13 @@ export const EN = {
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} is not responding right now, the surfaces are from the ČÚZK technical map.",
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "The ČÚZK technical map is not responding right now, the profile is an estimate from OSM.",
   "Technická mapa tu nic nevrátila, profil je odhad z OSM.": "The technical map returned nothing here, the profile is an estimate from OSM.",
+  "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "The kerbs follow OSM and the buildings are from OSM, check the widths.",
+  "Technická mapa tu nemá povrch ulice.": "The technical map has no street surface here.",
+  "{name} teď neodpovídá (server je přetížený).": "{name} is not responding right now (the server is overloaded).",
+  "{name} teď neodpovídá.": "{name} is not responding right now.",
+  "Technická mapa ČÚZK teď neodpovídá.": "The ČÚZK technical map is not responding right now.",
+  "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "The technical map has only lines here, no areas (the region does not supply them).",
+  "Technická mapa tu nic nevrátila.": "The technical map returned nothing here.",
   "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "The kerbs are estimated from the orthophoto and the buildings from OSM, check the widths.",
   "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "The orthophoto did not help here: the kerbs follow OSM and the buildings are from OSM, check the widths.",
 

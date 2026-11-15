@@ -27,7 +27,7 @@ function crossT(pts, half, u0 = 0) {
 export const BUILDING_U = [0, -1, 1, -2, 2];
 // Green areas of OSM (tools/build_osm_tiles.mjs keeps them near the roads, cut by tiles): lawns, parks, gardens, woods.
 // Water, allotments and cemeteries (kept alike): where a profile ends, as MTVU's water (501) and gardens (300).
-export const WATER = (t) => t.natural === "water" || ["reservoir", "basin", "allotments", "cemetery"].includes(t.landuse) || t.waterway === "riverbank";
+export const WATER = (t) => t.natural === "water" || t.water !== undefined || ["reservoir", "basin", "allotments", "cemetery"].includes(t.landuse) || t.waterway === "riverbank";
 export const GREEN = (t) => ["grass", "meadow", "village_green", "flowerbed", "forest", "orchard", "recreation_ground"].includes(t.landuse) || ["park", "garden"].includes(t.leisure) || ["grass", "grassland", "scrub", "wood", "heath"].includes(t.natural);
 // tu: (lon, lat) → [t across the cut, u along it]; wayId: the clicked street. Returns the clicked way's crossing
 // { t, along (+1 when it runs with u), tags }, the other ways crossing the cut, the buildings' stretches on the lines
@@ -57,16 +57,21 @@ export function osmAlong(elements, tu, wayId, half = 45) {
       if (el.id === wayId) { if (!own || Math.abs(w.t) < Math.abs(own.t)) own = w; } else ways.push(w);
     }
   }
-  const facade = {};
+  const facade = {}, facadeU = {};
   if (own) for (const [side, sg] of [["A", -1], ["B", 1]]) {
     facade[side] = null;
     for (const u of BUILDING_U) {
       const hits = buildings.filter((b) => b.u === u && (sg < 0 ? b.e < own.t : b.s > own.t)).map((b) => (sg < 0 ? b.e : b.s)).filter((x) => Math.abs(x - own.t) < 40);
-      if (hits.length) { facade[side] = hits.reduce((a, b) => (Math.abs(b - own.t) < Math.abs(a - own.t) ? b : a)); break; }
+      if (hits.length) { facade[side] = hits.reduce((a, b) => (Math.abs(b - own.t) < Math.abs(a - own.t) ? b : a)); facadeU[side] = u; break; }
     }
   }
-  return { own, buildings, ways, facade, outlines, greens };
+  return { own, buildings, ways, facade, facadeU, outlines, greens };
 }
+
+// The level of a way: its layer, or −1 in a tunnel and 1 on a bridge without one. Ways of another level than the
+// clicked street (a road in a tunnel under it, tracks on a bridge over it) do not limit or widen it.
+const levelOf = (t) => Number(t.layer) || (t.tunnel && t.tunnel !== "no" ? -1 : t.bridge && t.bridge !== "no" ? 1 : 0);
+const sameLevel = (w, o) => levelOf(w.tags) === levelOf(o.own.tags);
 
 // ---------- the carriageway OSM implies ----------
 const num = (v) => { const x = parseFloat(String(v ?? "").replace(",", ".")); return Number.isFinite(x) ? x : null; };
@@ -76,12 +81,22 @@ const LANE_W = { motorway: 3.5, trunk: 3.5, primary: 3.25, secondary: 3.25, tert
 export const laneWidth = (hw) => LANE_W[String(hw).replace("_link", "")] ?? 2.75;
 // Parking at one side of the way (left / right of its drawing direction), the street-parking schemes old and new:
 // its kind and how much of the carriageway it takes (m).
+// Only parking on the carriageway counts (lane, street_side, half of half_on_kerb); no_parking, no_stopping, yes and
+// the like take nothing. The old scheme: parking:lane:<side>=parallel|diagonal|perpendicular|marked with the place in
+// parking:lane:<side>:<orientation>=on_street|half_on_kerb|on_kerb|lay_by.
+const OLD_ORIENT = ["parallel", "diagonal", "perpendicular", "marked", "inline"];
 function parkingSide(t, side) {
   const v = t[`parking:${side}`] ?? t["parking:both"], orient = t[`parking:${side}:orientation`] ?? t["parking:both:orientation"];
   const old = t[`parking:lane:${side}`] ?? t["parking:lane:both"];
-  const kind = v ?? (old ? (["parallel", "diagonal", "perpendicular", "marked"].includes(old) ? "lane" : old) : null);
-  const or = orient ?? (["parallel", "diagonal", "perpendicular"].includes(old) ? old : "parallel");
-  if (!kind || ["no", "none", "separate", "on_kerb", "shoulder", "fire_lane"].includes(kind)) return { kind, w: 0 };
+  let kind = v ?? null, or = orient ?? "parallel";
+  if (!kind && old) {
+    if (OLD_ORIENT.includes(old)) {
+      or = old === "marked" || old === "inline" ? "parallel" : old;
+      const at = t[`parking:lane:${side}:${old}`] ?? t[`parking:lane:both:${old}`];
+      kind = at === "on_kerb" ? "on_kerb" : at === "half_on_kerb" ? "half_on_kerb" : at === "lay_by" || at === "street_side" ? "street_side" : "lane";
+    } else kind = old;
+  }
+  if (!["lane", "street_side", "half_on_kerb"].includes(kind)) return { kind, w: 0 };
   const full = or === "perpendicular" ? 5 : or === "diagonal" ? 4.5 : 2.0;
   return { kind, w: kind === "half_on_kerb" ? full / 2 : full };
 }
@@ -105,21 +120,22 @@ export function osmRoad(own) {
 // Tram tracks in the street: where OSM tracks cross the cut within the expected carriageway, it reaches at least
 // 1.7 m past the outer track's axis (half a tram and a little).
 export function withRails(road, o) {
-  const axis = o.own.t, far = Math.max(road.reach.A, road.reach.B), rails = o.ways.filter((w) => w.tags.railway === "tram" && Math.abs(w.t - axis) < far + 3.5);
+  const axis = o.own.t, far = Math.max(road.reach.A, road.reach.B), rails = o.ways.filter((w) => w.tags.railway === "tram" && sameLevel(w, o) && Math.abs(w.t - axis) < far + 3.5);
   if (!rails.length || (o.own.tags.embedded_rails === undefined && !rails.some((w) => Math.abs(w.t - axis) < far))) return road;
   const reach = { ...road.reach };
   for (const w of rails) { const side = w.t < axis ? "A" : "B"; reach[side] = Math.max(reach[side], Math.abs(w.t - axis) + 1.7); }
   return { ...road, reach, w: reach.A + reach.B, rails: rails.length };
 }
-// Where a kerb may lie on each side: up to the facade, a separately mapped sidewalk (its line is the sidewalk's
-// middle) or halfway to a partner carriageway; at most 25 m.
+// Where a kerb may lie on each side: up to the facade, 0.75 m short of a separately mapped sidewalk (its line is the
+// sidewalk's middle), halfway to a partner carriageway (ways of the street's own level only); at most 25 m.
 export function limits(o, axis) {
   const lim = { A: axis - 25, B: axis + 25 };
   const near = (side, t, back = 0) => { if (side === "A" && t < axis && t + back > lim.A) lim.A = t + back; if (side === "B" && t > axis && t - back < lim.B) lim.B = t - back; };
   for (const side of ["A", "B"]) if (o.facade[side] !== null) near(side, o.facade[side]);
   for (const w of o.ways) {
+    if (!sameLevel(w, o)) continue;
     const hw = w.tags.highway, side = w.t < axis ? "A" : "B";
-    if (hw === "footway" && w.tags.footway === "sidewalk") near(side, w.t, side === "A" ? -0.5 : 0.5);
+    if (hw === "footway" && w.tags.footway === "sidewalk") near(side, w.t, 0.75);
     if (["motorway", "trunk", "primary", "secondary", "tertiary"].includes(String(hw).replace("_link", "")) && w.tags.oneway === "yes" && Math.abs(w.t - axis) > 4) near(side, (w.t + axis) / 2);
   }
   return lim;
@@ -149,6 +165,23 @@ export function columns(st) {
     }
     medL[i] = median(Array.from(bl, (x) => x[i]));
     green[i] = n ? gn / n : NaN; sat[i] = median(sv); seen[i] = n / nu;
+  }
+  // A blank stretch (the image's edge of coverage: white or black and flat along the street, a metre wide or more) is
+  // not seen: no road there and no kerb at its edge. A painted line is narrower.
+  const flat = (i) => {
+    let n = 0, s = 0, s2 = 0;
+    for (let j = 0; j < nu; j += 3) { const x = L[j * nt + i]; if (Number.isNaN(x)) continue; n++; s += x; s2 += x * x; }
+    if (!n) return false;
+    const m = s / n;
+    return (m >= 248 || m <= 5) && Math.sqrt(Math.max(0, s2 / n - m * m)) < 2;
+  };
+  const isFlat = Uint8Array.from({ length: nt }, (_, i) => (flat(i) ? 1 : 0)), wide = Math.round(1 / res);
+  for (let i = 0; i < nt;) {
+    if (!isFlat[i]) { i++; continue; }
+    let e = i;
+    while (e < nt && isFlat[e]) e++;
+    if (e - i >= wide) for (let q = i; q < e; q++) seen[q] = 0;
+    i = e;
   }
   // Edges between columns i-1 and i: the signed difference of the pieces' brightness across ±d, its median over the
   // pieces, times the share of pieces that agree in sign; plus the step of green. Relative to the typical change.
@@ -201,8 +234,11 @@ export function kerbs(cols, axis, lim, road, lines = []) {
       const t = l + sg * P.lineOff;
       if ((sg < 0 ? l < axis : l > axis) && t > lo && t < hi && Math.abs(Math.abs(t - axis) - exp) < 2.5 * sigma) cand.push({ i: cols.ti(t), from: "čára" });
     }
+    // Not at the edge of what the image shows (within 0.6 m of a column not seen).
+    const near = Math.round(0.6 / cols.res), atEdge = (i) => { for (let q = i - near; q <= i + near; q++) if (q < 0 || q >= cols.nt || cols.seen[q] < 0.5) return true; return false; };
     let best = null;
     for (const c of cand) {
+      if (atEdge(c.i)) continue;
       const ia = cols.ti(axis), span = sg < 0 ? [c.i, ia] : [ia, c.i];
       let n = 0, ok = 0;
       for (let q = span[0]; q < span[1]; q++) { if (q < 0 || q >= cols.nt || cols.seen[q] < 0.5) continue; n++; if (roadLike(cols, ref, q)) ok++; }
@@ -230,69 +266,83 @@ export function usable(st) {
   return sd >= 4 && mean > 5 && mean < 245;
 }
 // Kerbs on the image st (laneImage's), for the street o (osmAlong) and its road (osmRoad, withRails). Without a usable
-// image: where OSM expects them (why "osm", image false).
-export function kerbsOnImage(st, o, road) {
+// image, or when the roadway at the axis cannot be seen (treetops over it): where OSM expects them (why "osm", image
+// false). mapRuns: the surface map's runs along the cut where it has some but none at the axis (derive.js runs): its
+// sidewalks and buildings bound the kerbs, the estimate does not cover what the map measured.
+const MAP_BOUND = (c) => c === 702 || c === 703 || c === 600 || c === 601 || c === 604;
+export function kerbsOnImage(st, o, road, mapRuns = []) {
   const axis = o.own.t, lim = limits(o, axis);
-  if (!usable(st)) return { A: Math.max(lim.A + 0.5, axis - road.reach.A), B: Math.min(lim.B - 0.5, axis + road.reach.B), why: { A: "osm", B: "osm" }, lim, cols: null, image: false };
+  for (const r of mapRuns) {
+    if (!MAP_BOUND(r.code)) continue;
+    if (r.e <= axis && r.e > lim.A) lim.A = r.e;
+    if (r.s >= axis && r.s < lim.B) lim.B = r.s;
+  }
+  const byOsm = { A: Math.max(lim.A + 0.5, axis - road.reach.A), B: Math.min(lim.B - 0.5, axis + road.reach.B), why: { A: "osm", B: "osm" }, lim, cols: null, image: false };
+  if (!usable(st)) return byOsm;
   const end = st.t0 + st.nt * st.res;
   const lo = Math.max(lim.A, st.t0 + 0.5), hi = Math.min(lim.B, end - 0.5);
   const lines = hi - lo > 4 ? strongLines(st, lo + 1.5, hi - 1.5) : [];
   const cols = columns(st);
   const k = kerbs(cols, axis, lim, road, lines);
-  return { ...k, lim, cols, image: !!k && (k.why.A !== "osm" || k.why.B !== "osm") };
+  if (!k) return { ...byOsm, cols };
+  return { ...k, lim, cols, image: k.why.A !== "osm" || k.why.B !== "osm" };
 }
 
 // ---------- the surfaces for derive.js ----------
 // The MTVU codes the profile knows: 701 the roadway, 702 a sidewalk, 1003 a paved area, 601 a building. A sidewalk runs
 // from the kerb to the facade, at most SIDEWALK_MAX (the rest greenery where the image is mostly green, else a
-// paved area); with no facade within reach, only where
-// OSM tags one (sidewalk:width, else the default SIDEWALK m), then nothing (the profile ends there). Where OSM says
-// there is no sidewalk the space is a paved area.
-const ALONG = 10, SIDEWALK = 2.5, SIDEWALK_MAX = 6, GREEN_AREA = 0.1; // evaluation/ortofoto-osm/zelen.mjs: on ČÚZK 12.5 cm 67 % (Prague) and 82 % (Brno) of the metres right
+// paved area up to REST_MAX m, else nothing); with no facade within reach, only where OSM tags one (sidewalk:width,
+// else the default SIDEWALK m), then nothing (the profile ends there). Where OSM says there is no sidewalk the space
+// is treated as that rest.
+const ALONG = 10, SIDEWALK = 2.5, SIDEWALK_MAX = 6, REST_MAX = 12, HOUSE = 5, GREEN_AREA = 0.1; // evaluation/ortofoto-osm/zelen.mjs: on ČÚZK 12.5 cm 67 % (Prague) and 82 % (Brno) of the metres right
 const STREET = /^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|living_street|service|pedestrian|road)(_link)?$/;
 // frame: derive.js localFrame of the cut (its centre is [0, 0]); dir: the street's direction in it; way: the clicked
 // OSM way; st: laneImage's image (null or blank: the kerbs where OSM expects them). Returns the polygons (as derive.js
 // mtvuPolygons, with .kerbs and .image: whether the orthophoto found a kerb) or null.
-export function orthoOsmPolys({ osm, frame, dir, way, st }) {
+export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [] }) {
   if (!way || !STREET.test(way.tags?.highway || "")) return null;
   const normal = [-dir[1], dir[0]];
   const tu = (lon, lat) => { const [x, y] = frame.toXY(lon, lat); return [x * normal[0] + y * normal[1], x * dir[0] + y * dir[1]]; };
   const xy = (t, u) => [normal[0] * t + dir[0] * u, normal[1] * t + dir[1] * u];
   const o = osmAlong(osm?.elements, tu, way.id);
   if (!o.own) return null;
-  const road = withRails(osmRoad(o.own), o), k = kerbsOnImage(st, o, road);
+  const road = withRails(osmRoad(o.own), o), k = kerbsOnImage(st, o, road, mapRuns);
   if (!Number.isFinite(k.A) || !Number.isFinite(k.B) || k.B - k.A < 2) return null;
   const bboxOf = (pts) => [Math.min(...pts.map((p) => p[0])), Math.min(...pts.map((p) => p[1])), Math.max(...pts.map((p) => p[0])), Math.max(...pts.map((p) => p[1]))];
   const rect = (code, label, s, e) => { const ring = [xy(s, -ALONG), xy(e, -ALONG), xy(e, ALONG), xy(s, ALONG), xy(s, -ALONG)]; return { code, label, guess: true, orthoOsm: true, rings: [ring], bbox: bboxOf(ring) }; };
+  // The order is the priority (derive.js classify takes the first polygon containing a point): the carriageway, the
+  // OSM buildings, OSM's green areas, water and allotments, then the sidewalks and the rest up to the houses. A house in
+  // a park stays a house; where OSM has a lawn beside the street it is greenery; water and allotments end the profile.
   const polys = [rect(701, "vozovka (ortofoto a OSM)", k.A, k.B)];
-  // OSM's green areas, water and allotments before the sidewalks: where OSM has a lawn or a park it is greenery, water
-  // or allotments end the profile (the carriageway stays).
+  for (const { el } of o.outlines) {
+    const rings = [el.geometry, ...(el.holes || [])].map((r) => r.map((g) => frame.toXY(g.lon, g.lat)));
+    polys.push({ code: 601, label: "budova (OSM)", rings, bbox: bboxOf(rings[0]) });
+  }
   for (const el of o.greens) {
     const rings = [el.geometry, ...(el.holes || [])].map((r) => r.map((g) => frame.toXY(g.lon, g.lat)));
     const [code, label] = GREEN(el.tags) ? [401, "zeleň (OSM)"] : ["allotments", "cemetery"].includes(el.tags.landuse) ? [300, "zahrady (OSM)"] : [501, "voda (OSM)"];
     polys.push({ code, label, guess: true, orthoOsm: true, rings, bbox: bboxOf(rings[0]) });
   }
+  // A stretch without a sidewalk (past SIDEWALK_MAX, or all of it where OSM says there is none): greenery where the image
+  // is mostly green, a paved area up to REST_MAX m, else nothing (the profile ends: a yard, a field, a plot of its own).
+  const rest = (a, b) => {
+    const g = [];
+    if (k.cols) for (let i = k.cols.ti(a); i < k.cols.ti(b); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.green[i])) g.push(k.cols.green[i]);
+    if (g.length && g.reduce((x, y) => x + y, 0) / g.length >= GREEN_AREA) polys.push(rect(401, "zeleň (ortofoto)", a, b));
+    else if (b - a <= REST_MAX) polys.push(rect(1003, "plocha před domem (odhad)", a, b));
+  };
   for (const [side, sg] of [["A", -1], ["B", 1]]) {
     const kerb = k[side], f = o.facade[side], says = road.sidewalk[side];
     const far = f !== null ? f : says === "no" ? null : says || road.sidewalkW[side] ? kerb + sg * (road.sidewalkW[side] || SIDEWALK) : null;
     if (far === null || sg * (far - kerb) < 0.3) continue;
-    if (says === "no") { polys.push(rect(1003, "zpevněná plocha (odhad)", ...(sg < 0 ? [far, kerb] : [kerb, far]))); continue; }
+    const span = (x, y) => (sg < 0 ? [y, x] : [x, y]);
     // A sidewalk of at most SIDEWALK_MAX; the rest up to the house is some other area (a front garden, a yard, a lawn:
-    // the image does not tell, MTVU in Prague and Brno: 34 of 42 such stretches over 6 m hold a sidewalk of at most 6 m).
-    const swEnd = Math.abs(far - kerb) > SIDEWALK_MAX ? kerb + sg * SIDEWALK_MAX : far;
-    polys.push(rect(702, "chodník (ortofoto a OSM)", ...(sg < 0 ? [swEnd, kerb] : [kerb, swEnd])));
-    if (swEnd !== far) {
-      // Green on the image over most of it (a lawn, treetops): greenery, else a paved area.
-      const [a, b] = sg < 0 ? [far, swEnd] : [swEnd, far], g = [];
-      if (k.cols) for (let i = k.cols.ti(a); i < k.cols.ti(b); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.green[i])) g.push(k.cols.green[i]);
-      const green = g.length && g.reduce((x, y) => x + y, 0) / g.length >= GREEN_AREA;
-      polys.push(green ? rect(401, "zeleň (ortofoto)", a, b) : rect(1003, "plocha před domem (odhad)", a, b));
-    }
-  }
-  // The OSM buildings at the cut, as the map's.
-  for (const { el } of o.outlines) {
-    const rings = [el.geometry, ...(el.holes || [])].map((r) => r.map((g) => frame.toXY(g.lon, g.lat)));
-    polys.push({ code: 601, label: "budova (OSM)", rings, bbox: bboxOf(rings[0]) });
+    // MTVU in Prague and Brno: 34 of 42 such stretches over 6 m hold a sidewalk of at most 6 m).
+    const swEnd = says === "no" ? kerb : Math.abs(far - kerb) > SIDEWALK_MAX ? kerb + sg * SIDEWALK_MAX : far;
+    if (swEnd !== kerb) polys.push(rect(702, "chodník (ortofoto a OSM)", ...span(kerb, swEnd)));
+    if (swEnd !== far) rest(...span(swEnd, far));
+    // A house found only beside the cut (on a line u ≠ 0): its front drawn across the cut, so the profile ends at it.
+    if (f !== null && o.facadeU[side] !== 0) polys.push({ ...rect(601, "budova (OSM, vedle řezu)", ...span(far, far + sg * HOUSE)), guess: false });
   }
   polys.kerbs = { A: k.A, B: k.B, why: k.why };
   // Whether the orthophoto decided anything (a kerb found on it); else the kerbs are OSM's (the status says so).

@@ -48,7 +48,9 @@ export const mtvu = (bbox) => (town() ? town().surfaces(bbox) : isBrno() ? brnoS
 // profile is an estimate from OSM; without the lines it lacks tram tracks, fences and slopes; without the
 // parking it lacks the stalls (and in a paid zone none are estimated). Prague's lines carry missing
 // "opendata" when the tiles of its open data failed (street classes of TSK, trees).
-export function outage({ surfaces, lines, parking }, dataName = city.dataName) {
+// fallback: the sentence of the profile made without the map (app.js, ortho-osm.js): it takes the place of "the
+// profile is an estimate from OSM", before what else is missing and the advice to click again.
+export function outage({ surfaces, lines, parking }, dataName = city.dataName, { fallback = "" } = {}) {
   const s = surfaces.status === "fulfilled" ? surfaces.value : null;
   const lacks = [];
   if (lines.status !== "fulfilled") lacks.push(t("kolejí, plotů a svahů"));
@@ -63,11 +65,16 @@ export function outage({ surfaces, lines, parking }, dataName = city.dataName) {
     : empty ? (s.dmvsFailed ? mark(" · technická mapa neodpověděla, jen odhad") : s.linesOnly ? mark(" · technická mapa tu má jen čáry, jen odhad") : mark(" · mimo technickou mapu, jen odhad"))
     : s.fromLines ? mark(" · plochy odvozené z čar technické mapy")
     : lacks.length ? mark(" · neúplná data") : "";
-  const text = failed ? (city.id === "praha" ? t("{name} teď neodpovídá (server je přetížený), profil je jen odhad z OSM.", { name: dataName })
+  const fb = fallback ? " " + fallback : "";
+  const text = failed && fallback ? (city.id === "praha" ? t("{name} teď neodpovídá (server je přetížený).", { name: dataName }) : t("{name} teď neodpovídá.", { name: dataName })) + fb + without + again
+    : failed ? (city.id === "praha" ? t("{name} teď neodpovídá (server je přetížený), profil je jen odhad z OSM.", { name: dataName })
       : t("{name} teď neodpovídá, profil je jen odhad z OSM.", { name: dataName })) + without + again
     : s.fallback ? t("{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.", { name: dataName }) + without
+    : empty && s.dmvsFailed && fallback ? t("Technická mapa ČÚZK teď neodpovídá.") + fb + without + again
     : empty && s.dmvsFailed ? t("Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.") + without + again
+    : empty && s.linesOnly && fallback ? t("Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).") + fb + without
     : empty && s.linesOnly ? t("Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává), profil je odhad z OSM.") + without
+    : empty && fallback ? t("Technická mapa tu nic nevrátila.") + fb + without
     : empty ? t("Technická mapa tu nic nevrátila, profil je odhad z OSM.") + without
     : s.fromLines ? t("Technická mapa tu má jen čáry bez ploch: šířky jsou změřené mezi nimi, vozovka a chodníky odhadnuté.") + without
     : without ? without.trim() + again : "";

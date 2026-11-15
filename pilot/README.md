@@ -453,11 +453,16 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
       kandidáty se vybírá podle asfaltu mezi osou a hranou a podle toho, kde obrubu čeká OSM: `width`, jinak
       `lanes` × 3,5 / 3,25 / 3,0 / 2,75 m podle třídy, plus stání (`parking:*`), cyklopruhy a koleje OSM ve
       vozovce. Místo 0,4 m za plnou čarou je taky kandidát. Kde hrana není, platí šířka podle OSM;
-    - **domy:** budovy OSM (čtené i ±1 a ±2 m podél ulice). **Chodník** vede od obruby k domu, nejvýš 6 m. Zbytek
-      je zeleň, kde je ortofoto převážně zelené (podíl ≥ 0,1), jinak plocha. Bez domu je chodník jen podle OSM
-      (`sidewalk*`, šířka `sidewalk:width` nebo 2,5 m) a za ním profil končí; `sidewalk=no` dá plochu;
+    - **domy:** budovy OSM (čtené i ±1 a ±2 m podél ulice; dům jen vedle řezu se dokreslí přes řez). Mají přednost
+      před zelenými plochami OSM (trávník, park, les), ty před chodníky; voda, zahrádky a hřbitovy profil ukončí.
+      **Chodník** vede od obruby k domu, nejvýš 6 m. Zbytek, a s `sidewalk=no` celý prostor, je zeleň, kde je
+      ortofoto převážně zelené (podíl ≥ 0,1), jinak plocha do 12 m, jinak tam profil končí. Bez domu je chodník jen
+      podle OSM (`sidewalk*`, šířka `sidewalk:width` nebo 2,5 m) a za ním profil končí;
+    - kde technická mapa má plochy, jen ne u osy, omezí obruby její chodníky a domy; obruby se nehledají u okraje
+      pokrytí snímku a koruny nad osou nechají obruby podle OSM;
     - všechno kromě domů je „odhad“ a hláška dodá „Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.“
-      Přesnost proti MTVU: obruba do 0,5 m u 39–49 % stran, do 1 m u 57–69 %. Samotné OSM má 26–35 % a 51–59 %.
+      Přesnost proti MTVU (jednoduché řezy Prahy a Brna): obruba do 0,5 m u 39–50 % stran, do 1 m u 57–69 %. Samotné
+      OSM má 26–34 % a 51–58 %. Ve vsích a v cizině bude nejspíš horší.
 12. Konec A je vždy západní, B východní; tlačítko **⇄ Otočit** je prohodí (zrcadlí stav, návrh i opravy, domy si
     nechají barvy).
 13. Trakční sloup dál než 4 m od kolejí (mezi nimi pruhy pro auta, 17. listopadu) nemá výložník, ale drží vodorovné
