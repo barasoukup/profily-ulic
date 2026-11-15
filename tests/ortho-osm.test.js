@@ -55,10 +55,22 @@ test("ortofoto a OSM: bez hran na snímku platí šířka podle OSM (width), bez
   assert.ok(sw[0].bbox[0] < -5); // west of the axis
 });
 
-test("ortofoto a OSM: chodník (pěšina) se nepočítá, bez obrázku nic", () => {
+test("ortofoto a OSM: chodník (pěšina) se nepočítá", () => {
   const els = { elements: [{ type: "way", id: 1, tags: { highway: "footway" }, geometry: [ll(0, -60), ll(0, 60)] }] };
   assert.equal(orthoOsmPolys({ osm: els, frame, dir, way: els.elements[0], st: image() }), null);
-  assert.equal(orthoOsmPolys({ osm: osm(), frame, dir, way: osm().elements[0], st: null }), null);
+});
+
+test("ortofoto a OSM: bez snímku, s prázdným nebo bílým snímkem obruby podle OSM a image false; se snímkem true", () => {
+  const blank = image(0, 0), white = image(0, 0);
+  for (let q = 0; q < white.L.length; q++) white.L[q] = 255;
+  const outside = image(); outside.L.fill(NaN);
+  for (const st of [null, blank, white, outside]) {
+    const polys = orthoOsmPolys({ osm: osm(), frame, dir, way: osm().elements[0], st });
+    assert.ok(polys && polys.image === false);
+    assert.deepEqual([polys.kerbs.A, polys.kerbs.B], [-2.75, 2.75]); // 2 lanes × 2.75 m of a residential street
+    assert.equal(polys.filter((p) => p.code === 601).length, 2); // the houses all the same
+  }
+  assert.equal(orthoOsmPolys({ osm: osm(), frame, dir, way: osm().elements[0], st: image() }).image, true);
 });
 
 test("ortofoto a OSM: trávník z OSM mezi obrubou a domem je zeleň, voda konec profilu", () => {

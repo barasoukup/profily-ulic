@@ -307,8 +307,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     // read on the orthophoto near where OSM expects it, sidewalks to the OSM buildings (ortho-osm.js; Bára 15. 11.
     // 2026: better than OSM alone), all an estimate. The map's own surfaces, where there are any, stay behind it.
     let orthoOsm = null;
-    if (result.estimate && laneImg?.st) {
-      const fb = orthoOsmPolys({ osm, frame, dir, way: near.way, st: laneImg.st });
+    if (result.estimate) {
+      const fb = orthoOsmPolys({ osm, frame, dir, way: near.way, st: laneImg?.st });
       if (fb) {
         const again = deriveProfile({ ...args, polys: [fb[0], ...polys, ...fb.slice(1)] });
         if (!again.estimate) { result = again; orthoOsm = fb; }
@@ -330,7 +330,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     // What the export credits beyond the city's own data (city.js creditLines): the region of a national DTM,
     // the DMVS standing in for the city's map, the orthophoto of a tram bed.
     const mv = m.status === "fulfilled" ? m.value : null;
-    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.dmvs && { dmvs: true }), ...((ortho || ((lanesFromOrtho || orthoOsm) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm) && laneImg.source !== "cuzk" && { orthoCity: laneImg.source }) };
+    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.dmvs && { dmvs: true }), ...((ortho || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" && { orthoCity: laneImg.source }) };
     // The log of cuts (log.js): the cut exactly, and how it came (a click, a moved cut, a link).
     log("rez", {
       detail: keepWay ? "posun" : bearing !== null ? "odkaz" : "klik", city: city.id, street: name, highway: near.way.tags.highway,
@@ -373,7 +373,9 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     const out = sources.outage({ surfaces: m, lines: k, parking: pk });
     state.cut.note = out.note;
     $("#street-name").textContent = streetName(state.cut) + tr(state.cut.note);
-    const orthoNote = orthoOsm ? tr("Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.") : "";
+    // A blank or missing orthophoto (outside its coverage, no answer): the kerbs are OSM's, and the note says so.
+    const orthoNote = !orthoOsm ? "" : orthoOsm.image ? tr("Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.")
+      : tr("Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.");
     if (out.text) status(out.text + (orthoNote && " " + orthoNote), out.error ? "error" : undefined);
     else if (orthoOsm) status(orthoNote);
     else if (dropped) status(tr("Nový řez: návrh začíná znovu od stavu ulice (předchozí návrh zůstává ve sdíleném odkazu nebo uloženém souboru, pokud jste ho uložili)."));

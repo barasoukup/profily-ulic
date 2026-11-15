@@ -219,13 +219,27 @@ export function kerbs(cols, axis, lim, road, lines = []) {
   out.why = why;
   return out;
 }
-// Kerbs on the image st (laneImage's), for the street o (osmAlong) and its road (osmRoad, withRails).
+// Is there anything to read on the image: mostly seen (not outside the source's coverage), not one flat colour (a
+// blank or white answer), not black or white all over?
+export function usable(st) {
+  if (!st?.L?.length) return false;
+  let n = 0, seen = 0, sum = 0, sq = 0;
+  for (let q = 0; q < st.L.length; q += 7) { n++; const v = st.L[q]; if (Number.isNaN(v)) continue; seen++; sum += v; sq += v * v; }
+  if (seen < 0.5 * n) return false;
+  const mean = sum / seen, sd = Math.sqrt(Math.max(0, sq / seen - mean * mean));
+  return sd >= 4 && mean > 5 && mean < 245;
+}
+// Kerbs on the image st (laneImage's), for the street o (osmAlong) and its road (osmRoad, withRails). Without a usable
+// image: where OSM expects them (why "osm", image false).
 export function kerbsOnImage(st, o, road) {
-  const axis = o.own.t, lim = limits(o, axis), end = st.t0 + st.nt * st.res;
+  const axis = o.own.t, lim = limits(o, axis);
+  if (!usable(st)) return { A: Math.max(lim.A + 0.5, axis - road.reach.A), B: Math.min(lim.B - 0.5, axis + road.reach.B), why: { A: "osm", B: "osm" }, lim, cols: null, image: false };
+  const end = st.t0 + st.nt * st.res;
   const lo = Math.max(lim.A, st.t0 + 0.5), hi = Math.min(lim.B, end - 0.5);
   const lines = hi - lo > 4 ? strongLines(st, lo + 1.5, hi - 1.5) : [];
   const cols = columns(st);
-  return { ...kerbs(cols, axis, lim, road, lines), lim, cols };
+  const k = kerbs(cols, axis, lim, road, lines);
+  return { ...k, lim, cols, image: !!k && (k.why.A !== "osm" || k.why.B !== "osm") };
 }
 
 // ---------- the surfaces for derive.js ----------
@@ -237,9 +251,10 @@ export function kerbsOnImage(st, o, road) {
 const ALONG = 10, SIDEWALK = 2.5, SIDEWALK_MAX = 6, GREEN_AREA = 0.1; // evaluation/ortofoto-osm/zelen.mjs: on ČÚZK 12.5 cm 67 % (Prague) and 82 % (Brno) of the metres right
 const STREET = /^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|living_street|service|pedestrian|road)(_link)?$/;
 // frame: derive.js localFrame of the cut (its centre is [0, 0]); dir: the street's direction in it; way: the clicked
-// OSM way; st: laneImage's image. Returns the polygons (as derive.js mtvuPolygons) or null.
+// OSM way; st: laneImage's image (null or blank: the kerbs where OSM expects them). Returns the polygons (as derive.js
+// mtvuPolygons, with .kerbs and .image: whether the orthophoto found a kerb) or null.
 export function orthoOsmPolys({ osm, frame, dir, way, st }) {
-  if (!st || !way || !STREET.test(way.tags?.highway || "")) return null;
+  if (!way || !STREET.test(way.tags?.highway || "")) return null;
   const normal = [-dir[1], dir[0]];
   const tu = (lon, lat) => { const [x, y] = frame.toXY(lon, lat); return [x * normal[0] + y * normal[1], x * dir[0] + y * dir[1]]; };
   const xy = (t, u) => [normal[0] * t + dir[0] * u, normal[1] * t + dir[1] * u];
@@ -269,7 +284,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st }) {
     if (swEnd !== far) {
       // Green on the image over most of it (a lawn, treetops): greenery, else a paved area.
       const [a, b] = sg < 0 ? [far, swEnd] : [swEnd, far], g = [];
-      for (let i = k.cols.ti(a); i < k.cols.ti(b); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.green[i])) g.push(k.cols.green[i]);
+      if (k.cols) for (let i = k.cols.ti(a); i < k.cols.ti(b); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.green[i])) g.push(k.cols.green[i]);
       const green = g.length && g.reduce((x, y) => x + y, 0) / g.length >= GREEN_AREA;
       polys.push(green ? rect(401, "zeleň (ortofoto)", a, b) : rect(1003, "plocha před domem (odhad)", a, b));
     }
@@ -280,5 +295,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st }) {
     polys.push({ code: 601, label: "budova (OSM)", rings, bbox: bboxOf(rings[0]) });
   }
   polys.kerbs = { A: k.A, B: k.B, why: k.why };
+  // Whether the orthophoto decided anything (a kerb found on it); else the kerbs are OSM's (the status says so).
+  polys.image = k.image;
   return polys;
 }
