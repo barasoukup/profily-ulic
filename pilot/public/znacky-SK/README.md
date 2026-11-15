@@ -11,8 +11,10 @@ Konvence jako u české sady `../znacky/`: ikony zjednodušené pro velikost asi
 podle vzoru. Soubor se jmenuje podle slovenského čísla značky (`253-50.svg`); číslo za pomlčkou je varianta
 (rychlost, způsob stání), jak ji používá i slovenská sbírka na Wikimedia Commons.
 
-Barvy: modrá `#005a8c`, zelená `#1e8f2d`, červená `#c80014`, tabulky a zónové značky krémově bílé `#f2f0e8`
-s tmavým rámem (podle vyobrazení v příloze). Slovenská modrá je světlejší než česká `#004182`.
+Barvy: modrá `#005a8c`, zelená `#1e8f2d`, červená `#c80014`, jedna krémově bílá `#f2f0e8` pro všechno bílé (okraj
+kulatých i čtvercových značek, bílá pole, piktogramy na modré, tabulky), podle vyobrazení v příloze. Všechny značky
+mají krémový okraj s šedým vlasovým obrysem `#8a8d8f` zvenku (kulaté, čtvercové modré a zelené stejně); značky
+s černým rámem (zóny, tabulky) mají rám uvnitř krémového pole. Slovenská modrá je světlejší než česká `#004182`.
 
 ## Licence
 
@@ -23,14 +25,18 @@ s tmavým rámem (podle vyobrazení v příloze). Slovenská modrá je světlej�
   (https://www.slov-lex.sk/ezbierky/pravne-predpisy/SK/ZZ/2015/185/, časová verze účinná od 1. 1. 2025 do
   31. 8. 2026). Pozor: v původním zadání stálo „§ 5 písm. a)“; to je ale výjimka pro myšlenku, metodu či informaci.
   Pro značky platí písm. b) (text právního předpisu); písm. a) lze uvést jen jako doplňující argument.
-- **Piktogramy převzaté z české sady** (`../znacky/`, viz její README): jízdní kolo, chodec, osobní auto z čelního
-  pohledu a z boku, motocykl, dvojice dospělý s dítětem (CC0, Commons `CZ road sign C09a.svg`), bus, dálnice,
-  osoba na vozíku. Původ a licence (PD / CC0 / MIT) jsou tam uvedené u každého piktogramu.
+- **Piktogramy** (jízdní kolo, chodec, žena s dítětem, autobus, osobní auto zepředu, motocykl, osoba na vozíku a čtyři
+  symboly stání na chodníku) jsou překreslené podle přílohy „Symboly“ vyhlášky 30/2020 Z. z. (symboly 1, 4, 7, 9, 10,
+  27 a symboly parkování na chodníku): úřední dílo, součást textu právního předpisu, podle § 5 písm. b) zákona
+  185/2015 Z. z. není předmětem autorského práva. Obrysy jsem převedl z vyobrazení v příloze (vektorová stopa
+  rastrů 188 × 188 px, vyhlazená a zjednodušená), ne z české sady. Totéž platí pro obytnou zónu 315 (stopa
+  vyobrazení z přílohy „Informačné značky“); dálnice 309 je nakreslená ručně podle změřených vrcholů vyobrazení,
+  311 používá symbol osobního auta.
 - **Soubory Wikimedia Commons** `273-55`, `273-65`, `273-75` a `273-85 Parkovanie na chodníku (…).svg`
   (https://commons.wikimedia.org/wiki/Category:SVG_parking_road_signs_of_Slovakia) jsem stáhl (jednou, s
   `User-Agent: ProfilyUlic/1.0 (research)`) a použil **jen jako vizuální předlohu** (poloha a sklon auta na
   obrubě). Licence všech čtyř: Public domain, autor Ministerstvo dopravy a výstavby SR. Žádná geometrie z nich
-  se nekopíruje; auta jsou z české sady (`IP11e`, `IP11d`). Ostatní značky jsem z Commons nestahoval, jako předloha
+  se nekopíruje; auta a podklad jsou z vyobrazení symbolů v příloze (viz výše). Ostatní značky jsem z Commons nestahoval, jako předloha
   sloužily obrázky přímo z příloh vyhlášky (PDF ze slov-lex.sk).
 - **Vše ostatní** (rámy, číslice, šipky, písmeno P, zónové tabulky, texty tabulek) je nakresleno nově podle vzorů
   vyhlášky nebo odvozeno z české sady a patří k projektu pod licencí MIT (© Bára Soukupová), stejně jako kód.
@@ -39,12 +45,16 @@ Vzor: vyhláška 30/2020 Z. z., přílohy; https://www.slov-lex.sk/ezbierky/prav
 
 ## Šablony (pro kód)
 
-- `253.svg`: šablona bez čísla, číslo v `<text id="v">` (jako `../znacky/B20a.svg`). `253-10` … `253-130` mají číslice
-  nakreslené jako křivky (stejné jako české `B20a-*`).
-- `obsluha.svg`: text v `<text id="t">` (výchozí „dopravnej obsluhy“), nad ním pevné „okrem“. Pro jiný text výjimky
-  (např. „zásobovanie“, „vozidiel stavby“) se přepíše jen `t`.
-- Písmo: `DIN 1451 Mittelschrift`, náhradou `DIN Alternate` / `Arial Narrow` / `Arial`. Slovenské značky mají nápisy
-  „ZÓNA“, „pešia zóna“, „bicyklová cesta“, „voľno“, „okrem“ psané textem (ne křivkami).
+- `253.svg`: šablona, číslo v `<text id="v">` (jako `../znacky/B20a.svg`; kód aplikace ve `profile.js`,
+  `loadSignFile`, přepíše obsah prvku `<text id="v">`, ten zůstal). Číslice je jediný text, který není křivkami,
+  protože se dosazuje za běhu; písmo `DIN 1451 Mittelschrift`, náhradou `Avenir Next Condensed`, `Arial Narrow`.
+  `253-10` … `253-130` mají číslice jako křivky (obrysy písma Avenir Next Condensed Medium, vodorovně stažené u tří číslic).
+- `obsluha.svg`: text v `<text id="t">` (výchozí „dopravnej obsluhy“, zůstává textem, protože se mění), nad ním
+  „okrem“ jako křivky. Pro jiný text výjimky (např. „zásobovanie“, „vozidiel stavby“) se přepíše jen `t`.
+- Všechny ostatní nápisy (ZÓNA, pešia zóna, bicyklová cesta, voľno, okrem, vyhradené parkovanie) a číslice jsou
+  obrysy písmen (`<path>`), nezávisí na písmech uživatele. Zdroj obrysů: Avenir Next Condensed Medium (macOS),
+  užší a lehčí než předloha DIN; „ľ“ je l s apostrofem vpravo nahoře složené ručně. Soubory s křivkami jsou
+  do 4 kB, s tou výjimkou, že nic nepřekračuje 4096 bajtů.
 
 ## Soubory
 
@@ -91,8 +101,8 @@ Sloupec „naše značka“ je klíč české podoby v aplikaci (typ značky pod
   zákaz vjezdu všech vozidel v obou směrech je 231, jednosměrná silnice (zákaz vjezdu z druhé strany) 230.
   Jednosměrka 321 je ve vzoru vodorovná šipka a svislý čtverec (321-30 „priamo“; 321-10 vlevo, 321-20 vpravo se nedělaly).
 - **Stání na chodníku**: v příloze (bod 48) je 273 „Parkovanie na chodníku“; číslo za pomlčkou určuje, zda auto stojí
-  částečně (-5x) či úplně (-6x) na chodníku a zda podélně (auto zepředu, -55, -65) či příčně (auto z boku, -75, -85).
-  Kreslí se varianty bez šipek začátku a konce platnosti; obruba je vpravo od auta (zrcadlově pro stání vlevo).
+  částečně (-5x) či úplně (-6x) na chodníku a zda podélně (auto zezadu, -55, -65) či příčně (auto z boku, -75, -85).
+  Kreslí se varianty bez šipek začátku a konce platnosti; auto stojí s podkladem a obrubou přesně podle symbolů v příloze (zrcadlově pro stání vlevo).
   Pod 272 a 273 patří dodatková tabulka se symbolem osoby se zdravotním postižením (`ztp.svg`), kterou se z místa dělá
   vyhrazené parkování pro držitele parkovacího preukazu (příloha, bod 47).
 - **Dodatkové tabuľky**: 514 patří výslovně pod 321 (Jednosmerná cesta), 515 „Voľno“ pod značku označující
@@ -105,5 +115,4 @@ Sloupec „naše značka“ je klíč české podoby v aplikaci (typ značky pod
   nápis. 509 Spresňujúce informácie se používá pro podrobnější charakteristiku a pro text v jiném než státním jazyce,
   ne pro výjimku z platnosti.
 - **531 Vyhradené parkovanie** příloha řadí k Zákazu zastavenia (270): umožňuje stát jen na vyhrazeném místě.
-- Neověřeno: přesný poměr stran 321-30 (kreslím 100 × 100) a 323 (100 × 100) podle náhledu přílohy; rozměry tabulek
-  jsou odhad z vyobrazení, v praxi se značky zobrazují ve výšce asi 40 px.
+- Rozměry tabulek jsou odhad z vyobrazení, v praxi se značky zobrazují ve výšce asi 40 px.
