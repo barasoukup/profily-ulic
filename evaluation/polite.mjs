@@ -2,7 +2,8 @@
 // their requests go one at a time, at least GAP ms apart, and a "too many" (429) or "unavailable" (503) answer
 // pauses them for PAUSE before one more try. Other hosts go straight through. The number of requests is
 // printed when the script ends. Only for evaluation scripts: the app never throttles.
-const GAP = 300, PAUSE = 10 * 60 * 1000;
+// POLITE_PAUSE_MS: a shorter pause, e.g. 0 during a known outage (ČÚZK until 19. 11. 2026): the cut then fails at once.
+const GAP = 300, PAUSE = Number(process.env.POLITE_PAUSE_MS ?? 10 * 60 * 1000);
 const native = globalThis.fetch;
 let queue = Promise.resolve(), last = 0, count = 0;
 // ČÚZK, IPR Praha (gs-pub.praha.eu, mp.iprpraha.cz) and the regions' DTM (krajdtm.cz and their own hosts).

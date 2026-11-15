@@ -167,6 +167,10 @@ const AXIS_SNAP = 4.5; // m: an OSM axis this close beside the roadway belongs t
 // Streets for those fixes: roads and residential streets, not tracks or bridleways (Brno test č. 99).
 const STREETS = new Set(["motorway", "trunk", "primary", "secondary", "tertiary", "unclassified", "residential", "living_street",
   "motorway_link", "trunk_link", "primary_link", "secondary_link", "tertiary_link"]);
+// Roads for cars, not living streets or pedestrian zones (deriveProfile roadOnPath).
+const CAR_ROADS = new Set([...STREETS].filter((h) => h !== "living_street"));
+const ROAD_ON_PATH_MIN = 5; // m (deriveProfile roadOnPath)
+
 
 // Move a snapped point along its way away from junctions and pedestrian crossings, where a
 // perpendicular cut runs along a side street or over a zebra. Junctions are nodes the way shares
@@ -1457,7 +1461,7 @@ export function linePieces(polys, tags, center, normal, st = null, along = true)
   return polys.map((p) => (code.has(p) && code.get(p) !== p.code ? { ...p, code: code.get(p), label: "" } : p));
 }
 
-export function deriveProfile({ center, dir, half, polys, osm, frame, way, tracks = [], parking = [], lines = [], reach, inZps: zoneKnown, itemReach, ortho, lanesImage }) {
+export function deriveProfile({ center, dir, half, polys, osm, frame, way, tracks = [], parking = [], lines = [], reach, inZps: zoneKnown, itemReach, ortho, lanesImage, roadOnPath = false }) {
   const reachItems = { ...REACH, ...itemReach };
   // No-parking sections (Prague, TSK "Zákaz stání"): no surface of their own, they only keep a kerb free.
   const noParking = parking.filter((p) => p.kind === "zakaz");
@@ -1522,6 +1526,14 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   // An OSM street-parking area under the street axis covers the carriageway itself (drawn
   // over the whole street): the bays cannot be told apart, so the technical map alone decides.
   if (runs[axisRun(runs)]?.code === OSM_PARKING) runs = classifyAll(false);
+  // roadOnPath (Prague, Bára 15. 11. 2026): a "sidewalk or park path" (702) at least ROAD_ON_PATH_MIN wide that an
+  // OSM road crosses is its roadway, as an estimate, where the technical map has no roadway along the whole cut
+  // (Poncarova: MTVU codes a two-lane road 702). OSM's sidewalks play no part. 142 cuts of Prague's samples
+  // unchanged (evaluation/variants/cesta-vozovka.mjs).
+  if (roadOnPath && !runs.some((r) => r.code === 700 || r.code === 701)) {
+    const roads = cross.filter((c) => CAR_ROADS.has(c.way.tags?.highway) && c.way.tags?.area !== "yes");
+    runs = runs.map((r) => (r.code === 702 && r.e - r.s >= ROAD_ON_PATH_MIN && roads.some((c) => c.t > r.s && c.t < r.e) ? { ...r, code: 701, guess: true } : r));
+  }
   // Start at the run under the street axis and expand to the first building on each side.
   let i0 = axisRun(runs);
   // An axis inside a building (a passage): start from the nearest run that is not a building.
