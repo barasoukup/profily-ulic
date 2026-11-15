@@ -2,7 +2,7 @@
 // matching the Streetmix illustrations (1 px = 1 cm).
 import { TYPES, SOURCES, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURNS, HDV_UNDER, LAMP_H, underSize } from "./types.js";
 import { city, cityById, CITY_IDS, creditLines } from "./city.js";
-import { PLATES, signFile, plateFile, signLabel } from "./signs.js";
+import { PLATES, signFile, plateFile, signLabel, signDir, SPEED_TEMPLATES } from "./signs.js";
 // tr: t is a part's type here.
 import { t as tr, num } from "./i18n.js";
 
@@ -1252,16 +1252,19 @@ function drawEdge(svg, x, kind, side, surface, info, style) {
 }
 
 // Build an SVG element. opts: {editable, selected, view: [x0, width], onSelect(i), selectedEdge, onEdge(side)}
-// Traffic-sign icons (znacky/), loaded on first use: file → { uri, w, h }. A template (B 20a with another speed,
-// E 13 with a text) gets its text filled in before it becomes a data URI.
+// Traffic-sign icons of the state of the cut (znacky/ for CZ, znacky-SK/ for SK; city.country, ISO 3166-1), loaded
+// on first use: file → { uri, w, h }. A template (B 20a or 253 with another speed, E 13 with a text) gets its text
+// filled in before it becomes a data URI.
 const signArt = new Map();
-const signKey = (file, text) => (text ? `${file}|${text}` : file);
-async function loadSignFile(file, text) {
-  const key = signKey(file, text);
+const country = () => city.country || "CZ";
+const signKey = (a) => `${a.dir}/${a.file}${a.text ? `|${a.text}` : ""}`;
+async function loadSignFile(a) {
+  const key = signKey(a);
+  const { dir, file, text } = a;
   if (signArt.has(key)) return;
   signArt.set(key, null);
   try {
-    const r = await fetch(`znacky/${file}.svg`);
+    const r = await fetch(`${dir}/${file}.svg`);
     if (!r.ok) throw new Error(r.status);
     let svg = await r.text();
     if (text) svg = svg.replace(/(<text id="[vt]"[^>]*>)[^<]*/, `$1${text.replace(/[<&]/g, "")}`);
@@ -1273,22 +1276,22 @@ async function loadSignFile(file, text) {
 }
 // The file (and filled-in text) of a sign and of its plate.
 const signArtOf = (x, seg) => {
-  const file = signFile(x, seg);
-  return { file, text: file === "B20a" ? String(x.v) : null };
+  const file = signFile(x, seg, country());
+  return { dir: signDir(country()), file, text: SPEED_TEMPLATES.has(file) ? String(x.v) : null };
 };
 const plateArtOf = (x, seg) => {
-  const file = plateFile(x, seg);
-  return file && { file, text: file === "E13" ? PLATES[x.plate] : null };
+  const file = plateFile(x, seg, country());
+  return file && { dir: signDir(country()), file, text: file === "E13" ? PLATES[x.plate] : null };
 };
 // All signs of the profiles, loaded before drawing (the row is drawn from the cache).
 // Resolves to true when something new was loaded (the drawing then needs redrawing).
 export async function loadSigns(...profiles) {
   const all = profiles.filter(Boolean).flatMap((p) => p.segments.flatMap((s) => (s.signs || []).map((x) => [x, s])));
-  const todo = all.flatMap(([x, s]) => [signArtOf(x, s), plateArtOf(x, s)].filter(Boolean)).filter((a) => !signArt.has(signKey(a.file, a.text)));
-  await Promise.all(todo.map((a) => loadSignFile(a.file, a.text)));
+  const todo = all.flatMap(([x, s]) => [signArtOf(x, s), plateArtOf(x, s)].filter(Boolean)).filter((a) => !signArt.has(signKey(a)));
+  await Promise.all(todo.map(loadSignFile));
   return todo.length > 0;
 }
-const artFor = (a) => (a ? signArt.get(signKey(a.file, a.text)) : null);
+const artFor = (a) => (a ? signArt.get(signKey(a)) : null);
 
 // The row of signs under the labels (no head: the signs are what the data say, not always what is on the
 // street; Bára): each part's signs under the part with their plates, and a sign shared by neighbouring parts
@@ -1369,7 +1372,7 @@ function drawSigns(svg, profile, bounds) {
   const stack = (g, x, seg) => {
     const st = el("g", { class: "sign" }, g);
     const title = el("title", {}, st);
-    title.textContent = signLabel(x);
+    title.textContent = signLabel(x, country());
     for (const [a, plate] of [[signArtOf(x, seg), false], [plateArtOf(x, seg), true]]) {
       const art = artFor(a);
       if (!art) continue;

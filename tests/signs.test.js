@@ -124,3 +124,20 @@ test("ulice ze dvou vozovek: padesátka se kreslí, když druhá vozovka má jin
   }, a);
   assert.deepEqual(speeds(both50), [undefined, undefined, undefined]);
 });
+
+// The state SK (city.country): its own numbers and files (pilot/public/znacky-SK/), the names stay.
+test("značky státu SK: každá značka a tabulka má soubor, popisek se slovenským číslem", async () => {
+  const { SIGN_CHOICES, signLabel, SIGNS } = await import("../pilot/public/signs.js");
+  const { existsSync } = await import("node:fs");
+  const all = [...Object.keys(SIGNS).map((k) => ({ k, ...(k === "b20a" ? { v: 50 } : {}) })), ...Object.values(SIGN_CHOICES)];
+  for (const x of all) for (const dir of ["forward", "backward"])
+    for (const f of [signFile(x, { dir }, "SK"), plateFile(x, { dir }, "SK")].filter(Boolean)) assert.ok(existsSync(`pilot/public/znacky-SK/${f}.svg`), `${x.k}: ${f}.svg`);
+  assert.equal(signLabel({ k: "b1" }, "SK"), "231 Zákaz vjezdu všech vozidel");
+  assert.equal(signLabel({ k: "b20a", v: 30 }, "SK"), "253 Nejvyšší dovolená rychlost 30 km/h");
+  assert.equal(signLabel({ k: "oneway", plate: "protismer" }, "SK"), "321 + 514 / 230 + 507 Jednosměrný provoz, cyklisté v protisměru");
+  assert.equal(signLabel({ k: "ztp" }, "SK"), "272 Parkoviště pro ZTP");
+  assert.equal(signFile({ k: "oneway" }, { dir: "backward" }, "SK"), "230");
+  assert.equal(plateFile({ k: "oneway", plate: "protismer" }, { dir: "backward" }, "SK"), "507-bicykle");
+  assert.equal(signFile({ k: "b20a", v: 25 }, {}, "SK"), "253");
+  assert.equal(signLabel({ k: "b1" }), "B 1 Zákaz vjezdu všech vozidel", "CZ beze změny");
+});

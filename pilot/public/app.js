@@ -1583,7 +1583,7 @@ function signTags(list = [], max, type, set) {
   const fits = Object.keys(SIGNS).filter((k) => signFits(k, type));
   if (!fits.length && !list.length) return box; // no sign fits a green strip, a wall…
   // The name first and the sign's number after it (Fable: "IP 11b" first says nothing to most).
-  const name = (x) => codeLast(signLabel(x));
+  const name = (x) => codeLast(signLabel(x, city.country || "CZ"));
   list.forEach((x, k) => {
     const b = document.createElement("button");
     b.className = "tag";
@@ -1595,8 +1595,8 @@ function signTags(list = [], max, type, set) {
     const add = document.createElement("select");
     add.add(new Option(tr("+ přidat značku"), ""));
     for (const k of fits) {
-      add.add(new Option(codeLast(SIGNS[k]), k));
-      for (const [ck, c] of Object.entries(SIGN_CHOICES)) if (c.k === k) add.add(new Option(codeLast(c.label), ck));
+      add.add(new Option(name({ k }), k));
+      for (const [ck, c] of Object.entries(SIGN_CHOICES)) if (c.k === k) add.add(new Option(name(c), ck));
     }
     add.onchange = () => {
       const k = add.value;

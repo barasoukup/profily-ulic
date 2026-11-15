@@ -70,12 +70,35 @@ export const SIGN_CHOICES = {
   "b11+obsluha": { k: "b11", plate: "obsluha", label: t("B 11 + E 13 Zákaz vjezdu všech motorových vozidel mimo dopravní obsluhy") },
 };
 export const signChoice = (x) => SIGN_CHOICES[`${x.k}+${x.plate}`];
-// The label of a sign in Návrh and in the title of a drawn sign.
-export function signLabel(x) {
+// The label of a sign in Návrh and in the title of a drawn sign. In another state (city.country, ISO 3166-1) the
+// label keeps its name in the language of the page and takes that state's number (SK: vyhláška 30/2020 Z. z.).
+export function signLabel(x, country = "CZ") {
   const own = signChoice(x);
-  if (own) return own.label;
-  return SIGNS[x.k] + (typeof x.v === "number" ? ` ${x.v} km/h` : "") + (x.plate ? ` (${PLATE_LABEL[x.plate]})` : "");
+  const label = own ? own.label : SIGNS[x.k] + (typeof x.v === "number" ? ` ${x.v} km/h` : "") + (x.plate ? ` (${PLATE_LABEL[x.plate]})` : "");
+  if (country !== "SK") return label;
+  const code = (own && SK_CHOICE_CODE[`${x.k}+${x.plate}`]) || SK_CODE[x.k];
+  return code ? `${code} ${label.replace(CZ_CODE, "")}` : label;
 }
+// The Czech number at the start of a label ("IP 4c / B 2 + E 12b ", "IP 12 + O 1 ", "B 20a ").
+const CZ_CODE = /^(?:[A-Z]{1,2} \d+[a-z]?(?: [/+] |\s))+/;
+
+// The signs of the state SK (pilot/public/znacky-SK/, README there): the number for the label, the file of the sign
+// and of its plate. SK has no plates for the manner of parking (272 alone), no one-way sign with contraflow
+// cyclists (321 + plate 514, seen from the exit 230 + plate 507 with a bicycle), and puts a reserved parking
+// space under Zákaz zastavenia (270 + plate 531).
+const SK_CODE = { b1: "231", b11: "232", b8: "233", b30: "233", b20a: "253", b28: "270", b29: "271", oneway: "321 / 230",
+  c8a: "221", c9a: "222", c10a: "223", ip11a: "272", ip11d: "273", ip11e: "273", ip11f: "273", ip11g: "273",
+  ip12: "270 + 531", ztp: "272", ip14a: "309", ip15a: "311", ip20a: "224", zona30: "268", ip26a: "315", ip27a: "317", cyklozona: "323" };
+const SK_CHOICE_CODE = { "oneway+protismer": "321 + 514 / 230 + 507", "ip20a+kolo": "224 + 515", "ip27a+kola": "317 + 515",
+  "b1+obsluha": "231 + 507", "b11+obsluha": "232 + 507" };
+const SK_FILE = { b1: "231", b11: "232", b8: "233-58", b30: "233-60", b28: "270", b29: "271", c8a: "221", c9a: "222", c10a: "223-51",
+  ip11a: "272", ip11d: "273-85", ip11e: "273-65", ip11f: "273-75", ip11g: "273-55", ip12: "270", ztp: "272",
+  ip14a: "309", ip15a: "311", ip20a: "224", zona30: "268-30", ip26a: "315", ip27a: "317", cyklozona: "323" };
+const SK_SPEEDS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130];
+// The folder of a state's signs.
+export const signDir = (country = "CZ") => (country === "SK" ? "znacky-SK" : "znacky");
+// The template of a speed sign, its number filled in when drawn.
+export const SPEED_TEMPLATES = new Set(["B20a", "253"]);
 
 const ROAD = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "obsluzna"]);
 const CARRIAGEWAY = new Set([...ROAD, "parkovani", "cyklopruh", "ochranny_pruh", "krajnice", "tramvaj"]);
@@ -206,8 +229,13 @@ export function deriveSigns(profile, tags = {}, ctx = {}) {
 // The file of a sign as drawn for a viewer, and its value: oneway becomes IP 4b or B 2 by the direction of
 // the lanes (forward = away from the viewer).
 // seg: the part the sign stands under (a one-way sign follows its lane's direction).
-export function signFile(s, seg) {
+export function signFile(s, seg, country = "CZ") {
   const dir = s.dir ?? seg?.dir;
+  if (country === "SK") {
+    if (s.k === "oneway") return dir === "backward" ? "230" : "321-30";
+    if (s.k === "b20a") return SK_SPEEDS.includes(s.v) ? `253-${s.v}` : "253";
+    return SK_FILE[s.k] || s.k;
+  }
   // IP 4c (vyhl. 205/2025): one-way with contraflow cyclists, in place of IP 4b + E 12a.
   if (s.k === "oneway") return dir === "backward" ? "B2" : s.plate === "protismer" ? "IP4c" : "IP4b";
   // Oblique stalls have the sign of perpendicular ones (IP 11b, Bára).
@@ -220,7 +248,13 @@ export function signFile(s, seg) {
     ip26a: "IZ5a", ip27a: "IZ6a", cyklozona: "IZ9a" }[s.k] || s.k;
 }
 // The plate under a sign: contraflow cyclists are E 12a under IP 4b and E 12b under B 2; E 13 carries a text.
-export function plateFile(s, seg) {
+export function plateFile(s, seg, country = "CZ") {
+  if (country === "SK") {
+    if (s.plate === "protismer") return (s.dir ?? seg?.dir) === "backward" ? "507-bicykle" : "514";
+    if (s.plate === "obsluha") return "obsluha";
+    if (s.plate === "kolo" || s.plate === "kola") return "515-bicykle";
+    return { ip12: "531", ztp: "ztp" }[s.k] || null;
+  }
   if (s.plate === "protismer") return (s.dir ?? seg?.dir) === "backward" ? "E12b" : null; // IP 4c says it itself
   if (s.plate === "obsluha") return "E13";
   if (s.plate === "kolo") return "C8a"; // the round bike symbol under the bus of IP 20a
