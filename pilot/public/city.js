@@ -3,8 +3,7 @@
 // of mesta.json), anywhere else "cesko" (the national DTM of ČÚZK, RÚIAN and OSM). `city` is the city of
 // the current cut, changed in place by setCity, so modules read it at the time they need it.
 
-import { t, lang } from "./i18n.js";
-import { EN_CITY } from "./en.js";
+import { t, cityTexts } from "./i18n.js";
 
 // Labels of the MTVU codes, for Brno's surfaces (Prague's MTVU sends its own).
 export const MTVU_LABELS = {
@@ -469,8 +468,8 @@ export const city = {};
 export function setCity(id) {
   for (const k of Object.keys(city)) delete city[k];
   const c = CITIES[id] || CITIES.cesko;
-  // In English the city's texts of en.js (its name in sentences, its data, its credits).
-  Object.assign(city, c, lang === "cs" ? null : EN_CITY[c.id] || EN_CITY[c.like]);
+  // In English and Slovak the city's texts of en.js and sk.js (its name in sentences, its data, its credits).
+  Object.assign(city, c, cityTexts(c.id, c.like));
   if (globalThis.PROFILY_FIX) city.fix = globalThis.PROFILY_FIX;
   return city;
 }

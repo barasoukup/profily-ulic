@@ -1,13 +1,15 @@
-// Languages (Bára 12. 11. 2026): every Czech text of the app has its English (en.js), with the same {names} filled
-// in; en.js holds nothing the app no longer says; the page's own texts (index.html) are translated too.
+// Languages (Bára 12. 11. 2026, Slovak 15. 11. 2026): every Czech text of the app has its English (en.js) and its
+// Slovak (sk.js), with the same {names} filled in; neither holds a text the app no longer says; the page's own
+// texts (index.html) are translated too.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import { EN, EN_HTML, EN_CITY, EN_ATTRIBUTION } from "../pilot/public/en.js";
+import { SK, SK_HTML, SK_CITY, SK_ATTRIBUTION } from "../pilot/public/sk.js";
 
 const DIR = new URL("../pilot/public/", import.meta.url);
 const FILES = [...fs.readdirSync(DIR).filter((f) => f.endsWith(".js")), ...fs.readdirSync(new URL("towns/", DIR)).map((f) => `towns/${f}`)]
-  .filter((f) => f.endsWith(".js") && f !== "en.js");
+  .filter((f) => f.endsWith(".js") && f !== "en.js" && f !== "sk.js");
 
 // The texts the code hands to t() (tr() where t means something else), as written: "…" only (the code never
 // uses another quote for them).
@@ -103,4 +105,43 @@ test("i18n.js: čísla, {jména}, chybějící text a kredity mapy", async () =>
   assert.equal(cs.lang, "cs");
   assert.equal(cs.num(3.5), "3,50");
   assert.equal(cs.t("Celkem {w}", { w: "12,00 m" }), "Celkem 12,00 m");
+});
+
+// Slovak (sk.js): the same texts as English, Slovak words, numbers written as in Czech.
+test("slovenčina: každý text aplikace a stránky má překlad se stejnými {jmény} a nic navíc", () => {
+  assert.deepEqual(Object.keys(SK).filter((cs) => !(cs in EN)), [], "v sk.js navíc proti en.js");
+  assert.deepEqual(Object.keys(EN).filter((cs) => !(cs in SK)), [], "chybí v sk.js");
+  for (const cs of Object.keys(SK)) assert.deepEqual(names(SK[cs]), names(cs), `jiná {jména}: ${cs}`);
+  const html = fs.readFileSync(new URL("index.html", DIR), "utf8");
+  for (const m of html.matchAll(/data-i18n="([^"]+)"/g)) assert.ok(SK_HTML[m[1]], `SK_HTML.${m[1]}`);
+});
+
+test("slovenské texty jsou slovensky", () => {
+  // Czech-only letters and words (names of Czech places and offices keep theirs).
+  const keep = /ČÚZK|RÚIAN|IPR|TSK|MHMP|Statutární město \S+|Město \S+|Geoportál Praha|hl\. m\. Prahy|[A-ZČŘŠŽ][a-zěščřžýáíéůú]+(?:ský|cký) kraj|Kraj Vysočina|Plzeň|Plzni|Plzně|Třebíč|Přerov|Frýdek-Místek|Karviná|Ústí|Jihlava|Opava|Ostrava|Most|Brno|Praha|Pardubice|parkovanivbrne\.cz|data\.brno\.cz|Manuál\S*|Olgoj Chorchoj/g;
+  const czech = Object.entries(SK).filter(([, sk]) => /[ěřů]|\b(jsou|nebo|také|který|která|které)\b/i.test(sk.replace(keep, "")));
+  assert.deepEqual(czech.map(([cs]) => cs), []);
+});
+
+test("každé město má slovenské texty", async () => {
+  const { CITY_IDS, cityById } = await import("../pilot/public/city.js");
+  const FIELDS = ["server", "dataName", "dataShort", "techMap", "parkingSource", "rulesHead", "credit"];
+  for (const id of CITY_IDS) {
+    const sk = SK_CITY[id] || SK_CITY[cityById(id).like];
+    assert.ok(sk, id);
+    for (const k of FIELDS) assert.ok(typeof sk[k] === "string" && sk[k], `${id}.${k}`);
+    for (const src of ["IS DMVS", "RÚIAN"]) assert.equal(sk.credit.includes(src), cityById(id).credit.includes(src), `${id}: ${src}`);
+  }
+  assert.ok(SK_ATTRIBUTION.every(([cs, sk]) => cs && typeof sk === "string"));
+});
+
+test("i18n.js po slovensky: čísla jako v češtině, chybějící text česky", async () => {
+  globalThis.PROFILY_LANG = "sk";
+  const i18n = await import("../pilot/public/i18n.js?sk");
+  delete globalThis.PROFILY_LANG;
+  assert.equal(i18n.lang, "sk");
+  assert.equal(i18n.num(3.5), "3,50");
+  assert.equal(i18n.pct(44), "44 %");
+  assert.equal(i18n.t("Celkem {w}", { w: "12,00 m" }), SK["Celkem {w}"].replace("{w}", "12,00 m"));
+  assert.equal(i18n.t("text, který sk.js nemá"), "text, který sk.js nemá");
 });

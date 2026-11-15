@@ -23,13 +23,17 @@ import { mountSearch } from "./search.js";
 import { t as tr, num, pct, numField, readNum, lang, LANGS, setLang, translatePage, attribution } from "./i18n.js";
 
 translatePage();
-// The other language, as its own name (one more language: a menu).
+// The other languages, each a button with its code and its own name (CS, SK, EN).
 {
-  const other = lang === "cs" ? "en" : "cs";
-  const b = document.querySelector("#btn-lang");
-  // The page reloads in the other language: the mode goes along (Fable: Návrh fell back to Stav).
-  Object.assign(b, { textContent: other.toUpperCase(), title: LANGS[other], lang: other, onclick: () => { try { sessionStorage.setItem("profily-rezim", state.mode); } catch {} setLang(other); } });
-  b.setAttribute("aria-label", LANGS[other]);
+  const first = document.querySelector("#btn-lang");
+  for (const other of Object.keys(LANGS).filter((l) => l !== lang)) {
+    const b = first.cloneNode();
+    // The page reloads in the other language: the mode goes along (Fable: Návrh fell back to Stav).
+    Object.assign(b, { id: "", textContent: other.toUpperCase(), title: LANGS[other], lang: other, onclick: () => { try { sessionStorage.setItem("profily-rezim", state.mode); } catch {} setLang(other); } });
+    b.setAttribute("aria-label", LANGS[other]);
+    first.before(b);
+  }
+  first.remove();
 }
 
 const HALF = 40; // half-length of the cut used for reading the data (m)
@@ -448,7 +452,7 @@ $("#pano-btn").onclick = async () => {
     $("#pano-view").replaceChildren();
     const yaw = (((bearing % 360) + 360) % 360) * (Math.PI / 180);
     panoView = await P.panoramaFromPosition({
-      parent: $("#pano-view"), lon, lat, apiKey: mapyKey, radius: 60, yaw, pitch: 0, fov: 1.3, showNavigation: true, lang: lang === "cs" ? "cs" : "en",
+      parent: $("#pano-view"), lon, lat, apiKey: mapyKey, radius: 60, yaw, pitch: 0, fov: 1.3, showNavigation: true, lang,
     });
     if (panoView?.errorCode && panoView.errorCode !== "NONE") {
       $("#pano-note").textContent = panoView.errorCode === "PANORAMA_NOT_FOUND" ? tr("Tady panorama Mapy.com nemají.") : tr("Panorama nejde zobrazit ({error}).", { error: panoView.error || panoView.errorCode });
