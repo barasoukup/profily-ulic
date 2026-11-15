@@ -14,9 +14,12 @@ export const EN = {
   "Podkladová mapa a vrstvy": "Base map and layers",
   "Server {server} neodpovídá, zkouším znovu ({n}/{of})…": "The {server} server is not responding, trying again ({n}/{of})…",
   "Načítám data z OSM…": "Loading OSM data…",
-  "Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko).":
-    "No street found here. Try clicking right on a road (the data cover Czechia).",
+  "Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko a Slovensko).":
+    "No street found here. Try clicking right on a road (the data cover Czechia and Slovakia).",
   "Načítám {map}…": "Loading {map}…",
+  "Načítám ortofoto…": "Loading the orthophoto…",
+  "Mimo Česko technickou mapu nemáme, profil je jen odhad.": "Outside Czechia we have no technical map: the profile is only an estimate.",
+  " · mimo Česko, jen odhad z OSM": " · outside Czechia, only an estimate from OSM",
   "ulice {id}": "street {id}",
   "Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami.":
     "The cut probably runs through a junction. Drag its middle to a stretch between junctions.",
@@ -647,7 +650,14 @@ const own = (name, of, map, data, parking, credit) => ({
 const NATIONAL = "the ČÚZK technical map";
 const TECH_PARKING = "car parks from the technical map";
 const RUIAN = "RÚIAN © ČÚZK, 2026 (CC BY 4.0, modified)";
+// Outside the Czech Republic (city.js abroad): no technical map, OSM only.
+const ABROAD = {
+  server: "OpenStreetMap", dataName: null, dataShort: "OSM", techMap: null, parkingSource: "estimated by the rules",
+  rulesHead: "Widths per the IPR Prague manual (C.2), only indicative outside Czechia:", credit: "",
+};
 export const EN_CITY = {
+  slovensko: ABROAD,
+  cizina: ABROAD,
   cesko: {
     server: "ČÚZK technical map", dataName: "The ČÚZK technical map", dataShort: "the ČÚZK technical map, RÚIAN and OSM", techMap: NATIONAL,
     parkingSource: TECH_PARKING, rulesHead: "Widths per the IPR Prague manual (C.2), indicative outside Prague:",
