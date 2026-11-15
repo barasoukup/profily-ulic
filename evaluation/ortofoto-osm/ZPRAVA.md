@@ -6,8 +6,9 @@ Brna (99 řezů), ke kterým máme pravdu z MTVU. Aplikaci jsem neměnila.
 
 ## Krátce
 
-- **Fasády z OSM jsou dobré tam, kde dům v OSM je**: 82–89 % fasád sedí do 0,5 m. Na řezu ale chybí dům u třetiny
-  pražských a šestiny brněnských stran, kde MTVU dům má.
+- **Fasády z OSM jsou dobré**: 76–88 % fasád sedí do 0,5 m. S novými dlaždicemi (všechny domy, ne jen ty
+  s podlažími) chybí dům na řezu u 8 ze 42 pražských a 3 z 54 brněnských stran, kde MTVU dům má (se starými
+  dlaždicemi u 14 a 9).
 - **Obruby, a tím šířka vozovky a chodníků, jsou slabé místo.** Nejlepší metoda (M2, OSM + ortofoto) dá obrubu do
   0,5 m jen u **39–49 %** stran a do 1 m u **57–69 %**. Šířka vozovky sedí do 0,5 m u **19–34 %** řezů. Samotné OSM
   (M0) má obrubu do 0,5 m u 26–35 % stran, samotné ortofoto (M1) u 23–37 %.
@@ -25,8 +26,9 @@ Brna (99 řezů), ke kterým máme pravdu z MTVU. Aplikaci jsem neměnila.
   osy OSM, její okraje jsou obruby. **Fasády** jsou konce profilu aplikace, kde se zastavil o dům. **Chodník**
   jsou úseky 702/703 mezi obrubou a fasádou. **Stání** je úsek stání ve vnějších 3 m vozovky (v Praze jen v
   placených zónách, jinde ho data TSK nemají). IPR jsem se neptala, všechno je z cache.
-- **OSM:** jen vlastní dlaždice ČR, stejně jako v aplikaci (`pilot/data/osm-tiles`). Domy mají v dlaždicích
-  souřadnice zaokrouhlené na 1e-5° (asi 1 m), což chybu fasád zvětšuje.
+- **OSM:** jen vlastní dlaždice ČR, stejně jako v aplikaci. Čísla jsou z **nových dlaždic** (`OSM_TILES=pilot/data/
+  osm-tiles-cz2`: všechny domy, zeleň, voda; stavba z 15. 11. 2026). Domy mají v dlaždicích souřadnice zaokrouhlené
+  na 1e-5° (asi 1 m), což chybu fasád zvětšuje.
 - **Ortofota:** z cache `evaluation/ortofoto/data/<město>/img`, žádný nový dotaz. Praha: IPR 10 cm, ČÚZK 12,5 cm
   a 25 cm. Brno: městské 2025 (10 cm, s posunem 1,06 / 3,09 m z `lanes-ortho.js`), ČÚZK 12,5 a 25 cm. Navíc
   **20 cm** zprůměrované z 10 cm jako náhrada typického evropského ortofota. Posun brněnského snímku je ověřený:
@@ -58,6 +60,7 @@ node evaluation/ortofoto-osm/tune.mjs           # vysledky/ladeni.txt
 
 ## Výsledky
 
+Přepočteno s novými dlaždicemi a s kódem aplikace po opravách z revize (15. 11. 2026, večer).
 V každé buňce je **medián chyby · podíl do 0,5 m · podíl do 1 m**. Obruby počítám na obou stranách, chodníky jen
 tam, kde je mezi obrubou a domem podle MTVU jen chodník (malý vzorek, n v závorce). Úplná tabulka i se 20 cm je
 v `vysledky/souhrn.md`.
@@ -66,31 +69,35 @@ v `vysledky/souhrn.md`.
 
 | metoda | ortofoto | obruby | šířka vozovky | chodník | obruba–fasáda |
 |---|---|---|---|---|---|
-| M0 jen OSM | – | 0,99 · 26 % · 51 % | 2,10 · 18 % · 27 % | 0,91 · 20 % · 60 % (10) | 2,37 · 18 % · 36 % |
-| M1 jen ortofoto | IPR 10 cm | 1,60 · 24 % · 38 % | 1,95 · 20 % · 32 % | 2,52 · 11 % · 33 % (9) | 2,51 · 10 % · 29 % |
-| M2 OSM + ortofoto | IPR 10 cm | **0,63 · 46 % · 58 %** | 1,50 · 33 % · 41 % | 0,58 · 44 % · 67 % (9) | 0,78 · 43 % · 52 % |
-| M2 OSM + ortofoto | IPR → 20 cm | **0,60 · 48 % · 61 %** | 1,40 · 32 % · 43 % | 0,78 · 44 % · 67 % (9) | 1,86 · 38 % · 48 % |
-| M2 OSM + ortofoto | ČÚZK 12,5 cm | 0,70 · 39 % · 57 % | 1,88 · 19 % · 32 % | 1,81 · 33 % · 44 % (9) | 1,79 · 24 % · 38 % |
-| M2 OSM + ortofoto | ČÚZK 25 cm | 0,75 · 41 % · 57 % | 1,60 · 20 % · 33 % | 2,20 · 44 % · 44 % (9) | 2,12 · 29 % · 43 % |
+| M0 jen OSM | – | 0,99 · 26 % · 51 % | 2,10 · 19 % · 28 % | 2,29 · 17 % · 50 % (12) | 2,76 · 15 % · 31 % |
+| M1 jen ortofoto | IPR 10 cm | 1,55 · 27 % · 41 % | 1,90 · 20 % · 33 % | 2,52 · 27 % · 27 % (11) | 2,51 · 16 % · 24 % |
+| M2 OSM + ortofoto | IPR 10 cm | **0,70 · 44 % · 57 %** | 1,60 · 32 % · 39 % | 1,81 · 36 % · 45 % (11) | 2,06 · 36 % · 40 % |
+| M2 OSM + ortofoto | IPR → 20 cm | **0,50 · 49 % · 61 %** | 1,40 · 29 % · 41 % | 1,61 · 36 % · 45 % (11) | 1,97 · 32 % · 36 % |
+| M2 OSM + ortofoto | ČÚZK 12,5 cm | 0,70 · 39 % · 58 % | 1,50 · 19 % · 35 % | 1,81 · 27 % · 36 % (11) | 1,81 · 20 % · 32 % |
+| M2 OSM + ortofoto | ČÚZK 25 cm | 0,75 · 41 % · 57 % | 1,60 · 20 % · 32 % | 2,20 · 27 % · 27 % (11) | 2,42 · 20 % · 32 % |
 
 ### Brno (88 jednoduchých řezů)
 
 | metoda | ortofoto | obruby | šířka vozovky | chodník | obruba–fasáda |
 |---|---|---|---|---|---|
-| M0 jen OSM | – | 0,83 · 35 % · 59 % | 1,60 · 23 % · 36 % | 0,72 · 43 % · 64 % (14) | 0,72 · 37 % · 59 % |
-| M1 jen ortofoto | Brno 10 cm | 0,92 · 36 % · 51 % | 1,90 · 18 % · 30 % | 0,91 · 36 % · 57 % (14) | 1,13 · 32 % · 41 % |
-| M2 OSM + ortofoto | Brno 10 cm | **0,55 · 48 % · 68 %** | 1,00 · 34 % · 53 % | 0,91 · 43 % · 57 % (14) | 0,66 · 44 % · 63 % |
-| M2 OSM + ortofoto | Brno → 20 cm | **0,52 · 49 % · 68 %** | 1,15 · 30 % · 48 % | 0,56 · 43 % · 64 % (14) | 0,60 · 44 % · 63 % |
-| M2 OSM + ortofoto | ČÚZK 12,5 cm | 0,53 · 47 % · 69 % | 0,95 · 30 % · 53 % | 1,34 · 36 % · 50 % (14) | 0,72 · 39 % · 61 % |
-| M2 OSM + ortofoto | ČÚZK 25 cm | 0,70 · 43 % · 59 % | 1,50 · 22 % · 41 % | 1,45 · 29 % · 36 % (14) | 1,00 · 34 % · 51 % |
+| M0 jen OSM | – | 0,83 · 34 % · 58 % | 1,60 · 18 % · 34 % | 0,82 · 40 % · 67 % (15) | 0,88 · 33 % · 54 % |
+| M1 jen ortofoto | Brno 10 cm | 0,80 · 39 % · 53 % | 1,90 · 20 % · 35 % | 0,52 · 47 % · 67 % (15) | 1,54 · 39 % · 48 % |
+| M2 OSM + ortofoto | Brno 10 cm | **0,55 · 49 % · 67 %** | 1,00 · 35 % · 52 % | 0,78 · 47 % · 60 % (15) | 0,67 · 43 % · 61 % |
+| M2 OSM + ortofoto | Brno → 20 cm | **0,50 · 50 % · 68 %** | 1,15 · 30 % · 49 % | 0,53 · 47 % · 67 % (15) | 0,67 · 41 % · 61 % |
+| M2 OSM + ortofoto | ČÚZK 12,5 cm | 0,56 · 46 % · 69 % | 1,10 · 29 % · 50 % | 0,99 · 33 % · 53 % (15) | 0,87 · 35 % · 59 % |
+| M2 OSM + ortofoto | ČÚZK 25 cm | 0,74 · 42 % · 59 % | 1,50 · 21 % · 41 % | 1,19 · 33 % · 47 % (15) | 1,18 · 33 % · 50 % |
+
+Proti starým dlaždicím se obruby změnily nejvýš o 2 body. Sloupce chodník a obruba–fasáda jsou horší, protože se
+do nich dostaly strany, kde dřív OSM dům nemělo: ty jsou těžší (dům ustoupený od ulice). Na stranách měřených
+i dřív se nezměnily.
 
 ### Fasády, pruhy, stání
 
 | | Praha | Brno |
 |---|---|---|
-| strany s domem v MTVU / OSM dům na řezu nemá | 42 / **14** | 54 / **9** |
-| fasáda OSM proti MTVU (kde dům je) | 0,29 · 82 % · 89 % | 0,20 · 89 % · 93 % |
-| celá šířka fasáda–fasáda (obě fasády jsou) | 5 řezů: 60 % do 0,5 m | 10 řezů: 90 % do 0,5 m |
+| strany s domem v MTVU / OSM dům na řezu nemá | 42 / **8** (staré dlaždice 14) | 54 / **3** (staré 9) |
+| fasáda OSM proti MTVU (kde dům je) | 0,33 · 76 % · 88 % | 0,20 · 88 % · 94 % |
+| celá šířka fasáda–fasáda (obě fasády jsou) | 8 řezů: 38 % do 0,5 m | 12 řezů: 83 % do 0,5 m |
 | počet pruhů: OSM `lanes` | 75 % (12) | 29 % (7) |
 | počet pruhů: čáry v nalezené vozovce M2 | 67 % | 29–57 % |
 | počet pruhů: čáry ve skutečné vozovce | 75 % | 57–71 % |
@@ -98,6 +105,8 @@ v `vysledky/souhrn.md`.
 | stání: skutečné stání, které OSM zná | 1 z 10 | 1 z 31 |
 
 ### Podle typu ulice a příčin (M2, obruby do 0,5 m / do 1 m; `vysledky/podle-typu.md`)
+
+Tahle tabulka je ze starých dlaždic. Přepočtená je v `vysledky/podle-typu.md` (obruby se změnily nejvýš o pár bodů).
 
 | skupina | Praha IPR 10 cm | Praha ČÚZK 12,5 | Brno 10 cm | Brno ČÚZK 12,5 |
 |---|---|---|---|---|
@@ -113,9 +122,11 @@ Skupiny se překrývají a některé mají jen 4–12 řezů, takže jde jen o s
 
 ## Co funguje a co ne
 
-1. **Domy z OSM.** Kde dům na řezu je, sedí na 0,2–0,3 m (to je zaokrouhlení dlaždic). Chybí ale často, třeba
-   Spojovací (velká budova u silnice), Českobrodská nebo řadové domy, kde má OSM obrys o metr vedle řezu. Čtu
-   proto domy na čarách ±1 a ±2 m podél ulice. V cizině bude pokrytí domů v OSM podobné nebo horší.
+1. **Domy z OSM.** Kde dům na řezu je, sedí na 0,2–0,3 m (to je zaokrouhlení dlaždic). Se starými dlaždicemi
+   chyběl dům u třetiny pražských stran. Nebyla to chyba OSM: dlaždice braly jen domy s podlažími nebo výškou
+   (Spojovací, Českobrodská). Od 15. 11. jsou v dlaždicích všechny domy a chybí jen u 8 ze 42 pražských a 3 z 54
+   brněnských stran: domy, které OSM opravdu nemá, nebo řadové domy, kde je obrys o metr vedle řezu. Proto se domy
+   čtou na čarách ±1 a ±2 m podél ulice. V cizině bude pokrytí domů v OSM podobné nebo horší.
 2. **Obrubu snímek většinou ukáže, ale nevíme, která hrana to je.** Do 0,5 m od skutečné obruby leží hrana u
    78–92 % stran (náhodné místo v pruhu má hranu poblíž jen u 33–56 %). Hran je ale v ulici mnoho: vodicí čáry,
    řady aut, stíny domů, koleje, šrafy. Výběr selhává takhle:
@@ -155,6 +166,10 @@ příklady, kde to vyjde. Všechny řezy jsou v `data/<město>/img/` (git je ign
   méně falešných hran, než by mělo naslepo. Výsledky jsou proto spíš lepší než ve skutečnosti.
 - V Česku OSM a ortofoto k mapě sedí (posun 0,1–0,3 m, `evaluation/ortofoto/ZPRAVA.md`). V jiných státech může
   být posun OSM vůči ortofotu větší a chyby vzrostou.
+- Aplikace bere snímek ±25 m kolem osy, vyhodnocení jen profil + 3 m. Jinde je proto i míra „běžné hrany“, proti
+  které se síla obruby měří. V aplikaci může vycházet trochu jinak.
+- Čísla platí pro **jednoduché řezy Prahy a Brna**: města s obrubami, značením a dobře zmapovaným OSM. Záložní
+  cesta poběží hlavně ve vsích, malých městech a v cizině, kde bude přesnost nejspíš horší.
 - Pravda z MTVU má vlastní pravidla. Zálivy stání a tramvaj ve vozovce počítám do vozovky, samostatné těleso ne.
   Odlišné pojetí „vozovky“ dává část velkých chyb hlavně u hlavních silnic.
 
