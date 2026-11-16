@@ -37,7 +37,7 @@ vypnutí pro A/B `?off=cesty`.
 - Změnilo se 244 z 1000 řezů. 238 je právě pěšin ze „pruh | pruh“: chodník 2 m 124×, 1,5 m 82×, společná stezka 24×,
   cyklostezka 6×. Zbylých 6 jsou silnice odhadnuté z ortofota, kde se šířky mezi dvěma běhy liší o desítky centimetrů
   (kolísání čtení obrázku, oprava se jich netýká).
-- Podezření: pěšina jako silnice 252 → 14 (zbylé jsou falešné poplachy kontroly: ulice, kterou u osy kříží chodník),
+- Podezření: pěšina jako silnice 252 → 14 (zbylé nejspíš falešné poplachy kontroly: ulice, kterou u osy kříží chodník; neprošla jsem je),
   cyklostezka z OSM chybí 44 → 14, chodník ve vozovce 6 → 4; ostatní beze změny.
 - Regrese odhadu proti MTVU Prahy a Brna beze změny. Testy prošly.
 - Pozor při sběru: běh ve skryté záložce se zpomalí; když se do `localStorage` uloží velké výsledky, aplikace pak
