@@ -42,3 +42,16 @@ vypnutí pro A/B `?off=cesty`.
 - Regrese odhadu proti MTVU Prahy a Brna beze změny. Testy prošly.
 - Pozor při sběru: běh ve skryté záložce se zpomalí; když se do `localStorage` uloží velké výsledky, aplikace pak
   neuloží profil a řez vyjde prázdný (proto výsledky jen v paměti stránky).
+
+## Oprava 2: obousměrka s jedním pruhem od 5 m má dva pruhy (A/B, 16. 11. 2026)
+Čtení čar z ortofota (`lanes-ortho.js`) nechá jeden pruh, když středovou čáru nenajde, i na obousměrné ulici široké 5–6,6 m
+(Haanova 6 m, Devínska a Jantárová cesta přes OSM lanes=2). Pravidlo 2 × 2,5 m od 5,0 m (Manuál C.2) teď platí i po
+něm: `derive.js` `splitTwoWayLane`, voláno v `app.js` po `applyLanes`. Ne v obytné a pěší zóně, na jednosměrce, kruhovém
+objezdu, ulici s tramvají nebo více vozovkami a ne při OSM lanes=1. Vypnutí pro A/B `?off=dvapruhy`.
+
+- A (vypnuto) a B (zapnuto) na stejných 1000 řezech, výsledky v IndexedDB stránky (`A-dvapruhy-off`, `B-dvapruhy`).
+- Rozdělilo se 13 jednopruhových obousměrek o 5,0–6,6 m čistě, dalších asi 7 mezi řezy, které se zároveň změnily jinak.
+- Široký pruh (> 4,6 m) 65 → 49, počet pruhů proti OSM 24 → 22.
+- **Šum mezi běhy:** 59 řezů vyšlo v B s jinými druhy dílů a 20 s jinými šířkami, i když se jich oprava netýká (chodník
+  navíc nebo chybí, tramvaj, krajnice). Odhad z ortofota a OSM tedy pro stejný řez nevychází pokaždé stejně. Je to chyba
+  sama o sobě (další bod) a do té doby se A/B musí číst jen na řezech, kterých se oprava týká.

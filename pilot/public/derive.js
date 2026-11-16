@@ -2053,6 +2053,26 @@ function aisleOrient(segs) {
   return segs;
 }
 
+// A two-way street left with a single lane of 5 m or more (the orthophoto's lines found no centre line, or the
+// estimate measured a wide roadway) has two lanes, one each way: the rule of 2 × 2.5 m from 5.0 m (Manuál C.2;
+// 1000 Slovak cuts: 65 lanes over 4.6 m, most of them such). Not a zone (one paved roadway), a one-way street, a
+// roundabout, a street with trams or of several roadways. The lanes keep the old one's source. ?off=dvapruhy: the A/B.
+export const TWO_WAY_SPLIT = 5.0;
+export function splitTwoWayLane(segments, tags = {}) {
+  if (ORTHO_P.off?.has("dvapruhy")) return 0;
+  // OSM lanes=1 on a two-way road is a single-lane road (passing places): kept.
+  if (isOnewayTags(tags) || tags.junction === "roundabout" || tags.lanes === "1" || ["living_street", "pedestrian", "service", "track"].includes(tags.highway)) return 0;
+  const lanes = segments.filter((s) => s.type === "pruh");
+  if (lanes.length !== 1 || segments.some((s) => /^tramvaj|^bus/.test(s.type))) return 0;
+  const lane = lanes[0];
+  if (!(lane.width >= TWO_WAY_SPLIT - 1e-6)) return 0;
+  const half = round(lane.width / 2);
+  const i = segments.indexOf(lane);
+  const { turn, ...rest } = lane;
+  segments.splice(i, 1, { ...rest, width: half, dir: "backward" }, { ...rest, width: round(lane.width - half), dir: "forward" });
+  return 1;
+}
+
 // Fallback outside MTVU coverage: a typical profile from OSM tags.
 // A path, footway, cycle way or flight of steps (a cut that caught one, not a street): one part of its kind and width
 // (OSM width, else a typical one), not a road of two lanes (1000 Slovak cuts: 238 such paths drawn as 2 × 3 m lanes).

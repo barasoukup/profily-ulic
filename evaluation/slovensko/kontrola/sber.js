@@ -50,3 +50,20 @@ export async function collectKontrola(POINTS) {
   }
   return window.__res.length;
 }
+
+// Results kept in the page's IndexedDB (survive a reload; localStorage is too small and the app needs it):
+// await save("A", window.__res); window.__res = await load("A").
+const db = () => new Promise((ok, no) => { const r = indexedDB.open("kontrola", 1); r.onupgradeneeded = () => r.result.createObjectStore("runs"); r.onsuccess = () => ok(r.result); r.onerror = () => no(r.error); });
+export async function save(name, rows) { const d = await db(); return new Promise((ok, no) => { const tx = d.transaction("runs", "readwrite"); tx.objectStore("runs").put(rows, name); tx.oncomplete = () => ok(rows.length); tx.onerror = () => no(tx.error); }); }
+export async function load(name) { const d = await db(); return new Promise((ok, no) => { const q = d.transaction("runs").objectStore("runs").get(name); q.onsuccess = () => ok(q.result); q.onerror = () => no(q.error); }); }
+// One whole run: every point, again while any came out empty (a slow page), then saved under its name.
+export async function run(name, POINTS) {
+  window.__res = [];
+  for (let round = 0; round < 3; round++) {
+    await collectKontrola(POINTS);
+    const empty = window.__res.filter((r) => !r.segs?.length).length;
+    if (empty <= 20) break;
+    window.__res = window.__res.filter((r) => r.segs?.length);
+  }
+  return save(name, window.__res);
+}
