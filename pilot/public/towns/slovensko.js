@@ -5,7 +5,7 @@
 // Slovakia: ZBGIS of ÚGKK SR (layer Budova, CC BY 4.0, GKÚ Bratislava) gives the use and the height above the ground,
 // no floors and no year: the floors are the height by 3.3 m; elsewhere abroad OSM's building:levels.
 import { osmTiles, query, envelope, asMtvu, addPoints, boxAround } from "../gis.js";
-import { city, MTVU_LABELS } from "../city.js";
+import { city, MTVU_LABELS, inSkTown } from "../city.js";
 import { tmapyWfs } from "./overlay.js";
 import { view, components, trace, simplify } from "../dmvs.js";
 import { GREEN as OSM_GREEN, WATER as OSM_WATER } from "../ortho-osm.js";
@@ -233,7 +233,8 @@ export async function baTechMap(bbox, fetched = null) {
 }
 const inBa = (lon, lat) => lon >= SK_TOWNS.bratislava.box[0] && lon <= SK_TOWNS.bratislava.box[2] && lat >= SK_TOWNS.bratislava.box[1] && lat <= SK_TOWNS.bratislava.box[3];
 
-const townAt = (lon, lat) => Object.entries(SK_TOWNS).find(([, t]) => (!t.optIn || param(t.optIn) === "1") && lon >= t.box[0] && lon <= t.box[2] && lat >= t.box[1] && lat <= t.box[3])?.[0] ?? null;
+// By the town's box and, where mesta-sk.json has it, its boundary (Bratislava's box reached Šamorín and Svätý Jur).
+const townAt = (lon, lat) => Object.entries(SK_TOWNS).find(([id, t]) => (!t.optIn || param(t.optIn) === "1") && lon >= t.box[0] && lon <= t.box[2] && lat >= t.box[1] && lat <= t.box[3] && (inSkTown(id, lon, lat) ?? true))?.[0] ?? null;
 
 // The OSM areas around a box as MTVU features: buildings (they come first: a sidewalk may run under an arcade), and
 // green and water (they come after the passport: they fill what it leaves open).
@@ -274,7 +275,7 @@ const BA_EDGE = new Set([2180, 2190, 2200, 2201, 2210, 2211, 2220]);
 // The symbols that tell the pieces beside a street (ortho-osm.js symbols): lawns and ornamental green, sidewalks,
 // other paved areas, yards, car parks.
 const BA_SYMBOL = { 3141: 401, 3140: 401, 3110: 401, 120: 702, 130: 1003, 4060: 603, 5370: 704 };
-export const edgeSourceAt = (lon, lat) => EDGE_SOURCES.find((e) => lon >= e.box[0] && lon <= e.box[2] && lat >= e.box[1] && lat <= e.box[3]) || null;
+export const edgeSourceAt = (lon, lat) => EDGE_SOURCES.find((e) => lon >= e.box[0] && lon <= e.box[2] && lat >= e.box[1] && lat <= e.box[3] && (inSkTown(e.id, lon, lat) ?? true)) || null;
 async function edgesAt(bbox) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number), cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
   if (param("hrany") === "0" || city.id !== "slovensko") return { paths: [] };

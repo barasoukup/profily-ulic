@@ -121,3 +121,15 @@ test("pasporty měst: CSP, město podle polohy, převod typů", async () => {
   const r = widen({ features: [{ attributes: { "šířka": 4 }, geometry: { paths: [[[16.5, 49.3], [16.501, 49.3]]] } }] }, 701).features[0].geometry.rings[0];
   assert.ok(Math.abs((r[0][1] - r[3][1]) * 110574 - 4) < 0.01);
 });
+
+test("slovenská města podle hranic ze ZBGIS (mesta-sk.json): Šamorín ani Svätý Jur nejsou Bratislava", async () => {
+  const C = await import("../pilot/public/city.js");
+  C.loadSkTowns(JSON.parse(read("mesta-sk.json")));
+  assert.equal(C.skArtAt(48.1467, 17.107), "bratislava"); // Suché mýto
+  assert.equal(C.skArtAt(48.1905, 17.0243), "bratislava"); // Dúbravka
+  assert.equal(C.skArtAt(48.0305, 17.3100), "slovensko"); // Šamorín
+  assert.equal(C.skArtAt(48.2525, 17.2155), "slovensko"); // Svätý Jur
+  assert.equal(C.skArtAt(48.7206, 21.258), "kosice");
+  assert.equal(C.inSkTown("nitra", 18.084, 48.309), true);
+  assert.equal(C.inSkTown("neznamo", 18.084, 48.309), undefined);
+});

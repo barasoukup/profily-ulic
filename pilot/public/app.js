@@ -18,7 +18,7 @@ import { cleanProfile, cleanCut, retype } from "./validate.js";
 import { shares, surfaces } from "./shares.js";
 import { packProfile, unpackProfile, designParams } from "./share.js";
 import { checkRules, checkUnder, checkTrees } from "./rules.js";
-import { city, setCity, cityAt, skArtAt, atArtAt, loadBounds, loadStates } from "./city.js";
+import { city, setCity, cityAt, skArtAt, atArtAt, loadBounds, loadStates, loadSkTowns } from "./city.js";
 import { TOWNS } from "./towns/index.js";
 import { log, logOn, sendReport, shortProfile } from "./log.js";
 import { createDataLayers, PLOCHY_PANE } from "./maplayers.js";
@@ -70,6 +70,8 @@ const cutSpan = (cut) => cut?.span || cut?.reach || defaultReach();
 const STORE = "streetdesign-pilot" + (LANES_ORTHO ? "" : "-bez-orto"); // the last cut (Prague's key from the time of one page per city); ?orto=0 its own
 // The boundaries of the cities with their own sources (tools/build_mesta.mjs): a cut takes its city by them.
 const statyJson = fetch("staty.json").then((r) => (r.ok ? r.json() : null), () => null);
+// The Slovak towns' boundaries (tools/build_towns_sk.mjs): without them their boxes.
+fetch("mesta-sk.json").then((r) => (r.ok ? r.json() : null), () => null).then((j) => j && loadSkTowns(j));
 const MESTA = await fetch("mesta.json").then((r) => (r.ok ? r.json() : null), () => null);
 // Without the file every cut keeps the current city (rather than all becoming "cesko").
 if (MESTA) loadBounds(MESTA); else console.warn("mesta.json se nenačetl: město se podle polohy nepozná");

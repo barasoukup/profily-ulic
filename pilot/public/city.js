@@ -465,7 +465,7 @@ const skArt = (tram, trolley, bus = true) => ({ ...czechFurniture, ...skPosts, .
 export const SK_ART = { slovensko: skArt(false, false, false), bratislava: skArt(true, true), kosice: skArt(true, false), zilina: skArt(false, true), bystrica: skArt(false, true), presov: skArt(false, true) };
 const SK_ART_BOX = { bratislava: [16.83, 47.99, 17.33, 48.27], kosice: [21.15, 48.64, 21.36, 48.79], zilina: [18.62, 49.13, 18.86, 49.28],
   bystrica: [19.03, 48.66, 19.27, 48.82], presov: [21.15, 48.94, 21.33, 49.06] };
-export const skArtAt = (lat, lon) => Object.entries(SK_ART_BOX).find(([, b]) => lon >= b[0] && lon <= b[2] && lat >= b[1] && lat <= b[3])?.[0] ?? "slovensko";
+export const skArtAt = (lat, lon) => Object.entries(SK_ART_BOX).find(([id, b]) => lon >= b[0] && lon <= b[2] && lat >= b[1] && lat <= b[3] && (inSkTown(id, lon, lat) ?? true))?.[0] ?? "slovensko";
 
 // Austria's towns (Bára 16. 11. 2026; pilot/public/wien, graz, linz, drawn in rounds of a drawer and a critic): Vienna's
 // Flexity and bus of Wiener Linien, the trams of Graz and Linz, elsewhere Streetmix's vehicles; the Austrian stop post
@@ -550,6 +550,15 @@ setCity(globalThis.PROFILY_CITY || "praha");
 // The city a point lies in, by the boundaries of the cities (mesta.json, tools/build_mesta.mjs); elsewhere its
 // state (below). Before the file has loaded (or without it) the current city.
 let bounds = null;
+// The Slovak towns' boundaries (tools/build_towns_sk.mjs, mesta-sk.json): is the point in town id? undefined without
+// the file or the town (the caller keeps its box then).
+let skTowns = null;
+export const loadSkTowns = (json) => { skTowns = Object.fromEntries(Object.entries(json || {}).map(([id, rings]) => [id, boxed(id, rings)])); };
+export const inSkTown = (id, lon, lat) => {
+  const b = skTowns?.[id];
+  if (!b) return undefined;
+  return lon >= b.box[0] && lon <= b.box[2] && lat >= b.box[1] && lat <= b.box[3] && inside(b.rings, lon, lat);
+};
 export const loadBounds = (json) => { bounds = Object.entries(json).map(([id, rings]) => boxed(id, rings)); };
 const inside = (rings, x, y) => {
   let c = false;
