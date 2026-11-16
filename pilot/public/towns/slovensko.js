@@ -357,7 +357,7 @@ async function surfaces(bbox) {
   const o = await osmAreas(bbox);
   // The technical map first (its buildings, then its areas), the passport where it has none, OSM's areas last.
   if (tmAt) return { features: [...tm.features, ...o.buildings, ...own.features, ...under.features, ...o.rest], skTown: id || "bratislava", skTm: true };
-  return { features: [...o.buildings, ...own.features, ...under.features, ...o.rest], skTown: id };
+  return { features: [...o.buildings, ...own.features, ...under.features, ...o.rest], skTown: id, passport: true };
 }
 async function lines(bbox) {
   if (!bbox) return { features: [] };
