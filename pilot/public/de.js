@@ -3,6 +3,33 @@
 // interface on a cut in Prague shows Czech signs and Czech rules (the language is not the state).
 // tests/i18n.test.js checks that every text of en.js is here and nothing else.
 export const DE = {
+  // ---------- Slovakia, the towns' passports, more house looks (main of 16. 11. 2026) ----------
+  "Klikněte v mapě na ulici kdekoli v Česku nebo na Slovensku.": "Klicken Sie in der Karte auf eine beliebige Straße in Tschechien oder der Slowakei.",
+  "Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM.": "Der Querschnitt von Fassade zu Fassade entsteht aus der technischen Karte der Stadt oder des ČÚZK, aus RÚIAN und OSM, in der Slowakei aus den Straßenkatastern der Städte, ZBGIS, dem Luftbild und OSM.",
+  "dům 50. let (sorela)": "Haus der 1950er-Jahre (Sozialistischer Realismus)",
+  "zděný bytový dům 50.–60. let": "gemauertes Wohnhaus der 1950er/60er-Jahre",
+  "měšťanský dům na náměstí": "Bürgerhaus am Marktplatz",
+  "škola": "Schule",
+  "kostel": "Kirche",
+  "garáž": "Garage",
+  ", s podloubím (OSM)": ", mit Laubengang (OSM)",
+  "vila, starší rodinný dům": "Villa, älteres Einfamilienhaus",
+  "rodinný dům 60.–80. let": "Einfamilienhaus der 1960er–80er-Jahre",
+  "nový rodinný dům": "neues Einfamilienhaus",
+  "venkovský dům štítem do ulice": "Dorfhaus, Giebel zur Straße",
+  "Sítě pod zemí (Praha a další města): sítě pod ulicí a v mapě": "Leitungen im Untergrund (Prag und weitere Städte): die Leitungen unter der Straße und in der Karte",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, {law} žádá {need} (3 m pro každý směr).": "Parken halb auf dem Gehweg laut OSM: Auf der Fahrbahn bleiben {free}, {law} verlangt {need} (3 m je Fahrtrichtung).",
+  "jízdní pruh v obci: min. 2,75 m, základ 3 m (TP 117, 2.12.2)": "Fahrstreifen innerorts: mind. 2,75 m, Regelmaß 3 m (TP 117, 2.12.2)",
+  "jízdní pruh sběrné komunikace: min. 2,75 m, základ 3 m (TP 117, 2.12.2), v obci nejvýš 3,25 m (TP 118, 3.1.4.5)": "Fahrstreifen einer Sammelstraße: mind. 2,75 m, Regelmaß 3 m (TP 117, 2.12.2), innerorts höchstens 3,25 m (TP 118, 3.1.4.5)",
+  "pasport zeleně © {town}": "Grünflächenkataster © {town}",
+  "pasport komunikací © {town}": "Straßenkataster © {town}",
+  "pasportu zeleně města {town}, technické mapy ČÚZK a OSM": "des Grünflächenkatasters von {town}, der technischen Karte des ČÚZK und von OSM",
+  "pasportu komunikací města {town}, technické mapy ČÚZK a OSM": "des Straßenkatasters von {town}, der technischen Karte des ČÚZK und von OSM",
+  "pasportu komunikací města {town}, ZBGIS a OSM": "des Straßenkatasters von {town}, von ZBGIS und OSM",
+  "z pasportu města": "aus dem Kataster der Stadt",
+  "Příčné profily ulic v Česku a na Slovensku od fasády k fasádě z technických map měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.": "Straßenquerschnitte in Tschechien und der Slowakei von Fassade zu Fassade, aus den technischen Karten der Städte und des ČÚZK, aus RÚIAN, ZBGIS und OpenStreetMap. Bearbeiten Sie einen Querschnitt, vergleichen Sie ihn mit dem Bestand und speichern Sie ihn als Bild.",
+  "Příčné profily ulic v Česku a na Slovensku z technických map měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.": "Straßenquerschnitte in Tschechien und der Slowakei aus den technischen Karten der Städte, des ČÚZK und von ZBGIS: von Fassade zu Fassade, bearbeitbar, mit örtlichen Illustrationen.",
+  "Data © IPR Praha, ČÚZK, města a kraje, GKÚ Bratislava (ZBGIS), slovenská mesta, OpenStreetMap · ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "Daten © IPR Praha, ČÚZK, Städte und Regionen, GKÚ Bratislava (ZBGIS), slowakische Städte, OpenStreetMap · Illustrationen Streetmix (CC BY-SA 4.0) und © Bára Soukupová · Quellen, Lizenzen und Datenschutz ·",
   // ---------- app.js: map, loading, panorama ----------
   "Přiblížit": "Vergrößern",
   "Oddálit": "Verkleinern",
@@ -44,9 +71,6 @@ export const DE = {
   "Hotovo": "Fertig",
   "Opravit data": "Daten korrigieren",
   "Příčný profil ulice": "Straßenquerschnitt",
-  "Klikněte v mapě na ulici kdekoli v Česku.": "Klicken Sie in der Karte auf eine beliebige Straße in Tschechien.",
-  "Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM.":
-    "Der Querschnitt von Fassade zu Fassade entsteht aus der technischen Karte der Stadt oder des ČÚZK, aus RÚIAN und OSM.",
   "V režimu Návrh ho upravíte: táhněte hranice, klikněte na část, přidejte novou.":
     "In der Planung bearbeiten Sie ihn: Grenzen ziehen, auf ein Element klicken, ein neues hinzufügen.",
   " · změněné části jsou obtažené": " · geänderte Elemente sind umrandet",
@@ -207,7 +231,6 @@ export const DE = {
   "Oddálit profil": "Querschnitt verkleinern",
   "Lupa profilu": "Lupe",
   "◍ Sítě": "◍ Leitungen",
-  "Sítě pod zemí, jen v Praze: sítě technické mapy IPR pod ulicí a v mapě": "Leitungen im Untergrund, nur in Prag: die Leitungen der technischen Karte des IPR unter der Straße und in der Karte",
   "kanalizace": "Abwasserkanal",
   "vodovod": "Wasserleitung",
   "plynovod": "Gasleitung",
@@ -324,8 +347,6 @@ export const DE = {
     "Parken halb auf dem Gehweg laut OSM: Der Gehweg ist nur {w} breit, die Autos sind schmaler gezeichnet, vom Gehweg bleiben {rest}.",
   "Stání na chodníku z OSM: chodník má jen {w}, auta jsou kreslena užší a chodníku zbývá {rest}.":
     "Parken auf dem Gehweg laut OSM: Der Gehweg ist nur {w} breit, die Autos sind schmaler gezeichnet, vom Gehweg bleiben {rest}.",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, § 25 odst. 3 zák. 361/2000 Sb. žádá {need} (3 m pro každý směr).":
-    "Parken halb auf dem Gehweg laut OSM: Auf der Fahrbahn bleiben {free}, das tschechische Gesetz (§ 25 Abs. 3 Gesetz Nr. 361/2000 Slg.) verlangt {need} (3 m je Fahrtrichtung).",
   "Technická mapa tu nemá povrch ulice ({what}), profil je odhad z OSM.": "Die technische Karte hat hier keine Straßenflächen ({what}), der Querschnitt ist eine Schätzung aus OSM.",
   "žádná plocha": "keine Fläche",
   "plocha": "Fläche",
@@ -501,10 +522,6 @@ export const DE = {
   // ---------- index.html ----------
   // The app's name (Bára 16. 11. 2026): "Straßenprofil", as "Street Profile"; the link preview's picture keeps the Czech one.
   "Profily ulic": "Straßenprofil",
-  "Příčné profily ulic v Česku od fasády k fasádě z technických map měst a ČÚZK, RÚIAN a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.":
-    "Straßenquerschnitte in Tschechien von Fassade zu Fassade, aus den technischen Karten der Städte und des ČÚZK, aus RÚIAN und OpenStreetMap. Bearbeiten Sie einen Querschnitt, vergleichen Sie ihn mit dem Bestand und speichern Sie ihn als Bild.",
-  "Příčné profily ulic v Česku z technických map měst a ČÚZK: od fasády k fasádě, upravitelné, s místními ilustracemi.":
-    "Straßenquerschnitte in Tschechien aus den technischen Karten der Städte und des ČÚZK: von Fassade zu Fassade, bearbeitbar, mit örtlichen Illustrationen.",
   "Příčný profil české ulice s tramvajemi, cyklopruhem, chodníky a domy, vedle název Profily ulic":
     "Querschnitt einer tschechischen Straße mit Straßenbahnen, Radfahrstreifen, Gehwegen und Häusern, daneben der Name Profily ulic",
   "Porovnat": "Vergleich",
@@ -524,9 +541,7 @@ export const DE = {
   "polohopis © mesto Hlohovec": "Lageplan © Stadt Hlohovec",
   "hranice druhov pozemkov © mesto Prešov (CC BY 4.0)": "Grenzen der Nutzungsarten © Stadt Prešov (CC BY 4.0)",
   "cesty, parkoviská a tráva © GKÚ Bratislava (ZBGIS, CC BY 4.0)": "Wege, Parkplätze und Rasen © GKÚ Bratislava (ZBGIS, CC BY 4.0)",
-  "jízdní pruh v obci: min. 2,75 m (TP 117, 2.12.2), základ 3 m (TP 118)": "Fahrstreifen innerorts: mind. 2,75 m (TP 117, 2.12.2), Regelmaß 3 m (TP 118)",
   "jízdní pruh dálnice: 3,5 m (STN 73 6101, neveřejná, orientačně)": "Fahrstreifen einer Autobahn: 3,5 m (STN 73 6101, nicht frei zugänglich, Richtwert)",
-  "jízdní pruh sběrné komunikace: min. 3 m (TP 117, 2.12.4), základ 3,25 m (TP 118, 3.1.4.5)": "Fahrstreifen einer Sammelstraße: mind. 3 m (TP 117, 2.12.4), Regelmaß 3,25 m (TP 118, 3.1.4.5)",
   "jízdní pruh zklidněné komunikace: 2,75 m (TP 73 6110, obr. 43), nejméně 2,5 m (STN 73 6110)": "Fahrstreifen einer verkehrsberuhigten Straße: 2,75 m (TP 73 6110, Abb. 43), mindestens 2,5 m (STN 73 6110)",
   "zbytek chodníku vedle stání na chodníku: aspoň 1,5 m, optimálně 2 m (TP 117, 2.13.4)": "Restgehweg neben Parken auf dem Gehweg: mind. 1,5 m, optimal 2 m (TP 117, 2.13.4)",
   "chodník: nejméně 1,3 m (vyhl. 532/2002 Z. z.), volná šířka 1,5 m, u zdi 1,75 m (STN 73 6110)": "Gehweg: mindestens 1,3 m (Verordnung 532/2002), lichte Breite 1,5 m, an einer Wand 1,75 m (STN 73 6110)",
@@ -644,8 +659,6 @@ export const DE = {
   "Sdílet": "Teilen",
   "Kopírovat polohu řezu": "Lage des Schnitts kopieren",
   "Místní ilustrace": "Örtliche Illustrationen",
-  "Data © IPR Praha, ČÚZK, města a kraje, OpenStreetMap · ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·":
-    "Daten © IPR Praha, ČÚZK, Städte und Regionen, OpenStreetMap · Illustrationen Streetmix (CC BY-SA 4.0) und © Bára Soukupová · Quellen, Lizenzen und Datenschutz ·",
   "kontakt": "Kontakt",
   // Rainwater objects at their size, with the networks.
   "šířka": "Breite",
