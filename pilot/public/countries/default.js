@@ -130,10 +130,9 @@ export default {
   panorama: true,
   // What a cut lacks when its lines do not answer (sources.js outage), marked for t().
   linesMissing: mark("kolejí, plotů a svahů"),
-  // The state's illustrations (profile.js): the sets of its towns by name, and the set at a point (app.js; null: the
-  // city's own).
+  // The state's illustrations (profile.js): the sets of its cities by their id, its own set by the id of its rest
+  // (city.js: a city with a set of its own draws it, the others the state's).
   art: {},
-  artAt: null,
   // The look of a house as the state has it (profile.js buildingStyle): null keeps the Czech catalogue.
   houseLook: null,
   // The search services asked where the map shows the state (search.js), besides RÚIAN.

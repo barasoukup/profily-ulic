@@ -3,7 +3,6 @@
 import { t } from "../i18n.js";
 import { GROUP, fmt } from "../norms.js";
 import { TOWN_ART, TRAM, TROLLEY, czechFurniture } from "../art.js";
-import { areaAt, AT_AREAS } from "../places.js";
 import base, { CZ_CODE } from "./default.js";
 
 // Austria (the state of the cut AT; Bára 16. 11. 2026): evaluation/austria/NORMY.md. The cycling widths of RVS 03.02.13
@@ -86,8 +85,7 @@ const atArt = ({ posts = "../austria/", tram, trolley, bus }) => ({ ...czechFurn
   ...(bus ? { "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound" } : {}), ...(tram ? TRAM : {}), ...(trolley ? TROLLEY : {}) });
 const AT_ART = { austria: atArt({}), wien: atArt({ posts: "", tram: true, bus: true }), graz: atArt({ tram: true, bus: true }), linz: atArt({ tram: true, trolley: true, bus: true }),
   salzburg: atArt({ trolley: true, bus: true }), innsbruck: atArt({ tram: true, bus: true }) };
-// The towns by their boxes (places.js AT_AREAS).
-const artAt = (lat, lon) => areaAt(AT_AREAS, lon, lat) ?? "austria";
+
 export default {
   ...base,
   code: "AT",
@@ -114,7 +112,6 @@ export default {
   orthoEstimate: true,
   panorama: false,
   art: AT_ART,
-  artAt,
   // Austria has no panel houses of the Czech and Slovak kind (Bára 16. 11. 2026): an office stays an office, a block of
   // flats is the modern one when new, else the plain flat-roofed tenement (Gemeindebau).
   houseLook: (style, info, office) => (style === "plocha" ? (office ? "kancelar" : (info?.start || info?.built) > 1990 ? "moderni" : "funkce") : style),

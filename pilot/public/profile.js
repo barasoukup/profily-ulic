@@ -63,7 +63,7 @@ const BRNO = {
 // Every other city brings its own map of illustrations (city.js artMap, files in pilot/public/<art>/).
 const CITY_ART = { praha: PRAHA, brno: BRNO };
 for (const id of CITY_IDS) { const c = cityById(id); if (c.artMap) CITY_ART[c.art] = c.artMap; }
-// The states' sets of their towns (countries/<ISO>.js art: the Slovak and Austrian towns' vehicles, by artAt).
+// The states' sets of their cities (countries/<ISO>.js art: the Slovak and Austrian cities' vehicles, city.js art).
 for (const c of Object.values(COUNTRIES)) Object.assign(CITY_ART, c.art);
 // The illustrations of the current cut's city, or Streetmix's (the switch "Ilustrace" off).
 let artOn = true;

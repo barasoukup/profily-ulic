@@ -125,8 +125,11 @@ test("pasporty měst: CSP, město podle polohy, převod typů", async () => {
 test("slovenská města podle hranic ze ZBGIS (mesta-sk.json): Šamorín ani Svätý Jur nejsou Bratislava", async () => {
   const C = await import("../pilot/public/city.js");
   C.loadSkTowns(JSON.parse(read("mesta-sk.json")));
-  // The set of illustrations at a point (countries/SK.js artAt).
-  const skArtAt = (await import("../pilot/public/countries/SK.js")).default.artAt;
+  // The city of a point and its illustrations (step 4b: the Slovak towns are cities, mesta-sk.json).
+  C.loadBounds(JSON.parse(read("mesta.json")));
+  C.loadStates(JSON.parse(read("staty.json")));
+  C.loadTowns(JSON.parse(read("mesta-sk.json")));
+  const skArtAt = (lat, lon) => C.cityById(C.cityAt(lat, lon)).art;
   assert.equal(skArtAt(48.1467, 17.107), "bratislava"); // Suché mýto
   assert.equal(skArtAt(48.1905, 17.0243), "bratislava"); // Dúbravka
   assert.equal(skArtAt(48.0305, 17.3100), "slovensko"); // Šamorín
@@ -144,11 +147,24 @@ test("placeAt: stát, město, ilustrace a zdroje s vlastním územím", async ()
   C.loadBounds(JSON.parse(read("mesta.json")));
   C.loadStates(JSON.parse(read("staty.json")));
   C.loadSkTowns(JSON.parse(read("mesta-sk.json")));
-  assert.deepEqual(placeAt(48.1467, 17.107), { country: "SK", city: "slovensko", art: "bratislava", sources: ["bratislava-pasport", "bratislava-tm"] });
-  assert.deepEqual(placeAt(48.309, 18.084), { country: "SK", city: "slovensko", art: "nitra", sources: ["nitra-kresba"] });
+  C.loadTowns(JSON.parse(read("mesta-sk.json")));
+  C.loadTowns(JSON.parse(read("mesta-at.json")));
+  // Step 4b: the Slovak and Austrian cities by their boundaries, with their own illustrations and their state's sources.
+  assert.deepEqual(placeAt(48.1467, 17.107), { country: "SK", city: "bratislava", art: "bratislava", sources: ["bratislava-pasport", "bratislava-tm"] });
+  assert.deepEqual(placeAt(48.309, 18.084), { country: "SK", city: "nitra", art: "nitra", sources: ["nitra-kresba"] });
+  assert.deepEqual(placeAt(48.594, 17.832), { country: "SK", city: "piestany", art: "slovensko", sources: ["piestany-kresba"] }); // no set of its own
   assert.deepEqual(placeAt(48.0305, 17.31), { country: "SK", city: "slovensko", art: "slovensko", sources: ["bratislava-tm"] }); // Šamorín: Bratislava's box, not the town
-  assert.deepEqual(placeAt(48.2085, 16.3731), { country: "AT", city: "austria", art: "wien", sources: ["wien"] });
-  assert.deepEqual(placeAt(47.8, 13.045), { country: "AT", city: "austria", art: "salzburg", sources: ["salzburg"] });
-  assert.deepEqual(placeAt(50.0817, 14.4176), { country: "CZ", city: "praha", art: null, sources: [] });
-  assert.deepEqual(placeAt(47.87, 17.269), { country: null, city: "cizina", art: null, sources: [] });
+  assert.deepEqual(placeAt(48.2085, 16.3731), { country: "AT", city: "wien", art: "wien", sources: ["wien"] });
+  assert.deepEqual(placeAt(48.31, 16.33), { country: "AT", city: "austria", art: "austria", sources: ["wien"] }); // Klosterneuburg: Vienna's box, not the city
+  assert.deepEqual(placeAt(47.8, 13.045), { country: "AT", city: "salzburg", art: "salzburg", sources: ["salzburg"] });
+  assert.deepEqual(placeAt(50.0817, 14.4176), { country: "CZ", city: "praha", art: "praha", sources: [] });
+  assert.deepEqual(placeAt(47.87, 17.269), { country: null, city: "cizina", art: "cesko", sources: [] });
+  // The other cities take their state's sources and texts.
+  const { TOWNS } = await import("../pilot/public/towns/index.js");
+  assert.equal(TOWNS.bratislava, TOWNS.slovensko);
+  assert.equal(TOWNS.graz, TOWNS.austria);
+  C.setCity("kosice");
+  assert.equal(C.city.country, "SK");
+  assert.equal(C.city.credit, C.cityById("slovensko").credit);
+  C.setCity("praha");
 });

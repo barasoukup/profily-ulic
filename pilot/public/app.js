@@ -17,7 +17,7 @@ import { cleanProfile, cleanCut, retype } from "./validate.js";
 import { shares, surfaces } from "./shares.js";
 import { packProfile, unpackProfile, designParams } from "./share.js";
 import { checkRules, checkUnder, checkTrees } from "./rules.js";
-import { city, country, setCity, cityAt, countryOfCity, loadBounds, loadStates, loadSkTowns } from "./city.js";
+import { city, country, setCity, cityAt, countryOfCity, loadBounds, loadStates, loadSkTowns, loadTowns } from "./city.js";
 import { TOWNS, placeAt } from "./towns/index.js";
 import { log, logOn, sendReport, shortProfile } from "./log.js";
 import { createDataLayers, PLOCHY_PANE } from "./maplayers.js";
@@ -69,8 +69,9 @@ const cutSpan = (cut) => cut?.span || cut?.reach || defaultReach();
 const STORE = "streetdesign-pilot" + (LANES_ORTHO ? "" : "-bez-orto"); // the last cut (Prague's key from the time of one page per city); ?orto=0 its own
 // The boundaries of the cities with their own sources (tools/build_mesta.mjs): a cut takes its city by them.
 const statyJson = fetch("staty.json").then((r) => (r.ok ? r.json() : null), () => null);
-// The Slovak towns' boundaries (tools/build_towns_sk.mjs): without them their boxes.
-fetch("mesta-sk.json").then((r) => (r.ok ? r.json() : null), () => null).then((j) => j && loadSkTowns(j));
+// The boundaries of the Slovak and Austrian cities (tools/build_towns_sk.mjs, build_towns_at.mjs): the city of a cut
+// and the territories of the Slovak towns' sources. Without them those cuts are their state's rest.
+const townsJson = Promise.all(["mesta-sk.json", "mesta-at.json"].map((f) => fetch(f).then((r) => (r.ok ? r.json() : null), () => null)));
 const MESTA = await fetch("mesta.json").then((r) => (r.ok ? r.json() : null), () => null);
 // Without the file every cut keeps the current city (rather than all becoming "cesko").
 if (MESTA) loadBounds(MESTA); else console.warn("mesta.json se nenačetl: město se podle polohy nepozná");
@@ -78,15 +79,16 @@ if (MESTA) loadBounds(MESTA); else console.warn("mesta.json se nenačetl: město
 // Loaded with the cities' file (both before the first cut, a linked one included).
 const STATY = await statyJson;
 if (STATY) loadStates(STATY); else console.warn("staty.json se nenačetl: stát se podle polohy nepozná");
+{
+  const [sk, at] = await townsJson;
+  if (sk) { loadSkTowns(sk); loadTowns(sk); }
+  if (at) loadTowns(at);
+}
 // The city of a point becomes the current one (city.js): its sources, texts and illustrations.
 async function useCity(lat, lon) {
-  // A state with the illustrations of its towns (countries/<ISO>.js artAt: Slovakia, Austria) gives the set of the point.
-  const { city: id, art } = placeAt(lat, lon);
-  const townArt = art !== null;
-  if (id === city.id && (!townArt || city.art === art)) return;
-  if (id !== city.id) setCity(id);
-  // In Slovakia and Austria the vehicles of the town of the cut (city.js SK_ART, AT_ART; Bára 16. 11. 2026).
-  if (townArt) city.art = art;
+  const id = cityAt(lat, lon);
+  if (id === city.id) return;
+  setCity(id);
   await loadSprites();
 }
 
@@ -293,7 +295,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     if (!near) {
       // A click with no street found is logged too (Bára: how many try outside the Czech Republic): only where, to
       // about a kilometre, and whether there were any OSM data there at all (outside the country there are none).
-      if (!keepWay) log("bez_ulice", { detail: osm?.elements?.length ? "bez_ulice" : "bez_dat", city: city.id, lat: Math.round(lat * 100) / 100, lon: Math.round(lon * 100) / 100 });
+      if (!keepWay) log("bez_ulice", { detail: osm?.elements?.length ? "bez_ulice" : "bez_dat", city: city.id, country: city.country, lat: Math.round(lat * 100) / 100, lon: Math.round(lon * 100) / 100 });
       return status(tr("Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko, Slovensko a Rakousko)."), "error");
     }
     // A street of two one-way carriageways is cut from its middle (e.g. the tram belt).
@@ -428,7 +430,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.skTown && { skTown: mv.skTown }), ...(mv?.atTown && { atTown: mv.atTown }), ...(atSigns?.length && signTags.__salzburg && { atSigns: "salzburg" }), ...(mv?.skTm && { skTm: true }), ...((orthoOsm?.edges || besideUsed?.edges) && k.value?.edgesFrom && { skEdges: k.value.edgesFrom }), ...((orthoOsm?.areas || orthoOsm?.widthFrom === "zbgis" || besideUsed?.zbgis) && { zbgis: true }), ...(mv?.dmvs && { dmvs: true }), ...(typeof mv?.passport === "string" && { passport: mv.passport }), ...(((ortho && !bedOwn) || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" ? { orthoCity: laneImg.source } : bedOwn ? { orthoCity: bedOwn } : besideUsed?.image && { orthoCity: laneImg.source }) };
     // The log of cuts (log.js): the cut exactly, and how it came (a click, a moved cut, a link).
     log("rez", {
-      detail: keepWay ? "posun" : bearing !== null ? "odkaz" : "klik", city: city.id, street: name, highway: near.way.tags.highway,
+      detail: keepWay ? "posun" : bearing !== null ? "odkaz" : "klik", city: city.id, country: city.country, street: name, highway: near.way.tags.highway,
       wayId: near.way.id, lat: +clat.toFixed(7), lon: +clon.toFixed(7), bearing: +state.cut.bearing.toFixed(1), reachLeft: reach.left, reachRight: reach.right,
     });
     const facades = ["left", "right"].map((side) => result.edges[`${side}Info`]?.point).filter(Boolean); // for the map (maplayers.js)
@@ -2039,7 +2041,7 @@ function restore(data) {
   undoStack.length = redoStack.length = 0;
   Object.assign(state, { cut: data.cut, stav: data.stav, navrh: data.navrh || structuredClone(data.stav), navrhEdited: !!data.navrhEdited, selected: null });
   // The saved cut's city (its illustrations follow once loaded).
-  if (state.cut) { const place = placeAt(state.cut.lat, state.cut.lon); setCity(place.city); if (place.art) city.art = place.art; loadSprites().then(render); }
+  if (state.cut) { setCity(cityAt(state.cut.lat, state.cut.lon)); loadSprites().then(render); }
   if (state.cut) {
     map.setView([state.cut.lat, state.cut.lon], 19);
     const f = localFrame(state.cut.lat, state.cut.lon);

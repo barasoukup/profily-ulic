@@ -6,7 +6,7 @@
 import { sourceCredits } from "./credits.js";
 import { TOWN_ART, TRAM, TROLLEY } from "./art.js";
 import { boxed, within, loadSkTowns, inSkTown } from "./places.js";
-import { countryOf } from "./countries/index.js";
+import { countryOf, COUNTRIES } from "./countries/index.js";
 export { loadSkTowns, inSkTown };
 import { t, cityTexts } from "./i18n.js";
 
@@ -432,6 +432,25 @@ Object.assign(CITIES, {
     dataShort: "basemap.at a OSM", rulesHead: "Šířky podle rakouských předpisů (RVS 03.02.13, Wiener Projektierungshandbuch):" },
   cizina: abroad("cizina", null, "cizinu", "v cizině", "zahraniční", [49.8, 15.5], "48.146736, 17.106998"),
 });
+// The rest of Slovakia and of Austria draws the state's own set (countries/<ISO>.js art).
+// (The Czech furniture's map of "cesko" is not theirs: the state's set has its furniture, profile.js.)
+for (const id of ["slovensko", "austria"]) { CITIES[id].art = id; delete CITIES[id].artMap; }
+
+// The Slovak and Austrian cities (step 4b of docs/architecture-countries.md; Bára 16. 11. 2026: cities everywhere, as
+// Brno): by their boundaries (mesta-sk.json from ZBGIS, mesta-at.json from GISCO's LAU), everything else of their
+// state's rest (texts, sources, orthophoto), only the illustrations their own where the state has a set of the town
+// (else the state's). Their sources keep their own territories (towns/slovensko.js, towns/austria.js AREAS).
+const stateTown = (id, state, view) => ({ ...CITIES[state], id, like: state, view, art: COUNTRIES[CITIES[state].country].art[id] ? id : state });
+export const STATE_TOWNS = {
+  SK: ["bratislava", "kosice", "zilina", "bystrica", "presov", "nitra", "trnava", "trencin", "martin", "poprad", "piestany", "hlohovec", "zvolen"],
+  AT: ["wien", "graz", "linz", "salzburg", "innsbruck"],
+};
+const VIEW = { bratislava: [48.1440, 17.1100], kosice: [48.7190, 21.2580], zilina: [49.2230, 18.7400], bystrica: [48.7360, 19.1460], presov: [48.9980, 21.2400],
+  nitra: [48.3120, 18.0870], trnava: [48.3774, 17.5883], trencin: [48.8945, 18.0444], martin: [49.0665, 18.9230], poprad: [49.0555, 20.2975],
+  piestany: [48.5918, 17.8273], hlohovec: [48.4310, 17.8030], zvolen: [48.5762, 19.1371],
+  wien: [48.2085, 16.3731], graz: [47.0707, 15.4395], linz: [48.3059, 14.2862], salzburg: [47.8, 13.045], innsbruck: [47.2654, 11.3927] };
+for (const id of STATE_TOWNS.SK) CITIES[id] = stateTown(id, "slovensko", VIEW[id]);
+for (const id of STATE_TOWNS.AT) CITIES[id] = stateTown(id, "austria", VIEW[id]);
 
 // Towns with no data of their own (the national DTM of ČÚZK, as "cesko"), only their own vehicles.
 const artTown = (id, inCity, adjective, art) => ({ ...CITIES.cesko, id, like: "cesko", inCity, adjective, art: id, artMap: { ...art, ...TOWN_ART } });
@@ -496,7 +515,16 @@ export const loadBounds = (json) => { bounds = Object.entries(json).map(([id, ri
 // "cizina". Without the file (or before it has loaded) a point outside the cities is "cesko", as before.
 let states = null;
 export const loadStates = (json) => { states = Object.entries(json).map(([id, rings]) => boxed(id, rings)); };
+// The cities of the other states (mesta-sk.json, mesta-at.json; STATE_TOWNS): within their state, else its rest.
+let towns = [];
+export const loadTowns = (json) => { towns = [...towns.filter((b) => !(b.id in (json || {}))), ...Object.entries(json || {}).filter(([id]) => CITIES[id]).map(([id, rings]) => boxed(id, rings))]; };
 export function cityAt(lat, lon) {
   if (!bounds) return city.id;
-  return within(bounds, lat, lon) || (states ? within(states, lat, lon) || "cizina" : "cesko");
+  const own = within(bounds, lat, lon);
+  if (own) return own;
+  if (!states) return "cesko";
+  const state = within(states, lat, lon);
+  if (!state) return "cizina";
+  const town = within(towns.filter((b) => CITIES[b.id].like === state), lat, lon);
+  return town || state;
 }

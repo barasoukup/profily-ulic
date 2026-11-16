@@ -85,6 +85,13 @@ Potřebuješ účet na cloudflare.com (stačí bezplatný) a Node. Všechny př�
   každý záznam úprav jako seznam změn (i s odkazem `#rez=`) a nakonec nejčastější změny.
 - Přehled dotazů a spotřeby je i v nástěnce Cloudflare (Workers & Pages, D1).
 
+Stát řezu (`country`, ISO: CZ, SK, AT) vedle města (od 16. 11. 2026 má i Bratislava, Vídeň a další města své id, zbytek
+státu `slovensko`, `austria`): ve stávající databázi jednou sloupec, pak nový Worker (bez sloupce Worker zapisuje
+dál, jen bez státu). Statistiky po státech: `SELECT country, count(*) FROM events WHERE kind='rez' GROUP BY 1`.
+```bash
+npx wrangler d1 execute profily-ulic-log --remote --command "ALTER TABLE events ADD COLUMN country TEXT"
+```
+
 Úpravy potřebují ve stávající databázi sloupec `profile` a nový Worker (jednou, 11. 11. 2026):
 ```bash
 npx wrangler d1 execute profily-ulic-log --remote --command "ALTER TABLE events ADD COLUMN profile TEXT"

@@ -7,7 +7,8 @@ CREATE TABLE IF NOT EXISTS events (
   ts TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
   kind TEXT NOT NULL,        -- rez | export | ulozeni | sdileni | navrh | porovnat | oprava | hledani | upravy | hlaseni | bez_ulice
   detail TEXT,               -- rez: klik | posun | odkaz; export: png | svg; upravy: oprava | navrh; bez_ulice: bez_ulice | bez_dat
-  city TEXT,                 -- city.js id: praha, brno, … or cesko
+  city TEXT,                 -- city.js id: praha, brno, bratislava, wien … or the rest of a state: cesko, slovensko, austria, cizina
+  country TEXT,              -- the state of the cut, ISO 3166-1 (CZ, SK, AT; empty abroad)
   street TEXT,
   highway TEXT,              -- OSM highway of the street
   way_id INTEGER,            -- OSM way
@@ -18,5 +19,6 @@ CREATE TABLE IF NOT EXISTS events (
   profile TEXT               -- upravy: {pred, po} short profiles (log.js shortProfile); hlaseni: {co, text, vypocet, stav}
 );
 -- Added 11. 11. 2026 to the existing database: ALTER TABLE events ADD COLUMN profile TEXT;
+-- Added 16. 11. 2026 (cities of every state, the state apart): ALTER TABLE events ADD COLUMN country TEXT;
 CREATE INDEX IF NOT EXISTS events_ts ON events (ts);
 CREATE INDEX IF NOT EXISTS events_kind_city ON events (kind, city);

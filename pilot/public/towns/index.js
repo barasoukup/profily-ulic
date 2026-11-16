@@ -1,4 +1,4 @@
-import { cityAt, countryOfCity } from "../city.js";
+import { cityAt, countryOfCity, cityById, CITY_IDS } from "../city.js";
 import { inArea } from "../places.js";
 
 // The towns whose page asks the town's own GIS on a click (all but Prague and Brno): each module gives
@@ -27,11 +27,13 @@ export const TOWNS = { cesko, jihlava, most, opava, pardubice, plzen, usti, ostr
   slovensko, austria, cizina };
 
 // Where a point lies (docs/architecture-countries.md): its state (ISO code), its city (mesta.json, else the rest of the
-// state), the illustrations of its town where the state draws its towns' own (countries/<ISO>.js artAt), and the
+// state), its illustrations (city.js art: its own set or its state's), and the
 // sources with a territory of their own that have it (each module's AREAS).
-const AREAS = Object.entries({ slovensko, austria }).flatMap(([town, m]) => Object.entries(m.AREAS || {}).map(([id, area]) => ({ town, id, area })));
+// The other cities of a state take their state's sources (Bratislava, Vienna…: towns/slovensko.js, towns/austria.js).
+for (const id of CITY_IDS) if (!TOWNS[id] && TOWNS[cityById(id).like] && cityById(id).like !== "cesko") TOWNS[id] = TOWNS[cityById(id).like];
+const AREAS = [slovensko, austria].flatMap((m) => Object.entries(m.AREAS || {}).map(([id, area]) => ({ m, id, area })));
 export function placeAt(lat, lon) {
-  const id = cityAt(lat, lon), country = countryOfCity(id);
-  return { country: country.code, city: id, art: country.artAt?.(lat, lon) ?? null,
-    sources: AREAS.filter((a) => a.town === id && inArea(a.area, lon, lat)).map((a) => a.id) };
+  const id = cityAt(lat, lon);
+  return { country: countryOfCity(id).code, city: id, art: cityById(id).art,
+    sources: AREAS.filter((a) => TOWNS[id] === a.m && inArea(a.area, lon, lat)).map((a) => a.id) };
 }

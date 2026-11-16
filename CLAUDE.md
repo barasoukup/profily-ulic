@@ -275,8 +275,13 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   (opraveno: uložený řez v Košicích, Grazu, Innsbrucku se neztratí, slovenské a rakouské kredity zůstanou).
 - Výstup beze změny ověřen záchrannou sítí `evaluation/replay/` (369 nahraných řezů SK, AT, Praha, Brno, cizina;
   přehrání před a po, tabulky ve 4 jazycích). České řezy mimo Prahu a Brno nahrát po odstávce DMVS (od 19. 11.).
-- Krok 4b (města všude: hranice obcí SK ze ZBGIS, AT ze Statistik Austria, Bratislava, Vídeň… jako města, do logu
-  `country`) mění chování: čeká na Bářino rozhodnutí.
+- Krok 4b (Bára 16. 11. 2026): města všude. Slovenská (Bratislava, Košice, Žilina, B. Bystrica, Prešov, Nitra, Trnava,
+  Trenčín, Martin, Poprad, Piešťany, Hlohovec, Zvolen) a rakouská (Vídeň, Graz, Linz, Salcburk, Innsbruck) jsou města jako
+  Brno, podle hranic obcí (`mesta-sk.json` ze ZBGIS, `mesta-at.json` z obcí LAU Eurostatu GISCO 2024 = Statistik Austria,
+  `tools/build_towns_at.mjs`; soubor Statistik Austria na open data už není). Texty, zdroje a normy mají od zbytku státu,
+  ilustrace svoje (bez vlastní sady státu). Log má vedle `city` i `country` (ISO); D1 potřebuje
+  `ALTER TABLE events ADD COLUMN country TEXT` a nový Worker (nasadit musí Bára, `logging/README.md`). Opraveno zároveň:
+  Worker zahazoval polohu řezů východně od 20° v. d. (Košice) a západně od 11° (Bregenz).
 
 ## Jazyky (Bára 12. 11. 2026, slovenčina 15. 11. 2026, němčina 16. 11. 2026)
 - Anglicky se aplikace jmenuje **Street Profile**, slovensky **Profily ulíc**, německy **Straßenprofil**. Čeština, slovenčina,

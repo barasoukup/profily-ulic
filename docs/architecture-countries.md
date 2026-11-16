@@ -191,7 +191,11 @@ Odhad: krok 0 skoro den, kroky 1–4 další den až dva, 5–6 menší.
 
 ## Provedení (16. 11. 2026, větev `architecture-countries`, nenasazené)
 
-Kroky 0–6 commitnuté po jednom, 4b čeká na Báru. Odchylky od plánu:
+Kroky 0–6 commitnuté po jednom, 4b (Bára 16. 11. 2026) po nich. Odchylky od plánu:
+- **4b:** hranice rakouských měst z obcí LAU Eurostatu GISCO 2024 (obce Statistik Austria): soubor Statistik Austria na
+  open data už není a mapová služba GeoSphere nevrací geometrii. Města nemají vlastní texty (žádná věta jméno města
+  nepotřebuje) a nemají centrum (vzhled domů zůstává podle OSM jako ve zbytku státu). Přehrání: změnil se jen id města
+  a u jednoho řezu v boxu Lince mimo jeho hranici ilustrace (vozidla státu místo linecké tramvaje).
 - **Krok 0 přehrává v prohlížeči, ne v Node** (`evaluation/replay/`): větve podle státu a města jsou z velké části
   v `app.js` a v kresbě (`buildSvg`), které v Node nejdou spustit. Nahrávač před `app.js` uloží odpověď každého dotazu
   na data (jiný hostitel, `/api/`, `data/`), přehrání je vrací a dotaz, který nahrávka nemá, selže a je vidět

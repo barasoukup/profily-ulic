@@ -25,7 +25,7 @@ test("záznam řezu: uloží se přesně, cizí původ a neznámý druh se odmí
   const db = fakeDb();
   const cut = { kind: "rez", detail: "klik", city: "most", street: "tř. Budovatelů", highway: "secondary", wayId: 46195319, lat: 50.4998439, lon: 13.6384523, bearing: 25, reachLeft: 22, reachRight: 37.6, session: "s1" };
   assert.equal((await worker.fetch(post(cut), env(db))).status, 204);
-  assert.deepEqual(db.rows[0], ["rez", "klik", "most", "tř. Budovatelů", "secondary", 46195319, 50.4998439, 13.6384523, 25, 22, 37.6, "s1", null]);
+  assert.deepEqual(db.rows[0], ["rez", "klik", "most", "tř. Budovatelů", "secondary", 46195319, 50.4998439, 13.6384523, 25, 22, 37.6, "s1", null, null]);
   assert.equal((await worker.fetch(post(cut, "https://evil.example"), env(db))).status, 403);
   assert.equal((await worker.fetch(post({ ...cut, kind: "x" }), env(db))).status, 400);
   // A click with no street (outside the data): only where, rounded, and why.
@@ -78,4 +78,19 @@ test("bez LOG_URL stránka nic neposílá", async () => {
   log("rez", { city: "praha" });
   nav.sendBeacon = old;
   assert.equal(sent, 0);
+});
+
+// Step 4b (docs/architecture-countries.md): the cut's state next to its city, the position of Košice or Bregenz kept, and a
+// database without the new column still takes the row.
+test("záznam řezu: stát vedle města, poloha v celém Slovensku a Rakousku", async () => {
+  const db = fakeDb();
+  const cut = { kind: "rez", detail: "klik", city: "kosice", country: "SK", lat: 48.7206, lon: 21.258, bearing: 10, session: "s1" };
+  assert.equal((await worker.fetch(post(cut), env(db))).status, 204);
+  assert.equal(db.rows[0].at(-1), "SK");
+  assert.equal(db.rows[0][7], 21.258);
+  assert.equal((await worker.fetch(post({ ...cut, country: "Slovensko" }), env(db))).status, 204);
+  assert.equal(db.rows[1].at(-1), null);
+  const old = { rows: [], prepare: (sql) => ({ bind: (...v) => ({ run: async () => { if (sql.includes("country")) throw new Error("table events has no column named country"); old.rows.push(v); } }) }) };
+  assert.equal((await worker.fetch(post(cut), env(old))).status, 204);
+  assert.equal(old.rows[0].length, 13);
 });

@@ -58,7 +58,9 @@ out.city = Object.fromEntries(CITY_IDS.map((id) => [id, json(setCity(id))]));
 // The states' illustrations and the set at a point: in city.js before the states' modules (step 3), then there.
 const stateMod = async (code) => { try { return (await import(path.join(PUB, "countries", `${code}.js`))).default; } catch { return null; } };
 const SKm = await stateMod("SK"), ATm = await stateMod("AT");
-const skArtAt = C.skArtAt || SKm.artAt, atArtAt = C.atArtAt || ATm.artAt;
+// After step 4b the set is the city's (the cities of the other states by their boundaries).
+const artOf = (lat, lon) => C.cityById(cityAt(lat, lon)).art;
+const skArtAt = C.skArtAt || SKm.artAt || artOf, atArtAt = C.atArtAt || ATm.artAt || artOf;
 out.sk_art = { all: json(C.SK_ART || SKm.art) };
 out.at_art = { all: json(C.AT_ART || ATm.art) };
 
@@ -75,6 +77,7 @@ out.placeNoStates = place();
 loadStates(read("staty.json"));
 out.placeNoSkTowns = place();
 loadSkTowns(read("mesta-sk.json"));
+if (C.loadTowns) { C.loadTowns(read("mesta-sk.json")); try { C.loadTowns(read("mesta-at.json")); } catch {} }
 out.place = place();
 
 // The credit lines of every city with every source a cut may name, alone and a few together, with the city's art or not.

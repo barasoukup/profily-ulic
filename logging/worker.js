@@ -40,21 +40,31 @@ export default {
       let e;
       try { e = JSON.parse(text); } catch { return new Response("json", { status: 400, headers: cors }); }
       if (!e || typeof e !== "object" || !KINDS.has(e.kind)) return new Response("kind", { status: 400, headers: cors });
-      await env.DB.prepare(`INSERT INTO events (kind, detail, city, street, highway, way_id, lat, lon, bearing, reach_left, reach_right, session, profile)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`).bind(
+      // The state of the cut (ISO 3166-1, step 4b of docs/architecture-countries.md) next to its city; the box takes
+      // Austria and Slovakia whole (before: 47–52° N, 11–20° E lost Košice's and Bregenz's position).
+      const values = [
         e.kind, str(e.detail, 20), str(e.city, 30), str(e.street, 120), str(e.highway, 40),
         Number.isSafeInteger(e.wayId) ? e.wayId : null,
-        num(e.lat, 47, 52), num(e.lon, 11, 20), num(e.bearing, -360, 360),
+        num(e.lat, 46, 52), num(e.lon, 9, 23), num(e.bearing, -360, 360),
         num(e.reachLeft, 0, 100), num(e.reachRight, 0, 100), str(e.session, 40),
         e.profile && typeof e.profile === "object" && (e.kind === "upravy" || e.kind === "hlaseni") ? profileText(e.kind === "hlaseni" ? reportOf(e.profile) : e.profile) : null,
-      ).run();
+      ];
+      const country = typeof e.country === "string" && /^[A-Z]{2}$/.test(e.country) ? e.country : null;
+      const COLS = "kind, detail, city, street, highway, way_id, lat, lon, bearing, reach_left, reach_right, session, profile";
+      try {
+        await env.DB.prepare(`INSERT INTO events (${COLS}, country) VALUES (${values.map(() => "?").join(", ")}, ?)`).bind(...values, country).run();
+      } catch (err) {
+        // A database without the column yet (README: ALTER TABLE … ADD COLUMN country): the row without it.
+        if (!/country/.test(String(err?.message))) throw err;
+        await env.DB.prepare(`INSERT INTO events (${COLS}) VALUES (${values.map(() => "?").join(", ")})`).bind(...values).run();
+      }
       return new Response(null, { status: 204, headers: cors });
     }
     if (req.method === "GET" && url.pathname === "/export") {
       if (!env.EXPORT_TOKEN || req.headers.get("Authorization") !== `Bearer ${env.EXPORT_TOKEN}`) return new Response("token", { status: 401 });
       const since = url.searchParams.get("since") || "0000";
       const { results } = await env.DB.prepare("SELECT * FROM events WHERE ts >= ? ORDER BY id").bind(since).all();
-      const cols = ["id", "ts", "kind", "detail", "city", "street", "highway", "way_id", "lat", "lon", "bearing", "reach_left", "reach_right", "session", "profile"];
+      const cols = ["id", "ts", "kind", "detail", "city", "country", "street", "highway", "way_id", "lat", "lon", "bearing", "reach_left", "reach_right", "session", "profile"];
       const cell = (v) => (v === null || v === undefined ? "" : /[",\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : String(v));
       const csv = [cols.join(","), ...results.map((r) => cols.map((c) => cell(r[c])).join(","))].join("\n");
       return new Response(csv, { headers: { "Content-Type": "text/csv; charset=utf-8", "Content-Disposition": "attachment; filename=profily-ulic.csv" } });
