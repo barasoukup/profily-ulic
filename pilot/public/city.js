@@ -3,7 +3,7 @@
 // of mesta.json), anywhere else "cesko" (the national DTM of ČÚZK, RÚIAN and OSM). `city` is the city of
 // the current cut, changed in place by setCity, so modules read it at the time they need it.
 
-import { PASSPORT_NAMES, GREEN_PASSPORTS } from "./towns/pasporty-names.js";
+import { sourceCredits } from "./credits.js";
 import { t, cityTexts } from "./i18n.js";
 
 // Labels of the MTVU codes, for Brno's surfaces (Prague's MTVU sends its own).
@@ -501,25 +501,8 @@ export function creditLines(c, src = {}, art = false) {
   const data = c.credit ? [t("Data: {data}", { data: c.credit.replace(/^data /, "").replace("{kraj}", kraj) })] : [];
   if (src.dmvs && !c.credit.includes("IS DMVS")) data.push(t("technická mapa © {kraj}, IS DMVS ČÚZK", { kraj }));
   if (src.dmvs && !c.credit.includes("RÚIAN")) data.push(t("RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)"));
-  // A town's passport over the DTM (towns/pasporty.js).
-  if (PASSPORT_NAMES[src.passport]) data.push(GREEN_PASSPORTS.has(src.passport) ? t("pasport zeleně © {town}", { town: PASSPORT_NAMES[src.passport] }) : t("pasport komunikací © {town}", { town: PASSPORT_NAMES[src.passport] }));
-  if (src.ortho) data.push(t("ortofoto © ČÚZK, 2025 (CC BY 4.0)"));
-  const ORTHO_CITY = { ipr: t("ortofoto © IPR Praha, 2024"), brno: t("ortofoto © Statutární město Brno, 2025"), plzen: t("ortofoto © Statutární město Plzeň, 2024"),
-    sk: t("ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)"), at: t("ortofoto © basemap.at (CC BY 4.0)") };
-  if (ORTHO_CITY[src.orthoCity]) data.push(ORTHO_CITY[src.orthoCity]);
-  // A Slovak town's passport where the cut took its surfaces (towns/slovensko.js).
-  const SK_PASSPORT = { bratislava: t("pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka"), presov: t("pasport dopravy a zelene © mesto Prešov (CC BY 4.0)"),
-    zilina: t("pasport komunikácií © mesto Žilina"), bystrica: t("pasport komunikácií © mesto Banská Bystrica"), kosice: t("pasport komunikácií © mesto Košice"), zvolen: t("komunikácie a spevnené plochy © mesto Zvolen") };
-  if (src.skTm) data.push(t("technická mapa © Hlavné mesto SR Bratislava"));
-  if (SK_PASSPORT[src.skTown]) data.push(SK_PASSPORT[src.skTown]);
-  // The lines of a town's map that placed the kerbs (towns/slovensko.js EDGE_SOURCES).
-  const SK_EDGES = { nitra: t("kresba © mesto Nitra"), piestany: t("kresba © mesto Piešťany"), zvolen: t("kresba © mesto Zvolen"), hlohovec: t("polohopis © mesto Hlohovec"),
-    presov: t("hranice druhov pozemkov © mesto Prešov (CC BY 4.0)"), "bratislava-tm": t("technická mapa © Hlavné mesto SR Bratislava") };
-  if (SK_EDGES[src.skEdges] && !(src.skEdges === "bratislava-tm" && src.skTm)) data.push(SK_EDGES[src.skEdges]);
-  // Vienna's Flächen-Mehrzweckkarte (towns/austria.js).
-  if (src.atSigns === "salzburg") data.push(t("dopravní značky © Stadt Salzburg (CC BY 3.0 AT)"));
-  if (src.atTown === "wien") data.push(t("mapa povrchů (FMZK) © Stadt Wien – data.wien.gv.at (CC BY 4.0)"));
-  if (src.zbgis) data.push(t("cesty, parkoviská a tráva © GKÚ Bratislava (ZBGIS, CC BY 4.0)"));
+  // The sources that gave data to the cut, by their keys (credits.js).
+  data.push(...sourceCredits(src));
   data.push(data.length ? t("© přispěvatelé OpenStreetMap (ODbL)") : t("Data: {data}", { data: t("© přispěvatelé OpenStreetMap (ODbL)") }));
   return [
     data.join(" · "),

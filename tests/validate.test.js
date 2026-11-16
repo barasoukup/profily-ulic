@@ -80,3 +80,16 @@ test("výška lampy a stojan podél ulice projdou, nesmysly se zahodí", () => {
   assert.equal(it[4].h, undefined); // a string
   assert.equal("along" in it[5], false);
 });
+
+// The two bugs found in the review of the rebuild (docs/architecture-countries.md, step 2): a saved cut in Košice or
+// Graz was dropped (only 48–52° N, 12–19° E), and a Slovak or Austrian cut lost the credits of its sources.
+test("uložený řez v Košicích, Grazu a Innsbrucku zůstane, daleko od států ne", () => {
+  for (const [lat, lon] of [[48.719, 21.258], [47.0707, 15.4395], [47.2654, 11.3927], [48.2085, 16.3731], [50.08, 14.42]]) assert.ok(cleanCut({ lat, lon, bearing: 0 }), `${lat},${lon}`);
+  for (const [lat, lon] of [[47.5, 19.04], [52.5, 13.4], [45, 10]]) assert.equal(cleanCut({ lat, lon, bearing: 0 }), null, `${lat},${lon}`);
+});
+test("uložený řez si nechá klíče zdrojů všech států, neznámé zahodí", () => {
+  const c = cleanCut({ lat: 48.144, lon: 17.11, bearing: 0, sources: { skTown: "bratislava", skEdges: "bratislava-tm", skTm: true, zbgis: true, orthoCity: "sk", atTown: "wien", atSigns: "salzburg",
+    passport: "kurim", ortho: true, dmvs: true, region: "Kraj", skTown2: "x", orthoCity2: "y" } });
+  assert.deepEqual(c.sources, { region: "Kraj", dmvs: true, ortho: true, orthoCity: "sk", passport: "kurim", skTm: true, skTown: "bratislava", skEdges: "bratislava-tm", atSigns: "salzburg", atTown: "wien", zbgis: true });
+  assert.deepEqual(cleanCut({ lat: 48.144, lon: 17.11, bearing: 0, sources: { skTown: "nic", orthoCity: "xx", zbgis: 1 } }).sources, {});
+});
