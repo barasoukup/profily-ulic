@@ -523,6 +523,7 @@ export const SK = {
   "kresba © mesto Zvolen": "kresba © mesto Zvolen",
   "polohopis © mesto Hlohovec": "polohopis © mesto Hlohovec",
   "hranice druhov pozemkov © mesto Prešov (CC BY 4.0)": "hranice druhov pozemkov © mesto Prešov (CC BY 4.0)",
+  "cesty, parkoviská a tráva © GKÚ Bratislava (ZBGIS, CC BY 4.0)": "cesty, parkoviská a tráva © GKÚ Bratislava (ZBGIS, CC BY 4.0)",
   "Jazyk": "Jazyk",
   "Uložit profil (JSON)": "Uložiť profil (JSON)",
   "Nahlásit chybu v datech…": "Nahlásiť chybu v údajoch…",

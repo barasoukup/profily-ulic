@@ -323,7 +323,11 @@ const STREET = /^(motorway|trunk|primary|secondary|tertiary|unclassified|residen
 // mtvuPolygons, with .kerbs and .image: whether the orthophoto found a kerb) or null.
 // edges: lines of a town's technical map ([[lon, lat], …]), towns/slovensko.js: candidates for the kerbs and the outer
 // edge of a sidewalk.
-export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = [] }) {
+// widths: centre lines of roads with their width (ZBGIS Cesta, towns/slovensko.js: { path, w }): where one crosses the
+// cut by the street's axis it gives the carriageway OSM would only guess (no width tag).
+// areas: surfaces of a national map beside the street (ZBGIS car parks and lawns: MTVU features in WGS 84), after the
+// carriageway and the houses, before OSM's green; not one under the axis (a lawn the street crosses on the map).
+export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = [], widths = [], areas = [] }) {
   if (!way || !STREET.test(way.tags?.highway || "")) return null;
   const normal = [-dir[1], dir[0]];
   const tu = (lon, lat) => { const [x, y] = frame.toXY(lon, lat); return [x * normal[0] + y * normal[1], x * dir[0] + y * dir[1]]; };
@@ -334,13 +338,22 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   const edgeT = [...new Set(edges.flatMap((path) => [0, -1, 1].flatMap((u0) => crossT(path.map(([lo, la]) => tu(lo, la)), 45, u0).map((x) => Math.round(x.t * 20) / 20))))].sort((a, b) => a - b);
   const pair = partnerOf(o);
   if (pair) o.pairId = pair.id;
-  const road = withRails(osmRoad(o.own), o), k = kerbsOnImage(st, o, road, mapRuns, edgeT);
+  // A road's width from the national map (ZBGIS) where its centre line crosses the cut within 4 m of the axis.
+  const widthT = widths.flatMap(({ path, w }) => crossT(path.map(([lo, la]) => tu(lo, la)), 45).map((x) => ({ t: x.t, w })));
+  const mapWidth = (rd, axis) => {
+    if (rd.from === "width") return rd;
+    const c = widthT.filter((x) => Math.abs(x.t - axis) < 4 && x.w >= 2.5 && x.w <= 30).sort((a, b) => Math.abs(a.t - axis) - Math.abs(b.t - axis))[0];
+    if (!c) return rd;
+    const reach = { A: Math.max(1, axis - (c.t - c.w / 2)), B: Math.max(1, c.t + c.w / 2 - axis) };
+    return { ...rd, w: reach.A + reach.B, reach, from: "zbgis" };
+  };
+  const road = withRails(mapWidth(osmRoad(o.own), o.own.t), o), k = kerbsOnImage(st, o, road, mapRuns, edgeT);
   if (!Number.isFinite(k.A) || !Number.isFinite(k.B) || k.B - k.A < 2) return null;
   // The other carriageway, its side (pSide) and the clicked one's kerb towards it.
   let k2 = null, road2 = null, pSide = null;
   if (pair) {
     const o2 = { ...o, own: pair, ways: [...o.ways.filter((w) => w !== pair), o.own], pairId: o.own.id };
-    road2 = withRails(osmRoad(pair), o2);
+    road2 = withRails(mapWidth(osmRoad(pair), pair.t), o2);
     k2 = kerbsOnImage(st, o2, road2, mapRuns, edgeT);
     pSide = pair.t < o.own.t ? "A" : "B";
     const inner = k2[pSide === "A" ? "B" : "A"];
@@ -356,6 +369,15 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   for (const { el } of o.outlines) {
     const rings = [el.geometry, ...(el.holes || [])].map((r) => r.map((g) => frame.toXY(g.lon, g.lat)));
     polys.push({ code: 601, label: "budova (OSM)", rings, bbox: bboxOf(rings[0]) });
+  }
+  polys.areas = 0;
+  for (const f of areas) {
+    const rings = (f.geometry?.rings || []).map((r) => r.map(([lo, la]) => frame.toXY(lo, la)));
+    if (!rings.length) continue;
+    const under = rings.some((r) => { let c = false; for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > 0 !== yj > 0 && 0 < ((xj - xi) * (0 - yi)) / (yj - yi) + xi) c = !c; } return c; });
+    if (under) continue;
+    polys.push({ code: f.attributes.CTVUK_KOD, label: f.attributes.CTVUK_POPIS, rings, bbox: bboxOf(rings[0]) });
+    polys.areas++;
   }
   for (const el of o.greens) {
     const rings = [el.geometry, ...(el.holes || [])].map((r) => r.map((g) => frame.toXY(g.lon, g.lat)));
@@ -403,6 +425,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   }
   // Whether a line of the town's map decided a kerb or a sidewalk's edge (the credits).
   polys.edges = !!edgeUsed;
+  polys.widthFrom = road.from;
   polys.kerbs = { A: k.A, B: k.B, why: k.why, ...(k2 && { pair: { A: k2.A, B: k2.B, why: k2.why } }) };
   // Whether the orthophoto decided anything (a kerb found on it); else the kerbs are OSM's (the status says so).
   polys.image = k.image;

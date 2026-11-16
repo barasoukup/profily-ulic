@@ -158,3 +158,12 @@ test("ortofoto a OSM: čára mapy města u očekávané obruby je obruba i bez s
   const sw = polys.filter((p) => p.code === 702).map((p) => p.rings[0].map(([x]) => -x)).map((ts) => [Math.min(...ts), Math.max(...ts)]);
   assert.ok(sw.some(([a, b]) => Math.abs(a - 3.2) < 0.1 && Math.abs(b - 5.5) < 0.1), JSON.stringify(sw));
 });
+
+test("ortofoto a OSM: šířka vozovky ze ZBGIS (osa se šířkou), kde OSM šířku nemá", () => {
+  const els = osm().elements;
+  const path = [ll(0.5, -40), ll(0.5, 40)].map((p) => [p.lon, p.lat]);
+  const polys = orthoOsmPolys({ osm: { elements: els }, frame, dir, way: els[0], st: null, widths: [{ path, w: 8 }] });
+  assert.equal(polys.widthFrom, "zbgis");
+  // The centre line at x = 0.5 is t = −0.5: the carriageway from −4.5 to 3.5.
+  assert.ok(Math.abs(polys.kerbs.A + 4.5) < 0.1 && Math.abs(polys.kerbs.B - 3.5) < 0.1, JSON.stringify(polys.kerbs));
+});

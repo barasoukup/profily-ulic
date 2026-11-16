@@ -338,7 +338,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     let orthoOsm = null;
     if (result.estimate) {
       // The map's runs where it has surfaces but none at the axis: its sidewalks and buildings bound the estimate.
-      const fb = orthoOsmPolys({ osm, frame, dir, way: near.way, st: laneImg?.st, mapRuns: result.runs || [], edges: k.status === "fulfilled" ? k.value?.edges || [] : [] });
+      const fb = orthoOsmPolys({ osm, frame, dir, way: near.way, st: laneImg?.st, mapRuns: result.runs || [], edges: k.status === "fulfilled" ? k.value?.edges || [] : [], widths: k.status === "fulfilled" ? k.value?.widths || [] : [], areas: k.status === "fulfilled" ? k.value?.areas || [] : [] });
       if (fb) {
         const again = deriveProfile({ ...args, polys: [fb[0], ...polys, ...fb.slice(1)] });
         if (!again.estimate) { result = again; orthoOsm = fb; }
@@ -361,7 +361,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     // the DMVS standing in for the city's map, the orthophoto of a tram bed.
     const mv = m.status === "fulfilled" ? m.value : null;
     const bedSk = ortho && city.id === "slovensko"; // the tram bed read on Slovakia's orthophoto
-    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.skTown && { skTown: mv.skTown }), ...(mv?.skTm && { skTm: true }), ...(orthoOsm?.edges && k.value?.edgesFrom && { skEdges: k.value.edgesFrom }), ...(mv?.dmvs && { dmvs: true }), ...(((ortho && !bedSk) || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" ? { orthoCity: laneImg.source } : bedSk && { orthoCity: "sk" }) };
+    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.skTown && { skTown: mv.skTown }), ...(mv?.skTm && { skTm: true }), ...(orthoOsm?.edges && k.value?.edgesFrom && { skEdges: k.value.edgesFrom }), ...((orthoOsm?.areas || orthoOsm?.widthFrom === "zbgis") && { zbgis: true }), ...(mv?.dmvs && { dmvs: true }), ...(((ortho && !bedSk) || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" ? { orthoCity: laneImg.source } : bedSk && { orthoCity: "sk" }) };
     // The log of cuts (log.js): the cut exactly, and how it came (a click, a moved cut, a link).
     log("rez", {
       detail: keepWay ? "posun" : bearing !== null ? "odkaz" : "klik", city: city.id, street: name, highway: near.way.tags.highway,

@@ -130,3 +130,29 @@ nehodnotila.
 - na obslužných cestách z toho vychází „plocha“ a „Neurčeno“.
 
 **Je vypnutý** (`?zvolen=1`).
+
+# ZBGIS: šířky vozovek, parkoviště a tráva (16. 11. 2026, třetí kolo)
+
+**Co se zapojilo** (`towns/slovensko.js` zbgisAt, `ortho-osm.js` widths a areas; `?zbgis=0` vypne):
+- Jeden dotaz identify na ZBGIS za řez (vrstvy 22 Cesta, 61 Parkovisko, 70 Tráva, 78 Úžitková zeleň).
+- Šířka cesty („Celková využiteľná šírka cesty v m“) z osy, která protíná řez do 4 m od osy ulice, dává odhadu očekávanou
+  šířku vozovky (místo počtu pruhů × šířka). Jen kde OSM nemá `width`.
+- Parkoviště a tráva se přidají za vozovku a domy, kromě té, která leží pod osou ulice.
+
+**A/B:**
+- **Vzorek:** 90 náhodných bodů do 1,5 km od středu Košic (25), Trnavy (15), Trenčína (15), Martina (12), Popradu (12) a
+  Nitry (11), tedy měst bez vlastních dat (`vzorek-zbgis.mjs`).
+- **Varianty:** A = `?zbgis=0`, B = se ZBGIS. Náhledy byly kreslené v prohlížeči a nejsou uložené.
+- **První verze:** plochy ZBGIS šly do ploch řezu a u obslužných cest odhad zablokovaly (8× „Neurčeno“ přes celý řez).
+  Teď jdou rovnou do odhadu.
+- **Po opravě:** profil se změnil u 38 řezů z 90. 22 nejvýraznějších jsem vybrala k posouzení, posoudila jsem z nich 14:
+
+| | řezů |
+|---|---|
+| lépe se ZBGIS | **7** (Mudroňova, Kuzmányho, Milosrdenstva a dva další řezy v Košicích, Trnava 2×): šířka vozovky sedí s asfaltem, zahrnuje parkovací pruh, zeleň změřená |
+| hůř | **1** (Košice 419: parkovací pruh přišel o šířku) |
+| stejně | 1 |
+| obojí špatně | 1 (Spartakovská, čtyřpruh) |
+| nejde posoudit | 4 |
+
+**ZBGIS je zapnutý.**

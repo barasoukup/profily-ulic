@@ -284,6 +284,38 @@ async function edgesAt(bbox) {
   return { paths: [] };
 }
 
+// ---------- ZBGIS: the national map of Slovakia (Bára 16. 11. 2026) ----------
+// Its roads are centre lines with their usable width ("Celková využiteľná šírka cesty v m"): the width of the
+// carriageway in the estimate (ortho-osm.js widths). Its car parks, lawns and green areas (Parkovisko, Tráva, Úžitková
+// zeleň) are surfaces beside the street, after the estimate's carriageway. One identify a box (its /query answers 503),
+// once per box (the surfaces and the lines of a cut ask the same one). ?zbgis=0 leaves it out (the A/B test).
+const ZBGIS_LAYERS = { 22: "cesta", 61: PARK, 70: GREEN, 78: GREEN };
+const zbMemo = new Map();
+export function zbgisParse(json) {
+  const widths = [], features = [];
+  for (const r of json?.results || []) {
+    const kind = ZBGIS_LAYERS[r.layerId];
+    if (kind === "cesta") {
+      const w = parseFloat(String(r.attributes?.["Celková využiteľná šírka cesty v m"] ?? "").replace(",", "."));
+      if (w > 0 && r.geometry?.paths) for (const path of r.geometry.paths) widths.push({ path, w });
+    } else if (kind && r.geometry?.rings) features.push({ attributes: { CTVUK_KOD: kind, CTVUK_POPIS: MTVU_LABELS[kind], ODHAD: 0, ZBGIS: 1 }, geometry: r.geometry });
+  }
+  return { widths, features };
+}
+function zbgisAt(bbox) {
+  if (param("zbgis") === "0" || city.id !== "slovensko") return Promise.resolve({ widths: [], features: [] });
+  if (!zbMemo.has(bbox)) {
+    zbMemo.clear();
+    const [x0, y0, x1, y1] = bbox.split(",").map(Number);
+    const q = new URLSearchParams({
+      geometry: JSON.stringify({ xmin: x0, ymin: y0, xmax: x1, ymax: y1, spatialReference: { wkid: 4326 } }), geometryType: "esriGeometryEnvelope", sr: 4326,
+      layers: `all:${Object.keys(ZBGIS_LAYERS).join(",")}`, tolerance: 0, mapExtent: bbox, imageDisplay: "800,800,96", returnGeometry: "true", f: "json",
+    });
+    zbMemo.set(bbox, fetch(`${ZBGIS_BUILDINGS}/identify?${q}`, { signal: AbortSignal.timeout(6000) }).then((r) => (r.ok ? r.json() : null)).then(zbgisParse).catch(() => ({ widths: [], features: [] })));
+  }
+  return zbMemo.get(bbox);
+}
+
 // Bratislava's technical map once per box: the surfaces and the lines of a cut ask the same box.
 const baMemo = new Map();
 const baTm = (bbox) => {
@@ -310,7 +342,12 @@ async function surfaces(bbox) {
   // (a courtyard road, a car park aisle the town does not keep) its surfaces around would make a profile of nothing
   // (the A/B test of 16. 11. 2026: "Neurčeno" and green over the whole cut), so the estimate stays.
   const tmAt = tm.features.some((f) => f.attributes.CTVUK_KOD !== 601 && at(f));
-  if (!tmAt && !own.features.some(at) && !under.features.some(at)) return { features: [], abroad: true };
+  if (!tmAt && !own.features.some(at) && !under.features.some(at)) {
+    // No town's data at the cut: the estimate, with ZBGIS's car parks and lawns beside it (not one under the axis: a
+    // lawn the street crosses on the map, a car park's aisle).
+    // (ZBGIS's car parks and lawns go to the estimate itself, lines() areas: here they would stop it.)
+    return { features: [], abroad: true };
+  }
   const o = await osmAreas(bbox);
   // The technical map first (its buildings, then its areas), the passport where it has none, OSM's areas last.
   if (tmAt) return { features: [...tm.features, ...o.buildings, ...own.features, ...under.features, ...o.rest], skTown: id || "bratislava", skTm: true };
@@ -319,8 +356,8 @@ async function surfaces(bbox) {
 async function lines(bbox) {
   if (!bbox) return { features: [] };
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
-  const [tm, edges] = await Promise.all([useTm((x0 + x1) / 2, (y0 + y1) / 2) ? baTm(bbox) : { lines: [] }, edgesAt(bbox)]);
-  return { features: tm.lines, edges: edges.paths, edgesFrom: edges.id };
+  const [tm, edges, zb] = await Promise.all([useTm((x0 + x1) / 2, (y0 + y1) / 2) ? baTm(bbox) : { lines: [] }, edgesAt(bbox), zbgisAt(bbox)]);
+  return { features: tm.lines, edges: edges.paths, edgesFrom: edges.id, widths: zb.widths, areas: zb.features };
 }
 
 // OSM around a point and, in a town that has them, its trees where OSM has none nearby.

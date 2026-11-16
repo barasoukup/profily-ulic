@@ -181,7 +181,7 @@ test("kusy z čar: OSM sidewalk:left/right podle směru ulice, i po Otočit", as
 test("mimo Česko se technické mapy ČÚZK neptá a neříká, že neodpovídá", async () => {
   setCity("slovensko");
   // Without the towns' passports (?pasport=0): no request leaves the test.
-  globalThis.PROFILY_SK = { pasport: "0" };
+  globalThis.PROFILY_SK = { pasport: "0", zbgis: "0", hrany: "0" };
   const { sources } = await import("../pilot/public/towns/slovensko.js");
   const s = await sources.surfaces("17.1,48.14,17.11,48.15");
   delete globalThis.PROFILY_SK;

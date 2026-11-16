@@ -522,6 +522,7 @@ export const EN = {
   "kresba © mesto Zvolen": "map drawing © City of Zvolen",
   "polohopis © mesto Hlohovec": "planimetry © City of Hlohovec",
   "hranice druhov pozemkov © mesto Prešov (CC BY 4.0)": "land-use boundaries © City of Prešov (CC BY 4.0)",
+  "cesty, parkoviská a tráva © GKÚ Bratislava (ZBGIS, CC BY 4.0)": "roads, car parks and grass © GKÚ Bratislava (ZBGIS, CC BY 4.0)",
   "Jazyk": "Language",
   "Uložit profil (JSON)": "Save profile (JSON)",
   "Nahlásit chybu v datech…": "Report a data error…",

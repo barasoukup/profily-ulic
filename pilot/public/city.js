@@ -494,6 +494,7 @@ export function creditLines(c, src = {}, art = false) {
   const SK_EDGES = { nitra: t("kresba © mesto Nitra"), piestany: t("kresba © mesto Piešťany"), zvolen: t("kresba © mesto Zvolen"), hlohovec: t("polohopis © mesto Hlohovec"),
     presov: t("hranice druhov pozemkov © mesto Prešov (CC BY 4.0)"), "bratislava-tm": t("technická mapa © Hlavné mesto SR Bratislava") };
   if (SK_EDGES[src.skEdges] && !(src.skEdges === "bratislava-tm" && src.skTm)) data.push(SK_EDGES[src.skEdges]);
+  if (src.zbgis) data.push(t("cesty, parkoviská a tráva © GKÚ Bratislava (ZBGIS, CC BY 4.0)"));
   data.push(data.length ? t("© přispěvatelé OpenStreetMap (ODbL)") : t("Data: {data}", { data: t("© přispěvatelé OpenStreetMap (ODbL)") }));
   return [
     data.join(" · "),
