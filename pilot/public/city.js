@@ -449,7 +449,7 @@ Object.assign(CITIES, {
     rulesHead: "Šířky podle slovenských předpisů (TP 117, TP 73 6110, TP 085, vyhl. 532/2002 Z. z.):" },
   // Austria (Bára 16. 11. 2026): basemap.at's orthophoto and OSM (towns/austria.js).
   austria: { ...abroad("austria", "AT", "Rakousko", "v Rakousku", "rakouské", [47.6, 14.1], "48.208500, 16.373100"),
-    dataShort: "basemap.at a OSM" },
+    dataShort: "basemap.at a OSM", rulesHead: "Šířky podle rakouských předpisů (RVS 03.02.13, Wiener Projektierungshandbuch):" },
   cizina: abroad("cizina", null, "cizinu", "v cizině", "zahraniční", [49.8, 15.5], "48.146736, 17.106998"),
 });
 
