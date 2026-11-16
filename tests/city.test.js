@@ -135,3 +135,20 @@ test("slovenská města podle hranic ze ZBGIS (mesta-sk.json): Šamorín ani Sv�
   assert.equal(C.inSkTown("nitra", 18.084, 48.309), true);
   assert.equal(C.inSkTown("neznamo", 18.084, 48.309), undefined);
 });
+
+// Where a point lies (towns/index.js placeAt, docs/architecture-countries.md step 4): the state, the city, the town's
+// illustrations and the sources with a territory of their own that have the point.
+test("placeAt: stát, město, ilustrace a zdroje s vlastním územím", async () => {
+  const C = await import("../pilot/public/city.js");
+  const { placeAt } = await import("../pilot/public/towns/index.js");
+  C.loadBounds(JSON.parse(read("mesta.json")));
+  C.loadStates(JSON.parse(read("staty.json")));
+  C.loadSkTowns(JSON.parse(read("mesta-sk.json")));
+  assert.deepEqual(placeAt(48.1467, 17.107), { country: "SK", city: "slovensko", art: "bratislava", sources: ["bratislava-pasport", "bratislava-tm"] });
+  assert.deepEqual(placeAt(48.309, 18.084), { country: "SK", city: "slovensko", art: "nitra", sources: ["nitra-kresba"] });
+  assert.deepEqual(placeAt(48.0305, 17.31), { country: "SK", city: "slovensko", art: "slovensko", sources: ["bratislava-tm"] }); // Šamorín: Bratislava's box, not the town
+  assert.deepEqual(placeAt(48.2085, 16.3731), { country: "AT", city: "austria", art: "wien", sources: ["wien"] });
+  assert.deepEqual(placeAt(47.8, 13.045), { country: "AT", city: "austria", art: "salzburg", sources: ["salzburg"] });
+  assert.deepEqual(placeAt(50.0817, 14.4176), { country: "CZ", city: "praha", art: null, sources: [] });
+  assert.deepEqual(placeAt(47.87, 17.269), { country: null, city: "cizina", art: null, sources: [] });
+});

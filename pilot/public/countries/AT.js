@@ -3,6 +3,7 @@
 import { t } from "../i18n.js";
 import { GROUP, fmt } from "../norms.js";
 import { TOWN_ART, TRAM, TROLLEY, czechFurniture } from "../art.js";
+import { areaAt, AT_AREAS } from "../places.js";
 import base, { CZ_CODE } from "./default.js";
 
 // Austria (the state of the cut AT; Bára 16. 11. 2026): evaluation/austria/NORMY.md. The cycling widths of RVS 03.02.13
@@ -85,10 +86,8 @@ const atArt = ({ posts = "../austria/", tram, trolley, bus }) => ({ ...czechFurn
   ...(bus ? { "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound" } : {}), ...(tram ? TRAM : {}), ...(trolley ? TROLLEY : {}) });
 const AT_ART = { austria: atArt({}), wien: atArt({ posts: "", tram: true, bus: true }), graz: atArt({ tram: true, bus: true }), linz: atArt({ tram: true, trolley: true, bus: true }),
   salzburg: atArt({ trolley: true, bus: true }), innsbruck: atArt({ tram: true, bus: true }) };
-const AT_ART_BOX = { wien: [16.18, 48.11, 16.58, 48.33], graz: [15.35, 47.0, 15.53, 47.13], linz: [14.2, 48.22, 14.4, 48.36], salzburg: [12.98, 47.75, 13.12, 47.86], innsbruck: [11.3, 47.23, 11.47, 47.3] };
-const atArtAt = (lat, lon) => Object.entries(AT_ART_BOX).find(([, b]) => lon >= b[0] && lon <= b[2] && lat >= b[1] && lat <= b[3])?.[0] ?? "austria";
-
-
+// The towns by their boxes (places.js AT_AREAS).
+const artAt = (lat, lon) => areaAt(AT_AREAS, lon, lat) ?? "austria";
 export default {
   ...base,
   code: "AT",
@@ -115,7 +114,7 @@ export default {
   orthoEstimate: true,
   panorama: false,
   art: AT_ART,
-  artAt: atArtAt,
+  artAt,
   // Austria has no panel houses of the Czech and Slovak kind (Bára 16. 11. 2026): an office stays an office, a block of
   // flats is the modern one when new, else the plain flat-roofed tenement (Gemeindebau).
   houseLook: (style, info, office) => (style === "plocha" ? (office ? "kancelar" : (info?.start || info?.built) > 1990 ? "moderni" : "funkce") : style),

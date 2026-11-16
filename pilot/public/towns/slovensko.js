@@ -5,7 +5,8 @@
 // Slovakia: ZBGIS of ÚGKK SR (layer Budova, CC BY 4.0, GKÚ Bratislava) gives the use and the height above the ground,
 // no floors and no year: the floors are the height by 3.3 m; elsewhere abroad OSM's building:levels.
 import { osmTiles, query, envelope, asMtvu, addPoints, boxAround } from "../gis.js";
-import { city, MTVU_LABELS, inSkTown } from "../city.js";
+import { MTVU_LABELS } from "../city.js";
+import { inArea } from "../places.js";
 import { tmapyWfs } from "./overlay.js";
 import { view, components, trace, simplify } from "../dmvs.js";
 import { GREEN as OSM_GREEN, WATER as OSM_WATER } from "../ortho-osm.js";
@@ -42,7 +43,6 @@ export function zbgisBuilding(json) {
   };
 }
 async function podlaznost(lat, lon) {
-  if (city.id !== "slovensko") return {};
   const d = 0.0004; // the map around the point: tolerance 3 px of 400 is about 0.6 m
   const q = new URLSearchParams({
     geometry: `${lon},${lat}`, geometryType: "esriGeometryPoint", sr: 4326, layers: "all:41", tolerance: 3,
@@ -231,10 +231,11 @@ export async function baTechMap(bbox, fetched = null) {
   }
   return { features, lines: (lines?.features || []).filter((f) => BA_LINE[f.attributes?.Typ] && f.geometry?.paths).map((f) => ({ attributes: { CTMTP_KOD: BA_LINE[f.attributes.Typ] }, geometry: f.geometry })) };
 }
-const inBa = (lon, lat) => lon >= SK_TOWNS.bratislava.box[0] && lon <= SK_TOWNS.bratislava.box[2] && lat >= SK_TOWNS.bratislava.box[1] && lat <= SK_TOWNS.bratislava.box[3];
+// Bratislava's technical map: the city's box (not cut to its boundary).
+const inBa = (lon, lat) => inArea({ box: SK_TOWNS.bratislava.box }, lon, lat);
 
 // By the town's box and, where mesta-sk.json has it, its boundary (Bratislava's box reached Šamorín and Svätý Jur).
-const townAt = (lon, lat) => Object.entries(SK_TOWNS).find(([id, t]) => (!t.optIn || param(t.optIn) === "1") && lon >= t.box[0] && lon <= t.box[2] && lat >= t.box[1] && lat <= t.box[3] && (inSkTown(id, lon, lat) ?? true))?.[0] ?? null;
+const townAt = (lon, lat) => Object.entries(SK_TOWNS).find(([id, t]) => (!t.optIn || param(t.optIn) === "1") && inArea({ box: t.box, town: id }, lon, lat))?.[0] ?? null;
 
 // The OSM areas around a box as MTVU features: buildings (they come first: a sidewalk may run under an arcade), and
 // green and water (they come after the passport: they fill what it leaves open).
@@ -275,10 +276,10 @@ const BA_EDGE = new Set([2180, 2190, 2200, 2201, 2210, 2211, 2220]);
 // The symbols that tell the pieces beside a street (ortho-osm.js symbols): lawns and ornamental green, sidewalks,
 // other paved areas, yards, car parks.
 const BA_SYMBOL = { 3141: 401, 3140: 401, 3110: 401, 120: 702, 130: 1003, 4060: 603, 5370: 704 };
-export const edgeSourceAt = (lon, lat) => EDGE_SOURCES.find((e) => lon >= e.box[0] && lon <= e.box[2] && lat >= e.box[1] && lat <= e.box[3] && (inSkTown(e.id, lon, lat) ?? true)) || null;
+export const edgeSourceAt = (lon, lat) => EDGE_SOURCES.find((e) => inArea({ box: e.box, town: e.id }, lon, lat)) || null;
 async function edgesAt(bbox) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number), cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
-  if (param("hrany") === "0" || city.id !== "slovensko") return { paths: [] };
+  if (param("hrany") === "0") return { paths: [] };
   const e = edgeSourceAt(cx, cy);
   if (e) {
     const j = await arc(e.url, e.field, bbox).catch(() => null);
@@ -313,7 +314,7 @@ export function zbgisParse(json) {
   return { widths, features };
 }
 function zbgisAt(bbox) {
-  if (param("zbgis") === "0" || city.id !== "slovensko") return Promise.resolve({ widths: [], features: [] });
+  if (param("zbgis") === "0") return Promise.resolve({ widths: [], features: [] });
   if (!zbMemo.has(bbox)) {
     zbMemo.clear();
     const [x0, y0, x1, y1] = bbox.split(",").map(Number);
@@ -334,13 +335,13 @@ const baTm = (bbox) => {
 };
 // Off unless ?tm=1: the A/B test of 16. 11. 2026 (evaluation/slovensko/ab/ZPRAVA.md) found its areas rare (few
 // symbols, many lines left open: one area over the whole cut) and its fences ending profiles at front gardens.
-const useTm = (lon, lat) => param("tm") === "1" && city.id === "slovensko" && inBa(lon, lat);
+const useTm = (lon, lat) => param("tm") === "1" && inBa(lon, lat);
 
 async function surfaces(bbox) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2, d = 1.5 / 111320;
   const at = (f) => [[0, 0], [d, 0], [-d, 0], [0, d], [0, -d]].some(([dx, dy]) => inRings(f.geometry.rings, cx + dx, cy + dy));
-  const id = param("pasport") === "0" || city.id !== "slovensko" ? null : townAt(cx, cy);
+  const id = param("pasport") === "0" ? null : townAt(cx, cy);
   const t = SK_TOWNS[id];
   // A passport that does not answer: the estimate, as where there is none (no outage to report).
   const [tm, own, under] = await Promise.all([
@@ -372,7 +373,7 @@ async function lines(bbox) {
 
 // OSM around a point and, in a town that has them, its trees where OSM has none nearby.
 async function osm(lat, lon, radius) {
-  const id = param("pasport") === "0" || city.id !== "slovensko" ? null : townAt(lon, lat);
+  const id = param("pasport") === "0" ? null : townAt(lon, lat);
   const pts = SK_TOWNS[id]?.points;
   if (!pts) return osmTiles(lat, lon, radius);
   const box = boxAround(lat, lon, Math.min(radius, 50));
@@ -385,3 +386,11 @@ export const sources = { osm, surfaces, lines, parking: async () => ({ features:
 // No fallback to the DMVS (sources.js national).
 export const national = true;
 export const ortho = null;
+
+// The sources with a territory of their own (towns/index.js placeAt): the towns' passports, the lines of their maps,
+// Bratislava's technical map.
+export const AREAS = {
+  ...Object.fromEntries(Object.entries(SK_TOWNS).map(([id, t]) => [`${id}-pasport`, { box: t.box, town: id }])),
+  ...Object.fromEntries(EDGE_SOURCES.map((e) => [`${e.id}-kresba`, { box: e.box, town: e.id }])),
+  "bratislava-tm": { box: SK_TOWNS.bratislava.box },
+};

@@ -6,10 +6,11 @@
 // (text, type Ulice / AdresniMisto) so search.js ranks them together; at carries the point.
 import { splitQuery } from "./search-sk.js";
 import { norm } from "./search.js";
+import { inArea, AT_AREAS } from "./places.js";
 
 export const WIEN_WFS = "https://data.wien.gv.at/daten/geo";
 const MAX = 20;
-const inWienBox = (lon, lat) => lon >= 16.18 && lon <= 16.58 && lat >= 48.11 && lat <= 48.33;
+const inWienBox = (lon, lat) => inArea(AT_AREAS.wien, lon, lat);
 
 // A query for Vienna: it names the city.
 export const looksViennese = (text) => /\bwien\b/i.test(text);

@@ -8,13 +8,13 @@
 // surfaces of the cut, as MTVU in Prague. Only where it has a surface at the cut's centre (elsewhere the estimate).
 // ?wien=0 leaves it out (the A/B test, evaluation/austria/ab/).
 import { osmTiles, getJSON, asMtvu } from "../gis.js";
-import { city, MTVU_LABELS } from "../city.js";
+import { MTVU_LABELS } from "../city.js";
+import { inArea, AT_AREAS } from "../places.js";
 
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_AT?.[k] ?? null : new URLSearchParams(location.search).get(k));
 export const WIEN_WFS = "https://data.wien.gv.at/daten/geo";
-// Vienna's box (its boundary within it; outside the city the layers are empty).
-const WIEN_BOX = [16.18, 48.11, 16.58, 48.33];
-export const inWien = (lon, lat) => lon >= WIEN_BOX[0] && lon <= WIEN_BOX[2] && lat >= WIEN_BOX[1] && lat <= WIEN_BOX[3];
+// Vienna's box (places.js AT_AREAS; its boundary within it, outside the city the layers are empty).
+const inWien = (lon, lat) => inArea(AT_AREAS.wien, lon, lat);
 
 // FMZK classes (F_KLASSE) → MTVU codes (city.js MTVU_LABELS). Small furniture areas, phone boxes and the crossings
 // belong to the surface they stand on; the rails in the roadway (Schienenbereich) are roadway, OSM gives the tracks.
@@ -62,7 +62,7 @@ const inRings = (rings, x, y) => {
 async function surfaces(bbox) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
-  if (param("wien") === "0" || city.id !== "austria" || !inWien(cx, cy)) return { features: [], abroad: true };
+  if (param("wien") === "0" || !inWien(cx, cy)) return { features: [], abroad: true };
   // A layer that does not answer: none of them (a map without its sidewalks would be wrong), the estimate with a note.
   let layers;
   try {
@@ -84,8 +84,7 @@ async function surfaces(bbox) {
 // stopping and no parking by the cut (app.js: on the side of the street they stand) go into the row of signs.
 // ?salzburg=0 leaves them out (the A/B test).
 export const SALZBURG_WFS = "https://data.stadt-salzburg.at/geodaten/wfs";
-const SALZBURG_BOX = [12.98, 47.75, 13.12, 47.86];
-export const inSalzburg = (lon, lat) => lon >= SALZBURG_BOX[0] && lon <= SALZBURG_BOX[2] && lat >= SALZBURG_BOX[1] && lat <= SALZBURG_BOX[3];
+const inSalzburg = (lon, lat) => inArea(AT_AREAS.salzburg, lon, lat);
 const SIGN_KEY = { "52-13b": "no_stopping", "52-13a": "no_parking" };
 export function salzburgSigns(json) {
   return (json?.features || []).filter((f) => f.geometry?.type === "Point").map((f) => {
@@ -95,7 +94,7 @@ export function salzburgSigns(json) {
 }
 async function lines(bbox) {
   const empty = { features: [], edges: [], widths: [], areas: [] };
-  if (!bbox || param("salzburg") === "0" || city.id !== "austria") return empty;
+  if (!bbox || param("salzburg") === "0") return empty;
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   if (!inSalzburg((x0 + x1) / 2, (y0 + y1) / 2)) return empty;
   const json = await getJSON(`${SALZBURG_WFS}?${new URLSearchParams({
@@ -120,3 +119,6 @@ export const sources = {
 // No fallback to the DMVS (sources.js national).
 export const national = true;
 export const ortho = null;
+
+// The sources with a territory of their own (towns/index.js placeAt).
+export const AREAS = { wien: AT_AREAS.wien, salzburg: AT_AREAS.salzburg };

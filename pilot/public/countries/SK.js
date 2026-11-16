@@ -3,7 +3,7 @@
 import { t, mark } from "../i18n.js";
 import { GROUP } from "../norms.js";
 import { TOWN_ART, TRAM, TROLLEY, czechFurniture } from "../art.js";
-import { inSkTown } from "../places.js";
+import { areaAt } from "../places.js";
 import base, { CZ_CODE } from "./default.js";
 
 // Slovakia (the state of the cut SK; Bára 16. 11. 2026): the Slovak rules where they are public, after
@@ -138,10 +138,11 @@ const ownPosts = { "stop-post-left": "oznacnik-left", "stop-post-right": "oznacn
 const SK_ART = { slovensko: { ...skArt(false, false, false), "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound" },
   bratislava: { ...skArt(true, true), ...ownPosts }, kosice: { ...skArt(true, false), ...ownPosts }, zilina: skArt(false, true), bystrica: skArt(false, true), presov: skArt(false, true),
   nitra: skArt(false, false), trnava: skArt(false, false), trencin: skArt(false, false), martin: skArt(false, false), poprad: skArt(false, false) };
-const SK_ART_BOX = { bratislava: [16.83, 47.99, 17.33, 48.27], kosice: [21.15, 48.64, 21.36, 48.79], zilina: [18.62, 49.13, 18.86, 49.28],
+// The towns' areas (places.js inArea): a box cut to the town's boundary.
+const SK_ART_AREAS = Object.fromEntries(Object.entries({ bratislava: [16.83, 47.99, 17.33, 48.27], kosice: [21.15, 48.64, 21.36, 48.79], zilina: [18.62, 49.13, 18.86, 49.28],
   bystrica: [19.03, 48.66, 19.27, 48.82], presov: [21.15, 48.94, 21.33, 49.06], nitra: [17.98, 48.25, 18.2, 48.38], trnava: [17.5, 48.32, 17.68, 48.43],
-  trencin: [17.95, 48.84, 18.13, 48.95], martin: [18.83, 49.0, 19.0, 49.13], poprad: [20.2, 49.0, 20.4, 49.11] };
-const skArtAt = (lat, lon) => Object.entries(SK_ART_BOX).find(([id, b]) => lon >= b[0] && lon <= b[2] && lat >= b[1] && lat <= b[3] && (inSkTown(id, lon, lat) ?? true))?.[0] ?? "slovensko";
+  trencin: [17.95, 48.84, 18.13, 48.95], martin: [18.83, 49.0, 19.0, 49.13], poprad: [20.2, 49.0, 20.4, 49.11] }).map(([id, box]) => [id, { box, town: id }]));
+const artAt = (lat, lon) => areaAt(SK_ART_AREAS, lon, lat) ?? "slovensko";
 
 
 export default {
@@ -167,6 +168,6 @@ export default {
   panorama: false,
   linesMissing: mark("mapy města a ZBGIS"),
   art: SK_ART,
-  artAt: skArtAt,
+  artAt,
   search: ["zbgis"],
 };

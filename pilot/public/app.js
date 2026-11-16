@@ -2,7 +2,6 @@ import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TR
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, splitTwoWayLane, capWideLanes, carveCycleways, carveTramTracks, lanesFromShoulders, crossFromA, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO } from "./lanes-ortho.js";
-import { inWien } from "./towns/austria.js";
 import { orthoOsmPolys, besidePassport, P as ORTHO_P } from "./ortho-osm.js";
 // ?off=… switches named parts of the estimate off (the A/B tests, evaluation/ortofoto-osm/regrese.mjs).
 { const off = new URLSearchParams(location.search).get("off"); if (off) ORTHO_P.off = new Set(off.split(",")); }
@@ -19,7 +18,7 @@ import { shares, surfaces } from "./shares.js";
 import { packProfile, unpackProfile, designParams } from "./share.js";
 import { checkRules, checkUnder, checkTrees } from "./rules.js";
 import { city, country, setCity, cityAt, countryOfCity, loadBounds, loadStates, loadSkTowns } from "./city.js";
-import { TOWNS } from "./towns/index.js";
+import { TOWNS, placeAt } from "./towns/index.js";
 import { log, logOn, sendReport, shortProfile } from "./log.js";
 import { createDataLayers, PLOCHY_PANE } from "./maplayers.js";
 import { PASSPORT_NAMES, GREEN_PASSPORTS } from "./towns/pasporty-names.js";
@@ -82,8 +81,8 @@ if (STATY) loadStates(STATY); else console.warn("staty.json se nenačetl: stát 
 // The city of a point becomes the current one (city.js): its sources, texts and illustrations.
 async function useCity(lat, lon) {
   // A state with the illustrations of its towns (countries/<ISO>.js artAt: Slovakia, Austria) gives the set of the point.
-  const id = cityAt(lat, lon), artAt = countryOfCity(id).artAt, art = artAt?.(lat, lon);
-  const townArt = !!artAt;
+  const { city: id, art } = placeAt(lat, lon);
+  const townArt = art !== null;
   if (id === city.id && (!townArt || city.art === art)) return;
   if (id !== city.id) setCity(id);
   // In Slovakia and Austria the vehicles of the town of the cut (city.js SK_ART, AT_ART; Bára 16. 11. 2026).
@@ -123,7 +122,7 @@ if (lang !== "cs") for (const m of ["addAttribution", "removeAttribution"]) {
 L.control.zoom({ zoomInTitle: tr("Přiblížit"), zoomOutTitle: tr("Oddálit") }).addTo(map);
 // Address search (search.js, RÚIAN of ČÚZK): the map moves there; an address on a street or a street is cut
 // like a click at the nearest point of that street. The log gets only the kind of place, never the query.
-mountSearch(map, { status, services: () => { const c = map.getCenter(); return countryOfCity(cityAt(c.lat, c.lng)).search; }, inVienna: () => { const c = map.getCenter(); return inWien(c.lng, c.lat); }, onPick: ({ item, cut }) => { log("hledani", { detail: item.type === "AdresniMisto" ? "adresa" : item.type === "Ulice" ? "ulice" : "misto" }); if (cut) cutAt(cut.lat, cut.lon, false, null, null, item.at?.street || null); } });
+mountSearch(map, { status, services: () => { const c = map.getCenter(); return countryOfCity(cityAt(c.lat, c.lng)).search; }, inVienna: () => { const c = map.getCenter(); return placeAt(c.lat, c.lng).sources.includes("wien"); }, onPick: ({ item, cut }) => { log("hledani", { detail: item.type === "AdresniMisto" ? "adresa" : item.type === "Ulice" ? "ulice" : "misto" }); if (cut) cutAt(cut.lat, cut.lon, false, null, null, item.at?.street || null); } });
 // Base maps. IPR services are drawn through ArcGIS export requests in Web Mercator, one per tile.
 // Each request renders a 512 px image covering four normal tiles (tileSize 512, zoomOffset -1):
 // a quarter of the requests, which IPR renders one by one (0.2–1.5 s each), and the browser's
@@ -2040,7 +2039,7 @@ function restore(data) {
   undoStack.length = redoStack.length = 0;
   Object.assign(state, { cut: data.cut, stav: data.stav, navrh: data.navrh || structuredClone(data.stav), navrhEdited: !!data.navrhEdited, selected: null });
   // The saved cut's city (its illustrations follow once loaded).
-  if (state.cut) { setCity(cityAt(state.cut.lat, state.cut.lon)); if (country.artAt) city.art = country.artAt(state.cut.lat, state.cut.lon); loadSprites().then(render); }
+  if (state.cut) { const place = placeAt(state.cut.lat, state.cut.lon); setCity(place.city); if (place.art) city.art = place.art; loadSprites().then(render); }
   if (state.cut) {
     map.setView([state.cut.lat, state.cut.lon], 19);
     const f = localFrame(state.cut.lat, state.cut.lon);
