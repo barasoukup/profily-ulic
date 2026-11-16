@@ -98,6 +98,11 @@ Služba, která odpoví chybou 4xx, se neopakuje (`gis.js`); hláška o opaková
    městech, zpráva `ZPRAVA.md`, výchozí stav podle výsledku.
 5. Pro normy: na sebraných profilech spočítat varování podle starých a nových pravidel (`checkRules`), kolik a kterých.
 
+**Regrese:** každá změna společného odhadu (`ortho-osm.js`, `derive.js`) se zkontroluje v Česku:
+`node evaluation/ortofoto-osm/regrese.mjs` proti `vysledky/regrese.txt` (obruby, chodníky a stání proti MTVU Prahy a Brna).
+Co tam zhorší výsledky, zůstane vypnuté nebo se omezí na stát. Nové části odhadu dostanou vypínač (`P.off`, `?off=…`),
+ať se dají měřit zvlášť.
+
 ## 6. Normy a zákony
 
 - Rešerše (agent Sonnet) podle prvků `rules.js` (`limits`): pruhy podle třídy, chodník, pruh BUS, BUS s cyklisty,
@@ -138,6 +143,9 @@ Služba, která odpoví chybou 4xx, se neopakuje (`gis.js`); hláška o opaková
 - `lanes-ortho.js` spadl, když se všechny kousky slily (prázdný seznam).
 - Dotaz se špatným polem (4xx) se opakoval a hláška tvrdila „server OpenStreetMap neodpovídá“.
 - Plochy pasportu nebo národní mapy v plochách řezu blokovaly odhad (u obslužných cest „Neurčeno“ přes celý řez).
+- Ruční detekce aut na ortofotu (rozptyl jasu u obruby) přidává stání, kde žádné není (viz `evaluation/ortofoto/AUTA-DL.md`).
+- Stání podle zákona bez zón placeného stání vychází skoro všude: u státu bez dat o zónách ho vypnout (`noParkGuess`).
+- Koleje zakreslené v OSM i jako silnice (`highway=service` + `railway=tram`) nejsou druhá vozovka.
 - Neuzavřené čáry technické mapy: plochy se slévají; brát jen místa, kde je řez protne, a značky v kouscích.
 - Pasport, jehož plochy jsou široké spevnené plochy (Zvolen), vyšel hůř: proto A/B u každého zdroje.
 - Texty ve slovenštině jako klíče `t()` neprojdou testem: klíč česky, slovenština do `sk.js`.
