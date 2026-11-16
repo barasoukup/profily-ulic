@@ -8,7 +8,7 @@ export async function collectKontrola(POINTS) {
   const { localFrame } = await import("/derive.js");
   window.__res = window.__res || [];
   const done = new Set(window.__res.map((r) => r.id));
-  const KEEP = /^(highway|railway|cycleway|sidewalk|footway|bicycle|foot|lanes|oneway|busway|bus|psv|parking|embedded_rails|tracks|name|service|area|surface|segregated|width)/;
+  const KEEP = /^(highway|junction|railway|cycleway|sidewalk|footway|bicycle|foot|lanes|oneway|busway|bus|psv|parking|embedded_rails|tracks|name|service|area|surface|segregated|width)/;
   for (const p of POINTS) {
     if (done.has(p.id)) continue;
     localStorage.removeItem("streetdesign-pilot");

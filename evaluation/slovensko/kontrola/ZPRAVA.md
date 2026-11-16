@@ -104,3 +104,12 @@ stejné pruhy, užší krajnice z vodicích čar zůstávají. `derive.js` `spli
   → 2 × 3,05, Ferka Urbánka → 2 × 2,7, Práznovská cesta 2,27 | 3,9 | 3,43 → 3,09 + 3,08 a krajnice 3,43, a 1,37 | 3,5 | 1,53
   → 1,37 a 2 × 2,5. Kontrola 100 řezů: beze změny.
 - První verze slučovala krajnice z obou stran (Práznovská 2 × 4,8 m), proto „jen užší“.
+
+## Opravy 2–4 v Česku (A/B s dopočtem, 16. 11. 2026)
+Vzorek 200 českých ulic (`STAT=cz node vzorek-ulice.mjs`: Brno 60, Plzeň 40, Ostrava 40, Jihlava 25, Opava 15, Praha 20,
+aby IPR dostalo málo dotazů). Jen jeden běh A s vypnutými kroky (`?off=dvapruhy,strop,stredcara`); B dopočteno z jeho
+dílů a značek OSM (`kontrola.js` `simulate`), skutečným během ověřeno jen 8 změněných řezů: shoda 8 z 8.
+
+- Změnilo se 8 z 200. Obousměrky s jedním pruhem 5,3–5,8 m na dva (Bráfova v Brně, Nad Úslavou, Pod Vinicemi a
+  Kartónová v Plzni), pruhy nad stropem s krajnicí (Pionýrská 5,28 → 4 + 1,28, Borská 5,55 → 4 + 1,55 a 5,35 → 4 + 1,35,
+  Emila Škody 6,94 → 1,22 + 4,5 + 1,22). Středová čára (oprava 4) se v Česku na vzorku neuplatnila.

@@ -28,14 +28,20 @@ async function around(lat, lon) {
 }
 
 // The towns and the seed of vzorek.mjs, with more points drawn than needed (some fall far from any street).
-const TOWNS = JSON.parse(fs.readFileSync(new URL("vzorek.json", import.meta.url))).reduce((a, p) => ((a[p.town] = (a[p.town] || 0) + 1), a), {});
+// STAT=cz: a small Czech sample for the A/B of the steps that run in app.js (towns with their own services, few in
+// Prague to spare IPR), written to vzorek-ulice-cz.json.
+const CZ = process.env.STAT === "cz";
+const TOWNS = CZ ? { brno: 60, plzen: 40, ostrava: 40, jihlava: 25, opava: 15, praha: 20 }
+  : JSON.parse(fs.readFileSync(new URL("vzorek.json", import.meta.url))).reduce((a, p) => ((a[p.town] = (a[p.town] || 0) + 1), a), {});
 const CENTRES = { bratislava: [48.1440, 17.1100, 4000], kosice: [48.7190, 21.2580, 3000], presov: [48.9980, 21.2400, 2000], zilina: [49.2230, 18.7400, 2000],
   nitra: [48.3120, 18.0870, 2000], "banska-bystrica": [48.7360, 19.1460, 2000], trnava: [48.3774, 17.5883, 2000], trencin: [48.8945, 18.0444, 2000],
   martin: [49.0665, 18.9230, 1800], poprad: [49.0555, 20.2975, 1800], zvolen: [48.5762, 19.1371, 1200], piestany: [48.5918, 17.8273, 1200],
   michalovce: [48.7543, 21.9195, 1200], "spisska-nova-ves": [48.9446, 20.5615, 1200], komarno: [47.7631, 18.1295, 1200], levice: [48.2153, 18.6070, 1200],
   lucenec: [48.3298, 19.6667, 1200], humenne: [48.9371, 21.9163, 1200], bardejov: [49.2918, 21.2727, 1200], "liptovsky-mikulas": [49.0811, 19.6113, 1200],
   ruzomberok: [49.0748, 19.3006, 1200], "dunajska-streda": [47.9926, 17.6172, 1200], topolcany: [48.5617, 18.1775, 1200],
-  "povazska-bystrica": [49.1214, 18.4206, 1200], roznava: [48.6608, 20.5323, 1200], senica: [48.6797, 17.3667, 1200] };
+  "povazska-bystrica": [49.1214, 18.4206, 1200], roznava: [48.6608, 20.5323, 1200], senica: [48.6797, 17.3667, 1200],
+  brno: [49.1951, 16.6085, 3000], plzen: [49.7477, 13.3776, 2500], ostrava: [49.8355, 18.2924, 3000], jihlava: [49.3961, 15.5912, 1500],
+  opava: [49.9387, 17.9026, 1500], praha: [50.0875, 14.4208, 5000] };
 let seed = 20261117;
 const rnd = () => ((seed = (seed * 1103515245 + 12345) % 2 ** 31) / 2 ** 31);
 const out = [];
@@ -65,6 +71,6 @@ for (const [town, want] of Object.entries(TOWNS)) {
     got++;
   }
 }
-fs.writeFileSync(new URL("vzorek-ulice.json", import.meta.url), JSON.stringify(out));
+fs.writeFileSync(new URL(CZ ? "vzorek-ulice-cz.json" : "vzorek-ulice.json", import.meta.url), JSON.stringify(out));
 const by = out.reduce((a, p) => ((a[p.highway] = (a[p.highway] || 0) + 1), a), {});
 console.log(out.length, "bodů na ulicích", JSON.stringify(by));

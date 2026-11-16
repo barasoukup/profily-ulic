@@ -93,3 +93,22 @@ export function compare(A, B) {
   const ids = new Set(same.map((r) => r.id));
   return { compared: same.length, skipped: B.length - same.length, changed, findingsA: count(A.filter((r) => ids.has(r.id))), findingsB: count(same) };
 }
+
+// The B of a step that only rewrites the profile's parts (derive.js splitTwoWayLane, capWideLanes…), from a stored run
+// without asking any service again (Bára: "šetřit zdroje"): each step gets the stored parts and the OSM tags of the
+// cut's street (the crossing of its name nearest the cut's point). The ?off= switches of the page are set aside meanwhile.
+export async function simulate(rows, stepNames) {
+  const derive = await import("/derive.js"), { P } = await import("/ortho-osm.js");
+  const off = P.off; P.off = undefined;
+  try {
+    return rows.map((r) => {
+      if (!r.segs?.length) return r;
+      const total = r.segs.reduce((a, s) => a + s[1], 0), mid = r.span?.left ?? total / 2;
+      const named = (r.cross || []).filter((c) => c.tags.highway && (c.tags.name || "") === (r.name || ""));
+      const own = named.reduce((b, c) => (!b || Math.abs(c.at - mid) < Math.abs(b.at - mid) ? c : b), null);
+      const segments = r.segs.map((s) => ({ type: s[0], width: s[1], source: s[2], dir: s[3] || undefined }));
+      for (const n of stepNames) derive[n](segments, own?.tags || {});
+      return { ...r, segs: segments.map((s) => [s.type, s.width, s.source || "", s.dir || ""]) };
+    });
+  } finally { P.off = off; }
+}
