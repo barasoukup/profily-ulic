@@ -66,6 +66,20 @@ názvem (nadpis je jen ulice).
   (zelený od 0,22). Chodník jen na straně, kde pasport chodník nemá; za chodníkem pasportu je to „plocha před domem“.
   U dálnic a rychlostních silnic nic. Vše je odhad. A/B v `evaluation/slovensko/ab/ZPRAVA.md`; `?off=beside` vypne.
 
+### Rakousko (Bára 16. 11. 2026)
+
+Stát `austria` (`country` AT, `towns/austria.js`; hranice z Eurostat GISCO v `staty.json`). Jako na Slovensku se
+neptá DMVS, RÚIAN ani ortofoto ČÚZK; profil je odhad z OSM (výřez Geofabrik, balík `at` jen na R2) a ortofota
+basemap.at (`lanes-ortho.js` zdroj `at`, z20).
+- **Vídeň:** Flächen-Mehrzweckkarte (FMZK) města jako plochy řezu (vozovka, chodníky, parkování, tramvajové těleso,
+  zeleň, voda, domy, zdi), kde má plochu ulice pod středem řezu; podloubí a přístřešky podle plochy pod nimi.
+  Neodpoví-li některá vrstva, FMZK se nepoužije (poznámka). `?wien=0` vypne. A/B v `evaluation/austria/ab/`.
+- **Normy** `rules.js limitsAT`: cyklo podle RVS 03.02.13 (citováno přes NÖ Leitfaden 2024), pruhy a ostatní podle
+  Wiener Projektierungshandbuch; skupina silnice z OSM `highway` (`derive.js osmGroup`). Stání napůl na chodníku
+  podle StVO § 24 odst. 3 (dva volné pruhy po asi 2,6 m). Rešerše `evaluation/austria/NORMY.md`.
+- **Značky** `signs-AT/` (StVO § 52–53); jednosměrka se pod pruhem neznačí, značky bez rakouské kresby a s
+  dodatkovou tabulkou se zahodí.
+
 ## Odkud jsou data (Praha)
 
 - **Šířky:** IPR Praha, *Mapa technického využití území* (MTVU), služba

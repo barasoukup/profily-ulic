@@ -2,7 +2,8 @@
 
 Značky podle StVO 1960, § 52 a 53, ve znění na Wikimedia Commons (Vorschriftszeichen_*, Hinweiszeichen_*). Podle Commons
 jsou volným dílem podle § 7 odst. 1 rakouského UrhG (úřední dílo). Staženo 16. 11. 2026, rešerše v
-`evaluation/austria/ZNACKY.md`.
+`evaluation/austria/ZNACKY.md`. Čísla paragrafů jsou podle textu RIS z let 1987–1989 a tabulky na Wikipedii (Rakousko
+nemá úřední číslování značek); před formálním použitím ověřit v platném znění StVO a StVZVO.
 
 | soubor | značka |
 |---|---|

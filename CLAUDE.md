@@ -248,14 +248,19 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - OSM: výřez Geofabrik `austria`, balík `at` jen na R2 (na Pages by se nevešel 1 GB), workflow staví cz, sk, at.
 - Ortofoto basemap.at (`bmaporthofoto30cm`, Web Mercator do z20, CORS, CC BY 4.0) pro pruhy, obruby a podklad.
 - Vídeň: Flächen-Mehrzweckkarte (FMZK, data.wien.gv.at WFS 2.0, CC BY 4.0 „Stadt Wien – data.wien.gv.at“) jako plochy
-  řezu, kde má ulici pod středem (`?wien=0` vypne, čeká na A/B). Další města (Graz, Linz, Innsbruck, Klagenfurt)
+  řezu, kde má ulici pod středem (`?wien=0` vypne; A/B 40 řezů: lépe 9, stejně 2, sporný 1 z 12 prohlédnutých,
+  `evaluation/austria/ab/ZPRAVA.md`). Neodpoví-li některá vrstva, FMZK se nepoužije a poznámka to řekne. Další města (Graz, Linz, Innsbruck, Klagenfurt)
   otevřené mapy povrchů nemají; Salcburk má buspruhy, zóny, stromy a značky (nezapojené).
 - Normy `limitsAT` (`evaluation/austria/NORMY.md`): cyklo podle RVS 03.02.13 (přes NÖ Leitfaden, druhotně), ostatní
   Wiener Projektierungshandbuch (MA 18, 2011); RVS 03.02.12, 03.04.12, 03.07.11 nejsou veřejné.
 - Značky `signs-AT/` (StVO § 52–53, Commons, úřední díla); stání na chodníku, vyhrazené stání a cyklopruh nemají značku.
 - Bez odhadu stání podle zákona (StVO § 24: dva volné pruhy, judikatura asi 2,6 m na pruh; zatím vypnuto jako na SK).
-- Chybí: hledání adres (BEV jen s registrací; Vídeň má adresy ve WFS), A/B Vídně, vozidla a mobiliář měst, sítě
-  (otevřené nejsou).
+- Jednosměrka se v Rakousku pod pruhem neznačí (Bára: Einbahnstraße je jen tabule podél ulice); odvozené značky bez
+  rakouské kresby a značky s dodatkovou tabulkou se zahodí.
+- Nepřátelská recenze 16. 11. 2026 zapracovaná (cache nasazení podle států, skupiny silnic z OSM, StVO § 24, mapování
+  FMZK, poctivé citace norem, licence).
+- Chybí: hledání adres (BEV jen s registrací; Vídeň má adresy ve WFS), vozidla a mobiliář měst, Kurzparkzonen, stromy
+  a obruby Vídně, Salcburk, sítě (otevřené nejsou).
 
 ## Jazyky (Bára 12. 11. 2026, slovenčina 15. 11. 2026, němčina 16. 11. 2026)
 - Anglicky se aplikace jmenuje **Street Profile**, slovensky **Profily ulíc**, německy **Straßenprofil**. Čeština, slovenčina,
