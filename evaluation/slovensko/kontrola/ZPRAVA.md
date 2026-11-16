@@ -50,8 +50,9 @@ něm: `derive.js` `splitTwoWayLane`, voláno v `app.js` po `applyLanes`. Ne v ob
 objezdu, ulici s tramvají nebo více vozovkami a ne při OSM lanes=1. Vypnutí pro A/B `?off=dvapruhy`.
 
 - A (vypnuto) a B (zapnuto) na stejných 1000 řezech, výsledky v IndexedDB stránky (`A-dvapruhy-off`, `B-dvapruhy`).
-- Rozdělilo se 13 jednopruhových obousměrek o 5,0–6,6 m čistě, dalších asi 7 mezi řezy, které se zároveň změnily jinak.
-- Široký pruh (> 4,6 m) 65 → 49, počet pruhů proti OSM 24 → 22.
-- **Šum mezi běhy:** 59 řezů vyšlo v B s jinými druhy dílů a 20 s jinými šířkami, i když se jich oprava netýká (chodník
-  navíc nebo chybí, tramvaj, krajnice). Odhad z ortofota a OSM tedy pro stejný řez nevychází pokaždé stejně. Je to chyba
-  sama o sobě (další bod) a do té doby se A/B musí číst jen na řezech, kterých se oprava týká.
+- **Šum mezi běhy:** 59 řezů vyšlo v B s jinými druhy dílů a 20 s jinými šířkami, i když se jich oprava netýká. Příčina:
+  v B na chvíli neodpovídalo ZBGIS nebo ortofoto (souvislý blok košických řezů), aplikace pak potichu spočítala hrubší
+  odhad jen z OSM; znovu spočítané vyšly jako v A. A/B se proto čte jen na řezech se stejnými zdroji v obou bězích
+  (`kontrola.js` `compare`).
+- Na 917 řezech se stejnými zdroji (83 vynecháno) se změnilo přesně 13: všechno jednopruhové obousměrky o 5,0–6,6 m, teď
+  dva pruhy. Nic jiného. Široký pruh (> 4,6 m) 62 → 49, počet pruhů proti OSM 24 → 21.

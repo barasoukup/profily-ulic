@@ -70,3 +70,15 @@ export function report(rows) {
   }
   return out.join("\n") + "\n";
 }
+
+// A/B of two runs (rows of sber.js) on the same points: only cuts whose sources answered the same in both (a service
+// that failed in one run changes the profile by itself: 39 of 59 differing cuts in the A/B of 16. 11. 2026).
+export function compare(A, B) {
+  const byA = Object.fromEntries(A.map((r) => [r.id, r]));
+  const key = (r) => JSON.stringify((r.segs || []).map((s) => [s[0], s[1]]));
+  const same = B.filter((r) => byA[r.id] && r.segs?.length && byA[r.id].segs?.length && JSON.stringify(r.sources) === JSON.stringify(byA[r.id].sources));
+  const changed = same.filter((r) => key(r) !== key(byA[r.id])).map((r) => ({ id: r.id, name: r.name, link: r.lat ? link(r) : "", A: byA[r.id].segs.map((s) => `${s[0]} ${s[1]}`).join(" | "), B: r.segs.map((s) => `${s[0]} ${s[1]}`).join(" | ") }));
+  const count = (rows) => Object.fromEntries(Object.entries(findings(rows)).map(([k, v]) => [k, v.length]));
+  const ids = new Set(same.map((r) => r.id));
+  return { compared: same.length, skipped: B.length - same.length, changed, findingsA: count(A.filter((r) => ids.has(r.id))), findingsB: count(same) };
+}
