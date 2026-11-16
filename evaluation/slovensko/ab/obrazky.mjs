@@ -37,6 +37,28 @@ function bounds(segments, span) {
   return out;
 }
 
+const AT_TILES = "https://mapsneu.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857";
+async function atImage([x0, y0, x1, y1], w, h) {
+  const z = 20, size = (2 * Math.PI * R) / 2 ** z;
+  const tx0 = Math.floor((x0 + Math.PI * R) / size), tx1 = Math.floor((x1 + Math.PI * R) / size);
+  const ty0 = Math.floor((Math.PI * R - y1) / size), ty1 = Math.floor((Math.PI * R - y0) / size);
+  const dir = await fs.mkdtemp(path.join((await import("node:os")).tmpdir(), "at-"));
+  const files = [];
+  for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) {
+    const f = path.join(dir, `${ty}-${tx}.jpg`);
+    const r = await fetch(`${AT_TILES}/${z}/${ty}/${tx}.jpeg`, { headers: { "User-Agent": "profily-ulic" } });
+    await fs.writeFile(f, Buffer.from(await r.arrayBuffer()));
+    files.push(f);
+  }
+  const cols = tx1 - tx0 + 1, png = path.join(dir, "out.png");
+  // The glued tiles, cut to the box (pixels of 256 a tile), resized to the box's size.
+  const cx = Math.round(((x0 + Math.PI * R) / size - tx0) * 256), cy = Math.round(((Math.PI * R - y1) / size - ty0) * 256);
+  const cw = Math.round(((x1 - x0) / size) * 256), ch = Math.round(((y1 - y0) / size) * 256);
+  await run("magick", ["montage", ...files, "-tile", `${cols}x`, "-geometry", "256x256+0+0", path.join(dir, "all.png")]);
+  await run("magick", [path.join(dir, "all.png"), "-crop", `${cw}x${ch}+${cx}+${cy}`, "+repage", "-resize", `${w}x${h}!`, "PNG24:" + png]);
+  return fs.readFile(png);
+}
+
 async function image(c, tMax) {
   const file = path.join(ROOT, "data", `${c.id}.png`);
   const b = (c.bearing * Math.PI) / 180, dir = [Math.sin(b), Math.cos(b)], normal = [-Math.cos(b), Math.sin(b)];
@@ -49,11 +71,18 @@ async function image(c, tMax) {
   const k = Math.cos((c.lat * Math.PI) / 180), w = Math.round(((x1 - x0) * k) / RES), h = Math.round(((y1 - y0) * k) / RES);
   let buf;
   try { buf = await fs.readFile(file); } catch {
+    if (process.env.ORTHO === "at") {
+      // Austria (evaluation/austria/ab): basemap.at's tiles of level 20 glued and cut to the box with ImageMagick.
+      buf = await atImage([x0, y0, x1, y1], w, h);
+      await fs.mkdir(path.dirname(file), { recursive: true });
+      await fs.writeFile(file, buf);
+    } else {
     const q = new URLSearchParams({ bbox: [x0, y0, x1, y1].join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: "png24", f: "image" });
     buf = Buffer.from(await (await fetch(`${EXPORT}?${q}`)).arrayBuffer());
     await fs.mkdir(path.dirname(file), { recursive: true });
     await fs.writeFile(file, buf);
     await new Promise((r) => setTimeout(r, 300)); // politely, one image at a time
+    }
   }
   const img = await decodePng(buf);
   const W = Math.round((2 * tMax) / RES), H = Math.round((2 * ALONG) / RES), out = new Uint8Array(W * H * 4);

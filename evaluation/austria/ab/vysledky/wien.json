@@ -1,0 +1,1113 @@
+[
+ {
+  "id": "at1",
+  "town": "wien",
+  "A": {
+   "name": "Strohgasse",
+   "lat": 48.198278,
+   "lon": 16.386669,
+   "bearing": -86.1,
+   "span": {
+    "left": 7.97,
+    "right": 8.13
+   },
+   "segments": [
+    [
+     "chodnik",
+     4.85,
+     "odhad"
+    ],
+    [
+     "pruh_piktokoridor",
+     5.1,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6.15,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Strohgasse",
+   "lat": 48.198278,
+   "lon": 16.386669,
+   "bearing": -86.1,
+   "span": {
+    "left": 7.82,
+    "right": 7.93
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.6,
+     ""
+    ],
+    [
+     "parkovani",
+     2,
+     ""
+    ],
+    [
+     "pruh_piktokoridor",
+     5.37,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     3.63,
+     ""
+    ],
+    [
+     "chodnik",
+     2.15,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": "at2",
+  "town": "wien",
+  "A": {
+   "name": "Walfischgasse",
+   "lat": 48.203273,
+   "lon": 16.371779,
+   "bearing": -71.47,
+   "span": {
+    "left": 8.02,
+    "right": 6.98
+   },
+   "segments": [
+    [
+     "chodnik",
+     5.9,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.4,
+     "odhad"
+    ],
+    [
+     "cyklopruh",
+     1.5,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     4.2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Walfischgasse",
+   "lat": 48.203273,
+   "lon": 16.371779,
+   "bearing": -71.47,
+   "span": {
+    "left": 7.62,
+    "right": 7.53
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.5,
+     ""
+    ],
+    [
+     "parkovani",
+     1.95,
+     ""
+    ],
+    [
+     "pruh",
+     4.45,
+     "odhad"
+    ],
+    [
+     "cyklopruh",
+     1.75,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     ""
+    ],
+    [
+     "chodnik",
+     2.5,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": "at3",
+  "town": "wien",
+  "A": {
+   "name": "Theresianumgasse",
+   "lat": 48.192532,
+   "lon": 16.377117,
+   "bearing": 67.98,
+   "span": {
+    "left": 7.27,
+    "right": 7.18
+   },
+   "segments": [
+    [
+     "chodnik",
+     4.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.92,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.92,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     4.1,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Theresianumgasse",
+   "lat": 48.192532,
+   "lon": 16.377117,
+   "bearing": 67.98,
+   "span": {
+    "left": 7.37,
+    "right": 7.53
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.2,
+     ""
+    ],
+    [
+     "parkovani",
+     2,
+     ""
+    ],
+    [
+     "pruh",
+     2.92,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.1,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2.02,
+     ""
+    ],
+    [
+     "chodnik",
+     2.65,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": "at4",
+  "town": "wien",
+  "A": {
+   "name": "Friedrich-Schmidt-Platz",
+   "lat": 48.210508,
+   "lon": 16.355457,
+   "bearing": 9.09,
+   "span": {
+    "left": 13.72,
+    "right": 12.23
+   },
+   "segments": [
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.87,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.8,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     0.23,
+     "odhad"
+    ],
+    [
+     "delici",
+     3.3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.77,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.73,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     4.25,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Friedrich-Schmidt-Platz",
+   "lat": 48.210508,
+   "lon": 16.355457,
+   "bearing": 9.09,
+   "span": {
+    "left": 22,
+    "right": 22
+   },
+   "segments": [
+    [
+     "plocha",
+     17.32,
+     ""
+    ],
+    [
+     "krajnice",
+     3.62,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.4,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.78,
+     "odhad"
+    ],
+    [
+     "plocha",
+     15.88,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": "at7",
+  "town": "wien",
+  "A": {
+   "name": "",
+   "lat": 48.199393,
+   "lon": 16.369386,
+   "bearing": 61.91,
+   "span": {
+    "left": 3,
+    "right": 3
+   },
+   "segments": [
+    [
+     "pruh",
+     3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 48.199393,
+   "lon": 16.369386,
+   "bearing": 61.91,
+   "span": {
+    "left": 19.93,
+    "right": 2.53
+   },
+   "segments": [
+    [
+     "cyklostezka",
+     10.25,
+     ""
+    ],
+    [
+     "zelen",
+     4.55,
+     ""
+    ],
+    [
+     "cyklostezka",
+     7.65,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": "at8",
+  "town": "wien",
+  "A": {
+   "name": "Große Pfarrgasse",
+   "lat": 48.218633,
+   "lon": 16.37945,
+   "bearing": -80.34,
+   "span": {
+    "left": 6.72,
+    "right": 20.58
+   },
+   "segments": [
+    [
+     "pruh",
+     3.67,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.7,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.93,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.87,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     1.5,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.63,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     9,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Große Pfarrgasse",
+   "lat": 48.218633,
+   "lon": 16.37945,
+   "bearing": -80.34,
+   "span": {
+    "left": 6.77,
+    "right": 20.98
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.35,
+     ""
+    ],
+    [
+     "parkovani",
+     2,
+     ""
+    ],
+    [
+     "pruh",
+     3,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     4.9,
+     ""
+    ],
+    [
+     "chodnik",
+     1.75,
+     ""
+    ],
+    [
+     "stromorad",
+     13.75,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": "at13",
+  "town": "wien",
+  "A": {
+   "name": "Glockengasse",
+   "lat": 48.219818,
+   "lon": 16.382796,
+   "bearing": 22.69,
+   "span": {
+    "left": 5.97,
+    "right": 5.33
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.05,
+     "odhad"
+    ],
+    [
+     "cyklopruh",
+     1.77,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.58,
+     "odhad"
+    ],
+    [
+     "pruh_piktokoridor",
+     4.5,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.85,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     0.55,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Glockengasse",
+   "lat": 48.219818,
+   "lon": 16.382796,
+   "bearing": 22.69,
+   "span": {
+    "left": 5.92,
+    "right": 5.23
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.1,
+     ""
+    ],
+    [
+     "cyklopruh",
+     1.5,
+     "odhad"
+    ],
+    [
+     "pruh_piktokoridor",
+     3.75,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     ""
+    ],
+    [
+     "chodnik",
+     1.8,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": "at17",
+  "town": "wien",
+  "A": {
+   "name": "Obere Augartenstraße",
+   "lat": 48.222231,
+   "lon": 16.376041,
+   "bearing": -42.57,
+   "span": {
+    "left": 20.58,
+    "right": 13.48
+   },
+   "segments": [
+    [
+     "chodnik",
+     4.05,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.7,
+     "odhad"
+    ],
+    [
+     "zelen",
+     21.9,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.4,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Obere Augartenstraße",
+   "lat": 48.222231,
+   "lon": 16.376041,
+   "bearing": -42.57,
+   "span": {
+    "left": 20.68,
+    "right": 21.58
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.3,
+     ""
+    ],
+    [
+     "parkovani",
+     1.72,
+     ""
+    ],
+    [
+     "pruh",
+     3.8,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     1.93,
+     ""
+    ],
+    [
+     "chodnik",
+     0.5,
+     ""
+    ],
+    [
+     "cyklostezka",
+     4.43,
+     ""
+    ],
+    [
+     "cyklostezka",
+     4.43,
+     ""
+    ],
+    [
+     "zelen",
+     9.8,
+     ""
+    ],
+    [
+     "chodnik",
+     0.55,
+     ""
+    ],
+    [
+     "pruh",
+     3.25,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.25,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.25,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     3.05,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": "at21",
+  "town": "wien",
+  "A": {
+   "name": "Landstraßer Hauptstraße",
+   "lat": 48.202711,
+   "lon": 16.390346,
+   "bearing": -33.31,
+   "span": {
+    "left": 15.82,
+    "right": 10.53
+   },
+   "segments": [
+    [
+     "zelen",
+     1,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.39,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     1.5,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.11,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "cyklopruh",
+     1.75,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.85,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.85,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.22,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     1.63,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.05,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Landstraßer Hauptstraße",
+   "lat": 48.202711,
+   "lon": 16.390346,
+   "bearing": -33.31,
+   "span": {
+    "left": 15.62,
+    "right": 10.58
+   },
+   "segments": [
+    [
+     "chodnik",
+     3.9,
+     ""
+    ],
+    [
+     "stromorad",
+     2.25,
+     ""
+    ],
+    [
+     "chodnik",
+     0.9,
+     ""
+    ],
+    [
+     "parkovani",
+     2.63,
+     ""
+    ],
+    [
+     "cyklopruh",
+     1.57,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.02,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.02,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.19,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     1.83,
+     ""
+    ],
+    [
+     "chodnik",
+     3.9,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": "at22",
+  "town": "wien",
+  "A": {
+   "name": "Zelinkagasse",
+   "lat": 48.21655,
+   "lon": 16.370157,
+   "bearing": 56.32,
+   "span": {
+    "left": 9.87,
+    "right": 6.83
+   },
+   "segments": [
+    [
+     "chodnik",
+     7.75,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.2,
+     "odhad"
+    ],
+    [
+     "cyklopruh",
+     1.5,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     4.25,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Zelinkagasse",
+   "lat": 48.21655,
+   "lon": 16.370157,
+   "bearing": 56.32,
+   "span": {
+    "left": 9.62,
+    "right": 7.03
+   },
+   "segments": [
+    [
+     "chodnik",
+     4.4,
+     ""
+    ],
+    [
+     "krajnice",
+     1.82,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.82,
+     "odhad"
+    ],
+    [
+     "cyklopruh",
+     1.5,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.6,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": "at24",
+  "town": "wien",
+  "A": {
+   "name": "Rathausplatz",
+   "lat": 48.208886,
+   "lon": 16.358491,
+   "bearing": -78.93,
+   "span": {
+    "left": 10.22,
+    "right": 11.28
+   },
+   "segments": [
+    [
+     "chodnik",
+     4.7,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "tramvaj_v_pruhu",
+     3.55,
+     "odhad"
+    ],
+    [
+     "tramvaj_v_pruhu",
+     3.35,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     0.5,
+     "odhad"
+    ],
+    [
+     "nezname",
+     2.55,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ],
+    [
+     "nezname",
+     0.85,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Rathausplatz",
+   "lat": 48.208886,
+   "lon": 16.358491,
+   "bearing": -78.93,
+   "span": {
+    "left": 10.57,
+    "right": 20.63
+   },
+   "segments": [
+    [
+     "chodnik",
+     0.95,
+     ""
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "cyklopruh",
+     1.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.94,
+     "odhad"
+    ],
+    [
+     "tramvaj_v_pruhu",
+     3.21,
+     "odhad"
+    ],
+    [
+     "tramvaj_v_pruhu",
+     3.65,
+     "odhad"
+    ],
+    [
+     "cyklopruh",
+     1.75,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     ""
+    ],
+    [
+     "chodnik",
+     3.6,
+     ""
+    ],
+    [
+     "stromorad",
+     5.35,
+     ""
+    ],
+    [
+     "cyklostezka",
+     4.25,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": "at34",
+  "town": "wien",
+  "A": {
+   "name": "Burggasse",
+   "lat": 48.20422,
+   "lon": 16.350806,
+   "bearing": 89.4,
+   "span": {
+    "left": 8.87,
+    "right": 16.68
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.65,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2.47,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.3,
+     "odhad"
+    ],
+    [
+     "bus_cyklo",
+     4.33,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "plocha",
+     0.55,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     0.85,
+     "odhad"
+    ],
+    [
+     "plocha",
+     3.4,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Burggasse",
+   "lat": 48.20422,
+   "lon": 16.350806,
+   "bearing": 89.4,
+   "span": {
+    "left": 8.32,
+    "right": 17.03
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.5,
+     ""
+    ],
+    [
+     "parkovani",
+     2.5,
+     ""
+    ],
+    [
+     "pruh",
+     3.7,
+     "odhad"
+    ],
+    [
+     "bus_cyklo",
+     3.7,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     5.7,
+     ""
+    ],
+    [
+     "stromorad",
+     1.7,
+     ""
+    ],
+    [
+     "chodnik",
+     3.55,
+     ""
+    ]
+   ]
+  }
+ }
+]
