@@ -113,3 +113,14 @@ dílů a značek OSM (`kontrola.js` `simulate`), skutečným během ověřeno je
 - Změnilo se 8 z 200. Obousměrky s jedním pruhem 5,3–5,8 m na dva (Bráfova v Brně, Nad Úslavou, Pod Vinicemi a
   Kartónová v Plzni), pruhy nad stropem s krajnicí (Pionýrská 5,28 → 4 + 1,28, Borská 5,55 → 4 + 1,55 a 5,35 → 4 + 1,35,
   Emila Škody 6,94 → 1,22 + 4,5 + 1,22). Středová čára (oprava 4) se v Česku na vzorku neuplatnila.
+
+## Oprava 5: cyklostezka z OSM v odhadu z ortofota (A/B, 16. 11. 2026)
+Cyklostezka, kterou OSM kreslí zvlášť (highway=cycleway, pěšina pro kola) za obrubou a před domem, dostane v odhadu
+pás své šířky (OSM width, jinak 2,5 m obousměrná, 2 m jednosměrná) kolem své čáry, mezi čarami mapy města, nikdy přes
+vozovku ani za dům: `ortho-osm.js`, vypnutí `?off=osmbike`. Dřív padla do „Neurčeno“ (13 z 35), zeleně nebo plochy.
+
+- Regrese odhadu proti MTVU Prahy a Brna beze změny.
+- Cíl 35 řezů (cyklostezka z OSM chybí), kontrola 100: cyklostezku má nově 24 cílů (Ružinovská, Trieda SNP, Južná trieda,
+  Starohájska, Trieda Andreja Hlinku…; obousměrná jako dvě poloviny podle směru). Z kontroly se změnily 3: dvě jen
+  opravou 4 (běh A byl před ní) a Pri prachárni s další skutečnou cyklostezkou.
+- Zbylých 11 cílů: hlavně řezy s pasportem města (doplnění za pasportem `besidePassport` cyklostezky zatím nebere).
