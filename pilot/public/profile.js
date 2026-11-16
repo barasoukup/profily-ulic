@@ -626,7 +626,7 @@ function derivedStyle(info) {
   if (SCHOOL_TYPES.has(info?.type)) return "skola";
   if ((info?.farm || FARM_TYPES.has(info?.type)) && !(n > 2)) return "statek"; // RÚIAN zemědělská usedlost, OSM farm
   // An IPR family house (typ 6) in Prague's inner city is a small town house, not a villa (review 16. 11. 2026).
-  const family = info?.house || FAMILY_TYPES.has(info?.type) || (city.id === "praha" && info?.iprKind === 6 && info?.km > innerKm());
+  const family = info?.house || FAMILY_TYPES.has(info?.type) || (city.iprHouseKind && info?.iprKind === 6 && info?.km > innerKm());
   if (family && !(n > 3)) return familyKind(info);
   // An old house on the square, also of 1–2 floors (the small towns), unless its roof is known to be flat.
   if (oldCore(info, n) && roof !== "plocha") return "mestan";
@@ -750,7 +750,7 @@ function abroadStyle(info, n) {
 function pitchedLow(info) {
   const roof = IPR_ROOF[info?.roofType];
   if (roof) return roof !== "plocha";
-  return !!(info?.house || HOUSE_TYPES.has(info?.type) || (city.id === "praha" && info?.iprKind === 6));
+  return !!(info?.house || HOUSE_TYPES.has(info?.type) || (city.iprHouseKind && info?.iprKind === 6));
 }
 
 // Side outline of a Prague building: floors, storey height, roof floors and the height of each part (cm).

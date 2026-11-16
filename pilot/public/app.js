@@ -355,7 +355,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     const inZps = z.status === "fulfilled" ? z.value : undefined;
     const laneImg = li.status === "fulfilled" ? li.value : null;
     // The same image tells grass from paving beside a roadway read from the DTM's lines (derive.js linePieces).
-    const args = { center: [0, 0], dir, half, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho, lanesImage: laneImg?.st, roadOnPath: city.id === "praha", noParkGuess: city.country === "SK" || city.country === "AT" };
+    const args = { center: [0, 0], dir, half, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho, lanesImage: laneImg?.st, roadOnPath: !!city.roadOnPath, noParkGuess: city.country === "SK" || city.country === "AT" };
     let result = deriveProfile(args);
     // No surface of the street from the technical map (no answer, nothing here, nothing at the axis): the carriageway
     // read on the orthophoto near where OSM expects it, sidewalks to the OSM buildings (ortho-osm.js; Bára 15. 11.
@@ -447,7 +447,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       } catch {}
       // Prague (IPR) and Brno (KAM) give floors and roofs but not the year: the year, walls and use of the house come
       // from RÚIAN of ČÚZK as in the towns (Bára 16. 11. 2026; one request to ČÚZK, none more to IPR).
-      if ((city.id === "praha" || city.id === "brno") && !info.built) {
+      if (city.ruianYear && !info.built) {
         try { ruianFacts(info, await ruianBuilding(info.point[1], info.point[0])); } catch {}
       }
       // The age of the area (a default for the building's look, overruled by what is known of the house).

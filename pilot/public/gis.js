@@ -15,7 +15,7 @@ const RETRY_DELAYS = [1500, 4000];
 
 async function getOnce(url) {
   // Brno asks the city's servers from the browser also on the local server: with a timeout there too.
-  const r = await fetch(url, STATIC || city.id !== "praha" ? { signal: AbortSignal.timeout(TIMEOUT) } : undefined);
+  const r = await fetch(url, STATIC || !city.slowServer ? { signal: AbortSignal.timeout(TIMEOUT) } : undefined);
   if (!r.ok) throw Object.assign(new Error(await r.text()), { refused: r.status >= 400 && r.status < 500 && r.status !== 429 });
   const json = await r.json();
   // ArcGIS reports failures with HTTP 200 and an "error" field; under load also "400 Unable to complete operation",

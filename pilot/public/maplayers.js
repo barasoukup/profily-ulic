@@ -121,7 +121,7 @@ export function createDataLayers(map, control) {
     }
     // Prague's paid zones near the cut, as a faint tint: the boxes of their parts that the zone file keeps (sources.js
     // zpsZones); their edge is roughly the zone's boundary.
-    if (city.id === "praha") {
+    if (city.paidZoneFile) {
       zpsZones().then((boxes) => {
         if (!boxes || gen !== drawn) return;
         const [lon0, lat0] = frame.toLonLat(-ZPS_NEAR - WINDOW, -ZPS_NEAR - WINDOW), [lon1, lat1] = frame.toLonLat(ZPS_NEAR + WINDOW, ZPS_NEAR + WINDOW);

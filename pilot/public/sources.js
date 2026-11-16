@@ -16,7 +16,6 @@ import { MTVU, MTVU_FIELDS, TM_LINES, LINE_WHERE, TM_POINTS, POINT_WHERE, PARKOV
 // current cut each time.
 const town = () => TOWNS[city.id]?.sources;
 const isBrno = () => city.id === "brno";
-const isLive = () => city.id !== "praha";
 
 export const osm = (lat, lon, r) => (town() ? town().osm(lat, lon, r) : isBrno() ? brnoOsm(lat, lon, r) : STATIC || OSM_PACK ? osmTiles(lat, lon, r) : getJSON(`/api/osm?lat=${lat}&lon=${lon}&r=${r}`));
 
@@ -71,8 +70,8 @@ export function outage({ surfaces, lines, parking }, dataName = city.dataName, {
     : s.fromLines ? mark(" · plochy odvozené z čar technické mapy")
     : lacks.length ? mark(" · neúplná data") : "";
   const fb = fallback ? " " + fallback : "";
-  const text = failed && fallback ? (city.id === "praha" ? t("{name} teď neodpovídá (server je přetížený).", { name: dataName }) : t("{name} teď neodpovídá.", { name: dataName })) + fb + without + again
-    : failed ? (city.id === "praha" ? t("{name} teď neodpovídá (server je přetížený), profil je jen odhad z OSM.", { name: dataName })
+  const text = failed && fallback ? (city.slowServer ? t("{name} teď neodpovídá (server je přetížený).", { name: dataName }) : t("{name} teď neodpovídá.", { name: dataName })) + fb + without + again
+    : failed ? (city.slowServer ? t("{name} teď neodpovídá (server je přetížený), profil je jen odhad z OSM.", { name: dataName })
       : t("{name} teď neodpovídá, profil je jen odhad z OSM.", { name: dataName })) + without + again
     : s.fallback ? t("{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.", { name: dataName }) + without
     : empty && s.dmvsFailed && fallback ? t("Technická mapa ČÚZK teď neodpovídá.") + fb + without + again
@@ -437,7 +436,7 @@ export const zpsZones = () => (zpsBoxes ??= fetch("data/zps.json").then((r) => (
 export async function zps(lat, lon) {
   // Brno: the areas are rough outlines of whole quarters (Elišky Krásnohorské lies in 6-01 with no paid
   // section within 360 m), so the profile decides by the sections around the cut, which are current.
-  if (isLive()) return undefined;
+  if (!city.paidZoneFile) return undefined;
   const boxes = await zpsZones();
   if (!boxes) return undefined;
   const dLat = ZPS_RADIUS / 110574, dLon = ZPS_RADIUS / (111320 * Math.cos((lat * Math.PI) / 180));
@@ -452,7 +451,7 @@ export const AFTER_2010 = 2020;
 const VYVOJ_TILE = 0.01;
 const vyvojTiles = new Map();
 export async function vyvoj(lat, lon) {
-  if (isLive()) return undefined; // Brno and the towns have no such layer: the look comes from the house alone
+  if (!city.builtAgeTiles) return undefined; // Brno and the towns have no such layer: the look comes from the house alone
   const k = `${Math.floor(lon / VYVOJ_TILE)}_${Math.floor(lat / VYVOJ_TILE)}`;
   if (!vyvojTiles.has(k)) vyvojTiles.set(k, fetch(`data/vyvoj/${k}.json`).then((r) => (r.ok ? r.json() : null), () => null));
   const polys = await vyvojTiles.get(k);

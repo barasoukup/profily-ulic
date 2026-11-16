@@ -58,7 +58,6 @@ const CITIES = {
     artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
     emptyImg: "praha/t3-inbound.svg",
     credit: "technická mapa © {kraj}, IS DMVS ČÚZK, RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
-    storeSuffix: "",
     innerKm: 0, estateKm: 0.5,
     fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
     example: "49.907481, 16.442219",
@@ -86,7 +85,12 @@ const CITIES = {
     artTitle: "Kreslit pražskými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "praha/t3-inbound.svg",
     credit: "data © IPR Praha (technická mapa, podlažnosti, vývoj zástavby), TSK hl. m. Prahy (parkování) a MHMP, Geoportál Praha (stromy, uliční úseky), CC BY 4.0, upraveno",
-    storeSuffix: "",
+    // What only Prague's data have. roadOnPath: a paved path of the map under a street's axis is its roadway
+    // (derive.js); slowServer: IPR's server is often overloaded (no timeout, the outage says so); paidZoneFile: the
+    // boxes of the paid zones (data/zps.json, sources.js zps, maplayers.js); builtAgeTiles: IPR's "Vývoj zástavby"
+    // (data/vyvoj, sources.js vyvoj); iprHouseKind: IPR's kind of building 6 is a family house (profile.js);
+    // ruianYear: the year, walls and use of a house from RÚIAN (app.js), as IPR gives none.
+    roadOnPath: true, slowServer: true, paidZoneFile: true, builtAgeTiles: true, iprHouseKind: true, ruianYear: true,
     example: "50.082707, 14.419918",
   },
   brno: {
@@ -109,7 +113,8 @@ const CITIES = {
     artTitle: "Kreslit brněnskými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "brno/t3-inbound.svg",
     credit: "data © Statutární město Brno (technická mapa a MTVU; budovy a cykloopatření, data.brno.cz, CC BY 4.0, upraveno), parkování © parkovanivbrne.cz",
-    storeSuffix: "-brno",
+    // KAM gives floors and roofs but not the year of a house: RÚIAN's (app.js).
+    ruianYear: true,
     // Changes to the profile tried in Brno first (derive.js); Prague keeps its behaviour until they are
     // checked there too. serviceJunctions: a service road joining counts as a junction; axisToRoadway:
     // an OSM axis up to 4.5 m beside the roadway moves onto it; roadUnderAxis: a paved area under a
@@ -136,7 +141,6 @@ const CITIES = {
     artTitle: "Kreslit jihlavskými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "jihlava/trolejbus-inbound.svg",
     credit: "data © Statutární město Jihlava (pasport komunikací, parkování, mobiliář), RÚIAN a katastr © ČÚZK, 2026 (CC BY 4.0, upraveno)",
-    storeSuffix: "-jihlava",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.7, estateKm: 1.6,
     // The Brno changes to the profile: Jihlava's surfaces come from a passport of the roads, as Brno's
@@ -169,7 +173,6 @@ const CITIES = {
     artTitle: "Kreslit mosteckými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "most/tram-inbound.svg",
     credit: "data © Statutární město Most (objektová a technická mapa, veřejné osvětlení), RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
-    storeSuffix: "-most",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0, estateKm: 0.5,
     fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
@@ -195,7 +198,6 @@ const CITIES = {
     artTitle: "Kreslit opavskými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "opava/trolejbus-inbound.svg",
     credit: "data © Statutární město Opava (účelová mapa, parkování, stromy, lavičky, zastávky), RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
-    storeSuffix: "-opava",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.7, estateKm: 1.6,
     fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
@@ -221,7 +223,6 @@ const CITIES = {
     artTitle: "Kreslit pardubickými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "pardubice/trolejbus-inbound.svg",
     credit: "technická mapa © Pardubický kraj, IS DMVS ČÚZK, RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
-    storeSuffix: "-pardubice",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.9, estateKm: 2,
     fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
@@ -248,7 +249,6 @@ const CITIES = {
     artTitle: "Kreslit plzeňskými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "plzen/tram-inbound.svg",
     credit: "data © Statutární město Plzeň (technická mapa, budovy 3D, pasport zeleně a mobiliáře, parkovací zóny), RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
-    storeSuffix: "-plzen",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 1.3, estateKm: 3,
     fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true, bedPanels: true },
@@ -280,7 +280,6 @@ const CITIES = {
     artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
     emptyImg: "praha/t3-inbound.svg",
     credit: "technická mapa © Ústecký kraj, IS DMVS ČÚZK, parkovací místa © Statutární město Ústí nad Labem, RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
-    storeSuffix: "-usti",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.7, estateKm: 1.5,
     fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
@@ -308,7 +307,6 @@ const CITIES = {
     artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
     emptyImg: "praha/t3-inbound.svg",
     credit: "data © Statutární město Ostrava (technická mapa – generalizace, osy tramvajových kolejí, úseky placeného stání), RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
-    storeSuffix: "-ostrava",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 1.0, estateKm: 2.0,
     fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
@@ -336,7 +334,6 @@ const CITIES = {
     artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
     emptyImg: "praha/t3-inbound.svg",
     credit: "data © Statutární město Frýdek-Místek (pasport komunikací, zeleně, mobiliáře a osvětlení), technická mapa © Moravskoslezský kraj, IS DMVS ČÚZK, RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
-    storeSuffix: "-frydek-mistek",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.6, estateKm: 1.2,
     fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
@@ -364,7 +361,6 @@ const CITIES = {
     artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
     emptyImg: "praha/t3-inbound.svg",
     credit: "data © Statutární město Karviná (pasport komunikací a zeleně, technická mapa, mobiliář, osvětlení), technická mapa © Moravskoslezský kraj, IS DMVS ČÚZK, RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
-    storeSuffix: "-karvina",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.5, estateKm: 1.0,
     fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
@@ -392,7 +388,6 @@ const CITIES = {
     artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
     emptyImg: "praha/t3-inbound.svg",
     credit: "data © Město Třebíč (pasport komunikací, veřejné osvětlení, lavičky), technická mapa © Kraj Vysočina, IS DMVS ČÚZK, RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
-    storeSuffix: "-trebic",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.6, estateKm: 1.2,
     fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
@@ -420,7 +415,6 @@ const CITIES = {
     artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
     emptyImg: "praha/t3-inbound.svg",
     credit: "data © Statutární město Přerov (technická mapa, vektorové dlaždice), RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
-    storeSuffix: "-prerov",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.7, estateKm: 1.5,
     fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
