@@ -514,6 +514,8 @@ export const DE = {
   "Mimo dopravní obsluhy": "Anlieger frei",
 
   // ---------- sources.js: sources that did not answer ----------
+  "Ortofoto teď neodpovědělo: obruby jsou jen podle OSM, profil je hrubý odhad. Zkuste kliknout znovu za chvíli.": "Das Luftbild hat gerade nicht geantwortet: Die Bordsteine stammen nur aus OSM, das Profil ist eine grobe Schätzung. Bitte klicken Sie in Kürze erneut.",
+  "mapy města a ZBGIS": "zur Stadtkarte und zu ZBGIS",
   "kolejí, plotů a svahů": "zu Gleisen, Zäunen und Böschungen",
   "parkovacích stání": "zu Stellplätzen",
   "stromů a tříd ulic TSK": "zu Bäumen und Straßenklassen der TSK",

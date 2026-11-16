@@ -135,3 +135,10 @@ obruby k domu: kus u obruby dá chodník nejvýš 6 m a zbytek je jiná plocha (
 - Regrese Prahy a Brna beze změny. Cíl 8 odhadnutých chodníků nad 9 m, kontrola 50 (šetření): změnilo se 6 cílů
   (Junácka 12,15 → plocha 6,4 + chodník 5,75; Pobrežná 13,09 → 7,09 + 6; Dukelských hrdinov 16,35 → 6 + 6,15 + 4,2),
   kontrola beze změny.
+
+## Oprava 7: výpadek ortofota a map se řekne (Bára 16. 11. 2026: „ano“)
+Dřív `laneImage` každou chybu spolkl (`catch { return null }`) a odpověď 5xx brala jako prázdný obrázek: profil potichu
+vyšel jen z OSM (v jednom běhu 39 řezů v Košicích). Teď je výpadek (5xx, síť, časový limit) chyba, `app.js` ji řekne:
+„Ortofoto teď neodpovědělo: obruby jsou jen podle OSM, profil je hrubý odhad. Zkuste kliknout znovu za chvíli.“ Výpadek
+mapy města a ZBGIS na Slovensku se hlásí jako „Chybí data mapy města a ZBGIS (server neodpověděl)“, ne kolejí a plotů.
+Ověřeno v aplikaci s nasimulovanou odpovědí 503 (Andreja Plávku) a hned potom bez ní.

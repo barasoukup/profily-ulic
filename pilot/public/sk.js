@@ -496,6 +496,8 @@ export const SK = {
   "Mimo dopravní obsluhy": "Okrem dopravnej obsluhy",
 
   // ---------- sources.js: sources that did not answer ----------
+  "Ortofoto teď neodpovědělo: obruby jsou jen podle OSM, profil je hrubý odhad. Zkuste kliknout znovu za chvíli.": "Ortofoto teraz neodpovedalo: obrubníky sú len podľa OSM, profil je hrubý odhad. Skúste kliknúť znova o chvíľu.",
+  "mapy města a ZBGIS": "mapy mesta a ZBGIS",
   "kolejí, plotů a svahů": "koľají, plotov a svahov",
   "parkovacích stání": "parkovacích státí",
   "stromů a tříd ulic TSK": "stromov a tried ulíc TSK",

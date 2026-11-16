@@ -53,7 +53,8 @@ export const mtvu = (bbox) => (town() ? town().surfaces(bbox) : isBrno() ? brnoS
 export function outage({ surfaces, lines, parking }, dataName = city.dataName, { fallback = "" } = {}) {
   const s = surfaces.status === "fulfilled" ? surfaces.value : null;
   const lacks = [];
-  if (lines.status !== "fulfilled") lacks.push(t("kolejí, plotů a svahů"));
+  // In Slovakia the lines are the town's map and ZBGIS (kerbs, widths, lawns): said as such.
+  if (lines.status !== "fulfilled") lacks.push(city.country === "SK" ? t("mapy města a ZBGIS") : t("kolejí, plotů a svahů"));
   if (parking.status !== "fulfilled") lacks.push(t("parkovacích stání"));
   if (lines.status === "fulfilled" && lines.value?.missing?.includes("opendata")) lacks.push(t("stromů a tříd ulic TSK"));
   const without = lacks.length ? " " + t("Chybí data {what} (server neodpověděl).", { what: lacks.join(", ") }) : "";

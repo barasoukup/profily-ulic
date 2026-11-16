@@ -66,13 +66,16 @@ export async function laneImage({ frame, dir, t0, t1, cityId, timeout = TIMEOUT,
       const tp = src.px || 256; // pixels of a tile
       const canvas = new OffscreenCanvas((tx1 - tx0 + 1) * tp, (ty1 - ty0 + 1) * tp), g = canvas.getContext("2d");
       const signal = AbortSignal.timeout(timeout), jobs = [];
-      for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) jobs.push(fetchImpl(`${src.tiles}/${src.z}/${ty}/${tx}${src.ext || ""}`, { signal }).then(async (r) => { if (r.ok) g.drawImage(await createImageBitmap(await r.blob()), (tx - tx0) * tp, (ty - ty0) * tp, tp, tp); }));
+      // A server error on every tile is an outage (app.js says so), not an empty image.
+      let down = 0;
+      for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) jobs.push(fetchImpl(`${src.tiles}/${src.z}/${ty}/${tx}${src.ext || ""}`, { signal }).then(async (r) => { if (r.ok) g.drawImage(await createImageBitmap(await r.blob()), (tx - tx0) * tp, (ty - ty0) * tp, tp, tp); else if (r.status >= 500) down++; }));
       await Promise.all(jobs);
+      if (jobs.length && down === jobs.length) throw Object.assign(new Error(`ortofoto ${down}× 5xx`), { outage: true });
       img = g.getImageData(0, 0, canvas.width, canvas.height);
       x0 = tx0 * size - Math.PI * R; x1 = (tx1 + 1) * size - Math.PI * R; y1 = Math.PI * R - ty0 * size; y0 = Math.PI * R - (ty1 + 1) * size;
     } else {
       const r = await fetchImpl(src.url([x0, y0, x1, y1], w, h, decode ? "image/png" : undefined), { signal: AbortSignal.timeout(timeout) });
-      if (!r.ok) return null;
+      if (!r.ok) { if (r.status >= 500) throw Object.assign(new Error(`ortofoto ${r.status}`), { outage: true }); return null; } // a server error: an outage
       if (decode) {
         const png = await decode(await r.arrayBuffer());
         img = { width: png.width, height: png.height, data: png.rgba };
@@ -99,7 +102,10 @@ export async function laneImage({ frame, dir, t0, t1, cityId, timeout = TIMEOUT,
     }
     if (src.balance) balance(G, Y, D, S);
     return { source: key, st: { nt, nu, res, t0, L, G, Y, D, S, fine: key !== "cuzk" } };
-  } catch {
+  } catch (e) {
+    // The server did not answer (a server error, the network, the timeout): an outage, passed on for app.js to say
+    // (Bára 16. 11. 2026); anything else (an image that would not decode) is just no image, as before.
+    if (e?.outage || e?.name === "TypeError" || e?.name === "TimeoutError" || e?.name === "AbortError") throw e;
     return null;
   }
 }

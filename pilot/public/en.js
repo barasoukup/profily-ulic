@@ -499,6 +499,8 @@ export const EN = {
   "Mimo dopravní obsluhy": "Except for access",
 
   // ---------- sources.js: sources that did not answer ----------
+  "Ortofoto teď neodpovědělo: obruby jsou jen podle OSM, profil je hrubý odhad. Zkuste kliknout znovu za chvíli.": "The orthophoto did not answer just now: the kerbs follow OSM only, the profile is a rough estimate. Try clicking again in a moment.",
+  "mapy města a ZBGIS": "of the town map and ZBGIS",
   "kolejí, plotů a svahů": "tracks, fences and slopes",
   "parkovacích stání": "parking spaces",
   "stromů a tříd ulic TSK": "trees and TSK street classes",

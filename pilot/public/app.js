@@ -464,7 +464,11 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // also when restored from storage or a file.
     // The profile made without the map (ortho-osm.js): where its kerbs come from. A blank or missing orthophoto (outside
     // its coverage, no answer): OSM's; ?orto=0 asks for none.
-    const orthoNote = !orthoOsm ? "" : orthoOsm.image ? tr("Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.")
+    // The orthophoto did not answer (Bára 16. 11. 2026: a failed service made a rougher profile without a word; 39 of
+    // 1000 Slovak cuts in one run): said, with a hint to click again.
+    const orthoDown = LANES_ORTHO && li.status === "rejected";
+    const orthoNote = orthoDown && (orthoOsm || result.estimate) ? tr("Ortofoto teď neodpovědělo: obruby jsou jen podle OSM, profil je hrubý odhad. Zkuste kliknout znovu za chvíli.")
+      : !orthoOsm ? "" : orthoOsm.image ? tr("Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.")
       : LANES_ORTHO ? tr("Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.")
       : tr("Obruby jsou podle OSM a domy z OSM, šířky ověřte.");
     const out = sources.outage({ surfaces: m, lines: k, parking: pk }, undefined, { fallback: orthoNote });
@@ -477,7 +481,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // With the profile made without the map, the other notes come after its own (a junction, a design started anew).
     const extra = orthoOsm ? [result.junction && junctionNote, dropped && droppedNote].filter(Boolean).map((x) => " " + x).join("") : "";
     // The map has surfaces here, none at the axis (the outage says nothing of it): that comes first.
-    const axisNote = orthoOsm && !out.text.includes(orthoNote) ? (city.abroad ? "" : tr("Technická mapa tu nemá povrch ulice.") + " ") + orthoNote + (out.text ? " " + out.text : "") : "";
+    const axisNote = (orthoOsm || (orthoDown && result.estimate)) && !out.text.includes(orthoNote) ? (city.abroad ? "" : tr("Technická mapa tu nemá povrch ulice.") + " ") + orthoNote + (out.text ? " " + out.text : "") : "";
     if (axisNote) status(axisNote + extra, out.error ? "error" : undefined);
     else if (out.text) status(out.text + extra, out.error ? "error" : undefined);
     else if (dropped) status(tr("Nový řez: návrh začíná znovu od stavu ulice (předchozí návrh zůstává ve sdíleném odkazu nebo uloženém souboru, pokud jste ho uložili)."));
