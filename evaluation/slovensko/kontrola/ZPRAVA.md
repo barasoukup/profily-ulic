@@ -183,3 +183,10 @@ stromořadí a ne do 2 m od jiného dílu pro kola. Vypnutí `?off=rezkolo`.
 - **Česko** (opravy 8–10 dopočtem nad během CZ-A, 200 ulic): jediná změna byla cyklostezka vyříznutá ze zeleně, kterou
   změřila technická mapa Ostravy (Na Jízdárně). Změřenou zeleň (`dtm`, `pasport`) proto `carveCycleways` neřeže, změřenou
   zpevněnou plochu ano (Wolkerova). Potom v Česku beze změny, na Slovensku stejných 9 cílů.
+
+## Zkoušeno a vráceno: cyklostezka ze značek silnice (16. 11. 2026)
+`cycleway:right=track` apod. jako pás 2 m hned za obrubou v odhadu z ortofota (`ortho-osm.js`). A/B na 3 cílech
+(Riazanská, 2× Vajanského nábrežie) a 50 kontrolách: cíle beze změny, protože mají pasport Bratislavy a odhad se u nich
+nepoužije. Bez prokázaného přínosu vráceno. Pomohlo by až v doplnění za pasportem (`besidePassport`), na 3 ulicích.
+- Rozdělení vícepruhové vozovky podle OSM: v Česku pravidla počet pruhů z OSM už berou, snížit ho může jen čtení z
+  ortofota vyladěné na ručních značkách (lépe 32, hůř 9); na Slovensku by se jen opsalo OSM. Nedělá se.
