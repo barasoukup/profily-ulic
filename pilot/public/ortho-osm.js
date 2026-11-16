@@ -217,7 +217,7 @@ export function columns(st) {
   return { nt, res, t0, medL, green, sat, seen, E, ti: (t) => Math.round((t - t0) / res), tOf: (i) => t0 + i * res };
 }
 // The roadway at the axis (±1.5 m, not green): its brightness and saturation; does column i look like it?
-export const P = { tolL: 0.2, tolS: 18, greenMax: 0.3, minEdge: 1.6, alpha: 1.5, beta: 0.5, gamma: 0.8, sigmaMin: 1.0, sigmaRel: 0.3, lineOff: 0.4, mapBonus: 0.8 };
+export const P = { tolL: 0.2, tolS: 18, greenMax: 0.3, minEdge: 1.6, alpha: 1.5, beta: 0.5, gamma: 0.8, sigmaMin: 1.0, sigmaRel: 0.3, lineOff: 0.4, mapBonus: 0.8, cars: false };
 export function roadRef(cols, axis) {
   const i0 = cols.ti(axis - 1.5), i1 = cols.ti(axis + 1.5), L = [], S = [];
   for (let i = Math.max(0, i0); i <= Math.min(cols.nt - 1, i1); i++) if (cols.green[i] < 0.3) { L.push(cols.medL[i]); S.push(cols.sat[i]); }
@@ -369,7 +369,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   if (!o.own) return null;
   // Where the map's lines cross the cut (t), on the cut's line and a metre either side (a line may end just at it).
   const edgeT = [...new Set(edges.flatMap((path) => [0, -1, 1].flatMap((u0) => crossT(path.map(([lo, la]) => tu(lo, la)), 45, u0).map((x) => Math.round(x.t * 20) / 20))))].sort((a, b) => a - b);
-  const pair = partnerOf(o);
+  const pair = P.off?.has("pair") ? null : partnerOf(o);
   if (pair) o.pairId = pair.id;
   // A road's width from the national map (ZBGIS) where its centre line crosses the cut within 4 m of the axis.
   const widthT = widths.flatMap(({ path, w }) => crossT(path.map(([lo, la]) => tu(lo, la)), 45).map((x) => ({ t: x.t, w })));
@@ -402,6 +402,10 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   const cars = [], carsOut = {};
   for (const [side, sg] of [["A", -1], ["B", 1]]) {
     if (pair && side === (pair.t < o.own.t ? "A" : "B")) continue; // towards the other carriageway: a median, no kerb
+    // Off (P.cars false): the regression of 16. 11. 2026 (evaluation/ortofoto-osm/regrese.mjs) found it adding parking
+    // where none is (Prague 33 against 5, Brno 52 against 7), as the hand detector of evaluation/ortofoto/AUTA-DL.md
+    // (56 % precision: shadows, trees, roofs); a trained detector there did far better but its licence does not fit.
+    if (!P.cars) continue;
     const kb = k[side];
     if (carsSeen(st, ...(sg < 0 ? [kb, kb + CAR_W] : [kb - CAR_W, kb]), o.own.t)) cars.push(rect(704, "stání (auta na ortofotu)", ...(sg < 0 ? [kb, kb + CAR_W] : [kb - CAR_W, kb])));
     else if (carsSeen(st, ...(sg < 0 ? [kb - CAR_W, kb] : [kb, kb + CAR_W]), o.own.t)) {
@@ -472,7 +476,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     // sidewalk or green by the image (Bára, Štúrova in Piešťany: the sidewalks lie by the houses, the green strip by
     // the kerb) or by the map's symbol in it. Without such lines a sidewalk from the kerb as before.
     const roadGreen = (() => { if (!k.cols) return 0; const g = []; for (let i = k.cols.ti(o.own.t - 1.5); i <= k.cols.ti(o.own.t + 1.5); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.green[i])) g.push(k.cols.green[i]); return g.length ? g.reduce((x, y) => x + y, 0) / g.length : 0; })();
-    const cuts = says === "no" ? [] : edgeT.filter((t) => sg * (t - kerb) >= 1 && sg * (far - t) > 0.5).sort((x, y) => sg * (x - y));
+    const cuts = says === "no" || P.off?.has("pieces") ? [] : edgeT.filter((t) => sg * (t - kerb) >= 1 && sg * (far - t) > 0.5).sort((x, y) => sg * (x - y));
     if (cuts.length) {
       edgeUsed = true;
       const ends = [kerb, ...cuts, far];
