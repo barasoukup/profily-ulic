@@ -1152,6 +1152,7 @@ function mainAxis(pts) {
 }
 // A house standing with its gable to the street (a village house, Bára 16. 11. 2026): a narrow footprint, clearly
 // longer than wide, its long side running away from the street (along the cut).
+const ARCADE_COVER = new Set(["arcade", "colonnade", "building_arcade"]);
 const GABLE_MAX_W = 11, GABLE_RATIO = 1.4, GABLE_COS = 0.85;
 const gableToStreet = (axis, normal) => !!axis && axis.width <= GABLE_MAX_W && axis.length >= GABLE_RATIO * axis.width
   && Math.abs(axis.u[0] * normal[0] + axis.u[1] * normal[1]) / Math.hypot(...normal) >= GABLE_COS;
@@ -1930,6 +1931,10 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     edges[`${side}Info`] = { levels: b?.levels, height: b?.height, point, km: +centreKm(point).toFixed(1), block: b?.block, tint: side === "left" ? 0 : 3 };
     if (b?.type && b.type !== "yes") edges[`${side}Info`].type = b.type;
     if (gableToStreet(b?.axis, normal)) edges[`${side}Info`].across = 1;
+    // An arcade under the house (Bára 16. 11. 2026: only where the data say so): an OSM way tagged covered=arcade,
+    // colonnade or building_arcade crossing the cut by the facade (5 m in front of it to 8 m behind).
+    const edgeT = side === "left" ? kept.at(-1).e : kept[0].s, out = side === "left" ? 1 : -1;
+    if (cross.some((c) => ARCADE_COVER.has(c.way.tags?.covered) && (c.t - edgeT) * out > -5 && (c.t - edgeT) * out < 8)) edges[`${side}Info`].arcade = 1;
   }
   // Permeable paving from OSM (Bára 12. 11. 2026, rainwater 5.1.2): grass pavers (surface=grass_paver) of an area the
   // part's middle lies on (parking: about 300 in Czechia), or of a way crossing the part (service roads, footways,

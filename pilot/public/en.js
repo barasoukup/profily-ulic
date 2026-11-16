@@ -75,6 +75,7 @@ export const EN = {
   "škola": "school",
   "kostel": "church",
   "garáž": "garage",
+  ", s podloubím (OSM)": ", with an arcade (OSM)",
   "vila, starší rodinný dům": "villa, older family house",
   "rodinný dům 60.–80. let": "family house of the 1960s–80s",
   "nový rodinný dům": "new family house",

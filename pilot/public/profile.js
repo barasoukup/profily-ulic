@@ -1193,16 +1193,6 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       box(268, 346, 0, 199, DOOR);
       for (let d = 281; d < 346; d += 13) box(d - 1, d + 1, 0, 199, tint(DOOR, 0.8));
       dot(334, 100, 5, "#f2d27a");
-    } else if (kind === "mestan") {
-      // An arcade (podloubí) under the front of the house: the vaulted opening seen from the side, a pillar at
-      // the street; the door into the house lies inside it.
-      const a1 = 250, ah = f.ground - 150;
-      box(10, a1, 0, ah, "#5d564c");
-      arch((10 + a1) / 2, ah, (a1 - 10) / 2, "#5d564c");
-      box(10, a1, 0, 30, "#7b7266"); // the paving under the arcade, lit
-      box(-6, 10, 0, f.ground - 20, tint(wall, 0.92), outline); // the pillar by the street
-      box(-16, 20, f.ground - 40, f.ground - 20, tint(STONE, 1.05), outline); // its capital
-      box(-20, EDGE, f.ground - 20, f.ground, trim, outline); // a string course over the arcade
     } else {
       if (kind === "sorela") { // a rusticated ground floor: stone blocks with deep joints, under the windows and the door
         box(0, EDGE - 30, plinth[0], f.ground - 22, tint(STONE, 1.12));
@@ -1226,7 +1216,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       box(16, 114, z0 + 14, z0 + doorH + 10, doorFrame);
       box(24, 106, z0 + 14, z0 + doorH, kind === "novyrd" ? "#3c3f43" : DOOR);
       dot(94, z0 + doorH * 0.4, 5, "#f2d27a");
-      if (kind === "sikma") { arch(65, doorH + 10, 49, FRAME); arch(65, doorH + 10, 41, GLASS); } // arched transom
+      if (kind === "sikma" || kind === "mestan") { arch(65, doorH + 10, 49, FRAME); arch(65, doorH + 10, 41, GLASS); } // arched transom
       else if (kind === "sorela") { // a stone surround and a top light
         box(4, 126, 0, doorH + 70, tint(plinth[1], 1.1), outline);
         box(16, 114, 14, doorH + 50, FRAME);
@@ -1239,7 +1229,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       }
     }
     // The windows above stand in the axes of the door and of the ground-floor window.
-    const groundAt = kind === "mestan" ? 280 : (125 + EDGE - 30 - win.w) / 2;
+    const groundAt = (125 + EDGE - 30 - win.w) / 2;
     if (kind !== "statek") window(groundAt, f.ground * win.sill + (style === "sikma" ? 40 : 0), win.w, win.h * f.storey, 0);
     const front = Math.max(65, 35 + win.w / 2); // the front axis keeps clear of the facade
     for (let k = 1; k < full; k++) {
@@ -1304,6 +1294,18 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
         box(back - 8, f.roofRows ? EDGE - 32 : EDGE, zr + 32, zr + 42, dark);
       }
     }
+  }
+
+  // --- An arcade (podloubí) where OSM has one by the facade (derive.js, info.arcade): the vaulted opening under the
+  // front of the house seen from the side, a pillar at the street; doors and windows behind it are not seen.
+  if (info?.arcade && style !== "hala") {
+    const a1 = 250, ah = Math.max(200, f.ground - 150);
+    box(10, a1 + 10, 0, ah + (a1 - 10) / 2 + 10, wall); // the wall over what stood there
+    box(10, a1, 0, ah, "#5d564c");
+    arch((10 + a1) / 2, ah, (a1 - 10) / 2, "#5d564c");
+    box(10, a1, 0, 30, "#7b7266"); // the paving under the arcade, lit
+    box(-6, 10, 0, f.ground - 20, tint(wall, 0.92), outline); // the pillar by the street
+    box(-16, 20, f.ground - 40, f.ground - 20, tint(STONE, 1.05), outline); // its capital
   }
 
   // --- What sticks out towards the street ---

@@ -1276,7 +1276,7 @@ function renderEdge(ed, p, side) {
   const kind = p.edges?.[side] || "volno";
   const info = edgeInfo(p.edges, side);
   const style = kind === "budova" && buildingStyle(info, p.edges?.[`${side}Style`]);
-  const name = kind === "budova" ? (style === "plocha" && OFFICE_LIKE.has(info?.type) ? tr("kancelářská budova") : BUILDING_STYLES[style])
+  const name = kind === "budova" ? (style === "plocha" && OFFICE_LIKE.has(info?.type) ? tr("kancelářská budova") : BUILDING_STYLES[style]) + (info?.arcade ? tr(", s podloubím (OSM)") : "")
     : Object.fromEntries(EDGE_KINDS())[kind] || kind;
   const head = Object.assign(document.createElement("div"), { className: "ed-head" });
   head.append(Object.assign(document.createElement("h3"), { textContent: `${side === "left" ? tr("Levý okraj") : tr("Pravý okraj")}: ${name}` }));
