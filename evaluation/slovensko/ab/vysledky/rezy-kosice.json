@@ -1,0 +1,674 @@
+[
+ {
+  "id": "ke1",
+  "town": "kosice",
+  "A": {
+   "name": "",
+   "lat": 48.711448,
+   "lon": 21.239424,
+   "bearing": -72.85,
+   "span": {
+    "left": 3,
+    "right": 3
+   },
+   "segments": [
+    [
+     "pruh",
+     3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 48.711448,
+   "lon": 21.239424,
+   "bearing": -72.85,
+   "span": {
+    "left": 10.07,
+    "right": 22
+   },
+   "segments": [
+    [
+     "zelen",
+     7.9,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.75,
+     ""
+    ],
+    [
+     "zelen",
+     2.2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     5.7,
+     ""
+    ],
+    [
+     "plocha",
+     1.85,
+     "odhad"
+    ],
+    [
+     "zelen",
+     7.2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.47,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ke4",
+  "town": "kosice",
+  "A": {
+   "name": "Bratislavská",
+   "lat": 48.710406,
+   "lon": 21.223833,
+   "bearing": -0.64,
+   "span": {
+    "left": 22.28,
+    "right": 9.84
+   },
+   "segments": [
+    [
+     "zelen",
+     11.85,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.6,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     0.5,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     3.1,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.55,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.91,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Bratislavská",
+   "lat": 48.710406,
+   "lon": 21.223833,
+   "bearing": -0.64,
+   "span": {
+    "left": 22.28,
+    "right": 9.83
+   },
+   "segments": [
+    [
+     "plocha",
+     11.55,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.35,
+     ""
+    ],
+    [
+     "pruh",
+     4.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.9,
+     "odhad"
+    ],
+    [
+     "plocha",
+     0.75,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     2.35,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.6,
+     ""
+    ],
+    [
+     "plocha",
+     1.6,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ke8",
+  "town": "kosice",
+  "A": {
+   "name": "Bratislavská",
+   "lat": 48.709926,
+   "lon": 21.223848,
+   "bearing": -1.85,
+   "span": {
+    "left": 13.62,
+    "right": 9.29
+   },
+   "segments": [
+    [
+     "zelen",
+     4.2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.89,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     1.5,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     0.61,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.95,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.95,
+     "odhad"
+    ],
+    [
+     "zelen",
+     3.2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.62,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Bratislavská",
+   "lat": 48.709926,
+   "lon": 21.223848,
+   "bearing": -1.85,
+   "span": {
+    "left": 13.62,
+    "right": 9.29
+   },
+   "segments": [
+    [
+     "plocha",
+     3.8,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.65,
+     ""
+    ],
+    [
+     "pruh",
+     4.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.65,
+     "odhad"
+    ],
+    [
+     "plocha",
+     0.7,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.45,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.67,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ke10",
+  "town": "kosice",
+  "A": {
+   "name": "",
+   "lat": 48.714861,
+   "lon": 21.233862,
+   "bearing": -13.5,
+   "span": {
+    "left": 3,
+    "right": 3
+   },
+   "segments": [
+    [
+     "pruh",
+     3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 48.714861,
+   "lon": 21.233862,
+   "bearing": -13.5,
+   "span": {
+    "left": 16.62,
+    "right": 2.28
+   },
+   "segments": [
+    [
+     "stromorad",
+     13.75,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.95,
+     ""
+    ],
+    [
+     "nezname",
+     1.2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ke13",
+  "town": "kosice",
+  "A": {
+   "name": "",
+   "lat": 48.704376,
+   "lon": 21.224151,
+   "bearing": 0.68,
+   "span": {
+    "left": 9.08,
+    "right": 9.78
+   },
+   "segments": [
+    [
+     "zelen",
+     2.26,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     5.7,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     4.9,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 48.704376,
+   "lon": 21.224151,
+   "bearing": 0.68,
+   "span": {
+    "left": 8.97,
+    "right": 16.58
+   },
+   "segments": [
+    [
+     "zelen",
+     2.15,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.45,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     5.5,
+     ""
+    ],
+    [
+     "plocha",
+     14.45,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ke14",
+  "town": "kosice",
+  "A": {
+   "name": "Popradská",
+   "lat": 48.710246,
+   "lon": 21.227765,
+   "bearing": -16.02,
+   "span": {
+    "left": 4.02,
+    "right": 9.88
+   },
+   "segments": [
+    [
+     "pruh",
+     3.97,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.33,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.35,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     5.25,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Popradská",
+   "lat": 48.710246,
+   "lon": 21.227765,
+   "bearing": -16.02,
+   "span": {
+    "left": 4.57,
+    "right": 14.63
+   },
+   "segments": [
+    [
+     "pruh",
+     4.51,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.63,
+     "odhad"
+    ],
+    [
+     "plocha",
+     1.05,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     5.25,
+     "odhad"
+    ],
+    [
+     "cyklostezka",
+     2.38,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.38,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ke16",
+  "town": "kosice",
+  "A": {
+   "name": "",
+   "lat": 48.715268,
+   "lon": 21.23265,
+   "bearing": 76.42,
+   "span": {
+    "left": 3,
+    "right": 3
+   },
+   "segments": [
+    [
+     "pruh",
+     3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 48.715268,
+   "lon": 21.23265,
+   "bearing": 76.42,
+   "span": {
+    "left": 7.07,
+    "right": 10.78
+   },
+   "segments": [
+    [
+     "zelen",
+     6.45,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.2,
+     ""
+    ],
+    [
+     "zelen",
+     9.2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ke17",
+  "town": "kosice",
+  "A": {
+   "name": "Novobanská",
+   "lat": 48.701905,
+   "lon": 21.223636,
+   "bearing": -61.31,
+   "span": {
+    "left": 9.22,
+    "right": 3.14
+   },
+   "segments": [
+    [
+     "chodnik",
+     5.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.43,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.43,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Novobanská",
+   "lat": 48.701905,
+   "lon": 21.223636,
+   "bearing": -61.31,
+   "span": {
+    "left": 9.22,
+    "right": 3.13
+   },
+   "segments": [
+    [
+     "plocha",
+     3.95,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.6,
+     ""
+    ],
+    [
+     "pruh",
+     3.22,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.22,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     0.35,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ke19",
+  "town": "kosice",
+  "A": {
+   "name": "Diamantová",
+   "lat": 48.713668,
+   "lon": 21.22311,
+   "bearing": 43.29,
+   "span": {
+    "left": 4.18,
+    "right": 4.49
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.25,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.22,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Diamantová",
+   "lat": 48.713668,
+   "lon": 21.22311,
+   "bearing": 43.29,
+   "span": {
+    "left": 4.17,
+    "right": 4.48
+   },
+   "segments": [
+    [
+     "zelen",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.6,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.05,
+     "odhad"
+    ]
+   ]
+  }
+ }
+]

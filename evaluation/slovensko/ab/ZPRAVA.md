@@ -304,3 +304,18 @@ Přehodnoceno s Bárou (16. 11. 2026):
 - **Značky zóny pod nejširším chodníkem ulice bez pruhů:** ponechané všude.
 - **Poznámka o datech pod názvem:** ve všech režimech (i Návrh a Porovnat).
 - **Překreslené české značky:** ponechané.
+
+# Pasport Košic (16. 11. 2026, po kontrole Slovenska)
+
+Košice mají pasport komunikací v systému T-MAPY PaKom jako Žilina a Banská Bystrica
+(`gisplan.kosice.sk/services/mapserver/common/pakom`, vrstva `ms:pk-pov`, CORS; licence neuvedená). Zatím pokrývá
+hlavně Košice-Západ, město nechává zaměřit celé město. Zapojený v `SK_TOWNS` (`kosice`), `?pasport=0` vypne.
+
+**A/B:** 25 bodů (20 v Košicích-Západ, 5 v centru), každý dvakrát. Změnilo se 13. Obrázky 9 z nich v
+`obrazky-kosice/`, data `vysledky/rezy-kosice.json`.
+- **Lépe 8:** pěší cesty mezi domy už nejsou dvoupruhová silnice 2 × 3 m. Na Bratislavské a Popradské vozovka sedí
+  s parkovacím pruhem na ortofotu a přibyla parkoviště a cyklostezka.
+- **Zhruba stejně 1:** Diamantová, zeleň místo chodníků; z ortofota se to nedá rozhodnout.
+- **Hůř:** žádný.
+
+Výchozí stav: zapnuto.
