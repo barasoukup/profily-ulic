@@ -15,7 +15,7 @@ import { spawn } from "node:child_process";
 const HERE = path.dirname(new URL(import.meta.url).pathname);
 const ROOT = process.env.ROOT || path.join(HERE, "..", "..");
 const DATA = path.join(HERE, "data");
-const PORT = Number(process.argv[2] || process.env.PORT || 5190), APP = PORT + 1;
+const PORT = Number(process.argv[2] || process.env.PORT || 5190), APP = PORT + 100; // the app 100 ports up (next to other replays)
 
 // The app's own server (static files, /api/*, data/*) on the next port.
 const child = spawn(process.execPath, [path.join(ROOT, "pilot", "server.mjs")], { env: { ...process.env, PORT: String(APP) }, stdio: "inherit" });

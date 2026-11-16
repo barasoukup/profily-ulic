@@ -11,7 +11,7 @@ Co jde v Node, hlídá `tables.mjs`.
 
 ## Postup
 
-1. `node evaluation/replay/server.mjs` (nebo spuštění „replay-arch“ z `.claude/launch.json`): aplikace na portu 5191,
+1. `node evaluation/replay/server.mjs` (nebo spuštění „replay-arch“ z `.claude/launch.json`): aplikace na portu 5290,
    před ní nahrávač na http://localhost:5190. Mapové dlaždice se nenačítají (CSP), aby stovky řezů nezatěžovaly
    servery dlaždic.
 2. Nahrání (jednou, živě): `http://localhost:5190/?replay=record&run=rec-cs&lang=cs&osm=balik`. Odpovědi jsou
