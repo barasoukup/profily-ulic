@@ -36,6 +36,30 @@ při prvním řezu ve městě), texty i uvedení zdrojů v exportu sedí na mís
 Streetmixu). Bývalé stránky `/<město>/` přesměrují na `/?mesto=<město>` i s řezem v odkazu
 (`tools/city_site.mjs`, `tools/build_city_site.mjs`; místní server totéž).
 
+### Státy, města a zdroje (přestavba 16. 11. 2026)
+
+Struktura je všude stejná: stát → město → zdroje (`docs/architecture-countries.md`).
+- **Stát** je modul `countries/<ISO>.js` (`CZ.js`, `SK.js`, `AT.js`; `default.js` pro místo mimo známé státy a výchozí
+  hodnoty všech vlastností): normy (`limits`, `contraflow`, `tramBelt`), zákon o stání (`freeLane`, `halfKerbNote`,
+  `parkGuess`), značky (`signs`), ortofoto (`bedOrtho`, `laneOrtho`), ilustrace měst státu (`art`, `artAt`), vzhled domů
+  (`houseLook`), služby hledání (`search`), panorama, hlášky. `setCity` nastaví vedle `city` i `country` (modul státu);
+  `city.country` zůstává kód ISO. Mimo `countries/` není žádná podmínka na stát.
+- **Město** je záznam v `city.js` (a modul `towns/<město>.js`, má-li vlastní zdroje); co nemá svého (ortofoto, značky,
+  normy), dědí od státu. Zbytek státu je město `cesko`, `slovensko`, `austria`, mimo státy `cizina` (`towns/cizina.js`).
+- **Zdroj** s vlastním územím (pasport, čáry mapy města, mapa povrchů Vídně, značky Salcburku) má `area` (box, případně
+  hranice obce, `places.js inArea`) a jeho modul ho uvádí v `AREAS`. `towns/index.js placeAt(lat, lon)` vrací stát,
+  město, sadu ilustrací a zdroje s územím v bodě. Kredit zdroje je klíč v `state.cut.sources` a řádek v `credits.js`
+  (`creditLines` i `validate.js` podle něj).
+
+**Nový stát:** modul `countries/<ISO>.js` (a řádek v `countries/index.js`), složka značek, řádek v `tools/countries.mjs`
+(OSM, Geofabrik, Pages), zbytek státu jako město v `city.js` (`abroad`) a texty v `en.js`, `sk.js`, `de.js`, zdroje
+v `towns/<stát>.js`, hranice v `staty.json`, hostitelé v CSP (hlídá `tests/csp.test.js`). Podrobně skill
+`.claude/skills/pridani-statu`. **Nové město nebo zdroj:** viz Města jako moduly níže.
+
+Úpravu, která nemá měnit výsledky, ověří záchranná síť `evaluation/replay/` (odpovědi zdrojů nahrané jednou pro 369
+řezů na Slovensku, v Rakousku, v Praze, v Brně a za hranicemi, přehrané před a po změně; tabulky města, kreditů,
+značek a norem států ve čtyřech jazycích).
+
 ### Slovensko a cizina (Bára 15. 11. 2026)
 
 Mimo města platí stát řezu (`staty.json` z `node tools/build_staty.mjs`: Česko z RÚIAN, Slovensko ze ZBGIS ÚGKK SR,
@@ -74,7 +98,7 @@ basemap.at (`lanes-ortho.js` zdroj `at`, z20).
 - **Vídeň:** Flächen-Mehrzweckkarte (FMZK) města jako plochy řezu (vozovka, chodníky, parkování, tramvajové těleso,
   zeleň, voda, domy, zdi), kde má plochu ulice pod středem řezu; podloubí a přístřešky podle plochy pod nimi.
   Neodpoví-li některá vrstva, FMZK se nepoužije (poznámka). `?wien=0` vypne. A/B v `evaluation/austria/ab/`.
-- **Normy** `rules.js limitsAT`: cyklo podle RVS 03.02.13 (citováno přes NÖ Leitfaden 2024), pruhy a ostatní podle
+- **Normy** `countries/AT.js` (`limits`): cyklo podle RVS 03.02.13 (citováno přes NÖ Leitfaden 2024), pruhy a ostatní podle
   Wiener Projektierungshandbuch; skupina silnice z OSM `highway` (`derive.js osmGroup`). Stání napůl na chodníku
   podle StVO § 24 odst. 3 (dva volné pruhy po asi 2,6 m). Rešerše `evaluation/austria/NORMY.md`.
 - **Hledání** ve Vídni z adresních bodů města (`search-at.js`, když mapa ukazuje Vídeň nebo dotaz obsahuje „Wien“);
@@ -260,7 +284,9 @@ Každé město je jeden modul `pilot/public/towns/<město>.js` (vzor `towns/jihl
 kliknutí (`osm`, `surfaces`, `lines`, `parking`, `podlaznost`) ve stejném tvaru jako odpovědi IPR, podkladové
 mapy (`maps`) a ortofoto pro kontrolu řezů (`ortho`). Společné funkce jsou v `pilot/public/gis.js`, dlaždice OSM
 čtou všechna města stejné. Texty aplikace a uvedení zdrojů jsou v `city.js`, servery pro CSP a staré adresy
-v `tools/cities.mjs`. Nové město: záznam v `city.js` a `tools/cities.mjs`, modul v `towns/` (a v `towns/index.js`),
+v `tools/cities.mjs`. Město patří do státu a dědí od něj, co nemá svého (`countries/<ISO>.js`; vlastní ortofoto pruhů
+`laneOrtho`, vlastnosti dat jako `roadOnPath`, `slowServer` nebo `ruianYear` u Prahy a Brna). Nové město: záznam v
+`city.js` a `tools/cities.mjs`, modul v `towns/` (a v `towns/index.js`), kredit jeho zdrojů pod klíčem v `credits.js`,
 kód obce v `tools/build_mesta.mjs` (pak `node tools/build_mesta.mjs`), ilustrace v `pilot/public/<město>/`,
 kontrola `CITY=<město> node evaluation/sample.mjs|run_brno.mjs|render_brno.mjs` a A/B test (níže).
 

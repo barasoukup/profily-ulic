@@ -5,11 +5,16 @@ description: Postup, jak do Profilů ulic přidat další stát (po Slovensku a 
 
 # Přidání státu do Profilů ulic
 
-Postup podle Slovenska (větev `slovensko`, 13.–16. 11. 2026) a Rakouska (větev `austria`, 16. 11. 2026). Vzorový kód:
-- `pilot/public/towns/slovensko.js` (pasporty, čáry map, ZBGIS);
-- `pilot/public/towns/austria.js` (mapa povrchů Vídně FMZK, značky Salcburku);
-- `ortho-osm.js`, `city.js` (`abroad`, `SK_ART`/`AT_ART`, `creditLines`), `rules.js` (`limitsSK`, `limitsAT`);
-- `signs.js` (SK, AT), `site.js` (NETS), `search-sk.js`, `search-at.js`, `search-photon.js`.
+Postup podle Slovenska (větev `slovensko`, 13.–16. 11. 2026) a Rakouska (větev `austria`, 16. 11. 2026), po přestavbě
+na stát → město → zdroje (`docs/architecture-countries.md`, 16. 11. 2026). **Stát je jeden modul
+`pilot/public/countries/<ISO>.js` + složka značek + řádek v `tools/countries.mjs`**; mimo `countries/` žádná podmínka
+na stát (`country === "SK"`, `city.country || "CZ"` …). Vzorový kód:
+- `pilot/public/countries/SK.js`, `AT.js` (normy, značky, zákon o stání, ortofoto, ilustrace měst, vzhled domů, hledání),
+  `default.js` (česká pravidla pro místo mimo známé státy a výchozí hodnoty všech vlastností), `index.js` (seznam);
+- `pilot/public/towns/slovensko.js` (pasporty, čáry map, ZBGIS), `towns/austria.js` (mapa povrchů Vídně FMZK, značky
+  Salcburku): zdroje se svým územím (`AREAS`, `places.js inArea`), `towns/index.js placeAt`;
+- `credits.js` (kredit každého zdroje pod klíčem), `ortho-osm.js`, `site.js` (NETS), `search-sk.js`, `search-at.js`,
+  `search-photon.js`.
 
 Zprávy jsou v `evaluation/slovensko/` a `evaluation/austria/` (ZPRAVA, NORMY, ZDROJE, ZNACKY, ab/).
 
@@ -91,6 +96,8 @@ Kresby jsou zdaleka nejdražší. Proto:
 - **Testy a regrese:**
   - `npm test` (rychlý) po každé změně.
   - Regresi Prahy a Brna (pár minut) jen po změně společného odhadu.
+  - Úprava, která nemá měnit výsledky (přesun kódu do modulu státu), se ověří záchrannou sítí `evaluation/replay/`
+    (nahrané odpovědi, přehrání před a po, `compare.mjs`, `tables.mjs`; postup v README tam).
 - **Recenze:** jedna nepřátelská recenze na konci státu a jeden kritik „co chybí“ stačí. Ne po každém kroku.
 
 ## 1. Stát a jeho modul
@@ -101,18 +108,33 @@ Kresby jsou zdaleka nejdražší. Proto:
    - **Pořadí států rozhoduje:** přesné hranice (CZ, SK) první, hrubší až za nimi, aby bod u hranice dostal ten přesný.
    - Otestovat pohraniční body (Mikulov, Hainburg, Petržalka, Mnichov) v `tests/city.test.js`.
    - `city.js cityAt` pak vrací id státu, mimo známé státy `cizina`.
-2. **Položka státu v `city.js`:** přes `abroad(id, country, …)` s `country` ISO, `centre: null`, `estateKm`, `dataShort`,
-   `credit`, `rulesHead`. Texty v `en.js`, `sk.js` a `de.js` (tabulky CITY).
-3. **Modul státu:** v `towns/index.js` id státu → `towns/<state>.js` se `sources = { osm, surfaces, lines, parking, podlaznost }`,
-   `national = true` (žádný pokus o českou DMVS).
-4. **Vypnout, co je jen české,** podle `city.country`:
-   - panorama Mapy.com, DMVS, RÚIAN, ortofoto ČÚZK;
-   - hlášky „mimo Česko“ (nadpis je jen název ulice, poznámka o datech pod ním v `#profile-sub`, i v `sources.js`);
-   - české značky (`signFile` vrací pro stát bez sady null);
-   - odhad stání podle zákona bez dat o zónách (`noParkGuess`);
-   - široký dosah dálnic: zapnout pro stát, ne pro Česko.
-5. **CSP** v `pilot/public/index.html` (`connect-src`, u obrázků `img-src`) doplnit o každý nový server, jinak „Failed to fetch“.
-6. **Texty, které vyjmenovávají státy, aktualizovat:**
+2. **Modul státu `pilot/public/countries/<ISO>.js`:** `export default { ...base, code: "<ISO>", bounds: [lon0, lat0, lon1, lat1], … }`
+   (`base` = `default.js`), zapsat do `countries/index.js` (`COUNTRIES`). Načítá se staticky, nesmí importovat `city.js`
+   ani modul, který ho importuje (`rules.js`, `types.js`, `profile.js`, `derive.js`…): sdílené kusy jsou v `norms.js`
+   (skupiny ulic, formát šířky), `art.js` (sady ilustrací), `places.js` (hranice, území). Kde se státy liší kódem, je
+   ve státu funkce. Vlastnosti (výchozí hodnoty a popis v `default.js`):
+   - zákon o stání: `freeLane`, `parkingLaw`, `halfKerbNote(free, need)`, `parkGuess` (odhad stání podle zákona);
+   - `wideRoads` (širší dosah dálnic), `roadClassFromOsm` (skupina ulice z OSM `highway`);
+   - normy: `limits(s, segs, i)`, `contraflow(parked)`, `tramBelt(belt, w)` (viz bod 6);
+   - značky: `signs: { dir, file, plate, label, drawable }` (viz bod 7);
+   - ortofoto: `bedOrtho` (tramvajové těleso), `laneOrtho` (pruhy; město ho přepíše vlastním `laneOrtho` v `city.js`);
+   - `orthoEstimate` (poznámka „odhad z ortofota a OSM“), `besidePassport` (pasport doplnit k domům), `panorama`
+     (Mapy.com), `linesMissing` (co chybí, když čáry neodpoví; `mark()`);
+   - ilustrace: `art` (sady měst státu), `artAt(lat, lon)` (sada v bodě), domy: `houseLook(style, info, office)`;
+   - `search`: služby hledání, které se ptají, když mapa ukazuje stát (`"zbgis"`, `"photon"`, nový přidat v `search.js`).
+   Kontrola: `grep` mimo `countries/` nesmí najít `country ===`, `["SK","AT"].includes`, `city.country || "CZ"`.
+3. **Zbytek státu jako město v `city.js`:** přes `abroad(id, ISO, …)` (`centre: null`, `estateKm`, `dataShort`, `credit`,
+   `rulesHead`), texty v `en.js`, `sk.js` a `de.js` (tabulky CITY). Id zůstává pro uložené řezy a log.
+4. **Zdroje:** v `towns/index.js` id → `towns/<state>.js` se `sources = { osm, surfaces, lines, parking, podlaznost }`,
+   `national = true` (žádný pokus o českou DMVS). Zdroj s vlastním územím (pasport, mapa města) má `area` (`places.js
+   inArea`: box, případně hranice obce) a patří do `AREAS` modulu (`placeAt` ho pak vypíše). Kredit zdroje = klíč
+   v `state.cut.sources` (`app.js`) a řádek v `credits.js SOURCE_CREDITS`; `validate.js` pak klíč u uloženého řezu nechá.
+5. **Seznam států pro nasazení:** řádek v `tools/countries.mjs` (klíč balíku OSM, výřez Geofabrik, zda balík smí na Pages).
+   `pages.yml` z něj bere smyčky i klíče cache, nic dalšího se v něm neupravuje. Test `tests/csp.test.js` hlídá, že
+   každý stát seznamu má modul.
+6. **CSP** v `pilot/public/index.html` (`connect-src`, u obrázků `img-src`) doplnit o každý nový server. Test
+   `tests/csp.test.js` selže, když hostitel z kódu v `connect-src` chybí.
+7. **Texty, které vyjmenovávají státy, aktualizovat:**
    - „data pokrývají Česko, Slovensko a Rakousko“;
    - úvodní nápověda a popis stránky (meta);
    - patičky ve všech jazycích.
@@ -127,19 +149,16 @@ Kresby jsou zdaleka nejdražší. Proto:
     2. `NAME=<kód> OGR=…/QGIS…/ogr2ogr tools/build_osm_data.sh data/osm/<kód>.osm.pbf <dir>`;
     3. `pack_osm_tiles.mjs <dir> pilot/data/osm-pack/<kód>-novy.posm` (Rakousko 284 MB);
     4. zkoušet s `?osm=balik`.
-  - **V nasazení** (`.github/workflows/pages.yml`) přidat kód státu do všech smyček:
-    - cache výřezů a dlaždic, s **klíči včetně seznamu států**, jinak týdenní cache bez nového státu přeskočí stavbu
-      nebo nasazení spadne;
-    - stažení chybějícího výřezu i při zásahu cache;
-    - sestavení a zabalení;
-    - úklid starých souborů na R2 (kbelík `profily-ulic-osm`, `data.streetspace.eu/osm`).
-  - Prodloužit timeouty a přidat varování, když chybí klíče R2.
-  - Na Pages je limit 1 GB, velký stát jen na R2 (Rakousko: na Pages jen `cz` a `sk`, `index.json` bez `at`). Když R2
-    neodpoví, stát nemá zálohu: říct Báře.
+  - **V nasazení** stačí řádek v `tools/countries.mjs`: `pages.yml` z něj bere stažení výřezů, stavbu a zabalení,
+    úklid starých souborů na R2 (kbelík `profily-ulic-osm`, `data.streetspace.eu/osm`) i klíče cache (nový stát změní
+    klíč, takže týdenní cache bez něj stavbu nepřeskočí).
+  - Prodloužit timeouty (velký stát) a zkontrolovat varování, když chybí klíče R2.
+  - Na Pages je limit 1 GB, velký stát jen na R2 (`pages: false`, Rakousko). Když R2 neodpoví, stát nemá zálohu: říct Báře.
 - **Ortofoto:**
   - Národní, s otevřenou licencí a CORS (čteme pixely). Ověřit hlavičku `Access-Control-Allow-Origin` a nejvyšší úroveň dlaždic.
     basemap.at: `…/bmaporthofoto30cm/normal/google3857/{z}/{y}/{x}.jpeg`, z20, v `lanes-ortho.js` s `ext: ".jpeg"`.
-  - Zapojit do `lanes-ortho.js` (`BY_CITY`), do podkladů mapy (`bounds` státu) a do kreditů.
+  - Zapojit do `lanes-ortho.js` (`SOURCES`) a do modulu státu (`laneOrtho`, případně `bedOrtho`), do podkladů mapy
+    (`bounds` státu v `app.js`) a do kreditů (`credits.js orthoCity`).
   - Ověřit vyvážení barev: slovenská mozaika byla žlutá, asfalt vypadal jako tráva.
 - **Odhad bez technické mapy:** `ortho-osm.js` (obruby z ortofota a OSM). U státu ho ověřit na vzorku a obrázcích.
   Skupina silnice pro normy z OSM `highway` (`derive.js osmGroup`), když stát nemá vlastní třídy.
@@ -155,7 +174,7 @@ Kresby jsou zdaleka nejdražší. Proto:
     obytným domům**.
   - Bez centra města se vzhled neodvozuje od vzdálenosti (`profile.js abroadStyle`).
   - **Paneláky nejsou všude:** v Rakousku žádné (Bára). Deska je funkcionalistický dům, po roce 1990 moderní, kanceláře
-    kanceláře (`buildingStyle`). Ručně zvolený vzhled zůstane.
+    kanceláře (`countries/AT.js houseLook`, volá ho `profile.js buildingStyle`). Ručně zvolený vzhled zůstane.
 
 ## 3. Hledání datových zdrojů (agent Haiku)
 
@@ -202,8 +221,8 @@ Agent nezapisuje do repozitáře, výsledek dává do scratchpadu.
 | Značky ploch technické mapy | `lines().symbols` → druh kousku mezi čarami | — |
 | Katastr dopravních značek | `lines().atSigns` → tagy cesty (`parking:<side>:restriction`) podle strany značky, do 25 m od řezu | značky na začátku úseku (zóny, rychlosti) řez dál od nich nevidí |
 | Sítě | `site.js NETS` | hloubku nemá skoro nikdo; výšky terénu ČÚZK jen v Česku |
-| Hranice měst | `tools/build_towns_sk.mjs` → `mesta-sk.json` (okresy velkých měst, jinak obec) | obdélníky braly sousední obce (Šamorín jako Bratislava) |
-| Kredit | `city.js creditLines` podle `state.cut.sources` (app.js), patičky ve všech jazycích, `LICENCE-A-ZDROJE.md` | — |
+| Hranice měst | `tools/build_towns_sk.mjs` → `mesta-sk.json` (okresy velkých měst, jinak obec); území zdroje `{ box, town }` přes `places.js inArea` | obdélníky braly sousední obce (Šamorín jako Bratislava) |
+| Kredit | klíč zdroje v `state.cut.sources` (`app.js`) a řádek v `credits.js SOURCE_CREDITS` (`creditLines` i `validate.js` ho pak znají), patičky ve všech jazycích, `LICENCE-A-ZDROJE.md` | klíč, ne hotová věta (uložený soubor a změna jazyka) |
 
 Služba, která odpoví skutečnou 4xx nebo chybou ArcGIS se jménem špatného pole, se neopakuje (`gis.js err.refused`).
 
@@ -235,14 +254,15 @@ v `cutAt` zastínil pozdější `const name` a rozbil každý řez.
 
 - **Rešerše** (agent Sonnet) podle prvků `rules.js` (`limits`). U každého prvku hodnota, přesné místo v předpisu a jistota.
   Placené normy (STN, RVS) jen ze sekundárních zdrojů, a **v citaci to přiznat** („RVS 03.02.13 podle NÖ Leitfaden 2024“).
-- **Zapojení:** jako `limits<STAT>` podle `city.country`.
+- **Zapojení:** v modulu státu `limits(s, segs, i)` (minimum a základ dílu), `contraflow(parked)` (jednosměrka s cyklisty
+  v protisměru) a `tramBelt(belt, w)` (tramvajový pás); co stát nemá, dědí z `default.js` (Manuál IPR C.2).
   - Kde veřejná hodnota chybí, nedávat červenou, jen orientační základ s textem „zdroj nenalezen“.
   - Hodnoty bez opory v rešerši nevymýšlet (nepřátelská recenze to u Rakouska našla).
   - Zbytkovou šířku při stání (judikatura) nevydávat za návrhovou normu.
 - **Doklady:** hlavička seznamu (`rulesHead`) podle předpisů státu, zpráva `evaluation/<state>/NORMY.md`, testy.
 - **Zákony do odhadu stání:**
   - CZ a SK: 3 m na směr;
-  - AT: StVO § 24 odst. 3, dva volné pruhy po asi 2,6 m (`derive.js lawLane`);
+  - AT: StVO § 24 odst. 3, dva volné pruhy po asi 2,6 m (`freeLane` státu, `derive.js lawLane`);
   - text hlášky podle státu, ne s cizím zákonem.
 
 ## 7. Dopravní značky
@@ -251,7 +271,8 @@ v `cutAt` zastínil pozdější `const name` a rozbil každý řez.
   (úřední díla: ověřit, že nejsou chráněná; AT § 7 UrhG).
   - Všem SVG doplnit `viewBox` s mezerami: bez něj nebo s čárkami se kreslí s rozměry NaN.
   - Rychlosti: šablona se vkládaným číslem (`SPEED_TEMPLATES`).
-- **Mapování v `signs.js`:** `signFile`, `plateFile`, `signLabel(x, country)`. Co stát nemá, vrací null.
+- **Mapování v modulu státu:** `signs: { dir, file(s, seg), plate(s, seg), label(x, own, label, plates), drawable(x, seg) }`;
+  `signs.js signFile`, `plateFile`, `signLabel(x, country)`, `drawable` je jen volají. Co stát nemá, vrací null.
   - `keepDrawable` a `ctx.country` v `deriveSigns` takové značky zahodí dřív, než zákaz zastavení zabere poslední místo
     (jinak vytlačí zónu).
   - Návrh je nenabízí.
@@ -271,7 +292,8 @@ v `cutAt` zastínil pozdější `const name` a rozbil každý řez.
     Kreslířce i kritikovi dát `model: "sonnet"` (šetření prostředků výše).
   - Kreslířky fotky nevidí, vycházejí z popisů. Výsledek ukázat Báře jako náhled (`magick` s odstraněním `<text>`).
   - Pro menší města obecný autobus státu.
-- **Zapojení podle hranice nebo boxu města:** `city.js SK_ART`/`AT_ART`, `skArtAt`/`atArtAt`, `useCity` v `app.js`.
+- **Zapojení podle hranice nebo boxu města:** v modulu státu `art` (sady měst) a `artAt(lat, lon)` (území přes `places.js`
+  `areaAt`); `app.js useCity` ho bere z `placeAt`. Město, které je v `mesta.json`, má sadu svou (`city.js art`, `artMap`).
 - **Mobiliář:**
   - Nejdřív zjistit, co město skutečně převzalo (Bratislava má pražskou lavičku).
   - Označníky se značkou státu i v kresbách přístřešků: Rakousko „H“ v `austria/`, Vídeň s tabulkou Wiener Linien jen u tramvaje.

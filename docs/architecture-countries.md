@@ -188,3 +188,20 @@ Odhad: krok 0 skoro den, kroky 1–4 další den až dva, 5–6 menší.
   obnovení stránky, změně jazyka nebo načtení souboru ztratí.
 - `validate.js` propouští v `sources.orthoCity` jen ipr/brno/plzen a zahazuje `skTown`, `atTown`, `zbgis`,
   `skEdges`, `sk`, `at`: uložený slovenský řez ztratí kredity zdrojů.
+
+## Provedení (16. 11. 2026, větev `architecture-countries`, nenasazené)
+
+Kroky 0–6 commitnuté po jednom, 4b čeká na Báru. Odchylky od plánu:
+- **Krok 0 přehrává v prohlížeči, ne v Node** (`evaluation/replay/`): větve podle státu a města jsou z velké části
+  v `app.js` a v kresbě (`buildSvg`), které v Node nejdou spustit. Nahrávač před `app.js` uloží odpověď každého dotazu
+  na data (jiný hostitel, `/api/`, `data/`), přehrání je vrací a dotaz, který nahrávka nemá, selže a je vidět
+  (`misses`). Výstup řezu: profil, stavová hláška, export SVG s ilustracemi i bez, kredit, město, varování a karty dílů
+  v Návrhu se značkami, znovu načtený uložený soubor. V Node jen tabulky (`tables.mjs`). Vzorek 369 řezů: Slovensko
+  (města s pasporty a čarami map víc), Rakousko (Vídeň, Graz, Linz, Salcburk, Innsbruck, menší města, dálnice), Praha
+  20, Brno 30, za hranicemi 5. České řezy mimo Prahu a Brno až po odstávce DMVS.
+- Pohled Porovnat se porovnává bez kreseb (rozvržení měří popisky v okně a není opakovatelné); kresby hlídá export.
+- Ortofoto pruhů: stát `laneOrtho`, město ho přepíše (`praha` ipr, `brno`, `plzen`), `BY_CITY` je pryč.
+- „Cizina“ má vlastní prázdné zdroje (`towns/cizina.js`), proto mohly z `towns/slovensko.js` zmizet podmínky na id města.
+- Vzhledy domů: stát má `houseLook` (Rakousko bez paneláku); seznam vzhledů, které stát smí nabízet v Návrhu (`looks`),
+  zatím ne: dnes se nabízí všude stejný katalog a jeho omezení by bylo změnou chování.
+- `site.js NETS` a `pasporty.json` mají území už dnes (box, hranice), do `placeAt` zatím nevstupují.

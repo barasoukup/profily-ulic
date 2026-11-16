@@ -236,7 +236,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Změna jazyka načte stránku znovu, ale profil se nepřepočítává (stav záložky v sessionStorage); záblesk je v pořádku
   (Bára 16. 11. 2026), přepnutí za běhu je připravené v `i18n.js` (onLangChange), napojené není.
 - Ilustrace SK (Bára 16. 11. 2026): vozidla měst (`pilot/public/bratislava|kosice|zilina|bystrica|presov/`, kreslířka a
-  kritik ve 3 kolech) podle města řezu (`city.js` SK_ART, skArtAt); mobiliář český (Bratislava převzala od Prahy lavičku,
+  kritik ve 3 kolech) podle města řezu (`countries/SK.js` art, artAt); mobiliář český (Bratislava převzala od Prahy lavičku,
   koš a stojan Olgoj Chorchoj), označníky a přístřešky se slovenskou značkou 331 Zastávka (`pilot/public/slovensko/`).
   Vlastní bratislavský přístřešek, lampa a označník DPB až po zásadách MIB pro zastávky a osvětlení (přístřešky jsou
   v řezech vzácné). Technická mapa Bratislavy, čáry map Nitry, Piešťan, Zvolena, Hlohovce, Prešova: `?tm=1`, `?hrany=0`.
@@ -251,7 +251,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   řezu, kde má ulici pod středem (`?wien=0` vypne; A/B 40 řezů: lépe 9, stejně 2, sporný 1 z 12 prohlédnutých,
   `evaluation/austria/ab/ZPRAVA.md`). Neodpoví-li některá vrstva, FMZK se nepoužije a poznámka to řekne. Další města (Graz, Linz, Innsbruck, Klagenfurt)
   otevřené mapy povrchů nemají; Salcburk má buspruhy, zóny, stromy a značky (nezapojené).
-- Normy `limitsAT` (`evaluation/austria/NORMY.md`): cyklo podle RVS 03.02.13 (přes NÖ Leitfaden, druhotně), ostatní
+- Normy `countries/AT.js` limits (`evaluation/austria/NORMY.md`): cyklo podle RVS 03.02.13 (přes NÖ Leitfaden, druhotně), ostatní
   Wiener Projektierungshandbuch (MA 18, 2011); RVS 03.02.12, 03.04.12, 03.07.11 nejsou veřejné.
 - Značky `signs-AT/` (StVO § 52–53, Commons, úřední díla); stání na chodníku, vyhrazené stání a cyklopruh nemají značku.
 - Bez odhadu stání podle zákona (StVO § 24: dva volné pruhy, judikatura asi 2,6 m na pruh; zatím vypnuto jako na SK).
@@ -263,6 +263,20 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   16. 11. 2026: záloha, BEV jen s registrací a poplatky). Salcburk: zákaz zastavení a stání z katastru značek.
 - Žádný panelák v Rakousku (Bára 16. 11. 2026): deska je funkcionalistický dům, po 1990 moderní, kanceláře kanceláře.
 - Chybí: vozidla a mobiliář měst (kreslí se), Kurzparkzonen (aplikace zóny nekreslí), sítě (otevřené nejsou).
+
+## Státy, města a zdroje (přestavba, větev architecture-countries, 16. 11. 2026, nenasazené)
+- Plán `docs/architecture-countries.md` (Fable schválil s úpravami). Struktura všude stejná: stát → město → zdroje.
+- Stát = modul `pilot/public/countries/<ISO>.js` (CZ, SK, AT; `default.js` pro „cizinu“ a výchozí hodnoty), načítaný
+  staticky: normy, zákon o stání, značky, ortofoto, ilustrace měst státu, vzhled domů, hledání. Vedle `city` je `country`
+  (modul státu), `city.country` zůstává ISO. Mimo `countries/` žádná podmínka na stát. Pro nasazení řádek v
+  `tools/countries.mjs` (pages.yml z něj bere smyčky), CSP hlídá `tests/csp.test.js`.
+- Město dědí od státu, co nemá svého (`laneOrtho`, `roadOnPath`, `slowServer`, `ruianYear` u Prahy a Brna). Zdroje mají
+  vlastní území (`places.js inArea`, `AREAS`), `towns/index.js placeAt`. Kredit zdroje je klíč v `credits.js`
+  (opraveno: uložený řez v Košicích, Grazu, Innsbrucku se neztratí, slovenské a rakouské kredity zůstanou).
+- Výstup beze změny ověřen záchrannou sítí `evaluation/replay/` (369 nahraných řezů SK, AT, Praha, Brno, cizina;
+  přehrání před a po, tabulky ve 4 jazycích). České řezy mimo Prahu a Brno nahrát po odstávce DMVS (od 19. 11.).
+- Krok 4b (města všude: hranice obcí SK ze ZBGIS, AT ze Statistik Austria, Bratislava, Vídeň… jako města, do logu
+  `country`) mění chování: čeká na Bářino rozhodnutí.
 
 ## Jazyky (Bára 12. 11. 2026, slovenčina 15. 11. 2026, němčina 16. 11. 2026)
 - Anglicky se aplikace jmenuje **Street Profile**, slovensky **Profily ulíc**, německy **Straßenprofil**. Čeština, slovenčina,
