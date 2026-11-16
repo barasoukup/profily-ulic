@@ -12,10 +12,12 @@ Postup podle přidávání Slovenska (větev `slovensko`, 13.–16. 11. 2026). K
 
 ## Pravidla, která platí po celou dobu
 
+- **Názvy v kódu a souborech anglicky** (Bára 16. 11. 2026): `towns/austria.js`, id státu `austria`, `signs-AT/`,
+  `evaluation/austria/`. Stávající české názvy (`slovensko.js`, `znacky/`, `cesko`) zůstávají.
 - **Jazyk a stát nemíchat.** Jazyk rozhraní: ISO 639-1 malými (cs, sk, en), jen texty (`i18n.js`, `sk.js`). Stát řezu:
   ISO 3166-1 velkými (CZ, SK, AT): `city.country`, data, normy, zákony, značky, ilustrace. V kódu, souborech (`znacky-SK/`)
   i ve zprávách Báře.
-- **Nepushovat.** Vše do větve státu (např. `rakousko`), commitovat lokálně, do `main` ne, dokud Bára neřekne.
+- **Nepushovat.** Vše do větve státu (např. `austria`), commitovat lokálně, do `main` ne, dokud Bára neřekne.
 - **Každý nový zdroj dat má A/B test** (viz níže) a výsledek ve zprávě. Co vyjde hůř, zůstane v kódu vypnuté za
   parametrem (`?zvolen=1`, `?tm=1`), ne smazané.
 - **Pátrání po datových vrstvách na agenta s modelem Haiku** (přesné zadání: co hledat, jak ověřit CORS a licenci, tabulka).
@@ -42,7 +44,13 @@ Postup podle přidávání Slovenska (větev `slovensko`, 13.–16. 11. 2026). K
 
 ## 2. OSM, ortofoto, hledání, domy
 
-- **OSM:** dlaždice státu v balíku (`tools/build_osm_tiles.mjs`, `pack_osm_tiles.mjs`), lokálně `?osm=balik`.
+- **OSM a R2 (Bára: „nezapomeň na R2 dlaždice“):** dlaždice státu v balíku (`tools/build_osm_data.sh`,
+  `pack_osm_tiles.mjs`, klíč státu = začátek jména souboru, `index.json` vedle). Lokálně: výřez Geofabriku do `data/osm/<kód>.osm.pbf`,
+  `NAME=<kód> OGR=…/QGIS…/ogr2ogr tools/build_osm_data.sh data/osm/<kód>.osm.pbf <dir>`, pak `pack_osm_tiles.mjs <dir>
+  pilot/data/osm-pack/<kód>-novy.posm`, zkoušet s `?osm=balik`. V nasazení (`.github/workflows/pages.yml`) přidat kód státu
+  do všech smyček: cache výřezů, stažení z Geofabriku, sestavení a zabalení, úklid starých souborů na R2 (kbelík
+  `profily-ulic-osm`, `data.streetspace.eu/osm`); prodloužit timeouty. Na Pages je limit 1 GB: velký stát jen na R2
+  (u Rakouska se na Pages kopírují jen `cz` a `sk` a `index.json` bez `at`).
 - **Ortofoto:** národní, otevřená licence a CORS (čteme pixely). Zapojit do `lanes-ortho.js` (zdroj podle města,
   `BY_CITY`), do podkladů mapy a kreditů. Ověřit vyvážení barev (slovenská mozaika byla žlutá, asfalt vypadal jako tráva;
   bez úpravy 11 ze 40 řezů nemělo profil).

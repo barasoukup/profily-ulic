@@ -1,5 +1,5 @@
 # Publishes the app (pilot/public) on GitHub Pages as a static site: the browser asks IPR, the cities'
-# GIS and ČÚZK directly, and the OSM tiles of the Czech Republic and Slovakia are built here from Geofabrik's
+# GIS and ČÚZK directly, and the OSM tiles of the Czech Republic, Slovakia and Austria are built here from Geofabrik's
 # extracts once a week, packed into one file per country (tools/pack_osm_tiles.mjs) and uploaded to Cloudflare R2
 # (data.streetspace.eu), with the same files on Pages as a fallback (they are not kept in the repository; a deploy
 # in the same week reuses them from the Actions cache unless the tile scripts changed). Runs on push to main, by
@@ -37,8 +37,8 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
-    # Building the tiles of both countries takes most of it (about 40–60 min without the cache).
-    timeout-minutes: 150
+    # Building the tiles of the countries (CZ, SK, AT) takes most of it (about 60–90 min without the cache).
+    timeout-minutes: 180
     env:
       # Whether the keys for R2 are set (a step's if cannot read secrets).
       R2_KEYS: ${{ secrets.R2_ACCESS_KEY_ID != '' && secrets.R2_SECRET_ACCESS_KEY != '' && vars.R2_ACCOUNT_ID != '' }}
@@ -74,13 +74,14 @@ jobs:
           path: |
             data/osm/cz.osm.pbf
             data/osm/sk.osm.pbf
+            data/osm/at.osm.pbf
           key: osm-pbf-${{ steps.week.outputs.week }}
           restore-keys: osm-pbf-
       - name: Download the OSM extracts
         if: steps.tiles-cache.outputs.cache-hit != 'true' && steps.pbf-cache.outputs.cache-hit != 'true'
         run: |
           mkdir -p data/osm
-          for c in cz:czech-republic sk:slovakia; do
+          for c in cz:czech-republic sk:slovakia at:austria; do
             if curl -fL --retry 3 --retry-delay 20 --connect-timeout 30 -o "/tmp/${c%%:*}.osm.pbf" \
                  "https://download.geofabrik.de/europe/${c#*:}-latest.osm.pbf"; then
               mv "/tmp/${c%%:*}.osm.pbf" "data/osm/${c%%:*}.osm.pbf"
@@ -95,10 +96,10 @@ jobs:
       # same day gets another name); the loose tiles are not kept.
       - name: Build and pack OSM tiles
         if: steps.tiles-cache.outputs.cache-hit != 'true'
-        timeout-minutes: 75
+        timeout-minutes: 110
         run: |
           mkdir -p site-osm
-          for c in cz sk; do
+          for c in cz sk at; do
             NAME=$c tools/build_osm_data.sh "data/osm/$c.osm.pbf" "tiles-$c"
             node tools/pack_osm_tiles.mjs "tiles-$c" "site-osm/$c-$(date -u +%F)-{hash}.posm"
             rm -rf "tiles-$c" data/osm/${c}_*.geojsonl
@@ -132,7 +133,7 @@ jobs:
           done
           aws s3 cp --endpoint-url "$ENDPOINT" site-osm/index.json "$R2/index.json" --content-type application/json --cache-control "public, max-age=300"
           # Older builds: each country keeps its two newest files (by the time they were uploaded).
-          for c in cz sk; do
+          for c in cz sk at; do
             aws s3 ls --endpoint-url "$ENDPOINT" "$R2/" | sort -r | awk '{print $4}' | grep -E "^$c-[0-9a-f-]+\.posm$" | tail -n +3 | while read -r old; do
               aws s3 rm --endpoint-url "$ENDPOINT" "$R2/$old"
             done
@@ -253,7 +254,9 @@ jobs:
             }'
           grep -q 'LOG_URL = ""' _site/config.js && echo "::warning::no log of cuts (repository variable LOG_URL)" || true
           # The packed OSM tiles also on Pages: where R2 does not answer, the app reads them here (gis.js).
-          cp -R site-osm _site/data/osm-pack
+          # Austria's file only on R2 (Bára 16. 11. 2026): with it the site would pass Pages' 1 GB.
+          mkdir -p _site/data/osm-pack && cp site-osm/cz-*.posm site-osm/sk-*.posm _site/data/osm-pack/
+          node -e 'const fs = require("fs"), j = JSON.parse(fs.readFileSync("site-osm/index.json", "utf8")); delete j.files.at; fs.writeFileSync("_site/data/osm-pack/index.json", JSON.stringify(j, null, 1))'
           mv site-zps.json _site/data/zps.json
           [ -d site-vyvoj ] && mv site-vyvoj _site/data/vyvoj || echo "::warning::no built-up area tiles, flat roofs judged by the house alone"
           cp LICENCE-A-ZDROJE.md _site/data/LICENCE-A-ZDROJE.md
@@ -264,7 +267,7 @@ jobs:
           done
           node tools/build_city_site.mjs _site
           cat > _site/data/README.txt <<'EOF'
-          data/osm-pack: dlaždice odvozené z OpenStreetMap (výřezy Geofabrik Česká republika a Slovensko), jeden
+          data/osm-pack: dlaždice odvozené z OpenStreetMap (výřezy Geofabrik Česká republika a Slovensko; Rakousko jen na R2), jeden
           soubor na stát (index.json, formát v pilot/public/osmpack.js); tytéž soubory jsou na data.streetspace.eu/osm.
           © přispěvatelé OpenStreetMap, licence ODbL 1.0 (https://opendatacommons.org/licenses/odbl/).
           Vytvořeno skripty tools/build_osm_data.sh a tools/pack_osm_tiles.mjs v repozitáři této aplikace.
