@@ -60,3 +60,18 @@ test("ochranný cyklopruh: základ 1,5 m, pod 1,25 m červeně, vedle stání ja
   assert.deepEqual(levels([{ type: "pruh", width: 3 }, { type: "ochranny_pruh", width: 1.2 }]), ["1:min"]);
   assert.deepEqual(levels([{ type: "parkovani", width: 2 }, { type: "ochranny_pruh", width: 1.5 }]), ["1:min"]);
 });
+
+test("Slovensko: pravidla podle TP 117 (cyklopruh 1,75 m, bus s cyklisty mimo 3,5–4,75 m, chodník 1,3 m)", async () => {
+  const { setCity } = await import("../pilot/public/city.js");
+  setCity("slovensko");
+  const at = (segments) => checkRules({ segments }).map((w) => w.level);
+  assert.deepEqual(at([{ type: "cyklopruh", width: 1.5 }]), ["min"]);
+  assert.deepEqual(at([{ type: "cyklopruh", width: 1.8 }]), ["zaklad"]);
+  assert.deepEqual(at([{ type: "bus_cyklo", width: 4.25 }]), ["min"]);
+  assert.deepEqual(at([{ type: "bus_cyklo", width: 3.4 }]), []);
+  assert.deepEqual(at([{ type: "chodnik", width: 1.4 }]), ["zaklad"]);
+  // No Slovak width of a tram belt: no warning.
+  assert.deepEqual(at([{ type: "tramvaj", width: 3 }, { type: "tramvaj", width: 3 }]), []);
+  setCity("praha");
+  assert.deepEqual(at([{ type: "cyklopruh", width: 1.5 }]), []);
+});

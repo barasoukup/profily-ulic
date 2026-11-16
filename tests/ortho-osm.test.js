@@ -167,3 +167,13 @@ test("ortofoto a OSM: šířka vozovky ze ZBGIS (osa se šířkou), kde OSM ší
   // The centre line at x = 0.5 is t = −0.5: the carriageway from −4.5 to 3.5.
   assert.ok(Math.abs(polys.kerbs.A + 4.5) < 0.1 && Math.abs(polys.kerbs.B - 3.5) < 0.1, JSON.stringify(polys.kerbs));
 });
+
+test("ortofoto a OSM: značka plochy technické mapy mezi čarami určí druh kousku (trávník místo chodníku)", () => {
+  const els = osm().elements;
+  const line = (x) => [ll(x, -40), ll(x, 40)].map((p) => [p.lon, p.lat]);
+  // Kerb lines at x = ±3.2, the sidewalk's outer edge at x = −5.5 (t = 5.5); a lawn symbol at x = −4.3 (t = 4.3).
+  const lawn = ll(-4.3, 3);
+  const polys = orthoOsmPolys({ osm: { elements: els }, frame, dir, way: els[0], st: null, edges: [line(3.2), line(-3.2), line(-5.5)], symbols: [{ x: lawn.lon, y: lawn.lat, code: 401 }] });
+  const green = polys.filter((p) => p.code === 401 && p.label.includes("technická mapa")).map((p) => p.rings[0].map(([x]) => -x)).map((ts) => [Math.min(...ts), Math.max(...ts)]);
+  assert.ok(green.some(([a, b]) => Math.abs(a - 3.2) < 0.1 && Math.abs(b - 5.5) < 0.1), JSON.stringify(green));
+});

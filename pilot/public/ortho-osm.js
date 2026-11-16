@@ -327,7 +327,9 @@ const STREET = /^(motorway|trunk|primary|secondary|tertiary|unclassified|residen
 // cut by the street's axis it gives the carriageway OSM would only guess (no width tag).
 // areas: surfaces of a national map beside the street (ZBGIS car parks and lawns: MTVU features in WGS 84), after the
 // carriageway and the houses, before OSM's green; not one under the axis (a lawn the street crosses on the map).
-export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = [], widths = [], areas = [] }) {
+// symbols: point symbols of the kinds of areas of a technical map ({ x: lon, y: lat, code: MTVU code }, Bratislava's):
+// a piece between two of its lines takes the kind of the symbols inside it (its lines need not close).
+export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = [], widths = [], areas = [], symbols = [] }) {
   if (!way || !STREET.test(way.tags?.highway || "")) return null;
   const normal = [-dir[1], dir[0]];
   const tu = (lon, lat) => { const [x, y] = frame.toXY(lon, lat); return [x * normal[0] + y * normal[1], x * dir[0] + y * dir[1]]; };
@@ -386,7 +388,17 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   }
   // A stretch without a sidewalk (past SIDEWALK_MAX, or all of it where OSM says there is none): greenery where the image
   // is mostly green, a paved area up to REST_MAX m, else nothing (the profile ends: a yard, a field, a plot of its own).
+  // The kind the map's symbols give a stretch [a, b] across the cut (the most frequent within 15 m along), or null.
+  const symT = symbols.map((p) => { const [t, u] = tu(p.x, p.y); return { t, u, code: p.code }; }).filter((p) => Math.abs(p.u) < 15);
+  const symbolAt = (a, b) => {
+    const n = new Map();
+    for (const p of symT) if (p.t > a && p.t < b) n.set(p.code, (n.get(p.code) || 0) + 1);
+    return n.size ? [...n].sort((x, y) => y[1] - x[1])[0][0] : null;
+  };
+  const SYMBOL_LABEL = { 401: "zeleň (technická mapa)", 702: "chodník (technická mapa)", 1003: "zpevněná plocha (technická mapa)", 603: "dvůr (technická mapa)", 704: "parkoviště (technická mapa)" };
   const rest = (a, b) => {
+    const sym = symbolAt(a, b);
+    if (SYMBOL_LABEL[sym]) { polys.push({ ...rect(sym, SYMBOL_LABEL[sym], a, b), guess: false }); edgeUsed = true; return; }
     const g = [];
     if (k.cols) for (let i = k.cols.ti(a); i < k.cols.ti(b); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.green[i])) g.push(k.cols.green[i]);
     if (g.length && g.reduce((x, y) => x + y, 0) / g.length >= GREEN_AREA) polys.push(rect(401, "zeleň (ortofoto)", a, b));
@@ -418,7 +430,12 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
       const cut = edgeT.filter((t) => sg * (t - kerb) >= 1 && sg * (swEnd - t) > 0 && Math.abs(far - t) > 0.5).sort((x, y) => sg * (x - y))[0];
       if (cut !== undefined) { swEnd = cut; edgeUsed = true; }
     }
-    if (swEnd !== kerb) polys.push(rect(702, "chodník (ortofoto a OSM)", ...span(kerb, swEnd)));
+    if (swEnd !== kerb) {
+      // The map's symbol in the sidewalk's stretch: a lawn there is a green strip, not a sidewalk.
+      const sym = symbolAt(...span(kerb, swEnd));
+      if (sym === 401) { polys.push({ ...rect(401, SYMBOL_LABEL[401], ...span(kerb, swEnd)), guess: false }); edgeUsed = true; }
+      else polys.push(rect(702, "chodník (ortofoto a OSM)", ...span(kerb, swEnd)));
+    }
     if (swEnd !== far) rest(...span(swEnd, far));
     // A house found only beside the cut (on a line u ≠ 0): its front drawn across the cut, so the profile ends at it.
     if (f !== null && o.facadeU[side] !== 0) polys.push({ ...rect(601, "budova (OSM, vedle řezu)", ...span(far, far + sg * HOUSE)), guess: false });

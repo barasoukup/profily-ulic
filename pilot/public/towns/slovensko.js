@@ -268,6 +268,9 @@ const EDGE_SOURCES = [
   { id: "presov", box: [21.15, 48.94, 21.33, 49.06], url: "https://services-eu1.arcgis.com/coW662rcZatH0tHA/arcgis/rest/services/Vrstva_hraníc_druhov_pozemkov/FeatureServer/52", field: "TYP_CIARY", keep: (v) => v === 1, credit: "hranice druhov pozemkov © mesto Prešov (CC BY 4.0)" },
 ];
 const BA_EDGE = new Set([2180, 2190, 2200, 2201, 2210, 2211, 2220]);
+// The symbols that tell the pieces beside a street (ortho-osm.js symbols): lawns and ornamental green, sidewalks,
+// other paved areas, yards, car parks.
+const BA_SYMBOL = { 3141: 401, 3140: 401, 3110: 401, 120: 702, 130: 1003, 4060: 603, 5370: 704 };
 export const edgeSourceAt = (lon, lat) => EDGE_SOURCES.find((e) => lon >= e.box[0] && lon <= e.box[2] && lat >= e.box[1] && lat <= e.box[3]) || null;
 async function edgesAt(bbox) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number), cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
@@ -278,8 +281,11 @@ async function edgesAt(bbox) {
     return { paths: (j?.features || []).filter((f) => e.keep(f.attributes?.[e.field])).flatMap((f) => f.geometry?.paths || []), id: e.id };
   }
   if (inBa(cx, cy)) {
-    const j = await baQuery("Technická_mapa_TM", 7, bbox, "Typ").catch(() => null);
-    return { paths: (j?.features || []).filter((f) => BA_EDGE.has(f.attributes?.Typ)).flatMap((f) => f.geometry?.paths || []), id: "bratislava-tm" };
+    // With its symbols of the kinds of areas (lawn, sidewalk, paved area, yard, car park): the pieces between the lines.
+    const [j, p] = await Promise.all([baQuery("Technická_mapa_TM", 7, bbox, "Typ").catch(() => null), baQuery("Technická_mapa_TM", 9, bbox, "Typ").catch(() => null)]);
+    // ?symboly=0 leaves the symbols out (the A/B test).
+    const symbols = param("symboly") === "0" ? [] : (p?.features || []).map((f) => ({ x: f.geometry?.x, y: f.geometry?.y, code: BA_SYMBOL[f.attributes?.Typ] })).filter((q) => q.code && q.x !== undefined);
+    return { paths: (j?.features || []).filter((f) => BA_EDGE.has(f.attributes?.Typ)).flatMap((f) => f.geometry?.paths || []), id: "bratislava-tm", symbols };
   }
   return { paths: [] };
 }
@@ -357,7 +363,7 @@ async function lines(bbox) {
   if (!bbox) return { features: [] };
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   const [tm, edges, zb] = await Promise.all([useTm((x0 + x1) / 2, (y0 + y1) / 2) ? baTm(bbox) : { lines: [] }, edgesAt(bbox), zbgisAt(bbox)]);
-  return { features: tm.lines, edges: edges.paths, edgesFrom: edges.id, widths: zb.widths, areas: zb.features };
+  return { features: tm.lines, edges: edges.paths, edgesFrom: edges.id, symbols: edges.symbols || [], widths: zb.widths, areas: zb.features };
 }
 
 // OSM around a point and, in a town that has them, its trees where OSM has none nearby.

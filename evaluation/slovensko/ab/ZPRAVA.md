@@ -156,3 +156,27 @@ nehodnotila.
 | nejde posoudit | 4 |
 
 **ZBGIS je zapnutý.**
+
+# Značky ploch bratislavské technické mapy a slovenské normy (16. 11. 2026)
+
+**Značky ploch** (Bratislava, `symbols`; `?symboly=0` vypne):
+- Kousek mezi dvěma čarami technické mapy, které řez protne, dostane druh podle značek v něm: trávník, chodník,
+  zpevněná plocha, dvůr nebo parkoviště. Čáry se tak uzavírat nemusí.
+- A/B na 40 bratislavských řezech: změnily se jen 2. Na řezu č. 2 je pás 5,3 m chodník místo zeleně, Palárikova má
+  zeleň místo zpevněné plochy. Okem neposouzeno.
+
+**Slovenské normy** (`rules.js` limitsSK, stát SK; zdroje a jistota v `evaluation/slovensko/NORMY.md`):
+
+| Prvek | Pravidlo | Zdroj |
+|---|---|---|
+| chodník | min. 1,3 m, základ 1,5 m | vyhl. 532/2002, STN 73 6110 |
+| cyklopruh | min. 1,75 m, doporučeně 2 m; vedle stání navíc bezpečnostní pás | TP 117 |
+| pruh pro autobusy | 3,5 m | TP 117 |
+| autobusy s cyklisty | nejvýš 3,5 m, nebo aspoň 4,75 m | TP 117 |
+| stezka pro cyklisty | 2 m, obousměrná 2,5 m | TP 117 |
+| jednosměrka s cyklisty v protisměru | 3,75 m (3,5 m) | TP 117, tab. 4 |
+| jízdní pruhy | 2,75 až 3,25 m | TP 117/118, STN 2004 |
+| tramvajový pás | bez varování, veřejná slovenská hodnota není | – |
+
+A/B na 40 profilech Bratislavy (varování jako v Návrhu): česká pravidla 22, slovenská 14. Méně je hlavně varování u
+chodníků. Varování u pruhů a stání jsou skoro stejná.

@@ -443,7 +443,8 @@ const abroad = (id, country, cover, inCity, adjective, view, example) => ({
 Object.assign(CITIES, {
   // The houses of ZBGIS (towns/slovensko.js); the orthophoto is credited where it was read (creditLines).
   slovensko: { ...abroad("slovensko", "SK", "Slovensko", "na Slovensku", "slovenské", [48.7, 19.7], "48.146736, 17.106998"),
-    dataShort: "ZBGIS a OSM", credit: "budovy © GKÚ Bratislava (ZBGIS, CC BY 4.0)" },
+    dataShort: "ZBGIS a OSM", credit: "budovy © GKÚ Bratislava (ZBGIS, CC BY 4.0)",
+    rulesHead: "Šířky podle slovenských předpisů (TP 117, TP 73 6110, TP 085, vyhl. 532/2002 Z. z.):" },
   cizina: abroad("cizina", null, "cizinu", "v cizině", "zahraniční", [49.8, 15.5], "48.146736, 17.106998"),
 });
 
