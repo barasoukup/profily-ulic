@@ -1,7 +1,7 @@
 // The root of the web (Bára 16. 11. 2026): the app lives at streetspace.eu/profily/, the domain's root and every
 // address outside profily/ send there with the rest of the address kept, so old links keep working: GitHub sends
 // barasoukup.github.io/profily-ulic/<path> to streetspace.eu/<path>, and <path> (#rez=…, ?mesto=…, brno/…) goes on
-// to streetspace.eu/profily/<path>. On barasoukup.github.io (before the domain is set) the base is /profily-ulic/.
+// to streetspace.eu/profily/<path>; streetspace.eu/profile/ too. On barasoukup.github.io (before the domain is set) the base is /profily-ulic/.
 //   node tools/build_root_site.mjs _site     (after the app was moved to _site/profily)
 import fs from "node:fs";
 import path from "node:path";
@@ -12,6 +12,8 @@ export const SEND = `(function () {
   var base = /\\.github\\.io$/.test(location.hostname) ? "/" + location.pathname.split("/")[1] + "/" : "/";
   var rest = location.pathname.indexOf(base) === 0 ? location.pathname.slice(base.length) : "";
   if (rest.indexOf("${APP}") === 0) return false;
+  // The English address /profile/ (Bára 16. 11. 2026) is the same app.
+  rest = rest.replace(/^profile(\\/|$)/, "");
   location.replace(base + "${APP}" + rest + location.search + location.hash);
   return true;
 })()`;

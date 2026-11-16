@@ -13,7 +13,9 @@ sestaví profil od fasády k fasádě z dat IPR a OSM, profil jde upravit (Stav 
 a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetmixu.
 
 ## Kde to běží
-- Živě: https://barasoukup.github.io/profily-ulic/
+- Živě: https://streetspace.eu/profily/ (Bára 16. 11. 2026; doména u Wedosu, DNS v Cloudflaru: A/AAAA na GitHub Pages,
+  `www` CNAME, vše DNS only, `data` je R2). Pages nasazuje aplikaci do `profily/`, kořen domény, `/profile/` a staré
+  odkazy `barasoukup.github.io/profily-ulic/…` přesměrují tam i s řezem (`tools/build_root_site.mjs`).
 - Repo: github.com/barasoukup/profily-ulic (MIT, © Bára Soukupová).
 - Push na `main` = nasazení na GitHub Pages (`.github/workflows/pages.yml`), navíc každé pondělí
   obnova OSM. Dlaždice OSM ČR a Slovenska (Geofabrik) jsou zabalené do jednoho souboru na stát (`tools/pack_osm_tiles.mjs`,
