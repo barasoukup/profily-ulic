@@ -174,15 +174,15 @@ test("pěší zóna bez pruhů (celá šířka chodník z pasportu): značka zó
   assert.equal(p.segments[0].signs, undefined);
 });
 
-test("značky státu AT: soubory v signs-AT/, jednosměrka podle směru pruhu, rychlost, co Rakousko nemá, se nekreslí", async () => {
+test("značky státu AT: soubory v signs-AT/, jednosměrka se nekreslí (čelní značku nemá), rychlost, co Rakousko nemá, se nekreslí", async () => {
   const fs = await import("node:fs");
   const { SIGNS } = await import("../pilot/public/signs.js");
   for (const k of Object.keys(SIGNS)) {
     const f = signFile({ k, v: 50 }, {}, "AT");
     if (f) assert.ok(fs.existsSync(new URL(`../pilot/public/signs-AT/${f}.svg`, import.meta.url)), `${k} → ${f}`);
   }
-  assert.equal(signFile({ k: "oneway" }, { dir: "forward" }, "AT"), "HZ10-rechts");
-  assert.equal(signFile({ k: "oneway" }, { dir: "backward" }, "AT"), "2");
+  // Austria has no one-way sign facing the driver (Bára): none under the lane.
+  assert.equal(signFile({ k: "oneway" }, { dir: "forward" }, "AT"), null);
   assert.equal(signFile({ k: "b20a", v: 30 }, {}, "AT"), "10a-30");
   assert.equal(signFile({ k: "ztp" }, {}, "AT"), null);
   assert.equal(plateFile({ k: "b1", plate: "obsluha" }, {}, "AT"), null);

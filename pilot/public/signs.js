@@ -101,9 +101,9 @@ const SK_SPEEDS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130];
 // The folder of a state's signs.
 // The signs of the state AT (pilot/public/signs-AT/, README there; StVO 1960 § 52–53, Wikimedia Commons, Austrian
 // official works): the label's number and the file. Austria has no sign for parking on the sidewalk, a reserved
-// space or a cycle lane (markings), so those are not drawn; one-way with contraflow cyclists keeps Hinweiszeichen 10.
+// space or a cycle lane (markings), nor a one-way sign facing the driver (Einbahnstraße is a plate along the street), so those are not drawn.
 const AT_CODE = { b1: "§ 52 Z 1", b11: "§ 52 Z 6c", b8: "§ 52 Z 8c", b30: "§ 52 Z 14b", b20a: "§ 52 Z 10a", b28: "§ 52 Z 13b",
-  b29: "§ 52 Z 13a", oneway: "§ 53 Z 10 / § 52 Z 2", c8a: "§ 52 Z 16", c9a: "§ 52 Z 17a", c10a: "§ 52 Z 17a", c7a: "§ 52 Z 17",
+  b29: "§ 52 Z 13a", c8a: "§ 52 Z 16", c9a: "§ 52 Z 17a", c10a: "§ 52 Z 17a", c7a: "§ 52 Z 17",
   ip11a: "§ 53 Z 1a", ip14a: "§ 53 Z 8a", ip15a: "§ 53 Z 8c", ip20a: "§ 53 Z 25", zona30: "§ 52 Z 11a", ip26a: "§ 53 Z 9c",
   ip27a: "§ 53 Z 9a", cyklozona: "§ 53 Z 26", sdilena: "§ 53 Z 9e" };
 const AT_FILE = { b1: "1", b11: "6c", b8: "8c", b30: "14b", b28: "13b", b29: "13a", c8a: "16", c9a: "17a-a", c10a: "17a-b", c7a: "17",
@@ -277,8 +277,9 @@ function walkSide(segs, i) {
 export function signFile(s, seg, country = "CZ") {
   const dir = s.dir ?? seg?.dir;
   if (country === "AT") {
-    // One-way: the arrow sign points the way of the lane as the viewer sees it; coming towards the viewer, Einfahrt verboten.
-    if (s.k === "oneway") return dir === "backward" ? "2" : "HZ10-rechts";
+    // No one-way sign under a lane (Bára 16. 11. 2026): Austria's Einbahnstraße (Hinweiszeichen 10) is the plate along
+    // the street, there is none facing the driver.
+    if (s.k === "oneway") return null;
     if (s.k === "b20a") return AT_SPEEDS.includes(s.v) ? `10a-${s.v}` : "10a";
     return AT_FILE[s.k] || null;
   }

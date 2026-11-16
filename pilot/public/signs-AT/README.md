@@ -19,8 +19,8 @@ jsou volným dílem podle § 7 odst. 1 rakouského UrhG (úřední dílo). Staž
 | HZ1a | § 53 Z 1a Parkplatz |
 | HZ8a, HZ8c | § 53 Z 8a Autobahn, Z 8c Autostraße |
 | HZ9a, HZ9c, HZ9e | § 53 Z 9a Fußgängerzone, Z 9c Wohnstraße, Z 9e Begegnungszone |
-| HZ10-links, HZ10-rechts | § 53 Z 10 Einbahnstraße |
+| HZ10-links, HZ10-rechts | § 53 Z 10 Einbahnstraße (jen tabule podél ulice; pod pruhem se nekreslí, Bára 16. 11. 2026) |
 | HZ25 | § 53 Z 25 Fahrstreifen für Omnibusse |
 | HZ26 | § 53 Z 26 Fahrradstraße |
 
-Nemá: stání na chodníku, vyhrazené stání, cyklopruh a víceúčelový pruh (jen vodorovné značení), dodatkové tabulky.
+Nemá: čelní značku jednosměrky, stání na chodníku, vyhrazené stání, cyklopruh a víceúčelový pruh (jen vodorovné značení), dodatkové tabulky.
