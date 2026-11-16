@@ -776,6 +776,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     const lit = luck === 5;
     box(d - 10, d + w + 10, z - 22, z - 10, shade); // shadow under the sill
     if (kind === "vila" || kind === "sorela") box(d - 20, d + w + 20, z - 12, z + h + 22, trim, outline); // the window surround (šambrána)
+    if (kind === "sorela") box(d - 30, d + w + 30, z + h + 22, z + h + 34, tint(trim, 0.95), outline); // and a little cornice over it
     box(d - 7, d + w + 7, z - 7, z + h + 7, WF);
     box(d, d + w, z, z + h, lit ? LIT : GLASS);
     poly([[d + w * 0.5, z + h], [d + w, z + h], [d + w, z + h * 0.55]], lit ? "#f8e7b5" : GLINT);
@@ -848,7 +849,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     const dc = style === "nizky" ? RIDGE + 50 : EDGE - 80;
     box(dc - 24, dc + 24, top, z(dc) + 100, "#c46a4b");
     box(dc - 32, dc + 32, z(dc) + 90, z(dc) + 102, "#8d4a34");
-    poly([[0, top], [Math.min(ridge, EDGE), z(Math.min(ridge, EDGE)) - 12], [EDGE, z(EDGE) - 12], [EDGE, top]], kind === "kostka" || kind === "vila" ? tint(tile[0], 1.08) : shade, outline); // a hipped roof shows its slope
+    poly([[0, top], [Math.min(ridge, EDGE), z(Math.min(ridge, EDGE)) - 12], [EDGE, z(EDGE) - 12], [EDGE, top]], kind === "kostka" || kind === "vila" || kind === "sorela" ? tint(tile[0], 1.08) : shade, outline); // a hipped roof shows its slope
     const slab = (d0, d1) => {
       poly([[d0, z(d0)], [d1, z(d1)], [d1, z(d1) + 30], [d0, z(d0) + 30]], tile[0]);
       poly([[d0, z(d0) - 12], [d1, z(d1) - 12], [d1, z(d1)], [d0, z(d0)]], tile[1]);
@@ -859,7 +860,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     if (style === "sikma") for (const d of [-eave + 10, -eave / 2 + 2]) box(d - 5, d + 5, top - 16, z(d) - 12, ROOF.tileDark); // brackets
     else dot(-eave + 2, z(-eave) - 16, 10, tint(tile[1], 0.9)); // gutter
     if (kind === "kostka") {} // the low hipped roof of the cube has no gable
-    else if (kind === "vila") { // a villa's hipped roof: rows of tiles on the slope, a dormer with its little gable
+    else if (kind === "vila" || kind === "sorela") { // a hipped roof: rows of tiles on the slope, a dormer with its little gable
       for (let zr = top + 40; zr < z(Math.min(ridge, EDGE)) - 30; zr += 34) {
         const d0 = (zr - top - 12) / P, d1 = Math.min(EDGE, ridge + (z(ridge) - zr) / P);
         if (d1 > d0 + 20) box(d0 + 8, d1 - 8, zr, zr + 4, tile[1], { "fill-opacity": 0.35 });
@@ -1115,6 +1116,13 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       for (let d = 281; d < 346; d += 13) box(d - 1, d + 1, 0, 199, tint(DOOR, 0.8));
       dot(334, 100, 5, "#f2d27a");
     } else {
+      if (kind === "sorela") { // a rusticated ground floor: stone blocks with deep joints, under the windows and the door
+        box(0, EDGE - 30, plinth[0], f.ground - 22, tint(STONE, 1.12));
+        for (let z = plinth[0] + 40, i = 0; z < f.ground - 30; z += 40, i++) {
+          box(0, EDGE - 30, z - 3, z + 3, tint(STONE, 0.85));
+          for (let d = i % 2 ? 40 : 0; d < EDGE - 30; d += 80) if (d) box(d - 2, d + 2, z, Math.min(z + 40, f.ground - 22), tint(STONE, 0.85));
+        }
+      }
       // A cube family house has its door up a flight of steps (a raised ground floor over the garage), with a rail.
       const z0 = kind === "kostka" ? plinth[0] : 0;
       const doorH = Math.min(240, f.ground * 0.72);
@@ -1213,15 +1221,15 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
   // --- What sticks out towards the street ---
   box(0, 10, plinth ? plinth[0] : 0, top, dark); // the street facade, seen edge-on
   if (kind === "sorela") {
-    // Sorela: a rusticated ground floor (grooves), a profiled cornice on consoles, a relief band under it.
-    for (let z = plinth[0] + 35; z < f.ground - 20; z += 35) box(0, EDGE - 30, z - 3, z + 3, tint(wall, 0.82));
-    box(-20, EDGE, f.ground - 22, f.ground, trim, outline);
-    box(0, EDGE - 30, top - 120, top - 70, tint(wall, 1.08)); // the relief band
-    for (let d = 30; d < EDGE - 50; d += 60) { box(d, d + 30, top - 110, top - 80, tint(wall, 0.9)); dot(d + 15, top - 95, 8, tint(wall, 1.12)); }
+    // Sorela: a stone band over the rusticated ground floor, a plain frieze and a heavy profiled cornice.
+    box(-20, EDGE, f.ground - 22, f.ground, tint(STONE, 1.05), outline);
     const corn = tint(wall, 1.15);
-    for (let d = 0; d < EDGE - 30; d += 45) box(d + 10, d + 26, top - 60, top - 30, tint(corn, 0.9), outline); // consoles
-    box(-40, EDGE, top - 30, top, corn, outline);
-    box(0, EDGE, top - 76, top - 60, shade);
+    box(0, EDGE - 30, top - 90, top - 62, tint(wall, 0.94)); // the frieze
+    box(-12, EDGE, top - 62, top - 48, corn, outline);
+    box(-30, EDGE, top - 48, top - 26, corn, outline);
+    box(-52, EDGE, top - 26, top, corn, outline);
+    box(EDGE - 30, EDGE, top - 62, top, tint(corn, 0.9));
+    box(0, EDGE, top - 104, top - 90, shade);
   } else if (style === "sikma") {
     box(-18, EDGE, f.ground - 18, f.ground, trim, outline); // string course
     box(EDGE - 30, EDGE, f.ground - 18, f.ground, tint(trim, 0.9));
