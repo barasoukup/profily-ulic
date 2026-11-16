@@ -1793,7 +1793,10 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
         ["yes", "designated"].includes(c.way.tags.bus) || ["yes", "designated"].includes(c.way.tags.psv));
       if (!here.length && minor.length && !transit && !cross.some((c) => c.way.id === way.id && inRun(c.t) && !MINOR.has(way.tags.highway))) {
         const foot = minor.some((c) => ["footway", "pedestrian", "path", "steps"].includes(c.way.tags.highway));
-        segs.push({ type: foot ? "chodnik" : "obsluzna", s: r.s, e: r.e, source: "dtm" });
+        // A cycle way (OSM highway=cycleway, or a path for bicycles) over the surface is a cycle track: a map that
+        // draws it as a roadway (Bratislava's town map, Dunajská; Bára 16. 11. 2026) does not make it an access road.
+        const bike = minor.some((c) => c.way.tags.highway === "cycleway" || (c.way.tags.highway === "path" && c.way.tags.bicycle === "designated"));
+        segs.push({ type: bike ? "cyklostezka" : foot ? "chodnik" : "obsluzna", s: r.s, e: r.e, source: "dtm" });
         continue;
       }
       const own = here.find((c) => c.way.id === way.id) || here[0];
