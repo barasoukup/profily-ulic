@@ -117,7 +117,8 @@ function closestOnPolyline(pts, p) {
 }
 
 // Nearest street (highway way) to a point; minor ways only win when much closer.
-export function nearestStreet(osm, frame, p) {
+// name: the street the user searched for (an address on a corner, search-at.js): a way of that name within 30 m wins.
+export function nearestStreet(osm, frame, p, name = null) {
   let best = null;
   for (const el of osm.elements || []) {
     if (el.type !== "way" || !el.tags?.highway || !el.geometry) continue;
@@ -126,7 +127,7 @@ export function nearestStreet(osm, frame, p) {
     const pts = el.geometry.map((g) => frame.toXY(g.lon, g.lat));
     const c = closestOnPolyline(pts, p);
     const sidewalk = ["sidewalk", "crossing"].includes(el.tags.footway);
-    const score = c.d + (sidewalk ? 25 : MINOR.has(el.tags.highway) ? 10 : 0);
+    const score = c.d + (sidewalk ? 25 : MINOR.has(el.tags.highway) ? 10 : 0) - (name && el.tags.name === name && c.d < 30 ? 30 : 0);
     if (!best || score < best.score) best = { ...c, score, way: el, pts };
   }
   return best;

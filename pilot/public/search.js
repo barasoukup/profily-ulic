@@ -6,6 +6,7 @@
 // The top half is pure (parsing, ranking, labels, geometry; tests/search.test.js), mountSearch() is the UI.
 import { t } from "./i18n.js";
 import { findSk, locateSk, looksSlovak } from "./search-sk.js";
+import { findAt, locateAt, looksViennese } from "./search-at.js";
 
 export const RUIAN_SEARCH = "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer";
 const GEOCODE = `${RUIAN_SEARCH}/exts/GeocodeSOE`;
@@ -158,6 +159,12 @@ const streetGeometry = (params) => layerQuery(4, { ...params, outFields: "kod", 
 // a street, a street), or null (a town, a district, an address without a street).
 export async function locate(item, signal) {
   const zoom = KINDS[item.type]?.zoom || 16;
+  // Vienna (search-at.js): the address point, or the middle address of the street, is the cut.
+  if (item.at) {
+    const { point, paths } = await locateAt(item, getJSON, signal);
+    const cut = (paths && nearestOnPaths(paths, point)) || point;
+    return { lon: point[0], lat: point[1], zoom, cut: { lon: cut[0], lat: cut[1] } };
+  }
   if (item.sk) {
     const { point, paths } = await locateSk(item, getJSON, signal);
     // A street: its middle; an address: the point of its street nearest to it; a town: its middle, no cut.
@@ -192,7 +199,7 @@ export async function locate(item, signal) {
 // ---------- UI: a Leaflet control at the map's top left ----------
 // onPick({ item, lat, lon, cut }) after the map has moved; status(msg, kind) for a failure.
 // inSlovakia(): does the map show Slovakia (Slovak places are then asked of ZBGIS along with RÚIAN).
-export function mountSearch(map, { status, onPick, inSlovakia = () => false }) {
+export function mountSearch(map, { status, onPick, inSlovakia = () => false, inVienna = () => false }) {
   const L = globalThis.L;
   const el = L.DomUtil.create("div", "search leaflet-bar");
   el.innerHTML = `<input id="search-input" type="search" role="combobox" aria-autocomplete="list" aria-expanded="false"
@@ -253,7 +260,9 @@ export function mountSearch(map, { status, onPick, inSlovakia = () => false }) {
       const sk = () => findSk(text.trim(), getJSON, mine.signal).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání ZBGIS", err); return []; });
       const both = inSlovakia() || looksSlovak(text);
       const [cz, skNow] = await Promise.all([getJSON(suggestUrl(text.trim()), mine.signal).then(parseSuggestions, (err) => { if (both && err.name !== "AbortError") return []; throw err; }), both ? sk() : []]);
-      const found = rankResults([...cz, ...(both || cz.length ? skNow : await sk())], text);
+      // Vienna's address points where the map shows Vienna or the query names it (search-at.js).
+      const at = inVienna() || looksViennese(text) ? await findAt(text.trim(), getJSON, mine.signal).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání Vídeň", err); return []; }) : [];
+      const found = rankResults([...at, ...cz, ...(both || cz.length ? skNow : await sk())], text);
       cache.set(key, found);
       if (cache.size > 40) cache.delete(cache.keys().next().value);
       if (mine === ctrl && document.activeElement === input) show(found, t("Nic jsem nenašla."));

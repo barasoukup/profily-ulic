@@ -2,6 +2,7 @@ import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TR
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO } from "./lanes-ortho.js";
+import { inWien } from "./towns/austria.js";
 import { orthoOsmPolys, besidePassport, P as ORTHO_P } from "./ortho-osm.js";
 // ?off=… switches named parts of the estimate off (the A/B tests, evaluation/ortofoto-osm/regrese.mjs).
 { const off = new URLSearchParams(location.search).get("off"); if (off) ORTHO_P.off = new Set(off.split(",")); }
@@ -118,7 +119,7 @@ if (lang !== "cs") for (const m of ["addAttribution", "removeAttribution"]) {
 L.control.zoom({ zoomInTitle: tr("Přiblížit"), zoomOutTitle: tr("Oddálit") }).addTo(map);
 // Address search (search.js, RÚIAN of ČÚZK): the map moves there; an address on a street or a street is cut
 // like a click at the nearest point of that street. The log gets only the kind of place, never the query.
-mountSearch(map, { status, inSlovakia: () => { const c = map.getCenter(); return cityAt(c.lat, c.lng) === "slovensko"; }, onPick: ({ item, cut }) => { log("hledani", { detail: item.type === "AdresniMisto" ? "adresa" : item.type === "Ulice" ? "ulice" : "misto" }); if (cut) cutAt(cut.lat, cut.lon); } });
+mountSearch(map, { status, inSlovakia: () => { const c = map.getCenter(); return cityAt(c.lat, c.lng) === "slovensko"; }, inVienna: () => { const c = map.getCenter(); return inWien(c.lng, c.lat); }, onPick: ({ item, cut }) => { log("hledani", { detail: item.type === "AdresniMisto" ? "adresa" : item.type === "Ulice" ? "ulice" : "misto" }); if (cut) cutAt(cut.lat, cut.lon, false, null, null, item.at?.street || null); } });
 // Base maps. IPR services are drawn through ArcGIS export requests in Web Mercator, one per tile.
 // Each request renders a 512 px image covering four normal tiles (tileSize 512, zoomOffset -1):
 // a quarter of the requests, which IPR renders one by one (0.2–1.5 s each), and the browser's
@@ -268,7 +269,7 @@ sources.events.addEventListener("retry", (e) => {
 });
 window.cutAt = cutAt; // handy for testing from the console
 
-async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
+async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wantName = null) {
   logEdits(); // what was done with the previous cut, before it is replaced
   try {
     await useCity(lat, lon);
@@ -280,7 +281,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
       const pts = osmCache.way.geometry.map((g) => frame.toXY(g.lon, g.lat));
       near = { ...snapToWay(pts, [0, 0]), way: osmCache.way, pts };
     } else {
-      near = nearestStreet(osm, frame, [0, 0]);
+      near = nearestStreet(osm, frame, [0, 0], wantName);
       // A click lands the cut away from junctions and crossings; a dragged cut stays where it is put.
       if (near) near = awayFromJunctions(osm, frame, near);
     }
