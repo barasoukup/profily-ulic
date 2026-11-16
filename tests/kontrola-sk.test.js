@@ -28,3 +28,19 @@ test("pruh širší než strop o metr a víc: zbytek krajnice, k té, co už u p
   const mid = [seg("pruh", 3), seg("pruh", 6), seg("pruh", 3)];
   assert.equal(capWideLanes(mid, { highway: "primary" }), 0);
 });
+
+test("obousměrka s OSM lanes=2: pruh a krajnice od 1,5 m jsou dva pruhy, užší krajnice zůstane", () => {
+  const s = [seg("chodnik", 2), seg("pruh", 4.03), seg("krajnice", 2.17), seg("chodnik", 2)];
+  assert.equal(splitTwoWayLane(s, { highway: "residential", lanes: "2" }), 1);
+  assert.deepEqual(s.map((x) => [x.type, x.width]), [["chodnik", 2], ["pruh", 3.1], ["pruh", 3.1], ["chodnik", 2]]);
+  const t = [seg("krajnice", 1.2), seg("pruh", 3.9), seg("chodnik", 2)];
+  assert.equal(splitTwoWayLane(t, { highway: "residential", lanes: "2" }), 0);
+  const u = [seg("pruh", 4.03), seg("krajnice", 2.17)];
+  assert.equal(splitTwoWayLane(u, { highway: "residential" }), 0);
+});
+
+test("obousměrka s krajnicí od 1,5 m po obou stranách: k pruhům jen užší", () => {
+  const s = [seg("krajnice", 2.27), seg("pruh", 3.9), seg("krajnice", 3.43)];
+  assert.equal(splitTwoWayLane(s, { highway: "secondary", lanes: "2" }), 1);
+  assert.deepEqual(s.map((x) => [x.type, x.width]), [["pruh", 3.09], ["pruh", 3.08], ["krajnice", 3.43]]);
+});

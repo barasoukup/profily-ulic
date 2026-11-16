@@ -90,3 +90,17 @@ obytná zóna) do 250 m, nejvýš dva body na ulici; 733 residential, 99 tertiar
 - Počet pruhů proti OSM: nejvíc (18) obousměrka s OSM lanes=2 jako jeden pruh 3,5–4,4 m a „krajnice“ 1,7–2,4 m z
   ortofota. Ve Street View (Hroboňova) bez parkujících aut, s trolejemi: krajnice je druhý pruh, ortofoto vzalo
   středovou čáru za vodicí. Dále ulice ze dvou vozovek s méně (16) i více (11) pruhy než OSM.
+
+## A/B jen na relevantních řezech (Bára 16. 11. 2026: „stačí jen ty, co jsou relevantní“)
+Od opravy 4: B se počítá jen na řezech, kterých se oprava podle běhu A může týkat (cíl), a na 100 náhodných ostatních
+(kontrola, aby se nic jiného nezměnilo). Pár minut místo půl hodiny.
+
+## Oprava 4: středová čára vzatá za vodicí (A/B, 16. 11. 2026)
+Obousměrka, které OSM dává lanes ≥ 2, s jedním pruhem a krajnicí od 1,5 m vedle něj: krajnice je druhý pruh (ortofoto
+vzalo středovou čáru za vodicí; Hroboňova bez parkujících aut, s trolejemi). Pruh a krajnice (při dvou ta užší) jsou dva
+stejné pruhy, užší krajnice z vodicích čar zůstávají. `derive.js` `splitTwoWayLane`, vypnutí `?off=stredcara`.
+
+- Cíl 9 řezů, změnilo se 7: Jarabinková 3,93 + 2,37 → 2 × 3,15, Hroboňova → 2 × 3,1, Jantárová cesta → 2 × 2,85, Okružná
+  → 2 × 3,05, Ferka Urbánka → 2 × 2,7, Práznovská cesta 2,27 | 3,9 | 3,43 → 3,09 + 3,08 a krajnice 3,43, a 1,37 | 3,5 | 1,53
+  → 1,37 a 2 × 2,5. Kontrola 100 řezů: beze změny.
+- První verze slučovala krajnice z obou stran (Práznovská 2 × 4,8 m), proto „jen užší“.

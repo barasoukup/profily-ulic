@@ -2065,11 +2065,22 @@ export function splitTwoWayLane(segments, tags = {}) {
   const lanes = segments.filter((s) => s.type === "pruh");
   if (lanes.length !== 1 || segments.some((s) => /^tramvaj|^bus/.test(s.type))) return 0;
   const lane = lanes[0];
-  if (!(lane.width >= TWO_WAY_SPLIT - 1e-6)) return 0;
-  const half = round(lane.width / 2);
-  const i = segments.indexOf(lane);
+  let i = segments.indexOf(lane), n = 1;
+  // Where OSM counts two lanes or more, a shoulder of 1.5 m or more beside the single lane is the other lane: the
+  // orthophoto took the centre line for an edge line (Hroboňova in Bratislava: lane 4.03 + shoulder 2.17 m, two-way
+  // with trolley wires and no parked cars; ?off=stredcara). Narrower shoulders from edge lines stay (Bára).
+  // One shoulder only, the narrower one where both are that wide (Práznovská cesta: 2.27 | 3.9 | 3.43 m).
+  if ((+tags.lanes || 0) >= 2 && !ORTHO_P.off?.has("stredcara")) {
+    const r = segments[i + 1]?.type === "krajnice" && segments[i + 1].width >= 1.5 ? segments[i + 1].width : Infinity;
+    const l = segments[i - 1]?.type === "krajnice" && segments[i - 1].width >= 1.5 ? segments[i - 1].width : Infinity;
+    if (r < Infinity && r <= l) n++;
+    else if (l < Infinity) { i--; n++; }
+  }
+  const width = round(segments.slice(i, i + n).reduce((a, x) => a + x.width, 0));
+  if (!(width >= TWO_WAY_SPLIT - 1e-6)) return 0;
+  const half = round(width / 2);
   const { turn, ...rest } = lane;
-  segments.splice(i, 1, { ...rest, width: half, dir: "backward" }, { ...rest, width: round(lane.width - half), dir: "forward" });
+  segments.splice(i, n, { ...rest, width: half, dir: "backward" }, { ...rest, width: round(width - half), dir: "forward" });
   return 1;
 }
 
