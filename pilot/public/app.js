@@ -2,7 +2,9 @@ import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TR
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes, SK_ORTHO } from "./lanes-ortho.js";
-import { orthoOsmPolys } from "./ortho-osm.js";
+import { orthoOsmPolys, P as ORTHO_P } from "./ortho-osm.js";
+// ?off=… switches named parts of the estimate off (the A/B tests, evaluation/ortofoto-osm/regrese.mjs).
+{ const off = new URLSearchParams(location.search).get("off"); if (off) ORTHO_P.off = new Set(off.split(",")); }
 import { underground, KINDS as NET_KINDS, netAt } from "./site.js";
 // Lanes and shoulders from the road markings of the orthophoto (lanes-ortho.js); ?orto=0 leaves the rules' profile.
 const LANES_ORTHO = new URLSearchParams(location.search).get("orto") !== "0";

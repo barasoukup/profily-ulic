@@ -349,7 +349,7 @@ export function carsSeen(st, a, b, axis) {
 // is treated as that rest.
 // PIECE_GREEN: a piece between two lines of a town's map is green from this share of green columns (treetops over a
 // sidewalk make some).
-const PIECE_GREEN = 0.35;
+const PIECE_GREEN = 0.35, AREA_GREEN = 0.2;
 const ALONG = 10, SIDEWALK = 2.5, SIDEWALK_MAX = 6, REST_MAX = 12, HOUSE = 5, GREEN_AREA = 0.1; // evaluation/ortofoto-osm/zelen.mjs: on ČÚZK 12.5 cm 67 % (Prague) and 82 % (Brno) of the metres right
 const STREET = /^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|living_street|service|pedestrian|road)(_link)?$/;
 // frame: derive.js localFrame of the cut (its centre is [0, 0]); dir: the street's direction in it; way: the clicked
@@ -437,6 +437,17 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     if (!rings.length) continue;
     const under = rings.some((r) => { let c = false; for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > 0 !== yj > 0 && 0 < ((xj - xi) * (0 - yi)) / (yj - yi) + xi) c = !c; } return c; });
     if (under) continue;
+    // A lawn of the national map only where the image shows green across the cut too (Bára: Štúrova in Nitra, ZBGIS's
+    // lawn over the sidewalk by the house): its stretches on the cut against the roadway's own green.
+    // Off unless P.areaGreen: the A/B of 16. 11. 2026 on 91 cuts changed 9, Štúrova no better (its sidewalk by the house
+    // stays unseen) and Mudroňova lost the lawn ZBGIS had right.
+    if (f.attributes.CTVUK_KOD === 401 && k.cols && P.areaGreen) {
+      const ts = (f.geometry?.rings || []).flatMap((r) => crossT(r.map(([lo, la]) => tu(lo, la)), 45).map((x) => x.t)).sort((x, y) => x - y);
+      const g = [];
+      for (let q = 0; q + 1 < ts.length; q += 2) for (let i = k.cols.ti(ts[q]); i < k.cols.ti(ts[q + 1]); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.green[i])) g.push(k.cols.green[i]);
+      const road = (() => { const r = []; for (let i = k.cols.ti(o.own.t - 1.5); i <= k.cols.ti(o.own.t + 1.5); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.green[i])) r.push(k.cols.green[i]); return r.length ? r.reduce((x, y) => x + y, 0) / r.length : 0; })();
+      if (g.length && g.reduce((x, y) => x + y, 0) / g.length < road + AREA_GREEN) continue;
+    }
     polys.push({ code: f.attributes.CTVUK_KOD, label: f.attributes.CTVUK_POPIS, rings, bbox: bboxOf(rings[0]) });
     polys.areas++;
   }
