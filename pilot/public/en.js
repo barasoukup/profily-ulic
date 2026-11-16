@@ -654,8 +654,8 @@ export const EN = {
   "Sdílet": "Share",
   "Kopírovat polohu řezu": "Copy the cut's position",
   "Místní ilustrace": "Local illustrations",
-  "Data © IPR Praha, ČÚZK, města a kraje, GKÚ Bratislava (ZBGIS), slovenská mesta, OpenStreetMap · ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·":
-    "Data © IPR Praha, ČÚZK, cities and regions, GKÚ Bratislava (ZBGIS), Slovak towns, OpenStreetMap · illustrations Streetmix (CC BY-SA 4.0) and © Bára Soukupová · sources, licences and privacy ·",
+  "Data © státní a městské mapové služby a OpenStreetMap · ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·":
+    "Data © national and city map services and OpenStreetMap · illustrations Streetmix (CC BY-SA 4.0) and © Bára Soukupová · sources, licences and privacy ·",
   "kontakt": "contact",
   // Rainwater objects at their size, with the networks.
   "šířka": "width",
