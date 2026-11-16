@@ -1,0 +1,53 @@
+3|bratislava|Na Slavíne|48.1522071|17.1017780|45.09|3.12/1.33|-|odhad|pruh:4.45|2.67/5.58|bratislava|data|chodnik:1.5 pruh:3.3 parkovani:1.6 chodnik:1.85
+17|bratislava||48.1446745|17.1159110|-15.04|-|-|odhad|pruh:3* pruh:3*|22/4.33|bratislava|data|chodnik:26.33
+20|bratislava|Medená|48.1405328|17.1100036|82.78|5.82/3.28|-|odhad|chodnik:4.4* pruh:4.7|-|bratislava|data|pruh:3*
+24|bratislava|Poštová|48.1471082|17.1091811|-27.77|1.72/4.68|-|odhad|pruh:3.5 chodnik:2.9*|4.67/4.68|bratislava|data|chodnik_kola:9.35
+26|dubravka||48.1829708|17.0401805|-41.32|6.62/32.23|-|odhad|chodnik:5.1* obsluzna:3.1* chodnik:6* zelen:24.65*|6.62/13.58|bratislava|data|parkovani:0.35 nezname:3.7* parkovani:5.05 nezname:4.7* chodnik:6.4
+27|dubravka|Brižitská|48.1905902|17.0242992|-45.19|12.97/13.78|-|odhad|plocha:4.05* chodnik:6* pruh:2.8 pruh:2.8 chodnik:6* zelen:5.1*|4.17/3.78|bratislava|data|chodnik:1.55 pruh:6.4
+28|dubravka|Sekurisova|48.1911937|17.0395448|-14.60|33.83/22.53|-|odhad|zelen:24.8* chodnik:6* pruh:2.8 pruh:2.8 chodnik:6* zelen:13.95*|6.32/4.53|bratislava|data|chodnik:2.05 pruh:3.6 pruh:3.6 chodnik:1.6
+30|dubravka|Fedákova|48.1940285|17.0331194|-14.09|2.22/13.78|-|odhad|pruh:3.9 chodnik:0.7* parkovani:2.35 chodnik:2.95* plocha:6.1*|22/13.78|bratislava|data|chodnik:10.58 nezname:5.5* chodnik:2.1 parkovani:2* pruh:4.37 parkovani:2.18 chodnik:1.65 nezname:7.4*
+31|dubravka|Popovova|48.1899869|17.0279374|-89.26|6.27/3.38|-|odhad|chodnik:2.85* pruh:3.4 pruh:3.4|5.92/5.88|bratislava|data|chodnik:2.3 pruh:3.45 pruh:3.45 chodnik:2.6
+32|dubravka|Plachého|48.1821830|17.0316790|-87.62|1.72/2.48|-|odhad|pruh:4.2|2.72/2.83|bratislava|data|pruh:2.77 pruh:2.77
+33|dubravka||48.1844154|17.0397145|-63.35|-|-|odhad|pruh:3* pruh:3*|1.37/7.03|bratislava|data|chodnik:3.6 nezname:3.05* parkovani:1.75
+35|dubravka||48.1837584|17.0281633|-57.14|-|-|odhad|pruh:3* pruh:3*|4.07/22|bratislava|data|pruh:3.9 nezname:22.18*
+36|dubravka|Gallayova|48.1937529|17.0323647|75.14|5.47/10.13|-|odhad|chodnik:4.35* pruh:3.2 chodnik:6* plocha:2.05*|5.47/10.13|bratislava|data|nezname:1.05* chodnik:1.8 parkovani:1.97* pruh:4.2 parkovani:6.58
+37|dubravka|Tranovského|48.1909888|17.0270987|-89.36|18.67/13.43|-|odhad|zelen:10.85* chodnik:6* pruh:2.65 pruh:2.65 chodnik:6* zelen:3.95*|6.77/13.43|bratislava|data|chodnik:2 pruh:3.27 pruh:3.27 parkovani:2* chodnik:3.85 nezname:5.8*
+40|dubravka||48.1895631|17.0381980|-34.02|-|-|odhad|pruh:3* pruh:3*|4.12/7.93|bratislava|data|chodnik:6.1 nezname:5.95*
+42|presov||49.0024564|21.2239933|-16.23|-|-|odhad|pruh:3* pruh:3*|1.52/1.33|presov|data|chodnik:2.85
+44|presov|Fučíkova|48.9949318|21.2240238|69.99|10.27/9.93|-|odhad|zelen:1.35* chodnik:6* pruh:3.45 pruh:3.45 chodnik:5.95*|10.27/9.93|presov|data|nezname:5.2* chodnik:2.3 pruh:2.62 pruh:2.62 chodnik:2.5 nezname:4.95*
+45|presov|Vajanského|48.9983662|21.2450904|-21.07|5.91/22.68|-|odhad|chodnik:2.49* pruh:2.97 pruh:3.53 chodnik:6* zelen:13.6*|8.32/7.33|presov|data|zelen:1.65 nezname:1.05* parkovani:2.57* pruh:2.6 pruh:2.93 parkovani:2* chodnik:2.85
+46|presov|Majakovského|49.0064223|21.2374159|-7.52|6.72/7.53|-|odhad|pruh:8.2 chodnik:6.05*|6.72/8.58|presov|odhad|pruh:8.2 zelen:7.1
+47|presov|17. novembra|48.9868811|21.2382342|-29.83|7.12/13.03|-|odhad|chodnik:2.5* cyklopruh:1.47 pruh:3.2 pruh:3.2 cyklopruh:1.43 chodnik:6* zelen:2.35*|4.22/13.03|presov|data|cyklopruh:1.07 pruh:3.2 pruh:3.2 cyklopruh:1.27 zelen:1.5 nezname:0.8* chodnik:3.1 nezname:3.1*
+48|presov|17. novembra|48.9886566|21.2367294|-29.17|35.18/13.83|-|odhad|stromorad:25.85* chodnik:1.65* stromorad:1.5 chodnik:2.85* cyklopruh:1.5 pruh:2.55 pruh:2.55 cyklopruh:1.5 chodnik:6* plocha:3.05*|4.57/13.83|presov|data|cyklopruh:1.52 pruh:3.1 pruh:2.88 cyklopruh:1.5 zelen:1.3 nezname:0.85* chodnik:2.8 zelen:3.8 nezname:0.65*
+50|presov||48.9880986|21.2317892|59.24|-|-|odhad|pruh:3* pruh:3*|1.37/1.43|presov|data|chodnik:2.8
+51|presov|Hlavná|48.9934398|21.2438962|-27.44|14.47/10.78|-|odhad|plocha:3.45* chodnik_kola:6* cyklopruh:1.5 pruh:3.07 pruh:3 cyklopruh:1.63 chodnik:6* plocha:0.6*|14.47/10.78|presov|data|nezname:0.7* chodnik:7.65 cyklopruh:1.5 pruh:3.1 pruh:3.1 cyklopruh:0.97 parkovani:2.53* chodnik:5.7
+53|presov||49.0061679|21.2275411|6.45|-|-|odhad|pruh:3* pruh:3*|1.57/0.98|presov|data|chodnik:2.55
+54|presov|Plzenská|48.9909455|21.2478225|60.35|8.82/15.08|-|odhad|plocha:0.3* chodnik:1.9* zelen:2.65* chodnik:1.45* pruh:3.35 pruh:3.35 chodnik:6* zelen:4.9*|8.62/15.08|presov|data|chodnik:1.95 zelen:3.6 pruh:4.41 pruh:2.83 zelen:4.75 chodnik:2.45 nezname:3.7*
+55|presov|Letná|49.0097856|21.2350238|-4.72|1.32/9.83|-|odhad|pruh:3.2 chodnik:6* plocha:1.95*|3.12/1.78|presov|data|pruh:4.9
+57|presov|Janka Borodáča|48.9916386|21.2428617|6.03|9.82/5.93|-|odhad|plocha:2.3* chodnik:6* pruh:3.2 chodnik:4.25*|9.82/5.93|presov|data|nezname:1.1* chodnik:4.7 parkovani:2* pruh:3.2 parkovani:2* chodnik:2.75
+60|presov|Záborského|48.9893480|21.2383193|64.24|2.62/21.23|-|odhad|pruh_piktokoridor:3.3 parkovani:2* chodnik:6* zelen:12.55*|7.02/5.28|presov|data|chodnik:3.1 pruh_piktokoridor:3.95 parkovani:2* chodnik:3.25
+61|presov|Pavlovičovo námestie|48.9895968|21.2427743|2.10|3.22/3.08|-|odhad|pruh:3.15 pruh:3.15|3.42/6.93|presov|data|pruh:3.92 pruh:3.92 chodnik:2.5
+63|presov|Petőfiho|48.9931951|21.2228532|-20.23|10.37/10.73|-|odhad|zelen:1.55* chodnik:6* pruh:2.9 pruh:2.9 chodnik:6* plocha:1.75*|10.37/10.73|presov|data|nezname:5.25* chodnik:2.35 pruh:3.05 pruh:3.05 chodnik:1.9 nezname:5.5*
+65|presov||49.0060337|21.2440816|75.37|-|-|odhad|pruh:3* pruh:3*|22/22|presov|data|zelen:44
+68|zilina||49.2179656|18.7395063|85.98|-|-|odhad|pruh:3* pruh:3*|2.51/16.43|zilina|data|zelen:1.69* chodnik:1.8 zelen:15.45*
+69|zilina|Vojtecha Spanyola|49.2211046|18.7419919|-25.52|5.52/26.28|-|odhad|chodnik:2.5* pruh:3.17 pruh:3.33 chodnik:6* zelen:16.8*|5.67/23.03|zilina|data|chodnik:1.85 pruh:3.05 pruh:3.05 parkovani:2* chodnik:2.9 nezname:0.55* chodnik:8.8 nezname:2.9* chodnik:3.6
+72|zilina|Potočná|49.2185215|18.7228412|-7.36|16.42/8.63|-|odhad|plocha:7.3* chodnik:6* pruh:3.05 pruh:3.05 chodnik:5.65*|2.47/8.63|zilina|data|pruh:2.77 pruh:2.77 nezname:5.55*
+73|zilina|Na Šefranici|49.2258877|18.7311824|-12.46|-|-|data||2.62/3.58|zilina|data|pruh:3.77 parkovani:2.43*
+77|zilina|Hodžova|49.2241914|18.7394093|-31.13|-|-|data||2.07/2.98|zilina|data|nezname:0.5* plocha:4.55
+79|zilina|Horná|49.2330330|18.7428770|-44.65|2.02/2.88|-|odhad|pruh:4.9|1.77/1.13|zilina|data|pruh:2.9
+80|zilina|Cestárska|49.2259347|18.7244722|86.40|14.27/3.38|-|odhad|plocha:4.95* chodnik:6* pruh:3.35 pruh:3.35|2.27/4.58|zilina|data|pruh:3.98 pruh:2.86
+84|zilina|Framborská|49.2268863|18.7339635|-58.32|9.27/5.48|-|odhad|chodnik:5.35* pruh:3.45 pruh:3.45 chodnik:2.5*|9.27/22|zilina|data|chodnik:2.35 nezname:1.7* parkovani:2 pruh:3.22 pruh:3.22 chodnik:3.55 plocha:15.22
+87|zilina|Hollého|49.2280382|18.7348328|-78.32|10.02/6.13|-|odhad|plocha:1.3* chodnik:2.8* parkovani:0.85 chodnik:2.35* pruh:4.6 chodnik:4.25*|9.77/6.03|zilina|data|chodnik:3.85 parkovani:0.85 krajnice:1.35* pruh:4.5 krajnice:1.35* chodnik:3.9
+90|zilina||49.2161230|18.7471790|-81.40|6.67/4.28|-|odhad|chodnik:4.75* obsluzna:6.2*|6.67/6.98|zilina|data|plocha:13.65
+94|bystrica||48.7365598|19.1637711|82.99|10.74/2.93|-|odhad|zelen:4.37* nezname:3.05* pruh:4 krajnice:1.3* nezname:0.95*|10.74/2.93|bystrica|data|zelen:4.32* chodnik:2.4 krajnice:1.17* pruh:4 krajnice:1.17* nezname:0.6*
+95|bystrica|Pod Urpínom|48.7279081|19.1508003|33.45|3.42/1.58|-|odhad|pruh:2.5 pruh:2.5|3.17/1.73|bystrica|data|nezname:1.75* pruh:3.15
+96|bystrica|Československej armády|48.7388228|19.1572278|72.26|31.03/14.78|-|odhad|zelen:25.9* chodnik:2* pruh:3.67 krajnice:1.43 chodnik:6* zelen:6.8*|31.03/14.78|bystrica|data|chodnik:3.4 pruh:4 pruh:4 krajnice:1.65* chodnik:2.25 zelen:10.2* chodnik:2.3 pruh:3.77 pruh:3.33 chodnik:4.2 nezname:6.7*
+98|bystrica||48.7400860|19.1352350|60.78|9.72/3.58|-|odhad|pruh:3.1 pruh:3.1 delici:2.2* pruh:3.75 krajnice:1.15*|22/2.08|bystrica|data|pruh:3.75 pruh:3.75 pruh:3.75 pruh:3.75 pruh:3.75 pruh:3.75 krajnice:1.58*
+101|bystrica||48.7350769|19.1525234|57.81|-|-|odhad|pruh:3* pruh:3*|1.27/4.48|bystrica|data|chodnik:5.75
+102|bystrica||48.7361538|19.1380028|85.75|-|-|odhad|pruh:3* pruh:3*|0.72/2.38|bystrica|data|chodnik:3.1
+106|bystrica|Rudlovská cesta|48.7424327|19.1522449|15.68|9.12/4.58|-|odhad|chodnik:6* pruh:2.7 pruh:2.7 chodnik:2.3*|5.52/4.73|bystrica|data|chodnik:1.7 pruh:3.47 pruh:3.47 chodnik:1.6
+107|bystrica|R1|48.7464801|19.1383996|15.10|18.07/13.68|-|odhad|zelen:1.4* nezname:3.45* pruh:3.57 pruh:3.13 delici:3* pruh:3.47 pruh:3.5 krajnice:0.13 chodnik:6* plocha:4.1*|22/4.43|bystrica|data|pruh:4.03 zelen:1.3* nezname:0.45* pruh:2.88 pruh:3.7 pruh:4.08 nezname:1.25* krajnice:0.67 pruh:3.7 pruh:3.4 krajnice:0.98
+109|bystrica||48.7425556|19.1306833|32.42|33.93/1.78|-|odhad|zelen:26* chodnik:6* obsluzna:3.7*|1.87/2.03|bystrica|data|obsluzna:3.9
+112|bystrica|R1|48.7480640|19.1509673|-73.53|22.18/7.08|-|odhad|nezname:6.25* pruh:3.43 pruh:3.43 pruh:3.43 delici:1.2* pruh:3.06 pruh:4.6 pruh:3.83|22.18/21.23|bystrica|data|nezname:4* krajnice:5.3* pruh:3.75 pruh:3.75 pruh:3.75 pruh:3.75 pruh:3.75 pruh:3.75 krajnice:5.3* nezname:6.3*
+113|bystrica||48.7355383|19.1565027|35.39|-|-|odhad|pruh:3* pruh:3*|2.52/2.58|bystrica|data|chodnik:4.65 nezname:0.45*
+114|bystrica|Muškátová|48.7406462|19.1339986|-24.22|4.32/5.28|-|odhad|pruh:3.6 pruh:3.6 nezname:2.4*|4.32/5.28|bystrica|data|pruh:3.45 pruh:3.45 parkovani:2* nezname:0.7*

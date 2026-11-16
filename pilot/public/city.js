@@ -471,6 +471,11 @@ export function creditLines(c, src = {}, art = false) {
   const ORTHO_CITY = { ipr: t("ortofoto © IPR Praha, 2024"), brno: t("ortofoto © Statutární město Brno, 2025"), plzen: t("ortofoto © Statutární město Plzeň, 2024"),
     sk: t("ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)") };
   if (ORTHO_CITY[src.orthoCity]) data.push(ORTHO_CITY[src.orthoCity]);
+  // A Slovak town's passport where the cut took its surfaces (towns/slovensko.js).
+  const SK_PASSPORT = { bratislava: t("pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka"), presov: t("pasport dopravy a zelene © mesto Prešov (CC BY 4.0)"),
+    zilina: t("pasport komunikácií © mesto Žilina"), bystrica: t("pasport komunikácií © mesto Banská Bystrica") };
+  if (src.skTm) data.push(t("technická mapa © Hlavné mesto SR Bratislava"));
+  if (SK_PASSPORT[src.skTown]) data.push(SK_PASSPORT[src.skTown]);
   data.push(data.length ? t("© přispěvatelé OpenStreetMap (ODbL)") : t("Data: {data}", { data: t("© přispěvatelé OpenStreetMap (ODbL)") }));
   return [
     data.join(" · "),

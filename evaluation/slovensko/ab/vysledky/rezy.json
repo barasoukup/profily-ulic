@@ -1,0 +1,3847 @@
+[
+{
+"id": 3,
+"town": "bratislava",
+"A": {
+"span": {
+"left": 3.12,
+"right": 1.33
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"pruh",
+4.45,
+""
+]
+],
+"name": "Na Slavíne",
+"lat": 48.1522071,
+"lon": 17.101778,
+"bearing": 45.09
+},
+"B": {
+"span": {
+"left": 2.67,
+"right": 5.58
+},
+"sources": {
+"skTown": "bratislava"
+},
+"note": "",
+"segments": [
+[
+"chodnik",
+1.5,
+""
+],
+[
+"pruh",
+3.3,
+""
+],
+[
+"parkovani",
+1.6,
+""
+],
+[
+"chodnik",
+1.85,
+""
+]
+],
+"name": "Na Slavíne",
+"lat": 48.1522071,
+"lon": 17.101778,
+"bearing": 45.09
+}
+},
+{
+"id": 17,
+"town": "bratislava",
+"A": {
+"span": null,
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"pruh",
+3.0,
+"odhad"
+],
+[
+"pruh",
+3.0,
+"odhad"
+]
+],
+"name": "",
+"lat": 48.1446745,
+"lon": 17.115911,
+"bearing": -15.04
+},
+"B": {
+"span": {
+"left": 22.0,
+"right": 4.33
+},
+"sources": {
+"skTown": "bratislava"
+},
+"note": "",
+"segments": [
+[
+"chodnik",
+26.33,
+""
+]
+],
+"name": "",
+"lat": 48.1446745,
+"lon": 17.115911,
+"bearing": -15.04
+}
+},
+{
+"id": 20,
+"town": "bratislava",
+"A": {
+"span": {
+"left": 5.82,
+"right": 3.28
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"chodnik",
+4.4,
+"odhad"
+],
+[
+"pruh",
+4.7,
+""
+]
+],
+"name": "Medená",
+"lat": 48.1405328,
+"lon": 17.1100036,
+"bearing": 82.78
+},
+"B": {
+"span": null,
+"sources": {
+"skTown": "bratislava"
+},
+"note": "",
+"segments": [
+[
+"pruh",
+3.0,
+"odhad"
+]
+],
+"name": "Medená",
+"lat": 48.1405328,
+"lon": 17.1100036,
+"bearing": 82.78
+}
+},
+{
+"id": 24,
+"town": "bratislava",
+"A": {
+"span": {
+"left": 1.72,
+"right": 4.68
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"pruh",
+3.5,
+""
+],
+[
+"chodnik",
+2.9,
+"odhad"
+]
+],
+"name": "Poštová",
+"lat": 48.1471082,
+"lon": 17.1091811,
+"bearing": -27.77
+},
+"B": {
+"span": {
+"left": 4.67,
+"right": 4.68
+},
+"sources": {
+"skTown": "bratislava"
+},
+"note": "",
+"segments": [
+[
+"chodnik_kola",
+9.35,
+""
+]
+],
+"name": "Poštová",
+"lat": 48.1471082,
+"lon": 17.1091811,
+"bearing": -27.77
+}
+},
+{
+"id": 26,
+"town": "dubravka",
+"A": {
+"span": {
+"left": 6.62,
+"right": 32.23
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"chodnik",
+5.1,
+"odhad"
+],
+[
+"obsluzna",
+3.1,
+"odhad"
+],
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"zelen",
+24.65,
+"odhad"
+]
+],
+"name": "",
+"lat": 48.1829708,
+"lon": 17.0401805,
+"bearing": -41.32
+},
+"B": {
+"span": {
+"left": 6.62,
+"right": 13.58
+},
+"sources": {
+"skTown": "bratislava"
+},
+"note": "",
+"segments": [
+[
+"parkovani",
+0.35,
+""
+],
+[
+"nezname",
+3.7,
+"odhad"
+],
+[
+"parkovani",
+5.05,
+""
+],
+[
+"nezname",
+4.7,
+"odhad"
+],
+[
+"chodnik",
+6.4,
+""
+]
+],
+"name": "",
+"lat": 48.1829708,
+"lon": 17.0401805,
+"bearing": -41.32
+}
+},
+{
+"id": 27,
+"town": "dubravka",
+"A": {
+"span": {
+"left": 12.97,
+"right": 13.78
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"plocha",
+4.05,
+"odhad"
+],
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"pruh",
+2.8,
+""
+],
+[
+"pruh",
+2.8,
+""
+],
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"zelen",
+5.1,
+"odhad"
+]
+],
+"name": "Brižitská",
+"lat": 48.1905902,
+"lon": 17.0242992,
+"bearing": -45.19
+},
+"B": {
+"span": {
+"left": 4.17,
+"right": 3.78
+},
+"sources": {
+"skTown": "bratislava"
+},
+"note": "",
+"segments": [
+[
+"chodnik",
+1.55,
+""
+],
+[
+"pruh",
+6.4,
+""
+]
+],
+"name": "Brižitská",
+"lat": 48.1905902,
+"lon": 17.0242992,
+"bearing": -45.19
+}
+},
+{
+"id": 28,
+"town": "dubravka",
+"A": {
+"span": {
+"left": 33.83,
+"right": 22.53
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"zelen",
+24.8,
+"odhad"
+],
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"pruh",
+2.8,
+""
+],
+[
+"pruh",
+2.8,
+""
+],
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"zelen",
+13.95,
+"odhad"
+]
+],
+"name": "Sekurisova",
+"lat": 48.1911937,
+"lon": 17.0395448,
+"bearing": -14.6
+},
+"B": {
+"span": {
+"left": 6.32,
+"right": 4.53
+},
+"sources": {
+"skTown": "bratislava"
+},
+"note": "",
+"segments": [
+[
+"chodnik",
+2.05,
+""
+],
+[
+"pruh",
+3.6,
+""
+],
+[
+"pruh",
+3.6,
+""
+],
+[
+"chodnik",
+1.6,
+""
+]
+],
+"name": "Sekurisova",
+"lat": 48.1911937,
+"lon": 17.0395448,
+"bearing": -14.6
+}
+},
+{
+"id": 30,
+"town": "dubravka",
+"A": {
+"span": {
+"left": 2.22,
+"right": 13.78
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"pruh",
+3.9,
+""
+],
+[
+"chodnik",
+0.7,
+"odhad"
+],
+[
+"parkovani",
+2.35,
+""
+],
+[
+"chodnik",
+2.95,
+"odhad"
+],
+[
+"plocha",
+6.1,
+"odhad"
+]
+],
+"name": "Fedákova",
+"lat": 48.1940285,
+"lon": 17.0331194,
+"bearing": -14.09
+},
+"B": {
+"span": {
+"left": 22.0,
+"right": 13.78
+},
+"sources": {
+"skTown": "bratislava"
+},
+"note": "",
+"segments": [
+[
+"chodnik",
+10.58,
+""
+],
+[
+"nezname",
+5.5,
+"odhad"
+],
+[
+"chodnik",
+2.1,
+""
+],
+[
+"parkovani",
+2.0,
+"odhad"
+],
+[
+"pruh",
+4.37,
+""
+],
+[
+"parkovani",
+2.18,
+""
+],
+[
+"chodnik",
+1.65,
+""
+],
+[
+"nezname",
+7.4,
+"odhad"
+]
+],
+"name": "Fedákova",
+"lat": 48.1940285,
+"lon": 17.0331194,
+"bearing": -14.09
+}
+},
+{
+"id": 31,
+"town": "dubravka",
+"A": {
+"span": {
+"left": 6.27,
+"right": 3.38
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"chodnik",
+2.85,
+"odhad"
+],
+[
+"pruh",
+3.4,
+""
+],
+[
+"pruh",
+3.4,
+""
+]
+],
+"name": "Popovova",
+"lat": 48.1899869,
+"lon": 17.0279374,
+"bearing": -89.26
+},
+"B": {
+"span": {
+"left": 5.92,
+"right": 5.88
+},
+"sources": {
+"skTown": "bratislava"
+},
+"note": "",
+"segments": [
+[
+"chodnik",
+2.3,
+""
+],
+[
+"pruh",
+3.45,
+""
+],
+[
+"pruh",
+3.45,
+""
+],
+[
+"chodnik",
+2.6,
+""
+]
+],
+"name": "Popovova",
+"lat": 48.1899869,
+"lon": 17.0279374,
+"bearing": -89.26
+}
+},
+{
+"id": 32,
+"town": "dubravka",
+"A": {
+"span": {
+"left": 1.72,
+"right": 2.48
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"pruh",
+4.2,
+""
+]
+],
+"name": "Plachého",
+"lat": 48.182183,
+"lon": 17.031679,
+"bearing": -87.62
+},
+"B": {
+"span": {
+"left": 2.72,
+"right": 2.83
+},
+"sources": {
+"skTown": "bratislava"
+},
+"note": "",
+"segments": [
+[
+"pruh",
+2.77,
+""
+],
+[
+"pruh",
+2.77,
+""
+]
+],
+"name": "Plachého",
+"lat": 48.182183,
+"lon": 17.031679,
+"bearing": -87.62
+}
+},
+{
+"id": 33,
+"town": "dubravka",
+"A": {
+"span": null,
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"pruh",
+3.0,
+"odhad"
+],
+[
+"pruh",
+3.0,
+"odhad"
+]
+],
+"name": "",
+"lat": 48.1844154,
+"lon": 17.0397145,
+"bearing": -63.35
+},
+"B": {
+"span": {
+"left": 1.37,
+"right": 7.03
+},
+"sources": {
+"skTown": "bratislava"
+},
+"note": "",
+"segments": [
+[
+"chodnik",
+3.6,
+""
+],
+[
+"nezname",
+3.05,
+"odhad"
+],
+[
+"parkovani",
+1.75,
+""
+]
+],
+"name": "",
+"lat": 48.1844154,
+"lon": 17.0397145,
+"bearing": -63.35
+}
+},
+{
+"id": 35,
+"town": "dubravka",
+"A": {
+"span": null,
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"pruh",
+3.0,
+"odhad"
+],
+[
+"pruh",
+3.0,
+"odhad"
+]
+],
+"name": "",
+"lat": 48.1837584,
+"lon": 17.0281633,
+"bearing": -57.14
+},
+"B": {
+"span": {
+"left": 4.07,
+"right": 22.0
+},
+"sources": {
+"skTown": "bratislava"
+},
+"note": "",
+"segments": [
+[
+"pruh",
+3.9,
+""
+],
+[
+"nezname",
+22.18,
+"odhad"
+]
+],
+"name": "",
+"lat": 48.1837584,
+"lon": 17.0281633,
+"bearing": -57.14
+}
+},
+{
+"id": 36,
+"town": "dubravka",
+"A": {
+"span": {
+"left": 5.47,
+"right": 10.13
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"chodnik",
+4.35,
+"odhad"
+],
+[
+"pruh",
+3.2,
+""
+],
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"plocha",
+2.05,
+"odhad"
+]
+],
+"name": "Gallayova",
+"lat": 48.1937529,
+"lon": 17.0323647,
+"bearing": 75.14
+},
+"B": {
+"span": {
+"left": 5.47,
+"right": 10.13
+},
+"sources": {
+"skTown": "bratislava"
+},
+"note": "",
+"segments": [
+[
+"nezname",
+1.05,
+"odhad"
+],
+[
+"chodnik",
+1.8,
+""
+],
+[
+"parkovani",
+1.97,
+"odhad"
+],
+[
+"pruh",
+4.2,
+""
+],
+[
+"parkovani",
+6.58,
+""
+]
+],
+"name": "Gallayova",
+"lat": 48.1937529,
+"lon": 17.0323647,
+"bearing": 75.14
+}
+},
+{
+"id": 37,
+"town": "dubravka",
+"A": {
+"span": {
+"left": 18.67,
+"right": 13.43
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"zelen",
+10.85,
+"odhad"
+],
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"pruh",
+2.65,
+""
+],
+[
+"pruh",
+2.65,
+""
+],
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"zelen",
+3.95,
+"odhad"
+]
+],
+"name": "Tranovského",
+"lat": 48.1909888,
+"lon": 17.0270987,
+"bearing": -89.36
+},
+"B": {
+"span": {
+"left": 6.77,
+"right": 13.43
+},
+"sources": {
+"skTown": "bratislava"
+},
+"note": "",
+"segments": [
+[
+"chodnik",
+2.0,
+""
+],
+[
+"pruh",
+3.27,
+""
+],
+[
+"pruh",
+3.27,
+""
+],
+[
+"parkovani",
+2.0,
+"odhad"
+],
+[
+"chodnik",
+3.85,
+""
+],
+[
+"nezname",
+5.8,
+"odhad"
+]
+],
+"name": "Tranovského",
+"lat": 48.1909888,
+"lon": 17.0270987,
+"bearing": -89.36
+}
+},
+{
+"id": 40,
+"town": "dubravka",
+"A": {
+"span": null,
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"pruh",
+3.0,
+"odhad"
+],
+[
+"pruh",
+3.0,
+"odhad"
+]
+],
+"name": "",
+"lat": 48.1895631,
+"lon": 17.038198,
+"bearing": -34.02
+},
+"B": {
+"span": {
+"left": 4.12,
+"right": 7.93
+},
+"sources": {
+"skTown": "bratislava"
+},
+"note": "",
+"segments": [
+[
+"chodnik",
+6.1,
+""
+],
+[
+"nezname",
+5.95,
+"odhad"
+]
+],
+"name": "",
+"lat": 48.1895631,
+"lon": 17.038198,
+"bearing": -34.02
+}
+},
+{
+"id": 42,
+"town": "presov",
+"A": {
+"span": null,
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"pruh",
+3.0,
+"odhad"
+],
+[
+"pruh",
+3.0,
+"odhad"
+]
+],
+"name": "",
+"lat": 49.0024564,
+"lon": 21.2239933,
+"bearing": -16.23
+},
+"B": {
+"span": {
+"left": 1.52,
+"right": 1.33
+},
+"sources": {
+"skTown": "presov"
+},
+"note": "",
+"segments": [
+[
+"chodnik",
+2.85,
+""
+]
+],
+"name": "",
+"lat": 49.0024564,
+"lon": 21.2239933,
+"bearing": -16.23
+}
+},
+{
+"id": 44,
+"town": "presov",
+"A": {
+"span": {
+"left": 10.27,
+"right": 9.93
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"zelen",
+1.35,
+"odhad"
+],
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"pruh",
+3.45,
+""
+],
+[
+"pruh",
+3.45,
+""
+],
+[
+"chodnik",
+5.95,
+"odhad"
+]
+],
+"name": "Fučíkova",
+"lat": 48.9949318,
+"lon": 21.2240238,
+"bearing": 69.99
+},
+"B": {
+"span": {
+"left": 10.27,
+"right": 9.93
+},
+"sources": {
+"skTown": "presov"
+},
+"note": "",
+"segments": [
+[
+"nezname",
+5.2,
+"odhad"
+],
+[
+"chodnik",
+2.3,
+""
+],
+[
+"pruh",
+2.62,
+""
+],
+[
+"pruh",
+2.62,
+""
+],
+[
+"chodnik",
+2.5,
+""
+],
+[
+"nezname",
+4.95,
+"odhad"
+]
+],
+"name": "Fučíkova",
+"lat": 48.9949318,
+"lon": 21.2240238,
+"bearing": 69.99
+}
+},
+{
+"id": 45,
+"town": "presov",
+"A": {
+"span": {
+"left": 5.91,
+"right": 22.68
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"chodnik",
+2.49,
+"odhad"
+],
+[
+"pruh",
+2.97,
+""
+],
+[
+"pruh",
+3.53,
+""
+],
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"zelen",
+13.6,
+"odhad"
+]
+],
+"name": "Vajanského",
+"lat": 48.9983662,
+"lon": 21.2450904,
+"bearing": -21.07
+},
+"B": {
+"span": {
+"left": 8.32,
+"right": 7.33
+},
+"sources": {
+"skTown": "presov"
+},
+"note": "",
+"segments": [
+[
+"zelen",
+1.65,
+""
+],
+[
+"nezname",
+1.05,
+"odhad"
+],
+[
+"parkovani",
+2.57,
+"odhad"
+],
+[
+"pruh",
+2.6,
+""
+],
+[
+"pruh",
+2.93,
+""
+],
+[
+"parkovani",
+2.0,
+"odhad"
+],
+[
+"chodnik",
+2.85,
+""
+]
+],
+"name": "Vajanského",
+"lat": 48.9983662,
+"lon": 21.2450904,
+"bearing": -21.07
+}
+},
+{
+"id": 46,
+"town": "presov",
+"A": {
+"span": {
+"left": 6.72,
+"right": 7.53
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"pruh",
+8.2,
+""
+],
+[
+"chodnik",
+6.05,
+"odhad"
+]
+],
+"name": "Majakovského",
+"lat": 49.0064223,
+"lon": 21.2374159,
+"bearing": -7.52
+},
+"B": {
+"span": {
+"left": 6.72,
+"right": 8.58
+},
+"sources": {
+"skTown": "presov"
+},
+"note": "odhad",
+"segments": [
+[
+"pruh",
+8.2,
+""
+],
+[
+"zelen",
+7.1,
+""
+]
+],
+"name": "Majakovského",
+"lat": 49.0064223,
+"lon": 21.2374159,
+"bearing": -7.52
+}
+},
+{
+"id": 47,
+"town": "presov",
+"A": {
+"span": {
+"left": 7.12,
+"right": 13.03
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"chodnik",
+2.5,
+"odhad"
+],
+[
+"cyklopruh",
+1.47,
+""
+],
+[
+"pruh",
+3.2,
+""
+],
+[
+"pruh",
+3.2,
+""
+],
+[
+"cyklopruh",
+1.43,
+""
+],
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"zelen",
+2.35,
+"odhad"
+]
+],
+"name": "17. novembra",
+"lat": 48.9868811,
+"lon": 21.2382342,
+"bearing": -29.83
+},
+"B": {
+"span": {
+"left": 4.22,
+"right": 13.03
+},
+"sources": {
+"skTown": "presov"
+},
+"note": "",
+"segments": [
+[
+"cyklopruh",
+1.07,
+""
+],
+[
+"pruh",
+3.2,
+""
+],
+[
+"pruh",
+3.2,
+""
+],
+[
+"cyklopruh",
+1.27,
+""
+],
+[
+"zelen",
+1.5,
+""
+],
+[
+"nezname",
+0.8,
+"odhad"
+],
+[
+"chodnik",
+3.1,
+""
+],
+[
+"nezname",
+3.1,
+"odhad"
+]
+],
+"name": "17. novembra",
+"lat": 48.9868811,
+"lon": 21.2382342,
+"bearing": -29.83
+}
+},
+{
+"id": 48,
+"town": "presov",
+"A": {
+"span": {
+"left": 35.18,
+"right": 13.83
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"stromorad",
+25.85,
+"odhad"
+],
+[
+"chodnik",
+1.65,
+"odhad"
+],
+[
+"stromorad",
+1.5,
+""
+],
+[
+"chodnik",
+2.85,
+"odhad"
+],
+[
+"cyklopruh",
+1.5,
+""
+],
+[
+"pruh",
+2.55,
+""
+],
+[
+"pruh",
+2.55,
+""
+],
+[
+"cyklopruh",
+1.5,
+""
+],
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"plocha",
+3.05,
+"odhad"
+]
+],
+"name": "17. novembra",
+"lat": 48.9886566,
+"lon": 21.2367294,
+"bearing": -29.17
+},
+"B": {
+"span": {
+"left": 4.57,
+"right": 13.83
+},
+"sources": {
+"skTown": "presov"
+},
+"note": "",
+"segments": [
+[
+"cyklopruh",
+1.52,
+""
+],
+[
+"pruh",
+3.1,
+""
+],
+[
+"pruh",
+2.88,
+""
+],
+[
+"cyklopruh",
+1.5,
+""
+],
+[
+"zelen",
+1.3,
+""
+],
+[
+"nezname",
+0.85,
+"odhad"
+],
+[
+"chodnik",
+2.8,
+""
+],
+[
+"zelen",
+3.8,
+""
+],
+[
+"nezname",
+0.65,
+"odhad"
+]
+],
+"name": "17. novembra",
+"lat": 48.9886566,
+"lon": 21.2367294,
+"bearing": -29.17
+}
+},
+{
+"id": 50,
+"town": "presov",
+"A": {
+"span": null,
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"pruh",
+3.0,
+"odhad"
+],
+[
+"pruh",
+3.0,
+"odhad"
+]
+],
+"name": "",
+"lat": 48.9880986,
+"lon": 21.2317892,
+"bearing": 59.24
+},
+"B": {
+"span": {
+"left": 1.37,
+"right": 1.43
+},
+"sources": {
+"skTown": "presov"
+},
+"note": "",
+"segments": [
+[
+"chodnik",
+2.8,
+""
+]
+],
+"name": "",
+"lat": 48.9880986,
+"lon": 21.2317892,
+"bearing": 59.24
+}
+},
+{
+"id": 51,
+"town": "presov",
+"A": {
+"span": {
+"left": 14.47,
+"right": 10.78
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"plocha",
+3.45,
+"odhad"
+],
+[
+"chodnik_kola",
+6.0,
+"odhad"
+],
+[
+"cyklopruh",
+1.5,
+""
+],
+[
+"pruh",
+3.07,
+""
+],
+[
+"pruh",
+3.0,
+""
+],
+[
+"cyklopruh",
+1.63,
+""
+],
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"plocha",
+0.6,
+"odhad"
+]
+],
+"name": "Hlavná",
+"lat": 48.9934398,
+"lon": 21.2438962,
+"bearing": -27.44
+},
+"B": {
+"span": {
+"left": 14.47,
+"right": 10.78
+},
+"sources": {
+"skTown": "presov"
+},
+"note": "",
+"segments": [
+[
+"nezname",
+0.7,
+"odhad"
+],
+[
+"chodnik",
+7.65,
+""
+],
+[
+"cyklopruh",
+1.5,
+""
+],
+[
+"pruh",
+3.1,
+""
+],
+[
+"pruh",
+3.1,
+""
+],
+[
+"cyklopruh",
+0.97,
+""
+],
+[
+"parkovani",
+2.53,
+"odhad"
+],
+[
+"chodnik",
+5.7,
+""
+]
+],
+"name": "Hlavná",
+"lat": 48.9934398,
+"lon": 21.2438962,
+"bearing": -27.44
+}
+},
+{
+"id": 53,
+"town": "presov",
+"A": {
+"span": null,
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"pruh",
+3.0,
+"odhad"
+],
+[
+"pruh",
+3.0,
+"odhad"
+]
+],
+"name": "",
+"lat": 49.0061679,
+"lon": 21.2275411,
+"bearing": 6.45
+},
+"B": {
+"span": {
+"left": 1.57,
+"right": 0.98
+},
+"sources": {
+"skTown": "presov"
+},
+"note": "",
+"segments": [
+[
+"chodnik",
+2.55,
+""
+]
+],
+"name": "",
+"lat": 49.0061679,
+"lon": 21.2275411,
+"bearing": 6.45
+}
+},
+{
+"id": 54,
+"town": "presov",
+"A": {
+"span": {
+"left": 8.82,
+"right": 15.08
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"plocha",
+0.3,
+"odhad"
+],
+[
+"chodnik",
+1.9,
+"odhad"
+],
+[
+"zelen",
+2.65,
+"odhad"
+],
+[
+"chodnik",
+1.45,
+"odhad"
+],
+[
+"pruh",
+3.35,
+""
+],
+[
+"pruh",
+3.35,
+""
+],
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"zelen",
+4.9,
+"odhad"
+]
+],
+"name": "Plzenská",
+"lat": 48.9909455,
+"lon": 21.2478225,
+"bearing": 60.35
+},
+"B": {
+"span": {
+"left": 8.62,
+"right": 15.08
+},
+"sources": {
+"skTown": "presov"
+},
+"note": "",
+"segments": [
+[
+"chodnik",
+1.95,
+""
+],
+[
+"zelen",
+3.6,
+""
+],
+[
+"pruh",
+4.41,
+""
+],
+[
+"pruh",
+2.83,
+""
+],
+[
+"zelen",
+4.75,
+""
+],
+[
+"chodnik",
+2.45,
+""
+],
+[
+"nezname",
+3.7,
+"odhad"
+]
+],
+"name": "Plzenská",
+"lat": 48.9909455,
+"lon": 21.2478225,
+"bearing": 60.35
+}
+},
+{
+"id": 55,
+"town": "presov",
+"A": {
+"span": {
+"left": 1.32,
+"right": 9.83
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"pruh",
+3.2,
+""
+],
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"plocha",
+1.95,
+"odhad"
+]
+],
+"name": "Letná",
+"lat": 49.0097856,
+"lon": 21.2350238,
+"bearing": -4.72
+},
+"B": {
+"span": {
+"left": 3.12,
+"right": 1.78
+},
+"sources": {
+"skTown": "presov"
+},
+"note": "",
+"segments": [
+[
+"pruh",
+4.9,
+""
+]
+],
+"name": "Letná",
+"lat": 49.0097856,
+"lon": 21.2350238,
+"bearing": -4.72
+}
+},
+{
+"id": 57,
+"town": "presov",
+"A": {
+"span": {
+"left": 9.82,
+"right": 5.93
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"plocha",
+2.3,
+"odhad"
+],
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"pruh",
+3.2,
+""
+],
+[
+"chodnik",
+4.25,
+"odhad"
+]
+],
+"name": "Janka Borodáča",
+"lat": 48.9916386,
+"lon": 21.2428617,
+"bearing": 6.03
+},
+"B": {
+"span": {
+"left": 9.82,
+"right": 5.93
+},
+"sources": {
+"skTown": "presov"
+},
+"note": "",
+"segments": [
+[
+"nezname",
+1.1,
+"odhad"
+],
+[
+"chodnik",
+4.7,
+""
+],
+[
+"parkovani",
+2.0,
+"odhad"
+],
+[
+"pruh",
+3.2,
+""
+],
+[
+"parkovani",
+2.0,
+"odhad"
+],
+[
+"chodnik",
+2.75,
+""
+]
+],
+"name": "Janka Borodáča",
+"lat": 48.9916386,
+"lon": 21.2428617,
+"bearing": 6.03
+}
+},
+{
+"id": 60,
+"town": "presov",
+"A": {
+"span": {
+"left": 2.62,
+"right": 21.23
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"pruh_piktokoridor",
+3.3,
+""
+],
+[
+"parkovani",
+2.0,
+"odhad"
+],
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"zelen",
+12.55,
+"odhad"
+]
+],
+"name": "Záborského",
+"lat": 48.989348,
+"lon": 21.2383193,
+"bearing": 64.24
+},
+"B": {
+"span": {
+"left": 7.02,
+"right": 5.28
+},
+"sources": {
+"skTown": "presov"
+},
+"note": "",
+"segments": [
+[
+"chodnik",
+3.1,
+""
+],
+[
+"pruh_piktokoridor",
+3.95,
+""
+],
+[
+"parkovani",
+2.0,
+"odhad"
+],
+[
+"chodnik",
+3.25,
+""
+]
+],
+"name": "Záborského",
+"lat": 48.989348,
+"lon": 21.2383193,
+"bearing": 64.24
+}
+},
+{
+"id": 61,
+"town": "presov",
+"A": {
+"span": {
+"left": 3.22,
+"right": 3.08
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"pruh",
+3.15,
+""
+],
+[
+"pruh",
+3.15,
+""
+]
+],
+"name": "Pavlovičovo námestie",
+"lat": 48.9895968,
+"lon": 21.2427743,
+"bearing": 2.1
+},
+"B": {
+"span": {
+"left": 3.42,
+"right": 6.93
+},
+"sources": {
+"skTown": "presov"
+},
+"note": "",
+"segments": [
+[
+"pruh",
+3.92,
+""
+],
+[
+"pruh",
+3.92,
+""
+],
+[
+"chodnik",
+2.5,
+""
+]
+],
+"name": "Pavlovičovo námestie",
+"lat": 48.9895968,
+"lon": 21.2427743,
+"bearing": 2.1
+}
+},
+{
+"id": 63,
+"town": "presov",
+"A": {
+"span": {
+"left": 10.37,
+"right": 10.73
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"zelen",
+1.55,
+"odhad"
+],
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"pruh",
+2.9,
+""
+],
+[
+"pruh",
+2.9,
+""
+],
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"plocha",
+1.75,
+"odhad"
+]
+],
+"name": "Petőfiho",
+"lat": 48.9931951,
+"lon": 21.2228532,
+"bearing": -20.23
+},
+"B": {
+"span": {
+"left": 10.37,
+"right": 10.73
+},
+"sources": {
+"skTown": "presov"
+},
+"note": "",
+"segments": [
+[
+"nezname",
+5.25,
+"odhad"
+],
+[
+"chodnik",
+2.35,
+""
+],
+[
+"pruh",
+3.05,
+""
+],
+[
+"pruh",
+3.05,
+""
+],
+[
+"chodnik",
+1.9,
+""
+],
+[
+"nezname",
+5.5,
+"odhad"
+]
+],
+"name": "Petőfiho",
+"lat": 48.9931951,
+"lon": 21.2228532,
+"bearing": -20.23
+}
+},
+{
+"id": 65,
+"town": "presov",
+"A": {
+"span": null,
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"pruh",
+3.0,
+"odhad"
+],
+[
+"pruh",
+3.0,
+"odhad"
+]
+],
+"name": "",
+"lat": 49.0060337,
+"lon": 21.2440816,
+"bearing": 75.37
+},
+"B": {
+"span": {
+"left": 22.0,
+"right": 22.0
+},
+"sources": {
+"skTown": "presov"
+},
+"note": "",
+"segments": [
+[
+"zelen",
+44.0,
+""
+]
+],
+"name": "",
+"lat": 49.0060337,
+"lon": 21.2440816,
+"bearing": 75.37
+}
+},
+{
+"id": 68,
+"town": "zilina",
+"A": {
+"span": null,
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"pruh",
+3.0,
+"odhad"
+],
+[
+"pruh",
+3.0,
+"odhad"
+]
+],
+"name": "",
+"lat": 49.2179656,
+"lon": 18.7395063,
+"bearing": 85.98
+},
+"B": {
+"span": {
+"left": 2.51,
+"right": 16.43
+},
+"sources": {
+"skTown": "zilina"
+},
+"note": "",
+"segments": [
+[
+"zelen",
+1.69,
+"odhad"
+],
+[
+"chodnik",
+1.8,
+""
+],
+[
+"zelen",
+15.45,
+"odhad"
+]
+],
+"name": "",
+"lat": 49.2179656,
+"lon": 18.7395063,
+"bearing": 85.98
+}
+},
+{
+"id": 69,
+"town": "zilina",
+"A": {
+"span": {
+"left": 5.52,
+"right": 26.28
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"chodnik",
+2.5,
+"odhad"
+],
+[
+"pruh",
+3.17,
+""
+],
+[
+"pruh",
+3.33,
+""
+],
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"zelen",
+16.8,
+"odhad"
+]
+],
+"name": "Vojtecha Spanyola",
+"lat": 49.2211046,
+"lon": 18.7419919,
+"bearing": -25.52
+},
+"B": {
+"span": {
+"left": 5.67,
+"right": 23.03
+},
+"sources": {
+"skTown": "zilina"
+},
+"note": "",
+"segments": [
+[
+"chodnik",
+1.85,
+""
+],
+[
+"pruh",
+3.05,
+""
+],
+[
+"pruh",
+3.05,
+""
+],
+[
+"parkovani",
+2.0,
+"odhad"
+],
+[
+"chodnik",
+2.9,
+""
+],
+[
+"nezname",
+0.55,
+"odhad"
+],
+[
+"chodnik",
+8.8,
+""
+],
+[
+"nezname",
+2.9,
+"odhad"
+],
+[
+"chodnik",
+3.6,
+""
+]
+],
+"name": "Vojtecha Spanyola",
+"lat": 49.2211046,
+"lon": 18.7419919,
+"bearing": -25.52
+}
+},
+{
+"id": 72,
+"town": "zilina",
+"A": {
+"span": {
+"left": 16.42,
+"right": 8.63
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"plocha",
+7.3,
+"odhad"
+],
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"pruh",
+3.05,
+""
+],
+[
+"pruh",
+3.05,
+""
+],
+[
+"chodnik",
+5.65,
+"odhad"
+]
+],
+"name": "Potočná",
+"lat": 49.2185215,
+"lon": 18.7228412,
+"bearing": -7.36
+},
+"B": {
+"span": {
+"left": 2.47,
+"right": 8.63
+},
+"sources": {
+"skTown": "zilina"
+},
+"note": "",
+"segments": [
+[
+"pruh",
+2.77,
+""
+],
+[
+"pruh",
+2.77,
+""
+],
+[
+"nezname",
+5.55,
+"odhad"
+]
+],
+"name": "Potočná",
+"lat": 49.2185215,
+"lon": 18.7228412,
+"bearing": -7.36
+}
+},
+{
+"id": 73,
+"town": "zilina",
+"A": {
+"span": null,
+"sources": {},
+"note": "",
+"segments": [],
+"name": "Na Šefranici",
+"lat": 49.2258877,
+"lon": 18.7311824,
+"bearing": -12.46
+},
+"B": {
+"span": {
+"left": 2.62,
+"right": 3.58
+},
+"sources": {
+"skTown": "zilina"
+},
+"note": "",
+"segments": [
+[
+"pruh",
+3.77,
+""
+],
+[
+"parkovani",
+2.43,
+"odhad"
+]
+],
+"name": "Na Šefranici",
+"lat": 49.2258877,
+"lon": 18.7311824,
+"bearing": -12.46
+}
+},
+{
+"id": 77,
+"town": "zilina",
+"A": {
+"span": null,
+"sources": {},
+"note": "",
+"segments": [],
+"name": "Hodžova",
+"lat": 49.2241914,
+"lon": 18.7394093,
+"bearing": -31.13
+},
+"B": {
+"span": {
+"left": 2.07,
+"right": 2.98
+},
+"sources": {
+"skTown": "zilina"
+},
+"note": "",
+"segments": [
+[
+"nezname",
+0.5,
+"odhad"
+],
+[
+"plocha",
+4.55,
+""
+]
+],
+"name": "Hodžova",
+"lat": 49.2241914,
+"lon": 18.7394093,
+"bearing": -31.13
+}
+},
+{
+"id": 79,
+"town": "zilina",
+"A": {
+"span": {
+"left": 2.02,
+"right": 2.88
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"pruh",
+4.9,
+""
+]
+],
+"name": "Horná",
+"lat": 49.233033,
+"lon": 18.742877,
+"bearing": -44.65
+},
+"B": {
+"span": {
+"left": 1.77,
+"right": 1.13
+},
+"sources": {
+"skTown": "zilina"
+},
+"note": "",
+"segments": [
+[
+"pruh",
+2.9,
+""
+]
+],
+"name": "Horná",
+"lat": 49.233033,
+"lon": 18.742877,
+"bearing": -44.65
+}
+},
+{
+"id": 80,
+"town": "zilina",
+"A": {
+"span": {
+"left": 14.27,
+"right": 3.38
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"plocha",
+4.95,
+"odhad"
+],
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"pruh",
+3.35,
+""
+],
+[
+"pruh",
+3.35,
+""
+]
+],
+"name": "Cestárska",
+"lat": 49.2259347,
+"lon": 18.7244722,
+"bearing": 86.4
+},
+"B": {
+"span": {
+"left": 2.27,
+"right": 4.58
+},
+"sources": {
+"skTown": "zilina"
+},
+"note": "",
+"segments": [
+[
+"pruh",
+3.98,
+""
+],
+[
+"pruh",
+2.86,
+""
+]
+],
+"name": "Cestárska",
+"lat": 49.2259347,
+"lon": 18.7244722,
+"bearing": 86.4
+}
+},
+{
+"id": 84,
+"town": "zilina",
+"A": {
+"span": {
+"left": 9.27,
+"right": 5.48
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"chodnik",
+5.35,
+"odhad"
+],
+[
+"pruh",
+3.45,
+""
+],
+[
+"pruh",
+3.45,
+""
+],
+[
+"chodnik",
+2.5,
+"odhad"
+]
+],
+"name": "Framborská",
+"lat": 49.2268863,
+"lon": 18.7339635,
+"bearing": -58.32
+},
+"B": {
+"span": {
+"left": 9.27,
+"right": 22.0
+},
+"sources": {
+"skTown": "zilina"
+},
+"note": "",
+"segments": [
+[
+"chodnik",
+2.35,
+""
+],
+[
+"nezname",
+1.7,
+"odhad"
+],
+[
+"parkovani",
+2.0,
+""
+],
+[
+"pruh",
+3.22,
+""
+],
+[
+"pruh",
+3.22,
+""
+],
+[
+"chodnik",
+3.55,
+""
+],
+[
+"plocha",
+15.22,
+""
+]
+],
+"name": "Framborská",
+"lat": 49.2268863,
+"lon": 18.7339635,
+"bearing": -58.32
+}
+},
+{
+"id": 87,
+"town": "zilina",
+"A": {
+"span": {
+"left": 10.02,
+"right": 6.13
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"plocha",
+1.3,
+"odhad"
+],
+[
+"chodnik",
+2.8,
+"odhad"
+],
+[
+"parkovani",
+0.85,
+""
+],
+[
+"chodnik",
+2.35,
+"odhad"
+],
+[
+"pruh",
+4.6,
+""
+],
+[
+"chodnik",
+4.25,
+"odhad"
+]
+],
+"name": "Hollého",
+"lat": 49.2280382,
+"lon": 18.7348328,
+"bearing": -78.32
+},
+"B": {
+"span": {
+"left": 9.77,
+"right": 6.03
+},
+"sources": {
+"skTown": "zilina"
+},
+"note": "",
+"segments": [
+[
+"chodnik",
+3.85,
+""
+],
+[
+"parkovani",
+0.85,
+""
+],
+[
+"krajnice",
+1.35,
+"odhad"
+],
+[
+"pruh",
+4.5,
+""
+],
+[
+"krajnice",
+1.35,
+"odhad"
+],
+[
+"chodnik",
+3.9,
+""
+]
+],
+"name": "Hollého",
+"lat": 49.2280382,
+"lon": 18.7348328,
+"bearing": -78.32
+}
+},
+{
+"id": 90,
+"town": "zilina",
+"A": {
+"span": {
+"left": 6.67,
+"right": 4.28
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"chodnik",
+4.75,
+"odhad"
+],
+[
+"obsluzna",
+6.2,
+"odhad"
+]
+],
+"name": "",
+"lat": 49.216123,
+"lon": 18.747179,
+"bearing": -81.4
+},
+"B": {
+"span": {
+"left": 6.67,
+"right": 6.98
+},
+"sources": {
+"skTown": "zilina"
+},
+"note": "",
+"segments": [
+[
+"plocha",
+13.65,
+""
+]
+],
+"name": "",
+"lat": 49.216123,
+"lon": 18.747179,
+"bearing": -81.4
+}
+},
+{
+"id": 94,
+"town": "bystrica",
+"A": {
+"span": {
+"left": 10.74,
+"right": 2.93
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"zelen",
+4.37,
+"odhad"
+],
+[
+"nezname",
+3.05,
+"odhad"
+],
+[
+"pruh",
+4.0,
+""
+],
+[
+"krajnice",
+1.3,
+"odhad"
+],
+[
+"nezname",
+0.95,
+"odhad"
+]
+],
+"name": "",
+"lat": 48.7365598,
+"lon": 19.1637711,
+"bearing": 82.99
+},
+"B": {
+"span": {
+"left": 10.74,
+"right": 2.93
+},
+"sources": {
+"skTown": "bystrica"
+},
+"note": "",
+"segments": [
+[
+"zelen",
+4.32,
+"odhad"
+],
+[
+"chodnik",
+2.4,
+""
+],
+[
+"krajnice",
+1.17,
+"odhad"
+],
+[
+"pruh",
+4.0,
+""
+],
+[
+"krajnice",
+1.17,
+"odhad"
+],
+[
+"nezname",
+0.6,
+"odhad"
+]
+],
+"name": "",
+"lat": 48.7365598,
+"lon": 19.1637711,
+"bearing": 82.99
+}
+},
+{
+"id": 95,
+"town": "bystrica",
+"A": {
+"span": {
+"left": 3.42,
+"right": 1.58
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"pruh",
+2.5,
+""
+],
+[
+"pruh",
+2.5,
+""
+]
+],
+"name": "Pod Urpínom",
+"lat": 48.7279081,
+"lon": 19.1508003,
+"bearing": 33.45
+},
+"B": {
+"span": {
+"left": 3.17,
+"right": 1.73
+},
+"sources": {
+"skTown": "bystrica"
+},
+"note": "",
+"segments": [
+[
+"nezname",
+1.75,
+"odhad"
+],
+[
+"pruh",
+3.15,
+""
+]
+],
+"name": "Pod Urpínom",
+"lat": 48.7279081,
+"lon": 19.1508003,
+"bearing": 33.45
+}
+},
+{
+"id": 96,
+"town": "bystrica",
+"A": {
+"span": {
+"left": 31.03,
+"right": 14.78
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"zelen",
+25.9,
+"odhad"
+],
+[
+"chodnik",
+2.0,
+"odhad"
+],
+[
+"pruh",
+3.67,
+""
+],
+[
+"krajnice",
+1.43,
+""
+],
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"zelen",
+6.8,
+"odhad"
+]
+],
+"name": "Československej armády",
+"lat": 48.7388228,
+"lon": 19.1572278,
+"bearing": 72.26
+},
+"B": {
+"span": {
+"left": 31.03,
+"right": 14.78
+},
+"sources": {
+"skTown": "bystrica"
+},
+"note": "",
+"segments": [
+[
+"chodnik",
+3.4,
+""
+],
+[
+"pruh",
+4.0,
+""
+],
+[
+"pruh",
+4.0,
+""
+],
+[
+"krajnice",
+1.65,
+"odhad"
+],
+[
+"chodnik",
+2.25,
+""
+],
+[
+"zelen",
+10.2,
+"odhad"
+],
+[
+"chodnik",
+2.3,
+""
+],
+[
+"pruh",
+3.77,
+""
+],
+[
+"pruh",
+3.33,
+""
+],
+[
+"chodnik",
+4.2,
+""
+],
+[
+"nezname",
+6.7,
+"odhad"
+]
+],
+"name": "Československej armády",
+"lat": 48.7388228,
+"lon": 19.1572278,
+"bearing": 72.26
+}
+},
+{
+"id": 98,
+"town": "bystrica",
+"A": {
+"span": {
+"left": 9.72,
+"right": 3.58
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"pruh",
+3.1,
+""
+],
+[
+"pruh",
+3.1,
+""
+],
+[
+"delici",
+2.2,
+"odhad"
+],
+[
+"pruh",
+3.75,
+""
+],
+[
+"krajnice",
+1.15,
+"odhad"
+]
+],
+"name": "",
+"lat": 48.740086,
+"lon": 19.135235,
+"bearing": 60.78
+},
+"B": {
+"span": {
+"left": 22.0,
+"right": 2.08
+},
+"sources": {
+"skTown": "bystrica"
+},
+"note": "",
+"segments": [
+[
+"pruh",
+3.75,
+""
+],
+[
+"pruh",
+3.75,
+""
+],
+[
+"pruh",
+3.75,
+""
+],
+[
+"pruh",
+3.75,
+""
+],
+[
+"pruh",
+3.75,
+""
+],
+[
+"pruh",
+3.75,
+""
+],
+[
+"krajnice",
+1.58,
+"odhad"
+]
+],
+"name": "",
+"lat": 48.740086,
+"lon": 19.135235,
+"bearing": 60.78
+}
+},
+{
+"id": 101,
+"town": "bystrica",
+"A": {
+"span": null,
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"pruh",
+3.0,
+"odhad"
+],
+[
+"pruh",
+3.0,
+"odhad"
+]
+],
+"name": "",
+"lat": 48.7350769,
+"lon": 19.1525234,
+"bearing": 57.81
+},
+"B": {
+"span": {
+"left": 1.27,
+"right": 4.48
+},
+"sources": {
+"skTown": "bystrica"
+},
+"note": "",
+"segments": [
+[
+"chodnik",
+5.75,
+""
+]
+],
+"name": "",
+"lat": 48.7350769,
+"lon": 19.1525234,
+"bearing": 57.81
+}
+},
+{
+"id": 102,
+"town": "bystrica",
+"A": {
+"span": null,
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"pruh",
+3.0,
+"odhad"
+],
+[
+"pruh",
+3.0,
+"odhad"
+]
+],
+"name": "",
+"lat": 48.7361538,
+"lon": 19.1380028,
+"bearing": 85.75
+},
+"B": {
+"span": {
+"left": 0.72,
+"right": 2.38
+},
+"sources": {
+"skTown": "bystrica"
+},
+"note": "",
+"segments": [
+[
+"chodnik",
+3.1,
+""
+]
+],
+"name": "",
+"lat": 48.7361538,
+"lon": 19.1380028,
+"bearing": 85.75
+}
+},
+{
+"id": 106,
+"town": "bystrica",
+"A": {
+"span": {
+"left": 9.12,
+"right": 4.58
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"pruh",
+2.7,
+""
+],
+[
+"pruh",
+2.7,
+""
+],
+[
+"chodnik",
+2.3,
+"odhad"
+]
+],
+"name": "Rudlovská cesta",
+"lat": 48.7424327,
+"lon": 19.1522449,
+"bearing": 15.68
+},
+"B": {
+"span": {
+"left": 5.52,
+"right": 4.73
+},
+"sources": {
+"skTown": "bystrica"
+},
+"note": "",
+"segments": [
+[
+"chodnik",
+1.7,
+""
+],
+[
+"pruh",
+3.47,
+""
+],
+[
+"pruh",
+3.47,
+""
+],
+[
+"chodnik",
+1.6,
+""
+]
+],
+"name": "Rudlovská cesta",
+"lat": 48.7424327,
+"lon": 19.1522449,
+"bearing": 15.68
+}
+},
+{
+"id": 107,
+"town": "bystrica",
+"A": {
+"span": {
+"left": 18.07,
+"right": 13.68
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"zelen",
+1.4,
+"odhad"
+],
+[
+"nezname",
+3.45,
+"odhad"
+],
+[
+"pruh",
+3.57,
+""
+],
+[
+"pruh",
+3.13,
+""
+],
+[
+"delici",
+3.0,
+"odhad"
+],
+[
+"pruh",
+3.47,
+""
+],
+[
+"pruh",
+3.5,
+""
+],
+[
+"krajnice",
+0.13,
+""
+],
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"plocha",
+4.1,
+"odhad"
+]
+],
+"name": "R1",
+"lat": 48.7464801,
+"lon": 19.1383996,
+"bearing": 15.1
+},
+"B": {
+"span": {
+"left": 22.0,
+"right": 4.43
+},
+"sources": {
+"skTown": "bystrica"
+},
+"note": "",
+"segments": [
+[
+"pruh",
+4.03,
+""
+],
+[
+"zelen",
+1.3,
+"odhad"
+],
+[
+"nezname",
+0.45,
+"odhad"
+],
+[
+"pruh",
+2.88,
+""
+],
+[
+"pruh",
+3.7,
+""
+],
+[
+"pruh",
+4.08,
+""
+],
+[
+"nezname",
+1.25,
+"odhad"
+],
+[
+"krajnice",
+0.67,
+""
+],
+[
+"pruh",
+3.7,
+""
+],
+[
+"pruh",
+3.4,
+""
+],
+[
+"krajnice",
+0.98,
+""
+]
+],
+"name": "R1",
+"lat": 48.7464801,
+"lon": 19.1383996,
+"bearing": 15.1
+}
+},
+{
+"id": 109,
+"town": "bystrica",
+"A": {
+"span": {
+"left": 33.93,
+"right": 1.78
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"zelen",
+26.0,
+"odhad"
+],
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"obsluzna",
+3.7,
+"odhad"
+]
+],
+"name": "",
+"lat": 48.7425556,
+"lon": 19.1306833,
+"bearing": 32.42
+},
+"B": {
+"span": {
+"left": 1.87,
+"right": 2.03
+},
+"sources": {
+"skTown": "bystrica"
+},
+"note": "",
+"segments": [
+[
+"obsluzna",
+3.9,
+""
+]
+],
+"name": "",
+"lat": 48.7425556,
+"lon": 19.1306833,
+"bearing": 32.42
+}
+},
+{
+"id": 112,
+"town": "bystrica",
+"A": {
+"span": {
+"left": 22.18,
+"right": 7.08
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"nezname",
+6.25,
+"odhad"
+],
+[
+"pruh",
+3.43,
+""
+],
+[
+"pruh",
+3.43,
+""
+],
+[
+"pruh",
+3.43,
+""
+],
+[
+"delici",
+1.2,
+"odhad"
+],
+[
+"pruh",
+3.06,
+""
+],
+[
+"pruh",
+4.6,
+""
+],
+[
+"pruh",
+3.83,
+""
+]
+],
+"name": "R1",
+"lat": 48.748064,
+"lon": 19.1509673,
+"bearing": -73.53
+},
+"B": {
+"span": {
+"left": 22.18,
+"right": 21.23
+},
+"sources": {
+"skTown": "bystrica"
+},
+"note": "",
+"segments": [
+[
+"nezname",
+4.0,
+"odhad"
+],
+[
+"krajnice",
+5.3,
+"odhad"
+],
+[
+"pruh",
+3.75,
+""
+],
+[
+"pruh",
+3.75,
+""
+],
+[
+"pruh",
+3.75,
+""
+],
+[
+"pruh",
+3.75,
+""
+],
+[
+"pruh",
+3.75,
+""
+],
+[
+"pruh",
+3.75,
+""
+],
+[
+"krajnice",
+5.3,
+"odhad"
+],
+[
+"nezname",
+6.3,
+"odhad"
+]
+],
+"name": "R1",
+"lat": 48.748064,
+"lon": 19.1509673,
+"bearing": -73.53
+}
+},
+{
+"id": 113,
+"town": "bystrica",
+"A": {
+"span": null,
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"pruh",
+3.0,
+"odhad"
+],
+[
+"pruh",
+3.0,
+"odhad"
+]
+],
+"name": "",
+"lat": 48.7355383,
+"lon": 19.1565027,
+"bearing": 35.39
+},
+"B": {
+"span": {
+"left": 2.52,
+"right": 2.58
+},
+"sources": {
+"skTown": "bystrica"
+},
+"note": "",
+"segments": [
+[
+"chodnik",
+4.65,
+""
+],
+[
+"nezname",
+0.45,
+"odhad"
+]
+],
+"name": "",
+"lat": 48.7355383,
+"lon": 19.1565027,
+"bearing": 35.39
+}
+},
+{
+"id": 114,
+"town": "bystrica",
+"A": {
+"span": {
+"left": 4.32,
+"right": 5.28
+},
+"sources": {},
+"note": "odhad",
+"segments": [
+[
+"pruh",
+3.6,
+""
+],
+[
+"pruh",
+3.6,
+""
+],
+[
+"nezname",
+2.4,
+"odhad"
+]
+],
+"name": "Muškátová",
+"lat": 48.7406462,
+"lon": 19.1339986,
+"bearing": -24.22
+},
+"B": {
+"span": {
+"left": 4.32,
+"right": 5.28
+},
+"sources": {
+"skTown": "bystrica"
+},
+"note": "",
+"segments": [
+[
+"pruh",
+3.45,
+""
+],
+[
+"pruh",
+3.45,
+""
+],
+[
+"parkovani",
+2.0,
+"odhad"
+],
+[
+"nezname",
+0.7,
+"odhad"
+]
+],
+"name": "Muškátová",
+"lat": 48.7406462,
+"lon": 19.1339986,
+"bearing": -24.22
+}
+}
+]

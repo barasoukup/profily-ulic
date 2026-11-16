@@ -218,10 +218,18 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Značky (Bára 15. 11. 2026): C 10a ukazuje chodce na jejich straně (dál od vozovky, při „Otočit“ se prohodí, bez dat
   jako vzor: chodci vpravo); IZ 10a Sdílená zóna jen podle `traffic_sign` v OSM; C 7a Stezka pro chodce na pěší cestě;
   E 13 „Mimo dopravní obsluhy“ (2. pád, gramaticky správně).
+- Pasporty měst (Bára 16. 11. 2026, `towns/slovensko.js` SK_TOWNS, jen ve větvi `slovensko`): Bratislava (magistrát:
+  chodníky, vozovky, parkoviště; MČ Dúbravka), Prešov (doprava, zeleň, stromy; CC BY 4.0), Žilina a Banská Bystrica
+  (T-MAPY PaKom); jen kde má pasport plochu pod středem řezu, kolem budovy, zeleň a voda z OSM; `?pasport=0` vypne.
+  A/B 115 řezů: lépe 28, hůř 7 (`evaluation/slovensko/ab/ZPRAVA.md`). Technická mapa Bratislavy (čáry + značky ploch)
+  zapojená, ale vypnutá (`?tm=1`): málo značek, otevřené čáry. Licence kromě Prešova neuvedené.
+- Mimo Česko se vzhled domu neodvozuje od vzdálenosti od centra (žádné není), ale z OSM (rok, střecha, deska); panelák
+  jen obytným domům (ZBGIS druh budovy). Ulice ze dvou jednosměrných vozovek má v odhadu obě. V nadpisu jen ulice,
+  poznámka o datech pod ním. Panorama Mapy.com jen v CZ. Jazyky v rozbalovacím menu s vlajkami (vše Bára 16. 11. 2026).
 
 ## Jazyky (Bára 12. 11. 2026, slovenčina 15. 11. 2026)
 - Anglicky se aplikace jmenuje **Street Profile**, slovensky **Profily ulíc**. Čeština, slovenčina a angličtina: `pilot/public/i18n.js`
-  (`t("český text")`), překlady v `pilot/public/en.js` a `sk.js`, tlačítka ostatních jazyků v hlavičce, `?lang=sk`. Jazyk podle
+  (`t("český text")`), překlady v `pilot/public/en.js` a `sk.js`, menu jazyků s vlajkami v hlavičce, `?lang=sk`. Jazyk podle
   prohlížeče (první z jeho jazyků, který aplikace umí; všichni ostatní angličtina), ne podle místa řezu (Bára). Nový text vždy přes `t()` a s překladem (hlídá `tests/i18n.test.js`). Popis v `pilot/README.md`.
 
 ## Hospodaření s vodou a jednodušší rozhraní (Bára 12. 11. 2026)

@@ -397,6 +397,8 @@ function measured(w, c, lines, solid = [], fine = true) {
   if (kinds[0] === "join") { pieces[1].s = pieces[0].s; pieces[1].w = pieces[1].e - pieces[1].s; pieces[1].wide = strict !== 0; }
   if (kinds.at(-1) === "join") { const o = pieces.at(-2); o.e = pieces.at(-1).e; o.w = o.e - o.s; o.wide = strict !== kinds.length - 1; }
   const list = pieces.map((p, q) => ({ ...p, kind: kinds[q] })).filter((p) => p.kind !== "join");
+  // Everything joined (two pieces, both joined to each other: Banská Bystrica, the A/B test of 16. 11. 2026): nothing to measure.
+  if (!list.length) return null;
   if (list.some((p) => p.kind === "pruh" && p.w > (p.wide ? LANE_MAX + LANE_MIN : LANE_MAX))) return null;
   // A piece at a kerb where the rules had a shoulder, behind a solid line, is the shoulder behind an edge line
   // (Rozvadovská spojka: 3 m behind the line; Brněnská; Brno, Hradecká: 3.6 m), behind a dashed line a lane
