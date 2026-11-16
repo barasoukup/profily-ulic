@@ -317,3 +317,15 @@ export function plateFile(s, seg, country = "CZ") {
   return null;
 }
 
+// Signs a state has drawings for (Fable and the hostile review of Austria): in SK and AT the derived signs without a
+// file of the state (the shared zone, a one-way in Austria, parking on the sidewalk) are dropped, and in AT those with a
+// plate too (its Zusatztafeln are not drawn: B 1 alone would ban all entry, not all but local traffic).
+export function drawable(x, seg, country = "CZ") {
+  if (country !== "SK" && country !== "AT") return true;
+  if (!signFile(x, seg, country)) return false;
+  return !(country === "AT" && x.plate);
+}
+export function keepDrawable(profile, country = "CZ") {
+  for (const s of profile.segments || []) if (s.signs) { s.signs = s.signs.filter((x) => drawable(x, s, country)); if (!s.signs.length) delete s.signs; }
+  return profile;
+}

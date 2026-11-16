@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { deriveSigns, signFile, plateFile, streetSigns, signLabel } from "../pilot/public/signs.js";
+import { deriveSigns, signFile, plateFile, streetSigns, signLabel, keepDrawable } from "../pilot/public/signs.js";
 
 const keys = (list) => (list || []).map((s) => s.k + (s.v ? `:${s.v}` : "") + (s.plate ? `+${s.plate}` : ""));
 const files = (p) => p.segments.map((s) => (s.signs || []).map((x) => signFile(x, s)));
@@ -187,4 +187,15 @@ test("značky státu AT: soubory v signs-AT/, jednosměrka se nekreslí (čelní
   assert.equal(signFile({ k: "ztp" }, {}, "AT"), null);
   assert.equal(plateFile({ k: "b1", plate: "obsluha" }, {}, "AT"), null);
   assert.match(signLabel({ k: "ip27a" }, "AT"), /^§ 53 Z 9a /);
+});
+
+test("SK a AT: odvozené značky bez vlastní kresby státu se zahodí, v AT i značky s dodatkovou tabulkou", () => {
+  const p = () => ({ segments: [{ type: "pruh", width: 3, signs: [{ k: "oneway" }, { k: "b1", plate: "obsluha" }] }, { type: "chodnik", width: 2, signs: [{ k: "sdilena" }] }] });
+  const at = keepDrawable(p(), "AT");
+  assert.equal(at.segments[0].signs, undefined);
+  assert.deepEqual(at.segments[1].signs, [{ k: "sdilena" }], "AT Begegnungszone má");
+  const cz = keepDrawable(p(), "CZ");
+  assert.equal(cz.segments[0].signs.length, 2);
+  const sk = keepDrawable(p(), "SK");
+  assert.equal(sk.segments[1].signs, undefined, "SK sdílenou zónu nemá");
 });

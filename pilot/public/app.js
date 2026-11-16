@@ -8,7 +8,7 @@ import { orthoOsmPolys, besidePassport, P as ORTHO_P } from "./ortho-osm.js";
 import { underground, KINDS as NET_KINDS, netAt } from "./site.js";
 // Lanes and shoulders from the road markings of the orthophoto (lanes-ortho.js); ?orto=0 leaves the rules' profile.
 const LANES_ORTHO = new URLSearchParams(location.search).get("orto") !== "0";
-import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, signFits, signFile, MAX_PER_PART } from "./signs.js";
+import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, signFits, signFile, keepDrawable, drawable, MAX_PER_PART } from "./signs.js";
 import { loadSprites, loadSigns, layoutSigns, buildSvg, isHole, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, edgeInfo, underDepth, ROADWAY, nearestRoadway, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
 import * as sources from "./sources.js";
 import { ruianBuilding } from "./gis.js";
@@ -380,6 +380,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     // The way's right is the profile's right when the profile looks along the way's geometry.
     const alongWay = !near.dir || dir[0] * near.dir[0] + dir[1] * near.dir[1] >= 0;
     deriveSigns(result, near.way.tags, { inZps, alongWay });
+    keepDrawable(result, city.country || "CZ");
     const name = near.way.tags.name || near.way.tags.ref || "";
     const span = result.extent && { left: +result.extent[1].toFixed(2), right: +(-result.extent[0]).toFixed(2) };
     // A design belongs to its cut: dragging the cut (its middle or an end) keeps it, a new cut (a click, even on
@@ -1708,7 +1709,7 @@ function signTags(list = [], max, type, set) {
     add.add(new Option(tr("+ přidat značku"), ""));
     for (const k of fits) {
       add.add(new Option(name({ k }), k));
-      for (const [ck, c] of Object.entries(SIGN_CHOICES)) if (c.k === k) add.add(new Option(name(c), ck));
+      for (const [ck, c] of Object.entries(SIGN_CHOICES)) if (c.k === k && drawable(c, null, city.country || "CZ")) add.add(new Option(name(c), ck));
     }
     add.onchange = () => {
       const k = add.value;
