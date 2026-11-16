@@ -77,6 +77,9 @@ basemap.at (`lanes-ortho.js` zdroj `at`, z20).
 - **Normy** `rules.js limitsAT`: cyklo podle RVS 03.02.13 (citováno přes NÖ Leitfaden 2024), pruhy a ostatní podle
   Wiener Projektierungshandbuch; skupina silnice z OSM `highway` (`derive.js osmGroup`). Stání napůl na chodníku
   podle StVO § 24 odst. 3 (dva volné pruhy po asi 2,6 m). Rešerše `evaluation/austria/NORMY.md`.
+- **Hledání** ve Vídni z adresních bodů města (`search-at.js`, když mapa ukazuje Vídeň nebo dotaz obsahuje „Wien“);
+  adresa se řeže na své ulici (osa z grafu ulic města, ulice toho jména vyhrává v `nearestStreet`).
+- **Salcburk:** zákaz zastavení a stání z katastru značek města (do 25 m od řezu, na straně značky), `?salzburg=0`.
 - **Značky** `signs-AT/` (StVO § 52–53); jednosměrka se pod pruhem neznačí, značky bez rakouské kresby a s
   dodatkovou tabulkou se zahodí.
 
