@@ -27,3 +27,18 @@ Bára: „Zřídíš si agenta, který projde 1000 míst na Slovensku… Pak se 
 | cyklopruh na silnici (OSM) chybí | 1 | Kasárenská v Trenčíně (cycleway=lane) |
 
 Pořadí oprav podle počtu: 1. pěšina jako silnice, 2. široké pruhy, 3. počet pruhů proti OSM, 4. řezy bez profilu.
+
+## Oprava 1: pěšina, cyklostezka a schody jako jeden díl (A/B, 16. 11. 2026)
+Řez, který chytí pěšinu (OSM footway, path, cycleway, steps, bridleway), dostal z odhadu z OSM dva jízdní pruhy po 3 m.
+Teď jeden díl: chodník, stezka pro cyklisty, nebo společná stezka (cyklostezka s chodci bez oddělení, pěšina pro kola),
+šířka z OSM `width`, jinak typická (chodník 2 m, cesta 1,5 m, cyklostezka 2,5 m). `derive.js` `estimatePath`,
+vypnutí pro A/B `?off=cesty`.
+
+- Změnilo se 244 z 1000 řezů. 238 je právě pěšin ze „pruh | pruh“: chodník 2 m 124×, 1,5 m 82×, společná stezka 24×,
+  cyklostezka 6×. Zbylých 6 jsou silnice odhadnuté z ortofota, kde se šířky mezi dvěma běhy liší o desítky centimetrů
+  (kolísání čtení obrázku, oprava se jich netýká).
+- Podezření: pěšina jako silnice 252 → 14 (zbylé jsou falešné poplachy kontroly: ulice, kterou u osy kříží chodník),
+  cyklostezka z OSM chybí 44 → 14, chodník ve vozovce 6 → 4; ostatní beze změny.
+- Regrese odhadu proti MTVU Prahy a Brna beze změny. Testy prošly.
+- Pozor při sběru: běh ve skryté záložce se zpomalí; když se do `localStorage` uloží velké výsledky, aplikace pak
+  neuloží profil a řez vyjde prázdný (proto výsledky jen v paměti stránky).

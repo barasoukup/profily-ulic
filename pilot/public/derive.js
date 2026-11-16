@@ -3,6 +3,7 @@
 import { typeFromMtvu, isBuilding, isMinorStructure, DEFAULT_WIDTH, PERMEABLE_TYPES } from "./types.js";
 import { city } from "./city.js";
 import { t, num } from "./i18n.js";
+import { P as ORTHO_P } from "./ortho-osm.js";
 
 const STEP = 0.05; // sampling step along the cut (m)
 const MIN_RUN = 0.3; // runs narrower than this merge into a neighbour (m)
@@ -2053,8 +2054,23 @@ function aisleOrient(segs) {
 }
 
 // Fallback outside MTVU coverage: a typical profile from OSM tags.
+// A path, footway, cycle way or flight of steps (a cut that caught one, not a street): one part of its kind and width
+// (OSM width, else a typical one), not a road of two lanes (1000 Slovak cuts: 238 such paths drawn as 2 × 3 m lanes).
+const PATH_WAYS = new Set(["footway", "path", "cycleway", "steps", "bridleway", "corridor"]);
+const PATH_WIDTH = { footway: 2, path: 1.5, cycleway: 2.5, steps: 2, bridleway: 2, corridor: 2 };
+function estimatePath(tags) {
+  // A cycle way with walkers on it unsegregated, or a footway or path for bicycles, is shared; a cycle way alone a cycle
+  // track; anything else a sidewalk-like walk.
+  const shared = tags.highway === "cycleway" ? ["designated", "yes"].includes(tags.foot) && tags.segregated !== "yes" : tags.bicycle === "designated";
+  const type = shared ? "stezka_sdilena" : tags.highway === "cycleway" ? "cyklostezka" : "chodnik";
+  const w = parseFloat(String(tags.width || "").replace(",", "."));
+  const width = w > 0.5 && w < 12 ? w : PATH_WIDTH[tags.highway] || 2;
+  return { segments: [{ type, width: round(width), source: w > 0.5 && w < 12 ? "osm" : "odhad" }], edges: { left: "volno", right: "volno" }, runs: [], axisT: 0, estimate: true, path: true };
+}
+
 function estimateFromOsm(way) {
   const tags = way.tags || {};
+  if (PATH_WAYS.has(tags.highway) && !ORTHO_P.off?.has("cesty")) return estimatePath(tags); // ?off=cesty: the A/B
   const oneway = isOnewayTags(tags);
   const lanes = tags.highway === "pedestrian" || tags.highway === "living_street" ? 1 : parseInt(tags.lanes, 10) || (oneway ? 1 : 2);
   const total = parseFloat(tags.width) || null;
