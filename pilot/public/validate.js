@@ -7,7 +7,9 @@ import { PASSPORT_NAMES } from "./towns/pasporty-names.js";
 import { t } from "./i18n.js";
 
 const EDGE_KINDS = new Set(["budova", "stavba", "zahrada", "zelen", "voda", "parkoviste", "plot", "volno"]);
-const EDGE_STYLES = new Set(["sikma", "funkce", "moderni", "plocha", "nizky", "hala", "centrum", "centrum-obchod", "sidliste", "sidliste-lodzie", "rd"]);
+// The looks of profile.js BUILDING_STYLES (tests/buildings.test.js checks they match) and the old names of saved files.
+export const EDGE_STYLES = new Set(["sikma", "sorela", "typovy", "funkce", "plocha", "moderni", "kancelar", "nizky", "vila", "kostka", "novyrd",
+  "statek", "mestan", "skola", "kostel", "garaz", "hala", "centrum", "centrum-obchod", "sidliste", "sidliste-lodzie", "rd"]);
 
 const num = (v, lo, hi) => typeof v === "number" && Number.isFinite(v) && v >= lo && v <= hi;
 // Building facts at the edges that end up in SVG attributes (heights, floors, area).

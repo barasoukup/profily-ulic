@@ -16,7 +16,8 @@ Bára: „paneláků máme moc, kreslí se i tam, kde to panelák není.“ Vý�
 | | kreslen panelák | z toho panel v RÚIAN | ne panel (kód 10) | ne panel jistě |
 |---|---|---|---|---|
 | před změnou | 275 | 153 | 116 | 6 |
-| po změně | 241 | 139 | 99 | 3 |
+| po první změně | 241 | 139 | 99 | 3 |
+| po Street View a kontrole Fablea (`vysledek-po.tsv`) | 190 | 139 | 51 | 0 |
 
 Příčiny falešných paneláků před změnou: tvar desky u domů z 40. a 60. let (71), rok 1970–1995 i u zděných domů (47),
 panelové novostavby po roce 2000 (16, vypadají jako moderní dům), úřady a školy s popiskem „panelový dům“ (kreslily se
@@ -36,3 +37,11 @@ má RÚIAN rok 1990 (nejspíš rekonstrukce).
 
 Změna: dům dokončený 1958–69 bez panelů v RÚIAN je nový vzhled **zděný bytový dům 50.–60. let** (`typovy`: šikmá
 taškovou střecha, komíny, hladká omítka bez ozdob). Od 1970 zůstává kód 10 panelákem (oba paneláky ve vzorku).
+
+## Kontrola Fablea (16. 11. 2026)
+Opraveno: ručně zvolený nový vzhled se při načtení souboru ztrácel (`validate.js` `EDGE_STYLES`); zděný dům 60. let jen
+do 5 podlaží (vyšší dům té doby zůstává panelákem); rok domu platí i u známé šikmé střechy (Plzeň: sorela, dům 60. let);
+řadovka před venkovským domem, usedlost nejvýš 2 podlaží; IPR typ 6 v pražském centru je městský dům; měšťanský dům
+i o 1–2 podlažích; rodinný dům 1946–59 je starší dům, ne „kostka“; podloubí nižší u nízkého přízemí, okno za ním
+v hranici kresby. Nepřevzato: zděný dům 60. let „jen mimo desky“, protože všech 11 zděných domů z let 1958–69 ze
+Street View mělo tvar desky.

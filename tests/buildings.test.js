@@ -125,3 +125,30 @@ test("kostel, garáž, škola, měšťanský dům na náměstí", async () => {
   assert.equal(buildingStyle({ levels: 4, roofType: 1, period: 1840, km: 0.3 }), "mestan");
   assert.equal(buildingStyle({ levels: 4, roofType: 1, period: 1880, km: 0.3 }), "sikma");
 });
+
+// Review of 16. 11. 2026 (Fable).
+test("ručně zvolený vzhled přežije uložení; všechny vzhledy zná kontrola souboru", async () => {
+  const { BUILDING_STYLES } = await import("../pilot/public/profile.js");
+  const { EDGE_STYLES, cleanProfile } = await import("../pilot/public/validate.js");
+  for (const k of Object.keys(BUILDING_STYLES)) assert.ok(EDGE_STYLES.has(k), k);
+  const p = cleanProfile({ segments: [{ type: "chodnik", width: 3 }], edges: { left: "budova", leftStyle: "vila", right: "budova", rightStyle: "xyz" } });
+  assert.equal(p.edges.leftStyle, "vila");
+  assert.equal(p.edges.rightStyle, undefined);
+});
+
+test("zděný dům 60. let jen do 5 podlaží (i deska); rok i u známé šikmé střechy", async () => {
+  const { buildingStyle } = await import("../pilot/public/profile.js");
+  const slab = { length: 60, width: 12, fill: 0.85, parts: 1 };
+  assert.equal(buildingStyle({ levels: 9, built: 1963, km: 99 }), "plocha");
+  assert.equal(buildingStyle({ levels: 5, built: 1968, km: 99, block: slab }), "typovy");
+  assert.equal(buildingStyle({ levels: 4, roofType: 1, built: 1953, km: 3 }), "sorela");
+});
+
+test("řadovka před venkovským domem, usedlost nejvýš 2 podlaží, IPR typ 6 v centru Prahy", async () => {
+  const { buildingStyle } = await import("../pilot/public/profile.js");
+  assert.equal(buildingStyle({ levels: 2, house: 1, built: 1930, km: 5, across: 1, type: "terrace" }), "nizky");
+  assert.notEqual(buildingStyle({ levels: 5, farm: 1, built: 1930, km: 5 }), "statek");
+  assert.equal(buildingStyle({ levels: 1, iprKind: 6, km: 0.3, period: 1840 }), "mestan");
+  assert.equal(buildingStyle({ levels: 1, iprKind: 6, km: 1.5, period: 1880 }), "nizky");
+  assert.equal(buildingStyle({ levels: 2, house: 1, built: 1952, km: 5 }), "vila");
+});
