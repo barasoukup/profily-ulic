@@ -53,7 +53,7 @@ for (const [city, key] of Object.entries(CITIES)) {
       if (!w0 || !w1) continue;
       const dTrue = median([ws - w0.s, we - w0.e]);
       const bounds = (w) => w.parts.slice(1).map((p) => p.s + dTrue).filter(inside);
-      const row = { city, who, name, n: ix.n, street: ix.street, changed, truth: truth.length, why: whyHere };
+      const row = { city, who, name, n: ix.n, street: ix.street, changed, truth: truth.length, why: whyHere, shift: +dTrue.toFixed(2), widthErr: +((we - ws) - (w0.e - w0.s)).toFixed(2) };
       for (const [set, b] of [["pravidla", bounds(w0)], ["ortofoto", bounds(w1)]]) {
         const errs = truth.map((t) => near(b, t));
         row[set] = { lanes: b.length + 1, hit: errs.filter((e) => e <= MATCH).length, extra: b.filter((t) => near(truth, t) > MATCH).length, parts: (set === "pravidla" ? w0 : w1).parts.map((p) => `${p.type} ${p.w.toFixed(2)}`) };
@@ -72,6 +72,14 @@ for (const [k, v] of Object.entries(tally)) {
 }
 const better = rows.filter((r) => r.ortofoto.hit > r.pravidla.hit || (r.ortofoto.hit === r.pravidla.hit && r.ortofoto.extra < r.pravidla.extra)).length;
 const worse = rows.filter((r) => r.ortofoto.hit < r.pravidla.hit || (r.ortofoto.hit === r.pravidla.hit && r.ortofoto.extra > r.pravidla.extra)).length;
+// How far the map's kerbs lie from the marked ones: the shift of both, and the width (the map's carriageway
+// against the marked one), by city.
+for (const c of Object.keys(CITIES)) {
+  const r = rows.filter((x) => x.city === c), med = (v) => { const q = [...v].sort((a, b) => a - b); return q[q.length >> 1]; };
+  if (!r.length) continue;
+  const w = r.map((x) => Math.abs(x.widthErr));
+  console.log(`${c}: posun mapy medián ${med(r.map((x) => Math.abs(x.shift))).toFixed(2)} m, šířka vozovky mapy proti snímku medián ${med(w).toFixed(2)} m, nad 0,5 m ${w.filter((x) => x > 0.5).length}/${r.length}`);
+}
 const reasons = {};
 for (const r of rows) reasons[r.why] = (reasons[r.why] || 0) + 1;
 console.log("proč:", Object.entries(reasons).sort((a, b) => b[1] - a[1]).map(([k, v]) => `${k} ${v}`).join(", "));
