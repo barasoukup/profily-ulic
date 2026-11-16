@@ -231,3 +231,29 @@ a ZBGIS občas neodpoví, proto ne mezi koly). Obrázky přes ortofoto ZBGIS v `
 
 **Slabina:** trávník pod korunami a vyschlý trávník má na slovenském ortofotu stejnou zelenost jako dlažba (0,12–0,32
 proti 0,04–0,20), pomůže jen trávník ZBGIS, kde ho má. Regrese v Praze a Brně beze změny (pravidlo jen u pasportu).
+
+# Samostatný chodník OSM přes trávník ZBGIS (16. 11. 2026)
+
+Bára: na Štúrově v Nitře jsou u domů na obou stranách chodníky, profil tam měl široké zeleně. Trávník ZBGIS sahal až
+k domu a měl přednost před chodníkem odhadu. OSM tam má samostatné chodníky (`footway=sidewalk`): jeden 13 m od osy
+přes trávník ZBGIS (na ortofotu jsou tam auta a dlažba), druhý 16,9 m od osy v pruhu mezi čarou mapy Nitry a domem.
+
+**Pravidlo** (`ortho-osm.js` `orthoOsmPolys`, platí všude, kde se profil skládá z ortofota a OSM, `?off=osmwalk`
+vypne):
+- Samostatný chodník OSM za obrubou a před domem je chodník i přes trávník ZBGIS nebo zeleň OSM.
+- Jeho šířku dají čáry mapy města do 3 m od něj; ven k domu, když dům stojí do 4 m; jinak 2 m kolem jeho čáry.
+
+**A/B:** 235 řezů (vzorek ZBGIS 90 a vzorek čar měst 145, `vzorek-osmwalk.json`), každý dvakrát hned po sobě.
+Obrázky jsou v `obrazky-osmwalk/`.
+
+| | řezů |
+|---|---|
+| změněno | 28 (26 s obrázkem) |
+| lépe | 10: Štúrova v Nitře, Jarmočná, Spartakovská, Piešťanská, Fándlyho, Radlinského v Trnavě, Slovenského odboja, Strážska, Janka Kráľa, Palackého (chodník za trávou) |
+| hůř | 2: Šoltésovej (zeleň mezi dvěma chodníky splyne v chodník), Bernolákova (chodník souběžné ulice) |
+| smíšeně | 1: Hodžova v Trenčíně (přibude chodník, ale i díry „Neurčeno“) |
+| beze změny podstaty | ostatní |
+
+**Regrese Prahy a Brna:** Praha beze změny. Brno má chodníky o něco lépe: do 1 m 37 → 39 % (ČÚZK) a 33 → 35 %
+(Brno 10 cm), medián chyby 2,45 → 2,25 m. Obruby na brněnském 10 cm snímku do 0,5 m 45 → 44 % (jedna obruba).
+Nový výchozí stav je ve `vysledky/regrese.txt`.

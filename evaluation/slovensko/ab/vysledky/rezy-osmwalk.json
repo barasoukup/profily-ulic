@@ -1,0 +1,2195 @@
+[
+ {
+  "id": 430,
+  "town": "",
+  "A": {
+   "name": "Vladimíra Clementisa",
+   "lat": 48.3778009,
+   "lon": 17.5988539,
+   "bearing": -37.52,
+   "span": {
+    "left": 17.32,
+    "right": 23.18
+   },
+   "segments": [
+    [
+     "zelen",
+     14.85,
+     ""
+    ],
+    [
+     "chodnik",
+     0.75,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.37,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.53,
+     "odhad"
+    ],
+    [
+     "zelen",
+     18,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "Vladimíra Clementisa",
+   "lat": 48.3778009,
+   "lon": 17.5988539,
+   "bearing": -37.52,
+   "span": {
+    "left": 17.32,
+    "right": 23.18
+   },
+   "segments": [
+    [
+     "zelen",
+     7.6,
+     ""
+    ],
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     5.25,
+     ""
+    ],
+    [
+     "chodnik",
+     0.75,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.37,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.53,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.95,
+     "odhad"
+    ],
+    [
+     "zelen",
+     16.05,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 431,
+  "town": "",
+  "A": {
+   "name": "Spartakovská",
+   "lat": 48.3736395,
+   "lon": 17.5951764,
+   "bearing": 70.35,
+   "span": {
+    "left": 2.22,
+    "right": 10.28
+   },
+   "segments": [
+    [
+     "krajnice",
+     0.17,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.7,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.13,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Spartakovská",
+   "lat": 48.3736395,
+   "lon": 17.5951764,
+   "bearing": 70.35,
+   "span": {
+    "left": 2.22,
+    "right": 18.13
+   },
+   "segments": [
+    [
+     "krajnice",
+     0.17,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.7,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.13,
+     "odhad"
+    ],
+    [
+     "zelen",
+     5.85,
+     ""
+    ],
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": 432,
+  "town": "",
+  "A": {
+   "name": "Piešťanská",
+   "lat": 48.3843966,
+   "lon": 17.6017276,
+   "bearing": 73.93,
+   "span": {
+    "left": 6.17,
+    "right": 4.88
+   },
+   "segments": [
+    [
+     "nezname",
+     1.15,
+     "odhad"
+    ],
+    [
+     "pruh",
+     9.9,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Piešťanská",
+   "lat": 48.3843966,
+   "lon": 17.6017276,
+   "bearing": 73.93,
+   "span": {
+    "left": 8.72,
+    "right": 4.88
+   },
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.55,
+     ""
+    ],
+    [
+     "nezname",
+     1.15,
+     "odhad"
+    ],
+    [
+     "pruh",
+     9.9,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": 433,
+  "town": "",
+  "A": {
+   "name": "",
+   "lat": 48.3681621,
+   "lon": 17.5973818,
+   "bearing": 1.18,
+   "span": {
+    "left": 13.39,
+    "right": 5.83
+   },
+   "segments": [
+    [
+     "nezname",
+     2.76,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.1,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.1,
+     "odhad"
+    ],
+    [
+     "delici",
+     1.8,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.3,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.5,
+     "odhad"
+    ],
+    [
+     "nezname",
+     1.65,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 48.3681621,
+   "lon": 17.5973818,
+   "bearing": 1.18,
+   "span": {
+    "left": 13.37,
+    "right": 5.83
+   },
+   "segments": [
+    [
+     "nezname",
+     2.75,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.1,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.1,
+     "odhad"
+    ],
+    [
+     "delici",
+     1.8,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.3,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.05,
+     "odhad"
+    ],
+    [
+     "nezname",
+     1.1,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": 434,
+  "town": "",
+  "A": {
+   "name": "Tamaškovičova",
+   "lat": 48.3673723,
+   "lon": 17.5936848,
+   "bearing": 76.27,
+   "span": {
+    "left": 8.27,
+    "right": 4.68
+   },
+   "segments": [
+    [
+     "nezname",
+     2.65,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.07,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.73,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Tamaškovičova",
+   "lat": 48.3673723,
+   "lon": 17.5936848,
+   "bearing": 76.27,
+   "span": {
+    "left": 8.87,
+    "right": 4.68
+   },
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ],
+    [
+     "nezname",
+     1.25,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.07,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.73,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": 436,
+  "town": "",
+  "A": {
+   "name": "Juraja Fándlyho",
+   "lat": 48.3783911,
+   "lon": 17.5795935,
+   "bearing": 52.49,
+   "span": {
+    "left": 9.52,
+    "right": 2.88
+   },
+   "segments": [
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.47,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.3,
+     "odhad"
+    ],
+    [
+     "cyklopruh",
+     1.63,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Juraja Fándlyho",
+   "lat": 48.3783911,
+   "lon": 17.5795935,
+   "bearing": 52.49,
+   "span": {
+    "left": 9.52,
+    "right": 5.23
+   },
+   "segments": [
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.47,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.3,
+     "odhad"
+    ],
+    [
+     "cyklopruh",
+     1.63,
+     "odhad"
+    ],
+    [
+     "nezname",
+     0.35,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": 437,
+  "town": "",
+  "A": {
+   "name": "Radlinského",
+   "lat": 48.3766878,
+   "lon": 17.5827508,
+   "bearing": 67.35,
+   "span": {
+    "left": 6.82,
+    "right": 4.68
+   },
+   "segments": [
+    [
+     "nezname",
+     2.9,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.77,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.93,
+     "odhad"
+    ],
+    [
+     "nezname",
+     2.9,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Radlinského",
+   "lat": 48.3766878,
+   "lon": 17.5827508,
+   "bearing": 67.35,
+   "span": {
+    "left": 6.82,
+    "right": 7.78
+   },
+   "segments": [
+    [
+     "nezname",
+     2.9,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.77,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.93,
+     "odhad"
+    ],
+    [
+     "nezname",
+     2.9,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.1,
+     ""
+    ],
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": 443,
+  "town": "",
+  "A": {
+   "name": "Hodžova",
+   "lat": 48.8964817,
+   "lon": 18.0638324,
+   "bearing": -89.71,
+   "span": {
+    "left": 12.37,
+    "right": 34.48
+   },
+   "segments": [
+    [
+     "plocha",
+     3.15,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "cyklopruh",
+     1.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.85,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.85,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "zelen",
+     24.5,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "Hodžova",
+   "lat": 48.8964817,
+   "lon": 18.0638324,
+   "bearing": -89.71,
+   "span": {
+    "left": 12.37,
+    "right": 34.48
+   },
+   "segments": [
+    [
+     "plocha",
+     3.15,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "cyklopruh",
+     1.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.85,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.85,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.75,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     21.75,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 445,
+  "town": "",
+  "A": {
+   "name": "Hodžova",
+   "lat": 48.897701,
+   "lon": 18.0493117,
+   "bearing": -82.18,
+   "span": {
+    "left": 2.02,
+    "right": 14.33
+   },
+   "segments": [
+    [
+     "pruh",
+     3.37,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.43,
+     "odhad"
+    ],
+    [
+     "nezname",
+     3.5,
+     "odhad"
+    ],
+    [
+     "zelen",
+     6.05,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Hodžova",
+   "lat": 48.897701,
+   "lon": 18.0493117,
+   "bearing": -82.18,
+   "span": {
+    "left": 7.47,
+    "right": 16.88
+   },
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ],
+    [
+     "nezname",
+     3.45,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.37,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.53,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ],
+    [
+     "nezname",
+     1.4,
+     "odhad"
+    ],
+    [
+     "zelen",
+     6.05,
+     "odhad"
+    ],
+    [
+     "nezname",
+     0.55,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": 461,
+  "town": "",
+  "A": {
+   "name": "Šoltésovej",
+   "lat": 49.0654411,
+   "lon": 18.9272994,
+   "bearing": 19.47,
+   "span": {
+    "left": 7.47,
+    "right": 3.28
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.8,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.25,
+     ""
+    ],
+    [
+     "chodnik",
+     1.7,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.97,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.03,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Šoltésovej",
+   "lat": 49.0654411,
+   "lon": 18.9272994,
+   "bearing": 19.47,
+   "span": {
+    "left": 7.47,
+    "right": 3.28
+   },
+   "segments": [
+    [
+     "chodnik",
+     4.75,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.97,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.03,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": 474,
+  "town": "",
+  "A": {
+   "name": "Slovenského odboja",
+   "lat": 49.0561606,
+   "lon": 20.290934,
+   "bearing": -26.91,
+   "span": {
+    "left": 10.92,
+    "right": 9.08
+   },
+   "segments": [
+    [
+     "nezname",
+     4.5,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.1,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "odhad"
+    ],
+    [
+     "delici",
+     3.1,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.67,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.43,
+     "odhad"
+    ],
+    [
+     "nezname",
+     4.2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Slovenského odboja",
+   "lat": 49.0561606,
+   "lon": 20.290934,
+   "bearing": -26.91,
+   "span": {
+    "left": 10.92,
+    "right": 9.08
+   },
+   "segments": [
+    [
+     "nezname",
+     2.65,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.85,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.1,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "odhad"
+    ],
+    [
+     "delici",
+     3.1,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.67,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.43,
+     "odhad"
+    ],
+    [
+     "nezname",
+     4.2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": 5202,
+  "town": "",
+  "A": {
+   "name": "Farská",
+   "lat": 48.3126799,
+   "lon": 18.0854042,
+   "bearing": 2.68,
+   "span": {
+    "left": 9.17,
+    "right": 8.23
+   },
+   "segments": [
+    [
+     "chodnik",
+     3.7,
+     "odhad"
+    ],
+    [
+     "zelen",
+     3.25,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.55,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     5.9,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Farská",
+   "lat": 48.3126799,
+   "lon": 18.0854042,
+   "bearing": 2.68,
+   "span": {
+    "left": 9.17,
+    "right": 8.23
+   },
+   "segments": [
+    [
+     "chodnik",
+     5.35,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.55,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     5.9,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": 5203,
+  "town": "",
+  "A": {
+   "name": "Janka Kráľa",
+   "lat": 48.3115371,
+   "lon": 18.0774018,
+   "bearing": 57.86,
+   "span": {
+    "left": 10.32,
+    "right": 2.88
+   },
+   "segments": [
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.47,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.4,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     0.33,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Janka Kráľa",
+   "lat": 48.3115371,
+   "lon": 18.0774018,
+   "bearing": 57.86,
+   "span": {
+    "left": 10.32,
+    "right": 7.28
+   },
+   "segments": [
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.46,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.4,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     0.38,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.35,
+     ""
+    ],
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": 5209,
+  "town": "",
+  "A": {
+   "name": "Štúrova",
+   "lat": 48.3078714,
+   "lon": 18.0874237,
+   "bearing": -79.06,
+   "span": {
+    "left": 15.92,
+    "right": 10.68
+   },
+   "segments": [
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.47,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.4,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.43,
+     "odhad"
+    ],
+    [
+     "delici",
+     0.9,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.95,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.95,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.5,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Štúrova",
+   "lat": 48.3078714,
+   "lon": 18.0874237,
+   "bearing": -79.06,
+   "span": {
+    "left": 15.92,
+    "right": 14.73
+   },
+   "segments": [
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.47,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.4,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.43,
+     "odhad"
+    ],
+    [
+     "delici",
+     0.9,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.95,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.95,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.5,
+     "odhad"
+    ],
+    [
+     "nezname",
+     2.6,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.45,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": 5214,
+  "town": "",
+  "A": {
+   "name": "Janka Kráľa",
+   "lat": 48.3158517,
+   "lon": 18.0841146,
+   "bearing": -82.81,
+   "span": {
+    "left": 12.97,
+    "right": 4.68
+   },
+   "segments": [
+    [
+     "zelen",
+     3.45,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.45,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.45,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.3,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Janka Kráľa",
+   "lat": 48.3158517,
+   "lon": 18.0841146,
+   "bearing": -82.81,
+   "span": {
+    "left": 12.97,
+    "right": 5.73
+   },
+   "segments": [
+    [
+     "zelen",
+     3.45,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.45,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.45,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.35,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": 5215,
+  "town": "",
+  "A": {
+   "name": "Štúrova",
+   "lat": 48.3093482,
+   "lon": 18.0779818,
+   "bearing": -77.6,
+   "span": {
+    "left": 15.37,
+    "right": 20.43
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.05,
+     "odhad"
+    ],
+    [
+     "zelen",
+     3.5,
+     ""
+    ],
+    [
+     "chodnik",
+     0.4,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.77,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.77,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.77,
+     "odhad"
+    ],
+    [
+     "delici",
+     3.6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.07,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.23,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     0.5,
+     "odhad"
+    ],
+    [
+     "zelen",
+     10.8,
+     ""
+    ],
+    [
+     "plocha",
+     0.35,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Štúrova",
+   "lat": 48.3093482,
+   "lon": 18.0779818,
+   "bearing": -77.6,
+   "span": {
+    "left": 15.37,
+    "right": 20.43
+   },
+   "segments": [
+    [
+     "chodnik",
+     4.95,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.77,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.77,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.77,
+     "odhad"
+    ],
+    [
+     "delici",
+     3.6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.07,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.23,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     0.5,
+     "odhad"
+    ],
+    [
+     "zelen",
+     6.95,
+     ""
+    ],
+    [
+     "chodnik",
+     4.2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": 5217,
+  "town": "",
+  "A": {
+   "name": "Jarmočná",
+   "lat": 48.2986729,
+   "lon": 18.0868442,
+   "bearing": 43.84,
+   "span": {
+    "left": 10.42,
+    "right": 11.78
+   },
+   "segments": [
+    [
+     "zelen",
+     7.95,
+     ""
+    ],
+    [
+     "chodnik",
+     0.65,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.7,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.7,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Jarmočná",
+   "lat": 48.2986729,
+   "lon": 18.0868442,
+   "bearing": 43.84,
+   "span": {
+    "left": 10.42,
+    "right": 11.78
+   },
+   "segments": [
+    [
+     "zelen",
+     5.75,
+     ""
+    ],
+    [
+     "chodnik",
+     2.85,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.7,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.7,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": 5218,
+  "town": "",
+  "A": {
+   "name": "Damborského",
+   "lat": 48.3069251,
+   "lon": 18.0834109,
+   "bearing": 11.85,
+   "span": {
+    "left": 12.06,
+    "right": 11.73
+   },
+   "segments": [
+    [
+     "chodnik",
+     5.23,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.74,
+     "odhad"
+    ],
+    [
+     "pruh",
+     5.96,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "plocha",
+     2.85,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Damborského",
+   "lat": 48.3069251,
+   "lon": 18.0834109,
+   "bearing": 11.85,
+   "span": {
+    "left": 12.06,
+    "right": 11.73
+   },
+   "segments": [
+    [
+     "chodnik",
+     5.23,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.74,
+     "odhad"
+    ],
+    [
+     "pruh",
+     5.96,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     8.85,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": 5227,
+  "town": "",
+  "A": {
+   "name": "Sokolská",
+   "lat": 48.577637,
+   "lon": 19.1334788,
+   "bearing": 75.72,
+   "span": {
+    "left": 37.27,
+    "right": 8.38
+   },
+   "segments": [
+    [
+     "chodnik",
+     33.45,
+     "odhad"
+    ],
+    [
+     "pruh_piktokoridor",
+     3.07,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.93,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.9,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.3,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Sokolská",
+   "lat": 48.577637,
+   "lon": 19.1334788,
+   "bearing": 75.72,
+   "span": {
+    "left": 37.27,
+    "right": 8.38
+   },
+   "segments": [
+    [
+     "chodnik",
+     33.45,
+     "odhad"
+    ],
+    [
+     "pruh_piktokoridor",
+     3.07,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.93,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.55,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.65,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": 5230,
+  "town": "",
+  "A": {
+   "name": "Strážska cesta",
+   "lat": 48.5837119,
+   "lon": 19.1233885,
+   "bearing": 70.15,
+   "span": {
+    "left": 18.97,
+    "right": 15.53
+   },
+   "segments": [
+    [
+     "plocha",
+     8.85,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.57,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.63,
+     "odhad"
+    ],
+    [
+     "nezname",
+     4,
+     "odhad"
+    ],
+    [
+     "zelen",
+     7.15,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "Strážska cesta",
+   "lat": 48.5837119,
+   "lon": 19.1233885,
+   "bearing": 70.15,
+   "span": {
+    "left": 18.97,
+    "right": 15.53
+   },
+   "segments": [
+    [
+     "plocha",
+     8.85,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.57,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.63,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     4,
+     "odhad"
+    ],
+    [
+     "zelen",
+     7.15,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 5259,
+  "town": "",
+  "A": {
+   "name": "Tichá",
+   "lat": 48.5842736,
+   "lon": 17.8292451,
+   "bearing": -4.21,
+   "span": {
+    "left": 4.72,
+    "right": 4.93
+   },
+   "segments": [
+    [
+     "nezname",
+     1.4,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.7,
+     "odhad"
+    ],
+    [
+     "nezname",
+     3.55,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Tichá",
+   "lat": 48.5842736,
+   "lon": 17.8292451,
+   "bearing": -4.21,
+   "span": {
+    "left": 4.72,
+    "right": 4.68
+   },
+   "segments": [
+    [
+     "nezname",
+     1.4,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.7,
+     "odhad"
+    ],
+    [
+     "nezname",
+     1.3,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": 5263,
+  "town": "",
+  "A": {
+   "name": "Bernolákova",
+   "lat": 48.4254615,
+   "lon": 17.8029976,
+   "bearing": 38.96,
+   "span": {
+    "left": 14.62,
+    "right": 9.68
+   },
+   "segments": [
+    [
+     "chodnik",
+     9.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     5,
+     "odhad"
+    ],
+    [
+     "zelen",
+     4.8,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Bernolákova",
+   "lat": 48.4254615,
+   "lon": 17.8029976,
+   "bearing": 38.96,
+   "span": {
+    "left": 14.62,
+    "right": 12.28
+   },
+   "segments": [
+    [
+     "chodnik",
+     9.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     5,
+     "odhad"
+    ],
+    [
+     "zelen",
+     4.8,
+     "odhad"
+    ],
+    [
+     "nezname",
+     0.7,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.9,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": 5272,
+  "town": "",
+  "A": {
+   "name": "Športová",
+   "lat": 48.4341445,
+   "lon": 17.7981312,
+   "bearing": 30.22,
+   "span": {
+    "left": 4.39,
+    "right": 4.03
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.26,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "odhad"
+    ],
+    [
+     "nezname",
+     3.15,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Športová",
+   "lat": 48.4341445,
+   "lon": 17.7981312,
+   "bearing": 30.22,
+   "span": {
+    "left": 4.39,
+    "right": 4.03
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.26,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "odhad"
+    ],
+    [
+     "nezname",
+     0.9,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.2,
+     "odhad"
+    ],
+    [
+     "nezname",
+     1.05,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": 5273,
+  "town": "",
+  "A": {
+   "name": "Michalská",
+   "lat": 48.425631,
+   "lon": 17.7936722,
+   "bearing": 26.49,
+   "span": {
+    "left": 6.32,
+    "right": 35.73
+   },
+   "segments": [
+    [
+     "nezname",
+     4,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     32.05,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Michalská",
+   "lat": 48.425631,
+   "lon": 17.7936722,
+   "bearing": 26.49,
+   "span": {
+    "left": 7.12,
+    "right": 35.73
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.65,
+     "odhad"
+    ],
+    [
+     "nezname",
+     2.15,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     32.05,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": 5009,
+  "town": "",
+  "A": {
+   "name": "",
+   "lat": 48.1436611,
+   "lon": 17.1289138,
+   "bearing": -28.54,
+   "span": {
+    "left": 1.12,
+    "right": 18.08
+   },
+   "segments": [
+    [
+     "obsluzna",
+     3.9,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "plocha",
+     9.3,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 48.1436611,
+   "lon": 17.1289138,
+   "bearing": -28.54,
+   "span": {
+    "left": 1.12,
+    "right": 18.08
+   },
+   "segments": [
+    [
+     "obsluzna",
+     3.9,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "plocha",
+     1.35,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ],
+    [
+     "plocha",
+     5.95,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": 5021,
+  "town": "",
+  "A": {
+   "name": "Palackého",
+   "lat": 48.1414729,
+   "lon": 17.1102782,
+   "bearing": 77.63,
+   "span": {
+    "left": 3.72,
+    "right": 6.93
+   },
+   "segments": [
+    [
+     "parkovani",
+     2.15,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.75,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.75,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Palackého",
+   "lat": 48.1414729,
+   "lon": 17.1102782,
+   "bearing": 77.63,
+   "span": {
+    "left": 7.27,
+    "right": 6.93
+   },
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.5,
+     ""
+    ],
+    [
+     "parkovani",
+     2.2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.75,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.75,
+     "odhad"
+    ]
+   ]
+  }
+ }
+]

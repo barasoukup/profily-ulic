@@ -2,7 +2,7 @@
 // a 7 m carriageway (dark) between lighter sidewalks, OSM houses 8 m from the axis on both sides.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { orthoOsmPolys, osmAlong, osmRoad, besidePassport } from "../pilot/public/ortho-osm.js";
+import { orthoOsmPolys, osmAlong, osmRoad, besidePassport, P } from "../pilot/public/ortho-osm.js";
 import { localFrame, deriveProfile } from "../pilot/public/derive.js";
 
 const frame = localFrame(50.08, 14.43), dir = [0, 1]; // the street runs north; t across it = −x (west is +t)
@@ -194,4 +194,23 @@ test("za pasportem města: k domu chodník, kde strana chodník nemá, za chodn�
   assert.deepEqual(besidePassport({ osm: { elements: els }, frame, dir, way: { ...els[0], tags: { highway: "motorway" } }, st: null, polys }), []);
   const far = [els[0], house(25, 30), house(-30, -25)];
   assert.deepEqual(besidePassport({ osm: { elements: far }, frame, dir, way: far[0], st: null, polys }), []);
+});
+
+test("ortofoto a OSM: samostatný chodník OSM přebije trávník ZBGIS až k domu (Štúrova v Nitře)", () => {
+  const els = osm().elements;
+  // A lawn of the national map over the whole stretch x ∈ [−8, −3.5] (t 3.5 … 8) up to the house at x = −8, and an OSM
+  // sidewalk along x = −6.5 (t = 6.5): the sidewalk reaches the house (within 4 m), the lawn stays by the kerb.
+  const walk = { type: "way", id: 7, tags: { highway: "footway", footway: "sidewalk" }, geometry: [ll(-6.5, -40), ll(-6.5, 40)] };
+  const lawnRing = [[-8, -20], [-3.5, -20], [-3.5, 20], [-8, 20], [-8, -20]].map(([x, y]) => { const p = ll(x, y); return [p.lon, p.lat]; });
+  const areas = [{ attributes: { CTVUK_KOD: 401, CTVUK_POPIS: "zeleň" }, geometry: { rings: [lawnRing] } }];
+  const polys = orthoOsmPolys({ osm: { elements: [...els, walk] }, frame, dir, way: els[0], st: null, areas });
+  const p = deriveProfile({ center: [0, 0], dir, half: 40, polys, osm: { elements: [...els, walk] }, frame, way: els[0], reach: { left: 40, right: 40 } });
+  const kinds = p.segments.map((s) => s.type);
+  assert.ok(kinds.includes("zelen") && kinds.filter((k) => k === "chodnik").length >= 1, JSON.stringify(p.segments.map((s) => [s.type, s.width])));
+  // The piece by the house on that side is the sidewalk (7.5 … 8 ⊂ it), not the lawn.
+  const sw = polys.filter((q) => q.code === 702 && q.label === "chodník (OSM)").map((q) => q.rings[0].map(([x]) => -x)).map((ts) => [Math.min(...ts), Math.max(...ts)]);
+  assert.ok(sw.some(([a, b]) => a <= 5.6 && Math.abs(b - 8) < 0.1), JSON.stringify(sw));
+  P.off = new Set(["osmwalk"]);
+  assert.ok(!orthoOsmPolys({ osm: { elements: [...els, walk] }, frame, dir, way: els[0], st: null, areas }).some((q) => q.label === "chodník (OSM)"));
+  P.off = new Set();
 });

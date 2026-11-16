@@ -431,6 +431,22 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     const rings = [el.geometry, ...(el.holes || [])].map((r) => r.map((g) => frame.toXY(g.lon, g.lat)));
     polys.push({ code: 601, label: "budova (OSM)", rings, bbox: bboxOf(rings[0]) });
   }
+  // A sidewalk OSM maps on its own beyond a kerb, short of the house: a sidewalk over the national map's lawn or OSM's
+  // green (Bára: Štúrova in Nitra, ZBGIS's lawns up to the houses over the sidewalks). Between the map's lines around
+  // it (within 3 m; outwards the house within 4 m), else 2 m about its line. P.off "osmwalk": off (the A/B).
+  for (const [side, sg] of [["A", -1], ["B", 1]]) {
+    if (P.off?.has("osmwalk")) break;
+    const out = k2 && side === pSide, kerb = out ? k2[side] : k[side], f = o.facade[side];
+    for (const w of o.ways.filter((x) => OSM_SIDEWALK(x.tags) && sameLevel(x, o) && sg * (x.t - kerb) > 0.5 && (f === null || sg * (f - x.t) > 0.3))) {
+      // Its outer side: a line of the map, else the house within 4 m (a sidewalk along the house), else 1 m.
+      const houseNear = f !== null && Math.abs(f - w.t) < 4 ? f : null;
+      const lo = edgeT.filter((t) => t < w.t - 0.3 && t > w.t - 3).at(-1) ?? (sg < 0 ? houseNear : null) ?? w.t - 1;
+      const hi = edgeT.filter((t) => t > w.t + 0.3 && t < w.t + 3)[0] ?? (sg > 0 ? houseNear : null) ?? w.t + 1;
+      const clip = (t) => (sg < 0 ? Math.min(Math.max(t, f ?? -Infinity), kerb) : Math.max(Math.min(t, f ?? Infinity), kerb));
+      const [a, b] = [clip(lo), clip(hi)];
+      if (b - a >= 0.5) polys.push(rect(702, "chodník (OSM)", a, b));
+    }
+  }
   polys.areas = 0;
   for (const f of areas) {
     const rings = (f.geometry?.rings || []).map((r) => r.map(([lo, la]) => frame.toXY(lo, la)));
