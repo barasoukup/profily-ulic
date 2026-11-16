@@ -29,8 +29,9 @@ export const DE = {
   "z pasportu města": "aus dem Kataster der Stadt",
   "Příčné profily ulic v Česku a na Slovensku od fasády k fasádě z technických map měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.": "Straßenquerschnitte in Tschechien und der Slowakei von Fassade zu Fassade, aus den technischen Karten der Städte und des ČÚZK, aus RÚIAN, ZBGIS und OpenStreetMap. Bearbeiten Sie einen Querschnitt, vergleichen Sie ihn mit dem Bestand und speichern Sie ihn als Bild.",
   "Příčné profily ulic v Česku a na Slovensku z technických map měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.": "Straßenquerschnitte in Tschechien und der Slowakei aus den technischen Karten der Städte, des ČÚZK und von ZBGIS: von Fassade zu Fassade, bearbeitbar, mit örtlichen Illustrationen.",
-  "Data © státní a městské mapové služby a OpenStreetMap · ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·":
-    "Daten © staatliche und städtische Kartendienste und OpenStreetMap · Illustrationen Streetmix (CC BY-SA 4.0) und © Bára Soukupová · Quellen, Lizenzen und Datenschutz ·",
+  "Data © státní a městské mapové služby a OpenStreetMap": "Daten © staatliche und städtische Kartendienste und OpenStreetMap",
+  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· Illustrationen Streetmix (CC BY-SA 4.0) und © Bára Soukupová · Quellen, Lizenzen und Datenschutz ·",
+  "Data {data}": "Daten {data}",
   // ---------- app.js: map, loading, panorama ----------
   "Přiblížit": "Vergrößern",
   "Oddálit": "Verkleinern",

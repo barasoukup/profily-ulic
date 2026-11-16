@@ -661,8 +661,9 @@ export const SK = {
   "Sdílet": "Zdieľať",
   "Kopírovat polohu řezu": "Kopírovať polohu rezu",
   "Místní ilustrace": "Miestne ilustrácie",
-  "Data © státní a městské mapové služby a OpenStreetMap · ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·":
-    "Údaje © štátne a mestské mapové služby a OpenStreetMap · ilustrácie Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licencie a súkromie ·",
+  "Data © státní a městské mapové služby a OpenStreetMap": "Údaje © štátne a mestské mapové služby a OpenStreetMap",
+  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· ilustrácie Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licencie a súkromie ·",
+  "Data {data}": "Údaje {data}",
   "kontakt": "kontakt",
   // Rainwater objects at their size, with the networks.
   "šířka": "šírka",

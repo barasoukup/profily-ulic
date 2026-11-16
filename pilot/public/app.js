@@ -706,6 +706,9 @@ function draw() {
     ? tr("Opravujete data stavu: táhněte úchyty nebo klikněte na část. Opravené části se označí jako upravené ručně.")
     : tr("Takhle ulice vypadá podle dat {data}. Nesedí? Opravte je, nebo nám chybu nahlaste.", { data: cutData() });
   $("#btn-fix").textContent = state.fixing ? tr("Hotovo") : tr("Opravit data");
+  // The footer's short line names the data of the cut's place (Bára: IPR only in Prague), the general services
+  // without a cut; the opened footer keeps all the sources.
+  $("#footer-data").textContent = state.stav && state.cut ? tr("Data {data}", { data: cutData() }) : tr("Data © státní a městské mapové služby a OpenStreetMap");
   if (state.stav) {
     // Under the street's name: the width, and in every mode what the data of the street are (an estimate, a map that
     // failed…; Bára 16. 11. 2026 after Fable: an estimate is not forgotten while designing).
