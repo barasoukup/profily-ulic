@@ -18,7 +18,7 @@ test("úzká deska, dlouhé díly, 8+ podlaží nebo sídliště je panelák", (
 test("bez tvaru bloku rozhodne vzdálenost od centra, kanceláře zůstávají", () => {
   assert.equal(flat({ km: 2 }), "funkce");
   assert.equal(flat({ km: 5 }), "plocha");
-  assert.equal(flat({ type: "hotel", block: { length: 187, width: 115, fill: 0.56, parts: 11 } }), "plocha");
+  assert.equal(flat({ type: "hotel", block: { length: 187, width: 115, fill: 0.56, parts: 11 } }), "kancelar");
 });
 
 test("šikmá střecha zůstává činžákem 19. století", () => {
@@ -27,7 +27,7 @@ test("šikmá střecha zůstává činžákem 19. století", () => {
 
 test("plochá střecha a IPR „nová budova“ je moderní bytový dům", () => {
   assert.equal(flat({ newBuild: true, block: { length: 144, width: 14.8, fill: 0.84, parts: 1 } }), "moderni");
-  assert.equal(flat({ newBuild: true, type: "office" }), "plocha");
+  assert.equal(flat({ newBuild: true, type: "office" }), "kancelar");
 });
 
 test("ustupující podlaží mimo centrum je moderní, čtyřpodlažní dům na sídlišti panelák", () => {
@@ -60,7 +60,8 @@ test("RÚIAN: panely a rok dokončení", async () => {
   const { buildingStyle } = await import("../pilot/public/profile.js");
   assert.equal(buildingStyle({ levels: 8, panel: 1, km: 0.2 }), "plocha");
   assert.equal(buildingStyle({ levels: 4, built: 1915, km: 5 }), "sikma");
-  assert.equal(buildingStyle({ levels: 4, built: 1952, km: 5 }), "sikma");
+  assert.equal(buildingStyle({ levels: 4, built: 1952, km: 5 }), "sorela");
+  assert.equal(buildingStyle({ levels: 4, built: 1947, km: 5 }), "sikma");
   assert.equal(buildingStyle({ levels: 4, built: 2005, km: 5 }), "moderni");
   assert.equal(buildingStyle({ levels: 5, built: 1975, km: 5 }), "plocha");
   assert.equal(buildingStyle({ levels: 2, panel: 1 }), "nizky");
@@ -70,5 +71,39 @@ test("RÚIAN: panely a rok dokončení", async () => {
 test("nízká budova: sedlová jen u rodinného domu, jinak rovná", async () => {
   const { buildingStyle } = await import("../pilot/public/profile.js");
   assert.equal(buildingStyle({ levels: 2, type: "civic", built: 1969, km: 0.4 }), "nizky");
-  assert.equal(buildingStyle({ levels: 2, house: 1, km: 0.4 }), "nizky");
+  assert.equal(buildingStyle({ levels: 2, house: 1, km: 0.4 }), "vila");
+});
+
+// Bára 16. 11. 2026: fewer panel houses where there are none (evaluation/budovy-panel).
+test("panelák ne před 1955, ne u zděných zdí, panelová novostavba je moderní", async () => {
+  const { buildingStyle } = await import("../pilot/public/profile.js");
+  const slab = { length: 60, width: 12, fill: 0.85, parts: 1 };
+  assert.equal(buildingStyle({ levels: 5, built: 1938, km: 99, block: slab }), "funkce");
+  assert.equal(buildingStyle({ levels: 5, built: 1980, solid: 1, km: 99, block: slab }), "funkce");
+  assert.equal(buildingStyle({ levels: 5, built: 1980, km: 99, block: slab }), "plocha");
+  assert.equal(buildingStyle({ levels: 5, built: 2008, panel: 1, km: 99 }), "moderni");
+});
+
+// The rest of the country and abroad (no centre, km 99): an unknown house is a panel house only by its block or floors.
+test("bez centra a bez roku rozhoduje tvar desky", async () => {
+  const { buildingStyle } = await import("../pilot/public/profile.js");
+  const { setCity } = await import("../pilot/public/city.js");
+  setCity("cesko");
+  try {
+    assert.equal(buildingStyle({ levels: 4, km: 99, block: { length: 40, width: 30, fill: 0.5, parts: 4 } }), "funkce");
+    assert.equal(buildingStyle({ levels: 4, km: 99, block: { length: 60, width: 12, fill: 0.85, parts: 1 } }), "plocha");
+    assert.equal(buildingStyle({ levels: 9, km: 99 }), "plocha");
+  } finally { setCity("praha"); }
+});
+
+test("rodinné domy podle stáří, venkovský dům štítem do ulice, kancelář z RÚIAN", async () => {
+  const { buildingStyle } = await import("../pilot/public/profile.js");
+  assert.equal(buildingStyle({ levels: 2, house: 1, built: 1932, km: 5 }), "vila");
+  assert.equal(buildingStyle({ levels: 2, house: 1, built: 1976, km: 5 }), "kostka");
+  assert.equal(buildingStyle({ levels: 2, house: 1, built: 2015, km: 5 }), "novyrd");
+  assert.equal(buildingStyle({ levels: 1, house: 1, built: 1900, km: 5, across: 1 }), "statek");
+  assert.equal(buildingStyle({ levels: 1, farm: 1, built: 1960 }), "statek");
+  assert.equal(buildingStyle({ levels: 2, house: 1, built: 1910, km: 5, type: "terrace" }), "nizky");
+  assert.equal(buildingStyle({ levels: 5, office: 1, built: 1985, km: 99 }), "kancelar");
+  assert.equal(buildingStyle({ levels: 2, type: "detached", period: 1970, km: 8, iprKind: 6 }), "kostka");
 });

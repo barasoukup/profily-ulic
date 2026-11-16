@@ -7,7 +7,7 @@
 // A town module (towns/<id>.js, listed in towns/index.js) gives sources.js the five data sources of a
 // click (osm, surfaces, lines, parking, podlaznost; the shapes are those of Prague's answers, see
 // queries.js) and app.js its base maps. See towns/jihlava.js.
-import { query, envelope, osmTiles, boxAround, asMtvu, addPoints, ruianBuilding, RUIAN_HALL, RUIAN_LOW, insideRings, metres } from "../gis.js";
+import { query, envelope, osmTiles, boxAround, asMtvu, addPoints, ruianBuilding, ruianLook, insideRings, metres } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 
 const PL = "https://ags.plzen.eu/arcgis/rest/services";
@@ -256,7 +256,6 @@ async function parking(bbox) {
 // eaves; a ridge well above the eaves is a pitched roof (IPR's roof codes: 1 pitched, 3 flat). A point
 // outside the 3D buildings asks RÚIAN itself.
 const FLOOR = 3.2; // m, eaves height per floor
-const PANEL = new Set([4, 41, 42, 43]);
 async function podlaznost(lat, lon) {
   let a;
   try {
@@ -275,8 +274,7 @@ async function podlaznost(lat, lon) {
   if (!cornice) return ruianBuilding(lat, lon);
   return {
     cornice, roof: floors ? floors - cornice : 0, total: floors || cornice, roofType: ridge > 0 && eaves > 0 ? (pitched ? 1 : 3) : undefined,
-    kind: RUIAN_HALL.has(use) ? 3 : RUIAN_LOW.has(use) ? 6 : undefined, newBuild: false, area: area || undefined,
-    built: built ? new Date(built).getUTCFullYear() : undefined, panel: PANEL.has(walls) || undefined,
+    newBuild: false, area: area || undefined, ...ruianLook(use, walls, built),
   };
 }
 
