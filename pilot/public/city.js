@@ -451,11 +451,15 @@ Object.assign(CITIES, {
 // Slovakia draws the trams, trolleybuses and buses of its town (by a box around it), elsewhere Streetmix's; the
 // furniture is the Czech set's ("../cesko/…": the files of cesko/).
 const czechFurniture = Object.fromEntries(Object.entries(TOWN_ART).filter(([k]) => !k.startsWith("bus-")).map(([k, v]) => [k, `../cesko/${v}`]));
-const skArt = (tram, trolley) => ({ ...czechFurniture, "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound", ...(tram ? TRAM : {}), ...(trolley ? TROLLEY : {}) });
-export const SK_ART = { bratislava: skArt(true, true), kosice: skArt(true, false), zilina: skArt(false, true), bystrica: skArt(false, true), presov: skArt(false, true) };
+// The stop posts carry the Slovak sign 331 Zastávka (Bára 16. 11. 2026; slovensko/, for every Slovak town).
+const skPosts = Object.fromEntries(["stop-post-left", "stop-post-right", "stop-post-tram-left", "stop-post-tram-right", "transit-shelter-01-left", "transit-shelter-01-right",
+  "transit-shelter-green-left", "transit-shelter-green-right"].map((k) => [k, `../slovensko/${TOWN_ART[k]}`]));
+const skArt = (tram, trolley, bus = true) => ({ ...czechFurniture, ...skPosts, ...(bus ? { "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound" } : {}), ...(tram ? TRAM : {}), ...(trolley ? TROLLEY : {}) });
+// slovensko: the rest of Slovakia (Streetmix's vehicles, the Czech furniture, the Slovak stop posts).
+export const SK_ART = { slovensko: skArt(false, false, false), bratislava: skArt(true, true), kosice: skArt(true, false), zilina: skArt(false, true), bystrica: skArt(false, true), presov: skArt(false, true) };
 const SK_ART_BOX = { bratislava: [16.83, 47.99, 17.33, 48.27], kosice: [21.15, 48.64, 21.36, 48.79], zilina: [18.62, 49.13, 18.86, 49.28],
   bystrica: [19.03, 48.66, 19.27, 48.82], presov: [21.15, 48.94, 21.33, 49.06] };
-export const skArtAt = (lat, lon) => Object.entries(SK_ART_BOX).find(([, b]) => lon >= b[0] && lon <= b[2] && lat >= b[1] && lat <= b[3])?.[0] ?? "cesko";
+export const skArtAt = (lat, lon) => Object.entries(SK_ART_BOX).find(([, b]) => lon >= b[0] && lon <= b[2] && lat >= b[1] && lat <= b[3])?.[0] ?? "slovensko";
 
 // Towns with no data of their own (the national DTM of ČÚZK, as "cesko"), only their own vehicles.
 const artTown = (id, inCity, adjective, art) => ({ ...CITIES.cesko, id, like: "cesko", inCity, adjective, art: id, artMap: { ...art, ...TOWN_ART } });

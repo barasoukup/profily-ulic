@@ -1,0 +1,20 @@
+<svg viewBox="0 0 50 340" xmlns="http://www.w3.org/2000/svg">
+  <!-- Slovenský označník zastávky (všechna slovenská města): značka 331 Zastávka podle vyhl. 30/2020 Z. z., příloha 4 (návesti), symbol autobusu podle přílohy Symboly (jako na značce 224), modrá a bílá jako sada znacky-SK. Sloupek, tabule s názvem a vitrína jako u českého označníku (místní podoba neověřena). Stín na straně vpravo (pro levou stranu ulice). 1 px = 1 cm, výška 3,35 m, spodní hrana = chodník, střed obrázku = osa označníku. -->
+  <!-- Fotky, ze kterých kresba vychází: Commons: „Praha, Zenklova, označník tramvajové zastávky Vychovatelna (1).jpg“ (Jan Polák, CC BY-SA 3.0), „Jindřišská, zastávkový sloupek u Jeruzalémské.jpg“ (ŠJů, CC BY 4.0); pro srovnání nový tmavý označník „Praha, Palackého náměstí, nový zastávkový označník 01.jpg“ a „… 02.jpg“ (Aktron, CC BY-SA 4.0), nekreslen. -->
+  <g transform="translate(-219 -20)">
+    <rect x="240" y="40" width="8" height="320" fill="#8f9496"/><rect x="245" y="40" width="3" height="320" fill="#6e7375"/>
+    <rect x="238" y="352" width="12" height="8" fill="#6e7375"/>
+    <!-- vitrína s jízdním řádem -->
+    <rect x="226" y="160" width="36" height="58" rx="2" fill="#8f9496"/><rect x="229" y="163" width="30" height="52" fill="#f4f4f0"/>
+    <rect x="231" y="166" width="12" height="40" fill="#f2d64b"/><rect x="245" y="166" width="12" height="40" fill="#e3e4df"/>
+    <!-- tabule s názvem zastávky -->
+    <rect x="221" y="74" width="46" height="22" fill="#f4f4f0" stroke="#6e7375" stroke-width="1.5"/>
+    <rect x="227" y="80" width="34" height="4" fill="#2a2b2a"/><rect x="231" y="88" width="26" height="2" fill="#9a9b9c"/>
+    <rect x="221" y="98" width="46" height="12" fill="#f4f4f0" stroke="#6e7375" stroke-width="1.5"/>
+    <rect x="226" y="101" width="7" height="6" fill="#2a2b2a"/><rect x="235" y="101" width="7" height="6" fill="#2a2b2a"/>
+    <!-- značka 331 Zastávka -->
+    <rect x="221" y="26" width="46" height="46" rx="3" fill="#f2f0e8" stroke="#6e7375" stroke-width="1"/>
+    <rect x="223" y="28" width="42" height="42" rx="2" fill="#005a8c"/><rect x="227" y="32" width="34" height="34" rx="1" fill="#f4f4f0"/>
+    <g transform="translate(222.85 28.48) scale(0.41)"><path d="M16.6 35.7l65.8 .2l1.8 1.5l3.1 10.8l.1 9.9l-1 1.5l-1.4 .6l-9.1 0l-.5-.3l-.9-2.6l-1.5-1.9l-2.3-1.3l-2.5-.3l-2.1 .5l-1.7 1.1l-2.8 4.8l-25.1 0l-.8-.3l-.9-2.8l-1.4-1.7l-2.3-1.3l-2.6-.3l-2.3 .6l-1.9 1.4l-2.1 4.3l-8.6 0l-1.1-1.3l0-7.8l3.8-10.9l.1-1l-1-1.4l.1-1.3zM19 38.7l-1.4 1.5l-2.3 6.6l.1 1.4l1.2 .5l8.7-.2l.6-1.5l-.3-7.9l-1.1-.5zM28.8 38.7l-.8 .4l-.2 .8l.3 8.3l1.3 .5l7.7-.3l.3-1.4l-2.5-8l-1-.4zM38.2 38.7l-.8 .5l-.1 .9l2.6 8.3l1.2 .3l6.2 0l1.3-.5l.1-1.7l-2.5-7.6zM49.6 38.7l-.8 .5l-.1 .9l2.6 8.3l1.2 .3l6.2 0l1.2-.4l.3-1.5l-2.6-7.9zM61 38.7l-.8 .6l0 1.1l2.5 8l1.2 .3l6.2 0l1.2-.4l.2-1.5l-2.5-7.9zM72.4 38.7l-.7 .4l-.2 1.1l2.6 8.2l1.2 .3l6.2 0l1.2-.4l.2-1.5l-2.5-7.9zM28.3 55.3l1.9 0l1.7 .8l1.4 1.5l.7 1.9l0 1.8l-.7 1.7l-1.4 1.4l-2 .8l-1.7 0l-2.2-1l-1.2-1.4l-.7-1.8l.1-2.2l.8-1.5l1.3-1.2zM67.9 55.3l2 .1l1.6 .7l1.5 1.5l.7 2l-.1 2l-.7 1.5l-1.4 1.4l-1.7 .7l-1.7 0l-2.2-.8l-1.4-1.4l-.7-2l.1-2l.8-1.7l1.5-1.4z" fill="#1a1a1a" fill-rule="evenodd"/></g>
+  </g>
+</svg>
