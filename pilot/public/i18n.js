@@ -28,14 +28,16 @@ function pick() {
   }
   return "en";
 }
-export const lang = pick();
+export let lang = pick();
 // The texts of the language: the app's, the page's whole elements (data-i18n), the city's, the map credits' words.
 const TEXTS = { cs: [{}, {}, {}, []], en: [EN, EN_HTML, EN_CITY, EN_ATTRIBUTION], sk: [SK, SK_HTML, SK_CITY, SK_ATTRIBUTION] };
-const [DICT, HTML, CITY_TEXTS, ATTRIBUTION] = TEXTS[lang] || TEXTS.cs;
+let DICT, HTML, CITY_TEXTS, ATTRIBUTION;
+const use = (l) => { [DICT, HTML, CITY_TEXTS, ATTRIBUTION] = TEXTS[l] || TEXTS.cs; };
+use(lang);
 // The city's texts (city.js) in the language: its server, data and credits as sentences take them; none in Czech.
 export const cityTexts = (id, like) => CITY_TEXTS[id] || CITY_TEXTS[like];
 // Czech and Slovak write numbers alike (3,50 and "44 %"), English its own way.
-const COMMA = lang !== "en";
+const comma = () => lang !== "en";
 
 export const t = (cs, vars) => {
   const s = DICT[cs] ?? cs;
@@ -49,41 +51,57 @@ export const mark = (cs) => cs;
 export const attribution = (text) => ATTRIBUTION.reduce((a, [cs, other]) => a.replaceAll(cs, other), text);
 
 // A number in the language's way: 3,50 in Czech and Slovak, 3.50 in English.
-export const num = (v, digits = 2) => (COMMA ? v.toFixed(digits).replace(".", ",") : v.toFixed(digits));
+export const num = (v, digits = 2) => (comma() ? v.toFixed(digits).replace(".", ",") : v.toFixed(digits));
 // Per cent as written in the language: "44 %" in Czech, "44%" in English (Fable).
-export const pct = (v) => (COMMA ? `${Math.round(v)} %` : `${Math.round(v)}%`);
+export const pct = (v) => (comma() ? `${Math.round(v)} %` : `${Math.round(v)}%`);
 // A number for a field the user types into, without trailing zeros ("2,5", "3"), and back from what was typed (a
 // comma or a point); NaN when it is no number. The fields are text, not number, inputs: those show the browser's
 // own decimal mark whatever the page's language (Fable: "5,1" in English).
 export const numField = (v) => num(v).replace(/[,.]?0+$/, "");
 export const readNum = (text) => (/^\s*-?\d*[,.]?\d+\s*$/.test(text) ? Number(text.replace(",", ".")) : NaN);
 
-// Switch the language: remembered, the address loses its ?lang (so it does not win next time), the page reloads.
+// Switch the language: remembered, the address loses its ?lang (so it does not win next time). In place where the
+// app listens (onLangChange: Bára 16. 11. 2026, a change of language changes the texts and nothing else): the page's
+// own texts again from their Czech, then the app draws itself anew from its state; else the page reloads.
+const listeners = [];
+export const onLangChange = (cb) => listeners.push(cb);
 export function setLang(l) {
   try { localStorage.setItem(KEY, l); } catch {}
   const url = new URL(location.href);
   url.searchParams.delete("lang");
-  if (url.href === location.href) location.reload();
-  else location.replace(url.href);
+  if (!listeners.length) { if (url.href === location.href) location.reload(); else location.replace(url.href); return; }
+  history.replaceState(history.state, "", url.href);
+  lang = l;
+  use(l);
+  translatePage();
+  for (const cb of listeners) cb(l);
 }
 
 // The page's own texts (index.html): its text nodes and the attributes people read, looked up whole; an element
 // with data-i18n gets the HTML of the language's own (EN_HTML, SK_HTML) under that name (the footer with its links).
 const ATTRS = ["title", "aria-label", "placeholder", "content", "alt", "data-label"];
+// Each text keeps its Czech the first time it is translated (a text node's __cs, an attribute's data-cs-<name>, an
+// element's __csHtml), so the page can be translated again into another language.
+const CS_TITLE = typeof document !== "undefined" ? document.title : "";
 export function translatePage(root = document) {
   document.documentElement.lang = lang;
-  if (lang === "cs") return;
   const walk = document.createTreeWalker(root.body || root, NodeFilter.SHOW_TEXT);
   for (let n = walk.nextNode(); n; n = walk.nextNode()) {
-    const text = n.nodeValue.trim();
-    if (text && DICT[text]) n.nodeValue = n.nodeValue.replace(text, DICT[text]);
+    n.__cs ??= n.nodeValue;
+    const text = n.__cs.trim();
+    if (text && (DICT[text] || n.nodeValue !== n.__cs)) n.nodeValue = n.__cs.replace(text, DICT[text] ?? text);
   }
   for (const el of document.querySelectorAll(ATTRS.map((a) => `[${a}]`).join(","))) {
     for (const a of ATTRS) {
-      const v = el.getAttribute(a)?.trim();
-      if (v && DICT[v]) el.setAttribute(a, DICT[v]);
+      if (!el.hasAttribute(a)) continue;
+      if (!el.hasAttribute(`data-cs-${a}`)) el.setAttribute(`data-cs-${a}`, el.getAttribute(a));
+      const v = el.getAttribute(`data-cs-${a}`).trim();
+      el.setAttribute(a, DICT[v] ?? v);
     }
   }
-  for (const el of document.querySelectorAll("[data-i18n]")) if (HTML[el.dataset.i18n]) el.innerHTML = HTML[el.dataset.i18n];
-  if (DICT[document.title]) document.title = DICT[document.title];
+  for (const el of document.querySelectorAll("[data-i18n]")) {
+    el.__csHtml ??= el.innerHTML;
+    el.innerHTML = HTML[el.dataset.i18n] ?? el.__csHtml;
+  }
+  document.title = DICT[CS_TITLE] ?? CS_TITLE;
 }
