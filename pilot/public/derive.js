@@ -2073,6 +2073,38 @@ export function splitTwoWayLane(segments, tags = {}) {
   return 1;
 }
 
+// A lane wider than the cap of its street by a shoulder or more (the orthophoto's lines measured a one-way street
+// of 5.6–6.1 m as one lane; 1000 Slovak cuts): the cap's rule after them too (Bára: lane 4 m, local 4.5 m, the rest a
+// shoulder, drawn from 1 m, an estimate). The shoulder goes to the lane's kerb side (both halves where both sides
+// are kerbs and the rest is two shoulders); a lane between lanes stays. Not in a zone. ?off=strop: the A/B.
+const DRIVE = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "obsluzna", "krajnice", "cyklopruh", "ochranny_pruh", "tramvaj"]);
+export function capWideLanes(segments, tags = {}) {
+  if (ORTHO_P.off?.has("strop") || ["living_street", "pedestrian"].includes(tags.highway)) return 0;
+  const cap = LANE_CAP[tags.highway] ?? LANE_CAP_DEFAULT;
+  let n = 0;
+  for (let i = segments.length - 1; i >= 0; i--) {
+    const lane = segments[i];
+    if (lane.type !== "pruh" || !(lane.width - cap >= KRAJNICE_MIN - 1e-6)) continue;
+    const nL = segments[i - 1], nR = segments[i + 1], isK = (x) => x?.type === "krajnice";
+    const kerbL = !DRIVE.has(nL?.type) || isK(nL), kerbR = !DRIVE.has(nR?.type) || isK(nR);
+    if (!kerbL && !kerbR) continue;
+    const excess = round(lane.width - cap);
+    // A shoulder already beside the lane takes the rest (no two shoulders side by side: Chorvátska, Viedenská).
+    const into = isK(nR) ? nR : isK(nL) ? nL : null;
+    if (into) {
+      into.width = round(into.width + excess); into.source = "odhad";
+      lane.width = cap; n++; continue;
+    }
+    const both = kerbL && kerbR && excess >= 2 * KRAJNICE_MIN - 1e-6;
+    const sh = (w) => ({ type: "krajnice", width: round(w), source: "odhad" });
+    const parts = both ? [sh(excess / 2), { ...lane, width: cap }, sh(excess - round(excess / 2))]
+      : kerbR ? [{ ...lane, width: cap }, sh(excess)] : [sh(excess), { ...lane, width: cap }];
+    segments.splice(i, 1, ...parts);
+    n++;
+  }
+  return n;
+}
+
 // Fallback outside MTVU coverage: a typical profile from OSM tags.
 // A path, footway, cycle way or flight of steps (a cut that caught one, not a street): one part of its kind and width
 // (OSM width, else a typical one), not a road of two lanes (1000 Slovak cuts: 238 such paths drawn as 2 × 3 m lanes).

@@ -56,3 +56,15 @@ objezdu, ulici s tramvají nebo více vozovkami a ne při OSM lanes=1. Vypnutí 
   (`kontrola.js` `compare`).
 - Na 917 řezech se stejnými zdroji (83 vynecháno) se změnilo přesně 13: všechno jednopruhové obousměrky o 5,0–6,6 m, teď
   dva pruhy. Nic jiného. Široký pruh (> 4,6 m) 62 → 49, počet pruhů proti OSM 24 → 21.
+
+## Oprava 3: strop šířky pruhu i po ortofotu (A/B, 16. 11. 2026)
+Pruh širší než strop své ulice o metr a víc (místní 4,5 m, jinak 4 m, dálnice 3,75 m) dá zbytek krajnici, odhad, i když
+pruh přeměřilo ortofoto: `derive.js` `capWideLanes` po `splitTwoWayLane`. Krajnice ke straně pruhu u obruby, k
+existující krajnici, je-li u pruhu (žádné dvě vedle sebe), na obě strany, když obě jsou u obruby a zbytek stačí na dvě.
+Ne mezi pruhy, ne v obytné a pěší zóně. Vypnutí `?off=strop`.
+
+- A = běh po opravě 2, B = se stropem, porovnáno 922 řezů se stejnými zdroji: změnilo se přesně 11, všechno ty široké
+  pruhy (Ďumbierska 6,1 → 4,5 + 1,6, Športová 5,8 → 4,5 + 1,3, Montua 6,6 → 1,05 + 4,5 + 1,05). Široký pruh 49 → 38.
+- Po prvním běhu přibylo sloučení s krajnicí, která už u pruhu byla (Viedenská cesta), a znovu přepočítáno těch 11.
+- **Zbývá:** u ulic, kde OSM počítá víc pruhů (Viedenská cesta 2 + 2), je místo druhého pruhu široká krajnice; patří k
+  bodu „méně pruhů, než má OSM“.
