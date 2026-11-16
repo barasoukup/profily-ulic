@@ -733,7 +733,7 @@ function draw() {
     box.innerHTML = `<div class="empty">
       <img src="${city.emptyImg}" alt="" width="96" height="126">
       <div><h1 class="empty-title">${tr("Příčný profil ulice")}</h1>
-      <ol><li>${tr("Klikněte v mapě na ulici kdekoli v Česku nebo na Slovensku.")}</li><li>${tr("Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM.")}</li>
+      <ol><li>${tr("Klikněte v mapě na ulici kdekoli v Česku, na Slovensku nebo v Rakousku.")}</li><li>${tr("Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy Vídně a OSM.")}</li>
       <li>${tr("V režimu Návrh ho upravíte: táhněte hranice, klikněte na část, přidejte novou.")}</li></ol></div></div>`;
     $("#editor").replaceChildren();
     $("#palette").replaceChildren();

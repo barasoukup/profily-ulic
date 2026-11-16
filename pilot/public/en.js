@@ -43,9 +43,9 @@ export const EN = {
   "Hotovo": "Done",
   "Opravit data": "Correct data",
   "Příčný profil ulice": "Street cross-section",
-  "Klikněte v mapě na ulici kdekoli v Česku nebo na Slovensku.": "Click a street on the map anywhere in Czechia or Slovakia.",
-  "Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM.":
-    "A profile from façade to façade is built from the technical map of the city or of ČÚZK, RÚIAN and OSM; in Slovakia from the towns' passports, ZBGIS, the orthophoto and OSM.",
+  "Klikněte v mapě na ulici kdekoli v Česku, na Slovensku nebo v Rakousku.": "Click a street on the map anywhere in Czechia, Slovakia or Austria.",
+  "Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy Vídně a OSM.":
+    "A profile from façade to façade is built from the technical map of the city or of ČÚZK, RÚIAN and OSM; in Slovakia from the towns' passports, ZBGIS, the orthophoto and OSM; in Austria from the orthophoto, Vienna's map and OSM.",
   "V režimu Návrh ho upravíte: táhněte hranice, klikněte na část, přidejte novou.":
     "Edit it in Proposal: drag the borders, click a part, add a new one.",
   " · změněné části jsou obtažené": " · changed parts are outlined",
@@ -536,10 +536,10 @@ export const EN = {
   // ---------- index.html ----------
   // The app's name (Bára 12. 11. 2026); the picture of the link preview keeps the Czech one.
   "Profily ulic": "Street Profile",
-  "Příčné profily ulic v Česku a na Slovensku od fasády k fasádě z technických map měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.":
-    "Street cross-sections in Czechia and Slovakia from facade to facade, from the technical maps of the cities and of ČÚZK, RÚIAN, ZBGIS and OpenStreetMap. Edit a profile, compare it with the street today and save it as an image.",
-  "Příčné profily ulic v Česku a na Slovensku z technických map měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.":
-    "Street cross-sections in Czechia and Slovakia from the technical maps of the cities, of ČÚZK and of ZBGIS: facade to facade, editable, with local illustrations.",
+  "Příčné profily ulic v Česku, na Slovensku a v Rakousku od fasády k fasádě z technických map měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.":
+    "Street cross-sections in Czechia, Slovakia and Austria from facade to facade, from the technical maps of the cities and of ČÚZK, RÚIAN, ZBGIS and OpenStreetMap. Edit a profile, compare it with the street today and save it as an image.",
+  "Příčné profily ulic v Česku, na Slovensku a v Rakousku z technických map měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.":
+    "Street cross-sections in Czechia, Slovakia and Austria from the technical maps of the cities, of ČÚZK and of ZBGIS: facade to facade, editable, with local illustrations.",
   "Příčný profil české ulice s tramvajemi, cyklopruhem, chodníky a domy, vedle název Profily ulic":
     "A cross-section of a Czech street with trams, a cycle lane, pavements and buildings, beside it the name Profily ulic",
   "Porovnat": "Compare",

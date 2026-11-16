@@ -78,9 +78,9 @@ export const SK = {
   "Hotovo": "Hotovo",
   "Opravit data": "Opraviť údaje",
   "Příčný profil ulice": "Priečny profil ulice",
-  "Klikněte v mapě na ulici kdekoli v Česku nebo na Slovensku.": "Kliknite v mape na ulicu kdekoľvek v Česku alebo na Slovensku.",
-  "Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM.":
-    "Profil od fasády k fasáde sa zostaví z technickej mapy mesta alebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportov miest, ZBGIS, ortofota a OSM.",
+  "Klikněte v mapě na ulici kdekoli v Česku, na Slovensku nebo v Rakousku.": "Kliknite v mape na ulicu kdekoľvek v Česku, na Slovensku alebo v Rakúsku.",
+  "Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy Vídně a OSM.":
+    "Profil od fasády k fasáde sa zostaví z technickej mapy mesta alebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportov miest, ZBGIS, ortofota a OSM, v Rakúsku z ortofota, mapy Viedne a OSM.",
   "V režimu Návrh ho upravíte: táhněte hranice, klikněte na část, přidejte novou.":
     "V režime Návrh ho upravíte: ťahajte hranice, kliknite na časť, pridajte novú.",
   " · změněné části jsou obtažené": " · zmenené časti sú zvýraznené obrysom",
@@ -526,10 +526,10 @@ export const SK = {
   // ---------- index.html ----------
   // The app's name (Bára 15. 11. 2026); the picture of the link preview keeps the Czech one.
   "Profily ulic": "Profily ulíc",
-  "Příčné profily ulic v Česku a na Slovensku od fasády k fasádě z technických map měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.":
-    "Priečne profily ulíc v Česku a na Slovensku od fasády k fasáde z technických máp miest a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte so stavom a uložíte ako obrázok.",
-  "Příčné profily ulic v Česku a na Slovensku z technických map měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.":
-    "Priečne profily ulíc v Česku a na Slovensku z technických máp miest, ČÚZK a ZBGIS: od fasády k fasáde, upraviteľné, s miestnymi ilustráciami.",
+  "Příčné profily ulic v Česku, na Slovensku a v Rakousku od fasády k fasádě z technických map měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.":
+    "Priečne profily ulíc v Česku, na Slovensku a v Rakúsku od fasády k fasáde z technických máp miest a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte so stavom a uložíte ako obrázok.",
+  "Příčné profily ulic v Česku, na Slovensku a v Rakousku z technických map měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.":
+    "Priečne profily ulíc v Česku, na Slovensku a v Rakúsku z technických máp miest, ČÚZK a ZBGIS: od fasády k fasáde, upraviteľné, s miestnymi ilustráciami.",
   "Příčný profil české ulice s tramvajemi, cyklopruhem, chodníky a domy, vedle název Profily ulic":
     "Priečny profil českej ulice s električkami, cyklopruhom, chodníkmi a domami, vedľa názov Profily ulic",
   "Porovnat": "Porovnať",

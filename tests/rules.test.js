@@ -75,3 +75,31 @@ test("Slovensko: pravidla podle TP 117 (cyklopruh 1,75 m, bus s cyklisty mimo 3,
   setCity("praha");
   assert.deepEqual(at([{ type: "cyklopruh", width: 1.5 }]), []);
 });
+
+test("Rakousko (AT): dálnice bez červené, místní ulice 2,5 m, cyklopruh 1,5 / 2 m vedle stání, tramvaj 6,6 m", async () => {
+  const C = await import("../pilot/public/city.js");
+  const { osmGroup } = await import("../pilot/public/derive.js");
+  C.setCity("austria");
+  try {
+    assert.equal(osmGroup("motorway_link"), "dalnice");
+    assert.equal(osmGroup("residential"), "mk4");
+    assert.deepEqual(levels([{ type: "pruh", width: 2.8, roadClass: osmGroup("motorway") }]), ["0:zaklad"]);
+    assert.deepEqual(levels([{ type: "pruh", width: 2.5, roadClass: osmGroup("residential") }]), []);
+    assert.deepEqual(levels([{ type: "pruh", width: 2.4, roadClass: osmGroup("residential") }]), ["0:min"]);
+    assert.deepEqual(levels([{ type: "cyklopruh", width: 1.5 }]), []);
+    assert.deepEqual(levels([{ type: "parkovani", width: 2 }, { type: "cyklopruh", width: 1.8 }]), ["1:min"]);
+    assert.deepEqual(levels([{ type: "tramvaj", width: 3.2 }, { type: "tramvaj", width: 3.2 }]).filter((x) => x.endsWith("min")).length, 1);
+  } finally { C.setCity("praha"); }
+});
+
+test("Vídeň: třídy FMZK na plochy, podloubí podle plochy pod ním", async () => {
+  const { fmzkCode } = await import("../pilot/public/towns/austria.js");
+  assert.equal(fmzkCode({ F_KLASSE: 21 }), 701);
+  assert.equal(fmzkCode({ F_KLASSE: 23 }), 702);
+  assert.equal(fmzkCode({ F_KLASSE: 25 }), 702);
+  assert.equal(fmzkCode({ F_KLASSE: 33 }), 704);
+  assert.equal(fmzkCode({ F_KLASSE: 28 }), 705);
+  assert.equal(fmzkCode({ F_KLASSE: 12, KLASSE_SUB: 23 }), 702);
+  assert.equal(fmzkCode({ F_KLASSE: 13, KLASSE_SUB: 59 }), 1003);
+  assert.equal(fmzkCode({ F_KLASSE: 999 }), null);
+});

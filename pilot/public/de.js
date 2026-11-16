@@ -4,8 +4,8 @@
 // tests/i18n.test.js checks that every text of en.js is here and nothing else.
 export const DE = {
   // ---------- Slovakia, the towns' passports, more house looks (main of 16. 11. 2026) ----------
-  "Klikněte v mapě na ulici kdekoli v Česku nebo na Slovensku.": "Klicken Sie in der Karte auf eine beliebige Straße in Tschechien oder der Slowakei.",
-  "Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM.": "Der Querschnitt von Fassade zu Fassade entsteht aus der technischen Karte der Stadt oder des ČÚZK, aus RÚIAN und OSM, in der Slowakei aus den Straßenkatastern der Städte, ZBGIS, dem Luftbild und OSM.",
+  "Klikněte v mapě na ulici kdekoli v Česku, na Slovensku nebo v Rakousku.": "Klicken Sie in der Karte auf eine beliebige Straße in Tschechien, der Slowakei oder Österreich.",
+  "Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy Vídně a OSM.": "Der Querschnitt von Fassade zu Fassade entsteht aus der technischen Karte der Stadt oder des ČÚZK, aus RÚIAN und OSM, in der Slowakei aus den Straßenkatastern der Städte, ZBGIS, dem Luftbild und OSM, in Österreich aus dem Luftbild, der Karte Wiens und OSM.",
   "dům 50. let (sorela)": "Haus der 1950er-Jahre (Sozialistischer Realismus)",
   "zděný bytový dům 50.–60. let": "gemauertes Wohnhaus der 1950er/60er-Jahre",
   "měšťanský dům na náměstí": "Bürgerhaus am Marktplatz",
@@ -29,8 +29,8 @@ export const DE = {
   "mapy města {town}, ZBGIS a OSM": "der Karte von {town}, von ZBGIS und OSM",
   "pasportu komunikací města {town}, ZBGIS a OSM": "des Straßenkatasters von {town}, von ZBGIS und OSM",
   "z pasportu města": "aus dem Kataster der Stadt",
-  "Příčné profily ulic v Česku a na Slovensku od fasády k fasádě z technických map měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.": "Straßenquerschnitte in Tschechien und der Slowakei von Fassade zu Fassade, aus den technischen Karten der Städte und des ČÚZK, aus RÚIAN, ZBGIS und OpenStreetMap. Bearbeiten Sie einen Querschnitt, vergleichen Sie ihn mit dem Bestand und speichern Sie ihn als Bild.",
-  "Příčné profily ulic v Česku a na Slovensku z technických map měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.": "Straßenquerschnitte in Tschechien und der Slowakei aus den technischen Karten der Städte, des ČÚZK und von ZBGIS: von Fassade zu Fassade, bearbeitbar, mit örtlichen Illustrationen.",
+  "Příčné profily ulic v Česku, na Slovensku a v Rakousku od fasády k fasádě z technických map měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.": "Straßenquerschnitte in Tschechien, der Slowakei und Österreich von Fassade zu Fassade, aus den technischen Karten der Städte und des ČÚZK, aus RÚIAN, ZBGIS und OpenStreetMap. Bearbeiten Sie einen Querschnitt, vergleichen Sie ihn mit dem Bestand und speichern Sie ihn als Bild.",
+  "Příčné profily ulic v Česku, na Slovensku a v Rakousku z technických map měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.": "Straßenquerschnitte in Tschechien, der Slowakei und Österreich aus den technischen Karten der Städte, des ČÚZK und von ZBGIS: von Fassade zu Fassade, bearbeitbar, mit örtlichen Illustrationen.",
   "Data © státní a městské mapové služby a OpenStreetMap": "Daten © staatliche und städtische Kartendienste und OpenStreetMap",
   "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· Illustrationen Streetmix (CC BY-SA 4.0) und © Bára Soukupová · Quellen, Lizenzen und Datenschutz ·",
   "Data {data}": "Daten {data}",
