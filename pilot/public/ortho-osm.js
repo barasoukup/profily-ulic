@@ -139,6 +139,9 @@ export function limits(o, axis) {
     const hw = w.tags.highway, side = w.t < axis ? "A" : "B";
     if (hw === "footway" && w.tags.footway === "sidewalk") near(side, w.t, 0.75);
     if ((w.id === o.pairId || ["motorway", "trunk", "primary", "secondary", "tertiary"].includes(String(hw).replace("_link", "")) && w.tags.oneway === "yes") && Math.abs(w.t - axis) > 4) near(side, (w.t + axis) / 2);
+    // Tracks between the street's two carriageways mapped as roads too (a tram bed: Radlinského): the kerb stays 1.7 m
+    // off the nearer rail (only these: with all of Prague's tracks the regression lost a point).
+    if (!P.off?.has("raillimit") && o.pairT !== undefined && w.tags.railway === "tram" && w.tags.highway && (w.t - axis) * (o.pairT - axis) > 0 && Math.abs(w.t - axis) < Math.abs(o.pairT - axis)) near(side, w.t, 1.7);
   }
   return lim;
 }
@@ -150,7 +153,7 @@ export function partnerOf(o) {
   const own = o.own, tg = own.tags;
   if (!ONEWAY(tg)) return null;
   const same = (w) => (tg.name ? w.tags.name === tg.name : String(w.tags.highway).replace("_link", "") === String(tg.highway).replace("_link", ""));
-  const c = o.ways.filter((w) => STREET.test(w.tags.highway || "") && ONEWAY(w.tags) && sameLevel(w, o) && same(w) && Math.abs(w.t - own.t) > 4 && Math.abs(w.t - own.t) < 35);
+  const c = o.ways.filter((w) => STREET.test(w.tags.highway || "") && (P.off?.has("railpair") || !w.tags.railway) && ONEWAY(w.tags) && sameLevel(w, o) && same(w) && Math.abs(w.t - own.t) > 4 && Math.abs(w.t - own.t) < 35);
   return c.length ? c.reduce((a, b) => (Math.abs(b.t - own.t) < Math.abs(a.t - own.t) ? b : a)) : null;
 }
 
@@ -365,12 +368,20 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   const normal = [-dir[1], dir[0]];
   const tu = (lon, lat) => { const [x, y] = frame.toXY(lon, lat); return [x * normal[0] + y * normal[1], x * dir[0] + y * dir[1]]; };
   const xy = (t, u) => [normal[0] * t + dir[0] * u, normal[1] * t + dir[1] * u];
-  const o = osmAlong(osm?.elements, tu, way.id);
+  let o = osmAlong(osm?.elements, tu, way.id);
   if (!o.own) return null;
+  // The clicked way is a track mapped as a road too (Radlinského in Bratislava: highway=service + railway=tram): the
+  // street's carriageway is the nearest road of its name beside it, the tracks its tram bed.
+  if (o.own.tags.railway && !P.off?.has("tramway")) {
+    const name = o.own.tags.name;
+    const road = o.ways.filter((w) => !w.tags.railway && STREET.test(w.tags.highway || "") && w.tags.highway !== "service" && sameLevel(w, o) && (!name || w.tags.name === name) && Math.abs(w.t - o.own.t) < 12)
+      .sort((a, b) => Math.abs(a.t - o.own.t) - Math.abs(b.t - o.own.t))[0];
+    if (road) o = { ...o, own: road, ways: [...o.ways.filter((w) => w !== road), o.own] };
+  }
   // Where the map's lines cross the cut (t), on the cut's line and a metre either side (a line may end just at it).
   const edgeT = [...new Set(edges.flatMap((path) => [0, -1, 1].flatMap((u0) => crossT(path.map(([lo, la]) => tu(lo, la)), 45, u0).map((x) => Math.round(x.t * 20) / 20))))].sort((a, b) => a - b);
   const pair = P.off?.has("pair") ? null : partnerOf(o);
-  if (pair) o.pairId = pair.id;
+  if (pair) { o.pairId = pair.id; o.pairT = pair.t; }
   // A road's width from the national map (ZBGIS) where its centre line crosses the cut within 4 m of the axis.
   const widthT = widths.flatMap(({ path, w }) => crossT(path.map(([lo, la]) => tu(lo, la)), 45).map((x) => ({ t: x.t, w })));
   const mapWidth = (rd, axis) => {
@@ -385,7 +396,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   // The other carriageway, its side (pSide) and the clicked one's kerb towards it.
   let k2 = null, road2 = null, pSide = null;
   if (pair) {
-    const o2 = { ...o, own: pair, ways: [...o.ways.filter((w) => w !== pair), o.own], pairId: o.own.id };
+    const o2 = { ...o, own: pair, ways: [...o.ways.filter((w) => w !== pair), o.own], pairId: o.own.id, pairT: o.own.t };
     road2 = withRails(mapWidth(osmRoad(pair), pair.t), o2);
     k2 = kerbsOnImage(st, o2, road2, mapRuns, edgeT);
     pSide = pair.t < o.own.t ? "A" : "B";
@@ -459,7 +470,10 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     if (b - a >= 0.3) {
       const g = [];
       if (k.cols) for (let i = k.cols.ti(a); i < k.cols.ti(b); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.green[i])) g.push(k.cols.green[i]);
-      polys.push(g.length && g.reduce((x, y) => x + y, 0) / g.length >= GREEN_AREA ? rect(401, "zeleň (ortofoto)", a, b) : rect(1003, "dělicí pás (odhad)", a, b));
+      // Tram tracks of OSM in it: the street's tram bed (as MTVU's 705: derive.js makes its tracks).
+      const rails = P.off?.has("tramway") ? [] : o.ways.filter((w) => w.tags.railway === "tram" && sameLevel(w, o) && w.t > a && w.t < b);
+      if (rails.length) polys.push(rect(705, "tramvajové těleso (OSM)", a, b));
+      else polys.push(g.length && g.reduce((x, y) => x + y, 0) / g.length >= GREEN_AREA ? rect(401, "zeleň (ortofoto)", a, b) : rect(1003, "dělicí pás (odhad)", a, b));
     }
   }
   for (const [side, sg] of [["A", -1], ["B", 1]]) {
