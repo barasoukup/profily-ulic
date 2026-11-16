@@ -241,10 +241,13 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   Vlastní bratislavský přístřešek, lampa a označník DPB až po zásadách MIB pro zastávky a osvětlení (přístřešky jsou
   v řezech vzácné). Technická mapa Bratislavy, čáry map Nitry, Piešťan, Zvolena, Hlohovce, Prešova: `?tm=1`, `?hrany=0`.
 
-## Jazyky (Bára 12. 11. 2026, slovenčina 15. 11. 2026)
-- Anglicky se aplikace jmenuje **Street Profile**, slovensky **Profily ulíc**. Čeština, slovenčina a angličtina: `pilot/public/i18n.js`
-  (`t("český text")`), překlady v `pilot/public/en.js` a `sk.js`, menu jazyků s vlajkami v hlavičce, `?lang=sk`. Jazyk podle
+## Jazyky (Bára 12. 11. 2026, slovenčina 15. 11. 2026, němčina 16. 11. 2026)
+- Anglicky se aplikace jmenuje **Street Profile**, slovensky **Profily ulíc**, německy **Straßenprofil**. Čeština, slovenčina,
+  angličtina a němčina: `pilot/public/i18n.js` (`t("český text")`), překlady v `pilot/public/en.js`, `sk.js` a `de.js`, menu jazyků s vlajkami v hlavičce, `?lang=sk`. Jazyk podle
   prohlížeče (první z jeho jazyků, který aplikace umí; všichni ostatní angličtina), ne podle místa řezu (Bára). Nový text vždy přes `t()` a s překladem (hlídá `tests/i18n.test.js`). Popis v `pilot/README.md`.
+- Němčina (větev `nemcina`, 16. 11. 2026): Bestand / Planung / Vergleich, Gehweg, Fahrstreifen, Radfahrstreifen, Schutzstreifen,
+  Parkstreifen, Fahrbahn, Querschnitt, „Sie“; desetinná čárka jako česky. Jazyk ≠ stát: německé rozhraní v Praze ukazuje české
+  značky a normy, německé značky ani data z Německa nejsou. Překlad by měl projít rodilý mluvčí.
 
 ## Hospodaření s vodou a jednodušší rozhraní (Bára 12. 11. 2026)
 - Podnět Magdaleny podle pražských Standardů HDV (kap. 5.1): v Návrhu průleh, rýha, retenční nádrž; pod povrchem

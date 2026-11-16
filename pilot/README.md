@@ -681,17 +681,30 @@ v aplikaci není: API Streetmixu nemá CORS, takže ze statického webu nefunguj
 
 ## Jazyky
 
-Aplikace je česky a anglicky (Bára 12. 11. 2026). Jazyk určí `?lang=en` (nebo `?lang=cs`) v adrese, jinak poslední volba
-návštěvníka (tlačítko EN / CS v hlavičce, pamatuje se v prohlížeči), jinak jazyk prohlížeče: čeština a slovenština
-dostanou češtinu, ostatní angličtinu. Přepnutí stránku znovu načte, řez i návrh zůstanou.
+Aplikace je česky, slovensky, anglicky a německy (Bára 12. 11. 2026, slovenština 15. 11., němčina 16. 11. 2026).
+Jazyk určí `?lang=cs|sk|en|de` v adrese, jinak poslední volba návštěvníka (menu jazyků s vlajkami v hlavičce,
+pamatuje se v prohlížeči), jinak první z jazyků prohlížeče, který aplikace umí; ostatní dostanou angličtinu.
+Přepnutí stránku znovu načte, řez i návrh zůstanou. Anglicky se aplikace jmenuje **Street Profile**, německy
+**Straßenprofil**.
 
-- `i18n.js`: `t("český text", { jméno })` vrátí anglický text z `en.js`, nebo český, když překlad chybí. Český text je
-  klíč, `{jméno}` se doplní. `num()` píše desetinnou čárku česky a tečku anglicky. `translatePage()` přeloží texty
-  `index.html`; patička se nahrazuje celá (`data-i18n="footer"`, `EN_HTML`).
-- `en.js`: anglické texty, texty měst (`EN_CITY`: server, data, kredity) a slova v kreditech mapových vrstev.
+Jazyk není stát (kódy ISO: jazyk `de`, stát `DE`): značky, normy, zdroje dat a ilustrace se řídí státem řezu
+(`city.country`, CZ/SK), jazyk mění jen slova. Německé rozhraní na řezu v Praze ukazuje české značky s českými čísly
+a česká pravidla, na řezu v Bratislavě slovenská. Německé značky ani data z Německa aplikace nemá.
+
+- `i18n.js`: `t("český text", { jméno })` vrátí text jazyka z `en.js`, `sk.js` nebo `de.js`, nebo český, když
+  překlad chybí. Český text je klíč, `{jméno}` se doplní. `num()` a `pct()` píšou desetinnou čárku a „44 %“ česky,
+  slovensky a německy, tečku a „44%“ anglicky. `translatePage()` přeloží texty `index.html`; patička se nahrazuje
+  celá (`data-i18n="footer"`, `EN_HTML`, `SK_HTML`, `DE_HTML`). `errors.js` (běží před moduly) má svých pár hlášek
+  ve všech čtyřech jazycích.
+- `en.js`, `sk.js`, `de.js`: texty jazyka, texty měst (`EN_CITY`…: server, data, kredity) a slova v kreditech
+  mapových vrstev. V `de.js` jsou texty měst ve tvarech, jak je věty potřebují (server a data v genitivu: „Der Server
+  der Stadt Brno…“, „nach den Daten der Stadt Brno und von OSM“). Německé názvosloví: Bestand / Planung / Vergleich,
+  Gehweg, Fahrstreifen, Radfahrstreifen, Schutzstreifen, Parkstreifen, Fahrbahn, Bordstein, Querschnitt; vyká
+  („Sie“); český kraj je „Region“, okres „Bezirk“.
 - Nový text v kódu: obalit `t("…")` (v `app.js`, `profile.js` a `maplayers.js` se funkce jmenuje `tr`) a doplnit
-  do `en.js`. `tests/i18n.test.js` hlídá, že každý text má překlad se stejnými `{jmény}` a že `en.js` nemá nic navíc;
-  `tests/i18n-en.test.js` pouští moduly anglicky.
+  do `en.js`, `sk.js` a `de.js`. `tests/i18n.test.js` hlídá, že každý text má překlad se stejnými `{jmény}`, že
+  překlady nemají nic navíc, že každé město má texty a že žádný modul kromě `i18n.js` nerozhoduje podle jazyka;
+  `tests/i18n-en.test.js` a `tests/i18n-de.test.js` pouštějí moduly anglicky a německy.
 - Česky zůstávají vlastní jména (ČÚZK, RÚIAN, IPR, úřady měst, kraje), čísla značek a text na dodatkové tabulce E 13
   (je to česká značka), hodnoty v záznamu řezů a hlášení chyb.
 

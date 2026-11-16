@@ -28,11 +28,12 @@ import { t as tr, num, pct, numField, readNum, lang, LANGS, setLang, translatePa
 
 translatePage();
 // The languages in a drop-down menu with flags (Bára 16. 11. 2026: there will be more). The flag only helps to find
-// a language: a language is not a state (en has the British one).
+// a language: a language is not a state (en has the British one, de the German one, whatever the state of the cut).
 const FLAGS = {
   cs: '<rect width="30" height="10" fill="#fff"/><rect y="10" width="30" height="10" fill="#d7141a"/><path d="M0 0 15 10 0 20z" fill="#11457e"/>',
   sk: '<rect width="30" height="7" fill="#fff"/><rect y="7" width="30" height="6" fill="#0b4ea2"/><rect y="13" width="30" height="7" fill="#ee1c25"/><path d="M6.5 4.5h8v6.2c0 2.6-1.9 4.2-4 5.3-2.1-1.1-4-2.7-4-5.3z" fill="#ee1c25" stroke="#fff" stroke-width=".8"/><path d="M10.5 6.5v6.5M8.6 8.4h3.8M8.1 10.2h4.8" stroke="#fff" stroke-width=".9"/><path d="M7.4 13.2c1-1.2 2-1.2 3.1-.3 1.1-.9 2.1-.9 3.1.3-.9 1.1-1.9 1.8-3.1 2.4-1.2-.6-2.2-1.3-3.1-2.4z" fill="#0b4ea2"/>',
   en: '<rect width="30" height="20" fill="#012169"/><path d="M0 0 30 20M30 0 0 20" stroke="#fff" stroke-width="4"/><path d="M0 0 30 20M30 0 0 20" stroke="#c8102e" stroke-width="1.4"/><path d="M15 0v20M0 10h30" stroke="#fff" stroke-width="6"/><path d="M15 0v20M0 10h30" stroke="#c8102e" stroke-width="3.6"/>',
+  de: '<rect width="30" height="20" fill="#ffce00"/><rect width="30" height="13.34" fill="#dd0000"/><rect width="30" height="6.67" fill="#000"/>',
 };
 const flag = (l) => `<svg class="flag" viewBox="0 0 30 20" aria-hidden="true">${FLAGS[l] || '<rect width="30" height="20" fill="#ccc"/>'}</svg>`;
 {
