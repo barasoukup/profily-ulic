@@ -2,6 +2,13 @@
 
 Postup, který se osvědčil, a chyby, které jsme při něm udělali. Platí i pro Česko a další státy.
 
+## 0. Šetřit zdroje (Bára)
+- Co nejméně běhů a dotazů na služby (ZBGIS, ortofoto, města, IPR) i práce: velký běh jen jednou jako výchozí stav.
+- **Krok, který jen přepočítá díly profilu (pruhy, krajnice), se A/B počítá z uloženého běhu bez nových dotazů:** funkce
+  se použije na uložené díly a značky OSM ulice (`kontrola.js`), nový běh jen na kontrolu pár cílových řezů.
+- Nový běh B jen na cílových řezech a malé kontrole (viz 4.), ne na celém vzorku.
+- Hlídat běh řídce, výsledky číst souhrnně (počty, výpis jen změněných cílů), ne celé seznamy.
+
 ## 1. Hledání
 - **Vzorek skutečných ulic**, ne náhodných bodů (Bára): náhodný bod se přichytí k pěšině nebo cestě v areálu a chyby
   pak hlásí věci, které uživatel neklikne. `vzorek-ulice.mjs`: bod → nejbližší pojmenovaná ulice primary až residential,
