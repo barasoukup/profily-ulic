@@ -2132,7 +2132,9 @@ export function carveCycleways(segments, cross = []) {
     for (let q = 0; q < segments.length; q++) { if (c.at > x && c.at < x + segments[q].width) { i = q; break; } x += segments[q].width; }
     if (i < 0) continue;
     const part = segments[i];
-    if (!CARVE_BIKE.has(part.type)) continue;
+    // Green a map measured stays green (Ostrava, Na Jízdárně: the technical map's 2.15 m strip); a measured paved area
+    // may hold the cycle track (Wolkerova: the passport's "other" area).
+    if (!CARVE_BIKE.has(part.type) || (part.type === "zelen" && ["dtm", "pasport"].includes(part.source))) continue;
     let y = 0;
     const near = segments.some((s) => { const s0 = y; y += s.width; return BIKE_PARTS.has(s.type) && s0 - 2 < c.at && c.at < y + 2; });
     if (near) continue;

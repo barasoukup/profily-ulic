@@ -180,3 +180,6 @@ stromořadí a ne do 2 m od jiného dílu pro kola. Vypnutí `?off=rezkolo`.
   ověřeny Pluhová a Botanická: shoda.
 - Zbývá: cyklopruhy zadané jako značka silnice (cycleway:right=track, cycleway=lane; 4 ulice), protože v uloženém běhu
   není strana cesty.
+- **Česko** (opravy 8–10 dopočtem nad během CZ-A, 200 ulic): jediná změna byla cyklostezka vyříznutá ze zeleně, kterou
+  změřila technická mapa Ostravy (Na Jízdárně). Změřenou zeleň (`dtm`, `pasport`) proto `carveCycleways` neřeže, změřenou
+  zpevněnou plochu ano (Wolkerova). Potom v Česku beze změny, na Slovensku stejných 9 cílů.
