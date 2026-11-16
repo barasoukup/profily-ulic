@@ -59,8 +59,13 @@ Kresby jsou zdaleka nejdražší. Proto:
   - Opus jen tam, kde je potřeba úsudek: recenze, A/B posudky, složitější kód.
   - Ve workflow dát `model` každému `agent()`: kreslířka a opravy `sonnet`, kritik `sonnet`, souhrn bez agenta.
 - **Kresby:**
-  - Kreslit jen vozidla měst, kde se v profilu opravdu objeví (tramvaj, trolejbus pod trolejí, autobus v buspruhu).
-    Menším městům stačí obecný autobus státu.
+  - Kreslit jen vozidla, která se v profilu opravdu objeví (`profile.js`):
+    - tramvaj na kolejích;
+    - autobus jen v pruhu BUS (`bus`, `bus_cyklo`), v obyčejném pruhu jsou auta;
+    - trolejbus jen v pruhu BUS pod trolejí (OSM `trolley_wire`), nebo v pruhu jen pro MHD pod trolejí.
+  - Pruh BUS může kdokoli přidat v Návrhu, proto má vlastní autobus smysl i tam, kde dnes buspruh není. Vlastní autobus
+    ale jen větším městům, kde buspruhy jsou nebo se dají čekat v návrzích. Ostatním stačí obecný autobus státu
+    (`slovensko/bus-*`) a trolejbus jen městům s trolejemi.
   - Jedna kreslířka na čelo i záď (jedno zadání, dva soubory).
   - Kritik nejdřív porovná s fotkami. Tři kola dodržet, ale když kolo vrátí jen kosmetické drobnosti, třetí kolo
     vynechat a říct to Báře.
