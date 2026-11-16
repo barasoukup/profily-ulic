@@ -48,14 +48,17 @@ jobs:
         with:
           node-version: 22
       - id: week
-        run: echo "week=$(date -u +%G-%V)" >> "$GITHUB_OUTPUT"
+        run: |
+          echo "week=$(date -u +%G-%V)" >> "$GITHUB_OUTPUT"
+          # The states whose OSM tiles are built (tools/countries.mjs), for the cache keys.
+          echo "countries=$(node tools/countries.mjs --key)" >> "$GITHUB_OUTPUT"
       # This week's packed tiles (site-osm: <country>-<date>.posm and index.json), built by the same scripts: a deploy
       # reuses them and skips the build (Bára: the weekly refresh is enough while their extent does not change).
       - id: tiles-cache
         uses: actions/cache@v4
         with:
           path: site-osm
-          key: osm-pack-${{ steps.week.outputs.week }}-cz-sk-at-${{ hashFiles('tools/build_osm_tiles.mjs', 'tools/build_osm_data.sh', 'tools/pack_osm_tiles.mjs', 'pilot/public/osmtile.js', 'pilot/public/osmpack.js') }}
+          key: osm-pack-${{ steps.week.outputs.week }}-${{ steps.week.outputs.countries }}-${{ hashFiles('tools/build_osm_tiles.mjs', 'tools/build_osm_data.sh', 'tools/pack_osm_tiles.mjs', 'pilot/public/osmtile.js', 'pilot/public/osmpack.js') }}
       - name: Install GDAL (ogr2ogr)
         if: steps.tiles-cache.outputs.cache-hit != 'true'
         timeout-minutes: 8
@@ -71,17 +74,14 @@ jobs:
         if: steps.tiles-cache.outputs.cache-hit != 'true'
         uses: actions/cache@v4
         with:
-          path: |
-            data/osm/cz.osm.pbf
-            data/osm/sk.osm.pbf
-            data/osm/at.osm.pbf
-          key: osm-pbf-${{ steps.week.outputs.week }}-cz-sk-at
+          path: data/osm/*.osm.pbf
+          key: osm-pbf-${{ steps.week.outputs.week }}-${{ steps.week.outputs.countries }}
           restore-keys: osm-pbf-
       - name: Download the OSM extracts
         if: steps.tiles-cache.outputs.cache-hit != 'true'
         run: |
           mkdir -p data/osm
-          for c in cz:czech-republic sk:slovakia at:austria; do
+          for c in $(node tools/countries.mjs --list geofabrik); do
             # This week's copy from the cache is enough (a country added later is still downloaded).
             if [ "${{ steps.pbf-cache.outputs.cache-hit }}" = "true" ] && [ -f "data/osm/${c%%:*}.osm.pbf" ]; then continue; fi
             if curl -fL --retry 3 --retry-delay 20 --connect-timeout 30 -o "/tmp/${c%%:*}.osm.pbf" \
@@ -101,7 +101,7 @@ jobs:
         timeout-minutes: 110
         run: |
           mkdir -p site-osm
-          for c in cz sk at; do
+          for c in $(node tools/countries.mjs --list osm); do
             NAME=$c tools/build_osm_data.sh "data/osm/$c.osm.pbf" "tiles-$c"
             node tools/pack_osm_tiles.mjs "tiles-$c" "site-osm/$c-$(date -u +%F)-{hash}.posm"
             rm -rf "tiles-$c" data/osm/${c}_*.geojsonl
@@ -139,7 +139,7 @@ jobs:
           done
           aws s3 cp --endpoint-url "$ENDPOINT" site-osm/index.json "$R2/index.json" --content-type application/json --cache-control "public, max-age=300"
           # Older builds: each country keeps its two newest files (by the time they were uploaded).
-          for c in cz sk at; do
+          for c in $(node tools/countries.mjs --list osm); do
             aws s3 ls --endpoint-url "$ENDPOINT" "$R2/" | sort -r | awk '{print $4}' | grep -E "^$c-[0-9a-f-]+\.posm$" | tail -n +3 | while read -r old; do
               aws s3 rm --endpoint-url "$ENDPOINT" "$R2/$old"
             done
@@ -261,8 +261,8 @@ jobs:
           grep -q 'LOG_URL = ""' _site/config.js && echo "::warning::no log of cuts (repository variable LOG_URL)" || true
           # The packed OSM tiles also on Pages: where R2 does not answer, the app reads them here (gis.js).
           # Austria's file only on R2 (Bára 16. 11. 2026): with it the site would pass Pages' 1 GB.
-          mkdir -p _site/data/osm-pack && cp site-osm/cz-*.posm site-osm/sk-*.posm _site/data/osm-pack/
-          node -e 'const fs = require("fs"), j = JSON.parse(fs.readFileSync("site-osm/index.json", "utf8")); delete j.files.at; fs.writeFileSync("_site/data/osm-pack/index.json", JSON.stringify(j, null, 1))'
+          mkdir -p _site/data/osm-pack && for c in $(node tools/countries.mjs --list pages); do cp site-osm/$c-*.posm _site/data/osm-pack/; done
+          node --input-type=module -e 'import fs from "fs"; import { COUNTRIES } from "./tools/countries.mjs"; const j = JSON.parse(fs.readFileSync("site-osm/index.json", "utf8")); for (const k of Object.keys(j.files)) if (!COUNTRIES[k]?.pages) delete j.files[k]; fs.writeFileSync("_site/data/osm-pack/index.json", JSON.stringify(j, null, 1))'
           mv site-zps.json _site/data/zps.json
           [ -d site-vyvoj ] && mv site-vyvoj _site/data/vyvoj || echo "::warning::no built-up area tiles, flat roofs judged by the house alone"
           cp LICENCE-A-ZDROJE.md _site/data/LICENCE-A-ZDROJE.md
