@@ -2149,6 +2149,56 @@ export function carveCycleways(segments, cross = []) {
   }
   return n;
 }
+// A roadway the orthophoto's lines cut into shoulders only, with no lane anywhere in the profile (995 Slovak streets:
+// Pluhová 1.67 + 2.43 m, Topoľčianska 3.67 + 4.63 m): the shoulders side by side are the roadway, one lane under 5 m,
+// a two-way street's two from 5 m, a one-way street's OSM lanes while each keeps 2.5 m. ?off=bezpruhu: the A/B.
+export function lanesFromShoulders(segments, tags = {}) {
+  if (ORTHO_P.off?.has("bezpruhu") || segments.some((s) => DRIVE.has(s.type) && s.type !== "krajnice")) return 0;
+  let i = segments.findIndex((s) => s.type === "krajnice");
+  if (i < 0) return 0;
+  let j = i;
+  while (segments[j + 1]?.type === "krajnice") j++;
+  const width = round(segments.slice(i, j + 1).reduce((a, s) => a + s.width, 0));
+  if (width < 2.5) return 0;
+  const oneway = isOnewayTags(tags);
+  // One-way: OSM's lanes, else lanes of about 3.5 m; each at least 2.5 m.
+  const n = oneway ? Math.max(1, Math.min(+tags.lanes || Math.round(width / 3.5), Math.floor(width / 2.5))) : width >= TWO_WAY_SPLIT ? 2 : 1;
+  const src = segments[i].source;
+  const lanes = Array.from({ length: n }, (_, q) => ({ type: "pruh", width: round(q === n - 1 ? width - round(width / n) * (n - 1) : width / n), source: src,
+    dir: oneway ? undefined : n === 2 ? (q === 0 ? "backward" : "forward") : undefined }));
+  segments.splice(i, j - i + 1, ...lanes);
+  return 1;
+}
+
+// Tram tracks of OSM across a part the profile only estimated (a median, unknown, green or paved; Vajanského nábrežie,
+// Botanická, Staničné námestie): a tram bed of TRAM_TRACK m a track about them, cut out of that part (its own part
+// when the tracks fill it). ?off=rezkoleje: the A/B.
+const TRAM_TRACK = 3.3, CARVE_TRAM = new Set(["delici", "nezname", "zelen", "plocha"]);
+export function carveTramTracks(segments, cross = []) {
+  if (ORTHO_P.off?.has("rezkoleje")) return 0;
+  // One track mapped twice (two ways 0.1 m apart: Staničné námestie) is one.
+  const rails = cross.filter((c) => c.tags?.railway === "tram").map((c) => c.at).sort((a, b) => a - b).filter((t, k, all) => !k || t - all[k - 1] > 1.5);
+  let n = 0;
+  for (let q = 0; q < segments.length; q++) {
+    const part = segments[q];
+    if (!CARVE_TRAM.has(part.type) || part.source === "dtm") continue;
+    let x = 0;
+    for (let r = 0; r < q; r++) x += segments[r].width;
+    const inside = rails.filter((t) => t > x && t < x + part.width);
+    if (!inside.length) continue;
+    const w = Math.min(part.width, inside.length * TRAM_TRACK), mid = (inside[0] + inside.at(-1)) / 2;
+    let a = Math.max(x, Math.min(mid - w / 2, x + part.width - w)), b = a + w;
+    if (a - x < 0.5) a = x;
+    if (x + part.width - b < 0.5) b = x + part.width;
+    const beds = inside.map((_, k) => ({ type: "tramvaj", width: round((b - a) / inside.length), source: "osm", bed: "panely", bedGuess: true }));
+    const pieces = [...(a - x > 0 ? [{ ...part, width: round(a - x) }] : []), ...beds, ...(x + part.width - b > 0 ? [{ ...part, width: round(x + part.width - b) }] : [])];
+    segments.splice(q, 1, ...pieces);
+    q += pieces.length - 1;
+    n++;
+  }
+  return n;
+}
+
 // The OSM ways crossing the cut, with their place from the profile's end A (extent: deriveProfile's [right, left]).
 export function crossFromA(osm, frame, dir, extent) {
   const normal = [-dir[1], dir[0]], half = Math.max(Math.abs(extent[0]), Math.abs(extent[1])) + 1;

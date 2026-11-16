@@ -165,3 +165,18 @@ stromořadí a ne do 2 m od jiného dílu pro kola. Vypnutí `?off=rezkolo`.
   1,65 + cyklostezka 2,5; Kežmarská, Wolkerova, Košická, Vysokoškolákov, Dunajská, Most Apollo, Štefánikova, Jána
   Hajdóczyho), kontrola beze změny. Skutečným během ověřeny Pod Párovcami a Wolkerova: shoda.
 - Nezměněné: Pribinova (cyklostezka z OSM v jízdním pruhu) a Trenčianska (ve stromořadí), schválně.
+
+## Oprava 9 a 10: vozovka jen z krajnic, koleje v odhadnutém dílu (A/B dopočtem, 16. 11. 2026)
+- **Vozovka jen z krajnic** (`lanesFromShoulders`, `?off=bezpruhu`): ortofoto rozdělilo vozovku středovou čarou na dvě
+  „krajnice“ a pruh žádný (5 ulic bez pruhu). Když profil nemá žádný pruh, souvislé krajnice jsou vozovka: do 5 m jeden
+  pruh, obousměrka od 5 m dva, jednosměrka OSM lanes, jinak pruhy kolem 3,5 m (každý aspoň 2,5 m). Běží před ostatními
+  kroky pruhů. Pluhová 1,67 + 2,43 → pruh 4,1; Kamenná → 3,8; Snežienková → 2,8; Topoľčianska (OSM lanes=1) → pruh 4 a
+  krajnice.
+- **Koleje z OSM v odhadnutém dílu** (`carveTramTracks`, `?off=rezkoleje`): koleje padly do odhadnutého dělicího pásu,
+  „Neurčeno“, zeleně nebo plochy (ne do dílu z mapy města). Pás 3,3 m na kolej kolem nich; kolej zakreslená dvakrát
+  (0,1 m od sebe) je jedna. Vajanského nábrežie dělicí pás 3,5 → tramvaj, Botanická dvě koleje v 13,7 m Neurčeno,
+  Staničné námestie, Radlinského a Špitálska druhá kolej.
+- A/B dopočtem nad celým během U-1 (995 ulic, bez dotazů na služby): změnilo se 10, všechno ty cílové. Skutečným během
+  ověřeny Pluhová a Botanická: shoda.
+- Zbývá: cyklopruhy zadané jako značka silnice (cycleway:right=track, cycleway=lane; 4 ulice), protože v uloženém běhu
+  není strana cesty.

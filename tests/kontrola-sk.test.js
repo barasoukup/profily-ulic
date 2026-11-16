@@ -55,3 +55,20 @@ test("cyklostezka z OSM přes odhadnutý díl: vyřízne se pás její šířky,
   const near = [seg("cyklostezka", 2), seg("plocha", 3)];
   assert.equal(carveCycleways(near, [{ at: 2.5, tags: { highway: "cycleway" } }]), 0);
 });
+
+test("vozovka jen z krajnic dostane pruh; koleje z OSM v odhadnutém dílu jsou tramvajový pás", async () => {
+  const { lanesFromShoulders, carveTramTracks } = await import("../pilot/public/derive.js");
+  const s = [seg("chodnik", 2.6), seg("krajnice", 1.67), seg("krajnice", 2.43), seg("chodnik", 2.65)];
+  assert.equal(lanesFromShoulders(s, { highway: "residential" }), 1);
+  assert.deepEqual(s.map((x) => [x.type, x.width]), [["chodnik", 2.6], ["pruh", 4.1], ["chodnik", 2.65]]);
+  const w = [seg("krajnice", 3), seg("krajnice", 3)];
+  lanesFromShoulders(w, { highway: "residential" });
+  assert.deepEqual(w.map((x) => [x.type, x.width, x.dir]), [["pruh", 3, "backward"], ["pruh", 3, "forward"]]);
+  assert.equal(lanesFromShoulders([seg("pruh", 3), seg("krajnice", 2)], {}), 0);
+  const t = [seg("pruh", 3), seg("delici", 3.5, { source: "odhad" }), seg("pruh", 4)];
+  assert.equal(carveTramTracks(t, [{ at: 4.7, tags: { railway: "tram" } }]), 1);
+  assert.deepEqual(t.map((x) => [x.type, x.width]), [["pruh", 3], ["tramvaj", 3.5], ["pruh", 4]]);
+  const twice = [seg("nezname", 3.5, { source: "odhad" })];
+  carveTramTracks(twice, [{ at: 1.8, tags: { railway: "tram" } }, { at: 1.91, tags: { railway: "tram" } }]);
+  assert.deepEqual(twice.map((x) => [x.type, x.width]), [["tramvaj", 3.5]]);
+});
