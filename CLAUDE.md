@@ -236,6 +236,16 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   n. L. (`towns/pasporty.js`, hranice `pasporty.json`) nad DTM ČÚZK ve „cesko“. Nasazené před A/B (do 19. 11. odstávka
   DMVS, „do 19. je to nic“); A/B po odstávce podle `evaluation/PASPORTY-AB.md`, co nevyhraje, vyřadit.
 
+## Na 19. 11. 2026 (po odstávce DMVS, Bára 16. 11. 2026)
+Odstávka IS DMVS a DTM krajů 12.–18. 11. (přechod na JVF DTM 1.5.0.2), plný provoz od 19. 11.
+1. Ověřit, že DMVS běží (WMS `dtm_zps_plochy_bar` vrací 200, ne „Plánovaná odstávka“), že ho aplikace po přechodu na
+   novou verzi JVF DTM umí číst (řez mimo naše města, např. Komenského ve Vysokém Mýtě; plochy, linie, typ plochy
+   v bodě, WFS krajů v `dtmwfs.js`) a `node tools/check_sources.mjs`.
+2. A/B pasportů devíti měst podle `evaluation/PASPORTY-AB.md` (aplikace s pasportem proti bez); co nevyhraje,
+   vyřadit z `towns/pasporty.js`.
+3. Jihlava: pasport komunikací (`ost/Pasporty` vrstvy 1, 2, 34, 111–115) byl 16. 11. prázdný. Je-li pořád, při
+   prázdném pasportu brát DTM ČÚZK a případně se zeptat města.
+
 ## Licence
 - Kód MIT. Ilustrace Streetmix CC BY-SA 4.0 (s uvedením autora), pražské ilustrace (`pilot/public/praha/`)
   pod MIT jako kód (Bára rozhodla 8. 11. 2026), kód Streetmixu AGPL-3.0 (jen kopie
