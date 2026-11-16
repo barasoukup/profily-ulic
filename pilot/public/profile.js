@@ -607,6 +607,13 @@ export function buildingLevels(info) {
 export function buildingStyle(info, chosen) {
   const set = OLD_STYLES[chosen] || chosen;
   if (BUILDING_STYLES[set]) return set;
+  const style = derivedStyle(info);
+  // Austria has no panel houses of the Czech and Slovak kind (Bára 16. 11. 2026): an office stays an office, a block of
+  // flats is the modern one when new, else the plain flat-roofed tenement (Gemeindebau).
+  if (style === "plocha" && city.country === "AT") return OFFICE_TYPES.has(info?.type) || info?.office ? "kancelar" : (info?.start || info?.built) > 1990 ? "moderni" : "funkce";
+  return style;
+}
+function derivedStyle(info) {
   const h = buildingHeight(info);
   const n = info?.levels || (h ? Math.round(h / FLOOR) : null);
   const roof = IPR_ROOF[info?.roofType];

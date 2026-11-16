@@ -164,3 +164,19 @@ test("Slovensko bez centra města: panelák jen deska nebo věžák, jinak čin�
   assert.equal(buildingStyle({ levels: 7, km: 99, block: court, type: "office" }), "plocha");
   setCity("praha");
 });
+
+test("Rakousko: žádný panelák, deska je funkcionalistický dům, nová moderní, kanceláře kanceláře", async () => {
+  const C = await import("../pilot/public/city.js");
+  const { buildingStyle } = await import("../pilot/public/profile.js");
+  const slab = { levels: 9, block: { fill: 0.95, width: 12, length: 80, parts: 1 } };
+  C.setCity("slovensko");
+  const sk = buildingStyle(slab);
+  C.setCity("austria");
+  try {
+    assert.equal(sk, "plocha", "na Slovensku deska je panelák");
+    assert.equal(buildingStyle(slab), "funkce");
+    assert.equal(buildingStyle({ ...slab, start: 2005 }), "moderni");
+    assert.equal(buildingStyle({ ...slab, type: "office" }), "kancelar");
+    assert.equal(buildingStyle(slab, "plocha"), "plocha", "ručně zvolený vzhled zůstane");
+  } finally { C.setCity("praha"); }
+});
