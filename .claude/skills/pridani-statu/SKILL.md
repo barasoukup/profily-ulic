@@ -43,6 +43,51 @@ Zprávy jsou v `evaluation/slovensko/` a `evaluation/austria/` (ZPRAVA, NORMY, Z
 - **Kontroly:** po dokončení státu pustit nepřátelského recenzenta na celou větev (co je špatně, co chybí, co rozbije
   Česko) a pak kritika „co nám ve státu chybí“. Nálezy zapracovat a zapsat do zprávy.
 
+## Šetření prostředků (Bára 16. 11. 2026)
+
+Kolik co stálo u Rakouska:
+- kresby 7 vozidel ve 3 kolech: asi 3,6 mil. tokenů (46 agentů);
+- první kresby vozidel: 0,9 mil.;
+- nepřátelská recenze: 0,2 mil.;
+- průzkum zdrojů a norem: 0,1–0,2 mil. každý.
+
+Kresby jsou zdaleka nejdražší. Proto:
+
+- **Modely podle úlohy:**
+  - průzkum dat a malé dotazy na Haiku;
+  - rešerše norem a kreslení vozidel na Sonnet;
+  - Opus jen tam, kde je potřeba úsudek: recenze, A/B posudky, složitější kód.
+  - Ve workflow dát `model` každému `agent()`: kreslířka a opravy `sonnet`, kritik `sonnet`, souhrn bez agenta.
+- **Kresby:**
+  - Kreslit jen vozidla měst, kde se v profilu opravdu objeví (tramvaj, trolejbus pod trolejí, autobus v buspruhu).
+    Menším městům stačí obecný autobus státu.
+  - Jedna kreslířka na čelo i záď (jedno zadání, dva soubory).
+  - Kritik nejdřív porovná s fotkami. Tři kola dodržet, ale když kolo vrátí jen kosmetické drobnosti, třetí kolo
+    vynechat a říct to Báře.
+  - Náhled pro Báru jedním obrázkem (`magick montage`), ne každý soubor zvlášť.
+- **Kontext hlavní konverzace:**
+  - Velké výsledky (JSON řezů, výpisy služeb) ukládat do souboru a číst jen souhrn, netisknout je celé.
+  - Ze stránky vracet zhuštěné řádky (typ:šířka), ne celé objekty.
+  - Obrázky A/B skládat do montáží po 5–7 řezech v malém rozlišení.
+  - Číst jen ty, kde se profil změnil.
+- **A/B:**
+  - Vzorek 20–40 řezů stačí.
+  - Obrázky jen pro změněné řezy, a když jich je hodně, prohlédnout reprezentativních 10–12.
+  - Nesbírat znovu, co se nezměnilo: dvojice A/B se sbírá hned po sobě, protože služby kolísají.
+- **Agenti:**
+  - Pouštět je jen na práci, která by zahltila kontext (široké hledání, recenze celé větve).
+  - Malé dotazy a úpravy dělat přímo.
+  - Neduplikovat: když agent pracuje, nedělat totéž souběžně.
+  - Paralelně pouštět jen nezávislé práce.
+- **Prohlížeč:**
+  - Kroky dávkovat (`browser_batch`).
+  - Číst text a stav (`localStorage`, `#footer-data`) místo screenshotů.
+  - Screenshot jen pro vizuální kontrolu a v menším měřítku.
+- **Testy a regrese:**
+  - `npm test` (rychlý) po každé změně.
+  - Regresi Prahy a Brna (pár minut) jen po změně společného odhadu.
+- **Recenze:** jedna nepřátelská recenze na konci státu a jeden kritik „co chybí“ stačí. Ne po každém kroku.
+
 ## 1. Stát a jeho modul
 
 1. **Hranice:** `tools/build_staty.mjs` → `pilot/public/staty.json`.
@@ -218,6 +263,7 @@ v `cutAt` zastínil pozdější `const name` a rozbil každý řez.
   každé město s buspruhem), čelo i záď, soubory `pilot/public/<town>/`.
   - **Workflow s povinnými 3 koly:** kritik každé kolo vypíše i drobnosti a skutečné barvy si sám najde na fotkách
     z Commons. Bez toho kritik schválí hned v prvním kole a chyby zůstanou (Linz byl modrý místo oranžového).
+    Kreslířce i kritikovi dát `model: "sonnet"` (šetření prostředků výše).
   - Kreslířky fotky nevidí, vycházejí z popisů. Výsledek ukázat Báře jako náhled (`magick` s odstraněním `<text>`).
   - Pro menší města obecný autobus státu.
 - **Zapojení podle hranice nebo boxu města:** `city.js SK_ART`/`AT_ART`, `skArtAt`/`atArtAt`, `useCity` v `app.js`.
