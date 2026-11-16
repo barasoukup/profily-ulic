@@ -38,3 +38,5 @@ tools/.ca-check.pem
 # Bářiny dokumenty (Plus přístup), nepatří do repozitáře
 Profily-ulic-Plus.docx
 evaluation/budovy-panel/cache.json
+# Copies of evaluation scripts served to the app page during a run (evaluation/slovensko/kontrola)
+pilot/public/evaluation-*
