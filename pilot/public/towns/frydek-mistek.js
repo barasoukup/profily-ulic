@@ -8,7 +8,7 @@
 //
 // A town module (towns/<id>.js, listed in towns/index.js) gives sources.js the five data sources of a
 // click (osm, surfaces, lines, parking, podlaznost; see towns/jihlava.js) and app.js its base maps.
-import { osmTiles, boxAround, asMtvu, addPoints, ruianBuilding } from "../gis.js";
+import { osmTiles, boxAround, asMtvu, asPassport, addPoints, ruianBuilding } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { overDmvs, tmapyWfs } from "./overlay.js";
 
@@ -45,7 +45,7 @@ export async function own(bbox) {
     wfs(`${FM}/pakom`, "ms:pk-pov", bbox, "typ,msGeometry"),
     wfs(`${FM}/pazel`, "ms:pz-p-ver", bbox, "druh_nazev,msGeometry").catch(none),
   ]);
-  return { passport: asMtvu([[pakom, pakomCode]], MTVU_LABELS), green: asMtvu([[green, greenCode]], MTVU_LABELS) };
+  return { passport: asPassport(asMtvu([[pakom, pakomCode]], MTVU_LABELS)), green: asPassport(asMtvu([[green, greenCode]], MTVU_LABELS)) };
 }
 const surfaces = async (bbox) => { const o = await own(bbox); return overDmvs(o.passport, bbox, o.green); };
 

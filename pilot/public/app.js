@@ -18,6 +18,7 @@ import { city, setCity, cityAt, loadBounds } from "./city.js";
 import { TOWNS } from "./towns/index.js";
 import { log, logOn, sendReport, shortProfile } from "./log.js";
 import { createDataLayers, PLOCHY_PANE } from "./maplayers.js";
+import { PASSPORT_NAMES, GREEN_PASSPORTS } from "./towns/pasporty-names.js";
 import { mountSearch } from "./search.js";
 // tr: t is a common name of a text or a type here.
 import { t as tr, num, pct, numField, readNum, lang, LANGS, setLang, translatePage, attribution } from "./i18n.js";
@@ -331,7 +332,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     // What the export credits beyond the city's own data (city.js creditLines): the region of a national DTM,
     // the DMVS standing in for the city's map, the orthophoto of a tram bed.
     const mv = m.status === "fulfilled" ? m.value : null;
-    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.dmvs && { dmvs: true }), ...((ortho || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" && { orthoCity: laneImg.source }) };
+    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.dmvs && { dmvs: true }), ...(mv?.passport && { passport: mv.passport }), ...((ortho || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" && { orthoCity: laneImg.source }) };
     // The log of cuts (log.js): the cut exactly, and how it came (a click, a moved cut, a link).
     log("rez", {
       detail: keepWay ? "posun" : bearing !== null ? "odkaz" : "klik", city: city.id, street: name, highway: near.way.tags.highway,
@@ -614,6 +615,14 @@ function render() {
   }
 }
 
+// Whose data the profile shows: the city's, and a town's passport when the cut took it (towns/pasporty.js; Bára:
+// the cut's information should say where its data come from).
+function cutData() {
+  const id = state.cut?.sources?.passport;
+  if (!PASSPORT_NAMES[id]) return city.dataShort;
+  return GREEN_PASSPORTS.has(id) ? tr("pasportu zeleně města {town}, technické mapy ČÚZK a OSM", { town: PASSPORT_NAMES[id] })
+    : tr("pasportu komunikací města {town}, technické mapy ČÚZK a OSM", { town: PASSPORT_NAMES[id] });
+}
 function draw() {
   document.title = state.stav && state.cut ? `${streetName(state.cut)} – ${tr("Profily ulic")}` : tr("Profily ulic");
   document.querySelectorAll(".seg-toggle button").forEach((b) => {
@@ -630,7 +639,7 @@ function draw() {
   $("#stav-cta").classList.toggle("fixing", !!state.fixing);
   $("#stav-text").textContent = state.fixing
     ? tr("Opravujete data stavu: táhněte úchyty nebo klikněte na část. Opravené části se označí jako upravené ručně.")
-    : tr("Takhle ulice vypadá podle dat {data}. Nesedí? Opravte je, nebo nám chybu nahlaste.", { data: city.dataShort });
+    : tr("Takhle ulice vypadá podle dat {data}. Nesedí? Opravte je, nebo nám chybu nahlaste.", { data: cutData() });
   $("#btn-fix").textContent = state.fixing ? tr("Hotovo") : tr("Opravit data");
   if (state.stav) {
     $("#profile-sub").textContent = tr("Celkem {w}", { w: fmtM(totalWidth(state.mode === "navrh" ? state.navrh : state.stav)) });

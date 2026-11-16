@@ -229,6 +229,11 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Nedělat: pokryvnost korunami a parametry stromů (Bára: moc složité). IPR Praha oslovit s připomínkami (nápad
   Magdaleny), Slovensko jen při zájmu.
 
+## Pasporty dalších měst (Bára 16. 11. 2026)
+- Komunikace Chomutova, Šumperka, Rožnova p. R., Litoměřic, Chotěboře, Šlapanic, Kuřimi a zeleň Prachatic a Roudnice
+  n. L. (`towns/pasporty.js`, hranice `pasporty.json`) nad DTM ČÚZK ve „cesko“. Nasazené před A/B (do 19. 11. odstávka
+  DMVS, „do 19. je to nic“); A/B po odstávce podle `evaluation/PASPORTY-AB.md`, co nevyhraje, vyřadit.
+
 ## Licence
 - Kód MIT. Ilustrace Streetmix CC BY-SA 4.0 (s uvedením autora), pražské ilustrace (`pilot/public/praha/`)
   pod MIT jako kód (Bára rozhodla 8. 11. 2026), kód Streetmixu AGPL-3.0 (jen kopie
