@@ -78,13 +78,17 @@ export const BUILDING_STYLES = {
   sikma: tr("činžovní dům se šikmou střechou"), sorela: tr("dům 50. let (sorela)"), funkce: tr("funkcionalistický činžák"),
   plocha: tr("panelový dům"), moderni: tr("moderní bytový dům"), kancelar: tr("kancelářská budova"), nizky: tr("městský dům"),
   typovy: tr("zděný bytový dům 50.–60. let"), vila: tr("vila, starší rodinný dům"), kostka: tr("rodinný dům 60.–80. let"), novyrd: tr("nový rodinný dům"),
-  statek: tr("venkovský dům štítem do ulice"), hala: tr("hala"),
+  statek: tr("venkovský dům štítem do ulice"), mestan: tr("měšťanský dům na náměstí"), skola: tr("škola"),
+  kostel: tr("kostel"), garaz: tr("garáž"), hala: tr("hala"),
 };
-const BASE_STYLE = { sorela: "sikma", typovy: "sikma", kancelar: "plocha", vila: "nizky", kostka: "nizky", novyrd: "nizky", statek: "nizky" };
+const BASE_STYLE = { sorela: "sikma", typovy: "sikma", mestan: "sikma", kancelar: "plocha", vila: "nizky", kostka: "nizky", novyrd: "nizky", statek: "nizky" };
 const OLD_STYLES = { centrum: "sikma", "centrum-obchod": "sikma", sidliste: "plocha", "sidliste-lodzie": "plocha", rd: "vila" };
 const HOUSE_TYPES = new Set(["house", "detached", "semidetached_house", "terrace", "bungalow", "villa", "farm", "garage", "garages", "shed"]);
 const FAMILY_TYPES = new Set(["house", "detached", "semidetached_house", "terrace", "bungalow", "villa"]);
 const FARM_TYPES = new Set(["farm", "farmhouse"]);
+const CHURCH_TYPES = new Set(["church", "cathedral", "chapel", "religious", "synagogue", "mosque", "temple", "monastery"]);
+const SCHOOL_TYPES = new Set(["school", "kindergarten"]);
+const GARAGE_TYPES = new Set(["garage", "garages", "carport"]);
 const HALL_TYPES = new Set(["retail", "supermarket", "industrial", "manufacture", "warehouse", "hangar", "sports_hall", "service", "commercial_hall"]);
 const HALL_AREA = 1200; // m²: a footprint this big on up to 3 floors reads as a hall
 const FLAT_RESIDENTIAL = new Set(["apartments", "residential", "dormitory"]); // flat-roofed homes get balconies
@@ -93,17 +97,17 @@ const IPR_ROOF = { 1: "sikma", 3: "plocha", 5: "sikma" };
 // Within innerKm of the centre an unknown building is taken for a pitched-roof tenement, from estateKm
 // for a panel house; a town has its own (city.js innerKm, estateKm; Most has no old inner town).
 const innerKm = () => city.innerKm ?? 3;
-const STOREY = { sikma: 360, sorela: 330, typovy: 300, funkce: 310, moderni: 300, plocha: 280, kancelar: 330, nizky: 300, vila: 300, kostka: 280, novyrd: 280, statek: 280, hala: 700 }; // typical storey (cm); a hall is one tall storey
-const DEFAULT_FLOORS = { sikma: 5, sorela: 5, typovy: 4, funkce: 6, moderni: 6, plocha: 8, kancelar: 5, nizky: 1, vila: 2, kostka: 2, novyrd: 2, statek: 1, hala: 1 };
+const STOREY = { sikma: 360, sorela: 330, typovy: 300, mestan: 330, skola: 380, kostel: 1000, garaz: 260, funkce: 310, moderni: 300, plocha: 280, kancelar: 330, nizky: 300, vila: 300, kostka: 280, novyrd: 280, statek: 280, hala: 700 }; // typical storey (cm); a hall is one tall storey
+const DEFAULT_FLOORS = { sikma: 5, sorela: 5, typovy: 4, mestan: 3, skola: 3, kostel: 1, garaz: 1, funkce: 6, moderni: 6, plocha: 8, kancelar: 5, nizky: 1, vila: 2, kostka: 2, novyrd: 2, statek: 1, hala: 1 };
 const PITCH = Math.tan((40 * Math.PI) / 180);
 const RIDGE = 260; // ridge of a family house, from its street facade (cm)
 // Side windows: width and gap (cm), sill and height as a share of the storey.
 const WINDOWS = { sikma: { w: 85, gap: 60, sill: 0.24, h: 0.56 }, plocha: { w: 120, gap: 50, sill: 0.3, h: 0.45 },
   nizky: { w: 85, gap: 70, sill: 0.3, h: 0.45 }, funkce: { w: 110, gap: 60, sill: 0.3, h: 0.5 }, moderni: { w: 120, gap: 40, sill: 0.05, h: 0.8 }, hala: {},
-  sorela: { w: 90, gap: 70, sill: 0.28, h: 0.52 }, typovy: { w: 100, gap: 80, sill: 0.3, h: 0.47 }, vila: { w: 90, gap: 70, sill: 0.3, h: 0.47 }, kostka: { w: 140, gap: 60, sill: 0.32, h: 0.42 },
+  sorela: { w: 90, gap: 70, sill: 0.28, h: 0.52 }, typovy: { w: 100, gap: 80, sill: 0.3, h: 0.47 }, mestan: { w: 80, gap: 90, sill: 0.3, h: 0.45 }, vila: { w: 90, gap: 70, sill: 0.3, h: 0.47 }, kostka: { w: 140, gap: 60, sill: 0.32, h: 0.42 },
   novyrd: { w: 110, gap: 50, sill: 0.1, h: 0.72 }, statek: { w: 70, gap: 90, sill: 0.32, h: 0.4 } };
 // Roof coverings of the family houses: the cube's sheet or fibre-cement, the new house's anthracite concrete tiles.
-const ROOF_OF = { kostka: ["#7a7f84", "#5c6065"], novyrd: ["#44474b", "#2e3033"] };
+const ROOF_OF = { kostka: ["#7a7f84", "#5c6065"], novyrd: ["#44474b", "#2e3033"], kostel: ["#4f5d6b", "#36414c"] }; // slate
 // Streetmix-like colours: saturated pastel walls, dark glass with a diagonal glint, cream frames.
 const PALETTES = {
   sikma: ["#e7b96a", "#d99a86", "#8fb79a", "#86a9c6", "#e0c98f"],
@@ -121,6 +125,11 @@ const PALETTES = {
   // Plain brick blocks of flats of the 1950s–60s (Street View of 25 houses, evaluation/budovy-panel): smooth render in
   // sand, ochre, grey, a pitched tiled roof with chimneys.
   typovy: ["#d8c9a3", "#cfc2a8", "#c9c4b6", "#dcc79a"],
+  // Burgher houses on a town square: baroque pastels.
+  mestan: ["#f0d58f", "#e9b9a6", "#f2ece0", "#b9cfb4", "#e7c7a0"],
+  skola: ["#e8d6a8", "#e2c9b0", "#dfe0d6"],
+  kostel: ["#efe9da", "#e9dcbf"],
+  garaz: ["#bdb8ae", "#c9c3b5", "#a9aaa5"],
   vila: ["#efd29a", "#ece4d2", "#e6bfa9", "#dfe3d3"],
   // The "cube": brizolit, the rough grey, beige or ochre render of the 1960s–80s.
   kostka: ["#c9c2b2", "#bdb6a6", "#d3c7ad", "#b7bcb4"],
@@ -603,7 +612,10 @@ export function buildingStyle(info, chosen) {
   const cornice = info?.cornice || info?.levels; // a height alone says nothing about floors in a hall
   // Halls: an OSM shop or works building, or a big low footprint, unless IPR says pitched roof on 3+ floors.
   const big = info?.area >= HALL_AREA && !HOUSE_TYPES.has(info?.type);
+  if (CHURCH_TYPES.has(info?.type)) return "kostel"; // OSM: a church, chapel, synagogue
   if ((HALL_TYPES.has(info?.type) || big || (info?.iprKind === 3 && info?.area >= HALL_AREA / 4)) && !(cornice > 2) && roof !== "sikma") return "hala";
+  if (GARAGE_TYPES.has(info?.type) || info?.garage) return "garaz"; // OSM garages, RÚIAN garáž
+  if (SCHOOL_TYPES.has(info?.type)) return "skola";
   if (info?.farm || FARM_TYPES.has(info?.type)) return "statek"; // RÚIAN zemědělská usedlost, OSM farm
   const family = info?.house || FAMILY_TYPES.has(info?.type) || (city.id === "praha" && info?.iprKind === 6);
   if (family && !(n > 3)) return familyKind(info);
@@ -611,11 +623,12 @@ export function buildingStyle(info, chosen) {
   // RÚIAN: walls of concrete panels. Panel houses of the panel era; a newer one (prefabricated walls are
   // common again) looks like any new block of flats (evaluation/budovy-panel: 16 houses after 2000).
   if (info?.panel) return info.built > MODERN_FROM ? "moderni" : "plocha";
-  if (roof) return roof === "plocha" ? flatKind(info, n) : roof;
+  if (roof) return roof === "plocha" ? flatKind(info, n) : roof === "sikma" && oldCore(info, n) ? "mestan" : roof;
   // RÚIAN's year the house was completed, where the roof is not known (the towns): houses up to 1919
   // and of the early 1950s (socialist realism) have pitched roofs, the rest is told by flatKind.
   const built = info?.built;
   // 1948–57: socialist realism (sorela).
+  if (built && built < 1920 && oldCore(info, n)) return "mestan";
   if (built) return built < 1920 || (built >= 1946 && built < SORELA_FROM) ? "sikma" : built >= SORELA_FROM && built < 1958 ? "sorela"
     : built >= 1958 && built < TYPOVY_TO && !OFFICE_TYPES.has(info.type) && !info.office ? "typovy" : flatKind(info, n);
   // Nothing known about the building: a tenement in the inner city, a small house elsewhere (least misleading).
@@ -627,6 +640,10 @@ export function buildingStyle(info, chosen) {
 // it shows as built up, so 1950 means 1921–50). With its gable to the street outside the inner town it is a village
 // house; in a row (OSM terrace, 3+ houses joined) an older one is a town house.
 const SORELA_FROM = 1948;
+// A burgher house on the old town square (Bára 16. 11. 2026): an old house (RÚIAN before 1920, Prague: built up by
+// 1840) of up to 5 floors in the very heart of the town (city.coreKm from its centre: the square; Prague's Old Town).
+const oldCore = (info, n) => !!city.centre && info?.km <= (city.coreKm ?? 0.3) && !(n > 5)
+  && (info?.built ? info.built < 1920 : info?.period ? info.period <= 1840 : false);
 // 1958–69, walls not panels (RÚIAN code 10, bricks or none): 19 of 25 such houses drawn as panel houses were brick
 // blocks, 13 of them with a pitched roof and chimneys, 2 were panel houses (both after 1970; Street View, Bára
 // 16. 11. 2026, evaluation/budovy-panel/ZPRAVA.md). Panel walls in RÚIAN still make a panel house (above).
@@ -700,14 +717,14 @@ function pitchedLow(info) {
 // Side outline of a Prague building: floors, storey height, roof floors and the height of each part (cm).
 const FAMILY_LOOKS = new Set(["vila", "kostka", "novyrd", "statek"]);
 // Roof pitch of the family houses: the low hipped roof of the "cube", the steep one of a new house.
-const ROOF_PITCH = { kostka: Math.tan((18 * Math.PI) / 180), novyrd: Math.tan((38 * Math.PI) / 180) };
+const ROOF_PITCH = { kostka: Math.tan((18 * Math.PI) / 180), novyrd: Math.tan((38 * Math.PI) / 180), mestan: Math.tan((52 * Math.PI) / 180), kostel: Math.tan((55 * Math.PI) / 180) };
 const BARN_RISE = 380; // a village house: its roof rises this high (cm) from the eaves to the ridge (6–8 m deep house)
 function buildingForm(info, kind) {
   const style = BASE_STYLE[kind] || kind;
   const lv = buildingLevels(info);
   const h = buildingHeight(info);
-  const n = style === "hala" ? 1 : Math.max(1, lv?.n || (h ? Math.round(h / FLOOR) : DEFAULT_FLOORS[kind]));
-  const roofRows = style !== "hala" && lv?.roof && lv.cornice ? Math.min(lv.roof, n - 1) : 0;
+  const n = style === "hala" || kind === "kostel" || kind === "garaz" ? 1 : Math.max(1, lv?.n || (h ? Math.round(h / FLOOR) : DEFAULT_FLOORS[kind]));
+  const roofRows = style !== "hala" && kind !== "kostel" && kind !== "garaz" && lv?.roof && lv.cornice ? Math.min(lv.roof, n - 1) : 0;
   const S = STOREY[kind];
   // A known height sets the storey (within reason); pitched roofs sit above it.
   const storey = h ? Math.min(S * 1.5, Math.max(S * 0.7, (h * 100) / n)) : S;
@@ -717,7 +734,8 @@ function buildingForm(info, kind) {
   const ground = kind === "sikma" ? storey * 1.2 : style === "sikma" ? storey * 1.1 : style === "funkce" ? storey * 1.15
     : kind === "plocha" ? storey + 90 : kind === "kostka" ? storey + 110 : storey;
   const body = ground + (n - roofRows - 1) * storey;
-  const flat = style === "plocha" || style === "funkce" || style === "moderni" || style === "hala" || (kind === "nizky" && !pitchedLow(info));
+  const flat = style === "plocha" || style === "funkce" || style === "moderni" || style === "hala" || kind === "garaz"
+    || (kind === "skola" && (info?.built ?? info?.period) > 1955) || (kind === "nizky" && !pitchedLow(info));
   const pitch = ROOF_PITCH[kind] || PITCH;
   const sawtooth = style === "hala" && ["industrial", "manufacture"].includes(info?.type) && IPR_ROOF[info?.roofType] !== "plocha";
   // A family house shows its ridge inside the 4 m strip; a tenement's ridge lies deeper, past the cut.
@@ -855,9 +873,11 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     const z = (d) => top + 12 + Math.min(d, ridge) * P - Math.max(0, d - ridge) * P;
     // Chimney first (the roof hides its foot), then the gable up to the roof, then a thick tiled slab.
     const dc = style === "nizky" ? RIDGE + 50 : EDGE - 80;
-    box(dc - 24, dc + 24, top, z(dc) + 100, "#c46a4b");
-    box(dc - 32, dc + 32, z(dc) + 90, z(dc) + 102, "#8d4a34");
-    poly([[0, top], [Math.min(ridge, EDGE), z(Math.min(ridge, EDGE)) - 12], [EDGE, z(EDGE) - 12], [EDGE, top]], kind === "kostka" || kind === "vila" || kind === "sorela" || kind === "typovy" ? tint(tile[0], 1.08) : shade, outline); // a hipped roof shows its slope
+    if (kind !== "kostel") { // a church has no chimney
+      box(dc - 24, dc + 24, top, z(dc) + 100, "#c46a4b");
+      box(dc - 32, dc + 32, z(dc) + 90, z(dc) + 102, "#8d4a34");
+    }
+    poly([[0, top], [Math.min(ridge, EDGE), z(Math.min(ridge, EDGE)) - 12], [EDGE, z(EDGE) - 12], [EDGE, top]], ["kostka", "vila", "sorela", "typovy", "mestan", "skola", "kostel"].includes(kind) ? tint(tile[0], 1.08) : shade, outline); // a hipped roof shows its slope
     const slab = (d0, d1) => {
       poly([[d0, z(d0)], [d1, z(d1)], [d1, z(d1) + 30], [d0, z(d0) + 30]], tile[0]);
       poly([[d0, z(d0) - 12], [d1, z(d1) - 12], [d1, z(d1)], [d0, z(d0)]], tile[1]);
@@ -868,12 +888,14 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     if (style === "sikma" && kind !== "typovy") for (const d of [-eave + 10, -eave / 2 + 2]) box(d - 5, d + 5, top - 16, z(d) - 12, ROOF.tileDark); // brackets
     else dot(-eave + 2, z(-eave) - 16, 10, tint(tile[1], 0.9)); // gutter
     if (kind === "kostka") {} // the low hipped roof of the cube has no gable
-    else if (kind === "typovy") { // rows of tiles and a second chimney
+    else if (kind === "skola" || kind === "kostel") { // rows of tiles (slates on a church), no gable
+      for (let zr = top + 40; zr < z(Math.min(ridge, EDGE)) - 30; zr += 34) box((zr - top - 12) / P + 8, EDGE, zr, zr + 4, tile[1], { "fill-opacity": 0.35 });
+    } else if (kind === "typovy") { // rows of tiles and a second chimney
       for (let zr = top + 40; zr < z(Math.min(ridge, EDGE)) - 30; zr += 34) box((zr - top - 12) / P + 8, EDGE, zr, zr + 4, tile[1], { "fill-opacity": 0.35 });
       box(EDGE - 200, EDGE - 160, z(EDGE - 180) - 10, z(EDGE - 180) + 90, "#c46a4b");
       box(EDGE - 206, EDGE - 154, z(EDGE - 180) + 82, z(EDGE - 180) + 94, "#8d4a34");
     }
-    else if (kind === "vila" || kind === "sorela") { // a hipped roof: rows of tiles on the slope, a dormer with its little gable
+    else if (kind === "vila" || kind === "sorela" || kind === "mestan") { // a hipped roof: rows of tiles on the slope, a dormer with its little gable
       for (let zr = top + 40; zr < z(Math.min(ridge, EDGE)) - 30; zr += 34) {
         const d0 = (zr - top - 12) / P, d1 = Math.min(EDGE, ridge + (z(ridge) - zr) / P);
         if (d1 > d0 + 20) box(d0 + 8, d1 - 8, zr, zr + 4, tile[1], { "fill-opacity": 0.35 });
@@ -906,14 +928,14 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
   el("rect", { x, y: surface, width: EDGE, height: cellar, fill: SKLEP }, g);
   box(0, EDGE, -8, 0, tint(SKLEP, 0.85));
   const dCellar = style === "hala" || office ? 32 : 230; // under the ground-floor window, not under the door
-  if (kind !== "plocha" && kind !== "statek") { // a panel house has it in the plinth, a village house has no cellar window
+  if (!["plocha", "statek", "garaz", "kostel"].includes(kind)) { // a panel house has it in the plinth, a village house has no cellar window
     box(dCellar, dCellar + 66, -cellar * 0.55 - 6, -cellar * 0.55 + 31, FRAME); // a cellar window
     box(dCellar + 6, dCellar + 60, -cellar * 0.55, -cellar * 0.55 + 25, GLASS);
   }
   el("rect", { x, y: GROUND + 60, width: EDGE, height: 40, fill: "#9b7f5f" }, g);
   box(0, EDGE, 0, top, wall, outline);
   box(EDGE - 30, EDGE, 0, top, shade); // the wall turns away at the cut
-  const plinth = office ? [20, "#8a867d"] : { sorela: [100, "#a89a7f"], vila: [70, "#a59c88"], kostka: [110, "#8f8a80"], novyrd: [30, "#56585b"], statek: [55, "#8a8173"] }[kind]
+  const plinth = office ? [20, "#8a867d"] : { kostel: [120, STONE], garaz: [15, "#8a867d"], skola: [90, "#a59c88"], mestan: [70, STONE], sorela: [100, "#a89a7f"], vila: [70, "#a59c88"], kostka: [110, "#8f8a80"], novyrd: [30, "#56585b"], statek: [55, "#8a8173"] }[kind]
     || { sikma: [90, STONE], funkce: [60, "#8f887c"], moderni: [30, "#56585b"], plocha: [100, "#8a867d"], nizky: [60, "#a59c88"] }[style];
   if (plinth) box(-8, EDGE - 30, 0, plinth[0], plinth[1]);
 
@@ -1118,6 +1140,49 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     box(-40, LOG, lightTop + 4, lightTop + 10, tint(wall, 0.6)); // canopy: shadow, slab, flashing
     box(-40, LOG, lightTop + 10, lightTop + 28, "#c4bfb5", outline);
     box(-40, LOG, lightTop + 28, lightTop + 31, "#9a9690");
+  } else if (kind === "kostel") {
+    // A church seen from the side: tall pointed windows with tracery, a stepped buttress at the back.
+    const GL = "#3d4a7a", w0 = Math.max(plinth[0] + 120, top * 0.3), w1 = top - 160;
+    for (const d of [70, 200]) {
+      box(d - 10, d + 80, w0 - 10, w1, tint(wall, 0.85));
+      arch(d + 35, w1, 45, tint(wall, 0.85));
+      box(d, d + 70, w0, w1, GL);
+      arch(d + 35, w1, 35, GL);
+      box(d + 33, d + 37, w0, w1 + 35, FRAME); // the mullion
+      for (let zz = w0 + 60; zz < w1; zz += 60) box(d, d + 70, zz - 1, zz + 1, tint(GL, 1.3)); // leading
+    }
+    box(EDGE - 70, EDGE - 30, 0, top * 0.75, tint(wall, 0.9), outline); // buttress, stepped
+    poly([[EDGE - 70, top * 0.75], [EDGE - 30, top * 0.75 + 40], [EDGE - 30, top * 0.75]], tint(wall, 0.8));
+    box(-6, EDGE, top - 36, top, tint(wall, 1.08), outline); // the eaves cornice
+  } else if (kind === "garaz") {
+    // A row of garages seen from the side: a blank rendered wall, a vent, a thin roof slab sloping back.
+    box(0, EDGE - 30, 0, 12, tint(wall, 0.8));
+    box(EDGE / 2 - 30, EDGE / 2 + 30, top - 70, top - 40, tint(wall, 0.7));
+    for (let zz = top - 66; zz < top - 42; zz += 6) box(EDGE / 2 - 26, EDGE / 2 + 26, zz, zz + 2, tint(wall, 0.85));
+  } else if (kind === "skola") {
+    // A school: a wide double door up three steps under a canopy, big windows of three parts on every floor,
+    // a string course between the floors.
+    for (let i = 0; i < 3; i++) box(6, 150 - i * 12, i * 18, (i + 1) * 18, tint(plinth[1], 1.12), outline);
+    box(12, 140, 54, 54 + 250, FRAME);
+    box(20, 132, 54, 54 + 242, DOOR);
+    box(74, 78, 54, 54 + 242, tint(DOOR, 0.8));
+    box(20, 132, 54 + 190, 54 + 242, GLASS);
+    canopy(12, 140, 54 + 255, dark);
+    const big = (z, h, n) => {
+      const d0 = 170, d1 = EDGE - 45, luck = (((n + seed * 31) * 2654435761) >>> 0) % 13;
+      box(d0 - 8, d1 + 8, z - 8, z + h + 8, FRAME);
+      box(d0, d1, z, z + h, luck === 5 ? LIT : GLASS);
+      poly([[d0 + (d1 - d0) * 0.6, z + h], [d1, z + h], [d1, z + h * 0.5]], luck === 5 ? "#f8e7b5" : GLINT);
+      for (const t of [1 / 3, 2 / 3]) box(d0 + (d1 - d0) * t - 3, d0 + (d1 - d0) * t + 3, z, z + h, FRAME);
+      box(d0, d1, z + h * 0.72 - 3, z + h * 0.72 + 3, FRAME);
+      box(d0 - 14, d1 + 14, z - 14, z - 6, dark); // sill
+    };
+    big(f.ground * 0.3, f.ground * 0.55, 0);
+    for (let k = 1; k < full; k++) {
+      box(-10, EDGE, floorZ(k) - 10, floorZ(k), trim, outline); // string course
+      big(floorZ(k) + f.storey * 0.25, f.storey * 0.6, k);
+      if (k) window(40, floorZ(k) + f.storey * 0.3, 80, f.storey * 0.5, k * 7); // a narrower window by the street
+    }
   } else {
     // Door near the street (arched in a tenement), windows behind it, and on every floor above.
     const win = WINDOWS[kind] || WINDOWS[style];
@@ -1128,6 +1193,16 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       box(268, 346, 0, 199, DOOR);
       for (let d = 281; d < 346; d += 13) box(d - 1, d + 1, 0, 199, tint(DOOR, 0.8));
       dot(334, 100, 5, "#f2d27a");
+    } else if (kind === "mestan") {
+      // An arcade (podloubí) under the front of the house: the vaulted opening seen from the side, a pillar at
+      // the street; the door into the house lies inside it.
+      const a1 = 250, ah = f.ground - 150;
+      box(10, a1, 0, ah, "#5d564c");
+      arch((10 + a1) / 2, ah, (a1 - 10) / 2, "#5d564c");
+      box(10, a1, 0, 30, "#7b7266"); // the paving under the arcade, lit
+      box(-6, 10, 0, f.ground - 20, tint(wall, 0.92), outline); // the pillar by the street
+      box(-16, 20, f.ground - 40, f.ground - 20, tint(STONE, 1.05), outline); // its capital
+      box(-20, EDGE, f.ground - 20, f.ground, trim, outline); // a string course over the arcade
     } else {
       if (kind === "sorela") { // a rusticated ground floor: stone blocks with deep joints, under the windows and the door
         box(0, EDGE - 30, plinth[0], f.ground - 22, tint(STONE, 1.12));
@@ -1164,7 +1239,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       }
     }
     // The windows above stand in the axes of the door and of the ground-floor window.
-    const groundAt = (125 + EDGE - 30 - win.w) / 2;
+    const groundAt = kind === "mestan" ? 280 : (125 + EDGE - 30 - win.w) / 2;
     if (kind !== "statek") window(groundAt, f.ground * win.sill + (style === "sikma" ? 40 : 0), win.w, win.h * f.storey, 0);
     const front = Math.max(65, 35 + win.w / 2); // the front axis keeps clear of the facade
     for (let k = 1; k < full; k++) {

@@ -354,6 +354,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
         if (p.house) info.house = 1;
         if (p.farm) info.farm = 1; // RÚIAN: a farmstead (a village house)
         if (p.office) info.office = 1; // RÚIAN: offices, authorities, schools, hotels
+        if (p.garage) info.garage = 1; // RÚIAN: a garage
       } catch {}
       // The age of the area (a default for the building's look, overruled by what is known of the house).
       try { const y = await sources.vyvoj(info.point[1], info.point[0]); if (y) info.period = y; } catch {}

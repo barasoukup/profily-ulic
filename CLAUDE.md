@@ -75,7 +75,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 ## Stav a otevřené věci
 - Stav je jen k prohlížení; data se opravují po tlačítku „Opravit data“ (Bára 8. 11. 2026). Návrh je
   editovatelný vždy. Copyright kódu i pražských ilustrací: © Bára Soukupová (MIT).
-- Budovy: 13 vzhledů (Bára 16. 11. 2026: činžák se šikmou střechou, sorela, zděný bytový dům 50.–60. let, funkcionalismus, panelák, moderní bytový
+- Budovy: 17 vzhledů (Bára 16. 11. 2026: činžák se šikmou střechou, měšťanský dům na náměstí, sorela, zděný bytový dům 50.–60. let, škola, kostel, garáž, funkcionalismus, panelák, moderní bytový
   dům, kancelář, městský dům, vila, rodinný dům 60.–80. let, nový rodinný dům, venkovský dům štítem do ulice, hala).
   Paneláků bylo moc: kontrola proti RÚIAN `evaluation/budovy-panel/ZPRAVA.md`, Street View 25 domů v `k-foceni.md`. Plochá střecha se rozlišuje podle tvaru bloku z OSM, IPR „nová budova“
   (pole ve stávajícím dotazu na Podlažnosti) a stáří zástavby (IPR Vývoj zástavby, statické dlaždice

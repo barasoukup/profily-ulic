@@ -205,7 +205,7 @@ export const ruianLook = (use, walls, dokonceni) => ({
   kind: RUIAN_HALL.has(use) ? 3 : RUIAN_LOW.has(use) ? 6 : undefined,
   built: dokonceni ? new Date(dokonceni).getUTCFullYear() : undefined, panel: RUIAN_PANEL.has(walls) || undefined, solid: RUIAN_SOLID.has(walls) || undefined,
   house: use === 7 || use === 8 || undefined, // rodinný dům, stavba pro rodinnou rekreaci: a pitched roof (profile.js)
-  farm: use === 2 || undefined, office: RUIAN_OFFICE.has(use) || undefined,
+  farm: use === 2 || undefined, office: RUIAN_OFFICE.has(use) || undefined, garage: use === 18 || undefined,
 });
 export async function ruianBuilding(lat, lon) {
   const json = await query(RUIAN_SO, {

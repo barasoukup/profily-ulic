@@ -74,6 +74,7 @@ const CITIES = {
     view: [50.0817, 14.4176],
     // Old Town Square: the inner city of tenements versus the outer estates (derive.js centreKm).
     centre: [14.4208, 50.0875],
+    coreKm: 0.6, // the old town around the square (burgher houses, profile.js oldCore)
     inCity: "v Praze",
     adjective: "pražské",
     mapLabel: "Mapa Prahy",

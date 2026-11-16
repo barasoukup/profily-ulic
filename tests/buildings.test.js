@@ -109,3 +109,19 @@ test("rodinné domy podle stáří, venkovský dům štítem do ulice, kancelá�
   assert.equal(buildingStyle({ levels: 5, office: 1, built: 1985, km: 99 }), "kancelar");
   assert.equal(buildingStyle({ levels: 2, type: "detached", period: 1970, km: 8, iprKind: 6 }), "kostka");
 });
+
+test("kostel, garáž, škola, měšťanský dům na náměstí", async () => {
+  const { buildingStyle } = await import("../pilot/public/profile.js");
+  const { setCity } = await import("../pilot/public/city.js");
+  assert.equal(buildingStyle({ levels: 2, type: "church", km: 3 }), "kostel");
+  assert.equal(buildingStyle({ levels: 1, type: "garages", km: 3 }), "garaz");
+  assert.equal(buildingStyle({ levels: 1, garage: 1, km: 3 }), "garaz");
+  assert.equal(buildingStyle({ levels: 3, type: "school", km: 3 }), "skola");
+  setCity("jihlava");
+  try {
+    assert.equal(buildingStyle({ levels: 3, built: 1915, km: 0.1 }), "mestan");
+    assert.equal(buildingStyle({ levels: 3, built: 1915, km: 0.8 }), "sikma");
+  } finally { setCity("praha"); }
+  assert.equal(buildingStyle({ levels: 4, roofType: 1, period: 1840, km: 0.3 }), "mestan");
+  assert.equal(buildingStyle({ levels: 4, roofType: 1, period: 1880, km: 0.3 }), "sikma");
+});
