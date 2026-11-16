@@ -1,14 +1,12 @@
 <svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
-<!-- Autobus Mercedes-Benz eCitaro (Citaro C2), Wiener Linien, zadní pohled. Červená skříň, bílý pás pod zadním oknem, číslo linky v LED (jantarová), na střeše kryt baterií, bez mřížky motoru (elektrobus). Vycházeno z popisů (ne obkresleno): Wikipedia „Mercedes-Benz Citaro“ (eCitaro), „Wiener Linien“ (červenobílý nátěr), kategorie Wikimedia Commons „Mercedes-Benz eCitaro in Vienna“ a „Buses of Wiener Linien“; rakouská SPZ podle vyhlášky KDV (W = Vídeň). 1 px = 1 cm. -->
+<!-- Autobus Mercedes-Benz eCitaro (Citaro C2), Wiener Linien, zadní pohled. Celá skříň červená (#e3001b), černé zadní okno, číslo linky v LED (jantarová), světlá šedá střecha s krytem baterií, koncová světla v černém rámečku, bez mřížky motoru (elektrobus); zrcátka stejně vysoko a stejně velká jako na čelním pohledu. Vycházeno z fotek na Wikimedia Commons (ne obkresleno): „Wiener Linien Bus 8401 Linie 57A Rudolfsheim 2026-08-16.jpg“, „Wiener Linien eCitaro 8412 in der Wiener Strasse.jpg“ (kategorie „Wiener Linien Mercedes-Benz eCitaro (12 m)“); rakouská SPZ podle vyhlášky KDV (W = Vídeň). 1 px = 1 cm. -->
 <g>
-<path d="M52 70 H44 Q40 70 40 74 V82" stroke="#17191c" stroke-width="4" fill="none"/><rect x="34" y="82" width="10" height="26" rx="4" fill="#17191c"/><path d="M308 70 H316 Q320 70 320 74 V82" stroke="#17191c" stroke-width="4" fill="none"/><rect x="316" y="82" width="10" height="26" rx="4" fill="#17191c"/>
+<path d="M60 30 Q38 28 32 48" stroke="#17191c" stroke-width="5" fill="none"/><rect x="22" y="46" width="18" height="44" rx="6" fill="#17191c"/><path d="M300 30 Q322 28 328 48" stroke="#17191c" stroke-width="5" fill="none"/><rect x="320" y="46" width="18" height="44" rx="6" fill="#17191c"/>
 <path d="M84 8 H276 Q290 8 292 20 H68 Q70 8 84 8 Z" fill="#d9dcde"/>
 <path d="M52 296 V40 Q52 20 74 20 H286 Q308 20 308 40 V296 Z" fill="#e3001b"/>
-<rect x="52" y="20" width="256" height="22" rx="8" fill="#b8001a"/>
 <rect x="148" y="46" width="64" height="16" fill="#0c0d0e"/><rect x="156" y="50" width="48" height="8" fill="#ffb21e"/>
 <rect x="66" y="70" width="228" height="96" rx="6" fill="#101113"/><rect x="72" y="76" width="216" height="84" rx="4" fill="#2c3944"/><path d="M86 82 L132 82 L106 154 L84 154 Z" fill="#46596a" opacity=".45"/>
-<path d="M52 176 H308 V206 H52 Z" fill="#f4f4f2"/>
-<rect x="58" y="212" width="20" height="44" rx="4" fill="#d4141c"/><rect x="282" y="212" width="20" height="44" rx="4" fill="#d4141c"/><rect x="58" y="258" width="20" height="10" rx="3" fill="#f2a33a"/><rect x="282" y="258" width="20" height="10" rx="3" fill="#f2a33a"/>
+<rect x="55" y="209" width="26" height="62" rx="5" fill="#17191c"/><rect x="279" y="209" width="26" height="62" rx="5" fill="#17191c"/><rect x="58" y="212" width="20" height="44" rx="4" fill="#d4141c"/><rect x="282" y="212" width="20" height="44" rx="4" fill="#d4141c"/><rect x="58" y="258" width="20" height="10" rx="3" fill="#f2a33a"/><rect x="282" y="258" width="20" height="10" rx="3" fill="#f2a33a"/>
 <rect x="88" y="214" width="184" height="6" rx="3" fill="#d4141c"/>
 <rect x="52" y="272" width="256" height="24" rx="4" fill="#3a3d40"/>
 <rect x="150" y="277" width="60" height="14" rx="1" fill="#f4f4f2"/><rect x="150" y="277" width="60" height="2.5" fill="#e3001b"/><rect x="150" y="288.5" width="60" height="2.5" fill="#e3001b"/>

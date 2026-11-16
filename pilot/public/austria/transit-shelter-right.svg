@@ -1,0 +1,45 @@
+<svg viewBox="0 0 270 360" xmlns="http://www.w3.org/2000/svg">
+  <!-- Nový pražský přístřešek zastávky autobusu (soutěž IPR 2018, návrh Olgoj Chorchoj) s rakouským označníkem (kulatá tabule Haltestelle se zeleným H); přístřešek zatím pražský (místní podoba neověřena), zadní stěna vpravo, otevřená strana a označník vlevo (k vozovce). 1 px = 1 cm, spodní hrana = chodník. -->
+  <g transform="matrix(-1 0 0 1 270 0)">
+  <!-- přístřešek z čela (návrh Olgoj Chorchoj): zadní sloup a tenká konzolová střecha z litého hliníku -->
+  <g id="pristresek">
+    <!-- pás s názvem zastávky a odjezdy pod střechou u zadní stěny, z boku -->
+    <rect x="30" y="108" width="10" height="42" fill="#18191b"/>
+    <rect x="38" y="109" width="2" height="13" fill="#5f656a"/>
+    <!-- sloup a střecha: v řezu skoro pravý úhel, střecha kousek přesahuje dozadu a dopředu se ztenčuje -->
+    <path d="M13 97 Q13 95 15 95 L198 97 L198 104 L46 109 L34 109 Q30 109 30 113 L30 360 L17 360 L17 103 L13 103 Z" fill="#2c2f32"/>
+    <rect x="26" y="113" width="4" height="247" fill="#1f2124"/>
+    <rect x="17" y="103" width="2" height="257" fill="#3d4144"/>
+    <path d="M15 95 L198 97 L198 99 L15 97 Z" fill="#3d4144"/>
+    <path d="M46 107 L198 102 L198 104 L46 109 Z" fill="#1f2124"/>
+    <rect x="14" y="357" width="19" height="3" fill="#1f2124"/>
+    <!-- boční stěna: reklamní vitrína v tlustém rámu, neutrální plocha -->
+    <rect x="30" y="122" width="134" height="233" fill="#2c2f32"/>
+    <rect x="155" y="122" width="9" height="238" fill="#1f2124"/>
+    <rect x="30" y="355" width="7" height="5" fill="#1f2124"/>
+    <rect x="30" y="122" width="134" height="2" fill="#3d4144"/>
+    <rect x="37" y="132" width="118" height="213" fill="#e6e8e4"/>
+    <path d="M37 280 L120 132 L155 132 L155 150 L64 345 L37 345 Z" fill="#f2f3ef"/>
+    <path d="M76 345 L155 185 L155 194 L83 345 Z" fill="#d9dcd7"/>
+  </g>
+  <!-- označník: rakouský, kulatá tabule Haltestelle (žlutý kruh, zelený okraj, zelené H), jako austria/oznacnik-left.svg -->
+  <g id="oznacnik">
+    <rect x="240" y="40" width="8" height="320" fill="#8f9496"/><rect x="245" y="40" width="3" height="320" fill="#6e7375"/>
+    <rect x="238" y="352" width="12" height="8" fill="#6e7375"/>
+    <!-- vitrína s jízdním řádem -->
+    <rect x="226" y="160" width="36" height="58" rx="2" fill="#8f9496"/><rect x="229" y="163" width="30" height="52" fill="#f4f4f0"/>
+    <rect x="231" y="166" width="26" height="5" fill="#6e7375"/>
+    <rect x="231" y="174" width="12" height="34" fill="#e3e4df"/><rect x="245" y="174" width="12" height="34" fill="#e3e4df"/>
+    <rect x="232" y="177" width="10" height="1.5" fill="#9a9b9c"/><rect x="232" y="181" width="10" height="1.5" fill="#9a9b9c"/><rect x="246" y="177" width="10" height="1.5" fill="#9a9b9c"/><rect x="246" y="181" width="10" height="1.5" fill="#9a9b9c"/>
+    <!-- tabule s názvem zastávky -->
+    <rect x="221" y="74" width="46" height="20" fill="#f4f4f0" stroke="#6e7375" stroke-width="1.5"/>
+    <rect x="226" y="79" width="36" height="4" fill="#2a2b2a"/><rect x="230" y="87" width="28" height="2" fill="#9a9b9c"/>
+    <rect x="221" y="96" width="46" height="12" fill="#f4f4f0" stroke="#6e7375" stroke-width="1.5"/>
+    <rect x="226" y="99" width="7" height="6" fill="#6e7375"/><rect x="235" y="99" width="7" height="6" fill="#6e7375"/>
+    <!-- tabule Haltestelle: žlutý kruh, zelený okraj, zelené H -->
+    <circle cx="244" cy="48" r="22" fill="#f2f0e8" stroke="#6e7375" stroke-width="1"/>
+    <circle cx="244" cy="48" r="19" fill="#f5d000" stroke="#00843d" stroke-width="4"/>
+    <rect x="234.5" y="37" width="4.5" height="22" fill="#00843d"/><rect x="249" y="37" width="4.5" height="22" fill="#00843d"/><rect x="239" y="45.8" width="10" height="4.4" fill="#00843d"/>
+  </g>
+  </g>
+</svg>

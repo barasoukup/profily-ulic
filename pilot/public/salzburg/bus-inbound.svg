@@ -1,0 +1,20 @@
+<svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
+<!-- Městský autobus Albus Salzburg (elektrobus Yutong U10, nátěr Salzburg Verkehr), čelní pohled. Bílá skříň, velké černé čelní sklo, pod ním výrazný černý pás dole vypouklý se stříbrným nápisem YUTONG, světlomety ve vysokých černých pouzdrech se dvěma kulatými světly nad sebou, zasahující do červeného pásu (lemované světle šedou), tři modré kulaté piktogramy (vozíček, kočárek, další) vlevo od loga albus (černé „albus“ se zeleným a modrým švihem, pod ním malé „salzburg“), malé bílé číslo vozu vpravo dole ve skle, SPZ celá ve spodním červeném pásu s tenkou bílou linkou, jen tenký tmavý okraj nárazníku, bílá LED cílová tabule, na střeše kryt baterií. Vycházeno z fotek a popisů na Wikimedia Commons (ne obkresleno): „Yutong U10 L9101 Albus Salzburg.jpg“ (linie 17, Siebenstädterstraße, 2026), „Yutong U10 L9109 Albus Salzburg.jpg“; Wikipedia „Albus Salzburg“; rakouská SPZ podle vyhlášky KDV (S = Salzburg). 1 px = 1 cm. -->
+<g>
+<path d="M60 30 Q38 28 32 48" stroke="#17191c" stroke-width="5" fill="none"/><rect x="22" y="46" width="18" height="44" rx="6" fill="#17191c"/><path d="M300 30 Q322 28 328 48" stroke="#17191c" stroke-width="5" fill="none"/><rect x="320" y="46" width="18" height="44" rx="6" fill="#17191c"/>
+<path d="M84 8 H276 Q290 8 292 20 H68 Q70 8 84 8 Z" fill="#e6e8ea"/>
+<path d="M52 296 V40 Q52 20 74 20 H286 Q308 20 308 40 V296 Z" fill="#f4f4f2"/>
+<path d="M58 44 Q58 28 78 28 H282 Q302 28 302 44 V206 Q180 212 58 206 Z" fill="#101113"/>
+<path d="M58 204 Q180 214 302 204 V210 Q180 242 58 210 Z" fill="#17191c"/><rect x="160" y="214" width="40" height="3" rx="1" fill="#c9cccf"/>
+<rect x="84" y="36" width="192" height="24" rx="2" fill="#0c0d0e"/><rect x="92" y="42" width="28" height="12" fill="#e8f0ea"/><rect x="128" y="42" width="140" height="12" fill="#e8f0ea"/>
+<path d="M66 66 H294 V196 Q180 204 66 196 Z" fill="#2c3944"/><path d="M82 72 L128 72 L98 192 L80 190 Z" fill="#46596a" opacity=".5"/><path d="M246 72 L268 72 L258 122 L236 122 Z" fill="#46596a" opacity=".4"/>
+<rect x="270" y="186" width="16" height="5" rx="1" fill="#f4f4f2"/>
+<g stroke="#0b0c0d" stroke-width="2.5" stroke-linecap="round"><path d="M100 200 L170 188"/><path d="M270 200 L206 188"/></g>
+<path d="M52 252 Q60 250 72 250 Q180 258 288 250 Q300 250 308 252 V290 H52 Z" fill="#d8202a"/>
+<rect x="56" y="214" width="18" height="48" rx="6" fill="#17191c" stroke="#9a9c9e" stroke-width="1.2"/><rect x="286" y="214" width="18" height="48" rx="6" fill="#17191c" stroke="#9a9c9e" stroke-width="1.2"/><circle cx="65" cy="226" r="5" fill="#f6f7f8"/><circle cx="65" cy="243" r="4.5" fill="#f6f7f8"/><circle cx="295" cy="226" r="5" fill="#f6f7f8"/><circle cx="295" cy="243" r="4.5" fill="#f6f7f8"/>
+<circle cx="126" cy="236" r="4" fill="#1f6fd6"/><circle cx="136" cy="236" r="4" fill="#1f6fd6"/><circle cx="146" cy="236" r="4" fill="#1f6fd6"/>
+<rect x="154" y="230" width="54" height="10" rx="2" fill="#17191c"/><path d="M212 231 H226 L221 240 H207 Z" fill="#7cc142"/><path d="M228 231 H233 L228 240 H223 Z" fill="#1f6fd6"/><rect x="166" y="242" width="30" height="2.5" rx="1" fill="#6b6e72"/>
+<rect x="52" y="284" width="256" height="1.8" fill="#f4f4f2"/>
+<rect x="52" y="290" width="256" height="6" rx="2" fill="#3a3d40"/>
+<rect x="150" y="262" width="60" height="14" rx="1" fill="#f4f4f2" stroke="#9a9c9e" stroke-width=".6"/><rect x="150" y="262" width="60" height="2.5" fill="#d8202a"/><rect x="150" y="273.5" width="60" height="2.5" fill="#d8202a"/>
+<rect x="70" y="296" width="36" height="24" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="24" rx="4" fill="#111"/></g></svg>

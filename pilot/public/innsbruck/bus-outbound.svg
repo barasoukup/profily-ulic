@@ -1,0 +1,17 @@
+<svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
+<!-- Autobus Mercedes-Benz Citaro C2, Innsbrucker Verkehrsbetriebe (IVB), zadní pohled. Celá skříň karmínově červená (#d0142a) až skoro k zemi, kryty na střeše a klimatizace o odstín tmavší (#c01226), třetí brzdové světlo na hraně střechy, velká černá prosklená plocha až ke střeše s LED číslem linky (jantarová) uvnitř, hladké víko motoru v barvě skříně, štíhlá koncová světla v tmavém rámečku a pod nimi zvlášť malá kulatá oranžová směrovka, malé bílé logo IVB, SPZ na červené a pod ní jen úzký tmavý spodní okraj; zrcátka stejně vysoko a stejně velká jako na čelním pohledu. Vycházeno z fotek na Wikimedia Commons (ne obkresleno): „Claudiaplatz 3 (20190504 162921).jpg“ (Citaro C2 IVB v červené), „Flughafen Innsbruck (IMG 20260312 081504).jpg“ (záď C2 IVB, 2026); jen tvar a barvy. Rakouská SPZ podle vyhlášky KDV (modrý pruh EU s A, I = Innsbruck). 1 px = 1 cm. -->
+<g>
+<path d="M60 30 Q38 28 32 48" stroke="#17191c" stroke-width="5" fill="none"/><rect x="22" y="46" width="18" height="44" rx="6" fill="#17191c"/><path d="M300 30 Q322 28 328 48" stroke="#17191c" stroke-width="5" fill="none"/><rect x="320" y="46" width="18" height="44" rx="6" fill="#17191c"/>
+<path d="M84 8 H276 Q290 8 292 20 H68 Q70 8 84 8 Z" fill="#c01226"/>
+<path d="M52 296 V40 Q52 20 74 20 H286 Q308 20 308 40 V296 Z" fill="#d0142a"/>
+<rect x="160" y="23" width="40" height="5" rx="2" fill="#17191c"/><rect x="163" y="24" width="34" height="3" rx="1" fill="#ff3b3b"/>
+<rect x="66" y="30" width="228" height="136" rx="6" fill="#101113"/>
+<rect x="148" y="38" width="64" height="16" fill="#0c0d0e"/><rect x="156" y="42" width="48" height="8" fill="#f5a623"/>
+<rect x="72" y="62" width="216" height="98" rx="4" fill="#2c3944"/><path d="M86 68 L132 68 L106 154 L84 154 Z" fill="#46596a" opacity=".45"/>
+<rect x="250" y="176" width="7" height="7" fill="#ffffff"/><rect x="259" y="176" width="13" height="3" fill="#ffffff"/><rect x="259" y="181" width="22" height="2" fill="#ffffff"/>
+<rect x="57" y="204" width="24" height="52" rx="5" fill="#17191c"/><rect x="279" y="204" width="24" height="52" rx="5" fill="#17191c"/><rect x="60" y="207" width="18" height="46" rx="4" fill="#ff3b3b"/><rect x="282" y="207" width="18" height="46" rx="4" fill="#ff3b3b"/>
+<circle cx="69" cy="264" r="4" fill="#f2a33a"/><circle cx="291" cy="264" r="4" fill="#f2a33a"/>
+<rect x="96" y="200" width="168" height="62" rx="4" fill="#c8132a"/><path d="M104 231 H256" stroke="#b81126" stroke-width="1.2"/>
+<rect x="52" y="290" width="256" height="6" rx="2" fill="#3a3d40"/>
+<rect x="150" y="274" width="60" height="14" rx="1" fill="#f4f4f2"/><rect x="150" y="274" width="60" height="2.5" fill="#e3001b"/><rect x="150" y="285.5" width="60" height="2.5" fill="#e3001b"/><rect x="150" y="274" width="6" height="14" fill="#2a63b8"/>
+<rect x="70" y="296" width="36" height="24" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="24" rx="4" fill="#111"/></g></svg>

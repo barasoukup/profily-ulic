@@ -470,10 +470,15 @@ export const skArtAt = (lat, lon) => Object.entries(SK_ART_BOX).find(([, b]) => 
 // Austria's towns (Bára 16. 11. 2026; pilot/public/wien, graz, linz, drawn in rounds of a drawer and a critic): Vienna's
 // Flexity and bus of Wiener Linien, the trams of Graz and Linz, elsewhere Streetmix's vehicles; the Austrian stop post
 // (the round H sign, wien/oznacnik-*) everywhere; the furniture the Czech set's.
-const atPosts = (dir) => Object.fromEntries(["stop-post-left", "stop-post-right", "stop-post-tram-left", "stop-post-tram-right"].map((k) => [k, `${dir}${TOWN_ART[k]}`]));
-const atArt = (dir, tram, bus) => ({ ...czechFurniture, ...atPosts(dir), ...(bus ? { "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound" } : {}), ...(tram ? TRAM : {}) });
-export const AT_ART = { austria: atArt("../wien/", false, false), wien: atArt("", true, true), graz: atArt("../wien/", true, false), linz: atArt("../wien/", true, false) };
-const AT_ART_BOX = { wien: [16.18, 48.11, 16.58, 48.33], graz: [15.35, 47.0, 15.53, 47.13], linz: [14.2, 48.22, 14.4, 48.36] };
+const atPosts = (dir) => Object.fromEntries(["stop-post-left", "stop-post-right", "stop-post-tram-left", "stop-post-tram-right",
+  "transit-shelter-01-left", "transit-shelter-01-right", "transit-shelter-green-left", "transit-shelter-green-right"].map((k) => [k, `${dir}${TOWN_ART[k]}`]));
+// Vienna its own stop posts (with the Wiener Linien plate at the tram stops), elsewhere the Austrian ones (austria/);
+// the shelters of Austria everywhere.
+const atArt = ({ posts = "../austria/", tram, trolley, bus }) => ({ ...czechFurniture, ...atPosts("../austria/"), ...(posts !== "../austria/" ? Object.fromEntries(["stop-post-left", "stop-post-right", "stop-post-tram-left", "stop-post-tram-right"].map((k) => [k, `${posts}${TOWN_ART[k]}`])) : {}),
+  ...(bus ? { "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound" } : {}), ...(tram ? TRAM : {}), ...(trolley ? TROLLEY : {}) });
+export const AT_ART = { austria: atArt({}), wien: atArt({ posts: "", tram: true, bus: true }), graz: atArt({ tram: true, bus: true }), linz: atArt({ tram: true, trolley: true, bus: true }),
+  salzburg: atArt({ trolley: true, bus: true }), innsbruck: atArt({ tram: true, bus: true }) };
+const AT_ART_BOX = { wien: [16.18, 48.11, 16.58, 48.33], graz: [15.35, 47.0, 15.53, 47.13], linz: [14.2, 48.22, 14.4, 48.36], salzburg: [12.98, 47.75, 13.12, 47.86], innsbruck: [11.3, 47.23, 11.47, 47.3] };
 export const atArtAt = (lat, lon) => Object.entries(AT_ART_BOX).find(([, b]) => lon >= b[0] && lon <= b[2] && lat >= b[1] && lat <= b[3])?.[0] ?? "austria";
 
 // Towns with no data of their own (the national DTM of ČÚZK, as "cesko"), only their own vehicles.

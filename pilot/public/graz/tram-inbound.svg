@@ -1,17 +1,16 @@
 <svg viewBox="0 0 320 600" xmlns="http://www.w3.org/2000/svg">
-<!-- Tramvaj Stadler Variobahn (řada 200, Holding Graz Linien, Štýrský Hradec/Graz; jednosměrná, šířka 2,20 m, 100% nízkopodlažní), čelní pohled. Bílá skříň se zelenou spodní částí a zeleným pruhem, černé čelní sklo, sběrač na střeše.
-     Vycházeno z popisů (ne obkresleno): Wikipedia de „Straßenbahn Graz“ (Fahrzeuge, Variobahn), Wikipedia de/en „Stadler Variobahn“, kategorie Wikimedia Commons „Stadler Variobahn in Graz“. 1 px = 1 cm. -->
+<!-- Tramvaj Stadler Variobahn (řada 200, Holding Graz Linien, Štýrský Hradec/Graz; jednosměrná, šířka 2,20 m, 100% nízkopodlažní), čelní pohled. Bílá skříň se zelenou spodní částí (bez světle zeleného proužku), malé tmavé evidenční číslo vozu místo tabulky, černé čelní sklo, sběrač na střeše.
+     Vycházeno z popisů (ne obkresleno): Wikipedia de „Straßenbahn Graz“ (Fahrzeuge, Variobahn), Wikipedia de/en „Stadler Variobahn“, kategorie Wikimedia Commons „Stadler Variobahn in Graz“, fotky „Graz Linien Variobahn 202 beim Jakominigürtel.jpg“ a „Graz, Stadler Variobahn č. 230.jpg“. 1 px = 1 cm. -->
 <g transform="translate(0,180)">
 <path d="M165 70 L135 -42 L172 -132 M150 70 L135 -42" stroke="#3f4245" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="75" y="-140" width="170" height="6" rx="3" fill="#3f4245"/><rect x="140" y="68" width="44" height="8" rx="2" fill="#4a4b4c"/>
 <path d="M78 96 L88 76 Q90 72 96 72 H224 Q230 72 232 76 L242 96 Z" fill="#c9cdcf"/>
 <path d="M50 398 V122 Q50 94 78 94 H242 Q270 94 270 122 V398 Z" fill="#f5f6f3"/>
 <path d="M50 330 Q160 340 270 330 V398 H50 Z" fill="#00843d"/>
-<path d="M50 318 Q160 328 270 318 V324 Q160 334 50 324 Z" fill="#7bbf3a"/>
 <path d="M56 132 Q58 104 82 104 H238 Q262 104 264 132 L266 292 Q160 302 54 292 Z" fill="#17191c"/>
 <rect x="96" y="110" width="128" height="14" fill="#0c0d0e"/><rect x="102" y="114" width="20" height="6" fill="#f2a33a"/><rect x="130" y="114" width="88" height="6" fill="#f2a33a"/>
 <path d="M64 140 Q66 132 74 132 H246 Q254 132 256 140 L258 284 Q160 294 62 284 Z" fill="#2c3944"/><path d="M80 140 L118 140 L96 276 L78 274 Z" fill="#46596a" opacity=".55"/><path d="M226 140 L242 140 L236 210 L222 210 Z" fill="#46596a" opacity=".4"/>
 <path d="M58 312 L58 302 L88 298 L88 308 Z" fill="#f6f7f4" stroke="#c9cdcd" stroke-width="2"/><path d="M262 312 L262 302 L232 298 L232 308 Z" fill="#f6f7f4" stroke="#c9cdcd" stroke-width="2"/><circle cx="72" cy="350" r="4" fill="#f2a33a"/><circle cx="248" cy="350" r="4" fill="#f2a33a"/>
-<rect x="145" y="306" width="30" height="7" fill="#f4f4f1" stroke="#c9cdcd" stroke-width="1"/>
+<g fill="#26282a"><rect x="148" y="304" width="6" height="9" rx="1"/><rect x="157" y="304" width="6" height="9" rx="1"/><rect x="166" y="304" width="6" height="9" rx="1"/></g>
 <path d="M50 132 H38 Q32 132 32 138 V148" stroke="#17191c" stroke-width="3" fill="none"/><rect x="25" y="148" width="13" height="24" rx="3" fill="#17191c"/><path d="M270 132 H282 Q288 132 288 138 V148" stroke="#17191c" stroke-width="3" fill="none"/><rect x="282" y="148" width="13" height="24" rx="3" fill="#17191c"/>
 <path d="M50 398 H270 V404 Q270 408 263 408 L255 410 H65 L57 408 Q50 408 50 404 Z" fill="#26282a"/><rect x="84" y="410" width="14" height="8" fill="#8f9193"/><rect x="222" y="410" width="14" height="8" fill="#8f9193"/><rect x="80" y="418" width="22" height="2" fill="#a7a9ab"/><rect x="218" y="418" width="22" height="2" fill="#a7a9ab"/>
 </g>

@@ -1,0 +1,18 @@
+<svg viewBox="0 0 320 600" xmlns="http://www.w3.org/2000/svg">
+<!-- Tramvaj Bombardier Flexity Outlook (Cityrunner, řada 301–, Innsbrucker Verkehrsbetriebe, IVB; obousměrná, šířka 2,40 m, celá skříň červená, čelní sklo v černém rámu, nad ním černý panel s bílým nápisem cíle podle vozu 327, nad panelem v kapotáži střechy jedno velké kulaté světlo, dole v rozích v tmavém šikmém pouzdře větší světlo níž a uvnitř, menší výš a vně, na vnějším konci oranžová směrovka; uprostřed prohnuté spáry tmavý ovál krytu spřáhla, nárazník pod tmavou spárou prohnutou dolů, stěrač sklopený vpravo dole), čelní pohled.
+     Vycházeno z fotek na Wikimedia Commons (ne obkresleno): „Bombardier Flexity 327 Innsbruck.jpg“ (bílý nápis cíle), „IVB tram car no 351 … Bergisel terminus.jpg“, „IVB Bombardier Flexity Outlook Tram, Innsbruck.JPG“; Wikipedia de „Straßenbahn Innsbruck“ (šířka 2,4 m). 1 px = 1 cm. -->
+<g transform="translate(0,180)">
+<path d="M165 70 L135 -42 L172 -132 M150 70 L135 -42" stroke="#3f4245" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="75" y="-140" width="170" height="6" rx="3" fill="#3f4245"/><rect x="140" y="68" width="44" height="8" rx="2" fill="#4a4b4c"/>
+<path d="M70 96 L80 76 Q82 72 88 72 H232 Q238 72 240 76 L250 96 Z" fill="#a3161c"/>
+<path d="M40 404 V124 Q40 94 70 94 H250 Q280 94 280 124 V404 Z" fill="#c2171d"/>
+<circle cx="160" cy="84" r="10" fill="#c9cdcd"/><circle cx="160" cy="84" r="7" fill="#f6f7f4"/>
+<rect x="92" y="110" width="136" height="20" rx="2" fill="#17191c"/><rect x="100" y="117" width="22" height="6" fill="#f4f4f1"/><rect x="130" y="117" width="90" height="6" fill="#f4f4f1"/>
+<path d="M46 169 Q48 159 58 159 H262 Q272 159 274 169 L276 316 Q160 326 44 316 Z" fill="#17191c"/>
+<path d="M54 173 Q56 167 64 167 H256 Q264 167 266 173 L268 308 Q160 318 52 308 Z" fill="#2c3944"/><path d="M72 173 L110 173 L88 300 L70 298 Z" fill="#46596a" opacity=".55"/><path d="M230 173 L248 173 L241 234 L225 234 Z" fill="#46596a" opacity=".4"/><path d="M262 303 L186 308" stroke="#17191c" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M40 362 Q160 406 280 362" stroke="#17191c" stroke-width="3" fill="none"/><ellipse cx="160" cy="384" rx="10" ry="4" fill="#26282a"/>
+<ellipse cx="58" cy="340" rx="20" ry="10" transform="rotate(40 58 340)" fill="#3f4245"/><circle cx="46.5" cy="330.5" r="2.6" fill="#f2a33a"/><circle cx="52" cy="335" r="4" fill="#f6f7f4"/><circle cx="64" cy="345" r="6" fill="#f6f7f4"/><ellipse cx="262" cy="340" rx="20" ry="10" transform="rotate(-40 262 340)" fill="#3f4245"/><circle cx="273.5" cy="330.5" r="2.6" fill="#f2a33a"/><circle cx="268" cy="335" r="4" fill="#f6f7f4"/><circle cx="256" cy="345" r="6" fill="#f6f7f4"/>
+<rect x="95" y="332" width="11" height="11" fill="none" stroke="#f4f4f1" stroke-width="1.6"/>
+<path d="M40 134 H27 Q21 134 21 140 V150" stroke="#17191c" stroke-width="3" fill="none"/><rect x="13" y="150" width="14" height="26" rx="3" fill="#17191c"/><path d="M280 134 H293 Q299 134 299 140 V150" stroke="#17191c" stroke-width="3" fill="none"/><rect x="293" y="150" width="14" height="26" rx="3" fill="#17191c"/>
+<path d="M40 404 H280 V407 Q280 409 275 409 L268 410 H52 L45 409 Q40 409 40 407 Z" fill="#26282a"/><rect x="80" y="410" width="14" height="8" fill="#8f9193"/><rect x="226" y="410" width="14" height="8" fill="#8f9193"/><rect x="76" y="418" width="22" height="2" fill="#a7a9ab"/><rect x="222" y="418" width="22" height="2" fill="#a7a9ab"/>
+</g>
+</svg>
