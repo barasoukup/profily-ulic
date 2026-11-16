@@ -52,6 +52,7 @@ const HALF = 40; // half-length of the cut used for reading the data (m)
 const MAX_HALF = 70, HALF_PAD = 3;
 const MIN_REACH = 3; // shortest profile side the user can drag the cut end to (m)
 const defaultReach = () => ({ left: MAX_REACH, right: MAX_REACH });
+const WIDE_REACH = 35;
 // Ends of the cut on the map: right end at -normal, left end at +normal.
 const cutEnds = (f, normal, reach) => [
   f.toLonLat(-normal[0] * reach.right, -normal[1] * reach.right),
@@ -287,7 +288,9 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
       dir = [Math.sin(r), Math.cos(r)];
     }
     osmCache = { osm, way: near.way };
-    reach = reach || (keepWay && state.cut?.reach) || defaultReach();
+    // A motorway or an expressway is wider than the usual reach (Bára: R1 in Banská Bystrica): 35 m each side for a new cut.
+    const WIDE_ROAD = /^(motorway|trunk)$/.test(near.way.tags?.highway || "");
+    reach = reach || (keepWay && state.cut?.reach) || (WIDE_ROAD ? { left: WIDE_REACH, right: WIDE_REACH } : defaultReach());
     // A new cut has A at its western end and B at the eastern (Bára): the profile is then seen
     // looking northwards, A on the left. A lies left of the street direction, so that direction
     // points north (a street running exactly east–west points east, A at the north end). A moved
