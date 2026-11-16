@@ -142,3 +142,12 @@ vyšel jen z OSM (v jednom běhu 39 řezů v Košicích). Teď je výpadek (5xx,
 „Ortofoto teď neodpovědělo: obruby jsou jen podle OSM, profil je hrubý odhad. Zkuste kliknout znovu za chvíli.“ Výpadek
 mapy města a ZBGIS na Slovensku se hlásí jako „Chybí data mapy města a ZBGIS (server neodpověděl)“, ne kolejí a plotů.
 Ověřeno v aplikaci s nasimulovanou odpovědí 503 (Andreja Plávku) a hned potom bez ní.
+
+## Rozhodnutí podle testů (Bára 16. 11. 2026: „1, 2 rozhodni na základě testů“)
+- **Krajnice nad 3 m (41 řezů) zůstávají krajnicí.** Test, který by ukázal, co v nich je, nemáme: MTVU v Česku krajnici
+  od zpevněné plochy uvnitř vozovky neodlišuje a Street View šlo použít jen na Hroboňovou (ta ukázala, že domněnka
+  „parkující auta“ neplatí). Krajnice je označená jako odhad, „zpevněná plocha“ by tvrdila víc, než víme.
+- **Rozdělení vícepruhové vozovky podle OSM lanes zatím ne.** Na Slovensku by se počet pruhů porovnával s OSM, tedy s tím,
+  co by oprava jen opsala (test v kruhu), a OSM lanes u křižovatek počítá i odbočovací pruhy. Nezávislý test jsou ručně
+  označené pruhy v Česku (`evaluation/ortofoto/oznac-eval.mjs`, 117 vozovek): až tam ukáže zlepšení.
+- Regrese Prahy a Brna po celé sérii (opravy 1–7) beze změny, testy 233/233.
