@@ -40,24 +40,24 @@ const NETS = [
     L(`${o}/${encodeURI("trasa_plynovodní_sítě")}/FeatureServer/0`, "plynovod", (a) => a.PopisObjektu), L(`${o}/${encodeURI("elektrická_síť")}/FeatureServer/0`, "silnoproud", (a) => a.PopisObjektu),
     L(`${o}/Teplovod/FeatureServer/0`, "teplovod", (a) => a.DRUH_TEPLO),
   ])("https://services8.arcgis.com/IyOEkZNvMiU8JI5H/arcgis/rest/services") },
-  { id: "presov", box: [21.15, 48.94, 21.33, 49.06], credit: () => t("Sítě © město Prešov (digitální technická mapa, CC BY 4.0)."), layers: ((g) => [
+  { id: "presov", sk: true, box: [21.15, 48.94, 21.33, 49.06], credit: () => t("Sítě © město Prešov (digitální technická mapa, CC BY 4.0)."), layers: ((g) => [
     L(`${g("03_ELE_NN_polyline")}/96`, "silnoproud", (a) => a.obsah_hladiny), L(`${g("04_ELE_VN_polyline")}/6`, "silnoproud", (a) => a.obsah_hladiny),
     L(`${g("06_VEROSV_polyline")}/5`, "silnoproud", (a) => a.obsah_hladiny), L(`${g("07_OZNAM_polyline")}/14`, "slaboproud", (a) => a.obsah_hladiny),
     L(`${g("08_KANAL_polyline")}/4`, "kanalizace", (a) => a.obsah_hladiny), L(`${g("09_PLYN_polyline")}/4`, "plynovod", (a) => a.obsah_hladiny),
     L(`${g("10_VODA_polyline")}/4`, "vodovod", (a) => a.obsah_hladiny), L(`${g("11_TEPLO_polyline")}/4`, "teplovod", (a) => a.obsah_hladiny),
   ])((n) => AGO("coW662rcZatH0tHA", n)) },
-  { id: "nitra", box: [18.0, 48.26, 18.17, 48.37], credit: () => t("Sítě © město Nitra."), layers: ((g) => [
+  { id: "nitra", sk: true, box: [18.0, 48.26, 18.17, 48.37], credit: () => t("Sítě © město Nitra."), layers: ((g) => [
     L(`${g("Vodovod_kopia")}/0`, "vodovod", (a) => a.popis), L(`${g("Kanalizácia_kópia")}/0`, "kanalizace"), L(`${g("Dažďová_kanalizácia_kópia")}/0`, "kanalizace", (a) => a.popis),
     L(`${g("Plyn_zdrojové_dáta_zobrazenie")}/0`, "plynovod"), L(`${g("Teplovod_kópia")}/0`, "teplovod"), L(`${g("Elektrika_kópia")}/0`, "silnoproud", (a) => a.LvlDesc),
     L(`${g("Telecom_kópia")}/0`, "slaboproud"), L(`${g("Rozvody_VO_kópia")}/0`, "silnoproud", (a) => a.TYP_VEDENI),
   ])((n) => AGO("3EnLFR2iBNxznmDC", n)) },
-  { id: "piestany", box: [17.78, 48.55, 17.88, 48.64], credit: () => t("Sítě © město Piešťany (porealizační zaměření)."), layers: ((g) => [
+  { id: "piestany", sk: true, box: [17.78, 48.55, 17.88, 48.64], credit: () => t("Sítě © město Piešťany (porealizační zaměření)."), layers: ((g) => [
     ...[2, 3, 4, 5].map((i) => L(`${g("Vodovod__porealizačné_zamerania_")}/${i}`, "vodovod", (a) => a.Pole1 || a.Pole)),
     ...[2, 3, 4, 5, 6].map((i) => L(`${g("Kanalizácia__porealizačné_zamerania_")}/${i}`, "kanalizace", (a) => a.Pole1 || a.Pole)),
     ...[2, 3, 4, 5].map((i) => L(`${g("Plynovod__porealizačné_zamerania_")}/${i}`, "plynovod", (a) => a.Pole1 || a.Pole)),
     L(`${g("teplovody")}/0`, "teplovod", (a) => a.Popis),
   ])((n) => AGO("DTiFWvcjh8cdrOZ5", n)) },
-  { id: "kosice", box: [21.15, 48.64, 21.36, 48.79], credit: () => t("Sítě © město Košice (územní plán)."), layers: ((g) => [
+  { id: "kosice", sk: true, box: [21.15, 48.64, 21.36, 48.79], credit: () => t("Sítě © město Košice (územní plán)."), layers: ((g) => [
     L(`${g("VODOVOD___POTRUBIE")}/1331`, "vodovod", (a) => a.popis || a.Layer), L(`${g("KANALIZÁCIA___POTRUBIE")}/1330`, "kanalizace", (a) => a.Popis || a.Layer),
     L(`${g("ZÁSOBOVANIE_PLYNOM_línia_25_4")}/14`, "plynovod", (a) => a.popis), L(`${g("TRASY_HORÚCOVODOV")}/1325`, "teplovod", (a) => a.popis),
     L(`${g("ZÁSOBOVANIE_ELEKTRICKOU_ENERGIOU_VEDENIE")}/1329`, "silnoproud", (a) => a.Popis || a.Layer),
@@ -134,8 +134,9 @@ export async function underground({ frame, dir, half, cityId }) {
   // The lines of the city: { kind, popis, profil, layer, verified, paths (lon, lat, z) }.
   let feats, height = () => NaN, surface = () => NaN;
   if (!NET_CITIES[cityId]) {
-    // Another town: its layers, the ground model where it is Czech (ČÚZK's DMR 5G) for lines that carry a height.
-    const [h, ...answers] = await Promise.all([ground(box).catch(() => () => NaN),
+    // Another town: its layers, the ground model where it is Czech (ČÚZK's DMR 5G; not asked for a Slovak town, sk) for
+    // lines that carry a height.
+    const [h, ...answers] = await Promise.all([other.sk ? () => NaN : ground(box).catch(() => () => NaN),
       ...other.layers.map((l) => query(`${l.url}/query`, { geometry: box.join(","), geometryType: "esriGeometryEnvelope", inSR: 4326, spatialRel: "esriSpatialRelIntersects", outFields: "*", returnGeometry: true, returnZ: true, outSR: 4326, f: "json" }).catch(() => ({ features: [] })))]);
     height = h;
     feats = answers.flatMap((a, li) => (a.features || []).map((f) => {

@@ -42,8 +42,8 @@ Mimo města platí stát řezu (`staty.json` z `node tools/build_staty.mjs`: Če
 asi 30 m): „cesko“, „slovensko“, jinde „cizina“ (okraje výřezů OSM za hranicí). Bez `staty.json` je všechno mimo
 města „cesko“ jako dřív. Mimo Česko (`towns/slovensko.js`, `city.abroad`) se aplikace neptá technické mapy ČÚZK ani
 RÚIAN (DMVS za hranicí odpovídá bez CORS a vypadalo to jako výpadek). Profil je odhad z OSM a ortofota
-(`ortho-osm.js`), hláška „Mimo Česko technickou mapu nemáme, profil je jen odhad“, u názvu „mimo Česko, jen odhad
-z OSM“.
+(`ortho-osm.js`) a pasportů měst, kde je mají; hláška „Technickou mapu tu zatím nemáme, profil je odhad.“ pod
+názvem (nadpis je jen ulice).
 
 - **Ortofoto Slovenska:** ZBGIS `Ortofoto_hres` (GKÚ Bratislava, NLC, CC BY 4.0), dlaždice Web Mercator do úrovně 19 po
   512 px (asi 10 cm; Bratislava 2023, Košice 2025), CORS, cache na den. Čte se pro pruhy a obruby
@@ -57,7 +57,8 @@ z OSM“.
 - **Hledání:** ZBGIS `find` (ulice MV SR s osou, obce, adresní body Registra adries), jen když mapa ukazuje
   Slovensko, dotaz má slovenská písmena (ä ô ľ ĺ ŕ) nebo RÚIAN nic nenašel (`search-sk.js`). „Hlavná 12 Košice“
   najde adresu, „Hlavná Košice“ ulici v Košicích.
-- Ilustrace, mobiliář a značky zůstávají české (návrh slovenských v `evaluation/slovensko/ZPRAVA.md`).
+- Ilustrace vozidel podle města řezu (Bratislava, Košice, Žilina, Banská Bystrica, Prešov; jinde vozidla Streetmixu),
+  slovenské označníky zastávek (značka 331), mobiliář pražský (Bratislava ho převzala), značky slovenské (`znacky-SK/`).
 - **Za pasportem města** (Bára 16. 11. 2026, Poštová, 17. novembra): pasport končí, kde končí plochy, o které se město
   stará. Od osy ven k nejbližšímu domu (z pasportu nebo OSM), plotu či zdi z OSM nebo k vnější hraně samostatně
   zakresleného chodníku OSM se nepokryté kusy doplní (`ortho-osm.js` `besidePassport`), jen když ten konec leží do 15 m

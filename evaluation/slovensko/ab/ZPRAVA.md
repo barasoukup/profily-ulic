@@ -257,3 +257,47 @@ Obrázky jsou v `obrazky-osmwalk/`.
 **Regrese Prahy a Brna:** Praha beze změny. Brno má chodníky o něco lépe: do 1 m 37 → 39 % (ČÚZK) a 33 → 35 %
 (Brno 10 cm), medián chyby 2,45 → 2,25 m. Obruby na brněnském 10 cm snímku do 0,5 m 45 → 44 % (jedna obruba).
 Nový výchozí stav je ve `vysledky/regrese.txt`.
+
+# Připomínky Fable k větvi (16. 11. 2026)
+
+Opraveno:
+- **Patička:** slovenské zdroje ve všech třech jazycích (ve slovenské chyběly i ZBGIS a MV SR): pasporty měst, kresba map
+  Nitry, Piešťan a Hlohovce, technická mapa Bratislavy, sítě dalších měst. Věta o soukromí uvádí i ÚGKK SR a ArcGIS
+  Online.
+- **Citace řezu:** citace a poznámka řezu zahrnují i zdroje doplnění za pasportem (čáry měst, ZBGIS, ortofoto).
+  U pasportu slovenského města poznámka jmenuje pasport („podle dat pasportu komunikací města Bratislava, ZBGIS a OSM“).
+- **Sítě:** u slovenských měst se už neptají ČÚZK na DMR 5G.
+- **Dálnice a rychlostní silnice:** dosah 35 m jen na Slovensku, Česko zůstává na 22 m (neotestováno).
+- **Opakování dotazů:** neopakuje se jen skutečná odpověď HTTP 4xx nebo chyba ArcGIS, která jmenuje špatné pole či
+  parametr. „400 Unable to complete operation“ pod zátěží se opakuje jako dřív.
+- **Zastaralé texty:** „kdekoli v Česku“, popis stránky, titulek tlačítka Sítě, README, CLAUDE.md.
+- **Normy SK:**
+  - pruh dálnice bez červeného varování (norma není veřejná);
+  - sběrná komunikace min. 2,75 a základ 3 m (TP 117, 2.12.2), citace opravené;
+  - nástupiště u tramvaje základ 2,5 m.
+- **Návrh na Slovensku:** nenabízí značky, které Slovensko nemá (sdílená zóna).
+- **Stání podle zákona:** poznámka cituje na Slovensku § 23 ods. 1 zák. 8/2009 Z. z., ne český zákon.
+- **Slovenština:**
+  - „Panoráma sa nedá zobraziť“;
+  - „zvýraznené obrysom“;
+  - „Odstrániť časť“;
+  - „Cestička pre cyklistov“;
+  - „Deliaci pás“;
+  - „Letná terasa“;
+  - „polovica MHD, polovica autá“.
+
+Neopraveno, na rozhodnutí nebo na později:
+- **Licence služeb slovenských měst:** Bára 16. 11. rozhodla, že se citují jako MTVU v Praze.
+- **Boxy místo hranic měst:**
+  - Bratislava se ptá i v okolních obcích;
+  - lepší by byly hranice obcí ze ZBGIS v `mesta.json`.
+- **`staty.json` zjednodušený na asi 30 m:** ulice v pásu u hranice můžou spadnout do „cizina“. Lepší by bylo
+  vyrobit ho s menším posunem.
+- **Hledání (`search-sk.js`):** u adresy se stahují všechny stejnojmenné ulice v SR. Lepší by byl filtr podle obce.
+- **Úřední názvy slovenských značek:** chce to tabulku podle vyhl. 30/2020 Z. z.
+- **Legenda zdrojů na Slovensku:** ukazuje i zdroje, které tam nenastanou.
+- **Vypnuté větve v kódu:** `?tm=1`, `?zvolen=1`, `P.cars`, `P.areaGreen`, `?vypln=1`.
+- **Rozhodnutí Báry z dřívějška:**
+  - C 7a pod pěšinou;
+  - překreslené české značky;
+  - poznámka jen pod názvem.

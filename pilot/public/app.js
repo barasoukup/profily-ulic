@@ -8,7 +8,7 @@ import { orthoOsmPolys, besidePassport, P as ORTHO_P } from "./ortho-osm.js";
 import { underground, KINDS as NET_KINDS, netAt } from "./site.js";
 // Lanes and shoulders from the road markings of the orthophoto (lanes-ortho.js); ?orto=0 leaves the rules' profile.
 const LANES_ORTHO = new URLSearchParams(location.search).get("orto") !== "0";
-import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, signFits, MAX_PER_PART } from "./signs.js";
+import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, signFits, signFile, MAX_PER_PART } from "./signs.js";
 import { loadSprites, loadSigns, layoutSigns, buildSvg, isHole, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, edgeInfo, underDepth, ROADWAY, nearestRoadway, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
 import * as sources from "./sources.js";
 import { MAPY_KEY } from "./config.js";
@@ -291,8 +291,9 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
       dir = [Math.sin(r), Math.cos(r)];
     }
     osmCache = { osm, way: near.way };
-    // A motorway or an expressway is wider than the usual reach (Bára: R1 in Banská Bystrica): 35 m each side for a new cut.
-    const WIDE_ROAD = /^(motorway|trunk)$/.test(near.way.tags?.highway || "");
+    // A motorway or an expressway is wider than the usual reach (Bára: R1 in Banská Bystrica): 35 m each side for a new
+    // cut. Only in Slovakia so far (Fable: not tried on Czech motorways, Czechia stays as it was).
+    const WIDE_ROAD = city.country === "SK" && /^(motorway|trunk)$/.test(near.way.tags?.highway || "");
     reach = reach || (keepWay && state.cut?.reach) || (WIDE_ROAD ? { left: WIDE_REACH, right: WIDE_REACH } : defaultReach());
     // A new cut has A at its western end and B at the eastern (Bára): the profile is then seen
     // looking northwards, A on the left. A lies left of the street direction, so that direction
@@ -355,11 +356,12 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     // A town's passport (Slovakia) keeps the roads it maintains: beyond it, up to a house or a fence of OSM standing
     // close by, the pieces between the town's map lines, sidewalk or green (ortho-osm.js besidePassport; Bára: Poštová,
     // 17. novembra ended at the passport's edge). The passport's own surfaces stay first.
+    let besideUsed = null;
     if (!orthoOsm && m.value?.passport && city.country === "SK") {
       const beside = besidePassport({ osm, frame, dir, way: near.way, st: laneImg?.st, edges: k.status === "fulfilled" ? k.value?.edges || [] : [], symbols: k.status === "fulfilled" ? k.value?.symbols || [] : [], areas: k.status === "fulfilled" ? k.value?.areas || [] : [], polys });
       if (beside.length) {
         const again = deriveProfile({ ...args, polys: [...polys, ...beside] });
-        if (!again.estimate) result = again;
+        if (!again.estimate) { result = again; besideUsed = beside.used; }
       }
     }
     // Lanes, shoulders and parking on its own paving measured on the orthophoto (lanes-ortho.js).
@@ -379,7 +381,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     // the DMVS standing in for the city's map, the orthophoto of a tram bed.
     const mv = m.status === "fulfilled" ? m.value : null;
     const bedSk = ortho && city.id === "slovensko"; // the tram bed read on Slovakia's orthophoto
-    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.skTown && { skTown: mv.skTown }), ...(mv?.skTm && { skTm: true }), ...(orthoOsm?.edges && k.value?.edgesFrom && { skEdges: k.value.edgesFrom }), ...((orthoOsm?.areas || orthoOsm?.widthFrom === "zbgis") && { zbgis: true }), ...(mv?.dmvs && { dmvs: true }), ...(typeof mv?.passport === "string" && { passport: mv.passport }), ...(((ortho && !bedSk) || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" ? { orthoCity: laneImg.source } : bedSk && { orthoCity: "sk" }) };
+    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.skTown && { skTown: mv.skTown }), ...(mv?.skTm && { skTm: true }), ...((orthoOsm?.edges || besideUsed?.edges) && k.value?.edgesFrom && { skEdges: k.value.edgesFrom }), ...((orthoOsm?.areas || orthoOsm?.widthFrom === "zbgis" || besideUsed?.zbgis) && { zbgis: true }), ...(mv?.dmvs && { dmvs: true }), ...(typeof mv?.passport === "string" && { passport: mv.passport }), ...(((ortho && !bedSk) || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" ? { orthoCity: laneImg.source } : (bedSk || besideUsed?.image) && { orthoCity: "sk" }) };
     // The log of cuts (log.js): the cut exactly, and how it came (a click, a moved cut, a link).
     log("rez", {
       detail: keepWay ? "posun" : bearing !== null ? "odkaz" : "klik", city: city.id, street: name, highway: near.way.tags.highway,
@@ -672,7 +674,11 @@ function render() {
 
 // Whose data the profile shows: the city's, and a town's passport when the cut took it (towns/pasporty.js; Bára:
 // the cut's information should say where its data come from).
+// The Slovak towns whose road passports a cut may take (towns/slovensko.js SK_TOWNS), by the town's name in the genitive.
+const SK_PASSPORT_TOWN = { bratislava: "Bratislava", presov: "Prešov", zilina: "Žilina", bystrica: "Banská Bystrica", zvolen: "Zvolen" };
 function cutData() {
+  const sk = state.cut?.sources?.skTown;
+  if (SK_PASSPORT_TOWN[sk]) return tr("pasportu komunikací města {town}, ZBGIS a OSM", { town: SK_PASSPORT_TOWN[sk] });
   const id = state.cut?.sources?.passport;
   if (!PASSPORT_NAMES[id]) return city.dataShort;
   return GREEN_PASSPORTS.has(id) ? tr("pasportu zeleně města {town}, technické mapy ČÚZK a OSM", { town: PASSPORT_NAMES[id] })
@@ -704,7 +710,7 @@ function draw() {
     box.innerHTML = `<div class="empty">
       <img src="${city.emptyImg}" alt="" width="96" height="126">
       <div><h1 class="empty-title">${tr("Příčný profil ulice")}</h1>
-      <ol><li>${tr("Klikněte v mapě na ulici kdekoli v Česku.")}</li><li>${tr("Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM.")}</li>
+      <ol><li>${tr("Klikněte v mapě na ulici kdekoli v Česku nebo na Slovensku.")}</li><li>${tr("Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM.")}</li>
       <li>${tr("V režimu Návrh ho upravíte: táhněte hranice, klikněte na část, přidejte novou.")}</li></ol></div></div>`;
     $("#editor").replaceChildren();
     $("#palette").replaceChildren();
@@ -1650,7 +1656,8 @@ function itemPlace(segs, i, kind) {
 // Tags of traffic signs with ×, and a select to add one (a speed limit asks for its number).
 function signTags(list = [], max, type, set) {
   const box = Object.assign(document.createElement("span"), { className: "items" });
-  const fits = Object.keys(SIGNS).filter((k) => signFits(k, type));
+  // Only the signs the state of the cut has (Slovakia has no shared zone, Fable).
+  const fits = Object.keys(SIGNS).filter((k) => signFits(k, type) && (city.country !== "SK" || k === "oneway" || signFile({ k }, null, "SK")));
   if (!fits.length && !list.length) return box; // no sign fits a green strip, a wall…
   // The name first and the sign's number after it (Fable: "IP 11b" first says nothing to most).
   const name = (x) => codeLast(signLabel(x, city.country || "CZ"));

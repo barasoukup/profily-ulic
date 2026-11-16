@@ -1,5 +1,5 @@
 // Slovak texts of the app (i18n.js; Bára 15. 11. 2026): the Czech text is the key, {names} as in it. Czech names
-// stay Czech (ČÚZK, RÚIAN, IPR, TSK, the cities' offices, the regions), the signs keep their Czech codes.
+// stay Czech (ČÚZK, RÚIAN, IPR, TSK, the cities' offices, the regions), the signs of a Slovak cut take their Slovak numbers (signs.js SK_CODE).
 // tests/i18n.test.js checks that every text of en.js is here and nothing else.
 export const SK = {
   // ---------- outside Czechia, Slovakia (ZBGIS), sources not answering ----------
@@ -39,7 +39,7 @@ export const SK = {
   "Panorama Mapy.com se nenačetla.": "Panoráma Mapy.com sa nenačítala.",
   "Načítám…": "Načítavam…",
   "Tady panorama Mapy.com nemají.": "Tu panorámu Mapy.com nemajú.",
-  "Panorama nejde zobrazit ({error}).": "Panorámu sa nedá zobraziť ({error}).",
+  "Panorama nejde zobrazit ({error}).": "Panoráma sa nedá zobraziť ({error}).",
   "snímek z {d}. {m}. {y}": "snímka z {d}. {m}. {y}",
   "Poloha řezu je ve schránce.": "Poloha rezu je v schránke.",
   "Zkopírujte polohu řezu:": "Skopírujte polohu rezu:",
@@ -53,15 +53,15 @@ export const SK = {
   "Hotovo": "Hotovo",
   "Opravit data": "Opraviť údaje",
   "Příčný profil ulice": "Priečny profil ulice",
-  "Klikněte v mapě na ulici kdekoli v Česku.": "Kliknite v mape na ulicu kdekoľvek v Česku.",
-  "Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM.":
-    "Profil od fasády k fasáde sa zostaví z technickej mapy mesta alebo ČÚZK, RÚIAN a OSM.",
+  "Klikněte v mapě na ulici kdekoli v Česku nebo na Slovensku.": "Kliknite v mape na ulicu kdekoľvek v Česku alebo na Slovensku.",
+  "Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM.":
+    "Profil od fasády k fasáde sa zostaví z technickej mapy mesta alebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportov miest, ZBGIS, ortofota a OSM.",
   "V režimu Návrh ho upravíte: táhněte hranice, klikněte na část, přidejte novou.":
     "V režime Návrh ho upravíte: ťahajte hranice, kliknite na časť, pridajte novú.",
-  " · změněné části jsou obtažené": " · zmenené časti sú obrysované",
+  " · změněné části jsou obtažené": " · zmenené časti sú zvýraznené obrysom",
   "Podíl prostoru ulice": "Podiel priestoru ulice",
   "Sdílené pruhy a stezky se počítají napůl (např. pruh s tramvají půl MHD, půl auta).":
-    "Zdieľané pruhy a chodníky sa počítajú napoly (napr. pruh s električkou pol MHD, pol autá).",
+    "Zdieľané pruhy a cestičky sa počítajú napoly (napr. pruh s električkou: polovica MHD, polovica autá).",
   "Změny v návrhu": "Zmeny v návrhu",
   "Návrh je zatím stejný jako stav.": "Návrh je zatiaľ rovnaký ako stav.",
   "Po opravách je profil o {d} širší než změřená ulice ({w}, teď {now}).": "Po opravách je profil o {d} širší než odmeraná ulica ({w}, teraz {now}).",
@@ -110,7 +110,7 @@ export const SK = {
   "Šipky na vozovce": "Šípky na vozovke",
   "+ přidat prvek": "+ pridať prvok",
   "Rozdělit na dvě": "Rozdeliť na dve",
-  "Smazat část": "Zmazať časť",
+  "Smazat část": "Odstrániť časť",
   "+ přidat značku": "+ pridať značku",
   "Nejvyšší dovolená rychlost (km/h):": "Najvyššia dovolená rýchlosť (km/h):",
   "Pro pěší": "Pre chodcov",
@@ -185,7 +185,7 @@ export const SK = {
   "Zeleň": "Zeleň",
   "Stromořadí": "Stromoradie",
   "Nástupiště": "Nástupište",
-  "Stezka pro cyklisty": "Cyklochodník",
+  "Stezka pro cyklisty": "Cestička pre cyklistov",
   "Vyhrazený cyklopruh": "Vyhradený cyklopruh",
   "Ochranný cyklopruh": "Ochranný cyklopruh",
   "Parkování": "Parkovanie",
@@ -198,9 +198,9 @@ export const SK = {
   "Tramvaj v pruhu": "Električka v pruhu",
   "Tramvajový pruh": "Električkový pruh",
   "Tramvajové těleso": "Električkové teleso",
-  "Dělicí pás": "Stredový deliaci pás",
+  "Dělicí pás": "Deliaci pás",
   "Zpevněná plocha": "Spevnená plocha",
-  "Zahrádka restaurace": "Záhradka reštaurácie",
+  "Zahrádka restaurace": "Letná terasa",
   "Voda": "Voda",
   "Zeď": "Múr",
   "Neurčeno": "Neurčené",
@@ -216,7 +216,7 @@ export const SK = {
   "Oddálit profil": "Oddialiť profil",
   "Lupa profilu": "Lupa profilu",
   "◍ Sítě": "◍ Siete",
-  "Sítě pod zemí, jen v Praze: sítě technické mapy IPR pod ulicí a v mapě": "Siete pod zemou, len v Prahe: siete technickej mapy IPR pod ulicou a v mape",
+  "Sítě pod zemí (Praha a další města): sítě pod ulicí a v mapě": "Siete pod zemou (Praha a ďalšie mestá): siete pod ulicou a v mape",
   "kanalizace": "kanalizácia",
   "vodovod": "vodovod",
   "plynovod": "plynovod",
@@ -332,8 +332,8 @@ export const SK = {
     "Státie napoly na chodníku z OSM: chodník má iba {w}, autá sú kreslené užšie a chodníku ostáva {rest}.",
   "Stání na chodníku z OSM: chodník má jen {w}, auta jsou kreslena užší a chodníku zbývá {rest}.":
     "Státie na chodníku z OSM: chodník má iba {w}, autá sú kreslené užšie a chodníku ostáva {rest}.",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, § 25 odst. 3 zák. 361/2000 Sb. žádá {need} (3 m pro každý směr).":
-    "Státie napoly na chodníku z OSM: vo vozovke ostáva {free}, český zákon (§ 25 ods. 3 zák. 361/2000 Sb.) žiada {need} (3 m pre každý smer).",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, {law} žádá {need} (3 m pro každý směr).":
+    "Státie napoly na chodníku z OSM: vo vozovke ostáva {free}, {law} žiada {need} (3 m pre každý smer).",
   "Technická mapa tu nemá povrch ulice ({what}), profil je odhad z OSM.": "Technická mapa tu nemá povrch ulice ({what}), profil je odhad z OSM.",
   "žádná plocha": "žiadna plocha",
   "plocha": "plocha",
@@ -415,7 +415,7 @@ export const SK = {
   "B 28 Zákaz zastavení": "B 28 Zákaz zastavenia",
   "B 29 Zákaz stání": "B 29 Zákaz státia",
   "IP 4b / B 2 Jednosměrný provoz": "IP 4b / B 2 Jednosmerná premávka",
-  "C 8a Stezka pro cyklisty": "C 8a Cyklochodník",
+  "C 8a Stezka pro cyklisty": "C 8a Cestička pre cyklistov",
   "C 9a Stezka pro chodce a cyklisty": "C 9a Spoločná cestička pre chodcov a cyklistov",
   "C 10a Stezka pro chodce a cyklisty dělená": "C 10a Oddelená cestička pre chodcov a cyklistov",
   "IP 11a Parkoviště": "IP 11a Parkovisko",
@@ -501,10 +501,10 @@ export const SK = {
   // ---------- index.html ----------
   // The app's name (Bára 15. 11. 2026); the picture of the link preview keeps the Czech one.
   "Profily ulic": "Profily ulíc",
-  "Příčné profily ulic v Česku od fasády k fasádě z technických map měst a ČÚZK, RÚIAN a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.":
-    "Priečne profily ulíc v Česku od fasády k fasáde z technických máp miest a ČÚZK, RÚIAN a OpenStreetMap. Profil upravíte, porovnáte so stavom a uložíte ako obrázok.",
-  "Příčné profily ulic v Česku z technických map měst a ČÚZK: od fasády k fasádě, upravitelné, s místními ilustracemi.":
-    "Priečne profily ulíc v Česku z technických máp miest a ČÚZK: od fasády k fasáde, upraviteľné, s miestnymi ilustráciami.",
+  "Příčné profily ulic v Česku a na Slovensku od fasády k fasádě z technických map měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.":
+    "Priečne profily ulíc v Česku a na Slovensku od fasády k fasáde z technických máp miest a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte so stavom a uložíte ako obrázok.",
+  "Příčné profily ulic v Česku a na Slovensku z technických map měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.":
+    "Priečne profily ulíc v Česku a na Slovensku z technických máp miest, ČÚZK a ZBGIS: od fasády k fasáde, upraviteľné, s miestnymi ilustráciami.",
   "Příčný profil české ulice s tramvajemi, cyklopruhem, chodníky a domy, vedle název Profily ulic":
     "Priečny profil českej ulice s električkami, cyklopruhom, chodníkmi a domami, vedľa názov Profily ulic",
   "Porovnat": "Porovnať",
@@ -520,6 +520,7 @@ export const SK = {
   "pasport komunikací © {town}": "pasport komunikácií © {town}",
   "pasportu zeleně města {town}, technické mapy ČÚZK a OSM": "pasportu zelene mesta {town}, technickej mapy ČÚZK a OSM",
   "pasportu komunikací města {town}, technické mapy ČÚZK a OSM": "pasportu komunikácií mesta {town}, technickej mapy ČÚZK a OSM",
+  "pasportu komunikací města {town}, ZBGIS a OSM": "pasportu komunikácií mesta {town}, ZBGIS a OSM",
   "z pasportu města": "z pasportu mesta",
   "technická mapa © Hlavné mesto SR Bratislava": "technická mapa © Hlavné mesto SR Bratislava",
   "komunikácie a spevnené plochy © mesto Zvolen": "komunikácie a spevnené plochy © mesto Zvolen",
@@ -529,9 +530,9 @@ export const SK = {
   "polohopis © mesto Hlohovec": "polohopis © mesto Hlohovec",
   "hranice druhov pozemkov © mesto Prešov (CC BY 4.0)": "hranice druhov pozemkov © mesto Prešov (CC BY 4.0)",
   "cesty, parkoviská a tráva © GKÚ Bratislava (ZBGIS, CC BY 4.0)": "cesty, parkoviská a tráva © GKÚ Bratislava (ZBGIS, CC BY 4.0)",
-  "jízdní pruh v obci: min. 2,75 m (TP 117, 2.12.2), základ 3 m (TP 118)": "jazdný pruh v obci: min. 2,75 m (TP 117, 2.12.2), základ 3 m (TP 118)",
+  "jízdní pruh v obci: min. 2,75 m, základ 3 m (TP 117, 2.12.2)": "jazdný pruh v obci: min. 2,75 m, základ 3 m (TP 117, 2.12.2)",
   "jízdní pruh dálnice: 3,5 m (STN 73 6101, neveřejná, orientačně)": "jazdný pruh diaľnice: 3,5 m (STN 73 6101, neverejná, orientačne)",
-  "jízdní pruh sběrné komunikace: min. 3 m (TP 117, 2.12.4), základ 3,25 m (TP 118, 3.1.4.5)": "jazdný pruh zbernej komunikácie: min. 3 m (TP 117, 2.12.4), základ 3,25 m (TP 118, 3.1.4.5)",
+  "jízdní pruh sběrné komunikace: min. 2,75 m, základ 3 m (TP 117, 2.12.2), v obci nejvýš 3,25 m (TP 118, 3.1.4.5)": "jazdný pruh zbernej komunikácie: min. 2,75 m, základ 3 m (TP 117, 2.12.2), v obci najviac 3,25 m (TP 118, 3.1.4.5)",
   "jízdní pruh zklidněné komunikace: 2,75 m (TP 73 6110, obr. 43), nejméně 2,5 m (STN 73 6110)": "jazdný pruh upokojenej komunikácie: 2,75 m (TP 73 6110, obr. 43), najmenej 2,5 m (STN 73 6110)",
   "zbytek chodníku vedle stání na chodníku: aspoň 1,5 m, optimálně 2 m (TP 117, 2.13.4)": "zvyšok chodníka pri státí na chodníku: aspoň 1,5 m, optimálne 2 m (TP 117, 2.13.4)",
   "chodník: nejméně 1,3 m (vyhl. 532/2002 Z. z.), volná šířka 1,5 m, u zdi 1,75 m (STN 73 6110)": "chodník: najmenej 1,3 m (vyhl. 532/2002 Z. z.), voľná šírka 1,5 m, pri stene 1,75 m (STN 73 6110)",
@@ -649,8 +650,8 @@ export const SK = {
   "Sdílet": "Zdieľať",
   "Kopírovat polohu řezu": "Kopírovať polohu rezu",
   "Místní ilustrace": "Miestne ilustrácie",
-  "Data © IPR Praha, ČÚZK, města a kraje, OpenStreetMap · ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·":
-    "Údaje © IPR Praha, ČÚZK, mestá a kraje, OpenStreetMap · ilustrácie Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licencie a súkromie ·",
+  "Data © IPR Praha, ČÚZK, města a kraje, GKÚ Bratislava (ZBGIS), slovenská mesta, OpenStreetMap · ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·":
+    "Údaje © IPR Praha, ČÚZK, mestá a kraje, GKÚ Bratislava (ZBGIS), slovenské mestá, OpenStreetMap · ilustrácie Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licencie a súkromie ·",
   "kontakt": "kontakt",
   // Rainwater objects at their size, with the networks.
   "šířka": "šírka",
@@ -689,7 +690,9 @@ export const SK = {
 // Elements of index.html replaced whole (data-i18n): the footer with its links.
 export const SK_HTML = {
   footer: `Údaje: technické mapy © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (a podlažnosti, vývoj zástavby, CC BY 4.0), štatutárnych miest Brna, Jihlavy, Mostu, Opavy a Plzne
-    a krajov (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (aj vyhľadávanie adries), kataster a ortofoto © ČÚZK (CC BY 4.0) ·
+    a krajov (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (aj vyhľadávanie adries), kataster a ortofoto © ČÚZK (CC BY 4.0) · ortofoto, budovy a hranice Slovenska © <a href="https://www.geoportal.sk">GKÚ Bratislava</a>, NLC (ZBGIS, CC BY 4.0), ulice a adresy Slovenska © MV SR ·
+    pasporty komunikácií © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Prešov (CC BY 4.0), kresba máp © mestá Nitra, Piešťany, Hlohovec, technická mapa © Hlavné mesto SR Bratislava ·
+    siete pod zemou © IPR Praha, mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, štatutárne mestá Karviná, Ostrava, mesto Břeclav ·
     parkovanie © TSK hl. m. Prahy (CC BY 4.0), zákaz státia, stromy a zaradenie komunikácií z <a href="https://opendata.geoportalpraha.cz">Geoportálu Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, mestá Jihlava, Opava, Plzeň (CC0) ·
     © prispievatelia <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·
     ilustrácie © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licencia
@@ -698,7 +701,7 @@ export const SK_HTML = {
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">zdroje a licencie</a> (v češtine) ·
     kontakt <a href="mailto:bara.so@email.cz">bara.so@email.cz</a><br>
     Zaznamenávame iba rezy (miesto, smer, ulicu, čas), kliknutia, pri ktorých sa ulica nenašla (miesto zhruba na kilometer), použité funkcie a hlásenia chýb, ktoré sami napíšete; neukladáme IP adresy ani cookies. Mapy a údaje
-    sa načítavajú priamo zo serverov IPR, ČÚZK, miest, krajov a OSM (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">súkromie</a>, v češtine).`,
+    sa načítavajú priamo zo serverov IPR, ČÚZK, ÚGKK SR (ZBGIS), miest (aj cez ArcGIS Online), krajov a OSM (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">súkromie</a>, v češtine).`,
 };
 
 // The city's texts (city.js) in Slovak: its server, data and credits as sentences take them.

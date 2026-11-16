@@ -14,7 +14,8 @@ const fmt = (v) => `${num(v)} m`;
 // road; TSK does not say which, so MK I and II take group B and only motorways group A.
 const GROUP = { dalnice: "A", mk1: "B", mk2: "B", sil1: "B", sil2: "B", mk3: "C", sil3: "C", mk4: "D" };
 const LANE_BY_GROUP = {
-  A: { min: 3, zaklad: 3.5, why: t("jízdní pruh dálnice: ČSN 73 6110 skupina A 3,5 m") },
+  // The standard is not public: no red warning, only the basic width (Fable).
+  A: { min: 0, zaklad: 3.5, why: t("jízdní pruh dálnice: ČSN 73 6110 skupina A 3,5 m") },
   B: { min: 3, zaklad: 3, why: t("jízdní pruh sběrné komunikace MK I nebo II: ČSN 73 6110 skupina B 3–3,25 m, Manuál C.2 základ 3 m") },
   C: { min: 2.75, zaklad: 3, why: t("jízdní pruh obslužné komunikace MK III: ČSN 73 6110 skupina C 2,75–3 m") },
   D: { min: 2.5, zaklad: 2.75, why: t("jízdní pruh zklidněné komunikace MK IV: Manuál C.2 2,75 m, při nízkých intenzitách 2,5 m") },
@@ -25,10 +26,11 @@ const laneByClass = (cls) => LANE_BY_GROUP[GROUP[cls]];
 // evaluation/slovensko/NORMY.md: TP 117 (2023, signs and markings: the minimum widths of marked lanes), TP 118, TP 73 6110
 // (2024), TP 085 (2019, cycling), vyhláška 532/2002 Z. z. (sidewalk), IDS BK (platforms). STN 73 6110:2024 itself is
 // not public: lanes by class after its 2004 values and TP 117/118. No public Slovak width of a tram belt: no warning.
-const SK_LANE = { min: 2.75, zaklad: 3, why: t("jízdní pruh v obci: min. 2,75 m (TP 117, 2.12.2), základ 3 m (TP 118)") };
+const SK_LANE = { min: 2.75, zaklad: 3, why: t("jízdní pruh v obci: min. 2,75 m, základ 3 m (TP 117, 2.12.2)") };
 const SK_LANE_BY_GROUP = {
-  A: { min: 3, zaklad: 3.5, why: t("jízdní pruh dálnice: 3,5 m (STN 73 6101, neveřejná, orientačně)") },
-  B: { min: 3, zaklad: 3.25, why: t("jízdní pruh sběrné komunikace: min. 3 m (TP 117, 2.12.4), základ 3,25 m (TP 118, 3.1.4.5)") },
+  // The standard is not public: no red warning, only the basic width (Fable).
+  A: { min: 0, zaklad: 3.5, why: t("jízdní pruh dálnice: 3,5 m (STN 73 6101, neveřejná, orientačně)") },
+  B: { min: 2.75, zaklad: 3, why: t("jízdní pruh sběrné komunikace: min. 2,75 m, základ 3 m (TP 117, 2.12.2), v obci nejvýš 3,25 m (TP 118, 3.1.4.5)") },
   C: SK_LANE,
   D: { min: 2.5, zaklad: 2.75, why: t("jízdní pruh zklidněné komunikace: 2,75 m (TP 73 6110, obr. 43), nejméně 2,5 m (STN 73 6110)") },
 };
@@ -64,7 +66,7 @@ function limitsSK(s, segs, i) {
     case "cyklostezka":
       return { min: 2, zaklad: 2.5, why: t("stezka pro cyklisty: jednosměrná min. 2 m, obousměrná 2,5 m (TP 117, 2.8.2.3); doporučeně 2,5 m (MIB)") };
     case "nastupiste":
-      return { min: 0, zaklad: 2, why: t("nástupiště zastávky: zpravidla aspoň 2 m pro autobus, 2,5 m pro tramvaj (IDS BK)") };
+      return { min: 0, zaklad: [segs[i - 1], segs[i + 1]].some((x) => /^tramvaj/.test(x?.type || "")) ? 2.5 : 2, why: t("nástupiště zastávky: zpravidla aspoň 2 m pro autobus, 2,5 m pro tramvaj (IDS BK)") };
     case "parkovani":
       return s.orient === "kolme" || s.orient === "sikme"
         ? { min: 4.5, zaklad: 5, why: t("kolmé a šikmé stání: 5 m (4,5 m s přesahem nad obrubník; STN 73 6056, TP 117 tab. 13)") }
@@ -107,7 +109,7 @@ function limits(s, segs, i) {
     case "cyklostezka":
       return { min: 0, zaklad: 2.5, why: t("cyklostezka: 2,5 m") };
     case "nastupiste":
-      return { min: 0, zaklad: 2, why: t("nástupiště zastávky: světlá šířka nejméně 2 m (Manuál C.2)") };
+      return { min: 0, zaklad: [segs[i - 1], segs[i + 1]].some((x) => /^tramvaj/.test(x?.type || "")) ? 2.5 : 2, why: t("nástupiště zastávky: světlá šířka nejméně 2 m (Manuál C.2)") };
     case "parkovani":
       // Angled stalls keep the rules of perpendicular ones, their depth by the angle (Manuál C.2): 2.5 × 5 m at 45°
       // is about 5.3 m deep, at 30° 4.7 m.

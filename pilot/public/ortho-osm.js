@@ -602,15 +602,19 @@ export function besidePassport({ osm, frame, dir, way, st, edges = [], symbols =
   const zbAt = (t) => { const [x, y] = xy(t, 0); return zb.find((f) => inRing(f.rings[0], x, y))?.code ?? null; };
   const ZB_LABEL = { 401: "zeleň (ZBGIS)", 704: "parkoviště (ZBGIS)" };
   const out = [];
+  // Which sources a piece took (the credits of the cut: the town's map lines or symbols, ZBGIS, the image).
+  out.used = { edges: false, zbgis: false, image: false };
   // A piece [a, b]; near: its end towards the street (a wide one keeps its sidewalk there); walk: whether it may be a
   // sidewalk (the side has none yet: beyond a passport's sidewalk the rest is a front garden or a paved area, not a
   // second sidewalk; Bára, Tranovského). Returns whether it took the side's sidewalk.
   const piece = (a, b, near, walk) => {
     const sym = symbolAt(a, b);
-    if (LABEL[sym]) { out.push({ ...rect(sym, LABEL[sym], a, b), guess: false }); return sym === 702; }
+    if (LABEL[sym]) { out.push({ ...rect(sym, LABEL[sym], a, b), guess: false }); out.used.edges = true; return sym === 702; }
     const z = zbAt((a + b) / 2);
-    if (ZB_LABEL[z]) { out.push(rect(z, ZB_LABEL[z], a, b)); return false; }
-    const g = greenOf(a, b), green = Number.isFinite(g) && g >= Math.min(BESIDE_GREEN, PIECE_GREEN + axisGreen);
+    if (ZB_LABEL[z]) { out.push(rect(z, ZB_LABEL[z], a, b)); out.used.zbgis = true; return false; }
+    const g = greenOf(a, b);
+    if (Number.isFinite(g)) out.used.image = true;
+    const green = Number.isFinite(g) && g >= Math.min(BESIDE_GREEN, PIECE_GREEN + axisGreen);
     if (green) { out.push(rect(401, "zeleň (ortofoto)", a, b)); return false; }
     if (!walk) { out.push(rect(1003, "plocha před domem (odhad)", a, b)); return false; }
     if (b - a <= SIDEWALK_MAX) { out.push(rect(702, "chodník (ortofoto a OSM)", a, b)); return true; }
@@ -655,7 +659,9 @@ export function besidePassport({ osm, frame, dir, way, st, edges = [], symbols =
     for (const [p, q] of gaps) {
       if (Math.abs(q - p) < 0.3) continue;
       const [a, b] = sg < 0 ? [q, p] : [p, q];
-      const stops = [a, ...edgeT.filter((t) => t - a >= 0.5 && b - t >= 0.5), ...(walkAt ? walkAt.filter((t) => t - a >= 0.3 && b - t >= 0.3) : []), b].sort((x, y) => x - y);
+      const lines = edgeT.filter((t) => t - a >= 0.5 && b - t >= 0.5);
+      if (lines.length) out.used.edges = true;
+      const stops = [a, ...lines, ...(walkAt ? walkAt.filter((t) => t - a >= 0.3 && b - t >= 0.3) : []), b].sort((x, y) => x - y);
       const order = [...Array(stops.length - 1).keys()];
       if (sg < 0) order.reverse();
       for (const n of order) {

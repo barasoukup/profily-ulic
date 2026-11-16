@@ -43,9 +43,9 @@ export const EN = {
   "Hotovo": "Done",
   "Opravit data": "Correct data",
   "Příčný profil ulice": "Street cross-section",
-  "Klikněte v mapě na ulici kdekoli v Česku.": "Click a street on the map anywhere in Czechia.",
-  "Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM.":
-    "A profile from façade to façade is built from the technical map of the city or of ČÚZK, RÚIAN and OSM.",
+  "Klikněte v mapě na ulici kdekoli v Česku nebo na Slovensku.": "Click a street on the map anywhere in Czechia or Slovakia.",
+  "Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM.":
+    "A profile from façade to façade is built from the technical map of the city or of ČÚZK, RÚIAN and OSM; in Slovakia from the towns' passports, ZBGIS, the orthophoto and OSM.",
   "V režimu Návrh ho upravíte: táhněte hranice, klikněte na část, přidejte novou.":
     "Edit it in Proposal: drag the borders, click a part, add a new one.",
   " · změněné části jsou obtažené": " · changed parts are outlined",
@@ -206,7 +206,7 @@ export const EN = {
   "Oddálit profil": "Zoom out of the profile",
   "Lupa profilu": "Profile magnifier",
   "◍ Sítě": "◍ Networks",
-  "Sítě pod zemí, jen v Praze: sítě technické mapy IPR pod ulicí a v mapě": "Underground networks, Prague only: the networks of IPR's technical map under the street and on the map",
+  "Sítě pod zemí (Praha a další města): sítě pod ulicí a v mapě": "Underground networks (Prague and other towns): the networks under the street and on the map",
   "kanalizace": "sewer",
   "vodovod": "water main",
   "plynovod": "gas main",
@@ -323,8 +323,8 @@ export const EN = {
     "Parking half on the pavement from OSM: the pavement is only {w}, the cars are drawn narrower and {rest} of pavement is left.",
   "Stání na chodníku z OSM: chodník má jen {w}, auta jsou kreslena užší a chodníku zbývá {rest}.":
     "Parking on the pavement from OSM: the pavement is only {w}, the cars are drawn narrower and {rest} of pavement is left.",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, § 25 odst. 3 zák. 361/2000 Sb. žádá {need} (3 m pro každý směr).":
-    "Parking half on the pavement from OSM: {free} of carriageway is left, Czech law (§ 25(3) of Act 361/2000) requires {need} (3 m for each direction).",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, {law} žádá {need} (3 m pro každý směr).":
+    "Parking half on the sidewalk from OSM: {free} is left in the carriageway, {law} requires {need} (3 m for each direction).",
   "Technická mapa tu nemá povrch ulice ({what}), profil je odhad z OSM.": "The technical map has no street surface here ({what}), the profile is an estimate from OSM.",
   "žádná plocha": "no surface",
   "plocha": "surface",
@@ -500,10 +500,10 @@ export const EN = {
   // ---------- index.html ----------
   // The app's name (Bára 12. 11. 2026); the picture of the link preview keeps the Czech one.
   "Profily ulic": "Street Profile",
-  "Příčné profily ulic v Česku od fasády k fasádě z technických map měst a ČÚZK, RÚIAN a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.":
-    "Street cross-sections in Czechia from facade to facade, from the technical maps of the cities and of ČÚZK, RÚIAN and OpenStreetMap. Edit a profile, compare it with the street today and save it as an image.",
-  "Příčné profily ulic v Česku z technických map měst a ČÚZK: od fasády k fasádě, upravitelné, s místními ilustracemi.":
-    "Street cross-sections in Czechia from the technical maps of the cities and of ČÚZK: facade to facade, editable, with local illustrations.",
+  "Příčné profily ulic v Česku a na Slovensku od fasády k fasádě z technických map měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.":
+    "Street cross-sections in Czechia and Slovakia from facade to facade, from the technical maps of the cities and of ČÚZK, RÚIAN, ZBGIS and OpenStreetMap. Edit a profile, compare it with the street today and save it as an image.",
+  "Příčné profily ulic v Česku a na Slovensku z technických map měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.":
+    "Street cross-sections in Czechia and Slovakia from the technical maps of the cities, of ČÚZK and of ZBGIS: facade to facade, editable, with local illustrations.",
   "Příčný profil české ulice s tramvajemi, cyklopruhem, chodníky a domy, vedle název Profily ulic":
     "A cross-section of a Czech street with trams, a cycle lane, pavements and buildings, beside it the name Profily ulic",
   "Porovnat": "Compare",
@@ -523,9 +523,9 @@ export const EN = {
   "polohopis © mesto Hlohovec": "planimetry © City of Hlohovec",
   "hranice druhov pozemkov © mesto Prešov (CC BY 4.0)": "land-use boundaries © City of Prešov (CC BY 4.0)",
   "cesty, parkoviská a tráva © GKÚ Bratislava (ZBGIS, CC BY 4.0)": "roads, car parks and grass © GKÚ Bratislava (ZBGIS, CC BY 4.0)",
-  "jízdní pruh v obci: min. 2,75 m (TP 117, 2.12.2), základ 3 m (TP 118)": "lane in a town: at least 2.75 m (TP 117, 2.12.2), basic 3 m (TP 118)",
+  "jízdní pruh v obci: min. 2,75 m, základ 3 m (TP 117, 2.12.2)": "lane in a town: at least 2.75 m, basic 3 m (TP 117, 2.12.2)",
   "jízdní pruh dálnice: 3,5 m (STN 73 6101, neveřejná, orientačně)": "motorway lane: 3.5 m (STN 73 6101, not public, indicative)",
-  "jízdní pruh sběrné komunikace: min. 3 m (TP 117, 2.12.4), základ 3,25 m (TP 118, 3.1.4.5)": "lane of a collector road: at least 3 m (TP 117, 2.12.4), basic 3.25 m (TP 118, 3.1.4.5)",
+  "jízdní pruh sběrné komunikace: min. 2,75 m, základ 3 m (TP 117, 2.12.2), v obci nejvýš 3,25 m (TP 118, 3.1.4.5)": "lane of a collector road: at least 2.75 m, basic 3 m (TP 117, 2.12.2), in a town at most 3.25 m (TP 118, 3.1.4.5)",
   "jízdní pruh zklidněné komunikace: 2,75 m (TP 73 6110, obr. 43), nejméně 2,5 m (STN 73 6110)": "lane of a traffic-calmed street: 2.75 m (TP 73 6110, fig. 43), at least 2.5 m (STN 73 6110)",
   "zbytek chodníku vedle stání na chodníku: aspoň 1,5 m, optimálně 2 m (TP 117, 2.13.4)": "rest of the sidewalk beside parking on it: at least 1.5 m, ideally 2 m (TP 117, 2.13.4)",
   "chodník: nejméně 1,3 m (vyhl. 532/2002 Z. z.), volná šířka 1,5 m, u zdi 1,75 m (STN 73 6110)": "sidewalk: at least 1.3 m (decree 532/2002), clear width 1.5 m, 1.75 m by a wall (STN 73 6110)",
@@ -643,8 +643,8 @@ export const EN = {
   "Sdílet": "Share",
   "Kopírovat polohu řezu": "Copy the cut's position",
   "Místní ilustrace": "Local illustrations",
-  "Data © IPR Praha, ČÚZK, města a kraje, OpenStreetMap · ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·":
-    "Data © IPR Praha, ČÚZK, cities and regions, OpenStreetMap · illustrations Streetmix (CC BY-SA 4.0) and © Bára Soukupová · sources, licences and privacy ·",
+  "Data © IPR Praha, ČÚZK, města a kraje, GKÚ Bratislava (ZBGIS), slovenská mesta, OpenStreetMap · ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·":
+    "Data © IPR Praha, ČÚZK, cities and regions, GKÚ Bratislava (ZBGIS), Slovak towns, OpenStreetMap · illustrations Streetmix (CC BY-SA 4.0) and © Bára Soukupová · sources, licences and privacy ·",
   "kontakt": "contact",
   // Rainwater objects at their size, with the networks.
   "šířka": "width",
@@ -682,6 +682,7 @@ export const EN = {
   "pasport komunikací © {town}": "road passport © {town}",
   "pasportu zeleně města {town}, technické mapy ČÚZK a OSM": "the green passport of {town}, the technical map of ČÚZK and OSM",
   "pasportu komunikací města {town}, technické mapy ČÚZK a OSM": "the road passport of {town}, the technical map of ČÚZK and OSM",
+  "pasportu komunikací města {town}, ZBGIS a OSM": "the road passport of {town}, ZBGIS and OSM",
   "z pasportu města": "from the town's passport",
 };
 
@@ -689,6 +690,8 @@ export const EN = {
 export const EN_HTML = {
   footer: `Data: technical maps © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (and building heights and development history, CC BY 4.0), of the statutory cities of Brno, Jihlava, Most, Opava and Plzeň
     and of the regions (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (and the address search), cadastre and orthophoto © ČÚZK (CC BY 4.0) · orthophoto, buildings and borders of Slovakia © <a href="https://www.geoportal.sk">GKÚ Bratislava</a>, NLC (ZBGIS, CC BY 4.0), streets and addresses of Slovakia © MV SR ·
+    road passports © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Prešov (CC BY 4.0), map drawings © mestá Nitra, Piešťany, Hlohovec, technical map © Hlavné mesto SR Bratislava ·
+    networks under the street © IPR Praha, mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, the Olomouc Region, the cities of Karviná, Ostrava, Břeclav ·
     parking © TSK hl. m. Prahy (CC BY 4.0), no-parking areas, trees and street classes from <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, the cities of Jihlava, Opava, Plzeň (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors (ODbL) ·
     illustrations © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licence
@@ -697,7 +700,7 @@ export const EN_HTML = {
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">sources and licences</a> (in Czech) ·
     contact <a href="mailto:bara.so@email.cz">bara.so@email.cz</a><br>
     We record only cuts (place, direction, street, time), clicks where no street was found (the place to about a kilometre), the features used and the error reports you write yourself; we store no IP addresses and no cookies. The maps and data
-    load straight from the servers of IPR, ČÚZK, the cities, the regions and OSM (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">privacy</a>, in Czech).`,
+    load straight from the servers of IPR, ČÚZK, ÚGKK SR (ZBGIS), the cities (also through ArcGIS Online), the regions and OSM (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">privacy</a>, in Czech).`,
 };
 
 // The city's texts (city.js) in English: its server, data and credits as sentences take them.

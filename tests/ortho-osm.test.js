@@ -191,9 +191,9 @@ test("za pasportem města: k domu chodník, kde strana chodník nemá, za chodn�
   assert.ok(out.some((p) => p.code === 702 && Math.abs(span(p)[0] + 8) < 0.15 && Math.abs(span(p)[1] + 3) < 0.15), JSON.stringify(out.map((p) => [p.code, span(p)])));
   assert.ok(out.every((p) => p.guess));
   // Not beside a motorway; nothing where the house stands more than 15 m past the passport.
-  assert.deepEqual(besidePassport({ osm: { elements: els }, frame, dir, way: { ...els[0], tags: { highway: "motorway" } }, st: null, polys }), []);
+  assert.equal(besidePassport({ osm: { elements: els }, frame, dir, way: { ...els[0], tags: { highway: "motorway" } }, st: null, polys }).length, 0);
   const far = [els[0], house(25, 30), house(-30, -25)];
-  assert.deepEqual(besidePassport({ osm: { elements: far }, frame, dir, way: far[0], st: null, polys }), []);
+  assert.equal(besidePassport({ osm: { elements: far }, frame, dir, way: far[0], st: null, polys }).length, 0);
 });
 
 test("ortofoto a OSM: samostatný chodník OSM přebije trávník ZBGIS až k domu (Štúrova v Nitře)", () => {

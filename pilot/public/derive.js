@@ -1032,7 +1032,7 @@ function carveKerbParking(segs, reqs, notes = []) {
     const rest = L ? { ...host, s: park.e } : { ...host, e: park.s };
     const lo = Math.min(hi, pi < 0 ? hi : pi), up = Math.max(hi, pi < 0 ? hi : pi);
     out = [...out.slice(0, lo), ...(L ? [park, rest] : [rest, park]), ...out.slice(up + 1)];
-    if (park.lawFree !== undefined) say(t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, § 25 odst. 3 zák. 361/2000 Sb. žádá {need} (3 m pro každý směr).", { free: fmtM(park.lawFree), need: fmtM(park.lawNeed) }));
+    if (park.lawFree !== undefined) say(t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, {law} žádá {need} (3 m pro každý směr).", { free: fmtM(park.lawFree), need: fmtM(park.lawNeed), law: city.country === "SK" ? "§ 23 ods. 1 zák. 8/2009 Z. z." : "§ 25 odst. 3 zák. 361/2000 Sb." }));
   }
   return out;
 }

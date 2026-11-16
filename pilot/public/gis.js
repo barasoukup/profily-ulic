@@ -16,10 +16,11 @@ const RETRY_DELAYS = [1500, 4000];
 async function getOnce(url) {
   // Brno asks the city's servers from the browser also on the local server: with a timeout there too.
   const r = await fetch(url, STATIC || city.id !== "praha" ? { signal: AbortSignal.timeout(TIMEOUT) } : undefined);
-  if (!r.ok) throw new Error(await r.text());
+  if (!r.ok) throw Object.assign(new Error(await r.text()), { refused: r.status >= 400 && r.status < 500 && r.status !== 429 });
   const json = await r.json();
-  // ArcGIS reports failures with HTTP 200 and an "error" field.
-  if (json?.error) throw new Error(`${json.error.code} ${json.error.message}`);
+  // ArcGIS reports failures with HTTP 200 and an "error" field; under load also "400 Unable to complete operation",
+  // which is worth another try (Fable): refused only a query it names as wrong (a field, a parameter, a layer).
+  if (json?.error) throw Object.assign(new Error(`${json.error.code} ${json.error.message}`), { refused: /^4\d\d$/.test(String(json.error.code)) && /invalid|parameter|field|not found|does not exist/i.test(`${json.error.message} ${(json.error.details || []).join(" ")}`) });
   return json;
 }
 
@@ -31,8 +32,8 @@ export async function getJSON(url) {
     try {
       return await getOnce(url);
     } catch (err) {
-      // A query the server refuses (4xx: a wrong field, a bad box) would be refused again.
-      if (i >= RETRY_DELAYS.length || err.name === "TimeoutError" || err.name === "AbortError" || /^4\d\d\b/.test(err.message || "")) throw err;
+      // A query the server refuses (an HTTP 4xx, or ArcGIS naming a wrong field or parameter) would be refused again.
+      if (i >= RETRY_DELAYS.length || err.name === "TimeoutError" || err.name === "AbortError" || err.refused) throw err;
       console.warn("opakuji dotaz", url.slice(0, 80), err.message);
       events.dispatchEvent(new CustomEvent("retry", { detail: { attempt: i + 2, of: RETRY_DELAYS.length + 1, host: new URL(url, "http://localhost").hostname } }));
       await new Promise((res) => setTimeout(res, RETRY_DELAYS[i]));
