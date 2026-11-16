@@ -46,8 +46,8 @@ export const DE = {
   "Podkladová mapa a vrstvy": "Hintergrundkarte und Ebenen",
   "Server {server} neodpovídá, zkouším znovu ({n}/{of})…": "Der Server {server} antwortet nicht, neuer Versuch ({n}/{of})…",
   "Načítám data z OSM…": "OSM-Daten werden geladen…",
-  "Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko a Slovensko).":
-    "Hier wurde keine Straße gefunden. Klicken Sie direkt auf eine Straße (die Daten decken Tschechien und die Slowakei ab).",
+  "Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko, Slovensko a Rakousko).":
+    "Hier wurde keine Straße gefunden. Klicken Sie direkt auf eine Straße (die Daten decken Tschechien, die Slowakei und Österreich ab).",
   "Načítám {map}…": "{map} wird geladen…",
   "Načítám ortofoto…": "Luftbild wird geladen…",
   " · odhad z ortofota a OSM": " · Schätzung aus Luftbild und OSM",
@@ -355,6 +355,7 @@ export const DE = {
   "Tramvajový pás {w} je užší než 6,6 m pro dvě koleje (Wiener Projektierungshandbuch).": "Der Gleiskörper {w} ist schmaler als 6,6 m für zwei Gleise (Wiener Projektierungshandbuch).",
   "mapy povrchů města Vídně a OSM": "der Flächenkarte der Stadt Wien und von OSM",
   "mapa povrchů (FMZK) © Stadt Wien – data.wien.gv.at (CC BY 4.0)": "Flächen-Mehrzweckkarte © Stadt Wien – data.wien.gv.at (CC BY 4.0)",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, StVO § 24 odst. 3 žádá {need} (dva volné pruhy, v jednosměrce jeden, podle judikatury asi 2,6 m).": "Halb auf dem Gehsteig geparkt (OSM): auf der Fahrbahn bleiben {free}, StVO § 24 Abs. 3 verlangt {need} (zwei freie Fahrstreifen, in der Einbahn einer, laut Judikatur etwa 2,6 m).",
   "ortofoto © basemap.at (CC BY 4.0)": "Luftbild © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "Luftbild © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© OpenStreetMap-Mitwirkende (ODbL)",

@@ -28,6 +28,7 @@ export const SK = {
   "Tramvajový pás {w} je užší než 6,6 m pro dvě koleje (Wiener Projektierungshandbuch).": "Električkový pás {w} je užší ako 6,6 m pre dve koľaje (Wiener Projektierungshandbuch).",
   "mapy povrchů města Vídně a OSM": "mapy povrchov mesta Viedeň a OSM",
   "mapa povrchů (FMZK) © Stadt Wien – data.wien.gv.at (CC BY 4.0)": "mapa povrchov (FMZK) © Stadt Wien – data.wien.gv.at (CC BY 4.0)",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, StVO § 24 odst. 3 žádá {need} (dva volné pruhy, v jednosměrce jeden, podle judikatury asi 2,6 m).": "Státie napoly na chodníku z OSM: vo vozovke ostáva {free}, StVO § 24 ods. 3 žiada {need} (dva voľné pruhy, v jednosmerke jeden, podľa judikatúry asi 2,6 m).",
   "ortofoto © basemap.at (CC BY 4.0)": "ortofoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "Místo se nepodařilo načíst ze ZBGIS. Zkuste to znovu.": "Miesto sa nepodarilo načítať zo ZBGIS. Skúste to znova.",
@@ -50,8 +51,8 @@ export const SK = {
   "Podkladová mapa a vrstvy": "Podkladová mapa a vrstvy",
   "Server {server} neodpovídá, zkouším znovu ({n}/{of})…": "Server {server} neodpovedá, skúšam znova ({n}/{of})…",
   "Načítám data z OSM…": "Načítavam údaje z OSM…",
-  "Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko a Slovensko).":
-    "Tu som nenašla žiadnu ulicu. Skúste kliknúť priamo na cestu (údaje pokrývajú Česko a Slovensko).",
+  "Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko, Slovensko a Rakousko).":
+    "Tu som nenašla žiadnu ulicu. Skúste kliknúť priamo na cestu (údaje pokrývajú Česko, Slovensko a Rakúsko).",
   "Načítám {map}…": "Načítavam {map}…",
   "ulice {id}": "ulica {id}",
   "Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami.":

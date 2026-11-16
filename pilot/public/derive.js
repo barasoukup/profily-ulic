@@ -487,6 +487,11 @@ export function classGroup(cls) {
   if (cls.road >= 1 && cls.road <= 3) return `sil${cls.road}`;
   return null;
 }
+// The OSM class of a road as one of classGroup's words (Austria): motorways, main roads, collectors, local streets.
+export function osmGroup(hw = "") {
+  const h = String(hw).replace(/_link$/, "");
+  return h === "motorway" || h === "trunk" ? "dalnice" : h === "primary" || h === "secondary" ? "mk2" : h === "tertiary" ? "mk3" : h ? "mk4" : null;
+}
 const TM_TREE = 83130; // technical map: strom mimo park
 // Points of the technical map that are drawn as street furniture (TM_TREE is a tree).
 export const POINT_ITEM = { 26015: "sloup_trakce", 75240: "oznacnik", 75241: "oznacnik", 74110: "sloupek", 76010: "lampa" };
@@ -581,7 +586,10 @@ const PARK_GUESS = new Set(["residential", "unclassified"]);
 const GUESS_PARK_W = 2; // estimated parallel parking strip (m)
 // § 25 of act 361/2000 Sb. (silniční provoz): a parked car leaves a lane at least LAW_LANE wide free for each
 // direction (odst. 3) and keeps LAW_RAIL from the nearest tram rail (odst. 2, from 5 to 19 h).
-const LAW_LANE = 3, LAW_RAIL = 3.5;
+const LAW_RAIL = 3.5;
+// Austria (StVO § 24 Abs. 3 lit. d, e): two lanes stay free on a two-way road, one on a one-way street; the VwGH takes a
+// lane of about 2.6 m (evaluation/austria/NORMY.md, secondary). Czechia and Slovakia 3 m per direction.
+const lawLane = () => (city.country === "AT" ? 2.6 : 3);
 // Outside the built-up area a kerb without a sidewalk gets no estimate (Bára): no building of OSM or of the
 // city's surfaces within BUILT_ALONG along the street and BUILT_OUT out from the kerb on that side. A sidewalk
 // is a footway surface beyond the kerb, past a green strip up to WALK_GREEN, or OSM's sidewalk tags or a
@@ -649,7 +657,7 @@ function splitRoadway(run, ctx) {
   // Only outside the paid parking zones (Bára): inside them TSK has surveyed every stall.
   if (!ctx.inZps && (ctx.guessPark ?? PARK_GUESS.has(tags.highway))) {
     const oneway = isOnewayTags(tags) || tags.junction === "roundabout";
-    const need = LAW_LANE * Math.max(oneway ? 1 : 2, lanesTotal);
+    const need = lawLane() * Math.max(oneway ? 1 : 2, lanesTotal);
     const lo = trams.length ? Math.min(...trams) - RAIL_HALF : Infinity, hi = trams.length ? Math.max(...trams) + RAIL_HALF : -Infinity;
     for (const [side, st] of [["R", sideR], ["L", sideL]]) {
       if (!(ctx.kerbOpen ?? ["L", "R"]).includes(side) || ctx.kerbBare?.includes(side) || parked.includes(side) || st.parkingNo || edge.some((x) => x.side === side && x.type === "parkovani")) continue;
@@ -668,7 +676,7 @@ function splitRoadway(run, ctx) {
   // § 25(3) holds for cars across the kerb too: the free width left beside them (lawFree), for the notice.
   const oneway = isOnewayTags(tags) || tags.junction === "roundabout";
   const lawFree = edge.some((x) => x.position) ? width - edge.reduce((a, x) => a + x.w, 0) : null;
-  const lawNeed = LAW_LANE * Math.max(oneway ? 1 : 2, lanesTotal);
+  const lawNeed = lawLane() * Math.max(oneway ? 1 : 2, lanesTotal);
   for (const x of edge) {
     const extra = x.position ? { position: x.position, ...(lawFree < lawNeed - 1e-6 ? { lawFree, lawNeed } : {}) } : {};
     if (x.side === "L") { leftEdge.push({ type: x.type, s: e - x.w, e, orient: x.orient, source: x.source, ...extra }); e -= x.w; }
@@ -1032,7 +1040,9 @@ function carveKerbParking(segs, reqs, notes = []) {
     const rest = L ? { ...host, s: park.e } : { ...host, e: park.s };
     const lo = Math.min(hi, pi < 0 ? hi : pi), up = Math.max(hi, pi < 0 ? hi : pi);
     out = [...out.slice(0, lo), ...(L ? [park, rest] : [rest, park]), ...out.slice(up + 1)];
-    if (park.lawFree !== undefined) say(t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, {law} žádá {need} (3 m pro každý směr).", { free: fmtM(park.lawFree), need: fmtM(park.lawNeed), law: city.country === "SK" ? "§ 23 ods. 1 zák. 8/2009 Z. z." : "§ 25 odst. 3 zák. 361/2000 Sb." }));
+    if (park.lawFree !== undefined) say(city.country === "AT"
+      ? t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, StVO § 24 odst. 3 žádá {need} (dva volné pruhy, v jednosměrce jeden, podle judikatury asi 2,6 m).", { free: fmtM(park.lawFree), need: fmtM(park.lawNeed) })
+      : t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, {law} žádá {need} (3 m pro každý směr).", { free: fmtM(park.lawFree), need: fmtM(park.lawNeed), law: city.country === "SK" ? "§ 23 ods. 1 zák. 8/2009 Z. z." : "§ 25 odst. 3 zák. 361/2000 Sb." }));
   }
   return out;
 }
@@ -1857,7 +1867,8 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       // (A/B: an MK III that OSM calls tertiary had no parked cars in 5 of 6 cuts, evaluation/praha-opendata).
       const cls = streetClass(lines, (r.s + r.e) / 2);
       const guessPark = noParkGuess || (cls && (cls.road || cls.motorway || cls.mk === 1 || cls.mk === 2)) ? false : undefined;
-      const roadClass = classGroup(cls);
+      // Austria has no street classes of its own here: the OSM highway gives the group (rules.js limitsAT).
+      const roadClass = classGroup(cls) ?? (city.country === "AT" ? osmGroup(tags.highway) : null);
       roads.push({ s: r.s, e: r.e, tags });
       segs.push(...splitRoadway(r, { guessPark, tags, trams: inside, dirAt, lanesTotal, along: ownAxis ? (ownAxis.along !== (tags.oneway === "-1")) : true, single: new Set(axes.map((a) => a.id)).size === 1, parked, sides: sideTagsLR, kerbOpen, kerbBare, inZps, axesOneway: axes.every((a) => a.oneway), axisInside: here.length > 0, divided, roadClass }).map((x) => ({ ...x, mtvu: r.code,
         // Bus lanes carry trolleybuses; so does the lane of a zone closed to cars but open to public transport

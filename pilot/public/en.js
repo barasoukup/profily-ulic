@@ -14,8 +14,8 @@ export const EN = {
   "Podkladová mapa a vrstvy": "Base map and layers",
   "Server {server} neodpovídá, zkouším znovu ({n}/{of})…": "The {server} server is not responding, trying again ({n}/{of})…",
   "Načítám data z OSM…": "Loading OSM data…",
-  "Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko a Slovensko).":
-    "No street found here. Try clicking right on a road (the data cover Czechia and Slovakia).",
+  "Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko, Slovensko a Rakousko).":
+    "No street found here. Try clicking right on a road (the data cover Czechia, Slovakia and Austria).",
   "Načítám {map}…": "Loading {map}…",
   "Načítám ortofoto…": "Loading the orthophoto…",
   " · odhad z ortofota a OSM": " · estimate from the orthophoto and OSM",
@@ -338,6 +338,7 @@ export const EN = {
   "Tramvajový pás {w} je užší než 6,6 m pro dvě koleje (Wiener Projektierungshandbuch).": "The tram belt {w} is narrower than 6.6 m for two tracks (Wiener Projektierungshandbuch).",
   "mapy povrchů města Vídně a OSM": "the surface map of Vienna and OSM",
   "mapa povrchů (FMZK) © Stadt Wien – data.wien.gv.at (CC BY 4.0)": "surface map (FMZK) © Stadt Wien – data.wien.gv.at (CC BY 4.0)",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, StVO § 24 odst. 3 žádá {need} (dva volné pruhy, v jednosměrce jeden, podle judikatury asi 2,6 m).": "Parking half on the pavement from OSM: {free} of carriageway is left, StVO § 24(3) requires {need} (two free lanes, one in a one-way street, about 2.6 m each by case law).",
   "ortofoto © basemap.at (CC BY 4.0)": "orthophoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "orthophoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© OpenStreetMap contributors (ODbL)",

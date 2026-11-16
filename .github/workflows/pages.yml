@@ -55,7 +55,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: site-osm
-          key: osm-pack-${{ steps.week.outputs.week }}-${{ hashFiles('tools/build_osm_tiles.mjs', 'tools/build_osm_data.sh', 'tools/pack_osm_tiles.mjs', 'pilot/public/osmtile.js', 'pilot/public/osmpack.js') }}
+          key: osm-pack-${{ steps.week.outputs.week }}-cz-sk-at-${{ hashFiles('tools/build_osm_tiles.mjs', 'tools/build_osm_data.sh', 'tools/pack_osm_tiles.mjs', 'pilot/public/osmtile.js', 'pilot/public/osmpack.js') }}
       - name: Install GDAL (ogr2ogr)
         if: steps.tiles-cache.outputs.cache-hit != 'true'
         timeout-minutes: 8
@@ -75,13 +75,15 @@ jobs:
             data/osm/cz.osm.pbf
             data/osm/sk.osm.pbf
             data/osm/at.osm.pbf
-          key: osm-pbf-${{ steps.week.outputs.week }}
+          key: osm-pbf-${{ steps.week.outputs.week }}-cz-sk-at
           restore-keys: osm-pbf-
       - name: Download the OSM extracts
-        if: steps.tiles-cache.outputs.cache-hit != 'true' && steps.pbf-cache.outputs.cache-hit != 'true'
+        if: steps.tiles-cache.outputs.cache-hit != 'true'
         run: |
           mkdir -p data/osm
           for c in cz:czech-republic sk:slovakia at:austria; do
+            # This week's copy from the cache is enough (a country added later is still downloaded).
+            if [ "${{ steps.pbf-cache.outputs.cache-hit }}" = "true" ] && [ -f "data/osm/${c%%:*}.osm.pbf" ]; then continue; fi
             if curl -fL --retry 3 --retry-delay 20 --connect-timeout 30 -o "/tmp/${c%%:*}.osm.pbf" \
                  "https://download.geofabrik.de/europe/${c#*:}-latest.osm.pbf"; then
               mv "/tmp/${c%%:*}.osm.pbf" "data/osm/${c%%:*}.osm.pbf"
@@ -110,6 +112,10 @@ jobs:
       # files not there yet go up (a deploy in the same week uploads nothing). Without the keys (secrets
       # R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY and variable R2_ACCOUNT_ID) the step is skipped and the app reads the
       # files on Pages. Each file is one write (Class A) and a few more for the parts of a large one.
+      - name: No R2 keys
+        if: env.R2_KEYS != 'true'
+        run: |
+          echo "::warning::no R2 keys - Austria's OSM tiles are not uploaded and the app has none for Austria"
       - name: Upload OSM tiles to R2
         if: env.R2_KEYS == 'true'
         continue-on-error: true
