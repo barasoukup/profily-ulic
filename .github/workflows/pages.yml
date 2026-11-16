@@ -269,6 +269,9 @@ jobs:
           © přispěvatelé OpenStreetMap, licence ODbL 1.0 (https://opendatacommons.org/licenses/odbl/).
           Vytvořeno skripty tools/build_osm_data.sh a tools/pack_osm_tiles.mjs v repozitáři této aplikace.
           EOF
+          # The app at streetspace.eu/profily/ (Bára 16. 11. 2026); the root and old links send there (tools/build_root_site.mjs).
+          mv _site _app && mkdir _site && mv _app _site/profily
+          node tools/build_root_site.mjs _site
           touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:
