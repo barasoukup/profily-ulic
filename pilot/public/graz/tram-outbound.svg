@@ -1,0 +1,17 @@
+<svg viewBox="0 0 320 600" xmlns="http://www.w3.org/2000/svg">
+<!-- Tramvaj Stadler Variobahn (řada 200, Holding Graz Linien, Štýrský Hradec/Graz; jednosměrná, šířka 2,20 m, 100% nízkopodlažní), zadní pohled – jednosměrné vozidlo nemá vzadu stanoviště: bílá záď se zadním oknem, číslo linky, červená koncová světla, zelená spodní část, bez zrcátek.
+     Vycházeno z popisů (ne obkresleno): Wikipedia de „Straßenbahn Graz“ (Fahrzeuge, Variobahn), Wikipedia de/en „Stadler Variobahn“, kategorie Wikimedia Commons „Stadler Variobahn in Graz“. 1 px = 1 cm. -->
+<g transform="translate(0,180)">
+<path d="M165 70 L135 -42 L172 -132 M150 70 L135 -42" stroke="#3f4245" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="75" y="-140" width="170" height="6" rx="3" fill="#3f4245"/><rect x="140" y="68" width="44" height="8" rx="2" fill="#4a4b4c"/>
+<path d="M78 96 L88 76 Q90 72 96 72 H224 Q230 72 232 76 L242 96 Z" fill="#c9cdcf"/>
+<path d="M50 398 V122 Q50 94 78 94 H242 Q270 94 270 122 V398 Z" fill="#f5f6f3"/>
+<path d="M50 330 Q160 340 270 330 V398 H50 Z" fill="#00843d"/>
+<path d="M50 318 Q160 328 270 318 V324 Q160 334 50 324 Z" fill="#7bbf3a"/>
+<rect x="130" y="108" width="60" height="18" rx="2" fill="#0c0d0e"/><rect x="138" y="113" width="44" height="8" fill="#f2a33a"/>
+<path d="M66 146 Q68 136 78 136 H242 Q252 136 254 146 L256 268 Q160 276 64 268 Z" fill="#17191c"/>
+<path d="M74 150 Q76 144 82 144 H238 Q244 144 246 150 L248 262 Q160 270 72 262 Z" fill="#2c3944"/><path d="M90 150 L120 150 L104 258 L88 257 Z" fill="#46596a" opacity=".5"/>
+<path d="M60 312 L60 300 L84 296 L84 308 Z" fill="#d4141c" stroke="#c9cdcd" stroke-width="2"/><path d="M260 312 L260 300 L236 296 L236 308 Z" fill="#d4141c" stroke="#c9cdcd" stroke-width="2"/><circle cx="72" cy="350" r="4" fill="#f2a33a"/><circle cx="248" cy="350" r="4" fill="#f2a33a"/>
+<rect x="145" y="304" width="30" height="7" fill="#f4f4f1" stroke="#c9cdcd" stroke-width="1"/>
+<path d="M50 398 H270 V404 Q270 408 263 408 L255 410 H65 L57 408 Q50 408 50 404 Z" fill="#26282a"/><rect x="84" y="410" width="14" height="8" fill="#8f9193"/><rect x="222" y="410" width="14" height="8" fill="#8f9193"/><rect x="80" y="418" width="22" height="2" fill="#a7a9ab"/><rect x="218" y="418" width="22" height="2" fill="#a7a9ab"/>
+</g>
+</svg>

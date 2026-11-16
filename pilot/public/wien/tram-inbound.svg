@@ -1,0 +1,18 @@
+<svg viewBox="0 0 320 600" xmlns="http://www.w3.org/2000/svg">
+<!-- Tramvaj Flexity Wien, typ D (Bombardier/Alstom, Wiener Linien; jednosměrná, nízkopodlažní, zaoblené čelo), čelní pohled. Vycházeno z textových popisů (ne obkresleno): Wikipedie „Flexity Wien“ (de, en: Bombardier/Alstom, 100% nízká podlaha, šířka 2,40 m, jednosměrná), Wikimedia Commons kategorie „Flexity Wien“ (popisy fotek), Wiener Linien – barvy (červená skříň, bílý pás, šedá spodní lišta). 1 px = 1 cm. -->
+<g transform="translate(0,180)">
+<path d="M165 70 L135 -42 L172 -132 M150 70 L135 -42" stroke="#3f4245" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="75" y="-140" width="170" height="6" rx="3" fill="#3f4245"/><rect x="140" y="68" width="44" height="8" rx="2" fill="#4a4b4c"/>
+<path d="M70 98 L80 80 Q82 76 88 76 H232 Q238 76 240 80 L250 98 Z" fill="#3b3e41"/>
+<path d="M40 404 V132 Q40 96 76 96 H244 Q280 96 280 132 V404 Z" fill="#e3161e"/>
+<path d="M40 132 Q40 96 76 96 H244 Q280 96 280 132 V292 Q160 312 40 292 Z" fill="#17191c"/>
+<rect x="92" y="106" width="136" height="14" rx="2" fill="#0c0d0e"/><rect x="100" y="110" width="22" height="6" fill="#f2a33a"/><rect x="130" y="110" width="90" height="6" fill="#f2a33a"/>
+<path d="M54 146 Q56 134 70 132 H250 Q264 134 266 146 L268 280 Q160 296 52 280 Z" fill="#2c3944"/><path d="M74 138 L112 136 L90 276 L70 274 Z" fill="#46596a" opacity=".55"/><path d="M230 138 L248 138 L240 214 L224 214 Z" fill="#46596a" opacity=".4"/>
+<path d="M40 302 Q160 324 280 302 V318 Q160 340 40 318 Z" fill="#f4f4f1"/>
+<path d="M40 318 Q160 340 280 318" stroke="#9a9ea2" stroke-width="2" fill="none"/>
+<path d="M50 344 L50 334 L88 338 L88 348 Z" fill="#f6f7f4" stroke="#c9cdcd" stroke-width="2"/><path d="M270 344 L270 334 L232 338 L232 348 Z" fill="#f6f7f4" stroke="#c9cdcd" stroke-width="2"/><circle cx="70" cy="362" r="4" fill="#f2a33a"/><circle cx="250" cy="362" r="4" fill="#f2a33a"/>
+<rect x="145" y="352" width="30" height="8" fill="#f4f4f1"/>
+<rect x="40" y="384" width="240" height="20" fill="#8e9296"/>
+<path d="M40 136 H26 Q20 136 20 142 V152" stroke="#17191c" stroke-width="3" fill="none"/><rect x="12" y="152" width="14" height="26" rx="3" fill="#17191c"/><path d="M280 136 H294 Q300 136 300 142 V152" stroke="#17191c" stroke-width="3" fill="none"/><rect x="294" y="152" width="14" height="26" rx="3" fill="#17191c"/>
+<path d="M40 404 H280 V410 Q280 414 273 414 L266 416 H54 L47 414 Q40 414 40 410 Z" fill="#2a2c2e"/><rect x="80" y="414" width="14" height="5" fill="#8f9193"/><rect x="226" y="414" width="14" height="5" fill="#8f9193"/><rect x="76" y="418" width="22" height="2" fill="#a7a9ab"/><rect x="222" y="418" width="22" height="2" fill="#a7a9ab"/>
+</g>
+</svg>

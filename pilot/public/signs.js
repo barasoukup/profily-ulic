@@ -246,6 +246,9 @@ export function deriveSigns(profile, tags = {}, ctx = {}) {
     if (yes(tags.bicycle)) { if (!shown) put(tags.segregated === "yes" ? { k: "c10a", walk: walkSide(segs, walk?.[1]) } : { k: "c9a" }); }
     else if (/\bC ?7a\b|(^|[:;,])220\b/i.test(String(tags.traffic_sign || "")) || tags.foot === "designated") put({ k: "c7a" });
   }
+  // A state's signs without a drawing go before the no-stopping sign takes the place of a lane's last one (AT: the
+  // one-way sign would push a zone sign out).
+  if (ctx.country) for (const sg of segs) if (sg.signs) { sg.signs = sg.signs.filter((x) => drawable(x, sg, ctx.country)); if (!sg.signs.length) delete sg.signs; }
   // No parking / no stopping on a kerb: on the outermost lane of that side (parking:<side>:restriction=
   // no_stopping|no_parking). The way's right is the profile's right when the profile looks along the way
   // (ctx.alongWay), else its left. It takes the place of the lane's last sign.

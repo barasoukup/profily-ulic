@@ -380,7 +380,25 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // The row of traffic signs from the street's OSM tags and the parts (signs.js).
     // The way's right is the profile's right when the profile looks along the way's geometry.
     const alongWay = !near.dir || dir[0] * near.dir[0] + dir[1] * near.dir[1] >= 0;
-    deriveSigns(result, near.way.tags, { inZps, alongWay });
+    // Salzburg's cadastre of signs (towns/austria.js): no stopping / no parking signs within 25 m along the street and
+    // 15 m of its axis, on the way's left or right, as OSM's parking:<side>:restriction.
+    let signTags = near.way.tags;
+    const atSigns = k.status === "fulfilled" ? k.value?.atSigns : null;
+    if (atSigns?.length) {
+      const pts = near.way.geometry.map((g) => frame.toXY(g.lon, g.lat));
+      signTags = { ...near.way.tags };
+      for (const g of atSigns) {
+        if (g.street && near.way.tags.name && g.street !== near.way.tags.name) continue;
+        const p = frame.toXY(g.lon, g.lat), c = snapToWay(pts, p);
+        if (!c || c.d > 15 || Math.hypot(...c.point) > 25) continue;
+        const [a, b] = [pts[c.index], pts[c.index + 1] || pts[c.index]];
+        const side = (b[0] - a[0]) * (p[1] - a[1]) - (b[1] - a[1]) * (p[0] - a[0]) > 0 ? "left" : "right";
+        const key = `parking:${side}:restriction`;
+        if (signTags[key] !== "no_stopping") signTags[key] = g.restriction;
+        signTags.__salzburg = true;
+      }
+    }
+    deriveSigns(result, signTags, { inZps, alongWay, country: city.country || "CZ" });
     keepDrawable(result, city.country || "CZ");
     const name = near.way.tags.name || near.way.tags.ref || "";
     const span = result.extent && { left: +result.extent[1].toFixed(2), right: +(-result.extent[0]).toFixed(2) };
@@ -393,7 +411,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // the DMVS standing in for the city's map, the orthophoto of a tram bed.
     const mv = m.status === "fulfilled" ? m.value : null;
     const bedSk = ortho && city.id === "slovensko"; // the tram bed read on Slovakia's orthophoto
-    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.skTown && { skTown: mv.skTown }), ...(mv?.atTown && { atTown: mv.atTown }), ...(mv?.skTm && { skTm: true }), ...((orthoOsm?.edges || besideUsed?.edges) && k.value?.edgesFrom && { skEdges: k.value.edgesFrom }), ...((orthoOsm?.areas || orthoOsm?.widthFrom === "zbgis" || besideUsed?.zbgis) && { zbgis: true }), ...(mv?.dmvs && { dmvs: true }), ...(typeof mv?.passport === "string" && { passport: mv.passport }), ...(((ortho && !bedSk) || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" ? { orthoCity: laneImg.source } : (bedSk || besideUsed?.image) && { orthoCity: "sk" }) };
+    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.skTown && { skTown: mv.skTown }), ...(mv?.atTown && { atTown: mv.atTown }), ...(atSigns?.length && signTags.__salzburg && { atSigns: "salzburg" }), ...(mv?.skTm && { skTm: true }), ...((orthoOsm?.edges || besideUsed?.edges) && k.value?.edgesFrom && { skEdges: k.value.edgesFrom }), ...((orthoOsm?.areas || orthoOsm?.widthFrom === "zbgis" || besideUsed?.zbgis) && { zbgis: true }), ...(mv?.dmvs && { dmvs: true }), ...(typeof mv?.passport === "string" && { passport: mv.passport }), ...(((ortho && !bedSk) || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" ? { orthoCity: laneImg.source } : (bedSk || besideUsed?.image) && { orthoCity: "sk" }) };
     // The log of cuts (log.js): the cut exactly, and how it came (a click, a moved cut, a link).
     log("rez", {
       detail: keepWay ? "posun" : bearing !== null ? "odkaz" : "klik", city: city.id, street: name, highway: near.way.tags.highway,

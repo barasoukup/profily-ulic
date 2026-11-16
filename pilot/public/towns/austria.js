@@ -79,6 +79,32 @@ async function surfaces(bbox) {
   return { ...out, atTown: "wien" };
 }
 
+// Salzburg (Bára 16. 11. 2026): the city's cadastre of traffic signs (verkehrszeichen, data.stadt-salzburg.at WFS, CORS,
+// CC BY 3.0 AT "Stadt Salzburg"), with the StVO number of each sign (VZNR "52-13b…") and its street. The signs of no
+// stopping and no parking by the cut (app.js: on the side of the street they stand) go into the row of signs.
+// ?salzburg=0 leaves them out (the A/B test).
+export const SALZBURG_WFS = "https://data.stadt-salzburg.at/geodaten/wfs";
+const SALZBURG_BOX = [12.98, 47.75, 13.12, 47.86];
+export const inSalzburg = (lon, lat) => lon >= SALZBURG_BOX[0] && lon <= SALZBURG_BOX[2] && lat >= SALZBURG_BOX[1] && lat <= SALZBURG_BOX[3];
+const SIGN_KEY = { "52-13b": "no_stopping", "52-13a": "no_parking" };
+export function salzburgSigns(json) {
+  return (json?.features || []).filter((f) => f.geometry?.type === "Point").map((f) => {
+    const p = f.properties || {};
+    return { lon: f.geometry.coordinates[0], lat: f.geometry.coordinates[1], restriction: SIGN_KEY[String(p.VZNR || "").trim().split("_")[0]], street: String(p.STRASSE || "").trim() };
+  }).filter((x) => x.restriction);
+}
+async function lines(bbox) {
+  const empty = { features: [], edges: [], widths: [], areas: [] };
+  if (!bbox || param("salzburg") === "0" || city.id !== "austria") return empty;
+  const [x0, y0, x1, y1] = bbox.split(",").map(Number);
+  if (!inSalzburg((x0 + x1) / 2, (y0 + y1) / 2)) return empty;
+  const json = await getJSON(`${SALZBURG_WFS}?${new URLSearchParams({
+    service: "WFS", version: "2.0.0", request: "GetFeature", typeNames: "ogdsbg:verkehrszeichen", srsName: "EPSG:4326",
+    outputFormat: "application/json", bbox: `${bbox},EPSG:4326`, count: 1000,
+  })}`).catch(() => null);
+  return { ...empty, atSigns: salzburgSigns(json) };
+}
+
 async function osm(lat, lon, radius) {
   return osmTiles(lat, lon, radius);
 }
@@ -86,7 +112,7 @@ async function osm(lat, lon, radius) {
 export const sources = {
   osm,
   surfaces,
-  lines: async () => ({ features: [], edges: [], widths: [], areas: [] }),
+  lines,
   parking: async () => ({ features: [] }),
   podlaznost: async () => ({}),
 };

@@ -1,0 +1,23 @@
+<svg viewBox="0 0 50 340" xmlns="http://www.w3.org/2000/svg">
+  <!-- Vídeňský označník autobusové zastávky (Haltestelle, Wiener Linien): kulatá tabule Haltestelle (žlutý kruh se zeleným okrajem a zeleným „H“, rakouská podoba podle Kraftfahrliniengesetz a popisu v de.wikipedia „Haltestelle“ / Wikimedia Commons, kategorie „Bus stop signs in Austria“ a „Tram stops in Vienna“), pod ní tabule s názvem zastávky a vitrína s jízdním řádem; u tramvaje navíc malá červenobílá tabulka Wiener Linien. Kresleno podle textových popisů, ne podle fotky, podrobnosti neověřeny. Stín na straně vlevo (pro pravou stranu ulice). 1 px = 1 cm, výška 3,35 m, spodní hrana = chodník, střed obrázku = osa označníku. -->
+  <g transform="matrix(-1 0 0 1 50 0)">
+  <g transform="translate(-219 -20)">
+    <rect x="240" y="40" width="8" height="320" fill="#8f9496"/><rect x="245" y="40" width="3" height="320" fill="#6e7375"/>
+    <rect x="238" y="352" width="12" height="8" fill="#6e7375"/>
+    <!-- vitrína s jízdním řádem -->
+    <rect x="226" y="160" width="36" height="58" rx="2" fill="#8f9496"/><rect x="229" y="163" width="30" height="52" fill="#f4f4f0"/>
+    <rect x="231" y="166" width="26" height="5" fill="#c8102e"/>
+    <rect x="231" y="174" width="12" height="34" fill="#e3e4df"/><rect x="245" y="174" width="12" height="34" fill="#e3e4df"/>
+    <rect x="232" y="177" width="10" height="1.5" fill="#9a9b9c"/><rect x="232" y="181" width="10" height="1.5" fill="#9a9b9c"/><rect x="246" y="177" width="10" height="1.5" fill="#9a9b9c"/><rect x="246" y="181" width="10" height="1.5" fill="#9a9b9c"/>
+    <!-- tabule s názvem zastávky -->
+    <rect x="221" y="74" width="46" height="20" fill="#f4f4f0" stroke="#6e7375" stroke-width="1.5"/>
+    <rect x="226" y="79" width="36" height="4" fill="#2a2b2a"/><rect x="230" y="87" width="28" height="2" fill="#9a9b9c"/>
+    <rect x="221" y="96" width="46" height="12" fill="#f4f4f0" stroke="#6e7375" stroke-width="1.5"/>
+    <rect x="226" y="99" width="7" height="6" fill="#c8102e"/><rect x="235" y="99" width="7" height="6" fill="#c8102e"/>
+    <!-- tabule Haltestelle: žlutý kruh, zelený okraj, zelené H -->
+    <circle cx="244" cy="48" r="22" fill="#f2f0e8" stroke="#6e7375" stroke-width="1"/>
+    <circle cx="244" cy="48" r="19" fill="#f5d000" stroke="#00843d" stroke-width="4"/>
+    <rect x="234.5" y="37" width="4.5" height="22" fill="#00843d"/><rect x="249" y="37" width="4.5" height="22" fill="#00843d"/><rect x="239" y="45.8" width="10" height="4.4" fill="#00843d"/>
+  </g>
+  </g>
+</svg>

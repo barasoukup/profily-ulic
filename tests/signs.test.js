@@ -199,3 +199,10 @@ test("SK a AT: odvozené značky bez vlastní kresby státu se zahodí, v AT i z
   const sk = keepDrawable(p(), "SK");
   assert.equal(sk.segments[1].signs, undefined, "SK sdílenou zónu nemá");
 });
+
+test("Salcburk: z katastru značek jen zákaz zastavení a stání, číslo StVO z VZNR", async () => {
+  const { salzburgSigns } = await import("../pilot/public/towns/austria.js");
+  const f = (vznr, street) => ({ geometry: { type: "Point", coordinates: [13.04, 47.80] }, properties: { VZNR: vznr, STRASSE: `${street}   ` } });
+  const out = salzburgSigns({ features: [f("52-13b_WM       ", "Mirabellplatz"), f("52-13a", "Linzer Gasse"), f("53-25", "Rainerstraße")] });
+  assert.deepEqual(out.map((x) => [x.restriction, x.street]), [["no_stopping", "Mirabellplatz"], ["no_parking", "Linzer Gasse"]]);
+});

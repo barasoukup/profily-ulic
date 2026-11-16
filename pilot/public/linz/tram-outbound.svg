@@ -1,0 +1,16 @@
+<svg viewBox="0 0 320 600" xmlns="http://www.w3.org/2000/svg">
+<!-- Tramvaj Bombardier Flexity Outlook „Cityrunner“ (jednosměrná, 100 % nízkopodlažní, rozchod 900 mm, šířka 2,30 m, Linz AG Linien), zadní pohled – jednosměrná, záď nemá stanoviště ani zrcátka: zadní okno, nahoře číslo linky, červená koncová světla. Nátěr: převážně bílá skříň, modrý pás u spodku (barva Linz AG), tenká červená linka. Kresleno podle textových popisů, ne obkresleno:
+       de.wikipedia „Straßenbahn Linz“, en.wikipedia „Trams in Linz“, Wikimedia Commons Category:Bombardier Flexity Outlook Cityrunner (Linz) (např. „Linz AG Linien Cityrunner 022 an der Linken Brückenstraße.jpg“, „Cityrunner 017 in Ebelsberg 2005-08-01.jpg“). Odstín modré a pásy ověřit na fotce. 1 px = 1 cm. -->
+<g transform="translate(0,180)">
+<path d="M165 70 L135 -42 L172 -132 M150 70 L135 -42" stroke="#3f4245" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="75" y="-140" width="170" height="6" rx="3" fill="#3f4245"/><rect x="140" y="68" width="44" height="8" rx="2" fill="#4a4b4c"/>
+<path d="M72 96 L82 74 Q84 70 90 70 H230 Q236 70 238 74 L248 96 Z" fill="#d9dcde"/>
+<path d="M45 398 V124 Q45 94 76 94 H244 Q275 94 275 124 V398 Z" fill="#f5f6f4"/>
+<path d="M56 134 Q58 108 82 108 H238 Q262 108 264 134 L266 282 Q160 292 54 282 Z" fill="#17191c"/>
+<rect x="130" y="114" width="60" height="14" fill="#0c0d0e"/><rect x="138" y="118" width="22" height="6" fill="#f2a33a"/>
+<path d="M66 150 Q68 140 78 140 H242 Q252 140 254 150 L256 274 Q160 283 64 274 Z" fill="#2c3944"/><path d="M84 146 L118 146 L98 268 L80 266 Z" fill="#46596a" opacity=".45"/>
+<path d="M45 360 Q160 372 275 360 V398 H45 Z" fill="#00599b"/><path d="M45 354 Q160 366 275 354" stroke="#e2271c" stroke-width="3" fill="none"/>
+<path d="M52 318 L52 306 L84 302 L84 314 Z" fill="#d4141c" stroke="#9fa4a8" stroke-width="2"/><path d="M268 318 L268 306 L236 302 L236 314 Z" fill="#d4141c" stroke="#9fa4a8" stroke-width="2"/><circle cx="68" cy="336" r="4" fill="#f2a33a"/><circle cx="252" cy="336" r="4" fill="#f2a33a"/>
+<rect x="145" y="314" width="30" height="7" fill="#00599b"/><rect x="190" y="372" width="30" height="7" fill="#f4f4f1"/>
+<path d="M45 398 H275 V404 Q275 408 268 408 L260 410 H60 L52 408 Q45 408 45 404 Z" fill="#26282a"/><rect x="92" y="410" width="14" height="8" fill="#8f9193"/><rect x="214" y="410" width="14" height="8" fill="#8f9193"/><rect x="88" y="418" width="22" height="2" fill="#a7a9ab"/><rect x="210" y="418" width="22" height="2" fill="#a7a9ab"/>
+</g>
+</svg>

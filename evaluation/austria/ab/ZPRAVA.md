@@ -14,3 +14,14 @@ basemap.at v `images/` (nahoře A modře, dole B červeně), data ve `vysledky/w
 
 **Rozhodnutí:** FMZK zapnutá (`?wien=0` vypne). Otevřené: třída 25 „Gehweg, Radweg“ (dnes cyklostezka, na parkové
 cestě sporné), velké „Befestigte Fläche“ na náměstích jako zpevněná plocha.
+
+# Salcburk: dopravní značky z katastru města (16. 11. 2026)
+
+Zdroj: `verkehrszeichen` (data.stadt-salzburg.at WFS, CC BY 3.0 AT), u každé značky číslo StVO (VZNR) a ulice. Zapojené
+jsou jen zákazy zastavení a stání (52-13b, 52-13a): značka do 25 m podél ulice a 15 m od její osy, se stejným jménem
+ulice, na straně, kde stojí (`app.js`, jako OSM `parking:<side>:restriction`). `?salzburg=0` vypne.
+
+**A/B:** 30 náhodných bodů do 1,5 km od centra (pevné semínko), každý řez dvakrát. Změnily se 3 řezy: přibyl zákaz
+zastavení (Dr.-Varnschein-Gasse vedle Fahrradstraße, Schrannengasse vedle rychlosti, nepojmenovaná ulice na obou
+stranách). Po opravě pořadí (dřív rakouská jednosměrka, která se nekreslí, vytlačila zónu) zůstávají ostatní značky.
+Ostatní druhy značek (zóny, rychlosti, stezky) zatím ne: stojí na začátku úseku a řez dál od nich by je neviděl.

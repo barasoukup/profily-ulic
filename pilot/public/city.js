@@ -503,6 +503,7 @@ export function creditLines(c, src = {}, art = false) {
     presov: t("hranice druhov pozemkov © mesto Prešov (CC BY 4.0)"), "bratislava-tm": t("technická mapa © Hlavné mesto SR Bratislava") };
   if (SK_EDGES[src.skEdges] && !(src.skEdges === "bratislava-tm" && src.skTm)) data.push(SK_EDGES[src.skEdges]);
   // Vienna's Flächen-Mehrzweckkarte (towns/austria.js).
+  if (src.atSigns === "salzburg") data.push(t("dopravní značky © Stadt Salzburg (CC BY 3.0 AT)"));
   if (src.atTown === "wien") data.push(t("mapa povrchů (FMZK) © Stadt Wien – data.wien.gv.at (CC BY 4.0)"));
   if (src.zbgis) data.push(t("cesty, parkoviská a tráva © GKÚ Bratislava (ZBGIS, CC BY 4.0)"));
   data.push(data.length ? t("© přispěvatelé OpenStreetMap (ODbL)") : t("Data: {data}", { data: t("© přispěvatelé OpenStreetMap (ODbL)") }));
