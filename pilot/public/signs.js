@@ -104,6 +104,7 @@ export const SPEED_TEMPLATES = new Set(["B20a", "253"]);
 
 const ROAD = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "obsluzna"]);
 const CARRIAGEWAY = new Set([...ROAD, "parkovani", "cyklopruh", "ochranny_pruh", "krajnice", "tramvaj"]);
+const WALK_TYPES = new Set(["chodnik", "chodnik_kola", "stezka_sdilena"]);
 const yes = (v) => ["yes", "designated", "permissive"].includes(v);
 const num = (v) => { const m = /^(\d+)/.exec(String(v ?? "")); return m ? Number(m[1]) : undefined; };
 
@@ -215,6 +216,13 @@ export function deriveSigns(profile, tags = {}, ctx = {}) {
     if (ruleOf.has(i)) out.push(...ruleOf.get(i));
     if (out.length) s.signs = out.slice(0, MAX_PER_PART);
   });
+  // A street without lanes of its own (a pedestrian zone whose whole width a town's passport or the map gives as
+  // a sidewalk, Poštová in Bratislava): its zone and entry signs under its widest walking part (Bára).
+  if (!lanes.length) {
+    const rules = streetSigns(tags);
+    const walk = segs.map((s, i) => [s, i]).filter(([s]) => WALK_TYPES.has(s.type)).sort((a, b) => b[0].width - a[0].width)[0];
+    if (rules.length && walk) walk[0].signs = [...(walk[0].signs || []), ...rules].slice(0, MAX_PER_PART);
+  }
   // A path for pedestrians (C 7a): the clicked way is a footway, or a path for pedestrians only; under its widest
   // walking part when the profile has no lanes of its own (Bára).
   const footway = tags.highway === "footway" || (tags.highway === "path" && tags.foot === "designated" && !yes(tags.bicycle));

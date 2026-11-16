@@ -159,3 +159,10 @@ test("C 10a ukazuje chodce na jejich straně (dál od vozovky), IZ 10a podle zna
   deriveSigns(f, { highway: "footway" });
   assert.deepEqual(f.segments[1].signs, [{ k: "c7a" }]);
 });
+
+test("pěší zóna bez pruhů (celá šířka chodník z pasportu): značka zóny pod nejširší pěší částí (Poštová)", () => {
+  const p = { segments: [{ type: "chodnik_kola", width: 3.1 }, { type: "stromorad", width: 1.5 }, { type: "chodnik_kola", width: 11.5 }] };
+  deriveSigns(p, { highway: "pedestrian", bicycle: "yes" });
+  assert.deepEqual(p.segments[2].signs, [{ k: "ip27a", plate: "kola" }]);
+  assert.equal(p.segments[0].signs, undefined);
+});
