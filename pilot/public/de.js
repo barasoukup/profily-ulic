@@ -353,6 +353,8 @@ export const DE = {
   "podélné stání: 2 m (Wiener Projektierungshandbuch)": "Längsparkstreifen: 2 m (Wiener Projektierungshandbuch)",
   "jednosměrka s cyklisty v protisměru bez cyklopruhu: 3,75 m, nejméně 3,5 m (Wiener Projektierungshandbuch)": "Einbahn mit Radfahren gegen die Einbahn ohne Radfahrstreifen: 3,75 m, mindestens 3,5 m (Wiener Projektierungshandbuch)",
   "Tramvajový pás {w} je užší než 6,6 m pro dvě koleje (Wiener Projektierungshandbuch).": "Der Gleiskörper {w} ist schmaler als 6,6 m für zwei Gleise (Wiener Projektierungshandbuch).",
+  "mapy povrchů města Vídně a OSM": "der Flächenkarte der Stadt Wien und von OSM",
+  "mapa povrchů (FMZK) © Stadt Wien – data.wien.gv.at (CC BY 4.0)": "Flächen-Mehrzweckkarte © Stadt Wien – data.wien.gv.at (CC BY 4.0)",
   "ortofoto © basemap.at (CC BY 4.0)": "Luftbild © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "Luftbild © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© OpenStreetMap-Mitwirkende (ODbL)",
@@ -722,6 +724,9 @@ export const DE = {
 export const DE_HTML = {
   footer: `Daten: technische Karten © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (sowie Geschosszahlen und Bebauungsentwicklung, CC BY 4.0), der Statutarstädte Brno, Jihlava, Most, Opava und Plzeň
     und der Regionen (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (auch die Adresssuche), Kataster und Luftbild © ČÚZK (CC BY 4.0) · Luftbild, Gebäude und Grenzen der Slowakei © <a href="https://www.geoportal.sk">GKÚ Bratislava</a>, NLC (ZBGIS, CC BY 4.0), Straßen und Adressen der Slowakei © MV SR ·
+    Straßenkataster © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Prešov (CC BY 4.0), Kartenzeichnungen © mestá Nitra, Piešťany, Hlohovec, technische Karte © Hlavné mesto SR Bratislava ·
+    Leitungen © IPR Praha, mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, Statutarstädte Karviná, Ostrava, Stadt Břeclav ·
+    Österreich: Luftbild © basemap.at (CC BY 4.0), Flächen-Mehrzweckkarte © Stadt Wien – data.wien.gv.at (CC BY 4.0) ·
     Parken © TSK hl. m. Prahy (CC BY 4.0), Parkverbote, Bäume und Straßenklassen aus dem <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, die Städte Jihlava, Opava, Plzeň (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-Mitwirkende (ODbL) ·
     Illustrationen © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, Lizenz

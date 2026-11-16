@@ -336,6 +336,8 @@ export const EN = {
   "podélné stání: 2 m (Wiener Projektierungshandbuch)": "parallel parking: 2 m (Wiener Projektierungshandbuch)",
   "jednosměrka s cyklisty v protisměru bez cyklopruhu: 3,75 m, nejméně 3,5 m (Wiener Projektierungshandbuch)": "one-way street with contraflow cycling and no cycle lane: 3.75 m, at least 3.5 m (Wiener Projektierungshandbuch)",
   "Tramvajový pás {w} je užší než 6,6 m pro dvě koleje (Wiener Projektierungshandbuch).": "The tram belt {w} is narrower than 6.6 m for two tracks (Wiener Projektierungshandbuch).",
+  "mapy povrchů města Vídně a OSM": "the surface map of Vienna and OSM",
+  "mapa povrchů (FMZK) © Stadt Wien – data.wien.gv.at (CC BY 4.0)": "surface map (FMZK) © Stadt Wien – data.wien.gv.at (CC BY 4.0)",
   "ortofoto © basemap.at (CC BY 4.0)": "orthophoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "orthophoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© OpenStreetMap contributors (ODbL)",
@@ -725,6 +727,7 @@ export const EN_HTML = {
   footer: `Data: technical maps © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (and building heights and development history, CC BY 4.0), of the statutory cities of Brno, Jihlava, Most, Opava and Plzeň
     and of the regions (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (and the address search), cadastre and orthophoto © ČÚZK (CC BY 4.0) · orthophoto, buildings and borders of Slovakia © <a href="https://www.geoportal.sk">GKÚ Bratislava</a>, NLC (ZBGIS, CC BY 4.0), streets and addresses of Slovakia © MV SR ·
     road passports © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Prešov (CC BY 4.0), map drawings © mestá Nitra, Piešťany, Hlohovec, technical map © Hlavné mesto SR Bratislava ·
+    Austria: orthophoto © basemap.at (CC BY 4.0), surface map of Vienna © Stadt Wien – data.wien.gv.at (CC BY 4.0) ·
     networks under the street © IPR Praha, mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, the Olomouc Region, the cities of Karviná, Ostrava, Břeclav ·
     parking © TSK hl. m. Prahy (CC BY 4.0), no-parking areas, trees and street classes from <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, the cities of Jihlava, Opava, Plzeň (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors (ODbL) ·

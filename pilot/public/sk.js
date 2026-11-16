@@ -26,6 +26,8 @@ export const SK = {
   "podélné stání: 2 m (Wiener Projektierungshandbuch)": "pozdĺžne státie: 2 m (Wiener Projektierungshandbuch)",
   "jednosměrka s cyklisty v protisměru bez cyklopruhu: 3,75 m, nejméně 3,5 m (Wiener Projektierungshandbuch)": "jednosmerka s cyklistami v protismere bez cyklopruhu: 3,75 m, najmenej 3,5 m (Wiener Projektierungshandbuch)",
   "Tramvajový pás {w} je užší než 6,6 m pro dvě koleje (Wiener Projektierungshandbuch).": "Električkový pás {w} je užší ako 6,6 m pre dve koľaje (Wiener Projektierungshandbuch).",
+  "mapy povrchů města Vídně a OSM": "mapy povrchov mesta Viedeň a OSM",
+  "mapa povrchů (FMZK) © Stadt Wien – data.wien.gv.at (CC BY 4.0)": "mapa povrchov (FMZK) © Stadt Wien – data.wien.gv.at (CC BY 4.0)",
   "ortofoto © basemap.at (CC BY 4.0)": "ortofoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "Místo se nepodařilo načíst ze ZBGIS. Zkuste to znovu.": "Miesto sa nepodarilo načítať zo ZBGIS. Skúste to znova.",
@@ -726,6 +728,7 @@ export const SK_HTML = {
   footer: `Údaje: technické mapy © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (a podlažnosti, vývoj zástavby, CC BY 4.0), štatutárnych miest Brna, Jihlavy, Mostu, Opavy a Plzne
     a krajov (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (aj vyhľadávanie adries), kataster a ortofoto © ČÚZK (CC BY 4.0) · ortofoto, budovy a hranice Slovenska © <a href="https://www.geoportal.sk">GKÚ Bratislava</a>, NLC (ZBGIS, CC BY 4.0), ulice a adresy Slovenska © MV SR ·
     pasporty komunikácií © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Prešov (CC BY 4.0), kresba máp © mestá Nitra, Piešťany, Hlohovec, technická mapa © Hlavné mesto SR Bratislava ·
+    Rakúsko: ortofoto © basemap.at (CC BY 4.0), mapa povrchov Viedne © Stadt Wien – data.wien.gv.at (CC BY 4.0) ·
     siete pod zemou © IPR Praha, mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, štatutárne mestá Karviná, Ostrava, mesto Břeclav ·
     parkovanie © TSK hl. m. Prahy (CC BY 4.0), zákaz státia, stromy a zaradenie komunikácií z <a href="https://opendata.geoportalpraha.cz">Geoportálu Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, mestá Jihlava, Opava, Plzeň (CC0) ·
     © prispievatelia <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·

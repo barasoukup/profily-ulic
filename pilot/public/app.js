@@ -391,7 +391,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     // the DMVS standing in for the city's map, the orthophoto of a tram bed.
     const mv = m.status === "fulfilled" ? m.value : null;
     const bedSk = ortho && city.id === "slovensko"; // the tram bed read on Slovakia's orthophoto
-    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.skTown && { skTown: mv.skTown }), ...(mv?.skTm && { skTm: true }), ...((orthoOsm?.edges || besideUsed?.edges) && k.value?.edgesFrom && { skEdges: k.value.edgesFrom }), ...((orthoOsm?.areas || orthoOsm?.widthFrom === "zbgis" || besideUsed?.zbgis) && { zbgis: true }), ...(mv?.dmvs && { dmvs: true }), ...(typeof mv?.passport === "string" && { passport: mv.passport }), ...(((ortho && !bedSk) || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" ? { orthoCity: laneImg.source } : (bedSk || besideUsed?.image) && { orthoCity: "sk" }) };
+    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.skTown && { skTown: mv.skTown }), ...(mv?.atTown && { atTown: mv.atTown }), ...(mv?.skTm && { skTm: true }), ...((orthoOsm?.edges || besideUsed?.edges) && k.value?.edgesFrom && { skEdges: k.value.edgesFrom }), ...((orthoOsm?.areas || orthoOsm?.widthFrom === "zbgis" || besideUsed?.zbgis) && { zbgis: true }), ...(mv?.dmvs && { dmvs: true }), ...(typeof mv?.passport === "string" && { passport: mv.passport }), ...(((ortho && !bedSk) || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" ? { orthoCity: laneImg.source } : (bedSk || besideUsed?.image) && { orthoCity: "sk" }) };
     // The log of cuts (log.js): the cut exactly, and how it came (a click, a moved cut, a link).
     log("rez", {
       detail: keepWay ? "posun" : bearing !== null ? "odkaz" : "klik", city: city.id, street: name, highway: near.way.tags.highway,
@@ -690,6 +690,8 @@ function render() {
 const SK_EDGES_TOWN = { nitra: "Nitra", piestany: "Piešťany", zvolen: "Zvolen", hlohovec: "Hlohovec", presov: "Prešov", "bratislava-tm": "Bratislava" };
 const SK_PASSPORT_TOWN = { bratislava: "Bratislava", presov: "Prešov", zilina: "Žilina", bystrica: "Banská Bystrica", zvolen: "Zvolen" };
 function cutData() {
+  // Vienna's map of surfaces (towns/austria.js).
+  if (state.cut?.sources?.atTown === "wien") return tr("mapy povrchů města Vídně a OSM");
   const sk = state.cut?.sources?.skTown, edges = SK_EDGES_TOWN[state.cut?.sources?.skEdges];
   // The lines of a town's map that placed the kerbs (towns/slovensko.js EDGE_SOURCES; Bára: the data really used).
   if (SK_PASSPORT_TOWN[sk] && edges === SK_PASSPORT_TOWN[sk]) return tr("pasportu komunikací a mapy města {town}, ZBGIS a OSM", { town: edges });
