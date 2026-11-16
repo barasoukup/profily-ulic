@@ -49,21 +49,31 @@ je oddělený od státu; klíčem překladu je česká věta a test `tests/i18n.
   (viz krok 0).
 
 
-## Model: stát, město, zdroje
+## Model: stát → město → zdroje (všude stejně)
+
+Bára 16. 11. 2026: struktura má být jednotná, státy a města všude. Bratislava, Košice, Vídeň, Graz jsou města
+jako Brno. Fablova námitka se týkala zdrojů, ne měst: pokrytí zdroje nemá vždy tvar města (čáry Nitry a Zvolena
+jen na kusu města, pasport Dúbravky jen v městské části, sítě Košic, značky Salzburgu, české pasporty
+v `pasporty.json`). Proto tři vrstvy:
 
 ```
 místo řezu (lat, lon)
-  └─ placeAt(lat, lon) → { country: "SK", city: "slovensko", art: "bratislava", areas: ["bratislava-pasport", …] }
-       1. stát podle polygonu (staty.json)                      ← vždy první: box Bratislavy zasahuje do AT a HU
-       2. město podle hranice obce (mesta.json, jen CZ jako dnes)
-       3. území zdrojů a ilustrací uvnitř státu (dnes SK_ART_BOX, AT_ART_BOX, inWien, townAt, EDGE_SOURCES,
-          site.js NETS, pasporty.json, značky Salzburgu) – jeden seznam „zdroj + území + stát“
+  └─ placeAt(lat, lon) → { country: "SK", city: "bratislava", sources: ["bratislava-pasport", "dubravka", …] }
+       1. stát podle polygonu (staty.json)          ← vždy první: box Bratislavy zasahuje do AT a HU
+       2. město podle hranice obce: CZ RÚIAN (mesta.json jako dnes), SK ZBGIS, AT hranice obcí Statistik Austria;
+          jinde „zbytek státu“ (cesko, slovensko, austria, cizina)
+       3. zdroje města nebo státu, které mají data v místě řezu: výchozí území zdroje = hranice jeho města,
+          vlastní hranice jen kde je jiná (kus města, městská část)
 ```
 
-Pokrytí zdrojů nemá tvar města (čáry Nitry, Piešťan, Zvolena, Hlohovce; sítě Košic, Nitry, Břeclavi; značky
-Salzburgu; české pasporty), proto se **nepovyšují** Bratislava, Vídeň a další na „města jako Brno“. To by znamenalo
-sady textů ve čtyřech jazycích na každé a jiné hodnoty v logu, tedy změnu chování. `city.id` zůstává `slovensko`,
-`austria`, `cizina`, `cesko` i v logu, URL a uložených řezech; do logu přibude jen `country`.
+- **Město** (obec s hranicí): jméno, centrum (vzhled domů), ilustrace, seznam zdrojů. Patří do státu, z něj dědí
+  všechno, co nemá vlastní (texty, ortofoto, značky, normy).
+- **Zdroj**: modul s dotazy, územím, kreditem (klíč) a vypínačem (`?pasport=0`…). Dnešní `SK_ART_BOX`,
+  `AT_ART_BOX`, `inWien`, `townAt`, `EDGE_SOURCES`, `site.js NETS`, `pasporty.json` se převedou na města a zdroje.
+- **Texty**: město zdědí sadu textů svého státu a doplní jen své jméno (v pádech, kde ho věta potřebuje) a vlastní
+  zdroje; žádné úplné sady pro každé město ve čtyřech jazycích.
+- **Log**: u řezu v Bratislavě bude `city: "bratislava"` místo `slovensko` a přibude `country`. Je to změna
+  chování, proto samostatný krok až po přestavbě beze změny; statistiky po státech přes `country`.
 
 `city` zůstává jeden sdílený objekt jako dnes. `city.country` zůstává řetězec ISO („CZ“, „SK“, „AT“, null),
 vedle přibude `country` – modul státu, nastavovaný v `setCity`.
@@ -125,7 +135,7 @@ Líně už dnes (a dál) jen zdroje měst a hledání.
 
 - Žádný framework, sestavovací krok ani TypeScript.
 - Nevyměňujeme sdílený objekt `city`, klíče překladů (česká věta), id `cesko`/`slovensko`/`austria`/`cizina`.
-- Neměníme výpočet profilu ani texty měst (sady textů ze sady státu vypuštěny z plánu).
+- Neměníme výpočet profilu.
 
 ## Postup (každý krok jeden commit, po každém ověření)
 
@@ -146,8 +156,10 @@ Líně už dnes (a dál) jen zdroje měst a hledání.
 3. **`countries/CZ.js`, `SK.js`, `AT.js`, `default.js`** (až po sloučení `austria` a `jihlava-pasport`). Kontrola:
    mimo `countries/` žádné `country === `, `["SK","AT"].includes`, `city.country || "CZ"`,
    `["slovensko","austria"].includes(city.id)`, `id === "austria"`. `tests/i18n.test.js` čte i `countries/`.
-4. **`placeAt`** se seznamem „zdroj + území + stát“; pryč `skArtAt`, `atArtAt`, `inWien`, `townAt`, guardy
-   `city.id !== "slovensko"` v `towns/slovensko.js`; log dostane `country`.
+4. **`placeAt` a zdroje s územím** (beze změny výsledků): pryč `skArtAt`, `atArtAt`, `inWien`, `townAt`, guardy
+   `city.id !== "slovensko"` v `towns/slovensko.js`; zdroje dostanou území.
+4b. **Města všude** (změna chování, schvaluje Bára): hranice obcí SK a AT, Bratislava, Košice, Žilina, Banská
+   Bystrica, Prešov, Vídeň, Graz, Linz jako města s texty ze sady státu; log `city` po městech + `country`.
 5. **`tools/countries.mjs`** pro `pages.yml`, test CSP; zkušební sestavení, `_site` stejné.
 6. Přepsat návod `.claude/skills/pridani-statu`, `pilot/README.md`, CLAUDE.md.
 
@@ -159,7 +171,7 @@ Odhad: krok 0 skoro den, kroky 1–4 další den až dva, 5–6 menší.
   sloučení `austria` a `jihlava-pasport` (9 commitů, +73 řádků v `derive.js`) a po dobu přestavby nad nimi nezačínat
   nové větve. Kroky 0–2 jdou dřív.
 - **Tichá změna výsledků:** proto přehrávání nahraných dat, ne živý sběr.
-- **Uložené řezy, odkazy, log:** id zůstávají; jen přibude `country`.
+- **Uložené řezy, odkazy, log:** id `cesko`/`slovensko`/`austria`/`cizina` zůstávají pro zbytek státu; nová id měst jen v kroku 4b.
 
 ## Chyby nalezené při oponentuře (opravit hned, mimo přestavbu)
 
