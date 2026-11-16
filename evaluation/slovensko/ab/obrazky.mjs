@@ -94,7 +94,7 @@ if (process.argv[1] === new URL(import.meta.url).pathname) {
     await fs.writeFile(png, encodePng(im.out, im.W, im.H));
     await run("sips", ["-s", "format", "jpeg", "-s", "formatOptions", "70", png, "--out", jpg]);
     const fmt = (p) => p.segments.map(([t, w, s]) => `${t} ${w}${s === "odhad" ? "*" : ""}`).join(" · ");
-    items.push(`<figure><img src="${r.id}.jpg" alt=""><figcaption>${r.id} · ${c.name || "(bez názvu)"} (${r.town})<br><b style="color:#2878ff">bez pasportu:</b> ${fmt(r.A)}<br><b style="color:#e22">s pasportem:</b> ${fmt(r.B)}</figcaption></figure>`);
+    items.push(`<figure><img src="${r.id}.jpg" alt=""><figcaption>${r.id} · ${c.name || "(bez názvu)"} (${r.town})<br><b style="color:#2878ff">${process.env.LA || "bez pasportu"}:</b> ${fmt(r.A)}<br><b style="color:#e22">${process.env.LB || "s pasportem"}:</b> ${fmt(r.B)}</figcaption></figure>`);
     console.log(r.id, c.name);
   }
   await fs.writeFile(path.join(ROOT, OUT, "index.html"), `<!doctype html><meta charset="utf-8"><title>Slovensko: pasporty měst, A/B</title>

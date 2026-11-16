@@ -1,0 +1,2273 @@
+[
+ {
+  "id": 3,
+  "town": "bratislava",
+  "A": {
+   "name": "Na Slavíne",
+   "lat": 48.1522071,
+   "lon": 17.101778,
+   "bearing": 45.09,
+   "span": {
+    "left": 2.67,
+    "right": 5.58
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.5,
+     ""
+    ],
+    [
+     "pruh",
+     3.3,
+     ""
+    ],
+    [
+     "parkovani",
+     1.6,
+     ""
+    ],
+    [
+     "chodnik",
+     1.85,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "Na Slavíne",
+   "lat": 48.1522071,
+   "lon": 17.101778,
+   "bearing": 45.09,
+   "span": {
+    "left": 4.92,
+    "right": 5.58
+   },
+   "segments": [
+    [
+     "chodnik",
+     3.75,
+     ""
+    ],
+    [
+     "pruh",
+     3.3,
+     ""
+    ],
+    [
+     "parkovani",
+     1.6,
+     ""
+    ],
+    [
+     "chodnik",
+     1.85,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 17,
+  "town": "bratislava",
+  "A": {
+   "name": "",
+   "lat": 48.1446745,
+   "lon": 17.115911,
+   "bearing": -15.04,
+   "span": {
+    "left": 22,
+    "right": 4.33
+   },
+   "segments": [
+    [
+     "chodnik",
+     26.33,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 48.1446745,
+   "lon": 17.115911,
+   "bearing": -15.04,
+   "span": {
+    "left": 36.57,
+    "right": 4.33
+   },
+   "segments": [
+    [
+     "chodnik",
+     40.9,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 26,
+  "town": "dubravka",
+  "A": {
+   "name": "",
+   "lat": 48.1829708,
+   "lon": 17.0401805,
+   "bearing": -41.32,
+   "span": {
+    "left": 6.62,
+    "right": 13.58
+   },
+   "segments": [
+    [
+     "parkovani",
+     0.35,
+     ""
+    ],
+    [
+     "nezname",
+     3.7,
+     ""
+    ],
+    [
+     "parkovani",
+     5.05,
+     ""
+    ],
+    [
+     "nezname",
+     4.7,
+     ""
+    ],
+    [
+     "chodnik",
+     6.4,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 48.1829708,
+   "lon": 17.0401805,
+   "bearing": -41.32,
+   "span": {
+    "left": 6.62,
+    "right": 32.23
+   },
+   "segments": [
+    [
+     "parkovani",
+     0.35,
+     ""
+    ],
+    [
+     "chodnik",
+     3.65,
+     ""
+    ],
+    [
+     "parkovani",
+     5.1,
+     ""
+    ],
+    [
+     "zelen",
+     4.7,
+     ""
+    ],
+    [
+     "chodnik",
+     12.4,
+     ""
+    ],
+    [
+     "zelen",
+     6.45,
+     ""
+    ],
+    [
+     "chodnik",
+     2.4,
+     ""
+    ],
+    [
+     "zelen",
+     3.8,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 27,
+  "town": "dubravka",
+  "A": {
+   "name": "Brižitská",
+   "lat": 48.1905902,
+   "lon": 17.0242992,
+   "bearing": -45.19,
+   "span": {
+    "left": 4.17,
+    "right": 3.78
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.55,
+     ""
+    ],
+    [
+     "pruh",
+     6.4,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "Brižitská",
+   "lat": 48.1905902,
+   "lon": 17.0242992,
+   "bearing": -45.19,
+   "span": {
+    "left": 12.97,
+    "right": 3.78
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.35,
+     ""
+    ],
+    [
+     "plocha",
+     1.4,
+     ""
+    ],
+    [
+     "chodnik",
+     6.6,
+     ""
+    ],
+    [
+     "pruh",
+     6.4,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 28,
+  "town": "dubravka",
+  "A": {
+   "name": "Sekurisova",
+   "lat": 48.1911937,
+   "lon": 17.0395448,
+   "bearing": -14.6,
+   "span": {
+    "left": 6.32,
+    "right": 4.53
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.05,
+     ""
+    ],
+    [
+     "pruh",
+     3.6,
+     ""
+    ],
+    [
+     "pruh",
+     3.6,
+     ""
+    ],
+    [
+     "chodnik",
+     1.6,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "Sekurisova",
+   "lat": 48.1911937,
+   "lon": 17.0395448,
+   "bearing": -14.6,
+   "span": {
+    "left": 6.32,
+    "right": 22.88
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.05,
+     ""
+    ],
+    [
+     "pruh",
+     3.6,
+     ""
+    ],
+    [
+     "pruh",
+     3.6,
+     ""
+    ],
+    [
+     "chodnik",
+     2.45,
+     ""
+    ],
+    [
+     "zelen",
+     15.2,
+     ""
+    ],
+    [
+     "chodnik",
+     2.3,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 30,
+  "town": "dubravka",
+  "A": {
+   "name": "Fedákova",
+   "lat": 48.1940285,
+   "lon": 17.0331194,
+   "bearing": -14.09,
+   "span": {
+    "left": 22,
+    "right": 13.78
+   },
+   "segments": [
+    [
+     "chodnik",
+     10.57,
+     ""
+    ],
+    [
+     "nezname",
+     5.5,
+     ""
+    ],
+    [
+     "chodnik",
+     2.1,
+     ""
+    ],
+    [
+     "pruh",
+     4.5,
+     ""
+    ],
+    [
+     "krajnice",
+     1.7,
+     ""
+    ],
+    [
+     "parkovani",
+     2.35,
+     ""
+    ],
+    [
+     "chodnik",
+     1.65,
+     ""
+    ],
+    [
+     "nezname",
+     7.4,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "Fedákova",
+   "lat": 48.1940285,
+   "lon": 17.0331194,
+   "bearing": -14.09,
+   "span": {
+    "left": 22,
+    "right": 13.78
+   },
+   "segments": [
+    [
+     "chodnik",
+     10.57,
+     ""
+    ],
+    [
+     "nezname",
+     5.5,
+     ""
+    ],
+    [
+     "chodnik",
+     2.1,
+     ""
+    ],
+    [
+     "pruh",
+     4.5,
+     ""
+    ],
+    [
+     "krajnice",
+     1.87,
+     ""
+    ],
+    [
+     "parkovani",
+     2.18,
+     ""
+    ],
+    [
+     "chodnik",
+     3.2,
+     ""
+    ],
+    [
+     "zelen",
+     5.85,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 31,
+  "town": "dubravka",
+  "A": {
+   "name": "Popovova",
+   "lat": 48.1899869,
+   "lon": 17.0279374,
+   "bearing": -89.26,
+   "span": {
+    "left": 5.92,
+    "right": 5.88
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.3,
+     ""
+    ],
+    [
+     "pruh",
+     3.45,
+     ""
+    ],
+    [
+     "pruh",
+     3.45,
+     ""
+    ],
+    [
+     "chodnik",
+     2.6,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "Popovova",
+   "lat": 48.1899869,
+   "lon": 17.0279374,
+   "bearing": -89.26,
+   "span": {
+    "left": 6.27,
+    "right": 5.88
+   },
+   "segments": [
+    [
+     "nezname",
+     0.35,
+     ""
+    ],
+    [
+     "chodnik",
+     2.3,
+     ""
+    ],
+    [
+     "pruh",
+     3.45,
+     ""
+    ],
+    [
+     "pruh",
+     3.45,
+     ""
+    ],
+    [
+     "chodnik",
+     2.6,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 32,
+  "town": "dubravka",
+  "A": {
+   "name": "Plachého",
+   "lat": 48.182183,
+   "lon": 17.031679,
+   "bearing": -87.62,
+   "span": {
+    "left": 2.72,
+    "right": 2.83
+   },
+   "segments": [
+    [
+     "pruh",
+     2.77,
+     ""
+    ],
+    [
+     "pruh",
+     2.77,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "Plachého",
+   "lat": 48.182183,
+   "lon": 17.031679,
+   "bearing": -87.62,
+   "span": {
+    "left": 4.12,
+    "right": 2.83
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.3,
+     ""
+    ],
+    [
+     "pruh",
+     2.82,
+     ""
+    ],
+    [
+     "pruh",
+     2.82,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 36,
+  "town": "dubravka",
+  "A": {
+   "name": "Gallayova",
+   "lat": 48.1937529,
+   "lon": 17.0323647,
+   "bearing": 75.14,
+   "span": {
+    "left": 5.47,
+    "right": 10.13
+   },
+   "segments": [
+    [
+     "nezname",
+     1.05,
+     ""
+    ],
+    [
+     "chodnik",
+     1.8,
+     ""
+    ],
+    [
+     "krajnice",
+     1.97,
+     ""
+    ],
+    [
+     "pruh",
+     4.2,
+     ""
+    ],
+    [
+     "parkovani",
+     6.58,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "Gallayova",
+   "lat": 48.1937529,
+   "lon": 17.0323647,
+   "bearing": 75.14,
+   "span": {
+    "left": 5.47,
+    "right": 10.13
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.85,
+     ""
+    ],
+    [
+     "krajnice",
+     1.97,
+     ""
+    ],
+    [
+     "pruh",
+     4.2,
+     ""
+    ],
+    [
+     "parkovani",
+     6.58,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 37,
+  "town": "dubravka",
+  "A": {
+   "name": "Tranovského",
+   "lat": 48.1909888,
+   "lon": 17.0270987,
+   "bearing": -89.36,
+   "span": {
+    "left": 6.77,
+    "right": 13.43
+   },
+   "segments": [
+    [
+     "chodnik",
+     2,
+     ""
+    ],
+    [
+     "pruh",
+     4.27,
+     ""
+    ],
+    [
+     "pruh",
+     4.27,
+     ""
+    ],
+    [
+     "chodnik",
+     3.8,
+     ""
+    ],
+    [
+     "nezname",
+     5.85,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "Tranovského",
+   "lat": 48.1909888,
+   "lon": 17.0270987,
+   "bearing": -89.36,
+   "span": {
+    "left": 18.67,
+    "right": 13.43
+   },
+   "segments": [
+    [
+     "chodnik",
+     13.9,
+     ""
+    ],
+    [
+     "pruh",
+     4.27,
+     ""
+    ],
+    [
+     "pruh",
+     4.27,
+     ""
+    ],
+    [
+     "chodnik",
+     3.8,
+     ""
+    ],
+    [
+     "zelen",
+     4.75,
+     ""
+    ],
+    [
+     "chodnik",
+     1.1,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 40,
+  "town": "dubravka",
+  "A": {
+   "name": "",
+   "lat": 48.1895631,
+   "lon": 17.038198,
+   "bearing": -34.02,
+   "span": {
+    "left": 4.12,
+    "right": 7.93
+   },
+   "segments": [
+    [
+     "chodnik",
+     6.1,
+     ""
+    ],
+    [
+     "nezname",
+     5.95,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 48.1895631,
+   "lon": 17.038198,
+   "bearing": -34.02,
+   "span": {
+    "left": 4.12,
+    "right": 7.93
+   },
+   "segments": [
+    [
+     "chodnik",
+     7.15,
+     ""
+    ],
+    [
+     "zelen",
+     4.9,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 44,
+  "town": "presov",
+  "A": {
+   "name": "Fučíkova",
+   "lat": 48.9949318,
+   "lon": 21.2240238,
+   "bearing": 69.99,
+   "span": {
+    "left": 10.27,
+    "right": 9.93
+   },
+   "segments": [
+    [
+     "nezname",
+     5.2,
+     ""
+    ],
+    [
+     "chodnik",
+     1.12,
+     ""
+    ],
+    [
+     "stromorad",
+     1.18,
+     ""
+    ],
+    [
+     "pruh",
+     2.62,
+     ""
+    ],
+    [
+     "pruh",
+     2.62,
+     ""
+    ],
+    [
+     "stromorad",
+     1.28,
+     ""
+    ],
+    [
+     "chodnik",
+     1.22,
+     ""
+    ],
+    [
+     "nezname",
+     4.95,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "Fučíkova",
+   "lat": 48.9949318,
+   "lon": 21.2240238,
+   "bearing": 69.99,
+   "span": {
+    "left": 10.27,
+    "right": 9.93
+   },
+   "segments": [
+    [
+     "chodnik",
+     6.32,
+     ""
+    ],
+    [
+     "stromorad",
+     1.18,
+     ""
+    ],
+    [
+     "pruh",
+     2.62,
+     ""
+    ],
+    [
+     "pruh",
+     2.62,
+     ""
+    ],
+    [
+     "stromorad",
+     1.28,
+     ""
+    ],
+    [
+     "chodnik",
+     6.17,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 47,
+  "town": "presov",
+  "A": {
+   "name": "17. novembra",
+   "lat": 48.9868811,
+   "lon": 21.2382343,
+   "bearing": -29.83,
+   "span": {
+    "left": 4.22,
+    "right": 13.03
+   },
+   "segments": [
+    [
+     "cyklopruh",
+     1.07,
+     ""
+    ],
+    [
+     "pruh",
+     3.2,
+     ""
+    ],
+    [
+     "pruh",
+     3.2,
+     ""
+    ],
+    [
+     "cyklopruh",
+     1.27,
+     ""
+    ],
+    [
+     "stromorad",
+     1.5,
+     ""
+    ],
+    [
+     "nezname",
+     0.8,
+     ""
+    ],
+    [
+     "chodnik",
+     3.1,
+     ""
+    ],
+    [
+     "nezname",
+     3.1,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "17. novembra",
+   "lat": 48.9868811,
+   "lon": 21.2382343,
+   "bearing": -29.83,
+   "span": {
+    "left": 9.17,
+    "right": 13.03
+   },
+   "segments": [
+    [
+     "chodnik",
+     2,
+     ""
+    ],
+    [
+     "zelen",
+     2.85,
+     ""
+    ],
+    [
+     "cyklopruh",
+     1.17,
+     ""
+    ],
+    [
+     "pruh",
+     3.2,
+     ""
+    ],
+    [
+     "pruh",
+     3.2,
+     ""
+    ],
+    [
+     "cyklopruh",
+     1.27,
+     ""
+    ],
+    [
+     "stromorad",
+     2.3,
+     ""
+    ],
+    [
+     "chodnik",
+     6.2,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 48,
+  "town": "presov",
+  "A": {
+   "name": "17. novembra",
+   "lat": 48.9886566,
+   "lon": 21.2367294,
+   "bearing": -29.17,
+   "span": {
+    "left": 4.57,
+    "right": 13.83
+   },
+   "segments": [
+    [
+     "cyklopruh",
+     1.52,
+     ""
+    ],
+    [
+     "pruh",
+     3.1,
+     ""
+    ],
+    [
+     "pruh",
+     2.88,
+     ""
+    ],
+    [
+     "cyklopruh",
+     1.5,
+     ""
+    ],
+    [
+     "stromorad",
+     1.3,
+     ""
+    ],
+    [
+     "nezname",
+     0.85,
+     ""
+    ],
+    [
+     "chodnik",
+     2.8,
+     ""
+    ],
+    [
+     "zelen",
+     3.8,
+     ""
+    ],
+    [
+     "nezname",
+     0.65,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "17. novembra",
+   "lat": 48.9886566,
+   "lon": 21.2367294,
+   "bearing": -29.17,
+   "span": {
+    "left": 10.07,
+    "right": 13.83
+   },
+   "segments": [
+    [
+     "chodnik",
+     2,
+     ""
+    ],
+    [
+     "stromorad",
+     3.5,
+     ""
+    ],
+    [
+     "cyklopruh",
+     1.52,
+     ""
+    ],
+    [
+     "pruh",
+     3.1,
+     ""
+    ],
+    [
+     "pruh",
+     2.88,
+     ""
+    ],
+    [
+     "cyklopruh",
+     1.5,
+     ""
+    ],
+    [
+     "stromorad",
+     2.15,
+     ""
+    ],
+    [
+     "chodnik",
+     2.8,
+     ""
+    ],
+    [
+     "zelen",
+     3.85,
+     ""
+    ],
+    [
+     "plocha",
+     0.6,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 54,
+  "town": "presov",
+  "A": {
+   "name": "Plzenská",
+   "lat": 48.9909455,
+   "lon": 21.2478225,
+   "bearing": 60.35,
+   "span": {
+    "left": 8.62,
+    "right": 15.08
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.95,
+     ""
+    ],
+    [
+     "stromorad",
+     3.6,
+     ""
+    ],
+    [
+     "pruh",
+     3.62,
+     ""
+    ],
+    [
+     "pruh",
+     3.62,
+     ""
+    ],
+    [
+     "stromorad",
+     4.75,
+     ""
+    ],
+    [
+     "chodnik",
+     2.45,
+     ""
+    ],
+    [
+     "nezname",
+     3.7,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "Plzenská",
+   "lat": 48.9909455,
+   "lon": 21.2478225,
+   "bearing": 60.35,
+   "span": {
+    "left": 8.62,
+    "right": 15.08
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.95,
+     ""
+    ],
+    [
+     "stromorad",
+     3.6,
+     ""
+    ],
+    [
+     "pruh",
+     3.62,
+     ""
+    ],
+    [
+     "pruh",
+     3.62,
+     ""
+    ],
+    [
+     "stromorad",
+     4.75,
+     ""
+    ],
+    [
+     "chodnik",
+     6.15,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 55,
+  "town": "presov",
+  "A": {
+   "name": "Letná",
+   "lat": 49.0097856,
+   "lon": 21.2350238,
+   "bearing": -4.72,
+   "span": {
+    "left": 3.12,
+    "right": 1.78
+   },
+   "segments": [
+    [
+     "pruh",
+     4.9,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "Letná",
+   "lat": 49.0097856,
+   "lon": 21.2350238,
+   "bearing": -4.72,
+   "span": {
+    "left": 3.12,
+    "right": 9.83
+   },
+   "segments": [
+    [
+     "pruh",
+     4.9,
+     ""
+    ],
+    [
+     "chodnik",
+     8.05,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 57,
+  "town": "presov",
+  "A": {
+   "name": "Janka Borodáča",
+   "lat": 48.9916386,
+   "lon": 21.2428617,
+   "bearing": 6.03,
+   "span": {
+    "left": 9.82,
+    "right": 5.93
+   },
+   "segments": [
+    [
+     "nezname",
+     1.25,
+     ""
+    ],
+    [
+     "stromorad",
+     1.05,
+     ""
+    ],
+    [
+     "chodnik",
+     1.82,
+     ""
+    ],
+    [
+     "stromorad",
+     1.68,
+     ""
+    ],
+    [
+     "krajnice",
+     1.35,
+     ""
+    ],
+    [
+     "pruh",
+     4.5,
+     ""
+    ],
+    [
+     "krajnice",
+     1.35,
+     ""
+    ],
+    [
+     "chodnik",
+     2.75,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "Janka Borodáča",
+   "lat": 48.9916386,
+   "lon": 21.2428617,
+   "bearing": 6.03,
+   "span": {
+    "left": 9.82,
+    "right": 5.93
+   },
+   "segments": [
+    [
+     "plocha",
+     0.8,
+     ""
+    ],
+    [
+     "stromorad",
+     1.5,
+     ""
+    ],
+    [
+     "chodnik",
+     1.82,
+     ""
+    ],
+    [
+     "stromorad",
+     1.68,
+     ""
+    ],
+    [
+     "krajnice",
+     1.35,
+     ""
+    ],
+    [
+     "pruh",
+     4.5,
+     ""
+    ],
+    [
+     "krajnice",
+     1.35,
+     ""
+    ],
+    [
+     "chodnik",
+     2.75,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 63,
+  "town": "presov",
+  "A": {
+   "name": "Petőfiho",
+   "lat": 48.9931951,
+   "lon": 21.2228532,
+   "bearing": -20.23,
+   "span": {
+    "left": 10.37,
+    "right": 10.73
+   },
+   "segments": [
+    [
+     "nezname",
+     5.25,
+     ""
+    ],
+    [
+     "chodnik",
+     2.35,
+     ""
+    ],
+    [
+     "pruh",
+     3.05,
+     ""
+    ],
+    [
+     "pruh",
+     3.05,
+     ""
+    ],
+    [
+     "chodnik",
+     1.9,
+     ""
+    ],
+    [
+     "nezname",
+     5.5,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "Petőfiho",
+   "lat": 48.9931951,
+   "lon": 21.2228532,
+   "bearing": -20.23,
+   "span": {
+    "left": 10.37,
+    "right": 10.73
+   },
+   "segments": [
+    [
+     "chodnik",
+     7.6,
+     ""
+    ],
+    [
+     "pruh",
+     3.05,
+     ""
+    ],
+    [
+     "pruh",
+     3.05,
+     ""
+    ],
+    [
+     "chodnik",
+     7.4,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 69,
+  "town": "zilina",
+  "A": {
+   "name": "Vojtecha Spanyola",
+   "lat": 49.2210964,
+   "lon": 18.7419978,
+   "bearing": -25.52,
+   "span": {
+    "left": 5.67,
+    "right": 23.43
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.85,
+     ""
+    ],
+    [
+     "pruh",
+     3.97,
+     ""
+    ],
+    [
+     "pruh",
+     4.13,
+     ""
+    ],
+    [
+     "chodnik",
+     2.6,
+     ""
+    ],
+    [
+     "nezname",
+     1.3,
+     ""
+    ],
+    [
+     "chodnik",
+     8.75,
+     ""
+    ],
+    [
+     "nezname",
+     2.9,
+     ""
+    ],
+    [
+     "chodnik",
+     3.6,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "Vojtecha Spanyola",
+   "lat": 49.2210964,
+   "lon": 18.7419978,
+   "bearing": -25.52,
+   "span": {
+    "left": 5.67,
+    "right": 25.88
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.85,
+     ""
+    ],
+    [
+     "pruh",
+     3.97,
+     ""
+    ],
+    [
+     "pruh",
+     4.13,
+     ""
+    ],
+    [
+     "chodnik",
+     21.6,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 72,
+  "town": "zilina",
+  "A": {
+   "name": "Potočná",
+   "lat": 49.2185215,
+   "lon": 18.7228412,
+   "bearing": -7.36,
+   "span": {
+    "left": 2.47,
+    "right": 8.63
+   },
+   "segments": [
+    [
+     "pruh",
+     2.77,
+     ""
+    ],
+    [
+     "pruh",
+     2.77,
+     ""
+    ],
+    [
+     "nezname",
+     5.55,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "Potočná",
+   "lat": 49.2185215,
+   "lon": 18.7228412,
+   "bearing": -7.36,
+   "span": {
+    "left": 16.37,
+    "right": 8.63
+   },
+   "segments": [
+    [
+     "plocha",
+     7.85,
+     ""
+    ],
+    [
+     "chodnik",
+     6.05,
+     ""
+    ],
+    [
+     "pruh",
+     2.77,
+     ""
+    ],
+    [
+     "pruh",
+     2.77,
+     ""
+    ],
+    [
+     "chodnik",
+     5.55,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 73,
+  "town": "zilina",
+  "A": {
+   "name": "Na Šefranici",
+   "lat": 49.2258877,
+   "lon": 18.7311824,
+   "bearing": -12.46,
+   "span": {
+    "left": 2.62,
+    "right": 3.58
+   },
+   "segments": [
+    [
+     "pruh",
+     3.77,
+     ""
+    ],
+    [
+     "krajnice",
+     2.43,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "Na Šefranici",
+   "lat": 49.2258877,
+   "lon": 18.7311824,
+   "bearing": -12.46,
+   "span": {
+    "left": 4.62,
+    "right": 5.38
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.9,
+     ""
+    ],
+    [
+     "pruh",
+     3.87,
+     ""
+    ],
+    [
+     "krajnice",
+     2.43,
+     ""
+    ],
+    [
+     "chodnik",
+     1.8,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 77,
+  "town": "zilina",
+  "A": {
+   "name": "Hodžova",
+   "lat": 49.2241914,
+   "lon": 18.7394093,
+   "bearing": -31.13,
+   "span": {
+    "left": 2.07,
+    "right": 2.98
+   },
+   "segments": [
+    [
+     "nezname",
+     0.5,
+     ""
+    ],
+    [
+     "plocha",
+     4.55,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "Hodžova",
+   "lat": 49.2241914,
+   "lon": 18.7394093,
+   "bearing": -31.13,
+   "span": {
+    "left": 2.07,
+    "right": 2.98
+   },
+   "segments": [
+    [
+     "chodnik",
+     0.45,
+     ""
+    ],
+    [
+     "plocha",
+     4.6,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 80,
+  "town": "zilina",
+  "A": {
+   "name": "Cestárska",
+   "lat": 49.2259347,
+   "lon": 18.7244722,
+   "bearing": 86.4,
+   "span": {
+    "left": 2.27,
+    "right": 4.58
+   },
+   "segments": [
+    [
+     "pruh",
+     3.98,
+     ""
+    ],
+    [
+     "pruh",
+     2.86,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "Cestárska",
+   "lat": 49.2259347,
+   "lon": 18.7244722,
+   "bearing": 86.4,
+   "span": {
+    "left": 14.27,
+    "right": 4.58
+   },
+   "segments": [
+    [
+     "plocha",
+     5.95,
+     ""
+    ],
+    [
+     "chodnik",
+     6,
+     ""
+    ],
+    [
+     "pruh",
+     4.04,
+     ""
+    ],
+    [
+     "pruh",
+     2.86,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 84,
+  "town": "zilina",
+  "A": {
+   "name": "Framborská",
+   "lat": 49.2268863,
+   "lon": 18.7339635,
+   "bearing": -58.32,
+   "span": {
+    "left": 9.27,
+    "right": 22
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.35,
+     ""
+    ],
+    [
+     "nezname",
+     1.7,
+     ""
+    ],
+    [
+     "parkovani",
+     2,
+     ""
+    ],
+    [
+     "pruh",
+     3.22,
+     ""
+    ],
+    [
+     "pruh",
+     3.22,
+     ""
+    ],
+    [
+     "chodnik",
+     3.55,
+     ""
+    ],
+    [
+     "plocha",
+     15.23,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "Framborská",
+   "lat": 49.2268863,
+   "lon": 18.7339635,
+   "bearing": -58.32,
+   "span": {
+    "left": 9.27,
+    "right": 22
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.35,
+     ""
+    ],
+    [
+     "zelen",
+     1.65,
+     ""
+    ],
+    [
+     "parkovani",
+     2,
+     ""
+    ],
+    [
+     "pruh",
+     3.25,
+     ""
+    ],
+    [
+     "pruh",
+     3.25,
+     ""
+    ],
+    [
+     "chodnik",
+     3.55,
+     ""
+    ],
+    [
+     "plocha",
+     15.23,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 94,
+  "town": "bystrica",
+  "A": {
+   "name": "",
+   "lat": 48.7365598,
+   "lon": 19.1637711,
+   "bearing": 82.99,
+   "span": {
+    "left": 10.74,
+    "right": 2.93
+   },
+   "segments": [
+    [
+     "zelen",
+     4.32,
+     ""
+    ],
+    [
+     "chodnik",
+     2.4,
+     ""
+    ],
+    [
+     "krajnice",
+     1.17,
+     ""
+    ],
+    [
+     "pruh",
+     4,
+     ""
+    ],
+    [
+     "krajnice",
+     1.17,
+     ""
+    ],
+    [
+     "nezname",
+     0.6,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 48.7365598,
+   "lon": 19.1637711,
+   "bearing": 82.99,
+   "span": {
+    "left": 10.74,
+    "right": 2.93
+   },
+   "segments": [
+    [
+     "zelen",
+     4.32,
+     ""
+    ],
+    [
+     "chodnik",
+     2.4,
+     ""
+    ],
+    [
+     "krajnice",
+     1.2,
+     ""
+    ],
+    [
+     "pruh",
+     4,
+     ""
+    ],
+    [
+     "krajnice",
+     1.2,
+     ""
+    ],
+    [
+     "chodnik",
+     0.55,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 96,
+  "town": "bystrica",
+  "A": {
+   "name": "Československej armády",
+   "lat": 48.7388228,
+   "lon": 19.1572278,
+   "bearing": 72.26,
+   "span": {
+    "left": 31.03,
+    "right": 14.78
+   },
+   "segments": [
+    [
+     "chodnik",
+     3.4,
+     ""
+    ],
+    [
+     "pruh",
+     4,
+     ""
+    ],
+    [
+     "pruh",
+     4,
+     ""
+    ],
+    [
+     "krajnice",
+     1.65,
+     ""
+    ],
+    [
+     "chodnik",
+     2.25,
+     ""
+    ],
+    [
+     "zelen",
+     10.2,
+     ""
+    ],
+    [
+     "chodnik",
+     2.3,
+     ""
+    ],
+    [
+     "pruh",
+     3.77,
+     ""
+    ],
+    [
+     "pruh",
+     3.33,
+     ""
+    ],
+    [
+     "chodnik",
+     4.2,
+     ""
+    ],
+    [
+     "nezname",
+     6.7,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "Československej armády",
+   "lat": 48.7388228,
+   "lon": 19.1572278,
+   "bearing": 72.26,
+   "span": {
+    "left": 31.03,
+    "right": 14.78
+   },
+   "segments": [
+    [
+     "chodnik",
+     3.4,
+     ""
+    ],
+    [
+     "pruh",
+     4,
+     ""
+    ],
+    [
+     "pruh",
+     4,
+     ""
+    ],
+    [
+     "krajnice",
+     1.65,
+     ""
+    ],
+    [
+     "chodnik",
+     2.25,
+     ""
+    ],
+    [
+     "zelen",
+     10.2,
+     ""
+    ],
+    [
+     "chodnik",
+     2.3,
+     ""
+    ],
+    [
+     "pruh",
+     3.77,
+     ""
+    ],
+    [
+     "pruh",
+     3.33,
+     ""
+    ],
+    [
+     "chodnik",
+     10.2,
+     ""
+    ],
+    [
+     "zelen",
+     0.7,
+     ""
+    ]
+   ]
+  }
+ },
+ {
+  "id": 107,
+  "town": "bystrica",
+  "A": {
+   "name": "R1",
+   "lat": 48.7464801,
+   "lon": 19.1383996,
+   "bearing": 15.1,
+   "span": {
+    "left": 35.13,
+    "right": 13.68
+   },
+   "segments": [
+    [
+     "pruh",
+     3.62,
+     ""
+    ],
+    [
+     "pruh",
+     3.62,
+     ""
+    ],
+    [
+     "nezname",
+     2.55,
+     ""
+    ],
+    [
+     "krajnice",
+     1.8,
+     ""
+    ],
+    [
+     "pruh",
+     3.75,
+     ""
+    ],
+    [
+     "krajnice",
+     1.8,
+     ""
+    ],
+    [
+     "zelen",
+     1.3,
+     ""
+    ],
+    [
+     "nezname",
+     0.45,
+     ""
+    ],
+    [
+     "pruh",
+     2.88,
+     ""
+    ],
+    [
+     "pruh",
+     3.7,
+     ""
+    ],
+    [
+     "pruh",
+     4.08,
+     ""
+    ],
+    [
+     "nezname",
+     1.25,
+     ""
+    ],
+    [
+     "krajnice",
+     0.67,
+     ""
+    ],
+    [
+     "pruh",
+     3.7,
+     ""
+    ],
+    [
+     "pruh",
+     3.4,
+     ""
+    ],
+    [
+     "krajnice",
+     0.98,
+     ""
+    ],
+    [
+     "nezname",
+     9.25,
+     ""
+    ]
+   ]
+  },
+  "B": {
+   "name": "R1",
+   "lat": 48.7464801,
+   "lon": 19.1383996,
+   "bearing": 15.1,
+   "span": {
+    "left": 35.13,
+    "right": 13.68
+   },
+   "segments": [
+    [
+     "pruh",
+     3.62,
+     ""
+    ],
+    [
+     "pruh",
+     3.62,
+     ""
+    ],
+    [
+     "nezname",
+     2.55,
+     ""
+    ],
+    [
+     "krajnice",
+     1.8,
+     ""
+    ],
+    [
+     "pruh",
+     3.75,
+     ""
+    ],
+    [
+     "krajnice",
+     1.8,
+     ""
+    ],
+    [
+     "zelen",
+     1.3,
+     ""
+    ],
+    [
+     "nezname",
+     0.45,
+     ""
+    ],
+    [
+     "pruh",
+     2.88,
+     ""
+    ],
+    [
+     "pruh",
+     3.7,
+     ""
+    ],
+    [
+     "pruh",
+     4.08,
+     ""
+    ],
+    [
+     "nezname",
+     1.25,
+     ""
+    ],
+    [
+     "krajnice",
+     0.67,
+     ""
+    ],
+    [
+     "pruh",
+     3.7,
+     ""
+    ],
+    [
+     "pruh",
+     3.4,
+     ""
+    ],
+    [
+     "krajnice",
+     1.03,
+     ""
+    ],
+    [
+     "chodnik",
+     6,
+     ""
+    ],
+    [
+     "plocha",
+     3.2,
+     ""
+    ]
+   ]
+  }
+ }
+]

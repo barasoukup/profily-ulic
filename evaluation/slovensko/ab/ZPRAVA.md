@@ -202,3 +202,32 @@ Zdroje našel agent na Haiku. Zapojené jsou v `site.js` NETS, podle místa řez
 **Vyřazené:** Třebíč a Žilina (0/10, vrstvy pokrývají jen pár ulic).
 
 **Licence:** kromě Prešova žádná uvedená.
+
+# Za pasportem města až k domům (16. 11. 2026)
+
+Bára: Poštová v Bratislavě a 17. novembra v Prešově končily na okraji pasportu, ne u domů. Pasport má jen plochy, o které
+se město stará; za ním leží stromořadí, předzahrádky, dvory nebo chodník, který vede někdo jiný.
+
+**Pravidlo** (`ortho-osm.js` `besidePassport`, zapnuté, `?off=beside` vypne):
+- Na každé straně od osy ven hledá konec: dům z pasportu nebo OSM, plot či zeď z OSM, vnější hranu samostatně
+  zakresleného chodníku z OSM.
+- Doplní nepokryté kusy mezi osou a tím koncem, jen leží-li konec do 15 m za poslední plochou. Jinak profil končí jako
+  dřív (dřívější pokus `?vypln=1` doplňoval bez domu a dával chodník přes trávník).
+- Kusy dělí čáry mapy města. Druh kusu určí značka technické mapy, trávník nebo parkoviště ZBGIS, jinak snímek: zeleň
+  od podílu 0,22.
+- Chodník jen na straně, kde pasport chodník nemá. Za chodníkem pasportu je to „plocha před domem“.
+- Nic u dálnic a rychlostních silnic (R1 v Banské Bystrici: chodník k hale za příkopem).
+
+**A/B:** 53 řezů s pasportem (`vzorek-vedle.json`), každý dvakrát hned po sobě (bez doplnění a s ním, služby měst
+a ZBGIS občas neodpoví, proto ne mezi koly). Obrázky přes ortofoto ZBGIS v `obrazky-vedle/` a `obrazky-vedle-3/`.
+
+| | řezů |
+|---|---|
+| změněno | 27 (26 ze vzorku a Poštová z odkazu) |
+| lépe | 14 (Na Slavíne, Brižitská, Fedákova, 17. novembra 2×, Fučíkova, Plzenská, Potočná, Cestárska, Framborská, Vojtecha Spanyola, Poštová, Dúbravka 26 a 40) |
+| hůř | 3 (Plachého: chodník přes trávu; Letná a Prešov 50: zahrada pod stromy jako chodník nebo plocha) |
+| smíšeně | 3 (Tranovského: vpravo zeleň dobře, vlevo trávník jako plocha; Petőfiho; Čs. armády) |
+| beze změny podstaty | 7 (zbytky „Neurčeno“ pod 1,3 m, Na Šefranici s chodníky z OSM) |
+
+**Slabina:** trávník pod korunami a vyschlý trávník má na slovenském ortofotu stejnou zelenost jako dlažba (0,12–0,32
+proti 0,04–0,20), pomůže jen trávník ZBGIS, kde ho má. Regrese v Praze a Brně beze změny (pravidlo jen u pasportu).

@@ -2,7 +2,7 @@ import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TR
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes, SK_ORTHO } from "./lanes-ortho.js";
-import { orthoOsmPolys, P as ORTHO_P } from "./ortho-osm.js";
+import { orthoOsmPolys, besidePassport, P as ORTHO_P } from "./ortho-osm.js";
 // ?off=… switches named parts of the estimate off (the A/B tests, evaluation/ortofoto-osm/regrese.mjs).
 { const off = new URLSearchParams(location.search).get("off"); if (off) ORTHO_P.off = new Set(off.split(",")); }
 import { underground, KINDS as NET_KINDS, netAt } from "./site.js";
@@ -351,16 +351,11 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
         if (!again.estimate) { result = again; orthoOsm = fb; }
       }
     }
-    // A town's passport (Slovakia) keeps the roads it maintains: beyond it, up to the houses, the estimate's sidewalks
-    // and green from the orthophoto (Bára: Poštová, 17. novembra ended at the passport's edge); its carriageway and
-    // parking are not taken, the passport's surfaces come first. Off unless ?vypln=1: the A/B test of 16. 11. 2026 on
-    // 53 passport cuts made it mixed (Tranovského: 13.9 m of sidewalk over a lawn; the image's green is weak there).
-    if (!orthoOsm && m.value?.passport && new URLSearchParams(location.search).get("vypln") === "1") {
-      const fb = orthoOsmPolys({ osm, frame, dir, way: near.way, st: laneImg?.st, mapRuns: [], edges: k.status === "fulfilled" ? k.value?.edges || [] : [], widths: [], areas: [], symbols: [] });
-      // Only the estimate's own strips beside the street (its sidewalks and their rest), not OSM's whole green areas.
-      // Strips up to 12 m across (the estimate's green has no limit of its own: a park up to a house 35 m away).
-      const across = (p) => { const r = p.rings?.[0]; return r && r.length >= 2 ? Math.hypot(r[1][0] - r[0][0], r[1][1] - r[0][1]) : Infinity; };
-      const beside = (fb || []).filter((p) => p.orthoOsm && !/\(OSM\)$/.test(p.label) && (p.code === 702 || p.code === 401 || p.code === 1003) && across(p) <= 12);
+    // A town's passport (Slovakia) keeps the roads it maintains: beyond it, up to a house or a fence of OSM standing
+    // close by, the pieces between the town's map lines, sidewalk or green (ortho-osm.js besidePassport; Bára: Poštová,
+    // 17. novembra ended at the passport's edge). The passport's own surfaces stay first.
+    if (!orthoOsm && m.value?.passport) {
+      const beside = besidePassport({ osm, frame, dir, way: near.way, st: laneImg?.st, edges: k.status === "fulfilled" ? k.value?.edges || [] : [], symbols: k.status === "fulfilled" ? k.value?.symbols || [] : [], areas: k.status === "fulfilled" ? k.value?.areas || [] : [], polys });
       if (beside.length) {
         const again = deriveProfile({ ...args, polys: [...polys, ...beside] });
         if (!again.estimate) result = again;

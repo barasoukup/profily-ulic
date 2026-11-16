@@ -58,6 +58,12 @@ z OSM“.
   Slovensko, dotaz má slovenská písmena (ä ô ľ ĺ ŕ) nebo RÚIAN nic nenašel (`search-sk.js`). „Hlavná 12 Košice“
   najde adresu, „Hlavná Košice“ ulici v Košicích.
 - Ilustrace, mobiliář a značky zůstávají české (návrh slovenských v `evaluation/slovensko/ZPRAVA.md`).
+- **Za pasportem města** (Bára 16. 11. 2026, Poštová, 17. novembra): pasport končí, kde končí plochy, o které se město
+  stará. Od osy ven k nejbližšímu domu (z pasportu nebo OSM), plotu či zdi z OSM nebo k vnější hraně samostatně
+  zakresleného chodníku OSM se nepokryté kusy doplní (`ortho-osm.js` `besidePassport`), jen když ten konec leží do 15 m
+  za poslední plochou. Kus dělí čáry mapy města; druh dá značka mapy, trávník nebo parkoviště ZBGIS, jinak snímek
+  (zelený od 0,22). Chodník jen na straně, kde pasport chodník nemá; za chodníkem pasportu je to „plocha před domem“.
+  U dálnic a rychlostních silnic nic. Vše je odhad. A/B v `evaluation/slovensko/ab/ZPRAVA.md`; `?off=beside` vypne.
 
 ## Odkud jsou data (Praha)
 

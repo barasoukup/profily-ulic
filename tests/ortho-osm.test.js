@@ -2,7 +2,7 @@
 // a 7 m carriageway (dark) between lighter sidewalks, OSM houses 8 m from the axis on both sides.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { orthoOsmPolys, osmAlong, osmRoad } from "../pilot/public/ortho-osm.js";
+import { orthoOsmPolys, osmAlong, osmRoad, besidePassport } from "../pilot/public/ortho-osm.js";
 import { localFrame, deriveProfile } from "../pilot/public/derive.js";
 
 const frame = localFrame(50.08, 14.43), dir = [0, 1]; // the street runs north; t across it = −x (west is +t)
@@ -176,4 +176,22 @@ test("ortofoto a OSM: značka plochy technické mapy mezi čarami určí druh ko
   const polys = orthoOsmPolys({ osm: { elements: els }, frame, dir, way: els[0], st: null, edges: [line(3.2), line(-3.2), line(-5.5)], symbols: [{ x: lawn.lon, y: lawn.lat, code: 401 }] });
   const green = polys.filter((p) => p.code === 401 && p.label.includes("technická mapa")).map((p) => p.rings[0].map(([x]) => -x)).map((ts) => [Math.min(...ts), Math.max(...ts)]);
   assert.ok(green.some(([a, b]) => Math.abs(a - 3.2) < 0.1 && Math.abs(b - 5.5) < 0.1), JSON.stringify(green));
+});
+
+test("za pasportem města: k domu chodník, kde strana chodník nemá, za chodníkem pasportu plocha; ne u dálnice ani k dalekému domu", () => {
+  const els = osm().elements;
+  // The passport: the roadway x ∈ [−3, 3] and a sidewalk x ∈ [3, 5] on one side (frame XY); houses from |x| = 8.
+  const box = (code, x0, x1) => ({ code, rings: [[[x0, -10], [x1, -10], [x1, 10], [x0, 10], [x0, -10]]], bbox: [x0, -10, x1, 10] });
+  const polys = [box(701, -3, 3), box(702, 3, 5)];
+  const span = (p) => { const xs = p.rings[0].map(([x]) => x); return [Math.min(...xs), Math.max(...xs)].map((x) => +x.toFixed(1)); };
+  const out = besidePassport({ osm: { elements: els }, frame, dir, way: els[0], st: null, polys });
+  // Beyond the passport's sidewalk up to the house (x 5 … 8): a paved area, not a second sidewalk.
+  assert.ok(out.some((p) => p.code === 1003 && Math.abs(span(p)[0] - 5) < 0.15 && Math.abs(span(p)[1] - 8) < 0.15), JSON.stringify(out.map((p) => [p.code, span(p)])));
+  // The other side has no sidewalk: one from the roadway to the house (x −8 … −3).
+  assert.ok(out.some((p) => p.code === 702 && Math.abs(span(p)[0] + 8) < 0.15 && Math.abs(span(p)[1] + 3) < 0.15), JSON.stringify(out.map((p) => [p.code, span(p)])));
+  assert.ok(out.every((p) => p.guess));
+  // Not beside a motorway; nothing where the house stands more than 15 m past the passport.
+  assert.deepEqual(besidePassport({ osm: { elements: els }, frame, dir, way: { ...els[0], tags: { highway: "motorway" } }, st: null, polys }), []);
+  const far = [els[0], house(25, 30), house(-30, -25)];
+  assert.deepEqual(besidePassport({ osm: { elements: far }, frame, dir, way: far[0], st: null, polys }), []);
 });
