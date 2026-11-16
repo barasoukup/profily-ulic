@@ -3,6 +3,7 @@
 // that the drawing needs must be numbers, a part without a usable width is an error.
 import { TYPES, SOURCES, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, LAMP_HEIGHTS, isTurn } from "./types.js";
 import { SIGNS, signChoice, MAX_PER_PART } from "./signs.js";
+import { PASSPORT_NAMES } from "./towns/pasporty-names.js";
 import { t } from "./i18n.js";
 
 const EDGE_KINDS = new Set(["budova", "stavba", "zahrada", "zelen", "voda", "parkoviste", "plot", "volno"]);
@@ -109,6 +110,6 @@ export function cleanCut(c) {
   const span = c.span && num(c.span.left, 0, 70) && num(c.span.right, 0, 70) ? { left: c.span.left, right: c.span.right } : undefined;
   // What the export credits (app.js, city.js creditLines): a region's name and two flags, nothing else.
   const src = c.sources || {};
-  const sources = { ...(typeof src.region === "string" && src.region && { region: src.region.slice(0, 80) }), ...(src.dmvs === true && { dmvs: true }), ...(src.ortho === true && { ortho: true }), ...(["ipr", "brno", "plzen"].includes(src.orthoCity) && { orthoCity: src.orthoCity }) };
+  const sources = { ...(typeof src.region === "string" && src.region && { region: src.region.slice(0, 80) }), ...(src.dmvs === true && { dmvs: true }), ...(src.ortho === true && { ortho: true }), ...(["ipr", "brno", "plzen"].includes(src.orthoCity) && { orthoCity: src.orthoCity }), ...(Object.hasOwn(PASSPORT_NAMES, src.passport) && { passport: src.passport }) };
   return { ...c, name: String(c.name || ""), note: typeof c.note === "string" ? c.note : "", reach, span, sources };
 }

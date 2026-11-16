@@ -1,8 +1,9 @@
-# A/B nových pasportů měst (připraveno 15. 11. 2026, spustit po odstávce DMVS)
+# A/B pasportů měst (připraveno 15. 11. 2026, spustit po odstávce DMVS)
 
-Zdroje našlo vlákno „Slovensko“ (13.–15. 11. 2026). Varianta `variants/pasporty-nove.mjs` dává plochy pasportu
-města a jinde technickou mapu ČÚZK, jako moduly Karviné a Třebíče. Proti ní stojí „city“, tedy dnešní stav
-(technická mapa ČÚZK, RÚIAN, OSM). Technická mapa ČÚZK (IS DMVS i DTM krajů) má od 12. do 18. 11. 2026
+Zdroje našlo vlákno „Slovensko“ (13.–15. 11. 2026). Od 16. 11. 2026 jsou v aplikaci (`pilot/public/towns/pasporty.js`,
+Bára: do konce odstávky je to lepší než odhad), test je dodatečný: „city“ je aplikace s pasportem města (jinde
+technická mapa ČÚZK, jako moduly Karviné a Třebíče), varianta `variants/bez-pasportu-mest.mjs` aplikace bez něj
+(jen technická mapa ČÚZK, RÚIAN, OSM). Kde pasport nevyhraje, z `pasporty.js` vyřadit. Technická mapa ČÚZK (IS DMVS i DTM krajů) má od 12. do 18. 11. 2026
 odstávku kvůli přechodu na JVF DTM 1.5.0.2, plný provoz má být 19. 11. Bez ní by „city“ byl jen odhad z OSM.
 
 | Město | Zdroj | Vzorek |
@@ -27,8 +28,8 @@ Vzorky: `node evaluation/town_prep.mjs <město> <název obce nebo kód RÚIAN>` 
    Komenského ve Vysokém Mýtě; `node tools/check_sources.mjs`).
 2. Pro každé město:
    ```bash
-   CITY=chomutov VARIANTS=city,pasporty-nove CACHE=disk node evaluation/ab.mjs
-   CITY=chomutov VARIANTS=city,pasporty-nove node evaluation/ab.mjs --summary
+   CITY=chomutov VARIANTS=bez-pasportu-mest,city CACHE=disk node evaluation/ab.mjs
+   CITY=chomutov VARIANTS=bez-pasportu-mest,city node evaluation/ab.mjs --summary
    ```
-   Obrázky rozdílných řezů nad ortofotem jsou v `evaluation/<město>/data/ab-city-pasporty-nove/png/`, posudky do
+   Obrázky rozdílných řezů nad ortofotem jsou v `evaluation/<město>/data/ab-bez-pasportu-mest-city/png/`, posudky do
    `review.md`.

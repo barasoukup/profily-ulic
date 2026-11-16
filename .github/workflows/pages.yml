@@ -91,7 +91,8 @@ jobs:
             fi
           done
       # The tiles of each country (Czechia about 1.3 GB in 246 000 files, Slovakia 0.5 GB), each packed into one file
-      # (281 MB and 107 MB) named by the date, so a reader never mixes two weeks; the loose tiles are not kept.
+      # (275 MB and 104 MB) named by the date and its content, so a reader never mixes two builds (a second build on the
+      # same day gets another name); the loose tiles are not kept.
       - name: Build and pack OSM tiles
         if: steps.tiles-cache.outputs.cache-hit != 'true'
         timeout-minutes: 75
@@ -99,12 +100,12 @@ jobs:
           mkdir -p site-osm
           for c in cz sk; do
             NAME=$c tools/build_osm_data.sh "data/osm/$c.osm.pbf" "tiles-$c"
-            node tools/pack_osm_tiles.mjs "tiles-$c" "site-osm/$c-$(date -u +%F).posm"
+            node tools/pack_osm_tiles.mjs "tiles-$c" "site-osm/$c-$(date -u +%F)-{hash}.posm"
             rm -rf "tiles-$c" data/osm/${c}_*.geojsonl
           done
           ls -l site-osm && cat site-osm/index.json
       # To Cloudflare R2 (bucket profily-ulic-osm in Bára's account, served at data.streetspace.eu): the files first,
-      # index.json last, so the new week appears whole; files of older weeks than the last two are deleted. Only the
+      # index.json last, so the new week appears whole; files older than the last two builds are deleted. Only the
       # files not there yet go up (a deploy in the same week uploads nothing). Without the keys (secrets
       # R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY and variable R2_ACCOUNT_ID) the step is skipped and the app reads the
       # files on Pages. Each file is one write (Class A) and a few more for the parts of a large one.
@@ -130,9 +131,9 @@ jobs:
             fi
           done
           aws s3 cp --endpoint-url "$ENDPOINT" site-osm/index.json "$R2/index.json" --content-type application/json --cache-control "public, max-age=300"
-          # Older weeks: each country keeps its two newest files.
+          # Older builds: each country keeps its two newest files (by the time they were uploaded).
           for c in cz sk; do
-            aws s3 ls --endpoint-url "$ENDPOINT" "$R2/" | awk '{print $4}' | grep -E "^$c-[0-9-]+\.posm$" | sort -r | tail -n +3 | while read -r old; do
+            aws s3 ls --endpoint-url "$ENDPOINT" "$R2/" | sort -r | awk '{print $4}' | grep -E "^$c-[0-9a-f-]+\.posm$" | tail -n +3 | while read -r old; do
               aws s3 rm --endpoint-url "$ENDPOINT" "$R2/$old"
             done
           done
@@ -268,6 +269,9 @@ jobs:
           © přispěvatelé OpenStreetMap, licence ODbL 1.0 (https://opendatacommons.org/licenses/odbl/).
           Vytvořeno skripty tools/build_osm_data.sh a tools/pack_osm_tiles.mjs v repozitáři této aplikace.
           EOF
+          # The app at streetspace.eu/profily/ (Bára 16. 11. 2026); the root and old links send there (tools/build_root_site.mjs).
+          mv _site _app && mkdir _site && mv _app _site/profily
+          node tools/build_root_site.mjs _site
           touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:

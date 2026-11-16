@@ -13,7 +13,9 @@ sestaví profil od fasády k fasádě z dat IPR a OSM, profil jde upravit (Stav 
 a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetmixu.
 
 ## Kde to běží
-- Živě: https://barasoukup.github.io/profily-ulic/
+- Živě: https://streetspace.eu/profily/ (Bára 16. 11. 2026; doména u Wedosu, DNS v Cloudflaru: A/AAAA na GitHub Pages,
+  `www` CNAME, vše DNS only, `data` je R2). Pages nasazuje aplikaci do `profily/`, kořen domény, `/profile/` a staré
+  odkazy `barasoukup.github.io/profily-ulic/…` přesměrují tam i s řezem (`tools/build_root_site.mjs`).
 - Repo: github.com/barasoukup/profily-ulic (MIT, © Bára Soukupová).
 - Push na `main` = nasazení na GitHub Pages (`.github/workflows/pages.yml`), navíc každé pondělí
   obnova OSM. Dlaždice OSM ČR a Slovenska (Geofabrik) jsou zabalené do jednoho souboru na stát (`tools/pack_osm_tiles.mjs`,
@@ -266,6 +268,21 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   „voda a ostatní“ se pletlo s hospodařením s vodou), bez poznámky.
 - Nedělat: pokryvnost korunami a parametry stromů (Bára: moc složité). IPR Praha oslovit s připomínkami (nápad
   Magdaleny), Slovensko jen při zájmu.
+
+## Pasporty dalších měst (Bára 16. 11. 2026)
+- Komunikace Chomutova, Šumperka, Rožnova p. R., Litoměřic, Chotěboře, Šlapanic, Kuřimi a zeleň Prachatic a Roudnice
+  n. L. (`towns/pasporty.js`, hranice `pasporty.json`) nad DTM ČÚZK ve „cesko“. Nasazené před A/B (do 19. 11. odstávka
+  DMVS, „do 19. je to nic“); A/B po odstávce podle `evaluation/PASPORTY-AB.md`, co nevyhraje, vyřadit.
+
+## Na 19. 11. 2026 (po odstávce DMVS, Bára 16. 11. 2026)
+Odstávka IS DMVS a DTM krajů 12.–18. 11. (přechod na JVF DTM 1.5.0.2), plný provoz od 19. 11.
+1. Ověřit, že DMVS běží (WMS `dtm_zps_plochy_bar` vrací 200, ne „Plánovaná odstávka“), že ho aplikace po přechodu na
+   novou verzi JVF DTM umí číst (řez mimo naše města, např. Komenského ve Vysokém Mýtě; plochy, linie, typ plochy
+   v bodě, WFS krajů v `dtmwfs.js`) a `node tools/check_sources.mjs`.
+2. A/B pasportů devíti měst podle `evaluation/PASPORTY-AB.md` (aplikace s pasportem proti bez); co nevyhraje,
+   vyřadit z `towns/pasporty.js`.
+3. Jihlava: pasport komunikací (`ost/Pasporty` vrstvy 1, 2, 34, 111–115) byl 16. 11. prázdný. Je-li pořád, při
+   prázdném pasportu brát DTM ČÚZK a případně se zeptat města.
 
 ## Licence
 - Kód MIT. Ilustrace Streetmix CC BY-SA 4.0 (s uvedením autora), pražské ilustrace (`pilot/public/praha/`)

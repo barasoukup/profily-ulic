@@ -117,3 +117,13 @@ test("ortofoto: na ČÚZK čára jen u jedné obruby krajnici nedělá (bývá t
   assert.ok(!cuzk.segments.some((s) => s.type === "krajnice"));
   assert.deepEqual(kinds(city), ["pruh", "pruh", "krajnice"]);
 });
+
+test("ortofoto: kus u obruby širší než pruh, kde pravidla mají krajnici, je pruh a krajnice za nenalezenou čárou", () => {
+  // 12 m: lines at -2.5 and 1.0 leave 3.5, 3.5 and 5.0 m; the rules have three lanes and a shoulder at the high kerb.
+  const r = road(6, [{ type: "krajnice", width: 1.5, source: "odhad" }, ...[1, 2, 3].map(() => ({ type: "pruh", width: 3.5, source: "osm" }))]);
+  applyLanes(r, drawn({ half: 6, fine: true, lines: [{ t: -2.5, dashed: true }, { t: 1, dashed: true }] }));
+  assert.deepEqual(kinds(r), ["krajnice", "pruh", "pruh", "pruh"]);
+  const shoulder = r.segments.find((s) => s.type === "krajnice");
+  assert.equal(shoulder.source, "odhad");
+  assert.ok(near(r, [1.5, 3.5, 3.5, 3.5]));
+});

@@ -3,6 +3,7 @@
 // of mesta.json), anywhere else "cesko" (the national DTM of ČÚZK, RÚIAN and OSM). `city` is the city of
 // the current cut, changed in place by setCity, so modules read it at the time they need it.
 
+import { PASSPORT_NAMES, GREEN_PASSPORTS } from "./towns/pasporty-names.js";
 import { t, cityTexts } from "./i18n.js";
 
 // Labels of the MTVU codes, for Brno's surfaces (Prague's MTVU sends its own).
@@ -482,6 +483,8 @@ export function creditLines(c, src = {}, art = false) {
   const data = c.credit ? [t("Data: {data}", { data: c.credit.replace(/^data /, "").replace("{kraj}", kraj) })] : [];
   if (src.dmvs && !c.credit.includes("IS DMVS")) data.push(t("technická mapa © {kraj}, IS DMVS ČÚZK", { kraj }));
   if (src.dmvs && !c.credit.includes("RÚIAN")) data.push(t("RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)"));
+  // A town's passport over the DTM (towns/pasporty.js).
+  if (PASSPORT_NAMES[src.passport]) data.push(GREEN_PASSPORTS.has(src.passport) ? t("pasport zeleně © {town}", { town: PASSPORT_NAMES[src.passport] }) : t("pasport komunikací © {town}", { town: PASSPORT_NAMES[src.passport] }));
   if (src.ortho) data.push(t("ortofoto © ČÚZK, 2025 (CC BY 4.0)"));
   const ORTHO_CITY = { ipr: t("ortofoto © IPR Praha, 2024"), brno: t("ortofoto © Statutární město Brno, 2025"), plzen: t("ortofoto © Statutární město Plzeň, 2024"),
     sk: t("ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)") };

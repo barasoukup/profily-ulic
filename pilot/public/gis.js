@@ -136,6 +136,13 @@ export function asMtvu(layers, labels) {
   return { features };
 }
 
+// A town's passport's surfaces marked so: the profile's parts over them say "z pasportu města" (derive.js; Bára
+// 16. 11. 2026), not "změřeno z technické mapy".
+export function asPassport(json) {
+  for (const f of json?.features || []) f.attributes = { ...f.attributes, PASPORT: 1 };
+  return json;
+}
+
 // Point layers of a town (trees, lamps, benches, stop shelters…) added to the OSM answer where OSM has
 // no such thing nearby: 3 m, 15 m for a shelter (OSM may keep it as the stop node with shelter=yes).
 // layers: [{ features }] in the order of tagsOf; tagsOf(attributes) → OSM tags, or null (not drawn).

@@ -102,3 +102,19 @@ test("stát podle polohy řezu: Česko, Slovensko, cizina", async () => {
   assert.match(C.creditLines(C.setCity("cizina"))[0], /^Data: © přispěvatelé OpenStreetMap/);
   C.setCity("praha");
 });
+
+// The towns' passports (towns/pasporty.js): the page may ask their servers, a point takes its town.
+test("pasporty měst: CSP, město podle polohy, převod typů", async () => {
+  const { PASSPORT_HOSTS, passportAt, codes, widen } = await import("../pilot/public/towns/pasporty.js");
+  const connect = read("index.html").match(/connect-src [^;]*/)[0];
+  for (const host of PASSPORT_HOSTS) assert.ok(connect.includes(host), host);
+  assert.equal(await passportAt(13.4175, 50.4605), "chomutov");
+  assert.equal(await passportAt(16.9706, 49.9653), "sumperk");
+  assert.equal(await passportAt(14.42, 50.088), null);
+  assert.equal(codes.chomutov({ typ: "MK IV.třídy (d)" }), 701);
+  assert.equal(codes.chomutov({ typ: "Chodník" }), 702);
+  assert.equal(codes.sumperk({ typ: "nástupiště" }), 702);
+  // A line 4 m wide becomes a rectangle about 4 m across.
+  const r = widen({ features: [{ attributes: { "šířka": 4 }, geometry: { paths: [[[16.5, 49.3], [16.501, 49.3]]] } }] }, 701).features[0].geometry.rings[0];
+  assert.ok(Math.abs((r[0][1] - r[3][1]) * 110574 - 4) < 0.01);
+});

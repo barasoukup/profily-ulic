@@ -5,10 +5,10 @@ z technické mapy (šířky ploch) a z OpenStreetMap (pruhy, tramvaje, cyklopruh
 profil od fasády k fasádě. Profil pak můžete upravit, porovnat stav s návrhem, vyexportovat jako SVG nebo PNG,
 uložit jako JSON a sdílet odkazem.
 
-**Aplikace běží na https://barasoukup.github.io/profily-ulic/**
+**Aplikace běží na https://streetspace.eu/profily/**
 
 Na konkrétní řez se dá odkázat, například
-[Poděbradská](https://barasoukup.github.io/profily-ulic/#rez=50.103357,14.517910,-99,22.0,22.0).
+[Poděbradská](https://streetspace.eu/profily/#rez=50.103357,14.517910,-99,22.0,22.0).
 
 ## Města a zdroje
 

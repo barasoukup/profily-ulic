@@ -31,7 +31,7 @@ register("data:text/javascript," + encodeURIComponent(`export async function loa
 }`));
 
 // The app's relative requests (OSM tiles, data/zps.json…) go to the site, as in the browser.
-const SITE = process.env.SITE || "https://barasoukup.github.io/profily-ulic/";
+const SITE = process.env.SITE || "https://streetspace.eu/profily/";
 const native = globalThis.fetch;
 // Every request is watched: the sources often leave a failed layer out (a town's lines, the points of
 // Prague's technical map) and the profile is then built without it, so a quiet failure counts as one.

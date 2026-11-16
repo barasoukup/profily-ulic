@@ -7,7 +7,7 @@
 // A town module (towns/<id>.js, listed in towns/index.js) gives sources.js the five data sources of a
 // click (osm, surfaces, lines, parking, podlaznost; the shapes are those of Prague's answers, see
 // queries.js) and app.js its base maps. Copy this file for another town.
-import { query, envelope, osmTiles, boxAround, asMtvu, addPoints, parkingStrip, ruianBuilding, metres } from "../gis.js";
+import { query, envelope, osmTiles, boxAround, asMtvu, asPassport, addPoints, parkingStrip, ruianBuilding, metres } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 
 const JI = "https://gis.jihlava-city.cz";
@@ -125,12 +125,16 @@ async function surfaces(bbox) {
   const hasRoadway = (r.features || []).some((f) => f.attributes?.typ_useku === "vozovka");
   const lat = Number(bbox.split(",")[1]);
   const passport = { features: (r.features || []).map((f) => (stateRoad(f.attributes || {}) ? narrowStrip(f, lat) : f)) };
-  return asMtvu([
-    [buildings, 601],
+  // The passports' roads and lawns marked as such (gis.js asPassport): their parts say "z pasportu města".
+  const own = asPassport(asMtvu([
     [passport, (a) => (a.typ_useku === "vozovka" ? 701 : a.typ_useku === "chodník" ? 702 : null)],
     [lawns, 401],
-    [parcels, (a) => { const c = landCode(a.drupoz_naz); return Array.isArray(c) && !hasRoadway ? null : c; }],
-  ], MTVU_LABELS);
+  ], MTVU_LABELS));
+  return { features: [
+    ...asMtvu([[buildings, 601]], MTVU_LABELS).features,
+    ...own.features,
+    ...asMtvu([[parcels, (a) => { const c = landCode(a.drupoz_naz); return Array.isArray(c) && !hasRoadway ? null : c; }]], MTVU_LABELS).features,
+  ] };
 }
 
 // Lines of the technical map → the codes of IPR's line layer (derive.js FENCE_LINES and the rest).

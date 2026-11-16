@@ -20,6 +20,7 @@ import { city, setCity, cityAt, skArtAt, loadBounds, loadStates } from "./city.j
 import { TOWNS } from "./towns/index.js";
 import { log, logOn, sendReport, shortProfile } from "./log.js";
 import { createDataLayers, PLOCHY_PANE } from "./maplayers.js";
+import { PASSPORT_NAMES, GREEN_PASSPORTS } from "./towns/pasporty-names.js";
 import { mountSearch } from "./search.js";
 // tr: t is a common name of a text or a type here.
 import { t as tr, num, pct, numField, readNum, lang, LANGS, setLang, translatePage, attribution } from "./i18n.js";
@@ -354,7 +355,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     // A town's passport (Slovakia) keeps the roads it maintains: beyond it, up to a house or a fence of OSM standing
     // close by, the pieces between the town's map lines, sidewalk or green (ortho-osm.js besidePassport; Bára: Poštová,
     // 17. novembra ended at the passport's edge). The passport's own surfaces stay first.
-    if (!orthoOsm && m.value?.passport) {
+    if (!orthoOsm && m.value?.passport && city.country === "SK") {
       const beside = besidePassport({ osm, frame, dir, way: near.way, st: laneImg?.st, edges: k.status === "fulfilled" ? k.value?.edges || [] : [], symbols: k.status === "fulfilled" ? k.value?.symbols || [] : [], areas: k.status === "fulfilled" ? k.value?.areas || [] : [], polys });
       if (beside.length) {
         const again = deriveProfile({ ...args, polys: [...polys, ...beside] });
@@ -378,7 +379,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     // the DMVS standing in for the city's map, the orthophoto of a tram bed.
     const mv = m.status === "fulfilled" ? m.value : null;
     const bedSk = ortho && city.id === "slovensko"; // the tram bed read on Slovakia's orthophoto
-    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.skTown && { skTown: mv.skTown }), ...(mv?.skTm && { skTm: true }), ...(orthoOsm?.edges && k.value?.edgesFrom && { skEdges: k.value.edgesFrom }), ...((orthoOsm?.areas || orthoOsm?.widthFrom === "zbgis") && { zbgis: true }), ...(mv?.dmvs && { dmvs: true }), ...(((ortho && !bedSk) || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" ? { orthoCity: laneImg.source } : bedSk && { orthoCity: "sk" }) };
+    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.skTown && { skTown: mv.skTown }), ...(mv?.skTm && { skTm: true }), ...(orthoOsm?.edges && k.value?.edgesFrom && { skEdges: k.value.edgesFrom }), ...((orthoOsm?.areas || orthoOsm?.widthFrom === "zbgis") && { zbgis: true }), ...(mv?.dmvs && { dmvs: true }), ...(typeof mv?.passport === "string" && { passport: mv.passport }), ...(((ortho && !bedSk) || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" ? { orthoCity: laneImg.source } : bedSk && { orthoCity: "sk" }) };
     // The log of cuts (log.js): the cut exactly, and how it came (a click, a moved cut, a link).
     log("rez", {
       detail: keepWay ? "posun" : bearing !== null ? "odkaz" : "klik", city: city.id, street: name, highway: near.way.tags.highway,
@@ -669,6 +670,14 @@ function render() {
   }
 }
 
+// Whose data the profile shows: the city's, and a town's passport when the cut took it (towns/pasporty.js; Bára:
+// the cut's information should say where its data come from).
+function cutData() {
+  const id = state.cut?.sources?.passport;
+  if (!PASSPORT_NAMES[id]) return city.dataShort;
+  return GREEN_PASSPORTS.has(id) ? tr("pasportu zeleně města {town}, technické mapy ČÚZK a OSM", { town: PASSPORT_NAMES[id] })
+    : tr("pasportu komunikací města {town}, technické mapy ČÚZK a OSM", { town: PASSPORT_NAMES[id] });
+}
 function draw() {
   document.title = state.stav && state.cut ? `${streetName(state.cut)} – ${tr("Profily ulic")}` : tr("Profily ulic");
   document.querySelectorAll(".seg-toggle button").forEach((b) => {
@@ -685,7 +694,7 @@ function draw() {
   $("#stav-cta").classList.toggle("fixing", !!state.fixing);
   $("#stav-text").textContent = state.fixing
     ? tr("Opravujete data stavu: táhněte úchyty nebo klikněte na část. Opravené části se označí jako upravené ručně.")
-    : tr("Takhle ulice vypadá podle dat {data}. Nesedí? Opravte je, nebo nám chybu nahlaste.", { data: city.dataShort });
+    : tr("Takhle ulice vypadá podle dat {data}. Nesedí? Opravte je, nebo nám chybu nahlaste.", { data: cutData() });
   $("#btn-fix").textContent = state.fixing ? tr("Hotovo") : tr("Opravit data");
   if (state.stav) {
     // Under the street's name: the width, and in Stav what the data are (an estimate, a map that failed…).

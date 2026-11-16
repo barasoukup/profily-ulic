@@ -276,6 +276,20 @@ Služby města (`gis.jihlava-city.cz`, CORS povolený):
   Zóny placeného stání z otevřených dat (CC0, `tools/build_zony_plzen.mjs` při nasazení): podél čáry zóny se
   u obrub nakreslí stání 2 m jako odhad. Kontrola 50 řezů: `evaluation/plzen/ZPRAVA.md`.
 
+### Pasporty dalších měst (16. 11. 2026)
+
+Ve zbytku Česka („cesko“) se v hranicích devíti obcí (`pilot/public/pasporty.json`, `node tools/build_pasporty.mjs`)
+berou plochy z pasportu města a jinde DTM ČÚZK (`towns/pasporty.js`, `towns/overlay.js overDmvs`): komunikace
+Chomutova, Šumperka a Rožnova pod Radhoštěm (T-MAPY PaKom, typy, u Chomutova i třídy komunikací), Litoměřic (chodníky
+a úseky komunikací, 2018), Chotěboře (2016), Šlapanic (komunikace podle třídy, parkoviště) a Kuřimi (osy zimní údržby
+se šířkou převedené na plochy), zeleň Prachatic (02/2026: zeleň, cesty, hřiště, voda) a Roudnice nad Labem. Nejsou
+to samostatná města (texty, ilustrace a mapy zůstávají české obecné). Zdroje našlo vlákno o Slovensku, do aplikace
+šly před A/B testem (Bára: během odstávky DMVS 12.–18. 11. je to lepší než odhad), test čeká na konec odstávky
+(`evaluation/PASPORTY-AB.md`); kde pasport nevyhraje, vyřadit. Export uvádí „pasport komunikací (zeleně) © <město>“.
+Vynechané: Mohelnice a Velké Meziříčí (prázdný pasport), T-MAPY Litoměřic (chce přihlášení). Části změřené na pasportu
+(zde i v Karviné, Frýdku-Místku a Třebíči; `gis.js asPassport`) mají zdroj „z pasportu města“ (tyrkysová v legendě),
+jízdní pruhy dál „doplněno z OSM“ (vozovku do pruhů dělí OSM), a text ve Stavu jmenuje pasport města.
+
 ### Ostrava, Frýdek-Místek, Karviná, Třebíč, Přerov, Ústí nad Labem
 
 Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<město>/data/ab-*/review.md`).

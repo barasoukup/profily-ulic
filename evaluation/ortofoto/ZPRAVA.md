@@ -301,3 +301,26 @@ Hradec počet pruhů 38 → 46 %; ortofoto lépe u 33 vozovek, hůře u 10.
 Na příště: značení proti nevyježděným pásům uprostřed pruhů (řez 324, Hradec): na ČÚZK mají pásy (+22 až +27) a
 přerušovaná středová čára (+35) skoro stejný jas i šířku (0,6–0,7 m); rozliší je spíš geometrie (pás uprostřed mezi
 stopami kol) a vlastnosti naučené z doznačených příkladů.
+
+## Kolo 5: další zlepšení (16. 11. 2026, větev ortofoto-2)
+
+Měřeno `proto-eval.mjs` na 117 vozovkách označených okem; ladění na Praze, Brně a Hradci, Plzeň a Ostrava kontrola.
+Výchozí stav: hranice pruhů do 0,3 m 40 %, počet pruhů 52 %, ortofoto lépe 32, hůře 9; 76 vozovek beze změny
+(`proto-eval.mjs` teď říká proč: 22 bez čar, 15 „kus není pruh ani krajnice“, ostatní drobnosti; z 22 bez čar
+jich 12 značení nemá a ponechat je správně).
+
+1. **Počet pruhů z OSM jako nápověda** (bonus sadě čar se stejným počtem pruhů, 0,2–0,8): beze změny, vynecháno.
+2. **Kus u obruby širší než pruh, kde pravidla měla krajnici** = pruh + krajnice za nenalezenou vodicí čárou
+   (odhad), jen dokud to nedá víc pruhů než pravidla: hranice 40 → 41 % (Praha 51 → 56 %), počet pruhů 52 → 53 %,
+   lépe 33, hůře 9. **Přijato.** Široký vnitřní pruh (do 5,5 m) zkoušen: méně správných počtů, vynecháno.
+3. **Čáry pod vlastním úhlem** (rozšiřující se vozovka): v řetězu pruhů škodily (Hradec, Plzeň), jen jako vodicí
+   čáry u obruby Plzeň o jednu vozovku hůř a přínos u obruby značení nezachytí (čáry blíž 0,7 m nepočítá). Vynecháno.
+4. **Obruby ze snímku**: šířka vozovky mapy proti vyznačené na snímku se liší v mediánu o 0,45–0,9 m (víc než 0,5 m
+   u poloviny vozovek, všech pět měst). Hranice pruhů se tím nemění (jdou z čar), změnila by se šířka krajnic a rozdíl
+   by musel do chodníku – to je oprava dat technické mapy podle snímku, samostatné větší téma. Odloženo.
+5. **Nevyježděné pásy proti značení**: potřebuje doznačené příklady (zůstává na příště).
+6. **Barva**: ze 43 cyklopruhů a cyklostezek vzorku je výrazně barevná (červená) jedna (Hradec), bus pruhy jsou dva;
+   barevný povrch bývá v křižovatkách, ne na řezu. Nevyplatí se, odloženo.
+7. **Způsob stání z ortofota** (`stani-eval.mjs`: opakování čar a aut po 2,3–4 m napříč nebo šikmo proti 5–7 m
+   podélně): z 27 kolmých/šikmých stání (TSK, data měst, OSM) se pozná asi 11, u 2 ze 43 podélných se splete,
+   kolmé od šikmého nerozliší. Orientaci data skoro vždy znají nebo plyne ze šířky pásu. Nevyplatí se, odloženo.

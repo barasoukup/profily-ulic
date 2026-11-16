@@ -13,7 +13,7 @@ for (const r of rows) {
   try { p = JSON.parse(r.profile || "{}"); } catch { p = { text: String(r.profile) }; }
   const reach = r.reach_left != null ? `,${(+r.reach_left).toFixed(1)},${(+r.reach_right).toFixed(1)}` : "";
   console.log(`\n${r.ts.slice(0, 16).replace("T", " ")}  ${r.street || "?"} (${r.city})  [${(p.co || []).join(", ") || "bez kategorie"}]`);
-  if (r.lat != null) console.log(`  https://barasoukup.github.io/profily-ulic/#rez=${(+r.lat).toFixed(6)},${(+r.lon).toFixed(6)},${Math.round(r.bearing)}${reach}`);
+  if (r.lat != null) console.log(`  https://streetspace.eu/profily/#rez=${(+r.lat).toFixed(6)},${(+r.lon).toFixed(6)},${Math.round(r.bearing)}${reach}`);
   if (p.text) console.log(`  „${p.text}“`);
   // vypocet: as the app built it on that visit (missing for a restored or loaded profile); stav: as shown then.
   if (p.vypocet) console.log(`  aplikace: ${short(p.vypocet)}`);

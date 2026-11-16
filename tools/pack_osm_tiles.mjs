@@ -1,12 +1,13 @@
 // Packs a folder of OSM tiles (tools/build_osm_tiles.mjs, the form of osmtile.js) into one file per country
 // in the shorter form of pilot/public/osmpack.js (a dictionary of tags, shorter elements, each tile gzipped,
 // a two-level index), for the web: Cloudflare R2 and, as a fallback, Pages (gis.js). The folder stays as it is.
-//   node tools/pack_osm_tiles.mjs pilot/data/osm-tiles pilot/data/osm-pack/cz-2026-11-16.posm
+//   node tools/pack_osm_tiles.mjs pilot/data/osm-tiles pilot/data/osm-pack/cz-2026-11-16-{hash}.posm
 // and writes the file's name into index.json beside it (the key "cz": the name up to "-" or ".").
 // The file is a database derived from OpenStreetMap: © OpenStreetMap contributors, ODbL 1.0.
 import fs from "node:fs";
 import path from "node:path";
 import zlib from "node:zlib";
+import crypto from "node:crypto";
 import { TILE } from "../pilot/public/osmtile.js";
 import { MAGIC, VERSION, encodeElement } from "../pilot/public/osmpack.js";
 
@@ -85,13 +86,15 @@ export function packTiles(names, text, { source = "", minPair = MIN_PAIR, minKey
 }
 
 if (process.argv[1] && import.meta.url.endsWith(path.basename(process.argv[1]))) {
-  const [dir, out] = process.argv.slice(2);
-  if (!dir || !out) {
+  const [dir, outArg] = process.argv.slice(2);
+  if (!dir || !outArg) {
     console.error("node tools/pack_osm_tiles.mjs <složka dlaždic> <soubor.posm>");
     process.exit(1);
   }
   const names = fs.readdirSync(dir).filter((f) => /^-?\d+_-?\d+\.json$/.test(f)).map((f) => f.slice(0, -5));
   const r = packTiles(names, (n) => fs.readFileSync(path.join(dir, `${n}.json`), "utf8"), { source: path.basename(dir) });
+  // "{hash}" in the name becomes the start of the file's SHA-256: a rebuilt file never takes the name of another.
+  const out = outArg.replace("{hash}", crypto.createHash("sha256").update(r.file).digest("hex").slice(0, 10));
   fs.mkdirSync(path.dirname(out), { recursive: true });
   fs.writeFileSync(out, r.file);
   // index.json beside it names the file of each country (the part of the name before "-" or "."; osmpack.js PackSet).
