@@ -25,7 +25,7 @@ test("popisky částí, zdrojů a podílů", () => {
 test("normy: česká pravidla německy, s desetinnou čárkou", () => {
   setCity("praha");
   const out = checkRules({ segments: [{ type: "chodnik", width: 1.4 }, { type: "pruh", width: 3 }] });
-  assert.equal(out[0].text, "Gehweg 1,40 m liegt unter dem Mindestmaß (Gehweg: eingeengt mind. 1,5 m, Regelmaß 2–2,5 m).");
+  assert.equal(out[0].text, "Gehweg 1,40 m liegt unter dem Mindestmaß (Gehweg: an Engstellen mind. 1,5 m, Regelmaß 2–2,5 m).");
 });
 
 test("výpadky zdrojů a texty měst", () => {
