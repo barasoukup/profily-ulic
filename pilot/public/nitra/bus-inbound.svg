@@ -1,0 +1,18 @@
+<svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
+<!-- Městský autobus MHD Nitra (dopravce TD Transport / Transdev od 1. 1. 2022, předtím Arriva Nitra), SOR NB 12 City (imhd.sk/nr: vozy 201–216, 2021/2022), čelní pohled. Tvar čela jako SOR NB/NS 12 v bratislava/bus-inbound.svg: černý pás skla přes celou šířku skříně, pod ním světle šedý oblouk se světlomety na koncích, motor vzadu (žádná mřížka v čele), malý odznak SOR. Celá skříň světle modrá („v bledomodrej farbe“ podle SITA „Nitra nemá po zmene dopravcu problémy…“ a nitra.sk „Všetko o novej MHD v Nitre“), bílá střecha s klimatizační jednotkou, LED cílový panel nahoře (jantarová barva neověřená), piktogram vozíčku ve skle, pod sklem bílé číslo vozu, černý nárazník se slovenskou SPZ (modrý pruh EU se SK). Logo dopravce a znak města vynechané, protože je fotka nepotvrzuje. Přesný odstín modré, bílá střecha a barva LED nejsou ověřené fotkou (16. 11. 2026 nedohledáno ani na imhd.sk/nr): Wikimedia Commons, Category:Buses in Nitra, má z Nitry jen starší nátěry („Irisbus Crossway LE - MHD Nitra.JPG“, „Solaris urbino nitra.jpg“), tvar čela podle „SOR NB12, -1025, DP Bratislava (27928997277).jpg“. 1 px = 1 cm. -->
+<g>
+<path d="M58 32 Q36 30 32 50" stroke="#17191c" stroke-width="5" fill="none"/><rect x="22" y="48" width="18" height="46" rx="6" fill="#17191c"/><path d="M302 32 Q324 30 328 50" stroke="#17191c" stroke-width="5" fill="none"/><rect x="320" y="48" width="18" height="46" rx="6" fill="#17191c"/>
+<rect x="84" y="10" width="192" height="12" rx="4" fill="#e6e8ea"/>
+<path d="M52 296 V40 Q52 20 74 20 H286 Q308 20 308 40 V296 Z" fill="#45a7dc"/>
+<path d="M52 40 Q52 20 74 20 H286 Q308 20 308 40 V34 H52 Z" fill="#f4f5f6"/>
+<path d="M52 34 H308 V200 Q180 214 52 200 Z" fill="#101113"/>
+<rect x="80" y="38" width="200" height="24" rx="2" fill="#0c0d0e"/><rect x="90" y="44" width="44" height="12" fill="#ff9a00"/><rect x="142" y="44" width="128" height="12" fill="#ff9a00"/>
+<path d="M62 68 H298 V190 Q180 202 62 190 Z" fill="#2c3944"/><path d="M78 74 L124 74 L94 186 L76 184 Z" fill="#46596a" opacity=".5"/><path d="M250 74 L272 74 L262 124 L240 124 Z" fill="#46596a" opacity=".4"/>
+<rect x="70" y="166" width="16" height="16" rx="2" fill="#2a63b8"/><g fill="none" stroke="#f4f5f6" stroke-width="1.6" stroke-linecap="round"><circle cx="76.5" cy="176" r="4"/><path d="M76.5 171 V175 H82 L83 179"/></g><circle cx="76.5" cy="169" r="1.5" fill="#f4f5f6"/>
+<g stroke="#0b0c0d" stroke-width="2.5" stroke-linecap="round"><path d="M100 194 L170 180"/><path d="M272 194 L206 180"/></g>
+<rect x="170" y="212" width="20" height="8" rx="1" fill="#f4f5f6"/>
+<path d="M52 204 Q180 288 308 204" stroke="#c9ccce" stroke-width="7" fill="none" stroke-linejoin="round"/><rect x="58" y="214" width="26" height="12" rx="5" fill="#f6f7f8"/><rect x="276" y="214" width="26" height="12" rx="5" fill="#f6f7f8"/>
+<rect x="172" y="254" width="16" height="6" rx="3" fill="#c9ccce"/>
+<circle cx="70" cy="262" r="3.5" fill="#f2a33a"/><circle cx="290" cy="262" r="3.5" fill="#f2a33a"/>
+<rect x="52" y="272" width="256" height="24" rx="4" fill="#17191c"/><rect x="152" y="278" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="278" width="6" height="12" fill="#2a63b8"/>
+<rect x="70" y="296" width="36" height="24" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="24" rx="4" fill="#111"/></g></svg>

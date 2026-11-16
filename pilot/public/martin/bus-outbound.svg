@@ -1,20 +1,22 @@
 <svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
-<!-- Městský autobus MHD Martin–Vrútky, Dopravný podnik mesta Martin (DPMM), Iveco Urbanway 12M CNG, zadní pohled. Celá skříň jasně zelená, horní část zádě tmavošedá s malou LED tabulí a okénkem, pod ní tmavé zadní okno s číslem linky, pod oknem na zeleném malý nápis IVECO a několik řádků bílého textu (poděkování za spolufinancování), dlouhé úzké červené svítilny po obou hranách zádě, vlevo tři tmavé čočky pod sebou, dole tmavý nárazník se slovenskou SPZ (bílá s modrým pruhem EU, SK). Vycházeno z fotek a popisů na Wikimedia Commons (ne obkresleno): „Bus DPMM MT-149FM - Iveco Urbanway 12M CNG in Martin, Slovakia, November 8, 2024 - 04.jpg“ (záď, Jesenského), „Bus DPMM MT-149FM - Iveco Urbanway 12M CNG in Martin, Slovakia, November 8, 2024 - 01.jpg“; slovenská Wikipedie „Autobusová doprava v Martine“. 1 px = 1 cm. -->
+<!-- Městský autobus MHD Martin–Vrútky, Dopravný podnik mesta Martin (DPMM), Iveco Urbanway 12M CNG, zadní pohled. Celá skříň jasně zelená, horní část zádě tmavošedá s malou LED tabulí a malým okénkem, pod ní tmavé zadní okno s číslem linky, okno dole uzavírá úzký tmavošedý rám se světlým nápisem IVECO, pod ním na zeleném a několik řádků bílého textu (poděkování za spolufinancování), mezi horní šedou částí a oknem vodorovná světlejší hrana, okno tmavé s dolní hranou zkosenou dovnitř (lichoběžník), na zkosení nápis IVECO, dlouhé úzké červené svítilny po obou hranách zádě, dole zahnuté dovnitř, s oranžovým blinkrem, jen vlevo (z pohledu diváka) vedle červeného pruhu tři velké tmavé žaluzie motoru pod sebou, vpravo nad bílou nálepkou čistě zelená, vpravo pod řádky textu bílé obtažené kolečko s číslem vozu, zrcátka na ramenech od hrany střechy, vlevo dole pod svítilnou kulatá bílá nálepka s červeným okrajem (rychlost), dolní rohy zelené, jen uprostřed tmavý nárazník se slovenskou SPZ (bílá s modrým pruhem EU, SK). Vycházeno z fotek a popisů na Wikimedia Commons (ne obkresleno): „Bus DPMM MT-149FM - Iveco Urbanway 12M CNG in Martin, Slovakia, November 8, 2024 - 04.jpg“ (záď, Jesenského), „Bus DPMM MT-149FM - Iveco Urbanway 12M CNG in Martin, Slovakia, November 8, 2024 - 01.jpg“; slovenská Wikipedie „Autobusová doprava v Martine“. 1 px = 1 cm. -->
 <g>
-<rect x="26" y="56" width="16" height="42" rx="5" fill="#1d1f22"/><rect x="318" y="56" width="16" height="42" rx="5" fill="#1d1f22"/>
+<path d="M54 40 H40 Q32 40 32 48 V60" stroke="#1d1f22" stroke-width="4" fill="none"/><rect x="24" y="58" width="15" height="44" rx="4" fill="#1d1f22"/><path d="M306 40 H320 Q328 40 328 48 V60" stroke="#1d1f22" stroke-width="4" fill="none"/><rect x="321" y="58" width="15" height="44" rx="4" fill="#1d1f22"/>
 <path d="M84 22 Q86 8 104 8 H256 Q274 8 276 22 Z" fill="#5fc236"/>
 <path d="M52 296 V40 Q52 22 72 22 H288 Q308 22 308 40 V296 Z" fill="#4cb52a"/>
-<path d="M298 24 Q308 28 308 42 V296 H298 Z" fill="#3f9e22"/>
-<path d="M66 40 Q66 28 78 28 H282 Q294 28 294 40 V106 H66 Z" fill="#3a3d40"/>
-<rect x="84" y="40" width="88" height="20" rx="2" fill="#111214"/><rect x="92" y="46" width="70" height="8" fill="#eef2f0"/><rect x="220" y="40" width="58" height="18" rx="2" fill="#17191c"/>
-<rect x="76" y="70" width="208" height="3" fill="#55595d"/><rect x="76" y="88" width="208" height="3" fill="#55595d"/>
+<path d="M60 38 Q60 28 72 28 H288 Q300 28 300 38 V106 H60 Z" fill="#3a3d40"/>
+<rect x="84" y="40" width="88" height="20" rx="2" fill="#111214"/><rect x="92" y="46" width="70" height="8" fill="#eef2f0"/><rect x="220" y="40" width="58" height="18" rx="2" fill="#2c3944"/><path d="M228 42 L240 42 L234 56 L224 56 Z" fill="#46596a" opacity=".55"/>
+<rect x="64" y="103" width="232" height="2.5" fill="#55595d"/>
+<rect x="76" y="70" width="208" height="3" fill="#2a2d30"/><rect x="76" y="88" width="208" height="3" fill="#2a2d30"/>
 <path d="M72 106 H288 L276 146 Q272 150 266 150 H94 Q88 150 84 146 Z" fill="#1d1f22"/><path d="M96 110 L124 110 L110 144 L98 144 Z" fill="#3a4654" opacity=".55"/><text x="246" y="138" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#eef2f0">20</text>
-<text x="180" y="164" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" letter-spacing="1.5" fill="#dfe3e6">IVECO</text>
+<path d="M84 144 Q88 148 94 148 H266 Q272 148 276 144 L274 156 H86 Z" fill="#2a2d30"/><text x="180" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="bold" letter-spacing="1.5" fill="#dfe3e6">IVECO</text>
 <g fill="#eef2f0" opacity=".85"><rect x="116" y="180" width="128" height="2.5" rx="1"/><rect x="116" y="188" width="128" height="2.5" rx="1"/><rect x="136" y="196" width="88" height="2.5" rx="1"/></g>
 <rect x="98" y="180" width="10" height="16" rx="1" fill="#c9524a"/>
-<circle cx="268" cy="214" r="6" fill="none" stroke="#eef2f0" stroke-width="1.2"/><rect x="263" y="238" width="10" height="10" rx="1" fill="#f4f4f2"/>
-<path d="M56 110 Q54 112 54 118 V256 Q54 262 60 262 H64 V110 Z" fill="#c8141c"/><path d="M304 110 Q306 112 306 118 V256 Q306 262 300 262 H296 V110 Z" fill="#c8141c"/>
-<g fill="#2f6a1c" opacity=".8"><path d="M70 160 Q78 162 80 172 V184 Q72 184 70 180 Z"/><path d="M70 194 H80 V212 H70 Z"/><path d="M70 222 H82 V238 Q74 240 70 236 Z"/></g>
-<path d="M52 262 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#2a2d30"/><rect x="100" y="258" width="160" height="10" rx="4" fill="#2a2d30"/>
+<rect x="263" y="238" width="10" height="10" rx="1" fill="#f4f4f2"/>
+<path d="M56 110 Q54 112 54 118 V252 Q54 262 64 262 H74 Q76 262 76 260 V256 Q76 254 74 254 H68 Q64 254 64 250 V110 Z" fill="#c8141c"/><path d="M304 110 Q306 112 306 118 V252 Q306 262 296 262 H286 Q284 262 284 260 V256 Q284 254 286 254 H292 Q296 254 296 250 V110 Z" fill="#c8141c"/>
+<rect x="55" y="234" width="8" height="12" rx="2" fill="#f2a33a"/><rect x="297" y="234" width="8" height="12" rx="2" fill="#f2a33a"/>
+<g fill="#2b3a2a"><path d="M70 160 Q78 162 80 172 V184 Q72 184 70 180 Z"/><path d="M70 194 H80 V212 H70 Z"/><path d="M70 222 H82 V238 Q74 240 70 236 Z"/></g>
+<circle cx="268" cy="212" r="7" fill="none" stroke="#eef2f0" stroke-width="1.2"/><text x="268" y="215" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#eef2f0">31</text>
+<path d="M80 264 H280 V290 Q280 298 272 298 H88 Q80 298 80 290 Z" fill="#2a2d30"/><circle cx="66" cy="272" r="6" fill="#fff" stroke="#c8141c" stroke-width="1.8"/>
 <rect x="152" y="264" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="264" width="6" height="12" fill="#2a63b8"/>
 <rect x="70" y="296" width="36" height="24" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="24" rx="4" fill="#111"/></g></svg>
