@@ -226,6 +226,11 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Mimo Česko se vzhled domu neodvozuje od vzdálenosti od centra (žádné není), ale z OSM (rok, střecha, deska); panelák
   jen obytným domům (ZBGIS druh budovy). Ulice ze dvou jednosměrných vozovek má v odhadu obě. V nadpisu jen ulice,
   poznámka o datech pod ním. Panorama Mapy.com jen v CZ. Jazyky v rozbalovacím menu s vlajkami (vše Bára 16. 11. 2026).
+- Ilustrace SK (Bára 16. 11. 2026): vozidla měst (`pilot/public/bratislava|kosice|zilina|bystrica|presov/`, kreslířka a
+  kritik ve 3 kolech) podle města řezu (`city.js` SK_ART, skArtAt); mobiliář český (Bratislava převzala od Prahy lavičku,
+  koš a stojan Olgoj Chorchoj), označníky a přístřešky se slovenskou značkou 331 Zastávka (`pilot/public/slovensko/`).
+  Vlastní bratislavský přístřešek, lampa a označník DPB až po zásadách MIB pro zastávky a osvětlení (přístřešky jsou
+  v řezech vzácné). Technická mapa Bratislavy, čáry map Nitry, Piešťan, Zvolena, Hlohovce, Prešova: `?tm=1`, `?hrany=0`.
 
 ## Jazyky (Bára 12. 11. 2026, slovenčina 15. 11. 2026)
 - Anglicky se aplikace jmenuje **Street Profile**, slovensky **Profily ulíc**. Čeština, slovenčina a angličtina: `pilot/public/i18n.js`
