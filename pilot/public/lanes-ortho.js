@@ -280,6 +280,12 @@ function parkingBands(result, st, carriages) {
 }
 
 // ---------- the profile ----------
+// Why a carriageway was left as the rules drew it (evaluation only: globalThis.__lanesWhy, an array, collects
+// { s, e, why }; nothing happens in the app).
+let lastWhy = "";
+const why = (c, text) => globalThis.__lanesWhy?.push({ s: c.s, e: c.e, why: text });
+const fail = (text) => { lastWhy = text; return null; };
+
 const CARRIAGE = (c) => c === 700 || c === 701 || c === 704 || (c >= 9700 && c < 9800);
 const RAISED = new Set(["chodnik", "chodnik_kola", "stezka_sdilena", "predzahradka", "zelen", "stromorad", "nastupiste", "cyklostezka", "tramvaj", "delici", "plocha", "zahradka", "voda", "zed", "nezname"]);
 const BLOCK = new Set(["pruh", "krajnice"]);
@@ -321,15 +327,16 @@ export function applyLanes(result, img) {
     // The carriageway of the map the roadway overlaps most; the profile's positions stretched onto it.
     const over = (c) => Math.max(0, Math.min(c.e, w.e) - Math.max(c.s, w.s));
     const c = carriages.reduce((b, x) => (over(x) > (b ? over(b) : 0) ? x : b), null);
-    if (!c || over(c) < 0.5 * (w.e - w.s) || c.s <= img.st.t0 || c.e >= img.st.t0 + img.st.nt * img.st.res) continue;
+    if (!c || over(c) < 0.5 * (w.e - w.s) || c.s <= img.st.t0 || c.e >= img.st.t0 + img.st.nt * img.st.res) { why(c || w, "bez vozovky / mimo snímek"); continue; }
     const found = laneLines(img.st, H, c.s, c.e);
-    if (!found.length) continue;
+    if (!found.length) { why(c, "žádné čáry"); continue; }
     // Only lanes and shoulders: the lanes as measured on the map's carriageway, what the profile has more or less
     // (its roadway is wider or narrower than the map's) goes to a shoulder. Else the lines are stretched onto the
     // profile and only move its boundaries.
     const k = (w.e - w.s) / (c.e - c.s), toProfile = (g) => w.s + (g - c.s) * k;
     const segs = w.parts.every((p) => BLOCK.has(p.seg.type)) ? measured(w, c, found, found.solid, img.st.fine) : redraw(w, found.map(toProfile), img.st.fine);
-    if (segs) { out.push({ w, segs }); changed++; }
+    if (segs) { out.push({ w, segs }); changed++; why(c, "změněno"); } else why(c, lastWhy || "zamítnuto");
+    lastWhy = "";
   }
   // Put the new parts in place of the roadways' old ones (back in screen order).
   for (const { w, segs } of out) {
@@ -367,19 +374,39 @@ function measured(w, c, lines, solid = [], fine = true) {
     pieces.splice(q, 1, { s: p.s, e: m, w: m - p.s }, { s: m, e: p.e, w: p.e - m });
     kinds.splice(q, 1, "pruh", "pruh");
   }
-  if (kinds.includes(null) || pieces.length < 2) return null;
+  // A piece at a kerb (117 marked carriageways, 15 left as the rules had them: 16. 11. 2026; a wide lane between
+  // lines was tried too and gave fewer right lane counts): at a kerb where the rules had a shoulder, wider than a lane: a lane and the shoulder behind an edge line the
+  //   detector missed (Kukulova, Čuprova, Plzeňská, Kladská: the rules' shoulder was there too); the lane as wide as
+  //   the others found here (else 3.5 m), the shoulder the rest, an estimate.
+  const lanesHere = pieces.filter((p, q) => kinds[q] === "pruh").map((p) => p.w).sort((x, y) => x - y);
+  const usual = Math.min(4.25, Math.max(3, lanesHere.length ? lanesHere[lanesHere.length >> 1] : 3.5));
+  for (let q = pieces.length - 1; q >= 0; q--) {
+    const p = pieces[q], kerb = q === 0 || q === pieces.length - 1;
+    if (kinds[q] !== null) continue;
+    const ruled = (q === 0 ? w.parts[0] : w.parts.at(-1)).seg.type === "krajnice";
+    // ...and only while that gives no more lanes than the rules had (Brno: 4.85 m was a lane too many).
+    const lanesThen = kinds.filter((k) => k === "pruh").length + 1;
+    if (kerb && ruled && lanesThen <= had && p.w > LANE_MAX && p.w - usual >= 0.5 && p.w - usual <= OUTER_MAX) {
+      const lane = { s: q === 0 ? p.e - usual : p.s, e: q === 0 ? p.e : p.s + usual, w: usual };
+      const shoulder = { s: q === 0 ? p.s : p.s + usual, e: q === 0 ? p.e - usual : p.e, w: p.w - usual, rules: true };
+      pieces.splice(q, 1, ...(q === 0 ? [shoulder, lane] : [lane, shoulder]));
+      kinds.splice(q, 1, ...(q === 0 ? ["krajnice", "pruh"] : ["pruh", "krajnice"]));
+    }
+  }
+  if (kinds.includes(null) || pieces.length < 2) return fail(`kus není pruh ani krajnice: ${pieces.map((p, q) => `${p.w.toFixed(2)}${kinds[q] === null ? "!" : ""}`).join(" ")} (pravidla ${had} pruhy)`);
   // On ČÚZK's 12.5 cm a line near one kerb only is as often the kerb itself (the map's carriageway a metre off) or
   // worn asphalt as an edge line: a shoulder only where both kerbs have one (Hradec; Bára).
   // The lane it joins must still look like one (else the rules stay: 324, worn asphalt taken for the centre line).
   let strict = -1;
-  if (!fine && (kinds[0] === "krajnice") !== (kinds.at(-1) === "krajnice")) {
-    const q = kinds[0] === "krajnice" ? 0 : kinds.length - 1;
+  const lineShoulder = (q) => kinds[q] === "krajnice" && !pieces[q].rules; // not one estimated behind a missed line
+  if (!fine && lineShoulder(0) !== lineShoulder(kinds.length - 1) && kinds.filter((k) => k === "krajnice").length < 2) {
+    const q = lineShoulder(0) ? 0 : kinds.length - 1;
     if (pieces.length > 2) { kinds[q] = "join"; strict = q; }
   }
   if (kinds[0] === "join") { pieces[1].s = pieces[0].s; pieces[1].w = pieces[1].e - pieces[1].s; pieces[1].wide = strict !== 0; }
   if (kinds.at(-1) === "join") { const o = pieces.at(-2); o.e = pieces.at(-1).e; o.w = o.e - o.s; o.wide = strict !== kinds.length - 1; }
   const list = pieces.map((p, q) => ({ ...p, kind: kinds[q] })).filter((p) => p.kind !== "join");
-  if (list.some((p) => p.kind === "pruh" && p.w > (p.wide ? LANE_MAX + LANE_MIN : LANE_MAX))) return null;
+  if (list.some((p) => p.kind === "pruh" && p.w > (p.wide ? LANE_MAX + LANE_MIN : LANE_MAX))) return fail("pruh moc široký");
   // A piece at a kerb where the rules had a shoulder, behind a solid line, is the shoulder behind an edge line
   // (Rozvadovská spojka: 3 m behind the line; Brněnská; Brno, Hradecká: 3.6 m), behind a dashed line a lane
   // (Poděbradská); when that is not known, a shoulder up to SHOULDER_MAX if it would be one lane more than the rules had.
@@ -401,10 +428,10 @@ function measured(w, c, lines, solid = [], fine = true) {
       if (end.kind === "krajnice" || !sides.length || share < 1) end.w += share;
       else if (side === "s") list.unshift({ w: share, kind: "krajnice", rules: true }); else list.push({ w: share, kind: "krajnice", rules: true });
     }
-    if (list.some((p) => p.w < EDGE_MIN)) return null;
+    if (list.some((p) => p.w < EDGE_MIN)) return fail("rozdíl šířky nevyjde");
   }
   // After that every lane must still look like one, or the rules' profile stays.
-  if (list.some((p) => p.kind === "pruh" && (p.w < LANE_MIN - 0.2 || p.w > (p.wide ? LANE_MAX + LANE_MIN : LANE_MAX + 0.25)))) return null;
+  if (list.some((p) => p.kind === "pruh" && (p.w < LANE_MIN - 0.2 || p.w > (p.wide ? LANE_MAX + LANE_MIN : LANE_MAX + 0.25)))) return fail("závěrečná kontrola šířek");
   const oldLanes = w.parts.filter((p) => p.seg.type === "pruh"), lanes = list.filter((p) => p.kind === "pruh");
   let li = 0;
   const segs = list.map((p) => {
@@ -451,13 +478,13 @@ function redraw(w, lines, fine = true) {
     const keep = () => list.forEach((p, q) => segs.push({ ...p.seg, width: +((q === list.length - 1 ? e : p.e) - (q === 0 ? s : p.s)).toFixed(2) }));
     if (!list.every((p) => BLOCK.has(p.seg.type))) { keep(); if (Math.abs(s - list[0].s) > 0.01 || Math.abs(e - list.at(-1).e) > 0.01) changed = true; continue; }
     const inside = lines.filter((l) => !used.has(l) && l > s + 0.3 && l < e - 0.3);
-    if (!inside.length) { keep(); continue; }
+    if (!inside.length) { lastWhy ||= "jiné části, čáry jen na hranách"; keep(); continue; }
     const cuts = [s, ...inside, e], pieces = cuts.slice(1).map((x, q) => ({ s: cuts[q], e: x, w: x - cuts[q] }));
     // At a kerb (the roadway's own edge) a piece up to 2.5 m is a shoulder (a sliver under EDGE_MIN joins its neighbour);
     // anything else must be a lane (2.5–4.75 m), or the block stays as the rules drew it.
     const atKerb = (p) => Math.abs(p.s - w.s) < 0.01 || Math.abs(p.e - w.e) < 0.01;
     const kinds = pieces.map((p) => (atKerb(p) && p.w < EDGE_MIN ? "join" : atKerb(p) && p.w < LANE_MIN ? "krajnice" : p.w >= LANE_MIN && p.w <= LANE_MAX ? "pruh" : null));
-    if (kinds.includes(null) || pieces.length < 2) { keep(); continue; }
+    if (kinds.includes(null) || pieces.length < 2) { lastWhy ||= "jiné části, kus není pruh"; keep(); continue; }
     // ČÚZK: a shoulder only where both kerbs of the roadway have one (as in measured()).
     if (!fine && pieces.length > 2) {
       const ends = [0, kinds.length - 1].filter((q) => kinds[q] === "krajnice" && atKerb(pieces[q]));
@@ -468,7 +495,7 @@ function redraw(w, lines, fine = true) {
     if (kinds[0] === "join") { pieces[1].s = pieces[0].s; pieces[1].w = pieces[1].e - pieces[1].s; }
     if (kinds.at(-1) === "join") { const o = pieces.at(-2); o.e = pieces.at(-1).e; o.w = o.e - o.s; }
     const keepPieces = pieces.filter((_, q) => kinds[q] !== "join"), keepKinds = kinds.filter((x) => x !== "join");
-    if (keepPieces.some((p, q) => keepKinds[q] === "pruh" && p.w > LANE_MAX)) { keep(); continue; }
+    if (keepPieces.some((p, q) => keepKinds[q] === "pruh" && p.w > LANE_MAX)) { lastWhy ||= "jiné části, pruh moc široký"; keep(); continue; }
     // The lanes take what the rules' lanes had: in order when there are as many, else from the lane they overlap most.
     const oldLanes = list.filter((p) => p.seg.type === "pruh"), newLanes = keepKinds.filter((x) => x === "pruh").length;
     let li = 0;

@@ -44,14 +44,16 @@ for (const [city, key] of Object.entries(CITIES)) {
       const k = Math.cos((r.cut.lat * Math.PI) / 180), [sx, sy] = (SHIFT[key] || [0, 0]).map((v) => v / k);
       const bbox = [meta.bbox[0] - sx, meta.bbox[1] - sy, meta.bbox[2] - sx, meta.bbox[3] - sy];
       const st = { ...strip(img, bbox, r.cut, r.a.extent[0] - PAD, r.a.extent[1] + PAD, RES[key]), fine: key !== "cuzk12" };
+      globalThis.__lanesWhy = [];
       const changed = applyLanes(a2, { source: key, st });
+      const whyHere = globalThis.__lanesWhy.reduce((b, x) => { const o = Math.min(x.e, we) - Math.max(x.s, ws); return o > (b?.o ?? 0) ? { o, why: x.why } : b; }, null)?.why || "bez záznamu";
       const after = layout(a2);
       const wayOf = (L) => L.ways.filter((w) => w.geo).reduce((b, w) => { const o = Math.min(w.e, we) - Math.max(w.s, ws); return o > (b?.o ?? 0) ? { w, o } : b; }, null)?.w;
       const w0 = wayOf(before), w1 = wayOf(after);
       if (!w0 || !w1) continue;
       const dTrue = median([ws - w0.s, we - w0.e]);
       const bounds = (w) => w.parts.slice(1).map((p) => p.s + dTrue).filter(inside);
-      const row = { city, who, name, n: ix.n, street: ix.street, changed, truth: truth.length };
+      const row = { city, who, name, n: ix.n, street: ix.street, changed, truth: truth.length, why: whyHere };
       for (const [set, b] of [["pravidla", bounds(w0)], ["ortofoto", bounds(w1)]]) {
         const errs = truth.map((t) => near(b, t));
         row[set] = { lanes: b.length + 1, hit: errs.filter((e) => e <= MATCH).length, extra: b.filter((t) => near(truth, t) > MATCH).length, parts: (set === "pravidla" ? w0 : w1).parts.map((p) => `${p.type} ${p.w.toFixed(2)}`) };
@@ -70,5 +72,8 @@ for (const [k, v] of Object.entries(tally)) {
 }
 const better = rows.filter((r) => r.ortofoto.hit > r.pravidla.hit || (r.ortofoto.hit === r.pravidla.hit && r.ortofoto.extra < r.pravidla.extra)).length;
 const worse = rows.filter((r) => r.ortofoto.hit < r.pravidla.hit || (r.ortofoto.hit === r.pravidla.hit && r.ortofoto.extra > r.pravidla.extra)).length;
+const reasons = {};
+for (const r of rows) reasons[r.why] = (reasons[r.why] || 0) + 1;
+console.log("proč:", Object.entries(reasons).sort((a, b) => b[1] - a[1]).map(([k, v]) => `${k} ${v}`).join(", "));
 console.log(`vozovek ${rows.length}: ortofoto lépe ${better}, hůře ${worse}, stejně ${rows.length - better - worse}`);
 await fs.writeFile(path.join(ROOT, "data", "proto-eval.json"), JSON.stringify({ rows }, null, 1));
