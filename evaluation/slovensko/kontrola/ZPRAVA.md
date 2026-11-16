@@ -151,3 +151,6 @@ Ověřeno v aplikaci s nasimulovanou odpovědí 503 (Andreja Plávku) a hned pot
   co by oprava jen opsala (test v kruhu), a OSM lanes u křižovatek počítá i odbočovací pruhy. Nezávislý test jsou ručně
   označené pruhy v Česku (`evaluation/ortofoto/oznac-eval.mjs`, 117 vozovek): až tam ukáže zlepšení.
 - Regrese Prahy a Brna po celé sérii (opravy 1–7) beze změny, testy 233/233.
+- Street View 4 krajnic nad 3 m (16. 11. 2026, po zprovoznění): Pribinova široký neznačený asfalt, Einsteinova pás za
+  vodicí čarou, Riazanská **podélně parkující auta** po obou stranách, Vlčie hrdlo nejasné (křižovatka). Smíšené, krajnice
+  zůstává; parkující auta v krajnici jsou námět na další bod (odhad stání na Slovensku je vypnutý záměrně).
