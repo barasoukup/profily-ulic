@@ -331,7 +331,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     // What the export credits beyond the city's own data (city.js creditLines): the region of a national DTM,
     // the DMVS standing in for the city's map, the orthophoto of a tram bed.
     const mv = m.status === "fulfilled" ? m.value : null;
-    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.dmvs && { dmvs: true }), ...((ortho || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" && { orthoCity: laneImg.source }) };
+    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.dmvs && { dmvs: true }), ...(mv?.passport && { passport: mv.passport }), ...((ortho || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" && { orthoCity: laneImg.source }) };
     // The log of cuts (log.js): the cut exactly, and how it came (a click, a moved cut, a link).
     log("rez", {
       detail: keepWay ? "posun" : bearing !== null ? "odkaz" : "klik", city: city.id, street: name, highway: near.way.tags.highway,

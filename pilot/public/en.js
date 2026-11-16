@@ -629,6 +629,8 @@ export const EN = {
   "Vodní plocha": "Water surface",
   "Povrch ulice": "Street surface",
   "{type}: povrch tělesa {from} → {to}": "{type}: track bed surface {from} → {to}",
+  "pasport zeleně © {town}": "green passport © {town}",
+  "pasport komunikací © {town}": "road passport © {town}",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.
