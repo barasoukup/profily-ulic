@@ -80,13 +80,13 @@ function limitsSK(s, segs, i) {
 // (2022; quoted in the tables of Lower Austria's Leitfaden Förderung des Radverkehrs 2024: Ausbaustufe D the minimum,
 // C the basic width), the rest after Vienna's Projektierungshandbuch Öffentlicher Raum (MA 18, 2011). RVS 03.02.12,
 // 03.04.12 and 03.07.11 (pedestrians, cross-sections, parking) are not public.
-const AT_LANE = { min: 2.75, zaklad: 3, why: t("jízdní pruh v obci: min. 2,75 m, základ 3 m (Wiener Projektierungshandbuch, MA 18)") };
+const AT_LANE = { min: 2.5, zaklad: 2.75, why: t("jízdní pruh v obci: dva pruhy pro osobní auta 5 m, s nákladními a autobusy 5,5–6,5 m (Wiener Projektierungshandbuch, Blatt 6)") };
 const AT_LANE_BY_GROUP = {
   // RVS 03.03.30 is not public: no red, only the basic width.
-  A: { min: 0, zaklad: 3.75, why: t("jízdní pruh dálnice: 3,75 m (RVS 03.03.30, neveřejná, orientačně)") },
-  B: { min: 2.75, zaklad: 3.25, why: t("jízdní pruh hlavní ulice: min. 2,75 m, základ 3,25 m (Wiener Projektierungshandbuch; NÖ Leitfaden Radverkehr)") },
+  A: { min: 0, zaklad: 3.75, why: t("jízdní pruh dálnice: obvykle 3,75 m (RVS 03.03.30 se nepodařilo ověřit, orientačně)") },
+  B: { min: 2.75, zaklad: 3.25, why: t("jízdní pruh hlavní ulice: min. 2,75 m, základ 3,25 m (NÖ Leitfaden Radverkehr 2024, s. 22; Wiener Projektierungshandbuch)") },
   C: AT_LANE,
-  D: { min: 2.6, zaklad: 3, why: t("jízdní pruh místní ulice: 3 m, nejméně asi 2,6 m (StVO § 24 odst. 3, judikatura VwGH)") },
+  D: { min: 2.5, zaklad: 2.5, why: t("jízdní pruh místní ulice: dva pruhy pro osobní auta 5 m (Wiener Projektierungshandbuch, Blatt 6)") },
 };
 function limitsAT(s, segs, i) {
   const parking = [segs[i - 1], segs[i + 1]].find((x) => x?.type === "parkovani");
@@ -94,28 +94,28 @@ function limitsAT(s, segs, i) {
     case "chodnik": case "chodnik_kola":
       return { min: 1.5, zaklad: 2, why: t("chodník: 2 m, výjimečně 1,5 m (Wiener Projektierungshandbuch; STEP 2025)") };
     case "stezka_sdilena":
-      return parking ? { min: 3.05, zaklad: 3.75, why: t("společná stezka pro chodce a cyklisty vedle podélného stání: min. 3,05 m, základ 3,75 m (RVS 03.02.13)") }
-        : { min: 2.8, zaklad: 3.5, why: t("společná stezka pro chodce a cyklisty: min. 2,8 m, základ 3,5 m (RVS 03.02.13)") };
+      return parking ? { min: 3.05, zaklad: 3.75, why: t("společná stezka pro chodce a cyklisty vedle podélného stání: min. 3,05 m, základ 3,75 m (RVS 03.02.13 podle NÖ Leitfaden 2024)") }
+        : { min: 2.8, zaklad: 3.5, why: t("společná stezka pro chodce a cyklisty: min. 2,8 m, základ 3,5 m (RVS 03.02.13 podle NÖ Leitfaden 2024)") };
     case "pruh": case "pruh_piktokoridor":
-      if (s.turn) return { min: 0, zaklad: 2.75, why: t("řadicí pruh: 2,75 m (Wiener Projektierungshandbuch)") };
+      if (s.turn) return { min: 0, zaklad: 2.75, why: t("řadicí pruh: orientačně 2,75 m (rakouský zdroj nenalezen)") };
       return AT_LANE_BY_GROUP[GROUP[s.roadClass ?? segs.find((x) => x.roadClass)?.roadClass]] || AT_LANE;
     case "bus":
-      return { min: 3, zaklad: 3.5, why: t("pruh pro autobusy: 3,5 m, nejméně 3 m (Wiener Projektierungshandbuch)") };
+      return { min: 0, zaklad: 3.5, why: t("pruh pro autobusy: 3,5 m (Wiener Projektierungshandbuch, kap. 2)") };
     case "bus_cyklo":
-      return { min: 4, zaklad: 4, why: t("pruh pro autobusy s cyklisty: 4 m (Wiener Projektierungshandbuch)") };
+      return { min: 0, zaklad: 4, why: t("pruh pro autobusy s cyklisty: 4 m, hlavně ve stoupání (Wiener Projektierungshandbuch, kap. 2)") };
     case "cyklopruh": case "ochranny_pruh": {
       // Radfahrstreifen and Mehrzweckstreifen have the same widths (RVS 03.02.13, tables 7 and 8).
       if (parking) {
         const perp = parking.orient === "kolme" || parking.orient === "sikme";
         return perp
           ? { min: 2.5, zaklad: 2.5, why: t("cyklopruh vedle kolmého nebo šikmého stání: 1,75 m a bezpečnostní pás 0,75 m (Wiener Projektierungshandbuch)") }
-          : { min: 2, zaklad: 2, why: t("cyklopruh vedle podélného stání: 2 m (RVS 03.02.13)") };
+          : { min: 2, zaklad: 2, why: t("cyklopruh vedle podélného stání: 2 m (RVS 03.02.13 podle NÖ Leitfaden 2024)") };
       }
-      return { min: 1.5, zaklad: 1.5, why: t("cyklopruh: 1,5 m, na hlavních trasách 1,8 m (RVS 03.02.13)") };
+      return { min: 1.5, zaklad: 1.5, why: t("cyklopruh: 1,5 m, na hlavních trasách 1,8 m (RVS 03.02.13 podle NÖ Leitfaden 2024)") };
     }
     case "cyklostezka":
-      return parking ? { min: 1.75, zaklad: 2.05, why: t("stezka pro cyklisty vedle podélného stání: min. 1,75 m, základ 2,05 m (RVS 03.02.13)") }
-        : { min: 1.5, zaklad: 1.8, why: t("stezka pro cyklisty jednosměrná: min. 1,5 m, základ 1,8 m; obousměrná 2,5 a 3,1 m (RVS 03.02.13)") };
+      return parking ? { min: 1.75, zaklad: 2.05, why: t("stezka pro cyklisty vedle podélného stání: min. 1,75 m, základ 2,05 m (RVS 03.02.13 podle NÖ Leitfaden 2024)") }
+        : { min: 1.5, zaklad: 1.8, why: t("stezka pro cyklisty jednosměrná: min. 1,5 m, základ 1,8 m; obousměrná 2,5 a 3,1 m (RVS 03.02.13 podle NÖ Leitfaden 2024)") };
     case "nastupiste":
       return { min: 2.5, zaklad: 3.3, why: t("nástupiště zastávky: s přístřeškem min. 2,5 m, základ 3,3 m (Wiener Projektierungshandbuch)") };
     case "parkovani":
@@ -206,10 +206,12 @@ export function checkRules(profile) {
       const sk = city.country === "SK";
       const at = city.country === "AT";
       // Slovakia: 3.75 m in a town, 3.5 m where it cannot be had, 4.75 m with much cycling or freight (TP 117, tab. 4).
-      const why = at ? t("jednosměrka s cyklisty v protisměru bez cyklopruhu: 3,75 m, nejméně 3,5 m (Wiener Projektierungshandbuch)")
+      const why = at ? t("jednosměrka s cyklisty v protisměru bez cyklopruhu: nejméně 3,5 m, se stáním 3,75 m (Wiener Projektierungshandbuch)")
         : sk ? t("jednosměrka s cyklisty v protisměru: 3,75 m, ve stísněných poměrech 3,5 m, při silném provozu 4,75 m (TP 117, tab. 4)")
         : t("jednosměrka s cyklisty v protisměru: základ 4 m, při velmi nízké intenzitě 3 m, při vyšší až 4,5 m (Manuál C.2)");
-      const [lo, base] = sk || at ? [3.5, 3.75] : [3, 4];
+      // Austria: 3.5 m at least, 3.75 m beside parking (Wiener Projektierungshandbuch).
+      const parked = [segs[i - 1], segs[j], ...run].some((x) => x?.type === "parkovani");
+      const [lo, base] = at ? (parked ? [3.75, 3.75] : [3.5, 3.5]) : sk ? [3.5, 3.75] : [3, 4];
       const v = { label: t("Vozovka"), w: fmt(w), why };
       if (w < lo - 0.005) out.push({ i, level: "min", text: t("Vozovka {w} je pod minimem ({why}).", v), short: t("{label} {w}: pod minimem", v), why });
       else if (w < base - 0.005) out.push({ i, level: "zaklad", text: t("Vozovka {w} je užší než základ ({why}).", v), short: t("{label} {w}: užší než základ", v), why });

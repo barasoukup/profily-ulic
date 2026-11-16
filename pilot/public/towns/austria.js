@@ -22,15 +22,21 @@ export const FMZK = {
   21: 701, 27: 701, 30: 701, 32: 701, // Fahrbahn, Schienenbereich, Zebrastreifen, Fahrbahnschwelle
   22: 1003, // Verkehrsinsel
   26: 1003, 39: 1003, 59: 1003, 74: 1003, 60: 1003, // private, sonstige, befestigte Verkehrsfläche, Stiege, Baustelle
-  23: 702, 24: 702, 31: 702, 82: 702, // Gehsteig, Fußgängerzone, Straßenmobiliar, Telefonzelle
-  25: 703, // Gehweg, Radweg
+  23: 702, 24: 702, 31: 702, 82: 702, 86: 702, // Gehsteig, Fußgängerzone, Straßenmobiliar, Telefonzelle, Portal
+  // Gehweg, Radweg: mostly shared paths and park paths (the hostile review; OSM's cycleway tells a cycle track).
+  25: 702,
   33: 704, // Ruhender Verkehr
   28: 705, // Gleiskörper Wiener Linien
   29: 1100, // Gleiskörper Bahn
   51: 603, // Innenhof
   58: 401, 69: 402, 61: 901, // Grünfläche, sonstige Grünfläche, Sportfeld
-  11: 601, 16: 602, 81: 602, 84: 602, // Gebäude, Brückenpfeiler, Denkmal, Kiosk
+  41: 501, 42: 501, 43: 501, // water: rivers and canals, pools, fountains
+  11: 601, 16: 602, 19: 602, 71: 602, 73: 602, 81: 602, 83: 602, 84: 602, // Gebäude, Brückenpfeiler, sonstiges Bauwerk, Mauer, Sockelzaun, Denkmal, Stationseinrichtung, Kiosk
 };
+// An overbuilding (Überbauung 12: arcades, passages) or a canopy (Flugdach 13) stands over the surface KLASSE_SUB names.
+export const fmzkCode = (a) => (a.F_KLASSE === 12 || a.F_KLASSE === 13 ? FMZK[a.KLASSE_SUB] : FMZK[a.F_KLASSE]) ?? null;
+// The street's own surfaces: one of them at the cut's centre makes the map the cut's.
+const STREET = new Set([701, 702, 703, 704, 705, 1003]);
 
 // One WFS layer in a box (lon, lat): ESRI-like features with rings in WGS 84, as the other sources give them.
 async function wfs(type, bbox) {
@@ -57,11 +63,18 @@ async function surfaces(bbox) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
   if (param("wien") === "0" || city.id !== "austria" || !inWien(cx, cy)) return { features: [], abroad: true };
-  const layers = await Promise.all(["FMZKGEBOGD", "FMZKVERKEHR1OGD", "FMZKVERKEHR2OGD", "FMZKGRUEN2OGD"].map((t) => wfs(t, bbox).catch(() => ({ features: [] }))));
-  const out = asMtvu(layers.map((j) => [j, (a) => FMZK[a.F_KLASSE] ?? null]), MTVU_LABELS);
-  // Only where the map has a surface of the street at the cut's centre (a courtyard or a park path elsewhere).
-  const d = 1.5 / 111320;
-  const at = out.features.some((f) => f.attributes.CTVUK_KOD !== 601 && [[0, 0], [d, 0], [-d, 0], [0, d], [0, -d]].some(([dx, dy]) => inRings(f.geometry.rings, cx + dx, cy + dy)));
+  // A layer that does not answer: none of them (a map without its sidewalks would be wrong), the estimate with a note.
+  let layers;
+  try {
+    layers = await Promise.all(["FMZKGEBOGD", "FMZKVERKEHR1OGD", "FMZKVERKEHR2OGD", "FMZKGRUEN2OGD", "FMZKGEWOGD", "FMZKMAUOGD"].map((t) => wfs(t, bbox)));
+  } catch {
+    return { features: [], abroad: true, atFailed: "wien" };
+  }
+  const out = asMtvu(layers.map((j) => [j, fmzkCode]), MTVU_LABELS);
+  // Only where the map has a surface of the street at the cut's centre or 1.5 m around it (a courtyard, a park or a
+  // monument there: the estimate).
+  const dy = 1.5 / 110574, dx = 1.5 / (111320 * Math.cos((cy * Math.PI) / 180));
+  const at = out.features.some((f) => STREET.has(f.attributes.CTVUK_KOD) && [[0, 0], [dx, 0], [-dx, 0], [0, dy], [0, -dy]].some(([ox, oy]) => inRings(f.geometry.rings, cx + ox, cy + oy)));
   if (!at) return { features: [], abroad: true };
   return { ...out, atTown: "wien" };
 }
