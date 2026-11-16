@@ -1,0 +1,27 @@
+<svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
+  <!-- Žilinský autobus DPMŽ (Dopravný podnik mesta Žiliny), Solaris Urbino 12 IV (diesel), zadní pohled
+       (stejný vůz jako čelní, Wikimedia Commons „Urbino 12 Žilina.jpg“) a členění zádě podle „26Tr Žilina2.jpg“:
+       černá skleněná horní část s LED tabulí uprostřed, bílý pás, žlutý panel s velkými motorovými dvířky
+       s tmavou větrací mřížkou (dieselová záď, odhad bez fotky zádi dieselu), černý pruh se svítilnami, zelený nárazník s odrazkami a SPZ. Tmavá střecha s klimatizací. 1 px = 1 cm, šířka 2,55 m. -->
+  <path d="M54 52 H38 M54 88 H38" stroke="#1d1f22" stroke-width="4" fill="none"/><rect x="30" y="46" width="12" height="50" rx="5" fill="#1d1f22"/>
+  <path d="M306 52 H322 M306 88 H322" stroke="#1d1f22" stroke-width="4" fill="none"/><rect x="318" y="46" width="12" height="50" rx="5" fill="#1d1f22"/>
+  <path d="M52 296 V34 Q52 20 66 20 H294 Q308 20 308 34 V296 Z" fill="#4cae35"/>
+  <rect x="100" y="12" width="160" height="10" rx="3" fill="#3a3d40"/>
+  <path d="M52 46 Q52 30 68 30 H292 Q308 30 308 46 V198 H52 Z" fill="#17191c"/>
+  <rect x="68" y="42" width="224" height="98" rx="6" fill="#232b33"/>
+  <path d="M80 44 L126 44 L102 138 L80 138 Z" fill="#46596a" opacity=".35"/>
+  <rect x="149" y="32" width="62" height="11" rx="1" fill="#2a1c14"/>
+  <rect x="162" y="35" width="36" height="5" rx="1" fill="#ef7a2b"/>
+  <path d="M52 210 Q180 202 308 210 V256 H52 Z" fill="#f4c415"/>
+  <path d="M52 198 Q180 158 308 198 V210 Q180 202 52 210 Z" fill="#f2f3f0"/>
+  <path d="M80 213 H280 L276 246 H84 Z" fill="#e0b010" stroke="#8a6a08" stroke-width="2"/>
+  <rect x="100" y="222" width="160" height="16" rx="2" fill="#3a3205"/>
+  <path d="M106 225 H254 M106 230 H254 M106 235 H254" stroke="#8a6a08" stroke-width="2"/>
+  <path d="M52 256 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#4cae35"/>
+  <rect x="56" y="249" width="248" height="12" rx="3" fill="#17191c"/>
+  <circle cx="66" cy="255" r="5" fill="#c8242a"/><circle cx="80" cy="255" r="5" fill="#f4a21a"/><circle cx="94" cy="255" r="5" fill="#f4a21a"/><circle cx="108" cy="255" r="5" fill="#f2f3f0"/>
+  <circle cx="294" cy="255" r="5" fill="#c8242a"/><circle cx="280" cy="255" r="5" fill="#f4a21a"/><circle cx="266" cy="255" r="5" fill="#f4a21a"/><circle cx="252" cy="255" r="5" fill="#f2f3f0"/>
+  <rect x="60" y="282" width="9" height="5" rx="1" fill="#c8242a"/><rect x="291" y="282" width="9" height="5" rx="1" fill="#c8242a"/>
+  <rect x="152" y="264" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="264" width="6" height="12" fill="#2a63b8"/>
+  <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
+</svg>

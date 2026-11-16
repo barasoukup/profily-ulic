@@ -1,0 +1,32 @@
+<svg viewBox="0 0 320 420" xmlns="http://www.w3.org/2000/svg">
+  <!-- Košická tramvaj Vario LF2+ (Pragoimex/Cegelec, Dopravný podnik mesta Košice), zadní pohled. Vůz je jednosměrný (jezdí
+       po smyčkách), vzadu nemá stanoviště: zadní okno v tmavém rámu s malým číslem linky v rohu, žlutá záď se
+       červenými koncovými světly, modrý spodek. Podle fotek Wikimedia Commons „Vario LF2+ Košice č801.JPG“ a
+       „Košice tram 2026 08.jpg“ (nátěr DPMK); záď domyšlena. Jednoramenný pantograf. Zjednodušená vlastní kresba. 1 px = 1 cm, šířka 2,5 m. -->
+  <g transform="translate(0,-24)"><path d="M174 98 L160 72 L146 98 M160 72 V48" stroke="#e8a21a" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M75 46 H245" stroke="#3f4245" stroke-width="4" stroke-linecap="round"/></g>
+  <rect x="140" y="74" width="44" height="8" rx="2" fill="#4a4b4c"/>
+  <path d="M66 126 L76 82 Q78 78 84 78 H236 Q242 78 244 82 L254 126 Z" fill="#3a86d0"/>
+  <path d="M35 402 V150 Q35 124 62 124 H258 Q285 124 285 150 V402 Z" fill="#3a86d0"/>
+  <path d="M274 126 Q285 133 285 150 V402 H274 Z" fill="#2f6cb0"/>
+  <!-- žlutá záď přes celou šířku -->
+  <path d="M35 305 V152 Q35 129 62 129 H258 Q285 129 285 152 V305 Z" fill="#f6c21c"/>
+  <!-- zadní okno v tenkém černém rámu -->
+  <path d="M60 170 Q62 160 76 160 H244 Q258 160 260 170 L262 250 Q160 258 58 250 Z" fill="#17191c"/>
+  <path d="M68 176 Q70 168 80 168 H240 Q250 168 252 176 L254 244 Q160 251 66 244 Z" fill="#2c3944"/>
+  <path d="M80 174 L116 174 L96 240 L78 238 Z" fill="#46596a" opacity=".5"/>
+  <rect x="216" y="172" width="30" height="12" rx="2" fill="#f08a1c"/>
+  <!-- koncová světla na žluté, úzká bílá vlna pod ní -->
+  <rect x="52" y="282" width="26" height="12" rx="4" fill="#d8262b" stroke="#8f9397" stroke-width="2"/>
+  <rect x="242" y="282" width="26" height="12" rx="4" fill="#d8262b" stroke="#8f9397" stroke-width="2"/>
+  <path d="M35 305 H285 V328 Q230 322 160 322 Q90 322 35 328 Z" fill="#f4f4f1"/>
+  <path d="M35 328 Q90 322 160 322 Q230 322 285 328 V402 H35 Z" fill="#3a86d0"/>
+  <path d="M35 402 H285 V404 Q285 408 278 409 L270 410 H50 L42 409 Q35 408 35 404 Z" fill="#26282a"/>
+  <rect x="140" y="388" width="40" height="8" rx="2" fill="#3a3c3e"/>
+  <rect x="78" y="410" width="14" height="8" fill="#8f9193"/>
+  <rect x="228" y="410" width="14" height="8" fill="#8f9193"/>
+  <rect x="74" y="418" width="22" height="2" fill="#a7a9ab"/>
+  <rect x="88" y="418" width="4" height="2" fill="#2a2b2a"/>
+  <rect x="224" y="418" width="22" height="2" fill="#a7a9ab"/>
+  <rect x="228" y="418" width="4" height="2" fill="#2a2b2a"/>
+</svg>

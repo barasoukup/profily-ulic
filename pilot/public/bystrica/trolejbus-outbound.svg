@@ -1,0 +1,37 @@
+<svg viewBox="0 0 360 560" xmlns="http://www.w3.org/2000/svg">
+  <!-- Trolejbus DPMBB Banská Bystrica, Škoda 30Tr SOR, zadní pohled (stejný vůz): bílá záď, kryt trakční výzbroje
+       na střeše se základnou sběračů, malé zadní sklo, hladká záď bez dieselové mřížky, červený spodní pás
+       (barvy podle Wikimedia Commons: „Banská Bystrica Trolejbus 3009.jpg“, „Železničná stanica a Škoda 31Tr.jpg“,
+       „DPMBBTrolejbus3011.JPG“). 1 px = 1 cm, šířka 2,55 m, výška skříně asi 3,4 m. -->
+  <g stroke="#2a2b2a" stroke-linecap="round" fill="none">
+    <path d="M160 228 L148 16" stroke-width="5"/>
+    <path d="M200 228 L212 16" stroke-width="5"/>
+  </g>
+  <path d="M140 250 L150 90 M220 250 L210 90" stroke="#2a2b2a" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+  <rect x="140" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
+  <rect x="204" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
+  <g transform="translate(0 240)">
+    <rect x="40" y="62" width="14" height="4" fill="#1b1d20"/><rect x="26" y="58" width="16" height="42" rx="5" fill="#1b1d20"/>
+    <rect x="306" y="62" width="14" height="4" fill="#1b1d20"/><rect x="318" y="58" width="16" height="42" rx="5" fill="#1b1d20"/>
+    <path d="M52 298 V24 Q52 -4 82 -4 H278 Q308 -4 308 24 V298 Z" fill="#f3f4f2"/>
+    <path d="M298 -2 Q308 4 308 24 V298 H298 Z" fill="#dcdedb"/>
+    <rect x="80" y="-28" width="200" height="26" rx="6" fill="#e6e8e5"/>
+    <rect x="120" y="-36" width="120" height="9" rx="4" fill="#d9dcd9"/>
+    <!-- zadní sklo v tmavém rámu -->
+    <rect x="70" y="22" width="220" height="100" rx="4" fill="#1b1d20"/>
+    <rect x="76" y="28" width="208" height="88" rx="3" fill="#2c3944"/>
+    <path d="M88 32 L116 32 L102 112 L88 112 Z" fill="#46596a" opacity=".5"/>
+    <rect x="250" y="34" width="26" height="8" rx="2" fill="#f2a33a"/>
+    <!-- hladký servisní kryt výzbroje -->
+    <rect x="110" y="140" width="140" height="64" rx="5" fill="#e6e8e5"/>
+    <rect x="116" y="146" width="128" height="52" rx="3" fill="none" stroke="#c9ccc9" stroke-width="2"/>
+    <!-- svítilny v rohách -->
+    <rect x="56" y="140" width="14" height="76" rx="6" fill="#8f1218"/><rect x="58" y="180" width="10" height="10" rx="3" fill="#f2a33a"/><rect x="58" y="194" width="10" height="10" rx="3" fill="#eef1f3"/>
+    <rect x="290" y="140" width="14" height="76" rx="6" fill="#8f1218"/><rect x="292" y="180" width="10" height="10" rx="3" fill="#f2a33a"/><rect x="292" y="194" width="10" height="10" rx="3" fill="#eef1f3"/>
+    <!-- červený pás se značkou -->
+    <rect x="52" y="226" width="256" height="64" fill="#d8262b"/>
+    <path d="M52 290 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#33363b"/>
+    <rect x="152" y="252" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="252" width="6" height="12" fill="#2a63b8"/>
+    <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
+  </g>
+</svg>

@@ -1,0 +1,21 @@
+<svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
+  <!-- Košický autobus SOR NB 12 City (Dopravný podnik mesta Košice), zadní pohled v nátěru DPMK (barvy podle fotek
+       „SOR NB 12 City Košice.jpg“ a „Košice bus 2026.jpg“, Wikimedia Commons; záď domyšlena): modrá záď se žlutým
+       pásem, černé zadní sklo s oranžovou tabulí, mřížka motoru, svislé svítilny, registrační značka. 1 px = 1 cm, šířka 2,55 m. -->
+  <path d="M52 40 H40 Q34 40 34 46 V54" stroke="#1d1f22" stroke-width="5" fill="none"/><rect x="28" y="54" width="14" height="38" rx="5" fill="#1d1f22"/>
+  <path d="M308 40 H320 Q326 40 326 46 V54" stroke="#1d1f22" stroke-width="5" fill="none"/><rect x="318" y="54" width="14" height="38" rx="5" fill="#1d1f22"/>
+  <path d="M52 296 V40 Q52 20 74 20 H286 Q308 20 308 40 V296 Z" fill="#2f6fc0"/>
+  <rect x="140" y="14" width="80" height="10" rx="3" fill="#2a5fa6"/>
+  <rect x="52" y="30" width="256" height="12" fill="#f6c21c"/>
+  <rect x="68" y="48" width="224" height="92" rx="4" fill="#17191c"/>
+  <rect x="94" y="52" width="20" height="84" fill="#2a3038"/><g fill="#0e0f10"><rect x="97" y="58" width="14" height="3"/><rect x="97" y="66" width="14" height="3"/><rect x="97" y="74" width="14" height="3"/><rect x="97" y="82" width="14" height="3"/><rect x="97" y="90" width="14" height="3"/><rect x="97" y="98" width="14" height="3"/><rect x="97" y="106" width="14" height="3"/><rect x="97" y="114" width="14" height="3"/><rect x="97" y="122" width="14" height="3"/></g>
+  <rect x="236" y="56" width="46" height="14" rx="2" fill="#f08a1c"/>
+  <rect x="52" y="146" width="256" height="14" fill="#f6c21c"/>
+  <g fill="#c9cbcd"><rect x="110" y="166" width="140" height="5" rx="2"/><rect x="110" y="174" width="140" height="5" rx="2"/><rect x="110" y="182" width="140" height="5" rx="2"/></g>
+  <rect x="62" y="200" width="14" height="50" rx="6" fill="#8f1218"/><circle cx="69" cy="210" r="4" fill="#d8262b"/><circle cx="69" cy="221" r="4" fill="#f2a33a"/><circle cx="69" cy="232" r="4" fill="#eef1f3"/><circle cx="69" cy="243" r="4" fill="#d8262b"/>
+  <rect x="284" y="200" width="14" height="50" rx="6" fill="#8f1218"/><circle cx="291" cy="210" r="4" fill="#d8262b"/><circle cx="291" cy="221" r="4" fill="#f2a33a"/><circle cx="291" cy="232" r="4" fill="#eef1f3"/><circle cx="291" cy="243" r="4" fill="#d8262b"/>
+  <path d="M52 252 Q180 264 308 252 V276 Q180 288 52 276 Z" fill="#f4f4f1"/>
+  <rect x="152" y="258" width="56" height="12" rx="1" fill="#f4f4f2" stroke="#17191c" stroke-width="1.5"/><rect x="152" y="258" width="6" height="12" fill="#2a63b8"/>
+  <path d="M52 280 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#17191c"/>
+  <rect x="70" y="296" width="36" height="24" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="24" rx="4" fill="#111"/>
+</svg>

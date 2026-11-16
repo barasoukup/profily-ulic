@@ -1,0 +1,26 @@
+<svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
+  <!-- Prešovský autobus DPMP, SOR NB 12 City v červeno-bílém nátěru dopravce, čelní pohled; vychází z fotky vlastního
+       vozu DPMP z Wikimedia Commons (SITA, dodávka z 21. 3. 2022, SOR NB City): velké čelní sklo do asi 62 % výšky,
+       pod ním černý klínovitý pás s tmavou prohlubní a logem, dole hladká červená; zrcátka na ramenech z horních rohů;
+       barvy podle „Škoda31TrSORPREŠOV.jpg“. Fotka „Autobus Hlavná Prešov 18 Slovakia.jpg“ je bratislavský vůz DPB
+       a nepoužita. Dveře zboku nekresleny. 1 px = 1 cm, šířka 2,55 m. -->
+  <path d="M52 58 Q32 56 30 74" stroke="#1d1f22" stroke-width="5" fill="none"/>
+  <rect x="20" y="72" width="18" height="40" rx="5" fill="#1d1f22"/>
+  <path d="M308 58 Q328 56 330 74" stroke="#1d1f22" stroke-width="5" fill="none"/>
+  <rect x="322" y="72" width="18" height="40" rx="5" fill="#1d1f22"/>
+  <path d="M52 296 V40 Q52 20 74 20 H286 Q308 20 308 40 V296 Z" fill="#d3191f"/>
+  <rect x="140" y="14" width="80" height="10" rx="3" fill="#eceeed"/>
+  <path d="M52 42 Q52 26 70 26 H290 Q308 26 308 42 V192 H52 Z" fill="#1b1d20"/>
+  <rect x="72" y="42" width="216" height="142" rx="5" fill="#2a3642"/>
+  <rect x="100" y="44" width="160" height="16" rx="2" fill="#15171a"/><rect x="110" y="48" width="24" height="8" fill="#f2a33a"/><rect x="146" y="48" width="86" height="8" fill="#f2a33a"/>
+  <path d="M86 66 L124 66 L98 178 L84 178 Z" fill="#46596a" opacity=".5"/>
+  <path d="M52 192 H308 V206 H52 Z" fill="#1b1d20"/>
+  <path d="M100 206 H260 L230 240 H130 Z" fill="#1b1d20"/>
+  <rect x="148" y="212" width="64" height="18" rx="4" fill="#2f3235"/>
+  <circle cx="180" cy="221" r="6" fill="none" stroke="#c9cbcd" stroke-width="2.5"/>
+    <rect x="60" y="214" width="42" height="16" rx="6" fill="#e9edf0"/><rect x="258" y="214" width="42" height="16" rx="6" fill="#e9edf0"/>
+  <rect x="66" y="236" width="24" height="6" rx="2" fill="#f4f6f7"/><rect x="270" y="236" width="24" height="6" rx="2" fill="#f4f6f7"/>
+  <rect x="152" y="250" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="250" width="6" height="12" fill="#2a63b8"/>
+  <path d="M52 276 H308 V290 H52 Z" fill="#b21419"/><path d="M52 290 H308 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#2f3235"/>
+  <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
+</svg>

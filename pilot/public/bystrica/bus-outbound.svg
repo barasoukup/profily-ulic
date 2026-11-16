@@ -1,0 +1,21 @@
+<svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
+  <!-- Autobus MHD Banská Bystrica, dopravce SAD Zvolen, Irisbus Citelis 12 M, zadní pohled (stejný vůz jako
+       bus-inbound.svg; podle Wikimedia Commons „MHD BB Citelis 18M.jpg“, „Linka 22 MHD BB.jpg“): bílá záď, malé zadní
+       sklo, mřížka motoru, červený spodní pás. 1 px = 1 cm. -->
+  <rect x="40" y="54" width="14" height="4" fill="#1d1f22"/><rect x="26" y="50" width="16" height="44" rx="5" fill="#1d1f22"/>
+  <rect x="306" y="54" width="14" height="4" fill="#1d1f22"/><rect x="318" y="50" width="16" height="44" rx="5" fill="#1d1f22"/>
+  <path d="M52 296 V40 Q52 20 74 20 H286 Q308 20 308 40 V296 Z" fill="#f3f4f2"/>
+  <path d="M298 24 Q308 28 308 40 V296 H298 Z" fill="#dcdedb"/>
+  <rect x="96" y="8" width="168" height="18" rx="6" fill="#e6e8e5"/>
+  <rect x="70" y="40" width="220" height="92" rx="4" fill="#17191c"/>
+  <rect x="76" y="46" width="208" height="80" rx="3" fill="#2c3944"/>
+  <path d="M88 50 L116 50 L102 122 L88 122 Z" fill="#46596a" opacity=".5"/>
+  <rect x="250" y="52" width="26" height="8" rx="2" fill="#f2a33a"/>
+  <g fill="#c9ccc9"><rect x="120" y="148" width="120" height="4" rx="2"/><rect x="120" y="158" width="120" height="4" rx="2"/><rect x="120" y="168" width="120" height="4" rx="2"/></g>
+  <rect x="56" y="140" width="14" height="76" rx="6" fill="#8f1218"/><rect x="58" y="180" width="10" height="10" rx="3" fill="#f2a33a"/><rect x="58" y="194" width="10" height="10" rx="3" fill="#eef1f3"/>
+  <rect x="290" y="140" width="14" height="76" rx="6" fill="#8f1218"/><rect x="292" y="180" width="10" height="10" rx="3" fill="#f2a33a"/><rect x="292" y="194" width="10" height="10" rx="3" fill="#eef1f3"/>
+  <rect x="52" y="214" width="256" height="66" fill="#d8262b"/>
+  <path d="M52 280 H308 V288 Q308 298 298 298 H62 Q52 298 52 288 Z" fill="#33363b"/>
+  <rect x="152" y="240" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="240" width="6" height="12" fill="#2a63b8"/>
+  <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
+</svg>

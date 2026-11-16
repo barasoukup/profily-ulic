@@ -1,0 +1,33 @@
+<svg viewBox="0 0 360 560" xmlns="http://www.w3.org/2000/svg">
+  <!-- Prešovský trolejbus DPMP, kloubová Škoda 31Tr SOR, zadní pohled (stejný vůz): červeno-bílý nátěr podle fotek
+       z Wikimedia Commons „Škoda31TrSORPREŠOV.jpg“ a „Škoda 31 Tr Prešov.jpg“ (záď červená až k tmavému nárazníku;
+       bílý spodek se stupni je jen na boku); svítilny a zadní sklo podle zadní fotky autobusu v Prešově „Autobus MHD,
+       Masarykova ulica. Prešov 20 Slovakia.jpg“ (sloupce kulatých svítilen v rozích, vysoké brzdové světlo pod sklem,
+       LED číslo linky). 1 px = 1 cm, šířka 2,55 m, výška asi 340 cm; sběrače z kořenů na střeše k trolejím. -->
+  <g stroke="#2a2b2a" stroke-linecap="round" fill="none">
+    <path d="M160 222 L148 16" stroke-width="5"/>
+    <path d="M200 222 L212 16" stroke-width="5"/>
+  </g>
+  <rect x="140" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
+  <rect x="204" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
+  <g transform="translate(0 240)">
+    <path d="M56 22 Q34 20 32 40" stroke="#1b1d20" stroke-width="5" fill="none"/>
+    <rect x="22" y="38" width="18" height="46" rx="5" fill="#1b1d20"/>
+    <path d="M304 22 Q326 20 328 40" stroke="#1b1d20" stroke-width="5" fill="none"/>
+    <rect x="320" y="38" width="18" height="46" rx="5" fill="#1b1d20"/>
+    <path d="M52 298 V32 Q52 4 82 4 H278 Q308 4 308 32 V298 Z" fill="#d3191f"/>
+    <rect x="70" y="-28" width="220" height="36" rx="6" fill="#eceeed"/>
+    <!-- zadní sklo s LED číslem linky a brzdovým světlem -->
+    <rect x="70" y="30" width="220" height="92" rx="4" fill="#1b1d20"/>
+    <path d="M84 36 L116 36 L100 116 L84 116 Z" fill="#3a4654" opacity=".5"/>
+    <rect x="236" y="40" width="40" height="22" rx="2" fill="#0e0f10"/><rect x="244" y="45" width="24" height="12" fill="#f2a33a"/>
+    <rect x="100" y="130" width="160" height="5" rx="2" fill="#ff3a3a"/>
+    <!-- sloupce kulatých svítilen -->
+    <circle cx="68" cy="22" r="6" fill="#e23030"/><circle cx="292" cy="22" r="6" fill="#e23030"/>
+    <circle cx="66" cy="166" r="9" fill="#f2a33a"/><circle cx="66" cy="186" r="9" fill="#e23030"/><circle cx="66" cy="206" r="9" fill="#eef1f3"/><circle cx="66" cy="226" r="9" fill="#e23030"/>
+    <circle cx="294" cy="166" r="9" fill="#f2a33a"/><circle cx="294" cy="186" r="9" fill="#e23030"/><circle cx="294" cy="206" r="9" fill="#eef1f3"/><circle cx="294" cy="226" r="9" fill="#e23030"/>
+    
+    <path d="M52 268 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#2f3235"/>
+    <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
+  </g>
+</svg>

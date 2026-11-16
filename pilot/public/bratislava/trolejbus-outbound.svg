@@ -1,0 +1,13 @@
+<svg viewBox="0 0 360 560" xmlns="http://www.w3.org/2000/svg">
+<!-- Trolejbus Škoda 31Tr SOR (starší SOR NB/NS, rovné čelo; novější SOR TNS 12 má čelo jako NS 12), Dopravný podnik Bratislava (DPB), zadní pohled. Celá skříň červená, okna a čelo v černém pásu, na střeše červený kryt výzbroje s rámem sběračů. Vycházeno z fotek na Wikimedia Commons (ne obkresleno): „Škoda 31Tr SOR trolleybus in Bratislava (2024).jpg“, „6821 201 Komarovska.jpg“. 1 px = 1 cm. -->
+<g stroke="#2a2b2a" stroke-linecap="round" fill="none"><path d="M160 214 L148 16" stroke-width="5"/><path d="M200 214 L212 16" stroke-width="5"/></g><rect x="140" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/><rect x="204" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
+<g transform="translate(0 240)">
+<rect x="78" y="-26" width="204" height="20" rx="6" fill="#e2271c"/><rect x="78" y="-14" width="204" height="8" fill="#a9201a"/><rect x="140" y="-30" width="80" height="6" rx="2" fill="#3b3e41"/><path d="M52 70 H44 Q40 70 40 74 V82" stroke="#17191c" stroke-width="4" fill="none"/><rect x="34" y="82" width="10" height="26" rx="4" fill="#17191c"/><path d="M308 70 H316 Q320 70 320 74 V82" stroke="#17191c" stroke-width="4" fill="none"/><rect x="316" y="82" width="10" height="26" rx="4" fill="#17191c"/>
+<path d="M52 296 V5 Q52 -8 74 -8 H286 Q308 -8 308 5 V296 Z" fill="#e2271c"/>
+<rect x="52" y="-8" width="256" height="22" rx="8" fill="#a9201a"/>
+<rect x="132" y="11" width="96" height="16" fill="#0c0d0e"/><rect x="140" y="15" width="80" height="8" fill="#c8d84a"/>
+<rect x="70" y="39" width="220" height="111" rx="6" fill="#2c3944"/><path d="M84 45 L130 45 L104 140 L82 140 Z" fill="#46596a" opacity=".45"/>
+<rect x="60" y="200" width="16" height="50" rx="4" fill="#d4141c"/><rect x="284" y="200" width="16" height="50" rx="4" fill="#d4141c"/><rect x="60" y="256" width="16" height="12" rx="3" fill="#f2a33a"/><rect x="284" y="256" width="16" height="12" rx="3" fill="#c8d84a"/>
+<rect x="96" y="196" width="168" height="70" rx="4" fill="#b81a14"/><g stroke="#7d1511" stroke-width="2"><path d="M104 208 H256"/><path d="M104 222 H256"/><path d="M104 236 H256"/><path d="M104 250 H256"/></g>
+<rect x="52" y="272" width="256" height="24" rx="4" fill="#17191c"/><rect x="152" y="278" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="278" width="6" height="12" fill="#2a63b8"/>
+<rect x="70" y="296" width="36" height="24" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="24" rx="4" fill="#111"/></g></svg>

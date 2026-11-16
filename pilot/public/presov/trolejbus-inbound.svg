@@ -1,0 +1,43 @@
+<svg viewBox="0 0 360 560" xmlns="http://www.w3.org/2000/svg">
+  <!-- Prešovský trolejbus DPMP, kloubová Škoda 31Tr SOR (dnešní nejnovější typ, vozy 72x), čelní pohled podle fotek
+       z Wikimedia Commons „Škoda31TrSORPREŠOV.jpg“ (vůz 727, červeno-bílý nátěr) a „Škoda 31 Tr Prešov.jpg“ / vůz 723 s
+       reklamou: červená skříň, velké čelní sklo, černý pás pod sklem se žlutým číslem vozu, červený spodek s
+       tmavou mřížkou a světly v rozích, vysoké bílé střešní kryty přes téměř celou šířku střechy.
+       1 px = 1 cm, šířka 2,55 m, výška asi 340 cm; nahoře sběrače k trolejím. -->
+  <g stroke="#2a2b2a" stroke-linecap="round" fill="none">
+    <path d="M160 222 L148 16" stroke-width="5"/>
+    <path d="M200 222 L212 16" stroke-width="5"/>
+  </g>
+  <rect x="140" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
+  <rect x="204" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
+  <g transform="translate(0 240)">
+    <path d="M56 22 Q34 20 32 40" stroke="#1b1d20" stroke-width="5" fill="none"/>
+    <rect x="22" y="38" width="18" height="46" rx="5" fill="#1b1d20"/>
+    <path d="M304 22 Q326 20 328 40" stroke="#1b1d20" stroke-width="5" fill="none"/>
+    <rect x="320" y="38" width="18" height="46" rx="5" fill="#1b1d20"/>
+    <!-- červená skříň -->
+    <path d="M52 298 V32 Q52 4 82 4 H278 Q308 4 308 32 V298 Z" fill="#d3191f"/>
+    <!-- bílé střešní kryty výstroje -->
+    <rect x="70" y="-28" width="220" height="36" rx="6" fill="#eceeed"/>
+    <!-- čelní sklo a světelná tabule -->
+    <path d="M52 34 Q52 10 82 10 H278 Q308 10 308 34 V208 Q180 220 52 208 Z" fill="#1b1d20"/>
+    <path d="M70 30 H290 V198 Q180 206 70 198 Z" fill="#2a3642"/>
+    <rect x="96" y="32" width="168" height="18" rx="2" fill="#15171a"/>
+    <rect x="108" y="36" width="26" height="10" fill="#f2a33a"/><rect x="146" y="36" width="90" height="10" fill="#f2a33a"/>
+    <path d="M82 56 L130 56 L100 194 L80 192 Z" fill="#46596a" opacity=".5"/>
+    <g stroke="#0e0f10" stroke-width="2.5" stroke-linecap="round"><path d="M96 204 L170 194"/><path d="M276 204 L204 194"/></g>
+    <!-- černý pás s číslem vozu a mřížkou -->
+    <path d="M52 208 Q180 220 308 208 V250 H52 Z" fill="#1b1d20"/>
+    <rect x="70" y="222" width="30" height="12" fill="#eceeed"/>
+    <rect x="112" y="222" width="30" height="16" fill="#eceeed"/>
+    <rect x="132" y="236" width="96" height="14" rx="3" fill="#2f3235"/>
+    <circle cx="180" cy="243" r="5" fill="none" stroke="#9a9ea2" stroke-width="2"/>
+    <!-- světla v rozích -->
+    <rect x="56" y="254" width="44" height="14" rx="5" fill="#e9edf0"/><rect x="260" y="254" width="44" height="14" rx="5" fill="#e9edf0"/>
+    <rect x="62" y="272" width="22" height="6" rx="2" fill="#f4f6f7"/><rect x="276" y="272" width="22" height="6" rx="2" fill="#f4f6f7"/>
+    <!-- nárazník a značka -->
+    <path d="M52 284 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#b21419"/>
+    
+    <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
+  </g>
+</svg>

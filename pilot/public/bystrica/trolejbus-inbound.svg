@@ -1,0 +1,45 @@
+<svg viewBox="0 0 360 560" xmlns="http://www.w3.org/2000/svg">
+  <!-- Trolejbus Dopravného podniku mesta Banská Bystrica (DPMBB), Škoda 30Tr SOR (12 m, vozy 3001–3017), čelní pohled
+       podle fotek z Wikimedia Commons: „DPMBBTrolejbus3011.JPG“, „Banska Bystrica trolleybuses 2014.JPG“,
+       „Škoda 31Tr pri rooseveltovej nemocnici.jpg“ (nátěr) a „Železničná stanica a Škoda 31Tr.jpg“ (nátěr):
+       bílá střecha s krytem trakční výzbroje, velké čelní sklo v černém rámu, černý spodek čela se znakem Škoda,
+       bílé rohové panely, městský znak jen na pravém panelu, červený nárazník s registrační značkou.
+       1 px = 1 cm, šířka 2,55 m, výška skříně asi 3,4 m. -->
+  <g stroke="#2a2b2a" stroke-linecap="round" fill="none">
+    <path d="M160 228 L148 16" stroke-width="5"/>
+    <path d="M200 228 L212 16" stroke-width="5"/>
+  </g>
+  <rect x="140" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
+  <rect x="204" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
+  <g transform="translate(0 240)">
+    <path d="M56 40 Q34 38 32 58" stroke="#1b1d20" stroke-width="5" fill="none"/>
+    <rect x="22" y="56" width="18" height="46" rx="5" fill="#1b1d20"/>
+    <path d="M304 40 Q326 38 328 58" stroke="#1b1d20" stroke-width="5" fill="none"/>
+    <rect x="320" y="56" width="18" height="46" rx="5" fill="#1b1d20"/>
+    <!-- bílá skříň, kryt trakční výzbroje a klimatizace -->
+    <path d="M52 298 V24 Q52 -4 82 -4 H278 Q308 -4 308 24 V298 Z" fill="#f3f4f2"/>
+    <path d="M298 -2 Q308 4 308 24 V298 H298 Z" fill="#dcdedb"/>
+    <rect x="80" y="-28" width="200" height="26" rx="6" fill="#e6e8e5"/>
+    <rect x="120" y="-36" width="120" height="9" rx="4" fill="#d9dcd9"/>
+    <!-- černý rám a velké čelní sklo -->
+    <path d="M56 214 V22 Q56 12 66 12 H294 Q304 12 304 22 V214 Z" fill="#1b1d20"/>
+    <path d="M64 24 H296 V204 Q180 214 64 204 Z" fill="#2c3944"/>
+    <path d="M80 30 L126 30 L96 198 L78 196 Z" fill="#46596a" opacity=".5"/>
+    <path d="M250 30 L274 30 L262 120 L240 120 Z" fill="#46596a" opacity=".4"/>
+    <rect x="104" y="14" width="152" height="8" rx="2" fill="#f2a33a"/>
+    <g stroke="#0e0f10" stroke-width="2.5" stroke-linecap="round"><path d="M96 206 L170 196"/><path d="M276 206 L204 196"/></g>
+    <!-- černý spodek čela se znakem Škoda -->
+    <path d="M56 214 Q180 226 304 214 V266 H56 Z" fill="#1b1d20"/>
+    <circle cx="180" cy="232" r="8" fill="none" stroke="#9aa0a4" stroke-width="2.5"/>
+    <rect x="132" y="244" width="96" height="5" rx="2" fill="#2c3036"/>
+    <!-- bílé rohové panely se světly, městský znak jen vpravo -->
+    <path d="M52 232 H100 V268 H52 Z" fill="#f3f4f2"/><path d="M308 232 H260 V268 H308 Z" fill="#f3f4f2"/>
+    <rect x="60" y="240" width="28" height="12" rx="4" fill="#e9eef2" stroke="#9fa3a6" stroke-width="1.5"/>
+    <rect x="272" y="240" width="28" height="12" rx="4" fill="#e9eef2" stroke="#9fa3a6" stroke-width="1.5"/>
+    <path d="M286 236 h12 v10 q-6 5 -12 0 Z" fill="#c8102e"/>
+    <!-- červený nárazník se značkou -->
+    <path d="M52 256 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#d8262b"/>
+    <rect x="152" y="272" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="272" width="6" height="12" fill="#2a63b8"/>
+    <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
+  </g>
+</svg>

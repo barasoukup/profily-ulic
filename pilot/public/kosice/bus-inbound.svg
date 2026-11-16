@@ -1,0 +1,29 @@
+<svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
+  <!-- Košický autobus SOR NB 12 City (Dopravný podnik mesta Košice), čelní pohled podle fotek Wikimedia Commons
+       „SOR NB 12 City Košice.jpg“ a „Košice bus 2026.jpg“ (nátěr DPMK): modrá střecha a spodek, tenký žlutý pruh nad sklem, černý pás s oranžovou LED tabulí
+       v horní části skla, tmavé sloupky, žlutý proužek pod sklem, bílý pás, modrá se světly, střešní kryt. Zjednodušená vlastní kresba. 1 px = 1 cm, šířka 2,55 m. -->
+  <rect x="140" y="14" width="80" height="10" rx="3" fill="#2a5fa6"/>
+  <path d="M60 30 Q38 28 34 48" stroke="#1d1f22" stroke-width="5" fill="none"/>
+  <rect x="22" y="46" width="18" height="50" rx="6" fill="#1d1f22"/>
+  <path d="M300 30 Q322 28 326 48" stroke="#1d1f22" stroke-width="5" fill="none"/>
+  <rect x="320" y="46" width="18" height="50" rx="6" fill="#1d1f22"/>
+  <path d="M52 296 V40 Q52 20 74 20 H286 Q308 20 308 40 V296 Z" fill="#2f6fc0"/>
+  <path d="M52 56 V40 Q52 30 70 30 H290 Q308 30 308 40 V56 Z" fill="#f6c21c"/>
+  <rect x="52" y="56" width="256" height="140" fill="#1d1f22"/>
+  <path d="M72 62 H288 V186 Q180 196 72 186 Z" fill="#2c3944"/>
+  <rect x="72" y="58" width="216" height="22" fill="#111"/>
+  <rect x="104" y="62" width="152" height="14" rx="2" fill="#f08a1c"/>
+  <rect x="112" y="66" width="40" height="6" fill="#ffc15a"/>
+  <path d="M84 84 L124 84 L96 182 L80 180 Z" fill="#46596a" opacity=".5"/>
+  <g stroke="#0e0f10" stroke-width="2.5" stroke-linecap="round"><path d="M100 188 L170 172"/><path d="M272 188 L206 172"/></g>
+  <path d="M52 196 H308 V204 Q180 214 52 204 Z" fill="#f6c21c"/>
+  <path d="M52 204 Q180 214 308 204 V232 Q180 244 52 232 Z" fill="#f4f4f1"/>
+  <path d="M52 232 Q180 244 308 232 V296 H52 Z" fill="#2f6fc0"/>
+  <path d="M60 240 H104 Q110 240 112 248 L114 268 Q100 274 64 270 Z" fill="#d6d9dc"/>
+  <circle cx="78" cy="254" r="6" fill="#f6f7f8" stroke="#9fa3a6"/><circle cx="98" cy="256" r="6" fill="#f6f7f8" stroke="#9fa3a6"/>
+  <path d="M300 240 H256 Q250 240 248 248 L246 268 Q260 274 296 270 Z" fill="#d6d9dc"/>
+  <circle cx="282" cy="254" r="6" fill="#f6f7f8" stroke="#9fa3a6"/><circle cx="262" cy="256" r="6" fill="#f6f7f8" stroke="#9fa3a6"/>
+  <rect x="152" y="268" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="268" width="6" height="12" fill="#2a63b8"/>
+  <path d="M52 284 H308 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#17191c"/>
+  <rect x="70" y="296" width="36" height="24" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="24" rx="4" fill="#111"/>
+</svg>

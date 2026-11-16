@@ -1,0 +1,29 @@
+<svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
+  <!-- Autobus MHD Banská Bystrica, dopravce SAD Zvolen (ne DPMBB, ten má jen trolejbusy a linky 13 a 101), Irisbus
+       Citelis 12 M, čelní pohled podle fotek z Wikimedia Commons: „MHD BB Citelis 12M.jpg“ (kategorie
+       Buses of SAD Zvolen (MHD Banská Bystrica)), „Linka 22 MHD BB.jpg“: velké sklo v tmavém rámu,
+       světle šedé čelo pod sklem s kulatými světly v rozích a logem Irisbus, vlevo městský štít a značka MHD,
+       červený nárazník. Kresba je zjednodušená. 1 px = 1 cm, šířka 2,55 m. -->
+  <path d="M60 30 Q38 28 34 48" stroke="#1d1f22" stroke-width="5" fill="none"/>
+  <rect x="22" y="46" width="18" height="50" rx="6" fill="#1d1f22"/>
+  <path d="M300 30 Q322 28 326 48" stroke="#1d1f22" stroke-width="5" fill="none"/>
+  <rect x="320" y="46" width="18" height="50" rx="6" fill="#1d1f22"/>
+  <path d="M52 296 V40 Q52 20 74 20 H286 Q308 20 308 40 V296 Z" fill="#f3f4f2"/>
+  <path d="M298 24 Q308 28 308 40 V296 H298 Z" fill="#dcdedb"/>
+  <rect x="96" y="8" width="168" height="18" rx="6" fill="#e6e8e5"/>
+  <path d="M58 196 V38 Q58 30 66 30 H294 Q302 30 302 38 V196 Z" fill="#17191c"/>
+  <path d="M66 40 H294 V184 Q180 194 66 184 Z" fill="#2c3944"/>
+  <path d="M82 46 L122 46 L94 178 L78 176 Z" fill="#46596a" opacity=".5"/>
+  <rect x="104" y="32" width="152" height="8" rx="2" fill="#f2a33a"/>
+  <g stroke="#0e0f10" stroke-width="2.5" stroke-linecap="round"><path d="M100 186 L170 174"/><path d="M272 186 L206 174"/></g>
+  <!-- světle šedé čelo s kulatými světly a logem -->
+  <path d="M52 196 Q180 208 308 196 V262 H52 Z" fill="#d9dcdd"/>
+  <path d="M58 247 Q58 240 68 240 L92 243 Q106 247 102 256 Q100 260 94 260 L68 260 Q58 259 58 247 Z" fill="#eef1f3" stroke="#8d9296" stroke-width="2"/><circle cx="72" cy="251" r="4" fill="#f2a33a"/><circle cx="88" cy="253" r="4" fill="#cfd5d9" stroke="#8d9296" stroke-width="1"/>
+  <path d="M302 247 Q302 240 292 240 L268 243 Q254 247 258 256 Q260 260 266 260 L292 260 Q302 259 302 247 Z" fill="#eef1f3" stroke="#8d9296" stroke-width="2"/><circle cx="288" cy="251" r="4" fill="#f2a33a"/><circle cx="272" cy="253" r="4" fill="#cfd5d9" stroke="#8d9296" stroke-width="1"/>
+  <ellipse cx="180" cy="255" rx="10" ry="5" fill="#5b6166"/>
+  <rect x="134" y="242" width="92" height="6" rx="3" fill="#aeb3b5"/>
+  <path d="M112 214 h12 v10 q-6 5 -12 0 Z" fill="#c8102e"/><circle cx="137" cy="219" r="8" fill="#d8262b"/><circle cx="137" cy="219" r="4.5" fill="none" stroke="#f4f4f2" stroke-width="1.8"/>
+  <path d="M52 262 H308 V288 Q308 298 298 298 H62 Q52 298 52 288 Z" fill="#d8262b"/>
+  <rect x="152" y="268" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="268" width="6" height="12" fill="#2a63b8"/>
+  <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
+</svg>

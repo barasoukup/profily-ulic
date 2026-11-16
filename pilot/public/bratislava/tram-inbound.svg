@@ -1,0 +1,17 @@
+<svg viewBox="0 0 320 600" xmlns="http://www.w3.org/2000/svg">
+<!-- Tramvaj Škoda 30T ForCity Plus (obousměrná, Dopravný podnik Bratislava, DPB, celá skříň červená), čelní pohled. Vycházeno z fotek na Wikimedia Commons (ne obkresleno):
+       „Škoda 30T ForCity Plus tram in Bratislava - front - CC0 1.0 Universal Public Domain Dedication.jpg“, „Škoda 30T, -7527, DP Bratislava (42751944972).jpg“, „Škoda 30T 7505, tram line 3, Bratislava, 2018.jpg“. 1 px = 1 cm. -->
+<g transform="translate(0,180)">
+<path d="M165 70 L135 -42 L172 -132 M150 70 L135 -42" stroke="#3f4245" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="75" y="-140" width="170" height="6" rx="3" fill="#3f4245"/><rect x="140" y="68" width="44" height="8" rx="2" fill="#4a4b4c"/>
+<path d="M66 96 L76 76 Q78 72 84 72 H236 Q242 72 244 76 L254 96 Z" fill="#3b3e41"/>
+<path d="M35 398 V120 Q35 94 62 94 H258 Q285 94 285 120 V398 Z" fill="#e2271c"/>
+<path d="M35 120 Q35 94 62 94 H258 Q285 94 285 120 V294 Q160 304 35 294 Z" fill="#17191c"/>
+<rect x="90" y="104" width="140" height="14" fill="#0c0d0e"/><rect x="98" y="108" width="40" height="6" fill="#c8d84a"/><rect x="146" y="108" width="76" height="6" fill="#c8d84a"/>
+<path d="M48 142 Q50 136 58 136 H262 Q270 136 272 142 L274 280 Q160 290 46 280 Z" fill="#2c3944"/><path d="M68 142 L108 142 L86 270 L66 268 Z" fill="#46596a" opacity=".55"/><path d="M232 142 L250 142 L242 212 L226 212 Z" fill="#46596a" opacity=".4"/>
+<path d="M35 301 Q160 319 285 301" stroke="#d8dcdc" stroke-width="4" fill="none"/><circle cx="160" cy="312" r="8" fill="#8f9397"/><circle cx="160" cy="312" r="4" fill="#e2271c"/>
+<path d="M42 316 L42 304 L76 298 L76 310 Z" fill="#f6f7f4" stroke="#c9cdcd" stroke-width="2"/><path d="M278 316 L278 304 L244 298 L244 310 Z" fill="#f6f7f4" stroke="#c9cdcd" stroke-width="2"/><circle cx="62" cy="350" r="4" fill="#f2a33a"/><circle cx="258" cy="350" r="4" fill="#f2a33a"/>
+<rect x="190" y="326" width="30" height="7" fill="#f4f4f1"/>
+<path d="M35 130 H22 Q16 130 16 136 V146" stroke="#17191c" stroke-width="3" fill="none"/><rect x="8" y="146" width="14" height="26" rx="3" fill="#17191c"/><path d="M285 130 H298 Q304 130 304 136 V146" stroke="#17191c" stroke-width="3" fill="none"/><rect x="298" y="146" width="14" height="26" rx="3" fill="#17191c"/>
+<path d="M35 398 H285 V404 Q285 408 278 408 L270 410 H50 L42 408 Q35 408 35 404 Z" fill="#26282a"/><rect x="78" y="410" width="14" height="8" fill="#8f9193"/><rect x="228" y="410" width="14" height="8" fill="#8f9193"/><rect x="74" y="418" width="22" height="2" fill="#a7a9ab"/><rect x="224" y="418" width="22" height="2" fill="#a7a9ab"/>
+</g>
+</svg>

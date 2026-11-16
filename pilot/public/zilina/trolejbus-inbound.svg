@@ -1,0 +1,42 @@
+<svg viewBox="0 0 360 560" xmlns="http://www.w3.org/2000/svg">
+  <!-- Žilinský trolejbus DPMŽ (Dopravný podnik mesta Žiliny), Škoda 26Tr se skříní Solaris Urbino IV, čelní pohled
+       podle fotky z Wikimedia Commons „26Tr Žilina1.jpg“ (vůz 285 v depu): zelená střecha a okraje, černé čelo
+       s jednou LED tabulí, velké sklo, žlutý spodní panel s modrými piktogramy a zeleným logem, zelený nárazník.
+       Výška ~3,5 m (skříň natažená), velký bílý kryt trakční výzbroje na střeše. Dveře z čela vidět nejsou.
+       1 px = 1 cm, šířka 2,55 m. -->
+  <g stroke="#2a2b2a" stroke-linecap="round" fill="none">
+    <path d="M160 222 L148 16" stroke-width="5"/>
+    <path d="M200 222 L212 16" stroke-width="5"/>
+  </g>
+  <rect x="140" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
+  <rect x="204" y="8" width="16" height="10" rx="2" fill="#2a2b2a"/>
+  <g transform="translate(0 208.2) scale(1 1.10)">
+    <path d="M56 40 Q34 38 32 58" stroke="#1b1d20" stroke-width="5" fill="none"/>
+    <rect x="22" y="56" width="18" height="46" rx="5" fill="#1b1d20"/>
+    <path d="M304 40 Q326 38 328 58" stroke="#1b1d20" stroke-width="5" fill="none"/>
+    <rect x="320" y="56" width="18" height="46" rx="5" fill="#1b1d20"/>
+    <path d="M52 298 V52 Q52 24 82 24 H278 Q308 24 308 52 V298 Z" fill="#4cae35"/>
+    <rect x="70" y="2" width="220" height="24" rx="11" fill="#e9ece8"/>
+    <path d="M52 52 Q52 30 70 30 H290 Q308 30 308 52 V214 Q180 226 52 214 Z" fill="#17191c"/>
+    <!-- jedna souvislá LED tabule: číslo linky vlevo, cíl vpravo -->
+    <rect x="84" y="50" width="198" height="20" rx="2" fill="#2a1c14"/>
+    <rect x="92" y="55" width="30" height="10" rx="1" fill="#ef5a2b"/>
+    <rect x="150" y="56" width="120" height="8" rx="1" fill="#ef7a2b"/>
+    <path d="M64 80 H296 V198 Q180 210 64 198 Z" fill="#2a3642"/>
+    <path d="M80 86 L126 86 L96 192 L78 190 Z" fill="#46596a" opacity=".5"/>
+    <path d="M250 86 L272 86 L262 134 L240 134 Z" fill="#46596a" opacity=".4"/>
+    <g stroke="#0e0f10" stroke-width="2.5" stroke-linecap="round"><path d="M96 200 L170 190"/><path d="M276 200 L204 190"/></g>
+    <!-- žlutý panel pod sklem -->
+    <path d="M52 214 Q180 226 308 214 V258 Q180 270 52 258 Z" fill="#f4c415"/>
+    <circle cx="180" cy="238" r="7" fill="none" stroke="#7a6a20" stroke-width="2"/>
+    <circle cx="74" cy="249" r="5" fill="#2a63b8"/><circle cx="92" cy="251" r="5" fill="#2a63b8"/>
+    <path d="M246 241 Q252 233 262 234 L266 228 L270 226 L271 230 L268 236 L270 242 L266 242 L262 239 L254 240 L250 243 Z" fill="#4cae35"/>
+    <!-- zelený nárazník, světla -->
+    <path d="M52 258 Q180 270 308 258 V290 Q308 298 300 298 H60 Q52 298 52 290 Z" fill="#4cae35"/>
+    <rect x="62" y="266" width="40" height="12" rx="4" fill="#17191c"/><rect x="258" y="266" width="40" height="12" rx="4" fill="#17191c"/>
+    <circle cx="74" cy="272" r="4" fill="#eef1f3"/><circle cx="90" cy="272" r="4" fill="#eef1f3"/>
+    <circle cx="286" cy="272" r="4" fill="#eef1f3"/><circle cx="270" cy="272" r="4" fill="#eef1f3"/>
+    <rect x="152" y="276" width="56" height="12" rx="1" fill="#f4f4f2"/><rect x="152" y="276" width="6" height="12" fill="#2a63b8"/>
+    <rect x="70" y="296" width="36" height="22" rx="4" fill="#111"/><rect x="254" y="296" width="36" height="22" rx="4" fill="#111"/>
+  </g>
+</svg>
