@@ -66,7 +66,7 @@ místo řezu (lat, lon)
           vlastní hranice jen kde je jiná (kus města, městská část)
 ```
 
-- **Město** (obec s hranicí): jméno, centrum (vzhled domů), ilustrace, seznam zdrojů. Patří do státu, z něj dědí
+- **Město** (obec s hranicí): jméno, centrum (vzhled domů), vlastní ilustrace nad sadou státu (vozidla, mobiliář), seznam zdrojů. Patří do státu, z něj dědí
   všechno, co nemá vlastní (texty, ortofoto, značky, normy).
 - **Zdroj**: modul s dotazy, územím, kreditem (klíč) a vypínačem (`?pasport=0`…). Dnešní `SK_ART_BOX`,
   `AT_ART_BOX`, `inWien`, `townAt`, `EDGE_SOURCES`, `site.js NETS`, `pasporty.json` se převedou na města a zdroje.
@@ -103,7 +103,14 @@ export default {
   orthoEstimate: true,              // poznámka „odhad z ortofota a OSM“                     ← app.js 468, sources.js 66
   wideRoadEstimate: true,           //                                                       ← app.js 308
   roadClassFromOsm: false,          // AT true                                              ← derive.js 1872
-  houseStyle(info, n) { … },        // vzhled domu bez centra                               ← profile.js 613–645
+  // Ilustrace a domy (Bára 16. 11. 2026: odlišné obrázky a typy budov pro různé státy)
+  art: { dir, furniture, stops, vehicles },  // výchozí sada státu: mobiliář, označníky se značkou státu,
+                                    //   vozidla; město ji zdědí a přepíše jen své (dnes skArt, atArt, czechFurniture)
+  houses: {
+    looks: ["cinzak", "funkce", "moderni", …],  // vzhledy, které stát smí kreslit (AT bez paneláku: Gemeindebau
+                                    //   jako „funkce“); vlastní kresby státu ve složce státu, český katalog se nemění
+    style(info, n) { … },           // převod dat státu na vzhled (CZ RÚIAN/IPR, SK druh budovy ZBGIS, AT OSM)
+  },                                //                                                      ← profile.js 613–645, 730
   searchHint(map, query) { … },     // zda hledat ve službě státu (výřez mapy, písmena dotazu) ← search.js 262–267
   national: …,                      // zdroje „zbytku státu“ (CZ: DMVS+RÚIAN, SK: ZBGIS)
   panorama: false,                  // Mapy.com jen CZ
@@ -142,7 +149,7 @@ Líně už dnes (a dál) jen zdroje měst a hledání.
 0. **Záchranná síť z nahraných dat** (většina dne):
    - Jednou nahrát odpovědi zdrojů (plochy, linie, parkování, OSM, snímky ortofota) pro stovky řezů: 995 slovenských
      ze sběru kontroly (commit 627c964), k tomu rakouské a české (Praha, Brno, malá města, DMVS až po 19. 11.).
-     Vybrat tak, aby pokryly větve: dálnice SK/AT, pasport s doplněním, Salzburg, FMZK zapnuté i vypnuté.
+     Vybrat tak, aby pokryly větve: vzhledy domů a ilustrace každého státu a města, dálnice SK/AT, pasport s doplněním, Salzburg, FMZK zapnuté i vypnuté.
    - V Node přehrávat celý řetěz `deriveProfile` → `deriveSigns` → `keepDrawable` → `checkRules` → SVG profilu
      (vzhled domů, ilustrace, značky) → `creditLines`, výstup porovnat se snímkem. Živý sběr se liší sám od sebe
      (výpadky služeb, asi 6 % řezů), proto ne.
