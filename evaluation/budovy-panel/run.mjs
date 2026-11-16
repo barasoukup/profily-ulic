@@ -112,6 +112,11 @@ for (const [label, id, centre0, R] of CITIES) {
       const p = podlaznostInfo(await getJSON(q(PODLAZNOST, pointQ(lon, lat, PODLAZNOST_FIELDS))) || {}, lat);
       if (p.cornice) Object.assign(info, { cornice: p.cornice, roof: p.roof, levels: p.cornice + p.roof, roofType: p.roofType, iprKind: p.kind, newBuild: p.newBuild, area: p.area });
       const y = vyvoj(lat, lon); if (y) info.period = y;
+      // And RÚIAN's year, walls and use, as the app asks since 16. 11. 2026 (app.js ruianFacts).
+      if (a.dokonceni) info.built = new Date(a.dokonceni).getUTCFullYear();
+      if (PANEL.has(walls)) info.panel = 1;
+      if (NOT_PANEL.has(walls)) info.solid = 1;
+      if (use === 7 || use === 8) info.house = 1;
     } else {
       // As gis.js ruianBuilding (the towns and the rest of the country).
       const floors = a.pocetpodlazi;

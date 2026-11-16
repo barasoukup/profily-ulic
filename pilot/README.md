@@ -158,8 +158,8 @@ bytový dům, kancelářská budova, městský dům, vila, rodinný dům 60.–8
 ulice, hala; Bára 16. 11. 2026, nové kreslené na základě starších v `profile.js` `BASE_STYLE`) se volí podle tvaru bloku z OSM, údajů o domě a stáří zástavby: v Praze z vrstvy IPR *Vývoj zástavby*
 (statické dlaždice z `tools/build_vyvoj.mjs`), jinde z roku dokončení v RÚIAN (do 1919 a 1946–57 šikmá střecha,
 1948–57 sorela, 1958–69 zděný bytový dům do 5 podlaží (i deska), jinak od 1955 panelová éra, od 1996 moderní dům;
-v Praze bez roku domu jen podle stáří zástavby, takže sorela a zděný dům 60. let tam nevzniknou, v Brně bez roku ani
-měšťanský dům). Vnitřní město a sídliště podle vzdálenosti od centra má každé město
+v Praze a Brně rok, zdi a využití domu z RÚIAN ČÚZK dalším dotazem při kliknutí, podlaží dál z IPR a KAM; stáří
+zástavby IPR zůstává v Praze pro domy, u kterých RÚIAN rok nemá). Vnitřní město a sídliště podle vzdálenosti od centra má každé město
 vlastní (`city.js` `innerKm`, `estateKm`). Panelák ne (Bára 16. 11. 2026, `evaluation/budovy-panel/ZPRAVA.md`): u domu
 dokončeného před 1955, u zdí z cihel, kamene, monolitu či dřeva podle RÚIAN (kreslí se plochý činžák), u panelového
 domu po 1995 (moderní dům); bez centra města (zbytek ČR, Slovensko) bez roku jen podle tvaru desky nebo od 8 podlaží.

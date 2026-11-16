@@ -644,7 +644,8 @@ const SORELA_FROM = 1948;
 // A burgher house on the old town square (Bára 16. 11. 2026): an old house (RÚIAN before 1920, Prague: built up by
 // 1840) of up to 5 floors in the very heart of the town (city.coreKm from its centre: the square; Prague's Old Town).
 const oldCore = (info, n) => !!city.centre && info?.km <= (city.coreKm ?? 0.3) && !(n > 5)
-  && (info?.built ? info.built < 1920 : info?.period ? info.period <= 1840 : false);
+  // Prague knows the age of the area too: built up by 1840 (RÚIAN's "before 1919" also covers the tenements of 1900).
+  && (info?.period ? info.period <= 1840 && !(info.built >= 1920) : info?.built < 1920);
 // 1958–69, walls not panels (RÚIAN code 10, bricks or none): 19 of 25 such houses drawn as panel houses were brick
 // blocks, 13 of them with a pitched roof and chimneys, 2 were panel houses (both after 1970; Street View, Bára
 // 16. 11. 2026, evaluation/budovy-panel/ZPRAVA.md). Panel walls in RÚIAN still make a panel house (above).

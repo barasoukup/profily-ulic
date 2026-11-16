@@ -9,6 +9,7 @@ const LANES_ORTHO = new URLSearchParams(location.search).get("orto") !== "0";
 import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, signFits, MAX_PER_PART } from "./signs.js";
 import { loadSprites, loadSigns, layoutSigns, buildSvg, isHole, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, edgeInfo, underDepth, ROADWAY, nearestRoadway, BUILDING_STYLES, turnLabel } from "./profile.js";
 import * as sources from "./sources.js";
+import { ruianBuilding } from "./gis.js";
 import { MAPY_KEY } from "./config.js";
 import { cleanProfile, cleanCut, retype } from "./validate.js";
 import { shares, surfaces } from "./shares.js";
@@ -347,15 +348,13 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
         const [lon, lat] = info.point;
         const p = await sources.podlaznost(lat, lon);
         if (p.cornice) Object.assign(info, { cornice: p.cornice, roof: p.roof, levels: p.cornice + p.roof, roofType: p.roofType, iprKind: p.kind, newBuild: p.newBuild, area: p.area, src: "ipr" });
-        // RÚIAN (the towns): the year the house was completed and what its walls are of.
-        if (p.built) info.built = p.built;
-        if (p.panel) info.panel = 1;
-        if (p.solid) info.solid = 1; // RÚIAN: walls of bricks, stone, monolith or wood (not a panel house)
-        if (p.house) info.house = 1;
-        if (p.farm) info.farm = 1; // RÚIAN: a farmstead (a village house)
-        if (p.office) info.office = 1; // RÚIAN: offices, authorities, schools, hotels
-        if (p.garage) info.garage = 1; // RÚIAN: a garage
+        ruianFacts(info, p);
       } catch {}
+      // Prague (IPR) and Brno (KAM) give floors and roofs but not the year: the year, walls and use of the house come
+      // from RÚIAN of ČÚZK as in the towns (Bára 16. 11. 2026; one request to ČÚZK, none more to IPR).
+      if ((city.id === "praha" || city.id === "brno") && !info.built) {
+        try { ruianFacts(info, await ruianBuilding(info.point[1], info.point[0])); } catch {}
+      }
       // The age of the area (a default for the building's look, overruled by what is known of the house).
       try { const y = await sources.vyvoj(info.point[1], info.point[0]); if (y) info.period = y; } catch {}
       delete info.point;
@@ -1268,6 +1267,18 @@ function floorsInput(p, side) {
     render();
   };
   return floors;
+}
+
+// What RÚIAN tells of a house (gis.js ruianLook) on its edge info: the year it was completed and what its walls are of,
+// its use (a family house, a farmstead, offices, a garage).
+function ruianFacts(info, p) {
+  if (p.built) info.built = p.built;
+  if (p.panel) info.panel = 1;
+  if (p.solid) info.solid = 1; // walls of bricks, stone, monolith or wood (not a panel house)
+  if (p.house) info.house = 1;
+  if (p.farm) info.farm = 1; // a farmstead (a village house)
+  if (p.office) info.office = 1; // offices, authorities, schools, hotels
+  if (p.garage) info.garage = 1;
 }
 
 // A selected edge (Bára 12. 11. 2026: a "panel house" that is a two-storey town house, or a garden): what stands

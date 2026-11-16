@@ -45,3 +45,8 @@ do 5 podlaží (vyšší dům té doby zůstává panelákem); rok domu platí i
 i o 1–2 podlažích; rodinný dům 1946–59 je starší dům, ne „kostka“; podloubí nižší u nízkého přízemí, okno za ním
 v hranici kresby. Nepřevzato: zděný dům 60. let „jen mimo desky“, protože všech 11 zděných domů z let 1958–69 ze
 Street View mělo tvar desky.
+
+## Praha a Brno s rokem z RÚIAN (Bára 16. 11. 2026)
+IPR ani KAM rok domu nedávají, RÚIAN ho má u 161 ze 181 pražských domů vzorku (konstrukci u 159). Aplikace se teď
+u Prahy a Brna ptá i RÚIAN (jeden dotaz na ČÚZK, ~0,2 s). Praha ve vzorku: panelák 11 → 9, z toho zděné 2 → 0,
+skutečné paneláky 9 z 10 dál kreslené jako panelák; nově 3 zděné domy 60. let.
