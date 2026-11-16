@@ -217,7 +217,7 @@ export function columns(st) {
   return { nt, res, t0, medL, green, sat, seen, E, ti: (t) => Math.round((t - t0) / res), tOf: (i) => t0 + i * res };
 }
 // The roadway at the axis (±1.5 m, not green): its brightness and saturation; does column i look like it?
-export const P = { tolL: 0.2, tolS: 18, greenMax: 0.3, minEdge: 1.6, alpha: 1.5, beta: 0.5, gamma: 0.8, sigmaMin: 1.0, sigmaRel: 0.3, lineOff: 0.4 };
+export const P = { tolL: 0.2, tolS: 18, greenMax: 0.3, minEdge: 1.6, alpha: 1.5, beta: 0.5, gamma: 0.8, sigmaMin: 1.0, sigmaRel: 0.3, lineOff: 0.4, mapBonus: 0.8 };
 export function roadRef(cols, axis) {
   const i0 = cols.ti(axis - 1.5), i1 = cols.ti(axis + 1.5), L = [], S = [];
   for (let i = Math.max(0, i0); i <= Math.min(cols.nt - 1, i1); i++) if (cols.green[i] < 0.3) { L.push(cols.medL[i]); S.push(cols.sat[i]); }
@@ -230,7 +230,9 @@ export const roadLike = (cols, ref, i) => cols.green[i] < P.greenMax && Math.abs
 // beyond each strong line near where OSM expects the kerb (the edge line, V 4). Score: the edge (saturating) + alpha ×
 // the share of road-like columns between the axis and it − gamma × that share in the metre beyond it − beta ×
 // ((distance − expected) / sigma)²; expected = OSM's reach on that side. Returns { A, B, why: { A, B } } or null.
-export function kerbs(cols, axis, lim, road, lines = []) {
+// edges: where the lines of a town's technical map (an edge of a kerb, of a sidewalk; towns/slovensko.js) cross the
+// cut: each is a candidate too, mapBonus better than an edge of the image alone.
+export function kerbs(cols, axis, lim, road, lines = [], edges = []) {
   const ref = roadRef(cols, axis), out = {}, why = {};
   if (!Number.isFinite(ref.L)) return null;
   for (const [side, sg] of [["A", -1], ["B", 1]]) {
@@ -247,6 +249,7 @@ export function kerbs(cols, axis, lim, road, lines = []) {
       const t = l + sg * P.lineOff;
       if ((sg < 0 ? l < axis : l > axis) && t > lo && t < hi && Math.abs(Math.abs(t - axis) - exp) < 2.5 * sigma) cand.push({ i: cols.ti(t), from: "čára" });
     }
+    for (const t of edges) if (t > lo && t < hi && Math.abs(Math.abs(t - axis) - exp) < 2.5 * sigma) cand.push({ i: cols.ti(t), from: "mapa" });
     // Not at the edge of what the image shows (within 0.6 m of a column not seen).
     const near = Math.round(0.6 / cols.res), atEdge = (i) => { for (let q = i - near; q <= i + near; q++) if (q < 0 || q >= cols.nt || cols.seen[q] < 0.5) return true; return false; };
     let best = null;
@@ -258,7 +261,7 @@ export function kerbs(cols, axis, lim, road, lines = []) {
       let nb = 0, okb = 0;
       for (let k = 1; k <= Math.round(1 / cols.res); k++) { const q = sg < 0 ? c.i - k : c.i + k - 1; if (q < 0 || q >= cols.nt || cols.seen[q] < 0.5) continue; nb++; if (roadLike(cols, ref, q)) okb++; }
       const dist = Math.abs(cols.tOf(c.i) - axis), e = Math.min(cols.E[c.i] ?? 0, 12);
-      const score = e / (e + 3) + P.alpha * (n ? ok / n : 0) - P.gamma * (nb ? okb / nb : 0) - P.beta * ((dist - exp) / sigma) ** 2;
+      const score = e / (e + 3) + P.alpha * (n ? ok / n : 0) - P.gamma * (nb ? okb / nb : 0) - P.beta * ((dist - exp) / sigma) ** 2 + (c.from === "mapa" ? P.mapBonus : 0);
       if (!best || score > best.score) best = { score, t: cols.tOf(c.i), from: c.from };
     }
     // No candidate at all: OSM's expectation.
@@ -283,7 +286,7 @@ export function usable(st) {
 // false). mapRuns: the surface map's runs along the cut where it has some but none at the axis (derive.js runs): its
 // sidewalks and buildings bound the kerbs, the estimate does not cover what the map measured.
 const MAP_BOUND = (c) => c === 702 || c === 703 || c === 600 || c === 601 || c === 604;
-export function kerbsOnImage(st, o, road, mapRuns = []) {
+export function kerbsOnImage(st, o, road, mapRuns = [], edges = []) {
   const axis = o.own.t, lim = limits(o, axis);
   for (const r of mapRuns) {
     if (!MAP_BOUND(r.code)) continue;
@@ -291,12 +294,18 @@ export function kerbsOnImage(st, o, road, mapRuns = []) {
     if (r.s >= axis && r.s < lim.B) lim.B = r.s;
   }
   const byOsm = { A: Math.max(lim.A + 0.5, axis - road.reach.A), B: Math.min(lim.B - 0.5, axis + road.reach.B), why: { A: "osm", B: "osm" }, lim, cols: null, image: false };
+  // Without the image a line of the map near where OSM expects the kerb (within 2 m) is the kerb.
+  for (const [side, sg] of [["A", -1], ["B", 1]]) {
+    const exp = road.reach[side], near = edges.filter((t) => sg * (t - axis) > 1 && (sg < 0 ? t > lim.A : t < lim.B) && Math.abs(Math.abs(t - axis) - exp) < 2)
+      .sort((x, y) => Math.abs(Math.abs(x - axis) - exp) - Math.abs(Math.abs(y - axis) - exp));
+    if (near.length) { byOsm[side] = near[0]; byOsm.why[side] = "mapa"; }
+  }
   if (!usable(st)) return byOsm;
   const end = st.t0 + st.nt * st.res;
   const lo = Math.max(lim.A, st.t0 + 0.5), hi = Math.min(lim.B, end - 0.5);
   const lines = hi - lo > 4 ? strongLines(st, lo + 1.5, hi - 1.5) : [];
   const cols = columns(st);
-  const k = kerbs(cols, axis, lim, road, lines);
+  const k = kerbs(cols, axis, lim, road, lines, edges);
   if (!k) return { ...byOsm, cols };
   return { ...k, lim, cols, image: k.why.A !== "osm" || k.why.B !== "osm" };
 }
@@ -312,23 +321,27 @@ const STREET = /^(motorway|trunk|primary|secondary|tertiary|unclassified|residen
 // frame: derive.js localFrame of the cut (its centre is [0, 0]); dir: the street's direction in it; way: the clicked
 // OSM way; st: laneImage's image (null or blank: the kerbs where OSM expects them). Returns the polygons (as derive.js
 // mtvuPolygons, with .kerbs and .image: whether the orthophoto found a kerb) or null.
-export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [] }) {
+// edges: lines of a town's technical map ([[lon, lat], …]), towns/slovensko.js: candidates for the kerbs and the outer
+// edge of a sidewalk.
+export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = [] }) {
   if (!way || !STREET.test(way.tags?.highway || "")) return null;
   const normal = [-dir[1], dir[0]];
   const tu = (lon, lat) => { const [x, y] = frame.toXY(lon, lat); return [x * normal[0] + y * normal[1], x * dir[0] + y * dir[1]]; };
   const xy = (t, u) => [normal[0] * t + dir[0] * u, normal[1] * t + dir[1] * u];
   const o = osmAlong(osm?.elements, tu, way.id);
   if (!o.own) return null;
+  // Where the map's lines cross the cut (t), on the cut's line and a metre either side (a line may end just at it).
+  const edgeT = [...new Set(edges.flatMap((path) => [0, -1, 1].flatMap((u0) => crossT(path.map(([lo, la]) => tu(lo, la)), 45, u0).map((x) => Math.round(x.t * 20) / 20))))].sort((a, b) => a - b);
   const pair = partnerOf(o);
   if (pair) o.pairId = pair.id;
-  const road = withRails(osmRoad(o.own), o), k = kerbsOnImage(st, o, road, mapRuns);
+  const road = withRails(osmRoad(o.own), o), k = kerbsOnImage(st, o, road, mapRuns, edgeT);
   if (!Number.isFinite(k.A) || !Number.isFinite(k.B) || k.B - k.A < 2) return null;
   // The other carriageway, its side (pSide) and the clicked one's kerb towards it.
   let k2 = null, road2 = null, pSide = null;
   if (pair) {
     const o2 = { ...o, own: pair, ways: [...o.ways.filter((w) => w !== pair), o.own], pairId: o.own.id };
     road2 = withRails(osmRoad(pair), o2);
-    k2 = kerbsOnImage(st, o2, road2, mapRuns);
+    k2 = kerbsOnImage(st, o2, road2, mapRuns, edgeT);
     pSide = pair.t < o.own.t ? "A" : "B";
     const inner = k2[pSide === "A" ? "B" : "A"];
     if (!Number.isFinite(k2.A) || !Number.isFinite(k2.B) || k2.B - k2.A < 2 || (pSide === "A" ? inner > k.A : inner < k.B)) k2 = null;
@@ -357,6 +370,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [] }) {
     if (g.length && g.reduce((x, y) => x + y, 0) / g.length >= GREEN_AREA) polys.push(rect(401, "zeleň (ortofoto)", a, b));
     else if (b - a <= REST_MAX) polys.push(rect(1003, "plocha před domem (odhad)", a, b));
   };
+  let edgeUsed = k.why.A === "mapa" || k.why.B === "mapa" || (k2 && (k2.why.A === "mapa" || k2.why.B === "mapa"));
   // The median between the two carriageways: greenery where the image is mostly green, else a paved strip.
   if (k2) {
     const [a, b] = pSide === "A" ? [k2.B, k.A] : [k.B, k2.A];
@@ -375,12 +389,20 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [] }) {
     const span = (x, y) => (sg < 0 ? [y, x] : [x, y]);
     // A sidewalk of at most SIDEWALK_MAX; the rest up to the house is some other area (a front garden, a yard, a lawn:
     // MTVU in Prague and Brno: 34 of 42 such stretches over 6 m hold a sidewalk of at most 6 m).
-    const swEnd = says === "no" ? kerb : Math.abs(far - kerb) > SIDEWALK_MAX ? kerb + sg * SIDEWALK_MAX : far;
+    let swEnd = says === "no" ? kerb : Math.abs(far - kerb) > SIDEWALK_MAX ? kerb + sg * SIDEWALK_MAX : far;
+    // A line of the map across the sidewalk (its edge against green or a front garden; not the house's own front)
+    // ends it there.
+    if (swEnd !== kerb) {
+      const cut = edgeT.filter((t) => sg * (t - kerb) >= 1 && sg * (swEnd - t) > 0 && Math.abs(far - t) > 0.5).sort((x, y) => sg * (x - y))[0];
+      if (cut !== undefined) { swEnd = cut; edgeUsed = true; }
+    }
     if (swEnd !== kerb) polys.push(rect(702, "chodník (ortofoto a OSM)", ...span(kerb, swEnd)));
     if (swEnd !== far) rest(...span(swEnd, far));
     // A house found only beside the cut (on a line u ≠ 0): its front drawn across the cut, so the profile ends at it.
     if (f !== null && o.facadeU[side] !== 0) polys.push({ ...rect(601, "budova (OSM, vedle řezu)", ...span(far, far + sg * HOUSE)), guess: false });
   }
+  // Whether a line of the town's map decided a kerb or a sidewalk's edge (the credits).
+  polys.edges = !!edgeUsed;
   polys.kerbs = { A: k.A, B: k.B, why: k.why, ...(k2 && { pair: { A: k2.A, B: k2.B, why: k2.why } }) };
   // Whether the orthophoto decided anything (a kerb found on it); else the kerbs are OSM's (the status says so).
   polys.image = k.image;

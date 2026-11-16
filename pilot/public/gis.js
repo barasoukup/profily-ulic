@@ -31,9 +31,10 @@ export async function getJSON(url) {
     try {
       return await getOnce(url);
     } catch (err) {
-      if (i >= RETRY_DELAYS.length || err.name === "TimeoutError" || err.name === "AbortError") throw err;
+      // A query the server refuses (4xx: a wrong field, a bad box) would be refused again.
+      if (i >= RETRY_DELAYS.length || err.name === "TimeoutError" || err.name === "AbortError" || /^4\d\d\b/.test(err.message || "")) throw err;
       console.warn("opakuji dotaz", url.slice(0, 80), err.message);
-      events.dispatchEvent(new CustomEvent("retry", { detail: { attempt: i + 2, of: RETRY_DELAYS.length + 1 } }));
+      events.dispatchEvent(new CustomEvent("retry", { detail: { attempt: i + 2, of: RETRY_DELAYS.length + 1, host: new URL(url, "http://localhost").hostname } }));
       await new Promise((res) => setTimeout(res, RETRY_DELAYS[i]));
     }
   }

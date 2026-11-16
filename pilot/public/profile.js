@@ -1,7 +1,7 @@
 // SVG drawing and direct editing of a street profile. Drawing units are centimetres,
 // matching the Streetmix illustrations (1 px = 1 cm).
 import { TYPES, SOURCES, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURNS, HDV_UNDER, LAMP_H, underSize } from "./types.js";
-import { city, cityById, CITY_IDS, creditLines } from "./city.js";
+import { city, cityById, CITY_IDS, creditLines, SK_ART } from "./city.js";
 import { PLATES, signFile, plateFile, signLabel, signDir, SPEED_TEMPLATES } from "./signs.js";
 // tr: t is a part's type here.
 import { t as tr, num } from "./i18n.js";
@@ -62,6 +62,7 @@ const BRNO = {
 // Every other city brings its own map of illustrations (city.js artMap, files in pilot/public/<art>/).
 const CITY_ART = { praha: PRAHA, brno: BRNO };
 for (const id of CITY_IDS) { const c = cityById(id); if (c.artMap) CITY_ART[c.art] = c.artMap; }
+Object.assign(CITY_ART, SK_ART); // the Slovak towns' vehicles (city.js skArtAt)
 // The illustrations of the current cut's city, or Streetmix's (the switch "Ilustrace" off).
 let artOn = true;
 const artKey = () => (artOn ? city.art : "streetmix");

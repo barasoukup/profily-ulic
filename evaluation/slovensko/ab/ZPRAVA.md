@@ -76,3 +76,57 @@ objektů („Štruktúra objektov polohopisného a výškopisného plánu“, po
   parkoviště a tráva. Služba je ověřená, ale do aplikace zatím není zapojená ani otestovaná.
 - **Licence:** Žilina, Banská Bystrica, magistrát a Dúbravka žádnou neuvádějí. Před nasazením je potřeba se jich
   zeptat.
+
+# Čáry map dalších měst a pasport Zvolena (16. 11. 2026, druhé kolo)
+
+Bára: „zapoj je všechny, vše přes průzkum a pak A/B testování“. Zdroje našel agent (`scratchpad`, souhrn níže).
+
+## Průzkum
+
+Čáry každé služby jsem nakreslila nad ortofotem ZBGIS a podle barvy typů určila, co sedí na obrubnících a hranách
+chodníků:
+
+| Město | Služba (ArcGIS Online, CORS `*`) | Co se bere | Licence |
+|---|---|---|---|
+| Nitra | `stavby` (kresba „hrany obrubníkov, chodníky“) | `typ_ciary` 1 | neuvedena |
+| Piešťany | `vnu_kre_par` L11 (kresba) | `TYP_CIARY` 1 | neuvedena |
+| Zvolen | `Kataster_12_v3` L1 (hranice druhů pozemků) | `TYP_CIARY` 1 a 60 | neuvedena |
+| Hlohovec | `polohopis_24` L18 (polohopis z DXF) | `Layer` „Kresba polohopisu“ | neuvedena |
+| Prešov | `Vrstva_hraníc_druhov_pozemkov` L52 | `TYP_CIARY` 1 | CC BY 4.0 |
+| Bratislava | technická mapa, Línie | hranice druhu pozemku 2180–2220 | © magistrát |
+| Zvolen (pasport) | `komunikacie_all_Online` (osy se šířkou), `spevnene_plochy_online` | chodník, cesta, parkovisko… jako plochy dané šířky | neuvedena |
+
+**Jak se čáry používají:**
+- Kde je řez protne, jsou čáry v odhadu z ortofota a OSM (`ortho-osm.js`) přednostními kandidáty na obrubník: mají
+  bonus proti hranám snímku a bez snímku se berou, když leží do 2 m od místa, kde OSM obrubník čeká.
+- Čára přes chodník ukončí chodník; zbytek k domu je zeleň nebo zpevněná plocha podle snímku.
+- Uzavřené být nemusí.
+- `?hrany=0` čáry vypne.
+
+## A/B
+
+- **Vzorek:** po 20 náhodných bodech v Nitře, Zvolenu, Piešťanech a Hlohovci (`vzorek-hrany.mjs`) a k tomu body Prešova
+  a Bratislavy z prvního kola, celkem 145.
+- **Varianty:** A = `?hrany=0`, B = s čarami; ve Zvolenu navíc A0 = bez pasportu. Obrázky jsou v `obrazky-hrany/`.
+
+**Čáry map (A proti B):** profil se změnil u 30 řezů ze 145. Posouzeno 26, čtyři drobné posuny pod 0,7 m jsem
+nehodnotila.
+
+| Výsledek | řezů | kde |
+|---|---|---|
+| lépe s čarami | 9 | Nitra 3, Piešťany 2, Hlohovec 2, Bratislava 2 |
+| hůř | 3 | Hlohovec (krajnice přes zelený pás, zeleň místo dláždění na náměstí), Fándlyho (dva pruhy na úzké ulici) |
+| zhruba stejně nebo nejde posoudit | 10 | |
+| neposouzeno (drobné posuny) | 4 | |
+
+- **Co se zlepšuje nejvíc:** chodník končí u své hrany a za ním je zeleň se stromy, místo chodníku „do 6 m“ až k domu.
+  Obruby se posouvají jen o desítky centimetrů.
+- **Prešov:** čáry se neuplatnily ani jednou, protože tam rozhoduje pasport.
+- **Čáry jsou zapnuté.**
+
+**Pasport Zvolena (A0 proti A):** profil se změnil u 11 řezů. Zhruba 6 hůř, 1 lépe (Strážska cesta), zbytek nejasně:
+- spevnené plochy leží přes trávníky a parkoviště (J. Kráľa: „plocha“ 41 m);
+- šířky os jsou rozpětí („1,4–1,7 m“);
+- na obslužných cestách z toho vychází „plocha“ a „Neurčeno“.
+
+**Je vypnutý** (`?zvolen=1`).

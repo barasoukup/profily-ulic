@@ -62,6 +62,24 @@ const ROAD = 701, WALK = 702, BIKE = 703, PARK = 704, OTHER = 1003, GREEN = 401,
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_SK?.[k] ?? null : new URLSearchParams(location.search).get(k));
 const AGO_BA = "https://services8.arcgis.com/pRlN1m0su5BYaFAS/arcgis/rest/services";
 const AGO_DUBRAVKA = "https://services-eu1.arcgis.com/sF2W5owmzDfZHYpi/arcgis/rest/services";
+const AGO_ZVOLEN = "https://services-eu1.arcgis.com/qZQsmXf8mZtYtGaE/arcgis/rest/services";
+const ZVOLEN = { chodník: WALK, cesta: ROAD, parkovisko: PARK, "platené parkovanie": PARK, "pešia zóna": WALK, prístup: WALK };
+// Lines (paths in WGS 84) as areas of their width (m), one rectangle a segment (as Kuřim in the evaluation).
+function widen(json, codeOf, widthOf) {
+  const features = [];
+  for (const f of json?.features || []) {
+    const a = f.attributes || {}, code = codeOf(a), w = widthOf(a);
+    if (!code || !w || !f.geometry?.paths) continue;
+    for (const path of f.geometry.paths) for (let i = 0; i + 1 < path.length; i++) {
+      const [x0, y0] = path[i], [x1, y1] = path[i + 1];
+      const kx = 111320 * Math.cos((y0 * Math.PI) / 180), ky = 110574;
+      const dx = (x1 - x0) * kx, dy = (y1 - y0) * ky, len = Math.hypot(dx, dy) || 1;
+      const ox = ((-dy / len) * w) / 2 / kx, oy = ((dx / len) * w) / 2 / ky;
+      features.push({ attributes: { CTVUK_KOD: code, CTVUK_POPIS: MTVU_LABELS[code], ODHAD: 0 }, geometry: { rings: [[[x0 + ox, y0 + oy], [x1 + ox, y1 + oy], [x1 - ox, y1 - oy], [x0 - ox, y0 - oy], [x0 + ox, y0 + oy]]] } });
+    }
+  }
+  return { features };
+}
 const AGO_PRESOV = "https://services-eu1.arcgis.com/coW662rcZatH0tHA/arcgis/rest/services";
 const arc = (url, fields, bbox) => query(`${encodeURI(url)}/query`, { ...envelope(bbox), outFields: fields, returnGeometry: "true" });
 // Bratislava, the passport of footways: its uses → MTVU codes (stairs, underpasses and the rest left to others).
@@ -95,7 +113,20 @@ export const SK_TOWNS = {
     },
     under: async (bbox) => asMtvu([[await arc(`${AGO_PRESOV}/Plochy_zelene/FeatureServer/275`, "OBJECTID", bbox), GREEN]], MTVU_LABELS),
     // The town's trees (dreviny) where OSM has none nearby.
-    points: [[`${AGO_PRESOV}/Dreviny_-_pohľad/FeatureServer/12`, () => ({ natural: "tree" })]] },
+    points: [[`${AGO_PRESOV}/Dreviny_-_pohľad/FeatureServer/12`, () => ({ natural: "tree" }), "FID"]] },
+  // Zvolen: the town's lines of roads and sidewalks with their width (komunikácie, SIRKA "1,4 - 1,7 m": the mean),
+  // made areas of that width, and its paved areas (spevnené plochy).
+  // Off unless ?zvolen=1: the A/B test of 16. 11. 2026 found it worse (its paved areas lie over lawns and car parks,
+  // the widths of its lines are ranges).
+  zvolen: { box: [19.08, 48.54, 19.2, 48.62], optIn: "zvolen", credit: "komunikácie a spevnené plochy © mesto Zvolen",
+    async own(bbox) {
+      const [lines, paved] = await Promise.all([
+        arc(`${AGO_ZVOLEN}/komunikacie_all_Online/FeatureServer/1`, "DRUH,SIRKA", bbox),
+        arc(`${AGO_ZVOLEN}/spevnene_plochy_online/FeatureServer/14`, "OBJECTID", bbox).catch(() => null),
+      ]);
+      const width = (a) => { const n = String(a.SIRKA ?? "").match(/\d+(?:[.,]\d+)?/g)?.map((x) => Number(x.replace(",", "."))).filter((x) => x > 0.5 && x < 30); return n?.length ? n.reduce((x, y) => x + y, 0) / n.length : null; };
+      return { features: [...widen(lines, (a) => ZVOLEN[a.DRUH], width).features, ...asMtvu([[paved, OTHER]], MTVU_LABELS).features] };
+    } },
   zilina: { box: [18.62, 49.13, 18.86, 49.28], credit: "pasport komunikácií © mesto Žilina", own: pakom("https://gis.zilina.sk/services/mapserver/common/pakom") },
   bystrica: { box: [19.03, 48.66, 19.27, 48.82], credit: "pasport komunikácií © mesto Banská Bystrica", own: pakom("https://mapy.banskabystrica.sk/services/mapserver/common/pakom") },
 };
@@ -199,7 +230,7 @@ export async function baTechMap(bbox, fetched = null) {
 }
 const inBa = (lon, lat) => lon >= SK_TOWNS.bratislava.box[0] && lon <= SK_TOWNS.bratislava.box[2] && lat >= SK_TOWNS.bratislava.box[1] && lat <= SK_TOWNS.bratislava.box[3];
 
-const townAt = (lon, lat) => Object.entries(SK_TOWNS).find(([, t]) => lon >= t.box[0] && lon <= t.box[2] && lat >= t.box[1] && lat <= t.box[3])?.[0] ?? null;
+const townAt = (lon, lat) => Object.entries(SK_TOWNS).find(([, t]) => (!t.optIn || param(t.optIn) === "1") && lon >= t.box[0] && lon <= t.box[2] && lat >= t.box[1] && lat <= t.box[3])?.[0] ?? null;
 
 // The OSM areas around a box as MTVU features: buildings (they come first: a sidewalk may run under an arcade), and
 // green and water (they come after the passport: they fill what it leaves open).
@@ -223,6 +254,36 @@ async function osmAreas(bbox) {
 }
 
 // The surfaces of a cut in Slovakia: a town's passport with the OSM areas around it, else none (the estimate).
+// ---------- lines of the towns' maps for the kerbs (Bára 16. 11. 2026: "zapoj je všechny") ----------
+// The drawing of the cadastral and technical maps the towns publish (ArcGIS Online, CORS *): where its lines cross the
+// cut they are candidates for the kerbs and the outer edge of a sidewalk in the estimate (ortho-osm.js). Their types
+// were looked at over the orthophoto (evaluation/slovensko/hrany): the kerbs and edges of sidewalks are in the
+// drawing type 1 (Nitra, Piešťany, Prešov), 1 and 60 (Zvolen), "Kresba polohopisu" (Hlohovec), in Bratislava's
+// technical map the boundaries of kinds of land. ?hrany=0 leaves them out (the A/B test).
+const EDGE_SOURCES = [
+  { id: "nitra", box: [18.0, 48.26, 18.17, 48.37], url: "https://services-eu1.arcgis.com/3EnLFR2iBNxznmDC/arcgis/rest/services/stavby/FeatureServer/0", field: "typ_ciary", keep: (v) => v === 1, credit: "kresba © mesto Nitra" },
+  { id: "piestany", box: [17.78, 48.55, 17.88, 48.64], url: "https://services-eu1.arcgis.com/DTiFWvcjh8cdrOZ5/arcgis/rest/services/vnu_kre_par/FeatureServer/11", field: "TYP_CIARY", keep: (v) => v === 1, credit: "kresba © mesto Piešťany" },
+  { id: "zvolen", box: [19.08, 48.54, 19.2, 48.62], url: "https://services-eu1.arcgis.com/qZQsmXf8mZtYtGaE/arcgis/rest/services/Kataster_12_v3/FeatureServer/1", field: "TYP_CIARY", keep: (v) => v === 1 || v === 60, credit: "kresba © mesto Zvolen" },
+  { id: "hlohovec", box: [17.75, 48.39, 17.85, 48.46], url: "https://services6.arcgis.com/aDtTCbnvFGBaql6U/arcgis/rest/services/polohopis_24/FeatureServer/18", field: "Layer", keep: (v) => v === "Kresba polohopisu", credit: "polohopis © mesto Hlohovec" },
+  { id: "presov", box: [21.15, 48.94, 21.33, 49.06], url: "https://services-eu1.arcgis.com/coW662rcZatH0tHA/arcgis/rest/services/Vrstva_hraníc_druhov_pozemkov/FeatureServer/52", field: "TYP_CIARY", keep: (v) => v === 1, credit: "hranice druhov pozemkov © mesto Prešov (CC BY 4.0)" },
+];
+const BA_EDGE = new Set([2180, 2190, 2200, 2201, 2210, 2211, 2220]);
+export const edgeSourceAt = (lon, lat) => EDGE_SOURCES.find((e) => lon >= e.box[0] && lon <= e.box[2] && lat >= e.box[1] && lat <= e.box[3]) || null;
+async function edgesAt(bbox) {
+  const [x0, y0, x1, y1] = bbox.split(",").map(Number), cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
+  if (param("hrany") === "0" || city.id !== "slovensko") return { paths: [] };
+  const e = edgeSourceAt(cx, cy);
+  if (e) {
+    const j = await arc(e.url, e.field, bbox).catch(() => null);
+    return { paths: (j?.features || []).filter((f) => e.keep(f.attributes?.[e.field])).flatMap((f) => f.geometry?.paths || []), id: e.id };
+  }
+  if (inBa(cx, cy)) {
+    const j = await baQuery("Technická_mapa_TM", 7, bbox, "Typ").catch(() => null);
+    return { paths: (j?.features || []).filter((f) => BA_EDGE.has(f.attributes?.Typ)).flatMap((f) => f.geometry?.paths || []), id: "bratislava-tm" };
+  }
+  return { paths: [] };
+}
+
 // Bratislava's technical map once per box: the surfaces and the lines of a cut ask the same box.
 const baMemo = new Map();
 const baTm = (bbox) => {
@@ -258,7 +319,8 @@ async function surfaces(bbox) {
 async function lines(bbox) {
   if (!bbox) return { features: [] };
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
-  return useTm((x0 + x1) / 2, (y0 + y1) / 2) ? { features: (await baTm(bbox)).lines } : { features: [] };
+  const [tm, edges] = await Promise.all([useTm((x0 + x1) / 2, (y0 + y1) / 2) ? baTm(bbox) : { lines: [] }, edgesAt(bbox)]);
+  return { features: tm.lines, edges: edges.paths, edgesFrom: edges.id };
 }
 
 // OSM around a point and, in a town that has them, its trees where OSM has none nearby.
@@ -267,7 +329,7 @@ async function osm(lat, lon, radius) {
   const pts = SK_TOWNS[id]?.points;
   if (!pts) return osmTiles(lat, lon, radius);
   const box = boxAround(lat, lon, Math.min(radius, 50));
-  const [o, ...got] = await Promise.all([osmTiles(lat, lon, radius), ...pts.map(([url]) => arc(url, "OBJECTID", box).catch(() => ({ features: [] })))]);
+  const [o, ...got] = await Promise.all([osmTiles(lat, lon, radius), ...pts.map(([url, , field]) => arc(url, field || "OBJECTID", box).catch(() => ({ features: [] })))]);
   return addPoints(o, got, pts.map(([, tags]) => tags), id, lat);
 }
 

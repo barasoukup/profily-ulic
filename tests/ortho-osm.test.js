@@ -145,3 +145,16 @@ test("ortofoto a OSM: velký dům, jehož zadní strana je mimo okno, ulici ukon
   assert.ok([o.facade.A, o.facade.B].some((f) => f !== null && Math.abs(Math.abs(f) - 8) < 0.1), JSON.stringify(o.facade));
   assert.ok([o.facade.A, o.facade.B].some((f) => f !== null && Math.abs(Math.abs(f) - 8) < 0.1 && o.buildings.some((b) => b.s < -60 || b.e > 60)));
 });
+
+test("ortofoto a OSM: čára mapy města u očekávané obruby je obruba i bez snímku a ukončí chodník", () => {
+  const els = osm().elements;
+  // The map's lines along the street (north–south) at x = ±3.2 (kerbs) and x = −5.5 (the sidewalk's outer edge).
+  const line = (x) => [ll(x, -40), ll(x, 40)].map((p) => [p.lon, p.lat]);
+  const polys = orthoOsmPolys({ osm: { elements: els }, frame, dir, way: els[0], st: null, edges: [line(3.2), line(-3.2), line(-5.5)] });
+  assert.equal(polys.kerbs.why.A, "mapa");
+  assert.ok(Math.abs(polys.kerbs.A + 3.2) < 0.1 && Math.abs(polys.kerbs.B - 3.2) < 0.1, JSON.stringify(polys.kerbs));
+  assert.ok(polys.edges);
+  // t = −x: the line at x = 3.2 is t = −3.2 (side A); x = −5.5 is t = 5.5, the sidewalk on side B ends there.
+  const sw = polys.filter((p) => p.code === 702).map((p) => p.rings[0].map(([x]) => -x)).map((ts) => [Math.min(...ts), Math.max(...ts)]);
+  assert.ok(sw.some(([a, b]) => Math.abs(a - 3.2) < 0.1 && Math.abs(b - 5.5) < 0.1), JSON.stringify(sw));
+});

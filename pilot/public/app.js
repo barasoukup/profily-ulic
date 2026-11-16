@@ -14,7 +14,7 @@ import { cleanProfile, cleanCut, retype } from "./validate.js";
 import { shares, surfaces } from "./shares.js";
 import { packProfile, unpackProfile, designParams } from "./share.js";
 import { checkRules, checkUnder, checkTrees } from "./rules.js";
-import { city, setCity, cityAt, loadBounds, loadStates } from "./city.js";
+import { city, setCity, cityAt, skArtAt, loadBounds, loadStates } from "./city.js";
 import { TOWNS } from "./towns/index.js";
 import { log, logOn, sendReport, shortProfile } from "./log.js";
 import { createDataLayers, PLOCHY_PANE } from "./maplayers.js";
@@ -70,9 +70,11 @@ const STATY = await statyJson;
 if (STATY) loadStates(STATY); else console.warn("staty.json se nenačetl: stát se podle polohy nepozná");
 // The city of a point becomes the current one (city.js): its sources, texts and illustrations.
 async function useCity(lat, lon) {
-  const id = cityAt(lat, lon);
-  if (id === city.id) return;
-  setCity(id);
+  const id = cityAt(lat, lon), art = skArtAt(lat, lon);
+  if (id === city.id && (id !== "slovensko" || city.art === art)) return;
+  if (id !== city.id) setCity(id);
+  // In Slovakia the vehicles of the town of the cut (city.js SK_ART; Bára 16. 11. 2026).
+  if (id === "slovensko") city.art = art;
   await loadSprites();
 }
 
@@ -246,7 +248,7 @@ let osmCache = null; // {frame, osm, way, wayPts}
 
 map.on("click", (e) => cutAt(e.latlng.lat, e.latlng.lng));
 sources.events.addEventListener("retry", (e) => {
-  if (document.body.classList.contains("loading")) status(tr("Server {server} neodpovídá, zkouším znovu ({n}/{of})…", { server: city.server, n: e.detail.attempt, of: e.detail.of }));
+  if (document.body.classList.contains("loading")) status(tr("Server {server} neodpovídá, zkouším znovu ({n}/{of})…", { server: city.abroad && e.detail.host ? e.detail.host : city.server, n: e.detail.attempt, of: e.detail.of }));
 });
 window.cutAt = cutAt; // handy for testing from the console
 
@@ -336,7 +338,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     let orthoOsm = null;
     if (result.estimate) {
       // The map's runs where it has surfaces but none at the axis: its sidewalks and buildings bound the estimate.
-      const fb = orthoOsmPolys({ osm, frame, dir, way: near.way, st: laneImg?.st, mapRuns: result.runs || [] });
+      const fb = orthoOsmPolys({ osm, frame, dir, way: near.way, st: laneImg?.st, mapRuns: result.runs || [], edges: k.status === "fulfilled" ? k.value?.edges || [] : [] });
       if (fb) {
         const again = deriveProfile({ ...args, polys: [fb[0], ...polys, ...fb.slice(1)] });
         if (!again.estimate) { result = again; orthoOsm = fb; }
@@ -359,7 +361,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     // the DMVS standing in for the city's map, the orthophoto of a tram bed.
     const mv = m.status === "fulfilled" ? m.value : null;
     const bedSk = ortho && city.id === "slovensko"; // the tram bed read on Slovakia's orthophoto
-    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.skTown && { skTown: mv.skTown }), ...(mv?.skTm && { skTm: true }), ...(mv?.dmvs && { dmvs: true }), ...(((ortho && !bedSk) || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" ? { orthoCity: laneImg.source } : bedSk && { orthoCity: "sk" }) };
+    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.skTown && { skTown: mv.skTown }), ...(mv?.skTm && { skTm: true }), ...(orthoOsm?.edges && k.value?.edgesFrom && { skEdges: k.value.edgesFrom }), ...(mv?.dmvs && { dmvs: true }), ...(((ortho && !bedSk) || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" ? { orthoCity: laneImg.source } : bedSk && { orthoCity: "sk" }) };
     // The log of cuts (log.js): the cut exactly, and how it came (a click, a moved cut, a link).
     log("rez", {
       detail: keepWay ? "posun" : bearing !== null ? "odkaz" : "klik", city: city.id, street: name, highway: near.way.tags.highway,
@@ -1932,7 +1934,7 @@ function restore(data) {
   undoStack.length = redoStack.length = 0;
   Object.assign(state, { cut: data.cut, stav: data.stav, navrh: data.navrh || structuredClone(data.stav), navrhEdited: !!data.navrhEdited, selected: null });
   // The saved cut's city (its illustrations follow once loaded).
-  if (state.cut) { setCity(cityAt(state.cut.lat, state.cut.lon)); loadSprites().then(render); }
+  if (state.cut) { setCity(cityAt(state.cut.lat, state.cut.lon)); if (city.id === "slovensko") city.art = skArtAt(state.cut.lat, state.cut.lon); loadSprites().then(render); }
   if (state.cut) {
     map.setView([state.cut.lat, state.cut.lon], 19);
     const f = localFrame(state.cut.lat, state.cut.lon);

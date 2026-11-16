@@ -447,6 +447,16 @@ Object.assign(CITIES, {
   cizina: abroad("cizina", null, "cizinu", "v cizině", "zahraniční", [49.8, 15.5], "48.146736, 17.106998"),
 });
 
+// The Slovak towns' vehicles (Bára 16. 11. 2026; pilot/public/<town>/, drawn after photos of Wikimedia Commons): a cut in
+// Slovakia draws the trams, trolleybuses and buses of its town (by a box around it), elsewhere Streetmix's; the
+// furniture is the Czech set's ("../cesko/…": the files of cesko/).
+const czechFurniture = Object.fromEntries(Object.entries(TOWN_ART).filter(([k]) => !k.startsWith("bus-")).map(([k, v]) => [k, `../cesko/${v}`]));
+const skArt = (tram, trolley) => ({ ...czechFurniture, "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound", ...(tram ? TRAM : {}), ...(trolley ? TROLLEY : {}) });
+export const SK_ART = { bratislava: skArt(true, true), kosice: skArt(true, false), zilina: skArt(false, true), bystrica: skArt(false, true), presov: skArt(false, true) };
+const SK_ART_BOX = { bratislava: [16.83, 47.99, 17.33, 48.27], kosice: [21.15, 48.64, 21.36, 48.79], zilina: [18.62, 49.13, 18.86, 49.28],
+  bystrica: [19.03, 48.66, 19.27, 48.82], presov: [21.15, 48.94, 21.33, 49.06] };
+export const skArtAt = (lat, lon) => Object.entries(SK_ART_BOX).find(([, b]) => lon >= b[0] && lon <= b[2] && lat >= b[1] && lat <= b[3])?.[0] ?? "cesko";
+
 // Towns with no data of their own (the national DTM of ČÚZK, as "cesko"), only their own vehicles.
 const artTown = (id, inCity, adjective, art) => ({ ...CITIES.cesko, id, like: "cesko", inCity, adjective, art: id, artMap: { ...art, ...TOWN_ART } });
 Object.assign(CITIES, {
@@ -473,9 +483,13 @@ export function creditLines(c, src = {}, art = false) {
   if (ORTHO_CITY[src.orthoCity]) data.push(ORTHO_CITY[src.orthoCity]);
   // A Slovak town's passport where the cut took its surfaces (towns/slovensko.js).
   const SK_PASSPORT = { bratislava: t("pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka"), presov: t("pasport dopravy a zelene © mesto Prešov (CC BY 4.0)"),
-    zilina: t("pasport komunikácií © mesto Žilina"), bystrica: t("pasport komunikácií © mesto Banská Bystrica") };
+    zilina: t("pasport komunikácií © mesto Žilina"), bystrica: t("pasport komunikácií © mesto Banská Bystrica"), zvolen: t("komunikácie a spevnené plochy © mesto Zvolen") };
   if (src.skTm) data.push(t("technická mapa © Hlavné mesto SR Bratislava"));
   if (SK_PASSPORT[src.skTown]) data.push(SK_PASSPORT[src.skTown]);
+  // The lines of a town's map that placed the kerbs (towns/slovensko.js EDGE_SOURCES).
+  const SK_EDGES = { nitra: t("kresba © mesto Nitra"), piestany: t("kresba © mesto Piešťany"), zvolen: t("kresba © mesto Zvolen"), hlohovec: t("polohopis © mesto Hlohovec"),
+    presov: t("hranice druhov pozemkov © mesto Prešov (CC BY 4.0)"), "bratislava-tm": t("technická mapa © Hlavné mesto SR Bratislava") };
+  if (SK_EDGES[src.skEdges] && !(src.skEdges === "bratislava-tm" && src.skTm)) data.push(SK_EDGES[src.skEdges]);
   data.push(data.length ? t("© přispěvatelé OpenStreetMap (ODbL)") : t("Data: {data}", { data: t("© přispěvatelé OpenStreetMap (ODbL)") }));
   return [
     data.join(" · "),
