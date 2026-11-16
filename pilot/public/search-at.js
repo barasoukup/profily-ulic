@@ -9,6 +9,7 @@ import { norm } from "./search.js";
 
 export const WIEN_WFS = "https://data.wien.gv.at/daten/geo";
 const MAX = 20;
+const inWienBox = (lon, lat) => lon >= 16.18 && lon <= 16.58 && lat >= 48.11 && lat <= 48.33;
 
 // A query for Vienna: it names the city.
 export const looksViennese = (text) => /\bwien\b/i.test(text);
@@ -59,7 +60,7 @@ export async function findAt(text, getJSON, signal) {
 // is cut on its own street, not the side street nearer to it (Praterstraße 20).
 export async function locateAt(item, getJSON, signal) {
   const { lon, lat, street } = item.at, d = 200 / 111320, dLon = d / Math.cos((lat * Math.PI) / 180);
-  if (!street) return { point: [lon, lat], paths: null };
+  if (!street || !inWienBox(lon, lat)) return { point: [lon, lat], paths: null };
   const json = await getJSON(`${WIEN_WFS}?${new URLSearchParams({
     service: "WFS", version: "2.0.0", request: "GetFeature", typeNames: "ogdwien:STRASSENGRAPHOGD", outputFormat: "application/json",
     srsName: "EPSG:4326", count: "200", propertyName: "FEATURENAME,SHAPE",

@@ -22,3 +22,17 @@ test("Vídeň: dotaz bez slova Wien a PSČ, adresy a ulice z adresních bodů, �
   const where = await locate({ ...a[0], at: { ...a[0].at, street: undefined } });
   assert.deepEqual(where.cut, { lon: 16.3497, lat: 48.1993 });
 });
+
+test("Photon v Rakousku: jen výsledky AT, adresa, ulice a obec, bez opakování", async () => {
+  const { parsePhoton } = await import("../pilot/public/search-photon.js");
+  const f = (props, c = [15.44, 47.07]) => ({ properties: { countrycode: "AT", ...props }, geometry: { coordinates: c } });
+  const out = parsePhoton({ features: [
+    f({ street: "Herrengasse", housenumber: "16", postcode: "8010", city: "Graz" }),
+    f({ osm_key: "highway", name: "Herrengasse", postcode: "8010", city: "Graz" }),
+    f({ osm_key: "highway", name: "Herrengasse", postcode: "8010", city: "Graz" }),
+    f({ osm_key: "place", osm_value: "city", name: "Graz", state: "Steiermark" }),
+    { properties: { countrycode: "DE", street: "Herrengasse", housenumber: "1" }, geometry: { coordinates: [11, 48] } },
+  ] });
+  assert.deepEqual(out.map((x) => [x.type, x.text]), [["AdresniMisto", "Herrengasse 16, 8010 Graz"], ["Ulice", "Herrengasse, 8010 Graz"], ["Obec", "Graz (Steiermark)"]]);
+  assert.equal(out[0].at.street, "Herrengasse");
+});

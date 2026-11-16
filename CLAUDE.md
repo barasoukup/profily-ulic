@@ -259,8 +259,10 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   rakouské kresby a značky s dodatkovou tabulkou se zahodí.
 - Nepřátelská recenze 16. 11. 2026 zapracovaná (cache nasazení podle států, skupiny silnic z OSM, StVO § 24, mapování
   FMZK, poctivé citace norem, licence).
-- Chybí: hledání adres (BEV jen s registrací; Vídeň má adresy ve WFS), vozidla a mobiliář měst, Kurzparkzonen, stromy
-  a obruby Vídně, Salcburk, sítě (otevřené nejsou).
+- Hledání: Vídeň z adresních bodů města (`search-at.js`), jinde v Rakousku Photon od komoot (`search-photon.js`; Bára
+  16. 11. 2026: záloha, BEV jen s registrací a poplatky). Salcburk: zákaz zastavení a stání z katastru značek.
+- Žádný panelák v Rakousku (Bára 16. 11. 2026): deska je funkcionalistický dům, po 1990 moderní, kanceláře kanceláře.
+- Chybí: vozidla a mobiliář měst (kreslí se), Kurzparkzonen (aplikace zóny nekreslí), sítě (otevřené nejsou).
 
 ## Jazyky (Bára 12. 11. 2026, slovenčina 15. 11. 2026, němčina 16. 11. 2026)
 - Anglicky se aplikace jmenuje **Street Profile**, slovensky **Profily ulíc**, německy **Straßenprofil**. Čeština, slovenčina,

@@ -730,7 +730,7 @@ export const DE_HTML = {
     und der Regionen (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (auch die Adresssuche), Kataster und Luftbild © ČÚZK (CC BY 4.0) · Luftbild, Gebäude und Grenzen der Slowakei © <a href="https://www.geoportal.sk">GKÚ Bratislava</a>, NLC (ZBGIS, CC BY 4.0), Straßen und Adressen der Slowakei © MV SR ·
     Straßenkataster © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Prešov (CC BY 4.0), Kartenzeichnungen © mestá Nitra, Piešťany, Hlohovec, technische Karte © Hlavné mesto SR Bratislava ·
     Leitungen © IPR Praha, mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, Statutarstädte Karviná, Ostrava, Stadt Břeclav ·
-    Österreich: Luftbild © basemap.at (CC BY 4.0), Flächen-Mehrzweckkarte © Stadt Wien – data.wien.gv.at (CC BY 4.0), Grenze © EuroGeographics (GISCO), Verkehrszeichen Salzburg © Stadt Salzburg (CC BY 3.0 AT) ·
+    Österreich: Luftbild © basemap.at (CC BY 4.0), Flächen-Mehrzweckkarte © Stadt Wien – data.wien.gv.at (CC BY 4.0), Grenze © EuroGeographics (GISCO), Verkehrszeichen Salzburg © Stadt Salzburg (CC BY 3.0 AT), Suche Photon © komoot (OSM-Daten) ·
     Parken © TSK hl. m. Prahy (CC BY 4.0), Parkverbote, Bäume und Straßenklassen aus dem <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, die Städte Jihlava, Opava, Plzeň (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-Mitwirkende (ODbL) ·
     Illustrationen © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, Lizenz

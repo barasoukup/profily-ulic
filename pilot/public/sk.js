@@ -732,7 +732,7 @@ export const SK_HTML = {
   footer: `Údaje: technické mapy © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (a podlažnosti, vývoj zástavby, CC BY 4.0), štatutárnych miest Brna, Jihlavy, Mostu, Opavy a Plzne
     a krajov (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (aj vyhľadávanie adries), kataster a ortofoto © ČÚZK (CC BY 4.0) · ortofoto, budovy a hranice Slovenska © <a href="https://www.geoportal.sk">GKÚ Bratislava</a>, NLC (ZBGIS, CC BY 4.0), ulice a adresy Slovenska © MV SR ·
     pasporty komunikácií © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Prešov (CC BY 4.0), kresba máp © mestá Nitra, Piešťany, Hlohovec, technická mapa © Hlavné mesto SR Bratislava ·
-    Rakúsko: ortofoto © basemap.at (CC BY 4.0), mapa povrchov Viedne © Stadt Wien – data.wien.gv.at (CC BY 4.0), hranica © EuroGeographics (GISCO), dopravné značky Salzburgu © Stadt Salzburg (CC BY 3.0 AT) ·
+    Rakúsko: ortofoto © basemap.at (CC BY 4.0), mapa povrchov Viedne © Stadt Wien – data.wien.gv.at (CC BY 4.0), hranica © EuroGeographics (GISCO), dopravné značky Salzburgu © Stadt Salzburg (CC BY 3.0 AT), vyhľadávanie Photon © komoot (údaje OSM) ·
     siete pod zemou © IPR Praha, mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, štatutárne mestá Karviná, Ostrava, mesto Břeclav ·
     parkovanie © TSK hl. m. Prahy (CC BY 4.0), zákaz státia, stromy a zaradenie komunikácií z <a href="https://opendata.geoportalpraha.cz">Geoportálu Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, mestá Jihlava, Opava, Plzeň (CC0) ·
     © prispievatelia <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·
