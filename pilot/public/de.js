@@ -359,6 +359,28 @@ export const DE = {
   " · mapa povrchů Vídně neodpověděla, odhad z ortofota a OSM": " · Flächenkarte Wiens antwortete nicht, Schätzung aus Luftbild und OSM",
   "Mapa povrchů Vídně teď neodpovídá, profil je odhad z ortofota a OSM.": "Die Flächenkarte Wiens antwortet gerade nicht, der Querschnitt ist eine Schätzung aus Luftbild und OSM.",
   "dopravní značky © Stadt Salzburg (CC BY 3.0 AT)": "Verkehrszeichen © Stadt Salzburg (CC BY 3.0 AT)",
+  "Zákaz vjezdu pro všechna vozidla": "Fahrverbot für alle Fahrzeuge",
+  "Zákaz vjezdu pro všechna motorová vozidla": "Fahrverbot für alle Kraftfahrzeuge",
+  "Zákaz vjezdu pro jízdní kola": "Fahrverbot für Fahrräder",
+  "Zákaz vstupu pro chodce": "Fußgängerverbot",
+  "Nejvyšší dovolená rychlost": "Höchstgeschwindigkeit",
+  "Zákaz zastavení": "Halteverbot",
+  "Jednosměrná cesta / Zákaz vjezdu": "Einbahnstraße / Einfahrt verboten",
+  "Cestička pro chodce": "Gehweg",
+  "Cyklistická komunikace": "Radweg",
+  "Společná cestička pro chodce a cyklisty": "Gemeinsamer Geh- und Radweg",
+  "Oddělená cestička pro chodce a cyklisty": "Getrennter Geh- und Radweg",
+  "Parkování na chodníku příčně úplně": "Querparken ganz auf dem Gehsteig",
+  "Parkování na chodníku úplně": "Parken ganz auf dem Gehsteig",
+  "Parkování na chodníku příčně částečně": "Querparken teilweise auf dem Gehsteig",
+  "Parkování na chodníku částečně": "Parken teilweise auf dem Gehsteig",
+  "Dálnice": "Autobahn",
+  "Cesta pro motorová vozidla": "Kraftfahrstraße",
+  "Vyhrazený pruh pro veřejnou dopravu": "Fahrstreifen für den öffentlichen Verkehr",
+  "Zóna nejvyšší dovolené rychlosti": "Geschwindigkeitszone",
+  "Obytná zóna": "Wohnstraße",
+  "Pěší zóna": "Fußgängerzone",
+  "Cyklistická ulice": "Fahrradstraße",
   "ortofoto © basemap.at (CC BY 4.0)": "Luftbild © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "Luftbild © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© OpenStreetMap-Mitwirkende (ODbL)",
@@ -562,6 +584,7 @@ export const DE = {
   "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka": "Straßenkataster © Hauptstadt Bratislava und Stadtteil Dúbravka",
   "pasport dopravy a zelene © mesto Prešov (CC BY 4.0)": "Verkehrs- und Grünflächenkataster © Stadt Prešov (CC BY 4.0)",
   "pasport komunikácií © mesto Žilina": "Straßenkataster © Stadt Žilina",
+  "pasport komunikácií © mesto Košice": "Straßenkataster © mesto Košice",
   "pasport komunikácií © mesto Banská Bystrica": "Straßenkataster © Stadt Banská Bystrica",
   "technická mapa © Hlavné mesto SR Bratislava": "technische Karte © Hauptstadt Bratislava",
   "komunikácie a spevnené plochy © mesto Zvolen": "Straßen und befestigte Flächen © Stadt Zvolen",
@@ -728,7 +751,7 @@ export const DE = {
 export const DE_HTML = {
   footer: `Daten: technische Karten © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (sowie Geschosszahlen und Bebauungsentwicklung, CC BY 4.0), der Statutarstädte Brno, Jihlava, Most, Opava und Plzeň
     und der Regionen (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (auch die Adresssuche), Kataster und Luftbild © ČÚZK (CC BY 4.0) · Luftbild, Gebäude und Grenzen der Slowakei © <a href="https://www.geoportal.sk">GKÚ Bratislava</a>, NLC (ZBGIS, CC BY 4.0), Straßen und Adressen der Slowakei © MV SR ·
-    Straßenkataster © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Prešov (CC BY 4.0), Kartenzeichnungen © mestá Nitra, Piešťany, Hlohovec, technische Karte © Hlavné mesto SR Bratislava ·
+    Straßenkataster © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), Kartenzeichnungen © mestá Nitra, Piešťany, Hlohovec, technische Karte © Hlavné mesto SR Bratislava ·
     Leitungen © IPR Praha, mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, Statutarstädte Karviná, Ostrava, Stadt Břeclav ·
     Österreich: Luftbild © basemap.at (CC BY 4.0), Flächen-Mehrzweckkarte © Stadt Wien – data.wien.gv.at (CC BY 4.0), Grenze © EuroGeographics (GISCO), Verkehrszeichen Salzburg © Stadt Salzburg (CC BY 3.0 AT), Suche Photon © komoot (OSM-Daten) ·
     Parken © TSK hl. m. Prahy (CC BY 4.0), Parkverbote, Bäume und Straßenklassen aus dem <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, die Städte Jihlava, Opava, Plzeň (CC0) ·

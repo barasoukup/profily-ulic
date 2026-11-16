@@ -709,7 +709,7 @@ function render() {
 // the cut's information should say where its data come from).
 // The Slovak towns whose road passports a cut may take (towns/slovensko.js SK_TOWNS), by the town's name in the genitive.
 const SK_EDGES_TOWN = { nitra: "Nitra", piestany: "Piešťany", zvolen: "Zvolen", hlohovec: "Hlohovec", presov: "Prešov", "bratislava-tm": "Bratislava" };
-const SK_PASSPORT_TOWN = { bratislava: "Bratislava", presov: "Prešov", zilina: "Žilina", bystrica: "Banská Bystrica", zvolen: "Zvolen" };
+const SK_PASSPORT_TOWN = { bratislava: "Bratislava", presov: "Prešov", zilina: "Žilina", bystrica: "Banská Bystrica", kosice: "Košice", zvolen: "Zvolen" };
 function cutData() {
   // Vienna's map of surfaces (towns/austria.js).
   if (state.cut?.sources?.atTown === "wien") return tr("mapy povrchů města Vídně a OSM");

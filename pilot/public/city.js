@@ -509,7 +509,7 @@ export function creditLines(c, src = {}, art = false) {
   if (ORTHO_CITY[src.orthoCity]) data.push(ORTHO_CITY[src.orthoCity]);
   // A Slovak town's passport where the cut took its surfaces (towns/slovensko.js).
   const SK_PASSPORT = { bratislava: t("pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka"), presov: t("pasport dopravy a zelene © mesto Prešov (CC BY 4.0)"),
-    zilina: t("pasport komunikácií © mesto Žilina"), bystrica: t("pasport komunikácií © mesto Banská Bystrica"), zvolen: t("komunikácie a spevnené plochy © mesto Zvolen") };
+    zilina: t("pasport komunikácií © mesto Žilina"), bystrica: t("pasport komunikácií © mesto Banská Bystrica"), kosice: t("pasport komunikácií © mesto Košice"), zvolen: t("komunikácie a spevnené plochy © mesto Zvolen") };
   if (src.skTm) data.push(t("technická mapa © Hlavné mesto SR Bratislava"));
   if (SK_PASSPORT[src.skTown]) data.push(SK_PASSPORT[src.skTown]);
   // The lines of a town's map that placed the kerbs (towns/slovensko.js EDGE_SOURCES).

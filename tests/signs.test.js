@@ -132,7 +132,12 @@ test("značky státu SK: každá značka a tabulka má soubor, popisek se sloven
   const all = [...Object.keys(SIGNS).map((k) => ({ k, ...(k === "b20a" ? { v: 50 } : {}) })), ...Object.values(SIGN_CHOICES)];
   for (const x of all) for (const dir of ["forward", "backward"])
     for (const f of [signFile(x, { dir }, "SK"), plateFile(x, { dir }, "SK")].filter(Boolean)) assert.ok(existsSync(`pilot/public/znacky-SK/${f}.svg`), `${x.k}: ${f}.svg`);
-  assert.equal(signLabel({ k: "b1" }, "SK"), "231 Zákaz vjezdu všech vozidel");
+  assert.equal(signLabel({ k: "b1" }, "SK"), "231 Zákaz vjezdu pro všechna vozidla");
+  // The Slovak sign's own meaning (323 Bicyklová cesta, not the Czech cycling zone), in Slovak its official name.
+  assert.equal(signLabel({ k: "cyklozona" }, "SK"), "323 Cyklistická ulice");
+  const { SK } = await import("../pilot/public/sk.js");
+  assert.equal(SK["Cyklistická ulice"], "Bicyklová cesta");
+  assert.equal(SK["Zákaz vjezdu pro všechna vozidla"], "Zákaz vjazdu pre všetky vozidlá");
   assert.equal(signLabel({ k: "b20a", v: 30 }, "SK"), "253 Nejvyšší dovolená rychlost 30 km/h");
   assert.equal(signLabel({ k: "oneway", plate: "protismer" }, "SK"), "321 + 514 / 230 + 507 Jednosměrný provoz, cyklisté v protisměru");
   assert.equal(signLabel({ k: "ztp" }, "SK"), "272 Parkoviště pro ZTP");

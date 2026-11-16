@@ -342,6 +342,28 @@ export const EN = {
   " · mapa povrchů Vídně neodpověděla, odhad z ortofota a OSM": " · Vienna's surface map did not answer, an estimate from the orthophoto and OSM",
   "Mapa povrchů Vídně teď neodpovídá, profil je odhad z ortofota a OSM.": "Vienna's surface map is not responding, the profile is an estimate from the orthophoto and OSM.",
   "dopravní značky © Stadt Salzburg (CC BY 3.0 AT)": "traffic signs © Stadt Salzburg (CC BY 3.0 AT)",
+  "Zákaz vjezdu pro všechna vozidla": "No entry for all vehicles",
+  "Zákaz vjezdu pro všechna motorová vozidla": "No entry for all motor vehicles",
+  "Zákaz vjezdu pro jízdní kola": "No entry for bicycles",
+  "Zákaz vstupu pro chodce": "No entry for pedestrians",
+  "Nejvyšší dovolená rychlost": "Speed limit",
+  "Zákaz zastavení": "No stopping",
+  "Jednosměrná cesta / Zákaz vjezdu": "One-way road / No entry",
+  "Cestička pro chodce": "Footpath",
+  "Cyklistická komunikace": "Cycle track",
+  "Společná cestička pro chodce a cyklisty": "Shared path for pedestrians and cyclists",
+  "Oddělená cestička pro chodce a cyklisty": "Segregated path for pedestrians and cyclists",
+  "Parkování na chodníku příčně úplně": "Perpendicular parking fully on the pavement",
+  "Parkování na chodníku úplně": "Parking fully on the pavement",
+  "Parkování na chodníku příčně částečně": "Perpendicular parking partly on the pavement",
+  "Parkování na chodníku částečně": "Parking partly on the pavement",
+  "Dálnice": "Motorway",
+  "Cesta pro motorová vozidla": "Road for motor vehicles",
+  "Vyhrazený pruh pro veřejnou dopravu": "Reserved lane for public transport",
+  "Zóna nejvyšší dovolené rychlosti": "Speed limit zone",
+  "Obytná zóna": "Residential zone",
+  "Pěší zóna": "Pedestrian zone",
+  "Cyklistická ulice": "Cycle street",
   "ortofoto © basemap.at (CC BY 4.0)": "orthophoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "orthophoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© OpenStreetMap contributors (ODbL)",
@@ -551,6 +573,7 @@ export const EN = {
   "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka": "road passport © City of Bratislava and the borough of Dúbravka",
   "pasport dopravy a zelene © mesto Prešov (CC BY 4.0)": "passport of roads and green © City of Prešov (CC BY 4.0)",
   "pasport komunikácií © mesto Žilina": "road passport © City of Žilina",
+  "pasport komunikácií © mesto Košice": "road passport © mesto Košice",
   "pasport komunikácií © mesto Banská Bystrica": "road passport © City of Banská Bystrica",
   "technická mapa © Hlavné mesto SR Bratislava": "technical map © City of Bratislava",
   "komunikácie a spevnené plochy © mesto Zvolen": "roads and paved areas © City of Zvolen",
@@ -730,7 +753,7 @@ export const EN = {
 export const EN_HTML = {
   footer: `Data: technical maps © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (and building heights and development history, CC BY 4.0), of the statutory cities of Brno, Jihlava, Most, Opava and Plzeň
     and of the regions (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (and the address search), cadastre and orthophoto © ČÚZK (CC BY 4.0) · orthophoto, buildings and borders of Slovakia © <a href="https://www.geoportal.sk">GKÚ Bratislava</a>, NLC (ZBGIS, CC BY 4.0), streets and addresses of Slovakia © MV SR ·
-    road passports © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Prešov (CC BY 4.0), map drawings © mestá Nitra, Piešťany, Hlohovec, technical map © Hlavné mesto SR Bratislava ·
+    road passports © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), map drawings © mestá Nitra, Piešťany, Hlohovec, technical map © Hlavné mesto SR Bratislava ·
     Austria: orthophoto © basemap.at (CC BY 4.0), surface map of Vienna © Stadt Wien – data.wien.gv.at (CC BY 4.0), border © EuroGeographics (GISCO), traffic signs of Salzburg © Stadt Salzburg (CC BY 3.0 AT), search Photon © komoot (OSM data) ·
     networks under the street © IPR Praha, mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, the Olomouc Region, the cities of Karviná, Ostrava, Břeclav ·
     parking © TSK hl. m. Prahy (CC BY 4.0), no-parking areas, trees and street classes from <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, the cities of Jihlava, Opava, Plzeň (CC0) ·

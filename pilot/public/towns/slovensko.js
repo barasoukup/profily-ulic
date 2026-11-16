@@ -129,6 +129,9 @@ export const SK_TOWNS = {
     } },
   zilina: { box: [18.62, 49.13, 18.86, 49.28], credit: "pasport komunikácií © mesto Žilina", own: pakom("https://gis.zilina.sk/services/mapserver/common/pakom") },
   bystrica: { box: [19.03, 48.66, 19.27, 48.82], credit: "pasport komunikácií © mesto Banská Bystrica", own: pakom("https://mapy.banskabystrica.sk/services/mapserver/common/pakom") },
+  // Košice (the review of Slovakia, 16. 11. 2026): the same T-MAPY PaKom, so far mostly Košice-Západ; the city is
+  // having the whole town surveyed.
+  kosice: { box: [21.15, 48.64, 21.36, 48.79], credit: "pasport komunikácií © mesto Košice", own: pakom("https://gisplan.kosice.sk/services/mapserver/common/pakom") },
 };
 const inRings = (rings, x, y) => {
   let c = false;

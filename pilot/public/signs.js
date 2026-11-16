@@ -80,6 +80,8 @@ export function signLabel(x, country = "CZ") {
   if (country === "AT") return AT_CODE[x.k] ? `${AT_CODE[x.k]} ${label.replace(CZ_CODE, "")}` : label;
   if (country !== "SK") return label;
   const code = (own && SK_CHOICE_CODE[`${x.k}+${x.plate}`]) || SK_CODE[x.k];
+  // The Slovak sign's own name (SK_TITLE), not the Czech sign's translated.
+  if (!own && SK_TITLE[x.k]) return `${code} ${SK_TITLE[x.k]}${typeof x.v === "number" ? ` ${x.v} km/h` : ""}${x.plate ? ` (${PLATE_LABEL[x.plate]})` : ""}`;
   return code ? `${code} ${label.replace(CZ_CODE, "")}` : label;
 }
 // The Czech number at the start of a label ("IP 4c / B 2 + E 12b ", "IP 12 + O 1 ", "B 20a ").
@@ -97,6 +99,34 @@ const SK_CHOICE_CODE = { "oneway+protismer": "321 + 514 / 230 + 507", "ip20a+kol
 const SK_FILE = { b1: "231", b11: "232", b8: "233-58", b30: "233-60", b28: "270", b29: "271", c8a: "221", c9a: "222", c10a: "223-51",
   ip11a: "272", ip11d: "273-85", ip11e: "273-65", ip11f: "273-75", ip11g: "273-55", ip12: "270", ztp: "272",
   ip14a: "309", ip15a: "311", ip20a: "224", zona30: "268-30", ip26a: "315", ip27a: "317", cyklozona: "323", c7a: "220" };
+// The names of the Slovak signs by their own meaning (vyhláška 30/2020 Z. z.; the review of Slovakia: "323 Zóna pre
+// cyklistov" is "Bicyklová cesta"), in the page's language: in Slovak the official names (sk.js).
+const SK_TITLE = {
+  b1: t("Zákaz vjezdu pro všechna vozidla"),
+  b11: t("Zákaz vjezdu pro všechna motorová vozidla"),
+  b8: t("Zákaz vjezdu pro jízdní kola"),
+  b30: t("Zákaz vstupu pro chodce"),
+  b20a: t("Nejvyšší dovolená rychlost"),
+  b28: t("Zákaz zastavení"),
+  b29: t("Zákaz stání"),
+  oneway: t("Jednosměrná cesta / Zákaz vjezdu"),
+  c7a: t("Cestička pro chodce"),
+  c8a: t("Cyklistická komunikace"),
+  c9a: t("Společná cestička pro chodce a cyklisty"),
+  c10a: t("Oddělená cestička pro chodce a cyklisty"),
+  ip11a: t("Parkování"),
+  ip11d: t("Parkování na chodníku příčně úplně"),
+  ip11e: t("Parkování na chodníku úplně"),
+  ip11f: t("Parkování na chodníku příčně částečně"),
+  ip11g: t("Parkování na chodníku částečně"),
+  ip14a: t("Dálnice"),
+  ip15a: t("Cesta pro motorová vozidla"),
+  ip20a: t("Vyhrazený pruh pro veřejnou dopravu"),
+  zona30: t("Zóna nejvyšší dovolené rychlosti"),
+  ip26a: t("Obytná zóna"),
+  ip27a: t("Pěší zóna"),
+  cyklozona: t("Cyklistická ulice"),
+};
 const SK_SPEEDS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130];
 // The folder of a state's signs.
 // The signs of the state AT (pilot/public/signs-AT/, README there; StVO 1960 § 52–53, Wikimedia Commons, Austrian

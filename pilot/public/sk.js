@@ -32,6 +32,28 @@ export const SK = {
   " · mapa povrchů Vídně neodpověděla, odhad z ortofota a OSM": " · mapa povrchov Viedne neodpovedala, odhad z ortofota a OSM",
   "Mapa povrchů Vídně teď neodpovídá, profil je odhad z ortofota a OSM.": "Mapa povrchov Viedne teraz neodpovedá, profil je odhad z ortofota a OSM.",
   "dopravní značky © Stadt Salzburg (CC BY 3.0 AT)": "dopravné značky © Stadt Salzburg (CC BY 3.0 AT)",
+  "Zákaz vjezdu pro všechna vozidla": "Zákaz vjazdu pre všetky vozidlá",
+  "Zákaz vjezdu pro všechna motorová vozidla": "Zákaz vjazdu pre všetky motorové vozidlá",
+  "Zákaz vjezdu pro jízdní kola": "Zákaz vjazdu pre bicykle",
+  "Zákaz vstupu pro chodce": "Zákaz vstupu pre chodcov",
+  "Nejvyšší dovolená rychlost": "Najvyššia dovolená rýchlosť",
+  "Zákaz zastavení": "Zákaz zastavenia",
+  "Jednosměrná cesta / Zákaz vjezdu": "Jednosmerná cesta / Zákaz vjazdu",
+  "Cestička pro chodce": "Cestička pre chodcov",
+  "Cyklistická komunikace": "Cyklistická komunikácia",
+  "Společná cestička pro chodce a cyklisty": "Spoločná cestička pre chodcov a cyklistov",
+  "Oddělená cestička pro chodce a cyklisty": "Oddelená cestička pre chodcov a cyklistov",
+  "Parkování na chodníku příčně úplně": "Parkovanie na chodníku priečne úplne",
+  "Parkování na chodníku úplně": "Parkovanie na chodníku úplne",
+  "Parkování na chodníku příčně částečně": "Parkovanie na chodníku priečne čiastočne",
+  "Parkování na chodníku částečně": "Parkovanie na chodníku čiastočne",
+  "Dálnice": "Diaľnica",
+  "Cesta pro motorová vozidla": "Cesta pre motorové vozidlá",
+  "Vyhrazený pruh pro veřejnou dopravu": "Vyhradený pruh pre verejnú dopravu",
+  "Zóna nejvyšší dovolené rychlosti": "Zóna najvyššej dovolenej rýchlosti",
+  "Obytná zóna": "Obytná zóna",
+  "Pěší zóna": "Pešia zóna",
+  "Cyklistická ulice": "Bicyklová cesta",
   "ortofoto © basemap.at (CC BY 4.0)": "ortofoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "Místo se nepodařilo načíst ze ZBGIS. Zkuste to znovu.": "Miesto sa nepodarilo načítať zo ZBGIS. Skúste to znova.",
@@ -541,6 +563,7 @@ export const SK = {
   "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka": "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka",
   "pasport dopravy a zelene © mesto Prešov (CC BY 4.0)": "pasport dopravy a zelene © mesto Prešov (CC BY 4.0)",
   "pasport komunikácií © mesto Žilina": "pasport komunikácií © mesto Žilina",
+  "pasport komunikácií © mesto Košice": "pasport komunikácií © mesto Košice",
   "pasport komunikácií © mesto Banská Bystrica": "pasport komunikácií © mesto Banská Bystrica",
   "pasport zeleně © {town}": "pasport zelene © {town}",
   "pasport komunikací © {town}": "pasport komunikácií © {town}",
@@ -731,7 +754,7 @@ export const SK = {
 export const SK_HTML = {
   footer: `Údaje: technické mapy © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (a podlažnosti, vývoj zástavby, CC BY 4.0), štatutárnych miest Brna, Jihlavy, Mostu, Opavy a Plzne
     a krajov (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (aj vyhľadávanie adries), kataster a ortofoto © ČÚZK (CC BY 4.0) · ortofoto, budovy a hranice Slovenska © <a href="https://www.geoportal.sk">GKÚ Bratislava</a>, NLC (ZBGIS, CC BY 4.0), ulice a adresy Slovenska © MV SR ·
-    pasporty komunikácií © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Prešov (CC BY 4.0), kresba máp © mestá Nitra, Piešťany, Hlohovec, technická mapa © Hlavné mesto SR Bratislava ·
+    pasporty komunikácií © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), kresba máp © mestá Nitra, Piešťany, Hlohovec, technická mapa © Hlavné mesto SR Bratislava ·
     Rakúsko: ortofoto © basemap.at (CC BY 4.0), mapa povrchov Viedne © Stadt Wien – data.wien.gv.at (CC BY 4.0), hranica © EuroGeographics (GISCO), dopravné značky Salzburgu © Stadt Salzburg (CC BY 3.0 AT), vyhľadávanie Photon © komoot (údaje OSM) ·
     siete pod zemou © IPR Praha, mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, štatutárne mestá Karviná, Ostrava, mesto Břeclav ·
     parkovanie © TSK hl. m. Prahy (CC BY 4.0), zákaz státia, stromy a zaradenie komunikácií z <a href="https://opendata.geoportalpraha.cz">Geoportálu Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, mestá Jihlava, Opava, Plzeň (CC0) ·
