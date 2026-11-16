@@ -352,6 +352,7 @@ export function mtvuPolygons(json, frame) {
       level: Number(f.attributes.LEVEL) || 0, // Brno: 1 above the ground (bridge decks)
       dtmTram: f.attributes.DTM_TRAM === 1, // the national DTM's tram area: tracks in the roadway or apart from it
       fromLines: f.attributes.Z_CAR === 1, // read from the DTM's lines (dmvs.js fromLines), its kind a guess
+      passport: f.attributes.PASPORT === 1, // a town's passport (gis.js asPassport)
       rings,
       bbox: bboxOf(rings.flat()),
       lonlat: f.geometry.rings.map((r) => r.map(([lon, lat]) => [lat, lon])),
@@ -1942,6 +1943,13 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       const over = guessed.reduce((a, r) => a + Math.max(0, Math.min(r.e, x.e) - Math.max(r.s, x.s)), 0);
       if ((x.source === "dtm" || x.source === "tsk") && over > (x.e - x.s) / 2) x.source = "odhad";
     }
+  }
+  // A part measured on a town's passport says so (Bára 16. 11. 2026), not "from the technical map".
+  const passports = polys.filter((p) => p.passport);
+  if (passports.length) for (const x of withItems) {
+    if (x.source !== "dtm") continue;
+    const [px, py] = at((x.s + x.e) / 2);
+    if (passports.some((p) => inside(p.rings, px, py))) x.source = "pasport";
   }
   return {
     segments: aisleOrient(withItems.reverse().map(toSegment)),

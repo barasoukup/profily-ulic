@@ -633,6 +633,7 @@ export const EN = {
   "pasport komunikací © {town}": "road passport © {town}",
   "pasportu zeleně města {town}, technické mapy ČÚZK a OSM": "the green passport of {town}, the technical map of ČÚZK and OSM",
   "pasportu komunikací města {town}, technické mapy ČÚZK a OSM": "the road passport of {town}, the technical map of ČÚZK and OSM",
+  "z pasportu města": "from the town's passport",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

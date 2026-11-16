@@ -11,7 +11,7 @@
 //   prachatice, roudnice: passports of green only (lawns, shrubs, paths and playgrounds; green polygons).
 // Left out: Mohelnice and Velké Meziříčí (an empty passport on 15. 11.), Litoměřice's T-MAPY (asks to log in).
 // No licence is stated by any of them (as with the T-MAPY towns already used).
-import { query, envelope, asMtvu, insideRings } from "../gis.js";
+import { query, envelope, asMtvu, asPassport, insideRings } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { overDmvs, tmapyWfs } from "./overlay.js";
 export { PASSPORT_NAMES } from "./pasporty-names.js";
@@ -114,7 +114,7 @@ export function withPassports(surfaces) {
     const [x0, y0, x1, y1] = bbox.split(",").map(Number);
     const id = await passportAt((x0 + x1) / 2, (y0 + y1) / 2);
     if (!id) return surfaces(bbox);
-    const own = await passport(id, bbox).catch(none);
+    const own = asPassport(await passport(id, bbox).catch(none));
     if (!own.features.length) return surfaces(bbox);
     return { ...(await overDmvs(own, bbox)), passport: id };
   };

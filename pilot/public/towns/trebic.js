@@ -6,7 +6,7 @@
 //
 // A town module (towns/<id>.js, listed in towns/index.js) gives sources.js the five data sources of a
 // click (osm, surfaces, lines, parking, podlaznost; see towns/jihlava.js) and app.js its base maps.
-import { query, envelope, osmTiles, boxAround, asMtvu, addPoints, ruianBuilding } from "../gis.js";
+import { query, envelope, osmTiles, boxAround, asMtvu, asPassport, addPoints, ruianBuilding } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { overDmvs } from "./overlay.js";
 
@@ -30,7 +30,7 @@ const code = (a) => {
 };
 // The passport's surfaces alone (MTVU features), and over the national DTM.
 export async function own(bbox) {
-  return asMtvu([[await trQuery(TR_SURFACES, { ...envelope(bbox), outFields: "typ_pov_05,poznamk_13" }), code]], MTVU_LABELS);
+  return asPassport(asMtvu([[await trQuery(TR_SURFACES, { ...envelope(bbox), outFields: "typ_pov_05,poznamk_13" }), code]], MTVU_LABELS));
 }
 const surfaces = async (bbox) => overDmvs(await own(bbox), bbox);
 
