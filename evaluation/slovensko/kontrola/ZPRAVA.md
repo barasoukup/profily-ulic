@@ -68,3 +68,25 @@ Ne mezi pruhy, ne v obytné a pěší zóně. Vypnutí `?off=strop`.
 - Po prvním běhu přibylo sloučení s krajnicí, která už u pruhu byla (Viedenská cesta), a znovu přepočítáno těch 11.
 - **Zbývá:** u ulic, kde OSM počítá víc pruhů (Viedenská cesta 2 + 2), je místo druhého pruhu široká krajnice; patří k
   bodu „méně pruhů, než má OSM“.
+
+## Vzorek 995 skutečných ulic (Bára 16. 11. 2026: „více zaměřit na cesty, které jsou fakt ulice“)
+`vzorek-ulice.mjs`: náhodné body stejných měst přichycené k nejbližší pojmenované ulici (primary až residential,
+obytná zóna) do 250 m, nejvýš dva body na ulici; 733 residential, 99 tertiary, 64 primary, 37 unclassified, 33 secondary,
+22 obytných zón, 7 trunk a nájezdů. Běh `U-1` (stav po opravách 1–3): profil u všech 995, vždy na zamýšlené ulici.
+
+| podezření | řezů |
+|---|---|
+| počet pruhů jiný než OSM lanes | 70 |
+| cyklostezka z OSM chybí | 35 |
+| chodník z OSM leží ve vozovce profilu | 24 |
+| široký chodník (> 9 m) | 16 |
+| obousměrka jako jeden pruh a široká krajnice | 13 |
+| ulice bez jízdního pruhu | 5 |
+| koleje tramvaje bez tramvaje | 4 |
+| cyklopruh na silnici (OSM) chybí | 4 |
+
+- Kontrola širokých pruhů je teď podle pravidla (pruh nad strop o 1 m a víc, mimo zóny): žádný. Dřívějších 115 „pruhů
+  nad 4,6 m“ jsou pruhy do metru nad stropem (krajnice by byla užší než 1 m), obousměrky pod 5 m a obytné zóny.
+- Počet pruhů proti OSM: nejvíc (18) obousměrka s OSM lanes=2 jako jeden pruh 3,5–4,4 m a „krajnice“ 1,7–2,4 m z
+  ortofota. Ve Street View (Hroboňova) bez parkujících aut, s trolejemi: krajnice je druhý pruh, ortofoto vzalo
+  středovou čáru za vodicí. Dále ulice ze dvou vozovek s méně (16) i více (11) pruhy než OSM.

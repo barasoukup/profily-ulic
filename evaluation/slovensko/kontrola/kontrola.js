@@ -41,9 +41,20 @@ export function findings(rows) {
     // 5. tram tracks cross the cut, no tram part
     const trams = cross.filter((c) => c.tags.railway === "tram").length;
     if (trams && !types.some((t) => TRAM_PARTS.has(t))) add("koleje tramvaje bez tramvaje", r, `${trams} kolejí`);
-    // 6. odd widths
-    const wide = segs.find((s) => s[0] === "pruh" && s[1] > 4.6);
-    if (wide) add("široký jízdní pruh (> 4,6 m)", r, `${wide[1].toFixed(2)} m`);
+    // 6. odd widths: a lane over its street's cap by a shoulder or more (the rule: lane 4 m, local 4.5 m, motorway
+    // 3.75 m, the rest a shoulder from 1 m; not in zones), a zone's roadway over 8 m
+    const hw = own[0]?.tags.highway || "";
+    const cap = { motorway: 3.75, trunk: 3.75, residential: 4.5, unclassified: 4.5, service: 4.5 }[hw] ?? 4;
+    const zone = ["living_street", "pedestrian"].includes(hw);
+    const wide = !zone && segs.find((s) => s[0] === "pruh" && s[1] >= cap + 1);
+    if (wide) add("pruh nad strop o 1 m a víc", r, `${wide[1].toFixed(2)} m (${hw}, strop ${cap} m)`);
+    const zw = zone && segs.find((s) => s[0] === "pruh" && s[1] > 8);
+    if (zw) add("obytná nebo pěší zóna s vozovkou nad 8 m", r, `${zw[1].toFixed(2)} m`);
+    // 6b. a two-way street of OSM lanes 2 or more drawn as one lane and a shoulder of 1.7 m or more (parked cars?)
+    const twoWay = own.length === 1 && own[0].tags.oneway !== "yes" && !zone && (+own[0].tags.lanes || 2) >= 2;
+    const lanesHere = segs.filter((s) => s[0] === "pruh");
+    const sh = segs.find((s) => s[0] === "krajnice" && s[1] >= 1.7);
+    if (twoWay && lanesHere.length === 1 && sh) add("obousměrka jako jeden pruh a široká krajnice (stání?)", r, `pruh ${lanesHere[0][1]} + krajnice ${sh[1]} m`);
     const wideWalk = segs.find((s) => s[0] === "chodnik" && s[1] > 9);
     if (wideWalk) add("široký chodník (> 9 m)", r, `${wideWalk[1].toFixed(2)} m`);
     // 7. the cut's own way is a path, a footway or a cycle way, yet the profile has driving lanes
