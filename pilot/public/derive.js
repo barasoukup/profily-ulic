@@ -2116,6 +2116,45 @@ export function capWideLanes(segments, tags = {}) {
   return n;
 }
 
+// A cycle track OSM maps on its own across a part the profile only estimated (paved area, shoulder, unknown, green;
+// a town's passport filler; 11 of 35 missing cycle tracks on 995 Slovak streets after fix 5: Pod Párovcami's 4.15 m
+// shoulder, Wolkerova's paved area): a strip of its width (OSM width, else 2 m one-way, 2.5 m) cut out of the part about
+// its line; scraps under 0.3 m go to it. Not where a bicycle part lies within 2 m. cross: [{ at (m from A), tags }].
+// ?off=rezkolo: the A/B.
+const CARVE_BIKE = new Set(["plocha", "krajnice", "nezname", "zelen"]);
+const BIKE_PARTS = new Set(["cyklostezka", "cyklopruh", "ochranny_pruh", "chodnik_kola", "stezka_sdilena", "bus_cyklo"]);
+const isCycleWay = (t) => t.highway === "cycleway" || (["path", "footway"].includes(t.highway) && t.bicycle === "designated");
+export function carveCycleways(segments, cross = []) {
+  if (ORTHO_P.off?.has("rezkolo")) return 0;
+  let n = 0;
+  for (const c of cross.filter((x) => isCycleWay(x.tags || {}))) {
+    let x = 0, i = -1;
+    for (let q = 0; q < segments.length; q++) { if (c.at > x && c.at < x + segments[q].width) { i = q; break; } x += segments[q].width; }
+    if (i < 0) continue;
+    const part = segments[i];
+    if (!CARVE_BIKE.has(part.type)) continue;
+    let y = 0;
+    const near = segments.some((s) => { const s0 = y; y += s.width; return BIKE_PARTS.has(s.type) && s0 - 2 < c.at && c.at < y + 2; });
+    if (near) continue;
+    const w = Math.min(part.width, parseFloat(String(c.tags.width || "").replace(",", ".")) || (c.tags.oneway === "yes" ? 2 : 2.5));
+    let a = Math.max(x, Math.min(c.at - w / 2, x + part.width - w)), b = a + w;
+    if (a - x < 0.3) a = x;
+    if (x + part.width - b < 0.3) b = x + part.width;
+    const pieces = [];
+    if (a - x > 0) pieces.push({ ...part, width: round(a - x) });
+    pieces.push({ type: "cyklostezka", width: round(b - a), source: "osm" });
+    if (x + part.width - b > 0) pieces.push({ ...part, width: round(x + part.width - b) });
+    segments.splice(i, 1, ...pieces);
+    n++;
+  }
+  return n;
+}
+// The OSM ways crossing the cut, with their place from the profile's end A (extent: deriveProfile's [right, left]).
+export function crossFromA(osm, frame, dir, extent) {
+  const normal = [-dir[1], dir[0]], half = Math.max(Math.abs(extent[0]), Math.abs(extent[1])) + 1;
+  return crossings(osm, frame, [0, 0], normal, half).map((c) => ({ at: extent[1] - c.t, tags: c.way.tags || {} }));
+}
+
 // Fallback outside MTVU coverage: a typical profile from OSM tags.
 // A path, footway, cycle way or flight of steps (a cut that caught one, not a street): one part of its kind and width
 // (OSM width, else a typical one), not a road of two lanes (1000 Slovak cuts: 238 such paths drawn as 2 × 3 m lanes).

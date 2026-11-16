@@ -44,3 +44,14 @@ test("obousměrka s krajnicí od 1,5 m po obou stranách: k pruhům jen užší"
   assert.equal(splitTwoWayLane(s, { highway: "secondary", lanes: "2" }), 1);
   assert.deepEqual(s.map((x) => [x.type, x.width]), [["pruh", 3.09], ["pruh", 3.08], ["krajnice", 3.43]]);
 });
+
+test("cyklostezka z OSM přes odhadnutý díl: vyřízne se pás její šířky, ne z pruhu ani poblíž jiného dílu pro kola", async () => {
+  const { carveCycleways } = await import("../pilot/public/derive.js");
+  const s = [seg("zelen", 3.95), seg("chodnik", 6), seg("krajnice", 4.15), seg("plocha", 3.5)];
+  assert.equal(carveCycleways(s, [{ at: 12.7, tags: { highway: "cycleway" } }]), 1);
+  assert.deepEqual(s.map((x) => [x.type, x.width]), [["zelen", 3.95], ["chodnik", 6], ["krajnice", 1.5], ["cyklostezka", 2.65], ["plocha", 3.5]]);
+  const lane = [seg("pruh", 4.5), seg("chodnik", 2)];
+  assert.equal(carveCycleways(lane, [{ at: 2, tags: { highway: "cycleway" } }]), 0);
+  const near = [seg("cyklostezka", 2), seg("plocha", 3)];
+  assert.equal(carveCycleways(near, [{ at: 2.5, tags: { highway: "cycleway" } }]), 0);
+});

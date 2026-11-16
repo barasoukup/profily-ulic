@@ -154,3 +154,14 @@ Ověřeno v aplikaci s nasimulovanou odpovědí 503 (Andreja Plávku) a hned pot
 - Street View 4 krajnic nad 3 m (16. 11. 2026, po zprovoznění): Pribinova široký neznačený asfalt, Einsteinova pás za
   vodicí čarou, Riazanská **podélně parkující auta** po obou stranách, Vlčie hrdlo nejasné (křižovatka). Smíšené, krajnice
   zůstává; parkující auta v krajnici jsou námět na další bod (odhad stání na Slovensku je vypnutý záměrně).
+
+## Oprava 8: cyklostezka z OSM přes odhadnutý díl (A/B dopočtem, 16. 11. 2026)
+Zbylých 11 chybějících cyklostezek leželo v dílech, které profil jen odhadl (plocha za pasportem, krajnice, Neurčeno,
+zeleň). Závěrečný krok v `app.js` (`derive.js` `carveCycleways`, cesty OSM přes řez `crossFromA`): pás šířky cyklostezky
+(OSM width, jinak 2,5 m, jednosměrná 2 m) se vyřízne kolem její čáry, zbytky pod 0,3 m k ní; ne z pruhu, chodníku ani
+stromořadí a ne do 2 m od jiného dílu pro kola. Vypnutí `?off=rezkolo`.
+
+- A/B dopočtem z běhu U-4 (135 řezů, bez dotazů na služby): změnilo se 9, všechno cílové (Pod Párovcami krajnice 4,15 →
+  1,65 + cyklostezka 2,5; Kežmarská, Wolkerova, Košická, Vysokoškolákov, Dunajská, Most Apollo, Štefánikova, Jána
+  Hajdóczyho), kontrola beze změny. Skutečným během ověřeny Pod Párovcami a Wolkerova: shoda.
+- Nezměněné: Pribinova (cyklostezka z OSM v jízdním pruhu) a Trenčianska (ve stromořadí), schválně.
