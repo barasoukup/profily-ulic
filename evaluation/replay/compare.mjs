@@ -21,7 +21,10 @@ const drop = (o) => {
   }
   return o;
 };
-const text = (v) => (typeof v === "string" ? v : JSON.stringify(v));
+// The clip paths of the drawing are numbered by a counter of the page (profile.js): renumbered by first use, so that
+// a drawing made after another number of drawings compares equal.
+const renum = (s) => { const m = new Map(); return s.replace(/\b(pc|pole)\d+\b/g, (x, p) => (m.has(x) || m.set(x, `${p}${m.size}`), m.get(x))); };
+const text = (v) => (v === undefined ? undefined : renum(typeof v === "string" ? v : JSON.stringify(v)));
 const where = (a, b) => {
   let i = 0;
   while (i < a.length && a[i] === b[i]) i++;
@@ -34,6 +37,9 @@ for (const id of a) {
   if (!bs.has(id)) continue;
   const x = drop(read(A, id)), y = drop(read(B, id));
   const keys = [...new Set([...Object.keys(x), ...Object.keys(y)])].filter((k) => !only || only.includes(k)).filter((k) => k !== "notes");
+  // Porovnat as the page shows it: its drawings are laid out by measuring the labels in the window (not repeatable), so
+  // only its titles and list of changes count; the drawings are those of the export (svg, svgNavrh).
+  for (const o of [x, y]) if (typeof o.compare === "string") o.compare = o.compare.replace(/<svg[\s\S]*?<\/svg>/g, "<svg/>");
   const bad = keys.filter((k) => text(x[k]) !== text(y[k]));
   if (!bad.length) { same++; continue; }
   diff++;

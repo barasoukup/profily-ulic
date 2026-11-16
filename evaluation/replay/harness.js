@@ -23,7 +23,9 @@ const headerOf = (init, name) => {
 };
 const keyOf = (u, init) => {
   const range = headerOf(init, "range"), b = init?.body;
-  return `${(init?.method || "GET").toUpperCase()} ${u.href}${range ? ` R:${range}` : ""}${typeof b === "string" ? ` B:${b}` : ""}`;
+  // The app's own server by its path only (the recording and a replay may be served on other ports).
+  const where = u.origin === location.origin ? `SELF${u.pathname}${u.search}` : u.href;
+  return `${(init?.method || "GET").toUpperCase()} ${where}${range ? ` R:${range}` : ""}${typeof b === "string" ? ` B:${b}` : ""}`;
 };
 const hex = (buf) => [...new Uint8Array(buf)].map((x) => x.toString(16).padStart(2, "0")).join("");
 const KEEP = ["content-type", "content-range", "etag", "accept-ranges"];
@@ -43,6 +45,7 @@ async function loadIndex() {
   for (const line of text.split("\n")) {
     if (!line) continue;
     const e = JSON.parse(line);
+    e.key = e.key.replace(/^(\w+ )http:\/\/localhost:\d+/, "$1SELF"); // recorded before the keys dropped the port
     if (!index.has(e.key)) index.set(e.key, []);
     index.get(e.key).push(e);
   }
