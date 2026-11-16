@@ -546,8 +546,13 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
         if (k.cols) for (let i = k.cols.ti(a); i < k.cols.ti(b); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.green[i])) g.push(k.cols.green[i]);
         // Against the roadway's own share by the axis (the Slovak mosaic is greenish all over).
         const green = g.length && g.reduce((x, y) => x + y, 0) / g.length >= PIECE_GREEN + roadGreen;
-        // The last piece up to a house farther than a sidewalk: as the rest (a front garden, a yard).
+        // The last piece up to a house farther than a sidewalk: as the rest (a front garden, a yard). So is any other
+        // paved piece wider than a sidewalk, and the first one by the kerb keeps SIDEWALK_MAX of sidewalk (1000 Slovak
+        // streets: 8 sidewalks of 9–18 m between the town map's lines; P.off "pieceMax": as before).
+        const wide = !green && b - a > SIDEWALK_MAX && !P.off?.has("pieceMax");
         if (q === ends.length - 2 && b - a > SIDEWALK_MAX) rest(a, b);
+        else if (wide && q === 0) { const m = kerb + sg * SIDEWALK_MAX, [c, d] = span(kerb, m), [e, h] = span(m, ends[1]); put(rect(702, "chodník (ortofoto a mapa)", c, d)); rest(e, h); }
+        else if (wide) rest(a, b);
         else put(green ? rect(401, "zeleň (ortofoto a mapa)", a, b) : rect(702, "chodník (ortofoto a mapa)", a, b));
       }
     } else {

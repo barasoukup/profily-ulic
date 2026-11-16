@@ -124,3 +124,14 @@ vozovku ani za dům: `ortho-osm.js`, vypnutí `?off=osmbike`. Dřív padla do �
   Starohájska, Trieda Andreja Hlinku…; obousměrná jako dvě poloviny podle směru). Z kontroly se změnily 3: dvě jen
   opravou 4 (běh A byl před ní) a Pri prachárni s další skutečnou cyklostezkou.
 - Zbylých 11 cílů: hlavně řezy s pasportem města (doplnění za pasportem `besidePassport` cyklostezky zatím nebere).
+
+## Oprava 6: chodník mezi čarami mapy města nejvýš 6 m (A/B, 16. 11. 2026)
+V odhadu se kus mezi čarami mapy města (Bratislava) bral jako chodník bez ohledu na šířku (9–18 m). Teď jako u úseku od
+obruby k domu: kus u obruby dá chodník nejvýš 6 m a zbytek je jiná plocha (zeleň, zpevněná plocha podle snímku), další
+široké kusy celé jako zbytek. `ortho-osm.js`, vypnutí `?off=pieceMax`.
+
+- Kontrola „chodník > 9 m“ ukázala zvlášť náměstí z pasportu (Kollárovo, Námestie Ľudovíta Štúra, Hlavná): tam široký
+  pěší prostor je, beze změny.
+- Regrese Prahy a Brna beze změny. Cíl 8 odhadnutých chodníků nad 9 m, kontrola 50 (šetření): změnilo se 6 cílů
+  (Junácka 12,15 → plocha 6,4 + chodník 5,75; Pobrežná 13,09 → 7,09 + 6; Dukelských hrdinov 16,35 → 6 + 6,15 + 4,2),
+  kontrola beze změny.

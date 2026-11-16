@@ -31,7 +31,9 @@ export function findings(rows) {
     const rb = cross.find((c) => ROADS.has(c.tags.highway) && roadBike(c.tags));
     if (rb && !hasBike) add("cyklopruh na silnici (OSM) chybí", r, Object.entries(rb.tags).filter(([k]) => k.startsWith("cycleway")).map(([k, v]) => `${k}=${v}`).join(", "));
     // 3. a sidewalk mapped on its own crosses the cut where the profile has a roadway part
-    const sw = cross.find((c) => c.tags.highway === "footway" && c.tags.footway === "sidewalk" && (LANE_PARTS.has(partAt(c.at)) || ["parkovani", "obsluzna", "krajnice"].includes(partAt(c.at))));
+    // ...at least 0.7 m inside that part (a sidewalk line by the kerb is no error: Krasovského)
+    const deepIn = (at) => pos.find((p) => p[0] + 0.7 <= at && at <= p[1] - 0.7)?.[2] ?? null;
+    const sw = cross.find((c) => c.tags.highway === "footway" && c.tags.footway === "sidewalk" && (LANE_PARTS.has(deepIn(c.at)) || ["parkovani", "obsluzna", "krajnice"].includes(deepIn(c.at))));
     if (sw) add("chodník z OSM leží ve vozovce profilu", r, `chodník v ${sw.at.toFixed(1)} m, díl tam: ${partAt(sw.at)}`);
     // 4. lanes: the cut street's OSM lanes against the lane parts
     const own = cross.filter((c) => ROADS.has(c.tags.highway) && (c.tags.name || "") === (r.name || ""));
