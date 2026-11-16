@@ -428,7 +428,7 @@ Object.assign(CITIES, {
     dataShort: "ZBGIS a OSM", credit: "budovy © GKÚ Bratislava (ZBGIS, CC BY 4.0)",
     rulesHead: "Šířky podle slovenských předpisů (TP 117, TP 73 6110, TP 085, vyhl. 532/2002 Z. z.):" },
   // Austria (Bára 16. 11. 2026): basemap.at's orthophoto and OSM (towns/austria.js).
-  austria: { ...abroad("austria", "AT", "Rakousko", "v Rakousku", "rakouské", [47.6, 14.1], "48.208500, 16.373100"),
+  austria: { ...abroad("austria", "AT", "Rakousko", "v Rakousku", "rakouské", [47.6, 14.1], "48.209900, 16.374800"),
     dataShort: "basemap.at a OSM", rulesHead: "Šířky podle rakouských předpisů (RVS 03.02.13, Wiener Projektierungshandbuch):" },
   // Germany (Bára 17. 11. 2026): the orthophotos of the Länder and OSM, the street surfaces of Berlin, Hamburg and
   // Aachen (towns/germany.js).
