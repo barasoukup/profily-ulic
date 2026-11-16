@@ -18,7 +18,7 @@ import { cleanProfile, cleanCut, retype } from "./validate.js";
 import { shares, surfaces } from "./shares.js";
 import { packProfile, unpackProfile, designParams } from "./share.js";
 import { checkRules, checkUnder, checkTrees } from "./rules.js";
-import { city, setCity, cityAt, skArtAt, loadBounds, loadStates } from "./city.js";
+import { city, setCity, cityAt, skArtAt, atArtAt, loadBounds, loadStates } from "./city.js";
 import { TOWNS } from "./towns/index.js";
 import { log, logOn, sendReport, shortProfile } from "./log.js";
 import { createDataLayers, PLOCHY_PANE } from "./maplayers.js";
@@ -79,11 +79,12 @@ const STATY = await statyJson;
 if (STATY) loadStates(STATY); else console.warn("staty.json se nenačetl: stát se podle polohy nepozná");
 // The city of a point becomes the current one (city.js): its sources, texts and illustrations.
 async function useCity(lat, lon) {
-  const id = cityAt(lat, lon), art = skArtAt(lat, lon);
-  if (id === city.id && (id !== "slovensko" || city.art === art)) return;
+  const id = cityAt(lat, lon), art = id === "austria" ? atArtAt(lat, lon) : skArtAt(lat, lon);
+  const townArt = id === "slovensko" || id === "austria";
+  if (id === city.id && (!townArt || city.art === art)) return;
   if (id !== city.id) setCity(id);
-  // In Slovakia the vehicles of the town of the cut (city.js SK_ART; Bára 16. 11. 2026).
-  if (id === "slovensko") city.art = art;
+  // In Slovakia and Austria the vehicles of the town of the cut (city.js SK_ART, AT_ART; Bára 16. 11. 2026).
+  if (townArt) city.art = art;
   await loadSprites();
 }
 
@@ -2022,7 +2023,7 @@ function restore(data) {
   undoStack.length = redoStack.length = 0;
   Object.assign(state, { cut: data.cut, stav: data.stav, navrh: data.navrh || structuredClone(data.stav), navrhEdited: !!data.navrhEdited, selected: null });
   // The saved cut's city (its illustrations follow once loaded).
-  if (state.cut) { setCity(cityAt(state.cut.lat, state.cut.lon)); if (city.id === "slovensko") city.art = skArtAt(state.cut.lat, state.cut.lon); loadSprites().then(render); }
+  if (state.cut) { setCity(cityAt(state.cut.lat, state.cut.lon)); if (city.id === "slovensko") city.art = skArtAt(state.cut.lat, state.cut.lon); if (city.id === "austria") city.art = atArtAt(state.cut.lat, state.cut.lon); loadSprites().then(render); }
   if (state.cut) {
     map.setView([state.cut.lat, state.cut.lon], 19);
     const f = localFrame(state.cut.lat, state.cut.lon);

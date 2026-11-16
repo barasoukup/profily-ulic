@@ -467,6 +467,15 @@ const SK_ART_BOX = { bratislava: [16.83, 47.99, 17.33, 48.27], kosice: [21.15, 4
   bystrica: [19.03, 48.66, 19.27, 48.82], presov: [21.15, 48.94, 21.33, 49.06] };
 export const skArtAt = (lat, lon) => Object.entries(SK_ART_BOX).find(([, b]) => lon >= b[0] && lon <= b[2] && lat >= b[1] && lat <= b[3])?.[0] ?? "slovensko";
 
+// Austria's towns (Bára 16. 11. 2026; pilot/public/wien, graz, linz, drawn in rounds of a drawer and a critic): Vienna's
+// Flexity and bus of Wiener Linien, the trams of Graz and Linz, elsewhere Streetmix's vehicles; the Austrian stop post
+// (the round H sign, wien/oznacnik-*) everywhere; the furniture the Czech set's.
+const atPosts = (dir) => Object.fromEntries(["stop-post-left", "stop-post-right", "stop-post-tram-left", "stop-post-tram-right"].map((k) => [k, `${dir}${TOWN_ART[k]}`]));
+const atArt = (dir, tram, bus) => ({ ...czechFurniture, ...atPosts(dir), ...(bus ? { "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound" } : {}), ...(tram ? TRAM : {}) });
+export const AT_ART = { austria: atArt("../wien/", false, false), wien: atArt("", true, true), graz: atArt("../wien/", true, false), linz: atArt("../wien/", true, false) };
+const AT_ART_BOX = { wien: [16.18, 48.11, 16.58, 48.33], graz: [15.35, 47.0, 15.53, 47.13], linz: [14.2, 48.22, 14.4, 48.36] };
+export const atArtAt = (lat, lon) => Object.entries(AT_ART_BOX).find(([, b]) => lon >= b[0] && lon <= b[2] && lat >= b[1] && lat <= b[3])?.[0] ?? "austria";
+
 // Towns with no data of their own (the national DTM of ČÚZK, as "cesko"), only their own vehicles.
 const artTown = (id, inCity, adjective, art) => ({ ...CITIES.cesko, id, like: "cesko", inCity, adjective, art: id, artMap: { ...art, ...TOWN_ART } });
 Object.assign(CITIES, {
