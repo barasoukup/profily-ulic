@@ -15,6 +15,59 @@ const LAYERS = [7, 3]; // průběh linií TMIS (neautorizované), TMIS ADS (auto
 // pieces of water mains in the whole city, none around a cut of Olomoucká), not their routes (commit 3beb56d has
 // the code that read them: one identify over the layers 25–34 of PUBLIC/opendata_umps).
 export const NET_CITIES = { praha: () => t("Data © IPR Praha.") };
+// Other towns that publish their networks' lines (Bára 16. 11. 2026, found by a data hunt; no depth in any of them,
+// Třebíč and Žilina left out: none on 10 random cuts, their layers cover a few streets;
+// so they are drawn at their kind's usual depth, dashed; a size (DN) where the layer has one): by the place of the
+// cut. url: the layer (ArcGIS REST); kind: of all its lines; popis(a): the description shown; dn(a): mm or null.
+const AGO = (org, n) => `https://services-eu1.arcgis.com/${org}/arcgis/rest/services/${encodeURI(n)}/FeatureServer`;
+const num = (v) => { const x = parseFloat(String(v ?? "").replace(",", ".")); return Number.isFinite(x) ? x : null; };
+const L = (url, kind, popis = () => "", dn = () => null) => ({ url, kind, popis, dn });
+const NETS = [
+  { id: "olomouc", box: [17.15, 49.53, 17.35, 49.66], credit: () => t("Sítě © Statutární město Olomouc, Olomoucký kraj (ÚAP)."), layers: ((b) => [
+    L(`${b}/532`, "vodovod", (a) => a.KATEGORIE), L(`${b}/502`, "kanalizace", (a) => a.KATEGORIE), L(`${b}/537`, "plynovod", (a) => a.KATEGORIE), L(`${b}/490`, "silnoproud", (a) => a.KATEGORIE),
+  ])("https://gisint.kr-olomoucky.cz/int/rest/services/portal_UP/UAP_DI_TI_konzervace_31122025/MapServer") },
+  { id: "karvina", box: [18.45, 49.8, 18.62, 49.9], credit: () => t("Sítě © Statutární město Karviná (ÚAP)."), layers: ((b) => [
+    L(`${b}/302`, "vodovod", (a) => a.nazev_jevu, (a) => num(a.dn)), L(`${b}/309`, "kanalizace", (a) => a.nazev_jevu, (a) => num(a.dn)), L(`${b}/338`, "plynovod", (a) => a.nazev_jevu, (a) => num(a.dn)),
+    L(`${b}/326`, "silnoproud", (a) => a.nazev_jevu), L(`${b}/728`, "silnoproud", (a) => a.nazev_jevu),
+  ])("https://gis.karvina.cz/arcgis/rest/services/cz_mm_karvina/uap_technicka_infrastruktura/MapServer") },
+  { id: "ostrava", box: [18.1, 49.72, 18.38, 49.9], credit: () => t("Sítě © Statutární město Ostrava (ÚAP)."), layers: ((o) => [
+    L(`${o}/Ostrava_vodni_ZPV_vod_rad_L/FeatureServer/1`, "vodovod", (a) => a.NAZEV, (a) => num(a.DN)), L(`${o}/Ostrava_vodni_OCOV_stoka_L/FeatureServer/1`, "kanalizace", (a) => a.NAZEV_JEVU),
+    L(`${o}/Ostrava_energetika_PLN_plynovod/FeatureServer/1`, "plynovod", (a) => a.NAZEV_JEVU), L(`${o}/Ostrava_energetika_ZT_teplo/FeatureServer/1`, "teplovod", (a) => a.NAZEV_JEVU),
+    L(`${o}/Ostrava_energetika_ZEE_el_vedeni/FeatureServer/1`, "silnoproud"), L(`${o}/Ostrava_energetika_ZEE_vo_vedeni/FeatureServer/1`, "silnoproud", (a) => a.NAZEV_JEVU),
+  ])("https://services5.arcgis.com/YElTIrF9aD2PDrLy/arcgis/rest/services") },
+  { id: "breclav", box: [16.83, 48.72, 16.95, 48.8], credit: () => t("Sítě © Město Břeclav."), layers: ((o) => [
+    L(`${o}/vodovod/FeatureServer/0`, "vodovod", (a) => a.PopisObjektu), L(`${o}/kanalizace/FeatureServer/0`, "kanalizace", (a) => a.PopisObjektu),
+    L(`${o}/${encodeURI("trasa_plynovodní_sítě")}/FeatureServer/0`, "plynovod", (a) => a.PopisObjektu), L(`${o}/${encodeURI("elektrická_síť")}/FeatureServer/0`, "silnoproud", (a) => a.PopisObjektu),
+    L(`${o}/Teplovod/FeatureServer/0`, "teplovod", (a) => a.DRUH_TEPLO),
+  ])("https://services8.arcgis.com/IyOEkZNvMiU8JI5H/arcgis/rest/services") },
+  { id: "presov", box: [21.15, 48.94, 21.33, 49.06], credit: () => t("Sítě © město Prešov (digitální technická mapa, CC BY 4.0)."), layers: ((g) => [
+    L(`${g("03_ELE_NN_polyline")}/96`, "silnoproud", (a) => a.obsah_hladiny), L(`${g("04_ELE_VN_polyline")}/6`, "silnoproud", (a) => a.obsah_hladiny),
+    L(`${g("06_VEROSV_polyline")}/5`, "silnoproud", (a) => a.obsah_hladiny), L(`${g("07_OZNAM_polyline")}/14`, "slaboproud", (a) => a.obsah_hladiny),
+    L(`${g("08_KANAL_polyline")}/4`, "kanalizace", (a) => a.obsah_hladiny), L(`${g("09_PLYN_polyline")}/4`, "plynovod", (a) => a.obsah_hladiny),
+    L(`${g("10_VODA_polyline")}/4`, "vodovod", (a) => a.obsah_hladiny), L(`${g("11_TEPLO_polyline")}/4`, "teplovod", (a) => a.obsah_hladiny),
+  ])((n) => AGO("coW662rcZatH0tHA", n)) },
+  { id: "nitra", box: [18.0, 48.26, 18.17, 48.37], credit: () => t("Sítě © město Nitra."), layers: ((g) => [
+    L(`${g("Vodovod_kopia")}/0`, "vodovod", (a) => a.popis), L(`${g("Kanalizácia_kópia")}/0`, "kanalizace"), L(`${g("Dažďová_kanalizácia_kópia")}/0`, "kanalizace", (a) => a.popis),
+    L(`${g("Plyn_zdrojové_dáta_zobrazenie")}/0`, "plynovod"), L(`${g("Teplovod_kópia")}/0`, "teplovod"), L(`${g("Elektrika_kópia")}/0`, "silnoproud", (a) => a.LvlDesc),
+    L(`${g("Telecom_kópia")}/0`, "slaboproud"), L(`${g("Rozvody_VO_kópia")}/0`, "silnoproud", (a) => a.TYP_VEDENI),
+  ])((n) => AGO("3EnLFR2iBNxznmDC", n)) },
+  { id: "piestany", box: [17.78, 48.55, 17.88, 48.64], credit: () => t("Sítě © město Piešťany (porealizační zaměření)."), layers: ((g) => [
+    ...[2, 3, 4, 5].map((i) => L(`${g("Vodovod__porealizačné_zamerania_")}/${i}`, "vodovod", (a) => a.Pole1 || a.Pole)),
+    ...[2, 3, 4, 5, 6].map((i) => L(`${g("Kanalizácia__porealizačné_zamerania_")}/${i}`, "kanalizace", (a) => a.Pole1 || a.Pole)),
+    ...[2, 3, 4, 5].map((i) => L(`${g("Plynovod__porealizačné_zamerania_")}/${i}`, "plynovod", (a) => a.Pole1 || a.Pole)),
+    L(`${g("teplovody")}/0`, "teplovod", (a) => a.Popis),
+  ])((n) => AGO("DTiFWvcjh8cdrOZ5", n)) },
+  { id: "kosice", box: [21.15, 48.64, 21.36, 48.79], credit: () => t("Sítě © město Košice (územní plán)."), layers: ((g) => [
+    L(`${g("VODOVOD___POTRUBIE")}/1331`, "vodovod", (a) => a.popis || a.Layer), L(`${g("KANALIZÁCIA___POTRUBIE")}/1330`, "kanalizace", (a) => a.Popis || a.Layer),
+    L(`${g("ZÁSOBOVANIE_PLYNOM_línia_25_4")}/14`, "plynovod", (a) => a.popis), L(`${g("TRASY_HORÚCOVODOV")}/1325`, "teplovod", (a) => a.popis),
+    L(`${g("ZÁSOBOVANIE_ELEKTRICKOU_ENERGIOU_VEDENIE")}/1329`, "silnoproud", (a) => a.Popis || a.Layer),
+  ])((n) => AGO("qrtO0RIRViAdEN4F", n)) },
+];
+// The networks' source at a cut: Prague's by its city, the others by a box around the town.
+export function netAt(cityId, lat, lon) {
+  if (NET_CITIES[cityId]) return { id: cityId, credit: NET_CITIES[cityId] };
+  return NETS.find((n) => lon >= n.box[0] && lon <= n.box[2] && lat >= n.box[1] && lat <= n.box[3]) || null;
+}
 const DMR = "https://ags.cuzk.gov.cz/arcgis2/rest/services/dmr5g/ImageServer/exportImage";
 const DEPTH_OK = [0.2, 8];
 const R = 6378137;
@@ -71,7 +124,8 @@ function surfacePoints(features, frame) {
 // The networks the cut crosses: [{ t, depth, measured, kind, popis, profil }] with t across the cut (m, +normal = A),
 // or null outside Prague.
 export async function underground({ frame, dir, half, cityId }) {
-  if (!NET_CITIES[cityId]) return null;
+  const [lon0, lat0] = frame.toLonLat(0, 0), other = netAt(cityId, lat0, lon0);
+  if (!other) return null;
   const normal = [-dir[1], dir[0]];
   // A square around the cut's centre, ±1.5 times its half length (at least 30 m): the lines on the map then end
   // outside the first view (Fable), the crossings are the same.
@@ -79,7 +133,17 @@ export async function underground({ frame, dir, half, cityId }) {
   const box = [clon - dLon, clat - dLat, clon + dLon, clat + dLat];
   // The lines of the city: { kind, popis, profil, layer, verified, paths (lon, lat, z) }.
   let feats, height = () => NaN, surface = () => NaN;
-  {
+  if (!NET_CITIES[cityId]) {
+    // Another town: its layers, the ground model where it is Czech (ČÚZK's DMR 5G) for lines that carry a height.
+    const [h, ...answers] = await Promise.all([ground(box).catch(() => () => NaN),
+      ...other.layers.map((l) => query(`${l.url}/query`, { geometry: box.join(","), geometryType: "esriGeometryEnvelope", inSR: 4326, spatialRel: "esriSpatialRelIntersects", outFields: "*", returnGeometry: true, returnZ: true, outSR: 4326, f: "json" }).catch(() => ({ features: [] })))]);
+    height = h;
+    feats = answers.flatMap((a, li) => (a.features || []).map((f) => {
+      const l = other.layers[li], at = f.attributes || {};
+      const popis = String(l.popis(at) || KINDS[l.kind].label).trim();
+      return { kind: l.kind, popis, profil: l.dn(at), layer: li, verified: true, paths: f.geometry?.paths || [] };
+    }));
+  } else {
     const [h, points, ...answers] = await Promise.all([
       ground(box).catch(() => () => NaN),
       query(`${IPR}/9/query`, { geometry: box.join(","), geometryType: "esriGeometryEnvelope", inSR: 4326, spatialRel: "esriSpatialRelIntersects", outFields: "OBJECTID", returnGeometry: true, returnZ: true, outSR: 4326, f: "json" }).catch(() => ({ features: [] })),

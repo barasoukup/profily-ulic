@@ -120,7 +120,7 @@ test("slovenčina: každý text aplikace a stránky má překlad se stejnými {j
 
 test("slovenské texty jsou slovensky", () => {
   // Czech-only letters and words (names of Czech places and offices keep theirs).
-  const keep = /ČÚZK|RÚIAN|IPR|TSK|MHMP|Statutární město \S+|Město \S+|Geoportál Praha|hl\. m\. Prahy|[A-ZČŘŠŽ][a-zěščřžýáíéůú]+(?:ský|cký) kraj|Kraj Vysočina|Plzeň|Plzni|Plzně|Třebíč|Přerov|Frýdek-Místek|Karviná|Ústí|Jihlava|Opava|Ostrava|Most|Brno|Praha|Pardubice|parkovanivbrne\.cz|data\.brno\.cz|Manuál\S*|Olgoj Chorchoj/g;
+  const keep = /ČÚZK|RÚIAN|IPR|TSK|MHMP|Statutární město \S+|Město \S+|Geoportál Praha|hl\. m\. Prahy|[A-ZČŘŠŽ][a-zěščřžýáíéůú]+(?:ský|cký) kraj|Kraj Vysočina|Plzeň|Plzni|Plzně|Třebíč|Břeclav|Přerov|Frýdek-Místek|Karviná|Ústí|Jihlava|Opava|Ostrava|Most|Brno|Praha|Pardubice|parkovanivbrne\.cz|data\.brno\.cz|Manuál\S*|Olgoj Chorchoj/g;
   const czech = Object.entries(SK).filter(([, sk]) => /[ěřů]|\b(jsou|nebo|také|který|která|které)\b/i.test(sk.replace(keep, "")));
   assert.deepEqual(czech.map(([cs]) => cs), []);
 });

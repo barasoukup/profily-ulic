@@ -180,3 +180,25 @@ nehodnotila.
 
 A/B na 40 profilech Bratislavy (varování jako v Návrhu): česká pravidla 22, slovenská 14. Méně je hlavně varování u
 chodníků. Varování u pruhů a stání jsou skoro stejná.
+
+# Sítě pod zemí v dalších městech (16. 11. 2026)
+
+Zdroje našel agent na Haiku. Zapojené jsou v `site.js` NETS, podle místa řezu, jako pražské (tlačítko ◍ Sítě).
+- **Hloubka:** žádná služba ji nemá, sítě se kreslí v obvyklé hloubce svého druhu (čárkovaně).
+- **Velikost (DN):** má ji Karviná, část Ostravy a Košice.
+- **Pokrytí:** na 10 náhodných řezech v okruhu 900 m od středu (řez sítě protne):
+
+| Město | Zdroj | řezů se sítí | druhy |
+|---|---|---|---|
+| Prešov | DTMM města (CC BY 4.0) | 6/10 | elektro NN, VN, VO, slaboproud, kanalizace, plyn, voda, teplo |
+| Nitra | kopie sítí města | 7/10 | voda, kanalizace, plyn, teplo, elektro, telekomunikace, VO |
+| Košice | územní plán (potrubí, vedení) | 5/10 | voda, kanalizace, plyn, horkovody, elektro |
+| Piešťany | porealizační zaměření | 4/10 | voda, kanalizace, plyn, teplo |
+| Karviná | ÚAP | 4/10 | voda, kanalizace, plyn, elektro, VO |
+| Olomouc | ÚAP Olomouckého kraje | 3/10 | voda, kanalizace, plyn, elektro |
+| Břeclav | město | 2/10 | voda, kanalizace, plyn, elektro, teplo |
+| Ostrava | ÚAP (jen část města) | 1/10 | plyn, teplo, elektro, VO, kousek vodovodu a kanalizace |
+
+**Vyřazené:** Třebíč a Žilina (0/10, vrstvy pokrývají jen pár ulic).
+
+**Licence:** kromě Prešova žádná uvedená.
