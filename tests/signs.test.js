@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { deriveSigns, signFile, plateFile, streetSigns } from "../pilot/public/signs.js";
+import { deriveSigns, signFile, plateFile, streetSigns, signLabel } from "../pilot/public/signs.js";
 
 const keys = (list) => (list || []).map((s) => s.k + (s.v ? `:${s.v}` : "") + (s.plate ? `+${s.plate}` : ""));
 const files = (p) => p.segments.map((s) => (s.signs || []).map((x) => signFile(x, s)));
@@ -172,4 +172,19 @@ test("pěší zóna bez pruhů (celá šířka chodník z pasportu): značka zó
   deriveSigns(p, { highway: "pedestrian", bicycle: "yes" });
   assert.deepEqual(p.segments[2].signs, [{ k: "ip27a", plate: "kola" }]);
   assert.equal(p.segments[0].signs, undefined);
+});
+
+test("značky státu AT: soubory v signs-AT/, jednosměrka podle směru pruhu, rychlost, co Rakousko nemá, se nekreslí", async () => {
+  const fs = await import("node:fs");
+  const { SIGNS } = await import("../pilot/public/signs.js");
+  for (const k of Object.keys(SIGNS)) {
+    const f = signFile({ k, v: 50 }, {}, "AT");
+    if (f) assert.ok(fs.existsSync(new URL(`../pilot/public/signs-AT/${f}.svg`, import.meta.url)), `${k} → ${f}`);
+  }
+  assert.equal(signFile({ k: "oneway" }, { dir: "forward" }, "AT"), "HZ10-rechts");
+  assert.equal(signFile({ k: "oneway" }, { dir: "backward" }, "AT"), "2");
+  assert.equal(signFile({ k: "b20a", v: 30 }, {}, "AT"), "10a-30");
+  assert.equal(signFile({ k: "ztp" }, {}, "AT"), null);
+  assert.equal(plateFile({ k: "b1", plate: "obsluha" }, {}, "AT"), null);
+  assert.match(signLabel({ k: "ip27a" }, "AT"), /^§ 53 Z 9a /);
 });

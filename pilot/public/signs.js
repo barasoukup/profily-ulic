@@ -77,6 +77,7 @@ export const signChoice = (x) => SIGN_CHOICES[`${x.k}+${x.plate}`];
 export function signLabel(x, country = "CZ") {
   const own = signChoice(x);
   const label = own ? own.label : SIGNS[x.k] + (typeof x.v === "number" ? ` ${x.v} km/h` : "") + (x.plate ? ` (${PLATE_LABEL[x.plate]})` : "");
+  if (country === "AT") return AT_CODE[x.k] ? `${AT_CODE[x.k]} ${label.replace(CZ_CODE, "")}` : label;
   if (country !== "SK") return label;
   const code = (own && SK_CHOICE_CODE[`${x.k}+${x.plate}`]) || SK_CODE[x.k];
   return code ? `${code} ${label.replace(CZ_CODE, "")}` : label;
@@ -98,10 +99,19 @@ const SK_FILE = { b1: "231", b11: "232", b8: "233-58", b30: "233-60", b28: "270"
   ip14a: "309", ip15a: "311", ip20a: "224", zona30: "268-30", ip26a: "315", ip27a: "317", cyklozona: "323", c7a: "220" };
 const SK_SPEEDS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130];
 // The folder of a state's signs.
-const AT_FILE = {};
-export const signDir = (country = "CZ") => (country === "SK" ? "znacky-SK" : "znacky");
+// The signs of the state AT (pilot/public/signs-AT/, README there; StVO 1960 § 52–53, Wikimedia Commons, Austrian
+// official works): the label's number and the file. Austria has no sign for parking on the sidewalk, a reserved
+// space or a cycle lane (markings), so those are not drawn; one-way with contraflow cyclists keeps Hinweiszeichen 10.
+const AT_CODE = { b1: "§ 52 Z 1", b11: "§ 52 Z 6c", b8: "§ 52 Z 8c", b30: "§ 52 Z 14b", b20a: "§ 52 Z 10a", b28: "§ 52 Z 13b",
+  b29: "§ 52 Z 13a", oneway: "§ 53 Z 10 / § 52 Z 2", c8a: "§ 52 Z 16", c9a: "§ 52 Z 17a", c10a: "§ 52 Z 17a", c7a: "§ 52 Z 17",
+  ip11a: "§ 53 Z 1a", ip14a: "§ 53 Z 8a", ip15a: "§ 53 Z 8c", ip20a: "§ 53 Z 25", zona30: "§ 52 Z 11a", ip26a: "§ 53 Z 9c",
+  ip27a: "§ 53 Z 9a", cyklozona: "§ 53 Z 26", sdilena: "§ 53 Z 9e" };
+const AT_FILE = { b1: "1", b11: "6c", b8: "8c", b30: "14b", b28: "13b", b29: "13a", c8a: "16", c9a: "17a-a", c10a: "17a-b", c7a: "17",
+  ip11a: "HZ1a", ip14a: "HZ8a", ip15a: "HZ8c", ip20a: "HZ25", zona30: "11a", ip26a: "HZ9c", ip27a: "HZ9a", cyklozona: "HZ26", sdilena: "HZ9e" };
+const AT_SPEEDS = [5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130];
+export const signDir = (country = "CZ") => (country === "SK" ? "znacky-SK" : country === "AT" ? "signs-AT" : "znacky");
 // The template of a speed sign, its number filled in when drawn.
-export const SPEED_TEMPLATES = new Set(["B20a", "253"]);
+export const SPEED_TEMPLATES = new Set(["B20a", "253", "10a"]);
 
 const ROAD = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "obsluzna"]);
 const CARRIAGEWAY = new Set([...ROAD, "parkovani", "cyklopruh", "ochranny_pruh", "krajnice", "tramvaj"]);
@@ -266,8 +276,12 @@ function walkSide(segs, i) {
 // seg: the part the sign stands under (a one-way sign follows its lane's direction).
 export function signFile(s, seg, country = "CZ") {
   const dir = s.dir ?? seg?.dir;
-  // Austria: its own set to come (StVO 1960); until then no signs rather than Czech ones.
-  if (country === "AT") return AT_FILE[s.k] || null;
+  if (country === "AT") {
+    // One-way: the arrow sign points the way of the lane as the viewer sees it; coming towards the viewer, Einfahrt verboten.
+    if (s.k === "oneway") return dir === "backward" ? "2" : "HZ10-rechts";
+    if (s.k === "b20a") return AT_SPEEDS.includes(s.v) ? `10a-${s.v}` : "10a";
+    return AT_FILE[s.k] || null;
+  }
   if (country === "SK") {
     if (s.k === "oneway") return dir === "backward" ? "230" : "321-30";
     if (s.k === "b20a") return SK_SPEEDS.includes(s.v) ? `253-${s.v}` : "253";
