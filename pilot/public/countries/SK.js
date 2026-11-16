@@ -3,7 +3,7 @@
 import { t, mark } from "../i18n.js";
 import { GROUP } from "../norms.js";
 import { TOWN_ART, TRAM, TROLLEY, czechFurniture } from "../art.js";
-import base, { CZ_CODE } from "./default.js";
+import base, { CZ_CODE, lawNote } from "./default.js";
 
 // Slovakia (the state of the cut SK; Bára 16. 11. 2026): the Slovak rules where they are public, after
 // evaluation/slovensko/NORMY.md: TP 117 (2023, signs and markings: the minimum widths of marked lanes), TP 118, TP 73 6110
@@ -144,7 +144,7 @@ export default {
   ...base,
   code: "SK",
   bounds: [16.8, 47.7, 22.6, 49.7],
-  parkingLaw: "§ 23 ods. 1 zák. 8/2009 Z. z.",
+  halfKerbNote: lawNote("§ 23 ods. 1 zák. 8/2009 Z. z."),
   // No parking estimated by the law (Bára: not tried in Slovakia); the motorways wider (R1 in Banská Bystrica).
   parkGuess: false,
   wideRoads: true,

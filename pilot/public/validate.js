@@ -4,6 +4,7 @@
 import { TYPES, SOURCES, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, LAMP_HEIGHTS, isTurn } from "./types.js";
 import { SIGNS, signChoice, MAX_PER_PART } from "./signs.js";
 import { knownSources } from "./credits.js";
+import { COUNTRIES } from "./countries/index.js";
 import { t } from "./i18n.js";
 
 const EDGE_KINDS = new Set(["budova", "stavba", "zahrada", "zelen", "voda", "parkoviste", "plot", "volno"]);
@@ -105,10 +106,9 @@ function cleanSigns(list) {
     ...(["left", "right"].includes(x.walk) ? { walk: x.walk } : {}) })).slice(0, 12);
 }
 
-// Where a saved cut may lie: the states of the app with the margins of their OSM extracts ([lon0, lat0, lon1, lat1];
-// Bára 16. 11. 2026: a cut in Košice or Graz was lost on reload). Czechia's box is the one of the time before Slovakia.
-const STATE_BOUNDS = { CZ: [12, 48, 19, 52], SK: [16.8, 47.7, 22.6, 49.7], AT: [9.5, 46.3, 17.2, 49.1] };
-const inStates = (lat, lon) => Object.values(STATE_BOUNDS).some(([x0, y0, x1, y1]) => num(lat, y0, y1) && num(lon, x0, x1));
+// Where a saved cut may lie: the states of the app with the margins of their OSM extracts (countries/<ISO>.js bounds,
+// [lon0, lat0, lon1, lat1]; Bára 16. 11. 2026: a cut in Košice or Graz was lost on reload).
+const inStates = (lat, lon) => Object.values(COUNTRIES).some(({ bounds: [x0, y0, x1, y1] }) => num(lat, y0, y1) && num(lon, x0, x1));
 
 // Position of the cut: numbers in and around the states of the app, reach of each side 1–70 m; else no cut.
 export function cleanCut(c) {

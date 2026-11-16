@@ -434,7 +434,7 @@ Object.assign(CITIES, {
 });
 // The rest of Slovakia and of Austria draws the state's own set (countries/<ISO>.js art).
 // (The Czech furniture's map of "cesko" is not theirs: the state's set has its furniture, profile.js.)
-for (const id of ["slovensko", "austria"]) { CITIES[id].art = id; delete CITIES[id].artMap; }
+for (const c of Object.values(CITIES)) if (c.abroad && c.country) { c.art = c.id; delete c.artMap; }
 
 // The Slovak and Austrian cities (step 4b of docs/architecture-countries.md; Bára 16. 11. 2026: cities everywhere, as
 // Brno): by their boundaries (mesta-sk.json from ZBGIS, mesta-at.json from GISCO's LAU), everything else of their

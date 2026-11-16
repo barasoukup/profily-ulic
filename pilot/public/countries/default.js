@@ -84,6 +84,9 @@ function plateFile(s, seg) {
   return null;
 }
 
+// The sentence about parking half on the sidewalk under a law of 3 m for each direction (Czechia, Slovakia).
+export const lawNote = (law) => (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, {law} žádá {need} (3 m pro každý směr).", { free, need, law });
+
 // The Czech number at the start of a label ("IP 4c / B 2 + E 12b ", "IP 12 + O 1 ", "B 20a "), for a state that puts
 // its own number in its place.
 export const CZ_CODE = /^(?:[A-Z]{1,2} \d+[a-z]?(?: [/+] |\s))+/;
@@ -94,10 +97,7 @@ export default {
   // The law of parking (derive.js): the free lane left for each direction, the sentence about parking half on the
   // sidewalk; whether parking is estimated by the law at all (app.js).
   freeLane: 3,
-  parkingLaw: "§ 25 odst. 3 zák. 361/2000 Sb.",
-  halfKerbNote(free, need) {
-    return t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, {law} žádá {need} (3 m pro každý směr).", { free, need, law: this.parkingLaw });
-  },
+  halfKerbNote: lawNote("§ 25 odst. 3 zák. 361/2000 Sb."),
   parkGuess: true,
   // A motorway or trunk road gets the wider reach (app.js); the group of a street from its OSM class where there is
   // no class of the city's own (derive.js).

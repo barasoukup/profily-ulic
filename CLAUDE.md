@@ -270,7 +270,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   staticky: normy, zákon o stání, značky, ortofoto, ilustrace měst státu, vzhled domů, hledání. Vedle `city` je `country`
   (modul státu), `city.country` zůstává ISO. Mimo `countries/` žádná podmínka na stát. Pro nasazení řádek v
   `tools/countries.mjs` (pages.yml z něj bere smyčky), CSP hlídá `tests/csp.test.js`.
-- Město dědí od státu, co nemá svého (`laneOrtho`, `roadOnPath`, `slowServer`, `ruianYear` u Prahy a Brna). Zdroje mají
+- Město dědí od státu, co nemá svého (ortofoto pruhů, přepíše ho `laneOrtho`); jen svá data popisují vlastnosti města
+  (`roadOnPath`, `slowServer`, `ruianYear` u Prahy a Brna). Zdroje mají
   vlastní území (`places.js inArea`, `AREAS`), `towns/index.js placeAt`. Kredit zdroje je klíč v `credits.js`
   (opraveno: uložený řez v Košicích, Grazu, Innsbrucku se neztratí, slovenské a rakouské kredity zůstanou).
 - Výstup beze změny ověřen záchrannou sítí `evaluation/replay/` (369 nahraných řezů SK, AT, Praha, Brno, cizina;

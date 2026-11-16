@@ -6,13 +6,15 @@
 //   node tools/countries.mjs --list geofabrik   → cz:czech-republic sk:slovakia at:austria
 //   node tools/countries.mjs --list pages       → cz sk (the packs also on Pages)
 //   node tools/countries.mjs --key             → cz-sk-at (for cache keys)
+import { pathToFileURL } from "node:url";
+
 export const COUNTRIES = {
   cz: { iso: "CZ", geofabrik: "czech-republic", pages: true },
   sk: { iso: "SK", geofabrik: "slovakia", pages: true },
   at: { iso: "AT", geofabrik: "austria", pages: false },
 };
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const [flag, what] = process.argv.slice(2);
   const keys = Object.keys(COUNTRIES);
   if (flag === "--key") console.log(keys.join("-"));

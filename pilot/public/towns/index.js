@@ -31,7 +31,8 @@ export const TOWNS = { cesko, jihlava, most, opava, pardubice, plzen, usti, ostr
 // sources with a territory of their own that have it (each module's AREAS).
 // The other cities of a state take their state's sources (Bratislava, Vienna…: towns/slovensko.js, towns/austria.js).
 for (const id of CITY_IDS) if (!TOWNS[id] && TOWNS[cityById(id).like] && cityById(id).like !== "cesko") TOWNS[id] = TOWNS[cityById(id).like];
-const AREAS = [slovensko, austria].flatMap((m) => Object.entries(m.AREAS || {}).map(([id, area]) => ({ m, id, area })));
+// (Every module's AREAS; the switches of the sources, ?pasport=0, ?tm=1…, are not considered: where a source could answer.)
+const AREAS = [...new Set(Object.values(TOWNS))].flatMap((m) => Object.entries(m.AREAS || {}).map(([id, area]) => ({ m, id, area })));
 export function placeAt(lat, lon) {
   const id = cityAt(lat, lon);
   return { country: countryOfCity(id).code, city: id, art: cityById(id).art,

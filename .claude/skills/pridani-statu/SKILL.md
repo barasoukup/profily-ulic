@@ -113,22 +113,31 @@ Kresby jsou zdaleka nejdražší. Proto:
    ani modul, který ho importuje (`rules.js`, `types.js`, `profile.js`, `derive.js`…): sdílené kusy jsou v `norms.js`
    (skupiny ulic, formát šířky), `art.js` (sady ilustrací), `places.js` (hranice, území). Kde se státy liší kódem, je
    ve státu funkce. Vlastnosti (výchozí hodnoty a popis v `default.js`):
-   - zákon o stání: `freeLane`, `parkingLaw`, `halfKerbNote(free, need)`, `parkGuess` (odhad stání podle zákona);
+   - zákon o stání: `freeLane`, `halfKerbNote(free, need)` (věta; při 3 m na směr `lawNote(zákon)` z `default.js`),
+     `parkGuess` (odhad stání podle zákona);
    - `wideRoads` (širší dosah dálnic), `roadClassFromOsm` (skupina ulice z OSM `highway`);
    - normy: `limits(s, segs, i)`, `contraflow(parked)`, `tramBelt(belt, w)` (viz bod 6);
    - značky: `signs: { dir, file, plate, label, drawable }` (viz bod 7);
    - ortofoto: `bedOrtho` (tramvajové těleso), `laneOrtho` (pruhy; město ho přepíše vlastním `laneOrtho` v `city.js`);
    - `orthoEstimate` (poznámka „odhad z ortofota a OSM“), `besidePassport` (pasport doplnit k domům), `panorama`
      (Mapy.com), `linesMissing` (co chybí, když čáry neodpoví; `mark()`);
-   - ilustrace: `art` (sady měst státu), `artAt(lat, lon)` (sada v bodě), domy: `houseLook(style, info, office)`;
+   - ilustrace: `art` (sady měst státu podle id města a sada zbytku státu), domy: `houseLook(style, info, office)`;
    - `search`: služby hledání, které se ptají, když mapa ukazuje stát (`"zbgis"`, `"photon"`, nový přidat v `search.js`).
-   Kontrola: `grep` mimo `countries/` nesmí najít `country ===`, `["SK","AT"].includes`, `city.country || "CZ"`.
+   Co stát nepřepíše, zdědí z Česka (`default.js`): `tests/countries.test.js` proto chce, aby každý stát kromě CZ výslovně
+   uvedl zákon o stání, ortofoto, panorama, značky, normy a `bounds` (`validate.js` je čte pro uložené řezy), a hlídá, že
+   mimo `countries/` není podmínka na stát.
+   Co dnes ještě není v modulu státu a nový stát ho musí doplnit zvlášť: podkladové ortofoto v mapě (`app.js`, vrstvy
+   podle `bounds` státu), služby hledání (`search.js`: název služby v `search`, `looksSlovak`/`looksViennese`),
+   katastr značek jako u Salcburku (`app.js`), `city.abroad` (zbytek státu přes `abroad()`).
 3. **Zbytek státu jako město v `city.js`:** přes `abroad(id, ISO, …)` (`centre: null`, `estateKm`, `dataShort`, `credit`,
    `rulesHead`), texty v `en.js`, `sk.js` a `de.js` (tabulky CITY). Id zůstává pro uložené řezy a log.
 4. **Zdroje:** v `towns/index.js` id → `towns/<state>.js` se `sources = { osm, surfaces, lines, parking, podlaznost }`,
    `national = true` (žádný pokus o českou DMVS). Zdroj s vlastním územím (pasport, mapa města) má `area` (`places.js
-   inArea`: box, případně hranice obce) a patří do `AREAS` modulu (`placeAt` ho pak vypíše). Kredit zdroje = klíč
-   v `state.cut.sources` (`app.js`) a řádek v `credits.js SOURCE_CREDITS`; `validate.js` pak klíč u uloženého řezu nechá.
+   inArea`: box, případně hranice obce) a patří do `AREAS` modulu (`placeAt` ho pak vypíše, vypínače zdrojů nezná). Kredit
+   zdroje = klíč v `state.cut.sources` (`app.js cutAt`), řádek v `credits.js SOURCE_CREDITS` a případně jméno pro krátký
+   řádek patičky (`app.js cutData`); `validate.js` pak klíč u uloženého řezu nechá.
+   **Města státu** (krok 4b): id v `city.js STATE_TOWNS`, hranice obce v `mesta-<kód>.json` (`tools/build_towns_sk.mjs`,
+   `build_towns_at.mjs`; `app.js` je načte do `loadTowns`). Město má texty, zdroje a normy zbytku státu, ilustrace svoje.
 5. **Seznam států pro nasazení:** řádek v `tools/countries.mjs` (klíč balíku OSM, výřez Geofabrik, zda balík smí na Pages).
    `pages.yml` z něj bere smyčky i klíče cache, nic dalšího se v něm neupravuje. Test `tests/csp.test.js` hlídá, že
    každý stát seznamu má modul.
@@ -292,8 +301,8 @@ v `cutAt` zastínil pozdější `const name` a rozbil každý řez.
     Kreslířce i kritikovi dát `model: "sonnet"` (šetření prostředků výše).
   - Kreslířky fotky nevidí, vycházejí z popisů. Výsledek ukázat Báře jako náhled (`magick` s odstraněním `<text>`).
   - Pro menší města obecný autobus státu.
-- **Zapojení podle hranice nebo boxu města:** v modulu státu `art` (sady měst) a `artAt(lat, lon)` (území přes `places.js`
-  `areaAt`); `app.js useCity` ho bere z `placeAt`. Město, které je v `mesta.json`, má sadu svou (`city.js art`, `artMap`).
+- **Zapojení podle hranice města:** v modulu státu `art` (sady podle id města ze `STATE_TOWNS`, sada zbytku státu pod jeho
+  id); město bez vlastní sady kreslí sadu státu (`city.js stateTown`). Česká města mají sadu v `city.js` (`art`, `artMap`).
 - **Mobiliář:**
   - Nejdřív zjistit, co město skutečně převzalo (Bratislava má pražskou lavičku).
   - Označníky se značkou státu i v kresbách přístřešků: Rakousko „H“ v `austria/`, Vídeň s tabulkou Wiener Linien jen u tramvaje.

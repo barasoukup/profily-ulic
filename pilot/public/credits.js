@@ -2,7 +2,8 @@
 // cut leaves its key in state.cut.sources (app.js: { orthoCity: "sk", skTown: "presov", zbgis: true … }), not a
 // sentence: a saved file and a change of language would keep a sentence in the old language. Here each key and
 // value has its credit line (Czech, through t()), creditLines (city.js) writes them in this order, and validate.js
-// keeps of a saved cut only the keys and values listed here. A new source = one line here.
+// keeps of a saved cut only the keys and values listed here. A new source: its key here and where app.js cutAt writes
+// state.cut.sources (and, for the footer's short line, app.js cutData).
 // No import of city.js (it imports this).
 import { t } from "./i18n.js";
 import { PASSPORT_NAMES, GREEN_PASSPORTS } from "./towns/pasporty-names.js";
@@ -44,4 +45,5 @@ export const sourceCredit = (key, value) => (Object.hasOwn(SOURCE_CREDITS, key) 
 // surfaces and as the kerbs' lines).
 export const sourceCredits = (src = {}) => [...new Set(Object.keys(SOURCE_CREDITS).map((k) => (k in src ? sourceCredit(k, src[k]) : null)).filter(Boolean))];
 // Of a saved cut's sources the listed keys with a listed value (validate.js).
-export const knownSources = (src = {}) => Object.fromEntries(Object.keys(SOURCE_CREDITS).filter((k) => k in src && sourceCredit(k, src[k]) !== null).map((k) => [k, src[k]]));
+// Only a word or true (a flag), as app.js writes them.
+export const knownSources = (src = {}) => Object.fromEntries(Object.keys(SOURCE_CREDITS).filter((k) => k in src && (typeof src[k] === "string" || src[k] === true) && sourceCredit(k, src[k]) !== null).map((k) => [k, src[k]]));

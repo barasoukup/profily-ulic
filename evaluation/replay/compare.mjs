@@ -36,6 +36,8 @@ const missing = a.filter((id) => !bs.has(id));
 for (const id of a) {
   if (!bs.has(id)) continue;
   const x = drop(read(A, id)), y = drop(read(B, id));
+  // Of the console's notes the uncaught errors count (warnings name timings and retries, which may differ).
+  for (const o of [x, y]) o.errors = (o.notes || []).filter((n) => /^(uncaught|unhandled):/.test(n));
   const keys = [...new Set([...Object.keys(x), ...Object.keys(y)])].filter((k) => !only || only.includes(k)).filter((k) => k !== "notes");
   // Porovnat as the page shows it: its drawings are laid out by measuring the labels in the window (not repeatable), so
   // only its titles and list of changes count; the drawings are those of the export (svg, svgNavrh).
