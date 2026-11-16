@@ -241,6 +241,22 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   Vlastní bratislavský přístřešek, lampa a označník DPB až po zásadách MIB pro zastávky a osvětlení (přístřešky jsou
   v řezech vzácné). Technická mapa Bratislavy, čáry map Nitry, Piešťan, Zvolena, Hlohovce, Prešova: `?tm=1`, `?hrany=0`.
 
+## Rakousko (větev austria, Bára 16. 11. 2026, rozpracované, nenasazené)
+- Názvy v kódu a souborech anglicky (Bára 16. 11. 2026): stát `austria` (`country` AT), `towns/austria.js`,
+  `signs-AT/`, `evaluation/austria/`. Stávající české názvy zůstávají.
+- Hranice z Eurostat GISCO 1 : 1 M v `staty.json` (BEV WFS je vypnutá); Česko a Slovensko mají přednost.
+- OSM: výřez Geofabrik `austria`, balík `at` jen na R2 (na Pages by se nevešel 1 GB), workflow staví cz, sk, at.
+- Ortofoto basemap.at (`bmaporthofoto30cm`, Web Mercator do z20, CORS, CC BY 4.0) pro pruhy, obruby a podklad.
+- Vídeň: Flächen-Mehrzweckkarte (FMZK, data.wien.gv.at WFS 2.0, CC BY 4.0 „Stadt Wien – data.wien.gv.at“) jako plochy
+  řezu, kde má ulici pod středem (`?wien=0` vypne, čeká na A/B). Další města (Graz, Linz, Innsbruck, Klagenfurt)
+  otevřené mapy povrchů nemají; Salcburk má buspruhy, zóny, stromy a značky (nezapojené).
+- Normy `limitsAT` (`evaluation/austria/NORMY.md`): cyklo podle RVS 03.02.13 (přes NÖ Leitfaden, druhotně), ostatní
+  Wiener Projektierungshandbuch (MA 18, 2011); RVS 03.02.12, 03.04.12, 03.07.11 nejsou veřejné.
+- Značky `signs-AT/` (StVO § 52–53, Commons, úřední díla); stání na chodníku, vyhrazené stání a cyklopruh nemají značku.
+- Bez odhadu stání podle zákona (StVO § 24: dva volné pruhy, judikatura asi 2,6 m na pruh; zatím vypnuto jako na SK).
+- Chybí: hledání adres (BEV jen s registrací; Vídeň má adresy ve WFS), A/B Vídně, vozidla a mobiliář měst, sítě
+  (otevřené nejsou).
+
 ## Jazyky (Bára 12. 11. 2026, slovenčina 15. 11. 2026, němčina 16. 11. 2026)
 - Anglicky se aplikace jmenuje **Street Profile**, slovensky **Profily ulíc**, německy **Straßenprofil**. Čeština, slovenčina,
   angličtina a němčina: `pilot/public/i18n.js` (`t("český text")`), překlady v `pilot/public/en.js`, `sk.js` a `de.js`, menu jazyků s vlajkami v hlavičce, `?lang=sk`. Jazyk podle
