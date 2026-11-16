@@ -4,7 +4,7 @@
 // served as the same tiles the server reads (data/osm-tiles/<ix>_<iy>.json).
 // Layers, fields and the reading of answers are shared with server.mjs (queries.js).
 import { STATIC } from "./config.js";
-import { city, MTVU_LABELS } from "./city.js";
+import { city, country, MTVU_LABELS } from "./city.js";
 import { TILE, getJSON, query, envelope, osmTiles, insideRings, OSM_PACK } from "./gis.js";
 import { TOWNS } from "./towns/index.js";
 import { t, mark } from "./i18n.js";
@@ -52,8 +52,8 @@ export const mtvu = (bbox) => (town() ? town().surfaces(bbox) : isBrno() ? brnoS
 export function outage({ surfaces, lines, parking }, dataName = city.dataName, { fallback = "" } = {}) {
   const s = surfaces.status === "fulfilled" ? surfaces.value : null;
   const lacks = [];
-  // In Slovakia the lines are the town's map and ZBGIS (kerbs, widths, lawns): said as such.
-  if (lines.status !== "fulfilled") lacks.push(city.country === "SK" ? t("mapy města a ZBGIS") : t("kolejí, plotů a svahů"));
+  // What the lines are by the state (countries/<ISO>.js linesMissing; in Slovakia the town's map and ZBGIS).
+  if (lines.status !== "fulfilled") lacks.push(t(country.linesMissing));
   if (parking.status !== "fulfilled") lacks.push(t("parkovacích stání"));
   if (lines.status === "fulfilled" && lines.value?.missing?.includes("opendata")) lacks.push(t("stromů a tříd ulic TSK"));
   const without = lacks.length ? " " + t("Chybí data {what} (server neodpověděl).", { what: lacks.join(", ") }) : "";
@@ -63,7 +63,7 @@ export function outage({ surfaces, lines, parking }, dataName = city.dataName, {
   // Outside the Czech Republic no technical map is asked (towns/slovensko.js): an estimate, and no outage.
   // Vienna's map of surfaces did not answer (towns/austria.js): the estimate, said so.
   if (s?.atFailed) return { note: mark(" · mapa povrchů Vídně neodpověděla, odhad z ortofota a OSM"), text: t("Mapa povrchů Vídně teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };
-  if (s?.abroad) return { note: ["slovensko", "austria"].includes(city.id) ? mark(" · odhad z ortofota a OSM") : mark(" · jen odhad z OSM"), text: t("Technickou mapu tu zatím nemáme, profil je odhad."), error: false };
+  if (s?.abroad) return { note: country.orthoEstimate ? mark(" · odhad z ortofota a OSM") : mark(" · jen odhad z OSM"), text: t("Technickou mapu tu zatím nemáme, profil je odhad."), error: false };
   const note = failed ? mark(" · technická mapa neodpověděla, jen odhad")
     : s.fallback ? mark(" · plochy z technické mapy ČÚZK")
     : empty ? (s.dmvsFailed ? mark(" · technická mapa neodpověděla, jen odhad") : s.linesOnly ? mark(" · technická mapa tu má jen čáry, jen odhad") : mark(" · mimo technickou mapu, jen odhad"))

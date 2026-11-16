@@ -1,7 +1,8 @@
 // SVG drawing and direct editing of a street profile. Drawing units are centimetres,
 // matching the Streetmix illustrations (1 px = 1 cm).
 import { TYPES, SOURCES, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURNS, HDV_UNDER, LAMP_H, underSize } from "./types.js";
-import { city, cityById, CITY_IDS, creditLines, SK_ART, AT_ART } from "./city.js";
+import { city, country, cityById, CITY_IDS, creditLines } from "./city.js";
+import { COUNTRIES } from "./countries/index.js";
 import { PLATES, signFile, plateFile, signLabel, signDir, SPEED_TEMPLATES } from "./signs.js";
 // tr: t is a part's type here.
 import { t as tr, num } from "./i18n.js";
@@ -62,7 +63,8 @@ const BRNO = {
 // Every other city brings its own map of illustrations (city.js artMap, files in pilot/public/<art>/).
 const CITY_ART = { praha: PRAHA, brno: BRNO };
 for (const id of CITY_IDS) { const c = cityById(id); if (c.artMap) CITY_ART[c.art] = c.artMap; }
-Object.assign(CITY_ART, SK_ART, AT_ART); // the Slovak and Austrian towns' vehicles (city.js skArtAt, atArtAt)
+// The states' sets of their towns (countries/<ISO>.js art: the Slovak and Austrian towns' vehicles, by artAt).
+for (const c of Object.values(COUNTRIES)) Object.assign(CITY_ART, c.art);
 // The illustrations of the current cut's city, or Streetmix's (the switch "Ilustrace" off).
 let artOn = true;
 const artKey = () => (artOn ? city.art : "streetmix");
@@ -608,10 +610,8 @@ export function buildingStyle(info, chosen) {
   const set = OLD_STYLES[chosen] || chosen;
   if (BUILDING_STYLES[set]) return set;
   const style = derivedStyle(info);
-  // Austria has no panel houses of the Czech and Slovak kind (Bára 16. 11. 2026): an office stays an office, a block of
-  // flats is the modern one when new, else the plain flat-roofed tenement (Gemeindebau).
-  if (style === "plocha" && city.country === "AT") return OFFICE_TYPES.has(info?.type) || info?.office ? "kancelar" : (info?.start || info?.built) > 1990 ? "moderni" : "funkce";
-  return style;
+  // The state's own catalogue (countries/<ISO>.js houseLook; Austria has no panel houses).
+  return country.houseLook ? country.houseLook(style, info, OFFICE_TYPES.has(info?.type) || !!info?.office) : style;
 }
 function derivedStyle(info) {
   const h = buildingHeight(info);
@@ -1539,7 +1539,7 @@ function drawEdge(svg, x, kind, side, surface, info, style) {
 // on first use: file → { uri, w, h }. A template (B 20a or 253 with another speed, E 13 with a text) gets its text
 // filled in before it becomes a data URI.
 const signArt = new Map();
-const country = () => city.country || "CZ";
+const signCountry = () => country.code; // null: the Czech signs (countries/default.js)
 const signKey = (a) => `${a.dir}/${a.file}${a.text ? `|${a.text}` : ""}`;
 async function loadSignFile(a) {
   const key = signKey(a);
@@ -1559,12 +1559,12 @@ async function loadSignFile(a) {
 }
 // The file (and filled-in text) of a sign and of its plate.
 const signArtOf = (x, seg) => {
-  const file = signFile(x, seg, country());
-  return { dir: signDir(country()), file, text: SPEED_TEMPLATES.has(file) ? String(x.v) : null };
+  const file = signFile(x, seg, signCountry());
+  return { dir: signDir(signCountry()), file, text: SPEED_TEMPLATES.has(file) ? String(x.v) : null };
 };
 const plateArtOf = (x, seg) => {
-  const file = plateFile(x, seg, country());
-  return file && { dir: signDir(country()), file, text: file === "E13" ? PLATES[x.plate] : null };
+  const file = plateFile(x, seg, signCountry());
+  return file && { dir: signDir(signCountry()), file, text: file === "E13" ? PLATES[x.plate] : null };
 };
 // All signs of the profiles, loaded before drawing (the row is drawn from the cache).
 // Resolves to true when something new was loaded (the drawing then needs redrawing).
@@ -1655,7 +1655,7 @@ function drawSigns(svg, profile, bounds) {
   const stack = (g, x, seg) => {
     const st = el("g", { class: "sign" }, g);
     const title = el("title", {}, st);
-    title.textContent = signLabel(x, country());
+    title.textContent = signLabel(x, signCountry());
     for (const [a, plate] of [[signArtOf(x, seg), false], [plateArtOf(x, seg), true]]) {
       const art = artFor(a);
       if (!art) continue;

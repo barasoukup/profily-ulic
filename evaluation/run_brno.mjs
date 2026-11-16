@@ -106,7 +106,7 @@ async function run(s) {
   const { decodePng } = await import("../pilot/public/dmvs.js");
   // After the others: polite.mjs asks ČÚZK one request at a time, and the image would hold the DTM's up past their timeout.
   const [m, k, pk] = await Promise.all([S.mtvu(bbox), S.linie(bbox), S.parkovani(bbox, inZps)]);
-  const li = await laneImage({ frame, dir, t0: -25, t1: 25, cityId: "cesko", fetchImpl: webFetch, decode: decodePng, timeout: 30000 });
+  const li = await laneImage({ frame, dir, t0: -25, t1: 25, source: "cuzk", fetchImpl: webFetch, decode: decodePng, timeout: 30000 });
   const polys = mtvuPolygons(m, frame);
   const result = deriveProfile({ center: [0, 0], dir, half: HALF, polys, osm, frame, way: near.way, tracks: trackLines(k, frame), parking: esriPolygons(pk, frame), lines: techLines(k, frame), reach, inZps, lanesImage: li?.st });
   for (const side of ["left", "right"]) {

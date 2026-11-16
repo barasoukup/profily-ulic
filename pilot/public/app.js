@@ -18,7 +18,7 @@ import { cleanProfile, cleanCut, retype } from "./validate.js";
 import { shares, surfaces } from "./shares.js";
 import { packProfile, unpackProfile, designParams } from "./share.js";
 import { checkRules, checkUnder, checkTrees } from "./rules.js";
-import { city, setCity, cityAt, skArtAt, atArtAt, loadBounds, loadStates, loadSkTowns } from "./city.js";
+import { city, country, setCity, cityAt, countryOfCity, loadBounds, loadStates, loadSkTowns } from "./city.js";
 import { TOWNS } from "./towns/index.js";
 import { log, logOn, sendReport, shortProfile } from "./log.js";
 import { createDataLayers, PLOCHY_PANE } from "./maplayers.js";
@@ -81,8 +81,9 @@ const STATY = await statyJson;
 if (STATY) loadStates(STATY); else console.warn("staty.json se nenačetl: stát se podle polohy nepozná");
 // The city of a point becomes the current one (city.js): its sources, texts and illustrations.
 async function useCity(lat, lon) {
-  const id = cityAt(lat, lon), art = id === "austria" ? atArtAt(lat, lon) : skArtAt(lat, lon);
-  const townArt = id === "slovensko" || id === "austria";
+  // A state with the illustrations of its towns (countries/<ISO>.js artAt: Slovakia, Austria) gives the set of the point.
+  const id = cityAt(lat, lon), artAt = countryOfCity(id).artAt, art = artAt?.(lat, lon);
+  const townArt = !!artAt;
   if (id === city.id && (!townArt || city.art === art)) return;
   if (id !== city.id) setCity(id);
   // In Slovakia and Austria the vehicles of the town of the cut (city.js SK_ART, AT_ART; Bára 16. 11. 2026).
@@ -122,7 +123,7 @@ if (lang !== "cs") for (const m of ["addAttribution", "removeAttribution"]) {
 L.control.zoom({ zoomInTitle: tr("Přiblížit"), zoomOutTitle: tr("Oddálit") }).addTo(map);
 // Address search (search.js, RÚIAN of ČÚZK): the map moves there; an address on a street or a street is cut
 // like a click at the nearest point of that street. The log gets only the kind of place, never the query.
-mountSearch(map, { status, inSlovakia: () => { const c = map.getCenter(); return cityAt(c.lat, c.lng) === "slovensko"; }, inVienna: () => { const c = map.getCenter(); return inWien(c.lng, c.lat); }, inAustria: () => { const c = map.getCenter(); return cityAt(c.lat, c.lng) === "austria"; }, onPick: ({ item, cut }) => { log("hledani", { detail: item.type === "AdresniMisto" ? "adresa" : item.type === "Ulice" ? "ulice" : "misto" }); if (cut) cutAt(cut.lat, cut.lon, false, null, null, item.at?.street || null); } });
+mountSearch(map, { status, services: () => { const c = map.getCenter(); return countryOfCity(cityAt(c.lat, c.lng)).search; }, inVienna: () => { const c = map.getCenter(); return inWien(c.lng, c.lat); }, onPick: ({ item, cut }) => { log("hledani", { detail: item.type === "AdresniMisto" ? "adresa" : item.type === "Ulice" ? "ulice" : "misto" }); if (cut) cutAt(cut.lat, cut.lon, false, null, null, item.at?.street || null); } });
 // Base maps. IPR services are drawn through ArcGIS export requests in Web Mercator, one per tile.
 // Each request renders a 512 px image covering four normal tiles (tileSize 512, zoomOffset -1):
 // a quarter of the requests, which IPR renders one by one (0.2–1.5 s each), and the browser's
@@ -308,8 +309,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     }
     osmCache = { osm, way: near.way };
     // A motorway or an expressway is wider than the usual reach (Bára: R1 in Banská Bystrica): 35 m each side for a new
-    // cut. Only in Slovakia so far (Fable: not tried on Czech motorways, Czechia stays as it was).
-    const WIDE_ROAD = (city.country === "SK" || city.country === "AT") && /^(motorway|trunk)$/.test(near.way.tags?.highway || "");
+    // cut. Only in Slovakia and Austria so far (countries/<ISO>.js wideRoads; Fable: not tried on Czech motorways).
+    const WIDE_ROAD = country.wideRoads && /^(motorway|trunk)$/.test(near.way.tags?.highway || "");
     reach = reach || (keepWay && state.cut?.reach) || (WIDE_ROAD ? { left: WIDE_REACH, right: WIDE_REACH } : defaultReach());
     // A new cut has A at its western end and B at the eastern (Bára): the profile is then seen
     // looking northwards, A on the left. A lies left of the street direction, so that direction
@@ -338,10 +339,10 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       sources.mtvu(bbox), sources.linie(bbox), zone.then((inZone) => sources.parkovani(bbox, inZone)), zone,
       // Where OSM has tram tracks across the cut: one small image of the orthophoto for the surface of the bed
       // (ortho.js, a short timeout; without it the rules decide).
-      // Slovakia: its own orthophoto; elsewhere abroad none (ČÚZK's is blank there).
-      bedOrtho({ osm, frame, dir, half, source: city.id === "slovensko" ? "sk" : city.abroad ? null : "cuzk" }),
+      // The state's orthophoto (countries/<ISO>.js bedOrtho; Slovakia its own, elsewhere abroad none: ČÚZK's is blank there).
+      bedOrtho({ osm, frame, dir, half, source: country.bedOrtho }),
       // One image of the orthophoto across the whole cut for the road markings (lanes-ortho.js).
-      LANES_ORTHO ? laneImage({ frame, dir, t0: -Math.min(half, ORTHO_HALF), t1: Math.min(half, ORTHO_HALF), cityId: city.id }) : null,
+      LANES_ORTHO ? laneImage({ frame, dir, t0: -Math.min(half, ORTHO_HALF), t1: Math.min(half, ORTHO_HALF), source: city.laneOrtho || country.laneOrtho }) : null,
     ]);
     const ortho = o.status === "fulfilled" ? o.value : null;
     if (m.status === "fulfilled") polys = mtvuPolygons(m.value, frame);
@@ -355,7 +356,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     const inZps = z.status === "fulfilled" ? z.value : undefined;
     const laneImg = li.status === "fulfilled" ? li.value : null;
     // The same image tells grass from paving beside a roadway read from the DTM's lines (derive.js linePieces).
-    const args = { center: [0, 0], dir, half, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho, lanesImage: laneImg?.st, roadOnPath: !!city.roadOnPath, noParkGuess: city.country === "SK" || city.country === "AT" };
+    const args = { center: [0, 0], dir, half, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho, lanesImage: laneImg?.st, roadOnPath: !!city.roadOnPath, noParkGuess: !country.parkGuess };
     let result = deriveProfile(args);
     // No surface of the street from the technical map (no answer, nothing here, nothing at the axis): the carriageway
     // read on the orthophoto near where OSM expects it, sidewalks to the OSM buildings (ortho-osm.js; Bára 15. 11.
@@ -373,7 +374,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // close by, the pieces between the town's map lines, sidewalk or green (ortho-osm.js besidePassport; Bára: Poštová,
     // 17. novembra ended at the passport's edge). The passport's own surfaces stay first.
     let besideUsed = null;
-    if (!orthoOsm && m.value?.passport && city.country === "SK") {
+    if (!orthoOsm && m.value?.passport && country.besidePassport) {
       const beside = besidePassport({ osm, frame, dir, way: near.way, st: laneImg?.st, edges: k.status === "fulfilled" ? k.value?.edges || [] : [], symbols: k.status === "fulfilled" ? k.value?.symbols || [] : [], areas: k.status === "fulfilled" ? k.value?.areas || [] : [], polys });
       if (beside.length) {
         const again = deriveProfile({ ...args, polys: [...polys, ...beside] });
@@ -411,8 +412,9 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
         signTags.__salzburg = true;
       }
     }
-    deriveSigns(result, signTags, { inZps, alongWay, country: city.country || "CZ" });
-    keepDrawable(result, city.country || "CZ");
+    // The signs of the state (null: the Czech ones, countries/default.js).
+    deriveSigns(result, signTags, { inZps, alongWay, country: country.code });
+    keepDrawable(result, country.code);
     const name = near.way.tags.name || near.way.tags.ref || "";
     const span = result.extent && { left: +result.extent[1].toFixed(2), right: +(-result.extent[0]).toFixed(2) };
     // A design belongs to its cut: dragging the cut (its middle or an end) keeps it, a new cut (a click, even on
@@ -423,8 +425,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // What the export credits beyond the city's own data (city.js creditLines): the region of a national DTM,
     // the DMVS standing in for the city's map, the orthophoto of a tram bed.
     const mv = m.status === "fulfilled" ? m.value : null;
-    const bedSk = ortho && city.id === "slovensko"; // the tram bed read on Slovakia's orthophoto
-    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.skTown && { skTown: mv.skTown }), ...(mv?.atTown && { atTown: mv.atTown }), ...(atSigns?.length && signTags.__salzburg && { atSigns: "salzburg" }), ...(mv?.skTm && { skTm: true }), ...((orthoOsm?.edges || besideUsed?.edges) && k.value?.edgesFrom && { skEdges: k.value.edgesFrom }), ...((orthoOsm?.areas || orthoOsm?.widthFrom === "zbgis" || besideUsed?.zbgis) && { zbgis: true }), ...(mv?.dmvs && { dmvs: true }), ...(typeof mv?.passport === "string" && { passport: mv.passport }), ...(((ortho && !bedSk) || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" ? { orthoCity: laneImg.source } : (bedSk || besideUsed?.image) && { orthoCity: "sk" }) };
+    const bedOwn = ortho && country.bedOrtho !== "cuzk" ? country.bedOrtho : null; // the tram bed read on a state's own orthophoto
+    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.skTown && { skTown: mv.skTown }), ...(mv?.atTown && { atTown: mv.atTown }), ...(atSigns?.length && signTags.__salzburg && { atSigns: "salzburg" }), ...(mv?.skTm && { skTm: true }), ...((orthoOsm?.edges || besideUsed?.edges) && k.value?.edgesFrom && { skEdges: k.value.edgesFrom }), ...((orthoOsm?.areas || orthoOsm?.widthFrom === "zbgis" || besideUsed?.zbgis) && { zbgis: true }), ...(mv?.dmvs && { dmvs: true }), ...(typeof mv?.passport === "string" && { passport: mv.passport }), ...(((ortho && !bedOwn) || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" ? { orthoCity: laneImg.source } : bedOwn ? { orthoCity: bedOwn } : besideUsed?.image && { orthoCity: laneImg.source }) };
     // The log of cuts (log.js): the cut exactly, and how it came (a click, a moved cut, a link).
     log("rez", {
       detail: keepWay ? "posun" : bearing !== null ? "odkaz" : "klik", city: city.id, street: name, highway: near.way.tags.highway,
@@ -481,7 +483,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       : tr("Obruby jsou podle OSM a domy z OSM, šířky ověřte.");
     const out = sources.outage({ surfaces: m, lines: k, parking: pk }, undefined, { fallback: orthoNote });
     // A town's passport answered but not at the axis (Slovakia): the profile is still the estimate.
-    state.cut.note = out.note || (orthoOsm && city.abroad ? (["slovensko", "austria"].includes(city.id) ? " · odhad z ortofota a OSM" : " · jen odhad z OSM") : "");
+    state.cut.note = out.note || (orthoOsm && city.abroad ? (country.orthoEstimate ? " · odhad z ortofota a OSM" : " · jen odhad z OSM") : "");
     // The heading is the street only (Bára 16. 11. 2026); where the data come from is said under it (#profile-sub).
     $("#street-name").textContent = streetName(state.cut);
     const junctionNote = tr("Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami.");
@@ -532,9 +534,8 @@ function showCutInfo() {
   const pano = $("#pano-link");
   pano.href = `https://mapy.com/cs/zakladni?x=${state.cut.lon.toFixed(7)}&y=${state.cut.lat.toFixed(7)}&z=19&ovl=8`;
   // Mapy.com has panoramas of the Czech Republic only (Bára 16. 11. 2026).
-  const cz = (city.country || "CZ") === "CZ";
-  pano.hidden = !!mapyKey || !cz;
-  $("#pano-btn").hidden = !mapyKey || !cz;
+  pano.hidden = !!mapyKey || !country.panorama;
+  $("#pano-btn").hidden = !mapyKey || !country.panorama;
 }
 
 // ---------- street panorama (Mapy.com) ----------
@@ -1729,10 +1730,10 @@ function itemPlace(segs, i, kind) {
 function signTags(list = [], max, type, set) {
   const box = Object.assign(document.createElement("span"), { className: "items" });
   // Only the signs the state of the cut has (Slovakia has no shared zone, Fable).
-  const fits = Object.keys(SIGNS).filter((k) => signFits(k, type) && (!["SK", "AT"].includes(city.country) || signFile({ k, v: 30 }, null, city.country)));
+  const fits = Object.keys(SIGNS).filter((k) => signFits(k, type) && drawable({ k, v: 30 }, null, country.code));
   if (!fits.length && !list.length) return box; // no sign fits a green strip, a wall…
   // The name first and the sign's number after it (Fable: "IP 11b" first says nothing to most).
-  const name = (x) => codeLast(signLabel(x, city.country || "CZ"));
+  const name = (x) => codeLast(signLabel(x, country.code));
   list.forEach((x, k) => {
     const b = document.createElement("button");
     b.className = "tag";
@@ -1745,7 +1746,7 @@ function signTags(list = [], max, type, set) {
     add.add(new Option(tr("+ přidat značku"), ""));
     for (const k of fits) {
       add.add(new Option(name({ k }), k));
-      for (const [ck, c] of Object.entries(SIGN_CHOICES)) if (c.k === k && drawable(c, null, city.country || "CZ")) add.add(new Option(name(c), ck));
+      for (const [ck, c] of Object.entries(SIGN_CHOICES)) if (c.k === k && drawable(c, null, country.code)) add.add(new Option(name(c), ck));
     }
     add.onchange = () => {
       const k = add.value;
@@ -2039,7 +2040,7 @@ function restore(data) {
   undoStack.length = redoStack.length = 0;
   Object.assign(state, { cut: data.cut, stav: data.stav, navrh: data.navrh || structuredClone(data.stav), navrhEdited: !!data.navrhEdited, selected: null });
   // The saved cut's city (its illustrations follow once loaded).
-  if (state.cut) { setCity(cityAt(state.cut.lat, state.cut.lon)); if (city.id === "slovensko") city.art = skArtAt(state.cut.lat, state.cut.lon); if (city.id === "austria") city.art = atArtAt(state.cut.lat, state.cut.lon); loadSprites().then(render); }
+  if (state.cut) { setCity(cityAt(state.cut.lat, state.cut.lon)); if (country.artAt) city.art = country.artAt(state.cut.lat, state.cut.lon); loadSprites().then(render); }
   if (state.cut) {
     map.setView([state.cut.lat, state.cut.lon], 19);
     const f = localFrame(state.cut.lat, state.cut.lon);

@@ -9,7 +9,7 @@ import { SK, SK_HTML, SK_CITY, SK_ATTRIBUTION } from "../pilot/public/sk.js";
 import { DE, DE_HTML, DE_CITY, DE_ATTRIBUTION } from "../pilot/public/de.js";
 
 const DIR = new URL("../pilot/public/", import.meta.url);
-const FILES = [...fs.readdirSync(DIR).filter((f) => f.endsWith(".js")), ...fs.readdirSync(new URL("towns/", DIR)).map((f) => `towns/${f}`)]
+const FILES = [...fs.readdirSync(DIR).filter((f) => f.endsWith(".js")), ...["towns", "countries"].flatMap((d) => fs.readdirSync(new URL(`${d}/`, DIR)).map((f) => `${d}/${f}`))]
   .filter((f) => f.endsWith(".js") && !["en.js", "sk.js", "de.js"].includes(f));
 
 // The texts the code hands to t() (tr() where t means something else), as written: "…" only (the code never

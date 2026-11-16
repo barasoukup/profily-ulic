@@ -199,8 +199,9 @@ export async function locate(item, signal) {
 
 // ---------- UI: a Leaflet control at the map's top left ----------
 // onPick({ item, lat, lon, cut }) after the map has moved; status(msg, kind) for a failure.
-// inSlovakia(): does the map show Slovakia (Slovak places are then asked of ZBGIS along with RÚIAN).
-export function mountSearch(map, { status, onPick, inSlovakia = () => false, inVienna = () => false, inAustria = () => false }) {
+// services(): the search services of the state the map shows (countries/<ISO>.js search): "zbgis" (Slovak places are
+// then asked of ZBGIS along with RÚIAN), "photon" (Photon of komoot). inVienna(): does the map show Vienna.
+export function mountSearch(map, { status, onPick, services = () => [], inVienna = () => false }) {
   const L = globalThis.L;
   const el = L.DomUtil.create("div", "search leaflet-bar");
   el.innerHTML = `<input id="search-input" type="search" role="combobox" aria-autocomplete="list" aria-expanded="false"
@@ -259,12 +260,12 @@ export function mountSearch(map, { status, onPick, inSlovakia = () => false, inV
     try {
       // RÚIAN, and ZBGIS where Slovakia is likely (with RÚIAN, or after it when it found nothing).
       const sk = () => findSk(text.trim(), getJSON, mine.signal).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání ZBGIS", err); return []; });
-      const both = inSlovakia() || looksSlovak(text);
+      const both = services().includes("zbgis") || looksSlovak(text);
       const [cz, skNow] = await Promise.all([getJSON(suggestUrl(text.trim()), mine.signal).then(parseSuggestions, (err) => { if (both && err.name !== "AbortError") return []; throw err; }), both ? sk() : []]);
       // Vienna's address points where the map shows Vienna or the query names it (search-at.js).
       const at = inVienna() || looksViennese(text) ? await findAt(text.trim(), getJSON, mine.signal).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání Vídeň", err); return []; }) : [];
       // The rest of Austria (and Vienna where its own points found nothing): Photon of komoot (search-photon.js).
-      const photon = (inAustria() || at.length === 0 && looksViennese(text)) && !at.some((x) => x.type === "AdresniMisto")
+      const photon = (services().includes("photon") || at.length === 0 && looksViennese(text)) && !at.some((x) => x.type === "AdresniMisto")
         ? await findPhoton(text, getJSON, mine.signal).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání Photon", err); return []; }) : [];
       const found = rankResults([...at, ...photon, ...cz, ...(both || cz.length ? skNow : await sk())], text);
       cache.set(key, found);

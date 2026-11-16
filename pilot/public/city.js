@@ -4,6 +4,10 @@
 // the current cut, changed in place by setCity, so modules read it at the time they need it.
 
 import { sourceCredits } from "./credits.js";
+import { TOWN_ART, TRAM, TROLLEY } from "./art.js";
+import { boxed, within, loadSkTowns, inSkTown } from "./places.js";
+import { countryOf } from "./countries/index.js";
+export { loadSkTowns, inSkTown };
 import { t, cityTexts } from "./i18n.js";
 
 // Labels of the MTVU codes, for Brno's surfaces (Prague's MTVU sends its own).
@@ -15,27 +19,6 @@ export const MTVU_LABELS = {
   704: "komunikace - parkoviště", 705: "komunikace - samostatné tramvajové těleso", 901: "rekreační plochy - sportoviště",
   1003: "ostatní plochy - zpevněné plochy kolem zástavby", 1100: "železnice",
 };
-
-// The rest of a town's illustrations (pilot/public/<art>/): its bus and, until it has its own, Prague's
-// furniture (copies in the town's folder).
-const TOWN_ART = {
-  "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound",
-  "lamp-modern-left": "lamp-left", "lamp-modern-right": "lamp-right", "bench-center": "bench-center",
-  "bike-rack-perpendicular-left": "bike-rack", "bollard": "bollard",
-  "transit-shelter-01-left": "transit-shelter-left", "transit-shelter-01-right": "transit-shelter-right",
-  // Overhead-line poles and stop posts (copies of Prague's, Brno its own).
-  "tram-pole-left": "sloup-trakce-left", "tram-pole-right": "sloup-trakce-right",
-  "tram-pole-lamp-left": "sloup-trakce-lampa-left", "tram-pole-lamp-right": "sloup-trakce-lampa-right",
-  "stop-post-left": "oznacnik-left", "stop-post-right": "oznacnik-right",
-  "stop-post-tram-left": "oznacnik-tram-left", "stop-post-tram-right": "oznacnik-tram-right",
-  // Rainwater management (Bára 12. 11. 2026): a shelter with a green roof, the planting of a swale, reeds of a pond.
-  "transit-shelter-green-left": "transit-shelter-green-left", "transit-shelter-green-right": "transit-shelter-green-right",
-  "swale-plants": "pruleh-rostliny", "reeds-left": "rakos-left", "reeds-right": "rakos-right",
-};
-
-// A town's own vehicles (pilot/public/<art>/tram-*, trolejbus-*) in place of Streetmix's.
-const TRAM = { "streetcar-inbound": "tram-inbound", "streetcar-outbound": "tram-outbound" };
-const TROLLEY = { "trolleybus-inbound": "trolejbus-inbound", "trolleybus-outbound": "trolejbus-outbound" };
 
 const CITIES = {
   // Anywhere outside the cities above: the national DTM of ČÚZK (dmvs.js), RÚIAN houses, OSM.
@@ -91,6 +74,8 @@ const CITIES = {
     // (data/vyvoj, sources.js vyvoj); iprHouseKind: IPR's kind of building 6 is a family house (profile.js);
     // ruianYear: the year, walls and use of a house from RÚIAN (app.js), as IPR gives none.
     roadOnPath: true, slowServer: true, paidZoneFile: true, builtAgeTiles: true, iprHouseKind: true, ruianYear: true,
+    // Its own orthophoto for the lanes (lanes-ortho.js), in place of the state's.
+    laneOrtho: "ipr",
     example: "50.082707, 14.419918",
   },
   brno: {
@@ -113,8 +98,8 @@ const CITIES = {
     artTitle: "Kreslit brněnskými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "brno/t3-inbound.svg",
     credit: "data © Statutární město Brno (technická mapa a MTVU; budovy a cykloopatření, data.brno.cz, CC BY 4.0, upraveno), parkování © parkovanivbrne.cz",
-    // KAM gives floors and roofs but not the year of a house: RÚIAN's (app.js).
-    ruianYear: true,
+    // KAM gives floors and roofs but not the year of a house: RÚIAN's (app.js). Its own orthophoto for the lanes.
+    ruianYear: true, laneOrtho: "brno",
     // Changes to the profile tried in Brno first (derive.js); Prague keeps its behaviour until they are
     // checked there too. serviceJunctions: a service road joining counts as a junction; axisToRoadway:
     // an OSM axis up to 4.5 m beside the roadway moves onto it; roadUnderAxis: a paved area under a
@@ -252,6 +237,7 @@ const CITIES = {
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 1.3, estateKm: 3,
     fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true, bedPanels: true },
+    laneOrtho: "plzen", // its own orthophoto for the lanes (lanes-ortho.js)
     example: "49.747700, 13.377600",
     // Plzeň illustrations (plzen/): PMDP's yellow tram Škoda 40T, green trolleybus Škoda 26Tr (Solaris body) and red
     // bus SOR NS 12; the furniture as in Prague for now.
@@ -447,40 +433,6 @@ Object.assign(CITIES, {
   cizina: abroad("cizina", null, "cizinu", "v cizině", "zahraniční", [49.8, 15.5], "48.146736, 17.106998"),
 });
 
-// The Slovak towns' vehicles (Bára 16. 11. 2026; pilot/public/<town>/, drawn after photos of Wikimedia Commons): a cut in
-// Slovakia draws the trams, trolleybuses and buses of its town (by a box around it), elsewhere Streetmix's; the
-// furniture is the Czech set's ("../cesko/…": the files of cesko/).
-const czechFurniture = Object.fromEntries(Object.entries(TOWN_ART).filter(([k]) => !k.startsWith("bus-")).map(([k, v]) => [k, `../cesko/${v}`]));
-// The stop posts carry the Slovak sign 331 Zastávka (Bára 16. 11. 2026; slovensko/, for every Slovak town).
-const skPosts = Object.fromEntries(["stop-post-left", "stop-post-right", "stop-post-tram-left", "stop-post-tram-right", "transit-shelter-01-left", "transit-shelter-01-right",
-  "transit-shelter-green-left", "transit-shelter-green-right"].map((k) => [k, `../slovensko/${TOWN_ART[k]}`]));
-const skArt = (tram, trolley, bus = true) => ({ ...czechFurniture, ...skPosts, ...(bus ? { "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound" } : {}), ...(tram ? TRAM : {}), ...(trolley ? TROLLEY : {}) });
-// slovensko: the rest of Slovakia (Streetmix's vehicles, the Czech furniture, the Slovak stop posts).
-// Bratislava and Košice have their own stop posts (drawn after photos of their stops, 16. 11. 2026); the rest of
-// Slovakia a generic Slovak city bus (slovensko/bus-*), Nitra, Trnava, Trenčín, Martin and Poprad their own.
-const ownPosts = { "stop-post-left": "oznacnik-left", "stop-post-right": "oznacnik-right", "stop-post-tram-left": "oznacnik-tram-left", "stop-post-tram-right": "oznacnik-tram-right" };
-export const SK_ART = { slovensko: { ...skArt(false, false, false), "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound" },
-  bratislava: { ...skArt(true, true), ...ownPosts }, kosice: { ...skArt(true, false), ...ownPosts }, zilina: skArt(false, true), bystrica: skArt(false, true), presov: skArt(false, true),
-  nitra: skArt(false, false), trnava: skArt(false, false), trencin: skArt(false, false), martin: skArt(false, false), poprad: skArt(false, false) };
-const SK_ART_BOX = { bratislava: [16.83, 47.99, 17.33, 48.27], kosice: [21.15, 48.64, 21.36, 48.79], zilina: [18.62, 49.13, 18.86, 49.28],
-  bystrica: [19.03, 48.66, 19.27, 48.82], presov: [21.15, 48.94, 21.33, 49.06], nitra: [17.98, 48.25, 18.2, 48.38], trnava: [17.5, 48.32, 17.68, 48.43],
-  trencin: [17.95, 48.84, 18.13, 48.95], martin: [18.83, 49.0, 19.0, 49.13], poprad: [20.2, 49.0, 20.4, 49.11] };
-export const skArtAt = (lat, lon) => Object.entries(SK_ART_BOX).find(([id, b]) => lon >= b[0] && lon <= b[2] && lat >= b[1] && lat <= b[3] && (inSkTown(id, lon, lat) ?? true))?.[0] ?? "slovensko";
-
-// Austria's towns (Bára 16. 11. 2026; pilot/public/wien, graz, linz, drawn in rounds of a drawer and a critic): Vienna's
-// Flexity and bus of Wiener Linien, the trams of Graz and Linz, elsewhere Streetmix's vehicles; the Austrian stop post
-// (the round H sign, wien/oznacnik-*) everywhere; the furniture the Czech set's.
-const atPosts = (dir) => Object.fromEntries(["stop-post-left", "stop-post-right", "stop-post-tram-left", "stop-post-tram-right",
-  "transit-shelter-01-left", "transit-shelter-01-right", "transit-shelter-green-left", "transit-shelter-green-right"].map((k) => [k, `${dir}${TOWN_ART[k]}`]));
-// Vienna its own stop posts (with the Wiener Linien plate at the tram stops), elsewhere the Austrian ones (austria/);
-// the shelters of Austria everywhere.
-const atArt = ({ posts = "../austria/", tram, trolley, bus }) => ({ ...czechFurniture, ...atPosts("../austria/"), ...(posts !== "../austria/" ? Object.fromEntries(["stop-post-left", "stop-post-right", "stop-post-tram-left", "stop-post-tram-right"].map((k) => [k, `${posts}${TOWN_ART[k]}`])) : {}),
-  ...(bus ? { "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound" } : {}), ...(tram ? TRAM : {}), ...(trolley ? TROLLEY : {}) });
-export const AT_ART = { austria: atArt({}), wien: atArt({ posts: "", tram: true, bus: true }), graz: atArt({ tram: true, bus: true }), linz: atArt({ tram: true, trolley: true, bus: true }),
-  salzburg: atArt({ trolley: true, bus: true }), innsbruck: atArt({ tram: true, bus: true }) };
-const AT_ART_BOX = { wien: [16.18, 48.11, 16.58, 48.33], graz: [15.35, 47.0, 15.53, 47.13], linz: [14.2, 48.22, 14.4, 48.36], salzburg: [12.98, 47.75, 13.12, 47.86], innsbruck: [11.3, 47.23, 11.47, 47.3] };
-export const atArtAt = (lat, lon) => Object.entries(AT_ART_BOX).find(([, b]) => lon >= b[0] && lon <= b[2] && lat >= b[1] && lat <= b[3])?.[0] ?? "austria";
-
 // Towns with no data of their own (the national DTM of ČÚZK, as "cesko"), only their own vehicles.
 const artTown = (id, inCity, adjective, art) => ({ ...CITIES.cesko, id, like: "cesko", inCity, adjective, art: id, artMap: { ...art, ...TOWN_ART } });
 Object.assign(CITIES, {
@@ -518,6 +470,11 @@ export const cityById = (id) => CITIES[id];
 // The city of the current cut. globalThis.PROFILY_CITY lets a script (tools/build_og.mjs, the evaluation)
 // start in another city; globalThis.PROFILY_FIX lets a test (evaluation/run.mjs FIX=1) try the Brno fixes on Prague.
 export const city = {};
+// The state of the current cut as a module (countries/<ISO>.js; countries/default.js outside the states the app knows):
+// what differs by state (norms, signs, orthophoto, houses, illustrations…). city.country stays its ISO code.
+export let country = countryOf(null);
+// The state of a city by its id (before it is the current one).
+export const countryOfCity = (id) => { const c = CITIES[id] || CITIES.cesko; return countryOf("country" in c ? c.country : "CZ"); };
 export function setCity(id) {
   for (const k of Object.keys(city)) delete city[k];
   // country: the state of the cut (ISO 3166-1: "CZ", "SK"; null elsewhere), for its data, norms and signs; the
@@ -525,6 +482,7 @@ export function setCity(id) {
   const c = { country: "CZ", ...(CITIES[id] || CITIES.cesko) };
   // In English and Slovak the city's texts of en.js and sk.js (its name in sentences, its data, its credits).
   Object.assign(city, c, cityTexts(c.id, c.like));
+  country = countryOf(city.country);
   if (globalThis.PROFILY_FIX) city.fix = globalThis.PROFILY_FIX;
   return city;
 }
@@ -533,33 +491,11 @@ setCity(globalThis.PROFILY_CITY || "praha");
 // The city a point lies in, by the boundaries of the cities (mesta.json, tools/build_mesta.mjs); elsewhere its
 // state (below). Before the file has loaded (or without it) the current city.
 let bounds = null;
-// The Slovak towns' boundaries (tools/build_towns_sk.mjs, mesta-sk.json): is the point in town id? undefined without
-// the file or the town (the caller keeps its box then).
-let skTowns = null;
-export const loadSkTowns = (json) => { skTowns = Object.fromEntries(Object.entries(json || {}).map(([id, rings]) => [id, boxed(id, rings)])); };
-export const inSkTown = (id, lon, lat) => {
-  const b = skTowns?.[id];
-  if (!b) return undefined;
-  return lon >= b.box[0] && lon <= b.box[2] && lat >= b.box[1] && lat <= b.box[3] && inside(b.rings, lon, lat);
-};
 export const loadBounds = (json) => { bounds = Object.entries(json).map(([id, rings]) => boxed(id, rings)); };
-const inside = (rings, x, y) => {
-  let c = false;
-  for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) {
-    const [xi, yi] = r[i], [xj, yj] = r[j];
-    if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c;
-  }
-  return c;
-};
 // The states (staty.json, tools/build_staty.mjs): the Czech Republic (RÚIAN) and Slovakia; a point in neither is
 // "cizina". Without the file (or before it has loaded) a point outside the cities is "cesko", as before.
 let states = null;
 export const loadStates = (json) => { states = Object.entries(json).map(([id, rings]) => boxed(id, rings)); };
-const boxed = (id, rings) => {
-  const xs = rings.flat().map((p) => p[0]), ys = rings.flat().map((p) => p[1]);
-  return { id, rings, box: [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)] };
-};
-const within = (list, lat, lon) => list.find((b) => lon >= b.box[0] && lon <= b.box[2] && lat >= b.box[1] && lat <= b.box[3] && inside(b.rings, lon, lat))?.id;
 export function cityAt(lat, lon) {
   if (!bounds) return city.id;
   return within(bounds, lat, lon) || (states ? within(states, lat, lon) || "cizina" : "cesko");

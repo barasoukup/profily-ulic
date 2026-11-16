@@ -37,7 +37,8 @@ if (!process.env.PROFILY_LANG) {
   process.exit(0);
 }
 
-const PUB = path.join(HERE, "..", "..", "pilot", "public");
+// ROOT: the app of another checkout (the code before a change); the snapshots stay here.
+const PUB = path.join(process.env.ROOT || path.join(HERE, "..", ".."), "pilot", "public");
 const imp = (f) => import(path.join(PUB, f));
 const C = await imp("city.js");
 const { CITY_IDS, setCity, city, creditLines, cityAt, loadBounds, loadStates, loadSkTowns } = C;
@@ -54,7 +55,12 @@ const json = (v) => JSON.parse(JSON.stringify(v ?? null));
 
 // The composed city of every id (as setCity makes it).
 out.city = Object.fromEntries(CITY_IDS.map((id) => [id, json(setCity(id))]));
-for (const k of ["SK_ART", "AT_ART"]) if (C[k]) out[k.toLowerCase()] = { all: json(C[k]) };
+// The states' illustrations and the set at a point: in city.js before the states' modules (step 3), then there.
+const stateMod = async (code) => { try { return (await import(path.join(PUB, "countries", `${code}.js`))).default; } catch { return null; } };
+const SKm = await stateMod("SK"), ATm = await stateMod("AT");
+const skArtAt = C.skArtAt || SKm.artAt, atArtAt = C.atArtAt || ATm.artAt;
+out.sk_art = { all: json(C.SK_ART || SKm.art) };
+out.at_art = { all: json(C.AT_ART || ATm.art) };
 
 // The city and the illustrations of a point: a grid over the three states and the centres of the towns.
 const read = (f) => JSON.parse(fs.readFileSync(path.join(PUB, f), "utf8"));
@@ -63,7 +69,7 @@ for (let lat = 46.3; lat <= 51.2; lat += 0.1) for (let lon = 9.5; lon <= 22.6; l
 for (const id of CITY_IDS) { const c = setCity(id); if (c.view) points.push(c.view); }
 points.push([48.144, 17.11], [48.719, 21.258], [48.998, 21.24], [49.223, 18.74], [48.736, 19.146], [48.312, 18.087], [48.2085, 16.3731], [47.0707, 15.4395],
   [48.3059, 14.2862], [47.8, 13.045], [47.2654, 11.3927], [48.17, 17.06], [48.2, 16.2], [48.25, 16.5]);
-const place = () => Object.fromEntries(points.map(([lat, lon]) => [`${lat},${lon}`, [cityAt(lat, lon), C.skArtAt?.(lat, lon), C.atArtAt?.(lat, lon)].join("|")]));
+const place = () => Object.fromEntries(points.map(([lat, lon]) => [`${lat},${lon}`, [cityAt(lat, lon), skArtAt(lat, lon), atArtAt(lat, lon)].join("|")]));
 loadBounds(read("mesta.json"));
 out.placeNoStates = place();
 loadStates(read("staty.json"));

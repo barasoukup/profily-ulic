@@ -12,14 +12,14 @@
 
 const R = 6378137, ALONG = 20, TIMEOUT = 4000;
 const merc = (lon, lat) => [(R * lon * Math.PI) / 180, R * Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360))];
-// Each city's best orthophoto (evaluation/ortofoto/ZPRAVA.md): Prague IPR 10 cm (summer 2024), Brno's 2025 (tiles of
+// Each city's best orthophoto (evaluation/ortofoto/ZPRAVA.md; the key: city.js laneOrtho of the city, else the state's,
+// countries/<ISO>.js): Prague IPR 10 cm (summer 2024), Brno's 2025 (tiles of
 // about 10 cm, shifted against ČÚZK by 1.06 m east and 3.09 m north: evaluation/ortofoto/posun.mjs), Plzeň's 2024
 // (5 cm, asked at 10 cm, no shift), elsewhere ČÚZK 12.5 cm. shift: where the image shows a point, east and north (m).
 // Slovakia (Bára 15. 11. 2026): the ZBGIS orthophoto mosaic of ÚGKK SR (GKÚ, NLC), its cache in Web Mercator to level 19
 // (about 10 cm on the ground; Bratislava 2023, Košice 2025), CORS for any origin, tiles cached a day.
 // Austria (Bára 16. 11. 2026): basemap.at's orthophoto (Verwaltungsgrundkarte, CC BY 4.0), Web Mercator tiles to level 20
 // (about 10 cm a pixel, the photo 15–30 cm), CORS for any origin.
-const BY_CITY = { praha: "ipr", brno: "brno", plzen: "plzen", slovensko: "sk", austria: "at" };
 export const AT_ORTHO = "https://mapsneu.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857";
 export const SK_ORTHO = "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ortofoto_hres/MapServer";
 const SOURCES = {
@@ -40,8 +40,8 @@ const median = (a) => { const b = a.filter((v) => !Number.isNaN(v)).sort((x, y) 
 // st.D: green less red (derive.js surfaceLook: grass, dry grass or paving beside a roadway read from the lines),
 // st.S: the saturation (max less min of the channels; ortho-osm.js: does a column look like the roadway). decode: a PNG decoder for Node (no canvas there; the evaluation),
 // which asks ČÚZK for a PNG.
-export async function laneImage({ frame, dir, t0, t1, cityId, timeout = TIMEOUT, fetchImpl = fetch, decode = null }) {
-  const key = BY_CITY[cityId] || "cuzk", src = SOURCES[key], normal = [-dir[1], dir[0]];
+export async function laneImage({ frame, dir, t0, t1, source = "cuzk", timeout = TIMEOUT, fetchImpl = fetch, decode = null }) {
+  const key = SOURCES[source] ? source : "cuzk", src = SOURCES[key], normal = [-dir[1], dir[0]];
   const k = Math.cos((frame.toLonLat(0, 0)[1] * Math.PI) / 180);
   // A point on the ground is read where the image shows it: moved by the orthophoto's shift (Web Mercator metres).
   const [sx, sy] = (src.shift || [0, 0]).map((v) => v / k);

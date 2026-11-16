@@ -35,8 +35,9 @@ test("ZBGIS: šířka silnice z osy, parkoviště a tráva jako plochy, ostatní
   assert.deepEqual(out.features.map((f) => f.attributes.CTVUK_KOD), [704, 401]);
 });
 
-test("ilustrace slovenských měst: každý soubor existuje", () => {
-  for (const [town, map] of Object.entries(C.SK_ART)) {
+test("ilustrace slovenských měst: každý soubor existuje", async () => {
+  const SK = (await import("../pilot/public/countries/SK.js")).default;
+  for (const [town, map] of Object.entries(SK.art)) {
     for (const v of Object.values(map)) {
       const f = new URL(`../pilot/public/${town}/${v}.svg`, import.meta.url);
       assert.ok(fs.existsSync(f), `${town}: ${v}`);

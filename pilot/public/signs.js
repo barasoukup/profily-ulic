@@ -5,6 +5,7 @@
 // "Otočit" needs no change of the data. Every sign stands under the part it belongs to (seg.signs), at most
 // MAX_PER_PART per part; rules of the whole street (speed, one-way, zones) under its driving lanes (Bára).
 import { t } from "./i18n.js";
+import { countryOf } from "./countries/index.js";
 
 export const MAX_PER_PART = 2;
 
@@ -77,69 +78,12 @@ export const signChoice = (x) => SIGN_CHOICES[`${x.k}+${x.plate}`];
 export function signLabel(x, country = "CZ") {
   const own = signChoice(x);
   const label = own ? own.label : SIGNS[x.k] + (typeof x.v === "number" ? ` ${x.v} km/h` : "") + (x.plate ? ` (${PLATE_LABEL[x.plate]})` : "");
-  if (country === "AT") return AT_CODE[x.k] ? `${AT_CODE[x.k]} ${label.replace(CZ_CODE, "")}` : label;
-  if (country !== "SK") return label;
-  const code = (own && SK_CHOICE_CODE[`${x.k}+${x.plate}`]) || SK_CODE[x.k];
-  // The Slovak sign's own name (SK_TITLE), not the Czech sign's translated.
-  if (!own && SK_TITLE[x.k]) return `${code} ${SK_TITLE[x.k]}${typeof x.v === "number" ? ` ${x.v} km/h` : ""}${x.plate ? ` (${PLATE_LABEL[x.plate]})` : ""}`;
-  return code ? `${code} ${label.replace(CZ_CODE, "")}` : label;
+  const of = countryOf(country).signs.label;
+  return of ? of(x, own, label, PLATE_LABEL) : label;
 }
-// The Czech number at the start of a label ("IP 4c / B 2 + E 12b ", "IP 12 + O 1 ", "B 20a ").
-const CZ_CODE = /^(?:[A-Z]{1,2} \d+[a-z]?(?: [/+] |\s))+/;
 
-// The signs of the state SK (pilot/public/znacky-SK/, README there): the number for the label, the file of the sign
-// and of its plate. SK has no plates for the manner of parking (272 alone), no one-way sign with contraflow
-// cyclists (321 + plate 514, seen from the exit 230 + plate 507 with a bicycle), and puts a reserved parking
-// space under Zákaz zastavenia (270 + plate 531).
-const SK_CODE = { b1: "231", b11: "232", b8: "233", b30: "233", b20a: "253", b28: "270", b29: "271", oneway: "321 / 230",
-  c8a: "221", c9a: "222", c10a: "223", ip11a: "272", ip11d: "273", ip11e: "273", ip11f: "273", ip11g: "273",
-  ip12: "270 + 531", ztp: "272", ip14a: "309", ip15a: "311", ip20a: "224", zona30: "268", ip26a: "315", ip27a: "317", cyklozona: "323", c7a: "220" };
-const SK_CHOICE_CODE = { "oneway+protismer": "321 + 514 / 230 + 507", "ip20a+kolo": "224 + 515", "ip27a+kola": "317 + 515",
-  "b1+obsluha": "231 + 507", "b11+obsluha": "232 + 507" };
-const SK_FILE = { b1: "231", b11: "232", b8: "233-58", b30: "233-60", b28: "270", b29: "271", c8a: "221", c9a: "222", c10a: "223-51",
-  ip11a: "272", ip11d: "273-85", ip11e: "273-65", ip11f: "273-75", ip11g: "273-55", ip12: "270", ztp: "272",
-  ip14a: "309", ip15a: "311", ip20a: "224", zona30: "268-30", ip26a: "315", ip27a: "317", cyklozona: "323", c7a: "220" };
-// The names of the Slovak signs by their own meaning (vyhláška 30/2020 Z. z.; the review of Slovakia: "323 Zóna pre
-// cyklistov" is "Bicyklová cesta"), in the page's language: in Slovak the official names (sk.js).
-const SK_TITLE = {
-  b1: t("Zákaz vjezdu pro všechna vozidla"),
-  b11: t("Zákaz vjezdu pro všechna motorová vozidla"),
-  b8: t("Zákaz vjezdu pro jízdní kola"),
-  b30: t("Zákaz vstupu pro chodce"),
-  b20a: t("Nejvyšší dovolená rychlost"),
-  b28: t("Zákaz zastavení"),
-  b29: t("Zákaz stání"),
-  oneway: t("Jednosměrná cesta / Zákaz vjezdu"),
-  c7a: t("Cestička pro chodce"),
-  c8a: t("Cyklistická komunikace"),
-  c9a: t("Společná cestička pro chodce a cyklisty"),
-  c10a: t("Oddělená cestička pro chodce a cyklisty"),
-  ip11a: t("Parkování"),
-  ip11d: t("Parkování na chodníku příčně úplně"),
-  ip11e: t("Parkování na chodníku úplně"),
-  ip11f: t("Parkování na chodníku příčně částečně"),
-  ip11g: t("Parkování na chodníku částečně"),
-  ip14a: t("Dálnice"),
-  ip15a: t("Cesta pro motorová vozidla"),
-  ip20a: t("Vyhrazený pruh pro veřejnou dopravu"),
-  zona30: t("Zóna nejvyšší dovolené rychlosti"),
-  ip26a: t("Obytná zóna"),
-  ip27a: t("Pěší zóna"),
-  cyklozona: t("Cyklistická ulice"),
-};
-const SK_SPEEDS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130];
-// The folder of a state's signs.
-// The signs of the state AT (pilot/public/signs-AT/, README there; StVO 1960 § 52–53, Wikimedia Commons, Austrian
-// official works): the label's number and the file. Austria has no sign for parking on the sidewalk, a reserved
-// space or a cycle lane (markings), nor a one-way sign facing the driver (Einbahnstraße is a plate along the street), so those are not drawn.
-const AT_CODE = { b1: "§ 52 Z 1", b11: "§ 52 Z 6c", b8: "§ 52 Z 8c", b30: "§ 52 Z 14b", b20a: "§ 52 Z 10a", b28: "§ 52 Z 13b",
-  b29: "§ 52 Z 13a", c8a: "§ 52 Z 16", c9a: "§ 52 Z 17a", c10a: "§ 52 Z 17a", c7a: "§ 52 Z 17",
-  ip11a: "§ 53 Z 1a", ip14a: "§ 53 Z 8a", ip15a: "§ 53 Z 8c", ip20a: "§ 53 Z 25", zona30: "§ 52 Z 11a", ip26a: "§ 53 Z 9c",
-  ip27a: "§ 53 Z 9a", cyklozona: "§ 53 Z 26", sdilena: "§ 53 Z 9e" };
-const AT_FILE = { b1: "1", b11: "6c", b8: "8c", b30: "14b", b28: "13b", b29: "13a", c8a: "16", c9a: "17a-a", c10a: "17a-b", c7a: "17",
-  ip11a: "HZ1a", ip14a: "HZ8a", ip15a: "HZ8c", ip20a: "HZ25", zona30: "11a", ip26a: "HZ9c", ip27a: "HZ9a", cyklozona: "HZ26", sdilena: "HZ9e" };
-const AT_SPEEDS = [5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130];
-export const signDir = (country = "CZ") => (country === "SK" ? "znacky-SK" : country === "AT" ? "signs-AT" : "znacky");
+// The folder of a state's signs (countries/<ISO>.js signs).
+export const signDir = (country = "CZ") => countryOf(country).signs.dir;
 // The template of a speed sign, its number filled in when drawn.
 export const SPEED_TEMPLATES = new Set(["B20a", "253", "10a"]);
 
@@ -307,56 +251,16 @@ function walkSide(segs, i) {
 // The file of a sign as drawn for a viewer, and its value: oneway becomes IP 4b or B 2 by the direction of
 // the lanes (forward = away from the viewer).
 // seg: the part the sign stands under (a one-way sign follows its lane's direction).
-export function signFile(s, seg, country = "CZ") {
-  const dir = s.dir ?? seg?.dir;
-  if (country === "AT") {
-    // No one-way sign under a lane (Bára 16. 11. 2026): Austria's Einbahnstraße (Hinweiszeichen 10) is the plate along
-    // the street, there is none facing the driver.
-    if (s.k === "oneway") return null;
-    if (s.k === "b20a") return AT_SPEEDS.includes(s.v) ? `10a-${s.v}` : "10a";
-    return AT_FILE[s.k] || null;
-  }
-  if (country === "SK") {
-    if (s.k === "oneway") return dir === "backward" ? "230" : "321-30";
-    if (s.k === "b20a") return SK_SPEEDS.includes(s.v) ? `253-${s.v}` : "253";
-    if (s.k === "c10a") return s.walk === "left" ? "223-51" : "223-50";
-    return SK_FILE[s.k] || null; // a sign SK has not (the shared zone): none
-  }
-  // IP 4c (vyhl. 205/2025): one-way with contraflow cyclists, in place of IP 4b + E 12a.
-  if (s.k === "oneway") return dir === "backward" ? "B2" : s.plate === "protismer" ? "IP4c" : "IP4b";
-  // Oblique stalls have the sign of perpendicular ones (IP 11b, Bára).
-  if (s.k === "ip11a") return s.plate === "podelne" ? "IP11c" : s.plate ? "IP11b" : "IP11a";
-  if (s.k === "ip27a" && s.plate === "kola") return "IZ6a-kola";
-  // C 10a: the design has the pedestrians on the right; the side of the path (walk) when the data know it.
-  if (s.k === "c10a") return s.walk === "left" ? "C10a" : "C10a-chodci-vpravo";
-  if (s.k === "b20a") return [5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130].includes(s.v) ? `B20a-${s.v}` : "B20a";
-  return { b1: "B1", b2: "B2", b8: "B8", b11: "B11", b28: "B28", b29: "B29", b30: "B30", c8a: "C8a", c9a: "C9a", c10a: "C10a",
-    ip11d: "IP11d", ip11e: "IP11e", ip11f: "IP11f", ip11g: "IP11g",
-    ip12: "IP12", ztp: "IP12-ztp", ip14a: "IZ1a", ip15a: "IZ2a", ip20a: "IP20a-symbol", zona30: "IZ8a-30",
-    ip26a: "IZ5a", ip27a: "IZ6a", cyklozona: "IZ9a", sdilena: "IZ10a", c7a: "C7a" }[s.k] || s.k;
-}
+export const signFile = (s, seg, country = "CZ") => countryOf(country).signs.file(s, seg);
 // The plate under a sign: contraflow cyclists are E 12a under IP 4b and E 12b under B 2; E 13 carries a text.
-export function plateFile(s, seg, country = "CZ") {
-  if (country === "AT") return null;
-  if (country === "SK") {
-    if (s.plate === "protismer") return (s.dir ?? seg?.dir) === "backward" ? "507-bicykle" : "514";
-    if (s.plate === "obsluha") return "obsluha";
-    if (s.plate === "kolo" || s.plate === "kola") return "515-bicykle";
-    return { ip12: "531", ztp: "ztp" }[s.k] || null;
-  }
-  if (s.plate === "protismer") return (s.dir ?? seg?.dir) === "backward" ? "E12b" : null; // IP 4c says it itself
-  if (s.plate === "obsluha") return "E13";
-  if (s.plate === "kolo") return "C8a"; // the round bike symbol under the bus of IP 20a
-  return null;
-}
+export const plateFile = (s, seg, country = "CZ") => countryOf(country).signs.plate(s, seg);
 
 // Signs a state has drawings for (Fable and the hostile review of Austria): in SK and AT the derived signs without a
 // file of the state (the shared zone, a one-way in Austria, parking on the sidewalk) are dropped, and in AT those with a
 // plate too (its Zusatztafeln are not drawn: B 1 alone would ban all entry, not all but local traffic).
 export function drawable(x, seg, country = "CZ") {
-  if (country !== "SK" && country !== "AT") return true;
-  if (!signFile(x, seg, country)) return false;
-  return !(country === "AT" && x.plate);
+  const of = countryOf(country).signs.drawable;
+  return of ? of(x, seg) : true;
 }
 export function keepDrawable(profile, country = "CZ") {
   for (const s of profile.segments || []) if (s.signs) { s.signs = s.signs.filter((x) => drawable(x, s, country)); if (!s.signs.length) delete s.signs; }
