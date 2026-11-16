@@ -715,6 +715,7 @@ function pitchedLow(info) {
 }
 
 // Side outline of a Prague building: floors, storey height, roof floors and the height of each part (cm).
+const ARCADE_D = 260; // how far the drawn arcade reaches from the facade into the house (cm)
 const FAMILY_LOOKS = new Set(["vila", "kostka", "novyrd", "statek"]);
 // Roof pitch of the family houses: the low hipped roof of the "cube", the steep one of a new house.
 const ROOF_PITCH = { kostka: Math.tan((18 * Math.PI) / 180), novyrd: Math.tan((38 * Math.PI) / 180), mestan: Math.tan((52 * Math.PI) / 180), kostel: Math.tan((55 * Math.PI) / 180) };
@@ -1229,7 +1230,8 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       }
     }
     // The windows above stand in the axes of the door and of the ground-floor window.
-    const groundAt = (125 + EDGE - 30 - win.w) / 2;
+    // Behind an arcade (drawn over the front 2.6 m) the ground-floor window moves back, clear of it.
+    const groundAt = info?.arcade ? ARCADE_D + 25 : (125 + EDGE - 30 - win.w) / 2;
     if (kind !== "statek") window(groundAt, f.ground * win.sill + (style === "sikma" ? 40 : 0), win.w, win.h * f.storey, 0);
     const front = Math.max(65, 35 + win.w / 2); // the front axis keeps clear of the facade
     for (let k = 1; k < full; k++) {
@@ -1299,7 +1301,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
   // --- An arcade (podloubí) where OSM has one by the facade (derive.js, info.arcade): the vaulted opening under the
   // front of the house seen from the side, a pillar at the street; doors and windows behind it are not seen.
   if (info?.arcade && style !== "hala") {
-    const a1 = 250, ah = Math.max(200, f.ground - 150);
+    const a1 = ARCADE_D - 10, ah = Math.max(200, f.ground - 150);
     box(10, a1 + 10, 0, ah + (a1 - 10) / 2 + 10, wall); // the wall over what stood there
     box(10, a1, 0, ah, "#5d564c");
     arch((10 + a1) / 2, ah, (a1 - 10) / 2, "#5d564c");
