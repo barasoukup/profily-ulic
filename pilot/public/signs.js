@@ -223,12 +223,17 @@ export function deriveSigns(profile, tags = {}, ctx = {}) {
     const walk = segs.map((s, i) => [s, i]).filter(([s]) => WALK_TYPES.has(s.type)).sort((a, b) => b[0].width - a[0].width)[0];
     if (rules.length && walk) walk[0].signs = [...(walk[0].signs || []), ...rules].slice(0, MAX_PER_PART);
   }
-  // A path for pedestrians (C 7a): the clicked way is a footway, or a path for pedestrians only; under its widest
-  // walking part when the profile has no lanes of its own (Bára).
-  const footway = tags.highway === "footway" || (tags.highway === "path" && tags.foot === "designated" && !yes(tags.bicycle));
-  if (footway && !lanes.length && tags.segregated !== "yes") {
-    const walk = segs.map((s, i) => [s, i]).filter(([s]) => s.type === "chodnik").sort((a, b) => b[0].width - a[0].width)[0];
-    if (walk && (walk[0].signs || []).length < MAX_PER_PART) walk[0].signs = [...(walk[0].signs || []), { k: "c7a" }];
+  // A footway or a path without lanes of its own (Bára after Fable, 16. 11. 2026: OSM calls ordinary sidewalks and park
+  // paths footways too): with cyclists on it (bicycle=yes|designated) the path for pedestrians and cyclists (C 9a,
+  // divided C 10a) unless a part already shows it; for pedestrians only C 7a just where OSM has the sign
+  // (traffic_sign C 7a / SK 220, or foot=designated, which OSM keeps for signed ways). Under its widest walking part.
+  const path = tags.highway === "footway" || tags.highway === "path";
+  if (path && !lanes.length) {
+    const walk = segs.map((s, i) => [s, i]).filter(([s]) => WALK_TYPES.has(s.type)).sort((a, b) => b[0].width - a[0].width)[0];
+    const put = (x) => { if (walk && (walk[0].signs || []).length < MAX_PER_PART) walk[0].signs = [...(walk[0].signs || []), x]; };
+    const shown = segs.some((s) => (s.signs || []).some((x) => x.k === "c9a" || x.k === "c10a"));
+    if (yes(tags.bicycle)) { if (!shown) put(tags.segregated === "yes" ? { k: "c10a", walk: walkSide(segs, walk?.[1]) } : { k: "c9a" }); }
+    else if (/\bC ?7a\b|(^|[:;,])220\b/i.test(String(tags.traffic_sign || "")) || tags.foot === "designated") put({ k: "c7a" });
   }
   // No parking / no stopping on a kerb: on the outermost lane of that side (parking:<side>:restriction=
   // no_stopping|no_parking). The way's right is the profile's right when the profile looks along the way

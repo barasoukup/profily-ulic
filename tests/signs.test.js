@@ -142,7 +142,7 @@ test("značky státu SK: každá značka a tabulka má soubor, popisek se sloven
   assert.equal(signLabel({ k: "b1" }), "B 1 Zákaz vjezdu všech vozidel", "CZ beze změny");
 });
 
-test("C 10a ukazuje chodce na jejich straně (dál od vozovky), IZ 10a podle značky, C 7a na pěší cestě", () => {
+test("C 10a ukazuje chodce na jejich straně (dál od vozovky), IZ 10a podle značky, C 7a na pěší cestě se značkou v OSM", () => {
   const seg = (type, width = 3) => ({ type, width });
   const p = { segments: [seg("budova"), seg("stezka_sdilena"), seg("pruh"), seg("pruh"), seg("chodnik")] };
   deriveSigns(p, { highway: "residential", segregated: "yes" });
@@ -155,9 +155,16 @@ test("C 10a ukazuje chodce na jejich straně (dál od vozovky), IZ 10a podle zna
   assert.equal(signFile({ ...c10, walk: "right" }, p.segments[1], "SK"), "223-50");
   assert.deepEqual(streetSigns({ highway: "residential", traffic_sign: "CZ:IZ10a" }), [{ k: "sdilena" }]);
   assert.equal(signFile({ k: "sdilena" }, {}, "SK"), null, "SK sdílenou zónu nemá");
-  const f = { segments: [seg("zelen"), seg("chodnik", 2.5), seg("zelen")] };
-  deriveSigns(f, { highway: "footway" });
-  assert.deepEqual(f.segments[1].signs, [{ k: "c7a" }]);
+  // A footway: C 7a only where OSM has the sign (Bára after Fable); with cyclists the shared path.
+  const f = () => ({ segments: [seg("zelen"), seg("chodnik", 2.5), seg("zelen")] });
+  const plain = f(); deriveSigns(plain, { highway: "footway" });
+  assert.equal(plain.segments[1].signs, undefined);
+  const signed = f(); deriveSigns(signed, { highway: "footway", traffic_sign: "CZ:C7a" });
+  assert.deepEqual(signed.segments[1].signs, [{ k: "c7a" }]);
+  const sk = f(); deriveSigns(sk, { highway: "footway", foot: "designated" });
+  assert.deepEqual(sk.segments[1].signs, [{ k: "c7a" }]);
+  const bikes = f(); deriveSigns(bikes, { highway: "footway", bicycle: "yes" });
+  assert.deepEqual(bikes.segments[1].signs, [{ k: "c9a" }]);
 });
 
 test("pěší zóna bez pruhů (celá šířka chodník z pasportu): značka zóny pod nejširší pěší částí (Poštová)", () => {

@@ -703,8 +703,9 @@ function draw() {
     : tr("Takhle ulice vypadá podle dat {data}. Nesedí? Opravte je, nebo nám chybu nahlaste.", { data: cutData() });
   $("#btn-fix").textContent = state.fixing ? tr("Hotovo") : tr("Opravit data");
   if (state.stav) {
-    // Under the street's name: the width, and in Stav what the data are (an estimate, a map that failed…).
-    $("#profile-sub").textContent = tr("Celkem {w}", { w: fmtM(totalWidth(state.mode === "navrh" ? state.navrh : state.stav)) }) + (state.mode === "navrh" ? "" : tr(state.cut?.note || ""));
+    // Under the street's name: the width, and in every mode what the data of the street are (an estimate, a map that
+    // failed…; Bára 16. 11. 2026 after Fable: an estimate is not forgotten while designing).
+    $("#profile-sub").textContent = tr("Celkem {w}", { w: fmtM(totalWidth(state.mode === "navrh" ? state.navrh : state.stav)) }) + tr(state.cut?.note || "");
   }
   if (!state.stav) {
     box.innerHTML = `<div class="empty">

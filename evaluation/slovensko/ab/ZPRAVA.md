@@ -297,7 +297,10 @@ Neopraveno, na rozhodnutí nebo na později:
 - **Úřední názvy slovenských značek:** chce to tabulku podle vyhl. 30/2020 Z. z.
 - **Legenda zdrojů na Slovensku:** ukazuje i zdroje, které tam nenastanou.
 - **Vypnuté větve v kódu:** `?tm=1`, `?zvolen=1`, `P.cars`, `P.areaGreen`, `?vypln=1`.
-- **Rozhodnutí Báry z dřívějška:**
-  - C 7a pod pěšinou;
-  - překreslené české značky;
-  - poznámka jen pod názvem.
+
+Přehodnoceno s Bárou (16. 11. 2026):
+- **C 7a:** pod pěší cestou jen se značkou v OSM (`traffic_sign` C 7a / SK 220 nebo `foot=designated`). Na pěší cestě
+  s cyklisty se kreslí stezka pro chodce a cyklisty (C 9a, oddělená C 10a).
+- **Značky zóny pod nejširším chodníkem ulice bez pruhů:** ponechané všude.
+- **Poznámka o datech pod názvem:** ve všech režimech (i Návrh a Porovnat).
+- **Překreslené české značky:** ponechané.
