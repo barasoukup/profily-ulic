@@ -374,10 +374,10 @@ function measured(w, c, lines, solid = [], fine = true) {
     pieces.splice(q, 1, { s: p.s, e: m, w: m - p.s }, { s: m, e: p.e, w: p.e - m });
     kinds.splice(q, 1, "pruh", "pruh");
   }
-  // A piece at a kerb (117 marked carriageways, 15 left as the rules had them: 16. 11. 2026; a wide lane between
-  // lines was tried too and gave fewer right lane counts): at a kerb where the rules had a shoulder, wider than a lane: a lane and the shoulder behind an edge line the
-  //   detector missed (Kukulova, Čuprova, Plzeňská, Kladská: the rules' shoulder was there too); the lane as wide as
-  //   the others found here (else 3.5 m), the shoulder the rest, an estimate.
+  // A piece at a kerb wider than a lane, where the rules had a shoulder, is a lane and the shoulder behind an edge
+  // line the detector missed (Kukulova, Čuprova, Plzeňská, Kladská; 15 of 117 marked carriageways were left as the
+  // rules had them, 16. 11. 2026): the lane as wide as the others found here (else 3.5 m), the shoulder the rest, an
+  // estimate. A wide lane between two lines was tried too and gave fewer right lane counts.
   const lanesHere = pieces.filter((p, q) => kinds[q] === "pruh").map((p) => p.w).sort((x, y) => x - y);
   const usual = Math.min(4.25, Math.max(3, lanesHere.length ? lanesHere[lanesHere.length >> 1] : 3.5));
   for (let q = pieces.length - 1; q >= 0; q--) {
