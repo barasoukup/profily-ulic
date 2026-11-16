@@ -271,6 +271,8 @@ sources.events.addEventListener("retry", (e) => {
   if (document.body.classList.contains("loading")) status(tr("Server {server} neodpovídá, zkouším znovu ({n}/{of})…", { server: city.abroad && e.detail.host ? e.detail.host : city.server, n: e.detail.attempt, of: e.detail.of }));
 });
 window.cutAt = cutAt; // handy for testing from the console
+// The replay of recorded data (evaluation/replay/harness.js) reads what a visitor would see.
+if (globalThis.PROFILY_REPLAY) Object.assign(globalThis.PROFILY_REPLAY, { state, exportSvgs, restore, render });
 
 async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wantName = null) {
   logEdits(); // what was done with the previous cut, before it is replaced
