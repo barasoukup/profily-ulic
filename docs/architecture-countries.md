@@ -152,7 +152,9 @@ Líně už dnes (a dál) jen zdroje měst a hledání.
    - Dál `npm test` a `evaluation/ortofoto-osm/regrese.mjs`.
 1. **Levné a nezávislé:** `city.id === "praha"` / `"brno"` → vlastnosti města (`fix.roadOnPath`, `slowServer`,
    `builtAge`, vrstva v `maplayers`); smazat nepoužívaný `storeSuffix`.
-2. **Kredit u zdroje** a `validate.js` podle seznamu zdrojů.
+2. **Kredit u zdroje** a `validate.js` podle seznamu zdrojů a států: `cleanSources` propustí klíče všech zdrojů
+   (dnes zahazuje `skTown`, `atTown`, `zbgis`, `skEdges`, `sk`, `at`), `cleanCut` bere meze ze `staty.json`
+   / `bounds` států (dnes jen 48–52° s. š., 12–19° v. d.). Obě chyby jsou živé, viz níže.
 3. **`countries/CZ.js`, `SK.js`, `AT.js`, `default.js`** (až po sloučení `austria` a `jihlava-pasport`). Kontrola:
    mimo `countries/` žádné `country === `, `["SK","AT"].includes`, `city.country || "CZ"`,
    `["slovensko","austria"].includes(city.id)`, `id === "austria"`. `tests/i18n.test.js` čte i `countries/`.
@@ -173,7 +175,7 @@ Odhad: krok 0 skoro den, kroky 1–4 další den až dva, 5–6 menší.
 - **Tichá změna výsledků:** proto přehrávání nahraných dat, ne živý sběr.
 - **Uložené řezy, odkazy, log:** id `cesko`/`slovensko`/`austria`/`cizina` zůstávají pro zbytek státu; nová id měst jen v kroku 4b.
 
-## Chyby nalezené při oponentuře (opravit hned, mimo přestavbu)
+## Chyby nalezené při oponentuře (opraví krok 2; Bára 16. 11. 2026: v rámci přestavby, ne zvlášť)
 
 - `validate.js` `cleanCut` bere jen šířku 48–52° a délku 12–19°: řez v Košicích, Prešově, Komárně nebo Grazu se po
   obnovení stránky, změně jazyka nebo načtení souboru ztratí.
