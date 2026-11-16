@@ -1,6 +1,8 @@
 // The boundaries of the states the app has OSM tiles of (Bára 15. 11. 2026), so a cut outside the cities of
 // mesta.json takes its state (city.js cityAt): "cesko" (RÚIAN Stát, ČÚZK), "slovensko" (ZBGIS of ÚGKK SR, layer
-// Slovenská republika); a point in neither is "cizina". Simplified to about 30 m, written into pilot/public/staty.json and kept in the repository
+// Slovenská republika), "austria" (Eurostat GISCO 2024, 1 : 1 000 000, © EuroGeographics; the BEV's WFS is off, Bára
+// 16. 11. 2026); a point in none is "cizina". The order matters: Czechia and Slovakia first (their borders are exact,
+// GISCO's coarser), so a point by their border with Austria takes theirs. Simplified to about 30 m, written into pilot/public/staty.json and kept in the repository
 // (boundaries change rarely): node tools/build_staty.mjs
 import fs from "node:fs";
 
@@ -22,10 +24,19 @@ async function rings(url, params) {
   }
 }
 
+// Austria from GISCO's countries of 1 : 1 000 000 (one file of all, about 60 MB; its MultiPolygon's outer rings).
+async function gisco(cntr) {
+  const all = await (await fetch("https://gisco-services.ec.europa.eu/distribution/v2/countries/geojson/CNTR_RG_01M_2024_4326.geojson")).json();
+  const g = all.features.find((f) => f.properties.CNTR_ID === cntr).geometry;
+  const polys = g.type === "MultiPolygon" ? g.coordinates : [g.coordinates];
+  return polys.map((p) => p[0].map(([x, y]) => [+x.toFixed(4), +y.toFixed(4)]));
+}
+
 const out = {
   cesko: await rings(CZ, { where: "1=1", outFields: "nazev" }),
   slovensko: await rings(SK, { geometry: "19.70,48.67", geometryType: "esriGeometryPoint", sr: 4326, layers: "all:0", tolerance: 2,
     mapExtent: "16.8,47.7,22.6,49.7", imageDisplay: "800,600,96", returnGeometry: true }),
+  austria: await gisco("AT"),
 };
 for (const [id, r] of Object.entries(out)) console.log(id, r.length, "kruhů,", r.reduce((a, x) => a + x.length, 0), "bodů");
 fs.writeFileSync(new URL("../pilot/public/staty.json", import.meta.url), JSON.stringify(out));

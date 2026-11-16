@@ -80,7 +80,7 @@ test("město podle polohy řezu", async () => {
   assert.equal(C.setCity("plzen").adjective, "plzeňské");
   C.setCity("praha");
 });
-test("stát podle polohy řezu: Česko, Slovensko, cizina", async () => {
+test("stát podle polohy řezu: Česko, Slovensko, Rakousko, cizina", async () => {
   const C = await import("../pilot/public/city.js");
   C.loadBounds(JSON.parse(read("mesta.json")));
   C.loadStates(JSON.parse(read("staty.json")));
@@ -89,13 +89,16 @@ test("stát podle polohy řezu: Česko, Slovensko, cizina", async () => {
   assert.equal(C.cityAt(48.146736, 17.106998), "slovensko"); // Bratislava, Suché mýto
   assert.equal(C.cityAt(48.7206, 21.258), "slovensko"); // Košice, Hlavná
   assert.equal(C.cityAt(49.7497, 18.6328), "cizina"); // Cieszyn
-  assert.equal(C.cityAt(48.2082, 16.3738), "cizina"); // Wien
+  assert.equal(C.cityAt(48.2085, 16.3731), "austria"); // Wien, Stephansplatz
+  assert.equal(C.cityAt(47.0707, 15.4395), "austria"); // Graz
+  assert.equal(C.cityAt(48.137, 11.575), "cizina"); // München
   const sk = C.setCity("slovensko");
   assert.ok(sk.abroad && !sk.techMap && !sk.dataName);
   assert.equal(sk.country, "SK");
   assert.equal(C.setCity("brno").country, "CZ");
   assert.equal(C.setCity("cesko").country, "CZ");
   assert.equal(C.setCity("cizina").country, null);
+  assert.equal(C.setCity("austria").country, "AT");
   C.setCity("slovensko");
   assert.match(C.creditLines(sk, { orthoCity: "sk" })[0], /^Data: budovy © GKÚ Bratislava \(ZBGIS, CC BY 4\.0\) · ortofoto © GKÚ Bratislava, NLC/);
   // Elsewhere abroad no data of its own to credit: the line starts with OSM.
