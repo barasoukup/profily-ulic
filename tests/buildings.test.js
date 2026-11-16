@@ -81,6 +81,8 @@ test("panelák ne před 1955, ne u zděných zdí, panelová novostavba je moder
   assert.equal(buildingStyle({ levels: 5, built: 1938, km: 99, block: slab }), "funkce");
   assert.equal(buildingStyle({ levels: 5, built: 1980, solid: 1, km: 99, block: slab }), "funkce");
   assert.equal(buildingStyle({ levels: 5, built: 1980, km: 99, block: slab }), "plocha");
+  assert.equal(buildingStyle({ levels: 4, built: 1962, km: 99, block: slab }), "typovy");
+  assert.equal(buildingStyle({ levels: 4, built: 1962, panel: 1, km: 99, block: slab }), "plocha");
   assert.equal(buildingStyle({ levels: 5, built: 2008, panel: 1, km: 99 }), "moderni");
 });
 

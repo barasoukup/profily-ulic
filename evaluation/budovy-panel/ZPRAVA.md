@@ -29,6 +29,10 @@ už jako kanceláře).
   (dřív byl panelákem každý neznámý dům od 3 podlaží).
 - Kancelář, úřad, škola: v kartě okraje „kancelářská budova“, ne „panelový dům“.
 
-## Co zůstává
-99 domů s kódem 10 se dál kreslí jako panelák (hlavně 60. léta, 53). Data je od paneláku neodliší. K posouzení
-z ulice je výběr 25 domů v `k-foceni.md`.
+## Street View: 25 domů s kódem 10 kreslených jako panelák (Bára 16. 11. 2026)
+Výběr a verdikty v `k-foceni.md`. Panelák jen 2 (Hradec Králové, 1970 a 1980). Zděných 19, z toho 13 se šikmou
+střechou a komíny (typové domy 50.–60. let), 4 s plochou střechou, 2 spíš zděné; 3 nejdou poznat. U 2 starých domů
+má RÚIAN rok 1990 (nejspíš rekonstrukce).
+
+Změna: dům dokončený 1958–69 bez panelů v RÚIAN je nový vzhled **zděný bytový dům 50.–60. let** (`typovy`: šikmá
+taškovou střecha, komíny, hladká omítka bez ozdob). Od 1970 zůstává kód 10 panelákem (oba paneláky ve vzorku).

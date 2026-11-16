@@ -70,6 +70,7 @@ export const EN = {
   "Pravý okraj": "Right edge",
   "kancelářská budova": "office building",
   "dům 50. let (sorela)": "1950s house (socialist realism)",
+  "zděný bytový dům 50.–60. let": "brick block of flats of the 1950s–60s",
   "vila, starší rodinný dům": "villa, older family house",
   "rodinný dům 60.–80. let": "family house of the 1960s–80s",
   "nový rodinný dům": "new family house",
