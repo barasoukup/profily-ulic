@@ -25,6 +25,8 @@ export const DE = {
   "pasport komunikací © {town}": "Straßenkataster © {town}",
   "pasportu zeleně města {town}, technické mapy ČÚZK a OSM": "des Grünflächenkatasters von {town}, der technischen Karte des ČÚZK und von OSM",
   "pasportu komunikací města {town}, technické mapy ČÚZK a OSM": "des Straßenkatasters von {town}, der technischen Karte des ČÚZK und von OSM",
+  "pasportu komunikací a mapy města {town}, ZBGIS a OSM": "des Straßenkatasters und der Karte von {town}, von ZBGIS und OSM",
+  "mapy města {town}, ZBGIS a OSM": "der Karte von {town}, von ZBGIS und OSM",
   "pasportu komunikací města {town}, ZBGIS a OSM": "des Straßenkatasters von {town}, von ZBGIS und OSM",
   "z pasportu města": "aus dem Kataster der Stadt",
   "Příčné profily ulic v Česku a na Slovensku od fasády k fasádě z technických map měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.": "Straßenquerschnitte in Tschechien und der Slowakei von Fassade zu Fassade, aus den technischen Karten der Städte und des ČÚZK, aus RÚIAN, ZBGIS und OpenStreetMap. Bearbeiten Sie einen Querschnitt, vergleichen Sie ihn mit dem Bestand und speichern Sie ihn als Bild.",

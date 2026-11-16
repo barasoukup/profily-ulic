@@ -520,6 +520,8 @@ export const SK = {
   "pasport komunikací © {town}": "pasport komunikácií © {town}",
   "pasportu zeleně města {town}, technické mapy ČÚZK a OSM": "pasportu zelene mesta {town}, technickej mapy ČÚZK a OSM",
   "pasportu komunikací města {town}, technické mapy ČÚZK a OSM": "pasportu komunikácií mesta {town}, technickej mapy ČÚZK a OSM",
+  "pasportu komunikací a mapy města {town}, ZBGIS a OSM": "pasportu komunikácií a mapy mesta {town}, ZBGIS a OSM",
+  "mapy města {town}, ZBGIS a OSM": "mapy mesta {town}, ZBGIS a OSM",
   "pasportu komunikací města {town}, ZBGIS a OSM": "pasportu komunikácií mesta {town}, ZBGIS a OSM",
   "dům 50. let (sorela)": "dom 50. rokov (sorela)",
   "zděný bytový dům 50.–60. let": "murovaný bytový dom 50.–60. rokov",

@@ -694,6 +694,8 @@ export const EN = {
   "pasport komunikací © {town}": "road passport © {town}",
   "pasportu zeleně města {town}, technické mapy ČÚZK a OSM": "the green passport of {town}, the technical map of ČÚZK and OSM",
   "pasportu komunikací města {town}, technické mapy ČÚZK a OSM": "the road passport of {town}, the technical map of ČÚZK and OSM",
+  "pasportu komunikací a mapy města {town}, ZBGIS a OSM": "the road passport and the map of {town}, ZBGIS and OSM",
+  "mapy města {town}, ZBGIS a OSM": "the map of {town}, ZBGIS and OSM",
   "pasportu komunikací města {town}, ZBGIS a OSM": "the road passport of {town}, ZBGIS and OSM",
   "z pasportu města": "from the town's passport",
 };
