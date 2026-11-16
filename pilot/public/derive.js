@@ -1137,11 +1137,28 @@ export function buildingAt(osm, frame, p) {
     const height = parseFloat(el.tags.height);
     // The roof's shape and the year built, where OSM has them (the look of a house abroad: profile.js buildingStyle).
     const year = parseInt(String(el.tags.start_date ?? "").slice(0, 4), 10);
-    return { levels: levels ? levels + (roof || 0) : undefined, height: height || undefined, type: el.tags.building, block: blockShape(b, all),
+    return { levels: levels ? levels + (roof || 0) : undefined, height: height || undefined, type: el.tags.building, block: blockShape(b, all), axis: mainAxis(b.ring),
       roofShape: el.tags["roof:shape"], start: year > 1000 ? year : undefined };
   }
   return null;
 }
+
+// The main axis of one footprint (principal component of its outline): its direction and the house's length and
+// width along and across it (m).
+function mainAxis(pts) {
+  const mx = pts.reduce((a, q) => a + q[0], 0) / pts.length, my = pts.reduce((a, q) => a + q[1], 0) / pts.length;
+  let sxx = 0, syy = 0, sxy = 0;
+  for (const [x, y] of pts) { sxx += (x - mx) ** 2; syy += (y - my) ** 2; sxy += (x - mx) * (y - my); }
+  const ang = Math.atan2(2 * sxy, sxx - syy) / 2, u = [Math.cos(ang), Math.sin(ang)];
+  const along = pts.map(([x, y]) => (x - mx) * u[0] + (y - my) * u[1]), across = pts.map(([x, y]) => -(x - mx) * u[1] + (y - my) * u[0]);
+  return { u, length: Math.max(...along) - Math.min(...along), width: Math.max(...across) - Math.min(...across) };
+}
+// A house standing with its gable to the street (a village house, Bára 16. 11. 2026): a narrow footprint, clearly
+// longer than wide, its long side running away from the street (along the cut).
+const ARCADE_COVER = new Set(["arcade", "colonnade", "building_arcade"]);
+const GABLE_MAX_W = 11, GABLE_RATIO = 1.4, GABLE_COS = 0.85;
+const gableToStreet = (axis, normal) => !!axis && axis.width <= GABLE_MAX_W && axis.length >= GABLE_RATIO * axis.width
+  && Math.abs(axis.u[0] * normal[0] + axis.u[1] * normal[1]) / Math.hypot(...normal) >= GABLE_COS;
 
 // The block a building belongs to: the buildings joined to it wall to wall (a vertex within
 // TOUCH of another's outline), and the block's extent along its main axis (length, width, m),
@@ -1920,6 +1937,11 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     if (b?.type && b.type !== "yes") edges[`${side}Info`].type = b.type;
     if (b?.roofShape) edges[`${side}Info`].roofShape = b.roofShape;
     if (b?.start) edges[`${side}Info`].start = b.start;
+    if (gableToStreet(b?.axis, normal)) edges[`${side}Info`].across = 1;
+    // An arcade under the house (Bára 16. 11. 2026: only where the data say so): an OSM way tagged covered=arcade,
+    // colonnade or building_arcade crossing the cut by the facade (5 m in front of it to 8 m behind).
+    const edgeT = side === "left" ? kept.at(-1).e : kept[0].s, out = side === "left" ? 1 : -1;
+    if (cross.some((c) => ARCADE_COVER.has(c.way.tags?.covered) && (c.t - edgeT) * out > -5 && (c.t - edgeT) * out < 8)) edges[`${side}Info`].arcade = 1;
   }
   // Permeable paving from OSM (Bára 12. 11. 2026, rainwater 5.1.2): grass pavers (surface=grass_paver) of an area the
   // part's middle lies on (parking: about 300 in Czechia), or of a way crossing the part (service roads, footways,

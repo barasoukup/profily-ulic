@@ -183,11 +183,25 @@ Počet podlaží budov na okrajích profilu se v Praze bere z vrstvy IPR *Podla�
 podlaží, celkem, příznak nové budovy), v Brně z Průzkumu budov KAM, v Plzni z 3D budov, jinde z RÚIAN ČÚZK
 (`gis.js` `ruianBuilding`: podlaží, využití, rok dokončení, druh konstrukce), jinak z OSM `building:levels`
 (+ `roof:levels`). Výška se kreslí 3,5 m na podlaží (přesná výška z OSM `height` nebo z 3D budov), střešní podlaží
-užší a tmavší. Šest vzhledů domu (šikmá střecha, funkcionalistický činžák, moderní bytový dům, panelák, nízký dům,
-hala) se volí podle tvaru bloku z OSM, údajů o domě a stáří zástavby: v Praze z vrstvy IPR *Vývoj zástavby*
+užší a tmavší. Sedmnáct vzhledů domu (činžák se šikmou střechou, měšťanský dům na náměstí, sorela, zděný bytový dům 50.–60. let, škola, kostel, garáž, funkcionalistický činžák, panelák, moderní
+bytový dům, kancelářská budova, městský dům, vila, rodinný dům 60.–80. let, nový rodinný dům, venkovský dům štítem do
+ulice, hala; Bára 16. 11. 2026, nové kreslené na základě starších v `profile.js` `BASE_STYLE`) se volí podle tvaru bloku z OSM, údajů o domě a stáří zástavby: v Praze z vrstvy IPR *Vývoj zástavby*
 (statické dlaždice z `tools/build_vyvoj.mjs`), jinde z roku dokončení v RÚIAN (do 1919 a 1946–57 šikmá střecha,
-od 1958 panelová éra, od 1996 moderní dům). Vnitřní město a sídliště podle vzdálenosti od centra má každé město
-vlastní (`city.js` `innerKm`, `estateKm`).
+1948–57 sorela, 1958–69 zděný bytový dům do 5 podlaží (i deska), jinak od 1955 panelová éra, od 1996 moderní dům;
+v Praze a Brně rok, zdi a využití domu z RÚIAN ČÚZK dalším dotazem při kliknutí, podlaží dál z IPR a KAM; stáří
+zástavby IPR zůstává v Praze pro domy, u kterých RÚIAN rok nemá). Vnitřní město a sídliště podle vzdálenosti od centra má každé město
+vlastní (`city.js` `innerKm`, `estateKm`). Panelák ne (Bára 16. 11. 2026, `evaluation/budovy-panel/ZPRAVA.md`): u domu
+dokončeného před 1955, u zdí z cihel, kamene, monolitu či dřeva podle RÚIAN (kreslí se plochý činžák), u panelového
+domu po 1995 (moderní dům); bez centra města (zbytek ČR, Slovensko) bez roku jen podle tvaru desky nebo od 8 podlaží.
+Kód konstrukce 10 („kámen, cihly, tvárnice vč. kombinací“) nic neříká (na Lesné ho má třetina paneláků). Rodinný
+dům (RÚIAN rodinný dům, OSM house, IPR typ 6) podle roku: do 1945 vila, 1946–89 „kostka“, od 1990 nový; štítem do
+ulice (úzký půdorys, delší strana napříč ulicí, `derive.js` `gableToStreet`) a starý mimo vnitřní město venkovský dům,
+stejně zemědělská usedlost RÚIAN (dřív hala); v řadě starší městský dům. Bytový dům 1948–57 (RÚIAN) sorela, 1958–69 bez panelů v RÚIAN zděný bytový dům 50.–60. let se šikmou střechou (Street View 25 domů, `evaluation/budovy-panel/k-foceni.md`).
+Kancelář, úřad, hotel (OSM nebo RÚIAN využití 5, 11, 14, 15) kancelářská budova; OSM school a kindergarten škola,
+OSM church, chapel aj. kostel, OSM garage(s) a RÚIAN garáž garáž. Starý dům (RÚIAN do 1919, v Praze zastavěno do
+1840) do 5 podlaží v samém centru (`city.coreKm`, výchozí 0,3 km od náměstí, Praha 0,6 km) je měšťanský dům.
+Podloubí jen podle dat (Bára): cesta OSM `covered=arcade|colonnade|building_arcade` přes řez u fasády (5 m před ní až
+8 m za ní, `derive.js`) → u jakéhokoli domu klenutý průchod v přízemí, v kartě „s podloubím (OSM)“. Věžák zvlášť nekreslíme: vysoký dům stejného stáří a využití vypadá po podlažích stejně (Bára).
 
 ## Brno
 

@@ -7,11 +7,13 @@ import { PASSPORT_NAMES } from "./towns/pasporty-names.js";
 import { t } from "./i18n.js";
 
 const EDGE_KINDS = new Set(["budova", "stavba", "zahrada", "zelen", "voda", "parkoviste", "plot", "volno"]);
-const EDGE_STYLES = new Set(["sikma", "funkce", "moderni", "plocha", "nizky", "hala", "centrum", "centrum-obchod", "sidliste", "sidliste-lodzie", "rd"]);
+// The looks of profile.js BUILDING_STYLES (tests/buildings.test.js checks they match) and the old names of saved files.
+export const EDGE_STYLES = new Set(["sikma", "sorela", "typovy", "funkce", "plocha", "moderni", "kancelar", "nizky", "vila", "kostka", "novyrd",
+  "statek", "mestan", "skola", "kostel", "garaz", "hala", "centrum", "centrum-obchod", "sidliste", "sidliste-lodzie", "rd"]);
 
 const num = (v, lo, hi) => typeof v === "number" && Number.isFinite(v) && v >= lo && v <= hi;
 // Building facts at the edges that end up in SVG attributes (heights, floors, area).
-const INFO_NUMBERS = ["height", "levels", "cornice", "roof", "roofType", "iprKind", "area", "km", "period", "built", "panel", "house", "tint"];
+const INFO_NUMBERS = ["height", "levels", "cornice", "roof", "roofType", "iprKind", "area", "km", "period", "built", "panel", "solid", "house", "farm", "office", "garage", "across", "arcade", "tint"];
 
 export function cleanProfile(p, what = "profil") {
   if (!Array.isArray(p?.segments) || !p.segments.length) throw new Error(`${what}: ${t("chybí části profilu")}`);

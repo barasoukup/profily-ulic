@@ -191,11 +191,24 @@ export function parkingStrip(paths, depth, roadway, lat) {
 // A building of RÚIAN (ČÚZK, CORS open, the same WGS 84 as OSM) at a point, for any Czech town: floors,
 // use as the look of the house (industrial, farm, production and storage buildings read as a hall,
 // IPR typ 3; cottages and garages as small low buildings, typ 6), the year it was completed (old
-// houses carry a summary date of 1910–1919, "before 1919") and its walls of panels (druh konstrukce 4,
-// 41–43: a panel house whatever else is known).
+// houses carry a summary date of 1910–1919, "before 1919") and its walls: concrete wall panels (druh
+// konstrukce 4, 41, 43) make a panel house; bricks, stone, monolith or wood (1–3, 5, 6, 11, 42, 61–66) rule one out
+// (evaluation/budovy-panel). Code 10 ("kámen, cihly, tvárnice vč. kombinací") says nothing: a third of the panel
+// houses of Brno-Lesná carry it.
 const RUIAN_SO = "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Prohlizeci_sluzba_nad_daty_RUIAN/MapServer/3/query";
-export const RUIAN_HALL = new Set([1, 2, 12, 13]), RUIAN_LOW = new Set([8, 18]);
-const RUIAN_PANEL = new Set([4, 41, 42, 43]);
+// A farmstead (zemědělská usedlost, 2) is a village house, not a hall (Bára 16. 11. 2026).
+export const RUIAN_HALL = new Set([1, 12, 13]), RUIAN_LOW = new Set([8, 18]);
+const RUIAN_PANEL = new Set([4, 41, 43]), RUIAN_SOLID = new Set([1, 2, 3, 5, 6, 11, 42, 61, 62, 63, 64, 65, 66]);
+// Offices, authorities, schools, hotels (občanská vybavenost 5 and 15, ubytování 11, administrativa 14): drawn as an
+// office building where OSM does not say what the house is.
+const RUIAN_OFFICE = new Set([5, 11, 14, 15]);
+// What RÚIAN tells of the look of a house (also Plzeň's own copy of RÚIAN, towns/plzen.js).
+export const ruianLook = (use, walls, dokonceni) => ({
+  kind: RUIAN_HALL.has(use) ? 3 : RUIAN_LOW.has(use) ? 6 : undefined,
+  built: dokonceni ? new Date(dokonceni).getUTCFullYear() : undefined, panel: RUIAN_PANEL.has(walls) || undefined, solid: RUIAN_SOLID.has(walls) || undefined,
+  house: use === 7 || use === 8 || undefined, // rodinný dům, stavba pro rodinnou rekreaci: a pitched roof (profile.js)
+  farm: use === 2 || undefined, office: RUIAN_OFFICE.has(use) || undefined, garage: use === 18 || undefined,
+});
 export async function ruianBuilding(lat, lon) {
   const json = await query(RUIAN_SO, {
     geometry: `${lon},${lat}`, geometryType: "esriGeometryPoint", inSR: "4326", spatialRel: "esriSpatialRelIntersects",
@@ -204,10 +217,5 @@ export async function ruianBuilding(lat, lon) {
   const a = json.features?.[0]?.attributes;
   if (!a) return {};
   const { pocetpodlazi: floors, zpusobvyuzitikod: use, dokonceni, druhkonstrukcekod: walls, zastavenaplocha: area } = a;
-  return {
-    cornice: floors || undefined, roof: 0, total: floors || 0,
-    kind: RUIAN_HALL.has(use) ? 3 : RUIAN_LOW.has(use) ? 6 : undefined, newBuild: false, area: area || undefined,
-    built: dokonceni ? new Date(dokonceni).getUTCFullYear() : undefined, panel: RUIAN_PANEL.has(walls) || undefined,
-    house: use === 7 || use === 8 || undefined, // rodinný dům, stavba pro rodinnou rekreaci: a pitched roof (profile.js)
-  };
+  return { cornice: floors || undefined, roof: 0, total: floors || 0, newBuild: false, area: area || undefined, ...ruianLook(use, walls, dokonceni) };
 }
