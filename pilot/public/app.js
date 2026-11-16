@@ -40,7 +40,9 @@ const flag = (l) => `<svg class="flag" viewBox="0 0 30 20" aria-hidden="true">${
     b.innerHTML = `${flag(l)}<span>${LANGS[l]}</span>`;
     if (l === lang) b.setAttribute("aria-current", "true");
     // The page reloads in the other language: the mode goes along (Fable: Návrh fell back to Stav).
-    b.onclick = () => { if (l === lang) return; try { sessionStorage.setItem("profily-rezim", state.mode); } catch {} setLang(l); };
+    // The tab's own cut goes along too (Bára: the profile was derived again): the browser keeps one saved cut for all
+    // its tabs, the last one derived, so another tab's reload would not find its own.
+    b.onclick = () => { if (l === lang) return; try { sessionStorage.setItem("profily-rezim", state.mode); if (state.stav) sessionStorage.setItem("profily-tab", JSON.stringify({ cut: state.cut, stav: state.stav, navrh: state.navrh, navrhEdited: state.navrhEdited })); } catch {} setLang(l); };
     list.append(b);
   }
 }
@@ -330,7 +332,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     const inZps = z.status === "fulfilled" ? z.value : undefined;
     const laneImg = li.status === "fulfilled" ? li.value : null;
     // The same image tells grass from paving beside a roadway read from the DTM's lines (derive.js linePieces).
-    const args = { center: [0, 0], dir, half, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho, lanesImage: laneImg?.st, roadOnPath: city.id === "praha" };
+    const args = { center: [0, 0], dir, half, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho, lanesImage: laneImg?.st, roadOnPath: city.id === "praha", noParkGuess: city.country === "SK" };
     let result = deriveProfile(args);
     // No surface of the street from the technical map (no answer, nothing here, nothing at the axis): the carriageway
     // read on the orthophoto near where OSM expects it, sidewalks to the OSM buildings (ortho-osm.js; Bára 15. 11.
@@ -2076,7 +2078,10 @@ window.profilyReady = true; // errors.js: from now on a failure is not a failed 
 await loadSprites();
 let linked = location.hash.startsWith("#rez=") ? parseCut(location.hash) : null;
 try {
-  const saved = JSON.parse(localStorage.getItem(STORE) || "null");
+  // This tab's cut kept over a change of language comes first (once), then the browser's saved one.
+  let tab = null;
+  try { tab = JSON.parse(sessionStorage.getItem("profily-tab") || "null"); sessionStorage.removeItem("profily-tab"); } catch {}
+  const saved = tab || JSON.parse(localStorage.getItem(STORE) || "null");
   // A reload of the same cut (no design in the link) keeps the work saved in this browser.
   const same = (a, b) => a && b && a.lat.toFixed(6) === b.lat.toFixed(6) && a.lon.toFixed(6) === b.lon.toFixed(6) && Math.round(a.bearing) === Math.round(b.bearing);
   const design = linked && designParams(location.hash);

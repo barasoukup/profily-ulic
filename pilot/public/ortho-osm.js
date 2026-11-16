@@ -310,12 +310,43 @@ export function kerbsOnImage(st, o, road, mapRuns = [], edges = []) {
   return { ...k, lim, cols, image: k.why.A !== "osm" || k.why.B !== "osm" };
 }
 
+// ---------- parked cars ----------
+// A row of parked cars along a kerb (Bára: Kozia, Drevená took them for the sidewalk; Hlavná, Vojtecha Spanyola had
+// parking estimated where no car stands): along the street the strip's brightness changes car by car (roofs,
+// windows, shadows, gaps), the roadway's beside them stays even. The strip [a, b] across the cut: the spread along the
+// street of its mean brightness, against the same of a strip of roadway by the axis.
+const CAR_W = 2.0, CAR_SPREAD = 14, CAR_RATIO = 1.8;
+function alongSpread(st, a, b) {
+  const i0 = Math.max(0, Math.round((a - st.t0) / st.res)), i1 = Math.min(st.nt - 1, Math.round((b - st.t0) / st.res));
+  if (i1 - i0 < 3) return NaN;
+  const rows = [];
+  for (let j = 0; j < st.nu; j++) {
+    let sum = 0, n = 0;
+    for (let i = i0; i <= i1; i++) { const v = st.L[j * st.nt + i]; if (!Number.isNaN(v)) { sum += v; n++; } }
+    if (n > (i1 - i0) / 2) rows.push(sum / n);
+  }
+  if (rows.length < st.nu / 2) return NaN;
+  // Over 1 m pieces along the street (a car is 4–5 m): the spread of their means.
+  const per = Math.max(1, Math.round(1 / st.res)), m = [];
+  for (let j = 0; j + per <= rows.length; j += per) m.push(rows.slice(j, j + per).reduce((x, y) => x + y, 0) / per);
+  const mean = m.reduce((x, y) => x + y, 0) / m.length;
+  return Math.sqrt(m.reduce((x, y) => x + (y - mean) ** 2, 0) / m.length);
+}
+export function carsSeen(st, a, b, axis) {
+  if (!usable(st)) return false;
+  const strip = alongSpread(st, a, b), road = alongSpread(st, axis - 0.8, axis + 0.8);
+  return Number.isFinite(strip) && strip >= CAR_SPREAD && strip >= CAR_RATIO * (Number.isFinite(road) ? road : 0);
+}
+
 // ---------- the surfaces for derive.js ----------
 // The MTVU codes the profile knows: 701 the roadway, 702 a sidewalk, 1003 a paved area, 601 a building. A sidewalk runs
 // from the kerb to the facade, at most SIDEWALK_MAX (the rest greenery where the image is mostly green, else a
 // paved area up to REST_MAX m, else nothing); with no facade within reach, only where OSM tags one (sidewalk:width,
 // else the default SIDEWALK m), then nothing (the profile ends there). Where OSM says there is no sidewalk the space
 // is treated as that rest.
+// PIECE_GREEN: a piece between two lines of a town's map is green from this share of green columns (treetops over a
+// sidewalk make some).
+const PIECE_GREEN = 0.35;
 const ALONG = 10, SIDEWALK = 2.5, SIDEWALK_MAX = 6, REST_MAX = 12, HOUSE = 5, GREEN_AREA = 0.1; // evaluation/ortofoto-osm/zelen.mjs: on ČÚZK 12.5 cm 67 % (Prague) and 82 % (Brno) of the metres right
 const STREET = /^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|living_street|service|pedestrian|road)(_link)?$/;
 // frame: derive.js localFrame of the cut (its centre is [0, 0]); dir: the street's direction in it; way: the clicked
@@ -366,7 +397,20 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   // The order is the priority (derive.js classify takes the first polygon containing a point): the carriageway, the
   // OSM buildings, OSM's green areas, water and allotments, then the sidewalks and the rest up to the houses. A house in
   // a park stays a house; where OSM has a lawn beside the street it is greenery; water and allotments end the profile.
-  const polys = [rect(701, "vozovka (ortofoto a OSM)", k.A, k.B)];
+  // Parked cars at the outer kerbs: inside the carriageway (its own stalls, drawn before it: the first surface wins)
+  // or beyond the kerb the image found (the cars were taken for the edge: the kerb lies 2 m further out).
+  const cars = [], carsOut = {};
+  for (const [side, sg] of [["A", -1], ["B", 1]]) {
+    if (pair && side === (pair.t < o.own.t ? "A" : "B")) continue; // towards the other carriageway: a median, no kerb
+    const kb = k[side];
+    if (carsSeen(st, ...(sg < 0 ? [kb, kb + CAR_W] : [kb - CAR_W, kb]), o.own.t)) cars.push(rect(704, "stání (auta na ortofotu)", ...(sg < 0 ? [kb, kb + CAR_W] : [kb - CAR_W, kb])));
+    else if (carsSeen(st, ...(sg < 0 ? [kb - CAR_W, kb] : [kb, kb + CAR_W]), o.own.t)) {
+      cars.push(rect(704, "stání (auta na ortofotu)", ...(sg < 0 ? [kb - CAR_W, kb] : [kb, kb + CAR_W])));
+      carsOut[side] = kb + sg * CAR_W;
+    }
+  }
+  const polys = [...cars, rect(701, "vozovka (ortofoto a OSM)", k.A, k.B)];
+  polys.cars = cars.length;
   if (k2) polys.push(rect(701, "vozovka (ortofoto a OSM)", k2.A, k2.B));
   for (const { el } of o.outlines) {
     const rings = [el.geometry, ...(el.holes || [])].map((r) => r.map((g) => frame.toXY(g.lon, g.lat)));
@@ -417,26 +461,43 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   for (const [side, sg] of [["A", -1], ["B", 1]]) {
     // Beyond the other carriageway its kerb and its sidewalk tags count.
     const out = k2 && side === pSide, rd = out ? road2 : road;
-    const kerb = out ? k2[side] : k[side], f = o.facade[side], says = rd.sidewalk[side];
+    const kerb = out ? k2[side] : carsOut[side] ?? k[side], f = o.facade[side], says = rd.sidewalk[side];
     const far = f !== null ? f : says === "no" ? null : says || rd.sidewalkW[side] ? kerb + sg * (rd.sidewalkW[side] || SIDEWALK) : null;
     if (far === null || sg * (far - kerb) < 0.3) continue;
     const span = (x, y) => (sg < 0 ? [y, x] : [x, y]);
     // A sidewalk of at most SIDEWALK_MAX; the rest up to the house is some other area (a front garden, a yard, a lawn:
     // MTVU in Prague and Brno: 34 of 42 such stretches over 6 m hold a sidewalk of at most 6 m).
     let swEnd = says === "no" ? kerb : Math.abs(far - kerb) > SIDEWALK_MAX ? kerb + sg * SIDEWALK_MAX : far;
-    // A line of the map across the sidewalk (its edge against green or a front garden; not the house's own front)
-    // ends it there.
-    if (swEnd !== kerb) {
-      const cut = edgeT.filter((t) => sg * (t - kerb) >= 1 && sg * (swEnd - t) > 0 && Math.abs(far - t) > 0.5).sort((x, y) => sg * (x - y))[0];
-      if (cut !== undefined) { swEnd = cut; edgeUsed = true; }
+    // Lines of the map across the stretch from the kerb to the house (not the house's own front): its pieces, each a
+    // sidewalk or green by the image (Bára, Štúrova in Piešťany: the sidewalks lie by the houses, the green strip by
+    // the kerb) or by the map's symbol in it. Without such lines a sidewalk from the kerb as before.
+    const roadGreen = (() => { if (!k.cols) return 0; const g = []; for (let i = k.cols.ti(o.own.t - 1.5); i <= k.cols.ti(o.own.t + 1.5); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.green[i])) g.push(k.cols.green[i]); return g.length ? g.reduce((x, y) => x + y, 0) / g.length : 0; })();
+    const cuts = says === "no" ? [] : edgeT.filter((t) => sg * (t - kerb) >= 1 && sg * (far - t) > 0.5).sort((x, y) => sg * (x - y));
+    if (cuts.length) {
+      edgeUsed = true;
+      const ends = [kerb, ...cuts, far];
+      for (let q = 0; q + 1 < ends.length; q++) {
+        const [a, b] = span(ends[q], ends[q + 1]);
+        const sym = symbolAt(a, b);
+        const put = (p) => polys.push(p);
+        if (SYMBOL_LABEL[sym]) { put({ ...rect(sym, SYMBOL_LABEL[sym], a, b), guess: false }); continue; }
+        const g = [];
+        if (k.cols) for (let i = k.cols.ti(a); i < k.cols.ti(b); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.green[i])) g.push(k.cols.green[i]);
+        // Against the roadway's own share by the axis (the Slovak mosaic is greenish all over).
+        const green = g.length && g.reduce((x, y) => x + y, 0) / g.length >= PIECE_GREEN + roadGreen;
+        // The last piece up to a house farther than a sidewalk: as the rest (a front garden, a yard).
+        if (q === ends.length - 2 && b - a > SIDEWALK_MAX) rest(a, b);
+        else put(green ? rect(401, "zeleň (ortofoto a mapa)", a, b) : rect(702, "chodník (ortofoto a mapa)", a, b));
+      }
+    } else {
+      if (swEnd !== kerb) {
+        // The map's symbol in the sidewalk's stretch: a lawn there is a green strip, not a sidewalk.
+        const sym = symbolAt(...span(kerb, swEnd));
+        if (sym === 401) { polys.push({ ...rect(401, SYMBOL_LABEL[401], ...span(kerb, swEnd)), guess: false }); edgeUsed = true; }
+        else polys.push(rect(702, "chodník (ortofoto a OSM)", ...span(kerb, swEnd)));
+      }
+      if (swEnd !== far) rest(...span(swEnd, far));
     }
-    if (swEnd !== kerb) {
-      // The map's symbol in the sidewalk's stretch: a lawn there is a green strip, not a sidewalk.
-      const sym = symbolAt(...span(kerb, swEnd));
-      if (sym === 401) { polys.push({ ...rect(401, SYMBOL_LABEL[401], ...span(kerb, swEnd)), guess: false }); edgeUsed = true; }
-      else polys.push(rect(702, "chodník (ortofoto a OSM)", ...span(kerb, swEnd)));
-    }
-    if (swEnd !== far) rest(...span(swEnd, far));
     // A house found only beside the cut (on a line u ≠ 0): its front drawn across the cut, so the profile ends at it.
     if (f !== null && o.facadeU[side] !== 0) polys.push({ ...rect(601, "budova (OSM, vedle řezu)", ...span(far, far + sg * HOUSE)), guess: false });
   }
