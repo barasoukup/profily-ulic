@@ -23,17 +23,26 @@ import { mountSearch } from "./search.js";
 import { t as tr, num, pct, numField, readNum, lang, LANGS, setLang, translatePage, attribution } from "./i18n.js";
 
 translatePage();
-// The other languages, each a button with its code and its own name (CS, SK, EN).
+// The languages in a drop-down menu with flags (Bára 16. 11. 2026: there will be more). The flag only helps to find
+// a language: a language is not a state (en has the British one).
+const FLAGS = {
+  cs: '<rect width="30" height="10" fill="#fff"/><rect y="10" width="30" height="10" fill="#d7141a"/><path d="M0 0 15 10 0 20z" fill="#11457e"/>',
+  sk: '<rect width="30" height="7" fill="#fff"/><rect y="7" width="30" height="6" fill="#0b4ea2"/><rect y="13" width="30" height="7" fill="#ee1c25"/><path d="M6.5 4.5h8v6.2c0 2.6-1.9 4.2-4 5.3-2.1-1.1-4-2.7-4-5.3z" fill="#ee1c25" stroke="#fff" stroke-width=".8"/><path d="M10.5 6.5v6.5M8.6 8.4h3.8M8.1 10.2h4.8" stroke="#fff" stroke-width=".9"/><path d="M7.4 13.2c1-1.2 2-1.2 3.1-.3 1.1-.9 2.1-.9 3.1.3-.9 1.1-1.9 1.8-3.1 2.4-1.2-.6-2.2-1.3-3.1-2.4z" fill="#0b4ea2"/>',
+  en: '<rect width="30" height="20" fill="#012169"/><path d="M0 0 30 20M30 0 0 20" stroke="#fff" stroke-width="4"/><path d="M0 0 30 20M30 0 0 20" stroke="#c8102e" stroke-width="1.4"/><path d="M15 0v20M0 10h30" stroke="#fff" stroke-width="6"/><path d="M15 0v20M0 10h30" stroke="#c8102e" stroke-width="3.6"/>',
+};
+const flag = (l) => `<svg class="flag" viewBox="0 0 30 20" aria-hidden="true">${FLAGS[l] || '<rect width="30" height="20" fill="#ccc"/>'}</svg>`;
 {
-  const first = document.querySelector("#btn-lang");
-  for (const other of Object.keys(LANGS).filter((l) => l !== lang)) {
-    const b = first.cloneNode();
+  const menu = document.querySelector("#lang-menu"), list = menu.querySelector("#lang-list");
+  menu.querySelector("summary").innerHTML = `${flag(lang)}<span>${lang.toUpperCase()}</span>`;
+  for (const l of Object.keys(LANGS)) {
+    const b = document.createElement("button");
+    b.lang = l;
+    b.innerHTML = `${flag(l)}<span>${LANGS[l]}</span>`;
+    if (l === lang) b.setAttribute("aria-current", "true");
     // The page reloads in the other language: the mode goes along (Fable: Návrh fell back to Stav).
-    Object.assign(b, { id: "", textContent: other.toUpperCase(), title: LANGS[other], lang: other, onclick: () => { try { sessionStorage.setItem("profily-rezim", state.mode); } catch {} setLang(other); } });
-    b.setAttribute("aria-label", LANGS[other]);
-    first.before(b);
+    b.onclick = () => { if (l === lang) return; try { sessionStorage.setItem("profily-rezim", state.mode); } catch {} setLang(l); };
+    list.append(b);
   }
-  first.remove();
 }
 
 const HALF = 40; // half-length of the cut used for reading the data (m)
@@ -371,6 +380,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
         if (p.built) info.built = p.built;
         if (p.panel) info.panel = 1;
         if (p.house) info.house = 1;
+        // What the building is for (ZBGIS, Slovakia), where OSM says no more than "a building".
+        if (p.type && (!info.type || info.type === "yes")) info.type = p.type;
       } catch {}
       // The age of the area (a default for the building's look, overruled by what is known of the house).
       try { const y = await sources.vyvoj(info.point[1], info.point[0]); if (y) info.period = y; } catch {}
@@ -405,7 +416,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     // With the profile made without the map, the other notes come after its own (a junction, a design started anew).
     const extra = orthoOsm ? [result.junction && junctionNote, dropped && droppedNote].filter(Boolean).map((x) => " " + x).join("") : "";
     // The map has surfaces here, none at the axis (the outage says nothing of it): that comes first.
-    const axisNote = orthoOsm && !out.text.includes(orthoNote) ? tr("Technická mapa tu nemá povrch ulice.") + " " + orthoNote + (out.text ? " " + out.text : "") : "";
+    const axisNote = orthoOsm && !out.text.includes(orthoNote) ? (city.abroad ? "" : tr("Technická mapa tu nemá povrch ulice.") + " ") + orthoNote + (out.text ? " " + out.text : "") : "";
     if (axisNote) status(axisNote + extra, out.error ? "error" : undefined);
     else if (out.text) status(out.text + extra, out.error ? "error" : undefined);
     else if (dropped) status(tr("Nový řez: návrh začíná znovu od stavu ulice (předchozí návrh zůstává ve sdíleném odkazu nebo uloženém souboru, pokud jste ho uložili)."));
@@ -447,8 +458,10 @@ function showCutInfo() {
   // With a Mapy.com key the panorama opens here; without one, a link to Mapy.com at the cut.
   const pano = $("#pano-link");
   pano.href = `https://mapy.com/cs/zakladni?x=${state.cut.lon.toFixed(7)}&y=${state.cut.lat.toFixed(7)}&z=19&ovl=8`;
-  pano.hidden = !!mapyKey;
-  $("#pano-btn").hidden = !mapyKey;
+  // Mapy.com has panoramas of the Czech Republic only (Bára 16. 11. 2026).
+  const cz = (city.country || "CZ") === "CZ";
+  pano.hidden = !!mapyKey || !cz;
+  $("#pano-btn").hidden = !mapyKey || !cz;
 }
 
 // ---------- street panorama (Mapy.com) ----------

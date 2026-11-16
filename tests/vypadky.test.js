@@ -185,8 +185,8 @@ test("mimo Česko se technické mapy ČÚZK neptá a neříká, že neodpovídá
   // The national DTM is not tried (sources.js national): nothing to fail.
   assert.deepEqual(await national(s, "x", undefined, failing), s);
   const r = outage({ surfaces: ok(s), lines: ok(await sources.lines()), parking: ok(await sources.parking()) });
-  assert.equal(r.note, " · mimo Česko, jen odhad z OSM");
-  assert.match(r.text, /^Mimo Česko technickou mapu nemáme/);
+  assert.equal(r.note, " · odhad z ortofota a OSM");
+  assert.match(r.text, /^Technickou mapu tu zatím nemáme/);
   assert.equal(r.error, false);
   setCity("praha");
 });
@@ -199,4 +199,14 @@ test("domy na Slovensku: druh a výška ze ZBGIS", async () => {
   assert.equal(zbgisBuilding({ results: [{ layerId: 41, attributes: { "Typ, účel využitia budovy": "Sklad", "Výška nad povrchom (m)": "9" } }] }).kind, 3);
   assert.ok(zbgisBuilding({ results: [{ layerId: 41, attributes: { "Typ, účel využitia budovy": "Rodinný dom", "Výška nad povrchom (m)": "7,5" } }] }).house);
   assert.deepEqual(zbgisBuilding({ results: [] }), {});
+});
+
+test("domy ZBGIS: vzhled paneláku jen bytovým domům, jiné užití jako kanceláře", async () => {
+  const { zbgisType } = await import("../pilot/public/towns/slovensko.js");
+  assert.equal(zbgisType("Bytový dom"), "apartments");
+  assert.equal(zbgisType("Administratívna budova"), "office");
+  assert.equal(zbgisType("Hotel"), "commercial");
+  assert.equal(zbgisType("Rodinný dom"), undefined);
+  assert.equal(zbgisType("Sklad"), undefined);
+  assert.equal(zbgisType("Neznámy"), undefined);
 });

@@ -61,7 +61,7 @@ export function outage({ surfaces, lines, parking }, dataName = city.dataName, {
   const failed = !s;
   const empty = s && !s.features?.length;
   // Outside the Czech Republic no technical map is asked (towns/slovensko.js): an estimate, and no outage.
-  if (s?.abroad) return { note: mark(" · mimo Česko, jen odhad z OSM"), text: t("Mimo Česko technickou mapu nemáme, profil je jen odhad."), error: false };
+  if (s?.abroad) return { note: city.id === "slovensko" ? mark(" · odhad z ortofota a OSM") : mark(" · jen odhad z OSM"), text: t("Technickou mapu tu zatím nemáme, profil je odhad."), error: false };
   const note = failed ? mark(" · technická mapa neodpověděla, jen odhad")
     : s.fallback ? mark(" · plochy z technické mapy ČÚZK")
     : empty ? (s.dmvsFailed ? mark(" · technická mapa neodpověděla, jen odhad") : s.linesOnly ? mark(" · technická mapa tu má jen čáry, jen odhad") : mark(" · mimo technickou mapu, jen odhad"))

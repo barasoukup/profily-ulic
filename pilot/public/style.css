@@ -53,7 +53,11 @@ button.primary { background: var(--text); color: #fff; border-color: var(--text)
 button.primary:hover { background: #3a3a37; }
 
 /* The other language, as a short code. */
-button.lang { padding: 6px 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: var(--muted); }
+.flag { width: 20px; height: 13px; flex: none; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,.12); }
+.lang-menu .menu-list { min-width: 170px; }
+.lang-menu .menu-list button { display: flex; align-items: center; gap: 10px; }
+.lang-menu .menu-list button[aria-current] { background: var(--bg); font-weight: 600; }
+.lang { padding: 6px 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: var(--muted); }
 
 .seg-toggle { display: inline-flex; background: var(--bg); border-radius: 9px; padding: 3px; gap: 2px; }
 .seg-toggle button { border: 0; border-radius: 7px; background: transparent; padding: 5px 14px; color: var(--muted); }
@@ -316,7 +320,7 @@ footer a { color: inherit; }
   .brand-mark { width: 32px; height: 32px; }
   #btn-share { margin-left: auto; }
   .menu summary { padding: 8px 10px; }
-  button.lang { padding: 8px 8px; }
+  .lang { padding: 8px 8px; }
   .ico { width: 18px; height: 18px; }
   .seg-toggle { order: 10; flex-basis: 100%; }
   .seg-toggle button { flex: 1; padding: 8px 6px; font-size: 14px; }

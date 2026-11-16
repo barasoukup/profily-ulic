@@ -4,8 +4,9 @@
 export const SK = {
   // ---------- outside Czechia, Slovakia (ZBGIS), sources not answering ----------
   "Načítám ortofoto…": "Načítavam ortofoto…",
-  "Mimo Česko technickou mapu nemáme, profil je jen odhad.": "Mimo Česka technickú mapu nemáme, profil je len odhad.",
-  " · mimo Česko, jen odhad z OSM": " · mimo Česka, len odhad z OSM",
+  " · odhad z ortofota a OSM": " · odhad z ortofotomapy a OSM",
+  " · jen odhad z OSM": " · len odhad z OSM",
+  "Technickou mapu tu zatím nemáme, profil je odhad.": "Technickú mapu tu zatiaľ nemáme, profil je odhad.",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "Místo se nepodařilo načíst ze ZBGIS. Zkuste to znovu.": "Miesto sa nepodarilo načítať zo ZBGIS. Skúste to znova.",
   "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Obrubníky sú podľa OSM a domy z OSM, šírky overte.",
@@ -511,6 +512,7 @@ export const SK = {
   "Obrázek PNG": "Obrázok PNG",
   "Vektor SVG": "Vektor SVG",
   "Soubor": "Súbor",
+  "Jazyk": "Jazyk",
   "Uložit profil (JSON)": "Uložiť profil (JSON)",
   "Nahlásit chybu v datech…": "Nahlásiť chybu v údajoch…",
   "Načíst profil…": "Načítať profil…",

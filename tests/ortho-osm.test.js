@@ -122,3 +122,26 @@ test("ortofoto a OSM: staré značky zákazu stání nerozšíří vozovku, mapa
   const polys = orthoOsmPolys({ osm: osm(), frame, dir, way: osm().elements[0], st: image(), mapRuns: [{ code: 702, s: -5, e: -2 }, { code: null, s: -2, e: 2 }, { code: 702, s: 2, e: 5 }] });
   assert.ok(polys.kerbs.A >= -2 && polys.kerbs.B <= 2, JSON.stringify(polys.kerbs));
 });
+
+test("ortofoto a OSM: ulice ze dvou jednosměrných vozovek má obě vozovky a střední pás (Suché mýto)", () => {
+  const els = [
+    { type: "way", id: 1, tags: { highway: "tertiary", oneway: "yes", lanes: "2", name: "Suché mýto" }, geometry: [ll(0, -60), ll(0, 60)] },
+    { type: "way", id: 2, tags: { highway: "tertiary", oneway: "yes", lanes: "2", name: "Suché mýto" }, geometry: [ll(-10, 60), ll(-10, -60)] },
+    house(8, 16), house(-26, -18),
+  ];
+  const polys = orthoOsmPolys({ osm: { elements: els }, frame, dir, way: els[0], st: null });
+  assert.ok(polys.kerbs.pair, JSON.stringify(polys.kerbs));
+  assert.equal(polys.filter((p) => p.code === 701).length, 2);
+  // Between the carriageways a median, not a sidewalk.
+  assert.ok(polys.some((p) => p.label === "dělicí pás (odhad)"));
+  const p = deriveProfile({ center: [0, 0], dir, half: 40, polys, osm: { elements: els }, frame, way: els[0] });
+  assert.ok(!p.segments.some((s) => s.type === "nezname"), JSON.stringify(p.segments.map((s) => s.type)));
+});
+
+test("ortofoto a OSM: velký dům, jehož zadní strana je mimo okno, ulici ukončí (Drevená)", () => {
+  const els = [osm().elements[0], house(8, 16), { ...house(-90, -8), id: 999 }];
+  const o = osmAlong(els, (lon, lat) => { const [x, y] = frame.toXY(lon, lat); return [-x, y]; }, 1);
+  assert.ok(o.facade.A !== null || o.facade.B !== null);
+  assert.ok([o.facade.A, o.facade.B].some((f) => f !== null && Math.abs(Math.abs(f) - 8) < 0.1), JSON.stringify(o.facade));
+  assert.ok([o.facade.A, o.facade.B].some((f) => f !== null && Math.abs(Math.abs(f) - 8) < 0.1 && o.buildings.some((b) => b.s < -60 || b.e > 60)));
+});

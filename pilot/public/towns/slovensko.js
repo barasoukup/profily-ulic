@@ -14,6 +14,13 @@ const HALL = new Set(["Výrobná, technologická budova", "Sklad", "Poľnohospod
   "Zariadenie na železnici na uskladnenie/opravu", "Údržbárska dielňa pre lietadlá", "Športová hala, telocvičňa", "Zimný štadión", "Nákupné stredisko", "Tržnica"]);
 const LOW = new Set(["Garáž", "Spoločné garáže", "Šopa, kôlňa", "Transformovňa", "Skleník", "Chata", "Poľovnícka chata", "Kontrolná budova, vrátnica"]);
 const HOUSE = new Set(["Rodinný dom", "Chata", "Fara, farská budova"]);
+// Where people live: the panel house look fits these only (Bára 16. 11. 2026); any other known use is drawn as an
+// office or a public building (profile.js OFFICE_TYPES), hotels and schools alike.
+const RESIDENTIAL = new Set(["Bytový dom", "Ubytovňa, penzión", "Domov dôchodcov", "Detský domov", "Kláštor", "Kňažský seminár"]);
+const OFFICE = new Set(["Administratívna budova", "Banka", "Budova štátnej alebo verejnej správy", "Mestský, obecný úrad", "Správna a súdna budova", "Radnica", "Veľvyslanectvo, konzulát"]);
+// An OSM building type for the use (profile.js reads info.type).
+export const zbgisType = (use) => !use || use === "Neznámy" || HOUSE.has(use) ? undefined : RESIDENTIAL.has(use) ? "apartments"
+  : HALL.has(use) || LOW.has(use) ? undefined : OFFICE.has(use) ? "office" : "commercial";
 
 // The building of ZBGIS at a point (a facade of the cut), as RÚIAN's (gis.js ruianBuilding) for profile.js: identify
 // within about half a metre (ZBGIS answers its query operation with 503).
@@ -28,6 +35,7 @@ export function zbgisBuilding(json) {
     cornice: floors, fromHeight: true, roof: 0, total: floors || 0, height: height > 0 ? height : undefined, use: use || undefined,
     kind: HALL.has(use) ? 3 : LOW.has(use) ? 6 : undefined, newBuild: false, area: area > 0 ? Math.round(area) : undefined,
     house: HOUSE.has(use) || undefined,
+    type: zbgisType(use),
   };
 }
 async function podlaznost(lat, lon) {
