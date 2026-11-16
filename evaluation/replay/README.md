@@ -25,3 +25,8 @@ Co jde v Node, hlídá `tables.mjs`.
 
 Vzorek `sample.json` (`sample.mjs`): 369 řezů na Slovensku, v Rakousku, v Praze, v Brně a za hranicemi. České řezy
 mimo Prahu a Brno (DMVS) až po odstávce DMVS (od 19. 11. 2026) jako `sample-cz.json`.
+
+Známá nahodilost: ikona značky, která se v běhu načítá poprvé, občas do exportu SVG nestihne (řez 5, Bratislava,
+rychlost 70). Rozdíl jen v `svg` jednoho řezu je proto potřeba ověřit opakovaným přehráním toho řezu (`&from=5&to=5`).
+Dva body za hranicí (Mosonmagyaróvár, Komárom) ulici nenajdou a nechají předchozí řez, jejich `restored` se proto
+s `credits` neshoduje; to není chyba aplikace.
