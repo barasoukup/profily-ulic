@@ -189,11 +189,13 @@ export function parkingStrip(paths, depth, roadway, lat) {
 // A building of RÚIAN (ČÚZK, CORS open, the same WGS 84 as OSM) at a point, for any Czech town: floors,
 // use as the look of the house (industrial, farm, production and storage buildings read as a hall,
 // IPR typ 3; cottages and garages as small low buildings, typ 6), the year it was completed (old
-// houses carry a summary date of 1910–1919, "before 1919") and its walls of panels (druh konstrukce 4,
-// 41–43: a panel house whatever else is known).
+// houses carry a summary date of 1910–1919, "before 1919") and its walls: concrete wall panels (druh
+// konstrukce 4, 41, 43) make a panel house; bricks, stone, monolith or wood (1–3, 5, 6, 11, 42, 61–66) rule one out
+// (evaluation/budovy-panel). Code 10 ("kámen, cihly, tvárnice vč. kombinací") says nothing: a third of the panel
+// houses of Brno-Lesná carry it.
 const RUIAN_SO = "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Prohlizeci_sluzba_nad_daty_RUIAN/MapServer/3/query";
 export const RUIAN_HALL = new Set([1, 2, 12, 13]), RUIAN_LOW = new Set([8, 18]);
-const RUIAN_PANEL = new Set([4, 41, 42, 43]);
+const RUIAN_PANEL = new Set([4, 41, 43]), RUIAN_SOLID = new Set([1, 2, 3, 5, 6, 11, 42, 61, 62, 63, 64, 65, 66]);
 export async function ruianBuilding(lat, lon) {
   const json = await query(RUIAN_SO, {
     geometry: `${lon},${lat}`, geometryType: "esriGeometryPoint", inSR: "4326", spatialRel: "esriSpatialRelIntersects",
@@ -205,7 +207,7 @@ export async function ruianBuilding(lat, lon) {
   return {
     cornice: floors || undefined, roof: 0, total: floors || 0,
     kind: RUIAN_HALL.has(use) ? 3 : RUIAN_LOW.has(use) ? 6 : undefined, newBuild: false, area: area || undefined,
-    built: dokonceni ? new Date(dokonceni).getUTCFullYear() : undefined, panel: RUIAN_PANEL.has(walls) || undefined,
+    built: dokonceni ? new Date(dokonceni).getUTCFullYear() : undefined, panel: RUIAN_PANEL.has(walls) || undefined, solid: RUIAN_SOLID.has(walls) || undefined,
     house: use === 7 || use === 8 || undefined, // rodinný dům, stavba pro rodinnou rekreaci: a pitched roof (profile.js)
   };
 }

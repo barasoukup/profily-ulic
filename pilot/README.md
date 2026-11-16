@@ -157,7 +157,10 @@ užší a tmavší. Šest vzhledů domu (šikmá střecha, funkcionalistický č
 hala) se volí podle tvaru bloku z OSM, údajů o domě a stáří zástavby: v Praze z vrstvy IPR *Vývoj zástavby*
 (statické dlaždice z `tools/build_vyvoj.mjs`), jinde z roku dokončení v RÚIAN (do 1919 a 1946–57 šikmá střecha,
 od 1958 panelová éra, od 1996 moderní dům). Vnitřní město a sídliště podle vzdálenosti od centra má každé město
-vlastní (`city.js` `innerKm`, `estateKm`).
+vlastní (`city.js` `innerKm`, `estateKm`). Panelák ne (Bára 16. 11. 2026, `evaluation/budovy-panel/ZPRAVA.md`): u domu
+dokončeného před 1955, u zdí z cihel, kamene, monolitu či dřeva podle RÚIAN (kreslí se plochý činžák), u panelového
+domu po 1995 (moderní dům); bez centra města (zbytek ČR, Slovensko) bez roku jen podle tvaru desky nebo od 8 podlaží.
+Kód konstrukce 10 („kámen, cihly, tvárnice vč. kombinací“) nic neříká (na Lesné ho má třetina paneláků).
 
 ## Brno
 

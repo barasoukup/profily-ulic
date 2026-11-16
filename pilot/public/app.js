@@ -347,9 +347,10 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
         const [lon, lat] = info.point;
         const p = await sources.podlaznost(lat, lon);
         if (p.cornice) Object.assign(info, { cornice: p.cornice, roof: p.roof, levels: p.cornice + p.roof, roofType: p.roofType, iprKind: p.kind, newBuild: p.newBuild, area: p.area, src: "ipr" });
-        // RÚIAN (the towns): the year the house was completed and its walls of panels.
+        // RÚIAN (the towns): the year the house was completed and what its walls are of.
         if (p.built) info.built = p.built;
         if (p.panel) info.panel = 1;
+        if (p.solid) info.solid = 1; // RÚIAN: walls of bricks, stone, monolith or wood (not a panel house)
         if (p.house) info.house = 1;
       } catch {}
       // The age of the area (a default for the building's look, overruled by what is known of the house).
@@ -1271,7 +1272,8 @@ function floorsInput(p, side) {
 function renderEdge(ed, p, side) {
   const kind = p.edges?.[side] || "volno";
   const info = edgeInfo(p.edges, side);
-  const name = kind === "budova" ? BUILDING_STYLES[buildingStyle(info, p.edges?.[`${side}Style`])]
+  const style = kind === "budova" && buildingStyle(info, p.edges?.[`${side}Style`]);
+  const name = kind === "budova" ? (style === "plocha" && OFFICE_LIKE.has(info?.type) ? tr("kancelářská budova") : BUILDING_STYLES[style])
     : Object.fromEntries(EDGE_KINDS())[kind] || kind;
   const head = Object.assign(document.createElement("div"), { className: "ed-head" });
   head.append(Object.assign(document.createElement("h3"), { textContent: `${side === "left" ? tr("Levý okraj") : tr("Pravý okraj")}: ${name}` }));

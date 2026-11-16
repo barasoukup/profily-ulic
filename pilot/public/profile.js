@@ -579,7 +579,9 @@ export function buildingStyle(info, chosen) {
   const big = info?.area >= HALL_AREA && !HOUSE_TYPES.has(info?.type);
   if ((HALL_TYPES.has(info?.type) || big || (info?.iprKind === 3 && info?.area >= HALL_AREA / 4)) && !(cornice > 2) && roof !== "sikma") return "hala";
   if (info?.iprKind === 6 || HOUSE_TYPES.has(info?.type) || (n && n <= 2)) return "nizky";
-  if (info?.panel) return "plocha"; // RÚIAN: walls of panels
+  // RÚIAN: walls of concrete panels. Panel houses of the panel era; a newer one (prefabricated walls are
+  // common again) looks like any new block of flats (evaluation/budovy-panel: 16 houses after 2000).
+  if (info?.panel) return info.built > MODERN_FROM ? "moderni" : "plocha";
   if (roof) return roof === "plocha" ? flatKind(info, n) : roof;
   // RÚIAN's year the house was completed, where the roof is not known (the towns): houses up to 1919
   // and of the early 1950s (socialist realism) have pitched roofs, the rest is told by flatKind.
@@ -607,7 +609,11 @@ const PANEL_WIDTH = 16, PANEL_FILL = 0.65, PANEL_PART = 30, PANEL_FLOORS = 8, es
 // the older town (the tenement look) unless it is a panel slab; by 1950 → a functionalist
 // tenement unless a panel slab or a modern set-back block further out; 1970–1990 → the panel era;
 // 2010 or later → a modern block of flats. IPR "nová budova" overrules all.
-const OLD_SETBACK_KM = 4.5;
+// Not a panel house (evaluation/budovy-panel, RÚIAN walls of 780 houses in 11 towns, Bára 16. 11. 2026: "paneláků
+// máme moc"): a house completed before PANEL_FROM (the first Czech panel houses are of the mid-1950s; a slab of the
+// 1930s or 40s was drawn as one), or one whose walls RÚIAN gives as bricks, stone, monolith or wood (info.solid).
+// Such a flat-roofed block of flats is drawn as the plain flat-roofed tenement.
+const OLD_SETBACK_KM = 4.5, PANEL_FROM = 1955, MODERN_FROM = 1995;
 function flatKind(info, n) {
   if (OFFICE_TYPES.has(info?.type)) return "plocha";
   if (info?.newBuild) return "moderni"; // IPR "nová budova"
@@ -616,14 +622,19 @@ function flatKind(info, n) {
   const setback = !slab && n < PANEL_FLOORS && info?.roof >= 1;
   // The year of the house (RÚIAN) before the age of the area; it is exact, so modern from 1996.
   const p = info?.built ?? info?.period;
+  const panelAge = !info?.solid && !(info?.built < PANEL_FROM);
   if (p) {
-    if (p >= (info?.built ? 1996 : 2010)) return "moderni";
-    if (p >= 1970) return setback && info?.km > innerKm() ? "moderni" : "plocha";
-    if (slab) return "plocha";
+    if (p > (info?.built ? MODERN_FROM : 2009)) return "moderni";
+    if (p >= 1970) return setback && info?.km > innerKm() ? "moderni" : panelAge ? "plocha" : "funkce";
+    if (slab && panelAge) return "plocha";
     if (p <= 1920) return "sikma";
     return setback && info?.km > OLD_SETBACK_KM ? "moderni" : "funkce";
   }
   if (setback && info?.km > innerKm()) return "moderni";
+  if (!panelAge) return "funkce";
+  // No centre known (the rest of the country, Slovakia, abroad: km 99): only the block's shape or 8+ floors tell a
+  // panel house, not the distance (it made every unknown house of 3 floors or more a panel house).
+  if (!city.centre) return slab || n >= PANEL_FLOORS ? "plocha" : "funkce";
   if (n >= PANEL_FLOORS || info?.km >= estateKm()) return "plocha";
   if (b) return slab ? "plocha" : "funkce";
   return info?.km > innerKm() ? "plocha" : "funkce";

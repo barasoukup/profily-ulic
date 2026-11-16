@@ -1,0 +1,842 @@
+mesto	lat	lon	osm	patra	rok	obdobi	konstrukce	pravda	styl	km	blok_sirka	blok_delka	blok_casti	blok_fill	deska
+Praha	50.103068	14.371388	residential	3		1970	10	jiny	sikma	3.9	10.7	36.1	2	0.88	1
+Praha	50.091465	14.434793	residential	5		1840	10	jiny	sikma	1.1	19.6	51.2	2	0.69	1
+Praha	50.077353	14.505684	apartments	6		1950	10	jiny	sikma	6.2	31.1	120.2	7	0.63	0
+Praha	50.071662	14.465901	civic	4		1920	10	jiny	sikma	3.7	23.3	63.5	1	0.60	0
+Praha	50.026036	14.427804	residential	4		1970	4	panel	plocha	6.9	16.5	54.5	3	0.74	0
+Praha	50.084381	14.419309	residential	4		1840	3	jiny	sikma	0.4	110.6	121.5	16	0.44	0
+Praha	50.100345	14.417118	residential	5		1920	10	jiny	sikma	1.5	105.4	173.1	25	0.34	0
+Praha	50.036102	14.370038	residential	8		1990	4	panel	plocha	6.8	19.6	25.0	1	0.81	0
+Praha	50.065952	14.321688	office	1		1990	10	jiny	nizky	7.5	17.7	18.0	1	0.50	0
+Praha	50.105868	14.451868	residential	2		1920	10	jiny	hala	3	59.8	76.4	1	0.91	0
+Praha	50.100722	14.434314	residential	7		1880	10	jiny	sikma	1.8	100.0	107.6	12	0.33	0
+Praha	50.059904	14.447951	residential	5		1950	10	jiny	sikma	3.6	64.7	117.4	15	0.51	0
+Praha	50.091890	14.320076	residential	4		1970	10	jiny	sikma	7.2	10.2	73.0	1	0.94	1
+Praha	50.089636	14.445925	residential	4		1880	10	jiny	sikma	1.8	107.1	195.9	14	0.30	0
+Praha	50.107566	14.390760	residential	6		1950	10	jiny	funkce	3.1	133.1	198.0	18	0.25	0
+Praha	50.061507	14.434687	residential	4		1950	10	jiny	funkce	3.1	28.9	100.4	5	0.74	0
+Praha	50.071974	14.461379	residential	4		1950	10	jiny	sikma	3.4	44.6	162.2	11	0.42	0
+Praha	50.158542	14.427088	yes	1			1	jiny	nizky	7.9	13.3	18.2	1	0.77	1
+Praha	50.054483	14.499907	residential	8		1970	4	panel	plocha	6.7	19.4	41.3	1	0.72	0
+Praha	50.088508	14.466733	apartments	5		1950	10	jiny	sikma	3.3	60.3	106.8	13	0.60	0
+Praha	50.095457	14.357173	apartments	5		1920	4	panel	plocha	4.6	15.2	73.5	4	0.82	1
+Praha	50.081226	14.447622	apartments	7		1950	10	jiny	sikma	2	78.5	144.8	14	0.38	0
+Praha	50.089767	14.469742	residential	6		1950	10	jiny	sikma	3.5	89.6	175.0	21	0.46	0
+Praha	50.079699	14.455623	apartments	6		1950	10	jiny	sikma	2.6	77.7	85.3	9	0.50	0
+Praha	50.090309	14.419167	residential	7		1840	10	jiny	sikma	0.3	51.9	137.2	14	0.69	0
+Praha	50.070857	14.498343	residential	4		1970	10	jiny	sikma	5.8	25.9	26.2	1	0.56	0
+Praha	50.087381	14.470749	residential	5		1950	10	jiny	funkce	3.6	85.4	196.2	13	0.25	0
+Praha	50.066786	14.455332	residential	5		1950	10	jiny	sikma	3.4	70.2	123.0	12	0.47	0
+Praha	50.106540	14.491551	residential	5		1950	10	jiny	sikma	5.5	98.6	116.9	15	0.36	0
+Praha	50.073522	14.451146	residential	3		1920	10	jiny	sikma	2.7	20.0	18.4	1	0.63	0
+Praha	50.060311	14.430650	residential	4		1950	10	jiny	sikma	3.1	92.9	138.3	13	0.40	0
+Praha	50.079931	14.457842	apartments	7		1920	10	jiny	sikma	2.8	69.5	157.5	21	0.52	0
+Praha	50.138880	14.427786	residential	7		1970	1	jiny	moderni	5.7	26.6	26.3	1	0.50	0
+Praha	50.139458	14.449819	residential	4		1990	1	jiny	moderni	6.1	29.5	33.3	1	0.57	0
+Praha	50.026760	14.429206	residential	8		1970	4	panel	plocha	6.8	11.1	126.4	7	0.91	1
+Praha	50.075987	14.434122	residential	4		1880	10	jiny	sikma	1.6	88.8	190.7	16	0.41	0
+Praha	50.079050	14.453359	residential	6		1920	10	jiny	sikma	2.5	58.4	125.5	15	0.62	0
+Praha	50.080947	14.458669	apartments	6		1950	10	jiny	sikma	2.8	82.8	164.6	22	0.46	0
+Praha	50.077378	14.428180	residential	6		1880	10	jiny	sikma	1.2	96.7	306.7	30	0.47	0
+Praha	50.061387	14.446002	residential	4		1920	10	jiny	sikma	3.4	99.6	159.3	22	0.35	0
+Praha	50.091127	14.410806	hotel	5		1880	10	jiny	sikma	0.8	24.4	139.3	7	0.66	0
+Praha	50.068955	14.510129	residential	8		1970	4	panel	plocha	6.7	15.6	162.9	9	0.79	1
+Praha	50.082667	14.448052	apartments	4		1920	10	jiny	sikma	2	98.9	142.4	17	0.33	0
+Praha	50.079859	14.416151	residential	5		1840	10	jiny	sikma	0.9	70.6	82.2	9	0.72	0
+Praha	50.087962	14.343030	residential	4		1970	4	panel	plocha	5.6	25.0	182.5	10	0.48	0
+Praha	50.074374	14.491972	residential	4		1920	10	jiny	sikma	5.3	74.4	148.0	20	0.50	0
+Praha	50.123744	14.459462	school	3		1950	10	jiny	sikma	4.9	30.9	90.0	3	0.51	1
+Praha	50.108366	14.516649	residential	7		1970	11	jiny	moderni	7.2	27.2	34.2	1	0.62	0
+Praha	50.074075	14.489796	residential	4		1920	11	jiny	sikma	5.1	20.2	34.3	1	0.76	0
+Praha	50.113806	14.470756	residential	4		1950	10	jiny	sikma	4.6	33.8	103.8	6	0.45	0
+Praha	50.096790	14.365737	apartments	4		1970	10	jiny	plocha	4.1	18.5	74.6	3	0.77	1
+Praha	50.091148	14.471296	residential	5		1950	10	jiny	sikma	3.6	12.9	51.6	3	0.87	1
+Praha	50.078071	14.444060	residential	4		1920	10	jiny	sikma	2	67.8	138.9	17	0.59	0
+Praha	50.087804	14.407136	residential	5		1840	10	jiny	sikma	1	22.7	31.8	2	0.76	0
+Praha	50.021826	14.413201	apartments	7		1970	4	panel	plocha	7.3	18.4	95.7	5	0.82	0
+Praha	50.075133	14.443584	residential	5		1920	10	jiny	sikma	2.1	88.8	123.3	18	0.49	0
+Praha	50.068986	14.493371	residential	9		1840	4	panel	sikma	5.6	14.5	54.5	1	0.92	1
+Praha	50.070900	14.460123	residential	5		1920	10	jiny	sikma	3.4	77.1	108.9	12	0.44	0
+Praha	50.080287	14.493166	residential	5		1970	4	panel	plocha	5.2	13.2	55.2	3	0.88	1
+Praha	50.131056	14.380068	residential	4		1920	10	jiny	plocha	5.7	13.9	35.5	2	0.78	1
+Plzeň	49.746033	13.367616	residential	3	1919		10	jiny	sikma	0.7	17.0	52.7	3	0.74	0
+Plzeň	49.747286	13.379046	residential	5	1919		10	jiny	sikma	0.1	92.7	104.7	13	0.44	0
+Plzeň	49.738763	13.378512	residential	6	1900		10	jiny	sikma	1	18.8	89.2	6	0.75	0
+Plzeň	49.757852	13.420995	apartments	7	1970		4	panel	plocha	3.3	95.4	137.3	14	0.21	0
+Plzeň	49.774072	13.367227	apartments	8	1980		4	panel	plocha	3	13.3	41.4	1	0.84	1
+Plzeň	49.742058	13.367432	residential	3	1919		10	jiny	sikma	1	18.3	27.6	1	0.63	0
+Plzeň	49.735727	13.392183	residential	4	1919		10	jiny	sikma	1.7	50.8	100.6	9	0.36	0
+Plzeň	49.757531	13.423382	apartments	5	2006		4	panel	plocha	3.5	15.5	33.9	2	0.77	1
+Plzeň	49.782262	13.369780	apartments	8	1990		4	panel	plocha	3.9	14.8	39.6	2	0.80	1
+Plzeň	49.767997	13.372355	apartments	8	1980		4	panel	plocha	2.3	28.7	133.3	7	0.40	0
+Plzeň	49.764381	13.363344	residential	4	1980		10	jiny	plocha	2.1	14.3	21.0	1	0.68	1
+Plzeň	49.734380	13.390491	residential	3	1945		10	jiny	funkce	1.7	63.4	100.7	8	0.39	0
+Plzeň	49.741054	13.389001	residential	2	1919		10	jiny	nizky	1.1	95.6	121.8	24	0.40	0
+Plzeň	49.743739	13.368846	apartments	4	1906		10	jiny	sikma	0.8	126.6	170.8	29	0.28	0
+Plzeň	49.737473	13.392747	residential	3	1919		10	jiny	sikma	1.6	90.6	106.8	15	0.33	0
+Plzeň	49.738025	13.390160	residential	3	2005		10	jiny	moderni	1.4	86.9	132.8	19	0.28	0
+Plzeň	49.782601	13.382743	apartments	9	1980		4	panel	plocha	3.9	13.7	109.1	6	0.81	1
+Plzeň	49.761566	13.358606	apartments	9	1990		4	panel	plocha	2.1	92.5	137.5	7	0.22	1
+Plzeň	49.753732	13.379014	residential	5	1919		10	jiny	sikma	0.7	42.0	85.4	6	0.45	0
+Plzeň	49.721265	13.383693	residential	4	2009		10	jiny	moderni	3	20.1	32.5	2	0.65	0
+Plzeň	49.742378	13.367723	residential	6	1945		10	jiny	funkce	0.9	62.0	108.6	7	0.35	0
+Plzeň	49.778959	13.361176	apartments	8	1990		4	panel	plocha	3.7	41.3	261.1	7	0.29	1
+Plzeň	49.779904	13.365744	apartments	8	1990		4	panel	plocha	3.7	78.9	221.6	8	0.18	1
+Plzeň	49.744992	13.332372	apartments	6	2017		1	jiny	moderni	3.3	17.9	21.3	1	0.59	0
+Plzeň	49.778028	13.364861	apartments	8	1980		4	panel	plocha	3.5	80.1	202.3	6	0.17	1
+Plzeň	49.777850	13.373154	apartments	7	1980		4	panel	plocha	3.4	23.5	207.1	4	0.52	1
+Plzeň	49.738190	13.331406	residential	3	2022		1	jiny	moderni	3.5	15.3	22.2	1	0.71	1
+Plzeň	49.745863	13.367588	residential	3	1919		10	jiny	sikma	0.7	17.0	52.7	3	0.74	0
+Plzeň	49.782056	13.388715	civic	2	2024		1	jiny	nizky	3.9	13.3	27.6	1	0.84	1
+Plzeň	49.779799	13.362962	apartments	8	1990		4	panel	plocha	3.7	75.9	223.0	8	0.18	1
+Plzeň	49.737194	13.410394	residential	3	2011		1	jiny	moderni	2.6	14.4	29.5	1	0.81	1
+Plzeň	49.778645	13.382055	apartments	5	2007		4	panel	plocha	3.5	15.4	36.7	1	0.57	0
+Plzeň	49.755119	13.380608	residential	5	1945		10	jiny	funkce	0.9	89.9	97.5	14	0.40	0
+Plzeň	49.761846	13.357449	apartments	9	1990		4	panel	plocha	2.1	92.5	137.5	7	0.22	1
+Plzeň	49.741223	13.370872	residential	8	2010		10	jiny	moderni	0.9	15.1	20.7	1	0.80	1
+Plzeň	49.740431	13.389962	residential	3	1919		10	jiny	sikma	1.2	95.6	121.8	24	0.40	0
+Plzeň	49.730543	13.368900	residential	5	1945		10	jiny	funkce	2	28.0	92.3	6	0.50	0
+Plzeň	49.760312	13.417172	residential	4	1980		10	jiny	plocha	3.2	32.3	117.3	4	0.48	1
+Plzeň	49.739714	13.393687	residential	5	1945		10	jiny	funkce	1.5	69.2	92.5	9	0.44	0
+Plzeň	49.767622	13.369510	apartments	5	1980		4	panel	plocha	2.3	23.2	24.0	1	0.70	0
+Plzeň	49.740690	13.397294	residential	5	1945		10	jiny	funkce	1.6	24.7	23.4	1	0.49	0
+Plzeň	49.746588	13.366275	residential	4			10	jiny	sikma	0.8	59.7	96.2	12	0.46	0
+Plzeň	49.743436	13.367856	residential	3	1945		10	jiny	funkce	0.8	126.6	170.8	29	0.28	0
+Plzeň	49.748622	13.365521	residential	6	2018		1	jiny	moderni	0.9	86.3	138.5	5	0.41	1
+Plzeň	49.770171	13.375537	apartments	8	1980		4	panel	plocha	2.5	19.9	153.0	8	0.60	0
+Plzeň	49.761449	13.359440	apartments	6	1990		4	panel	plocha	2	15.1	57.9	3	0.86	1
+Plzeň	49.731243	13.400589	civic	5	1970		10	jiny	plocha	2.5	12.0	18.9	1	0.98	1
+Plzeň	49.732022	13.362489	residential	3	1960		10	jiny	plocha	2.1	14.1	31.6	1	0.70	1
+Plzeň	49.781163	13.379224	school	3	1990		4	panel	plocha	3.7	102.8	200.2	4	0.41	1
+Plzeň	49.757622	13.426865	civic	1	2000		10	jiny	nizky	3.7	17.7	29.2	1	0.75	0
+Plzeň	49.748080	13.375777	residential	5	1945		10	jiny	funkce	0.1	18.4	21.3	1	0.55	0
+Plzeň	49.748907	13.380428	residential	4	1919		10	jiny	sikma	0.2	60.6	107.5	15	0.57	0
+Plzeň	49.780574	13.381570	apartments	12	1980		4	panel	plocha	3.7	17.1	40.5	2	0.69	0
+Plzeň	49.774426	13.357412	residential	5	2006		10	jiny	moderni	3.3	19.8	19.8	1	0.79	0
+Plzeň	49.744183	13.375424	residential	6			10	jiny	sikma	0.4	20.5	84.3	4	0.70	0
+Plzeň	49.725138	13.376632	apartments	6	1970		4	panel	plocha	2.5	34.1	129.0	4	0.30	1
+Plzeň	49.730236	13.406617	residential	5	1960		10	jiny	funkce	2.9	19.8	17.5	1	0.81	0
+Plzeň	49.737435	13.390154	residential	2	1919		10	jiny	nizky	1.5	86.9	132.8	19	0.28	0
+Plzeň	49.747899	13.369395	residential	3	1919		10	jiny	sikma	0.6	69.5	93.7	9	0.38	0
+Plzeň	49.738347	13.378005	residential	4	1919		10	jiny	sikma	1	56.2	84.1	5	0.33	0
+Ostrava	49.829407	18.261482	residential	4	1945		10	jiny	funkce	2.3	21.1	68.3	3	0.58	0
+Ostrava	49.858143	18.270358	residential	2	1919		10	jiny	nizky	3	15.7	56.6	3	0.75	1
+Ostrava	49.807096	18.262934	residential	2	1919		10	jiny	nizky	3.8	15.4	62.9	3	0.72	1
+Ostrava	49.842053	18.264247	residential	9	1980		4	panel	plocha	2.1	46.2	151.1	8	0.27	0
+Ostrava	49.811603	18.253594	residential	3	2003		10	jiny	moderni	3.9	15.2	15.7	1	0.66	1
+Ostrava	49.822806	18.267434	yes	4	1960		10	jiny	funkce	2.3	18.9	86.3	5	0.60	0
+Ostrava	49.805350	18.267186	residential	2	1919		10	jiny	nizky	3.8	15.8	20.5	1	0.70	1
+Ostrava	49.838335	18.287051	residential	5	1960		10	jiny	funkce	0.5	83.3	105.0	11	0.43	0
+Ostrava	49.859212	18.268086	residential	3	1945		10	jiny	plocha	3.2	12.9	37.0	2	0.79	1
+Ostrava	49.873390	18.282470	yes	1	2022		1	jiny	nizky	4.3	10.5	21.4	1	0.78	1
+Ostrava	49.826468	18.276902	yes	4	1960		10	jiny	plocha	1.5	14.4	55.2	3	0.85	1
+Ostrava	49.845576	18.285654	apartments	5	1945		10	jiny	funkce	1.2	118.9	153.5	10	0.24	0
+Ostrava	49.850241	18.279465	residential	6	1945		10	jiny	funkce	1.9	58.9	99.1	6	0.30	0
+Ostrava	49.849434	18.273419	residential	4			1	jiny	plocha	2.1	37.3	64.5	5	0.52	0
+Ostrava	49.836900	18.286472	residential	6	1945		10	jiny	funkce	0.5	63.3	192.9	16	0.57	0
+Ostrava	49.811286	18.305094	residential	3	1945		10	jiny	plocha	2.8	12.0	26.0	1	0.83	1
+Ostrava	49.822385	18.309307	residential	3	1945		10	jiny	funkce	1.9	19.2	23.6	1	0.54	0
+Ostrava	49.826180	18.273076	yes	5	1960		10	jiny	plocha	1.7	14.7	74.5	4	0.84	1
+Ostrava	49.825676	18.268464	residential	6	1939		10	jiny	plocha	2	12.0	66.1	3	0.96	1
+Ostrava	49.852306	18.272526	civic	3	2000		10	jiny	plocha	2.4	36.5	68.8	1	0.46	0
+Ostrava	49.845368	18.284710	apartments	5	1945		10	jiny	funkce	1.2	118.9	153.5	10	0.24	0
+Ostrava	49.857221	18.268838	civic	4	1945		2	jiny	plocha	2.9	22.7	39.0	3	0.65	0
+Ostrava	49.839911	18.297053	yes	6			10	jiny	sikma	0.6	19.7	52.7	3	0.69	0
+Ostrava	49.850276	18.271062	residential	3	2000		10	jiny	moderni	2.2	63.7	97.5	8	0.41	0
+Ostrava	49.829206	18.252402	residential	11	1980		4	panel	plocha	3	26.1	27.0	1	0.54	0
+Ostrava	49.832841	18.260577	residential	12	1980		4	panel	plocha	2.3	19.1	20.2	1	0.96	0
+Ostrava	49.853316	18.293828	residential	4	1960		10	jiny	funkce	2	17.3	48.1	3	0.71	0
+Ostrava	49.802618	18.272148	residential	3	1960		10	jiny	plocha	3.9	14.0	37.5	2	0.86	1
+Ostrava	49.840206	18.267778	residential	9	1980		4	panel	plocha	1.8	35.8	134.5	7	0.41	0
+Ostrava	49.846949	18.315418	residential	3	1980		10	jiny	plocha	2.1	10.8	22.1	1	0.82	1
+Ostrava	49.831977	18.256939	apartments	5	1960		10	jiny	funkce	2.6	36.2	72.8	8	0.46	0
+Ostrava	49.844861	18.316518	residential	3	1945		10	jiny	plocha	2	11.4	23.8	1	0.78	1
+Ostrava	49.794542	18.264895	residential	2	1945		10	jiny	nizky	5	33.8	161.9	10	0.34	0
+Ostrava	49.824048	18.267580	residential	3	1960		10	jiny	plocha	2.2	10.8	57.9	3	0.86	1
+Ostrava	49.835724	18.287928	residential	5	1945		10	jiny	funkce	0.3	16.7	26.5	1	0.74	0
+Ostrava	49.857061	18.294001	residential	3	1960		10	jiny	plocha	2.4	10.4	60.2	3	0.90	1
+Ostrava	49.844141	18.288199	apartments	5	1960		10	jiny	funkce	1	16.3	55.6	3	0.78	0
+Ostrava	49.804299	18.267261	residential	2	1919		10	jiny	nizky	3.9	17.4	23.2	1	0.57	0
+Ostrava	49.834927	18.329156	residential	4	1945		10	jiny	plocha	2.6	13.7	21.8	1	0.87	1
+Ostrava	49.859909	18.290810	residential	3	1960		10	jiny	plocha	2.7	10.7	82.4	4	0.89	1
+Ostrava	49.836546	18.312952	yes	1	2020		1	jiny	nizky	1.5	11.9	17.2	1	0.74	1
+Ostrava	49.846722	18.275488	residential	9	2008		4	panel	plocha	1.7	48.6	86.2	5	0.29	0
+Ostrava	49.826386	18.248191	residential	4	1931		10	jiny	funkce	3.3	24.2	162.9	9	0.47	0
+Ostrava	49.848160	18.285132	residential	5	1945		10	jiny	funkce	1.5	70.6	75.4	5	0.31	0
+Ostrava	49.845094	18.281507	residential	4	1945		10	jiny	funkce	1.3	31.2	125.3	6	0.42	0
+Ostrava	49.825337	18.262370	residential	4	1960		10	jiny	funkce	2.4	19.3	72.0	4	0.71	0
+Ostrava	49.827566	18.273532	civic	2	2000		10	jiny	nizky	1.6	35.8	55.4	1	0.54	0
+Ostrava	49.794824	18.264052	residential	3	1990		10	jiny	plocha	5	76.0	159.9	14	0.24	0
+Ostrava	49.805882	18.259280	residential	2	1919		10	jiny	nizky	4.1	14.9	20.0	1	0.70	1
+Ostrava	49.859354	18.301924	residential	1	1945		10	jiny	nizky	2.7	11.6	42.9	2	0.87	1
+Ostrava	49.826277	18.247798	yes	5	1932		1	jiny	funkce	3.4	24.2	162.9	9	0.47	0
+Ostrava	49.844228	18.313506	residential	3	1960		10	jiny	plocha	1.8	13.1	26.9	2	0.82	1
+Ostrava	49.838658	18.263474	residential	4	1980		4	panel	plocha	2.1	13.8	55.7	3	0.86	1
+Ostrava	49.844872	18.285042	apartments	4	1945		10	jiny	funkce	1.2	45.6	142.7	13	0.38	0
+Ostrava	49.837012	18.282835	residential	4	1945		10	jiny	funkce	0.7	86.4	123.3	8	0.25	0
+Ostrava	49.800915	18.271445	residential	2	1960		10	jiny	nizky	4.1	23.3	23.1	1	0.42	0
+Ostrava	49.830782	18.285125	mall	6	2012		4	panel	plocha	0.7	232.2	214.1	1	0.50	0
+Ostrava	49.829484	18.254184	residential	3	1970		10	jiny	plocha	2.8	26.5	39.6	3	0.48	0
+Ostrava	49.827235	18.271326	residential	13	1970		4	panel	plocha	1.8	17.0	20.8	1	0.81	0
+Ostrava	49.862570	18.320912	civic	1	1994		1	jiny	nizky	3.6	15.8	62.8	1	0.81	1
+Pardubice	50.034771	15.768199	residential	6	1945		10	jiny	funkce	0.9	99.1	142.9	12	0.25	0
+Pardubice	50.036051	15.773562	residential	3	2000		10	jiny	moderni	0.5	184.7	321.7	28	0.16	0
+Pardubice	50.043327	15.791212	residential	3	1945		10	jiny	funkce	1	74.8	139.3	12	0.21	0
+Pardubice	50.030776	15.792838	residential	7	2022		4	panel	plocha	1.3	29.4	118.7	4	0.48	1
+Pardubice	50.037156	15.773057	residential	5	1945		10	jiny	funkce	0.5	48.0	150.6	11	0.36	0
+Pardubice	50.041251	15.787171	residential	4	1980		10	jiny	plocha	0.7	19.6	69.6	5	0.54	0
+Pardubice	50.034969	15.791474	residential	5	1960		10	jiny	plocha	1	11.2	44.9	1	0.90	1
+Pardubice	50.016889	15.771248	commercial	1	2019		1	jiny	nizky	2.4	32.5	61.8	2	0.49	1
+Pardubice	50.025973	15.774744	residential	5	1960		4	panel	plocha	1.4	128.3	137.1	22	0.23	0
+Pardubice	50.023851	15.770799	residential	3	1945		10	jiny	funkce	1.7	104.6	121.0	28	0.34	0
+Pardubice	50.025580	15.758128	residential	4	1960		10	jiny	plocha	2.1	15.6	30.2	1	0.79	1
+Pardubice	50.056234	15.756941	civic	2	2018		10	jiny	nizky	2.5	12.7	25.1	1	0.72	1
+Pardubice	50.038884	15.783549	residential	5	1945		10	jiny	funkce	0.3	55.5	108.2	8	0.32	0
+Pardubice	50.048646	15.758887	residential	9	1980		4	panel	plocha	1.8	15.1	94.7	1	0.76	1
+Pardubice	50.040118	15.779642	residential	3	1919		10	jiny	sikma	0.2	79.9	102.5	10	0.31	0
+Pardubice	50.027073	15.768657	residential	3	1945		10	jiny	funkce	1.5	109.9	125.4	31	0.26	0
+Pardubice	50.048343	15.813646	residential	5	2007		10	jiny	moderni	2.7	20.7	42.8	1	0.70	0
+Pardubice	50.025835	15.754755	residential	4	1960		10	jiny	plocha	2.2	9.4	37.7	1	0.90	1
+Pardubice	50.036774	15.791892	residential	4	1955		10	jiny	sikma	0.9	11.2	33.6	1	0.83	1
+Pardubice	50.032287	15.781060	residential	5	1945		10	jiny	plocha	0.7	15.8	25.5	2	0.77	1
+Pardubice	50.021729	15.761764	residential	3	1960		10	jiny	funkce	2.2	43.4	70.6	1	0.28	0
+Pardubice	50.042666	15.756099	apartments	8	1980		4	panel	plocha	1.7	12.6	188.7	10	0.91	1
+Pardubice	50.045940	15.767648	apartments	6	1990		10	jiny	plocha	1.2	49.8	110.7	7	0.30	0
+Pardubice	50.020751	15.759813	residential	3	1960		10	jiny	plocha	2.4	12.0	64.0	1	0.82	1
+Pardubice	50.039433	15.773805	civic	2	2016		1	jiny	nizky	0.4	17.1	22.9	1	0.70	0
+Pardubice	50.032358	15.787691	residential	2	2022		1	jiny	nizky	0.9	14.2	23.1	2	0.73	1
+Pardubice	50.027540	15.769063	residential	5	1960		10	jiny	plocha	1.4	16.4	52.1	2	0.71	1
+Pardubice	50.025229	15.757907	yes	6	1960		10	jiny	funkce	2.1	47.5	94.3	6	0.44	0
+Pardubice	50.027846	15.765182	civic	2	1970		10	jiny	nizky	1.5	38.4	64.6	1	0.47	0
+Pardubice	50.037838	15.785014	residential	5	2008		10	jiny	moderni	0.4	71.9	144.7	19	0.43	0
+Pardubice	50.037720	15.797980	residential	8	1980		4	panel	plocha	1.4	20.3	62.1	1	0.58	0
+Pardubice	50.041416	15.750092	residential	5	1980		4	panel	plocha	2.1	9.2	57.5	1	0.85	1
+Pardubice	50.047610	15.753048	residential	9	1970		4	panel	plocha	2.1	12.4	76.0	4	0.83	1
+Pardubice	50.034274	15.792855	residential	4	1960		10	jiny	plocha	1.1	10.9	44.9	1	0.88	1
+Pardubice	50.041153	15.810847	residential	7	1982		4	panel	plocha	2.3	12.3	90.6	1	0.92	1
+Pardubice	50.035107	15.776332	residential	3	1919		10	jiny	sikma	0.4	117.5	226.5	28	0.21	0
+Pardubice	50.041502	15.807022	residential	9	1990		4	panel	plocha	2	18.6	28.2	1	0.86	0
+Pardubice	50.036218	15.775679	residential	5	1945		10	jiny	funkce	0.3	42.7	68.8	6	0.39	0
+Pardubice	50.049772	15.760914	residential	7	1963		1	jiny	plocha	1.8	13.1	77.7	1	0.86	1
+Pardubice	50.021853	15.763048	residential	3	1956		10	jiny	sikma	2.2	22.2	39.5	1	0.51	0
+Pardubice	50.020181	15.774953	residential	2	2020		1	jiny	nizky	2	11.8	22.7	1	0.75	1
+Pardubice	50.043889	15.760547	yes	8	1973		4	panel	plocha	1.5	15.1	188.5	20	0.81	1
+Pardubice	50.032826	15.766348	residential	4	1945		10	jiny	funkce	1.1	23.1	86.5	4	0.63	0
+Pardubice	50.044835	15.808019	residential	9	1990		4	panel	plocha	2.2	12.6	55.1	3	0.88	1
+Pardubice	50.033714	15.791562	residential	4	2012		1	jiny	moderni	1	24.5	43.7	3	0.48	0
+Pardubice	50.041043	15.780697	residential	4	1980		10	jiny	plocha	0.3	14.4	38.9	1	0.87	1
+Pardubice	50.038174	15.784274	residential	5	1945		10	jiny	funkce	0.4	71.9	144.7	19	0.43	0
+Pardubice	50.034769	15.767625	residential	4	1945		10	jiny	plocha	0.9	15.0	34.5	2	0.83	1
+Pardubice	50.038210	15.788660	apartments	4	1960		10	jiny	plocha	0.7	10.6	32.8	2	0.89	1
+Pardubice	50.024278	15.770042	residential	3	1960		10	jiny	funkce	1.7	131.1	144.7	29	0.28	0
+Pardubice	50.032888	15.771448	residential	5	2018		1	jiny	moderni	0.8	10.6	60.2	1	0.90	1
+Pardubice	50.043496	15.791089	residential	3	1945		10	jiny	funkce	1	74.8	139.3	12	0.21	0
+Pardubice	50.034261	15.779886	civic	4			2	jiny	sikma	0.5	32.8	76.2	3	0.48	1
+Pardubice	50.053800	15.767686	commercial	2	2022		4	panel	nizky	1.9	28.0	45.1	1	0.85	0
+Pardubice	50.027524	15.774844	residential	4	1960		10	jiny	plocha	1.2	10.9	66.4	1	0.85	1
+Pardubice	50.033007	15.766273	residential	5	1945		10	jiny	funkce	1.1	23.1	86.5	4	0.63	0
+Pardubice	50.040554	15.796926	residential	3	1960		10	jiny	plocha	1.3	14.5	19.4	1	0.72	1
+Pardubice	50.028156	15.800610	residential	5	1980		10	jiny	plocha	1.9	17.2	18.5	1	0.58	0
+Pardubice	50.020276	15.770812	residential	1			10	jiny	nizky	2.1	13.5	22.0	1	0.78	1
+Pardubice	50.022958	15.779174	commercial	1	2015		41	panel	hala	1.7	38.6	88.4	1	0.81	0
+Hradec Králové	50.219093	15.804316	residential	1			10	jiny	nizky	99	16.3	35.2	2	0.75	0
+Hradec Králové	50.211050	15.825640	residential	4	1945		10	jiny	funkce	99	101.6	147.5	20	0.33	0
+Hradec Králové	50.193810	15.838828	apartments	13	1990		4	panel	plocha	99	18.8	87.2	4	0.76	0
+Hradec Králové	50.197247	15.854163	apartments	6	1970		10	jiny	plocha	99	24.0	23.3	2	0.61	0
+Hradec Králové	50.211038	15.825183	residential	5	2015		10	jiny	moderni	99	101.6	147.5	20	0.33	0
+Hradec Králové	50.212042	15.845094	residential	4	2011		1	jiny	moderni	99	13.2	43.6	3	0.90	1
+Hradec Králové	50.196948	15.838072	apartments	11	1990		4	panel	plocha	99	21.9	87.7	4	0.73	0
+Hradec Králové	50.212238	15.824107	residential	5	1945		10	jiny	funkce	99	99.5	183.6	31	0.37	0
+Hradec Králové	50.210717	15.827252	residential	5	1901		1	jiny	sikma	99	117.8	148.8	28	0.41	0
+Hradec Králové	50.211363	15.812584	residential	2	2000		10	jiny	nizky	99	76.2	121.8	13	0.25	0
+Hradec Králové	50.226991	15.842520	residential	9	1980		4	panel	plocha	99	16.8	25.2	1	0.82	0
+Hradec Králové	50.212494	15.830339	residential	4	1945		10	jiny	funkce	99	83.7	146.4	19	0.40	0
+Hradec Králové	50.217602	15.816256	apartments	3	1970		10	jiny	plocha	99	13.3	23.3	1	0.76	1
+Hradec Králové	50.206442	15.821288	residential	4	1960		10	jiny	plocha	99	10.5	65.3	5	0.89	1
+Hradec Králové	50.209263	15.821871	residential	4	1945		10	jiny	funkce	99	41.5	88.4	5	0.45	0
+Hradec Králové	50.206876	15.854886	yes	2			10	jiny	nizky	99	18.8	61.4	2	0.59	1
+Hradec Králové	50.209728	15.820396	residential	4	1945		10	jiny	funkce	99	70.3	147.1	22	0.52	0
+Hradec Králové	50.200460	15.814416	apartments	13	1980		4	panel	plocha	99	13.5	168.8	9	0.91	1
+Hradec Králové	50.200074	15.855105	school	1	1980		10	jiny	hala	99	78.9	125.2	2	0.40	1
+Hradec Králové	50.211187	15.820665	residential	6	1945		10	jiny	funkce	99	73.8	147.7	16	0.43	0
+Hradec Králové	50.212995	15.829797	residential	3	1945		10	jiny	funkce	99	83.7	146.4	19	0.40	0
+Hradec Králové	50.217860	15.856312	office	2	1970		4	panel	nizky	99	17.9	41.2	1	0.81	0
+Hradec Králové	50.220882	15.859860	apartments	7	1970		1	jiny	plocha	99	15.4	117.0	6	0.74	1
+Hradec Králové	50.217629	15.860040	commercial	1	1982		11	jiny	hala	99	40.7	75.8	1	0.79	0
+Hradec Králové	50.210836	15.835956	residential	3	1919		10	jiny	sikma	99	56.0	229.5	25	0.50	0
+Hradec Králové	50.216830	15.847630	school	1	1980		10	jiny	nizky	99	117.3	168.7	9	0.24	1
+Hradec Králové	50.196446	15.853586	apartments	6	1970		10	jiny	plocha	99	20.7	20.1	1	0.83	0
+Hradec Králové	50.211890	15.821409	residential	5	1945		10	jiny	funkce	99	73.8	147.7	16	0.43	0
+Hradec Králové	50.197854	15.811506	apartments	4	2011		1	jiny	moderni	99	13.0	55.9	1	0.85	1
+Hradec Králové	50.215015	15.845249	residential	4	1919		10	jiny	sikma	99	16.7	27.7	2	0.75	0
+Hradec Králové	50.211566	15.830952	residential	3	1919		10	jiny	sikma	99	76.7	142.5	19	0.45	0
+Hradec Králové	50.215748	15.846954	apartments	6	1970		10	jiny	plocha	99	12.9	178.0	10	0.86	1
+Hradec Králové	50.196744	15.861050	apartments	5	1970		10	jiny	plocha	99	14.7	103.4	5	0.86	1
+Hradec Králové	50.207936	15.816168	residential	4	1970		10	jiny	plocha	99	13.0	37.2	2	0.85	1
+Hradec Králové	50.226911	15.838538	residential	4	1980		4	panel	plocha	99	17.5	73.9	1	0.71	0
+Hradec Králové	50.213660	15.816300	residential	4	1945		10	jiny	funkce	99	19.3	77.8	5	0.75	0
+Hradec Králové	50.210458	15.826601	residential	4	1919		10	jiny	sikma	99	101.6	147.5	20	0.33	0
+Hradec Králové	50.210956	15.827196	residential	4	2012		1	jiny	moderni	99	117.8	148.8	28	0.41	0
+Hradec Králové	50.200562	15.818226	apartments	6	1980		4	panel	plocha	99	33.6	163.0	10	0.37	0
+Hradec Králové	50.206650	15.821777	residential	4	1960		10	jiny	plocha	99	10.5	65.3	5	0.89	1
+Hradec Králové	50.220012	15.854286	apartments	5	1970		4	panel	plocha	99	11.2	47.6	3	0.85	1
+Hradec Králové	50.208982	15.810437	residential	1	1945		10	jiny	nizky	99	19.3	28.0	2	0.55	0
+Hradec Králové	50.196510	15.835372	commercial	1	1945		10	jiny	nizky	99	20.7	34.7	1	0.74	0
+Hradec Králové	50.211905	15.826090	residential	4	1919		1	jiny	sikma	99	114.5	110.0	21	0.34	0
+Hradec Králové	50.202307	15.846788	apartments	5	1970		4	panel	plocha	99	11.1	151.3	8	0.90	1
+Hradec Králové	50.219332	15.855004	apartments	5	2010		10	jiny	moderni	99	11.1	52.1	3	0.96	1
+Hradec Králové	50.191285	15.847258	apartments	6	1990		4	panel	plocha	99	13.6	72.6	4	0.85	1
+Hradec Králové	50.232533	15.848916	office	2	2016		1	jiny	nizky	99	19.1	23.7	1	0.54	0
+Hradec Králové	50.197455	15.844325	apartments	9	1990		4	panel	plocha	99	13.2	72.9	4	0.83	1
+Hradec Králové	50.213052	15.831108	residential	5	1945		10	jiny	funkce	99	83.7	146.4	19	0.40	0
+Hradec Králové	50.200820	15.845208	apartments	5	1970		4	panel	plocha	99	12.0	56.4	1	0.85	1
+Hradec Králové	50.199116	15.810588	residential	5	1970		10	jiny	plocha	99	12.7	56.6	3	0.87	1
+Hradec Králové	50.212666	15.823500	residential	4	1919		10	jiny	sikma	99	99.5	183.6	31	0.37	0
+Hradec Králové	50.208181	15.827749	residential	4	1919		10	jiny	sikma	99	86.9	112.3	14	0.45	0
+Hradec Králové	50.211083	15.818597	residential	5	1960		10	jiny	funkce	99	42.7	122.8	8	0.37	0
+Hradec Králové	50.210244	15.832980	residential	4	1919		10	jiny	sikma	99	47.1	66.4	10	0.60	0
+Hradec Králové	50.205592	15.821867	residential	4	1960		10	jiny	plocha	99	11.6	64.9	5	0.83	1
+Hradec Králové	50.197136	15.859732	apartments	5	1980		10	jiny	plocha	99	26.3	299.3	16	0.48	0
+Hradec Králové	50.209830	15.824306	residential	6	1945		10	jiny	funkce	99	110.7	121.1	18	0.40	0
+Hradec Králové	50.198576	15.814476	apartments	13	1980		4	panel	plocha	99	12.7	169.6	9	0.94	1
+Olomouc	49.578947	17.256598	residential	5	1990		4	panel	plocha	99	15.8	68.2	2	0.71	1
+Olomouc	49.597960	17.242388	residential	4	1945		10	jiny	plocha	99	14.4	22.9	1	0.68	1
+Olomouc	49.594626	17.248086	residential	3	1919		10	jiny	sikma	99	125.2	241.3	27	0.28	0
+Olomouc	49.595624	17.271705	apartments	5	1945		10	jiny	funkce	99	74.7	136.0	11	0.25	0
+Olomouc	49.613442	17.223942	civic	2	1980		10	jiny	nizky	99	14.6	39.7	1	0.83	1
+Olomouc	49.581343	17.235012	residential	5	1960		10	jiny	plocha	99	33.3	59.9	3	0.50	1
+Olomouc	49.579236	17.277718	yes	2	2014		10	jiny	nizky	99	17.4	18.3	1	0.57	0
+Olomouc	49.597285	17.255352	residential	4	1945		10	jiny	funkce	99	122.6	123.7	15	0.21	0
+Olomouc	49.582190	17.230966	apartments	4	2018		1	jiny	moderni	99	16.0	18.0	1	0.58	0
+Olomouc	49.569488	17.232510	residential	2			1	jiny	nizky	99	23.0	53.6	3	0.61	0
+Olomouc	49.591946	17.285504	residential	2			1	jiny	nizky	99	43.9	57.8	4	0.37	0
+Olomouc	49.593687	17.227186	residential	5	1980		4	panel	plocha	99	91.5	179.9	8	0.16	1
+Olomouc	49.595996	17.246467	residential	4	1980		10	jiny	plocha	99	120.2	164.0	11	0.32	0
+Olomouc	49.596382	17.269312	apartments	5	1945		10	jiny	funkce	99	81.0	155.3	18	0.40	0
+Olomouc	49.574750	17.257979	residential	2	1945		10	jiny	nizky	99	26.2	55.2	5	0.52	0
+Olomouc	49.602401	17.255875	apartments	9	1990		4	panel	plocha	99	13.4	75.9	4	0.76	1
+Olomouc	49.595295	17.268822	apartments	5	1919		10	jiny	sikma	99	50.9	114.5	10	0.50	0
+Olomouc	49.598312	17.225998	apartments	3	1960		10	jiny	plocha	99	10.9	54.5	1	0.90	1
+Olomouc	49.592390	17.254233	residential	3	1919		10	jiny	sikma	99	36.7	94.0	12	0.53	0
+Olomouc	49.580678	17.248296	apartments	9	1980		4	panel	plocha	99	14.0	98.4	2	0.79	1
+Olomouc	49.588216	17.229782	apartments	4	1980		2	jiny	plocha	99	13.0	53.5	3	0.86	1
+Olomouc	49.590378	17.228120	apartments	8	1980		4	panel	plocha	99	23.5	26.1	1	0.60	0
+Olomouc	49.578010	17.241564	residential	14	1980		4	panel	plocha	99	34.8	61.5	2	0.47	1
+Olomouc	49.587935	17.243632	residential	4	1945		10	jiny	plocha	99	39.9	155.6	6	0.32	1
+Olomouc	49.596505	17.268239	apartments	5	1945		10	jiny	funkce	99	94.9	175.2	21	0.30	0
+Olomouc	49.613834	17.258122	school	3	1919		10	jiny	sikma	99	27.1	38.5	1	0.47	0
+Olomouc	49.579592	17.236054	apartments	8	1970		4	panel	plocha	99	13.3	58.0	4	0.88	1
+Olomouc	49.577698	17.247135	residential	4	1980		4	panel	plocha	99	14.4	59.8	2	0.75	1
+Olomouc	49.593438	17.275527	apartments	6	1960		10	jiny	funkce	99	100.2	154.9	13	0.23	0
+Olomouc	49.582090	17.245328	residential	3	1960		10	jiny	plocha	99	13.1	24.6	1	0.72	1
+Olomouc	49.580569	17.228456	residential	6	2005		10	jiny	moderni	99	24.2	39.4	1	0.56	0
+Olomouc	49.592496	17.254785	residential	4	1919		10	jiny	sikma	99	42.5	81.1	11	0.51	0
+Olomouc	49.605385	17.255175	yes	9	1980		4	panel	plocha	99	22.9	26.8	1	0.58	0
+Olomouc	49.589378	17.271865	residential	5	1960		4	panel	plocha	99	15.2	46.7	2	0.94	1
+Olomouc	49.589448	17.273642	apartments	3	1945		10	jiny	funkce	99	52.8	129.5	12	0.25	0
+Olomouc	49.594756	17.214781	dormitory	4	1990		4	panel	plocha	99	18.9	30.4	1	0.77	0
+Olomouc	49.591849	17.271953	residential	3	1966		1	jiny	plocha	99	13.0	31.4	1	0.93	1
+Olomouc	49.600717	17.267846	apartments	6	1990		4	panel	plocha	99	17.1	86.2	4	0.63	0
+Olomouc	49.595500	17.269061	apartments	4	1945		10	jiny	funkce	99	50.9	114.5	10	0.50	0
+Olomouc	49.584352	17.276861	residential	4	1990		4	panel	plocha	99	17.0	22.5	1	0.58	0
+Olomouc	49.597316	17.263256	residential	4	1919		10	jiny	sikma	99	61.7	201.6	16	0.39	0
+Olomouc	49.571871	17.253730	apartments	9	2000		1	jiny	moderni	99	63.0	108.4	6	0.28	0
+Olomouc	49.595562	17.248979	residential	4	1919		10	jiny	sikma	99	115.7	152.1	24	0.34	0
+Olomouc	49.595401	17.268362	apartments	4	1919		10	jiny	sikma	99	50.9	114.5	10	0.50	0
+Olomouc	49.605160	17.275295	civic	2	2013		1	jiny	nizky	99	18.2	26.4	1	0.64	0
+Olomouc	49.590185	17.283054	residential	5	2001		10	jiny	moderni	99	43.1	102.4	7	0.28	0
+Olomouc	49.576951	17.252502	residential	8	1990		4	panel	plocha	99	43.1	169.6	5	0.30	1
+Olomouc	49.602395	17.277320	residential	4	2000		10	jiny	moderni	99	16.9	24.6	1	0.72	0
+Olomouc	49.597501	17.264913	apartments	7	1919		1	jiny	sikma	99	33.3	123.4	8	0.55	0
+Olomouc	49.600233	17.270013	apartments	6	2000		4	panel	plocha	99	11.0	80.4	5	0.95	1
+Olomouc	49.607705	17.285235	civic	6	1990		4	panel	plocha	99	20.5	48.5	1	0.73	0
+Olomouc	49.590015	17.236961	residential	13	1970		4	panel	plocha	99	24.8	26.4	1	0.67	0
+Olomouc	49.595273	17.269009	apartments	4	1945		10	jiny	funkce	99	50.9	114.5	10	0.50	0
+Olomouc	49.604364	17.258990	yes	9	1990		4	panel	plocha	99	13.8	42.9	2	0.80	1
+Olomouc	49.588070	17.243784	residential	4	1970		10	jiny	plocha	99	39.9	155.6	6	0.32	1
+Olomouc	49.611568	17.251906	residential	3	2000		10	jiny	moderni	99	23.6	33.6	2	0.44	0
+Olomouc	49.593978	17.281656	residential	2	1919		10	jiny	nizky	99	12.1	20.1	1	0.69	1
+Olomouc	49.581403	17.245056	apartments	9	1980		4	panel	plocha	99	12.3	120.8	2	0.91	1
+Olomouc	49.593092	17.229880	residential	8	1990		4	panel	plocha	99	31.5	58.1	2	0.39	1
+Olomouc	49.594638	17.252783	apartments	4	1919		10	jiny	sikma	99	42.9	38.4	5	0.46	0
+České Budějovice	48.983567	14.443168	apartments	5	1980		4	panel	plocha	99	29.8	75.6	4	0.45	0
+České Budějovice	48.984464	14.511254	residential	1	2025		3	jiny	nizky	99	27.2	67.5	5	0.44	0
+České Budějovice	48.980564	14.482613	residential	3	1945		10	jiny	funkce	99	20.3	28.5	2	0.63	0
+České Budějovice	48.985514	14.474676	residential	5	2026		10	jiny	moderni	99	14.6	30.0	1	0.87	1
+České Budějovice	48.977088	14.486168	residential	3	2000		10	jiny	moderni	99	15.8	64.2	4	0.74	1
+České Budějovice	48.968913	14.481583	residential	3	1945		10	jiny	funkce	99	17.6	55.4	5	0.72	0
+České Budějovice	48.978813	14.479766	residential	4	1919		10	jiny	sikma	99	107.3	158.8	13	0.22	0
+České Budějovice	48.969211	14.483484	residential	5	1945		10	jiny	funkce	99	20.5	138.6	11	0.66	0
+České Budějovice	48.971417	14.493757	residential	2	1945		10	jiny	nizky	99	15.0	45.0	3	0.88	1
+České Budějovice	48.985564	14.432826	apartments	9	1990		4	panel	plocha	99	18.8	186.9	7	0.64	0
+České Budějovice	48.975989	14.479058	residential	4	2018		1	jiny	moderni	99	25.3	37.4	2	0.54	1
+České Budějovice	48.992845	14.476590	residential	3	1919		10	jiny	sikma	99	17.4	31.7	2	0.71	0
+České Budějovice	48.975574	14.476110	residential	2	1919		10	jiny	nizky	99	26.2	60.1	3	0.70	0
+České Budějovice	48.980666	14.478643	residential	3	1919		10	jiny	sikma	99	29.8	125.2	10	0.52	0
+České Budějovice	48.980230	14.483207	residential	4	2000		10	jiny	moderni	99	29.4	60.1	4	0.50	0
+České Budějovice	48.975772	14.473512	residential	3	1919		10	jiny	sikma	99	77.7	90.3	18	0.63	0
+České Budějovice	48.994969	14.451558	residential	9	1980		4	panel	plocha	99	14.3	51.4	2	0.86	1
+České Budějovice	48.977469	14.449642	dormitory	11	2000		1	jiny	moderni	99	24.8	48.2	1	0.71	0
+České Budějovice	48.980020	14.475625	residential	4	1990		10	jiny	plocha	99	66.6	120.1	8	0.26	0
+České Budějovice	48.966776	14.460160	hotel	1	2019		1	jiny	nizky	99	16.2	17.8	1	0.63	0
+České Budějovice	48.979090	14.478894	residential	3	1893		10	jiny	sikma	99	17.8	95.7	6	0.78	0
+České Budějovice	48.961210	14.472239	residential	3	2000		10	jiny	moderni	99	27.8	25.5	3	0.55	0
+České Budějovice	48.959357	14.490568	residential	5	1960		4	panel	plocha	99	19.1	37.9	2	0.65	0
+České Budějovice	48.967005	14.470828	residential	2	1950		1	jiny	nizky	99	18.7	28.1	1	0.62	0
+České Budějovice	48.977198	14.475014	yes	4			10	jiny	plocha	99	87.2	172.1	38	0.58	0
+České Budějovice	48.968558	14.480777	residential	2	1980		10	jiny	nizky	99	20.8	46.0	3	0.60	0
+České Budějovice	48.971691	14.486478	civic	1	2000		1	jiny	nizky	99	40.1	68.0	3	0.40	1
+České Budějovice	48.970072	14.502932	apartments	4	1945		10	jiny	funkce	99	82.2	96.5	12	0.29	0
+České Budějovice	48.983491	14.438249	public	5	2014		10	jiny	plocha	99	32.8	35.1	1	0.50	0
+České Budějovice	48.986538	14.469416	residential	3	2021		10	jiny	moderni	99	15.1	18.1	1	0.64	0
+České Budějovice	48.984931	14.469337	residential	4	1960		10	jiny	funkce	99	66.5	81.0	6	0.44	0
+České Budějovice	48.985671	14.433523	residential	9	1990		4	panel	plocha	99	18.8	186.9	7	0.64	0
+České Budějovice	48.998301	14.451317	residential	9	1990		4	panel	plocha	99	14.5	127.2	5	0.83	1
+České Budějovice	48.985950	14.468066	residential	4	1960		10	jiny	plocha	99	11.5	64.1	1	0.85	1
+České Budějovice	48.984550	14.442908	apartments	9	1980		4	panel	plocha	99	27.4	27.2	1	0.50	0
+České Budějovice	48.979885	14.448565	apartments	9	1980		4	panel	plocha	99	16.2	65.7	3	0.78	0
+České Budějovice	48.994247	14.454520	residential	9	1990		4	panel	plocha	99	45.6	82.8	4	0.30	1
+České Budějovice	48.969563	14.478550	residential	1	1913		1	jiny	nizky	99	108.6	148.1	12	0.35	0
+České Budějovice	48.977798	14.449331	university	3	2025		41	panel	plocha	99	22.3	44.8	1	0.83	0
+České Budějovice	48.992588	14.453583	residential	9	2005		4	panel	plocha	99	17.2	98.8	4	0.72	0
+České Budějovice	48.970890	14.500008	residential	2	1919		10	jiny	nizky	99	19.7	106.7	8	0.67	0
+České Budějovice	48.985605	14.441014	residential	9	1990		4	panel	plocha	99	15.6	87.4	4	0.67	1
+České Budějovice	48.973875	14.476134	residential	3	2022		3	jiny	moderni	99	99.3	134.5	26	0.66	0
+České Budějovice	48.980043	14.506674	commercial	1	2013		4	panel	nizky	99	26.3	39.7	1	0.49	0
+České Budějovice	48.972047	14.508132	residential	6	1980		10	jiny	plocha	99	25.6	75.5	4	0.48	0
+České Budějovice	48.964142	14.473174	residential	4	1919		10	jiny	sikma	99	79.0	222.5	20	0.24	0
+České Budějovice	48.974586	14.475682	residential	3	2000		10	jiny	moderni	99	99.3	134.5	26	0.66	0
+České Budějovice	48.990529	14.470063	residential	7	1990		4	panel	plocha	99	64.0	122.4	6	0.24	1
+České Budějovice	48.972730	14.475771	residential	5	1945		10	jiny	funkce	99	94.9	105.5	12	0.44	0
+České Budějovice	48.966278	14.479135	residential	3	1945		10	jiny	funkce	99	36.3	130.8	12	0.37	0
+České Budějovice	48.996492	14.453221	residential	9	1990		4	panel	plocha	99	17.2	126.9	4	0.69	1
+České Budějovice	48.959324	14.492459	residential	2	1980		10	jiny	nizky	99	17.8	63.1	5	0.76	0
+České Budějovice	48.991379	14.468834	residential	7	2000		4	panel	plocha	99	38.0	97.8	5	0.32	0
+České Budějovice	48.966059	14.472829	residential	6	1990		10	jiny	plocha	99	15.8	88.4	4	0.68	1
+České Budějovice	48.987117	14.472091	residential	3	1919		10	jiny	sikma	99	38.3	70.6	5	0.58	0
+České Budějovice	48.989851	14.469208	residential	9	1970		4	panel	plocha	99	11.1	133.9	1	0.88	1
+České Budějovice	48.988414	14.473078	residential	3	1960		10	jiny	funkce	99	29.9	51.0	3	0.48	0
+České Budějovice	48.967152	14.480300	residential	5	1945		10	jiny	funkce	99	61.5	88.9	8	0.40	0
+České Budějovice	48.978572	14.467579	residential	5	1945		10	jiny	funkce	99	88.2	143.0	10	0.21	0
+České Budějovice	48.974404	14.475395	residential	4	1919		10	jiny	sikma	99	99.3	134.5	26	0.66	0
+Liberec	50.761415	15.031384	residential	8	1970		4	panel	plocha	99	14.0	54.8	1	0.87	1
+Liberec	50.779480	15.075685	residential	4	1919		10	jiny	sikma	99	12.2	27.0	1	0.83	1
+Liberec	50.774420	15.069677	residential	4	1919		10	jiny	sikma	99	24.3	26.0	1	0.60	0
+Liberec	50.764279	15.057791	residential	5	1945		10	jiny	funkce	99	35.9	56.9	4	0.48	0
+Liberec	50.761424	15.096534	apartments	8	1990		4	panel	plocha	99	22.3	25.9	1	0.65	0
+Liberec	50.785451	15.049362	residential	8	1980		4	panel	plocha	99	13.2	99.8	3	0.79	1
+Liberec	50.746835	15.061767	civic	3	2004		10	jiny	plocha	99	29.6	34.5	2	0.38	1
+Liberec	50.764338	15.082674	residential	4	1945		10	jiny	funkce	99	16.8	21.3	1	0.61	0
+Liberec	50.780068	15.058058	residential	3	1960		10	jiny	plocha	99	12.0	33.5	1	0.82	1
+Liberec	50.755873	15.060072	residential	3	1919		10	jiny	sikma	99	17.8	20.9	1	0.54	0
+Liberec	50.757094	15.036034	residential	3	1980		10	jiny	plocha	99	12.8	22.7	1	0.80	1
+Liberec	50.770938	15.042876	apartments	4	1945		10	jiny	plocha	99	10.1	31.8	2	1.00	1
+Liberec	50.785550	15.047039	residential	5	1980		4	panel	plocha	99	12.8	40.0	1	0.76	1
+Liberec	50.774331	15.054744	residential	3	1919		10	jiny	sikma	99	14.2	13.4	1	0.82	1
+Liberec	50.758791	15.036950	residential	3	1945		10	jiny	funkce	99	27.0	54.3	4	0.40	0
+Liberec	50.760612	15.038621	residential	4	1980		4	panel	plocha	99	14.3	51.4	3	0.85	1
+Liberec	50.752742	15.065733	yes	6	1990		4	panel	plocha	99	80.7	160.1	1	0.67	0
+Liberec	50.760944	15.056226	residential	4	1945		10	jiny	plocha	99	13.1	23.3	1	0.84	1
+Liberec	50.756538	15.079536	residential	2	1945		10	jiny	nizky	99	16.6	24.4	1	0.70	0
+Liberec	50.759447	15.037699	residential	4	1945		10	jiny	funkce	99	17.0	21.3	2	0.53	0
+Liberec	50.748481	15.062834	residential	4	1945		10	jiny	funkce	99	16.3	22.6	1	0.78	0
+Liberec	50.779382	15.064303	residential	3	1960		10	jiny	plocha	99	10.5	33.3	2	0.92	1
+Liberec	50.754156	15.029194	residential	5	2000		10	jiny	moderni	99	36.3	36.1	1	0.50	0
+Liberec	50.752711	15.026986	residential	3	1945		10	jiny	funkce	99	19.1	17.0	1	0.56	0
+Liberec	50.778903	15.070162	residential	3	1919		10	jiny	sikma	99	21.2	33.2	2	0.54	0
+Liberec	50.770957	15.034387	school	4	1990		4	panel	plocha	99	74.5	121.5	1	0.40	0
+Liberec	50.771279	15.059415	residential	7	2023		11	jiny	moderni	99	36.4	54.0	2	0.43	1
+Liberec	50.761270	15.032187	residential	7	1970		4	panel	plocha	99	13.8	54.8	1	0.92	1
+Liberec	50.782863	15.047076	residential	4	1980		4	panel	plocha	99	13.0	39.1	1	0.77	1
+Liberec	50.772143	15.047938	residential	3	1919		10	jiny	sikma	99	15.8	52.3	2	0.71	1
+Liberec	50.774691	15.054030	residential	5	1919		10	jiny	sikma	99	22.0	21.3	1	0.52	0
+Liberec	50.775599	15.062761	commercial	4	2006		4	panel	plocha	99	107.8	133.8	1	0.56	0
+Liberec	50.751120	15.062582	yes	4	2008		4	panel	plocha	99	36.7	50.3	1	0.93	0
+Liberec	50.764738	15.086803	residential	11	1990		4	panel	plocha	99	25.3	41.6	1	0.49	0
+Liberec	50.785995	15.057288	apartments	5	1980		4	panel	plocha	99	16.4	24.9	1	0.77	0
+Liberec	50.749970	15.068763	residential	8	1990		4	panel	plocha	99	37.2	61.9	3	0.47	1
+Liberec	50.771659	15.071821	apartments	5	1945		10	jiny	plocha	99	12.7	59.2	3	0.86	1
+Liberec	50.747060	15.026507	civic	1	1980		4	panel	nizky	99	39.1	35.1	1	0.80	0
+Liberec	50.769052	15.057524	residential	5	2005		10	jiny	moderni	99	67.9	183.0	20	0.37	0
+Liberec	50.774332	15.094234	residential	3	2021		1	jiny	moderni	99	20.2	19.3	1	0.56	0
+Liberec	50.781085	15.052400	apartments	4	1919		10	jiny	sikma	99	21.3	18.2	1	0.58	0
+Liberec	50.767144	15.060073	residential	5	1919		10	jiny	sikma	99	61.6	104.2	7	0.49	0
+Liberec	50.749747	15.065248	residential	5	1990		4	panel	plocha	99	51.2	91.0	3	0.29	1
+Liberec	50.767912	15.068859	residential	3			2	jiny	plocha	99	15.3	24.2	1	0.49	0
+Liberec	50.772919	15.077671	residential	4	1919		10	jiny	sikma	99	18.8	18.2	1	0.53	0
+Liberec	50.750230	15.037973	residential	5	1980		4	panel	plocha	99	22.9	57.3	2	0.54	1
+Liberec	50.775810	15.072673	residential	4	1919		10	jiny	sikma	99	19.2	23.1	1	0.70	0
+Liberec	50.760788	15.076182	civic	4	2000		10	jiny	plocha	99	21.8	53.7	1	0.77	0
+Liberec	50.772173	15.063608	civic	2	1919		10	jiny	nizky	99	28.7	50.7	1	0.58	0
+Liberec	50.783475	15.070876	residential	5	1980		10	jiny	plocha	99	22.1	27.9	1	0.47	0
+Liberec	50.762937	15.037813	residential	8	2024		11	jiny	moderni	99	27.1	28.3	1	0.82	0
+Liberec	50.742744	15.062498	residential	3	1919		10	jiny	sikma	99	21.4	16.9	1	0.72	0
+Liberec	50.768293	15.069638	residential	2	1919		10	jiny	nizky	99	18.8	19.7	1	0.50	0
+Liberec	50.771164	15.048332	residential	4	1919		10	jiny	sikma	99	12.5	20.7	1	0.91	1
+Liberec	50.760640	15.031353	residential	9	1980		4	panel	plocha	99	29.0	28.1	1	0.55	0
+Liberec	50.771568	15.045324	residential	4	1945		10	jiny	funkce	99	15.4	17.8	1	0.60	0
+Liberec	50.766130	15.049844	apartments	8	1970		4	panel	plocha	99	15.5	48.5	3	0.81	1
+Liberec	50.751363	15.068480	residential	12	1990		4	panel	plocha	99	15.8	115.8	4	0.83	1
+Liberec	50.764405	15.054240	yes	6	2023		1	jiny	moderni	99	34.5	41.4	1	0.97	0
+Liberec	50.761602	15.068123	apartments	9	1979		4	panel	plocha	99	12.2	163.7	8	0.85	1
+Zlín	49.220694	17.679958	residential	5	1980		10	jiny	plocha	99	24.9	29.1	1	0.62	0
+Zlín	49.221108	17.696576	residential	2	1970		10	jiny	nizky	99	18.7	37.5	1	0.81	0
+Zlín	49.242385	17.668042	residential	10	1990		4	panel	plocha	99	16.4	148.1	3	0.68	1
+Zlín	49.220538	17.678630	residential	2	1960		10	jiny	nizky	99	12.4	18.9	1	0.68	1
+Zlín	49.234208	17.669720	residential	5	1990		4	panel	plocha	99	15.4	85.4	2	0.73	1
+Zlín	49.236050	17.669925	residential	5	2008		10	jiny	moderni	99	32.7	40.6	1	0.67	0
+Zlín	49.242133	17.659049	residential	2	2000		10	jiny	nizky	99	17.2	18.6	1	0.53	0
+Zlín	49.219516	17.669445	residential	4	2017		1	jiny	moderni	99	14.7	48.4	1	0.91	1
+Zlín	49.225824	17.672205	yes	4	1945		10	jiny	funkce	99	69.0	179.1	11	0.25	0
+Zlín	49.230914	17.684542	residential	4	1960		10	jiny	plocha	99	12.8	54.3	3	0.82	1
+Zlín	49.239986	17.662561	residential	8	1980		4	panel	plocha	99	21.1	26.5	1	0.73	0
+Zlín	49.236470	17.657140	residential	7	1980		4	panel	plocha	99	21.9	25.9	1	0.62	0
+Zlín	49.223824	17.646808	yes	4	2023		1	jiny	moderni	99	22.2	45.0	1	0.80	0
+Zlín	49.230681	17.679269	residential	8	1980		4	panel	plocha	99	28.6	79.9	3	0.47	1
+Zlín	49.225784	17.676758	residential	3	1960		10	jiny	plocha	99	12.3	20.1	1	0.75	1
+Zlín	49.240609	17.675332	yes	7	1999		10	jiny	moderni	99	35.9	58.3	3	0.40	1
+Zlín	49.238510	17.674796	apartments	9	2000		4	panel	plocha	99	41.3	108.6	6	0.33	0
+Zlín	49.224237	17.691977	residential	3	1960		10	jiny	plocha	99	12.0	71.2	4	0.88	1
+Zlín	49.231734	17.676664	residential	5	1970		10	jiny	plocha	99	13.1	25.2	1	0.82	1
+Zlín	49.227022	17.676340	yes	5			10	jiny	plocha	99	12.4	38.9	1	0.84	1
+Zlín	49.241163	17.669266	civic	3	2007		10	jiny	plocha	99	37.0	65.0	1	0.47	0
+Zlín	49.243783	17.671847	residential	9	1990		4	panel	plocha	99	23.2	26.7	1	0.59	0
+Zlín	49.237680	17.664827	residential	9	1980		4	panel	plocha	99	23.2	130.0	3	0.47	1
+Zlín	49.226168	17.685893	civic	5	1980		4	panel	plocha	99	31.4	50.2	2	0.52	1
+Zlín	49.228613	17.697179	civic	1	2015		1	jiny	nizky	99	34.4	38.4	1	0.66	0
+Zlín	49.239443	17.672905	residential	9	2000		4	panel	plocha	99	24.7	54.2	1	0.55	0
+Zlín	49.230145	17.673520	residential	4	1960		10	jiny	plocha	99	10.8	55.5	1	0.93	1
+Zlín	49.224743	17.690881	residential	4	1960		10	jiny	plocha	99	55.7	115.3	2	0.25	1
+Zlín	49.233362	17.680590	residential	4	1945		10	jiny	funkce	99	14.9	16.8	1	0.64	0
+Zlín	49.235098	17.666377	civic	7	2011		1	jiny	plocha	99	23.9	26.3	2	0.51	0
+Zlín	49.225296	17.676462	residential	4	1960		10	jiny	plocha	99	11.6	42.5	1	0.85	1
+Zlín	49.218922	17.677613	residential	2	1960		10	jiny	nizky	99	10.8	16.4	1	0.93	1
+Zlín	49.201526	17.667360	residential	2	1960		10	jiny	nizky	99	11.6	17.7	1	0.77	1
+Zlín	49.229470	17.687927	residential	3	2007		10	jiny	moderni	99	19.3	30.1	1	0.76	0
+Zlín	49.225873	17.673712	yes	5	2009		10	jiny	moderni	99	17.9	21.5	1	0.62	0
+Zlín	49.231981	17.657764	residential	6	1980		4	panel	plocha	99	13.0	43.5	1	0.89	1
+Zlín	49.243638	17.673253	residential	9	1990		4	panel	plocha	99	22.5	26.5	1	0.62	0
+Zlín	49.237354	17.661268	residential	7	1980		4	panel	plocha	99	21.0	24.5	1	0.65	0
+Zlín	49.221554	17.695492	residential	2	1936		1	jiny	nizky	99	9.9	32.8	1	0.84	1
+Zlín	49.225706	17.697694	residential	4	1960		4	panel	plocha	99	12.7	47.3	1	0.86	1
+Zlín	49.241122	17.652590	residential	5	1980		4	panel	plocha	99	22.4	26.7	1	0.65	0
+Zlín	49.231018	17.685540	residential	4	1960		10	jiny	plocha	99	11.1	54.6	3	0.90	1
+Zlín	49.236577	17.665455	residential	6	1980		4	panel	plocha	99	21.6	25.9	1	0.94	0
+Zlín	49.230742	17.685408	residential	4	1960		10	jiny	plocha	99	11.1	54.6	3	0.90	1
+Zlín	49.232322	17.659322	residential	7	1980		4	panel	plocha	99	31.5	28.3	1	0.64	0
+Zlín	49.239118	17.659968	residential	3	2024		1	jiny	moderni	99	16.6	24.9	1	0.75	0
+Zlín	49.225317	17.675814	residential	5	1945		10	jiny	plocha	99	14.9	17.1	1	0.68	1
+Zlín	49.224946	17.699472	civic	10	2000		4	panel	plocha	99	16.8	22.5	1	0.71	0
+Zlín	49.231035	17.670755	civic	2	2019		1	jiny	nizky	99	34.7	44.7	3	0.50	0
+Zlín	49.234837	17.669779	yes	9	1990		4	panel	plocha	99	23.2	27.8	1	0.57	0
+Zlín	49.229624	17.683932	residential	4	1960		10	jiny	plocha	99	13.0	55.0	3	0.81	1
+Zlín	49.237050	17.662186	residential	7	1980		4	panel	plocha	99	23.0	27.0	1	0.82	0
+Zlín	49.231133	17.674590	residential	4	1990		10	jiny	plocha	99	17.7	36.4	2	0.73	0
+Zlín	49.229281	17.668546	residential	4	1945		10	jiny	funkce	99	21.8	31.8	2	0.66	0
+Zlín	49.216986	17.631700	residential	9	1970		4	panel	plocha	99	12.5	144.2	3	0.88	1
+Zlín	49.219764	17.676896	residential	1	1956		10	jiny	nizky	99	11.8	19.0	1	0.72	1
+Zlín	49.230894	17.685510	residential	4	1960		10	jiny	plocha	99	11.1	54.6	3	0.90	1
+Zlín	49.227050	17.677018	residential	2	1985		1	jiny	nizky	99	15.8	19.7	1	0.55	0
+Zlín	49.232658	17.679268	residential	6	1960		10	jiny	funkce	99	20.5	62.1	1	0.72	0
+Zlín	49.223084	17.697552	residential	3	1960		10	jiny	plocha	99	12.6	54.8	3	0.82	1
+Tábor	49.414797	14.674530	civic	4	2021		1	jiny	plocha	99	27.5	74.1	7	0.55	0
+Tábor	49.423081	14.678093	civic	2	1970		10	jiny	nizky	99	22.0	33.1	1	0.61	0
+Tábor	49.410686	14.648968	residential	2	1919		10	jiny	nizky	99	24.8	57.0	3	0.56	0
+Tábor	49.421708	14.650640	residential	9	1970		4	panel	plocha	99	14.5	65.1	1	0.85	1
+Tábor	49.412723	14.669628	residential	4	1919		10	jiny	sikma	99	47.7	79.9	8	0.53	0
+Tábor	49.412366	14.665680	residential	5	1945		10	jiny	funkce	99	23.0	144.5	10	0.56	0
+Tábor	49.420455	14.647767	hotel	4	1970		4	panel	plocha	99	17.7	41.0	1	0.83	0
+Tábor	49.414143	14.659680	commercial	5	2000		10	jiny	plocha	99	28.9	64.5	3	0.55	1
+Tábor	49.410406	14.651945	residential	4	1970		10	jiny	plocha	99	12.6	22.8	1	0.84	1
+Tábor	49.420775	14.648194	residential	9	1970		4	panel	plocha	99	11.8	29.4	1	0.84	1
+Tábor	49.417334	14.662872	civic	3	1945		10	jiny	plocha	99	20.9	36.0	2	0.60	0
+Tábor	49.414651	14.671312	residential	4	1956		10	jiny	sikma	99	53.3	160.0	10	0.26	0
+Tábor	49.407430	14.679017	residential	3	1945		10	jiny	plocha	99	12.6	19.5	1	0.82	1
+Tábor	49.412433	14.657173	residential	4	2015		1	jiny	moderni	99	37.5	84.3	7	0.37	0
+Tábor	49.409857	14.680207	civic	1	1973		10	jiny	nizky	99	24.7	47.3	2	0.50	1
+Tábor	49.410824	14.676207	hotel	1			10	jiny	nizky	99	27.0	25.8	1	0.57	0
+Tábor	49.411758	14.666854	residential	3	2005		10	jiny	moderni	99	26.4	78.1	3	0.55	1
+Tábor	49.414120	14.684751	residential	4	1990		10	jiny	plocha	99	14.5	34.3	1	0.82	1
+Tábor	49.411184	14.657874	residential	2	1945		10	jiny	nizky	99	18.6	22.6	1	0.59	0
+Tábor	49.412644	14.675206	civic	3	1919		10	jiny	sikma	99	15.2	20.6	1	0.88	1
+Tábor	49.417865	14.663502	residential	4	1945		10	jiny	plocha	99	14.6	21.4	1	0.89	1
+Tábor	49.422506	14.660416	residential	3	1960		10	jiny	plocha	99	12.6	55.8	3	0.77	1
+Tábor	49.414337	14.671045	residential	4	1945		10	jiny	funkce	99	53.3	160.0	10	0.26	0
+Tábor	49.413476	14.659998	residential	3	1980		10	jiny	plocha	99	53.6	93.7	10	0.39	0
+Tábor	49.421120	14.649243	residential	5	1970		4	panel	plocha	99	13.9	51.7	2	0.85	1
+Tábor	49.409573	14.670803	residential	5	1970		10	jiny	plocha	99	13.7	40.2	1	0.84	1
+Tábor	49.419938	14.660373	civic	4			1	jiny	plocha	99	18.3	55.3	1	0.71	0
+Tábor	49.413225	14.668653	civic	3	1919		10	jiny	sikma	99	37.5	59.3	1	0.66	0
+Tábor	49.413262	14.670622	commercial	3	1972		10	jiny	plocha	99	48.3	108.4	10	0.32	0
+Tábor	49.412273	14.673033	residential	4	1919		10	jiny	sikma	99	44.4	104.2	10	0.43	0
+Tábor	49.413597	14.666569	commercial	5	1960		10	jiny	plocha	99	26.4	88.3	3	0.61	1
+Tábor	49.416133	14.681304	residential	7	1980		4	panel	plocha	99	13.1	26.0	1	0.94	1
+Tábor	49.417939	14.663912	residential	4	1945		10	jiny	plocha	99	14.1	20.9	1	0.94	1
+Tábor	49.410327	14.648979	residential	2	1919		10	jiny	nizky	99	11.7	19.8	1	0.75	1
+Tábor	49.413502	14.662055	residential	5	1919		10	jiny	sikma	99	39.3	104.5	5	0.38	0
+Tábor	49.406778	14.678252	residential	3	1945		10	jiny	plocha	99	15.1	28.9	2	0.69	1
+Tábor	49.418970	14.663029	residential	4	1960		10	jiny	plocha	99	11.7	46.3	3	0.83	1
+Tábor	49.423436	14.678941	school	1	2023		1	jiny	nizky	99	28.6	59.6	1	0.58	0
+Tábor	49.419964	14.661538	residential	5	1970		10	jiny	plocha	99	15.1	28.9	1	0.79	1
+Tábor	49.415230	14.676648	transportation	1			1	jiny	nizky	99	15.2	26.0	1	0.77	1
+Tábor	49.415013	14.659302	civic	3	1886		1	jiny	sikma	99	30.9	63.5	4	0.63	0
+Tábor	49.409299	14.674044	civic	4	1945		10	jiny	plocha	99	29.0	42.3	1	0.48	0
+Tábor	49.410621	14.679470	hotel	2			1	jiny	nizky	99	15.6	35.7	1	0.42	0
+Tábor	49.418361	14.663319	residential	4	1960		10	jiny	funkce	99	18.4	49.7	3	0.61	0
+Tábor	49.414673	14.657197	residential	3	2005		10	jiny	moderni	99	46.6	60.5	6	0.45	0
+Tábor	49.418517	14.650843	civic	5	1998		10	jiny	plocha	99	52.0	55.4	1	0.54	0
+Tábor	49.411959	14.671194	residential	7	1970		4	panel	plocha	99	17.4	27.6	2	0.62	0
+Tábor	49.419906	14.662430	residential	5	1980		10	jiny	plocha	99	12.8	30.0	1	0.81	1
+Tábor	49.413526	14.655735	school	3	1919		10	jiny	sikma	99	32.9	50.6	1	0.62	0
+Tábor	49.418096	14.662921	residential	2	2022		1	jiny	nizky	99	37.5	70.0	5	0.33	0
+Tábor	49.424495	14.653291	apartments	3	2000		10	jiny	moderni	99	17.1	21.5	1	0.79	0
+Tábor	49.414017	14.673867	civic	6	2000		10	jiny	plocha	99	124.6	112.0	15	0.34	0
+Tábor	49.412014	14.667138	residential	3	1970		10	jiny	plocha	99	10.7	39.5	2	0.68	1
+Tábor	49.418526	14.677356	residential	5	1960		10	jiny	plocha	99	13.2	37.9	2	0.80	1
+Tábor	49.419373	14.646307	residential	6	1980		4	panel	plocha	99	18.4	34.1	1	0.66	0
+Tábor	49.413125	14.664707	hotel	3	1920		1	jiny	plocha	99	48.2	65.6	1	0.48	0
+Tábor	49.421038	14.649690	residential	5	1970		4	panel	plocha	99	13.9	51.7	2	0.85	1
+Tábor	49.410501	14.669831	residential	4	1970		10	jiny	plocha	99	16.0	34.9	1	0.72	1
+Tábor	49.419279	14.659227	residential	4	1945		10	jiny	plocha	99	14.0	67.5	3	0.88	1
+Tábor	49.421149	14.639764	yes	2	2023		1	jiny	hala	99	44.6	58.8	1	0.62	0
+Vysoké Mýto	49.947601	16.154249	residential	3	1960		10	jiny	plocha	99	22.7	49.9	2	0.47	1
+Vysoké Mýto	49.950121	16.151987	residential	5	1919		10	jiny	sikma	99	12.7	76.2	2	0.87	1
+Vysoké Mýto	49.944368	16.153572	residential	4	1980		10	jiny	plocha	99	10.9	64.9	2	0.99	1
+Vysoké Mýto	49.954938	16.155001	commercial	2	2018		1	jiny	nizky	99	66.4	115.5	5	0.37	1
+Vysoké Mýto	49.946500	16.148920	residential	7	1990		4	panel	plocha	99	15.5	69.7	4	0.80	1
+Vysoké Mýto	49.954565	16.147388	commercial	2	2009		1	jiny	nizky	99	13.3	23.8	1	0.72	1
+Vysoké Mýto	49.952914	16.147282	residential	3	1970		10	jiny	plocha	99	12.7	37.1	1	0.83	1
+Vysoké Mýto	49.950795	16.164125	civic	1			2	jiny	nizky	99	17.7	22.0	1	0.59	0
+Vysoké Mýto	49.950370	16.166594	residential	5	1960		10	jiny	plocha	99	12.2	17.4	1	0.78	1
+Vysoké Mýto	49.944378	16.151048	residential	6	2000		4	panel	plocha	99	13.6	65.1	4	0.80	1
+Vysoké Mýto	49.952288	16.145374	residential	5	1980		4	panel	plocha	99	17.8	66.2	2	0.73	1
+Vysoké Mýto	49.953785	16.142227	yes	1	2009		1	jiny	nizky	99	15.6	64.0	1	0.84	1
+Vysoké Mýto	49.943738	16.151499	residential	6	2000		4	panel	plocha	99	15.0	66.5	4	0.71	1
+Vysoké Mýto	49.947264	16.151384	residential	6	1980		4	panel	plocha	99	12.9	58.0	3	0.83	1
+Vysoké Mýto	49.950469	16.156099	civic	3	1919		10	jiny	sikma	99	33.7	53.7	3	0.51	0
+Vysoké Mýto	49.952078	16.152342	residential	4	1970		10	jiny	plocha	99	11.9	48.6	1	0.83	1
+Vysoké Mýto	49.949718	16.145534	residential	6	2000		4	panel	plocha	99	14.4	73.3	1	0.85	1
+Vysoké Mýto	49.947357	16.148216	residential	5	1999		10	jiny	moderni	99	16.0	66.0	3	0.83	1
+Vysoké Mýto	49.950456	16.158468	civic	1			10	jiny	hala	99	39.0	50.6	1	0.77	0
+Vysoké Mýto	49.953123	16.146427	residential	6	2000		4	panel	plocha	99	15.5	35.0	1	0.83	1
+Vysoké Mýto	49.948054	16.150000	civic	4	2010		1	jiny	plocha	99	19.8	97.8	1	0.77	0
+Vysoké Mýto	49.953595	16.157846	civic	1			10	jiny	nizky	99	17.0	58.0	1	0.59	0
+Vysoké Mýto	49.944794	16.153746	residential	3	1970		10	jiny	plocha	99	12.4	38.1	1	0.81	1
+Vysoké Mýto	49.950094	16.167772	residential	5	1960		10	jiny	plocha	99	11.4	16.0	1	0.83	1
+Vysoké Mýto	49.950018	16.154451	residential	3	1945		10	jiny	plocha	99	12.4	30.7	1	0.88	1
+Vysoké Mýto	49.945860	16.153757	residential	3	1960		10	jiny	plocha	99	21.5	47.2	2	0.48	1
+Vysoké Mýto	49.954300	16.162993	residential	2	2005		10	jiny	nizky	99	21.5	57.5	5	0.58	0
+Vysoké Mýto	49.945909	16.150935	residential	6	1980		4	panel	plocha	99	13.4	68.9	2	0.85	1
+Vysoké Mýto	49.946516	16.154624	residential	3	1960		10	jiny	plocha	99	11.2	36.0	1	0.84	1
+Vysoké Mýto	49.953804	16.163430	yes	3	1919		10	jiny	sikma	99	22.2	38.1	1	0.80	0
+Vysoké Mýto	49.954422	16.158424	residential	2	2020		1	jiny	nizky	99	27.0	53.0	4	0.59	0
+Vysoké Mýto	49.954792	16.156199	residential	3	1960		10	jiny	funkce	99	67.8	160.6	9	0.36	0
+Vysoké Mýto	49.950313	16.151013	residential	7	1980		4	panel	plocha	99	15.6	73.0	1	0.83	1
+Vysoké Mýto	49.952000	16.144021	residential	4	1980		4	panel	plocha	99	15.7	72.9	4	0.80	1
+Vysoké Mýto	49.947424	16.153574	residential	3	1970		10	jiny	plocha	99	12.7	36.3	1	0.85	1
+Vysoké Mýto	49.953212	16.152611	residential	5	2010		1	jiny	moderni	99	38.4	43.0	1	0.45	0
+Vysoké Mýto	49.954923	16.150431	yes	2			1	jiny	nizky	99	17.5	33.5	1	0.70	0
+Vysoké Mýto	49.943881	16.151408	residential	6	2000		4	panel	plocha	99	15.0	66.5	4	0.71	1
+Vysoké Mýto	49.949965	16.151448	residential	5	1970		10	jiny	plocha	99	12.7	76.2	2	0.87	1
+Vysoké Mýto	49.941021	16.166925	yes	1	2026		43	panel	nizky	99	20.4	47.3	1	0.75	0
+Vysoké Mýto	49.949044	16.150411	residential	4	1945		10	jiny	funkce	99	20.1	25.2	1	0.55	0
+Vysoké Mýto	49.951513	16.144642	residential	5	1980		4	panel	plocha	99	16.3	53.6	3	0.78	0
+Vysoké Mýto	49.946594	16.153300	residential	3	1970		10	jiny	plocha	99	11.9	32.3	1	0.83	1
+Vysoké Mýto	49.947219	16.154778	residential	2	1960		10	jiny	nizky	99	43.5	73.6	3	0.29	1
+Vysoké Mýto	49.953339	16.161887	civic	1			10	jiny	nizky	99	20.0	31.7	1	0.67	0
+Vysoké Mýto	49.951484	16.168108	residential	3	1960		10	jiny	plocha	99	12.3	21.4	1	0.77	1
+Vysoké Mýto	49.952096	16.159607	yes	2	1919		10	jiny	nizky	99	25.5	27.4	2	0.59	0
+Vysoké Mýto	49.955454	16.147406	transportation	1	1974		3	jiny	nizky	99	11.8	45.9	1	0.81	1
+Vysoké Mýto	49.946668	16.153896	residential	3	1960		10	jiny	plocha	99	11.3	32.2	1	0.84	1
+Vysoké Mýto	49.950674	16.144888	residential	6	2000		4	panel	plocha	99	15.0	74.1	1	0.84	1
+Vysoké Mýto	49.944665	16.153118	residential	6	1980		10	jiny	plocha	99	19.0	24.4	1	0.88	0
+Vysoké Mýto	49.946204	16.149121	residential	7	1990		4	panel	plocha	99	15.5	69.7	4	0.80	1
+Vysoké Mýto	49.956702	16.151605	commercial	1	2019		1	jiny	hala	99	37.6	73.8	1	0.71	0
+Vysoké Mýto	49.947437	16.146906	residential	5	2000		10	jiny	moderni	99	17.8	85.4	5	0.71	0
+Vysoké Mýto	49.946508	16.152668	residential	3	1970		10	jiny	plocha	99	12.4	32.6	1	0.85	1
+Vysoké Mýto	49.946441	16.151283	residential	8	1980		4	panel	plocha	99	13.5	97.1	1	0.84	1
+Vysoké Mýto	49.951764	16.152380	residential	3	1960		10	jiny	plocha	99	11.3	31.8	1	0.83	1
+Vysoké Mýto	49.949868	16.167496	residential	5	1960		10	jiny	plocha	99	12.4	17.9	1	0.69	1
+Vysoké Mýto	49.945966	16.149516	residential	4	2000		4	panel	plocha	99	13.3	80.7	1	0.86	1
+Vysoké Mýto	49.949256	16.161325	residential	3	2010		1	jiny	moderni	99	22.8	23.6	1	0.70	0
+kontrola Jižní Město	50.034186	14.496159	residential	2	2000		10	jiny	nizky	99	15.1	23.7	1	0.50	0
+kontrola Jižní Město	50.036791	14.500382	residential	10	1980		4	panel	plocha	99	16.4	54.5	3	0.79	0
+kontrola Jižní Město	50.034333	14.509811	residential	3	1980		10	jiny	plocha	99	16.8	22.0	1	0.54	0
+kontrola Jižní Město	50.032858	14.509521	residential	8	2009		4	panel	plocha	99	18.6	73.7	4	0.79	0
+kontrola Jižní Město	50.030439	14.503505	apartments	11	1990		4	panel	plocha	99	16.6	90.9	5	0.91	0
+kontrola Jižní Město	50.023480	14.515450	residential	3	1980		4	panel	plocha	99	19.2	72.9	2	0.95	1
+kontrola Jižní Město	50.034873	14.519528	residential	12	1980		4	panel	plocha	99	21.5	73.4	1	0.85	0
+kontrola Jižní Město	50.027321	14.512667	residential	5	1980		4	panel	plocha	99	15.3	90.9	6	0.86	1
+kontrola Jižní Město	50.030598	14.521038	residential	8	1980		4	panel	plocha	99	19.3	35.9	1	0.89	0
+kontrola Jižní Město	50.020178	14.499008	yes	2	2018		1	jiny	nizky	99	33.3	46.4	1	0.53	0
+kontrola Jižní Město	50.035565	14.509581	residential	2	2001		10	jiny	nizky	99	23.1	27.2	2	0.55	0
+kontrola Jižní Město	50.037093	14.517156	residential	10	1980		4	panel	plocha	99	14.5	36.3	2	0.90	1
+kontrola Jižní Město	50.027630	14.520800	residential	10	1980		4	panel	plocha	99	22.6	90.8	2	0.80	1
+kontrola Jižní Město	50.038016	14.512616	apartments	8	1990		4	panel	plocha	99	18.3	90.2	5	0.82	0
+kontrola Jižní Město	50.038130	14.506408	apartments	10	1980		4	panel	plocha	99	25.0	30.8	1	0.58	0
+kontrola Jižní Město	50.026879	14.490007	residential	1	1990		4	panel	nizky	99	26.0	97.4	3	0.73	1
+kontrola Jižní Město	50.027954	14.519768	residential	11	1980		4	panel	plocha	99	23.1	109.5	5	0.79	0
+kontrola Jižní Město	50.033258	14.514273	residential	9	1980		4	panel	plocha	99	16.9	127.1	7	0.86	0
+kontrola Jižní Město	50.025700	14.509833	apartments	5	1990		4	panel	plocha	99	49.7	90.4	1	0.43	0
+kontrola Jižní Město	50.025597	14.510592	residential	8	1990		4	panel	plocha	99	17.7	176.4	10	0.82	0
+kontrola Jižní Město	50.022371	14.512042	residential	5	1980		4	panel	plocha	99	19.8	114.8	3	0.68	1
+kontrola Jižní Město	50.022592	14.496285	residential	1	1990		4	panel	nizky	99	23.6	97.7	3	0.78	1
+kontrola Jižní Město	50.037575	14.514240	apartments	12	1980		4	panel	plocha	99	20.4	53.9	2	0.81	1
+kontrola Jižní Město	50.031303	14.517408	residential	8	1980		4	panel	plocha	99	18.5	36.5	1	0.92	0
+kontrola Jižní Město	50.023408	14.513416	residential	1	1980		10	jiny	nizky	99	39.5	50.6	1	0.60	0
+kontrola Jižní Město	50.033211	14.517781	residential	13	1980		4	panel	plocha	99	14.6	53.8	3	0.91	1
+kontrola Jižní Město	50.022031	14.497295	residential	8	2010		4	panel	plocha	99	21.4	97.3	5	0.86	0
+kontrola Jižní Město	50.030184	14.509560	residential	10	2025		41	panel	plocha	99	19.3	64.9	1	0.92	0
+kontrola Jižní Město	50.034959	14.501042	apartments	12	1990		4	panel	plocha	99	16.5	127.8	7	0.78	0
+kontrola Jižní Město	50.030316	14.503550	apartments	11	1990		4	panel	plocha	99	16.6	90.9	5	0.91	0
+kontrola Jižní Město	50.025342	14.493604	residential	8	1990		4	panel	plocha	99	86.3	180.6	4	0.39	1
+kontrola Jižní Město	50.023866	14.491814	school	3	1990		4	panel	plocha	99	102.5	177.2	1	0.47	0
+kontrola Jižní Město	50.033557	14.520020	residential	14	1980		4	panel	plocha	99	36.5	50.2	1	0.47	0
+kontrola Jižní Město	50.035867	14.500468	apartments	12	1990		4	panel	plocha	99	16.5	127.8	7	0.78	0
+kontrola Jižní Město	50.022379	14.512475	residential	5	1980		4	panel	plocha	99	19.8	114.8	3	0.68	1
+kontrola Jižní Město	50.034731	14.500289	apartments	8	1990		4	panel	plocha	99	14.8	41.5	2	0.87	1
+kontrola Jižní Město	50.026724	14.515416	residential	10	1980		4	panel	plocha	99	22.4	108.2	4	0.81	1
+kontrola Jižní Město	50.026655	14.516935	residential	9	2008		4	panel	plocha	99	17.4	108.6	6	0.83	0
+kontrola Jižní Město	50.030460	14.515009	apartments	12	1980		4	panel	plocha	99	19.6	107.4	4	0.86	1
+kontrola Jižní Město	50.039613	14.507350	apartments	7	1990		4	panel	plocha	99	17.8	115.1	2	0.68	1
+kontrola Jižní Město	50.025815	14.512060	residential	6	1990		4	panel	plocha	99	17.7	176.4	10	0.82	0
+kontrola Jižní Město	50.034176	14.519947	residential	8	1980		4	panel	plocha	99	15.9	54.5	3	0.90	1
+kontrola Jižní Město	50.025744	14.511563	residential	8	1990		4	panel	plocha	99	17.7	176.4	10	0.82	0
+kontrola Jižní Město	50.033228	14.511118	residential	12	1990		4	panel	plocha	99	16.1	40.5	1	0.90	0
+kontrola Jižní Město	50.030489	14.509120	residential	10	2025		41	panel	plocha	99	20.3	63.9	1	0.74	0
+kontrola Jižní Město	50.032752	14.506079	residential	12	1990		4	panel	plocha	99	14.7	72.7	2	0.87	1
+kontrola Jižní Město	50.038145	14.512523	apartments	8	1990		4	panel	plocha	99	18.3	90.2	5	0.82	0
+kontrola Jižní Město	50.026088	14.516099	residential	15	1980		4	panel	plocha	99	24.2	38.1	1	0.77	0
+kontrola Jižní Město	50.036478	14.517261	residential	10	1980		4	panel	plocha	99	16.8	37.7	1	0.75	0
+kontrola Jižní Město	50.038417	14.507430	apartments	9	1990		4	panel	plocha	99	19.8	57.3	1	0.77	0
+kontrola Jižní Město	50.036056	14.508773	residential	3	1980		10	jiny	plocha	99	18.1	26.8	2	0.59	0
+kontrola Jižní Město	50.024296	14.517127	civic	2	1980		4	panel	nizky	99	41.2	45.7	1	0.54	0
+kontrola Jižní Město	50.036816	14.501431	residential	11	1980		4	panel	plocha	99	14.3	54.3	3	0.90	1
+kontrola Jižní Město	50.033369	14.502839	residential	2	1978		10	jiny	nizky	99	15.8	16.8	1	0.65	1
+kontrola Jižní Město	50.033240	14.518027	residential	13	1980		4	panel	plocha	99	14.6	53.8	3	0.91	1
+kontrola Jižní Město	50.037696	14.511954	residential	4	2022		41	panel	plocha	99	16.3	20.8	1	0.69	0
+kontrola Jižní Město	50.030019	14.503780	apartments	11	1990		4	panel	plocha	99	16.6	90.9	5	0.91	0
+kontrola Jižní Město	50.027110	14.501487	residential	3	2004		10	jiny	moderni	99	17.6	20.6	1	0.54	0
+kontrola Jižní Město	50.034534	14.514767	civic	1			2	jiny	nizky	99	39.1	44.4	1	0.58	0
+kontrola Jižní Město	50.040045	14.499111	residential	5	2015		4	panel	plocha	99	41.4	72.1	1	0.72	0
+kontrola Lesná	49.223031	16.631026	residential	5	1960		10	jiny	plocha	99	12.2	35.5	2	0.78	1
+kontrola Lesná	49.222170	16.630468	residential	5	1970		10	jiny	plocha	99	25.0	25.4	1	0.51	0
+kontrola Lesná	49.228264	16.631922	residential	5	1980		4	panel	plocha	99	23.3	24.0	1	0.54	0
+kontrola Lesná	49.228678	16.628280	residential	13	1970		4	panel	plocha	99	20.9	24.1	1	0.69	0
+kontrola Lesná	49.230246	16.620714	residential	9	1970		4	panel	plocha	99	15.2	162.7	5	0.75	1
+kontrola Lesná	49.224005	16.627132	residential	10	1970		4	panel	plocha	99	13.3	213.0	11	0.86	1
+kontrola Lesná	49.227254	16.618242	residential	5	1970		10	jiny	plocha	99	22.1	23.6	1	0.60	0
+kontrola Lesná	49.225872	16.617380	residential	5	2006		10	jiny	moderni	99	23.2	24.3	1	0.58	0
+kontrola Lesná	49.225538	16.617213	residential	5	1970		4	panel	plocha	99	23.4	25.2	1	0.53	0
+kontrola Lesná	49.226015	16.619784	apartments	9	1970		4	panel	plocha	99	11.4	216.7	1	0.94	1
+kontrola Lesná	49.224329	16.617334	residential	5	2004		4	panel	plocha	99	24.6	25.2	1	0.49	0
+kontrola Lesná	49.227752	16.618592	residential	5	1970		10	jiny	plocha	99	23.0	24.2	1	0.55	0
+kontrola Lesná	49.229452	16.621724	residential	9	1970		4	panel	plocha	99	13.2	216.8	1	0.84	1
+kontrola Lesná	49.228455	16.623879	civic	1			4	panel	hala	99	40.6	105.6	1	0.52	0
+kontrola Lesná	49.227024	16.629025	residential	7	1965		4	panel	plocha	99	42.8	75.1	1	0.73	0
+kontrola Lesná	49.224893	16.618836	residential	5	1970		4	panel	plocha	99	24.8	24.5	1	0.50	0
+kontrola Lesná	49.220991	16.628366	civic	1			10	jiny	nizky	99	22.4	48.4	1	0.86	0
+kontrola Lesná	49.224780	16.616623	residential	5	1970		4	panel	plocha	99	24.4	23.9	1	0.52	0
+kontrola Lesná	49.230486	16.620346	residential	9	1970		4	panel	plocha	99	15.2	162.7	5	0.75	1
+kontrola Lesná	49.224116	16.617694	residential	5	1970		4	panel	plocha	99	24.5	24.1	1	0.50	0
+kontrola Lesná	49.223855	16.627870	residential	10	1970		4	panel	plocha	99	13.3	213.0	11	0.86	1
+kontrola Lesná	49.223952	16.627370	residential	10	1970		4	panel	plocha	99	13.3	213.0	11	0.86	1
+kontrola Lesná	49.231138	16.619526	residential	9	1970		4	panel	plocha	99	15.2	162.7	5	0.75	1
+kontrola Lesná	49.228594	16.621880	residential	10	1970		4	panel	plocha	99	13.9	216.5	6	0.83	1
+kontrola Lesná	49.229036	16.630332	residential	5	1970		10	jiny	plocha	99	13.3	56.8	1	0.85	1
+kontrola Lesná	49.224646	16.625055	residential	15	1970		4	panel	plocha	99	19.4	48.4	1	0.79	0
+kontrola Lesná	49.230868	16.626427	civic	8	1970		4	panel	plocha	99	37.9	104.0	1	0.57	0
+kontrola Lesná	49.226974	16.618496	residential	5	1970		10	jiny	plocha	99	23.3	23.9	1	0.58	0
+kontrola Lesná	49.224699	16.617553	residential	5	1970		4	panel	plocha	99	24.6	24.7	1	0.50	0
+kontrola Lesná	49.227352	16.617500	residential	5	1970		10	jiny	plocha	99	23.5	24.9	1	0.54	0
+kontrola Lesná	49.224300	16.618268	residential	5	1970		4	panel	plocha	99	23.1	23.9	1	0.55	0
+kontrola Lesná	49.228723	16.621420	residential	10	1970		4	panel	plocha	99	13.9	216.5	6	0.83	1
+kontrola Lesná	49.230068	16.629424	residential	4	1970		10	jiny	plocha	99	14.0	56.7	1	0.84	1
+kontrola Lesná	49.227008	16.615985	residential	16	2004		10	jiny	moderni	99	36.8	98.3	3	0.50	1
+kontrola Lesná	49.230744	16.629038	residential	10	1970		4	panel	plocha	99	12.3	155.2	3	0.87	1
+kontrola Lesná	49.224661	16.623820	residential	15	1970		4	panel	plocha	99	18.1	48.1	1	0.84	0
+kontrola Lesná	49.230764	16.620006	residential	8	1970		4	panel	plocha	99	15.2	162.7	5	0.75	1
+kontrola Lesná	49.229436	16.630000	residential	5	1970		10	jiny	plocha	99	12.8	56.3	3	0.87	1
+kontrola Lesná	49.222792	16.630153	residential	4	1980		10	jiny	plocha	99	20.6	23.1	1	0.73	0
+kontrola Lesná	49.228116	16.628542	residential	13	1970		4	panel	plocha	99	20.3	25.1	1	0.70	0
+kontrola Lesná	49.230366	16.620536	residential	9	1970		4	panel	plocha	99	15.2	162.7	5	0.75	1
+kontrola Lesná	49.224308	16.625831	residential	10	1970		4	panel	plocha	99	13.3	213.0	11	0.86	1
+kontrola Lesná	49.223707	16.618500	commercial	3	2003		4	panel	plocha	99	13.0	20.7	1	0.62	0
+kontrola Lesná	49.226671	16.620892	apartments	9	1970		4	panel	plocha	99	11.7	217.4	1	0.94	1
+kontrola Lesná	49.228564	16.630450	residential	5	1970		10	jiny	plocha	99	12.8	55.7	1	0.85	1
+kontrola Lesná	49.228864	16.620945	residential	10	1970		4	panel	plocha	99	13.9	216.5	6	0.83	1
+kontrola Lesná	49.229077	16.620288	residential	10	1970		4	panel	plocha	99	13.9	216.5	6	0.83	1
+kontrola Lesná	49.224176	16.628869	residential	9	1970		4	panel	plocha	99	12.3	54.6	1	0.90	1
+kontrola Lesná	49.225296	16.618144	residential	5	1970		4	panel	plocha	99	24.0	24.2	1	0.51	0
+kontrola Lesná	49.227624	16.619314	residential	5	1970		10	jiny	plocha	99	22.8	24.0	1	0.57	0
+kontrola Lesná	49.226834	16.618012	residential	5	1970		10	jiny	plocha	99	22.1	23.6	1	0.60	0
+kontrola Lesná	49.221355	16.625793	civic	3	2023		11	jiny	plocha	99	66.9	117.1	1	0.81	0
+kontrola Lesná	49.227210	16.619052	residential	5	1970		10	jiny	plocha	99	22.3	23.7	1	0.59	0
+kontrola Lesná	49.222078	16.630017	residential	5	1970		10	jiny	plocha	99	25.2	25.3	1	0.51	0
+kontrola Lesná	49.224239	16.626092	residential	10	1970		4	panel	plocha	99	13.3	213.0	11	0.86	1
+kontrola Lesná	49.229592	16.629956	residential	5	1970		10	jiny	plocha	99	12.8	56.3	3	0.87	1
+kontrola Lesná	49.227423	16.618809	residential	5	1970		10	jiny	plocha	99	16.9	19.8	1	0.93	0
+kontrola Lesná	49.227213	16.615721	residential	16	2005		10	jiny	moderni	99	36.8	98.3	3	0.50	1
+kontrola Lesná	49.225744	16.627064	residential	9	1970		10	jiny	plocha	99	12.2	213.3	1	0.86	1
+kontrola Lesná	49.225533	16.617756	residential	5	1970		4	panel	plocha	99	24.8	24.5	1	0.50	0
+kontrola Poruba	49.831100	18.167962	residential	6	1960		10	jiny	funkce	99	45.9	99.8	5	0.36	0
+kontrola Poruba	49.827569	18.162740	residential	5	1960		10	jiny	plocha	99	75.1	144.0	7	0.28	1
+kontrola Poruba	49.826692	18.163331	residential	6	1960		10	jiny	funkce	99	69.5	119.5	7	0.31	0
+kontrola Poruba	49.828202	18.168328	residential	5	1960		10	jiny	plocha	99	17.8	44.3	2	0.80	1
+kontrola Poruba	49.829503	18.165668	residential	5	1960		10	jiny	funkce	99	46.6	134.7	7	0.37	0
+kontrola Poruba	49.826788	18.161092	civic	15	1980		4	panel	plocha	99	18.9	43.1	1	0.77	0
+kontrola Poruba	49.832699	18.169954	residential	6	1960		10	jiny	funkce	99	106.2	157.1	10	0.21	0
+kontrola Poruba	49.833334	18.167529	residential	6	1960		10	jiny	funkce	99	43.8	166.5	9	0.37	0
+kontrola Poruba	49.828424	18.151231	residential	4	2007		10	jiny	moderni	99	16.3	75.4	3	0.81	1
+kontrola Poruba	49.835573	18.157391	residential	5	1970		4	panel	plocha	99	33.6	32.7	1	0.48	0
+kontrola Poruba	49.829502	18.170876	residential	7	1960		10	jiny	funkce	99	44.0	212.0	10	0.43	0
+kontrola Poruba	49.830829	18.169903	residential	6	1960		10	jiny	funkce	99	16.7	117.8	5	0.83	0
+kontrola Poruba	49.827145	18.163583	residential	5	1960		10	jiny	funkce	99	69.5	119.5	7	0.31	0
+kontrola Poruba	49.827072	18.164769	residential	6	1960		10	jiny	plocha	99	81.9	114.6	6	0.25	1
+kontrola Poruba	49.833141	18.168140	residential	6	1960		10	jiny	funkce	99	128.4	202.0	14	0.20	0
+kontrola Poruba	49.828278	18.151450	residential	1	2005		10	jiny	nizky	99	16.3	75.4	3	0.81	1
+kontrola Poruba	49.827527	18.168317	residential	5	1960		10	jiny	funkce	99	42.9	85.6	5	0.43	0
+kontrola Poruba	49.827041	18.169642	residential	6	1960		10	jiny	plocha	99	39.6	82.3	4	0.40	1
+kontrola Poruba	49.830677	18.170669	residential	6	1960		10	jiny	funkce	99	46.8	98.5	5	0.36	0
+kontrola Poruba	49.830547	18.169309	residential	11	1960		1	jiny	plocha	99	24.3	55.0	2	0.68	1
+kontrola Poruba	49.828390	18.164049	residential	5	1960		10	jiny	plocha	99	19.4	74.4	3	0.73	1
+kontrola Poruba	49.827397	18.168457	residential	5	1960		10	jiny	funkce	99	42.9	85.6	5	0.43	0
+kontrola Poruba	49.829070	18.167982	residential	5	1960		10	jiny	funkce	99	34.6	99.3	5	0.45	0
+kontrola Poruba	49.831232	18.168478	residential	6	1960		10	jiny	funkce	99	45.9	99.8	5	0.36	0
+kontrola Poruba	49.827359	18.169094	residential	5	1960		10	jiny	funkce	99	42.9	85.6	5	0.43	0
+kontrola Poruba	49.828562	18.168502	residential	5	1960		10	jiny	funkce	99	34.4	98.4	5	0.44	0
+kontrola Poruba	49.829638	18.164953	residential	5	1960		10	jiny	funkce	99	46.6	134.7	7	0.37	0
+kontrola Poruba	49.828688	18.165518	residential	5	1960		10	jiny	funkce	99	37.4	125.4	6	0.43	0
+kontrola Poruba	49.830907	18.169537	residential	6	1960		10	jiny	funkce	99	16.7	117.8	5	0.83	0
+kontrola Poruba	49.834343	18.166763	residential	5	1960		10	jiny	funkce	99	128.4	202.0	14	0.20	0
+kontrola Poruba	49.835460	18.156160	residential	5	1970		4	panel	plocha	99	26.3	23.7	1	0.86	0
+kontrola Poruba	49.831578	18.166137	residential	6	1960		10	jiny	plocha	99	41.9	59.3	3	0.39	1
+kontrola Poruba	49.828028	18.169277	residential	6	1960		10	jiny	plocha	99	18.3	49.8	2	0.89	1
+kontrola Poruba	49.832575	18.165804	residential	5	1960		10	jiny	funkce	99	44.8	114.1	6	0.40	0
+kontrola Poruba	49.828063	18.163380	residential	5	1960		10	jiny	plocha	99	75.1	144.0	7	0.28	1
+kontrola Poruba	49.826917	18.163444	residential	6	1960		10	jiny	funkce	99	69.5	119.5	7	0.31	0
+kontrola Poruba	49.827860	18.166673	residential	5	1960		10	jiny	funkce	99	27.8	76.8	4	0.57	0
+kontrola Poruba	49.833772	18.166481	residential	6	1960		10	jiny	funkce	99	43.9	113.7	6	0.41	0
+kontrola Poruba	49.828195	18.165066	residential	2	1960		10	jiny	nizky	99	39.0	85.2	4	0.40	1
+kontrola Poruba	49.831022	18.167286	residential	6	1960		10	jiny	plocha	99	17.3	46.8	2	0.79	1
+kontrola Poruba	49.827317	18.168731	residential	5	1960		10	jiny	funkce	99	42.9	85.6	5	0.43	0
+kontrola Poruba	49.828594	18.150949	residential	1	2004		10	jiny	nizky	99	16.3	75.4	3	0.81	1
+kontrola Poruba	49.826246	18.169033	residential	6	1960		10	jiny	funkce	99	99.3	169.4	14	0.30	0
+kontrola Poruba	49.827540	18.170144	residential	5	1960		10	jiny	funkce	99	40.8	126.7	6	0.43	0
+kontrola Poruba	49.827621	18.165059	residential	5	1960		10	jiny	plocha	99	81.9	114.6	6	0.25	1
+kontrola Poruba	49.826574	18.169345	residential	6	1960		10	jiny	funkce	99	99.3	169.4	14	0.30	0
+kontrola Poruba	49.825845	18.162160	residential	5	1960		10	jiny	plocha	99	46.5	136.3	6	0.39	1
+kontrola Poruba	49.832293	18.166775	residential	6	1960		10	jiny	funkce	99	43.8	166.5	9	0.37	0
+kontrola Poruba	49.828403	18.170397	residential	5	1960		10	jiny	funkce	99	40.0	128.7	6	0.40	0
+kontrola Poruba	49.828509	18.169550	residential	5	1960		10	jiny	plocha	99	27.8	46.6	2	0.51	1
+kontrola Poruba	49.831128	18.168957	residential	6	1960		10	jiny	funkce	99	16.7	117.8	5	0.83	0
+kontrola Poruba	49.827881	18.166870	residential	5	1960		10	jiny	funkce	99	27.8	76.8	4	0.57	0
+kontrola Poruba	49.826333	18.163119	residential	6	1960		10	jiny	funkce	99	69.5	119.5	7	0.31	0
+kontrola Poruba	49.830135	18.164270	residential	5	1960		10	jiny	plocha	99	57.0	87.6	4	0.34	1
+kontrola Poruba	49.828879	18.164859	residential	5	1960		10	jiny	funkce	99	37.4	125.4	6	0.43	0
+kontrola Poruba	49.829932	18.170657	residential	6	1960		10	jiny	funkce	99	46.8	98.5	5	0.36	0
+kontrola Poruba	49.826492	18.169663	residential	6	1960		10	jiny	funkce	99	99.3	169.4	14	0.30	0
+kontrola Poruba	49.827703	18.168330	residential	5	1960		10	jiny	funkce	99	42.9	85.6	5	0.43	0
+kontrola Poruba	49.828505	18.163668	residential	5	1960		10	jiny	plocha	99	19.4	74.4	3	0.73	1
+kontrola Poruba	49.833515	18.168753	residential	6	1960		10	jiny	funkce	99	128.4	202.0	14	0.20	0
+dotazů na ČÚZK a IPR: 1295

@@ -11,7 +11,7 @@ const EDGE_STYLES = new Set(["sikma", "funkce", "moderni", "plocha", "nizky", "h
 
 const num = (v, lo, hi) => typeof v === "number" && Number.isFinite(v) && v >= lo && v <= hi;
 // Building facts at the edges that end up in SVG attributes (heights, floors, area).
-const INFO_NUMBERS = ["height", "levels", "cornice", "roof", "roofType", "iprKind", "area", "km", "period", "built", "panel", "house", "tint"];
+const INFO_NUMBERS = ["height", "levels", "cornice", "roof", "roofType", "iprKind", "area", "km", "period", "built", "panel", "solid", "house", "tint"];
 
 export function cleanProfile(p, what = "profil") {
   if (!Array.isArray(p?.segments) || !p.segments.length) throw new Error(`${what}: ${t("chybí části profilu")}`);
