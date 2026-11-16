@@ -8,6 +8,8 @@ Postup, který se osvědčil, a chyby, které jsme při něm udělali. Platí i 
   se použije na uložené díly a značky OSM ulice (`kontrola.js`), nový běh jen na kontrolu pár cílových řezů.
 - Nový běh B jen na cílových řezech a malé kontrole (viz 4.), ne na celém vzorku.
 - Hlídat běh řídce, výsledky číst souhrnně (počty, výpis jen změněných cílů), ne celé seznamy.
+- **Regrese Prahy a Brna jednou na konci série oprav** (Bára), ne po každé: každá oprava má vlastní `?off=`, takže když
+  regrese něco zhorší, viník se najde vypínáním oprav po jedné (`?off=` regrese, `P.off`).
 
 ## 1. Hledání
 - **Vzorek skutečných ulic**, ne náhodných bodů (Bára): náhodný bod se přichytí k pěšině nebo cestě v areálu a chyby
