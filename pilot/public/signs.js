@@ -98,6 +98,7 @@ const SK_FILE = { b1: "231", b11: "232", b8: "233-58", b30: "233-60", b28: "270"
   ip14a: "309", ip15a: "311", ip20a: "224", zona30: "268-30", ip26a: "315", ip27a: "317", cyklozona: "323", c7a: "220" };
 const SK_SPEEDS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130];
 // The folder of a state's signs.
+const AT_FILE = {};
 export const signDir = (country = "CZ") => (country === "SK" ? "znacky-SK" : "znacky");
 // The template of a speed sign, its number filled in when drawn.
 export const SPEED_TEMPLATES = new Set(["B20a", "253"]);
@@ -265,6 +266,8 @@ function walkSide(segs, i) {
 // seg: the part the sign stands under (a one-way sign follows its lane's direction).
 export function signFile(s, seg, country = "CZ") {
   const dir = s.dir ?? seg?.dir;
+  // Austria: its own set to come (StVO 1960); until then no signs rather than Czech ones.
+  if (country === "AT") return AT_FILE[s.k] || null;
   if (country === "SK") {
     if (s.k === "oneway") return dir === "backward" ? "230" : "321-30";
     if (s.k === "b20a") return SK_SPEEDS.includes(s.v) ? `253-${s.v}` : "253";
@@ -286,6 +289,7 @@ export function signFile(s, seg, country = "CZ") {
 }
 // The plate under a sign: contraflow cyclists are E 12a under IP 4b and E 12b under B 2; E 13 carries a text.
 export function plateFile(s, seg, country = "CZ") {
+  if (country === "AT") return null;
   if (country === "SK") {
     if (s.plate === "protismer") return (s.dir ?? seg?.dir) === "backward" ? "507-bicykle" : "514";
     if (s.plate === "obsluha") return "obsluha";

@@ -1,7 +1,7 @@
 import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, SURFACES, LAMP_HEIGHTS, underSize } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
-import { laneImage, applyLanes, SK_ORTHO } from "./lanes-ortho.js";
+import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO } from "./lanes-ortho.js";
 import { orthoOsmPolys, besidePassport, P as ORTHO_P } from "./ortho-osm.js";
 // ?off=… switches named parts of the estimate off (the A/B tests, evaluation/ortofoto-osm/regrese.mjs).
 { const off = new URLSearchParams(location.search).get("off"); if (off) ORTHO_P.off = new Set(off.split(",")); }
@@ -185,6 +185,14 @@ if (STATY?.slovensko) {
     bounds: L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]),
   }));
 }
+// Austria: basemap.at's orthophoto (Web Mercator to level 20), only there (staty.json).
+if (STATY?.austria) {
+  const pts = STATY.austria.flat(), xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]);
+  kinds.ortho.push(L.tileLayer(`${AT_ORTHO}/{z}/{y}/{x}.jpeg`, {
+    maxZoom: 21, maxNativeZoom: 20, attribution: "ortofoto © basemap.at",
+    bounds: L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]),
+  }));
+}
 // The towns (towns/<id>.js maps): their orthophoto, technical map and lines, each kept to the town.
 for (const [id, t] of Object.entries(TOWNS)) {
   if (!t.maps || t.national) continue;
@@ -295,7 +303,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     osmCache = { osm, way: near.way };
     // A motorway or an expressway is wider than the usual reach (Bára: R1 in Banská Bystrica): 35 m each side for a new
     // cut. Only in Slovakia so far (Fable: not tried on Czech motorways, Czechia stays as it was).
-    const WIDE_ROAD = city.country === "SK" && /^(motorway|trunk)$/.test(near.way.tags?.highway || "");
+    const WIDE_ROAD = (city.country === "SK" || city.country === "AT") && /^(motorway|trunk)$/.test(near.way.tags?.highway || "");
     reach = reach || (keepWay && state.cut?.reach) || (WIDE_ROAD ? { left: WIDE_REACH, right: WIDE_REACH } : defaultReach());
     // A new cut has A at its western end and B at the eastern (Bára): the profile is then seen
     // looking northwards, A on the left. A lies left of the street direction, so that direction
@@ -341,7 +349,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
     const inZps = z.status === "fulfilled" ? z.value : undefined;
     const laneImg = li.status === "fulfilled" ? li.value : null;
     // The same image tells grass from paving beside a roadway read from the DTM's lines (derive.js linePieces).
-    const args = { center: [0, 0], dir, half, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho, lanesImage: laneImg?.st, roadOnPath: city.id === "praha", noParkGuess: city.country === "SK" };
+    const args = { center: [0, 0], dir, half, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho, lanesImage: laneImg?.st, roadOnPath: city.id === "praha", noParkGuess: city.country === "SK" || city.country === "AT" };
     let result = deriveProfile(args);
     // No surface of the street from the technical map (no answer, nothing here, nothing at the axis): the carriageway
     // read on the orthophoto near where OSM expects it, sidewalks to the OSM buildings (ortho-osm.js; Bára 15. 11.
@@ -436,7 +444,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
       : tr("Obruby jsou podle OSM a domy z OSM, šířky ověřte.");
     const out = sources.outage({ surfaces: m, lines: k, parking: pk }, undefined, { fallback: orthoNote });
     // A town's passport answered but not at the axis (Slovakia): the profile is still the estimate.
-    state.cut.note = out.note || (orthoOsm && city.abroad ? (city.id === "slovensko" ? " · odhad z ortofota a OSM" : " · jen odhad z OSM") : "");
+    state.cut.note = out.note || (orthoOsm && city.abroad ? (["slovensko", "austria"].includes(city.id) ? " · odhad z ortofota a OSM" : " · jen odhad z OSM") : "");
     // The heading is the street only (Bára 16. 11. 2026); where the data come from is said under it (#profile-sub).
     $("#street-name").textContent = streetName(state.cut);
     const junctionNote = tr("Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami.");
@@ -1682,7 +1690,7 @@ function itemPlace(segs, i, kind) {
 function signTags(list = [], max, type, set) {
   const box = Object.assign(document.createElement("span"), { className: "items" });
   // Only the signs the state of the cut has (Slovakia has no shared zone, Fable).
-  const fits = Object.keys(SIGNS).filter((k) => signFits(k, type) && (city.country !== "SK" || k === "oneway" || signFile({ k }, null, "SK")));
+  const fits = Object.keys(SIGNS).filter((k) => signFits(k, type) && (!["SK", "AT"].includes(city.country) || signFile({ k, v: 30 }, null, city.country)));
   if (!fits.length && !list.length) return box; // no sign fits a green strip, a wall…
   // The name first and the sign's number after it (Fable: "IP 11b" first says nothing to most).
   const name = (x) => codeLast(signLabel(x, city.country || "CZ"));

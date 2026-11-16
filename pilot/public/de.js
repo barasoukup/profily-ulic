@@ -334,6 +334,7 @@ export const DE = {
   "ortofoto © IPR Praha, 2024": "Luftbild © IPR Praha, 2024",
   "ortofoto © Statutární město Brno, 2025": "Luftbild © Statutární město Brno, 2025",
   "ortofoto © Statutární město Plzeň, 2024": "Luftbild © Statutární město Plzeň, 2024",
+  "ortofoto © basemap.at (CC BY 4.0)": "Luftbild © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "Luftbild © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© OpenStreetMap-Mitwirkende (ODbL)",
   "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) a Bára Soukupová (MIT) · obrázek CC BY-SA 4.0 · ":
@@ -730,6 +731,7 @@ const ABROAD = {
 };
 export const DE_CITY = {
   slovensko: { ...ABROAD, dataShort: "von ZBGIS und OSM", credit: "Gebäude © GKÚ Bratislava (ZBGIS, CC BY 4.0)", rulesHead: "Breiten nach slowakischen Vorschriften (TP 117, TP 73 6110, TP 085, Verordnung 532/2002):" },
+  austria: { ...ABROAD, dataShort: "von basemap.at und OSM" },
   cizina: ABROAD,
   cesko: {
     server: "der technischen Karte des ČÚZK", dataName: NATIONAL, dataShort: "der technischen Karte des ČÚZK, von RÚIAN und OSM", techMap: NATIONAL,

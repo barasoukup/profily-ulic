@@ -447,6 +447,9 @@ Object.assign(CITIES, {
   slovensko: { ...abroad("slovensko", "SK", "Slovensko", "na Slovensku", "slovenské", [48.7, 19.7], "48.146736, 17.106998"),
     dataShort: "ZBGIS a OSM", credit: "budovy © GKÚ Bratislava (ZBGIS, CC BY 4.0)",
     rulesHead: "Šířky podle slovenských předpisů (TP 117, TP 73 6110, TP 085, vyhl. 532/2002 Z. z.):" },
+  // Austria (Bára 16. 11. 2026): basemap.at's orthophoto and OSM (towns/austria.js).
+  austria: { ...abroad("austria", "AT", "Rakousko", "v Rakousku", "rakouské", [47.6, 14.1], "48.208500, 16.373100"),
+    dataShort: "basemap.at a OSM" },
   cizina: abroad("cizina", null, "cizinu", "v cizině", "zahraniční", [49.8, 15.5], "48.146736, 17.106998"),
 });
 
@@ -488,7 +491,7 @@ export function creditLines(c, src = {}, art = false) {
   if (PASSPORT_NAMES[src.passport]) data.push(GREEN_PASSPORTS.has(src.passport) ? t("pasport zeleně © {town}", { town: PASSPORT_NAMES[src.passport] }) : t("pasport komunikací © {town}", { town: PASSPORT_NAMES[src.passport] }));
   if (src.ortho) data.push(t("ortofoto © ČÚZK, 2025 (CC BY 4.0)"));
   const ORTHO_CITY = { ipr: t("ortofoto © IPR Praha, 2024"), brno: t("ortofoto © Statutární město Brno, 2025"), plzen: t("ortofoto © Statutární město Plzeň, 2024"),
-    sk: t("ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)") };
+    sk: t("ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)"), at: t("ortofoto © basemap.at (CC BY 4.0)") };
   if (ORTHO_CITY[src.orthoCity]) data.push(ORTHO_CITY[src.orthoCity]);
   // A Slovak town's passport where the cut took its surfaces (towns/slovensko.js).
   const SK_PASSPORT = { bratislava: t("pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka"), presov: t("pasport dopravy a zelene © mesto Prešov (CC BY 4.0)"),

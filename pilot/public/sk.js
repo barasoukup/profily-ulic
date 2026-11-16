@@ -7,6 +7,7 @@ export const SK = {
   " · odhad z ortofota a OSM": " · odhad z ortofotomapy a OSM",
   " · jen odhad z OSM": " · len odhad z OSM",
   "Technickou mapu tu zatím nemáme, profil je odhad.": "Technickú mapu tu zatiaľ nemáme, profil je odhad.",
+  "ortofoto © basemap.at (CC BY 4.0)": "ortofoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "Místo se nepodařilo načíst ze ZBGIS. Zkuste to znovu.": "Miesto sa nepodarilo načítať zo ZBGIS. Skúste to znova.",
   "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Obrubníky sú podľa OSM a domy z OSM, šírky overte.",
@@ -734,6 +735,7 @@ const ABROAD = {
 };
 export const SK_CITY = {
   slovensko: { ...ABROAD, dataShort: "ZBGIS a OSM", credit: "budovy © GKÚ Bratislava (ZBGIS, CC BY 4.0)", rulesHead: "Šírky podľa slovenských predpisov (TP 117, TP 73 6110, TP 085, vyhl. 532/2002 Z. z.):" },
+  austria: { ...ABROAD, dataShort: "basemap.at a OSM" },
   cizina: ABROAD,
   cesko: {
     server: "technickej mapy ČÚZK", dataName: "Technická mapa ČÚZK", dataShort: "technickej mapy ČÚZK, RÚIAN a OSM", techMap: NATIONAL,
