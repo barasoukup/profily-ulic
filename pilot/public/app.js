@@ -410,7 +410,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null) {
       : tr("Obruby jsou podle OSM a domy z OSM, šířky ověřte.");
     const out = sources.outage({ surfaces: m, lines: k, parking: pk }, undefined, { fallback: orthoNote });
     state.cut.note = out.note;
-    $("#street-name").textContent = streetName(state.cut) + tr(state.cut.note);
+    // The heading is the street only (Bára 16. 11. 2026); where the data come from is said under it (#profile-sub).
+    $("#street-name").textContent = streetName(state.cut);
     const junctionNote = tr("Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami.");
     const droppedNote = tr("Nový řez: návrh začíná znovu od stavu ulice (předchozí návrh zůstává ve sdíleném odkazu nebo uloženém souboru, pokud jste ho uložili).");
     // With the profile made without the map, the other notes come after its own (a junction, a design started anew).
@@ -667,7 +668,8 @@ function draw() {
     : tr("Takhle ulice vypadá podle dat {data}. Nesedí? Opravte je, nebo nám chybu nahlaste.", { data: city.dataShort });
   $("#btn-fix").textContent = state.fixing ? tr("Hotovo") : tr("Opravit data");
   if (state.stav) {
-    $("#profile-sub").textContent = tr("Celkem {w}", { w: fmtM(totalWidth(state.mode === "navrh" ? state.navrh : state.stav)) });
+    // Under the street's name: the width, and in Stav what the data are (an estimate, a map that failed…).
+    $("#profile-sub").textContent = tr("Celkem {w}", { w: fmtM(totalWidth(state.mode === "navrh" ? state.navrh : state.stav)) }) + (state.mode === "navrh" ? "" : tr(state.cut?.note || ""));
   }
   if (!state.stav) {
     box.innerHTML = `<div class="empty">
@@ -1936,7 +1938,7 @@ function restore(data) {
     const r = (state.cut.bearing * Math.PI) / 180;
     const n = [-Math.cos(r), Math.sin(r)];
     drawCut(cutEnds(f, n, cutSpan(state.cut)));
-    $("#street-name").textContent = streetName(state.cut) + tr(state.cut.note || "");
+    $("#street-name").textContent = streetName(state.cut);
     showCutInfo();
   }
   save();

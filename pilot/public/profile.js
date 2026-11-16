@@ -585,6 +585,9 @@ export function buildingStyle(info, chosen) {
   // and of the early 1950s (socialist realism) have pitched roofs, the rest is told by flatKind.
   const built = info?.built;
   if (built) return built < 1920 || (built >= 1946 && built < 1958) ? "sikma" : flatKind(info, n);
+  // Abroad no city centre is known, so the distance says nothing (Bára 16. 11. 2026: panel houses even in the centre
+  // of Bratislava): what OSM knows of the house decides.
+  if (city.abroad && !city.centre) return abroadStyle(info, n);
   // Nothing known about the building: a tenement in the inner city, a small house elsewhere (least misleading).
   if (!n) return info?.km > innerKm() ? "nizky" : "sikma";
   return info?.km > innerKm() ? flatKind(info, n) : "sikma";
@@ -608,11 +611,12 @@ const PANEL_WIDTH = 16, PANEL_FILL = 0.65, PANEL_PART = 30, PANEL_FLOORS = 8, es
 // tenement unless a panel slab or a modern set-back block further out; 1970–1990 → the panel era;
 // 2010 or later → a modern block of flats. IPR "nová budova" overrules all.
 const OLD_SETBACK_KM = 4.5;
+const isSlab = (b) => !!b && ((b.fill >= PANEL_FILL && b.width <= PANEL_WIDTH) || (b.parts >= 2 && (b.length + b.width) / b.parts >= PANEL_PART));
 function flatKind(info, n) {
   if (OFFICE_TYPES.has(info?.type)) return "plocha";
   if (info?.newBuild) return "moderni"; // IPR "nová budova"
   const b = info?.block;
-  const slab = b && ((b.fill >= PANEL_FILL && b.width <= PANEL_WIDTH) || (b.parts >= 2 && (b.length + b.width) / b.parts >= PANEL_PART));
+  const slab = isSlab(b);
   const setback = !slab && n < PANEL_FLOORS && info?.roof >= 1;
   // The year of the house (RÚIAN) before the age of the area; it is exact, so modern from 1996.
   const p = info?.built ?? info?.period;
@@ -627,6 +631,19 @@ function flatKind(info, n) {
   if (n >= PANEL_FLOORS || info?.km >= estateKm()) return "plocha";
   if (b) return slab ? "plocha" : "funkce";
   return info?.km > innerKm() ? "plocha" : "funkce";
+}
+
+// The look of a house abroad: the year OSM gives (start_date) as RÚIAN's; else a pitched roof where OSM says so, an
+// office by its type, a panel house only as a slab (or 8+ floors on its own), else a tenement: with a pitched roof,
+// flat where OSM says the roof is flat.
+function abroadStyle(info, n) {
+  const y = info?.start;
+  if (y) return y < 1920 || (y >= 1946 && y < 1958) ? "sikma" : flatKind({ ...info, built: y }, n);
+  const rs = info?.roofShape;
+  if (rs && rs !== "flat") return "sikma";
+  if (OFFICE_TYPES.has(info?.type)) return "plocha";
+  if (isSlab(info?.block) || (n >= PANEL_FLOORS && !info?.block)) return "plocha";
+  return rs === "flat" ? "funkce" : "sikma";
 }
 
 // A low building has a pitched roof where it is known to (IPR's roof shape), or where it is a house:

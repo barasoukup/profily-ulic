@@ -72,3 +72,15 @@ test("nízká budova: sedlová jen u rodinného domu, jinak rovná", async () =>
   assert.equal(buildingStyle({ levels: 2, type: "civic", built: 1969, km: 0.4 }), "nizky");
   assert.equal(buildingStyle({ levels: 2, house: 1, km: 0.4 }), "nizky");
 });
+
+test("Slovensko bez centra města: panelák jen deska nebo věžák, jinak činžák (Bára 16. 11. 2026, Kozia)", async () => {
+  const { setCity } = await import("../pilot/public/city.js");
+  setCity("slovensko");
+  const court = { length: 115, width: 84, fill: 0.44, parts: 8 }, slab = { length: 60, width: 12, fill: 0.9, parts: 1 };
+  assert.equal(buildingStyle({ levels: 6, km: 99, block: court, type: "apartments" }), "sikma");
+  assert.equal(buildingStyle({ levels: 6, km: 99, block: court, roofShape: "flat" }), "funkce");
+  assert.equal(buildingStyle({ levels: 8, km: 99, block: slab, type: "apartments" }), "plocha");
+  assert.equal(buildingStyle({ levels: 5, km: 99, block: court, start: 1905 }), "sikma");
+  assert.equal(buildingStyle({ levels: 7, km: 99, block: court, type: "office" }), "plocha");
+  setCity("praha");
+});

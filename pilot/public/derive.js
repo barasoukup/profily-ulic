@@ -1134,7 +1134,10 @@ export function buildingAt(osm, frame, p) {
     const levels = parseInt(el.tags["building:levels"], 10);
     const roof = parseInt(el.tags["roof:levels"], 10);
     const height = parseFloat(el.tags.height);
-    return { levels: levels ? levels + (roof || 0) : undefined, height: height || undefined, type: el.tags.building, block: blockShape(b, all) };
+    // The roof's shape and the year built, where OSM has them (the look of a house abroad: profile.js buildingStyle).
+    const year = parseInt(String(el.tags.start_date ?? "").slice(0, 4), 10);
+    return { levels: levels ? levels + (roof || 0) : undefined, height: height || undefined, type: el.tags.building, block: blockShape(b, all),
+      roofShape: el.tags["roof:shape"], start: year > 1000 ? year : undefined };
   }
   return null;
 }
@@ -1912,6 +1915,8 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     const point = frame.toLonLat(...probe[side]);
     edges[`${side}Info`] = { levels: b?.levels, height: b?.height, point, km: +centreKm(point).toFixed(1), block: b?.block, tint: side === "left" ? 0 : 3 };
     if (b?.type && b.type !== "yes") edges[`${side}Info`].type = b.type;
+    if (b?.roofShape) edges[`${side}Info`].roofShape = b.roofShape;
+    if (b?.start) edges[`${side}Info`].start = b.start;
   }
   // Permeable paving from OSM (Bára 12. 11. 2026, rainwater 5.1.2): grass pavers (surface=grass_paver) of an area the
   // part's middle lies on (parking: about 300 in Czechia), or of a way crossing the part (service roads, footways,
