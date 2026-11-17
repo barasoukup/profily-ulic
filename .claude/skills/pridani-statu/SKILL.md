@@ -27,6 +27,8 @@ Zprávy jsou v `evaluation/slovensko/` a `evaluation/austria/` (ZPRAVA, NORMY, Z
   - Stát řezu: ISO 3166-1 velkými (CZ, SK, AT). Řídí `city.country`, data, normy, zákony, značky a ilustrace.
   - `signs.js` nesmí číst jazyk (hlídá `tests/i18n.test.js`). Úřední názvy značek státu se proto řeší klíčem podle
     významu značky státu (`SK_TITLE`) a překladem do jazyka (ve slovenštině úřední název).
+- **Začít z aktuálního `main`:** `git fetch` a větev státu založit z `origin/main`, ne ze staré lokální větve (Německo
+  17. 11. 2026 vzniklo na kódu před přestavbou na státy a muselo se přenášet). Před pushem `main` znovu sloučit.
 - **Nepushovat.** Vše do větve státu (např. `austria`), commitovat lokálně, do `main` ne, dokud Bára neřekne.
 - **Každý nový zdroj dat má A/B test** (viz níže) a výsledek ve zprávě. Co vyjde hůř, zůstane v kódu vypnuté za
   parametrem (`?zvolen=1`, `?tm=1`), ne smazané. Každý zapojený zdroj má vypínač (`?wien=0`, `?salzburg=0`, `?pasport=0`).
@@ -158,12 +160,28 @@ Kresby jsou zdaleka nejdražší. Proto:
     2. `NAME=<kód> OGR=…/QGIS…/ogr2ogr tools/build_osm_data.sh data/osm/<kód>.osm.pbf <dir>`;
     3. `pack_osm_tiles.mjs <dir> pilot/data/osm-pack/<kód>-novy.posm` (Rakousko 284 MB);
     4. zkoušet s `?osm=balik`.
-  - **V nasazení** stačí řádek v `tools/countries.mjs`: `pages.yml` z něj bere stažení výřezů, stavbu a zabalení,
-    úklid starých souborů na R2 (kbelík `profily-ulic-osm`, `data.streetspace.eu/osm`) i klíče cache (nový stát změní
-    klíč, takže týdenní cache bez něj stavbu nepřeskočí).
-  - Prodloužit timeouty (velký stát) a zkontrolovat varování, když chybí klíče R2.
+  - **V nasazení** stačí řádek v `tools/countries.mjs`. Dlaždice staví samostatný workflow `.github/workflows/osm-tiles.yml`
+    (Bára 17. 11. 2026): matice z `node tools/countries.mjs --matrix`, každý balík vlastní job (vlastní běžec, disk a
+    6 h), všechny paralelně; job `index` sestaví `index.json` z toho, co je na R2 (stát, jehož job spadl, si nechá minulý
+    týden; s obdélníkem dlaždic každého balíku, aplikace otevře jen balíky u řezu) a smaže starší než dva poslední; pak
+    spustí `pages.yml`, který dlaždice nestaví, jen zkopíruje balíky států s `pages: true` z R2 na Pages jako zálohu.
+    Ručně jen některé: workflow_dispatch `states=de_by,at`.
+  - **Velký stát** po částech (`parts` v `tools/countries.mjs`, Německo po 16 zemích z výřezů Geofabriku): každý balík
+    pod 512 MB (víc Cloudflare zdarma necachuje). Lokálně celý velký stát nestavět (ogr2ogr čte výřez pro každou vrstvu,
+    Německo asi 2 h): pro zkoušení jen města vzorku přes `osmium extract -c`.
   - Na Pages je limit 1 GB, velký stát jen na R2 (`pages: false`, Rakousko). Když R2 neodpoví, stát nemá zálohu: říct Báře.
 - **Ortofoto:**
+  - **Ortofota po oblastech** (Německo: 16 zemí, každá svou WMS): `laneOrtho: "de"` a v `lanes-ortho.js` zdroj podle
+    oblasti řezu (`DE_ORTHO`, hranice `laender.json` z GISCO NUTS 1, `tools/build_laender.mjs`); u hranice i sousední
+    oblast, vše v jednom časovém limitu; prázdný (bílý) snímek mimo pokrytí nepoužít. Podklad mapy: `L.GridLayer`, u
+    hranice obě oblasti přes sebe jako průhledné PNG. Kredit podle oblasti (`credits.js orthoCity de-XX`).
+  - **Každou službu ověřit sám:** agent u Německa 4 země nenašel. GetCapabilities, jeden GetMap v EPSG:3857, snímek
+    prohlédnout v montáži (200 i s obrázkem chyby). **Licence z GetCapabilities** (`Fees`, `AccessConstraints`), kde
+    chybí, dohledat; u dl-de/by-2-0 odkaz na text licence v patičce.
+  - **Časové řady:** výchozí rok může být jiný snímek pod jinou licencí (Hamburg 2022 je satelit Pléiades): rok zadat.
+  - **CORS jen pro ostrý web** (Šlesvicko-Holštýnsko): lokálně taková oblast nejde. **CSP** doplnit do `connect-src`
+    i `img-src` (podklad mapy jsou obrázky; test `tests/germany.test.js` je hlídá).
+  - **Nejvyšší úroveň dlaždic ověřit všude:** basemap.at má z20 jen ve Vídni, Grazu a Linci, jinde z19 (`at19`).
   - Národní, s otevřenou licencí a CORS (čteme pixely). Ověřit hlavičku `Access-Control-Allow-Origin` a nejvyšší úroveň dlaždic.
     basemap.at: `…/bmaporthofoto30cm/normal/google3857/{z}/{y}/{x}.jpeg`, z20, v `lanes-ortho.js` s `ext: ".jpeg"`.
   - Zapojit do `lanes-ortho.js` (`SOURCES`) a do modulu státu (`laneOrtho`, případně `bedOrtho`), do podkladů mapy
@@ -292,6 +310,14 @@ v `cutAt` zastínil pozdější `const name` a rozbil každý řez.
 - **Popisky čísly a úředními názvy státu** (`SK_TITLE` přes `t()`), číslování ověřit v platném znění. Recenze sady proti
   předpisu, CLAUDE.md.
 
+## 5a. Univerzální měření přesnosti
+
+Po zapojení státu (před nasazením) změřit stát stejně jako ostatní: skill `mereni-presnosti` (`evaluation/universal/`).
+Hodnotí složení uličního prostoru, pak šířku, posuzovatel z ortofota a fotek z ulice (Mapillary; bez fotky nefunguje).
+Srovnání 17. 11. 2026: shoda složení CZ 56 %, SK 60 %, AT 57 → 58 %, DE 58 → 61 % (po zákonném odhadu stání). Při měření
+ověřit, že odhad státu opravdu čte ortofoto (`sources.orthoCity`) a že nechybí stání (zákon státu: `parkGuess`,
+`freeLane` nebo `lawNeed`).
+
 ## 8. Ilustrace
 
 - **Vozidla měst:** autobus, trolejbus a tramvaj každého většího města (bus se kreslí v buspruhu, takže autobus potřebuje
@@ -303,6 +329,8 @@ v `cutAt` zastínil pozdější `const name` a rozbil každý řez.
   - Pro menší města obecný autobus státu.
 - **Zapojení podle hranice města:** v modulu státu `art` (sady podle id města ze `STATE_TOWNS`, sada zbytku státu pod jeho
   id); město bez vlastní sady kreslí sadu státu (`city.js stateTown`). Česká města mají sadu v `city.js` (`art`, `artMap`).
+- **Bez vlastních kreseb** (Bára u Německa: „obrázky jsou nejdražší“): převzít ilustrace podobného státu, kde sedí
+  značka (rakouský označník s kulatým H je i německá Z 224), vozidla Streetmixu. Kreslit až na pokyn.
 - **Mobiliář:**
   - Nejdřív zjistit, co město skutečně převzalo (Bratislava má pražskou lavičku).
   - Označníky se značkou státu i v kresbách přístřešků: Rakousko „H“ v `austria/`, Vídeň s tabulkou Wiener Linien jen u tramvaje.

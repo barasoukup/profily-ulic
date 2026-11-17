@@ -285,6 +285,32 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   `ALTER TABLE events ADD COLUMN country TEXT` a nový Worker (nasadit musí Bára, `logging/README.md`). Opraveno zároveň:
   Worker zahazoval polohu řezů východně od 20° v. d. (Košice) a západně od 11° (Bregenz).
 
+## Německo (Bára 17. 11. 2026, přeneseno na přestavbu států, nenasazené)
+- Stát `germany` (`country` DE): `countries/DE.js` (normy, značky, zákon o stání, ortofota zemí, domy, hledání),
+  `towns/germany.js` (mapy povrchů měst), `signs-DE/`, `evaluation/germany/` (ZDROJE, NORMY, RECENZE, ab/). Hranice GISCO 1 : 1 M za Českem,
+  Slovenskem a Rakouskem (`node tools/build_staty.mjs germany` přestaví jen Německo).
+- OSM: výřez Geofabrik `germany` (4,4 GB), balík `de` jen na R2, staví ho job `de` v `osm-tiles.yml` (uvolní disk, 330 min).
+- Ortofoto všech 16 spolkových zemí (WMS v EPSG:3857 s CORS, `lanes-ortho.js DE_ORTHO`), země řezu podle `laender.json`
+  (GISCO NUTS 1, `tools/build_laender.mjs`); u hranice se zkusí sousední země, prázdný snímek se nepoužije. Hamburg
+  výslovně rok 2024 (2022 je satelit pod uzavřenou licencí). Tabulka a licence `evaluation/germany/ZDROJE.md`.
+- Bára: zatím bez vlastních ilustrací („obrázky jsou nejdražší“): rakouské označníky a přístřešky (kulaté H = Z 224),
+  český mobiliář, vozidla Streetmixu.
+- Paneláky jen ve východních zemích a v Berlíně (bývalá NDR, `city.js inGdr`), na západě jako v Rakousku.
+- Značky `signs-DE/` (StVO, Commons, úřední díla § 5 UrhG) i s dodatkovými tabulkami (Anlieger frei, Radfahrer frei, Radverkehr
+  im Gegenverkehr); jednosměrka Z 220 / Z 267; sdílenou zónu Německo nemá.
+- Normy `limitsDE` (`evaluation/germany/NORMY.md`): RASt 06, ERA 2010, EAR 23 jen podle sekundárních zdrojů; šířky pruhů
+  a buspruhů jen orientačně (zdroj nenalezen), tramvajový pás bez varování. Stání napůl na chodníku: StVO § 12 a judikatura
+  3,05 m na projetí (pruhy vedle stání aspoň 2,5 m).
+- Stání (Bára 17. 11. 2026): zákonný odhad i v AT a DE (místní ulice; `?odhadstani=0`), stání zakreslené v OSM se do
+  úzké odhadnuté vozovky zúží (do 85 %). Měření: chybí stání DE 15 → 8, AT 14 → 11 (zbytek: podhodnocená vozovka).
+- Hledání Photon (Německo podle mapy; německy vypadající dotaz, který RÚIAN nenajde, i z jiného místa).
+- Kandidát na městská data: Hamburg `feinkartierung_strasse` (plochy ulic, OGC API, CORS, dl-de/by-2.0), před zapojením A/B.
+
+## Měření přesnosti (Bára 17. 11. 2026)
+- Jedna univerzální metoda pro všechny státy: skill `mereni-presnosti`, kód a zpráva `evaluation/universal/`. Použít u
+  každého nového státu a u starých, když Bára řekne. Hodnotí složení uličního prostoru, pak šířku; jen řezy s fotkou
+  z ulice (Mapillary, v Česku i Mapy.com). Výsledek 17. 11.: shoda složení CZ 56 %, SK 60 %, AT 57 %, DE 58 %.
+
 ## Jazyky (Bára 12. 11. 2026, slovenčina 15. 11. 2026, němčina 16. 11. 2026)
 - Anglicky se aplikace jmenuje **Street Profile**, slovensky **Profily ulíc**, německy **Straßenprofil**. Čeština, slovenčina,
   angličtina a němčina: `pilot/public/i18n.js` (`t("český text")`), překlady v `pilot/public/en.js`, `sk.js` a `de.js`, menu jazyků s vlajkami v hlavičce, `?lang=sk`. Jazyk podle

@@ -736,8 +736,8 @@ Přepnutí stránku znovu načte, řez i návrh zůstanou. Anglicky se aplikace 
 **Straßenprofil**.
 
 Jazyk není stát (kódy ISO: jazyk `de`, stát `DE`): značky, normy, zdroje dat a ilustrace se řídí státem řezu
-(`city.country`, CZ/SK), jazyk mění jen slova. Německé rozhraní na řezu v Praze ukazuje české značky s českými čísly
-a česká pravidla, na řezu v Bratislavě slovenská. Německé značky ani data z Německa aplikace nemá.
+(`city.country`, CZ/SK/AT/DE), jazyk mění jen slova. Německé rozhraní na řezu v Praze ukazuje české značky s českými
+čísly a česká pravidla, na řezu v Bratislavě slovenská, v Berlíně německé (StVO).
 
 - `i18n.js`: `t("český text", { jméno })` vrátí text jazyka z `en.js`, `sk.js` nebo `de.js`, nebo český, když
   překlad chybí. Český text je klíč, `{jméno}` se doplní. `num()` a `pct()` píšou desetinnou čárku a „44 %“ česky,
