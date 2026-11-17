@@ -22,8 +22,8 @@ export const FI = {
   "jízdní pruh sběrné komunikace: min. 2,75 m, základ 3 m (TP 117, 2.12.2), v obci nejvýš 3,25 m (TP 118, 3.1.4.5)": "kokoojakadun ajokaista: väh. 2,75 m, perusarvo 3 m (TP 117, 2.12.2), taajamassa enintään 3,25 m (TP 118, 3.1.4.5)",
   "pasport zeleně © {town}": "viheraluerekisteri © {town}",
   "pasport komunikací © {town}": "katurekisteri © {town}",
-  "pasportu zeleně města {town}, technické mapy ČÚZK a OSM": "viheraluerekisteri ({town}), ČÚZK:n kantakartta ja OSM",
-  "pasportu komunikací města {town}, technické mapy ČÚZK a OSM": "katurekisteri ({town}), ČÚZK:n kantakartta ja OSM",
+  "pasportu zeleně města {town}, technické mapy ČÚZK a OSM": "viheraluerekisteri ({town}), ČÚZK:n tekninen kartta ja OSM",
+  "pasportu komunikací města {town}, technické mapy ČÚZK a OSM": "katurekisteri ({town}), ČÚZK:n tekninen kartta ja OSM",
   "pasportu komunikací a mapy města {town}, ZBGIS a OSM": "katurekisteri ja kaupunkikartta ({town}), ZBGIS ja OSM",
   "mapy města {town}, ZBGIS a OSM": "kaupunkikartta ({town}), ZBGIS ja OSM",
   "pasportu komunikací města {town}, ZBGIS a OSM": "katurekisteri ({town}), ZBGIS ja OSM",
@@ -37,8 +37,8 @@ export const FI = {
   "přispěvatelé OpenStreetMap": "OpenStreetMapin tekijät",
   "Mapa": "Kartta",
   "Ortofoto": "Ortokuva",
-  "Technická mapa": "Kantakartta",
-  "Linie technické mapy": "Kantakartan viivat",
+  "Technická mapa": "Tekninen kartta",
+  "Linie technické mapy": "Teknisen kartan viivat",
   "Plochy u řezu": "Alueet leikkauksen kohdalla",
   "Podkladová mapa a vrstvy": "Taustakartta ja tasot",
   "Server {server} neodpovídá, zkouším znovu ({n}/{of})…": "Palvelin ei vastaa ({server}), yritetään uudelleen ({n}/{of})…",
@@ -47,7 +47,7 @@ export const FI = {
   "Načítám ortofoto…": "Ladataan ortokuvaa…",
   " · odhad z ortofota a OSM": " · arvio ortokuvasta ja OSM:stä",
   " · jen odhad z OSM": " · vain arvio OSM:stä",
-  "Technickou mapu tu zatím nemáme, profil je odhad.": "Tältä alueelta ei vielä ole kantakarttaa, poikkileikkaus on arvio.",
+  "Technickou mapu tu zatím nemáme, profil je odhad.": "Tältä alueelta ei vielä ole teknistä karttaa, poikkileikkaus on arvio.",
   "ulice {id}": "katu {id}",
   "Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami.":
     "Leikkaus kulkee luultavasti risteyksen kautta. Siirrä se vetämällä keskikohdasta risteysten väliselle osuudelle.",
@@ -218,7 +218,7 @@ export const FI = {
   "Voda": "Vesi",
   "Zeď": "Muuri",
   "Neurčeno": "Määrittämätön",
-  "změřeno z technické mapy": "mitattu kantakartasta",
+  "změřeno z technické mapy": "mitattu teknisestä kartasta",
   "doplněno z OSM": "täydennetty OSM:stä",
   "otevřená data města": "kaupungin avoin data",
   "odhad": "arvio",
@@ -300,7 +300,7 @@ export const FI = {
   "Parkování (OSM)": "Pysäköinti (OSM)",
   "data města ({name})": "kaupungin data ({name})",
   "otevřená data Prahy (stromy)": "Prahan avoin data (puut)",
-  "technická mapa": "kantakartta",
+  "technická mapa": "tekninen kartta",
   "Zastávka": "Pysäkki",
   "jen určuje druh přístřešku": "määrää vain katoksen tyypin",
   "v dosahu řezu ({lim} m), v profilu": "enintään {lim} m:n päässä leikkauksesta, poikkileikkauksessa",
@@ -323,7 +323,7 @@ export const FI = {
   // ---------- city.js: credits ----------
   "kraje": "maakunnat",
   "Data: {data}": "Tiedot: {data}",
-  "technická mapa © {kraj}, IS DMVS ČÚZK": "kantakartta © {kraj}, IS DMVS ČÚZK",
+  "technická mapa © {kraj}, IS DMVS ČÚZK": "tekninen kartta © {kraj}, IS DMVS ČÚZK",
   "RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)": "RÚIAN © ČÚZK, 2026 (CC BY 4.0, muokattu)",
   "ortofoto © ČÚZK, 2025 (CC BY 4.0)": "ortokuva © ČÚZK, 2025 (CC BY 4.0)",
   "ortofoto © IPR Praha, 2024": "ortokuva © IPR Praha, 2024",
@@ -377,9 +377,9 @@ export const FI = {
   "Pěší zóna": "Kävelykatu",
   "Cyklistická ulice": "Pyöräkatu",
   "Klikněte v mapě na ulici kdekoli v Česku, na Slovensku, v Rakousku nebo v Německu.": "Napsauta kartalla mitä tahansa katua Tšekissä, Slovakiassa, Itävallassa tai Saksassa.",
-  "Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy Vídně a OSM, v Německu z ortofot spolkových zemí a OSM.": "Poikkileikkaus julkisivusta julkisivuun kootaan kaupungin tai ČÚZK:n kantakartasta, RÚIANista ja OSM:stä, Slovakiassa kaupunkien katurekistereistä, ZBGIS:stä, ortokuvasta ja OSM:stä, Itävallassa ortokuvasta, Wienin kartasta ja OSM:stä, Saksassa osavaltioiden ortokuvista ja OSM:stä.",
-  "Příčné profily ulic v Česku, na Slovensku, v Rakousku a v Německu od fasády k fasádě z technických map měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.": "Katujen poikkileikkaukset Tšekissä, Slovakiassa, Itävallassa ja Saksassa julkisivusta julkisivuun kaupunkien ja ČÚZK:n kantakartoista, RÚIANista, ZBGIS:stä ja OpenStreetMapista. Muokkaa poikkileikkausta, vertaa sitä nykytilaan ja tallenna se kuvana.",
-  "Příčné profily ulic v Česku, na Slovensku, v Rakousku a v Německu z technických map měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.": "Katujen poikkileikkaukset Tšekissä, Slovakiassa, Itävallassa ja Saksassa kaupunkien, ČÚZK:n ja ZBGIS:n kantakartoista: julkisivusta julkisivuun, muokattavissa, paikallisella kuvituksella.",
+  "Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy Vídně a OSM, v Německu z ortofot spolkových zemí a OSM.": "Poikkileikkaus julkisivusta julkisivuun kootaan kaupungin tai ČÚZK:n teknisestä kartasta, RÚIANista ja OSM:stä, Slovakiassa kaupunkien katurekistereistä, ZBGIS:stä, ortokuvasta ja OSM:stä, Itävallassa ortokuvasta, Wienin kartasta ja OSM:stä, Saksassa osavaltioiden ortokuvista ja OSM:stä.",
+  "Příčné profily ulic v Česku, na Slovensku, v Rakousku a v Německu od fasády k fasádě z technických map měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.": "Katujen poikkileikkaukset Tšekissä, Slovakiassa, Itävallassa ja Saksassa julkisivusta julkisivuun kaupunkien ja ČÚZK:n teknisistä kartoista, RÚIANista, ZBGIS:stä ja OpenStreetMapista. Muokkaa poikkileikkausta, vertaa sitä nykytilaan ja tallenna se kuvana.",
+  "Příčné profily ulic v Česku, na Slovensku, v Rakousku a v Německu z technických map měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.": "Katujen poikkileikkaukset Tšekissä, Slovakiassa, Itävallassa ja Saksassa kaupunkien, ČÚZK:n ja ZBGIS:n teknisistä kartoista: julkisivusta julkisivuun, muokattavissa, paikallisella kuvituksella.",
   "Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko, Slovensko, Rakousko a Německo).": "Tästä ei löytynyt katua. Napsauta suoraan tietä (tiedot kattavat Tšekin, Slovakian, Itävallan ja Saksan).",
   "ortofoto © spolkové země Německa (GeoBasis-DE)": "ortokuva © Saksan osavaltiot (GeoBasis-DE)",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, podle StVO § 12 a judikatury 3,05 m na projetí, s pruhy vedle stání aspoň {need}.": "Pysäköinti puoliksi jalkakäytävällä (OSM): ajoradalle jää {free}, StVO § 12:n ja oikeuskäytännön mukaan ohi ajamiseen tarvitaan 3,05 m, pysäköinnin viereiset kaistat mukaan lukien vähintään {need}.",
@@ -420,7 +420,7 @@ export const FI = {
     "Pysäköinti puoliksi jalkakäytävällä (OSM): jalkakäytävä on vain {w}, autot on piirretty kapeampina ja jalkakäytävää jää {rest}.",
   "Stání na chodníku z OSM: chodník má jen {w}, auta jsou kreslena užší a chodníku zbývá {rest}.":
     "Pysäköinti jalkakäytävällä (OSM): jalkakäytävä on vain {w}, autot on piirretty kapeampina ja jalkakäytävää jää {rest}.",
-  "Technická mapa tu nemá povrch ulice ({what}), profil je odhad z OSM.": "Kantakartassa ei ole tässä kadun pintoja ({what}), poikkileikkaus on arvio OSM:stä.",
+  "Technická mapa tu nemá povrch ulice ({what}), profil je odhad z OSM.": "Teknisessä kartassa ei ole tässä kadun pintoja ({what}), poikkileikkaus on arvio OSM:stä.",
   "žádná plocha": "ei alueita",
   "plocha": "alue",
 
@@ -542,28 +542,28 @@ export const FI = {
   "stromů a tříd ulic TSK": "puut ja TSK:n katuluokat",
   "Chybí data {what} (server neodpověděl).": "Tiedot puuttuvat: {what} (palvelin ei vastannut).",
   "Zkuste kliknout znovu za chvíli.": "Napsauta uudelleen hetken kuluttua.",
-  " · technická mapa neodpověděla, jen odhad": " · kantakartta ei vastannut, vain arvio",
-  " · plochy z technické mapy ČÚZK": " · alueet ČÚZK:n kantakartasta",
-  " · mimo technickou mapu, jen odhad": " · kantakartan ulkopuolella, vain arvio",
+  " · technická mapa neodpověděla, jen odhad": " · tekninen kartta ei vastannut, vain arvio",
+  " · plochy z technické mapy ČÚZK": " · alueet ČÚZK:n teknisestä kartasta",
+  " · mimo technickou mapu, jen odhad": " · teknisen kartan ulkopuolella, vain arvio",
   " · neúplná data": " · puutteelliset tiedot",
-  " · technická mapa tu má jen čáry, jen odhad": " · kantakartassa on tässä vain viivoja, vain arvio",
-  " · plochy odvozené z čar technické mapy": " · alueet johdettu kantakartan viivoista",
+  " · technická mapa tu má jen čáry, jen odhad": " · teknisessä kartassa on tässä vain viivoja, vain arvio",
+  " · plochy odvozené z čar technické mapy": " · alueet johdettu teknisen kartan viivoista",
   "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává), profil je odhad z OSM.":
-    "Kantakartassa on tässä vain viivoja ilman alueita (maakunta ei toimita niitä), poikkileikkaus on arvio OSM:stä.",
+    "Teknisessä kartassa on tässä vain viivoja ilman alueita (maakunta ei toimita niitä), poikkileikkaus on arvio OSM:stä.",
   "Technická mapa tu má jen čáry bez ploch: šířky jsou změřené mezi nimi, vozovka a chodníky odhadnuté.":
-    "Kantakartassa on tässä vain viivoja ilman alueita: leveydet on mitattu niiden väliltä, ajorata ja jalkakäytävät on arvioitu.",
+    "Teknisessä kartassa on tässä vain viivoja ilman alueita: leveydet on mitattu niiden väliltä, ajorata ja jalkakäytävät on arvioitu.",
   "{name} teď neodpovídá (server je přetížený), profil je jen odhad z OSM.": "{name} ei nyt vastaa (palvelin on ylikuormittunut), poikkileikkaus on vain arvio OSM:stä.",
   "{name} teď neodpovídá, profil je jen odhad z OSM.": "{name} ei nyt vastaa, poikkileikkaus on vain arvio OSM:stä.",
-  "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} ei nyt vastaa, alueet ovat ČÚZK:n kantakartasta.",
-  "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "ČÚZK:n kantakartta ei nyt vastaa, poikkileikkaus on arvio OSM:stä.",
-  "Technická mapa tu nic nevrátila, profil je odhad z OSM.": "Kantakartta ei palauttanut tästä mitään, poikkileikkaus on arvio OSM:stä.",
+  "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} ei nyt vastaa, alueet ovat ČÚZK:n teknisestä kartasta.",
+  "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "ČÚZK:n tekninen kartta ei nyt vastaa, poikkileikkaus on arvio OSM:stä.",
+  "Technická mapa tu nic nevrátila, profil je odhad z OSM.": "Tekninen kartta ei palauttanut tästä mitään, poikkileikkaus on arvio OSM:stä.",
   "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Reunakivet ja rakennukset ovat OSM:stä, tarkista leveydet.",
-  "Technická mapa tu nemá povrch ulice.": "Kantakartassa ei ole tässä kadun pintoja.",
+  "Technická mapa tu nemá povrch ulice.": "Teknisessä kartassa ei ole tässä kadun pintoja.",
   "{name} teď neodpovídá (server je přetížený).": "{name} ei nyt vastaa (palvelin on ylikuormittunut).",
   "{name} teď neodpovídá.": "{name} ei nyt vastaa.",
-  "Technická mapa ČÚZK teď neodpovídá.": "ČÚZK:n kantakartta ei nyt vastaa.",
-  "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "Kantakartassa on tässä vain viivoja ilman alueita (maakunta ei toimita niitä).",
-  "Technická mapa tu nic nevrátila.": "Kantakartta ei palauttanut tästä mitään.",
+  "Technická mapa ČÚZK teď neodpovídá.": "ČÚZK:n tekninen kartta ei nyt vastaa.",
+  "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "Teknisessä kartassa on tässä vain viivoja ilman alueita (maakunta ei toimita niitä).",
+  "Technická mapa tu nic nevrátila.": "Tekninen kartta ei palauttanut tästä mitään.",
   "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "Reunakivet on arvioitu ortokuvasta ja rakennukset ovat OSM:stä, tarkista leveydet.",
   "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Ortokuvasta ei ollut tässä apua: reunakivet ja rakennukset ovat OSM:stä, tarkista leveydet.",
 
@@ -609,7 +609,7 @@ export const FI = {
   "pasport komunikácií © mesto Žilina": "katurekisteri © mesto Žilina",
   "pasport komunikácií © mesto Košice": "katurekisteri © mesto Košice",
   "pasport komunikácií © mesto Banská Bystrica": "katurekisteri © mesto Banská Bystrica",
-  "technická mapa © Hlavné mesto SR Bratislava": "kantakartta © Hlavné mesto SR Bratislava",
+  "technická mapa © Hlavné mesto SR Bratislava": "tekninen kartta © Hlavné mesto SR Bratislava",
   "komunikácie a spevnené plochy © mesto Zvolen": "kadut ja päällystetyt alueet © mesto Zvolen",
   "kresba © mesto Nitra": "kartta-aineisto © mesto Nitra",
   "kresba © mesto Piešťany": "kartta-aineisto © mesto Piešťany",
@@ -639,7 +639,7 @@ export const FI = {
   "Sítě © Statutární město Karviná (ÚAP).": "Johdot © Statutární město Karviná (ÚAP).",
   "Sítě © Statutární město Ostrava (ÚAP).": "Johdot © Statutární město Ostrava (ÚAP).",
   "Sítě © Město Břeclav.": "Johdot © Město Břeclav.",
-  "Sítě © město Prešov (digitální technická mapa, CC BY 4.0).": "Johdot © Prešovin kaupunki (digitaalinen kantakartta, CC BY 4.0).",
+  "Sítě © město Prešov (digitální technická mapa, CC BY 4.0).": "Johdot © Prešovin kaupunki (digitaalinen tekninen kartta, CC BY 4.0).",
   "Sítě © město Nitra.": "Johdot © Nitran kaupunki.",
   "Sítě © město Piešťany (porealizační zaměření).": "Johdot © Piešťanyn kaupunki (toteumamittaus).",
   "Sítě © město Košice (územní plán).": "Johdot © Košicen kaupunki (yleiskaava).",
@@ -668,7 +668,7 @@ export const FI = {
   "Otevřít na Mapy.com ↗": "Avaa Mapy.comissa ↗",
   "Profily ulic – začít znovu": "Katuprofiili – aloita alusta",
   "Zobrazení": "Näkymä",
-  "Ulice, jak je dnes (z technické mapy města nebo ČÚZK a OSM)": "Katu nykyisellään (kaupungin tai ČÚZK:n kantakartasta ja OSM:stä)",
+  "Ulice, jak je dnes (z technické mapy města nebo ČÚZK a OSM)": "Katu nykyisellään (kaupungin tai ČÚZK:n teknisestä kartasta ja OSM:stä)",
   "Vaše úprava ulice": "Oma muutoksesi katuun",
   "Stav a návrh pod sebou se seznamem změn": "Nykytila ja suunnitelma allekkain ja luettelo muutoksista",
   "Kreslit místní ilustrace: domy, tramvaje, trolejbusy, autobusy a mobiliář města (vypnuto: ilustrace Streetmixu)":
@@ -772,9 +772,9 @@ export const FI = {
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.
 export const FI_HTML = {
-  footer: `Tiedot: kantakartat © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (myös kerrosluvut ja rakentamisen kehitys, CC BY 4.0), statutaarikaupunkien Brno, Jihlava, Most, Opava ja Plzeň
+  footer: `Tiedot: tekniset kartat © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (myös kerrosluvut ja rakentamisen kehitys, CC BY 4.0), statutaarikaupunkien Brno, Jihlava, Most, Opava ja Plzeň
     sekä maakuntien (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (myös osoitehaku), kiinteistörekisteri ja ortokuva © ČÚZK (CC BY 4.0) · Slovakian ortokuva, rakennukset ja rajat © <a href="https://www.geoportal.sk">GKÚ Bratislava</a>, NLC (ZBGIS, CC BY 4.0), Slovakian kadut ja osoitteet © MV SR ·
-    katurekisterit © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), kartta-aineistot © mestá Nitra, Piešťany, Hlohovec, kantakartta © Hlavné mesto SR Bratislava ·
+    katurekisterit © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), kartta-aineistot © mestá Nitra, Piešťany, Hlohovec, tekninen kartta © Hlavné mesto SR Bratislava ·
     johdot © IPR Praha, mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, statutaarikaupungit Karviná, Ostrava, Město Břeclav ·
     Itävalta: ortokuva © basemap.at (CC BY 4.0), Flächen-Mehrzweckkarte © Stadt Wien – data.wien.gv.at (CC BY 4.0), raja © EuroGeographics (GISCO), Salzburgin liikennemerkit © Stadt Salzburg (CC BY 3.0 AT), haku Photon © komoot (OSM-tiedot) ·
     Saksa: osavaltioiden ortokuvat © LGL-BW, Bayerische Vermessungsverwaltung, GeoBasis-DE/LGB, Landesamt GeoInformation Bremen, LGV Hamburg, HVBG, GeoBasis-DE/M-V, LGLN, GeoBasis-DE/NRW, GeoBasis-DE/LVermGeoRP, GeoBasis-DE/LVermGeo SH, GeoBasis-DE/LVGL-SL, GeoSN, GeoBasis-DE/LVermGeo ST, GDI-Th; <a href="https://www.govdata.de/dl-de/by-2-0">dl-de/by-2-0</a>, <a href="https://www.govdata.de/dl-de/zero-2-0">dl-de/zero-2-0</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, raja © EuroGeographics (GISCO), liikennemerkit Wikimedia Commons (viranomaisteokset), haku Photon © komoot (OSM-tiedot) ·
@@ -797,8 +797,8 @@ const own = (name, of, map, data, parking, credit) => ({
   server: of, dataName: map, dataShort: `${data} ja OSM`, techMap: map,
   parkingSource: parking, rulesHead: `Leveydet IPR:n Prahan käsikirjan (C.2) mukaan, ${name} ohjeellisina:`, credit,
 });
-const NATIONAL = "ČÚZK:n kantakartta";
-const TECH_PARKING = "pysäköintialueet kantakartasta";
+const NATIONAL = "ČÚZK:n tekninen kartta";
+const TECH_PARKING = "pysäköintialueet teknisestä kartasta";
 const RUIAN = "RÚIAN © ČÚZK, 2026 (CC BY 4.0, muokattu)";
 // Outside the Czech Republic (city.js abroad): no technical map, OSM only.
 const ABROAD = {
@@ -811,49 +811,49 @@ export const FI_CITY = {
   germany: { ...ABROAD, dataShort: "osavaltioiden ortokuvat ja OSM", rulesHead: "Leveydet saksalaisten ohjeiden mukaan (RASt 06, ERA 2010, VwV-StVO):" },
   cizina: ABROAD,
   cesko: {
-    server: "ČÚZK:n kantakartta", dataName: NATIONAL, dataShort: "ČÚZK:n kantakartta, RÚIAN ja OSM", techMap: NATIONAL,
+    server: "ČÚZK:n tekninen kartta", dataName: NATIONAL, dataShort: "ČÚZK:n tekninen kartta, RÚIAN ja OSM", techMap: NATIONAL,
     parkingSource: TECH_PARKING, rulesHead: "Leveydet IPR:n Prahan käsikirjan (C.2) mukaan, Prahan ulkopuolella ohjeellisina:",
-    credit: `kantakartta © {kraj}, IS DMVS ČÚZK, ${RUIAN}`,
+    credit: `tekninen kartta © {kraj}, IS DMVS ČÚZK, ${RUIAN}`,
   },
   praha: {
-    server: "IPR", dataName: "IPR:n kantakartta", dataShort: "IPR ja OSM", techMap: "IPR:n kantakartta",
+    server: "IPR", dataName: "IPR:n tekninen kartta", dataShort: "IPR ja OSM", techMap: "IPR:n tekninen kartta",
     parkingSource: "TSK:n pysäköintiosuudet", rulesHead: "Leveydet IPR:n julkisten tilojen suunnittelukäsikirjan (C.2) mukaan:",
-    credit: "Tiedot © IPR Praha (kantakartta, kerrosluvut, rakentamisen kehitys), TSK hl. m. Prahy (pysäköinti) ja MHMP, Geoportál Praha (puut, katuosuudet), CC BY 4.0, muokattu",
+    credit: "Tiedot © IPR Praha (tekninen kartta, kerrosluvut, rakentamisen kehitys), TSK hl. m. Prahy (pysäköinti) ja MHMP, Geoportál Praha (puut, katuosuudet), CC BY 4.0, muokattu",
   },
-  brno: own("Brnossa", "Brnon kaupunki", "Brnon kaupungin kantakartta", "Brnon kaupunki", "maksullisen pysäköinnin osuudet (parkovanivbrne.cz)",
-    "Tiedot © Statutární město Brno (kantakartta ja MTVU; rakennukset ja pyöräilyväylät, data.brno.cz, CC BY 4.0, muokattu), pysäköinti © parkovanivbrne.cz"),
+  brno: own("Brnossa", "Brnon kaupunki", "Brnon kaupungin tekninen kartta", "Brnon kaupunki", "maksullisen pysäköinnin osuudet (parkovanivbrne.cz)",
+    "Tiedot © Statutární město Brno (tekninen kartta ja MTVU; rakennukset ja pyöräilyväylät, data.brno.cz, CC BY 4.0, muokattu), pysäköinti © parkovanivbrne.cz"),
   jihlava: own("Jihlavassa", "Jihlavan kaupunki", "Jihlavan katurekisteri", "Jihlavan kaupunki", "pysäköintipaikat (Jihlavan kaupunki)",
     `Tiedot © Statutární město Jihlava (katurekisteri, pysäköinti, kaupunkikalusteet), RÚIAN ja kiinteistörekisteri © ČÚZK, 2026 (CC BY 4.0, muokattu)`),
-  most: own("Mostissa", "Mostin kaupunki", "Mostin kantakartta", "Mostin kaupunki", TECH_PARKING,
-    `Tiedot © Statutární město Most (kohdekartta ja kantakartta, katuvalaistus), ${RUIAN}`),
+  most: own("Mostissa", "Mostin kaupunki", "Mostin tekninen kartta", "Mostin kaupunki", TECH_PARKING,
+    `Tiedot © Statutární město Most (kohdekartta ja tekninen kartta, katuvalaistus), ${RUIAN}`),
   opava: own("Opavassa", "Opavan kaupunki", "Opavan erikoiskartta", "Opavan kaupunki", "pysäköintipaikat (Opavan kaupunki)",
     `Tiedot © Statutární město Opava (erikoiskartta, pysäköinti, puut, penkit, pysäkit), ${RUIAN}`),
   pardubice: {
-    ...own("Pardubicessa", "ČÚZK:n kantakartta", NATIONAL, "ČÚZK:n kantakartta", TECH_PARKING,
-      `kantakartta © Pardubický kraj, IS DMVS ČÚZK, ${RUIAN}`),
+    ...own("Pardubicessa", "ČÚZK:n tekninen kartta", NATIONAL, "ČÚZK:n tekninen kartta", TECH_PARKING,
+      `tekninen kartta © Pardubický kraj, IS DMVS ČÚZK, ${RUIAN}`),
   },
-  plzen: own("Plzeňissä", "Plzeňin kaupunki", "Plzeňin kantakartta", "Plzeňin kaupunki", "pysäköintialueet kantakartasta ja maksulliset vyöhykkeet (Plzeňin kaupunki)",
-    `Tiedot © Statutární město Plzeň (kantakartta, 3D-rakennukset, viheralue- ja kalusterekisteri, pysäköintivyöhykkeet), ${RUIAN}`),
+  plzen: own("Plzeňissä", "Plzeňin kaupunki", "Plzeňin tekninen kartta", "Plzeňin kaupunki", "pysäköintialueet teknisestä kartasta ja maksulliset vyöhykkeet (Plzeňin kaupunki)",
+    `Tiedot © Statutární město Plzeň (tekninen kartta, 3D-rakennukset, viheralue- ja kalusterekisteri, pysäköintivyöhykkeet), ${RUIAN}`),
   usti: {
-    ...own("Ústíssa", "ČÚZK:n kantakartta", NATIONAL, "ČÚZK:n kantakartta, Ústín kaupunki", "pysäköintipaikat (Ústí nad Labemin kaupunki)",
-      `kantakartta © Ústecký kraj, IS DMVS ČÚZK, pysäköintipaikat © Statutární město Ústí nad Labem, ${RUIAN}`),
+    ...own("Ústíssa", "ČÚZK:n tekninen kartta", NATIONAL, "ČÚZK:n tekninen kartta, Ústín kaupunki", "pysäköintipaikat (Ústí nad Labemin kaupunki)",
+      `tekninen kartta © Ústecký kraj, IS DMVS ČÚZK, pysäköintipaikat © Statutární město Ústí nad Labem, ${RUIAN}`),
   },
-  ostrava: own("Ostravassa", "Ostravan kaupunki", "Ostravan kantakartta", "Ostravan kaupunki", "maksullisen pysäköinnin osuudet (Ostravan kaupunki)",
-    `Tiedot © Statutární město Ostrava (kantakartta – yleistys, raitiotien raiteiden keskilinjat, maksullisen pysäköinnin osuudet), ${RUIAN}`),
-  "frydek-mistek": own("Frýdek-Místekissä", "Frýdek-Místekin kaupunki", "Frýdek-Místekin katurekisteri", "Frýdek-Místekin kaupunki, ČÚZK:n kantakartta", TECH_PARKING,
-    `Tiedot © Statutární město Frýdek-Místek (katu-, viheralue-, kaluste- ja valaistusrekisteri), kantakartta © Moravskoslezský kraj, IS DMVS ČÚZK, ${RUIAN}`),
-  karvina: own("Karvinássa", "Karvinán kaupunki", "Karvinán katurekisteri", "Karvinán kaupunki, ČÚZK:n kantakartta", TECH_PARKING,
-    `Tiedot © Statutární město Karviná (katu- ja viheraluerekisteri, kantakartta, kaupunkikalusteet, valaistus), kantakartta © Moravskoslezský kraj, IS DMVS ČÚZK, ${RUIAN}`),
-  trebic: own("Třebíčissä", "Třebíčin kaupunki", "Třebíčin katurekisteri", "Třebíčin kaupunki, ČÚZK:n kantakartta", "pysäköintialueet rekisteristä ja kantakartasta",
-    `Tiedot © Město Třebíč (katurekisteri, katuvalaistus, penkit), kantakartta © Kraj Vysočina, IS DMVS ČÚZK, ${RUIAN}`),
-  prerov: own("Přerovissa", "Přerovin kaupunki", "Přerovin kantakartta", "Přerovin kaupunki", TECH_PARKING,
-    `Tiedot © Statutární město Přerov (kantakartta, vektoritiilet), ${RUIAN}`),
+  ostrava: own("Ostravassa", "Ostravan kaupunki", "Ostravan tekninen kartta", "Ostravan kaupunki", "maksullisen pysäköinnin osuudet (Ostravan kaupunki)",
+    `Tiedot © Statutární město Ostrava (tekninen kartta – yleistys, raitiotien raiteiden keskilinjat, maksullisen pysäköinnin osuudet), ${RUIAN}`),
+  "frydek-mistek": own("Frýdek-Místekissä", "Frýdek-Místekin kaupunki", "Frýdek-Místekin katurekisteri", "Frýdek-Místekin kaupunki, ČÚZK:n tekninen kartta", TECH_PARKING,
+    `Tiedot © Statutární město Frýdek-Místek (katu-, viheralue-, kaluste- ja valaistusrekisteri), tekninen kartta © Moravskoslezský kraj, IS DMVS ČÚZK, ${RUIAN}`),
+  karvina: own("Karvinássa", "Karvinán kaupunki", "Karvinán katurekisteri", "Karvinán kaupunki, ČÚZK:n tekninen kartta", TECH_PARKING,
+    `Tiedot © Statutární město Karviná (katu- ja viheraluerekisteri, tekninen kartta, kaupunkikalusteet, valaistus), tekninen kartta © Moravskoslezský kraj, IS DMVS ČÚZK, ${RUIAN}`),
+  trebic: own("Třebíčissä", "Třebíčin kaupunki", "Třebíčin katurekisteri", "Třebíčin kaupunki, ČÚZK:n tekninen kartta", "pysäköintialueet rekisteristä ja teknisestä kartasta",
+    `Tiedot © Město Třebíč (katurekisteri, katuvalaistus, penkit), tekninen kartta © Kraj Vysočina, IS DMVS ČÚZK, ${RUIAN}`),
+  prerov: own("Přerovissa", "Přerovin kaupunki", "Přerovin tekninen kartta", "Přerovin kaupunki", TECH_PARKING,
+    `Tiedot © Statutární město Přerov (tekninen kartta, vektoritiilet), ${RUIAN}`),
 };
 
 // The common words of the map layers' credits (i18n.js attribution), longest first.
 export const FI_ATTRIBUTION = [
   ["přispěvatelé OpenStreetMap", "OpenStreetMapin tekijät"],
-  ["technická mapa", "kantakartta"],
+  ["technická mapa", "tekninen kartta"],
   ["účelová mapa", "erikoiskartta"],
   ["objektová mapa", "kohdekartta"],
   ["ortofoto", "ortokuva"],

@@ -21,8 +21,8 @@ export const SV = {
   "jízdní pruh sběrné komunikace: min. 2,75 m, základ 3 m (TP 117, 2.12.2), v obci nejvýš 3,25 m (TP 118, 3.1.4.5)": "körfält på uppsamlingsgata: min. 2,75 m, normalt 3 m (TP 117, 2.12.2), i tätort högst 3,25 m (TP 118, 3.1.4.5)",
   "pasport zeleně © {town}": "grönyteinventering © {town}",
   "pasport komunikací © {town}": "gatuinventering © {town}",
-  "pasportu zeleně města {town}, technické mapy ČÚZK a OSM": "grönyteinventeringen för {town}, ČÚZK:s primärkarta och OSM",
-  "pasportu komunikací města {town}, technické mapy ČÚZK a OSM": "gatuinventeringen för {town}, ČÚZK:s primärkarta och OSM",
+  "pasportu zeleně města {town}, technické mapy ČÚZK a OSM": "grönyteinventeringen för {town}, ČÚZK:s tekniska karta och OSM",
+  "pasportu komunikací města {town}, technické mapy ČÚZK a OSM": "gatuinventeringen för {town}, ČÚZK:s tekniska karta och OSM",
   "pasportu komunikací a mapy města {town}, ZBGIS a OSM": "gatuinventeringen och kartan för {town}, ZBGIS och OSM",
   "mapy města {town}, ZBGIS a OSM": "kartan för {town}, ZBGIS och OSM",
   "pasportu komunikací města {town}, ZBGIS a OSM": "gatuinventeringen för {town}, ZBGIS och OSM",
@@ -36,8 +36,8 @@ export const SV = {
   "přispěvatelé OpenStreetMap": "OpenStreetMap-bidragsgivare",
   "Mapa": "Karta",
   "Ortofoto": "Ortofoto",
-  "Technická mapa": "Primärkarta",
-  "Linie technické mapy": "Linjer från primärkartan",
+  "Technická mapa": "Teknisk karta",
+  "Linie technické mapy": "Linjer från den tekniska kartan",
   "Plochy u řezu": "Ytor vid snittet",
   "Podkladová mapa a vrstvy": "Bakgrundskarta och lager",
   "Server {server} neodpovídá, zkouším znovu ({n}/{of})…": "Servern {server} svarar inte, försöker igen ({n}/{of})…",
@@ -46,7 +46,7 @@ export const SV = {
   "Načítám ortofoto…": "Laddar ortofoto…",
   " · odhad z ortofota a OSM": " · uppskattning från ortofoto och OSM",
   " · jen odhad z OSM": " · endast uppskattning från OSM",
-  "Technickou mapu tu zatím nemáme, profil je odhad.": "Här finns ännu ingen primärkarta, sektionen är en uppskattning.",
+  "Technickou mapu tu zatím nemáme, profil je odhad.": "Här finns ännu ingen teknisk karta, sektionen är en uppskattning.",
   "ulice {id}": "gata {id}",
   "Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami.":
     "Snittet går troligen genom en korsning. Dra dess mitt till en sträcka mellan två korsningar.",
@@ -217,7 +217,7 @@ export const SV = {
   "Voda": "Vatten",
   "Zeď": "Mur",
   "Neurčeno": "Obestämt",
-  "změřeno z technické mapy": "uppmätt från primärkartan",
+  "změřeno z technické mapy": "uppmätt från den tekniska kartan",
   "doplněno z OSM": "kompletterat från OSM",
   "otevřená data města": "stadens öppna data",
   "odhad": "uppskattning",
@@ -299,7 +299,7 @@ export const SV = {
   "Parkování (OSM)": "Parkering (OSM)",
   "data města ({name})": "stadens data ({name})",
   "otevřená data Prahy (stromy)": "Prags öppna data (träd)",
-  "technická mapa": "primärkarta",
+  "technická mapa": "teknisk karta",
   "Zastávka": "Hållplats",
   "jen určuje druh přístřešku": "anger bara typ av väderskydd",
   "v dosahu řezu ({lim} m), v profilu": "inom {lim} m från snittet, i sektionen",
@@ -322,7 +322,7 @@ export const SV = {
   // ---------- city.js: credits ----------
   "kraje": "regionerna",
   "Data: {data}": "Data: {data}",
-  "technická mapa © {kraj}, IS DMVS ČÚZK": "primärkarta © {kraj}, IS DMVS ČÚZK",
+  "technická mapa © {kraj}, IS DMVS ČÚZK": "teknisk karta © {kraj}, IS DMVS ČÚZK",
   "RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)": "RÚIAN © ČÚZK, 2026 (CC BY 4.0, bearbetad)",
   "ortofoto © ČÚZK, 2025 (CC BY 4.0)": "ortofoto © ČÚZK, 2025 (CC BY 4.0)",
   "ortofoto © IPR Praha, 2024": "ortofoto © IPR Praha, 2024",
@@ -376,9 +376,9 @@ export const SV = {
   "Pěší zóna": "Gågata",
   "Cyklistická ulice": "Cykelgata",
   "Klikněte v mapě na ulici kdekoli v Česku, na Slovensku, v Rakousku nebo v Německu.": "Klicka på kartan på en valfri gata i Tjeckien, Slovakien, Österrike eller Tyskland.",
-  "Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy Vídně a OSM, v Německu z ortofot spolkových zemí a OSM.": "Sektionen från fasad till fasad byggs upp av stadens eller ČÚZK:s primärkarta, RÚIAN och OSM, i Slovakien av städernas gatuinventeringar, ZBGIS, ortofoto och OSM, i Österrike av ortofoto, Wiens karta och OSM, i Tyskland av delstaternas ortofoton och OSM.",
-  "Příčné profily ulic v Česku, na Slovensku, v Rakousku a v Německu od fasády k fasádě z technických map měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.": "Gatusektioner i Tjeckien, Slovakien, Österrike och Tyskland från fasad till fasad, från städernas och ČÚZK:s primärkartor, RÚIAN, ZBGIS och OpenStreetMap. Redigera sektionen, jämför den med nuläget och spara den som bild.",
-  "Příčné profily ulic v Česku, na Slovensku, v Rakousku a v Německu z technických map měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.": "Gatusektioner i Tjeckien, Slovakien, Österrike och Tyskland från städernas, ČÚZK:s och ZBGIS primärkartor: från fasad till fasad, redigerbara, med lokala illustrationer.",
+  "Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy Vídně a OSM, v Německu z ortofot spolkových zemí a OSM.": "Sektionen från fasad till fasad byggs upp av stadens eller ČÚZK:s tekniska karta, RÚIAN och OSM, i Slovakien av städernas gatuinventeringar, ZBGIS, ortofoto och OSM, i Österrike av ortofoto, Wiens karta och OSM, i Tyskland av delstaternas ortofoton och OSM.",
+  "Příčné profily ulic v Česku, na Slovensku, v Rakousku a v Německu od fasády k fasádě z technických map měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.": "Gatusektioner i Tjeckien, Slovakien, Österrike och Tyskland från fasad till fasad, från städernas och ČÚZK:s tekniska kartor, RÚIAN, ZBGIS och OpenStreetMap. Redigera sektionen, jämför den med nuläget och spara den som bild.",
+  "Příčné profily ulic v Česku, na Slovensku, v Rakousku a v Německu z technických map měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.": "Gatusektioner i Tjeckien, Slovakien, Österrike och Tyskland från städernas, ČÚZK:s och ZBGIS tekniska kartor: från fasad till fasad, redigerbara, med lokala illustrationer.",
   "Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko, Slovensko, Rakousko a Německo).": "Ingen gata hittades här. Försök klicka direkt på vägen (data täcker Tjeckien, Slovakien, Österrike och Tyskland).",
   "ortofoto © spolkové země Německa (GeoBasis-DE)": "ortofoto © Tysklands delstater (GeoBasis-DE)",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, podle StVO § 12 a judikatury 3,05 m na projetí, s pruhy vedle stání aspoň {need}.": "Parkering halvt på gångbanan enligt OSM: på körbanan återstår {free}, enligt StVO § 12 och rättspraxis 3,05 m för att komma förbi, med körfälten intill parkeringen minst {need}.",
@@ -419,7 +419,7 @@ export const SV = {
     "Parkering halvt på gångbanan enligt OSM: gångbanan är bara {w}, bilarna är ritade smalare och för gångbanan återstår {rest}.",
   "Stání na chodníku z OSM: chodník má jen {w}, auta jsou kreslena užší a chodníku zbývá {rest}.":
     "Parkering på gångbanan enligt OSM: gångbanan är bara {w}, bilarna är ritade smalare och för gångbanan återstår {rest}.",
-  "Technická mapa tu nemá povrch ulice ({what}), profil je odhad z OSM.": "Primärkartan har här ingen gatuyta ({what}), sektionen är en uppskattning från OSM.",
+  "Technická mapa tu nemá povrch ulice ({what}), profil je odhad z OSM.": "Den tekniska kartan har här ingen gatuyta ({what}), sektionen är en uppskattning från OSM.",
   "žádná plocha": "ingen yta",
   "plocha": "yta",
 
@@ -541,28 +541,28 @@ export const SV = {
   "stromů a tříd ulic TSK": "träd och TSK:s gatuklasser",
   "Chybí data {what} (server neodpověděl).": "Data saknas för {what} (servern svarade inte).",
   "Zkuste kliknout znovu za chvíli.": "Försök klicka igen om en stund.",
-  " · technická mapa neodpověděla, jen odhad": " · primärkartan svarade inte, endast uppskattning",
-  " · plochy z technické mapy ČÚZK": " · ytor från ČÚZK:s primärkarta",
-  " · mimo technickou mapu, jen odhad": " · utanför primärkartan, endast uppskattning",
+  " · technická mapa neodpověděla, jen odhad": " · den tekniska kartan svarade inte, endast uppskattning",
+  " · plochy z technické mapy ČÚZK": " · ytor från ČÚZK:s tekniska karta",
+  " · mimo technickou mapu, jen odhad": " · utanför den tekniska kartan, endast uppskattning",
   " · neúplná data": " · ofullständiga data",
-  " · technická mapa tu má jen čáry, jen odhad": " · primärkartan har här bara linjer, endast uppskattning",
-  " · plochy odvozené z čar technické mapy": " · ytor härledda från primärkartans linjer",
+  " · technická mapa tu má jen čáry, jen odhad": " · den tekniska kartan har här bara linjer, endast uppskattning",
+  " · plochy odvozené z čar technické mapy": " · ytor härledda från den tekniska kartans linjer",
   "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává), profil je odhad z OSM.":
-    "Primärkartan har här bara linjer utan ytor (regionen levererar inga ytor), sektionen är en uppskattning från OSM.",
+    "Den tekniska kartan har här bara linjer utan ytor (regionen levererar inga ytor), sektionen är en uppskattning från OSM.",
   "Technická mapa tu má jen čáry bez ploch: šířky jsou změřené mezi nimi, vozovka a chodníky odhadnuté.":
-    "Primärkartan har här bara linjer utan ytor: bredderna är uppmätta mellan dem, körbana och gångbanor är uppskattade.",
+    "Den tekniska kartan har här bara linjer utan ytor: bredderna är uppmätta mellan dem, körbana och gångbanor är uppskattade.",
   "{name} teď neodpovídá (server je přetížený), profil je jen odhad z OSM.": "{name} svarar inte just nu (servern är överbelastad), sektionen är bara en uppskattning från OSM.",
   "{name} teď neodpovídá, profil je jen odhad z OSM.": "{name} svarar inte just nu, sektionen är bara en uppskattning från OSM.",
-  "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} svarar inte just nu, ytorna kommer från ČÚZK:s primärkarta.",
-  "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "ČÚZK:s primärkarta svarar inte just nu, sektionen är en uppskattning från OSM.",
-  "Technická mapa tu nic nevrátila, profil je odhad z OSM.": "Primärkartan gav inget här, sektionen är en uppskattning från OSM.",
+  "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} svarar inte just nu, ytorna kommer från ČÚZK:s tekniska karta.",
+  "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "ČÚZK:s tekniska karta svarar inte just nu, sektionen är en uppskattning från OSM.",
+  "Technická mapa tu nic nevrátila, profil je odhad z OSM.": "Den tekniska kartan gav inget här, sektionen är en uppskattning från OSM.",
   "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Kantstenar och byggnader kommer från OSM, kontrollera bredderna.",
-  "Technická mapa tu nemá povrch ulice.": "Primärkartan har här ingen gatuyta.",
+  "Technická mapa tu nemá povrch ulice.": "Den tekniska kartan har här ingen gatuyta.",
   "{name} teď neodpovídá (server je přetížený).": "{name} svarar inte just nu (servern är överbelastad).",
   "{name} teď neodpovídá.": "{name} svarar inte just nu.",
-  "Technická mapa ČÚZK teď neodpovídá.": "ČÚZK:s primärkarta svarar inte just nu.",
-  "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "Primärkartan har här bara linjer utan ytor (regionen levererar inga ytor).",
-  "Technická mapa tu nic nevrátila.": "Primärkartan gav inget här.",
+  "Technická mapa ČÚZK teď neodpovídá.": "ČÚZK:s tekniska karta svarar inte just nu.",
+  "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "Den tekniska kartan har här bara linjer utan ytor (regionen levererar inga ytor).",
+  "Technická mapa tu nic nevrátila.": "Den tekniska kartan gav inget här.",
   "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "Kantstenarna är uppskattade från ortofotot och byggnaderna kommer från OSM, kontrollera bredderna.",
   "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Ortofotot hjälpte inte här: kantstenar och byggnader kommer från OSM, kontrollera bredderna.",
 
@@ -608,7 +608,7 @@ export const SV = {
   "pasport komunikácií © mesto Žilina": "gatuinventering © mesto Žilina",
   "pasport komunikácií © mesto Košice": "gatuinventering © mesto Košice",
   "pasport komunikácií © mesto Banská Bystrica": "gatuinventering © mesto Banská Bystrica",
-  "technická mapa © Hlavné mesto SR Bratislava": "primärkarta © Hlavné mesto SR Bratislava",
+  "technická mapa © Hlavné mesto SR Bratislava": "teknisk karta © Hlavné mesto SR Bratislava",
   "komunikácie a spevnené plochy © mesto Zvolen": "gator och hårdgjorda ytor © mesto Zvolen",
   "kresba © mesto Nitra": "kartritning © mesto Nitra",
   "kresba © mesto Piešťany": "kartritning © mesto Piešťany",
@@ -638,7 +638,7 @@ export const SV = {
   "Sítě © Statutární město Karviná (ÚAP).": "Ledningar © Statutární město Karviná (ÚAP).",
   "Sítě © Statutární město Ostrava (ÚAP).": "Ledningar © Statutární město Ostrava (ÚAP).",
   "Sítě © Město Břeclav.": "Ledningar © Město Břeclav.",
-  "Sítě © město Prešov (digitální technická mapa, CC BY 4.0).": "Ledningar © staden Prešov (digital primärkarta, CC BY 4.0).",
+  "Sítě © město Prešov (digitální technická mapa, CC BY 4.0).": "Ledningar © staden Prešov (digital teknisk karta, CC BY 4.0).",
   "Sítě © město Nitra.": "Ledningar © staden Nitra.",
   "Sítě © město Piešťany (porealizační zaměření).": "Ledningar © staden Piešťany (inmätning efter utförande).",
   "Sítě © město Košice (územní plán).": "Ledningar © staden Košice (översiktsplan).",
@@ -667,7 +667,7 @@ export const SV = {
   "Otevřít na Mapy.com ↗": "Öppna på Mapy.com ↗",
   "Profily ulic – začít znovu": "Gatusektion – börja om",
   "Zobrazení": "Visning",
-  "Ulice, jak je dnes (z technické mapy města nebo ČÚZK a OSM)": "Gatan som den ser ut i dag (från stadens eller ČÚZK:s primärkarta och OSM)",
+  "Ulice, jak je dnes (z technické mapy města nebo ČÚZK a OSM)": "Gatan som den ser ut i dag (från stadens eller ČÚZK:s tekniska karta och OSM)",
   "Vaše úprava ulice": "Din omgestaltning av gatan",
   "Stav a návrh pod sebou se seznamem změn": "Nuläge och förslag under varandra, med en lista över ändringarna",
   "Kreslit místní ilustrace: domy, tramvaje, trolejbusy, autobusy a mobiliář města (vypnuto: ilustrace Streetmixu)":
@@ -771,9 +771,9 @@ export const SV = {
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.
 export const SV_HTML = {
-  footer: `Data: primärkartor © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (även våningsantal och bebyggelsens utveckling, CC BY 4.0), städerna Brno, Jihlava, Most, Opava och Plzeň
+  footer: `Data: tekniska kartor © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (även våningsantal och bebyggelsens utveckling, CC BY 4.0), städerna Brno, Jihlava, Most, Opava och Plzeň
     och regionerna (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (även adressökningen), fastighetskarta och ortofoto © ČÚZK (CC BY 4.0) · ortofoto, byggnader och gränser i Slovakien © <a href="https://www.geoportal.sk">GKÚ Bratislava</a>, NLC (ZBGIS, CC BY 4.0), gator och adresser i Slovakien © MV SR ·
-    gatuinventeringar © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), kartritningar © mestá Nitra, Piešťany, Hlohovec, primärkarta © Hlavné mesto SR Bratislava ·
+    gatuinventeringar © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), kartritningar © mestá Nitra, Piešťany, Hlohovec, teknisk karta © Hlavné mesto SR Bratislava ·
     ledningar © IPR Praha, mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, städerna Karviná, Ostrava, Město Břeclav ·
     Österrike: ortofoto © basemap.at (CC BY 4.0), Flächen-Mehrzweckkarte © Stadt Wien – data.wien.gv.at (CC BY 4.0), gräns © EuroGeographics (GISCO), vägmärken i Salzburg © Stadt Salzburg (CC BY 3.0 AT), sökning Photon © komoot (OSM-data) ·
     Tyskland: delstaternas ortofoton © LGL-BW, Bayerische Vermessungsverwaltung, GeoBasis-DE/LGB, Landesamt GeoInformation Bremen, LGV Hamburg, HVBG, GeoBasis-DE/M-V, LGLN, GeoBasis-DE/NRW, GeoBasis-DE/LVermGeoRP, GeoBasis-DE/LVermGeo SH, GeoBasis-DE/LVGL-SL, GeoSN, GeoBasis-DE/LVermGeo ST, GDI-Th; <a href="https://www.govdata.de/dl-de/by-2-0">dl-de/by-2-0</a>, <a href="https://www.govdata.de/dl-de/zero-2-0">dl-de/zero-2-0</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, gräns © EuroGeographics (GISCO), vägmärken Wikimedia Commons (officiella verk), sökning Photon © komoot (OSM-data) ·
@@ -795,8 +795,8 @@ const own = (name, of, map, data, parking, credit) => ({
   server: of, dataName: map, dataShort: `${data} och OSM`, techMap: map,
   parkingSource: parking, rulesHead: `Bredder enligt IPR:s Prag-manual (C.2), för ${name} som riktvärde:`, credit,
 });
-const NATIONAL = "ČÚZK:s primärkarta";
-const TECH_PARKING = "parkeringsplatser från primärkartan";
+const NATIONAL = "ČÚZK:s tekniska karta";
+const TECH_PARKING = "parkeringsplatser från den tekniska kartan";
 const RUIAN = "RÚIAN © ČÚZK, 2026 (CC BY 4.0, bearbetad)";
 // Outside the Czech Republic (city.js abroad): no technical map, OSM only.
 const ABROAD = {
@@ -809,49 +809,49 @@ export const SV_CITY = {
   germany: { ...ABROAD, dataShort: "delstaternas ortofoton och OSM", rulesHead: "Bredder enligt tyska riktlinjer (RASt 06, ERA 2010, VwV-StVO):" },
   cizina: ABROAD,
   cesko: {
-    server: "för ČÚZK:s primärkarta", dataName: NATIONAL, dataShort: "ČÚZK:s primärkarta, RÚIAN och OSM", techMap: NATIONAL,
+    server: "för ČÚZK:s tekniska karta", dataName: NATIONAL, dataShort: "ČÚZK:s tekniska karta, RÚIAN och OSM", techMap: NATIONAL,
     parkingSource: TECH_PARKING, rulesHead: "Bredder enligt IPR:s Prag-manual (C.2), utanför Prag som riktvärde:",
-    credit: `primärkarta © {kraj}, IS DMVS ČÚZK, ${RUIAN}`,
+    credit: `teknisk karta © {kraj}, IS DMVS ČÚZK, ${RUIAN}`,
   },
   praha: {
-    server: "för IPR", dataName: "IPR:s primärkarta", dataShort: "IPR och OSM", techMap: "IPR:s primärkarta",
+    server: "för IPR", dataName: "IPR:s tekniska karta", dataShort: "IPR och OSM", techMap: "IPR:s tekniska karta",
     parkingSource: "TSK:s parkeringssträckor", rulesHead: "Bredder enligt IPR:s manual för utformning av offentliga rum (C.2):",
-    credit: "data © IPR Praha (primärkarta, våningsantal, bebyggelsens utveckling), TSK hl. m. Prahy (parkering) och MHMP, Geoportál Praha (träd, gatusträckor), CC BY 4.0, bearbetad",
+    credit: "data © IPR Praha (teknisk karta, våningsantal, bebyggelsens utveckling), TSK hl. m. Prahy (parkering) och MHMP, Geoportál Praha (träd, gatusträckor), CC BY 4.0, bearbetad",
   },
-  brno: own("Brno", "för Brno stad", "Brno stads primärkarta", "Brno stad", "sträckor med avgiftsbelagd parkering (parkovanivbrne.cz)",
-    "data © Statutární město Brno (primärkarta och MTVU; byggnader och cykelinfrastruktur, data.brno.cz, CC BY 4.0, bearbetad), parkering © parkovanivbrne.cz"),
+  brno: own("Brno", "för Brno stad", "Brno stads tekniska karta", "Brno stad", "sträckor med avgiftsbelagd parkering (parkovanivbrne.cz)",
+    "data © Statutární město Brno (teknisk karta och MTVU; byggnader och cykelinfrastruktur, data.brno.cz, CC BY 4.0, bearbetad), parkering © parkovanivbrne.cz"),
   jihlava: own("Jihlava", "för Jihlava stad", "Jihlava stads gatuinventering", "Jihlava stad", "parkeringsplatser (Jihlava stad)",
     `data © Statutární město Jihlava (gatuinventering, parkering, gatumöbler), RÚIAN och fastighetskarta © ČÚZK, 2026 (CC BY 4.0, bearbetad)`),
-  most: own("Most", "för Most stad", "Most stads primärkarta", "Most stad", TECH_PARKING,
-    `data © Statutární město Most (objektkarta och primärkarta, gatubelysning), ${RUIAN}`),
+  most: own("Most", "för Most stad", "Most stads tekniska karta", "Most stad", TECH_PARKING,
+    `data © Statutární město Most (objektkarta och teknisk karta, gatubelysning), ${RUIAN}`),
   opava: own("Opava", "för Opava stad", "Opava stads ändamålskarta", "Opava stad", "parkeringsplatser (Opava stad)",
     `data © Statutární město Opava (ändamålskarta, parkering, träd, bänkar, hållplatser), ${RUIAN}`),
   pardubice: {
-    ...own("Pardubice", "för ČÚZK:s primärkarta", NATIONAL, "ČÚZK:s primärkarta", TECH_PARKING,
-      `primärkarta © Pardubický kraj, IS DMVS ČÚZK, ${RUIAN}`),
+    ...own("Pardubice", "för ČÚZK:s tekniska karta", NATIONAL, "ČÚZK:s tekniska karta", TECH_PARKING,
+      `teknisk karta © Pardubický kraj, IS DMVS ČÚZK, ${RUIAN}`),
   },
-  plzen: own("Plzeň", "för Plzeň stad", "Plzeň stads primärkarta", "Plzeň stad", "parkeringsplatser från primärkartan och avgiftszoner (Plzeň stad)",
-    `data © Statutární město Plzeň (primärkarta, byggnader i 3D, inventering av grönytor och gatumöbler, parkeringszoner), ${RUIAN}`),
+  plzen: own("Plzeň", "för Plzeň stad", "Plzeň stads tekniska karta", "Plzeň stad", "parkeringsplatser från den tekniska kartan och avgiftszoner (Plzeň stad)",
+    `data © Statutární město Plzeň (teknisk karta, byggnader i 3D, inventering av grönytor och gatumöbler, parkeringszoner), ${RUIAN}`),
   usti: {
-    ...own("Ústí", "för ČÚZK:s primärkarta", NATIONAL, "ČÚZK:s primärkarta, Ústí stad", "parkeringsplatser (Ústí nad Labem stad)",
-      `primärkarta © Ústecký kraj, IS DMVS ČÚZK, parkeringsplatser © Statutární město Ústí nad Labem, ${RUIAN}`),
+    ...own("Ústí", "för ČÚZK:s tekniska karta", NATIONAL, "ČÚZK:s tekniska karta, Ústí stad", "parkeringsplatser (Ústí nad Labem stad)",
+      `teknisk karta © Ústecký kraj, IS DMVS ČÚZK, parkeringsplatser © Statutární město Ústí nad Labem, ${RUIAN}`),
   },
-  ostrava: own("Ostrava", "för Ostrava stad", "Ostrava stads primärkarta", "Ostrava stad", "sträckor med avgiftsbelagd parkering (Ostrava stad)",
-    `data © Statutární město Ostrava (primärkarta – generalisering, spårvägens spårmitt, sträckor med avgiftsbelagd parkering), ${RUIAN}`),
-  "frydek-mistek": own("Frýdek-Místek", "för Frýdek-Místek stad", "Frýdek-Místek stads gatuinventering", "Frýdek-Místek stad, ČÚZK:s primärkarta", TECH_PARKING,
-    `data © Statutární město Frýdek-Místek (inventering av gator, grönytor, gatumöbler och belysning), primärkarta © Moravskoslezský kraj, IS DMVS ČÚZK, ${RUIAN}`),
-  karvina: own("Karviná", "för Karviná stad", "Karviná stads gatuinventering", "Karviná stad, ČÚZK:s primärkarta", TECH_PARKING,
-    `data © Statutární město Karviná (inventering av gator och grönytor, primärkarta, gatumöbler, belysning), primärkarta © Moravskoslezský kraj, IS DMVS ČÚZK, ${RUIAN}`),
-  trebic: own("Třebíč", "för Třebíč stad", "Třebíč stads gatuinventering", "Třebíč stad, ČÚZK:s primärkarta", "parkeringsplatser från inventeringen och primärkartan",
-    `data © Město Třebíč (gatuinventering, gatubelysning, bänkar), primärkarta © Kraj Vysočina, IS DMVS ČÚZK, ${RUIAN}`),
-  prerov: own("Přerov", "för Přerov stad", "Přerov stads primärkarta", "Přerov stad", TECH_PARKING,
-    `data © Statutární město Přerov (primärkarta, vektorrutor), ${RUIAN}`),
+  ostrava: own("Ostrava", "för Ostrava stad", "Ostrava stads tekniska karta", "Ostrava stad", "sträckor med avgiftsbelagd parkering (Ostrava stad)",
+    `data © Statutární město Ostrava (teknisk karta – generalisering, spårvägens spårmitt, sträckor med avgiftsbelagd parkering), ${RUIAN}`),
+  "frydek-mistek": own("Frýdek-Místek", "för Frýdek-Místek stad", "Frýdek-Místek stads gatuinventering", "Frýdek-Místek stad, ČÚZK:s tekniska karta", TECH_PARKING,
+    `data © Statutární město Frýdek-Místek (inventering av gator, grönytor, gatumöbler och belysning), teknisk karta © Moravskoslezský kraj, IS DMVS ČÚZK, ${RUIAN}`),
+  karvina: own("Karviná", "för Karviná stad", "Karviná stads gatuinventering", "Karviná stad, ČÚZK:s tekniska karta", TECH_PARKING,
+    `data © Statutární město Karviná (inventering av gator och grönytor, teknisk karta, gatumöbler, belysning), teknisk karta © Moravskoslezský kraj, IS DMVS ČÚZK, ${RUIAN}`),
+  trebic: own("Třebíč", "för Třebíč stad", "Třebíč stads gatuinventering", "Třebíč stad, ČÚZK:s tekniska karta", "parkeringsplatser från inventeringen och den tekniska kartan",
+    `data © Město Třebíč (gatuinventering, gatubelysning, bänkar), teknisk karta © Kraj Vysočina, IS DMVS ČÚZK, ${RUIAN}`),
+  prerov: own("Přerov", "för Přerov stad", "Přerov stads tekniska karta", "Přerov stad", TECH_PARKING,
+    `data © Statutární město Přerov (teknisk karta, vektorrutor), ${RUIAN}`),
 };
 
 // The common words of the map layers' credits (i18n.js attribution), longest first.
 export const SV_ATTRIBUTION = [
   ["přispěvatelé OpenStreetMap", "OpenStreetMap-bidragsgivare"],
-  ["technická mapa", "primärkarta"],
+  ["technická mapa", "teknisk karta"],
   ["účelová mapa", "ändamålskarta"],
   ["objektová mapa", "objektkarta"],
   ["ortofoto", "ortofoto"],
