@@ -24,3 +24,11 @@ export const TROLLEY = { "trolleybus-inbound": "trolejbus-inbound", "trolleybus-
 // Prague's furniture as the Czech set has it (the files of cesko/, "../cesko/…" from another folder): the furniture of
 // a state without its own.
 export const czechFurniture = Object.fromEntries(Object.entries(TOWN_ART).filter(([k]) => !k.startsWith("bus-")).map(([k, v]) => [k, `../cesko/${v}`]));
+
+// The neutral tram and bus (generic/: no operator's livery, no logo; Bára 17. 11. 2026: "všude, kde nemáme
+// specifickou"): drawn in every set that has no tram or bus of its own, in place of Streetmix's. Trolleybuses and cars
+// stay Streetmix's.
+export const GENERIC_VEHICLES = {
+  "streetcar-inbound": "../generic/tram-inbound", "streetcar-outbound": "../generic/tram-outbound",
+  "bus-inbound": "../generic/bus-inbound", "bus-outbound": "../generic/bus-outbound",
+};

@@ -1,0 +1,27 @@
+<svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
+  <!-- Neutral modern low-floor city bus, rear view: the bus of every place without one of its own (Bára 17. 11. 2026,
+       no livery, no logo, no number plate of a state). The roof cover as on the front, a dark upper rear (the engine's
+       air grille on the left, a window with the line number on the right), tail lights in grey columns in the corners,
+       a smooth panel below, the bumper with a blank plate. 1 px = 1 cm. -->
+  <path d="M58 32 Q34 30 28 50" stroke="#2b2f33" stroke-width="6" fill="none"/><rect x="18" y="46" width="20" height="52" rx="6" fill="#24272b"/>
+  <path d="M302 32 Q326 30 332 50" stroke="#2b2f33" stroke-width="6" fill="none"/><rect x="322" y="46" width="20" height="52" rx="6" fill="#24272b"/>
+  <path d="M96 22 L102 12 Q104 9 110 9 H250 Q256 9 258 12 L264 22 Z" fill="#c6c9cb"/>
+  <path d="M52 296 V40 Q52 20 74 20 H286 Q308 20 308 40 V296 Z" fill="#ecedeb" stroke="#c6c9cb" stroke-width="2"/>
+  <circle cx="62" cy="32" r="4" fill="#d4141c"/><circle cx="298" cy="32" r="4" fill="#d4141c"/>
+  <path d="M58 48 Q58 40 66 40 H294 Q302 40 302 48 V156 Q302 162 296 162 H64 Q58 162 58 156 Z" fill="#2b2f33"/>
+  <rect x="66" y="50" width="70" height="102" rx="3" fill="#1f2226"/>
+  <g stroke="#454a50" stroke-width="3"><path d="M72 60 H130"/><path d="M72 70 H130"/><path d="M72 80 H130"/><path d="M72 90 H130"/><path d="M72 100 H130"/><path d="M72 110 H130"/><path d="M72 120 H130"/><path d="M72 130 H130"/><path d="M72 140 H130"/></g>
+  <rect x="144" y="50" width="150" height="102" rx="4" fill="#2c3944"/>
+  <rect x="176" y="54" width="86" height="18" fill="#0d0f11"/><rect x="184" y="59" width="20" height="8" fill="#f2a33a"/><rect x="210" y="59" width="44" height="8" fill="#f2a33a" opacity=".9"/>
+  <path d="M156 80 L196 80 L176 146 L154 146 Z" fill="#46596a" opacity=".45"/>
+  <rect x="96" y="178" width="168" height="86" rx="4" fill="none" stroke="#d4d6d7" stroke-width="1.5"/>
+  <rect x="110" y="198" width="140" height="4" rx="2" fill="#d4d6d7"/>
+  <path d="M96 236 Q180 244 264 236" stroke="#9a9ea2" stroke-width="2" fill="none"/>
+  <!-- tail light columns -->
+  <rect x="58" y="188" width="18" height="72" rx="7" fill="#3c4046"/><circle cx="67" cy="198" r="6" fill="#d4141c"/><circle cx="67" cy="214" r="6" fill="#d4141c"/><circle cx="67" cy="231" r="6" fill="#f6f7f8"/><circle cx="67" cy="248" r="6" fill="#f2a33a"/>
+  <rect x="284" y="188" width="18" height="72" rx="7" fill="#3c4046"/><circle cx="293" cy="198" r="6" fill="#d4141c"/><circle cx="293" cy="214" r="6" fill="#d4141c"/><circle cx="293" cy="231" r="6" fill="#f6f7f8"/><circle cx="293" cy="248" r="6" fill="#f2a33a"/>
+  <rect x="52" y="272" width="256" height="24" rx="4" fill="#3c4046"/><rect x="152" y="278" width="56" height="12" rx="1" fill="#f4f4f2"/>
+  <path d="M64 30 Q52 34 52 48 V292 Q52 296 56 296 V44 Z" fill="#000" opacity=".06"/>
+  <rect x="66" y="294" width="42" height="26" rx="6" fill="#141517"/><rect x="252" y="294" width="42" height="26" rx="6" fill="#141517"/>
+  <rect x="66" y="305" width="42" height="4" fill="#2a2d31"/><rect x="252" y="305" width="42" height="4" fill="#2a2d31"/>
+</svg>

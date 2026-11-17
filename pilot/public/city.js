@@ -44,7 +44,7 @@ const CITIES = {
     innerKm: 0, estateKm: 0.5,
     fix: { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true },
     example: "49.907481, 16.442219",
-    // Prague's furniture (copies in cesko/); vehicles from Streetmix.
+    // Prague's furniture (copies in cesko/); the neutral tram and bus (generic/, profile.js).
     artMap: Object.fromEntries(Object.entries(TOWN_ART).filter(([k]) => !k.startsWith("bus-"))),
   },
   praha: {
@@ -314,7 +314,7 @@ const CITIES = {
     techMap: "pasport komunikací Frýdku-Místku",
     parkingSource: "parkoviště z technické mapy",
     rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Frýdek-Místek orientačně:",
-    // No illustrations of its own yet: those of the rest of the country (Prague's furniture, Streetmix's vehicles).
+    // No illustrations of its own yet: those of the rest of the country (Prague's furniture, the neutral vehicles of generic/).
     art: "cesko",
     artLabel: "Ilustrace",
     artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
@@ -341,7 +341,7 @@ const CITIES = {
     techMap: "pasport komunikací Karviné",
     parkingSource: "parkoviště z technické mapy",
     rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Karvinou orientačně:",
-    // No illustrations of its own yet: those of the rest of the country (Prague's furniture, Streetmix's vehicles).
+    // No illustrations of its own yet: those of the rest of the country (Prague's furniture, the neutral vehicles of generic/).
     art: "cesko",
     artLabel: "Ilustrace",
     artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
@@ -368,7 +368,7 @@ const CITIES = {
     techMap: "pasport komunikací Třebíče",
     parkingSource: "parkoviště z pasportu a technické mapy",
     rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Třebíč orientačně:",
-    // No illustrations of its own yet: those of the rest of the country (Prague's furniture, Streetmix's vehicles).
+    // No illustrations of its own yet: those of the rest of the country (Prague's furniture, the neutral vehicles of generic/).
     art: "cesko",
     artLabel: "Ilustrace",
     artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
@@ -395,7 +395,7 @@ const CITIES = {
     techMap: "technickou mapu Přerova",
     parkingSource: "parkoviště z technické mapy",
     rulesHead: "Šířky podle pražského Manuálu IPR (C.2), pro Přerov orientačně:",
-    // No illustrations of its own yet: those of the rest of the country (Prague's furniture, Streetmix's vehicles).
+    // No illustrations of its own yet: those of the rest of the country (Prague's furniture, the neutral vehicles of generic/).
     art: "cesko",
     artLabel: "Ilustrace",
     artTitle: "Kreslit domy a mobiliář (vypnuto: ilustrace Streetmixu)",
@@ -413,7 +413,7 @@ const CITIES = {
 // Outside the Czech Republic (Bára 15. 11. 2026): Slovakia, whose OSM tiles the app has, and anywhere else
 // ("cizina": the margins of the OSM extracts beyond the borders). No technical map, no RÚIAN: the profile is the
 // estimate from OSM and the orthophoto (ortho-osm.js), the houses are OSM's (towns/slovensko.js). dataName null: no
-// map to fail. Prague's furniture and Streetmix's vehicles, as in "cesko".
+// map to fail. Prague's furniture and the neutral vehicles of generic/, as in "cesko".
 const abroad = (id, country, cover, inCity, adjective, view, example) => ({
   ...CITIES.cesko, id, like: "cesko", abroad: true, country, cover, inCity, adjective, view, example,
   server: "OpenStreetMap", dataName: null, dataShort: "OSM", techMap: null,

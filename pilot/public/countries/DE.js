@@ -73,7 +73,7 @@ const signLabel = (x, own, label) => {
 };
 
 // No drawings of its own yet (Bára 17. 11. 2026: "obrázky jsou nejdražší"): the Austrian stop posts and shelters (the
-// round H of Zeichen 224 looks the same), the Czech furniture, Streetmix's vehicles.
+// round H of Zeichen 224 looks the same), the Czech furniture, the neutral vehicles of generic/.
 const atPosts = Object.fromEntries(["stop-post-left", "stop-post-right", "stop-post-tram-left", "stop-post-tram-right",
   "transit-shelter-01-left", "transit-shelter-01-right", "transit-shelter-green-left", "transit-shelter-green-right"].map((k) => [k, `../austria/${TOWN_ART[k]}`]));
 

@@ -1,0 +1,47 @@
+<svg viewBox="0 0 320 420" xmlns="http://www.w3.org/2000/svg">
+  <!-- Neutral modern low-floor tram, front view: the vehicle of every place without trams of its own (Bára 17. 11. 2026,
+       no operator's livery, no logo). Not after any one type: the common shape of today's low-floor trams (rounded
+       front, a large windscreen in a dark mask up to the roof, LED headlights in the lower corners, a grey skirt nearly
+       to the rails, single-arm pantograph). 1 px = 1 cm, width 2.50 m. -->
+  <!-- single-arm pantograph (the app draws its own over it) -->
+  <path d="M74 52 L82 40 H238 L246 52" stroke="#2a2c2e" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M178 102 L146 72" stroke="#2a2c2e" stroke-width="6" stroke-linecap="round"/>
+  <path d="M146 72 L162 41" stroke="#2a2c2e" stroke-width="4" stroke-linecap="round"/>
+  <rect x="136" y="100" width="56" height="8" rx="2" fill="#2a2c2e"/>
+  <!-- low covers of the roof equipment -->
+  <path d="M60 126 L74 104 Q76 98 84 98 H236 Q244 98 246 104 L260 126 Z" fill="#b9bcbf"/>
+  <path d="M232 98 H236 Q244 98 246 104 L260 126 H248 Z" fill="#a3a7aa"/>
+  <!-- body: light grey -->
+  <path d="M35 404 V164 Q35 124 72 124 H248 Q285 124 285 164 V404 Z" fill="#ecedeb" stroke="#c6c9cb" stroke-width="2"/>
+  <!-- silver-grey lower body, darker skirt (the bus stays light down to its bumper) -->
+  <path d="M35 352 Q160 366 285 352 V404 H35 Z" fill="#8a8f95"/>
+  <!-- dark mask of the front up to the roof, dropping into a U below the windscreen -->
+  <path d="M44 306 V180 Q44 132 94 130 H226 Q276 132 276 180 V300 Q238 316 196 352 Q160 366 124 352 Q82 316 44 300 Z" fill="#2b2f33"/>
+  <!-- windscreen, LED destination display on top -->
+  <path d="M52 298 V182 Q52 160 72 158 H248 Q268 160 268 182 V298 Q160 308 52 298 Z" fill="#2c3944"/>
+  <rect x="60" y="140" width="200" height="18" rx="2" fill="#0d0f11"/>
+  <rect x="100" y="144" width="14" height="10" fill="#f4f4ee"/><rect x="120" y="144" width="100" height="10" fill="#f4f4ee" opacity=".9"/>
+  <path d="M74 164 L116 164 L92 296 L66 294 Z" fill="#46596a" opacity=".5"/>
+  <path d="M232 164 L252 164 L244 214 L226 214 Z" fill="#46596a" opacity=".4"/>
+  <path d="M200 298 L250 240" stroke="#0e0f10" stroke-width="3" stroke-linecap="round"/>
+  <!-- side windows behind the front pillars -->
+  <rect x="35" y="196" width="6" height="104" fill="#3a434b"/>
+  <rect x="279" y="196" width="6" height="104" fill="#3a434b"/>
+  <!-- LED headlights in dark frames on the light cheeks beside the U, amber indicators -->
+  <path d="M42 316 L88 322 V342 L42 336 Z" fill="#2b2f33"/><path d="M46 321 L80 325 V334 L46 331 Z" fill="#f6f7f4"/>
+  <path d="M278 316 L232 322 V342 L278 336 Z" fill="#2b2f33"/><path d="M274 321 L240 325 V334 L274 331 Z" fill="#f6f7f4"/>
+  <rect x="82" y="327" width="5" height="9" rx="1" fill="#f2a33a"/><rect x="233" y="327" width="5" height="9" rx="1" fill="#f2a33a"/>
+  <!-- grey skirt nearly to the rails -->
+  <path d="M35 378 Q160 386 285 378 V398 Q285 404 278 404 H42 Q35 404 35 398 Z" fill="#4a4f55"/>
+  <path d="M272 140 Q285 148 285 166 V398 Q285 404 280 404 H278 V162 Z" fill="#000" opacity=".06"/>
+  <!-- camera mirrors on short arms -->
+  <path d="M282 168 H294 Q300 168 300 174 V196" stroke="#2b2f33" stroke-width="3" fill="none"/>
+  <rect x="293" y="196" width="13" height="24" rx="4" fill="#2b2f33"/>
+  <path d="M38 168 H26 Q20 168 20 174 V196" stroke="#2b2f33" stroke-width="3" fill="none"/>
+  <rect x="14" y="196" width="13" height="24" rx="4" fill="#2b2f33"/>
+  <!-- bottom edge, bogies and grooved rails (gauge 1 435 mm) -->
+  <path d="M37 404 H283 V406 Q283 410 276 410 H44 Q37 410 37 406 Z" fill="#26282a"/>
+  <rect x="78" y="410" width="14" height="8" fill="#8f9193"/><rect x="228" y="410" width="14" height="8" fill="#8f9193"/>
+  <rect x="74" y="418" width="22" height="2" fill="#a7a9ab"/><rect x="88" y="418" width="4" height="2" fill="#2a2b2a"/>
+  <rect x="224" y="418" width="22" height="2" fill="#a7a9ab"/><rect x="228" y="418" width="4" height="2" fill="#2a2b2a"/>
+</svg>

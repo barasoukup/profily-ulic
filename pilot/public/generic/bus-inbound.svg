@@ -1,0 +1,28 @@
+<svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg">
+  <!-- Neutral modern low-floor city bus, front view: the bus of every place without one of its own (Bára 17. 11. 2026,
+       no operator's livery, no logo, no number plate of a state). Not after any one type: the common shape of today's
+       12 m city buses (a low roof cover over the front, a windscreen over the whole width with an LED display on top,
+       LED headlights in the lower corners, a dark bumper). Light grey body, graphite mask, mid-grey bumper line.
+       1 px = 1 cm, width 2.55 m, height 3.0 m with the roof cover. -->
+  <path d="M58 32 Q34 30 28 50" stroke="#2b2f33" stroke-width="6" fill="none"/><rect x="18" y="46" width="20" height="52" rx="6" fill="#2b2f33"/>
+  <path d="M302 32 Q326 30 332 50" stroke="#2b2f33" stroke-width="6" fill="none"/><rect x="322" y="46" width="20" height="52" rx="6" fill="#2b2f33"/>
+  <!-- roof cover (air conditioning, batteries) -->
+  <path d="M96 22 L102 12 Q104 9 110 9 H250 Q256 9 258 12 L264 22 Z" fill="#c6c9cb"/>
+  <path d="M52 296 V40 Q52 20 74 20 H286 Q308 20 308 40 V296 Z" fill="#ecedeb" stroke="#c6c9cb" stroke-width="2"/>
+  <!-- graphite mask with the windscreen and the display -->
+  <path d="M52 40 Q52 20 74 20 H286 Q308 20 308 40 V206 Q180 218 52 206 Z" fill="#2b2f33"/>
+  <rect x="80" y="34" width="200" height="26" rx="2" fill="#0d0f11"/><rect x="90" y="41" width="40" height="12" fill="#f2a33a"/><rect x="140" y="41" width="130" height="12" fill="#f2a33a" opacity=".9"/>
+  <path d="M60 68 H300 V194 Q180 206 60 194 Z" fill="#2c3944"/>
+  <path d="M78 74 L124 74 L94 190 L76 188 Z" fill="#46596a" opacity=".5"/><path d="M250 74 L272 74 L262 124 L240 124 Z" fill="#46596a" opacity=".4"/>
+  <g stroke="#0b0c0d" stroke-width="2.5" stroke-linecap="round"><path d="M100 196 L170 184"/><path d="M272 196 L206 184"/></g>
+  <!-- LED headlights in the lower corners, amber indicators -->
+  <path d="M58 234 L110 240 V254 L58 250 Z" fill="#f6f7f4" stroke="#8e9296" stroke-width="2"/>
+  <path d="M302 234 L250 240 V254 L302 250 Z" fill="#f6f7f4" stroke="#8e9296" stroke-width="2"/>
+  <circle cx="66" cy="262" r="4" fill="#f2a33a"/><circle cx="294" cy="262" r="4" fill="#f2a33a"/>
+  <path d="M116 246 Q180 254 244 246" stroke="#9a9ea2" stroke-width="2" fill="none"/>
+  <!-- bumper with a blank plate -->
+  <rect x="52" y="272" width="256" height="24" rx="4" fill="#3c4046"/><rect x="152" y="278" width="56" height="12" rx="1" fill="#f4f4f2"/>
+  <path d="M296 30 Q308 34 308 48 V292 Q308 296 304 296 V44 Z" fill="#000" opacity=".06"/>
+  <rect x="66" y="294" width="42" height="26" rx="6" fill="#141517"/><rect x="252" y="294" width="42" height="26" rx="6" fill="#141517"/>
+  <rect x="66" y="305" width="42" height="4" fill="#2a2d31"/><rect x="252" y="305" width="42" height="4" fill="#2a2d31"/>
+</svg>

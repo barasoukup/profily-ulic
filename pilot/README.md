@@ -84,7 +84,7 @@ názvem (nadpis je jen ulice).
 - **Hledání:** ZBGIS `find` (ulice MV SR s osou, obce, adresní body Registra adries), jen když mapa ukazuje
   Slovensko, dotaz má slovenská písmena (ä ô ľ ĺ ŕ) nebo RÚIAN nic nenašel (`search-sk.js`). „Hlavná 12 Košice“
   najde adresu, „Hlavná Košice“ ulici v Košicích.
-- Ilustrace vozidel podle města řezu (Bratislava, Košice, Žilina, Banská Bystrica, Prešov; jinde vozidla Streetmixu),
+- Ilustrace vozidel podle města řezu (Bratislava, Košice, Žilina, Banská Bystrica, Prešov; jinde neutrální tramvaj a autobus z `generic/`),
   slovenské označníky zastávek (značka 331), mobiliář pražský (Bratislava ho převzala), značky slovenské (`znacky-SK/`).
 - **Za pasportem města** (Bára 16. 11. 2026, Poštová, 17. novembra): pasport končí, kde končí plochy, o které se město
   stará. Od osy ven k nejbližšímu domu (z pasportu nebo OSM), plotu či zdi z OSM nebo k vnější hraně samostatně

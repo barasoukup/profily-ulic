@@ -124,13 +124,13 @@ function signLabel(x, own, label, plates) {
 }
 
 // The Slovak towns' vehicles (Bára 16. 11. 2026; pilot/public/<town>/, drawn after photos of Wikimedia Commons): a cut in
-// Slovakia draws the trams, trolleybuses and buses of its town (by a box around it), elsewhere Streetmix's; the
+// Slovakia draws the trams, trolleybuses and buses of its town (by a box around it), elsewhere the neutral ones (generic/); the
 // furniture is the Czech set's ("../cesko/…": the files of cesko/).
 // The stop posts carry the Slovak sign 331 Zastávka (Bára 16. 11. 2026; slovensko/, for every Slovak town).
 const skPosts = Object.fromEntries(["stop-post-left", "stop-post-right", "stop-post-tram-left", "stop-post-tram-right", "transit-shelter-01-left", "transit-shelter-01-right",
   "transit-shelter-green-left", "transit-shelter-green-right"].map((k) => [k, `../slovensko/${TOWN_ART[k]}`]));
 const skArt = (tram, trolley, bus = true) => ({ ...czechFurniture, ...skPosts, ...(bus ? { "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound" } : {}), ...(tram ? TRAM : {}), ...(trolley ? TROLLEY : {}) });
-// slovensko: the rest of Slovakia (Streetmix's vehicles, the Czech furniture, the Slovak stop posts).
+// slovensko: the rest of Slovakia (the neutral vehicles of generic/, the Czech furniture, the Slovak stop posts).
 // Bratislava and Košice have their own stop posts (drawn after photos of their stops, 16. 11. 2026); the rest of
 // Slovakia a generic Slovak city bus (slovensko/bus-*), Nitra, Trnava, Trenčín, Martin and Poprad their own.
 const ownPosts = { "stop-post-left": "oznacnik-left", "stop-post-right": "oznacnik-right", "stop-post-tram-left": "oznacnik-tram-left", "stop-post-tram-right": "oznacnik-tram-right" };

@@ -3,6 +3,7 @@
 import { TYPES, SOURCES, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURNS, HDV_UNDER, LAMP_H, underSize } from "./types.js";
 import { city, country, cityById, CITY_IDS, creditLines } from "./city.js";
 import { COUNTRIES } from "./countries/index.js";
+import { GENERIC_VEHICLES } from "./art.js";
 import { PLATES, signFile, plateFile, signLabel, signDir, SPEED_TEMPLATES } from "./signs.js";
 // tr: t is a part's type here.
 import { t as tr, num } from "./i18n.js";
@@ -65,10 +66,14 @@ const CITY_ART = { praha: PRAHA, brno: BRNO };
 for (const id of CITY_IDS) { const c = cityById(id); if (c.artMap) CITY_ART[c.art] = c.artMap; }
 // The states' sets of their cities (countries/<ISO>.js art: the Slovak and Austrian cities' vehicles, city.js art).
 for (const c of Object.values(COUNTRIES)) Object.assign(CITY_ART, c.art);
+// A set without a tram or a bus of its own draws the neutral ones (art.js GENERIC_VEHICLES).
+for (const [k, v] of Object.entries(CITY_ART)) CITY_ART[k] = { ...GENERIC_VEHICLES, ...v };
 // The illustrations of the current cut's city, or Streetmix's (the switch "Ilustrace" off).
 let artOn = true;
 const artKey = () => (artOn ? city.art : "streetmix");
 const cityArt = () => artOn && !!CITY_ART[city.art]; // the city's own set
+// The set of illustrations of an art folder (tests).
+export const artSet = (art) => CITY_ART[art];
 // The credit lines of an export or a saved file for the current city and art (src: the cut's sources, app.js).
 export const exportCredits = (src) => creditLines(city, src || {}, cityArt());
 // Prague buildings are drawn from the side (we look along the street): the outline tells the type.

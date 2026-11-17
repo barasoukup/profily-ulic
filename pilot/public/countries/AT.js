@@ -75,7 +75,7 @@ function signFile(s) {
 const signLabel = (x, own, label) => (AT_CODE[x.k] ? `${AT_CODE[x.k]} ${label.replace(CZ_CODE, "")}` : label);
 
 // Austria's towns (Bára 16. 11. 2026; pilot/public/wien, graz, linz, drawn in rounds of a drawer and a critic): Vienna's
-// Flexity and bus of Wiener Linien, the trams of Graz and Linz, elsewhere Streetmix's vehicles; the Austrian stop post
+// Flexity and bus of Wiener Linien, the trams of Graz and Linz, elsewhere the neutral vehicles of generic/; the Austrian stop post
 // (the round H sign, wien/oznacnik-*) everywhere; the furniture the Czech set's.
 const atPosts = (dir) => Object.fromEntries(["stop-post-left", "stop-post-right", "stop-post-tram-left", "stop-post-tram-right",
   "transit-shelter-01-left", "transit-shelter-01-right", "transit-shelter-green-left", "transit-shelter-green-right"].map((k) => [k, `${dir}${TOWN_ART[k]}`]));
