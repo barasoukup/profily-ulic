@@ -98,7 +98,7 @@ jobs:
         timeout-minutes: 60
         run: |
           mkdir -p data/osm
-          curl -fL --retry 3 --retry-delay 20 --connect-timeout 30 -o "data/osm/${{ matrix.code }}.osm.pbf" \
+          curl -fL --retry 5 --retry-delay 30 --retry-all-errors --connect-timeout 30 -o "data/osm/${{ matrix.code }}.osm.pbf" \
             "https://download.geofabrik.de/europe/${{ matrix.extract }}-latest.osm.pbf"
           ls -l data/osm
       - name: Build and pack the tiles
