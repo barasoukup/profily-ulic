@@ -739,18 +739,26 @@ Jazyk není stát (kódy ISO: jazyk `de`, stát `DE`): značky, normy, zdroje da
 (`city.country`, CZ/SK/AT/DE), jazyk mění jen slova. Německé rozhraní na řezu v Praze ukazuje české značky s českými
 čísly a česká pravidla, na řezu v Bratislavě slovenská, v Berlíně německé (StVO).
 
-- `i18n.js`: `t("český text", { jméno })` vrátí text jazyka z `en.js`, `sk.js` nebo `de.js`, nebo český, když
-  překlad chybí. Český text je klíč, `{jméno}` se doplní. `num()` a `pct()` píšou desetinnou čárku a „44 %“ česky,
-  slovensky a německy, tečku a „44%“ anglicky. `translatePage()` přeloží texty `index.html`; patička se nahrazuje
-  celá (`data-i18n="footer"`, `EN_HTML`, `SK_HTML`, `DE_HTML`). `errors.js` (běží před moduly) má svých pár hlášek
-  ve všech čtyřech jazycích.
-- `en.js`, `sk.js`, `de.js`: texty jazyka, texty měst (`EN_CITY`…: server, data, kredity) a slova v kreditech
-  mapových vrstev. V `de.js` jsou texty měst ve tvarech, jak je věty potřebují (server a data v genitivu: „Der Server
-  der Stadt Brno…“, „nach den Daten der Stadt Brno und von OSM“). Německé názvosloví: Bestand / Planung / Vergleich,
+- `i18n.js`: `t("český text", { jméno })` vrátí text jazyka stránky, nebo český, když překlad chybí. Jazyků je 24
+  (všechny úřední jazyky EU, `LANGS`, každý pojmenovaný sám sebou); načte se jen `<jazyk>.js` jazyka stránky (top-level
+  await v `i18n.js`). Český text je klíč, `{jméno}` se doplní. `num()` píše desetinnou čárku, tečku jen anglicky, irsky
+  a maltsky; `pct()` „44 %“ s mezerou, bez mezery („44%“) en, ga, mt, nl, pl, it, pt, ro, el, bg, hu, lv.
+  `translatePage()` přeloží texty `index.html`; patička se nahrazuje celá (`data-i18n="footer"`, `EN_HTML`, `FR_HTML`…).
+  `errors.js` (běží před moduly) má svých pár hlášek ve všech jazycích (tabulka `TEXTS`).
+- Přepínač je poslední položka menu Soubor („Jazyk“, Bára 17. 11. 2026): seznam jazyků jejich vlastními jmény, bez
+  vlajek (jazyk není stát). Jazyk se jinak řídí prohlížečem (první z `navigator.languages`, který aplikace umí, jinak
+  angličtina); ruční volba se pamatuje v localStorage, `?lang=fr` platí dál.
+- `<jazyk>.js` (`en.js`, `sk.js`, `de.js`, `fr.js`…; exporty `FR`, `FR_HTML`, `FR_CITY`, `FR_ATTRIBUTION`): texty
+  jazyka, texty měst (server, data, kredity) a slova v kreditech mapových vrstev. Texty měst jsou ve tvarech, jak je
+  věty potřebují (v `de.js` server a data v genitivu: „Der Server der Stadt Brno…“, „nach den Daten der Stadt Brno und
+  von OSM“; jazyky se skloňováním mají v `own()` pomocné tvary). Německé názvosloví: Bestand / Planung / Vergleich,
   Gehweg, Fahrstreifen, Radfahrstreifen, Schutzstreifen, Parkstreifen, Fahrbahn, Bordstein, Querschnitt; vyká
   („Sie“); český kraj je „Region“, okres „Bezirk“.
+- Kromě češtiny, slovenštiny, angličtiny a němčiny jsou překlady strojové (17. 11. 2026, agent na jazyk z češtiny,
+  pak kritik Fable jako rodilý mluvčí); měl by je projít rodilý mluvčí. Nejisté bývá: ochranný cyklopruh (většina
+  zemí ho nemá), sdílená zóna, hospodaření s vodou.
 - Nový text v kódu: obalit `t("…")` (v `app.js`, `profile.js` a `maplayers.js` se funkce jmenuje `tr`) a doplnit
-  do `en.js`, `sk.js` a `de.js`. `tests/i18n.test.js` hlídá, že každý text má překlad se stejnými `{jmény}`, že
+  do všech 23 souborů jazyků. `tests/i18n.test.js` hlídá, že každý text má překlad se stejnými `{jmény}`, že
   překlady nemají nic navíc, že každé město má texty a že žádný modul kromě `i18n.js` nerozhoduje podle jazyka;
   `tests/i18n-en.test.js` a `tests/i18n-de.test.js` pouštějí moduly anglicky a německy.
 - Česky zůstávají vlastní jména (ČÚZK, RÚIAN, IPR, úřady měst, kraje), čísla značek a text na dodatkové tabulce E 13

@@ -23,7 +23,7 @@ Zprávy jsou v `evaluation/slovensko/` a `evaluation/austria/` (ZPRAVA, NORMY, Z
 - **Názvy v kódu a souborech anglicky** (Bára 16. 11. 2026): `towns/austria.js`, id státu `austria`, `signs-AT/`,
   `evaluation/austria/`. Stávající české názvy (`slovensko.js`, `znacky/`, `cesko`) zůstávají.
 - **Jazyk a stát nemíchat:**
-  - Jazyk rozhraní: ISO 639-1 malými písmeny (cs, sk, en, de), týká se jen textů (`i18n.js`, `sk.js`, `en.js`, `de.js`).
+  - Jazyk rozhraní: ISO 639-1 malými písmeny (24 jazyků EU: cs, sk, en, de, fr…), týká se jen textů (`i18n.js`, `<jazyk>.js`).
   - Stát řezu: ISO 3166-1 velkými (CZ, SK, AT). Řídí `city.country`, data, normy, zákony, značky a ilustrace.
   - `signs.js` nesmí číst jazyk (hlídá `tests/i18n.test.js`). Úřední názvy značek státu se proto řeší klíčem podle
     významu značky státu (`SK_TITLE`) a překladem do jazyka (ve slovenštině úřední název).
@@ -43,7 +43,7 @@ Zprávy jsou v `evaluation/slovensko/` a `evaluation/austria/` (ZPRAVA, NORMY, Z
   - Overpass ne, Nominatim na našeptávání ne;
   - nikdy e-mail ani jméno uživatele v dotazech;
   - co OSM už má (např. stromy Vídně), se znovu neptat.
-- **Texty:** klíčem `t()` je vždy čeština, překlad do `en.js`, `sk.js` i `de.js` (hlídá `tests/i18n.test.js`).
+- **Texty:** klíčem `t()` je vždy čeština, překlad do všech 23 souborů jazyků (`en.js`, `sk.js`, `de.js`, `fr.js`…; hlídá `tests/i18n.test.js`).
   Slovenské hodnoty nesmí mít česká slova: při hromadné náhradě v `sk.js` měnit jen hodnoty, ne klíče.
 - **Testy nesmí volat síť.** Parametry modulu státu v Node přes `globalThis.PROFILY_SK = {…}` a `globalThis.PROFILY_AT = {…}`.
   Funkce, které by se ptaly služby (např. `locateAt`), testovat se vstupem, který dotaz nevyvolá. `npm test` před každým commitem.
@@ -132,7 +132,7 @@ Kresby jsou zdaleka nejdražší. Proto:
    podle `bounds` státu), služby hledání (`search.js`: název služby v `search`, `looksSlovak`/`looksViennese`),
    katastr značek jako u Salcburku (`app.js`), `city.abroad` (zbytek státu přes `abroad()`).
 3. **Zbytek státu jako město v `city.js`:** přes `abroad(id, ISO, …)` (`centre: null`, `estateKm`, `dataShort`, `credit`,
-   `rulesHead`), texty v `en.js`, `sk.js` a `de.js` (tabulky CITY). Id zůstává pro uložené řezy a log.
+   `rulesHead`), texty ve všech souborech jazyků (tabulky CITY). Id zůstává pro uložené řezy a log.
 4. **Zdroje:** v `towns/index.js` id → `towns/<state>.js` se `sources = { osm, surfaces, lines, parking, podlaznost }`,
    `national = true` (žádný pokus o českou DMVS). Zdroj s vlastním územím (pasport, mapa města) má `area` (`places.js
    inArea`: box, případně hranice obce) a patří do `AREAS` modulu (`placeAt` ho pak vypíše, vypínače zdrojů nezná). Kredit
