@@ -18,6 +18,20 @@ const MIN_PAIR = 30, MIN_KEY = 10;
 const NAMES = /(^|_)name(:|$)/;
 
 // Packs tiles: names ("ix_iy"), text(name) → the tile as osmtile.js has it. Returns the file (Buffer) and a summary.
+// The box of tile names ("ix_iy") as [ix0, iy0, ix1, iy1]. A loop: Math.min(...list) overflows the stack beyond about
+// 120 000 tiles, and Czechia has 246 000 (the review of Germany's port).
+export function tilesBox(names) {
+  const box = [Infinity, Infinity, -Infinity, -Infinity];
+  for (const n of names) {
+    const [x, y] = n.split("_").map(Number);
+    if (x < box[0]) box[0] = x;
+    if (y < box[1]) box[1] = y;
+    if (x > box[2]) box[2] = x;
+    if (y > box[3]) box[3] = y;
+  }
+  return box;
+}
+
 export function packTiles(names, text, { source = "", minPair = MIN_PAIR, minKey = MIN_KEY } = {}) {
   const lines = (n) => text(n).split("\n").filter(Boolean).map((l) => JSON.parse(l));
   // 1. How often each key and pair is.
@@ -105,8 +119,7 @@ if (process.argv[1] && import.meta.url.endsWith(path.basename(process.argv[1])))
   index.files[key] = path.basename(out);
   // The box of its tiles ([ix0, iy0, ix1, iy1], tile indices): the app opens only the files whose box holds the tiles of
   // a cut (osmpack.js PackSet; the review of Germany: every cut opened the head of every file).
-  const ij = names.map((n) => n.split("_").map(Number));
-  (index.bbox ??= {})[key] = [Math.min(...ij.map((p) => p[0])), Math.min(...ij.map((p) => p[1])), Math.max(...ij.map((p) => p[0])), Math.max(...ij.map((p) => p[1]))];
+  (index.bbox ??= {})[key] = tilesBox(names);
   index.attribution = "© OpenStreetMap contributors, ODbL 1.0";
   fs.writeFileSync(indexFile, JSON.stringify(index, null, 1) + "\n");
   const mb = (n) => (n / 1e6).toFixed(1) + " MB";

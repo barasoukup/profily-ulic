@@ -85,3 +85,23 @@ test("Německo: paneláky jen v zemích bývalé NDR (countries/DE.js atPlace po
   for (const [lon, lat, east] of [[12.375, 51.34, true], [13.4, 52.52, true], [11.63, 52.13, true], [10.135, 51.378, true], [11.25, 53.14, true],
     [11.575, 48.137, false], [9.99, 53.55, false], [10.05, 51.19, false], [11.67, 50.35, false], [11.12, 50.33, false]]) assert.equal((await DE.atPlace(lon, lat)).panels, east, `${lon},${lat}`);
 });
+
+test("stání zakreslené v OSM se do o něco užší odhadnuté vozovky vejde v plné šířce, pruh ustoupí (Großer Brockhaus, recenze přenosu)", async () => {
+  const C = await import("../pilot/public/city.js");
+  const { deriveProfile, localFrame } = await import("../pilot/public/derive.js");
+  const frame = localFrame(51.34, 12.386);
+  const rect = (code, x0, x1, guess) => ({ code, label: "", guess, rings: [[[x0, -60], [x1, -60], [x1, 60], [x0, 60]]], bbox: [x0, -60, x1, 60] });
+  const ll = (x, y) => { const [lon, lat] = frame.toLonLat(x, y); return { lon, lat }; };
+  const road = (guess) => {
+    const polys = [rect(601, -10, -5), rect(702, -5, -2.2, guess), rect(701, -2.2, 2.2, guess), rect(702, 2.2, 5, guess), rect(601, 5, 10)];
+    const way = { type: "way", id: 1, tags: { highway: "residential", oneway: "yes", "parking:left": "street_side", "parking:left:orientation": "parallel", "parking:right": "no" }, geometry: [ll(0, -60), ll(0, 60)] };
+    return deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys, osm: { elements: [way] }, frame, way, inZps: false });
+  };
+  C.setCity("germany");
+  try {
+    const p = road(true), park = p.segments.filter((x) => x.type === "parkovani");
+    assert.equal(park.length, 1, p.segments.map((x) => `${x.type} ${x.width.toFixed(2)}`).join(", "));
+    assert.ok(Math.abs(park[0].width - 2) < 1e-6, "stání 2 m, ne zúžené");
+    assert.equal(road(false).segments.filter((x) => x.type === "parkovani").length, 0, "změřená vozovka: staré pravidlo");
+  } finally { C.setCity("praha"); }
+});

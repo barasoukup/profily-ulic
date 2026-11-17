@@ -20,3 +20,10 @@ test("index dlaždic: německé země jako de_by, obdélník z meta souboru jen 
   assert.deepEqual(index.files, { de_by: "de_by-2026-11-23-aa.posm", de_nw: "de_nw-2026-11-23-bb.posm" });
   assert.deepEqual(index.bbox, { de_by: [1, 2, 3, 4] });
 });
+
+test("obdélník dlaždic balíku i pro 250 000 dlaždic (Česko jich má 246 000; Math.min(...) by přetekl)", async () => {
+  const { tilesBox } = await import("../tools/pack_osm_tiles.mjs");
+  const names = [];
+  for (let i = 0; i < 250000; i++) names.push(`${2800 + (i % 700)}_${9900 + Math.floor(i / 700)}`);
+  assert.deepEqual(tilesBox(names), [2800, 9900, 3499, 9900 + 357]);
+});

@@ -1,7 +1,7 @@
 import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, SURFACES, LAMP_HEIGHTS, underSize } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, splitTwoWayLane, capWideLanes, pedestrianZone, widenNarrowTrams, carveCycleways, carveTramTracks, lanesFromShoulders, crossFromA, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
-import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO, DE_ORTHO, deWmsUrl, landsAt } from "./lanes-ortho.js";
+import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO, DE_ORTHO, deWmsUrl, landsAt, landAt } from "./lanes-ortho.js";
 import { orthoOsmPolys, besidePassport, trimToEnds, P as ORTHO_P } from "./ortho-osm.js";
 // ?off=… switches named parts of the estimate off (the A/B tests, evaluation/ortofoto-osm/regrese.mjs).
 { const off = new URLSearchParams(location.search).get("off"); if (off) ORTHO_P.off = new Set(off.split(",")); }
@@ -214,16 +214,20 @@ if (STATY?.germany) {
       // of the tile's centre on top (the review: white halves in Mainz/Wiesbaden, Ulm/Neu-Ulm).
       const tile = document.createElement("div");
       tile.style.position = "relative";
-      landsAt(c.lng, c.lat).then((lands) => {
+      // A tile not wholly in one Land (a corner in another Land or outside Germany, the Czech border: Varnsdorf, Aš)
+      // asks transparent PNGs, so the orthophoto beneath shows where the Land's WMS has none (the review of the port).
+      const corner = (fx, fy) => this._map.unproject([(coords.x + fx) * size.x, (coords.y + fy) * size.y], coords.z);
+      Promise.all([landsAt(c.lng, c.lat), ...[[0, 0], [1, 0], [0, 1], [1, 1]].map(([fx, fy]) => { const q = corner(fx, fy); return landAt(q.lng, q.lat); })]).then(([lands, ...corners]) => {
         const wms = [...new Map(lands.map((l) => [DE_ORTHO[l].wms, l])).values()];
         if (!wms.length) return done(null, tile);
+        const clear = wms.length > 1 || corners.some((l) => l !== lands[0]);
         let left = wms.length;
         for (const land of [...wms].reverse()) {
           const im = document.createElement("img");
           im.alt = "";
           Object.assign(im.style, { position: "absolute", left: 0, top: 0, width: `${size.x}px`, height: `${size.y}px` });
           im.onload = im.onerror = () => { if (--left === 0) done(null, tile); };
-          im.src = wms.length > 1 ? deWmsUrl(DE_ORTHO[land], b, size.x, size.y, "image/png", { transparent: "TRUE" }) : deWmsUrl(DE_ORTHO[land], b, size.x, size.y);
+          im.src = clear ? deWmsUrl(DE_ORTHO[land], b, size.x, size.y, "image/png", { transparent: "TRUE" }) : deWmsUrl(DE_ORTHO[land], b, size.x, size.y);
           tile.appendChild(im);
         }
       }, () => done(null, tile));

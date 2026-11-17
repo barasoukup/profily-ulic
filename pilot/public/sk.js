@@ -55,7 +55,7 @@ export const SK = {
   "Pěší zóna": "Pešia zóna",
   "Cyklistická ulice": "Bicyklová cesta",
   "ortofoto © spolkové země Německa (GeoBasis-DE)": "ortofoto © spolkové krajiny Nemecka (GeoBasis-DE)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, podle StVO § 12 a judikatury má zůstat asi {need} na projetí vozidla.": "Státie napoly na chodníku z OSM: na vozovke zostáva {free}, podľa StVO § 12 a judikatúry má zostať asi {need} na prejazd vozidla.",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, podle StVO § 12 a judikatury 3,05 m na projetí, s pruhy vedle stání aspoň {need}.": "Státie napoly na chodníku z OSM: na vozovke zostáva {free}, podľa StVO § 12 a judikatúry 3,05 m na prejazd, s pruhmi vedľa státia aspoň {need}.",
   "jízdní pruh hlavní ulice: vozovka 6,5 m pro potkávání autobusů, tedy asi 3,25 m (RASt 06 podle dopisu, kterým ji Bavorsko zavedlo, 2009)": "jazdný pruh hlavnej ulice: vozovka 6,5 m na stretnutie autobusov, teda asi 3,25 m (RASt 06 podľa listu, ktorým ju Bavorsko zaviedlo, 2009)",
   "chodník: 2,5 m, nejméně 1,8 m (RASt 06 a EFA 2002 podle přehledu Dolního Saska)": "chodník: 2,5 m, najmenej 1,8 m (RASt 06 a EFA 2002 podľa prehľadu Dolného Saska)",
   "společná stezka pro chodce a cyklisty: min. 2,5 m, základ 3 m (VwV-StVO k Z 240, ERA 2010 podle přehledu Dolního Saska)": "spoločný chodník pre chodcov a cyklistov: min. 2,5 m, základ 3 m (VwV-StVO k Z 240, ERA 2010 podľa prehľadu Dolného Saska)",

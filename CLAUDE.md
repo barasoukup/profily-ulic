@@ -289,13 +289,14 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Stát `germany` (`country` DE): `countries/DE.js` (normy, značky, zákon o stání, ortofota zemí, domy, hledání),
   `towns/germany.js` (mapy povrchů měst), `signs-DE/`, `evaluation/germany/` (ZDROJE, NORMY, RECENZE, ab/). Hranice GISCO 1 : 1 M za Českem,
   Slovenskem a Rakouskem (`node tools/build_staty.mjs germany` přestaví jen Německo).
-- OSM: výřez Geofabrik `germany` (4,4 GB), balík `de` jen na R2, staví ho job `de` v `osm-tiles.yml` (uvolní disk, 330 min).
+- OSM: Německo po 16 zemích (výřezy Geofabriku, balíky `de_by`, `de_nw` … jen na R2, každý pod 512 MB), každá země svůj job
+  v `osm-tiles.yml` (`tools/countries.mjs` parts); index má obdélník dlaždic každého balíku.
 - Ortofoto všech 16 spolkových zemí (WMS v EPSG:3857 s CORS, `lanes-ortho.js DE_ORTHO`), země řezu podle `laender.json`
   (GISCO NUTS 1, `tools/build_laender.mjs`); u hranice se zkusí sousední země, prázdný snímek se nepoužije. Hamburg
   výslovně rok 2024 (2022 je satelit pod uzavřenou licencí). Tabulka a licence `evaluation/germany/ZDROJE.md`.
 - Bára: zatím bez vlastních ilustrací („obrázky jsou nejdražší“): rakouské označníky a přístřešky (kulaté H = Z 224),
   český mobiliář, vozidla Streetmixu.
-- Paneláky jen ve východních zemích a v Berlíně (bývalá NDR, `city.js inGdr`), na západě jako v Rakousku.
+- Paneláky jen ve východních zemích a v Berlíně (bývalá NDR podle `laender.json`, `countries/DE.js atPlace`), na západě jako v Rakousku.
 - Značky `signs-DE/` (StVO, Commons, úřední díla § 5 UrhG) i s dodatkovými tabulkami (Anlieger frei, Radfahrer frei, Radverkehr
   im Gegenverkehr); jednosměrka Z 220 / Z 267; sdílenou zónu Německo nemá.
 - Normy `limitsDE` (`evaluation/germany/NORMY.md`): RASt 06, ERA 2010, EAR 23 jen podle sekundárních zdrojů; šířky pruhů
@@ -304,7 +305,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Stání (Bára 17. 11. 2026): zákonný odhad i v AT a DE (místní ulice; `?odhadstani=0`), stání zakreslené v OSM se do
   úzké odhadnuté vozovky zúží (do 85 %). Měření: chybí stání DE 15 → 8, AT 14 → 11 (zbytek: podhodnocená vozovka).
 - Hledání Photon (Německo podle mapy; německy vypadající dotaz, který RÚIAN nenajde, i z jiného místa).
-- Kandidát na městská data: Hamburg `feinkartierung_strasse` (plochy ulic, OGC API, CORS, dl-de/by-2.0), před zapojením A/B.
+- Mapy povrchů ulic Berlína, Hamburku a Cách zapojené (`towns/germany.js`, `?berlin=0` …; A/B v `evaluation/germany/ab/`).
 
 ## Měření přesnosti (Bára 17. 11. 2026)
 - Jedna univerzální metoda pro všechny státy: skill `mereni-presnosti`, kód a zpráva `evaluation/universal/`. Použít u

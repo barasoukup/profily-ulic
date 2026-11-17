@@ -69,6 +69,12 @@ const inRings = (rings, x, y) => {
   for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; }
   return c;
 };
+// The Land a point lies in, strictly (no neighbours within 2 km), or null outside Germany.
+export async function landAt(lon, lat) {
+  await landsAt(lon, lat);
+  const all = await laender;
+  return Object.keys(all).find((code) => inRings(all[code], lon, lat)) ?? null;
+}
 export async function landsAt(lon, lat, json = null) {
   laender ??= json ? Promise.resolve(json) : (async () => {
     const url = new URL("./laender.json", import.meta.url);

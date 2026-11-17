@@ -87,7 +87,7 @@ export default {
   // drivable (the hostile review: a two-way 5.1 m roadway gave two lanes of 1.55 m).
   freeLane: 3.05,
   lawNeed: (oneway, lanes, minLane) => Math.max(3.05, minLane * Math.max(oneway ? 1 : 2, lanes)),
-  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, podle StVO § 12 a judikatury má zůstat asi {need} na projetí vozidla.", { free, need }),
+  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, podle StVO § 12 a judikatury 3,05 m na projetí, s pruhy vedle stání aspoň {need}.", { free, need }),
   // The law's estimate on local streets as in Czechia (the universal judging, 17. 11. 2026: parking was missing in 15
   // of 34 German cuts; ?odhadstani=0 in app.js leaves it out).
   parkGuess: true,

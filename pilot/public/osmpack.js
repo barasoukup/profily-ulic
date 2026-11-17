@@ -195,41 +195,51 @@ export const rangeFetch = (url, timeout, f = (...a) => fetch(...a)) => async (st
 // the last one fails too, the next cut starts again from the first.
 export class PackSet {
   constructor(bases, { timeout, fetch: f = (...a) => fetch(...a) } = {}) {
-    Object.assign(this, { bases, timeout, f, at: 0, packs: null });
+    // at: the first place to ask (one whose index failed gives way to the next until every place has failed).
+    Object.assign(this, { bases, timeout, f, at: 0, places: new Map() });
   }
 
-  open() {
-    const base = this.bases[this.at];
-    this.packs ??= (async () => {
-      const r = await this.f(`${base}/index.json`, { cache: "no-cache", signal: this.timeout ? AbortSignal.timeout(this.timeout) : undefined });
-      if (!r.ok) throw new Error(`dlaždice OSM ${r.status}`);
-      const { files, bbox = {} } = await r.json();
-      return Object.entries(files).map(([code, file]) => Object.assign(new Pack(rangeFetch(`${base}/${file}`, this.timeout, this.f)), { code, box: bbox[code] }));
-    })();
-    return this.packs;
+  // The files of one place: { code: Pack with its box }, its index read once (a failed index is asked again later).
+  open(at = this.at) {
+    const base = this.bases[at];
+    if (!this.places.has(base)) {
+      this.places.set(base, (async () => {
+        const r = await this.f(`${base}/index.json`, { cache: "no-cache", signal: this.timeout ? AbortSignal.timeout(this.timeout) : undefined });
+        if (!r.ok) throw new Error(`dlaždice OSM ${r.status}`);
+        const { files, bbox = {} } = await r.json();
+        return Object.fromEntries(Object.entries(files).map(([code, file]) => [code, Object.assign(new Pack(rangeFetch(`${base}/${file}`, this.timeout, this.f)), { code, box: bbox[code] })]));
+      })().catch((err) => { this.places.delete(base); throw err; }));
+    }
+    return this.places.get(base);
   }
 
   // The element lists of the tiles names ("ix_iy") in all countries (a tile on a border may be in two), for mergePieces.
-  // Only the files whose box (index.json bbox) holds one of the tiles are asked; a file that fails is left out with a
-  // warning while the others answer (the review of Germany: one bad file sent all states to the fallback without
-  // Austria and Germany); only when every asked file fails does the next place take over.
+  // Only the files whose box (index.json bbox) holds one of the tiles are asked. A file that fails is asked at the next
+  // place (Pages) on its own, while the others keep answering from the first (the review of Germany: one bad file sent
+  // every state to the fallback without AT and DE; and a neighbour answering empty must not hide a failed file).
+  // Only when no place has a file answering does the cut fail; the next cut starts again from the first place.
   async tiles(names) {
     const ij = names.map((n) => n.split("_").map(Number));
     const holds = (p) => !p.box || ij.some(([x, y]) => x >= p.box[0] && x <= p.box[2] && y >= p.box[1] && y <= p.box[3]);
-    for (;;) {
-      try {
-        const asked = (await this.open()).filter(holds);
-        const got = await Promise.allSettled(asked.map((p) => p.tiles(names)));
-        const ok = got.filter((g) => g.status === "fulfilled").map((g) => g.value);
-        if (asked.length && !ok.length) throw got[0].reason;
-        got.forEach((g, i) => { if (g.status === "rejected") console.warn("dlaždice OSM", asked[i].code, g.reason?.message); });
-        return names.flatMap((_, i) => ok.map((list) => list[i]).filter((els) => els.length));
-      } catch (err) {
-        this.packs = null;
-        if (this.at >= this.bases.length - 1) { this.at = 0; throw err; }
-        console.warn("dlaždice OSM jinde", this.bases[this.at], err.message);
-        this.at++;
-      }
+    let first, err;
+    for (; this.at < this.bases.length; this.at++) {
+      try { first = await this.open(this.at); break; } catch (e) { err = e; console.warn("dlaždice OSM jinde", this.bases[this.at], e.message); }
     }
+    if (!first) { this.at = 0; throw err; }
+    const lists = [];
+    let answered = 0, failed = null;
+    await Promise.all(Object.values(first).filter(holds).map(async (p) => {
+      for (let at = this.at; at < this.bases.length; at++) {
+        try {
+          const pack = at === this.at ? p : (await this.open(at))[p.code];
+          if (!pack) break; // the next place has no file of this state (Pages: only CZ and SK)
+          lists.push(await pack.tiles(names));
+          answered++;
+          return;
+        } catch (e) { failed = e; console.warn("dlaždice OSM", p.code, this.bases[at], e.message); }
+      }
+    }));
+    if (!answered && failed) { this.at = 0; this.places.clear(); throw failed; }
+    return names.flatMap((_, i) => lists.map((list) => list[i]).filter((els) => els.length));
   }
 }

@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       states:
-        description: "Kódy států oddělené čárkou (prázdné: všechny), např. de,at"
+        description: "Kódy balíků oddělené čárkou (prázdné: všechny), např. at,de (celé Německo) nebo de_by"
         required: false
         default: ""
   schedule:
@@ -68,7 +68,9 @@ jobs:
       - id: wanted
         run: |
           s="${{ github.event.inputs.states }}"
-          if [ -z "$s" ] || echo ",$s," | grep -q ",${{ matrix.code }},"; then echo "go=true" >> "$GITHUB_OUTPUT"; else echo "go=false" >> "$GITHUB_OUTPUT"; fi
+          # A state's code (de) builds all its parts (de_by, de_nw …).
+          c="${{ matrix.code }}"
+          if [ -z "$s" ] || echo ",$s," | grep -q ",$c," || echo ",$s," | grep -q ",${c%%_*},"; then echo "go=true" >> "$GITHUB_OUTPUT"; else echo "go=false" >> "$GITHUB_OUTPUT"; fi
           if [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "${{ vars.R2_ACCOUNT_ID }}" ]; then echo "::error::no R2 keys (secrets R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, variable R2_ACCOUNT_ID)"; exit 1; fi
       - if: steps.wanted.outputs.go == 'true'
         uses: actions/checkout@v4

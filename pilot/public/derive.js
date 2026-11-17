@@ -590,7 +590,7 @@ const bikeWidth = (type, parkOrient) =>
   !parkOrient ? BIKE_WIDTH[type] : parkOrient === "podelne" ? 1.75 : 2;
 const ISLAND_MAX = 6; // widest paved strip between carriageways still taken as an island (m)
 const MIN_LANE = 2.5; // narrowest driving lane kept when curb strips are carved out (m)
-const OSM_PARK_MIN = 0.85; // parking tagged in OSM narrowed to fit an estimated roadway, down to this share of its width
+const OSM_LANE_GIVE = 0.3; // what each lane of an estimated roadway may give up for parking tagged in OSM (m)
 // Widest driving lane before the rest becomes a shoulder / hatched area (m). ČSN 73 6110 lanes
 // are 3.0–3.5 m, but Prague streets commonly have 4 m lanes (Bára: an 8 m street is two 4 m lanes,
 // no shoulder); motorways and expressways 3.75 m with a hard shoulder.
@@ -675,12 +675,12 @@ function splitRoadway(run, ctx) {
   }
   // Parking the data put there (OSM) stays when a little room is missing in an estimated roadway (the universal
   // judging, 17. 11. 2026: an estimated roadway of 4.4 m dropped the tagged parallel parking of Großer Brockhaus for
-  // 0.1 m): narrowed to what is left, down to OSM_PARK_MIN of its width. A measured roadway (MTVU, a technical map)
-  // keeps the old rule (the review: a narrowed stall gave a red warning in Návrh at once).
+  // 0.1 m): the stall keeps its width and the lanes give up to OSM_LANE_GIVE each (the review of the port: a narrowed
+  // stall was red in Návrh at once). A measured roadway (MTVU, a technical map) keeps the old rule.
   for (const [side, st] of [["L", sideL], ["R", sideR]]) {
     if (!st.parking || parked.includes(side)) continue;
-    const w = fits(side, st.parkingWidth) ? st.parkingWidth : run.guess ? Math.min(left, clear[side]) : 0;
-    if (w >= st.parkingWidth * OSM_PARK_MIN - 1e-6) {
+    const w = st.parkingWidth;
+    if (fits(side, w) || (run.guess && left + OSM_LANE_GIVE * lanesTotal >= w - 1e-6 && clear[side] >= w - 0.1)) {
       edge.push({ side, type: "parkovani", w, orient: st.parkingOrient });
       take(side, w);
     }
