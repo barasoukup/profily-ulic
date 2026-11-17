@@ -212,8 +212,8 @@ if (STATY?.germany) {
       const c = this._map.unproject([(coords.x + 0.5) * size.x, (coords.y + 0.5) * size.y], coords.z);
       // Near a border (more than one Land within about 2 km) the Länder's images stacked as transparent PNGs, the Land
       // of the tile's centre on top (the review: white halves in Mainz/Wiesbaden, Ulm/Neu-Ulm).
+      // Leaflet's .leaflet-tile is absolute (the images' box too): an inline "relative" stacked the tiles down the page.
       const tile = document.createElement("div");
-      tile.style.position = "relative";
       // A tile not wholly in one Land (a corner in another Land or outside Germany, the Czech border: Varnsdorf, Aš)
       // asks transparent PNGs, so the orthophoto beneath shows where the Land's WMS has none (the review of the port).
       const corner = (fx, fy) => this._map.unproject([(coords.x + fx) * size.x, (coords.y + fy) * size.y], coords.z);

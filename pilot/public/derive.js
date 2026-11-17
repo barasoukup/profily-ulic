@@ -378,6 +378,8 @@ export function mtvuPolygons(json, frame) {
       guess: f.attributes.ODHAD === 1, // Brno: an area completed along OSM, not measured
       level: Number(f.attributes.LEVEL) || 0, // Brno: 1 above the ground (bridge decks)
       dtmTram: f.attributes.DTM_TRAM === 1, // the national DTM's tram area: tracks in the roadway or apart from it
+      // A town's tram area that takes in tracks lying in the roadway as well (Berlin's Gleiskörper): OSM tells.
+      anyTram: f.attributes.ANY_TRAM === 1,
       fromLines: f.attributes.Z_CAR === 1, // read from the DTM's lines (dmvs.js fromLines), its kind a guess
       passport: f.attributes.PASPORT === 1, // a town's passport (gis.js asPassport)
       rings,
@@ -1604,6 +1606,10 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   const cross = crossings(osm, frame, center, normal, half);
   const own = cross.find((c) => c.way.id === way?.id);
   polys = linePieces(polys, way?.tags || {}, center, normal, lanesImage, own ? own.d[0] * dir[0] + own.d[1] * dir[1] >= 0 : true);
+  // A tram area that maps the tracks in the asphalt too (Berlin's Gleiskörper; Neue Schönhauser Straße: Bára 17. 11.
+  // 2026, two tracks in a one-way street with parking both sides) is roadway where OSM puts the rails in the street
+  // (embedded_rails); the tracks are then OSM's in the lanes. ?off=anytram keeps it a tram bed.
+  if (/tram/.test(way?.tags?.embedded_rails || "") && !ORTHO_P.off?.has("anytram")) polys = polys.map((p) => (p.anyTram && p.code === 705 ? { ...p, code: 701, label: "" } : p));
   // A building connection over a street (a covered passage, Na Klaudiánce in Prague: Bára 17. 11. 2026) is drawn in
   // the technical map as a strip of "other structures" above the street, and a cut across the street runs along it.
   // No wall is 10 m thick with a street through it: such a piece is no ground of its own, so it is left out (as the

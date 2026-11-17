@@ -77,7 +77,8 @@ function geoRings(json, code) {
       const g = f.geometry;
       const rings = g?.type === "Polygon" ? g.coordinates : g?.type === "MultiPolygon" ? g.coordinates.flat() : null;
       const c = code(f);
-      return rings && c ? { attributes: { code: c }, geometry: { rings } } : null;
+      // Berlin's Gleiskörper takes in tracks in the asphalt too (its art 0 and 1 both): derive.js asks OSM.
+      return rings && c ? { attributes: { code: c, ...(String(f.id).startsWith("bz_gleiskoerper_strab.") ? { ANY_TRAM: 1 } : {}) }, geometry: { rings } } : null;
     }).filter(Boolean),
   };
 }
