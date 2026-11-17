@@ -321,8 +321,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   angličtina a němčina: `pilot/public/i18n.js` (`t("český text")`), překlady v `pilot/public/en.js`, `sk.js` a `de.js`, od 17. 11. 2026 přepínač v menu Soubor (jazyky jménem, bez vlajek), `?lang=sk`. Jazyk podle
   prohlížeče (první z jeho jazyků, který aplikace umí; všichni ostatní angličtina), ne podle místa řezu (Bára). Nový text vždy přes `t()` a s překladem (hlídá `tests/i18n.test.js`). Popis v `pilot/README.md`.
 - Všech 24 úředních jazyků EU (větev `eu-languages`, Bára 17. 11. 2026, nenasazené): soubor `<jazyk>.js` na jazyk, načítá
-  se jen jazyk stránky. **Překlady jsou strojové (agent na jazyk), měl by je projít rodilý mluvčí.** Kritik Fable prošel
-  fr, fi, hu, pl, el, it, ga. Přepínač je v menu Soubor jako „Jazyk“, jazyky jménem bez vlajek. Desetinná
+  se jen jazyk stránky. **Překlady jsou strojové (agent na jazyk), měl by je projít rodilý mluvčí.** Kritik Fable (jako rodilý
+  mluvčí) prošel všech 20 nových jazyků, hodnocení 3,5–4,5 z 5 (maltština nejhůř). Přepínač je v menu Soubor jako „Jazyk“, jazyky jménem bez vlajek. Desetinná
   tečka jen en, ga, mt. Název aplikace: bg Уличен профил, da Gadeprofil, el Διατομή Οδού, es Secciones de calle,
   et Tänavaprofiil, fi Katuprofiili, fr Profil de rue, ga Próifíl Sráide, hr Profili ulica, hu Utcaprofil, it Sezioni
   stradali, lt Gatvės profilis, lv Ielu profils, mt Profil tat-Triq, nl Straatprofiel, pl Przekroje ulic, pt Perfis de Rua,

@@ -473,7 +473,11 @@ Object.assign(CITIES, {
 export function creditLines(c, src = {}, art = false) {
   const kraj = src.region || t("kraje");
   // Abroad the city has no data of its own (credit ""): the line starts with OSM.
-  const data = c.credit ? [t("Data: {data}", { data: c.credit.replace(/^data /, "").replace("{kraj}", kraj) })] : [];
+  // The credit starts with the word the line starts with ("data ©", "Daten ©", "Données ©"): said once, not
+  // "Daten: Daten ©" (the Bulgarian critic, 17. 11. 2026).
+  const word = t("Data: {data}", { data: "" }).replace(/[\s:]+$/, "").toLowerCase();
+  const own = (s) => (s.split(" ")[0].toLowerCase() === word || /^data$/i.test(s.split(" ")[0]) ? s.slice(s.indexOf(" ") + 1) : s);
+  const data = c.credit ? [t("Data: {data}", { data: own(c.credit).replace("{kraj}", kraj) })] : [];
   if (src.dmvs && !c.credit.includes("IS DMVS")) data.push(t("technická mapa © {kraj}, IS DMVS ČÚZK", { kraj }));
   if (src.dmvs && !c.credit.includes("RÚIAN")) data.push(t("RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)"));
   // The sources that gave data to the cut, by their keys (credits.js).
