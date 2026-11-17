@@ -311,6 +311,22 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Hledání Photon (Německo podle mapy; německy vypadající dotaz, který RÚIAN nenajde, i z jiného místa).
 - Mapy povrchů ulic Berlína, Hamburku a Cách zapojené (`towns/germany.js`, `?berlin=0` …; A/B v `evaluation/germany/ab/`).
 
+## Švýcarsko a Lichtenštejnsko (větev switzerland, 17. 11. 2026, nenasazené)
+- Státy `switzerland` (CH) a `liechtenstein` (LI): `countries/CH.js`, `LI.js` (švýcarská pravidla s lichtenštejnskými čísly
+  článků), `towns/switzerland.js`, `signs-CH/`, `evaluation/switzerland/` (ZDROJE, NORMY, RECENZE, ab/). Hranice
+  swissBOUNDARIES3D swisstopo v `staty.json` hned za Českem a Slovenskem (Büsingen a Campione jsou díry).
+- Ortofoto SWISSIMAGE 10 cm (WMTS z20, `lanes-ortho.js` `ch`, dlaždice `{z}/{x}/{y}`), i pro Lichtenštejnsko.
+- Plochy z úředního vyměřování (Amtliche Vermessung, `LCSF`) přes WFS geodienste.ch, všechny kantony, které ho sdílejí,
+  i Lichtenštejnsko; Vaud (Lausanne) a Luzern ne. Jen když je pod středem řezu vozovka, chodník nebo dráha (ne
+  `uebrige_befestigte`: most, nábřeží, molo). Fair use 10 dotazů WFS za minutu: v testech pauza 7 s. `?av=0` vypne.
+  A/B 42 řezů: po opravě lépe 15, hůř 1. Licence po kantonech neprověřené.
+- Normy VSS jen podle kantonálních a městských příruček (Bern, Basel-Stadt, Curych, Schwyz), kde chybí, bez varování.
+  Stání: VRV čl. 19 a pomůcky kantonů Bern a Luzern (3 m na projetí); vyznačená pole nemáme, odhad může nadhodnocovat.
+- Značky SSV z Commons (ASTRA, čl. 5 URG), stejná čísla v LI; tabulky „Zubringerdienst“ a „ausgenommen Velos“ jsou text,
+  značka s nimi se nekreslí. Hledání Photon v místních jazycích. Bez paneláků, neutrální vozidla, český mobiliář.
+- OSM balíky `ch` a `li` jen na R2 (Geofabrik `switzerland` Lichtenštejnsko nemá). Lokálně jen města vzorku.
+- Francouzštinu ani italštinu rozhraní nepřidávat bez Bářina souhlasu.
+
 ## Měření přesnosti (Bára 17. 11. 2026)
 - Jedna univerzální metoda pro všechny státy: skill `mereni-presnosti`, kód a zpráva `evaluation/universal/`. Použít u
   každého nového státu a u starých, když Bára řekne. Hodnotí složení uličního prostoru, pak šířku; jen řezy s fotkou
