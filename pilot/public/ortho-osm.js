@@ -362,6 +362,7 @@ export function carsSeen(st, a, b, axis) {
 // PIECE_GREEN: a piece between two lines of a town's map is green from this share of green columns (treetops over a
 // sidewalk make some).
 const PIECE_GREEN = 0.35, AREA_GREEN = 0.2;
+const LAST_WALK = 15, LAST_NONE = 2; // m: the next thing of the street at most this far on; with none, this past the kerb
 const ALONG = 10, SIDEWALK = 2.5, SIDEWALK_MAX = 6, REST_MAX = 12, HOUSE = 5, GREEN_AREA = 0.1; // evaluation/ortofoto-osm/zelen.mjs: on ČÚZK 12.5 cm 67 % (Prague) and 82 % (Brno) of the metres right
 const STREET = /^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|living_street|service|pedestrian|road)(_link)?$/;
 // frame: derive.js localFrame of the cut (its centre is [0, 0]); dir: the street's direction in it; way: the clicked
@@ -589,7 +590,24 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
         return out;
       }),
     ].filter((t) => sg * (t - kerbT) > 0.5 && Math.abs(t - o.own.t) < 40);
-    if (cand.length) ends[side] = cand.reduce((a, b) => (sg * (b - a) < 0 ? b : a));
+    if (cand.length) { ends[side] = cand.reduce((a, b) => (sg * (b - a) < 0 ? b : a)); continue; }
+    // No such end: the side ends just beyond the last thing of the street OSM maps there (a sidewalk or path, a cycle
+    // track, tram tracks, another carriageway), each LAST_WALK within the one before; nothing there: LAST_NONE past the
+    // kerb (Bára 17. 11. 2026, Generála Šišky: "když nic pak není, tak se řez vezme jen po poslední zajímavý prvek").
+    // A sidewalk mapped apart is drawn as one. ?off=zachodnikem: as before (to the reach).
+    if (P.off?.has("zachodnikem")) continue;
+    const things = o.ways.filter((w) => sameLevel(w, o) && sg * (w.t - kerbT) > 0.3 && Math.abs(w.t - o.own.t) < 40 && (w.tags.railway === "tram" || ["footway", "path", "pedestrian", "cycleway", "steps"].includes(w.tags.highway) || (STREET.test(w.tags.highway || "") && w.tags.highway !== "service")))
+      .sort((a, b) => sg * (a.t - b.t));
+    let last = kerbT, lastW = null;
+    for (const w of things) { if (sg * (w.t - last) > LAST_WALK) break; last = w.t; lastW = w; }
+    const halfOf = (w) => (w?.tags.railway === "tram" ? TRACK_HALF : w?.tags.highway === "cycleway" ? 1.3 : STREET.test(w?.tags.highway || "") ? 3 : SIDEWALK / 2);
+    // Nothing mapped there: a soft end, moved out past the estimate's own last sidewalk, parking or tree row (trimToEnds).
+    ends[side] = lastW ? last + sg * halfOf(lastW) : kerbT + sg * LAST_NONE;
+    if (!lastW) (ends.soft ??= {})[side] = true;
+    if (lastW && ["footway", "path"].includes(lastW.tags.highway) && sg * (lastW.t - kerbT) > SIDEWALK / 2) {
+      const a = lastW.t - sg * SIDEWALK / 2, b = lastW.t + sg * SIDEWALK / 2;
+      polys.push(rect(702, "chodník (OSM, zvlášť)", ...(sg < 0 ? [b, a] : [a, b])));
+    }
   }
   for (const [side, sg] of [["A", -1], ["B", 1]]) {
     // Beyond the other carriageway its kerb and its sidewalk tags count.
@@ -769,4 +787,40 @@ export function besidePassport({ osm, frame, dir, way, st, edges = [], symbols =
     if (out.length > before && to === o.facade[side] && house === null && o.facadeU[side] !== 0) out.push({ ...rect(601, "budova (OSM, vedle řezu)", ...(sg < 0 ? [to - HOUSE, to] : [to, to + HOUSE])), guess: false });
   }
   return out;
+}
+
+// The profile cut to the ends orthoOsmPolys found (polys.ends; t from the cut's centre, A below it, B above): parts
+// beyond them dropped, the part across an end shortened; that end then "volno". result: deriveProfile's.
+export function trimToEnds(result, ends) {
+  if (!ends || !result?.extent || !result.segments?.length) return result;
+  let lo = ends.A ?? -Infinity, hi = ends.B ?? Infinity;
+  // A soft end (nothing of OSM there) goes out to the outer edge of the last part that is the street's own (not green,
+  // unknown, paving or water beyond it).
+  const OPEN = new Set(["zelen", "nezname", "plocha", "voda", "predzahradka"]);
+  if (ends.soft) {
+    let t = result.extent[1];
+    for (const s of result.segments) {
+      const e = t, b = t - s.width;
+      t = b;
+      if (OPEN.has(s.type)) continue;
+      if (ends.soft.A && b < lo) lo = b;
+      if (ends.soft.B && e > hi) hi = e;
+    }
+  }
+  if (lo <= result.extent[0] + 0.05 && hi >= result.extent[1] - 0.05) return result;
+  // segments run from extent[1] (B, the profile's left) down to extent[0].
+  let t = result.extent[1];
+  const kept = [];
+  for (const s of result.segments) {
+    const e = t, b = t - s.width;
+    t = b;
+    const ee = Math.min(e, hi), bb = Math.max(b, lo);
+    if (ee - bb < 0.05) continue;
+    kept.push(ee - bb < s.width - 0.01 ? { ...s, width: +(ee - bb).toFixed(2) } : s);
+  }
+  const ext = [Math.max(result.extent[0], lo), Math.min(result.extent[1], hi)];
+  const edges = { ...(result.edges || {}) };
+  if (hi < result.extent[1] - 0.05) edges.left = "volno";
+  if (lo > result.extent[0] + 0.05) edges.right = "volno";
+  return { ...result, segments: kept, extent: ext, edges };
 }

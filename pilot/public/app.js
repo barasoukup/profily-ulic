@@ -2,7 +2,7 @@ import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TR
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, splitTwoWayLane, capWideLanes, pedestrianZone, widenNarrowTrams, carveCycleways, carveTramTracks, lanesFromShoulders, crossFromA, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO } from "./lanes-ortho.js";
-import { orthoOsmPolys, besidePassport, P as ORTHO_P } from "./ortho-osm.js";
+import { orthoOsmPolys, besidePassport, trimToEnds, P as ORTHO_P } from "./ortho-osm.js";
 // ?off=… switches named parts of the estimate off (the A/B tests, evaluation/ortofoto-osm/regrese.mjs).
 { const off = new URLSearchParams(location.search).get("off"); if (off) ORTHO_P.off = new Set(off.split(",")); }
 import { underground, KINDS as NET_KINDS, netAt } from "./site.js";
@@ -367,10 +367,9 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       // The map's runs where it has surfaces but none at the axis: its sidewalks and buildings bound the estimate.
       const fb = orthoOsmPolys({ osm, frame, dir, way: near.way, st: laneImg?.st, mapRuns: result.runs || [], edges: k.status === "fulfilled" ? k.value?.edges || [] : [], widths: k.status === "fulfilled" ? k.value?.widths || [] : [], areas: k.status === "fulfilled" ? k.value?.areas || [] : [], symbols: k.status === "fulfilled" ? k.value?.symbols || [] : [] });
       if (fb) {
-        // A side that ends at steps or a fence (ortho-osm.js ends): the profile ends there. B is the profile's left.
-        const endReach = { left: fb.ends?.B != null ? Math.min(args.reach.left, fb.ends.B) : args.reach.left, right: fb.ends?.A != null ? Math.min(args.reach.right, -fb.ends.A) : args.reach.right };
-        const again = deriveProfile({ ...args, reach: endReach, polys: [fb[0], ...polys, ...fb.slice(1)] });
-        if (!again.estimate) { result = again; orthoOsm = fb; }
+        const again = deriveProfile({ ...args, polys: [fb[0], ...polys, ...fb.slice(1)] });
+        // A side without a house ends where orthoOsmPolys found (steps, a fence, the last thing of the street).
+        if (!again.estimate) { result = trimToEnds(again, fb.ends); orthoOsm = fb; }
       }
     }
     // A town's passport (Slovakia) keeps the roads it maintains: beyond it, up to a house or a fence of OSM standing

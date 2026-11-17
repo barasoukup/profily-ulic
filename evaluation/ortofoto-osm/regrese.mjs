@@ -8,7 +8,7 @@
 //   OFF=pair,pieces node evaluation/ortofoto-osm/regrese.mjs           with the named features off (ortho-osm.js P.off)
 //   SRC=cuzk12 …                                                       only this orthophoto (default: cuzk12 and the city's 10 cm)
 import { cuts, truthOf, osmAround, stripOf, median } from "./lib.mjs";
-import { orthoOsmPolys, P } from "../../pilot/public/ortho-osm.js";
+import { orthoOsmPolys, trimToEnds, P } from "../../pilot/public/ortho-osm.js";
 import { localFrame, deriveProfile } from "../../pilot/public/derive.js";
 
 const CITIES = process.argv.slice(2).filter((a) => /^[a-z]+$/.test(a));
@@ -46,9 +46,8 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
       const polys = orthoOsmPolys({ osm, frame, dir, way, st });
       const truth = truthOf(c, 0);
       if (!polys || !truth.way) { none++; continue; }
-      // As app.js: a side that ends at steps or a fence (polys.ends) ends the profile there; B is its left.
-      const reach = { left: polys.ends?.B != null ? Math.min(40, polys.ends.B) : 40, right: polys.ends?.A != null ? Math.min(40, -polys.ends.A) : 40 };
-      const p = deriveProfile({ center: [0, 0], dir, half: 40, polys, osm, frame, way, reach });
+      // As app.js: a side without a house ends where orthoOsmPolys found (polys.ends).
+      const p = trimToEnds(deriveProfile({ center: [0, 0], dir, half: 40, polys, osm, frame, way, reach: { left: 40, right: 40 } }), polys.ends);
       if (!p?.segments?.length || !p.extent) { none++; continue; }
       n++;
       const parts = laid(p), road = parts.filter((x) => ROAD.has(x.type));
