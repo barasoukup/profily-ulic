@@ -1,16 +1,18 @@
-// Languages (Bára 12. 11. 2026, Slovak 15. 11. 2026, German 16. 11. 2026): every Czech text of the app has its
-// English (en.js), its Slovak (sk.js) and its German (de.js), with the same {names} filled in; neither holds a text the app no longer says; the page's own
-// texts (index.html) are translated too.
+// Languages (Bára 12. 11. 2026, Slovak 15. 11. 2026, German 16. 11. 2026, all 24 official languages of the EU
+// 17. 11. 2026): every Czech text of the app has its English (en.js) and its text in every other language (<lang>.js),
+// with the same {names} filled in; none holds a text the app no longer says; the page's own texts (index.html) are
+// translated too.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import { EN, EN_HTML, EN_CITY, EN_ATTRIBUTION } from "../pilot/public/en.js";
 import { SK, SK_HTML, SK_CITY, SK_ATTRIBUTION } from "../pilot/public/sk.js";
 import { DE, DE_HTML, DE_CITY, DE_ATTRIBUTION } from "../pilot/public/de.js";
+import { LANGS } from "../pilot/public/i18n.js";
 
 const DIR = new URL("../pilot/public/", import.meta.url);
 const FILES = [...fs.readdirSync(DIR).filter((f) => f.endsWith(".js")), ...["towns", "countries"].flatMap((d) => fs.readdirSync(new URL(`${d}/`, DIR)).map((f) => `${d}/${f}`))]
-  .filter((f) => f.endsWith(".js") && !["en.js", "sk.js", "de.js"].includes(f));
+  .filter((f) => f.endsWith(".js") && !Object.keys(LANGS).some((l) => f === `${l}.js`));
 
 // The texts the code hands to t() (tr() where t means something else), as written: "…" only (the code never
 // uses another quote for them).
@@ -206,6 +208,70 @@ test("jazyk není stát: německé rozhraní nemění značky ani pravidla řezu
     const src = fs.readFileSync(new URL(f, DIR), "utf8");
     assert.ok(!/\blang\b\s*[!=]==/.test(src), `${f} rozhoduje podle jazyka`);
   }
+});
+
+// The other 20 languages of the EU (Bára 17. 11. 2026), machine translations like German: the same texts as English,
+// no Czech left, numbers as the language writes them.
+const OTHER = Object.keys(LANGS).filter((l) => !["cs", "en", "sk", "de"].includes(l));
+const tables = async (l) => {
+  const m = await import(`../pilot/public/${l}.js`), U = l.toUpperCase();
+  return { texts: m[U], html: m[`${U}_HTML`], city: m[`${U}_CITY`], attribution: m[`${U}_ATTRIBUTION`] };
+};
+// Czech and Slovak names of places, offices, standards and sources keep their letters.
+const KEEP = /ČÚZK|ČSN|GKÚ|ÚGKK|Bára|RÚIAN|ÚAP|IPR|TSK|MHMP|Statutární město \S+|Město \S+|Geoportál Praha|hl\. m\. Prahy|[A-ZČŘŠŽÚ][a-zěščřžýáíéůú]+(?:ský|cký) kraj|Kraj Vysočina|Profily ulic|Plzeň|Plzni|Plzně|Třebíč|Břeclav|Přerov|Frýdek-Místek|Karviná|Ústí nad Labem|Ústí|Žilina|Banská Bystrica|Piešťany|Prešov|Košice|Dúbravka|Soukupová|Mapy\.com|\bSb\.|\bč\./g;
+
+test("všech 24 úředních jazyků EU, každý pojmenovaný sám sebou", () => {
+  assert.deepEqual(Object.keys(LANGS).sort(), ["bg", "cs", "da", "de", "el", "en", "es", "et", "fi", "fr", "ga", "hr", "hu", "it", "lt", "lv", "mt", "nl", "pl", "pt", "ro", "sk", "sl", "sv"]);
+  assert.equal(new Set(Object.values(LANGS)).size, 24);
+});
+
+for (const l of OTHER) {
+  test(`${l}: každý text aplikace a stránky má překlad se stejnými {jmény}, nic navíc, bez češtiny`, async () => {
+    const { texts, html, city, attribution } = await tables(l);
+    assert.deepEqual(Object.keys(texts).filter((cs) => !(cs in EN)), [], `v ${l}.js navíc proti en.js`);
+    assert.deepEqual(Object.keys(EN).filter((cs) => !(cs in texts)), [], `chybí v ${l}.js`);
+    for (const cs of Object.keys(texts)) {
+      assert.equal(typeof texts[cs], "string", cs);
+      assert.deepEqual(names(texts[cs]), names(cs), `jiná {jména}: ${cs}`);
+    }
+    const page = fs.readFileSync(new URL("index.html", DIR), "utf8");
+    for (const m of page.matchAll(/data-i18n="([^"]+)"/g)) assert.ok(html[m[1]], `${l.toUpperCase()}_HTML.${m[1]}`);
+    // Czech-only letters and words ("nebo" and "ulice" are Croatian and Slovenian too).
+    const czech = Object.entries(texts).filter(([, v]) => /[ěřůťď]|\b(jsou|také|který|která|které|chodník)\b/i.test(v.replace(KEEP, "")));
+    assert.deepEqual(czech.map(([cs]) => cs), [], `česky v ${l}.js`);
+    // The city's texts: the same fields as in English, the same sources credited.
+    const { CITY_IDS, cityById } = await import("../pilot/public/city.js");
+    const FIELDS = ["server", "dataName", "dataShort", "techMap", "parkingSource", "rulesHead", "credit"];
+    for (const id of CITY_IDS) {
+      const c = city[id] || city[cityById(id).like];
+      assert.ok(c, `${l}: ${id}`);
+      const none = cityById(id).abroad ? ["dataName", "techMap"] : [];
+      for (const k of FIELDS) assert.ok(none.includes(k) ? !c[k] : typeof c[k] === "string" && (c[k] || (k === "credit" && !cityById(id).credit)), `${l}: ${id}.${k}`);
+      for (const src of ["IS DMVS", "RÚIAN"]) assert.equal(c.credit.includes(src), cityById(id).credit.includes(src), `${l}: ${id}: ${src}`);
+    }
+    assert.deepEqual(attribution.map(([cs]) => cs), EN_ATTRIBUTION.map(([cs]) => cs));
+    assert.ok(attribution.every(([cs, v]) => cs && typeof v === "string" && v));
+  });
+}
+
+test("čísla podle jazyka: desetinná tečka jen v angličtině, irštině a maltštině", async () => {
+  for (const l of Object.keys(LANGS)) {
+    globalThis.PROFILY_LANG = l;
+    const i18n = await import(`../pilot/public/i18n.js?num-${l}`);
+    delete globalThis.PROFILY_LANG;
+    assert.equal(i18n.lang, l);
+    const point = ["en", "ga", "mt"].includes(l);
+    assert.equal(i18n.num(3.5), point ? "3.50" : "3,50", l);
+    assert.equal(i18n.numField(2.5), point ? "2.5" : "2,5", l);
+    assert.match(i18n.pct(44), /^44\s?%$/, l);
+    assert.equal(i18n.t("text, který jazyk nemá"), "text, který jazyk nemá", l);
+    if (l !== "cs") assert.notEqual(i18n.t("Porovnat"), "Porovnat", l);
+  }
+});
+
+test("errors.js zná všechny jazyky", async () => {
   const errors = fs.readFileSync(new URL("errors.js", DIR), "utf8");
-  assert.match(errors, /cs\|sk\|en\|de/, "errors.js zná němčinu");
+  for (const l of Object.keys(LANGS)) assert.match(errors, new RegExp(`\\b${l}: \\{ start: "`), `errors.js: ${l}`);
+  const list = /var LANGS = "([^"]+)"/.exec(errors)[1].split(" ").sort();
+  assert.deepEqual(list, Object.keys(LANGS).sort());
 });

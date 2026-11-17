@@ -52,12 +52,16 @@ button.danger:hover { background: var(--red-bg); }
 button.primary { background: var(--text); color: #fff; border-color: var(--text); }
 button.primary:hover { background: #3a3a37; }
 
-/* The other language, as a short code. */
-.flag { width: 20px; height: 13px; flex: none; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,.12); }
-.lang-menu .menu-list { min-width: 170px; }
-.lang-menu .menu-list button { display: flex; align-items: center; gap: 10px; }
-.lang-menu .menu-list button[aria-current] { background: var(--bg); font-weight: 600; }
-.lang { padding: 6px 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: var(--muted); }
+/* The language, the last item of the Soubor menu (Bára 17. 11. 2026): a list of the languages, each in itself. */
+.lang-menu > summary { list-style: none; display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 6px; cursor: pointer; font-weight: 500; }
+.lang-menu > summary::-webkit-details-marker { display: none; }
+.lang-menu > summary:hover { background: var(--bg); }
+.lang-menu > summary::after { content: ""; margin-left: auto; width: 6px; height: 6px; border: solid currentColor; border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); opacity: 0.6; }
+.lang-menu[open] > summary::after { transform: rotate(225deg) translate(-2px, -2px); }
+.lang-current { color: var(--muted); font-size: 13px; }
+.lang-list { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; padding: 2px 0 4px; max-height: min(50vh, 420px); overflow-y: auto; }
+.menu-list .lang-list button { padding: 6px 10px; font-size: 14px; white-space: nowrap; }
+.lang-list button[aria-current] { background: var(--bg); font-weight: 600; }
 
 .seg-toggle { display: inline-flex; background: var(--bg); border-radius: 9px; padding: 3px; gap: 2px; }
 .seg-toggle button { border: 0; border-radius: 7px; background: transparent; padding: 5px 14px; color: var(--muted); }
@@ -84,10 +88,10 @@ button.primary:hover { background: #3a3a37; }
 
 /* Header menus (Export, Soubor). */
 .menu { position: relative; }
-.menu summary { list-style: none; display: inline-flex; align-items: center; gap: 6px; }
-.menu summary::-webkit-details-marker { display: none; }
-.menu summary::after { content: ""; width: 6px; height: 6px; border: solid currentColor; border-width: 0 1.5px 1.5px 0; transform: rotate(45deg) translateY(-2px); opacity: 0.6; }
-.menu[open] summary { background: var(--paper); border-color: #a9a395; }
+.menu > summary { list-style: none; display: inline-flex; align-items: center; gap: 6px; }
+.menu > summary::-webkit-details-marker { display: none; }
+.menu > summary::after { content: ""; width: 6px; height: 6px; border: solid currentColor; border-width: 0 1.5px 1.5px 0; transform: rotate(45deg) translateY(-2px); opacity: 0.6; }
+.menu[open] > summary { background: var(--paper); border-color: #a9a395; }
 .ico { width: 15px; height: 15px; flex: none; }
 .menu-list {
   position: absolute; right: 0; top: calc(100% + 6px); min-width: 210px; padding: 6px;
@@ -316,11 +320,10 @@ footer a { color: inherit; }
 @media (max-width: 760px) {
   body { height: auto; min-height: 100vh; }
   header { flex-wrap: wrap; gap: 8px; padding: 8px 10px; }
-  .brand-name, header .spacer, .menu summary::after, header .lbl { display: none; }
+  .brand-name, header .spacer, .menu > summary::after, header .lbl { display: none; }
   .brand-mark { width: 32px; height: 32px; }
   #btn-share { margin-left: auto; }
-  .menu summary { padding: 8px 10px; }
-  .lang { padding: 8px 8px; }
+  .menu > summary { padding: 8px 10px; }
   .ico { width: 18px; height: 18px; }
   .seg-toggle { order: 10; flex-basis: 100%; }
   .seg-toggle button { flex: 1; padding: 8px 6px; font-size: 14px; }

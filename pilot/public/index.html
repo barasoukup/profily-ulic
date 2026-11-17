@@ -37,10 +37,6 @@
       <button data-mode="porovnat" aria-pressed="false" title="Stav a návrh pod sebou se seznamem změn">Porovnat</button>
     </div>
     <button id="btn-share" class="btn" aria-label="Sdílet" title="Zkopíruje odkaz, který otevře tuto ulici i s vaším návrhem"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M6.5 9.5 9.5 6.5M7 4.5l1.2-1.2a2.5 2.5 0 0 1 3.5 3.5L10.5 8M9 11.5l-1.2 1.2a2.5 2.5 0 0 1-3.5-3.5L5.5 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="lbl">Sdílet</span></button>
-    <details class="menu lang-menu" id="lang-menu">
-      <summary class="btn lang" aria-label="Jazyk" title="Jazyk"></summary>
-      <div class="menu-list" id="lang-list"></div>
-    </details>
     <details class="menu">
       <summary class="btn" aria-label="Soubor"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 2.5h6l4 4v7H3z M9 2.5v4h4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><span class="lbl">Soubor</span></summary>
       <div class="menu-list">
@@ -54,6 +50,11 @@
         <button id="menu-report" hidden>Nahlásit chybu v datech…</button>
         <hr>
         <button id="btn-art" class="switch" role="switch" data-label="Ilustrace" aria-checked="true" title="Kreslit místní ilustrace: domy, tramvaje, trolejbusy, autobusy a mobiliář města (vypnuto: ilustrace Streetmixu)">Místní ilustrace</button>
+        <hr>
+        <details class="lang-menu" id="lang-menu">
+          <summary><svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M2 8h12M8 2c-2.2 2.4-2.2 9.6 0 12M8 2c2.2 2.4 2.2 9.6 0 12" fill="none" stroke="currentColor" stroke-width="1.2"/></svg><span>Jazyk</span><span class="lang-current" id="lang-current"></span></summary>
+          <div class="lang-list" id="lang-list"></div>
+        </details>
       </div>
     </details>
   </header>
