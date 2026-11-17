@@ -324,7 +324,9 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   Stání: VRV čl. 19 a pomůcky kantonů Bern a Luzern (3 m na projetí); vyznačená pole nemáme, odhad může nadhodnocovat.
 - Značky SSV z Commons (ASTRA, čl. 5 URG), stejná čísla v LI; tabulky „Zubringerdienst“ a „ausgenommen Velos“ jsou text,
   značka s nimi se nekreslí. Hledání Photon v místních jazycích. Bez paneláků, neutrální vozidla, český mobiliář.
-- OSM balíky `ch` a `li` jen na R2 (Geofabrik `switzerland` Lichtenštejnsko nemá). Lokálně jen města vzorku.
+- OSM balíky `ch` a `li` jen na R2 (Geofabrik `switzerland` Lichtenštejnsko nemá). Lokálně jen města vzorku. **Před
+  nasazením spustit workflow OSM tiles ručně se `states: ch,li`** a ověřit `data.streetspace.eu/osm/index.json` (push je
+  nepostaví, recenze Fable). Recenze a co se z ní udělalo: `evaluation/switzerland/RECENZE.md`.
 - Francouzštinu ani italštinu rozhraní nepřidávat bez Bářina souhlasu.
 
 ## Měření přesnosti (Bára 17. 11. 2026)

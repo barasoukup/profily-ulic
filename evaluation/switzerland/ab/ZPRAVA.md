@@ -40,7 +40,12 @@ vyměřování (žádná plocha pod středem) stačí do 1,5 m (`towns/switzerla
 pod středem všech 38 řezů (`uebrige_befestigte`: be6, ge2, lu5, st3, zu2, ba1, ba5, be2, ge1, ge5, va2; les va3):
 po opravě se z horších čtyř stane A, ze stejných a neposouditelných cesty a parkoviště také A, ztratí se jeden lepší
 (zu2, řez na pěšině vedle tramvaje). **Výsledek po opravě: lépe 15, hůř 1 (ge4), zbytek stejně nebo nejde posoudit.**
+Je to výpočet, ne nový sběr: řez s `uebrige_befestigte` pod středem dostane po opravě přesně stav A (vyměřování se
+nepoužije), jiné řezy se nemění. Posuzoval autor (Claude) nad ortofotem; nezávislé měření přesnosti (posuzovatel
+s fotkami, profil aplikace nevidí) je v `evaluation/universal/` a v `../ZPRAVA.md`. Recenze upozornila, že be1
+Gutenbergstrasse má vlevo „pruh“ 2,3 m, který je nejspíš chodník za stromy veden jako `Strasse_Weg`.
 Vyměřování zůstává zapnuté (`?av=0` vypne).
 
-Zbývá: řez na široké vozovce u kruhového objezdu (ge4) dává pruhy po 4 m; Lausanne (Vaud) a Luzern vyměřování
+Zbývá: řez na široké vozovce u kruhového objezdu (ge4) dává pruhy po 4 m, podobně Rue Dizerens v Ženevě jeden pruh 9,5 m
+mezi „plochami“ (vozovka se stáním bez stání v OSM); most nad jinou ulicí by vzal plochy spodní ulice (ve vzorku není); Lausanne (Vaud) a Luzern vyměřování
 nesdílejí.
