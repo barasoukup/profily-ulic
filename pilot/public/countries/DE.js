@@ -43,25 +43,26 @@ function limitsDE(s, segs, i) {
 // The signs of the state DE (pilot/public/signs-DE/, README there; StVO Anlage 2 and 3, Wikimedia Commons, German
 // official works § 5 UrhG): the Zeichen number and the file, with the Zusatzzeichen. Germany has no shared zone and no
 // sign for parking on the sidewalk drawn here (Z 315 has many forms), nor one for a reserved space.
-const DE_CODE = { b1: "Z 250", b11: "Z 260", b8: "Z 254", b30: "Z 259", b20a: "Z 274", b28: "Z 283", b29: "Z 286", oneway: "Z 220 / Z 267",
+const DE_CODE = { b1: "Z 250", b11: "Z 260", b8: "Z 254", b30: "Z 259", b20a: "Z 274", b28: "Z 283", b29: "Z 286", oneway: "Z 267",
   c8a: "Z 237", c9a: "Z 240", c10a: "Z 241", c7a: "Z 239", ip11a: "Z 314", ztp: "Z 314 + 1044-10", ip14a: "Z 330.1", ip15a: "Z 331.1",
   ip20a: "Z 245", zona30: "Z 274.1", ip26a: "Z 325.1", ip27a: "Z 242.1", cyklozona: "Z 244.1" };
-const DE_CHOICE_CODE = { "oneway+protismer": "Z 220 + 1000-33 / Z 267 + 1022-10", "ip20a+kolo": "Z 245 + 1022-10", "ip27a+kola": "Z 242.1 + 1022-10",
+const DE_CHOICE_CODE = { "oneway+protismer": "Z 267 + 1022-10", "ip20a+kolo": "Z 245 + 1022-10", "ip27a+kola": "Z 242.1 + 1022-10",
   "b1+obsluha": "Z 250 + 1020-30", "b11+obsluha": "Z 260 + 1020-30" };
 const DE_FILE = { b1: "250", b11: "260", b8: "254", b30: "259", b28: "283", b29: "286", c8a: "237", c9a: "240", c7a: "239",
   ip11a: "314", ztp: "314", ip14a: "330.1", ip15a: "331.1", ip20a: "245", zona30: "274.1", ip26a: "325.1", ip27a: "242.1", cyklozona: "244.1" };
 const DE_SPEEDS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130];
 function signFile(s, seg) {
   const dir = s.dir ?? seg?.dir;
-  // Z 220 (the arrow) where the lane goes away from the viewer, Z 267 where it comes towards them.
-  if (s.k === "oneway") return dir === "backward" ? "267" : "220-20";
+  // Z 267 where the lane comes towards the viewer. Z 220 is an arrow along the street with no straight form (as
+  // Austria's Einbahnstraße), so a lane going away has no one-way sign (Bára 17. 11. 2026).
+  if (s.k === "oneway") return dir === "backward" ? "267" : null;
   if (s.k === "b20a") return DE_SPEEDS.includes(s.v) ? `274-${s.v}` : "274";
   // Z 241-30: the cycle path on the left, the footway on the right (as C 10a's design); 241-31 the other way.
   if (s.k === "c10a") return s.walk === "left" ? "241-31" : "241-30";
   return DE_FILE[s.k] || null;
 }
 function plateFile(s, seg) {
-  if (s.plate === "protismer") return (s.dir ?? seg?.dir) === "backward" ? "1022-10" : "1000-33";
+  if (s.plate === "protismer") return (s.dir ?? seg?.dir) === "backward" ? "1022-10" : null;
   if (s.plate === "obsluha") return "1020-30";
   if (s.plate === "kolo" || s.plate === "kola") return "1022-10";
   return s.k === "ztp" ? "1044-10" : null;

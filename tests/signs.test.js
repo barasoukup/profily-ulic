@@ -212,7 +212,7 @@ test("Salcburk: z katastru značek jen zákaz zastavení a stání, číslo StVO
   assert.deepEqual(out.map((x) => [x.restriction, x.street]), [["no_stopping", "Mirabellplatz"], ["no_parking", "Linzer Gasse"]]);
 });
 
-test("značky státu DE: soubory v signs-DE/ i s tabulkami, jednosměrka Z 220 / Z 267, rychlost, sdílená zóna se nekreslí", async () => {
+test("značky státu DE: soubory v signs-DE/ i s tabulkami, jednosměrka jen Z 267 (Z 220 rovně neumí), rychlost, sdílená zóna se nekreslí", async () => {
   const fs = await import("node:fs");
   const { SIGNS, SIGN_CHOICES } = await import("../pilot/public/signs.js");
   const has = (f) => fs.existsSync(new URL(`../pilot/public/signs-DE/${f}.svg`, import.meta.url));
@@ -224,7 +224,8 @@ test("značky státu DE: soubory v signs-DE/ i s tabulkami, jednosměrka Z 220 /
     const f = plateFile(x, { dir }, "DE");
     if (f) assert.ok(has(f), `${x.k}+${x.plate} → ${f}`);
   }
-  assert.equal(signFile({ k: "oneway" }, { dir: "forward" }, "DE"), "220-20");
+  assert.equal(signFile({ k: "oneway" }, { dir: "forward" }, "DE"), null, "Z 220 je jen šipka podél ulice (Bára 17. 11. 2026)");
+  assert.equal(plateFile({ k: "oneway", plate: "protismer" }, { dir: "forward" }, "DE"), null);
   assert.equal(signFile({ k: "oneway" }, { dir: "backward" }, "DE"), "267");
   assert.equal(plateFile({ k: "oneway", plate: "protismer" }, { dir: "backward" }, "DE"), "1022-10");
   assert.equal(signFile({ k: "b20a", v: 30 }, {}, "DE"), "274-30");

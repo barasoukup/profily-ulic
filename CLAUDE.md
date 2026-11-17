@@ -298,7 +298,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   český mobiliář, vozidla Streetmixu.
 - Paneláky jen ve východních zemích a v Berlíně (bývalá NDR podle `laender.json`, `countries/DE.js atPlace`), na západě jako v Rakousku.
 - Značky `signs-DE/` (StVO, Commons, úřední díla § 5 UrhG) i s dodatkovými tabulkami (Anlieger frei, Radfahrer frei, Radverkehr
-  im Gegenverkehr); jednosměrka Z 220 / Z 267; sdílenou zónu Německo nemá.
+  im Gegenverkehr); jednosměrka jen Z 267 proti směru (Z 220 je šipka podél ulice bez přímé podoby, vynechává se jako
+  v Rakousku; Bára 17. 11. 2026); sdílenou zónu Německo nemá.
 - Normy `limitsDE` (`evaluation/germany/NORMY.md`): RASt 06, ERA 2010, EAR 23 jen podle sekundárních zdrojů; šířky pruhů
   a buspruhů jen orientačně (zdroj nenalezen), tramvajový pás bez varování. Stání napůl na chodníku: StVO § 12 a judikatura
   3,05 m na projetí (pruhy vedle stání aspoň 2,5 m).
