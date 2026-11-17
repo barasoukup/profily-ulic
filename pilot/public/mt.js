@@ -193,7 +193,7 @@ export const MT = {
   // ---------- types.js: parts, sources, items ----------
   "Chodník": "Bankina",
   "Chodník s cyklisty": "Bankina, ċiklisti permessi",
-  "Stezka pro chodce a cyklisty": "Mogħdija kondiviża għall-persuni bil-mixi u ċ-ċiklisti",
+  "Stezka pro chodce a cyklisty": "Mogħdija kondiviża għall-mixi u r-roti",
   "Předzahrádka": "Ġnien ta' quddiem",
   "Zeleň": "Strixxa ħadra",
   "Stromořadí": "Filliera ta' siġar",
@@ -362,7 +362,7 @@ export const MT = {
   "Jednosměrná cesta / Zákaz vjezdu": "Triq f'direzzjoni waħda / Projbit id-dħul",
   "Cestička pro chodce": "Mogħdija għall-persuni bil-mixi",
   "Cyklistická komunikace": "Mogħdija tar-roti",
-  "Společná cestička pro chodce a cyklisty": "Mogħdija kondiviża għall-persuni bil-mixi u ċ-ċiklisti",
+  "Společná cestička pro chodce a cyklisty": "Mogħdija kondiviża għall-mixi u r-roti",
   "Oddělená cestička pro chodce a cyklisty": "Mogħdija separata għall-persuni bil-mixi u ċ-ċiklisti",
   "Parkování na chodníku příčně úplně": "Parkeġġ trasversali kompletament fuq il-bankina",
   "Parkování na chodníku úplně": "Parkeġġ kompletament fuq il-bankina",
