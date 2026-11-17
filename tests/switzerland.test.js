@@ -113,3 +113,20 @@ test("Švýcarsko: Photon s místními názvy (Genève, ne Genf), jen CH a LI", 
   assert.match(url, /lang=default/);
   assert.deepEqual(out.map((x) => x.text), ["Rue du Rhône, 1204 Genève"]);
 });
+
+test("Švýcarsko: vyměřování jen s vozovkou, chodníkem nebo dráhou pod středem řezu, ne s ostatní zpevněnou plochou (most, nábřeží, molo)", async () => {
+  const S = await import("../pilot/public/towns/switzerland.js");
+  const sq = (x0, y0, x1, y1) => ({ type: "Polygon", coordinates: [[[x0, y0], [x1, y0], [x1, y1], [x0, y1], [x0, y0]]] });
+  const cx = 8.539, cy = 47.372;
+  const answer = { type: "FeatureCollection", features: [
+    { type: "Feature", properties: { Art: "uebrige_befestigte", Kanton: "ZH" }, geometry: sq(cx - 0.0001, cy - 0.0001, cx + 0.0001, cy + 0.0001) },
+    { type: "Feature", properties: { Art: "Strasse_Weg", Kanton: "ZH" }, geometry: sq(cx + 0.0001, cy - 0.0003, cx + 0.0003, cy + 0.0003) },
+  ] };
+  const fetch0 = globalThis.fetch;
+  globalThis.fetch = async () => new Response(JSON.stringify(answer), { status: 200, headers: { "content-type": "application/json" } });
+  try {
+    const out = await S.sources.surfaces(`${cx - 0.0003},${cy - 0.0003},${cx + 0.0003},${cy + 0.0003}`);
+    assert.equal(out.chAv, undefined);
+    assert.equal(out.abroad, true);
+  } finally { globalThis.fetch = fetch0; }
+});

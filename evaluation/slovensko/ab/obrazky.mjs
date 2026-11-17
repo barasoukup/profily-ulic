@@ -134,7 +134,7 @@ if (process.argv[1] === new URL(import.meta.url).pathname) {
     }
     line(im, im.tx(0), half - 6, half + 6, [255, 255, 0], 3);
     for (let x = 0; x < im.W; x++) for (const y of [half - 1, half]) { const o = (y * im.W + x) * 4; im.out[o] = im.out[o + 1] = im.out[o + 2] = 255; }
-    const png = path.join(ROOT, "data", `${OUT}-${r.id}-kresba.png`), jpg = path.join(ROOT, OUT, `${r.id}.jpg`);
+    const png = path.join(ROOT, "data", `${path.basename(OUT)}-${r.id}-kresba.png`), jpg = path.join(ROOT, OUT, `${r.id}.jpg`);
     await fs.mkdir(path.dirname(jpg), { recursive: true });
     await fs.writeFile(png, encodePng(im.out, im.W, im.H));
     await run("sips", ["-s", "format", "jpeg", "-s", "formatOptions", "70", png, "--out", jpg]);
