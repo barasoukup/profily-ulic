@@ -112,6 +112,23 @@ basemap.at (`lanes-ortho.js` zdroj `at`, z20).
 - **Značky** `signs-AT/` (StVO § 52–53); jednosměrka se pod pruhem neznačí, značky bez rakouské kresby a s
   dodatkovou tabulkou se zahodí.
 
+### Švýcarsko a Lichtenštejnsko (Bára 17. 11. 2026)
+
+Státy `switzerland` (`country` CH) a `liechtenstein` (LI), oba `towns/switzerland.js`; hranice ze swissBOUNDARIES3D
+swisstopo v `staty.json` (přednost před hrubšími hranicemi GISCO Rakouska a Německa; Büsingen a Campione jsou díry).
+Profil je odhad z OSM (balíky `ch` a `li` jen na R2) a ortofota SWISSIMAGE 10 cm (`lanes-ortho.js` zdroj `ch`, WMTS
+z20, dlaždice `{z}/{x}/{y}`).
+- **Úřední vyměřování** (Amtliche Vermessung, pokryv půdy `LCSF`) přes WFS geodienste.ch jako plochy řezu, kde má plochu
+  ulice pod středem řezu: vozovka a cesty, chodníky, ostrůvky, dráha, budovy, zeleň, voda. Všechny kantony, které ho
+  sdílejí, i Lichtenštejnsko (Vaud a Luzern ne); kredit podle kantonu (`credits.js chAv`). Neodpoví-li, odhad s poznámkou.
+  `?av=0` vypne. A/B v `evaluation/switzerland/ab/`.
+- **Normy** `countries/CH.js` (`limits`): hodnoty norem VSS podle kantonálních a městských příruček (Bern, Basel-Stadt,
+  Curych, Schwyz), kde zdroj chybí, bez varování. Stání podle VRV čl. 19 a pomůcek kantonů Bern a Luzern (3 m na projetí,
+  pruhy vedle stání průjezdné). Lichtenštejnsko (`countries/LI.js`) má švýcarská pravidla se svými čísly článků.
+  Rešerše `evaluation/switzerland/NORMY.md`.
+- **Hledání** Photon (`photon-ch`, místní názvy: Genève, Lugano). **Značky** `signs-CH/` (SSV, stejná čísla v LI).
+- **Domy** bez paneláků (jako Rakousko), **vozidla** neutrální z `generic/`, mobiliář a označníky české.
+
 ## Odkud jsou data (Praha)
 
 - **Šířky:** IPR Praha, *Mapa technického využití území* (MTVU), služba

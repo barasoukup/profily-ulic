@@ -1,5 +1,5 @@
 // The universal judging of profiles (Bára 17. 11. 2026: one method to judge the accuracy everywhere): the orthophoto
-// of a cut for the judge, the same in every state. The state's own orthophoto (CZ ČÚZK, SK ZBGIS, AT basemap.at, DE the
+// of a cut for the judge, the same in every state. The state's own orthophoto (CZ ČÚZK, SK ZBGIS, AT basemap.at, CH and LI SWISSIMAGE, DE the
 // Land's WMS) is resampled so that the cut runs across the image and the street runs up (the direction of the cut's
 // bearing), 10 px = 1 m; A is on the left, B on the right (the app's profile A→B); a scale of metres along the top and
 // the bottom (a tick a metre, a long one every 5 m), the cut as a thin dashed yellow line. No line of the app: the judge
@@ -43,6 +43,8 @@ async function fetchOrtho(country, b, w, h, lon, lat) {
   if (country === "AT") return tiles(AT, ".jpeg", 20, b, w, h).catch(() => tiles(AT, ".jpeg", 19, b, w, h));
   let url;
   if (country === "SK") url = `https://zbgis.skgeodesy.sk/zbgis/rest/services/Ortofoto_hres/MapServer/export?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: "png24", f: "image" })}`;
+  // Switzerland and Liechtenstein: SWISSIMAGE through swisstopo's WMS.
+  else if (country === "CH" || country === "LI") url = `https://wms.geo.admin.ch/?${new URLSearchParams({ SERVICE: "WMS", VERSION: "1.3.0", REQUEST: "GetMap", LAYERS: "ch.swisstopo.swissimage", STYLES: "", CRS: "EPSG:3857", BBOX: b.join(","), WIDTH: w, HEIGHT: h, FORMAT: "image/png" })}`;
   else if (country === "DE") url = deWmsUrl(DE_ORTHO[(await landsAt(lon, lat))[0]], b, w, h, "image/png");
   else url = `https://ags.cuzk.gov.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer?${new URLSearchParams({ service: "WMS", request: "GetMap", version: "1.3.0", layers: "0", styles: "", crs: "EPSG:3857", bbox: b.join(","), width: w, height: h, format: "image/png" })}`;
   const r = await fetch(url, { headers: UA });
