@@ -434,6 +434,12 @@ Object.assign(CITIES, {
   // Aachen (towns/germany.js).
   germany: { ...abroad("germany", "DE", "Německo", "v Německu", "německé", [51.1, 10.4], "52.516300, 13.377700"),
     dataShort: "ortofot spolkových zemí a OSM", rulesHead: "Šířky podle německých předpisů (RASt 06, ERA 2010, VwV-StVO):" },
+  // Switzerland and Liechtenstein (Bára 17. 11. 2026): swisstopo's SWISSIMAGE and OSM, the official cadastral survey's
+  // land cover (Amtliche Vermessung, geodienste.ch) where it has the street (towns/switzerland.js).
+  switzerland: { ...abroad("switzerland", "CH", "Švýcarsko", "ve Švýcarsku", "švýcarské", [46.8, 8.2], "47.372500, 8.539000"),
+    dataShort: "SWISSIMAGE a OSM", rulesHead: "Šířky podle švýcarských předpisů (normy VSS podle kantonálních a městských příruček):" },
+  liechtenstein: { ...abroad("liechtenstein", "LI", "Lichtenštejnsko", "v Lichtenštejnsku", "lichtenštejnské", [47.14, 9.55], "47.141000, 9.521500"),
+    dataShort: "SWISSIMAGE a OSM", rulesHead: "Šířky podle švýcarských předpisů (normy VSS podle kantonálních a městských příruček):" },
   cizina: abroad("cizina", null, "cizinu", "v cizině", "zahraniční", [49.8, 15.5], "48.146736, 17.106998"),
 });
 // The rest of Slovakia and of Austria draws the state's own set (countries/<ISO>.js art).

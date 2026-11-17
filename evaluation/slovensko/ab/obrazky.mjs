@@ -79,6 +79,14 @@ async function image(c, tMax) {
       await fs.mkdir(path.dirname(file), { recursive: true });
       await fs.writeFile(file, buf);
       await new Promise((r) => setTimeout(r, 300));
+    } else if (process.env.ORTHO === "ch") {
+      // Switzerland and Liechtenstein (evaluation/switzerland/ab): SWISSIMAGE through swisstopo's WMS as a PNG.
+      const q = new URLSearchParams({ SERVICE: "WMS", VERSION: "1.3.0", REQUEST: "GetMap", LAYERS: "ch.swisstopo.swissimage", STYLES: "", CRS: "EPSG:3857",
+        BBOX: [x0, y0, x1, y1].join(","), WIDTH: w, HEIGHT: h, FORMAT: "image/png" });
+      buf = Buffer.from(await (await fetch(`https://wms.geo.admin.ch/?${q}`, { headers: { "User-Agent": "profily-ulic" } })).arrayBuffer());
+      await fs.mkdir(path.dirname(file), { recursive: true });
+      await fs.writeFile(file, buf);
+      await new Promise((r) => setTimeout(r, 300));
     } else if (process.env.ORTHO === "at") {
       // Austria (evaluation/austria/ab): basemap.at's tiles of level 20 glued and cut to the box with ImageMagick.
       buf = await atImage([x0, y0, x1, y1], w, h);

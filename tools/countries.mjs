@@ -19,6 +19,11 @@ export const COUNTRIES = {
     ["bb", "brandenburg"], ["hb", "bremen"], ["hh", "hamburg"], ["he", "hessen"], ["mv", "mecklenburg-vorpommern"], ["ni", "niedersachsen"],
     ["nw", "nordrhein-westfalen"], ["rp", "rheinland-pfalz"], ["sl", "saarland"], ["sn", "sachsen"], ["st", "sachsen-anhalt"],
     ["sh", "schleswig-holstein"], ["th", "thueringen"]].map(([l, e]) => [`de_${l}`, `germany/${e}`])) },
+  // Switzerland and Liechtenstein (Bára 17. 11. 2026): Geofabrik's extract of Switzerland (550 MB of PBF, about the
+  // Czech size) has not Liechtenstein, which has its own (4 MB). Both under Pages' limit with the others? No: as Austria
+  // and Germany only on R2.
+  ch: { iso: "CH", geofabrik: "switzerland", pages: false },
+  li: { iso: "LI", geofabrik: "liechtenstein", pages: false },
 };
 // The packs to build (osm-tiles.yml): a state's own, or its parts.
 export const PACKS = Object.entries(COUNTRIES).flatMap(([k, c]) => (c.parts ? Object.entries(c.parts).map(([code, extract]) => ({ code, extract })) : [{ code: k, extract: c.geofabrik }]));
