@@ -327,9 +327,33 @@ function osmOutdoorPolygons(osm, frame) {
     });
 }
 
-function osmParkingPolygons(osm, frame) {
+// Street parking of another road (a side road beside the street, Generála Šišky: Bára "to už je ale mimo profil ulice,
+// na boční cestě") is not the street's: an area whose nearest drivable road is not the street (nor of its name) is
+// left out (?off=bocni).
+const DRIVABLE = /^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|living_street|service|road)(_link)?$/;
+function ownParking(el, osm, frame, way) {
+  if (!way || ORTHO_P.off?.has("bocni")) return true;
+  const ring = el.geometry.map((g) => frame.toXY(g.lon, g.lat)), c = [ring.reduce((a, p) => a + p[0], 0) / ring.length, ring.reduce((a, p) => a + p[1], 0) / ring.length];
+  const dist = (w) => {
+    const pts = w.geometry.map((g) => frame.toXY(g.lon, g.lat));
+    let d = Infinity;
+    for (let i = 0; i + 1 < pts.length; i++) {
+      const [a, b] = [pts[i], pts[i + 1]], dx = b[0] - a[0], dy = b[1] - a[1], l = dx * dx + dy * dy, u = l ? Math.max(0, Math.min(1, ((c[0] - a[0]) * dx + (c[1] - a[1]) * dy) / l)) : 0;
+      d = Math.min(d, Math.hypot(a[0] + u * dx - c[0], a[1] + u * dy - c[1]));
+    }
+    return d;
+  };
+  let best = null;
+  for (const w of osm.elements || []) {
+    if (w.type !== "way" || !DRIVABLE.test(w.tags?.highway || "") || w.tags.service === "parking_aisle") continue;
+    const d = dist(w);
+    if (!best || d < best.d) best = { d, w };
+  }
+  return !best || best.w.id === way.id || (way.tags?.name && best.w.tags.name === way.tags.name);
+}
+function osmParkingPolygons(osm, frame, way) {
   return (osm.elements || [])
-    .filter((el) => el.type === "area" && el.tags?.amenity === "parking" && STREET_PARKING.has(el.tags.parking))
+    .filter((el) => el.type === "area" && el.tags?.amenity === "parking" && STREET_PARKING.has(el.tags.parking) && ownParking(el, osm, frame, way))
     .map((el) => {
       const rings = [el.geometry, ...(el.holes || [])].map((r) => r.map((g) => frame.toXY(g.lon, g.lat)));
       return { code: OSM_PARKING, orient: ORIENT[el.tags.orientation], rings, bbox: bboxOf(rings[0]) };
@@ -867,7 +891,12 @@ function tramLanes(s, e, trams, dirAt, half = TRAM_HALF) {
   if (env[0].s - s >= CAR_MIN) carGap(s, env[0].s); else env[0].s = s;
   for (let i = 0; i < env.length - 1; i++) if (env[i + 1].s - env[i].e >= CAR_MIN) carGap(env[i].e, env[i + 1].s);
   const last = env[env.length - 1];
+  const firstAbsorbed = env[0].s === s;
   if (e - last.e >= CAR_MIN) carGap(last.e, e); else last.e = e;
+  // Two tracks filling the whole roadway (no car lane beside them): each takes half of it, split in the roadway's
+  // middle. The axes of OSM and the kerbs read on the photo seldom agree to the metre, and the rest of the roadway
+  // went to one track (Josefstädter Straße: trams of 5.4 and 2.3 m; ?off=tramhalf).
+  if (env.length === 2 && firstAbsorbed && last.e === e && !ORTHO_P.off?.has("tramhalf") && Math.abs((ts[0] + ts[1]) / 2 - (s + e) / 2) < 2) env[0].e = env[1].s = (s + e) / 2;
   // Trams keep right too: tracks right of the middle of the tram belt run with the street.
   const mid = (ts[0] + ts[ts.length - 1]) / 2;
   const trackDir = (t) => (ts.length === 1 ? dirOf(t) : t > mid ? "backward" : "forward");
@@ -909,14 +938,29 @@ function treePositions(osm, frame, center, normal, half, lines = [], reach = REA
 // Trees turn a green segment into a tree row, or carve a tree strip (TREE_STRIP wide)
 // out of the paved segment holding them. A tree standing in the parking strip (trees between the stalls,
 // Bára) is an item of the parking (parked: given to attachItems).
-function insertTrees(segs, trees, parked = []) {
+const TREE_ROW_MAX = 3; // m (Bára 17. 11. 2026)
+function insertTrees(segs, trees, parked = [], unknownWalk = false) {
   let out = segs;
   for (const { t, src } of trees) {
     const i = out.findIndex((x) => x.s <= t && x.e >= t);
     const host = out[i];
-    if (host?.type === "zelen") { host.type = "stromorad"; continue; }
+    // A green strip turns into a tree row, at most TREE_ROW_MAX wide round the tree; a wider green area keeps the
+    // rest (Bára 17. 11. 2026: Václavské náměstí drew a tree row of 8.75 m with one tree; ?off=stromy3).
+    if (host?.type === "zelen" && (host.e - host.s <= TREE_ROW_MAX || ORTHO_P.off?.has("stromy3"))) { host.type = "stromorad"; continue; }
+    if (host?.type === "zelen") {
+      let a = Math.max(host.s, t - TREE_ROW_MAX / 2), b = Math.min(host.e, t + TREE_ROW_MAX / 2);
+      if (a === host.s) b = Math.min(host.e, host.s + TREE_ROW_MAX); else if (b === host.e) a = Math.max(host.s, host.e - TREE_ROW_MAX);
+      if (a - host.s < 0.5) a = host.s;
+      if (host.e - b < 0.5) b = host.e;
+      const parts = [];
+      if (a > host.s) parts.push({ ...host, e: a });
+      parts.push({ ...host, type: "stromorad", s: a, e: b });
+      if (b < host.e) parts.push({ ...host, s: b });
+      out = [...out.slice(0, i), ...parts, ...out.slice(i + 1)];
+      continue;
+    }
     if (host?.type === "parkovani") { parked.push({ kind: "strom", t, along: 0, parked: true }); continue; }
-    if (!host || !WALK.has(host.type)) continue;
+    if (!host || !(WALK.has(host.type) || (unknownWalk && host.type === "nezname" && host.source !== "user"))) continue;
     const s = Math.max(host.s, t - TREE_STRIP / 2), e = Math.min(host.e, t + TREE_STRIP / 2);
     // Leftover sidewalk slivers under 0.5 m join the tree strip.
     const strip = { type: "stromorad", s: s - host.s < 0.5 ? host.s : s, e: host.e - e < 0.5 ? host.e : e, source: src };
@@ -1567,7 +1611,10 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   let axisT = cross.find((c) => c.way.id === way.id)?.t ?? 0;
   // Tram track axes: measured ones from the technical map when available, else OSM.
   const measured = lineCrossings(tracks, center, normal, half);
-  const tramTs = mergeTrackAxes(measured.length ? measured : cross.filter((c) => c.way.tags?.railway === "tram").map((c) => c.t));
+  // A road tagged as the tram line itself (highway + railway=tram, the tracks not mapped apart: Smetanovo nábřeží in OSM
+  // until 2017) carries a track each way, 3 m apart (Manuál C.2), unless it is one-way or says one track (?off=tramroad).
+  const roadTram = (c) => c.way.tags?.highway && !ORTHO_P.off?.has("tramroad") && c.way.tags.oneway !== "yes" && !["1", 1].includes(c.way.tags["railway:tracks"] ?? c.way.tags.tracks);
+  const tramTs = mergeTrackAxes(measured.length ? measured : cross.filter((c) => c.way.tags?.railway === "tram").flatMap((c) => (roadTram(c) ? [c.t - 1.5, c.t + 1.5] : [c.t])));
   tramTs.measured = measured.length > 0;
 
   if (!polys.length) return estimateFromOsm(way);
@@ -1585,7 +1632,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     ...parking.filter((p) => p.kind !== "useky").map((p) => ({ ...p, code: TSK_CODES[p.kind] || TSK_PARKING, use: p.kind })),
     ...parking.filter((p) => p.kind === "useky").map((p) => ({ ...p, code: TSK_PARKING, orient: orientFromStalls(p, dir) })),
     ...osmOutdoorPolygons(osm, frame),
-    ...(osmParking ? osmParkingPolygons(osm, frame) : []),
+    ...(osmParking ? osmParkingPolygons(osm, frame, way) : []),
     ...polys,
   ])));
   const axisRun = (rs) => rs.findIndex((r) => r.s <= axisT && r.e >= axisT);
@@ -1929,8 +1976,19 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       // A separate tram bed (MTVU 705 and the towns' equivalents), or a green area with tracks in it: a bed
       // of grass. Wider than 5 m it carries a track each way.
       const bed = type === "zelen" ? { kind: "trava", source: "dtm" } : bedOf(cross, r);
-      const parts = r.e - r.s > 5 ? [[r.s, (r.s + r.e) / 2, "forward"], [(r.s + r.e) / 2, r.e, "backward"]] : [[r.s, r.e, undefined]];
+      // A green area is a bed only round its tracks (1.75 m beyond the outer axes); the rest stays green (Werichova:
+      // a 36 m lawn with two tracks drew two trams of 18 m; ?off=grassbed).
+      let s0 = r.s, e0 = r.e;
+      if (type === "zelen" && !ORTHO_P.off?.has("grassbed")) {
+        const ins = tramTs.filter((t) => t > r.s && t < r.e);
+        s0 = Math.max(r.s, Math.min(...ins) - 1.75); e0 = Math.min(r.e, Math.max(...ins) + 1.75);
+        if (s0 - r.s < 0.5) s0 = r.s;
+        if (r.e - e0 < 0.5) e0 = r.e;
+        if (s0 > r.s) segs.push({ type: "zelen", s: r.s, e: s0, source: r.code === null ? "odhad" : "dtm" });
+      }
+      const parts = e0 - s0 > 5 ? [[s0, (s0 + e0) / 2, "forward"], [(s0 + e0) / 2, e0, "backward"]] : [[s0, e0, undefined]];
       for (const [a, b, d] of parts) segs.push({ type: "tramvaj", s: a, e: b, dir: d, bed: bed.kind, bedSource: bed.source, source: "dtm" });
+      if (e0 < r.e) segs.push({ type: "zelen", s: e0, e: r.e, source: r.code === null ? "odhad" : "dtm" });
     } else if (type === "cyklostezka") {
       segs.push(...cycleTrack(r, cross, dir));
     } else {
@@ -1968,7 +2026,10 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   const withKerb = carveKerbParking(markIslands(segs), kerbReqs, kerbNotes);
   const withPlatforms = insertPlatforms(withKerb, platformPositions(osm, frame, center, normal, half), axisT);
   const parkedTrees = [];
-  const withTrees = insertTrees(withPlatforms, treePositions(osm, frame, center, normal, half, lines, reachItems), parkedTrees);
+  // In a pedestrian zone the estimate's unknown is the zone's walking surface (pedestrianZone below makes it a
+  // sidewalk): its trees stand there too, so it takes them as a sidewalk would.
+  const zoneWalk = way.tags?.highway === "pedestrian" && !ORTHO_P.off?.has("pesizona");
+  const withTrees = insertTrees(withPlatforms, treePositions(osm, frame, center, normal, half, lines, reachItems), parkedTrees, zoneWalk);
   const withItems = attachItems(perpDepth(mergeParking(withTrees)), [...itemPositions(osm, frame, center, normal, half, lines, reachItems), ...parkedTrees]);
   // Points 4 m inside the buildings at both ends, for their height and number of floors.
   const probe = { left: at(kept.at(-1).e + 4), right: at(kept[0].s - 4) };
@@ -2116,6 +2177,48 @@ export function splitTwoWayLane(segments, tags = {}) {
 // shoulder, drawn from 1 m, an estimate). The shoulder goes to the lane's kerb side (both halves where both sides
 // are kerbs and the rest is two shoulders); a lane between lanes stays. Not in a zone. ?off=strop: the A/B.
 const DRIVE = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "obsluzna", "krajnice", "cyklopruh", "ochranny_pruh", "tramvaj"]);
+// A tram lane narrower than a lane (3.0 m, the approved lane) cannot hold a tram: the photo put the kerb across the
+// track (Josefstädter Straße in 2019: 1.97 m). It takes the rest from the sidewalk or paving beside it, which keeps
+// at least 1.5 m. Returns the parts widened (?off=tramwide).
+const TRAM_LANE_MIN = 3.0;
+const TAKE_FROM = new Set(["chodnik", "plocha", "nezname", "zelen"]);
+export function widenNarrowTrams(segments) {
+  if (ORTHO_P.off?.has("tramwide")) return 0;
+  let n = 0;
+  for (let i = 0; i < segments.length; i++) {
+    const s = segments[i];
+    if (!["tramvaj_v_pruhu", "tramvaj_pruh"].includes(s.type) || s.width >= TRAM_LANE_MIN) continue;
+    for (const j of [i - 1, i + 1]) {
+      const nb = segments[j], need = +(TRAM_LANE_MIN - s.width).toFixed(2);
+      if (!nb || !TAKE_FROM.has(nb.type) || nb.width - need < 1.5) continue;
+      nb.width = +(nb.width - need).toFixed(2); s.width = TRAM_LANE_MIN; n++;
+      break;
+    }
+  }
+  return n;
+}
+
+// A pedestrian zone is a sidewalk (Bára 17. 11. 2026: "pěší zóna je vlastně chodník, měla by se kreslit s lidmi, ne
+// s auty"; a living street or a shared zone keeps its lane): the lanes and shoulders of a highway=pedestrian become
+// sidewalk, joined with the sidewalks beside them. Trams, bicycles and parking stay. A roadway the technical map
+// really draws there stays a lane (measured; Bára: "pokud je v datech fakt pruh, tak nakreslit, ale spíš se tomu
+// vyhýbat"): only the estimate's lanes go. Returns the parts changed (?off=pesizona).
+const ZONE_ROAD = new Set(["pruh", "pruh_piktokoridor", "krajnice", "obsluzna"]);
+export function pedestrianZone(segments, tags = {}, { measured = false } = {}) {
+  if (tags.highway !== "pedestrian" || measured || ORTHO_P.off?.has("pesizona")) return 0;
+  let n = 0;
+  for (const s of segments) if (ZONE_ROAD.has(s.type)) { s.type = "chodnik"; delete s.dir; delete s.lanes; n++; }
+  // What the estimate left unknown in a pedestrian zone (wider paving than it dares to call anything) is the zone's
+  // own walking surface too.
+  for (const s of segments) if (s.type === "nezname" && s.source !== "user") { s.type = "chodnik"; n++; }
+  if (!n) return 0;
+  for (let i = segments.length - 1; i > 0; i--) {
+    const [a, b] = [segments[i - 1], segments[i]];
+    if (a.type === "chodnik" && b.type === "chodnik" && !a.items?.length && !b.items?.length) { a.width = +(a.width + b.width).toFixed(2); if (a.e !== undefined && b.e !== undefined) a.e = Math.max(a.e, b.e); segments.splice(i, 1); }
+  }
+  return n;
+}
+
 export function capWideLanes(segments, tags = {}) {
   if (ORTHO_P.off?.has("strop") || ["living_street", "pedestrian"].includes(tags.highway)) return 0;
   const cap = LANE_CAP[tags.highway] ?? LANE_CAP_DEFAULT;

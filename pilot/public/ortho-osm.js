@@ -123,6 +123,13 @@ export function osmRoad(own) {
 // 1.7 m past the outer track's axis (half a tram and a little).
 export function withRails(road, o) {
   const axis = o.own.t, far = Math.max(road.reach.A, road.reach.B), rails = o.ways.filter((w) => w.tags.railway === "tram" && sameLevel(w, o) && Math.abs(w.t - axis) < far + 3.5);
+  // A two-way street with its tracks in the roadway (embedded_rails) but not mapped apart: two tracks 3 m apart about
+  // the axis, so the roadway reaches at least 1.5 + 1.7 m each way (Josefstädter Straße in 2019 read 4.7 m on the photo
+  // and drew trams of 2.0 and 2.7 m; ?off=embedded2).
+  if (!rails.length && o.own.tags.embedded_rails === "tram" && !ONEWAY(o.own.tags) && !P.off?.has("embedded2")) {
+    const reach = { A: Math.max(road.reach.A, 3.2), B: Math.max(road.reach.B, 3.2) };
+    return { ...road, reach, w: reach.A + reach.B, rails: 2, embeddedOnly: true };
+  }
   if (!rails.length || (o.own.tags.embedded_rails === undefined && !rails.some((w) => Math.abs(w.t - axis) < far))) return road;
   const reach = { ...road.reach };
   for (const w of rails) { const side = w.t < axis ? "A" : "B"; reach[side] = Math.max(reach[side], Math.abs(w.t - axis) + 1.7); }
@@ -166,6 +173,7 @@ export function columns(st) {
   const { nt, nu, res, t0, L, G, S } = st, bl = Array.from({ length: BLOCKS }, () => new Float32Array(nt));
   const medL = new Float32Array(nt), green = new Float32Array(nt), sat = new Float32Array(nt), seen = new Float32Array(nt);
   const per = Math.floor(nu / BLOCKS);
+  const v_seen = (i) => { let c = 0; for (let j = 0; j < BLOCKS * per; j++) if (!Number.isNaN(L[j * nt + i])) c++; return c; };
   for (let i = 0; i < nt; i++) {
     let gn = 0, n = 0; const sv = [];
     for (let b = 0; b < BLOCKS; b++) {
@@ -173,14 +181,15 @@ export function columns(st) {
       for (let j = b * per; j < (b + 1) * per; j++) {
         const q = j * nt + i, x = L[q];
         if (Number.isNaN(x)) continue;
-        v.push(x); n++;
-        if (G[q] >= 10) gn++;
+        v.push(x);
+        // Under the crown of a tree OSM knows the green is the tree, not a lawn (st.canopy; Václavské náměstí).
+        if (!st.canopy?.[q]) { n++; if (G[q] >= 10) gn++; }
         if (j % 2 === 0) sv.push(S[q]);
       }
       bl[b][i] = v.length ? median(v) : NaN;
     }
     medL[i] = median(Array.from(bl, (x) => x[i]));
-    green[i] = n ? gn / n : NaN; sat[i] = median(sv); seen[i] = n / nu;
+    green[i] = n ? gn / n : st.canopy ? 0 : NaN; sat[i] = median(sv); seen[i] = v_seen(i) / nu;
   }
   // A blank stretch (the image's edge of coverage: white or black and flat along the street, a metre wide or more) is
   // not seen: no road there and no kerb at its edge. A painted line is narrower.
@@ -219,6 +228,8 @@ export function columns(st) {
   const E = Float32Array.from(edge, (x) => x / typical);
   return { nt, res, t0, medL, green, sat, seen, E, ti: (t) => Math.round((t - t0) / res), tOf: (i) => t0 + i * res };
 }
+// Half the width of a tram bed beyond its outer track axis (a 3.3 m track, as derive.js carveTramTracks).
+const TRACK_HALF = 1.75;
 // The roadway at the axis (±1.5 m, not green): its brightness and saturation; does column i look like it?
 export const P = { tolL: 0.2, tolS: 18, greenMax: 0.3, minEdge: 1.6, alpha: 1.5, beta: 0.5, gamma: 0.8, sigmaMin: 1.0, sigmaRel: 0.3, lineOff: 0.4, mapBonus: 0.8, cars: false };
 export function roadRef(cols, axis) {
@@ -363,6 +374,30 @@ const STREET = /^(motorway|trunk|primary|secondary|tertiary|unclassified|residen
 // carriageway and the houses, before OSM's green; not one under the axis (a lawn the street crosses on the map).
 // symbols: point symbols of the kinds of areas of a technical map ({ x: lon, y: lat, code: MTVU code }, Bratislava's):
 // a piece between two of its lines takes the kind of the symbols inside it (its lines need not close).
+const CROWN = 4;
+function canopyMask(st, osm, tu) {
+  const pts = [];
+  for (const el of osm?.elements || []) {
+    if (el.type === "node" && el.tags?.natural === "tree") pts.push(tu(el.geometry[0].lon, el.geometry[0].lat));
+    else if (el.type === "way" && el.tags?.natural === "tree_row") {
+      const g = el.geometry.map((p) => tu(p.lon, p.lat));
+      for (let i = 0; i + 1 < g.length; i++) { const L = Math.hypot(g[i + 1][0] - g[i][0], g[i + 1][1] - g[i][1]); for (let d = 0; d <= L; d += 2) pts.push([g[i][0] + ((g[i + 1][0] - g[i][0]) * d) / L, g[i][1] + ((g[i + 1][1] - g[i][1]) * d) / L]); }
+    }
+  }
+  const { nt, nu, res, t0 } = st, U = (nu * res) / 2, mask = new Uint8Array(nt * nu);
+  const near = pts.filter(([t, u]) => t > t0 - CROWN && t < t0 + nt * res + CROWN && Math.abs(u) < U + CROWN);
+  if (!near.length) return null;
+  for (const [t, u] of near) {
+    const i0 = Math.max(0, Math.floor((t - CROWN - t0) / res)), i1 = Math.min(nt - 1, Math.ceil((t + CROWN - t0) / res));
+    const j0 = Math.max(0, Math.floor((U - u - CROWN) / res)), j1 = Math.min(nu - 1, Math.ceil((U - u + CROWN) / res));
+    for (let j = j0; j <= j1; j++) for (let i = i0; i <= i1; i++) {
+      const dt = t0 + (i + 0.5) * res - t, du = U - (j + 0.5) * res - u;
+      if (dt * dt + du * du <= CROWN * CROWN) mask[j * nt + i] = 1;
+    }
+  }
+  return mask;
+}
+
 export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = [], widths = [], areas = [], symbols = [] }) {
   if (!way || !STREET.test(way.tags?.highway || "")) return null;
   const normal = [-dir[1], dir[0]];
@@ -391,8 +426,13 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     const reach = { A: Math.max(1, axis - (c.t - c.w / 2)), B: Math.max(1, c.t + c.w / 2 - axis) };
     return { ...rd, w: reach.A + reach.B, reach, from: "zbgis" };
   };
+  // The crowns of the trees OSM knows (natural=tree, tree rows), CROWN m round each: their green is no lawn
+  // (Bára 17. 11. 2026, Václavské náměstí: paving under the crowns read as grass; ?off=koruny).
+  if (st && !P.off?.has("koruny")) st = { ...st, canopy: canopyMask(st, osm, tu) };
   const road = withRails(mapWidth(osmRoad(o.own), o.own.t), o), k = kerbsOnImage(st, o, road, mapRuns, edgeT);
   if (!Number.isFinite(k.A) || !Number.isFinite(k.B) || k.B - k.A < 2) return null;
+  // No kerb across a track: with trams in the roadway it reaches at least as far as withRails says (?off=embedded2).
+  if (road.embeddedOnly && !P.off?.has("embedded2")) { k.A = Math.min(k.A, o.own.t - road.reach.A); k.B = Math.max(k.B, o.own.t + road.reach.B); }
   // The other carriageway, its side (pSide) and the clicked one's kerb towards it.
   let k2 = null, road2 = null, pSide = null;
   if (pair) {
@@ -515,8 +555,20 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
       if (k.cols) for (let i = k.cols.ti(a); i < k.cols.ti(b); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.green[i])) g.push(k.cols.green[i]);
       // Tram tracks of OSM in it: the street's tram bed (as MTVU's 705: derive.js makes its tracks).
       const rails = P.off?.has("tramway") ? [] : o.ways.filter((w) => w.tags.railway === "tram" && sameLevel(w, o) && w.t > a && w.t < b);
-      if (rails.length) polys.push(rect(705, "tramvajové těleso (OSM)", a, b));
-      else polys.push(g.length && g.reduce((x, y) => x + y, 0) / g.length >= GREEN_AREA ? rect(401, "zeleň (ortofoto)", a, b) : rect(1003, "dělicí pás (odhad)", a, b));
+      const greenOr = (x, y) => {
+        const gg = [];
+        if (k.cols) for (let i = k.cols.ti(x); i < k.cols.ti(y); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.green[i])) gg.push(k.cols.green[i]);
+        return gg.length && gg.reduce((u, v) => u + v, 0) / gg.length >= GREEN_AREA ? rect(401, "zeleň (ortofoto)", x, y) : rect(1003, "dělicí pás (odhad)", x, y);
+      };
+      // The bed only round its tracks (TRACK_HALF beyond the outer axes): the rest of a wide median keeps its own
+      // surface (Werichova in 2022, the whole 36 m between the carriageways became two trams of 18 m; ?off=bedwidth).
+      if (rails.length && !P.off?.has("bedwidth")) {
+        const ts = rails.map((w) => w.t).sort((x, y) => x - y), lo = Math.max(a, ts[0] - TRACK_HALF), hi = Math.min(b, ts[ts.length - 1] + TRACK_HALF);
+        if (lo - a >= 0.5) polys.push(greenOr(a, lo)); else if (lo > a) polys.push(rect(705, "tramvajové těleso (OSM)", a, lo));
+        polys.push(rect(705, "tramvajové těleso (OSM)", lo, hi));
+        if (b - hi >= 0.5) polys.push(greenOr(hi, b)); else if (b > hi) polys.push(rect(705, "tramvajové těleso (OSM)", hi, b));
+      } else if (rails.length) polys.push(rect(705, "tramvajové těleso (OSM)", a, b));
+      else polys.push(greenOr(a, b));
     }
   }
   for (const [side, sg] of [["A", -1], ["B", 1]]) {

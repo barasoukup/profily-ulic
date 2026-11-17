@@ -64,7 +64,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Srovnání norem: https://claude.ai/artifact/7rkssF8z7y6zhEDBfEhbG8
 
 ## Rozhodnutí
-- Žádný typ „sdílený prostor“; obytné a pěší zóny mají vozovku jako pruh.
+- Žádný typ „sdílený prostor“; obytné a sdílené zóny mají vozovku jako pruh. Pěší zóna je chodník (kreslí se s lidmi,
+  ne s auty; pruh jen tam, kde ho technická mapa opravdu má; Bára 17. 11. 2026, `derive.js` `pedestrianZone`, `?off=pesizona`).
 - Ulice ze dvou vozovek se řeže uprostřed (středový pás / tramvaj).
 - Ignorovat ulice pod mosty a podzemní cesty (metro, tunely se záporným `layer`/`level`).
 - Interní model smí obsahovat i to, co Streetmix neumí (rychlosti apod.); převod na typy

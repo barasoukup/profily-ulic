@@ -1,5 +1,5 @@
 import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, SURFACES, LAMP_HEIGHTS, underSize } from "./types.js";
-import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, splitTwoWayLane, capWideLanes, carveCycleways, carveTramTracks, lanesFromShoulders, crossFromA, MAX_REACH } from "./derive.js";
+import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, splitTwoWayLane, capWideLanes, pedestrianZone, widenNarrowTrams, carveCycleways, carveTramTracks, lanesFromShoulders, crossFromA, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO } from "./lanes-ortho.js";
 import { orthoOsmPolys, besidePassport, P as ORTHO_P } from "./ortho-osm.js";
@@ -387,6 +387,9 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     lanesFromShoulders(result.segments, near.way.tags);
     splitTwoWayLane(result.segments, near.way.tags);
     capWideLanes(result.segments, near.way.tags);
+    // The technical map's own roadway in a pedestrian zone stays a lane; the estimate's does not.
+    pedestrianZone(result.segments, near.way.tags, { measured: !orthoOsm && !result.estimate });
+    if (orthoOsm) widenNarrowTrams(result.segments);
     if (result.extent) {
       const crossA = crossFromA(osm, frame, dir, result.extent);
       carveCycleways(result.segments, crossA);
