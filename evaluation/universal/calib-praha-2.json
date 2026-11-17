@@ -1,0 +1,382 @@
+[
+{
+"id": "p32",
+"lat": 50.05797449316805,
+"lon": 14.511373709390604,
+"bearing": 129.80730046493957,
+"country": "CZ",
+"half": 24.4,
+"photos": false,
+"name": "Švehlova"
+},
+{
+"id": "p33",
+"lat": 50.06516488851089,
+"lon": 14.320952071480718,
+"bearing": -91.8014268319386,
+"country": "CZ",
+"half": 20.3,
+"photos": false,
+"name": "Plzeňská"
+},
+{
+"id": "p35",
+"lat": 50.08333997502518,
+"lon": 14.464259133562772,
+"bearing": 80.02334545832215,
+"country": "CZ",
+"half": 37.8,
+"photos": false,
+"name": "Olšanská"
+},
+{
+"id": "p36",
+"lat": 50.063799025037625,
+"lon": 14.376705958844763,
+"bearing": -136.73002815356696,
+"country": "CZ",
+"half": 18.4,
+"photos": false,
+"name": "Jinonická"
+},
+{
+"id": "p38",
+"lat": 50.063671723115625,
+"lon": 14.442211240939661,
+"bearing": -53.40758685789031,
+"country": "CZ",
+"half": 16.1,
+"photos": false,
+"name": "Nuselská"
+},
+{
+"id": "p41",
+"lat": 50.155998380194255,
+"lon": 14.56241771568733,
+"bearing": -115.75049034114586,
+"country": "CZ",
+"half": 12.3,
+"photos": false,
+"name": ""
+},
+{
+"id": "p42",
+"lat": 50.00737494896857,
+"lon": 14.403336260526578,
+"bearing": -163.1570226856349,
+"country": "CZ",
+"half": 22.5,
+"photos": false,
+"name": "Generála Šišky"
+},
+{
+"id": "p44",
+"lat": 50.10116604828205,
+"lon": 14.674640887097302,
+"bearing": 33.51374517430241,
+"country": "CZ",
+"half": 13.1,
+"photos": false,
+"name": "Slavětínská"
+},
+{
+"id": "p45",
+"lat": 50.0129778704303,
+"lon": 14.417187896062185,
+"bearing": -0.2082433447120106,
+"country": "CZ",
+"half": 21.2,
+"photos": false,
+"name": "Československého exilu"
+},
+{
+"id": "p46",
+"lat": 50.075656144526356,
+"lon": 14.553664772669519,
+"bearing": 165.20952843169982,
+"country": "CZ",
+"half": 13.4,
+"photos": false,
+"name": "Nedokončená"
+},
+{
+"id": "p47",
+"lat": 50.07232792531885,
+"lon": 14.422619166012563,
+"bearing": 34.845792857650494,
+"country": "CZ",
+"half": 20.3,
+"photos": false,
+"name": "Benátská"
+},
+{
+"id": "p50",
+"lat": 50.04561196520963,
+"lon": 14.41942876244595,
+"bearing": 110.20196491256155,
+"country": "CZ",
+"half": 19.4,
+"photos": false,
+"name": "Jeremenkova"
+},
+{
+"id": "p54",
+"lat": 50.13186892684078,
+"lon": 14.574928171170354,
+"bearing": -146.48397211439212,
+"country": "CZ",
+"half": 17.1,
+"photos": false,
+"name": "Vinořská"
+},
+{
+"id": "p69",
+"lat": 50.06157546417638,
+"lon": 14.472651026086258,
+"bearing": 92.08013406197202,
+"country": "CZ",
+"half": 18.8,
+"photos": false,
+"name": "Nad Vršovskou horou"
+},
+{
+"id": "p70",
+"lat": 50.10778416213316,
+"lon": 14.562514757389328,
+"bearing": -134.01404509315003,
+"country": "CZ",
+"half": 19.6,
+"photos": false,
+"name": "Vodňanská"
+},
+{
+"id": "p83",
+"lat": 50.05572085514118,
+"lon": 14.37310338776379,
+"bearing": -100.04408170242372,
+"country": "CZ",
+"half": 27.9,
+"photos": false,
+"name": "U Trezorky"
+},
+{
+"id": "p84",
+"lat": 50.075785995785054,
+"lon": 14.407503956221692,
+"bearing": 171.52442081584823,
+"country": "CZ",
+"half": 15.2,
+"photos": false,
+"name": "Zborovská"
+},
+{
+"id": "p93",
+"lat": 50.0940695586725,
+"lon": 14.322412549387717,
+"bearing": -117.51651356334406,
+"country": "CZ",
+"half": 7.8,
+"photos": false,
+"name": "Divoká Šárka"
+},
+{
+"id": "p94",
+"lat": 50.0878030186403,
+"lon": 14.413756234544705,
+"bearing": 172.98577957727437,
+"country": "CZ",
+"half": 11.7,
+"photos": false,
+"name": "Alšovo nábřeží"
+},
+{
+"id": "p95",
+"lat": 50.088035997314584,
+"lon": 14.432532910192455,
+"bearing": -2.650458881591903,
+"country": "CZ",
+"half": 17.0,
+"photos": false,
+"name": "Havlíčkova"
+},
+{
+"id": "p96",
+"lat": 50.09951895882586,
+"lon": 14.33803795948064,
+"bearing": 122.43653136979573,
+"country": "CZ",
+"half": 7.5,
+"photos": false,
+"name": "Divoká Šárka"
+},
+{
+"id": "p58",
+"lat": 50.11141110736517,
+"lon": 14.482093662612119,
+"bearing": -153.76152917051581,
+"country": "CZ",
+"half": 7.7,
+"photos": false,
+"name": "Na Labuťce Ⅰ"
+},
+{
+"id": "p59",
+"lat": 50.135533780804934,
+"lon": 14.43362501007129,
+"bearing": -91.6982835915198,
+"country": "CZ",
+"half": 15.1,
+"photos": false,
+"name": "Chvatěrubská"
+},
+{
+"id": "p60",
+"lat": 50.039988388483636,
+"lon": 14.42571133365207,
+"bearing": -77.81578498973589,
+"country": "CZ",
+"half": 8.8,
+"photos": false,
+"name": "U dubu"
+},
+{
+"id": "p61",
+"lat": 50.03978701864935,
+"lon": 14.445541962354065,
+"bearing": 37.45777794817874,
+"country": "CZ",
+"half": 13.7,
+"photos": false,
+"name": "Zachova"
+},
+{
+"id": "p62",
+"lat": 49.96529135917844,
+"lon": 14.380009856893986,
+"bearing": 119.19602919238704,
+"country": "CZ",
+"half": 10.4,
+"photos": false,
+"name": "K Výtopně"
+},
+{
+"id": "p63",
+"lat": 50.00137203745785,
+"lon": 14.34817900549393,
+"bearing": -84.57825301573327,
+"country": "CZ",
+"half": 18.8,
+"photos": false,
+"name": "Na dražkách"
+},
+{
+"id": "p64",
+"lat": 50.073961913945645,
+"lon": 14.382034998479389,
+"bearing": -89.34586442677531,
+"country": "CZ",
+"half": 18.5,
+"photos": false,
+"name": "U Okrouhlíku"
+},
+{
+"id": "p65",
+"lat": 50.02265615403947,
+"lon": 14.438513136790972,
+"bearing": 119.87271347444857,
+"country": "CZ",
+"half": 11.8,
+"photos": false,
+"name": "Jílovská"
+},
+{
+"id": "p66",
+"lat": 50.08108808820378,
+"lon": 14.639169062013753,
+"bearing": -65.57206260351744,
+"country": "CZ",
+"half": 10.1,
+"photos": false,
+"name": "Budčická"
+},
+{
+"id": "p67",
+"lat": 50.12595094502014,
+"lon": 14.393890260619175,
+"bearing": -161.89996615399707,
+"country": "CZ",
+"half": 19.4,
+"photos": false,
+"name": "Ke Střelnici"
+},
+{
+"id": "p68",
+"lat": 50.107948378450544,
+"lon": 14.487040005052663,
+"bearing": 90.49389393116002,
+"country": "CZ",
+"half": 15.0,
+"photos": false,
+"name": "Kovanecká"
+},
+{
+"id": "p71",
+"lat": 50.06972712107646,
+"lon": 14.439693769010882,
+"bearing": -140.95211747289292,
+"country": "CZ",
+"half": 12.1,
+"photos": false,
+"name": "Nad Petruskou"
+},
+{
+"id": "p73",
+"lat": 50.10139034062438,
+"lon": 14.538289788911044,
+"bearing": -33.76736894248755,
+"country": "CZ",
+"half": 10.0,
+"photos": false,
+"name": "Kyjská"
+},
+{
+"id": "p74",
+"lat": 50.103622655628236,
+"lon": 14.54954638364412,
+"bearing": -125.73001902270731,
+"country": "CZ",
+"half": 13.1,
+"photos": false,
+"name": "Kukelská"
+},
+{
+"id": "p75",
+"lat": 50.12554191975364,
+"lon": 14.378737030867637,
+"bearing": 76.05693598872612,
+"country": "CZ",
+"half": 11.7,
+"photos": false,
+"name": "Hřebenová"
+},
+{
+"id": "p76",
+"lat": 49.965384996454624,
+"lon": 14.395785031058244,
+"bearing": -170.0030166664524,
+"country": "CZ",
+"half": 14.1,
+"photos": false,
+"name": "Spojařů"
+},
+{
+"id": "p77",
+"lat": 50.02181518791255,
+"lon": 14.42556561134293,
+"bearing": -143.22267677086845,
+"country": "CZ",
+"half": 11.9,
+"photos": false,
+"name": "U nás"
+}
+]

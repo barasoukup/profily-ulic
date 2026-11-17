@@ -101,7 +101,12 @@ if (process.argv[1] && import.meta.url.endsWith(path.basename(process.argv[1])))
   const indexFile = path.join(path.dirname(out), "index.json");
   let index = { files: {} };
   try { index = JSON.parse(fs.readFileSync(indexFile, "utf8")); } catch {}
-  index.files[path.basename(out).split(/[-.]/)[0]] = path.basename(out);
+  const key = path.basename(out).split(/[-.]/)[0];
+  index.files[key] = path.basename(out);
+  // The box of its tiles ([ix0, iy0, ix1, iy1], tile indices): the app opens only the files whose box holds the tiles of
+  // a cut (osmpack.js PackSet; the review of Germany: every cut opened the head of every file).
+  const ij = names.map((n) => n.split("_").map(Number));
+  (index.bbox ??= {})[key] = [Math.min(...ij.map((p) => p[0])), Math.min(...ij.map((p) => p[1])), Math.max(...ij.map((p) => p[0])), Math.max(...ij.map((p) => p[1]))];
   index.attribution = "© OpenStreetMap contributors, ODbL 1.0";
   fs.writeFileSync(indexFile, JSON.stringify(index, null, 1) + "\n");
   const mb = (n) => (n / 1e6).toFixed(1) + " MB";

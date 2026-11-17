@@ -180,3 +180,16 @@ test("Rakousko: žádný panelák, deska je funkcionalistický dům, nová moder
     assert.equal(buildingStyle(slab, "plocha"), "plocha", "ručně zvolený vzhled zůstane");
   } finally { C.setCity("praha"); }
 });
+
+test("Německo: panelák jen na východě (bývalá NDR), na západě jako v Rakousku", async () => {
+  const C = await import("../pilot/public/city.js");
+  const { buildingStyle } = await import("../pilot/public/profile.js");
+  const slab = { levels: 9, block: { fill: 0.95, width: 12, length: 80, parts: 1 } };
+  try {
+    Object.assign(C.setCity("germany"), await C.country.atPlace(13.47, 52.54)); // Berlin-Lichtenberg
+    assert.equal(buildingStyle(slab), "plocha");
+    Object.assign(C.setCity("germany"), await C.country.atPlace(6.96, 50.94)); // Köln
+    assert.equal(buildingStyle(slab), "funkce");
+    assert.equal(buildingStyle({ ...slab, start: 2005 }), "moderni");
+  } finally { C.setCity("praha"); }
+});

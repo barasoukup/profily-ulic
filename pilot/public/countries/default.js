@@ -97,6 +97,8 @@ export default {
   // The law of parking (derive.js): the free lane left for each direction, the sentence about parking half on the
   // sidewalk; whether parking is estimated by the law at all (app.js).
   freeLane: 3,
+  // The width the law leaves beside parked cars, when it is not freeLane per direction: (oneway, lanes, minLane) → m.
+  lawNeed: null,
   halfKerbNote: lawNote("§ 25 odst. 3 zák. 361/2000 Sb."),
   parkGuess: true,
   // A motorway or trunk road gets the wider reach (app.js); the group of a street from its OSM class where there is
@@ -104,7 +106,7 @@ export default {
   wideRoads: false,
   roadClassFromOsm: false,
   // The width rules (rules.js): the minimum and basic width of a part, the one-way street with contraflow cyclists
-  // without a cycle lane, the tram belt of two tracks ([{ level, text }]).
+  // without a cycle lane (null: no rule known), the tram belt of two tracks ([{ level, text }]).
   limits,
   contraflow: () => ({ lo: 3, base: 4, why: t("jednosměrka s cyklisty v protisměru: základ 4 m, při velmi nízké intenzitě 3 m, při vyšší až 4,5 m (Manuál C.2)") }),
   tramBelt(belt, w) {
@@ -126,6 +128,8 @@ export default {
   orthoEstimate: false,
   // A town's passport is filled up to the houses beside it (app.js, ortho-osm.js besidePassport).
   besidePassport: false,
+  // How far beyond the passport's last surface (m) the pieces up to the houses go (ortho-osm.js; null: its own 15 m).
+  besideMax: null,
   // Mapy.com's panoramas (app.js).
   panorama: true,
   // What a cut lacks when its lines do not answer (sources.js outage), marked for t().
@@ -137,4 +141,6 @@ export default {
   houseLook: null,
   // The search services asked where the map shows the state (search.js), besides RÚIAN.
   search: [],
+  // What the state decides by the place of the cut, set on the city (app.js): async (lon, lat) → { … }, or null.
+  atPlace: null,
 };

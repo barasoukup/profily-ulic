@@ -681,7 +681,9 @@ const BESIDE_MAX = 15, BESIDE_GREEN = 0.22, BARRIER = (t) => ["fence", "wall", "
 const OSM_SIDEWALK = (t) => t.highway === "footway" && t.footway === "sidewalk";
 const OSM_CYCLEWAY = (t) => t.highway === "cycleway" || (["path", "footway"].includes(t.highway) && t.bicycle === "designated");
 const inRing = (r, x, y) => { let c = false; for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; } return c; };
-export function besidePassport({ osm, frame, dir, way, st, edges = [], symbols = [], areas = [], polys = [] }) {
+// max: how far beyond the last surface the end may lie (countries/<ISO>.js besideMax; Germany 25 m for Aachen's front
+// gardens of 15–18 m, A/B of 17. 11. 2026; else BESIDE_MAX).
+export function besidePassport({ osm, frame, dir, way, st, edges = [], symbols = [], areas = [], polys = [], max = BESIDE_MAX }) {
   // Not beside a motorway or an expressway (R1 in Banská Bystrica: a sidewalk up to a hall across the ditch).
   if (P.off?.has("beside") || !way || /^(motorway|trunk)/.test(way.tags?.highway || "")) return [];
   const normal = [-dir[1], dir[0]];
@@ -755,7 +757,7 @@ export function besidePassport({ osm, frame, dir, way, st, edges = [], symbols =
       .filter((x) => x !== null && x !== undefined && sg * (x - o.own.t) > 0.3);
     if (!ends.length) continue;
     const to = ends.reduce((a, b) => (sg * (b - a) < 0 ? b : a));
-    if (sg * (to - last) > BESIDE_MAX) continue;
+    if (sg * (to - last) > max) continue;
     // The OSM sidewalk before the end: 2 m about its line.
     const walk = walks.filter((w) => sg * (to - w.t) >= 0).sort((a, b) => sg * (a.t - b.t))[0];
     const walkAt = walk ? [walk.t - 1, walk.t + 1] : null;

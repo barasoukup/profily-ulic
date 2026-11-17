@@ -430,6 +430,10 @@ Object.assign(CITIES, {
   // Austria (Bára 16. 11. 2026): basemap.at's orthophoto and OSM (towns/austria.js).
   austria: { ...abroad("austria", "AT", "Rakousko", "v Rakousku", "rakouské", [47.6, 14.1], "48.208500, 16.373100"),
     dataShort: "basemap.at a OSM", rulesHead: "Šířky podle rakouských předpisů (RVS 03.02.13, Wiener Projektierungshandbuch):" },
+  // Germany (Bára 17. 11. 2026): the orthophotos of the Länder and OSM, the street surfaces of Berlin, Hamburg and
+  // Aachen (towns/germany.js).
+  germany: { ...abroad("germany", "DE", "Německo", "v Německu", "německé", [51.1, 10.4], "52.516300, 13.377700"),
+    dataShort: "ortofot spolkových zemí a OSM", rulesHead: "Šířky podle německých předpisů (RASt 06, ERA 2010, VwV-StVO):" },
   cizina: abroad("cizina", null, "cizinu", "v cizině", "zahraniční", [49.8, 15.5], "48.146736, 17.106998"),
 });
 // The rest of Slovakia and of Austria draws the state's own set (countries/<ISO>.js art).

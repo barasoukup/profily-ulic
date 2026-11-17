@@ -85,7 +85,7 @@ export function signLabel(x, country = "CZ") {
 // The folder of a state's signs (countries/<ISO>.js signs).
 export const signDir = (country = "CZ") => countryOf(country).signs.dir;
 // The template of a speed sign, its number filled in when drawn.
-export const SPEED_TEMPLATES = new Set(["B20a", "253", "10a"]);
+export const SPEED_TEMPLATES = new Set(["B20a", "253", "10a", "274"]);
 
 const ROAD = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "obsluzna"]);
 const CARRIAGEWAY = new Set([...ROAD, "parkovani", "cyklopruh", "ochranny_pruh", "krajnice", "tramvaj"]);

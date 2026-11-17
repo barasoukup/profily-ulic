@@ -1,0 +1,91 @@
+# Univerzální metoda hodnocení profilů: kalibrace v Praze (17. 11. 2026)
+
+**Cíl (Bára):** jedna metoda, která hodnotí přesnost profilu všude stejně (CZ, SK, AT, DE); nejdřív složení, pak šířka ulice.
+
+**Metoda:** posuzovatel (AI, Sonnet) dostane u řezu ortofoto státu (`ortho.mjs`: řez vodorovně, ulice nahoru, A vlevo,
+10 px = 1 m, měřítko) a fotky z Mapillary, kde jsou (`prepare.mjs`), a podle `POKYN.md` sám sestaví profil A→B.
+Profil aplikace nevidí. Srovnání `compare.mjs`: složení uličního prostoru (od vnějšího okraje chodníku po vnější okraj
+chodníku, zeleň mezi pruhy = dělicí pás, sousední stejné části sloučené, krajnice se nepočítá) editační vzdáleností,
+počet pruhů, šířka uličního prostoru. Kalibrace proti profilu aplikace z IPR MTVU (`score-calib.mjs`).
+
+## Výsledky
+
+| kolo | řezů | srovnání | složení stejné | shoda složení | pruhy stejně | šířka do 1 / 2 m |
+|---|---|---|---|---|---|---|
+| 1: výpadovky a dálnice, posuzovatel fotky neotevřel (jen ortofoto) | 37 | AI ↔ MTVU | 30 % | 68 % | 38 % | 30 / 41 % |
+| | | odhad ↔ MTVU | 32 % | 76 % | 70 % | 24 / 38 % |
+| 2a: běžné ulice **s fotkou** | 18 | AI ↔ MTVU | 33 % | **71 %** | 56 % | 44 / 44 % |
+| | | odhad ↔ MTVU | 11 % | 59 % | 67 % | 17 / 33 % |
+| 2b: běžné ulice **bez fotky** (jen ortofoto) | 19 | AI ↔ MTVU | 11 % | **28 %** | 16 % | 42 / 53 % |
+| | | odhad ↔ MTVU | 37 % | 68 % | 42 % | 21 / 42 % |
+
+| 3: tytéž ulice jako 2b, **s panoramaty Mapy.com** (`prepare.mjs`, vlastní klíč, obrázky po posouzení smazané `clean.mjs`) | 17 | AI ↔ MTVU | 65 % | **82 %** | 65 % | 41 / 71 % |
+| | | odhad ↔ MTVU | 35 % | 66 % | 41 % | 18 / 41 % |
+| (pro srovnání tytéž řezy jen z ortofota) | 17 | AI ↔ MTVU | 12 % | 29 % | 18 % | 35 / 47 % |
+
+**Závěry:**
+- **Panorama Mapy.com udělá z nepoužitelného hodnocení nejlepší** (29 % → 82 % shoda složení). V Česku má panorama
+  skoro každá ulice, takže tam metoda pokryje i vedlejší ulice; mimo Česko zůstává Mapillary (jen ulice s fotkou).
+- **S fotkou z ulice** pozná AI složení lépe než náš odhad (71 % proti 59 %) a šířku uličního prostoru do 1 m dvakrát
+  častěji (44 % proti 17 %). Tam je použitelná jako rozhodčí.
+- **Jen z ortofota** je v běžných ulicích nepoužitelná (28 %): pod stromy a stíny nevidí chodníky ani stání
+  (chybí chodník 14×, stání 7×). Na výpadovkách bez stromů je zhruba na úrovni odhadu.
+- Fotky z Mapillary má jen asi polovina pražských řezů (hlavně hlavní ulice), takže univerzální metoda s fotkami
+  hodnotí jen ulice s fotkami; vzorek tím bude vychýlený k hlavním ulicím, všude stejně.
+- Vzorky jsou malé (18 a 19 řezů), čísla jsou orientační.
+- Cena: kolo 1 asi 160 tisíc tokenů, kolo 2 asi 280 tisíc (Sonnet).
+
+
+## Měření ve čtyřech státech (17. 11. 2026)
+
+Vzorek `sample.mjs`: 10 měst na stát (velká i menší), 8 náhodných bodů do 1,5 km od centra; profil aplikace v bodě
+(`collect.js` v prohlížeči, server s `EVAL_SAVE=1`), do hodnocení nejvýš 4 řezy na město, které mají fotku z ulice
+(`select.mjs`: Mapillary všude, v Česku navíc panorama Mapy.com), jen řezy s vozovkou. Posuzovatel (Sonnet) podle
+`POKYN.md`, skóre `score-states.mjs` (`vysledky/staty.md`): profil aplikace proti profilu posuzovatele.
+
+| stát | řezů | složení stejné | shoda složení | pruhy stejně | šířka uličního prostoru do 1 / 2 m | nejčastější rozdíly (aplikace proti posuzovateli) |
+|---|---|---|---|---|---|---|
+| CZ | 32 | 25 % | 56 % | 28 % | 25 / 31 % | navíc chodník 9×, chybí zeleň 7×, chybí chodník 6×, navíc pruh 5× |
+| SK | 15 | 27 % | 60 % | 60 % | 27 / 53 % | navíc chodník 7×, chybí pruh 4× |
+| AT | 33 | 18 % | 57 % | 30 % | 15 / 27 % | **chybí stání 14×**, chybí zeleň 5×, chybí chodník 5× |
+| DE | 34 | 12 % | 58 % | 50 % | 15 / 35 % | **chybí stání 15×**, navíc chodník 10×, navíc pruh 6× |
+
+**Jak to číst:** posuzovatel sám sedí s MTVU v 71–82 % složení (kalibrace), takže shoda aplikace s ním (56–60 %) je
+dolní odhad; skutečná přesnost složení bude o něco vyšší. Hlavní zjištění:
+- **Všechny čtyři státy jsou na tom zhruba stejně** (shoda složení 56–60 %); žádný stát výrazně nezaostává.
+- **V Rakousku a Německu chybí stání** (14× a 15× z 33–34 řezů): aplikace tam stání podle zákona neodhaduje
+  (`noParkGuess`) a z OSM ho má jen tam, kde je zakreslené. Největší a nejjasnější prostor ke zlepšení.
+- **V Česku a na Slovensku „navíc chodník“**: aplikace rozdělí chodník stromořadím nebo zelení na víc kusů, posuzovatel
+  je bere jako jeden chodník; zčásti rozdíl zápisu, ne chyba.
+- **Šířka uličního prostoru** sedí do 2 m jen u 27–53 % řezů: měřítko z ortofota posuzovatel odhaduje hrubě a okraje
+  uličního prostoru (předzahrádky, zeleň) se určují různě; spíš orientační.
+- **Chyba v aplikaci nalezená při měření:** basemap.at má úroveň z20 jen ve Vídni, Grazu a Linci, jinde v Rakousku
+  odhad neměl ortofoto vůbec. Opraveno (z19), rakouské profily nasbírané znovu.
+- Pokrytí fotkami: Slovensko jen 15 řezů (Mapillary řídký), ostatní 32–34.
+- Cena měření: asi 1,5 mil. tokenů (7 posuzovatelů Sonnet), kalibrace asi 0,7 mil.
+
+**Nový stát:** do `sample.mjs` přidat 10 měst, ortofoto státu do `ortho.mjs`, sběr, `select.mjs`, posuzovatelé,
+`score-states.mjs`. Kde Mapillary nemá fotky, metoda nehodnotí (bez fotky je posuzovatel nepoužitelný).
+
+
+## Stání v Rakousku a Německu (17. 11. 2026)
+
+Měření ukázalo, že v AT a DE stání nejčastěji chybí (14× a 15×). Dvě příčiny a opravy:
+1. **Stání zakreslené v OSM se ztrácelo**, když odhadnutá vozovka byla o pár centimetrů užší (Großer Brockhaus,
+   Lipsko: `parking:left=street_side`, vozovka 4,4 m, chybělo 0,1 m). Teď se zakreslené stání zúží na to, co zbývá,
+   nejvýš na 85 % své šířky (`derive.js OSM_PARK_MIN`). Regrese Prahy a Brna beze změny.
+2. **Zákonný odhad stání** byl v AT a DE vypnutý; teď platí jako v Česku (místní ulice, `residential`, `unclassified`):
+   Rakousko StVO § 24 odst. 3 (dva volné pruhy po asi 2,6 m, v jednosměrce jeden), Německo StVO § 12 a judikatura
+   (3,05 m na projetí). `?odhadstani=0` ho vypne. Zkoušené i sběrné ulice (`tertiary`): beze změny, vráceno.
+
+Tytéž posudky, nový profil aplikace (`data/app-zz-stani.json`):
+
+| stát | shoda složení | pruhy stejně | chybí stání | navíc stání |
+|---|---|---|---|---|
+| AT před → po | 57 → 58 % | 30 → 30 % | 14 → 11 | 3 → 5 |
+| DE před → po | 58 → 61 % | 50 → 56 % | 15 → 8 | – |
+
+Zbylá chybějící stání v Rakousku: odhad vozovku podhodnotí (Franz-Fischer-Straße 3 m proti asi 12 m, Eferdinger
+Straße 7 m proti 12 m), stání podle zákona se pak nevejde. Další krok je šířka vozovky v odhadu, ne pravidlo stání.
+Data o parkování velkých měst: Vídeň (FMZK), Berlín, Hamburk a Cáchy stání mají v mapách povrchů už zapojených;
+zóny placeného stání by nepomohly, chybí šířka vozovky, ne informace, že se tam parkuje.

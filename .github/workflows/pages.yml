@@ -1,17 +1,13 @@
 # Publishes the app (pilot/public) on GitHub Pages as a static site: the browser asks IPR, the cities'
-# GIS and ČÚZK directly, and the OSM tiles of the Czech Republic, Slovakia and Austria are built here from Geofabrik's
-# extracts once a week, packed into one file per country (tools/pack_osm_tiles.mjs) and uploaded to Cloudflare R2
-# (data.streetspace.eu), with the same files on Pages as a fallback (they are not kept in the repository; a deploy
-# in the same week reuses them from the Actions cache unless the tile scripts changed). Runs on push to main, by
-# hand, and weekly so the OSM data stays fresh.
+# GIS and ČÚZK directly, and the OSM tiles of the states are built apart once a week (osm-tiles.yml, onto Cloudflare
+# R2, data.streetspace.eu), the files of the states listed for Pages (tools/countries.mjs) copied here as a fallback.
+# Runs on push to main, by hand, and weekly after the tiles (osm-tiles.yml starts it).
 name: GitHub Pages
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
-  schedule:
-    - cron: "0 4 * * 1"
 
 permissions:
   contents: read
@@ -37,116 +33,33 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
-    # Building the tiles of the countries (CZ, SK, AT) takes most of it (about 60–90 min without the cache).
-    timeout-minutes: 180
-    env:
-      # Whether the keys for R2 are set (a step's if cannot read secrets).
-      R2_KEYS: ${{ secrets.R2_ACCESS_KEY_ID != '' && secrets.R2_SECRET_ACCESS_KEY != '' && vars.R2_ACCOUNT_ID != '' }}
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - id: week
-        run: |
-          echo "week=$(date -u +%G-%V)" >> "$GITHUB_OUTPUT"
-          # The states whose OSM tiles are built (tools/countries.mjs), for the cache keys and the extracts' paths (one a
-          # line, as the paths were written here before). An empty list stops the deploy.
-          KEY=$(node tools/countries.mjs --key); test -n "$KEY"
-          echo "countries=$KEY" >> "$GITHUB_OUTPUT"
-          { echo "pbf<<EOF"; for c in $(node tools/countries.mjs --list osm); do echo "data/osm/$c.osm.pbf"; done; echo "EOF"; } >> "$GITHUB_OUTPUT"
-      # This week's packed tiles (site-osm: <country>-<date>.posm and index.json), built by the same scripts: a deploy
-      # reuses them and skips the build (Bára: the weekly refresh is enough while their extent does not change).
-      - id: tiles-cache
-        uses: actions/cache@v4
-        with:
-          path: site-osm
-          key: osm-pack-${{ steps.week.outputs.week }}-${{ steps.week.outputs.countries }}-${{ hashFiles('tools/build_osm_tiles.mjs', 'tools/build_osm_data.sh', 'tools/pack_osm_tiles.mjs', 'pilot/public/osmtile.js', 'pilot/public/osmpack.js') }}
-      - name: Install GDAL (ogr2ogr)
-        if: steps.tiles-cache.outputs.cache-hit != 'true'
-        timeout-minutes: 8
-        env:
-          DEBIAN_FRONTEND: noninteractive
-        run: |
-          sudo apt-get update -q
-          sudo -E apt-get install -y -q --no-install-recommends gdal-bin
-          ogr2ogr --version
-      # Geofabrik's extracts are kept in the Actions cache: a deploy reuses this week's copies, a new week downloads
-      # fresh ones and falls back to the last copies when download.geofabrik.de is unreachable.
-      - id: pbf-cache
-        if: steps.tiles-cache.outputs.cache-hit != 'true'
-        uses: actions/cache@v4
-        with:
-          path: ${{ steps.week.outputs.pbf }}
-          key: osm-pbf-${{ steps.week.outputs.week }}-${{ steps.week.outputs.countries }}
-          restore-keys: osm-pbf-
-      - name: Download the OSM extracts
-        if: steps.tiles-cache.outputs.cache-hit != 'true'
-        run: |
-          mkdir -p data/osm
-          for c in $(node tools/countries.mjs --list geofabrik); do
-            # This week's copy from the cache is enough (a country added later is still downloaded).
-            if [ "${{ steps.pbf-cache.outputs.cache-hit }}" = "true" ] && [ -f "data/osm/${c%%:*}.osm.pbf" ]; then continue; fi
-            if curl -fL --retry 3 --retry-delay 20 --connect-timeout 30 -o "/tmp/${c%%:*}.osm.pbf" \
-                 "https://download.geofabrik.de/europe/${c#*:}-latest.osm.pbf"; then
-              mv "/tmp/${c%%:*}.osm.pbf" "data/osm/${c%%:*}.osm.pbf"
-            elif [ -f "data/osm/${c%%:*}.osm.pbf" ]; then
-              echo "::warning::no fresh OSM extract of ${c#*:}, using the cached one from an earlier week"
-            else
-              exit 1
-            fi
-          done
-      # The tiles of each country (Czechia about 1.3 GB in 246 000 files, Slovakia 0.5 GB), each packed into one file
-      # (275 MB and 104 MB) named by the date and its content, so a reader never mixes two builds (a second build on the
-      # same day gets another name); the loose tiles are not kept.
-      - name: Build and pack OSM tiles
-        if: steps.tiles-cache.outputs.cache-hit != 'true'
-        timeout-minutes: 110
+      # The packed OSM tiles are built apart (osm-tiles.yml, onto R2; Bára 17. 11. 2026: more states will come): here
+      # only the files of the states that also go on Pages (tools/countries.mjs pages) are copied from R2 as the fallback
+      # the app reads when R2 does not answer (gis.js). Without R2 the site goes out without the fallback.
+      - name: OSM tiles for the fallback on Pages
+        timeout-minutes: 15
         run: |
           mkdir -p site-osm
-          for c in $(node tools/countries.mjs --list osm); do
-            NAME=$c tools/build_osm_data.sh "data/osm/$c.osm.pbf" "tiles-$c"
-            node tools/pack_osm_tiles.mjs "tiles-$c" "site-osm/$c-$(date -u +%F)-{hash}.posm"
-            rm -rf "tiles-$c" data/osm/${c}_*.geojsonl
-          done
-          ls -l site-osm && cat site-osm/index.json
-      # To Cloudflare R2 (bucket profily-ulic-osm in Bára's account, served at data.streetspace.eu): the files first,
-      # index.json last, so the new week appears whole; files older than the last two builds are deleted. Only the
-      # files not there yet go up (a deploy in the same week uploads nothing). Without the keys (secrets
-      # R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY and variable R2_ACCOUNT_ID) the step is skipped and the app reads the
-      # files on Pages. Each file is one write (Class A) and a few more for the parts of a large one.
-      - name: No R2 keys
-        if: env.R2_KEYS != 'true'
-        run: |
-          echo "::warning::no R2 keys - Austria's OSM tiles are not uploaded and the app has none for Austria"
-      - name: Upload OSM tiles to R2
-        if: env.R2_KEYS == 'true'
-        continue-on-error: true
-        timeout-minutes: 20
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: auto
-          AWS_REQUEST_CHECKSUM_CALCULATION: when_required
-          AWS_RESPONSE_CHECKSUM_VALIDATION: when_required
-          R2: s3://profily-ulic-osm/osm
-          ENDPOINT: https://${{ vars.R2_ACCOUNT_ID }}.r2.cloudflarestorage.com
-        run: |
-          aws configure set default.s3.multipart_chunksize 64MB
-          for f in site-osm/*.posm; do
-            if aws s3api head-object --endpoint-url "$ENDPOINT" --bucket profily-ulic-osm --key "osm/$(basename "$f")" > /dev/null 2>&1; then
-              echo "$(basename "$f") is there"
-            else
-              aws s3 cp --endpoint-url "$ENDPOINT" "$f" "$R2/" --content-type application/octet-stream --cache-control "public, max-age=31536000, immutable"
-            fi
-          done
-          aws s3 cp --endpoint-url "$ENDPOINT" site-osm/index.json "$R2/index.json" --content-type application/json --cache-control "public, max-age=300"
-          # Older builds: each country keeps its two newest files (by the time they were uploaded).
-          for c in $(node tools/countries.mjs --list osm); do
-            aws s3 ls --endpoint-url "$ENDPOINT" "$R2/" | sort -r | awk '{print $4}' | grep -E "^$c-[0-9a-f-]+\.posm$" | tail -n +3 | while read -r old; do
-              aws s3 rm --endpoint-url "$ENDPOINT" "$R2/$old"
+          if curl -fsS --retry 3 --retry-delay 10 -o site-osm/r2-index.json https://data.streetspace.eu/osm/index.json; then
+            for c in $(node tools/countries.mjs --list pages); do
+              f=$(node -e 'const j = require("./site-osm/r2-index.json"); process.stdout.write(j.files[process.argv[1]] || "")' "$c")
+              [ -n "$f" ] && curl -fsS --retry 3 --retry-delay 10 -o "site-osm/$f" "https://data.streetspace.eu/osm/$f" || echo "::warning::no OSM file of $c on R2"
             done
-          done
+            node --input-type=module -e 'import fs from "fs"; import { COUNTRIES } from "./tools/countries.mjs";
+              const j = JSON.parse(fs.readFileSync("site-osm/r2-index.json", "utf8"));
+              j.files = Object.fromEntries(Object.entries(j.files).filter(([c, f]) => COUNTRIES[c]?.pages && fs.existsSync("site-osm/" + f)));
+              fs.writeFileSync("site-osm/index.json", JSON.stringify(j, null, 1))'
+            rm site-osm/r2-index.json
+            ls -l site-osm
+          else
+            echo "::warning::data.streetspace.eu did not answer: the site goes out without the OSM fallback on Pages"
+          fi
       # The zone file of the last good deploy is kept in the Actions cache: when IPR does not answer
       # now, that one goes out; with neither, the deploy stops (without it many more cuts would be
       # guesses).
@@ -264,8 +177,7 @@ jobs:
           grep -q 'LOG_URL = ""' _site/config.js && echo "::warning::no log of cuts (repository variable LOG_URL)" || true
           # The packed OSM tiles also on Pages: where R2 does not answer, the app reads them here (gis.js).
           # Austria's file only on R2 (Bára 16. 11. 2026): with it the site would pass Pages' 1 GB.
-          mkdir -p _site/data/osm-pack && for c in $(node tools/countries.mjs --list pages); do cp site-osm/$c-*.posm _site/data/osm-pack/; done
-          node --input-type=module -e 'import fs from "fs"; import { COUNTRIES } from "./tools/countries.mjs"; const j = JSON.parse(fs.readFileSync("site-osm/index.json", "utf8")); for (const k of Object.keys(j.files)) if (!COUNTRIES[k]?.pages) delete j.files[k]; fs.writeFileSync("_site/data/osm-pack/index.json", JSON.stringify(j, null, 1))'
+          if [ -f site-osm/index.json ] && ls site-osm/*.posm > /dev/null 2>&1; then mkdir -p _site/data/osm-pack && cp site-osm/*.posm site-osm/index.json _site/data/osm-pack/; fi
           mv site-zps.json _site/data/zps.json
           [ -d site-vyvoj ] && mv site-vyvoj _site/data/vyvoj || echo "::warning::no built-up area tiles, flat roofs judged by the house alone"
           cp LICENCE-A-ZDROJE.md _site/data/LICENCE-A-ZDROJE.md

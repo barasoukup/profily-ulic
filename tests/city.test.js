@@ -80,7 +80,7 @@ test("město podle polohy řezu", async () => {
   assert.equal(C.setCity("plzen").adjective, "plzeňské");
   C.setCity("praha");
 });
-test("stát podle polohy řezu: Česko, Slovensko, Rakousko, cizina", async () => {
+test("stát podle polohy řezu: Česko, Slovensko, Rakousko, Německo, cizina", async () => {
   const C = await import("../pilot/public/city.js");
   C.loadBounds(JSON.parse(read("mesta.json")));
   C.loadStates(JSON.parse(read("staty.json")));
@@ -91,7 +91,12 @@ test("stát podle polohy řezu: Česko, Slovensko, Rakousko, cizina", async () =
   assert.equal(C.cityAt(49.7497, 18.6328), "cizina"); // Cieszyn
   assert.equal(C.cityAt(48.2085, 16.3731), "austria"); // Wien, Stephansplatz
   assert.equal(C.cityAt(47.0707, 15.4395), "austria"); // Graz
-  assert.equal(C.cityAt(48.137, 11.575), "cizina"); // München
+  assert.equal(C.cityAt(48.137, 11.575), "germany"); // München
+  assert.equal(C.cityAt(52.5163, 13.3777), "germany"); // Berlin, Brandenburger Tor
+  assert.equal(C.cityAt(47.835, 12.98), "germany"); // Freilassing, by Salzburg
+  assert.equal(C.cityAt(50.0796, 12.3739), "cesko"); // Cheb, náměstí
+  assert.equal(C.cityAt(48.5734, 7.8105), "germany"); // Kehl
+  assert.equal(C.cityAt(48.5818, 7.7509), "cizina"); // Strasbourg
   const sk = C.setCity("slovensko");
   assert.ok(sk.abroad && !sk.techMap && !sk.dataName);
   assert.equal(sk.country, "SK");

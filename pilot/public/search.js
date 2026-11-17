@@ -7,7 +7,7 @@
 import { t } from "./i18n.js";
 import { findSk, locateSk, looksSlovak } from "./search-sk.js";
 import { findAt, locateAt, looksViennese } from "./search-at.js";
-import { findPhoton } from "./search-photon.js";
+import { findPhoton, looksGerman } from "./search-photon.js";
 
 export const RUIAN_SEARCH = "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer";
 const GEOCODE = `${RUIAN_SEARCH}/exts/GeocodeSOE`;
@@ -200,7 +200,8 @@ export async function locate(item, signal) {
 // ---------- UI: a Leaflet control at the map's top left ----------
 // onPick({ item, lat, lon, cut }) after the map has moved; status(msg, kind) for a failure.
 // services(): the search services of the state the map shows (countries/<ISO>.js search): "zbgis" (Slovak places are
-// then asked of ZBGIS along with RÚIAN), "photon" (Photon of komoot). inVienna(): does the map show Vienna.
+// then asked of ZBGIS along with RÚIAN), "photon" (Photon of komoot, Austria), "photon-de" (Photon, Germany).
+// inVienna(): does the map show Vienna.
 export function mountSearch(map, { status, onPick, services = () => [], inVienna = () => false }) {
   const L = globalThis.L;
   const el = L.DomUtil.create("div", "search leaflet-bar");
@@ -264,9 +265,12 @@ export function mountSearch(map, { status, onPick, services = () => [], inVienna
       const [cz, skNow] = await Promise.all([getJSON(suggestUrl(text.trim()), mine.signal).then(parseSuggestions, (err) => { if (both && err.name !== "AbortError") return []; throw err; }), both ? sk() : []]);
       // Vienna's address points where the map shows Vienna or the query names it (search-at.js).
       const at = inVienna() || looksViennese(text) ? await findAt(text.trim(), getJSON, mine.signal).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání Vídeň", err); return []; }) : [];
-      // The rest of Austria (and Vienna where its own points found nothing): Photon of komoot (search-photon.js).
-      const photon = (services().includes("photon") || at.length === 0 && looksViennese(text)) && !at.some((x) => x.type === "AdresniMisto")
-        ? await findPhoton(text, getJSON, mine.signal).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání Photon", err); return []; }) : [];
+      // The rest of Austria (and Vienna where its own points found nothing), and Germany: Photon of komoot
+      // (search-photon.js), near the map's centre; elsewhere a German-looking query that RÚIAN did not find asks it of both.
+      const countries = services().includes("photon-de") ? ["DE"] : services().includes("photon") || at.length === 0 && looksViennese(text) ? ["AT"]
+        : cz.length === 0 && !skNow.length && looksGerman(text) ? ["DE", "AT"] : [];
+      const photon = countries.length && !at.some((x) => x.type === "AdresniMisto")
+        ? await findPhoton(text, getJSON, mine.signal, countries, [map.getCenter().lat, map.getCenter().lng]).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání Photon", err); return []; }) : [];
       const found = rankResults([...at, ...photon, ...cz, ...(both || cz.length ? skNow : await sk())], text);
       cache.set(key, found);
       if (cache.size > 40) cache.delete(cache.keys().next().value);

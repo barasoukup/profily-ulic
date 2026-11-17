@@ -1,0 +1,55 @@
+---
+name: mereni-presnosti
+description: Univerzální měření přesnosti profilů Profilů ulic (stejné ve všech státech): AI posuzovatel z ortofota a fotek z ulice sestaví vlastní profil a porovná se s profilem aplikace (složení uličního prostoru, pak šířka). Použij u každého nového státu a když Bára řekne, že chce přeměřit staré státy (po změnách odhadu, dat nebo ilustrací).
+---
+
+# Měření přesnosti profilů (univerzální metoda)
+
+Postup z 17. 11. 2026 (Bára: „jednu univerzální metodu, kterou můžeme hodnotit přesnost všude“). Kód
+v `evaluation/universal/`, zpráva s výsledky a kalibrací `evaluation/universal/ZPRAVA.md`.
+
+**Co měříme:** nejdřív složení uličního prostoru (chodník, stání, pruhy, cyklo, tramvaj, zeleň, dělicí pás, pořadí
+A→B), pak šířku uličního prostoru, pruhy. Obruby na centimetry ne (Bára: složení je důležitější než přesnost).
+
+**Kdy:** u každého nového státu (po jeho zapojení, před nasazením) a na pokyn Báry u starých států (po větší změně).
+Výsledek vždy srovnat s minulou tabulkou (`vysledky/staty.md`, ZPRAVA.md).
+
+## Kalibrace (hotová, opakovat jen při změně posuzovatele nebo pokynu)
+
+Praha proti MTVU (`score-calib.mjs`): posuzovatel s fotkou Mapillary 71 %, s panoramatem Mapy.com 82 % shody
+složení; **bez fotky 28 %, tedy nepoužitelný**. Hodnotí se proto jen řezy s fotkou z ulice.
+
+## Postup
+
+1. **Vzorek** `sample.mjs`: 10 měst státu (velká i menší) v `TOWNS` pod kódem státu ISO, 8 náhodných bodů do
+   1,5 km od centra, pevné semínko. `node evaluation/universal/sample.mjs > evaluation/universal/sample.json`.
+2. **Ortofoto státu** v `ortho.mjs fetchOrtho` (CZ ČÚZK, SK ZBGIS, AT basemap.at z20→z19, DE WMS spolkové země).
+   Nový stát: přidat jeho národní ortofoto. Výřez: řez vodorovně, ulice nahoru, A vlevo, 10 px = 1 m.
+3. **Dlaždice OSM** pro lokální sběr (`?osm=balik`): u velkého státu jen města vzorku osmiem
+   (`osmium extract -c …` z výřezu Geofabriku, pak `tools/build_osm_data.sh` a `pack_osm_tiles.mjs`).
+4. **Profily aplikace:** server s `EVAL_SAVE=1` (`.claude/launch.json` „pilot-germany-eval“, port 5196), body do
+   `pilot/public/zz-pts.json`, v prohlížeči skript z `collect.js` (CSP nedovolí eval: vložit funkci přímo přes
+   javascript_tool), uloží `data/app*.json`. Pozdější sběr týchž řezů po opravě: jiný název (`app-at`), vyhrává.
+5. **Výběr a fotky** `node evaluation/universal/select.mjs <ISO>`: nejvýš 4 řezy na město, které mají fotku.
+   Mapillary všude (token `evaluation/streetview/token.local`), v Česku navíc panorama Mapy.com (vlastní klíč
+   `evaluation/universal/mapy-key.local`; klíč aplikace je omezený na web, Referer nepodvrhovat). Obě git ignoruje.
+6. **Posuzovatelé:** agenti Sonnet po ~20 řezech, podle `POKYN.md`, **fotky povinně** (bez toho je přeskočí),
+   profil aplikace nesmí vidět, výstup `vysledky/u-<iso>-N.jsonl`. Zkontrolovat, že každý řez má ortofoto
+   (`data/<id>-ortho.jpg`); agent bez ortofota vymýšlí.
+7. **Skóre** `node evaluation/universal/score-states.mjs` (jen řezy s vozovkou), uložit do `vysledky/staty.md`,
+   doplnit ZPRAVA.md, commit.
+8. **Úklid:** `node evaluation/universal/clean.mjs` (panoramata Mapy.com se podle podmínek nesmí uchovávat),
+   smazat `pilot/public/zz-pts.json`.
+
+## Na co dát pozor (z prvního měření)
+
+- Ověřit, že odhad státu opravdu čte ortofoto (`sources.orthoCity` v nasbíraných profilech): basemap.at mělo z20
+  jen ve třech městech a zbytek Rakouska ortofoto neměl.
+- Náhodné body padají i na pěšiny v parku: počítají se jen řezy s vozovkou.
+- Aplikace dělí chodník stromořadím na kusy, posuzovatel ne („navíc chodník“): rozdíl zápisu, ne nutně chyba.
+- Šířka z ortofota je hrubá, brát orientačně.
+- Cena: asi 0,4 mil. tokenů na stát (40 řezů); kalibrace 0,7 mil.
+
+## Výsledky 17. 11. 2026 (shoda složení / šířka do 2 m)
+
+CZ 56 % / 31 %, SK 60 % / 53 % (jen 15 řezů), AT 57 % / 27 %, DE 58 % / 35 %. V AT a DE nejčastěji chybí stání.

@@ -14,8 +14,6 @@ export const EN = {
   "Podkladová mapa a vrstvy": "Base map and layers",
   "Server {server} neodpovídá, zkouším znovu ({n}/{of})…": "The {server} server is not responding, trying again ({n}/{of})…",
   "Načítám data z OSM…": "Loading OSM data…",
-  "Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko, Slovensko a Rakousko).":
-    "No street found here. Try clicking right on a road (the data cover Czechia, Slovakia and Austria).",
   "Načítám {map}…": "Loading {map}…",
   "Načítám ortofoto…": "Loading the orthophoto…",
   " · odhad z ortofota a OSM": " · estimate from the orthophoto and OSM",
@@ -43,9 +41,6 @@ export const EN = {
   "Hotovo": "Done",
   "Opravit data": "Correct data",
   "Příčný profil ulice": "Street cross-section",
-  "Klikněte v mapě na ulici kdekoli v Česku, na Slovensku nebo v Rakousku.": "Click a street on the map anywhere in Czechia, Slovakia or Austria.",
-  "Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy Vídně a OSM.":
-    "A profile from façade to façade is built from the technical map of the city or of ČÚZK, RÚIAN and OSM; in Slovakia from the towns' passports, ZBGIS, the orthophoto and OSM; in Austria from the orthophoto, Vienna's map and OSM.",
   "V režimu Návrh ho upravíte: táhněte hranice, klikněte na část, přidejte novou.":
     "Edit it in Proposal: drag the borders, click a part, add a new one.",
   " · změněné části jsou obtažené": " · changed parts are outlined",
@@ -364,6 +359,32 @@ export const EN = {
   "Obytná zóna": "Residential zone",
   "Pěší zóna": "Pedestrian zone",
   "Cyklistická ulice": "Cycle street",
+  "Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko, Slovensko, Rakousko a Německo).": "No street found here. Try clicking right on a road (the data cover Czechia, Slovakia, Austria and Germany).",
+  "Klikněte v mapě na ulici kdekoli v Česku, na Slovensku, v Rakousku nebo v Německu.": "Click a street on the map anywhere in Czechia, Slovakia, Austria or Germany.",
+  "Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy Vídně a OSM, v Německu z ortofot spolkových zemí a OSM.": "A profile from façade to façade is built from the technical map of the city or of ČÚZK, RÚIAN and OSM; in Slovakia from the towns' passports, ZBGIS, the orthophoto and OSM; in Austria from the orthophoto, Vienna's map and OSM; in Germany from the orthophotos of the Länder and OSM.",
+  "ortofoto © spolkové země Německa (GeoBasis-DE)": "orthophoto © the German Länder (GeoBasis-DE)",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, podle StVO § 12 a judikatury má zůstat asi {need} na projetí vozidla.": "Parking half on the sidewalk from OSM: {free} of the roadway is left, StVO § 12 and the courts want about {need} for a vehicle to pass.",
+  "jízdní pruh hlavní ulice: vozovka 6,5 m pro potkávání autobusů, tedy asi 3,25 m (RASt 06 podle dopisu, kterým ji Bavorsko zavedlo, 2009)": "lane of a main street: a 6.5 m roadway for two buses to meet, so about 3.25 m (RASt 06 per Bavaria's introductory letter of 2009)",
+  "chodník: 2,5 m, nejméně 1,8 m (RASt 06 a EFA 2002 podle přehledu Dolního Saska)": "sidewalk: 2.5 m, at least 1.8 m (RASt 06 and EFA 2002 per Lower Saxony's overview)",
+  "společná stezka pro chodce a cyklisty: min. 2,5 m, základ 3 m (VwV-StVO k Z 240, ERA 2010 podle přehledu Dolního Saska)": "shared foot and cycle path: min. 2.5 m, basic 3 m (VwV-StVO on Z 240, ERA 2010 per Lower Saxony's overview)",
+  "cyklopruh vedle stání: 1,85 m a bezpečnostní odstup 0,75 m (ERA 2010 podle přehledu Dolního Saska)": "cycle lane beside parking: 1.85 m and a 0.75 m safety buffer (ERA 2010 per Lower Saxony's overview)",
+  "cyklopruh (Radfahrstreifen): min. 1,5 m, základ 1,85 m i s čarou (VwV-StVO, ERA 2010 podle přehledu Dolního Saska)": "cycle lane (Radfahrstreifen): min. 1.5 m, basic 1.85 m including the line (VwV-StVO, ERA 2010 per Lower Saxony's overview)",
+  "ochranný pruh vedle stání: 1,5 m a bezpečnostní odstup 0,75 m (ERA 2010 podle přehledu Dolního Saska)": "advisory cycle lane beside parking: 1.5 m and a 0.75 m safety buffer (ERA 2010 per Lower Saxony's overview)",
+  "ochranný pruh (Schutzstreifen): min. 1,25 m, základ 1,5 m (ERA 2010 podle přehledu Dolního Saska)": "advisory cycle lane (Schutzstreifen): min. 1.25 m, basic 1.5 m (ERA 2010 per Lower Saxony's overview)",
+  "stezka pro cyklisty jednosměrná: min. 1,6 m, základ 2 m; obousměrná 2,5 a 3 m (ERA 2010 podle přehledu Dolního Saska)": "one-way cycle track: min. 1.6 m, basic 2 m; two-way 2.5 and 3 m (ERA 2010 per Lower Saxony's overview)",
+  "kolmé stání: hloubka 4,5 m a přesah 0,7 m nad obrubou (EAR 23 podle DUH 2024)": "perpendicular parking: 4.5 m deep and 0.7 m overhang over the kerb (EAR 23 per DUH 2024)",
+  "podélné stání: 2 m (EAR 23 podle DUH 2024)": "parallel parking: 2 m (EAR 23 per DUH 2024)",
+  "Mapa povrchů města teď neodpovídá, profil je odhad z ortofota a OSM.": "The city's surface map is not answering now, the profile is an estimate from the orthophoto and OSM.",
+  " · mapa povrchů města neodpověděla, odhad z ortofota a OSM": " · the city's surface map did not answer, estimate from the orthophoto and OSM",
+  "mapy povrchů ulic Berlína a OSM": "Berlin's street surface map and OSM",
+  "mapy povrchů ulic Hamburku a OSM": "Hamburg's street surface map and OSM",
+  "povrchy ulic (Straßenbefahrung 2014) © Geoportal Berlin (dl-de/zero-2-0)": "street surfaces (Straßenbefahrung 2014) © Geoportal Berlin (dl-de/zero-2-0)",
+  "povrchy ulic (Feinkartierung Straße) © Freie und Hansestadt Hamburg (dl-de/by-2-0)": "street surfaces (Feinkartierung Straße) © Freie und Hansestadt Hamburg (dl-de/by-2-0)",
+  "databáze ulic Cách a OSM": "Aachen's street database and OSM",
+  "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "street surfaces (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
+  "ortofoto {who}": "orthophoto {who}",
+  "Příčné profily ulic v Česku, na Slovensku, v Rakousku a v Německu od fasády k fasádě z technických map měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.": "Street cross-sections in Czechia, Slovakia, Austria and Germany from facade to facade, from the technical maps of the cities and of ČÚZK, RÚIAN, ZBGIS and OpenStreetMap. Edit a profile, compare it with the street today and save it as an image.",
+  "Příčné profily ulic v Česku, na Slovensku, v Rakousku a v Německu z technických map měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.": "Street cross-sections in Czechia, Slovakia, Austria and Germany from the technical maps of the cities, of ČÚZK and of ZBGIS: facade to facade, editable, with local illustrations.",
   "ortofoto © basemap.at (CC BY 4.0)": "orthophoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "orthophoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© OpenStreetMap contributors (ODbL)",
@@ -561,10 +582,6 @@ export const EN = {
   // ---------- index.html ----------
   // The app's name (Bára 12. 11. 2026); the picture of the link preview keeps the Czech one.
   "Profily ulic": "Street Profile",
-  "Příčné profily ulic v Česku, na Slovensku a v Rakousku od fasády k fasádě z technických map měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.":
-    "Street cross-sections in Czechia, Slovakia and Austria from facade to facade, from the technical maps of the cities and of ČÚZK, RÚIAN, ZBGIS and OpenStreetMap. Edit a profile, compare it with the street today and save it as an image.",
-  "Příčné profily ulic v Česku, na Slovensku a v Rakousku z technických map měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.":
-    "Street cross-sections in Czechia, Slovakia and Austria from the technical maps of the cities, of ČÚZK and of ZBGIS: facade to facade, editable, with local illustrations.",
   "Příčný profil české ulice s tramvajemi, cyklopruhem, chodníky a domy, vedle název Profily ulic":
     "A cross-section of a Czech street with trams, a cycle lane, pavements and buildings, beside it the name Profily ulic",
   "Porovnat": "Compare",
@@ -757,6 +774,7 @@ export const EN_HTML = {
     and of the regions (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (and the address search), cadastre and orthophoto © ČÚZK (CC BY 4.0) · orthophoto, buildings and borders of Slovakia © <a href="https://www.geoportal.sk">GKÚ Bratislava</a>, NLC (ZBGIS, CC BY 4.0), streets and addresses of Slovakia © MV SR ·
     road passports © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), map drawings © mestá Nitra, Piešťany, Hlohovec, technical map © Hlavné mesto SR Bratislava ·
     Austria: orthophoto © basemap.at (CC BY 4.0), surface map of Vienna © Stadt Wien – data.wien.gv.at (CC BY 4.0), border © EuroGeographics (GISCO), traffic signs of Salzburg © Stadt Salzburg (CC BY 3.0 AT), search Photon © komoot (OSM data) ·
+    Germany: orthophotos of the Länder © LGL-BW, Bayerische Vermessungsverwaltung, GeoBasis-DE/LGB, Landesamt GeoInformation Bremen, LGV Hamburg, HVBG, GeoBasis-DE/M-V, LGLN, GeoBasis-DE/NRW, GeoBasis-DE/LVermGeoRP, GeoBasis-DE/LVermGeo SH, GeoBasis-DE/LVGL-SL, GeoSN, GeoBasis-DE/LVermGeo ST, GDI-Th; <a href="https://www.govdata.de/dl-de/by-2-0">dl-de/by-2-0</a>, <a href="https://www.govdata.de/dl-de/zero-2-0">dl-de/zero-2-0</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, border © EuroGeographics (GISCO), traffic signs Wikimedia Commons (official works), search Photon © komoot (OSM data) ·
     networks under the street © IPR Praha, mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, the Olomouc Region, the cities of Karviná, Ostrava, Břeclav ·
     parking © TSK hl. m. Prahy (CC BY 4.0), no-parking areas, trees and street classes from <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, the cities of Jihlava, Opava, Plzeň (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors (ODbL) ·
@@ -766,7 +784,7 @@ export const EN_HTML = {
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">sources and licences</a> (in Czech) ·
     contact <a href="mailto:bara.so@email.cz">bara.so@email.cz</a><br>
     We record only cuts (place, direction, street, time), clicks where no street was found (the place to about a kilometre), the features used and the error reports you write yourself; we store no IP addresses and no cookies. The maps and data
-    load straight from the servers of IPR, ČÚZK, ÚGKK SR (ZBGIS), the cities (also through ArcGIS Online), the regions and OSM (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">privacy</a>, in Czech).`,
+    load straight from the servers of IPR, ČÚZK, ÚGKK SR (ZBGIS), the cities (also through ArcGIS Online), the regions, basemap.at, the German Länder, Berlin, Hamburg, Aachen and OSM, the searched text also from komoot (Photon) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">privacy</a>, in Czech).`,
 };
 
 // The city's texts (city.js) in English: its server, data and credits as sentences take them.
@@ -785,6 +803,7 @@ const ABROAD = {
 export const EN_CITY = {
   slovensko: { ...ABROAD, dataShort: "ZBGIS and OSM", credit: "buildings © GKÚ Bratislava (ZBGIS, CC BY 4.0)", rulesHead: "Widths per Slovak regulations (TP 117, TP 73 6110, TP 085, decree 532/2002):" },
   austria: { ...ABROAD, dataShort: "basemap.at and OSM", rulesHead: "Widths per Austrian guidelines (RVS 03.02.13, Wiener Projektierungshandbuch):" },
+  germany: { ...ABROAD, dataShort: "the Länder's orthophotos and OSM", rulesHead: "Widths per German guidelines (RASt 06, ERA 2010, VwV-StVO):" },
   cizina: ABROAD,
   cesko: {
     server: "ČÚZK technical map", dataName: "The ČÚZK technical map", dataShort: "the ČÚZK technical map, RÚIAN and OSM", techMap: NATIONAL,

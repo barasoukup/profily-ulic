@@ -7,6 +7,7 @@
 // No import of city.js (it imports this).
 import { t } from "./i18n.js";
 import { PASSPORT_NAMES, GREEN_PASSPORTS } from "./towns/pasporty-names.js";
+import { DE_ORTHO } from "./lanes-ortho.js";
 
 export const SOURCE_CREDITS = {
   // A Czech town's passport over the DTM (towns/pasporty.js).
@@ -18,6 +19,9 @@ export const SOURCE_CREDITS = {
   orthoCity: {
     ipr: () => t("ortofoto © IPR Praha, 2024"), brno: () => t("ortofoto © Statutární město Brno, 2025"), plzen: () => t("ortofoto © Statutární město Plzeň, 2024"),
     sk: () => t("ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)"), at: () => t("ortofoto © basemap.at (CC BY 4.0)"),
+    at19: () => t("ortofoto © basemap.at (CC BY 4.0)"),
+    // Germany: the orthophoto of the Land (lanes-ortho.js DE_ORTHO, "de-BY" …), with the credit the Land asks for.
+    ...Object.fromEntries(Object.entries(DE_ORTHO).map(([land, o]) => [`de-${land}`, () => t("ortofoto {who}", { who: o.credit })])),
   },
   // Bratislava's technical map (towns/slovensko.js, ?tm=1).
   skTm: { true: () => t("technická mapa © Hlavné mesto SR Bratislava") },
@@ -35,6 +39,12 @@ export const SOURCE_CREDITS = {
   // Salzburg's cadastre of signs and Vienna's Flächen-Mehrzweckkarte (towns/austria.js).
   atSigns: { salzburg: () => t("dopravní značky © Stadt Salzburg (CC BY 3.0 AT)") },
   atTown: { wien: () => t("mapa povrchů (FMZK) © Stadt Wien – data.wien.gv.at (CC BY 4.0)") },
+  // The street surfaces of German cities (towns/germany.js).
+  deTown: {
+    berlin: () => t("povrchy ulic (Straßenbefahrung 2014) © Geoportal Berlin (dl-de/zero-2-0)"),
+    hamburg: () => t("povrchy ulic (Feinkartierung Straße) © Freie und Hansestadt Hamburg (dl-de/by-2-0)"),
+    aachen: () => t("povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)"),
+  },
   // ZBGIS's roads, car parks and lawns in the estimate (towns/slovensko.js).
   zbgis: { true: () => t("cesty, parkoviská a tráva © GKÚ Bratislava (ZBGIS, CC BY 4.0)") },
 };

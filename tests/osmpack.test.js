@@ -90,3 +90,22 @@ test("státy podle index.json; když R2 selže, čte se tentýž balík odjinud 
   await assert.rejects(set.tiles(["2884_10016"]));
   assert.equal(set.at, 0);
 });
+
+test("jen balíky, jejichž obdélník drží dlaždice řezu; chyba jednoho balíku nechá ostatní odpovědět (recenze Německa)", async () => {
+  const cz = packTiles(["2884_10016"], text).file, de = packTiles(["2885_10016"], text).file;
+  const index = { files: { cz: "cz-1.posm", de_by: "de_by-1.posm", at: "at-1.posm" }, bbox: { cz: [2884, 10016, 2884, 10016], de_by: [2885, 10016, 2885, 10016], at: [1, 1, 2, 2] } };
+  const asked = [];
+  const f = async (url, opts) => {
+    const file = url.split("/")[1];
+    asked.push(file);
+    if (file === "index.json") return Response.json(index);
+    if (file === "de_by-1.posm") return new Response("", { status: 503 });
+    const [, s, e] = /bytes=(\d+)-(\d+)/.exec(opts.headers.Range).map(Number);
+    return new Response({ "cz-1.posm": cz }[file].subarray(s, e + 1), { status: 206, headers: { ETag: "x" } });
+  };
+  const set = new PackSet(["r2", "pages"], { fetch: f });
+  const lists = await set.tiles(["2884_10016", "2885_10016"]);
+  assert.deepEqual(lists, [decodeTile(text("2884_10016"))], "Česko odpoví, i když bavorský balík ne");
+  assert.ok(!asked.includes("at-1.posm"), "rakouský balík mimo řez se neotevře");
+  assert.equal(set.at, 0, "zůstává R2");
+});

@@ -71,7 +71,15 @@ async function image(c, tMax) {
   const k = Math.cos((c.lat * Math.PI) / 180), w = Math.round(((x1 - x0) * k) / RES), h = Math.round(((y1 - y0) * k) / RES);
   let buf;
   try { buf = await fs.readFile(file); } catch {
-    if (process.env.ORTHO === "at") {
+    if (process.env.ORTHO === "de") {
+      // Germany (evaluation/germany/ab): the orthophoto of the town's Land (lanes-ortho.js DE_ORTHO) as a PNG.
+      const { DE_ORTHO, deWmsUrl } = await import("../../../pilot/public/lanes-ortho.js");
+      const land = { berlin: "BE", hamburg: "HH", aachen: "NW" }[c.town];
+      buf = Buffer.from(await (await fetch(deWmsUrl(DE_ORTHO[land], [x0, y0, x1, y1], w, h, "image/png"), { headers: { "User-Agent": "profily-ulic" } })).arrayBuffer());
+      await fs.mkdir(path.dirname(file), { recursive: true });
+      await fs.writeFile(file, buf);
+      await new Promise((r) => setTimeout(r, 300));
+    } else if (process.env.ORTHO === "at") {
       // Austria (evaluation/austria/ab): basemap.at's tiles of level 20 glued and cut to the box with ImageMagick.
       buf = await atImage([x0, y0, x1, y1], w, h);
       await fs.mkdir(path.dirname(file), { recursive: true });
@@ -107,7 +115,7 @@ const line = (im, x, y0, y1, rgb, width) => {
 if (process.argv[1] === new URL(import.meta.url).pathname) {
   const items = [];
   for (const r of rows.filter(differs)) {
-    const c = { id: r.id, ...r.B };
+    const c = { id: r.id, town: r.town, ...r.B };
     if (!c.lat) continue;
     const ext = [r.A?.span, r.B?.span].filter(Boolean).flatMap((s) => [s.left, s.right]);
     const tMax = Math.min(30, Math.max(8, ...ext) + 3);

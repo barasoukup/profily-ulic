@@ -83,9 +83,10 @@ test("výška lampy a stojan podél ulice projdou, nesmysly se zahodí", () => {
 
 // The two bugs found in the review of the rebuild (docs/architecture-countries.md, step 2): a saved cut in Košice or
 // Graz was dropped (only 48–52° N, 12–19° E), and a Slovak or Austrian cut lost the credits of its sources.
-test("uložený řez v Košicích, Grazu a Innsbrucku zůstane, daleko od států ne", () => {
+test("uložený řez v Košicích, Grazu, Innsbrucku a Berlíně zůstane, daleko od států ne", () => {
   for (const [lat, lon] of [[48.719, 21.258], [47.0707, 15.4395], [47.2654, 11.3927], [48.2085, 16.3731], [50.08, 14.42]]) assert.ok(cleanCut({ lat, lon, bearing: 0 }), `${lat},${lon}`);
-  for (const [lat, lon] of [[47.5, 19.04], [52.5, 13.4], [45, 10]]) assert.equal(cleanCut({ lat, lon, bearing: 0 }), null, `${lat},${lon}`);
+  assert.ok(cleanCut({ lat: 52.5, lon: 13.4, bearing: 0 }), "Berlín (Německo)");
+  for (const [lat, lon] of [[47.5, 19.04], [48.85, 2.35], [45, 10]]) assert.equal(cleanCut({ lat, lon, bearing: 0 }), null, `${lat},${lon}`);
 });
 test("uložený řez si nechá klíče zdrojů všech států, neznámé zahodí", () => {
   const c = cleanCut({ lat: 48.144, lon: 17.11, bearing: 0, sources: { skTown: "bratislava", skEdges: "bratislava-tm", skTm: true, zbgis: true, orthoCity: "sk", atTown: "wien", atSigns: "salzburg",

@@ -94,7 +94,9 @@ export default {
   // of about 2.6 m (evaluation/austria/NORMY.md, secondary).
   freeLane: 2.6,
   halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, StVO § 24 odst. 3 žádá {need} (dva volné pruhy, v jednosměrce jeden, podle judikatury asi 2,6 m).", { free, need }),
-  parkGuess: false,
+  // The law's estimate on local streets as in Czechia (the universal judging, 17. 11. 2026: parking was missing in 14 of
+  // 33 Austrian cuts; ?odhadstani=0 leaves it out).
+  parkGuess: true,
   wideRoads: true,
   // Austria has no street classes of its own here: the OSM highway gives the group (limitsAT).
   roadClassFromOsm: true,

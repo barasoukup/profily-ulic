@@ -611,7 +611,8 @@ export function buildingStyle(info, chosen) {
   if (BUILDING_STYLES[set]) return set;
   const style = derivedStyle(info);
   // The state's own catalogue (countries/<ISO>.js houseLook; Austria has no panel houses).
-  return country.houseLook ? country.houseLook(style, info, OFFICE_TYPES.has(info?.type) || !!info?.office) : style;
+  // The city is passed for what the cut's place decides (Germany: panel houses only in the former GDR, city.panels).
+  return country.houseLook ? country.houseLook(style, info, OFFICE_TYPES.has(info?.type) || !!info?.office, city) : style;
 }
 function derivedStyle(info) {
   const h = buildingHeight(info);
@@ -1552,10 +1553,18 @@ async function loadSignFile(a) {
     let svg = await r.text();
     if (text) svg = svg.replace(/(<text id="[vt]"[^>]*>)[^<]*/, `$1${text.replace(/[<&]/g, "")}`);
     const vb = svg.match(/viewBox="([^"]+)"/)?.[1].split(/\s+/).map(Number);
-    signArt.set(key, { uri: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg), w: vb[2], h: vb[3] });
+    signArt.set(key, { uri: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg), w: vb[2], h: vb[3], u: signUnits(dir, vb[2], vb[3]) });
   } catch (err) {
     console.warn("značka chybí", file, err.message);
   }
+}
+// The width of a sign in units of a basic sign (100 in its viewBox = 500 mm). The Czech and Slovak sets are drawn so;
+// the sets taken from Wikimedia Commons (AT, DE) come in their authors' units (a round sign 600, 960 or 100 wide), so
+// their size goes by their shape (the review of Germany, 17. 11. 2026: Z 274 drawn six times too big, Austria's 10a-30
+// ten times bigger than its 10a-50): as tall as a basic sign, a wide one (an arrow, a plate) 1.5 wide.
+export function signUnits(dir, w, h) {
+  if (dir === "znacky" || dir === "znacky-SK") return w / 100;
+  return w / h > 1.6 ? 1.5 : w / h;
 }
 // The file (and filled-in text) of a sign and of its plate.
 const signArtOf = (x, seg) => {
@@ -1662,7 +1671,7 @@ function drawSigns(svg, profile, bounds) {
       // A plate (dodatková tabulka) is drawn as wide as its sign, a second symbol (the bike under the bus) as a sign.
       // data-u: the sign's width in units of a basic sign (100 in its viewBox = 500 mm), so a square IP 4b and an
       // upright IP 11 are as wide as on the street (Bára).
-      el("image", { href: art.uri, "data-ar": art.w / art.h, "data-u": art.w / 100, ...(plate ? { "data-plate": a.file === "C8a" ? "symbol" : "plate" } : {}) }, st);
+      el("image", { href: art.uri, "data-ar": art.w / art.h, "data-u": art.u ?? art.w / 100, ...(plate ? { "data-plate": a.file === "C8a" ? "symbol" : "plate" } : {}) }, st);
     }
     if (!st.querySelector("image")) st.remove();
   };

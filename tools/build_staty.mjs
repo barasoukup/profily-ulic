@@ -1,9 +1,10 @@
 // The boundaries of the states the app has OSM tiles of (Bára 15. 11. 2026), so a cut outside the cities of
 // mesta.json takes its state (city.js cityAt): "cesko" (RÚIAN Stát, ČÚZK), "slovensko" (ZBGIS of ÚGKK SR, layer
 // Slovenská republika), "austria" (Eurostat GISCO 2024, 1 : 1 000 000, © EuroGeographics; the BEV's WFS is off, Bára
-// 16. 11. 2026); a point in none is "cizina". The order matters: Czechia and Slovakia first (their borders are exact,
+// 16. 11. 2026), "germany" (GISCO as Austria, Bára 17. 11. 2026); a point in none is "cizina". The order matters: Czechia and Slovakia first (their borders are exact,
 // GISCO's coarser), so a point by their border with Austria takes theirs. Simplified to about 30 m, written into pilot/public/staty.json and kept in the repository
-// (boundaries change rarely): node tools/build_staty.mjs
+// (boundaries change rarely): node tools/build_staty.mjs, or node tools/build_staty.mjs germany for one state (the
+// others stay as they are in staty.json).
 import fs from "node:fs";
 
 const CZ = "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Prohlizeci_sluzba_nad_daty_RUIAN/MapServer/19/query";
@@ -32,11 +33,18 @@ async function gisco(cntr) {
   return polys.map((p) => p[0].map(([x, y]) => [+x.toFixed(4), +y.toFixed(4)]));
 }
 
-const out = {
-  cesko: await rings(CZ, { where: "1=1", outFields: "nazev" }),
-  slovensko: await rings(SK, { geometry: "19.70,48.67", geometryType: "esriGeometryPoint", sr: 4326, layers: "all:0", tolerance: 2,
+const BUILD = {
+  cesko: () => rings(CZ, { where: "1=1", outFields: "nazev" }),
+  slovensko: () => rings(SK, { geometry: "19.70,48.67", geometryType: "esriGeometryPoint", sr: 4326, layers: "all:0", tolerance: 2,
     mapExtent: "16.8,47.7,22.6,49.7", imageDisplay: "800,600,96", returnGeometry: true }),
-  austria: await gisco("AT"),
+  austria: () => gisco("AT"),
+  germany: () => gisco("DE"),
 };
+const file = new URL("../pilot/public/staty.json", import.meta.url);
+const only = process.argv.slice(2);
+const old = only.length ? JSON.parse(fs.readFileSync(file, "utf8")) : {};
+// The order of BUILD is the order of staty.json (city.js cityAt takes the first state a point lies in).
+const out = {};
+for (const id of Object.keys(BUILD)) out[id] = !only.length || only.includes(id) ? await BUILD[id]() : old[id];
 for (const [id, r] of Object.entries(out)) console.log(id, r.length, "kruhů,", r.reduce((a, x) => a + x.length, 0), "bodů");
-fs.writeFileSync(new URL("../pilot/public/staty.json", import.meta.url), JSON.stringify(out));
+fs.writeFileSync(file, JSON.stringify(out));

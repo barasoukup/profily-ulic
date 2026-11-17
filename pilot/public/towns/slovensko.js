@@ -239,7 +239,7 @@ const townAt = (lon, lat) => Object.entries(SK_TOWNS).find(([id, t]) => (!t.optI
 
 // The OSM areas around a box as MTVU features: buildings (they come first: a sidewalk may run under an arcade), and
 // green and water (they come after the passport: they fill what it leaves open).
-async function osmAreas(bbox) {
+export async function osmAreas(bbox) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   const lat = (y0 + y1) / 2, lon = (x0 + x1) / 2, r = Math.max((x1 - x0) * 111320 * Math.cos((lat * Math.PI) / 180), (y1 - y0) * 110574) / 2;
   const o = await osmTiles(lat, lon, r);

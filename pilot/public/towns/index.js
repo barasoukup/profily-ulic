@@ -18,13 +18,14 @@ import * as trebic from "./trebic.js";
 import * as prerov from "./prerov.js";
 import * as slovensko from "./slovensko.js";
 import * as austria from "./austria.js";
+import * as germany from "./germany.js";
 import * as cizina from "./cizina.js";
 
 export const TOWNS = { cesko, jihlava, most, opava, pardubice, plzen, usti, ostrava, "frydek-mistek": frydekMistek, karvina, trebic, prerov,
   // Towns with only their own vehicles: the national data.
   olomouc: cesko, liberec: cesko, hradec: cesko, budejovice: cesko, zlin: cesko,
-  // Slovakia and Austria: their national and towns' sources; elsewhere OSM only.
-  slovensko, austria, cizina };
+  // Slovakia, Austria and Germany: their national and towns' sources; elsewhere OSM only.
+  slovensko, austria, germany, cizina };
 
 // Where a point lies (docs/architecture-countries.md): its state (ISO code), its city (mesta.json, else the rest of the
 // state), its illustrations (city.js art: its own set or its state's), and the

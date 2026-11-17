@@ -1,0 +1,422 @@
+[
+ {
+  "id": "be1",
+  "town": "berlin",
+  "lat": 52.506397,
+  "lon": 13.402832
+ },
+ {
+  "id": "be2",
+  "town": "berlin",
+  "lat": 52.536492,
+  "lon": 13.402449
+ },
+ {
+  "id": "be3",
+  "town": "berlin",
+  "lat": 52.516317,
+  "lon": 13.389113
+ },
+ {
+  "id": "be4",
+  "town": "berlin",
+  "lat": 52.508036,
+  "lon": 13.410589
+ },
+ {
+  "id": "be5",
+  "town": "berlin",
+  "lat": 52.532607,
+  "lon": 13.425253
+ },
+ {
+  "id": "be6",
+  "town": "berlin",
+  "lat": 52.52928,
+  "lon": 13.391844
+ },
+ {
+  "id": "be7",
+  "town": "berlin",
+  "lat": 52.514912,
+  "lon": 13.40068
+ },
+ {
+  "id": "be8",
+  "town": "berlin",
+  "lat": 52.509925,
+  "lon": 13.394258
+ },
+ {
+  "id": "be9",
+  "town": "berlin",
+  "lat": 52.524759,
+  "lon": 13.394518
+ },
+ {
+  "id": "be10",
+  "town": "berlin",
+  "lat": 52.511434,
+  "lon": 13.41586
+ },
+ {
+  "id": "be11",
+  "town": "berlin",
+  "lat": 52.518699,
+  "lon": 13.417145
+ },
+ {
+  "id": "be12",
+  "town": "berlin",
+  "lat": 52.513754,
+  "lon": 13.383064
+ },
+ {
+  "id": "be13",
+  "town": "berlin",
+  "lat": 52.51167,
+  "lon": 13.393262
+ },
+ {
+  "id": "be14",
+  "town": "berlin",
+  "lat": 52.510772,
+  "lon": 13.393518
+ },
+ {
+  "id": "be15",
+  "town": "berlin",
+  "lat": 52.513291,
+  "lon": 13.384049
+ },
+ {
+  "id": "be16",
+  "town": "berlin",
+  "lat": 52.510976,
+  "lon": 13.382031
+ },
+ {
+  "id": "be17",
+  "town": "berlin",
+  "lat": 52.534931,
+  "lon": 13.415653
+ },
+ {
+  "id": "be18",
+  "town": "berlin",
+  "lat": 52.527254,
+  "lon": 13.409605
+ },
+ {
+  "id": "be19",
+  "town": "berlin",
+  "lat": 52.517693,
+  "lon": 13.409799
+ },
+ {
+  "id": "be20",
+  "town": "berlin",
+  "lat": 52.508907,
+  "lon": 13.398839
+ },
+ {
+  "id": "ha1",
+  "town": "hamburg",
+  "lat": 53.544721,
+  "lon": 10.017245
+ },
+ {
+  "id": "ha2",
+  "town": "hamburg",
+  "lat": 53.546518,
+  "lon": 9.964009
+ },
+ {
+  "id": "ha3",
+  "town": "hamburg",
+  "lat": 53.552385,
+  "lon": 9.999749
+ },
+ {
+  "id": "ha4",
+  "town": "hamburg",
+  "lat": 53.539451,
+  "lon": 9.969771
+ },
+ {
+  "id": "ha5",
+  "town": "hamburg",
+  "lat": 53.537617,
+  "lon": 9.985606
+ },
+ {
+  "id": "ha6",
+  "town": "hamburg",
+  "lat": 53.554672,
+  "lon": 10.0095
+ },
+ {
+  "id": "ha7",
+  "town": "hamburg",
+  "lat": 53.542328,
+  "lon": 9.972759
+ },
+ {
+  "id": "ha8",
+  "town": "hamburg",
+  "lat": 53.561157,
+  "lon": 9.972916
+ },
+ {
+  "id": "ha9",
+  "town": "hamburg",
+  "lat": 53.563906,
+  "lon": 9.99952
+ },
+ {
+  "id": "ha10",
+  "town": "hamburg",
+  "lat": 53.564084,
+  "lon": 9.981024
+ },
+ {
+  "id": "ha11",
+  "town": "hamburg",
+  "lat": 53.544677,
+  "lon": 9.999368
+ },
+ {
+  "id": "ha12",
+  "town": "hamburg",
+  "lat": 53.550059,
+  "lon": 9.96411
+ },
+ {
+  "id": "ha13",
+  "town": "hamburg",
+  "lat": 53.542393,
+  "lon": 10.000924
+ },
+ {
+  "id": "ha14",
+  "town": "hamburg",
+  "lat": 53.555771,
+  "lon": 9.96368
+ },
+ {
+  "id": "ha15",
+  "town": "hamburg",
+  "lat": 53.543493,
+  "lon": 9.978472
+ },
+ {
+  "id": "ha16",
+  "town": "hamburg",
+  "lat": 53.553446,
+  "lon": 9.992688
+ },
+ {
+  "id": "ha17",
+  "town": "hamburg",
+  "lat": 53.562649,
+  "lon": 10.009285
+ },
+ {
+  "id": "ha18",
+  "town": "hamburg",
+  "lat": 53.555725,
+  "lon": 10.020118
+ },
+ {
+  "id": "ha19",
+  "town": "hamburg",
+  "lat": 53.533504,
+  "lon": 10.000882
+ },
+ {
+  "id": "ha20",
+  "town": "hamburg",
+  "lat": 53.537817,
+  "lon": 10.001419
+ },
+ {
+  "id": "ha21",
+  "town": "hamburg",
+  "lat": 53.543003,
+  "lon": 9.98914
+ },
+ {
+  "id": "ha22",
+  "town": "hamburg",
+  "lat": 53.54136,
+  "lon": 10.002424
+ },
+ {
+  "id": "ha23",
+  "town": "hamburg",
+  "lat": 53.559054,
+  "lon": 9.971393
+ },
+ {
+  "id": "ha24",
+  "town": "hamburg",
+  "lat": 53.548389,
+  "lon": 9.995747
+ },
+ {
+  "id": "ha25",
+  "town": "hamburg",
+  "lat": 53.547937,
+  "lon": 9.990204
+ },
+ {
+  "id": "ha26",
+  "town": "hamburg",
+  "lat": 53.53549,
+  "lon": 9.998938
+ },
+ {
+  "id": "ha27",
+  "town": "hamburg",
+  "lat": 53.548605,
+  "lon": 9.991883
+ },
+ {
+  "id": "ha28",
+  "town": "hamburg",
+  "lat": 53.541983,
+  "lon": 10.007452
+ },
+ {
+  "id": "ha29",
+  "town": "hamburg",
+  "lat": 53.535261,
+  "lon": 9.988892
+ },
+ {
+  "id": "ha30",
+  "town": "hamburg",
+  "lat": 53.563497,
+  "lon": 9.977975
+ },
+ {
+  "id": "aa1",
+  "town": "aachen",
+  "lat": 50.761654,
+  "lon": 6.076555
+ },
+ {
+  "id": "aa2",
+  "town": "aachen",
+  "lat": 50.764064,
+  "lon": 6.087079
+ },
+ {
+  "id": "aa3",
+  "town": "aachen",
+  "lat": 50.788202,
+  "lon": 6.084607
+ },
+ {
+  "id": "aa4",
+  "town": "aachen",
+  "lat": 50.786326,
+  "lon": 6.082372
+ },
+ {
+  "id": "aa5",
+  "town": "aachen",
+  "lat": 50.791928,
+  "lon": 6.086096
+ },
+ {
+  "id": "aa6",
+  "town": "aachen",
+  "lat": 50.782519,
+  "lon": 6.080698
+ },
+ {
+  "id": "aa7",
+  "town": "aachen",
+  "lat": 50.772155,
+  "lon": 6.096141
+ },
+ {
+  "id": "aa8",
+  "town": "aachen",
+  "lat": 50.787112,
+  "lon": 6.097682
+ },
+ {
+  "id": "aa9",
+  "town": "aachen",
+  "lat": 50.769963,
+  "lon": 6.100668
+ },
+ {
+  "id": "aa10",
+  "town": "aachen",
+  "lat": 50.785685,
+  "lon": 6.085105
+ },
+ {
+  "id": "aa11",
+  "town": "aachen",
+  "lat": 50.761998,
+  "lon": 6.069973
+ },
+ {
+  "id": "aa12",
+  "town": "aachen",
+  "lat": 50.77445,
+  "lon": 6.098291
+ },
+ {
+  "id": "aa13",
+  "town": "aachen",
+  "lat": 50.782512,
+  "lon": 6.062814
+ },
+ {
+  "id": "aa14",
+  "town": "aachen",
+  "lat": 50.789204,
+  "lon": 6.065932
+ },
+ {
+  "id": "aa15",
+  "town": "aachen",
+  "lat": 50.773963,
+  "lon": 6.072602
+ },
+ {
+  "id": "aa16",
+  "town": "aachen",
+  "lat": 50.769753,
+  "lon": 6.103098
+ },
+ {
+  "id": "aa17",
+  "town": "aachen",
+  "lat": 50.770889,
+  "lon": 6.094718
+ },
+ {
+  "id": "aa18",
+  "town": "aachen",
+  "lat": 50.761602,
+  "lon": 6.096634
+ },
+ {
+  "id": "aa19",
+  "town": "aachen",
+  "lat": 50.763927,
+  "lon": 6.091335
+ },
+ {
+  "id": "aa20",
+  "town": "aachen",
+  "lat": 50.764729,
+  "lon": 6.103393
+ }
+]

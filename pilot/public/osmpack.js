@@ -203,18 +203,27 @@ export class PackSet {
     this.packs ??= (async () => {
       const r = await this.f(`${base}/index.json`, { cache: "no-cache", signal: this.timeout ? AbortSignal.timeout(this.timeout) : undefined });
       if (!r.ok) throw new Error(`dlaždice OSM ${r.status}`);
-      const { files } = await r.json();
-      return Object.values(files).map((file) => new Pack(rangeFetch(`${base}/${file}`, this.timeout, this.f)));
+      const { files, bbox = {} } = await r.json();
+      return Object.entries(files).map(([code, file]) => Object.assign(new Pack(rangeFetch(`${base}/${file}`, this.timeout, this.f)), { code, box: bbox[code] }));
     })();
     return this.packs;
   }
 
   // The element lists of the tiles names ("ix_iy") in all countries (a tile on a border may be in two), for mergePieces.
+  // Only the files whose box (index.json bbox) holds one of the tiles are asked; a file that fails is left out with a
+  // warning while the others answer (the review of Germany: one bad file sent all states to the fallback without
+  // Austria and Germany); only when every asked file fails does the next place take over.
   async tiles(names) {
+    const ij = names.map((n) => n.split("_").map(Number));
+    const holds = (p) => !p.box || ij.some(([x, y]) => x >= p.box[0] && x <= p.box[2] && y >= p.box[1] && y <= p.box[3]);
     for (;;) {
       try {
-        const per = await Promise.all((await this.open()).map((p) => p.tiles(names)));
-        return names.flatMap((_, i) => per.map((list) => list[i]).filter((els) => els.length));
+        const asked = (await this.open()).filter(holds);
+        const got = await Promise.allSettled(asked.map((p) => p.tiles(names)));
+        const ok = got.filter((g) => g.status === "fulfilled").map((g) => g.value);
+        if (asked.length && !ok.length) throw got[0].reason;
+        got.forEach((g, i) => { if (g.status === "rejected") console.warn("dlaždice OSM", asked[i].code, g.reason?.message); });
+        return names.flatMap((_, i) => ok.map((list) => list[i]).filter((els) => els.length));
       } catch (err) {
         this.packs = null;
         if (this.at >= this.bases.length - 1) { this.at = 0; throw err; }

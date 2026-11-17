@@ -1,0 +1,402 @@
+[
+{
+"id": "p1",
+"lat": 50.05398344148904,
+"lon": 14.318132005052142,
+"bearing": -98.24414353161535,
+"country": "CZ",
+"half": 18.7,
+"photos": false,
+"name": "Rozvadovská spojka"
+},
+{
+"id": "p2",
+"lat": 50.0650370273174,
+"lon": 14.519963981396225,
+"bearing": 66.2452330845583,
+"country": "CZ",
+"half": 16.2,
+"photos": false,
+"name": "Jižní spojka"
+},
+{
+"id": "p3",
+"lat": 50.019472455620004,
+"lon": 14.516217427139388,
+"bearing": 121.23375537170979,
+"country": "CZ",
+"half": 24.2,
+"photos": false,
+"name": ""
+},
+{
+"id": "p4",
+"lat": 50.053919213702926,
+"lon": 14.407660564041482,
+"bearing": -6.9253033899279295,
+"country": "CZ",
+"half": 27.3,
+"photos": false,
+"name": "Dobříšská"
+},
+{
+"id": "p5",
+"lat": 50.103614736019054,
+"lon": 14.29451388181961,
+"bearing": 168.2216512142434,
+"country": "CZ",
+"half": 20.0,
+"photos": false,
+"name": "Lipská"
+},
+{
+"id": "p6",
+"lat": 50.01023268085028,
+"lon": 14.54071541179722,
+"bearing": 112.81830631150251,
+"country": "CZ",
+"half": 25.3,
+"photos": false,
+"name": "Brněnská"
+},
+{
+"id": "p7",
+"lat": 50.06958191396349,
+"lon": 14.334883820005519,
+"bearing": 5.96203223577766,
+"country": "CZ",
+"half": 23.9,
+"photos": false,
+"name": "Kukulova"
+},
+{
+"id": "p8",
+"lat": 50.10000517090603,
+"lon": 14.491981146937661,
+"bearing": -48.19066807048296,
+"country": "CZ",
+"half": 19.1,
+"photos": false,
+"name": "Spojovací"
+},
+{
+"id": "p9",
+"lat": 50.02385201059699,
+"lon": 14.39447288001492,
+"bearing": 7.775498474772136,
+"country": "CZ",
+"half": 22.3,
+"photos": false,
+"name": "Strakonická"
+},
+{
+"id": "p10",
+"lat": 50.11122429776699,
+"lon": 14.53129007960387,
+"bearing": -171.35333897603613,
+"country": "CZ",
+"half": 28.0,
+"photos": false,
+"name": "Kbelská"
+},
+{
+"id": "p11",
+"lat": 50.0151865783057,
+"lon": 14.394027946280206,
+"bearing": -179.4421342071087,
+"country": "CZ",
+"half": 23.6,
+"photos": false,
+"name": "Strakonická"
+},
+{
+"id": "p12",
+"lat": 50.106656285599946,
+"lon": 14.556826154157744,
+"bearing": -99.14997474222206,
+"country": "CZ",
+"half": 21.6,
+"photos": false,
+"name": "Chlumecká"
+},
+{
+"id": "p13",
+"lat": 50.004059668112625,
+"lon": 14.395010822298252,
+"bearing": -2.5418938863061613,
+"country": "CZ",
+"half": 19.1,
+"photos": false,
+"name": "Strakonická"
+},
+{
+"id": "p14",
+"lat": 50.095964905569225,
+"lon": 14.437028809443786,
+"bearing": -178.02006984793167,
+"country": "CZ",
+"half": 24.2,
+"photos": false,
+"name": "Hlávkův most"
+},
+{
+"id": "p15",
+"lat": 50.07678609335459,
+"lon": 14.335680227902305,
+"bearing": -111.79942544255833,
+"country": "CZ",
+"half": 27.3,
+"photos": false,
+"name": "Bělohorská"
+},
+{
+"id": "p16",
+"lat": 50.10886861888946,
+"lon": 14.480525261884836,
+"bearing": 137.94228907440666,
+"country": "CZ",
+"half": 24.1,
+"photos": false,
+"name": "Čuprova"
+},
+{
+"id": "p17",
+"lat": 50.07679701247531,
+"lon": 14.300574962021116,
+"bearing": -92.19244975908593,
+"country": "CZ",
+"half": 21.2,
+"photos": false,
+"name": "Karlovarská"
+},
+{
+"id": "p18",
+"lat": 50.089291712252,
+"lon": 14.437760564563655,
+"bearing": -179.59203829414557,
+"country": "CZ",
+"half": 28.0,
+"photos": false,
+"name": "Wilsonova"
+},
+{
+"id": "p19",
+"lat": 50.09334719344057,
+"lon": 14.51942697361306,
+"bearing": 84.96514176964666,
+"country": "CZ",
+"half": 15.3,
+"photos": false,
+"name": "Českobrodská"
+},
+{
+"id": "p20",
+"lat": 50.10335726489445,
+"lon": 14.517910297158533,
+"bearing": -98.89594864403736,
+"country": "CZ",
+"half": 28.2,
+"photos": false,
+"name": "Poděbradská"
+},
+{
+"id": "p21",
+"lat": 50.16750399895227,
+"lon": 14.483963933093847,
+"bearing": -1.3910794887776847,
+"country": "CZ",
+"half": 20.6,
+"photos": false,
+"name": "Na Hlavní"
+},
+{
+"id": "p22",
+"lat": 50.09276318105554,
+"lon": 14.412348842657456,
+"bearing": 60.69519867256955,
+"country": "CZ",
+"half": 13.9,
+"photos": false,
+"name": "nábřeží Edvarda Beneše"
+},
+{
+"id": "p23",
+"lat": 50.070934001996534,
+"lon": 14.479678053157338,
+"bearing": 84.42585771560921,
+"country": "CZ",
+"half": 21.0,
+"photos": false,
+"name": "V Olšinách"
+},
+{
+"id": "p24",
+"lat": 50.01825600446163,
+"lon": 14.500905046042408,
+"bearing": 171.480430444206,
+"country": "CZ",
+"half": 11.2,
+"photos": false,
+"name": "Kunratická spojka"
+},
+{
+"id": "p25",
+"lat": 50.1104838851365,
+"lon": 14.52054270574795,
+"bearing": 93.64918321830267,
+"country": "CZ",
+"half": 24.6,
+"photos": false,
+"name": "Kolbenova"
+},
+{
+"id": "p26",
+"lat": 50.09299895668956,
+"lon": 14.38790928747045,
+"bearing": -125.15794646299983,
+"country": "CZ",
+"half": 28.0,
+"photos": false,
+"name": "Patočkova"
+},
+{
+"id": "p27",
+"lat": 50.07055075780312,
+"lon": 14.469733086416369,
+"bearing": -144.70379262832535,
+"country": "CZ",
+"half": 27.2,
+"photos": false,
+"name": "Bělocerkevská"
+},
+{
+"id": "p28",
+"lat": 50.10955896490628,
+"lon": 14.496790622947433,
+"bearing": 61.96871681551668,
+"country": "CZ",
+"half": 19.9,
+"photos": false,
+"name": "Sokolovská"
+},
+{
+"id": "p30",
+"lat": 50.09633451495887,
+"lon": 14.431503376622253,
+"bearing": 67.77048194558155,
+"country": "CZ",
+"half": 22.4,
+"photos": false,
+"name": "nábřeží Kapitána Jaroše"
+},
+{
+"id": "p31",
+"lat": 50.14561477921992,
+"lon": 14.581616347628918,
+"bearing": 44.549819854105856,
+"country": "CZ",
+"half": 17.6,
+"photos": false,
+"name": "Mladoboleslavská"
+},
+{
+"id": "p39",
+"lat": 50.01545623730408,
+"lon": 14.48721849485458,
+"bearing": -144.01381764071868,
+"country": "CZ",
+"half": 13.4,
+"photos": false,
+"name": "K Verneráku"
+},
+{
+"id": "p43",
+"lat": 50.16029201684473,
+"lon": 14.514550884089985,
+"bearing": -167.3019475173568,
+"country": "CZ",
+"half": 9.8,
+"photos": false,
+"name": "Za Tratí"
+},
+{
+"id": "p48",
+"lat": 50.12872647459159,
+"lon": 14.497135152427896,
+"bearing": -78.28932277562608,
+"country": "CZ",
+"half": 24.9,
+"photos": false,
+"name": "Lovosická"
+},
+{
+"id": "p49",
+"lat": 50.083967593262685,
+"lon": 14.372208178616175,
+"bearing": 77.57788615320912,
+"country": "CZ",
+"half": 26.5,
+"photos": false,
+"name": "Bělohorská"
+},
+{
+"id": "p51",
+"lat": 50.04106418712366,
+"lon": 14.370850573375643,
+"bearing": 34.1517893074433,
+"country": "CZ",
+"half": 14.4,
+"photos": false,
+"name": "Prokopské údolí"
+},
+{
+"id": "p52",
+"lat": 50.08282301635786,
+"lon": 14.539250000784408,
+"bearing": 91.7743473619774,
+"country": "CZ",
+"half": 23.3,
+"photos": false,
+"name": "U Technoplynu"
+},
+{
+"id": "p53",
+"lat": 49.9609355430374,
+"lon": 14.339958904075191,
+"bearing": -82.25790162932395,
+"country": "CZ",
+"half": 10.1,
+"photos": false,
+"name": "Černošická"
+},
+{
+"id": "p55",
+"lat": 49.96404394522895,
+"lon": 14.365369046641066,
+"bearing": -118.87585310231974,
+"country": "CZ",
+"half": 10.6,
+"photos": false,
+"name": "Josefa Houdka"
+},
+{
+"id": "p56",
+"lat": 50.05085894442902,
+"lon": 14.304822111543528,
+"bearing": 174.473414005501,
+"country": "CZ",
+"half": 11.2,
+"photos": false,
+"name": "Líšnická"
+},
+{
+"id": "p57",
+"lat": 50.06601883900306,
+"lon": 14.635562930995546,
+"bearing": -74.51827549222156,
+"country": "CZ",
+"half": 8.4,
+"photos": false,
+"name": "K Panenkám"
+}
+]

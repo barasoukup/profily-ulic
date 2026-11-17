@@ -103,3 +103,18 @@ test("Vídeň: třídy FMZK na plochy, podloubí podle plochy pod ním", async (
   assert.equal(fmzkCode({ F_KLASSE: 13, KLASSE_SUB: 59 }), 1003);
   assert.equal(fmzkCode({ F_KLASSE: 999 }), null);
 });
+
+test("Německo (DE): pruh místní ulice bez varování (zdroj nenalezen), Radfahrstreifen 1,5 / 1,85, chodník 1,8 / 2,5, tramvajový pás bez varování", async () => {
+  const C = await import("../pilot/public/city.js");
+  const { osmGroup } = await import("../pilot/public/derive.js");
+  C.setCity("germany");
+  try {
+    assert.deepEqual(levels([{ type: "pruh", width: 2.4, roadClass: osmGroup("residential") }]), [], "bez zdroje bez varování");
+    assert.deepEqual(levels([{ type: "cyklopruh", width: 1.4 }]), ["0:min"]);
+    assert.deepEqual(levels([{ type: "cyklopruh", width: 1.7 }]), ["0:zaklad"]);
+    assert.deepEqual(levels([{ type: "cyklopruh", width: 1.85 }]), []);
+    assert.deepEqual(levels([{ type: "chodnik", width: 1.6 }]), ["0:min"]);
+    assert.deepEqual(levels([{ type: "chodnik", width: 2.5 }]), []);
+    assert.deepEqual(levels([{ type: "tramvaj", width: 3 }, { type: "tramvaj", width: 3 }]), []);
+  } finally { C.setCity("praha"); }
+});

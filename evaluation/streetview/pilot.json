@@ -1,0 +1,8090 @@
+[
+ {
+  "id": "p1",
+  "lat": 50.05398344148904,
+  "lon": 14.318132005052142,
+  "bearing": -98.24414353161535,
+  "name": "Rozvadovská spojka",
+  "truth": [
+   [
+    "krajnice",
+    3.45
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "zelen",
+    3.5
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "krajnice",
+    3.4
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    30.28
+   ],
+   [
+    "pruh",
+    3.7
+   ],
+   [
+    "pruh",
+    3.7
+   ],
+   [
+    "zelen",
+    4.3
+   ],
+   [
+    "pruh",
+    3.8
+   ],
+   [
+    "pruh",
+    3.8
+   ],
+   [
+    "nezname",
+    30.42
+   ]
+  ],
+  "fTruth": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p2",
+  "lat": 50.0650370273174,
+  "lon": 14.519963981396225,
+  "bearing": 66.2452330845583,
+  "name": "Jižní spojka",
+  "truth": [
+   [
+    "krajnice",
+    2.68
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "krajnice",
+    2.68
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    34.58
+   ],
+   [
+    "pruh",
+    2.93
+   ],
+   [
+    "pruh",
+    2.93
+   ],
+   [
+    "pruh",
+    2.93
+   ],
+   [
+    "nezname",
+    36.62
+   ]
+  ],
+  "fTruth": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 3,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p3",
+  "lat": 50.019472455620004,
+  "lon": 14.516217427139388,
+  "bearing": 121.23375537170979,
+  "name": "",
+  "truth": [
+   [
+    "krajnice",
+    1.47
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "zelen",
+    3
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "krajnice",
+    3.8
+   ],
+   [
+    "zelen",
+    5.55
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    18.82
+   ],
+   [
+    "pruh",
+    3.7
+   ],
+   [
+    "pruh",
+    3.7
+   ],
+   [
+    "pruh",
+    3.7
+   ],
+   [
+    "delici",
+    5.2
+   ],
+   [
+    "pruh",
+    3.63
+   ],
+   [
+    "pruh",
+    3.63
+   ],
+   [
+    "pruh",
+    3.63
+   ],
+   [
+    "nezname",
+    33.97
+   ]
+  ],
+  "fTruth": {
+   "lanes": 6,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 6,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p4",
+  "lat": 50.053919213702926,
+  "lon": 14.407660564041482,
+  "bearing": -6.9253033899279295,
+  "name": "Dobříšská",
+  "truth": [
+   [
+    "plocha",
+    9.98
+   ],
+   [
+    "krajnice",
+    2.9
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "delici",
+    0.6
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "krajnice",
+    1.75
+   ],
+   [
+    "plocha",
+    4.95
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    29.08
+   ],
+   [
+    "pruh",
+    2.77
+   ],
+   [
+    "pruh",
+    2.77
+   ],
+   [
+    "pruh",
+    2.77
+   ],
+   [
+    "delici",
+    4
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "krajnice",
+    1.25
+   ],
+   [
+    "chodnik",
+    6
+   ]
+  ],
+  "fTruth": {
+   "lanes": 6,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 6,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p5",
+  "lat": 50.103614736019054,
+  "lon": 14.29451388181961,
+  "bearing": 168.2216512142434,
+  "name": "Lipská",
+  "truth": [
+   [
+    "zelen",
+    5.8
+   ],
+   [
+    "pruh",
+    3.72
+   ],
+   [
+    "pruh",
+    3.72
+   ],
+   [
+    "zelen",
+    2.05
+   ],
+   [
+    "pruh",
+    4.25
+   ],
+   [
+    "pruh",
+    4.25
+   ],
+   [
+    "zelen",
+    4.3
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    28.83
+   ],
+   [
+    "chodnik_kola",
+    2
+   ],
+   [
+    "nezname",
+    0.65
+   ],
+   [
+    "pruh",
+    3.3
+   ],
+   [
+    "pruh",
+    3.3
+   ],
+   [
+    "delici",
+    3.3
+   ],
+   [
+    "pruh",
+    3.2
+   ],
+   [
+    "pruh",
+    3.2
+   ],
+   [
+    "nezname",
+    32.22
+   ]
+  ],
+  "fTruth": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p6",
+  "lat": 50.01023268085028,
+  "lon": 14.54071541179722,
+  "bearing": 112.81830631150251,
+  "name": "Brněnská",
+  "truth": [
+   [
+    "krajnice",
+    3.65
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    4.5
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "krajnice",
+    1.35
+   ],
+   [
+    "zelen",
+    2.88
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    26.73
+   ],
+   [
+    "pruh",
+    3.67
+   ],
+   [
+    "pruh",
+    3.67
+   ],
+   [
+    "pruh",
+    3.67
+   ],
+   [
+    "delici",
+    5
+   ],
+   [
+    "pruh",
+    2.7
+   ],
+   [
+    "pruh",
+    2.7
+   ],
+   [
+    "pruh",
+    2.7
+   ],
+   [
+    "pruh",
+    2.7
+   ],
+   [
+    "nezname",
+    26.47
+   ]
+  ],
+  "fTruth": {
+   "lanes": 8,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 7,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p7",
+  "lat": 50.06958191396349,
+  "lon": 14.334883820005519,
+  "bearing": 5.96203223577766,
+  "name": "Kukulova",
+  "truth": [
+   [
+    "krajnice",
+    2.43
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "krajnice",
+    2.43
+   ],
+   [
+    "zelen",
+    7.85
+   ],
+   [
+    "pruh",
+    4.08
+   ],
+   [
+    "pruh",
+    4.08
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    35.23
+   ],
+   [
+    "pruh",
+    3.8
+   ],
+   [
+    "delici",
+    1.5
+   ],
+   [
+    "pruh",
+    3.1
+   ],
+   [
+    "pruh",
+    3.1
+   ],
+   [
+    "nezname",
+    33.27
+   ]
+  ],
+  "fTruth": {
+   "lanes": 6,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 3,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p8",
+  "lat": 50.10000517090603,
+  "lon": 14.491981146937661,
+  "bearing": -48.19066807048296,
+  "name": "Spojovací",
+  "truth": [
+   [
+    "chodnik",
+    2.95
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "zelen",
+    3
+   ],
+   [
+    "pruh",
+    3.85
+   ],
+   [
+    "pruh",
+    3.85
+   ],
+   [
+    "parkovani",
+    2.15
+   ],
+   [
+    "chodnik",
+    2.95
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    28.53
+   ],
+   [
+    "chodnik",
+    2.5
+   ],
+   [
+    "pruh",
+    3.5
+   ],
+   [
+    "pruh",
+    3.5
+   ],
+   [
+    "delici",
+    3.7
+   ],
+   [
+    "pruh",
+    3.8
+   ],
+   [
+    "pruh",
+    3.8
+   ],
+   [
+    "chodnik",
+    2.8
+   ],
+   [
+    "nezname",
+    27.87
+   ]
+  ],
+  "fTruth": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": true,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p9",
+  "lat": 50.02385201059699,
+  "lon": 14.39447288001492,
+  "bearing": 7.775498474772136,
+  "name": "Strakonická",
+  "truth": [
+   [
+    "krajnice",
+    4.69
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "bus",
+    3.75
+   ],
+   [
+    "krajnice",
+    4.69
+   ],
+   [
+    "zed",
+    0.63
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    36.23
+   ],
+   [
+    "pruh",
+    3.37
+   ],
+   [
+    "pruh",
+    3.37
+   ],
+   [
+    "bus",
+    3.37
+   ],
+   [
+    "zelen",
+    16.05
+   ]
+  ],
+  "fTruth": {
+   "lanes": 6,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 3,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p10",
+  "lat": 50.11122429776699,
+  "lon": 14.53129007960387,
+  "bearing": -171.35333897603613,
+  "name": "Kbelská",
+  "truth": [
+   [
+    "plocha",
+    44
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    31.83
+   ],
+   [
+    "pruh",
+    3.85
+   ],
+   [
+    "pruh",
+    3.85
+   ],
+   [
+    "delici",
+    1.3
+   ],
+   [
+    "pruh",
+    3.4
+   ],
+   [
+    "pruh",
+    3.4
+   ],
+   [
+    "chodnik",
+    2.5
+   ],
+   [
+    "nezname",
+    29.87
+   ]
+  ],
+  "fTruth": {
+   "lanes": 0,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p11",
+  "lat": 50.0151865783057,
+  "lon": 14.394027946280206,
+  "bearing": -179.4421342071087,
+  "name": "Strakonická",
+  "truth": [
+   [
+    "chodnik",
+    2
+   ],
+   [
+    "bus_cyklo",
+    3.78
+   ],
+   [
+    "pruh",
+    3.78
+   ],
+   [
+    "pruh",
+    3.78
+   ],
+   [
+    "zelen",
+    0.3
+   ],
+   [
+    "zed",
+    0.8
+   ],
+   [
+    "zelen",
+    0.6
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "krajnice",
+    1.1
+   ],
+   [
+    "chodnik",
+    11.5
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    28.93
+   ],
+   [
+    "bus_cyklo",
+    3.43
+   ],
+   [
+    "pruh",
+    3.43
+   ],
+   [
+    "pruh",
+    3.43
+   ],
+   [
+    "delici",
+    2.7
+   ],
+   [
+    "pruh",
+    3.55
+   ],
+   [
+    "pruh",
+    3.55
+   ],
+   [
+    "nezname",
+    30.97
+   ]
+  ],
+  "fTruth": {
+   "lanes": 5,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 5,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p12",
+  "lat": 50.106656285599946,
+  "lon": 14.556826154157744,
+  "bearing": -99.14997474222206,
+  "name": "Chlumecká",
+  "truth": [
+   [
+    "chodnik",
+    1.98
+   ],
+   [
+    "zelen",
+    3.4
+   ],
+   [
+    "krajnice",
+    1.28
+   ],
+   [
+    "pruh",
+    4
+   ],
+   [
+    "pruh",
+    4
+   ],
+   [
+    "pruh",
+    4
+   ],
+   [
+    "krajnice",
+    1.28
+   ],
+   [
+    "zelen",
+    3.3
+   ],
+   [
+    "pruh",
+    4
+   ],
+   [
+    "pruh",
+    4
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    32.13
+   ],
+   [
+    "pruh",
+    3
+   ],
+   [
+    "pruh",
+    3
+   ],
+   [
+    "delici",
+    3
+   ],
+   [
+    "pruh",
+    3.65
+   ],
+   [
+    "pruh",
+    3.65
+   ],
+   [
+    "nezname",
+    31.57
+   ]
+  ],
+  "fTruth": {
+   "lanes": 5,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p13",
+  "lat": 50.004059668112625,
+  "lon": 14.395010822298252,
+  "bearing": -2.5418938863061613,
+  "name": "Strakonická",
+  "truth": [
+   [
+    "krajnice",
+    3.2
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "delici",
+    1.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "bus_cyklo",
+    3.75
+   ],
+   [
+    "krajnice",
+    2.55
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    32.33
+   ],
+   [
+    "pruh",
+    3.3
+   ],
+   [
+    "pruh",
+    3.3
+   ],
+   [
+    "delici",
+    2.3
+   ],
+   [
+    "pruh",
+    3.2
+   ],
+   [
+    "pruh",
+    3.2
+   ],
+   [
+    "bus_cyklo",
+    3.2
+   ],
+   [
+    "nezname",
+    29.17
+   ]
+  ],
+  "fTruth": {
+   "lanes": 5,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 5,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p14",
+  "lat": 50.095964905569225,
+  "lon": 14.437028809443786,
+  "bearing": -178.02006984793167,
+  "name": "Hlávkův most",
+  "truth": [
+   [
+    "pruh",
+    2.81
+   ],
+   [
+    "pruh",
+    2.81
+   ],
+   [
+    "zelen",
+    1.85
+   ],
+   [
+    "chodnik_kola",
+    3.9
+   ],
+   [
+    "pruh",
+    3.63
+   ],
+   [
+    "pruh",
+    3.63
+   ],
+   [
+    "tramvaj_pruh",
+    3.26
+   ],
+   [
+    "tramvaj_pruh",
+    3.26
+   ],
+   [
+    "pruh",
+    3.68
+   ],
+   [
+    "pruh",
+    3.68
+   ],
+   [
+    "chodnik_kola",
+    3.9
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    27.03
+   ],
+   [
+    "chodnik_kola",
+    2.5
+   ],
+   [
+    "pruh",
+    3.45
+   ],
+   [
+    "pruh",
+    3.45
+   ],
+   [
+    "tramvaj",
+    3.55
+   ],
+   [
+    "tramvaj",
+    3.55
+   ],
+   [
+    "pruh",
+    3.1
+   ],
+   [
+    "pruh",
+    3.1
+   ],
+   [
+    "chodnik",
+    2.5
+   ],
+   [
+    "nezname",
+    27.77
+   ]
+  ],
+  "fTruth": {
+   "lanes": 6,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": true,
+   "sidewalkLeft": false,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": true,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p15",
+  "lat": 50.07678609335459,
+  "lon": 14.335680227902305,
+  "bearing": -111.79942544255833,
+  "name": "Bělohorská",
+  "truth": [
+   [
+    "parkovani",
+    5.7
+   ],
+   [
+    "stromorad",
+    2.2
+   ],
+   [
+    "zed",
+    0.3
+   ],
+   [
+    "zelen",
+    1.7
+   ],
+   [
+    "pruh",
+    3.53
+   ],
+   [
+    "pruh",
+    3.53
+   ],
+   [
+    "tramvaj",
+    3.47
+   ],
+   [
+    "tramvaj",
+    3.47
+   ],
+   [
+    "pruh",
+    3.4
+   ],
+   [
+    "pruh",
+    3.4
+   ],
+   [
+    "chodnik",
+    3
+   ],
+   [
+    "zelen",
+    3.1
+   ],
+   [
+    "obsluzna",
+    5.73
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    9.9
+   ],
+   [
+    "parkovani",
+    4.85
+   ],
+   [
+    "chodnik",
+    4.65
+   ],
+   [
+    "pruh",
+    3.25
+   ],
+   [
+    "pruh",
+    3.25
+   ],
+   [
+    "tramvaj",
+    3.55
+   ],
+   [
+    "tramvaj",
+    3.55
+   ],
+   [
+    "pruh",
+    3.35
+   ],
+   [
+    "pruh",
+    3.35
+   ],
+   [
+    "nezname",
+    29.87
+   ]
+  ],
+  "fTruth": {
+   "lanes": 5,
+   "parkingLeft": true,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": true,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": true,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 4,
+   "parkingLeft": true,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": true,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p16",
+  "lat": 50.10886861888946,
+  "lon": 14.480525261884836,
+  "bearing": 137.94228907440666,
+  "name": "Čuprova",
+  "truth": [
+   [
+    "chodnik",
+    2
+   ],
+   [
+    "zelen",
+    2.25
+   ],
+   [
+    "krajnice",
+    2.3
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "krajnice",
+    2.3
+   ],
+   [
+    "plocha",
+    9
+   ],
+   [
+    "stezka_sdilena",
+    3.25
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    29.88
+   ],
+   [
+    "chodnik",
+    2.5
+   ],
+   [
+    "pruh",
+    3.5
+   ],
+   [
+    "pruh",
+    3.5
+   ],
+   [
+    "delici",
+    0.9
+   ],
+   [
+    "pruh",
+    3.8
+   ],
+   [
+    "pruh",
+    3.8
+   ],
+   [
+    "nezname",
+    32.12
+   ]
+  ],
+  "fTruth": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p17",
+  "lat": 50.07679701247531,
+  "lon": 14.300574962021116,
+  "bearing": -92.19244975908593,
+  "name": "Karlovarská",
+  "truth": [
+   [
+    "plocha",
+    3.9
+   ],
+   [
+    "chodnik",
+    1.9
+   ],
+   [
+    "pruh",
+    4.23
+   ],
+   [
+    "pruh",
+    4.23
+   ],
+   [
+    "zelen",
+    3
+   ],
+   [
+    "pruh",
+    4.18
+   ],
+   [
+    "pruh",
+    4.18
+   ],
+   [
+    "zelen",
+    3.2
+   ],
+   [
+    "chodnik",
+    1.65
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    27.73
+   ],
+   [
+    "chodnik",
+    2
+   ],
+   [
+    "nezname",
+    1.75
+   ],
+   [
+    "pruh",
+    3.1
+   ],
+   [
+    "pruh",
+    3.1
+   ],
+   [
+    "delici",
+    4.8
+   ],
+   [
+    "pruh",
+    3.25
+   ],
+   [
+    "pruh",
+    3.25
+   ],
+   [
+    "nezname",
+    3.65
+   ],
+   [
+    "chodnik",
+    2
+   ],
+   [
+    "nezname",
+    25.37
+   ]
+  ],
+  "fTruth": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p18",
+  "lat": 50.089291712252,
+  "lon": 14.437760564563655,
+  "bearing": -179.59203829414557,
+  "name": "Wilsonova",
+  "truth": [
+   [
+    "plocha",
+    8.03
+   ],
+   [
+    "chodnik",
+    1.3
+   ],
+   [
+    "pruh",
+    3.8
+   ],
+   [
+    "pruh",
+    3.8
+   ],
+   [
+    "pruh",
+    3.8
+   ],
+   [
+    "delici",
+    2.1
+   ],
+   [
+    "pruh",
+    3.82
+   ],
+   [
+    "pruh",
+    3.82
+   ],
+   [
+    "pruh",
+    3.82
+   ],
+   [
+    "chodnik",
+    1.35
+   ],
+   [
+    "plocha",
+    8.37
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    30.98
+   ],
+   [
+    "pruh",
+    2.87
+   ],
+   [
+    "pruh",
+    2.87
+   ],
+   [
+    "pruh",
+    2.87
+   ],
+   [
+    "delici",
+    0.6
+   ],
+   [
+    "pruh",
+    3.37
+   ],
+   [
+    "pruh",
+    3.37
+   ],
+   [
+    "pruh",
+    3.37
+   ],
+   [
+    "chodnik",
+    2.5
+   ],
+   [
+    "nezname",
+    27.22
+   ]
+  ],
+  "fTruth": {
+   "lanes": 6,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 6,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p19",
+  "lat": 50.09334719344057,
+  "lon": 14.51942697361306,
+  "bearing": 84.96514176964666,
+  "name": "Českobrodská",
+  "truth": [
+   [
+    "zelen",
+    4.05
+   ],
+   [
+    "chodnik",
+    2.8
+   ],
+   [
+    "bus_cyklo",
+    3.43
+   ],
+   [
+    "pruh",
+    3.43
+   ],
+   [
+    "pruh",
+    3.43
+   ],
+   [
+    "ochranny_pruh",
+    1.5
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    34.28
+   ],
+   [
+    "bus_cyklo",
+    3.5
+   ],
+   [
+    "pruh",
+    3.5
+   ],
+   [
+    "pruh",
+    3.5
+   ],
+   [
+    "ochranny_pruh",
+    1.5
+   ],
+   [
+    "nezname",
+    33.72
+   ]
+  ],
+  "fTruth": {
+   "lanes": 3,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 3,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p20",
+  "lat": 50.10335726489445,
+  "lon": 14.517910297158533,
+  "bearing": -98.89594864403736,
+  "name": "Poděbradská",
+  "truth": [
+   [
+    "zelen",
+    1.5
+   ],
+   [
+    "chodnik",
+    3.1
+   ],
+   [
+    "zelen",
+    2
+   ],
+   [
+    "krajnice",
+    2.4
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "tramvaj",
+    4.97
+   ],
+   [
+    "tramvaj",
+    4.97
+   ],
+   [
+    "pruh",
+    3.98
+   ],
+   [
+    "pruh",
+    3.98
+   ],
+   [
+    "stromorad",
+    5.75
+   ],
+   [
+    "chodnik",
+    3.05
+   ],
+   [
+    "zelen",
+    1.3
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    25.33
+   ],
+   [
+    "chodnik",
+    2.5
+   ],
+   [
+    "pruh",
+    3.25
+   ],
+   [
+    "pruh",
+    3.25
+   ],
+   [
+    "tramvaj",
+    5.8
+   ],
+   [
+    "tramvaj",
+    5.8
+   ],
+   [
+    "pruh",
+    3.1
+   ],
+   [
+    "pruh",
+    3.1
+   ],
+   [
+    "chodnik",
+    2.5
+   ],
+   [
+    "nezname",
+    25.37
+   ]
+  ],
+  "fTruth": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": true,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": true,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": true,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p21",
+  "lat": 50.16750399895227,
+  "lon": 14.483963933093847,
+  "bearing": -1.3910794887776847,
+  "name": "Na Hlavní",
+  "truth": [
+   [
+    "chodnik",
+    1.85
+   ],
+   [
+    "zelen",
+    1.85
+   ],
+   [
+    "pruh",
+    4
+   ],
+   [
+    "pruh",
+    4
+   ],
+   [
+    "delici",
+    5
+   ],
+   [
+    "krajnice",
+    2.21
+   ],
+   [
+    "pruh",
+    4
+   ],
+   [
+    "pruh",
+    4
+   ],
+   [
+    "krajnice",
+    2.21
+   ]
+  ],
+  "estimate": [
+   [
+    "zelen",
+    7.5
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "pruh",
+    3.1
+   ],
+   [
+    "pruh",
+    3.1
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "nezname",
+    22.7
+   ]
+  ],
+  "fTruth": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p22",
+  "lat": 50.09276318105554,
+  "lon": 14.412348842657456,
+  "bearing": 60.69519867256955,
+  "name": "nábřeží Edvarda Beneše",
+  "truth": [
+   [
+    "zed",
+    0.5
+   ],
+   [
+    "zelen",
+    0.55
+   ],
+   [
+    "pruh",
+    2.63
+   ],
+   [
+    "tramvaj_pruh",
+    3.25
+   ],
+   [
+    "tramvaj_pruh",
+    3.25
+   ],
+   [
+    "pruh",
+    2.92
+   ],
+   [
+    "chodnik",
+    2.66
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    36.93
+   ],
+   [
+    "tramvaj_v_pruhu",
+    3.24
+   ],
+   [
+    "tramvaj_v_pruhu",
+    3.06
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "plocha",
+    9.1
+   ]
+  ],
+  "fTruth": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": true,
+   "sidewalkLeft": false,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": true,
+   "sidewalkLeft": false,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p23",
+  "lat": 50.070934001996534,
+  "lon": 14.479678053157338,
+  "bearing": 84.42585771560921,
+  "name": "V Olšinách",
+  "truth": [
+   [
+    "chodnik",
+    4.5
+   ],
+   [
+    "cyklopruh",
+    1.5
+   ],
+   [
+    "pruh",
+    5.26
+   ],
+   [
+    "tramvaj_pruh",
+    3.25
+   ],
+   [
+    "tramvaj_pruh",
+    3.25
+   ],
+   [
+    "pruh",
+    3.1
+   ],
+   [
+    "cyklopruh",
+    1.75
+   ],
+   [
+    "parkovani",
+    2.9
+   ],
+   [
+    "chodnik",
+    4.5
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    26.83
+   ],
+   [
+    "chodnik",
+    2
+   ],
+   [
+    "nezname",
+    1.95
+   ],
+   [
+    "chodnik",
+    2.5
+   ],
+   [
+    "pruh",
+    3.8
+   ],
+   [
+    "tramvaj",
+    2.8
+   ],
+   [
+    "tramvaj",
+    2.8
+   ],
+   [
+    "pruh",
+    3
+   ],
+   [
+    "cyklopruh",
+    1.5
+   ],
+   [
+    "chodnik",
+    8.4
+   ]
+  ],
+  "fTruth": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": true,
+   "cycle": true,
+   "tram": true,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": true,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p24",
+  "lat": 50.01825600446163,
+  "lon": 14.500905046042408,
+  "bearing": 171.480430444206,
+  "name": "Kunratická spojka",
+  "truth": [
+   [
+    "krajnice",
+    1.42
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "krajnice",
+    1.42
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    37.68
+   ],
+   [
+    "pruh",
+    3.35
+   ],
+   [
+    "pruh",
+    3.35
+   ],
+   [
+    "nezname",
+    35.62
+   ]
+  ],
+  "fTruth": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p25",
+  "lat": 50.1104838851365,
+  "lon": 14.52054270574795,
+  "bearing": 93.64918321830267,
+  "name": "Kolbenova",
+  "truth": [
+   [
+    "chodnik",
+    3.8
+   ],
+   [
+    "pruh",
+    3.5
+   ],
+   [
+    "pruh",
+    3.5
+   ],
+   [
+    "tramvaj",
+    3.9
+   ],
+   [
+    "tramvaj",
+    3.9
+   ],
+   [
+    "pruh",
+    3.4
+   ],
+   [
+    "pruh",
+    3.4
+   ],
+   [
+    "chodnik",
+    2.45
+   ],
+   [
+    "zelen",
+    3.65
+   ],
+   [
+    "zed",
+    0.3
+   ],
+   [
+    "zelen",
+    4.5
+   ],
+   [
+    "zed",
+    0.8
+   ]
+  ],
+  "estimate": [
+   [
+    "plocha",
+    2.85
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "pruh",
+    3.45
+   ],
+   [
+    "pruh",
+    3.45
+   ],
+   [
+    "tramvaj",
+    3.6
+   ],
+   [
+    "tramvaj",
+    3.6
+   ],
+   [
+    "pruh",
+    3.35
+   ],
+   [
+    "pruh",
+    3.35
+   ],
+   [
+    "nezname",
+    29.87
+   ]
+  ],
+  "fTruth": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": true,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": true,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p26",
+  "lat": 50.09299895668956,
+  "lon": 14.38790928747045,
+  "bearing": -125.15794646299983,
+  "name": "Patočkova",
+  "truth": [
+   [
+    "zelen",
+    2.93
+   ],
+   [
+    "chodnik",
+    4.45
+   ],
+   [
+    "cyklopruh",
+    1.5
+   ],
+   [
+    "pruh",
+    2.75
+   ],
+   [
+    "pruh",
+    2.75
+   ],
+   [
+    "delici",
+    3.9
+   ],
+   [
+    "tramvaj",
+    3.35
+   ],
+   [
+    "tramvaj",
+    3.65
+   ],
+   [
+    "zelen",
+    3.65
+   ],
+   [
+    "plocha",
+    0.75
+   ],
+   [
+    "pruh",
+    2.8
+   ],
+   [
+    "pruh",
+    2.8
+   ],
+   [
+    "cyklopruh",
+    1.5
+   ],
+   [
+    "chodnik",
+    3.25
+   ],
+   [
+    "zelen",
+    3.97
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    21.83
+   ],
+   [
+    "chodnik",
+    2
+   ],
+   [
+    "nezname",
+    1.55
+   ],
+   [
+    "cyklopruh",
+    1.5
+   ],
+   [
+    "pruh",
+    2.65
+   ],
+   [
+    "pruh",
+    2.65
+   ],
+   [
+    "tramvaj",
+    7.45
+   ],
+   [
+    "tramvaj",
+    7.45
+   ],
+   [
+    "pruh",
+    3
+   ],
+   [
+    "pruh",
+    3
+   ],
+   [
+    "cyklopruh",
+    1.5
+   ],
+   [
+    "chodnik",
+    2.5
+   ],
+   [
+    "nezname",
+    22.92
+   ]
+  ],
+  "fTruth": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": true,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": true,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p27",
+  "lat": 50.07055075780312,
+  "lon": 14.469733086416369,
+  "bearing": -144.70379262832535,
+  "name": "Bělocerkevská",
+  "truth": [
+   [
+    "plocha",
+    2.15
+   ],
+   [
+    "chodnik",
+    5.25
+   ],
+   [
+    "bus_cyklo",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "zelen",
+    10
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "bus_cyklo",
+    3.75
+   ],
+   [
+    "chodnik",
+    4.95
+   ],
+   [
+    "zed",
+    0.3
+   ],
+   [
+    "zelen",
+    4.7
+   ]
+  ],
+  "estimate": [
+   [
+    "chodnik",
+    4.6
+   ],
+   [
+    "bus_cyklo",
+    3.85
+   ],
+   [
+    "pruh",
+    3.85
+   ],
+   [
+    "zelen",
+    10.7
+   ],
+   [
+    "pruh",
+    3.6
+   ],
+   [
+    "bus_cyklo",
+    3.6
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "zelen",
+    4.45
+   ]
+  ],
+  "fTruth": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p28",
+  "lat": 50.10955896490628,
+  "lon": 14.496790622947433,
+  "bearing": 61.96871681551668,
+  "name": "Sokolovská",
+  "truth": [
+   [
+    "chodnik",
+    3.6
+   ],
+   [
+    "pruh",
+    3.74
+   ],
+   [
+    "tramvaj_v_pruhu",
+    3.25
+   ],
+   [
+    "tramvaj_v_pruhu",
+    3.2
+   ],
+   [
+    "delici",
+    2.3
+   ],
+   [
+    "pruh",
+    3.65
+   ],
+   [
+    "chodnik",
+    8
+   ]
+  ],
+  "estimate": [
+   [
+    "chodnik",
+    3.85
+   ],
+   [
+    "pruh",
+    3.6
+   ],
+   [
+    "tramvaj",
+    4.5
+   ],
+   [
+    "tramvaj",
+    4.5
+   ],
+   [
+    "pruh",
+    3.6
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "plocha",
+    1.9
+   ]
+  ],
+  "fTruth": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": true,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": true,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p30",
+  "lat": 50.09633451495887,
+  "lon": 14.431503376622253,
+  "bearing": 67.77048194558155,
+  "name": "nábřeží Kapitána Jaroše",
+  "truth": [
+   [
+    "chodnik",
+    4.75
+   ],
+   [
+    "pruh",
+    3.68
+   ],
+   [
+    "pruh",
+    3.68
+   ],
+   [
+    "nastupiste",
+    3.35
+   ],
+   [
+    "chodnik",
+    0.35
+   ],
+   [
+    "tramvaj_pruh",
+    2.88
+   ],
+   [
+    "tramvaj_pruh",
+    3.26
+   ],
+   [
+    "pruh",
+    3.48
+   ],
+   [
+    "pruh",
+    3.48
+   ],
+   [
+    "chodnik_kola",
+    3.92
+   ]
+  ],
+  "estimate": [
+   [
+    "chodnik",
+    5.25
+   ],
+   [
+    "pruh",
+    3.5
+   ],
+   [
+    "pruh",
+    3.5
+   ],
+   [
+    "nastupiste",
+    3.35
+   ],
+   [
+    "tramvaj",
+    3.77
+   ],
+   [
+    "tramvaj",
+    3.77
+   ],
+   [
+    "pruh",
+    2.9
+   ],
+   [
+    "pruh",
+    2.9
+   ],
+   [
+    "nezname",
+    28.37
+   ]
+  ],
+  "fTruth": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": true,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": true,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p31",
+  "lat": 50.14561477921992,
+  "lon": 14.581616347628918,
+  "bearing": 44.549819854105856,
+  "name": "Mladoboleslavská",
+  "truth": [
+   [
+    "zelen",
+    2.1
+   ],
+   [
+    "chodnik",
+    1.9
+   ],
+   [
+    "stromorad",
+    5.35
+   ],
+   [
+    "krajnice",
+    1.12
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "krajnice",
+    1.12
+   ],
+   [
+    "zelen",
+    0.85
+   ],
+   [
+    "chodnik",
+    3.25
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    29.48
+   ],
+   [
+    "chodnik",
+    2
+   ],
+   [
+    "nezname",
+    5.4
+   ],
+   [
+    "pruh",
+    3.4
+   ],
+   [
+    "pruh",
+    3.4
+   ],
+   [
+    "nezname",
+    4
+   ],
+   [
+    "chodnik",
+    2
+   ],
+   [
+    "nezname",
+    30.32
+   ]
+  ],
+  "fTruth": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": true,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p32",
+  "lat": 50.05797449316805,
+  "lon": 14.511373709390604,
+  "bearing": 129.80730046493957,
+  "name": "Švehlova",
+  "truth": [
+   [
+    "zelen",
+    2.75
+   ],
+   [
+    "chodnik",
+    3.1
+   ],
+   [
+    "pruh",
+    2.92
+   ],
+   [
+    "pruh",
+    2.92
+   ],
+   [
+    "pruh",
+    2.92
+   ],
+   [
+    "tramvaj_pruh",
+    3.26
+   ],
+   [
+    "tramvaj_pruh",
+    3.26
+   ],
+   [
+    "pruh",
+    2.86
+   ],
+   [
+    "pruh",
+    2.86
+   ],
+   [
+    "pruh",
+    2.86
+   ],
+   [
+    "zelen",
+    4.15
+   ],
+   [
+    "chodnik",
+    2.85
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    25.68
+   ],
+   [
+    "chodnik",
+    4.3
+   ],
+   [
+    "pruh",
+    3
+   ],
+   [
+    "tramvaj",
+    6.1
+   ],
+   [
+    "tramvaj",
+    6.1
+   ],
+   [
+    "pruh",
+    3.25
+   ],
+   [
+    "pruh",
+    3.25
+   ],
+   [
+    "chodnik",
+    2.5
+   ],
+   [
+    "nezname",
+    2.55
+   ],
+   [
+    "chodnik",
+    2
+   ],
+   [
+    "nezname",
+    15.25
+   ],
+   [
+    "chodnik",
+    2
+   ],
+   [
+    "nezname",
+    4.02
+   ]
+  ],
+  "fTruth": {
+   "lanes": 6,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": true,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 3,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": true,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p33",
+  "lat": 50.06516488851089,
+  "lon": 14.320952071480718,
+  "bearing": -91.8014268319386,
+  "name": "Plzeňská",
+  "truth": [
+   [
+    "chodnik",
+    2.3
+   ],
+   [
+    "zelen",
+    2.55
+   ],
+   [
+    "pruh_piktokoridor",
+    3.68
+   ],
+   [
+    "pruh",
+    3.68
+   ],
+   [
+    "tramvaj",
+    3.5
+   ],
+   [
+    "tramvaj",
+    3.5
+   ],
+   [
+    "bus",
+    3.03
+   ],
+   [
+    "pruh",
+    3.03
+   ],
+   [
+    "ochranny_pruh",
+    1.5
+   ],
+   [
+    "chodnik",
+    1.25
+   ],
+   [
+    "plocha",
+    0.65
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    26.63
+   ],
+   [
+    "chodnik",
+    2.5
+   ],
+   [
+    "pruh_piktokoridor",
+    3.95
+   ],
+   [
+    "pruh",
+    3.95
+   ],
+   [
+    "tramvaj",
+    3.2
+   ],
+   [
+    "tramvaj",
+    3.2
+   ],
+   [
+    "bus",
+    2.65
+   ],
+   [
+    "pruh",
+    2.65
+   ],
+   [
+    "ochranny_pruh",
+    1.5
+   ],
+   [
+    "chodnik",
+    2.5
+   ],
+   [
+    "nezname",
+    27.27
+   ]
+  ],
+  "fTruth": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": true,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": true,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p34",
+  "lat": 50.13938063714909,
+  "lon": 14.451695578495679,
+  "bearing": 173.343301890517,
+  "name": "Ústecká",
+  "truth": [
+   [
+    "chodnik",
+    2.05
+   ],
+   [
+    "zelen",
+    2.55
+   ],
+   [
+    "krajnice",
+    1.9
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "delici",
+    1.5
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "krajnice",
+    3.15
+   ],
+   [
+    "zelen",
+    2
+   ],
+   [
+    "chodnik",
+    1.7
+   ]
+  ],
+  "estimate": [
+   [
+    "plocha",
+    2.7
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "krajnice",
+    2.5
+   ],
+   [
+    "pruh",
+    4
+   ],
+   [
+    "pruh",
+    4
+   ],
+   [
+    "delici",
+    1.4
+   ],
+   [
+    "pruh",
+    4
+   ],
+   [
+    "pruh",
+    4
+   ],
+   [
+    "krajnice",
+    2.2
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "zelen",
+    2.75
+   ]
+  ],
+  "fTruth": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p35",
+  "lat": 50.08333997502518,
+  "lon": 14.464259133562772,
+  "bearing": 80.02334545832215,
+  "name": "Olšanská",
+  "truth": [
+   [
+    "zelen",
+    17.7
+   ],
+   [
+    "chodnik",
+    4.95
+   ],
+   [
+    "parkovani",
+    2.25
+   ],
+   [
+    "pruh",
+    3.3
+   ],
+   [
+    "pruh",
+    3.3
+   ],
+   [
+    "parkovani",
+    2.1
+   ],
+   [
+    "tramvaj",
+    5.2
+   ],
+   [
+    "tramvaj",
+    4.45
+   ],
+   [
+    "krajnice",
+    1.8
+   ],
+   [
+    "pruh",
+    4
+   ],
+   [
+    "krajnice",
+    1.8
+   ],
+   [
+    "ochranny_pruh",
+    1.5
+   ],
+   [
+    "chodnik",
+    5.1
+   ],
+   [
+    "zelen",
+    6.05
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    19.7
+   ],
+   [
+    "chodnik",
+    4.45
+   ],
+   [
+    "ochranny_pruh",
+    1.75
+   ],
+   [
+    "pruh",
+    2.7
+   ],
+   [
+    "pruh",
+    2.7
+   ],
+   [
+    "parkovani",
+    2.15
+   ],
+   [
+    "tramvaj",
+    5.9
+   ],
+   [
+    "tramvaj",
+    5.9
+   ],
+   [
+    "pruh",
+    3.2
+   ],
+   [
+    "ochranny_pruh",
+    1.5
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "plocha",
+    7.2
+   ]
+  ],
+  "fTruth": {
+   "lanes": 3,
+   "parkingLeft": true,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": true,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 3,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": true,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p36",
+  "lat": 50.063799025037625,
+  "lon": 14.376705958844763,
+  "bearing": -136.73002815356696,
+  "name": "Jinonická",
+  "truth": [
+   [
+    "chodnik",
+    2
+   ],
+   [
+    "stromorad",
+    3.05
+   ],
+   [
+    "parkovani",
+    2.25
+   ],
+   [
+    "pruh",
+    3.87
+   ],
+   [
+    "pruh",
+    3.87
+   ],
+   [
+    "zelen",
+    2.25
+   ],
+   [
+    "chodnik",
+    2.65
+   ],
+   [
+    "plocha",
+    0.3
+   ],
+   [
+    "zelen",
+    4.15
+   ],
+   [
+    "plocha",
+    0.4
+   ]
+  ],
+  "estimate": [
+   [
+    "zelen",
+    7.95
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "krajnice",
+    1.05
+   ],
+   [
+    "pruh",
+    4
+   ],
+   [
+    "pruh",
+    4
+   ],
+   [
+    "krajnice",
+    1.05
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "zelen",
+    3.7
+   ]
+  ],
+  "fTruth": {
+   "lanes": 2,
+   "parkingLeft": true,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": true,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p38",
+  "lat": 50.063671723115625,
+  "lon": 14.442211240939661,
+  "bearing": -53.40758685789031,
+  "name": "Nuselská",
+  "truth": [
+   [
+    "chodnik",
+    4.4
+   ],
+   [
+    "tramvaj_v_pruhu",
+    5.58
+   ],
+   [
+    "tramvaj_v_pruhu",
+    5.22
+   ],
+   [
+    "chodnik",
+    4.95
+   ]
+  ],
+  "estimate": [
+   [
+    "chodnik",
+    4.25
+   ],
+   [
+    "pruh",
+    3
+   ],
+   [
+    "tramvaj",
+    1.9
+   ],
+   [
+    "tramvaj_pruh",
+    3.87
+   ],
+   [
+    "pruh",
+    2.53
+   ],
+   [
+    "chodnik",
+    4.15
+   ]
+  ],
+  "fTruth": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": true,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": true,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p39",
+  "lat": 50.01545623730408,
+  "lon": 14.48721849485458,
+  "bearing": -144.01381764071868,
+  "name": "K Verneráku",
+  "truth": [
+   [
+    "chodnik",
+    5.25
+   ],
+   [
+    "pruh",
+    2.97
+   ],
+   [
+    "pruh",
+    2.97
+   ],
+   [
+    "zelen",
+    2.15
+   ],
+   [
+    "chodnik",
+    1.5
+   ]
+  ],
+  "estimate": [
+   [
+    "chodnik",
+    5.4
+   ],
+   [
+    "pruh",
+    3.15
+   ],
+   [
+    "pruh",
+    3.15
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "nezname",
+    29.95
+   ]
+  ],
+  "fTruth": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p40",
+  "lat": 50.00472063343121,
+  "lon": 14.419226941519868,
+  "bearing": -113.89646600506444,
+  "name": "Generála Šišky",
+  "truth": [
+   [
+    "chodnik",
+    2.8
+   ],
+   [
+    "krajnice",
+    1.55
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "krajnice",
+    1.55
+   ],
+   [
+    "zelen",
+    0.45
+   ],
+   [
+    "chodnik",
+    2.9
+   ],
+   [
+    "nastupiste",
+    3
+   ],
+   [
+    "tramvaj",
+    2.87
+   ],
+   [
+    "tramvaj",
+    2.87
+   ],
+   [
+    "nastupiste",
+    4
+   ],
+   [
+    "zelen",
+    4
+   ],
+   [
+    "krajnice",
+    1.48
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "pruh",
+    3.75
+   ],
+   [
+    "krajnice",
+    1.48
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    22.33
+   ],
+   [
+    "pruh",
+    3.65
+   ],
+   [
+    "pruh",
+    3.65
+   ],
+   [
+    "tramvaj",
+    10.3
+   ],
+   [
+    "tramvaj",
+    10.3
+   ],
+   [
+    "pruh",
+    3.45
+   ],
+   [
+    "pruh",
+    3.45
+   ],
+   [
+    "nezname",
+    4.35
+   ],
+   [
+    "chodnik",
+    2
+   ],
+   [
+    "nezname",
+    16.52
+   ]
+  ],
+  "fTruth": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": true,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": true,
+   "sidewalkLeft": false,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p41",
+  "lat": 50.155998380194255,
+  "lon": 14.56241771568733,
+  "bearing": -115.75049034114586,
+  "name": "",
+  "truth": [
+   [
+    "stromorad",
+    3.6
+   ],
+   [
+    "pruh",
+    2.5
+   ],
+   [
+    "pruh",
+    2.5
+   ],
+   [
+    "stromorad",
+    4
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    36.73
+   ],
+   [
+    "pruh",
+    3.2
+   ],
+   [
+    "pruh",
+    3.2
+   ],
+   [
+    "nezname",
+    36.87
+   ]
+  ],
+  "fTruth": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": true,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p42",
+  "lat": 50.00737494896857,
+  "lon": 14.403336260526578,
+  "bearing": -163.1570226856349,
+  "name": "Generála Šišky",
+  "truth": [
+   [
+    "zed",
+    0.6
+   ],
+   [
+    "plocha",
+    1.3
+   ],
+   [
+    "pruh",
+    3.72
+   ],
+   [
+    "pruh",
+    3.72
+   ],
+   [
+    "delici",
+    1.5
+   ],
+   [
+    "pruh",
+    2.5
+   ],
+   [
+    "pruh",
+    2.5
+   ],
+   [
+    "pruh",
+    2.5
+   ],
+   [
+    "zelen",
+    2.35
+   ],
+   [
+    "tramvaj",
+    5.25
+   ],
+   [
+    "tramvaj",
+    5.25
+   ],
+   [
+    "chodnik",
+    1.9
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    10.32
+   ],
+   [
+    "parkovani",
+    6.2
+   ],
+   [
+    "nezname",
+    18.65
+   ],
+   [
+    "pruh",
+    3.17
+   ],
+   [
+    "pruh",
+    3.17
+   ],
+   [
+    "pruh",
+    3.17
+   ],
+   [
+    "pruh",
+    3.17
+   ],
+   [
+    "nezname",
+    32.12
+   ]
+  ],
+  "fTruth": {
+   "lanes": 5,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": true,
+   "sidewalkLeft": false,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 4,
+   "parkingLeft": true,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p43",
+  "lat": 50.16029201684473,
+  "lon": 14.514550884089985,
+  "bearing": -167.3019475173568,
+  "name": "Za Tratí",
+  "truth": [
+   [
+    "pruh",
+    3.02
+   ],
+   [
+    "pruh",
+    3.02
+   ],
+   [
+    "zelen",
+    1.5
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    36.23
+   ],
+   [
+    "pruh",
+    3.2
+   ],
+   [
+    "pruh",
+    3.2
+   ],
+   [
+    "nezname",
+    37.37
+   ]
+  ],
+  "fTruth": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p44",
+  "lat": 50.10116604828205,
+  "lon": 14.674640887097302,
+  "bearing": 33.51374517430241,
+  "name": "Slavětínská",
+  "truth": [
+   [
+    "chodnik",
+    3.25
+   ],
+   [
+    "stromorad",
+    4.6
+   ],
+   [
+    "pruh",
+    3.15
+   ],
+   [
+    "pruh",
+    3.15
+   ]
+  ],
+  "estimate": [
+   [
+    "zelen",
+    6.4
+   ],
+   [
+    "chodnik",
+    2.31
+   ],
+   [
+    "stromorad",
+    1.5
+   ],
+   [
+    "chodnik",
+    2.19
+   ],
+   [
+    "pruh",
+    2.95
+   ],
+   [
+    "pruh",
+    2.95
+   ],
+   [
+    "nezname",
+    36.32
+   ]
+  ],
+  "fTruth": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": true,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": true,
+   "median": false
+  }
+ },
+ {
+  "id": "p45",
+  "lat": 50.0129778704303,
+  "lon": 14.417187896062185,
+  "bearing": -0.2082433447120106,
+  "name": "Československého exilu",
+  "truth": [
+   [
+    "chodnik",
+    2.7
+   ],
+   [
+    "zelen",
+    3.1
+   ],
+   [
+    "pruh",
+    3.6
+   ],
+   [
+    "pruh",
+    3.6
+   ],
+   [
+    "pruh",
+    3.6
+   ],
+   [
+    "pruh",
+    3.6
+   ],
+   [
+    "zelen",
+    7.6
+   ],
+   [
+    "chodnik",
+    2.65
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    27.43
+   ],
+   [
+    "chodnik",
+    2
+   ],
+   [
+    "nezname",
+    3.8
+   ],
+   [
+    "pruh",
+    2.9
+   ],
+   [
+    "pruh",
+    2.9
+   ],
+   [
+    "delici",
+    2.5
+   ],
+   [
+    "pruh",
+    2.75
+   ],
+   [
+    "pruh",
+    2.75
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "plocha",
+    1.9
+   ],
+   [
+    "chodnik",
+    2
+   ],
+   [
+    "plocha",
+    6.1
+   ]
+  ],
+  "fTruth": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 4,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p46",
+  "lat": 50.075656144526356,
+  "lon": 14.553664772669519,
+  "bearing": 165.20952843169982,
+  "name": "Nedokončená",
+  "truth": [
+   [
+    "zelen",
+    4.25
+   ],
+   [
+    "pruh",
+    3.62
+   ],
+   [
+    "pruh",
+    3.62
+   ],
+   [
+    "chodnik",
+    1.9
+   ],
+   [
+    "zelen",
+    1.45
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    36.98
+   ],
+   [
+    "pruh",
+    3
+   ],
+   [
+    "pruh",
+    3
+   ],
+   [
+    "nezname",
+    37.02
+   ]
+  ],
+  "fTruth": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p47",
+  "lat": 50.07232792531885,
+  "lon": 14.422619166012563,
+  "bearing": 34.845792857650494,
+  "name": "Benátská",
+  "truth": [
+   [
+    "obsluzna",
+    10.62
+   ],
+   [
+    "zelen",
+    4.45
+   ],
+   [
+    "zed",
+    0.6
+   ],
+   [
+    "chodnik",
+    2.8
+   ],
+   [
+    "pruh",
+    3.77
+   ],
+   [
+    "pruh",
+    3.77
+   ],
+   [
+    "stromorad",
+    1.26
+   ],
+   [
+    "chodnik",
+    1.27
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    33.73
+   ],
+   [
+    "chodnik",
+    2.5
+   ],
+   [
+    "pruh",
+    3.5
+   ],
+   [
+    "pruh",
+    3.5
+   ],
+   [
+    "chodnik",
+    3.4
+   ],
+   [
+    "nezname",
+    33.37
+   ]
+  ],
+  "fTruth": {
+   "lanes": 3,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": true,
+   "trees": true,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p48",
+  "lat": 50.12872647459159,
+  "lon": 14.497135152427896,
+  "bearing": -78.28932277562608,
+  "name": "Lovosická",
+  "truth": [
+   [
+    "stromorad",
+    7.35
+   ],
+   [
+    "chodnik",
+    2.95
+   ],
+   [
+    "krajnice",
+    1.32
+   ],
+   [
+    "pruh",
+    4
+   ],
+   [
+    "pruh",
+    4
+   ],
+   [
+    "krajnice",
+    1.32
+   ],
+   [
+    "chodnik",
+    5.1
+   ],
+   [
+    "zelen",
+    2.05
+   ],
+   [
+    "plocha",
+    9.62
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    32.48
+   ],
+   [
+    "chodnik",
+    2.5
+   ],
+   [
+    "pruh",
+    4
+   ],
+   [
+    "pruh",
+    4
+   ],
+   [
+    "chodnik",
+    2.5
+   ],
+   [
+    "nezname",
+    34.52
+   ]
+  ],
+  "fTruth": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": true,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p49",
+  "lat": 50.083967593262685,
+  "lon": 14.372208178616175,
+  "bearing": 77.57788615320912,
+  "name": "Bělohorská",
+  "truth": [
+   [
+    "chodnik",
+    9.18
+   ],
+   [
+    "parkovani",
+    2.15
+   ],
+   [
+    "pruh",
+    5.13
+   ],
+   [
+    "tramvaj_pruh",
+    3.24
+   ],
+   [
+    "tramvaj_pruh",
+    3.42
+   ],
+   [
+    "stromorad",
+    5.95
+   ],
+   [
+    "pruh",
+    3.95
+   ],
+   [
+    "parkovani",
+    2.1
+   ],
+   [
+    "chodnik",
+    5.95
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    27.18
+   ],
+   [
+    "chodnik",
+    2.5
+   ],
+   [
+    "krajnice",
+    2
+   ],
+   [
+    "pruh",
+    4
+   ],
+   [
+    "tramvaj",
+    6
+   ],
+   [
+    "tramvaj",
+    6
+   ],
+   [
+    "pruh",
+    3
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "plocha",
+    2.7
+   ]
+  ],
+  "fTruth": {
+   "lanes": 2,
+   "parkingLeft": true,
+   "parkingRight": true,
+   "cycle": false,
+   "tram": true,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": true,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": true,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p50",
+  "lat": 50.04561196520963,
+  "lon": 14.41942876244595,
+  "bearing": 110.20196491256155,
+  "name": "Jeremenkova",
+  "truth": [
+   [
+    "chodnik",
+    1.75
+   ],
+   [
+    "krajnice",
+    3.05
+   ],
+   [
+    "pruh_piktokoridor",
+    4
+   ],
+   [
+    "zelen",
+    1.95
+   ],
+   [
+    "pruh",
+    4
+   ],
+   [
+    "krajnice",
+    1.55
+   ],
+   [
+    "cyklopruh",
+    1.5
+   ],
+   [
+    "stromorad",
+    1.45
+   ],
+   [
+    "chodnik",
+    2.8
+   ],
+   [
+    "stromorad",
+    3.6
+   ],
+   [
+    "chodnik",
+    1.2
+   ]
+  ],
+  "estimate": [
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "krajnice",
+    2.1
+   ],
+   [
+    "pruh_piktokoridor",
+    4
+   ],
+   [
+    "delici",
+    2.4
+   ],
+   [
+    "pruh",
+    2.5
+   ],
+   [
+    "cyklopruh",
+    1.5
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "zelen",
+    6.1
+   ]
+  ],
+  "fTruth": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": true,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  }
+ },
+ {
+  "id": "p51",
+  "lat": 50.04106418712366,
+  "lon": 14.370850573375643,
+  "bearing": 34.1517893074433,
+  "name": "Prokopské údolí",
+  "truth": [
+   [
+    "pruh",
+    4.95
+   ],
+   [
+    "zelen",
+    3.85
+   ],
+   [
+    "voda",
+    4.95
+   ],
+   [
+    "zelen",
+    3.05
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    36.03
+   ],
+   [
+    "pruh",
+    3.1
+   ],
+   [
+    "pruh",
+    3.1
+   ],
+   [
+    "nezname",
+    37.77
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p52",
+  "lat": 50.08282301635786,
+  "lon": 14.539250000784408,
+  "bearing": 91.7743473619774,
+  "name": "U Technoplynu",
+  "truth": [
+   [
+    "zelen",
+    1.5
+   ],
+   [
+    "chodnik",
+    2.95
+   ],
+   [
+    "obsluzna",
+    11.95
+   ],
+   [
+    "plocha",
+    1.45
+   ],
+   [
+    "parkovani",
+    2
+   ],
+   [
+    "krajnice",
+    2.83
+   ],
+   [
+    "pruh",
+    4.5
+   ],
+   [
+    "pruh",
+    4.5
+   ],
+   [
+    "krajnice",
+    2.83
+   ]
+  ],
+  "estimate": [
+   [
+    "plocha",
+    11.85
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "pruh",
+    3.8
+   ],
+   [
+    "nezname",
+    39.02
+   ]
+  ],
+  "fTruth": {
+   "lanes": 3,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p53",
+  "lat": 49.9609355430374,
+  "lon": 14.339958904075191,
+  "bearing": -82.25790162932395,
+  "name": "Černošická",
+  "truth": [
+   [
+    "pruh",
+    4.5
+   ],
+   [
+    "stromorad",
+    3.65
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    37.88
+   ],
+   [
+    "pruh",
+    4.2
+   ],
+   [
+    "nezname",
+    37.92
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": true,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p54",
+  "lat": 50.13186892684078,
+  "lon": 14.574928171170354,
+  "bearing": -146.48397211439212,
+  "name": "Vinořská",
+  "truth": [
+   [
+    "plocha",
+    0.66
+   ],
+   [
+    "stromorad",
+    1.5
+   ],
+   [
+    "plocha",
+    5.19
+   ],
+   [
+    "plocha",
+    0.55
+   ],
+   [
+    "pruh",
+    2.92
+   ],
+   [
+    "pruh",
+    2.92
+   ],
+   [
+    "plocha",
+    0.55
+   ],
+   [
+    "stromorad",
+    4.85
+   ],
+   [
+    "cyklostezka",
+    1.55
+   ],
+   [
+    "cyklostezka",
+    1.55
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    36.23
+   ],
+   [
+    "pruh",
+    3.05
+   ],
+   [
+    "pruh",
+    3.05
+   ],
+   [
+    "nezname",
+    37.67
+   ]
+  ],
+  "fTruth": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": true,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p55",
+  "lat": 49.96404394522895,
+  "lon": 14.365369046641066,
+  "bearing": -118.87585310231974,
+  "name": "Josefa Houdka",
+  "truth": [
+   [
+    "chodnik",
+    0.95
+   ],
+   [
+    "pruh",
+    3.5
+   ],
+   [
+    "pruh",
+    3.5
+   ],
+   [
+    "chodnik",
+    1.25
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    38.18
+   ],
+   [
+    "pruh",
+    4.8
+   ],
+   [
+    "nezname",
+    37.02
+   ]
+  ],
+  "fTruth": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p56",
+  "lat": 50.05085894442902,
+  "lon": 14.304822111543528,
+  "bearing": 174.473414005501,
+  "name": "Líšnická",
+  "truth": [
+   [
+    "pruh",
+    3.65
+   ],
+   [
+    "zelen",
+    6.7
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    38.83
+   ],
+   [
+    "pruh",
+    3.8
+   ],
+   [
+    "nezname",
+    37.37
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p57",
+  "lat": 50.06601883900306,
+  "lon": 14.635562930995546,
+  "bearing": -74.51827549222156,
+  "name": "K Panenkám",
+  "truth": [
+   [
+    "chodnik",
+    4.85
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    35.53
+   ],
+   [
+    "pruh",
+    3.8
+   ],
+   [
+    "pruh",
+    3.8
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "nezname",
+    17.15
+   ]
+  ],
+  "fTruth": {
+   "lanes": 0,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p58",
+  "lat": 50.11141110736517,
+  "lon": 14.482093662612119,
+  "bearing": -153.76152917051581,
+  "name": "Na Labuťce Ⅰ",
+  "truth": [
+   [
+    "pruh",
+    3.4
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    38.13
+   ],
+   [
+    "pruh",
+    2.5
+   ],
+   [
+    "pruh",
+    2.5
+   ],
+   [
+    "nezname",
+    36.87
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p59",
+  "lat": 50.135533780804934,
+  "lon": 14.43362501007129,
+  "bearing": -91.6982835915198,
+  "name": "Chvatěrubská",
+  "truth": [
+   [
+    "chodnik",
+    5.15
+   ],
+   [
+    "parkovani",
+    2
+   ],
+   [
+    "pruh",
+    3.62
+   ],
+   [
+    "pruh",
+    3.62
+   ],
+   [
+    "parkovani",
+    2
+   ],
+   [
+    "chodnik",
+    1.75
+   ]
+  ],
+  "estimate": [
+   [
+    "chodnik",
+    5.4
+   ],
+   [
+    "pruh",
+    3.05
+   ],
+   [
+    "pruh",
+    3.05
+   ],
+   [
+    "parkovani",
+    2
+   ],
+   [
+    "nezname",
+    33.57
+   ]
+  ],
+  "fTruth": {
+   "lanes": 2,
+   "parkingLeft": true,
+   "parkingRight": true,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": true,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p60",
+  "lat": 50.039988388483636,
+  "lon": 14.42571133365207,
+  "bearing": -77.81578498973589,
+  "name": "U dubu",
+  "truth": [
+   [
+    "zelen",
+    0.35
+   ],
+   [
+    "pruh",
+    3.8
+   ],
+   [
+    "zelen",
+    1.4
+   ]
+  ],
+  "estimate": [
+   [
+    "chodnik",
+    2.9
+   ],
+   [
+    "pruh",
+    2.5
+   ],
+   [
+    "pruh",
+    2.5
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "plocha",
+    2.05
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p61",
+  "lat": 50.03978701864935,
+  "lon": 14.445541962354065,
+  "bearing": 37.45777794817874,
+  "name": "Zachova",
+  "truth": [
+   [
+    "stromorad",
+    4
+   ],
+   [
+    "parkovani",
+    1.9
+   ],
+   [
+    "pruh",
+    3.8
+   ],
+   [
+    "zelen",
+    3.15
+   ],
+   [
+    "chodnik",
+    1.95
+   ],
+   [
+    "zed",
+    0.5
+   ]
+  ],
+  "estimate": [
+   [
+    "zelen",
+    7.85
+   ],
+   [
+    "pruh",
+    3.4
+   ],
+   [
+    "pruh",
+    3.4
+   ],
+   [
+    "zelen",
+    9.4
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": true,
+   "parkingRight": true,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": true,
+   "trees": true,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p62",
+  "lat": 49.96529135917844,
+  "lon": 14.380009856893986,
+  "bearing": 119.19602919238704,
+  "name": "K Výtopně",
+  "truth": [
+   [
+    "chodnik",
+    2
+   ],
+   [
+    "pruh",
+    3.37
+   ],
+   [
+    "pruh",
+    3.37
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    35.03
+   ],
+   [
+    "chodnik",
+    2.5
+   ],
+   [
+    "pruh",
+    4.5
+   ],
+   [
+    "nezname",
+    37.97
+   ]
+  ],
+  "fTruth": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p63",
+  "lat": 50.00137203745785,
+  "lon": 14.34817900549393,
+  "bearing": -84.57825301573327,
+  "name": "Na dražkách",
+  "truth": [
+   [
+    "zelen",
+    1.75
+   ],
+   [
+    "pruh",
+    3.05
+   ],
+   [
+    "zelen",
+    1.65
+   ],
+   [
+    "voda",
+    0.6
+   ],
+   [
+    "stromorad",
+    6.6
+   ],
+   [
+    "plocha",
+    5.15
+   ],
+   [
+    "plocha",
+    6.88
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    38.23
+   ],
+   [
+    "pruh",
+    3.5
+   ],
+   [
+    "nezname",
+    38.27
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": true,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p64",
+  "lat": 50.073961913945645,
+  "lon": 14.382034998479389,
+  "bearing": -89.34586442677531,
+  "name": "U Okrouhlíku",
+  "truth": [
+   [
+    "plocha",
+    5.2
+   ],
+   [
+    "chodnik",
+    2.6
+   ],
+   [
+    "parkovani",
+    4.6
+   ],
+   [
+    "pruh",
+    2.82
+   ],
+   [
+    "pruh",
+    2.82
+   ],
+   [
+    "parkovani",
+    2.3
+   ],
+   [
+    "stromorad",
+    1.84
+   ],
+   [
+    "chodnik",
+    2.86
+   ]
+  ],
+  "estimate": [
+   [
+    "zelen",
+    4.95
+   ],
+   [
+    "chodnik",
+    7.8
+   ],
+   [
+    "pruh",
+    4.3
+   ],
+   [
+    "nezname",
+    37.52
+   ]
+  ],
+  "fTruth": {
+   "lanes": 2,
+   "parkingLeft": true,
+   "parkingRight": true,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": true,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p65",
+  "lat": 50.02265615403947,
+  "lon": 14.438513136790972,
+  "bearing": 119.87271347444857,
+  "name": "Jílovská",
+  "truth": [
+   [
+    "chodnik",
+    2.45
+   ],
+   [
+    "parkovani",
+    2
+   ],
+   [
+    "pruh",
+    3.2
+   ],
+   [
+    "parkovani",
+    2
+   ],
+   [
+    "chodnik",
+    1.9
+   ]
+  ],
+  "estimate": [
+   [
+    "zelen",
+    5.45
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "pruh",
+    2.8
+   ],
+   [
+    "nezname",
+    38.42
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": true,
+   "parkingRight": true,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p66",
+  "lat": 50.08108808820378,
+  "lon": 14.639169062013753,
+  "bearing": -65.57206260351744,
+  "name": "Budčická",
+  "truth": [
+   [
+    "zelen",
+    1.25
+   ],
+   [
+    "pruh",
+    2.87
+   ],
+   [
+    "pruh",
+    2.87
+   ],
+   [
+    "chodnik",
+    1.2
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    36.68
+   ],
+   [
+    "pruh",
+    2.9
+   ],
+   [
+    "pruh",
+    2.9
+   ],
+   [
+    "nezname",
+    37.52
+   ]
+  ],
+  "fTruth": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p67",
+  "lat": 50.12595094502014,
+  "lon": 14.393890260619175,
+  "bearing": -161.89996615399707,
+  "name": "Ke Střelnici",
+  "truth": [
+   [
+    "pruh",
+    4.6
+   ],
+   [
+    "plocha",
+    22.22
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    37.23
+   ],
+   [
+    "pruh",
+    2.75
+   ],
+   [
+    "pruh",
+    2.75
+   ],
+   [
+    "nezname",
+    37.27
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p68",
+  "lat": 50.107948378450544,
+  "lon": 14.487040005052663,
+  "bearing": 90.49389393116002,
+  "name": "Kovanecká",
+  "truth": [
+   [
+    "chodnik",
+    8.45
+   ],
+   [
+    "pruh",
+    4.85
+   ],
+   [
+    "parkovani",
+    1.95
+   ],
+   [
+    "chodnik",
+    2.8
+   ]
+  ],
+  "estimate": [
+   [
+    "plocha",
+    2.35
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "pruh",
+    2.62
+   ],
+   [
+    "pruh",
+    2.62
+   ],
+   [
+    "parkovani",
+    1.6
+   ],
+   [
+    "chodnik",
+    2.85
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": true,
+   "parkingRight": true,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": true,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p69",
+  "lat": 50.06157546417638,
+  "lon": 14.472651026086258,
+  "bearing": 92.08013406197202,
+  "name": "Nad Vršovskou horou",
+  "truth": [
+   [
+    "chodnik",
+    3.2
+   ],
+   [
+    "krajnice",
+    2.52
+   ],
+   [
+    "pruh",
+    4.5
+   ],
+   [
+    "pruh",
+    4.5
+   ],
+   [
+    "krajnice",
+    2.52
+   ],
+   [
+    "chodnik",
+    7.45
+   ],
+   [
+    "zelen",
+    0.9
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    13.8
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "pruh",
+    3.25
+   ],
+   [
+    "pruh",
+    3.25
+   ],
+   [
+    "nezname",
+    37.02
+   ]
+  ],
+  "fTruth": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p70",
+  "lat": 50.10778416213316,
+  "lon": 14.562514757389328,
+  "bearing": -134.01404509315003,
+  "name": "Vodňanská",
+  "truth": [
+   [
+    "chodnik",
+    12.53
+   ],
+   [
+    "stromorad",
+    6.45
+   ],
+   [
+    "pruh",
+    4
+   ],
+   [
+    "parkovani",
+    2
+   ],
+   [
+    "chodnik",
+    2.15
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    36.53
+   ],
+   [
+    "pruh",
+    3.8
+   ],
+   [
+    "parkovani",
+    2
+   ],
+   [
+    "nezname",
+    37.67
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": true,
+   "parkingRight": true,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": true,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": true,
+   "parkingRight": true,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p71",
+  "lat": 50.06972712107646,
+  "lon": 14.439693769010882,
+  "bearing": -140.95211747289292,
+  "name": "Nad Petruskou",
+  "truth": [
+   [
+    "plocha",
+    8.1
+   ],
+   [
+    "chodnik",
+    1.3
+   ],
+   [
+    "pruh",
+    2.8
+   ]
+  ],
+  "estimate": [
+   [
+    "plocha",
+    2.15
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "pruh",
+    2.5
+   ],
+   [
+    "pruh",
+    2.5
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "plocha",
+    0.35
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p73",
+  "lat": 50.10139034062438,
+  "lon": 14.538289788911044,
+  "bearing": -33.76736894248755,
+  "name": "Kyjská",
+  "truth": [
+   [
+    "chodnik",
+    1.4
+   ],
+   [
+    "pruh",
+    4.05
+   ],
+   [
+    "zelen",
+    2.5
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    34.88
+   ],
+   [
+    "chodnik",
+    2.5
+   ],
+   [
+    "pruh",
+    4.6
+   ],
+   [
+    "zelen",
+    10
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p74",
+  "lat": 50.103622655628236,
+  "lon": 14.54954638364412,
+  "bearing": -125.73001902270731,
+  "name": "Kukelská",
+  "truth": [
+   [
+    "zelen",
+    5.6
+   ],
+   [
+    "pruh",
+    4.5
+   ],
+   [
+    "parkovani",
+    2
+   ],
+   [
+    "chodnik",
+    2.15
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    36.88
+   ],
+   [
+    "pruh",
+    3.5
+   ],
+   [
+    "parkovani",
+    2
+   ],
+   [
+    "nezname",
+    37.62
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": true,
+   "parkingRight": true,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": true,
+   "parkingRight": true,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p75",
+  "lat": 50.12554191975364,
+  "lon": 14.378737030867637,
+  "bearing": 76.05693598872612,
+  "name": "Hřebenová",
+  "truth": [
+   [
+    "zelen",
+    1.3
+   ],
+   [
+    "pruh",
+    4.65
+   ],
+   [
+    "chodnik",
+    5.5
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    37.08
+   ],
+   [
+    "pruh",
+    3.45
+   ],
+   [
+    "pruh",
+    3.45
+   ],
+   [
+    "nezname",
+    36.02
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p76",
+  "lat": 49.965384996454624,
+  "lon": 14.395785031058244,
+  "bearing": -170.0030166664524,
+  "name": "Spojařů",
+  "truth": [
+   [
+    "chodnik",
+    3.35
+   ],
+   [
+    "zelen",
+    2.1
+   ],
+   [
+    "parkovani",
+    4.8
+   ],
+   [
+    "pruh",
+    2.97
+   ],
+   [
+    "pruh",
+    2.97
+   ]
+  ],
+  "estimate": [
+   [
+    "chodnik",
+    5.2
+   ],
+   [
+    "parkovani",
+    2
+   ],
+   [
+    "pruh",
+    3.45
+   ],
+   [
+    "pruh",
+    3.45
+   ],
+   [
+    "parkovani",
+    2
+   ],
+   [
+    "nezname",
+    36.87
+   ]
+  ],
+  "fTruth": {
+   "lanes": 2,
+   "parkingLeft": true,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": true,
+   "parkingRight": true,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p77",
+  "lat": 50.02181518791255,
+  "lon": 14.42556561134293,
+  "bearing": -143.22267677086845,
+  "name": "U nás",
+  "truth": [
+   [
+    "zelen",
+    4.75
+   ],
+   [
+    "pruh",
+    4.45
+   ],
+   [
+    "zelen",
+    2.6
+   ]
+  ],
+  "estimate": [
+   [
+    "chodnik",
+    4.6
+   ],
+   [
+    "pruh",
+    3.5
+   ],
+   [
+    "pruh",
+    3.5
+   ],
+   [
+    "nezname",
+    36.92
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p78",
+  "lat": 50.1423773508105,
+  "lon": 14.373538707534292,
+  "bearing": 33.357689229249104,
+  "name": "Bažantní",
+  "truth": [
+   [
+    "zelen",
+    3.15
+   ],
+   [
+    "pruh",
+    3.9
+   ],
+   [
+    "zelen",
+    1.7
+   ]
+  ],
+  "estimate": [
+   [
+    "plocha",
+    6.15
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "pruh",
+    2.8
+   ],
+   [
+    "pruh",
+    2.8
+   ],
+   [
+    "nezname",
+    37.77
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p79",
+  "lat": 50.03888606084226,
+  "lon": 14.51277593385297,
+  "bearing": -125.10633894994754,
+  "name": "Hekrova",
+  "truth": [
+   [
+    "chodnik",
+    8.4
+   ],
+   [
+    "pruh",
+    3.85
+   ],
+   [
+    "parkovani",
+    2
+   ],
+   [
+    "chodnik",
+    3.5
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    30.13
+   ],
+   [
+    "chodnik",
+    2.5
+   ],
+   [
+    "parkovani",
+    2
+   ],
+   [
+    "pruh",
+    5.5
+   ],
+   [
+    "parkovani",
+    2
+   ],
+   [
+    "chodnik",
+    3.65
+   ],
+   [
+    "nezname",
+    34.22
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": true,
+   "parkingRight": true,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": true,
+   "parkingRight": true,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p80",
+  "lat": 50.016197541343814,
+  "lon": 14.475760943795638,
+  "bearing": 94.53251710342639,
+  "name": "Mašatova",
+  "truth": [
+   [
+    "zelen",
+    1.75
+   ],
+   [
+    "pruh",
+    2.75
+   ],
+   [
+    "pruh",
+    2.75
+   ],
+   [
+    "zelen",
+    2.95
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    37.93
+   ],
+   [
+    "pruh",
+    3
+   ],
+   [
+    "pruh",
+    3
+   ],
+   [
+    "nezname",
+    36.07
+   ]
+  ],
+  "fTruth": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p81",
+  "lat": 49.974450036901075,
+  "lon": 14.399498726146774,
+  "bearing": 11.756285142924487,
+  "name": "Závist",
+  "truth": [
+   [
+    "pruh",
+    2.1
+   ],
+   [
+    "plocha",
+    7.15
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    37.53
+   ],
+   [
+    "pruh",
+    2.5
+   ],
+   [
+    "pruh",
+    2.5
+   ],
+   [
+    "nezname",
+    37.47
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p82",
+  "lat": 50.053175555029036,
+  "lon": 14.361266656285965,
+  "bearing": -63.46646912035777,
+  "name": "V Roháčích",
+  "truth": [
+   [
+    "chodnik",
+    3.48
+   ],
+   [
+    "stromorad",
+    1.5
+   ],
+   [
+    "chodnik",
+    3.32
+   ],
+   [
+    "pruh",
+    3.15
+   ],
+   [
+    "parkovani",
+    2
+   ],
+   [
+    "chodnik",
+    2.4
+   ]
+  ],
+  "estimate": [
+   [
+    "zelen",
+    11.5
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "pruh",
+    3.6
+   ],
+   [
+    "nezname",
+    38.32
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": true,
+   "parkingRight": true,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": true,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p83",
+  "lat": 50.05572085514118,
+  "lon": 14.37310338776379,
+  "bearing": -100.04408170242372,
+  "name": "U Trezorky",
+  "truth": [
+   [
+    "pruh",
+    3.92
+   ],
+   [
+    "chodnik",
+    2.75
+   ],
+   [
+    "zelen",
+    7.6
+   ],
+   [
+    "zed",
+    0.65
+   ],
+   [
+    "chodnik",
+    2.25
+   ],
+   [
+    "pruh",
+    4.7
+   ],
+   [
+    "pruh",
+    4.7
+   ],
+   [
+    "chodnik",
+    1.99
+   ],
+   [
+    "stromorad",
+    0.96
+   ],
+   [
+    "zelen",
+    7.5
+   ],
+   [
+    "chodnik",
+    4.9
+   ],
+   [
+    "plocha",
+    0.5
+   ],
+   [
+    "zed",
+    0.5
+   ],
+   [
+    "zelen",
+    0.95
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    5.37
+   ],
+   [
+    "chodnik",
+    2
+   ],
+   [
+    "nezname",
+    15.35
+   ],
+   [
+    "chodnik",
+    2
+   ],
+   [
+    "nezname",
+    7.9
+   ],
+   [
+    "chodnik",
+    2
+   ],
+   [
+    "nezname",
+    0.55
+   ],
+   [
+    "chodnik",
+    2.5
+   ],
+   [
+    "pruh",
+    2.5
+   ],
+   [
+    "pruh",
+    2.5
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "zelen",
+    25.55
+   ]
+  ],
+  "fTruth": {
+   "lanes": 3,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": true,
+   "trees": true,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p84",
+  "lat": 50.075785995785054,
+  "lon": 14.407503956221692,
+  "bearing": 171.52442081584823,
+  "name": "Zborovská",
+  "truth": [
+   [
+    "chodnik",
+    2.7
+   ],
+   [
+    "parkovani",
+    4.6
+   ],
+   [
+    "pruh",
+    3.52
+   ],
+   [
+    "pruh",
+    2.82
+   ],
+   [
+    "cyklopruh",
+    1.5
+   ],
+   [
+    "chodnik",
+    3.35
+   ]
+  ],
+  "estimate": [
+   [
+    "chodnik",
+    3.3
+   ],
+   [
+    "parkovani",
+    5.1
+   ],
+   [
+    "pruh",
+    2.8
+   ],
+   [
+    "pruh",
+    2.8
+   ],
+   [
+    "cyklopruh",
+    1.5
+   ],
+   [
+    "chodnik",
+    2.95
+   ]
+  ],
+  "fTruth": {
+   "lanes": 2,
+   "parkingLeft": true,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 2,
+   "parkingLeft": true,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p85",
+  "lat": 49.99155242837648,
+  "lon": 14.443450764546453,
+  "bearing": 139.1178909638156,
+  "name": "Hlavatecká",
+  "truth": [
+   [
+    "parkovani",
+    1.95
+   ],
+   [
+    "pruh",
+    3.65
+   ]
+  ],
+  "estimate": [
+   [
+    "plocha",
+    6.45
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "pruh",
+    5.7
+   ],
+   [
+    "nezname",
+    36.67
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": true,
+   "parkingRight": true,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p86",
+  "lat": 50.004431525656685,
+  "lon": 14.462786855516779,
+  "bearing": 79.91518611877535,
+  "name": "U libušské sokolovny",
+  "truth": [
+   [
+    "zed",
+    0.35
+   ],
+   [
+    "chodnik",
+    1.7
+   ],
+   [
+    "pruh",
+    8.15
+   ]
+  ],
+  "estimate": [
+   [
+    "plocha",
+    3.75
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "pruh",
+    5
+   ],
+   [
+    "nezname",
+    37.42
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p87",
+  "lat": 50.09135375283124,
+  "lon": 14.540700476611919,
+  "bearing": -72.0893026446744,
+  "name": "Dářská",
+  "truth": [
+   [
+    "zelen",
+    1.25
+   ],
+   [
+    "pruh",
+    6.6
+   ],
+   [
+    "chodnik",
+    2.25
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    38.88
+   ],
+   [
+    "pruh",
+    3.7
+   ],
+   [
+    "nezname",
+    37.42
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p88",
+  "lat": 50.01728377723386,
+  "lon": 14.493951894606237,
+  "bearing": -95.01310867161729,
+  "name": "Nad Akáty",
+  "truth": [
+   [
+    "zelen",
+    2.5
+   ],
+   [
+    "pruh",
+    4.05
+   ],
+   [
+    "chodnik",
+    1.35
+   ]
+  ],
+  "estimate": [
+   [
+    "plocha",
+    1.45
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "pruh",
+    3.6
+   ],
+   [
+    "nezname",
+    38.87
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p89",
+  "lat": 50.03815229516994,
+  "lon": 14.556811930138341,
+  "bearing": 81.29887341887948,
+  "name": "Ohmova",
+  "truth": [
+   [
+    "pruh",
+    8.7
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    37.98
+   ],
+   [
+    "pruh",
+    3.2
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "zelen",
+    5.65
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p90",
+  "lat": 49.98664842976601,
+  "lon": 14.452819921788448,
+  "bearing": -96.71850764944752,
+  "name": "Ke Kálku",
+  "truth": [
+   [
+    "pruh",
+    4.05
+   ],
+   [
+    "zelen",
+    0.75
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    38.68
+   ],
+   [
+    "pruh",
+    3.7
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "nezname",
+    25.75
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p91",
+  "lat": 50.14057201605729,
+  "lon": 14.50789616061782,
+  "bearing": -8.807383749810867,
+  "name": "Krausova",
+  "truth": [
+   [
+    "chodnik",
+    5.3
+   ],
+   [
+    "zelen",
+    3.65
+   ],
+   [
+    "parkovani",
+    4.6
+   ],
+   [
+    "pruh",
+    6.2
+   ],
+   [
+    "parkovani",
+    4.6
+   ],
+   [
+    "chodnik",
+    2.6
+   ],
+   [
+    "zelen",
+    12.8
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    33.08
+   ],
+   [
+    "parkovani",
+    4.75
+   ],
+   [
+    "nezname",
+    0.45
+   ],
+   [
+    "pruh",
+    2.9
+   ],
+   [
+    "chodnik",
+    2.85
+   ],
+   [
+    "parkovani",
+    3.95
+   ],
+   [
+    "zelen",
+    15.35
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": true,
+   "parkingRight": true,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": true,
+   "parkingRight": true,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p92",
+  "lat": 50.038003985816005,
+  "lon": 14.351591572554284,
+  "bearing": -2.9377538971928625,
+  "name": "Liščí",
+  "truth": [
+   [
+    "pruh",
+    7.85
+   ],
+   [
+    "zelen",
+    2.35
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    37.48
+   ],
+   [
+    "pruh",
+    3.8
+   ],
+   [
+    "nezname",
+    38.72
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p93",
+  "lat": 50.0940695586725,
+  "lon": 14.322412549387717,
+  "bearing": -117.51651356334406,
+  "name": "Divoká Šárka",
+  "truth": [
+   [
+    "chodnik_kola",
+    3.65
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    37.13
+   ],
+   [
+    "pruh",
+    4.4
+   ],
+   [
+    "nezname",
+    38.47
+   ]
+  ],
+  "fTruth": {
+   "lanes": 0,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p94",
+  "lat": 50.0878030186403,
+  "lon": 14.413756234544705,
+  "bearing": 172.98577957727437,
+  "name": "Alšovo nábřeží",
+  "truth": [
+   [
+    "plocha",
+    2.7
+   ],
+   [
+    "stromorad",
+    2.35
+   ],
+   [
+    "chodnik",
+    5.55
+   ],
+   [
+    "zed",
+    0.8
+   ]
+  ],
+  "estimate": [
+   [
+    "chodnik",
+    3
+   ],
+   [
+    "stromorad",
+    1.5
+   ],
+   [
+    "chodnik",
+    1.35
+   ],
+   [
+    "pruh",
+    4.9
+   ],
+   [
+    "nezname",
+    36.37
+   ]
+  ],
+  "fTruth": {
+   "lanes": 0,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": true,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": true,
+   "median": false
+  }
+ },
+ {
+  "id": "p95",
+  "lat": 50.088035997314584,
+  "lon": 14.432532910192455,
+  "bearing": -2.650458881591903,
+  "name": "Havlíčkova",
+  "truth": [
+   [
+    "chodnik",
+    3.75
+   ],
+   [
+    "pruh",
+    3
+   ],
+   [
+    "chodnik",
+    0.6
+   ],
+   [
+    "nastupiste",
+    1.95
+   ],
+   [
+    "chodnik",
+    0.5
+   ],
+   [
+    "tramvaj_pruh",
+    2.97
+   ],
+   [
+    "tramvaj_pruh",
+    3.18
+   ],
+   [
+    "nastupiste",
+    3
+   ],
+   [
+    "chodnik",
+    3
+   ]
+  ],
+  "estimate": [
+   [
+    "chodnik",
+    2.75
+   ],
+   [
+    "plocha",
+    0.85
+   ],
+   [
+    "chodnik_kola",
+    3.6
+   ],
+   [
+    "nastupiste",
+    1.95
+   ],
+   [
+    "chodnik",
+    0.45
+   ],
+   [
+    "tramvaj_v_pruhu",
+    4
+   ],
+   [
+    "nastupiste",
+    3
+   ],
+   [
+    "chodnik",
+    3
+   ],
+   [
+    "plocha",
+    1.8
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": true,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": true
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": true,
+   "sidewalkLeft": true,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p96",
+  "lat": 50.09951895882586,
+  "lon": 14.33803795948064,
+  "bearing": 122.43653136979573,
+  "name": "Divoká Šárka",
+  "truth": [
+   [
+    "pruh",
+    3.05
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    38.38
+   ],
+   [
+    "pruh",
+    3.1
+   ],
+   [
+    "nezname",
+    38.52
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p98",
+  "lat": 50.0969353581632,
+  "lon": 14.543075641626562,
+  "bearing": 139.16160414119798,
+  "name": "",
+  "truth": [
+   [
+    "plocha",
+    14.85
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    36.63
+   ],
+   [
+    "obsluzna",
+    7.6
+   ],
+   [
+    "chodnik",
+    3.65
+   ]
+  ],
+  "fTruth": {
+   "lanes": 0,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p99",
+  "lat": 50.03546999392351,
+  "lon": 14.552626989730884,
+  "bearing": -42.460573954142724,
+  "name": "Ramanova",
+  "truth": [
+   [
+    "voda",
+    4.15
+   ],
+   [
+    "zelen",
+    1.75
+   ],
+   [
+    "cyklostezka",
+    3.1
+   ]
+  ],
+  "estimate": [
+   [
+    "zelen",
+    14.05
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "obsluzna",
+    3.8
+   ],
+   [
+    "nezname",
+    38.47
+   ]
+  ],
+  "fTruth": {
+   "lanes": 0,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": true,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": true,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  }
+ },
+ {
+  "id": "p100",
+  "lat": 50.06028340769277,
+  "lon": 14.480261588804975,
+  "bearing": -46.972024488402496,
+  "name": "",
+  "truth": [
+   [
+    "obsluzna",
+    2
+   ]
+  ],
+  "estimate": [
+   [
+    "nezname",
+    38.63
+   ],
+   [
+    "obsluzna",
+    2.75
+   ],
+   [
+    "chodnik",
+    6
+   ],
+   [
+    "nezname",
+    23.65
+   ]
+  ],
+  "fTruth": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": false,
+   "trees": false,
+   "median": false
+  },
+  "fEstimate": {
+   "lanes": 1,
+   "parkingLeft": false,
+   "parkingRight": false,
+   "cycle": false,
+   "tram": false,
+   "sidewalkLeft": false,
+   "sidewalkRight": true,
+   "trees": false,
+   "median": false
+  }
+ }
+]

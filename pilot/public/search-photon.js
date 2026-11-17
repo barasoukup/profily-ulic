@@ -1,18 +1,24 @@
-// Address search in Austria outside Vienna's own data (Bára 16. 11. 2026): Photon of komoot (photon.komoot.io, built
+// Address search in Austria outside Vienna's own data (Bára 16. 11. 2026) and in Germany (17. 11. 2026): Photon of komoot (photon.komoot.io, built
 // on OpenStreetMap, CORS, fair use: search.js asks with its debounce and cancelling, at most one query a pause in
-// typing). Only Austrian results (countrycode AT). The items look like RÚIAN's (text, type Ulice / AdresniMisto /
+// typing). Only the results of the asked states (countrycode AT, DE). The items look like RÚIAN's (text, type Ulice / AdresniMisto /
 // Obec) so search.js ranks them together; at carries the point and the street for the cut.
 export const PHOTON = "https://photon.komoot.io/api/";
 const MAX = 15;
-// Austria's box (the results are filtered by their country code as well).
-const AT_BOX = [9.53, 46.37, 17.16, 49.02];
+// The states' boxes (the results are filtered by their country code as well).
+const BOX = { AT: [9.53, 46.37, 17.16, 49.02], DE: [5.86, 47.27, 15.04, 55.06] };
+const boxOf = (countries) => {
+  const b = countries.map((c) => BOX[c]);
+  return [Math.min(...b.map((x) => x[0])), Math.min(...b.map((x) => x[1])), Math.max(...b.map((x) => x[2])), Math.max(...b.map((x) => x[3]))];
+};
+// A query that is likely German or Austrian (asked of Photon where the map shows neither and nothing else was found).
+export const looksGerman = (text) => /ß|stra(ss|ß)e\b|str\.|platz\b|allee\b|gasse\b|\bberlin|münchen|hamburg|köln|frankfurt|leipzig|dresden|stuttgart|düsseldorf|nürnberg|hannover|bremen/i.test(text);
 
 const TOWN = new Set(["city", "town", "village", "hamlet", "suburb", "municipality"]);
-export function parsePhoton(json) {
+export function parsePhoton(json, countries = ["AT"]) {
   const out = [];
   for (const f of json?.features || []) {
     const p = f.properties || {}, c = f.geometry?.coordinates;
-    if (p.countrycode !== "AT" || !c) continue;
+    if (!countries.includes(p.countrycode) || !c) continue;
     const town = [p.postcode, p.city || p.town || p.village || p.district].filter(Boolean).join(" ");
     if (p.housenumber && p.street) out.push({ text: `${p.street} ${p.housenumber}, ${town}`, type: "AdresniMisto", at: { lon: c[0], lat: c[1], street: p.street } });
     else if (p.osm_key === "highway" && p.name) out.push({ text: `${p.name}, ${town}`, type: "Ulice", at: { lon: c[0], lat: c[1], street: p.name } });
@@ -23,8 +29,9 @@ export function parsePhoton(json) {
   return out.filter((it) => !seen.has(it.text) && seen.add(it.text)).slice(0, MAX);
 }
 
-export async function findPhoton(text, getJSON, signal) {
+// near: [lat, lon] of the map's centre, so a common street name (Hauptstraße) comes from around it first (the review).
+export async function findPhoton(text, getJSON, signal, countries = ["AT"], near = null) {
   const q = String(text || "").trim();
-  if (q.length < 3) return [];
-  return parsePhoton(await getJSON(`${PHOTON}?${new URLSearchParams({ q, limit: "20", lang: "de", bbox: AT_BOX.join(",") })}`, signal));
+  if (q.length < 3 || !countries.length) return [];
+  return parsePhoton(await getJSON(`${PHOTON}?${new URLSearchParams({ q, limit: "20", lang: "de", bbox: boxOf(countries).join(","), ...(near && { lat: near[0].toFixed(4), lon: near[1].toFixed(4) }) })}`, signal), countries);
 }

@@ -177,6 +177,22 @@ function pointParam(url, d = 5) {
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, `http://localhost:${PORT}`);
   try {
+    // Evaluations only (EVAL_SAVE=1, never in the deployed site, which is static): a page script saves its results
+    // into evaluation/universal/data/<name>.json (evaluation/universal, Bára 17. 11. 2026).
+    if (url.pathname === "/api/eval-save" && req.method === "POST" && process.env.EVAL_SAVE === "1") {
+      const name = String(url.searchParams.get("name") || "").replace(/[^a-z0-9-]/gi, "");
+      // Only the app's own page may write (the review: any page open in the browser could), at most 20 MB.
+      const origin = req.headers.origin;
+      if (!name || (origin && origin !== `http://localhost:${PORT}` && origin !== `http://127.0.0.1:${PORT}`)) { res.writeHead(403); return res.end(); }
+      const chunks = [];
+      let size = 0;
+      for await (const c of req) { size += c.length; if (size > 20e6) { res.writeHead(413); return res.end(); } chunks.push(c); }
+      const dir = path.join(ROOT, "..", "evaluation", "universal", "data");
+      await fs.mkdir(dir, { recursive: true });
+      await fs.writeFile(path.join(dir, `${name}.json`), Buffer.concat(chunks));
+      res.writeHead(204);
+      return res.end();
+    }
     if (url.pathname === "/api/osm") {
       const [lat, lon] = pointParam(url);
       const radius = Math.min(Number(url.searchParams.get("r") || 80), 200);

@@ -1,7 +1,7 @@
 import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, SURFACES, LAMP_HEIGHTS, underSize } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, splitTwoWayLane, capWideLanes, pedestrianZone, widenNarrowTrams, carveCycleways, carveTramTracks, lanesFromShoulders, crossFromA, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
-import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO } from "./lanes-ortho.js";
+import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO, DE_ORTHO, deWmsUrl, landsAt } from "./lanes-ortho.js";
 import { orthoOsmPolys, besidePassport, trimToEnds, P as ORTHO_P } from "./ortho-osm.js";
 // ?off=… switches named parts of the estimate off (the A/B tests, evaluation/ortofoto-osm/regrese.mjs).
 { const off = new URLSearchParams(location.search).get("off"); if (off) ORTHO_P.off = new Set(off.split(",")); }
@@ -86,10 +86,11 @@ if (STATY) loadStates(STATY); else console.warn("staty.json se nenačetl: stát 
 }
 // The city of a point becomes the current one (city.js): its sources, texts and illustrations.
 async function useCity(lat, lon) {
-  const id = cityAt(lat, lon);
-  if (id === city.id) return;
-  setCity(id);
-  await loadSprites();
+  const id = cityAt(lat, lon), changed = id !== city.id;
+  if (changed) setCity(id);
+  // What the state decides by the place itself (countries/<ISO>.js atPlace; Germany: panel houses only in the GDR).
+  if (country.atPlace) Object.assign(city, await country.atPlace(lon, lat));
+  if (changed) await loadSprites();
 }
 
 const state = {
@@ -195,9 +196,42 @@ if (STATY?.slovensko) {
 if (STATY?.austria) {
   const pts = STATY.austria.flat(), xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]);
   kinds.ortho.push(L.tileLayer(`${AT_ORTHO}/{z}/{y}/{x}.jpeg`, {
-    maxZoom: 21, maxNativeZoom: 20, attribution: "ortofoto © basemap.at",
+    // Level 20 only in some towns: 19 everywhere (zoomed in beyond it).
+    maxZoom: 21, maxNativeZoom: 19, attribution: "ortofoto © basemap.at",
     bounds: L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]),
   }));
+}
+// Germany: the orthophoto of each Land (lanes-ortho.js DE_ORTHO), a tile from the WMS of the Land its centre lies in
+// (laender.json, loaded when the first tile in Germany is drawn).
+if (STATY?.germany) {
+  const pts = STATY.germany.flat(), xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]);
+  const DeOrtho = L.GridLayer.extend({
+    createTile(coords, done) {
+      const size = this.getTileSize(), R = 6378137, span = (2 * Math.PI * R) / 2 ** coords.z;
+      const x0 = coords.x * span - Math.PI * R, y1 = Math.PI * R - coords.y * span, b = [x0, y1 - span, x0 + span, y1];
+      const c = this._map.unproject([(coords.x + 0.5) * size.x, (coords.y + 0.5) * size.y], coords.z);
+      // Near a border (more than one Land within about 2 km) the Länder's images stacked as transparent PNGs, the Land
+      // of the tile's centre on top (the review: white halves in Mainz/Wiesbaden, Ulm/Neu-Ulm).
+      const tile = document.createElement("div");
+      tile.style.position = "relative";
+      landsAt(c.lng, c.lat).then((lands) => {
+        const wms = [...new Map(lands.map((l) => [DE_ORTHO[l].wms, l])).values()];
+        if (!wms.length) return done(null, tile);
+        let left = wms.length;
+        for (const land of [...wms].reverse()) {
+          const im = document.createElement("img");
+          im.alt = "";
+          Object.assign(im.style, { position: "absolute", left: 0, top: 0, width: `${size.x}px`, height: `${size.y}px` });
+          im.onload = im.onerror = () => { if (--left === 0) done(null, tile); };
+          im.src = wms.length > 1 ? deWmsUrl(DE_ORTHO[land], b, size.x, size.y, "image/png", { transparent: "TRUE" }) : deWmsUrl(DE_ORTHO[land], b, size.x, size.y);
+          tile.appendChild(im);
+        }
+      }, () => done(null, tile));
+      return tile;
+    },
+  });
+  kinds.ortho.push(new DeOrtho({ maxZoom: 21, minZoom: 12, attribution: tr("ortofoto © spolkové země Německa (GeoBasis-DE)"),
+    bounds: L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]) }));
 }
 // The towns (towns/<id>.js maps): their orthophoto, technical map and lines, each kept to the town.
 for (const [id, t] of Object.entries(TOWNS)) {
@@ -296,7 +330,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       // A click with no street found is logged too (Bára: how many try outside the Czech Republic): only where, to
       // about a kilometre, and whether there were any OSM data there at all (outside the country there are none).
       if (!keepWay) log("bez_ulice", { detail: osm?.elements?.length ? "bez_ulice" : "bez_dat", city: city.id, country: city.country, lat: Math.round(lat * 100) / 100, lon: Math.round(lon * 100) / 100 });
-      return status(tr("Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko, Slovensko a Rakousko)."), "error");
+      return status(tr("Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko, Slovensko, Rakousko a Německo)."), "error");
     }
     // A street of two one-way carriageways is cut from its middle (e.g. the tram belt).
     near = centerOnStreet(osm, frame, near);
@@ -357,7 +391,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     const inZps = z.status === "fulfilled" ? z.value : undefined;
     const laneImg = li.status === "fulfilled" ? li.value : null;
     // The same image tells grass from paving beside a roadway read from the DTM's lines (derive.js linePieces).
-    const args = { center: [0, 0], dir, half, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho, lanesImage: laneImg?.st, roadOnPath: !!city.roadOnPath, noParkGuess: !country.parkGuess };
+    const args = { center: [0, 0], dir, half, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho, lanesImage: laneImg?.st, roadOnPath: !!city.roadOnPath, noParkGuess: !country.parkGuess || new URLSearchParams(location.search).get("odhadstani") === "0" };
     let result = deriveProfile(args);
     // No surface of the street from the technical map (no answer, nothing here, nothing at the axis): the carriageway
     // read on the orthophoto near where OSM expects it, sidewalks to the OSM buildings (ortho-osm.js; Bára 15. 11.
@@ -377,7 +411,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // 17. novembra ended at the passport's edge). The passport's own surfaces stay first.
     let besideUsed = null;
     if (!orthoOsm && m.value?.passport && country.besidePassport) {
-      const beside = besidePassport({ osm, frame, dir, way: near.way, st: laneImg?.st, edges: k.status === "fulfilled" ? k.value?.edges || [] : [], symbols: k.status === "fulfilled" ? k.value?.symbols || [] : [], areas: k.status === "fulfilled" ? k.value?.areas || [] : [], polys });
+      const beside = besidePassport({ osm, frame, dir, way: near.way, st: laneImg?.st, edges: k.status === "fulfilled" ? k.value?.edges || [] : [], symbols: k.status === "fulfilled" ? k.value?.symbols || [] : [], areas: k.status === "fulfilled" ? k.value?.areas || [] : [], polys, ...(country.besideMax && { max: country.besideMax }) });
       if (beside.length) {
         const again = deriveProfile({ ...args, polys: [...polys, ...beside] });
         if (!again.estimate) { result = again; besideUsed = beside.used; }
@@ -431,7 +465,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // the DMVS standing in for the city's map, the orthophoto of a tram bed.
     const mv = m.status === "fulfilled" ? m.value : null;
     const bedOwn = ortho && country.bedOrtho !== "cuzk" ? country.bedOrtho : null; // the tram bed read on a state's own orthophoto
-    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.skTown && { skTown: mv.skTown }), ...(mv?.atTown && { atTown: mv.atTown }), ...(atSigns?.length && signTags.__salzburg && { atSigns: "salzburg" }), ...(mv?.skTm && { skTm: true }), ...((orthoOsm?.edges || besideUsed?.edges) && k.value?.edgesFrom && { skEdges: k.value.edgesFrom }), ...((orthoOsm?.areas || orthoOsm?.widthFrom === "zbgis" || besideUsed?.zbgis) && { zbgis: true }), ...(mv?.dmvs && { dmvs: true }), ...(typeof mv?.passport === "string" && { passport: mv.passport }), ...(((ortho && !bedOwn) || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" ? { orthoCity: laneImg.source } : bedOwn ? { orthoCity: bedOwn } : besideUsed?.image && { orthoCity: laneImg.source }) };
+    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.skTown && { skTown: mv.skTown }), ...(mv?.atTown && { atTown: mv.atTown }), ...(mv?.deTown && { deTown: mv.deTown }), ...(atSigns?.length && signTags.__salzburg && { atSigns: "salzburg" }), ...(mv?.skTm && { skTm: true }), ...((orthoOsm?.edges || besideUsed?.edges) && k.value?.edgesFrom && { skEdges: k.value.edgesFrom }), ...((orthoOsm?.areas || orthoOsm?.widthFrom === "zbgis" || besideUsed?.zbgis) && { zbgis: true }), ...(mv?.dmvs && { dmvs: true }), ...(typeof mv?.passport === "string" && { passport: mv.passport }), ...(((ortho && !bedOwn) || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" ? { orthoCity: laneImg.source } : bedOwn ? { orthoCity: bedOwn } : besideUsed?.image && { orthoCity: laneImg.source }) };
     // The log of cuts (log.js): the cut exactly, and how it came (a click, a moved cut, a link).
     log("rez", {
       detail: keepWay ? "posun" : bearing !== null ? "odkaz" : "klik", city: city.id, country: city.country, street: name, highway: near.way.tags.highway,
@@ -735,6 +769,10 @@ const SK_PASSPORT_TOWN = { bratislava: "Bratislava", presov: "Prešov", zilina: 
 function cutData() {
   // Vienna's map of surfaces (towns/austria.js).
   if (state.cut?.sources?.atTown === "wien") return tr("mapy povrchů města Vídně a OSM");
+  const deTown = state.cut?.sources?.deTown;
+  if (deTown === "berlin") return tr("mapy povrchů ulic Berlína a OSM");
+  if (deTown === "hamburg") return tr("mapy povrchů ulic Hamburku a OSM");
+  if (deTown === "aachen") return tr("databáze ulic Cách a OSM");
   const sk = state.cut?.sources?.skTown, edges = SK_EDGES_TOWN[state.cut?.sources?.skEdges];
   // The lines of a town's map that placed the kerbs (towns/slovensko.js EDGE_SOURCES; Bára: the data really used).
   if (SK_PASSPORT_TOWN[sk] && edges === SK_PASSPORT_TOWN[sk]) return tr("pasportu komunikací a mapy města {town}, ZBGIS a OSM", { town: edges });
@@ -775,7 +813,7 @@ function draw() {
     box.innerHTML = `<div class="empty">
       <img src="${city.emptyImg}" alt="" width="96" height="126">
       <div><h1 class="empty-title">${tr("Příčný profil ulice")}</h1>
-      <ol><li>${tr("Klikněte v mapě na ulici kdekoli v Česku, na Slovensku nebo v Rakousku.")}</li><li>${tr("Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy Vídně a OSM.")}</li>
+      <ol><li>${tr("Klikněte v mapě na ulici kdekoli v Česku, na Slovensku, v Rakousku nebo v Německu.")}</li><li>${tr("Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy Vídně a OSM, v Německu z ortofot spolkových zemí a OSM.")}</li>
       <li>${tr("V režimu Návrh ho upravíte: táhněte hranice, klikněte na část, přidejte novou.")}</li></ol></div></div>`;
     $("#editor").replaceChildren();
     $("#palette").replaceChildren();
@@ -2045,7 +2083,10 @@ function restore(data) {
   undoStack.length = redoStack.length = 0;
   Object.assign(state, { cut: data.cut, stav: data.stav, navrh: data.navrh || structuredClone(data.stav), navrhEdited: !!data.navrhEdited, selected: null });
   // The saved cut's city (its illustrations follow once loaded).
-  if (state.cut) { setCity(cityAt(state.cut.lat, state.cut.lon)); loadSprites().then(render); }
+  if (state.cut) {
+    setCity(cityAt(state.cut.lat, state.cut.lon));
+    Promise.all([loadSprites(), country.atPlace?.(state.cut.lon, state.cut.lat).then((v) => Object.assign(city, v))]).then(render);
+  }
   if (state.cut) {
     map.setView([state.cut.lat, state.cut.lon], 19);
     const f = localFrame(state.cut.lat, state.cut.lon);

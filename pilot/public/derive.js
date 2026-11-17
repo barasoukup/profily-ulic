@@ -590,6 +590,7 @@ const bikeWidth = (type, parkOrient) =>
   !parkOrient ? BIKE_WIDTH[type] : parkOrient === "podelne" ? 1.75 : 2;
 const ISLAND_MAX = 6; // widest paved strip between carriageways still taken as an island (m)
 const MIN_LANE = 2.5; // narrowest driving lane kept when curb strips are carved out (m)
+const OSM_PARK_MIN = 0.85; // parking tagged in OSM narrowed to fit an estimated roadway, down to this share of its width
 // Widest driving lane before the rest becomes a shoulder / hatched area (m). ČSN 73 6110 lanes
 // are 3.0–3.5 m, but Prague streets commonly have 4 m lanes (Bára: an 8 m street is two 4 m lanes,
 // no shoulder); motorways and expressways 3.75 m with a hard shoulder.
@@ -617,6 +618,9 @@ const LAW_RAIL = 3.5;
 // The free lane by the law of the state (countries/<ISO>.js freeLane): Czechia and Slovakia 3 m per direction, Austria
 // about 2.6 m (StVO § 24).
 const lawLane = () => country.freeLane;
+// The width the law leaves beside parked cars: the free lane per direction, or the state's own rule
+// (countries/<ISO>.js lawNeed; Germany: 3.05 m to pass, the lanes kept at MIN_LANE each).
+const lawNeedFor = (oneway, lanesTotal) => (country.lawNeed ? country.lawNeed(oneway, lanesTotal, MIN_LANE) : lawLane() * Math.max(oneway ? 1 : 2, lanesTotal));
 // Outside the built-up area a kerb without a sidewalk gets no estimate (Bára): no building of OSM or of the
 // city's surfaces within BUILT_ALONG along the street and BUILT_OUT out from the kerb on that side. A sidewalk
 // is a footway surface beyond the kerb, past a green strip up to WALK_GREEN, or OSM's sidewalk tags or a
@@ -669,10 +673,16 @@ function splitRoadway(run, ctx) {
     const w = bikeWidth(st.bike, st.parking || parked.includes(side) ? st.parkingOrient || "podelne" : null);
     if (fits(side, w)) { edge.push({ side, type: st.bike, w }); take(side, w); }
   }
+  // Parking the data put there (OSM) stays when a little room is missing in an estimated roadway (the universal
+  // judging, 17. 11. 2026: an estimated roadway of 4.4 m dropped the tagged parallel parking of Großer Brockhaus for
+  // 0.1 m): narrowed to what is left, down to OSM_PARK_MIN of its width. A measured roadway (MTVU, a technical map)
+  // keeps the old rule (the review: a narrowed stall gave a red warning in Návrh at once).
   for (const [side, st] of [["L", sideL], ["R", sideR]]) {
-    if (st.parking && !parked.includes(side) && fits(side, st.parkingWidth)) {
-      edge.push({ side, type: "parkovani", w: st.parkingWidth, orient: st.parkingOrient });
-      take(side, st.parkingWidth);
+    if (!st.parking || parked.includes(side)) continue;
+    const w = fits(side, st.parkingWidth) ? st.parkingWidth : run.guess ? Math.min(left, clear[side]) : 0;
+    if (w >= st.parkingWidth * OSM_PARK_MIN - 1e-6) {
+      edge.push({ side, type: "parkovani", w, orient: st.parkingOrient });
+      take(side, w);
     }
   }
   // Cars parked at the curb, though no data says so: a parallel strip as an estimate where the law allows it
@@ -684,7 +694,7 @@ function splitRoadway(run, ctx) {
   // Only outside the paid parking zones (Bára): inside them TSK has surveyed every stall.
   if (!ctx.inZps && (ctx.guessPark ?? PARK_GUESS.has(tags.highway))) {
     const oneway = isOnewayTags(tags) || tags.junction === "roundabout";
-    const need = lawLane() * Math.max(oneway ? 1 : 2, lanesTotal);
+    const need = lawNeedFor(oneway, lanesTotal);
     const lo = trams.length ? Math.min(...trams) - RAIL_HALF : Infinity, hi = trams.length ? Math.max(...trams) + RAIL_HALF : -Infinity;
     for (const [side, st] of [["R", sideR], ["L", sideL]]) {
       if (!(ctx.kerbOpen ?? ["L", "R"]).includes(side) || ctx.kerbBare?.includes(side) || parked.includes(side) || st.parkingNo || edge.some((x) => x.side === side && x.type === "parkovani")) continue;
@@ -703,7 +713,7 @@ function splitRoadway(run, ctx) {
   // § 25(3) holds for cars across the kerb too: the free width left beside them (lawFree), for the notice.
   const oneway = isOnewayTags(tags) || tags.junction === "roundabout";
   const lawFree = edge.some((x) => x.position) ? width - edge.reduce((a, x) => a + x.w, 0) : null;
-  const lawNeed = lawLane() * Math.max(oneway ? 1 : 2, lanesTotal);
+  const lawNeed = lawNeedFor(oneway, lanesTotal);
   for (const x of edge) {
     const extra = x.position ? { position: x.position, ...(lawFree < lawNeed - 1e-6 ? { lawFree, lawNeed } : {}) } : {};
     if (x.side === "L") { leftEdge.push({ type: x.type, s: e - x.w, e, orient: x.orient, source: x.source, ...extra }); e -= x.w; }

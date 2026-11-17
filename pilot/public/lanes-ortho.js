@@ -26,12 +26,73 @@ const SOURCES = {
   // The grid of z19, tiles of 512 px (about 10 cm). balance: the mosaic is bright and tinted (Košice 2025: asphalt
   // 200 bright and 10 greener than red and blue, read as grass), so the tints are taken relative to its grey pixels.
   sk: { res: 0.1, tiles: `${SK_ORTHO}/tile`, z: 19, px: 512, balance: true },
-  at: { res: 0.1, tiles: AT_ORTHO, z: 20, px: 256, ext: ".jpeg" },
+  // basemap.at has level 20 only in some towns (Vienna, Graz, Linz; Salzburg, Innsbruck, Klagenfurt, St. Pölten: 404,
+  // found by the universal judging 17. 11. 2026): level 19 where a tile of 20 is missing.
+  at: { res: 0.1, tiles: AT_ORTHO, z: 20, px: 256, ext: ".jpeg", fallback: "at19" },
+  at19: { res: 0.1, tiles: AT_ORTHO, z: 19, px: 256, ext: ".jpeg" },
   brno: { res: 0.1, tiles: "https://gis.brno.cz/ags1/rest/services/OMI/OMI_basemaps_ortofoto_2025_wgs/MapServer/tile", z: 20, shift: [1.06, 3.09] },
   plzen: { res: 0.1, url: (b, w, h) => `https://ags.plzen.eu/arcgis/rest/services/Orto_2024_5cm_RGB_mimoveg/MapServer/export?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: "jpg", f: "image", datumTransformations: "[1623]" })}` },
   ipr: { res: 0.1, url: (b, w, h) => `https://gs-pub.praha.eu/imgs/rest/services/ort/letecke_snimkovani/ImageServer/exportImage?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: "jpg", f: "image" })}` },
   cuzk: { res: 0.125, url: (b, w, h, format = "image/jpeg") => `https://ags.cuzk.gov.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer?${new URLSearchParams({ service: "WMS", request: "GetMap", version: "1.3.0", layers: "0", styles: "", crs: "EPSG:3857", bbox: b.join(","), width: w, height: h, format })}` },
 };
+// The orthophotos of Germany's Länder: WMS 1.3.0 GetMap in EPSG:3857 (each answered with CORS and a photo, 17. 11. 2026),
+// with the credit each asks for (its capabilities' Fees and AccessConstraints).
+export const DE_ORTHO = {
+  BW: { wms: "https://owsproxy.lgl-bw.de/owsproxy/ows/WMS_LGL-BW_ATKIS_DOP_20_C", layers: "IMAGES_DOP_20_RGB", credit: "© LGL-BW (dl-de/by-2-0)" },
+  BY: { wms: "https://geoservices.bayern.de/od/wms/dop/v1/dop20", layers: "by_dop20c", credit: "© Bayerische Vermessungsverwaltung (CC BY 4.0)" },
+  // Berlin and Brandenburg in one layer of the LGB.
+  BE: { wms: "https://isk.geobasis-bb.de/mapproxy/dop20c/service/wms", layers: "bebb_dop20c", credit: "© GeoBasis-DE/LGB (dl-de/by-2-0)" },
+  BB: { wms: "https://isk.geobasis-bb.de/mapproxy/dop20c/service/wms", layers: "bebb_dop20c", credit: "© GeoBasis-DE/LGB (dl-de/by-2-0)" },
+  HB: { wms: "https://geodienste.bremen.de/wms_dop20_2023", layers: "DOP20_2023_HB,DOP20_2023_BHV", credit: "© Landesamt GeoInformation Bremen (CC BY 4.0)" },
+  // The time series of Hamburg: 2024 asked by name (its 2022 is a satellite image under a closed licence).
+  HH: { wms: "https://geodienste.hamburg.de/wms_dop_zeitreihe_belaubt", layers: "dop_zeitreihe_belaubt", time: "2024", credit: "© Freie und Hansestadt Hamburg, LGV (dl-de/by-2-0)" },
+  HE: { wms: "https://www.gds-srv.hessen.de/cgi-bin/lika-services/ogc-free-images.ows", layers: "he_dop20_rgb", credit: "© HVBG (dl-de/zero-2-0)" },
+  MV: { wms: "https://www.geodaten-mv.de/dienste/adv_dop", layers: "mv_dop", credit: "© GeoBasis-DE/M-V (CC BY 4.0)" },
+  NI: { wms: "https://opendata.lgln.niedersachsen.de/doorman/noauth/dop_wms", layers: "ni_dop20", credit: "© LGLN (CC BY 4.0)" },
+  NW: { wms: "https://www.wms.nrw.de/geobasis/wms_nw_dop", layers: "nw_dop_rgb", credit: "© GeoBasis-DE/NRW (dl-de/zero-2-0)" },
+  RP: { wms: "https://geo4.service24.rlp.de/wms/rp_dop20.fcgi", layers: "rp_dop20", credit: "© GeoBasis-DE/LVermGeoRP (dl-de/by-2-0)" },
+  SH: { wms: "https://dienste.gdi-sh.de/WMS_SH_DOP20col_OpenGBD", layers: "sh_dop20_rgb", credit: "© GeoBasis-DE/LVermGeo SH (CC BY 4.0)" },
+  SL: { wms: "https://geoportal.saarland.de/freewms/dop2023", layers: "sl_dop20_rgb", credit: "© GeoBasis DE/LVGL-SL (dl-de/by-2-0)" },
+  SN: { wms: "https://geodienste.sachsen.de/wms_geosn_dop-rgb/guest", layers: "sn_dop_020", credit: "© GeoSN (dl-de/by-2-0)" },
+  ST: { wms: "https://www.geodatenportal.sachsen-anhalt.de/wss/service/INSPIRE_LVermGeo_ATKIS_OI/guest", layers: "OI_OrthoimageCoverage", credit: "© GeoBasis-DE / LVermGeo ST (dl-de/by-2-0)" },
+  TH: { wms: "https://www.geoproxy.geoportal-th.de/geoproxy/services/DOP", layers: "th_dop", credit: "© GDI-Th (CC BY 4.0)" },
+};
+export const deWmsUrl = ({ wms, layers, time }, b, w, h, format = "image/jpeg", extra = {}) => `${wms}?${new URLSearchParams({ service: "WMS", request: "GetMap", version: "1.3.0", layers, styles: "",
+  crs: "EPSG:3857", bbox: b.join(","), width: w, height: h, format, ...(time && { time }), ...extra })}`;
+for (const [land, o] of Object.entries(DE_ORTHO)) SOURCES[`de-${land}`] = { res: 0.1, url: (b, w, h, format) => deWmsUrl(o, b, w, h, format) };
+
+// The Länder a point may lie in (laender.json): the one it is in first, then those within about 2 km (the boundaries
+// are of 1 : 1 000 000), at most three.
+let laender = null;
+const inRings = (rings, x, y) => {
+  let c = false;
+  for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; }
+  return c;
+};
+export async function landsAt(lon, lat, json = null) {
+  laender ??= json ? Promise.resolve(json) : (async () => {
+    const url = new URL("./laender.json", import.meta.url);
+    if (url.protocol === "file:") return JSON.parse((await import("node:fs")).readFileSync(url, "utf8"));
+    const r = await fetch(url);
+    if (!r.ok) throw new Error(`laender.json ${r.status}`);
+    return r.json();
+  })();
+  // A file that did not load is asked again next time (the review: Germany without orthophoto until a reload).
+  const all = await laender.catch((err) => { laender = null; throw err; }), d = 0.02, near = [[0, 0], [d, 0], [-d, 0], [0, d], [0, -d], [d, d], [-d, -d], [d, -d], [-d, d]];
+  const hits = Object.keys(all).map((code) => ({ code, n: near.findIndex(([dx, dy]) => inRings(all[code], lon + dx * 1.5, lat + dy)) })).filter((x) => x.n >= 0);
+  return hits.sort((a, b) => a.n - b.n).slice(0, 3).map((x) => x.code);
+}
+// An image without the photo: outside the Land's coverage the services answer white (or black, or transparent).
+function blank(img) {
+  let n = 0, empty = 0;
+  for (let o = 0; o < img.data.length; o += 4 * 37) {
+    n++;
+    const [r, g, b, a] = [img.data[o], img.data[o + 1], img.data[o + 2], img.data[o + 3]];
+    if (a === 0 || (r > 250 && g > 250 && b > 250) || (r < 4 && g < 4 && b < 4)) empty++;
+  }
+  return empty > n * 0.5;
+}
+
 const median = (a) => { const b = a.filter((v) => !Number.isNaN(v)).sort((x, y) => x - y); return b.length ? b[b.length >> 1] : NaN; };
 
 // ---------- the image: one request, sampled on the cut's grid (t across, u along) ----------
@@ -40,8 +101,27 @@ const median = (a) => { const b = a.filter((v) => !Number.isNaN(v)).sort((x, y) 
 // st.D: green less red (derive.js surfaceLook: grass, dry grass or paving beside a roadway read from the lines),
 // st.S: the saturation (max less min of the channels; ortho-osm.js: does a column look like the roadway). decode: a PNG decoder for Node (no canvas there; the evaluation),
 // which asks ČÚZK for a PNG.
-export async function laneImage({ frame, dir, t0, t1, source = "cuzk", timeout = TIMEOUT, fetchImpl = fetch, decode = null }) {
-  const key = SOURCES[source] ? source : "cuzk", src = SOURCES[key], normal = [-dir[1], dir[0]];
+export async function laneImage(opts) {
+  if (opts.source !== "de") return laneImageOf(SOURCES[opts.source] ? opts.source : "cuzk", opts);
+  // Germany (countries/DE.js laneOrtho "de"): the Land's orthophoto, near a border the next Land's when the first has no
+  // photo there, all within one timeout (the review of Germany).
+  const tried = new Set(), start = Date.now(), budget = opts.timeout ?? TIMEOUT;
+  let lastError = null;
+  for (const land of await landsAt(...opts.frame.toLonLat(0, 0)).catch(() => [])) {
+    if (tried.has(DE_ORTHO[land].wms)) continue; // Berlin and Brandenburg: one service
+    tried.add(DE_ORTHO[land].wms);
+    const left = budget - (Date.now() - start);
+    if (left < 500) break;
+    try {
+      const out = await laneImageOf(`de-${land}`, { ...opts, timeout: left });
+      if (out) return out;
+    } catch (err) { lastError = err; }
+  }
+  if (lastError) throw lastError;
+  return null;
+}
+async function laneImageOf(key, { frame, dir, t0, t1, timeout = TIMEOUT, fetchImpl = fetch, decode = null }) {
+  const src = SOURCES[key], normal = [-dir[1], dir[0]];
   const k = Math.cos((frame.toLonLat(0, 0)[1] * Math.PI) / 180);
   // A point on the ground is read where the image shows it: moved by the orthophoto's shift (Web Mercator metres).
   const [sx, sy] = (src.shift || [0, 0]).map((v) => v / k);
@@ -67,10 +147,11 @@ export async function laneImage({ frame, dir, t0, t1, source = "cuzk", timeout =
       const canvas = new OffscreenCanvas((tx1 - tx0 + 1) * tp, (ty1 - ty0 + 1) * tp), g = canvas.getContext("2d");
       const signal = AbortSignal.timeout(timeout), jobs = [];
       // A server error on every tile is an outage (app.js says so), not an empty image.
-      let down = 0;
-      for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) jobs.push(fetchImpl(`${src.tiles}/${src.z}/${ty}/${tx}${src.ext || ""}`, { signal }).then(async (r) => { if (r.ok) g.drawImage(await createImageBitmap(await r.blob()), (tx - tx0) * tp, (ty - ty0) * tp, tp, tp); else if (r.status >= 500) down++; }));
+      let down = 0, missing = 0;
+      for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) jobs.push(fetchImpl(`${src.tiles}/${src.z}/${ty}/${tx}${src.ext || ""}`, { signal }).then(async (r) => { if (r.ok) g.drawImage(await createImageBitmap(await r.blob()), (tx - tx0) * tp, (ty - ty0) * tp, tp, tp); else if (r.status >= 500) down++; else missing++; }));
       await Promise.all(jobs);
       if (jobs.length && down === jobs.length) throw Object.assign(new Error(`ortofoto ${down}× 5xx`), { outage: true });
+      if (missing && src.fallback) return laneImageOf(src.fallback, { frame, dir, t0, t1, timeout, fetchImpl, decode });
       img = g.getImageData(0, 0, canvas.width, canvas.height);
       x0 = tx0 * size - Math.PI * R; x1 = (tx1 + 1) * size - Math.PI * R; y1 = Math.PI * R - ty0 * size; y0 = Math.PI * R - (ty1 + 1) * size;
     } else {
@@ -86,6 +167,8 @@ export async function laneImage({ frame, dir, t0, t1, source = "cuzk", timeout =
         img = g.getImageData(0, 0, bmp.width, bmp.height);
       }
     }
+    // Outside a Land's coverage its WMS answers white (only the German sources).
+    if (key.startsWith("de-") && blank(img)) return null;
     // Resample on the grid of the cut.
     const res = src.res, nt = Math.round((t1 - t0) / res), nu = Math.round((2 * ALONG) / res), L = new Float32Array(nt * nu), G = new Float32Array(nt * nu), Y = new Float32Array(nt * nu), D = new Float32Array(nt * nu), S = new Float32Array(nt * nu);
     for (let j = 0; j < nu; j++) for (let i = 0; i < nt; i++) {

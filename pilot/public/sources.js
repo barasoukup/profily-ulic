@@ -62,6 +62,8 @@ export function outage({ surfaces, lines, parking }, dataName = city.dataName, {
   const empty = s && !s.features?.length;
   // Outside the Czech Republic no technical map is asked (towns/slovensko.js): an estimate, and no outage.
   // Vienna's map of surfaces did not answer (towns/austria.js): the estimate, said so.
+  // A German city's map of surfaces did not answer (towns/germany.js).
+  if (s?.deFailed) return { note: mark(" · mapa povrchů města neodpověděla, odhad z ortofota a OSM"), text: t("Mapa povrchů města teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };
   if (s?.atFailed) return { note: mark(" · mapa povrchů Vídně neodpověděla, odhad z ortofota a OSM"), text: t("Mapa povrchů Vídně teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };
   if (s?.abroad) return { note: country.orthoEstimate ? mark(" · odhad z ortofota a OSM") : mark(" · jen odhad z OSM"), text: t("Technickou mapu tu zatím nemáme, profil je odhad."), error: false };
   const note = failed ? mark(" · technická mapa neodpověděla, jen odhad")

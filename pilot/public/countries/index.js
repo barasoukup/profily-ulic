@@ -4,7 +4,8 @@
 import CZ from "./CZ.js";
 import SK from "./SK.js";
 import AT from "./AT.js";
+import DE from "./DE.js";
 import DEFAULT from "./default.js";
 
-export const COUNTRIES = { CZ, SK, AT };
+export const COUNTRIES = { CZ, SK, AT, DE };
 export const countryOf = (code) => (code && Object.hasOwn(COUNTRIES, code) ? COUNTRIES[code] : DEFAULT);

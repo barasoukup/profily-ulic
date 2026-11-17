@@ -1,0 +1,1642 @@
+[
+{
+"id": "be2",
+"town": "berlin",
+"A": {
+"name": "Swinemünder Straße",
+"lat": 52.536513,
+"lon": 13.402525,
+"bearing": -24.548,
+"span": {
+"left": 13.52,
+"right": 12.58
+},
+"segments": [
+[
+"chodnik",
+5.9,
+"odhad"
+],
+[
+"parkovani",
+5.0,
+"odhad"
+],
+[
+"pruh",
+2.6,
+"odhad"
+],
+[
+"pruh",
+2.6,
+"odhad"
+],
+[
+"parkovani",
+5.0,
+"odhad"
+],
+[
+"stromorad",
+1.42,
+"odhad"
+],
+[
+"chodnik",
+3.58,
+"odhad"
+]
+]
+},
+"B": {
+"name": "Swinemünder Straße",
+"lat": 52.536513,
+"lon": 13.402525,
+"bearing": -24.548,
+"span": {
+"left": 13.37,
+"right": 12.48
+},
+"segments": [
+[
+"chodnik",
+5.85,
+"pasport"
+],
+[
+"parkovani",
+5.0,
+"odhad"
+],
+[
+"pruh",
+4.82,
+"odhad"
+],
+[
+"pruh",
+4.82,
+"odhad"
+],
+[
+"stromorad",
+1.87,
+"odhad"
+],
+[
+"chodnik",
+3.48,
+"pasport"
+]
+]
+}
+},
+{
+"id": "be6",
+"town": "berlin",
+"A": {
+"name": "Gartenstraße",
+"lat": 52.529585,
+"lon": 13.39248,
+"bearing": -38.041,
+"span": {
+"left": 15.82,
+"right": 8.13
+},
+"segments": [
+[
+"plocha",
+5.2,
+"odhad"
+],
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"parkovani",
+2.0,
+"odhad"
+],
+[
+"pruh",
+2.7,
+"odhad"
+],
+[
+"pruh",
+2.7,
+"odhad"
+],
+[
+"parkovani",
+2.0,
+"odhad"
+],
+[
+"chodnik",
+3.35,
+"odhad"
+]
+]
+},
+"B": {
+"name": "Gartenstraße",
+"lat": 52.529585,
+"lon": 13.39248,
+"bearing": -38.041,
+"span": {
+"left": 15.82,
+"right": 8.13
+},
+"segments": [
+[
+"plocha",
+7.4,
+"odhad"
+],
+[
+"chodnik",
+3.05,
+"pasport"
+],
+[
+"parkovani",
+2.05,
+"pasport"
+],
+[
+"pruh",
+3.0,
+"odhad"
+],
+[
+"pruh",
+3.0,
+"odhad"
+],
+[
+"parkovani",
+1.85,
+"pasport"
+],
+[
+"chodnik",
+3.2,
+"pasport"
+],
+[
+"plocha",
+0.4,
+"odhad"
+]
+]
+}
+},
+{
+"id": "be9",
+"town": "berlin",
+"A": {
+"name": "Oranienburger Straße",
+"lat": 52.524603,
+"lon": 13.394415,
+"bearing": -67.9,
+"span": {
+"left": 15.52,
+"right": 13.38
+},
+"segments": [
+[
+"chodnik",
+4.95,
+"odhad"
+],
+[
+"stromorad",
+1.95,
+"odhad"
+],
+[
+"pruh",
+2.9,
+"odhad"
+],
+[
+"pruh",
+2.9,
+"odhad"
+],
+[
+"tramvaj_v_pruhu",
+2.87,
+"odhad"
+],
+[
+"tramvaj_v_pruhu",
+4.92,
+"odhad"
+],
+[
+"chodnik",
+3.26,
+"odhad"
+],
+[
+"stromorad",
+1.5,
+"odhad"
+],
+[
+"chodnik",
+3.64,
+"odhad"
+]
+]
+},
+"B": {
+"name": "Oranienburger Straße",
+"lat": 52.524603,
+"lon": 13.394415,
+"bearing": -67.9,
+"span": {
+"left": 15.32,
+"right": 13.38
+},
+"segments": [
+[
+"chodnik",
+4.75,
+"pasport"
+],
+[
+"stromorad",
+1.5,
+"odhad"
+],
+[
+"chodnik",
+0.7,
+"pasport"
+],
+[
+"pruh",
+2.82,
+"odhad"
+],
+[
+"pruh",
+2.82,
+"odhad"
+],
+[
+"tramvaj",
+4.25,
+"pasport"
+],
+[
+"pruh",
+1.05,
+"odhad"
+],
+[
+"chodnik",
+1.1,
+"pasport"
+],
+[
+"cyklostezka",
+1.5,
+"pasport"
+],
+[
+"chodnik",
+3.06,
+"pasport"
+],
+[
+"stromorad",
+1.5,
+"odhad"
+],
+[
+"chodnik",
+3.64,
+"pasport"
+]
+]
+}
+},
+{
+"id": "be11",
+"town": "berlin",
+"A": {
+"name": "Alexanderstraße",
+"lat": 52.518775,
+"lon": 13.417409,
+"bearing": -25.084,
+"span": {
+"left": 18.37,
+"right": 18.23
+},
+"segments": [
+[
+"plocha",
+3.65,
+"odhad"
+],
+[
+"chodnik",
+1.09,
+"odhad"
+],
+[
+"stromorad",
+1.5,
+"odhad"
+],
+[
+"chodnik",
+3.41,
+"odhad"
+],
+[
+"pruh",
+2.77,
+"odhad"
+],
+[
+"pruh",
+2.9,
+"odhad"
+],
+[
+"krajnice",
+0.33,
+"odhad"
+],
+[
+"delici",
+3.1,
+"odhad"
+],
+[
+"pruh",
+2.58,
+"odhad"
+],
+[
+"pruh",
+3.0,
+"odhad"
+],
+[
+"pruh",
+3.03,
+"odhad"
+],
+[
+"parkovani",
+2.0,
+"odhad"
+],
+[
+"chodnik",
+2.51,
+"odhad"
+],
+[
+"stromorad",
+1.5,
+"odhad"
+],
+[
+"chodnik",
+2.29,
+"odhad"
+],
+[
+"nezname",
+0.95,
+"odhad"
+]
+]
+},
+"B": {
+"name": "Alexanderstraße",
+"lat": 52.518775,
+"lon": 13.417409,
+"bearing": -25.084,
+"span": {
+"left": 18.22,
+"right": 18.18
+},
+"segments": [
+[
+"chodnik",
+4.59,
+"pasport"
+],
+[
+"stromorad",
+1.5,
+"odhad"
+],
+[
+"chodnik",
+0.61,
+"pasport"
+],
+[
+"cyklostezka",
+1.5,
+"pasport"
+],
+[
+"chodnik",
+1.15,
+"pasport"
+],
+[
+"pruh",
+2.92,
+"odhad"
+],
+[
+"pruh",
+2.98,
+"odhad"
+],
+[
+"delici",
+3.0,
+"pasport"
+],
+[
+"pruh",
+2.92,
+"odhad"
+],
+[
+"pruh",
+3.0,
+"odhad"
+],
+[
+"pruh",
+3.17,
+"odhad"
+],
+[
+"parkovani",
+2.0,
+"odhad"
+],
+[
+"chodnik",
+1.0,
+"pasport"
+],
+[
+"cyklostezka",
+1.55,
+"pasport"
+],
+[
+"stromorad",
+1.31,
+"odhad"
+],
+[
+"chodnik",
+3.19,
+"pasport"
+]
+]
+}
+},
+{
+"id": "be13",
+"town": "berlin",
+"A": {
+"name": "Markgrafenstraße",
+"lat": 52.51169,
+"lon": 13.393574,
+"bearing": -5.948,
+"span": {
+"left": 11.82,
+"right": 10.73
+},
+"segments": [
+[
+"chodnik",
+5.9,
+"odhad"
+],
+[
+"parkovani",
+1.87,
+"odhad"
+],
+[
+"pruh",
+4.23,
+"odhad"
+],
+[
+"pruh",
+4.1,
+"odhad"
+],
+[
+"chodnik",
+6.45,
+"odhad"
+]
+]
+},
+"B": {
+"name": "Markgrafenstraße",
+"lat": 52.51169,
+"lon": 13.393574,
+"bearing": -5.948,
+"span": {
+"left": 11.82,
+"right": 10.73
+},
+"segments": [
+[
+"chodnik",
+6.7,
+"pasport"
+],
+[
+"parkovani",
+2.0,
+"odhad"
+],
+[
+"pruh",
+4.65,
+"odhad"
+],
+[
+"pruh",
+4.65,
+"odhad"
+],
+[
+"chodnik",
+4.55,
+"pasport"
+]
+]
+}
+},
+{
+"id": "be19",
+"town": "berlin",
+"A": {
+"name": "Grunerstraße",
+"lat": 52.517959,
+"lon": 13.409451,
+"bearing": 51.291,
+"span": {
+"left": 22.63,
+"right": 19.28
+},
+"segments": [
+[
+"plocha",
+3.05,
+"odhad"
+],
+[
+"chodnik",
+2.0,
+"odhad"
+],
+[
+"plocha",
+1.35,
+"odhad"
+],
+[
+"chodnik_kola",
+3.0,
+"odhad"
+],
+[
+"nastupiste",
+3.0,
+"odhad"
+],
+[
+"pruh",
+2.77,
+"odhad"
+],
+[
+"pruh",
+3.0,
+"odhad"
+],
+[
+"pruh",
+2.93,
+"odhad"
+],
+[
+"delici",
+3.4,
+"odhad"
+],
+[
+"pruh",
+2.68,
+"odhad"
+],
+[
+"pruh",
+3.0,
+"odhad"
+],
+[
+"pruh",
+2.93,
+"odhad"
+],
+[
+"stromorad",
+1.76,
+"odhad"
+],
+[
+"chodnik",
+0.74,
+"odhad"
+],
+[
+"nezname",
+4.3,
+"odhad"
+],
+[
+"chodnik",
+2.0,
+"odhad"
+]
+]
+},
+"B": {
+"name": "Grunerstraße",
+"lat": 52.517959,
+"lon": 13.409451,
+"bearing": 51.291,
+"span": {
+"left": 22.63,
+"right": 21.48
+},
+"segments": [
+[
+"plocha",
+1.6,
+"odhad"
+],
+[
+"chodnik",
+2.3,
+"pasport"
+],
+[
+"pruh",
+2.67,
+"odhad"
+],
+[
+"pruh",
+2.5,
+"odhad"
+],
+[
+"pruh",
+3.1,
+"odhad"
+],
+[
+"krajnice",
+0.13,
+"odhad"
+],
+[
+"chodnik",
+3.0,
+"pasport"
+],
+[
+"zelen",
+2.75,
+"pasport"
+],
+[
+"plocha",
+15.31,
+"pasport"
+],
+[
+"stromorad",
+1.5,
+"odhad"
+],
+[
+"plocha",
+9.24,
+"pasport"
+]
+]
+}
+},
+{
+"id": "ha3",
+"town": "hamburg",
+"A": {
+"name": "Rosenstraße",
+"lat": 53.552349,
+"lon": 9.999771,
+"bearing": 50.105,
+"span": {
+"left": 7.97,
+"right": 9.58
+},
+"segments": [
+[
+"chodnik",
+4.15,
+"odhad"
+],
+[
+"pruh",
+4.05,
+"odhad"
+],
+[
+"pruh",
+4.05,
+"odhad"
+],
+[
+"stromorad",
+1.4,
+"odhad"
+],
+[
+"chodnik",
+3.9,
+"odhad"
+]
+]
+},
+"B": {
+"name": "Rosenstraße",
+"lat": 53.552349,
+"lon": 9.999771,
+"bearing": 50.105,
+"span": {
+"left": 7.97,
+"right": 9.58
+},
+"segments": [
+[
+"chodnik",
+2.75,
+"pasport"
+],
+[
+"parkovani",
+2.7,
+"pasport"
+],
+[
+"pruh",
+3.17,
+"odhad"
+],
+[
+"pruh",
+3.17,
+"odhad"
+],
+[
+"stromorad",
+2.65,
+"pasport"
+],
+[
+"chodnik",
+3.1,
+"pasport"
+]
+]
+}
+},
+{
+"id": "ha8",
+"town": "hamburg",
+"A": {
+"name": "Lagerstraße",
+"lat": 53.561152,
+"lon": 9.972859,
+"bearing": -8.772,
+"span": {
+"left": 6.82,
+"right": 7.37
+},
+"segments": [
+[
+"chodnik",
+2.5,
+"odhad"
+],
+[
+"pruh",
+4.5,
+"odhad"
+],
+[
+"pruh",
+4.5,
+"odhad"
+],
+[
+"krajnice",
+1.5,
+"odhad"
+],
+[
+"chodnik",
+1.2,
+"odhad"
+]
+]
+},
+"B": {
+"name": "Lagerstraße",
+"lat": 53.561152,
+"lon": 9.972859,
+"bearing": -8.772,
+"span": {
+"left": 13.47,
+"right": 7.23
+},
+"segments": [
+[
+"chodnik",
+4.4,
+"pasport"
+],
+[
+"stromorad",
+3.1,
+"pasport"
+],
+[
+"parkovani",
+2.05,
+"pasport"
+],
+[
+"krajnice",
+1.07,
+"odhad"
+],
+[
+"pruh",
+4.5,
+"odhad"
+],
+[
+"pruh",
+4.5,
+"odhad"
+],
+[
+"krajnice",
+1.07,
+"odhad"
+]
+]
+}
+},
+{
+"id": "ha18",
+"town": "hamburg",
+"A": {
+"name": "Alexanderstraße",
+"lat": 53.555651,
+"lon": 10.020211,
+"bearing": 53.18,
+"span": {
+"left": 5.92,
+"right": 7.18
+},
+"segments": [
+[
+"chodnik",
+2.8,
+"odhad"
+],
+[
+"pruh",
+3.35,
+"odhad"
+],
+[
+"pruh",
+3.35,
+"odhad"
+],
+[
+"chodnik_kola",
+3.6,
+"odhad"
+]
+]
+},
+"B": {
+"name": "Alexanderstraße",
+"lat": 53.555651,
+"lon": 10.020211,
+"bearing": 53.18,
+"span": {
+"left": 5.92,
+"right": 7.18
+},
+"segments": [
+[
+"plocha",
+1.25,
+"odhad"
+],
+[
+"chodnik",
+1.55,
+"pasport"
+],
+[
+"zelen",
+0.5,
+"pasport"
+],
+[
+"pruh",
+4.35,
+"odhad"
+],
+[
+"parkovani",
+1.8,
+"pasport"
+],
+[
+"zelen",
+0.5,
+"pasport"
+],
+[
+"chodnik_kola",
+2.4,
+"pasport"
+],
+[
+"plocha",
+0.75,
+"odhad"
+]
+]
+}
+},
+{
+"id": "ha25",
+"town": "hamburg",
+"A": {
+"name": "Hahntrapp",
+"lat": 53.547951,
+"lon": 9.990285,
+"bearing": -2.673,
+"span": {
+"left": 6.52,
+"right": 7.08
+},
+"segments": [
+[
+"chodnik",
+4.8,
+"odhad"
+],
+[
+"pruh",
+3.2,
+"odhad"
+],
+[
+"chodnik",
+5.6,
+"odhad"
+]
+]
+},
+"B": {
+"name": "Hahntrapp",
+"lat": 53.547951,
+"lon": 9.990285,
+"bearing": -2.673,
+"span": {
+"left": 6.52,
+"right": 6.93
+},
+"segments": [
+[
+"chodnik",
+2.9,
+"pasport"
+],
+[
+"parkovani",
+1.7,
+"pasport"
+],
+[
+"pruh",
+4.27,
+"odhad"
+],
+[
+"parkovani",
+1.98,
+"pasport"
+],
+[
+"chodnik",
+2.6,
+"pasport"
+]
+]
+}
+},
+{
+"id": "aa5",
+"town": "aachen",
+"A": {
+"name": "Purweider Winkel",
+"lat": 50.79191,
+"lon": 6.086214,
+"bearing": 13.448,
+"span": {
+"left": 8.32,
+"right": 18.73
+},
+"segments": [
+[
+"chodnik",
+5.9,
+"odhad"
+],
+[
+"pruh",
+3.7,
+"odhad"
+],
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"zelen",
+11.45,
+"odhad"
+]
+]
+},
+"B": {
+"name": "Purweider Winkel",
+"lat": 50.79191,
+"lon": 6.086214,
+"bearing": 13.448,
+"span": {
+"left": 8.32,
+"right": 2.33
+},
+"segments": [
+[
+"plocha",
+5.95,
+"odhad"
+],
+[
+"chodnik",
+1.15,
+"pasport"
+],
+[
+"pruh",
+3.55,
+"odhad"
+]
+]
+}
+},
+{
+"id": "aa8",
+"town": "aachen",
+"A": {
+"name": "Alkuinstraße",
+"lat": 50.787052,
+"lon": 6.097784,
+"bearing": 42.754,
+"span": {
+"left": 9.87,
+"right": 25.43
+},
+"segments": [
+[
+"chodnik",
+5.95,
+"odhad"
+],
+[
+"pruh",
+2.7,
+"odhad"
+],
+[
+"pruh",
+2.7,
+"odhad"
+],
+[
+"chodnik",
+7.25,
+"odhad"
+],
+[
+"zelen",
+16.7,
+"odhad"
+]
+]
+},
+"B": {
+"name": "Alkuinstraße",
+"lat": 50.787052,
+"lon": 6.097784,
+"bearing": 42.754,
+"span": {
+"left": 9.87,
+"right": 10.18
+},
+"segments": [
+[
+"plocha",
+3.6,
+"odhad"
+],
+[
+"chodnik",
+2.9,
+"pasport"
+],
+[
+"pruh",
+2.65,
+"odhad"
+],
+[
+"pruh",
+2.66,
+"odhad"
+],
+[
+"krajnice",
+1.73,
+"odhad"
+],
+[
+"zelen",
+1.9,
+"pasport"
+],
+[
+"chodnik",
+4.05,
+"pasport"
+],
+[
+"plocha",
+0.55,
+"odhad"
+]
+]
+}
+},
+{
+"id": "aa9",
+"town": "aachen",
+"A": {
+"name": "Brabantstraße",
+"lat": 50.769952,
+"lon": 6.100448,
+"bearing": -4.452,
+"span": {
+"left": 6.67,
+"right": 8.93
+},
+"segments": [
+[
+"chodnik",
+3.55,
+"odhad"
+],
+[
+"parkovani",
+2.0,
+"odhad"
+],
+[
+"pruh",
+2.5,
+"odhad"
+],
+[
+"parkovani",
+2.0,
+"odhad"
+],
+[
+"chodnik",
+2.5,
+"odhad"
+],
+[
+"nezname",
+3.05,
+"odhad"
+]
+]
+},
+"B": {
+"name": "Brabantstraße",
+"lat": 50.769952,
+"lon": 6.100448,
+"bearing": -4.452,
+"span": {
+"left": 6.37,
+"right": 8.93
+},
+"segments": [
+[
+"chodnik",
+2.1,
+"pasport"
+],
+[
+"parkovani",
+1.85,
+"pasport"
+],
+[
+"pruh",
+4.9,
+"odhad"
+],
+[
+"parkovani",
+1.85,
+"pasport"
+],
+[
+"cyklostezka",
+1.95,
+"pasport"
+],
+[
+"chodnik",
+2.3,
+"pasport"
+],
+[
+"nezname",
+0.35,
+"odhad"
+]
+]
+}
+},
+{
+"id": "aa12",
+"town": "aachen",
+"A": {
+"name": "Adalbertsteinweg",
+"lat": 50.77457,
+"lon": 6.098362,
+"bearing": -88.099,
+"span": {
+"left": 16.82,
+"right": 13.23
+},
+"segments": [
+[
+"chodnik",
+6.0,
+"odhad"
+],
+[
+"pruh",
+3.36,
+"odhad"
+],
+[
+"pruh",
+3.7,
+"odhad"
+],
+[
+"pruh",
+2.63,
+"odhad"
+],
+[
+"delici",
+2.2,
+"odhad"
+],
+[
+"bus",
+2.87,
+"odhad"
+],
+[
+"pruh",
+3.1,
+"odhad"
+],
+[
+"pruh",
+3.03,
+"odhad"
+],
+[
+"chodnik",
+3.15,
+"odhad"
+]
+]
+},
+"B": {
+"name": "Adalbertsteinweg",
+"lat": 50.77457,
+"lon": 6.098362,
+"bearing": -88.099,
+"span": {
+"left": 38.77,
+"right": 13.23
+},
+"segments": [
+[
+"chodnik",
+2.5,
+"pasport"
+],
+[
+"parkovani",
+2.0,
+"pasport"
+],
+[
+"obsluzna",
+6.05,
+"pasport"
+],
+[
+"chodnik",
+0.8,
+"pasport"
+],
+[
+"zelen",
+2.3,
+"pasport"
+],
+[
+"chodnik",
+13.6,
+"pasport"
+],
+[
+"pruh",
+4.08,
+"odhad"
+],
+[
+"pruh",
+3.7,
+"odhad"
+],
+[
+"krajnice",
+1.43,
+"odhad"
+],
+[
+"delici",
+2.85,
+"pasport"
+],
+[
+"bus",
+3.42,
+"odhad"
+],
+[
+"pruh",
+3.1,
+"odhad"
+],
+[
+"pruh",
+2.72,
+"odhad"
+],
+[
+"chodnik",
+2.95,
+"pasport"
+],
+[
+"plocha",
+0.5,
+"odhad"
+]
+]
+}
+},
+{
+"id": "aa16",
+"town": "aachen",
+"A": {
+"name": "Oppenhoffallee",
+"lat": 50.769729,
+"lon": 6.103106,
+"bearing": 78.095,
+"span": {
+"left": 15.87,
+"right": 15.68
+},
+"segments": [
+[
+"chodnik",
+2.95,
+"odhad"
+],
+[
+"cyklopruh",
+1.5,
+"odhad"
+],
+[
+"krajnice",
+1.25,
+"odhad"
+],
+[
+"pruh",
+4.0,
+"odhad"
+],
+[
+"krajnice",
+1.25,
+"odhad"
+],
+[
+"stromorad",
+9.2,
+"odhad"
+],
+[
+"plocha",
+0.7,
+"odhad"
+],
+[
+"parkovani",
+2.04,
+"odhad"
+],
+[
+"pruh",
+3.26,
+"odhad"
+],
+[
+"cyklopruh",
+1.53,
+"odhad"
+],
+[
+"parkovani",
+1.97,
+"odhad"
+],
+[
+"chodnik",
+1.9,
+"odhad"
+]
+]
+},
+"B": {
+"name": "Oppenhoffallee",
+"lat": 50.769729,
+"lon": 6.103106,
+"bearing": 78.095,
+"span": {
+"left": 15.87,
+"right": 15.68
+},
+"segments": [
+[
+"plocha",
+0.6,
+"odhad"
+],
+[
+"chodnik",
+2.1,
+"pasport"
+],
+[
+"parkovani",
+2.15,
+"pasport"
+],
+[
+"cyklopruh",
+1.47,
+"odhad"
+],
+[
+"pruh",
+4.83,
+"odhad"
+],
+[
+"stromorad",
+0.86,
+"odhad"
+],
+[
+"plocha",
+7.13,
+"pasport"
+],
+[
+"stromorad",
+1.91,
+"odhad"
+],
+[
+"parkovani",
+2.0,
+"odhad"
+],
+[
+"pruh",
+2.6,
+"odhad"
+],
+[
+"cyklopruh",
+1.75,
+"odhad"
+],
+[
+"parkovani",
+2.1,
+"pasport"
+],
+[
+"chodnik",
+1.5,
+"pasport"
+],
+[
+"plocha",
+0.55,
+"odhad"
+]
+]
+}
+}
+]

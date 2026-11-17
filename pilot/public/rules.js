@@ -44,8 +44,11 @@ export function checkRules(profile) {
       for (let k = out.length - 1; k >= 0; k--) if (out[k].i >= i && out[k].i < j) out.splice(k, 1);
       // The basic width and the minimum by the state (countries/<ISO>.js contraflow), beside parking or not.
       const parked = [segs[i - 1], segs[j], ...run].some((x) => x?.type === "parkovani");
-      const { lo, base, why } = country.contraflow(parked);
+      // null: the state has no source for it (Germany), no warning.
+      const rule = country.contraflow(parked);
+      const { lo, base, why } = rule || { lo: 0, base: 0 };
       const v = { label: t("Vozovka"), w: fmt(w), why };
+      if (!rule) { i = j - 1; continue; }
       if (w < lo - 0.005) out.push({ i, level: "min", text: t("Vozovka {w} je pod minimem ({why}).", v), short: t("{label} {w}: pod minimem", v), why });
       else if (w < base - 0.005) out.push({ i, level: "zaklad", text: t("Vozovka {w} je užší než základ ({why}).", v), short: t("{label} {w}: užší než základ", v), why });
     }
