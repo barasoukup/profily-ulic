@@ -163,7 +163,7 @@ for (const src of sources) {
         }
       }
     } else if (green) {
-      const id = Number(p.osm_way_id || p.osm_id), tags = Object.fromEntries(Object.entries(all).filter(([k]) => /^(landuse|leisure|natural|water|waterway|name)$/.test(k)));
+      const id = Number(p.osm_way_id || p.osm_id), tags = Object.fromEntries(Object.entries(all).filter(([k]) => /^(landuse|leisure|natural|water|waterway|name|barrier)$/.test(k)));
       for (const poly of g.type === "Polygon" ? [g.coordinates] : g.coordinates) {
         // The box of the ring by a loop: a spread of a big wood or lake (over ~125 000 points) overflows the stack.
         let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;

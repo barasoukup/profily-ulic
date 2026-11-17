@@ -367,7 +367,9 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       // The map's runs where it has surfaces but none at the axis: its sidewalks and buildings bound the estimate.
       const fb = orthoOsmPolys({ osm, frame, dir, way: near.way, st: laneImg?.st, mapRuns: result.runs || [], edges: k.status === "fulfilled" ? k.value?.edges || [] : [], widths: k.status === "fulfilled" ? k.value?.widths || [] : [], areas: k.status === "fulfilled" ? k.value?.areas || [] : [], symbols: k.status === "fulfilled" ? k.value?.symbols || [] : [] });
       if (fb) {
-        const again = deriveProfile({ ...args, polys: [fb[0], ...polys, ...fb.slice(1)] });
+        // A side that ends at steps or a fence (ortho-osm.js ends): the profile ends there. B is the profile's left.
+        const endReach = { left: fb.ends?.B != null ? Math.min(args.reach.left, fb.ends.B) : args.reach.left, right: fb.ends?.A != null ? Math.min(args.reach.right, -fb.ends.A) : args.reach.right };
+        const again = deriveProfile({ ...args, reach: endReach, polys: [fb[0], ...polys, ...fb.slice(1)] });
         if (!again.estimate) { result = again; orthoOsm = fb; }
       }
     }

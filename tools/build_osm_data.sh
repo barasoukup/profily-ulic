@@ -58,6 +58,6 @@ export_layer buildings multipolygons "building IS NOT NULL" osm_id,osm_way_id,bu
 # sidewalks where they are mapped (area:highway), water and the plots that end a profile (allotments, cemeteries).
 export_layer areas multipolygons "other_tags LIKE '%\"area:highway\"%'" osm_id,osm_way_id,other_tags
 export_layer water multipolygons "natural = 'water' OR landuse IN ('reservoir', 'basin', 'allotments', 'cemetery') OR other_tags LIKE '%\"waterway\"=>\"riverbank\"%' OR other_tags LIKE '%\"water\"=>\"river\"%'" osm_id,osm_way_id,landuse,natural,other_tags
-export_layer green multipolygons "landuse IN ('grass', 'meadow', 'village_green', 'flowerbed', 'forest', 'orchard', 'recreation_ground') OR leisure IN ('park', 'garden') OR natural IN ('grass', 'grassland', 'scrub', 'wood', 'heath')" osm_id,osm_way_id,landuse,leisure,natural,other_tags
+export_layer green multipolygons "landuse IN ('grass', 'meadow', 'village_green', 'flowerbed', 'forest', 'orchard', 'recreation_ground') OR leisure IN ('park', 'garden') OR natural IN ('grass', 'grassland', 'scrub', 'wood', 'heath')" osm_id,osm_way_id,name,landuse,leisure,natural,barrier,other_tags
 
 node tools/build_osm_tiles.mjs "$OUT" "$DIR"/"$NAME"_{ways,parking,trees,treerows,platforms_area,furniture,barriers,outdoor,outdoor_pts,buildings,green,areas,water}.geojsonl

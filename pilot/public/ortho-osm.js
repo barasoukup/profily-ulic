@@ -5,6 +5,7 @@
 // (guess: the parts are "odhad"). Against MTVU (Prague, Brno, simple cuts): kerbs within 0.5 m at 39–49 %, within 1 m
 // at 57–69 %, against 26–35 % / 51–59 % from OSM alone; with an OSM width tag much better.
 
+import { TILE } from "./osmtile.js";
 import { strongLines } from "./lanes-ortho.js";
 
 const median = (a) => { const b = a.filter((v) => Number.isFinite(v)).sort((x, y) => x - y); return b.length ? b[b.length >> 1] : NaN; };
@@ -571,6 +572,25 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
       else polys.push(greenOr(a, b));
     }
   }
+  // Where a side without a house ends (Bára 17. 11. 2026, Smetanovo nábřeží: the profile ran on over the ground below
+  // the street on both sides): at the first steps (a change of level), fence or wall OSM maps across the cut beyond the
+  // kerb, or the fenced edge of a park; null: as before (?off=konec).
+  const ends = { A: null, B: null };
+  if (!P.off?.has("konec")) for (const [side, sg] of [["A", -1], ["B", 1]]) {
+    if (o.facade[side] !== null) continue;
+    const kerbT = (k2 && side === pSide ? k2 : k)[side];
+    const cand = [
+      ...o.ways.filter((w) => sameLevel(w, o) && (w.tags.highway === "steps" || ["fence", "wall", "retaining_wall", "city_wall"].includes(w.tags.barrier))).map((w) => w.t),
+      // A fenced green area's edge (barrier on the area; tools/build_osm_tiles.mjs keeps it), not where a tile cut it.
+      ...o.greens.filter((g) => ["fence", "wall"].includes(g.tags?.barrier)).flatMap((g) => {
+        const r = [...g.geometry, g.geometry[0]], onBorder = (a, b) => [["lon", a.lon, b.lon], ["lat", a.lat, b.lat]].some(([, x, y]) => x === y && Math.abs(x / TILE - Math.round(x / TILE)) < 1e-6);
+        const out = [];
+        for (let i = 0; i + 1 < r.length; i++) if (!onBorder(r[i], r[i + 1])) out.push(...crossT([r[i], r[i + 1]].map((q) => tu(q.lon, q.lat)), 45).map((x) => x.t));
+        return out;
+      }),
+    ].filter((t) => sg * (t - kerbT) > 0.5 && Math.abs(t - o.own.t) < 40);
+    if (cand.length) ends[side] = cand.reduce((a, b) => (sg * (b - a) < 0 ? b : a));
+  }
   for (const [side, sg] of [["A", -1], ["B", 1]]) {
     // Beyond the other carriageway its kerb and its sidewalk tags count.
     const out = k2 && side === pSide, rd = out ? road2 : road;
@@ -619,6 +639,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     // A house found only beside the cut (on a line u ≠ 0): its front drawn across the cut, so the profile ends at it.
     if (f !== null && o.facadeU[side] !== 0) polys.push({ ...rect(601, "budova (OSM, vedle řezu)", ...span(far, far + sg * HOUSE)), guess: false });
   }
+  polys.ends = ends;
   // Whether a line of the town's map decided a kerb or a sidewalk's edge (the credits).
   polys.edges = !!edgeUsed;
   polys.widthFrom = road.from;
