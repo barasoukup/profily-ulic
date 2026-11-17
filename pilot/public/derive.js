@@ -9,6 +9,7 @@ const STEP = 0.05; // sampling step along the cut (m)
 const MIN_RUN = 0.3; // runs narrower than this merge into a neighbour (m)
 export const MAX_REACH = 22; // default reach of the profile from the street axis on each side (m)
 const WALL_MAX = 2; // "ostatní stavby" narrower than this are walls / parapets, not a structure ending the street (m)
+const PASSAGE_MIN = 10; // an "ostatní stavby" piece this long along the cut with a street through it is a passage over the street (m)
 const OPEN_LAND = 8; // greenery at least this wide ends the profile as open surroundings (m)
 // Outer half-width of a tram track lane from its axis (m). IPR Manuál tvorby veřejných
 // prostranství C.2: double-track belt 6.5 m at 3.0 m track spacing, 7 m at 3.5 m,
@@ -833,6 +834,20 @@ function applyLaneTags(lanes, tags, along) {
 // Lanes around tram tracks lying in the roadway: each track gets its swept envelope
 // (axis ± TRAM_HALF); leftover space wide enough for a car becomes a driving lane,
 // narrower leftovers are added to the neighbouring tram lane.
+// Track axes the cut crosses closer together than two parallel tracks can lie (the least axis spacing is about
+// 2.8 m, the Manuál's double track 3.0 m) are one track seen at an angle: the branches of a turnout or a crossing in
+// a junction (Smetanovo nábřeží at Národní, four axes 1.6, 1.6 and 3.1 m apart drew three trams side by side: report
+// of 16. 11. 2026). Such a group is one track at the mean of its axes.
+const TRACK_SPACING_MIN = 2.5;
+function mergeTrackAxes(ts) {
+  const sorted = [...ts].sort((a, b) => a - b), groups = [];
+  for (const t of sorted) {
+    const g = groups[groups.length - 1];
+    if (g && t - g[g.length - 1] < TRACK_SPACING_MIN) g.push(t); else groups.push([t]);
+  }
+  return groups.map((g) => g.reduce((a, b) => a + b, 0) / g.length);
+}
+
 function tramLanes(s, e, trams, dirAt, half = TRAM_HALF) {
   const ts = [...trams].sort((a, b) => a - b);
   const src = trams.measured ? "dtm" : "osm";
@@ -1535,10 +1550,24 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   const cross = crossings(osm, frame, center, normal, half);
   const own = cross.find((c) => c.way.id === way?.id);
   polys = linePieces(polys, way?.tags || {}, center, normal, lanesImage, own ? own.d[0] * dir[0] + own.d[1] * dir[1] >= 0 : true);
+  // A building connection over a street (a covered passage, Na Klaudiánce in Prague: Bára 17. 11. 2026) is drawn in
+  // the technical map as a strip of "other structures" above the street, and a cut across the street runs along it.
+  // No wall is 10 m thick with a street through it: such a piece is no ground of its own, so it is left out (as the
+  // areas above the ground below) and the street under it comes from OSM.
+  polys = polys.filter((p) => {
+    if (!isMinorStructure(p.code) || p.level) return true;
+    let lo = Infinity, hi = -Infinity;
+    for (let t = -half; t <= half + 1e-9; t += 0.25) {
+      const [x, y] = [center[0] + normal[0] * t, center[1] + normal[1] * t];
+      const [x0, y0, x1, y1] = p.bbox || [-Infinity, -Infinity, Infinity, Infinity];
+      if (x >= x0 && x <= x1 && y >= y0 && y <= y1 && inside(p.rings, x, y)) { lo = Math.min(lo, t); hi = Math.max(hi, t); }
+    }
+    return !(hi - lo >= PASSAGE_MIN && cross.some((c) => c.t >= lo && c.t <= hi && STREETS.has(c.way.tags?.highway)));
+  });
   let axisT = cross.find((c) => c.way.id === way.id)?.t ?? 0;
   // Tram track axes: measured ones from the technical map when available, else OSM.
   const measured = lineCrossings(tracks, center, normal, half);
-  const tramTs = measured.length ? measured : cross.filter((c) => c.way.tags?.railway === "tram").map((c) => c.t);
+  const tramTs = mergeTrackAxes(measured.length ? measured : cross.filter((c) => c.way.tags?.railway === "tram").map((c) => c.t));
   tramTs.measured = measured.length > 0;
 
   if (!polys.length) return estimateFromOsm(way);

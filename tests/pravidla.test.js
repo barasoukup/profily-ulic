@@ -406,3 +406,25 @@ test("nezpevněný povrch z OSM (mlat, štěrk, hlína) je zvlášť od propustn
   assert.deepEqual(p.segments.filter((s) => s.permeable).map((s) => s.permeable), [true, "nezpevneny"], p.segments.map((s) => `${s.type} ${s.permeable}`).join(" | "));
   assert.ok(!street([[701, 7]], {}, { extra: [path(5, "asphalt")] }).segments.some((s) => s.permeable));
 });
+
+test("průchod nad ulicí (pás „ostatní stavby“ po celém řezu, ulice jím vede) není zeď: ulice se odhadne z OSM (Na Klaudiánce, 17. 11. 2026)", () => {
+  const cut = (piece) => {
+    const way = { type: "way", id: 1, tags: { highway: "residential", lanes: "2", sidewalk: "both" }, geometry: line(0) };
+    return deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys: [piece], osm: { elements: [way] }, frame, way, inZps: false }).segments.map((s) => s.type);
+  };
+  const through = cut(rect(602, -25, 25));
+  assert.ok(!through.includes("zed"), "žádná zeď");
+  assert.equal(through.filter((t) => t === "pruh").length, 2, "dva pruhy z OSM");
+  // A piece under 10 m is a structure of its own (a wall, a gate): it stays what the map says.
+  assert.deepEqual(cut(rect(602, -4, 4)), ["zed"]);
+});
+
+test("osy kolejí blíž než 2,5 m jsou jedna kolej (výhybka v křižovatce), souběžná dvoukolejka zůstává (Smetanovo nábřeží, 17. 11. 2026)", () => {
+  const trams = (xs) => {
+    const extra = xs.map((x, i) => ({ type: "way", id: 100 + i, tags: { railway: "tram" }, geometry: line(x) }));
+    return road(36, { embedded_rails: "tram", lanes: "2" }, { extra }).segments.filter((s) => s.type === "tramvaj_pruh").length;
+  };
+  assert.equal(trams([-1.6, 0, 1.6, 4.7]), 2, "čtyři osy 1,6, 1,6 a 3,1 m od sebe jsou dvě koleje");
+  assert.equal(trams([-1.5, 1.5]), 2, "dvoukolejka s osovou vzdáleností 3 m");
+  assert.equal(trams([0]), 1);
+});
