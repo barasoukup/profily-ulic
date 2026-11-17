@@ -22,34 +22,41 @@ const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_CH?.[
 export const AV_WFS = "https://geodienste.ch/db/av_0/deu";
 // The kinds of the survey (DM.01-AV-CH, Bodenbedeckung Art) → MTVU codes (city.js MTVU_LABELS). Strasse_Weg is the
 // roadway and any path (a footpath in a park too); the profile's parts come from OSM over it (derive.js), as with
-// Aachen's. A parking area has no kind of its own (in Strasse_Weg or uebrige_befestigte). Bahn is a railway or a tram
-// on its own bed (a tram in the street lies in Strasse_Weg).
+// Aachen's. A parking area has no kind of its own (in Strasse_Weg or uebrige_befestigte). Bahn is any railway (a
+// station's tracks beside a street too: the hostile review), so a railway (1100); a tram's own bed comes from OSM.
 export const AV_KIND = {
-  Strasse_Weg: 701, Trottoir: 702, Verkehrsinsel: 1003, Bahn: 705, uebrige_befestigte: 1003, Flugplatz: 1003, Wasserbecken: 501,
+  Strasse_Weg: 701, Trottoir: 702, Verkehrsinsel: 1003, Bahn: 1100, uebrige_befestigte: 1003, Flugplatz: 1003, Wasserbecken: 501,
   Gebaeude: 601,
   Acker_Wiese_Weide: 401, Reben: 401, uebrige_Intensivkultur: 401, Gartenanlage: 401, Hoch_Flachmoor: 401, uebrige_humusierte: 401,
   geschlossener_Wald: 401, uebrige_bestockte: 401, Wytweide_dicht: 401, Wytweide_offen: 401,
   stehendes: 501, fliessendes: 501, Gewaesser_stehendes: 501, Gewaesser_fliessendes: 501, Schilfguertel: 401,
 };
 export const avCode = (p) => AV_KIND[p.Art] ?? null;
+// One request a box (a cut moved a little asks the same box again): the survey's answers kept for the session, at most
+// 30 (geodienste.ch fair use: 10 WFS requests a minute).
+const memo = new Map();
 async function av(bbox) {
+  const key = bbox.split(",").map((v) => (+v).toFixed(4)).join(",");
+  if (!memo.has(key)) {
+    memo.set(key, avAsk(bbox).catch((err) => { memo.delete(key); throw err; }));
+    if (memo.size > 30) memo.delete(memo.keys().next().value);
+  }
+  return memo.get(key);
+}
+async function avAsk(bbox) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   // WFS 2.0 in EPSG:4326 with the URN: the axes lat, lon (the answer's GeoJSON is lon, lat).
   const json = await getJSON(`${AV_WFS}?${new URLSearchParams({ SERVICE: "WFS", VERSION: "2.0.0", REQUEST: "GetFeature", TYPENAMES: "ms:LCSF",
     SRSNAME: "urn:ogc:def:crs:EPSG::4326", BBOX: `${y0},${x0},${y1},${x1},urn:ogc:def:crs:EPSG::4326`, COUNT: "3000",
     OUTPUTFORMAT: "application/json; subtype=geojson" })}`);
-  const cantons = new Map();
   const features = (json?.features || []).map((f) => {
     const g = f.geometry, p = f.properties || {};
     const rings = g?.type === "Polygon" ? g.coordinates : g?.type === "MultiPolygon" ? g.coordinates.flat() : null;
     const c = avCode(p);
     if (!rings || !c) return null;
-    if (p.Kanton) cantons.set(p.Kanton, (cantons.get(p.Kanton) || 0) + 1);
-    return { attributes: { code: c }, geometry: { rings: rings.map((r) => r.map(([x, y]) => [x, y])) } };
+    return { attributes: { code: c, canton: p.Kanton || null }, geometry: { rings: rings.map((r) => r.map(([x, y]) => [x, y])) } };
   }).filter(Boolean);
-  // The canton with most of the box (its credit).
-  const canton = [...cantons].sort((a, b) => b[1] - a[1])[0]?.[0] ?? null;
-  return { features, canton };
+  return { features };
 }
 
 const inRings = (rings, x, y) => {
@@ -59,16 +66,15 @@ const inRings = (rings, x, y) => {
 };
 // The kinds of a street at the cut's centre. Not uebrige_befestigte (1003): the A/B test (evaluation/switzerland/ab/)
 // found it under a bridge's deck, a quay, a pier and a car park, where the survey made the whole cut one "other area".
-const STREET = new Set([701, 702, 703, 704, 705]);
+const STREET = new Set([701, 702, 703, 704]);
 
 async function surfaces(bbox) {
   if (param("av") === "0") return { features: [], abroad: true };
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
-  let own, canton;
+  let own, got;
   try {
-    const got = await av(bbox);
-    canton = got.canton;
+    got = await av(bbox);
     own = asMtvu([[got, (a) => a.code]], MTVU_LABELS);
   } catch {
     return { features: [], abroad: true, chFailed: true };
@@ -76,7 +82,10 @@ async function surfaces(bbox) {
   // Only where the survey has a surface of the street at the cut's centre (the one there decides), or, in a gap of the
   // survey, within 1.5 m of it.
   const dy = 1.5 / 110574, dx = 1.5 / (111320 * Math.cos((cy * Math.PI) / 180));
-  const centre = own.features.find((f) => inRings(f.geometry.rings, cx, cy));
+  const at0 = got.features.findIndex((f) => inRings(f.geometry.rings, cx, cy));
+  const centre = at0 >= 0 ? { attributes: { CTVUK_KOD: got.features[at0].attributes.code } } : null;
+  // The credit: the canton whose survey lies under the cut's centre (else the first one around).
+  const canton = (got.features[at0] || got.features.find((f) => f.attributes.canton))?.attributes.canton ?? null;
   const at = centre ? STREET.has(centre.attributes.CTVUK_KOD)
     : own.features.some((f) => STREET.has(f.attributes.CTVUK_KOD) && [[dx, 0], [-dx, 0], [0, dy], [0, -dy]].some(([ox, oy]) => inRings(f.geometry.rings, cx + ox, cy + oy)));
   if (!at) return { features: [], abroad: true };

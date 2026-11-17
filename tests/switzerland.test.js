@@ -9,7 +9,7 @@ test("Švýcarsko: druhy úředního vyměřování na kódy MTVU, vypínač ?av
   assert.equal(S.avCode({ Art: "Strasse_Weg" }), 701);
   assert.equal(S.avCode({ Art: "Trottoir" }), 702);
   assert.equal(S.avCode({ Art: "Verkehrsinsel" }), 1003);
-  assert.equal(S.avCode({ Art: "Bahn" }), 705);
+  assert.equal(S.avCode({ Art: "Bahn" }), 1100, "železnice, ne tramvajové těleso (recenze: kolejiště nádraží vedle ulice)");
   assert.equal(S.avCode({ Art: "Gebaeude" }), 601);
   assert.equal(S.avCode({ Art: "Gartenanlage" }), 401);
   assert.equal(S.avCode({ Art: "Gewaesser_fliessendes" }), 501);
@@ -72,6 +72,13 @@ test("Švýcarsko: značky SSV (2.49 zákaz zastavení, 2.50 zákaz stání, 4.0
   assert.equal(signFile({ k: "ztp" }, null, "CH"), "4.17");
   assert.equal(plateFile({ k: "ztp" }, null, "CH"), "5.34.4");
   assert.equal(signFile({ k: "sdilena" }, null, "CH"), null);
+  // The zones exactly (the review: Wohn- and Fussgängerzone were swapped).
+  assert.equal(signFile({ k: "ip26a" }, null, "CH"), "2.59.5", "obytná zóna = Begegnungszone");
+  assert.equal(signFile({ k: "ip27a" }, null, "CH"), "2.59.3", "pěší zóna = Fussgängerzone");
+  assert.equal(signFile({ k: "zona30" }, null, "CH"), "2.59.1");
+  assert.equal(signFile({ k: "c9a" }, null, "CH"), "2.63.1");
+  assert.equal(signFile({ k: "c10a" }, null, "CH"), "2.63");
+  assert.equal(signFile({ k: "ip20a" }, null, "CH"), "2.64");
   assert.match(signLabel({ k: "b28" }, "CH"), /^SSV 2\.49 /);
   assert.equal(signFile({ k: "b28" }, null, "LI"), "2.49", "Lichtenštejnsko má stejná čísla");
   // Every file of the mapping exists and has a viewBox (else drawn NaN).
@@ -129,4 +136,36 @@ test("Švýcarsko: vyměřování jen s vozovkou, chodníkem nebo dráhou pod st
     assert.equal(out.chAv, undefined);
     assert.equal(out.abroad, true);
   } finally { globalThis.fetch = fetch0; }
+});
+
+test("Švýcarsko: zákonný odhad stání nedá auta vedle cyklopruhu (VRV čl. 19 odst. 2), v Česku beze změny", async () => {
+  const C = await import("../pilot/public/city.js");
+  const { COUNTRIES } = await import("../pilot/public/countries/index.js");
+  const D = await import("../pilot/public/countries/default.js");
+  assert.equal(COUNTRIES.CH.parkByCycleLane, false);
+  assert.equal(COUNTRIES.LI.parkByCycleLane, false);
+  assert.equal(D.default.parkByCycleLane, true);
+  assert.equal(COUNTRIES.CZ.parkByCycleLane ?? D.default.parkByCycleLane, true);
+  C.setCity("praha");
+});
+
+test("Švýcarsko: obousměrka 10 m s cyklopruhy nemá odhadnuté stání (VRV čl. 19 odst. 2), bez cyklopruhů ano", async () => {
+  const C = await import("../pilot/public/city.js");
+  const { deriveProfile, localFrame } = await import("../pilot/public/derive.js");
+  const frame = localFrame(47.37, 8.54);
+  const rect = (code, x0, x1) => ({ code, label: "", rings: [[[x0, -60], [x1, -60], [x1, 60], [x0, 60]]], bbox: [x0, -60, x1, 60] });
+  const ll = (x, y) => { const [lon, lat] = frame.toLonLat(x, y); return { lon, lat }; };
+  const road = (w, tags) => {
+    const polys = [rect(601, -w / 2 - 8, -w / 2 - 3), rect(702, -w / 2 - 3, -w / 2), rect(701, -w / 2, w / 2), rect(702, w / 2, w / 2 + 3), rect(601, w / 2 + 3, w / 2 + 8)];
+    const way = { type: "way", id: 1, tags: { highway: "residential", ...tags }, geometry: [ll(0, -60), ll(0, 60)] };
+    return deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys, osm: { elements: [way] }, frame, way, inZps: false });
+  };
+  C.setCity("switzerland");
+  try {
+    const lanes = road(10, { "cycleway:both": "lane" }), plain = road(10, {});
+    const s = (p) => p.segments.map((x) => `${x.type} ${x.width.toFixed(2)}`).join(", ");
+    assert.ok(lanes.segments.some((x) => x.type === "cyklopruh"), s(lanes));
+    assert.equal(lanes.segments.filter((x) => x.type === "parkovani" && x.source === "odhad").length, 0, s(lanes));
+    assert.ok(plain.segments.some((x) => x.type === "parkovani" && x.source === "odhad"), s(plain));
+  } finally { C.setCity("praha"); }
 });

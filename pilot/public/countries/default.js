@@ -99,6 +99,8 @@ export default {
   freeLane: 3,
   // The width the law leaves beside parked cars, when it is not freeLane per direction: (oneway, lanes, minLane) → m.
   lawNeed: null,
+  // May the law's estimate put cars on the roadway beside a cycle lane (Switzerland: no, VRV Art. 19 Abs. 2).
+  parkByCycleLane: true,
   halfKerbNote: lawNote("§ 25 odst. 3 zák. 361/2000 Sb."),
   parkGuess: true,
   // A motorway or trunk road gets the wider reach (app.js); the group of a street from its OSM class where there is

@@ -700,6 +700,8 @@ function splitRoadway(run, ctx) {
     const lo = trams.length ? Math.min(...trams) - RAIL_HALF : Infinity, hi = trams.length ? Math.max(...trams) + RAIL_HALF : -Infinity;
     for (const [side, st] of [["R", sideR], ["L", sideL]]) {
       if (!(ctx.kerbOpen ?? ["L", "R"]).includes(side) || ctx.kerbBare?.includes(side) || parked.includes(side) || st.parkingNo || edge.some((x) => x.side === side && x.type === "parkovani")) continue;
+      // Switzerland (countries/CH.js parkByCycleLane: VRV Art. 19 Abs. 2): no parking on the roadway beside a cycle lane.
+      if (!country.parkByCycleLane && edge.some((x) => x.side === side && (x.type === "cyklopruh" || x.type === "ochranny_pruh"))) continue;
       const rest = width - edge.reduce((a, x) => a + x.w, 0) - GUESS_PARK_W;
       if (rest < need - 1e-6) continue;
       // The car's outer side, from the curb strips of this side and the strip itself.

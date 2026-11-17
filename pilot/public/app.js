@@ -2,6 +2,7 @@ import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TR
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, splitTwoWayLane, capWideLanes, pedestrianZone, widenNarrowTrams, carveCycleways, carveTramTracks, lanesFromShoulders, crossFromA, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO, CH_ORTHO, DE_ORTHO, deWmsUrl, landsAt, landAt } from "./lanes-ortho.js";
+import { boxed as boxedPlace, within as withinPlace } from "./places.js";
 import { orthoOsmPolys, besidePassport, trimToEnds, P as ORTHO_P } from "./ortho-osm.js";
 // ?off=… switches named parts of the estimate off (the A/B tests, evaluation/ortofoto-osm/regrese.mjs).
 { const off = new URLSearchParams(location.search).get("off"); if (off) ORTHO_P.off = new Set(off.split(",")); }
@@ -204,8 +205,21 @@ if (STATY?.austria) {
 // Switzerland and Liechtenstein: swisstopo's SWISSIMAGE (WMTS {z}/{x}/{y}, Web Mercator to level 20), only there.
 if (STATY?.switzerland) {
   const pts = [...STATY.switzerland, ...(STATY.liechtenstein || [])].flat(), xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]);
-  kinds.ortho.push(L.tileLayer(`${CH_ORTHO}/{z}/{x}/{y}.jpeg`, {
-    maxZoom: 21, maxNativeZoom: 20, attribution: "ortofoto SWISSIMAGE © swisstopo",
+  // Beyond the border swisstopo answers with a coarse satellite image (Vorarlberg, the hostile review): a tile whose
+  // corners and centre all lie outside Switzerland and Liechtenstein is left empty, so basemap.at or a Land shows.
+  const swiss = [boxedPlace("CH", STATY.switzerland), ...(STATY.liechtenstein ? [boxedPlace("LI", STATY.liechtenstein)] : [])];
+  const ChOrtho = L.TileLayer.extend({
+    getTileUrl(coords) {
+      const size = this.getTileSize();
+      const inside = [[0.5, 0.5], [0, 0], [1, 0], [0, 1], [1, 1]].some(([fx, fy]) => {
+        const q = this._map.unproject([(coords.x + fx) * size.x, (coords.y + fy) * size.y], coords.z);
+        return withinPlace(swiss, q.lat, q.lng);
+      });
+      return inside ? L.TileLayer.prototype.getTileUrl.call(this, coords) : "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+    },
+  });
+  kinds.ortho.push(new ChOrtho(`${CH_ORTHO}/{z}/{x}/{y}.jpeg`, {
+    maxZoom: 21, maxNativeZoom: 20, attribution: tr("ortofoto SWISSIMAGE © swisstopo"),
     bounds: L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]),
   }));
 }
