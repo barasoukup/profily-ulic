@@ -162,7 +162,11 @@ export function partnerOf(o) {
   if (!ONEWAY(tg)) return null;
   const same = (w) => (tg.name ? w.tags.name === tg.name : String(w.tags.highway).replace("_link", "") === String(tg.highway).replace("_link", ""));
   const c = o.ways.filter((w) => STREET.test(w.tags.highway || "") && (P.off?.has("railpair") || !w.tags.railway) && ONEWAY(w.tags) && sameLevel(w, o) && same(w) && Math.abs(w.t - own.t) > 4 && Math.abs(w.t - own.t) < 35);
-  return c.length ? c.reduce((a, b) => (Math.abs(b.t - own.t) < Math.abs(a.t - own.t) ? b : a)) : null;
+  // Of the same class first (Bára 18. 11. 2026, Košická in Bratislava: the one-lane residential side road 8.5 m off
+  // was taken for the other carriageway of the primary 9.9 m off, which then was left out; ?off=pairclass: nearest).
+  const cls = (w) => String(w.tags.highway).replace("_link", "");
+  const rank = (w) => (P.off?.has("pairclass") || cls(w) === cls(own) ? 0 : 1000) + Math.abs(w.t - own.t);
+  return c.length ? c.reduce((a, b) => (rank(b) < rank(a) ? b : a)) : null;
 }
 
 // ---------- the image across the cut, per column ----------
