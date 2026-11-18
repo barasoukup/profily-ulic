@@ -582,7 +582,8 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   // Where a side without a house ends (Bára 17. 11. 2026, Smetanovo nábřeží: the profile ran on over the ground below
   // the street on both sides): at the first steps (a change of level), fence or wall OSM maps across the cut beyond the
   // kerb, or the fenced edge of a park; null: as before (?off=konec).
-  const ends = { A: null, B: null };
+  const ends = { A: null, B: null }, chain = { A: [], B: [] }, reached = { A: null, B: null };
+  const FILL_OFF = !!P.off?.has("vyplnkonec");
   if (!P.off?.has("konec")) for (const [side, sg] of [["A", -1], ["B", 1]]) {
     if (o.facade[side] !== null) continue;
     const kerbT = (k2 && side === pSide ? k2 : k)[side];
@@ -605,12 +606,12 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     const things = o.ways.filter((w) => sameLevel(w, o) && sg * (w.t - kerbT) > 0.3 && Math.abs(w.t - o.own.t) < 40 && (w.tags.railway === "tram" || ["footway", "path", "pedestrian", "cycleway", "steps"].includes(w.tags.highway) || (STREET.test(w.tags.highway || "") && w.tags.highway !== "service")))
       .sort((a, b) => sg * (a.t - b.t));
     let last = kerbT, lastW = null;
-    for (const w of things) { if (sg * (w.t - last) > LAST_WALK) break; last = w.t; lastW = w; }
+    for (const w of things) { if (sg * (w.t - last) > LAST_WALK) break; last = w.t; lastW = w; chain[side].push(w); }
     const halfOf = (w) => (w?.tags.railway === "tram" ? TRACK_HALF : w?.tags.highway === "cycleway" ? 1.3 : STREET.test(w?.tags.highway || "") ? 3 : SIDEWALK / 2);
     // Nothing mapped there: a soft end, moved out past the estimate's own last sidewalk, parking or tree row (trimToEnds).
     ends[side] = lastW ? last + sg * halfOf(lastW) : kerbT + sg * LAST_NONE;
     if (!lastW) (ends.soft ??= {})[side] = true;
-    if (lastW && ["footway", "path"].includes(lastW.tags.highway) && sg * (lastW.t - kerbT) > SIDEWALK / 2) {
+    if (FILL_OFF && lastW && ["footway", "path"].includes(lastW.tags.highway) && sg * (lastW.t - kerbT) > SIDEWALK / 2) {
       const a = lastW.t - sg * SIDEWALK / 2, b = lastW.t + sg * SIDEWALK / 2;
       polys.push(rect(702, "chodník (OSM, zvlášť)", ...(sg < 0 ? [b, a] : [a, b])));
     }
@@ -620,6 +621,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     const out = k2 && side === pSide, rd = out ? road2 : road;
     const kerb = out ? k2[side] : carsOut[side] ?? k[side], f = o.facade[side], says = rd.sidewalk[side];
     const far = f !== null ? f : says === "no" ? null : says || rd.sidewalkW[side] ? kerb + sg * (rd.sidewalkW[side] || SIDEWALK) : null;
+    reached[side] = far !== null && sg * (far - kerb) >= 0.3 ? far : kerb;
     if (far === null || sg * (far - kerb) < 0.3) continue;
     const span = (x, y) => (sg < 0 ? [y, x] : [x, y]);
     // A sidewalk of at most SIDEWALK_MAX; the rest up to the house is some other area (a front garden, a yard, a lawn:
@@ -676,6 +678,34 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     }
     // A house found only beside the cut (on a line u ≠ 0): its front drawn across the cut, so the profile ends at it.
     if (f !== null && o.facadeU[side] !== 0) polys.push({ ...rect(601, "budova (OSM, vedle řezu)", ...span(far, far + sg * HOUSE)), guess: false });
+  }
+  // Between the street's own sidewalk and the end the last thing of the street sets (a path, a cycle track, tracks,
+  // another carriageway OSM maps there; Bára 18. 11. 2026: "Neurčeno" beyond the street in 67 of 87 Prague cuts, under
+  // it MTVU's green, paths and side roads; evaluation/ortofoto-osm/chyby.mjs): each such thing drawn as what it is, the
+  // gaps between them green where the image is mostly green, else paved. ?off=vyplnkonec: as before. Another
+  // carriageway there (a side road) ends it for now (P.sideRoads: drawn too; the regression measures the outermost
+  // roadway as the kerbs, so it cannot judge them yet).
+  if (!FILL_OFF) for (const [side, sg] of [["A", -1], ["B", 1]]) {
+    if (!chain[side].length || reached[side] === null) continue;
+    let outer = reached[side];
+    const span = (x, y) => (sg < 0 ? [y, x] : [x, y]);
+    const fill = (x, y) => {
+      if (sg * (y - x) < 0.3) return;
+      const g = [];
+      if (k.cols) for (let i = k.cols.ti(Math.min(x, y)); i < k.cols.ti(Math.max(x, y)); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.green[i])) g.push(k.cols.green[i]);
+      const green = g.length && g.reduce((u, v) => u + v, 0) / g.length >= GREEN_AREA;
+      polys.push(green ? rect(401, "zeleň (ortofoto)", ...span(x, y)) : rect(1003, "zpevněná plocha (odhad)", ...span(x, y)));
+    };
+    for (const w of chain[side]) {
+      const kind = w.tags.railway === "tram" ? [705, "tramvajové těleso (OSM)", TRACK_HALF] : w.tags.highway === "cycleway" ? [703, "cyklostezka (OSM)", 1.3]
+        : STREET.test(w.tags.highway || "") ? (!P.sideRoads ? null : [701, "vozovka (OSM, souběžná)", 3]) : [702, "chodník (OSM, zvlášť)", SIDEWALK / 2];
+      if (!kind) break;
+      const a = w.t - sg * kind[2], b = w.t + sg * kind[2];
+      if (sg * (b - outer) < 0.3) continue;
+      fill(outer, a);
+      polys.push(rect(kind[0], kind[1], ...span(sg * (a - outer) > 0 ? a : outer, b)));
+      outer = b;
+    }
   }
   polys.ends = ends;
   // Whether a line of the town's map decided a kerb or a sidewalk's edge (the credits).
