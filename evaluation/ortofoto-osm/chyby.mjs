@@ -51,7 +51,7 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
   const conf = Object.fromEntries(KINDS.map((a) => [a, Object.fromEntries(KINDS.map((b) => [b, 0]))]));
   const ev = { shoulder: [], shoulderWide: [], lanesMore: [], lanesLess: [], ways: [], unknown: [], walkWide: [], walkNarrow: [], greenForWalk: [], walkForGreen: [], parkFalse: [], parkMissed: [], roadWide: [], roadNarrow: [] };
   let n = 0, shoulderTruth = 0;
-  const unk = { inside: 0, outside: 0, under: {} };
+  const unk = { inside: 0, outside: 0, under: {} }, bed = {};
   for (const c of list) {
     const st = await stripOf(city, KEY, c);
     if (!st) continue;
@@ -83,6 +83,7 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
       const r = runs.find((x) => x.s <= t && t < x.e), x = at(est, t);
       if (!r || !x || r.code === 601 || x.type === "budova") continue;
       conf[runKind(r.code)][estKind(x.type)] += 0.1;
+      if (process.env.BED && r.code === 705) { (bed[c.n] ??= { name: c.cut.name, types: {} }).types[x.type] = ((bed[c.n].types[x.type] || 0) + 0.1); }
     }
     // The carriageway nearest the axis in both: its width, lanes, shoulders.
     const eRoad = runsOf(est, (x) => ROADWAY.has(x.type) || x.type === "parkovani"), tRoad = runsOf(runs.map((r) => ({ ...r, type: runKind(r.code) })), (x) => x.type === "vozovka" || x.type === "stání");
@@ -146,6 +147,7 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
   }
   report.push("", `Neurčeno celkem: uvnitř ulice (mezi vozovkami) ${unk.inside.toFixed(0)} m, vně ${unk.outside.toFixed(0)} m; MTVU pod ním: ${Object.entries(unk.under).sort((a, b) => b[1] - a[1]).map(([q, w]) => `${q} ${w.toFixed(0)} m`).join(", ")}`, "");
   console.log(city, JSON.stringify(unk));
+  if (process.env.BED) console.log(JSON.stringify(bed));
   console.log(city, n, Object.fromEntries(Object.entries(ev).map(([k, v]) => [k, v.length])));
 }
 await fs.mkdir(`${ROOT}/vysledky`, { recursive: true });

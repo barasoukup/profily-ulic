@@ -731,10 +731,13 @@ function splitRoadway(run, ctx) {
   // the usual envelope, 2.7 m beside this one), the narrower one is taken.
   if (trams.length && (tags.lanes || tags["lanes:forward"] || tags["lanes:backward"])) {
     const lo = Math.min(...trams), hi = Math.max(...trams);
+    // The lanes OSM counts include those with the rails (railway:lanes…=tram|no: Hybešova, Dukelská in Brno, lanes=4 of
+    // which two are the tram's; Bára 18. 11. 2026): the cars need the rest (?off=raillanes: all of them).
+    const railLanes = ORTHO_P.off?.has("raillanes") ? 0 : ["railway:lanes", "railway:lanes:forward", "railway:lanes:backward"].reduce((a, k) => a + String(tags[k] || "").split("|").filter((v) => v === "tram").length, 0);
     const fitsBeside = (m) => {
       const cars = m.filter((x) => x.type === "pruh");
       const bothSides = cars.some((x) => x.e <= lo) && cars.some((x) => x.s >= hi);
-      return cars.length >= ctx.lanesTotal && (bothSides || isOnewayTags(tags));
+      return cars.length >= Math.max(1, ctx.lanesTotal - railLanes) && (bothSides || isOnewayTags(tags));
     };
     const narrow = !fitsBeside(mid) && tramLanes(s, e, trams, dirAt, TRAM_LANE_HALF);
     if (narrow && fitsBeside(narrow)) mid = narrow;
