@@ -2244,8 +2244,15 @@ const minWidth = (seg) => (seg.type === "parkovani" && seg.orient === "kolme" ? 
 
 function save() {
   try {
-    localStorage.setItem(STORE, JSON.stringify({ cut: state.cut, stav: state.stav, navrh: state.navrh, navrhEdited: state.navrhEdited }));
+    localStorage.setItem(STORE, JSON.stringify({ cut: state.cut, stav: state.stav, navrh: state.navrh, navrhEdited: state.navrhEdited, opts: optsKey() }));
   } catch {}
+}
+
+// The link's switches but the language (?ai=1, ?pasport=0…): a cut saved under others is derived again, not restored.
+function optsKey() {
+  const q = new URLSearchParams(location.search);
+  q.delete("lang");
+  return [...q].sort().map(([k, v]) => `${k}=${v}`).join("&");
 }
 
 render(); // the intro shows at once; the illustrations follow
@@ -2260,7 +2267,7 @@ try {
   // A reload of the same cut (no design in the link) keeps the work saved in this browser.
   const same = (a, b) => a && b && a.lat.toFixed(6) === b.lat.toFixed(6) && a.lon.toFixed(6) === b.lon.toFixed(6) && Math.round(a.bearing) === Math.round(b.bearing);
   const design = linked && designParams(location.hash);
-  if (linked && saved?.stav && !design.navrh && !design.stav && same(linked, saved.cut)) linked = null;
+  if (linked && saved?.stav && !design.navrh && !design.stav && same(linked, saved.cut) && (tab || (saved.opts ?? "") === optsKey())) linked = null;
   // A former city page (?mesto=) opens over that city, not over a cut saved elsewhere.
   const elsewhere = startCity && !linked && saved?.cut && cityAt(saved.cut.lat, saved.cut.lon) !== startCity;
   if (saved?.stav && !linked && !elsewhere) {
