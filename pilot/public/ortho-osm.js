@@ -362,6 +362,8 @@ export function carsSeen(st, a, b, axis) {
 // PIECE_GREEN: a piece between two lines of a town's map is green from this share of green columns (treetops over a
 // sidewalk make some).
 const PIECE_GREEN = 0.35, AREA_GREEN = 0.2;
+// The narrowest sidewalk the image may end (from the kerb) and the stretch of green that ends it (m).
+const WALK_MIN = 1.0, WALK_WIN = 1.0;
 const LAST_WALK = 15, LAST_NONE = 2; // m: the next thing of the street at most this far on; with none, this past the kerb
 const ALONG = 10, SIDEWALK = 2.5, SIDEWALK_MAX = 6, REST_MAX = 12, HOUSE = 5, GREEN_AREA = 0.1; // evaluation/ortofoto-osm/zelen.mjs: on ČÚZK 12.5 cm 67 % (Prague) and 82 % (Brno) of the metres right
 const STREET = /^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|living_street|service|pedestrian|road)(_link)?$/;
@@ -650,6 +652,16 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
         else put(green ? rect(401, "zeleň (ortofoto a mapa)", a, b) : rect(702, "chodník (ortofoto a mapa)", a, b));
       }
     } else {
+      // The sidewalk ends where the image turns green for good (Bára 18. 11. 2026, Za Kalváriou in Prešov: a 1.4 m
+      // sidewalk by the kerb, then lawn and trees up to the house, was drawn 6 m wide: the cap, not the image). From
+      // WALK_MIN off the kerb on, the first WALK_WIN that is green as a piece between map lines is (PIECE_GREEN over
+      // the roadway's own share) ends it, if the next WALK_WIN is green too. ?off=walkedge: as before.
+      if (k.cols && swEnd !== kerb && Math.abs(swEnd - kerb) > WALK_MIN + 2 * WALK_WIN && !P.off?.has("walkedge")) {
+        const greenOf = (x, y) => { const [a, b] = x < y ? [x, y] : [y, x], g = []; for (let i = k.cols.ti(a); i < k.cols.ti(b); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.green[i])) g.push(k.cols.green[i]); return g.length ? g.reduce((u, v) => u + v, 0) / g.length : NaN; };
+        for (let x = kerb + sg * WALK_MIN; sg * (swEnd - x) > 2 * WALK_WIN; x += sg * 0.2) {
+          if (greenOf(x, x + sg * WALK_WIN) >= PIECE_GREEN + roadGreen && greenOf(x + sg * WALK_WIN, x + sg * 2 * WALK_WIN) >= PIECE_GREEN + roadGreen) { swEnd = x; break; }
+        }
+      }
       if (swEnd !== kerb) {
         // The map's symbol in the sidewalk's stretch: a lawn there is a green strip, not a sidewalk.
         const sym = symbolAt(...span(kerb, swEnd));
