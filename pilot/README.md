@@ -112,6 +112,23 @@ basemap.at (`lanes-ortho.js` zdroj `at`, z20).
 - **Značky** `signs-AT/` (StVO § 52–53); jednosměrka se pod pruhem neznačí, značky bez rakouské kresby a s
   dodatkovou tabulkou se zahodí.
 
+### Švýcarsko a Lichtenštejnsko (Bára 17. 11. 2026)
+
+Státy `switzerland` (`country` CH) a `liechtenstein` (LI), oba `towns/switzerland.js`; hranice ze swissBOUNDARIES3D
+swisstopo v `staty.json` (přednost před hrubšími hranicemi GISCO Rakouska a Německa; Büsingen a Campione jsou díry).
+Profil je odhad z OSM (balíky `ch` a `li` jen na R2) a ortofota SWISSIMAGE 10 cm (`lanes-ortho.js` zdroj `ch`, WMTS
+z20, dlaždice `{z}/{x}/{y}`).
+- **Úřední vyměřování** (Amtliche Vermessung, pokryv půdy `LCSF`) přes WFS geodienste.ch jako plochy řezu, kde má plochu
+  ulice pod středem řezu: vozovka a cesty, chodníky, ostrůvky, dráha, budovy, zeleň, voda. Všechny kantony, které ho
+  sdílejí, i Lichtenštejnsko (Vaud a Luzern ne); kredit podle kantonu (`credits.js chAv`). Neodpoví-li, odhad s poznámkou.
+  `?av=0` vypne. A/B v `evaluation/switzerland/ab/`.
+- **Normy** `countries/CH.js` (`limits`): hodnoty norem VSS podle kantonálních a městských příruček (Bern, Basel-Stadt,
+  Curych, Schwyz), kde zdroj chybí, bez varování. Stání podle VRV čl. 19 a pomůcek kantonů Bern a Luzern (3 m na projetí,
+  pruhy vedle stání průjezdné). Lichtenštejnsko (`countries/LI.js`) má švýcarská pravidla se svými čísly článků.
+  Rešerše `evaluation/switzerland/NORMY.md`.
+- **Hledání** Photon (`photon-ch`, místní názvy: Genève, Lugano). **Značky** `signs-CH/` (SSV, stejná čísla v LI).
+- **Domy** bez paneláků (jako Rakousko), **vozidla** neutrální z `generic/`, mobiliář a označníky české.
+
 ## Odkud jsou data (Praha)
 
 - **Šířky:** IPR Praha, *Mapa technického využití území* (MTVU), služba
@@ -121,7 +138,11 @@ basemap.at (`lanes-ortho.js` zdroj `at`, z20).
   „MHD – osa kolejí“). Pruh s tramvají sahá 1,75 m od osy koleje ven a mezi kolejemi do poloviny osové
   vzdálenosti. Odpovídá to Manuálu tvorby veřejných prostranství IPR (kap. C.2): dvoukolejný tramvajový pás
   6,5 m při osové vzdálenosti 3 m, 7 m při 3,5 m. Zbytek vozovky široký aspoň 2,5 m se stane samostatným jízdním
-  pruhem. Kde osy kolejí chybí, použije se tramvajová trať z OSM.
+  pruhem. Kde osy kolejí chybí, použije se tramvajová trať z OSM. Má-li mapa města tramvajové těleso (MTVU 705,
+  berlínský Gleiskörper, vídeňská FMZK, pasporty) a kolejnice z OSM leží víc než 0,25 m mimo něj, koleje se posunou do
+  tělesa (se zachovaným rozestupem; těleso ve vozovce s kolejemi v asfaltu i 1,5 m od středu, když se rozestup nevejde),
+  jen o 1,25 m nejvýš a jen do tělesa aspoň 2,5 m širokého (`derive.js` `snapTracksToBeds`, Bára 18. 11. 2026, Neue
+  Schönhauser Straße; `?off=tramsnap`). Změřené osy (Praha) zůstávají.
 - **Body technické mapy IPR** (`dtmp/MapServer/9`, jeden dotaz na řez): sloupy trakčního vedení, označníky zastávek,
   sloupky, stožáry osvětlení bez vedení a stromy.
 - **Otevřená data Geoportálu Praha** (CC BY 4.0, staženo při nasazení do dlaždic `data/praha/opendata`, při
@@ -729,11 +750,11 @@ v aplikaci není: API Streetmixu nemá CORS, takže ze statického webu nefunguj
 
 ## Jazyky
 
-Aplikace je česky, slovensky, anglicky a německy (Bára 12. 11. 2026, slovenština 15. 11., němčina 16. 11. 2026).
-Jazyk určí `?lang=cs|sk|en|de` v adrese, jinak poslední volba návštěvníka (menu jazyků s vlajkami v hlavičce,
-pamatuje se v prohlížeči), jinak první z jazyků prohlížeče, který aplikace umí; ostatní dostanou angličtinu.
+Aplikace mluví všemi 24 úředními jazyky EU (Bára 12. 11. 2026 čeština a angličtina, slovenština 15. 11., němčina
+16. 11., ostatní 17. 11. 2026). Jazyk určí `?lang=fr` v adrese, jinak poslední volba návštěvníka (položka „Jazyk“ v menu
+Soubor, pamatuje se v prohlížeči), jinak první z jazyků prohlížeče, který aplikace umí; ostatní dostanou angličtinu.
 Přepnutí stránku znovu načte, řez i návrh zůstanou. Anglicky se aplikace jmenuje **Street Profile**, německy
-**Straßenprofil**.
+**Straßenprofil**, slovensky **Profily ulíc**; ostatní názvy v `CLAUDE.md` (oddíl Jazyky).
 
 Jazyk není stát (kódy ISO: jazyk `de`, stát `DE`): značky, normy, zdroje dat a ilustrace se řídí státem řezu
 (`city.country`, CZ/SK/AT/DE), jazyk mění jen slova. Německé rozhraní na řezu v Praze ukazuje české značky s českými

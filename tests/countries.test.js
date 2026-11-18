@@ -4,10 +4,11 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import { LANGS } from "../pilot/public/i18n.js";
 
 const DIR = new URL("../pilot/public/", import.meta.url);
 const FILES = [...fs.readdirSync(DIR).filter((f) => f.endsWith(".js")), ...fs.readdirSync(new URL("towns/", DIR)).map((f) => `towns/${f}`)]
-  .filter((f) => f.endsWith(".js") && !["en.js", "sk.js", "de.js"].includes(f));
+  .filter((f) => f.endsWith(".js") && !Object.keys(LANGS).some((l) => f === `${l}.js`));
 
 test("mimo countries/ žádná podmínka na stát", () => {
   const bad = [];

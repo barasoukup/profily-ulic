@@ -375,11 +375,6 @@ export const SV = {
   "Obytná zóna": "Gångfartsområde",
   "Pěší zóna": "Gågata",
   "Cyklistická ulice": "Cykelgata",
-  "Klikněte v mapě na ulici kdekoli v Česku, na Slovensku, v Rakousku nebo v Německu.": "Klicka på kartan på en valfri gata i Tjeckien, Slovakien, Österrike eller Tyskland.",
-  "Profil od fasády k fasádě se sestaví z mapy povrchů města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy povrchů Vídně a OSM, v Německu z ortofot spolkových zemí a OSM.": "Sektionen från fasad till fasad byggs upp av stadens eller ČÚZK:s ytkarta, RÚIAN och OSM, i Slovakien av städernas gatuinventeringar, ZBGIS, ortofoto och OSM, i Österrike av ortofoto, Wiens ytkarta och OSM, i Tyskland av delstaternas ortofoton och OSM.",
-  "Příčné profily ulic v Česku, na Slovensku, v Rakousku a v Německu od fasády k fasádě z map povrchů měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.": "Gatusektioner i Tjeckien, Slovakien, Österrike och Tyskland från fasad till fasad, från städernas och ČÚZK:s ytkartor, RÚIAN, ZBGIS och OpenStreetMap. Redigera sektionen, jämför den med nuläget och spara den som bild.",
-  "Příčné profily ulic v Česku, na Slovensku, v Rakousku a v Německu z map povrchů měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.": "Gatusektioner i Tjeckien, Slovakien, Österrike och Tyskland från städernas, ČÚZK:s och ZBGIS ytkartor: från fasad till fasad, redigerbara, med lokala illustrationer.",
-  "Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko, Slovensko, Rakousko a Německo).": "Ingen gata hittades här. Försök klicka direkt på vägen (data täcker Tjeckien, Slovakien, Österrike och Tyskland).",
   "ortofoto © spolkové země Německa (GeoBasis-DE)": "ortofoto © Tysklands delstater (GeoBasis-DE)",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, podle StVO § 12 a judikatury 3,05 m na projetí, s pruhy vedle stání aspoň {need}.": "Parkering halvt på gångbanan enligt OSM: på körbanan återstår {free}, enligt StVO § 12 och rättspraxis 3,05 m för att komma förbi, med körfälten intill parkeringen minst {need}.",
   "jízdní pruh hlavní ulice: vozovka 6,5 m pro potkávání autobusů, tedy asi 3,25 m (RASt 06 podle dopisu, kterým ji Bavorsko zavedlo, 2009)": "körfält på huvudgata: körbana 6,5 m för möte mellan bussar, alltså ca 3,25 m (RASt 06 enligt Bayerns införandeskrivelse, 2009)",
@@ -767,6 +762,31 @@ export const SV = {
   "Vodní plocha": "Vattenyta",
   "Povrch ulice": "Gatans markyta",
   "{type}: povrch tělesa {from} → {to}": "{type}: banvallens yta {from} → {to}",
+  // ---------- Switzerland, Liechtenstein (main of 18. 11. 2026) ----------
+  "Klikněte v mapě na ulici kdekoli v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku nebo v Lichtenštejnsku.": "Klicka på kartan på en valfri gata i Tjeckien, Slovakien, Österrike, Tyskland, Schweiz eller Liechtenstein.",
+  "Profil od fasády k fasádě se sestaví z mapy povrchů města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy povrchů Vídně a OSM, v Německu z ortofot spolkových zemí a OSM, ve Švýcarsku a v Lichtenštejnsku z úředního vyměřování, ortofota SWISSIMAGE a OSM.": "Sektionen från fasad till fasad byggs upp av stadens eller ČÚZK:s ytkarta, RÚIAN och OSM, i Slovakien av städernas gatuinventeringar, ZBGIS, ortofoto och OSM, i Österrike av ortofoto, Wiens ytkarta och OSM, i Tyskland av delstaternas ortofoton och OSM, i Schweiz och Liechtenstein av den officiella fastighetsmätningen, ortofotot SWISSIMAGE och OSM.",
+  "Příčné profily ulic v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku a v Lichtenštejnsku od fasády k fasádě z map povrchů měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.": "Gatusektioner i Tjeckien, Slovakien, Österrike, Tyskland, Schweiz och Liechtenstein från fasad till fasad, från städernas och ČÚZK:s ytkartor, RÚIAN, ZBGIS och OpenStreetMap. Redigera sektionen, jämför den med nuläget och spara den som bild.",
+  "Příčné profily ulic v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku a v Lichtenštejnsku z map povrchů měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.": "Gatusektioner i Tjeckien, Slovakien, Österrike, Tyskland, Schweiz och Liechtenstein från städernas, ČÚZK:s och ZBGIS ytkartor: från fasad till fasad, redigerbara, med lokala illustrationer.",
+  "Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko, Slovensko, Rakousko, Německo, Švýcarsko a Lichtenštejnsko).": "Ingen gata hittades här. Försök klicka direkt på vägen (data täcker Tjeckien, Slovakien, Österrike, Tyskland, Schweiz och Liechtenstein).",
+  "úředního vyměřování, SWISSIMAGE a OSM": "den officiella fastighetsmätningen, SWISSIMAGE och OSM",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Zákon šířku neuvádí (VRV čl. 19), pomůcky kantonů Bern a Luzern berou 3 m na projetí, aplikace navíc nechává průjezdné pruhy, tedy aspoň {need}; na chodníku musí zůstat 1,5 m (VRV čl. 41).": "Parkering halvt på gångbanan enligt OSM: på körbanan återstår {free}. Lagen anger ingen bredd (VRV Art. 19); handledningarna från kantonerna Bern och Luzern räknar med 3 m för att komma förbi, appen håller dessutom körfälten fria, alltså minst {need}; på gångbanan ska 1,5 m återstå (VRV Art. 41).",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Zákon šířku neuvádí (lichtenštejnská VRV čl. 21), podle švýcarské praxe 3 m na projetí, aplikace navíc nechává průjezdné pruhy, tedy aspoň {need}; na chodníku musí zůstat 1,5 m (VRV čl. 40).": "Parkering halvt på gångbanan enligt OSM: på körbanan återstår {free}. Lagen anger ingen bredd (Liechtensteins VRV Art. 21); enligt schweizisk praxis 3 m för att komma förbi, appen håller dessutom körfälten fria, alltså minst {need}; på gångbanan ska 1,5 m återstå (VRV Art. 40).",
+  "chodník ostatních místních tras: 2 m, nejméně 1,8 m; na hlavních trasách 2,4 m (Standards Fuss- und Veloverkehr Basel-Stadt 2024, tab. 1, podle SN 640 070)": "gångbana på övriga lokala stråk: 2 m, minst 1,8 m; på huvudstråk 2,4 m (Standards Fuss- und Veloverkehr Basel-Stadt 2024, tab. 1, enligt SN 640 070)",
+  "cyklopruh (Radstreifen): 1,5 m, mezi dvěma pruhy 1,8 m (VSS 40 201 a 40 252 podle kantonu Bern 2021; Basilej má základ 1,8 m)": "cykelfält (Radstreifen): 1,5 m, mellan två körfält 1,8 m (VSS 40 201 och 40 252 enligt kantonen Bern 2021; Basel har 1,8 m som normalbredd)",
+  "cyklopruh vedle podélného stání: 1,5 m a bezpečnostní odstup 0,5–0,75 m (VSS 40 291a podle kantonu Bern 2021; Kanton Zürich 2023)": "cykelfält intill längsparkering: 1,5 m och säkerhetsavstånd 0,5–0,75 m (VSS 40 291a enligt kantonen Bern 2021; Kanton Zürich 2023)",
+  "jednosměrka s cyklisty v protisměru: vozovka 4,8 m pro potkání kola s nákladním autem (Kanton Zürich 2023, kap. 4.9), minimum nenalezeno": "enkelriktad gata med cykeltrafik i motriktning: körbana 4,8 m för möte mellan cykel och lastbil (Kanton Zürich 2023, kap. 4.9), inget minimimått hittat",
+  "jízdní pruh hlavní ulice v obci: orientačně 3 m (vedle cyklopruhu 3 m, při méně než 300 nákladních autech a autobusech denně 2,75 m, Kanton Zürich 2023; na kantonálních silnicích Schwyzu 3,25 m)": "körfält på huvudgata i tätort: ca 3 m (intill cykelfält 3 m, vid färre än 300 lastbilar och bussar per dygn 2,75 m, Kanton Zürich 2023; på kantonala vägar i Schwyz 3,25 m)",
+  "kolmé stání: hloubka 5 m (VSS 40 291 podle kantonu Bern 2026)": "tvärparkering: djup 5 m (VSS 40 291 enligt kantonen Bern 2026)",
+  "podélné stání: 1,9 m, u vysoké obruby 2,2–2,5 m (VSS 40 291 podle kantonu Bern 2026)": "längsparkering: 1,9 m, vid hög kantsten 2,2–2,5 m (VSS 40 291 enligt kantonen Bern 2026)",
+  "pruh pro autobusy s cyklisty: 3 m (autobus cyklistu nepředjíždí), nebo aspoň 4,5 m, aby ho předjel; mezi tím ne (Kanton Bern TBA 2021, Basel-Stadt 2024)": "busskörfält med cyklister: 3 m (bussen kör inte om cyklisten) eller minst 4,5 m för omkörning; inte däremellan (Kanton Bern TBA 2021, Basel-Stadt 2024)",
+  "společná stezka pro chodce a cyklisty: 3 m, s cyklisty v obou směrech 3,5 m (Normalie D 2.01 kantonu Schwyz, 2025)": "gång- och cykelbana: 3 m, med cyklister i båda riktningarna 3,5 m (Normalie D 2.01 från kantonen Schwyz, 2025)",
+  "stezka pro cyklisty jednosměrná: min. 1,8 m (na hlavních trasách 2,2 m), základ 2,6 m; obousměrná 2,5–3 m a 3–4,5 m (SN 640 060 podle kantonu Bern 2021)": "enkelriktad cykelbana: min. 1,8 m (på huvudstråk 2,2 m), normalt 2,6 m; dubbelriktad 2,5–3 m och 3–4,5 m (SN 640 060 enligt kantonen Bern 2021)",
+  "ortofoto SWISSIMAGE © swisstopo": "ortofoto SWISSIMAGE © swisstopo",
+  "úřední vyměřování (Bodenbedeckung) © Fürstentum Liechtenstein (geodienste.ch)": "officiell fastighetsmätning (Bodenbedeckung) © Fürstentum Liechtenstein (geodienste.ch)",
+  "úřední vyměřování (Bodenbedeckung) © kanton {canton} (geodienste.ch)": "officiell fastighetsmätning (Bodenbedeckung) © kantonen {canton} (geodienste.ch)",
+  "úřední vyměřování (Bodenbedeckung) © kantony (geodienste.ch)": "officiell fastighetsmätning (Bodenbedeckung) © kantonerna (geodienste.ch)",
+  " · úřední vyměřování neodpovědělo, odhad z ortofota a OSM": " · den officiella fastighetsmätningen svarade inte, uppskattning från ortofoto och OSM",
+  "Úřední vyměřování (geodienste.ch) teď neodpovídá, profil je odhad z ortofota a OSM.": "Den officiella fastighetsmätningen (geodienste.ch) svarar inte just nu, sektionen är en uppskattning från ortofoto och OSM.",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.
@@ -777,6 +797,7 @@ export const SV_HTML = {
     ledningar © IPR Praha, mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, städerna Karviná, Ostrava, Město Břeclav ·
     Österrike: ortofoto © basemap.at (CC BY 4.0), Flächen-Mehrzweckkarte © Stadt Wien – data.wien.gv.at (CC BY 4.0), gräns © EuroGeographics (GISCO), vägmärken i Salzburg © Stadt Salzburg (CC BY 3.0 AT), sökning Photon © komoot (OSM-data) ·
     Tyskland: delstaternas ortofoton © LGL-BW, Bayerische Vermessungsverwaltung, GeoBasis-DE/LGB, Landesamt GeoInformation Bremen, LGV Hamburg, HVBG, GeoBasis-DE/M-V, LGLN, GeoBasis-DE/NRW, GeoBasis-DE/LVermGeoRP, GeoBasis-DE/LVermGeo SH, GeoBasis-DE/LVGL-SL, GeoSN, GeoBasis-DE/LVermGeo ST, GDI-Th; <a href="https://www.govdata.de/dl-de/by-2-0">dl-de/by-2-0</a>, <a href="https://www.govdata.de/dl-de/zero-2-0">dl-de/zero-2-0</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, gräns © EuroGeographics (GISCO), vägmärken Wikimedia Commons (officiella verk), sökning Photon © komoot (OSM-data) ·
+    Schweiz och Liechtenstein: ortofoto SWISSIMAGE och gränser © swisstopo, officiell fastighetsmätning (Bodenbedeckung) © kantonerna och Liechtenstein via <a href="https://geodienste.ch">geodienste.ch</a>, vägmärken Wikimedia Commons (officiella verk, ASTRA), sökning Photon © komoot (OSM-data) ·
     parkering © TSK hl. m. Prahy (CC BY 4.0), parkeringsförbud, träd och gatuklasser från <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, städerna Jihlava, Opava, Plzeň (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-bidragsgivare (ODbL) ·
     illustrationer © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licens
@@ -785,7 +806,7 @@ export const SV_HTML = {
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Källor och licenser</a> (på tjeckiska) ·
     kontakt <a href="mailto:bara.so@email.cz">bara.so@email.cz</a><br>
     Vi sparar endast snitt (plats, riktning, gata, tid), klick där ingen gata hittades (platsen med ungefär en kilometers noggrannhet), de funktioner som används och de felrapporter du själv skriver; inga IP-adresser och inga cookies. Kartor och data
-    hämtas direkt från servrarna hos IPR, ČÚZK, städerna, regionerna, basemap.at, de tyska delstaterna, Berlin, Hamburg, Aachen och OSM, söktexten även från komoot (Photon) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">integritet</a>, på tjeckiska).`,
+    hämtas direkt från servrarna hos IPR, ČÚZK, städerna, regionerna, basemap.at, de tyska delstaterna, Berlin, Hamburg, Aachen, swisstopo, geodienste.ch och OSM, söktexten även från komoot (Photon) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">integritet</a>, på tjeckiska).`,
 };
 
 // The city's texts (city.js) in Swedish, as the sentences take them: server after "Servern" ("Servern för Brno stad
@@ -807,6 +828,8 @@ export const SV_CITY = {
   slovensko: { ...ABROAD, dataShort: "ZBGIS och OSM", credit: "byggnader © GKÚ Bratislava (ZBGIS, CC BY 4.0)", rulesHead: "Bredder enligt slovakiska föreskrifter (TP 117, TP 73 6110, TP 085, förordning 532/2002):" },
   austria: { ...ABROAD, dataShort: "basemap.at och OSM", rulesHead: "Bredder enligt österrikiska riktlinjer (RVS 03.02.13, Wiener Projektierungshandbuch):" },
   germany: { ...ABROAD, dataShort: "delstaternas ortofoton och OSM", rulesHead: "Bredder enligt tyska riktlinjer (RASt 06, ERA 2010, VwV-StVO):" },
+  switzerland: { ...ABROAD, dataShort: "SWISSIMAGE och OSM", rulesHead: "Bredder enligt schweiziska riktlinjer (VSS-normer enligt kantonernas och städernas standarder):" },
+  liechtenstein: { ...ABROAD, dataShort: "SWISSIMAGE och OSM", rulesHead: "Bredder enligt schweiziska riktlinjer (VSS-normer enligt kantonernas och städernas standarder):" },
   cizina: ABROAD,
   cesko: {
     server: "för ČÚZK:s tekniska karta", dataName: NATIONAL, dataShort: "ČÚZK:s tekniska karta, RÚIAN och OSM", techMap: NATIONAL,

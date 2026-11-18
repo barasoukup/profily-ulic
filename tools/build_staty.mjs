@@ -1,8 +1,10 @@
 // The boundaries of the states the app has OSM tiles of (Bára 15. 11. 2026), so a cut outside the cities of
 // mesta.json takes its state (city.js cityAt): "cesko" (RÚIAN Stát, ČÚZK), "slovensko" (ZBGIS of ÚGKK SR, layer
 // Slovenská republika), "austria" (Eurostat GISCO 2024, 1 : 1 000 000, © EuroGeographics; the BEV's WFS is off, Bára
-// 16. 11. 2026), "germany" (GISCO as Austria, Bára 17. 11. 2026); a point in none is "cizina". The order matters: Czechia and Slovakia first (their borders are exact,
-// GISCO's coarser), so a point by their border with Austria takes theirs. Simplified to about 30 m, written into pilot/public/staty.json and kept in the repository
+// 16. 11. 2026), "germany" (GISCO as Austria, Bára 17. 11. 2026), "switzerland" and "liechtenstein" (swisstopo's
+// swissBOUNDARIES3D through api3.geo.admin.ch, open data "© swisstopo", 17. 11. 2026); a point in none is "cizina". The
+// order matters: Czechia, Slovakia, Switzerland and Liechtenstein first (their borders are exact, GISCO's coarser), so a
+// point by their border with Austria or Germany takes theirs (Büsingen and Campione are holes of Switzerland's ring). Simplified to about 30 m, written into pilot/public/staty.json and kept in the repository
 // (boundaries change rarely): node tools/build_staty.mjs, or node tools/build_staty.mjs germany for one state (the
 // others stay as they are in staty.json).
 import fs from "node:fs";
@@ -33,10 +35,32 @@ async function gisco(cntr) {
   return polys.map((p) => p[0].map(([x, y]) => [+x.toFixed(4), +y.toFixed(4)]));
 }
 
+// swissBOUNDARIES3D (Landesgrenzen) of one state, CH or LI, with its holes (Büsingen, Campione), simplified as the
+// others (Douglas–Peucker to about 30 m).
+function simplify(ring, eps = OFFSET) {
+  const keep = new Uint8Array(ring.length); keep[0] = keep[ring.length - 1] = 1;
+  const stack = [[0, ring.length - 1]];
+  while (stack.length) {
+    const [a, b] = stack.pop(), [ax, ay] = ring[a], [bx, by] = ring[b], dx = bx - ax, dy = by - ay, len = Math.hypot(dx, dy);
+    let far = -1, dmax = 0;
+    // a closed ring's ends are one point: the distance to it
+    for (let i = a + 1; i < b; i++) { const d = len ? Math.abs(dy * (ring[i][0] - ax) - dx * (ring[i][1] - ay)) / len : Math.hypot(ring[i][0] - ax, ring[i][1] - ay); if (d > dmax) { dmax = d; far = i; } }
+    if (far >= 0 && dmax > eps) { keep[far] = 1; stack.push([a, far], [far, b]); }
+  }
+  return ring.filter((_, i) => keep[i]).map(([x, y]) => [+x.toFixed(4), +y.toFixed(4)]);
+}
+async function swiss(iso) {
+  const json = await (await fetch(`https://api3.geo.admin.ch/rest/services/api/MapServer/ch.swisstopo.swissboundaries3d-land-flaeche.fill/${iso}?geometryFormat=geojson&sr=4326`, { headers: { "User-Agent": "profily-ulic" } })).json();
+  const g = json.feature.geometry;
+  return (g.type === "MultiPolygon" ? g.coordinates.flat() : g.coordinates).map((r) => simplify(r)).filter((r) => r.length >= 4);
+}
+
 const BUILD = {
   cesko: () => rings(CZ, { where: "1=1", outFields: "nazev" }),
   slovensko: () => rings(SK, { geometry: "19.70,48.67", geometryType: "esriGeometryPoint", sr: 4326, layers: "all:0", tolerance: 2,
     mapExtent: "16.8,47.7,22.6,49.7", imageDisplay: "800,600,96", returnGeometry: true }),
+  switzerland: () => swiss("CH"),
+  liechtenstein: () => swiss("LI"),
   austria: () => gisco("AT"),
   germany: () => gisco("DE"),
 };

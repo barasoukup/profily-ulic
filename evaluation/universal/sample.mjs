@@ -11,6 +11,10 @@ export const TOWNS = {
     klagenfurt: [46.6247, 14.3053], villach: [46.6111, 13.8558], wels: [48.1575, 14.0289], stpoelten: [48.2047, 15.6256], dornbirn: [47.4125, 9.7417] },
   DE: { berlin: [52.52, 13.405], hamburg: [53.5503, 9.9925], muenchen: [48.1374, 11.5755], koeln: [50.9375, 6.9603], frankfurt: [50.1109, 8.6821],
     leipzig: [51.3397, 12.3731], dresden: [51.0504, 13.7373], aachen: [50.7762, 6.0839], nuernberg: [49.4521, 11.0767], freiburg: [47.9959, 7.8522] },
+  // Switzerland (17. 11. 2026): Lausanne and Lucerne without the cadastral survey (Vaud and Lucerne do not share it).
+  CH: { zurich: [47.3769, 8.5417], geneve: [46.2044, 6.1432], basel: [47.5596, 7.5886], lausanne: [46.5197, 6.6323], bern: [46.948, 7.4474],
+    winterthur: [47.4997, 8.7241], luzern: [47.0502, 8.3093], stgallen: [47.4245, 9.3767], lugano: [46.0037, 8.9511], biel: [47.1368, 7.2468] },
+  LI: { vaduz: [47.141, 9.5215], schaan: [47.1655, 9.5096], triesen: [47.1069, 9.5277], balzers: [47.0665, 9.5025], eschen: [47.2112, 9.5223] },
 };
 if (process.argv[1] === new URL(import.meta.url).pathname) {
   let seed = 20261117;

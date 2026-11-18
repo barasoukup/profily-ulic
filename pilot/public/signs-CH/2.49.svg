@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<svg viewBox="0 0 602 602" xmlns="http://www.w3.org/2000/svg" width="602" height="602" fill-rule="evenodd">
+<clipPath id="c"><circle cx="301" cy="301" r="200"/></clipPath>
+<circle cx="301" cy="301" r="300" fill="#ee2c30" stroke="none"/>
+<circle cx="301" cy="301" r="200" fill="#fff" stroke="none"/>
+<circle cx="301" cy="301" r="194" fill="#1a67bb" stroke="none"/>
+<path clip-path="url(#c)" fill="none" stroke="#fff" stroke-width="62" d="M95.939,95.939 506.061,506.061 M95.939,506.061 506.061,95.939"/>
+<path stroke="#ee2c30" stroke-width="50" fill="none" d="M95.939,95.939 506.061,506.061 M95.939,506.061 506.061,95.939"/>
+</svg>

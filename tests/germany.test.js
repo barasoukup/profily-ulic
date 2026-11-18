@@ -105,3 +105,32 @@ test("stání zakreslené v OSM se do o něco užší odhadnuté vozovky vejde v
     assert.equal(road(false).segments.filter((x) => x.type === "parkovani").length, 0, "změřená vozovka: staré pravidlo");
   } finally { C.setCity("praha"); }
 });
+
+test("koleje z OSM vedle tělesa z mapy města se posunou do něj (Neue Schönhauser Straße), jinde zůstanou", async () => {
+  const { snapTracksToBeds } = await import("../pilot/public/derive.js");
+  const r2 = (ts) => ts.map((t) => Math.round(t * 100) / 100);
+  // Berlin's Gleiskörper in the roadway (−1.2…3.0 m), OSM's tracks 1 m south: 1.5 m each side of the bed's centre.
+  let ts = [-1.70, 1.49];
+  snapTracksToBeds(ts, [[-1.2, 3.0, true]]);
+  assert.deepEqual(r2(ts), [-0.6, 2.4]);
+  // A wide bed: the pair keeps its spacing, centred.
+  ts = [0, 3];
+  snapTracksToBeds(ts, [[0, 5, false]]);
+  assert.deepEqual(r2(ts), [1, 4]);
+  // A separate bed narrower than the pair keeps OSM's tracks (Oranienburger Tor: a bed of 4.6 m, tracks 3.5 m apart).
+  ts = [0.14, 3.6];
+  snapTracksToBeds(ts, [[-1.2, 3.4, false]]);
+  assert.deepEqual(r2(ts), [0.14, 3.6]);
+  // A rail up to 0.25 m beyond the edge is within the data's accuracy; a track far from any bed stays.
+  ts = [-4.75, -1.3, 12];
+  snapTracksToBeds(ts, [[-5.3, 0.2, true]]);
+  assert.deepEqual(r2(ts), [-4.75, -1.3, 12]);
+});
+
+test("úzký proužek tělesa ani vzdálené těleso kolej nepřitáhnou (Vídeň, Rotundenbrücke)", async () => {
+  const { snapTracksToBeds } = await import("../pilot/public/derive.js");
+  // The filter of narrow strips is in mapTramBeds; here a track 2.2 m from the bed's centre stays.
+  const ts = [-1.55, 1.47];
+  snapTracksToBeds(ts, [[-7.5, -3.0, false]]);
+  assert.deepEqual(ts, [-1.55, 1.47]);
+});

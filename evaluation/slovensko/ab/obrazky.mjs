@@ -79,6 +79,14 @@ async function image(c, tMax) {
       await fs.mkdir(path.dirname(file), { recursive: true });
       await fs.writeFile(file, buf);
       await new Promise((r) => setTimeout(r, 300));
+    } else if (process.env.ORTHO === "ch") {
+      // Switzerland and Liechtenstein (evaluation/switzerland/ab): SWISSIMAGE through swisstopo's WMS as a PNG.
+      const q = new URLSearchParams({ SERVICE: "WMS", VERSION: "1.3.0", REQUEST: "GetMap", LAYERS: "ch.swisstopo.swissimage", STYLES: "", CRS: "EPSG:3857",
+        BBOX: [x0, y0, x1, y1].join(","), WIDTH: w, HEIGHT: h, FORMAT: "image/png" });
+      buf = Buffer.from(await (await fetch(`https://wms.geo.admin.ch/?${q}`, { headers: { "User-Agent": "profily-ulic" } })).arrayBuffer());
+      await fs.mkdir(path.dirname(file), { recursive: true });
+      await fs.writeFile(file, buf);
+      await new Promise((r) => setTimeout(r, 300));
     } else if (process.env.ORTHO === "at") {
       // Austria (evaluation/austria/ab): basemap.at's tiles of level 20 glued and cut to the box with ImageMagick.
       buf = await atImage([x0, y0, x1, y1], w, h);
@@ -126,7 +134,7 @@ if (process.argv[1] === new URL(import.meta.url).pathname) {
     }
     line(im, im.tx(0), half - 6, half + 6, [255, 255, 0], 3);
     for (let x = 0; x < im.W; x++) for (const y of [half - 1, half]) { const o = (y * im.W + x) * 4; im.out[o] = im.out[o + 1] = im.out[o + 2] = 255; }
-    const png = path.join(ROOT, "data", `${OUT}-${r.id}-kresba.png`), jpg = path.join(ROOT, OUT, `${r.id}.jpg`);
+    const png = path.join(ROOT, "data", `${path.basename(OUT)}-${r.id}-kresba.png`), jpg = path.join(ROOT, OUT, `${r.id}.jpg`);
     await fs.mkdir(path.dirname(jpg), { recursive: true });
     await fs.writeFile(png, encodePng(im.out, im.W, im.H));
     await run("sips", ["-s", "format", "jpeg", "-s", "formatOptions", "70", png, "--out", jpg]);

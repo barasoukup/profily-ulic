@@ -21,6 +21,10 @@ const merc = (lon, lat) => [(R * lon * Math.PI) / 180, R * Math.log(Math.tan(Mat
 // Austria (Bára 16. 11. 2026): basemap.at's orthophoto (Verwaltungsgrundkarte, CC BY 4.0), Web Mercator tiles to level 20
 // (about 10 cm a pixel, the photo 15–30 cm), CORS for any origin.
 export const AT_ORTHO = "https://mapsneu.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857";
+// Switzerland and Liechtenstein (Bára 17. 11. 2026): swisstopo's SWISSIMAGE 10 cm (open data of the Confederation,
+// "© swisstopo"), WMTS tiles in Web Mercator to level 20 (21 refused), CORS for any origin; it covers Liechtenstein and
+// a strip beyond the border. Its tiles are {z}/{x}/{y} (xy below), not ArcGIS's {z}/{y}/{x}.
+export const CH_ORTHO = "https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.swissimage/default/current/3857";
 export const SK_ORTHO = "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ortofoto_hres/MapServer";
 const SOURCES = {
   // The grid of z19, tiles of 512 px (about 10 cm). balance: the mosaic is bright and tinted (Košice 2025: asphalt
@@ -30,6 +34,7 @@ const SOURCES = {
   // found by the universal judging 17. 11. 2026): level 19 where a tile of 20 is missing.
   at: { res: 0.1, tiles: AT_ORTHO, z: 20, px: 256, ext: ".jpeg", fallback: "at19" },
   at19: { res: 0.1, tiles: AT_ORTHO, z: 19, px: 256, ext: ".jpeg" },
+  ch: { res: 0.1, tiles: CH_ORTHO, z: 20, px: 256, ext: ".jpeg", xy: true },
   brno: { res: 0.1, tiles: "https://gis.brno.cz/ags1/rest/services/OMI/OMI_basemaps_ortofoto_2025_wgs/MapServer/tile", z: 20, shift: [1.06, 3.09] },
   plzen: { res: 0.1, url: (b, w, h) => `https://ags.plzen.eu/arcgis/rest/services/Orto_2024_5cm_RGB_mimoveg/MapServer/export?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: "jpg", f: "image", datumTransformations: "[1623]" })}` },
   ipr: { res: 0.1, url: (b, w, h) => `https://gs-pub.praha.eu/imgs/rest/services/ort/letecke_snimkovani/ImageServer/exportImage?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: "jpg", f: "image" })}` },
@@ -154,7 +159,7 @@ async function laneImageOf(key, { frame, dir, t0, t1, timeout = TIMEOUT, fetchIm
       const signal = AbortSignal.timeout(timeout), jobs = [];
       // A server error on every tile is an outage (app.js says so), not an empty image.
       let down = 0, missing = 0;
-      for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) jobs.push(fetchImpl(`${src.tiles}/${src.z}/${ty}/${tx}${src.ext || ""}`, { signal }).then(async (r) => { if (r.ok) g.drawImage(await createImageBitmap(await r.blob()), (tx - tx0) * tp, (ty - ty0) * tp, tp, tp); else if (r.status >= 500) down++; else missing++; }));
+      for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) jobs.push(fetchImpl(`${src.tiles}/${src.z}/${src.xy ? `${tx}/${ty}` : `${ty}/${tx}`}${src.ext || ""}`, { signal }).then(async (r) => { if (r.ok) g.drawImage(await createImageBitmap(await r.blob()), (tx - tx0) * tp, (ty - ty0) * tp, tp, tp); else if (r.status >= 500) down++; else missing++; }));
       await Promise.all(jobs);
       if (jobs.length && down === jobs.length) throw Object.assign(new Error(`ortofoto ${down}× 5xx`), { outage: true });
       if (missing && src.fallback) return laneImageOf(src.fallback, { frame, dir, t0, t1, timeout, fetchImpl, decode });

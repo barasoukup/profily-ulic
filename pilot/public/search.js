@@ -200,7 +200,7 @@ export async function locate(item, signal) {
 // ---------- UI: a Leaflet control at the map's top left ----------
 // onPick({ item, lat, lon, cut }) after the map has moved; status(msg, kind) for a failure.
 // services(): the search services of the state the map shows (countries/<ISO>.js search): "zbgis" (Slovak places are
-// then asked of ZBGIS along with RÚIAN), "photon" (Photon of komoot, Austria), "photon-de" (Photon, Germany).
+// then asked of ZBGIS along with RÚIAN), "photon" (Photon of komoot, Austria), "photon-de" (Photon, Germany), "photon-ch" (Photon, Switzerland and Liechtenstein).
 // inVienna(): does the map show Vienna.
 export function mountSearch(map, { status, onPick, services = () => [], inVienna = () => false }) {
   const L = globalThis.L;
@@ -267,8 +267,8 @@ export function mountSearch(map, { status, onPick, services = () => [], inVienna
       const at = inVienna() || looksViennese(text) ? await findAt(text.trim(), getJSON, mine.signal).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání Vídeň", err); return []; }) : [];
       // The rest of Austria (and Vienna where its own points found nothing), and Germany: Photon of komoot
       // (search-photon.js), near the map's centre; elsewhere a German-looking query that RÚIAN did not find asks it of both.
-      const countries = services().includes("photon-de") ? ["DE"] : services().includes("photon") || at.length === 0 && looksViennese(text) ? ["AT"]
-        : cz.length === 0 && !skNow.length && looksGerman(text) ? ["DE", "AT"] : [];
+      const countries = services().includes("photon-de") ? ["DE"] : services().includes("photon-ch") ? ["CH", "LI"] : services().includes("photon") || at.length === 0 && looksViennese(text) ? ["AT"]
+        : cz.length === 0 && !skNow.length && looksGerman(text) ? ["DE", "AT", "CH", "LI"] : [];
       const photon = countries.length && !at.some((x) => x.type === "AdresniMisto")
         ? await findPhoton(text, getJSON, mine.signal, countries, [map.getCenter().lat, map.getCenter().lng]).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání Photon", err); return []; }) : [];
       const found = rankResults([...at, ...photon, ...cz, ...(both || cz.length ? skNow : await sk())], text);

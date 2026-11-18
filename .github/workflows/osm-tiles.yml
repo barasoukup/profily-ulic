@@ -60,6 +60,9 @@ jobs:
     needs: plan
     strategy:
       fail-fast: false
+      # Geofabrik refused the connection when 20 downloads began at once (Thuringia, Switzerland, 17. 11. 2026): a few
+      # at a time, and a longer wait between tries.
+      max-parallel: 6
       matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
     runs-on: ubuntu-latest
     # Each well under an hour (the largest: Austria, Czechia, Bavaria, North Rhine-Westphalia).
@@ -98,7 +101,7 @@ jobs:
         timeout-minutes: 60
         run: |
           mkdir -p data/osm
-          curl -fL --retry 3 --retry-delay 20 --connect-timeout 30 -o "data/osm/${{ matrix.code }}.osm.pbf" \
+          curl -fL --retry 8 --retry-delay 60 --retry-all-errors --connect-timeout 30 -o "data/osm/${{ matrix.code }}.osm.pbf" \
             "https://download.geofabrik.de/europe/${{ matrix.extract }}-latest.osm.pbf"
           ls -l data/osm
       - name: Build and pack the tiles

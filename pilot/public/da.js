@@ -375,11 +375,6 @@ export const DA = {
   "Obytná zóna": "Opholds- og legeområde",
   "Pěší zóna": "Gågade",
   "Cyklistická ulice": "Cykelgade",
-  "Klikněte v mapě na ulici kdekoli v Česku, na Slovensku, v Rakousku nebo v Německu.": "Klik på en gade på kortet hvor som helst i Tjekkiet, Slovakiet, Østrig eller Tyskland.",
-  "Profil od fasády k fasádě se sestaví z mapy povrchů města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy povrchů Vídně a OSM, v Německu z ortofot spolkových zemí a OSM.": "Tværprofilet fra facade til facade sammensættes af byens eller ČÚZK's fladekort, RÚIAN og OSM, i Slovakiet af byernes vejregistre, ZBGIS, ortofoto og OSM, i Østrig af ortofoto, Wiens fladekort og OSM, i Tyskland af delstaternes ortofotos og OSM.",
-  "Příčné profily ulic v Česku, na Slovensku, v Rakousku a v Německu od fasády k fasádě z map povrchů měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.": "Tværprofiler af gader i Tjekkiet, Slovakiet, Østrig og Tyskland fra facade til facade, ud fra byernes og ČÚZK's fladekort, RÚIAN, ZBGIS og OpenStreetMap. Rediger profilet, sammenlign det med de eksisterende forhold, og gem det som billede.",
-  "Příčné profily ulic v Česku, na Slovensku, v Rakousku a v Německu z map povrchů měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.": "Tværprofiler af gader i Tjekkiet, Slovakiet, Østrig og Tyskland ud fra byernes fladekort, ČÚZK og ZBGIS: fra facade til facade, redigerbare, med lokale illustrationer.",
-  "Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko, Slovensko, Rakousko a Německo).": "Der blev ikke fundet nogen gade her. Klik direkte på en vej (data dækker Tjekkiet, Slovakiet, Østrig og Tyskland).",
   "ortofoto © spolkové země Německa (GeoBasis-DE)": "ortofoto © Tysklands delstater (GeoBasis-DE)",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, podle StVO § 12 a judikatury 3,05 m na projetí, s pruhy vedle stání aspoň {need}.": "Parkering halvt på fortovet ifølge OSM: på kørebanen er der {free} tilbage, ifølge StVO § 12 og retspraksis 3,05 m til passage, med køresporene ved siden af parkeringen mindst {need}.",
   "jízdní pruh hlavní ulice: vozovka 6,5 m pro potkávání autobusů, tedy asi 3,25 m (RASt 06 podle dopisu, kterým ji Bavorsko zavedlo, 2009)": "kørespor på hovedgade: kørebane 6,5 m til mødende busser, altså ca. 3,25 m (RASt 06 ifølge Bayerns indførelsesskrivelse, 2009)",
@@ -767,6 +762,31 @@ export const DA = {
   "Vodní plocha": "Vandflade",
   "Povrch ulice": "Gadens belægning",
   "{type}: povrch tělesa {from} → {to}": "{type}: tracéets belægning {from} → {to}",
+  // ---------- Switzerland, Liechtenstein (main of 18. 11. 2026) ----------
+  "Klikněte v mapě na ulici kdekoli v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku nebo v Lichtenštejnsku.": "Klik på en gade på kortet hvor som helst i Tjekkiet, Slovakiet, Østrig, Tyskland, Schweiz eller Liechtenstein.",
+  "Profil od fasády k fasádě se sestaví z mapy povrchů města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy povrchů Vídně a OSM, v Německu z ortofot spolkových zemí a OSM, ve Švýcarsku a v Lichtenštejnsku z úředního vyměřování, ortofota SWISSIMAGE a OSM.": "Tværprofilet fra facade til facade sammensættes af byens eller ČÚZK's fladekort, RÚIAN og OSM, i Slovakiet af byernes vejregistre, ZBGIS, ortofoto og OSM, i Østrig af ortofoto, Wiens fladekort og OSM, i Tyskland af delstaternes ortofotos og OSM, i Schweiz og Liechtenstein af den officielle opmåling, ortofotoet SWISSIMAGE og OSM.",
+  "Příčné profily ulic v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku a v Lichtenštejnsku od fasády k fasádě z map povrchů měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.": "Tværprofiler af gader i Tjekkiet, Slovakiet, Østrig, Tyskland, Schweiz og Liechtenstein fra facade til facade, ud fra byernes og ČÚZK's fladekort, RÚIAN, ZBGIS og OpenStreetMap. Rediger profilet, sammenlign det med de eksisterende forhold, og gem det som billede.",
+  "Příčné profily ulic v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku a v Lichtenštejnsku z map povrchů měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.": "Tværprofiler af gader i Tjekkiet, Slovakiet, Østrig, Tyskland, Schweiz og Liechtenstein ud fra byernes fladekort, ČÚZK og ZBGIS: fra facade til facade, redigerbare, med lokale illustrationer.",
+  "Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko, Slovensko, Rakousko, Německo, Švýcarsko a Lichtenštejnsko).": "Der blev ikke fundet nogen gade her. Klik direkte på en vej (data dækker Tjekkiet, Slovakiet, Østrig, Tyskland, Schweiz og Liechtenstein).",
+  "úředního vyměřování, SWISSIMAGE a OSM": "den officielle opmåling, SWISSIMAGE og OSM",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Zákon šířku neuvádí (VRV čl. 19), pomůcky kantonů Bern a Luzern berou 3 m na projetí, aplikace navíc nechává průjezdné pruhy, tedy aspoň {need}; na chodníku musí zůstat 1,5 m (VRV čl. 41).": "Parkering halvt på fortovet ifølge OSM: på kørebanen er der {free} tilbage. Loven angiver ingen bredde (VRV art. 19); vejledningerne fra kantonerne Bern og Luzern regner med 3 m til passage, appen holder desuden køresporene fri, altså mindst {need}; på fortovet skal der være 1,5 m tilbage (VRV art. 41).",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Zákon šířku neuvádí (lichtenštejnská VRV čl. 21), podle švýcarské praxe 3 m na projetí, aplikace navíc nechává průjezdné pruhy, tedy aspoň {need}; na chodníku musí zůstat 1,5 m (VRV čl. 40).": "Parkering halvt på fortovet ifølge OSM: på kørebanen er der {free} tilbage. Loven angiver ingen bredde (Liechtensteins VRV art. 21); efter schweizisk praksis 3 m til passage, appen holder desuden køresporene fri, altså mindst {need}; på fortovet skal der være 1,5 m tilbage (VRV art. 40).",
+  "chodník ostatních místních tras: 2 m, nejméně 1,8 m; na hlavních trasách 2,4 m (Standards Fuss- und Veloverkehr Basel-Stadt 2024, tab. 1, podle SN 640 070)": "fortov på øvrige lokale ruter: 2 m, mindst 1,8 m; på hovedruter 2,4 m (Standards Fuss- und Veloverkehr Basel-Stadt 2024, tab. 1, ifølge SN 640 070)",
+  "cyklopruh (Radstreifen): 1,5 m, mezi dvěma pruhy 1,8 m (VSS 40 201 a 40 252 podle kantonu Bern 2021; Basilej má základ 1,8 m)": "cykelbane (Radstreifen): 1,5 m, mellem to kørespor 1,8 m (VSS 40 201 og 40 252 ifølge kanton Bern 2021; Basel har 1,8 m som standard)",
+  "cyklopruh vedle podélného stání: 1,5 m a bezpečnostní odstup 0,5–0,75 m (VSS 40 291a podle kantonu Bern 2021; Kanton Zürich 2023)": "cykelbane ved længdeparkering: 1,5 m og sikkerhedsafstand 0,5–0,75 m (VSS 40 291a ifølge kanton Bern 2021; Kanton Zürich 2023)",
+  "jednosměrka s cyklisty v protisměru: vozovka 4,8 m pro potkání kola s nákladním autem (Kanton Zürich 2023, kap. 4.9), minimum nenalezeno": "ensrettet vej med cyklister mod ensretningen: kørebane 4,8 m, så en cykel og en lastbil kan mødes (Kanton Zürich 2023, kap. 4.9), intet minimum fundet",
+  "jízdní pruh hlavní ulice v obci: orientačně 3 m (vedle cyklopruhu 3 m, při méně než 300 nákladních autech a autobusech denně 2,75 m, Kanton Zürich 2023; na kantonálních silnicích Schwyzu 3,25 m)": "kørespor på hovedgade i byzone: ca. 3 m (ved cykelbane 3 m, ved færre end 300 lastbiler og busser i døgnet 2,75 m, Kanton Zürich 2023; på kantonale veje i Schwyz 3,25 m)",
+  "kolmé stání: hloubka 5 m (VSS 40 291 podle kantonu Bern 2026)": "vinkelret parkering: dybde 5 m (VSS 40 291 ifølge kanton Bern 2026)",
+  "podélné stání: 1,9 m, u vysoké obruby 2,2–2,5 m (VSS 40 291 podle kantonu Bern 2026)": "længdeparkering: 1,9 m, ved høj kantsten 2,2–2,5 m (VSS 40 291 ifølge kanton Bern 2026)",
+  "pruh pro autobusy s cyklisty: 3 m (autobus cyklistu nepředjíždí), nebo aspoň 4,5 m, aby ho předjel; mezi tím ne (Kanton Bern TBA 2021, Basel-Stadt 2024)": "busbane med cyklister: 3 m (bussen overhaler ikke cyklisten) eller mindst 4,5 m, så den kan overhale; ikke derimellem (Kanton Bern TBA 2021, Basel-Stadt 2024)",
+  "společná stezka pro chodce a cyklisty: 3 m, s cyklisty v obou směrech 3,5 m (Normalie D 2.01 kantonu Schwyz, 2025)": "fællessti: 3 m, med cyklister i begge retninger 3,5 m (Normalie D 2.01 fra kanton Schwyz, 2025)",
+  "stezka pro cyklisty jednosměrná: min. 1,8 m (na hlavních trasách 2,2 m), základ 2,6 m; obousměrná 2,5–3 m a 3–4,5 m (SN 640 060 podle kantonu Bern 2021)": "enkeltrettet cykelsti: min. 1,8 m (på hovedruter 2,2 m), standard 2,6 m; dobbeltrettet 2,5–3 m og 3–4,5 m (SN 640 060 ifølge kanton Bern 2021)",
+  "ortofoto SWISSIMAGE © swisstopo": "ortofoto SWISSIMAGE © swisstopo",
+  "úřední vyměřování (Bodenbedeckung) © Fürstentum Liechtenstein (geodienste.ch)": "officiel opmåling (Bodenbedeckung) © Fürstentum Liechtenstein (geodienste.ch)",
+  "úřední vyměřování (Bodenbedeckung) © kanton {canton} (geodienste.ch)": "officiel opmåling (Bodenbedeckung) © kanton {canton} (geodienste.ch)",
+  "úřední vyměřování (Bodenbedeckung) © kantony (geodienste.ch)": "officiel opmåling (Bodenbedeckung) © kantonerne (geodienste.ch)",
+  " · úřední vyměřování neodpovědělo, odhad z ortofota a OSM": " · den officielle opmåling svarede ikke, skøn ud fra ortofoto og OSM",
+  "Úřední vyměřování (geodienste.ch) teď neodpovídá, profil je odhad z ortofota a OSM.": "Den officielle opmåling (geodienste.ch) svarer ikke lige nu, profilet er et skøn ud fra ortofoto og OSM.",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.
@@ -777,6 +797,7 @@ export const DA_HTML = {
     ledninger © IPR Praha, mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, de statutære byer Karviná, Ostrava, byen Břeclav ·
     Østrig: ortofoto © basemap.at (CC BY 4.0), Flächen-Mehrzweckkarte © Stadt Wien – data.wien.gv.at (CC BY 4.0), grænse © EuroGeographics (GISCO), færdselstavler i Salzburg © Stadt Salzburg (CC BY 3.0 AT), søgning Photon © komoot (OSM-data) ·
     Tyskland: delstaternes ortofotos © LGL-BW, Bayerische Vermessungsverwaltung, GeoBasis-DE/LGB, Landesamt GeoInformation Bremen, LGV Hamburg, HVBG, GeoBasis-DE/M-V, LGLN, GeoBasis-DE/NRW, GeoBasis-DE/LVermGeoRP, GeoBasis-DE/LVermGeo SH, GeoBasis-DE/LVGL-SL, GeoSN, GeoBasis-DE/LVermGeo ST, GDI-Th; <a href="https://www.govdata.de/dl-de/by-2-0">dl-de/by-2-0</a>, <a href="https://www.govdata.de/dl-de/zero-2-0">dl-de/zero-2-0</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, grænse © EuroGeographics (GISCO), færdselstavler Wikimedia Commons (officielle værker), søgning Photon © komoot (OSM-data) ·
+    Schweiz og Liechtenstein: ortofoto SWISSIMAGE og grænser © swisstopo, officiel opmåling (Bodenbedeckung) © kantonerne og Liechtenstein via <a href="https://geodienste.ch">geodienste.ch</a>, færdselstavler Wikimedia Commons (officielle værker, ASTRA), søgning Photon © komoot (OSM-data) ·
     parkering © TSK hl. m. Prahy (CC BY 4.0), parkeringsforbud, træer og vejklasser fra <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, byerne Jihlava, Opava, Plzeň (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-bidragydere (ODbL) ·
     illustrationer © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licens
@@ -785,7 +806,7 @@ export const DA_HTML = {
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Kilder og licenser</a> (på tjekkisk) ·
     kontakt <a href="mailto:bara.so@email.cz">bara.so@email.cz</a><br>
     Vi gemmer kun snit (sted, retning, gade, tidspunkt), klik uden fundet gade (stedet med ca. en kilometers nøjagtighed), de anvendte funktioner og de fejlindberetninger, du selv skriver; ingen IP-adresser og ingen cookies. Kort og data
-    indlæses direkte fra serverne hos IPR, ČÚZK, byerne, regionerne, basemap.at, de tyske delstater, Berlin, Hamburg, Aachen og OSM, søgeteksten også hos komoot (Photon) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">privatliv</a>, på tjekkisk).`,
+    indlæses direkte fra serverne hos IPR, ČÚZK, byerne, regionerne, basemap.at, de tyske delstater, Berlin, Hamburg, Aachen, swisstopo, geodienste.ch og OSM, søgeteksten også hos komoot (Photon) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">privatliv</a>, på tjekkisk).`,
 };
 
 // The city's texts (city.js) in Danish, as the sentences take them: server after "Serveren for …" ("Serveren for
@@ -807,6 +828,8 @@ export const DA_CITY = {
   slovensko: { ...ABROAD, dataShort: "ZBGIS og OSM", credit: "bygninger © GKÚ Bratislava (ZBGIS, CC BY 4.0)", rulesHead: "Bredder efter slovakiske forskrifter (TP 117, TP 73 6110, TP 085, bek. 532/2002):" },
   austria: { ...ABROAD, dataShort: "basemap.at og OSM", rulesHead: "Bredder efter østrigske retningslinjer (RVS 03.02.13, Wiener Projektierungshandbuch):" },
   germany: { ...ABROAD, dataShort: "delstaternes ortofotos og OSM", rulesHead: "Bredder efter tyske retningslinjer (RASt 06, ERA 2010, VwV-StVO):" },
+  switzerland: { ...ABROAD, dataShort: "SWISSIMAGE og OSM", rulesHead: "Bredder efter schweiziske retningslinjer (VSS-normer ifølge kantonernes og byernes standarder):" },
+  liechtenstein: { ...ABROAD, dataShort: "SWISSIMAGE og OSM", rulesHead: "Bredder efter schweiziske retningslinjer (VSS-normer ifølge kantonernes og byernes standarder):" },
   cizina: ABROAD,
   cesko: {
     server: NATIONAL, dataName: NATIONAL, dataShort: "ČÚZK's tekniske kort, RÚIAN og OSM", techMap: NATIONAL,

@@ -373,4 +373,12 @@ ověřit, že odhad státu opravdu čte ortofoto (`sources.orthoCity`) a že nec
   - Hromadná náhrada textu změnila i hodnoty v `sk.js` na české slovo („v Rakousku“).
   - Chybějící host v CSP se projeví až v prohlížeči.
   - Týdenní cache nasazení bez nového státu.
+- **Švýcarsko (17. 11. 2026):**
+  - Národní mapa povrchů po kantonech (úřední vyměřování přes geodienste.ch) má i „ostatní zpevněnou plochu“: pod mosty,
+    na nábřeží a molech udělala z celého řezu jednu plochu. Rozhoduje plocha **přímo pod středem** řezu a jen druhy ulice.
+  - Služba s „fair use“ (geodienste.ch 10 dotazů WFS za minutu): v A/B a měření pauza 7 s mezi řezy.
+  - Dlaždice WMTS mohou být `{z}/{x}/{y}` (swisstopo), ne `{z}/{y}/{x}` jako ArcGIS: `xy: true` v `lanes-ortho.js`.
+  - Cyklický import: `credits.js` nesmí importovat modul z `towns/` (ten importuje `city.js`, který importuje `credits.js`).
+  - Prohlížeč pane skrytý = časovače stránky zpomalené; dlouhý sběr počítat s dvojnásobným časem.
+  - Limit 5 dev serverů na složku: když ho obsadí jiné konverzace, server pustit na pozadí a otevřít `navigate` na port.
 - **Kód v `app.js`:** nový parametr funkce se srazil s pozdější `const` stejného jména (TDZ) a rozbil každý řez.

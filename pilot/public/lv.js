@@ -375,11 +375,6 @@ export const LV = {
   "Obytná zóna": "Dzīvojamā zona",
   "Pěší zóna": "Gājēju zona",
   "Cyklistická ulice": "Veloiela",
-  "Klikněte v mapě na ulici kdekoli v Česku, na Slovensku, v Rakousku nebo v Německu.": "Noklikšķiniet kartē uz jebkuras ielas Čehijā, Slovākijā, Austrijā vai Vācijā.",
-  "Profil od fasády k fasádě se sestaví z mapy povrchů města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy povrchů Vídně a OSM, v Německu z ortofot spolkových zemí a OSM.": "Šķērsprofils no fasādes līdz fasādei tiek veidots no pilsētas vai ČÚZK segumu kartes, RÚIAN un OSM, Slovākijā no pilsētu ielu reģistriem, ZBGIS, ortofoto un OSM, Austrijā no ortofoto, Vīnes segumu kartes un OSM, Vācijā no federālo zemju ortofoto un OSM.",
-  "Příčné profily ulic v Česku, na Slovensku, v Rakousku a v Německu od fasády k fasádě z map povrchů měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.": "Ielu šķērsprofili Čehijā, Slovākijā, Austrijā un Vācijā no fasādes līdz fasādei, no pilsētu un ČÚZK segumu kartēm, RÚIAN, ZBGIS un OpenStreetMap. Šķērsprofilu var mainīt, salīdzināt ar esošo stāvokli un saglabāt kā attēlu.",
-  "Příčné profily ulic v Česku, na Slovensku, v Rakousku a v Německu z map povrchů měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.": "Ielu šķērsprofili Čehijā, Slovākijā, Austrijā un Vācijā no pilsētu, ČÚZK un ZBGIS segumu kartēm: no fasādes līdz fasādei, maināmi, ar vietējām ilustrācijām.",
-  "Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko, Slovensko, Rakousko a Německo).": "Šeit iela netika atrasta. Noklikšķiniet tieši uz brauktuves (dati aptver Čehiju, Slovākiju, Austriju un Vāciju).",
   "ortofoto © spolkové země Německa (GeoBasis-DE)": "ortofoto © Vācijas federālās zemes (GeoBasis-DE)",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}, podle StVO § 12 a judikatury 3,05 m na projetí, s pruhy vedle stání aspoň {need}.": "Stāvēšana daļēji uz ietves pēc OSM: brauktuvē paliek {free}, pēc StVO § 12 un tiesu prakses 3,05 m izbraukšanai, ar joslām blakus stāvvietām vismaz {need}.",
   "jízdní pruh hlavní ulice: vozovka 6,5 m pro potkávání autobusů, tedy asi 3,25 m (RASt 06 podle dopisu, kterým ji Bavorsko zavedlo, 2009)": "maģistrālās ielas braukšanas josla: brauktuve 6,5 m divu autobusu samainīšanai, tātad apm. 3,25 m (RASt 06 pēc Bavārijas ieviešanas vēstules, 2009)",
@@ -767,6 +762,31 @@ export const LV = {
   "Vodní plocha": "Ūdenstilpe",
   "Povrch ulice": "Ielas segums",
   "{type}: povrch tělesa {from} → {to}": "{type}: sliežu ceļa segums {from} → {to}",
+  // ---------- Switzerland, Liechtenstein (main of 18. 11. 2026) ----------
+  "ortofoto SWISSIMAGE © swisstopo": "ortofoto SWISSIMAGE © swisstopo",
+  "Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko, Slovensko, Rakousko, Německo, Švýcarsko a Lichtenštejnsko).": "Šeit iela netika atrasta. Noklikšķiniet tieši uz brauktuves (dati aptver Čehiju, Slovākiju, Austriju, Vāciju, Šveici un Lihtenšteinu).",
+  "úředního vyměřování, SWISSIMAGE a OSM": "oficiālās kadastrālās uzmērīšanas, SWISSIMAGE un OSM",
+  "Klikněte v mapě na ulici kdekoli v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku nebo v Lichtenštejnsku.": "Noklikšķiniet kartē uz jebkuras ielas Čehijā, Slovākijā, Austrijā, Vācijā, Šveicē vai Lihtenšteinā.",
+  "Profil od fasády k fasádě se sestaví z mapy povrchů města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy povrchů Vídně a OSM, v Německu z ortofot spolkových zemí a OSM, ve Švýcarsku a v Lichtenštejnsku z úředního vyměřování, ortofota SWISSIMAGE a OSM.": "Šķērsprofils no fasādes līdz fasādei tiek veidots no pilsētas vai ČÚZK segumu kartes, RÚIAN un OSM, Slovākijā no pilsētu ielu reģistriem, ZBGIS, ortofoto un OSM, Austrijā no ortofoto, Vīnes segumu kartes un OSM, Vācijā no federālo zemju ortofoto un OSM, Šveicē un Lihtenšteinā no oficiālās kadastrālās uzmērīšanas, SWISSIMAGE ortofoto un OSM.",
+  "úřední vyměřování (Bodenbedeckung) © Fürstentum Liechtenstein (geodienste.ch)": "oficiālā kadastrālā uzmērīšana (Bodenbedeckung) © Fürstentum Liechtenstein (geodienste.ch)",
+  "úřední vyměřování (Bodenbedeckung) © kantony (geodienste.ch)": "oficiālā kadastrālā uzmērīšana (Bodenbedeckung) © kantoni (geodienste.ch)",
+  "úřední vyměřování (Bodenbedeckung) © kanton {canton} (geodienste.ch)": "oficiālā kadastrālā uzmērīšana (Bodenbedeckung) © kantons {canton} (geodienste.ch)",
+  " · úřední vyměřování neodpovědělo, odhad z ortofota a OSM": " · oficiālā kadastrālā uzmērīšana neatbildēja, aplēse pēc ortofoto un OSM",
+  "Úřední vyměřování (geodienste.ch) teď neodpovídá, profil je odhad z ortofota a OSM.": "Oficiālā kadastrālā uzmērīšana (geodienste.ch) pašlaik neatbild, šķērsprofils ir aplēse pēc ortofoto un OSM.",
+  "jízdní pruh hlavní ulice v obci: orientačně 3 m (vedle cyklopruhu 3 m, při méně než 300 nákladních autech a autobusech denně 2,75 m, Kanton Zürich 2023; na kantonálních silnicích Schwyzu 3,25 m)": "maģistrālās ielas braukšanas josla apdzīvotā vietā: orientējoši 3 m (blakus velojoslai 3 m, ja diennaktī ir mazāk nekā 300 kravas automašīnu un autobusu, 2,75 m, Kanton Zürich 2023; uz Švīces kantona ceļiem 3,25 m)",
+  "chodník ostatních místních tras: 2 m, nejméně 1,8 m; na hlavních trasách 2,4 m (Standards Fuss- und Veloverkehr Basel-Stadt 2024, tab. 1, podle SN 640 070)": "pārējo vietējo maršrutu ietve: 2 m, vismaz 1,8 m; galvenajos maršrutos 2,4 m (Standards Fuss- und Veloverkehr Basel-Stadt 2024, 1. tab., pēc SN 640 070)",
+  "společná stezka pro chodce a cyklisty: 3 m, s cyklisty v obou směrech 3,5 m (Normalie D 2.01 kantonu Schwyz, 2025)": "gājēju un velosipēdu ceļš: 3 m, ar velosipēdistiem abos virzienos 3,5 m (Švīces kantona Normalie D 2.01, 2025)",
+  "pruh pro autobusy s cyklisty: 3 m (autobus cyklistu nepředjíždí), nebo aspoň 4,5 m, aby ho předjel; mezi tím ne (Kanton Bern TBA 2021, Basel-Stadt 2024)": "autobusu josla ar velosipēdistiem: 3 m (autobuss velosipēdistu neapdzen) vai vismaz 4,5 m, lai to apdzītu; ne starp tiem (Kanton Bern TBA 2021, Basel-Stadt 2024)",
+  "cyklopruh vedle podélného stání: 1,5 m a bezpečnostní odstup 0,5–0,75 m (VSS 40 291a podle kantonu Bern 2021; Kanton Zürich 2023)": "velojosla blakus paralēlajām stāvvietām: 1,5 m un drošības attālums 0,5–0,75 m (VSS 40 291a pēc Bernes kantona 2021; Kanton Zürich 2023)",
+  "cyklopruh (Radstreifen): 1,5 m, mezi dvěma pruhy 1,8 m (VSS 40 201 a 40 252 podle kantonu Bern 2021; Basilej má základ 1,8 m)": "velojosla (Radstreifen): 1,5 m, starp divām braukšanas joslām 1,8 m (VSS 40 201 un 40 252 pēc Bernes kantona 2021; Bāzelē pamatplatums ir 1,8 m)",
+  "stezka pro cyklisty jednosměrná: min. 1,8 m (na hlavních trasách 2,2 m), základ 2,6 m; obousměrná 2,5–3 m a 3–4,5 m (SN 640 060 podle kantonu Bern 2021)": "vienvirziena veloceliņš: min. 1,8 m (galvenajos maršrutos 2,2 m), pamatplatums 2,6 m; divvirzienu 2,5–3 m un 3–4,5 m (SN 640 060 pēc Bernes kantona 2021)",
+  "kolmé stání: hloubka 5 m (VSS 40 291 podle kantonu Bern 2026)": "perpendikulārās stāvvietas: dziļums 5 m (VSS 40 291 pēc Bernes kantona 2026)",
+  "podélné stání: 1,9 m, u vysoké obruby 2,2–2,5 m (VSS 40 291 podle kantonu Bern 2026)": "paralēlās stāvvietas: 1,9 m, pie augstas apmales 2,2–2,5 m (VSS 40 291 pēc Bernes kantona 2026)",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Zákon šířku neuvádí (VRV čl. 19), pomůcky kantonů Bern a Luzern berou 3 m na projetí, aplikace navíc nechává průjezdné pruhy, tedy aspoň {need}; na chodníku musí zůstat 1,5 m (VRV čl. 41).": "Stāvēšana daļēji uz ietves pēc OSM: brauktuvē paliek {free}. Likums platumu nenosaka (VRV 19. pants), Bernes un Lucernas kantonu palīgmateriāli paredz 3 m izbraukšanai, lietotne turklāt atstāj izbraucamas braukšanas joslas, tātad vismaz {need}; uz ietves jāpaliek 1,5 m (VRV 41. pants).",
+  "jednosměrka s cyklisty v protisměru: vozovka 4,8 m pro potkání kola s nákladním autem (Kanton Zürich 2023, kap. 4.9), minimum nenalezeno": "vienvirziena iela ar velosipēdistiem pretējā virzienā: brauktuve 4,8 m velosipēda un kravas automašīnas samainīšanai (Kanton Zürich 2023, 4.9. nod.), minimums nav atrasts",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Zákon šířku neuvádí (lichtenštejnská VRV čl. 21), podle švýcarské praxe 3 m na projetí, aplikace navíc nechává průjezdné pruhy, tedy aspoň {need}; na chodníku musí zůstat 1,5 m (VRV čl. 40).": "Stāvēšana daļēji uz ietves pēc OSM: brauktuvē paliek {free}. Likums platumu nenosaka (Lihtenšteinas VRV 21. pants), pēc Šveices prakses 3 m izbraukšanai, lietotne turklāt atstāj izbraucamas braukšanas joslas, tātad vismaz {need}; uz ietves jāpaliek 1,5 m (VRV 40. pants).",
+  "Příčné profily ulic v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku a v Lichtenštejnsku od fasády k fasádě z map povrchů měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.": "Ielu šķērsprofili Čehijā, Slovākijā, Austrijā, Vācijā, Šveicē un Lihtenšteinā no fasādes līdz fasādei, no pilsētu un ČÚZK segumu kartēm, RÚIAN, ZBGIS un OpenStreetMap. Šķērsprofilu var mainīt, salīdzināt ar esošo stāvokli un saglabāt kā attēlu.",
+  "Příčné profily ulic v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku a v Lichtenštejnsku z map povrchů měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.": "Ielu šķērsprofili Čehijā, Slovākijā, Austrijā, Vācijā, Šveicē un Lihtenšteinā no pilsētu, ČÚZK un ZBGIS segumu kartēm: no fasādes līdz fasādei, maināmi, ar vietējām ilustrācijām.",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.
@@ -777,6 +797,7 @@ export const LV_HTML = {
     pazemes komunikācijas © IPR Praha, mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, statutārās pilsētas Karviná, Ostrava, pilsēta Břeclav ·
     Austrija: ortofoto © basemap.at (CC BY 4.0), segumu karte © Stadt Wien – data.wien.gv.at (CC BY 4.0), robeža © EuroGeographics (GISCO), Zalcburgas ceļa zīmes © Stadt Salzburg (CC BY 3.0 AT), meklēšana Photon © komoot (OSM dati) ·
     Vācija: federālo zemju ortofoto © LGL-BW, Bayerische Vermessungsverwaltung, GeoBasis-DE/LGB, Landesamt GeoInformation Bremen, LGV Hamburg, HVBG, GeoBasis-DE/M-V, LGLN, GeoBasis-DE/NRW, GeoBasis-DE/LVermGeoRP, GeoBasis-DE/LVermGeo SH, GeoBasis-DE/LVGL-SL, GeoSN, GeoBasis-DE/LVermGeo ST, GDI-Th; <a href="https://www.govdata.de/dl-de/by-2-0">dl-de/by-2-0</a>, <a href="https://www.govdata.de/dl-de/zero-2-0">dl-de/zero-2-0</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, robeža © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi), meklēšana Photon © komoot (OSM dati) ·
+    Šveice un Lihtenšteina: ortofoto SWISSIMAGE un robežas © swisstopo, oficiālā kadastrālā uzmērīšana (Bodenbedeckung) © kantoni un Lihtenšteina, izmantojot <a href="https://geodienste.ch">geodienste.ch</a>, ceļa zīmes Wikimedia Commons (oficiāli darbi, ASTRA), meklēšana Photon © komoot (OSM dati) ·
     stāvvietas © TSK hl. m. Prahy (CC BY 4.0), stāvēšanas aizliegumi, koki un ielu kategorijas no <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, pilsētas Jihlava, Opava, Plzeň (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> līdzautori (ODbL) ·
     ilustrācijas © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licence
@@ -785,7 +806,7 @@ export const LV_HTML = {
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Avoti un licences</a> (čehu valodā) ·
     kontakti <a href="mailto:bara.so@email.cz">bara.so@email.cz</a><br>
     Mēs saglabājam tikai griezumus (vieta, virziens, iela, laiks), klikšķus, kuros iela netika atrasta (vietu aptuveni kilometra precizitātē), izmantotās funkcijas un kļūdu ziņojumus, ko rakstāt paši; nekādas IP adreses un sīkdatnes. Kartes un dati
-    tiek ielādēti tieši no IPR, ČÚZK, pilsētu, apgabalu, basemap.at, Vācijas federālo zemju, Berlīnes, Hamburgas, Āhenes un OSM serveriem, meklēšanas teksts arī no komoot (Photon) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">privātums</a>, čehu valodā).`,
+    tiek ielādēti tieši no IPR, ČÚZK, pilsētu, apgabalu, basemap.at, Vācijas federālo zemju, Berlīnes, Hamburgas, Āhenes, swisstopo, geodienste.ch un OSM serveriem, meklēšanas teksts arī no komoot (Photon) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">privātums</a>, čehu valodā).`,
 };
 
 // The city's texts (city.js) in Latvian, as the sentences take them: server in the genitive before "serveris"
@@ -807,6 +828,8 @@ export const LV_CITY = {
   slovensko: { ...ABROAD, dataShort: "ZBGIS un OSM", credit: "ēkas © GKÚ Bratislava (ZBGIS, CC BY 4.0)", rulesHead: "Platumi pēc Slovākijas noteikumiem (TP 117, TP 73 6110, TP 085, vyhl. 532/2002 Z. z.):" },
   austria: { ...ABROAD, dataShort: "basemap.at un OSM", rulesHead: "Platumi pēc Austrijas vadlīnijām (RVS 03.02.13, Wiener Projektierungshandbuch):" },
   germany: { ...ABROAD, dataShort: "federālo zemju ortofoto un OSM", rulesHead: "Platumi pēc Vācijas vadlīnijām (RASt 06, ERA 2010, VwV-StVO):" },
+  switzerland: { ...ABROAD, dataShort: "SWISSIMAGE un OSM", rulesHead: "Platumi pēc Šveices vadlīnijām (VSS normas pēc kantonu un pilsētu standartiem):" },
+  liechtenstein: { ...ABROAD, dataShort: "SWISSIMAGE un OSM", rulesHead: "Platumi pēc Šveices vadlīnijām (VSS normas pēc kantonu un pilsētu standartiem):" },
   cizina: ABROAD,
   cesko: {
     server: "ČÚZK tehniskās kartes", dataName: NATIONAL, dataShort: "ČÚZK tehniskās kartes, RÚIAN un OSM", techMap: NATIONAL,
