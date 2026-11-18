@@ -368,6 +368,7 @@ export function carsSeen(st, a, b, axis) {
 const PIECE_GREEN = 0.35, AREA_GREEN = 0.2;
 // The narrowest sidewalk the image may end (from the kerb) and the stretch of green that ends it (m).
 const WALK_MIN = 1.0, WALK_WIN = 1.0;
+const BACK_MIN = 2; // m: the shortest run of green or paving the image may give behind everything else
 const LAST_WALK = 15, LAST_NONE = 2; // m: the next thing of the street at most this far on; with none, this past the kerb
 const ALONG = 10, SIDEWALK = 2.5, SIDEWALK_MAX = 6, REST_MAX = 12, HOUSE = 5, GREEN_AREA = 0.1; // evaluation/ortofoto-osm/zelen.mjs: on ČÚZK 12.5 cm 67 % (Prague) and 82 % (Brno) of the metres right
 const STREET = /^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|living_street|service|pedestrian|road)(_link)?$/;
@@ -704,6 +705,37 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
       fill(outer, a);
       polys.push(rect(kind[0], kind[1], ...span(sg * (a - outer) > 0 ? a : outer, b)));
       outer = b;
+    }
+  }
+  // Whatever is left uncovered beyond the street (a yard, a lawn past a path, ground up to a house farther than REST_MAX:
+  // "Neurčeno" in most cuts, chyby.mjs, Bára 18. 11. 2026): green or paved by the image, in runs of at least
+  // BACK_MIN, behind everything else (the order is the priority; trimToEnds does not reach out for them). ?off=pozadi.
+  if (k.cols && !P.off?.has("pozadi")) {
+    const c = k.cols, half = Math.round(1 / c.res), isG = [];
+    for (let i = 0; i < c.nt; i++) {
+      let sum = 0, n = 0;
+      for (let q = i - half; q <= i + half; q++) if (q >= 0 && q < c.nt && Number.isFinite(c.green[q]) && c.seen[q] >= 0.5) { sum += c.green[q]; n++; }
+      isG.push(n ? sum / n >= GREEN_AREA : null);
+    }
+    const runs = [];
+    for (let i = 0; i < c.nt; i++) {
+      if (isG[i] === null) continue;
+      const l = runs.at(-1);
+      if (l && l.g === isG[i] && l.i1 === i - 1) l.i1 = i; else runs.push({ g: isG[i], i0: i, i1: i });
+    }
+    // Short runs join the longer neighbour.
+    for (let q = 0; q < runs.length; q++) {
+      const r = runs[q];
+      if ((r.i1 - r.i0 + 1) * c.res >= BACK_MIN || runs.length < 2) continue;
+      const nb = q > 0 && (q === runs.length - 1 || runs[q - 1].i1 - runs[q - 1].i0 >= runs[q + 1].i1 - runs[q + 1].i0) ? q - 1 : q + 1;
+      if (runs[nb].i1 === r.i0 - 1 || runs[nb].i0 === r.i1 + 1) { runs[nb].i0 = Math.min(runs[nb].i0, r.i0); runs[nb].i1 = Math.max(runs[nb].i1, r.i1); runs.splice(q, 1); q = -1; }
+    }
+    // Not behind a house; paving only up to REST_MAX (a far house gives no tens of metres of paving).
+    const fA = o.facade.A ?? -Infinity, fB = o.facade.B ?? Infinity;
+    for (const r of runs) {
+      const a = Math.max(fA, c.tOf(r.i0) - c.res / 2), b = Math.min(fB, c.tOf(r.i1) + c.res / 2);
+      if (b - a < BACK_MIN || (!r.g && b - a > REST_MAX)) continue;
+      polys.push(r.g ? rect(401, "zeleň (ortofoto)", a, b) : rect(1003, "zpevněná plocha (odhad)", a, b));
     }
   }
   polys.ends = ends;
