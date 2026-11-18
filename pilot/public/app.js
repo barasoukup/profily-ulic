@@ -9,6 +9,9 @@ import { orthoOsmPolys, besidePassport, trimToEnds, P as ORTHO_P } from "./ortho
 import { underground, KINDS as NET_KINDS, netAt } from "./site.js";
 // Lanes and shoulders from the road markings of the orthophoto (lanes-ortho.js); ?orto=0 leaves the rules' profile.
 const LANES_ORTHO = new URLSearchParams(location.search).get("orto") !== "0";
+// ?mapa=0: the estimate from the orthophoto and OSM even where a technical map answers (its surfaces, lines, tracks and
+// parking sections left out), to compare the two (evaluation/ortofoto-osm/chyby.mjs, Bára 18. 11. 2026).
+const NO_MAP = new URLSearchParams(location.search).get("mapa") === "0";
 import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, signFits, signFile, keepDrawable, drawable, MAX_PER_PART } from "./signs.js";
 import { loadSprites, loadSigns, layoutSigns, buildSvg, isHole, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, edgeInfo, underDepth, ROADWAY, nearestRoadway, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
 import * as sources from "./sources.js";
@@ -403,12 +406,14 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       LANES_ORTHO ? laneImage({ frame, dir, t0: -Math.min(half, ORTHO_HALF), t1: Math.min(half, ORTHO_HALF), source: city.laneOrtho || country.laneOrtho }) : null,
     ]);
     const ortho = o.status === "fulfilled" ? o.value : null;
+    if (NO_MAP && k.status === "fulfilled") k.value = {};
     if (m.status === "fulfilled") polys = mtvuPolygons(m.value, frame);
     else console.warn("MTVU", m.reason);
     let lines = [];
     if (k.status === "fulfilled") { tracks = trackLines(k.value, frame); lines = techLines(k.value, frame); }
     else console.warn("koleje", k.reason);
-    const parking = pk.status === "fulfilled" ? esriPolygons(pk.value, frame) : [];
+    let parking = pk.status === "fulfilled" ? esriPolygons(pk.value, frame) : [];
+    if (NO_MAP) { polys = []; tracks = []; lines = []; parking = []; }
     if (pk.status !== "fulfilled") console.warn("parkovani", pk.reason);
     // Unknown (no zone file): the profile decides from the TSK parking sections around the cut.
     const inZps = z.status === "fulfilled" ? z.value : undefined;
