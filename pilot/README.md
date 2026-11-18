@@ -138,7 +138,11 @@ z20, dlaždice `{z}/{x}/{y}`).
   „MHD – osa kolejí“). Pruh s tramvají sahá 1,75 m od osy koleje ven a mezi kolejemi do poloviny osové
   vzdálenosti. Odpovídá to Manuálu tvorby veřejných prostranství IPR (kap. C.2): dvoukolejný tramvajový pás
   6,5 m při osové vzdálenosti 3 m, 7 m při 3,5 m. Zbytek vozovky široký aspoň 2,5 m se stane samostatným jízdním
-  pruhem. Kde osy kolejí chybí, použije se tramvajová trať z OSM.
+  pruhem. Kde osy kolejí chybí, použije se tramvajová trať z OSM. Má-li mapa města tramvajové těleso (MTVU 705,
+  berlínský Gleiskörper, vídeňská FMZK, pasporty) a kolejnice z OSM leží víc než 0,25 m mimo něj, koleje se posunou do
+  tělesa (se zachovaným rozestupem; těleso ve vozovce s kolejemi v asfaltu i 1,5 m od středu, když se rozestup nevejde),
+  jen o 1,25 m nejvýš a jen do tělesa aspoň 2,5 m širokého (`derive.js` `snapTracksToBeds`, Bára 18. 11. 2026, Neue
+  Schönhauser Straße; `?off=tramsnap`). Změřené osy (Praha) zůstávají.
 - **Body technické mapy IPR** (`dtmp/MapServer/9`, jeden dotaz na řez): sloupy trakčního vedení, označníky zastávek,
   sloupky, stožáry osvětlení bez vedení a stromy.
 - **Otevřená data Geoportálu Praha** (CC BY 4.0, staženo při nasazení do dlaždic `data/praha/opendata`, při

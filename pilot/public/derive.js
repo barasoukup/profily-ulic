@@ -886,6 +886,58 @@ function mergeTrackAxes(ts) {
   return groups.map((g) => g.reduce((a, b) => a + b, 0) / g.length);
 }
 
+// A town's map that draws the tram bed (MTVU 705: Berlin's Gleiskörper, Vienna's FMZK, a passport) puts the tracks
+// where they are; OSM's may lie a metre beside it (Neue Schönhauser Straße in Berlin: Bára 18. 11. 2026, the OSM tracks
+// 1 m south of the bed left 0.8 m for the parking OSM tags on that side). The OSM tracks of a bed the cut crosses are
+// moved into it when a rail lies more than BED_SLACK outside: the group centred in the bed, keeping its spacing. Where
+// the bed is part of the roadway (Berlin's Gleiskörper with the rails in the asphalt) and the spacing does not fit, a
+// double track lies 1.5 m each side of the bed's centre (Manuál C.2: 3 m). A separate bed narrower than the pair keeps
+// OSM's tracks: it draws its own trams by its width, and a track taken out of the roadway beside it would be lost
+// (Oranienburger Straße at Oranienburger Tor: a bed of 4.6 m, tracks 3.5 m apart). Measured axes (Prague's DTM, code
+// 55010) and beds drawn from OSM itself (ortho-osm.js) are left alone. ?off=tramsnap: the A/B.
+const BED_NEAR = 2.5; // OSM tracks this far beyond a bed's edge belong to it (m)
+const BED_SLACK = 0.25; // a rail this far beyond the bed's edge is within the data's accuracy (m)
+// A strip of bed narrower than a tram (Vienna's FMZK at Rotundenbrücke: 1.6 m beside the track) holds no track, and a
+// track further off than BED_SHIFT_MAX is not this bed's (the four Berlin cuts moved 0.4–1.1 m).
+const BED_MIN = 2.5, BED_SHIFT_MAX = 1.25;
+function mapTramBeds(polys, center, normal, half, isRoad) {
+  const spans = [];
+  for (const p of polys) {
+    if (p.code !== 705 || p.level || /\(OSM\)/.test(p.label || "")) continue;
+    const [x0, y0, x1, y1] = p.bbox || [-Infinity, -Infinity, Infinity, Infinity];
+    let lo = null;
+    for (let t = -half; t <= half + 1e-9; t += 0.1) {
+      const [x, y] = [center[0] + normal[0] * t, center[1] + normal[1] * t];
+      const inP = x >= x0 && x <= x1 && y >= y0 && y <= y1 && inside(p.rings, x, y);
+      if (inP && lo === null) lo = t;
+      if (!inP && lo !== null) { spans.push([lo, t - 0.1, isRoad(p)]); lo = null; }
+    }
+    if (lo !== null) spans.push([lo, half, isRoad(p)]);
+  }
+  spans.sort((a, b) => a[0] - b[0]);
+  const merged = [];
+  for (const sp of spans) {
+    const m = merged[merged.length - 1];
+    if (m && sp[0] <= m[1] + 0.15) { m[1] = Math.max(m[1], sp[1]); m[2] ||= sp[2]; } else merged.push([...sp]);
+  }
+  return merged.filter(([a, b]) => b - a >= BED_MIN);
+}
+export function snapTracksToBeds(ts, beds) {
+  const used = new Set();
+  for (const [lo, hi, road] of beds) {
+    const idx = ts.map((t, i) => i).filter((i) => !used.has(i) && ts[i] >= lo - BED_NEAR && ts[i] <= hi + BED_NEAR);
+    if (!idx.length) continue;
+    idx.forEach((i) => used.add(i));
+    const mine = idx.map((i) => ts[i]), a = Math.min(...mine), b = Math.max(...mine);
+    if (a - RAIL_HALF >= lo - BED_SLACK && b + RAIL_HALF <= hi + BED_SLACK) continue;
+    const c = (lo + hi) / 2, to = new Map();
+    if (b - a + 2 * RAIL_HALF <= hi - lo) idx.forEach((i) => to.set(i, ts[i] + c - (a + b) / 2));
+    else if (road && idx.length === 2) { const [i, j] = ts[idx[0]] <= ts[idx[1]] ? idx : [idx[1], idx[0]]; to.set(i, c - 1.5).set(j, c + 1.5); }
+    if (to.size && [...to].every(([i, t]) => Math.abs(t - ts[i]) <= BED_SHIFT_MAX)) for (const [i, t] of to) ts[i] = t;
+  }
+  ts.sort((x, y) => x - y);
+}
+
 function tramLanes(s, e, trams, dirAt, half = TRAM_HALF) {
   const ts = [...trams].sort((a, b) => a - b);
   const src = trams.measured ? "dtm" : "osm";
@@ -1611,7 +1663,9 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   // A tram area that maps the tracks in the asphalt too (Berlin's Gleiskörper; Neue Schönhauser Straße: Bára 17. 11.
   // 2026, two tracks in a one-way street with parking both sides) is roadway where OSM puts the rails in the street
   // (embedded_rails); the tracks are then OSM's in the lanes. ?off=anytram keeps it a tram bed.
-  if (/tram/.test(way?.tags?.embedded_rails || "") && !ORTHO_P.off?.has("anytram")) polys = polys.map((p) => (p.anyTram && p.code === 705 ? { ...p, code: 701, label: "" } : p));
+  const asRoad = /tram/.test(way?.tags?.embedded_rails || "") && !ORTHO_P.off?.has("anytram");
+  const beds = mapTramBeds(polys, center, normal, half, (p) => asRoad && p.anyTram);
+  if (asRoad) polys = polys.map((p) => (p.anyTram && p.code === 705 ? { ...p, code: 701, label: "" } : p));
   // A building connection over a street (a covered passage, Na Klaudiánce in Prague: Bára 17. 11. 2026) is drawn in
   // the technical map as a strip of "other structures" above the street, and a cut across the street runs along it.
   // No wall is 10 m thick with a street through it: such a piece is no ground of its own, so it is left out (as the
@@ -1634,6 +1688,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   const roadTram = (c) => c.way.tags?.highway && !ORTHO_P.off?.has("tramroad") && c.way.tags.oneway !== "yes" && !["1", 1].includes(c.way.tags["railway:tracks"] ?? c.way.tags.tracks);
   const tramTs = mergeTrackAxes(measured.length ? measured : cross.filter((c) => c.way.tags?.railway === "tram").flatMap((c) => (roadTram(c) ? [c.t - 1.5, c.t + 1.5] : [c.t])));
   tramTs.measured = measured.length > 0;
+  if (!tramTs.measured && !ORTHO_P.off?.has("tramsnap")) snapTracksToBeds(tramTs, beds);
 
   if (!polys.length) return estimateFromOsm(way);
   // Areas above the ground (bridge decks, Brno's MTVU level 1) count only for a cut on a bridge, and
