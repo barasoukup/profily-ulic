@@ -23,8 +23,10 @@ Metry podél řezů: řádek = MTVU, sloupec = odhad (budovy vynechané).
 | víc pruhů než profil z MTVU | 10 z 87 |  |
 | méně pruhů | 23 z 87 |  |
 | jiný počet vozovek | 33 z 87 |  |
-| vozovka o 1,5 m a víc širší (m) | 8 z 87 |  |
-| vozovka o 1,5 m a víc užší (m) | 41 z 87 |  |
+| vozovka u osy o 1,5 m a víc širší (m) | 8 z 87 |  |
+| vozovka u osy o 1,5 m a víc užší (m) | 41 z 87 |  |
+| vnější obruba ulice o 1 m a víc dovnitř (stran, m) | 66 z 87 |  |
+| vnější obruba ulice o 1 m a víc ven (stran, m) | 16 z 87 |  |
 | Neurčeno 1 m a víc (m) | 31 z 87 |  |
 | chodník o 1,5 m a víc širší (m) | 12 z 87 |  |
 | chodník o 1,5 m a víc užší (m) | 7 z 87 |  |
@@ -104,7 +106,7 @@ Metry podél řezů: řádek = MTVU, sloupec = odhad (budovy vynechané).
 - V Olšinách (23): 2 místo 1 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.070934,14.479678,84,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.070934,14.479678,84,22.0,22.0)
 - Kunratická spojka (24): 1 místo 2 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.018256,14.500905,171,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.018256,14.500905,171,22.0,22.0)
 
-### vozovka o 1,5 m a víc širší (m) (8)
+### vozovka u osy o 1,5 m a víc širší (m) (8)
 
 - Generála Šišky (42): 8.1 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.007375,14.403336,-163,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.007375,14.403336,-163,22.0,22.0)
 - Patočkova (26): 5.1 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.092999,14.387909,-125,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.092999,14.387909,-125,22.0,22.0)
@@ -115,7 +117,7 @@ Metry podél řezů: řádek = MTVU, sloupec = odhad (budovy vynechané).
 - Nad Petruskou (71): 2.0 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.069727,14.439694,-141,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.069727,14.439694,-141,22.0,22.0)
 - U dubu (60): 1.7 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.039988,14.425711,-78,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.039988,14.425711,-78,22.0,22.0)
 
-### vozovka o 1,5 m a víc užší (m) (41)
+### vozovka u osy o 1,5 m a víc užší (m) (41)
 
 - Strakonická (9): 36.8 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.023852,14.394473,8,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.023852,14.394473,8,22.0,22.0)
 - Brněnská (6): 24.7 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.010233,14.540715,113,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.010233,14.540715,113,22.0,22.0)
@@ -129,6 +131,36 @@ Metry podél řezů: řádek = MTVU, sloupec = odhad (budovy vynechané).
 - Jižní spojka (2): 11.7 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.065037,14.519964,66,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.065037,14.519964,66,22.0,22.0)
 - Československého exilu (45): 8.8 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.012978,14.417188,0,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.012978,14.417188,0,22.0,22.0)
 - Bělohorská (49): 7.9 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.083968,14.372208,78,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.083968,14.372208,78,22.0,22.0)
+
+### vnější obruba ulice o 1 m a víc dovnitř (stran, m) (66)
+
+- Hlávkův most (14, strana A): 27.6 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.095965,14.437029,-178,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.095965,14.437029,-178,22.0,22.0)
+- Nad Vršovskou horou (69, strana B): 20.2 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.061575,14.472651,92,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.061575,14.472651,92,22.0,22.0)
+- ? (3, strana B): 19.3 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.019472,14.516217,121,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.019472,14.516217,121,22.0,22.0)
+- Strakonická (9, strana B): 17.3 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.023852,14.394473,8,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.023852,14.394473,8,22.0,22.0)
+- U Technoplynu (52, strana B): 13.2 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.082823,14.539250,92,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.082823,14.539250,92,22.0,22.0)
+- Generála Šišky (42, strana A): 13.0 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.007375,14.403336,-163,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.007375,14.403336,-163,22.0,22.0)
+- U Technoplynu (52, strana A): 12.8 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.082823,14.539250,92,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.082823,14.539250,92,22.0,22.0)
+- Jižní spojka (2, strana A): 8.9 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.065037,14.519964,66,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.065037,14.519964,66,22.0,22.0)
+- Brněnská (6, strana A): 5.6 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.010233,14.540715,113,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.010233,14.540715,113,22.0,22.0)
+- Havlíčkova (95, strana B): 5.5 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.088036,14.432533,-3,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.088036,14.432533,-3,22.0,22.0)
+- Spojařů (76, strana B): 5.0 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.965385,14.395785,-170,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.965385,14.395785,-170,22.0,22.0)
+- Chvatěrubská (59, strana A): 4.4 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.135534,14.433625,-92,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.135534,14.433625,-92,22.0,22.0)
+
+### vnější obruba ulice o 1 m a víc ven (stran, m) (16)
+
+- Patočkova (26, strana A): 12.1 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.092999,14.387909,-125,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.092999,14.387909,-125,22.0,22.0)
+- Černošická (53, strana A): 5.9 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.960936,14.339959,-82,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.960936,14.339959,-82,22.0,22.0)
+- U nás (77, strana B): 3.1 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.021815,14.425566,-143,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.021815,14.425566,-143,22.0,22.0)
+- Ke Střelnici (67, strana A): 2.9 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.125951,14.393890,-162,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.125951,14.393890,-162,22.0,22.0)
+- Závist (81, strana A): 2.5 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.974450,14.399499,12,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.974450,14.399499,12,22.0,22.0)
+- Mašatova (80, strana A): 2.2 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.016198,14.475761,95,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.016198,14.475761,95,22.0,22.0)
+- Chvatěrubská (59, strana B): 2.0 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.135534,14.433625,-92,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.135534,14.433625,-92,22.0,22.0)
+- Bažantní (78, strana A): 1.8 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.142377,14.373539,33,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.142377,14.373539,33,22.0,22.0)
+- ? (41, strana A): 1.7 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.155998,14.562418,-116,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.155998,14.562418,-116,22.0,22.0)
+- Nad Petruskou (71, strana B): 1.6 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.069727,14.439694,-141,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.069727,14.439694,-141,22.0,22.0)
+- U dubu (60, strana A): 1.4 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.039988,14.425711,-78,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.039988,14.425711,-78,22.0,22.0)
+- Budčická (66, strana A): 1.3 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=50.081088,14.639169,-66,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=50.081088,14.639169,-66,22.0,22.0)
 
 ### Neurčeno 1 m a víc (m) (31)
 
@@ -181,6 +213,8 @@ Metry podél řezů: řádek = MTVU, sloupec = odhad (budovy vynechané).
 
 Neurčeno celkem: uvnitř ulice (mezi vozovkami) 0 m, vně 318 m; MTVU pod ním: zeleň 130 m, vozovka 91 m, jiné 55 m, chodník 17 m, stání 13 m, budova 11 m
 
+Vnější obruby ulice (strany, + = odhad uvnitř, − = venku, m): -99..-2: 7 · -2..-1: 9 · -1..-0.5: 9 · -0.5..0.5: 59 · 0.5..1: 22 · 1..2: 25 · 2..5: 31 · 5..99: 10
+
 ## brno (94 řezů)
 
 Metry podél řezů: řádek = MTVU, sloupec = odhad (budovy vynechané).
@@ -201,8 +235,10 @@ Metry podél řezů: řádek = MTVU, sloupec = odhad (budovy vynechané).
 | víc pruhů než profil z MTVU | 11 z 94 |  |
 | méně pruhů | 18 z 94 |  |
 | jiný počet vozovek | 36 z 94 |  |
-| vozovka o 1,5 m a víc širší (m) | 12 z 94 |  |
-| vozovka o 1,5 m a víc užší (m) | 34 z 94 |  |
+| vozovka u osy o 1,5 m a víc širší (m) | 12 z 94 |  |
+| vozovka u osy o 1,5 m a víc užší (m) | 34 z 94 |  |
+| vnější obruba ulice o 1 m a víc dovnitř (stran, m) | 61 z 94 |  |
+| vnější obruba ulice o 1 m a víc ven (stran, m) | 11 z 94 |  |
 | Neurčeno 1 m a víc (m) | 17 z 94 |  |
 | chodník o 1,5 m a víc širší (m) | 16 z 94 |  |
 | chodník o 1,5 m a víc užší (m) | 6 z 94 |  |
@@ -281,7 +317,7 @@ Metry podél řezů: řádek = MTVU, sloupec = odhad (budovy vynechané).
 - Dornych (17): 1 místo 2 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.184248,16.622229,158,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.184248,16.622229,158,22.0,22.0)
 - Zvonařka (20): 1 místo 2 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.188173,16.623220,76,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.188173,16.623220,76,22.0,22.0)
 
-### vozovka o 1,5 m a víc širší (m) (12)
+### vozovka u osy o 1,5 m a víc širší (m) (12)
 
 - Jana Babáka (48): 9.4 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.214170,16.590304,157,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.214170,16.590304,157,22.0,22.0)
 - Dukelská třída (60): 8.8 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.213195,16.635562,33,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.213195,16.635562,33,22.0,22.0)
@@ -296,7 +332,7 @@ Metry podél řezů: řádek = MTVU, sloupec = odhad (budovy vynechané).
 - Bartolomějská (85): 1.8 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.202995,16.490710,-38,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.202995,16.490710,-38,22.0,22.0)
 - Přehradní (58): 1.6 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.232705,16.522186,81,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.232705,16.522186,81,22.0,22.0)
 
-### vozovka o 1,5 m a víc užší (m) (34)
+### vozovka u osy o 1,5 m a víc užší (m) (34)
 
 - Jasanová (100): 12.3 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.205202,16.555225,-62,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.205202,16.555225,-62,22.0,22.0)
 - Dunajská (76): 10.7 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.169072,16.561079,173,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.169072,16.561079,173,22.0,22.0)
@@ -310,6 +346,35 @@ Metry podél řezů: řádek = MTVU, sloupec = odhad (budovy vynechané).
 - ? (6): 5.7 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.266264,16.575157,-172,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.266264,16.575157,-172,22.0,22.0)
 - Uhelná (33): 5.0 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.187235,16.609414,20,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.187235,16.609414,20,22.0,22.0)
 - Pražská (21): 4.6 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.174198,16.538306,-83,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.174198,16.538306,-83,22.0,22.0)
+
+### vnější obruba ulice o 1 m a víc dovnitř (stran, m) (61)
+
+- ? (4, strana A): 37.3 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.187131,16.648338,9,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.187131,16.648338,9,22.0,22.0)
+- Dornych (17, strana A): 26.5 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.184248,16.622229,158,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.184248,16.622229,158,22.0,22.0)
+- Svatopetrská (12, strana B): 16.2 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.179035,16.621669,-2,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.179035,16.621669,-2,22.0,22.0)
+- ? (6, strana B): 15.9 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.266264,16.575157,-172,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.266264,16.575157,-172,22.0,22.0)
+- ? (2, strana B): 15.7 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.225520,16.600055,-21,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.225520,16.600055,-21,22.0,22.0)
+- Karlova (32, strana A): 15.7 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.213421,16.643729,13,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.213421,16.643729,13,22.0,22.0)
+- ? (4, strana B): 13.7 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.187131,16.648338,9,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.187131,16.648338,9,22.0,22.0)
+- Dunajská (76, strana A): 13.5 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.169072,16.561079,173,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.169072,16.561079,173,22.0,22.0)
+- Poříčí (19, strana B): 13.5 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.185876,16.589535,64,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.185876,16.589535,64,22.0,22.0)
+- Pražská (21, strana A): 13.4 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.174198,16.538306,-83,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.174198,16.538306,-83,22.0,22.0)
+- Jasanová (100, strana B): 12.2 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.205202,16.555225,-62,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.205202,16.555225,-62,22.0,22.0)
+- ? (2, strana A): 10.8 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.225520,16.600055,-21,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.225520,16.600055,-21,22.0,22.0)
+
+### vnější obruba ulice o 1 m a víc ven (stran, m) (11)
+
+- Jedovnická (26, strana B): 4.0 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.199509,16.665877,-172,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.199509,16.665877,-172,22.0,22.0)
+- Dunajská (76, strana B): 2.9 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.169072,16.561079,173,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.169072,16.561079,173,22.0,22.0)
+- Mlaty (84, strana A): 2.4 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.176684,16.530777,128,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.176684,16.530777,128,22.0,22.0)
+- Makovského náměstí (40, strana B): 2.4 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.216846,16.579001,135,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.216846,16.579001,135,22.0,22.0)
+- Heršpická (13, strana B): 2.3 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.178358,16.603798,4,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.178358,16.603798,4,22.0,22.0)
+- Meziboří (89, strana A): 2.0 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.270953,16.601008,89,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.270953,16.601008,89,22.0,22.0)
+- Bartolomějská (85, strana B): 2.0 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.202995,16.490710,-38,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.202995,16.490710,-38,22.0,22.0)
+- Lomená (82, strana B): 1.9 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.173088,16.625992,84,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.173088,16.625992,84,22.0,22.0)
+- Libušino údolí (44, strana A): 1.5 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.196791,16.552078,-82,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.196791,16.552078,-82,22.0,22.0)
+- Přehradní (58, strana B): 1.4 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.232705,16.522186,81,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.232705,16.522186,81,22.0,22.0)
+- Vzhledná (78, strana A): 1.1 · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.176501,16.526067,116,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.176501,16.526067,116,22.0,22.0)
 
 ### Neurčeno 1 m a víc (m) (17)
 
@@ -372,4 +437,6 @@ Metry podél řezů: řádek = MTVU, sloupec = odhad (budovy vynechané).
 - Jasanová (100, strana B) · [odhad](http://localhost:5293/?lang=cs&osm=balik&mapa=0#rez=49.205202,16.555225,-62,22.0,22.0) · [mapa](http://localhost:5293/?lang=cs&osm=balik#rez=49.205202,16.555225,-62,22.0,22.0)
 
 Neurčeno celkem: uvnitř ulice (mezi vozovkami) 0 m, vně 167 m; MTVU pod ním: jiné 60 m, vozovka 35 m, budova 22 m, zeleň 19 m, stání 13 m, chodník 11 m, tram. těleso 7 m, nic 0 m
+
+Vnější obruby ulice (strany, + = odhad uvnitř, − = venku, m): -99..-2: 6 · -2..-1: 5 · -1..-0.5: 14 · -0.5..0.5: 79 · 0.5..1: 23 · 1..2: 17 · 2..5: 24 · 5..99: 20
 

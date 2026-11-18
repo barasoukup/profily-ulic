@@ -49,9 +49,9 @@ const report = ["# Kde odhad z ortofota a OSM systematicky chybuje (" + new Date
 for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
   const list = await cuts(city);
   const conf = Object.fromEntries(KINDS.map((a) => [a, Object.fromEntries(KINDS.map((b) => [b, 0]))]));
-  const ev = { shoulder: [], shoulderWide: [], lanesMore: [], lanesLess: [], ways: [], unknown: [], walkWide: [], walkNarrow: [], greenForWalk: [], walkForGreen: [], parkFalse: [], parkMissed: [], roadWide: [], roadNarrow: [] };
+  const ev = { shoulder: [], shoulderWide: [], lanesMore: [], lanesLess: [], ways: [], unknown: [], walkWide: [], walkNarrow: [], greenForWalk: [], walkForGreen: [], parkFalse: [], parkMissed: [], roadWide: [], roadNarrow: [], kerbIn: [], kerbOut: [] };
   let n = 0, shoulderTruth = 0;
-  const unk = { inside: 0, outside: 0, under: {} }, bed = {};
+  const unk = { inside: 0, outside: 0, under: {} }, bed = {}, kerbD = [], kerbByPark = {};
   for (const c of list) {
     const st = await stripOf(city, KEY, c);
     if (!st) continue;
@@ -94,6 +94,22 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
       if (d > 1.5) ev.roadWide.push({ ...id, v: d }); else if (d < -1.5) ev.roadNarrow.push({ ...id, v: -d });
     }
     if (eRoad.length !== tRoad.length) ev.ways.push({ ...id, v: `${eRoad.length} místo ${tRoad.length}` });
+    // The street's outer kerbs: the outer edges of its roadways (medians and tram beds between them inside), the
+    // estimate's against MTVU's (the roadways of either within 4 m of a roadway reaching the axis's 6 m).
+    const envelope = (rs) => {
+      const sorted = [...rs].sort((a, b) => a.s - b.s), core = sorted.filter((r) => r.s < 6 && r.e > -6);
+      if (!core.length) return null;
+      let lo = Math.min(...core.map((r) => r.s)), hi = Math.max(...core.map((r) => r.e));
+      for (let grew = true; grew;) { grew = false; for (const r of sorted) { if (r.e < lo && lo - r.e <= 4 && r.s < lo) { lo = r.s; grew = true; } if (r.s > hi && r.s - hi <= 4 && r.e > hi) { hi = r.e; grew = true; } } }
+      return { lo, hi };
+    };
+    const eEnv = envelope(runsOf(est, (x) => ROADWAY.has(x.type) || x.type === "parkovani" || x.type === "tramvaj")), tEnv = envelope(runsOf(runs.map((r) => ({ ...r, type: runKind(r.code) })), (x) => x.type === "vozovka" || x.type === "stání" || x.type === "tram. těleso"));
+    if (eEnv && tEnv) for (const [side, d] of [["A", eEnv.lo - tEnv.lo], ["B", tEnv.hi - eEnv.hi]]) {
+      kerbD.push(d);
+      { const tk = side === "A" ? tEnv.lo : tEnv.hi, park = runs.some((r) => runKind(r.code) === "stání" && (side === "A" ? r.s - tk < 1 && r.s >= tk - 0.5 : tk - r.e < 1 && r.e <= tk + 0.5));
+        (kerbByPark[park ? "stání" : "bez"] ??= []).push(d); }
+      if (d > 1) ev.kerbIn.push({ ...id, v: d, side }); else if (d < -1) ev.kerbOut.push({ ...id, v: -d, side });
+    }
     const sh = est.filter((x) => x.type === "krajnice").reduce((a, x) => a + x.width, 0);
     const shT = mtvu.filter((x) => x.type === "krajnice").reduce((a, x) => a + x.width, 0);
     if (shT > 0) shoulderTruth++;
@@ -135,7 +151,8 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
     report.push(`| **${a}** | ${KINDS.map((b) => (b === a ? `**${m(row[b])}**` : m(row[b]))).join(" | ")} | ${Math.round((100 * row[a]) / tot)} % |`);
   }
   const E = [["shoulder", "krajnice v odhadu (m celkem)", `MTVU profil má krajnici v ${shoulderTruth} řezech`], ["shoulderWide", "krajnice 1,5 m a víc"], ["lanesMore", "víc pruhů než profil z MTVU"], ["lanesLess", "méně pruhů"],
-    ["ways", "jiný počet vozovek"], ["roadWide", "vozovka o 1,5 m a víc širší (m)"], ["roadNarrow", "vozovka o 1,5 m a víc užší (m)"], ["unknown", "Neurčeno 1 m a víc (m)"],
+    ["ways", "jiný počet vozovek"], ["roadWide", "vozovka u osy o 1,5 m a víc širší (m)"], ["roadNarrow", "vozovka u osy o 1,5 m a víc užší (m)"],
+    ["kerbIn", "vnější obruba ulice o 1 m a víc dovnitř (stran, m)"], ["kerbOut", "vnější obruba ulice o 1 m a víc ven (stran, m)"], ["unknown", "Neurčeno 1 m a víc (m)"],
     ["walkWide", "chodník o 1,5 m a víc širší (m)"], ["walkNarrow", "chodník o 1,5 m a víc užší (m)"], ["parkFalse", "stání navíc"], ["parkMissed", "stání chybí"]];
   report.push("", "| Chyba | řezů | |", "|---|---|---|");
   for (const [k, label, note] of E) report.push(`| ${label} | ${ev[k].length} z ${n} | ${note || ""} |`);
@@ -147,6 +164,11 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
   }
   report.push("", `Neurčeno celkem: uvnitř ulice (mezi vozovkami) ${unk.inside.toFixed(0)} m, vně ${unk.outside.toFixed(0)} m; MTVU pod ním: ${Object.entries(unk.under).sort((a, b) => b[1] - a[1]).map(([q, w]) => `${q} ${w.toFixed(0)} m`).join(", ")}`, "");
   console.log(city, JSON.stringify(unk));
+  const bins = [[-99, -2], [-2, -1], [-1, -0.5], [-0.5, 0.5], [0.5, 1], [1, 2], [2, 5], [5, 99]];
+  const hist = bins.map(([a, b]) => `${a}..${b}: ${kerbD.filter((d) => d >= a && d < b).length}`).join(" · ");
+  console.log(city, "obruby (+ dovnitř):", hist);
+  for (const [k2, ds] of Object.entries(kerbByPark)) console.log(city, k2, ds.length, bins.map(([a, b]) => `${a}..${b}: ${ds.filter((d) => d >= a && d < b).length}`).join(" · "));
+  report.push(`Vnější obruby ulice (strany, + = odhad uvnitř, − = venku, m): ${hist}`, "");
   if (process.env.BED) console.log(JSON.stringify(bed));
   console.log(city, n, Object.fromEntries(Object.entries(ev).map(([k, v]) => [k, v.length])));
 }
