@@ -1,4 +1,4 @@
-praha cuzk12: 87 řezů (9 bez profilu) · obruby medián 1.15 m, do 0,5 m 33 %, do 1 m 48 % · chodník medián chyby 2.00 m, do 1 m 47 % (38 stran) · stání: nalezeno 5, chybí 10, navíc 3
-praha ipr10: 87 řezů (9 bez profilu) · obruby medián 1.20 m, do 0,5 m 39 %, do 1 m 48 % · chodník medián chyby 1.85 m, do 1 m 47 % (38 stran) · stání: nalezeno 5, chybí 10, navíc 6
-brno cuzk12: 94 řezů (5 bez profilu) · obruby medián 0.75 m, do 0,5 m 37 %, do 1 m 57 % · chodník medián chyby 1.05 m, do 1 m 49 % (51 stran) · stání: nalezeno 11, chybí 24, navíc 6
-brno brno10: 94 řezů (5 bez profilu) · obruby medián 0.62 m, do 0,5 m 44 %, do 1 m 59 % · chodník medián chyby 2.60 m, do 1 m 37 % (51 stran) · stání: nalezeno 9, chybí 26, navíc 3
+praha cuzk12: 87 řezů (9 bez profilu) · obruby medián 1.00 m, do 0,5 m 34 %, do 1 m 51 % · chodník medián chyby 2.00 m, do 1 m 50 % (38 stran) · stání: nalezeno 6, chybí 9, navíc 3
+praha ipr10: 87 řezů (9 bez profilu) · obruby medián 1.10 m, do 0,5 m 37 %, do 1 m 49 % · chodník medián chyby 1.45 m, do 1 m 50 % (38 stran) · stání: nalezeno 6, chybí 9, navíc 6
+brno cuzk12: 94 řezů (5 bez profilu) · obruby medián 0.69 m, do 0,5 m 41 %, do 1 m 62 % · chodník medián chyby 1.05 m, do 1 m 49 % (51 stran) · stání: nalezeno 11, chybí 24, navíc 6
+brno brno10: 94 řezů (5 bez profilu) · obruby medián 0.58 m, do 0,5 m 45 %, do 1 m 63 % · chodník medián chyby 2.60 m, do 1 m 37 % (51 stran) · stání: nalezeno 9, chybí 26, navíc 3

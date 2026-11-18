@@ -53,7 +53,12 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
       const parts = laid(p), road = parts.filter((x) => ROAD.has(x.type));
       if (!road.length) { none++; continue; }
       // The profile's t runs the other way than the truth's runs (A at larger t there): compare as derive lays them.
-      const lo = Math.min(...road.map((x) => x.s)), hi = Math.max(...road.map((x) => x.e));
+      // The carriageway nearest the axis, as truthOf takes MTVU's (another one beyond a median or a side road is not
+      // its kerb; before 18. 11. 2026 the outermost roadway part was taken).
+      const runs = [];
+      for (const x of [...road].sort((a, b) => a.s - b.s)) { const l = runs.at(-1); if (l && x.s - l.e < 0.05) l.e = Math.max(l.e, x.e); else runs.push({ s: x.s, e: x.e }); }
+      const gap = (r) => (r.s <= 0 && 0 <= r.e ? 0 : Math.min(Math.abs(r.s), Math.abs(r.e)));
+      const { s: lo, e: hi } = runs.sort((a, b) => gap(a) - gap(b))[0];
       const tLo = Math.min(truth.way.s, truth.way.e), tHi = Math.max(truth.way.s, truth.way.e);
       kerb.push(lo - tLo, hi - tHi);
       for (const [side, inner, sg] of [["A", lo, -1], ["B", hi, 1]]) {

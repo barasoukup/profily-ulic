@@ -682,9 +682,8 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   // Between the street's own sidewalk and the end the last thing of the street sets (a path, a cycle track, tracks,
   // another carriageway OSM maps there; Bára 18. 11. 2026: "Neurčeno" beyond the street in 67 of 87 Prague cuts, under
   // it MTVU's green, paths and side roads; evaluation/ortofoto-osm/chyby.mjs): each such thing drawn as what it is, the
-  // gaps between them green where the image is mostly green, else paved. ?off=vyplnkonec: as before. Another
-  // carriageway there (a side road) ends it for now (P.sideRoads: drawn too; the regression measures the outermost
-  // roadway as the kerbs, so it cannot judge them yet).
+  // gaps between them green where the image is mostly green, else paved. ?off=vyplnkonec: as before. A side road
+  // there is a roadway of its own (?off=soubezna: it ends the filling).
   if (!FILL_OFF) for (const [side, sg] of [["A", -1], ["B", 1]]) {
     if (!chain[side].length || reached[side] === null) continue;
     let outer = reached[side];
@@ -698,7 +697,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     };
     for (const w of chain[side]) {
       const kind = w.tags.railway === "tram" ? [705, "tramvajové těleso (OSM)", TRACK_HALF] : w.tags.highway === "cycleway" ? [703, "cyklostezka (OSM)", 1.3]
-        : STREET.test(w.tags.highway || "") ? (!P.sideRoads ? null : [701, "vozovka (OSM, souběžná)", 3]) : [702, "chodník (OSM, zvlášť)", SIDEWALK / 2];
+        : STREET.test(w.tags.highway || "") ? (P.off?.has("soubezna") ? null : [701, "vozovka (OSM, souběžná)", 3]) : [702, "chodník (OSM, zvlášť)", SIDEWALK / 2];
       if (!kind) break;
       const a = w.t - sg * kind[2], b = w.t + sg * kind[2];
       if (sg * (b - outer) < 0.3) continue;
