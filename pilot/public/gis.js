@@ -138,7 +138,7 @@ export function asMtvu(layers, labels) {
 }
 
 // A town's passport's surfaces marked so: the profile's parts over them say "z pasportu města" (derive.js; Bára
-// 16. 11. 2026), not "změřeno z technické mapy".
+// 16. 11. 2026), not "změřeno z mapy povrchů".
 export function asPassport(json) {
   for (const f of json?.features || []) f.attributes = { ...f.attributes, PASPORT: 1 };
   return json;

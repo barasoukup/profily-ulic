@@ -69,7 +69,7 @@ export const SURFACES = { "": t("běžný"), true: t("propustná dlažba"), nezp
 export const PERMEABLE_TYPES = ["chodnik", "chodnik_kola", "stezka_sdilena", "plocha", "parkovani", "zahradka", "cyklostezka", "krajnice", "obsluzna", "delici"];
 
 export const SOURCES = {
-  dtm: { label: t("změřeno z technické mapy"), color: "#3b6d11" },
+  dtm: { label: t("změřeno z mapy povrchů"), color: "#3b6d11" },
   pasport: { label: t("z pasportu města"), color: "#2e8b84" }, // towns' passports (gis.js asPassport)
   osm: { label: t("doplněno z OSM"), color: "#854f0b" },
   data: { label: t("otevřená data města"), color: "#2f6f8f" }, // Prague: trees of TSK, MHMP and the districts

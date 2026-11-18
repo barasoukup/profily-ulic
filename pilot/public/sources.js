@@ -65,11 +65,11 @@ export function outage({ surfaces, lines, parking }, dataName = city.dataName, {
   // A German city's map of surfaces did not answer (towns/germany.js).
   if (s?.deFailed) return { note: mark(" · mapa povrchů města neodpověděla, odhad z ortofota a OSM"), text: t("Mapa povrchů města teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };
   if (s?.atFailed) return { note: mark(" · mapa povrchů Vídně neodpověděla, odhad z ortofota a OSM"), text: t("Mapa povrchů Vídně teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };
-  if (s?.abroad) return { note: country.orthoEstimate ? mark(" · odhad z ortofota a OSM") : mark(" · jen odhad z OSM"), text: t("Technickou mapu tu zatím nemáme, profil je odhad."), error: false };
-  const note = failed ? mark(" · technická mapa neodpověděla, jen odhad")
+  if (s?.abroad) return { note: country.orthoEstimate ? mark(" · odhad z ortofota a OSM") : mark(" · jen odhad z OSM"), text: t("Mapu povrchů tu zatím nemáme, profil je odhad."), error: false };
+  const note = failed ? mark(" · mapa povrchů neodpověděla, jen odhad")
     : s.fallback ? mark(" · plochy z technické mapy ČÚZK")
-    : empty ? (s.dmvsFailed ? mark(" · technická mapa neodpověděla, jen odhad") : s.linesOnly ? mark(" · technická mapa tu má jen čáry, jen odhad") : mark(" · mimo technickou mapu, jen odhad"))
-    : s.fromLines ? mark(" · plochy odvozené z čar technické mapy")
+    : empty ? (s.dmvsFailed ? mark(" · mapa povrchů neodpověděla, jen odhad") : s.linesOnly ? mark(" · mapa povrchů tu má jen čáry, jen odhad") : mark(" · mimo mapu povrchů, jen odhad"))
+    : s.fromLines ? mark(" · plochy odvozené z čar mapy povrchů")
     : lacks.length ? mark(" · neúplná data") : "";
   const fb = fallback ? " " + fallback : "";
   const text = failed && fallback ? (city.slowServer ? t("{name} teď neodpovídá (server je přetížený).", { name: dataName }) : t("{name} teď neodpovídá.", { name: dataName })) + fb + without + again
@@ -80,9 +80,9 @@ export function outage({ surfaces, lines, parking }, dataName = city.dataName, {
     : empty && s.dmvsFailed ? t("Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.") + without + again
     : empty && s.linesOnly && fallback ? t("Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).") + fb + without
     : empty && s.linesOnly ? t("Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává), profil je odhad z OSM.") + without
-    : empty && fallback ? t("Technická mapa tu nic nevrátila.") + fb + without
-    : empty ? t("Technická mapa tu nic nevrátila, profil je odhad z OSM.") + without
-    : s.fromLines ? t("Technická mapa tu má jen čáry bez ploch: šířky jsou změřené mezi nimi, vozovka a chodníky odhadnuté.") + without
+    : empty && fallback ? t("Mapa povrchů tu nic nevrátila.") + fb + without
+    : empty ? t("Mapa povrchů tu nic nevrátila, profil je odhad z OSM.") + without
+    : s.fromLines ? t("Mapa povrchů tu má jen čáry bez ploch: šířky jsou změřené mezi nimi, vozovka a chodníky odhadnuté.") + without
     : without ? without.trim() + again : "";
   return { note, text, error: failed || !!s.fallback || !!s.dmvsFailed || lacks.length > 0 };
 }

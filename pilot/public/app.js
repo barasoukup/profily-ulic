@@ -255,17 +255,18 @@ function creditCities() {
   for (const a of want) if (!credited.has(a)) { map.attributionControl.addAttribution(a); credited.add(a); }
 }
 map.on("moveend layeradd layerremove", creditCities);
-const baseMaps = { [tr("Mapa")]: L.layerGroup(kinds.map), [tr("Ortofoto")]: L.layerGroup(kinds.ortho), [tr("Technická mapa")]: L.layerGroup(kinds.tech), "OpenStreetMap": osmLayer() };
+const baseMaps = { [tr("Mapa")]: L.layerGroup(kinds.map), [tr("Ortofoto")]: L.layerGroup(kinds.ortho), [tr("Mapa povrchů")]: L.layerGroup(kinds.tech), "OpenStreetMap": osmLayer() };
 const BASE_KEY = "streetdesign-basemap-cr";
 // Remembered by its Czech name, so that the choice holds in either language.
-const baseCs = Object.fromEntries(["Mapa", "Ortofoto", "Technická mapa", "OpenStreetMap"].map((cs) => [tr(cs), cs]));
+const baseCs = Object.fromEntries(["Mapa", "Ortofoto", "Mapa povrchů", "OpenStreetMap"].map((cs) => [tr(cs), cs]));
 let baseName = tr("Mapa");
-try { const saved = tr(localStorage.getItem(BASE_KEY) || ""); if (baseMaps[saved]) baseName = saved; } catch {}
+// "Technická mapa" is "Mapa povrchů" since 17. 11. 2026 (Bára: one name in every state): the old choice holds.
+try { const saved = tr(localStorage.getItem(BASE_KEY)?.replace(/^Technická mapa$/, "Mapa povrchů") || ""); if (baseMaps[saved]) baseName = saved; } catch {}
 baseMaps[baseName].addTo(map);
 map.on("baselayerchange", (e) => { try { localStorage.setItem(BASE_KEY, baseCs[e.name] || e.name); } catch {} });
 const dtm = L.layerGroup(kinds.lines);
 const mtvuLayer = L.layerGroup();
-const layersControl = L.control.layers(baseMaps, { [tr("Linie technické mapy")]: dtm, [tr("Plochy u řezu")]: mtvuLayer }).addTo(map);
+const layersControl = L.control.layers(baseMaps, { [tr("Linie mapy povrchů")]: dtm, [tr("Plochy u řezu")]: mtvuLayer }).addTo(map);
 document.querySelector(".leaflet-control-layers-toggle")?.setAttribute("title", tr("Podkladová mapa a vrstvy"));
 document.querySelector(".leaflet-control-layers-toggle")?.setAttribute("aria-label", tr("Podkladová mapa a vrstvy"));
 mtvuLayer.addTo(map);
@@ -530,7 +531,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // With the profile made without the map, the other notes come after its own (a junction, a design started anew).
     const extra = orthoOsm ? [result.junction && junctionNote, dropped && droppedNote].filter(Boolean).map((x) => " " + x).join("") : "";
     // The map has surfaces here, none at the axis (the outage says nothing of it): that comes first.
-    const axisNote = (orthoOsm || (orthoDown && result.estimate)) && !out.text.includes(orthoNote) ? (city.abroad ? "" : tr("Technická mapa tu nemá povrch ulice.") + " ") + orthoNote + (out.text ? " " + out.text : "") : "";
+    const axisNote = (orthoOsm || (orthoDown && result.estimate)) && !out.text.includes(orthoNote) ? (city.abroad ? "" : tr("Mapa povrchů tu ulici nemá.") + " ") + orthoNote + (out.text ? " " + out.text : "") : "";
     if (axisNote) status(axisNote + extra, out.error ? "error" : undefined);
     else if (out.text) status(out.text + extra, out.error ? "error" : undefined);
     else if (dropped) status(tr("Nový řez: návrh začíná znovu od stavu ulice (předchozí návrh zůstává ve sdíleném odkazu nebo uloženém souboru, pokud jste ho uložili)."));
@@ -813,7 +814,7 @@ function draw() {
     box.innerHTML = `<div class="empty">
       <img src="${city.emptyImg}" alt="" width="96" height="126">
       <div><h1 class="empty-title">${tr("Příčný profil ulice")}</h1>
-      <ol><li>${tr("Klikněte v mapě na ulici kdekoli v Česku, na Slovensku, v Rakousku nebo v Německu.")}</li><li>${tr("Profil od fasády k fasádě se sestaví z technické mapy města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy Vídně a OSM, v Německu z ortofot spolkových zemí a OSM.")}</li>
+      <ol><li>${tr("Klikněte v mapě na ulici kdekoli v Česku, na Slovensku, v Rakousku nebo v Německu.")}</li><li>${tr("Profil od fasády k fasádě se sestaví z mapy povrchů města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy povrchů Vídně a OSM, v Německu z ortofot spolkových zemí a OSM.")}</li>
       <li>${tr("V režimu Návrh ho upravíte: táhněte hranice, klikněte na část, přidejte novou.")}</li></ol></div></div>`;
     $("#editor").replaceChildren();
     $("#palette").replaceChildren();

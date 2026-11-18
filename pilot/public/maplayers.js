@@ -147,7 +147,7 @@ export function createDataLayers(map, control) {
       if (!l.point) continue;
       const kind = l.code === TM_TREE || l.code === OD_TREE ? "strom" : POINT_ITEM[l.code];
       if (!kind) continue;
-      points.push({ kind, xy: l.point, src: l.code === OD_TREE ? "data" : "dtm", srcLabel: l.code === OD_TREE ? tr("otevřená data Prahy (stromy)") : tr("technická mapa") });
+      points.push({ kind, xy: l.point, src: l.code === OD_TREE ? "data" : "dtm", srcLabel: l.code === OD_TREE ? tr("otevřená data Prahy (stromy)") : tr("mapa povrchů") });
     }
     for (const p of points) {
       if (!near(p.xy)) continue;
@@ -177,7 +177,7 @@ export function createDataLayers(map, control) {
 
     // ---------- barrier and slope lines ----------
     const barriers = [
-      ...lines.filter((l) => l.pts && TECH_ITEM[l.code]).map((l) => ({ kind: TECH_ITEM[l.code], pts: l.pts, src: "dtm", label: city.dataName || tr("technická mapa") })),
+      ...lines.filter((l) => l.pts && TECH_ITEM[l.code]).map((l) => ({ kind: TECH_ITEM[l.code], pts: l.pts, src: "dtm", label: city.dataName || tr("mapa povrchů") })),
       ...elements.filter((el) => el.type === "way" && BARRIER_ITEM[el.tags?.barrier]).map((el) => ({ kind: BARRIER_ITEM[el.tags.barrier], pts: el.geometry.map(xyOf), src: "osm", label: "OSM" })),
     ];
     for (const b of barriers) {
@@ -192,7 +192,7 @@ export function createDataLayers(map, control) {
     for (const pts of tracks) {
       if (!nearAny(pts)) continue;
       tip(L.polyline(pts.map(ll), shape({ pane: "rezLinie", color: TYPES.tramvaj_v_pruhu.color, weight: 2, opacity: 0.95 })).addTo(groups.tracks),
-        `<b>${tr("Osa koleje")}</b><br>${esc(city.dataName || tr("technická mapa"))}`);
+        `<b>${tr("Osa koleje")}</b><br>${esc(city.dataName || tr("mapa povrchů"))}`);
     }
     for (const el of elements) {
       if (el.type !== "way" || !["tram", "light_rail", "rail"].includes(el.tags?.railway) || !el.geometry) continue;
@@ -237,7 +237,7 @@ export function createDataLayers(map, control) {
     for (const p of polys) {
       if (![600, 601, 604].includes(p.code) || !isFacade(p.rings)) continue;
       tip(L.polygon(p.lonlat, shape({ ...B, color: SOURCES.dtm.color, weight: 2, fill: false })).addTo(groups.buildings),
-        `<b>${tr("Budova")}</b><br>${esc(p.label || tr("budova"))} · ${esc(city.dataName || tr("technická mapa"))}${tr(" · fasáda profilu")}`);
+        `<b>${tr("Budova")}</b><br>${esc(p.label || tr("budova"))} · ${esc(city.dataName || tr("mapa povrchů"))}${tr(" · fasáda profilu")}`);
     }
 
     // ---------- the reach of points from the cut ----------

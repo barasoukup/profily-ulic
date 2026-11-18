@@ -323,9 +323,10 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Všech 24 úředních jazyků EU (větev `eu-languages`, Bára 17. 11. 2026, nenasazené): soubor `<jazyk>.js` na jazyk, načítá
   se jen jazyk stránky. **Překlady jsou strojové (agent na jazyk), měl by je projít rodilý mluvčí.** Kritik Fable (jako rodilý
   mluvčí) prošel všech 20 nových jazyků, hodnocení 3,5–4,5 z 5 (maltština nejhůř). Bára 17. 11. 2026: česká jména měst
-  se v překladech nesklánějí (polsky „miasta Plzeň“, ne Pilzna); „technická mapa“ je název českého a slovenského produktu, ne
-  obecný pojem, takže se překládá doslova (švédsky teknisk karta, finsky tekninen kartta), ne místním názvem jazyka
-  (primärkarta, kantakartta); v jiném státě se odpovídající zdroj jmenuje jinak (Vídeň Flächen-Mehrzweckkarte). Přepínač je v menu Soubor jako „Jazyk“, jazyky jménem bez vlajek. Desetinná
+  se v překladech nesklánějí (polsky „miasta Plzeň“, ne Pilzna); obecně se zdroj ploch jmenuje „mapa povrchů“
+  (Bára 18. 11. 2026: univerzální název pro všechny státy; podkladová mapa, „Linie mapy povrchů“, legenda, hlášky,
+  nápověda). „Technická mapa“ zůstává jen jako jméno konkrétního zdroje: kredity a licence, hlášky o konkrétní službě
+  (ČÚZK, IPR, město) a texty měst; překládá se doslova (švédsky teknisk karta, ne primärkarta). Přepínač je v menu Soubor jako „Jazyk“, jazyky jménem bez vlajek. Desetinná
   tečka jen en, ga, mt. Název aplikace: bg Уличен профил, da Gadeprofil, el Διατομή Οδού, es Secciones de calle,
   et Tänavaprofiil, fi Katuprofiili, fr Profil de rue, ga Próifíl Sráide, hr Profili ulica, hu Utcaprofil, it Sezioni
   stradali, lt Gatvės profilis, lv Ielu profils, mt Profil tat-Triq, nl Straatprofiel, pl Przekroje ulic, pt Perfis de Rua,

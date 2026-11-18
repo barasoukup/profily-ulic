@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Profily ulic</title>
-  <meta name="description" content="Příčné profily ulic v Česku, na Slovensku, v Rakousku a v Německu od fasády k fasádě z technických map měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.">
+  <meta name="description" content="Příčné profily ulic v Česku, na Slovensku, v Rakousku a v Německu od fasády k fasádě z map povrchů měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://api.mapy.cz; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob: https://gs-pub.praha.eu https://tiles.arcgis.com https://ags.cuzk.gov.cz https://tile.openstreetmap.org https://api.mapy.cz https://gis.brno.cz https://dmvs.cuzk.gov.cz https://gis.jihlava-city.cz https://mapy.mesto-most.cz https://mapy.opava-city.cz https://ags.plzen.eu https://services6.arcgis.com https://zbgis.skgeodesy.sk https://mapsneu.wien.gv.at https://owsproxy.lgl-bw.de https://geoservices.bayern.de https://isk.geobasis-bb.de https://geodienste.bremen.de https://geodienste.hamburg.de https://www.gds-srv.hessen.de https://www.geodaten-mv.de https://opendata.lgln.niedersachsen.de https://www.wms.nrw.de https://geo4.service24.rlp.de https://dienste.gdi-sh.de https://geoportal.saarland.de https://geodienste.sachsen.de https://www.geodatenportal.sachsen-anhalt.de https://www.geoproxy.geoportal-th.de; connect-src 'self' https://gs-pub.praha.eu https://mp.iprpraha.cz https://api.mapy.cz https://dmvs.cuzk.gov.cz https://ags.cuzk.gov.cz https://gis.brno.cz https://services6.arcgis.com https://gis.jihlava-city.cz https://mapy.mesto-most.cz https://mapy.opava-city.cz https://ags.plzen.eu https://mapy.usti.cz https://mapy.ostrava.cz https://gis.frydekmistek.cz https://gis.karvina.cz https://gis.trebic.cz https://gis.prerov.eu https://jck.krajdtm.cz https://pak.krajdtm.cz https://vys.krajdtm.cz https://msk.krajdtm.cz https://khk.krajdtm.cz https://dtm.jmk.cz https://dtm.kraj-lbc.cz https://dtm.kr-karlovarsky.cz https://dtm.zlinskykraj.cz https://data.streetspace.eu https://*.r2.dev https://zbgis.skgeodesy.sk https://services8.arcgis.com https://services-eu1.arcgis.com https://gis.zilina.sk https://mapy.banskabystrica.sk https://geoportal.bratislava.sk https://gisint.kr-olomoucky.cz https://services5.arcgis.com https://services1.arcgis.com https://services.arcgis.com https://mapy.roznov.cz https://gis.sumperk.cz https://gis.chomutov.cz https://mapsneu.wien.gv.at https://data.wien.gv.at https://data.stadt-salzburg.at https://photon.komoot.io https://gisplan.kosice.sk https://gdi.berlin.de https://api.hamburg.de https://geoserver.aachen.de https://owsproxy.lgl-bw.de https://geoservices.bayern.de https://isk.geobasis-bb.de https://geodienste.bremen.de https://geodienste.hamburg.de https://www.gds-srv.hessen.de https://www.geodaten-mv.de https://opendata.lgln.niedersachsen.de https://www.wms.nrw.de https://geo4.service24.rlp.de https://dienste.gdi-sh.de https://geoportal.saarland.de https://geodienste.sachsen.de https://www.geodatenportal.sachsen-anhalt.de https://www.geoproxy.geoportal-th.de; object-src 'none'; base-uri 'self'; form-action 'none'">
   <meta name="theme-color" content="#d8413f">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Profily ulic">
-  <meta property="og:description" content="Příčné profily ulic v Česku, na Slovensku, v Rakousku a v Německu z technických map měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.">
+  <meta property="og:description" content="Příčné profily ulic v Česku, na Slovensku, v Rakousku a v Německu z map povrchů měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.">
   <meta property="og:locale" content="cs_CZ">
   <meta property="og:url" content="https://streetspace.eu/profily/">
   <meta property="og:image" content="https://streetspace.eu/profily/og.png">
@@ -32,7 +32,7 @@
     </a>
     <span class="spacer"></span>
     <div class="seg-toggle" role="group" aria-label="Zobrazení">
-      <button data-mode="stav" class="active" aria-pressed="true" title="Ulice, jak je dnes (z technické mapy města nebo ČÚZK a OSM)">Stav</button>
+      <button data-mode="stav" class="active" aria-pressed="true" title="Ulice, jak je dnes (z mapy povrchů města nebo ČÚZK a OSM)">Stav</button>
       <button data-mode="navrh" aria-pressed="false" title="Vaše úprava ulice">Návrh</button>
       <button data-mode="porovnat" aria-pressed="false" title="Stav a návrh pod sebou se seznamem změn">Porovnat</button>
     </div>
@@ -100,7 +100,7 @@
         <button id="btn-report" class="link" hidden>Nahlásit chybu</button>
       </div>
       <div id="legend">
-        <span class="src src-dtm">změřeno z technické mapy</span>
+        <span class="src src-dtm">změřeno z mapy povrchů</span>
         <span class="src src-pasport">z pasportu města</span>
         <span class="src src-osm">doplněno z OSM</span>
         <span class="src src-tsk">úseky a zóny parkování</span>

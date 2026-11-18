@@ -1694,7 +1694,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   // gap in MTVU): the profile falls back to OSM and says so.
   if (!MINOR.has(way.tags?.highway) && isUnpaved(runs[i0]?.code)) {
     const code = runs[i0]?.code;
-    return { ...estimateFromOsm(way), runs, notice: t("Technická mapa tu nemá povrch ulice ({what}), profil je odhad z OSM.", { what: code === null || code === undefined ? t("žádná plocha") : `${t("plocha")} ${code} ${polys.find((p) => p.code === code)?.label || ""}`.trim() }) };
+    return { ...estimateFromOsm(way), runs, notice: t("Mapa povrchů tu ulici nemá ({what}), profil je odhad z OSM.", { what: code === null || code === undefined ? t("žádná plocha") : `${t("plocha")} ${code} ${polys.find((p) => p.code === code)?.label || ""}`.trim() }) };
   }
   // Dual carriageway: the reach counts from the middle between the two carriageways, and green
   // between them is the median, not the end of the street.
