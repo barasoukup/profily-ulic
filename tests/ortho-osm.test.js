@@ -42,13 +42,15 @@ test("ortofoto a OSM: obruby z hran snímku, chodníky k domům OSM, vše odhad"
   assert.ok(Math.abs(road - 7) < 0.3, String(road));
 });
 
-test("ortofoto a OSM: v místní ulici chodník nejvýš 2,5 m, za ním plocha před domem (strop podle třídy ulice)", () => {
+test("ortofoto a OSM: se stropem podle třídy ulice (zkouška P.walkCapBy) v místní ulici chodník nejvýš 2,5 m, za ním plocha", () => {
+  P.walkCapBy = { residential: 2.5 };
   const polys = orthoOsmPolys({ osm: osm(), frame, dir, way: osm().elements[0], st: image() });
   const p = deriveProfile({ center: [0, 0], dir, half: 40, polys, osm: osm(), frame, way: osm().elements[0] });
   const sw = p.segments.filter((s) => s.type === "chodnik");
   assert.equal(sw.length, 2);
   assert.ok(sw.every((s) => Math.abs(s.width - 2.5) < 0.2), JSON.stringify(sw));
   assert.ok(p.segments.some((s) => s.type === "plocha"), JSON.stringify(p.segments.map((s) => s.type)));
+  delete P.walkCapBy;
 });
 
 test("ortofoto a OSM: bez hran na snímku platí šířka podle OSM (width), bez domu chodník jen podle OSM", () => {

@@ -423,7 +423,7 @@ export function carsSeen(st, a, b, axis) {
 const PIECE_GREEN = 0.35, AREA_GREEN = 0.2;
 // The narrowest sidewalk the image may end (from the kerb) and the stretch of green that ends it (m).
 const WALK_MIN = 1.0, WALK_WIN = 1.0, WALK_SAT = 8, WALK_LIGHT = 100;
-const WALK_CAP_BY = { residential: 2.5, living_street: 2.5, unclassified: 2.5, service: 2.5, tertiary: 3.5, secondary: 5 };
+
 const BACK_MIN = 2; // m: the shortest run of green or paving the image may give behind everything else
 const LAST_WALK = 15, LAST_NONE = 2; // m: the next thing of the street at most this far on; with none, this past the kerb
 const ALONG = 10, SIDEWALK = 2.5, SIDEWALK_MAX = 6, REST_MAX = 12, HOUSE = 5, GREEN_AREA = 0.1; // evaluation/ortofoto-osm/zelen.mjs: on ČÚZK 12.5 cm 67 % (Prague) and 82 % (Brno) of the metres right
@@ -698,11 +698,12 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     // P.walkCap (evaluation/ai-segmentation, 18. 11. 2026): a smaller cap for trials. 2.5 m fixed the sidewalks of up to
     // 3.5 m (Brno within 1 m 31 → 59 %) but cut the wide ones (over 3.5 m: Brno 55 → 18 %, Prague 36 → 27 %), so the
     // app keeps SIDEWALK_MAX: telling a sidewalk from other paving needs the image, not a number.
-    // The cap by the street's class (Bára 19. 11. 2026, the worst sidewalks of the regression: a local street's 6 m to
-    // the house is a narrow sidewalk and then a forecourt, a parking bay or a lawn; the main streets' are wide). Three
-    // variants tried on the regression, this one best (Prague ČÚZK sidewalks within 1 m 47 → 53 %, Brno 51 → 59 %, Brno
-    // 2025 39 → 55 %); ?off=walkcapby: 6 m everywhere. P.walkCapBy: other caps (trials).
-    const capBy = P.off?.has("walkcapby") ? {} : P.walkCapBy ?? WALK_CAP_BY;
+    // A cap by the street's class (Bára 19. 11. 2026, the worst sidewalks of the regression: a local street's 6 m to
+    // the house is a narrow sidewalk and then a forecourt, a parking bay or a lawn; the main streets' are wide).
+    // Off since the same day: "within 1 m" of the width rewarded any narrow cap (1 m everywhere came out best, Bára:
+    // "nemáš to trochu biasované?"); the sidewalk metre by metre (F1) does not move: regression Prague 62 → 60 %, Brno
+    // 57 → 57 %, hold-out −1 [−2, 0] pp. ?chodnik=2.5,3.5,5 (app.js) or P.walkCapBy: trials.
+    const capBy = P.off?.has("walkcapby") ? {} : P.walkCapBy ?? {};
     const cap = capBy[o.own.tags?.highway] ?? P.walkCap ?? SIDEWALK_MAX;
     let swEnd = says === "no" ? kerb : Math.abs(far - kerb) > cap ? kerb + sg * cap : far;
     // Lines of the map across the stretch from the kerb to the house (not the house's own front): its pieces, each a

@@ -9,6 +9,8 @@ import { aiCut, aiKerbs, aiReady, onAiProgress } from "./ai-kerbs.js";
 { const off = new URLSearchParams(location.search).get("off"); if (off) ORTHO_P.off = new Set(off.split(",")); }
 // ?auta=1: parked cars told by their colours on the orthophoto (ortho-osm.js carsColoured; a trial, off by default).
 if (new URLSearchParams(location.search).get("auta") === "1") ORTHO_P.carsColour = true;
+// ?chodnik=3,3.5,5: the sidewalk's caps for local, tertiary and secondary streets (trials; ortho-osm.js WALK_CAP_BY).
+{ const c = new URLSearchParams(location.search).get("chodnik")?.split(",").map(Number); if (c?.length === 3 && c.every((x) => x > 0)) ORTHO_P.walkCapBy = { residential: c[0], living_street: c[0], unclassified: c[0], service: c[0], tertiary: c[1], secondary: c[2] }; }
 import { underground, KINDS as NET_KINDS, netAt } from "./site.js";
 // Lanes and shoulders from the road markings of the orthophoto (lanes-ortho.js); ?orto=0 leaves the rules' profile.
 const LANES_ORTHO = new URLSearchParams(location.search).get("orto") !== "0";

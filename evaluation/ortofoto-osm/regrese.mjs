@@ -51,7 +51,7 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
     // The composition metre by metre (since 19. 11. 2026, the review: the regression saw nothing beyond the kerbs):
     // over what both cover, buildings left out; all of it and only beyond the kerbs of the carriageway at the axis;
     // roadway drawn where MTVU has none (no roadway, parking or tram bed).
-    const comp = { all: 0, allOk: 0, out: 0, outOk: 0, roadFalse: 0 };
+    const comp = { all: 0, allOk: 0, out: 0, outOk: 0, roadFalse: 0, swBoth: 0, swEst: 0, swTrue: 0 };
     let n = 0, none = 0;
     for (const c of list) {
       const st = await stripOf(city, key, c);
@@ -95,6 +95,8 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
         comp.all += 0.1; if (ok) comp.allOk += 0.1;
         if (t < Math.min(lo, tLo) || t > Math.max(hi, tHi)) { comp.out += 0.1; if (ok) comp.outOk += 0.1; }
         if (ek === "vozovka" && !["vozovka", "stání", "těleso"].includes(tk)) comp.roadFalse += 0.1;
+        // The sidewalk metre by metre (19. 11. 2026: "within 1 m" of the width rewards a narrow cap; this does not).
+        if (ek === "chodník") comp.swEst += 0.1; if (tk === "chodník") comp.swTrue += 0.1; if (ek === "chodník" && tk === "chodník") comp.swBoth += 0.1;
       }
       for (const [side, inner, sg] of [["A", lo, -1], ["B", hi, 1]]) {
         const t = truth.side?.[side];
@@ -106,7 +108,7 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
       }
     }
     const a = kerb.filter(Number.isFinite).map(Math.abs), s = sw.map(Math.abs);
-    console.log(`${city} ${key}${OFF.length ? ` (bez ${OFF.join(",")})` : ""}: ${n} řezů (${none} bez profilu) · obruby medián ${f2(median(a))} m, do 0,5 m ${pct(a.filter((x) => x <= 0.5).length, a.length)}, do 1 m ${pct(a.filter((x) => x <= 1).length, a.length)} · chodník medián chyby ${f2(median(s))} m, do 1 m ${pct(s.filter((x) => x <= 1).length, s.length)} (${s.length} stran) · stání: nalezeno ${park.tp}, chybí ${park.fn}, navíc ${park.fp} · složení správně ${pct(comp.allOk, comp.all)} (${comp.all.toFixed(0)} m), za obrubami ${pct(comp.outOk, comp.out)} (${comp.out.toFixed(0)} m), vozovka navíc ${comp.roadFalse.toFixed(0)} m`);
+    console.log(`${city} ${key}${OFF.length ? ` (bez ${OFF.join(",")})` : ""}: ${n} řezů (${none} bez profilu) · obruby medián ${f2(median(a))} m, do 0,5 m ${pct(a.filter((x) => x <= 0.5).length, a.length)}, do 1 m ${pct(a.filter((x) => x <= 1).length, a.length)} · chodník medián chyby ${f2(median(s))} m, do 1 m ${pct(s.filter((x) => x <= 1).length, s.length)} (${s.length} stran) · stání: nalezeno ${park.tp}, chybí ${park.fn}, navíc ${park.fp} · složení správně ${pct(comp.allOk, comp.all)} (${comp.all.toFixed(0)} m), za obrubami ${pct(comp.outOk, comp.out)} (${comp.out.toFixed(0)} m), vozovka navíc ${comp.roadFalse.toFixed(0)} m · chodník po metrech: přesnost ${pct(comp.swBoth, comp.swEst)}, záchyt ${pct(comp.swBoth, comp.swTrue)}, F1 ${pct(2 * comp.swBoth, comp.swEst + comp.swTrue)}`);
   }
 }
 if (process.env.DUMP) fsAi.writeFileSync(process.env.DUMP, JSON.stringify(dump));
