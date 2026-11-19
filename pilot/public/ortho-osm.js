@@ -775,7 +775,8 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
         // Cottbus: a 2 m sidewalk, then front gardens of dry grass, yellowish, not green; paving S 2–7, grass 12–23).
         // ?off=walksat: green only.
         const satOf = (x, y) => { const [a, b] = x < y ? [x, y] : [y, x], v = []; for (let i = k.cols.ti(a); i < k.cols.ti(b); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.sat[i])) v.push(k.cols.sat[i]); return v.length ? v.reduce((u, w) => u + w, 0) / v.length : NaN; };
-        const walkSat = satOf(kerb + sg * 0.3, kerb + sg * WALK_MIN), useSat = Number.isFinite(walkSat) && !P.off?.has("walksat");
+        // Off by default since 19. 11. 2026: the hold-out showed nothing either way (+1 [−1, 2] pp); P.walkSatOn: on.
+        const walkSat = satOf(kerb + sg * 0.3, kerb + sg * WALK_MIN), useSat = Number.isFinite(walkSat) && !!P.walkSatOn && !P.off?.has("walksat");
         // Not in a shadow: a house's shadow is dark and bluish, saturated as grass (Bělohorská, Olšanská in Prague).
         const lightOf = (x, y) => { const [a, b] = x < y ? [x, y] : [y, x], v = []; for (let i = k.cols.ti(a); i < k.cols.ti(b); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.medL[i])) v.push(k.cols.medL[i]); return v.length ? v.reduce((u, w) => u + w, 0) / v.length : NaN; };
         // P.walkYellow (a trial): the saturated stretch must also be yellower than the sidewalk (grass, not a shadow or
