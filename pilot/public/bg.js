@@ -43,6 +43,8 @@ export const BG = {
   "Server {server} neodpovídá, zkouším znovu ({n}/{of})…": "Сървърът {server} не отговаря, нов опит ({n}/{of})…",
   "Načítám data z OSM…": "Зареждат се данни от OSM…",
   "Načítám {map}…": "Зарежда се {map}…",
+  "Načítám model pro obruby (jen poprvé)…": "Зареждане на модела за бордюри (само първия път)…",
+  "Načítám model pro obruby (jen poprvé)… {p} %": "Зареждане на модела за бордюри (само първия път)… {p} %",
   "Načítám ortofoto…": "Зарежда се ортофото…",
   " · odhad z ortofota a OSM": " · приблизително, по ортофото и OSM",
   " · jen odhad z OSM": " · само приблизително, по OSM",

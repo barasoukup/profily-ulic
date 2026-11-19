@@ -43,6 +43,8 @@ export const HR = {
   "Server {server} neodpovídá, zkouším znovu ({n}/{of})…": "Poslužitelj {server} ne odgovara, novi pokušaj ({n}/{of})…",
   "Načítám data z OSM…": "Učitavanje podataka iz OSM-a…",
   "Načítám {map}…": "Učitava se {map}…",
+  "Načítám model pro obruby (jen poprvé)…": "Učitavam model za rubnjake (samo prvi put)…",
+  "Načítám model pro obruby (jen poprvé)… {p} %": "Učitavam model za rubnjake (samo prvi put)… {p} %",
   "Načítám ortofoto…": "Učitavanje ortofota…",
   " · odhad z ortofota a OSM": " · procjena iz ortofota i OSM-a",
   " · jen odhad z OSM": " · samo procjena iz OSM-a",

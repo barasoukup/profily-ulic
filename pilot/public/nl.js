@@ -44,6 +44,8 @@ export const NL = {
   "Server {server} neodpovídá, zkouším znovu ({n}/{of})…": "De server {server} reageert niet, nieuwe poging ({n}/{of})…",
   "Načítám data z OSM…": "OSM-gegevens worden geladen…",
   "Načítám {map}…": "{map} wordt geladen…",
+  "Načítám model pro obruby (jen poprvé)…": "Model voor trottoirbanden laden (alleen de eerste keer)…",
+  "Načítám model pro obruby (jen poprvé)… {p} %": "Model voor trottoirbanden laden (alleen de eerste keer)… {p}%",
   "Načítám ortofoto…": "Luchtfoto wordt geladen…",
   " · odhad z ortofota a OSM": " · schatting uit luchtfoto en OSM",
   " · jen odhad z OSM": " · alleen schatting uit OSM",

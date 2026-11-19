@@ -4,7 +4,7 @@ import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO, CH_ORTHO, DE_ORTHO, deWmsUrl, landsAt, landAt } from "./lanes-ortho.js";
 import { boxed as boxedPlace, within as withinPlace } from "./places.js";
 import { orthoOsmPolys, besidePassport, trimToEnds, P as ORTHO_P } from "./ortho-osm.js";
-import { aiCut, aiKerbs } from "./ai-kerbs.js";
+import { aiCut, aiKerbs, aiReady, onAiProgress } from "./ai-kerbs.js";
 // ?off=… switches named parts of the estimate off (the A/B tests, evaluation/ortofoto-osm/regrese.mjs).
 { const off = new URLSearchParams(location.search).get("off"); if (off) ORTHO_P.off = new Set(off.split(",")); }
 // ?auta=1: parked cars told by their colours on the orthophoto (ortho-osm.js carsColoured; a trial, off by default).
@@ -16,6 +16,7 @@ const LANES_ORTHO = new URLSearchParams(location.search).get("orto") !== "0";
 // On by default since 19. 11. 2026 (Bára); ?ai=0 leaves the estimate's own kerbs. The model and onnxruntime load only
 // at the first cut estimated from the orthophoto (ai-kerbs.js imports them on demand).
 const AI_KERBS = new URLSearchParams(location.search).get("ai") !== "0";
+const AI_WAIT = 12000; // ms: the longest the first estimated cut waits for the model's download
 // ?mapa=0: the estimate from the orthophoto and OSM even where a technical map answers (its surfaces, lines, tracks and
 // parking sections left out), to compare the two (evaluation/ortofoto-osm/chyby.mjs, Bára 18. 11. 2026).
 const NO_MAP = new URLSearchParams(location.search).get("mapa") === "0";
@@ -437,8 +438,13 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       // model or the photo the estimate's own.
       let ai = null;
       if (AI_KERBS) {
-        status(tr("Načítám ortofoto…"));
-        const cut = await aiCut({ osm, frame, dir, source: city.laneOrtho || country.laneOrtho }).catch((err) => { console.warn("AI", err); return null; });
+        // The first time: the library and the model come (about 7 MB), with their progress; past AI_WAIT the cut is
+        // drawn with the estimate's own kerbs and the download goes on for the next cut (Bára 19. 11. 2026).
+        if (aiReady()) status(tr("Načítám ortofoto…"));
+        else { status(tr("Načítám model pro obruby (jen poprvé)…")); onAiProgress((p) => status(tr("Načítám model pro obruby (jen poprvé)… {p} %", { p: Math.round(100 * p) }))); }
+        const job = aiCut({ osm, frame, dir, source: city.laneOrtho || country.laneOrtho }).catch((err) => { console.warn("AI", err); return null; });
+        const cut = aiReady() ? await job : await Promise.race([job, new Promise((r) => setTimeout(() => r(null), AI_WAIT))]);
+        onAiProgress(null);
         if (cut) ai = (axis) => aiKerbs(cut, axis);
       }
       // The map's runs where it has surfaces but none at the axis: its sidewalks and buildings bound the estimate.

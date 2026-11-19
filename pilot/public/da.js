@@ -43,6 +43,8 @@ export const DA = {
   "Server {server} neodpovídá, zkouším znovu ({n}/{of})…": "Serveren for {server} svarer ikke, prøver igen ({n}/{of})…",
   "Načítám data z OSM…": "Indlæser data fra OSM…",
   "Načítám {map}…": "Indlæser {map}…",
+  "Načítám model pro obruby (jen poprvé)…": "Indlæser modellen til kantsten (kun første gang)…",
+  "Načítám model pro obruby (jen poprvé)… {p} %": "Indlæser modellen til kantsten (kun første gang)… {p} %",
   "Načítám ortofoto…": "Indlæser ortofoto…",
   " · odhad z ortofota a OSM": " · skøn ud fra ortofoto og OSM",
   " · jen odhad z OSM": " · kun skøn ud fra OSM",

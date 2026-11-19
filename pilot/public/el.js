@@ -43,6 +43,8 @@ export const EL = {
   "Server {server} neodpovídá, zkouším znovu ({n}/{of})…": "Ο διακομιστής {server} δεν αποκρίνεται, νέα προσπάθεια ({n}/{of})…",
   "Načítám data z OSM…": "Φόρτωση δεδομένων OSM…",
   "Načítám {map}…": "Φορτώνεται {map}…",
+  "Načítám model pro obruby (jen poprvé)…": "Φόρτωση του μοντέλου για τα κράσπεδα (μόνο την πρώτη φορά)…",
+  "Načítám model pro obruby (jen poprvé)… {p} %": "Φόρτωση του μοντέλου για τα κράσπεδα (μόνο την πρώτη φορά)… {p}%",
   "Načítám ortofoto…": "Φόρτωση ορθοφωτογραφίας…",
   " · odhad z ortofota a OSM": " · εκτίμηση από ορθοφωτογραφία και OSM",
   " · jen odhad z OSM": " · μόνο εκτίμηση από OSM",

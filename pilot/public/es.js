@@ -43,6 +43,8 @@ export const ES = {
   "Server {server} neodpovídá, zkouším znovu ({n}/{of})…": "El servidor {server} no responde, reintentando ({n}/{of})…",
   "Načítám data z OSM…": "Cargando datos de OSM…",
   "Načítám {map}…": "Cargando {map}…",
+  "Načítám model pro obruby (jen poprvé)…": "Cargando el modelo de bordillos (solo la primera vez)…",
+  "Načítám model pro obruby (jen poprvé)… {p} %": "Cargando el modelo de bordillos (solo la primera vez)… {p} %",
   "Načítám ortofoto…": "Cargando la ortofoto…",
   " · odhad z ortofota a OSM": " · estimación a partir de ortofoto y OSM",
   " · jen odhad z OSM": " · solo estimación a partir de OSM",

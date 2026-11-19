@@ -46,6 +46,8 @@ export const HU = {
   "Server {server} neodpovídá, zkouším znovu ({n}/{of})…": "A szerver nem válaszol ({server}), újrapróbálkozás ({n}/{of})…",
   "Načítám data z OSM…": "OSM-adatok betöltése…",
   "Načítám {map}…": "Betöltés: {map}…",
+  "Načítám model pro obruby (jen poprvé)…": "A szegélymodell betöltése (csak először)…",
+  "Načítám model pro obruby (jen poprvé)… {p} %": "A szegélymodell betöltése (csak először)… {p}%",
   "Načítám ortofoto…": "Ortofotó betöltése…",
   " · odhad z ortofota a OSM": " · becslés ortofotóból és OSM-ből",
   " · jen odhad z OSM": " · csak OSM-alapú becslés",

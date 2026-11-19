@@ -43,6 +43,8 @@ export const SV = {
   "Server {server} neodpovídá, zkouším znovu ({n}/{of})…": "Servern {server} svarar inte, försöker igen ({n}/{of})…",
   "Načítám data z OSM…": "Laddar OSM-data…",
   "Načítám {map}…": "Laddar {map}…",
+  "Načítám model pro obruby (jen poprvé)…": "Laddar modellen för kantstenar (bara första gången)…",
+  "Načítám model pro obruby (jen poprvé)… {p} %": "Laddar modellen för kantstenar (bara första gången)… {p} %",
   "Načítám ortofoto…": "Laddar ortofoto…",
   " · odhad z ortofota a OSM": " · uppskattning från ortofoto och OSM",
   " · jen odhad z OSM": " · endast uppskattning från OSM",
