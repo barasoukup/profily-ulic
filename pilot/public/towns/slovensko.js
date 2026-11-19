@@ -61,6 +61,15 @@ async function podlaznost(lat, lon) {
 const ROAD = 701, WALK = 702, BIKE = 703, PARK = 704, OTHER = 1003, GREEN = 401, PLAY = 901;
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_SK?.[k] ?? null : new URLSearchParams(location.search).get(k));
 const AGO_BA = "https://services8.arcgis.com/pRlN1m0su5BYaFAS/arcgis/rest/services";
+// The magistrát's passport lies 1.4–1.5 m east and 0.3 m south of OSM and the ZBGIS orthophoto (Bára 19. 11. 2026: the
+// hold-out set put the estimate's streets 1.2 m off it, in Bratislava only; evaluation/slovensko/posun-ba.mjs, 1330 points
+// on OSM's axes in the centre, the rest 0.3 m): moved back. ?off=posunba: as it comes.
+const BA_SHIFT = { east: -1.47, north: 0.33 };
+function shiftBa(json) {
+  if (!json?.features || (typeof location !== "undefined" && new URLSearchParams(location.search).get("off")?.split(",").includes("posunba"))) return json;
+  const dLon = BA_SHIFT.east / (111320 * Math.cos((48.15 * Math.PI) / 180)), dLat = BA_SHIFT.north / 110574;
+  return { ...json, features: json.features.map((f) => (f.geometry?.rings ? { ...f, geometry: { ...f.geometry, rings: f.geometry.rings.map((r) => r.map(([x, y]) => [x + dLon, y + dLat])) } } : f)) };
+}
 const AGO_DUBRAVKA = "https://services-eu1.arcgis.com/sF2W5owmzDfZHYpi/arcgis/rest/services";
 const AGO_ZVOLEN = "https://services-eu1.arcgis.com/qZQsmXf8mZtYtGaE/arcgis/rest/services";
 const ZVOLEN = { chodník: WALK, cesta: ROAD, parkovisko: PARK, "platené parkovanie": PARK, "pešia zóna": WALK, prístup: WALK };
@@ -103,7 +112,7 @@ export const SK_TOWNS = {
         arc(`${AGO_BA}/Vozovka_technický_stav_podľa_OSK_zobrazenie/FeatureServer/0`, "OBJECTID", bbox),
         arc(`${AGO_BA}/Parkoviská_OSK_MAG_BA_2_zobrazenie/FeatureServer/0`, "OBJECTID", bbox),
       ]);
-      return asMtvu([[d, (a) => DUBRAVKA[a.Typ_kom] ?? null], [walk, (a) => BA_WALK[a.vyuzitie] ?? null], [road, ROAD], [park, PARK]], MTVU_LABELS);
+      return asMtvu([[d, (a) => DUBRAVKA[a.Typ_kom] ?? null], [shiftBa(walk), (a) => BA_WALK[a.vyuzitie] ?? null], [shiftBa(road), ROAD], [shiftBa(park), PARK]], MTVU_LABELS);
     } },
   presov: { box: [21.15, 48.94, 21.33, 49.06], credit: "pasport dopravy a zelene © mesto Prešov (CC BY 4.0)",
     async own(bbox) {
