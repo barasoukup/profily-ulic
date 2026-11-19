@@ -422,7 +422,7 @@ export function carsSeen(st, a, b, axis) {
 // sidewalk make some).
 const PIECE_GREEN = 0.35, AREA_GREEN = 0.2;
 // The narrowest sidewalk the image may end (from the kerb) and the stretch of green that ends it (m).
-const WALK_MIN = 1.0, WALK_WIN = 1.0, WALK_SAT = 8, WALK_LIGHT = 100, AI_RUN = 1.0;
+const WALK_MIN = 1.0, WALK_WIN = 1.0, WALK_SAT = 8, WALK_LIGHT = 100, AI_RUN = 1.0, AI_SNAP = 0.6;
 
 const BACK_MIN = 2; // m: the shortest run of green or paving the image may give behind everything else
 const LAST_WALK = 15, LAST_NONE = 2; // m: the next thing of the street at most this far on; with none, this past the kerb
@@ -752,6 +752,15 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
           out.push({ ...r, e: lim }, { c: 1003, s: lim, e: r.e });
         }
         runs.splice(0, runs.length, ...out);
+      }
+      // P.aiSnap (a trial): each boundary between two of the model's runs moved to the strongest change of surface on
+      // the image (columns Ec) within ±AI_SNAP, if there is one of at least P.aiSnapMin (the model draws by 20 cm
+      // pixels and its boundary wanders; the line between the sidewalk and the lawn is often plain on the photo).
+      if (P.aiSnap && k.cols?.Ec) for (let q = 0; q + 1 < runs.length; q++) {
+        const b = runs[q].e, c = k.cols;
+        let best = null;
+        for (let i = c.ti(b - AI_SNAP); i <= c.ti(b + AI_SNAP); i++) if (i > 0 && i < c.nt && c.Ec[i] >= (P.aiSnapMin ?? 3) && (!best || c.Ec[i] > c.Ec[best])) best = i;
+        if (best !== null) { const t = c.tOf(best); if (sg * (t - runs[q].s) > 0.3 && sg * (runs[q + 1].e - t) > 0.3) runs[q].e = runs[q + 1].s = t; }
       }
       const LBL = { 702: "chodník (AI)", 401: "zeleň (AI)", 1003: "zpevněná plocha (AI)" };
       for (const r of runs) polys.push(rect(r.c, LBL[r.c], ...span(r.s, r.e)));
