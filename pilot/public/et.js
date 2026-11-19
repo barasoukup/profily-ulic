@@ -389,6 +389,7 @@ export const ET = {
   "databáze ulic Cách a OSM": "Aacheni tänavate andmebaasi ja OSM-i",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "tänavakatted (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "ortofoto {who}",
+  "obruby vozovky: model AI učený na mapách povrchů {who}": "sõidutee äärekivid: tehisintellekti mudel, õpetatud pinnakaartidel {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "ortofoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© OpenStreetMapi kaastöötajad (ODbL)",

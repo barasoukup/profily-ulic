@@ -397,6 +397,7 @@ export const FI = {
   "databáze ulic Cách a OSM": "Aachenin katutietokanta ja OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "katujen pinnat (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "ortokuva {who}",
+  "obruby vozovky: model AI učený na mapách povrchů {who}": "ajoradan reunakivet: tekoälymalli, opetettu pintakartoilla {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "ortokuva © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortokuva © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© OpenStreetMapin tekijät (ODbL)",

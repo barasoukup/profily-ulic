@@ -397,6 +397,7 @@ export const GA = {
   "databáze ulic Cách a OSM": "bunachar sonraí sráideanna Aachen agus OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "dromchlaí sráideanna (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "ortafótagraf {who}",
+  "obruby vozovky: model AI učený na mapách povrchů {who}": "colbhaí an charrbhealaigh: samhail IS oilte ar léarscáileanna dromchla {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "ortafótagraf © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortafótagraf © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© rannpháirtithe OpenStreetMap (ODbL)",

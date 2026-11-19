@@ -392,6 +392,7 @@ export const HU = {
   "databáze ulic Cách a OSM": "Aachen utcaadatbázisa és az OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "utcafelületek (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "ortofotó {who}",
+  "obruby vozovky: model AI učený na mapách povrchů {who}": "úttest szegélyei: a felületi térképeken {who} tanított MI-modell",
   "ortofoto © basemap.at (CC BY 4.0)": "ortofotó © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofotó © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© OpenStreetMap-közreműködők (ODbL)",

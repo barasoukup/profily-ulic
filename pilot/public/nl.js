@@ -397,6 +397,7 @@ export const NL = {
   "databáze ulic Cách a OSM": "van de stratendatabank van Aken en OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "straatoppervlakken (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "luchtfoto {who}",
+  "obruby vozovky: model AI učený na mapách povrchů {who}": "trottoirbanden van de rijbaan: AI-model getraind op de oppervlaktekaarten {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "luchtfoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "luchtfoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© OpenStreetMap-bijdragers (ODbL)",

@@ -396,6 +396,7 @@ export const RO = {
   "databáze ulic Cách a OSM": "bazei de date a străzilor din Aachen și OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "suprafețe stradale (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "ortofoto {who}",
+  "obruby vozovky: model AI učený na mapách povrchů {who}": "bordurile carosabilului: model IA antrenat pe hărțile suprafețelor {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "ortofoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© contribuitorii OpenStreetMap (ODbL)",

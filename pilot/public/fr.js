@@ -398,6 +398,7 @@ export const FR = {
   "databáze ulic Cách a OSM": "de la base de données de voirie d'Aix-la-Chapelle et d'OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "surfaces de voirie (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "orthophoto {who}",
+  "obruby vozovky: model AI učený na mapách povrchů {who}": "bordures de la chaussée : modèle d’IA entraîné sur les cartes des surfaces {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "orthophoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "orthophoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© contributeurs d'OpenStreetMap (ODbL)",

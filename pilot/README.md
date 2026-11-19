@@ -593,6 +593,18 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
     - všechno kromě domů je „odhad“ a hláška dodá „Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.“
       Přesnost proti MTVU (jednoduché řezy Prahy a Brna): obruba do 0,5 m u 39–50 % stran, do 1 m u 57–69 %. Samotné
       OSM má 26–34 % a 51–58 %. Ve vsích a v cizině bude nejspíš horší.
+11b. **Obruby vozovky z AI** (zapnuté od 19. 11. 2026, `?ai=0` vypne; Bára 18. 11. 2026, `public/ai-kerbs.js`, pilot a měření
+    `evaluation/ai-segmentation/`). Jen v odhadu z bodu 11a a jen obě obruby vozovky u osy: čtverec ortofota 83,2 m
+    kolem řezu (416 px po 20 cm, sever nahoře, stejný zdroj jako u bodu 11) a osm vrstev OSM na něm (ulice, šířka
+    ulice podle OSM, pěší cesty, cyklostezky, koleje, budovy, zeleň, parkoviště) dostane model, který každý pixel
+    zařadí do pěti druhů (vozovka, chodník, zeleň, budova, ostatní). Napříč řezem po 20 cm rozhoduje většina tří
+    čar 3 m od sebe, vozovka je úsek nejblíž osy (mezery do 0,6 m přemostí, do 4 m od osy), uvnitř mezí z OSM.
+    Chodníky, zeleň, stání a domy zůstávají z bodu 11a. Model (int8, 4,7 MB, zabalený asi 4,2 MB) a onnxruntime-web
+    (11 MB, zabalený asi 2,9 MB) se stáhnou až při prvním řezu s odhadem; řez pak trvá asi 0,6–0,8 s. V cílovém území
+    (pasporty Bratislavy, Prešova, Žiliny a Cáchy): obruby do 0,5 m 42 % proti 26 %, do 1 m 63 % proti 49 % (lépe 22,
+    hůř 14 ze 43 řezů); Brno do 1 m 74 % proti 62 %. Obě sady posloužily i při výběru modelu (validační, ne nezávislý
+    test; `evaluation/ai-segmentation/MESTA.md`). Kredit: mapy povrchů, na kterých se model učil (credits.js aiKerbs).
+    Odkazy na proklikání `evaluation/ai-segmentation/ODKAZY.md`.
 12. Konec A je vždy západní, B východní; tlačítko **⇄ Otočit** je prohodí (zrcadlí stav, návrh i opravy, domy si
     nechají barvy).
 13. Trakční sloup dál než 4 m od kolejí (mezi nimi pruhy pro auta, 17. listopadu) nemá výložník, ale drží vodorovné

@@ -396,6 +396,7 @@ export const MT = {
   "databáze ulic Cách a OSM": "mill-bażi tad-data tat-toroq ta' Aachen u minn OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "uċuħ tat-toroq (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "ortofoto {who}",
+  "obruby vozovky: model AI učený na mapách povrchů {who}": "bankini tat-triq: mudell tal-IA mħarreġ fuq il-mapep tal-uċuħ {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "ortofoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© kontributuri ta' OpenStreetMap (ODbL)",

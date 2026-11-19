@@ -404,6 +404,7 @@ export const EN = {
   "ortofoto {who}": "orthophoto {who}",
   "Příčné profily ulic v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku a v Lichtenštejnsku od fasády k fasádě z map povrchů měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.": "Street cross-sections in Czechia, Slovakia, Austria, Germany, Switzerland and Liechtenstein from facade to facade, from the surface maps of the cities and of ČÚZK, RÚIAN, ZBGIS and OpenStreetMap. Edit a profile, compare it with the street today and save it as an image.",
   "Příčné profily ulic v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku a v Lichtenštejnsku z map povrchů měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.": "Street cross-sections in Czechia, Slovakia, Austria, Germany, Switzerland and Liechtenstein from the surface maps of the cities, of ČÚZK and of ZBGIS: facade to facade, editable, with local illustrations.",
+  "obruby vozovky: model AI učený na mapách povrchů {who}": "carriageway kerbs: AI model trained on the surface maps {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "orthophoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "orthophoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© OpenStreetMap contributors (ODbL)",

@@ -420,6 +420,7 @@ export const DE = {
   "databáze ulic Cách a OSM": "der Straßendatenbank Aachens und OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "Straßenflächen (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "Luftbild {who}",
+  "obruby vozovky: model AI učený na mapách povrchů {who}": "Fahrbahnränder: KI-Modell, trainiert mit den Oberflächenkarten {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "Luftbild © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "Luftbild © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© OpenStreetMap-Mitwirkende (ODbL)",

@@ -433,7 +433,9 @@ function canopyMask(st, osm, tu) {
   return mask;
 }
 
-export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = [], widths = [], areas = [], symbols = [] }) {
+// ai: the kerbs a trained model read (ai-kerbs.js; ?ai=1, Bára 18. 11. 2026), a function of the axis (t of the
+// clicked way) giving { A, B } or null: they replace the carriageway's kerbs found here, within OSM's limits.
+export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = [], widths = [], areas = [], symbols = [], ai = null }) {
   if (!way || !STREET.test(way.tags?.highway || "")) return null;
   const normal = [-dir[1], dir[0]];
   const tu = (lon, lat) => { const [x, y] = frame.toXY(lon, lat); return [x * normal[0] + y * normal[1], x * dir[0] + y * dir[1]]; };
@@ -465,6 +467,11 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   // (Bára 17. 11. 2026, Václavské náměstí: paving under the crowns read as grass; ?off=koruny).
   if (st && !P.off?.has("koruny")) st = { ...st, canopy: canopyMask(st, osm, tu) };
   const road = withRails(mapWidth(osmRoad(o.own), o.own.t), o), k = kerbsOnImage(st, o, road, mapRuns, edgeT);
+  const byAi = ai?.(o.own.t);
+  if (byAi) {
+    const A = Math.max(byAi.A, k.lim?.A ?? -Infinity), B = Math.min(byAi.B, k.lim?.B ?? Infinity);
+    if (B - A >= 2 && A < o.own.t && o.own.t < B) { k.A = A; k.B = B; k.why = { A: "ai", B: "ai" }; k.image = true; }
+  }
   if (!Number.isFinite(k.A) || !Number.isFinite(k.B) || k.B - k.A < 2) return null;
   // No kerb across a track: with trams in the roadway it reaches at least as far as withRails says (?off=embedded2).
   if (road.embeddedOnly && !P.off?.has("embedded2")) { k.A = Math.min(k.A, o.own.t - road.reach.A); k.B = Math.max(k.B, o.own.t + road.reach.B); }

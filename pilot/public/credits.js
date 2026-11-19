@@ -55,6 +55,8 @@ export const SOURCE_CREDITS = {
     : c === "CH" ? t("úřední vyměřování (Bodenbedeckung) © kantony (geodienste.ch)") : t("úřední vyměřování (Bodenbedeckung) © kanton {canton} (geodienste.ch)", { canton: c }))])),
   // ZBGIS's roads, car parks and lawns in the estimate (towns/slovensko.js).
   zbgis: { true: () => t("cesty, parkoviská a tráva © GKÚ Bratislava (ZBGIS, CC BY 4.0)") },
+  // The carriageway's kerbs read by the AI model (ai-kerbs.js, ?ai=1): the surface maps and OSM it learnt on.
+  aiKerbs: { true: () => t("obruby vozovky: model AI učený na mapách povrchů {who}", { who: "© IPR Praha, Stadt Wien – data.wien.gv.at (CC BY 4.0), Geoportal Berlin (dl-de/zero-2-0), Freie und Hansestadt Hamburg (dl-de/by-2-0)" }) },
 };
 
 // The credit line of one key and value, or null for one not listed.

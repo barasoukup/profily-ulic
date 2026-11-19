@@ -635,3 +635,51 @@ function redraw(w, lines, fine = true) {
   }
   return changed ? segs : null;
 }
+
+// ---------- a north-up square of the orthophoto (ai-kerbs.js) ----------
+// The square of side 2 × half m on the ground around lon, lat, px × px pixels, north up, in Web Mercator as the AI
+// model learnt it (evaluation/ai-segmentation/fetch_ortho.py): the source's shift applied as above. Returns
+// { source, img } (ImageData) or null (no photo there); a server down throws as laneImage does.
+export async function orthoPatch({ source, lon, lat, half, px, timeout = TIMEOUT }) {
+  const keys = source === "de" ? (await landsAt(lon, lat).catch(() => [])).map((l) => `de-${l}`) : [SOURCES[source] ? source : "cuzk"];
+  const seen = new Set(); // Berlin and Brandenburg: one service
+  for (const key of keys) {
+    const id = key.startsWith("de-") ? DE_ORTHO[key.slice(3)].wms : key;
+    if (seen.has(id)) continue;
+    seen.add(id);
+    const img = await patchOf(key, lon, lat, half, px, timeout);
+    if (img) return { source: key, img };
+  }
+  return null;
+}
+async function patchOf(key, lon, lat, half, px, timeout) {
+  const src = SOURCES[key], k = Math.cos((lat * Math.PI) / 180), h = half / k;
+  const [sx, sy] = (src.shift || [0, 0]).map((v) => v / k), [cx, cy] = merc(lon, lat);
+  const b = [cx - h + sx, cy - h + sy, cx + h + sx, cy + h + sy];
+  const canvas = new OffscreenCanvas(px, px), g = canvas.getContext("2d");
+  const signal = AbortSignal.timeout(timeout);
+  if (src.tiles) {
+    const size = (2 * Math.PI * R) / 2 ** src.z, scale = px / (b[2] - b[0]);
+    const tx0 = Math.floor((b[0] + Math.PI * R) / size), tx1 = Math.floor((b[2] + Math.PI * R) / size);
+    const ty0 = Math.floor((Math.PI * R - b[3]) / size), ty1 = Math.floor((Math.PI * R - b[1]) / size);
+    if ((tx1 - tx0 + 1) * (ty1 - ty0 + 1) > 40) return null;
+    let down = 0, missing = 0;
+    const jobs = [];
+    for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) {
+      const gx = tx * size - Math.PI * R, gy = Math.PI * R - ty * size;
+      jobs.push(fetch(`${src.tiles}/${src.z}/${src.xy ? `${tx}/${ty}` : `${ty}/${tx}`}${src.ext || ""}`, { signal }).then(async (r) => {
+        if (r.ok) g.drawImage(await createImageBitmap(await r.blob()), (gx - b[0]) * scale, (b[3] - gy) * scale, size * scale, size * scale);
+        else if (r.status >= 500) down++; else missing++;
+      }));
+    }
+    await Promise.all(jobs);
+    if (jobs.length && down === jobs.length) throw Object.assign(new Error(`ortofoto ${down}× 5xx`), { outage: true });
+    if (missing && src.fallback) return patchOf(src.fallback, lon, lat, half, px, timeout);
+  } else {
+    const r = await fetch(src.url(b, px, px), { signal });
+    if (!r.ok) { if (r.status >= 500) throw Object.assign(new Error(`ortofoto ${r.status}`), { outage: true }); return null; }
+    g.drawImage(await createImageBitmap(await r.blob()), 0, 0, px, px);
+  }
+  const img = g.getImageData(0, 0, px, px);
+  return blank(img) ? null : img;
+}

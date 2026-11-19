@@ -9,6 +9,8 @@
 //   SRC=cuzk12 …                                                       only this orthophoto (default: cuzk12 and the city's 10 cm)
 import { cuts, truthOf, osmAround, stripOf, median } from "./lib.mjs";
 import { orthoOsmPolys, trimToEnds, P } from "../../pilot/public/ortho-osm.js";
+import { aiKerbs } from "../../pilot/public/ai-kerbs.js";
+import fsAi from "node:fs";
 import { localFrame, deriveProfile } from "../../pilot/public/derive.js";
 
 const CITIES = process.argv.slice(2).filter((a) => /^[a-z]+$/.test(a));
@@ -40,6 +42,7 @@ function laid(p) {
   return out;
 }
 
+const aiCache = {}, dump = [];
 for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
   const list = await cuts(city);
   const keys = SRC || (city === "praha" ? ["cuzk12", "ipr10"] : ["cuzk12", "brno10"]);
@@ -57,7 +60,16 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
       const frame = localFrame(c.cut.lat, c.cut.lon), b = (c.cut.bearing * Math.PI) / 180, dir = [Math.sin(b), Math.cos(b)];
       const way = osm.elements.find((e) => e.type === "way" && e.id === c.cut.wayId);
       if (!way) continue;
-      const polys = orthoOsmPolys({ osm, frame, dir, way, st });
+      // AI=ai-map5-3: the carriageway's kerbs of the model (evaluation/ai-segmentation, its classes along the cut
+      // precomputed in data/ai-seg/cuts/<city>/<AI>.json; as app.js ?ai=1). Not Prague: the model learnt on it.
+      let ai = null;
+      if (process.env.AI && city !== "praha") {
+        const dir2 = `/Users/barasoukupova/streetdesign/data/ai-seg/cuts/${city}`;
+        aiCache[city] ??= JSON.parse(fsAi.readFileSync(`${dir2}/${process.env.AI}.json`, "utf8"));
+        const cls = aiCache[city][String(c.n)], meta = fsAi.existsSync(`${dir2}/${c.n}.json`) && JSON.parse(fsAi.readFileSync(`${dir2}/${c.n}.json`, "utf8"));
+        if (cls && meta) { const cut = { ts: meta.ts, cls: cls.map((v) => (v === 0 || v === 3 ? 0 : v < 0 ? -1 : 1)) }; ai = (axis) => aiKerbs(cut, axis); }
+      }
+      const polys = orthoOsmPolys({ osm, frame, dir, way, st, ai });
       const truth = truthOf(c, 0);
       if (!polys || !truth.way) { none++; continue; }
       // As app.js: a side without a house ends where orthoOsmPolys found (polys.ends).
@@ -88,7 +100,7 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
         const t = truth.side?.[side];
         if (!t) continue;
         const mine = parts.filter((x) => SIDEWALK.has(x.type) && (sg < 0 ? x.e <= inner + 0.01 : x.s >= inner - 0.01)).reduce((a, x) => a + (x.e - x.s), 0);
-        if (truth.facade[side] !== null) sw.push(mine - t.sidewalk);
+        if (truth.facade[side] !== null) { sw.push(mine - t.sidewalk); if (process.env.DUMP) dump.push({ city, key, n: c.n, side, sw: mine - t.sidewalk, kerb: side === "A" ? lo - tLo : hi - tHi }); }
         const pk = road.some((x) => x.type === "parkovani" && (sg < 0 ? x.s - lo < 3 : hi - x.e < 3));
         if (t.parking && pk) park.tp++; else if (t.parking) park.fn++; else if (pk) park.fp++;
       }
@@ -97,3 +109,4 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
     console.log(`${city} ${key}${OFF.length ? ` (bez ${OFF.join(",")})` : ""}: ${n} řezů (${none} bez profilu) · obruby medián ${f2(median(a))} m, do 0,5 m ${pct(a.filter((x) => x <= 0.5).length, a.length)}, do 1 m ${pct(a.filter((x) => x <= 1).length, a.length)} · chodník medián chyby ${f2(median(s))} m, do 1 m ${pct(s.filter((x) => x <= 1).length, s.length)} (${s.length} stran) · stání: nalezeno ${park.tp}, chybí ${park.fn}, navíc ${park.fp} · složení správně ${pct(comp.allOk, comp.all)} (${comp.all.toFixed(0)} m), za obrubami ${pct(comp.outOk, comp.out)} (${comp.out.toFixed(0)} m), vozovka navíc ${comp.roadFalse.toFixed(0)} m`);
   }
 }
+if (process.env.DUMP) fsAi.writeFileSync(process.env.DUMP, JSON.stringify(dump));

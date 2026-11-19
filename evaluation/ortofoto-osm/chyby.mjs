@@ -9,6 +9,9 @@ import { cuts, truthOf, osmAround, stripOf, ROOT } from "./lib.mjs";
 import { orthoOsmPolys, trimToEnds, P } from "../../pilot/public/ortho-osm.js";
 import { localFrame, deriveProfile, lanesFromShoulders, splitTwoWayLane, capWideLanes, pedestrianZone, widenNarrowTrams } from "../../pilot/public/derive.js";
 import { applyLanes } from "../../pilot/public/lanes-ortho.js";
+import { aiKerbs } from "../../pilot/public/ai-kerbs.js";
+import fsAi from "node:fs";
+const aiCache = {};
 
 const CITIES = process.argv.slice(2).filter((a) => /^[a-z]+$/.test(a));
 P.off = new Set((process.env.OFF || "").split(",").filter(Boolean));
@@ -61,7 +64,15 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
     const frame = localFrame(c.cut.lat, c.cut.lon), b = (c.cut.bearing * Math.PI) / 180, dir = [Math.sin(b), Math.cos(b)];
     const way = osm.elements.find((e) => e.type === "way" && e.id === c.cut.wayId);
     if (!way) continue;
-    const polys = orthoOsmPolys({ osm, frame, dir, way, st });
+    // AI=ai-map5-3: the model's kerbs (as regrese.mjs; not Prague, it learnt there).
+    let ai = null;
+    if (process.env.AI && city !== "praha") {
+      const d2 = `/Users/barasoukupova/streetdesign/data/ai-seg/cuts/${city}`;
+      aiCache[city] ??= JSON.parse(fsAi.readFileSync(`${d2}/${process.env.AI}.json`, "utf8"));
+      const cls = aiCache[city][String(c.n)], meta = fsAi.existsSync(`${d2}/${c.n}.json`) && JSON.parse(fsAi.readFileSync(`${d2}/${c.n}.json`, "utf8"));
+      if (cls && meta) { const cut = { ts: meta.ts, cls: cls.map((v) => (v === 0 || v === 3 ? 0 : v < 0 ? -1 : 1)) }; ai = (axis) => aiKerbs(cut, axis); }
+    }
+    const polys = orthoOsmPolys({ osm, frame, dir, way, st, ai });
     const truth = truthOf(c, 0);
     if (!polys || !truth.way) continue;
     // As lanes-ortho.js laneImage: Y (yellower than blue) and D (green less red) too.

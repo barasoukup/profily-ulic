@@ -389,6 +389,7 @@ export const BG = {
   "databáze ulic Cách a OSM": "базата данни за улиците на Аахен и OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "улични настилки (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "ортофото {who}",
+  "obruby vozovky: model AI učený na mapách povrchů {who}": "бордюри на платното: модел с ИИ, обучен върху картите на настилките {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "ортофото © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ортофото © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© сътрудници на OpenStreetMap (ODbL)",

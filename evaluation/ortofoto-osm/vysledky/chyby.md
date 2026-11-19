@@ -440,3 +440,18 @@ Neurčeno celkem: uvnitř ulice (mezi vozovkami) 0 m, vně 167 m; MTVU pod ním:
 
 Vnější obruby ulice (strany, + = odhad uvnitř, − = venku, m): -99..-2: 6 · -2..-1: 5 · -1..-0.5: 14 · -0.5..0.5: 79 · 0.5..1: 23 · 1..2: 17 · 2..5: 24 · 5..99: 20
 
+
+## S obrubami vozovky z modelu AI (`AI=ai-map5-3`, jen Brno: na Praze se model učil; 19. 11. 2026)
+
+| Brno, ČÚZK | bez AI | s AI |
+|---|---|---|
+| vnější obruba o 1 m a víc dovnitř (stran) | 61 | 37 |
+| vnější obruba o 1 m a víc ven (stran) | 11 | 13 |
+| metry vozovky správně | 79 % | 83 % |
+| metry chodníku správně | 63 % | 65 % |
+| regrese: obruby medián, do 0,5 / 1 m | 0,69 · 41 / 62 % | 0,51 · 47 / 74 % |
+| regrese: chodník medián, do 1 m | 1,05 · 49 % | 1,25 · 49 % |
+| regrese Brno 2025 10 cm: obruby / chodník medián | 0,58 / 2,60 | 0,50 / 1,30 |
+
+Koleje mezi dvěma vozovkami (vozovka v MTVU čtena jako těleso): v MTVU napůl vozovka (8 řezů), napůl těleso (8); OSM
+(značky kolejí i ulice, třída, rychlost) ani snímek (podobnost s vozovkou, hrany na okrajích) je neodliší, zůstává.
