@@ -177,6 +177,7 @@ const BLOCKS = 8;
 export function columns(st) {
   const { nt, nu, res, t0, L, G, S } = st, bl = Array.from({ length: BLOCKS }, () => new Float32Array(nt));
   const medL = new Float32Array(nt), green = new Float32Array(nt), sat = new Float32Array(nt), seen = new Float32Array(nt);
+  const bs = Array.from({ length: BLOCKS }, () => new Float32Array(nt));
   const per = Math.floor(nu / BLOCKS);
   const v_seen = (i) => { let c = 0; for (let j = 0; j < BLOCKS * per; j++) if (!Number.isNaN(L[j * nt + i])) c++; return c; };
   for (let i = 0; i < nt; i++) {
@@ -192,6 +193,9 @@ export function columns(st) {
         if (j % 2 === 0) sv.push(S[q]);
       }
       bl[b][i] = v.length ? median(v) : NaN;
+      const vs = [];
+      for (let j = b * per; j < (b + 1) * per; j += 2) { const q = j * nt + i; if (!Number.isNaN(L[q])) vs.push(S[q]); }
+      bs[b][i] = vs.length ? median(vs) : NaN;
     }
     medL[i] = median(Array.from(bl, (x) => x[i]));
     green[i] = n ? gn / n : st.canopy ? 0 : NaN; sat[i] = median(sv); seen[i] = v_seen(i) / nu;
@@ -231,7 +235,30 @@ export function columns(st) {
   }
   const typical = median(Array.from(edge).filter((x) => x > 0)) || 1;
   const E = Float32Array.from(edge, (x) => x / typical);
-  return { nt, res, t0, medL, green, sat, seen, E, ti: (t) => Math.round((t - t0) / res), tOf: (i) => t0 + i * res };
+  // A change of surface (Bára 19. 11. 2026: the sidewalk's edge to the grass is plain to see, more than its kerb): in
+  // brightness and in saturation, each against its own typical step on this image (no absolute values: seasons,
+  // climates, orthophotos differ), per 5 m piece the largest step within ±0.3 m (an edge of front gardens is not
+  // ruler-straight), the median over the pieces (it holds along the street). Ec, relative to its own typical value.
+  const shift = Math.round(0.3 / res), stepAt = (arr, b, i) => {
+    let a = 0, c = 0, na = 0, nc = 0;
+    for (let k = 0; k < d; k++) { const x = arr[b][i - 1 - k], y = arr[b][i + k]; if (!Number.isNaN(x)) { a += x; na++; } if (!Number.isNaN(y)) { c += y; nc++; } }
+    return na && nc ? Math.abs(c / nc - a / na) : NaN;
+  };
+  const allL = [], allS = [];
+  for (let i = d; i <= nt - d; i += 2) for (let b = 0; b < BLOCKS; b++) { const x = stepAt(bl, b, i), y = stepAt(bs, b, i); if (x > 0) allL.push(x); if (y > 0) allS.push(y); }
+  const tL = median(allL) || 1, tS = median(allS) || 1, ec = new Float32Array(nt + 1);
+  for (let i = d + shift; i <= nt - d - shift; i++) {
+    const per5 = [];
+    for (let b = 0; b < BLOCKS; b++) {
+      let best = NaN;
+      for (let q = i - shift; q <= i + shift; q++) { const v = (stepAt(bl, b, q) || 0) / tL + (stepAt(bs, b, q) || 0) / tS; if (!(v <= best)) best = v; }
+      if (Number.isFinite(best)) per5.push(best);
+    }
+    if (per5.length >= 4) ec[i] = median(per5);
+  }
+  const typicalC = median(Array.from(ec).filter((x) => x > 0)) || 1;
+  const Ec = Float32Array.from(ec, (x) => x / typicalC);
+  return { nt, res, t0, medL, green, sat, seen, E, Ec, tL, tS, ti: (t) => Math.round((t - t0) / res), tOf: (i) => t0 + i * res };
 }
 // Half the width of a tram bed beyond its outer track axis (a 3.3 m track, as derive.js carveTramTracks).
 const TRACK_HALF = 1.75;
@@ -711,8 +738,27 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
         // Not in a shadow: a house's shadow is dark and bluish, saturated as grass (Bělohorská, Olšanská in Prague).
         const lightOf = (x, y) => { const [a, b] = x < y ? [x, y] : [y, x], v = []; for (let i = k.cols.ti(a); i < k.cols.ti(b); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.medL[i])) v.push(k.cols.medL[i]); return v.length ? v.reduce((u, w) => u + w, 0) / v.length : NaN; };
         const soft = (x, y) => greenOf(x, y) >= PIECE_GREEN + roadGreen || (useSat && satOf(x, y) >= walkSat + (P.walkSat ?? WALK_SAT) && lightOf(x, y) >= (P.walkLight ?? WALK_LIGHT));
-        for (let x = kerb + sg * WALK_MIN; sg * (swEnd - x) > 2 * WALK_WIN; x += sg * 0.2) {
+        const mode = P.walkMode ?? "colour";
+        if (mode !== "edge") for (let x = kerb + sg * WALK_MIN; sg * (swEnd - x) > 2 * WALK_WIN; x += sg * 0.2) {
           if (soft(x, x + sg * WALK_WIN) && soft(x + sg * WALK_WIN, x + sg * 2 * WALK_WIN)) { swEnd = x; break; }
+        }
+        // P.walkMode "edge" / "both": the first change of surface (Ec, a local peak of at least P.walkEdge) from WALK_MIN
+        // off the kerb on, nearer than the sidewalk found so far.
+        if (mode !== "colour" && k.cols.Ec) {
+          const c = k.cols, i0 = c.ti(kerb + sg * WALK_MIN), i1 = c.ti(swEnd), st2 = sg > 0 ? 1 : -1;
+          for (let i = i0; sg > 0 ? i < i1 : i > i1; i += st2) {
+            const v = c.Ec[i];
+            if (!(v >= (P.walkEdge ?? 4)) || v < (c.Ec[i - 1] || 0) || v < (c.Ec[i + 1] || 0)) continue;
+            // Beyond it (1 m) another surface than the sidewalk's first metre, in brightness or saturation, against the
+            // image's typical step (c.tL, c.tS).
+            const t = c.tOf(i), mean = (arr, x, y) => { const [a, b] = x < y ? [x, y] : [y, x], q = []; for (let j = c.ti(a); j < c.ti(b); j++) if (j >= 0 && j < c.nt && Number.isFinite(arr[j])) q.push(arr[j]); return q.length ? q.reduce((u, w) => u + w, 0) / q.length : NaN; };
+            const dL = Math.abs(mean(c.medL, t + sg * 0.2, t + sg * 1.2) - mean(c.medL, kerb + sg * 0.3, kerb + sg * WALK_MIN)) / c.tL;
+            const dS = Math.abs(mean(c.sat, t + sg * 0.2, t + sg * 1.2) - mean(c.sat, kerb + sg * 0.3, kerb + sg * WALK_MIN)) / c.tS;
+            if (!(dL + dS >= (P.walkDiff ?? 6))) continue;
+            // Not into a shadow (a house's: much darker beyond; grass in a tree's shade is green, the rule above).
+            if (mean(c.medL, t + sg * 0.2, t + sg * 1.2) < (P.walkShadow ?? 0.7) * mean(c.medL, kerb + sg * 0.3, kerb + sg * WALK_MIN)) continue;
+            swEnd = t; break;
+          }
         }
       }
       if (swEnd !== kerb) {
