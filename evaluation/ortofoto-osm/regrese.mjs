@@ -22,6 +22,7 @@ P.cars = process.env.CARS === "1";
 P.carsColour = process.env.AUTA === "1";
 // PSET='{"beta":0.25}': other values of the kerb parameters (ortho-osm.js P), for sweeps.
 if (process.env.PSET) Object.assign(P, JSON.parse(process.env.PSET));
+if (process.env.DBG) P.dbg = {};
 const SRC = process.env.SRC ? process.env.SRC.split(",") : null;
 const ROAD = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "krajnice", "parkovani", "cyklopruh", "ochranny_pruh", "obsluzna"]);
 const SIDEWALK = new Set(["chodnik", "chodnik_kola", "stezka_sdilena"]);
@@ -117,3 +118,4 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
   }
 }
 if (process.env.DUMP) fsAi.writeFileSync(process.env.DUMP, JSON.stringify(dump));
+if (process.env.DBG) console.log("dbg", JSON.stringify(P.dbg));

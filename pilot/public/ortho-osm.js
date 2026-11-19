@@ -422,7 +422,7 @@ export function carsSeen(st, a, b, axis) {
 // sidewalk make some).
 const PIECE_GREEN = 0.35, AREA_GREEN = 0.2;
 // The narrowest sidewalk the image may end (from the kerb) and the stretch of green that ends it (m).
-const WALK_MIN = 1.0, WALK_WIN = 1.0, WALK_SAT = 8, WALK_LIGHT = 100, AI_RUN = 1.0, AI_SNAP = 0.6;
+const WALK_MIN = 1.0, WALK_WIN = 1.0, WALK_SAT = 8, WALK_LIGHT = 100, AI_RUN = 1.0, AI_SNAP = 0.6, SPLIT_MIN = 1.5;
 
 const BACK_MIN = 2; // m: the shortest run of green or paving the image may give behind everything else
 const LAST_WALK = 15, LAST_NONE = 2; // m: the next thing of the street at most this far on; with none, this past the kerb
@@ -623,6 +623,19 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     if (g.length && g.reduce((x, y) => x + y, 0) / g.length >= GREEN_AREA) polys.push(rect(401, "zeleň (ortofoto)", a, b));
     else if (b - a <= REST_MAX) polys.push(rect(1003, "plocha před domem (odhad)", a, b));
   };
+  // Where a paved stretch from the kerb reaches the cap (SIDEWALK_MAX), the sidewalk's edge was not found: the
+  // strongest change of surface on the image (columns Ec) between SPLIT_MIN and the cap, if it is at least
+  // P.splitMin (Bára 19. 11. 2026: "když nám vyjde 6 m, je to skoro jistě blbě; hledat dodatečné hrany"). A trial
+  // (P.split6, off): without the model 204 of 381 sides reach the cap, the split moves sidewalk F1 by ±1 pp
+  // (regression); with the model's surfaces only 4 of 229 sides in Brno reach it, nothing changes.
+  const splitAt = (kerb, sg) => {
+    const c = k.cols;
+    if (!c?.Ec || !P.split6) return null;
+    let best = null;
+    for (let i = c.ti(kerb + sg * SPLIT_MIN); sg > 0 ? i <= c.ti(kerb + sg * SIDEWALK_MAX) : i >= c.ti(kerb + sg * SIDEWALK_MAX); i += sg > 0 ? 1 : -1)
+      if (i > 0 && i < c.nt && c.Ec[i] >= (P.splitMin ?? 3) && c.Ec[i] >= (c.Ec[i - 1] || 0) && c.Ec[i] >= (c.Ec[i + 1] || 0) && (best === null || c.Ec[i] > c.Ec[best])) best = i;
+    return best === null ? null : c.tOf(best);
+  };
   let edgeUsed = k.why.A === "mapa" || k.why.B === "mapa" || (k2 && (k2.why.A === "mapa" || k2.why.B === "mapa"));
   // The median between the two carriageways: greenery where the image is mostly green, else a paved strip.
   if (k2) {
@@ -706,6 +719,7 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     const capBy = P.off?.has("walkcapby") ? {} : P.walkCapBy ?? {};
     const cap = capBy[o.own.tags?.highway] ?? P.walkCap ?? SIDEWALK_MAX;
     let swEnd = says === "no" ? kerb : Math.abs(far - kerb) > cap ? kerb + sg * cap : far;
+    if (says !== "no" && Math.abs(far - kerb) > cap && cap >= SIDEWALK_MAX) { const t = splitAt(kerb, sg); if (t !== null) swEnd = t; }
     // Lines of the map across the stretch from the kerb to the house (not the house's own front): its pieces, each a
     // sidewalk or green by the image (Bára, Štúrova in Piešťany: the sidewalks lie by the houses, the green strip by
     // the kerb) or by the map's symbol in it. Without such lines a sidewalk from the kerb as before.
@@ -745,7 +759,10 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
       // area (German maps: forecourts and yards of 8–12 m between the sidewalk and the house, the model's "sidewalk"
       // up to the house; the hold-out, Rudolf-Reusch-Straße, Pestalozzistraße). ?off=aiwalkcap: as the model says.
       if (!P.off?.has("aiwalkcap")) {
-        const lim = kerb + sg * (P.aiWalkMax ?? SIDEWALK_MAX), out = [];
+        let lim = kerb + sg * (P.aiWalkMax ?? SIDEWALK_MAX);
+        const first = runs[0];
+        if (first?.c === 702 && sg * (first.e - lim) > -0.05) { const t = splitAt(kerb, sg); if (t !== null) lim = t; }
+        const out = [];
         for (const r of runs) {
           if (r.c !== 702 || sg * (r.e - lim) <= 0) { out.push(r); continue; }
           if (sg * (r.s - lim) >= 0) { out.push({ ...r, c: 1003 }); continue; }
