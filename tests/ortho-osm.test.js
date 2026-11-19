@@ -25,13 +25,14 @@ function image(half = 3.5, noise = 24, res = 0.1) {
 }
 
 test("ortofoto a OSM: obruby z hran snímku, chodníky k domům OSM, vše odhad", () => {
-  const polys = orthoOsmPolys({ osm: osm(), frame, dir, way: osm().elements[0], st: image() });
+  // A secondary street: its sidewalk may reach 5 m (the cap by class, 19. 11. 2026); a local street below.
+  const polys = orthoOsmPolys({ osm: osm({ highway: "secondary" }), frame, dir, way: osm({ highway: "secondary" }).elements[0], st: image() });
   assert.ok(polys);
   // OSM expects 2 × 2.75 m; the image shows 7 m.
   assert.ok(Math.abs(polys.kerbs.A + 3.5) < 0.15 && Math.abs(polys.kerbs.B - 3.5) < 0.15, JSON.stringify(polys.kerbs));
   // The order is the priority: the carriageway, the houses, then the sidewalks.
   assert.deepEqual(polys.map((p) => p.code), [701, 601, 601, 702, 702]);
-  const p = deriveProfile({ center: [0, 0], dir, half: 40, polys, osm: osm(), frame, way: osm().elements[0] });
+  const p = deriveProfile({ center: [0, 0], dir, half: 40, polys, osm: osm({ highway: "secondary" }), frame, way: osm({ highway: "secondary" }).elements[0] });
   assert.ok(!p.estimate);
   assert.deepEqual(p.edges, { left: "budova", right: "budova", ...Object.fromEntries(Object.entries(p.edges).filter(([k]) => k.endsWith("Info"))) });
   const sw = p.segments.filter((s) => s.type === "chodnik");
@@ -39,6 +40,15 @@ test("ortofoto a OSM: obruby z hran snímku, chodníky k domům OSM, vše odhad"
   assert.ok(sw.every((s) => Math.abs(s.width - 4.5) < 0.2 && s.source === "odhad"), JSON.stringify(sw));
   const road = p.segments.filter((s) => !["chodnik"].includes(s.type)).reduce((a, s) => a + s.width, 0);
   assert.ok(Math.abs(road - 7) < 0.3, String(road));
+});
+
+test("ortofoto a OSM: v místní ulici chodník nejvýš 2,5 m, za ním plocha před domem (strop podle třídy ulice)", () => {
+  const polys = orthoOsmPolys({ osm: osm(), frame, dir, way: osm().elements[0], st: image() });
+  const p = deriveProfile({ center: [0, 0], dir, half: 40, polys, osm: osm(), frame, way: osm().elements[0] });
+  const sw = p.segments.filter((s) => s.type === "chodnik");
+  assert.equal(sw.length, 2);
+  assert.ok(sw.every((s) => Math.abs(s.width - 2.5) < 0.2), JSON.stringify(sw));
+  assert.ok(p.segments.some((s) => s.type === "plocha"), JSON.stringify(p.segments.map((s) => s.type)));
 });
 
 test("ortofoto a OSM: bez hran na snímku platí šířka podle OSM (width), bez domu chodník jen podle OSM", () => {
