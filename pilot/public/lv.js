@@ -43,6 +43,8 @@ export const LV = {
   "Server {server} neodpovídá, zkouším znovu ({n}/{of})…": "{server} serveris neatbild, mēģina vēlreiz ({n}/{of})…",
   "Načítám data z OSM…": "Ielādē OSM datus…",
   "Načítám {map}…": "Ielādē: {map}…",
+  "Načítám model pro obruby (jen poprvé)…": "Ielādē apmaļu modeli (tikai pirmo reizi)…",
+  "Načítám model pro obruby (jen poprvé)… {p} %": "Ielādē apmaļu modeli (tikai pirmo reizi)… {p}%",
   "Načítám ortofoto…": "Ielādē ortofoto…",
   " · odhad z ortofota a OSM": " · aplēse pēc ortofoto un OSM",
   " · jen odhad z OSM": " · tikai aplēse pēc OSM",

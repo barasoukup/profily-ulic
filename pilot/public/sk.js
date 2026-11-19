@@ -3,6 +3,8 @@
 // tests/i18n.test.js checks that every text of en.js is here and nothing else.
 export const SK = {
   // ---------- outside Czechia, Slovakia (ZBGIS), sources not answering ----------
+  "Načítám model pro obruby (jen poprvé)…": "Načítavam model pre obrubníky (len prvýkrát)…",
+  "Načítám model pro obruby (jen poprvé)… {p} %": "Načítavam model pre obrubníky (len prvýkrát)… {p} %",
   "Načítám ortofoto…": "Načítavam ortofoto…",
   " · odhad z ortofota a OSM": " · odhad z ortofotomapy a OSM",
   " · jen odhad z OSM": " · len odhad z OSM",

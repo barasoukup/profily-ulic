@@ -47,6 +47,23 @@ export function kind(e) {
 }
 
 let session = null;
+// The download of the library and the model (once, about 7 MB packed; Bára 19. 11. 2026: the first estimated cut
+// seemed stuck): its progress for the status line (onAiProgress), and whether it is ready (aiReady).
+const SIZES = { wasm: 11210254, model: 4738654 }; // unpacked bytes (what the stream gives); only for the share shown
+const got = { wasm: 0, model: 0 };
+let progressFn = null, ready = false;
+export const onAiProgress = (fn) => { progressFn = fn; };
+export const aiReady = () => ready;
+const report = () => progressFn?.(Math.min(0.99, (got.wasm + got.model) / (SIZES.wasm + SIZES.model)));
+async function download(url, part) {
+  const r = await fetch(url);
+  if (!r.ok || !r.body) throw new Error(`${url} ${r.status}`);
+  const reader = r.body.getReader(), chunks = [];
+  for (;;) { const { done, value } = await reader.read(); if (done) break; chunks.push(value); got[part] += value.length; report(); }
+  const out = new Uint8Array(got[part]);
+  let o = 0; for (const c of chunks) { out.set(c, o); o += c.length; }
+  return out;
+}
 async function model() {
   session ??= (async () => {
     const ort = await import("./ort/ort.wasm.min.mjs");
@@ -54,9 +71,13 @@ async function model() {
     ort.env.wasm.numThreads = globalThis.crossOriginIsolated ? Math.min(4, navigator.hardwareConcurrency || 1) : 1;
     // ?aimodel=kerbs-int8: another file in ai/ (comparing a smaller model on the same cuts).
     const name = (typeof location !== "undefined" && new URLSearchParams(location.search).get("aimodel")?.replace(/[^a-z0-9-]/gi, "")) || "kerbs";
-    const s = await ort.InferenceSession.create(new URL(`./ai/${name}.onnx`, import.meta.url).href, { executionProviders: ["wasm"] });
+    const [wasm, bytes] = await Promise.all([download(new URL("./ort/ort-wasm-simd-threaded.wasm", import.meta.url).href, "wasm"),
+      download(new URL(`./ai/${name}.onnx`, import.meta.url).href, "model")]);
+    ort.env.wasm.wasmBinary = wasm;
+    const s = await ort.InferenceSession.create(bytes, { executionProviders: ["wasm"] });
+    ready = true; progressFn?.(1);
     return { ort, s };
-  })().catch((err) => { session = null; throw err; });
+  })().catch((err) => { session = null; got.wasm = got.model = 0; throw err; });
   return session;
 }
 

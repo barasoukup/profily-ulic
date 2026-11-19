@@ -43,6 +43,8 @@ export const ET = {
   "Server {server} neodpovídá, zkouším znovu ({n}/{of})…": "{server} server ei vasta, proovin uuesti ({n}/{of})…",
   "Načítám data z OSM…": "Laadin OSM-i andmeid…",
   "Načítám {map}…": "Laadin: {map}…",
+  "Načítám model pro obruby (jen poprvé)…": "Laadin äärekivide mudelit (ainult esimesel korral)…",
+  "Načítám model pro obruby (jen poprvé)… {p} %": "Laadin äärekivide mudelit (ainult esimesel korral)… {p}%",
   "Načítám ortofoto…": "Laadin ortofotot…",
   " · odhad z ortofota a OSM": " · hinnang ortofoto ja OSM-i põhjal",
   " · jen odhad z OSM": " · ainult hinnang OSM-i põhjal",

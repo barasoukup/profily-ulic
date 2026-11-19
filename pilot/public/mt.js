@@ -43,6 +43,8 @@ export const MT = {
   "Server {server} neodpovídá, zkouším znovu ({n}/{of})…": "Is-server {server} mhux qed iwieġeb, qed nerġa' nipprova ({n}/{of})…",
   "Načítám data z OSM…": "Qed titgħabba d-data minn OSM…",
   "Načítám {map}…": "{map}: tagħbija…",
+  "Načítám model pro obruby (jen poprvé)…": "Qed jitgħabba l-mudell tal-bankini (l-ewwel darba biss)…",
+  "Načítám model pro obruby (jen poprvé)… {p} %": "Qed jitgħabba l-mudell tal-bankini (l-ewwel darba biss)… {p}%",
   "Načítám ortofoto…": "Qed titgħabba l-ortofoto…",
   " · odhad z ortofota a OSM": " · stima mill-ortofoto u minn OSM",
   " · jen odhad z OSM": " · stima minn OSM biss",

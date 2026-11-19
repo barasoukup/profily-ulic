@@ -43,6 +43,8 @@ export const SL = {
   "Server {server} neodpovídá, zkouším znovu ({n}/{of})…": "Strežnik {server} se ne odziva, ponoven poskus ({n}/{of})…",
   "Načítám data z OSM…": "Nalaganje podatkov OSM…",
   "Načítám {map}…": "Nalaganje {map}…",
+  "Načítám model pro obruby (jen poprvé)…": "Nalagam model za robnike (samo prvič)…",
+  "Načítám model pro obruby (jen poprvé)… {p} %": "Nalagam model za robnike (samo prvič)… {p} %",
   "Načítám ortofoto…": "Nalaganje ortofota…",
   " · odhad z ortofota a OSM": " · ocena iz ortofota in OSM",
   " · jen odhad z OSM": " · le ocena iz OSM",

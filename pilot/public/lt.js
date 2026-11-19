@@ -43,6 +43,8 @@ export const LT = {
   "Server {server} neodpovídá, zkouším znovu ({n}/{of})…": "{server} serveris neatsako, bandoma dar kartą ({n}/{of})…",
   "Načítám data z OSM…": "Įkeliami OSM duomenys…",
   "Načítám {map}…": "Įkeliama: {map}…",
+  "Načítám model pro obruby (jen poprvé)…": "Įkeliamas bortų modelis (tik pirmą kartą)…",
+  "Načítám model pro obruby (jen poprvé)… {p} %": "Įkeliamas bortų modelis (tik pirmą kartą)… {p} %",
   "Načítám ortofoto…": "Įkeliama: ortofoto…",
   " · odhad z ortofota a OSM": " · įvertis pagal ortofoto ir OSM",
   " · jen odhad z OSM": " · tik įvertis pagal OSM",

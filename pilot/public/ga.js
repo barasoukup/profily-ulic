@@ -44,6 +44,8 @@ export const GA = {
   "Server {server} neodpovídá, zkouším znovu ({n}/{of})…": "Níl an freastalaí ag freagairt: {server}. Triailfear arís ({n}/{of})…",
   "Načítám data z OSM…": "Sonraí OSM á lódáil…",
   "Načítám {map}…": "{map} á lódáil…",
+  "Načítám model pro obruby (jen poprvé)…": "Samhail na gcolbhaí á luchtú (an chéad uair amháin)…",
+  "Načítám model pro obruby (jen poprvé)… {p} %": "Samhail na gcolbhaí á luchtú (an chéad uair amháin)… {p}%",
   "Načítám ortofoto…": "Ortafótagraf á lódáil…",
   " · odhad z ortofota a OSM": " · meastachán ón ortafótagraf agus ó OSM",
   " · jen odhad z OSM": " · meastachán ó OSM amháin",

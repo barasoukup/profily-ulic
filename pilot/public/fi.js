@@ -44,6 +44,8 @@ export const FI = {
   "Server {server} neodpovídá, zkouším znovu ({n}/{of})…": "Palvelin ei vastaa ({server}), yritetään uudelleen ({n}/{of})…",
   "Načítám data z OSM…": "Ladataan OSM-tietoja…",
   "Načítám {map}…": "Ladataan: {map}…",
+  "Načítám model pro obruby (jen poprvé)…": "Ladataan reunakivimallia (vain ensimmäisellä kerralla)…",
+  "Načítám model pro obruby (jen poprvé)… {p} %": "Ladataan reunakivimallia (vain ensimmäisellä kerralla)… {p} %",
   "Načítám ortofoto…": "Ladataan ortokuvaa…",
   " · odhad z ortofota a OSM": " · arvio ortokuvasta ja OSM:stä",
   " · jen odhad z OSM": " · vain arvio OSM:stä",

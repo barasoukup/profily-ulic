@@ -43,6 +43,8 @@ export const RO = {
   "Server {server} neodpovídá, zkouším znovu ({n}/{of})…": "Serverul {server} nu răspunde, se reîncearcă ({n}/{of})…",
   "Načítám data z OSM…": "Se încarcă datele OSM…",
   "Načítám {map}…": "Se încarcă {map}…",
+  "Načítám model pro obruby (jen poprvé)…": "Se încarcă modelul pentru borduri (doar prima dată)…",
+  "Načítám model pro obruby (jen poprvé)… {p} %": "Se încarcă modelul pentru borduri (doar prima dată)… {p}%",
   "Načítám ortofoto…": "Se încarcă ortofoto…",
   " · odhad z ortofota a OSM": " · estimare din ortofoto și OSM",
   " · jen odhad z OSM": " · doar estimare din OSM",
