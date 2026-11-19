@@ -113,11 +113,12 @@ let seed = 7;
 const rnd = () => ((seed = (seed * 1103515245 + 12345) % 2 ** 31) / 2 ** 31);
 const score = (run, list, key) => {
   if (key === "comp") { let a = 0, o = 0; for (const id of list) { a += res[run][id].comp.all; o += res[run][id].comp.ok; } return a ? o / a : 0; }
+  if (key === "walk") { const w = list.flatMap((id) => res[run][id].walk).map(Math.abs); return w.filter((x) => x <= 1).length / (w.length || 1); }
   const k = list.flatMap((id) => res[run][id].kerbs.filter((x) => x !== null)).map(Math.abs);
   return k.filter((x) => x <= 1).length / (k.length || 1);
 };
 for (const run of RUNS.slice(1)) {
-  lines.push(`## ${run} proti ${RUNS[0]} (párově, 95% interval z bootstrapu přes řezy)`, "", "| Skupina | řezů | složení | obruby do 1 m | řezů lépe / hůř (obruby) |", "|---|---|---|---|---|");
+  lines.push(`## ${run} proti ${RUNS[0]} (párově, 95% interval z bootstrapu přes řezy)`, "", "| Skupina | řezů | složení | obruby do 1 m | chodník do 1 m | řezů lépe / hůř (obruby) |", "|---|---|---|---|---|---|");
   const groups = [["vše", ids], ["mimo města, kde se model učil", ids.filter((id) => !byId[id]?.aiTrained)], ...towns.map((t) => [t, ids.filter((id) => byId[id]?.town === t)])];
   for (const [name, list] of groups) {
     if (!list.length) continue;
@@ -126,7 +127,7 @@ for (const run of RUNS.slice(1)) {
     const ci = (key) => { const [a, b] = boot(key), x = d(key, list); return `${x >= 0 ? "+" : ""}${Math.round(100 * x)} [${Math.round(100 * a)}, ${Math.round(100 * b)}] p. b.`; };
     let better = 0, worse = 0;
     for (const id of list) { const m = (r) => { const k = res[r][id].kerbs.filter((x) => x !== null).map(Math.abs); return k.length ? k.reduce((p, q) => p + q, 0) / k.length : NaN; }; const a = m(RUNS[0]), b = m(run); if (b < a - 0.1) better++; else if (b > a + 0.1) worse++; }
-    lines.push(`| ${name} | ${list.length} | ${ci("comp")} | ${ci("kerb")} | ${better} / ${worse} |`);
+    lines.push(`| ${name} | ${list.length} | ${ci("comp")} | ${ci("kerb")} | ${ci("walk")} | ${better} / ${worse} |`);
   }
   lines.push("");
 }

@@ -176,7 +176,7 @@ export function partnerOf(o) {
 const BLOCKS = 8;
 export function columns(st) {
   const { nt, nu, res, t0, L, G, S } = st, bl = Array.from({ length: BLOCKS }, () => new Float32Array(nt));
-  const medL = new Float32Array(nt), green = new Float32Array(nt), sat = new Float32Array(nt), seen = new Float32Array(nt);
+  const medL = new Float32Array(nt), green = new Float32Array(nt), sat = new Float32Array(nt), seen = new Float32Array(nt), yel = new Float32Array(nt);
   const bs = Array.from({ length: BLOCKS }, () => new Float32Array(nt));
   const per = Math.floor(nu / BLOCKS);
   const v_seen = (i) => { let c = 0; for (let j = 0; j < BLOCKS * per; j++) if (!Number.isNaN(L[j * nt + i])) c++; return c; };
@@ -198,6 +198,8 @@ export function columns(st) {
       bs[b][i] = vs.length ? median(vs) : NaN;
     }
     medL[i] = median(Array.from(bl, (x) => x[i]));
+    // Yellowness ((R+G)/2 − B; LITERATURA-2.md: dry grass is yellow, a shadow blue), where the image has it.
+    if (st.Y) { const yv = []; for (let j = 0; j < nu; j += 2) { const q = j * nt + i; if (!Number.isNaN(L[q])) yv.push(st.Y[q]); } yel[i] = yv.length ? median(yv) : NaN; } else yel[i] = NaN;
     green[i] = n ? gn / n : st.canopy ? 0 : NaN; sat[i] = median(sv); seen[i] = v_seen(i) / nu;
   }
   // A blank stretch (the image's edge of coverage: white or black and flat along the street, a metre wide or more) is
@@ -258,7 +260,7 @@ export function columns(st) {
   }
   const typicalC = median(Array.from(ec).filter((x) => x > 0)) || 1;
   const Ec = Float32Array.from(ec, (x) => x / typicalC);
-  return { nt, res, t0, medL, green, sat, seen, E, Ec, tL, tS, ti: (t) => Math.round((t - t0) / res), tOf: (i) => t0 + i * res };
+  return { nt, res, t0, medL, green, sat, seen, yel, E, Ec, tL, tS, ti: (t) => Math.round((t - t0) / res), tOf: (i) => t0 + i * res };
 }
 // Half the width of a tram bed beyond its outer track axis (a 3.3 m track, as derive.js carveTramTracks).
 const TRACK_HALF = 1.75;
@@ -737,7 +739,12 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
         const walkSat = satOf(kerb + sg * 0.3, kerb + sg * WALK_MIN), useSat = Number.isFinite(walkSat) && !P.off?.has("walksat");
         // Not in a shadow: a house's shadow is dark and bluish, saturated as grass (Bělohorská, Olšanská in Prague).
         const lightOf = (x, y) => { const [a, b] = x < y ? [x, y] : [y, x], v = []; for (let i = k.cols.ti(a); i < k.cols.ti(b); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.medL[i])) v.push(k.cols.medL[i]); return v.length ? v.reduce((u, w) => u + w, 0) / v.length : NaN; };
-        const soft = (x, y) => greenOf(x, y) >= PIECE_GREEN + roadGreen || (useSat && satOf(x, y) >= walkSat + (P.walkSat ?? WALK_SAT) && lightOf(x, y) >= (P.walkLight ?? WALK_LIGHT));
+        // P.walkYellow (a trial): the saturated stretch must also be yellower than the sidewalk (grass, not a shadow or
+        // coloured paving), instead of the light test.
+        const yelOf = (x, y) => { const [a, b] = x < y ? [x, y] : [y, x], v = []; for (let i = k.cols.ti(a); i < k.cols.ti(b); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.yel[i])) v.push(k.cols.yel[i]); return v.length ? v.reduce((u, w) => u + w, 0) / v.length : NaN; };
+        const walkYel = yelOf(kerb + sg * 0.3, kerb + sg * WALK_MIN);
+        const notShadow = (x, y) => (P.walkYellow != null && Number.isFinite(walkYel) ? yelOf(x, y) >= walkYel + P.walkYellow : lightOf(x, y) >= (P.walkLight ?? WALK_LIGHT));
+        const soft = (x, y) => greenOf(x, y) >= PIECE_GREEN + roadGreen || (useSat && satOf(x, y) >= walkSat + (P.walkSat ?? WALK_SAT) && notShadow(x, y));
         const mode = P.walkMode ?? "colour";
         if (mode !== "edge") for (let x = kerb + sg * WALK_MIN; sg * (swEnd - x) > 2 * WALK_WIN; x += sg * 0.2) {
           if (soft(x, x + sg * WALK_WIN) && soft(x + sg * WALK_WIN, x + sg * 2 * WALK_WIN)) { swEnd = x; break; }

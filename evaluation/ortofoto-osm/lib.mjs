@@ -142,10 +142,12 @@ export async function stripOf(city, key, c) {
   // As lanes-ortho.js laneImage: G (green), S (saturation), and fine = a city's orthophoto (paint fills its pixels).
   st.G = new Float32Array(st.nt * st.nu);
   st.S = new Float32Array(st.nt * st.nu);
+  st.Y = new Float32Array(st.nt * st.nu);
   for (let q = 0; q < st.nt * st.nu; q++) {
     const r = st.rgb[q * 3], g = st.rgb[q * 3 + 1], b = st.rgb[q * 3 + 2];
     st.G[q] = Number.isNaN(st.L[q]) ? NaN : g - (r + b) / 2;
     st.S[q] = Number.isNaN(st.L[q]) ? NaN : Math.max(r, g, b) - Math.min(r, g, b);
+    if (st.Y) st.Y[q] = Number.isNaN(st.L[q]) ? NaN : (r + g) / 2 - b;
   }
   st.fine = !key.startsWith("cuzk") && !src.down;
   return st;
