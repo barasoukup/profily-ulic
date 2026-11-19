@@ -741,6 +741,18 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
       for (let t = kerb + sg * 0.1; sg * (far - t) > 0; t += sg * 0.2) { const c = kindAt(t) ?? runs.at(-1)?.c ?? 702; const l = runs.at(-1); if (l && l.c === c) l.e = t + sg * 0.1; else runs.push({ c, s: t - sg * 0.1, e: t + sg * 0.1 }); }
       for (let q = 0; q < runs.length; q++) if (runs.length > 1 && Math.abs(runs[q].e - runs[q].s) < AI_RUN) { const nb = q > 0 ? q - 1 : q + 1; runs[nb].s = sg * runs[nb].s < sg * runs[q].s ? runs[nb].s : runs[q].s; runs[nb].e = sg * runs[nb].e > sg * runs[q].e ? runs[nb].e : runs[q].e; runs.splice(q, 1); q = -1; }
       if (runs.length) { runs[0].s = kerb; runs.at(-1).e = far; }
+      // Paving the model calls sidewalk counts as sidewalk only up to SIDEWALK_MAX from the kerb, beyond it as a paved
+      // area (German maps: forecourts and yards of 8–12 m between the sidewalk and the house, the model's "sidewalk"
+      // up to the house; the hold-out, Rudolf-Reusch-Straße, Pestalozzistraße). ?off=aiwalkcap: as the model says.
+      if (!P.off?.has("aiwalkcap")) {
+        const lim = kerb + sg * (P.aiWalkMax ?? SIDEWALK_MAX), out = [];
+        for (const r of runs) {
+          if (r.c !== 702 || sg * (r.e - lim) <= 0) { out.push(r); continue; }
+          if (sg * (r.s - lim) >= 0) { out.push({ ...r, c: 1003 }); continue; }
+          out.push({ ...r, e: lim }, { c: 1003, s: lim, e: r.e });
+        }
+        runs.splice(0, runs.length, ...out);
+      }
       const LBL = { 702: "chodník (AI)", 401: "zeleň (AI)", 1003: "zpevněná plocha (AI)" };
       for (const r of runs) polys.push(rect(r.c, LBL[r.c], ...span(r.s, r.e)));
     } else {
