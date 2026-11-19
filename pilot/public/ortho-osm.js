@@ -422,7 +422,7 @@ export function carsSeen(st, a, b, axis) {
 // sidewalk make some).
 const PIECE_GREEN = 0.35, AREA_GREEN = 0.2;
 // The narrowest sidewalk the image may end (from the kerb) and the stretch of green that ends it (m).
-const WALK_MIN = 1.0, WALK_WIN = 1.0, WALK_SAT = 8, WALK_LIGHT = 100;
+const WALK_MIN = 1.0, WALK_WIN = 1.0, WALK_SAT = 8, WALK_LIGHT = 100, AI_RUN = 1.0;
 
 const BACK_MIN = 2; // m: the shortest run of green or paving the image may give behind everything else
 const LAST_WALK = 15, LAST_NONE = 2; // m: the next thing of the street at most this far on; with none, this past the kerb
@@ -465,7 +465,7 @@ function canopyMask(st, osm, tu) {
 
 // ai: the kerbs a trained model read (ai-kerbs.js; ?ai=1, Bára 18. 11. 2026), a function of the axis (t of the
 // clicked way) giving { A, B } or null: they replace the carriageway's kerbs found here, within OSM's limits.
-export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = [], widths = [], areas = [], symbols = [], ai = null }) {
+export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = [], widths = [], areas = [], symbols = [], ai = null, aiSurf = null }) {
   if (!way || !STREET.test(way.tags?.highway || "")) return null;
   const normal = [-dir[1], dir[0]];
   const tu = (lon, lat) => { const [x, y] = frame.toXY(lon, lat); return [x * normal[0] + y * normal[1], x * dir[0] + y * dir[1]]; };
@@ -732,6 +732,17 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
         else if (wide) rest(a, b);
         else put(green ? rect(401, "zeleň (ortofoto a mapa)", a, b) : rect(702, "chodník (ortofoto a mapa)", a, b));
       }
+    } else if (aiSurf && P.aiWalk && !P.off?.has("aiwalk")) {
+      // P.aiWalk (a trial, 19. 11. 2026): the model's kinds from the kerb to the house (or OSM's sidewalk end) decide
+      // sidewalk, green and other, in runs of at least AI_RUN (the rules confuse sidewalks under trees with lawns and
+      // dry lawns with paving; the hold-out: some 300 m each way).
+      const kindAt = (t) => { const k2 = aiSurf(t); return k2 === "chodník" ? 702 : k2 === "zeleň" ? 401 : k2 ? 1003 : null; };
+      const runs = [];
+      for (let t = kerb + sg * 0.1; sg * (far - t) > 0; t += sg * 0.2) { const c = kindAt(t) ?? runs.at(-1)?.c ?? 702; const l = runs.at(-1); if (l && l.c === c) l.e = t + sg * 0.1; else runs.push({ c, s: t - sg * 0.1, e: t + sg * 0.1 }); }
+      for (let q = 0; q < runs.length; q++) if (runs.length > 1 && Math.abs(runs[q].e - runs[q].s) < AI_RUN) { const nb = q > 0 ? q - 1 : q + 1; runs[nb].s = sg * runs[nb].s < sg * runs[q].s ? runs[nb].s : runs[q].s; runs[nb].e = sg * runs[nb].e > sg * runs[q].e ? runs[nb].e : runs[q].e; runs.splice(q, 1); q = -1; }
+      if (runs.length) { runs[0].s = kerb; runs.at(-1).e = far; }
+      const LBL = { 702: "chodník (AI)", 401: "zeleň (AI)", 1003: "zpevněná plocha (AI)" };
+      for (const r of runs) polys.push(rect(r.c, LBL[r.c], ...span(r.s, r.e)));
     } else {
       // The sidewalk ends where the image turns green for good (Bára 18. 11. 2026, Za Kalváriou in Prešov: a 1.4 m
       // sidewalk by the kerb, then lawn and trees up to the house, was drawn 6 m wide: the cap, not the image). From

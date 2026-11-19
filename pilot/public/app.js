@@ -4,11 +4,13 @@ import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO, CH_ORTHO, DE_ORTHO, deWmsUrl, landsAt, landAt } from "./lanes-ortho.js";
 import { boxed as boxedPlace, within as withinPlace } from "./places.js";
 import { orthoOsmPolys, besidePassport, trimToEnds, P as ORTHO_P } from "./ortho-osm.js";
-import { aiCut, aiKerbs, aiReady, onAiProgress } from "./ai-kerbs.js";
+import { aiCut, aiKerbs, aiSurface, aiReady, onAiProgress } from "./ai-kerbs.js";
 // ?off=… switches named parts of the estimate off (the A/B tests, evaluation/ortofoto-osm/regrese.mjs).
 { const off = new URLSearchParams(location.search).get("off"); if (off) ORTHO_P.off = new Set(off.split(",")); }
 // ?auta=1: parked cars told by their colours on the orthophoto (ortho-osm.js carsColoured; a trial, off by default).
 if (new URLSearchParams(location.search).get("auta") === "1") ORTHO_P.carsColour = true;
+// ?aiplochy=1: the model also decides sidewalk, green and other between the kerb and the house (a trial).
+if (new URLSearchParams(location.search).get("aiplochy") === "1") ORTHO_P.aiWalk = true;
 // ?chodnik=3,3.5,5: the sidewalk's caps for local, tertiary and secondary streets (trials; ortho-osm.js WALK_CAP_BY).
 { const c = new URLSearchParams(location.search).get("chodnik")?.split(",").map(Number); if (c?.length === 3 && c.every((x) => x > 0)) ORTHO_P.walkCapBy = { residential: c[0], living_street: c[0], unclassified: c[0], service: c[0], tertiary: c[1], secondary: c[2] }; }
 import { underground, KINDS as NET_KINDS, netAt } from "./site.js";
@@ -438,7 +440,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     if (result.estimate) {
       // A trial (Bára 18. 11. 2026, ?ai=1): the carriageway's kerbs read by a trained model (ai-kerbs.js); without the
       // model or the photo the estimate's own.
-      let ai = null;
+      let ai = null, aiSurf = null;
       if (AI_KERBS) {
         // The first time: the library and the model come (about 7 MB), with their progress; past AI_WAIT the cut is
         // drawn with the estimate's own kerbs and the download goes on for the next cut (Bára 19. 11. 2026).
@@ -447,10 +449,10 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
         const job = aiCut({ osm, frame, dir, source: city.laneOrtho || country.laneOrtho }).catch((err) => { console.warn("AI", err); return null; });
         const cut = aiReady() ? await job : await Promise.race([job, new Promise((r) => setTimeout(() => r(null), AI_WAIT))]);
         onAiProgress(null);
-        if (cut) ai = (axis) => aiKerbs(cut, axis);
+        if (cut) { ai = (axis) => aiKerbs(cut, axis); aiSurf = aiSurface(cut); }
       }
       // The map's runs where it has surfaces but none at the axis: its sidewalks and buildings bound the estimate.
-      const fb = orthoOsmPolys({ ai,  osm, frame, dir, way: near.way, st: laneImg?.st, mapRuns: result.runs || [], edges: k.status === "fulfilled" ? k.value?.edges || [] : [], widths: k.status === "fulfilled" ? k.value?.widths || [] : [], areas: k.status === "fulfilled" ? k.value?.areas || [] : [], symbols: k.status === "fulfilled" ? k.value?.symbols || [] : [] });
+      const fb = orthoOsmPolys({ ai, aiSurf, osm, frame, dir, way: near.way, st: laneImg?.st, mapRuns: result.runs || [], edges: k.status === "fulfilled" ? k.value?.edges || [] : [], widths: k.status === "fulfilled" ? k.value?.widths || [] : [], areas: k.status === "fulfilled" ? k.value?.areas || [] : [], symbols: k.status === "fulfilled" ? k.value?.symbols || [] : [] });
       if (fb) {
         const again = deriveProfile({ ...args, polys: [fb[0], ...polys, ...fb.slice(1)] });
         // A side without a house ends where orthoOsmPolys found (steps, a fence, the last thing of the street).

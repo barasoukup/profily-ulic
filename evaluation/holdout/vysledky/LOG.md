@@ -7,3 +7,4 @@
 | 3 | 19. 11. 2026 | konec chodníku podle sytosti (`walksat`) proti bez něj, bez AI | chodník do 1 m +1 [−1, 2] p. b., složení a obruby beze změny: neprůkazné |
 | 4 | 19. 11. 2026 | strop chodníku podle třídy ulice (2,5 / 3,5 / 5 / 6 m), s AI | chodník do 1 m 41 → 48 % (+7 [1, 12]; mimo města modelu +11 [5, 18]); složení a obruby beze změny → nasazeno |
 | 5 | 19. 11. 2026 | týž strop proti bez něj, chodník po metrech (F1; Bára: „nemáš to biasované?“ — „do 1 m“ odměňuje úzký strop, strop 1 m vyšel na regresi nejlépe) | F1 −1 [−2, 0] p. b. → **nenasazeno**, strop vypnutý |
+| 6 | 19. 11. 2026 | plochy mezi obrubou a domem z modelu (`?aiplochy=1`), s AI obrubami | F1 chodníku +5 [3, 7] (mimo města modelu +7 [6, 10]); složení +0 [0, 2]; ČR a SK lépe, Německo složení hůř (Berlín −5 [−9, −2], Cáchy −3 [−6, −1]) |

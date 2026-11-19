@@ -62,14 +62,19 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
       if (!way) continue;
       // AI=ai-map5-3: the carriageway's kerbs of the model (evaluation/ai-segmentation, its classes along the cut
       // precomputed in data/ai-seg/cuts/<city>/<AI>.json; as app.js ?ai=1). Not Prague: the model learnt on it.
-      let ai = null;
+      let ai = null, aiSurf = null;
       if (process.env.AI && city !== "praha") {
         const dir2 = `/Users/barasoukupova/streetdesign/data/ai-seg/cuts/${city}`;
         aiCache[city] ??= JSON.parse(fsAi.readFileSync(`${dir2}/${process.env.AI}.json`, "utf8"));
         const cls = aiCache[city][String(c.n)], meta = fsAi.existsSync(`${dir2}/${c.n}.json`) && JSON.parse(fsAi.readFileSync(`${dir2}/${c.n}.json`, "utf8"));
-        if (cls && meta) { const cut = { ts: meta.ts, cls: cls.map((v) => (v === 0 || v === 3 ? 0 : v < 0 ? -1 : 1)) }; ai = (axis) => aiKerbs(cut, axis); }
+        if (cls && meta) {
+          const cut = { ts: meta.ts, cls: cls.map((v) => (v === 0 || v === 3 ? 0 : v < 0 ? -1 : 1)) }; ai = (axis) => aiKerbs(cut, axis);
+          // The model's kinds along the cut (nine classes of train.py: 1 sidewalk, 2 cycleway, 5 green, 6 building).
+          const K9 = { 1: "chodník", 2: "chodník", 5: "zeleň", 6: "budova", 0: "vozovka", 3: "vozovka", 4: "vozovka", 7: "jiné", 8: "jiné" };
+          aiSurf = (t) => { const i = Math.round((t - meta.ts[0]) / (meta.ts[1] - meta.ts[0])); return i >= 0 && i < cls.length && cls[i] >= 0 ? K9[cls[i]] : null; };
+        }
       }
-      const polys = orthoOsmPolys({ osm, frame, dir, way, st, ai });
+      const polys = orthoOsmPolys({ osm, frame, dir, way, st, ai, aiSurf });
       const truth = truthOf(c, 0);
       if (!polys || !truth.way) { none++; continue; }
       // As app.js: a side without a house ends where orthoOsmPolys found (polys.ends).

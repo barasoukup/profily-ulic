@@ -172,3 +172,12 @@ export function aiKerbs(cut, axis) {
   const [i0, i1] = near[0];
   return { A: ts[i0] - STEP / 2, B: ts[i1] + STEP / 2 };
 }
+
+// The model's kind at t across the cut (the five of the model → the profile's: sidewalk, green, building, other,
+// carriageway), or null outside the patch (ortho-osm.js aiSurf, a trial: ?aiplochy=1).
+const FIVE = ["vozovka", "chodník", "zeleň", "budova", "jiné"];
+export function aiSurface(cut) {
+  if (!cut) return null;
+  const { ts, cls } = cut, t0 = ts[0], step = ts[1] - ts[0];
+  return (t) => { const i = Math.round((t - t0) / step); return i >= 0 && i < cls.length && cls[i] >= 0 ? FIVE[cls[i]] : null; };
+}
