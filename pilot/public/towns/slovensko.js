@@ -61,14 +61,18 @@ async function podlaznost(lat, lon) {
 const ROAD = 701, WALK = 702, BIKE = 703, PARK = 704, OTHER = 1003, GREEN = 401, PLAY = 901;
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_SK?.[k] ?? null : new URLSearchParams(location.search).get(k));
 const AGO_BA = "https://services8.arcgis.com/pRlN1m0su5BYaFAS/arcgis/rest/services";
-// The magistrát's passport lies 1.4–1.5 m east and 0.3 m south of OSM and the ZBGIS orthophoto (Bára 19. 11. 2026: the
+// The magistrát's passport and the city's technical map lie 1.4–1.5 m east and 0.3 m south of OSM, the cadastre's
+// buildings and the ZBGIS orthophoto (Bára 19. 11. 2026: the
 // hold-out set put the estimate's streets 1.2 m off it, in Bratislava only; evaluation/slovensko/posun-ba.mjs, 1330 points
 // on OSM's axes in the centre, the rest 0.3 m): moved back. ?off=posunba: as it comes.
 const BA_SHIFT = { east: -1.47, north: 0.33 };
 function shiftBa(json) {
   if (!json?.features || (typeof location !== "undefined" && new URLSearchParams(location.search).get("off")?.split(",").includes("posunba"))) return json;
   const dLon = BA_SHIFT.east / (111320 * Math.cos((48.15 * Math.PI) / 180)), dLat = BA_SHIFT.north / 110574;
-  return { ...json, features: json.features.map((f) => (f.geometry?.rings ? { ...f, geometry: { ...f.geometry, rings: f.geometry.rings.map((r) => r.map(([x, y]) => [x + dLon, y + dLat])) } } : f)) };
+  const mv = ([x, y, ...z]) => [x + dLon, y + dLat, ...z], g = (geo) => geo && {
+    ...geo, ...(geo.rings && { rings: geo.rings.map((r) => r.map(mv)) }), ...(geo.paths && { paths: geo.paths.map((r) => r.map(mv)) }),
+    ...(Number.isFinite(geo.x) && { x: geo.x + dLon, y: geo.y + dLat }) };
+  return { ...json, features: json.features.map((f) => (f.geometry ? { ...f, geometry: g(f.geometry) } : f)) };
 }
 const AGO_DUBRAVKA = "https://services-eu1.arcgis.com/sF2W5owmzDfZHYpi/arcgis/rest/services";
 const AGO_ZVOLEN = "https://services-eu1.arcgis.com/qZQsmXf8mZtYtGaE/arcgis/rest/services";
@@ -169,7 +173,9 @@ const BA_CELL = { 110: ROAD, 120: WALK, 5340: BIKE, 5370: PARK, 130: OTHER, 4060
 // Lines for derive.js techLines (as IPR's codes): fences and walls end the street, railings and guard rails are
 // items; tram tracks (5040) are the tracks (55010).
 const BA_LINE = { 2090: 61210, 2110: 61210, 2130: 61210, 2170: 71210, 4220: 71422, 5300: 61530, 5290: 71522, 5040: 55010 };
-const baQuery = (svc, layer, bbox, fields) => query(`${BA_TM}/${encodeURI(svc)}/MapServer/${layer}/query`, { ...envelope(bbox), outFields: fields, returnGeometry: "true" });
+// The technical map lies as the passport does (1.44 m east, 0.25 m south of OSM's buildings from the cadastre;
+// evaluation/slovensko/posun-ba-domy.mjs, posun-ba-tm.mjs: the passport matches it to 0.01 m): moved back the same way.
+const baQuery = (svc, layer, bbox, fields) => query(`${BA_TM}/${encodeURI(svc)}/MapServer/${layer}/query`, { ...envelope(bbox), outFields: fields, returnGeometry: "true" }).then(shiftBa);
 export async function baTechMap(bbox, fetched = null) {
   const [lines, cells, houses] = fetched || await Promise.all([
     baQuery("Technická_mapa_TM", 7, bbox, "Typ"), baQuery("Technická_mapa_TM", 9, bbox, "Typ"), baQuery("Technická_mapa_TM", 8, bbox, "Typ"),
