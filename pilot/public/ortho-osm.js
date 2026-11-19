@@ -618,7 +618,11 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     const span = (x, y) => (sg < 0 ? [y, x] : [x, y]);
     // A sidewalk of at most SIDEWALK_MAX; the rest up to the house is some other area (a front garden, a yard, a lawn:
     // MTVU in Prague and Brno: 34 of 42 such stretches over 6 m hold a sidewalk of at most 6 m).
-    let swEnd = says === "no" ? kerb : Math.abs(far - kerb) > SIDEWALK_MAX ? kerb + sg * SIDEWALK_MAX : far;
+    // P.walkCap (evaluation/ai-segmentation, 18. 11. 2026): a smaller cap for trials. 2.5 m fixed the sidewalks of up to
+    // 3.5 m (Brno within 1 m 31 → 59 %) but cut the wide ones (over 3.5 m: Brno 55 → 18 %, Prague 36 → 27 %), so the
+    // app keeps SIDEWALK_MAX: telling a sidewalk from other paving needs the image, not a number.
+    const cap = P.walkCap ?? SIDEWALK_MAX;
+    let swEnd = says === "no" ? kerb : Math.abs(far - kerb) > cap ? kerb + sg * cap : far;
     // Lines of the map across the stretch from the kerb to the house (not the house's own front): its pieces, each a
     // sidewalk or green by the image (Bára, Štúrova in Piešťany: the sidewalks lie by the houses, the green strip by
     // the kerb) or by the map's symbol in it. Without such lines a sidewalk from the kerb as before.
