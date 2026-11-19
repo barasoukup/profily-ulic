@@ -24,7 +24,7 @@ for (const s of ["SIGINT", "SIGTERM"]) process.on(s, () => process.exit());
 
 // The page: the app's CSP gives way to one that loads no map tiles (no request to tile servers while cutting hundreds
 // of streets) and the recorder comes before app.js.
-const CSP = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src *; object-src 'none'";
+const CSP = "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src *; object-src 'none'";
 const page = (html) => html.replace(/<meta http-equiv="Content-Security-Policy"[^>]*>/, `<meta http-equiv="Content-Security-Policy" content="${CSP}">`)
   .replace('<script type="module" src="app.js"></script>', '<script type="module" src="/__replay/harness.js"></script>\n  <script type="module" src="app.js"></script>');
 

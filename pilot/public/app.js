@@ -539,6 +539,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       delete info.point;
     }));
     state.stav = { segments: result.segments, edges: result.edges };
+    // For the evaluation (evaluation/holdout, the replay's light capture): the surfaces along the cut and how the profile came.
+    globalThis.__profilyEval = { runs: result.runs || null, extent: result.extent || null, estimate: !!(orthoOsm || result.estimate), kerbs: orthoOsm?.kerbs || null };
     state.computed = structuredClone(state.stav); // the detection, for the log of corrections
     state.stavEdited = false;
     if (!state.navrhEdited) state.navrh = structuredClone(state.stav);

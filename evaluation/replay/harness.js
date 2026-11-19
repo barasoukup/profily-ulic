@@ -5,7 +5,7 @@
 // always the current ones. Then every cut of the sample is made as a click, and what the visitor would see is
 // written to data/out/<run>/<id>.json: the profile, the status line, the export SVG with and without the
 // illustrations, the credits, the city, the design's warnings and the editor of each part, a saved file reloaded.
-//   ?replay=record|play &run=<name> &sample=<file without .json> &from=&to= &lang=cs|sk|en|de (+ any switch of the app)
+//   ?replay=record|play|fill &run=<name> &sample=<file without .json> &from=&to= &lang=cs|sk|en|de (+ any switch of the app)
 const P = new URLSearchParams(location.search);
 const MODE = P.get("replay"), RUN = P.get("run") || MODE, SAMPLE = P.get("sample") || "sample";
 const FROM = Number(P.get("from") || 0), TO = Number(P.get("to") || Infinity);
@@ -72,8 +72,11 @@ window.fetch = async (input, init = {}) => {
   const key = keyOf(u, init), signal = init.signal;
   pending++;
   try {
-    if (MODE === "play") {
-      const e = answerFor(key);
+    // ?replay=fill (evaluation/holdout): the recorded answer where there is one (no source asked twice), else live and
+    // recorded, as record.
+    const filled = MODE === "fill" ? answerFor(key) : null;
+    if (MODE === "play" || (filled && !filled.error && filled.status < 500)) {
+      const e = filled || answerFor(key);
       if (!e) { misses.push(key); throw new TypeError("replay: not recorded"); }
       if (e.error) throw toError(e.error);
       const buf = await bodyOf(e.sha);
@@ -132,6 +135,8 @@ async function capture(p, mods) {
   out.cut = st.cut;
   out.stav = st.stav;
   if (!st.stav) return out;
+  // &light=1 (evaluation/holdout): only the profile and the surfaces along the cut, no drawings.
+  if (P.get("light")) { out.eval = globalThis.__profilyEval || null; out.credits = exportCredits(st.cut?.sources); return out; }
   out.credits = exportCredits(st.cut?.sources);
   out.svg = svgString(A.exportSvgs());
   const art = getArt();
@@ -170,7 +175,7 @@ async function main() {
   while (!(window.cutAt && H.state && window.profilyReady)) await sleep(100);
   await settle();
   const mods = { profile: await import("/profile.js"), city: await import("/city.js") };
-  if (MODE === "play") await loadIndex();
+  if (MODE === "play" || MODE === "fill") await loadIndex();
   const sample = (await native(`/__replay/sample?name=${SAMPLE}`).then((r) => r.json())).filter((p) => p.id >= FROM && p.id <= TO);
   const t0 = Date.now();
   for (const [n, p] of sample.entries()) {
@@ -188,7 +193,7 @@ async function main() {
     out.misses = [...misses];
     out.notes = [...notes];
     await native(`/__replay/out?run=${RUN}&id=${p.id}`, { method: "POST", body: JSON.stringify(out) });
-    if (MODE === "record" && recorded.length) {
+    if ((MODE === "record" || MODE === "fill") && recorded.length) {
       await native("/__replay/index", { method: "POST", body: JSON.stringify(recorded.splice(0)) });
     }
   }
