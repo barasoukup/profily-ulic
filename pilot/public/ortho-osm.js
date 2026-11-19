@@ -393,7 +393,7 @@ export function carsSeen(st, a, b, axis) {
 // sidewalk make some).
 const PIECE_GREEN = 0.35, AREA_GREEN = 0.2;
 // The narrowest sidewalk the image may end (from the kerb) and the stretch of green that ends it (m).
-const WALK_MIN = 1.0, WALK_WIN = 1.0;
+const WALK_MIN = 1.0, WALK_WIN = 1.0, WALK_SAT = 8, WALK_LIGHT = 100;
 const BACK_MIN = 2; // m: the shortest run of green or paving the image may give behind everything else
 const LAST_WALK = 15, LAST_NONE = 2; // m: the next thing of the street at most this far on; with none, this past the kerb
 const ALONG = 10, SIDEWALK = 2.5, SIDEWALK_MAX = 6, REST_MAX = 12, HOUSE = 5, GREEN_AREA = 0.1; // evaluation/ortofoto-osm/zelen.mjs: on ČÚZK 12.5 cm 67 % (Prague) and 82 % (Brno) of the metres right
@@ -703,8 +703,16 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
       // the roadway's own share) ends it, if the next WALK_WIN is green too. ?off=walkedge: as before.
       if (k.cols && swEnd !== kerb && Math.abs(swEnd - kerb) > WALK_MIN + 2 * WALK_WIN && !P.off?.has("walkedge")) {
         const greenOf = (x, y) => { const [a, b] = x < y ? [x, y] : [y, x], g = []; for (let i = k.cols.ti(a); i < k.cols.ti(b); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.green[i])) g.push(k.cols.green[i]); return g.length ? g.reduce((u, v) => u + v, 0) / g.length : NaN; };
+        // Or where the colour turns more saturated than the sidewalk's own first metre (Bára 19. 11. 2026, Hegelstraße in
+        // Cottbus: a 2 m sidewalk, then front gardens of dry grass, yellowish, not green; paving S 2–7, grass 12–23).
+        // ?off=walksat: green only.
+        const satOf = (x, y) => { const [a, b] = x < y ? [x, y] : [y, x], v = []; for (let i = k.cols.ti(a); i < k.cols.ti(b); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.sat[i])) v.push(k.cols.sat[i]); return v.length ? v.reduce((u, w) => u + w, 0) / v.length : NaN; };
+        const walkSat = satOf(kerb + sg * 0.3, kerb + sg * WALK_MIN), useSat = Number.isFinite(walkSat) && !P.off?.has("walksat");
+        // Not in a shadow: a house's shadow is dark and bluish, saturated as grass (Bělohorská, Olšanská in Prague).
+        const lightOf = (x, y) => { const [a, b] = x < y ? [x, y] : [y, x], v = []; for (let i = k.cols.ti(a); i < k.cols.ti(b); i++) if (i >= 0 && i < k.cols.nt && Number.isFinite(k.cols.medL[i])) v.push(k.cols.medL[i]); return v.length ? v.reduce((u, w) => u + w, 0) / v.length : NaN; };
+        const soft = (x, y) => greenOf(x, y) >= PIECE_GREEN + roadGreen || (useSat && satOf(x, y) >= walkSat + (P.walkSat ?? WALK_SAT) && lightOf(x, y) >= (P.walkLight ?? WALK_LIGHT));
         for (let x = kerb + sg * WALK_MIN; sg * (swEnd - x) > 2 * WALK_WIN; x += sg * 0.2) {
-          if (greenOf(x, x + sg * WALK_WIN) >= PIECE_GREEN + roadGreen && greenOf(x + sg * WALK_WIN, x + sg * 2 * WALK_WIN) >= PIECE_GREEN + roadGreen) { swEnd = x; break; }
+          if (soft(x, x + sg * WALK_WIN) && soft(x + sg * WALK_WIN, x + sg * 2 * WALK_WIN)) { swEnd = x; break; }
         }
       }
       if (swEnd !== kerb) {
