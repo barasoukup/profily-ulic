@@ -23,6 +23,12 @@ if (process.env.PSET) Object.assign(P, JSON.parse(process.env.PSET));
 const SRC = process.env.SRC ? process.env.SRC.split(",") : null;
 const ROAD = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "krajnice", "parkovani", "cyklopruh", "ochranny_pruh", "obsluzna"]);
 const SIDEWALK = new Set(["chodnik", "chodnik_kola", "stezka_sdilena"]);
+// Coarse kinds for the composition, the same for the estimate's parts and MTVU's runs (as chyby.mjs).
+const ROADWAY_K = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "krajnice", "cyklopruh", "ochranny_pruh", "obsluzna"]);
+const estKind = (type) => (ROADWAY_K.has(type) ? "vozovka" : type === "parkovani" ? "stání" : ["chodnik", "chodnik_kola", "stezka_sdilena", "cyklostezka", "nastupiste"].includes(type) ? "chodník"
+  : ["zelen", "stromorad"].includes(type) ? "zeleň" : type === "tramvaj" ? "těleso" : type === "nezname" ? "neurčeno" : "jiné");
+const runKind = (c) => (c === 700 || c === 701 || (c >= 9700 && c < 9800 && !(c >= 9704 && c <= 9708)) ? "vozovka" : c === 704 || (c >= 9704 && c <= 9708) ? "stání"
+  : c === 702 || c === 703 ? "chodník" : c >= 400 && c < 500 ? "zeleň" : c === 705 ? "těleso" : "jiné");
 const pct = (a, b) => (b ? `${Math.round((100 * a) / b)} %` : "–");
 const f2 = (x) => (Number.isFinite(x) ? x.toFixed(2) : "–");
 
@@ -39,6 +45,10 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
   const keys = SRC || (city === "praha" ? ["cuzk12", "ipr10"] : ["cuzk12", "brno10"]);
   for (const key of keys) {
     const kerb = [], sw = [], park = { tp: 0, fn: 0, fp: 0 };
+    // The composition metre by metre (since 19. 11. 2026, the review: the regression saw nothing beyond the kerbs):
+    // over what both cover, buildings left out; all of it and only beyond the kerbs of the carriageway at the axis;
+    // roadway drawn where MTVU has none (no roadway, parking or tram bed).
+    const comp = { all: 0, allOk: 0, out: 0, outOk: 0, roadFalse: 0 };
     let n = 0, none = 0;
     for (const c of list) {
       const st = await stripOf(city, key, c);
@@ -65,6 +75,15 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
       const { s: lo, e: hi } = runs.sort((a, b) => gap(a) - gap(b))[0];
       const tLo = Math.min(truth.way.s, truth.way.e), tHi = Math.max(truth.way.s, truth.way.e);
       kerb.push(lo - tLo, hi - tHi);
+      const e0 = Math.max(p.extent[0], c.a.extent[0]), e1 = Math.min(p.extent[1], c.a.extent[1]);
+      for (let t = e0 + 0.05; t < e1; t += 0.1) {
+        const r = c.a.runs.find((q) => q.s <= t && t < q.e), x = parts.find((q) => q.s <= t && t < q.e);
+        if (!r || !x || r.code === 601 || x.type === "budova") continue;
+        const tk = runKind(r.code), ek = estKind(x.type), ok = tk === ek;
+        comp.all += 0.1; if (ok) comp.allOk += 0.1;
+        if (t < Math.min(lo, tLo) || t > Math.max(hi, tHi)) { comp.out += 0.1; if (ok) comp.outOk += 0.1; }
+        if (ek === "vozovka" && !["vozovka", "stání", "těleso"].includes(tk)) comp.roadFalse += 0.1;
+      }
       for (const [side, inner, sg] of [["A", lo, -1], ["B", hi, 1]]) {
         const t = truth.side?.[side];
         if (!t) continue;
@@ -75,6 +94,6 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
       }
     }
     const a = kerb.filter(Number.isFinite).map(Math.abs), s = sw.map(Math.abs);
-    console.log(`${city} ${key}${OFF.length ? ` (bez ${OFF.join(",")})` : ""}: ${n} řezů (${none} bez profilu) · obruby medián ${f2(median(a))} m, do 0,5 m ${pct(a.filter((x) => x <= 0.5).length, a.length)}, do 1 m ${pct(a.filter((x) => x <= 1).length, a.length)} · chodník medián chyby ${f2(median(s))} m, do 1 m ${pct(s.filter((x) => x <= 1).length, s.length)} (${s.length} stran) · stání: nalezeno ${park.tp}, chybí ${park.fn}, navíc ${park.fp}`);
+    console.log(`${city} ${key}${OFF.length ? ` (bez ${OFF.join(",")})` : ""}: ${n} řezů (${none} bez profilu) · obruby medián ${f2(median(a))} m, do 0,5 m ${pct(a.filter((x) => x <= 0.5).length, a.length)}, do 1 m ${pct(a.filter((x) => x <= 1).length, a.length)} · chodník medián chyby ${f2(median(s))} m, do 1 m ${pct(s.filter((x) => x <= 1).length, s.length)} (${s.length} stran) · stání: nalezeno ${park.tp}, chybí ${park.fn}, navíc ${park.fp} · složení správně ${pct(comp.allOk, comp.all)} (${comp.all.toFixed(0)} m), za obrubami ${pct(comp.outOk, comp.out)} (${comp.out.toFixed(0)} m), vozovka navíc ${comp.roadFalse.toFixed(0)} m`);
   }
 }
