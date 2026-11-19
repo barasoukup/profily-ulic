@@ -255,7 +255,7 @@ export function kerbs(cols, axis, lim, road, lines = [], edges = []) {
   const ref = roadRef(cols, axis), out = {}, why = {};
   if (!Number.isFinite(ref.L)) return null;
   for (const [side, sg] of [["A", -1], ["B", 1]]) {
-    const exp = road.reach[side], sigma = Math.max(P.sigmaMin, P.sigmaRel * exp);
+    const exp = road.reach[side] * (P.expScale ?? 1), sigma = Math.max(P.sigmaMin, P.sigmaRel * exp);
     const lo = sg < 0 ? Math.max(lim.A, cols.t0 + 0.3) : axis + 1, hi = sg < 0 ? axis - 1 : Math.min(lim.B, cols.t0 + cols.nt * cols.res - 0.3);
     const cand = [], w = Math.round(0.3 / cols.res);
     for (let i = Math.max(1, cols.ti(lo)); i <= Math.min(cols.E.length - 2, cols.ti(hi)); i++) {

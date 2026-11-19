@@ -53,7 +53,7 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
   const conf = Object.fromEntries(KINDS.map((a) => [a, Object.fromEntries(KINDS.map((b) => [b, 0]))]));
   const ev = { shoulder: [], shoulderWide: [], lanesMore: [], lanesLess: [], ways: [], unknown: [], walkWide: [], walkNarrow: [], greenForWalk: [], walkForGreen: [], parkFalse: [], parkMissed: [], roadWide: [], roadNarrow: [], kerbIn: [], kerbOut: [] };
   let n = 0, shoulderTruth = 0;
-  const unk = { inside: 0, outside: 0, under: {} }, bed = {}, kerbD = [], kerbByPark = {};
+  const unk = { inside: 0, outside: 0, under: {} }, bed = {}, kerbD = [], kerbByPark = {}, gapIn = {}, whyIn = {};
   for (const c of list) {
     const st = await stripOf(city, KEY, c);
     if (!st) continue;
@@ -110,7 +110,14 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
       kerbD.push(d);
       { const tk = side === "A" ? tEnv.lo : tEnv.hi, park = runs.some((r) => runKind(r.code) === "stání" && (side === "A" ? r.s - tk < 1 && r.s >= tk - 0.5 : tk - r.e < 1 && r.e <= tk + 0.5));
         (kerbByPark[park ? "stání" : "bez"] ??= []).push(d); }
-      if (d > 1) ev.kerbIn.push({ ...id, v: d, side }); else if (d < -1) ev.kerbOut.push({ ...id, v: -d, side });
+      // In the gap between the two kerbs: what the estimate draws and what MTVU has.
+      const [g0, g1] = side === "A" ? [Math.min(eEnv.lo, tEnv.lo), Math.max(eEnv.lo, tEnv.lo)] : [Math.min(eEnv.hi, tEnv.hi), Math.max(eEnv.hi, tEnv.hi)];
+      const gapE = {}, gapT = {};
+      for (let t = g0 + 0.05; t < g1; t += 0.1) { const x = at(est, t), r = runs.find((q) => q.s <= t && t < q.e); if (x) gapE[x.type] = (gapE[x.type] || 0) + 0.1; if (r) gapT[r.code] = (gapT[r.code] || 0) + 0.1; }
+      const fmt = (o) => Object.entries(o).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([q, w]) => `${q} ${w.toFixed(1)}`).join(", ");
+      const why = polys.kerbs?.why?.[side] || "";
+      if (d > 1) { ev.kerbIn.push({ ...id, v: d, side, note: `odhad ${fmt(gapE)}; MTVU ${fmt(gapT)}; obruba z: ${why}` }); for (const [q, w] of Object.entries(gapE)) gapIn[q] = (gapIn[q] || 0) + w; whyIn[why] = (whyIn[why] || 0) + 1; }
+      else if (d < -1) ev.kerbOut.push({ ...id, v: -d, side, note: `odhad ${fmt(gapE)}; MTVU ${fmt(gapT)}; obruba z: ${why}` });
     }
     const sh = est.filter((x) => x.type === "krajnice").reduce((a, x) => a + x.width, 0);
     const shT = mtvu.filter((x) => x.type === "krajnice").reduce((a, x) => a + x.width, 0);
@@ -169,6 +176,7 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
   const bins = [[-99, -2], [-2, -1], [-1, -0.5], [-0.5, 0.5], [0.5, 1], [1, 2], [2, 5], [5, 99]];
   const hist = bins.map(([a, b]) => `${a}..${b}: ${kerbD.filter((d) => d >= a && d < b).length}`).join(" · ");
   console.log(city, "obruby (+ dovnitř):", hist);
+  console.log(city, "v mezeře u obrub uvnitř (odhad):", JSON.stringify(Object.fromEntries(Object.entries(gapIn).map(([q, w]) => [q, Math.round(w)]))), "obruba z:", JSON.stringify(whyIn));
   for (const [k2, ds] of Object.entries(kerbByPark)) console.log(city, k2, ds.length, bins.map(([a, b]) => `${a}..${b}: ${ds.filter((d) => d >= a && d < b).length}`).join(" · "));
   report.push(`Vnější obruby ulice (strany, + = odhad uvnitř, − = venku, m): ${hist}`, "");
   if (process.env.BED) console.log(JSON.stringify(bed));

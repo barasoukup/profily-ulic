@@ -18,6 +18,8 @@ P.off = new Set(OFF);
 P.cars = process.env.CARS === "1";
 // AUTA=1: parked cars by their colours (ortho-osm.js carsColoured).
 P.carsColour = process.env.AUTA === "1";
+// PSET='{"beta":0.25}': other values of the kerb parameters (ortho-osm.js P), for sweeps.
+if (process.env.PSET) Object.assign(P, JSON.parse(process.env.PSET));
 const SRC = process.env.SRC ? process.env.SRC.split(",") : null;
 const ROAD = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "krajnice", "parkovani", "cyklopruh", "ochranny_pruh", "obsluzna"]);
 const SIDEWALK = new Set(["chodnik", "chodnik_kola", "stezka_sdilena"]);
