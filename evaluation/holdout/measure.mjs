@@ -134,3 +134,7 @@ const file = path.join(path.dirname(new URL(import.meta.url).pathname), "vysledk
 fs.mkdirSync(path.dirname(file), { recursive: true });
 fs.writeFileSync(file, lines.join("\n") + "\n");
 console.log(lines.join("\n"));
+// DUMP=file: per cut and run the kerb errors, the town and the link (for looking at the worst).
+if (process.env.DUMP) fs.writeFileSync(process.env.DUMP, JSON.stringify(ids.map((id) => ({ id, town: byId[id]?.town, street: byId[id]?.street, highway: byId[id]?.highway,
+  cut: truth[id].cut && { lat: truth[id].cut.lat, lon: truth[id].cut.lon, bearing: truth[id].cut.bearing },
+  ...Object.fromEntries(RUNS.map((r) => [r, { kerbs: res[r][id].kerbs, walk: res[r][id].walk, comp: +(res[r][id].comp.ok / (res[r][id].comp.all || 1)).toFixed(2) }])) }))));
