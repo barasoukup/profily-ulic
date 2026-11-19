@@ -156,7 +156,12 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
       if (!t || truth.facade[side] === null) continue;
       const mine = est.filter((x) => estKind(x.type) === "chodník" && (sg < 0 ? x.e <= inner + 0.01 : x.s >= inner - 0.01)).reduce((a, x) => a + (x.e - x.s), 0);
       const d = mine - t.sidewalk;
-      if (d > 1.5) ev.walkWide.push({ ...id, v: d, side }); else if (d < -1.5) ev.walkNarrow.push({ ...id, v: -d, side });
+      // What lies between the kerb and the house on this side: the estimate's parts and MTVU's codes (metres).
+      const f = truth.facade[side], [s0, s1] = sg < 0 ? [f, inner] : [inner, f], gE = {}, gT = {};
+      for (let t = Math.min(s0, s1) + 0.05; t < Math.max(s0, s1); t += 0.1) { const x = at(est, t), r = runs.find((q) => q.s <= t && t < q.e); if (x) gE[x.type] = (gE[x.type] || 0) + 0.1; if (r) gT[r.code] = (gT[r.code] || 0) + 0.1; }
+      const fm = (o) => Object.entries(o).sort((a, b) => b[1] - a[1]).slice(0, 4).map(([q, w]) => `${q} ${w.toFixed(1)}`).join(", ");
+      const note = `odhad ${fm(gE)} | MTVU ${fm(gT)} | chodník MTVU ${t.sidewalk.toFixed(1)}, odhad ${mine.toFixed(1)}`;
+      if (d > 1.5) ev.walkWide.push({ ...id, v: d, side, note }); else if (d < -1.5) ev.walkNarrow.push({ ...id, v: -d, side, note });
       const pk = est.some((x) => x.type === "parkovani" && (sg < 0 ? x.s - lo2 < 3 : hi2 - x.e < 3));
       if (t.parking && !pk) ev.parkMissed.push({ ...id, side }); else if (!t.parking && pk) ev.parkFalse.push({ ...id, side });
     }
