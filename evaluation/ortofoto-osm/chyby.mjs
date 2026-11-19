@@ -12,6 +12,8 @@ import { applyLanes } from "../../pilot/public/lanes-ortho.js";
 
 const CITIES = process.argv.slice(2).filter((a) => /^[a-z]+$/.test(a));
 P.off = new Set((process.env.OFF || "").split(",").filter(Boolean));
+P.cars = process.env.CARS === "1";
+P.carsColour = process.env.AUTA === "1";
 const KEY = process.env.SRC || "cuzk12";
 const BASE = "http://localhost:5293/?lang=cs&osm=balik";
 

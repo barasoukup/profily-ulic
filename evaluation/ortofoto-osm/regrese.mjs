@@ -16,6 +16,8 @@ const OFF = (process.env.OFF || "").split(",").filter(Boolean);
 P.off = new Set(OFF);
 // CARS=1: with the parked cars read on the image (off in the app).
 P.cars = process.env.CARS === "1";
+// AUTA=1: parked cars by their colours (ortho-osm.js carsColoured).
+P.carsColour = process.env.AUTA === "1";
 const SRC = process.env.SRC ? process.env.SRC.split(",") : null;
 const ROAD = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "krajnice", "parkovani", "cyklopruh", "ochranny_pruh", "obsluzna"]);
 const SIDEWALK = new Set(["chodnik", "chodnik_kola", "stezka_sdilena"]);

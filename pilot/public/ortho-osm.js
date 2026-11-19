@@ -335,6 +335,7 @@ export function kerbsOnImage(st, o, road, mapRuns = [], edges = []) {
 // windows, shadows, gaps), the roadway's beside them stays even. The strip [a, b] across the cut: the spread along the
 // street of its mean brightness, against the same of a strip of roadway by the axis.
 const CAR_W = 2.0, CAR_SPREAD = 14, CAR_RATIO = 1.8;
+const LOCAL_STREET = new Set(["residential", "living_street", "service", "unclassified", "tertiary"]);
 function alongSpread(st, a, b) {
   const i0 = Math.max(0, Math.round((a - st.t0) / st.res)), i1 = Math.min(st.nt - 1, Math.round((b - st.t0) / st.res));
   if (i1 - i0 < 3) return NaN;
@@ -350,6 +351,31 @@ function alongSpread(st, a, b) {
   for (let j = 0; j + per <= rows.length; j += per) m.push(rows.slice(j, j + per).reduce((x, y) => x + y, 0) / per);
   const mean = m.reduce((x, y) => x + y, 0) / m.length;
   return Math.sqrt(m.reduce((x, y) => x + (y - mean) ** 2, 0) / m.length);
+}
+// Parked cars told by their colours (Bára 19. 11. 2026: "když tam stojí dost aut, musí to vychýlit histogram toho pásu"):
+// per metre along the street the strip's mean saturation; cars of all colours and the gaps between them make it vary
+// (spread ≥ CAR_SAT_SD), a shadow (dark, CAR_DARK) or treetops (green, CAR_GREEN) do not count. Checked by eye on 125
+// kerb strips of Prague and Brno (evaluation/ortofoto-osm/AUTA.md): 13 found, none false; the brightness spread alone
+// (carsSeen) fired as often on shadows and trees.
+const CAR_SAT_SD = 10, CAR_DARK = 0.15, CAR_GREEN = 0.05;
+export function carsColoured(st, a, b) {
+  if (!usable(st) || !st.S || !st.G) return false;
+  const i0 = Math.max(0, Math.round((Math.min(a, b) - st.t0) / st.res)), i1 = Math.min(st.nt - 1, Math.round((Math.max(a, b) - st.t0) / st.res));
+  const per = Math.max(1, Math.round(1 / st.res)), sat = [];
+  let n = 0, dark = 0, green = 0;
+  for (let j0 = 0; j0 + per <= st.nu; j0 += per) {
+    let s = 0, m = 0;
+    for (let j = j0; j < j0 + per; j++) for (let i = i0; i <= i1; i++) {
+      const q = j * st.nt + i, v = st.L[q];
+      if (Number.isNaN(v)) continue;
+      m++; s += st.S[q]; if (v < 50) dark++; if (st.G[q] >= 10) green++;
+    }
+    n += m;
+    if (m) sat.push(s / m);
+  }
+  if (sat.length < 10 || !n) return false;
+  const mean = sat.reduce((x, y) => x + y, 0) / sat.length, sd = Math.sqrt(sat.reduce((x, y) => x + (y - mean) ** 2, 0) / sat.length);
+  return sd >= CAR_SAT_SD && dark / n <= CAR_DARK && green / n <= CAR_GREEN;
 }
 export function carsSeen(st, a, b, axis) {
   if (!usable(st)) return false;
@@ -465,10 +491,15 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     // Off (P.cars false): the regression of 16. 11. 2026 (evaluation/ortofoto-osm/regrese.mjs) found it adding parking
     // where none is (Prague 33 against 5, Brno 52 against 7), as the hand detector of evaluation/ortofoto/AUTA-DL.md
     // (56 % precision: shadows, trees, roofs); a trained detector there did far better but its licence does not fit.
-    if (!P.cars) continue;
+    // P.carsColour (?auta=1, 19. 11. 2026): by their colours (carsColoured), in local streets only (on main roads moving
+    // cars colour the lanes too); off: the regression found Prague's kerbs a little better (median 1.00 → 0.90 m) but
+    // Brno's sidewalks on ČÚZK worse (1.05 → 1.15 m) and on IPR's 10 cm more parking MTVU has not (6 → 16; tuned on
+    // ČÚZK, and MTVU lacks most parking in the roadway). P.cars: the brightness rule of before, everywhere.
+    const seen = P.cars ? (a, b) => carsSeen(st, a, b, o.own.t) : P.carsColour && LOCAL_STREET.has(o.own.tags.highway) ? (a, b) => carsColoured(st, a, b) : null;
+    if (!seen) continue;
     const kb = k[side];
-    if (carsSeen(st, ...(sg < 0 ? [kb, kb + CAR_W] : [kb - CAR_W, kb]), o.own.t)) cars.push(rect(704, "stání (auta na ortofotu)", ...(sg < 0 ? [kb, kb + CAR_W] : [kb - CAR_W, kb])));
-    else if (carsSeen(st, ...(sg < 0 ? [kb - CAR_W, kb] : [kb, kb + CAR_W]), o.own.t)) {
+    if (seen(...(sg < 0 ? [kb, kb + CAR_W] : [kb - CAR_W, kb]))) cars.push(rect(704, "stání (auta na ortofotu)", ...(sg < 0 ? [kb, kb + CAR_W] : [kb - CAR_W, kb])));
+    else if (seen(...(sg < 0 ? [kb - CAR_W, kb] : [kb, kb + CAR_W]))) {
       cars.push(rect(704, "stání (auta na ortofotu)", ...(sg < 0 ? [kb - CAR_W, kb] : [kb, kb + CAR_W])));
       carsOut[side] = kb + sg * CAR_W;
     }
