@@ -4,7 +4,7 @@ import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO, CH_ORTHO, DE_ORTHO, deWmsUrl, landsAt, landAt } from "./lanes-ortho.js";
 import { boxed as boxedPlace, within as withinPlace } from "./places.js";
 import { orthoOsmPolys, besidePassport, trimToEnds, P as ORTHO_P } from "./ortho-osm.js";
-import { aiCut, aiKerbs, aiSurface, aiReady, onAiProgress } from "./ai-kerbs.js";
+import { aiCut, aiKerbs, aiSurface, aiParking, parkFromAi, parkSkip, aiReady, onAiProgress } from "./ai-kerbs.js";
 // ?off=… switches named parts of the estimate off (the A/B tests, evaluation/ortofoto-osm/regrese.mjs).
 { const off = new URLSearchParams(location.search).get("off"); if (off) ORTHO_P.off = new Set(off.split(",")); }
 // ?auta=1: parked cars told by their colours on the orthophoto (ortho-osm.js carsColoured; a trial, off by default).
@@ -437,7 +437,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // No surface of the street from the technical map (no answer, nothing here, nothing at the axis): the carriageway
     // read on the orthophoto near where OSM expects it, sidewalks to the OSM buildings (ortho-osm.js; Bára 15. 11.
     // 2026: better than OSM alone), all an estimate. The map's own surfaces, where there are any, stay behind it.
-    let orthoOsm = null;
+    let orthoOsm = null, aiPark = null;
     if (result.estimate) {
       // A trial (Bára 18. 11. 2026, ?ai=1): the carriageway's kerbs read by a trained model (ai-kerbs.js); without the
       // model or the photo the estimate's own.
@@ -450,7 +450,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
         const job = aiCut({ osm, frame, dir, source: city.laneOrtho || country.laneOrtho }).catch((err) => { console.warn("AI", err); return null; });
         const cut = aiReady() ? await job : await Promise.race([job, new Promise((r) => setTimeout(() => r(null), AI_WAIT))]);
         onAiProgress(null);
-        if (cut) { ai = (axis) => aiKerbs(cut, axis); aiSurf = aiSurface(cut); }
+        if (cut) { ai = (axis) => aiKerbs(cut, axis); aiSurf = aiSurface(cut); aiPark = aiParking(cut); }
       }
       // The map's runs where it has surfaces but none at the axis: its sidewalks and buildings bound the estimate.
       const fb = orthoOsmPolys({ ai, aiSurf, osm, frame, dir, way: near.way, st: laneImg?.st, mapRuns: result.runs || [], edges: k.status === "fulfilled" ? k.value?.edges || [] : [], widths: k.status === "fulfilled" ? k.value?.widths || [] : [], areas: k.status === "fulfilled" ? k.value?.areas || [] : [], symbols: k.status === "fulfilled" ? k.value?.symbols || [] : [] });
@@ -479,6 +479,12 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // The technical map's own roadway in a pedestrian zone stays a lane; the estimate's does not.
     pedestrianZone(result.segments, near.way.tags, { measured: !orthoOsm && !result.estimate });
     if (orthoOsm) widenNarrowTrams(result.segments);
+    // Parking where the model sees cars at the kerb (ai-kerbs.js parkFromAi; Bára 20. 11. 2026), ?off=aipark.
+    // Not where parking data decide: a paid zone, the city's parking sections at the cut, a side OSM tags.
+    if (orthoOsm && aiPark && !ORTHO_P.off?.has("aipark")) {
+      const along = !near.dir || dir[0] * near.dir[0] + dir[1] * near.dir[1] >= 0;
+      parkFromAi(result, aiPark, parkSkip(near.way.tags, along, inZps === true || parking.length > 0));
+    }
     if (result.extent) {
       const crossA = crossFromA(osm, frame, dir, result.extent);
       carveCycleways(result.segments, crossA);

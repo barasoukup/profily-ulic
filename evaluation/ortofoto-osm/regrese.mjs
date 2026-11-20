@@ -9,9 +9,10 @@
 //   SRC=cuzk12 …                                                       only this orthophoto (default: cuzk12 and the city's 10 cm)
 import { cuts, truthOf, osmAround, stripOf, median } from "./lib.mjs";
 import { orthoOsmPolys, trimToEnds, P } from "../../pilot/public/ortho-osm.js";
-import { aiKerbs } from "../../pilot/public/ai-kerbs.js";
+import { aiKerbs, parkFromAi, parkSkip } from "../../pilot/public/ai-kerbs.js";
 import fsAi from "node:fs";
 import { localFrame, deriveProfile } from "../../pilot/public/derive.js";
+const wayAlong = (way, frame, dir) => { const g = way.geometry.map((q) => frame.toXY(q.lon, q.lat)); let best = null; for (let i = 0; i + 1 < g.length; i++) { const [a, b] = [g[i], g[i + 1]], d = Math.hypot((a[0] + b[0]) / 2, (a[1] + b[1]) / 2); if (!best || d < best.d) best = { d, v: [b[0] - a[0], b[1] - a[1]] }; } return !best || best.v[0] * dir[0] + best.v[1] * dir[1] >= 0; };
 
 const CITIES = process.argv.slice(2).filter((a) => /^[a-z]+$/.test(a));
 const OFF = (process.env.OFF || "").split(",").filter(Boolean);
@@ -80,6 +81,13 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
       if (!polys || !truth.way) { none++; continue; }
       // As app.js: a side without a house ends where orthoOsmPolys found (polys.ends).
       const p = trimToEnds(deriveProfile({ center: [0, 0], dir, half: 40, polys, osm, frame, way, reach: { left: 40, right: 40 } }), polys.ends);
+      // PARK=park-park-b1: the model's parking (ai-kerbs.js parkFromAi), precomputed by park_cuts.py (Brno, Prague).
+      if (process.env.PARK && p?.segments?.length && p.extent) {
+        const d2 = `/Users/barasoukupova/streetdesign/data/ai-seg/cuts/${city}`;
+        aiCache["park-" + city] ??= fsAi.existsSync(`${d2}/${process.env.PARK}.json`) ? JSON.parse(fsAi.readFileSync(`${d2}/${process.env.PARK}.json`, "utf8")) : {};
+        const pk = aiCache["park-" + city][String(c.n)], meta = pk && JSON.parse(fsAi.readFileSync(`${d2}/${c.n}.json`, "utf8"));
+        if (pk) parkFromAi(p, (tt) => { const i = Math.round((tt - meta.ts[0]) / (meta.ts[1] - meta.ts[0])); return i >= 0 && i < pk.length && pk[i] >= 0 ? pk[i] : null; }, parkSkip(way.tags, wayAlong(way, frame, dir), false));
+      }
       if (!p?.segments?.length || !p.extent) { none++; continue; }
       n++;
       const parts = laid(p), road = parts.filter((x) => ROAD.has(x.type));

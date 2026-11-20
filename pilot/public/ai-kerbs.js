@@ -7,7 +7,8 @@
 // onnxruntime-web (MIT, pilot/public/ort/). Its input: a north-up square of 83.2 m around the cut, 416 px (20 cm),
 // the orthophoto and eight channels of OSM drawn on it (evaluation/ai-segmentation/train.py osm_channels: streets,
 // the street's width as OSM suggests it, paths, cycle ways, tram tracks, buildings, green, parking); its output five
-// kinds per pixel (carriageway, sidewalk, green, building, other). Across the cut every 20 cm, the majority of three
+// kinds per pixel (carriageway, sidewalk, green, building, other), and a second output, parking (a small branch of its
+// own on the frozen encoder, learnt on the maps of Vienna, Berlin and Hamburg, which tell parking apart; parkFromAi). Across the cut every 20 cm, the majority of three
 // lines 3 m apart; the carriageway is the run nearest the axis (gaps to 0.6 m bridged, within 4 m of it), as
 // evaluation/ai-segmentation/compare.py measured it.
 import { orthoPatch } from "./lanes-ortho.js";
@@ -23,6 +24,8 @@ const FOOT = new Set(["footway", "path", "pedestrian", "steps", "track", "bridle
 const GREEN = (t) => ["grass", "meadow", "village_green", "forest", "cemetery", "allotments", "recreation_ground", "flowerbed"].includes(t.landuse)
   || ["park", "garden", "playground", "pitch"].includes(t.leisure) || ["wood", "scrub", "grassland", "heath"].includes(t.natural);
 const STEP = 0.2, LINES = [-3, 0, 3], CARRIAGE = 0;
+// Parking (Bára 20. 11. 2026): the model's second output, its probability averaged over 40 m along the street.
+const PLINES = Array.from({ length: 21 }, (_, k) => -20 + 2 * k);
 
 const merc = (lon, lat) => [(R * lon * Math.PI) / 180, R * Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360))];
 
@@ -49,7 +52,7 @@ export function kind(e) {
 let session = null;
 // The download of the library and the model (once, about 7 MB packed; Bára 19. 11. 2026: the first estimated cut
 // seemed stuck): its progress for the status line (onAiProgress), and whether it is ready (aiReady).
-const SIZES = { wasm: 11210254, model: 4738654 }; // unpacked bytes (what the stream gives); only for the share shown
+const SIZES = { wasm: 11210254, model: 5470211 }; // unpacked bytes (what the stream gives); only for the share shown
 const got = { wasm: 0, model: 0 };
 let progressFn = null, ready = false;
 export const onAiProgress = (fn) => { progressFn = fn; };
@@ -70,7 +73,7 @@ async function model() {
     ort.env.wasm.wasmPaths = new URL("./ort/", import.meta.url).href;
     ort.env.wasm.numThreads = globalThis.crossOriginIsolated ? Math.min(4, navigator.hardwareConcurrency || 1) : 1;
     // ?aimodel=kerbs-int8: another file in ai/ (comparing a smaller model on the same cuts).
-    const name = (typeof location !== "undefined" && new URLSearchParams(location.search).get("aimodel")?.replace(/[^a-z0-9-]/gi, "")) || "kerbs";
+    const name = (typeof location !== "undefined" && new URLSearchParams(location.search).get("aimodel")?.replace(/[^a-z0-9-]/gi, "")) || "street";
     const [wasm, bytes] = await Promise.all([download(new URL("./ort/ort-wasm-simd-threaded.wasm", import.meta.url).href, "wasm"),
       download(new URL(`./ai/${name}.onnx`, import.meta.url).href, "model")]);
     ort.env.wasm.wasmBinary = wasm;
@@ -132,9 +135,9 @@ export async function aiCut({ osm, frame, dir, source }) {
   for (let i = 0; i < n; i++) for (let c = 0; c < 3; c++) x[c * n + i] = (d[i * 4 + c] / 255 - MEAN[c]) / STD[c];
   osmL.forEach((l, c) => { for (let i = 0; i < n; i++) x[(3 + c) * n + i] = l[i]; });
   const out = await s.run({ image: new ort.Tensor("float32", x, [1, 3 + HINTS.length, PX, PX]) });
-  const logits = out.logits.data, kinds = out.logits.dims[1];
+  const logits = out.logits.data, kinds = out.logits.dims[1], parking = out.parking?.data;
   const at = (row, col) => { let best = 0; for (let q = 1; q < kinds; q++) if (logits[q * n + row * PX + col] > logits[best * n + row * PX + col]) best = q; return best; };
-  const normal = [-dir[1], dir[0]], ts = [], cls = [];
+  const normal = [-dir[1], dir[0]], ts = [], cls = [], park = [];
   for (let i = 0; i <= 400; i++) {
     const t = -40 + i * STEP, votes = new Array(kinds).fill(0);
     let seen = 0;
@@ -145,8 +148,18 @@ export async function aiCut({ osm, frame, dir, source }) {
       votes[at(row, col)]++; seen++;
     }
     ts.push(t); cls.push(seen ? votes.indexOf(Math.max(...votes)) : -1);
+    if (parking) {
+      let sum = 0, m = 0;
+      for (const u of PLINES) {
+        const [mx, my] = merc(...frame.toLonLat(normal[0] * t + dir[0] * u, normal[1] * t + dir[1] * u));
+        const col = Math.floor(((mx - box[0]) / (box[2] - box[0])) * PX), row = Math.floor(((box[3] - my) / (box[3] - box[1])) * PX);
+        if (row < 0 || col < 0 || row >= PX || col >= PX) continue;
+        sum += 1 / (1 + Math.exp(-parking[row * PX + col])); m++;
+      }
+      park.push(m ? sum / m : -1);
+    }
   }
-  const res = { ts, cls, source: photo.source };
+  const res = { ts, cls, source: photo.source, ...(parking && { park }) };
   globalThis.__aiLast = res; // for checking (evaluation/ai-segmentation)
   return res;
 }
@@ -180,4 +193,119 @@ export function aiSurface(cut) {
   if (!cut) return null;
   const { ts, cls } = cut, t0 = ts[0], step = ts[1] - ts[0];
   return (t) => { const i = Math.round((t - t0) / step); return i >= 0 && i < cls.length && cls[i] >= 0 ? FIVE[cls[i]] : null; };
+}
+
+// The model's parking probability at t across the cut, or null (outside the patch, a model without parking).
+export function aiParking(cut) {
+  if (!cut?.park) return null;
+  const { ts, park } = cut, t0 = ts[0], step = ts[1] - ts[0];
+  return (t) => { const i = Math.round((t - t0) / step); return i >= 0 && i < park.length && park[i] >= 0 ? park[i] : null; };
+}
+
+// Parking at the outer kerbs of an estimated profile as the model sees it (Bára 20. 11. 2026: the parking branch learnt
+// on the surface maps of Vienna, Berlin and Hamburg, which tell parking apart; hand-labelled sides of Brno: 20 of 37
+// rows of cars found, 2 false of 83, against the estimate's 12 and 4). At each outer kerb the band where the probability
+// stays at PARK_ON or more (gaps to 0.4 m), starting within 0.6 m of the kerb: inside the roadway it takes the strip at
+// the kerb (a shoulder first, a lane only while LANE_LEFT stays); outside it, a sidewalk, paved area or green at the
+// kerb gives its strip to cars standing on the kerb. A parallel strip the law estimated where the model sees no cars
+// (below PARK_OFF in the 2.5 m at the kerb) goes back to the lane. Parking the data put there stays. ?off=aipark.
+export const PARK = { on: 0.4, off: 0.2, minW: 1.6, laneLeft: 2.75, road: 3 };
+const ROADISH = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "krajnice", "cyklopruh", "ochranny_pruh", "obsluzna", "parkovani"]);
+const KERBSIDE = new Set(["chodnik", "plocha", "zelen"]);
+const r2 = (x) => Math.round(x * 100) / 100;
+function stallOf(w) {
+  if (w < 3.2) return { orient: "podelne", width: Math.min(Math.max(w, 2), 2.5) };
+  if (w < 4.4) return { orient: "sikme", width: r2(w) };
+  return { orient: "kolme", width: r2(Math.min(w, 5.5)) };
+}
+// Where parking data exist, they decide, not the model (Bára 20. 11. 2026): a cut in a paid parking zone or with the
+// city's parking sections near it is left alone (`all`), and so is a side whose OSM way tags its parking, a no too
+// (`hi`: the side at larger t, the profile's L; `lo`: the other). parkSkip gives them from the way's tags.
+const PARK_KEYS = (side) => [`parking:${side}`, "parking:both", `parking:lane:${side}`, "parking:lane:both", `parking:${side}:restriction`, "parking:both:restriction",
+  `parking:condition:${side}`, "parking:condition:both"];
+export function parkSkip(tags = {}, alongWay = true, data = false) {
+  const tagged = (side) => PARK_KEYS(side).some((k) => tags[k] !== undefined);
+  return { all: !!data, hi: tagged(alongWay ? "left" : "right"), lo: tagged(alongWay ? "right" : "left") };
+}
+export function parkFromAi(result, pAt, skip = {}) {
+  if (!pAt || skip.all || !result?.segments?.length || !result.extent) return 0;
+  const segs = result.segments;
+  // Screen order runs from extent[1] down: segment k spans [hi - w, hi].
+  const lay = () => { let t = result.extent[1]; return segs.map((s) => { const r = { s: t - s.width, e: t }; t -= s.width; return r; }); };
+  // How far the run of PARK.on or more reaches from the kerb toward sg (+1: larger t), gaps to 0.4 m bridged; it must
+  // touch the kerb (within 0.6 m on either side, `touch`).
+  const reach = (kerb, sg) => {
+    let w = 0, gap = 0, started = false;
+    for (let d = 0.1; d < 7; d += STEP) {
+      const p = pAt(kerb + sg * d);
+      if (p === null) break;
+      if (p >= PARK.on) { started = true; w = d + STEP / 2; gap = 0; }
+      else if (!started) { if (d > 0.6) return 0; }
+      else if ((gap += STEP) > 0.4 + 1e-9) break;
+    }
+    return w;
+  };
+  const maxIn = (kerb, sg) => { let m = 0; for (let d = 0.1; d < 2.5; d += STEP) { const p = pAt(kerb + sg * d); if (p !== null) m = Math.max(m, p); } return m; };
+  let changed = 0;
+  const ends = [];
+  segs.forEach((s, k) => {
+    if (!ROADISH.has(s.type)) return;
+    if (!ROADISH.has(segs[k - 1]?.type)) ends.push({ X: s, sg: -1 }); // its high end (larger t) is a kerb; inward = lower t
+    if (!ROADISH.has(segs[k + 1]?.type)) ends.push({ X: s, sg: 1 });
+  });
+  for (const { X, sg } of ends) {
+    const k = segs.indexOf(X);
+    if (k < 0) continue;
+    if (sg < 0 ? skip.hi : skip.lo) continue;
+    const out = k + sg, L = lay(), kerb = sg < 0 ? L[k].e : L[k].s, dirIn = sg < 0 ? -1 : 1;
+    if (ROADISH.has(segs[out]?.type)) continue;
+    let a = reach(kerb, dirIn), b = reach(kerb, -dirIn);
+    const N = segs[out];
+    // Cars cannot stand in a row of trees or beyond the profile: what reaches there counts to the roadway (the kerb is
+    // a little off; Charbulova in Brno).
+    if (!KERBSIDE.has(N?.type)) { a += b; b = 0; }
+    if (a < 0.6 && b < 0.6) {
+      // No cars at this kerb: a strip the law estimated goes back to the lane.
+      if (X.type === "parkovani" && X.source === "odhad" && !X.ai && maxIn(kerb, dirIn) < PARK.off) {
+        const Y = segs[sg < 0 ? k + 1 : k - 1];
+        if (Y && (Y.type === "pruh" || Y.type === "krajnice")) { Y.width = r2(Y.width + X.width); segs.splice(k, 1); changed++; }
+      }
+      continue;
+    }
+    if (a + b < PARK.minW || X.type === "parkovani") continue;
+    if (a < 0.6) a = 0; // the cars stand beyond the kerb
+    if (b < 0.6) b = 0; // in the roadway
+    const st = stallOf(a + b), k2 = st.width / (a + b);
+    a = r2(a * k2); b = r2(b * k2);
+    if (b && N.width < b - 0.3) continue;
+    // The roadway's part: a shoulder at the kerb first, then the run's driving lanes share what is left (at least
+    // PARK.road; as many lanes as keep PARK.laneLeft, at least one).
+    let lanes = [];
+    if (a) {
+      if (X.type !== "krajnice" && X.type !== "pruh") continue;
+      let i0 = k, i1 = k;
+      while (ROADISH.has(segs[i0 - 1]?.type)) i0--;
+      while (ROADISH.has(segs[i1 + 1]?.type)) i1++;
+      lanes = segs.slice(i0, i1 + 1).filter((x) => x.type === "pruh");
+      const fromX = X.type === "krajnice" ? Math.min(X.width, a) : 0, need = r2(a - fromX), total = lanes.reduce((q, x) => q + x.width, 0);
+      if (need > 0 && (!lanes.length || total - need < PARK.road - 1e-6)) continue;
+      X.width = r2(X.width - fromX);
+      if (need > 0) {
+        const n = Math.max(1, Math.min(lanes.length, Math.floor((total - need) / PARK.laneLeft + 1e-9))), each = r2((total - need) / n);
+        lanes.forEach((x, q) => { if (q < n) { x.width = q === n - 1 ? r2(total - need - each * (n - 1)) : each; if (n === 1 && lanes.length > 1) delete x.dir; } });
+        for (const x of lanes.slice(n)) segs.splice(segs.indexOf(x), 1);
+      }
+    }
+    const stall = { type: "parkovani", width: r2(a + b), orient: st.orient, source: "odhad", ai: true, ...(b && { position: a ? "half_on_kerb" : "on_kerb" }) };
+    if (b) {
+      if (N.width - b < 0.8) { stall.width = r2(a + N.width); segs.splice(segs.indexOf(N), 1); }
+      else N.width = r2(N.width - b);
+    }
+    if (X.type === "krajnice" && X.width < 0.3) { stall.width = r2(stall.width + X.width); segs.splice(segs.indexOf(X), 1); }
+    // At the kerb: at the run's high end before its first part, at the low end after its last.
+    const run = [X, ...lanes].map((x) => segs.indexOf(x)).filter((q) => q >= 0);
+    if (sg < 0) segs.splice(Math.min(...run), 0, stall); else segs.splice(Math.max(...run) + 1, 0, stall);
+    changed++;
+  }
+  return changed;
 }
