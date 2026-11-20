@@ -87,6 +87,17 @@ async function image(c, tMax) {
       await fs.mkdir(path.dirname(file), { recursive: true });
       await fs.writeFile(file, buf);
       await new Promise((r) => setTimeout(r, 300));
+    } else if (process.env.ORTHO === "nl") {
+      // The Netherlands (evaluation/netherlands/ab): PDOK's Luchtfoto (Actueel_orthoHR) through its WMS as a PNG.
+      const q = new URLSearchParams({ SERVICE: "WMS", VERSION: "1.3.0", REQUEST: "GetMap", LAYERS: "Actueel_orthoHR", STYLES: "", CRS: "EPSG:3857",
+        BBOX: [x0, y0, x1, y1].join(","), WIDTH: w, HEIGHT: h, FORMAT: "image/png" });
+      // PDOK answers a JPEG whatever the format asked: made a PNG with ImageMagick.
+      await fs.mkdir(path.dirname(file), { recursive: true });
+      await fs.writeFile(file + ".jpg", Buffer.from(await (await fetch(`https://service.pdok.nl/hwh/luchtfotorgb/wms/v1_0?${q}`, { headers: { "User-Agent": "profily-ulic" } })).arrayBuffer()));
+      await run("magick", [file + ".jpg", "PNG24:" + file]);
+      await fs.rm(file + ".jpg");
+      buf = await fs.readFile(file);
+      await new Promise((r) => setTimeout(r, 300));
     } else if (process.env.ORTHO === "at") {
       // Austria (evaluation/austria/ab): basemap.at's tiles of level 20 glued and cut to the box with ImageMagick.
       buf = await atImage([x0, y0, x1, y1], w, h);

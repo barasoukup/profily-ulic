@@ -1,0 +1,224 @@
+[
+ {
+  "id": "am1",
+  "town": "amsterdam",
+  "lat": 52.381359,
+  "lon": 4.884373
+ },
+ {
+  "id": "am2",
+  "town": "amsterdam",
+  "lat": 52.36987,
+  "lon": 4.898801
+ },
+ {
+  "id": "am3",
+  "town": "amsterdam",
+  "lat": 52.36506,
+  "lon": 4.910568
+ },
+ {
+  "id": "am4",
+  "town": "amsterdam",
+  "lat": 52.362079,
+  "lon": 4.894144
+ },
+ {
+  "id": "am5",
+  "town": "amsterdam",
+  "lat": 52.384858,
+  "lon": 4.883656
+ },
+ {
+  "id": "am6",
+  "town": "amsterdam",
+  "lat": 52.362726,
+  "lon": 4.899208
+ },
+ {
+  "id": "am7",
+  "town": "amsterdam",
+  "lat": 52.368254,
+  "lon": 4.877914
+ },
+ {
+  "id": "am8",
+  "town": "amsterdam",
+  "lat": 52.377114,
+  "lon": 4.908862
+ },
+ {
+  "id": "ro1",
+  "town": "rotterdam",
+  "lat": 51.926871,
+  "lon": 4.472124
+ },
+ {
+  "id": "ro2",
+  "town": "rotterdam",
+  "lat": 51.914504,
+  "lon": 4.470396
+ },
+ {
+  "id": "ro3",
+  "town": "rotterdam",
+  "lat": 51.917852,
+  "lon": 4.491353
+ },
+ {
+  "id": "ro4",
+  "town": "rotterdam",
+  "lat": 51.913659,
+  "lon": 4.481726
+ },
+ {
+  "id": "ro5",
+  "town": "rotterdam",
+  "lat": 51.926947,
+  "lon": 4.498756
+ },
+ {
+  "id": "ro6",
+  "town": "rotterdam",
+  "lat": 51.912189,
+  "lon": 4.471963
+ },
+ {
+  "id": "ro7",
+  "town": "rotterdam",
+  "lat": 51.924653,
+  "lon": 4.458892
+ },
+ {
+  "id": "de1",
+  "town": "denhaag",
+  "lat": 52.089681,
+  "lon": 4.305702
+ },
+ {
+  "id": "de2",
+  "town": "denhaag",
+  "lat": 52.08264,
+  "lon": 4.327681
+ },
+ {
+  "id": "de3",
+  "town": "denhaag",
+  "lat": 52.08809,
+  "lon": 4.315031
+ },
+ {
+  "id": "de4",
+  "town": "denhaag",
+  "lat": 52.070604,
+  "lon": 4.296252
+ },
+ {
+  "id": "de5",
+  "town": "denhaag",
+  "lat": 52.074826,
+  "lon": 4.300274
+ },
+ {
+  "id": "de6",
+  "town": "denhaag",
+  "lat": 52.079596,
+  "lon": 4.326886
+ },
+ {
+  "id": "de7",
+  "town": "denhaag",
+  "lat": 52.084125,
+  "lon": 4.310232
+ },
+ {
+  "id": "ut1",
+  "town": "utrecht",
+  "lat": 52.08898,
+  "lon": 5.123508
+ },
+ {
+  "id": "ut2",
+  "town": "utrecht",
+  "lat": 52.087131,
+  "lon": 5.140398
+ },
+ {
+  "id": "ut3",
+  "town": "utrecht",
+  "lat": 52.095872,
+  "lon": 5.111197
+ },
+ {
+  "id": "ut4",
+  "town": "utrecht",
+  "lat": 52.082514,
+  "lon": 5.109194
+ },
+ {
+  "id": "ut5",
+  "town": "utrecht",
+  "lat": 52.082924,
+  "lon": 5.122971
+ },
+ {
+  "id": "ut6",
+  "town": "utrecht",
+  "lat": 52.082188,
+  "lon": 5.136336
+ },
+ {
+  "id": "ut7",
+  "town": "utrecht",
+  "lat": 52.090475,
+  "lon": 5.115235
+ },
+ {
+  "id": "ha1",
+  "town": "haarlem",
+  "lat": 52.388297,
+  "lon": 4.646331
+ },
+ {
+  "id": "ha2",
+  "town": "haarlem",
+  "lat": 52.391967,
+  "lon": 4.626362
+ },
+ {
+  "id": "ha3",
+  "town": "haarlem",
+  "lat": 52.378708,
+  "lon": 4.623097
+ },
+ {
+  "id": "ha4",
+  "town": "haarlem",
+  "lat": 52.38624,
+  "lon": 4.630356
+ },
+ {
+  "id": "le1",
+  "town": "leiden",
+  "lat": 52.16993,
+  "lon": 4.498479
+ },
+ {
+  "id": "le2",
+  "town": "leiden",
+  "lat": 52.162949,
+  "lon": 4.482539
+ },
+ {
+  "id": "le3",
+  "town": "leiden",
+  "lat": 52.164402,
+  "lon": 4.50343
+ },
+ {
+  "id": "le4",
+  "town": "leiden",
+  "lat": 52.165209,
+  "lon": 4.476179
+ }
+]
