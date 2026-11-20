@@ -38,6 +38,10 @@ test("Nizozemsko: BGT jen v úrovni ulice pod středem, OV-baan s tramvají jako
   };
   const codes = N.bgtFeatures(got, 5, 52).features.map((f) => [f.attributes.code, f.attributes.ANY_TRAM || 0]);
   assert.deepEqual(codes, [[701, 0], [705, 1], [701, 0], [601, 0]], "most (úroveň 1) vynechán, OV-baan s kolejí 705, bez ní vozovka");
+  // On a bridge (OSM bridge=yes) the deck's level: the footway of level 1, not the road below (the review).
+  const bridge = N.bgtFeatures({ wegdeel: [got.wegdeel[0], { ...got.wegdeel[1], geometry: { type: "Polygon", coordinates: sq(5, 52) } }] }, 5, 52, { bridge: "yes" });
+  assert.deepEqual(bridge.features.map((f) => f.attributes.code), [702]);
+  assert.equal(N.osmLevel({ layer: "-1" }), -1);
   // A light rail (sneltram) crossing a railway bed with no vertex inside it; a planned roadway left out (the review).
   const bed = { properties: { functie: "spoorbaan", relatieve_hoogteligging: 0 }, geometry: { type: "Polygon", coordinates: sq(5, 52) } };
   const plan = { properties: { functie: "rijbaan lokale weg", status: "plan", relatieve_hoogteligging: 0 }, geometry: { type: "Polygon", coordinates: sq(5.001, 52) } };

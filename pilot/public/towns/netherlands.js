@@ -82,8 +82,18 @@ const inRings = (rings, x, y) => {
 // (relatieve_hoogteligging: a bridge 1, a tunnel −1; the CLAUDE.md rule: no streets under bridges); buildings at the
 // ground. An OV-baan with a BGT tram track in it is a tram's bed (705, derive.js asks OSM whether the rails lie in the
 // asphalt, as Berlin's Gleiskörper).
-export function bgtFeatures(got, cx, cy) {
-  const level = (got.wegdeel || []).find((f) => { const r = ringsOf(f.geometry); return r && inRings(r, cx, cy); })?.properties?.relatieve_hoogteligging ?? 0;
+// The level OSM gives the cut's way (a bridge 1, a tunnel or a sunken quay −1, else its layer, else 0).
+export const osmLevel = (tags = {}) => {
+  const layer = parseInt(tags.layer, 10);
+  if (Number.isFinite(layer)) return layer;
+  return tags.bridge && tags.bridge !== "no" ? 1 : tags.tunnel && tags.tunnel !== "no" ? -1 : 0;
+};
+export function bgtFeatures(got, cx, cy, tags) {
+  // The street's level: of the BGT's roads at the centre the one nearest OSM's level of the cut's way (the hostile
+  // review: over a sunken quay, the werf of Utrecht's Oudegracht at −1, or on a bridge the answer's order decided).
+  const want = osmLevel(tags);
+  const here = (got.wegdeel || []).filter((f) => { const r = ringsOf(f.geometry); return r && inRings(r, cx, cy); }).map((f) => f.properties?.relatieve_hoogteligging ?? 0);
+  const level = here.length ? here.reduce((a, b) => (Math.abs(b - want) < Math.abs(a - want) ? b : a)) : want;
   // The BGT's tram tracks (a tram and a light rail, sneltram: the hostile review found Amstelveen's line and the Vijzelgracht's
   // so), sampled every metre or so: their vertices lie up to 180 m apart, a straight piece across a bed has none in it.
   const trams = (got.spoor || []).filter((f) => TRAM.has(f.properties?.functie) && (f.properties?.relatieve_hoogteligging ?? 0) === level)
@@ -129,13 +139,13 @@ const STREET = new Set([701, 703, 704, 705]);
 const ring = (r) => Array.from({ length: 8 }, (_, i) => [r * Math.cos((i * Math.PI) / 4), r * Math.sin((i * Math.PI) / 4)]);
 const NEAR = [[0, 0], ...[1.5, 4].flatMap(ring)], WIDE = [...NEAR, ...[7, 10].flatMap(ring)];
 
-async function surfaces(bbox) {
+async function surfaces(bbox, tags) {
   if (param("bgt") === "0") return { features: [], abroad: true };
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
   let own;
   try {
-    own = asMtvu([[bgtFeatures(await bgt(bbox), cx, cy), (a) => a.code]], MTVU_LABELS);
+    own = asMtvu([[bgtFeatures(await bgt(bbox), cx, cy, tags), (a) => a.code]], MTVU_LABELS);
   } catch {
     return { features: [], abroad: true, nlFailed: true };
   }

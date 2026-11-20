@@ -37,7 +37,8 @@ export const national = async (json, bbox, err, read) => {
   if (!r.features?.length) { if (err) throw err; return json; }
   return { ...r, dmvs: true, ...(err && { fallback: true }) };
 };
-export const mtvu = (bbox) => (town() ? town().surfaces(bbox) : isBrno() ? brnoSurfaces(bbox) : STATIC
+// tags: the OSM tags of the cut's way (a state's map with several levels, towns/netherlands.js, picks the street's).
+export const mtvu = (bbox, tags) => (town() ? town().surfaces(bbox, tags) : isBrno() ? brnoSurfaces(bbox) : STATIC
   ? query(MTVU, { ...envelope(bbox), outFields: MTVU_FIELDS })
   : getJSON(`/api/mtvu?bbox=${bbox}`)).then((json) => national(json, bbox), (err) => national({ features: [] }, bbox, err));
 

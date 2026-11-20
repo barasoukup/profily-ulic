@@ -430,7 +430,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     const zone = sources.zps(clat, clon).catch(() => undefined);
     const [m, k, pk, z, o, li] = await Promise.allSettled([
       // The zone file is local (and loaded once), so knowing the zone first costs nothing.
-      sources.mtvu(bbox), sources.linie(bbox), zone.then((inZone) => sources.parkovani(bbox, inZone)), zone,
+      sources.mtvu(bbox, near.way.tags), sources.linie(bbox), zone.then((inZone) => sources.parkovani(bbox, inZone)), zone,
       // Where OSM has tram tracks across the cut: one small image of the orthophoto for the surface of the bed
       // (ortho.js, a short timeout; without it the rules decide).
       // The state's orthophoto (countries/<ISO>.js bedOrtho; Slovakia its own, elsewhere abroad none: ČÚZK's is blank there).
