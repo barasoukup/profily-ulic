@@ -28,6 +28,16 @@ export const CH_ORTHO = "https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.swissimage
 // The Netherlands (Bára 20. 11. 2026): PDOK's Luchtfoto, the yearly national orthophoto of Beeldmateriaal Nederland
 // (Actueel_orthoHR, 8 cm, open data), WMTS tiles in Web Mercator to level 21, {z}/{x}/{y}, CORS for any origin.
 export const NL_ORTHO = "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0/Actueel_orthoHR/EPSG:3857";
+// Belgium (Bára 20. 11. 2026): the orthophoto of each region, tried in turn (the first with a photo wins, as near a
+// German Land's border): Flanders' middle-scale orthophoto (Digitaal Vlaanderen, WMS in Web Mercator, CORS *; it also
+// covers Brussels) and Wallonia's latest one (SPW, ArcGIS export, CORS for the origin asking).
+export const BE_ORTHO = {
+  vl: { url: (b, w, h, format = "image/jpeg") => `https://geo.api.vlaanderen.be/OMWRGBMRVL/wms?${new URLSearchParams({ service: "WMS", request: "GetMap", version: "1.3.0", layers: "Ortho", styles: "", crs: "EPSG:3857", bbox: b.join(","), width: w, height: h, format })}`, credit: "© Digitaal Vlaanderen" },
+  wal: { url: (b, w, h, format) => `https://geoservices.wallonie.be/arcgis/rest/services/IMAGERIE/ORTHO_LAST/MapServer/export?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: format === "image/png" ? "png24" : "jpg", f: "image" })}`, credit: "© SPW" },
+};
+// Luxembourg (Bára 20. 11. 2026): the latest orthophoto of the ACT (geoportail.lu, WMTS {z}/{x}/{y} in Web Mercator to
+// level 21, CORS *).
+export const LU_ORTHO = "https://wmts1.geoportail.lu/opendata/wmts/ortho_latest/GLOBAL_WEBMERCATOR_4_V3";
 export const SK_ORTHO = "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ortofoto_hres/MapServer";
 const SOURCES = {
   // The grid of z19, tiles of 512 px (about 10 cm). balance: the mosaic is bright and tinted (Košice 2025: asphalt
@@ -39,6 +49,7 @@ const SOURCES = {
   at19: { res: 0.1, tiles: AT_ORTHO, z: 19, px: 256, ext: ".jpeg" },
   ch: { res: 0.1, tiles: CH_ORTHO, z: 20, px: 256, ext: ".jpeg", xy: true },
   nl: { res: 0.1, tiles: NL_ORTHO, z: 20, px: 256, ext: ".jpeg", xy: true },
+  lu: { res: 0.1, tiles: LU_ORTHO, z: 20, px: 256, ext: ".jpeg", xy: true },
   brno: { res: 0.1, tiles: "https://gis.brno.cz/ags1/rest/services/OMI/OMI_basemaps_ortofoto_2025_wgs/MapServer/tile", z: 20, shift: [1.06, 3.09] },
   plzen: { res: 0.1, url: (b, w, h) => `https://ags.plzen.eu/arcgis/rest/services/Orto_2024_5cm_RGB_mimoveg/MapServer/export?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: "jpg", f: "image", datumTransformations: "[1623]" })}` },
   ipr: { res: 0.1, url: (b, w, h) => `https://gs-pub.praha.eu/imgs/rest/services/ort/letecke_snimkovani/ImageServer/exportImage?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: "jpg", f: "image" })}` },
@@ -68,6 +79,7 @@ export const DE_ORTHO = {
 };
 export const deWmsUrl = ({ wms, layers, time }, b, w, h, format = "image/jpeg", extra = {}) => `${wms}?${new URLSearchParams({ service: "WMS", request: "GetMap", version: "1.3.0", layers, styles: "",
   crs: "EPSG:3857", bbox: b.join(","), width: w, height: h, format, ...(time && { time }), ...extra })}`;
+for (const [r, o] of Object.entries(BE_ORTHO)) SOURCES[`be-${r}`] = { res: 0.1, url: o.url };
 for (const [land, o] of Object.entries(DE_ORTHO)) SOURCES[`de-${land}`] = { res: 0.1, url: (b, w, h, format) => deWmsUrl(o, b, w, h, format) };
 
 // The Länder a point may lie in (laender.json): the one it is in first, then those within about 2 km (the boundaries
@@ -117,6 +129,18 @@ const median = (a) => { const b = a.filter((v) => !Number.isNaN(v)).sort((x, y) 
 // st.S: the saturation (max less min of the channels; ortho-osm.js: does a column look like the roadway). decode: a PNG decoder for Node (no canvas there; the evaluation),
 // which asks ČÚZK for a PNG.
 export async function laneImage(opts) {
+  // Belgium: Flanders' photo, else Wallonia's (a blank image outside a region's coverage is no photo).
+  if (opts.source === "be") {
+    const start = Date.now(), budget = opts.timeout ?? TIMEOUT;
+    let lastError = null;
+    for (const r of Object.keys(BE_ORTHO)) {
+      const left = budget - (Date.now() - start);
+      if (left < 500) break;
+      try { const out = await laneImageOf(`be-${r}`, { ...opts, timeout: left }); if (out) return out; } catch (err) { lastError = err; }
+    }
+    if (lastError) throw lastError;
+    return null;
+  }
   if (opts.source !== "de") return laneImageOf(SOURCES[opts.source] ? opts.source : "cuzk", opts);
   // Germany (countries/DE.js laneOrtho "de"): the Land's orthophoto, near a border the next Land's when the first has no
   // photo there, all within one timeout (the review of Germany).
@@ -183,7 +207,7 @@ async function laneImageOf(key, { frame, dir, t0, t1, timeout = TIMEOUT, fetchIm
       }
     }
     // Outside a Land's coverage its WMS answers white (only the German sources).
-    if (key.startsWith("de-") && blank(img)) return null;
+    if ((key.startsWith("de-") || key.startsWith("be-")) && blank(img)) return null;
     // Resample on the grid of the cut.
     const res = src.res, nt = Math.round((t1 - t0) / res), nu = Math.round((2 * ALONG) / res), L = new Float32Array(nt * nu), G = new Float32Array(nt * nu), Y = new Float32Array(nt * nu), D = new Float32Array(nt * nu), S = new Float32Array(nt * nu);
     for (let j = 0; j < nu; j++) for (let i = 0; i < nt; i++) {
@@ -645,7 +669,7 @@ function redraw(w, lines, fine = true) {
 // model learnt it (evaluation/ai-segmentation/fetch_ortho.py): the source's shift applied as above. Returns
 // { source, img } (ImageData) or null (no photo there); a server down throws as laneImage does.
 export async function orthoPatch({ source, lon, lat, half, px, timeout = TIMEOUT }) {
-  const keys = source === "de" ? (await landsAt(lon, lat).catch(() => [])).map((l) => `de-${l}`) : [SOURCES[source] ? source : "cuzk"];
+  const keys = source === "de" ? (await landsAt(lon, lat).catch(() => [])).map((l) => `de-${l}`) : source === "be" ? Object.keys(BE_ORTHO).map((r) => `be-${r}`) : [SOURCES[source] ? source : "cuzk"];
   const seen = new Set(); // Berlin and Brandenburg: one service
   for (const key of keys) {
     const id = key.startsWith("de-") ? DE_ORTHO[key.slice(3)].wms : key;

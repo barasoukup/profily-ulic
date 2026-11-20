@@ -1,0 +1,16 @@
+// Luxembourg (Bára 20. 11. 2026): the state of a cut inside staty.json's "luxembourg". The ACT publishes no map of
+// street surfaces as a web service (the BD-L-TC is a download only; evaluation/luxembourg/ZDROJE.md): the profile is the
+// estimate from OSM and the ACT's orthophoto (geoportail.lu, lanes-ortho.js "lu"); the buildings are OSM's.
+import { osmTiles } from "../gis.js";
+
+export const sources = {
+  osm: (lat, lon, radius) => osmTiles(lat, lon, radius),
+  surfaces: async () => ({ features: [], abroad: true }),
+  lines: async () => ({ features: [], edges: [], widths: [], areas: [] }),
+  parking: async () => ({ features: [] }),
+  podlaznost: async () => ({}),
+};
+
+// No fallback to the DMVS (sources.js national).
+export const national = true;
+export const ortho = null;

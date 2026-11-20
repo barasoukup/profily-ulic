@@ -445,6 +445,12 @@ Object.assign(CITIES, {
   netherlands: { ...abroad("netherlands", "NL", "Nizozemsko", "v Nizozemsku", "nizozemské", [52.2, 5.3], "52.372700, 4.893300"),
     dataShort: "ortofota PDOK a OSM", credit: "budovy © Kadaster (BAG), 3D BAG © TU Delft, 3DGI (CC BY 4.0)",
     rulesHead: "Šířky podle nizozemských doporučení (CROW podle příruček měst a provincií):" },
+  // Belgium and Luxembourg (Bára 20. 11. 2026): the regions' orthophotos and OSM, in Flanders and Wallonia with the lines
+  // of their large-scale maps for the kerbs (towns/belgium.js); Luxembourg the ACT's orthophoto and OSM.
+  belgium: { ...abroad("belgium", "BE", "Belgie", "v Belgii", "belgické", [50.6, 4.6], "50.846700, 4.352500"),
+    dataShort: "ortofot regionů a OSM", rulesHead: "Šířky podle belgických předpisů a vademek regionů:" },
+  luxembourg: { ...abroad("luxembourg", "LU", "Lucembursko", "v Lucembursku", "lucemburské", [49.7, 6.1], "49.611000, 6.130000"),
+    dataShort: "ortofota ACT a OSM", rulesHead: "Šířky podle lucemburských předpisů:" },
   cizina: abroad("cizina", null, "cizinu", "v cizině", "zahraniční", [49.8, 15.5], "48.146736, 17.106998"),
 });
 // The rest of Slovakia and of Austria draws the state's own set (countries/<ISO>.js art).

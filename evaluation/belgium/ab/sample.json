@@ -1,0 +1,218 @@
+[
+ {
+  "id": "an1",
+  "town": "antwerpen",
+  "lat": 51.229302,
+  "lon": 4.406705
+ },
+ {
+  "id": "an2",
+  "town": "antwerpen",
+  "lat": 51.224729,
+  "lon": 4.384412
+ },
+ {
+  "id": "an3",
+  "town": "antwerpen",
+  "lat": 51.211014,
+  "lon": 4.396419
+ },
+ {
+  "id": "an4",
+  "town": "antwerpen",
+  "lat": 51.224648,
+  "lon": 4.417891
+ },
+ {
+  "id": "ge1",
+  "town": "gent",
+  "lat": 51.06153,
+  "lon": 3.704022
+ },
+ {
+  "id": "ge2",
+  "town": "gent",
+  "lat": 51.067489,
+  "lon": 3.712583
+ },
+ {
+  "id": "ge3",
+  "town": "gent",
+  "lat": 51.052352,
+  "lon": 3.703779
+ },
+ {
+  "id": "ge4",
+  "town": "gent",
+  "lat": 51.051626,
+  "lon": 3.700553
+ },
+ {
+  "id": "br1",
+  "town": "brugge",
+  "lat": 51.218701,
+  "lon": 3.211103
+ },
+ {
+  "id": "br2",
+  "town": "brugge",
+  "lat": 51.202586,
+  "lon": 3.207383
+ },
+ {
+  "id": "br3",
+  "town": "brugge",
+  "lat": 51.221616,
+  "lon": 3.227747
+ },
+ {
+  "id": "br4",
+  "town": "brugge",
+  "lat": 51.207473,
+  "lon": 3.226736
+ },
+ {
+  "id": "le1",
+  "town": "leuven",
+  "lat": 50.877668,
+  "lon": 4.682252
+ },
+ {
+  "id": "le2",
+  "town": "leuven",
+  "lat": 50.882093,
+  "lon": 4.719005
+ },
+ {
+  "id": "le3",
+  "town": "leuven",
+  "lat": 50.872378,
+  "lon": 4.702118
+ },
+ {
+  "id": "le4",
+  "town": "leuven",
+  "lat": 50.877311,
+  "lon": 4.685989
+ },
+ {
+  "id": "me1",
+  "town": "mechelen",
+  "lat": 51.02547,
+  "lon": 4.497472
+ },
+ {
+  "id": "me2",
+  "town": "mechelen",
+  "lat": 51.022515,
+  "lon": 4.483154
+ },
+ {
+  "id": "me3",
+  "town": "mechelen",
+  "lat": 51.018346,
+  "lon": 4.488589
+ },
+ {
+  "id": "me4",
+  "town": "mechelen",
+  "lat": 51.034274,
+  "lon": 4.478729
+ },
+ {
+  "id": "li1",
+  "town": "liege",
+  "lat": 50.633518,
+  "lon": 5.598076
+ },
+ {
+  "id": "li2",
+  "town": "liege",
+  "lat": 50.630956,
+  "lon": 5.560612
+ },
+ {
+  "id": "li3",
+  "town": "liege",
+  "lat": 50.621645,
+  "lon": 5.583038
+ },
+ {
+  "id": "li4",
+  "town": "liege",
+  "lat": 50.636395,
+  "lon": 5.592674
+ },
+ {
+  "id": "na1",
+  "town": "namur",
+  "lat": 50.464341,
+  "lon": 4.888173
+ },
+ {
+  "id": "na2",
+  "town": "namur",
+  "lat": 50.474804,
+  "lon": 4.879992
+ },
+ {
+  "id": "na3",
+  "town": "namur",
+  "lat": 50.46773,
+  "lon": 4.856005
+ },
+ {
+  "id": "na4",
+  "town": "namur",
+  "lat": 50.461236,
+  "lon": 4.869851
+ },
+ {
+  "id": "ch1",
+  "town": "charleroi",
+  "lat": 50.40421,
+  "lon": 4.432456
+ },
+ {
+  "id": "ch2",
+  "town": "charleroi",
+  "lat": 50.414787,
+  "lon": 4.455692
+ },
+ {
+  "id": "ch3",
+  "town": "charleroi",
+  "lat": 50.400475,
+  "lon": 4.453756
+ },
+ {
+  "id": "ch4",
+  "town": "charleroi",
+  "lat": 50.423851,
+  "lon": 4.447674
+ },
+ {
+  "id": "mo1",
+  "town": "mons",
+  "lat": 50.449462,
+  "lon": 3.958765
+ },
+ {
+  "id": "mo2",
+  "town": "mons",
+  "lat": 50.45601,
+  "lon": 3.956865
+ },
+ {
+  "id": "mo3",
+  "town": "mons",
+  "lat": 50.459008,
+  "lon": 3.949139
+ },
+ {
+  "id": "mo4",
+  "town": "mons",
+  "lat": 50.451818,
+  "lon": 3.951289
+ }
+]

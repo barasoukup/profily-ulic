@@ -29,6 +29,10 @@ export const COUNTRIES = {
   nl: { iso: "NL", geofabrik: "netherlands", pages: false, parts: Object.fromEntries([["dr", "drenthe"], ["fl", "flevoland"], ["fr", "friesland"],
     ["ge", "gelderland"], ["gr", "groningen"], ["li", "limburg"], ["nb", "noord-brabant"], ["nh", "noord-holland"], ["ov", "overijssel"],
     ["ut", "utrecht"], ["ze", "zeeland"], ["zh", "zuid-holland"]].map(([p, e]) => [`nl_${p}`, `netherlands/${e}/${e}`])) },
+  // Belgium and Luxembourg (Bára 20. 11. 2026): Geofabrik keeps them in a folder each as well; Belgium's extract is
+  // 0.7 GB (one pack, as Austria), only on R2.
+  be: { iso: "BE", geofabrik: "belgium/belgium", pages: false },
+  lu: { iso: "LU", geofabrik: "luxembourg/luxembourg", pages: false },
 };
 // The packs to build (osm-tiles.yml): a state's own, or its parts.
 export const PACKS = Object.entries(COUNTRIES).flatMap(([k, c]) => (c.parts ? Object.entries(c.parts).map(([code, extract]) => ({ code, extract })) : [{ code: k, extract: c.geofabrik }]));

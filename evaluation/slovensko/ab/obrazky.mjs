@@ -87,6 +87,19 @@ async function image(c, tMax) {
       await fs.mkdir(path.dirname(file), { recursive: true });
       await fs.writeFile(file, buf);
       await new Promise((r) => setTimeout(r, 300));
+    } else if (process.env.ORTHO === "be") {
+      // Belgium (evaluation/belgium/ab): Flanders' orthophoto, else Wallonia's (a blank Flemish image is small).
+      const { BE_ORTHO } = await import("../../../pilot/public/lanes-ortho.js");
+      await fs.mkdir(path.dirname(file), { recursive: true });
+      for (const r of ["vl", "wal"]) {
+        const b = Buffer.from(await (await fetch(BE_ORTHO[r].url([x0, y0, x1, y1], w, h, "image/png"), { headers: { "User-Agent": "profily-ulic" } })).arrayBuffer());
+        await fs.writeFile(file + ".img", b);
+        await run("magick", [file + ".img", "-background", "white", "-flatten", "PNG24:" + file]);
+        await fs.rm(file + ".img");
+        if (b.length > 20000 || r === "wal") break;
+      }
+      buf = await fs.readFile(file);
+      await new Promise((r) => setTimeout(r, 300));
     } else if (process.env.ORTHO === "nl") {
       // The Netherlands (evaluation/netherlands/ab): PDOK's Luchtfoto (Actueel_orthoHR) through its WMS as a PNG.
       const q = new URLSearchParams({ SERVICE: "WMS", VERSION: "1.3.0", REQUEST: "GetMap", LAYERS: "Actueel_orthoHR", STYLES: "", CRS: "EPSG:3857",

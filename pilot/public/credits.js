@@ -25,6 +25,8 @@ export const SOURCE_CREDITS = {
     at19: () => t("ortofoto © basemap.at (CC BY 4.0)"),
     ch: () => t("ortofoto SWISSIMAGE © swisstopo"),
     nl: () => t("ortofoto © PDOK (Beeldmateriaal Nederland)"),
+    "be-vl": () => t("ortofoto © Digitaal Vlaanderen"), "be-wal": () => t("ortofoto © SPW (Service public de Wallonie)"),
+    lu: () => t("ortofoto © ACT Luxembourg (geoportail.lu)"),
     // Germany: the orthophoto of the Land (lanes-ortho.js DE_ORTHO, "de-BY" …), with the credit the Land asks for.
     ...Object.fromEntries(Object.entries(DE_ORTHO).map(([land, o]) => [`de-${land}`, () => t("ortofoto {who}", { who: o.credit })])),
   },
@@ -40,6 +42,8 @@ export const SOURCE_CREDITS = {
   skEdges: {
     nitra: () => t("kresba © mesto Nitra"), piestany: () => t("kresba © mesto Piešťany"), zvolen: () => t("kresba © mesto Zvolen"), hlohovec: () => t("polohopis © mesto Hlohovec"),
     presov: () => t("hranice druhov pozemkov © mesto Prešov (CC BY 4.0)"), "bratislava-tm": () => t("technická mapa © Hlavné mesto SR Bratislava"),
+    // Belgium's regions (towns/belgium.js).
+    grb: () => t("čáry GRB © Digitaal Vlaanderen"), picc: () => t("čáry PICC © SPW (Service public de Wallonie)"),
   },
   // Salzburg's cadastre of signs and Vienna's Flächen-Mehrzweckkarte (towns/austria.js).
   atSigns: { salzburg: () => t("dopravní značky © Stadt Salzburg (CC BY 3.0 AT)") },
