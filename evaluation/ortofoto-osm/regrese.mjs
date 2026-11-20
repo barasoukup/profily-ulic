@@ -29,9 +29,9 @@ const SIDEWALK = new Set(["chodnik", "chodnik_kola", "stezka_sdilena"]);
 // Coarse kinds for the composition, the same for the estimate's parts and MTVU's runs (as chyby.mjs).
 const ROADWAY_K = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "krajnice", "cyklopruh", "ochranny_pruh", "obsluzna"]);
 const estKind = (type) => (ROADWAY_K.has(type) ? "vozovka" : type === "parkovani" ? "stání" : ["chodnik", "chodnik_kola", "stezka_sdilena", "cyklostezka", "nastupiste"].includes(type) ? "chodník"
-  : ["zelen", "stromorad"].includes(type) ? "zeleň" : type === "tramvaj" ? "těleso" : type === "nezname" ? "neurčeno" : "jiné");
+  : ["zelen", "stromorad"].includes(type) ? "zeleň" : type === "tramvaj" ? "vozovka" : type === "nezname" ? "neurčeno" : "jiné");
 const runKind = (c) => (c === 700 || c === 701 || (c >= 9700 && c < 9800 && !(c >= 9704 && c <= 9708)) ? "vozovka" : c === 704 || (c >= 9704 && c <= 9708) ? "stání"
-  : c === 702 || c === 703 ? "chodník" : c >= 400 && c < 500 ? "zeleň" : c === 705 ? "těleso" : "jiné");
+  : c === 702 || c === 703 ? "chodník" : c >= 400 && c < 500 ? "zeleň" : c === 705 ? "vozovka" : "jiné"); // a tram bed is roadway (Bára 20. 11. 2026: it does not matter)
 const pct = (a, b) => (b ? `${Math.round((100 * a) / b)} %` : "–");
 const f2 = (x) => (Number.isFinite(x) ? x.toFixed(2) : "–");
 

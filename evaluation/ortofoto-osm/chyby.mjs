@@ -16,6 +16,7 @@ const aiCache = {};
 const CITIES = process.argv.slice(2).filter((a) => /^[a-z]+$/.test(a));
 P.off = new Set((process.env.OFF || "").split(",").filter(Boolean));
 P.cars = process.env.CARS === "1";
+if (process.env.AI) P.aiWalk = true;
 P.carsColour = process.env.AUTA === "1";
 const KEY = process.env.SRC || "cuzk12";
 const BASE = "http://localhost:5293/?lang=cs&osm=balik";
@@ -25,9 +26,9 @@ const BASE = "http://localhost:5293/?lang=cs&osm=balik";
 const ROADWAY = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "krajnice", "cyklopruh", "ochranny_pruh", "obsluzna"]);
 const KINDS = ["vozovka", "stání", "chodník", "zeleň", "tram. těleso", "jiné", "neurčeno"];
 const estKind = (type) => (ROADWAY.has(type) ? "vozovka" : type === "parkovani" ? "stání" : ["chodnik", "chodnik_kola", "stezka_sdilena", "cyklostezka", "nastupiste"].includes(type) ? "chodník"
-  : ["zelen", "stromorad"].includes(type) ? "zeleň" : type === "tramvaj" ? "tram. těleso" : type === "nezname" ? "neurčeno" : "jiné");
+  : ["zelen", "stromorad"].includes(type) ? "zeleň" : type === "tramvaj" ? "vozovka" : type === "nezname" ? "neurčeno" : "jiné");
 const runKind = (c) => (c === 700 || c === 701 || (c >= 9700 && c < 9800 && !(c >= 9704 && c <= 9708)) ? "vozovka" : c === 704 || (c >= 9704 && c <= 9708) ? "stání"
-  : c === 702 || c === 703 ? "chodník" : c >= 400 && c < 500 ? "zeleň" : c === 705 ? "tram. těleso" : "jiné");
+  : c === 702 || c === 703 ? "chodník" : c >= 400 && c < 500 ? "zeleň" : c === 705 ? "vozovka" : "jiné"); // a tram bed is roadway (Bára 20. 11. 2026)
 const LANES = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "obsluzna"]);
 
 function laid(p) {
@@ -56,7 +57,7 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
   const conf = Object.fromEntries(KINDS.map((a) => [a, Object.fromEntries(KINDS.map((b) => [b, 0]))]));
   const ev = { shoulder: [], shoulderWide: [], lanesMore: [], lanesLess: [], ways: [], unknown: [], walkWide: [], walkNarrow: [], greenForWalk: [], walkForGreen: [], parkFalse: [], parkMissed: [], roadWide: [], roadNarrow: [], kerbIn: [], kerbOut: [] };
   let n = 0, shoulderTruth = 0;
-  const unk = { inside: 0, outside: 0, under: {} }, bed = {}, kerbD = [], kerbByPark = {}, gapIn = {}, whyIn = {};
+  const unk = { inside: 0, outside: 0, under: {} }, bed = {}, kerbD = [], kerbByPark = {}, gapIn = {}, whyIn = {}, shoulder = {};
   for (const c of list) {
     const st = await stripOf(city, KEY, c);
     if (!st) continue;
@@ -65,14 +66,18 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
     const way = osm.elements.find((e) => e.type === "way" && e.id === c.cut.wayId);
     if (!way) continue;
     // AI=ai-map5-3: the model's kerbs (as regrese.mjs; not Prague, it learnt there).
-    let ai = null;
+    let ai = null, aiSurf = null;
     if (process.env.AI && city !== "praha") {
       const d2 = `/Users/barasoukupova/streetdesign/data/ai-seg/cuts/${city}`;
       aiCache[city] ??= JSON.parse(fsAi.readFileSync(`${d2}/${process.env.AI}.json`, "utf8"));
       const cls = aiCache[city][String(c.n)], meta = fsAi.existsSync(`${d2}/${c.n}.json`) && JSON.parse(fsAi.readFileSync(`${d2}/${c.n}.json`, "utf8"));
-      if (cls && meta) { const cut = { ts: meta.ts, cls: cls.map((v) => (v === 0 || v === 3 ? 0 : v < 0 ? -1 : 1)) }; ai = (axis) => aiKerbs(cut, axis); }
+      if (cls && meta) {
+        const cut = { ts: meta.ts, cls: cls.map((v) => (v === 0 || v === 3 ? 0 : v < 0 ? -1 : 1)) }; ai = (axis) => aiKerbs(cut, axis);
+        const K9 = { 1: "chodník", 2: "chodník", 5: "zeleň", 6: "budova", 0: "vozovka", 3: "vozovka", 4: "vozovka", 7: "jiné", 8: "jiné" };
+        aiSurf = (t) => { const i = Math.round((t - meta.ts[0]) / (meta.ts[1] - meta.ts[0])); return i >= 0 && i < cls.length && cls[i] >= 0 ? K9[cls[i]] : null; };
+      }
     }
-    const polys = orthoOsmPolys({ osm, frame, dir, way, st, ai });
+    const polys = orthoOsmPolys({ osm, frame, dir, way, st, ai, aiSurf });
     const truth = truthOf(c, 0);
     if (!polys || !truth.way) continue;
     // As lanes-ortho.js laneImage: Y (yellower than blue) and D (green less red) too.
@@ -96,6 +101,7 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
       const r = runs.find((x) => x.s <= t && t < x.e), x = at(est, t);
       if (!r || !x || r.code === 601 || x.type === "budova") continue;
       conf[runKind(r.code)][estKind(x.type)] += 0.1;
+      if (x.type === "krajnice") { const kk = r.code; shoulder[kk] = (shoulder[kk] || 0) + 0.1; }
       if (process.env.BED && r.code === 705) { (bed[c.n] ??= { name: c.cut.name, types: {} }).types[x.type] = ((bed[c.n].types[x.type] || 0) + 0.1); }
     }
     // The carriageway nearest the axis in both: its width, lanes, shoulders.
@@ -189,6 +195,7 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
   }
   report.push("", `Neurčeno celkem: uvnitř ulice (mezi vozovkami) ${unk.inside.toFixed(0)} m, vně ${unk.outside.toFixed(0)} m; MTVU pod ním: ${Object.entries(unk.under).sort((a, b) => b[1] - a[1]).map(([q, w]) => `${q} ${w.toFixed(0)} m`).join(", ")}`, "");
   console.log(city, JSON.stringify(unk));
+  console.log(city, "pod krajnicí odhadu je v MTVU (m):", JSON.stringify(Object.fromEntries(Object.entries(shoulder).sort((a, b) => b[1] - a[1]).map(([q, w]) => [q, Math.round(w)]))));
   const bins = [[-99, -2], [-2, -1], [-1, -0.5], [-0.5, 0.5], [0.5, 1], [1, 2], [2, 5], [5, 99]];
   const hist = bins.map(([a, b]) => `${a}..${b}: ${kerbD.filter((d) => d >= a && d < b).length}`).join(" · ");
   console.log(city, "obruby (+ dovnitř):", hist);

@@ -17,9 +17,9 @@ const read = (run) => Object.fromEntries(fs.readdirSync(path.join(OUT, run)).fil
 
 const ROADWAY = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "krajnice", "cyklopruh", "ochranny_pruh", "obsluzna", "parkovani"]);
 const estKind = (type) => (ROADWAY.has(type) ? "vozovka" : ["chodnik", "chodnik_kola", "stezka_sdilena", "cyklostezka", "nastupiste"].includes(type) ? "chodník"
-  : ["zelen", "stromorad", "predzahradka"].includes(type) ? "zeleň" : type === "tramvaj" ? "těleso" : type === "nezname" ? "neurčeno" : type === "budova" ? "budova" : "jiné");
+  : ["zelen", "stromorad", "predzahradka"].includes(type) ? "zeleň" : type === "tramvaj" ? "vozovka" : type === "nezname" ? "neurčeno" : type === "budova" ? "budova" : "jiné");
 const runKind = (c) => (c === 700 || c === 701 || (c >= 9700 && c < 9800) || c === 704 ? "vozovka" : c === 702 || c === 703 ? "chodník" : c >= 400 && c < 500 ? "zeleň"
-  : c === 705 ? "těleso" : c === 601 || c === 600 ? "budova" : "jiné");
+  : c === 705 ? "vozovka" : c === 601 || c === 600 ? "budova" : "jiné");
 const KINDS = ["vozovka", "chodník", "zeleň", "těleso", "jiné", "neurčeno"];
 
 function laid(stav, extent) {
