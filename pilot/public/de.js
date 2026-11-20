@@ -806,6 +806,7 @@ export const DE = {
   "jednosměrka s cyklisty v protisměru: vozovka nejméně 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)": "Einbahnstraße mit Radverkehr in Gegenrichtung: Fahrbahn mindestens 3,5 m, Normalbreite 4 m (Amsterdam, Afwegingskader fietsstraten 2020)",
   "Sítě © Gemeente Amsterdam a Waternet (CC BY).": "Leitungen © Gemeente Amsterdam und Waternet (CC BY).",
   "kabel veřejného osvětlení": "Kabel der Straßenbeleuchtung",
+  "parkovací místa © Gemeente Amsterdam": "Parkplätze © Gemeente Amsterdam",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

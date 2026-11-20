@@ -56,6 +56,8 @@ export const SOURCE_CREDITS = {
     : c === "CH" ? t("úřední vyměřování (Bodenbedeckung) © kantony (geodienste.ch)") : t("úřední vyměřování (Bodenbedeckung) © kanton {canton} (geodienste.ch)", { canton: c }))])),
   // The Netherlands' national large-scale topography (towns/netherlands.js).
   nlBgt: { true: () => t("mapa povrchů BGT © Kadaster a správci BGT (PDOK, CC0)") },
+  // Amsterdam's parking spaces (towns/netherlands.js).
+  amsParking: { true: () => t("parkovací místa © Gemeente Amsterdam") },
   // ZBGIS's roads, car parks and lawns in the estimate (towns/slovensko.js).
   zbgis: { true: () => t("cesty, parkoviská a tráva © GKÚ Bratislava (ZBGIS, CC BY 4.0)") },
   // The carriageway's kerbs read by the AI model (ai-kerbs.js, ?ai=1): the surface maps and OSM it learnt on.

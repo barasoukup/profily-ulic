@@ -808,6 +808,7 @@ export const FI = {
   "jednosměrka s cyklisty v protisměru: vozovka nejméně 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)": "yksisuuntainen katu, jolla pyöräillään vastasuuntaan: ajorata vähintään 3,5 m, perusarvo 4 m (Amsterdam, Afwegingskader fietsstraten 2020)",
   "Sítě © Gemeente Amsterdam a Waternet (CC BY).": "Verkostot © Gemeente Amsterdam ja Waternet (CC BY).",
   "kabel veřejného osvětlení": "katuvalaistuksen kaapeli",
+  "parkovací místa © Gemeente Amsterdam": "pysäköintipaikat © Gemeente Amsterdam",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

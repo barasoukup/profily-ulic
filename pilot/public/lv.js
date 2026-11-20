@@ -807,6 +807,7 @@ export const LV = {
   "jednosměrka s cyklisty v protisměru: vozovka nejméně 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)": "vienvirziena iela ar riteņbraucējiem pretējā virzienā: brauktuve vismaz 3,5 m, pamatplatums 4 m (Amsterdama, Afwegingskader fietsstraten 2020)",
   "Sítě © Gemeente Amsterdam a Waternet (CC BY).": "Tīkli © Gemeente Amsterdam un Waternet (CC BY).",
   "kabel veřejného osvětlení": "ielu apgaismojuma kabelis",
+  "parkovací místa © Gemeente Amsterdam": "stāvvietas © Gemeente Amsterdam",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

@@ -99,6 +99,13 @@ export function bgtFeatures(got, cx, cy, tags) {
   const trams = (got.spoor || []).filter((f) => TRAM.has(f.properties?.functie) && (f.properties?.relatieve_hoogteligging ?? 0) === level)
     .flatMap((f) => (f.geometry?.type === "LineString" ? [f.geometry.coordinates] : f.geometry?.type === "MultiLineString" ? f.geometry.coordinates : []))
     .map(dense);
+  // A cycle lane on the roadway (fietsstrook, red asphalt beside the cars) is a "fietspad" in the BGT too (the universal
+  // judging 20. 11. 2026: 14 cycle tracks too many). Where OSM says the street has cycle lanes, a fietspad touching
+  // a roadway is the roadway (OSM and the orthophoto make the cycle lanes in it).
+  // Off unless ?fietsstrook=1: the universal judging with it was no better (composition 53 → 52 %, width within 2 m 47 →
+  // 41 %; the lanes it made were plain lanes, the paving beside them a median).
+  const lanes = param("fietsstrook") === "1" && cycleLanes(tags);
+  const roads = lanes ? (got.wegdeel || []).filter((f) => WEG[f.properties?.functie] === 701 && (f.properties?.relatieve_hoogteligging ?? 0) === level).flatMap((f) => ringsOf(f.geometry) || []) : [];
   const features = [];
   for (const name of Object.keys(KIND)) {
     for (const f of got[name] || []) {
@@ -111,12 +118,25 @@ export function bgtFeatures(got, cx, cy, tags) {
       // in it is a tram's bed.
       const tram = name === "wegdeel" && (p.functie === "OV-baan" || p.functie === "spoorbaan") && trams.some((line) => line.some(([x, y]) => inRings(rings, x, y)));
       if (tram) code = 705;
+      if (code === 703 && lanes && touches(rings, roads)) code = 701;
       features.push({ attributes: { code, ...(tram ? { ANY_TRAM: 1 } : {}) }, geometry: { rings } });
     }
   }
   return { features };
 }
 const TRAM = new Set(["tram", "sneltram"]);
+// OSM's cycle lanes on the way (cycleway, cycleway:both|left|right = lane or shared_lane).
+export const cycleLanes = (tags = {}) => ["cycleway", "cycleway:both", "cycleway:left", "cycleway:right"].some((k) => /^(lane|shared_lane)$/.test(tags[k] || ""));
+// Does a polygon touch another (a vertex within about 0.3 m of the other's edge)?
+function touches(rings, others) {
+  const d = 0.3, k = 111320 * Math.cos((52 * Math.PI) / 180), m = 110574;
+  const near = (px, py, ax, ay, bx, by) => {
+    const ux = (bx - ax) * k, uy = (by - ay) * m, wx = (px - ax) * k, wy = (py - ay) * m, l = ux * ux + uy * uy;
+    const t = l ? Math.max(0, Math.min(1, (wx * ux + wy * uy) / l)) : 0;
+    return Math.hypot(wx - t * ux, wy - t * uy) <= d;
+  };
+  return rings.some((r) => r.some(([px, py]) => others.some((o) => o.some((_, i) => i + 1 < o.length && near(px, py, o[i][0], o[i][1], o[i + 1][0], o[i + 1][1])))));
+}
 // A line's points at most about a metre apart.
 function dense(line) {
   const out = [];
@@ -197,6 +217,38 @@ async function podlaznost(lat, lon) {
   return bagBuilding(pand, bag3d);
 }
 
+// ---------- parking: Amsterdam's parking spaces ----------
+// Every parking space of the city (api.data.amsterdam.nl WFS parkeervakken, CORS; no licence in the city's catalogue:
+// to be asked), one polygon a space with its kind: Langs (parallel), Haaks (perpendicular), Vissengraat (herringbone,
+// angled); soort FISCAAL is paid, MULDER free; e_type a reserved use (E6a the disabled, E7 loading, E8 charging, E9
+// permit holders). As Prague's TSK sections: a space is a section of one stall, its length along the street tells the
+// orientation, given by the city (derive.js esriPolygons ORIENT). Off unless ?amspark=1: the A/B of 16 Amsterdam cuts
+// (evaluation/netherlands/ab/PARKOVANI.md) was mixed: parking found where the BGT had none and angled parking kept, but
+// the gaps between single spaces cut a parking strip into a shoulder and one side lost its parking.
+export const AMS_PARKING = "https://api.data.amsterdam.nl/v1/wfs/parkeervakken/v1";
+export const AMS_BOX = [4.72, 52.27, 5.08, 52.43];
+const AMS_ORIENT = { Langs: "podelne", Haaks: "kolme", Vissengraat: "sikme" };
+export function amsParking(json) {
+  return {
+    features: (json?.features || []).map((f) => {
+      const rings = ringsOf(f.geometry);
+      if (!rings) return null;
+      const p = f.properties || {};
+      // A reserved space (loading, permit holders, the disabled) is no common parking; charging spaces stay parking.
+      const special = p.e_type && p.e_type !== "E8";
+      return { attributes: { KIND: special ? "specialni" : "useky", PS_ZPS: Number(p.aantal) > 0 ? Number(p.aantal) : 1, ...(AMS_ORIENT[p.type] && { ORIENT: AMS_ORIENT[p.type] }) }, geometry: { rings } };
+    }).filter(Boolean),
+  };
+}
+async function parking(bbox) {
+  const [x0, y0, x1, y1] = bbox.split(",").map(Number);
+  const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
+  if (param("amspark") !== "1" || cx < AMS_BOX[0] || cx > AMS_BOX[2] || cy < AMS_BOX[1] || cy > AMS_BOX[3]) return { features: [] };
+  const json = await getJSON(`${AMS_PARKING}?${new URLSearchParams({ service: "WFS", version: "2.0.0", request: "GetFeature", typeName: "app:parkeervakken",
+    outputFormat: "application/json", srsName: "urn:ogc:def:crs:EPSG::4326", bbox: `${y0},${x0},${y1},${x1},urn:ogc:def:crs:EPSG::4326`, count: "1000" })}`);
+  return { ...amsParking(json), amsParking: true };
+}
+
 async function osm(lat, lon, radius) {
   return osmTiles(lat, lon, radius);
 }
@@ -205,7 +257,7 @@ export const sources = {
   osm,
   surfaces,
   lines: async () => ({ features: [], edges: [], widths: [], areas: [] }),
-  parking: async () => ({ features: [] }),
+  parking,
   podlaznost,
 };
 

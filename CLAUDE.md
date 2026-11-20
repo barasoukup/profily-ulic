@@ -338,8 +338,10 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   nestačí (`?bgt=0`); API vrací i staré verze, proto `datetime`. A/B 37 řezů po recenzi: BGT u 24, lépe 13, stejně 10,
   sporně 1, hůř 0 (`evaluation/netherlands/ab/ZPRAVA.md`, recenze `RECENZE.md`). Budovy `?bag=0`.
 - Budovy BAG (rok, využití) a 3D BAG (podlaží, střecha); ortofoto PDOK 8 cm; hledání PDOK Locatieserver; sítě Amsterdamu
-  (stoky Waternetu, kabely osvětlení); parkovací plochy z BGT (parkeervlak). Parkovací místa Amsterdamu (licence
-  neuvedena), RDW a KLIC (403) nezapojené.
+  (stoky Waternetu, kabely osvětlení); parkovací plochy z BGT (parkeervlak). Parkovací místa Amsterdamu se způsobem stání
+  zapojená, ale vypnutá (`?amspark=1`, A/B smíšené, licence neuvedena); RDW neodpovídá, KLIC 403.
+- Úroveň ulice (most, nábřeží pod ulicí) z OSM `bridge`/`tunnel`/`layer`. Měření přesnosti 20. 11.: shoda složení 52 %,
+  šířka do 2 m 41 % (32 řezů); červené cyklopruhy jsou v BGT „fietspad“, pokus `?fietsstrook=1` nepomohl.
 - Normy CROW jen přes příručky Amsterdamu a CROW-Fietsberaad; RVV 1990 šířku vedle stání neuvádí: 3,5 m (hasiči)
   a 4,5 m obousměrně jako praxe. Stání na chodníku jen u E8b.
 - OSM po 12 provinciích (`nl_*`, jen R2). **Před nasazením spustit workflow OSM tiles ručně se `states: nl`.**

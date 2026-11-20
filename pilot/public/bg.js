@@ -783,6 +783,7 @@ export const BG = {
   "jednosměrka s cyklisty v protisměru: vozovka nejméně 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)": "еднопосочна улица с велосипедисти в обратна посока: платно най-малко 3,5 m, основна 4 m (Амстердам, Afwegingskader fietsstraten 2020)",
   "Sítě © Gemeente Amsterdam a Waternet (CC BY).": "Мрежи © Gemeente Amsterdam и Waternet (CC BY).",
   "kabel veřejného osvětlení": "кабел за улично осветление",
+  "parkovací místa © Gemeente Amsterdam": "места за паркиране © Gemeente Amsterdam",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

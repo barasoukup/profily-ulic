@@ -805,6 +805,7 @@ export const EN = {
   "jednosměrka s cyklisty v protisměru: vozovka nejméně 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)": "one-way street with contraflow cycling: carriageway at least 3.5 m, base 4 m (Amsterdam, Afwegingskader fietsstraten 2020)",
   "Sítě © Gemeente Amsterdam a Waternet (CC BY).": "Networks © Gemeente Amsterdam and Waternet (CC BY).",
   "kabel veřejného osvětlení": "street lighting cable",
+  "parkovací místa © Gemeente Amsterdam": "parking spaces © Gemeente Amsterdam",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

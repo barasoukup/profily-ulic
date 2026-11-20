@@ -808,6 +808,7 @@ export const RO = {
   "jednosměrka s cyklisty v protisměru: vozovka nejméně 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)": "stradă cu sens unic cu biciclete în sens invers: carosabil de cel puțin 3,5 m, de bază 4 m (Amsterdam, Afwegingskader fietsstraten 2020)",
   "Sítě © Gemeente Amsterdam a Waternet (CC BY).": "Rețele © Gemeente Amsterdam și Waternet (CC BY).",
   "kabel veřejného osvětlení": "cablu de iluminat public",
+  "parkovací místa © Gemeente Amsterdam": "locuri de parcare © Gemeente Amsterdam",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

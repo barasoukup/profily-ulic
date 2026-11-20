@@ -807,6 +807,7 @@ export const DA = {
   "jednosměrka s cyklisty v protisměru: vozovka nejméně 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)": "ensrettet gade med cykling mod ensretningen: kørebane mindst 3,5 m, standard 4 m (Amsterdam, Afwegingskader fietsstraten 2020)",
   "Sítě © Gemeente Amsterdam a Waternet (CC BY).": "Ledninger © Gemeente Amsterdam og Waternet (CC BY).",
   "kabel veřejného osvětlení": "gadebelysningskabel",
+  "parkovací místa © Gemeente Amsterdam": "parkeringspladser © Gemeente Amsterdam",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

@@ -42,6 +42,13 @@ test("Nizozemsko: BGT jen v úrovni ulice pod středem, OV-baan s tramvají jako
   const bridge = N.bgtFeatures({ wegdeel: [got.wegdeel[0], { ...got.wegdeel[1], geometry: { type: "Polygon", coordinates: sq(5, 52) } }] }, 5, 52, { bridge: "yes" });
   assert.deepEqual(bridge.features.map((f) => f.attributes.code), [702]);
   assert.equal(N.osmLevel({ layer: "-1" }), -1);
+  // A fietspad beside the roadway where OSM has cycle lanes: the roadway (a fietsstrook); without them a cycle track.
+  const lane = { properties: { functie: "fietspad", relatieve_hoogteligging: 0 }, geometry: { type: "Polygon", coordinates: [[[5.0001, 51.9999], [5.00013, 51.9999], [5.00013, 52.0001], [5.0001, 52.0001], [5.0001, 51.9999]]] } };
+  const both = { wegdeel: [got.wegdeel[0], lane] };
+  globalThis.PROFILY_NL = { fietsstrook: "1" };
+  try { assert.deepEqual(N.bgtFeatures(both, 5, 52, { "cycleway:both": "lane" }).features.map((f) => f.attributes.code), [701, 701]); } finally { delete globalThis.PROFILY_NL; }
+  assert.deepEqual(N.bgtFeatures(both, 5, 52, { "cycleway:both": "lane" }).features.map((f) => f.attributes.code), [701, 703], "výchozí stav: vypnuto");
+  assert.deepEqual(N.bgtFeatures(both, 5, 52, {}).features.map((f) => f.attributes.code), [701, 703]);
   // A light rail (sneltram) crossing a railway bed with no vertex inside it; a planned roadway left out (the review).
   const bed = { properties: { functie: "spoorbaan", relatieve_hoogteligging: 0 }, geometry: { type: "Polygon", coordinates: sq(5, 52) } };
   const plan = { properties: { functie: "rijbaan lokale weg", status: "plan", relatieve_hoogteligging: 0 }, geometry: { type: "Polygon", coordinates: sq(5.001, 52) } };

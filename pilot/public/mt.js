@@ -808,6 +808,7 @@ export const MT = {
   "jednosměrka s cyklisty v protisměru: vozovka nejméně 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)": "triq b'direzzjoni waħda bir-roti fid-direzzjoni opposta: karreġġjata mill-inqas 3.5 m, standard 4 m (Amsterdam, Afwegingskader fietsstraten 2020)",
   "Sítě © Gemeente Amsterdam a Waternet (CC BY).": "Netwerks © Gemeente Amsterdam u Waternet (CC BY).",
   "kabel veřejného osvětlení": "kejbil tad-dawl tat-toroq",
+  "parkovací místa © Gemeente Amsterdam": "postijiet tal-ipparkjar © Gemeente Amsterdam",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

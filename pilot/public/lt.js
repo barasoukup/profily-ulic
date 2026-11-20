@@ -783,6 +783,7 @@ export const LT = {
   "jednosměrka s cyklisty v protisměru: vozovka nejméně 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)": "vienpusė gatvė su dviratininkais priešinga kryptimi: važiuojamoji dalis ne siauresnė kaip 3,5 m, bazinis 4 m (Amsterdamas, Afwegingskader fietsstraten 2020)",
   "Sítě © Gemeente Amsterdam a Waternet (CC BY).": "Tinklai © Gemeente Amsterdam ir Waternet (CC BY).",
   "kabel veřejného osvětlení": "gatvių apšvietimo kabelis",
+  "parkovací místa © Gemeente Amsterdam": "stovėjimo vietos © Gemeente Amsterdam",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

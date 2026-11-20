@@ -808,6 +808,7 @@ export const PL = {
   "jednosměrka s cyklisty v protisměru: vozovka nejméně 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)": "ulica jednokierunkowa z rowerami pod prąd: jezdnia co najmniej 3,5 m, podstawowa 4 m (Amsterdam, Afwegingskader fietsstraten 2020)",
   "Sítě © Gemeente Amsterdam a Waternet (CC BY).": "Sieci © Gemeente Amsterdam i Waternet (CC BY).",
   "kabel veřejného osvětlení": "kabel oświetlenia ulicznego",
+  "parkovací místa © Gemeente Amsterdam": "miejsca parkingowe © Gemeente Amsterdam",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

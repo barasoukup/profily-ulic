@@ -365,7 +365,8 @@ export function esriPolygons(json, frame) {
   return (json.features || []).map((f) => {
     const rings = f.geometry.rings.map((r) => r.map(([lon, lat]) => frame.toXY(lon, lat)));
     // ODHAD: stalls whose place is estimated (Plzeň: a paid zone tells that people pay, not where they stand).
-    return { rings, bbox: bboxOf(rings.flat()), count: Number(f.attributes?.PS_ZPS) || 0, kind: f.attributes?.KIND || "useky", guess: f.attributes?.ODHAD === 1 };
+    // ORIENT: the stalls' orientation where the source says it (Amsterdam's parking spaces), else from their count.
+    return { rings, bbox: bboxOf(rings.flat()), count: Number(f.attributes?.PS_ZPS) || 0, kind: f.attributes?.KIND || "useky", guess: f.attributes?.ODHAD === 1, ...(f.attributes?.ORIENT && { orient: f.attributes.ORIENT }) };
   });
 }
 
@@ -1706,7 +1707,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     ...noParking.map((p) => ({ ...p, code: NO_PARKING })),
     // Special stalls (ZTP, deliveries…) before the plain sections that contain them.
     ...parking.filter((p) => p.kind !== "useky").map((p) => ({ ...p, code: TSK_CODES[p.kind] || TSK_PARKING, use: p.kind })),
-    ...parking.filter((p) => p.kind === "useky").map((p) => ({ ...p, code: TSK_PARKING, orient: orientFromStalls(p, dir) })),
+    ...parking.filter((p) => p.kind === "useky").map((p) => ({ ...p, code: TSK_PARKING, orient: p.orient || orientFromStalls(p, dir) })),
     ...osmOutdoorPolygons(osm, frame),
     ...(osmParking ? osmParkingPolygons(osm, frame, way) : []),
     ...polys,

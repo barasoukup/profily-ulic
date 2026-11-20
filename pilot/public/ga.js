@@ -808,6 +808,7 @@ export const GA = {
   "jednosměrka s cyklisty v protisměru: vozovka nejméně 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)": "sráid aontreo le rothaíocht i gcoinne an tsrutha: carrbhealach 3.5 m ar a laghad, caighdeán 4 m (Amstardam, Afwegingskader fietsstraten 2020)",
   "Sítě © Gemeente Amsterdam a Waternet (CC BY).": "Líonraí © Gemeente Amsterdam agus Waternet (CC BY).",
   "kabel veřejného osvětlení": "cábla soilsithe sráide",
+  "parkovací místa © Gemeente Amsterdam": "spásanna páirceála © Gemeente Amsterdam",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

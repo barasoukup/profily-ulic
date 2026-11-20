@@ -806,6 +806,7 @@ export const SK = {
   "jednosměrka s cyklisty v protisměru: vozovka nejméně 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)": "jednosmerka s cyklistami v protismere: vozovka najmenej 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)",
   "Sítě © Gemeente Amsterdam a Waternet (CC BY).": "Siete © Gemeente Amsterdam a Waternet (CC BY).",
   "kabel veřejného osvětlení": "kábel verejného osvetlenia",
+  "parkovací místa © Gemeente Amsterdam": "parkovacie miesta © Gemeente Amsterdam",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

@@ -89,3 +89,18 @@ Zbylá chybějící stání v Rakousku: odhad vozovku podhodnotí (Franz-Fischer
 Straße 7 m proti 12 m), stání podle zákona se pak nevejde. Další krok je šířka vozovky v odhadu, ne pravidlo stání.
 Data o parkování velkých měst: Vídeň (FMZK), Berlín, Hamburk a Cáchy stání mají v mapách povrchů už zapojených;
 zóny placeného stání by nepomohly, chybí šířka vozovky, ne informace, že se tam parkuje.
+
+## Nizozemsko (20. 11. 2026)
+
+Vzorek 10 měst (Amsterdam, Rotterdam, Haag, Utrecht, Haarlem, Leiden, Delft, Amstelveen, Schiedam, Diemen; jen města
+lokálního balíku OSM), 80 bodů, 38 řezů s fotkou Mapillary, 32 s vozovkou. Ortofoto PDOK (`ortho.mjs`, JPEG převedený
+na PNG). Mapa povrchů BGT u 62 z 80 bodů. Výsledek s výchozím nastavením (`data/app-nlpo.json`):
+
+| NL | 32 řezů | složení stejné 16 % | **shoda složení 52 %** | pruhy stejně 53 % | šířka do 1 / 2 m 31 % / 41 % |
+
+- Shoda složení o něco nižší než ostatní státy (56–69 %), šířka uličního prostoru nejlepší (do 2 m 41 %, ostatní 28–53 %).
+- Nejčastější rozdíly: aplikace má navíc chodník (21×, rozdělený stromořadím nebo cyklostezkou), zeleň (14×) a cyklostezku
+  (13×). BGT kreslí jako „fietspad“ i červené cyklopruhy na vozovce. Zkusila jsem je u ulic s OSM `cycleway=lane` brát
+  jako vozovku (`?fietsstrook=1`): složení 53 → 52 %, šířka 47 → 41 %, tedy ne lépe; zůstává vypnuté.
+- Mezi dvěma sběry týchž řezů se čísla liší o pár procent (ortofoto pruhů, parkovací místa Amsterdamu, která jsou teď
+  vypnutá); první sběr dal 53 % a 47 %.

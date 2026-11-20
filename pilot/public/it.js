@@ -812,6 +812,7 @@ export const IT = {
   "jednosměrka s cyklisty v protisměru: vozovka nejméně 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)": "strada a senso unico con ciclisti in senso contrario: carreggiata di almeno 3,5 m, base 4 m (Amsterdam, Afwegingskader fietsstraten 2020)",
   "Sítě © Gemeente Amsterdam a Waternet (CC BY).": "Reti © Gemeente Amsterdam e Waternet (CC BY).",
   "kabel veřejného osvětlení": "cavo dell'illuminazione pubblica",
+  "parkovací místa © Gemeente Amsterdam": "posti auto © Gemeente Amsterdam",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.
