@@ -334,8 +334,9 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Stát `netherlands` (NL): `countries/NL.js`, `towns/netherlands.js`, `signs-NL/`, `search-nl.js`, `evaluation/netherlands/`
   (ZDROJE, NORMY, ab/). Hranice GISCO za Německem. Bára: „stačí s univerzálními ilustracemi“ (neutrální vozidla, český
   mobiliář, rakouské označníky), bez paneláků.
-- Mapa povrchů BGT (PDOK, CC0) kde má ulici pod středem (`?bgt=0`); API vrací i staré verze, proto `datetime`. A/B 37 řezů:
-  BGT u 30, lépe 12, stejně 12, hůř/sporně 4 (průchody pod domy a pěší plochy jako jedna velká plocha).
+- Mapa povrchů BGT (PDOK, CC0) kde má u středu řezu vozovku, cyklostezku, stání nebo tramvajové těleso, samotný chodník
+  nestačí (`?bgt=0`); API vrací i staré verze, proto `datetime`. A/B 37 řezů po recenzi: BGT u 24, lépe 13, stejně 10,
+  sporně 1, hůř 0 (`evaluation/netherlands/ab/ZPRAVA.md`, recenze `RECENZE.md`). Budovy `?bag=0`.
 - Budovy BAG (rok, využití) a 3D BAG (podlaží, střecha); ortofoto PDOK 8 cm; hledání PDOK Locatieserver; sítě Amsterdamu
   (stoky Waternetu, kabely osvětlení); parkovací plochy z BGT (parkeervlak). Parkovací místa Amsterdamu (licence
   neuvedena), RDW a KLIC (403) nezapojené.
