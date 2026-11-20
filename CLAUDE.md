@@ -354,7 +354,11 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   a OSM. Ve Flandrech čáry GRB, ve Valonsku PICC jako kandidáti obrub (`?hrany=0`; A/B: lépe 4, hůř 2 z 10 změněných).
 - Ortofoto Flander (i Brusel), Valonska a ACT Lucemburska; hledání Photon. Univerzální ilustrace, bez paneláků.
 - Stání: Belgie čl. 25.1, 7° AR 1975 3 m volného průjezdu celkem (AR 1975 platí do 31. 5. 2027, pak nové kódy);
-  Lucembursko obecnou šířku nemá (3 m jen u plné čáry). Lucemburské značky zčásti CC BY-SA 4.0 (GilPe).
+  Lucembursko obecnou šířku nemá (3 m jen u plné čáry): zákonný odhad stání tam **vypnutý, rozhodne Bára**.
+  Lucemburské značky zčásti CC BY-SA 4.0 (GilPe).
+- Regiony Belgie podle NUTS 1 (`regions-be.json`, `tools/build_regions_be.mjs`): ortofoto i čáry jen regionu řezu,
+  Brusel bez dotazu na čáry. Měření 20. 11.: BE složení 52 %, šířka do 2 m 26 % (nejčastěji chybí stání v úzkých
+  ulicích, jeden široký pruh), LU 53 % a 33 % (12 řezů). Recenze `evaluation/belgium/RECENZE.md`.
 - **Před nasazením spustit workflow OSM tiles ručně se `states: be,lu`.**
 
 ## Měření přesnosti (Bára 17. 11. 2026)

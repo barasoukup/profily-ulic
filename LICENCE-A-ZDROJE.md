@@ -71,7 +71,7 @@ licence neuvedena; čteno při kliknutí, nešíří se.** Nejsou to otevřená 
 | **Belgie a Lucembursko:** hranice (Eurostat GISCO) | stát řezu | © EuroGeographics | ✓ |
 | **Belgie:** dopravní značky (Wikimedia Commons), `pilot/public/signs-BE/` | řádek značek | Public domain (úřední díla) | ✓ |
 | **Lucembursko:** ortofoto ortho_latest (ACT, geoportail.lu WMTS) | pruhy, obruby a podkladová mapa | Starší ročníky CC0 na data.public.lu, ortho_latest neověřeno. Čteno při kliknutí. | ? |
-| **Lucembursko:** dopravní značky (Wikimedia Commons), `pilot/public/signs-LU/` | řádek značek | Část public domain, část CC BY-SA 4.0 (GilPe), uvedeno v patičce | ✓ |
+| **Lucembursko:** dopravní značky (Wikimedia Commons), `pilot/public/signs-LU/` | řádek značek | Část public domain, část [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) (GilPe, soubory v `signs-LU/README.md`; doplněn `viewBox`, šíří se pod stejnou licencí), uvedeno v patičce | ✓ |
 | **Belgie a Lucembursko:** hledání Photon (komoot) | hledání adres | Data © přispěvatelé OSM (ODbL); hledaný text jde komootu. | ✓ |
 | **Rakousko:** hranice státu z Eurostat GISCO (`CNTR_RG_01M_2024_4326`, `tools/build_staty.mjs` → `staty.json`) | stát řezu | Podmínky GISCO: „© EuroGeographics for the administrative boundaries“ ([GISCO](https://ec.europa.eu/eurostat/web/gisco/geodata/administrative-units/countries)). Šíří se v `staty.json`. | ✓ |
 | **Rakousko:** dopravní značky `pilot/public/signs-AT/` (StVO 1960 § 52–53, Wikimedia Commons) | řádek značek | Úřední díla, volná podle § 7 odst. 1 rakouského UrhG (podle Commons); rychlosti mimo 30 na české šabloně B 20a. | ✓ |

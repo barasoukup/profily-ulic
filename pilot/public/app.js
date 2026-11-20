@@ -272,14 +272,22 @@ const insideOnly = (places) => L.TileLayer.extend({
   },
 });
 const boundsOf = (rings) => { const pts = rings.flat(), xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]); return L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]); };
-if (STATY?.belgium) {
-  const Be = insideOnly([boxedPlace("BE", STATY.belgium)]);
-  kinds.ortho.push(new Be("", { bboxUrl: BE_ORTHO.wal.url, maxZoom: 21, attribution: tr("ortofoto © SPW (Service public de Wallonie)"), bounds: boundsOf(STATY.belgium) }));
-  kinds.ortho.push(new Be("", { bboxUrl: (b, w, h) => BE_ORTHO.vl.url(b, w, h, "image/png"), maxZoom: 21, attribution: tr("ortofoto © Digitaal Vlaanderen"), bounds: boundsOf(STATY.belgium) }));
-}
+// Luxembourg first, Belgium's regions over it (each answers transparent or nothing outside itself; the hostile review:
+// a white tile of one hid its neighbour). Each region's layer asks only for tiles over that region
+// (regions-be.json, loaded once).
 if (STATY?.luxembourg) {
   const Lu = insideOnly([boxedPlace("LU", STATY.luxembourg)]);
   kinds.ortho.push(new Lu(`${LU_ORTHO}/{z}/{x}/{y}.jpeg`, { maxZoom: 21, maxNativeZoom: 21, attribution: tr("ortofoto © ACT Luxembourg (geoportail.lu)"), bounds: boundsOf(STATY.luxembourg) }));
+}
+if (STATY?.belgium) {
+  const reg = await fetch(new URL("./regions-be.json", import.meta.url)).then((r) => r.json()).catch(() => null);
+  const add = (codes, url, credit) => {
+    const places = reg ? codes.map((c) => boxedPlace(`BE-${c}`, reg[c])) : [boxedPlace("BE", STATY.belgium)];
+    const R = insideOnly(places);
+    kinds.ortho.push(new R("", { bboxUrl: url, maxZoom: 21, attribution: tr(credit), bounds: boundsOf(reg ? codes.flatMap((c) => reg[c]) : STATY.belgium) }));
+  };
+  add(["wal"], (b, w, h) => BE_ORTHO.wal.url(b, w, h, "image/png"), "ortofoto © SPW (Service public de Wallonie)");
+  add(["vl", "bru"], (b, w, h) => BE_ORTHO.vl.url(b, w, h, "image/png"), "ortofoto © Digitaal Vlaanderen");
 }
 // Germany: the orthophoto of each Land (lanes-ortho.js DE_ORTHO), a tile from the WMS of the Land its centre lies in
 // (laender.json, loaded when the first tile in Germany is drawn).

@@ -6,12 +6,16 @@ Brusel čáry nemá. A = bez čar (`?hrany=0`, odhad z ortofota a OSM), B = s ni
 `images/` (nahoře A modře, dole B červeně, nad ortofotem Flander nebo Valonska; `ORTHO=be` v
 `evaluation/slovensko/ab/obrazky.mjs`).
 
-Čáry se použily (vybraly jako obruba nebo okraj chodníku) u 13 řezů, profil se změnil u 10. Vozovka a pruhy se nezměnily
-nikde: čáry upřesnily díly za obrubou.
+Čáry se použily (vybraly jako obruba nebo okraj chodníku) u 13 řezů; profil změnily u 9 (le1 se změnil bez čar, kolísáním
+služeb). Změny jsou hlavně za obrubou, ale ne jen tam: an2 ztratil jeden pruh (3,15 + 3,15 → 3,5), na3 má pruh 3,3 → 3,5
+a ge4 jiné stání (opraveno po nepřátelské recenzi).
 
 - **Lépe B (4):** ch3 Avenue de Philippeville (jeden chodník 3,35 m místo chodníku a plochy), ge4 Einde Were (chodník na
-  konci místo plochy), li2 Rue des Eburons (chodník na straně B), mo3 N50 (chodníky místo „ploch“ po obou stranách).
-- **Hůř B (2):** an2 Louis Paul Boonstraat (chodník 1,2 m spojený se zelení), mo1 (chodník zmizel v zeleni 8,6 m).
-- **Stejně nebo nerozhodně (4):** ch1 (stezka 2 m → chodník s koly 6 m, na snímku nejasné), ch4, le1, na3.
+  konci místo plochy), li2 Rue des Eburons (chodník na straně B), mo3 N50 (chodníky místo „ploch“; ale 12,8 m a 11,1 m
+  „chodníku“ je spíš předprostor, chce druhý pohled).
+- **Hůř B (2):** an2 Louis Paul Boonstraat (chodník spojený se zelení a jeden pruh méně), mo1 (chodník zmizel v zeleni).
+- **Nerozhodně (3):** ch1 (stezka 2 m → chodník s koly 6 m), ch4, na3.
+- 6 z 36 řezů je prázdných nebo s jedním dílem (body v parcích a na pěšinách).
 
-Výsledek: čáry zůstávají zapnuté (`?hrany=0` vypne).
+Výsledek je slabý (4 : 2), spíš nerozhodný. Čáry zůstávají zapnuté (`?hrany=0` vypne), po přechodu na regiony podle
+hranic (recenze) se dotazují jen u řezů ve Flandrech (GRB) a ve Valonsku (PICC), v Bruselu vůbec.

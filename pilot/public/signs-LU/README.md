@@ -1,7 +1,9 @@
 # Dopravní značky Lucemburska (Code de la route, AGD 23. 11. 1955)
 
 Soubory z Wikimedia Commons. Licence: část public domain (Government of Luxembourg), část **CC BY-SA 4.0, autor GilPe**
-(C,3a, C,3c, C,3g, C,18, C,19, D,10, E,15, E,17, E,23): uvedeno v patičce. Rešerše `evaluation/belgium/NORMY.md`.
+(C,3a, C,3c, C,3g, C,18, C,19, D,10, E,15, E,17, E,23; licence https://creativecommons.org/licenses/by-sa/4.0/, soubory
+„Luxembourg road sign …“ na https://commons.wikimedia.org/wiki/Category:Road_signs_of_Luxembourg): uvedeno v patičce.
+Úprava: do souborů bez něj doplněn `viewBox` (jinak beze změny), upravené soubory se šíří pod stejnou licencí. Rešerše `evaluation/belgium/NORMY.md`.
 
 | Klíč | Značka | Soubor |
 |---|---|---|

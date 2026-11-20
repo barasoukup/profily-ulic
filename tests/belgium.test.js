@@ -22,6 +22,13 @@ test("Belgie: čáry GRB a PICC jako kandidáti obrub, vypínač ?hrany=0", asyn
   try { assert.deepEqual((await B.sources.lines("5.57,50.64,5.58,50.65")).edges, []); } finally { delete globalThis.PROFILY_BE; }
 });
 
+test("Belgie: region podle hranic NUTS 1 (ortofoto a čáry jen svého regionu)", async () => {
+  const { beRegionsAt } = await import("../pilot/public/lanes-ortho.js");
+  assert.equal((await beRegionsAt(3.7174, 51.0543))[0], "vl"); // Ghent
+  assert.equal((await beRegionsAt(5.5797, 50.6326))[0], "wal"); // Liège
+  assert.equal((await beRegionsAt(4.3525, 50.8467))[0], "bru"); // Brussels
+});
+
 test("Belgie a Lucembursko: stát podle hranic", async () => {
   const C = await import("../pilot/public/city.js");
   C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
@@ -55,6 +62,10 @@ test("Belgie a Lucembursko: značky, normy, zákon o stání", async () => {
   }
   assert.equal(BE.limits({ type: "chodnik" }, [], 0).min, 1.5);
   assert.equal(LU.limits({ type: "chodnik" }, [], 0).zaklad, 2);
-  assert.equal(BE.limits({ type: "pruh" }, [{ type: "pruh" }], 0), null, "místní ulice: zdroj nenalezen");
+  assert.equal(BE.limits({ type: "pruh" }, [{ type: "pruh" }], 0), null, "zdroj jen pro hlavní silnice Flander: bez varování");
+  assert.equal(BE.limits({ type: "cyklostezka" }).min, 1.3);
+  assert.equal(BE.limits({ type: "parkovani", orient: "podelne" }), null);
+  assert.equal(LU.limits({ type: "cyklostezka" }).min, 1.2);
+  assert.equal(LU.parkGuess, false, "Lucembursko obecnou šířku nemá");
   assert.equal(BE.lawNeed(true, 1, 2.5), 3);
 });

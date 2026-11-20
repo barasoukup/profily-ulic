@@ -7,9 +7,10 @@
 //   unpaved land (woz).
 // - Wallonia: PICC (Projet Informatique de Cartographie Continue, SPW, ArcGIS geoservices.wallonie.be, CORS for the
 //   origin asking), "Voirie - Ligne": the edges of the roadway, sidewalks, parking, cycle tracks and kerbs.
-// - Brussels publishes no such lines (UrbIS is a download): the estimate alone.
+// - Brussels publishes no such lines (UrbIS is a download): the estimate alone, no request.
 // ?hrany=0 leaves the lines out (the A/B test, evaluation/belgium/ab/).
 import { osmTiles, getJSON, query, envelope } from "../gis.js";
+import { beRegionsAt } from "../lanes-ortho.js";
 
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_BE?.[k] ?? null : new URLSearchParams(location.search).get(k));
 
@@ -34,14 +35,20 @@ async function picc(bbox) {
   return piccPaths(await query(`${PICC}/query`, { ...envelope(bbox), outFields: "NATUR_DESC", returnGeometry: "true" }));
 }
 
-// One request a box (the surfaces and the lines of a cut, a cut moved a little ask the same box).
+// One request a box and region (the surfaces and the lines of a cut, a cut moved a little ask the same box). The
+// region by the cut's centre (regions-be.json; the hostile review: no request to Flanders in Wallonia or Brussels,
+// and near the language border, within about 2 km, both regions' lines).
 const memo = new Map();
 function edgesAt(bbox) {
   if (!memo.has(bbox)) {
     if (memo.size > 30) memo.delete(memo.keys().next().value);
-    // Flanders' lines first; where it has none (Wallonia, Brussels), Wallonia's.
-    memo.set(bbox, grb(bbox).catch(() => []).then(async (paths) => (paths.length ? { paths, id: "grb" }
-      : { paths: await picc(bbox).catch(() => []), id: "picc" })));
+    const [x0, y0, x1, y1] = bbox.split(",").map(Number);
+    memo.set(bbox, beRegionsAt((x0 + x1) / 2, (y0 + y1) / 2).catch(() => ["vl", "wal"]).then(async (regions) => {
+      const asks = regions.filter((r) => r === "vl" || r === "wal");
+      const got = await Promise.all(asks.map((r) => (r === "vl" ? grb(bbox) : picc(bbox)).catch(() => [])));
+      const first = got.findIndex((g) => g.length);
+      return { paths: got.flat(), id: first >= 0 ? (asks[first] === "vl" ? "grb" : "picc") : null };
+    }));
   }
   return memo.get(bbox);
 }

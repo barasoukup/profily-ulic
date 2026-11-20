@@ -32,8 +32,8 @@ export const NL_ORTHO = "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0/Actu
 // German Land's border): Flanders' middle-scale orthophoto (Digitaal Vlaanderen, WMS in Web Mercator, CORS *; it also
 // covers Brussels) and Wallonia's latest one (SPW, ArcGIS export, CORS for the origin asking).
 export const BE_ORTHO = {
-  vl: { url: (b, w, h, format = "image/jpeg") => `https://geo.api.vlaanderen.be/OMWRGBMRVL/wms?${new URLSearchParams({ service: "WMS", request: "GetMap", version: "1.3.0", layers: "Ortho", styles: "", crs: "EPSG:3857", bbox: b.join(","), width: w, height: h, format })}`, credit: "© Digitaal Vlaanderen" },
-  wal: { url: (b, w, h, format) => `https://geoservices.wallonie.be/arcgis/rest/services/IMAGERIE/ORTHO_LAST/MapServer/export?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: format === "image/png" ? "png24" : "jpg", f: "image" })}`, credit: "© SPW" },
+  vl: { url: (b, w, h, format = "image/jpeg") => `https://geo.api.vlaanderen.be/OMWRGBMRVL/wms?${new URLSearchParams({ service: "WMS", request: "GetMap", version: "1.3.0", layers: "Ortho", styles: "", crs: "EPSG:3857", bbox: b.join(","), width: w, height: h, format, ...(format === "image/png" && { transparent: "TRUE" }) })}`, credit: "© Digitaal Vlaanderen" },
+  wal: { url: (b, w, h, format) => `https://geoservices.wallonie.be/arcgis/rest/services/IMAGERIE/ORTHO_LAST/MapServer/export?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: format === "image/png" ? "png32" : "jpg", ...(format === "image/png" && { transparent: "true" }), f: "image" })}`, credit: "© SPW" },
 };
 // Luxembourg (Bára 20. 11. 2026): the latest orthophoto of the ACT (geoportail.lu, WMTS {z}/{x}/{y} in Web Mercator to
 // level 21, CORS *).
@@ -109,6 +109,23 @@ export async function landsAt(lon, lat, json = null) {
   const hits = Object.keys(all).map((code) => ({ code, n: near.findIndex(([dx, dy]) => inRings(all[code], lon + dx * 1.5, lat + dy)) })).filter((x) => x.n >= 0);
   return hits.sort((a, b) => a.n - b.n).slice(0, 3).map((x) => x.code);
 }
+// Belgium's regions (regions-be.json, tools/build_regions_be.mjs: bru, vl, wal): the one a point lies in first, then
+// those within about 2 km (the language border is of 1 : 1 000 000).
+let regionsBe = null;
+export async function beRegionsAt(lon, lat, json = null) {
+  regionsBe ??= json ? Promise.resolve(json) : (async () => {
+    const url = new URL("./regions-be.json", import.meta.url);
+    if (url.protocol === "file:") return JSON.parse((await import("node:fs")).readFileSync(url, "utf8"));
+    const r = await fetch(url);
+    if (!r.ok) throw new Error(`regions-be.json ${r.status}`);
+    return r.json();
+  })();
+  const all = await regionsBe.catch((err) => { regionsBe = null; throw err; }), d = 0.02, near = [[0, 0], [d, 0], [-d, 0], [0, d], [0, -d], [d, d], [-d, -d], [d, -d], [-d, d]];
+  const hits = Object.keys(all).map((code) => ({ code, n: near.findIndex(([dx, dy]) => inRings(all[code], lon + dx * 1.5, lat + dy)) })).filter((x) => x.n >= 0);
+  return hits.sort((a, b) => a.n - b.n).map((x) => x.code);
+}
+// The orthophoto of a Belgian region: Flanders' covers Brussels too.
+const beOrthoOf = (region) => (region === "wal" ? "wal" : "vl");
 // An image without the photo: outside the Land's coverage the services answer white (or black, or transparent).
 function blank(img) {
   let n = 0, empty = 0;
@@ -133,7 +150,9 @@ export async function laneImage(opts) {
   if (opts.source === "be") {
     const start = Date.now(), budget = opts.timeout ?? TIMEOUT;
     let lastError = null;
-    for (const r of Object.keys(BE_ORTHO)) {
+    // The region of the cut's centre first (the hostile review: a Flemish image half white at the language border).
+    const regions = await beRegionsAt(...opts.frame.toLonLat(0, 0)).catch(() => ["vl", "wal"]);
+    for (const r of [...new Set([...regions.map(beOrthoOf), "vl", "wal"])]) {
       const left = budget - (Date.now() - start);
       if (left < 500) break;
       try { const out = await laneImageOf(`be-${r}`, { ...opts, timeout: left }); if (out) return out; } catch (err) { lastError = err; }
@@ -669,7 +688,7 @@ function redraw(w, lines, fine = true) {
 // model learnt it (evaluation/ai-segmentation/fetch_ortho.py): the source's shift applied as above. Returns
 // { source, img } (ImageData) or null (no photo there); a server down throws as laneImage does.
 export async function orthoPatch({ source, lon, lat, half, px, timeout = TIMEOUT }) {
-  const keys = source === "de" ? (await landsAt(lon, lat).catch(() => [])).map((l) => `de-${l}`) : source === "be" ? Object.keys(BE_ORTHO).map((r) => `be-${r}`) : [SOURCES[source] ? source : "cuzk"];
+  const keys = source === "de" ? (await landsAt(lon, lat).catch(() => [])).map((l) => `de-${l}`) : source === "be" ? [...new Set([...(await beRegionsAt(lon, lat).catch(() => [])).map(beOrthoOf), "vl", "wal"])].map((r) => `be-${r}`) : [SOURCES[source] ? source : "cuzk"];
   const seen = new Set(); // Berlin and Brandenburg: one service
   for (const key of keys) {
     const id = key.startsWith("de-") ? DE_ORTHO[key.slice(3)].wms : key;

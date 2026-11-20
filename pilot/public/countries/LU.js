@@ -17,7 +17,7 @@ function limitsLU(s) {
     case "ochranny_pruh":
       return { min: 1.25, zaklad: 1.5, why: t("doporučený cyklopruh (voie suggestive): 1,25–1,5 m (stanovisko Commission de circulation 2001)") };
     case "cyklostezka":
-      return { min: 1.5, zaklad: 1.5, why: t("stezka pro cyklisty jednosměrná: 1,5 m zpevněná a krajnice, obousměrná 2,5 m (stanovisko Commission de circulation 2001)") };
+      return { min: 1.2, zaklad: 1.5, why: t("stezka pro cyklisty jednosměrná: vedle vozovky 1,2 m a ochranná zóna 0,65 m, v samostatné trase 1,5 m a krajnice; obousměrná 2–2,5 m (stanovisko Commission de circulation 2001)") };
     case "bus": case "bus_cyklo":
       return { min: 3, zaklad: 3.5, why: t("vyhrazený pruh pro autobusy: 3–3,5 m (stanovisko Commission de circulation 2001)") };
     default:
@@ -54,7 +54,9 @@ export default {
   freeLane: 3,
   lawNeed: (oneway, lanes, minLane) => Math.max(3, minLane * Math.max(oneway ? 1 : 2, lanes)),
   halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku se smí stát jen se značkou (čl. 166 d Code de la route), obecnou volnou šířku zákon neuvádí (3 m jen u plné čáry, čl. 166 r); aplikace nechává průjezdné pruhy, tedy aspoň {need}.", { free, need }),
-  parkGuess: true,
+  // No parking estimated by the law: it has no general free width (NORMY.md advises against it; the hostile review), to
+  // be decided by Bára as for Austria and Germany.
+  parkGuess: false,
   parkByCycleLane: true,
   wideRoads: true,
   roadClassFromOsm: true,

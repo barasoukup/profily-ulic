@@ -2,35 +2,27 @@
 // towns/belgium.js (the lines of Flanders' GRB and Wallonia's PICC for the kerbs), the regions' orthophotos
 // lanes-ortho.js "be". Sources, norms and signs: evaluation/belgium/ (ZDROJE.md, NORMY.md, ab/).
 import { t } from "../i18n.js";
-import { GROUP } from "../norms.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
 
 // Norms (evaluation/belgium/NORMY.md): the three regions have guidelines of their own and the app does not tell them
-// apart, so the lowest of them is the minimum, Flanders' figure the base, each quoted. No source for a lane of a local
-// street, a tram belt or perpendicular parking: no warning.
-const BE_LANE_BY_GROUP = {
-  B: { min: 0, zaklad: 3.2, why: t("jízdní pruh hlavní silnice: 3,2 m (Flandry, Vlaamse wegenstructuur, hlavní silnice 2024), pro místní ulice zdroj nenalezen") },
-};
-function limitsBE(s, segs, i) {
+// apart, so the lowest of them is the minimum, Flanders' figure the base, each quoted. No warning for a lane (Flanders'
+// 3.2 m is for its main regional roads only), a tram belt or parking (the 2 m of parallel parking is only derived:
+// the hostile review).
+function limitsBE(s) {
   switch (s.type) {
     case "chodnik": case "chodnik_kola":
       return { min: 1.5, zaklad: 1.8, why: t("chodník: volný průchod nejméně 1,5 m, základ 1,8 m (Flandry, Vademecum voetgangersvoorzieningen 2026; Valonsko 1,5 m; Brusel 2 m)") };
     case "stezka_sdilena":
       return { min: 2, zaklad: 2.5, why: t("společná stezka pro chodce a cyklisty (D10): jednosměrná 2 m, obousměrná 2,5 m, doporučeno 3 m (Valonsko, Guide cyclable)") };
     case "cyklostezka":
-      return { min: 1.1, zaklad: 2, why: t("stezka pro cyklisty jednosměrná: Flandry 2 m (Vademecum fietsvoorzieningen 2024), Valonsko 1,3 m, nejméně 1,1 m; obousměrná Flandry 3 m, Valonsko 2,2–2,6 m") };
+      return { min: 1.3, zaklad: 2, why: t("stezka pro cyklisty jednosměrná: Flandry 2 m (Vademecum fietsvoorzieningen 2024), Valonsko nejméně 1,3 m (Guide cyclable); obousměrná Flandry 3 m, Valonsko 2,2–2,6 m") };
     case "cyklopruh":
       return { min: 1.1, zaklad: 1.3, why: t("vyznačený cyklopruh: 1,3 m, nejméně 1,1 m, vedle stání odstup 0,8 m (Valonsko, Guide cyclable)") };
     case "ochranny_pruh":
-      return { min: 1.7, zaklad: 2, why: t("doporučený cyklopruh (fietssuggestiestrook): 1,7–2 m podle šířky vozovky (Flandry, Vademecum fietsvoorzieningen 2024)") };
+      return { min: 0.7, zaklad: 1.7, why: t("doporučený cyklopruh: Flandry 1,7–2 m podle šířky vozovky (fietssuggestiestrook, Vademecum fietsvoorzieningen 2024), Valonsko 0,7–0,9 m (Guide cyclable)") };
     case "bus": case "bus_cyklo":
-      return { min: 3, zaklad: 3.25, why: t("vyhrazený pruh pro autobusy: 3–3,25 m (Flandry, Vademecum fietsvoorzieningen; Valonsko, Guide cyclable)") };
-    case "pruh": case "pruh_piktokoridor":
-      if (s.turn) return null;
-      return BE_LANE_BY_GROUP[GROUP[s.roadClass ?? segs.find((x) => x.roadClass)?.roadClass]] || null;
-    case "parkovani":
-      return s.orient === "podelne" || !s.orient ? { min: 0, zaklad: 2, why: t("podélné stání: orientačně 2 m (odvozeno z valonského Guide cyclable: 2,8 m se zónou 0,8 m)") } : null;
+      return { min: 2.75, zaklad: 3.25, why: t("vyhrazený pruh pro autobusy: 3–3,25 m, ve Valonsku se souhlasem dopravce 2,75 m (Flandry, Vademecum fietsvoorzieningen; Valonsko, Guide cyclable)") };
     default:
       return null;
   }
@@ -41,7 +33,7 @@ function limitsBE(s, segs, i) {
 // space has no sign of its own.
 const BE_FILE = { b1: "C3", b11: "C5_C7_C9", b8: "C11", b30: "C19", b28: "E3", b29: "E1", ip11a: "E9", ip14a: "F5", ip15a: "F9", ip20a: "F17",
   zona30: "F4a", ip26a: "F12a", ip27a: "F103", c8a: "D07", c9a: "D10", c10a: "D09", c7a: "D11", cyklozona: "F111" };
-const BE_CODE = { ...BE_FILE, b11: "C5 + C7 + C9", c8a: "D7", c10a: "D9", b20a: "C43" };
+const BE_CODE = { ...BE_FILE, b11: "C5 + C7 + C9", c8a: "D7", c10a: "D9", b20a: "C43", ip11a: "E9a" };
 const BE_SPEEDS = [30, 50, 70, 90, 100, 110, 120];
 function signFile(s, seg) {
   const dir = s.dir ?? seg?.dir;
