@@ -14,6 +14,7 @@ test("Nizozemsko: funkce BGT na kódy MTVU, vypínač ?bgt=0", async () => {
   assert.equal(N.bgtCode("wegdeel", { functie: "parkeervlak" }), 704);
   assert.equal(N.bgtCode("wegdeel", { functie: "transitie" }), null);
   assert.equal(N.bgtCode("ondersteunendwegdeel", { functie: "verkeerseiland", fysiek_voorkomen: "open verharding" }), 1003);
+  assert.equal(N.bgtCode("ondersteunendwegdeel", { functie: "verkeerseiland", fysiek_voorkomen: "groenvoorziening" }), 401, "zelený ostrůvek (recenze)");
   assert.equal(N.bgtCode("ondersteunendwegdeel", { functie: "berm", fysiek_voorkomen: "groenvoorziening" }), 401);
   assert.equal(N.bgtCode("onbegroeidterreindeel", { fysiek_voorkomen: "erf" }), 603);
   assert.equal(N.bgtCode("pand", {}), 601);
@@ -37,6 +38,11 @@ test("Nizozemsko: BGT jen v úrovni ulice pod středem, OV-baan s tramvají jako
   };
   const codes = N.bgtFeatures(got, 5, 52).features.map((f) => [f.attributes.code, f.attributes.ANY_TRAM || 0]);
   assert.deepEqual(codes, [[701, 0], [705, 1], [701, 0], [601, 0]], "most (úroveň 1) vynechán, OV-baan s kolejí 705, bez ní vozovka");
+  // A light rail (sneltram) crossing a railway bed with no vertex inside it; a planned roadway left out (the review).
+  const bed = { properties: { functie: "spoorbaan", relatieve_hoogteligging: 0 }, geometry: { type: "Polygon", coordinates: sq(5, 52) } };
+  const plan = { properties: { functie: "rijbaan lokale weg", status: "plan", relatieve_hoogteligging: 0 }, geometry: { type: "Polygon", coordinates: sq(5.001, 52) } };
+  const rail = { properties: { functie: "sneltram", relatieve_hoogteligging: 0 }, geometry: { type: "LineString", coordinates: [[5, 51.998], [5, 52.002]] } };
+  assert.deepEqual(N.bgtFeatures({ wegdeel: [bed, plan], spoor: [rail] }, 5, 52).features.map((f) => f.attributes.code), [705]);
 });
 
 test("Nizozemsko: budova z BAG a 3D BAG", async () => {

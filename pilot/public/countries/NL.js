@@ -13,7 +13,8 @@ const NL_LANE_BY_GROUP = {
   B: { min: 2.5, zaklad: 2.9, why: t("jízdní pruh ulice s 50 km/h: 2,9 m, vozovka nejméně 5,8 m, při nedostatku místa pruh 2,5 m (CROW-Fietsberaad 2014; CROW GOW30 2023 podle ASVV 2021)") },
 };
 function limitsNL(s, segs, i) {
-  const parking = [segs[i - 1], segs[i + 1]].find((x) => x?.type === "parkovani");
+  // Parallel parking beside (the figures of CROW-Fietsberaad 2014 are for it, not for perpendicular or angled bays).
+  const parking = [segs[i - 1], segs[i + 1]].find((x) => x?.type === "parkovani" && !["kolme", "sikme"].includes(x.orient));
   switch (s.type) {
     case "chodnik": case "chodnik_kola":
       return { min: 1.8, zaklad: 2, why: t("chodník: volný průchod nejméně 1,8 m, základ 2–2,2 m (Amsterdam, Ruimte voor de voetganger 2020 a Handboek Rood 2024)") };
@@ -22,7 +23,7 @@ function limitsNL(s, segs, i) {
       return NL_LANE_BY_GROUP[GROUP[s.roadClass ?? segs.find((x) => x.roadClass)?.roadClass]] || null;
     case "cyklopruh": case "ochranny_pruh":
       return parking ? { min: 1.7, zaklad: 2, why: t("cyklopruh vedle podélného stání: nejméně 1,7 m, základ 2 m, stání vedle něj aspoň 2,3 m (CROW-Fietsberaad 2014)") }
-        : { min: 1.5, zaklad: 2, why: t("cyklopruh (fietsstrook): základ 2–2,5 m, nejméně 1,5 m (CROW-Fietsberaad 2014 podle ASVV a Ontwerpwijzer fietsverkeer)") };
+        : { min: 1.5, zaklad: 2, why: t("cyklopruh (fietsstrook): základ 2–2,5 m; ASVV 2021 nejméně 2 m, starší doporučení CROW 1,5 m (podle CROW-Fietsberaad 2014)") };
     case "cyklostezka":
       return { min: 2, zaklad: 2.2, why: t("stezka pro cyklisty jednosměrná: nejméně 2 m, základ 2,2 m; obousměrná 2,5 m a 3,5 m (CROW-Fietsberaad 2021 podle doporučení CROW)") };
     case "parkovani":

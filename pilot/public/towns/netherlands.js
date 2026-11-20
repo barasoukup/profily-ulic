@@ -8,7 +8,7 @@
 //   without it gave three times as many, one surface over another). ?bgt=0 leaves it out (the A/B test,
 //   evaluation/netherlands/ab/).
 // - BAG (Basisregistratie Adressen en Gebouwen, PDOK OGC API, CORS *, Public Domain Mark 1.0): the year a building was
-//   built and what it is used for; 3D BAG (3dbag.nl, TU Delft and 3DGI, CORS *, CC BY 4.0): its floors and roof.
+//   built and what it is used for (?bag=0 leaves BAG and 3D BAG out); 3D BAG (3dbag.nl, TU Delft and 3DGI, CORS *, CC BY 4.0): its floors and roof.
 // As in Switzerland: the BGT's surfaces with OSM's green and water after them, the BGT's buildings (the BAG's
 // footprints) among them, only where the BGT has a surface of the street at the cut's centre (elsewhere the estimate);
 // a BGT that does not answer: the estimate, with a note.
@@ -30,12 +30,12 @@ const WEG = {
   "OV-baan": 701, fietspad: 703, voetpad: 702, "voetpad op trap": 702, voetgangersgebied: 702, ruiterpad: 702, inrit: 702,
   parkeervlak: 704, spoorbaan: 1100, "baan voor vliegverkeer": 1003,
 };
-// Ondersteunend wegdeel (the parts beside a road): a traffic island is a paved island, a verge green when it is grown
-// or unpaved, else paved.
+// Ondersteunend wegdeel (the parts beside a road: verges, traffic islands, medians): green when it is grown or unpaved
+// (a green island too: the hostile review), else paved.
 const GREEN_LOOK = new Set(["groenvoorziening", "onverhard", "grasland overig", "gras- en kruidachtigen"]);
 const KIND = {
   wegdeel: (p) => WEG[p.functie] ?? null,
-  ondersteunendwegdeel: (p) => (p.functie === "verkeerseiland" ? 1003 : GREEN_LOOK.has(p.fysiek_voorkomen) ? 401 : 1003),
+  ondersteunendwegdeel: (p) => (GREEN_LOOK.has(p.fysiek_voorkomen) ? 401 : 1003),
   begroeidterreindeel: () => 401,
   // Unvegetated land: a yard (erf) is a courtyard, anything else paved.
   onbegroeidterreindeel: (p) => (p.fysiek_voorkomen === "erf" ? 603 : 1003),
@@ -84,26 +84,50 @@ const inRings = (rings, x, y) => {
 // asphalt, as Berlin's Gleiskörper).
 export function bgtFeatures(got, cx, cy) {
   const level = (got.wegdeel || []).find((f) => { const r = ringsOf(f.geometry); return r && inRings(r, cx, cy); })?.properties?.relatieve_hoogteligging ?? 0;
-  const trams = (got.spoor || []).filter((f) => f.properties?.functie === "tram" && (f.properties?.relatieve_hoogteligging ?? 0) === level)
-    .flatMap((f) => (f.geometry?.type === "LineString" ? [f.geometry.coordinates] : f.geometry?.type === "MultiLineString" ? f.geometry.coordinates : []));
+  // The BGT's tram tracks (a tram and a light rail, sneltram: the hostile review found Amstelveen's line and the Vijzelgracht's
+  // so), sampled every metre or so: their vertices lie up to 180 m apart, a straight piece across a bed has none in it.
+  const trams = (got.spoor || []).filter((f) => TRAM.has(f.properties?.functie) && (f.properties?.relatieve_hoogteligging ?? 0) === level)
+    .flatMap((f) => (f.geometry?.type === "LineString" ? [f.geometry.coordinates] : f.geometry?.type === "MultiLineString" ? f.geometry.coordinates : []))
+    .map(dense);
   const features = [];
   for (const name of Object.keys(KIND)) {
     for (const f of got[name] || []) {
       const p = f.properties || {}, rings = ringsOf(f.geometry);
-      if (!rings || (p.relatieve_hoogteligging ?? 0) !== (name === "pand" ? 0 : level)) continue;
+      // Only what exists (the BGT keeps planned objects too: status "plan").
+      if (!rings || (p.status && p.status !== "bestaand") || (p.relatieve_hoogteligging ?? 0) !== (name === "pand" ? 0 : level)) continue;
       let code = bgtCode(name, p);
       if (!code) continue;
-      const tram = name === "wegdeel" && p.functie === "OV-baan" && trams.some((line) => line.some(([x, y]) => inRings(rings, x, y)));
+      // An OV-baan or a railway bed (spoorbaan: a tram's own bed with grass or ballast, Amstelveen) with a BGT tram track
+      // in it is a tram's bed.
+      const tram = name === "wegdeel" && (p.functie === "OV-baan" || p.functie === "spoorbaan") && trams.some((line) => line.some(([x, y]) => inRings(rings, x, y)));
       if (tram) code = 705;
       features.push({ attributes: { code, ...(tram ? { ANY_TRAM: 1 } : {}) }, geometry: { rings } });
     }
   }
   return { features };
 }
+const TRAM = new Set(["tram", "sneltram"]);
+// A line's points at most about a metre apart.
+function dense(line) {
+  const out = [];
+  for (let i = 0; i + 1 < line.length; i++) {
+    const [x0, y0] = line[i], [x1, y1] = line[i + 1], n = Math.min(400, Math.ceil(Math.hypot((x1 - x0) * 68000, (y1 - y0) * 111000)));
+    for (let k = 0; k < n; k++) out.push([x0 + ((x1 - x0) * k) / n, y0 + ((y1 - y0) * k) / n]);
+  }
+  if (line.length) out.push(line[line.length - 1]);
+  return out;
+}
 
-// The kinds of a street at the cut's centre (roadway, footway, cycle track, parking, a tram's bed). Not a paved
-// island or other paved land (1003): as in Switzerland, a square or a quay would make the whole cut one area.
-const STREET = new Set([701, 702, 703, 704, 705]);
+// The kinds of a street near the cut's centre: roadway, cycle track, parking, a tram's bed. A footway alone is not
+// enough (the hostile review: all four worse cuts of the A/B lay on a footway or a pedestrian area, a passage under a
+// house or a square, where the BGT made one area of 20–30 m); nor a paved island or other paved land (1003): as in
+// Switzerland, a square or a quay would make the whole cut one area.
+const STREET = new Set([701, 703, 704, 705]);
+// Where to look for it: the centre, then rings around it: up to 4 m when a footway lies at the centre (a sidewalk beside
+// the street), up to 10 m when a median, a verge or other land lies there (the middle of a street of two carriageways,
+// where the cut is made: the hostile review; Nassauplein in The Hague has a green median of 16 m).
+const ring = (r) => Array.from({ length: 8 }, (_, i) => [r * Math.cos((i * Math.PI) / 4), r * Math.sin((i * Math.PI) / 4)]);
+const NEAR = [[0, 0], ...[1.5, 4].flatMap(ring)], WIDE = [...NEAR, ...[7, 10].flatMap(ring)];
 
 async function surfaces(bbox) {
   if (param("bgt") === "0") return { features: [], abroad: true };
@@ -115,11 +139,11 @@ async function surfaces(bbox) {
   } catch {
     return { features: [], abroad: true, nlFailed: true };
   }
-  // Only where the BGT has a surface of the street at the cut's centre or 1.5 m around it.
-  const dy = 1.5 / 110574, dx = 1.5 / (111320 * Math.cos((cy * Math.PI) / 180));
-  const at0 = own.features.find((f) => inRings(f.geometry.rings, cx, cy));
-  const at = at0 ? STREET.has(at0.attributes.CTVUK_KOD)
-    : own.features.some((f) => STREET.has(f.attributes.CTVUK_KOD) && [[dx, 0], [-dx, 0], [0, dy], [0, -dy]].some(([ox, oy]) => inRings(f.geometry.rings, cx + ox, cy + oy)));
+  // Only where the BGT has a surface of the street at the cut's centre or near it.
+  const my = 1 / 110574, mx = 1 / (111320 * Math.cos((cy * Math.PI) / 180));
+  const centre = own.features.find((f) => inRings(f.geometry.rings, cx, cy))?.attributes.CTVUK_KOD;
+  const around = centre === 702 ? NEAR : WIDE;
+  const at = own.features.some((f) => STREET.has(f.attributes.CTVUK_KOD) && around.some(([ox, oy]) => inRings(f.geometry.rings, cx + ox * mx, cy + oy * my)));
   if (!at) return { features: [], abroad: true };
   // The BGT covers all land, so OSM's green and water fill little.
   const o = await osmAreas(bbox);
@@ -133,7 +157,7 @@ export const BAG3D_API = "https://api.3dbag.nl/collections/pand/items";
 export function bagBuilding(pand, bag3d) {
   const p = pand?.properties || {};
   const uses = String(p.gebruiksdoel || "").split(",").map((u) => u.trim()).filter(Boolean);
-  const built = p.bouwjaar > 1000 && p.bouwjaar <= new Date().getFullYear() + 2 ? p.bouwjaar : undefined;
+  const built = p.bouwjaar > 1005 && p.bouwjaar <= new Date().getFullYear() + 2 ? p.bouwjaar : undefined;
   const a = bag3d ? Object.values(bag3d.feature?.CityObjects || bag3d.CityObjects || {}).find((o) => o.attributes)?.attributes || {} : {};
   const floors = a.b3_bouwlagen > 0 ? Math.round(a.b3_bouwlagen) : undefined;
   const height = a.b3_h_dak_70p > 0 && a.b3_h_maaiveld != null ? a.b3_h_dak_70p - a.b3_h_maaiveld : undefined;
@@ -149,10 +173,14 @@ export function bagBuilding(pand, bag3d) {
     ...(a.b3_dak_type === "slanted" ? { roofType: 1 } : /flat|horizontal/.test(a.b3_dak_type || "") ? { roofType: 3 } : {}),
   };
 }
+// The BAG's buildings that stand (not demolished, not only permitted).
+const STANDING = /^Pand in gebruik|^Verbouwing pand/;
 async function podlaznost(lat, lon) {
+  if (param("bag") === "0") return {};
   const d = 0.000005; // about half a metre around the facade's point
   const json = await getJSON(`${BAG_API}?${new URLSearchParams({ f: "json", limit: "5", bbox: [lon - d, lat - d, lon + d, lat + d].join(",") })}`);
-  const pand = (json?.features || []).find((f) => { const r = ringsOf(f.geometry); return r && inRings(r, lon, lat); }) || json?.features?.[0];
+  const standing = (json?.features || []).filter((f) => STANDING.test(f.properties?.status || ""));
+  const pand = standing.find((f) => { const r = ringsOf(f.geometry); return r && inRings(r, lon, lat); }) || standing[0];
   if (!pand) return {};
   let bag3d = null;
   try { bag3d = await getJSON(`${BAG3D_API}/NL.IMBAG.Pand.${pand.properties.identificatie}`); } catch {}

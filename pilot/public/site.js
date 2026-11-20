@@ -65,8 +65,9 @@ const NETS = [
   // Amsterdam (Bára 20. 11. 2026): the sewers of Waternet (with their size; the vertices' heights are the pipe's bottom
   // in NAP, no surface height to take them from, so drawn at the usual depth) and the city's underground cables of the
   // street lighting (with their depth in cm), WFS of the city's data service (api.data.amsterdam.nl, CORS, "Creative
-  // Commons, Naamsvermelding" in its catalogue). abroad: no ČÚZK ground model is asked.
-  { id: "amsterdam", abroad: true, box: [4.72, 52.27, 5.08, 52.43], credit: () => t("Sítě © Gemeente Amsterdam a Waternet (CC BY)."), load: amsterdamNets },
+  // Commons, Naamsvermelding" in its catalogue). Its own loader: no ČÚZK ground model is asked. The box takes in
+  // Amstelveen and Diemen too, whose networks the city does not have (no lines there).
+  { id: "amsterdam", box: [4.72, 52.27, 5.08, 52.43], credit: () => t("Sítě © Gemeente Amsterdam a Waternet (CC BY)."), load: amsterdamNets },
 ];
 // Amsterdam's WFS (GeoJSON in WGS 84, lon, lat and for sewers the height): the lines as underground() takes them.
 const AMS_WFS = "https://api.data.amsterdam.nl/v1/wfs/leidingeninfrastructuur/v1";
@@ -78,10 +79,12 @@ async function amsterdamNets(box) {
   const paths = (g) => (g?.type === "LineString" ? [g.coordinates] : g?.type === "MultiLineString" ? g.coordinates : []);
   const [sewers, cables] = await Promise.all([ask("waternet_rioolleidingen"), ask("amsterdam_ovl_ondergrondse_kabels")]);
   return [
-    ...(sewers.features || []).filter((f) => f.properties?.status !== "Buiten gebruik").map((f) => ({ kind: "kanalizace", popis: `${t("kanalizace")} – ${f.properties?.type_leiding || ""}`.replace(/ – $/, ""),
+    ...(sewers.features || []).filter((f) => f.properties?.status === "In bedrijf").map((f) => ({ kind: "kanalizace", popis: `${t("kanalizace")} – ${f.properties?.type_leiding || ""}`.replace(/ – $/, ""),
       profil: num(f.properties?.diameter), layer: 0, verified: true, paths: paths(f.geometry).map((p) => p.map(([x, y]) => [x, y, NaN])) })),
     ...(cables.features || []).filter((f) => f.properties?.indicatie_boven_onder !== "Bovengronds").map((f) => {
-      const cm = num(f.properties?.diepte);
+      // The depth only where its accuracy is known: the centre's cables all say 60 cm "of unknown accuracy" (the hostile
+      // review), a default, drawn at the usual depth.
+      const cm = /onbekend/i.test(f.properties?.nauwkeurigheid_diepte || "onbekend") ? null : num(f.properties?.diepte);
       return { kind: "silnoproud", popis: t("kabel veřejného osvětlení"), profil: null, layer: 1, verified: true, depth: cm > 10 && cm < 500 ? cm / 100 : null, paths: paths(f.geometry) };
     }),
   ];
