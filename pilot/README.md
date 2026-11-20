@@ -129,6 +129,24 @@ z20, dlaždice `{z}/{x}/{y}`).
 - **Hledání** Photon (`photon-ch`, místní názvy: Genève, Lugano). **Značky** `signs-CH/` (SSV, stejná čísla v LI).
 - **Domy** bez paneláků (jako Rakousko), **vozidla** neutrální z `generic/`, mobiliář a označníky české.
 
+### Nizozemsko (Bára 20. 11. 2026)
+
+Stát `netherlands` (`country` NL), `countries/NL.js` a `towns/netherlands.js`; hranice z GISCO v `staty.json` (za Německem).
+OSM po 12 provinciích (balíky `nl_dr` … `nl_zh` jen na R2, Geofabrik má provincie ve složkách `europe/netherlands/<p>/`).
+Ortofoto PDOK Luchtfoto `Actueel_orthoHR` (8 cm, WMTS z21 `{z}/{x}/{y}`, `lanes-ortho.js` zdroj `nl`, CORS).
+- **Mapa povrchů BGT** (PDOK OGC API Features, CC0) jako plochy řezu, kde má plochu ulice pod středem řezu: vozovka,
+  chodník, cyklostezka, parkovací plocha, OV-baan (s tramvajovou kolejí BGT tramvajové těleso), krajnice a ostrůvky,
+  zeleň, voda, dvory, budovy. Jen platné verze (`datetime`), jen úroveň ulice (most a tunel ne). Neodpoví-li, odhad
+  s poznámkou. `?bgt=0` vypne. A/B v `evaluation/netherlands/ab/` (lépe 12, stejně 12, hůř nebo sporně 4 z 30).
+- **Budovy** z BAG (rok, využití) a 3D BAG (podlaží, střecha) podle bodu fasády; bez paneláků.
+- **Sítě pod zemí** v Amsterdamu (`site.js`): stoky Waternetu s průměrem (obvyklá hloubka) a kabely veřejného
+  osvětlení s hloubkou.
+- **Normy** `countries/NL.js` podle CROW přes příručky Amsterdamu a CROW-Fietsberaad (rešerše
+  `evaluation/netherlands/NORMY.md`); stání podle praxe (RVV 1990 šířku neuvádí): 3,5 m na jednosměrce, 4,5 m vozovky
+  obousměrně; nestojí se vedle cyklopruhu (RVV čl. 23).
+- **Hledání** PDOK Locatieserver (`search-nl.js`). **Značky** `signs-NL/` (RVV 1990, Commons, bez dodatkových tabulek).
+- **Ilustrace** univerzální: neutrální vozidla, český mobiliář, rakouské označníky.
+
 ## Odkud jsou data (Praha)
 
 - **Šířky:** IPR Praha, *Mapa technického využití území* (MTVU), služba

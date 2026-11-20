@@ -62,7 +62,30 @@ const NETS = [
     L(`${g("ZÁSOBOVANIE_PLYNOM_línia_25_4")}/14`, "plynovod", (a) => a.popis), L(`${g("TRASY_HORÚCOVODOV")}/1325`, "teplovod", (a) => a.popis),
     L(`${g("ZÁSOBOVANIE_ELEKTRICKOU_ENERGIOU_VEDENIE")}/1329`, "silnoproud", (a) => a.Popis || a.Layer),
   ])((n) => AGO("qrtO0RIRViAdEN4F", n)) },
+  // Amsterdam (Bára 20. 11. 2026): the sewers of Waternet (with their size; the vertices' heights are the pipe's bottom
+  // in NAP, no surface height to take them from, so drawn at the usual depth) and the city's underground cables of the
+  // street lighting (with their depth in cm), WFS of the city's data service (api.data.amsterdam.nl, CORS, "Creative
+  // Commons, Naamsvermelding" in its catalogue). abroad: no ČÚZK ground model is asked.
+  { id: "amsterdam", abroad: true, box: [4.72, 52.27, 5.08, 52.43], credit: () => t("Sítě © Gemeente Amsterdam a Waternet (CC BY)."), load: amsterdamNets },
 ];
+// Amsterdam's WFS (GeoJSON in WGS 84, lon, lat and for sewers the height): the lines as underground() takes them.
+const AMS_WFS = "https://api.data.amsterdam.nl/v1/wfs/leidingeninfrastructuur/v1";
+async function amsterdamNets(box) {
+  const [x0, y0, x1, y1] = box;
+  const ask = (type) => fetch(`${AMS_WFS}?${new URLSearchParams({ service: "WFS", version: "2.0.0", request: "GetFeature", typeName: `app:${type}`, outputFormat: "application/json",
+    srsName: "urn:ogc:def:crs:EPSG::4326", bbox: `${y0},${x0},${y1},${x1},urn:ogc:def:crs:EPSG::4326`, count: "500" })}`, { signal: AbortSignal.timeout(15000) })
+    .then((r) => (r.ok ? r.json() : { features: [] })).catch(() => ({ features: [] }));
+  const paths = (g) => (g?.type === "LineString" ? [g.coordinates] : g?.type === "MultiLineString" ? g.coordinates : []);
+  const [sewers, cables] = await Promise.all([ask("waternet_rioolleidingen"), ask("amsterdam_ovl_ondergrondse_kabels")]);
+  return [
+    ...(sewers.features || []).filter((f) => f.properties?.status !== "Buiten gebruik").map((f) => ({ kind: "kanalizace", popis: `${t("kanalizace")} – ${f.properties?.type_leiding || ""}`.replace(/ – $/, ""),
+      profil: num(f.properties?.diameter), layer: 0, verified: true, paths: paths(f.geometry).map((p) => p.map(([x, y]) => [x, y, NaN])) })),
+    ...(cables.features || []).filter((f) => f.properties?.indicatie_boven_onder !== "Bovengronds").map((f) => {
+      const cm = num(f.properties?.diepte);
+      return { kind: "silnoproud", popis: t("kabel veřejného osvětlení"), profil: null, layer: 1, verified: true, depth: cm > 10 && cm < 500 ? cm / 100 : null, paths: paths(f.geometry) };
+    }),
+  ];
+}
 // The networks' source at a cut: Prague's by its city, the others by a box around the town.
 export function netAt(cityId, lat, lon) {
   if (NET_CITIES[cityId]) return { id: cityId, credit: NET_CITIES[cityId] };
@@ -133,7 +156,9 @@ export async function underground({ frame, dir, half, cityId }) {
   const box = [clon - dLon, clat - dLat, clon + dLon, clat + dLat];
   // The lines of the city: { kind, popis, profil, layer, verified, paths (lon, lat, z) }.
   let feats, height = () => NaN, surface = () => NaN;
-  if (!NET_CITIES[cityId]) {
+  if (other.load) {
+    feats = await other.load(box);
+  } else if (!NET_CITIES[cityId]) {
     // Another town: its layers, the ground model where it is Czech (ČÚZK's DMR 5G; not asked for a Slovak town, sk) for
     // lines that carry a height.
     const [h, ...answers] = await Promise.all([other.sk ? () => NaN : ground(box).catch(() => () => NaN),
@@ -171,10 +196,11 @@ export async function underground({ frame, dir, half, cityId }) {
       if (u1 === u2 || u1 * u2 > 0) continue;
       const k = u1 / (u1 - u2), x = p[0] + k * (q[0] - p[0]), y = p[1] + k * (q[1] - p[1]), t = x * normal[0] + y * normal[1];
       if (Math.abs(t) > half) continue;
-      const z = path[i][2] + k * (path[i + 1][2] - path[i][2]), [lon, lat] = frame.toLonLat(x, y);
+      const z = (path[i][2] ?? NaN) + k * ((path[i + 1][2] ?? NaN) - (path[i][2] ?? NaN)), [lon, lat] = frame.toLonLat(x, y);
       const kind = f.kind, fromPoints = surface(x, y) - z, fromDmr = height(lon, lat) - z;
       const ok = (d) => Number.isFinite(d) && d >= DEPTH_OK[0] && d <= DEPTH_OK[1];
-      const d = Number.isFinite(fromPoints) ? fromPoints : fromDmr, measured = ok(d);
+      // A depth the line itself states (Amsterdam's cables) before one from the heights.
+      const d = Number.isFinite(f.depth) ? f.depth : Number.isFinite(fromPoints) ? fromPoints : fromDmr, measured = ok(d);
       out.push({ t: +t.toFixed(2), depth: +(measured ? d : KINDS[kind].usual).toFixed(2), measured, kind, popis, layer, profil: f.profil,
         fromPoints: Number.isFinite(fromPoints) ? +fromPoints.toFixed(2) : null, fromDmr: Number.isFinite(fromDmr) ? +fromDmr.toFixed(2) : null });
     }

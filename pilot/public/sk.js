@@ -96,11 +96,11 @@ export const SK = {
   "databáze ulic Cách a OSM": "databázy ulíc Aachenu a OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "povrchy ulíc (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "ortofoto {who}",
-  "Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko, Slovensko, Rakousko, Německo, Švýcarsko a Lichtenštejnsko).": "Tu som nenašla žiadnu ulicu. Skúste kliknúť priamo na cestu (údaje pokrývajú Česko, Slovensko, Rakúsko, Nemecko, Švajčiarsko a Lichtenštajnsko).",
-  "Klikněte v mapě na ulici kdekoli v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku nebo v Lichtenštejnsku.": "Kliknite v mape na ulicu kdekoľvek v Česku, na Slovensku, v Rakúsku, v Nemecku, vo Švajčiarsku alebo v Lichtenštajnsku.",
-  "Profil od fasády k fasádě se sestaví z mapy povrchů města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy povrchů Vídně a OSM, v Německu z ortofot spolkových zemí a OSM, ve Švýcarsku a v Lichtenštejnsku z úředního vyměřování, ortofota SWISSIMAGE a OSM.": "Profil od fasády k fasáde sa zostaví z mapy povrchov mesta alebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportov miest, ZBGIS, ortofota a OSM, v Rakúsku z ortofota, mapy povrchov Viedne a OSM, v Nemecku z ortofot spolkových krajín a OSM, vo Švajčiarsku a v Lichtenštajnsku z úradného vymeriavania, ortofota SWISSIMAGE a OSM.",
-  "Příčné profily ulic v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku a v Lichtenštejnsku od fasády k fasádě z map povrchů měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.": "Priečne profily ulíc v Česku, na Slovensku, v Rakúsku, v Nemecku, vo Švajčiarsku a v Lichtenštajnsku od fasády k fasáde z máp povrchov miest a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte so stavom a uložíte ako obrázok.",
-  "Příčné profily ulic v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku a v Lichtenštejnsku z map povrchů měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.": "Priečne profily ulíc v Česku, na Slovensku, v Rakúsku, v Nemecku, vo Švajčiarsku a v Lichtenštajnsku z máp povrchov miest, ČÚZK a ZBGIS: od fasády k fasáde, upraviteľné, s miestnymi ilustráciami.",
+  "Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko, Slovensko, Rakousko, Německo, Švýcarsko, Lichtenštejnsko a Nizozemsko).": "Tu som nenašla žiadnu ulicu. Skúste kliknúť priamo na cestu (údaje pokrývajú Česko, Slovensko, Rakúsko, Nemecko, Švajčiarsko, Lichtenštajnsko a Holandsko).",
+  "Klikněte v mapě na ulici kdekoli v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku, v Lichtenštejnsku nebo v Nizozemsku.": "Kliknite v mape na ulicu kdekoľvek v Česku, na Slovensku, v Rakúsku, v Nemecku, vo Švajčiarsku, v Lichtenštajnsku alebo v Holandsku.",
+  "Profil od fasády k fasádě se sestaví z mapy povrchů města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy povrchů Vídně a OSM, v Německu z ortofot spolkových zemí a OSM, ve Švýcarsku a v Lichtenštejnsku z úředního vyměřování, ortofota SWISSIMAGE a OSM, v Nizozemsku z mapy povrchů BGT, ortofota PDOK a OSM.": "Profil od fasády k fasáde sa zostaví z mapy povrchov mesta alebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportov miest, ZBGIS, ortofota a OSM, v Rakúsku z ortofota, mapy povrchov Viedne a OSM, v Nemecku z ortofot spolkových krajín a OSM, vo Švajčiarsku a v Lichtenštajnsku z úradného vymeriavania, ortofota SWISSIMAGE a OSM, v Holandsku z mapy povrchov BGT, ortofota PDOK a OSM.",
+  "Příčné profily ulic v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku, v Lichtenštejnsku a v Nizozemsku od fasády k fasádě z map povrchů měst a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte se stavem a uložíte jako obrázek.": "Priečne profily ulíc v Česku, na Slovensku, v Rakúsku, v Nemecku, vo Švajčiarsku, v Lichtenštajnsku a v Holandsku od fasády k fasáde z máp povrchov miest a ČÚZK, RÚIAN, ZBGIS a OpenStreetMap. Profil upravíte, porovnáte so stavom a uložíte ako obrázok.",
+  "Příčné profily ulic v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku, v Lichtenštejnsku a v Nizozemsku z map povrchů měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.": "Priečne profily ulíc v Česku, na Slovensku, v Rakúsku, v Nemecku, vo Švajčiarsku, v Lichtenštajnsku a v Holandsku z máp povrchov miest, ČÚZK a ZBGIS: od fasády k fasáde, upraviteľné, s miestnymi ilustráciami.",
   "obruby vozovky: model AI učený na mapách povrchů {who}": "obrubníky vozovky: model AI naučený na mapách povrchov {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "ortofoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
@@ -789,6 +789,23 @@ export const SK = {
   "Vodní plocha": "Vodná plocha",
   "Povrch ulice": "Povrch ulice",
   "{type}: povrch tělesa {from} → {to}": "{type}: povrch telesa {from} → {to}",
+  // The Netherlands (Bára 20. 11. 2026).
+  "mapy povrchů BGT, ortofota PDOK a OSM": "mapy povrchov BGT, ortofota PDOK a OSM",
+  "ortofoto © PDOK (Beeldmateriaal Nederland)": "ortofoto © PDOK (Beeldmateriaal Nederland)",
+  "mapa povrchů BGT © Kadaster a správci BGT (PDOK, CC0)": "mapa povrchov BGT © Kadaster a správcovia BGT (PDOK, CC0)",
+  " · mapa povrchů BGT neodpověděla, odhad z ortofota a OSM": " · mapa povrchov BGT neodpovedala, odhad z ortofota a OSM",
+  "Mapa povrchů BGT (PDOK) teď neodpovídá, profil je odhad z ortofota a OSM.": "Mapa povrchov BGT (PDOK) teraz neodpovedá, profil je odhad z ortofota a OSM.",
+  "jízdní pruh ulice s 50 km/h: 2,9 m, vozovka nejméně 5,8 m, při nedostatku místa pruh 2,5 m (CROW-Fietsberaad 2014; CROW GOW30 2023 podle ASVV 2021)": "jazdný pruh ulice s 50 km/h: 2,9 m, vozovka najmenej 5,8 m, pri nedostatku miesta pruh 2,5 m (CROW-Fietsberaad 2014; CROW GOW30 2023 podľa ASVV 2021)",
+  "chodník: volný průchod nejméně 1,8 m, základ 2–2,2 m (Amsterdam, Ruimte voor de voetganger 2020 a Handboek Rood 2024)": "chodník: voľná šírka na prechod najmenej 1,8 m, základ 2–2,2 m (Amsterdam, Ruimte voor de voetganger 2020 a Handboek Rood 2024)",
+  "cyklopruh vedle podélného stání: nejméně 1,7 m, základ 2 m, stání vedle něj aspoň 2,3 m (CROW-Fietsberaad 2014)": "cyklopruh vedľa pozdĺžneho státia: najmenej 1,7 m, základ 2 m, státie vedľa neho aspoň 2,3 m (CROW-Fietsberaad 2014)",
+  "cyklopruh (fietsstrook): základ 2–2,5 m, nejméně 1,5 m (CROW-Fietsberaad 2014 podle ASVV a Ontwerpwijzer fietsverkeer)": "cyklopruh (fietsstrook): základ 2–2,5 m, najmenej 1,5 m (CROW-Fietsberaad 2014 podľa ASVV a Ontwerpwijzer fietsverkeer)",
+  "stezka pro cyklisty jednosměrná: nejméně 2 m, základ 2,2 m; obousměrná 2,5 m a 3,5 m (CROW-Fietsberaad 2021 podle doporučení CROW)": "cyklochodník jednosmerný: najmenej 2 m, základ 2,2 m; obojsmerný 2,5 m a 3,5 m (CROW-Fietsberaad 2021 podľa odporúčaní CROW)",
+  "kolmé stání: 2,5 × 5 m (ASVV 2012 podle parkovacích norem obce Oost Gelre)": "kolmé státie: 2,5 × 5 m (ASVV 2012 podľa parkovacích noriem obce Oost Gelre)",
+  "podélné stání: 2 × 6 m (ASVV 2012 podle obce Oost Gelre), v Amsterdamu 2,1–2,4 m": "pozdĺžne státie: 2 × 6 m (ASVV 2012 podľa obce Oost Gelre), v Amsterdame 2,1–2,4 m",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Smí se jen u značky E8b (RVV 1990 čl. 10). Zákon šířku neuvádí, v praxi 3,5 m pro hasiče na jednosměrce a 4,5 m vozovky pro oba směry; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Státie napoly na chodníku z OSM: vo vozovke zostáva {free}. Smie sa len pri značke E8b (RVV 1990 čl. 10). Zákon šírku neuvádza, v praxi 3,5 m pre hasičov na jednosmerke a 4,5 m vozovky pre oba smery; aplikácia necháva prejazdné pruhy, teda aspoň {need}.",
+  "jednosměrka s cyklisty v protisměru: vozovka nejméně 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)": "jednosmerka s cyklistami v protismere: vozovka najmenej 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)",
+  "Sítě © Gemeente Amsterdam a Waternet (CC BY).": "Siete © Gemeente Amsterdam a Waternet (CC BY).",
+  "kabel veřejného osvětlení": "kábel verejného osvetlenia",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.
@@ -799,7 +816,8 @@ export const SK_HTML = {
     Rakúsko: ortofoto © basemap.at (CC BY 4.0), mapa povrchov Viedne © Stadt Wien – data.wien.gv.at (CC BY 4.0), hranica © EuroGeographics (GISCO), dopravné značky Salzburgu © Stadt Salzburg (CC BY 3.0 AT), vyhľadávanie Photon © komoot (údaje OSM) ·
     Nemecko: ortofotá spolkových krajín © LGL-BW, Bayerische Vermessungsverwaltung, GeoBasis-DE/LGB, Landesamt GeoInformation Bremen, LGV Hamburg, HVBG, GeoBasis-DE/M-V, LGLN, GeoBasis-DE/NRW, GeoBasis-DE/LVermGeoRP, GeoBasis-DE/LVermGeo SH, GeoBasis-DE/LVGL-SL, GeoSN, GeoBasis-DE/LVermGeo ST, GDI-Th; <a href="https://www.govdata.de/dl-de/by-2-0">dl-de/by-2-0</a>, <a href="https://www.govdata.de/dl-de/zero-2-0">dl-de/zero-2-0</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, hranica © EuroGeographics (GISCO), dopravné značky Wikimedia Commons (úradné diela), vyhľadávanie Photon © komoot (údaje OSM) ·
     Švajčiarsko a Lichtenštajnsko: ortofoto SWISSIMAGE a hranice © swisstopo, úradné vymeriavanie (Bodenbedeckung) © kantóny a Lichtenštajnsko cez <a href="https://geodienste.ch">geodienste.ch</a>, dopravné značky Wikimedia Commons (úradné diela, ASTRA), vyhľadávanie Photon © komoot (dáta OSM) ·
-    siete pod zemou © IPR Praha, mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, štatutárne mestá Karviná, Ostrava, mesto Břeclav ·
+    Holandsko: mapa povrchov BGT a budovy BAG © Kadaster a správcovia registrov cez <a href="https://www.pdok.nl">PDOK</a> (CC0, Public Domain Mark), ortofoto © Beeldmateriaal Nederland (PDOK), výšky budov <a href="https://3dbag.nl">3D BAG</a> © TU Delft a 3DGI (CC BY 4.0), hranica © EuroGeographics (GISCO), dopravné značky Wikimedia Commons (úradné diela), vyhľadávanie PDOK Locatieserver ·
+    siete pod zemou © IPR Praha, Gemeente Amsterdam a Waternet (CC BY), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, štatutárne mestá Karviná, Ostrava, mesto Břeclav ·
     parkovanie © TSK hl. m. Prahy (CC BY 4.0), zákaz státia, stromy a zaradenie komunikácií z <a href="https://opendata.geoportalpraha.cz">Geoportálu Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, mestá Jihlava, Opava, Plzeň (CC0) ·
     © prispievatelia <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·
     ilustrácie © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licencia
@@ -808,7 +826,7 @@ export const SK_HTML = {
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">zdroje a licencie</a> (v češtine) ·
     kontakt <a href="mailto:bara.so@email.cz">bara.so@email.cz</a><br>
     Zaznamenávame iba rezy (miesto, smer, ulicu, čas), kliknutia, pri ktorých sa ulica nenašla (miesto zhruba na kilometer), použité funkcie a hlásenia chýb, ktoré sami napíšete; neukladáme IP adresy ani cookies. Mapy a údaje
-    sa načítavajú priamo zo serverov IPR, ČÚZK, ÚGKK SR (ZBGIS), miest (aj cez ArcGIS Online), krajov, basemap.at, spolkových krajín Nemecka, Berlína, Hamburgu, Aachenu, swisstopo, geodienste.ch a OSM, hľadaný text aj komoot (Photon) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">súkromie</a>, v češtine).`,
+    sa načítavajú priamo zo serverov IPR, ČÚZK, ÚGKK SR (ZBGIS), miest (aj cez ArcGIS Online), krajov, basemap.at, spolkových krajín Nemecka, Berlína, Hamburgu, Aachenu, swisstopo, geodienste.ch, PDOK, 3D BAG a OSM, hľadaný text aj komoot (Photon) a PDOK (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">súkromie</a>, v češtine).`,
 };
 
 // The city's texts (city.js) in Slovak: its server, data and credits as sentences take them.
@@ -831,6 +849,7 @@ export const SK_CITY = {
   germany: { ...ABROAD, dataShort: "ortofot spolkových krajín a OSM", rulesHead: "Šírky podľa nemeckých predpisov (RASt 06, ERA 2010, VwV-StVO):" },
   switzerland: { ...ABROAD, dataShort: "SWISSIMAGE a OSM", rulesHead: "Šírky podľa švajčiarskych predpisov (normy VSS podľa kantonálnych a mestských príručiek):" },
   liechtenstein: { ...ABROAD, dataShort: "SWISSIMAGE a OSM", rulesHead: "Šírky podľa švajčiarskych predpisov (normy VSS podľa kantonálnych a mestských príručiek):" },
+  netherlands: { ...ABROAD, dataShort: "ortofotá PDOK a OSM", credit: "budovy © Kadaster (BAG), 3D BAG © TU Delft, 3DGI (CC BY 4.0)", rulesHead: "Šírky podľa holandských odporúčaní (CROW podľa mestských a provinčných príručiek):" },
   cizina: ABROAD,
   cesko: {
     server: "technickej mapy ČÚZK", dataName: "Technická mapa ČÚZK", dataShort: "technickej mapy ČÚZK, RÚIAN a OSM", techMap: NATIONAL,

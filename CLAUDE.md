@@ -330,6 +330,20 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   nepostaví, recenze Fable). Recenze a co se z ní udělalo: `evaluation/switzerland/RECENZE.md`.
 - Francouzštinu ani italštinu rozhraní nepřidávat bez Bářina souhlasu.
 
+## Nizozemsko (větev netherlands, Bára 20. 11. 2026, nenasazené)
+- Stát `netherlands` (NL): `countries/NL.js`, `towns/netherlands.js`, `signs-NL/`, `search-nl.js`, `evaluation/netherlands/`
+  (ZDROJE, NORMY, ab/). Hranice GISCO za Německem. Bára: „stačí s univerzálními ilustracemi“ (neutrální vozidla, český
+  mobiliář, rakouské označníky), bez paneláků.
+- Mapa povrchů BGT (PDOK, CC0) kde má ulici pod středem (`?bgt=0`); API vrací i staré verze, proto `datetime`. A/B 37 řezů:
+  BGT u 30, lépe 12, stejně 12, hůř/sporně 4 (průchody pod domy a pěší plochy jako jedna velká plocha).
+- Budovy BAG (rok, využití) a 3D BAG (podlaží, střecha); ortofoto PDOK 8 cm; hledání PDOK Locatieserver; sítě Amsterdamu
+  (stoky Waternetu, kabely osvětlení); parkovací plochy z BGT (parkeervlak). Parkovací místa Amsterdamu (licence
+  neuvedena), RDW a KLIC (403) nezapojené.
+- Normy CROW jen přes příručky Amsterdamu a CROW-Fietsberaad; RVV 1990 šířku vedle stání neuvádí: 3,5 m (hasiči)
+  a 4,5 m obousměrně jako praxe. Stání na chodníku jen u E8b.
+- OSM po 12 provinciích (`nl_*`, jen R2). **Před nasazením spustit workflow OSM tiles ručně se `states: nl`.**
+- Nápad do budoucna (Bára 20. 11. 2026): srovnávat a přepínat normy různých států, aby byly vidět rozdíly přístupů.
+
 ## Měření přesnosti (Bára 17. 11. 2026)
 - Jedna univerzální metoda pro všechny státy: skill `mereni-presnosti`, kód a zpráva `evaluation/universal/`. Použít u
   každého nového státu a u starých, když Bára řekne. Hodnotí složení uličního prostoru, pak šířku; jen řezy s fotkou

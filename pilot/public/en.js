@@ -803,6 +803,8 @@ export const EN = {
   "podélné stání: 2 × 6 m (ASVV 2012 podle obce Oost Gelre), v Amsterdamu 2,1–2,4 m": "parallel parking: 2 × 6 m (ASVV 2012 as Oost Gelre quotes it), 2.1–2.4 m in Amsterdam",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Smí se jen u značky E8b (RVV 1990 čl. 10). Zákon šířku neuvádí, v praxi 3,5 m pro hasiče na jednosměrce a 4,5 m vozovky pro oba směry; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Half-on-kerb parking from OSM: {free} is left in the carriageway. It is allowed only at the sign E8b (RVV 1990 art. 10). The law gives no width; in practice 3.5 m for the fire brigade on a one-way street and a 4.5 m carriageway for both directions; the app keeps the driving lanes passable, so at least {need}.",
   "jednosměrka s cyklisty v protisměru: vozovka nejméně 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)": "one-way street with contraflow cycling: carriageway at least 3.5 m, base 4 m (Amsterdam, Afwegingskader fietsstraten 2020)",
+  "Sítě © Gemeente Amsterdam a Waternet (CC BY).": "Networks © Gemeente Amsterdam and Waternet (CC BY).",
+  "kabel veřejného osvětlení": "street lighting cable",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.
@@ -814,7 +816,7 @@ export const EN_HTML = {
     Germany: orthophotos of the Länder © LGL-BW, Bayerische Vermessungsverwaltung, GeoBasis-DE/LGB, Landesamt GeoInformation Bremen, LGV Hamburg, HVBG, GeoBasis-DE/M-V, LGLN, GeoBasis-DE/NRW, GeoBasis-DE/LVermGeoRP, GeoBasis-DE/LVermGeo SH, GeoBasis-DE/LVGL-SL, GeoSN, GeoBasis-DE/LVermGeo ST, GDI-Th; <a href="https://www.govdata.de/dl-de/by-2-0">dl-de/by-2-0</a>, <a href="https://www.govdata.de/dl-de/zero-2-0">dl-de/zero-2-0</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, border © EuroGeographics (GISCO), traffic signs Wikimedia Commons (official works), search Photon © komoot (OSM data) ·
     Switzerland and Liechtenstein: SWISSIMAGE orthophoto and borders © swisstopo, official cadastral survey (Bodenbedeckung) © the cantons and Liechtenstein through <a href="https://geodienste.ch">geodienste.ch</a>, traffic signs Wikimedia Commons (official works, ASTRA), search Photon © komoot (OSM data) ·
     Netherlands: BGT surface map and BAG buildings © Kadaster and the registers' keepers through <a href="https://www.pdok.nl">PDOK</a> (CC0, Public Domain Mark), orthophoto © Beeldmateriaal Nederland (PDOK), building heights <a href="https://3dbag.nl">3D BAG</a> © TU Delft and 3DGI (CC BY 4.0), border © EuroGeographics (GISCO), traffic signs Wikimedia Commons (official works), search PDOK Locatieserver ·
-    networks under the street © IPR Praha, mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, the Olomouc Region, the cities of Karviná, Ostrava, Břeclav ·
+    networks under the street © IPR Praha, Gemeente Amsterdam and Waternet (CC BY), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, the Olomouc Region, the cities of Karviná, Ostrava, Břeclav ·
     parking © TSK hl. m. Prahy (CC BY 4.0), no-parking areas, trees and street classes from <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, the cities of Jihlava, Opava, Plzeň (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors (ODbL) ·
     illustrations © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licence
