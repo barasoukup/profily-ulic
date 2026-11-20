@@ -24,6 +24,11 @@ export const COUNTRIES = {
   // and Germany only on R2.
   ch: { iso: "CH", geofabrik: "switzerland", pages: false },
   li: { iso: "LI", geofabrik: "liechtenstein", pages: false },
+  // The Netherlands (20. 11. 2026): Geofabrik's whole extract is 1.4 GB of PBF, so by its 12 provinces as Germany by its
+  // Länder (each pack under 512 MB), only on R2. Geofabrik keeps them in a folder each: europe/netherlands/<province>/<province>-latest (its redirect without the folder leads to a 404).
+  nl: { iso: "NL", geofabrik: "netherlands", pages: false, parts: Object.fromEntries([["dr", "drenthe"], ["fl", "flevoland"], ["fr", "friesland"],
+    ["ge", "gelderland"], ["gr", "groningen"], ["li", "limburg"], ["nb", "noord-brabant"], ["nh", "noord-holland"], ["ov", "overijssel"],
+    ["ut", "utrecht"], ["ze", "zeeland"], ["zh", "zuid-holland"]].map(([p, e]) => [`nl_${p}`, `netherlands/${e}/${e}`])) },
 };
 // The packs to build (osm-tiles.yml): a state's own, or its parts.
 export const PACKS = Object.entries(COUNTRIES).flatMap(([k, c]) => (c.parts ? Object.entries(c.parts).map(([code, extract]) => ({ code, extract })) : [{ code: k, extract: c.geofabrik }]));

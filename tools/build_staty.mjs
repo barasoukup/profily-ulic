@@ -1,7 +1,7 @@
 // The boundaries of the states the app has OSM tiles of (Bára 15. 11. 2026), so a cut outside the cities of
 // mesta.json takes its state (city.js cityAt): "cesko" (RÚIAN Stát, ČÚZK), "slovensko" (ZBGIS of ÚGKK SR, layer
 // Slovenská republika), "austria" (Eurostat GISCO 2024, 1 : 1 000 000, © EuroGeographics; the BEV's WFS is off, Bára
-// 16. 11. 2026), "germany" (GISCO as Austria, Bára 17. 11. 2026), "switzerland" and "liechtenstein" (swisstopo's
+// 16. 11. 2026), "germany" (GISCO as Austria, Bára 17. 11. 2026), "netherlands" (GISCO, the European part; 20. 11. 2026), "switzerland" and "liechtenstein" (swisstopo's
 // swissBOUNDARIES3D through api3.geo.admin.ch, open data "© swisstopo", 17. 11. 2026); a point in none is "cizina". The
 // order matters: Czechia, Slovakia, Switzerland and Liechtenstein first (their borders are exact, GISCO's coarser), so a
 // point by their border with Austria or Germany takes theirs (Büsingen and Campione are holes of Switzerland's ring). Simplified to about 30 m, written into pilot/public/staty.json and kept in the repository
@@ -63,6 +63,7 @@ const BUILD = {
   liechtenstein: () => swiss("LI"),
   austria: () => gisco("AT"),
   germany: () => gisco("DE"),
+  netherlands: () => gisco("NL"),
 };
 const file = new URL("../pilot/public/staty.json", import.meta.url);
 const only = process.argv.slice(2);
