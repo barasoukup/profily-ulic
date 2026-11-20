@@ -266,16 +266,17 @@ export function mountSearch(map, { status, onPick, services = () => [], inVienna
       const [cz, skNow] = await Promise.all([getJSON(suggestUrl(text.trim()), mine.signal).then(parseSuggestions, (err) => { if (both && err.name !== "AbortError") return []; throw err; }), both ? sk() : []]);
       // Vienna's address points where the map shows Vienna or the query names it (search-at.js).
       const at = inVienna() || looksViennese(text) ? await findAt(text.trim(), getJSON, mine.signal).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání Vídeň", err); return []; }) : [];
+      // The Netherlands: PDOK's Locatieserver (search-nl.js) where the map shows it, or a Dutch-looking query RÚIAN did not
+      // find; what it finds is not asked of Photon nor ZBGIS again (the hostile review: a Dutch street in "…weg" went to both).
+      const nl = services().includes("pdok") || (cz.length === 0 && !skNow.length && looksDutch(text))
+        ? await findNl(text.trim(), getJSON, mine.signal).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání PDOK", err); return []; }) : [];
       // The rest of Austria (and Vienna where its own points found nothing), and Germany: Photon of komoot
       // (search-photon.js), near the map's centre; elsewhere a German-looking query that RÚIAN did not find asks it of both.
       const countries = services().includes("photon-de") ? ["DE"] : services().includes("photon-ch") ? ["CH", "LI"] : services().includes("photon") || at.length === 0 && looksViennese(text) ? ["AT"]
         : cz.length === 0 && !skNow.length && looksGerman(text) ? ["DE", "AT", "CH", "LI"] : [];
-      const photon = countries.length && !at.some((x) => x.type === "AdresniMisto")
+      const photon = countries.length && !nl.length && !at.some((x) => x.type === "AdresniMisto")
         ? await findPhoton(text, getJSON, mine.signal, countries, [map.getCenter().lat, map.getCenter().lng]).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání Photon", err); return []; }) : [];
-      // The Netherlands: PDOK's Locatieserver (search-nl.js) where the map shows it, or a Dutch-looking query RÚIAN did not find.
-      const nl = services().includes("pdok") || (cz.length === 0 && !skNow.length && looksDutch(text))
-        ? await findNl(text.trim(), getJSON, mine.signal).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání PDOK", err); return []; }) : [];
-      const found = rankResults([...nl, ...at, ...photon, ...cz, ...(both || cz.length ? skNow : await sk())], text);
+      const found = rankResults([...nl, ...at, ...photon, ...cz, ...(both || cz.length || nl.length ? skNow : await sk())], text);
       cache.set(key, found);
       if (cache.size > 40) cache.delete(cache.keys().next().value);
       if (mine === ctrl && document.activeElement === input) show(found, t("Nic jsem nenašla."));

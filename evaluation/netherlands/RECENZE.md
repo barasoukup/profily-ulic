@@ -16,6 +16,6 @@ nerozbíjejí (site.js, search.js, app.js beze změny chování mimo NL, CSP úp
 | Zpráva A/B: Rotterdam 4, ne 3 | opraveno |
 | Úroveň (most, werf v Utrechtu) podle pořadí odpovědi | opraveno: úroveň z OSM `bridge`/`tunnel`/`layer`, z ploch BGT pod středem nejbližší (test) |
 | Krabice sítí Amsterdamu bere Amstelveen a Diemen | otevřené (tam prostě nic není); hranice obce chybí v `mesta.json` |
-| Hledání: nizozemský text jde i do ZBGIS a Photonu, adresa PDOK neřeže na ulici | otevřené (starý vzor) |
-| Zákonný odhad stání bez měření, měření přesnosti `mereni-presnosti` chybí | otevřené |
+| Hledání: nizozemský text jde i do ZBGIS a Photonu, adresa PDOK neřeže na ulici | opraveno: co najde PDOK, se Photonu ani ZBGIS neposílá; adresa i ulice nesou jméno ulice a řez se k ní přichytí (ověřeno: Oudegracht 10 v Utrechtu) |
+| Zákonný odhad stání bez měření, měření přesnosti `mereni-presnosti` chybí | změřeno 20. 11.: složení 52 %, šířka do 2 m 41 % (`evaluation/universal/ZPRAVA.md`); stání chybí jen 0×, navíc 5× |
 | Obousměrná cyklostezka hodnocená jednosměrnými 2/2,2 m | otevřené: směr stezky segment nemá, text uvádí obě hodnoty |
