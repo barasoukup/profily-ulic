@@ -26,3 +26,13 @@ obruby odhadu (ČÚZK 12,5 cm), 125 stran místních ulic Prahy a Brna, kde voln
 
 Smíšené (a „navíc“ proti MTVU, které stání nemá), proto vypnuté; zapne `?auta=1`. Dál: prahy pro jemná ortofota
 (IPR 10 cm) zvlášť, pravda o stání z fotek z ulice (skill mereni-presnosti).
+
+## Krajnice, stání a detektor na nových stranách (20. 11. 2026)
+Ručně označeno dalších 105 stran místních ulic a tertiary Prahy a Brna (`auta/stitky2.json`, na nich se nic neladilo;
+s prvními 125 celkem 230 stran, řada aut u 61). `auta/krajnice.mjs`: odhad jako v aplikaci (pruhy z čar, pravidla pruhů).
+- **Krajnice nejsou schovaná auta:** krajnice u obruby jen na 14 stranách, auta u 2 z nich (≥ 1,5 m: 9 a 2).
+- **Stání v odhadu:** na 24 stranách, z toho 20 s auty (přesnost 83 %), ale z 61 stran s auty jen 20 (33 %). Zbylá
+  auta: u obruby je v odhadu jízdní pruh (37 ze 41), OSM stání nemá; obruba leží na hraně řady aut a auta spadnou
+  za ni (chodník 25, plocha 8). S AI (Brno) stejně: 12 z 37, navíc 6.
+- **Detektor podle barev neplatí mimo vzorek, na kterém se ladil:** sada 1 (laděná) 9 ze 44 bez falešných, nová sada 2
+  0 ze 17 a 2 falešně. Přeučený, jak varovala oponentura; zůstává vypnutý.
