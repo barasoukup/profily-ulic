@@ -8,6 +8,7 @@ import { t } from "./i18n.js";
 import { findSk, locateSk, looksSlovak } from "./search-sk.js";
 import { findAt, locateAt, looksViennese } from "./search-at.js";
 import { findPhoton, looksGerman } from "./search-photon.js";
+import { findNl, looksDutch } from "./search-nl.js";
 
 export const RUIAN_SEARCH = "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer";
 const GEOCODE = `${RUIAN_SEARCH}/exts/GeocodeSOE`;
@@ -200,7 +201,7 @@ export async function locate(item, signal) {
 // ---------- UI: a Leaflet control at the map's top left ----------
 // onPick({ item, lat, lon, cut }) after the map has moved; status(msg, kind) for a failure.
 // services(): the search services of the state the map shows (countries/<ISO>.js search): "zbgis" (Slovak places are
-// then asked of ZBGIS along with RÚIAN), "photon" (Photon of komoot, Austria), "photon-de" (Photon, Germany), "photon-ch" (Photon, Switzerland and Liechtenstein).
+// then asked of ZBGIS along with RÚIAN), "photon" (Photon of komoot, Austria), "photon-de" (Photon, Germany), "photon-ch" (Photon, Switzerland and Liechtenstein), "pdok" (PDOK's Locatieserver, the Netherlands).
 // inVienna(): does the map show Vienna.
 export function mountSearch(map, { status, onPick, services = () => [], inVienna = () => false }) {
   const L = globalThis.L;
@@ -271,7 +272,10 @@ export function mountSearch(map, { status, onPick, services = () => [], inVienna
         : cz.length === 0 && !skNow.length && looksGerman(text) ? ["DE", "AT", "CH", "LI"] : [];
       const photon = countries.length && !at.some((x) => x.type === "AdresniMisto")
         ? await findPhoton(text, getJSON, mine.signal, countries, [map.getCenter().lat, map.getCenter().lng]).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání Photon", err); return []; }) : [];
-      const found = rankResults([...at, ...photon, ...cz, ...(both || cz.length ? skNow : await sk())], text);
+      // The Netherlands: PDOK's Locatieserver (search-nl.js) where the map shows it, or a Dutch-looking query RÚIAN did not find.
+      const nl = services().includes("pdok") || (cz.length === 0 && !skNow.length && looksDutch(text))
+        ? await findNl(text.trim(), getJSON, mine.signal).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání PDOK", err); return []; }) : [];
+      const found = rankResults([...nl, ...at, ...photon, ...cz, ...(both || cz.length ? skNow : await sk())], text);
       cache.set(key, found);
       if (cache.size > 40) cache.delete(cache.keys().next().value);
       if (mine === ctrl && document.activeElement === input) show(found, t("Nic jsem nenašla."));

@@ -24,6 +24,7 @@ export const SOURCE_CREDITS = {
     sk: () => t("ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)"), at: () => t("ortofoto © basemap.at (CC BY 4.0)"),
     at19: () => t("ortofoto © basemap.at (CC BY 4.0)"),
     ch: () => t("ortofoto SWISSIMAGE © swisstopo"),
+    nl: () => t("ortofoto © PDOK (Beeldmateriaal Nederland)"),
     // Germany: the orthophoto of the Land (lanes-ortho.js DE_ORTHO, "de-BY" …), with the credit the Land asks for.
     ...Object.fromEntries(Object.entries(DE_ORTHO).map(([land, o]) => [`de-${land}`, () => t("ortofoto {who}", { who: o.credit })])),
   },
@@ -53,6 +54,8 @@ export const SOURCE_CREDITS = {
   // canton whose survey it is (geodienste.ch).
   chAv: Object.fromEntries([...CANTONS, "CH"].map((c) => [c, () => (c === "FL" || c === "LI" ? t("úřední vyměřování (Bodenbedeckung) © Fürstentum Liechtenstein (geodienste.ch)")
     : c === "CH" ? t("úřední vyměřování (Bodenbedeckung) © kantony (geodienste.ch)") : t("úřední vyměřování (Bodenbedeckung) © kanton {canton} (geodienste.ch)", { canton: c }))])),
+  // The Netherlands' national large-scale topography (towns/netherlands.js).
+  nlBgt: { true: () => t("mapa povrchů BGT © Kadaster a správci BGT (PDOK, CC0)") },
   // ZBGIS's roads, car parks and lawns in the estimate (towns/slovensko.js).
   zbgis: { true: () => t("cesty, parkoviská a tráva © GKÚ Bratislava (ZBGIS, CC BY 4.0)") },
   // The carriageway's kerbs read by the AI model (ai-kerbs.js, ?ai=1): the surface maps and OSM it learnt on.

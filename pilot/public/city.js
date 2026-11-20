@@ -440,6 +440,11 @@ Object.assign(CITIES, {
     dataShort: "SWISSIMAGE a OSM", rulesHead: "Šířky podle švýcarských předpisů (normy VSS podle kantonálních a městských příruček):" },
   liechtenstein: { ...abroad("liechtenstein", "LI", "Lichtenštejnsko", "v Lichtenštejnsku", "lichtenštejnské", [47.14, 9.55], "47.141000, 9.521500"),
     dataShort: "SWISSIMAGE a OSM", rulesHead: "Šířky podle švýcarských předpisů (normy VSS podle kantonálních a městských příruček):" },
+  // The Netherlands (Bára 20. 11. 2026): PDOK's orthophoto and OSM, the national large-scale topography (BGT) where it
+  // has the street, the buildings of the BAG and 3D BAG (towns/netherlands.js).
+  netherlands: { ...abroad("netherlands", "NL", "Nizozemsko", "v Nizozemsku", "nizozemské", [52.2, 5.3], "52.372700, 4.893300"),
+    dataShort: "ortofota PDOK a OSM", credit: "budovy © Kadaster (BAG), 3D BAG © TU Delft, 3DGI (CC BY 4.0)",
+    rulesHead: "Šířky podle nizozemských doporučení (CROW podle příruček měst a provincií):" },
   cizina: abroad("cizina", null, "cizinu", "v cizině", "zahraniční", [49.8, 15.5], "48.146736, 17.106998"),
 });
 // The rest of Slovakia and of Austria draws the state's own set (countries/<ISO>.js art).

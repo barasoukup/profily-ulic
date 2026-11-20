@@ -1,0 +1,10 @@
+<?xml version="1.0" standalone="no"?>
+<svg id="Nederlands_verkeersbord_E2_2023" width="600" height="600" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 600 600">
+	<circle id="bord_rood" fill="#c1121c" cx="300" cy="300" r="300"/>
+	<circle id="bies_wit" style="fill:none;stroke:#f7fbf5;stroke-width:10" cx="300" cy="300" r="285"/>
+	<circle id="binenbord_blauw_met_witte_rand" style="fill:#0e518d;stroke:#f7fbf5;stroke-width:10" cx="300" cy="300" r="207.7"/>
+	<path id="diagonale_streep_wit" style="fill:none;stroke:#f7fbf5;stroke-width:58.6" d="M 154,154 446,446"/>
+	<path id="diagonale_streep2_wit" style="fill:none;stroke:#f7fbf5;stroke-width:58.6" d="M 154,446 446,154"/>
+	<path id="diagonale_streep_rood" style="fill:none;stroke:#c1121c;stroke-width:38.6" d="M 120,120 480,480"/>
+	<path id="diagonale_streep2_rood" style="fill:none;stroke:#c1121c;stroke-width:38.6" d="M 120,480 480,120"/>
+</svg>

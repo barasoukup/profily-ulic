@@ -25,6 +25,9 @@ export const AT_ORTHO = "https://mapsneu.wien.gv.at/basemap/bmaporthofoto30cm/no
 // "© swisstopo"), WMTS tiles in Web Mercator to level 20 (21 refused), CORS for any origin; it covers Liechtenstein and
 // a strip beyond the border. Its tiles are {z}/{x}/{y} (xy below), not ArcGIS's {z}/{y}/{x}.
 export const CH_ORTHO = "https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.swissimage/default/current/3857";
+// The Netherlands (Bára 20. 11. 2026): PDOK's Luchtfoto, the yearly national orthophoto of Beeldmateriaal Nederland
+// (Actueel_orthoHR, 8 cm, open data), WMTS tiles in Web Mercator to level 21, {z}/{x}/{y}, CORS for any origin.
+export const NL_ORTHO = "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0/Actueel_orthoHR/EPSG:3857";
 export const SK_ORTHO = "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ortofoto_hres/MapServer";
 const SOURCES = {
   // The grid of z19, tiles of 512 px (about 10 cm). balance: the mosaic is bright and tinted (Košice 2025: asphalt
@@ -35,6 +38,7 @@ const SOURCES = {
   at: { res: 0.1, tiles: AT_ORTHO, z: 20, px: 256, ext: ".jpeg", fallback: "at19" },
   at19: { res: 0.1, tiles: AT_ORTHO, z: 19, px: 256, ext: ".jpeg" },
   ch: { res: 0.1, tiles: CH_ORTHO, z: 20, px: 256, ext: ".jpeg", xy: true },
+  nl: { res: 0.1, tiles: NL_ORTHO, z: 20, px: 256, ext: ".jpeg", xy: true },
   brno: { res: 0.1, tiles: "https://gis.brno.cz/ags1/rest/services/OMI/OMI_basemaps_ortofoto_2025_wgs/MapServer/tile", z: 20, shift: [1.06, 3.09] },
   plzen: { res: 0.1, url: (b, w, h) => `https://ags.plzen.eu/arcgis/rest/services/Orto_2024_5cm_RGB_mimoveg/MapServer/export?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: "jpg", f: "image", datumTransformations: "[1623]" })}` },
   ipr: { res: 0.1, url: (b, w, h) => `https://gs-pub.praha.eu/imgs/rest/services/ort/letecke_snimkovani/ImageServer/exportImage?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: "jpg", f: "image" })}` },
