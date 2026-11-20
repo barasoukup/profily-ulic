@@ -347,6 +347,16 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - OSM po 12 provinciích (`nl_*`, jen R2). **Před nasazením spustit workflow OSM tiles ručně se `states: nl`.**
 - Nápad do budoucna (Bára 20. 11. 2026): srovnávat a přepínat normy různých států, aby byly vidět rozdíly přístupů.
 
+## Belgie a Lucembursko (větev belgium z netherlands, Bára 20. 11. 2026, nenasazené)
+- Státy `belgium` (BE) a `luxembourg` (LU): `countries/BE.js`, `LU.js`, `towns/belgium.js`, `towns/luxembourg.js`,
+  `signs-BE/`, `signs-LU/`, `evaluation/belgium/` (ZDROJE, NORMY, ab/), `evaluation/luxembourg/`. Hranice GISCO.
+- Žádná mapa povrchů s chodníky jako služba (Brusel UrbIS jen ke stažení, Lucembursko BD-L-TC jen ZIP): odhad z ortofota
+  a OSM. Ve Flandrech čáry GRB, ve Valonsku PICC jako kandidáti obrub (`?hrany=0`; A/B: lépe 4, hůř 2 z 10 změněných).
+- Ortofoto Flander (i Brusel), Valonska a ACT Lucemburska; hledání Photon. Univerzální ilustrace, bez paneláků.
+- Stání: Belgie čl. 25.1, 7° AR 1975 3 m volného průjezdu celkem (AR 1975 platí do 31. 5. 2027, pak nové kódy);
+  Lucembursko obecnou šířku nemá (3 m jen u plné čáry). Lucemburské značky zčásti CC BY-SA 4.0 (GilPe).
+- **Před nasazením spustit workflow OSM tiles ručně se `states: be,lu`.**
+
 ## Měření přesnosti (Bára 17. 11. 2026)
 - Jedna univerzální metoda pro všechny státy: skill `mereni-presnosti`, kód a zpráva `evaluation/universal/`. Použít u
   každého nového státu a u starých, když Bára řekne. Hodnotí složení uličního prostoru, pak šířku; jen řezy s fotkou

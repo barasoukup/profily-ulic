@@ -147,6 +147,20 @@ Ortofoto PDOK Luchtfoto `Actueel_orthoHR` (8 cm, WMTS z21 `{z}/{x}/{y}`, `lanes-
 - **Hledání** PDOK Locatieserver (`search-nl.js`). **Značky** `signs-NL/` (RVV 1990, Commons, bez dodatkových tabulek).
 - **Ilustrace** univerzální: neutrální vozidla, český mobiliář, rakouské označníky.
 
+### Belgie a Lucembursko (Bára 20. 11. 2026)
+
+Státy `belgium` (BE) a `luxembourg` (LU), `countries/BE.js`, `LU.js`, `towns/belgium.js`, `towns/luxembourg.js`; hranice
+GISCO. OSM balíky `be` a `lu` jen na R2. Mapu povrchů s chodníky jako webovou službu nemá ani jeden: profil je odhad
+z ortofota a OSM.
+- **Ortofoto:** Flandry (WMS Digitaal Vlaanderen, pokrývá i Brusel), jinak Valonsko (ArcGIS export SPW), `lanes-ortho.js`
+  zdroj `be` zkouší regiony po sobě (prázdný snímek = mimo region); Lucembursko WMTS ACT (`lu`, z21).
+- **Čáry obrub** (`towns/belgium.js`): ve Flandrech GRB WGO (okraj vozovky, pásu chodců a cyklistů, nezpevněné plochy),
+  ve Valonsku PICC „Voirie - Ligne“ (okraje vozovky, chodníku, stání, cyklostezky, obruby); Brusel nic. Kandidáti obrub
+  v odhadu jako čáry slovenských měst. `?hrany=0` vypne. A/B `evaluation/belgium/ab/` (lépe 4, hůř 2 z 10 změněných).
+- **Normy** podle vademek Flander, Valonska a Bruselu a lucemburských směrnic (`evaluation/belgium/NORMY.md`); stání:
+  Belgie AR 1975 čl. 25.1, 7° (3 m volného průjezdu celkem), Lucembursko bez obecné šířky. **Značky** `signs-BE/`,
+  `signs-LU/`. **Hledání** Photon. Univerzální ilustrace, bez paneláků.
+
 ## Odkud jsou data (Praha)
 
 - **Šířky:** IPR Praha, *Mapa technického využití území* (MTVU), služba

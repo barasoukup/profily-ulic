@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svg4129" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 578.71 578.71">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #c1121c;
+      }
+
+      .cls-1, .cls-2 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <path id="path13013" class="cls-1" d="M289.36,0C130.02,0,0,130.02,0,289.36s130.02,289.36,289.36,289.36,289.36-130.03,289.36-289.36S448.69,0,289.36,0h0Z"/>
+  <path id="path1188" class="cls-2" d="M31.29,334.05h516.14v-89.29H31.29v89.29Z"/>
+</svg>

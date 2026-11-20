@@ -64,6 +64,15 @@ licence neuvedena; čteno při kliknutí, nešíří se.** Nejsou to otevřená 
 | **Nizozemsko:** sítě Amsterdamu (Waternet, OVL; `api.data.amsterdam.nl` WFS leidingeninfrastructuur) | sítě pod zemí | Katalog města: „Creative Commons, Naamsvermelding“ (verze neuvedena). Čteno po zapnutí sítí. | ? |
 | **Nizozemsko:** hranice (Eurostat GISCO) | stát řezu | © EuroGeographics | ✓ |
 | **Nizozemsko:** dopravní značky (Wikimedia Commons, „Nederlands verkeersbord …“), `pilot/public/signs-NL/` | řádek značek | Úřední díla (čl. 11 Auteurswet), public domain; A1-50 CC0, ostatní rychlosti dokreslené číslem | ✓ |
+| **Belgie:** ortofoto Flander (Digitaal Vlaanderen, WMS OMWRGBMRVL; pokrývá i Brusel) | pruhy, obruby a podkladová mapa | Bezplatné, podmínky „gebruiksrecht“ Digitaal Vlaanderen. Čteno při kliknutí. | ? |
+| **Belgie:** ortofoto Valonska (SPW, ArcGIS ORTHO_LAST) | totéž | „SPW (2026)“, podmínky Geoportail Wallonie neověřené. Čteno při kliknutí. | ? |
+| **Belgie:** čáry GRB WGO (Digitaal Vlaanderen, WFS) | kandidáti obrub ve Flandrech | Podmínky Digitaal Vlaanderen (GRB je otevřený, licence neověřená). Čteno při kliknutí. | ? |
+| **Belgie:** čáry PICC „Voirie - Ligne“ (SPW, ArcGIS PICC_VDIFF) | kandidáti obrub ve Valonsku | Podmínky SPW neověřené. Čteno při kliknutí. | ? |
+| **Belgie a Lucembursko:** hranice (Eurostat GISCO) | stát řezu | © EuroGeographics | ✓ |
+| **Belgie:** dopravní značky (Wikimedia Commons), `pilot/public/signs-BE/` | řádek značek | Public domain (úřední díla) | ✓ |
+| **Lucembursko:** ortofoto ortho_latest (ACT, geoportail.lu WMTS) | pruhy, obruby a podkladová mapa | Starší ročníky CC0 na data.public.lu, ortho_latest neověřeno. Čteno při kliknutí. | ? |
+| **Lucembursko:** dopravní značky (Wikimedia Commons), `pilot/public/signs-LU/` | řádek značek | Část public domain, část CC BY-SA 4.0 (GilPe), uvedeno v patičce | ✓ |
+| **Belgie a Lucembursko:** hledání Photon (komoot) | hledání adres | Data © přispěvatelé OSM (ODbL); hledaný text jde komootu. | ✓ |
 | **Rakousko:** hranice státu z Eurostat GISCO (`CNTR_RG_01M_2024_4326`, `tools/build_staty.mjs` → `staty.json`) | stát řezu | Podmínky GISCO: „© EuroGeographics for the administrative boundaries“ ([GISCO](https://ec.europa.eu/eurostat/web/gisco/geodata/administrative-units/countries)). Šíří se v `staty.json`. | ✓ |
 | **Rakousko:** dopravní značky `pilot/public/signs-AT/` (StVO 1960 § 52–53, Wikimedia Commons) | řádek značek | Úřední díla, volná podle § 7 odst. 1 rakouského UrhG (podle Commons); rychlosti mimo 30 na české šabloně B 20a. | ✓ |
 | **Rakousko:** OSM výřez Geofabrik `austria` (balík `at` jen na R2, `data.streetspace.eu/osm`) | ulice, domy, zeleň v Rakousku | ODbL 1.0, „© přispěvatelé OpenStreetMap“ | ✓ |

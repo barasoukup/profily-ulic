@@ -1,7 +1,61 @@
-// Belgium (BE; Bára 20. 11. 2026): what differs from the Czech rules of countries/default.js. The sources are
-// towns/belgium.js, the orthophoto lanes-ortho.js. Sources, norms and signs: evaluation/belgium/.
+// Belgium (BE; Bára 20. 11. 2026): what differs from the Czech rules of countries/default.js. Its sources are
+// towns/belgium.js (the lines of Flanders' GRB and Wallonia's PICC for the kerbs), the regions' orthophotos
+// lanes-ortho.js "be". Sources, norms and signs: evaluation/belgium/ (ZDROJE.md, NORMY.md, ab/).
+import { t } from "../i18n.js";
+import { GROUP } from "../norms.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
-import base from "./default.js";
+import base, { CZ_CODE } from "./default.js";
+
+// Norms (evaluation/belgium/NORMY.md): the three regions have guidelines of their own and the app does not tell them
+// apart, so the lowest of them is the minimum, Flanders' figure the base, each quoted. No source for a lane of a local
+// street, a tram belt or perpendicular parking: no warning.
+const BE_LANE_BY_GROUP = {
+  B: { min: 0, zaklad: 3.2, why: t("jízdní pruh hlavní silnice: 3,2 m (Flandry, Vlaamse wegenstructuur, hlavní silnice 2024), pro místní ulice zdroj nenalezen") },
+};
+function limitsBE(s, segs, i) {
+  switch (s.type) {
+    case "chodnik": case "chodnik_kola":
+      return { min: 1.5, zaklad: 1.8, why: t("chodník: volný průchod nejméně 1,5 m, základ 1,8 m (Flandry, Vademecum voetgangersvoorzieningen 2026; Valonsko 1,5 m; Brusel 2 m)") };
+    case "stezka_sdilena":
+      return { min: 2, zaklad: 2.5, why: t("společná stezka pro chodce a cyklisty (D10): jednosměrná 2 m, obousměrná 2,5 m, doporučeno 3 m (Valonsko, Guide cyclable)") };
+    case "cyklostezka":
+      return { min: 1.1, zaklad: 2, why: t("stezka pro cyklisty jednosměrná: Flandry 2 m (Vademecum fietsvoorzieningen 2024), Valonsko 1,3 m, nejméně 1,1 m; obousměrná Flandry 3 m, Valonsko 2,2–2,6 m") };
+    case "cyklopruh":
+      return { min: 1.1, zaklad: 1.3, why: t("vyznačený cyklopruh: 1,3 m, nejméně 1,1 m, vedle stání odstup 0,8 m (Valonsko, Guide cyclable)") };
+    case "ochranny_pruh":
+      return { min: 1.7, zaklad: 2, why: t("doporučený cyklopruh (fietssuggestiestrook): 1,7–2 m podle šířky vozovky (Flandry, Vademecum fietsvoorzieningen 2024)") };
+    case "bus": case "bus_cyklo":
+      return { min: 3, zaklad: 3.25, why: t("vyhrazený pruh pro autobusy: 3–3,25 m (Flandry, Vademecum fietsvoorzieningen; Valonsko, Guide cyclable)") };
+    case "pruh": case "pruh_piktokoridor":
+      if (s.turn) return null;
+      return BE_LANE_BY_GROUP[GROUP[s.roadClass ?? segs.find((x) => x.roadClass)?.roadClass]] || null;
+    case "parkovani":
+      return s.orient === "podelne" || !s.orient ? { min: 0, zaklad: 2, why: t("podélné stání: orientačně 2 m (odvozeno z valonského Guide cyclable: 2,8 m se zónou 0,8 m)") } : null;
+    default:
+      return null;
+  }
+}
+
+// The signs of the state BE (pilot/public/signs-BE/, README there; AR 1. 12. 1975, annexe 1; Wikimedia Commons, public
+// domain). No plates drawn (a sign with one is left out); the disabled's E9 needs a plate (not drawn), a reserved
+// space has no sign of its own.
+const BE_FILE = { b1: "C3", b11: "C5_C7_C9", b8: "C11", b30: "C19", b28: "E3", b29: "E1", ip11a: "E9", ip14a: "F5", ip15a: "F9", ip20a: "F17",
+  zona30: "F4a", ip26a: "F12a", ip27a: "F103", c8a: "D07", c9a: "D10", c10a: "D09", c7a: "D11", cyklozona: "F111" };
+const BE_CODE = { ...BE_FILE, b11: "C5 + C7 + C9", c8a: "D7", c10a: "D9", b20a: "C43" };
+const BE_SPEEDS = [30, 50, 70, 90, 100, 110, 120];
+function signFile(s, seg) {
+  const dir = s.dir ?? seg?.dir;
+  // F19 where the lane goes away (a one-way street), C1 where it comes towards the viewer (no entry); with cyclists in
+  // contraflow C1 needs the plate M2 (not drawn: left out).
+  if (s.k === "oneway") return dir === "backward" ? (s.plate === "protismer" ? null : "C1") : "F19";
+  if (s.k === "b20a") return BE_SPEEDS.includes(s.v) ? `C43_${s.v}` : null;
+  if (s.plate && !["podelne", "kolme", "sikme"].includes(s.plate)) return null;
+  return BE_FILE[s.k] || null;
+}
+const signLabel = (x, own, label) => {
+  const code = x.k === "oneway" ? (x.dir === "backward" ? "C1" : "F19") : BE_CODE[x.k];
+  return code ? `${code} ${label.replace(CZ_CODE, "")}` : label;
+};
 
 // No drawings of its own (as the Netherlands): the neutral vehicles of generic/, the Czech furniture, the Austrian
 // stop posts.
@@ -11,22 +65,27 @@ export default {
   ...base,
   code: "BE",
   bounds: [2.5, 49.49, 6.41, 51.51],
-  // Filled from the research (NORMY.md): the parking law, norms and signs.
+  // AR 1975 art. 25.1, 7°: no parking where the free passage on the roadway would be less than 3 m (in all, not per
+  // direction); art. 24, 1°: none on the sidewalk unless a local rule allows it. As in Germany the lanes beside the
+  // cars stay drivable.
   freeLane: 3,
+  lawNeed: (oneway, lanes, minLane) => Math.max(3, minLane * Math.max(oneway ? 1 : 2, lanes)),
+  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku se smí stát jen podle místní úpravy (čl. 24 AR 1975), ve vozovce musí zůstat 3 m volného průjezdu (čl. 25.1, 7°); aplikace nechává průjezdné pruhy, tedy aspoň {need}.", { free, need }),
   parkGuess: true,
-  parkByCycleLane: false,
+  parkByCycleLane: true,
   wideRoads: true,
   roadClassFromOsm: true,
-  limits: () => null,
+  limits: limitsBE,
   contraflow: () => null,
   tramBelt: () => [],
-  signs: { dir: "signs-BE", file: () => null, plate: () => null, label: (x, own, label) => label, drawable: () => false },
+  signs: { dir: "signs-BE", file: signFile, plate: () => null, label: signLabel, drawable: (x, seg) => !!signFile(x, seg) },
   bedOrtho: null,
   laneOrtho: "be",
   orthoEstimate: true,
   besidePassport: false,
   panorama: false,
   art: { belgium: { ...czechFurniture, ...atPosts } },
+  // No panel houses: a flat-roofed slab is the plain flat-roofed house, after 1990 the modern one.
   houseLook: (style, info, office) => (style === "plocha" ? (office ? "kancelar" : (info?.start || info?.built) > 1990 ? "moderni" : "funkce") : style),
   search: ["photon-be"],
 };

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svg6074" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 601 601">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #000;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        stroke-width: 0px;
+      }
+
+      .cls-5 {
+        fill: none;
+        stroke: #c1121c;
+        stroke-miterlimit: 5;
+        stroke-width: 80.4px;
+      }
+
+      .cls-2 {
+        fill: #224c84;
+      }
+
+      .cls-3 {
+        fill: #c1121c;
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="g6082">
+    <g id="g6084">
+      <path id="path6086" class="cls-4" d="M600.5,300.5c0,165.69-134.31,300-300,300S.5,466.19.5,300.5,134.81.5,300.5.5s300,134.31,300,300h0Z"/>
+      <path id="path6088" class="cls-2" d="M522.02,300.5c0,123.62-99.18,223.83-221.52,223.83s-221.52-100.21-221.52-223.83,99.18-223.83,221.52-223.83,221.52,100.21,221.52,223.83Z"/>
+      <path id="path6092" class="cls-5" d="M550.3,300.5c0,137.96-111.84,249.8-249.8,249.8S50.7,438.46,50.7,300.5,162.54,50.7,300.5,50.7s249.8,111.84,249.8,249.8Z"/>
+      <path id="path6094" class="cls-1" d="M29.79,30.36v.03h-.03l.03-.03Z"/>
+      <path id="path6096" class="cls-1" d="M29.76,30.36h.03v.03h-.03v-.03Z"/>
+      <path id="path6098" class="cls-1" d="M29.76,30.39v-.03l.03.03h-.03ZM29.79,30.39l-.03-.03v.03h.03Z"/>
+      <path id="path6100" class="cls-1" d="M29.82,30.39h-.06.03v-.03s.03.03.03.03Z"/>
+      <path id="path6102" class="cls-1" d="M29.76,30.39v-.03.03l.03-.03-.03.03Z"/>
+      <path id="path6104" class="cls-1" d="M29.76,30.36h.03v.03h-.03v-.03Z"/>
+      <path id="path6106" class="cls-1" d="M29.82,30.36v.06h-.06l.06-.06Z"/>
+      <path id="path6108" class="cls-1" d="M29.76,30.36h.06v.06h-.06v-.06Z"/>
+      <path id="path6110" class="cls-1" d="M29.76,30.42v-.06l.06.06h-.06ZM29.82,30.42l-.06-.06v.06h.06Z"/>
+      <path id="path6112" class="cls-1" d="M29.82,30.42h-.06.03v-.06s.03.06.03.06Z"/>
+      <path id="path6114" class="cls-1" d="M29.76,30.42v-.06.06l.06-.06-.06.06Z"/>
+      <path id="path6116" class="cls-1" d="M29.76,30.36h.06v.06h-.06v-.06Z"/>
+      <path id="path6118" class="cls-1" d="M29.82,30.36v.06h-.06l.06-.06Z"/>
+      <path id="path6120" class="cls-1" d="M29.76,30.36h.06v.06h-.06v-.06Z"/>
+      <path id="path6122" class="cls-1" d="M29.76,30.42v-.06l.06.06h-.06ZM29.82,30.42l-.06-.06v.06h.06Z"/>
+      <path id="path6124" class="cls-1" d="M29.82,30.42h-.06.03v-.06s.03.06.03.06Z"/>
+      <path id="path6126" class="cls-1" d="M29.76,30.42v-.06.06l.06-.06-.06.06Z"/>
+      <path id="path6128" class="cls-1" d="M29.76,30.36h.06v.06h-.06v-.06Z"/>
+      <path id="path6130" class="cls-1" d="M29.82,30.36v.06h-.06l.06-.06Z"/>
+      <path id="path6132" class="cls-1" d="M29.76,30.36h.06v.06h-.06v-.06Z"/>
+      <path id="path6134" class="cls-1" d="M29.76,30.42v-.06l.06.06h-.06ZM29.82,30.42l-.06-.06v.06h.06Z"/>
+      <path id="path6136" class="cls-1" d="M29.82,30.42h-.06.03v-.06s.03.06.03.06Z"/>
+      <path id="path6138" class="cls-1" d="M29.76,30.42v-.06.06l.06-.06-.06.06Z"/>
+      <path id="path6140" class="cls-1" d="M29.76,30.36h.06v.06h-.06v-.06Z"/>
+      <path id="path6142" class="cls-3" d="M148.03,105.61l-42.42,42.43,152.47,152.47-152.47,152.47,42.42,42.43,152.47-152.47,152.47,152.47,42.43-42.43-152.47-152.47,152.47-152.47-42.43-42.43-152.47,152.47L148.03,105.61Z"/>
+    </g>
+  </g>
+</svg>

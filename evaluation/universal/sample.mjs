@@ -19,6 +19,11 @@ export const TOWNS = {
   // Haarlem, Utrecht, Rotterdam, The Hague, Leiden).
   NL: { amsterdam: [52.3727, 4.8933], rotterdam: [51.9225, 4.4792], denhaag: [52.0799, 4.3113], utrecht: [52.0907, 5.1214], haarlem: [52.3812, 4.637],
     leiden: [52.159, 4.49], delft: [52.0116, 4.3571], amstelveen: [52.3026, 4.8606], schiedam: [51.9192, 4.3994], diemen: [52.3394, 4.9626] },
+  // Belgium and Luxembourg (20. 11. 2026): Belgium's towns of the local OSM pack, all of Luxembourg's pack.
+  BE: { bruxelles: [50.8467, 4.3525], antwerpen: [51.2194, 4.4025], gent: [51.0543, 3.7174], liege: [50.6326, 5.5797], brugge: [51.2093, 3.2247],
+    leuven: [50.8798, 4.7005], namur: [50.4674, 4.872], charleroi: [50.4108, 4.4446], mons: [50.4542, 3.9523], mechelen: [51.0259, 4.4776] },
+  LU: { luxembourg: [49.6116, 6.1319], esch: [49.4958, 5.9806], differdange: [49.5242, 5.8914], dudelange: [49.4806, 6.0875], ettelbruck: [49.8475, 6.1044],
+    diekirch: [49.8686, 6.1594], wiltz: [49.9661, 5.9325], echternach: [49.8117, 6.4214], remich: [49.5447, 6.3667], grevenmacher: [49.6797, 6.4417] },
 };
 if (process.argv[1] === new URL(import.meta.url).pathname) {
   let seed = 20261117;

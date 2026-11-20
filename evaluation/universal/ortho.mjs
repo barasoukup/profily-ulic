@@ -20,13 +20,13 @@ const merc = (lon, lat) => [(R * lon * Math.PI) / 180, R * Math.log(Math.tan(Mat
 export const ALONG = 15; // m up and down the street
 const AT = "https://mapsneu.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857";
 
-async function tiles(base, ext, z, [x0, y0, x1, y1], w, h) {
+async function tiles(base, ext, z, [x0, y0, x1, y1], w, h, xy = false) {
   const size = (2 * Math.PI * R) / 2 ** z, dir = await fs.mkdtemp(path.join(os.tmpdir(), "uo-")), files = [];
   const tx0 = Math.floor((x0 + Math.PI * R) / size), tx1 = Math.floor((x1 + Math.PI * R) / size);
   const ty0 = Math.floor((Math.PI * R - y1) / size), ty1 = Math.floor((Math.PI * R - y0) / size);
   for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) {
     const f = path.join(dir, `${ty}-${tx}${ext || ".png"}`);
-    const r = await fetch(`${base}/${z}/${ty}/${tx}${ext}`, { headers: UA });
+    const r = await fetch(`${base}/${z}/${xy ? `${tx}/${ty}` : `${ty}/${tx}`}${ext}`, { headers: UA });
     if (!r.ok) throw new Error(`dlaždice ${z}/${ty}/${tx} ${r.status}`);
     await fs.writeFile(f, Buffer.from(await r.arrayBuffer()));
     files.push(f);
@@ -47,21 +47,31 @@ async function fetchOrtho(country, b, w, h, lon, lat) {
   else if (country === "CH" || country === "LI") url = `https://wms.geo.admin.ch/?${new URLSearchParams({ SERVICE: "WMS", VERSION: "1.3.0", REQUEST: "GetMap", LAYERS: "ch.swisstopo.swissimage", STYLES: "", CRS: "EPSG:3857", BBOX: b.join(","), WIDTH: w, HEIGHT: h, FORMAT: "image/png" })}`;
   // The Netherlands: PDOK's Luchtfoto (it answers a JPEG; read the same way).
   else if (country === "NL") url = `https://service.pdok.nl/hwh/luchtfotorgb/wms/v1_0?${new URLSearchParams({ SERVICE: "WMS", VERSION: "1.3.0", REQUEST: "GetMap", LAYERS: "Actueel_orthoHR", STYLES: "", CRS: "EPSG:3857", BBOX: b.join(","), WIDTH: w, HEIGHT: h, FORMAT: "image/png" })}`;
+  // Belgium: Flanders' orthophoto, else Wallonia's (a small answer is a blank one); Luxembourg: the ACT's tiles.
+  else if (country === "BE") {
+    const { BE_ORTHO } = await import("../../pilot/public/lanes-ortho.js");
+    for (const r of ["vl", "wal"]) {
+      const res = await fetch(BE_ORTHO[r].url(b, w, h, "image/png"), { headers: UA });
+      const buf = Buffer.from(await res.arrayBuffer());
+      if (res.ok && (buf.length > 40000 || r === "wal")) return toPng(buf);
+    }
+  }
+  else if (country === "LU") return tiles("https://wmts1.geoportail.lu/opendata/wmts/ortho_latest/GLOBAL_WEBMERCATOR_4_V3", ".jpeg", 20, b, w, h, true);
   else if (country === "DE") url = deWmsUrl(DE_ORTHO[(await landsAt(lon, lat))[0]], b, w, h, "image/png");
   else url = `https://ags.cuzk.gov.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer?${new URLSearchParams({ service: "WMS", request: "GetMap", version: "1.3.0", layers: "0", styles: "", crs: "EPSG:3857", bbox: b.join(","), width: w, height: h, format: "image/png" })}`;
   const r = await fetch(url, { headers: UA });
   if (!r.ok) throw new Error(`ortofoto ${r.status}`);
   const buf = Buffer.from(await r.arrayBuffer());
-  // PDOK answers a JPEG whatever is asked: made a PNG with ImageMagick.
-  if (buf[0] === 0xff && buf[1] === 0xd8) {
-    const dir = await fs.mkdtemp(path.join(os.tmpdir(), "ortho-")), jpg = path.join(dir, "o.jpg"), png = path.join(dir, "o.png");
-    await fs.writeFile(jpg, buf);
-    await run("magick", [jpg, "PNG24:" + png]);
-    const out = await fs.readFile(png);
-    await fs.rm(dir, { recursive: true });
-    return out;
-  }
-  return buf;
+  return toPng(buf);
+}
+// Any image as an opaque PNG (PDOK answers a JPEG whatever is asked; Flanders a PNG with transparency).
+async function toPng(buf) {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "ortho-")), src = path.join(dir, "o.img"), png = path.join(dir, "o.png");
+  await fs.writeFile(src, buf);
+  await run("magick", [src, "-background", "white", "-flatten", "PNG24:" + png]);
+  const out = await fs.readFile(png);
+  await fs.rm(dir, { recursive: true });
+  return out;
 }
 
 export async function orthoImage({ lat, lon, bearing, country = "CZ", half = 30 }, out) {
