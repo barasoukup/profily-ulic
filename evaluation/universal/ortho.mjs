@@ -45,11 +45,23 @@ async function fetchOrtho(country, b, w, h, lon, lat) {
   if (country === "SK") url = `https://zbgis.skgeodesy.sk/zbgis/rest/services/Ortofoto_hres/MapServer/export?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: "png24", f: "image" })}`;
   // Switzerland and Liechtenstein: SWISSIMAGE through swisstopo's WMS.
   else if (country === "CH" || country === "LI") url = `https://wms.geo.admin.ch/?${new URLSearchParams({ SERVICE: "WMS", VERSION: "1.3.0", REQUEST: "GetMap", LAYERS: "ch.swisstopo.swissimage", STYLES: "", CRS: "EPSG:3857", BBOX: b.join(","), WIDTH: w, HEIGHT: h, FORMAT: "image/png" })}`;
+  // The Netherlands: PDOK's Luchtfoto (it answers a JPEG; read the same way).
+  else if (country === "NL") url = `https://service.pdok.nl/hwh/luchtfotorgb/wms/v1_0?${new URLSearchParams({ SERVICE: "WMS", VERSION: "1.3.0", REQUEST: "GetMap", LAYERS: "Actueel_orthoHR", STYLES: "", CRS: "EPSG:3857", BBOX: b.join(","), WIDTH: w, HEIGHT: h, FORMAT: "image/png" })}`;
   else if (country === "DE") url = deWmsUrl(DE_ORTHO[(await landsAt(lon, lat))[0]], b, w, h, "image/png");
   else url = `https://ags.cuzk.gov.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer?${new URLSearchParams({ service: "WMS", request: "GetMap", version: "1.3.0", layers: "0", styles: "", crs: "EPSG:3857", bbox: b.join(","), width: w, height: h, format: "image/png" })}`;
   const r = await fetch(url, { headers: UA });
   if (!r.ok) throw new Error(`ortofoto ${r.status}`);
-  return Buffer.from(await r.arrayBuffer());
+  const buf = Buffer.from(await r.arrayBuffer());
+  // PDOK answers a JPEG whatever is asked: made a PNG with ImageMagick.
+  if (buf[0] === 0xff && buf[1] === 0xd8) {
+    const dir = await fs.mkdtemp(path.join(os.tmpdir(), "ortho-")), jpg = path.join(dir, "o.jpg"), png = path.join(dir, "o.png");
+    await fs.writeFile(jpg, buf);
+    await run("magick", [jpg, "PNG24:" + png]);
+    const out = await fs.readFile(png);
+    await fs.rm(dir, { recursive: true });
+    return out;
+  }
+  return buf;
 }
 
 export async function orthoImage({ lat, lon, bearing, country = "CZ", half = 30 }, out) {

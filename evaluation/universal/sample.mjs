@@ -15,6 +15,10 @@ export const TOWNS = {
   CH: { zurich: [47.3769, 8.5417], geneve: [46.2044, 6.1432], basel: [47.5596, 7.5886], lausanne: [46.5197, 6.6323], bern: [46.948, 7.4474],
     winterthur: [47.4997, 8.7241], luzern: [47.0502, 8.3093], stgallen: [47.4245, 9.3767], lugano: [46.0037, 8.9511], biel: [47.1368, 7.2468] },
   LI: { vaduz: [47.141, 9.5215], schaan: [47.1655, 9.5096], triesen: [47.1069, 9.5277], balzers: [47.0665, 9.5025], eschen: [47.2112, 9.5223] },
+  // The Netherlands (20. 11. 2026): the towns inside the local OSM pack of the sample (tools: osmium boxes of Amsterdam,
+  // Haarlem, Utrecht, Rotterdam, The Hague, Leiden).
+  NL: { amsterdam: [52.3727, 4.8933], rotterdam: [51.9225, 4.4792], denhaag: [52.0799, 4.3113], utrecht: [52.0907, 5.1214], haarlem: [52.3812, 4.637],
+    leiden: [52.159, 4.49], delft: [52.0116, 4.3571], amstelveen: [52.3026, 4.8606], schiedam: [51.9192, 4.3994], diemen: [52.3394, 4.9626] },
 };
 if (process.argv[1] === new URL(import.meta.url).pathname) {
   let seed = 20261117;
