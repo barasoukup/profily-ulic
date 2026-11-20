@@ -104,3 +104,17 @@ na PNG). Mapa povrchů BGT u 62 z 80 bodů. Výsledek s výchozím nastavením (
   jako vozovku (`?fietsstrook=1`): složení 53 → 52 %, šířka 47 → 41 %, tedy ne lépe; zůstává vypnuté.
 - Mezi dvěma sběry týchž řezů se čísla liší o pár procent (ortofoto pruhů, parkovací místa Amsterdamu, která jsou teď
   vypnutá); první sběr dal 53 % a 47 %.
+
+## Belgie a Lucembursko (20. 11. 2026)
+
+Vzorek po 10 městech (Belgie: Brusel, Antverpy, Gent, Lutych, Bruggy, Lovaň, Namur, Charleroi, Mons, Mechelen;
+Lucembursko: Lucemburk, Esch, Differdange, Dudelange, Ettelbruck, Diekirch, Wiltz, Echternach, Remich, Grevenmacher),
+160 bodů, s fotkou Mapillary 38 + 17 řezů, s vozovkou 34 + 12. Ortofoto Flander nebo Valonska, Lucembursko ACT.
+
+| BE | 34 | složení stejné 9 % | **shoda 52 %** | pruhy 38 % | šířka do 1 / 2 m 15 % / 26 % |
+| LU | 12 | složení stejné 17 % | **shoda 53 %** | pruhy 50 % | šířka do 1 / 2 m 25 % / 33 % |
+
+- Belgie: nejčastěji chybí stání (12×). V úzkých ulicích Bruselu a Antverp kreslí odhad jeden široký pruh (Rue aux Choux
+  10,4 m, Rue du Vautour 6,6 m, Koninginnestraat 5,4 m) a zákonné stání do něj nedá: totéž jako dřív v Rakousku a Německu
+  (vozovka a strany v odhadu, ne pravidlo stání). Na příště: proč odhad u jednosměrek s jedním pruhem stání nepřidá.
+- Lucembursko: malý vzorek (12), posuzovatel u Remiche neměl ortofoto (bílé), šest řezů jsou cesty a parky.

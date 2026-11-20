@@ -7,3 +7,5 @@
 | CH | 18 | 22 % | 59 % | 44 % | 28 % / 28 % | navíc chodnik 5×, chybí stani 2×, navíc pruh 2×, chybí pruh 2×, pruh→cyklopruh 2×, stani→pruh 2× |
 | LI | 6 | 33 % | 69 % | 50 % | 17 % / 33 % | chybí zelen 2×, navíc delici 2×, pruh→chodnik 1×, chybí delici 1×, cyklopruh→pruh 1×, navíc pruh 1× |
 | NL | 32 | 16 % | 52 % | 53 % | 31 % / 41 % | navíc chodnik 21×, navíc zelen 14×, navíc cyklostezka 13×, navíc stani 5×, navíc pruh 5×, navíc delici 4× |
+| BE | 34 | 9 % | 52 % | 38 % | 15 % / 26 % | chybí stani 12×, navíc chodnik 8×, chybí chodnik 7×, chybí pruh 6×, navíc pruh 4×, chybí zelen 4× |
+| LU | 12 | 17 % | 53 % | 50 % | 25 % / 33 % | chodnik→cyklostezka 3×, navíc zelen 3×, chybí zelen 3×, chybí cyklostezka 2×, tramvaj→stani 1×, navíc delici 1× |
