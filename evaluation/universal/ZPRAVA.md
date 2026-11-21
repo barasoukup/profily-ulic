@@ -118,3 +118,14 @@ Lucembursko: Lucemburk, Esch, Differdange, Dudelange, Ettelbruck, Diekirch, Wilt
   10,4 m, Rue du Vautour 6,6 m, Koninginnestraat 5,4 m) a zákonné stání do něj nedá: totéž jako dřív v Rakousku a Německu
   (vozovka a strany v odhadu, ne pravidlo stání). Na příště: proč odhad u jednosměrek s jedním pruhem stání nepřidá.
 - Lucembursko: malý vzorek (12), posuzovatel u Remiche neměl ortofoto (bílé), šest řezů jsou cesty a parky.
+
+## Polsko (21. 11. 2026)
+
+Vzorek 10 měst (Varšava, Krakov, Vratislav, Gdaňsk, Poznaň, Lodž, Katovice, Lublin, Štětín, Bydhošť), 80 bodů, 29 řezů
+s fotkou Mapillary, 22 s vozovkou (2 z nich s mapou povrchů Krakova). Ortofoto GUGiK.
+
+| PL | 22 | složení stejné 18 % | **shoda 67 %** | pruhy 45 % | šířka do 1 / 2 m 18 % / 32 % |
+
+- Shoda složení nejvyšší ze všech států (ostatní 52–69 %, LI 69 % na 6 řezech), šířka podprůměrná. Nejčastěji chybí
+  chodník (6×) a pruh (4×); stání chybí jen 3× a 3× je navíc (zákonný odhad jako v Lucembursku).
+- Malý vzorek: 7 z 29 řezů jsou dvory, střechy, most a nábřeží.

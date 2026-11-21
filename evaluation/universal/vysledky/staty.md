@@ -9,3 +9,4 @@
 | NL | 32 | 16 % | 52 % | 53 % | 31 % / 41 % | navíc chodnik 21×, navíc zelen 14×, navíc cyklostezka 13×, navíc stani 5×, navíc pruh 5×, navíc delici 4× |
 | BE | 34 | 9 % | 52 % | 38 % | 15 % / 26 % | chybí stani 12×, navíc chodnik 8×, chybí chodnik 7×, chybí pruh 6×, navíc pruh 4×, chybí zelen 4× |
 | LU | 12 | 17 % | 53 % | 50 % | 25 % / 33 % | chodnik→cyklostezka 3×, navíc zelen 3×, chybí zelen 3×, chybí cyklostezka 2×, tramvaj→stani 1×, navíc delici 1× |
+| PL | 22 | 18 % | 67 % | 45 % | 18 % / 32 % | chybí chodnik 6×, navíc zelen 4×, chybí pruh 4×, navíc stani 3×, chybí stani 3×, chybí delici 3× |
