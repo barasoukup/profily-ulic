@@ -1,3 +1,5 @@
+> Pozn. 21. 11. 2026: aplikace používá WMS HighResolution v EPSG:3857 (ověřeno, funguje), ne WMTS StandardResolution, jak navrhuje oddíl 3.
+
 # Polsko: otevřené služby pro profily ulic (ověřeno 21. 11. 2026)
 
 Metoda: curl, User-Agent `profily-ulic`, Origin `https://streetspace.eu`, pauza 1 s, asi 58 požadavků. Overpass ani Nominatim nepoužity. Bbox 100 m: Varšava centrum, Kraków, Wrocław, Gdańsk, Poznań podle zadání. Co nebylo dotazováno, je označeno „neověřeno“.

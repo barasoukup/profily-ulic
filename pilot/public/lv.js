@@ -835,7 +835,7 @@ export const LV = {
   "mapa povrchů (MJO) © Gmina Miejska Kraków": "segumu karte (MJO) © Gmina Miejska Kraków",
   " · mapa povrchů Krakova neodpověděla, odhad z ortofota a OSM": " · Krakovas segumu karte neatbildēja, aplēse pēc ortofoto un OSM",
   "Mapa povrchů Krakova teď neodpovídá, profil je odhad z ortofota a OSM.": "Krakovas segumu karte pašlaik neatbild, profils ir aplēse pēc ortofoto un OSM.",
-  "jízdní pruh silnice třídy GP: 3,5 m, nejméně 3,25 m (RMI 2022 § 17)": "GP klases ceļa braukšanas josla: 3,5 m, vismaz 3,25 m (RMI 2022 § 17)",
+  "jízdní pruh dálnice a rychlostní silnice (třídy A a S): 3,75 m, nejméně 3,5 m (RMI 2022 § 17)": "autoceļa un ātrgaitas ceļa (klases A un S) braukšanas josla: 3,75 m, vismaz 3,5 m (RMI 2022 § 17)",
   "jízdní pruh sběrné ulice (třída Z): 3 m, nejméně 2,75 m; hlavní ulice třídy G 3,5 m (RMI 2022 § 17)": "savācējielas (klase Z) braukšanas josla: 3 m, vismaz 2,75 m; G klases maģistrālajai ielai 3,5 m (RMI 2022 § 17)",
   "jízdní pruh místní ulice (třída L): 2,75 m, nejméně 2,5 m (RMI 2022 § 17)": "vietējās ielas (klase L) braukšanas josla: 2,75 m, vismaz 2,5 m (RMI 2022 § 17)",
   "jízdní pruh obslužné ulice (třída D): 2,5 m, nejméně 2,25 m (RMI 2022 § 17)": "apkalpes ielas (klase D) braukšanas josla: 2,5 m, vismaz 2,25 m (RMI 2022 § 17)",
@@ -846,10 +846,13 @@ export const LV = {
   "vyhrazený pruh pro autobusy: doporučeno 3,25 m, nejméně 3 m (doporučení ministerstva WR-D-24-2, nezávazné)": "autobusu josla: ieteicams 3,25 m, vismaz 3 m (ministrijas ieteikums WR-D-24-2, nav saistošs)",
   "kolmé stání: 2,5 × 5 m (doporučení ministerstva WR-D-24-2, nezávazné)": "perpendikulārās stāvvietas: 2,5 × 5 m (ministrijas ieteikums WR-D-24-2, nav saistošs)",
   "podélné stání: 2,5 × 6 m (doporučení ministerstva WR-D-24-2, nezávazné)": "paralēlās stāvvietas: 2,5 × 6 m (ministrijas ieteikums WR-D-24-2, nav saistošs)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku musí zůstat aspoň 1,5 m pro chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Stāvēšana daļēji uz ietves pēc OSM: brauktuvē paliek {free}. Uz ietves gājējiem jāpaliek vismaz 1,5 m (Ceļu satiksmes likuma 47. pants); likums nenosaka brauktuves brīvo platumu; lietotne atstāj braucamas joslas, tātad vismaz {need}.",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku se smí stát, je-li široký aspoň 1,5 m a stání neomezí chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Stāvēšana daļēji uz ietves pēc OSM: brauktuvē paliek {free}. Uz ietves stāvēt drīkst, ja tā ir vismaz 1,5 m plata un stāvēšana netraucē gājējus (Ceļu satiksmes likuma 47. pants); likums nenosaka brauktuves brīvo platumu; lietotne atstāj braucamas joslas, tātad vismaz {need}.",
   "Tramvajový pás {w} je užší než 6,3 m pro dvě koleje (doporučení WR-D-43-3).": "Tramvaja sliežu josla {w} ir šaurāka par 6,3 m diviem sliežu ceļiem (ieteikums WR-D-43-3).",
   "Tramvajový pás se sloupy {w} je užší než 7,8 m (doporučení WR-D-43-3).": "Tramvaja sliežu josla ar balstiem {w} ir šaurāka par 7,8 m (ieteikums WR-D-43-3).",
   "Tramvajový pás {w} je užší než 6,8 m (doporučení WR-D-43-3).": "Tramvaja sliežu josla {w} ir šaurāka par 6,8 m (ieteikums WR-D-43-3).",
+  "jednopruhová vozovka: nejméně 3,5 m (RMI 2022 § 17 odst. 3)": "vienas joslas brauktuve: vismaz 3,5 m (RMI 2022 § 17 3. daļa)",
+  "Tramvajový pás ve vozovce {w} je užší než 6 m (doporučení WR-D-43-3, typ TC/TD).": "Tramvaja sliežu josla brauktuvē {w} ir šaurāka par 6 m (ieteikums WR-D-43-3, tips TC/TD).",
+  "Tramvajový pás ve vozovce {w} je užší než 7 m (doporučení WR-D-43-3, typ TC/TD).": "Tramvaja sliežu josla brauktuvē {w} ir šaurāka par 7 m (ieteikums WR-D-43-3, tips TC/TD).",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

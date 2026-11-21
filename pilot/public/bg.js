@@ -811,7 +811,7 @@ export const BG = {
   "mapa povrchů (MJO) © Gmina Miejska Kraków": "карта на настилките (MJO) © Gmina Miejska Kraków",
   " · mapa povrchů Krakova neodpověděla, odhad z ortofota a OSM": " · картата на настилките на Краков не отговори, оценка от ортофото и OSM",
   "Mapa povrchů Krakova teď neodpovídá, profil je odhad z ortofota a OSM.": "Картата на настилките на Краков в момента не отговаря, профилът е оценка от ортофото и OSM.",
-  "jízdní pruh silnice třídy GP: 3,5 m, nejméně 3,25 m (RMI 2022 § 17)": "пътна лента на път от клас GP: 3,5 m, поне 3,25 m (RMI 2022 § 17)",
+  "jízdní pruh dálnice a rychlostní silnice (třídy A a S): 3,75 m, nejméně 3,5 m (RMI 2022 § 17)": "пътна лента на магистрала и скоростен път (класове A и S): 3,75 m, поне 3,5 m (RMI 2022 § 17)",
   "jízdní pruh sběrné ulice (třída Z): 3 m, nejméně 2,75 m; hlavní ulice třídy G 3,5 m (RMI 2022 § 17)": "пътна лента на събирателна улица (клас Z): 3 m, поне 2,75 m; на главна улица от клас G 3,5 m (RMI 2022 § 17)",
   "jízdní pruh místní ulice (třída L): 2,75 m, nejméně 2,5 m (RMI 2022 § 17)": "пътна лента на местна улица (клас L): 2,75 m, поне 2,5 m (RMI 2022 § 17)",
   "jízdní pruh obslužné ulice (třída D): 2,5 m, nejméně 2,25 m (RMI 2022 § 17)": "пътна лента на обслужваща улица (клас D): 2,5 m, поне 2,25 m (RMI 2022 § 17)",
@@ -822,10 +822,13 @@ export const BG = {
   "vyhrazený pruh pro autobusy: doporučeno 3,25 m, nejméně 3 m (doporučení ministerstva WR-D-24-2, nezávazné)": "автобусна лента: препоръчително 3,25 m, поне 3 m (препоръка на министерството WR-D-24-2, необвързваща)",
   "kolmé stání: 2,5 × 5 m (doporučení ministerstva WR-D-24-2, nezávazné)": "перпендикулярно паркиране: 2,5 × 5 m (препоръка на министерството WR-D-24-2, необвързваща)",
   "podélné stání: 2,5 × 6 m (doporučení ministerstva WR-D-24-2, nezávazné)": "успоредно паркиране: 2,5 × 6 m (препоръка на министерството WR-D-24-2, необвързваща)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku musí zůstat aspoň 1,5 m pro chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Паркиране наполовина на тротоара по OSM: в платното остават {free}. На тротоара трябва да останат поне 1,5 m за пешеходците (чл. 47 от закона за движението по пътищата), свободна ширина на платното законът не посочва; приложението оставя пътните ленти проходими, т.е. поне {need}.",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku se smí stát, je-li široký aspoň 1,5 m a stání neomezí chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Паркиране наполовина на тротоара по OSM: в платното остават {free}. На тротоара може да се паркира, ако е широк поне 1,5 m и паркирането не пречи на пешеходците (чл. 47 от закона за движението по пътищата), свободна ширина на платното законът не посочва; приложението оставя пътните ленти проходими, т.е. поне {need}.",
   "Tramvajový pás {w} je užší než 6,3 m pro dvě koleje (doporučení WR-D-43-3).": "Трамвайното трасе {w} е по-тясно от 6,3 m за два коловоза (препоръка WR-D-43-3).",
   "Tramvajový pás se sloupy {w} je užší než 7,8 m (doporučení WR-D-43-3).": "Трамвайното трасе със стълбове {w} е по-тясно от 7,8 m (препоръка WR-D-43-3).",
   "Tramvajový pás {w} je užší než 6,8 m (doporučení WR-D-43-3).": "Трамвайното трасе {w} е по-тясно от 6,8 m (препоръка WR-D-43-3).",
+  "jednopruhová vozovka: nejméně 3,5 m (RMI 2022 § 17 odst. 3)": "еднолентово платно: поне 3,5 m (RMI 2022 § 17 ал. 3)",
+  "Tramvajový pás ve vozovce {w} je užší než 6 m (doporučení WR-D-43-3, typ TC/TD).": "Трамвайното трасе в платното {w} е по-тясно от 6 m (препоръка WR-D-43-3, тип TC/TD).",
+  "Tramvajový pás ve vozovce {w} je užší než 7 m (doporučení WR-D-43-3, typ TC/TD).": "Трамвайното трасе в платното {w} е по-тясно от 7 m (препоръка WR-D-43-3, тип TC/TD).",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

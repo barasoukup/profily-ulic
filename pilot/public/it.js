@@ -840,7 +840,7 @@ export const IT = {
   "mapa povrchů (MJO) © Gmina Miejska Kraków": "mappa delle superfici (MJO) © Gmina Miejska Kraków",
   " · mapa povrchů Krakova neodpověděla, odhad z ortofota a OSM": " · la mappa delle superfici di Cracovia non ha risposto, stima da ortofoto e OSM",
   "Mapa povrchů Krakova teď neodpovídá, profil je odhad z ortofota a OSM.": "La mappa delle superfici di Cracovia al momento non risponde, la sezione è una stima da ortofoto e OSM.",
-  "jízdní pruh silnice třídy GP: 3,5 m, nejméně 3,25 m (RMI 2022 § 17)": "corsia di una strada di classe GP: 3,5 m, almeno 3,25 m (RMI 2022 § 17)",
+  "jízdní pruh dálnice a rychlostní silnice (třídy A a S): 3,75 m, nejméně 3,5 m (RMI 2022 § 17)": "corsia di un'autostrada e di una strada extraurbana principale (classi A e S): 3,75 m, almeno 3,5 m (RMI 2022 § 17)",
   "jízdní pruh sběrné ulice (třída Z): 3 m, nejméně 2,75 m; hlavní ulice třídy G 3,5 m (RMI 2022 § 17)": "corsia di una strada collettrice (classe Z): 3 m, almeno 2,75 m; strada principale di classe G 3,5 m (RMI 2022 § 17)",
   "jízdní pruh místní ulice (třída L): 2,75 m, nejméně 2,5 m (RMI 2022 § 17)": "corsia di una strada locale (classe L): 2,75 m, almeno 2,5 m (RMI 2022 § 17)",
   "jízdní pruh obslužné ulice (třída D): 2,5 m, nejméně 2,25 m (RMI 2022 § 17)": "corsia di una strada di servizio (classe D): 2,5 m, almeno 2,25 m (RMI 2022 § 17)",
@@ -851,10 +851,13 @@ export const IT = {
   "vyhrazený pruh pro autobusy: doporučeno 3,25 m, nejméně 3 m (doporučení ministerstva WR-D-24-2, nezávazné)": "corsia riservata agli autobus: consigliati 3,25 m, almeno 3 m (raccomandazione del ministero WR-D-24-2, non vincolante)",
   "kolmé stání: 2,5 × 5 m (doporučení ministerstva WR-D-24-2, nezávazné)": "sosta perpendicolare: 2,5 × 5 m (raccomandazione del ministero WR-D-24-2, non vincolante)",
   "podélné stání: 2,5 × 6 m (doporučení ministerstva WR-D-24-2, nezávazné)": "sosta longitudinale: 2,5 × 6 m (raccomandazione del ministero WR-D-24-2, non vincolante)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku musí zůstat aspoň 1,5 m pro chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Sosta a metà sul marciapiede da OSM: in carreggiata restano {free}. Sul marciapiede devono restare almeno 1,5 m per i pedoni (art. 47 del codice della strada), la legge non indica una larghezza libera della carreggiata; l'app lascia le corsie percorribili, quindi almeno {need}.",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku se smí stát, je-li široký aspoň 1,5 m a stání neomezí chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Sosta a metà sul marciapiede da OSM: in carreggiata restano {free}. Sul marciapiede si può sostare se è largo almeno 1,5 m e la sosta non ostacola i pedoni (art. 47 del codice della strada), la legge non indica una larghezza libera della carreggiata; l'app lascia le corsie percorribili, quindi almeno {need}.",
   "Tramvajový pás {w} je užší než 6,3 m pro dvě koleje (doporučení WR-D-43-3).": "La sede tranviaria di {w} è più stretta di 6,3 m per due binari (raccomandazione WR-D-43-3).",
   "Tramvajový pás se sloupy {w} je užší než 7,8 m (doporučení WR-D-43-3).": "La sede tranviaria con i pali, {w}, è più stretta di 7,8 m (raccomandazione WR-D-43-3).",
   "Tramvajový pás {w} je užší než 6,8 m (doporučení WR-D-43-3).": "La sede tranviaria di {w} è più stretta di 6,8 m (raccomandazione WR-D-43-3).",
+  "jednopruhová vozovka: nejméně 3,5 m (RMI 2022 § 17 odst. 3)": "carreggiata a corsia unica: almeno 3,5 m (RMI 2022 § 17 c. 3)",
+  "Tramvajový pás ve vozovce {w} je užší než 6 m (doporučení WR-D-43-3, typ TC/TD).": "La sede tranviaria in carreggiata di {w} è più stretta di 6 m (raccomandazione WR-D-43-3, tipo TC/TD).",
+  "Tramvajový pás ve vozovce {w} je užší než 7 m (doporučení WR-D-43-3, typ TC/TD).": "La sede tranviaria in carreggiata di {w} è più stretta di 7 m (raccomandazione WR-D-43-3, tipo TC/TD).",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

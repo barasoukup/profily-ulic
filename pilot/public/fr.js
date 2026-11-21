@@ -838,7 +838,7 @@ export const FR = {
   "mapa povrchů (MJO) © Gmina Miejska Kraków": "plan des surfaces (MJO) © Gmina Miejska Kraków",
   " · mapa povrchů Krakova neodpověděla, odhad z ortofota a OSM": " · le plan des surfaces de Cracovie n'a pas répondu, estimation d'après l'orthophoto et OSM",
   "Mapa povrchů Krakova teď neodpovídá, profil je odhad z ortofota a OSM.": "Le plan des surfaces de Cracovie ne répond pas actuellement, le profil est une estimation d'après l'orthophoto et OSM.",
-  "jízdní pruh silnice třídy GP: 3,5 m, nejméně 3,25 m (RMI 2022 § 17)": "voie de circulation d'une route de classe GP : 3,5 m, au moins 3,25 m (RMI 2022 § 17)",
+  "jízdní pruh dálnice a rychlostní silnice (třídy A a S): 3,75 m, nejméně 3,5 m (RMI 2022 § 17)": "voie de circulation d'une autoroute et d'une voie rapide (classes A et S) : 3,75 m, au moins 3,5 m (RMI 2022 § 17)",
   "jízdní pruh sběrné ulice (třída Z): 3 m, nejméně 2,75 m; hlavní ulice třídy G 3,5 m (RMI 2022 § 17)": "voie de circulation d'une rue collectrice (classe Z) : 3 m, au moins 2,75 m ; rue principale de classe G 3,5 m (RMI 2022 § 17)",
   "jízdní pruh místní ulice (třída L): 2,75 m, nejméně 2,5 m (RMI 2022 § 17)": "voie de circulation d'une rue locale (classe L) : 2,75 m, au moins 2,5 m (RMI 2022 § 17)",
   "jízdní pruh obslužné ulice (třída D): 2,5 m, nejméně 2,25 m (RMI 2022 § 17)": "voie de circulation d'une rue de desserte (classe D) : 2,5 m, au moins 2,25 m (RMI 2022 § 17)",
@@ -849,10 +849,13 @@ export const FR = {
   "vyhrazený pruh pro autobusy: doporučeno 3,25 m, nejméně 3 m (doporučení ministerstva WR-D-24-2, nezávazné)": "voie réservée aux bus : 3,25 m recommandés, au moins 3 m (recommandation du ministère WR-D-24-2, non contraignante)",
   "kolmé stání: 2,5 × 5 m (doporučení ministerstva WR-D-24-2, nezávazné)": "stationnement perpendiculaire : 2,5 × 5 m (recommandation du ministère WR-D-24-2, non contraignante)",
   "podélné stání: 2,5 × 6 m (doporučení ministerstva WR-D-24-2, nezávazné)": "stationnement longitudinal : 2,5 × 6 m (recommandation du ministère WR-D-24-2, non contraignante)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku musí zůstat aspoň 1,5 m pro chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Stationnement à cheval sur le trottoir d'après OSM : il reste {free} sur la chaussée. Au moins 1,5 m doivent rester sur le trottoir pour les piétons (art. 47 du code de la route), la loi ne donne pas de largeur libre de la chaussée ; l'application garde les voies praticables, donc au moins {need}.",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku se smí stát, je-li široký aspoň 1,5 m a stání neomezí chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Stationnement à cheval sur le trottoir d'après OSM : il reste {free} sur la chaussée. On peut stationner sur le trottoir s'il fait au moins 1,5 m de large et que le stationnement ne gêne pas les piétons (art. 47 du code de la route), la loi ne donne pas de largeur libre de la chaussée ; l'application garde les voies praticables, donc au moins {need}.",
   "Tramvajový pás {w} je užší než 6,3 m pro dvě koleje (doporučení WR-D-43-3).": "Plateforme tramway de {w} plus étroite que 6,3 m pour une double voie (recommandation WR-D-43-3).",
   "Tramvajový pás se sloupy {w} je užší než 7,8 m (doporučení WR-D-43-3).": "Plateforme tramway avec poteaux de {w} plus étroite que 7,8 m (recommandation WR-D-43-3).",
   "Tramvajový pás {w} je užší než 6,8 m (doporučení WR-D-43-3).": "Plateforme tramway de {w} plus étroite que 6,8 m (recommandation WR-D-43-3).",
+  "jednopruhová vozovka: nejméně 3,5 m (RMI 2022 § 17 odst. 3)": "chaussée à une seule voie : au moins 3,5 m (RMI 2022 § 17 al. 3)",
+  "Tramvajový pás ve vozovce {w} je užší než 6 m (doporučení WR-D-43-3, typ TC/TD).": "La plateforme tramway dans la chaussée, de {w}, est plus étroite que 6 m (recommandation WR-D-43-3, type TC/TD).",
+  "Tramvajový pás ve vozovce {w} je užší než 7 m (doporučení WR-D-43-3, typ TC/TD).": "La plateforme tramway dans la chaussée, de {w}, est plus étroite que 7 m (recommandation WR-D-43-3, type TC/TD).",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

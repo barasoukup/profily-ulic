@@ -835,7 +835,7 @@ export const DA = {
   "mapa povrchů (MJO) © Gmina Miejska Kraków": "fladekort (MJO) © Gmina Miejska Kraków",
   " · mapa povrchů Krakova neodpověděla, odhad z ortofota a OSM": " · Krakóws fladekort svarede ikke, skøn ud fra ortofoto og OSM",
   "Mapa povrchů Krakova teď neodpovídá, profil je odhad z ortofota a OSM.": "Krakóws fladekort svarer ikke lige nu, profilet er et skøn ud fra ortofoto og OSM.",
-  "jízdní pruh silnice třídy GP: 3,5 m, nejméně 3,25 m (RMI 2022 § 17)": "kørespor på vej i klasse GP: 3,5 m, mindst 3,25 m (RMI 2022 § 17)",
+  "jízdní pruh dálnice a rychlostní silnice (třídy A a S): 3,75 m, nejméně 3,5 m (RMI 2022 § 17)": "kørespor på motorvej og motortrafikvej (klasse A og S): 3,75 m, mindst 3,5 m (RMI 2022 § 17)",
   "jízdní pruh sběrné ulice (třída Z): 3 m, nejméně 2,75 m; hlavní ulice třídy G 3,5 m (RMI 2022 § 17)": "kørespor på fordelingsvej (klasse Z): 3 m, mindst 2,75 m; hovedgade i klasse G 3,5 m (RMI 2022 § 17)",
   "jízdní pruh místní ulice (třída L): 2,75 m, nejméně 2,5 m (RMI 2022 § 17)": "kørespor på lokalgade (klasse L): 2,75 m, mindst 2,5 m (RMI 2022 § 17)",
   "jízdní pruh obslužné ulice (třída D): 2,5 m, nejméně 2,25 m (RMI 2022 § 17)": "kørespor på adgangsvej (klasse D): 2,5 m, mindst 2,25 m (RMI 2022 § 17)",
@@ -846,10 +846,13 @@ export const DA = {
   "vyhrazený pruh pro autobusy: doporučeno 3,25 m, nejméně 3 m (doporučení ministerstva WR-D-24-2, nezávazné)": "busbane: 3,25 m anbefalet, mindst 3 m (ministeriets anbefaling WR-D-24-2, ikke bindende)",
   "kolmé stání: 2,5 × 5 m (doporučení ministerstva WR-D-24-2, nezávazné)": "vinkelret parkering: 2,5 × 5 m (ministeriets anbefaling WR-D-24-2, ikke bindende)",
   "podélné stání: 2,5 × 6 m (doporučení ministerstva WR-D-24-2, nezávazné)": "længdeparkering: 2,5 × 6 m (ministeriets anbefaling WR-D-24-2, ikke bindende)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku musí zůstat aspoň 1,5 m pro chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Parkering halvt på fortovet ifølge OSM: på kørebanen er der {free} tilbage. På fortovet skal der mindst være 1,5 m til fodgængere (art. 47 i færdselsloven); loven angiver ingen fri bredde på kørebanen; appen holder kørsporene farbare, altså mindst {need}.",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku se smí stát, je-li široký aspoň 1,5 m a stání neomezí chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Parkering halvt på fortovet ifølge OSM: på kørebanen er der {free} tilbage. På fortovet må man parkere, hvis det er mindst 1,5 m bredt, og parkeringen ikke generer fodgængere (art. 47 i færdselsloven); loven angiver ingen fri bredde på kørebanen; appen holder kørsporene farbare, altså mindst {need}.",
   "Tramvajový pás {w} je užší než 6,3 m pro dvě koleje (doporučení WR-D-43-3).": "Sporarealet {w} er smallere end 6,3 m for to spor (anbefaling WR-D-43-3).",
   "Tramvajový pás se sloupy {w} je užší než 7,8 m (doporučení WR-D-43-3).": "Sporarealet med master {w} er smallere end 7,8 m (anbefaling WR-D-43-3).",
   "Tramvajový pás {w} je užší než 6,8 m (doporučení WR-D-43-3).": "Sporarealet {w} er smallere end 6,8 m (anbefaling WR-D-43-3).",
+  "jednopruhová vozovka: nejméně 3,5 m (RMI 2022 § 17 odst. 3)": "ensporet kørebane: mindst 3,5 m (RMI 2022 § 17 stk. 3)",
+  "Tramvajový pás ve vozovce {w} je užší než 6 m (doporučení WR-D-43-3, typ TC/TD).": "Sporarealet i kørebanen {w} er smallere end 6 m (anbefaling WR-D-43-3, type TC/TD).",
+  "Tramvajový pás ve vozovce {w} je užší než 7 m (doporučení WR-D-43-3, typ TC/TD).": "Sporarealet i kørebanen {w} er smallere end 7 m (anbefaling WR-D-43-3, type TC/TD).",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

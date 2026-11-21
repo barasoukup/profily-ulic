@@ -280,7 +280,10 @@ export function mountSearch(map, { status, onPick, services = () => [], inVienna
       // Poland: GUGiK's UUG (search-pl.js) where the map shows it, or a Polish-looking query RÚIAN did not find.
       const pl = services().includes("uug") || (cz.length === 0 && !skNow.length && !nl.length && looksPolish(text))
         ? await findPl(text.trim(), getJSON, mine.signal).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání UUG", err); return []; }) : [];
-      const found = rankResults([...pl, ...nl, ...at, ...photon, ...cz, ...(both || cz.length || nl.length || pl.length ? skNow : await sk())], text);
+      // Where UUG found nothing for a Polish query (no diacritics, an unusual order), Photon of komoot in Poland.
+      const plPhoton = !pl.length && (services().includes("uug") || looksPolish(text)) && !photon.length
+        ? await findPhoton(text, getJSON, mine.signal, ["PL"], [map.getCenter().lat, map.getCenter().lng]).catch((err) => { if (err.name === "AbortError") throw err; return []; }) : [];
+      const found = rankResults([...pl, ...plPhoton, ...nl, ...at, ...photon, ...cz, ...(both || cz.length || nl.length || pl.length ? skNow : await sk())], text);
       cache.set(key, found);
       if (cache.size > 40) cache.delete(cache.keys().next().value);
       if (mine === ctrl && document.activeElement === input) show(found, t("Nic jsem nenašla."));

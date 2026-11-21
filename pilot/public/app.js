@@ -289,8 +289,8 @@ if (STATY?.belgium) {
   add(["wal"], (b, w, h) => BE_ORTHO.wal.url(b, w, h, "image/png"), "ortofoto © SPW (Service public de Wallonie)");
   add(["vl", "bru"], (b, w, h) => BE_ORTHO.vl.url(b, w, h, "image/png"), "ortofoto © Digitaal Vlaanderen");
 }
-// Poland: GUGiK's orthophoto (WMS in Web Mercator), only inside Poland, transparent beyond it (the Czech and Slovak
-// layers below show through at the border).
+// Poland: GUGiK's orthophoto (WMS in Web Mercator), only for tiles over Poland, transparent where it has no photo (it has
+// some up to about 1 km beyond the border, so at the border its tiles cover the Czech ones there: the hostile review).
 if (STATY?.poland) {
   const Pl = insideOnly([boxedPlace("PL", STATY.poland)]);
   kinds.ortho.push(new Pl("", { bboxUrl: (b, w, h) => `${PL_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("ortofoto © GUGiK (Geoportal.gov.pl)"), bounds: boundsOf(STATY.poland) }));

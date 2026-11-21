@@ -833,7 +833,7 @@ export const EN = {
   "mapa povrchů (MJO) © Gmina Miejska Kraków": "surface map (MJO) © Gmina Miejska Kraków",
   " · mapa povrchů Krakova neodpověděla, odhad z ortofota a OSM": " · Kraków's surface map did not answer, an estimate from the orthophoto and OSM",
   "Mapa povrchů Krakova teď neodpovídá, profil je odhad z ortofota a OSM.": "Kraków's surface map is not answering now; the profile is an estimate from the orthophoto and OSM.",
-  "jízdní pruh silnice třídy GP: 3,5 m, nejméně 3,25 m (RMI 2022 § 17)": "driving lane of a class GP road: 3.5 m, at least 3.25 m (RMI 2022 § 17)",
+  "jízdní pruh dálnice a rychlostní silnice (třídy A a S): 3,75 m, nejméně 3,5 m (RMI 2022 § 17)": "driving lane of a motorway or expressway (classes A and S): 3.75 m, at least 3.5 m (RMI 2022 § 17)",
   "jízdní pruh sběrné ulice (třída Z): 3 m, nejméně 2,75 m; hlavní ulice třídy G 3,5 m (RMI 2022 § 17)": "driving lane of a collector street (class Z): 3 m, at least 2.75 m; a main street of class G 3.5 m (RMI 2022 § 17)",
   "jízdní pruh místní ulice (třída L): 2,75 m, nejméně 2,5 m (RMI 2022 § 17)": "driving lane of a local street (class L): 2.75 m, at least 2.5 m (RMI 2022 § 17)",
   "jízdní pruh obslužné ulice (třída D): 2,5 m, nejméně 2,25 m (RMI 2022 § 17)": "driving lane of an access street (class D): 2.5 m, at least 2.25 m (RMI 2022 § 17)",
@@ -844,10 +844,13 @@ export const EN = {
   "vyhrazený pruh pro autobusy: doporučeno 3,25 m, nejméně 3 m (doporučení ministerstva WR-D-24-2, nezávazné)": "bus lane: 3.25 m recommended, at least 3 m (the ministry's recommendation WR-D-24-2, not binding)",
   "kolmé stání: 2,5 × 5 m (doporučení ministerstva WR-D-24-2, nezávazné)": "perpendicular parking: 2.5 × 5 m (the ministry's recommendation WR-D-24-2, not binding)",
   "podélné stání: 2,5 × 6 m (doporučení ministerstva WR-D-24-2, nezávazné)": "parallel parking: 2.5 × 6 m (the ministry's recommendation WR-D-24-2, not binding)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku musí zůstat aspoň 1,5 m pro chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Half-on-kerb parking from OSM: {free} is left in the carriageway. At least 1.5 m must stay on the sidewalk for pedestrians (art. 47 of the road traffic act); the law gives no free width of the carriageway; the app keeps the driving lanes passable, so at least {need}.",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku se smí stát, je-li široký aspoň 1,5 m a stání neomezí chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Half-on-kerb parking from OSM: {free} is left in the carriageway. Parking on the sidewalk is allowed where it is at least 1.5 m wide and the parked car does not hinder pedestrians (art. 47 of the road traffic act); the law gives no free width of the carriageway; the app keeps the driving lanes passable, so at least {need}.",
   "Tramvajový pás {w} je užší než 6,3 m pro dvě koleje (doporučení WR-D-43-3).": "The tram belt {w} is narrower than 6.3 m for two tracks (recommendation WR-D-43-3).",
   "Tramvajový pás se sloupy {w} je užší než 7,8 m (doporučení WR-D-43-3).": "The tram belt with poles {w} is narrower than 7.8 m (recommendation WR-D-43-3).",
   "Tramvajový pás {w} je užší než 6,8 m (doporučení WR-D-43-3).": "The tram belt {w} is narrower than 6.8 m (recommendation WR-D-43-3).",
+  "jednopruhová vozovka: nejméně 3,5 m (RMI 2022 § 17 odst. 3)": "single-lane carriageway: at least 3.5 m (RMI 2022 § 17 sec. 3)",
+  "Tramvajový pás ve vozovce {w} je užší než 6 m (doporučení WR-D-43-3, typ TC/TD).": "The tram tracks in the carriageway {w} are narrower than 6 m (recommendation WR-D-43-3, type TC/TD).",
+  "Tramvajový pás ve vozovce {w} je užší než 7 m (doporučení WR-D-43-3, typ TC/TD).": "The tram tracks in the carriageway {w} are narrower than 7 m (recommendation WR-D-43-3, type TC/TD).",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

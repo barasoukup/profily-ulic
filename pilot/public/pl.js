@@ -836,7 +836,7 @@ export const PL = {
   "mapa povrchů (MJO) © Gmina Miejska Kraków": "mapa powierzchni (MJO) © Gmina Miejska Kraków",
   " · mapa povrchů Krakova neodpověděla, odhad z ortofota a OSM": " · mapa powierzchni Krakowa nie odpowiedziała, szacunek z ortofotomapy i OSM",
   "Mapa povrchů Krakova teď neodpovídá, profil je odhad z ortofota a OSM.": "Mapa powierzchni Krakowa nie odpowiada, profil jest szacunkiem z ortofotomapy i OSM.",
-  "jízdní pruh silnice třídy GP: 3,5 m, nejméně 3,25 m (RMI 2022 § 17)": "pas ruchu drogi klasy GP: 3,5 m, co najmniej 3,25 m (RMI 2022 § 17)",
+  "jízdní pruh dálnice a rychlostní silnice (třídy A a S): 3,75 m, nejméně 3,5 m (RMI 2022 § 17)": "pas ruchu autostrady i drogi ekspresowej (klasy A i S): 3,75 m, co najmniej 3,5 m (RMI 2022 § 17)",
   "jízdní pruh sběrné ulice (třída Z): 3 m, nejméně 2,75 m; hlavní ulice třídy G 3,5 m (RMI 2022 § 17)": "pas ruchu ulicy zbiorczej (klasa Z): 3 m, co najmniej 2,75 m; ulicy głównej klasy G 3,5 m (RMI 2022 § 17)",
   "jízdní pruh místní ulice (třída L): 2,75 m, nejméně 2,5 m (RMI 2022 § 17)": "pas ruchu ulicy lokalnej (klasa L): 2,75 m, co najmniej 2,5 m (RMI 2022 § 17)",
   "jízdní pruh obslužné ulice (třída D): 2,5 m, nejméně 2,25 m (RMI 2022 § 17)": "pas ruchu ulicy dojazdowej (klasa D): 2,5 m, co najmniej 2,25 m (RMI 2022 § 17)",
@@ -847,10 +847,13 @@ export const PL = {
   "vyhrazený pruh pro autobusy: doporučeno 3,25 m, nejméně 3 m (doporučení ministerstva WR-D-24-2, nezávazné)": "wydzielony pas dla autobusów: zalecane 3,25 m, co najmniej 3 m (zalecenie ministerstwa WR-D-24-2, niewiążące)",
   "kolmé stání: 2,5 × 5 m (doporučení ministerstva WR-D-24-2, nezávazné)": "parkowanie prostopadłe: 2,5 × 5 m (zalecenie ministerstwa WR-D-24-2, niewiążące)",
   "podélné stání: 2,5 × 6 m (doporučení ministerstva WR-D-24-2, nezávazné)": "parkowanie równoległe: 2,5 × 6 m (zalecenie ministerstwa WR-D-24-2, niewiążące)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku musí zůstat aspoň 1,5 m pro chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Parkowanie częściowo na chodniku według OSM: na jezdni zostaje {free}. Na chodniku musi zostać co najmniej 1,5 m dla pieszych (art. 47 ustawy Prawo o ruchu drogowym), wolnej szerokości jezdni przepis nie podaje; aplikacja zostawia pasy ruchu przejezdne, czyli co najmniej {need}.",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku se smí stát, je-li široký aspoň 1,5 m a stání neomezí chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Parkowanie częściowo na chodniku według OSM: na jezdni zostaje {free}. Na chodniku wolno parkować, jeśli ma on co najmniej 1,5 m szerokości, a postój nie utrudnia ruchu pieszych (art. 47 ustawy Prawo o ruchu drogowym), wolnej szerokości jezdni przepis nie podaje; aplikacja zostawia pasy ruchu przejezdne, czyli co najmniej {need}.",
   "Tramvajový pás {w} je užší než 6,3 m pro dvě koleje (doporučení WR-D-43-3).": "Torowisko {w} jest węższe niż 6,3 m dla dwóch torów (zalecenie WR-D-43-3).",
   "Tramvajový pás se sloupy {w} je užší než 7,8 m (doporučení WR-D-43-3).": "Torowisko ze słupami {w} jest węższe niż 7,8 m (zalecenie WR-D-43-3).",
   "Tramvajový pás {w} je užší než 6,8 m (doporučení WR-D-43-3).": "Torowisko {w} jest węższe niż 6,8 m (zalecenie WR-D-43-3).",
+  "jednopruhová vozovka: nejméně 3,5 m (RMI 2022 § 17 odst. 3)": "jezdnia jednopasowa: co najmniej 3,5 m (RMI 2022 § 17 ust. 3)",
+  "Tramvajový pás ve vozovce {w} je užší než 6 m (doporučení WR-D-43-3, typ TC/TD).": "Torowisko w jezdni {w} jest węższe niż 6 m (zalecenie WR-D-43-3, typ TC/TD).",
+  "Tramvajový pás ve vozovce {w} je užší než 7 m (doporučení WR-D-43-3, typ TC/TD).": "Torowisko w jezdni {w} jest węższe niż 7 m (zalecenie WR-D-43-3, typ TC/TD).",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

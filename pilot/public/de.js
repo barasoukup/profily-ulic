@@ -834,7 +834,7 @@ export const DE = {
   "mapa povrchů (MJO) © Gmina Miejska Kraków": "Flächenkarte (MJO) © Gmina Miejska Kraków",
   " · mapa povrchů Krakova neodpověděla, odhad z ortofota a OSM": " · die Flächenkarte Krakaus hat nicht geantwortet, Schätzung aus Luftbild und OSM",
   "Mapa povrchů Krakova teď neodpovídá, profil je odhad z ortofota a OSM.": "Die Flächenkarte Krakaus antwortet gerade nicht, der Querschnitt ist eine Schätzung aus Luftbild und OSM.",
-  "jízdní pruh silnice třídy GP: 3,5 m, nejméně 3,25 m (RMI 2022 § 17)": "Fahrstreifen einer Straße der Klasse GP: 3,5 m, mindestens 3,25 m (RMI 2022 § 17)",
+  "jízdní pruh dálnice a rychlostní silnice (třídy A a S): 3,75 m, nejméně 3,5 m (RMI 2022 § 17)": "Fahrstreifen einer Autobahn und Schnellstraße (Klassen A und S): 3,75 m, mindestens 3,5 m (RMI 2022 § 17)",
   "jízdní pruh sběrné ulice (třída Z): 3 m, nejméně 2,75 m; hlavní ulice třídy G 3,5 m (RMI 2022 § 17)": "Fahrstreifen einer Sammelstraße (Klasse Z): 3 m, mindestens 2,75 m; Hauptstraße der Klasse G 3,5 m (RMI 2022 § 17)",
   "jízdní pruh místní ulice (třída L): 2,75 m, nejméně 2,5 m (RMI 2022 § 17)": "Fahrstreifen einer Ortsstraße (Klasse L): 2,75 m, mindestens 2,5 m (RMI 2022 § 17)",
   "jízdní pruh obslužné ulice (třída D): 2,5 m, nejméně 2,25 m (RMI 2022 § 17)": "Fahrstreifen einer Erschließungsstraße (Klasse D): 2,5 m, mindestens 2,25 m (RMI 2022 § 17)",
@@ -845,10 +845,13 @@ export const DE = {
   "vyhrazený pruh pro autobusy: doporučeno 3,25 m, nejméně 3 m (doporučení ministerstva WR-D-24-2, nezávazné)": "Busfahrstreifen: empfohlen 3,25 m, mindestens 3 m (Empfehlung des Ministeriums WR-D-24-2, unverbindlich)",
   "kolmé stání: 2,5 × 5 m (doporučení ministerstva WR-D-24-2, nezávazné)": "Senkrechtparken: 2,5 × 5 m (Empfehlung des Ministeriums WR-D-24-2, unverbindlich)",
   "podélné stání: 2,5 × 6 m (doporučení ministerstva WR-D-24-2, nezávazné)": "Längsparken: 2,5 × 6 m (Empfehlung des Ministeriums WR-D-24-2, unverbindlich)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku musí zůstat aspoň 1,5 m pro chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Halb auf dem Gehweg parken laut OSM: auf der Fahrbahn bleiben {free}. Auf dem Gehweg müssen mindestens 1,5 m für Fußgänger frei bleiben (Art. 47 des Straßenverkehrsgesetzes), eine freie Fahrbahnbreite nennt das Gesetz nicht; die App hält die Fahrstreifen befahrbar, also mindestens {need}.",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku se smí stát, je-li široký aspoň 1,5 m a stání neomezí chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Halb auf dem Gehweg parken laut OSM: auf der Fahrbahn bleiben {free}. Auf dem Gehweg darf geparkt werden, wenn er mindestens 1,5 m breit ist und das Parken Fußgänger nicht behindert (Art. 47 des Straßenverkehrsgesetzes), eine freie Fahrbahnbreite nennt das Gesetz nicht; die App hält die Fahrstreifen befahrbar, also mindestens {need}.",
   "Tramvajový pás {w} je užší než 6,3 m pro dvě koleje (doporučení WR-D-43-3).": "Gleisbereich {w} ist schmaler als 6,3 m für zwei Gleise (Empfehlung WR-D-43-3).",
   "Tramvajový pás se sloupy {w} je užší než 7,8 m (doporučení WR-D-43-3).": "Gleisbereich mit Masten {w} ist schmaler als 7,8 m (Empfehlung WR-D-43-3).",
   "Tramvajový pás {w} je užší než 6,8 m (doporučení WR-D-43-3).": "Gleisbereich {w} ist schmaler als 6,8 m (Empfehlung WR-D-43-3).",
+  "jednopruhová vozovka: nejméně 3,5 m (RMI 2022 § 17 odst. 3)": "einstreifige Fahrbahn: mindestens 3,5 m (RMI 2022 § 17 Abs. 3)",
+  "Tramvajový pás ve vozovce {w} je užší než 6 m (doporučení WR-D-43-3, typ TC/TD).": "Der Gleisbereich in der Fahrbahn {w} ist schmaler als 6 m (Empfehlung WR-D-43-3, Typ TC/TD).",
+  "Tramvajový pás ve vozovce {w} je užší než 7 m (doporučení WR-D-43-3, typ TC/TD).": "Der Gleisbereich in der Fahrbahn {w} ist schmaler als 7 m (Empfehlung WR-D-43-3, Typ TC/TD).",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

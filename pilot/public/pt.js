@@ -836,7 +836,7 @@ export const PT = {
   "mapa povrchů (MJO) © Gmina Miejska Kraków": "mapa de superfícies (MJO) © Gmina Miejska Kraków",
   " · mapa povrchů Krakova neodpověděla, odhad z ortofota a OSM": " · o mapa de superfícies de Cracóvia não respondeu, estimativa a partir do ortofotomapa e do OSM",
   "Mapa povrchů Krakova teď neodpovídá, profil je odhad z ortofota a OSM.": "O mapa de superfícies de Cracóvia não responde neste momento; o perfil é uma estimativa a partir do ortofotomapa e do OSM.",
-  "jízdní pruh silnice třídy GP: 3,5 m, nejméně 3,25 m (RMI 2022 § 17)": "faixa de rodagem de uma estrada de classe GP: 3,5 m, pelo menos 3,25 m (RMI 2022 § 17)",
+  "jízdní pruh dálnice a rychlostní silnice (třídy A a S): 3,75 m, nejméně 3,5 m (RMI 2022 § 17)": "faixa de rodagem de uma autoestrada e de uma via rápida (classes A e S): 3,75 m, pelo menos 3,5 m (RMI 2022 § 17)",
   "jízdní pruh sběrné ulice (třída Z): 3 m, nejméně 2,75 m; hlavní ulice třídy G 3,5 m (RMI 2022 § 17)": "faixa de rodagem de uma rua coletora (classe Z): 3 m, pelo menos 2,75 m; rua principal de classe G 3,5 m (RMI 2022 § 17)",
   "jízdní pruh místní ulice (třída L): 2,75 m, nejméně 2,5 m (RMI 2022 § 17)": "faixa de rodagem de uma rua local (classe L): 2,75 m, pelo menos 2,5 m (RMI 2022 § 17)",
   "jízdní pruh obslužné ulice (třída D): 2,5 m, nejméně 2,25 m (RMI 2022 § 17)": "faixa de rodagem de uma rua de acesso (classe D): 2,5 m, pelo menos 2,25 m (RMI 2022 § 17)",
@@ -847,10 +847,13 @@ export const PT = {
   "vyhrazený pruh pro autobusy: doporučeno 3,25 m, nejméně 3 m (doporučení ministerstva WR-D-24-2, nezávazné)": "via reservada a autocarros: recomendado 3,25 m, pelo menos 3 m (recomendação do ministério WR-D-24-2, não vinculativa)",
   "kolmé stání: 2,5 × 5 m (doporučení ministerstva WR-D-24-2, nezávazné)": "estacionamento perpendicular: 2,5 × 5 m (recomendação do ministério WR-D-24-2, não vinculativa)",
   "podélné stání: 2,5 × 6 m (doporučení ministerstva WR-D-24-2, nezávazné)": "estacionamento longitudinal: 2,5 × 6 m (recomendação do ministério WR-D-24-2, não vinculativa)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku musí zůstat aspoň 1,5 m pro chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Estacionamento meio sobre o passeio segundo o OSM: na via ficam {free}. No passeio devem ficar pelo menos 1,5 m para os peões (art. 47 do código da estrada), a lei não indica uma largura livre da via; a aplicação mantém as faixas transitáveis, ou seja, pelo menos {need}.",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku se smí stát, je-li široký aspoň 1,5 m a stání neomezí chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Estacionamento meio sobre o passeio segundo o OSM: na via ficam {free}. No passeio pode estacionar-se se tiver pelo menos 1,5 m de largura e o estacionamento não prejudicar os peões (art. 47 do código da estrada), a lei não indica uma largura livre da via; a aplicação mantém as faixas transitáveis, ou seja, pelo menos {need}.",
   "Tramvajový pás {w} je užší než 6,3 m pro dvě koleje (doporučení WR-D-43-3).": "O espaço-canal do elétrico {w} é mais estreito do que 6,3 m para via dupla (recomendação WR-D-43-3).",
   "Tramvajový pás se sloupy {w} je užší než 7,8 m (doporučení WR-D-43-3).": "O espaço-canal do elétrico com postes {w} é mais estreito do que 7,8 m (recomendação WR-D-43-3).",
   "Tramvajový pás {w} je užší než 6,8 m (doporučení WR-D-43-3).": "O espaço-canal do elétrico {w} é mais estreito do que 6,8 m (recomendação WR-D-43-3).",
+  "jednopruhová vozovka: nejméně 3,5 m (RMI 2022 § 17 odst. 3)": "via de faixa única: pelo menos 3,5 m (RMI 2022 § 17 n.º 3)",
+  "Tramvajový pás ve vozovce {w} je užší než 6 m (doporučení WR-D-43-3, typ TC/TD).": "O espaço-canal do elétrico na via {w} é mais estreito do que 6 m (recomendação WR-D-43-3, tipo TC/TD).",
+  "Tramvajový pás ve vozovce {w} je užší než 7 m (doporučení WR-D-43-3, typ TC/TD).": "O espaço-canal do elétrico na via {w} é mais estreito do que 7 m (recomendação WR-D-43-3, tipo TC/TD).",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

@@ -836,7 +836,7 @@ export const RO = {
   "mapa povrchů (MJO) © Gmina Miejska Kraków": "harta suprafețelor (MJO) © Gmina Miejska Kraków",
   " · mapa povrchů Krakova neodpověděla, odhad z ortofota a OSM": " · harta suprafețelor Cracoviei nu a răspuns, estimare din ortofoto și OSM",
   "Mapa povrchů Krakova teď neodpovídá, profil je odhad z ortofota a OSM.": "Harta suprafețelor Cracoviei nu răspunde acum, profilul este o estimare din ortofoto și OSM.",
-  "jízdní pruh silnice třídy GP: 3,5 m, nejméně 3,25 m (RMI 2022 § 17)": "bandă de circulație a unui drum de clasă GP: 3,5 m, cel puțin 3,25 m (RMI 2022 § 17)",
+  "jízdní pruh dálnice a rychlostní silnice (třídy A a S): 3,75 m, nejméně 3,5 m (RMI 2022 § 17)": "bandă de circulație a unei autostrăzi și a unei căi expres (clasele A și S): 3,75 m, cel puțin 3,5 m (RMI 2022 § 17)",
   "jízdní pruh sběrné ulice (třída Z): 3 m, nejméně 2,75 m; hlavní ulice třídy G 3,5 m (RMI 2022 § 17)": "bandă de circulație a unei străzi colectoare (clasa Z): 3 m, cel puțin 2,75 m; a unei străzi principale de clasă G 3,5 m (RMI 2022 § 17)",
   "jízdní pruh místní ulice (třída L): 2,75 m, nejméně 2,5 m (RMI 2022 § 17)": "bandă de circulație a unei străzi locale (clasa L): 2,75 m, cel puțin 2,5 m (RMI 2022 § 17)",
   "jízdní pruh obslužné ulice (třída D): 2,5 m, nejméně 2,25 m (RMI 2022 § 17)": "bandă de circulație a unei străzi de deservire (clasa D): 2,5 m, cel puțin 2,25 m (RMI 2022 § 17)",
@@ -847,10 +847,13 @@ export const RO = {
   "vyhrazený pruh pro autobusy: doporučeno 3,25 m, nejméně 3 m (doporučení ministerstva WR-D-24-2, nezávazné)": "bandă dedicată autobuzelor: recomandat 3,25 m, cel puțin 3 m (recomandarea ministerului WR-D-24-2, neobligatorie)",
   "kolmé stání: 2,5 × 5 m (doporučení ministerstva WR-D-24-2, nezávazné)": "parcare perpendiculară: 2,5 × 5 m (recomandarea ministerului WR-D-24-2, neobligatorie)",
   "podélné stání: 2,5 × 6 m (doporučení ministerstva WR-D-24-2, nezávazné)": "parcare longitudinală: 2,5 × 6 m (recomandarea ministerului WR-D-24-2, neobligatorie)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku musí zůstat aspoň 1,5 m pro chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Parcare parțial pe trotuar conform OSM: pe carosabil rămân {free}. Pe trotuar trebuie să rămână cel puțin 1,5 m pentru pietoni (art. 47 din legea circulației rutiere), legea nu indică lățimea liberă a carosabilului; aplicația lasă benzile de circulație practicabile, deci cel puțin {need}.",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku se smí stát, je-li široký aspoň 1,5 m a stání neomezí chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Parcare parțial pe trotuar conform OSM: pe carosabil rămân {free}. Pe trotuar se poate parca dacă este lat de cel puțin 1,5 m și parcarea nu stânjenește pietonii (art. 47 din legea circulației rutiere), legea nu indică lățimea liberă a carosabilului; aplicația lasă benzile de circulație practicabile, deci cel puțin {need}.",
   "Tramvajový pás {w} je užší než 6,3 m pro dvě koleje (doporučení WR-D-43-3).": "Platforma de tramvai {w} este mai îngustă decât 6,3 m pentru două linii (recomandarea WR-D-43-3).",
   "Tramvajový pás se sloupy {w} je užší než 7,8 m (doporučení WR-D-43-3).": "Platforma de tramvai cu stâlpi {w} este mai îngustă decât 7,8 m (recomandarea WR-D-43-3).",
   "Tramvajový pás {w} je užší než 6,8 m (doporučení WR-D-43-3).": "Platforma de tramvai {w} este mai îngustă decât 6,8 m (recomandarea WR-D-43-3).",
+  "jednopruhová vozovka: nejméně 3,5 m (RMI 2022 § 17 odst. 3)": "carosabil cu o singură bandă: cel puțin 3,5 m (RMI 2022 § 17 alin. 3)",
+  "Tramvajový pás ve vozovce {w} je užší než 6 m (doporučení WR-D-43-3, typ TC/TD).": "Platforma de tramvai din carosabil {w} este mai îngustă decât 6 m (recomandarea WR-D-43-3, tip TC/TD).",
+  "Tramvajový pás ve vozovce {w} je užší než 7 m (doporučení WR-D-43-3, typ TC/TD).": "Platforma de tramvai din carosabil {w} este mai îngustă decât 7 m (recomandarea WR-D-43-3, tip TC/TD).",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

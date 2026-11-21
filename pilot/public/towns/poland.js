@@ -2,7 +2,7 @@
 // base maps are not served openly with CORS (evaluation/poland/ZDROJE.md): the profile is the estimate from OSM and
 // GUGiK's orthophoto (lanes-ortho.js "pl"), except where a city publishes its surfaces:
 // - Kraków: the city's base map MJO (msip.um.krakow.pl, ArcGIS, CORS for the origin asking): roadways (Jezdnia),
-//   squares (Plac), sidewalks (Chodnik), paths (Ścieżka). ?krakow=0 leaves it out (the A/B test, evaluation/poland/ab/).
+//   squares (Plac), sidewalks (Chodnik), cycle paths (Ścieżka). ?krakow=0 leaves it out (the A/B test, evaluation/poland/ab/).
 // As Germany's city maps: the city's surfaces with OSM's buildings before them and OSM's green and water after, only
 // where the city has a surface of the street at the cut's centre or near it; a city that does not answer: the
 // estimate, with a note.
@@ -17,11 +17,15 @@ export const KRAKOW = "https://msip.um.krakow.pl/arcgis/rest/services/Mapy_bazow
 export const AREAS = { krakow: { box: [19.79, 49.96, 20.22, 50.13] } };
 // The base map's layers and kinds (kod_nz) → MTVU codes (city.js MTVU_LABELS).
 const KRAKOW_LAYERS = [5, 6, 8];
-const KRAKOW_KIND = { KTJZ01: 701, KTPL01: 1003, KTCR02: 702, KTCR04: 702 };
+// Ścieżka (KTCR04) is drawn in the red of cycle paths and lies on them on the orthophoto (Kuklińskiego; the hostile
+// review): a cycle path.
+const KRAKOW_KIND = { KTJZ01: 701, KTPL01: 1003, KTCR02: 702, KTCR04: 703 };
 export const krakowCode = (a) => KRAKOW_KIND[/\((\w+)\)/.exec(a?.kod_nz || "")?.[1]] ?? null;
 
 async function krakow(bbox) {
   const got = await Promise.all(KRAKOW_LAYERS.map((l) => query(`${KRAKOW}/${l}/query`, { ...envelope(bbox), outFields: "kod_nz", returnGeometry: "true" })));
+  // The service gives at most 1000 a request: an answer cut short is no map (the estimate, with a note).
+  if (got.some((j) => j.exceededTransferLimit)) throw new Error("MJO: exceededTransferLimit");
   return { features: got.flatMap((j) => j.features || []).map((f) => ({ attributes: { code: krakowCode(f.attributes) }, geometry: f.geometry })).filter((f) => f.attributes.code && f.geometry?.rings) };
 }
 

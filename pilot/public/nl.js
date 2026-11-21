@@ -836,7 +836,7 @@ export const NL = {
   "mapa povrchů (MJO) © Gmina Miejska Kraków": "oppervlakkenkaart (MJO) © Gmina Miejska Kraków",
   " · mapa povrchů Krakova neodpověděla, odhad z ortofota a OSM": " · de oppervlakkenkaart van Krakau antwoordde niet, schatting uit luchtfoto en OSM",
   "Mapa povrchů Krakova teď neodpovídá, profil je odhad z ortofota a OSM.": "De oppervlakkenkaart van Krakau antwoordt nu niet, het profiel is een schatting uit luchtfoto en OSM.",
-  "jízdní pruh silnice třídy GP: 3,5 m, nejméně 3,25 m (RMI 2022 § 17)": "rijstrook van een weg van klasse GP: 3,5 m, minstens 3,25 m (RMI 2022 § 17)",
+  "jízdní pruh dálnice a rychlostní silnice (třídy A a S): 3,75 m, nejméně 3,5 m (RMI 2022 § 17)": "rijstrook van een snelweg en autoweg (klassen A en S): 3,75 m, minstens 3,5 m (RMI 2022 § 17)",
   "jízdní pruh sběrné ulice (třída Z): 3 m, nejméně 2,75 m; hlavní ulice třídy G 3,5 m (RMI 2022 § 17)": "rijstrook van een verzamelstraat (klasse Z): 3 m, minstens 2,75 m; hoofdstraat van klasse G 3,5 m (RMI 2022 § 17)",
   "jízdní pruh místní ulice (třída L): 2,75 m, nejméně 2,5 m (RMI 2022 § 17)": "rijstrook van een lokale straat (klasse L): 2,75 m, minstens 2,5 m (RMI 2022 § 17)",
   "jízdní pruh obslužné ulice (třída D): 2,5 m, nejméně 2,25 m (RMI 2022 § 17)": "rijstrook van een ontsluitingsstraat (klasse D): 2,5 m, minstens 2,25 m (RMI 2022 § 17)",
@@ -847,10 +847,13 @@ export const NL = {
   "vyhrazený pruh pro autobusy: doporučeno 3,25 m, nejméně 3 m (doporučení ministerstva WR-D-24-2, nezávazné)": "busstrook: aanbevolen 3,25 m, minstens 3 m (aanbeveling van het ministerie WR-D-24-2, niet bindend)",
   "kolmé stání: 2,5 × 5 m (doporučení ministerstva WR-D-24-2, nezávazné)": "haaksparkeren: 2,5 × 5 m (aanbeveling van het ministerie WR-D-24-2, niet bindend)",
   "podélné stání: 2,5 × 6 m (doporučení ministerstva WR-D-24-2, nezávazné)": "langsparkeren: 2,5 × 6 m (aanbeveling van het ministerie WR-D-24-2, niet bindend)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku musí zůstat aspoň 1,5 m pro chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Half op het trottoir parkeren volgens OSM: op de rijbaan blijft {free} over. Op het trottoir moet minstens 1,5 m voor voetgangers vrij blijven (art. 47 van de wegenverkeerswet), een vrije breedte van de rijbaan noemt de wet niet; de app laat de rijstroken berijdbaar, dus minstens {need}.",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku se smí stát, je-li široký aspoň 1,5 m a stání neomezí chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Half op het trottoir parkeren volgens OSM: op de rijbaan blijft {free} over. Op het trottoir mag worden geparkeerd als het minstens 1,5 m breed is en het parkeren voetgangers niet hindert (art. 47 van de wegenverkeerswet), een vrije breedte van de rijbaan noemt de wet niet; de app laat de rijstroken berijdbaar, dus minstens {need}.",
   "Tramvajový pás {w} je užší než 6,3 m pro dvě koleje (doporučení WR-D-43-3).": "Trambaan {w} is smaller dan 6,3 m voor twee sporen (aanbeveling WR-D-43-3).",
   "Tramvajový pás se sloupy {w} je užší než 7,8 m (doporučení WR-D-43-3).": "Trambaan met masten {w} is smaller dan 7,8 m (aanbeveling WR-D-43-3).",
   "Tramvajový pás {w} je užší než 6,8 m (doporučení WR-D-43-3).": "Trambaan {w} is smaller dan 6,8 m (aanbeveling WR-D-43-3).",
+  "jednopruhová vozovka: nejméně 3,5 m (RMI 2022 § 17 odst. 3)": "eenstrooksrijbaan: minstens 3,5 m (RMI 2022 § 17 lid 3)",
+  "Tramvajový pás ve vozovce {w} je užší než 6 m (doporučení WR-D-43-3, typ TC/TD).": "De trambaan in de rijbaan {w} is smaller dan 6 m (aanbeveling WR-D-43-3, type TC/TD).",
+  "Tramvajový pás ve vozovce {w} je užší než 7 m (doporučení WR-D-43-3, typ TC/TD).": "De trambaan in de rijbaan {w} is smaller dan 7 m (aanbeveling WR-D-43-3, type TC/TD).",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

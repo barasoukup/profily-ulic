@@ -837,7 +837,7 @@ export const ES = {
   "mapa povrchů (MJO) © Gmina Miejska Kraków": "mapa de superficies (MJO) © Gmina Miejska Kraków",
   " · mapa povrchů Krakova neodpověděla, odhad z ortofota a OSM": " · el mapa de superficies de Cracovia no ha respondido, estimación a partir de ortofoto y OSM",
   "Mapa povrchů Krakova teď neodpovídá, profil je odhad z ortofota a OSM.": "El mapa de superficies de Cracovia no responde ahora, la sección es una estimación a partir de ortofoto y OSM.",
-  "jízdní pruh silnice třídy GP: 3,5 m, nejméně 3,25 m (RMI 2022 § 17)": "carril de una carretera de clase GP: 3,5 m, al menos 3,25 m (RMI 2022 § 17)",
+  "jízdní pruh dálnice a rychlostní silnice (třídy A a S): 3,75 m, nejméně 3,5 m (RMI 2022 § 17)": "carril de una autopista y de una autovía (clases A y S): 3,75 m, al menos 3,5 m (RMI 2022 § 17)",
   "jízdní pruh sběrné ulice (třída Z): 3 m, nejméně 2,75 m; hlavní ulice třídy G 3,5 m (RMI 2022 § 17)": "carril de una calle colectora (clase Z): 3 m, al menos 2,75 m; calle principal de clase G 3,5 m (RMI 2022 § 17)",
   "jízdní pruh místní ulice (třída L): 2,75 m, nejméně 2,5 m (RMI 2022 § 17)": "carril de una calle local (clase L): 2,75 m, al menos 2,5 m (RMI 2022 § 17)",
   "jízdní pruh obslužné ulice (třída D): 2,5 m, nejméně 2,25 m (RMI 2022 § 17)": "carril de una calle de acceso (clase D): 2,5 m, al menos 2,25 m (RMI 2022 § 17)",
@@ -848,10 +848,13 @@ export const ES = {
   "vyhrazený pruh pro autobusy: doporučeno 3,25 m, nejméně 3 m (doporučení ministerstva WR-D-24-2, nezávazné)": "carril bus: recomendado 3,25 m, al menos 3 m (recomendación del ministerio WR-D-24-2, no vinculante)",
   "kolmé stání: 2,5 × 5 m (doporučení ministerstva WR-D-24-2, nezávazné)": "aparcamiento en batería: 2,5 × 5 m (recomendación del ministerio WR-D-24-2, no vinculante)",
   "podélné stání: 2,5 × 6 m (doporučení ministerstva WR-D-24-2, nezávazné)": "aparcamiento en línea: 2,5 × 6 m (recomendación del ministerio WR-D-24-2, no vinculante)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku musí zůstat aspoň 1,5 m pro chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Aparcamiento medio sobre la acera según OSM: en la calzada quedan {free}. En la acera deben quedar al menos 1,5 m para los peatones (art. 47 de la ley de tráfico), la ley no indica una anchura libre de la calzada; la aplicación mantiene los carriles transitables, es decir, al menos {need}.",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku se smí stát, je-li široký aspoň 1,5 m a stání neomezí chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Aparcamiento medio sobre la acera según OSM: en la calzada quedan {free}. En la acera se puede estacionar si tiene al menos 1,5 m de ancho y el estacionamiento no estorba a los peatones (art. 47 de la ley de tráfico), la ley no indica una anchura libre de la calzada; la aplicación mantiene los carriles transitables, es decir, al menos {need}.",
   "Tramvajový pás {w} je užší než 6,3 m pro dvě koleje (doporučení WR-D-43-3).": "La plataforma tranviaria de {w} es más estrecha que 6,3 m para dos vías (recomendación WR-D-43-3).",
   "Tramvajový pás se sloupy {w} je užší než 7,8 m (doporučení WR-D-43-3).": "La plataforma tranviaria con postes de {w} es más estrecha que 7,8 m (recomendación WR-D-43-3).",
   "Tramvajový pás {w} je užší než 6,8 m (doporučení WR-D-43-3).": "La plataforma tranviaria de {w} es más estrecha que 6,8 m (recomendación WR-D-43-3).",
+  "jednopruhová vozovka: nejméně 3,5 m (RMI 2022 § 17 odst. 3)": "calzada de un solo carril: al menos 3,5 m (RMI 2022 § 17 apdo. 3)",
+  "Tramvajový pás ve vozovce {w} je užší než 6 m (doporučení WR-D-43-3, typ TC/TD).": "La plataforma tranviaria en la calzada, de {w}, es más estrecha que 6 m (recomendación WR-D-43-3, tipo TC/TD).",
+  "Tramvajový pás ve vozovce {w} je užší než 7 m (doporučení WR-D-43-3, typ TC/TD).": "La plataforma tranviaria en la calzada, de {w}, es más estrecha que 7 m (recomendación WR-D-43-3, tipo TC/TD).",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

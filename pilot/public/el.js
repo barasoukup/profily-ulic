@@ -836,7 +836,7 @@ export const EL = {
   "mapa povrchů (MJO) © Gmina Miejska Kraków": "χάρτης επιφανειών (MJO) © Gmina Miejska Kraków",
   " · mapa povrchů Krakova neodpověděla, odhad z ortofota a OSM": " · ο χάρτης επιφανειών της Κρακοβίας δεν απάντησε, εκτίμηση από ορθοφωτογραφία και OSM",
   "Mapa povrchů Krakova teď neodpovídá, profil je odhad z ortofota a OSM.": "Ο χάρτης επιφανειών της Κρακοβίας δεν απαντά αυτή τη στιγμή, το προφίλ είναι εκτίμηση από ορθοφωτογραφία και OSM.",
-  "jízdní pruh silnice třídy GP: 3,5 m, nejméně 3,25 m (RMI 2022 § 17)": "λωρίδα κυκλοφορίας οδού κατηγορίας GP: 3,5 m, τουλάχιστον 3,25 m (RMI 2022 § 17)",
+  "jízdní pruh dálnice a rychlostní silnice (třídy A a S): 3,75 m, nejméně 3,5 m (RMI 2022 § 17)": "λωρίδα κυκλοφορίας αυτοκινητόδρομου και ταχείας οδού (κατηγορίες A και S): 3,75 m, τουλάχιστον 3,5 m (RMI 2022 § 17)",
   "jízdní pruh sběrné ulice (třída Z): 3 m, nejméně 2,75 m; hlavní ulice třídy G 3,5 m (RMI 2022 § 17)": "λωρίδα κυκλοφορίας συλλεκτήριας οδού (κατηγορία Z): 3 m, τουλάχιστον 2,75 m· κύριας οδού κατηγορίας G 3,5 m (RMI 2022 § 17)",
   "jízdní pruh místní ulice (třída L): 2,75 m, nejméně 2,5 m (RMI 2022 § 17)": "λωρίδα κυκλοφορίας τοπικής οδού (κατηγορία L): 2,75 m, τουλάχιστον 2,5 m (RMI 2022 § 17)",
   "jízdní pruh obslužné ulice (třída D): 2,5 m, nejméně 2,25 m (RMI 2022 § 17)": "λωρίδα κυκλοφορίας οδού εξυπηρέτησης (κατηγορία D): 2,5 m, τουλάχιστον 2,25 m (RMI 2022 § 17)",
@@ -847,10 +847,13 @@ export const EL = {
   "vyhrazený pruh pro autobusy: doporučeno 3,25 m, nejméně 3 m (doporučení ministerstva WR-D-24-2, nezávazné)": "λεωφορειολωρίδα: συνιστώμενο 3,25 m, τουλάχιστον 3 m (σύσταση του υπουργείου WR-D-24-2, μη δεσμευτική)",
   "kolmé stání: 2,5 × 5 m (doporučení ministerstva WR-D-24-2, nezávazné)": "κάθετη στάθμευση: 2,5 × 5 m (σύσταση του υπουργείου WR-D-24-2, μη δεσμευτική)",
   "podélné stání: 2,5 × 6 m (doporučení ministerstva WR-D-24-2, nezávazné)": "παράλληλη στάθμευση: 2,5 × 6 m (σύσταση του υπουργείου WR-D-24-2, μη δεσμευτική)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku musí zůstat aspoň 1,5 m pro chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Στάθμευση κατά το ήμισυ στο πεζοδρόμιο κατά το OSM: στο οδόστρωμα μένουν {free}. Στο πεζοδρόμιο πρέπει να μένουν τουλάχιστον 1,5 m για τους πεζούς (άρθρο 47 του νόμου περί κυκλοφορίας), το ελεύθερο πλάτος του οδοστρώματος ο νόμος δεν το ορίζει· η εφαρμογή αφήνει τις λωρίδες κυκλοφορίας βατές, δηλαδή τουλάχιστον {need}.",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku se smí stát, je-li široký aspoň 1,5 m a stání neomezí chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Στάθμευση κατά το ήμισυ στο πεζοδρόμιο κατά το OSM: στο οδόστρωμα μένουν {free}. Στο πεζοδρόμιο επιτρέπεται η στάθμευση, αν έχει πλάτος τουλάχιστον 1,5 m και η στάθμευση δεν εμποδίζει τους πεζούς (άρθρο 47 του νόμου περί κυκλοφορίας), το ελεύθερο πλάτος του οδοστρώματος ο νόμος δεν το ορίζει· η εφαρμογή αφήνει τις λωρίδες κυκλοφορίας βατές, δηλαδή τουλάχιστον {need}.",
   "Tramvajový pás {w} je užší než 6,3 m pro dvě koleje (doporučení WR-D-43-3).": "Ο διάδρομος τραμ {w} είναι στενότερος από 6,3 m για διπλή γραμμή (σύσταση WR-D-43-3).",
   "Tramvajový pás se sloupy {w} je užší než 7,8 m (doporučení WR-D-43-3).": "Ο διάδρομος τραμ με στύλους {w} είναι στενότερος από 7,8 m (σύσταση WR-D-43-3).",
   "Tramvajový pás {w} je užší než 6,8 m (doporučení WR-D-43-3).": "Ο διάδρομος τραμ {w} είναι στενότερος από 6,8 m (σύσταση WR-D-43-3).",
+  "jednopruhová vozovka: nejméně 3,5 m (RMI 2022 § 17 odst. 3)": "οδόστρωμα μίας λωρίδας: τουλάχιστον 3,5 m (RMI 2022 § 17 παρ. 3)",
+  "Tramvajový pás ve vozovce {w} je užší než 6 m (doporučení WR-D-43-3, typ TC/TD).": "Ο διάδρομος τραμ στο οδόστρωμα {w} είναι στενότερος από 6 m (σύσταση WR-D-43-3, τύπος TC/TD).",
+  "Tramvajový pás ve vozovce {w} je užší než 7 m (doporučení WR-D-43-3, typ TC/TD).": "Ο διάδρομος τραμ στο οδόστρωμα {w} είναι στενότερος από 7 m (σύσταση WR-D-43-3, τύπος TC/TD).",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

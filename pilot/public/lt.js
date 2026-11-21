@@ -811,7 +811,7 @@ export const LT = {
   "mapa povrchů (MJO) © Gmina Miejska Kraków": "dangų žemėlapis (MJO) © Gmina Miejska Kraków",
   " · mapa povrchů Krakova neodpověděla, odhad z ortofota a OSM": " · Krokuvos dangų žemėlapis neatsakė, įvertis iš ortofoto ir OSM",
   "Mapa povrchů Krakova teď neodpovídá, profil je odhad z ortofota a OSM.": "Krokuvos dangų žemėlapis šiuo metu neatsako, profilis yra įvertis iš ortofoto ir OSM.",
-  "jízdní pruh silnice třídy GP: 3,5 m, nejméně 3,25 m (RMI 2022 § 17)": "GP klasės kelio eismo juosta: 3,5 m, ne mažiau kaip 3,25 m (RMI 2022 § 17)",
+  "jízdní pruh dálnice a rychlostní silnice (třídy A a S): 3,75 m, nejméně 3,5 m (RMI 2022 § 17)": "automagistralės ir greitkelio (klasės A ir S) eismo juosta: 3,75 m, ne mažiau kaip 3,5 m (RMI 2022 § 17)",
   "jízdní pruh sběrné ulice (třída Z): 3 m, nejméně 2,75 m; hlavní ulice třídy G 3,5 m (RMI 2022 § 17)": "surenkamosios gatvės (Z klasė) eismo juosta: 3 m, ne mažiau kaip 2,75 m; pagrindinės G klasės gatvės 3,5 m (RMI 2022 § 17)",
   "jízdní pruh místní ulice (třída L): 2,75 m, nejméně 2,5 m (RMI 2022 § 17)": "vietinės gatvės (L klasė) eismo juosta: 2,75 m, ne mažiau kaip 2,5 m (RMI 2022 § 17)",
   "jízdní pruh obslužné ulice (třída D): 2,5 m, nejméně 2,25 m (RMI 2022 § 17)": "aptarnaujančiosios gatvės (D klasė) eismo juosta: 2,5 m, ne mažiau kaip 2,25 m (RMI 2022 § 17)",
@@ -822,10 +822,13 @@ export const LT = {
   "vyhrazený pruh pro autobusy: doporučeno 3,25 m, nejméně 3 m (doporučení ministerstva WR-D-24-2, nezávazné)": "autobusų juosta: rekomenduojama 3,25 m, ne mažiau kaip 3 m (ministerijos rekomendacija WR-D-24-2, neprivaloma)",
   "kolmé stání: 2,5 × 5 m (doporučení ministerstva WR-D-24-2, nezávazné)": "statmenas stovėjimas: 2,5 × 5 m (ministerijos rekomendacija WR-D-24-2, neprivaloma)",
   "podélné stání: 2,5 × 6 m (doporučení ministerstva WR-D-24-2, nezávazné)": "lygiagretus stovėjimas: 2,5 × 6 m (ministerijos rekomendacija WR-D-24-2, neprivaloma)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku musí zůstat aspoň 1,5 m pro chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Stovėjimas pusiau ant šaligatvio pagal OSM: važiuojamojoje dalyje lieka {free}. Ant šaligatvio pėstiesiems turi likti ne mažiau kaip 1,5 m (Kelių eismo įstatymo 47 str.), laisvo važiuojamosios dalies pločio įstatymas nenurodo; programa palieka eismo juostas pravažiuojamas, taigi ne mažiau kaip {need}.",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku se smí stát, je-li široký aspoň 1,5 m a stání neomezí chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Stovėjimas pusiau ant šaligatvio pagal OSM: važiuojamojoje dalyje lieka {free}. Ant šaligatvio stovėti galima, jei jis ne siauresnis kaip 1,5 m ir stovėjimas netrukdo pėstiesiems (Kelių eismo įstatymo 47 str.), laisvo važiuojamosios dalies pločio įstatymas nenurodo; programa palieka eismo juostas pravažiuojamas, taigi ne mažiau kaip {need}.",
   "Tramvajový pás {w} je užší než 6,3 m pro dvě koleje (doporučení WR-D-43-3).": "Tramvajaus kelias {w} siauresnis nei 6,3 m dviem bėgių keliams (rekomendacija WR-D-43-3).",
   "Tramvajový pás se sloupy {w} je užší než 7,8 m (doporučení WR-D-43-3).": "Tramvajaus kelias su stulpais {w} siauresnis nei 7,8 m (rekomendacija WR-D-43-3).",
   "Tramvajový pás {w} je užší než 6,8 m (doporučení WR-D-43-3).": "Tramvajaus kelias {w} siauresnis nei 6,8 m (rekomendacija WR-D-43-3).",
+  "jednopruhová vozovka: nejméně 3,5 m (RMI 2022 § 17 odst. 3)": "vienos juostos važiuojamoji dalis: ne mažiau kaip 3,5 m (RMI 2022 § 17 3 d.)",
+  "Tramvajový pás ve vozovce {w} je užší než 6 m (doporučení WR-D-43-3, typ TC/TD).": "Tramvajaus kelias važiuojamojoje dalyje {w} siauresnis nei 6 m (rekomendacija WR-D-43-3, tipas TC/TD).",
+  "Tramvajový pás ve vozovce {w} je užší než 7 m (doporučení WR-D-43-3, typ TC/TD).": "Tramvajaus kelias važiuojamojoje dalyje {w} siauresnis nei 7 m (rekomendacija WR-D-43-3, tipas TC/TD).",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

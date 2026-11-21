@@ -11,7 +11,7 @@ import base, { CZ_CODE } from "./default.js";
 // ministry's non-binding recommendations WR-D only as the base, said so. The class of a road (GP, G, Z, L, D) is not
 // in the data: the app's groups by OSM, main streets as Z (the cautious figure), local L, calmed D.
 const PL_LANE_BY_GROUP = {
-  A: { min: 3.25, zaklad: 3.5, why: t("jízdní pruh silnice třídy GP: 3,5 m, nejméně 3,25 m (RMI 2022 § 17)") },
+  A: { min: 3.5, zaklad: 3.75, why: t("jízdní pruh dálnice a rychlostní silnice (třídy A a S): 3,75 m, nejméně 3,5 m (RMI 2022 § 17)") },
   B: { min: 2.75, zaklad: 3, why: t("jízdní pruh sběrné ulice (třída Z): 3 m, nejméně 2,75 m; hlavní ulice třídy G 3,5 m (RMI 2022 § 17)") },
   C: { min: 2.5, zaklad: 2.75, why: t("jízdní pruh místní ulice (třída L): 2,75 m, nejméně 2,5 m (RMI 2022 § 17)") },
   D: { min: 2.25, zaklad: 2.5, why: t("jízdní pruh obslužné ulice (třída D): 2,5 m, nejméně 2,25 m (RMI 2022 § 17)") },
@@ -27,9 +27,11 @@ function limitsPL(s, segs, i) {
     case "cyklopruh": case "ochranny_pruh":
       return { min: 1.25, zaklad: 1.5, why: t("cyklopruh a kontrapas: 1,5 m, nejméně 1,25 m; od podélného stání odstup 0,5 m (RMI 2022 § 42 odst. 5, § 44)") };
     case "bus": case "bus_cyklo":
-      return { min: 0, zaklad: 3.25, why: t("vyhrazený pruh pro autobusy: doporučeno 3,25 m, nejméně 3 m (doporučení ministerstva WR-D-24-2, nezávazné)") };
+      return { min: 3, zaklad: 3.25, why: t("vyhrazený pruh pro autobusy: doporučeno 3,25 m, nejméně 3 m (doporučení ministerstva WR-D-24-2, nezávazné)") };
     case "pruh": case "pruh_piktokoridor":
       if (s.turn) return null;
+      // A roadway of one lane: at least 3.5 m (RMI 2022 § 17 odst. 3; the hostile review).
+      if (segs.filter((x) => x.type === "pruh" || x.type === "pruh_piktokoridor").length === 1) return { min: 3.5, zaklad: 3.5, why: t("jednopruhová vozovka: nejméně 3,5 m (RMI 2022 § 17 odst. 3)") };
       return PL_LANE_BY_GROUP[GROUP[s.roadClass ?? segs.find((x) => x.roadClass)?.roadClass]] || null;
     case "parkovani":
       if (s.orient === "sikme") return null;
@@ -43,7 +45,7 @@ function limitsPL(s, segs, i) {
 // The signs of the state PL (pilot/public/signs-PL/, README there; Rozporządzenie w sprawie znaków i sygnałów
 // drogowych, Dz.U. 2019 poz. 2310; Wikimedia Commons, public domain: road signs are no subject of copyright, art. 4
 // of the Polish copyright act). Poland has no sign of a pedestrian zone or a cycle street.
-const PL_FILE = { b1: "B-1", b11: "B-3", b8: "B-9", b30: "B-41", b28: "B-36", b29: "B-35", ip11a: "D-18", ztp: "D-18", ip12: "D-18a", ip14a: "D-9",
+const PL_FILE = { ip25a: "D-44", b1: "B-1", b11: "B-3", b8: "B-9", b30: "B-41", b28: "B-36", b29: "B-35", ip11a: "D-18", ztp: "D-18", ip12: "D-18a", ip14a: "D-9",
   ip15a: "D-7", ip20a: "D-12", zona30: "B-43-30", ip26a: "D-40", c8a: "C-13", c9a: "C-13-16", c10a: "C-13-16a", c7a: "C-16" };
 const PL_CODE = { ...PL_FILE, zona30: "B-43", ztp: "D-18 + T-29", c9a: "C-13/16", c10a: "C-13/16" };
 const PL_SPEEDS = [5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140];
@@ -53,6 +55,8 @@ function signFile(s, seg) {
   // with the plate T-22 (drawn in the files).
   if (s.k === "oneway") return dir === "backward" ? (s.plate === "protismer" ? "B-2_T-22" : "B-2") : s.plate === "protismer" ? "D-3_T-22" : "D-3";
   if (s.k === "b20a") return PL_SPEEDS.includes(s.v) ? `B-33-${s.v}` : null;
+  // C-13/16 segregated: the cyclists on the left and the pedestrians on the right, or the other way (as C 10a).
+  if (s.k === "c10a") return s.walk === "left" ? "C-13-16b" : "C-13-16a";
   if (s.plate && !["podelne", "kolme", "sikme", "protismer"].includes(s.plate) && s.k !== "ztp") return null;
   return PL_FILE[s.k] || null;
 }
@@ -73,10 +77,11 @@ export default {
   // the cars stay drivable, 3 m at least. Art. 47: on the sidewalk only where 1.5 m is left for pedestrians.
   freeLane: 3,
   lawNeed: (oneway, lanes, minLane) => Math.max(3, minLane * Math.max(oneway ? 1 : 2, lanes)),
-  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku musí zůstat aspoň 1,5 m pro chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.", { free, need }),
+  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku se smí stát, je-li široký aspoň 1,5 m a stání neomezí chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.", { free, need }),
   parkGuess: true,
-  // Art. 49: no stopping beside a cycle lane (RMI 2022 § 44: parking beside it only parallel, 0.5 m apart).
-  parkByCycleLane: false,
+  // RMI 2022 § 44 odst. 2: parking beside a cycle lane only parallel and 0.5 m from it (art. 49 forbids stopping on the
+  // lane itself, not beside it: the hostile review).
+  parkByCycleLane: true,
   wideRoads: true,
   roadClassFromOsm: true,
   limits: limitsPL,
@@ -85,6 +90,12 @@ export default {
   // The ministry's recommendation WR-D-43-3 (non-binding): two tracks for a 2.4 m car 6.8 m, at least 6.3 m, with the
   // poles between the tracks 7.8 m.
   tramBelt(belt, w) {
+    // Tracks in the roadway shared with cars (type TC/TD of WR-D-43-3): 6 m at least, 7 m as the base (the hostile review).
+    if (belt.length && belt.every((x) => x.type === "tramvaj_pruh" || x.type === "tramvaj_v_pruhu")) {
+      if (w < 6 - 0.005) return [{ level: "min", text: t("Tramvajový pás ve vozovce {w} je užší než 6 m (doporučení WR-D-43-3, typ TC/TD).", { w: fmt(w) }) }];
+      if (w < 7 - 0.005) return [{ level: "zaklad", text: t("Tramvajový pás ve vozovce {w} je užší než 7 m (doporučení WR-D-43-3, typ TC/TD).", { w: fmt(w) }) }];
+      return [];
+    }
     const poles = belt.some((x) => x.items?.some((it) => it.kind === "sloup_trakce"));
     if (w < 6.3 - 0.005) return [{ level: "min", text: t("Tramvajový pás {w} je užší než 6,3 m pro dvě koleje (doporučení WR-D-43-3).", { w: fmt(w) }) }];
     if (poles && w < 7.8 - 0.005) return [{ level: "zaklad", text: t("Tramvajový pás se sloupy {w} je užší než 7,8 m (doporučení WR-D-43-3).", { w: fmt(w) }) }];

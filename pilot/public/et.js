@@ -811,7 +811,7 @@ export const ET = {
   "mapa povrchů (MJO) © Gmina Miejska Kraków": "pinnakatete kaart (MJO) © Gmina Miejska Kraków",
   " · mapa povrchů Krakova neodpověděla, odhad z ortofota a OSM": " · Krakowi pinnakatete kaart ei vastanud, hinnang ortofoto ja OSM-i põhjal",
   "Mapa povrchů Krakova teď neodpovídá, profil je odhad z ortofota a OSM.": "Krakowi pinnakatete kaart praegu ei vasta, profiil on hinnang ortofoto ja OSM-i põhjal.",
-  "jízdní pruh silnice třídy GP: 3,5 m, nejméně 3,25 m (RMI 2022 § 17)": "GP-klassi maantee sõidurada: 3,5 m, vähemalt 3,25 m (RMI 2022 § 17)",
+  "jízdní pruh dálnice a rychlostní silnice (třídy A a S): 3,75 m, nejméně 3,5 m (RMI 2022 § 17)": "kiirtee ja kiirteetaolise maantee (klassid A ja S) sõidurada: 3,75 m, vähemalt 3,5 m (RMI 2022 § 17)",
   "jízdní pruh sběrné ulice (třída Z): 3 m, nejméně 2,75 m; hlavní ulice třídy G 3,5 m (RMI 2022 § 17)": "jaotustänava (klass Z) sõidurada: 3 m, vähemalt 2,75 m; G-klassi põhitänaval 3,5 m (RMI 2022 § 17)",
   "jízdní pruh místní ulice (třída L): 2,75 m, nejméně 2,5 m (RMI 2022 § 17)": "kohaliku tänava (klass L) sõidurada: 2,75 m, vähemalt 2,5 m (RMI 2022 § 17)",
   "jízdní pruh obslužné ulice (třída D): 2,5 m, nejméně 2,25 m (RMI 2022 § 17)": "juurdepääsutänava (klass D) sõidurada: 2,5 m, vähemalt 2,25 m (RMI 2022 § 17)",
@@ -822,10 +822,13 @@ export const ET = {
   "vyhrazený pruh pro autobusy: doporučeno 3,25 m, nejméně 3 m (doporučení ministerstva WR-D-24-2, nezávazné)": "bussirada: soovitatav 3,25 m, vähemalt 3 m (ministeeriumi soovitus WR-D-24-2, ei ole siduv)",
   "kolmé stání: 2,5 × 5 m (doporučení ministerstva WR-D-24-2, nezávazné)": "risti parkimine: 2,5 × 5 m (ministeeriumi soovitus WR-D-24-2, ei ole siduv)",
   "podélné stání: 2,5 × 6 m (doporučení ministerstva WR-D-24-2, nezávazné)": "rööbiti parkimine: 2,5 × 6 m (ministeeriumi soovitus WR-D-24-2, ei ole siduv)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku musí zůstat aspoň 1,5 m pro chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Poolenisti kõnniteel parkimine OSM-i järgi: sõiduteele jääb {free}. Kõnniteele peab jalakäijatele jääma vähemalt 1,5 m (liiklusseaduse art 47); sõidutee vaba laiust seadus ei nimeta; rakendus jätab sõiduread läbitavaks, seega vähemalt {need}.",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku se smí stát, je-li široký aspoň 1,5 m a stání neomezí chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Poolenisti kõnniteel parkimine OSM-i järgi: sõiduteele jääb {free}. Kõnniteel võib parkida, kui see on vähemalt 1,5 m lai ja parkimine ei takista jalakäijaid (liiklusseaduse art 47); sõidutee vaba laiust seadus ei nimeta; rakendus jätab sõiduread läbitavaks, seega vähemalt {need}.",
   "Tramvajový pás {w} je užší než 6,3 m pro dvě koleje (doporučení WR-D-43-3).": "Trammitee {w} on kitsam kui 6,3 m kahe rööbastee jaoks (soovitus WR-D-43-3).",
   "Tramvajový pás se sloupy {w} je užší než 7,8 m (doporučení WR-D-43-3).": "Kontaktvõrgu mastidega trammitee {w} on kitsam kui 7,8 m (soovitus WR-D-43-3).",
   "Tramvajový pás {w} je užší než 6,8 m (doporučení WR-D-43-3).": "Trammitee {w} on kitsam kui 6,8 m (soovitus WR-D-43-3).",
+  "jednopruhová vozovka: nejméně 3,5 m (RMI 2022 § 17 odst. 3)": "üherajaline sõidutee: vähemalt 3,5 m (RMI 2022 § 17 lõige 3)",
+  "Tramvajový pás ve vozovce {w} je užší než 6 m (doporučení WR-D-43-3, typ TC/TD).": "Trammitee sõidutees {w} on kitsam kui 6 m (soovitus WR-D-43-3, tüüp TC/TD).",
+  "Tramvajový pás ve vozovce {w} je užší než 7 m (doporučení WR-D-43-3, typ TC/TD).": "Trammitee sõidutees {w} on kitsam kui 7 m (soovitus WR-D-43-3, tüüp TC/TD).",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

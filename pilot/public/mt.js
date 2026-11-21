@@ -836,7 +836,7 @@ export const MT = {
   "mapa povrchů (MJO) © Gmina Miejska Kraków": "mappa tal-uċuħ (MJO) © Gmina Miejska Kraków",
   " · mapa povrchů Krakova neodpověděla, odhad z ortofota a OSM": " · il-mappa tal-uċuħ ta' Krakovja ma wieġbitx, stima mill-ortofoto u minn OSM",
   "Mapa povrchů Krakova teď neodpovídá, profil je odhad z ortofota a OSM.": "Il-mappa tal-uċuħ ta' Krakovja m'hijiex twieġeb issa, il-profil huwa stima mill-ortofoto u minn OSM.",
-  "jízdní pruh silnice třídy GP: 3,5 m, nejméně 3,25 m (RMI 2022 § 17)": "korsija ta' triq tal-klassi GP: 3.5 m, mill-inqas 3.25 m (RMI 2022 § 17)",
+  "jízdní pruh dálnice a rychlostní silnice (třídy A a S): 3,75 m, nejméně 3,5 m (RMI 2022 § 17)": "korsija ta' awtostrada u triq veloċi (klassijiet A u S): 3.75 m, mill-inqas 3.5 m (RMI 2022 § 17)",
   "jízdní pruh sběrné ulice (třída Z): 3 m, nejméně 2,75 m; hlavní ulice třídy G 3,5 m (RMI 2022 § 17)": "korsija ta' triq distributriċi (klassi Z): 3 m, mill-inqas 2.75 m; triq prinċipali tal-klassi G 3.5 m (RMI 2022 § 17)",
   "jízdní pruh místní ulice (třída L): 2,75 m, nejméně 2,5 m (RMI 2022 § 17)": "korsija ta' triq lokali (klassi L): 2.75 m, mill-inqas 2.5 m (RMI 2022 § 17)",
   "jízdní pruh obslužné ulice (třída D): 2,5 m, nejméně 2,25 m (RMI 2022 § 17)": "korsija ta' triq ta' aċċess (klassi D): 2.5 m, mill-inqas 2.25 m (RMI 2022 § 17)",
@@ -847,10 +847,13 @@ export const MT = {
   "vyhrazený pruh pro autobusy: doporučeno 3,25 m, nejméně 3 m (doporučení ministerstva WR-D-24-2, nezávazné)": "korsija tal-karozzi tal-linja: rakkomandat 3.25 m, mill-inqas 3 m (ir-rakkomandazzjoni tal-ministeru WR-D-24-2, mhux vinkolanti)",
   "kolmé stání: 2,5 × 5 m (doporučení ministerstva WR-D-24-2, nezávazné)": "parkeġġ perpendikulari: 2.5 × 5 m (ir-rakkomandazzjoni tal-ministeru WR-D-24-2, mhux vinkolanti)",
   "podélné stání: 2,5 × 6 m (doporučení ministerstva WR-D-24-2, nezávazné)": "parkeġġ parallel: 2.5 × 6 m (ir-rakkomandazzjoni tal-ministeru WR-D-24-2, mhux vinkolanti)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku musí zůstat aspoň 1,5 m pro chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Parkeġġ nofsu fuq il-bankina skont OSM: fil-karreġġjata jibqa' {free}. Fuq il-bankina jridu jibqgħu mill-inqas 1.5 m għall-pedoni (artikolu 47 tal-liġi dwar it-traffiku fit-toroq); il-liġi ma tindikax wisa' ħieles tal-karreġġjata; l-applikazzjoni żżomm il-korsiji tas-sewqan li jgħaddu minnhom il-vetturi, jiġifieri mill-inqas {need}.",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku se smí stát, je-li široký aspoň 1,5 m a stání neomezí chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Parkeġġ nofsu fuq il-bankina skont OSM: fil-karreġġjata jibqa' {free}. Fuq il-bankina jista' jsir il-parkeġġ jekk ikollha mill-inqas 1.5 m wisa' u l-parkeġġ ma jfixkilx lill-pedoni (artikolu 47 tal-liġi dwar it-traffiku fit-toroq); il-liġi ma tindikax wisa' ħieles tal-karreġġjata; l-applikazzjoni żżomm il-korsiji tas-sewqan li jgħaddu minnhom il-vetturi, jiġifieri mill-inqas {need}.",
   "Tramvajový pás {w} je užší než 6,3 m pro dvě koleje (doporučení WR-D-43-3).": "L-istrixxa tat-tramm {w} hija idjaq minn 6.3 m għal żewġ binarji (rakkomandazzjoni WR-D-43-3).",
   "Tramvajový pás se sloupy {w} je užší než 7,8 m (doporučení WR-D-43-3).": "L-istrixxa tat-tramm b'arbli {w} hija idjaq minn 7.8 m (rakkomandazzjoni WR-D-43-3).",
   "Tramvajový pás {w} je užší než 6,8 m (doporučení WR-D-43-3).": "L-istrixxa tat-tramm {w} hija idjaq minn 6.8 m (rakkomandazzjoni WR-D-43-3).",
+  "jednopruhová vozovka: nejméně 3,5 m (RMI 2022 § 17 odst. 3)": "karreġġjata b'korsija waħda: mill-inqas 3.5 m (RMI 2022 § 17 paragrafu 3)",
+  "Tramvajový pás ve vozovce {w} je užší než 6 m (doporučení WR-D-43-3, typ TC/TD).": "L-istrixxa tat-tramm fil-karreġġjata {w} hija idjaq minn 6 m (rakkomandazzjoni WR-D-43-3, tip TC/TD).",
+  "Tramvajový pás ve vozovce {w} je užší než 7 m (doporučení WR-D-43-3, typ TC/TD).": "L-istrixxa tat-tramm fil-karreġġjata {w} hija idjaq minn 7 m (rakkomandazzjoni WR-D-43-3, tip TC/TD).",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

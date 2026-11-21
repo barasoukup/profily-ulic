@@ -836,7 +836,7 @@ export const GA = {
   "mapa povrchů (MJO) © Gmina Miejska Kraków": "léarscáil dromchlaí (MJO) © Gmina Miejska Kraków",
   " · mapa povrchů Krakova neodpověděla, odhad z ortofota a OSM": " · níor fhreagair léarscáil dromchlaí Cracó, meastachán ón ortafótagraf agus OSM",
   "Mapa povrchů Krakova teď neodpovídá, profil je odhad z ortofota a OSM.": "Níl léarscáil dromchlaí Cracó ag freagairt anois, is meastachán ón ortafótagraf agus OSM an phróifíl.",
-  "jízdní pruh silnice třídy GP: 3,5 m, nejméně 3,25 m (RMI 2022 § 17)": "lána tráchta ar bhóthar de rang GP: 3.5 m, 3.25 m ar a laghad (RMI 2022 § 17)",
+  "jízdní pruh dálnice a rychlostní silnice (třídy A a S): 3,75 m, nejméně 3,5 m (RMI 2022 § 17)": "lána tráchta ar mhótarbhealach agus ar luastrasa (ranganna A agus S): 3.75 m, 3.5 m ar a laghad (RMI 2022 § 17)",
   "jízdní pruh sběrné ulice (třída Z): 3 m, nejméně 2,75 m; hlavní ulice třídy G 3,5 m (RMI 2022 § 17)": "lána tráchta ar shráid dháileacháin (rang Z): 3 m, 2.75 m ar a laghad; príomhshráid de rang G 3.5 m (RMI 2022 § 17)",
   "jízdní pruh místní ulice (třída L): 2,75 m, nejméně 2,5 m (RMI 2022 § 17)": "lána tráchta ar shráid áitiúil (rang L): 2.75 m, 2.5 m ar a laghad (RMI 2022 § 17)",
   "jízdní pruh obslužné ulice (třída D): 2,5 m, nejméně 2,25 m (RMI 2022 § 17)": "lána tráchta ar shráid rochtana (rang D): 2.5 m, 2.25 m ar a laghad (RMI 2022 § 17)",
@@ -847,10 +847,13 @@ export const GA = {
   "vyhrazený pruh pro autobusy: doporučeno 3,25 m, nejméně 3 m (doporučení ministerstva WR-D-24-2, nezávazné)": "lána bus: 3.25 m molta, 3 m ar a laghad (moladh na hAireachta WR-D-24-2, gan a bheith ceangailteach)",
   "kolmé stání: 2,5 × 5 m (doporučení ministerstva WR-D-24-2, nezávazné)": "páirceáil ingearach: 2.5 × 5 m (moladh na hAireachta WR-D-24-2, gan a bheith ceangailteach)",
   "podélné stání: 2,5 × 6 m (doporučení ministerstva WR-D-24-2, nezávazné)": "páirceáil chomhthreomhar: 2.5 × 6 m (moladh na hAireachta WR-D-24-2, gan a bheith ceangailteach)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku musí zůstat aspoň 1,5 m pro chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Páirceáil leath ar an gcosán de réir OSM: fanann {free} sa charrbhealach. Caithfidh 1.5 m ar a laghad fanacht ar an gcosán do choisithe (airteagal 47 den acht tráchta ar bhóithre); ní luann an dlí leithead saor an charrbhealaigh; coinníonn an aip na lánaí tráchta inghluaiste, mar sin {need} ar a laghad.",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku se smí stát, je-li široký aspoň 1,5 m a stání neomezí chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Páirceáil leath ar an gcosán de réir OSM: fanann {free} sa charrbhealach. Is féidir páirceáil ar an gcosán má tá sé 1.5 m ar a laghad ar leithead agus nach gcuireann an pháirceáil isteach ar choisithe (airteagal 47 den acht tráchta ar bhóithre); ní luann an dlí leithead saor an charrbhealaigh; coinníonn an aip na lánaí tráchta inghluaiste, mar sin {need} ar a laghad.",
   "Tramvajový pás {w} je užší než 6,3 m pro dvě koleje (doporučení WR-D-43-3).": "Tá an raon tram {w} níos cúinge ná 6.3 m do dhá rian (moladh WR-D-43-3).",
   "Tramvajový pás se sloupy {w} je užší než 7,8 m (doporučení WR-D-43-3).": "Tá an raon tram le cuaillí {w} níos cúinge ná 7.8 m (moladh WR-D-43-3).",
   "Tramvajový pás {w} je užší než 6,8 m (doporučení WR-D-43-3).": "Tá an raon tram {w} níos cúinge ná 6.8 m (moladh WR-D-43-3).",
+  "jednopruhová vozovka: nejméně 3,5 m (RMI 2022 § 17 odst. 3)": "carrbhealach aonlána: 3.5 m ar a laghad (RMI 2022 § 17 mír 3)",
+  "Tramvajový pás ve vozovce {w} je užší než 6 m (doporučení WR-D-43-3, typ TC/TD).": "Tá an raon tram sa charrbhealach {w} níos cúinge ná 6 m (moladh WR-D-43-3, cineál TC/TD).",
+  "Tramvajový pás ve vozovce {w} je užší než 7 m (doporučení WR-D-43-3, typ TC/TD).": "Tá an raon tram sa charrbhealach {w} níos cúinge ná 7 m (moladh WR-D-43-3, cineál TC/TD).",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.

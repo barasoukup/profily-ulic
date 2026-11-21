@@ -815,7 +815,7 @@ export const HU = {
   "mapa povrchů (MJO) © Gmina Miejska Kraków": "felületi térkép (MJO) © Gmina Miejska Kraków",
   " · mapa povrchů Krakova neodpověděla, odhad z ortofota a OSM": " · Krakkó felületi térképe nem válaszolt, becslés az ortofotóból és az OSM-ből",
   "Mapa povrchů Krakova teď neodpovídá, profil je odhad z ortofota a OSM.": "Krakkó felületi térképe most nem válaszol, a profil az ortofotóból és az OSM-ből készült becslés.",
-  "jízdní pruh silnice třídy GP: 3,5 m, nejméně 3,25 m (RMI 2022 § 17)": "GP osztályú út forgalmi sávja: 3,5 m, legalább 3,25 m (RMI 2022 § 17)",
+  "jízdní pruh dálnice a rychlostní silnice (třídy A a S): 3,75 m, nejméně 3,5 m (RMI 2022 § 17)": "autópálya és autóút forgalmi sávja (A és S osztály): 3,75 m, legalább 3,5 m (RMI 2022 § 17)",
   "jízdní pruh sběrné ulice (třída Z): 3 m, nejméně 2,75 m; hlavní ulice třídy G 3,5 m (RMI 2022 § 17)": "gyűjtőutca (Z osztály) forgalmi sávja: 3 m, legalább 2,75 m; G osztályú főutcáé 3,5 m (RMI 2022 § 17)",
   "jízdní pruh místní ulice (třída L): 2,75 m, nejméně 2,5 m (RMI 2022 § 17)": "helyi utca (L osztály) forgalmi sávja: 2,75 m, legalább 2,5 m (RMI 2022 § 17)",
   "jízdní pruh obslužné ulice (třída D): 2,5 m, nejméně 2,25 m (RMI 2022 § 17)": "kiszolgálóutca (D osztály) forgalmi sávja: 2,5 m, legalább 2,25 m (RMI 2022 § 17)",
@@ -826,10 +826,13 @@ export const HU = {
   "vyhrazený pruh pro autobusy: doporučeno 3,25 m, nejméně 3 m (doporučení ministerstva WR-D-24-2, nezávazné)": "buszsáv: ajánlott 3,25 m, legalább 3 m (a minisztérium WR-D-24-2 ajánlása, nem kötelező)",
   "kolmé stání: 2,5 × 5 m (doporučení ministerstva WR-D-24-2, nezávazné)": "merőleges parkolás: 2,5 × 5 m (a minisztérium WR-D-24-2 ajánlása, nem kötelező)",
   "podélné stání: 2,5 × 6 m (doporučení ministerstva WR-D-24-2, nezávazné)": "párhuzamos parkolás: 2,5 × 6 m (a minisztérium WR-D-24-2 ajánlása, nem kötelező)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku musí zůstat aspoň 1,5 m pro chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Félig a járdán parkolás az OSM szerint: az úttesten {free} marad. A járdán legalább 1,5 m-nek kell maradnia a gyalogosoknak (a közúti közlekedési törvény 47. cikke), az úttest szabad szélességét a törvény nem adja meg; az alkalmazás járhatóan hagyja a forgalmi sávokat, vagyis legalább {need} szükséges.",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku se smí stát, je-li široký aspoň 1,5 m a stání neomezí chodce (čl. 47 zákona o silničním provozu), volnou šířku vozovky zákon neuvádí; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Félig a járdán parkolás az OSM szerint: az úttesten {free} marad. A járdán szabad parkolni, ha legalább 1,5 m széles, és a parkolás nem akadályozza a gyalogosokat (a közúti közlekedési törvény 47. cikke), az úttest szabad szélességét a törvény nem adja meg; az alkalmazás járhatóan hagyja a forgalmi sávokat, vagyis legalább {need} szükséges.",
   "Tramvajový pás {w} je užší než 6,3 m pro dvě koleje (doporučení WR-D-43-3).": "A villamospálya ({w}) keskenyebb a két vágányhoz szükséges 6,3 m-nél (WR-D-43-3 ajánlás).",
   "Tramvajový pás se sloupy {w} je užší než 7,8 m (doporučení WR-D-43-3).": "A villamospálya oszlopokkal ({w}) keskenyebb 7,8 m-nél (WR-D-43-3 ajánlás).",
   "Tramvajový pás {w} je užší než 6,8 m (doporučení WR-D-43-3).": "A villamospálya ({w}) keskenyebb 6,8 m-nél (WR-D-43-3 ajánlás).",
+  "jednopruhová vozovka: nejméně 3,5 m (RMI 2022 § 17 odst. 3)": "egysávos úttest: legalább 3,5 m (RMI 2022 § 17 3. bek.)",
+  "Tramvajový pás ve vozovce {w} je užší než 6 m (doporučení WR-D-43-3, typ TC/TD).": "A villamospálya az úttesten ({w}) keskenyebb 6 m-nél (WR-D-43-3 ajánlás, TC/TD típus).",
+  "Tramvajový pás ve vozovce {w} je užší než 7 m (doporučení WR-D-43-3, typ TC/TD).": "A villamospálya az úttesten ({w}) keskenyebb 7 m-nél (WR-D-43-3 ajánlás, TC/TD típus).",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.
