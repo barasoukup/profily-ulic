@@ -33,6 +33,12 @@ export const COUNTRIES = {
   // 0.7 GB (one pack, as Austria), only on R2.
   be: { iso: "BE", geofabrik: "belgium/belgium", pages: false },
   lu: { iso: "LU", geofabrik: "luxembourg/luxembourg", pages: false },
+  // Poland (Bára 21. 11. 2026): 2.1 GB, by its 16 voivodeships as Germany by its Länder (each pack under 512 MB), in
+  // Geofabrik's folders europe/poland/<voivodeship>/ as the Netherlands' provinces; only on R2.
+  pl: { iso: "PL", geofabrik: "poland", pages: false, parts: Object.fromEntries([["ds", "dolnoslaskie"], ["kp", "kujawsko-pomorskie"], ["ld", "lodzkie"],
+    ["lu", "lubelskie"], ["lb", "lubuskie"], ["ma", "malopolskie"], ["mz", "mazowieckie"], ["op", "opolskie"], ["pk", "podkarpackie"], ["pd", "podlaskie"],
+    ["pm", "pomorskie"], ["sl", "slaskie"], ["sk", "swietokrzyskie"], ["wn", "warminsko-mazurskie"], ["wp", "wielkopolskie"], ["zp", "zachodniopomorskie"]]
+    .map(([p, e]) => [`pl_${p}`, `poland/${e}/${e}`])) },
 };
 // The packs to build (osm-tiles.yml): a state's own, or its parts.
 export const PACKS = Object.entries(COUNTRIES).flatMap(([k, c]) => (c.parts ? Object.entries(c.parts).map(([code, extract]) => ({ code, extract })) : [{ code: k, extract: c.geofabrik }]));

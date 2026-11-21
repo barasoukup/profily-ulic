@@ -67,6 +67,8 @@ export function outage({ surfaces, lines, parking }, dataName = city.dataName, {
   // Switzerland's and Liechtenstein's cadastral survey did not answer (towns/switzerland.js).
   if (s?.chFailed) return { note: mark(" · úřední vyměřování neodpovědělo, odhad z ortofota a OSM"), text: t("Úřední vyměřování (geodienste.ch) teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };
   // The Netherlands' BGT did not answer (towns/netherlands.js).
+  // Kraków's base map did not answer (towns/poland.js).
+  if (s?.plFailed) return { note: mark(" · mapa povrchů Krakova neodpověděla, odhad z ortofota a OSM"), text: t("Mapa povrchů Krakova teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };
   if (s?.nlFailed) return { note: mark(" · mapa povrchů BGT neodpověděla, odhad z ortofota a OSM"), text: t("Mapa povrchů BGT (PDOK) teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };
   if (s?.deFailed) return { note: mark(" · mapa povrchů města neodpověděla, odhad z ortofota a OSM"), text: t("Mapa povrchů města teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };
   if (s?.atFailed) return { note: mark(" · mapa povrchů Vídně neodpověděla, odhad z ortofota a OSM"), text: t("Mapa povrchů Vídně teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };

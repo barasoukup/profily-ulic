@@ -9,6 +9,7 @@ import { findSk, locateSk, looksSlovak } from "./search-sk.js";
 import { findAt, locateAt, looksViennese } from "./search-at.js";
 import { findPhoton, looksGerman } from "./search-photon.js";
 import { findNl, looksDutch } from "./search-nl.js";
+import { findPl, looksPolish } from "./search-pl.js";
 
 export const RUIAN_SEARCH = "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer";
 const GEOCODE = `${RUIAN_SEARCH}/exts/GeocodeSOE`;
@@ -201,7 +202,7 @@ export async function locate(item, signal) {
 // ---------- UI: a Leaflet control at the map's top left ----------
 // onPick({ item, lat, lon, cut }) after the map has moved; status(msg, kind) for a failure.
 // services(): the search services of the state the map shows (countries/<ISO>.js search): "zbgis" (Slovak places are
-// then asked of ZBGIS along with RÚIAN), "photon" (Photon of komoot, Austria), "photon-de" (Photon, Germany), "photon-ch" (Photon, Switzerland and Liechtenstein), "pdok" (PDOK's Locatieserver, the Netherlands), "photon-be" (Photon, Belgium and Luxembourg).
+// then asked of ZBGIS along with RÚIAN), "photon" (Photon of komoot, Austria), "photon-de" (Photon, Germany), "photon-ch" (Photon, Switzerland and Liechtenstein), "pdok" (PDOK's Locatieserver, the Netherlands), "photon-be" (Photon, Belgium and Luxembourg), "uug" (GUGiK's UUG, Poland).
 // inVienna(): does the map show Vienna.
 export function mountSearch(map, { status, onPick, services = () => [], inVienna = () => false }) {
   const L = globalThis.L;
@@ -276,7 +277,10 @@ export function mountSearch(map, { status, onPick, services = () => [], inVienna
         : cz.length === 0 && !skNow.length && looksGerman(text) ? ["DE", "AT", "CH", "LI"] : [];
       const photon = countries.length && !nl.length && !at.some((x) => x.type === "AdresniMisto")
         ? await findPhoton(text, getJSON, mine.signal, countries, [map.getCenter().lat, map.getCenter().lng]).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání Photon", err); return []; }) : [];
-      const found = rankResults([...nl, ...at, ...photon, ...cz, ...(both || cz.length || nl.length ? skNow : await sk())], text);
+      // Poland: GUGiK's UUG (search-pl.js) where the map shows it, or a Polish-looking query RÚIAN did not find.
+      const pl = services().includes("uug") || (cz.length === 0 && !skNow.length && !nl.length && looksPolish(text))
+        ? await findPl(text.trim(), getJSON, mine.signal).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání UUG", err); return []; }) : [];
+      const found = rankResults([...pl, ...nl, ...at, ...photon, ...cz, ...(both || cz.length || nl.length || pl.length ? skNow : await sk())], text);
       cache.set(key, found);
       if (cache.size > 40) cache.delete(cache.keys().next().value);
       if (mine === ctrl && document.activeElement === input) show(found, t("Nic jsem nenašla."));

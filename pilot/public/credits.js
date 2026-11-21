@@ -27,6 +27,7 @@ export const SOURCE_CREDITS = {
     nl: () => t("ortofoto © PDOK (Beeldmateriaal Nederland)"),
     "be-vl": () => t("ortofoto © Digitaal Vlaanderen"), "be-wal": () => t("ortofoto © SPW (Service public de Wallonie)"),
     lu: () => t("ortofoto © ACT Luxembourg (geoportail.lu)"),
+    pl: () => t("ortofoto © GUGiK (Geoportal.gov.pl)"),
     // Germany: the orthophoto of the Land (lanes-ortho.js DE_ORTHO, "de-BY" …), with the credit the Land asks for.
     ...Object.fromEntries(Object.entries(DE_ORTHO).map(([land, o]) => [`de-${land}`, () => t("ortofoto {who}", { who: o.credit })])),
   },
@@ -59,6 +60,8 @@ export const SOURCE_CREDITS = {
   chAv: Object.fromEntries([...CANTONS, "CH"].map((c) => [c, () => (c === "FL" || c === "LI" ? t("úřední vyměřování (Bodenbedeckung) © Fürstentum Liechtenstein (geodienste.ch)")
     : c === "CH" ? t("úřední vyměřování (Bodenbedeckung) © kantony (geodienste.ch)") : t("úřední vyměřování (Bodenbedeckung) © kanton {canton} (geodienste.ch)", { canton: c }))])),
   // The Netherlands' national large-scale topography (towns/netherlands.js).
+  // Kraków's base map (towns/poland.js).
+  plTown: { krakow: () => t("mapa povrchů (MJO) © Gmina Miejska Kraków") },
   nlBgt: { true: () => t("mapa povrchů BGT © Kadaster a správci BGT (PDOK, CC0)") },
   // Amsterdam's parking spaces (towns/netherlands.js).
   amsParking: { true: () => t("parkovací místa © Gemeente Amsterdam") },

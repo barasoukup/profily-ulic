@@ -38,6 +38,9 @@ export const BE_ORTHO = {
 // Luxembourg (Bára 20. 11. 2026): the latest orthophoto of the ACT (geoportail.lu, WMTS {z}/{x}/{y} in Web Mercator to
 // level 21, CORS *).
 export const LU_ORTHO = "https://wmts1.geoportail.lu/opendata/wmts/ortho_latest/GLOBAL_WEBMERCATOR_4_V3";
+// Poland (Bára 21. 11. 2026): GUGiK's orthophoto map (Geoportal, PZGIK ORTO HighResolution WMS in Web Mercator, CORS
+// for the origin asking; the national orthophoto, open data).
+export const PL_ORTHO = (b, w, h, format = "image/jpeg") => `https://mapy.geoportal.gov.pl/wss/service/PZGIK/ORTO/WMS/HighResolution?${new URLSearchParams({ SERVICE: "WMS", REQUEST: "GetMap", VERSION: "1.3.0", LAYERS: "Raster", STYLES: "", CRS: "EPSG:3857", BBOX: b.join(","), WIDTH: w, HEIGHT: h, FORMAT: format })}`;
 export const SK_ORTHO = "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ortofoto_hres/MapServer";
 const SOURCES = {
   // The grid of z19, tiles of 512 px (about 10 cm). balance: the mosaic is bright and tinted (Košice 2025: asphalt
@@ -49,6 +52,7 @@ const SOURCES = {
   at19: { res: 0.1, tiles: AT_ORTHO, z: 19, px: 256, ext: ".jpeg" },
   ch: { res: 0.1, tiles: CH_ORTHO, z: 20, px: 256, ext: ".jpeg", xy: true },
   nl: { res: 0.1, tiles: NL_ORTHO, z: 20, px: 256, ext: ".jpeg", xy: true },
+  pl: { res: 0.1, url: (b, w, h, format) => PL_ORTHO(b, w, h, format) },
   lu: { res: 0.1, tiles: LU_ORTHO, z: 20, px: 256, ext: ".jpeg", xy: true },
   brno: { res: 0.1, tiles: "https://gis.brno.cz/ags1/rest/services/OMI/OMI_basemaps_ortofoto_2025_wgs/MapServer/tile", z: 20, shift: [1.06, 3.09] },
   plzen: { res: 0.1, url: (b, w, h) => `https://ags.plzen.eu/arcgis/rest/services/Orto_2024_5cm_RGB_mimoveg/MapServer/export?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: "jpg", f: "image", datumTransformations: "[1623]" })}` },
