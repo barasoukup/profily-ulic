@@ -87,6 +87,15 @@ async function image(c, tMax) {
       await fs.mkdir(path.dirname(file), { recursive: true });
       await fs.writeFile(file, buf);
       await new Promise((r) => setTimeout(r, 300));
+    } else if (process.env.ORTHO === "pl") {
+      // Poland (evaluation/poland/ab): GUGiK's orthophoto WMS (a JPEG, made a PNG).
+      const { PL_ORTHO } = await import("../../../pilot/public/lanes-ortho.js");
+      await fs.mkdir(path.dirname(file), { recursive: true });
+      await fs.writeFile(file + ".img", Buffer.from(await (await fetch(PL_ORTHO([x0, y0, x1, y1], w, h), { headers: { "User-Agent": "profily-ulic" } })).arrayBuffer()));
+      await run("magick", [file + ".img", "PNG24:" + file]);
+      await fs.rm(file + ".img");
+      buf = await fs.readFile(file);
+      await new Promise((r) => setTimeout(r, 300));
     } else if (process.env.ORTHO === "be") {
       // Belgium (evaluation/belgium/ab): Flanders' orthophoto, else Wallonia's (a blank Flemish image is small).
       const { BE_ORTHO } = await import("../../../pilot/public/lanes-ortho.js");

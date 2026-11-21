@@ -24,6 +24,9 @@ export const TOWNS = {
     leuven: [50.8798, 4.7005], namur: [50.4674, 4.872], charleroi: [50.4108, 4.4446], mons: [50.4542, 3.9523], mechelen: [51.0259, 4.4776] },
   LU: { luxembourg: [49.6116, 6.1319], esch: [49.4958, 5.9806], differdange: [49.5242, 5.8914], dudelange: [49.4806, 6.0875], ettelbruck: [49.8475, 6.1044],
     diekirch: [49.8686, 6.1594], wiltz: [49.9661, 5.9325], echternach: [49.8117, 6.4214], remich: [49.5447, 6.3667], grevenmacher: [49.6797, 6.4417] },
+  // Poland (21. 11. 2026): the towns of the local OSM pack.
+  PL: { warszawa: [52.2297, 21.0122], krakow: [50.0614, 19.9383], wroclaw: [51.1099, 17.0326], gdansk: [54.3520, 18.6466], poznan: [52.4064, 16.9252],
+    lodz: [51.7592, 19.4560], katowice: [50.2649, 19.0238], lublin: [51.2465, 22.5684], szczecin: [53.4285, 14.5528], bydgoszcz: [53.1235, 18.0084] },
 };
 if (process.argv[1] === new URL(import.meta.url).pathname) {
   let seed = 20261117;
