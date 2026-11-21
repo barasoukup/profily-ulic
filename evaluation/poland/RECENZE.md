@@ -10,7 +10,7 @@
 | „Na chodníku musí zůstat 1,5 m“ jako výklad | opraveno: „chodník aspoň 1,5 m a stání neomezí chodce“ (čl. 47) |
 | Skupina A jako třída GP; chybí jednopruhová vozovka 3,5 m | opraveno: A = dálnice a rychlostní silnice 3,75 / 3,5; jediný pruh min. 3,5 m (§ 17 odst. 3) |
 | A/B Krakova: sporná hodnocení | přehodnoceno (`ab/ZPRAVA.md`): lépe 7, hůř 6, sporně 4 — slabé |
-| „Ścieżka“ jako chodník | opraveno: cyklostezka (barva a ortofoto) |
+| „Ścieżka“ jako chodník | zkoušeno jako cyklostezka, vráceno: na Mostu Kotlarském je Ścieżka celý pás chodce i kol (na ortofotu vedle sebe), jako cyklostezka z něj vznikly dvě cyklostezky; jako chodník ho rozdělí OSM (segregated) |
 | Ortofoto GUGiK bez vlastního A/B | otevřené (je v obou ramenech A/B i v měření přesnosti) |
 | Komentář o průhlednosti u hranice | opraveno (GUGiK má snímky asi 1 km za hranicí) |
 | Výsledek „Kraków“ v hledání jako ulice | opraveno: typ Obec |

@@ -16,8 +16,10 @@ Mapa se použila u 24 řezů a u všech změnila profil. Prohlédnuto 16 obrázk
 ## Po nepřátelské recenzi (21. 11. 2026, `vysledky/rezy-po-recenzi.json`)
 
 Recenze přehodnotila: kr2 (B vložil „Neurčeno“), kr19 (kousky 0,3–0,5 m) a kr28 (obslužná 4,1 → 8,4) jsou hůř, ne stejně;
-kr10, kr11, kr12 a kr24 dělí chodník na nereálné poloviny „chodník X + stezka X“. „Ścieżka“ (KTCR04) je podle barvy
-a ortofota cyklostezka: mapuje se na 703 (dřív chodník). Stejný vzorek znovu: mapa použita u 26, změna jen u 4 řezů
+kr10, kr11, kr12 a kr24 dělí chodník na poloviny „chodník X + stezka X“. Ortofoto v plném rozlišení: na Mostu Kotlarském
+(kr12) je to skutečnost (šedý chodník a červený cyklopruh vedle sebe na každé straně), kr10 je pod stromy (nejde
+posoudit). „Ścieżka“ (KTCR04) zkoušena jako cyklostezka: na mostě z ní byly dvě cyklostezky, proto zůstává chodníkem
+a rozdělí ji OSM. Stejný vzorek znovu: mapa použita u 26, změna jen u 4 řezů
 (kr5, kr12, kr24, kr35); dělení chodníku napůl zůstává tam, kde OSM vede cyklostezku po chodníku.
 
 **Souhrn po recenzi: lépe 7 (kr3, kr7, kr12, kr17, kr18, kr32, kr33), hůř 6 (kr2, kr13, kr19, kr28, kr31, kr36),

@@ -2,7 +2,7 @@
 // base maps are not served openly with CORS (evaluation/poland/ZDROJE.md): the profile is the estimate from OSM and
 // GUGiK's orthophoto (lanes-ortho.js "pl"), except where a city publishes its surfaces:
 // - Kraków: the city's base map MJO (msip.um.krakow.pl, ArcGIS, CORS for the origin asking): roadways (Jezdnia),
-//   squares (Plac), sidewalks (Chodnik), cycle paths (Ścieżka). ?krakow=0 leaves it out (the A/B test, evaluation/poland/ab/).
+//   squares (Plac), sidewalks (Chodnik), paths for cyclists and walkers (Ścieżka). ?krakow=0 leaves it out (the A/B test, evaluation/poland/ab/).
 // As Germany's city maps: the city's surfaces with OSM's buildings before them and OSM's green and water after, only
 // where the city has a surface of the street at the cut's centre or near it; a city that does not answer: the
 // estimate, with a note.
@@ -17,9 +17,11 @@ export const KRAKOW = "https://msip.um.krakow.pl/arcgis/rest/services/Mapy_bazow
 export const AREAS = { krakow: { box: [19.79, 49.96, 20.22, 50.13] } };
 // The base map's layers and kinds (kod_nz) → MTVU codes (city.js MTVU_LABELS).
 const KRAKOW_LAYERS = [5, 6, 8];
-// Ścieżka (KTCR04) is drawn in the red of cycle paths and lies on them on the orthophoto (Kuklińskiego; the hostile
-// review): a cycle path.
-const KRAKOW_KIND = { KTJZ01: 701, KTPL01: 1003, KTCR02: 702, KTCR04: 703 };
+// Ścieżka (KTCR04) is drawn in the red of cycle paths, but it takes in the walkers' part too: on Most Kotlarski the
+// whole walkway of each side (a grey sidewalk and a red cycle strip side by side on the orthophoto) is one Ścieżka, and
+// as a cycle path it became two cycle paths (a two-way track split by its directions). As a walkway OSM decides what
+// it holds (segregated: a sidewalk and a cycle path side by side; Bára 21. 11. 2026: "záleží, jak to tam opravdu vypadá").
+const KRAKOW_KIND = { KTJZ01: 701, KTPL01: 1003, KTCR02: 702, KTCR04: 702 };
 export const krakowCode = (a) => KRAKOW_KIND[/\((\w+)\)/.exec(a?.kod_nz || "")?.[1]] ?? null;
 
 async function krakow(bbox) {

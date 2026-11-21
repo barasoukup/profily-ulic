@@ -10,7 +10,7 @@ test("Polsko: mapa povrchů Krakova (druhy MJO na kódy MTVU), vypínač ?krakow
   assert.equal(P.krakowCode({ kod_nz: "Chodnik (KTCR02)" }), 702);
   assert.equal(P.krakowCode({ kod_nz: "Plac (KTPL01)" }), 1003);
   assert.equal(P.krakowCode({ kod_nz: "Krawężnik (KTKR01)" }), null);
-  assert.equal(P.krakowCode({ kod_nz: "Ścieżka (KTCR04)" }), 703, "cyklostezka (červená, na ortofotu u Kuklińskiego)");
+  assert.equal(P.krakowCode({ kod_nz: "Ścieżka (KTCR04)" }), 702, "pěší a cyklistický pás: rozdělí ho OSM (Most Kotlarski: chodník a cyklopruh vedle sebe)");
   globalThis.PROFILY_PL = { krakow: "0" };
   try { assert.deepEqual(await P.sources.surfaces("19.936,50.060,19.939,50.062"), { features: [], abroad: true }); } finally { delete globalThis.PROFILY_PL; }
   assert.deepEqual(await P.sources.surfaces("21.010,52.230,21.013,52.232"), { features: [], abroad: true }, "Varšava: bez mapy, bez dotazu");
