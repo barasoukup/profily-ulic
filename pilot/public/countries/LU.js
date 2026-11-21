@@ -54,9 +54,9 @@ export default {
   freeLane: 3,
   lawNeed: (oneway, lanes, minLane) => Math.max(3, minLane * Math.max(oneway ? 1 : 2, lanes)),
   halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku se smí stát jen se značkou (čl. 166 d Code de la route), obecnou volnou šířku zákon neuvádí (3 m jen u plné čáry, čl. 166 r); aplikace nechává průjezdné pruhy, tedy aspoň {need}.", { free, need }),
-  // No parking estimated by the law: it has no general free width (NORMY.md advises against it; the hostile review), to
-  // be decided by Bára as for Austria and Germany.
-  parkGuess: false,
+  // Parking estimated as elsewhere (Bára 21. 11. 2026: with no general free width in the law, parking is allowed almost
+  // everywhere, so all the more estimated): only the general duty not to obstruct, kept by the lanes left drivable.
+  parkGuess: true,
   parkByCycleLane: true,
   wideRoads: true,
   roadClassFromOsm: true,

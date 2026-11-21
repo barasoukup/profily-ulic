@@ -14,7 +14,7 @@ Recenzent prošel `netherlands..belgium`, `npm test` (320/320) a několik dotaz�
 | BE podélné stání 2 m jen odvozené | opraveno: bez varování |
 | BE buspruh: Valonsko připouští 2,75 m | opraveno: min. 2,75 m |
 | LU cyklostezka min. 1,5 m (to je samostatná trasa) | opraveno: min. 1,2 m vedle vozovky |
-| LU zákonný odhad stání bez obecného pravidla | vypnuto (`parkGuess: false`), rozhodne Bára |
+| LU zákonný odhad stání bez obecného pravidla | Bára 21. 11. 2026: zapnout, bez obecné šířky se smí stát skoro všude (průjezdné pruhy aspoň 3 m zůstávají) |
 | LU licence CC BY-SA bez odkazu a bez vyznačení úprav | opraveno: odkazy a poznámka o `viewBox` v `signs-LU/README.md` a LICENCE-A-ZDROJE.md |
 | E9 je úředně E9a | opraveno v popisku |
 | Balík OSM `be` jako celek (0,7 GB PBF) | otevřené: po prvním běhu workflow změřit, případně rozdělit (pod 512 MB) |

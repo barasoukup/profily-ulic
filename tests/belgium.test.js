@@ -66,6 +66,6 @@ test("Belgie a Lucembursko: značky, normy, zákon o stání", async () => {
   assert.equal(BE.limits({ type: "cyklostezka" }).min, 1.3);
   assert.equal(BE.limits({ type: "parkovani", orient: "podelne" }), null);
   assert.equal(LU.limits({ type: "cyklostezka" }).min, 1.2);
-  assert.equal(LU.parkGuess, false, "Lucembursko obecnou šířku nemá");
+  assert.equal(LU.parkGuess, true, "Bára 21. 11. 2026: bez obecné šířky se smí stát skoro všude");
   assert.equal(BE.lawNeed(true, 1, 2.5), 3);
 });
