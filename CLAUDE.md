@@ -73,6 +73,10 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - UI: mapa + upravitelný profil, posuvný předěl (výchozí 50:50), krátké popisky, v hlavičce jen
   název ulice, kurzor křížek. Výchozí podklad „Mapa IPR“ (rychlý rastr z ArcGIS Online).
 
+## Seznam ke kontrole a vylepšení
+- `docs/backlog.md` (Bára 21. 11. 2026): věci ke kontrole a vylepšení po oblastech. Co se objeví při práci (recenze, A/B,
+  měření) a hned se neopraví, zapsat tam; hotové škrtnout s datem.
+
 ## Stav a otevřené věci
 - Stav je jen k prohlížení; data se opravují po tlačítku „Opravit data“ (Bára 8. 11. 2026). Návrh je
   editovatelný vždy. Copyright kódu i pražských ilustrací: © Bára Soukupová (MIT).
