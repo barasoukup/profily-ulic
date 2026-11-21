@@ -161,6 +161,17 @@ z ortofota a OSM.
   Belgie AR 1975 čl. 25.1, 7° (3 m volného průjezdu celkem), Lucembursko bez obecné šířky. **Značky** `signs-BE/`,
   `signs-LU/`. **Hledání** Photon. Univerzální ilustrace, bez paneláků.
 
+### Polsko (Bára 21. 11. 2026)
+
+Stát `poland` (PL), `countries/PL.js`, `towns/poland.js`, `search-pl.js`; hranice GISCO (za Českem a Slovenskem). OSM po
+16 vojvodstvích (`pl_*`, jen R2). Ortofoto GUGiK (WMS HighResolution v Web Mercatoru, `lanes-ortho.js` zdroj `pl`).
+- **Mapa povrchů Krakova** (MJO: vozovky, náměstí, chodníky, cesty) tam, kde má u středu řezu vozovku (`?krakow=0`).
+  Celostátní BDOT10k a mapy okresů nejsou otevřeně s CORS; Varšava, Vratislav, Gdaňsk, Poznaň služby nemají.
+- **Normy** podle závazného nařízení RMI 2022 (Dz.U. 2022 poz. 1518), buspruh, stání a tramvaj podle nezávazných
+  doporučení ministerstva WR-D (označeno). **Stání:** zákon volnou šířku nemá, odhad jako v Lucembursku, průjezdné pruhy
+  aspoň 3 m; na chodníku musí zůstat 1,5 m (čl. 47). **Značky** `signs-PL/`. **Hledání** GUGiK UUG. Paneláky jako
+  v Česku, univerzální vozidla.
+
 ## Odkud jsou data (Praha)
 
 - **Šířky:** IPR Praha, *Mapa technického využití území* (MTVU), služba

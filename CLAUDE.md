@@ -361,6 +361,13 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   ulicích, jeden široký pruh), LU 53 % a 33 % (12 řezů). Recenze `evaluation/belgium/RECENZE.md`.
 - **Před nasazením spustit workflow OSM tiles ručně se `states: be,lu`.**
 
+## Polsko (větev poland z belgium, Bára 21. 11. 2026, nenasazené)
+- Stát `poland` (PL): `countries/PL.js`, `towns/poland.js`, `search-pl.js`, `signs-PL/`, `evaluation/poland/`. Hranice GISCO.
+- Ortofoto GUGiK (celostátní, WMS HighResolution), hledání GUGiK UUG (PRG, „město, ulice číslo“), mapa povrchů Krakova
+  (MJO). BDOT10k zamčený (401), Varšava, Vratislav, Gdaňsk, Poznaň bez otevřených služeb.
+- Normy RMI 2022 (závazné), buspruh, stání a tramvaj z nezávazných WR-D. Stání odhadem jako LU (zákon šířku nemá).
+  Paneláky ponechané (wielka płyta jako v Česku). **Před nasazením workflow OSM tiles se `states: pl`.**
+
 ## Měření přesnosti (Bára 17. 11. 2026)
 - Jedna univerzální metoda pro všechny státy: skill `mereni-presnosti`, kód a zpráva `evaluation/universal/`. Použít u
   každého nového státu a u starých, když Bára řekne. Hodnotí složení uličního prostoru, pak šířku; jen řezy s fotkou

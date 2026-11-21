@@ -88,7 +88,7 @@ test("stát podle polohy řezu: Česko, Slovensko, Rakousko, Německo, cizina", 
   assert.equal(C.cityAt(49.7477, 18.6262), "cesko"); // Český Těšín, Hlavní třída (the border is the Olza)
   assert.equal(C.cityAt(48.146736, 17.106998), "slovensko"); // Bratislava, Suché mýto
   assert.equal(C.cityAt(48.7206, 21.258), "slovensko"); // Košice, Hlavná
-  assert.equal(C.cityAt(49.7497, 18.6328), "cizina"); // Cieszyn
+  assert.equal(C.cityAt(49.7497, 18.6328), "poland"); // Cieszyn (Poland since 21. 11. 2026; the Czech border, exact, decides first)
   assert.equal(C.cityAt(48.2085, 16.3731), "austria"); // Wien, Stephansplatz
   assert.equal(C.cityAt(47.0707, 15.4395), "austria"); // Graz
   assert.equal(C.cityAt(48.137, 11.575), "germany"); // München
