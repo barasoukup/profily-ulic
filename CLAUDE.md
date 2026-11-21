@@ -362,11 +362,15 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - **Před nasazením spustit workflow OSM tiles ručně se `states: be,lu`.**
 
 ## Polsko (větev poland z belgium, Bára 21. 11. 2026, nenasazené)
-- Stát `poland` (PL): `countries/PL.js`, `towns/poland.js`, `search-pl.js`, `signs-PL/`, `evaluation/poland/`. Hranice GISCO.
+- Stát `poland` (PL): `countries/PL.js`, `towns/poland.js`, `search-pl.js`, `signs-PL/`, `evaluation/poland/`. Hranice z PRG
+  GUGiK (přesná, ve `staty.json` před Rakouskem a Německem; GISCO dávalo Německu pás Zgorzelce a Słubic).
 - Ortofoto GUGiK (celostátní, WMS HighResolution), hledání GUGiK UUG (PRG, „město, ulice číslo“), mapa povrchů Krakova
   (MJO). BDOT10k zamčený (401), Varšava, Vratislav, Gdaňsk, Poznaň bez otevřených služeb.
 - Normy RMI 2022 (závazné), buspruh, stání a tramvaj z nezávazných WR-D. Stání odhadem jako LU (zákon šířku nemá).
   Paneláky ponechané (wielka płyta jako v Česku). **Před nasazením workflow OSM tiles se `states: pl`.**
+- A/B mapy Krakova po recenzi slabé (lépe 7, hůř 6; mosty a víceproudé ulice lépe, chodník napůl „chodník + stezka“
+  tam, kde OSM vede cyklostezku po chodníku); zapnutá, `?krakow=0`. Měření 21. 11.: složení 67 %, šířka do 2 m 32 %
+  (22 řezů). Recenze `evaluation/poland/RECENZE.md`.
 
 ## Měření přesnosti (Bára 17. 11. 2026)
 - Jedna univerzální metoda pro všechny státy: skill `mereni-presnosti`, kód a zpráva `evaluation/universal/`. Použít u
