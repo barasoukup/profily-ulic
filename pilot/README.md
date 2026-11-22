@@ -172,6 +172,21 @@ Stát `poland` (PL), `countries/PL.js`, `towns/poland.js`, `search-pl.js`; hrani
   aspoň 3 m; na chodníku musí zůstat 1,5 m (čl. 47). **Značky** `signs-PL/`. **Hledání** GUGiK UUG. Paneláky jako
   v Česku, univerzální vozidla.
 
+### Francie (Bára 22. 11. 2026)
+
+Stát `france` (FR), `countries/FR.js`, `towns/france.js`, `search-fr.js`; hranice GISCO (pevninská Francie a Korsika, za
+Německem, Švýcarskem, Belgií a Lucemburskem). OSM po 22 regionech Geofabriku (`fr_*`, jen R2). Ortofoto IGN (Géoplateforme
+WMS-Raster v Web Mercatoru, `lanes-ortho.js` zdroj `fr`; mimo Francii bílé, proto v mapě jen nad Francií).
+- **Mapa povrchů Paříže** (Plan de voirie, opendata.paris.fr: vozovky, chodníky, cyklostezky, buspruhy, zálivy stání
+  „Piste“, střední pásy) tam, kde má u středu řezu vozovku, cyklostezku nebo stání (`?paris=0`). Ostatní města (Lyon,
+  Bordeaux, Nantes, Toulouse) zatím ne.
+- **Budovy** z BD TOPO IGN (podlaží, výška, rok, byty, užití; `?bdtopo=0`). **Šířky vozovek** BD TOPO (celé metry) jen
+  s `?sirka=1`, bez A/B.
+- **Normy:** závazná je jen přístupnost (arrêté z 15. 1. 2007: chodník 1,4 m, 1,2 m bez překážek); cyklistika podle
+  doporučení CEREMA a příručky Paříže 2023, stání podle Paříže, pruhy jen oranžově podle Grand Lyon 2010. **Stání:**
+  zákon (Code de la route R417-10, R417-11) volnou šířku nemá, odhad jako v Lucembursku; auto na chodníku je „très
+  gênant“. **Značky** `signs-FR/` (úřední díla). **Hledání** Géoplateforme (BAN). Bez paneláků, univerzální vozidla.
+
 ## Odkud jsou data (Praha)
 
 - **Šířky:** IPR Praha, *Mapa technického využití území* (MTVU), služba

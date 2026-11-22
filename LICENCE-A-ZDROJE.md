@@ -78,6 +78,12 @@ licence neuvedena; čteno při kliknutí, nešíří se.** Nejsou to otevřená 
 | **Polsko:** mapa povrchů Krakova (MJO, msip.um.krakow.pl) | plochy řezu v Krakově | Podmínky města neověřené. Čteno při kliknutí. | ? |
 | **Polsko:** hranice (Eurostat GISCO) | stát řezu | © EuroGeographics | ✓ |
 | **Polsko:** dopravní značky (Wikimedia Commons), `pilot/public/signs-PL/` | řádek značek | Nejsou předmětem autorského práva (čl. 4 polského autorského zákona), public domain / CC0 | ✓ |
+| **Francie:** ortofoto IGN (Géoplateforme, data.geopf.fr WMS-Raster, HR.ORTHOIMAGERY.ORTHOPHOTOS) | pruhy, obruby a podkladová mapa | Licence Ouverte 2.0 (Etalab); uvádíme „© IGN“. Čteno při kliknutí. | ✓ |
+| **Francie:** BD TOPO IGN (data.geopf.fr WFS: budovy, úseky silnic) | podlaží a stáří domů | Licence Ouverte 2.0 (Etalab), „© IGN“. Čteno při kliknutí. | ✓ |
+| **Francie:** hledání adres Géoplateforme (IGN, BAN) | hledání adres | Licence Ouverte 2.0; hledaný text jde IGN. | ✓ |
+| **Francie:** mapa povrchů Paříže (Plan de voirie, opendata.paris.fr) | plochy řezu v Paříži | ODbL (Ville de Paris), uvádíme „© Ville de Paris“; odvozené profily jsou výstup z databáze. Čteno při kliknutí. | ✓ |
+| **Francie:** hranice (Eurostat GISCO) | stát řezu | © EuroGeographics | ✓ |
+| **Francie:** dopravní značky (Wikimedia Commons), `pilot/public/signs-FR/` | řádek značek | Úřední díla (arrêté 1967); některá překreslení jsou na Commons pod CC BY-SA, v patičce se neuvádí jako u Lucemburska (Bára 21. 11. 2026), autoři v `evaluation/france/signs-licence.json` | ✓ |
 | **Rakousko:** hranice státu z Eurostat GISCO (`CNTR_RG_01M_2024_4326`, `tools/build_staty.mjs` → `staty.json`) | stát řezu | Podmínky GISCO: „© EuroGeographics for the administrative boundaries“ ([GISCO](https://ec.europa.eu/eurostat/web/gisco/geodata/administrative-units/countries)). Šíří se v `staty.json`. | ✓ |
 | **Rakousko:** dopravní značky `pilot/public/signs-AT/` (StVO 1960 § 52–53, Wikimedia Commons) | řádek značek | Úřední díla, volná podle § 7 odst. 1 rakouského UrhG (podle Commons); rychlosti mimo 30 na české šabloně B 20a. | ✓ |
 | **Rakousko:** OSM výřez Geofabrik `austria` (balík `at` jen na R2, `data.streetspace.eu/osm`) | ulice, domy, zeleň v Rakousku | ODbL 1.0, „© přispěvatelé OpenStreetMap“ | ✓ |

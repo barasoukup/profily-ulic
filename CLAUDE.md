@@ -376,6 +376,17 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   tam, kde OSM vede cyklostezku po chodníku); zapnutá, `?krakow=0`. Měření 21. 11.: složení 67 %, šířka do 2 m 32 %
   (22 řezů). Recenze `evaluation/poland/RECENZE.md`.
 
+## Francie (větev france z poland, Bára 22. 11. 2026, nenasazené)
+- Stát `france` (FR): `countries/FR.js`, `towns/france.js`, `search-fr.js`, `signs-FR/`, `evaluation/france/` (ZDROJE, NORMY,
+  ab/). Hranice GISCO (pevnina a Korsika). OSM po 22 regionech (`fr_*`, jen R2). **Před nasazením workflow OSM tiles se
+  `states: fr`.**
+- Ortofoto IGN (Géoplateforme, CORS *, mimo Francii bílé: v mapě jen nad Francií), budovy BD TOPO (`?bdtopo=0`), šířky
+  vozovek BD TOPO vypnuté (`?sirka=1`, celé metry, bez A/B), hledání Géoplateforme (BAN).
+- Mapa povrchů Paříže (Plan de voirie, ODbL, `in_bbox` po 100 záznamech; třída „Piste“ jsou zálivy stání): A/B 40 řezů,
+  použita ve 28: lépe 5, hůř 2 (sporné: tmavé asfaltové chodníky), stejně 17; zapnutá, `?paris=0`.
+- Normy: závazná jen přístupnost (arrêté 2007), jinak CEREMA a příručky Paříže a Lyonu (z druhé ruky, označeno), pruhy jen
+  oranžově, tramvaj bez varování. Stání odhadem jako LU a PL. Značky jako úřední díla (jako LU). Bez paneláků.
+
 ## Měření přesnosti (Bára 17. 11. 2026)
 - Jedna univerzální metoda pro všechny státy: skill `mereni-presnosti`, kód a zpráva `evaluation/universal/`. Použít u
   každého nového státu a u starých, když Bára řekne. Hodnotí složení uličního prostoru, pak šířku; jen řezy s fotkou

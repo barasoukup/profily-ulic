@@ -28,6 +28,10 @@ Co rozhodne Bára, je označeno **(Bára)**.
   na chodník.
 - Belgie: A/B čar GRB a PICC slabé (lépe 4, hůř 2): zapnuto.
 - Polsko: ortofoto GUGiK bez vlastního A/B (je v obou ramenech).
+- Paříž: u fasády často pruh „plocha“ 0,65 m (mezera mezi budovou z OSM a chodníkem Plan de voirie); A/B
+  `evaluation/france/ab/ZPRAVA.md`. Zkusit budovy z BD TOPO nebo `emprises-ilots-prives` místo OSM.
+- Francie: šířky vozovek BD TOPO (`?sirka=1`) bez A/B; další města s mapou povrchů (Lyon `pvochausseetrottoir`,
+  Bordeaux, Nantes, Toulouse) neprověřená.
 - Jihlava: pasport komunikací byl 16. 11. prázdný, ověřit (CLAUDE.md, Na 19. 11.).
 - Pasporty devíti českých měst: A/B po odstávce DMVS (`evaluation/PASPORTY-AB.md`).
 
@@ -37,6 +41,9 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Belgie: AR 1975 platí do 31. 5. 2027, pak nové kódy (federální a regionální): přečíslovat články a značky.
 - Polsko: třída ulice (GP–D) se odhaduje ze skupin OSM, hlavní ulice jako Z (opatrně).
 - Jednosměrka s cyklisty v protisměru po směru bez dodatkové tabulky (NL, BE).
+- Francie: normy kromě přístupnosti jen z druhé ruky (CEREMA přes přílohu ministerstva, příručky Paříže a Lyonu);
+  **(Bára)** smí doporučení měst varovat v celé Francii? Tramvajová plošina bez zdroje. Arrêté 2007 ověřit na Légifrance
+  (mohl být změněn). Paneláky (grands ensembles) zatím ne, **(Bára)**.
 
 - Maďarsko odloženo (Bára 22. 11. 2026): bez otevřeného ortofota a mapy povrchů jen odhad z OSM a nejde změřit.
   Rozpracováno ve větvi `hungary` (`evaluation/hungary/README.md`). Vrátit se, až bude otevřené ortofoto nebo mapa
@@ -48,6 +55,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
 ## Hledání
 
 - Belgie a Lucembursko jen přes Photon; národní služby (Flandry geolocation, geoportail.lu) nezapojené.
+- Francie: Géoplateforme hledá i bez města; přednost blízko středu mapy je slabá (lat/lon jen naznačí).
 
 ## Překlady
 
@@ -58,7 +66,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
 
 - Balík OSM `be` (0,7 GB PBF) po prvním běhu workflow změřit, případně rozdělit pod 512 MB.
 - Balíky `pl_sl` a `pl_ds` zasahují obdélníkem do Česka (jen dotazy navíc).
-- Před nasazením NL, BE, LU, PL: sloučit větve do `main` a ručně spustit workflow OSM tiles se `states: nl,be,lu,pl`.
+- Před nasazením NL, BE, LU, PL, FR: sloučit větve do `main` a ručně spustit workflow OSM tiles se `states: nl,be,lu,pl,fr`.
 - Logování: D1 potřebuje sloupec `country` a nový Worker (`logging/README.md`), nasadit musí Bára.
 
 ## Licence ke kontrole

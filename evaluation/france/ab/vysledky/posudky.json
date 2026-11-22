@@ -1,0 +1,170 @@
+[
+ {
+  "id": "pa1",
+  "name": "Rue Crozatier",
+  "verdict": "same",
+  "why": "Obě varianty jsou si podobné, strom a pruhy nelze na snímku spolehlivě rozlišit."
+ },
+ {
+  "id": "pa2",
+  "name": "Rue Louis Codet",
+  "verdict": "same",
+  "why": "Okraje vozovky téměř shodné."
+ },
+ {
+  "id": "pa3",
+  "name": "Boulevard Marguerite de Rochechouart",
+  "verdict": "B",
+  "why": "Mapa správně končí fasádou vpravo a zahrnuje plochu vlevo; odhad vynechal širokou pěší plochu."
+ },
+ {
+  "id": "pa5",
+  "name": "Rue Jacob",
+  "verdict": "same",
+  "why": "Rozdíl jen v parkování, obruby podobné."
+ },
+ {
+  "id": "pa7",
+  "name": "Rue de Verneuil",
+  "verdict": "same",
+  "why": "Obě varianty sedí podobně."
+ },
+ {
+  "id": "pa9",
+  "name": "Rue Godot-de-Mauroy",
+  "verdict": "same",
+  "why": "Okraje vozovky podobné."
+ },
+ {
+  "id": "pa10",
+  "name": "Avenue du Président Wilson",
+  "verdict": "unclear",
+  "why": "Koruny stromů zakrývají ulici."
+ },
+ {
+  "id": "pa11",
+  "name": "Rue Clisson",
+  "verdict": "same",
+  "why": "Okraje vozovky stejné, rozdíl jen v zeleni vlevo."
+ },
+ {
+  "id": "pa12",
+  "name": "Rue des Tournelles",
+  "verdict": "A",
+  "why": "Tmavá vozovka je široká asi 6 m, odhad ji trefil, mapa ji zúžila na 3,5 m."
+ },
+ {
+  "id": "pa13",
+  "name": "Rue Malar",
+  "verdict": "same",
+  "why": "Okraje vozovky téměř shodné."
+ },
+ {
+  "id": "pa15",
+  "name": "Rue de Castiglione",
+  "verdict": "same",
+  "why": "Široká vozovka se stáním, žádná varianta není zřetelně lepší."
+ },
+ {
+  "id": "pa16",
+  "name": "Rue du Chemin Vert",
+  "verdict": "B",
+  "why": "Odhad kreslí zeleň přes budovu vlevo, mapa dává chodník a plochu."
+ },
+ {
+  "id": "pa18",
+  "name": "Boulevard de Magenta",
+  "verdict": "B",
+  "why": "Odhad vrátil jen cyklostezku, mapa dala celé složení bulváru."
+ },
+ {
+  "id": "pa19",
+  "name": "Avenue de Villiers",
+  "verdict": "same",
+  "why": "Vozovka sedí v obou, pravá strana nejasná."
+ },
+ {
+  "id": "pa20",
+  "name": "Rue Chevert",
+  "verdict": "same",
+  "why": "Vozovka v obou shodná."
+ },
+ {
+  "id": "pa21",
+  "name": "Rue Amelot",
+  "verdict": "same",
+  "why": "Vozovka podobná, cyklistická část nejednoznačná."
+ },
+ {
+  "id": "pa22",
+  "name": "Passage Sainte-Anne Popincourt",
+  "verdict": "same",
+  "why": "Vozovka podobná v obou."
+ },
+ {
+  "id": "pa25",
+  "name": "Rue Perrée",
+  "verdict": "unclear",
+  "why": "Stromy zakrývají ulici."
+ },
+ {
+  "id": "pa28",
+  "name": "Rue Léon Jost",
+  "verdict": "same",
+  "why": "Vozovka podobná v obou."
+ },
+ {
+  "id": "pa29",
+  "name": "Place des Alpes",
+  "verdict": "B",
+  "why": "Odhad dává jediný pruh přes stromy, mapa kreslí složení náměstí s okružní vozovkou."
+ },
+ {
+  "id": "pa30",
+  "name": "Rue du Petit Musc",
+  "verdict": "B",
+  "why": "Mapa lépe trefila úzkou vozovku mezi obrubami, odhad ji rozšířil."
+ },
+ {
+  "id": "pa32",
+  "name": "Rue Alain Chartier",
+  "verdict": "A",
+  "why": "Tmavá vozovka sahá k pravému chodníku, mapa ji useknula obrubou uvnitř vozovky."
+ },
+ {
+  "id": "pa35",
+  "name": "Rue Mondétour",
+  "verdict": "unclear",
+  "why": "Povrch na snímku nejasný, obruby těžko určit."
+ },
+ {
+  "id": "pa36",
+  "name": "Quai aux Fleurs",
+  "verdict": "same",
+  "why": "Nábřeží s parkováním sedí v obou, vlevo nejasné."
+ },
+ {
+  "id": "pa37",
+  "name": "Rue Raymond Losserand",
+  "verdict": "same",
+  "why": "Vozovka podobná, rozdíl v šířce nejistý."
+ },
+ {
+  "id": "pa38",
+  "name": "Rue de la Banque",
+  "verdict": "same",
+  "why": "Okraje vozovky téměř shodné."
+ },
+ {
+  "id": "pa39",
+  "name": "Avenue de la Bourdonnais",
+  "verdict": "unclear",
+  "why": "Stromy zakrývají ulici."
+ },
+ {
+  "id": "pa40",
+  "name": "Rue de Cléry",
+  "verdict": "same",
+  "why": "Vozovka v obou shodná."
+ }
+]
