@@ -38,6 +38,12 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Polsko: třída ulice (GP–D) se odhaduje ze skupin OSM, hlavní ulice jako Z (opatrně).
 - Jednosměrka s cyklisty v protisměru po směru bez dodatkové tabulky (NL, BE).
 
+- Maďarsko odloženo (Bára 22. 11. 2026): bez otevřeného ortofota a mapy povrchů jen odhad z OSM a nejde změřit.
+  Rozpracováno ve větvi `hungary` (`evaluation/hungary/README.md`). Vrátit se, až bude otevřené ortofoto nebo mapa
+  povrchů Budapešti.
+- Další státy vybírat podle otevřeného ortofota s CORS a mapy povrchů aspoň hlavního města; nejdřív ověřit jen to
+  (kandidáti: Dánsko, Finsko, Estonsko, Slovinsko).
+
 ## Hledání
 
 - Belgie a Lucembursko jen přes Photon; národní služby (Flandry geolocation, geoportail.lu) nezapojené.
