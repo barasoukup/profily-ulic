@@ -41,8 +41,9 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Maďarsko odloženo (Bára 22. 11. 2026): bez otevřeného ortofota a mapy povrchů jen odhad z OSM a nejde změřit.
   Rozpracováno ve větvi `hungary` (`evaluation/hungary/README.md`). Vrátit se, až bude otevřené ortofoto nebo mapa
   povrchů Budapešti.
-- Další státy vybírat podle otevřeného ortofota s CORS a mapy povrchů aspoň hlavního města; nejdřív ověřit jen to
-  (kandidáti: Dánsko, Finsko, Estonsko, Slovinsko).
+- Další státy vybírat podle otevřeného ortofota s CORS a mapy povrchů aspoň hlavního města. Průzkum 22. 11. 2026:
+  `docs/states-survey/` (nejlépe Francie s Paříží, pak Španělsko, Švédsko, Kypr; Finsko a Dánsko jen s klíčem
+  **(Bára)**; Slovinsko, pobaltské státy a Norsko zkusit znovu).
 
 ## Hledání
 
