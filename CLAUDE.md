@@ -386,6 +386,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   použita ve 28: lépe 5, hůř 2 (sporné: tmavé asfaltové chodníky), stejně 17; zapnutá, `?paris=0`.
 - Normy: závazná jen přístupnost (arrêté 2007), jinak CEREMA a příručky Paříže a Lyonu (z druhé ruky, označeno), pruhy jen
   oranžově, tramvaj bez varování. Stání odhadem jako LU a PL. Značky jako úřední díla (jako LU). Bez paneláků.
+- Měření 22. 11. (25 řezů v 10 městech): složení 57 %, šířka do 2 m 48 %; nejčastěji chybí chodník (10×) a stání navíc (8×).
 
 ## Měření přesnosti (Bára 17. 11. 2026)
 - Jedna univerzální metoda pro všechny státy: skill `mereni-presnosti`, kód a zpráva `evaluation/universal/`. Použít u

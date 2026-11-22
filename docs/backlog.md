@@ -17,6 +17,9 @@ Co rozhodne Bára, je označeno **(Bára)**.
   Napřed ověřit na ortofotu, jak to opravdu vypadá (Bára 21. 11. 2026).
 - Ortofoto: rozeznat vodorovné značení od nevyježděných světlých pásů (Bára 12. 11. 2026, řez 324 v Hradci).
 
+- Francie (měření 22. 11., 25 řezů): v odhadu často chybí chodník (10×) a přebývá stání (8×); prověřit na řezech
+  `evaluation/universal` (fr-*), zda jde o úzké chodníky u fasády nebo o zákonný odhad stání.
+
 ## Mapy povrchů a data měst
 
 - Nizozemsko: BGT kreslí červené cyklopruhy na vozovce jako „fietspad“ (měření: 13× cyklostezka navíc). Pokus
