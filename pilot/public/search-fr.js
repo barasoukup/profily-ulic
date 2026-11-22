@@ -4,8 +4,9 @@
 // together; at carries the point and the street for the cut.
 export const GEOCODER = "https://data.geopf.fr/geocodage/search";
 const MAX = 15;
-// A query that is likely French (asked where the map shows another state and nothing else was found).
-export const looksFrench = (text) => /\b(rue|avenue|boulevard|bd|chemin|allée|allee|impasse|quai|place|cours|route) (de |du |des |d'|de la )?|[àâçéèêëîïôûùœ]|\b(paris|lyon|marseille|toulouse|nice|nantes|strasbourg|montpellier|bordeaux|lille|rennes|reims|grenoble|dijon)\b/i.test(text);
+// A query that is likely French (asked where the map shows another state and nothing else was found); not by é or ô,
+// Czech and Slovak have them too.
+export const looksFrench = (text) => /\b(rue|avenue|boulevard|bd|chemin|allée|allee|impasse|quai|place|cours|route) (de |du |des |d'|de la )?|[àâçèêëîïûùœ]|\b(paris|lyon|marseille|toulouse|nice|nantes|strasbourg|montpellier|bordeaux|lille|rennes|reims|grenoble|dijon)\b/i.test(text);
 
 const KIND = { housenumber: "AdresniMisto", street: "Ulice", locality: "Ulice", municipality: "Obec" };
 export function parseFr(json) {

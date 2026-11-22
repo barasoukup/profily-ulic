@@ -387,6 +387,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Normy: závazná jen přístupnost (arrêté 2007), jinak CEREMA a příručky Paříže a Lyonu (z druhé ruky, označeno), pruhy jen
   oranžově, tramvaj bez varování. Stání odhadem jako LU a PL. Značky jako úřední díla (jako LU). Bez paneláků.
 - Měření 22. 11. (25 řezů v 10 městech): složení 57 %, šířka do 2 m 48 %; nejčastěji chybí chodník (10×) a stání navíc (8×).
+- Recenze `evaluation/france/RECENZE.md`: opravena dvojitá cyklostezka (mapa + cyklopruh OSM, obecně v `derive.js`,
+  `?off=kolodvakrat`), Llívia, výšky BD TOPO, normy; otevřené buspruhy a široké vozovky mapy, bulváry s promenádou.
 
 ## Měření přesnosti (Bára 17. 11. 2026)
 - Jedna univerzální metoda pro všechny státy: skill `mereni-presnosti`, kód a zpráva `evaluation/universal/`. Použít u

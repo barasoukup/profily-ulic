@@ -28,11 +28,13 @@ async function rings(url, params) {
 }
 
 // Austria from GISCO's countries of 1 : 1 000 000 (one file of all, about 60 MB; its MultiPolygon's outer rings).
-async function gisco(cntr) {
+// holes: the inner rings too (France: Llívia, a Spanish enclave; cityAt counts the rings a point lies in, as
+// Switzerland's Büsingen and Campione).
+async function gisco(cntr, holes = false) {
   const all = await (await fetch("https://gisco-services.ec.europa.eu/distribution/v2/countries/geojson/CNTR_RG_01M_2024_4326.geojson")).json();
   const g = all.features.find((f) => f.properties.CNTR_ID === cntr).geometry;
   const polys = g.type === "MultiPolygon" ? g.coordinates : [g.coordinates];
-  return polys.map((p) => p[0].map(([x, y]) => [+x.toFixed(4), +y.toFixed(4)]));
+  return (holes ? polys.flat() : polys.map((p) => p[0])).map((r) => r.map(([x, y]) => [+x.toFixed(4), +y.toFixed(4)]));
 }
 
 // swissBOUNDARIES3D (Landesgrenzen) of one state, CH or LI, with its holes (Büsingen, Campione), simplified as the
@@ -81,7 +83,7 @@ const BUILD = {
   belgium: () => gisco("BE"),
   luxembourg: () => gisco("LU"),
   // Metropolitan France only (GISCO's FR has the overseas regions too): the rings in Europe.
-  france: async () => (await gisco("FR")).filter((r) => r.every(([x, y]) => x > -6 && x < 10 && y > 41 && y < 52)),
+  france: async () => (await gisco("FR", true)).filter((r) => r.every(([x, y]) => x > -6 && x < 10 && y > 41 && y < 52)),
 };
 const file = new URL("../pilot/public/staty.json", import.meta.url);
 const only = process.argv.slice(2);

@@ -1987,6 +1987,13 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
         return sideTags(a.tags || tags, osmSide);
       };
       const sideTagsLR = { L: edgeTags("L"), R: edgeTags("R") };
+      // A cycle track a map measured right beside the kerb (Paris's Plan de voirie, 703) is the cycle way OSM tags on that
+      // side (cycleway:<side>=lane on the road for a track beside it): no cycle lane in the roadway as well (the hostile
+      // review of France: Rue de Cléry had a cycle lane 1.5 m and the map's track 1.35 m side by side). ?off=kolodvakrat.
+      const besideTrack = (x) => x?.code === 703 && !ORTHO_P.off?.has("kolodvakrat");
+      for (const [side, x] of [["L", kept[kept.indexOf(r) + 1]], ["R", kept[kept.indexOf(r) - 1]]]) {
+        if (besideTrack(x) && sideTagsLR[side].bike === "cyklopruh") sideTagsLR[side] = { ...sideTagsLR[side], bike: null };
+      }
       // A no-parking section of TSK at the kerb (Prague): no parking there, whatever OSM says.
       for (const [side, at, k] of [["L", r.e, -1], ["R", r.s, 1]]) {
         if (noParkingAt(noParking, at, k)) sideTagsLR[side] = { ...sideTagsLR[side], parking: false, parkingNo: true, kerbPos: null, kerbDepth: 0 };

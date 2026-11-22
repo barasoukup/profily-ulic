@@ -31,6 +31,10 @@ test("Francie: budovy a šířky BD TOPO", async () => {
   assert.equal(b.type, "apartments");
   assert.equal(b.height, 28.3);
   assert.equal(F.bdtopoBuilding({ properties: { nature: "Eglise" } }).type, "church");
+  assert.equal(F.bdtopoBuilding({ properties: { usage_1: "Religieux" } }).office, undefined, "kostel není kancelář");
+  assert.equal(F.bdtopoBuilding({ properties: { nature: "Industriel, agricole ou commercial", usage_1: "Commercial et services" } }).type, "office", "obchodní dům není hala");
+  assert.equal(F.bdtopoBuilding({ properties: { hauteur: 15.9 } }).total, 5, "bez počtu podlaží podle výšky");
+  assert.equal(F.bdtopoBuilding({ properties: { hauteur: 16.7, nombre_d_etages: 8 } }).total, 6, "nepravděpodobný počet: podle výšky");
   assert.equal(F.bdtopoBuilding({ properties: { usage_1: "Résidentiel", nombre_de_logements: 1 } }).house, true);
   const w = F.bdtopoWidths({ features: [
     { properties: { largeur_de_chaussee: 7, position_par_rapport_au_sol: "0", etat_de_l_objet: "En service" }, geometry: { type: "LineString", coordinates: [[4.83, 45.76, 166], [4.84, 45.76, 166]] } },
@@ -50,5 +54,16 @@ test("Francie: stát podle hranic", async () => {
   assert.equal(C.cityAt(48.5700, 7.8150), "germany"); // Kehl
   assert.equal(C.cityAt(46.2044, 6.1432), "switzerland"); // Genève
   assert.equal(C.cityAt(50.8503, 4.3517), "belgium"); // Bruxelles
+  assert.equal(C.cityAt(42.465, 1.98), "cizina"); // Llívia, a Spanish enclave (a hole of France's ring)
+  assert.equal(C.cityAt(43.7384, 7.4246), "cizina"); // Monaco
   assert.equal(C.countryOfCity("france").code, "FR");
+});
+
+test("Francie: hledání Géoplateforme", async () => {
+  const S = await import("../pilot/public/search-fr.js");
+  const out = S.parseFr({ features: [{ geometry: { coordinates: [2.36, 48.856] }, properties: { label: "12 Rue de Rivoli 75004 Paris", type: "housenumber", street: "Rue de Rivoli" } },
+    { geometry: { coordinates: [2.35, 48.85] }, properties: { label: "Paris", type: "municipality" } }] });
+  assert.deepEqual(out, [{ text: "12 Rue de Rivoli 75004 Paris", type: "AdresniMisto", at: { lon: 2.36, lat: 48.856, street: "Rue de Rivoli" } }, { text: "Paris", type: "Obec", at: { lon: 2.35, lat: 48.85 } }]);
+  assert.ok(S.looksFrench("rue de Rivoli") && S.looksFrench("Montpellier") && S.looksFrench("Besançon"));
+  assert.ok(!S.looksFrench("Vinohradská 12") && !S.looksFrench("Hlavné námestie") && !S.looksFrench("Kôlňa"), "é a ô mají i čeština a slovenština");
 });

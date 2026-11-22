@@ -9,6 +9,8 @@ Značení: **ověřeno** = odpověď přišla a byla přečtena; **neověřeno**
 (chaussées 11, trottoirs-emprises 20, pistes 15 záznamů v malém výřezu u Bastily); `within_distance` u některých vrstev ne.
 Aplikace se ptá přes `in_bbox` po 100 záznamech (`towns/france.js`). Třída „Piste“ (9 429 ploch) jsou podle ortofota IGN
 zálivy stání a zásobování u obruby (auta v nich): stání (704).
+Aktuálnost: popis datové sady města úplnou aktualizaci nezaručuje; nové úpravy (cyklostezky po roce 2020) může mít
+ortofoto a mapa ne.
 ---
 
 ## 1. Paříž: Plan de voirie (opendata.paris.fr, Opendatasoft Explore API v2.1)

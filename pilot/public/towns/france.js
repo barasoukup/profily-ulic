@@ -62,10 +62,10 @@ const NEAR = [[0, 0], ...[1.5, 4].flatMap(ring)], WIDE = [...NEAR, ...[7, 10].fl
 export const FR_TOWNS = { paris };
 const townAt = (lon, lat) => Object.keys(FR_TOWNS).find((id) => param(id) !== "0" && inArea(AREAS[id], lon, lat)) ?? null;
 
-// One request a box (a cut moved a little asks the same box again), at most 30 boxes kept.
+// One request a box (a cut moved a little asks the same box again: the box rounded to about 10 m), at most 30 kept.
 const memo = new Map();
 function cached(id, bbox) {
-  const key = `${id} ${bbox}`;
+  const key = `${id} ${bbox.split(",").map((v) => (+v).toFixed(4)).join(",")}`;
   if (!memo.has(key)) {
     memo.set(key, FR_TOWNS[id](bbox).catch((err) => { memo.delete(key); throw err; }));
     if (memo.size > 30) memo.delete(memo.keys().next().value);
@@ -123,11 +123,17 @@ export function bdtopoBuilding(f) {
   const year = parseInt(String(p.date_d_apparition || ""), 10);
   const built = year > 1005 && year <= new Date().getFullYear() + 2 ? year : undefined;
   // nombre_d_etages: the floors of the building, the ground floor included (IGN's description of BD TOPO).
-  const floors = p.nombre_d_etages > 0 ? Math.round(p.nombre_d_etages) : undefined;
+  // The count is noisy (the hostile review: 8 floors on 16.7 m, 1 on 15.9 m) and often missing where the height is
+  // known: the height decides when the count lies outside 2.4–5 m a floor (tall ground floors and roofs of Paris), or is missing (about 3 m a floor).
+  const byHeight = p.hauteur > 0 ? Math.max(1, Math.round(p.hauteur / 3)) : undefined;
+  const counted = p.nombre_d_etages > 0 ? Math.round(p.nombre_d_etages) : undefined;
+  const floors = counted && (!byHeight || (counted >= p.hauteur / 5 && counted <= p.hauteur / 2.4)) ? counted : byHeight;
   const uses = [p.usage_1, p.usage_2].filter(Boolean);
   const living = uses[0] === "Résidentiel";
-  const office = !living && /Commercial et services|Religieux/.test(uses[0] || "") ? true : undefined;
-  const type = p.nature === "Eglise" || p.nature === "Chapelle" ? "church" : p.nature === "Industriel, agricole ou commercial" || uses[0] === "Industriel" ? "industrial"
+  // A church or a synagogue is no office; a department store ("Industriel, agricole ou commercial") no hall: only an
+  // industrial or agricultural use makes one (the hostile review).
+  const office = !living && uses[0] === "Commercial et services" ? true : undefined;
+  const type = p.nature === "Eglise" || p.nature === "Chapelle" || uses[0] === "Religieux" ? "church" : uses[0] === "Industriel" || uses[0] === "Agricole" ? "industrial"
     : living ? (p.nombre_de_logements > 1 ? "apartments" : p.nombre_de_logements === 1 ? "house" : undefined) : office ? "office" : undefined;
   return {
     built, office, house: (living && p.nombre_de_logements === 1) || undefined, type,

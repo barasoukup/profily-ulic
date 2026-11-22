@@ -19,3 +19,13 @@ z ortofota IGN a OSM) a B = s mapou. Výsledky `vysledky/a.json`, `b.json`, spoj
   dá celé složení.
 
 Otevřené: u fasády často pruh „plocha“ 0,65 m (mezera mezi budovou z OSM a chodníkem mapy, `docs/backlog.md`).
+
+## Po nepřátelské recenzi (`../RECENZE.md`)
+
+- Recenzent upozornil, že dvě z pěti výher (pa18, pa29) jsou spíš selhání odhadu než přesnost mapy a že pa3 má s mapou
+  jen půl bulváru (druhá vozovka za středovou promenádou chybí). Prohry pa12 a pa32 jsem prověřila nad ortofotem, výhry
+  stejně ne. Posuzovatel neměl fotky z ulice. Výsledek je tedy spíš „mapa pomáhá tam, kde odhad selže“ než „mapa je
+  přesnější všude“.
+- Oprava dvojité cyklostezky (mapa + cyklopruh z OSM) změnila jen pa39 a pa40 (`vysledky/b-po-recenzi.json`).
+- Vzorek je do 4 km od středu: mosty přes Périphérique, nábřeží v nižší úrovni a bulváry s promenádou zatím cíleně
+  neprověřené.
