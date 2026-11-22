@@ -454,6 +454,9 @@ Object.assign(CITIES, {
   // Poland (Bára 21. 11. 2026): GUGiK's orthophoto and OSM, Kraków's base map where it has the street (towns/poland.js).
   poland: { ...abroad("poland", "PL", "Polsko", "v Polsku", "polské", [52.0, 19.4], "52.229700, 21.012200"),
     dataShort: "ortofota GUGiK a OSM", rulesHead: "Šířky podle polských předpisů (nařízení o technických podmínkách veřejných cest 2022):" },
+  // France (Bára 22. 11. 2026): IGN's orthophoto and OSM, Paris's Plan de voirie where it has the street (towns/france.js).
+  france: { ...abroad("france", "FR", "Francie", "ve Francii", "francouzské", [46.6, 2.4], "48.856600, 2.352200"),
+    dataShort: "ortofota IGN a OSM", rulesHead: "Šířky podle francouzských předpisů a doporučení Cerema:" },
   cizina: abroad("cizina", null, "cizinu", "v cizině", "zahraniční", [49.8, 15.5], "48.146736, 17.106998"),
 });
 // The rest of Slovakia and of Austria draws the state's own set (countries/<ISO>.js art).

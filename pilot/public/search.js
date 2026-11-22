@@ -10,6 +10,7 @@ import { findAt, locateAt, looksViennese } from "./search-at.js";
 import { findPhoton, looksGerman } from "./search-photon.js";
 import { findNl, looksDutch } from "./search-nl.js";
 import { findPl, looksPolish } from "./search-pl.js";
+import { findFr, looksFrench } from "./search-fr.js";
 
 export const RUIAN_SEARCH = "https://ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/Vyhledavaci_sluzba_nad_daty_RUIAN/MapServer";
 const GEOCODE = `${RUIAN_SEARCH}/exts/GeocodeSOE`;
@@ -202,7 +203,7 @@ export async function locate(item, signal) {
 // ---------- UI: a Leaflet control at the map's top left ----------
 // onPick({ item, lat, lon, cut }) after the map has moved; status(msg, kind) for a failure.
 // services(): the search services of the state the map shows (countries/<ISO>.js search): "zbgis" (Slovak places are
-// then asked of ZBGIS along with RÚIAN), "photon" (Photon of komoot, Austria), "photon-de" (Photon, Germany), "photon-ch" (Photon, Switzerland and Liechtenstein), "pdok" (PDOK's Locatieserver, the Netherlands), "photon-be" (Photon, Belgium and Luxembourg), "uug" (GUGiK's UUG, Poland).
+// then asked of ZBGIS along with RÚIAN), "photon" (Photon of komoot, Austria), "photon-de" (Photon, Germany), "photon-ch" (Photon, Switzerland and Liechtenstein), "pdok" (PDOK's Locatieserver, the Netherlands), "photon-be" (Photon, Belgium and Luxembourg), "uug" (GUGiK's UUG, Poland), "geopf" (IGN's Géoplateforme geocoder, France).
 // inVienna(): does the map show Vienna.
 export function mountSearch(map, { status, onPick, services = () => [], inVienna = () => false }) {
   const L = globalThis.L;
@@ -283,7 +284,10 @@ export function mountSearch(map, { status, onPick, services = () => [], inVienna
       // Where UUG found nothing for a Polish query (no diacritics, an unusual order), Photon of komoot in Poland.
       const plPhoton = !pl.length && (services().includes("uug") || looksPolish(text)) && !photon.length
         ? await findPhoton(text, getJSON, mine.signal, ["PL"], [map.getCenter().lat, map.getCenter().lng]).catch((err) => { if (err.name === "AbortError") throw err; return []; }) : [];
-      const found = rankResults([...pl, ...plPhoton, ...nl, ...at, ...photon, ...cz, ...(both || cz.length || nl.length || pl.length ? skNow : await sk())], text);
+      // France: IGN's geocoder (search-fr.js) where the map shows it, or a French-looking query nothing else found.
+      const fr = services().includes("geopf") || (cz.length === 0 && !skNow.length && !nl.length && !pl.length && !photon.length && looksFrench(text))
+        ? await findFr(text.trim(), getJSON, mine.signal, [map.getCenter().lat, map.getCenter().lng]).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání Géoplateforme", err); return []; }) : [];
+      const found = rankResults([...fr, ...pl, ...plPhoton, ...nl, ...at, ...photon, ...cz, ...(both || cz.length || nl.length || pl.length || fr.length ? skNow : await sk())], text);
       cache.set(key, found);
       if (cache.size > 40) cache.delete(cache.keys().next().value);
       if (mine === ctrl && document.activeElement === input) show(found, t("Nic jsem nenašla."));

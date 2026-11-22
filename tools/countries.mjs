@@ -39,6 +39,8 @@ export const COUNTRIES = {
     ["lu", "lubelskie"], ["lb", "lubuskie"], ["ma", "malopolskie"], ["mz", "mazowieckie"], ["op", "opolskie"], ["pk", "podkarpackie"], ["pd", "podlaskie"],
     ["pm", "pomorskie"], ["sl", "slaskie"], ["sk", "swietokrzyskie"], ["wn", "warminsko-mazurskie"], ["wp", "wielkopolskie"], ["zp", "zachodniopomorskie"]]
     .map(([p, e]) => [`pl_${p}`, `poland/${e}/${e}`])) },
+  // France (Bára 22. 11. 2026): metropolitan, by Geofabrik's 22 old regions (each in a folder, as Poland's), only on R2.
+  fr: { iso: "FR", geofabrik: "france", pages: false, parts: Object.fromEntries([["als", "alsace"], ["aqu", "aquitaine"], ["auv", "auvergne"], ["bno", "basse-normandie"], ["bou", "bourgogne"], ["bre", "bretagne"], ["cen", "centre"], ["cha", "champagne-ardenne"], ["cor", "corse"], ["frc", "franche-comte"], ["hno", "haute-normandie"], ["idf", "ile-de-france"], ["lar", "languedoc-roussillon"], ["lim", "limousin"], ["lor", "lorraine"], ["mip", "midi-pyrenees"], ["npc", "nord-pas-de-calais"], ["pdl", "pays-de-la-loire"], ["pic", "picardie"], ["poc", "poitou-charentes"], ["paca", "provence-alpes-cote-d-azur"], ["rha", "rhone-alpes"]].map(([p, e]) => [`fr_${p}`, `france/${e}/${e}`])) },
 };
 // The packs to build (osm-tiles.yml): a state's own, or its parts.
 export const PACKS = Object.entries(COUNTRIES).flatMap(([k, c]) => (c.parts ? Object.entries(c.parts).map(([code, extract]) => ({ code, extract })) : [{ code: k, extract: c.geofabrik }]));

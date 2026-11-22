@@ -96,7 +96,7 @@ test("stát podle polohy řezu: Česko, Slovensko, Rakousko, Německo, cizina", 
   assert.equal(C.cityAt(47.835, 12.98), "germany"); // Freilassing, by Salzburg
   assert.equal(C.cityAt(50.0796, 12.3739), "cesko"); // Cheb, náměstí
   assert.equal(C.cityAt(48.5734, 7.8105), "germany"); // Kehl
-  assert.equal(C.cityAt(48.5818, 7.7509), "cizina"); // Strasbourg
+  assert.equal(C.cityAt(48.5818, 7.7509), "france"); // Strasbourg (France since 22. 11. 2026)
   const sk = C.setCity("slovensko");
   assert.ok(sk.abroad && !sk.techMap && !sk.dataName);
   assert.equal(sk.country, "SK");

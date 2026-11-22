@@ -27,6 +27,9 @@ export const TOWNS = {
   // Poland (21. 11. 2026): the towns of the local OSM pack.
   PL: { warszawa: [52.2297, 21.0122], krakow: [50.0614, 19.9383], wroclaw: [51.1099, 17.0326], gdansk: [54.3520, 18.6466], poznan: [52.4064, 16.9252],
     lodz: [51.7592, 19.4560], katowice: [50.2649, 19.0238], lublin: [51.2465, 22.5684], szczecin: [53.4285, 14.5528], bydgoszcz: [53.1235, 18.0084] },
+  // France (22. 11. 2026): the towns of the local OSM pack.
+  FR: { paris: [48.857, 2.352], lyon: [45.764, 4.836], marseille: [43.297, 5.370], toulouse: [43.605, 1.444], nice: [43.710, 7.262],
+    nantes: [47.218, -1.554], strasbourg: [48.573, 7.752], montpellier: [43.611, 3.877], bordeaux: [44.838, -0.579], lille: [50.629, 3.057] },
 };
 if (process.argv[1] === new URL(import.meta.url).pathname) {
   let seed = 20261117;
