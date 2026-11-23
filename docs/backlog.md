@@ -58,8 +58,9 @@ Co rozhodne Bára, je označeno **(Bára)**.
   neodpovídají, Furlansko a Trento bez CORS, Apulie 2023 bez licence); plochy silnic Bologni rozdělit čarami obrub; dílčí
   nálety Emilie-Romagny 2023–26 (CC BY 4.0) zapojit podle jejich pokrytí; rychlosti 90–130 dostáhnout.
   **(Bára)**: chodník 0,9, nebo 1,5 m?; pruh podle kategorie silnice?; jednosměrka II.349, nebo II.348?
-- Balkán (23. 11.): Albánie (ortofoto v albánských souřadnicích, ověřit stupně), Chorvatsko (jen přes proxy, západ);
-  ostatní bez otevřeného ortofota.
+- Jih Evropy po Itálii **odložen** (Bára 23. 11. 2026): Balkán, Řecko, Slovinsko. Až se k nim vrátíme: Albánie (ortofoto
+  v albánských souřadnicích, ověřit stupně), Chorvatsko (jen přes proxy, západ), Slovinsko (služby GURS neodpovídaly);
+  ostatní bez otevřeného ortofota (`docs/states-survey/c-vychod-balkan.md`).
 - Jihlava: pasport komunikací byl 16. 11. prázdný, ověřit (CLAUDE.md, Na 19. 11.).
 - Pasporty devíti českých měst: A/B po odstávce DMVS (`evaluation/PASPORTY-AB.md`).
 
