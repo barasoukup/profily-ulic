@@ -4486,5 +4486,148 @@
   "half": 19.5,
   "photos": true,
   "needPhoto": true
+ },
+ {
+  "id": "ee-tallinn-1",
+  "country": "EE",
+  "town": "tallinn",
+  "lat": 59.43579419018332,
+  "lon": 24.747481414547597,
+  "bearing": 36.179313375731375,
+  "half": 6,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "ee-tallinn-2",
+  "country": "EE",
+  "town": "tallinn",
+  "lat": 59.437561567532946,
+  "lon": 24.747284468250626,
+  "bearing": 32.187505304307756,
+  "half": 20.4,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "ee-tallinn-3",
+  "country": "EE",
+  "town": "tallinn",
+  "lat": 59.44124942730315,
+  "lon": 24.766999453533337,
+  "bearing": 66.79395608521857,
+  "half": 26,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "ee-tallinn-4",
+  "country": "EE",
+  "town": "tallinn",
+  "lat": 59.434109266357176,
+  "lon": 24.742283826379044,
+  "bearing": -50.67851377296564,
+  "half": 19,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "ee-tartu-1",
+  "country": "EE",
+  "town": "tartu",
+  "lat": 58.376511307035294,
+  "lon": 26.71962508260218,
+  "bearing": -32.339506526251576,
+  "half": 14.8,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "ee-tartu-3",
+  "country": "EE",
+  "town": "tartu",
+  "lat": 58.388408215059926,
+  "lon": 26.73198639542848,
+  "bearing": -56.75648831221679,
+  "half": 14.8,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "ee-tartu-4",
+  "country": "EE",
+  "town": "tartu",
+  "lat": 58.38058842107036,
+  "lon": 26.753659823527443,
+  "bearing": 27.19406538680904,
+  "half": 20.1,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "ee-tartu-5",
+  "country": "EE",
+  "town": "tartu",
+  "lat": 58.36655599794001,
+  "lon": 26.7405753904465,
+  "bearing": 9.83802376105856,
+  "half": 26,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "ee-parnu-8",
+  "country": "EE",
+  "town": "parnu",
+  "lat": 58.37871744640273,
+  "lon": 24.517217744012623,
+  "bearing": -49.9330618178029,
+  "half": 14,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "ee-narva-1",
+  "country": "EE",
+  "town": "narva",
+  "lat": 59.38719272782358,
+  "lon": 28.17480924105071,
+  "bearing": -26.82329242848605,
+  "half": 19,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "ee-narva-2",
+  "country": "EE",
+  "town": "narva",
+  "lat": 59.37447740920808,
+  "lon": 28.184624155087523,
+  "bearing": 65.36121184019882,
+  "half": 19,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "ee-narva-4",
+  "country": "EE",
+  "town": "narva",
+  "lat": 59.375928945624956,
+  "lon": 28.164611251691184,
+  "bearing": -5.949532784703534,
+  "half": 20,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "ee-narva-7",
+  "country": "EE",
+  "town": "narva",
+  "lat": 59.37992374318932,
+  "lon": 28.178021074761975,
+  "bearing": -64.39644460737848,
+  "half": 21.5,
+  "photos": true,
+  "needPhoto": true
  }
 ]

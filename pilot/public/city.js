@@ -464,6 +464,9 @@ Object.assign(CITIES, {
   // road areas (towns/italy.js).
   italy: { ...abroad("italy", "IT", "Itálie", "v Itálii", "italské", [44.9, 10.4], "44.493800, 11.342600"),
     dataShort: "otevřených ortofot a OSM", rulesHead: "Šířky podle italských předpisů:" },
+  // Estonia (Bára 23. 11. 2026): the Board's orthophoto, ETAK's buildings, OSM (towns/estonia.js).
+  estonia: { ...abroad("estonia", "EE", "Estonsko", "v Estonsku", "estonské", [58.7, 25.0], "59.437000, 24.753600"),
+    dataShort: "ortofota Maa- ja Ruumiamet a OSM", rulesHead: "Šířky podle estonských předpisů:" },
   // Malta (Bára 23. 11. 2026): the Planning Authority's orthophoto and OSM (towns/malta.js); traffic keeps left.
   malta: { ...abroad("malta", "MT", "Malta", "na Maltě", "maltské", [35.9, 14.45], "35.898900, 14.514600"),
     dataShort: "ortofota stavebního úřadu a OSM", rulesHead: "Šířky podle maltských předpisů a doporučení:" },

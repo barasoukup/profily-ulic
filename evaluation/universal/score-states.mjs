@@ -19,7 +19,7 @@ const judged = (await Promise.all((await fs.readdir(path.join(ROOT, "vysledky"))
   .filter((j) => [...app.get(j.id).parts.map((p) => p[0]), ...j.parts.map((p) => String(p[0]).replace("?", ""))].some((t) => ["pruh", "pruh_piktokoridor", "obsluzna", "bus", "bus_cyklo", "tramvaj_v_pruhu"].includes(t)));
 const pct = (a, n) => `${Math.round((100 * a) / n)} %`;
 console.log("| stát | řezů | složení stejné | shoda složení | pruhy stejně | šířka uličního prostoru do 1 / 2 m | nejčastější rozdíly (aplikace proti posuzovateli) |\n|---|---|---|---|---|---|---|");
-for (const country of ["CZ", "SK", "AT", "DE", "CH", "LI", "NL", "BE", "LU", "PL", "FR", "ES", "PT", "MC", "CY", "MT", "IT"]) {
+for (const country of ["CZ", "SK", "AT", "DE", "CH", "LI", "NL", "BE", "LU", "PL", "FR", "ES", "PT", "MC", "CY", "MT", "IT", "EE"]) {
   const rows = judged.filter((j) => app.get(j.id).country === country).map((j) => compare(j.parts, app.get(j.id).parts, true, false));
   if (!rows.length) continue;
   const n = rows.length, edits = {};

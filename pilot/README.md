@@ -313,6 +313,16 @@ dílech Geofabriku (jen R2). Výšky budov Bologni (`?bolognadomy=0`); plochy si
 celé uliční prostory i s chodníky, A/B `evaluation/italy/ab/ZPRAVA.md`). Normy podle D.M. 5. 11. 2001, D.M. 557/1999 a
 přístupnosti (0,9 m); stání 3 m na směr. Značky `signs-IT/` (Regolamento, úřední díla).
 
+### Estonsko (Bára 23. 11. 2026)
+
+Stát `estonia` (EE), `countries/EE.js`, `towns/estonia.js`; hranice GISCO, OSM balík `ee` (jen R2). Ortofoto Maa- ja
+Ruumiamet z dlaždic TMS `foto@GMC` úrovně 18 (osa y odspodu, `lanes-ortho.js` `tms: true`; WMS v plném rozlišení má
+vodoznak, proto ne), podklad mapy do z21. Mapa povrchů Tallinnu nemá uvedenou licenci, nepoužitá. Budovy ETAK (WFS,
+výška u fasády → podlaží po 3 m, `?etak=0`), hledání adres In-ADS (`search-ee.js`). Normy: chodník 1,5 / 2 m (nařízení
+o přístupnosti 2026, závazné), ostatní EVS 843 z druhé ruky; stání a tramvaj bez varování. Stání 3 m na směr, na chodníku
+jen se značkou a 1,5 m pro chodce. Značky `signs-EE/` (nařízení MKM nr 12, úřední díla; část překreslení CC BY-SA 4.0).
+Paneláky jako v Česku (Lasnamäe, Mustamäe).
+
 ### Dlaždice OSM
 
 Jedna sada dlaždic pro všechna města (`pilot/data/osm-tiles`, na webu `data/osm-tiles`) z výřezu Geofabrik Česká

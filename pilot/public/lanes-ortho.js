@@ -79,6 +79,10 @@ export const IT_ORTHO = {
   "it-bz": { box: [10.38, 46.21, 12.48, 47.10], url: itWms("https://geoservices.buergernetz.bz.it/mapproxy/wms", "p_bz-Orthoimagery:Aerial-2023-RGB"), credit: "ortofoto © Provincia autonoma di Bolzano (CC BY 4.0)" },
 };
 export const itOrthoAt = (lon, lat) => Object.keys(IT_ORTHO).filter((k) => { const [x0, y0, x1, y1] = IT_ORTHO[k].box; return lon >= x0 && lon <= x1 && lat >= y0 && lat <= y1; });
+// Estonia (Bára 23. 11. 2026): the Land and Spatial Development Board's orthophoto as TMS tiles in Web Mercator (the y axis
+// flipped; CORS *; its open-data licence of 1. 1. 2025), clean but only to level 18 (about 30 cm at 59° N). The WMS of
+// full resolution (to 3 cm in Tallinn) carries a watermark on a 400 px grid that would read as lines (ZDROJE.md).
+export const EE_ORTHO = "https://tiles.maaamet.ee/tm/tms/1.0.0/foto@GMC";
 export const SK_ORTHO = "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ortofoto_hres/MapServer";
 const SOURCES = {
   // The grid of z19, tiles of 512 px (about 10 cm). balance: the mosaic is bright and tinted (Košice 2025: asphalt
@@ -97,6 +101,7 @@ const SOURCES = {
   "it-mo": { res: 0.15, url: (b, w, h, format) => IT_ORTHO["it-mo"].url(b, w, h, format) },
   "it-to": { res: 0.1, url: (b, w, h, format) => IT_ORTHO["it-to"].url(b, w, h, format) },
   "it-bz": { res: 0.2, url: (b, w, h, format) => IT_ORTHO["it-bz"].url(b, w, h, format) },
+  ee: { res: 0.3, tiles: EE_ORTHO, z: 18, px: 256, ext: ".jpg", xy: true, tms: true },
   mt: { res: 0.15, url: (b, w, h, format) => MT_ORTHO(b, w, h, format) },
   cy: { res: 0.12, tiles: CY_ORTHO, z: 20, px: 256 },
   "pt-25": { res: 0.25, url: (b, w, h, format) => PT_ORTHO["pt-25"](b, w, h, format) },
@@ -278,7 +283,7 @@ async function laneImageOf(key, { frame, dir, t0, t1, timeout = TIMEOUT, fetchIm
       const signal = AbortSignal.timeout(timeout), jobs = [];
       // A server error on every tile is an outage (app.js says so), not an empty image.
       let down = 0, missing = 0;
-      for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) jobs.push(fetchImpl(`${src.tiles}/${src.z}/${src.xy ? `${tx}/${ty}` : `${ty}/${tx}`}${src.ext || ""}`, { signal }).then(async (r) => { if (r.ok) g.drawImage(await createImageBitmap(await r.blob()), (tx - tx0) * tp, (ty - ty0) * tp, tp, tp); else if (r.status >= 500) down++; else missing++; }));
+      for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) jobs.push(fetchImpl(`${src.tiles}/${src.z}/${src.xy ? `${tx}/${src.tms ? 2 ** src.z - 1 - ty : ty}` : `${ty}/${tx}`}${src.ext || ""}`, { signal }).then(async (r) => { if (r.ok) g.drawImage(await createImageBitmap(await r.blob()), (tx - tx0) * tp, (ty - ty0) * tp, tp, tp); else if (r.status >= 500) down++; else missing++; }));
       await Promise.all(jobs);
       if (jobs.length && down === jobs.length) throw Object.assign(new Error(`ortofoto ${down}× 5xx`), { outage: true });
       if (missing && src.fallback) return laneImageOf(src.fallback, { frame, dir, t0, t1, timeout, fetchImpl, decode });
@@ -786,7 +791,7 @@ async function patchOf(key, lon, lat, half, px, timeout) {
     const jobs = [];
     for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) {
       const gx = tx * size - Math.PI * R, gy = Math.PI * R - ty * size;
-      jobs.push(fetch(`${src.tiles}/${src.z}/${src.xy ? `${tx}/${ty}` : `${ty}/${tx}`}${src.ext || ""}`, { signal }).then(async (r) => {
+      jobs.push(fetch(`${src.tiles}/${src.z}/${src.xy ? `${tx}/${src.tms ? 2 ** src.z - 1 - ty : ty}` : `${ty}/${tx}`}${src.ext || ""}`, { signal }).then(async (r) => {
         if (r.ok) g.drawImage(await createImageBitmap(await r.blob()), (gx - b[0]) * scale, (b[3] - gy) * scale, size * scale, size * scale);
         else if (r.status >= 500) down++; else missing++;
       }));

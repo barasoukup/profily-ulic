@@ -449,6 +449,11 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   **workflow OSM tiles se `states: it`**). Plochy silnic Bologni vypnuté (celé uliční prostory), výšky budov Bologni zapnuté.
 - Měření 23. 11. (6 řezů): složení 56 %, šířka do 2 m 33 %.
 
+## Estonsko (větev estonia z italy, Bára 23. 11. 2026, nenasazené)
+- `countries/EE.js`, `towns/estonia.js`, `search-ee.js` (In-ADS), `signs-EE/`, `evaluation/estonia/` (ZDROJE, NORMY). Hranice
+  GISCO, OSM balík `ee` (jen R2; **workflow OSM tiles se `states: ee`**). Ortofoto z dlaždic TMS z18 (WMS má vodoznak),
+  budovy ETAK s výškou. Mapa povrchů Tallinnu bez licence, nepoužitá. Otevřené otázky norem v `docs/backlog.md`.
+
 ## Měření přesnosti (Bára 17. 11. 2026)
 - Jedna univerzální metoda pro všechny státy: skill `mereni-presnosti`, kód a zpráva `evaluation/universal/`. Použít u
   každého nového státu a u starých, když Bára řekne. Hodnotí složení uličního prostoru, pak šířku; jen řezy s fotkou

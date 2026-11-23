@@ -20,13 +20,13 @@ const merc = (lon, lat) => [(R * lon * Math.PI) / 180, R * Math.log(Math.tan(Mat
 export const ALONG = 15; // m up and down the street
 const AT = "https://mapsneu.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857";
 
-async function tiles(base, ext, z, [x0, y0, x1, y1], w, h, xy = false) {
+async function tiles(base, ext, z, [x0, y0, x1, y1], w, h, xy = false, tms = false) {
   const size = (2 * Math.PI * R) / 2 ** z, dir = await fs.mkdtemp(path.join(os.tmpdir(), "uo-")), files = [];
   const tx0 = Math.floor((x0 + Math.PI * R) / size), tx1 = Math.floor((x1 + Math.PI * R) / size);
   const ty0 = Math.floor((Math.PI * R - y1) / size), ty1 = Math.floor((Math.PI * R - y0) / size);
   for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) {
     const f = path.join(dir, `${ty}-${tx}${ext || ".png"}`);
-    const r = await fetch(`${base}/${z}/${xy ? `${tx}/${ty}` : `${ty}/${tx}`}${ext}`, { headers: UA });
+    const r = await fetch(`${base}/${z}/${xy ? `${tx}/${tms ? 2 ** z - 1 - ty : ty}` : `${ty}/${tx}`}${ext}`, { headers: UA });
     if (!r.ok) throw new Error(`dlaždice ${z}/${ty}/${tx} ${r.status}`);
     await fs.writeFile(f, Buffer.from(await r.arrayBuffer()));
     files.push(f);
@@ -101,6 +101,11 @@ async function fetchOrtho(country, b, w, h, lon, lat) {
   else if (country === "CY") {
     const { CY_ORTHO } = await import("../../pilot/public/lanes-ortho.js");
     return tiles(CY_ORTHO, "", 20, b, w, h);
+  }
+  else if (country === "EE") {
+    // Estonia: the Land and Spatial Development Board's TMS tiles (y from the bottom), level 18 (the WMS has a watermark).
+    const { EE_ORTHO } = await import("../../pilot/public/lanes-ortho.js");
+    return tiles(EE_ORTHO, ".jpg", 18, b, w, h, true, true);
   }
   else if (country === "LU") return tiles("https://wmts1.geoportail.lu/opendata/wmts/ortho_latest/GLOBAL_WEBMERCATOR_4_V3", ".jpeg", 20, b, w, h, true);
   else if (country === "DE") url = deWmsUrl(DE_ORTHO[(await landsAt(lon, lat))[0]], b, w, h, "image/png");

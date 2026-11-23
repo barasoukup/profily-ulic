@@ -41,6 +41,8 @@ export const TOWNS = {
   // Cyprus (23. 11. 2026): the towns of the local OSM pack (the south: the DLS orthophoto has only it).
   // Malta (23. 11. 2026): the whole island in the local OSM pack.
   // Italy (23. 11. 2026): the four areas with an open orthophoto.
+  // Estonia (23. 11. 2026): the towns of the local OSM pack.
+  EE: { tallinn: [59.437, 24.754], tartu: [58.378, 26.729], parnu: [58.385, 24.497], narva: [59.377, 28.190], viljandi: [58.364, 25.590], rakvere: [59.346, 26.356] },
   IT: { bologna: [44.494, 11.343], modena: [44.647, 10.925], torino: [45.070, 7.687], bolzano: [46.498, 11.355] },
   MT: { valletta: [35.897, 14.512], sliema: [35.912, 14.502], birkirkara: [35.896, 14.465], qormi: [35.876, 14.472], mosta: [35.909, 14.426], victoria: [36.044, 14.240] },
   CY: { nicosia: [35.170, 33.365], limassol: [34.680, 33.045], larnaca: [34.915, 33.630], paphos: [34.770, 32.425], ayianapa: [34.985, 33.995] },

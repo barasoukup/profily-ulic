@@ -107,6 +107,8 @@ const BUILD = {
     if (!bz || towns.some((f) => !f)) throw new Error("Itálie: oblast nenalezena");
     return [bz, ...towns].flatMap((f) => outer(f.geometry));
   },
+  // Estonia (23. 11. 2026): GISCO's, with the islands.
+  estonia: () => gisco("EE"),
   // Malta (23. 11. 2026): OSM's boundary with the territorial waters (one ring round the islands, no neighbour; GISCO's
   // coast cuts off quays; tools/malta-border.json, © OpenStreetMap contributors, ODbL).
   malta: () => JSON.parse(fs.readFileSync(new URL("./malta-border.json", import.meta.url), "utf8")).map((r) => simplify(r)),

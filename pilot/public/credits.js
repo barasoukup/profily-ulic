@@ -33,6 +33,7 @@ export const SOURCE_CREDITS = {
     "pt-25": () => t("ortofoto © DGT"),
     cy: () => t("ortofoto © DLS Kypr"),
     mt: () => t("ortofoto © Planning Authority Malta (CC BY 4.0)"),
+    ee: () => t("ortofoto © Maa- ja Ruumiamet"),
     "it-bo": () => t("ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)"),
     "it-mo": () => t("ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)"),
     "it-to": () => t("ortofoto © Città di Torino (CC BY 4.0)"),
