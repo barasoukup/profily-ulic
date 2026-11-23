@@ -107,13 +107,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Před nasazením NL, BE, LU, PL, FR, ES: větve už jsou v `main` (23. 11.); ručně spustit workflow OSM tiles se
   `states: nl,be,lu,pl,fr,es` a ověřit balíky na R2.
 - Logování: D1 potřebuje sloupec `country` a nový Worker (`logging/README.md`), nasadit musí Bára.
-- **Až budou dlaždice NL, BE, LU, PL, FR a ES na R2** (Bára 23. 11. 2026: kód nasadit, texty počkají, „ať lidé nejsou
-  zklamaní“): vrátit texty o nových státech, které commit `a941dbd` schoval. Plné verze i s překlady ve všech jazycích jsou
-  v `739e499`: úvod (bod 1 „Klikněte v mapě na ulici kdekoli…“ a bod 2 o zdrojích), hláška „Tady jsem žádnou ulici
-  nenašla… (data pokrývají …)“, popis stránky (`index.html` meta description a og:description, dva texty „Příčné
-  profily ulic v …“) a patička se zdroji a odstavcem o soukromí (`index.html` `data-i18n="footer"` a `footer` v každém
-  jazykovém souboru). Postup: `git show 739e499:pilot/public/<soubor>` a vzít ty řádky (skript na výměnu klíčů:
-  stejný postup jako 23. 11., páry starý → nový text podle `en.js`). Pak `npm test` (`tests/i18n.test.js`).
+- ~~**Až budou dlaždice NL, BE, LU, PL, FR a ES na R2**: vrátit texty o nových státech.~~ Hotovo 23. 11. 2026: dlaždice všech 92 balíků jsou na R2 a v `index.json`, texty vrácené v `d6c8c6c`; oprava indexu (kódy o 3–4 písmenech) v `d412dda`.
 
 ## Licence ke kontrole
 
