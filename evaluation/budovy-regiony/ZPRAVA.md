@@ -160,3 +160,33 @@ Ověření: `buildingStyle` a SVG asi 63 000 kombinací domů v Praze, Brně, �
 v Polsku proti HEAD shodné; `node evaluation/ortofoto-osm/regrese.mjs` shodná; `npm test` prošel (377/377, na kopii
 HEAD s touto změnou, protože v pracovním stromě rozpracované Slovinsko jiného workflow testy zatím shazuje).
 Nové snímky: `mansarda.png` a `../budovy-povalecny/povalecny.png` (`render.mjs povalecny|mansarda`).
+
+## Okraj u řezu, souměrné štíty a okna za řezem (Bára 23. 11. 2026)
+
+Po odstranění tmavého pásu u řezu (3d5dbe8) končila spousta kresby pořád 30 cm před ním (`EDGE - 30`). Opraveno v
+`pilot/public/profile.js`, před a po: `../budovy-cz-okna/okraj2-pred-po.png` (vybrané české vzhledy, pak listy
+stity, jih, sever, drevo, mansarda, povalecny vedle sebe).
+
+- **Vzory a pásy stěny až k řezu**: cihelné vazby, azulejos, kvádry Malty a Kypru, prkna, rustika Haussmanna a sorely,
+  sokly, kamenné přízemí tallinnského domu, pásy nad přízemím, římsy pater, obklad funkcionalismu, spáry paneláku,
+  cihly a sokl továrny, plech a pásové okno haly, galerie A Coruñi, dlouhé balkony Haussmanna, ustoupené podlaží a
+  atiky. Bílé nárožní prkno u řezu zmizelo (dům se tam neotáčí), u ulice zůstává. Obrys u řezu se nekreslí u žádného
+  dílu (`box` u řezu obtáhne jen horní, přední a spodní hranu).
+- **Štítové domy osově souměrné** (Bára: „musí být osově souměrné“): štít stojí na celé šířce stěny 0 … 4 m, osa
+  v polovině (`GABLE_C = EDGE / 2`), bez schodu a bez čáry mezi stěnou a štítem. Okna všech pater, dveře (v předním
+  sloupci) a okno přízemí, okna ve štítu, trám a nakládací dveře jsou souměrné k ose; souměrná je i cihelná vazba.
+  Nesouměrné zůstává jen to u ulice: stoep, sklepní okno, hrana fasády.
+- **Okno za řezem** (Bára: „u vnější strany řezu by nemělo být víc stěny než odpovídá velikosti zdiva mezi okny“):
+  dům má svůj ořez (`clipPath`) na řezu a sloupce oken pokračují za zadním sloupcem ve stejné rozteči (`colAxes`),
+  takže u řezu je buď kus dalšího okna, nebo pilíř nejvýš tak široký jako mezi okny. Schválené sloupce oken zůstaly
+  na místě (přední a zadní), přibyl jen další sloupec; platí pro všechna patra, přízemí, mansardy a ustoupená
+  podlaží. Vlastní skladby: panelák další okno panelu (spára mezi nimi), poválečný dům další okno s roletou,
+  moderní dům okno v obkladovém panelu, kancelář a hala pásové okno přes řez, kostel třetí okno (opěrák mezi okny),
+  továrna třetí okno. Okna ve štítu střechy a vikýře zůstávají po jednom (jsou ve střeše, ne v rytmu fasády).
+  Funkcionalismus, škola a venkovský dům měly u řezu pilíř zhruba jako mezi okny, beze změny.
+- **Varianta štítu na 2/3** (`?stit=2/3`, `LOOKS.gableCut`, k porovnání, výchozí zůstává celý souměrný štít): dům 6 m
+  široký se třemi sloupci oken (1,4 / 3,0 / 4,6 m), v záběru jeho dvě třetiny od ulice s osou štítu a předním
+  sloupcem, zbytek uřízne řez; šířky štítu se zvětší s domem. Snímek `stity-varianty.png`
+  (`render.mjs stity-varianty`): každá podoba štítu celá a na 2/3, vedle pražský činžák.
+
+Ověření: `node --test tests/house-looks.test.js tests/buildings.test.js` a celý `npm test` prošly (382/382).

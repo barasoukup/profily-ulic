@@ -1,6 +1,6 @@
 // Sheets of the regional house looks (docs/house-types-europe.md) drawn with the app's own code (profile.js, as
 // tools/build_og.mjs), a Prague tenement beside them for comparison. Writes SVG and PNG (ImageMagick) here.
-//   node evaluation/budovy-regiony/render.mjs [jih|sever|drevo|stity|povalecny|mansarda|vse]
+//   node evaluation/budovy-regiony/render.mjs [jih|sever|drevo|stity|stity-varianty|povalecny|mansarda|vse]
 // (povalecny.png goes to evaluation/budovy-povalecny/)
 import fs from "node:fs";
 import path from "node:path";
@@ -87,6 +87,13 @@ SHEETS.stity = [
   gab("bez obrysu (výchozí): štítová deska a trám", false, h("stit", 4, "amsterdam", { point: trap }), h("hanza", 3, "tallinn", { point: plain })),
 ];
 
+// The variant for Bára (?stit=2/3): each form drawn whole and symmetric (left) and as the street-side two thirds of a
+// wider house cut by the frame (right), a Prague tenement beside.
+const FORMS = [["stupňovitý", "stit", trap, "netherlands"], ["krkový", "stit", hals, "netherlands"], ["zvonový", "stit", klok, "netherlands"],
+  ["hanzovní hladký", "hanza", plain, "estonia"], ["hanzovní stupňovitý", "hanza", step, "estonia"]];
+SHEETS["stity-varianty"] = FORMS.flatMap(([name, look, point, cityId]) => [false, true].map((cut) => ({
+  ...gab(`${name} · ${cut ? "2/3 (?stit=2/3)" : "celý, souměrný"}`, true, h(look, look === "hanza" ? 3 : 4, cityId === "estonia" ? "tallinn" : "amsterdam", { point }), h("sikma", 5, "praha")),
+  cityId, cut })));
 const { houseHash } = await import("../../pilot/public/house-looks.js");
 const which = process.argv[2] || "vse";
 for (const [name, cells] of Object.entries(SHEETS)) {
@@ -95,6 +102,7 @@ for (const [name, cells] of Object.entries(SHEETS)) {
   for (const c of cells) {
     setCity(c.cityId);
     LOOKS.gables = !!c.gables;
+    LOOKS.gableCut = !!c.cut;
     // A state without a module yet (Sweden, Finland): its rule's details as its module will set them.
     const own = cityMod.country.houseDetails;
     if (c.details) cityMod.country.houseDetails = c.details;
@@ -108,7 +116,8 @@ for (const [name, cells] of Object.entries(SHEETS)) {
     parts.push({ c, inner: serialize(svg).replace(/^<svg[^>]*>/, "").replace(/<\/svg>$/, ""), vb: [vx, vy, vw, vh] });
   }
   LOOKS.gables = false;
-  const CW = 760, CH = 900, cols = Math.min(parts.length, name === "stity" ? 2 : 3), rows = Math.ceil(parts.length / cols);
+  LOOKS.gableCut = false;
+  const CW = 760, CH = 900, cols = Math.min(parts.length, name.startsWith("stity") ? 2 : 3), rows = Math.ceil(parts.length / cols);
   const W = cols * CW, Hh = rows * CH;
   let body = "";
   parts.forEach(({ c, inner, vb }, i) => {
