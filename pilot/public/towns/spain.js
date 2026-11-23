@@ -7,7 +7,7 @@
 //   win; marked as an estimate). ?zaragoza=0 leaves it out (the A/B test, evaluation/spain/ab/).
 // - Buildings everywhere but the Basque Country and Navarre (their own cadastres): the Catastro's INSPIRE WFS
 //   (ovc.catastro.meh.es, GML only, CORS *): the floors of the building's part at the facade, the year, the use and the
-//   dwellings (?catastro=0 leaves them out).
+//   dwellings (?catastro=0 leaves them out). Not asked inside the two (regions-es.json).
 // As Kraków's base map: the city's surfaces with OSM's buildings before them and OSM's green and water after, only
 // where the city has a sidewalk near the cut's centre; a city that does not answer: the estimate, with a note.
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
@@ -146,10 +146,27 @@ export function catastroBuilding(buildingGml, partsGml, lat, lon) {
   const type = use === "industrial" ? "industrial" : living ? (dwellings > 1 ? "apartments" : dwellings === 1 ? "house" : undefined) : office ? "office" : undefined;
   return { built, office, house: (living && dwellings === 1) || undefined, type, ...(floors && { cornice: floors, total: floors, roof: 0 }) };
 }
+// The Basque Country and Navarre (regions-es.json, tools/build_regions_es.mjs: pv, nc; Bára 23. 11. 2026): their own
+// foral cadastres, the Catastro answers nothing there. A point counts only when it and the points about 500 m around it
+// all lie inside (the boundaries are of 1 : 1 000 000; near them, and when the file did not load, the Catastro is asked
+// as before). Treviño (Burgos) and Villaverde (Cantabria) are holes.
+let foral = null;
+export async function foralAt(lon, lat, json = null) {
+  foral ??= json ? Promise.resolve(json) : (async () => {
+    const url = new URL("../regions-es.json", import.meta.url);
+    if (url.protocol === "file:") return JSON.parse((await import("node:fs")).readFileSync(url, "utf8"));
+    const r = await fetch(url);
+    if (!r.ok) throw new Error(`regions-es.json ${r.status}`);
+    return r.json();
+  })();
+  const all = await foral.catch(() => { foral = null; return {}; }), d = 0.005;
+  const near = [[0, 0], [d, 0], [-d, 0], [0, d], [0, -d], [d, d], [-d, -d], [d, -d], [-d, d]];
+  return Object.keys(all).find((code) => near.every(([dx, dy]) => inRings(all[code], lon + dx * 1.4, lat + dy))) ?? null;
+}
 // One answer a point (rounded to about a metre: a cut moved a little asks the same facade again), at most 30 kept.
 const houses = new Map();
 async function podlaznost(lat, lon) {
-  if (param("catastro") === "0") return {};
+  if (param("catastro") === "0" || (await foralAt(lon, lat))) return {};
   const key = `${lat.toFixed(5)},${lon.toFixed(5)}`;
   if (!houses.has(key)) {
     const d = 0.000005; // about half a metre around the facade's point

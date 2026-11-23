@@ -52,7 +52,8 @@ hledat podle jmen vrstev `ACERA`, `ISLETA`, `CALZADA`.
 |---|---|---|---|---|
 | `https://ovc.catastro.meh.es/INSPIRE/wfsBU.aspx`, `BU:Building` | **ověřeno**: `service=WFS&version=2.0.0&request=GetFeature&typenames=BU:Building&srsname=EPSG::25830&bbox=…` 200, CORS `*`, Content-Type `application/x-unknown`, **jen GML** (55 KB na 100 × 100 m) | `beginning` (rok stavby, např. 1880, 1962; u části prázdné), `currentUse` (`1_residential`, `4_1_office`, `4_2_retail`, `4_3_publicServices`), **`numberOfFloorsAboveGround` v Building prázdné** | podle dokumentace volné užití s uvedením „Dirección General del Catastro“ (neověřeno; capabilities na Fees/AccessConstraints nic nevrátily) | |
 | tamtéž `BU:BuildingPart` | **ověřeno**: `srsname=EPSG::4326&bbox=40.4185,-3.7045,40.4192,-3.7035` (pořadí lat, lon) 200, CORS `*`, 372 KB na asi 85 × 80 m | **`numberOfFloorsAboveGround`** vyplněné po částech budovy (0–8 u Sol), `numberOfFloorsBelowGround`; geometrie `posList` lat lon | jako výše | Podlaží brát z BuildingPart (maximum za budovu), rok a užití z Building. Odpověď je velká: dotazovat jen úzký pás kolem řezu. |
-| Pokrytí | **ověřeno**: Bilbao (`bbox=43.2625,-2.9360,…`) vrací „No records founded“ | - | - | **Baskicko a Navarra mají vlastní katastr** (foral): Catastro je nepokrývá. Bizkaia má INSPIRE WFS budov (bizkaia.eus/inspirebizkaia), Navarra IDENA, Álava, Gipuzkoa – vše neověřeno. Tam OSM. |
+| Pokrytí | **ověřeno**: Bilbao (`bbox=43.2625,-2.9360,…`) vrací „No records founded“ | - | - | **Baskicko a Navarra mají vlastní katastr** (foral): Catastro je nepokrývá. Bizkaia má INSPIRE WFS budov (bizkaia.eus/inspirebizkaia), Navarra IDENA, Álava, Gipuzkoa – vše neověřeno. Tam OSM; aplikace se tam Catastra neptá (od 23. 11. 2026, `regions-es.json`, níže). |
+| Hranice Baskicka a Navarry | **ověřeno**: Eurostat GISCO NUTS 2024 úroveň 2, 1 : 1 000 000 (`NUTS_RG_01M_2024_4326_LEVL_2.geojson`, nejpodrobnější NUTS 2024 v GeoJSONu; 1 : 100 000 tam není), ES21 a ES22 i s dírami: enkláva Treviño (Burgos) uvnitř Álavy a Valle de Villaverde (Kantábrie) v Bizkaji; Petilla de Aragón (Navarra) zvlášť | - | © EuroGeographics | `tools/build_regions_es.mjs` → `pilot/public/regions-es.json` (zjednodušeno asi na 30 m, 22 KB, načte se až u řezu ve Španělsku). Hranice 1 : 1 M je hrubá (stovky metrů): katastr se vynechá, jen když bod i body asi 500 m kolem leží uvnitř; u hranice a bez souboru se ptá jako dřív. |
 
 ---
 
@@ -123,7 +124,7 @@ potřeba hranice Katalánska (GISCO NUTS 2 `ES51`, jako `laender.json` v Německ
 | Mapa povrchů | Madrid CARTOBASE | jen obraz (Map) | echo | Ayto. Madrid | Až po zkoušce čtení barev nebo předzpracování listů 1 : 1000 |
 | Mapa povrchů | Barcelona, ICGC CT1M | jen linie / GPKG 652 MB | `*` | CC BY 4.0 | Online ne; GPKG prozkoumat |
 | Mapa povrchů | Valencia | server nedostupný | ? | CC BY 4.0 | Ověřit znovu (obruby s typem + značení) |
-| Budovy | Catastro `BuildingPart` + `Building` | ověřeno (GML) | `*` | DG Catastro | **Použít** (podlaží, rok, užití); mimo Baskicko a Navarru (zatím se ptá i tam: hranice společenství aplikace nemá); od recenze 23. 11. 2026 s limitem 25 s, pamětí na bod a domem pod bodem |
+| Budovy | Catastro `BuildingPart` + `Building` | ověřeno (GML) | `*` | DG Catastro | **Použít** (podlaží, rok, užití); mimo Baskicko a Navarru (hranice NUTS 2 z GISCO v `regions-es.json`, u hranice se ptá); od recenze 23. 11. 2026 s limitem 25 s, pamětí na bod a domem pod bodem |
 | Hledání | CartoCiudad `candidates` + `find` | ověřeno | `*` | CC BY 4.0 | **Použít** |
 | Stání | Madrid SER CSV, Barcelona TRAMS CSV | ověřeno | `*` (API) | CC BY 4.0 / Madrid | Statické soubory při nasazení |
 | OSM | Geofabrik 19 dílů + Kanáry (africa) | ověřeno | - | ODbL | díly `es_*` na R2 |
@@ -137,4 +138,4 @@ zahraniční IP). Barcelona online plochy nemá. Stání v Madridu (SER s orient
 soubory.
 
 Neověřeno: přesné licence Catastra, A Coruñi a datos.madrid.es; geometrie cyklotras Zaragozy; Sevilla, Bilbao, Vitoria;
-foralní katastry Baskicka a Navarry; hranice GISCO pro ES (Llívia); městská ortofota Madridu a Barcelony.
+foralní katastry Baskicka a Navarry (jako náhrada Catastra); hranice GISCO pro ES (Llívia); městská ortofota Madridu a Barcelony.

@@ -266,7 +266,8 @@ z PNOA nečtou (snímek Airbus, licence nevyjasněná).
   od středu řezu (`?zaragoza=0`). Vozovku jako plochu nemá: je to pás kolem os silnic z OSM, až za chodníky a budovami.
   A Coruña (1 : 500, i vozovky a stání) je ve složce „Intranet“ s nejasnou licencí, zatím ne.
 - **Budovy** z katastru (Catastro INSPIRE WFS, GML): podlaží části budovy u fasády, rok, užití, byty (`?catastro=0`).
-  Baskicko a Navarra mají vlastní katastr (Catastro tam nic nevrátí, zatím se ptá i tam). Limit 25 s, paměť na bod.
+  Baskicko a Navarra mají vlastní katastr: tam se Catastra neptá (hranice NUTS 2 z GISCO v `regions-es.json`,
+  `node tools/build_regions_es.mjs`; Treviño patří Burgosu; u hranice do 500 m se ptá). Limit 25 s, paměť na bod.
 - **Normy:** závazná přístupnost (Orden TMA/851/2021: chodník 1,8 m), ostatní podle doporučení ministerstva dopravy
   2023/2024 (cyklo, pruhy 2,5–3 m, stání). Bez varování buspruh, tramvajový pás a sdílená stezka (5 m by svítilo všude).
   **Stání:** vedle stojícího auta 3 m k protějšímu okraji vozovky (čl. 91.2 a RGC); odhad jako v Lucembursku (pruhy vedle

@@ -37,6 +37,27 @@ test("Španělsko: budovy z katastru (podlaží části u fasády, rok, užití)
   try { assert.deepEqual(await E.sources.podlaznost(40.4, -3.7), {}); } finally { delete globalThis.PROFILY_ES; }
 });
 
+test("Španělsko: v Baskicku a Navaře se katastr neptá (regions-es.json, díry Treviño a Villaverde)", async () => {
+  const E = await import("../pilot/public/towns/spain.js");
+  const orig = globalThis.fetch, asked = [];
+  globalThis.fetch = async (url) => { asked.push(String(url)); return { ok: true, text: async () => "" }; };
+  try {
+    for (const [name, lat, lon] of [["Bilbao", 43.263, -2.935], ["Pamplona", 42.8125, -1.6458]]) {
+      assert.deepEqual(await E.sources.podlaznost(lat, lon), {}, name);
+      assert.equal(asked.length, 0, `${name}: bez dotazu`);
+    }
+    assert.equal(await E.foralAt(-2.6716, 42.8467), "pv", "Vitoria");
+    assert.equal(await E.foralAt(-1.6064, 42.0617), "nc", "Tudela");
+    for (const [name, lat, lon] of [["Treviño (Burgos v Álavě)", 42.735, -2.746], ["Villaverde (Kantábrie v Bizkaji)", 43.24, -3.28], ["Burgos", 42.344, -3.697], ["Santander", 43.4623, -3.81]]) {
+      assert.equal(await E.foralAt(lon, lat), null, name);
+      const n = asked.length;
+      await E.sources.podlaznost(lat, lon);
+      assert.equal(asked.length - n, 2, `${name}: dotaz na katastr`);
+      assert.ok(asked.at(-1).startsWith(E.CATASTRO_WFS));
+    }
+  } finally { globalThis.fetch = orig; }
+});
+
 test("Španělsko: hledání CartoCiudad (adresa s bodem, ulice bez bodu až přes find)", async () => {
   const S = await import("../pilot/public/search-es.js");
   const got = S.parseEs([

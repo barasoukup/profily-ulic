@@ -50,6 +50,8 @@ Co rozhodne Bára, je označeno **(Bára)**.
   Azor (bez CORS, jen podklad mapy); ~~Monako~~ (23. 11. přidáno), Andorra bez ortofota odložit.
 - Španělsko **(Bára)**: vrstva PNOA v mapě ukazuje i Melillu (snímek Airbus, licence nevyjasněná; pruhy se tam už nečtou):
   Melillu z vrstvy vyjmout (`ES_NOT_PNOA`), nebo uvést Airbus?
+- ~~Španělsko: Catastro se ptá i v Baskicku a Navaře (recenze, nález 5)~~ (Bára 23. 11. 2026: vynecháno podle hranic NUTS 2
+  GISCO, `regions-es.json`, enkláva Treviño zůstává Burgosu)
 - Španělsko **(Bára)**: Catastro („Dirección General del Catastro“) je jen v patičce, ne v kreditu exportu: přidat klíč
   zdroje (když `podlaznost` vrátí dům z katastru)?
 - Portugalsko **(Bára)**: krátký popis dat „ortofota DGT a OSM“ neplatí na Madeiře a Azorech (jen OSM): nechat, nebo
