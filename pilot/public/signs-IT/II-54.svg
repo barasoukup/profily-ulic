@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="159.27916mm"
+   height="159.27916mm"
+   viewBox="0 0 159.27916 159.27916"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="Divieto transito pedoni - finale - italia.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.36524972"
+     inkscape:cx="364.13443"
+     inkscape:cy="84.87344"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Livello 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-8.4666672,-11.377085)">
+    <g
+       id="g101"
+       transform="translate(-27.78125,155.04584)">
+      <circle
+         style="fill:#000000;fill-rule:evenodd;stroke-width:8.23434"
+         id="path5438-9-9-73-2"
+         cx="115.8875"
+         cy="-64.029175"
+         r="79.63958" />
+      <circle
+         style="fill:#ffffff;fill-rule:evenodd;stroke-width:7.2697"
+         id="path2578-4-52-5-6"
+         cx="115.88747"
+         cy="-64.029152"
+         r="79.375" />
+      <circle
+         style="fill:#d40000;fill-rule:evenodd;stroke-width:7.02738"
+         id="path2578-41-65-9-9"
+         cx="115.88747"
+         cy="-64.029182"
+         r="76.729164" />
+      <circle
+         style="fill:#ffffff;fill-rule:evenodd;stroke-width:5.20995"
+         id="path2578-41-6-8-0-2"
+         cx="115.88747"
+         cy="-64.029182"
+         r="56.885418" />
+      <g
+         id="g100"
+         transform="matrix(0.93822925,0,0,0.93822925,-83.455703,-177.10697)"
+         style="fill:#d4aa00;fill-opacity:0.480176">
+        <path
+           style="fill:#000000;fill-opacity:1;stroke-width:1.28643;paint-order:markers stroke fill"
+           d="m 206.43448,110.94158 1.17166,5.74668 -19.19276,39.55721 c 0,0 -2.05014,4.21367 2.09518,6.58341 4.14532,2.36973 6.99904,-2.11997 6.99904,-2.11997 l 16.7937,-34.42426 11.7165,33.19681 c 0,0 2.49503,5.86261 7.33677,3.9613 4.84175,-1.90131 2.42701,-7.64364 2.42701,-7.64364 l -13.78197,-38.94348 v -2.17593 l 1.45165,-6.3046 c 0.14743,-0.26748 0.58199,-0.38167 0.83688,-0.16739 l 3.96095,4.2715 v 7.59984 c 0,2.41053 2.06472,3.91205 4.12944,3.93173 2.06473,0.0196 4.12945,-1.44247 4.12945,-3.93173 v -8.20704 c 0,-1.48719 -0.6098,-2.65494 -1.2844,-3.32954 L 219.15521,91.246664 c -0.94782,-1.08011 -2.96098,-1.13402 -4.01709,-0.55793 l -4.91569,2.31343 c -0.99521,0.44087 -1.5565,1.08124 -2.21639,1.87459 l -17.59262,22.364296 c -3.60898,3.96964 3.00935,8.9349 6.02168,5.46887 l 9.16241,-11.87993 c 0.27524,-0.35525 0.72621,-0.23547 0.83697,0.11159 z"
+           id="path1683"
+           sodipodi:nodetypes="ccczccczcccccccscccccccccccc" />
+        <circle
+           style="fill:#000000;fill-opacity:1;stroke-width:1.38838;paint-order:markers stroke fill"
+           id="path2679"
+           cx="209.76807"
+           cy="83.421715"
+           r="6.458035" />
+      </g>
+    </g>
+  </g>
+</svg>

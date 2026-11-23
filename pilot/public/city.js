@@ -460,6 +460,10 @@ Object.assign(CITIES, {
   // Cyprus (Bára 23. 11. 2026): the DLS orthophoto and buildings, OSM (towns/cyprus.js); traffic keeps left.
   cyprus: { ...abroad("cyprus", "CY", "Kypr", "na Kypru", "kyperské", [35.1, 33.4], "35.170000, 33.360000"),
     dataShort: "ortofota DLS a OSM", rulesHead: "Šířky podle kyperských předpisů:" },
+  // Italy (Bára 23. 11. 2026): only where an orthophoto has an open licence (Bolzano, Turin, Bologna, Modena); Bologna's
+  // road areas (towns/italy.js).
+  italy: { ...abroad("italy", "IT", "Itálie", "v Itálii", "italské", [44.9, 10.4], "44.493800, 11.342600"),
+    dataShort: "otevřených ortofot a OSM", rulesHead: "Šířky podle italských předpisů:" },
   // Malta (Bára 23. 11. 2026): the Planning Authority's orthophoto and OSM (towns/malta.js); traffic keeps left.
   malta: { ...abroad("malta", "MT", "Malta", "na Maltě", "maltské", [35.9, 14.45], "35.898900, 14.514600"),
     dataShort: "ortofota stavebního úřadu a OSM", rulesHead: "Šířky podle maltských předpisů a doporučení:" },

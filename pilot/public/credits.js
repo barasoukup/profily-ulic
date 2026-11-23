@@ -33,6 +33,10 @@ export const SOURCE_CREDITS = {
     "pt-25": () => t("ortofoto © DGT"),
     cy: () => t("ortofoto © DLS Kypr"),
     mt: () => t("ortofoto © Planning Authority Malta (CC BY 4.0)"),
+    "it-bo": () => t("ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)"),
+    "it-mo": () => t("ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)"),
+    "it-to": () => t("ortofoto © Città di Torino (CC BY 4.0)"),
+    "it-bz": () => t("ortofoto © Provincia autonoma di Bolzano (CC BY 4.0)"),
     "pt-21": () => t("ortofoto © DGT"),
     "pt-18": () => t("ortofoto © DGT"),
     "pt-sat": () => t("ortofoto © DGT"),
@@ -74,6 +78,8 @@ export const SOURCE_CREDITS = {
   frTown: { paris: () => t("mapa povrchů (Plan de voirie) © Ville de Paris") },
   // Zaragoza's paving map (towns/spain.js).
   esTown: { zaragoza: () => t("mapa povrchů © Ayuntamiento de Zaragoza (IDEZar)") },
+  // Bologna's road areas (towns/italy.js).
+  itTown: { bologna: () => t("mapa povrchů (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)") },
   nlBgt: { true: () => t("mapa povrchů BGT © Kadaster a správci BGT (PDOK, CC0)") },
   // Amsterdam's parking spaces (towns/netherlands.js).
   amsParking: { true: () => t("parkovací místa © Gemeente Amsterdam") },

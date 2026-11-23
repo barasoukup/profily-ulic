@@ -89,7 +89,7 @@ test("uložený řez v Košicích, Grazu, Innsbrucku a Berlíně zůstane, dalek
   assert.ok(cleanCut({ lat: 48.85, lon: 2.35, bearing: 0 }), "Paříž (Francie)");
   assert.ok(cleanCut({ lat: 40.42, lon: -3.7, bearing: 0 }), "Madrid (Španělsko)");
   assert.ok(cleanCut({ lat: 28.12, lon: -15.43, bearing: 0 }), "Las Palmas (Kanárské ostrovy)");
-  for (const [lat, lon] of [[47.5, 19.04], [37.98, 23.73], [45, 10]]) assert.equal(cleanCut({ lat, lon, bearing: 0 }), null, `${lat},${lon}`);
+  for (const [lat, lon] of [[47.5, 19.04], [37.98, 23.73], [41.01, 28.98]]) assert.equal(cleanCut({ lat, lon, bearing: 0 }), null, `${lat},${lon}`);
 });
 test("uložený řez si nechá klíče zdrojů všech států, neznámé zahodí", () => {
   const c = cleanCut({ lat: 48.144, lon: 17.11, bearing: 0, sources: { skTown: "bratislava", skEdges: "bratislava-tm", skTm: true, zbgis: true, orthoCity: "sk", atTown: "wien", atSigns: "salzburg",

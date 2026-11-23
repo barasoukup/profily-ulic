@@ -54,6 +54,12 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Malta **(Bára)**: volná šířka DC15 (4,1 / 3 m), nebo 3 m na směr?; chodník 1,2 / 1,5 m?; cyklo, BUS a pruhy bez
   varování, nebo britské normy (LTN 1/20)?; podélné stání 2,4 m (standard parkovišť) zatím ne; zákaz stání jako II.D6
   „No waiting“. Výškový model 2018 (1 m, CC BY 4.0) by šel na výšky domů.
+- Itálie: další regiony, jak budou otevírat ortofota (Lombardie a Ligurie mají služby rozbité, Benátsko a Sardinie
+  neodpovídají, Furlansko a Trento bez CORS, Apulie 2023 bez licence); plochy silnic Bologni rozdělit čarami obrub; dílčí
+  nálety Emilie-Romagny 2023–26 (CC BY 4.0) zapojit podle jejich pokrytí; rychlosti 90–130 dostáhnout.
+  **(Bára)**: chodník 0,9, nebo 1,5 m?; pruh podle kategorie silnice?; jednosměrka II.349, nebo II.348?
+- Balkán (23. 11.): Albánie (ortofoto v albánských souřadnicích, ověřit stupně), Chorvatsko (jen přes proxy, západ);
+  ostatní bez otevřeného ortofota.
 - Jihlava: pasport komunikací byl 16. 11. prázdný, ověřit (CLAUDE.md, Na 19. 11.).
 - Pasporty devíti českých měst: A/B po odstávce DMVS (`evaluation/PASPORTY-AB.md`).
 

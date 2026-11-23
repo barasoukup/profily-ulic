@@ -68,6 +68,17 @@ export const CY_ORTHO = "https://eservices.dls.moi.gov.cy/arcgis/rest/services/B
 // hundred metres a degree's image and a Mercator one differ by under a centimetre. Black beyond the islands.
 const mercToDeg = ([x0, y0, x1, y1]) => [x0, y0, x1, y1].map((v, i) => (i % 2 === 0 ? (v / R) * (180 / Math.PI) : (Math.atan(Math.sinh(v / R)) * 180) / Math.PI));
 export const MT_ORTHO = (b, w, h, format = "image/jpeg") => `https://malta.coverage.wetransform.eu/wms/ortho_2018/ows?${new URLSearchParams({ SERVICE: "WMS", REQUEST: "GetMap", VERSION: "1.3.0", LAYERS: "OI.OrthoimageCoverage", STYLES: "", CRS: "CRS:84", BBOX: mercToDeg(b).join(","), WIDTH: w, HEIGHT: h, FORMAT: format })}`;
+// Italy (Bára 23. 11. 2026): only orthophotos with an open licence (CC BY 4.0, evaluation/italy/ZDROJE.md), each with its
+// box: Bologna 2023 and Modena 2024 (Emilia-Romagna's services), Turin 2023 (the Comune's), the province of Bolzano 2023.
+// AGEA's (the rest of Italy) are for institutional use only. All WMS in EPSG:3857 with CORS.
+const itWms = (base, layer) => (b, w, h, format = "image/jpeg") => `${base}?${new URLSearchParams({ SERVICE: "WMS", REQUEST: "GetMap", VERSION: "1.3.0", LAYERS: layer, STYLES: "", CRS: "EPSG:3857", BBOX: b.join(","), WIDTH: w, HEIGHT: h, FORMAT: format })}`;
+export const IT_ORTHO = {
+  "it-bo": { box: [11.22, 44.42, 11.44, 44.56], url: itWms("https://servizigis.regione.emilia-romagna.it/wms/comune_bo_2023_rgb", "Comune_BO_2023_RGB"), credit: "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)" },
+  "it-mo": { box: [10.80, 44.52, 11.03, 44.73], url: itWms("https://servizigis.regione.emilia-romagna.it/wms/comune_mo_2024_rgb", "Comune_MO_2024_RGB"), credit: "ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)" },
+  "it-to": { box: [7.57, 44.99, 7.78, 45.15], url: itWms("https://geomap.reteunitaria.piemonte.it/mapproxy/service", "coto_ortofoto_2023"), credit: "ortofoto © Città di Torino (CC BY 4.0)" },
+  "it-bz": { box: [10.38, 46.21, 12.48, 47.10], url: itWms("https://geoservices.buergernetz.bz.it/mapproxy/wms", "p_bz-Orthoimagery:Aerial-2023-RGB"), credit: "ortofoto © Provincia autonoma di Bolzano (CC BY 4.0)" },
+};
+export const itOrthoAt = (lon, lat) => Object.keys(IT_ORTHO).filter((k) => { const [x0, y0, x1, y1] = IT_ORTHO[k].box; return lon >= x0 && lon <= x1 && lat >= y0 && lat <= y1; });
 export const SK_ORTHO = "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ortofoto_hres/MapServer";
 const SOURCES = {
   // The grid of z19, tiles of 512 px (about 10 cm). balance: the mosaic is bright and tinted (Košice 2025: asphalt
@@ -82,6 +93,10 @@ const SOURCES = {
   pl: { res: 0.1, url: (b, w, h, format) => PL_ORTHO(b, w, h, format) },
   fr: { res: 0.2, url: (b, w, h, format) => FR_ORTHO(b, w, h, format) },
   es: { res: 0.25, url: (b, w, h, format) => ES_ORTHO(b, w, h, format) },
+  "it-bo": { res: 0.15, url: (b, w, h, format) => IT_ORTHO["it-bo"].url(b, w, h, format) },
+  "it-mo": { res: 0.15, url: (b, w, h, format) => IT_ORTHO["it-mo"].url(b, w, h, format) },
+  "it-to": { res: 0.1, url: (b, w, h, format) => IT_ORTHO["it-to"].url(b, w, h, format) },
+  "it-bz": { res: 0.2, url: (b, w, h, format) => IT_ORTHO["it-bz"].url(b, w, h, format) },
   mt: { res: 0.15, url: (b, w, h, format) => MT_ORTHO(b, w, h, format) },
   cy: { res: 0.12, tiles: CY_ORTHO, z: 20, px: 256 },
   "pt-25": { res: 0.25, url: (b, w, h, format) => PT_ORTHO["pt-25"](b, w, h, format) },
@@ -199,6 +214,12 @@ export async function laneImage(opts) {
     if (lastError) throw lastError;
     return null;
   }
+  // Italy: the open orthophoto whose box holds the cut (a blank image outside its town is none).
+  if (opts.source === "it") {
+    const keys = itOrthoAt(...opts.frame.toLonLat(0, 0));
+    for (const key of keys) { const out = await laneImageOf(key, opts).catch(() => null); if (out) return out; }
+    return null;
+  }
   // Portugal: the newest flight that has a photo here (a white image is none).
   if (opts.source === "pt") {
     const start = Date.now(), budget = opts.timeout ?? TIMEOUT;
@@ -277,7 +298,7 @@ async function laneImageOf(key, { frame, dir, t0, t1, timeout = TIMEOUT, fetchIm
       }
     }
     // Outside a Land's coverage its WMS answers white (only the German sources).
-    if ((key.startsWith("de-") || key.startsWith("be-") || key.startsWith("pt-") || key === "mt") && blank(img)) return null;
+    if ((key.startsWith("de-") || key.startsWith("be-") || key.startsWith("pt-") || key === "mt" || key.startsWith("it-")) && blank(img)) return null;
     // Resample on the grid of the cut.
     const res = src.res, nt = Math.round((t1 - t0) / res), nu = Math.round((2 * ALONG) / res), L = new Float32Array(nt * nu), G = new Float32Array(nt * nu), Y = new Float32Array(nt * nu), D = new Float32Array(nt * nu), S = new Float32Array(nt * nu);
     for (let j = 0; j < nu; j++) for (let i = 0; i < nt; i++) {
@@ -739,7 +760,7 @@ function redraw(w, lines, fine = true) {
 // model learnt it (evaluation/ai-segmentation/fetch_ortho.py): the source's shift applied as above. Returns
 // { source, img } (ImageData) or null (no photo there); a server down throws as laneImage does.
 export async function orthoPatch({ source, lon, lat, half, px, timeout = TIMEOUT }) {
-  const keys = source === "de" ? (await landsAt(lon, lat).catch(() => [])).map((l) => `de-${l}`) : source === "be" ? [...new Set([...(await beRegionsAt(lon, lat).catch(() => [])).map(beOrthoOf), "vl", "wal"])].map((r) => `be-${r}`) : source === "pt" ? ["pt-25", "pt-21", "pt-18", "pt-sat"] : [SOURCES[source] ? source : "cuzk"];
+  const keys = source === "de" ? (await landsAt(lon, lat).catch(() => [])).map((l) => `de-${l}`) : source === "be" ? [...new Set([...(await beRegionsAt(lon, lat).catch(() => [])).map(beOrthoOf), "vl", "wal"])].map((r) => `be-${r}`) : source === "pt" ? ["pt-25", "pt-21", "pt-18", "pt-sat"] : source === "it" ? itOrthoAt(lon, lat) : [SOURCES[source] ? source : "cuzk"];
   const seen = new Set(); // Berlin and Brandenburg: one service
   for (const key of keys) {
     const id = key.startsWith("de-") ? DE_ORTHO[key.slice(3)].wms : key;

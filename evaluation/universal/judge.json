@@ -4420,5 +4420,71 @@
   "half": 8.9,
   "photos": true,
   "needPhoto": true
+ },
+ {
+  "id": "it-bologna-7",
+  "country": "IT",
+  "town": "bologna",
+  "lat": 44.48480921477092,
+  "lon": 11.353029913351602,
+  "bearing": -80.54680306931715,
+  "half": 18.5,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "it-torino-1",
+  "country": "IT",
+  "town": "torino",
+  "lat": 45.071913677340476,
+  "lon": 7.669436270182499,
+  "bearing": 27.039694339346298,
+  "half": 23,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "it-torino-2",
+  "country": "IT",
+  "town": "torino",
+  "lat": 45.07810245424494,
+  "lon": 7.692613093844593,
+  "bearing": 2.69933900838045,
+  "half": 14,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "it-torino-4",
+  "country": "IT",
+  "town": "torino",
+  "lat": 45.08039131068358,
+  "lon": 7.6809176420396446,
+  "bearing": -65.67289752244282,
+  "half": 8.8,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "it-bolzano-1",
+  "country": "IT",
+  "town": "bolzano",
+  "lat": 46.50826175481933,
+  "lon": 11.343697620026763,
+  "bearing": 76.31445285596745,
+  "half": 21.4,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "it-bolzano-2",
+  "country": "IT",
+  "town": "bolzano",
+  "lat": 46.49524711336635,
+  "lon": 11.351131643649298,
+  "bearing": 77.82146218906976,
+  "half": 19.5,
+  "photos": true,
+  "needPhoto": true
  }
 ]

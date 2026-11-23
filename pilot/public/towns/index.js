@@ -30,13 +30,14 @@ import * as portugal from "./portugal.js";
 import * as monaco from "./monaco.js";
 import * as cyprus from "./cyprus.js";
 import * as malta from "./malta.js";
+import * as italy from "./italy.js";
 import * as cizina from "./cizina.js";
 
 export const TOWNS = { cesko, jihlava, most, opava, pardubice, plzen, usti, ostrava, "frydek-mistek": frydekMistek, karvina, trebic, prerov,
   // Towns with only their own vehicles: the national data.
   olomouc: cesko, liberec: cesko, hradec: cesko, budejovice: cesko, zlin: cesko,
   // Slovakia, Austria, Germany, Switzerland, Liechtenstein, the Netherlands, Belgium and Luxembourg: their national and towns' sources; elsewhere OSM only.
-  slovensko, austria, germany, switzerland, liechtenstein: switzerland, netherlands, belgium, luxembourg, poland, france, spain, portugal, monaco, cyprus, malta, cizina };
+  slovensko, austria, germany, switzerland, liechtenstein: switzerland, netherlands, belgium, luxembourg, poland, france, spain, portugal, monaco, cyprus, malta, italy, cizina };
 
 // Where a point lies (docs/architecture-countries.md): its state (ISO code), its city (mesta.json, else the rest of the
 // state), its illustrations (city.js art: its own set or its state's), and the

@@ -84,6 +84,14 @@ async function fetchOrtho(country, b, w, h, lon, lat) {
       if (buf.length >= w * h * 0.02 || key === "pt-sat") return toPng(buf);
     }
   }
+  else if (country === "IT") {
+    const { IT_ORTHO, itOrthoAt } = await import("../../pilot/public/lanes-ortho.js");
+    const [key] = itOrthoAt(...[(b[0] + b[2]) / 2, (b[1] + b[3]) / 2].map((v, i) => (i === 0 ? (v / 6378137) * (180 / Math.PI) : (Math.atan(Math.sinh(v / 6378137)) * 180) / Math.PI)));
+    if (!key) throw new Error("ortofoto: mimo otevřená ortofota");
+    const res = await fetch(IT_ORTHO[key].url(b, w, h), { headers: UA });
+    if (!res.ok) throw new Error(`ortofoto ${res.status}`);
+    return toPng(Buffer.from(await res.arrayBuffer()));
+  }
   else if (country === "MT") {
     const { MT_ORTHO } = await import("../../pilot/public/lanes-ortho.js");
     const res = await fetch(MT_ORTHO(b, w, h), { headers: UA });

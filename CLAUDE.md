@@ -442,6 +442,13 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   1,5 m, kolmé stání 4,8 m; volná šířka vedle stání 4,1 / 3 m podle DC15.
 - Měření 23. 11. (8 řezů v 6 městech): složení 55 %, šířka do 2 m 63 %, pruhy 38 %; chybí chodník 5×, stání 4×.
 
+## Itálie (větev italy z malta, Bára 23. 11. 2026, nenasazené)
+- **Jen oblasti s ortofotem s otevřenou licencí** (Bára 23. 11.: ortofota AGEA „jen pro institucionální účely“ nesplňujeme):
+  provincie Bolzano, Turín, Bologna, Modena. Zbytek Itálie, Vatikán a San Marino zatím mimo; Apulie 2023 bez licence.
+- `countries/IT.js`, `towns/italy.js`, `signs-IT/`, `evaluation/italy/` (ZDROJE, NORMY, ab/). OSM 5 dílů (jen R2;
+  **workflow OSM tiles se `states: it`**). Plochy silnic Bologni vypnuté (celé uliční prostory), výšky budov Bologni zapnuté.
+- Měření 23. 11. (6 řezů): složení 56 %, šířka do 2 m 33 %. Rychlostní značky 90–130 se ještě stahují.
+
 ## Měření přesnosti (Bára 17. 11. 2026)
 - Jedna univerzální metoda pro všechny státy: skill `mereni-presnosti`, kód a zpráva `evaluation/universal/`. Použít u
   každého nového státu a u starých, když Bára řekne. Hodnotí složení uličního prostoru, pak šířku; jen řezy s fotkou

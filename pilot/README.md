@@ -303,6 +303,16 @@ ve stupních (`lanes-ortho.js MT_ORTHO`, CRS:84). Mapa povrchů, stání ani bud
 1,5 m (doporučení), kolmé stání 4,8 m (DC15), jinak bez varování. Volná šířka vedle stání podle DC15: 4,1 m obousměrka,
 3 m jednosměrka. Značky `signs-MT/` (maltské kresby PD, britské pod OGL v3.0, uvedeno v patičce). Hledání Photon.
 
+### Itálie (Bára 23. 11. 2026)
+
+Stát `italy` (IT), `countries/IT.js`, `towns/italy.js`; **jen oblasti s ortofotem s otevřenou licencí** (Bára: ortofota
+AGEA jsou „jen pro institucionální účely“, to nesplňujeme): provincie Bolzano (NUTS 2 ITH1) a obce Turín, Bologna, Modena
+(LAU 2024), vše GISCO. Zbytek Itálie, Vatikán a San Marino zatím mimo. Ortofota CC BY 4.0: Bologna 2023, Modena 2024
+(služby regionu Emilia-Romagna), Turín 2023, Bolzano 2023 (`lanes-ortho.js IT_ORTHO`, podle obdélníku oblasti). OSM po 5
+dílech Geofabriku (jen R2). Výšky budov Bologni (`?bolognadomy=0`); plochy silnic Bologni vypnuté (`?bologna=1`; jsou to
+celé uliční prostory i s chodníky, A/B `evaluation/italy/ab/ZPRAVA.md`). Normy podle D.M. 5. 11. 2001, D.M. 557/1999 a
+přístupnosti (0,9 m); stání 3 m na směr. Značky `signs-IT/` (Regolamento, úřední díla; rychlosti 90–130 se dostahují).
+
 ### Dlaždice OSM
 
 Jedna sada dlaždic pro všechna města (`pilot/data/osm-tiles`, na webu `data/osm-tiles`) z výřezu Geofabrik Česká
