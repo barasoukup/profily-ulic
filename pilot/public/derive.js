@@ -790,11 +790,9 @@ function splitRoadway(run, ctx) {
   const flip = (d) => (d === "backward" ? "forward" : "backward");
   // tramLanes() lists car lanes before the tram envelopes: sort so the ends are the curb lanes.
   mid.sort((a, b) => a.s - b.s);
-  // Traffic keeping left (countries/<ISO>.js leftHand: Cyprus): a roadway with lanes both ways is the keep-right layout
-  // mirrored (each lane takes the parts of its mirror image, kept in place).
-  // With tracks the tracks stay where the data put them: only the directions turn.
-  if (trams.length) { if (country.leftHand && !ORTHO_P.off?.has("vlevo") && new Set(mid.map((x) => x.dir).filter(Boolean)).size > 1) for (const x of mid) if (x.dir) x.dir = flip(x.dir); }
-  else mirrorLeftHand(mid);
+  // Traffic keeping left (countries/<ISO>.js leftHand: Cyprus): the directions of a roadway used both ways read the
+  // other way round, the parts in place.
+  mirrorLeftHand(mid);
   const curbLane = { R: mid[0], L: mid.at(-1) };
   for (const [side, st] of [["R", sideR], ["L", sideL]]) {
     const lane = curbLane[side];
@@ -844,15 +842,19 @@ function splitRoadway(run, ctx) {
     .sort((a, b) => a.s - b.s);
 }
 
-// Where traffic keeps left, the lanes (and tracks) of a roadway used both ways are mirrored: what the keep-right rules
-// put at position i goes to position n - 1 - i; one-way roadways stay. Returns whether anything changed.
+// Where traffic keeps left, a roadway used both ways keeps every part where the data put it (a bus lane, parking, the
+// tracks); only the directions the keep-right rules gave its lanes are read the other way round: the direction (and the
+// turn arrows) of position i go to position n - 1 - i, so as many lanes run each way as before (Bára 23. 11. 2026:
+// "Přesouvat nesmíš nic, jen otáčet směr"). One-way roadways stay. Returns whether anything changed.
 export function mirrorLeftHand(lanes) {
   if (!country.leftHand || ORTHO_P.off?.has("vlevo")) return false;
-  const dirs = new Set(lanes.map((l) => l.dir).filter(Boolean));
-  if (dirs.size < 2) return false;
-  const keep = lanes.map((l) => ({ s: l.s, e: l.e, width: l.width }));
-  const parts = lanes.map(({ s, e, width, ...rest }) => rest).reverse();
-  lanes.forEach((l, i) => { for (const k of Object.keys(l)) delete l[k]; Object.assign(l, parts[i], keep[i].s !== undefined ? { s: keep[i].s, e: keep[i].e } : {}, keep[i].width !== undefined ? { width: keep[i].width } : {}); });
+  if (new Set(lanes.map((l) => l.dir).filter(Boolean)).size < 2) return false;
+  const dirs = lanes.map((l) => [l.dir, l.turn]).reverse();
+  lanes.forEach((l, i) => {
+    const [d, t] = dirs[i];
+    if (d === undefined) delete l.dir; else l.dir = d;
+    if (t === undefined) delete l.turn; else l.turn = t;
+  });
   return true;
 }
 

@@ -23,7 +23,7 @@ test("odhad z OSM: jednosměrka bez chodníků má jeden pruh", () => {
   assert.deepEqual(segments.map((s) => s.type), ["pruh"]);
 });
 
-test("jízda vlevo (Kypr): obousměrná vozovka zrcadlí rozložení pruhů, jednosměrná zůstává", async () => {
+test("jízda vlevo (Kypr): obousměrná vozovka otočí pořadí směrů, díly zůstanou na místě, jednosměrná beze změny", async () => {
   const D = await import("../pilot/public/derive.js");
   const { country } = await import("../pilot/public/city.js");
   const was = country.leftHand;
@@ -31,7 +31,7 @@ test("jízda vlevo (Kypr): obousměrná vozovka zrcadlí rozložení pruhů, jed
     country.leftHand = true;
     const two = [{ type: "bus", s: 0, e: 3, dir: "forward" }, { type: "pruh", s: 3, e: 6, dir: "forward" }, { type: "pruh", s: 6, e: 9, dir: "backward" }];
     assert.equal(D.mirrorLeftHand(two), true);
-    assert.deepEqual(two.map((l) => [l.type, l.s, l.dir]), [["pruh", 0, "backward"], ["pruh", 3, "forward"], ["bus", 6, "forward"]]);
+    assert.deepEqual(two.map((l) => [l.type, l.s, l.dir]), [["bus", 0, "backward"], ["pruh", 3, "forward"], ["pruh", 6, "forward"]], "díly na místě, směry obráceně");
     const one = [{ type: "pruh", s: 0, e: 3, dir: "forward" }, { type: "pruh", s: 3, e: 6, dir: "forward" }];
     assert.equal(D.mirrorLeftHand(one), false);
     country.leftHand = false;
