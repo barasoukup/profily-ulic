@@ -502,7 +502,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 ## Měření přesnosti (Bára 17. 11. 2026)
 - Jedna univerzální metoda pro všechny státy: skill `mereni-presnosti`, kód a zpráva `evaluation/universal/`. Použít u
   každého nového státu a u starých, když Bára řekne. Hodnotí složení uličního prostoru, pak šířku; jen řezy s fotkou
-  z ulice (Mapillary, v Česku i Mapy.com). Výsledek 17. 11.: shoda složení CZ 56 %, SK 60 %, AT 57 %, DE 58 %, CH 59 %, LI 69 %.
+  z ulice (Mapillary, v Česku i Mapy.com). Výsledek 17. 11.: shoda složení CZ 56 %, SK 60 %, AT 57 %, DE 58 %, CH 59 %, LI 69 %; SI 48 %
+  (23. 11. 2026, jen 9 řezů, šířka do 2 m 33 %).
 
 ## Jazyky (Bára 12. 11. 2026, slovenčina 15. 11. 2026, němčina 16. 11. 2026)
 - Anglicky se aplikace jmenuje **Street Profile**, slovensky **Profily ulíc**, německy **Straßenprofil**. Čeština, slovenčina,

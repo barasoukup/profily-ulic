@@ -4629,5 +4629,115 @@
   "half": 21.5,
   "photos": true,
   "needPhoto": true
+ },
+ {
+  "id": "si-ljubljana-7",
+  "country": "SI",
+  "town": "ljubljana",
+  "lat": 46.05831565018243,
+  "lon": 14.500138460883637,
+  "bearing": -41.0592121805452,
+  "half": 26,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "si-maribor-4",
+  "country": "SI",
+  "town": "maribor",
+  "lat": 46.554465671369925,
+  "lon": 15.64765163832749,
+  "bearing": -85.90990048193908,
+  "half": 33.4,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "si-maribor-6",
+  "country": "SI",
+  "town": "maribor",
+  "lat": 46.550354175494434,
+  "lon": 15.638626407375387,
+  "bearing": 48.56160885794012,
+  "half": 23.4,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "si-maribor-7",
+  "country": "SI",
+  "town": "maribor",
+  "lat": 46.56494897573884,
+  "lon": 15.640829657371206,
+  "bearing": -67.20603949091209,
+  "half": 19.1,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "si-maribor-8",
+  "country": "SI",
+  "town": "maribor",
+  "lat": 46.549791419512964,
+  "lon": 15.645706546938593,
+  "bearing": 12.038534047526058,
+  "half": 17,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "si-koper-1",
+  "country": "SI",
+  "town": "koper",
+  "lat": 45.545922704022544,
+  "lon": 13.71222611868141,
+  "bearing": -60.01896901847454,
+  "half": 19,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "si-kranj-2",
+  "country": "SI",
+  "town": "kranj",
+  "lat": 46.22942167804431,
+  "lon": 14.35918135206302,
+  "bearing": -42.44332251265451,
+  "half": 9.9,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "si-kranj-3",
+  "country": "SI",
+  "town": "kranj",
+  "lat": 46.237546107964974,
+  "lon": 14.37279424109615,
+  "bearing": -70.49826790269348,
+  "half": 13.3,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "si-kranj-4",
+  "country": "SI",
+  "town": "kranj",
+  "lat": 46.23246886947087,
+  "lon": 14.361184946227645,
+  "bearing": -45.33241973112671,
+  "half": 8.7,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "si-novomesto-1",
+  "country": "SI",
+  "town": "novomesto",
+  "lat": 45.811398796675434,
+  "lon": 15.156399232701991,
+  "bearing": -3.2564257986988006,
+  "half": 12.9,
+  "photos": true,
+  "needPhoto": true
  }
 ]

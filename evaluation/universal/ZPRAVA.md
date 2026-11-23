@@ -139,3 +139,21 @@ Jen oblasti s otevřeným ortofotem, 6 řezů s fotkou a vozovkou (Turín 3, Bol
 
 - **Malý vzorek** (6 řezů ze 3 měst): čísla jsou jen orientační, k rozšíření. Nejčastěji chybí stání (4×) a chodník (2×),
   dělicí pás navíc 2×.
+
+## Slovinsko (23. 11. 2026)
+
+Vzorek 6 měst (Lublaň, Maribor, Celje, Koper, Kranj, Novo mesto; `sample.mjs`, body přidané na konec `sample.json`, aby
+ostatní státy své body nezměnily), 48 bodů, 39 profilů aplikace (`data/app-si.json`, prohlížeč na localhostu s balíkem
+OSM), 10 řezů s fotkou Mapillary. Ortofoto GURS DOF025 (25 cm): u si-maribor-6 server opakovaně neodpověděl (504,
+vypršení), řez se neposuzoval. Posuzovatel (Sonnet, profil aplikace neviděl) posoudil 9 řezů, všechny s vozovkou
+(`vysledky/u-si-1.jsonl`). Slovinsko nemá mapu povrchů, všechny profily jsou odhad z OSM a ortofota.
+
+| SI | 9 | složení stejné 11 % | **shoda 48 %** | pruhy 78 % | šířka do 1 / 2 m 11 % / 33 % |
+
+- Pruhy sedí často (7 z 9), složení slabší než jinde (ostatní státy 51–69 %): nejčastěji chybí chodník (3×) a zeleň (2×),
+  cyklostezka navíc 2× (Maribor, Ljubljanska ulica: úzké chodníky aplikace posuzovatel vidí jako běžné chodníky).
+- Úplně chybí profil v Kopru u moře (si-koper-1: aplikace dala jen chodník 2 m, posuzovatel 8 částí přes 40 m) a
+  si-kranj-3 (cyklostezky aplikace proti trávě a krajnicím posuzovatele, shoda 0).
+- **Malý vzorek** (9 řezů, v Celji ani jedna fotka): čísla jsou jen orientační. Posuzovatel si nebyl jistý u Lublaně
+  (širokého pásu chodník/cyklostezka), Kranje 3 a krajnice v Novém Mestě.
+
