@@ -45,7 +45,9 @@ export default {
       const values = [
         e.kind, str(e.detail, 20), str(e.city, 30), str(e.street, 120), str(e.highway, 40),
         Number.isSafeInteger(e.wayId) ? e.wayId : null,
-        num(e.lat, 45.5, 55.5), num(e.lon, 5.5, 23), num(e.bearing, -360, 360), // CZ, SK, AT, DE (Germany 17. 11. 2026)
+        // All the states of the app (countries/*.js bounds): the Canaries (27.6° N), the Azores (31.3° W), Estonia (59.8° N),
+        // Cyprus (34.7° E); before, 45.5–55.5° N and 5.5–23° E lost the south, Estonia and Cyprus (the review of 23. 11. 2026).
+        num(e.lat, 27, 61), num(e.lon, -32, 35), num(e.bearing, -360, 360),
         num(e.reachLeft, 0, 100), num(e.reachRight, 0, 100), str(e.session, 40),
         e.profile && typeof e.profile === "object" && (e.kind === "upravy" || e.kind === "hlaseni") ? profileText(e.kind === "hlaseni" ? reportOf(e.profile) : e.profile) : null,
       ];

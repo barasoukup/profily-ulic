@@ -94,3 +94,12 @@ test("záznam řezu: stát vedle města, poloha v celém Slovensku a Rakousku", 
   assert.equal((await worker.fetch(post(cut), env(old))).status, 204);
   assert.equal(old.rows[0].length, 13);
 });
+
+// The review of 23. 11. 2026: the position of cuts in the south, Estonia and Cyprus was dropped.
+test("záznam řezu: poloha ve všech státech aplikace (Kanáry, Azory, Kypr, Estonsko)", async () => {
+  const db = fakeDb();
+  for (const [lat, lon] of [[27.643, -17.981], [37.74, -25.67], [35.17, 33.36], [59.437, 24.75], [44.494, 11.343]]) {
+    assert.equal((await worker.fetch(post({ kind: "rez", detail: "klik", city: "x", lat, lon, session: "s1" }), env(db))).status, 204);
+    assert.deepEqual(db.rows.at(-1).slice(6, 8), [lat, lon]);
+  }
+});
