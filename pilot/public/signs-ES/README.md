@@ -4,7 +4,8 @@ Soubory z Wikimedia Commons. Značky jsou součástí nařízení (příloha I R
 zákona o duševním vlastnictví (Real Decreto Legislativo 1/1996) proto nejsou předmětem autorského práva. Na Commons
 jsou až na výjimky public domain nebo CC0. Autoři a licence jsou v `evaluation/spain/signs-licence.json`, rozbor
 v `evaluation/spain/NORMY.md` (oddíl C). Významy jsou podle textu katalogu 2025, ne podle popisků Commons. Vzhled jsem
-porovnal s obrázky v BOE.
+porovnal s obrázky ve vyhlášeném PDF BOE-A-2025-12199 (23. 11. 2026, stránky v `NORMY.md` C2): všechny soubory se
+shodují, i S-30a a S-33 kreslené podle návrhu 2023 a S-28 z roku 2006.
 
 Souborům bez `viewBox` jsem ho doplnil podle `width` a `height`. Tři soubory jsou složené pro aplikaci:
 - `R-301-110.svg`: z R-301 100 (public domain) dvakrát jeho „1“ a poslední „0“, posunuté na místa číslic značky 110

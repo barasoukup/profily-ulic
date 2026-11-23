@@ -230,6 +230,22 @@ jako u Francie (Bára 23. 11. 2026: „Značky jsou volně“) bych autory v pat
 Ověřil jsem vzhled všech souborů proti obrázkům katalogu [RD465]. Starší kresby na Commons (2006) se shodují s
 katalogem 2025 kromě S-33 (stará šedá „senda ciclable“, proto beru soubor „2023 set“ podle návrhu katalogu).
 
+Kontrola proti vyhlášenému PDF (recenze 23. 11. 2026, bod 11; BOE-A-2025-12199 ze 17. 6. 2025, stránky PDF / „Pág.“
+BOE): S-28 a S-30a str. 80 (79159), S-33 str. 81 (79160), S-41 str. 83 (79162), S-47 str. 84 (79163), S-51a str. 87
+(79166), S-880d str. 141 (79220), R-100, R-101, R-102 str. 48, R-114 str. 50, R-116 str. 51, R-301 str. 55, R-307 str. 56,
+R-308 str. 57, R-407a str. 63, R-410 str. 64, S-1 a S-1a str. 72, S-3 str. 73, S-11 str. 74, S-17 str. 77. Všechny
+kresby se s vyhlášeným katalogem shodují, nic jsem neměnila:
+- S-30a (kresba podle návrhu 2023): stejná, kočárek s dítětem, muž a žena na modrém čtverci.
+- S-33 (návrh 2023): stejná, zelený čtverec, dospělý s dítětem nad kolem; návrh se v tomhle od vyhlášky neliší.
+- S-28 (Commons 2006, Benedicto16): stejná, chodec, auto, dítě s míčem, dům a oblouk; kód je stejný, změnil se jen
+  název a pravidla (10 km/h, vždy s R-301 10).
+- S-47 (Commons 2025, CC0): stejná, auto, cyklista, dospělý s dítětem a R-301 20.
+- S-41, S-11, S-17, S-1, S-1a, S-3, R-100 až R-410: stejné. S-51a-bus je záměrně jen s autobusem (katalog to
+  dovoluje), R-101 + S-880d je složení podle bodu 2.3 a panel S-880d odpovídá katalogu.
+- Kódy, které aplikace používá, v katalogu 2025 všechny jsou, kromě S-30 „Zona 30“ (viz C2; v textu katalogu ani
+  RD 465/2025 není ani „S-30“, ani „zona 30“; seznam zrušených značek RD 465/2025 neuvádí, přechodné ustanovení 2 jen
+  říká, že „señales suprimidas“ se musí odstranit do roka).
+
 ## D. Návrh `limitsES` (konvence jako FR: min = červeně, zaklad = oranžově)
 
 | Typ | min | zaklad | Zdroj, povaha |
