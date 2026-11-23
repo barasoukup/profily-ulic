@@ -51,7 +51,7 @@ let seed = 20261128;
 const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
 const inside = (r, x, y) => { let c = false; for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; } return c; };
 const lev = [];
-for (const city of ["bilbao", "donostia", "vitoria"]) {
+for (const city of ["bilbao", "donostia", "vitoria", "pamplona"]) {
   const all = fs.readFileSync(new URL(`data/${city}.geojsonl`, HERE), "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l.replace(/^\x1e/, "")))
     .filter((f) => f.properties?.building && f.properties["building:levels"] && (f.geometry.type === "Polygon" || f.geometry.type === "MultiPolygon"));
   const picked = new Set();

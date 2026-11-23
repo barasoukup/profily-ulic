@@ -438,5 +438,155 @@
   "osmStart": null,
   "foral": 7,
   "built": 1974
+ },
+ {
+  "town": "pamplona",
+  "lat": 42.8042224,
+  "lon": -1.6709078,
+  "building": "hospital",
+  "osmLevels": 1,
+  "osmStart": null,
+  "foral": 5,
+  "built": 1940
+ },
+ {
+  "town": "pamplona",
+  "lat": 42.8122188,
+  "lon": -1.6707017,
+  "building": "apartments",
+  "osmLevels": 6,
+  "osmStart": null,
+  "foral": 6,
+  "built": 1981
+ },
+ {
+  "town": "pamplona",
+  "lat": 42.8056374,
+  "lon": -1.6836272,
+  "building": "apartments",
+  "osmLevels": 5,
+  "osmStart": null,
+  "foral": 7,
+  "built": 1989
+ },
+ {
+  "town": "pamplona",
+  "lat": 42.8101528,
+  "lon": -1.6601871,
+  "building": "apartments",
+  "osmLevels": 9,
+  "osmStart": null,
+  "foral": 10,
+  "built": 1987
+ },
+ {
+  "town": "pamplona",
+  "lat": 42.8064021,
+  "lon": -1.6460804,
+  "building": "apartments",
+  "osmLevels": 7,
+  "osmStart": null,
+  "foral": 9,
+  "built": 1970
+ },
+ {
+  "town": "pamplona",
+  "lat": 42.8063433,
+  "lon": -1.6553989,
+  "building": "apartments",
+  "osmLevels": 8,
+  "osmStart": null,
+  "foral": 9,
+  "built": 1983
+ },
+ {
+  "town": "pamplona",
+  "lat": 42.8065236,
+  "lon": -1.6512516,
+  "building": "apartments",
+  "osmLevels": 1,
+  "osmStart": null,
+  "foral": 9,
+  "built": 1977
+ },
+ {
+  "town": "pamplona",
+  "lat": 42.8171521,
+  "lon": -1.6457791,
+  "building": "civic",
+  "osmLevels": 5,
+  "osmStart": null,
+  "foral": 6,
+  "built": 1902
+ },
+ {
+  "town": "pamplona",
+  "lat": 42.8348468,
+  "lon": -1.6367291,
+  "building": "apartments",
+  "osmLevels": 4,
+  "osmStart": null,
+  "foral": 8,
+  "built": 1995
+ },
+ {
+  "town": "pamplona",
+  "lat": 42.8159689,
+  "lon": -1.64754,
+  "building": "apartments",
+  "osmLevels": 4,
+  "osmStart": null,
+  "foral": 6,
+  "built": 1900
+ },
+ {
+  "town": "pamplona",
+  "lat": 42.8166399,
+  "lon": -1.6439844,
+  "building": "apartments",
+  "osmLevels": 4,
+  "osmStart": null,
+  "foral": 7,
+  "built": 1900
+ },
+ {
+  "town": "pamplona",
+  "lat": 42.8084236,
+  "lon": -1.6749786,
+  "building": "civic",
+  "osmLevels": 4,
+  "osmStart": null,
+  "foral": 2,
+  "built": 2011
+ },
+ {
+  "town": "pamplona",
+  "lat": 42.8094392,
+  "lon": -1.6727319,
+  "building": "apartments",
+  "osmLevels": 8,
+  "osmStart": null,
+  "foral": 9,
+  "built": 1990
+ },
+ {
+  "town": "pamplona",
+  "lat": 42.8120381,
+  "lon": -1.613136,
+  "building": "apartments",
+  "osmLevels": 4,
+  "osmStart": null,
+  "foral": 6,
+  "built": 1993
+ },
+ {
+  "town": "pamplona",
+  "lat": 42.8157815,
+  "lon": -1.6458242,
+  "building": "apartments",
+  "osmLevels": 4,
+  "osmStart": null,
+  "foral": 5,
+  "built": 1900
  }
 ]

@@ -28,7 +28,7 @@
   "b": {
    "levels": 5,
    "year": 1960,
-   "look": "typovy"
+   "look": "povalecny"
   }
  },
  {
@@ -60,7 +60,7 @@
   "b": {
    "levels": 8,
    "year": 1966,
-   "look": "funkce"
+   "look": "povalecny"
   }
  },
  {
@@ -92,7 +92,7 @@
   "b": {
    "levels": 5,
    "year": 1960,
-   "look": "typovy"
+   "look": "povalecny"
   }
  },
  {
@@ -124,7 +124,7 @@
   "b": {
    "levels": 7,
    "year": 1960,
-   "look": "funkce"
+   "look": "povalecny"
   }
  },
  {
@@ -220,7 +220,7 @@
   "b": {
    "levels": 8,
    "year": 1960,
-   "look": "funkce"
+   "look": "povalecny"
   }
  },
  {
@@ -252,7 +252,7 @@
   "b": {
    "levels": 7,
    "year": 1988,
-   "look": "funkce"
+   "look": "povalecny"
   }
  },
  {
@@ -382,7 +382,7 @@
   "b": {
    "levels": 10,
    "year": 1959,
-   "look": "funkce"
+   "look": "povalecny"
   }
  },
  {
@@ -414,7 +414,7 @@
   "b": {
    "levels": 8,
    "year": 1980,
-   "look": "funkce"
+   "look": "povalecny"
   }
  },
  {
@@ -446,7 +446,7 @@
   "b": {
    "levels": 4,
    "year": 1960,
-   "look": "typovy"
+   "look": "povalecny"
   }
  },
  {
@@ -478,7 +478,7 @@
   "b": {
    "levels": 6,
    "year": 1973,
-   "look": "funkce"
+   "look": "povalecny"
   }
  },
  {
@@ -510,7 +510,7 @@
   "b": {
    "levels": 7,
    "year": 1959,
-   "look": "funkce"
+   "look": "povalecny"
   }
  },
  {
@@ -542,7 +542,7 @@
   "b": {
    "levels": 8,
    "year": 1957,
-   "look": "sorela"
+   "look": "povalecny"
   }
  },
  {
@@ -574,7 +574,7 @@
   "b": {
    "levels": 9,
    "year": 1970,
-   "look": "funkce"
+   "look": "povalecny"
   }
  },
  {
@@ -788,7 +788,7 @@
   "a": {
    "levels": 6,
    "year": null,
-   "look": "funkce"
+   "look": "povalecny"
   },
   "b": {
    "levels": 7,
@@ -1019,7 +1019,7 @@
   "b": {
    "levels": 9,
    "year": 1972,
-   "look": "funkce"
+   "look": "povalecny"
   }
  },
  {
@@ -1076,7 +1076,7 @@
   "b": {
    "levels": 8,
    "year": 1969,
-   "look": "funkce"
+   "look": "povalecny"
   }
  },
  {
@@ -1107,7 +1107,7 @@
   "b": {
    "levels": 4,
    "year": 1971,
-   "look": "funkce"
+   "look": "povalecny"
   }
  },
  {
@@ -1139,7 +1139,7 @@
   "b": {
    "levels": 11,
    "year": 1979,
-   "look": "funkce"
+   "look": "povalecny"
   }
  },
  {
@@ -1171,7 +1171,7 @@
   "b": {
    "levels": 6,
    "year": 1970,
-   "look": "funkce"
+   "look": "povalecny"
   }
  },
  {
@@ -1203,7 +1203,7 @@
   "b": {
    "levels": 7,
    "year": 1973,
-   "look": "funkce"
+   "look": "povalecny"
   }
  },
  {
@@ -1235,7 +1235,7 @@
   "b": {
    "levels": 9,
    "year": 1982,
-   "look": "funkce"
+   "look": "povalecny"
   }
  },
  {
@@ -1267,7 +1267,7 @@
   "b": {
    "levels": 8,
    "year": 1985,
-   "look": "funkce"
+   "look": "povalecny"
   }
  },
  {
@@ -1332,7 +1332,7 @@
   "b": {
    "levels": 9,
    "year": 1972,
-   "look": "funkce"
+   "look": "povalecny"
   }
  },
  {
@@ -1364,7 +1364,7 @@
   "b": {
    "levels": 9,
    "year": 1974,
-   "look": "funkce"
+   "look": "povalecny"
   }
  },
  {
@@ -1429,7 +1429,7 @@
   "b": {
    "levels": 5,
    "year": 1974,
-   "look": "funkce"
+   "look": "povalecny"
   }
  },
  {
@@ -1461,7 +1461,7 @@
   "b": {
    "levels": 9,
    "year": 1987,
-   "look": "funkce"
+   "look": "povalecny"
   }
  },
  {
@@ -1493,7 +1493,7 @@
   "b": {
    "levels": 9,
    "year": 1987,
-   "look": "funkce"
+   "look": "povalecny"
   }
  },
  {
@@ -1525,7 +1525,7 @@
   "b": {
    "levels": 8,
    "year": 1981,
-   "look": "funkce"
+   "look": "povalecny"
   }
  },
  {
@@ -1588,7 +1588,7 @@
   "b": {
    "levels": 13,
    "year": 1978,
-   "look": "funkce"
+   "look": "povalecny"
   }
  },
  {
@@ -1781,7 +1781,7 @@
   "b": {
    "levels": 4,
    "year": 1963,
-   "look": "typovy"
+   "look": "povalecny"
   }
  },
  {
@@ -1813,7 +1813,7 @@
   "b": {
    "levels": 8,
    "year": 1972,
-   "look": "funkce"
+   "look": "povalecny"
   }
  }
 ]
