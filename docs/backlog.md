@@ -42,7 +42,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Francie: šířky vozovek BD TOPO (`?sirka=1`) bez A/B; další města s mapou povrchů (Lyon `pvochausseetrottoir`,
   Bordeaux, Nantes, Toulouse) neprověřená.
 - Španělsko: Zaragoza, vozovka jako pás kolem os OSM přesahuje přes trávu, kterou mapa nemá (zg12); A Coruña (vozovky,
-  chodníky, stání 1 : 500): dotaz na licenci připravený v `evaluation/spain/dotaz-coruna.md`, pošle Bára; Valencie (obruby s typem okolí, vodorovné značení) zkusit znovu;
+  chodníky, stání 1 : 500, licence nejasná): Bára 23. 11. nechce se ptát, zatím nepoužívat; Valencie (obruby s typem okolí, vodorovné značení) zkusit znovu;
   Madrid jen obrázek (čtení barev jako `dmvs.js`?); ortofoto ICGC 25 cm 2025 v Katalánsku ostřejší než PNOA (hranice
   Katalánska); měření: chybí chodník 10×, stání 8× (`evaluation/universal`, es-*).
 - Jihlava: pasport komunikací byl 16. 11. prázdný, ověřit (CLAUDE.md, Na 19. 11.).

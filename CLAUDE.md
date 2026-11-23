@@ -406,8 +406,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   složce „Intranet“ bez licence, Madrid jen jako obrázek, Barcelona jen čáry, Valencie neodpověděla.
 - Normy: závazný chodník 1,8 m (TMA/851/2021), jinak doporučení ministerstva 2024. Stání: 3 m k protějšímu okraji vozovky
   (čl. 91.2 a RGC, doslova). Katalog značek je od 1. 7. 2025 nový (RD 465/2025); značky jako úřední díla (čl. 13 LPI).
-  Bára 23. 11. 2026 souhlasí: 3 m doslova, sdílená stezka bez varování, zóna 30 jako tabule S-30; dotaz na licenci
-  A Coruñi `evaluation/spain/dotaz-coruna.md` (posílá Bára).
+  Bára 23. 11. 2026 souhlasí: 3 m doslova, sdílená stezka bez varování, zóna 30 jako tabule S-30; A Coruña se
+  ptát nebudeme („moc práce bez valného užitku“), její mapu zatím nepoužívat.
 - Měření 23. 11. (23 řezů v 10 městech): složení 57 %, šířka do 2 m 26 % (velké rozdíly hlavně bez fasády, posuzovatel
   měřil k okraji snímku); nejčastěji chybí chodník (10×) a stání (8×).
 
