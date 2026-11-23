@@ -60,8 +60,8 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Španělsko (Bára 23. 11.: souhlas): volná šířka 3 m k protějšímu okraji doslova; sdílená stezka bez varování; zóna 30
   jako tabule S-30. Otevřené: Melilla má snímek Airbus pod jinou licencí. Šířka pruhu BUS, BUS + kola a tramvajového pásu bez zdroje (bez varování).
 - Portugalsko **(Bára)**: chodník červeně pod 1,5 m všude (Bára 23. 11.);
-  cyklostezka podle IMT/LNEC (Bára 23. 11.: 1,75 / 2 m, obousměrná 3 m); stání 3 m na směr, nebo jen u plné
-  čáry?; pěší zóna jako G5a, nebo bez značky?; Code da Estrada ověřen do 2023 + Lei 24/2025 (kola v buspruhu nejasná).
+  cyklostezka podle IMT/LNEC (Bára 23. 11.: 1,75 / 2 m, obousměrná 3 m); stání 3 m na směr a pěší zóna jako G5a
+  (Bára 23. 11.); Code da Estrada ověřen do 2023 + Lei 24/2025 (kola v buspruhu nejasná).
 - Francie: normy kromě přístupnosti jen z druhé ruky (CEREMA přes přílohu ministerstva, příručky Paříže a Lyonu;
   Bára 23. 11.: smí varovat v celé Francii). Tramvajová plošina bez zdroje. Arrêté 2007 ověřit na Légifrance (mohl být
   změněn). ~~Paneláky, licence značek~~ (Bára 23. 11.: paneláky ne, značky volně).
