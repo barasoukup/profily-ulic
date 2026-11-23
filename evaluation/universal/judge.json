@@ -4310,5 +4310,115 @@
   "half": 13.9,
   "photos": true,
   "needPhoto": true
+ },
+ {
+  "id": "mt-valletta-1",
+  "country": "MT",
+  "town": "valletta",
+  "lat": 35.89577583975331,
+  "lon": 14.507941609076319,
+  "bearing": 4.306804745774148,
+  "half": 26,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "mt-valletta-2",
+  "country": "MT",
+  "town": "valletta",
+  "lat": 35.89743977437134,
+  "lon": 14.507989712366602,
+  "bearing": 85.36513577417546,
+  "half": 19,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "mt-valletta-3",
+  "country": "MT",
+  "town": "valletta",
+  "lat": 35.901376508871806,
+  "lon": 14.519372859041775,
+  "bearing": 22.83827236993175,
+  "half": 19,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "mt-valletta-5",
+  "country": "MT",
+  "town": "valletta",
+  "lat": 35.89189618976887,
+  "lon": 14.510027077625233,
+  "bearing": -44.4808132329869,
+  "half": 26,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "mt-qormi-4",
+  "country": "MT",
+  "town": "qormi",
+  "lat": 35.874512635766116,
+  "lon": 14.456619720554801,
+  "bearing": 50.89142321208011,
+  "half": 32.3,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "mt-mosta-2",
+  "country": "MT",
+  "town": "mosta",
+  "lat": 35.90552573158137,
+  "lon": 14.417542825744436,
+  "bearing": 34.794567206003975,
+  "half": 10.6,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "mt-mosta-7",
+  "country": "MT",
+  "town": "mosta",
+  "lat": 35.9134112823697,
+  "lon": 14.43931135160454,
+  "bearing": -78.96793957885073,
+  "half": 18.8,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "mt-victoria-2",
+  "country": "MT",
+  "town": "victoria",
+  "lat": 36.04457262453696,
+  "lon": 14.241825359743565,
+  "bearing": -72.36143810938192,
+  "half": 15.3,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "mt-victoria-3",
+  "country": "MT",
+  "town": "victoria",
+  "lat": 36.052158607652856,
+  "lon": 14.237706875629794,
+  "bearing": -23.647499665672484,
+  "half": 10.5,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "mt-victoria-6",
+  "country": "MT",
+  "town": "victoria",
+  "lat": 36.05153450911926,
+  "lon": 14.247455269433395,
+  "bearing": 29.57749646646051,
+  "half": 8.9,
+  "photos": true,
+  "needPhoto": true
  }
 ]

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="600.00189"
+   height="600.00189"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.47 r22583"
+   sodipodi:docname="Maltese road sign II.B5.svg" viewBox="0 0 600.002 600.002">
+  <defs
+     id="defs4">
+    
+    
+    
+    
+    
+    
+    
+  </defs>
+  
+  
+  <g
+     inkscape:label="Livello 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-101.49915,-117.42648)">
+    <path
+       sodipodi:rx="258.91537"
+       sodipodi:ry="258.91537"
+       sodipodi:cx="-319.62656"
+       sodipodi:cy="-458.85416"
+       sodipodi:type="arc"
+       d="m -60.711182,-458.85416 c 0,142.99502 -115.920358,258.91538 -258.915378,258.91538 -142.99501,0 -258.91537,-115.92036 -258.91537,-258.91538 0,-142.99501 115.92036,-258.91537 258.91537,-258.91537 142.99502,0 258.915378,115.92036 258.915378,258.91537 z"
+       transform="matrix(-1.15289,0,0,1.15289,33.005839,946.4358)"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.60215998;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path2367" />
+    <path
+       sodipodi:rx="258.91537"
+       sodipodi:ry="258.91537"
+       sodipodi:cx="-319.62656"
+       sodipodi:cy="-458.85416"
+       sodipodi:type="arc"
+       d="m -60.711182,-458.85416 c 0,142.99502 -115.920358,258.91538 -258.915378,258.91538 -142.99501,0 -258.91537,-115.92036 -258.91537,-258.91538 0,-142.99501 115.92036,-258.91537 258.91537,-258.91537 142.99502,0 258.915378,115.92036 258.915378,258.91537 z"
+       transform="matrix(-1.12006,0,0,1.12006,43.498839,931.3718)"
+       style="fill:#d40000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path2954" />
+    <path
+       sodipodi:rx="258.91537"
+       sodipodi:ry="258.91537"
+       sodipodi:cx="-319.62656"
+       sodipodi:cy="-458.85416"
+       sodipodi:type="arc"
+       d="m -60.711182,-458.85416 c 0,142.99502 -115.920358,258.91538 -258.915378,258.91538 -142.99501,0 -258.91537,-115.92036 -258.91537,-258.91538 0,-142.99501 115.92036,-258.91537 258.91537,-258.91537 142.99502,0 258.915378,115.92036 258.915378,258.91537 z"
+       transform="matrix(-0.830387,0,0,0.830387,136.08484,798.4558)"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path2956" />
+    
+  </g>
+<text x="300" y="392" font-family="Arial, Helvetica, sans-serif" font-weight="bold" font-size="250" letter-spacing="-6" text-anchor="middle" fill="#000">40</text></svg>

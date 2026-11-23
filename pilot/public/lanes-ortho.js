@@ -63,6 +63,11 @@ export const PT_ORTHO = {
 // level 21, CORS echo; no licence stated, unlike the 2014 one, CC BY 4.0), only the south and the British bases (a
 // missing tile is a 404 there). Level 20 (about 12 cm at 35° N).
 export const CY_ORTHO = "https://eservices.dls.moi.gov.cy/arcgis/rest/services/BASEMAPS/Orthoimagery_2019_WebMercator/MapServer/tile";
+// Malta (Bára 23. 11. 2026): the Planning Authority's orthophoto of 2018 (15 cm, WMS of wetransform, CORS *, CC BY 4.0),
+// Malta, Gozo and Comino. The service has no Web Mercator: the box is asked in degrees (CRS:84, lon lat); over a cut's
+// hundred metres a degree's image and a Mercator one differ by under a centimetre. Black beyond the islands.
+const mercToDeg = ([x0, y0, x1, y1]) => [x0, y0, x1, y1].map((v, i) => (i % 2 === 0 ? (v / R) * (180 / Math.PI) : (Math.atan(Math.sinh(v / R)) * 180) / Math.PI));
+export const MT_ORTHO = (b, w, h, format = "image/jpeg") => `https://malta.coverage.wetransform.eu/wms/ortho_2018/ows?${new URLSearchParams({ SERVICE: "WMS", REQUEST: "GetMap", VERSION: "1.3.0", LAYERS: "OI.OrthoimageCoverage", STYLES: "", CRS: "CRS:84", BBOX: mercToDeg(b).join(","), WIDTH: w, HEIGHT: h, FORMAT: format })}`;
 export const SK_ORTHO = "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ortofoto_hres/MapServer";
 const SOURCES = {
   // The grid of z19, tiles of 512 px (about 10 cm). balance: the mosaic is bright and tinted (Košice 2025: asphalt
@@ -77,6 +82,7 @@ const SOURCES = {
   pl: { res: 0.1, url: (b, w, h, format) => PL_ORTHO(b, w, h, format) },
   fr: { res: 0.2, url: (b, w, h, format) => FR_ORTHO(b, w, h, format) },
   es: { res: 0.25, url: (b, w, h, format) => ES_ORTHO(b, w, h, format) },
+  mt: { res: 0.15, url: (b, w, h, format) => MT_ORTHO(b, w, h, format) },
   cy: { res: 0.12, tiles: CY_ORTHO, z: 20, px: 256 },
   "pt-25": { res: 0.25, url: (b, w, h, format) => PT_ORTHO["pt-25"](b, w, h, format) },
   "pt-21": { res: 0.3, url: (b, w, h, format) => PT_ORTHO["pt-21"](b, w, h, format) },
@@ -271,7 +277,7 @@ async function laneImageOf(key, { frame, dir, t0, t1, timeout = TIMEOUT, fetchIm
       }
     }
     // Outside a Land's coverage its WMS answers white (only the German sources).
-    if ((key.startsWith("de-") || key.startsWith("be-") || key.startsWith("pt-")) && blank(img)) return null;
+    if ((key.startsWith("de-") || key.startsWith("be-") || key.startsWith("pt-") || key === "mt") && blank(img)) return null;
     // Resample on the grid of the cut.
     const res = src.res, nt = Math.round((t1 - t0) / res), nu = Math.round((2 * ALONG) / res), L = new Float32Array(nt * nu), G = new Float32Array(nt * nu), Y = new Float32Array(nt * nu), D = new Float32Array(nt * nu), S = new Float32Array(nt * nu);
     for (let j = 0; j < nu; j++) for (let i = 0; i < nt; i++) {

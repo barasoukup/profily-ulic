@@ -50,6 +50,8 @@ export const COUNTRIES = {
   mc: { iso: "MC", geofabrik: "monaco/monaco", pages: false },
   // Cyprus (Bára 23. 11. 2026): Geofabrik's extract (in a folder), only on R2.
   cy: { iso: "CY", geofabrik: "cyprus/cyprus", pages: false },
+  // Malta (Bára 23. 11. 2026): Geofabrik's extract (in a folder), only on R2.
+  mt: { iso: "MT", geofabrik: "malta/malta", pages: false },
 };
 // The packs to build (osm-tiles.yml): a state's own, or its parts.
 export const PACKS = Object.entries(COUNTRIES).flatMap(([k, c]) => (c.parts ? Object.entries(c.parts).map(([code, extract]) => ({ code, extract })) : [{ code: k, extract: c.geofabrik }]));

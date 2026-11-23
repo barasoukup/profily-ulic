@@ -84,6 +84,12 @@ async function fetchOrtho(country, b, w, h, lon, lat) {
       if (buf.length >= w * h * 0.02 || key === "pt-sat") return toPng(buf);
     }
   }
+  else if (country === "MT") {
+    const { MT_ORTHO } = await import("../../pilot/public/lanes-ortho.js");
+    const res = await fetch(MT_ORTHO(b, w, h), { headers: UA });
+    if (!res.ok) throw new Error(`ortofoto ${res.status}`);
+    return toPng(Buffer.from(await res.arrayBuffer()));
+  }
   else if (country === "CY") {
     const { CY_ORTHO } = await import("../../pilot/public/lanes-ortho.js");
     return tiles(CY_ORTHO, "", 20, b, w, h);

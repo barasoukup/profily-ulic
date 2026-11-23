@@ -435,6 +435,13 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Měření 23. 11. (11 řezů v 5 městech): složení 56 %, pruhy 91 %, šířka do 2 m 27 % (promenády a pěší ulice); chybí
   chodník 9×, stání 5×.
 
+## Malta (větev malta z cyprus, Bára 23. 11. 2026, nenasazené)
+- Stát `malta` (MT): `countries/MT.js`, `towns/malta.js`, `signs-MT/`, `evaluation/malta/` (ZDROJE, NORMY). Hranice z OSM
+  s výsostnými vodami, OSM balík `mt` (jen R2; **workflow OSM tiles se `states: mt`**). Jízda vlevo.
+- Ortofoto stavebního úřadu 2018 ve stupních (služba nemá Web Mercator), jen odhad z OSM a ortofota. Normy: chodník 1,2 /
+  1,5 m, kolmé stání 4,8 m; volná šířka vedle stání 4,1 / 3 m podle DC15.
+- Měření 23. 11. (8 řezů v 6 městech): složení 55 %, šířka do 2 m 63 %, pruhy 38 %; chybí chodník 5×, stání 4×.
+
 ## Měření přesnosti (Bára 17. 11. 2026)
 - Jedna univerzální metoda pro všechny státy: skill `mereni-presnosti`, kód a zpráva `evaluation/universal/`. Použít u
   každého nového státu a u starých, když Bára řekne. Hodnotí složení uličního prostoru, pak šířku; jen řezy s fotkou

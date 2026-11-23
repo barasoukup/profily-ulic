@@ -295,6 +295,14 @@ data, otáčí se jen pořadí směrů (Bára: „Přesouvat nesmíš nic, jen o
 Normy jen z příručky odboru veřejných prací (doporučení), stání bez varování; stání na chodníku zakázané. Značky
 `signs-CY/` (kyperský Kodex nečísluje, britské kresby pod OGL v1.0 s uvedením zdroje v patičce).
 
+### Malta (Bára 23. 11. 2026)
+
+Stát `malta` (MT), `countries/MT.js`, `towns/malta.js`; hranice z OSM i s výsostnými vodami (`tools/malta-border.json`),
+OSM balík `mt`. Jízda vlevo. Ortofoto stavebního úřadu 2018 (15 cm, CC BY 4.0); služba nemá Web Mercator, výřez se ptá
+ve stupních (`lanes-ortho.js MT_ORTHO`, CRS:84). Mapa povrchů, stání ani budovy s podlažími nejsou. Normy: chodník 1,2 /
+1,5 m (doporučení), kolmé stání 4,8 m (DC15), jinak bez varování. Volná šířka vedle stání podle DC15: 4,1 m obousměrka,
+3 m jednosměrka. Značky `signs-MT/` (maltské kresby PD, britské pod OGL v3.0, uvedeno v patičce). Hledání Photon.
+
 ### Dlaždice OSM
 
 Jedna sada dlaždic pro všechna města (`pilot/data/osm-tiles`, na webu `data/osm-tiles`) z výřezu Geofabrik Česká

@@ -39,6 +39,8 @@ export const TOWNS = {
   // Monaco (23. 11. 2026): the one town, its points within the 1.5 km of the sample (some fall in France or the sea).
   MC: { monaco: [43.738, 7.424] },
   // Cyprus (23. 11. 2026): the towns of the local OSM pack (the south: the DLS orthophoto has only it).
+  // Malta (23. 11. 2026): the whole island in the local OSM pack.
+  MT: { valletta: [35.897, 14.512], sliema: [35.912, 14.502], birkirkara: [35.896, 14.465], qormi: [35.876, 14.472], mosta: [35.909, 14.426], victoria: [36.044, 14.240] },
   CY: { nicosia: [35.170, 33.365], limassol: [34.680, 33.045], larnaca: [34.915, 33.630], paphos: [34.770, 32.425], ayianapa: [34.985, 33.995] },
 };
 if (process.argv[1] === new URL(import.meta.url).pathname) {

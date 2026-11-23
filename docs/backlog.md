@@ -51,6 +51,9 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Kypr **(Bára)**: chodník 2 / 2,5 m (doporučení); 3 m na směr vedle stání; jednosměrka: stát jen vlevo?; protisměrní
   cyklisté bez tabulky; zóna 30 nekreslit; pěší zóna jako „povinná pěší cesta“. Sever ostrova jako samostatný stát
   (zatím nemáme). Měření: chybí chodník 9×, stání 5×.
+- Malta **(Bára)**: volná šířka DC15 (4,1 / 3 m), nebo 3 m na směr?; chodník 1,2 / 1,5 m?; cyklo, BUS a pruhy bez
+  varování, nebo britské normy (LTN 1/20)?; podélné stání 2,4 m (standard parkovišť) zatím ne; zákaz stání jako II.D6
+  „No waiting“. Výškový model 2018 (1 m, CC BY 4.0) by šel na výšky domů.
 - Jihlava: pasport komunikací byl 16. 11. prázdný, ověřit (CLAUDE.md, Na 19. 11.).
 - Pasporty devíti českých měst: A/B po odstávce DMVS (`evaluation/PASPORTY-AB.md`).
 
