@@ -1,6 +1,7 @@
 // Sheets of the regional house looks (docs/house-types-europe.md) drawn with the app's own code (profile.js, as
 // tools/build_og.mjs), a Prague tenement beside them for comparison. Writes SVG and PNG (ImageMagick) here.
-//   node evaluation/budovy-regiony/render.mjs [jih|sever|drevo|stity|vse]
+//   node evaluation/budovy-regiony/render.mjs [jih|sever|drevo|stity|povalecny|mansarda|vse]
+// (povalecny.png goes to evaluation/budovy-povalecny/)
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
@@ -61,6 +62,16 @@ const SHEETS = {
     cell("malovaný dřevěný dům (Estonsko) · pražský činžák", "estonia", h("drevak", 2, "tallinn", { tint: 3 }), h("sikma", 5, "praha")),
   ],
 };
+// The postwar block of flats (evaluation/budovy-povalecny), with a set-back floor; a Haussmann house and a Nordic
+// tenement with their mansard floors (the windows in the columns below).
+P.wien = [16.37, 48.2]; P.madrid2 = [-3.64, 40.405];
+SHEETS.povalecny = [
+  cell("poválečný bytový dům (Vídeň) 5 · 8 podlaží", "austria", h("povalecny", 5, "wien", { tint: 0 }), h("povalecny", 8, "wien", { tint: 2 })),
+  cell("poválečný dům s ustoupeným podlažím (Madrid)", "spain", h("povalecny", 7, "madrid2", { tint: 1, cornice: 6, roof: 1 }), h("povalecny", 6, "madrid2", { tint: 4 })),
+];
+SHEETS.mansarda = [
+  cell("Haussmann 5 + 2 v mansardě · stenstad 5 + 1", "france", h("haussmann", 7, "paris", { cornice: 5, roof: 2 }), h("stenstad", 6, "stockholm", { cornice: 5, roof: 1 })),
+];
 // The gables: each form with and without the outline (LOOKS.gables), a Prague tenement beside. The form follows the
 // house's place (houseHash): a point near Amsterdam's or Tallinn's centre giving each form.
 const { houseHash: hh } = await import("../../pilot/public/house-looks.js");
@@ -113,7 +124,8 @@ for (const [name, cells] of Object.entries(SHEETS)) {
   const svgFile = path.join(tmp, `${name}.svg`);
   fs.writeFileSync(svgFile, out);
   execFileSync("qlmanage", ["-t", "-s", String(S), "-o", tmp, svgFile], { stdio: "ignore" });
-  execFileSync("magick", [path.join(tmp, `${name}.svg.png`), "-crop", `${W}x${Hh}+0+0`, "+repage", path.join(HERE, `${name}.png`)]);
+  const dest = name === "povalecny" ? path.join(HERE, "..", "budovy-povalecny", "povalecny.png") : path.join(HERE, `${name}.png`);
+  execFileSync("magick", [path.join(tmp, `${name}.svg.png`), "-crop", `${W}x${Hh}+0+0`, "+repage", dest]);
   fs.rmSync(tmp, { recursive: true });
   console.log(name, W, Hh);
 }

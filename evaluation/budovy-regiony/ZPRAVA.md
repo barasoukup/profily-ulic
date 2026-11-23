@@ -82,3 +82,81 @@ vzhledů nejsou a dům uložený se štítem se kreslí bez obrysu (jen štítov
   alpský dům a belgický eklektický dům podle specifikace jen poznámka.
 - Dlaždice OSM nenesou `roof:material`, `building:colour`; přidání (specifikace bod 4) neprovedeno.
 - Překlady popisků do 23 jazyků jsou strojové.
+
+## Štíty přepracované a tři kola kritiky (23. 11. 2026)
+
+### Štíty (`?stit=1`, výchozí kresba beze změny)
+
+- Štít stojí na celé šířce stěny a schovává střechu: tmavý pás střechy ani komín za ním nejsou (střecha běží od ulice).
+- Okna ve štítu jsou ve stejných sloupcích a stejně široká jako okna pater pod ním. Sloupce štítových domů jsou
+  souměrné k ose štítu (`GABLE_AXES`: amsterdamský ±95 cm, hanzovní ±70 cm), kde se štít zúží, zůstane jedno okno
+  v ose. Okno se do štítu dá, jen když se vejde i s rámem a lemem (žádné přesahy přes obrys).
+- Štít nese nejvyšší podlaží (`roofRows = 1`): pod ním je o patro méně, výška domu odpovídá počtu NP; navrchu ještě
+  půdní okno. Okna ve štítu bez truhlíků.
+- Kladkový trám (čelem, se stříškou u amsterdamských domů a háčkem) je nad nejvyšším oknem v ose. V Tallinnu nad
+  okny nakládací dvířka v ose a trám nad nimi; nic se nepřekrývá.
+- Tvary: **stupňovitý** tři výrazné stupně s bílými kamennými krytinami, široký vrchol s kamennou koulí;
+  **krkový** úzké hrdlo s pískovcovým frontonem (trojúhelník nebo oblouk podle místa) a esovitými pískovcovými
+  klauwstukken se závitkem na ramenou; **zvonový** esovitě rozšířená pata, oblý vrchol s vázou, bílý lem;
+  **hanzovní hladký** strmý trojúhelník přes celou šířku zdi, okno v ose a dvířka; **hanzovní stupňovitý** tři vyšší
+  stupně, šedé krytiny.
+- `stity.png` (každá podoba, vpravo dole výchozí kresba bez obrysu), `stity-foto.png` (kresba vedle fotky z Commons).
+
+### Okna v podkroví a mansardě u ostatních nových vzhledů (stejný nedostatek)
+
+- Haussmann a severský činžák: okna mansardy ve sloupcích pater pod ní (kde stojí mimo strmou plochu), každé ve
+  vikýři (haussmannovský se segmentovým obloukem), mansarda zinková/plechová, boční vikýř u dolního okna; komíny
+  jen na mělké horní ploše.
+- Dánský činžák: vikýř v zadním sloupci oken, okno stejně široké. Tallinnský dům: kulaté okénko v ose zadního
+  sloupce. Malovaný a finský dřevěný dům: okno ve štítu v zadním sloupci, stejně široké, bez truhlíku.
+- Poválečný dům: okno ustoupeného podlaží v ose oken pod ním, před ním terasa se zábradlím.
+- **České vzhledy mají stejný nedostatek, ale nejsou změněné** (výstup ČR, SR a PL musí zůstat stejný; k Bářinu
+  schválení): pražský činžák s mansardou (`row()` rozmisťuje okna mansardy vlastním krokem), kulaté okno ve štítu
+  činžáku (d = 200 cm, mimo sloupce), okno ve štítu malého domu (`RIDGE − 37,5`, šířka 75 cm proti 85–90 pod ním),
+  ustoupená podlaží paneláků a typových domů (`row()`).
+
+### Kritik, kolo 1 (6 vážných)
+
+Vážné: balkony jen z boku (Haussmann bez dlouhých balkonů ve fasádě), nesouměrný stupňovitý štít a odtržené tmavé
+pásky boku štítu, galerie v A Coruña jen úzký boční pás, maltská gallarija jen z boku, mansarda v barvě kamene
+s okny jen v jedné ose. Střední/drobné: okna přes obrys štítu, „komín“ na vrcholu štítu, „radiátor“ na zvonovém štítu,
+hanzovní hladký štít s příliš mnoha okny, popisky přes komíny, truhlíky u haussmannovských oken.
+Opraveno: Haussmann má dlouhé balkony se zábradlím i podél stěny a francouzská okna se zábradlím místo truhlíků;
+galerie pokrývá stěnu ve všech patrech; gallarija se otáčí přes roh na stěnu; mansarda zinková s vikýři v osách
+oken; vypuštěn posunutý stín štítu; okna ve štítu s odstupem od obrysu (hanzovní hladký štít tím má jen okno
+v ose a dvířka); kamenná koule a váza místo „komínu“ a „radiátoru“; esovité klauwstukken. Konvence aplikace
+(balkony z boku, trojúhelník štítové zdi v řezu, nesouměrný štít rodinného domu s hřebenem v pásu) zůstává.
+
+### Kritik, kolo 2 (3 vážné)
+
+Vážné: dům se štítem o patro vyšší, než říká popisek; horní pásmo štítu užší než stěna (schod); haussmannovský
+komín ve vzduchu před mansardou. Střední: boční vikýř mezi okny mansardy, popisky přes schodišťové nástavby, příliš
+strmý hanzovní štít, zvonový štít jako láhev, hodně drobných stupňů u hanzovního štítu.
+Opraveno: štít nese nejvyšší podlaží, pata štítu přes celou stěnu (hladký štít i přes stinný pruh řezu), komíny jen
+na horní ploše, boční vikýř u dolního okna mansardy, výška středomořské ploché střechy počítá s nástavbou (popisek
+nad ní), hanzovní hladký štít nižší (2 podlaží), stupňovitý 3 vyšší stupně, zvonový štít širší, pískovcové voluty.
+
+### Kritik, kolo 3 (0 vážných)
+
+Střední: stupňovitý štít jako „věžička“ (málo stupňů, úzký vrchol), popisky NP nesedí s řadami oken (štít má navíc
+půdní okno), obytná okna s truhlíky ve štítech dřevěných domů, galerie A Coruña tmavá jako fotovoltaika, markýza
+v Madridu jako ulomená trubka.
+Opraveno: stupňovitý štít se širším vrcholem (1,8 m) a třemi stupni, truhlíky ve štítech pryč, galerie světlejší
+s bílými rámy a příčkami nahoře, pískovcový fronton krkového štítu. Kritika skončila (bez vážných nálezů).
+
+### Otevřené
+
+- Úzký pás domu (4 m) omezuje štíty: amsterdamský stupňovitý štít má jen 3 stupně (5–7 by se se sloupci oken
+  nevešlo), hanzovní štíty jsou strmější než ve skutečnosti (asi 72° proti 55–62°).
+- Výchozí kresba štítových domů bez `?stit=1` (štítová deska a trám, pás střechy) zůstává, jak byla (kritik ji
+  kritizoval: deska jako tyč, trám do prázdna); bez Bářina rozhodnutí neměněno.
+- Ponecháno z kritiky: markýza v Madridu, kontrast azulejos v malé velikosti, konzoly pod gallarijou, kyperská
+  nástavba (solární ohřívač), dánská francouzská zábradlí z boku, černý střešní světlík u domu s římsou, užší
+  balkonové dveře poválečného domu, popisky NP u štítových domů (půdní okno nad nejvyšším NP se nepočítá).
+- Fotky ke kritice: Wikimedia Commons (kategorie a hledání podle `docs/house-types-europe.md`), kritik je dostal
+  jen jako obrázky spolu s kresbami.
+
+Ověření: `buildingStyle` a SVG asi 63 000 kombinací domů v Praze, Brně, „cesko“, Jihlavě, Plzni, na Slovensku a
+v Polsku proti HEAD shodné; `node evaluation/ortofoto-osm/regrese.mjs` shodná; `npm test` prošel (377/377, na kopii
+HEAD s touto změnou, protože v pracovním stromě rozpracované Slovinsko jiného workflow testy zatím shazuje).
+Nové snímky: `mansarda.png` a `../budovy-povalecny/povalecny.png` (`render.mjs povalecny|mansarda`).

@@ -24,6 +24,9 @@ Snímky (kresba aplikace, stejná ulice):
 - `srovnani-povalecny-panelak.png`: poválečný dům vlevo proti českému paneláku vpravo,
 - `madrid-moratalaz-aplikace-po.png`: skutečný řez v aplikaci (Madrid, Calle del Corregidor Juan de Bobadilla,
   9 podlaží, rok z katastru), velikost jako v aplikaci.
+- `povalecny.png` (23. 11. 2026, po kritice, `node evaluation/budovy-regiony/render.mjs povalecny`): Vídeň 5 a 8 podlaží,
+  Madrid s ustoupeným podlažím (okno v ose oken pod ním, terasa se zábradlím). Kritik (3 kola, viz
+  `../budovy-regiony/ZPRAVA.md`) bez vážných výhrad; drobné: balkonové dveře užší, vídeňské domy mívají spíš lodžie.
 
 Česko beze změny: `node evaluation/ortofoto-osm/regrese.mjs` před a po stejný výstup, testy budov Prahy a měst beze
 změny; nový test `tests/house-looks.test.js` (CZ, SK, PL, EE, východ DE proti AT, FR, ES, IT, západu DE a cizině).

@@ -858,6 +858,17 @@ const SMALL_RIDGE = new Set(["drevak", "puukaupunki"]);
 const stoepZ = (kind, info) => ((kind === "cihlovy" || kind === "stit") && houseHash(info) % 2 === 1 ? 75 : 0);
 // The roof of a gabled house seen from the side: the band of its slope up to the ridge running away from the street.
 const GABLE_RISE = { stit: 400, hanza: 480 };
+// With the gable's outline (?stit=1, LOOKS.gables): the gable stands on the wall's top across its width (0 to EDGE - 30,
+// its axis GABLE_C), two to three storeys tall, the roof running back hidden behind it. The window columns of the floors
+// below stand symmetric to its axis (GABLE_AXES, the centres of the front and back column), so the gable's windows keep
+// them; its narrower top holds one window in the axis. Its form by the house's place: the North Sea's step, neck or bell
+// gable; Tallinn's plain gable, every fourth stepped. Heights in storeys (GABLE_TOP: the top of the outline).
+const GABLE_C = (EDGE - 30) / 2;
+const GABLE_AXES = { stit: [GABLE_C - 95, GABLE_C + 95], hanza: [GABLE_C - 70, GABLE_C + 70] };
+const gableForm = (kind, info) => (kind === "hanza" ? (houseHash(info) % 4 === 0 ? "trap" : "plain") : ["trap", "hals", "klok"][houseHash(info) % 3]);
+const GABLE_TOP = { trap: 2.3, hals: 2.38, klok: 2.4, plain: 2.0, htrap: 2.38 };
+const gableTop = (kind, info) => GABLE_TOP[kind === "hanza" && gableForm(kind, info) === "trap" ? "htrap" : gableForm(kind, info)];
+const gableOn = (kind) => !!GABLE_RISE[kind] && LOOKS.gables;
 const BARN_RISE = 380; // a village house: its roof rises this high (cm) from the eaves to the ridge (6–8 m deep house)
 function buildingForm(info, kind) {
   const style = BASE_STYLE[kind] || kind;
@@ -869,6 +880,8 @@ function buildingForm(info, kind) {
   if (kind === "haussmann" && !roofRows && n >= 3) roofRows = n >= 7 ? 2 : 1;
   // The brick, wooden and Mediterranean houses draw their roof floors in the roof (dormers, a gable), not as a mansard.
   if (style === "cihla" || style === "drevo" || MED_LOOKS.has(kind)) roofRows = 0;
+  // A gable turned towards us (?stit=1) holds the top floor: the floors below it are one fewer.
+  if (gableOn(kind) && n >= 2) roofRows = 1;
   const S = STOREY[kind];
   // A known height sets the storey (within reason); pitched roofs sit above it.
   const storey = h ? Math.min(S * 1.5, Math.max(S * 0.7, (h * 100) / n)) : S;
@@ -885,9 +898,9 @@ function buildingForm(info, kind) {
   const pitch = ROOF_PITCH[kind] || PITCH;
   const sawtooth = style === "hala" && ["industrial", "manufacture"].includes(info?.type) && IPR_ROOF[info?.roofType] !== "plocha";
   // A family house shows its ridge inside the 4 m strip; a tenement's ridge lies deeper, past the cut.
-  const pitched = kind === "statek" ? BARN_RISE + 40 : GABLE_RISE[kind] ? GABLE_RISE[kind] + 100 : kind === "cihlovy" ? 250
+  const pitched = kind === "statek" ? BARN_RISE + 40 : gableOn(kind) ? gableTop(kind, info) * storey + 90 : GABLE_RISE[kind] ? GABLE_RISE[kind] + 100 : kind === "cihlovy" ? 250
     : style === "nizky" || SMALL_RIDGE.has(kind) ? (RIDGE + 55) * pitch + 45 : (EDGE + 35) * pitch + 45;
-  const roofH = flat ? roofRows * storey + (sawtooth ? 430 : style === "hala" ? 110 : MED_LOOKS.has(kind) ? 110 : 50) : roofRows && kind !== "statek" ? roofRows * storey + 170 : pitched;
+  const roofH = flat ? roofRows * storey + (sawtooth ? 430 : style === "hala" ? 110 : MED_LOOKS.has(kind) ? 230 : 50) : roofRows && kind !== "statek" && !gableOn(kind) ? roofRows * storey + 170 : pitched;
   return { n, roofRows: kind === "statek" ? 0 : roofRows, storey, ground, body, roofH, flat, pitch, chimney: flat ? 0 : 70 };
 }
 
@@ -947,6 +960,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
 
   // A Streetmix window: cream frame, dark glass with a glint, a transom, a sill with its shadow; now and then
   // a lit pane, a flower box or a curtain.
+  let noBox = false; // no flower boxes (the gable's windows)
   const window = (d, z, w, h, n) => {
     const luck = (((n + seed * 31) * 2654435761) >>> 0) % 13; // scatters the lit panes, flowers and curtains
     const lit = luck === 5;
@@ -965,7 +979,11 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     if (kind === "drevak") box(d, d + w, z + h * 0.35 - 3, z + h * 0.35 + 3, WF); // six panes
     if (brick) box(d, d + w, z + h * 0.45 - 3, z + h * 0.45 + 3, WF); // the sash window's meeting rail
     box(d - 12, d + w + 12, z - 12, z - 4, dark); // sill
-    if ((luck === 2 || luck === 9 || luck === 11 || n === 3) && !lit) {
+    if (kind === "haussmann" && z > f.ground) { // a French window: its low iron guard instead of a flower box
+      box(d - 4, d + w + 4, z + h * 0.3 - 4, z + h * 0.3, "#2b2d2f");
+      box(d - 4, d + w + 4, z + 4, z + 7, "#2b2d2f");
+      for (let dd = d; dd <= d + w; dd += 10) box(dd - 1.2, dd + 1.2, z, z + h * 0.3, "#2b2d2f");
+    } else if ((luck === 2 || luck === 9 || luck === 11 || n === 3) && !lit && !noBox) {
       box(d - 4, d + w + 4, z - 28, z - 12, "#9b6a45");
       for (let i = 0; i < 4; i++) dot(d + 6 + (i * (w - 12)) / 3, z - 6, 9, i % 2 ? "#e2607a" : "#6fae4f");
     } else if (luck === 7) { // a net curtain with a wavy hem
@@ -1008,6 +1026,103 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     for (let i = 0; i < count; i++) window(start + i * (win.w + win.gap), z, win.w, h, n * 3 + i);
   };
 
+  // The gable turned towards us (?stit=1): its outline over the wall's width, the roof hidden behind it; its windows in
+  // the columns of the floors below (GABLE_AXES), one in the axis where it narrows; the hoist beam (end-on, under its
+  // little hood in Amsterdam) above the uppermost window, in Tallinn over a loading door in the axis.
+  function drawGable() {
+    const S = f.storey, c = GABLE_C, form = gableForm(kind, info), win = WINDOWS[kind], [ax0, ax1] = GABLE_AXES[kind];
+    const u = (k) => top + k * S;
+    const STONE_W = "#efe9dc", SANDSTONE = "#e3d6b8", CAP = kind === "hanza" ? "#8f8a80" : STONE_W;
+    // The left half of the outline as [half-width, height in storeys], from the wall's top up; mirrored for the right.
+    let half, pedestal = null;
+    const steps = (list, crown) => { const h = [[c, 0]]; let w = c; for (const [k, hw] of list) { h.push([w, k], [hw, k]); w = hw; } h.push([w, crown]); return h; };
+    if (form === "trap" && kind === "stit") half = steps([[0.86, 155], [1.12, 122], [1.38, 90]], 2.22);
+    else if (form === "trap") half = steps([[0.75, 135], [1.2, 100], [1.65, 68]], 2.3);
+    else if (form === "hals") half = [[c, 0], [c, 0.86], [80, 0.86], [80, 2.0], [96, 2.0], [96, 2.06]];
+    else if (form === "klok") {
+      half = [[c, 0], [c, 0.86]];
+      for (let i = 1; i <= 10; i++) { const t = i / 10, sm = t * t * (3 - 2 * t); half.push([c - (c - 112) * sm, 0.86 + 0.5 * t]); }
+      half.push([112, 1.9]);
+      for (let i = 1; i <= 8; i++) { const v = (i / 8) * (Math.PI / 2); half.push([112 * Math.cos(v), 1.9 + (90 / S) * Math.sin(v)]); }
+    } else half = [[c, 0], [0, GABLE_TOP.plain]];
+    const left = half.map(([hw, k]) => [c - hw, u(k)]);
+    const right = left.slice().reverse().map(([d, z]) => [2 * c - d, z]);
+    let pts = [...left, ...right];
+    if (form === "hals") { // the pediment over the neck's cornice: triangular or rounded (by the house's place)
+      const zc = u(2.06), round = (houseHash(info) >> 3) % 2;
+      const ped = round ? Array.from({ length: 9 }, (_, i) => { const v = (i / 8) * Math.PI; return [c - 88 * Math.cos(v), zc + 70 * Math.sin(v)]; })
+        : [[c - 92, zc], [c, zc + 0.3 * S], [c + 92, zc]];
+      pts = [...left, ...ped, ...right];
+      pedestal = ped;
+    }
+    // The return of the gable at the cut, a shade darker, then the gable itself.
+    if (form === "plain") pts[pts.length - 1] = [EDGE, top]; // its foot over the whole wall, the cut's strip too
+    else box(EDGE - 30, EDGE, top, Math.max(...left.filter(([d]) => d < 0.01).map(([, z]) => z)), shade);
+    poly(pts, wall, outline);
+    // How wide the gable is at height z (the run of the outline holding the axis).
+    const hwAt = (z) => {
+      let best = -Infinity;
+      for (let i = 0; i + 1 < left.length; i++) {
+        const [d0, z0] = left[i], [d1, z1] = left[i + 1];
+        if ((z0 <= z && z <= z1) || (z1 <= z && z <= z0)) best = Math.max(best, z1 === z0 ? Math.min(d0, d1) : d0 + ((z - z0) / (z1 - z0)) * (d1 - d0));
+      }
+      return best === -Infinity ? 0 : c - best;
+    };
+    const fits = (dc, w, z0, z1) => [z0, (z0 + z1) / 2, z1].every((z) => Math.abs(dc - c) + w / 2 + 16 <= hwAt(z));
+    if (kind === "stit") for (let z = top + 30; z < u(2.6); z += 30) { const hw = hwAt(z) - 6; if (hw > 20) box(c - hw, c + hw, z - 1.5, z + 1.5, tint(wall, 0.88)); }
+    else box(c - hwAt(top + 20), c + hwAt(top + 20), top - 6, top + 6, tint(wall, 0.9)); // the band between the floors and the gable
+    // The copings along the outline (white sandstone in Amsterdam, grey stone in Tallinn).
+    const open = pts.slice(1, -1);
+    el("path", { d: "M" + open.map(([d, z]) => `${X(d)} ${surface - z}`).join(" L"), fill: "none", stroke: CAP, "stroke-width": kind === "hanza" ? 8 : 11, "stroke-linejoin": "round" }, g);
+    if (pedestal) poly(pedestal, SANDSTONE, outline); // the pediment in sandstone
+    // The claw pieces at the neck's shoulders, with a scroll at the outer end; the bell's scrolls at its foot.
+    if (form === "hals" || form === "klok") for (const sgn of [-1, 1]) {
+      if (form === "hals") {
+        const claw = [];
+        for (let i = 0; i <= 12; i++) { const t = i / 12, sm = t * t * (3 - 2 * t); claw.push([c + sgn * (c - 14 - (c - 94) * t), u(0.86) + 40 + (0.5 * S - 40) * sm]); } // an S scroll
+        claw.push([c + sgn * 80, u(0.86)], [c + sgn * (c - 4), u(0.86)]);
+        poly(claw, SANDSTONE, outline);
+      }
+      dot(c + sgn * (c - 34), u(0.86) + 26, 24, SANDSTONE);
+      dot(c + sgn * (c - 34), u(0.86) + 26, 15, tint(SANDSTONE, 0.8));
+      dot(c + sgn * (c - 37), u(0.86) + 28, 9, SANDSTONE);
+    }
+    if (form === "klok") { // a stone vase on the round top, a little scroll each side of its foot
+      const zt = u(1.9) + 90;
+      box(c - 22, c + 22, zt, zt + 12, STONE_W, outline);
+      dot(c, zt + 34, 20, STONE_W);
+      box(c - 8, c + 8, zt + 50, zt + 62, STONE_W);
+      for (const sgn of [-1, 1]) dot(c + sgn * 32, zt + 4, 10, STONE_W);
+    }
+    if (form === "trap" && kind === "stit") { box(c - 16, c + 16, u(2.22) + 4, u(2.22) + 16, STONE_W, outline); dot(c, u(2.22) + 30, 14, STONE_W); } // a stone ball on top
+    // The windows: a floor of the gable holds both columns where they fit, else one window in the axis.
+    const gh = win.h * 0.85 * S, ww = win.w;
+    noBox = true;
+    let lastTop = top, axisWin = 0;
+    for (let k = 0; k < 3; k++) {
+      const z0 = u(k + win.sill), z1 = z0 + gh;
+      if (fits(ax0, ww, z0, z1) && fits(ax1, ww, z0, z1)) { for (const a of [ax0, ax1]) window(a - ww / 2, z0, ww, gh, 20 + k * 3 + (a > c)); lastTop = z1; }
+      else if (fits(c, ww, z0, z1)) { window(c - ww / 2, z0, ww, gh, 20 + k * 3); lastTop = z1; axisWin++; }
+      else break;
+    }
+    // Tallinn: the loading door in the axis over the windows; the beam above it (or above the uppermost window).
+    let beamZ = lastTop + 34;
+    if (kind === "hanza") {
+      const dw = 50, z0 = lastTop + 0.15 * S, z1 = z0 + 0.3 * S;
+      if (fits(c, dw - 14, z0, z1)) {
+        box(c - dw / 2 - 5, c + dw / 2 + 5, z0 - 5, z1 + 5, "#bdb6a4");
+        box(c - dw / 2, c + dw / 2, z0, z1, "#6b4a30");
+        box(c - 1.5, c + 1.5, z0, z1, tint("#6b4a30", 0.7));
+        beamZ = z1 + 20;
+      }
+    }
+    noBox = false;
+    box(c - 14, c + 14, beamZ, beamZ + 26, "#5b4632", outline); // the beam's end
+    box(c - 1.5, c + 1.5, beamZ - 40, beamZ, "#3a3a3a"); // its hook
+    box(c - 7, c + 1.5, beamZ - 44, beamZ - 40, "#3a3a3a");
+    if (kind === "stit") poly([[c - 36, beamZ + 30], [c, beamZ + 56], [c + 36, beamZ + 30]], "#5b4632", outline); // the hood over it
+  }
+
   // --- Roof and gable, behind the wall ---
   if (kind === "cihlovy") {
     // The North Sea cornice house (lijstgevel): behind the white wooden cornice the band of a roof whose ridge runs
@@ -1019,6 +1134,8 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     for (let z = top + 30; z < zr - 8; z += 30) box(30, EDGE, z, z + 4, tile[1], { "fill-opacity": 0.6 });
     box(30, EDGE, zr - 8, zr + 4, tile[1]);
     box(EDGE - 150, EDGE - 100, top + 70, top + 130, tint(tile[1], 0.8)); // a roof light
+  } else if (gableOn(kind)) {
+    drawGable();
   } else if (GABLE_RISE[kind]) {
     // A house with its gable to the street (the North Sea's step, neck or bell gable; the Hanseatic house of Tallinn): the
     // band of its roof up to the ridge running away from the street, as a village house's. The gable stands edge-on at
@@ -1102,22 +1219,34 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     // Chimney first: the roof and the gable hide its foot.
     box(EDGE - 175, EDGE - 125, zt, zBack + 80, "#c46a4b");
     box(EDGE - 183, EDGE - 117, zBack + 70, zBack + 82, "#8d4a34");
-    if (kind === "haussmann") for (const dc of [EDGE - 290, EDGE - 70]) { // more stacks, each with its pots
+    if (kind === "haussmann") for (const dc of [EDGE - 290, EDGE - 70].filter((d) => d > run + 40)) { // more stacks, each with its pots
       const zc = zt + (dc - run) * 0.3;
       box(dc - 22, dc + 22, zt, zc + 90, "#b8644a");
       box(dc - 28, dc + 28, zc + 82, zc + 94, "#8d4a34");
       for (const p of [-12, 0, 12]) box(dc + p - 4, dc + p + 4, zc + 94, zc + 112, "#a0553c");
     }
-    poly([[0, top], [run, zt], [EDGE, zBack], [EDGE, top]], shade, outline);
+    poly([[0, top], [run, zt], [EDGE, zBack], [EDGE, top]], kind === "haussmann" ? "#a7b0b5" : kind === "stenstad" ? tint(tile[0], 1.15) : shade, outline);
     // A slate slab as thick as the tiled ones: dark underside, then the slate, a gutter at the foot and at the break.
     poly([[-30, top - 4], [run - 16, zt + 40], [EDGE, zBack + 40], [EDGE, zBack], [run, zt], [0, top]], SL);
     poly([[-8, top], [run - 4, zt + 10], [EDGE, zBack + 10], [EDGE, zBack], [run, zt], [0, top]], SD);
     dot(-26, top - 6, 10, SD);
     dot(run - 14, zt + 30, 8, SD);
-    for (let k = 0; k < f.roofRows; k++) row(run + 40, EDGE - 40, top + k * f.storey + 0.25 * f.storey, 0.5 * f.storey, full + k);
+    // The regional looks keep the columns of the floors below in the mansard: a column where it stands clear of the slope.
+    if (REGIONAL.has(kind)) {
+      const win = WINDOWS[kind], cols = [Math.max(65, 35 + win.w / 2) - win.w / 2, (125 + EDGE - 30 - win.w) / 2];
+      for (let k = 0; k < f.roofRows; k++) {
+        const z0 = top + k * f.storey + 0.25 * f.storey, h = 0.5 * f.storey;
+        for (const [i, d0] of cols.entries()) if (d0 >= ((z0 + h - top) / rise) * run + 10 && d0 + win.w <= EDGE - 40) {
+          box(d0 - 18, d0 + win.w + 18, z0 - 16, z0 + h + 22, kind === "haussmann" ? "#f1ece1" : tint(wall, 1.05), outline); // the dormer's face
+          window(d0, z0, win.w, h, (full + k) * 3 + i);
+          if (kind === "haussmann") { const [x1, x2] = [X(d0 - 26), X(d0 + win.w + 26)].sort((p, q) => p - q); el("path", { d: `M${x1} ${surface - z0 - h - 22} Q ${(x1 + x2) / 2} ${surface - z0 - h - 74} ${x2} ${surface - z0 - h - 22} Z`, fill: "#f1ece1", ...outline }, g); }
+          else poly([[d0 - 26, z0 + h + 22], [d0 + win.w / 2, z0 + h + 60], [d0 + win.w + 26, z0 + h + 22]], SL, outline);
+        }
+      }
+    } else for (let k = 0; k < f.roofRows; k++) row(run + 40, EDGE - 40, top + k * f.storey + 0.25 * f.storey, 0.5 * f.storey, full + k);
     // Dormer: only its cheek shows, between the steep slope and its face, under a little roof.
     const slopeD = (z) => ((z - top) / rise) * run;
-    const zb = top + rise * 0.3, zc = zb + 140, dF = Math.max(4, slopeD(zb) - 30);
+    const zb = REGIONAL.has(kind) ? top + 0.25 * f.storey - 16 : top + rise * 0.3, zc = REGIONAL.has(kind) ? zb + 0.5 * f.storey + 38 : zb + 140, dF = Math.max(4, slopeD(zb) - 30);
     poly([[slopeD(zb), zb], [dF, zb], [dF, zc], [slopeD(zc), zc]], kind === "haussmann" ? "#7f888d" : tint(SL, 1.35), outline);
     box(dF, dF + 10, zb, zc, SD); // the window frame, edge-on
     if (kind === "haussmann") { // a zinc dormer with its little arched hood
@@ -1159,17 +1288,19 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       for (let d = 120; d < EDGE - 40; d += 36) box(d - 10, d + 10, z(d) + 30, z(d) + 36, "#4a4d50"); // the roof walkway
     } else if (kind === "dansky") { // a white dormer (kvist) in the slope, rows of tiles or slates
       for (let zr = top + 40; zr < z(EDGE) - 30; zr += 34) box((zr - top - 12) / P + 8, EDGE, zr, zr + 4, tile[1], { "fill-opacity": 0.35 });
-      const zb = top + 60, db = (zb - top) / P + 20;
+      // in the back column of the floors below (its window as wide as theirs), sitting on the slope
+      const ww = WINDOWS.dansky.w, db = (125 + EDGE - 30 - ww) / 2 - 12.5, zb = top + (db - 20) * P;
       box(db, db + 120, zb, zb + 130, "#f4f2ec", outline);
       poly([[db - 12, zb + 126], [db + 132, zb + 126], [db + 132, zb + 146], [db - 12, zb + 140]], tile[1]);
-      window(db + 25, zb + 20, 70, 85, 4);
+      window(db + 12.5, zb + 20, ww, 85, 4);
     } else if (med && !small) { // rows of Roman tiles (coppi, teja árabe), the eaves' double row
       for (let zr = top + 40; zr < z(EDGE) - 26; zr += 26) box((zr - top - 12) / P + 8, EDGE, zr, zr + 5, tile[1], { "fill-opacity": 0.4 });
       for (let d = -eave + 6; d < -2; d += 14) dot(d, z(d) + 4, 6, tint(tile[0], 0.85));
     } else if (kind === "tallinnamaja") { // a sheet roof's seams, a small gable window over the eaves floor
       for (let d = -eave + 20; d < EDGE; d += 60) box(d - 2, d + 2, z(d) + 30, z(d) + 36, tint(tile[0], 1.4));
-      dot(200, top + 80, 24, "#f6f4ee");
-      dot(200, top + 80, 17, GLASS);
+      const da = (125 + EDGE - 30) / 2; // in the axis of the back column below
+      dot(da, top + 80, 24, "#f6f4ee");
+      dot(da, top + 80, 17, GLASS);
     } else if (kind === "kostka") {} // the low hipped roof of the cube has no gable
     else if (kind === "skola" || kind === "kostel") { // rows of tiles (slates on a church), no gable
       for (let zr = top + 40; zr < z(Math.min(ridge, EDGE)) - 30; zr += 34) box((zr - top - 12) / P + 8, EDGE, zr, zr + 4, tile[1], { "fill-opacity": 0.35 });
@@ -1195,6 +1326,11 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       }
       box(RIDGE - 45, RIDGE + 45, top + 30, top + 120, "#3c3f43");
       box(RIDGE - 39, RIDGE + 39, top + 36, top + 114, GLASS);
+    } else if (wood) { // the wooden houses: the gable's window in the back column of the floors below, clear of the roof
+      const ww = WINDOWS[kind].w, d0 = (125 + EDGE - 30 - ww) / 2;
+      noBox = true;
+      window(d0, top + 50, ww, Math.min(95, Math.min(z(d0 - 10), z(d0 + ww + 10)) - 12 - top - 60 - 10), 1);
+      noBox = false;
     } else if (f.roofRows || small) {
       // A window in the gable, under the ridge where the gable is highest, kept clear of the roof.
       const ww = 75, wh = Math.min(95, z(RIDGE - ww / 2 - 10) - 12 - top - 60 - 10);
@@ -1621,7 +1757,8 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     }
     // The windows above stand in the axes of the door and of the ground-floor window.
     // Behind an arcade (drawn over the front 2.6 m) the ground-floor window moves back, clear of it.
-    const backAxis = (125 + EDGE - 30 - win.w) / 2;
+    const gAxes = gableOn(kind) ? GABLE_AXES[kind] : null;
+    const backAxis = gAxes ? gAxes[1] - win.w / 2 : (125 + EDGE - 30 - win.w) / 2;
     const groundAt = info?.arcade ? Math.min(ARCADE_D + 25, EDGE - 40 - win.w) : backAxis;
     const shut = med && kind !== "azulejo" && kind !== "galeria";
     const win2 = (d, z, w, h, n) => { window(d, z, w, h, n); if (shut) shutters(d, z, w, h, n); };
@@ -1634,9 +1771,36 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       box((s0 + s1) / 2 - 2, (s0 + s1) / 2 + 2, 48, sTop, "#3f4a3c");
       window(groundAt + 20, sTop + 50, win.w * 0.8, Math.min(110, f.ground - sTop - 90), 0); // the entresol's window
     } else if (kind !== "statek") win2(groundAt, f.ground * win.sill + (style === "sikma" ? 40 : 0) + (stoepZ(kind, info)), win.w, win.h * f.storey, 0);
-    const front = Math.max(65, 35 + win.w / 2); // the front axis keeps clear of the facade
+    const front = gAxes ? gAxes[0] : Math.max(65, 35 + win.w / 2); // the front axis keeps clear of the facade
+    const gallarija = kind === "malta" ? new Set(full >= 4 ? [1, 2] : full >= 2 ? [1] : []) : null;
     for (let k = 1; k < full; k++) {
-      for (const [i, c] of [front, backAxis + win.w / 2].entries()) win2(c - win.w / 2, floorZ(k) + win.sill * f.storey, win.w, win.h * f.storey, k * 3 + i);
+      if (kind === "galeria") { // the glazed gallery over the whole wall, joining the one over the street
+        const z = floorZ(k), h = f.storey;
+        box(0, EDGE - 30, z + 6, z + h - 6, "#f4f4f0", outline);
+        box(6, EDGE - 36, z + 0.28 * h, z + h - 14, "#7f95a8");
+        poly([[EDGE * 0.45, z + h - 14], [EDGE - 36, z + h - 14], [EDGE - 36, z + 0.45 * h]], "#a9bccb");
+        for (let d = 6 + 44; d < EDGE - 36; d += 44) box(d - 3, d + 3, z + 0.28 * h, z + h - 14, "#f4f4f0");
+        for (let d = 6 + 22; d < EDGE - 36; d += 44) box(d - 1.5, d + 1.5, z + 0.7 * h, z + h - 14, "#f4f4f0");
+        box(6, EDGE - 36, z + 0.7 * h - 3, z + 0.7 * h + 3, "#f4f4f0");
+        box(0, EDGE - 30, z + 0.24 * h, z + 0.28 * h, "#f4f4f0");
+        continue;
+      }
+      for (const [i, c] of [front, backAxis + win.w / 2].entries()) {
+        if (i === 0 && gallarija?.has(k)) { // the gallarija turns the corner: its front over the front column
+          const col = pal("maltaAccent"), z = floorZ(k) + 20, h = f.storey * 0.8, d1 = c + win.w / 2 + 14;
+          box(0, d1, z - 10, z, tint(wall, 0.95), outline);
+          box(0, d1, z, z + h, col, { stroke: tint(col, 0.65), "stroke-width": 1.5, "vector-effect": "non-scaling-stroke" });
+          box(4, d1 - 4, z + h * 0.3 - 3, z + h * 0.3 + 3, tint(col, 1.3));
+          for (let a = 8; a + 30 <= d1 - 6; a += 36) {
+            box(a, a + 30, z + h * 0.38, z + h - 14, tint(col, 0.75));
+            for (let zz = z + h * 0.38 + 8; zz < z + h - 16; zz += 9) box(a + 2, a + 28, zz - 1.5, zz + 1.5, tint(col, 1.25));
+          }
+          poly([[0, z + h], [d1 + 6, z + h], [d1 + 6, z + h + 8], [0, z + h + 26]], tint(col, 0.8), outline);
+          for (const d of [20, d1 - 20]) poly([[d - 9, z - 10], [d + 9, z - 10], [d + 4, z - 50], [d - 2, z - 50]], tint(wall, 0.92), outline);
+          continue;
+        }
+        win2(c - win.w / 2, floorZ(k) + win.sill * f.storey, win.w, win.h * f.storey, k * 3 + i);
+      }
     }
   }
 
@@ -1652,6 +1816,10 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
         box(-45, EDGE, top - 12, top + 12, trim, outline);
         for (const z of [55, 100]) box(-30, back, top + z, top + z + 5, "#5d5f62");
         for (const d of [-30, back / 2 - 10]) box(d, d + 5, top + 12, top + 105, "#5d5f62");
+      } else if (style === "povalecny") { // a terrace in front of the set-back floor: a thin slab, a metal railing
+        box(-10, back, top, top + 16, tint(wall, 0.93), outline);
+        box(-6, back, top + 100, top + 105, "#6d7074");
+        for (let d = -6; d < back; d += 14) box(d, d + 2.5, top + 16, top + 100, "#6d7074");
       } else box(0, back, top, top + 40, tint(wall, 0.93), outline); // parapet in front of the set-back floor
       box(back, EDGE - 40, top, top + f.roofRows * f.storey, wall, outline);
       if (style === "funkce" || style === "moderni") { // the set-back floor is glazed towards its terrace: one band
@@ -1660,6 +1828,17 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
           box(back + 6, EDGE - 46, z - 4, z + h + 4, FRAME);
           box(back + 10, EDGE - 50, z, z + h, GLASS);
           for (let d = back + 10 + 55; d < EDGE - 50; d += 55) box(d - 2, d + 2, z, z + h, FRAME);
+        }
+      } else if (style === "povalecny") { // the set-back floor's window in the axis of the windows below
+        const win = WINDOWS.povalecny, wd = (126 + EDGE - 30 - win.w) / 2;
+        for (let k = 0; k < f.roofRows; k++) if (wd >= back + 10) {
+          const z = top + k * f.storey + win.sill * f.storey, h = win.h * f.storey;
+          box(wd - 5, wd + win.w + 5, z - 5, z + h + 5, FRAME);
+          box(wd, wd + win.w, z, z + h, GLASS);
+          poly([[wd + win.w * 0.55, z + h], [wd + win.w, z + h], [wd + win.w, z + h * 0.5]], GLINT);
+          box(wd + win.w / 2 - 3, wd + win.w / 2 + 3, z, z + h, FRAME);
+          box(wd - 8, wd + win.w + 8, z + h + 5, z + h + 26, tint(wall, 0.94), outline); // the shutter box
+          box(wd - 10, wd + win.w + 10, z - 12, z - 5, "#b9b6ae");
         }
       } else for (let k = 0; k < f.roofRows; k++) row(back, EDGE - 40, top + k * f.storey + 0.3 * f.storey, 0.45 * f.storey, full + k);
     }
@@ -1847,7 +2026,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     const long = full >= 5 ? new Set([2, full - 1]) : new Set();
     for (let k = 1; k < full; k++) {
       const z = floorZ(k);
-      if (long.has(k)) balcony(z, 70);
+      if (long.has(k)) { balcony(z, 70); box(0, EDGE - 30, z, z + 15, tint(wall, 1.06), outline); railing(0, EDGE - 33, z + 15, 100); } // and along the wall
       else if (full >= 5 || k === 1) railing(-15, -2, z + f.storey * 0.05, 95);
     }
   } else if (med) {
@@ -1861,8 +2040,8 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
         box(-84, 0, z - 8, z + 6, tint(wall, 0.85), outline);
         if (k === 1) for (const d of [-70, -20]) poly([[d - 10, z - 8], [d + 10, z - 8], [d, z - 46]], tint(wall, 0.8), outline);
         box(-80, -2, z + 6, z + h - 6, "#f4f4f0", outline);
-        box(-74, -8, z + 0.28 * h, z + h - 14, GLASS);
-        poly([[-50, z + h - 14], [-8, z + h - 14], [-8, z + 0.5 * h]], GLINT);
+        box(-74, -8, z + 0.28 * h, z + h - 14, "#7f95a8");
+        poly([[-50, z + h - 14], [-8, z + h - 14], [-8, z + 0.5 * h]], "#a9bccb");
         for (let d = -74 + 22; d < -8; d += 22) box(d - 2, d + 2, z + 0.28 * h, z + h - 14, "#f4f4f0");
         box(-74, -8, z + 0.66 * h - 2, z + 0.66 * h + 2, "#f4f4f0");
         box(-80, -2, z + 0.24 * h, z + 0.28 * h, "#f4f4f0");
