@@ -356,7 +356,8 @@ cizina), OSM balík `si` (jen R2). Mapa povrchů ulic není (`evaluation/sloveni
 ortofota GURS DOF025 (25 cm, WMS ve Web Mercatoru, `lanes-ortho.js` `si`; server buď odpoví do sekundy, nebo 30 s visí
 a vrátí 504: první dotaz má polovinu času, po 300 ms jeden další; podklad mapy jen uvnitř hranice). Budovy z katastru GURS
 (WFS `wfs-si-gurs-kn`, vrstva STAVBE, filtr FES na obrys `OBRIS_GEOM` v bodě, jinak nejbližší obrys do 6 m; podlaží nad
-zemí = `STEVILO_ETAZ` − `STEVILKA_PRITL_ETAZE` + 1, rok, výška H2 − H1, nosná konstrukce, byty; `?gurs=0`; A/B
+zemí = `STEVILO_ETAZ` − `STEVILKA_PRITL_ETAZE` + 1, rok, výška H2 − H3 (střecha nad terénem u vchodu), nosná konstrukce, byty; katastr počítá obytné
+podkroví jako podlaží: dům o 2–4 podlažích nižší než 3 m × podlaží + 2 m má horní podlaží ve střeše; `?gurs=0`; A/B
 `evaluation/slovenia/ab/ZPRAVA.md`). Hledání: Photon ve slovinštině a čísla domů GURS `NASLOVI_HS` (`search-si.js`).
 Normy: pravidla o cyklistických plochách a o projektování silnic (dál se používají, nové k ZCes-2 nevyšly), chodník bez
 varování (minimum nenalezeno), kolmé stání bez varování. Stání 3 m na směr, na obousměrce jen se středovou čárou (OSM

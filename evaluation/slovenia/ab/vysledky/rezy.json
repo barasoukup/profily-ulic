@@ -17,7 +17,7 @@
    "cornice": 7,
    "total": 7,
    "roof": 0,
-   "height": 31.9,
+   "height": 22.8,
    "gurs": true
   },
   "a": {
@@ -51,7 +51,7 @@
    "cornice": 3,
    "total": 3,
    "roof": 0,
-   "height": 17.1,
+   "height": 14.1,
    "gurs": true
   },
   "a": {
@@ -83,7 +83,7 @@
    "cornice": 4,
    "total": 4,
    "roof": 0,
-   "height": 25.4,
+   "height": 23.4,
    "gurs": true
   },
   "a": {
@@ -110,7 +110,9 @@
   },
   "osmLevels": null,
   "osmStart": null,
-  "answer": {},
+  "answer": {
+   "error": "The operation was aborted due to timeout"
+  },
   "a": {
    "levels": null,
    "year": null,
@@ -138,10 +140,11 @@
   "answer": {
    "built": 1894,
    "type": "apartments",
-   "cornice": 4,
+   "cornice": 3,
    "total": 4,
-   "roof": 0,
-   "height": 15.1,
+   "roof": 1,
+   "roofType": 1,
+   "height": 12.6,
    "gurs": true
   },
   "a": {
@@ -174,7 +177,7 @@
    "cornice": 6,
    "total": 6,
    "roof": 0,
-   "height": 21.9,
+   "height": 20.9,
    "gurs": true
   },
   "a": {
@@ -206,10 +209,11 @@
    "solid": true,
    "house": true,
    "type": "house",
-   "cornice": 2,
+   "cornice": 1,
    "total": 2,
-   "roof": 0,
-   "height": 8.4,
+   "roof": 1,
+   "roofType": 1,
+   "height": 5.8,
    "gurs": true
   },
   "a": {
@@ -240,9 +244,11 @@
    "built": 1966,
    "house": true,
    "type": "house",
-   "cornice": 3,
+   "cornice": 2,
    "total": 3,
-   "roof": 0,
+   "roof": 1,
+   "roofType": 1,
+   "height": 10.7,
    "gurs": true
   },
   "a": {
@@ -275,7 +281,7 @@
    "cornice": 16,
    "total": 16,
    "roof": 0,
-   "height": 55.4,
+   "height": 49.4,
    "gurs": true
   },
   "a": {
@@ -308,7 +314,7 @@
    "cornice": 10,
    "total": 10,
    "roof": 0,
-   "height": 29.1,
+   "height": 26.2,
    "gurs": true
   },
   "a": {
@@ -341,7 +347,7 @@
    "cornice": 5,
    "total": 5,
    "roof": 0,
-   "height": 18.9,
+   "height": 16.1,
    "gurs": true
   },
   "a": {
@@ -374,7 +380,7 @@
    "cornice": 2,
    "total": 2,
    "roof": 0,
-   "height": 10.9,
+   "height": 8.2,
    "gurs": true
   },
   "a": {
@@ -405,9 +411,10 @@
    "built": 1907,
    "house": true,
    "type": "house",
-   "cornice": 2,
+   "cornice": 1,
    "total": 2,
-   "roof": 0,
+   "roof": 1,
+   "roofType": 1,
    "height": 6.3,
    "gurs": true
   },
@@ -438,9 +445,10 @@
   "answer": {
    "built": 1500,
    "type": "apartments",
-   "cornice": 3,
+   "cornice": 2,
    "total": 3,
-   "roof": 0,
+   "roof": 1,
+   "roofType": 1,
    "height": 10.6,
    "gurs": true
   },
@@ -471,10 +479,11 @@
   "answer": {
    "built": 1962,
    "type": "apartments",
-   "cornice": 4,
+   "cornice": 3,
    "total": 4,
-   "roof": 0,
-   "height": 12.7,
+   "roof": 1,
+   "roofType": 1,
+   "height": 12.9,
    "gurs": true
   },
   "a": {
@@ -507,7 +516,7 @@
    "cornice": 5,
    "total": 5,
    "roof": 0,
-   "height": 19.2,
+   "height": 17.7,
    "gurs": true
   },
   "a": {
@@ -536,10 +545,11 @@
   "osmStart": null,
   "answer": {
    "built": 1895,
-   "cornice": 3,
+   "cornice": 2,
    "total": 3,
-   "roof": 0,
-   "height": 12.3,
+   "roof": 1,
+   "roofType": 1,
+   "height": 9.9,
    "gurs": true
   },
   "a": {
@@ -569,10 +579,11 @@
   "answer": {
    "built": 1998,
    "type": "apartments",
-   "cornice": 4,
+   "cornice": 3,
    "total": 4,
-   "roof": 0,
-   "height": 16.4,
+   "roof": 1,
+   "roofType": 1,
+   "height": 13.6,
    "gurs": true
   },
   "a": {
@@ -604,7 +615,7 @@
    "cornice": 3,
    "total": 3,
    "roof": 0,
-   "height": 12.6,
+   "height": 11.1,
    "gurs": true
   },
   "a": {
@@ -635,10 +646,11 @@
    "built": 1920,
    "solid": true,
    "type": "apartments",
-   "cornice": 4,
+   "cornice": 3,
    "total": 4,
-   "roof": 0,
-   "height": 15.4,
+   "roof": 1,
+   "roofType": 1,
+   "height": 12.3,
    "gurs": true
   },
   "a": {
@@ -673,6 +685,7 @@
    "cornice": 1,
    "total": 1,
    "roof": 0,
+   "height": 9.8,
    "gurs": true
   },
   "a": {
@@ -707,6 +720,7 @@
    "cornice": 2,
    "total": 2,
    "roof": 0,
+   "height": 9.8,
    "gurs": true
   },
   "a": {
@@ -739,7 +753,7 @@
    "cornice": 5,
    "total": 5,
    "roof": 0,
-   "height": 21.5,
+   "height": 19.9,
    "gurs": true
   },
   "a": {
@@ -774,6 +788,7 @@
    "cornice": 2,
    "total": 2,
    "roof": 0,
+   "height": 8.4,
    "gurs": true
   },
   "a": {
@@ -838,6 +853,7 @@
    "cornice": 3,
    "total": 3,
    "roof": 0,
+   "height": 12.5,
    "gurs": true
   },
   "a": {
@@ -871,7 +887,7 @@
    "cornice": 3,
    "total": 3,
    "roof": 0,
-   "height": 15.3,
+   "height": 13.1,
    "gurs": true
   },
   "a": {
@@ -905,6 +921,7 @@
    "cornice": 4,
    "total": 4,
    "roof": 0,
+   "height": 14.9,
    "gurs": true
   },
   "a": {
@@ -933,10 +950,11 @@
   "osmStart": null,
   "answer": {
    "built": 1976,
-   "cornice": 3,
+   "cornice": 2,
    "total": 3,
-   "roof": 0,
-   "height": 7.8,
+   "roof": 1,
+   "roofType": 1,
+   "height": 5,
    "gurs": true
   },
   "a": {
@@ -968,6 +986,7 @@
    "cornice": 5,
    "total": 5,
    "roof": 0,
+   "height": 32,
    "gurs": true
   },
   "a": {
@@ -998,10 +1017,11 @@
    "built": 1940,
    "solid": true,
    "type": "apartments",
-   "cornice": 4,
+   "cornice": 3,
    "total": 4,
-   "roof": 0,
-   "height": 13.5,
+   "roof": 1,
+   "roofType": 1,
+   "height": 12.1,
    "gurs": true
   },
   "a": {
@@ -1036,6 +1056,7 @@
    "cornice": 1,
    "total": 1,
    "roof": 0,
+   "height": 9.3,
    "gurs": true
   },
   "a": {
@@ -1069,6 +1090,7 @@
    "cornice": 1,
    "total": 1,
    "roof": 0,
+   "height": 10.6,
    "gurs": true
   },
   "a": {
@@ -1099,10 +1121,11 @@
    "built": 1933,
    "solid": true,
    "type": "apartments",
-   "cornice": 3,
+   "cornice": 2,
    "total": 3,
-   "roof": 0,
-   "height": 13.1,
+   "roof": 1,
+   "roofType": 1,
+   "height": 10.2,
    "gurs": true
   },
   "a": {
@@ -1132,10 +1155,11 @@
   "answer": {
    "built": 1930,
    "solid": true,
-   "cornice": 2,
+   "cornice": 1,
    "total": 2,
-   "roof": 0,
-   "height": 10.4,
+   "roof": 1,
+   "roofType": 1,
+   "height": 7.9,
    "gurs": true
   },
   "a": {
@@ -1168,6 +1192,7 @@
    "cornice": 3,
    "total": 3,
    "roof": 0,
+   "height": 18.4,
    "gurs": true
   },
   "a": {
@@ -1200,6 +1225,7 @@
    "cornice": 1,
    "total": 1,
    "roof": 0,
+   "height": 11.2,
    "gurs": true
   },
   "a": {
@@ -1266,7 +1292,7 @@
    "cornice": 4,
    "total": 4,
    "roof": 0,
-   "height": 20.1,
+   "height": 17.3,
    "gurs": true
   },
   "a": {
@@ -1297,10 +1323,11 @@
    "built": 1866,
    "solid": true,
    "type": "apartments",
-   "cornice": 3,
+   "cornice": 2,
    "total": 3,
-   "roof": 0,
-   "height": 12,
+   "roof": 1,
+   "roofType": 1,
+   "height": 9.6,
    "gurs": true
   },
   "a": {

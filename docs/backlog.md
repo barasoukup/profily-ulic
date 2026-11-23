@@ -94,7 +94,8 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Slovinsko (Bára 23. 11. 2026, rozhodnuto podle doporučení): značky volně jako ve Francii (Commons PD-Slovenia-exempt;
   kresby většinou podle pravidla 2000, obrázky pravidla 2024 neověřené; rychlosti mimo 40 z české B 20a); mapa povrchů
   Lublaně není a ptát se nebudeme (zůstává odhad z ortofota a OSM); stání na obousměrce jen se středovou čárou (OSM
-  `lanes` ≥ 2) podle zákona, zůstává přísné; katastr počítá obytné podkroví jako podlaží: opravit podle výšky (dělá se);
+  `lanes` ≥ 2) podle zákona, zůstává přísné; katastr počítá obytné podkroví jako podlaží: ~~opravit podle výšky~~ (hotovo 23. 11.: H2 − H3 < 3 m ×
+  podlaží + 2 m u 2–4 podlaží, správně 31 → 37 z 54, polovinu podkroví nenajde; přesněji jen s výškou okapu);
   vzhled jugoslávské moderny (Fužine, Štepanjsko naselje, Maribor Tabor, Velenje) jako nápad na později, zatím
   „povalecny“ (Bára: Jugoslávie nemá socialistické typy); rok náletu DOF025 služba nedává (kredit „stav 11/2026“);
   sítě GJI (3D trasy) na později.

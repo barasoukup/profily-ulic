@@ -12,7 +12,7 @@ import { osmTiles } from "../gis.js";
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_SI?.[k] ?? null : new URLSearchParams(location.search).get(k));
 
 export const GURS_KN = "https://ipi.eprostor.gov.si/wfs-si-gurs-kn/wfs";
-const FIELDS = ["STEVILO_ETAZ", "STEVILKA_PRITL_ETAZE", "LETO_IZGRADNJE", "VISINA_H1", "VISINA_H2", "NOSILNE_KONSTRUKCIJE_NAZIV_SL", "STEVILO_STANOVANJ", "STEVILO_POSLOVNIH_PROSTOROV", "OBRIS_GEOM"];
+const FIELDS = ["STEVILO_ETAZ", "STEVILKA_PRITL_ETAZE", "LETO_IZGRADNJE", "VISINA_H1", "VISINA_H2", "VISINA_H3", "NOSILNE_KONSTRUKCIJE_NAZIV_SL", "STEVILO_STANOVANJ", "STEVILO_POSLOVNIH_PROSTOROV", "OBRIS_GEOM"];
 const TIMEOUT = 6000;
 
 // The request: the buildings whose footprint (not the layer's default geometry, the centroid) touches a box of about
@@ -34,9 +34,18 @@ const num = (v) => (v === null || v === undefined || v === "" ? NaN : Number(v))
 // A building of the cadastre → the facts of app.js ruianFacts and the floors (as the Spanish Catastro):
 // - floors above the ground: STEVILO_ETAZ counts all floors, STEVILKA_PRITL_ETAZE is the number of the ground floor among
 //   them (2: one cellar below it), so ETAZ − PRITL + 1 (ZDROJE.md 3; the A/B checks it on photos, ab/ZPRAVA.md);
-// - the year LETO_IZGRADNJE, the height H2 − H1 (the highest point over the terrain, metres above the sea);
+// - the heights (Pravilnik o vodenju podatkov katastra nepremičnin, Ur. l. RS 41/2022): H1 the floor of the lowest
+//   storey (a cellar's, where there is one; empty for many houses of Maribor), H2 the highest point of the roof or the
+//   walls, H3 the terrain at the main entrance, all metres above the sea. The height above the ground is H2 − H3 (else
+//   H2 − H1). The cadastre has no eaves height;
+// - the attic (Bára 23. 11. 2026): the cadastre counts a habitable attic as a floor. A house of 2 to 4 floors whose roof's
+//   top stands less than 3 m a floor + 2 m above the entrance has no room for that many full floors under a roof: its
+//   top floor is drawn in the roof (a pitched one). Checked on 54 houses (OSM's building:levels + roof:levels and photos,
+//   ab/ZPRAVA.md): right 31 → 37; it misses most attics (the heights overlap) and takes some flat roofs for one;
+// - the year LETO_IZGRADNJE;
 // - the walls: brick, stone, wood (solid; NOSILNE_KONSTRUKCIJE_NAZIV_SL); concrete says nothing of a panel house;
 // - one dwelling and no business: a house; more dwellings: a block of flats.
+export const ATTIC = { min: 2, max: 4, perFloor: 3, roof: 2 };
 export function gursBuilding(p) {
   if (!p) return {};
   const all = num(p.STEVILO_ETAZ), ground = num(p.STEVILKA_PRITL_ETAZE);
@@ -44,14 +53,16 @@ export function gursBuilding(p) {
   const floors = above >= 1 && above <= 60 ? above : undefined;
   const year = num(p.LETO_IZGRADNJE);
   const built = year > 1005 && year <= new Date().getFullYear() + 2 ? year : undefined;
-  const h = num(p.VISINA_H2) - num(p.VISINA_H1);
+  const top = num(p.VISINA_H2), base = num(p.VISINA_H3) > 0 ? num(p.VISINA_H3) : num(p.VISINA_H1);
+  const h = top - base;
   const height = h > 1 && h < 300 ? Math.round(h * 10) / 10 : undefined;
+  const attic = floors >= ATTIC.min && floors <= ATTIC.max && height && height < ATTIC.perFloor * floors + ATTIC.roof ? 1 : 0;
   const walls = String(p.NOSILNE_KONSTRUKCIJE_NAZIV_SL || "");
   const solid = /opeka|kamen|les|zidan/i.test(walls) || undefined;
   const flats = num(p.STEVILO_STANOVANJ), shops = num(p.STEVILO_POSLOVNIH_PROSTOROV);
   const house = (flats === 1 && !(shops > 0)) || undefined;
   const type = flats > 1 ? "apartments" : house ? "house" : undefined;
-  return { built, solid, house, type, ...(floors && { cornice: floors, total: floors, roof: 0 }), ...(height && { height }) };
+  return { built, solid, house, type, ...(floors && { cornice: floors - attic, total: floors, roof: attic, ...(attic && { roofType: 1 }) }), ...(height && { height }) };
 }
 // The footprint the point lies in, else the tallest of the answer (a party wall: the box touches the neighbour too).
 export function gursPick(json, lat, lon) {

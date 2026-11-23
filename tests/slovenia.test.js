@@ -42,6 +42,24 @@ test("Slovinsko: budovy katastru GURS", async () => {
   assert.ok(!/LASTNI|OSEB/.test(u.searchParams.get("PROPERTYNAME")), "žádné údaje o vlastnících");
 });
 
+test("Slovinsko: podkroví podle výšky katastru GURS", async () => {
+  const S = await import("../pilot/public/towns/slovenia.js");
+  const fx = JSON.parse(fs.readFileSync(new URL("./fixtures/gurs-podkrovi.json", import.meta.url), "utf8"));
+  const floors = (id) => { const b = S.gursBuilding(fx[id].properties); return [b.cornice, b.roof, b.total, b.height, b.roofType]; };
+  // The height above the entrance (H2 − H3): 3 floors in 9.9 m cannot all stand under a roof, the top one is the attic.
+  assert.deepEqual(floors("lj12-left"), [2, 1, 3, 9.9, 1]);
+  assert.deepEqual(floors("ma11-right"), [1, 1, 2, 7.9, 1]);
+  // Full floors stay full: 5 floors (more than 4) and a modern house of 3 floors in 11.1 m.
+  assert.deepEqual(floors("ma2-left"), [5, 0, 5, 19.9, undefined]);
+  assert.deepEqual(floors("lj13-right"), [3, 0, 3, 11.1, undefined]);
+  // An attic the rule misses (8.4 m for 2 floors): the heights overlap (ab/ZPRAVA.md).
+  assert.deepEqual(floors("ma3-right"), [2, 0, 2, 8.4, undefined]);
+  // Without H3 the height counts from H1 (the lowest floor); without either there is no height and no attic.
+  assert.equal(S.gursBuilding({ ...fx["lj12-left"].properties, VISINA_H3: null }).height, 12.3);
+  assert.deepEqual(floors("lj12-left").slice(0, 3), [2, 1, 3]);
+  assert.equal(S.gursBuilding({ ...fx["lj12-left"].properties, VISINA_H3: null, VISINA_H1: null }).roof, 0);
+});
+
 test("Slovinsko: hledání adres GURS", async () => {
   const S = await import("../pilot/public/search-si.js");
   assert.deepEqual(S.parseSiQuery("Trubarjeva cesta 5, Ljubljana"), { street: "Trubarjeva cesta", number: 5, extra: null, town: "Ljubljana" });

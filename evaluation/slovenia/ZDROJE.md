@@ -73,7 +73,7 @@ Slovensko mimo pasporty, Německo mimo Berlín/Hamburk/Cáchy). Doplňkově zvá
 
 | Zdroj | Ověřený stav | Pole | CORS | Verdikt |
 |---|---|---|---|---|
-| **Kataster nepremičnin, WFS `https://ipi.eprostor.gov.si/wfs-si-gurs-kn/wfs`, `SI.GURS.KN:STAVBE`** | **ověřeno**: WFS 1.1.0 GetFeature `outputFormat=application/json`, `srsName=EPSG:4326`, bbox 150 × 110 m v Lublani: 5 budov, 28 KB, 1,7 s; capabilities 13 s | **`STEVILO_ETAZ`** (podlaží, 5–6), **`STEVILKA_PRITL_ETAZE`** (číslo přízemí, 2 → jedno podzemní podlaží; nadzemní = ETAZ − PRITL + 1, můj výklad, neověřeno), **`LETO_IZGRADNJE`** (1821, 1897, 1946), `LETO_OBNOVE_FASADE`, `LETO_OBNOVE_STREHE`, **`VISINA_H1/H2/H3`** (m n. m.; H1 terén, H2 nejvyšší bod; výška = H2 − H1, u vzorku 18–24 m; význam H3 neověřen), `NOSILNE_KONSTRUKCIJE_NAZIV_SL` (opeka, beton…), `TIPI_STAVB_NAZIV_SL` (samostoječa / vrstna), počet bytů a provozoven, `BRUTO_TLORISNA_POVRSINA`, `TLORIS_GEOM` / `OBRIS_GEOM` (obrys v GeoJSON uvnitř vlastností, hlavní geometrie je bod), přesnost polohy | `*` | **použít** (nejbohatší registr budov ze všech dosavadních států); ptát se jen na potřebná pole (`propertyName`), odpověď je jinak velká |
+| **Kataster nepremičnin, WFS `https://ipi.eprostor.gov.si/wfs-si-gurs-kn/wfs`, `SI.GURS.KN:STAVBE`** | **ověřeno**: WFS 1.1.0 GetFeature `outputFormat=application/json`, `srsName=EPSG:4326`, bbox 150 × 110 m v Lublani: 5 budov, 28 KB, 1,7 s; capabilities 13 s | **`STEVILO_ETAZ`** (podlaží, 5–6), **`STEVILKA_PRITL_ETAZE`** (číslo přízemí, 2 → jedno podzemní podlaží; nadzemní = ETAZ − PRITL + 1, můj výklad, neověřeno), **`LETO_IZGRADNJE`** (1821, 1897, 1946), `LETO_OBNOVE_FASADE`, `LETO_OBNOVE_STREHE`, **`VISINA_H1/H2/H3`** (m n. m.; podle Ur. l. RS 41/2022 H1 podlaha nejnižšího podlaží, H2 nejvyšší bod střechy, H3 terén u hlavního vchodu; výška = H2 − H3, ověřeno 23. 11., `ab/ZPRAVA.md`; okap katastr nemá), `NOSILNE_KONSTRUKCIJE_NAZIV_SL` (opeka, beton…), `TIPI_STAVB_NAZIV_SL` (samostoječa / vrstna), počet bytů a provozoven, `BRUTO_TLORISNA_POVRSINA`, `TLORIS_GEOM` / `OBRIS_GEOM` (obrys v GeoJSON uvnitř vlastností, hlavní geometrie je bod), přesnost polohy | `*` | **použít** (nejbohatší registr budov ze všech dosavadních států); ptát se jen na potřebná pole (`propertyName`), odpověď je jinak velká |
 | Tamtéž `STAVBE_OBRIS`, `ETAZE`, `DELI_STAVB` | neověřeno dotazem (jen capabilities) | obrysy, podlaží po patrech | `*` | dle potřeby |
 | Lastnictví (`LASTNISTVO_PRAVNIH_OSEB`, `OSEBE_*`, `IMETNIKI_LASTNISTVA_H`) | nedotazováno | vlastníci | – | **nepoužívat** (osobní/firemní údaje, aplikace je nepotřebuje) |
 
@@ -144,7 +144,7 @@ hranici má i GURS (Evidenca državne meje, CC BY 4.0; nedotazováno).
 | Sítě (později) | GURS `wfs-si-gurs-kgi` `LINIJE` (3D) | ověřeno | `*` | CC BY 4.0 | kandidát pro ◍ Sítě mimo Prahu |
 
 Neověřeno: rok a přesné rozlišení ortofota v jednotlivých městech; význam kódů `vrsta_pov` DRSI a `GJI_ATR1_SIFRA`;
-význam `VISINA_H3` a `STEVILKA_PRITL_ETAZE`; licence dat Mariboru; zda Lublaň vůbec mapu povrchů vede; velikost balíku
+`STEVILKA_PRITL_ETAZE`; licence dat Mariboru; zda Lublaň vůbec mapu povrchů vede; velikost balíku
 po zabalení.
 
 ## Rozhodnutí pro Báru

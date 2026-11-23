@@ -1,0 +1,67 @@
+{
+ "lj12-left": {
+  "note": "Ljubljana, 2 + podkroví s vikýři na fotce",
+  "properties": {
+   "STEVILO_ETAZ": 4,
+   "STEVILO_STANOVANJ": 1,
+   "TIPI_STAVB_NAZIV_SL": "krajna vrstna stavba",
+   "LETO_IZGRADNJE": 1895,
+   "VISINA_H1": 288.6,
+   "VISINA_H2": 300.9,
+   "VISINA_H3": 291,
+   "STEVILKA_PRITL_ETAZE": 2
+  }
+ },
+ "ma11-right": {
+  "note": "Maribor, 1 + podkroví na fotce",
+  "properties": {
+   "STEVILO_ETAZ": 3,
+   "STEVILO_STANOVANJ": 0,
+   "TIPI_STAVB_NAZIV_SL": "samostoječa stavba",
+   "LETO_IZGRADNJE": 1930,
+   "VISINA_H1": 259.6,
+   "VISINA_H2": 270,
+   "VISINA_H3": 262.1,
+   "STEVILKA_PRITL_ETAZE": 2
+  }
+ },
+ "ma2-left": {
+  "note": "Maribor, 5 plných podlaží na fotce",
+  "properties": {
+   "STEVILO_ETAZ": 6,
+   "STEVILO_STANOVANJ": 11,
+   "TIPI_STAVB_NAZIV_SL": "samostoječa stavba",
+   "LETO_IZGRADNJE": 1909,
+   "VISINA_H1": 261.6,
+   "VISINA_H2": 283.1,
+   "VISINA_H3": 263.2,
+   "STEVILKA_PRITL_ETAZE": 2
+  }
+ },
+ "lj13-right": {
+  "note": "Ljubljana, moderní dům, 3 podlaží na fotce",
+  "properties": {
+   "STEVILO_ETAZ": 4,
+   "STEVILO_STANOVANJ": 0,
+   "TIPI_STAVB_NAZIV_SL": "samostoječa stavba",
+   "LETO_IZGRADNJE": 2004,
+   "VISINA_H1": 292.8,
+   "VISINA_H2": 305.4,
+   "VISINA_H3": 294.3,
+   "STEVILKA_PRITL_ETAZE": 2
+  }
+ },
+ "ma3-right": {
+  "note": "Maribor, 1 + podkroví na fotce (pravidlo ho nepozná)",
+  "properties": {
+   "STEVILO_ETAZ": 2,
+   "STEVILO_STANOVANJ": 1,
+   "TIPI_STAVB_NAZIV_SL": "krajna vrstna stavba",
+   "LETO_IZGRADNJE": 1928,
+   "VISINA_H1": null,
+   "VISINA_H2": 267.3,
+   "VISINA_H3": 258.9,
+   "STEVILKA_PRITL_ETAZE": 1
+  }
+ }
+}

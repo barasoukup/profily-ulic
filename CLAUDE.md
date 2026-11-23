@@ -487,7 +487,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   (ZDROJE, NORMY, ab/). Hranice GISCO, OSM balík `si` (jen R2; **workflow OSM tiles se `states: si`**). Mapa povrchů
   není: odhad z OSM a ortofota GURS DOF025 25 cm (server občas 30 s visí a vrátí 504: jeden opakovaný dotaz). Budovy
   z katastru GURS (`?gurs=0`; A/B 40 domů: podlaží 39 proti 17 z OSM, rok 39 proti 0; katastr počítá obytné podkroví
-  jako podlaží). Stání podle ZPrCP čl. 65 (na obousměrce jen se středovou čárou, `parkOnRoadway`). Socialistický vzhled ne.
+  jako podlaží: dům o 2–4 podlažích nižší než 3 m × podlaží + 2 m nad vchodem (H2 − H3) má horní podlaží ve střeše,
+  správně 31 → 37 z 54 domů, `ab/ZPRAVA.md`). Stání podle ZPrCP čl. 65 (na obousměrce jen se středovou čárou, `parkOnRoadway`). Socialistický vzhled ne.
   Kredit „stav 11/2026“ (rok náletu služba neuvádí). Otevřené otázky v `docs/backlog.md`.
 
 ## Společné pro státy (Bára 23. 11. 2026)
