@@ -22,7 +22,7 @@ z prohlížeče to funguje stejně; „bez CORS“ = hlavička chybí (obrázek 
 > versione 4.0“; kredit „© ISTAT“), převedené do WGS 84 a uložené v `tools/italy-border.json`. Body 100 m od hranice
 > (po obou stranách): GISCO 1 : 1 M zařadil špatně 10–24 % (Bolzano 10, Turín 17, Bologna 18, Modena 24), ISTAT po
 > zjednodušení na 30 m 0,2–1,2 % (rohy); 50 m od hranice GISCO 25–37 %, ISTAT do 1 %. Obdélník ortofota Modeny rozšířen na
-> západ (10,77). Kredit Turína je ve znění Licenze d'uso Geoportálu města: „Base cartografica realizzata da Bára Soukupová, integrata con Ortofoto digitale colore 2023 della Città di Torino reperiti sul Geoportale del Comune di Torino“.
+> západ (10,77). Kredit Turína je ve znění Licenze d'uso Geoportálu města: „Base cartografica realizzata da Bara Soukup, integrata con Ortofoto digitale colore 2023 della Città di Torino reperiti sul Geoportale del Comune di Torino“.
 
 Zkušební body: Bologna Piazza Maggiore (11,3426, 44,4938) a Via Rizzoli (11,3460, 44,4990), Milano Duomo (9,1900, 45,4642),
 Torino (7,6790, 45,0680), Firenze (11,2540, 43,7710), Roma (12,4823, 41,8986), Genova (8,9340, 44,4070), Trieste (13,7768,

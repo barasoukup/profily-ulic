@@ -85,7 +85,7 @@ export const MT_ORTHO = (b, w, h, format = "image/jpeg") => `https://malta.cover
 // Turin's credit in the wording the Geoportale del Comune di Torino requires (its "Licenze d'uso", Bára 23. 11. 2026):
 // "Base cartografica realizzata da [Licenziatario], integrata con [Livelli informativi o Servizi][data] della Città di
 // Torino reperiti sul Geoportale del Comune di Torino", in Italian in every language, after "ortofoto {who}".
-export const TO_ORTHO_WHO = "© Città di Torino (CC BY 4.0): Base cartografica realizzata da Bára Soukupová, integrata con Ortofoto digitale colore 2023 della Città di Torino reperiti sul Geoportale del Comune di Torino";
+export const TO_ORTHO_WHO = "© Città di Torino (CC BY 4.0): Base cartografica realizzata da Bara Soukup, integrata con Ortofoto digitale colore 2023 della Città di Torino reperiti sul Geoportale del Comune di Torino";
 const itWms = (base, layer) => (b, w, h, format = "image/jpeg") => `${base}?${new URLSearchParams({ SERVICE: "WMS", REQUEST: "GetMap", VERSION: "1.3.0", LAYERS: layer, STYLES: "", CRS: "EPSG:3857", BBOX: b.join(","), WIDTH: w, HEIGHT: h, FORMAT: format })}`;
 export const IT_ORTHO = {
   "it-bo": { box: [11.22, 44.42, 11.44, 44.56], url: itWms("https://servizigis.regione.emilia-romagna.it/wms/comune_bo_2023_rgb", "Comune_BO_2023_RGB"), credit: "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)" },
