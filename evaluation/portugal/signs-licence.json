@@ -7,53 +7,62 @@
   "desc": "No entry",
   "date": "2015-03-02"
  },
- "C2": {
-  "title": "File:Portugal road sign C2.svg",
-  "lic": "CC BY-SA 3.0",
-  "artist": "Fry1989 eh?",
-  "credit": "Catálogo Sinalização",
-  "desc": "Road closed.",
-  "date": "2014-06-12"
- },
- "C4a": {
-  "title": "File:Portugal road sign C4a.svg",
-  "lic": "CC BY-SA 4.0",
+ "C1-plus-10e": {
+  "derived_from": [
+   "File:Portugal road sign C1.svg",
+   "File:Portugal road sign C3g.svg"
+  ],
+  "lic": "Public domain + CC BY-SA 4.0",
   "artist": "Gigillo83",
-  "credit": "Own work",
-  "desc": "Portuguese prohibitory road sign",
-  "date": "2015-03-02"
+  "note": "upraveno pro aplikaci (Profily ulic), viz signs-PT/README.md; tabulka modelo 10e podle quadro XXXV (DR 6/2019), kolo z C3g"
  },
- "C3g": {
-  "title": "File:Portugal road sign C3g.svg",
-  "lic": "CC BY-SA 4.0",
-  "artist": "Gigillo83",
-  "credit": "Own work",
-  "desc": "Portuguese prohibitory road sign",
-  "date": "2015-03-02"
- },
- "C3l": {
-  "title": "File:Portugal road sign C3l.svg",
+ "C13-10": {
+  "derived_from": [
+   "File:Portugal road sign C13-50.svg"
+  ],
   "lic": "Public domain",
-  "artist": "Republic of Portugal",
-  "credit": "Regulamento de Sinalização do Trânsito (Road Signs Regulation) PDF's derived from [1], [2]",
-  "desc": "Pedestrians prohibited.",
-  "date": "2014-06-03"
+  "artist": "governo de português",
+  "note": "upraveno pro aplikaci (Profily ulic), viz signs-PT/README.md; číslo jako <text>"
  },
- "C15": {
-  "title": "File:Portugal road sign C15.svg",
-  "lic": "CC BY-SA 4.0",
-  "artist": "Gigillo83",
-  "credit": "Own work",
-  "desc": "Portuguese prohibitory road sign",
-  "date": "2015-03-02"
+ "C13-100": {
+  "derived_from": [
+   "File:Portugal road sign C13-50.svg"
+  ],
+  "lic": "Public domain",
+  "artist": "governo de português",
+  "note": "upraveno pro aplikaci (Profily ulic), viz signs-PT/README.md; číslo jako <text>"
  },
- "C16": {
-  "title": "File:Portugal road sign C16.svg",
-  "lic": "CC BY-SA 4.0",
-  "artist": "Gigillo83",
-  "credit": "Own work",
-  "desc": "Portuguese prohibitory road sign",
-  "date": "2015-03-02"
+ "C13-110": {
+  "derived_from": [
+   "File:Portugal road sign C13-50.svg"
+  ],
+  "lic": "Public domain",
+  "artist": "governo de português",
+  "note": "upraveno pro aplikaci (Profily ulic), viz signs-PT/README.md; číslo jako <text>"
+ },
+ "C13-120": {
+  "derived_from": [
+   "File:Portugal road sign C13-50.svg"
+  ],
+  "lic": "Public domain",
+  "artist": "governo de português",
+  "note": "upraveno pro aplikaci (Profily ulic), viz signs-PT/README.md; číslo jako <text>"
+ },
+ "C13-20": {
+  "derived_from": [
+   "File:Portugal road sign C13-50.svg"
+  ],
+  "lic": "Public domain",
+  "artist": "governo de português",
+  "note": "upraveno pro aplikaci (Profily ulic), viz signs-PT/README.md; číslo jako <text>"
+ },
+ "C13-30": {
+  "derived_from": [
+   "File:Portugal road sign C13-50.svg"
+  ],
+  "lic": "Public domain",
+  "artist": "governo de português",
+  "note": "upraveno pro aplikaci (Profily ulic), viz signs-PT/README.md; číslo jako <text>"
  },
  "C13-40": {
   "title": "File:Portugal road sign C13-40.svg",
@@ -71,45 +80,85 @@
   "desc": "Proibição de exceder a velocidade de 50 km/h",
   "date": "2025-11-06"
  },
- "H1a": {
-  "title": "File:Portugal road sign H1a.svg",
+ "C13-60": {
+  "derived_from": [
+   "File:Portugal road sign C13-50.svg"
+  ],
+  "lic": "Public domain",
+  "artist": "governo de português",
+  "note": "upraveno pro aplikaci (Profily ulic), viz signs-PT/README.md; číslo jako <text>"
+ },
+ "C13-70": {
+  "derived_from": [
+   "File:Portugal road sign C13-50.svg"
+  ],
+  "lic": "Public domain",
+  "artist": "governo de português",
+  "note": "upraveno pro aplikaci (Profily ulic), viz signs-PT/README.md; číslo jako <text>"
+ },
+ "C13-80": {
+  "derived_from": [
+   "File:Portugal road sign C13-50.svg"
+  ],
+  "lic": "Public domain",
+  "artist": "governo de português",
+  "note": "upraveno pro aplikaci (Profily ulic), viz signs-PT/README.md; číslo jako <text>"
+ },
+ "C13-90": {
+  "derived_from": [
+   "File:Portugal road sign C13-50.svg"
+  ],
+  "lic": "Public domain",
+  "artist": "governo de português",
+  "note": "upraveno pro aplikaci (Profily ulic), viz signs-PT/README.md; číslo jako <text>"
+ },
+ "C15": {
+  "title": "File:Portugal road sign C15.svg",
+  "lic": "CC BY-SA 4.0",
+  "artist": "Gigillo83",
+  "credit": "Own work",
+  "desc": "Portuguese prohibitory road sign",
+  "date": "2015-03-02"
+ },
+ "C16": {
+  "title": "File:Portugal road sign C16.svg",
+  "lic": "CC BY-SA 4.0",
+  "artist": "Gigillo83",
+  "credit": "Own work",
+  "desc": "Portuguese prohibitory road sign",
+  "date": "2015-03-02"
+ },
+ "C2": {
+  "title": "File:Portugal road sign C2.svg",
+  "lic": "CC BY-SA 3.0",
+  "artist": "Fry1989 eh?",
+  "credit": "Catálogo Sinalização",
+  "desc": "Road closed.",
+  "date": "2014-06-12"
+ },
+ "C3g": {
+  "title": "File:Portugal road sign C3g.svg",
+  "lic": "CC BY-SA 4.0",
+  "artist": "Gigillo83",
+  "credit": "Own work",
+  "desc": "Portuguese prohibitory road sign",
+  "date": "2015-03-02"
+ },
+ "C3l": {
+  "title": "File:Portugal road sign C3l.svg",
   "lic": "Public domain",
   "artist": "Republic of Portugal",
   "credit": "Regulamento de Sinalização do Trânsito (Road Signs Regulation) PDF's derived from [1], [2]",
-  "desc": "Parking",
-  "date": "2015-03-04"
+  "desc": "Pedestrians prohibited.",
+  "date": "2014-06-03"
  },
- "M12a": {
-  "title": "File:Portugal road sign M12a.svg",
+ "C4a": {
+  "title": "File:Portugal road sign C4a.svg",
   "lic": "CC BY-SA 4.0",
   "artist": "Gigillo83",
   "credit": "Own work",
-  "desc": "Portuguese additional road sign",
-  "date": "2015-03-10"
- },
- "M12b": {
-  "title": "File:Portugal road sign M12b.svg",
-  "lic": "CC BY-SA 4.0",
-  "artist": "Gigillo83",
-  "credit": "Own work",
-  "desc": "Portuguese additional road sign",
-  "date": "2015-03-10"
- },
- "H24": {
-  "title": "File:Portugal road sign H24.svg",
-  "lic": "CC BY-SA 4.0",
-  "artist": "Gigillo83",
-  "credit": "Own work",
-  "desc": "Portuguese information road sign",
-  "date": "2015-03-04"
- },
- "H25": {
-  "title": "File:Portugal road sign H25.svg",
-  "lic": "CC BY-SA 4.0",
-  "artist": "Gigillo83",
-  "credit": "Own work",
-  "desc": "Portuguese information road sign",
-  "date": "2015-03-04"
+  "desc": "Portuguese prohibitory road sign",
+  "date": "2015-03-02"
  },
  "D6": {
   "title": "File:Portugal road sign D6.svg",
@@ -118,30 +167,6 @@
   "credit": "Own work",
   "desc": "Portuguese mandatory road sign",
   "date": "2015-03-03"
- },
- "G4-40": {
-  "title": "File:Portugal road sign G4-40.svg",
-  "lic": "Public domain",
-  "artist": "Republic of Portugal",
-  "credit": "Regulamento de Sinalização do Trânsito (Road Signs Regulation) PDF's derived from [1], [2]",
-  "desc": "Speed limit zone",
-  "date": "2015-03-10"
- },
- "G5a": {
-  "title": "File:Portugal road sign G5a.svg",
-  "lic": "Public domain",
-  "artist": "Republic of Portugal",
-  "credit": "Regulamento de Sinalização do Trânsito (Road Signs Regulation) PDF's derived from [1], [2]",
-  "desc": "No traffic zone",
-  "date": "2015-03-10"
- },
- "H46": {
-  "title": "File:Portugal road sign H46.svg",
-  "lic": "CC0",
-  "artist": "Westnordost",
-  "credit": "Own work",
-  "desc": "H46 - Zona residencial ou de coexistência: indicação de entrada numa zona de coexistência",
-  "date": "2022-07-11"
  },
  "D7a": {
   "title": "File:Portugal road sign D7a.svg",
@@ -174,5 +199,85 @@
   "credit": "Regulamento de Sinalização do Trânsito (Road Signs Regulation) PDF's derived from [1], [2]",
   "desc": "Mandatory pedestrian and bicycle path, with division",
   "date": "2015-03-03"
+ },
+ "G4-40": {
+  "title": "File:Portugal road sign G4-40.svg",
+  "lic": "Public domain",
+  "artist": "Republic of Portugal",
+  "credit": "Regulamento de Sinalização do Trânsito (Road Signs Regulation) PDF's derived from [1], [2]",
+  "desc": "Speed limit zone",
+  "date": "2015-03-10"
+ },
+ "G4a": {
+  "derived_from": [
+   "File:Portugal road sign G4-40.svg"
+  ],
+  "lic": "Public domain",
+  "artist": "Republic of Portugal",
+  "note": "upraveno pro aplikaci (Profily ulic), viz signs-PT/README.md; G4 s číslem 30 podle quadro XXVIII (DR 6/2019)"
+ },
+ "G5a": {
+  "title": "File:Portugal road sign G5a.svg",
+  "lic": "Public domain",
+  "artist": "Republic of Portugal",
+  "credit": "Regulamento de Sinalização do Trânsito (Road Signs Regulation) PDF's derived from [1], [2]",
+  "desc": "No traffic zone",
+  "date": "2015-03-10"
+ },
+ "H1a": {
+  "title": "File:Portugal road sign H1a.svg",
+  "lic": "Public domain",
+  "artist": "Republic of Portugal",
+  "credit": "Regulamento de Sinalização do Trânsito (Road Signs Regulation) PDF's derived from [1], [2]",
+  "desc": "Parking",
+  "date": "2015-03-04"
+ },
+ "H24": {
+  "title": "File:Portugal road sign H24.svg",
+  "lic": "CC BY-SA 4.0",
+  "artist": "Gigillo83",
+  "credit": "Own work",
+  "desc": "Portuguese information road sign",
+  "date": "2015-03-04"
+ },
+ "H25": {
+  "title": "File:Portugal road sign H25.svg",
+  "lic": "CC BY-SA 4.0",
+  "artist": "Gigillo83",
+  "credit": "Own work",
+  "desc": "Portuguese information road sign",
+  "date": "2015-03-04"
+ },
+ "H3": {
+  "title": "File:Portugal road sign H3.svg",
+  "lic": "Public domain",
+  "artist": "Republic of Portugal",
+  "credit": "Regulamento de Sinalização do Trânsito (Road Signs Regulation) PDF's derived from [1], [2]",
+  "desc": "One-way street",
+  "date": "2015-03-04"
+ },
+ "H46": {
+  "title": "File:Portugal road sign H46.svg",
+  "lic": "CC0",
+  "artist": "Westnordost",
+  "credit": "Own work",
+  "desc": "H46 - Zona residencial ou de coexistência: indicação de entrada numa zona de coexistência",
+  "date": "2022-07-11"
+ },
+ "M12a": {
+  "title": "File:Portugal road sign M12a.svg",
+  "lic": "CC BY-SA 4.0",
+  "artist": "Gigillo83",
+  "credit": "Own work",
+  "desc": "Portuguese additional road sign",
+  "date": "2015-03-10"
+ },
+ "M12b": {
+  "title": "File:Portugal road sign M12b.svg",
+  "lic": "CC BY-SA 4.0",
+  "artist": "Gigillo83",
+  "credit": "Own work",
+  "desc": "Portuguese additional road sign",
+  "date": "2015-03-10"
  }
 }
