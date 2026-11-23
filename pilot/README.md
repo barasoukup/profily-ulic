@@ -289,8 +289,10 @@ kresbou francouzské (Ženevský protokol 1949), bez francouzských čísel. Hle
 
 Stát `cyprus` (CY), `countries/CY.js`, `towns/cyprus.js`; hranice z OSM (území republiky a britské základny,
 `tools/cyprus-border.json`): **sever je samostatný stát, který zatím nemáme**, nárazníková zóna OSN (Pyla) také mimo.
-**Jízda vlevo** (`leftHand`, `derive.js mirrorLeftHand`): v obousměrné vozovce zůstávají všechny díly tam, kam je dala
-data, otáčí se jen pořadí směrů (Bára: „Přesouvat nesmíš nic, jen otáčet směr“); `?off=vlevo`. Ortofoto DLS 2019
+**Jízda vlevo** (`leftHand`): díly zůstávají tam, kam je dala data (Bára: „Přesouvat nesmíš nic, jen otáčet směr“);
+pravidla, která směr odvozují (polovina vozovky u obousměrné osy, `lanes:forward`, rozdělení pruhu z ortofota, krajnice
+dělené silnice, strana odhadu stání na jednosměrce), počítají rovnou s jízdou vlevo; jednosměrné osy jedou podle své
+geometrie a seznamy po pruzích (`turn:lanes`, `bus:lanes`) se čtou od řidičovy levice, tedy od obruby (recenze 23. 11.). Ortofoto DLS 2019
 (dlaždice, asi 12 cm; licence neuvedená, Bára: novější), budovy DLS (podlaží, výška, typ; CC BY 4.0), hledání Photon.
 Normy jen z příručky odboru veřejných prací (doporučení), stání bez varování; stání na chodníku zakázané. Značky
 `signs-CY/` (kyperský Kodex nečísluje, britské kresby pod OGL v1.0 s uvedením zdroje v patičce).

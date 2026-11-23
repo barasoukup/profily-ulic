@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { localFrame, deriveProfile } from "../pilot/public/derive.js";
+import { localFrame, deriveProfile, mtvuPolygons } from "../pilot/public/derive.js";
 
 // A straight street running north through a synthetic frame; no technical map (polys = []),
 // so the profile is the estimate from OSM tags.
@@ -23,18 +23,39 @@ test("odhad z OSM: jednosměrka bez chodníků má jeden pruh", () => {
   assert.deepEqual(segments.map((s) => s.type), ["pruh"]);
 });
 
-test("jízda vlevo (Kypr): obousměrná vozovka otočí pořadí směrů, díly zůstanou na místě, jednosměrná beze změny", async () => {
-  const D = await import("../pilot/public/derive.js");
+// Keeping left (Cyprus, Malta; review of 23. 11. 2026): a synthetic street with a measured roadway, the whole profile.
+function measured(ways, road) {
+  const frame = localFrame(35.17, 33.36);
+  const rect = (x0, x1, code) => ({ attributes: { CTVUK_KOD: code }, geometry: { rings: [[[x0, -60], [x1, -60], [x1, 60], [x0, 60], [x0, -60]].map(([x, y]) => frame.toLonLat(x, y))] } });
+  const polys = mtvuPolygons({ features: [rect(-road / 2 - 3, -road / 2, 702), rect(-road / 2, road / 2, 701), rect(road / 2, road / 2 + 3, 702)] }, frame);
+  const els = ways.map(([x, tags, south], i) => {
+    const g = [frame.toLonLat(x, -100), frame.toLonLat(x, 100)].map(([lon, lat]) => ({ lat, lon }));
+    return { type: "way", id: i + 1, tags, geometry: south ? g.reverse() : g };
+  });
+  const r = deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys, osm: { elements: els }, frame, way: els[0], noParkGuess: true });
+  return r.segments.map((s) => s.type + (s.dir ? (s.dir === "forward" ? "↑" : "↓") : "") + (s.turn ? ":" + s.turn : "")).join(" | ");
+}
+
+test("jízda vlevo (Kypr, Malta): směry podle pravidel otočené, data na svém místě", async () => {
   const { country } = await import("../pilot/public/city.js");
+  const D = await import("../pilot/public/derive.js");
   const was = country.leftHand;
+  const four = { highway: "primary", lanes: "4", "lanes:forward": "2", "lanes:backward": "2" };
+  const turn = { ...four, "turn:lanes:forward": "left|through" }, bus = { ...four, "bus:lanes:forward": "designated|yes" };
+  const ow = { highway: "trunk", oneway: "yes", lanes: "2" };
   try {
-    country.leftHand = true;
-    const two = [{ type: "bus", s: 0, e: 3, dir: "forward" }, { type: "pruh", s: 3, e: 6, dir: "forward" }, { type: "pruh", s: 6, e: 9, dir: "backward" }];
-    assert.equal(D.mirrorLeftHand(two), true);
-    assert.deepEqual(two.map((l) => [l.type, l.s, l.dir]), [["bus", 0, "backward"], ["pruh", 3, "forward"], ["pruh", 6, "forward"]], "díly na místě, směry obráceně");
-    const one = [{ type: "pruh", s: 0, e: 3, dir: "forward" }, { type: "pruh", s: 3, e: 6, dir: "forward" }];
-    assert.equal(D.mirrorLeftHand(one), false);
     country.leftHand = false;
-    assert.equal(D.mirrorLeftHand([{ dir: "forward" }, { dir: "backward" }]), false, "jízda vpravo beze změny");
+    assert.equal(measured([[0, turn]], 13), "chodnik | pruh↓ | pruh↓ | pruh↑:left | pruh↑:through | chodnik");
+    assert.equal(measured([[0, bus]], 13), "chodnik | pruh↓ | pruh↓ | bus↑ | pruh↑ | chodnik");
+    assert.equal(measured([[0, { highway: "residential" }]], 7), "chodnik | pruh↓ | pruh↑ | chodnik");
+    country.leftHand = true;
+    assert.equal(measured([[0, turn]], 13), "chodnik | pruh↑:left | pruh↑:through | pruh↓ | pruh↓ | chodnik", "odbočení vlevo u levé obruby");
+    assert.equal(measured([[0, bus]], 13), "chodnik | bus↑ | pruh↑ | pruh↓ | pruh↓ | chodnik", "BUS u levé obruby po směru");
+    assert.equal(measured([[0, { highway: "residential" }]], 7), "chodnik | pruh↑ | pruh↓ | chodnik");
+    // Two one-way axes in one roadway: the directions of their geometry (north on the west), shoulders at the kerbs.
+    assert.equal(measured([[-5, ow], [5, ow, true]], 20), "chodnik | krajnice | pruh↑ | pruh↑ | pruh↓ | pruh↓ | krajnice | chodnik", "jednosměrné osy podle dat");
+    const seg = [{ type: "chodnik", width: 2 }, { type: "pruh", width: 6 }, { type: "chodnik", width: 2 }];
+    assert.equal(D.splitTwoWayLane(seg, { highway: "residential" }), 1);
+    assert.deepEqual(seg.map((x) => x.dir), [undefined, "forward", "backward", undefined], "rozdělení pruhu z ortofota");
   } finally { country.leftHand = was; }
 });

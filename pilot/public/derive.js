@@ -706,7 +706,11 @@ function splitRoadway(run, ctx) {
     const oneway = isOnewayTags(tags) || tags.junction === "roundabout";
     const need = lawNeedFor(oneway, lanesTotal);
     const lo = trams.length ? Math.min(...trams) - RAIL_HALF : Infinity, hi = trams.length ? Math.max(...trams) + RAIL_HALF : -Infinity;
-    for (const [side, st] of [["R", sideR], ["L", sideL]]) {
+    // Keeping left (Cyprus, Malta) cars stand along the kerb on the driver's left: on a one-way street that kerb is tried
+    // first (the estimate is no part of the data, so it may sit there; review of 23. 11. 2026).
+    const leftKerb = country.leftHand && oneway && dirAt((s + e) / 2) === "backward";
+    const order = country.leftHand && !leftKerb ? [["L", sideL], ["R", sideR]] : [["R", sideR], ["L", sideL]];
+    for (const [side, st] of order) {
       if (!(ctx.kerbOpen ?? ["L", "R"]).includes(side) || ctx.kerbBare?.includes(side) || parked.includes(side) || st.parkingNo || edge.some((x) => x.side === side && x.type === "parkovani")) continue;
       // Switzerland (countries/CH.js parkByCycleLane: VRV Art. 19 Abs. 2): no parking on the roadway beside a cycle lane.
       if (!country.parkByCycleLane && edge.some((x) => x.side === side && (x.type === "cyklopruh" || x.type === "ochranny_pruh"))) continue;
@@ -767,7 +771,7 @@ function splitRoadway(run, ctx) {
       // axis in this roadway, not the clicked street (a divided road's other half).
       const oneway = single && ctx.axesOneway && ctx.divided;
       const both = !oneway && excess >= 2 * KRAJNICE_MIN;
-      const outerL = oneway && dirAt((s + e) / 2) === "backward";
+      const outerL = oneway && dirAt((s + e) / 2) === (country.leftHand ? "forward" : "backward");
       const wR = both ? excess / 2 : outerL ? 0 : excess, wL = both ? excess / 2 : outerL ? excess : 0;
       if (wR) { rightEdge.push({ type: "krajnice", s, e: s + wR, source: "odhad" }); s += wR; }
       if (wL) { leftEdge.unshift({ type: "krajnice", s: e - wL, e, source: "odhad" }); e -= wL; }
@@ -780,7 +784,7 @@ function splitRoadway(run, ctx) {
     const halves = single && ctx.axisInside && !ctx.axesOneway && lanesTotal > 1;
     for (let i = 0; i < lanesTotal; i++) {
       const ls = s + i * lw, le = ls + lw;
-      const half = 2 * i + 1 === lanesTotal ? null : 2 * i + 1 < lanesTotal ? "forward" : "backward";
+      const half = 2 * i + 1 === lanesTotal ? null : (2 * i + 1 < lanesTotal) !== !!country.leftHand ? "forward" : "backward";
       mid.push({ type: "pruh", s: ls, e: le, dir: twoWaySingle ? undefined : (halves && half) || dirAt((ls + le) / 2) });
     }
     if (single) applyLaneTags(mid, tags, along);
@@ -790,9 +794,6 @@ function splitRoadway(run, ctx) {
   const flip = (d) => (d === "backward" ? "forward" : "backward");
   // tramLanes() lists car lanes before the tram envelopes: sort so the ends are the curb lanes.
   mid.sort((a, b) => a.s - b.s);
-  // Traffic keeping left (countries/<ISO>.js leftHand: Cyprus): the directions of a roadway used both ways read the
-  // other way round, the parts in place.
-  mirrorLeftHand(mid);
   const curbLane = { R: mid[0], L: mid.at(-1) };
   for (const [side, st] of [["R", sideR], ["L", sideL]]) {
     const lane = curbLane[side];
@@ -842,31 +843,15 @@ function splitRoadway(run, ctx) {
     .sort((a, b) => a.s - b.s);
 }
 
-// Where traffic keeps left, a roadway used both ways keeps every part where the data put it (a bus lane, parking, the
-// tracks); only the directions the keep-right rules gave its lanes are read the other way round: the direction (and the
-// turn arrows) of position i go to position n - 1 - i, so as many lanes run each way as before (Bára 23. 11. 2026:
-// "Přesouvat nesmíš nic, jen otáčet směr"). One-way roadways stay. Returns whether anything changed.
-export function mirrorLeftHand(lanes) {
-  if (!country.leftHand || ORTHO_P.off?.has("vlevo")) return false;
-  if (new Set(lanes.map((l) => l.dir).filter(Boolean)).size < 2) return false;
-  const dirs = lanes.map((l) => [l.dir, l.turn]).reverse();
-  lanes.forEach((l, i) => {
-    const [d, t] = dirs[i];
-    if (d === undefined) delete l.dir; else l.dir = d;
-    if (t === undefined) delete l.turn; else l.turn = t;
-  });
-  return true;
-}
-
 // lanes:forward / lanes:backward and turn:lanes(:forward|:backward) for a single carriageway.
 // Lanes come in t order (right side of the cut's street first).
 function applyLaneTags(lanes, tags, along) {
   const oneway = isOnewayTags(tags);
   const wayFwd = parseInt(tags["lanes:forward"], 10), wayBwd = parseInt(tags["lanes:backward"], 10);
-  // Lanes travelling with the cut's street sit on its right (low t).
+  // Lanes travelling with the cut's street sit on its right (low t); keeping left on its left (high t).
   if (!oneway && wayFwd >= 0 && wayBwd >= 0 && wayFwd + wayBwd === lanes.length) {
     const ours = along ? wayFwd : wayBwd;
-    lanes.forEach((l, i) => (l.dir = i < ours ? "forward" : "backward"));
+    lanes.forEach((l, i) => (l.dir = (country.leftHand ? i >= lanes.length - ours : i < ours) ? "forward" : "backward"));
   }
   const wayFwdTurns = turnList(tags["turn:lanes:forward"] || (oneway ? tags["turn:lanes"] : undefined));
   const wayBwdTurns = turnList(tags["turn:lanes:backward"]);
@@ -874,7 +859,7 @@ function applyLaneTags(lanes, tags, along) {
   const fwdTurns = sameAsWay ? wayFwdTurns : wayBwdTurns;
   const bwdTurns = sameAsWay ? wayBwdTurns : wayFwdTurns;
   // turn:lanes are listed from the driver's left: for our forward lanes that is high t first,
-  // for backward lanes low t first.
+  // for backward lanes low t first (keeping left too: there the driver's left is the kerb, high t for forward lanes).
   const fwd = lanes.filter((l) => l.dir === "forward").reverse();
   const bwd = lanes.filter((l) => l.dir === "backward");
   if (fwdTurns?.length === fwd.length) fwd.forEach((l, i) => (l.turn = fwdTurns[i]));
@@ -2010,8 +1995,9 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       const dirAt = (m) => {
         const a = axes.reduce((b, x) => (Math.abs(x.t - m) < Math.abs(b.t - m) ? x : b));
         if (a.oneway) return a.along ? "forward" : "backward";
-        // Two-way: traffic keeps right, so the half left of the axis runs against the cut's street.
-        return m > a.t ? "backward" : "forward";
+        // Two-way: traffic keeps right, so the half left of the axis runs against the cut's street (keeping left,
+        // countries/<ISO>.js leftHand: the other half; a one-way axis keeps the direction of its geometry).
+        return (m > a.t) !== !!country.leftHand ? "backward" : "forward";
       };
       const lanesTotal = [...new Map(axes.map((a) => [a.id, a.lanes])).values()].reduce((x, y) => x + y, 0);
       const ownAxis = own ? axes.find((a) => a.id === own.way.id) : null;
@@ -2313,7 +2299,8 @@ export function splitTwoWayLane(segments, tags = {}) {
   if (!(width >= TWO_WAY_SPLIT - 1e-6)) return 0;
   const half = round(width / 2);
   const { turn, ...rest } = lane;
-  segments.splice(i, n, { ...rest, width: half, dir: "backward" }, { ...rest, width: round(width - half), dir: "forward" });
+  const [d0, d1] = country.leftHand ? ["forward", "backward"] : ["backward", "forward"];
+  segments.splice(i, n, { ...rest, width: half, dir: d0 }, { ...rest, width: round(width - half), dir: d1 });
   return 1;
 }
 
