@@ -114,8 +114,5 @@ export default {
   orthoEstimate: true,
   panorama: false,
   art: AT_ART,
-  // Austria has no panel houses of the Czech and Slovak kind (Bára 16. 11. 2026): an office stays an office, a block of
-  // flats is the modern one when new, else the plain flat-roofed tenement (Gemeindebau).
-  houseLook: (style, info, office) => (style === "plocha" ? (office ? "kancelar" : (info?.start || info?.built) > 1990 ? "moderni" : "funkce") : style),
   search: ["photon"],
 };

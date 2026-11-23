@@ -110,7 +110,7 @@ export default {
   besideMax: 25,
   panorama: false,
   art: { poland: { ...czechFurniture, ...atPosts } },
-  // Panel houses (wielka płyta) are common in Poland as in Czechia: the Czech look is kept.
-  houseLook: null,
+  // Panel houses (wielka płyta) and socialist realism are common in Poland as in Czechia: the Czech looks are kept.
+  socialistLooks: true,
   search: ["uug"],
 };

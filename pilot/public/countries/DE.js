@@ -108,11 +108,11 @@ export default {
   besideMax: 25,
   panorama: false,
   art: { germany: { ...czechFurniture, ...atPosts } },
-  // Panel houses (Plattenbau) only in the former GDR (city.panels, set by the cut from the Land: app.js); in the west as
-  // in Austria: an office stays an office, a block of flats is the modern one when new, else the plain flat-roofed one.
-  houseLook: (style, info, office, city) => (style === "plocha" && !city?.panels ? (office ? "kancelar" : (info?.start || info?.built) > 1990 ? "moderni" : "funkce") : style),
+  // The socialist looks (Plattenbau and the 1950s–60s) only in the former GDR (city.panels, set by the cut from the Land:
+  // app.js); in the west the postwar block of flats as in Austria (profile.js westernLook).
+  socialistLooks: (city) => !!city?.panels,
   search: ["photon-de"],
   // The former GDR (with all of Berlin) by the Länder of laender.json (the review: a polygon of the inner German border
-  // was wrong by kilometres): city.panels for houseLook.
+  // was wrong by kilometres): city.panels for socialistLooks.
   atPlace: async (lon, lat) => ({ panels: GDR.has((await landsAt(lon, lat).catch(() => []))[0]) }),
 };

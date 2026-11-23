@@ -6,6 +6,7 @@ export const BG = {
   // ---------- Slovakia, the towns' passports, more house looks (main of 16. 11. 2026) ----------
   "dům 50. let (sorela)": "къща от 50-те години (соцреализъм)",
   "zděný bytový dům 50.–60. let": "тухлена жилищна сграда от 50-те–60-те години",
+  "poválečný bytový dům": "следвоенна жилищна сграда",
   "měšťanský dům na náměstí": "бюргерска къща на площада",
   "škola": "училище",
   "kostel": "църква",

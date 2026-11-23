@@ -139,8 +139,10 @@ export default {
   // The state's illustrations (profile.js): the sets of its cities by their id, its own set by the id of its rest
   // (city.js: a city with a set of its own draws it, the others the state's).
   art: {},
-  // The look of a house as the state has it (profile.js buildingStyle): null keeps the Czech catalogue.
-  houseLook: null,
+  // The socialist looks of a house (sorela, the brick block of the 1950s–60s, the panel house; profile.js buildingStyle):
+  // only in the states that built them (Bára 23. 11. 2026: CZ, SK, PL, EE; DE in the former GDR); elsewhere the
+  // postwar block of flats (profile.js westernLook). true, false, or (city) => boolean.
+  socialistLooks: false,
   // The search services asked where the map shows the state (search.js), besides RÚIAN.
   search: [],
   // What the state decides by the place of the cut, set on the city (app.js): async (lon, lat) → { … }, or null.

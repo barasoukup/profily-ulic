@@ -107,8 +107,5 @@ export default {
   // No drawings of its own (Bára 17. 11. 2026: the neutral vehicles of generic/, no new illustrations): the Czech
   // furniture and stop posts.
   art: { switzerland: { ...czechFurniture } },
-  // No panel houses (Bára 17. 11. 2026, as Austria and western Germany): a flat-roofed slab is the plain flat-roofed
-  // house, after 1990 the modern one, an office an office.
-  houseLook: (style, info, office) => (style === "plocha" ? (office ? "kancelar" : (info?.start || info?.built) > 1990 ? "moderni" : "funkce") : style),
   search: ["photon-ch"],
 };

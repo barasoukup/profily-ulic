@@ -616,6 +616,7 @@ export const SK = {
   "pasportu komunikací města {town}, ZBGIS a OSM": "pasportu komunikácií mesta {town}, ZBGIS a OSM",
   "dům 50. let (sorela)": "dom 50. rokov (sorela)",
   "zděný bytový dům 50.–60. let": "murovaný bytový dom 50.–60. rokov",
+  "poválečný bytový dům": "povojnový bytový dom",
   "měšťanský dům na náměstí": "meštiansky dom na námestí",
   "škola": "škola",
   "kostel": "kostol",

@@ -96,8 +96,5 @@ export default {
   besideMax: 25,
   panorama: false,
   art: { netherlands: { ...czechFurniture, ...atPosts } },
-  // No panel houses (as Austria, Switzerland and western Germany): a flat-roofed slab is the plain flat-roofed house,
-  // after 1990 the modern one, an office an office.
-  houseLook: (style, info, office) => (style === "plocha" ? (office ? "kancelar" : (info?.start || info?.built) > 1990 ? "moderni" : "funkce") : style),
   search: ["pdok"],
 };

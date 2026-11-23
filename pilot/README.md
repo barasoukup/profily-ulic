@@ -42,7 +42,7 @@ Struktura je všude stejná: stát → město → zdroje (`docs/architecture-cou
 - **Stát** je modul `countries/<ISO>.js` (`CZ.js`, `SK.js`, `AT.js`; `default.js` pro místo mimo známé státy a výchozí
   hodnoty všech vlastností): normy (`limits`, `contraflow`, `tramBelt`), zákon o stání (`freeLane`, `halfKerbNote`,
   `parkGuess`), značky (`signs`), ortofoto (`bedOrtho`, `laneOrtho`), ilustrace měst státu (`art`, `artAt`), vzhled domů
-  (`houseLook`), služby hledání (`search`), panorama, hlášky. `setCity` nastaví vedle `city` i `country` (modul státu);
+  (`socialistLooks`), služby hledání (`search`), panorama, hlášky. `setCity` nastaví vedle `city` i `country` (modul státu);
   `city.country` zůstává kód ISO. Mimo `countries/` není žádná podmínka na stát.
 - **Město** je záznam v `city.js` (a modul `towns/<město>.js`, má-li vlastní zdroje); co nemá svého (ortofoto, značky,
   normy), dědí od státu. Zbytek státu je město `cesko`, `slovensko`, `austria`, mimo státy `cizina` (`towns/cizina.js`).
@@ -268,7 +268,8 @@ z PNOA nečtou (snímek Airbus, licence nevyjasněná).
 - **Budovy** z katastru (Catastro INSPIRE WFS, GML): podlaží části budovy u fasády, rok, užití, byty (`?catastro=0`).
   Baskicko a Navarra mají vlastní katastr: tam se Catastra neptá, ale foralního katastru provincie (`towns/spain-foral.js`:
   Navarra, Álava, Bizkaia, Gipuzkoa, INSPIRE WFS, podlaží, rok, užití, byty; `?foral=0` vypne, `?foral=nc,gi` jen
-  vybrané; Álava vypnutá, má proti OSM soustavně o 2 podlaží víc, `?foral=ar` ji zapne). Provincie podle hranic NUTS 3 z GISCO v `regions-es.json` (`node tools/build_regions_es.mjs`; Treviño patří
+  vybrané; Álava a Navarra mají proti OSM o 1–2 podlaží víc, fotky dávají za pravdu katastru: OSM ve Španělsku
+  nepočítá přízemí a podkroví). Provincie podle hranic NUTS 3 z GISCO v `regions-es.json` (`node tools/build_regions_es.mjs`; Treviño patří
   Burgosu; u vnější hranice do 500 m se ptá foralního katastru a bez domu pak Catastra). Limit 25 s, paměť na bod,
   jeden dotaz na fasádu. A/B v `evaluation/spain/foral-ab/ZPRAVA.md`.
 - **Normy:** závazná přístupnost (Orden TMA/851/2021: chodník 1,8 m), ostatní podle doporučení ministerstva dopravy
@@ -415,7 +416,7 @@ Počet podlaží budov na okrajích profilu se v Praze bere z vrstvy IPR *Podla�
 podlaží, celkem, příznak nové budovy), v Brně z Průzkumu budov KAM, v Plzni z 3D budov, jinde z RÚIAN ČÚZK
 (`gis.js` `ruianBuilding`: podlaží, využití, rok dokončení, druh konstrukce), jinak z OSM `building:levels`
 (+ `roof:levels`). Výška se kreslí 3,5 m na podlaží (přesná výška z OSM `height` nebo z 3D budov), střešní podlaží
-užší a tmavší. Sedmnáct vzhledů domu (činžák se šikmou střechou, měšťanský dům na náměstí, sorela, zděný bytový dům 50.–60. let, škola, kostel, garáž, funkcionalistický činžák, panelák, moderní
+užší a tmavší. Osmnáct vzhledů domu (činžák se šikmou střechou, měšťanský dům na náměstí, sorela, zděný bytový dům 50.–60. let, poválečný bytový dům, škola, kostel, garáž, funkcionalistický činžák, panelák, moderní
 bytový dům, kancelářská budova, městský dům, vila, rodinný dům 60.–80. let, nový rodinný dům, venkovský dům štítem do
 ulice, hala; Bára 16. 11. 2026, nové kreslené na základě starších v `profile.js` `BASE_STYLE`) se volí podle tvaru bloku z OSM, údajů o domě a stáří zástavby: v Praze z vrstvy IPR *Vývoj zástavby*
 (statické dlaždice z `tools/build_vyvoj.mjs`), jinde z roku dokončení v RÚIAN (do 1919 a 1946–57 šikmá střecha,
@@ -429,6 +430,12 @@ Kód konstrukce 10 („kámen, cihly, tvárnice vč. kombinací“) nic neřík�
 dům (RÚIAN rodinný dům, OSM house, IPR typ 6) podle roku: do 1945 vila, 1946–89 „kostka“, od 1990 nový; štítem do
 ulice (úzký půdorys, delší strana napříč ulicí, `derive.js` `gableToStreet`) a starý mimo vnitřní město venkovský dům,
 stejně zemědělská usedlost RÚIAN (dřív hala); v řadě starší městský dům. Bytový dům 1948–57 (RÚIAN) sorela, 1958–69 bez panelů v RÚIAN zděný bytový dům 50.–60. let se šikmou střechou (Street View 25 domů, `evaluation/budovy-panel/k-foceni.md`).
+Socialistické vzhledy (sorela, zděný bytový dům 50.–60. let, panelák) jen tam, kde se stavěly (Bára 23. 11. 2026):
+v Česku, na Slovensku, v Polsku, v Estonsku (sovětská sídliště) a v bývalé NDR (`countries/<ISO>.js` `socialistLooks`,
+v Německu podle `city.panels`). Jinde, i v „cizině“, platí `profile.js` `westernLook`: sorela, zděný dům 50.–60. let,
+panelová deska a plochý činžák z let 1946–90 jsou poválečný bytový dům (hladká omítka, pravidelné řady oken s rolety,
+balkony s barevným parapetem, plochá střecha s tenkou atikou; `evaluation/budovy-povalecny/ZPRAVA.md`), deska před 1946
+funkcionalistický dům, po 1990 moderní, kancelář zůstává kanceláří. Ručně jde poválečný dům vybrat všude.
 Kancelář, úřad, hotel (OSM nebo RÚIAN využití 5, 11, 14, 15) kancelářská budova; OSM school a kindergarten škola,
 OSM church, chapel aj. kostel, OSM garage(s) a RÚIAN garáž garáž. Starý dům (RÚIAN do 1919, v Praze zastavěno do
 1840) do 5 podlaží v samém centru (`city.coreKm`, výchozí 0,3 km od náměstí, Praha 0,6 km) je měšťanský dům.

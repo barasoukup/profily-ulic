@@ -81,11 +81,12 @@ export const exportCredits = (src) => creditLines(city, src || {}, cityArt());
 // (Bára: "nízký" was wrong on 4 floors).
 // More looks (Bára 16. 11. 2026, from the data of Czechia): the family houses by age (a villa or older house, the
 // "cube" of the 1960s–80s, a new one), a village house with its gable to the street, the socialist-realist house of
-// the 1950s, the office building. Each is drawn on the base of an older look (BASE_STYLE) with its own details.
+// the 1950s, the office building. The socialist looks (sorela, typovy, the panel house) only where they were built
+// (socialistLooks below); elsewhere the postwar block of flats (povalecny, Bára 23. 11. 2026). Each is drawn on the base of an older look (BASE_STYLE) with its own details.
 export const BUILDING_STYLES = {
   sikma: tr("činžovní dům se šikmou střechou"), sorela: tr("dům 50. let (sorela)"), funkce: tr("funkcionalistický činžák"),
   plocha: tr("panelový dům"), moderni: tr("moderní bytový dům"), kancelar: tr("kancelářská budova"), nizky: tr("městský dům"),
-  typovy: tr("zděný bytový dům 50.–60. let"), vila: tr("vila, starší rodinný dům"), kostka: tr("rodinný dům 60.–80. let"), novyrd: tr("nový rodinný dům"),
+  typovy: tr("zděný bytový dům 50.–60. let"), povalecny: tr("poválečný bytový dům"), vila: tr("vila, starší rodinný dům"), kostka: tr("rodinný dům 60.–80. let"), novyrd: tr("nový rodinný dům"),
   statek: tr("venkovský dům štítem do ulice"), mestan: tr("měšťanský dům na náměstí"), skola: tr("škola"),
   kostel: tr("kostel"), garaz: tr("garáž"), hala: tr("hala"),
 };
@@ -105,14 +106,14 @@ const IPR_ROOF = { 1: "sikma", 3: "plocha", 5: "sikma" };
 // Within innerKm of the centre an unknown building is taken for a pitched-roof tenement, from estateKm
 // for a panel house; a town has its own (city.js innerKm, estateKm; Most has no old inner town).
 const innerKm = () => city.innerKm ?? 3;
-const STOREY = { sikma: 360, sorela: 330, typovy: 300, mestan: 330, skola: 380, kostel: 1000, garaz: 260, funkce: 310, moderni: 300, plocha: 280, kancelar: 330, nizky: 300, vila: 300, kostka: 280, novyrd: 280, statek: 280, hala: 700 }; // typical storey (cm); a hall is one tall storey
-const DEFAULT_FLOORS = { sikma: 5, sorela: 5, typovy: 4, mestan: 3, skola: 3, kostel: 1, garaz: 1, funkce: 6, moderni: 6, plocha: 8, kancelar: 5, nizky: 1, vila: 2, kostka: 2, novyrd: 2, statek: 1, hala: 1 };
+const STOREY = { sikma: 360, sorela: 330, typovy: 300, povalecny: 290, mestan: 330, skola: 380, kostel: 1000, garaz: 260, funkce: 310, moderni: 300, plocha: 280, kancelar: 330, nizky: 300, vila: 300, kostka: 280, novyrd: 280, statek: 280, hala: 700 }; // typical storey (cm); a hall is one tall storey
+const DEFAULT_FLOORS = { sikma: 5, sorela: 5, typovy: 4, povalecny: 5, mestan: 3, skola: 3, kostel: 1, garaz: 1, funkce: 6, moderni: 6, plocha: 8, kancelar: 5, nizky: 1, vila: 2, kostka: 2, novyrd: 2, statek: 1, hala: 1 };
 const PITCH = Math.tan((40 * Math.PI) / 180);
 const RIDGE = 260; // ridge of a family house, from its street facade (cm)
 // Side windows: width and gap (cm), sill and height as a share of the storey.
 const WINDOWS = { sikma: { w: 85, gap: 60, sill: 0.24, h: 0.56 }, plocha: { w: 120, gap: 50, sill: 0.3, h: 0.45 },
   nizky: { w: 85, gap: 70, sill: 0.3, h: 0.45 }, funkce: { w: 110, gap: 60, sill: 0.3, h: 0.5 }, moderni: { w: 120, gap: 40, sill: 0.05, h: 0.8 }, hala: {},
-  sorela: { w: 90, gap: 70, sill: 0.28, h: 0.52 }, typovy: { w: 100, gap: 80, sill: 0.3, h: 0.47 }, mestan: { w: 80, gap: 90, sill: 0.3, h: 0.45 }, vila: { w: 90, gap: 70, sill: 0.3, h: 0.47 }, kostka: { w: 140, gap: 60, sill: 0.32, h: 0.42 },
+  sorela: { w: 90, gap: 70, sill: 0.28, h: 0.52 }, typovy: { w: 100, gap: 80, sill: 0.3, h: 0.47 }, povalecny: { w: 130, gap: 50, sill: 0.33, h: 0.45 }, mestan: { w: 80, gap: 90, sill: 0.3, h: 0.45 }, vila: { w: 90, gap: 70, sill: 0.3, h: 0.47 }, kostka: { w: 140, gap: 60, sill: 0.32, h: 0.42 },
   novyrd: { w: 110, gap: 50, sill: 0.1, h: 0.72 }, statek: { w: 70, gap: 90, sill: 0.32, h: 0.4 } };
 // Roof coverings of the family houses: the cube's sheet or fibre-cement, the new house's anthracite concrete tiles.
 const ROOF_OF = { kostka: ["#7a7f84", "#5c6065"], novyrd: ["#44474b", "#2e3033"], kostel: ["#4f5d6b", "#36414c"] }; // slate
@@ -133,6 +134,10 @@ const PALETTES = {
   // Plain brick blocks of flats of the 1950s–60s (Street View of 25 houses, evaluation/budovy-panel): smooth render in
   // sand, ochre, grey, a pitched tiled roof with chimneys.
   typovy: ["#d8c9a3", "#cfc2a8", "#c9c4b6", "#dcc79a"],
+  // Postwar blocks of flats in the west (1946–90): plain light render (off-white, pale grey, pale yellow, pale
+  // salmon, grey-green); the balcony fronts in a colour of the time (povalecnyAccent).
+  povalecny: ["#ece6d6", "#e2dfd8", "#efe3c2", "#ead6c8", "#d9ded3", "#e6ddcb"],
+  povalecnyAccent: ["#6f8796", "#b8664a", "#c9a440", "#6f8f72", "#8a8f94"],
   // Burgher houses on a town square: baroque pastels.
   mestan: ["#f0d58f", "#e9b9a6", "#f2ece0", "#b9cfb4", "#e7c7a0"],
   skola: ["#e8d6a8", "#e2c9b0", "#dfe0d6"],
@@ -147,6 +152,7 @@ const PALETTES = {
 };
 const ROOF = { tile: "#c25a3c", tileDark: "#8f3f2b", slate: "#4f5d6b", slateDark: "#36414c" };
 const BRICK = "#b8644a", SKLEP = "#8e8a82";
+const PV_METAL = "#8d9093", PV_SHUTTER = "#d6d2c8"; // the postwar block's door frame and roller shutters
 const GLASS = "#2f3557", GLINT = "#454a75", LIT = "#f4d98c", FRAME = "#f6efdf", DOOR = "#7a4f3a", STONE = "#b9ab8f";
 export const OFFICE_TYPES = new Set(["office", "commercial", "civic", "government", "public", "school", "university", "hospital", "hotel"]);
 const TALL_SHARE = 0.45; // the most of the view's width a building may rise above the ground
@@ -615,9 +621,22 @@ export function buildingStyle(info, chosen) {
   const set = OLD_STYLES[chosen] || chosen;
   if (BUILDING_STYLES[set]) return set;
   const style = derivedStyle(info);
-  // The state's own catalogue (countries/<ISO>.js houseLook; Austria has no panel houses).
-  // The city is passed for what the cut's place decides (Germany: panel houses only in the former GDR, city.panels).
-  return country.houseLook ? country.houseLook(style, info, OFFICE_TYPES.has(info?.type) || !!info?.office, city) : style;
+  return socialistLooks() ? style : westernLook(style, info, OFFICE_TYPES.has(info?.type) || !!info?.office);
+}
+// The socialist looks (sorela, the plain brick block of the 1950s–60s, the panel house) only where they were built
+// (Bára 23. 11. 2026): countries/<ISO>.js socialistLooks, true in Czechia, Slovakia, Poland and Estonia; Germany
+// decides by the place (the former GDR, city.panels); false elsewhere and abroad (default.js).
+export const socialistLooks = () => (typeof country.socialistLooks === "function" ? !!country.socialistLooks(city) : !!country.socialistLooks);
+// Elsewhere a block of flats of 1946–90 is the postwar block (povalecny): sorela and the brick block of the 1950s–60s,
+// a panel slab of the panel era (or of no known year), a flat-roofed tenement of those years. A panel slab before 1946
+// is a functionalist house, after 1990 a modern one; offices stay offices.
+const POSTWAR_FROM = 1946, POSTWAR_TO = 1990;
+export function westernLook(style, info, office) {
+  if (style === "sorela" || style === "typovy") return "povalecny";
+  const y = info?.start || info?.built;
+  if (style === "plocha") return office ? "kancelar" : y > POSTWAR_TO ? "moderni" : y < POSTWAR_FROM ? "funkce" : "povalecny";
+  if (style === "funkce" && y >= POSTWAR_FROM && y <= POSTWAR_TO) return "povalecny";
+  return style;
 }
 function derivedStyle(info) {
   const h = buildingHeight(info);
@@ -780,7 +799,7 @@ function buildingForm(info, kind) {
   const ground = kind === "sikma" ? storey * 1.2 : style === "sikma" ? storey * 1.1 : style === "funkce" ? storey * 1.15
     : kind === "plocha" ? storey + 90 : kind === "kostka" ? storey + 110 : storey;
   const body = ground + (n - roofRows - 1) * storey;
-  const flat = style === "plocha" || style === "funkce" || style === "moderni" || style === "hala" || kind === "garaz"
+  const flat = style === "plocha" || style === "funkce" || style === "povalecny" || style === "moderni" || style === "hala" || kind === "garaz"
     || (kind === "skola" && (info?.built ?? info?.period) > 1955) || (kind === "nizky" && !pitchedLow(info));
   const pitch = ROOF_PITCH[kind] || PITCH;
   const sawtooth = style === "hala" && ["industrial", "manufacture"].includes(info?.type) && IPR_ROOF[info?.roofType] !== "plocha";
@@ -986,7 +1005,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
   box(0, EDGE, 0, top, wall, outline);
   box(EDGE - 30, EDGE, 0, top, shade); // the wall turns away at the cut
   const plinth = office ? [20, "#8a867d"] : { kostel: [120, STONE], garaz: [15, "#8a867d"], skola: [90, "#a59c88"], mestan: [70, STONE], sorela: [100, "#a89a7f"], vila: [70, "#a59c88"], kostka: [110, "#8f8a80"], novyrd: [30, "#56585b"], statek: [55, "#8a8173"] }[kind]
-    || { sikma: [90, STONE], funkce: [60, "#8f887c"], moderni: [30, "#56585b"], plocha: [100, "#8a867d"], nizky: [60, "#a59c88"] }[style];
+    || { sikma: [90, STONE], funkce: [60, "#8f887c"], povalecny: [45, "#8c8a85"], moderni: [30, "#56585b"], plocha: [100, "#8a867d"], nizky: [60, "#a59c88"] }[style];
   if (plinth) box(-8, EDGE - 30, 0, plinth[0], plinth[1]);
 
   // Windows and the ground floor.
@@ -1121,6 +1140,47 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       box(20, 104, z0, z0 + 0.82 * h, FRAME); // balcony door at the street end
       box(25, 99, z0 + 5, z0 + 0.82 * h - 5, GLASS);
       box(25, 99, z0 + 0.62 * h, z0 + 0.62 * h + 4, FRAME);
+    }
+  } else if (style === "povalecny") {
+    // A postwar block of flats in the west (1946–90; Bára 23. 11. 2026): plain smooth render without ornament; a glazed
+    // house door in a light metal frame up two steps under a thin slab, regular rows of wide windows with roller
+    // shutters (the shutter box over each, some let half down), a balcony door at the street end. No panel joints, no
+    // machine room. The balconies stick out (below), the flat roof has a thin parapet (the roof).
+    const doorTop = Math.min(230, f.ground - 50);
+    box(6, 138, 0, 10, tint(plinth[1], 1.18), outline); // two steps
+    box(12, 132, 10, 20, tint(plinth[1], 1.18), outline);
+    box(16, 126, 20, doorTop + 40, PV_METAL);
+    for (const [d0, d1] of [[22, 68], [72, 120]]) {
+      box(d0, d1, 26, doorTop, GLASS);
+      poly([[d0 + (d1 - d0) * 0.5, doorTop], [d1, doorTop], [d1, doorTop - 50]], GLINT);
+    }
+    box(22, 120, doorTop + 6, doorTop + 34, GLASS); // top light
+    box(60, 64, 90, 140, "#5d5f62"); // handle
+    box(-70, 140, doorTop + 40, doorTop + 46, tint(wall, 0.72)); // the canopy's shadow and its thin slab
+    box(-75, 140, doorTop + 46, doorTop + 58, "#dcd8cf", outline);
+    // A window of two casements with its roller shutter.
+    const shuttered = (d, z, w, h, n) => {
+      const luck = (((n + seed * 31) * 2654435761) >>> 0) % 13, lit = luck === 5;
+      const down = luck === 3 || luck === 10 ? 0.5 : luck === 7 ? 0.85 : 0.1; // how far the shutter is let down
+      box(d - 5, d + w + 5, z - 5, z + h + 5, FRAME);
+      box(d, d + w, z, z + h, lit ? LIT : GLASS);
+      poly([[d + w * 0.55, z + h], [d + w, z + h], [d + w, z + h * 0.5]], lit ? "#f8e7b5" : GLINT);
+      box(d + w / 2 - 3, d + w / 2 + 3, z, z + h, FRAME);
+      box(d, d + w, z + h * (1 - down), z + h, PV_SHUTTER);
+      for (let zz = z + h - 8; zz > z + h * (1 - down) + 2; zz -= 8) box(d, d + w, zz - 1, zz, tint(PV_SHUTTER, 0.85));
+      box(d - 8, d + w + 8, z + h + 5, z + h + 26, tint(wall, 0.94), outline); // the shutter box
+      box(d - 10, d + w + 10, z - 12, z - 5, "#b9b6ae"); // the sill
+      if ((luck === 2 || luck === 9) && !lit) for (let i = 0; i < 5; i++) dot(d + 10 + (i * (w - 20)) / 4, z + 5, 8, i % 2 ? "#e2607a" : "#6fae4f");
+    };
+    const win = WINDOWS.povalecny, wd = (126 + EDGE - 30 - win.w) / 2; // in the axis between the door and the back
+    shuttered(wd, plinth[0] + 0.3 * f.ground, win.w, win.h * f.storey, 0);
+    for (let k = 1; k < full; k++) {
+      const z0 = floorZ(k), h = f.storey;
+      box(20, 100, z0, z0 + 0.8 * h, FRAME); // the balcony door at the street end, its shutter box
+      box(26, 94, z0 + 6, z0 + 0.8 * h - 6, GLASS);
+      box(26, 94, z0 + 0.55 * h, z0 + 0.55 * h + 4, FRAME);
+      box(14, 106, z0 + 0.8 * h, z0 + 0.8 * h + 20, tint(wall, 0.94), outline);
+      shuttered(wd, z0 + win.sill * h, win.w, win.h * h, k * 3);
     }
   } else if (style === "plocha") {
     // A panel house (revitalised): the panel grid of joints, loggias let into the corner by the
@@ -1340,6 +1400,9 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       if (style === "moderni") { // a crisp parapet with a dark coping
         box(back - 4, f.roofRows ? EDGE - 32 : EDGE, zr, zr + 50, wall, outline);
         box(back - 8, f.roofRows ? EDGE - 32 : EDGE, zr + 50, zr + 56, "#3c3f43");
+      } else if (style === "povalecny") { // a thin parapet under a metal coping
+        box(back - 4, f.roofRows ? EDGE - 32 : EDGE, zr, zr + 30, tint(wall, 0.96), outline);
+        box(back - 9, f.roofRows ? EDGE - 32 : EDGE, zr + 30, zr + 36, "#6d7074");
       } else if (style === "funkce") { // a thin slab overhanging the wall, its shadow under it
         box(back, f.roofRows ? EDGE - 32 : EDGE, zr - 12, zr, shade);
         box(back - 45, f.roofRows ? EDGE - 32 : EDGE, zr, zr + 24, trim, outline);
@@ -1400,6 +1463,18 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       if ((k + seed) % 3 === 2) { box(-110, -80, z + 18, z + 42, "#9c9a92"); dot(-95, z + 56, 16, "#6fae4f"); }
     }
     box(-60, 160, f.ground - 22, f.ground - 10, "#3c3f43"); // canopy over the lobby
+  } else if (style === "povalecny") {
+    // Balconies on the upper floors: a thin concrete slab, a front of ribbed sheet in a colour of the time, a rail.
+    const front = pal("povalecnyAccent");
+    for (let k = 1; k < full; k++) {
+      const z = floorZ(k);
+      box(-125, 0, z - 6, z, tint(wall, 0.78));
+      box(-130, 0, z, z + 14, "#dcd8cf", outline);
+      box(-124, -6, z + 14, z + 96, front, { stroke: tint(front, 0.75), "stroke-width": 1.5, "vector-effect": "non-scaling-stroke" });
+      for (let d = -114; d < -12; d += 14) box(d, d + 3, z + 18, z + 92, tint(front, 0.86));
+      box(-128, -2, z + 96, z + 102, PV_METAL);
+      if ((k + seed) % 3 === 1) { box(-100, -72, z + 96, z + 116, "#b5714a"); dot(-86, z + 128, 15, "#6fae4f"); }
+    }
   } else if (style === "funkce") {
     box(-30, EDGE, f.ground - 20, f.ground, trim, outline); // a band over the ground floor
     // About two houses in five have a bay over the street from the 2nd floor up (Žižkov, Vršovice);

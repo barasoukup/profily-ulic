@@ -6,6 +6,7 @@ export const EL = {
   // ---------- Slovakia, the towns' passports, more house looks (main of 16. 11. 2026) ----------
   "dům 50. let (sorela)": "κτίριο της δεκαετίας του 1950 (σοσιαλιστικός ρεαλισμός)",
   "zděný bytový dům 50.–60. let": "κτιστή πολυκατοικία των δεκαετιών 1950–60",
+  "poválečný bytový dům": "μεταπολεμική πολυκατοικία",
   "měšťanský dům na náměstí": "αστική οικία στην πλατεία",
   "škola": "σχολείο",
   "kostel": "εκκλησία",

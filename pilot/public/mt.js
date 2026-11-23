@@ -6,6 +6,7 @@ export const MT = {
   // ---------- Slovakia, the towns' passports, more house looks (main of 16. 11. 2026) ----------
   "dům 50. let (sorela)": "bini tas-snin 50 (realiżmu soċjalista)",
   "zděný bytový dům 50.–60. let": "blokk ta' appartamenti tal-ġebel tas-snin 50–60",
+  "poválečný bytový dům": "blokk ta' appartamenti ta' wara l-gwerra",
   "měšťanský dům na náměstí": "dar borgiża fil-pjazza",
   "škola": "skola",
   "kostel": "knisja",

@@ -163,5 +163,7 @@ export default {
   panorama: false,
   linesMissing: mark("mapy města a ZBGIS"),
   art: SK_ART,
+  // The house looks as in Czechia: sorela, the brick block of the 1950s–60s, the panel house.
+  socialistLooks: true,
   search: ["zbgis"],
 };

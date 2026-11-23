@@ -78,6 +78,8 @@ export default {
   besideMax: 25,
   panorama: false,
   art: { estonia: { ...czechFurniture, ...atPosts } },
-  // Soviet panel estates are like the Czech ones (Lasnamäe, Mustamäe): the panel look stays (default.js).
+  // Soviet panel estates are like the Czech ones (Lasnamäe, Mustamäe): panel houses and the blocks of the 1950s–60s
+  // as in Czechia (Bára 23. 11. 2026).
+  socialistLooks: true,
   search: ["inads"],
 };

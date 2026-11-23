@@ -6,6 +6,7 @@ export const SV = {
   // ---------- Slovakia, the towns' passports, more house looks (main of 16. 11. 2026) ----------
   "dům 50. let (sorela)": "hus från 1950-talet (socialistisk realism)",
   "zděný bytový dům 50.–60. let": "murat flerbostadshus från 1950–60-talet",
+  "poválečný bytový dům": "flerbostadshus från efterkrigstiden",
   "měšťanský dům na náměstí": "borgarhus vid torget",
   "škola": "skola",
   "kostel": "kyrka",

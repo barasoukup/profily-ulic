@@ -6,6 +6,7 @@ export const LV = {
   // ---------- Slovakia, the towns' passports, more house looks (main of 16. 11. 2026) ----------
   "dům 50. let (sorela)": "1950. gadu māja (sociālistiskais reālisms)",
   "zděný bytový dům 50.–60. let": "1950.–60. gadu mūra dzīvojamā māja",
+  "poválečný bytový dům": "pēckara daudzdzīvokļu māja",
   "měšťanský dům na náměstí": "pilsētnieku nams pie laukuma",
   "škola": "skola",
   "kostel": "baznīca",

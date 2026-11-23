@@ -165,7 +165,7 @@ test("Slovensko bez centra města: panelák jen deska nebo věžák, jinak čin�
   setCity("praha");
 });
 
-test("Rakousko: žádný panelák, deska je funkcionalistický dům, nová moderní, kanceláře kanceláře", async () => {
+test("Rakousko: žádný panelák, deska je poválečný bytový dům (před 1946 funkcionalistický), nová moderní, kanceláře kanceláře", async () => {
   const C = await import("../pilot/public/city.js");
   const { buildingStyle } = await import("../pilot/public/profile.js");
   const slab = { levels: 9, block: { fill: 0.95, width: 12, length: 80, parts: 1 } };
@@ -174,7 +174,8 @@ test("Rakousko: žádný panelák, deska je funkcionalistický dům, nová moder
   C.setCity("austria");
   try {
     assert.equal(sk, "plocha", "na Slovensku deska je panelák");
-    assert.equal(buildingStyle(slab), "funkce");
+    assert.equal(buildingStyle(slab), "povalecny");
+    assert.equal(buildingStyle({ ...slab, start: 1938 }), "funkce");
     assert.equal(buildingStyle({ ...slab, start: 2005 }), "moderni");
     assert.equal(buildingStyle({ ...slab, type: "office" }), "kancelar");
     assert.equal(buildingStyle(slab, "plocha"), "plocha", "ručně zvolený vzhled zůstane");
@@ -189,7 +190,7 @@ test("Německo: panelák jen na východě (bývalá NDR), na západě jako v Rak
     Object.assign(C.setCity("germany"), await C.country.atPlace(13.47, 52.54)); // Berlin-Lichtenberg
     assert.equal(buildingStyle(slab), "plocha");
     Object.assign(C.setCity("germany"), await C.country.atPlace(6.96, 50.94)); // Köln
-    assert.equal(buildingStyle(slab), "funkce");
+    assert.equal(buildingStyle(slab), "povalecny");
     assert.equal(buildingStyle({ ...slab, start: 2005 }), "moderni");
   } finally { C.setCity("praha"); }
 });

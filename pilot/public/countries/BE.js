@@ -77,7 +77,5 @@ export default {
   besidePassport: false,
   panorama: false,
   art: { belgium: { ...czechFurniture, ...atPosts } },
-  // No panel houses: a flat-roofed slab is the plain flat-roofed house, after 1990 the modern one.
-  houseLook: (style, info, office) => (style === "plocha" ? (office ? "kancelar" : (info?.start || info?.built) > 1990 ? "moderni" : "funkce") : style),
   search: ["photon-be"],
 };

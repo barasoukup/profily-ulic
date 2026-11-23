@@ -7,6 +7,7 @@ export const GA = {
   // ---------- Slovakia, the towns' passports, more house looks (main of 16. 11. 2026) ----------
   "dům 50. let (sorela)": "teach ó na 1950idí (réalachas sóisialach)",
   "zděný bytový dům 50.–60. let": "árasán bríce ó na 1950idí/60idí",
+  "poválečný bytový dům": "bloc árasán iarchogaidh",
   "měšťanský dům na náměstí": "teach buirgéiseach ar an gcearnóg",
   "škola": "scoil",
   "kostel": "eaglais",

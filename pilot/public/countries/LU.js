@@ -70,6 +70,5 @@ export default {
   besidePassport: false,
   panorama: false,
   art: { luxembourg: { ...czechFurniture, ...atPosts } },
-  houseLook: (style, info, office) => (style === "plocha" ? (office ? "kancelar" : (info?.start || info?.built) > 1990 ? "moderni" : "funkce") : style),
   search: ["photon-be"],
 };

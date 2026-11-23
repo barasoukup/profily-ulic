@@ -80,12 +80,15 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 ## Stav a otevřené věci
 - Stav je jen k prohlížení; data se opravují po tlačítku „Opravit data“ (Bára 8. 11. 2026). Návrh je
   editovatelný vždy. Copyright kódu i pražských ilustrací: © Bára Soukupová (MIT).
-- Budovy: 17 vzhledů (Bára 16. 11. 2026: činžák se šikmou střechou, měšťanský dům na náměstí, sorela, zděný bytový dům 50.–60. let, škola, kostel, garáž, funkcionalismus, panelák, moderní bytový
+- Budovy: 18 vzhledů (Bára 16. 11. 2026: činžák se šikmou střechou, měšťanský dům na náměstí, sorela, zděný bytový dům 50.–60. let, poválečný bytový dům (23. 11.), škola, kostel, garáž, funkcionalismus, panelák, moderní bytový
   dům, kancelář, městský dům, vila, rodinný dům 60.–80. let, nový rodinný dům, venkovský dům štítem do ulice, hala).
   Paneláků bylo moc: kontrola proti RÚIAN `evaluation/budovy-panel/ZPRAVA.md`, Street View 25 domů v `k-foceni.md`. Plochá střecha se rozlišuje podle tvaru bloku z OSM, IPR „nová budova“
   (pole ve stávajícím dotazu na Podlažnosti) a stáří zástavby (IPR Vývoj zástavby, statické dlaždice
   z `tools/build_vyvoj.mjs` při nasazení; Bára 8. 11. 2026: plošná vrstva je výchozí odhad, který
   přebijí údaje o domě).
+- Socialistické vzhledy (sorela, zděný dům 50.–60. let, panelák) jen v CZ, SK, PL, EE a bývalé NDR (Bára 23. 11. 2026,
+  `countries/<ISO>.js` `socialistLooks`, DE podle `city.panels`); jinde i v „cizině“ `profile.js` `westernLook`: 1946–90
+  poválečný bytový dům, deska před 1946 funkcionalistický, po 1990 moderní. Snímky `evaluation/budovy-povalecny/`.
 - Panorama z ulice: Mapy.com Panorama API, klíč jen v tajné proměnné repozitáře `MAPY_KEY` a v
   lokálním `pilot/public/config.local.js` (git ho ignoruje), nikdy v kódu.
 - Tlačítko „Do Streetmixu“ je vyndané (Bára 8. 11. 2026), protože na Pages nefunguje (API Streetmixu
@@ -269,7 +272,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   FMZK, poctivé citace norem, licence).
 - Hledání: Vídeň z adresních bodů města (`search-at.js`), jinde v Rakousku Photon od komoot (`search-photon.js`; Bára
   16. 11. 2026: záloha, BEV jen s registrací a poplatky). Salcburk: zákaz zastavení a stání z katastru značek.
-- Žádný panelák v Rakousku (Bára 16. 11. 2026): deska je funkcionalistický dům, po 1990 moderní, kanceláře kanceláře.
+- Žádný panelák v Rakousku (Bára 16. 11. 2026): deska z let 1946–90 je poválečný bytový dům (od 23. 11.), před 1946 funkcionalistický, po 1990 moderní, kanceláře kanceláře.
 - Chybí: vozidla a mobiliář měst (kreslí se), Kurzparkzonen (aplikace zóny nekreslí), sítě (otevřené nejsou).
 
 ## Státy, města a zdroje (přestavba, větev architecture-countries, 16. 11. 2026, nenasazené)
@@ -404,7 +407,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Baskicko a Navarra: budovy z foralních katastrů provincií (`towns/spain-foral.js`, INSPIRE WFS Navarry, Álavy, Bizkaie,
   Gipuzkoy; provincie podle NUTS 3 v `regions-es.json`; `?foral=0`, `?foral=nc,gi`). A/B 57 domů (Bára 23. 11. 2026,
   `evaluation/spain/foral-ab/ZPRAVA.md`): podlaží a rok z ~0 na 55 z 57, shoda s OSM ±1 v Bilbau a Donostii, Álava
-  soustavně +2: Álava vypnutá, dokud ji neověří fotky (Bára 23. 11. 2026; `?foral=ar` ji zapne), ostatní tři zapnuté. OSM
+  soustavně +2 a Pamplona taky: fotky dávají za pravdu katastru (OSM píše „B+4“ jako 4 a vynechá podkroví), všechny čtyři zapnuté. OSM
   Navarry, Donostie a Vitorie v lokálním balíku `es` (Bára 23. 11. 2026).
 - Mapa povrchů Zaragozy (dlažby 2017: chodníky, střední a zelené pásy; vozovka jako pás kolem os OSM, `?zaragoza=0`): A/B 40
   řezů, použita ve 33: lépe 11, hůř 2, stejně 12, nejde posoudit 8; zapnutá. A Coruña (1 : 500 i s vozovkou a stáním) je ve

@@ -79,6 +79,5 @@ export default {
   orthoEstimate: true,
   panorama: false,
   art: { malta: { ...czechFurniture, ...atPosts } },
-  houseLook: (style, info, office) => (style === "plocha" ? (office ? "kancelar" : (info?.start || info?.built) > 1990 ? "moderni" : "funkce") : style),
   search: ["photon-mt"],
 };

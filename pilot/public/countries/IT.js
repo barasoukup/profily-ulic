@@ -108,7 +108,5 @@ export default {
   besideMax: 25,
   panorama: false,
   art: { italy: { ...czechFurniture, ...atPosts } },
-  // No panel houses as the Czech ones (as France): a flat-roofed slab is the plain flat-roofed house, after 1990 the modern one.
-  houseLook: (style, info, office) => (style === "plocha" ? (office ? "kancelar" : (info?.start || info?.built) > 1990 ? "moderni" : "funkce") : style),
   search: ["photon-it"],
 };

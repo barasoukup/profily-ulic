@@ -72,6 +72,7 @@ export const EN = {
   "kancelářská budova": "office building",
   "dům 50. let (sorela)": "1950s house (socialist realism)",
   "zděný bytový dům 50.–60. let": "brick block of flats of the 1950s–60s",
+  "poválečný bytový dům": "postwar block of flats",
   "měšťanský dům na náměstí": "burgher house on the town square",
   "škola": "school",
   "kostel": "church",

@@ -6,6 +6,7 @@ export const ET = {
   // ---------- Slovakia, the towns' passports, more house looks (main of 16. 11. 2026) ----------
   "dům 50. let (sorela)": "1950. aastate maja (stalinistlik)",
   "zděný bytový dům 50.–60. let": "1950.–60. aastate telliskortermaja",
+  "poválečný bytový dům": "sõjajärgne kortermaja",
   "měšťanský dům na náměstí": "linnakodaniku elamu väljaku ääres",
   "škola": "kool",
   "kostel": "kirik",

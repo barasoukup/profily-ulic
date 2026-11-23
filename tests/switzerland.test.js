@@ -105,7 +105,7 @@ test("Švýcarsko: normy podle kantonálních příruček, bez varování, kde z
   assert.equal(LI.limits, CH.limits);
   assert.match(LI.halfKerbNote("3 m", "5 m"), /čl\. 21/);
   assert.match(CH.halfKerbNote("3 m", "5 m"), /čl\. 19/);
-  assert.equal(CH.houseLook("plocha", { built: 1970 }, false), "funkce", "žádný panelák");
+  assert.equal(CH.socialistLooks, false, "žádný panelák");
   assert.deepEqual(CH.search, ["photon-ch"]);
 });
 

@@ -8,6 +8,7 @@ export const FR = {
   // ---------- Slovakia, the towns' passports, more house looks (main of 16. 11. 2026) ----------
   "dům 50. let (sorela)": "maison des années 1950 (réalisme socialiste)",
   "zděný bytový dům 50.–60. let": "immeuble d'habitation en maçonnerie des années 1950–60",
+  "poválečný bytový dům": "immeuble d'habitation d'après-guerre",
   "měšťanský dům na náměstí": "maison bourgeoise sur la place",
   "škola": "école",
   "kostel": "église",
