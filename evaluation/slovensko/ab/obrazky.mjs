@@ -106,6 +106,18 @@ async function image(c, tMax) {
       await fs.rm(file + ".img");
       buf = await fs.readFile(file);
       await new Promise((r) => setTimeout(r, 300));
+    } else if (process.env.ORTHO === "si") {
+      // Slovenia (evaluation/slovenia): GURS's DOF025 WMS (a JPEG, made a PNG); the server hangs now and then: up to three tries.
+      const { SI_ORTHO } = await import("../../../pilot/public/lanes-ortho.js");
+      await fs.mkdir(path.dirname(file), { recursive: true });
+      let r;
+      for (let i = 0; i < 3 && !r?.ok; i++) r = await fetch(SI_ORTHO([x0, y0, x1, y1], w, h), { headers: { "User-Agent": "profily-ulic" }, signal: AbortSignal.timeout(35000) }).catch(() => null);
+      if (!r?.ok) throw new Error("ortofoto GURS neodpovědělo");
+      await fs.writeFile(file + ".img", Buffer.from(await r.arrayBuffer()));
+      await run("magick", [file + ".img", "PNG24:" + file]);
+      await fs.rm(file + ".img");
+      buf = await fs.readFile(file);
+      await new Promise((r) => setTimeout(r, 300));
     } else if (process.env.ORTHO === "es") {
       // Spain (evaluation/spain/ab): IGN's PNOA WMS (a JPEG, made a PNG).
       const { ES_ORTHO } = await import("../../../pilot/public/lanes-ortho.js");

@@ -1,0 +1,1317 @@
+[
+ {
+  "id": "lj1-right",
+  "town": "ljubljana",
+  "street": "Likozarjeva ulica",
+  "lat": 46.0596247,
+  "lon": 14.5060964,
+  "cut": {
+   "lat": 46.0596073,
+   "lon": 14.5061929,
+   "bearing": -165.5
+  },
+  "osmLevels": 9,
+  "osmStart": null,
+  "answer": {
+   "built": 1965,
+   "cornice": 7,
+   "total": 7,
+   "roof": 0,
+   "height": 31.9,
+   "gurs": true
+  },
+  "a": {
+   "levels": 9,
+   "year": null,
+   "look": "kancelar"
+  },
+  "b": {
+   "levels": 7,
+   "year": 1965,
+   "look": "kancelar"
+  }
+ },
+ {
+  "id": "lj2-left",
+  "town": "ljubljana",
+  "street": "Strossmayerjeva ulica",
+  "lat": 46.0503436,
+  "lon": 14.513209,
+  "cut": {
+   "lat": 46.0503193,
+   "lon": 14.5133459,
+   "bearing": 14.3
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1932,
+   "solid": true,
+   "type": "apartments",
+   "cornice": 3,
+   "total": 3,
+   "roof": 0,
+   "height": 17.1,
+   "gurs": true
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 3,
+   "year": 1932,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "lj2-right",
+  "town": "ljubljana",
+  "street": "Strossmayerjeva ulica",
+  "lat": 46.050274,
+  "lon": 14.5136009,
+  "cut": {
+   "lat": 46.0503193,
+   "lon": 14.5133459,
+   "bearing": 14.3
+  },
+  "osmLevels": 3,
+  "osmStart": null,
+  "answer": {
+   "built": 1907,
+   "cornice": 4,
+   "total": 4,
+   "roof": 0,
+   "height": 25.4,
+   "gurs": true
+  },
+  "a": {
+   "levels": 3,
+   "year": null,
+   "look": "skola"
+  },
+  "b": {
+   "levels": 4,
+   "year": 1907,
+   "look": "skola"
+  }
+ },
+ {
+  "id": "lj3-left",
+  "town": "ljubljana",
+  "street": "Dunajska cesta",
+  "lat": 46.0581547,
+  "lon": 14.5066455,
+  "cut": {
+   "lat": 46.0581413,
+   "lon": 14.5060781,
+   "bearing": 178.1
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {},
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  }
+ },
+ {
+  "id": "lj4-left",
+  "town": "ljubljana",
+  "street": "Resljeva cesta",
+  "lat": 46.0530213,
+  "lon": 14.5102418,
+  "cut": {
+   "lat": 46.053003,
+   "lon": 14.5104022,
+   "bearing": 9.3
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1894,
+   "type": "apartments",
+   "cornice": 4,
+   "total": 4,
+   "roof": 0,
+   "height": 15.1,
+   "gurs": true
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 4,
+   "year": 1894,
+   "look": "sikma"
+  }
+ },
+ {
+  "id": "lj4-right",
+  "town": "ljubljana",
+  "street": "Resljeva cesta",
+  "lat": 46.0529832,
+  "lon": 14.5105752,
+  "cut": {
+   "lat": 46.053003,
+   "lon": 14.5104022,
+   "bearing": 9.3
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1939,
+   "type": "apartments",
+   "cornice": 6,
+   "total": 6,
+   "roof": 0,
+   "height": 21.9,
+   "gurs": true
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 6,
+   "year": 1939,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "lj5-left",
+  "town": "ljubljana",
+  "street": "Jadranska ulica",
+  "lat": 46.040968,
+  "lon": 14.4900641,
+  "cut": {
+   "lat": 46.0409497,
+   "lon": 14.489851,
+   "bearing": 173
+  },
+  "osmLevels": 2,
+  "osmStart": null,
+  "answer": {
+   "built": 1960,
+   "solid": true,
+   "house": true,
+   "type": "house",
+   "cornice": 2,
+   "total": 2,
+   "roof": 0,
+   "height": 8.4,
+   "gurs": true
+  },
+  "a": {
+   "levels": 2,
+   "year": null,
+   "look": "vila"
+  },
+  "b": {
+   "levels": 2,
+   "year": 1960,
+   "look": "kostka"
+  }
+ },
+ {
+  "id": "lj5-right",
+  "town": "ljubljana",
+  "street": "Jadranska ulica",
+  "lat": 46.0409335,
+  "lon": 14.4896613,
+  "cut": {
+   "lat": 46.0409497,
+   "lon": 14.489851,
+   "bearing": 173
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1966,
+   "house": true,
+   "type": "house",
+   "cornice": 3,
+   "total": 3,
+   "roof": 0,
+   "gurs": true
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 3,
+   "year": 1966,
+   "look": "kostka"
+  }
+ },
+ {
+  "id": "lj6-left",
+  "town": "ljubljana",
+  "street": "Poljanska cesta",
+  "lat": 46.0506457,
+  "lon": 14.5143605,
+  "cut": {
+   "lat": 46.0503912,
+   "lon": 14.5142957,
+   "bearing": 100.1
+  },
+  "osmLevels": 13,
+  "osmStart": null,
+  "answer": {
+   "built": 1977,
+   "type": "apartments",
+   "cornice": 16,
+   "total": 16,
+   "roof": 0,
+   "height": 55.4,
+   "gurs": true
+  },
+  "a": {
+   "levels": 13,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 16,
+   "year": 1977,
+   "look": "povalecny"
+  }
+ },
+ {
+  "id": "lj7-left",
+  "town": "ljubljana",
+  "street": "Močnikova ulica",
+  "lat": 46.0570789,
+  "lon": 14.5255276,
+  "cut": {
+   "lat": 46.0568621,
+   "lon": 14.5252878,
+   "bearing": 127.7
+  },
+  "osmLevels": 8,
+  "osmStart": null,
+  "answer": {
+   "built": 1979,
+   "type": "apartments",
+   "cornice": 10,
+   "total": 10,
+   "roof": 0,
+   "height": 29.1,
+   "gurs": true
+  },
+  "a": {
+   "levels": 8,
+   "year": null,
+   "look": "povalecny"
+  },
+  "b": {
+   "levels": 10,
+   "year": 1979,
+   "look": "povalecny"
+  }
+ },
+ {
+  "id": "lj8-left",
+  "town": "ljubljana",
+  "street": "Gasparijeva ulica",
+  "lat": 46.0532683,
+  "lon": 14.52906,
+  "cut": {
+   "lat": 46.0532536,
+   "lon": 14.5288599,
+   "bearing": 174
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1999,
+   "type": "apartments",
+   "cornice": 5,
+   "total": 5,
+   "roof": 0,
+   "height": 18.9,
+   "gurs": true
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 5,
+   "year": 1999,
+   "look": "moderni"
+  }
+ },
+ {
+  "id": "lj8-right",
+  "town": "ljubljana",
+  "street": "Gasparijeva ulica",
+  "lat": 46.0532131,
+  "lon": 14.5283088,
+  "cut": {
+   "lat": 46.0532536,
+   "lon": 14.5288599,
+   "bearing": 174
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 2005,
+   "type": "apartments",
+   "cornice": 2,
+   "total": 2,
+   "roof": 0,
+   "height": 10.9,
+   "gurs": true
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 2,
+   "year": 2005,
+   "look": "nizky"
+  }
+ },
+ {
+  "id": "lj9-left",
+  "town": "ljubljana",
+  "street": "Osojna pot",
+  "lat": 46.047331,
+  "lon": 14.5089055,
+  "cut": {
+   "lat": 46.0471277,
+   "lon": 14.5089049,
+   "bearing": 90.1
+  },
+  "osmLevels": 2,
+  "osmStart": null,
+  "answer": {
+   "built": 1907,
+   "house": true,
+   "type": "house",
+   "cornice": 2,
+   "total": 2,
+   "roof": 0,
+   "height": 6.3,
+   "gurs": true
+  },
+  "a": {
+   "levels": 2,
+   "year": null,
+   "look": "vila"
+  },
+  "b": {
+   "levels": 2,
+   "year": 1907,
+   "look": "vila"
+  }
+ },
+ {
+  "id": "lj10-left",
+  "town": "ljubljana",
+  "street": "Mirje",
+  "lat": 46.044859,
+  "lon": 14.5017413,
+  "cut": {
+   "lat": 46.0447783,
+   "lon": 14.5017029,
+   "bearing": 108.4
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1500,
+   "type": "apartments",
+   "cornice": 3,
+   "total": 3,
+   "roof": 0,
+   "height": 10.6,
+   "gurs": true
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 3,
+   "year": 1500,
+   "look": "sikma"
+  }
+ },
+ {
+  "id": "lj10-right",
+  "town": "ljubljana",
+  "street": "Mirje",
+  "lat": 46.0446584,
+  "lon": 14.5016459,
+  "cut": {
+   "lat": 46.0447783,
+   "lon": 14.5017029,
+   "bearing": 108.4
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1962,
+   "type": "apartments",
+   "cornice": 4,
+   "total": 4,
+   "roof": 0,
+   "height": 12.7,
+   "gurs": true
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 4,
+   "year": 1962,
+   "look": "povalecny"
+  }
+ },
+ {
+  "id": "lj11-left",
+  "town": "ljubljana",
+  "street": "Šestova ulica",
+  "lat": 46.0459109,
+  "lon": 14.4871453,
+  "cut": {
+   "lat": 46.0458395,
+   "lon": 14.4869524,
+   "bearing": 152.1
+  },
+  "osmLevels": 6,
+  "osmStart": null,
+  "answer": {
+   "built": 1963,
+   "type": "apartments",
+   "cornice": 5,
+   "total": 5,
+   "roof": 0,
+   "height": 19.2,
+   "gurs": true
+  },
+  "a": {
+   "levels": 6,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 5,
+   "year": 1963,
+   "look": "povalecny"
+  }
+ },
+ {
+  "id": "lj12-left",
+  "town": "ljubljana",
+  "street": "Hrenova ulica",
+  "lat": 46.0443756,
+  "lon": 14.5064363,
+  "cut": {
+   "lat": 46.0444445,
+   "lon": 14.5064052,
+   "bearing": -107.5
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1895,
+   "cornice": 3,
+   "total": 3,
+   "roof": 0,
+   "height": 12.3,
+   "gurs": true
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 3,
+   "year": 1895,
+   "look": "sikma"
+  }
+ },
+ {
+  "id": "lj12-right",
+  "town": "ljubljana",
+  "street": "Hrenova ulica",
+  "lat": 46.0446247,
+  "lon": 14.5063236,
+  "cut": {
+   "lat": 46.0444445,
+   "lon": 14.5064052,
+   "bearing": -107.5
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1998,
+   "type": "apartments",
+   "cornice": 4,
+   "total": 4,
+   "roof": 0,
+   "height": 16.4,
+   "gurs": true
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 4,
+   "year": 1998,
+   "look": "moderni"
+  }
+ },
+ {
+  "id": "lj13-right",
+  "town": "ljubljana",
+  "street": "Mirje",
+  "lat": 46.0459568,
+  "lon": 14.4962969,
+  "cut": {
+   "lat": 46.0457885,
+   "lon": 14.4964048,
+   "bearing": -114.1
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 2004,
+   "cornice": 3,
+   "total": 3,
+   "roof": 0,
+   "height": 12.6,
+   "gurs": true
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 3,
+   "year": 2004,
+   "look": "moderni"
+  }
+ },
+ {
+  "id": "lj14-right",
+  "town": "ljubljana",
+  "street": "Slomškova ulica",
+  "lat": 46.055924,
+  "lon": 14.5095083,
+  "cut": {
+   "lat": 46.0560902,
+   "lon": 14.5095892,
+   "bearing": 108.8
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1920,
+   "solid": true,
+   "type": "apartments",
+   "cornice": 4,
+   "total": 4,
+   "roof": 0,
+   "height": 15.4,
+   "gurs": true
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 4,
+   "year": 1920,
+   "look": "sikma"
+  }
+ },
+ {
+  "id": "ma1-left",
+  "town": "maribor",
+  "street": "Besednjakova ulica",
+  "lat": 46.5494844,
+  "lon": 15.6265892,
+  "cut": {
+   "lat": 46.5493254,
+   "lon": 15.6264783,
+   "bearing": 115.8
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1950,
+   "solid": true,
+   "house": true,
+   "type": "house",
+   "cornice": 1,
+   "total": 1,
+   "roof": 0,
+   "gurs": true
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 1,
+   "year": 1950,
+   "look": "vila"
+  }
+ },
+ {
+  "id": "ma1-right",
+  "town": "maribor",
+  "street": "Besednjakova ulica",
+  "lat": 46.54923,
+  "lon": 15.6264118,
+  "cut": {
+   "lat": 46.5493254,
+   "lon": 15.6264783,
+   "bearing": 115.8
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1952,
+   "solid": true,
+   "house": true,
+   "type": "house",
+   "cornice": 2,
+   "total": 2,
+   "roof": 0,
+   "gurs": true
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 2,
+   "year": 1952,
+   "look": "vila"
+  }
+ },
+ {
+  "id": "ma2-left",
+  "town": "maribor",
+  "street": "Ulica heroja Bračiča",
+  "lat": 46.5578269,
+  "lon": 15.6525674,
+  "cut": {
+   "lat": 46.557938,
+   "lon": 15.6525865,
+   "bearing": -83.2
+  },
+  "osmLevels": 5,
+  "osmStart": null,
+  "answer": {
+   "built": 1909,
+   "type": "apartments",
+   "cornice": 5,
+   "total": 5,
+   "roof": 0,
+   "height": 21.5,
+   "gurs": true
+  },
+  "a": {
+   "levels": 5,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 5,
+   "year": 1909,
+   "look": "sikma"
+  }
+ },
+ {
+  "id": "ma3-right",
+  "town": "maribor",
+  "street": "Nasipna ulica",
+  "lat": 46.5445157,
+  "lon": 15.6512217,
+  "cut": {
+   "lat": 46.5442899,
+   "lon": 15.6511418,
+   "bearing": -76.2
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1928,
+   "solid": true,
+   "house": true,
+   "type": "house",
+   "cornice": 2,
+   "total": 2,
+   "roof": 0,
+   "gurs": true
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 2,
+   "year": 1928,
+   "look": "vila"
+  }
+ },
+ {
+  "id": "ma4-right",
+  "town": "maribor",
+  "street": null,
+  "lat": 46.5566111,
+  "lon": 15.6263027,
+  "cut": {
+   "lat": 46.5567895,
+   "lon": 15.6261381,
+   "bearing": 57.4
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 2001,
+   "cornice": 1,
+   "total": 1,
+   "roof": 0,
+   "gurs": true
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 1,
+   "year": 2001,
+   "look": "nizky"
+  }
+ },
+ {
+  "id": "ma5-left",
+  "town": "maribor",
+  "street": "Praprotnikova ulica",
+  "lat": 46.565686,
+  "lon": 15.6582074,
+  "cut": {
+   "lat": 46.5656714,
+   "lon": 15.6583182,
+   "bearing": 10.8
+  },
+  "osmLevels": 3,
+  "osmStart": null,
+  "answer": {
+   "built": 1903,
+   "solid": true,
+   "type": "apartments",
+   "cornice": 3,
+   "total": 3,
+   "roof": 0,
+   "gurs": true
+  },
+  "a": {
+   "levels": 3,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 3,
+   "year": 1903,
+   "look": "sikma"
+  }
+ },
+ {
+  "id": "ma5-right",
+  "town": "maribor",
+  "street": "Praprotnikova ulica",
+  "lat": 46.5656539,
+  "lon": 15.6584508,
+  "cut": {
+   "lat": 46.5656714,
+   "lon": 15.6583182,
+   "bearing": 10.8
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1900,
+   "solid": true,
+   "type": "apartments",
+   "cornice": 3,
+   "total": 3,
+   "roof": 0,
+   "height": 15.3,
+   "gurs": true
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 3,
+   "year": 1900,
+   "look": "sikma"
+  }
+ },
+ {
+  "id": "ma6-right",
+  "town": "maribor",
+  "street": "Poljančeva ulica",
+  "lat": 46.5654842,
+  "lon": 15.6441471,
+  "cut": {
+   "lat": 46.5655467,
+   "lon": 15.6437487,
+   "bearing": 12.8
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1976,
+   "house": true,
+   "type": "house",
+   "cornice": 4,
+   "total": 4,
+   "roof": 0,
+   "gurs": true
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 4,
+   "year": 1976,
+   "look": "nizky"
+  }
+ },
+ {
+  "id": "ma7-right",
+  "town": "maribor",
+  "street": "Metelkova ulica",
+  "lat": 46.5417959,
+  "lon": 15.6439281,
+  "cut": {
+   "lat": 46.5418587,
+   "lon": 15.6436911,
+   "bearing": 20.9
+  },
+  "osmLevels": 2,
+  "osmStart": null,
+  "answer": {
+   "built": 1976,
+   "cornice": 3,
+   "total": 3,
+   "roof": 0,
+   "height": 7.8,
+   "gurs": true
+  },
+  "a": {
+   "levels": 2,
+   "year": null,
+   "look": "garaz"
+  },
+  "b": {
+   "levels": 3,
+   "year": 1976,
+   "look": "garaz"
+  }
+ },
+ {
+  "id": "ma8-left",
+  "town": "maribor",
+  "street": "Slovenska ulica",
+  "lat": 46.5600512,
+  "lon": 15.6443468,
+  "cut": {
+   "lat": 46.5601866,
+   "lon": 15.6443355,
+   "bearing": -93.3
+  },
+  "osmLevels": 7,
+  "osmStart": null,
+  "answer": {
+   "built": 2004,
+   "cornice": 5,
+   "total": 5,
+   "roof": 0,
+   "gurs": true
+  },
+  "a": {
+   "levels": 7,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 5,
+   "year": 2004,
+   "look": "kancelar"
+  }
+ },
+ {
+  "id": "ma9-left",
+  "town": "maribor",
+  "street": "Črnogorska ulica",
+  "lat": 46.5478943,
+  "lon": 15.6567351,
+  "cut": {
+   "lat": 46.547891,
+   "lon": 15.6569524,
+   "bearing": 1.3
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1940,
+   "solid": true,
+   "type": "apartments",
+   "cornice": 4,
+   "total": 4,
+   "roof": 0,
+   "height": 13.5,
+   "gurs": true
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 4,
+   "year": 1940,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "ma9-right",
+  "town": "maribor",
+  "street": "Črnogorska ulica",
+  "lat": 46.5478878,
+  "lon": 15.6571624,
+  "cut": {
+   "lat": 46.547891,
+   "lon": 15.6569524,
+   "bearing": 1.3
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1910,
+   "solid": true,
+   "house": true,
+   "type": "house",
+   "cornice": 1,
+   "total": 1,
+   "roof": 0,
+   "gurs": true
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 1,
+   "year": 1910,
+   "look": "vila"
+  }
+ },
+ {
+  "id": "ma10-left",
+  "town": "maribor",
+  "street": "Tomanova ulica",
+  "lat": 46.5636869,
+  "lon": 15.6324681,
+  "cut": {
+   "lat": 46.5637746,
+   "lon": 15.6323683,
+   "bearing": -128.2
+  },
+  "osmLevels": 3,
+  "osmStart": null,
+  "answer": {
+   "built": 1990,
+   "house": true,
+   "type": "house",
+   "cornice": 1,
+   "total": 1,
+   "roof": 0,
+   "gurs": true
+  },
+  "a": {
+   "levels": 3,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 1,
+   "year": 1990,
+   "look": "novyrd"
+  }
+ },
+ {
+  "id": "ma10-right",
+  "town": "maribor",
+  "street": "Tomanova ulica",
+  "lat": 46.5638847,
+  "lon": 15.6322431,
+  "cut": {
+   "lat": 46.5637746,
+   "lon": 15.6323683,
+   "bearing": -128.2
+  },
+  "osmLevels": 3,
+  "osmStart": null,
+  "answer": {
+   "built": 1933,
+   "solid": true,
+   "type": "apartments",
+   "cornice": 3,
+   "total": 3,
+   "roof": 0,
+   "height": 13.1,
+   "gurs": true
+  },
+  "a": {
+   "levels": 3,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 3,
+   "year": 1933,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "ma11-right",
+  "town": "maribor",
+  "street": "Cesta XIV. divizije",
+  "lat": 46.5505758,
+  "lon": 15.6647349,
+  "cut": {
+   "lat": 46.5507054,
+   "lon": 15.6648909,
+   "bearing": 129.8
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1930,
+   "solid": true,
+   "cornice": 2,
+   "total": 2,
+   "roof": 0,
+   "height": 10.4,
+   "gurs": true
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 2,
+   "year": 1930,
+   "look": "nizky"
+  }
+ },
+ {
+  "id": "ma12-left",
+  "town": "maribor",
+  "street": "Strossmayerjeva ulica",
+  "lat": 46.55896,
+  "lon": 15.6419744,
+  "cut": {
+   "lat": 46.5590142,
+   "lon": 15.6416627,
+   "bearing": -165.9
+  },
+  "osmLevels": 3,
+  "osmStart": null,
+  "answer": {
+   "built": 1949,
+   "solid": true,
+   "cornice": 3,
+   "total": 3,
+   "roof": 0,
+   "gurs": true
+  },
+  "a": {
+   "levels": 3,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 3,
+   "year": 1949,
+   "look": "povalecny"
+  }
+ },
+ {
+  "id": "ma12-right",
+  "town": "maribor",
+  "street": "Strossmayerjeva ulica",
+  "lat": 46.5590381,
+  "lon": 15.641525,
+  "cut": {
+   "lat": 46.5590142,
+   "lon": 15.6416627,
+   "bearing": -165.9
+  },
+  "osmLevels": 2,
+  "osmStart": null,
+  "answer": {
+   "built": 1960,
+   "solid": true,
+   "cornice": 1,
+   "total": 1,
+   "roof": 0,
+   "gurs": true
+  },
+  "a": {
+   "levels": 2,
+   "year": null,
+   "look": "nizky"
+  },
+  "b": {
+   "levels": 1,
+   "year": 1960,
+   "look": "nizky"
+  }
+ },
+ {
+  "id": "ma13-right",
+  "town": "maribor",
+  "street": "Gosposvetska cesta",
+  "lat": 46.5630525,
+  "lon": 15.6289436,
+  "cut": {
+   "lat": 46.5628956,
+   "lon": 15.6288604,
+   "bearing": -69.8
+  },
+  "osmLevels": 3,
+  "osmStart": null,
+  "answer": {
+   "built": 1980,
+   "solid": true,
+   "cornice": 4,
+   "total": 4,
+   "roof": 0,
+   "height": 14.6,
+   "gurs": true
+  },
+  "a": {
+   "levels": 3,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 4,
+   "year": 1980,
+   "look": "kancelar"
+  }
+ },
+ {
+  "id": "ma14-left",
+  "town": "maribor",
+  "street": "Gorkega ulica",
+  "lat": 46.5515722,
+  "lon": 15.6409919,
+  "cut": {
+   "lat": 46.5516825,
+   "lon": 15.6408172,
+   "bearing": -137.6
+  },
+  "osmLevels": 3,
+  "osmStart": null,
+  "answer": {
+   "built": 1910,
+   "solid": true,
+   "type": "apartments",
+   "cornice": 4,
+   "total": 4,
+   "roof": 0,
+   "height": 20.1,
+   "gurs": true
+  },
+  "a": {
+   "levels": 3,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 4,
+   "year": 1910,
+   "look": "sikma"
+  }
+ },
+ {
+  "id": "ma14-right",
+  "town": "maribor",
+  "street": "Gorkega ulica",
+  "lat": 46.5518021,
+  "lon": 15.6406279,
+  "cut": {
+   "lat": 46.5516825,
+   "lon": 15.6408172,
+   "bearing": -137.6
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1866,
+   "solid": true,
+   "type": "apartments",
+   "cornice": 3,
+   "total": 3,
+   "roof": 0,
+   "height": 12,
+   "gurs": true
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 3,
+   "year": 1866,
+   "look": "sikma"
+  }
+ }
+]

@@ -1,0 +1,913 @@
+[
+ {
+  "id": "lj1",
+  "town": "ljubljana",
+  "lat": 46.0596073,
+  "lon": 14.5061929,
+  "bearing": -165.5,
+  "street": "Likozarjeva ulica",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "right",
+    "facadeM": 3.7,
+    "lat": 46.0596247,
+    "lon": 14.5060964,
+    "osm": {
+     "levels": 9,
+     "type": "office",
+     "block": {
+      "length": 191.8,
+      "width": 73.6,
+      "fill": 0.59,
+      "parts": 3
+     }
+    },
+    "tags": {
+     "building": "office",
+     "building:levels": "9",
+     "roof:levels": "0"
+    }
+   }
+  ]
+ },
+ {
+  "id": "lj2",
+  "town": "ljubljana",
+  "lat": 46.0503193,
+  "lon": 14.5133459,
+  "bearing": 14.3,
+  "street": "Strossmayerjeva ulica",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 6.9,
+    "lat": 46.0503436,
+    "lon": 14.513209,
+    "osm": {},
+    "tags": {
+     "building": "yes"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 16.3,
+    "lat": 46.050274,
+    "lon": 14.5136009,
+    "osm": {
+     "levels": 3,
+     "type": "school",
+     "block": {
+      "length": 57.7,
+      "width": 65.8,
+      "fill": 0.42,
+      "parts": 1
+     }
+    },
+    "tags": {
+     "building": "school",
+     "building:levels": "3"
+    }
+   }
+  ]
+ },
+ {
+  "id": "lj3",
+  "town": "ljubljana",
+  "lat": 46.0581413,
+  "lon": 14.5060781,
+  "bearing": 178.1,
+  "street": "Dunajska cesta",
+  "highway": "primary",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 39.9,
+    "lat": 46.0581547,
+    "lon": 14.5066455,
+    "osm": {},
+    "tags": {
+     "building": "construction"
+    }
+   }
+  ]
+ },
+ {
+  "id": "lj4",
+  "town": "ljubljana",
+  "lat": 46.053003,
+  "lon": 14.5104022,
+  "bearing": 9.3,
+  "street": "Resljeva cesta",
+  "highway": "secondary",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 8.6,
+    "lat": 46.0530213,
+    "lon": 14.5102418,
+    "osm": {
+     "height": 18,
+     "block": {
+      "length": 27.9,
+      "width": 16.8,
+      "fill": 0.81,
+      "parts": 1
+     }
+    },
+    "tags": {
+     "building": "yes"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 9.5,
+    "lat": 46.0529832,
+    "lon": 14.5105752,
+    "osm": {
+     "height": 18,
+     "type": "apartments",
+     "block": {
+      "length": 152.4,
+      "width": 76.9,
+      "fill": 0.24,
+      "parts": 12
+     }
+    },
+    "tags": {
+     "building": "apartments"
+    }
+   }
+  ]
+ },
+ {
+  "id": "lj5",
+  "town": "ljubljana",
+  "lat": 46.0409497,
+  "lon": 14.489851,
+  "bearing": 173,
+  "street": "Jadranska ulica",
+  "highway": "tertiary",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 12.6,
+    "lat": 46.040968,
+    "lon": 14.4900641,
+    "osm": {
+     "levels": 2,
+     "type": "house",
+     "roofShape": "hipped",
+     "block": {
+      "length": 17.1,
+      "width": 17,
+      "fill": 0.5,
+      "parts": 1
+     }
+    },
+    "tags": {
+     "building": "house",
+     "building:levels": "2"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 10.8,
+    "lat": 46.0409335,
+    "lon": 14.4896613,
+    "osm": {},
+    "tags": {
+     "building": "yes"
+    }
+   }
+  ]
+ },
+ {
+  "id": "lj6",
+  "town": "ljubljana",
+  "lat": 46.0503912,
+  "lon": 14.5142957,
+  "bearing": 100.1,
+  "street": "Poljanska cesta",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 24.6,
+    "lat": 46.0506457,
+    "lon": 14.5143605,
+    "osm": {
+     "levels": 13,
+     "type": "apartments",
+     "block": {
+      "length": 155.8,
+      "width": 45,
+      "fill": 0.42,
+      "parts": 8
+     }
+    },
+    "tags": {
+     "building": "apartments",
+     "building:levels": "13",
+     "roof:levels": "0"
+    }
+   }
+  ]
+ },
+ {
+  "id": "lj7",
+  "town": "ljubljana",
+  "lat": 46.0568621,
+  "lon": 14.5252878,
+  "bearing": 127.7,
+  "street": "Močnikova ulica",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 26.3,
+    "lat": 46.0570789,
+    "lon": 14.5255276,
+    "osm": {
+     "levels": 8,
+     "type": "apartments",
+     "block": {
+      "length": 67.3,
+      "width": 16.3,
+      "fill": 0.96,
+      "parts": 2
+     }
+    },
+    "tags": {
+     "building": "apartments",
+     "building:levels": "8"
+    }
+   }
+  ]
+ },
+ {
+  "id": "lj8",
+  "town": "ljubljana",
+  "lat": 46.0532536,
+  "lon": 14.5288599,
+  "bearing": 174,
+  "street": "Gasparijeva ulica",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 11.5,
+    "lat": 46.0532683,
+    "lon": 14.52906,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 38.8,
+    "lat": 46.0532131,
+    "lon": 14.5283088,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   }
+  ]
+ },
+ {
+  "id": "lj9",
+  "town": "ljubljana",
+  "lat": 46.0471277,
+  "lon": 14.5089049,
+  "bearing": 90.1,
+  "street": "Osojna pot",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 18.5,
+    "lat": 46.047331,
+    "lon": 14.5089055,
+    "osm": {
+     "levels": 2,
+     "type": "house",
+     "roofShape": "gabled",
+     "block": {
+      "length": 32.5,
+      "width": 23.9,
+      "fill": 0.44,
+      "parts": 2
+     }
+    },
+    "tags": {
+     "building": "house",
+     "building:levels": "1",
+     "roof:levels": "1"
+    }
+   }
+  ]
+ },
+ {
+  "id": "lj10",
+  "town": "ljubljana",
+  "lat": 46.0447783,
+  "lon": 14.5017029,
+  "bearing": 108.4,
+  "street": "Mirje",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 5.4,
+    "lat": 46.044859,
+    "lon": 14.5017413,
+    "osm": {},
+    "tags": {
+     "building": "residential"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 10,
+    "lat": 46.0446584,
+    "lon": 14.5016459,
+    "osm": {},
+    "tags": {
+     "building": "residential"
+    }
+   }
+  ]
+ },
+ {
+  "id": "lj11",
+  "town": "ljubljana",
+  "lat": 46.0458395,
+  "lon": 14.4869524,
+  "bearing": 152.1,
+  "street": "Šestova ulica",
+  "highway": "tertiary",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 12.9,
+    "lat": 46.0459109,
+    "lon": 14.4871453,
+    "osm": {
+     "levels": 6,
+     "type": "residential",
+     "roofShape": "gabled",
+     "block": {
+      "length": 25.8,
+      "width": 23.7,
+      "fill": 0.59,
+      "parts": 1
+     }
+    },
+    "tags": {
+     "building": "residential",
+     "building:levels": "5",
+     "roof:levels": "1"
+    }
+   }
+  ]
+ },
+ {
+  "id": "lj12",
+  "town": "ljubljana",
+  "lat": 46.0444445,
+  "lon": 14.5064052,
+  "bearing": -107.5,
+  "street": "Hrenova ulica",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 4,
+    "lat": 46.0443756,
+    "lon": 14.5064363,
+    "osm": {},
+    "tags": {
+     "building": "yes"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 16.9,
+    "lat": 46.0446247,
+    "lon": 14.5063236,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   }
+  ]
+ },
+ {
+  "id": "lj13",
+  "town": "ljubljana",
+  "lat": 46.0457885,
+  "lon": 14.4964048,
+  "bearing": -114.1,
+  "street": "Mirje",
+  "highway": "tertiary",
+  "houses": [
+   {
+    "side": "right",
+    "facadeM": 16.4,
+    "lat": 46.0459568,
+    "lon": 14.4962969,
+    "osm": {},
+    "tags": {
+     "building": "office"
+    }
+   }
+  ]
+ },
+ {
+  "id": "lj14",
+  "town": "ljubljana",
+  "lat": 46.0560902,
+  "lon": 14.5095892,
+  "bearing": 108.8,
+  "street": "Slomškova ulica",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "right",
+    "facadeM": 15.4,
+    "lat": 46.055924,
+    "lon": 14.5095083,
+    "osm": {},
+    "tags": {
+     "building": "yes"
+    }
+   }
+  ]
+ },
+ {
+  "id": "ma1",
+  "town": "maribor",
+  "lat": 46.5493254,
+  "lon": 15.6264783,
+  "bearing": 115.8,
+  "street": "Besednjakova ulica",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 15.5,
+    "lat": 46.5494844,
+    "lon": 15.6265892,
+    "osm": {},
+    "tags": {
+     "building": "yes"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 7.7,
+    "lat": 46.54923,
+    "lon": 15.6264118,
+    "osm": {},
+    "tags": {
+     "building": "house"
+    }
+   }
+  ]
+ },
+ {
+  "id": "ma2",
+  "town": "maribor",
+  "lat": 46.557938,
+  "lon": 15.6525865,
+  "bearing": -83.2,
+  "street": "Ulica heroja Bračiča",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 8.4,
+    "lat": 46.5578269,
+    "lon": 15.6525674,
+    "osm": {
+     "levels": 5,
+     "type": "apartments",
+     "block": {
+      "length": 83.6,
+      "width": 56,
+      "fill": 0.3,
+      "parts": 6
+     }
+    },
+    "tags": {
+     "building": "apartments",
+     "building:levels": "5"
+    }
+   }
+  ]
+ },
+ {
+  "id": "ma3",
+  "town": "maribor",
+  "lat": 46.5442899,
+  "lon": 15.6511418,
+  "bearing": -76.2,
+  "street": "Nasipna ulica",
+  "highway": "tertiary",
+  "houses": [
+   {
+    "side": "right",
+    "facadeM": 21.7,
+    "lat": 46.5445157,
+    "lon": 15.6512217,
+    "osm": {},
+    "tags": {
+     "building": "house"
+    }
+   }
+  ]
+ },
+ {
+  "id": "ma4",
+  "town": "maribor",
+  "lat": 46.5567895,
+  "lon": 15.6261381,
+  "bearing": 57.4,
+  "street": null,
+  "highway": "tertiary",
+  "houses": [
+   {
+    "side": "right",
+    "facadeM": 19.4,
+    "lat": 46.5566111,
+    "lon": 15.6263027,
+    "osm": {},
+    "tags": {
+     "building": "yes"
+    }
+   }
+  ]
+ },
+ {
+  "id": "ma5",
+  "town": "maribor",
+  "lat": 46.5656714,
+  "lon": 15.6583182,
+  "bearing": 10.8,
+  "street": "Praprotnikova ulica",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 4.6,
+    "lat": 46.565686,
+    "lon": 15.6582074,
+    "osm": {
+     "levels": 3,
+     "block": {
+      "length": 20.6,
+      "width": 14.8,
+      "fill": 0.53,
+      "parts": 1
+     }
+    },
+    "tags": {
+     "building": "yes",
+     "building:levels": "3"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 6.3,
+    "lat": 46.5656539,
+    "lon": 15.6584508,
+    "osm": {},
+    "tags": {
+     "building": "house"
+    }
+   }
+  ]
+ },
+ {
+  "id": "ma6",
+  "town": "maribor",
+  "lat": 46.5655467,
+  "lon": 15.6437487,
+  "bearing": 12.8,
+  "street": "Poljančeva ulica",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "right",
+    "facadeM": 27.3,
+    "lat": 46.5654842,
+    "lon": 15.6441471,
+    "osm": {},
+    "tags": {
+     "building": "yes"
+    }
+   }
+  ]
+ },
+ {
+  "id": "ma7",
+  "town": "maribor",
+  "lat": 46.5418587,
+  "lon": 15.6436911,
+  "bearing": 20.9,
+  "street": "Metelkova ulica",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "right",
+    "facadeM": 15.4,
+    "lat": 46.5417959,
+    "lon": 15.6439281,
+    "osm": {
+     "levels": 2,
+     "type": "garages",
+     "block": {
+      "length": 53.1,
+      "width": 44.1,
+      "fill": 0.68,
+      "parts": 1
+     }
+    },
+    "tags": {
+     "building": "garages",
+     "building:levels": "2"
+    }
+   }
+  ]
+ },
+ {
+  "id": "ma8",
+  "town": "maribor",
+  "lat": 46.5601866,
+  "lon": 15.6443355,
+  "bearing": -93.3,
+  "street": "Slovenska ulica",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 11,
+    "lat": 46.5600512,
+    "lon": 15.6443468,
+    "osm": {
+     "levels": 7,
+     "height": 5,
+     "type": "commercial",
+     "roofShape": "gambrel",
+     "block": {
+      "length": 141.6,
+      "width": 81.9,
+      "fill": 0.54,
+      "parts": 5
+     }
+    },
+    "tags": {
+     "building": "commercial",
+     "building:levels": "6",
+     "roof:levels": "1"
+    }
+   }
+  ]
+ },
+ {
+  "id": "ma9",
+  "town": "maribor",
+  "lat": 46.547891,
+  "lon": 15.6569524,
+  "bearing": 1.3,
+  "street": "Črnogorska ulica",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 12.6,
+    "lat": 46.5478943,
+    "lon": 15.6567351,
+    "osm": {},
+    "tags": {
+     "building": "house"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 12.1,
+    "lat": 46.5478878,
+    "lon": 15.6571624,
+    "osm": {},
+    "tags": {
+     "building": "house"
+    }
+   }
+  ]
+ },
+ {
+  "id": "ma10",
+  "town": "maribor",
+  "lat": 46.5637746,
+  "lon": 15.6323683,
+  "bearing": -128.2,
+  "street": "Tomanova ulica",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 8.3,
+    "lat": 46.5636869,
+    "lon": 15.6324681,
+    "osm": {
+     "levels": 3,
+     "type": "apartments",
+     "roofShape": "gabled",
+     "block": {
+      "length": 15.9,
+      "width": 14.7,
+      "fill": 0.6,
+      "parts": 1
+     }
+    },
+    "tags": {
+     "building": "apartments",
+     "building:levels": "1",
+     "roof:levels": "2"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 11.5,
+    "lat": 46.5638847,
+    "lon": 15.6322431,
+    "osm": {
+     "levels": 3,
+     "type": "apartments",
+     "block": {
+      "length": 19.3,
+      "width": 16.3,
+      "fill": 0.55,
+      "parts": 1
+     }
+    },
+    "tags": {
+     "building": "apartments",
+     "building:levels": "3"
+    }
+   }
+  ]
+ },
+ {
+  "id": "ma11",
+  "town": "maribor",
+  "lat": 46.5507054,
+  "lon": 15.6648909,
+  "bearing": 129.8,
+  "street": "Cesta XIV. divizije",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "right",
+    "facadeM": 14.7,
+    "lat": 46.5505758,
+    "lon": 15.6647349,
+    "osm": {},
+    "tags": {
+     "building": "yes"
+    }
+   }
+  ]
+ },
+ {
+  "id": "ma12",
+  "town": "maribor",
+  "lat": 46.5590142,
+  "lon": 15.6416627,
+  "bearing": -165.9,
+  "street": "Strossmayerjeva ulica",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 20.6,
+    "lat": 46.55896,
+    "lon": 15.6419744,
+    "osm": {
+     "levels": 3,
+     "type": "apartments",
+     "roofShape": "hipped",
+     "block": {
+      "length": 97.7,
+      "width": 31.2,
+      "fill": 0.49,
+      "parts": 3
+     }
+    },
+    "tags": {
+     "building": "apartments",
+     "building:levels": "2",
+     "roof:levels": "1"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 6.9,
+    "lat": 46.5590381,
+    "lon": 15.641525,
+    "osm": {
+     "levels": 2,
+     "type": "apartments",
+     "block": {
+      "length": 83.6,
+      "width": 34.5,
+      "fill": 0.42,
+      "parts": 3
+     }
+    },
+    "tags": {
+     "building": "apartments",
+     "building:levels": "2"
+    }
+   }
+  ]
+ },
+ {
+  "id": "ma13",
+  "town": "maribor",
+  "lat": 46.5628956,
+  "lon": 15.6288604,
+  "bearing": -69.8,
+  "street": "Gosposvetska cesta",
+  "highway": "tertiary",
+  "houses": [
+   {
+    "side": "right",
+    "facadeM": 14.5,
+    "lat": 46.5630525,
+    "lon": 15.6289436,
+    "osm": {
+     "levels": 3,
+     "type": "commercial",
+     "roofShape": "hipped",
+     "block": {
+      "length": 43.4,
+      "width": 18.6,
+      "fill": 0.89,
+      "parts": 1
+     }
+    },
+    "tags": {
+     "building": "commercial",
+     "building:levels": "2",
+     "roof:levels": "1"
+    }
+   }
+  ]
+ },
+ {
+  "id": "ma14",
+  "town": "maribor",
+  "lat": 46.5516825,
+  "lon": 15.6408172,
+  "bearing": -137.6,
+  "street": "Gorkega ulica",
+  "highway": "tertiary",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 14.1,
+    "lat": 46.5515722,
+    "lon": 15.6409919,
+    "osm": {
+     "levels": 3,
+     "type": "apartments",
+     "roofShape": "gabled",
+     "block": {
+      "length": 92.3,
+      "width": 62,
+      "fill": 0.3,
+      "parts": 3
+     }
+    },
+    "tags": {
+     "building": "apartments",
+     "building:levels": "3"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 15.6,
+    "lat": 46.5518021,
+    "lon": 15.6406279,
+    "osm": {},
+    "tags": {
+     "building": "house"
+    }
+   }
+  ]
+ }
+]

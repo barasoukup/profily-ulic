@@ -1,0 +1,292 @@
+[
+ {
+  "town": "ljubljana",
+  "lat": 46.0503777,
+  "lon": 14.4907986,
+  "building": "residential",
+  "osmLevels": 3,
+  "gurs": 2,
+  "built": 1966,
+  "height": 7.2
+ },
+ {
+  "town": "ljubljana",
+  "lat": 46.0433545,
+  "lon": 14.486482,
+  "building": "residential",
+  "osmLevels": 4,
+  "gurs": 4,
+  "built": 1952,
+  "height": 12.3
+ },
+ {
+  "town": "ljubljana",
+  "lat": 46.0456791,
+  "lon": 14.4974615,
+  "building": "residential",
+  "osmLevels": 3,
+  "gurs": 3,
+  "built": 1928,
+  "height": null
+ },
+ {
+  "town": "ljubljana",
+  "lat": 46.0398746,
+  "lon": 14.4864525,
+  "building": "office",
+  "osmLevels": 5,
+  "gurs": 5,
+  "built": 2016,
+  "height": 20.5
+ },
+ {
+  "town": "ljubljana",
+  "lat": 46.058093,
+  "lon": 14.5245445,
+  "building": "carport",
+  "osmLevels": 1,
+  "gurs": 3,
+  "built": 1930,
+  "height": null
+ },
+ {
+  "town": "ljubljana",
+  "lat": 46.0439387,
+  "lon": 14.487978,
+  "building": "semidetached_house",
+  "osmLevels": 2,
+  "gurs": 2,
+  "built": 1956,
+  "height": null
+ },
+ {
+  "town": "ljubljana",
+  "lat": 46.0543323,
+  "lon": 14.5230339,
+  "building": "university",
+  "osmLevels": 8,
+  "gurs": 7,
+  "built": 1973,
+  "height": null
+ },
+ {
+  "town": "ljubljana",
+  "lat": 46.0495259,
+  "lon": 14.5020558,
+  "building": "apartments",
+  "osmLevels": 5,
+  "gurs": 5,
+  "built": 1900,
+  "height": 25.2
+ },
+ {
+  "town": "ljubljana",
+  "lat": 46.0513933,
+  "lon": 14.5080311,
+  "building": "yes",
+  "osmLevels": 1,
+  "gurs": 1,
+  "built": 1944,
+  "height": null
+ },
+ {
+  "town": "ljubljana",
+  "lat": 46.0493321,
+  "lon": 14.4900746,
+  "building": "residential",
+  "osmLevels": 3,
+  "gurs": 2,
+  "built": 1958,
+  "height": null
+ },
+ {
+  "town": "ljubljana",
+  "lat": 46.0495019,
+  "lon": 14.5048415,
+  "building": "apartments",
+  "osmLevels": 2,
+  "gurs": 3,
+  "built": 1891,
+  "height": 20.6
+ },
+ {
+  "town": "ljubljana",
+  "lat": 46.0506275,
+  "lon": 14.4903148,
+  "building": "residential",
+  "osmLevels": 4,
+  "gurs": 4,
+  "built": 1924,
+  "height": 13.8
+ },
+ {
+  "town": "ljubljana",
+  "lat": 46.0476778,
+  "lon": 14.4930183,
+  "building": "office",
+  "osmLevels": 2,
+  "gurs": 2,
+  "built": 1890,
+  "height": 9.6
+ },
+ {
+  "town": "ljubljana",
+  "lat": 46.0480008,
+  "lon": 14.5011124,
+  "building": "apartments",
+  "osmLevels": 11,
+  "gurs": 11,
+  "built": 1971,
+  "height": 38.5
+ },
+ {
+  "town": "ljubljana",
+  "lat": 46.0490583,
+  "lon": 14.4905026,
+  "building": "residential",
+  "osmLevels": 2,
+  "gurs": 2,
+  "built": 1934,
+  "height": null
+ },
+ {
+  "town": "maribor",
+  "lat": 46.5586644,
+  "lon": 15.6505087,
+  "building": "commercial",
+  "osmLevels": 6,
+  "gurs": 8,
+  "built": 1992,
+  "height": 41.2
+ },
+ {
+  "town": "maribor",
+  "lat": 46.5645717,
+  "lon": 15.6356285,
+  "building": "yes",
+  "osmLevels": 3,
+  "gurs": 3,
+  "built": 1907,
+  "height": null
+ },
+ {
+  "town": "maribor",
+  "lat": 46.5589383,
+  "lon": 15.6457386,
+  "building": "apartments",
+  "osmLevels": 4,
+  "gurs": 2,
+  "built": 1850,
+  "height": null
+ },
+ {
+  "town": "maribor",
+  "lat": 46.5614941,
+  "lon": 15.6550603,
+  "building": "school",
+  "osmLevels": 5,
+  "gurs": 7,
+  "built": 2014,
+  "height": 26.4
+ },
+ {
+  "town": "maribor",
+  "lat": 46.5604531,
+  "lon": 15.640031,
+  "building": "residential",
+  "osmLevels": 8,
+  "gurs": 8,
+  "built": 1972,
+  "height": 31
+ },
+ {
+  "town": "maribor",
+  "lat": 46.5577419,
+  "lon": 15.6387217,
+  "building": "retail",
+  "osmLevels": 2,
+  "gurs": 2,
+  "built": 1972,
+  "height": 20.6
+ },
+ {
+  "town": "maribor",
+  "lat": 46.564681,
+  "lon": 15.6320095,
+  "building": "detached",
+  "osmLevels": 2,
+  "gurs": 2,
+  "built": 1990,
+  "height": null
+ },
+ {
+  "town": "maribor",
+  "lat": 46.5509454,
+  "lon": 15.6363833,
+  "building": "house",
+  "osmLevels": 3,
+  "gurs": 3,
+  "built": 1880,
+  "height": 12.3
+ },
+ {
+  "town": "maribor",
+  "lat": 46.5574383,
+  "lon": 15.6441482,
+  "building": "apartments",
+  "osmLevels": 4,
+  "gurs": 4,
+  "built": 1900,
+  "height": 21.3
+ },
+ {
+  "town": "maribor",
+  "lat": 46.5482953,
+  "lon": 15.6361179,
+  "building": "yes",
+  "osmLevels": 2,
+  "gurs": 2,
+  "built": 1962,
+  "height": null
+ },
+ {
+  "town": "maribor",
+  "lat": 46.5589532,
+  "lon": 15.6414596,
+  "building": "apartments",
+  "osmLevels": 2,
+  "gurs": 1,
+  "built": 1960,
+  "height": null
+ },
+ {
+  "town": "maribor",
+  "lat": 46.5649249,
+  "lon": 15.6332791,
+  "building": "house",
+  "osmLevels": 3,
+  "gurs": 3,
+  "built": 1928,
+  "height": null
+ },
+ {
+  "town": "maribor",
+  "lat": 46.5622542,
+  "lon": 15.6446068,
+  "building": "apartments",
+  "osmLevels": 6,
+  "gurs": 7,
+  "built": 1965,
+  "height": 28
+ },
+ {
+  "town": "maribor",
+  "lat": 46.5643352,
+  "lon": 15.6311943,
+  "building": "apartments",
+  "osmLevels": 2,
+  "gurs": 2,
+  "built": 1950,
+  "height": null
+ }
+]

@@ -107,6 +107,16 @@ async function fetchOrtho(country, b, w, h, lon, lat) {
     const { EE_ORTHO } = await import("../../pilot/public/lanes-ortho.js");
     return tiles(EE_ORTHO, ".jpg", 18, b, w, h, true, true);
   }
+  else if (country === "SI") {
+    // Slovenia: GURS's DOF025 (WMS in Web Mercator); its server hangs now and then with a 504: up to three tries.
+    const { SI_ORTHO } = await import("../../pilot/public/lanes-ortho.js");
+    for (let i = 0; ; i++) {
+      const res = await fetch(SI_ORTHO(b, w, h), { headers: UA, signal: AbortSignal.timeout(35000) }).catch((e) => ({ ok: false, status: e.name }));
+      if (res.ok) return toPng(Buffer.from(await res.arrayBuffer()));
+      if (i === 2) throw new Error(`ortofoto ${res.status}`);
+      await new Promise((r) => setTimeout(r, 2000));
+    }
+  }
   else if (country === "LU") return tiles("https://wmts1.geoportail.lu/opendata/wmts/ortho_latest/GLOBAL_WEBMERCATOR_4_V3", ".jpeg", 20, b, w, h, true);
   else if (country === "DE") url = deWmsUrl(DE_ORTHO[(await landsAt(lon, lat))[0]], b, w, h, "image/png");
   else url = `https://ags.cuzk.gov.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer?${new URLSearchParams({ service: "WMS", request: "GetMap", version: "1.3.0", layers: "0", styles: "", crs: "EPSG:3857", bbox: b.join(","), width: w, height: h, format: "image/png" })}`;
