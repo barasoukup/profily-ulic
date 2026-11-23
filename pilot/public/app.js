@@ -533,12 +533,12 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
         if (cut) { ai = (axis) => aiKerbs(cut, axis); aiSurf = aiSurface(cut); aiPark = aiParking(cut); }
       }
       // The map's runs where it has surfaces but none at the axis: its sidewalks and buildings bound the estimate.
-      // Where no surface map covers the cut at all (a region without the DTM), the houses OSM lacks from the state's
-      // register (Czechia: RÚIAN; countries/CZ.js estimateBuildings). Not where a map is: against MTVU in Prague the
-      // added houses drew sidewalks up to them over green (regression 23. 11. 2026, 4 sides worse, 2 better).
-      const noMap = !(result.runs || []).some((r) => r.code !== null && r.code !== undefined);
-      const houses = noMap && country.estimateBuildings === "ruian" && !ORTHO_P.off?.has("ruiandomy") ? await ruianOutlines(bbox).catch((err) => { console.warn("RÚIAN", err.message); return []; }) : [];
-      const fb = orthoOsmPolys({ ai, aiSurf, osm: withBuildings(osm, houses), frame, dir, way: near.way, st: laneImg?.st, mapRuns: result.runs || [], edges: k.status === "fulfilled" ? k.value?.edges || [] : [], widths: k.status === "fulfilled" ? k.value?.widths || [] : [], areas: k.status === "fulfilled" ? k.value?.areas || [] : [], symbols: k.status === "fulfilled" ? k.value?.symbols || [] : [] });
+      // The houses from the state's register first, OSM's where it has none (Czechia: RÚIAN; countries/CZ.js
+      // estimateBuildings; Bára 23. 11. 2026: "RÚIAN by měl mít nejlepší data"). Regression against MTVU: more metres of
+      // the composition right in all four (Prague +13 and +12 m, Brno +2 and +18 m), the sidewalk metre by metre −1 pp
+      // (sidewalks drawn up to the found house over green, a parking lane or a wrong kerb: the estimate's, not RÚIAN's).
+      const houses = country.estimateBuildings === "ruian" && !ORTHO_P.off?.has("ruiandomy") ? await ruianOutlines(bbox).catch((err) => { console.warn("RÚIAN", err.message); return []; }) : [];
+      const fb = orthoOsmPolys({ ai, aiSurf, osm: withBuildings(osm, houses, "first"), frame, dir, way: near.way, st: laneImg?.st, mapRuns: result.runs || [], edges: k.status === "fulfilled" ? k.value?.edges || [] : [], widths: k.status === "fulfilled" ? k.value?.widths || [] : [], areas: k.status === "fulfilled" ? k.value?.areas || [] : [], symbols: k.status === "fulfilled" ? k.value?.symbols || [] : [] });
       if (fb) {
         // A field or a forest of the map (100, 200) where the estimate finds houses and sidewalks is a map not yet
         // redrawn (a new estate: Devětsilová in Prague, MTVU's farmland): it goes behind the estimate (?off=staramapa).

@@ -6,8 +6,8 @@
 //   node evaluation/ortofoto-osm/regrese.mjs [praha|brno …]            the current code
 //   CARS=1 node evaluation/ortofoto-osm/regrese.mjs                   with the parked cars read on the image (off in the app)
 //   OFF=pair,pieces node evaluation/ortofoto-osm/regrese.mjs           with the named features off (ortho-osm.js P.off)
-//   RUIAN=1 node evaluation/ortofoto-osm/regrese.mjs                   with RÚIAN's buildings OSM lacks, as the app in Czechia
-//   RUIAN=first …                                                      RÚIAN's buildings first, OSM's over them left out (worse)
+//   RUIAN=first node evaluation/ortofoto-osm/regrese.mjs               RÚIAN's buildings first, OSM's where it has none (the app in Czechia)
+//   RUIAN=1 …                                                          only the RÚIAN buildings OSM lacks
 //   SRC=cuzk12 …                                                       only this orthophoto (default: cuzk12 and the city's 10 cm)
 import { cuts, truthOf, osmAround, stripOf, median, ROOT } from "./lib.mjs";
 import { orthoOsmPolys, trimToEnds, P } from "../../pilot/public/ortho-osm.js";

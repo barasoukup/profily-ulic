@@ -219,9 +219,8 @@ export async function ruianOutlines(bbox) {
     return { type: "area", id: `ruian-${f.attributes?.objectid ?? i}`, tags: { building: "yes", source: "RÚIAN" }, geometry: outer, holes };
   });
 }
-// OSM's elements with the RÚIAN buildings OSM lacks: an outline that no OSM building overlaps (none's middle inside it,
-// its own middle inside none). RÚIAN first, OSM's left out where it overlaps one, made the sidewalks worse against
-// MTVU (regression of 23. 11. 2026: within 1 m 50 → 39 % in Prague), so OSM keeps its houses ("first": the trial).
+// OSM's elements with RÚIAN's buildings: "first" (the app) RÚIAN's outlines and OSM's buildings only where none of
+// RÚIAN's lies under them (their middle in none); "fill" only the RÚIAN outlines no OSM building overlaps.
 export function withBuildings(osm, outlines, mode = "fill") {
   if (!outlines?.length) return osm;
   const inRing = (r, x, y) => {
