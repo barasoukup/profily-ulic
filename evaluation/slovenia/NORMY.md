@@ -124,7 +124,7 @@ vodorovné značení (např. 5233 cyklopruh, citováno v [PKP] čl. 14). **Čís
 **Autorské právo** ([ZASP] čl. 9 odst. 1 bod 2, ověřeno): „Avtorskopravno niso varovane: … uradna besedila z
 zakonodajnega, upravnega in sodnega področja.“ Commons na tom staví šablonu **PD-Slovenia-exempt** (ověřeno u souborů
 níže: „Public domain, Government of Slovenia“). Zákon mluví o „besedilih“ (textech); že se týká i obrázků značek, je
-výklad Commons, ne zákona (**s podmínkou**, stejně jako jinde).
+výklad Commons, ne zákona (**s podmínkou**, stejně jako jinde). **Bára 23. 11. 2026: používat volně jako ve Francii.**
 
 **Kresby na Commons jsou skoro všechny podle starého pravidla z roku 2000 (čísla II-x, III-x, IV-x)**, nahrané 2014.
 Nová čísla mají jen 2401 (CC BY-SA 4.0, autor Rokbreznikar), 2421, 2445, 2446, 3213, 3221 (PD). Zda se piktogramy mezi

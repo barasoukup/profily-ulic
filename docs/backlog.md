@@ -91,14 +91,13 @@ Co rozhodne Bára, je označeno **(Bára)**.
   bez varování). Normy nekupujeme (Bára 23. 11. 2026: EVS 843 jen z druhé ruky). Mapa povrchů Tallinnu zapnutá (pole `kate` nevyužité, tl38 ztratil střední pás);
   plochy úklidu Tartu (`Puhastusala`) by šly stejně, A/B. Stáří ortofota
   v kreditu je „stav 11/2026“ (dlaždice míchají nálety), přesnější rok by chtěl metadata snímků.
-- Slovinsko (23. 11. 2026, otázky pro Báru): **licence značek** (Commons PD-Slovenia-exempt staví na ZASP čl. 9/1/2,
-  který mluví o úředních textech; kresby jsou většinou podle pravidla 2000, čísla z brožury AVP 2015, obrázky pravidla
-  2024 neověřené; rychlosti mimo 40 z české B 20a); **mapa povrchů Lublaně** (MOL nic nezveřejňuje, napsat Oddelku za
-  urejanje prostora; DRSI „dejanska raba“ bez CORS); **vzhled jugoslávské moderny** (sídliště Fužine, Štepanjsko naselje,
-  Maribor Tabor, Velenje: vlastní vzhled místo „povalecny“?); katastr počítá obytné podkroví jako podlaží (dům 1–2
-  podlaží + podkroví se kreslí o patro vyšší, `?gurs=0` A/B); rok náletu DOF025 služba nedává (kredit „stav 11/2026“);
-  stání na obousměrce jen s OSM `lanes` ≥ 2 (středovou čáru jinak neznáme, hodně ulic tak stání nedostane); sítě GJI
-  (3D trasy) na později.
+- Slovinsko (Bára 23. 11. 2026, rozhodnuto podle doporučení): značky volně jako ve Francii (Commons PD-Slovenia-exempt;
+  kresby většinou podle pravidla 2000, obrázky pravidla 2024 neověřené; rychlosti mimo 40 z české B 20a); mapa povrchů
+  Lublaně není a ptát se nebudeme (zůstává odhad z ortofota a OSM); stání na obousměrce jen se středovou čárou (OSM
+  `lanes` ≥ 2) podle zákona, zůstává přísné; katastr počítá obytné podkroví jako podlaží: opravit podle výšky (dělá se);
+  vzhled jugoslávské moderny (Fužine, Štepanjsko naselje, Maribor Tabor, Velenje) jako nápad na později, zatím
+  „povalecny“ (Bára: Jugoslávie nemá socialistické typy); rok náletu DOF025 služba nedává (kredit „stav 11/2026“);
+  sítě GJI (3D trasy) na později.
 - Jih Evropy po Itálii **odložen** (Bára 23. 11. 2026): Balkán, Řecko, Slovinsko. Až se k nim vrátíme: Albánie (ortofoto
   v albánských souřadnicích, ověřit stupně), Chorvatsko (jen přes proxy, západ), ~~Slovinsko (služby GURS neodpovídaly)~~ (přidáno 23. 11. 2026 přes `ipi.eprostor.gov.si`);
   ostatní bez otevřeného ortofota (`docs/states-survey/c-vychod-balkan.md`).
