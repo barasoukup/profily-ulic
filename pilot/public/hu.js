@@ -868,7 +868,7 @@ export const HU = {
   "ortofoto © DGT": "ortofotó © DGT",
   "chodník: volná šířka nejméně 1,5 m u hlavních a sběrných ulic, 1,2 m u každé pěší trasy (zákon o přístupnosti 163/2006); doporučeno 1,8 m (IMT, Lisabon)": "járda: szabad szélesség legalább 1,5 m fő- és gyűjtőutaknál, 1,2 m minden gyalogos útvonalon (163/2006. sz. akadálymentességi törvény); ajánlott 1,8 m (IMT, Lisszabon)",
   "cyklopruh: 1,5 m, nejméně 1,2 m; vedle podélného stání 2,5 m (IMT, příručka Lisabonu)": "kerékpársáv: 1,5 m, legalább 1,2 m; párhuzamos parkolás mellett 2,5 m (IMT, Lisszabon kézikönyve)",
-  "stezka pro cyklisty jednosměrná: 1,5 m, nejméně 1,2 m; obousměrná 2,6 m, nejméně 2,4 m (příručka Lisabonu)": "egyirányú kerékpárút: 1,5 m, legalább 1,2 m; kétirányú 2,6 m, legalább 2,4 m (Lisszabon kézikönyve)",
+  "stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)": "egyirányú kerékpárút: 2 m, legalább 1,75 m; kétirányú 3 m, kis forgalom esetén 2,4 m (IMT és LNEC 2024)",
   "vyhrazený pruh BUS: 3,25 m, nejméně 3 m (IMT, příručka Lisabonu)": "BUS buszsáv: 3,25 m, legalább 3 m (IMT, Lisszabon kézikönyve)",
   "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (IMT, příručka Lisabonu)": "közös busz- és kerékpársáv: legalább 3,25 m (IMT, Lisszabon kézikönyve)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,75 m (příručka Lisabonu)": "forgalmi sáv irányonként több sávos úttesten: 2,75 m (Lisszabon kézikönyve)",

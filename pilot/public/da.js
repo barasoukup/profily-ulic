@@ -888,7 +888,7 @@ export const DA = {
   "ortofoto © DGT": "ortofoto © DGT",
   "chodník: volná šířka nejméně 1,5 m u hlavních a sběrných ulic, 1,2 m u každé pěší trasy (zákon o přístupnosti 163/2006); doporučeno 1,8 m (IMT, Lisabon)": "fortov: fri bredde mindst 1,5 m ved hoved- og fordelingsgader, 1,2 m ved enhver gangrute (tilgængelighedsloven 163/2006); anbefalet 1,8 m (IMT, Lissabon)",
   "cyklopruh: 1,5 m, nejméně 1,2 m; vedle podélného stání 2,5 m (IMT, příručka Lisabonu)": "cykelbane: 1,5 m, mindst 1,2 m; ved siden af længdeparkering 2,5 m (IMT, Lissabons håndbog)",
-  "stezka pro cyklisty jednosměrná: 1,5 m, nejméně 1,2 m; obousměrná 2,6 m, nejméně 2,4 m (příručka Lisabonu)": "enkeltrettet cykelsti: 1,5 m, mindst 1,2 m; dobbeltrettet 2,6 m, mindst 2,4 m (Lissabons håndbog)",
+  "stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)": "enkeltrettet cykelsti: 2 m, mindst 1,75 m; dobbeltrettet 3 m, ved lidt trafik 2,4 m (IMT og LNEC 2024)",
   "vyhrazený pruh BUS: 3,25 m, nejméně 3 m (IMT, příručka Lisabonu)": "busbane: 3,25 m, mindst 3 m (IMT, Lissabons håndbog)",
   "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (IMT, příručka Lisabonu)": "fælles bane for busser og cyklister: mindst 3,25 m (IMT, Lissabons håndbog)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,75 m (příručka Lisabonu)": "kørespor på en kørebane med flere spor i samme retning: 2,75 m (Lissabons håndbog)",

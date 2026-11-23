@@ -864,7 +864,7 @@ export const BG = {
   "ortofoto © DGT": "ортофото © DGT",
   "chodník: volná šířka nejméně 1,5 m u hlavních a sběrných ulic, 1,2 m u každé pěší trasy (zákon o přístupnosti 163/2006); doporučeno 1,8 m (IMT, Lisabon)": "тротоар: свободна ширина най-малко 1,5 m при главни и събирателни улици, 1,2 m при всеки пешеходен маршрут (закон за достъпността 163/2006); препоръчително 1,8 m (IMT, Лисабон)",
   "cyklopruh: 1,5 m, nejméně 1,2 m; vedle podélného stání 2,5 m (IMT, příručka Lisabonu)": "велолента: 1,5 m, най-малко 1,2 m; до надлъжно паркиране 2,5 m (IMT, ръководство на Лисабон)",
-  "stezka pro cyklisty jednosměrná: 1,5 m, nejméně 1,2 m; obousměrná 2,6 m, nejméně 2,4 m (příručka Lisabonu)": "велоалея еднопосочна: 1,5 m, най-малко 1,2 m; двупосочна 2,6 m, най-малко 2,4 m (ръководство на Лисабон)",
+  "stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)": "велоалея еднопосочна: 2 m, най-малко 1,75 m; двупосочна 3 m, при малко движение 2,4 m (IMT и LNEC 2024)",
   "vyhrazený pruh BUS: 3,25 m, nejméně 3 m (IMT, příručka Lisabonu)": "автобусна лента BUS: 3,25 m, най-малко 3 m (IMT, ръководство на Лисабон)",
   "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (IMT, příručka Lisabonu)": "обща лента за автобуси и велосипедисти: най-малко 3,25 m (IMT, ръководство на Лисабон)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,75 m (příručka Lisabonu)": "пътна лента на платно с повече ленти в една посока: 2,75 m (ръководство на Лисабон)",

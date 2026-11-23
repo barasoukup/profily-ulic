@@ -888,7 +888,7 @@ export const LV = {
   "ortofoto © DGT": "ortofoto © DGT",
   "chodník: volná šířka nejméně 1,5 m u hlavních a sběrných ulic, 1,2 m u každé pěší trasy (zákon o přístupnosti 163/2006); doporučeno 1,8 m (IMT, Lisabon)": "ietve: brīvais platums vismaz 1,5 m galvenajās un savācējielās, 1,2 m katrā gājēju maršrutā (pieejamības likums 163/2006); ieteicams 1,8 m (IMT, Lisabona)",
   "cyklopruh: 1,5 m, nejméně 1,2 m; vedle podélného stání 2,5 m (IMT, příručka Lisabonu)": "velojosla: 1,5 m, vismaz 1,2 m; blakus paralēlajām stāvvietām 2,5 m (IMT, Lisabonas rokasgrāmata)",
-  "stezka pro cyklisty jednosměrná: 1,5 m, nejméně 1,2 m; obousměrná 2,6 m, nejméně 2,4 m (příručka Lisabonu)": "vienvirziena veloceliņš: 1,5 m, vismaz 1,2 m; divvirzienu 2,6 m, vismaz 2,4 m (Lisabonas rokasgrāmata)",
+  "stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)": "vienvirziena veloceliņš: 2 m, vismaz 1,75 m; divvirzienu 3 m, ja satiksme neliela, 2,4 m (IMT un LNEC 2024)",
   "vyhrazený pruh BUS: 3,25 m, nejméně 3 m (IMT, příručka Lisabonu)": "autobusu josla: 3,25 m, vismaz 3 m (IMT, Lisabonas rokasgrāmata)",
   "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (IMT, příručka Lisabonu)": "kopīga josla autobusiem un velosipēdistiem: vismaz 3,25 m (IMT, Lisabonas rokasgrāmata)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,75 m (příručka Lisabonu)": "daudzjoslu vienvirziena brauktuves braukšanas josla: 2,75 m (Lisabonas rokasgrāmata)",

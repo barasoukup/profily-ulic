@@ -890,7 +890,7 @@ export const ES = {
   "ortofoto © DGT": "ortofoto © DGT",
   "chodník: volná šířka nejméně 1,5 m u hlavních a sběrných ulic, 1,2 m u každé pěší trasy (zákon o přístupnosti 163/2006); doporučeno 1,8 m (IMT, Lisabon)": "acera: ancho libre de al menos 1,5 m en calles principales y colectoras, 1,2 m en todo itinerario peatonal (ley de accesibilidad 163/2006); recomendado 1,8 m (IMT, Lisboa)",
   "cyklopruh: 1,5 m, nejméně 1,2 m; vedle podélného stání 2,5 m (IMT, příručka Lisabonu)": "carril bici: 1,5 m, al menos 1,2 m; junto a aparcamiento en línea 2,5 m (IMT, guía de Lisboa)",
-  "stezka pro cyklisty jednosměrná: 1,5 m, nejméně 1,2 m; obousměrná 2,6 m, nejméně 2,4 m (příručka Lisabonu)": "pista bici unidireccional: 1,5 m, al menos 1,2 m; bidireccional 2,6 m, al menos 2,4 m (guía de Lisboa)",
+  "stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)": "pista bici unidireccional: 2 m, al menos 1,75 m; bidireccional 3 m, con poco tráfico 2,4 m (IMT y LNEC 2024)",
   "vyhrazený pruh BUS: 3,25 m, nejméně 3 m (IMT, příručka Lisabonu)": "carril BUS: 3,25 m, al menos 3 m (IMT, guía de Lisboa)",
   "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (IMT, příručka Lisabonu)": "carril compartido de autobuses y ciclistas: al menos 3,25 m (IMT, guía de Lisboa)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,75 m (příručka Lisabonu)": "carril de una calzada con varios carriles en un mismo sentido: 2,75 m (guía de Lisboa)",

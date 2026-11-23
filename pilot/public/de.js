@@ -887,7 +887,7 @@ export const DE = {
   "ortofoto © DGT": "Luftbild © DGT",
   "chodník: volná šířka nejméně 1,5 m u hlavních a sběrných ulic, 1,2 m u každé pěší trasy (zákon o přístupnosti 163/2006); doporučeno 1,8 m (IMT, Lisabon)": "Gehweg: freie Breite mindestens 1,5 m an Haupt- und Sammelstraßen, 1,2 m auf jedem Fußweg (Gesetz über die Barrierefreiheit 163/2006); empfohlen 1,8 m (IMT, Lissabon)",
   "cyklopruh: 1,5 m, nejméně 1,2 m; vedle podélného stání 2,5 m (IMT, příručka Lisabonu)": "Radfahrstreifen: 1,5 m, mindestens 1,2 m; neben Längsparken 2,5 m (IMT, Leitfaden von Lissabon)",
-  "stezka pro cyklisty jednosměrná: 1,5 m, nejméně 1,2 m; obousměrná 2,6 m, nejméně 2,4 m (příručka Lisabonu)": "Radweg im Einrichtungsverkehr: 1,5 m, mindestens 1,2 m; im Zweirichtungsverkehr 2,6 m, mindestens 2,4 m (Leitfaden von Lissabon)",
+  "stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)": "Radweg im Einrichtungsverkehr: 2 m, mindestens 1,75 m; im Zweirichtungsverkehr 3 m, bei geringem Verkehr 2,4 m (IMT und LNEC 2024)",
   "vyhrazený pruh BUS: 3,25 m, nejméně 3 m (IMT, příručka Lisabonu)": "Busfahrstreifen (BUS): 3,25 m, mindestens 3 m (IMT, Leitfaden von Lissabon)",
   "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (IMT, příručka Lisabonu)": "gemeinsamer Fahrstreifen für Busse und Radfahrer: mindestens 3,25 m (IMT, Leitfaden von Lissabon)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,75 m (příručka Lisabonu)": "Fahrstreifen einer Fahrbahn mit mehreren Fahrstreifen in einer Richtung: 2,75 m (Leitfaden von Lissabon)",

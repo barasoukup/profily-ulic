@@ -889,7 +889,7 @@ export const FI = {
   "ortofoto © DGT": "ortokuva © DGT",
   "chodník: volná šířka nejméně 1,5 m u hlavních a sběrných ulic, 1,2 m u každé pěší trasy (zákon o přístupnosti 163/2006); doporučeno 1,8 m (IMT, Lisabon)": "jalkakäytävä: vapaa leveys vähintään 1,5 m pää- ja kokoojakaduilla, 1,2 m jokaisella jalankulkureitillä (esteettömyyslaki 163/2006); suositus 1,8 m (IMT, Lissabon)",
   "cyklopruh: 1,5 m, nejméně 1,2 m; vedle podélného stání 2,5 m (IMT, příručka Lisabonu)": "pyöräkaista: 1,5 m, vähintään 1,2 m; kadunsuuntaisen pysäköinnin vieressä 2,5 m (IMT, Lissabonin käsikirja)",
-  "stezka pro cyklisty jednosměrná: 1,5 m, nejméně 1,2 m; obousměrná 2,6 m, nejméně 2,4 m (příručka Lisabonu)": "yksisuuntainen pyörätie: 1,5 m, vähintään 1,2 m; kaksisuuntainen 2,6 m, vähintään 2,4 m (Lissabonin käsikirja)",
+  "stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)": "yksisuuntainen pyörätie: 2 m, vähintään 1,75 m; kaksisuuntainen 3 m, vähäisellä liikenteellä 2,4 m (IMT ja LNEC 2024)",
   "vyhrazený pruh BUS: 3,25 m, nejméně 3 m (IMT, příručka Lisabonu)": "bussikaista: 3,25 m, vähintään 3 m (IMT, Lissabonin käsikirja)",
   "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (IMT, příručka Lisabonu)": "bussien ja pyöräilijöiden yhteinen kaista: vähintään 3,25 m (IMT, Lissabonin käsikirja)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,75 m (příručka Lisabonu)": "monikaistaisen yksisuuntaisen ajoradan ajokaista: 2,75 m (Lissabonin käsikirja)",

@@ -889,7 +889,7 @@ export const GA = {
   "ortofoto © DGT": "ortafótagraf © DGT",
   "chodník: volná šířka nejméně 1,5 m u hlavních a sběrných ulic, 1,2 m u každé pěší trasy (zákon o přístupnosti 163/2006); doporučeno 1,8 m (IMT, Lisabon)": "cosán: leithead saor 1.5 m ar a laghad ar phríomhshráideanna agus ar shráideanna bailithe, 1.2 m ar gach bealach coisithe (dlí inrochtaineachta 163/2006); 1.8 m molta (IMT, Liospóin)",
   "cyklopruh: 1,5 m, nejméně 1,2 m; vedle podélného stání 2,5 m (IMT, příručka Lisabonu)": "lána rothar: 1.5 m, 1.2 m ar a laghad; in aice le páirceáil chomhthreomhar 2.5 m (IMT, lámhleabhar Liospóin)",
-  "stezka pro cyklisty jednosměrná: 1,5 m, nejméně 1,2 m; obousměrná 2,6 m, nejméně 2,4 m (příručka Lisabonu)": "raon rothar aontreo: 1.5 m, 1.2 m ar a laghad; déthreo 2.6 m, 2.4 m ar a laghad (lámhleabhar Liospóin)",
+  "stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)": "raon rothar aontreo: 2 m, 1.75 m ar a laghad; déthreo 3 m, le trácht íseal 2.4 m (IMT agus LNEC 2024)",
   "vyhrazený pruh BUS: 3,25 m, nejméně 3 m (IMT, příručka Lisabonu)": "lána bus: 3.25 m, 3 m ar a laghad (IMT, lámhleabhar Liospóin)",
   "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (IMT, příručka Lisabonu)": "lána comhroinnte do bhusanna agus do rothaithe: 3.25 m ar a laghad (IMT, lámhleabhar Liospóin)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,75 m (příručka Lisabonu)": "lána tráchta ar charrbhealach il-lána aontreo: 2.75 m (lámhleabhar Liospóin)",

@@ -889,7 +889,7 @@ export const PL = {
   "ortofoto © DGT": "ortofotomapa © DGT",
   "chodník: volná šířka nejméně 1,5 m u hlavních a sběrných ulic, 1,2 m u každé pěší trasy (zákon o přístupnosti 163/2006); doporučeno 1,8 m (IMT, Lisabon)": "chodnik: wolna szerokość co najmniej 1,5 m przy ulicach głównych i zbiorczych, 1,2 m na każdej trasie pieszej (ustawa o dostępności 163/2006); zalecane 1,8 m (IMT, Lizbona)",
   "cyklopruh: 1,5 m, nejméně 1,2 m; vedle podélného stání 2,5 m (IMT, příručka Lisabonu)": "pas rowerowy: 1,5 m, co najmniej 1,2 m; obok parkowania równoległego 2,5 m (IMT, poradnik Lizbony)",
-  "stezka pro cyklisty jednosměrná: 1,5 m, nejméně 1,2 m; obousměrná 2,6 m, nejméně 2,4 m (příručka Lisabonu)": "droga dla rowerów jednokierunkowa: 1,5 m, co najmniej 1,2 m; dwukierunkowa 2,6 m, co najmniej 2,4 m (poradnik Lizbony)",
+  "stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)": "droga dla rowerów jednokierunkowa: 2 m, co najmniej 1,75 m; dwukierunkowa 3 m, przy małym ruchu 2,4 m (IMT i LNEC 2024)",
   "vyhrazený pruh BUS: 3,25 m, nejméně 3 m (IMT, příručka Lisabonu)": "wydzielony pas BUS: 3,25 m, co najmniej 3 m (IMT, poradnik Lizbony)",
   "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (IMT, příručka Lisabonu)": "wspólny pas dla autobusów i rowerów: co najmniej 3,25 m (IMT, poradnik Lizbony)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,75 m (příručka Lisabonu)": "pas ruchu jezdni z kilkoma pasami w jednym kierunku: 2,75 m (poradnik Lizbony)",

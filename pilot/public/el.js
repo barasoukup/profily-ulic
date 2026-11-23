@@ -889,7 +889,7 @@ export const EL = {
   "ortofoto © DGT": "ορθοφωτογραφία © DGT",
   "chodník: volná šířka nejméně 1,5 m u hlavních a sběrných ulic, 1,2 m u každé pěší trasy (zákon o přístupnosti 163/2006); doporučeno 1,8 m (IMT, Lisabon)": "πεζοδρόμιο: ελεύθερο πλάτος τουλάχιστον 1,5 m σε κύριες και συλλεκτήριες οδούς, 1,2 m σε κάθε πεζή διαδρομή (νόμος για την προσβασιμότητα 163/2006)· συνιστάται 1,8 m (IMT, Λισαβόνα)",
   "cyklopruh: 1,5 m, nejméně 1,2 m; vedle podélného stání 2,5 m (IMT, příručka Lisabonu)": "ποδηλατολωρίδα: 1,5 m, τουλάχιστον 1,2 m· δίπλα σε παράλληλη στάθμευση 2,5 m (IMT, οδηγός της Λισαβόνας)",
-  "stezka pro cyklisty jednosměrná: 1,5 m, nejméně 1,2 m; obousměrná 2,6 m, nejméně 2,4 m (příručka Lisabonu)": "ποδηλατόδρομος μονής κατεύθυνσης: 1,5 m, τουλάχιστον 1,2 m· διπλής κατεύθυνσης 2,6 m, τουλάχιστον 2,4 m (οδηγός της Λισαβόνας)",
+  "stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)": "ποδηλατόδρομος μονής κατεύθυνσης: 2 m, τουλάχιστον 1,75 m· διπλής κατεύθυνσης 3 m, σε μικρή κίνηση 2,4 m (IMT και LNEC 2024)",
   "vyhrazený pruh BUS: 3,25 m, nejméně 3 m (IMT, příručka Lisabonu)": "λεωφορειολωρίδα BUS: 3,25 m, τουλάχιστον 3 m (IMT, οδηγός της Λισαβόνας)",
   "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (IMT, příručka Lisabonu)": "κοινή λωρίδα για λεωφορεία και ποδηλάτες: τουλάχιστον 3,25 m (IMT, οδηγός της Λισαβόνας)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,75 m (příručka Lisabonu)": "λωρίδα κυκλοφορίας οδοστρώματος με περισσότερες λωρίδες ανά κατεύθυνση: 2,75 m (οδηγός της Λισαβόνας)",

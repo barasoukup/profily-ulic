@@ -886,7 +886,7 @@ export const EN = {
   "ortofoto © DGT": "orthophoto © DGT",
   "chodník: volná šířka nejméně 1,5 m u hlavních a sběrných ulic, 1,2 m u každé pěší trasy (zákon o přístupnosti 163/2006); doporučeno 1,8 m (IMT, Lisabon)": "sidewalk: free width at least 1.5 m on main and collector streets, 1.2 m on every pedestrian route (the accessibility act 163/2006); 1.8 m recommended (IMT, Lisbon)",
   "cyklopruh: 1,5 m, nejméně 1,2 m; vedle podélného stání 2,5 m (IMT, příručka Lisabonu)": "cycle lane: 1.5 m, at least 1.2 m; 2.5 m beside parallel parking (IMT, Lisbon's guide)",
-  "stezka pro cyklisty jednosměrná: 1,5 m, nejméně 1,2 m; obousměrná 2,6 m, nejméně 2,4 m (příručka Lisabonu)": "one-way cycle track: 1.5 m, at least 1.2 m; two-way 2.6 m, at least 2.4 m (Lisbon's guide)",
+  "stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)": "one-way cycle track: 2 m, at least 1.75 m; two-way 3 m, with little traffic 2.4 m (IMT and LNEC 2024)",
   "vyhrazený pruh BUS: 3,25 m, nejméně 3 m (IMT, příručka Lisabonu)": "BUS lane: 3.25 m, at least 3 m (IMT, Lisbon's guide)",
   "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (IMT, příručka Lisabonu)": "shared bus and cycle lane: at least 3.25 m (IMT, Lisbon's guide)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,75 m (příručka Lisabonu)": "lane of a carriageway with several lanes in one direction: 2.75 m (Lisbon's guide)",

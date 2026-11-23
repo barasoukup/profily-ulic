@@ -893,7 +893,7 @@ export const IT = {
   "ortofoto © DGT": "ortofoto © DGT",
   "chodník: volná šířka nejméně 1,5 m u hlavních a sběrných ulic, 1,2 m u každé pěší trasy (zákon o přístupnosti 163/2006); doporučeno 1,8 m (IMT, Lisabon)": "marciapiede: larghezza libera di almeno 1,5 m lungo le strade principali e di raccolta, 1,2 m su ogni percorso pedonale (legge sull'accessibilità 163/2006); consigliati 1,8 m (IMT, Lisbona)",
   "cyklopruh: 1,5 m, nejméně 1,2 m; vedle podélného stání 2,5 m (IMT, příručka Lisabonu)": "corsia ciclabile: 1,5 m, almeno 1,2 m; accanto alla sosta longitudinale 2,5 m (IMT, guida di Lisbona)",
-  "stezka pro cyklisty jednosměrná: 1,5 m, nejméně 1,2 m; obousměrná 2,6 m, nejméně 2,4 m (příručka Lisabonu)": "pista ciclabile monodirezionale: 1,5 m, almeno 1,2 m; bidirezionale 2,6 m, almeno 2,4 m (guida di Lisbona)",
+  "stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)": "pista ciclabile monodirezionale: 2 m, almeno 1,75 m; bidirezionale 3 m, con poco traffico 2,4 m (IMT e LNEC 2024)",
   "vyhrazený pruh BUS: 3,25 m, nejméně 3 m (IMT, příručka Lisabonu)": "corsia riservata BUS: 3,25 m, almeno 3 m (IMT, guida di Lisbona)",
   "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (IMT, příručka Lisabonu)": "corsia comune per autobus e ciclisti: almeno 3,25 m (IMT, guida di Lisbona)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,75 m (příručka Lisabonu)": "corsia di una carreggiata con più corsie nello stesso senso: 2,75 m (guida di Lisbona)",

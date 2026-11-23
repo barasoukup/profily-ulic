@@ -889,7 +889,7 @@ export const NL = {
   "ortofoto © DGT": "luchtfoto © DGT",
   "chodník: volná šířka nejméně 1,5 m u hlavních a sběrných ulic, 1,2 m u každé pěší trasy (zákon o přístupnosti 163/2006); doporučeno 1,8 m (IMT, Lisabon)": "stoep: vrije breedte minstens 1,5 m bij hoofd- en verzamelstraten, 1,2 m bij elke voetgangersroute (toegankelijkheidswet 163/2006); aanbevolen 1,8 m (IMT, Lissabon)",
   "cyklopruh: 1,5 m, nejméně 1,2 m; vedle podélného stání 2,5 m (IMT, příručka Lisabonu)": "fietsstrook: 1,5 m, minstens 1,2 m; naast langsparkeren 2,5 m (IMT, gids van Lissabon)",
-  "stezka pro cyklisty jednosměrná: 1,5 m, nejméně 1,2 m; obousměrná 2,6 m, nejméně 2,4 m (příručka Lisabonu)": "fietspad in één richting: 1,5 m, minstens 1,2 m; in twee richtingen 2,6 m, minstens 2,4 m (gids van Lissabon)",
+  "stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)": "fietspad in één richting: 2 m, minstens 1,75 m; in twee richtingen 3 m, bij weinig verkeer 2,4 m (IMT en LNEC 2024)",
   "vyhrazený pruh BUS: 3,25 m, nejméně 3 m (IMT, příručka Lisabonu)": "busstrook: 3,25 m, minstens 3 m (IMT, gids van Lissabon)",
   "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (IMT, příručka Lisabonu)": "gemeenschappelijke strook voor bussen en fietsers: minstens 3,25 m (IMT, gids van Lissabon)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,75 m (příručka Lisabonu)": "rijstrook van een rijbaan met meerdere stroken in één richting: 2,75 m (gids van Lissabon)",

@@ -7,7 +7,7 @@ import base, { CZ_CODE } from "./default.js";
 
 // Norms (evaluation/portugal/NORMY.md D): binding only accessibility (Decreto-Lei 163/2006: the free width of a sidewalk
 // of the main and collector streets 1.5 m, of every pedestrian route 1.2 m); the rest IMT's technical documents and
-// Lisbon's guide (recommendations). No warning for a tram belt (no source found).
+// Lisbon's guide (recommendations; the cycle tracks by IMT, Bára 23. 11. 2026). No warning for a tram belt (no source found).
 const lanes = (segs) => segs.filter((x) => x.type === "pruh" || x.type === "pruh_piktokoridor");
 function limitsPT(s, segs) {
   switch (s.type) {
@@ -16,7 +16,7 @@ function limitsPT(s, segs) {
     case "cyklopruh":
       return { min: 1.2, zaklad: 1.5, why: t("cyklopruh: 1,5 m, nejméně 1,2 m; vedle podélného stání 2,5 m (IMT, příručka Lisabonu)") };
     case "cyklostezka":
-      return { min: 1.2, zaklad: 1.5, why: t("stezka pro cyklisty jednosměrná: 1,5 m, nejméně 1,2 m; obousměrná 2,6 m, nejméně 2,4 m (příručka Lisabonu)") };
+      return { min: 1.75, zaklad: 2, why: t("stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)") };
     case "bus":
       return { min: 3, zaklad: 3.25, why: t("vyhrazený pruh BUS: 3,25 m, nejméně 3 m (IMT, příručka Lisabonu)") };
     case "bus_cyklo":

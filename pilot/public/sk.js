@@ -887,7 +887,7 @@ export const SK = {
   "ortofoto © DGT": "ortofoto © DGT",
   "chodník: volná šířka nejméně 1,5 m u hlavních a sběrných ulic, 1,2 m u každé pěší trasy (zákon o přístupnosti 163/2006); doporučeno 1,8 m (IMT, Lisabon)": "chodník: voľná šírka najmenej 1,5 m pri hlavných a zberných uliciach, 1,2 m pri každej pešej trase (zákon o prístupnosti 163/2006); odporúčané 1,8 m (IMT, Lisabon)",
   "cyklopruh: 1,5 m, nejméně 1,2 m; vedle podélného stání 2,5 m (IMT, příručka Lisabonu)": "cyklistický pruh: 1,5 m, najmenej 1,2 m; vedľa pozdĺžneho státia 2,5 m (IMT, príručka Lisabonu)",
-  "stezka pro cyklisty jednosměrná: 1,5 m, nejméně 1,2 m; obousměrná 2,6 m, nejméně 2,4 m (příručka Lisabonu)": "jednosmerná cestička pre cyklistov: 1,5 m, najmenej 1,2 m; obojsmerná 2,6 m, najmenej 2,4 m (príručka Lisabonu)",
+  "stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)": "jednosmerná cestička pre cyklistov: 2 m, najmenej 1,75 m; obojsmerná 3 m, pri malej premávke 2,4 m (IMT a LNEC 2024)",
   "vyhrazený pruh BUS: 3,25 m, nejméně 3 m (IMT, příručka Lisabonu)": "vyhradený pruh BUS: 3,25 m, najmenej 3 m (IMT, príručka Lisabonu)",
   "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (IMT, příručka Lisabonu)": "spoločný pruh pre autobusy a cyklistov: najmenej 3,25 m (IMT, príručka Lisabonu)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,75 m (příručka Lisabonu)": "jazdný pruh vozovky s viacerými pruhmi v jednom smere: 2,75 m (príručka Lisabonu)",

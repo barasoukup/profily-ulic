@@ -891,7 +891,7 @@ export const FR = {
   "ortofoto © DGT": "orthophoto © DGT",
   "chodník: volná šířka nejméně 1,5 m u hlavních a sběrných ulic, 1,2 m u každé pěší trasy (zákon o přístupnosti 163/2006); doporučeno 1,8 m (IMT, Lisabon)": "trottoir : largeur libre d'au moins 1,5 m le long des rues principales et collectrices, 1,2 m sur tout itinéraire piéton (loi sur l'accessibilité 163/2006) ; 1,8 m recommandés (IMT, Lisbonne)",
   "cyklopruh: 1,5 m, nejméně 1,2 m; vedle podélného stání 2,5 m (IMT, příručka Lisabonu)": "bande cyclable : 1,5 m, au moins 1,2 m ; 2,5 m le long du stationnement longitudinal (IMT, guide de Lisbonne)",
-  "stezka pro cyklisty jednosměrná: 1,5 m, nejméně 1,2 m; obousměrná 2,6 m, nejméně 2,4 m (příručka Lisabonu)": "piste cyclable unidirectionnelle : 1,5 m, au moins 1,2 m ; bidirectionnelle 2,6 m, au moins 2,4 m (guide de Lisbonne)",
+  "stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)": "piste cyclable unidirectionnelle : 2 m, au moins 1,75 m ; bidirectionnelle 3 m, avec peu de trafic 2,4 m (IMT et LNEC 2024)",
   "vyhrazený pruh BUS: 3,25 m, nejméně 3 m (IMT, příručka Lisabonu)": "voie réservée BUS : 3,25 m, au moins 3 m (IMT, guide de Lisbonne)",
   "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (IMT, příručka Lisabonu)": "voie partagée bus et vélos : au moins 3,25 m (IMT, guide de Lisbonne)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,75 m (příručka Lisabonu)": "voie d'une chaussée à plusieurs voies dans un même sens : 2,75 m (guide de Lisbonne)",

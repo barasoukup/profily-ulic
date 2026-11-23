@@ -864,7 +864,7 @@ export const LT = {
   "ortofoto © DGT": "ortofoto © DGT",
   "chodník: volná šířka nejméně 1,5 m u hlavních a sběrných ulic, 1,2 m u každé pěší trasy (zákon o přístupnosti 163/2006); doporučeno 1,8 m (IMT, Lisabon)": "šaligatvis: laisvas plotis ne mažiau kaip 1,5 m pagrindinėse ir jungiamosiose gatvėse, 1,2 m kiekviename pėsčiųjų maršrute (prieinamumo įstatymas 163/2006); rekomenduojama 1,8 m (IMT, Lisabona)",
   "cyklopruh: 1,5 m, nejméně 1,2 m; vedle podélného stání 2,5 m (IMT, příručka Lisabonu)": "dviračių juosta: 1,5 m, ne mažiau kaip 1,2 m; šalia lygiagretaus stovėjimo 2,5 m (IMT, Lisabonos vadovas)",
-  "stezka pro cyklisty jednosměrná: 1,5 m, nejméně 1,2 m; obousměrná 2,6 m, nejméně 2,4 m (příručka Lisabonu)": "vienpusis dviračių takas: 1,5 m, ne mažiau kaip 1,2 m; dvipusis 2,6 m, ne mažiau kaip 2,4 m (Lisabonos vadovas)",
+  "stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)": "vienpusis dviračių takas: 2 m, ne mažiau kaip 1,75 m; dvipusis 3 m, esant mažam eismui 2,4 m (IMT ir LNEC 2024)",
   "vyhrazený pruh BUS: 3,25 m, nejméně 3 m (IMT, příručka Lisabonu)": "autobusų juosta: 3,25 m, ne mažiau kaip 3 m (IMT, Lisabonos vadovas)",
   "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (IMT, příručka Lisabonu)": "bendra autobusų ir dviratininkų juosta: ne mažiau kaip 3,25 m (IMT, Lisabonos vadovas)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,75 m (příručka Lisabonu)": "daugiajuostės vienpusio eismo važiuojamosios dalies eismo juosta: 2,75 m (Lisabonos vadovas)",

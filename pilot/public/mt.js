@@ -889,7 +889,7 @@ export const MT = {
   "ortofoto © DGT": "ortofoto © DGT",
   "chodník: volná šířka nejméně 1,5 m u hlavních a sběrných ulic, 1,2 m u každé pěší trasy (zákon o přístupnosti 163/2006); doporučeno 1,8 m (IMT, Lisabon)": "bankina: wisa' ħieles ta' mill-inqas 1.5 m fit-toroq prinċipali u distributriċi, 1.2 m f'kull rotta pedonali (liġi dwar l-aċċessibilità 163/2006); rakkomandat 1.8 m (IMT, Lisbona)",
   "cyklopruh: 1,5 m, nejméně 1,2 m; vedle podélného stání 2,5 m (IMT, příručka Lisabonu)": "korsija tar-roti: 1.5 m, mill-inqas 1.2 m; ħdejn parkeġġ parallel 2.5 m (IMT, il-manwal ta' Lisbona)",
-  "stezka pro cyklisty jednosměrná: 1,5 m, nejméně 1,2 m; obousměrná 2,6 m, nejméně 2,4 m (příručka Lisabonu)": "mogħdija tar-roti f'direzzjoni waħda: 1.5 m, mill-inqas 1.2 m; fiż-żewġ direzzjonijiet 2.6 m, mill-inqas 2.4 m (il-manwal ta' Lisbona)",
+  "stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)": "mogħdija tar-roti f'direzzjoni waħda: 2 m, mill-inqas 1.75 m; fiż-żewġ direzzjonijiet 3 m, b'traffiku baxx 2.4 m (IMT u LNEC 2024)",
   "vyhrazený pruh BUS: 3,25 m, nejméně 3 m (IMT, příručka Lisabonu)": "korsija BUS: 3.25 m, mill-inqas 3 m (IMT, il-manwal ta' Lisbona)",
   "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (IMT, příručka Lisabonu)": "korsija konġunta għall-karozzi tal-linja u r-roti: mill-inqas 3.25 m (IMT, il-manwal ta' Lisbona)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,75 m (příručka Lisabonu)": "korsija tas-sewqan ta' karreġġjata b'aktar minn korsija waħda f'direzzjoni waħda: 2.75 m (il-manwal ta' Lisbona)",

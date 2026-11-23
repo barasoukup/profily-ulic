@@ -888,7 +888,7 @@ export const SL = {
   "ortofoto © DGT": "ortofoto © DGT",
   "chodník: volná šířka nejméně 1,5 m u hlavních a sběrných ulic, 1,2 m u každé pěší trasy (zákon o přístupnosti 163/2006); doporučeno 1,8 m (IMT, Lisabon)": "pločnik: prosta širina najmanj 1,5 m ob glavnih in zbirnih ulicah, 1,2 m ob vsaki peš poti (zakon o dostopnosti 163/2006); priporočeno 1,8 m (IMT, Lizbona)",
   "cyklopruh: 1,5 m, nejméně 1,2 m; vedle podélného stání 2,5 m (IMT, příručka Lisabonu)": "kolesarski pas: 1,5 m, najmanj 1,2 m; ob vzdolžnem parkiranju 2,5 m (IMT, priročnik Lizbone)",
-  "stezka pro cyklisty jednosměrná: 1,5 m, nejméně 1,2 m; obousměrná 2,6 m, nejméně 2,4 m (příručka Lisabonu)": "kolesarska steza enosmerna: 1,5 m, najmanj 1,2 m; dvosmerna 2,6 m, najmanj 2,4 m (priročnik Lizbone)",
+  "stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)": "kolesarska steza enosmerna: 2 m, najmanj 1,75 m; dvosmerna 3 m, pri majhnem prometu 2,4 m (IMT in LNEC 2024)",
   "vyhrazený pruh BUS: 3,25 m, nejméně 3 m (IMT, příručka Lisabonu)": "avtobusni pas BUS: 3,25 m, najmanj 3 m (IMT, priročnik Lizbone)",
   "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (IMT, příručka Lisabonu)": "skupni pas za avtobuse in kolesarje: najmanj 3,25 m (IMT, priročnik Lizbone)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,75 m (příručka Lisabonu)": "vozni pas vozišča z več pasovi v eni smeri: 2,75 m (priročnik Lizbone)",

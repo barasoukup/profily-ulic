@@ -889,7 +889,7 @@ export const RO = {
   "ortofoto © DGT": "ortofoto © DGT",
   "chodník: volná šířka nejméně 1,5 m u hlavních a sběrných ulic, 1,2 m u každé pěší trasy (zákon o přístupnosti 163/2006); doporučeno 1,8 m (IMT, Lisabon)": "trotuar: lățime liberă de cel puțin 1,5 m pe străzile principale și colectoare, 1,2 m pe orice traseu pietonal (legea privind accesibilitatea 163/2006); recomandat 1,8 m (IMT, Lisabona)",
   "cyklopruh: 1,5 m, nejméně 1,2 m; vedle podélného stání 2,5 m (IMT, příručka Lisabonu)": "bandă pentru biciclete: 1,5 m, minimum 1,2 m; lângă parcarea longitudinală 2,5 m (IMT, ghidul Lisabonei)",
-  "stezka pro cyklisty jednosměrná: 1,5 m, nejméně 1,2 m; obousměrná 2,6 m, nejméně 2,4 m (příručka Lisabonu)": "pistă pentru biciclete cu sens unic: 1,5 m, minimum 1,2 m; cu dublu sens 2,6 m, minimum 2,4 m (ghidul Lisabonei)",
+  "stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)": "pistă pentru biciclete cu sens unic: 2 m, minimum 1,75 m; cu dublu sens 3 m, la trafic redus 2,4 m (IMT și LNEC 2024)",
   "vyhrazený pruh BUS: 3,25 m, nejméně 3 m (IMT, příručka Lisabonu)": "bandă dedicată BUS: 3,25 m, minimum 3 m (IMT, ghidul Lisabonei)",
   "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (IMT, příručka Lisabonu)": "bandă comună pentru autobuze și bicicliști: minimum 3,25 m (IMT, ghidul Lisabonei)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,75 m (příručka Lisabonu)": "bandă de circulație a unui carosabil cu mai multe benzi pe sens: 2,75 m (ghidul Lisabonei)",
