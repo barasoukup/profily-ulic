@@ -143,6 +143,11 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Balíky `pl_sl` a `pl_ds` zasahují obdélníkem do Česka (jen dotazy navíc).
 - Před nasazením NL, BE, LU, PL, FR: sloučit větve do `main` a ručně spustit workflow OSM tiles se `states: nl,be,lu,pl,fr`.
 - Logování: D1 potřebuje sloupec `country` a nový Worker (`logging/README.md`; hranice poloh teď pokrývají všechny státy), nasadit musí Bára.
+- **Proxy pro ortofota s klíčem (Bára 23. 11. 2026: uděláme, ale později):** Cloudflare Worker, který drží klíč
+  a dlaždice ukládá do mezipaměti; Bára založí účet a Worker. Nejdřív Finsko: celostátní ortofoto MML (0,5 m, CC BY 4.0,
+  klíč osobní, podmínky: ne pro velký provoz, klíč chránit; `evaluation/finland/ZDROJE.md`), pak pruhy z ortofota
+  i v Tampere, Oulu a menších městech. Totéž by šlo pro Švédsko (Lantmäteriet, jen po žádosti) a Dánsko, kdyby token
+  nechtěla mít viditelný.
 
 ## Licence ke kontrole
 
