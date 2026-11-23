@@ -668,6 +668,11 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
       **Chodník** vede od obruby k domu, nejvýš 6 m. Zbytek, a s `sidewalk=no` celý prostor, je zeleň, kde je
       ortofoto převážně zelené (podíl ≥ 0,1), jinak plocha do 12 m, jinak tam profil končí. Bez domu je chodník jen
       podle OSM (`sidewalk*`, šířka `sidewalk:width` nebo 2,5 m) a za ním profil končí;
+    - **domy z RÚIAN** (Česko, `countries/CZ.js estimateBuildings`, Bára 23. 11. 2026): kde mapa povrchů kolem řezu
+      nevrátila vůbec nic (kraj bez DTM), doplní se budovy RÚIAN, které OSM nemá (`gis.js withBuildings`; `?off=ruiandomy`).
+      Ne tam, kde mapa je: proti MTVU Prahy se chodník protáhl k přidaným domům přes zeleň (4 strany hůř, 2 lépe;
+      `RUIAN=1 node evaluation/ortofoto-osm/regrese.mjs`). Pole a les mapy (100, 200) pod odhadem jdou za něj: mapa,
+      která na místě nové zástavby kreslí pole, ještě není překreslená (Devětsilová; `?off=staramapa`);
     - **samostatný chodník OSM** (`footway=sidewalk`) za obrubou a před domem je chodník i přes trávník ZBGIS nebo
       zeleň OSM (Bára 16. 11. 2026, Štúrova v Nitře): mezi čarami mapy města do 3 m od něj, ven k domu do 4 m, jinak
       2 m kolem jeho čáry. `?off=osmwalk` vypne;

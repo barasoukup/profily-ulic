@@ -6,11 +6,17 @@
 //   node evaluation/ortofoto-osm/regrese.mjs [praha|brno …]            the current code
 //   CARS=1 node evaluation/ortofoto-osm/regrese.mjs                   with the parked cars read on the image (off in the app)
 //   OFF=pair,pieces node evaluation/ortofoto-osm/regrese.mjs           with the named features off (ortho-osm.js P.off)
+//   RUIAN=1 node evaluation/ortofoto-osm/regrese.mjs                   with RÚIAN's buildings OSM lacks, as the app in Czechia
+//   RUIAN=first …                                                      RÚIAN's buildings first, OSM's over them left out (worse)
 //   SRC=cuzk12 …                                                       only this orthophoto (default: cuzk12 and the city's 10 cm)
-import { cuts, truthOf, osmAround, stripOf, median } from "./lib.mjs";
+import { cuts, truthOf, osmAround, stripOf, median, ROOT } from "./lib.mjs";
 import { orthoOsmPolys, trimToEnds, P } from "../../pilot/public/ortho-osm.js";
 import { aiKerbs, parkFromAi, parkSkip } from "../../pilot/public/ai-kerbs.js";
 import fsAi from "node:fs";
+import path from "node:path";
+import { ruianOutlines, withBuildings } from "../../pilot/public/gis.js";
+import { politeFetch } from "../polite.mjs";
+if (process.env.RUIAN) globalThis.fetch = politeFetch;
 import { localFrame, deriveProfile } from "../../pilot/public/derive.js";
 const wayAlong = (way, frame, dir) => { const g = way.geometry.map((q) => frame.toXY(q.lon, q.lat)); let best = null; for (let i = 0; i + 1 < g.length; i++) { const [a, b] = [g[i], g[i + 1]], d = Math.hypot((a[0] + b[0]) / 2, (a[1] + b[1]) / 2); if (!best || d < best.d) best = { d, v: [b[0] - a[0], b[1] - a[1]] }; } return !best || best.v[0] * dir[0] + best.v[1] * dir[1] >= 0; };
 
@@ -44,6 +50,15 @@ function laid(p) {
   return out;
 }
 
+async function ruianCached(city, c) {
+  const file = path.join(ROOT, "data", "ruian", `${city}-${c.n}.json`);
+  try { return JSON.parse(fsAi.readFileSync(file, "utf8")); } catch {}
+  const d = 0.0007, { lat, lon } = c.cut;
+  const out = await ruianOutlines(`${lon - d},${lat - d * 0.65},${lon + d},${lat + d * 0.65}`);
+  fsAi.mkdirSync(path.dirname(file), { recursive: true });
+  fsAi.writeFileSync(file, JSON.stringify(out));
+  return out;
+}
 const aiCache = {}, dump = [];
 for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
   const list = await cuts(city);
@@ -58,7 +73,10 @@ for (const city of CITIES.length ? CITIES : ["praha", "brno"]) {
     for (const c of list) {
       const st = await stripOf(city, key, c);
       if (!st) continue;
-      const osm = { elements: await osmAround(c.cut.lat, c.cut.lon, 70) };
+      let osm = { elements: await osmAround(c.cut.lat, c.cut.lon, 70) };
+      // RUIAN=1: RÚIAN's buildings first, as the app in Czechia (countries/CZ.js estimateBuildings, gis.js withBuildings);
+      // the answers of ČÚZK kept in data/ruian (one request per cut, through polite.mjs).
+      if (process.env.RUIAN) osm = withBuildings(osm, await ruianCached(city, c), process.env.RUIAN === "first" ? "first" : "fill");
       const frame = localFrame(c.cut.lat, c.cut.lon), b = (c.cut.bearing * Math.PI) / 180, dir = [Math.sin(b), Math.cos(b)];
       const way = osm.elements.find((e) => e.type === "way" && e.id === c.cut.wayId);
       if (!way) continue;

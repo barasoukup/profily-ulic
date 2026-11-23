@@ -209,6 +209,37 @@ export const ruianLook = (use, walls, dokonceni) => ({
   house: use === 7 || use === 8 || undefined, // rodinný dům, stavba pro rodinnou rekreaci: a pitched roof (profile.js)
   farm: use === 2 || undefined, office: RUIAN_OFFICE.has(use) || undefined, garage: use === 18 || undefined,
 });
+// The outlines of RÚIAN's buildings in a bbox as OSM areas (type "area", tags.building, geometry of { lon, lat }), for
+// the estimate from the orthophoto and OSM (ortho-osm.js) where no surface map covers the cut: in Czechia RÚIAN knows
+// the houses better than OSM (Bára 23. 11. 2026; a cottage by the road the cut missed in OSM, Královéhradecký kraj).
+export async function ruianOutlines(bbox) {
+  const json = await query(RUIAN_SO, { ...envelope(bbox), outFields: "objectid", returnGeometry: "true" });
+  return (json.features || []).filter((f) => f.geometry?.rings?.length).map((f, i) => {
+    const [outer, ...holes] = f.geometry.rings.map((r) => r.map(([lon, lat]) => ({ lon, lat })));
+    return { type: "area", id: `ruian-${f.attributes?.objectid ?? i}`, tags: { building: "yes", source: "RÚIAN" }, geometry: outer, holes };
+  });
+}
+// OSM's elements with the RÚIAN buildings OSM lacks: an outline that no OSM building overlaps (none's middle inside it,
+// its own middle inside none). RÚIAN first, OSM's left out where it overlaps one, made the sidewalks worse against
+// MTVU (regression of 23. 11. 2026: within 1 m 50 → 39 % in Prague), so OSM keeps its houses ("first": the trial).
+export function withBuildings(osm, outlines, mode = "fill") {
+  if (!outlines?.length) return osm;
+  const inRing = (r, x, y) => {
+    let c = false;
+    for (let i = 0, j = r.length - 1; i < r.length; j = i++) {
+      const a = r[i], b = r[j];
+      if (a.lat > y !== b.lat > y && x < ((b.lon - a.lon) * (y - a.lat)) / (b.lat - a.lat) + a.lon) c = !c;
+    }
+    return c;
+  };
+  const mid = (g) => [g.reduce((a, p) => a + p.lon, 0) / (g.length || 1), g.reduce((a, p) => a + p.lat, 0) / (g.length || 1)];
+  const houses = (osm.elements || []).filter((el) => el.type === "area" && el.tags?.building && el.geometry?.length);
+  const overlap = (a, b) => inRing(a.geometry, ...mid(b.geometry)) || inRing(b.geometry, ...mid(a.geometry));
+  if (mode === "first") return { ...osm, elements: [...outlines, ...(osm.elements || []).filter((el) => !houses.includes(el) || !outlines.some((o) => inRing(o.geometry, ...mid(el.geometry))))] };
+  const missing = outlines.filter((o) => !houses.some((h) => overlap(o, h)));
+  return missing.length ? { ...osm, elements: [...(osm.elements || []), ...missing] } : osm;
+}
+
 export async function ruianBuilding(lat, lon) {
   const json = await query(RUIAN_SO, {
     geometry: `${lon},${lat}`, geometryType: "esriGeometryPoint", inSR: "4326", spatialRel: "esriSpatialRelIntersects",

@@ -193,3 +193,19 @@ test("Německo: panelák jen na východě (bývalá NDR), na západě jako v Rak
     assert.equal(buildingStyle({ ...slab, start: 2005 }), "moderni");
   } finally { C.setCity("praha"); }
 });
+
+test("odhad z ortofota v Česku doplní budovy z RÚIAN, které OSM nemá (23. 11. 2026)", async () => {
+  const { withBuildings } = await import("../pilot/public/gis.js");
+  const sq = (x, y, d) => [{ lon: x, lat: y }, { lon: x + d, lat: y }, { lon: x + d, lat: y + d }, { lon: x, lat: y + d }, { lon: x, lat: y }];
+  const ruian = [{ type: "area", id: "ruian-1", tags: { building: "yes", source: "RÚIAN" }, geometry: sq(0, 0, 1), holes: [] }];
+  const osm = { elements: [
+    { type: "area", id: 1, tags: { building: "house" }, geometry: sq(0.1, 0.1, 0.8) }, // the same house in OSM
+    { type: "area", id: 2, tags: { building: "house" }, geometry: sq(5, 5, 1) },
+    { type: "way", id: 3, tags: { highway: "residential" }, geometry: sq(0.2, 0.2, 0.1) },
+  ] };
+  const lone = { type: "area", id: "ruian-2", tags: { building: "yes", source: "RÚIAN" }, geometry: sq(10, 10, 1), holes: [] };
+  // OSM has the first house: its outline stays; the second only RÚIAN has: added.
+  assert.deepEqual(withBuildings(osm, [...ruian, lone]).elements.map((e) => e.id), [1, 2, 3, "ruian-2"]);
+  assert.deepEqual(withBuildings(osm, ruian, "first").elements.map((e) => e.id), ["ruian-1", 2, 3]);
+  assert.equal(withBuildings(osm, []), osm);
+});
