@@ -411,6 +411,13 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Měření 23. 11. (23 řezů v 10 městech): složení 57 %, šířka do 2 m 26 % (velké rozdíly hlavně bez fasády, posuzovatel
   měřil k okraji snímku); nejčastěji chybí chodník (10×) a stání (8×).
 
+## Portugalsko (větev portugal ze spain, Bára 23. 11. 2026, nenasazené)
+- Stát `portugal` (PT): `countries/PT.js`, `towns/portugal.js`, `signs-PT/`, `evaluation/portugal/` (ZDROJE, NORMY). Hranice
+  GISCO s Madeirou a Azorami, OSM jeden balík `pt` (jen R2). **Před nasazením workflow OSM tiles se `states: pt`.**
+- Ortofoto DGT: nejnovější let, který místo má (2025 pevnina, 2021 sever, 2018, satelit 2023); Madeira a Azory bez ortofota.
+  Mapu povrchů žádné město online nemá: jen odhad. Hledání Photon. Stání Lisabonu (EMEL) a buspruhy Porta jen jako soubory.
+- Měření 23. 11. (29 řezů v 10 městech): složení 63 %, šířka do 2 m 55 %; nejčastěji chybí stání (16×) a chodník (13×).
+
 ## Měření přesnosti (Bára 17. 11. 2026)
 - Jedna univerzální metoda pro všechny státy: skill `mereni-presnosti`, kód a zpráva `evaluation/universal/`. Použít u
   každého nového státu a u starých, když Bára řekne. Hodnotí složení uličního prostoru, pak šířku; jen řezy s fotkou

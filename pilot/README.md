@@ -266,6 +266,17 @@ a Kanárských ostrovech (`es_*`, Kanárské ostrovy u Geofabriku pod `africa/`,
   chodníku zakázané. **Značky** `signs-ES/` (katalog RD 465/2025, úřední díla podle čl. 13 LPI). **Hledání** CartoCiudad.
   Bez paneláků, univerzální vozidla. Rešerše `evaluation/spain/` (ZDROJE, NORMY).
 
+### Portugalsko (Bára 23. 11. 2026)
+
+Stát `portugal` (PT), `countries/PT.js`, `towns/portugal.js`; hranice GISCO s Madeirou a Azorami. OSM jeden balík `pt`
+(Geofabrik i s ostrovy, jen R2). Ortofoto DGT (WMS, CORS *, CC BY): nejnovější let, který místo má (2025 celá pevnina
+25 cm, 2021 sever, 2018, satelit 2023; bílý snímek = žádný), v mapě vrstvené přes sebe. Madeira a Azory ortofoto DGT
+nemají (jejich služby: nejasná licence, bez CORS). Žádné město nemá mapu povrchů online (`evaluation/portugal/ZDROJE.md`),
+profil je odhad z ortofota a OSM. Hledání Photon.
+- **Normy:** chodník 1,5 m závazně u hlavních a sběrných ulic (DL 163/2006; 1,2 m u každé pěší trasy), jinak doporučení
+  IMT a příručky Lisabonu. **Stání:** čl. 49–50 Código da Estrada (bez čísla; 3 m u plné čáry), bráno jako 3 m na směr.
+  **Značky** `signs-PT/` (RST, úřední díla); pěší zónu Portugalsko nemá (G5a zóna zákazu vjezdu), obytná i sdílená zóna H46.
+
 ### Dlaždice OSM
 
 Jedna sada dlaždic pro všechna města (`pilot/data/osm-tiles`, na webu `data/osm-tiles`) z výřezu Geofabrik Česká
