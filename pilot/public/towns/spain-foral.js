@@ -19,7 +19,8 @@ export const FORAL = {
 };
 // Which cadastres are asked without a switch: the A/B of 23. 11. 2026 (evaluation/spain/foral-ab/ZPRAVA.md).
 // ?foral=0 none, ?foral=1 all four, ?foral=nc,gi those named.
-export const FORAL_ON = new Set(["nc", "gi", "bi", "ar"]);
+// Álava off (Bára 23. 11. 2026): 2 floors more than OSM throughout, not checked on photos; ?foral=ar or ?foral=1 asks it.
+export const FORAL_ON = new Set(["nc", "gi", "bi"]);
 export function foralEnabled(code, sw) {
   if (sw === "0") return false;
   if (sw === "1") return true;

@@ -71,7 +71,7 @@ S katastrem správně 4–5 z 5, bez něj 1 z 5. Cíl 10–15 domů na město fo
 | Navarra (Pamplona) | 10 z 10 | bez OSM nelze; dotazy i čtení v pořádku | **zapnout** |
 | Gipuzkoa (Donostia) | 15 z 16 | ±1 u 11 z 12, fotky sedí | **zapnout** |
 | Bizkaia (Bilbao) | 15 z 15 | ±1 u 10 z 13, fotka sedí | **zapnout** |
-| Álava (Vitoria-Gasteiz) | 15 z 16 | soustavně +2 proti OSM, fotky 2 z 2 sedí | **zapnout, s výhradou** |
+| Álava (Vitoria-Gasteiz) | 15 z 16 | soustavně +2 proti OSM, fotky 2 z 2 sedí | **vypnuto** (Bára 23. 11. 2026: do ověření na fotkách) |
 
 Všechny čtyři zdroje pokrytí zlepšují zásadně (z téměř nuly na skoro všechny domy) a kde je co srovnat, sedí, proto
 jsou v kódu zapnuté (`FORAL_ON` v `spain-foral.js`; `?foral=0` vše vypne, `?foral=nc,gi,bi` jen vybrané). Výhrada
