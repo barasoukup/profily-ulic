@@ -48,6 +48,8 @@ export const TOWNS = {
   CY: { nicosia: [35.170, 33.365], limassol: [34.680, 33.045], larnaca: [34.915, 33.630], paphos: [34.770, 32.425], ayianapa: [34.985, 33.995] },
   // Slovenia (23. 11. 2026): the towns of the local OSM pack (last, so the earlier states keep their points).
   SI: { ljubljana: [46.051, 14.506], maribor: [46.558, 15.646], celje: [46.231, 15.260], koper: [45.548, 13.730], kranj: [46.239, 14.355], novomesto: [45.804, 15.169] },
+  // Finland (23. 11. 2026): the towns of the local OSM pack (last, so the earlier states keep their points).
+  FI: { helsinki: [60.170, 24.941], espoo: [60.176, 24.805], tampere: [61.498, 23.761], turku: [60.452, 22.267], oulu: [65.012, 25.465] },
 };
 if (process.argv[1] === new URL(import.meta.url).pathname) {
   let seed = 20261117;

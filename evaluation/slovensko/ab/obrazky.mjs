@@ -118,6 +118,15 @@ async function image(c, tMax) {
       await fs.rm(file + ".img");
       buf = await fs.readFile(file);
       await new Promise((r) => setTimeout(r, 300));
+    } else if (process.env.ORTHO === "fi") {
+      // Finland (evaluation/finland/ab): the town's orthophoto (lanes-ortho.js FI_ORTHO; Helsinki 2026, 5 cm) as a JPEG, made a PNG.
+      const { FI_ORTHO, fiOrthoAt } = await import("../../../pilot/public/lanes-ortho.js");
+      await fs.mkdir(path.dirname(file), { recursive: true });
+      await fs.writeFile(file + ".img", Buffer.from(await (await fetch(FI_ORTHO[fiOrthoAt(c.lon, c.lat)[0]].url([x0, y0, x1, y1], w, h), { headers: { "User-Agent": "profily-ulic" } })).arrayBuffer()));
+      await run("magick", [file + ".img", "PNG24:" + file]);
+      await fs.rm(file + ".img");
+      buf = await fs.readFile(file);
+      await new Promise((r) => setTimeout(r, 300));
     } else if (process.env.ORTHO === "es") {
       // Spain (evaluation/spain/ab): IGN's PNOA WMS (a JPEG, made a PNG).
       const { ES_ORTHO } = await import("../../../pilot/public/lanes-ortho.js");

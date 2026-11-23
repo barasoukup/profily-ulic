@@ -1,0 +1,392 @@
+[
+ {
+  "town": "helsinki",
+  "lat": 60.1647194,
+  "lon": 24.9309416,
+  "building": "apartments",
+  "osmLevels": 5,
+  "source": "hki",
+  "total": 5,
+  "built": 1940
+ },
+ {
+  "town": "helsinki",
+  "lat": 60.1653284,
+  "lon": 24.9242984,
+  "building": "terrace",
+  "osmLevels": 2,
+  "source": "hki",
+  "total": 1,
+  "built": 1882
+ },
+ {
+  "town": "helsinki",
+  "lat": 60.1760859,
+  "lon": 24.9379211,
+  "building": "apartments",
+  "osmLevels": 6,
+  "source": "hki",
+  "total": 6,
+  "built": 2012
+ },
+ {
+  "town": "helsinki",
+  "lat": 60.1700449,
+  "lon": 24.9259748,
+  "building": "apartments",
+  "osmLevels": 5,
+  "source": "hki",
+  "total": 5,
+  "built": 1910
+ },
+ {
+  "town": "helsinki",
+  "lat": 60.1694525,
+  "lon": 24.9247455,
+  "building": "yes",
+  "osmLevels": 1,
+  "source": "hki",
+  "total": 1,
+  "built": 1927
+ },
+ {
+  "town": "helsinki",
+  "lat": 60.162528,
+  "lon": 24.9282263,
+  "building": "apartments",
+  "osmLevels": 5,
+  "source": "hki",
+  "total": 7,
+  "built": 1927
+ },
+ {
+  "town": "helsinki",
+  "lat": 60.1639719,
+  "lon": 24.9413735,
+  "building": "apartments",
+  "osmLevels": 5,
+  "source": "hki",
+  "total": 5,
+  "built": 1902
+ },
+ {
+  "town": "helsinki",
+  "lat": 60.1755424,
+  "lon": 24.9523999,
+  "building": "university",
+  "osmLevels": 3,
+  "source": "hki",
+  "total": 2,
+  "built": 1900
+ },
+ {
+  "town": "helsinki",
+  "lat": 60.1681093,
+  "lon": 24.9433125,
+  "building": "yes",
+  "osmLevels": 6,
+  "source": "hki",
+  "total": 7,
+  "built": 1920
+ },
+ {
+  "town": "tampere",
+  "lat": 61.49687,
+  "lon": 23.7617575,
+  "building": "office",
+  "osmLevels": 3,
+  "source": "ryhti",
+  "total": null,
+  "built": 1946
+ },
+ {
+  "town": "tampere",
+  "lat": 61.5059595,
+  "lon": 23.7678235,
+  "building": "apartments",
+  "osmLevels": 7,
+  "source": "ryhti",
+  "total": 5,
+  "built": 1964
+ },
+ {
+  "town": "tampere",
+  "lat": 61.5039507,
+  "lon": 23.764366,
+  "building": "apartments",
+  "osmLevels": 7,
+  "source": "ryhti",
+  "total": 8,
+  "built": 1999
+ },
+ {
+  "town": "tampere",
+  "lat": 61.4994376,
+  "lon": 23.7572981,
+  "building": "yes",
+  "osmLevels": 1,
+  "source": null,
+  "total": null,
+  "built": null
+ },
+ {
+  "town": "tampere",
+  "lat": 61.5049933,
+  "lon": 23.7683101,
+  "building": "yes",
+  "osmLevels": 6,
+  "source": "ryhti",
+  "total": 5,
+  "built": 1972
+ },
+ {
+  "town": "tampere",
+  "lat": 61.5026934,
+  "lon": 23.751711,
+  "building": "shed",
+  "osmLevels": 1,
+  "source": null,
+  "total": null,
+  "built": null
+ },
+ {
+  "town": "tampere",
+  "lat": 61.5011208,
+  "lon": 23.7500743,
+  "building": "apartments",
+  "osmLevels": 6,
+  "source": "ryhti",
+  "total": 6,
+  "built": 1952
+ },
+ {
+  "town": "tampere",
+  "lat": 61.4992092,
+  "lon": 23.7605894,
+  "building": "toilets",
+  "osmLevels": 1,
+  "source": null,
+  "total": null,
+  "built": null
+ },
+ {
+  "town": "tampere",
+  "lat": 61.5034074,
+  "lon": 23.7548676,
+  "building": "kiosk",
+  "osmLevels": 1,
+  "source": null,
+  "total": null,
+  "built": null
+ },
+ {
+  "town": "tampere",
+  "lat": 61.5011268,
+  "lon": 23.7664769,
+  "building": "apartments",
+  "osmLevels": 7,
+  "source": "ryhti",
+  "total": 8,
+  "built": 1969
+ },
+ {
+  "town": "turku",
+  "lat": 60.4605418,
+  "lon": 22.2506168,
+  "building": "detached",
+  "osmLevels": 2,
+  "source": "ryhti",
+  "total": 2,
+  "built": 1956
+ },
+ {
+  "town": "turku",
+  "lat": 60.4518966,
+  "lon": 22.2809692,
+  "building": "apartments",
+  "osmLevels": 6,
+  "source": "ryhti",
+  "total": 6,
+  "built": 1956
+ },
+ {
+  "town": "turku",
+  "lat": 60.4509135,
+  "lon": 22.2596905,
+  "building": "commercial",
+  "osmLevels": 2,
+  "source": null,
+  "total": null,
+  "built": null
+ },
+ {
+  "town": "turku",
+  "lat": 60.4499181,
+  "lon": 22.2703609,
+  "building": "apartments",
+  "osmLevels": 8,
+  "source": "ryhti",
+  "total": 8,
+  "built": 1961
+ },
+ {
+  "town": "turku",
+  "lat": 60.4543662,
+  "lon": 22.2827742,
+  "building": "terrace",
+  "osmLevels": 1,
+  "source": "ryhti",
+  "total": 1,
+  "built": 1829
+ },
+ {
+  "town": "turku",
+  "lat": 60.4568723,
+  "lon": 22.2845918,
+  "building": "shed",
+  "osmLevels": 1,
+  "source": null,
+  "total": null,
+  "built": null
+ },
+ {
+  "town": "turku",
+  "lat": 60.4543984,
+  "lon": 22.2825067,
+  "building": "terrace",
+  "osmLevels": 2,
+  "source": "ryhti",
+  "total": 1,
+  "built": 1898
+ },
+ {
+  "town": "turku",
+  "lat": 60.4541963,
+  "lon": 22.2782611,
+  "building": "yes",
+  "osmLevels": 1,
+  "source": "ryhti",
+  "total": 1,
+  "built": 1920
+ },
+ {
+  "town": "turku",
+  "lat": 60.4521246,
+  "lon": 22.2701498,
+  "building": "apartments",
+  "osmLevels": 9,
+  "source": "ryhti",
+  "total": 10,
+  "built": 1961
+ },
+ {
+  "town": "turku",
+  "lat": 60.4503087,
+  "lon": 22.274718,
+  "building": "warehouse",
+  "osmLevels": 1,
+  "source": null,
+  "total": null,
+  "built": null
+ },
+ {
+  "town": "oulu",
+  "lat": 65.0112142,
+  "lon": 25.4794057,
+  "building": "apartments",
+  "osmLevels": 2,
+  "source": "ryhti",
+  "total": 8,
+  "built": 1963
+ },
+ {
+  "town": "oulu",
+  "lat": 65.0076059,
+  "lon": 25.4718867,
+  "building": "yes",
+  "osmLevels": 1,
+  "source": null,
+  "total": null,
+  "built": null
+ },
+ {
+  "town": "oulu",
+  "lat": 65.0160456,
+  "lon": 25.4776323,
+  "building": "yes",
+  "osmLevels": 1,
+  "source": null,
+  "total": null,
+  "built": null
+ },
+ {
+  "town": "oulu",
+  "lat": 65.0040804,
+  "lon": 25.4669416,
+  "building": "apartments",
+  "osmLevels": 3,
+  "source": "ryhti",
+  "total": 3,
+  "built": 2012
+ },
+ {
+  "town": "oulu",
+  "lat": 65.0099396,
+  "lon": 25.465276,
+  "building": "school",
+  "osmLevels": 4,
+  "source": "ryhti",
+  "total": 2,
+  "built": 1920
+ },
+ {
+  "town": "oulu",
+  "lat": 65.012206,
+  "lon": 25.4848902,
+  "building": "apartments",
+  "osmLevels": 8,
+  "source": "ryhti",
+  "total": 8,
+  "built": 2021
+ },
+ {
+  "town": "oulu",
+  "lat": 65.0153743,
+  "lon": 25.4669334,
+  "building": "hotel",
+  "osmLevels": 1,
+  "source": "ryhti",
+  "total": 8,
+  "built": 1973
+ },
+ {
+  "town": "oulu",
+  "lat": 65.0032635,
+  "lon": 25.4555202,
+  "building": "apartments",
+  "osmLevels": 7,
+  "source": "ryhti",
+  "total": 6,
+  "built": 1962
+ },
+ {
+  "town": "oulu",
+  "lat": 65.0178096,
+  "lon": 25.4555074,
+  "building": "semidetached_house",
+  "osmLevels": 1,
+  "source": "ryhti",
+  "total": 1,
+  "built": 1932
+ },
+ {
+  "town": "oulu",
+  "lat": 65.0049694,
+  "lon": 25.4738616,
+  "building": "apartments",
+  "osmLevels": 5,
+  "source": "ryhti",
+  "total": 5,
+  "built": 2005
+ }
+]

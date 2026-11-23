@@ -1,0 +1,23 @@
+[
+{"id":"he1-left","street":"Fabianinkatu","b":7,"osm":5,"photo":"nejde poznat","match":"unclear","note":"Snímek z auta podél ulice, cílový dům je na okraji záběru; kancelář s pásovými okny (60. léta) má horní patra mimo záběr, není jisté, který dům to je."},
+{"id":"he1-right","street":"Fabianinkatu","b":5,"osm":5,"photo":"nejde poznat","match":"unclear","note":"Stejné místo jako he1-left; cihlový dům vpravo má vršek mimo záběr, nelze spočítat."},
+{"id":"he2-left","street":"Caloniuksenkatu","b":6,"osm":6,"photo":"5 (nejisté)","match":"unclear","note":"Cihlový dům vlevo má přízemí + 4 patra, ustupující patro za římsou nevidět; není jisté, že je to cílový dům."},
+{"id":"he3-left","street":"Mannerheimintie","b":8,"osm":8,"photo":"nejde poznat","match":"unclear","note":"Vpravo jen spodní patra prosklené budovy pod markýzou, vršek mimo záběr."},
+{"id":"he3-right","street":"Mannerheimintie","b":5,"osm":9,"photo":"5–6 + štíty","match":"b","note":"Noční snímek, zdobený historický dům (kamenný parter, cihla, štíty); 9 podlaží z OSM je zjevně moc, odhad počtu ±1."},
+{"id":"he4-left","street":"Unioninkatu","b":6,"osm":6,"photo":"5 + podkroví","match":"both","note":"Cihlový dům kolem 1900 s rustikovaným přízemím a vikýři; 6 sedí, pokud registr počítá obytné podkroví."},
+{"id":"he7-left","street":"Lapinlahdenkatu","b":5,"osm":6,"photo":"nejde poznat","match":"unclear","note":"Žlutý dům s arkýři zblízka, horní patra mimo záběr; sousední domy mají asi 5–6 podlaží."},
+{"id":"ta1-left","street":"Ilomäentie","b":5,"osm":null,"photo":"nejde poznat","match":"unclear","note":"V záběru jen dvoupodlažní dřevěné/omítnuté domy a vlevo za stromy částečně vyšší dům; pětipodlažní kancelář nevidět."},
+{"id":"ta2-right","street":"Ratapihankatu","b":8,"osm":8,"photo":"nejde poznat","match":"unclear","note":"V popředí nízká stará budova (TLK, asi 2 podlaží), novostavba 2023 není v záběru rozpoznatelná."},
+{"id":"ta3-left","street":"Murtokatu","b":21,"osm":21,"photo":"nejde poznat","match":"unclear","note":"Zblízka jen podnož výškového domu (parkování P2), věž pokračuje mimo záběr; odpovídá výškovému domu, počet nespočítat."},
+{"id":"ta3-right","street":"Murtokatu","b":8,"osm":7,"photo":"7–8","match":"unclear","note":"Hotel Scandic, okna střídavě posunutá, tmavý parter; mezi 7 a 8 nelze rozhodnout."},
+{"id":"ta5-left","street":"Rautatienkatu","b":5,"osm":5,"photo":"nejde poznat","match":"unclear","note":"Vpravo cihlový dům s lékárnou a skleněnou markýzou, vršek mimo záběr; vlevo velký hotel, není jasné, který je cíl."},
+{"id":"ta5-right","street":"Rautatienkatu","b":6,"osm":8,"photo":"asi 7–8","match":"unclear","note":"Hotel s nepravidelnými vysokými okny přes víc podlaží; spíš vyšší než 6 (sousední bílý dům má kolem 9 řad oken), ale spočítat nejde."},
+{"id":"ta7-right","street":"Aleksanterinkatu","b":8,"osm":8,"photo":"nejde poznat (aspoň 5)","match":"unclear","note":"Cihlový funkcionalistický dům s obchody (PROF), horní patra mimo záběr."},
+{"id":"tu1-left","street":"Hovioikeudenkatu","b":7,"osm":7,"photo":"nejde poznat","match":"unclear","note":"Uprostřed záběru bílý věžový dům z 60. let s přízemním pavilonem: přízemí + 6 = 7, ale je daleko; cílový dům u kraje záběru jistě neurčím."},
+{"id":"tu1-right","street":"Hovioikeudenkatu","b":8,"osm":1,"photo":"aspoň 7 (vršek mimo záběr)","match":"b","note":"Bílý dům z 60. let s jednopodlažním obchodním pavilonem v parteru a byty nad ním; OSM 1 popisuje nejspíš jen pavilon."},
+{"id":"tu3-right","street":"Juhannuskatu","b":2,"osm":2,"photo":"2 (na zděném soklu se suterénními okny), dřevěný","match":"both","note":"Snímek vzhůru nohama; dřevěný dům se svislým obkladem, materiál wood sedí."},
+{"id":"tu4-left","street":"Itäinen Pitkäkatu","b":5,"osm":6,"photo":"5 (nejvyšší patro nízké pod římsou)","match":"b","note":"Růžový omítaný dům 20. let: přízemí + 3 + nízké horní patro s malými okny ve vlysu; 6 nevidím."},
+{"id":"tu6-left","street":"Tukholmankatu","b":null,"osm":null,"photo":"1 (+ podkroví?), dřevěný","match":"neither","note":"Žlutý dřevěný přízemní dům na cihlovém soklu, jen malé okénko ve štítu; obě data chybí."},
+{"id":"tu7-left","street":"Linnankatu","b":1,"osm":1,"photo":"1","match":"both","note":"Vpravo nízká cihlová přízemní budova, vlevo přízemní dřevěné domy; obojí 1 podlaží."},
+{"id":"ou7-left","street":"Saaristonkatu","b":2,"osm":null,"photo":"nejde poznat","match":"unclear","note":"Snímek 2016: novější cihlové a kamenné budovy a kino Finnkino, žádný dřevěný dům v záběru; dům z Ryhti (1920, dřevo) buď mimo záběr, nebo údaj nesedí."}
+]
