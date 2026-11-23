@@ -217,5 +217,9 @@ export async function ruianBuilding(lat, lon) {
   const a = json.features?.[0]?.attributes;
   if (!a) return {};
   const { pocetpodlazi: floors, zpusobvyuzitikod: use, dokonceni, druhkonstrukcekod: walls, zastavenaplocha: area } = a;
-  return { cornice: floors || undefined, roof: 0, total: floors || 0, newBuild: false, area: area || undefined, ...ruianLook(use, walls, dokonceni) };
+  // RÚIAN counts a lived-in attic as a floor (as towns/plzen.js finds by the eaves): a family house or a
+  // cottage (drawn with a pitched roof) of 2 floors or more has its top one in the roof (Jeseník: 1 NP and an
+  // attic drawn as 2 NP under a roof; silnice 230 by Mariánské Lázně, Bára 23. 11. 2026).
+  const attic = (use === 7 || use === 8) && floors >= 2 ? 1 : 0;
+  return { cornice: floors ? floors - attic : undefined, roof: attic, total: floors || 0, newBuild: false, area: area || undefined, ...ruianLook(use, walls, dokonceni) };
 }

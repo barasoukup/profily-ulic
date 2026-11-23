@@ -7,7 +7,7 @@
 // for the browser and Node), the coordinates turned to WGS 84 by towns/sjtsk.js.
 import { t } from "./i18n.js";
 import { toWgs, fromWgs } from "./towns/sjtsk.js";
-import { typeCode } from "./dmvs.js";
+import { typeCode, jvfName } from "./dmvs.js";
 
 // The regions with the WFS (RÚIAN codes of VÚSC in tools/build_kraje.mjs) and the names for the credit.
 export const REGIONS = {
@@ -28,6 +28,9 @@ const TIMEOUT = 5000; // ms; a slower region is left to the map images of dmvs.j
 const MAX_GAP = 25; // m, as dmvs.js: the widest blank roadway between areas read as a street drawn in part
 const PAD = 0.0004; // degrees, as dmvs.js
 
+// JVF DTM 1.5 (in service from 19. 11. 2026) renamed the area types zps_p_… to zps_pl_…, all but the four kinds
+// of maintained green, which kept their old names; the old names answer HTTP 400.
+const GREEN_OLD = new Set(["udrz_pl_zel_sil_veg", "udrz_pl_zel_okr_pl", "udrz_pl_zel_sk_stromu", "udrz_pl_zel_mest"]);
 // The feature types of the areas (WFS GetCapabilities of dtm_zps_plochy_bar): all on or above the ground but
 // the roofs (a stop's canopy over the sidewalk), the course of tunnels and underpasses and the underground objects.
 const AREA_TYPES = [
@@ -40,12 +43,12 @@ const AREA_TYPES = [
   "baz", "patka", "st_zpev_pov", "dv", "celo_prop", "ost_zastr_st", "veg", "poz_kom", "chod", "cyklo", "park", "dopr_ostr",
   "del_pas", "najezd", "pridr_pl", "zel", "tram_dr", "poz_lan_dr", "spec_zel_dr", "prikop", "nast", "map_pl", "mostovka",
   "portal_tunel", "portal_podchod", "most_vaha", "bud",
-].map((t) => `ms:zps_p_${t}`).join(",");
+].map((t) => `ms:${GREEN_OLD.has(t) ? "zps_p_" : "zps_pl_"}${t}`).join(",");
 // Barriers across a cut → the codes of IPR's line layer (derive.js FENCE_LINES, as towns/jihlava.js).
 const LINE_CODES = {
   zps_l_prisl_st_plot_zivy: 61210, zps_l_prisl_st_plot_jiny: 61210, zps_l_prisl_st_plot_nezj: 61210, zps_l_prisl_st_plot_zden: 61210,
   zps_l_prisl_st_plot_kov: 61210, zps_l_prisl_st_plot_drat: 61210, zps_l_prisl_st_plot_drev: 61210,
-  zps_l_prisl_st_zabradli: 61530, zps_l_prisl_st_zed: 71210, zps_l_dopr_st_protihl_stena: 71210, zps_l_dopr_st_svod: 71522,
+  zps_l_prisl_st_zabradli: 61530, zps_l_prisl_st_zed: 71210, zps_l_prisl_st_zed_hradby: 71210, zps_l_dopr_st_protihl_stena: 71210, zps_l_dopr_st_svod: 71522,
 };
 const LINE_TYPES = Object.keys(LINE_CODES).map((t) => `ms:${t}`).join(",");
 
@@ -141,7 +144,7 @@ export async function wfsAreas(bbox, { cut } = {}) {
   for (const f of answers.flat()) {
     const level = Number(f.attrs.urovenumisteniobjektuzps) || 0;
     if (level < 0 || !f.polygons.length) continue;
-    const name = f.attrs.objektovytypnazev;
+    const name = jvfName(f.attrs);
     const code = typeCode(name);
     if (code === undefined) console.warn("DTM WFS: neznámý typ", name);
     if (!code) continue;

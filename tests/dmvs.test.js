@@ -4,7 +4,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import zlib from "node:zlib";
 
-const { decodePng, classify, components, trace, simplify, typeCode } = await import("../pilot/public/dmvs.js");
+const { decodePng, classify, components, trace, simplify, typeCode, jvfName } = await import("../pilot/public/dmvs.js");
 
 // A PNG as the WMS answers it (palette with transparency), lines filtered with Sub, Up and Paeth.
 function png(w, h, palette, alpha, pixels) {
@@ -89,4 +89,18 @@ test("DMVS: názvy typů ploch → kódy MTVU", () => {
   assert.equal(typeCode("manipulační plocha"), 1003);
   assert.equal(typeCode("plocha zastřešení"), null); // a roof: the ground beneath decides
   assert.equal(typeCode("plocha příkopu, násypu, zářezu dopravní stavby"), 402);
+});
+
+test("JVF DTM 1.5: typ podle kódu JVF, ne podle skupiny (Plumlovská, Rybova: vozovka jako zeď)", () => {
+  const name = (code, group) => jvfName({ code_base: code, objektovytypnazev: group });
+  assert.equal(typeCode(name("0100000005", "Dopravní stavby")), 701);
+  assert.equal(typeCode(name("0100000007", "Dopravní stavby")), 702);
+  assert.equal(typeCode(name("0100000011", "Dopravní stavby")), 704);
+  assert.equal(typeCode(name("0100000013", "Dopravní stavby")), 702);
+  assert.equal(typeCode(name("0100000215", "Vegetace a terén")), 401);
+  assert.equal(typeCode(name("0100000168", "Součásti a příslušenství staveb")), 602);
+  assert.equal(typeCode(jvfName({ idvf: "0100000001", objektovytypnazev: "Budovy" })), 601);
+  // an unknown code with the group alone: no type (not a wall)
+  assert.equal(typeCode(name("0100009999", "Dopravní stavby")), undefined);
+  assert.equal(typeCode(jvfName({ objektovytypnazev: "plocha chodníku" })), 702); // the old names still read
 });
