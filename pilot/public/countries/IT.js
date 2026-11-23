@@ -35,8 +35,7 @@ function limitsIT(s) {
 const IT_FILE = { b1: "II-46", b11: "II-58", b8: "II-55", b30: "II-54", b28: "II-75", b29: "II-74", ip11a: "II-76", ztp: "II-79a-invalidi", ip14a: "II-345-autostrada",
   ip15a: "II-314", ip20a: "uso-corsie-bus", zona30: "II-323a-30", ip26a: "II-318", ip27a: "II-320", c8a: "II-90", c9a: "II-92b", c10a: "II-92a", c7a: "II-88" };
 const IT_CODE = { ...Object.fromEntries(Object.entries(IT_FILE).map(([k, v]) => [k, v.replace(/^II-(\d+)([a-z]?).*$/, (m, n, l) => `II.${n}${l ? `/${l}` : ""}`)])), ip20a: null };
-// 90–130 still to be downloaded from Commons (its upload server limits the rate): until then no sign for them.
-const IT_SPEEDS = [10, 20, 30, 40, 50, 60, 70, 80];
+const IT_SPEEDS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130];
 function signFile(s, seg) {
   const dir = s.dir ?? seg?.dir;
   // II.349 where the lane goes away (a one-way street), II.47 where it comes towards the viewer (no entry); with cyclists

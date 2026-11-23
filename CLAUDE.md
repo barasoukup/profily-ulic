@@ -447,7 +447,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   provincie Bolzano, Turín, Bologna, Modena. Zbytek Itálie, Vatikán a San Marino zatím mimo; Apulie 2023 bez licence.
 - `countries/IT.js`, `towns/italy.js`, `signs-IT/`, `evaluation/italy/` (ZDROJE, NORMY, ab/). OSM 5 dílů (jen R2;
   **workflow OSM tiles se `states: it`**). Plochy silnic Bologni vypnuté (celé uliční prostory), výšky budov Bologni zapnuté.
-- Měření 23. 11. (6 řezů): složení 56 %, šířka do 2 m 33 %. Rychlostní značky 90–130 se ještě stahují.
+- Měření 23. 11. (6 řezů): složení 56 %, šířka do 2 m 33 %.
 
 ## Měření přesnosti (Bára 17. 11. 2026)
 - Jedna univerzální metoda pro všechny státy: skill `mereni-presnosti`, kód a zpráva `evaluation/universal/`. Použít u

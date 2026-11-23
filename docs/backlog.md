@@ -56,7 +56,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
   „No waiting“. Výškový model 2018 (1 m, CC BY 4.0) by šel na výšky domů.
 - Itálie: další regiony, jak budou otevírat ortofota (Lombardie a Ligurie mají služby rozbité, Benátsko a Sardinie
   neodpovídají, Furlansko a Trento bez CORS, Apulie 2023 bez licence); plochy silnic Bologni rozdělit čarami obrub; dílčí
-  nálety Emilie-Romagny 2023–26 (CC BY 4.0) zapojit podle jejich pokrytí; rychlosti 90–130 dostáhnout.
+  nálety Emilie-Romagny 2023–26 (CC BY 4.0) zapojit podle jejich pokrytí.
   **(Bára)**: chodník 0,9, nebo 1,5 m?; pruh podle kategorie silnice?; jednosměrka II.349, nebo II.348?
 - Jih Evropy po Itálii **odložen** (Bára 23. 11. 2026): Balkán, Řecko, Slovinsko. Až se k nim vrátíme: Albánie (ortofoto
   v albánských souřadnicích, ověřit stupně), Chorvatsko (jen přes proxy, západ), Slovinsko (služby GURS neodpovídaly);

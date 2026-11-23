@@ -98,9 +98,6 @@
   "desc": "Italian traffic sign of no entry, one way street (Fig. 47)",
   "date": "2006-11-05"
  },
- "II-47-plus-II-4b": {
-  "note": "složeno pro aplikaci z II-47, tabulky II-4b a kola z II-55 (Commons, viz tyto soubory)"
- },
  "II-4b": {
   "title": "File:Italian traffic signs - eccezione (modello II 4-b).svg",
   "url": "https://commons.wikimedia.org/wiki/File:Italian_traffic_signs_-_eccezione_(modello_II_4-b).svg",
@@ -118,6 +115,42 @@
   "credit": "Own work",
   "desc": "maximum speed limit 10 km/h",
   "date": "7/11/2006"
+ },
+ "II-50-100": {
+  "title": "File:Italian traffic signs - limite di velocità 100.svg",
+  "url": "https://commons.wikimedia.org/wiki/File:Italian_traffic_signs_-_limite_di_velocit%C3%A0_100.svg",
+  "lic": "Public domain",
+  "artist": "F l a n k e r",
+  "credit": "Own work",
+  "desc": "maximum speed limit 100 km/h",
+  "date": "7/11/2006"
+ },
+ "II-50-110": {
+  "title": "File:Italian traffic signs - limite di velocità 110.svg",
+  "url": "https://commons.wikimedia.org/wiki/File:Italian_traffic_signs_-_limite_di_velocit%C3%A0_110.svg",
+  "lic": "Public domain",
+  "artist": "Gigillo83",
+  "credit": "Own work",
+  "desc": "maximum speed limit 110 km/h",
+  "date": "2010-05-29"
+ },
+ "II-50-120": {
+  "title": "File:Italian traffic signs - limite di velocità 120.svg",
+  "url": "https://commons.wikimedia.org/wiki/File:Italian_traffic_signs_-_limite_di_velocit%C3%A0_120.svg",
+  "lic": "Public domain",
+  "artist": "User:Gigillo83, User:HuBoro",
+  "credit": "File:Italian_traffic_signs_-_limite_di_velocità_110.svg",
+  "desc": "maximum speed limit 180 km/h",
+  "date": "2010-08-08"
+ },
+ "II-50-130": {
+  "title": "File:Italian traffic signs - limite di velocità 130.svg",
+  "url": "https://commons.wikimedia.org/wiki/File:Italian_traffic_signs_-_limite_di_velocit%C3%A0_130.svg",
+  "lic": "Public domain",
+  "artist": "Gigillo83",
+  "credit": "Own work",
+  "desc": "maximum speed limit 130 km/h",
+  "date": "2010-05-29"
  },
  "II-50-20": {
   "title": "File:Italian traffic signs - limite di velocità 20.svg",
@@ -181,6 +214,15 @@
   "credit": "http://www.codicestradainfantino.it/segnali/fii50.gif http://www.codicestradainfantino.it/segnali/tii2.gif",
   "desc": "Italian traffic sign of maximum speed limit 40 km/h.Please note that the dimensions of the document (nominally 900 × 900 pixels), bigger than the immage contained, are used for compatibility with other signs scales.",
   "date": "2006-11-05"
+ },
+ "II-50-90": {
+  "title": "File:Italian traffic signs - limite di velocità 90.svg",
+  "url": "https://commons.wikimedia.org/wiki/File:Italian_traffic_signs_-_limite_di_velocit%C3%A0_90.svg",
+  "lic": "Public domain",
+  "artist": "F l a n k e r",
+  "credit": "Own work",
+  "desc": "maximum speed limit 90 km/h",
+  "date": "7/11/2006"
  },
  "II-54": {
   "title": "File:Italian traffic signs - transito vietato ai pedoni.svg",
@@ -282,9 +324,6 @@
   "date": "9 November 2006 (upload date)"
  },
  "bus-riservato": {
-  "note": "složeno pro aplikaci z II-47, tabulky II-4b a kola z II-55 (Commons, viz tyto soubory)"
- },
- "uso-corsie-bus": {
   "title": "File:Italian traffic signs - corsia riservata agli autobus.svg",
   "url": "https://commons.wikimedia.org/wiki/File:Italian_traffic_signs_-_corsia_riservata_agli_autobus.svg",
   "lic": "Public domain",
@@ -292,5 +331,15 @@
   "credit": "Own work",
   "desc": "way for busses only",
   "date": "5 October 2011 (upload date)"
+ },
+ "II-47-plus-II-4b": {
+  "derived_from": [
+   "File:Italian traffic signs - senso vietato.svg",
+   "File:Italian traffic signs - eccezione (modello II 4-b).svg",
+   "File:Italian traffic signs - transito vietato ai velocipedi (figura II 55).svg"
+  ],
+  "lic": "Public domain",
+  "artist": "F l a n k e r; Gigillo83",
+  "note": "upraveno pro aplikaci (Profily ulic), viz signs-IT/README.md; tabulka modello II.4/b (Regolamento čl. 83 odst. 7) s kolem z II.55 místo autobusu"
  }
 }

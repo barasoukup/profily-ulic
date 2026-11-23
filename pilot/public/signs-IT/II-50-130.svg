@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="600.09418"
+   height="599.95264"
+   id="svg6486"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="CANClim.svg" viewBox="0 0 600.094 599.953">
+  <defs
+     id="defs6488" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="221.13411"
+     inkscape:cy="310.91807"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata6491">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Livello 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0.09759236,-452.3642)">
+    <path
+       sodipodi:type="arc"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.60889953;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path3808-1"
+       sodipodi:cx="1450.5791"
+       sodipodi:cy="727.09308"
+       sodipodi:rx="169.70563"
+       sodipodi:ry="195.96959"
+       d="m 1620.2847,727.09308 c 0,108.23101 -75.9798,195.96959 -169.7056,195.96959 -93.7258,0 -169.7056,-87.73858 -169.7056,-195.96959 0,-108.23102 75.9798,-195.96959 169.7056,-195.96959 93.7258,0 169.7056,87.73857 169.7056,195.96959 z"
+       transform="matrix(1.7648207,0,0,1.5282984,-2260.0608,-358.87569)" />
+    <path
+       transform="matrix(1.4878705,0,0,1.2884653,-1858.3227,-184.49469)"
+       d="m 1620.2847,727.09308 c 0,108.23101 -75.9798,195.96959 -169.7056,195.96959 -93.7258,0 -169.7056,-87.73858 -169.7056,-195.96959 0,-108.23102 75.9798,-195.96959 169.7056,-195.96959 93.7258,0 169.7056,87.73857 169.7056,195.96959 z"
+       sodipodi:ry="195.96959"
+       sodipodi:rx="169.70563"
+       sodipodi:cy="727.09308"
+       sodipodi:cx="1450.5791"
+       id="path3810-7"
+       style="fill:#ffffff;fill-opacity:1;stroke:#d40000;stroke-width:54.16794205;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       sodipodi:type="arc" />
+    <g
+       style="font-size:285.3112793px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       id="text7135">
+      <path
+         d="m 187.63034,653.19271 0,199.14672 -46.50414,0 0,-127.25294 -21.96778,0 0,-34.23596 c 18.25567,-1.3291 27.3835,-13.88169 27.38354,-37.65782 z"
+         style="font-variant:normal;font-stretch:normal;text-align:center;text-anchor:middle;fill:#000000;font-family:CodiceNeroCondensed;-inkscape-font-specification:CodiceNeroCondensed"
+         id="path7192" />
+      <path
+         d="m 274.06482,649.1962 c 16.16593,2.1e-4 29.09872,4.7078 38.79843,14.12277 9.69949,9.41537 14.54929,20.7809 14.54941,34.09664 -1.2e-4,22.82412 -10.55591,39.0859 -31.66739,48.78538 9.50795,1.52094 17.97116,6.46651 25.38964,14.83674 8.75332,9.89126 13.13004,21.77921 13.13017,35.66391 -1.3e-4,15.2199 -5.42169,28.63159 -16.26469,40.23509 -11.41209,12.17241 -25.39263,18.25861 -41.94167,18.2586 -22.25516,10e-6 -38.42116,-9.41516 -48.49804,-28.24554 -4.18519,-7.80143 -6.94531,-17.12373 -8.28036,-27.96691 l 41.65433,-8.55899 c -0.56892,7.60999 0.5746,13.60331 3.43056,17.97997 2.28117,3.99367 5.4186,5.99047 9.41228,5.99042 3.80198,5e-5 7.22529,-1.85454 10.26992,-5.56378 3.04446,-3.70912 4.56674,-8.70114 4.56682,-14.97605 -8e-5,-9.70533 -3.99369,-16.65062 -11.98084,-20.83588 -6.28073,-3.2331 -14.65106,-4.18217 -25.11102,-2.84719 l 0,-39.66042 c 9.508,1.3e-4 17.68677,-3.37528 24.53635,-10.12626 6.84944,-6.75068 9.0378,-14.59859 6.56509,-23.54375 -1.33515,-4.5623 -4.09527,-6.84353 -8.28037,-6.84371 -1.13778,1.8e-4 -2.46705,0.2846 -3.98781,0.85329 -2.66441,0.95214 -5.13719,3.23627 -7.41837,6.85241 -2.85595,4.56264 -4.47255,9.88842 -4.8498,15.97737 l -39.09447,-4.28385 c 2.66432,-22.44069 10.08269,-38.70246 22.25511,-48.78537 9.1307,-7.60972 20.0696,-11.41468 32.81672,-11.41489 z"
+         style="font-variant:normal;font-stretch:normal;text-align:center;text-anchor:middle;fill:#000000;font-family:CodiceNeroCondensed;-inkscape-font-specification:CodiceNeroCondensed"
+         id="path7194" />
+      <path
+         d="m 418.47928,648.63024 c 19.78223,2.2e-4 35.47515,11.50797 47.0788,34.52329 9.89103,19.77668 14.83661,42.50486 14.83674,68.18459 -1.3e-4,26.05727 -4.5655,48.97699 -13.69612,68.75925 -11.4121,24.34482 -27.38945,36.51721 -47.93209,36.5172 -20.72854,1e-5 -36.89454,-12.17238 -48.49804,-36.5172 -9.32232,-19.96801 -13.98347,-42.88773 -13.98346,-68.75925 -10e-6,-24.72777 4.46958,-46.69553 13.4088,-65.90335 11.41195,-24.53615 27.67372,-36.80431 48.78537,-36.80453 z m -14.82804,102.70788 c -6e-5,39.94203 5.03839,59.91299 15.11537,59.91293 2.28116,6e-5 4.18509,-1.14056 5.7118,-3.42185 5.51435,-7.79561 8.27157,-26.62595 8.27166,-56.49108 -9e-5,-12.17227 -0.66763,-23.3956 -2.00261,-33.67 -2.47288,-17.68668 -6.56227,-26.53009 -12.26818,-26.53026 -9.88542,1.7e-4 -14.8281,20.06691 -14.82804,60.20026 z"
+         style="font-variant:normal;font-stretch:normal;text-align:center;text-anchor:middle;fill:#000000;font-family:CodiceNeroCondensed;-inkscape-font-specification:CodiceNeroCondensed"
+         id="path7196" />
+    </g>
+  </g>
+</svg>

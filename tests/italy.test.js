@@ -38,6 +38,6 @@ test("Itálie: značky a normy", async () => {
     const file = f({ k });
     assert.ok(file && fs.existsSync(new URL(`../pilot/public/signs-IT/${file}.svg`, import.meta.url)), `${k}: ${file}`);
   }
-  for (const v of [10, 20, 30, 40, 50, 60, 70, 80]) assert.ok(fs.existsSync(new URL(`../pilot/public/signs-IT/II-50-${v}.svg`, import.meta.url)), `${v}`);
+  for (const v of [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130]) assert.ok(fs.existsSync(new URL(`../pilot/public/signs-IT/II-50-${v}.svg`, import.meta.url)), `${v}`);
   assert.equal(IT.limits({ type: "chodnik" }).min, 0.9);
 });
