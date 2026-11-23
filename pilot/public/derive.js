@@ -543,7 +543,9 @@ const tag = (tags, ...keys) => keys.map((k) => tags[k]).find((v) => v !== undefi
 const COLOURS = { red: "#c0503f", green: "#5f9e4a", blue: "#3f6fb0" };
 const isOnewayTags = (t) => ["yes", "1", "true", "-1"].includes(t?.oneway);
 // The way side on the drivers' left: the way's left, or its right on oneway=-1 (traffic against the geometry).
-const drivingLeft = (t) => (t?.oneway === "-1" ? "right" : "left");
+// The side of a one-way way the contraflow keeps to (the way's left where traffic keeps right; its right where it keeps
+// left, countries/<ISO>.js leftHand: Cyprus).
+const drivingLeft = (t) => ((t?.oneway === "-1") !== !!country.leftHand ? "right" : "left");
 
 function sideTags(tags, side) {
   // New scheme: parking:<side>=lane|street_side|yes + parking:<side>:orientation; old: parking:lane:<side>=parallel…
@@ -788,6 +790,11 @@ function splitRoadway(run, ctx) {
   const flip = (d) => (d === "backward" ? "forward" : "backward");
   // tramLanes() lists car lanes before the tram envelopes: sort so the ends are the curb lanes.
   mid.sort((a, b) => a.s - b.s);
+  // Traffic keeping left (countries/<ISO>.js leftHand: Cyprus): a roadway with lanes both ways is the keep-right layout
+  // mirrored (each lane takes the parts of its mirror image, kept in place).
+  // With tracks the tracks stay where the data put them: only the directions turn.
+  if (trams.length) { if (country.leftHand && !ORTHO_P.off?.has("vlevo") && new Set(mid.map((x) => x.dir).filter(Boolean)).size > 1) for (const x of mid) if (x.dir) x.dir = flip(x.dir); }
+  else mirrorLeftHand(mid);
   const curbLane = { R: mid[0], L: mid.at(-1) };
   for (const [side, st] of [["R", sideR], ["L", sideL]]) {
     const lane = curbLane[side];
@@ -835,6 +842,18 @@ function splitRoadway(run, ctx) {
       ...(TRAM_KINDS.has(x.type) && tags.embedded_rails === "tram" ? { embedded: true } : {}),
       ...(x.position ? { position: x.position, lawFree: x.lawFree, lawNeed: x.lawNeed } : {}) }))
     .sort((a, b) => a.s - b.s);
+}
+
+// Where traffic keeps left, the lanes (and tracks) of a roadway used both ways are mirrored: what the keep-right rules
+// put at position i goes to position n - 1 - i; one-way roadways stay. Returns whether anything changed.
+export function mirrorLeftHand(lanes) {
+  if (!country.leftHand || ORTHO_P.off?.has("vlevo")) return false;
+  const dirs = new Set(lanes.map((l) => l.dir).filter(Boolean));
+  if (dirs.size < 2) return false;
+  const keep = lanes.map((l) => ({ s: l.s, e: l.e, width: l.width }));
+  const parts = lanes.map(({ s, e, width, ...rest }) => rest).reverse();
+  lanes.forEach((l, i) => { for (const k of Object.keys(l)) delete l[k]; Object.assign(l, parts[i], keep[i].s !== undefined ? { s: keep[i].s, e: keep[i].e } : {}, keep[i].width !== undefined ? { width: keep[i].width } : {}); });
+  return true;
 }
 
 // lanes:forward / lanes:backward and turn:lanes(:forward|:backward) for a single carriageway.
@@ -1111,8 +1130,8 @@ function cycleTrack(r, cross, dir) {
   if (r.e - r.s < 2.5) return [{ type: "cyklostezka", s: r.s, e: r.e, source: "dtm" }];
   const m = (r.s + r.e) / 2;
   return [
-    { type: "cyklostezka", s: r.s, e: m, dir: "forward", source: "dtm" },
-    { type: "cyklostezka", s: m, e: r.e, dir: "backward", source: "dtm" },
+    { type: "cyklostezka", s: r.s, e: m, dir: country.leftHand ? "backward" : "forward", source: "dtm" },
+    { type: "cyklostezka", s: m, e: r.e, dir: country.leftHand ? "forward" : "backward", source: "dtm" },
   ];
 }
 
@@ -2421,7 +2440,7 @@ export function lanesFromShoulders(segments, tags = {}) {
   const n = oneway ? Math.max(1, Math.min(+tags.lanes || Math.round(width / 3.5), Math.floor(width / 2.5))) : width >= TWO_WAY_SPLIT ? 2 : 1;
   const src = segments[i].source;
   const lanes = Array.from({ length: n }, (_, q) => ({ type: "pruh", width: round(q === n - 1 ? width - round(width / n) * (n - 1) : width / n), source: src,
-    dir: oneway ? undefined : n === 2 ? (q === 0 ? "backward" : "forward") : undefined }));
+    dir: oneway ? undefined : n === 2 ? ((q === 0) !== !!country.leftHand ? "backward" : "forward") : undefined }));
   segments.splice(i, j - i + 1, ...lanes);
   return 1;
 }
@@ -2487,7 +2506,7 @@ function estimateFromOsm(way) {
   if (sw) segs.push({ type: "chodnik", width: DEFAULT_WIDTH.chodnik, source: "odhad" });
   const lw = total ? total / lanes : DEFAULT_WIDTH.pruh;
   for (let i = 0; i < lanes; i++) {
-    segs.push({ type: "pruh", width: round(lw), source: total ? "osm" : "odhad", dir: oneway || i >= lanes / 2 ? "forward" : "backward" });
+    segs.push({ type: "pruh", width: round(lw), source: total ? "osm" : "odhad", dir: oneway || (i >= lanes / 2) !== !!country.leftHand ? "forward" : "backward" });
   }
   if (sw) segs.push({ type: "chodnik", width: DEFAULT_WIDTH.chodnik, source: "odhad" });
   // estimate: no surface to derive from (app.js then tries the orthophoto and OSM, ortho-osm.js).
