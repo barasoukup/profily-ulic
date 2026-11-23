@@ -41,6 +41,10 @@ Co rozhodne Bára, je označeno **(Bára)**.
   (evidence tam nic nemá); ověřit na fotkách.
 - Francie: šířky vozovek BD TOPO (`?sirka=1`) bez A/B; další města s mapou povrchů (Lyon `pvochausseetrottoir`,
   Bordeaux, Nantes, Toulouse) neprověřená.
+- Španělsko: Zaragoza, vozovka jako pás kolem os OSM přesahuje přes trávu, kterou mapa nemá (zg12); A Coruña (vozovky,
+  chodníky, stání 1 : 500) zeptat se města na licenci; Valencie (obruby s typem okolí, vodorovné značení) zkusit znovu;
+  Madrid jen obrázek (čtení barev jako `dmvs.js`?); ortofoto ICGC 25 cm 2025 v Katalánsku ostřejší než PNOA (hranice
+  Katalánska); měření: chybí chodník 10×, stání 8× (`evaluation/universal`, es-*).
 - Jihlava: pasport komunikací byl 16. 11. prázdný, ověřit (CLAUDE.md, Na 19. 11.).
 - Pasporty devíti českých měst: A/B po odstávce DMVS (`evaluation/PASPORTY-AB.md`).
 
@@ -50,6 +54,9 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Belgie: AR 1975 platí do 31. 5. 2027, pak nové kódy (federální a regionální): přečíslovat články a značky.
 - Polsko: třída ulice (GP–D) se odhaduje ze skupin OSM, hlavní ulice jako Z (opatrně).
 - Jednosměrka s cyklisty v protisměru po směru bez dodatkové tabulky (NL, BE).
+- Španělsko **(Bára)**: volná šířka 3 m k protějšímu okraji brána doslova (obousměrka stání odhadne dřív než v ČR); sdílená
+  stezka bez varování (doporučení 5 m by svítilo všude); zóna 30 jako tabule S-30 (v katalogu 2025 není); Melilla má snímek
+  Airbus pod jinou licencí. Šířka pruhu BUS, BUS + kola a tramvajového pásu bez zdroje (bez varování).
 - Francie: normy kromě přístupnosti jen z druhé ruky (CEREMA přes přílohu ministerstva, příručky Paříže a Lyonu;
   Bára 23. 11.: smí varovat v celé Francii). Tramvajová plošina bez zdroje. Arrêté 2007 ověřit na Légifrance (mohl být
   změněn). ~~Paneláky, licence značek~~ (Bára 23. 11.: paneláky ne, značky volně).

@@ -395,6 +395,20 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   pro autobusy jako druhá polovina ulice (`?off=busduo`) a buspruh z krajnice (`?off=buskrajnice`; obojí obecně, Praha
   a Brno beze změny). Krajnice zůstávají u 10 z 26 bulvárů (široké vozovky bez čar na ortofotu); vypnout je bylo horší.
 
+## Španělsko (větev spain z france, Bára 23. 11. 2026, nenasazené)
+- Stát `spain` (ES): `countries/ES.js`, `towns/spain.js`, `search-es.js`, `signs-ES/`, `evaluation/spain/` (ZDROJE, NORMY, ab/).
+  Hranice GISCO s ostrovy, Ceutou, Melillou a Llívií. OSM po 17 společenstvích, Ceutě, Melille a Kanárských ostrovech
+  (`es_*`, Kanáry pod `africa/`, jen R2). **Před nasazením workflow OSM tiles se `states: es`.**
+- Ortofoto IGN PNOA (25 cm, CORS *, CC BY 4.0; mimo Španělsko satelitní pozadí: v mapě jen nad Španělskem), budovy
+  z katastru (`?catastro=0`; Baskicko a Navarra mají vlastní katastr), hledání CartoCiudad.
+- Mapa povrchů Zaragozy (dlažby 2017: chodníky, střední a zelené pásy; vozovka jako pás kolem os OSM, `?zaragoza=0`): A/B 40
+  řezů, použita ve 33: lépe 11, hůř 2, stejně 12, nejde posoudit 8; zapnutá. A Coruña (1 : 500 i s vozovkou a stáním) je ve
+  složce „Intranet“ bez licence, Madrid jen jako obrázek, Barcelona jen čáry, Valencie neodpověděla.
+- Normy: závazný chodník 1,8 m (TMA/851/2021), jinak doporučení ministerstva 2024. Stání: 3 m k protějšímu okraji vozovky
+  (čl. 91.2 a RGC, doslova). Katalog značek je od 1. 7. 2025 nový (RD 465/2025); značky jako úřední díla (čl. 13 LPI).
+- Měření 23. 11. (23 řezů v 10 městech): složení 57 %, šířka do 2 m 26 % (velké rozdíly hlavně bez fasády, posuzovatel
+  měřil k okraji snímku); nejčastěji chybí chodník (10×) a stání (8×).
+
 ## Měření přesnosti (Bára 17. 11. 2026)
 - Jedna univerzální metoda pro všechny státy: skill `mereni-presnosti`, kód a zpráva `evaluation/universal/`. Použít u
   každého nového státu a u starých, když Bára řekne. Hodnotí složení uličního prostoru, pak šířku; jen řezy s fotkou
