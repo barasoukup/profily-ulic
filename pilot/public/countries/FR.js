@@ -4,6 +4,7 @@
 import { t } from "../i18n.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
+import { franceDetails, franceLook } from "../house-looks.js";
 
 // Norms (evaluation/france/NORMY.md): France has no binding national table of widths beyond accessibility (the arrêté
 // of 15. 1. 2007 on the accessibility of streets: a sidewalk's free passage 1.4 m, 1.2 m where nothing stands beside
@@ -99,4 +100,7 @@ export default {
   panorama: false,
   art: { france: { ...czechFurniture, ...atPosts } },
   search: ["geopf"],
+  // The regional looks of its old houses (house-looks.js, docs/house-types-europe.md; Bára 23. 11. 2026).
+  houseLook: franceLook,
+  houseDetails: franceDetails,
 };

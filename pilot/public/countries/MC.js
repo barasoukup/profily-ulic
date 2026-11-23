@@ -4,6 +4,7 @@
 import { t } from "../i18n.js";
 import FR from "./FR.js";
 import { CZ_CODE } from "./default.js";
+import { mediterraneanDetails, monacoLook } from "../house-looks.js";
 
 // The signs with a footing in Monaco's Code de la route (evaluation/monaco/PRAVIDLA.md 1; Bára 23. 11. 2026: no French
 // sign the code does not know): entry bans, parking, one-way, the reserved lane (art. 32), the cycle track (art. 1), the
@@ -46,4 +47,7 @@ export default {
   tramBelt: FR.tramBelt,
   art: { monaco: FR.art.france },
   search: ["photon-mc"],
+  // The regional looks of its old houses (house-looks.js, docs/house-types-europe.md; Bára 23. 11. 2026).
+  houseLook: monacoLook,
+  houseDetails: mediterraneanDetails("MC"),
 };

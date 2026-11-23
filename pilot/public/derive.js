@@ -1306,7 +1306,7 @@ export function buildingAt(osm, frame, p) {
     // The roof's shape and the year built, where OSM has them (the look of a house abroad: profile.js buildingStyle).
     const year = parseInt(String(el.tags.start_date ?? "").slice(0, 4), 10);
     return { levels: levels ? levels + (roof || 0) : undefined, height: height || undefined, type: el.tags.building, block: blockShape(b, all), axis: mainAxis(b.ring),
-      roofShape: el.tags["roof:shape"], start: year > 1000 ? year : undefined };
+      roofShape: el.tags["roof:shape"], start: year > 1000 ? year : undefined, material: el.tags["building:material"] };
   }
   return null;
 }
@@ -2179,6 +2179,9 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     if (b?.type && b.type !== "yes") edges[`${side}Info`].type = b.type;
     if (b?.roofShape) edges[`${side}Info`].roofShape = b.roofShape;
     if (b?.start) edges[`${side}Info`].start = b.start;
+    // The walls' material (OSM building:material): a wooden house in Estonia and the north, Malta's limestone
+    // (house-looks.js); no Czech look reads it.
+    if (b?.material) edges[`${side}Info`].material = b.material;
     if (gableToStreet(b?.axis, normal)) edges[`${side}Info`].across = 1;
     // An arcade under the house (Bára 16. 11. 2026: only where the data say so): an OSM way tagged covered=arcade,
     // colonnade or building_arcade crossing the cut by the facade (5 m in front of it to 8 m behind).

@@ -4,6 +4,7 @@
 import { t } from "../i18n.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
+import { estoniaDetails, estoniaLook } from "../house-looks.js";
 
 // Norms (evaluation/estonia/NORMY.md D): the sidewalk of 1.5 m binding (the accessibility regulation of 2026 for new and
 // rebuilt streets); the rest the street standard EVS 843:2016 (second hand: paid) and Tallinn's guide. No warning for
@@ -82,4 +83,7 @@ export default {
   // as in Czechia (Bára 23. 11. 2026).
   socialistLooks: true,
   search: ["inads"],
+  // The regional looks of its old houses (house-looks.js, docs/house-types-europe.md; Bára 23. 11. 2026).
+  houseLook: estoniaLook,
+  houseDetails: estoniaDetails,
 };

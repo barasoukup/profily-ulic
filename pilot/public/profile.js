@@ -7,6 +7,7 @@ import { GENERIC_VEHICLES } from "./art.js";
 import { PLATES, signFile, plateFile, signLabel, signDir, SPEED_TEMPLATES } from "./signs.js";
 // tr: t is a part's type here.
 import { t as tr, num } from "./i18n.js";
+import { LOOKS, houseHash } from "./house-looks.js";
 
 const NS = "http://www.w3.org/2000/svg";
 const GROUND = 760; // roadway surface
@@ -89,8 +90,22 @@ export const BUILDING_STYLES = {
   typovy: tr("zděný bytový dům 50.–60. let"), povalecny: tr("poválečný bytový dům"), vila: tr("vila, starší rodinný dům"), kostka: tr("rodinný dům 60.–80. let"), novyrd: tr("nový rodinný dům"),
   statek: tr("venkovský dům štítem do ulice"), mestan: tr("měšťanský dům na náměstí"), skola: tr("škola"),
   kostel: tr("kostel"), garaz: tr("garáž"), hala: tr("hala"),
+  // The regional looks of Europe's old houses (house-looks.js, docs/house-types-europe.md; Bára 23. 11. 2026), given by
+  // the states' houseLook; by hand anywhere. The gabled ones (stit, hanza) only with ?stit=1 (LOOKS.gables).
+  haussmann: tr("haussmannovský dům"), stredomori: tr("středomořský městský dům"), azulejo: tr("portugalský dům s obkladem azulejos"),
+  galeria: tr("dům s prosklenou galerií"), malta: tr("maltský dům s dřevěným balkonem"), kypr: tr("kyperský kamenný dům"),
+  cihlovy: tr("cihlový dům s římsou"), stit: tr("cihlový dům se štítem do ulice"), dansky: tr("dánský cihlový činžák"),
+  stenstad: tr("severský omítaný činžák"), drevak: tr("malovaný dřevěný dům"), puukaupunki: tr("dřevěný městský dům"),
+  tallinnamaja: tr("tallinnský dům"), hanza: tr("hanzovní dům se štítem"),
 };
-const BASE_STYLE = { sorela: "sikma", typovy: "sikma", mestan: "sikma", kancelar: "plocha", vila: "nizky", kostka: "nizky", novyrd: "nizky", statek: "nizky" };
+// The gabled looks draw a licence Bára has yet to approve: offered by hand only with ?stit=1.
+export const GABLE_LOOKS = new Set(["stit", "hanza"]);
+const BASE_STYLE = { sorela: "sikma", typovy: "sikma", mestan: "sikma", kancelar: "plocha", vila: "nizky", kostka: "nizky", novyrd: "nizky", statek: "nizky",
+  // The regional looks: four drawings of their own (stredomori, cihla, drevo) and the tenement's (sikma).
+  haussmann: "sikma", stenstad: "sikma", stredomori: "stredomori", azulejo: "stredomori", galeria: "stredomori", malta: "stredomori", kypr: "stredomori",
+  cihlovy: "cihla", stit: "cihla", dansky: "cihla", hanza: "cihla", drevak: "drevo", puukaupunki: "drevo", tallinnamaja: "drevo" };
+const MED_LOOKS = new Set(["stredomori", "azulejo", "galeria", "malta", "kypr"]);
+const REGIONAL = new Set(Object.keys(BASE_STYLE).filter((k) => ["stredomori", "cihla", "drevo"].includes(BASE_STYLE[k]) || k === "haussmann" || k === "stenstad"));
 const OLD_STYLES = { centrum: "sikma", "centrum-obchod": "sikma", sidliste: "plocha", "sidliste-lodzie": "plocha", rd: "vila" };
 const HOUSE_TYPES = new Set(["house", "detached", "semidetached_house", "terrace", "bungalow", "villa", "farm", "garage", "garages", "shed"]);
 const FAMILY_TYPES = new Set(["house", "detached", "semidetached_house", "terrace", "bungalow", "villa"]);
@@ -106,17 +121,37 @@ const IPR_ROOF = { 1: "sikma", 3: "plocha", 5: "sikma" };
 // Within innerKm of the centre an unknown building is taken for a pitched-roof tenement, from estateKm
 // for a panel house; a town has its own (city.js innerKm, estateKm; Most has no old inner town).
 const innerKm = () => city.innerKm ?? 3;
-const STOREY = { sikma: 360, sorela: 330, typovy: 300, povalecny: 290, mestan: 330, skola: 380, kostel: 1000, garaz: 260, funkce: 310, moderni: 300, plocha: 280, kancelar: 330, nizky: 300, vila: 300, kostka: 280, novyrd: 280, statek: 280, hala: 700 }; // typical storey (cm); a hall is one tall storey
-const DEFAULT_FLOORS = { sikma: 5, sorela: 5, typovy: 4, povalecny: 5, mestan: 3, skola: 3, kostel: 1, garaz: 1, funkce: 6, moderni: 6, plocha: 8, kancelar: 5, nizky: 1, vila: 2, kostka: 2, novyrd: 2, statek: 1, hala: 1 };
+const STOREY = { sikma: 360, sorela: 330, typovy: 300, povalecny: 290, mestan: 330, skola: 380, kostel: 1000, garaz: 260, funkce: 310, moderni: 300, plocha: 280, kancelar: 330, nizky: 300, vila: 300, kostka: 280, novyrd: 280, statek: 280, hala: 700,
+  haussmann: 330, stredomori: 340, azulejo: 320, galeria: 330, malta: 360, kypr: 380, cihlovy: 310, stit: 310, dansky: 300, stenstad: 330, drevak: 270, puukaupunki: 290, tallinnamaja: 290, hanza: 320 }; // typical storey (cm); a hall is one tall storey
+const DEFAULT_FLOORS = { sikma: 5, sorela: 5, typovy: 4, povalecny: 5, mestan: 3, skola: 3, kostel: 1, garaz: 1, funkce: 6, moderni: 6, plocha: 8, kancelar: 5, nizky: 1, vila: 2, kostka: 2, novyrd: 2, statek: 1, hala: 1,
+  haussmann: 7, stredomori: 5, azulejo: 4, galeria: 5, malta: 3, kypr: 2, cihlovy: 4, stit: 4, dansky: 5, stenstad: 5, drevak: 2, puukaupunki: 1, tallinnamaja: 3, hanza: 3 };
 const PITCH = Math.tan((40 * Math.PI) / 180);
 const RIDGE = 260; // ridge of a family house, from its street facade (cm)
 // Side windows: width and gap (cm), sill and height as a share of the storey.
 const WINDOWS = { sikma: { w: 85, gap: 60, sill: 0.24, h: 0.56 }, plocha: { w: 120, gap: 50, sill: 0.3, h: 0.45 },
   nizky: { w: 85, gap: 70, sill: 0.3, h: 0.45 }, funkce: { w: 110, gap: 60, sill: 0.3, h: 0.5 }, moderni: { w: 120, gap: 40, sill: 0.05, h: 0.8 }, hala: {},
   sorela: { w: 90, gap: 70, sill: 0.28, h: 0.52 }, typovy: { w: 100, gap: 80, sill: 0.3, h: 0.47 }, povalecny: { w: 130, gap: 50, sill: 0.33, h: 0.45 }, mestan: { w: 80, gap: 90, sill: 0.3, h: 0.45 }, vila: { w: 90, gap: 70, sill: 0.3, h: 0.47 }, kostka: { w: 140, gap: 60, sill: 0.32, h: 0.42 },
-  novyrd: { w: 110, gap: 50, sill: 0.1, h: 0.72 }, statek: { w: 70, gap: 90, sill: 0.32, h: 0.4 } };
+  novyrd: { w: 110, gap: 50, sill: 0.1, h: 0.72 }, statek: { w: 70, gap: 90, sill: 0.32, h: 0.4 },
+  // The regional looks (docs/house-types-europe.md): French windows to the floor in Paris and the south, the big sash
+  // windows of the North Sea close together, small ones in the Hanseatic and wooden houses.
+  haussmann: { w: 115, gap: 100, sill: 0.04, h: 0.7 }, stredomori: { w: 100, gap: 100, sill: 0.04, h: 0.72 }, azulejo: { w: 95, gap: 85, sill: 0.05, h: 0.7 },
+  galeria: { w: 100, gap: 100, sill: 0.04, h: 0.72 }, malta: { w: 110, gap: 140, sill: 0.08, h: 0.66 }, kypr: { w: 100, gap: 120, sill: 0.1, h: 0.62 },
+  cihlovy: { w: 110, gap: 50, sill: 0.18, h: 0.66 }, stit: { w: 110, gap: 50, sill: 0.18, h: 0.66 }, dansky: { w: 95, gap: 75, sill: 0.28, h: 0.56 },
+  stenstad: { w: 100, gap: 90, sill: 0.27, h: 0.56 }, drevak: { w: 90, gap: 110, sill: 0.32, h: 0.45 }, puukaupunki: { w: 90, gap: 100, sill: 0.33, h: 0.47 },
+  tallinnamaja: { w: 90, gap: 80, sill: 0.3, h: 0.5 }, hanza: { w: 80, gap: 80, sill: 0.3, h: 0.48 } };
 // Roof coverings of the family houses: the cube's sheet or fibre-cement, the new house's anthracite concrete tiles.
-const ROOF_OF = { kostka: ["#7a7f84", "#5c6065"], novyrd: ["#44474b", "#2e3033"], kostel: ["#4f5d6b", "#36414c"] }; // slate
+const ROOF_OF = { kostka: ["#7a7f84", "#5c6065"], novyrd: ["#44474b", "#2e3033"], kostel: ["#4f5d6b", "#36414c"], // slate
+  // The regional looks: Roman tiles of the south, Galicia's slate, the North Sea's black glazed tiles, the Hanseatic
+  // red tiles; more by the house (ROOF_PICK).
+  haussmann: ["#8d969b", "#6c757a"], stredomori: ["#c0673f", "#9a4c30"], azulejo: ["#c0673f", "#9a4c30"], kypr: ["#c0673f", "#9a4c30"],
+  galeria: ["#4f5d6b", "#36414c"], cihlovy: ["#3f4142", "#2c2e2f"], stit: ["#3f4142", "#2c2e2f"], hanza: ["#b0553b", "#8f3f2b"] };
+// Coverings that differ house by house: the stone town's sheet painted black or red-brown, Danish slate or red tile,
+// the wooden houses' tiles, black or red or grey sheet.
+const ROOF_PICK = {
+  stenstad: [["#3b3d3f", "#26282a"], ["#7a3b2e", "#5a2a20"]], dansky: [["#4f5960", "#394147"], ["#b65a3c", "#8f4129"]],
+  drevak: [["#b0553b", "#8f3f2b"], ["#2e3133", "#1f2224"]], puukaupunki: [["#8d3b2c", "#6e2c20"], ["#7d8387", "#5f6468"]],
+  tallinnamaja: [["#7d8387", "#5f6468"], ["#8f3f2b", "#6e2c20"]],
+};
 // Streetmix-like colours: saturated pastel walls, dark glass with a diagonal glint, cream frames.
 const PALETTES = {
   sikma: ["#e7b96a", "#d99a86", "#8fb79a", "#86a9c6", "#e0c98f"],
@@ -149,6 +184,27 @@ const PALETTES = {
   novyrd: ["#f4f3ef", "#eceae4", "#f1ece2"],
   // A village house: limewash white, ochre or pale grey.
   statek: ["#f1ead9", "#ead9a2", "#e9e6dc"],
+  // The regional looks (docs/house-types-europe.md, checked on street photos): Lutetian limestone; the south's ochre,
+  // terracotta, yellow, salmon, off-white; azulejo tiles (blue, green, yellow, pink on white); northern Spain's stone or
+  // white; Malta's globigerina limestone; Cyprus's sandstone or lime render; brick of the North Sea and Denmark; the
+  // Nordic pastels; the wooden houses' paint; the Hanseatic render.
+  haussmann: ["#e8dcc4", "#e3d5b8", "#efe6d3", "#ddd0b5", "#e6dccb"],
+  stredomori: ["#e0b062", "#c4704f", "#ecd590", "#e8a98c", "#f1ede4", "#e1c27e", "#d7965a"],
+  stredomoriShutter: ["#4f6b4a", "#3f6b5a", "#7a5a3c"],
+  azulejo: ["#8fb0d6", "#86b3a2", "#efd88f", "#e6bcbc"],
+  galeria: ["#b9b2a3", "#efece4", "#c9c2b2"],
+  malta: ["#e2c891", "#d8bc7e", "#ead6a6", "#dcc59a"],
+  maltaAccent: ["#2f6b3f", "#9c2f2a", "#2f4f7a", "#6b4a30"],
+  kypr: ["#d8c39a", "#cdb48a", "#efe9dc"],
+  kyprShutter: ["#4f6f5a", "#3d6f8f", "#6b4a30"],
+  cihlovy: ["#8a3f2c", "#a24f35", "#6b3a2c", "#b65d3f", "#7a4a3a"],
+  stit: ["#8a3f2c", "#a24f35", "#6b3a2c", "#b65d3f", "#7a4a3a"],
+  dansky: ["#a64b33", "#9a4430", "#d7b46a", "#cfa95f"],
+  stenstad: ["#e2b766", "#e0a184", "#b9c9a4", "#cfcabf", "#ecd9a0", "#e7c3b0", "#b4c0c8"],
+  drevak: ["#8d2a1e", "#d9a441", "#e3c06a", "#f2f0ea", "#d5d3cc", "#b5c8a0"],
+  puukaupunki: ["#e7c873", "#b5c8a0", "#a8bccc", "#9a3a2a", "#d9a441", "#d9a6a0"],
+  tallinnamaja: ["#d9b36a", "#a9bf98", "#8ea4b3", "#e9d79a", "#8a6a4a", "#9aa596"],
+  hanza: ["#efeee6", "#e2c27a", "#e6b8a6", "#c8c4bb", "#c9d4b4"],
 };
 const ROOF = { tile: "#c25a3c", tileDark: "#8f3f2b", slate: "#4f5d6b", slateDark: "#36414c" };
 const BRICK = "#b8644a", SKLEP = "#8e8a82";
@@ -621,8 +677,17 @@ export function buildingStyle(info, chosen) {
   const set = OLD_STYLES[chosen] || chosen;
   if (BUILDING_STYLES[set]) return set;
   const style = derivedStyle(info);
-  return socialistLooks() ? style : westernLook(style, info, OFFICE_TYPES.has(info?.type) || !!info?.office);
+  const look = socialistLooks() ? style : westernLook(style, info, OFFICE_TYPES.has(info?.type) || !!info?.office);
+  // The state's regional look of an old house (countries/<ISO>.js houseLook, house-looks.js): after westernLook, it
+  // replaces only the old looks its rule names; Czechia has none (Czech output unchanged).
+  if (!country.houseLook) return look;
+  const h = buildingHeight(info);
+  const regional = country.houseLook(look, info, info?.levels || (h ? Math.round(h / FLOOR) : null), city);
+  return BUILDING_STYLES[regional] ? regional : look;
 }
+// What the state changes in drawing a look (countries/<ISO>.js houseDetails): a terrace or a tile roof, Spain's roller
+// blinds, upright or horizontal boards, its own colours.
+const houseDetails = (kind, info) => (country.houseDetails && country.houseDetails(kind, info, city)) || {};
 // The socialist looks (sorela, the plain brick block of the 1950s–60s, the panel house) only where they were built
 // (Bára 23. 11. 2026): countries/<ISO>.js socialistLooks, true in Czechia, Slovakia, Poland and Estonia; Germany
 // decides by the place (the former GDR, city.panels); false elsewhere and abroad (default.js).
@@ -782,30 +847,47 @@ function pitchedLow(info) {
 const ARCADE_D = 260; // how far the drawn arcade reaches from the facade into the house (cm)
 const FAMILY_LOOKS = new Set(["vila", "kostka", "novyrd", "statek"]);
 // Roof pitch of the family houses: the low hipped roof of the "cube", the steep one of a new house.
-const ROOF_PITCH = { kostka: Math.tan((18 * Math.PI) / 180), novyrd: Math.tan((38 * Math.PI) / 180), mestan: Math.tan((52 * Math.PI) / 180), kostel: Math.tan((55 * Math.PI) / 180) };
+const deg = (a) => Math.tan((a * Math.PI) / 180);
+const ROOF_PITCH = { kostka: deg(18), novyrd: deg(38), mestan: deg(52), kostel: deg(55),
+  stredomori: deg(20), azulejo: deg(22), galeria: deg(28), kypr: deg(18), dansky: deg(45), stenstad: deg(30), drevak: deg(35), puukaupunki: deg(27), tallinnamaja: deg(27) };
+// The ground floor of the regional looks: Haussmann's shop floor with its entresol, the Hanseatic house's hall.
+const GROUND_K = { haussmann: 1.5, stenstad: 1.2, stredomori: 1.2, azulejo: 1.2, galeria: 1.2, malta: 1.1, kypr: 1, cihlovy: 1.2, stit: 1.2, dansky: 1.1, hanza: 1.4, drevak: 1, puukaupunki: 1, tallinnamaja: 1 };
+// A family house's ridge lies within the 4 m strip (the small wooden houses too); a tenement's deeper.
+const SMALL_RIDGE = new Set(["drevak", "puukaupunki"]);
+// A canal house's raised ground floor over its stoep (every other house, by its place).
+const stoepZ = (kind, info) => ((kind === "cihlovy" || kind === "stit") && houseHash(info) % 2 === 1 ? 75 : 0);
+// The roof of a gabled house seen from the side: the band of its slope up to the ridge running away from the street.
+const GABLE_RISE = { stit: 400, hanza: 480 };
 const BARN_RISE = 380; // a village house: its roof rises this high (cm) from the eaves to the ridge (6–8 m deep house)
 function buildingForm(info, kind) {
   const style = BASE_STYLE[kind] || kind;
   const lv = buildingLevels(info);
   const h = buildingHeight(info);
   const n = style === "hala" || kind === "kostel" || kind === "garaz" ? 1 : Math.max(1, lv?.n || (h ? Math.round(h / FLOOR) : DEFAULT_FLOORS[kind]));
-  const roofRows = style !== "hala" && kind !== "kostel" && kind !== "garaz" && lv?.roof && lv.cornice ? Math.min(lv.roof, n - 1) : 0;
+  let roofRows = style !== "hala" && kind !== "kostel" && kind !== "garaz" && lv?.roof && lv.cornice ? Math.min(lv.roof, n - 1) : 0;
+  // A Haussmann house always has its zinc mansard: one floor of its seven, two from seven floors.
+  if (kind === "haussmann" && !roofRows && n >= 3) roofRows = n >= 7 ? 2 : 1;
+  // The brick, wooden and Mediterranean houses draw their roof floors in the roof (dormers, a gable), not as a mansard.
+  if (style === "cihla" || style === "drevo" || MED_LOOKS.has(kind)) roofRows = 0;
   const S = STOREY[kind];
   // A known height sets the storey (within reason); pitched roofs sit above it.
   const storey = h ? Math.min(S * 1.5, Math.max(S * 0.7, (h * 100) / n)) : S;
   // Tenements have a taller ground floor.
   // A panel house stands on a 100 cm plinth (raised ground floor).
   // A "cube" family house has a raised ground floor over its half-sunk garage and cellar.
-  const ground = kind === "sikma" ? storey * 1.2 : style === "sikma" ? storey * 1.1 : style === "funkce" ? storey * 1.15
+  const ground = GROUND_K[kind] ? storey * GROUND_K[kind] : kind === "sikma" ? storey * 1.2 : style === "sikma" ? storey * 1.1 : style === "funkce" ? storey * 1.15
     : kind === "plocha" ? storey + 90 : kind === "kostka" ? storey + 110 : storey;
   const body = ground + (n - roofRows - 1) * storey;
   const flat = style === "plocha" || style === "funkce" || style === "povalecny" || style === "moderni" || style === "hala" || kind === "garaz"
-    || (kind === "skola" && (info?.built ?? info?.period) > 1955) || (kind === "nizky" && !pitchedLow(info));
+    || (kind === "skola" && (info?.built ?? info?.period) > 1955) || (kind === "nizky" && !pitchedLow(info))
+    // Malta's houses and the south's terraces (azotea, terrazza): a flat roof behind a balustrade.
+    || kind === "malta" || (MED_LOOKS.has(kind) && (houseDetails(kind, info).terrace ?? (kind === "kypr" ? !(info?.roofShape && info.roofShape !== "flat") : info?.roofShape === "flat")));
   const pitch = ROOF_PITCH[kind] || PITCH;
   const sawtooth = style === "hala" && ["industrial", "manufacture"].includes(info?.type) && IPR_ROOF[info?.roofType] !== "plocha";
   // A family house shows its ridge inside the 4 m strip; a tenement's ridge lies deeper, past the cut.
-  const pitched = kind === "statek" ? BARN_RISE + 40 : style === "nizky" ? (RIDGE + 55) * pitch + 45 : (EDGE + 35) * pitch + 45;
-  const roofH = flat ? roofRows * storey + (sawtooth ? 430 : style === "hala" ? 110 : 50) : roofRows && kind !== "statek" ? roofRows * storey + 170 : pitched;
+  const pitched = kind === "statek" ? BARN_RISE + 40 : GABLE_RISE[kind] ? GABLE_RISE[kind] + 100 : kind === "cihlovy" ? 250
+    : style === "nizky" || SMALL_RIDGE.has(kind) ? (RIDGE + 55) * pitch + 45 : (EDGE + 35) * pitch + 45;
+  const roofH = flat ? roofRows * storey + (sawtooth ? 430 : style === "hala" ? 110 : MED_LOOKS.has(kind) ? 110 : 50) : roofRows && kind !== "statek" ? roofRows * storey + 170 : pitched;
   return { n, roofRows: kind === "statek" ? 0 : roofRows, storey, ground, body, roofH, flat, pitch, chimney: flat ? 0 : 70 };
 }
 
@@ -832,16 +914,19 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
   const f = buildingForm(info, kind);
   // tint belongs to the house (set by derive.js), so a flipped profile keeps each house's colours.
   const seed = (info?.levels || 0) * 7 + Math.round((info?.km || 0) * 10) + (info?.tint ?? (side === "left" ? 0 : 3));
-  const pal = (k) => PALETTES[k][seed % PALETTES[k].length];
+  const det = REGIONAL.has(kind) ? houseDetails(kind, info) : {};
+  const pal = (k) => (k === kind && det.palette ? det.palette : PALETTES[k])[seed % (k === kind && det.palette ? det.palette : PALETTES[k]).length];
   const accent = pal(PALETTES[kind] ? kind : style);
+  const med = MED_LOOKS.has(kind), brick = kind === "cihlovy" || kind === "stit" || kind === "dansky", wood = style === "drevo";
   const factory = style === "hala" && ["industrial", "manufacture"].includes(info?.type);
   const sawtooth = factory && IPR_ROOF[info?.roofType] !== "plocha";
   const shop = style === "hala" && ["retail", "supermarket"].includes(info?.type);
   const office = kind === "kancelar";
   const family = FAMILY_LOOKS.has(kind);
   // Window frames: brown wood in the cube, anthracite in a new house, cream elsewhere.
-  const WF = kind === "kostka" ? "#6b4a35" : kind === "novyrd" ? "#3c3f43" : FRAME;
-  const tile = ROOF_OF[kind] || [ROOF.tile, ROOF.tileDark];
+  // White frames in the north and in Paris.
+  const WF = kind === "kostka" ? "#6b4a35" : kind === "novyrd" ? "#3c3f43" : brick || wood || kind === "stenstad" || kind === "haussmann" || kind === "hanza" ? "#f4f2ec" : FRAME;
+  const tile = ROOF_PICK[kind]?.[(seed >> 1) % ROOF_PICK[kind].length] || ROOF_OF[kind] || [ROOF.tile, ROOF.tileDark];
   // A panel house is one colour: the light shade of its insulation colour (Bára: no two-tone field).
   const wall = style === "plocha" ? (office ? pal("plochaWall") : tint(accent, 1.22)) : factory ? BRICK : style === "hala" ? "#cdd4d9" : accent;
   const shade = tint(wall, 0.88), dark = tint(wall, 0.7), trim = tint(wall, 1.12);
@@ -868,12 +953,17 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     box(d - 10, d + w + 10, z - 22, z - 10, shade); // shadow under the sill
     if (kind === "vila" || kind === "sorela") box(d - 20, d + w + 20, z - 12, z + h + 22, trim, outline); // the window surround (šambrána)
     if (kind === "sorela") box(d - 30, d + w + 30, z + h + 22, z + h + 34, tint(trim, 0.95), outline); // and a little cornice over it
+    if (wood) box(d - 16, d + w + 16, z - 12, z + h + 26, "#f6f4ee", outline); // the white boards round a wooden window
+    if (med || kind === "stenstad" || kind === "haussmann") box(d - 14, d + w + 14, z - 10, z + h + 16, tint(wall, 1.08)); // the surround a shade lighter
+    if (brick) box(d - 10, d + w + 10, z + h + 7, z + h + 24, "#d8cfb5"); // a sandstone lintel
     box(d - 7, d + w + 7, z - 7, z + h + 7, WF);
     box(d, d + w, z, z + h, lit ? LIT : GLASS);
     poly([[d + w * 0.5, z + h], [d + w, z + h], [d + w, z + h * 0.55]], lit ? "#f8e7b5" : GLINT);
     if (kind !== "novyrd") box(d + w / 2 - 3, d + w / 2 + 3, z, z + h, WF);
     if (kind !== "statek") box(d, d + w, z + h * (kind === "kostka" ? 0.62 : 0.7) - 3, z + h * (kind === "kostka" ? 0.62 : 0.7) + 3, WF);
     else box(d, d + w, z + h * 0.5 - 3, z + h * 0.5 + 3, WF); // a village window: a cross
+    if (kind === "drevak") box(d, d + w, z + h * 0.35 - 3, z + h * 0.35 + 3, WF); // six panes
+    if (brick) box(d, d + w, z + h * 0.45 - 3, z + h * 0.45 + 3, WF); // the sash window's meeting rail
     box(d - 12, d + w + 12, z - 12, z - 4, dark); // sill
     if ((luck === 2 || luck === 9 || luck === 11 || n === 3) && !lit) {
       box(d - 4, d + w + 4, z - 28, z - 12, "#9b6a45");
@@ -882,6 +972,27 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       box(d + 4, d + w / 3, z + 14, z + h - 4, "#efe6cf", { "fill-opacity": 0.5 });
       for (let i = 0; i < 3; i++) dot(d + 4 + ((i + 0.5) * (w / 3 - 4)) / 3, z + 14, 5, "#efe6cf");
     }
+  };
+  // The south's shutters beside a window (persiane: louvred leaves, now and then one closed over it), or Spain's roller
+  // blind let partly down under its box.
+  const shutterCol = kind === "kypr" ? pal("kyprShutter") : kind === "malta" ? pal("maltaAccent") : pal("stredomoriShutter");
+  const shutters = (d, z, w, h, n) => {
+    const luck = (((n + seed * 31) * 2654435761) >>> 0) % 13;
+    if (det.blinds) {
+      const down = luck % 3 === 0 ? 0.6 : luck % 3 === 1 ? 0.3 : 0.1, BL = luck % 2 ? "#cdbb9a" : "#e3ddcf";
+      box(d - 4, d + w + 4, z + h + 7, z + h + 24, tint(wall, 0.92), outline);
+      box(d, d + w, z + h * (1 - down), z + h, BL);
+      for (let zz = z + h - 7; zz > z + h * (1 - down) + 2; zz -= 7) box(d, d + w, zz - 1, zz, tint(BL, 0.82));
+      return;
+    }
+    const leaf = (a, b) => {
+      box(a, b, z - 4, z + h + 4, shutterCol, { stroke: tint(shutterCol, 0.7), "stroke-width": 1, "vector-effect": "non-scaling-stroke" });
+      for (let zz = z + 8; zz < z + h; zz += 9) box(a + 4, b - 4, zz - 1.2, zz + 1.2, tint(shutterCol, 0.75));
+    };
+    if (luck === 4) { leaf(d, d + w / 2); leaf(d + w / 2, d + w); return; } // closed
+    const lw = Math.min(w / 2, 48), lf = Math.min(lw, d - 20); // the front leaf stays on the wall
+    if (lf > 14) leaf(d - 8 - lf, d - 8);
+    leaf(d + w + 8, d + w + 8 + lw);
   };
   // A canopy over a door on the side wall, seen from the front: a slab, its shadow, two brackets.
   const canopy = (d0, d1, z, fill) => {
@@ -898,7 +1009,74 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
   };
 
   // --- Roof and gable, behind the wall ---
-  if (kind === "statek") {
+  if (kind === "cihlovy") {
+    // The North Sea cornice house (lijstgevel): behind the white wooden cornice the band of a roof whose ridge runs
+    // away from the street (seen like a village house's), black glazed tiles, a ridge, a chimney at the back.
+    const zr = top + 200;
+    box(EDGE - 110, EDGE - 66, zr - 30, zr + 70, tint(wall, 0.95));
+    box(EDGE - 116, EDGE - 60, zr + 62, zr + 72, tint(wall, 0.7));
+    box(30, EDGE, top, zr, tile[0]);
+    for (let z = top + 30; z < zr - 8; z += 30) box(30, EDGE, z, z + 4, tile[1], { "fill-opacity": 0.6 });
+    box(30, EDGE, zr - 8, zr + 4, tile[1]);
+    box(EDGE - 150, EDGE - 100, top + 70, top + 130, tint(tile[1], 0.8)); // a roof light
+  } else if (GABLE_RISE[kind]) {
+    // A house with its gable to the street (the North Sea's step, neck or bell gable; the Hanseatic house of Tallinn): the
+    // band of its roof up to the ridge running away from the street, as a village house's. The gable stands edge-on at
+    // the street; with ?stit=1 (LOOKS.gables, Bára to approve) its outline is drawn over the band as if turned towards us.
+    const H = GABLE_RISE[kind], zr = top + H;
+    box(EDGE - 120, EDGE - 76, zr - 40, zr + 70, kind === "hanza" ? "#c46a4b" : tint(wall, 0.95));
+    box(EDGE - 126, EDGE - 70, zr + 62, zr + 72, "#8d4a34");
+    box(0, EDGE, top - 10, zr, tile[0]);
+    for (let z = top + 24, i = 0; z < zr - 10; z += 32, i++) {
+      box(0, EDGE, z, z + 5, tile[1], { "fill-opacity": 0.55 });
+      for (let d = i % 2 ? 10 : 30; d < EDGE; d += 40) box(d, d + 3, z - 27, z, tile[1], { "fill-opacity": 0.3 });
+    }
+    box(0, EDGE, zr - 10, zr + 6, tile[1]); // ridge
+    const beamZ = zr - 70;
+    if (LOOKS.gables) {
+      // The gable's outline: rising from the cornice to its top over the middle of the strip (d = 200).
+      const h = houseHash(info), a = 6, b = EDGE - 6, c = EDGE / 2, gTop = zr + 40;
+      const form = kind === "hanza" ? (h % 4 === 0 ? "trap" : "plain") : ["trap", "hals", "klok"][h % 3];
+      let pts;
+      if (form === "trap") { // a stepped gable: four steps each side and a top block
+        const steps = 4, sh = (gTop - top) / (steps + 1), sw = (c - 45 - a) / steps;
+        pts = [[a, top]];
+        for (let i = 0; i < steps; i++) pts.push([a + i * sw, top + (i + 1) * sh], [a + (i + 1) * sw, top + (i + 1) * sh]);
+        pts.push([c - 45, gTop], [c + 45, gTop]);
+        for (let i = steps - 1; i >= 0; i--) pts.push([b - (i + 1) * sw, top + (i + 1) * sh], [b - i * sw, top + (i + 1) * sh]);
+        pts.push([b, top]);
+      } else if (form === "hals") { // a neck gable: shoulders with volutes, the neck under a small pediment
+        const zs = top + (gTop - top) * 0.42, nk = 70;
+        pts = [[a, top], [a, zs - 30], [c - nk - 60, zs], [c - nk, zs], [c - nk, gTop - 50], [c, gTop], [c + nk, gTop - 50], [c + nk, zs], [c + nk + 60, zs], [b, zs - 30], [b, top]];
+      } else if (form === "klok") { // a bell gable: an S curve to a round top
+        const left = [], H2 = gTop - top;
+        for (let i = 0; i <= 12; i++) {
+          const u = (i / 12) * 0.86, sm = Math.min(1, Math.max(0, (u - 0.08) / 0.7)), s2 = sm * sm * (3 - 2 * sm);
+          left.push([c - (60 + (c - a - 60) * (1 - s2)), top + u * H2]);
+        }
+        for (let i = 1; i <= 6; i++) { const v = i / 6; left.push([c - 60 * Math.cos((v * Math.PI) / 2), top + H2 * (0.86 + 0.14 * Math.sin((v * Math.PI) / 2))]); }
+        pts = [[a, top], ...left, ...left.slice(0, -1).reverse().map(([d, z]) => [2 * c - d, z]), [b, top]];
+      } else pts = [[a, top], [c, gTop], [b, top]]; // a plain steep gable
+      poly(pts, wall, outline);
+      if (brick || kind === "stit") for (let z = top + 30; z < gTop; z += 30) { // brick courses inside the outline (clipped by eye: short of its edge)
+        const inside = pts.filter(([, pz]) => pz >= z);
+        if (inside.length) { const d0 = Math.min(...inside.map(([pd]) => pd)) + 6, d1 = Math.max(...inside.map(([pd]) => pd)) - 6; if (d1 > d0) box(d0, d1, z - 1.5, z + 1.5, tint(wall, 0.88)); }
+      }
+      if (form === "trap" || form === "hals" || form === "klok") for (const [pd, pz] of pts.slice(1, -1)) if (pz > top + 20) box(pd - 4, pd + 4, pz, pz + 6, "#efe9dc"); // white copings
+      // Windows of the attic floors and the loft door under the beam.
+      const win = WINDOWS[kind];
+      for (const d of [c - 95, c + 95 - win.w * 0.8]) window(d, top + 40, win.w * 0.8, Math.min(120, (gTop - top) * 0.3), 7);
+      box(c - 36, c + 36, beamZ - 150, beamZ - 20, DOOR, outline);
+      box(c - 2, c + 2, beamZ - 150, beamZ - 20, tint(DOOR, 0.7));
+    } else {
+      // Without the licence: the gable's plate, edge-on, rising past the ridge.
+      box(-12, 12, top, zr + 80, tint(wall, 0.95), outline);
+      if (brick || kind === "stit") for (let z = top + 30; z < zr + 80; z += 30) box(-12, 12, z - 1.5, z + 1.5, tint(wall, 0.85));
+    }
+    // The hoist beam over the street, its hook.
+    box(-80, 12, beamZ, beamZ + 22, "#5b4632", outline);
+    box(-74, -70, beamZ - 40, beamZ, "#3a3a3a");
+  } else if (kind === "statek") {
     // A village house with its gable to the street: we see its long side, so the roof shows as a band of tiles
     // from the eaves up to the ridge running away from the street; the gable stands edge-on at the street with its
     // verge board, a chimney over the ridge.
@@ -916,32 +1094,46 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     box(-30, -12, top - 22, zr + 8, "#8a6a4a", outline); // the verge board of the gable, edge-on
     box(0, EDGE, top - 40, top - 22, shade); // shadow under the eaves
   } else if (style === "sikma" && f.roofRows) {
-    // Mansard: steep slate slope with a dormer, shallow top; the gable end has the attic windows.
+    // Mansard: steep slate slope with a dormer, shallow top; the gable end has the attic windows. Haussmann's is zinc,
+    // with a row of brick chimney stacks on the ridge.
+    const SL = kind === "haussmann" ? "#8d969b" : kind === "stenstad" ? tile[0] : ROOF.slate, SD = kind === "haussmann" ? "#6c757a" : kind === "stenstad" ? tile[1] : ROOF.slateDark;
     const rise = f.roofRows * f.storey, run = rise * 0.28, zt = top + rise;
     const zBack = zt + (EDGE - run) * 0.3;
     // Chimney first: the roof and the gable hide its foot.
     box(EDGE - 175, EDGE - 125, zt, zBack + 80, "#c46a4b");
     box(EDGE - 183, EDGE - 117, zBack + 70, zBack + 82, "#8d4a34");
+    if (kind === "haussmann") for (const dc of [EDGE - 290, EDGE - 70]) { // more stacks, each with its pots
+      const zc = zt + (dc - run) * 0.3;
+      box(dc - 22, dc + 22, zt, zc + 90, "#b8644a");
+      box(dc - 28, dc + 28, zc + 82, zc + 94, "#8d4a34");
+      for (const p of [-12, 0, 12]) box(dc + p - 4, dc + p + 4, zc + 94, zc + 112, "#a0553c");
+    }
     poly([[0, top], [run, zt], [EDGE, zBack], [EDGE, top]], shade, outline);
     // A slate slab as thick as the tiled ones: dark underside, then the slate, a gutter at the foot and at the break.
-    poly([[-30, top - 4], [run - 16, zt + 40], [EDGE, zBack + 40], [EDGE, zBack], [run, zt], [0, top]], ROOF.slate);
-    poly([[-8, top], [run - 4, zt + 10], [EDGE, zBack + 10], [EDGE, zBack], [run, zt], [0, top]], ROOF.slateDark);
-    dot(-26, top - 6, 10, ROOF.slateDark);
-    dot(run - 14, zt + 30, 8, ROOF.slateDark);
+    poly([[-30, top - 4], [run - 16, zt + 40], [EDGE, zBack + 40], [EDGE, zBack], [run, zt], [0, top]], SL);
+    poly([[-8, top], [run - 4, zt + 10], [EDGE, zBack + 10], [EDGE, zBack], [run, zt], [0, top]], SD);
+    dot(-26, top - 6, 10, SD);
+    dot(run - 14, zt + 30, 8, SD);
     for (let k = 0; k < f.roofRows; k++) row(run + 40, EDGE - 40, top + k * f.storey + 0.25 * f.storey, 0.5 * f.storey, full + k);
     // Dormer: only its cheek shows, between the steep slope and its face, under a little roof.
     const slopeD = (z) => ((z - top) / rise) * run;
     const zb = top + rise * 0.3, zc = zb + 140, dF = Math.max(4, slopeD(zb) - 30);
-    poly([[slopeD(zb), zb], [dF, zb], [dF, zc], [slopeD(zc), zc]], tint(ROOF.slate, 1.35), outline);
-    box(dF, dF + 10, zb, zc, ROOF.slateDark); // the window frame, edge-on
-    poly([[dF - 14, zc], [slopeD(zc), zc], [slopeD(zc), zc + 34], [dF - 14, zc + 14]], ROOF.slateDark); // its little roof
+    poly([[slopeD(zb), zb], [dF, zb], [dF, zc], [slopeD(zc), zc]], kind === "haussmann" ? "#7f888d" : tint(SL, 1.35), outline);
+    box(dF, dF + 10, zb, zc, SD); // the window frame, edge-on
+    if (kind === "haussmann") { // a zinc dormer with its little arched hood
+      poly([[dF - 16, zc], [slopeD(zc) + 6, zc], [slopeD(zc) + 6, zc + 22], [dF - 16, zc + 22]], "#9aa3a8", outline);
+      const [x1, x2] = [X(dF - 16), X(slopeD(zc) + 6)].sort((p, q) => p - q);
+      el("path", { d: `M${x1} ${surface - zc - 22} Q ${(x1 + x2) / 2} ${surface - zc - 60} ${x2} ${surface - zc - 22} Z`, fill: "#9aa3a8", ...outline }, g);
+    } else poly([[dF - 14, zc], [slopeD(zc), zc], [slopeD(zc), zc + 34], [dF - 14, zc + 14]], SD); // its little roof
   } else if (!f.flat) {
-    const eave = style === "nizky" ? (kind === "kostka" ? 30 : 55) : 35;
-    const ridge = style === "nizky" ? RIDGE : EDGE + 200, P = f.pitch;
+    const eave = { stredomori: 45, azulejo: 30, galeria: 40, kypr: 40, stenstad: 20, dansky: 30, drevak: 45, puukaupunki: 40, tallinnamaja: 45 }[kind]
+      ?? (style === "nizky" ? (kind === "kostka" ? 30 : 55) : 35);
+    const small = style === "nizky" || SMALL_RIDGE.has(kind);
+    const ridge = small ? RIDGE : EDGE + 200, P = f.pitch;
     // The underside of the roof meets the wall top at the facade; the eaves reach lower, over the street.
     const z = (d) => top + 12 + Math.min(d, ridge) * P - Math.max(0, d - ridge) * P;
     // Chimney first (the roof hides its foot), then the gable up to the roof, then a thick tiled slab.
-    const dc = style === "nizky" ? RIDGE + 50 : EDGE - 80;
+    const dc = small ? RIDGE + 50 : EDGE - 80;
     if (kind !== "kostel") { // a church has no chimney
       box(dc - 24, dc + 24, top, z(dc) + 100, "#c46a4b");
       box(dc - 32, dc + 32, z(dc) + 90, z(dc) + 102, "#8d4a34");
@@ -954,9 +1146,31 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     slab(-eave, Math.min(ridge, EDGE));
     if (ridge < EDGE) slab(ridge, EDGE);
     box(0, EDGE, top - 26, top, shade); // shadow under the eaves
-    if (style === "sikma" && kind !== "typovy") for (const d of [-eave + 10, -eave / 2 + 2]) box(d - 5, d + 5, top - 16, z(d) - 12, ROOF.tileDark); // brackets
+    if (style === "sikma" && kind !== "typovy" && kind !== "stenstad") for (const d of [-eave + 10, -eave / 2 + 2]) box(d - 5, d + 5, top - 16, z(d) - 12, ROOF.tileDark); // brackets
+    else if (wood) box(-eave, -eave + 8, z(-eave) - 40, z(-eave) + 4, "#f6f4ee"); // the white fascia board
     else dot(-eave + 2, z(-eave) - 16, 10, tint(tile[1], 0.9)); // gutter
-    if (kind === "kostka") {} // the low hipped roof of the cube has no gable
+    if (kind === "stenstad") {
+      // A sheet roof: the standing seams' ribs on the slope, the snow guard (snöräcke) along the eaves, a roof ladder.
+      for (let d = -eave + 20; d < Math.min(ridge, EDGE); d += 60) box(d - 2, d + 2, z(d) + 30, z(d) + 38, tint(tile[0], 1.5));
+      const zg = (d) => z(d) + 30;
+      for (const d of [-eave + 14, 10, 34]) box(d - 2, d + 2, zg(d), zg(d) + 32, "#2b2d2f");
+      poly([[-eave + 10, zg(-eave + 10) + 26], [40, zg(40) + 26], [40, zg(40) + 32], [-eave + 10, zg(-eave + 10) + 32]], "#2b2d2f");
+      poly([[-eave + 10, zg(-eave + 10) + 12], [40, zg(40) + 12], [40, zg(40) + 15], [-eave + 10, zg(-eave + 10) + 15]], "#2b2d2f");
+      for (let d = 120; d < EDGE - 40; d += 36) box(d - 10, d + 10, z(d) + 30, z(d) + 36, "#4a4d50"); // the roof walkway
+    } else if (kind === "dansky") { // a white dormer (kvist) in the slope, rows of tiles or slates
+      for (let zr = top + 40; zr < z(EDGE) - 30; zr += 34) box((zr - top - 12) / P + 8, EDGE, zr, zr + 4, tile[1], { "fill-opacity": 0.35 });
+      const zb = top + 60, db = (zb - top) / P + 20;
+      box(db, db + 120, zb, zb + 130, "#f4f2ec", outline);
+      poly([[db - 12, zb + 126], [db + 132, zb + 126], [db + 132, zb + 146], [db - 12, zb + 140]], tile[1]);
+      window(db + 25, zb + 20, 70, 85, 4);
+    } else if (med && !small) { // rows of Roman tiles (coppi, teja árabe), the eaves' double row
+      for (let zr = top + 40; zr < z(EDGE) - 26; zr += 26) box((zr - top - 12) / P + 8, EDGE, zr, zr + 5, tile[1], { "fill-opacity": 0.4 });
+      for (let d = -eave + 6; d < -2; d += 14) dot(d, z(d) + 4, 6, tint(tile[0], 0.85));
+    } else if (kind === "tallinnamaja") { // a sheet roof's seams, a small gable window over the eaves floor
+      for (let d = -eave + 20; d < EDGE; d += 60) box(d - 2, d + 2, z(d) + 30, z(d) + 36, tint(tile[0], 1.4));
+      dot(200, top + 80, 24, "#f6f4ee");
+      dot(200, top + 80, 17, GLASS);
+    } else if (kind === "kostka") {} // the low hipped roof of the cube has no gable
     else if (kind === "skola" || kind === "kostel") { // rows of tiles (slates on a church), no gable
       for (let zr = top + 40; zr < z(Math.min(ridge, EDGE)) - 30; zr += 34) box((zr - top - 12) / P + 8, EDGE, zr, zr + 4, tile[1], { "fill-opacity": 0.35 });
     } else if (kind === "typovy") { // rows of tiles and a second chimney
@@ -981,7 +1195,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       }
       box(RIDGE - 45, RIDGE + 45, top + 30, top + 120, "#3c3f43");
       box(RIDGE - 39, RIDGE + 39, top + 36, top + 114, GLASS);
-    } else if (f.roofRows || style === "nizky") {
+    } else if (f.roofRows || small) {
       // A window in the gable, under the ridge where the gable is highest, kept clear of the roof.
       const ww = 75, wh = Math.min(95, z(RIDGE - ww / 2 - 10) - 12 - top - 60 - 10);
       window(RIDGE - ww / 2, top + 50, ww, wh, 1);
@@ -997,14 +1211,48 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
   el("rect", { x, y: surface, width: EDGE, height: cellar, fill: SKLEP }, g);
   box(0, EDGE, -8, 0, tint(SKLEP, 0.85));
   const dCellar = style === "hala" || office ? 32 : 230; // under the ground-floor window, not under the door
-  if (!["plocha", "statek", "garaz", "kostel"].includes(kind)) { // a panel house has it in the plinth, a village house has no cellar window
+  if (!["plocha", "statek", "garaz", "kostel", "malta", "kypr", "drevak", "puukaupunki"].includes(kind)) { // a panel house has it in the plinth, a village house has no cellar window
     box(dCellar, dCellar + 66, -cellar * 0.55 - 6, -cellar * 0.55 + 31, FRAME); // a cellar window
     box(dCellar + 6, dCellar + 60, -cellar * 0.55, -cellar * 0.55 + 25, GLASS);
   }
   el("rect", { x, y: GROUND + 60, width: EDGE, height: 40, fill: "#9b7f5f" }, g);
   box(0, EDGE, 0, top, wall, outline);
   box(EDGE - 30, EDGE, 0, top, shade); // the wall turns away at the cut
-  const plinth = office ? [20, "#8a867d"] : { kostel: [120, STONE], garaz: [15, "#8a867d"], skola: [90, "#a59c88"], mestan: [70, STONE], sorela: [100, "#a89a7f"], vila: [70, "#a59c88"], kostka: [110, "#8f8a80"], novyrd: [30, "#56585b"], statek: [55, "#8a8173"] }[kind]
+  // The regional walls: brick courses, azulejo tiles, the ashlar of Malta and Cyprus, boards, Haussmann's rustication.
+  if (brick) for (let z = 30, i = 0; z < top; z += 30, i++) { // brick courses with staggered joints (a bond, not boards)
+    box(0, EDGE - 30, z - 1.2, z + 1.2, tint(wall, 0.86));
+    for (let d = i % 2 ? 30 : 0; d < EDGE - 30; d += 60) if (d) box(d - 1, d + 1, z - 30, z, tint(wall, 0.88));
+  }
+  if (kind === "azulejo") {
+    const line = tint(wall, 0.8);
+    for (let z = 50; z < top; z += 15) box(0, EDGE - 30, z - 0.6, z + 0.6, line);
+    for (let d = 15; d < EDGE - 30; d += 15) box(d - 0.6, d + 0.6, 50, top, line);
+    for (let z = 57, i = 0; z < top; z += 15, i++) for (let d = i % 2 ? 7 : 22; d < EDGE - 30; d += 30) dot(d, z, 2.2, tint(wall, 0.62)); // the pattern, as a dot
+    box(0, 22, 0, top, "#f0ece2"); // the white stone of the corner
+  }
+  if (kind === "malta" || (kind === "kypr" && wall !== PALETTES.kypr[2])) {
+    for (let z = 34, i = 0; z < top; z += 34, i++) {
+      box(0, EDGE - 30, z - 1, z + 1, tint(wall, 0.88));
+      for (let d = i % 2 ? 35 : 70; d < EDGE - 30; d += 70) box(d - 1, d + 1, z, Math.min(z + 34, top), tint(wall, 0.9));
+    }
+  }
+  if (wood) {
+    const z0 = kind === "tallinnamaja" ? f.ground : 0;
+    if (z0) { box(0, EDGE - 30, 0, z0, "#cfc6b0", outline); box(-6, EDGE - 30, z0 - 8, z0 + 4, "#f6f4ee", outline); } // the rendered stone ground floor
+    if (det.boards === "vertical") for (let d = 25; d < EDGE - 30; d += 25) box(d - 2, d + 2, z0 + 40, top, tint(wall, 0.8)); // board and batten
+    else for (let z = z0 + 15; z < top; z += 15) box(0, EDGE - 30, z - 0.8, z + 0.8, tint(wall, 0.84));
+    box(0, 22, z0 + 30, top, "#f6f4ee"); // white corner boards
+    box(EDGE - 52, EDGE - 30, z0 + 30, top, "#f6f4ee");
+  }
+  if (kind === "haussmann") { // the rusticated shop floor and entresol: light stone, joints every 40 cm
+    const RS = tint(wall, 1.04);
+    box(0, EDGE - 30, 40, f.ground - 24, RS);
+    for (let z = 80; z < f.ground - 24; z += 40) box(0, EDGE - 30, z - 2.5, z + 2.5, tint(wall, 0.84));
+  }
+  const plinth = office ? [20, "#8a867d"] : {
+    haussmann: [40, "#9a958c"], stredomori: [90, tint(wall, 0.78)], azulejo: [40, "#9c968c"], galeria: [60, "#8f8a80"], malta: [30, tint(wall, 0.85)],
+    kypr: [30, tint(wall, 0.8)], cihlovy: [50, "#5b5f62"], stit: [50, "#5b5f62"], dansky: [50, "#5b5f62"], stenstad: [60, "#8f8b86"],
+    drevak: [40, "#6e6b66"], puukaupunki: [40, "#6e6b66"], tallinnamaja: [40, "#8f8a80"], hanza: [50, "#bdb6a4"], kostel: [120, STONE], garaz: [15, "#8a867d"], skola: [90, "#a59c88"], mestan: [70, STONE], sorela: [100, "#a89a7f"], vila: [70, "#a59c88"], kostka: [110, "#8f8a80"], novyrd: [30, "#56585b"], statek: [55, "#8a8173"] }[kind]
     || { sikma: [90, STONE], funkce: [60, "#8f887c"], povalecny: [45, "#8c8a85"], moderni: [30, "#56585b"], plocha: [100, "#8a867d"], nizky: [60, "#a59c88"] }[style];
   if (plinth) box(-8, EDGE - 30, 0, plinth[0], plinth[1]);
 
@@ -1314,21 +1562,52 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
         }
       }
       // A cube family house has its door up a flight of steps (a raised ground floor over the garage), with a rail.
-      const z0 = kind === "kostka" ? plinth[0] : 0;
+      // A canal house of the North Sea has its door up its stoep from the street (every other house).
+      const stoep = stoepZ(kind, info) > 0;
+      const z0 = kind === "kostka" ? plinth[0] : stoepZ(kind, info);
       const doorH = Math.min(240, f.ground * 0.72);
       const doorFrame = kind === "novyrd" ? "#3c3f43" : FRAME;
       box(10, 120, z0, z0 + 14, tint(plinth?.[1] || STONE, 1.15)); // doorstep (the landing)
-      if (z0) {
+      if (z0 && !stoep) {
         const steps = 6, rise = z0 / steps, tread = 28;
         for (let i = 0; i < steps; i++) box(120, 120 + (steps - i) * tread, i * rise, (i + 1) * rise, tint(plinth[1], 1.12), outline);
         box(122, 124, z0 + 14, z0 + 104, "#4d4f52"); // the rail: posts and a handrail along the flight
         box(120 + steps * tread - 2, 120 + steps * tread, 0, 100, "#4d4f52");
         poly([[122, z0 + 100], [120 + steps * tread, 96], [120 + steps * tread, 104], [122, z0 + 108]], "#4d4f52");
       }
+      if (stoep) { // five steps out into the street with an iron rail
+        for (let i = 0; i < 5; i++) box(-(5 - i) * 22, 10, i * 15, (i + 1) * 15, "#6a6e71", outline);
+        box(-112, -108, 0, 100, "#2b2d2f");
+        poly([[-112, 96], [-2, z0 + 96], [-2, z0 + 102], [-112, 102]], "#2b2d2f");
+        box(-4, 0, z0, z0 + 100, "#2b2d2f");
+      }
+      const doorCol = brick ? (houseHash(info) % 3 ? "#23382c" : "#1f2224") : kind === "haussmann" ? "#3f4a3c" : kind === "malta" ? pal("maltaAccent") : kind === "kypr" ? shutterCol : med ? "#6b4a30" : DOOR;
+      if (kind === "haussmann") {
+        // The porte cochère: a tall arched carriage door in a stone frame, its fanlight.
+        const dh = Math.min(f.ground - 80, 400) - 60;
+        box(8, 152, 0, dh + 10, tint(wall, 0.9), outline);
+        arch(80, dh + 10, 72, tint(wall, 0.9));
+        box(16, 144, 14, dh, doorCol);
+        arch(80, dh, 64, GLASS);
+        for (const d of [56, 104]) box(d - 2, d + 2, dh, dh + 60, FRAME);
+        box(78, 82, 14, dh, tint(doorCol, 0.7));
+        for (const zz of [60, dh * 0.5]) box(16, 144, zz, zz + 4, tint(doorCol, 0.8));
+      } else {
       box(16, 114, z0 + 14, z0 + doorH + 10, doorFrame);
-      box(24, 106, z0 + 14, z0 + doorH, kind === "novyrd" ? "#3c3f43" : DOOR);
+      box(24, 106, z0 + 14, z0 + doorH, kind === "novyrd" ? "#3c3f43" : doorCol);
       dot(94, z0 + doorH * 0.4, 5, "#f2d27a");
-      if (kind === "sikma" || kind === "mestan") { arch(65, doorH + 10, 49, FRAME); arch(65, doorH + 10, 41, GLASS); } // arched transom
+      }
+      if (kind === "haussmann") {}
+      else if (kind === "sikma" || kind === "mestan" || kind === "stenstad" || kind === "dansky" || kind === "hanza" || med) { arch(65, doorH + 10, 49, kind === "hanza" ? "#bdb6a4" : FRAME); arch(65, doorH + 10, 41, GLASS); } // arched transom
+      else if (brick) { box(16, 114, z0 + doorH + 10, z0 + doorH + 50, WF); box(24, 106, z0 + doorH + 14, z0 + doorH + 46, GLASS); } // a top light
+      else if (kind === "drevak") {
+        // The little porch (farstukvist): two posts and a gabled roof over the door, seen from the front.
+        box(4, 12, 0, doorH + 30, "#f6f4ee", outline);
+        box(118, 126, 0, doorH + 30, "#f6f4ee", outline);
+        poly([[-10, doorH + 30], [65, doorH + 90], [140, doorH + 30]], tile[0], outline);
+        poly([[10, doorH + 36], [65, doorH + 78], [120, doorH + 36]], wall);
+        box(-10, 140, doorH + 24, doorH + 32, "#f6f4ee");
+      }
       else if (kind === "sorela") { // a stone surround and a top light
         box(4, 126, 0, doorH + 70, tint(plinth[1], 1.1), outline);
         box(16, 114, 14, doorH + 50, FRAME);
@@ -1344,10 +1623,20 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     // Behind an arcade (drawn over the front 2.6 m) the ground-floor window moves back, clear of it.
     const backAxis = (125 + EDGE - 30 - win.w) / 2;
     const groundAt = info?.arcade ? Math.min(ARCADE_D + 25, EDGE - 40 - win.w) : backAxis;
-    if (kind !== "statek") window(groundAt, f.ground * win.sill + (style === "sikma" ? 40 : 0), win.w, win.h * f.storey, 0);
+    const shut = med && kind !== "azulejo" && kind !== "galeria";
+    const win2 = (d, z, w, h, n) => { window(d, z, w, h, n); if (shut) shutters(d, z, w, h, n); };
+    if (kind === "haussmann") {
+      // The shop window of the ground floor, under the entresol's band.
+      const s0 = 175, s1 = EDGE - 45, sTop = Math.min(f.ground - 150, 330);
+      box(s0 - 8, s1 + 8, 40, sTop + 8, "#3f4a3c");
+      box(s0, s1, 48, sTop, GLASS);
+      poly([[s0 + (s1 - s0) * 0.55, sTop], [s1, sTop], [s1, sTop - 110]], GLINT);
+      box((s0 + s1) / 2 - 2, (s0 + s1) / 2 + 2, 48, sTop, "#3f4a3c");
+      window(groundAt + 20, sTop + 50, win.w * 0.8, Math.min(110, f.ground - sTop - 90), 0); // the entresol's window
+    } else if (kind !== "statek") win2(groundAt, f.ground * win.sill + (style === "sikma" ? 40 : 0) + (stoepZ(kind, info)), win.w, win.h * f.storey, 0);
     const front = Math.max(65, 35 + win.w / 2); // the front axis keeps clear of the facade
     for (let k = 1; k < full; k++) {
-      for (const [i, c] of [front, backAxis + win.w / 2].entries()) window(c - win.w / 2, floorZ(k) + win.sill * f.storey, win.w, win.h * f.storey, k * 3 + i);
+      for (const [i, c] of [front, backAxis + win.w / 2].entries()) win2(c - win.w / 2, floorZ(k) + win.sill * f.storey, win.w, win.h * f.storey, k * 3 + i);
     }
   }
 
@@ -1397,7 +1686,20 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
         box(EDGE - 150, EDGE - 60, zr, zr + 100, "#aab2b8", outline);
         for (let d = EDGE - 140; d < EDGE - 70; d += 18) box(d, d + 8, zr + 50, zr + 88, "#8f979d");
       }
-      if (style === "moderni") { // a crisp parapet with a dark coping
+      if (med) {
+        // The south's flat roof terrace: a parapet with a balustrade (Spain, Italy, Portugal), Malta's plain parapet a
+        // metre high, a low one in Cyprus; a water tank or a stair house on it.
+        const ph = kind === "kypr" ? 50 : 100, top2 = zr + ph;
+        box(EDGE - 170, EDGE - 70, zr, zr + 210, tint(wall, 0.95), outline); // the stair house
+        box(EDGE - 176, EDGE - 64, zr + 204, zr + 214, tint(wall, 0.75));
+        if (kind === "malta" || kind === "kypr") box(-16, EDGE, zr, top2, tint(wall, 1.03), outline);
+        else {
+          box(-20, EDGE, zr, zr + 18, trim, outline);
+          for (let d = -10; d < EDGE - 10; d += 22) box(d, d + 9, zr + 18, top2 - 14, trim, { stroke: dark, "stroke-width": 0.8, "vector-effect": "non-scaling-stroke" });
+          box(-20, EDGE, top2 - 14, top2, trim, outline);
+        }
+        box(-22, EDGE, top2, top2 + 6, tint(wall, 0.8));
+      } else if (style === "moderni") { // a crisp parapet with a dark coping
         box(back - 4, f.roofRows ? EDGE - 32 : EDGE, zr, zr + 50, wall, outline);
         box(back - 8, f.roofRows ? EDGE - 32 : EDGE, zr + 50, zr + 56, "#3c3f43");
       } else if (style === "povalecny") { // a thin parapet under a metal coping
@@ -1523,6 +1825,99 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       dot(-110, zs + 40, 6, accent);
       dot(-80, zs + 40, 6, accent);
     }
+  }
+  // --- The regional looks: balconies, galleries, cornices (docs/house-types-europe.md) ---
+  const IRON = "#2b2d2f";
+  // An iron railing seen from the side: its top and bottom rails and the bars between them.
+  const railing = (d0, d1, z, h, col = IRON) => {
+    box(d0, d1, z + h - 5, z + h, col);
+    box(d0, d1, z + 8, z + 11, col);
+    for (let d = d0; d <= d1 - 3; d += 11) box(d, d + 3, z, z + h, col);
+  };
+  // A balcony: its slab with a moulded edge, brackets under it, the railing.
+  const balcony = (z, deep, h = 100, slab = 15) => {
+    box(-deep, 0, z - 6, z, tint(wall, 0.75));
+    box(-deep - 4, 0, z, z + slab, tint(wall, 1.06), outline);
+    for (const d of deep > 50 ? [-deep + 14, -22] : [-deep / 2]) poly([[d - 9, z], [d + 9, z], [d, z - 34]], tint(wall, 0.9), outline);
+    railing(-deep, -3, z + slab, h);
+  };
+  if (kind === "haussmann") {
+    // The long stone balconies with iron railings on the 2nd and 5th floor (2e and 5e étage), on the others a French
+    // balconette at the window; a cordon over the entresol. A low Brussels house: a balconette on the 1st floor only.
+    const long = full >= 5 ? new Set([2, full - 1]) : new Set();
+    for (let k = 1; k < full; k++) {
+      const z = floorZ(k);
+      if (long.has(k)) balcony(z, 70);
+      else if (full >= 5 || k === 1) railing(-15, -2, z + f.storey * 0.05, 95);
+    }
+  } else if (med) {
+    // The crowning cornice; on every floor a small balcony at each window (deeper on the piano nobile), the iron railing.
+    if (!f.flat) { box(-40, EDGE, top - 30, top, trim, outline); box(0, EDGE, top - 46, top - 30, shade); }
+    else box(-30, EDGE, top - 26, top, trim, outline);
+    if (kind === "galeria") {
+      // Northern Spain's glazed gallery (mirador) over the facade from the 1st floor: white frames in a dense grid.
+      for (let k = 1; k < full; k++) {
+        const z = floorZ(k), h = f.storey;
+        box(-84, 0, z - 8, z + 6, tint(wall, 0.85), outline);
+        if (k === 1) for (const d of [-70, -20]) poly([[d - 10, z - 8], [d + 10, z - 8], [d, z - 46]], tint(wall, 0.8), outline);
+        box(-80, -2, z + 6, z + h - 6, "#f4f4f0", outline);
+        box(-74, -8, z + 0.28 * h, z + h - 14, GLASS);
+        poly([[-50, z + h - 14], [-8, z + h - 14], [-8, z + 0.5 * h]], GLINT);
+        for (let d = -74 + 22; d < -8; d += 22) box(d - 2, d + 2, z + 0.28 * h, z + h - 14, "#f4f4f0");
+        box(-74, -8, z + 0.66 * h - 2, z + 0.66 * h + 2, "#f4f4f0");
+        box(-80, -2, z + 0.24 * h, z + 0.28 * h, "#f4f4f0");
+      }
+    } else if (kind === "malta") {
+      // The gallarija: a closed wooden balcony on the 1st floor (and the 2nd of a taller house) on stone brackets, its
+      // lower third panelled, louvred windows over it, a little lid on top.
+      const col = pal("maltaAccent");
+      for (const k of full >= 4 ? [1, 2] : full >= 2 ? [1] : []) {
+        const z = floorZ(k) + 20, h = f.storey * 0.8;
+        for (const d of [-60, -35, -10]) poly([[d - 9, z], [d + 9, z], [d + 4, z - 50], [d - 2, z - 50]], tint(wall, 0.92), outline);
+        box(-74, 0, z - 10, z, tint(wall, 0.95), outline);
+        box(-70, 0, z, z + h, col, { stroke: tint(col, 0.65), "stroke-width": 1.5, "vector-effect": "non-scaling-stroke" });
+        box(-66, -4, z + h * 0.3 - 3, z + h * 0.3 + 3, tint(col, 1.3));
+        for (const [a, b] of [[-64, -40], [-34, -8]]) {
+          box(a, b, z + h * 0.38, z + h - 14, tint(col, 0.75));
+          for (let zz = z + h * 0.38 + 8; zz < z + h - 16; zz += 9) box(a + 2, b - 2, zz - 1.5, zz + 1.5, tint(col, 1.25));
+        }
+        poly([[-80, z + h], [0, z + h], [0, z + h + 26], [-74, z + h + 8]], tint(col, 0.8), outline);
+      }
+    } else if (kind === "kypr") {
+      if (full >= 2) balcony(floorZ(1), 80, 95, 12); // one balcony over the entrance
+    } else {
+      for (let k = 1; k < full; k++) {
+        const z = floorZ(k), luck = (((k * 5 + seed * 31) * 2654435761) >>> 0) % 7;
+        balcony(z, k === 1 ? 65 : 45, 95, 10);
+        if (det.blinds && luck < 3) { // a striped canvas awning (toldo) over the balcony
+          const zt = z + f.storey * 0.92, AW = luck === 1 ? "#3f7a5a" : luck === 2 ? "#b8553f" : "#3c6fa8";
+          poly([[0, zt], [-70, zt - 80], [-70, zt - 104], [0, zt - 24]], AW, outline);
+          poly([[0, zt - 8], [-70, zt - 88], [-70, zt - 96], [0, zt - 16]], "#f6f1e6");
+          box(-74, -62, zt - 130, zt - 96, AW, outline); // the valance
+        }
+      }
+    }
+  } else if (kind === "cihlovy") {
+    // The white wooden cornice on small brackets, a band of sandstone over the ground floor.
+    box(-35, EDGE, top - 34, top, "#f4f2ec", outline);
+    for (let d = -30; d < 0; d += 14) box(d, d + 6, top - 52, top - 34, "#e6e2d8");
+    box(0, EDGE, top - 50, top - 34, shade);
+    box(-8, EDGE - 30, f.ground - 14, f.ground, "#d8cfb5", outline);
+  } else if (kind === "dansky") {
+    box(-10, EDGE - 30, f.ground - 18, f.ground, "#ece5d5", outline); // a light rendered band over the shop floor
+    box(-30, EDGE, top - 30, top, "#ece5d5", outline); // the cornice
+    box(0, EDGE, top - 46, top - 30, shade);
+    if (seed % 2) for (let k = 1; k < full; k++) railing(-14, -2, floorZ(k) + f.storey * 0.25, 70); // French balconettes
+  } else if (GABLE_RISE[kind]) {
+    box(-8, EDGE - 30, f.ground - 14, f.ground, kind === "hanza" ? "#bdb6a4" : "#d8cfb5", outline); // a band over the hall
+    if (kind === "hanza") { // the limestone portal round the door
+      box(6, 124, 0, Math.min(240, f.ground * 0.72) + 60, "#bdb6a4", outline);
+      box(16, 114, 14, Math.min(240, f.ground * 0.72) + 10, pal("hanza") === "#efeee6" ? "#6b4a30" : DOOR);
+      arch(65, Math.min(240, f.ground * 0.72) + 10, 49, "#bdb6a4");
+      arch(65, Math.min(240, f.ground * 0.72) + 10, 41, GLASS);
+    }
+  } else if (kind === "stenstad" && seed % 3 === 0 && full >= 4) {
+    for (const k of [2, 3]) balcony(floorZ(k), 60, 95, 12); // the Jugend balconies with iron railings
   }
   return surface - (top + f.roofH + f.chimney);
 }
@@ -1865,7 +2260,8 @@ export function buildSvg(profile, opts = {}) {
     ...segs.flatMap((s) => (s.items || []).map((it) => (it.kind === "lampa" ? (it.h || lampLight()) * 100 + 80 : it.kind === "sloup_trakce" ? 960 : 0))));
   // A tower beside a narrow street would squash the street into a strip: the view shows at most
   // TALL_SHARE of its width above the ground, and taller buildings are cut with a break line.
-  const shown = Math.min(tallest, Math.max(1300, view[1] * TALL_SHARE));
+  // opts.whole: the buildings whole (the sheets of evaluation/budovy-regiony).
+  const shown = opts.whole ? tallest : Math.min(tallest, Math.max(1300, view[1] * TALL_SHARE));
   // The top row (total width, cut ends A/B) sits above the tallest building and its floor label.
   const y0 = Math.min(0, GROUND - shown - 140) - 110;
   labelTop = y0 + 190;

@@ -436,6 +436,20 @@ v Německu podle `city.panels`). Jinde, i v „cizině“, platí `profile.js` `
 panelová deska a plochý činžák z let 1946–90 jsou poválečný bytový dům (hladká omítka, pravidelné řady oken s rolety,
 balkony s barevným parapetem, plochá střecha s tenkou atikou; `evaluation/budovy-povalecny/ZPRAVA.md`), deska před 1946
 funkcionalistický dům, po 1990 moderní, kancelář zůstává kanceláří. Ručně jde poválečný dům vybrat všude.
+Regionální vzhledy starých domů (Bára 23. 11. 2026, `docs/house-types-europe.md`, `evaluation/budovy-regiony/ZPRAVA.md`):
+po `westernLook` se zeptá háčku státu `countries/<ISO>.js` `houseLook(style, info, n, city)` (pravidla v `house-looks.js`,
+bez dotazů za běhu, stará města jako středy s poloměry); nahrazuje jen činžák se šikmou střechou, měšťanský a městský
+dům (dřevěné domy i vilu a venkovský dům), do roku 1919–1940 podle vzhledu nebo bez roku. Haussmannovský dům (FR, MC,
+LU, Brusel: mansarda v OSM, 1850–1930 a 5+ podlaží, nebo bez roku 5–8 podlaží v uzavřeném bloku velkého města),
+středomořský dům (ES, IT mimo Jižní Tyrolsko, PT, francouzské Středomoří, MC do 4 podlaží; terasa nebo taška podle OSM
+`roof:shape` a státu, ve Španělsku rolety a markýzy, `houseDetails`), portugalský s azulejos (polovina domů), dům
+s galerií (Galicie, Asturie, Kantábrie, Baskicko), maltský s gallarijí, kyperský (do 1940 nebo bez roku ve starých
+jádrech), cihlový dům s římsou (NL, Flandry, do 1920), tallinnský dům (2–3 podlaží, 1900–40, dřevo z OSM
+`building:material` nebo dřevěné čtvrti) a malovaný dřevěný dům (EE). Severské vzhledy (omítaný činžák, malovaný
+dřevěný dům se svislými prkny ve Švédsku, dánský cihlový činžák, dřevěný městský dům) zatím jen jako `nordicLook(iso)`
+a `nordicDetails(iso)` pro budoucí moduly. Štítové domy (stupňovitý, krkový, zvonový štít; hanzovní dům) kreslí obrys
+štítu nad bočním pohledem jen s `?stit=1` (licence čeká na Bářino schválení), bez něj je pravidla nedávají a v nabídce
+nejsou. Místo domu si profil drží zaokrouhlené v `info.at` (`app.js`).
 Kancelář, úřad, hotel (OSM nebo RÚIAN využití 5, 11, 14, 15) kancelářská budova; OSM school a kindergarten škola,
 OSM church, chapel aj. kostel, OSM garage(s) a RÚIAN garáž garáž. Starý dům (RÚIAN do 1919, v Praze zastavěno do
 1840) do 5 podlaží v samém centru (`city.coreKm`, výchozí 0,3 km od náměstí, Praha 0,6 km) je měšťanský dům.

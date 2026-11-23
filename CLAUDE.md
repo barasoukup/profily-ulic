@@ -80,7 +80,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 ## Stav a otevřené věci
 - Stav je jen k prohlížení; data se opravují po tlačítku „Opravit data“ (Bára 8. 11. 2026). Návrh je
   editovatelný vždy. Copyright kódu i pražských ilustrací: © Bára Soukupová (MIT).
-- Budovy: 18 vzhledů (Bára 16. 11. 2026: činžák se šikmou střechou, měšťanský dům na náměstí, sorela, zděný bytový dům 50.–60. let, poválečný bytový dům (23. 11.), škola, kostel, garáž, funkcionalismus, panelák, moderní bytový
+- Budovy: 32 vzhledů (18 základních + 14 regionálních, viz níže; Bára 16. 11. 2026: činžák se šikmou střechou, měšťanský dům na náměstí, sorela, zděný bytový dům 50.–60. let, poválečný bytový dům (23. 11.), škola, kostel, garáž, funkcionalismus, panelák, moderní bytový
   dům, kancelář, městský dům, vila, rodinný dům 60.–80. let, nový rodinný dům, venkovský dům štítem do ulice, hala).
   Paneláků bylo moc: kontrola proti RÚIAN `evaluation/budovy-panel/ZPRAVA.md`, Street View 25 domů v `k-foceni.md`. Plochá střecha se rozlišuje podle tvaru bloku z OSM, IPR „nová budova“
   (pole ve stávajícím dotazu na Podlažnosti) a stáří zástavby (IPR Vývoj zástavby, statické dlaždice
@@ -89,6 +89,13 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Socialistické vzhledy (sorela, zděný dům 50.–60. let, panelák) jen v CZ, SK, PL, EE a bývalé NDR (Bára 23. 11. 2026,
   `countries/<ISO>.js` `socialistLooks`, DE podle `city.panels`); jinde i v „cizině“ `profile.js` `westernLook`: 1946–90
   poválečný bytový dům, deska před 1946 funkcionalistický, po 1990 moderní. Snímky `evaluation/budovy-povalecny/`.
+- Regionální vzhledy starých domů Evropy (Bára 23. 11. 2026, specifikace `docs/house-types-europe.md`, pravidla
+  `pilot/public/house-looks.js`, háček státu `houseLook`/`houseDetails` volaný po `westernLook`, Česko beze změny):
+  haussmannovský (FR, MC, LU, Brusel), středomořský + azulejos (PT), galerie (sever ES), Malta, Kypr, cihlový s římsou
+  (NL, Flandry), tallinnský a dřevěný dům (EE); severské (stenstad, dřevák, dánský, puukaupunki) jen jako pravidla
+  `nordicLook(iso)` pro budoucí moduly SE/NO/DK/FI. Štítové domy (severomořský štít, hanzovní dům) s obrysem štítu jen
+  s `?stit=1`, než je Bára schválí (`evaluation/budovy-regiony/stity.png`). Místo domu `info.at` (app.js). Snímky a zpráva
+  `evaluation/budovy-regiony/`.
 - Panorama z ulice: Mapy.com Panorama API, klíč jen v tajné proměnné repozitáře `MAPY_KEY` a v
   lokálním `pilot/public/config.local.js` (git ho ignoruje), nikdy v kódu.
 - Tlačítko „Do Streetmixu“ je vyndané (Bára 8. 11. 2026), protože na Pages nefunguje (API Streetmixu

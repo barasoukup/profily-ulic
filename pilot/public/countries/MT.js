@@ -4,6 +4,7 @@
 import { t } from "../i18n.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
+import { mediterraneanLook } from "../house-looks.js";
 
 // Norms (evaluation/malta/NORMY.md): no binding widths of streets; the sidewalk by Access for All (CRPD, 1.2 m for an
 // accessible route) only orange (the review of 23. 11. 2026: guidance for routes to buildings, not a law for public
@@ -80,4 +81,7 @@ export default {
   panorama: false,
   art: { malta: { ...czechFurniture, ...atPosts } },
   search: ["photon-mt"],
+  // The regional looks of its old houses (house-looks.js, docs/house-types-europe.md; Bára 23. 11. 2026).
+  houseLook: mediterraneanLook("MT"),
+  houseDetails: null,
 };

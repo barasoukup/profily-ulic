@@ -4,6 +4,7 @@
 import { t } from "../i18n.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
+import { belgiumDetails, belgiumLook } from "../house-looks.js";
 
 // Norms (evaluation/belgium/NORMY.md): the three regions have guidelines of their own and the app does not tell them
 // apart, so the lowest of them is the minimum, Flanders' figure the base, each quoted. No warning for a lane (Flanders'
@@ -78,4 +79,7 @@ export default {
   panorama: false,
   art: { belgium: { ...czechFurniture, ...atPosts } },
   search: ["photon-be"],
+  // The regional looks of its old houses (house-looks.js, docs/house-types-europe.md; Bára 23. 11. 2026).
+  houseLook: belgiumLook,
+  houseDetails: belgiumDetails,
 };

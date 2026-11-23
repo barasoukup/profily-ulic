@@ -6,6 +6,7 @@ import { t } from "../i18n.js";
 import { GROUP } from "../norms.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
+import { mediterraneanDetails, mediterraneanLook } from "../house-looks.js";
 
 // Norms (evaluation/cyprus/NORMY.md D): no binding widths of streets found; all from the Public Works Department's
 // design manual (recommendations). No warning for parking (no figure found) or a tram (none in Cyprus).
@@ -97,4 +98,7 @@ export default {
   panorama: false,
   art: { cyprus: { ...czechFurniture, ...atPosts } },
   search: ["photon-cy"],
+  // The regional looks of its old houses (house-looks.js, docs/house-types-europe.md; Bára 23. 11. 2026).
+  houseLook: mediterraneanLook("CY"),
+  houseDetails: mediterraneanDetails("CY"),
 };

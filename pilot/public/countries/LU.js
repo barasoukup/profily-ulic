@@ -4,6 +4,7 @@
 import { t } from "../i18n.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
+import { luxembourgLook } from "../house-looks.js";
 
 // Norms (evaluation/luxembourg/NORMY.md): the ministry's guidelines on calming (Apaisement 2023) and the Commission de
 // circulation's opinion on cycling of 2001 (the guidelines of 2018 not found); Luxembourg gives the roadway's width,
@@ -71,4 +72,7 @@ export default {
   panorama: false,
   art: { luxembourg: { ...czechFurniture, ...atPosts } },
   search: ["photon-be"],
+  // The regional looks of its old houses (house-looks.js, docs/house-types-europe.md; Bára 23. 11. 2026).
+  houseLook: luxembourgLook,
+  houseDetails: null,
 };

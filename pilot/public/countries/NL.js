@@ -5,6 +5,7 @@ import { t } from "../i18n.js";
 import { GROUP } from "../norms.js";
 import { TOWN_ART, czechFurniture } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
+import { netherlandsLook } from "../house-looks.js";
 
 // Norms (evaluation/netherlands/NORMY.md): CROW's ASVV 2021 and Ontwerpwijzer fietsverkeer are not public: their
 // values as CROW-Fietsberaad's discussion notes, CROW's GOW30 guide and Amsterdam's handbooks quote them, said so.
@@ -97,4 +98,7 @@ export default {
   panorama: false,
   art: { netherlands: { ...czechFurniture, ...atPosts } },
   search: ["pdok"],
+  // The regional looks of its old houses (house-looks.js, docs/house-types-europe.md; Bára 23. 11. 2026).
+  houseLook: netherlandsLook,
+  houseDetails: null,
 };

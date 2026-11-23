@@ -143,6 +143,11 @@ export default {
   // only in the states that built them (Bára 23. 11. 2026: CZ, SK, PL, EE; DE in the former GDR); elsewhere the
   // postwar block of flats (profile.js westernLook). true, false, or (city) => boolean.
   socialistLooks: false,
+  // A regional look of an old house (house-looks.js; profile.js buildingStyle calls it after westernLook):
+  // (style, info, n, city) → a look of profile.js BUILDING_STYLES, or undefined to keep the style. null: none.
+  houseLook: null,
+  // What the state changes in drawing a look (profile.js): (look, info, city) → { terrace, blinds, boards, palette }.
+  houseDetails: null,
   // The search services asked where the map shows the state (search.js), besides RÚIAN.
   search: [],
   // What the state decides by the place of the cut, set on the city (app.js): async (lon, lat) → { … }, or null.

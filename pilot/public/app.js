@@ -4,6 +4,9 @@ import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO, CH_ORTHO, NL_ORTHO, BE_ORTHO, LU_ORTHO, PL_ORTHO, FR_ORTHO, ES_ORTHO, PT_ORTHO, PT_MAINLAND, ES_NOT_PNOA, CY_ORTHO, MT_ORTHO, IT_ORTHO, EE_ORTHO, DE_ORTHO, deWmsUrl, landsAt, landAt } from "./lanes-ortho.js";
 import { boxed as boxedPlace, within as withinPlace } from "./places.js";
 import { orthoOsmPolys, besidePassport, trimToEnds, P as ORTHO_P } from "./ortho-osm.js";
+import { LOOKS as HOUSE_LOOKS } from "./house-looks.js";
+// The gabled house looks with the gable's outline (house-looks.js; Bára to approve it, 23. 11. 2026): ?stit=1.
+if (new URLSearchParams(location.search).get("stit") === "1") HOUSE_LOOKS.gables = true;
 import { aiCut, aiKerbs, aiSurface, aiParking, parkFromAi, parkSkip, aiReady, onAiProgress } from "./ai-kerbs.js";
 // ?off=… switches named parts of the estimate off (the A/B tests, evaluation/ortofoto-osm/regrese.mjs).
 { const off = new URLSearchParams(location.search).get("off"); if (off) ORTHO_P.off = new Set(off.split(",")); }
@@ -26,7 +29,7 @@ const AI_WAIT = 12000; // ms: the longest the first estimated cut waits for the 
 // parking sections left out), to compare the two (evaluation/ortofoto-osm/chyby.mjs, Bára 18. 11. 2026).
 const NO_MAP = new URLSearchParams(location.search).get("mapa") === "0";
 import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, signFits, signFile, keepDrawable, drawable, MAX_PER_PART } from "./signs.js";
-import { loadSprites, loadSigns, layoutSigns, buildSvg, isHole, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, edgeInfo, underDepth, ROADWAY, nearestRoadway, BUILDING_STYLES, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
+import { loadSprites, loadSigns, layoutSigns, buildSvg, isHole, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, edgeInfo, underDepth, ROADWAY, nearestRoadway, BUILDING_STYLES, GABLE_LOOKS, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
 import * as sources from "./sources.js";
 import { ruianBuilding } from "./gis.js";
 import { MAPY_KEY } from "./config.js";
@@ -676,6 +679,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       }
       // The age of the area (a default for the building's look, overruled by what is known of the house).
       try { const y = await sources.vyvoj(info.point[1], info.point[0]); if (y) info.period = y; } catch {}
+      // The house's place, rounded to a metre, for the regional looks of a state (house-looks.js: Paris, the old towns).
+      info.at = info.point.map((v) => +v.toFixed(5));
       delete info.point;
     }));
     state.stav = { segments: result.segments, edges: result.edges };
@@ -1601,7 +1606,9 @@ function edgeLookSelect(p, side) {
   const style = buildingStyle(info);
   // A flat-roofed office is drawn as an office, not as a panel house.
   const guess = BUILDING_STYLES[style];
-  for (const [k, t] of [["", tr("odhad: {guess}", { guess })], ...Object.entries(BUILDING_STYLES)]) sel.add(new Option(t, k, false, (p.edges?.[`${side}Style`] || "") === k));
+  // The gabled looks only with ?stit=1 (or where the file has one).
+  const offered = Object.entries(BUILDING_STYLES).filter(([k]) => HOUSE_LOOKS.gables || !GABLE_LOOKS.has(k) || p.edges?.[`${side}Style`] === k);
+  for (const [k, t] of [["", tr("odhad: {guess}", { guess })], ...offered]) sel.add(new Option(t, k, false, (p.edges?.[`${side}Style`] || "") === k));
   sel.onchange = () => {
     p.edges = { ...p.edges };
     if (sel.value) p.edges[`${side}Style`] = sel.value;
