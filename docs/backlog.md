@@ -137,7 +137,8 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Všechny jazyky kromě češtiny strojově: projít rodilým mluvčím, nejdřív irština, maltština, lotyština (tvary měst,
   Krakov, Valonsko, Flandry).
 
-- Finsko (Bára 23. 11. 2026, nenasazené; otázky): (1) normy jen doporučení, oranžově pod nejnižší doporučenou šířkou
+- Finsko (Bára 23. 11. 2026, nenasazené; body 1–7 rozhodnuté podle doporučení: prahy nechat, 3 m na směr nechat, značky
+  volně jako ve Francii, sídliště jako „povalecny“, Alandy s finskými pravidly, Turku 2022, Tampere až s proxy): (1) normy jen doporučení, oranžově pod nejnižší doporučenou šířkou
   (chodník 2,0, cyklopruh 1,5…; `evaluation/finland/NORMY.md` E): chceš jiné prahy?; (2) stání 3 m na směr, zákon to dává
   jen u plné čáry (§ 37 odst. 2 bod 9): ponechat?; (3) značky z přílohy zákona jako volné dílo (§ 9 zák. 404/1961 jen
   v překladu WIPO): potvrdit; dodatkové tabulky H nekreslíme; (4) betonová sídliště 60.–80. let (BES) jako „povalecny“,
@@ -156,7 +157,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - **Proxy pro ortofota s klíčem (Bára 23. 11. 2026: uděláme, ale později):** Cloudflare Worker, který drží klíč
   a dlaždice ukládá do mezipaměti; Bára založí účet a Worker. Nejdřív Finsko: celostátní ortofoto MML (0,5 m, CC BY 4.0,
   klíč osobní, podmínky: ne pro velký provoz, klíč chránit; `evaluation/finland/ZDROJE.md`), pak pruhy z ortofota
-  i v Tampere, Oulu a menších městech. Totéž by šlo pro Švédsko (Lantmäteriet, jen po žádosti) a Dánsko, kdyby token
+  i v Tampere, Oulu a menších městech. S proxy i mapa povrchů Tampere (bez CORS). Totéž by šlo pro Švédsko (Lantmäteriet, jen po žádosti) a Dánsko, kdyby token
   nechtěla mít viditelný.
 
 ## Licence ke kontrole
