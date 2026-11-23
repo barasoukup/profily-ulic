@@ -31,10 +31,11 @@ function limitsIT(s) {
 
 // The signs of the state IT (pilot/public/signs-IT/, README there; the Regolamento of the Codice della strada, D.P.R.
 // 495/1992, figures II.x; Wikimedia Commons). Texts of official acts are not protected (art. 5 of L. 633/1941), the
-// figures read as part of them (NORMY.md C). Italy has no sign of a shared zone, a cycle street or a cycle zone.
+// figures read as part of them (NORMY.md C). Italy has no sign of a shared zone, a cycle street or a cycle zone; a
+// reserved bus lane is a panel "Uso corsie" (II.337–340) Commons does not draw: no sign.
 const IT_FILE = { b1: "II-46", b11: "II-58", b8: "II-55", b30: "II-54", b28: "II-75", b29: "II-74", ip11a: "II-76", ztp: "II-79a-invalidi", ip14a: "II-345-autostrada",
-  ip15a: "II-314", ip20a: "uso-corsie-bus", zona30: "II-323a-30", ip26a: "II-318", ip27a: "II-320", c8a: "II-90", c9a: "II-92b", c10a: "II-92a", c7a: "II-88" };
-const IT_CODE = { ...Object.fromEntries(Object.entries(IT_FILE).map(([k, v]) => [k, v.replace(/^II-(\d+)([a-z]?).*$/, (m, n, l) => `II.${n}${l ? `/${l}` : ""}`)])), ip20a: null };
+  ip15a: "II-314", zona30: "II-323a-30", ip26a: "II-318", ip27a: "II-320", c8a: "II-90", c9a: "II-92b", c10a: "II-92a", c7a: "II-88" };
+const IT_CODE = { ...Object.fromEntries(Object.entries(IT_FILE).map(([k, v]) => [k, v.replace(/^II-(\d+)([a-z]?).*$/, (m, n, l) => `II.${n}${l ? `/${l}` : ""}`)])) };
 const IT_SPEEDS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130];
 function signFile(s, seg) {
   const dir = s.dir ?? seg?.dir;

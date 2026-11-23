@@ -27,7 +27,7 @@ Souborům bez `viewBox` jsem ho doplnila podle `width` a `height`. Odvozený sou
 | ztp | fig. II.79/a Sosta consentita a particolari categorie (invalidi) | II-79a-invalidi.svg |
 | ip14a | fig. II.345 Inizio autostrada | II-345-autostrada.svg |
 | ip15a | fig. II.314 Strada riservata ai veicoli a motore (návrh; II.345 modrá Inizio strada extraurbana principale jako rezerva) | II-314.svg, II-345-extraurbana.svg |
-| ip20a | modrý kruh s autobusem („corsia riservata agli autobus“, Gigillo83 na Commons). Pozor: v Regolamentu taková samostatná značka není, vyhrazený pruh se značí panelem Uso corsie (figg. II.337–II.340), jehož kresbu s autobusem Commons nemá | bus-riservato.svg |
+| ip20a | panel Uso corsie (figg. II.337–II.340), kresbu Commons nemá: bez značky | – |
 | zona30 | fig. II.323/a Zona a velocità limitata (30) | II-323a-30.svg |
 | ip26a | fig. II.318 Zona residenziale | II-318.svg |
 | ip27a | fig. II.320 Area pedonale | II-320.svg |
