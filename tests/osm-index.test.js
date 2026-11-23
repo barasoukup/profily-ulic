@@ -27,3 +27,9 @@ test("obdélník dlaždic balíku i pro 250 000 dlaždic (Česko jich má 246 00
   for (let i = 0; i < 250000; i++) names.push(`${2800 + (i % 700)}_${9900 + Math.floor(i / 700)}`);
   assert.deepEqual(tilesBox(names), [2800, 9900, 3499, 9900 + 357]);
 });
+
+test("index dlaždic: kódy regionů o třech a čtyřech písmenech (fr_als, es_cyl, fr_paca) se nepřeskakují", () => {
+  const o = (name, at) => ({ Key: `osm/${name}`, LastModified: at });
+  const { index } = osmIndex({ Contents: [o("fr_als-2026-11-23-aa.posm", "2026-11-23T10:00:00Z"), o("es_cyl-2026-11-23-bb.posm", "2026-11-23T10:00:00Z"), o("fr_paca-2026-11-23-cc.posm", "2026-11-23T10:00:00Z")] });
+  assert.deepEqual(Object.keys(index.files), ["es_cyl", "fr_als", "fr_paca"]);
+});
