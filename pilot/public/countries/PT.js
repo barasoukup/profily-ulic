@@ -6,7 +6,7 @@ import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
 
 // Norms (evaluation/portugal/NORMY.md D): binding only accessibility (Decreto-Lei 163/2006: the free width of a sidewalk
-// of the main and collector streets 1.5 m, of every pedestrian route 1.2 m); the rest IMT's technical documents and
+// of the main and collector streets 1.5 m, of every pedestrian route 1.2 m; Bára 23. 11. 2026: 1.5 m everywhere); the rest IMT's technical documents and
 // Lisbon's guide (recommendations; the cycle tracks by IMT, Bára 23. 11. 2026). No warning for a tram belt (no source found).
 const lanes = (segs) => segs.filter((x) => x.type === "pruh" || x.type === "pruh_piktokoridor");
 function limitsPT(s, segs) {

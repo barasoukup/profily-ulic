@@ -417,6 +417,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Ortofoto DGT: nejnovější let, který místo má (2025 pevnina, 2021 sever, 2018, satelit 2023); Madeira a Azory bez ortofota.
   Mapu povrchů žádné město online nemá: jen odhad. Hledání Photon. Stání Lisabonu (EMEL) a buspruhy Porta jen jako soubory.
 - Měření 23. 11. (29 řezů v 10 městech): složení 63 %, šířka do 2 m 55 %; nejčastěji chybí stání (16×) a chodník (13×).
+- Bára 23. 11. 2026: chodník červeně pod 1,5 m všude, cyklostezky podle IMT a LNEC 2024 (1,75 / 2 m, obousměrná 3 m).
 
 ## Měření přesnosti (Bára 17. 11. 2026)
 - Jedna univerzální metoda pro všechny státy: skill `mereni-presnosti`, kód a zpráva `evaluation/universal/`. Použít u
