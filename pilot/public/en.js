@@ -907,7 +907,6 @@ export const EN = {
   "mapy povrchů Bologni, ortofota a OSM": "Bologna's surface map, the orthophoto and OSM",
   "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)": "orthophoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)",
   "ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)": "orthophoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)",
-  "ortofoto © Città di Torino (CC BY 4.0)": "orthophoto © Città di Torino (CC BY 4.0)",
   "ortofoto © Provincia autonoma di Bolzano (CC BY 4.0)": "orthophoto © Provincia autonoma di Bolzano (CC BY 4.0)",
   "mapa povrchů (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)": "surface map (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)",
   " · mapa povrchů Bologni neodpověděla, odhad z ortofota a OSM": " · Bologna's surface map did not answer, an estimate from the orthophoto and OSM",
@@ -972,7 +971,7 @@ export const EN_HTML = {
     Monaco: orthophoto © IGN (Géoplateforme, Licence Ouverte 2.0), border © OpenStreetMap contributors, drawings of French traffic signs Wikimedia Commons ·
     Cyprus: orthophoto 2019 © Department of Lands and Surveys (DLS; licence not stated), buildings © DLS (CC BY 4.0), border © OpenStreetMap contributors, traffic signs Wikimedia Commons (British designs: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
     Malta: orthophoto 2018 © Planning Authority (CC BY 4.0), border © OpenStreetMap contributors, traffic signs Wikimedia Commons (British designs: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
-    Italy: orthophoto © Provincia autonoma di Bolzano, Città di Torino, Comune di Bologna and Comune di Modena with Regione Emilia-Romagna (all CC BY 4.0), buildings of Bologna © Comune di Bologna (CC BY 4.0), border © EuroGeographics (GISCO), traffic signs Wikimedia Commons (official works; redrawn by F l a n k e r under CC BY-SA 3.0 and 4.0) ·
+    Italy: orthophoto © Provincia autonoma di Bolzano, Città di Torino (Base cartografica realizzata da Bára Soukupová, integrata con Ortofoto digitale colore 2023 della Città di Torino reperiti sul Geoportale del Comune di Torino), Comune di Bologna and Comune di Modena with Regione Emilia-Romagna (all CC BY 4.0), buildings of Bologna © Comune di Bologna (CC BY 4.0), border © ISTAT (CC BY 4.0), EuroGeographics (GISCO), traffic signs Wikimedia Commons (official works; redrawn by F l a n k e r under CC BY-SA 3.0 and 4.0) ·
     Estonia: orthophoto, buildings (ETAK) and address search (In-ADS) © Maa- ja Ruumiamet, state as of 11/2026 (open licence), Tallinn's surface map © Tallinna Linnaplaneerimise Amet, border © EuroGeographics (GISCO), traffic signs Wikimedia Commons (official works; redrawn by มองโกเลีย๔๔ under CC BY-SA 4.0) ·
     networks under the street © IPR Praha, Gemeente Amsterdam and Waternet (CC BY), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, the Olomouc Region, the cities of Karviná, Ostrava, Břeclav ·
     parking © TSK hl. m. Prahy (CC BY 4.0), no-parking areas, trees and street classes from <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, the cities of Jihlava, Opava, Plzeň (CC0) ·

@@ -14,6 +14,15 @@ z prohlížeče to funguje stejně; „bez CORS“ = hlavička chybí (obrázek 
 > Mimo tyto čtyři oblasti (zbytek Itálie, San Marino, Vatikán) aplikace **profil nedělá**, kliknutí ukáže hlášku
 > (`city.js closedAt`, `staty.json` `closed_it`); hledání Photon tam ulice nabídnout může. Návrhy „odhad z OSM a
 > ortofota“ u San Marina a Vatikánu níže jsou rešerše, ne stav aplikace.
+>
+> **Hranice a kredit Turína (Bára 23. 11. 2026, recenze body 13 a 15):** oblasti jsou od 23. 11. hranice ISTAT „Confini
+> delle unità amministrative a fini statistici al 1° gennaio 2026“, negeneralizované (shapefile v EPSG:32632,
+> https://www.istat.it/storage/cartografia/confini_amministrativi/non_generalizzati/2026/Limiti01012026.zip; licence
+> CC BY 4.0 podle Note legali ISTAT, „Salvo diversa indicazione, tutti i contenuti … Creative Commons – Attribuzione –
+> versione 4.0“; kredit „© ISTAT“), převedené do WGS 84 a uložené v `tools/italy-border.json`. Body 100 m od hranice
+> (po obou stranách): GISCO 1 : 1 M zařadil špatně 10–24 % (Bolzano 10, Turín 17, Bologna 18, Modena 24), ISTAT po
+> zjednodušení na 30 m 0,2–1,2 % (rohy); 50 m od hranice GISCO 25–37 %, ISTAT do 1 %. Obdélník ortofota Modeny rozšířen na
+> západ (10,77). Kredit Turína je ve znění Licenze d'uso Geoportálu města: „Base cartografica realizzata da Bára Soukupová, integrata con Ortofoto digitale colore 2023 della Città di Torino reperiti sul Geoportale del Comune di Torino“.
 
 Zkušební body: Bologna Piazza Maggiore (11,3426, 44,4938) a Via Rizzoli (11,3460, 44,4990), Milano Duomo (9,1900, 45,4642),
 Torino (7,6790, 45,0680), Firenze (11,2540, 43,7710), Roma (12,4823, 41,8986), Genova (8,9340, 44,4070), Trieste (13,7768,
@@ -75,7 +84,7 @@ Režim „ArcGIS“ = `…/ImageServer/exportImage?bbox=…&bboxSR=3857&imageSR=
 | Emilia-Romagna (města) | ArcGIS `public/Comune_BO_2023_RGB` (WMS `…/wms/comune_bo_2023_rgb`), `public/Comune_MO_2024_RGB` | **ověřeno** Bologna: velmi ostré | Bologna 2023 a Modena 2024, 20 cm (podle `pixelSizeX`, vizuálně ostřejší než AGEA), jen území obce | echo | CC BY 4.0 (ověřeno v katalogu, oddíl na konci) | černý |
 | **Lombardia** | ArcGIS `https://www.cartografia.servizirl.it/arcgis2/rest/services/BaseMap/Ortofoto2021/ImageServer` (+ WMS `…/arcgis2/services/BaseMap/Ortofoto2021/ImageServer/WMSServer`, vrstva `0`; WMTS v katalogu) | **ověřeno: nefunguje** – `exportImage` chyba 400/500 „Error exporting image“, WMS vrací 0 B, WMTS „ArcGIS Server Error“; stejně `Ortofoto2018_2019` | AGEA 2021, 20 cm | echo | AGEA, výslovně jen institucionální | – |
 | **Piemonte** (region) | WMS `https://geomap.reteunitaria.piemonte.it/mapproxy/service`, vrstva `rp_ortofoto_2010` | **ověřeno**, rozmazané | ICE 2010, asi 40–50 cm | `*` | – | – |
-| **Torino** (město) | tamtéž, vrstva `coto_ortofoto_2023` | **ověřeno**: velmi ostré (asi 10 cm, vizuálně) | 2023, jen Torino | `*` | CC BY 4.0 (dataset Comune di Torino, ověřeno, oddíl na konci; záznam služby WMS „Condizioni sconosciute“) | bílý JPEG 1 651 B, PNG průhledné |
+| **Torino** (město) | tamtéž, vrstva `coto_ortofoto_2023` | **ověřeno**: velmi ostré (asi 10 cm, vizuálně) | 2023, jen Torino | `*` | CC BY 4.0 (dataset Comune di Torino, ověřeno, oddíl na konci; záznam služby WMS „Condizioni sconosciute“; kredit ve znění Geoportálu, viz stav nahoře) | bílý JPEG 1 651 B, PNG průhledné |
 | **Veneto** | IDT-RV 2.0, `idt2-geoserver.regione.veneto.it/geoserver` | **neověřeno**: spojení vyprší (TCP timeout) | AGEA 2024, 20 cm (stránka regionu) | ? | AGEA „tutti i diritti riservati“ | – |
 | **Toscana** | WMS `https://www502.regione.toscana.it/ows_ofc/com.rt.wms.RTmap/wms?map=owsofc`, vrstva `rt_ofc.5k22.32bit` (i `5k19`, `5k16`) | **ověřeno**: Florencie 20 cm, ale **s vepsaným copyrightem AGEA** podél okraje | AGEA 2022, 20 cm, celý region | `*` | AGEA, „fini istituzionali“, bez stahování | bílý JPEG 2,4 KB |
 | **Lazio** | WMS (GeoNode) `https://geoportale.regione.lazio.it/geoserver/ows`, vrstva `geonode:2023_AGEA_25833_COG` (i `2020_…`, `2017_…`) | **ověřeno**: Řím a **Vatikán** (kupole sv. Petra) | AGEA 2023, 20 cm, celý region **i Vatikán** | `*` | AGEA (záznam GeoNode bez licence) | bílý JPEG 909 B, PNG průhledné; 1,5–2,8 s na snímek |

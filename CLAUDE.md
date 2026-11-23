@@ -446,7 +446,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 
 ## Itálie (větev italy z malta, Bára 23. 11. 2026, nenasazené)
 - **Jen oblasti s ortofotem s otevřenou licencí** (Bára 23. 11.: ortofota AGEA „jen pro institucionální účely“ nesplňujeme):
-  provincie Bolzano, Turín, Bologna, Modena. Zbytek Itálie, Vatikán a San Marino zatím mimo; Apulie 2023 bez licence.
+  provincie Bolzano, Turín, Bologna, Modena (hranice ISTAT, `tools/italy-border.json`; kredit Turína ve znění Geoportálu města
+  „Base cartografica realizzata da …“, Bára 23. 11. 2026). Zbytek Itálie, Vatikán a San Marino zatím mimo; Apulie 2023 bez licence.
   Bolzano 2023: nálet provincie ve spolupráci s AGEA, licence provincie CC BY 4.0 (Bára 23. 11. 2026: používat).
   Stání 3 m na směr je Bářina konvence (čl. 157 odst. 4 CdS mluví jen o jednosměrce se stáním vlevo).
 - `countries/IT.js`, `towns/italy.js`, `signs-IT/`, `evaluation/italy/` (ZDROJE, NORMY, ab/). OSM 5 dílů (jen R2;

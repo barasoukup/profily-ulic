@@ -75,12 +75,13 @@ Co rozhodne Bára, je označeno **(Bára)**.
   nálety Emilie-Romagny 2023–26 (CC BY 4.0) zapojit podle jejich pokrytí.
   **(Bára)**: chodník 0,9, nebo 1,5 m?; ~~pruh podle kategorie silnice?~~ (23. 11.: podle třídy z OSM 3,25 / 3 / 2,75 m);
   jednosměrka II.349, nebo II.348?
-- Itálie **(Bára)**: kredit Turína „© Città di Torino (CC BY 4.0)“ je výklad; podmínky geoportálu chtějí znění „Base
-  cartografica realizzata da …, integrata con … della Città di Torino reperiti sul Geoportale del Comune di Torino“: přepsat?
+- ~~Itálie **(Bára)**: kredit Turína „© Città di Torino (CC BY 4.0)“ je výklad; podmínky geoportálu chtějí znění „Base
+  cartografica realizzata da …, integrata con … della Città di Torino reperiti sul Geoportale del Comune di Torino“: přepsat?~~
+  (Bára 23. 11. 2026: ano, kredit, mapa i patička ve znění Geoportálu)
 - Itálie: italská značka zastávky (modrá čtvercová s autobusem) místo rakouského „H“; mapa povrchů Bologni (vypnutá):
   `records` končí bez varování na 500 plochách, výplň „zbytek je chodník“ rozdělit čarami obrub, než se zapne; 3,50 m pro
-  pruhy s autobusy mimo vyhrazený pruh (D.M. 2001 bod 3.4.2) aplikace nepozná; hranice obcí GISCO 1 : 1 M nahradit
-  přesnějšími (ISTAT nebo OSM); měření jen 6 řezů (`evaluation/universal/ZPRAVA.md`), rozšířit.
+  pruhy s autobusy mimo vyhrazený pruh (D.M. 2001 bod 3.4.2) aplikace nepozná; ~~hranice obcí GISCO 1 : 1 M nahradit
+  přesnějšími (ISTAT nebo OSM)~~ (Bára 23. 11. 2026: ISTAT, `tools/italy-border.json`); měření jen 6 řezů (`evaluation/universal/ZPRAVA.md`), rozšířit.
 - Estonsko: normy rozhodnuté (Bára 23. 11. 2026: chodník 2,0, pruh 2,75, 3 m na směr, pěší zóna 381 + 432, stání a tramvaj
   bez varování). Normy nekupujeme (Bára 23. 11. 2026: EVS 843 jen z druhé ruky). Mapa povrchů Tallinnu zapnutá (pole `kate` nevyužité, tl38 ztratil střední pás);
   plochy úklidu Tartu (`Puhastusala`) by šly stejně, A/B. Stáří ortofota

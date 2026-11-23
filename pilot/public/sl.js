@@ -909,7 +909,6 @@ export const SL = {
   "mapy povrchů Bologni, ortofota a OSM": "karta površin Bologne, ortofoto in OSM",
   "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)": "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)",
   "ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)": "ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)",
-  "ortofoto © Città di Torino (CC BY 4.0)": "ortofoto © Città di Torino (CC BY 4.0)",
   "ortofoto © Provincia autonoma di Bolzano (CC BY 4.0)": "ortofoto © Provincia autonoma di Bolzano (CC BY 4.0)",
   "mapa povrchů (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)": "karta površin (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)",
   " · mapa povrchů Bologni neodpověděla, odhad z ortofota a OSM": " · karta površin Bologne ni odgovorila, ocena iz ortofota in OSM",
@@ -975,7 +974,7 @@ export const SL_HTML = {
     Monako: ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0), meja © sodelavci OpenStreetMap, risbe francoskih prometnih znakov Wikimedia Commons ·
     Ciper: ortofoto 2019 © Department of Lands and Surveys (DLS; licenca ni navedena), stavbe © DLS (CC BY 4.0), meja © sodelavci OpenStreetMap, prometni znaki Wikimedia Commons (britanski vzorci: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
     Malta: ortofoto 2018 © Planning Authority (CC BY 4.0), meja © sodelavci OpenStreetMap, prometni znaki Wikimedia Commons (britanski vzorci: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
-    Italija: ortofoto © Provincia autonoma di Bolzano, Città di Torino, Comune di Bologna in Comune di Modena z Regione Emilia-Romagna (vse CC BY 4.0), stavbe Bologne © Comune di Bologna (CC BY 4.0), meja © EuroGeographics (GISCO), prometni znaki Wikimedia Commons (uradna dela; prerisal F l a n k e r pod CC BY-SA 3.0 in 4.0) ·
+    Italija: ortofoto © Provincia autonoma di Bolzano, Città di Torino (Base cartografica realizzata da Bára Soukupová, integrata con Ortofoto digitale colore 2023 della Città di Torino reperiti sul Geoportale del Comune di Torino), Comune di Bologna in Comune di Modena z Regione Emilia-Romagna (vse CC BY 4.0), stavbe Bologne © Comune di Bologna (CC BY 4.0), meja © ISTAT (CC BY 4.0), EuroGeographics (GISCO), prometni znaki Wikimedia Commons (uradna dela; prerisal F l a n k e r pod CC BY-SA 3.0 in 4.0) ·
     Estonija: ortofoto, stavbe (ETAK) in iskanje naslovov (In-ADS) © Maa- ja Ruumiamet, stanje 11/2026 (odprta licenca), karta površin Talina © Tallinna Linnaplaneerimise Amet, meja © EuroGeographics (GISCO), prometni znaki Wikimedia Commons (uradna dela; prerisal มองโกเลีย๔๔ pod CC BY-SA 4.0) ·
     parkiranje © TSK hl. m. Prahy (CC BY 4.0), prepovedi parkiranja, drevesa in kategorije ulic iz <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, mesta Jihlava, Opava, Plzeň (CC0) ·
     © sodelavci <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·

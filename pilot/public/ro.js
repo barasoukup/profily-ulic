@@ -910,7 +910,6 @@ export const RO = {
   "mapy povrchů Bologni, ortofota a OSM": "harta suprafețelor Bolognei, ortofoto și OSM",
   "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)": "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)",
   "ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)": "ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)",
-  "ortofoto © Città di Torino (CC BY 4.0)": "ortofoto © Città di Torino (CC BY 4.0)",
   "ortofoto © Provincia autonoma di Bolzano (CC BY 4.0)": "ortofoto © Provincia autonoma di Bolzano (CC BY 4.0)",
   "mapa povrchů (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)": "harta suprafețelor (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)",
   " · mapa povrchů Bologni neodpověděla, odhad z ortofota a OSM": " · harta suprafețelor Bolognei nu a răspuns, estimare din ortofoto și OSM",
@@ -976,7 +975,7 @@ export const RO_HTML = {
     Monaco: ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0), limită © contribuitorii OpenStreetMap, desene ale indicatoarelor rutiere franceze Wikimedia Commons ·
     Cipru: ortofoto 2019 © Department of Lands and Surveys (DLS; licență neindicată), clădiri © DLS (CC BY 4.0), limită © contribuitorii OpenStreetMap, indicatoare rutiere Wikimedia Commons (modele britanice: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
     Malta: ortofoto 2018 © Planning Authority (CC BY 4.0), limită © contribuitorii OpenStreetMap, indicatoare rutiere Wikimedia Commons (modele britanice: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
-    Italia: ortofoto © Provincia autonoma di Bolzano, Città di Torino, Comune di Bologna și Comune di Modena cu Regione Emilia-Romagna (toate CC BY 4.0), clădirile Bolognei © Comune di Bologna (CC BY 4.0), limită © EuroGeographics (GISCO), indicatoare rutiere Wikimedia Commons (opere oficiale; redesenate de F l a n k e r sub CC BY-SA 3.0 și 4.0) ·
+    Italia: ortofoto © Provincia autonoma di Bolzano, Città di Torino (Base cartografica realizzata da Bára Soukupová, integrata con Ortofoto digitale colore 2023 della Città di Torino reperiti sul Geoportale del Comune di Torino), Comune di Bologna și Comune di Modena cu Regione Emilia-Romagna (toate CC BY 4.0), clădirile Bolognei © Comune di Bologna (CC BY 4.0), limită © ISTAT (CC BY 4.0), EuroGeographics (GISCO), indicatoare rutiere Wikimedia Commons (opere oficiale; redesenate de F l a n k e r sub CC BY-SA 3.0 și 4.0) ·
     Estonia: ortofoto, clădiri (ETAK) și căutarea adreselor (In-ADS) © Maa- ja Ruumiamet, situația din 11/2026 (licență deschisă), harta suprafețelor Tallinnului © Tallinna Linnaplaneerimise Amet, limită © EuroGeographics (GISCO), indicatoare rutiere Wikimedia Commons (opere oficiale; redesenate de มองโกเลีย๔๔ sub CC BY-SA 4.0) ·
     parcare © TSK hl. m. Prahy (CC BY 4.0), interdicții de staționare, arbori și clase de străzi din <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, orașele Jihlava, Opava, Plzeň (CC0) ·
     © contribuitorii <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·

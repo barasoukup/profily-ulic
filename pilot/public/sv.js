@@ -909,7 +909,6 @@ export const SV = {
   "mapy povrchů Bologni, ortofota a OSM": "Bolognas ytkarta, ortofoto och OSM",
   "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)": "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)",
   "ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)": "ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)",
-  "ortofoto © Città di Torino (CC BY 4.0)": "ortofoto © Città di Torino (CC BY 4.0)",
   "ortofoto © Provincia autonoma di Bolzano (CC BY 4.0)": "ortofoto © Provincia autonoma di Bolzano (CC BY 4.0)",
   "mapa povrchů (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)": "ytkarta (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)",
   " · mapa povrchů Bologni neodpověděla, odhad z ortofota a OSM": " · Bolognas ytkarta svarade inte, uppskattning från ortofoto och OSM",
@@ -975,7 +974,7 @@ export const SV_HTML = {
     Monaco: ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0), gränser © OpenStreetMap-bidragsgivare, teckningar av franska vägmärken Wikimedia Commons ·
     Cypern: ortofoto 2019 © Department of Lands and Surveys (DLS; licens ej angiven), byggnader © DLS (CC BY 4.0), gränser © OpenStreetMap-bidragsgivare, vägmärken Wikimedia Commons (brittiska förlagor: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
     Malta: ortofoto 2018 © Planning Authority (CC BY 4.0), gränser © OpenStreetMap-bidragsgivare, vägmärken Wikimedia Commons (brittiska förlagor: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
-    Italien: ortofoto © Provincia autonoma di Bolzano, Città di Torino, Comune di Bologna och Comune di Modena med Regione Emilia-Romagna (alla CC BY 4.0), Bolognas byggnader © Comune di Bologna (CC BY 4.0), gränser © EuroGeographics (GISCO), vägmärken Wikimedia Commons (officiella verk; omritning F l a n k e r under CC BY-SA 3.0 och 4.0) ·
+    Italien: ortofoto © Provincia autonoma di Bolzano, Città di Torino (Base cartografica realizzata da Bára Soukupová, integrata con Ortofoto digitale colore 2023 della Città di Torino reperiti sul Geoportale del Comune di Torino), Comune di Bologna och Comune di Modena med Regione Emilia-Romagna (alla CC BY 4.0), Bolognas byggnader © Comune di Bologna (CC BY 4.0), gränser © ISTAT (CC BY 4.0), EuroGeographics (GISCO), vägmärken Wikimedia Commons (officiella verk; omritning F l a n k e r under CC BY-SA 3.0 och 4.0) ·
     Estland: ortofoto, byggnader (ETAK) och adressökning (In-ADS) © Maa- ja Ruumiamet, läge 11/2026 (öppen licens), Tallinns ytkarta © Tallinna Linnaplaneerimise Amet, gränser © EuroGeographics (GISCO), vägmärken Wikimedia Commons (officiella verk; omritning มองโกเลีย๔๔ under CC BY-SA 4.0) ·
     parkering © TSK hl. m. Prahy (CC BY 4.0), parkeringsförbud, träd och gatuklasser från <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, städerna Jihlava, Opava, Plzeň (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-bidragsgivare (ODbL) ·

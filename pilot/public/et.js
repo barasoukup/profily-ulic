@@ -885,7 +885,6 @@ export const ET = {
   "mapy povrchů Bologni, ortofota a OSM": "Bologna pinnakatete kaart, ortofoto ja OSM",
   "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)": "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)",
   "ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)": "ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)",
-  "ortofoto © Città di Torino (CC BY 4.0)": "ortofoto © Città di Torino (CC BY 4.0)",
   "ortofoto © Provincia autonoma di Bolzano (CC BY 4.0)": "ortofoto © Provincia autonoma di Bolzano (CC BY 4.0)",
   "mapa povrchů (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)": "pinnakatete kaart (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)",
   " · mapa povrchů Bologni neodpověděla, odhad z ortofota a OSM": " · Bologna pinnakatete kaart ei vastanud, hinnang ortofoto ja OSM-i põhjal",
@@ -951,7 +950,7 @@ export const ET_HTML = {
     Monaco: ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0), piirid © OpenStreetMapi kaastöötajad, Prantsuse liiklusmärkide joonised Wikimedia Commons ·
     Küpros: ortofoto 2019 © Department of Lands and Surveys (DLS; litsents märkimata), hooned © DLS (CC BY 4.0), piirid © OpenStreetMapi kaastöötajad, liiklusmärgid Wikimedia Commons (Briti kujundused: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
     Malta: ortofoto 2018 © Planning Authority (CC BY 4.0), piirid © OpenStreetMapi kaastöötajad, liiklusmärgid Wikimedia Commons (Briti kujundused: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
-    Itaalia: ortofoto © Provincia autonoma di Bolzano, Città di Torino, Comune di Bologna ja Comune di Modena ning Regione Emilia-Romagna (kõik CC BY 4.0), Bologna hooned © Comune di Bologna (CC BY 4.0), piirid © EuroGeographics (GISCO), liiklusmärgid Wikimedia Commons (ametlikud teosed; ümberjoonistus F l a n k e r, CC BY-SA 3.0 ja 4.0) ·
+    Itaalia: ortofoto © Provincia autonoma di Bolzano, Città di Torino (Base cartografica realizzata da Bára Soukupová, integrata con Ortofoto digitale colore 2023 della Città di Torino reperiti sul Geoportale del Comune di Torino), Comune di Bologna ja Comune di Modena ning Regione Emilia-Romagna (kõik CC BY 4.0), Bologna hooned © Comune di Bologna (CC BY 4.0), piirid © ISTAT (CC BY 4.0), EuroGeographics (GISCO), liiklusmärgid Wikimedia Commons (ametlikud teosed; ümberjoonistus F l a n k e r, CC BY-SA 3.0 ja 4.0) ·
     Eesti: ortofoto, hooned (ETAK) ja aadressiotsing (In-ADS) © Maa- ja Ruumiamet, seisuga 11/2026 (avatud litsents), Tallinna pinnakatete kaart © Tallinna Linnaplaneerimise Amet, piirid © EuroGeographics (GISCO), liiklusmärgid Wikimedia Commons (ametlikud teosed; ümberjoonistus มองโกเลีย๔๔, CC BY-SA 4.0) ·
     parkimine © TSK hl. m. Prahy (CC BY 4.0), parkimiskeelud, puud ja tänavaklassid <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, linnad Jihlava, Opava, Plzeň (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMapi</a> kaastöötajad (ODbL) ·

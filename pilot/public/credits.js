@@ -7,7 +7,7 @@
 // No import of city.js (it imports this).
 import { t } from "./i18n.js";
 import { PASSPORT_NAMES, GREEN_PASSPORTS } from "./towns/pasporty-names.js";
-import { DE_ORTHO } from "./lanes-ortho.js";
+import { DE_ORTHO, TO_ORTHO_WHO } from "./lanes-ortho.js";
 
 // The cantons (and Liechtenstein, FL in the survey) by their code in Switzerland's cadastral survey (towns/switzerland.js).
 export const CANTONS = ["AG", "AI", "AR", "BE", "BL", "BS", "FR", "GE", "GL", "GR", "JU", "LU", "NE", "NW", "OW", "SG", "SH", "SO", "SZ", "TG", "TI", "UR", "VD", "VS", "ZG", "ZH", "FL", "LI"];
@@ -36,7 +36,7 @@ export const SOURCE_CREDITS = {
     ee: () => t("ortofoto © Maa- ja Ruumiamet"),
     "it-bo": () => t("ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)"),
     "it-mo": () => t("ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)"),
-    "it-to": () => t("ortofoto © Città di Torino (CC BY 4.0)"),
+    "it-to": () => t("ortofoto {who}", { who: TO_ORTHO_WHO }),
     "it-bz": () => t("ortofoto © Provincia autonoma di Bolzano (CC BY 4.0)"),
     "pt-21": () => t("ortofoto © DGT"),
     "pt-18": () => t("ortofoto © DGT"),

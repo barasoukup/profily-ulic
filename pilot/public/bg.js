@@ -885,7 +885,6 @@ export const BG = {
   "mapy povrchů Bologni, ortofota a OSM": "картата на настилките на Болоня, ортофото и OSM",
   "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)": "ортофото © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)",
   "ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)": "ортофото © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)",
-  "ortofoto © Città di Torino (CC BY 4.0)": "ортофото © Città di Torino (CC BY 4.0)",
   "ortofoto © Provincia autonoma di Bolzano (CC BY 4.0)": "ортофото © Provincia autonoma di Bolzano (CC BY 4.0)",
   "mapa povrchů (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)": "карта на настилките (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)",
   " · mapa povrchů Bologni neodpověděla, odhad z ortofota a OSM": " · картата на настилките на Болоня не отговори, оценка от ортофото и OSM",
@@ -951,7 +950,7 @@ export const BG_HTML = {
     Монако: ортофото © IGN (Géoplateforme, Licence Ouverte 2.0), граница © сътрудници на OpenStreetMap, рисунки на френски пътни знаци Wikimedia Commons ·
     Кипър: ортофото 2019 © Department of Lands and Surveys (DLS; лицензът не е посочен), сгради © DLS (CC BY 4.0), граница © сътрудници на OpenStreetMap, пътни знаци Wikimedia Commons (британски образци: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
     Малта: ортофото 2018 © Planning Authority (CC BY 4.0), граница © сътрудници на OpenStreetMap, пътни знаци Wikimedia Commons (британски образци: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
-    Италия: ортофото © Provincia autonoma di Bolzano, Città di Torino, Comune di Bologna и Comune di Modena с Regione Emilia-Romagna (всички CC BY 4.0), сградите на Болоня © Comune di Bologna (CC BY 4.0), граница © EuroGeographics (GISCO), пътни знаци Wikimedia Commons (официални документи; прерисувани от F l a n k e r под CC BY-SA 3.0 и 4.0) ·
+    Италия: ортофото © Provincia autonoma di Bolzano, Città di Torino (Base cartografica realizzata da Bára Soukupová, integrata con Ortofoto digitale colore 2023 della Città di Torino reperiti sul Geoportale del Comune di Torino), Comune di Bologna и Comune di Modena с Regione Emilia-Romagna (всички CC BY 4.0), сградите на Болоня © Comune di Bologna (CC BY 4.0), граница © ISTAT (CC BY 4.0), EuroGeographics (GISCO), пътни знаци Wikimedia Commons (официални документи; прерисувани от F l a n k e r под CC BY-SA 3.0 и 4.0) ·
     Естония: ортофото, сгради (ETAK) и търсене на адреси (In-ADS) © Maa- ja Ruumiamet, към 11/2026 (отворен лиценз), карта на настилките на Талин © Tallinna Linnaplaneerimise Amet, граница © EuroGeographics (GISCO), пътни знаци Wikimedia Commons (официални документи; прерисувани от มองโกเลีย๔๔ под CC BY-SA 4.0) ·
     паркиране © TSK hl. m. Prahy (CC BY 4.0), забрани за паркиране, дървета и класове на улиците от <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, градовете Jihlava, Opava, Plzeň (CC0) ·
     © сътрудници на <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·

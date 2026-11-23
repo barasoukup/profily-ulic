@@ -910,7 +910,6 @@ export const NL = {
   "mapy povrchů Bologni, ortofota a OSM": "de oppervlakkenkaart van Bologna, de luchtfoto en OSM",
   "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)": "luchtfoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)",
   "ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)": "luchtfoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)",
-  "ortofoto © Città di Torino (CC BY 4.0)": "luchtfoto © Città di Torino (CC BY 4.0)",
   "ortofoto © Provincia autonoma di Bolzano (CC BY 4.0)": "luchtfoto © Provincia autonoma di Bolzano (CC BY 4.0)",
   "mapa povrchů (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)": "oppervlakkenkaart (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)",
   " · mapa povrchů Bologni neodpověděla, odhad z ortofota a OSM": " · de oppervlakkenkaart van Bologna antwoordde niet, een schatting uit de luchtfoto en OSM",
@@ -976,7 +975,7 @@ export const NL_HTML = {
     Monaco: luchtfoto © IGN (Géoplateforme, Licence Ouverte 2.0), grenzen © OpenStreetMap-bijdragers, tekeningen van Franse verkeersborden Wikimedia Commons ·
     Cyprus: luchtfoto 2019 © Department of Lands and Surveys (DLS; licentie niet vermeld), gebouwen © DLS (CC BY 4.0), grenzen © OpenStreetMap-bijdragers, verkeersborden Wikimedia Commons (Britse ontwerpen: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
     Malta: luchtfoto 2018 © Planning Authority (CC BY 4.0), grenzen © OpenStreetMap-bijdragers, verkeersborden Wikimedia Commons (Britse ontwerpen: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
-    Italië: luchtfoto © Provincia autonoma di Bolzano, Città di Torino, Comune di Bologna en Comune di Modena met Regione Emilia-Romagna (alle CC BY 4.0), gebouwen van Bologna © Comune di Bologna (CC BY 4.0), grenzen © EuroGeographics (GISCO), verkeersborden Wikimedia Commons (officiële werken; hertekening F l a n k e r onder CC BY-SA 3.0 en 4.0) ·
+    Italië: luchtfoto © Provincia autonoma di Bolzano, Città di Torino (Base cartografica realizzata da Bára Soukupová, integrata con Ortofoto digitale colore 2023 della Città di Torino reperiti sul Geoportale del Comune di Torino), Comune di Bologna en Comune di Modena met Regione Emilia-Romagna (alle CC BY 4.0), gebouwen van Bologna © Comune di Bologna (CC BY 4.0), grenzen © ISTAT (CC BY 4.0), EuroGeographics (GISCO), verkeersborden Wikimedia Commons (officiële werken; hertekening F l a n k e r onder CC BY-SA 3.0 en 4.0) ·
     Estland: luchtfoto, gebouwen (ETAK) en adreszoeker (In-ADS) © Maa- ja Ruumiamet, stand 11/2026 (open licentie), oppervlakkenkaart van Tallinn © Tallinna Linnaplaneerimise Amet, grenzen © EuroGeographics (GISCO), verkeersborden Wikimedia Commons (officiële werken; hertekening มองโกเลีย๔๔ onder CC BY-SA 4.0) ·
     parkeren © TSK hl. m. Prahy (CC BY 4.0), parkeerverboden, bomen en wegklassen uit het <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, de steden Jihlava, Opava, Plzeň (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-bijdragers (ODbL) ·

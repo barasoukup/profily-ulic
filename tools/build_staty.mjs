@@ -101,17 +101,14 @@ const BUILD = {
   // a state of its own the app does not have yet (Bára 23. 11. 2026), GISCO draws one island.
   cyprus: () => JSON.parse(fs.readFileSync(new URL("./cyprus-border.json", import.meta.url), "utf8")).map((r) => simplify(r)),
   // Italy (23. 11. 2026): only where an orthophoto has an open licence (Bára 23. 11. 2026: AGEA's "institutional use" is
-  // not ours; evaluation/italy/ZDROJE.md): the province of Bolzano (NUTS 2 ITH1) and the municipalities of Turin, Bologna
-  // and Modena (LAU 2024), from GISCO. The rest of Italy, San Marino and the Vatican are not covered yet.
-  italy: async () => {
-    const nuts = await (await fetch("https://gisco-services.ec.europa.eu/distribution/v2/nuts/geojson/NUTS_RG_01M_2024_4326_LEVL_2.geojson")).json();
-    const lau = await (await fetch("https://gisco-services.ec.europa.eu/distribution/v2/lau/geojson/LAU_RG_01M_2024_4326.geojson", { headers: { "User-Agent": "profily-ulic" } })).json();
-    const outer = (g) => (g.type === "MultiPolygon" ? g.coordinates : [g.coordinates]).map((p) => p[0].map(([x, y]) => [+x.toFixed(4), +y.toFixed(4)]));
-    const bz = nuts.features.find((f) => f.properties.NUTS_ID === "ITH1");
-    const towns = ["001272", "037006", "036023"].map((id) => lau.features.find((f) => f.properties.GISCO_ID === `IT_${id}`));
-    if (!bz || towns.some((f) => !f)) throw new Error("Itálie: oblast nenalezena");
-    return [bz, ...towns].flatMap((f) => outer(f.geometry));
-  },
+  // not ours; evaluation/italy/ZDROJE.md): the province of Bolzano (ProvCM, COD_PROV 21) and the municipalities of Turin,
+  // Bologna and Modena with its exclaves (Com, PRO_COM_T 001272, 037006, 036023), from ISTAT's "Confini delle unità
+  // amministrative a fini statistici al 1° gennaio 2026", not generalised (© ISTAT, CC BY 4.0; Bára 23. 11. 2026, the
+  // review: GISCO's 1 : 1 000 000 took in strips of the neighbours, where the city's orthophoto is black). The shapefiles
+  // are in EPSG:32632; tools/italy-border.json holds their rings in WGS 84 (ogr2ogr -t_srs EPSG:4326, thinned to 5 m), from
+  // https://www.istat.it/storage/cartografia/confini_amministrativi/non_generalizzati/2026/Limiti01012026.zip. The rest of
+  // Italy, San Marino and the Vatican are not covered yet.
+  italy: () => JSON.parse(fs.readFileSync(new URL("./italy-border.json", import.meta.url), "utf8")).map((r) => simplify(r)),
   // Estonia (23. 11. 2026): GISCO's, with the islands.
   estonia: () => gisco("EE"),
   // Malta (23. 11. 2026): OSM's boundary with the territorial waters (one ring round the islands, no neighbour; GISCO's

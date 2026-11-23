@@ -908,7 +908,6 @@ export const SK = {
   "mapy povrchů Bologni, ortofota a OSM": "mapy povrchov Bologne, ortofoto a OSM",
   "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)": "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)",
   "ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)": "ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)",
-  "ortofoto © Città di Torino (CC BY 4.0)": "ortofoto © Città di Torino (CC BY 4.0)",
   "ortofoto © Provincia autonoma di Bolzano (CC BY 4.0)": "ortofoto © Provincia autonoma di Bolzano (CC BY 4.0)",
   "mapa povrchů (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)": "mapa povrchov (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)",
   " · mapa povrchů Bologni neodpověděla, odhad z ortofota a OSM": " · mapa povrchov Bologne neodpovedala, odhad z ortofota a OSM",
@@ -973,7 +972,7 @@ export const SK_HTML = {
     Monako: ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0), hranice © prispievatelia OpenStreetMap, kresby francúzskych dopravných značiek Wikimedia Commons ·
     Cyprus: ortofoto 2019 © Department of Lands and Surveys (DLS; licencia neuvedená), budovy © DLS (CC BY 4.0), hranice © prispievatelia OpenStreetMap, dopravné značky Wikimedia Commons (britské vzory: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
     Malta: ortofoto 2018 © Planning Authority (CC BY 4.0), hranice © prispievatelia OpenStreetMap, dopravné značky Wikimedia Commons (britské vzory: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
-    Taliansko: ortofoto © Provincia autonoma di Bolzano, Città di Torino, Comune di Bologna a Comune di Modena s Regione Emilia-Romagna (všetko CC BY 4.0), budovy Bologne © Comune di Bologna (CC BY 4.0), hranice © EuroGeographics (GISCO), dopravné značky Wikimedia Commons (úradné diela; prekreslenie F l a n k e r pod CC BY-SA 3.0 a 4.0) ·
+    Taliansko: ortofoto © Provincia autonoma di Bolzano, Città di Torino (Base cartografica realizzata da Bára Soukupová, integrata con Ortofoto digitale colore 2023 della Città di Torino reperiti sul Geoportale del Comune di Torino), Comune di Bologna a Comune di Modena s Regione Emilia-Romagna (všetko CC BY 4.0), budovy Bologne © Comune di Bologna (CC BY 4.0), hranice © ISTAT (CC BY 4.0), EuroGeographics (GISCO), dopravné značky Wikimedia Commons (úradné diela; prekreslenie F l a n k e r pod CC BY-SA 3.0 a 4.0) ·
     Estónsko: ortofoto, budovy (ETAK) a hľadanie adries (In-ADS) © Maa- ja Ruumiamet, stav 11/2026 (otvorená licencia), mapa povrchov Tallinnu © Tallinna Linnaplaneerimise Amet, hranice © EuroGeographics (GISCO), dopravné značky Wikimedia Commons (úradné diela; prekreslenie มองโกเลีย๔๔ pod CC BY-SA 4.0) ·
     siete pod zemou © IPR Praha, Gemeente Amsterdam a Waternet (CC BY), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, štatutárne mestá Karviná, Ostrava, mesto Břeclav ·
     parkovanie © TSK hl. m. Prahy (CC BY 4.0), zákaz státia, stromy a zaradenie komunikácií z <a href="https://opendata.geoportalpraha.cz">Geoportálu Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, mestá Jihlava, Opava, Plzeň (CC0) ·

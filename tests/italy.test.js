@@ -51,7 +51,30 @@ test("Itálie: ortofoto Turína a Modeny i v severních exklávách Modeny", asy
   const L = await import("../pilot/public/lanes-ortho.js");
   assert.deepEqual(L.itOrthoAt(7.6869, 45.0703), ["it-to"]);
   assert.deepEqual(L.itOrthoAt(10.9252, 44.6471), ["it-mo"]);
-  assert.deepEqual(L.itOrthoAt(10.8935, 44.7395), ["it-mo"], "exkláva Modeny");
+  assert.deepEqual(L.itOrthoAt(10.89281, 44.74047), ["it-mo"], "exkláva Modeny");
+});
+
+// ISTAT's municipal borders (Bára 23. 11. 2026, the review): points 80 m inside and outside Turin, Modena and Bologna that
+// GISCO's 1 : 1 000 000 placed wrong; every point of the covered area lies in its orthophoto's box; Turin's credit in
+// the Geoportale's wording.
+test("Itálie: hranice obcí ISTAT, ortofoto pokrývá celé území, kredit Turína", async () => {
+  const C = await import("../pilot/public/city.js");
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
+  const staty = JSON.parse(fs.readFileSync(new URL("../pilot/public/staty.json", import.meta.url), "utf8"));
+  C.loadStates(staty);
+  const inside = [[45.1387, 7.66514], [45.09861, 7.7503], [45.0192, 7.59288], [44.72488, 10.89973], [44.62863, 10.99276], [44.61059, 10.82662],
+    [44.5509, 11.3758], [44.4444, 11.35468], [44.49141, 11.26779], [44.73113, 10.8926], [44.74047, 10.89281]];
+  const outside = [[45.13798, 7.67457], [45.07884, 7.77075], [45.07003, 7.60659], [44.72048, 10.90093], [44.63424, 10.98652], [44.59982, 10.86637],
+    [44.54965, 11.37703], [44.4755, 11.40534], [44.47656, 11.29045]];
+  for (const [lat, lon] of inside) assert.equal(C.cityAt(lat, lon), "italy", `uvnitř ${lat},${lon}`);
+  for (const [lat, lon] of outside) {
+    assert.equal(C.cityAt(lat, lon), "cizina", `venku ${lat},${lon}`);
+    assert.match(C.closedAt(lat, lon) || "", /Itálii/, `bez profilu ${lat},${lon}`);
+  }
+  const L = await import("../pilot/public/lanes-ortho.js");
+  for (const ring of staty.italy) for (const [lon, lat] of ring) assert.ok(L.itOrthoAt(lon, lat).length, `mimo obdélníky ortofot ${lon},${lat}`);
+  const { SOURCE_CREDITS } = await import("../pilot/public/credits.js");
+  assert.match(SOURCE_CREDITS.orthoCity["it-to"](), /Base cartografica realizzata da .+, integrata con Ortofoto digitale colore 2023 della Città di Torino reperiti sul Geoportale del Comune di Torino/);
 });
 
 test("Itálie: výpadek ortofota se ohlásí (jako Belgie a Portugalsko)", async () => {

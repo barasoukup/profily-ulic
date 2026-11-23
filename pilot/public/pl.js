@@ -910,7 +910,6 @@ export const PL = {
   "mapy povrchů Bologni, ortofota a OSM": "mapa powierzchni Bolonii, ortofotomapa i OSM",
   "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)": "ortofotomapa © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)",
   "ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)": "ortofotomapa © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)",
-  "ortofoto © Città di Torino (CC BY 4.0)": "ortofotomapa © Città di Torino (CC BY 4.0)",
   "ortofoto © Provincia autonoma di Bolzano (CC BY 4.0)": "ortofotomapa © Provincia autonoma di Bolzano (CC BY 4.0)",
   "mapa povrchů (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)": "mapa powierzchni (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)",
   " · mapa povrchů Bologni neodpověděla, odhad z ortofota a OSM": " · mapa powierzchni Bolonii nie odpowiedziała, szacunek z ortofotomapy i OSM",
@@ -976,7 +975,7 @@ export const PL_HTML = {
     Monako: ortofotomapa © IGN (Géoplateforme, Licence Ouverte 2.0), granica © współtwórcy OpenStreetMap, rysunki francuskich znaków drogowych Wikimedia Commons ·
     Cypr: ortofotomapa 2019 © Department of Lands and Surveys (DLS; licencja nieokreślona), budynki © DLS (CC BY 4.0), granica © współtwórcy OpenStreetMap, znaki drogowe Wikimedia Commons (wzory brytyjskie: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
     Malta: ortofotomapa 2018 © Planning Authority (CC BY 4.0), granica © współtwórcy OpenStreetMap, znaki drogowe Wikimedia Commons (wzory brytyjskie: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
-    Włochy: ortofotomapa © Provincia autonoma di Bolzano, Città di Torino, Comune di Bologna i Comune di Modena z Regione Emilia-Romagna (wszystkie CC BY 4.0), budynki Bolonii © Comune di Bologna (CC BY 4.0), granica © EuroGeographics (GISCO), znaki drogowe Wikimedia Commons (dzieła urzędowe; przerysowanie F l a n k e r na licencji CC BY-SA 3.0 i 4.0) ·
+    Włochy: ortofotomapa © Provincia autonoma di Bolzano, Città di Torino (Base cartografica realizzata da Bára Soukupová, integrata con Ortofoto digitale colore 2023 della Città di Torino reperiti sul Geoportale del Comune di Torino), Comune di Bologna i Comune di Modena z Regione Emilia-Romagna (wszystkie CC BY 4.0), budynki Bolonii © Comune di Bologna (CC BY 4.0), granica © ISTAT (CC BY 4.0), EuroGeographics (GISCO), znaki drogowe Wikimedia Commons (dzieła urzędowe; przerysowanie F l a n k e r na licencji CC BY-SA 3.0 i 4.0) ·
     Estonia: ortofotomapa, budynki (ETAK) i wyszukiwanie adresów (In-ADS) © Maa- ja Ruumiamet, stan na 11/2026 (otwarta licencja), mapa powierzchni Tallinna © Tallinna Linnaplaneerimise Amet, granica © EuroGeographics (GISCO), znaki drogowe Wikimedia Commons (dzieła urzędowe; przerysowanie มองโกเลีย๔๔ na licencji CC BY-SA 4.0) ·
     parkowanie © TSK hl. m. Prahy (CC BY 4.0), zakazy postoju, drzewa i klasy ulic z <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, miasta Jihlava, Opava, Plzeň (CC0) ·
     © współtwórcy <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·

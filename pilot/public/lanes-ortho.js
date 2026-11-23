@@ -80,12 +80,17 @@ export const MT_ORTHO = (b, w, h, format = "image/jpeg") => `https://malta.cover
 // box: Bologna 2023 and Modena 2024 (Emilia-Romagna's services), Turin 2023 (the Comune's), the province of Bolzano 2023
 // (flown in collaboration with AGEA under the monitoring plan; the province's metadata license it CC BY 4.0, Bára
 // 23. 11. 2026: use it). AGEA's own layers (the rest of Italy) are for institutional use only. All WMS in EPSG:3857 with
-// CORS. Modena's box reaches 44.75 for the town's two northern exclaves (the review of 23. 11. 2026).
+// CORS. Modena's box reaches 44.75 for the town's two northern exclaves (the review of 23. 11. 2026) and 10.77 for its
+// western edge by ISTAT's border (tools/build_staty.mjs).
+// Turin's credit in the wording the Geoportale del Comune di Torino requires (its "Licenze d'uso", Bára 23. 11. 2026):
+// "Base cartografica realizzata da [Licenziatario], integrata con [Livelli informativi o Servizi][data] della Città di
+// Torino reperiti sul Geoportale del Comune di Torino", in Italian in every language, after "ortofoto {who}".
+export const TO_ORTHO_WHO = "© Città di Torino (CC BY 4.0): Base cartografica realizzata da Bára Soukupová, integrata con Ortofoto digitale colore 2023 della Città di Torino reperiti sul Geoportale del Comune di Torino";
 const itWms = (base, layer) => (b, w, h, format = "image/jpeg") => `${base}?${new URLSearchParams({ SERVICE: "WMS", REQUEST: "GetMap", VERSION: "1.3.0", LAYERS: layer, STYLES: "", CRS: "EPSG:3857", BBOX: b.join(","), WIDTH: w, HEIGHT: h, FORMAT: format })}`;
 export const IT_ORTHO = {
   "it-bo": { box: [11.22, 44.42, 11.44, 44.56], url: itWms("https://servizigis.regione.emilia-romagna.it/wms/comune_bo_2023_rgb", "Comune_BO_2023_RGB"), credit: "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)" },
-  "it-mo": { box: [10.80, 44.52, 11.03, 44.75], url: itWms("https://servizigis.regione.emilia-romagna.it/wms/comune_mo_2024_rgb", "Comune_MO_2024_RGB"), credit: "ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)" },
-  "it-to": { box: [7.57, 44.99, 7.78, 45.15], url: itWms("https://geomap.reteunitaria.piemonte.it/mapproxy/service", "coto_ortofoto_2023"), credit: "ortofoto © Città di Torino (CC BY 4.0)" },
+  "it-mo": { box: [10.77, 44.52, 11.03, 44.75], url: itWms("https://servizigis.regione.emilia-romagna.it/wms/comune_mo_2024_rgb", "Comune_MO_2024_RGB"), credit: "ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)" },
+  "it-to": { box: [7.57, 44.99, 7.78, 45.15], url: itWms("https://geomap.reteunitaria.piemonte.it/mapproxy/service", "coto_ortofoto_2023"), who: TO_ORTHO_WHO },
   "it-bz": { box: [10.38, 46.21, 12.48, 47.10], url: itWms("https://geoservices.buergernetz.bz.it/mapproxy/wms", "p_bz-Orthoimagery:Aerial-2023-RGB"), credit: "ortofoto © Provincia autonoma di Bolzano (CC BY 4.0)" },
 };
 export const itOrthoAt = (lon, lat) => Object.keys(IT_ORTHO).filter((k) => { const [x0, y0, x1, y1] = IT_ORTHO[k].box; return lon >= x0 && lon <= x1 && lat >= y0 && lat <= y1; });

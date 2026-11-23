@@ -910,7 +910,6 @@ export const FI = {
   "mapy povrchů Bologni, ortofota a OSM": "Bolognan pintakartta, ortokuva ja OSM",
   "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)": "ortokuva © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)",
   "ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)": "ortokuva © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)",
-  "ortofoto © Città di Torino (CC BY 4.0)": "ortokuva © Città di Torino (CC BY 4.0)",
   "ortofoto © Provincia autonoma di Bolzano (CC BY 4.0)": "ortokuva © Provincia autonoma di Bolzano (CC BY 4.0)",
   "mapa povrchů (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)": "pintakartta (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)",
   " · mapa povrchů Bologni neodpověděla, odhad z ortofota a OSM": " · Bolognan pintakartta ei vastannut, arvio ortokuvasta ja OSM:stä",
@@ -976,7 +975,7 @@ export const FI_HTML = {
     Monaco: ortokuva © IGN (Géoplateforme, Licence Ouverte 2.0), rajat © OpenStreetMapin tekijät, ranskalaisten liikennemerkkien piirrokset Wikimedia Commons ·
     Kypros: ortokuva 2019 © Department of Lands and Surveys (DLS; lisenssiä ei mainittu), rakennukset © DLS (CC BY 4.0), rajat © OpenStreetMapin tekijät, liikennemerkit Wikimedia Commons (brittiläiset mallit: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
     Malta: ortokuva 2018 © Planning Authority (CC BY 4.0), rajat © OpenStreetMapin tekijät, liikennemerkit Wikimedia Commons (brittiläiset mallit: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
-    Italia: ortokuva © Provincia autonoma di Bolzano, Città di Torino, Comune di Bologna ja Comune di Modena sekä Regione Emilia-Romagna (kaikki CC BY 4.0), Bolognan rakennukset © Comune di Bologna (CC BY 4.0), rajat © EuroGeographics (GISCO), liikennemerkit Wikimedia Commons (viranomaisteokset; uudelleenpiirros F l a n k e r, CC BY-SA 3.0 ja 4.0) ·
+    Italia: ortokuva © Provincia autonoma di Bolzano, Città di Torino (Base cartografica realizzata da Bára Soukupová, integrata con Ortofoto digitale colore 2023 della Città di Torino reperiti sul Geoportale del Comune di Torino), Comune di Bologna ja Comune di Modena sekä Regione Emilia-Romagna (kaikki CC BY 4.0), Bolognan rakennukset © Comune di Bologna (CC BY 4.0), rajat © ISTAT (CC BY 4.0), EuroGeographics (GISCO), liikennemerkit Wikimedia Commons (viranomaisteokset; uudelleenpiirros F l a n k e r, CC BY-SA 3.0 ja 4.0) ·
     Viro: ortokuva, rakennukset (ETAK) ja osoitehaku (In-ADS) © Maa- ja Ruumiamet, tilanne 11/2026 (avoin lisenssi), Tallinnan pintakartta © Tallinna Linnaplaneerimise Amet, rajat © EuroGeographics (GISCO), liikennemerkit Wikimedia Commons (viranomaisteokset; uudelleenpiirros มองโกเลีย๔๔, CC BY-SA 4.0) ·
     pysäköinti © TSK hl. m. Prahy (CC BY 4.0), pysäköintikiellot, puut ja katuluokat <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, kaupungit Jihlava, Opava, Plzeň (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMapin</a> tekijät (ODbL) ·

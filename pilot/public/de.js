@@ -908,7 +908,6 @@ export const DE = {
   "mapy povrchů Bologni, ortofota a OSM": "Flächenkarte von Bologna, Luftbild und OSM",
   "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)": "Luftbild © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)",
   "ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)": "Luftbild © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)",
-  "ortofoto © Città di Torino (CC BY 4.0)": "Luftbild © Città di Torino (CC BY 4.0)",
   "ortofoto © Provincia autonoma di Bolzano (CC BY 4.0)": "Luftbild © Provincia autonoma di Bolzano (CC BY 4.0)",
   "mapa povrchů (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)": "Flächenkarte (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)",
   " · mapa povrchů Bologni neodpověděla, odhad z ortofota a OSM": " · die Flächenkarte von Bologna hat nicht geantwortet, Schätzung aus Luftbild und OSM",
@@ -974,7 +973,7 @@ export const DE_HTML = {
     Monaco: Luftbild © IGN (Géoplateforme, Licence Ouverte 2.0), Grenzen © OpenStreetMap-Mitwirkende, Zeichnungen französischer Verkehrszeichen Wikimedia Commons ·
     Zypern: Luftbild 2019 © Department of Lands and Surveys (DLS; Lizenz nicht angegeben), Gebäude © DLS (CC BY 4.0), Grenzen © OpenStreetMap-Mitwirkende, Verkehrszeichen Wikimedia Commons (britische Vorlagen: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
     Malta: Luftbild 2018 © Planning Authority (CC BY 4.0), Grenzen © OpenStreetMap-Mitwirkende, Verkehrszeichen Wikimedia Commons (britische Vorlagen: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
-    Italien: Luftbild © Provincia autonoma di Bolzano, Città di Torino, Comune di Bologna und Comune di Modena mit Regione Emilia-Romagna (alle CC BY 4.0), Gebäude von Bologna © Comune di Bologna (CC BY 4.0), Grenzen © EuroGeographics (GISCO), Verkehrszeichen Wikimedia Commons (amtliche Werke; nachgezeichnet von F l a n k e r unter CC BY-SA 3.0 und 4.0) ·
+    Italien: Luftbild © Provincia autonoma di Bolzano, Città di Torino (Base cartografica realizzata da Bára Soukupová, integrata con Ortofoto digitale colore 2023 della Città di Torino reperiti sul Geoportale del Comune di Torino), Comune di Bologna und Comune di Modena mit Regione Emilia-Romagna (alle CC BY 4.0), Gebäude von Bologna © Comune di Bologna (CC BY 4.0), Grenzen © ISTAT (CC BY 4.0), EuroGeographics (GISCO), Verkehrszeichen Wikimedia Commons (amtliche Werke; nachgezeichnet von F l a n k e r unter CC BY-SA 3.0 und 4.0) ·
     Estland: Luftbild, Gebäude (ETAK) und Adresssuche (In-ADS) © Maa- ja Ruumiamet, Stand 11/2026 (offene Lizenz), Flächenkarte von Tallinn © Tallinna Linnaplaneerimise Amet, Grenzen © EuroGeographics (GISCO), Verkehrszeichen Wikimedia Commons (amtliche Werke; nachgezeichnet von มองโกเลีย๔๔ unter CC BY-SA 4.0) ·
     Parken © TSK hl. m. Prahy (CC BY 4.0), Parkverbote, Bäume und Straßenklassen aus dem <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, die Städte Jihlava, Opava, Plzeň (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-Mitwirkende (ODbL) ·

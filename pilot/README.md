@@ -324,8 +324,8 @@ se nekreslí, vlastní kresby II.E11, II.B6, II.D12 bez úředního čísla). Hl
 ### Itálie (Bára 23. 11. 2026)
 
 Stát `italy` (IT), `countries/IT.js`, `towns/italy.js`; **jen oblasti s ortofotem s otevřenou licencí** (Bára: vrstvy
-AGEA regionů jsou „jen pro institucionální účely“, to nesplňujeme): provincie Bolzano (NUTS 2 ITH1) a obce Turín, Bologna, Modena
-(LAU 2024), vše GISCO. Zbytek Itálie, Vatikán a San Marino profil nedostanou (hláška, `city.js closedAt`, `staty.json` `closed_it`).
+AGEA regionů jsou „jen pro institucionální účely“, to nesplňujeme): provincie Bolzano a obce Turín, Bologna, Modena
+(hranice ISTAT 1. 1. 2026, CC BY 4.0, `tools/italy-border.json`; GISCO 1 : 1 M zabíral pruhy sousedních obcí, kde je ortofoto města černé). Turín je v kreditu ve znění, které žádá Geoportál města („Base cartografica realizzata da …“). Zbytek Itálie, Vatikán a San Marino profil nedostanou (hláška, `city.js closedAt`, `staty.json` `closed_it`).
 Ortofota CC BY 4.0: Bologna 2023, Modena 2024 (služby regionu Emilia-Romagna), Turín 2023, Bolzano 2023 (nálet provincie
 ve spolupráci s AGEA, licenci CC BY 4.0 dává provincie) (`lanes-ortho.js IT_ORTHO`, podle obdélníku oblasti; výpadek se ohlásí). OSM po 5
 dílech Geofabriku (jen R2). Výšky budov Bologni (`?bolognadomy=0`); plochy silnic Bologni vypnuté (`?bologna=1`; jsou to

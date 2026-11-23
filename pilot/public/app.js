@@ -311,7 +311,7 @@ if (STATY?.italy) {
   const It = insideOnly([boxedPlace("IT", STATY.italy)]);
   for (const o of Object.values(IT_ORTHO)) {
     const [x0, y0, x1, y1] = o.box;
-    kinds.ortho.push(new It("", { bboxUrl: (b, w, h) => `${o.url(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr(o.credit), bounds: L.latLngBounds([y0, x0], [y1, x1]) }));
+    kinds.ortho.push(new It("", { bboxUrl: (b, w, h) => `${o.url(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: o.who ? tr("ortofoto {who}", { who: o.who }) : tr(o.credit), bounds: L.latLngBounds([y0, x0], [y1, x1]) }));
   }
 }
 // Estonia: the Board's orthophoto tiles (TMS: the y axis flipped), only over Estonia (dark beyond).
