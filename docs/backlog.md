@@ -148,6 +148,17 @@ Co rozhodne Bára, je označeno **(Bára)**.
   doplněné mezery přes dvory (hk23); registr Helsinek dává užití 151 (kanceláře) i domům se smíšeným užitím; Ryhti
   v obrysu OSM se dvorní budovou bere nejbližší bod (he7); (9) ortofoto MML přes proxy (viz Nasazení).
 
+- Dánsko (Bára 23. 11. 2026, nenasazené; otázky): (1) licence kodaňských vrstev `vejkant`, `parkering_areal`, `bygning`
+  (v katalogu neuvedená; zeptat se Københavns Kommune, nebo brát jako GeoDanmark CC BY 4.0?), do té doby vypnuté; pak A/B
+  v aplikaci (čáry a stání; nástroje jako u Finska, `ORTHO=dk` do `obrazky.mjs`; 23. 11. neproběhlo, prohlížeč neměl
+  volnou záložku); (2) před nasazením: proměnná repozitáře `DK_TOKEN`, workflow OSM tiles se `states: dk`; po 30. 11.
+  ověřit Dataforsyningen na nové platformě (náhrada Datafordeler s klíčem na 2 roky); (3) normy z vejregler 2019 (vydání
+  31. 5. 2024 nečteno), jen oranžově; pruh 2,75 m (§ 164 vyhl. 426/2023 platí jen mezi čarami); (4) stání 3 m na směr,
+  zákon je dává jen u plné čáry (§ 29 odst. 1 bod 8); (5) značky z Commons jako úřední díla (§ 9 odst. 2); zóna 30 (E 68)
+  nemá kresbu se 30, nekreslí se; jednosměrka E 19 vynechána; (6) Aarhus: podlaží jen odhadem z ploch (OSM má přednost);
+  (7) GetCapabilities Dataforsyningen vrací cizí přihlašovací údaje Datafordeleru (ZDROJE.md 7): dát vědět
+  poskytovateli?; (8) překlady strojové, sv.js cituje færdselsloven volně jako „trafiklagen“.
+
 ## Nasazení a provoz
 
 - Balík OSM `be` (0,7 GB PBF) po prvním běhu workflow změřit, případně rozdělit pod 512 MB.

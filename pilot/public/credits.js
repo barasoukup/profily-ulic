@@ -39,6 +39,8 @@ export const SOURCE_CREDITS = {
     "fi-hki": () => t("ortofoto © Helsingin kaupunki, kaupunkimittauspalvelut (CC BY 4.0)"),
     "fi-esp": () => t("ortofoto © Espoon kaupunki (CC BY 4.0)"),
     "fi-tku": () => t("ortofoto © Turun kaupunki, 2022 (CC BY 4.0)"),
+    // Denmark: GeoDanmark's spring orthophoto through Dataforsyningen, credited as its terms ask (evaluation/denmark/ZDROJE.md 1).
+    dk: () => t("ortofoto: Indeholder data fra Styrelsen for Dataforsyning og Infrastruktur, Ortofoto forår, WMTS-tjeneste"),
     "it-bo": () => t("ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)"),
     "it-mo": () => t("ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)"),
     "it-to": () => t("ortofoto {who}", { who: TO_ORTHO_WHO }),
@@ -63,6 +65,8 @@ export const SOURCE_CREDITS = {
     presov: () => t("hranice druhov pozemkov © mesto Prešov (CC BY 4.0)"), "bratislava-tm": () => t("technická mapa © Hlavné mesto SR Bratislava"),
     // Belgium's regions (towns/belgium.js).
     grb: () => t("čáry GRB © Digitaal Vlaanderen"), picc: () => t("čáry PICC © SPW (Service public de Wallonie)"),
+    // Copenhagen's kerb lines (towns/denmark.js, ?kbhkant=1).
+    "kbh-vejkant": () => t("okraje vozovek (GeoDanmark) © Københavns Kommune"),
   },
   // Salzburg's cadastre of signs and Vienna's Flächen-Mehrzweckkarte (towns/austria.js).
   atSigns: { salzburg: () => t("dopravní značky © Stadt Salzburg (CC BY 3.0 AT)") },
@@ -102,6 +106,14 @@ export const SOURCE_CREDITS = {
   // Helsinki's register of public areas (towns/finland.js).
   fiTown: { helsinki: () => t("mapa povrchů (Yleisten alueiden rekisteri) © Helsingin kaupunki (CC BY 4.0)") },
   // The buildings of Helsinki's register or of Ryhti (towns/finland.js), where they told of a house.
+  // The buildings of Copenhagen or Aarhus (towns/denmark.js), where they told of a house.
+  dkBuild: {
+    kbh: () => t("budovy (BBR, GeoDanmark) © Københavns Kommune"),
+    aar: () => t("budovy (BBR) © Aarhus Kommune (CC BY 4.0)"),
+    both: () => `${t("budovy (BBR, GeoDanmark) © Københavns Kommune")}, ${t("budovy (BBR) © Aarhus Kommune (CC BY 4.0)")}`,
+  },
+  // Copenhagen's parking areas (towns/denmark.js, ?kbhpark=1).
+  dkParking: { true: () => t("parkovací plochy © Københavns Kommune") },
   fiBuild: {
     hki: () => t("budovy © Helsingin kaupunki (CC BY 4.0)"),
     ryhti: () => t("budovy © Suomen ympäristökeskus SYKE (Ryhti, CC BY 4.0)"),

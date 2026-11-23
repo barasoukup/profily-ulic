@@ -11,3 +11,8 @@ export const MAPY_KEY = "";
 // Address of the Worker that keeps the log of cuts (logging/README.md). Filled by the deploy workflow from
 // the repository variable LOG_URL; empty: nothing is logged (a local run).
 export const LOG_URL = "";
+
+// Dataforsyningen token (Denmark: the orthophoto and the address search GSearch; keys.js). Filled by the deploy workflow
+// from the repository variable DK_TOKEN; locally from config.local.js (export const DK_TOKEN = "…"). Empty: Denmark's
+// profile is the estimate from OSM and its search Photon, said so.
+export const DK_TOKEN = "";

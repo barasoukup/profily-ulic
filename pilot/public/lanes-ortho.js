@@ -10,6 +10,7 @@
 // bent (one direction and curve per carriageway), narrow peaks, solid or dashed by their gaps; then the lines whose
 // gaps look like lanes, chosen together. Anything doubtful leaves the rules' profile as it is.
 
+import { dkToken } from "./keys.js";
 const R = 6378137, ALONG = 20, TIMEOUT = 4000, SI_PAUSE = 300;
 const merc = (lon, lat) => [(R * lon * Math.PI) / 180, R * Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360))];
 // Each city's best orthophoto (evaluation/ortofoto/ZPRAVA.md; the key: city.js laneOrtho of the city, else the state's,
@@ -116,6 +117,15 @@ export const FI_ORTHO = {
   "fi-tku": { box: [22.05, 60.33, 22.55, 60.62], res: 0.1, url: fiWms("https://turku.asiointi.fi/TeklaOGCWeb/WMS.ashx", "Ilmakuva 2022 True ortho"), credit: "ortofoto © Turun kaupunki, 2022 (CC BY 4.0)" },
 };
 export const fiOrthoAt = (lon, lat) => Object.keys(FI_ORTHO).filter((k) => { const [x0, y0, x1, y1] = FI_ORTHO[k].box; return lon >= x0 && lon <= x1 && lat >= y0 && lat <= y1; });
+// Denmark (Bára 23. 11. 2026): the spring orthophoto of GeoDanmark (Klimadatastyrelsen, "Ortofoto forår", 10–12.5 cm, a
+// new national mosaic each spring) as WMTS tiles in Web Mercator to level 20 (DFD_GoogleMapsCompatible, about 8 cm a pixel
+// in Copenhagen), CORS for the origin asking, free data with credit (evaluation/denmark/ZDROJE.md 1). Only with the app's
+// own token of Dataforsyningen (keys.js dkToken: config.js on the site from the repository variable DK_TOKEN, locally
+// config.local.js); without it laneImage throws an error marked noKey (app.js: the estimate from OSM, said so), as it
+// does when the service turns the token away (401/403 on every tile). Dataforsyningen is moving to a new platform (a
+// service window 26.–30. 11. 2026): a server error is an outage, told as one.
+export const DK_ORTHO = (z, x, y, token = dkToken()) => `https://api.dataforsyningen.dk/orto_foraar_webm_DAF?${new URLSearchParams({ service: "WMTS", request: "GetTile", version: "1.0.0",
+  layer: "orto_foraar_webm", style: "default", format: "image/jpeg", tilematrixset: "DFD_GoogleMapsCompatible", tilematrix: String(z), tilerow: String(y), tilecol: String(x), token })}`;
 export const SK_ORTHO = "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ortofoto_hres/MapServer";
 const SOURCES = {
   // The grid of z19, tiles of 512 px (about 10 cm). balance: the mosaic is bright and tinted (Košice 2025: asphalt
@@ -138,6 +148,8 @@ const SOURCES = {
   si: { res: 0.25, url: (b, w, h, format) => SI_ORTHO(b, w, h, format) },
   mt: { res: 0.15, url: (b, w, h, format) => MT_ORTHO(b, w, h, format) },
   cy: { res: 0.12, tiles: CY_ORTHO, z: 20, px: 256 },
+  // Denmark: WMTS by key-value pairs (tileUrl in place of a path), only with a token (key).
+  dk: { res: 0.1, tiles: "dk", tileUrl: DK_ORTHO, key: dkToken, z: 20, px: 256 },
   "pt-25": { res: 0.25, url: (b, w, h, format) => PT_ORTHO["pt-25"](b, w, h, format) },
   "pt-21": { res: 0.3, url: (b, w, h, format) => PT_ORTHO["pt-21"](b, w, h, format) },
   "pt-18": { res: 0.25, url: (b, w, h, format) => PT_ORTHO["pt-18"](b, w, h, format) },
@@ -175,6 +187,9 @@ export const deWmsUrl = ({ wms, layers, time }, b, w, h, format = "image/jpeg", 
 for (const [r, o] of Object.entries(BE_ORTHO)) SOURCES[`be-${r}`] = { res: 0.1, url: o.url };
 for (const [land, o] of Object.entries(DE_ORTHO)) SOURCES[`de-${land}`] = { res: 0.1, url: (b, w, h, format) => deWmsUrl(o, b, w, h, format) };
 for (const [k, o] of Object.entries(FI_ORTHO)) SOURCES[k] = { res: o.res, url: o.url };
+// The URL of a tile: the source's own (tileUrl, WMTS by key-value pairs) or the path {z}/{y}/{x} (xy: {z}/{x}/{y}; tms: y
+// from the bottom).
+const tileUrlOf = (src, tx, ty) => (src.tileUrl ? src.tileUrl(src.z, tx, ty) : `${src.tiles}/${src.z}/${src.xy ? `${tx}/${src.tms ? 2 ** src.z - 1 - ty : ty}` : `${ty}/${tx}`}${src.ext || ""}`);
 
 // The Länder a point may lie in (laender.json): the one it is in first, then those within about 2 km (the boundaries
 // are of 1 : 1 000 000), at most three.
@@ -318,6 +333,8 @@ export async function laneImage(opts) {
   return null;
 }
 async function laneImageOf(key, { frame, dir, t0, t1, timeout = TIMEOUT, fetchImpl = fetch, decode = null }) {
+  // A source that needs a key (Denmark's token) and has none: said as such, nothing asked.
+  if (SOURCES[key]?.key && !SOURCES[key].key()) throw Object.assign(new Error("ortofoto: chybí klíč"), { noKey: true });
   const src = SOURCES[key], normal = [-dir[1], dir[0]];
   const k = Math.cos((frame.toLonLat(0, 0)[1] * Math.PI) / 180);
   // A point on the ground is read where the image shows it: moved by the orthophoto's shift (Web Mercator metres).
@@ -343,11 +360,13 @@ async function laneImageOf(key, { frame, dir, t0, t1, timeout = TIMEOUT, fetchIm
       const tp = src.px || 256; // pixels of a tile
       const canvas = new OffscreenCanvas((tx1 - tx0 + 1) * tp, (ty1 - ty0 + 1) * tp), g = canvas.getContext("2d");
       const signal = AbortSignal.timeout(timeout), jobs = [];
-      // A server error on every tile is an outage (app.js says so), not an empty image.
-      let down = 0, missing = 0;
-      for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) jobs.push(fetchImpl(`${src.tiles}/${src.z}/${src.xy ? `${tx}/${src.tms ? 2 ** src.z - 1 - ty : ty}` : `${ty}/${tx}`}${src.ext || ""}`, { signal }).then(async (r) => { if (r.ok) g.drawImage(await createImageBitmap(await r.blob()), (tx - tx0) * tp, (ty - ty0) * tp, tp, tp); else if (r.status >= 500) down++; else missing++; }));
+      // A server error on every tile is an outage (app.js says so), not an empty image; a key turned away on every
+      // tile is no key (noKey).
+      let down = 0, missing = 0, denied = 0;
+      for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) jobs.push(fetchImpl(tileUrlOf(src, tx, ty), { signal }).then(async (r) => { if (r.ok) g.drawImage(await createImageBitmap(await r.blob()), (tx - tx0) * tp, (ty - ty0) * tp, tp, tp); else if (r.status >= 500) down++; else if (src.key && (r.status === 401 || r.status === 403)) denied++; else missing++; }));
       await Promise.all(jobs);
       if (jobs.length && down === jobs.length) throw Object.assign(new Error(`ortofoto ${down}× 5xx`), { outage: true });
+      if (jobs.length && denied === jobs.length) throw Object.assign(new Error("ortofoto: klíč odmítnut"), { noKey: true });
       if (missing && src.fallback) return laneImageOf(src.fallback, { frame, dir, t0, t1, timeout, fetchImpl, decode });
       img = g.getImageData(0, 0, canvas.width, canvas.height);
       x0 = tx0 * size - Math.PI * R; x1 = (tx1 + 1) * size - Math.PI * R; y1 = Math.PI * R - ty0 * size; y0 = Math.PI * R - (ty1 + 1) * size;
@@ -365,7 +384,7 @@ async function laneImageOf(key, { frame, dir, t0, t1, timeout = TIMEOUT, fetchIm
       }
     }
     // Outside a Land's coverage its WMS answers white (only the German sources).
-    if ((key.startsWith("de-") || key.startsWith("be-") || key.startsWith("pt-") || key === "mt" || key.startsWith("it-") || key.startsWith("fi-")) && blank(img)) return null;
+    if ((key.startsWith("de-") || key.startsWith("be-") || key.startsWith("pt-") || key === "mt" || key.startsWith("it-") || key.startsWith("fi-") || key === "dk") && blank(img)) return null;
     // Resample on the grid of the cut.
     const res = src.res, nt = Math.round((t1 - t0) / res), nu = Math.round((2 * ALONG) / res), L = new Float32Array(nt * nu), G = new Float32Array(nt * nu), Y = new Float32Array(nt * nu), D = new Float32Array(nt * nu), S = new Float32Array(nt * nu);
     for (let j = 0; j < nu; j++) for (let i = 0; i < nt; i++) {
@@ -385,7 +404,7 @@ async function laneImageOf(key, { frame, dir, t0, t1, timeout = TIMEOUT, fetchIm
   } catch (e) {
     // The server did not answer (a server error, the network, the timeout): an outage, passed on for app.js to say
     // (Bára 16. 11. 2026); anything else (an image that would not decode) is just no image, as before.
-    if (e?.outage || e?.name === "TypeError" || e?.name === "TimeoutError" || e?.name === "AbortError") throw e;
+    if (e?.outage || e?.noKey || e?.name === "TypeError" || e?.name === "TimeoutError" || e?.name === "AbortError") throw e;
     return null;
   }
 }
@@ -839,6 +858,7 @@ export async function orthoPatch({ source, lon, lat, half, px, timeout = TIMEOUT
   return null;
 }
 async function patchOf(key, lon, lat, half, px, timeout) {
+  if (SOURCES[key]?.key && !SOURCES[key].key()) return null;
   const src = SOURCES[key], k = Math.cos((lat * Math.PI) / 180), h = half / k;
   const [sx, sy] = (src.shift || [0, 0]).map((v) => v / k), [cx, cy] = merc(lon, lat);
   const b = [cx - h + sx, cy - h + sy, cx + h + sx, cy + h + sy];
@@ -853,7 +873,7 @@ async function patchOf(key, lon, lat, half, px, timeout) {
     const jobs = [];
     for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) {
       const gx = tx * size - Math.PI * R, gy = Math.PI * R - ty * size;
-      jobs.push(fetch(`${src.tiles}/${src.z}/${src.xy ? `${tx}/${src.tms ? 2 ** src.z - 1 - ty : ty}` : `${ty}/${tx}`}${src.ext || ""}`, { signal }).then(async (r) => {
+      jobs.push(fetch(tileUrlOf(src, tx, ty), { signal }).then(async (r) => {
         if (r.ok) g.drawImage(await createImageBitmap(await r.blob()), (gx - b[0]) * scale, (b[3] - gy) * scale, size * scale, size * scale);
         else if (r.status >= 500) down++; else missing++;
       }));

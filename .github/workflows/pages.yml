@@ -159,6 +159,7 @@ jobs:
         env:
           MAPY_KEY: ${{ secrets.MAPY_KEY }} # Mapy.com key for the street panorama; empty → a plain link instead
           LOG_URL: ${{ vars.LOG_URL }} # the Worker keeping the log of cuts (logging/README.md); empty → no log
+          DK_TOKEN: ${{ vars.DK_TOKEN }} # Dataforsyningen token (Denmark's orthophoto and address search; public in the page by design); empty → the estimate from OSM
         run: |
           mkdir -p _site/data
           cp -R pilot/public/. _site/
@@ -175,6 +176,10 @@ jobs:
               const h = "_site/index.html"; fs.writeFileSync(h, fs.readFileSync(h, "utf8").replace(/(connect-src [^;]*)/, "$1 " + new URL(u).origin));
             }'
           grep -q 'LOG_URL = ""' _site/config.js && echo "::warning::no log of cuts (repository variable LOG_URL)" || true
+          # Denmark's Dataforsyningen token (keys.js), as the Mapy.com key: a JSON string into config.js.
+          node -e 'const fs = require("fs"), f = "_site/config.js", k = process.env.DK_TOKEN || "";
+            if (k) fs.writeFileSync(f, fs.readFileSync(f, "utf8").replace("DK_TOKEN = \"\"", "DK_TOKEN = " + JSON.stringify(k)));'
+          grep -q 'DK_TOKEN = ""' _site/config.js && echo "::warning::no Dataforsyningen token (repository variable DK_TOKEN), Denmark falls back to the estimate from OSM and Photon" || true
           # The packed OSM tiles also on Pages: where R2 does not answer, the app reads them here (gis.js).
           # Austria's file only on R2 (Bára 16. 11. 2026): with it the site would pass Pages' 1 GB.
           if [ -f site-osm/index.json ] && ls site-osm/*.posm > /dev/null 2>&1; then mkdir -p _site/data/osm-pack && cp site-osm/*.posm site-osm/index.json _site/data/osm-pack/; fi

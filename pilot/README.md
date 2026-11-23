@@ -382,6 +382,22 @@ nejnižší doporučenou šířkou (`evaluation/finland/NORMY.md` E). Stání 3 
 `signs-FI/` (příloha 3 zákona 729/2018, Commons public domain; README tam). Bez paneláků, neutrální vozidla, český
 mobiliář, rakouské označníky.
 
+### Dánsko (Bára 23. 11. 2026)
+
+Stát `denmark` (DK), `countries/DK.js`, `towns/denmark.js`; hranice GISCO s Bornholmem, Faerské ostrovy a Grónsko mimo
+(GISCO je má zvlášť), na pobřeží 400 m tolerance (`city.js` COAST); OSM balík `dk` (jen R2). Ortofoto jarní mozaika
+GeoDanmark přes Dataforsyningen (WMTS `orto_foraar_webm_DAF`, z20, asi 8 cm v Kodani; `lanes-ortho.js` `DK_ORTHO`, `dk`)
+pro pruhy i jako podklad mapy, jen s tokenem aplikace (`keys.js`: na webu `config.js` z proměnné repozitáře `DK_TOKEN`,
+lokálně `config.local.js`). Bez tokenu nebo když ho služba odmítne (401/403 na všech dlaždicích) chyba `noKey`: profil jen
+z OSM a poznámka „Ortofoto tu není k dispozici…“; chyba serveru je výpadek („Zkuste kliknout znovu“). Kodaň (WFS
+`wfs-kbhkort.kk.dk/k101`): okraje vozovek a cyklostezek GeoDanmark `vejkant` jako čáry pro obruby (`?kbhkant=1`),
+parkovací plochy `parkering_areal` s úhlem stání (`?kbhpark=1`), budovy BBR (`?kbhbyg=1`; jen potřebná pole, nikdy
+vlastník); vše vypnuté, dokud Bára nerozhodne o licenci. Aarhus: budovy BBR (rok, užití, zdi, podlaží odhadem z ploch;
+CC BY 4.0, `?aarbyg=0`). Hledání GSearch (husnummer, navngivenvej; `search-dk.js`), bez tokenu Photon. Normy z vejregler
+(Tværprofiler i byer 2019, Anlæg for parkering 2023) jen oranžově, červeně obousměrná cyklostezka 2,5 m. Stání 3 m na
+směr, na chodníku v obci zakázané (§ 28). Značky `signs-DK/` (BEK 425/2023, Commons public domain; C 55 jako šablona
+aplikace). Bez paneláků, severské vzhledy domů (`nordicLook("DK")`), neutrální vozidla, český mobiliář, rakouské označníky.
+
 ### Dlaždice OSM
 
 Jedna sada dlaždic pro všechna města (`pilot/data/osm-tiles`, na webu `data/osm-tiles`) z výřezu Geofabrik Česká

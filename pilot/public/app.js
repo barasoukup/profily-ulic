@@ -1,7 +1,8 @@
 import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, SURFACES, LAMP_HEIGHTS, underSize } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, splitTwoWayLane, capWideLanes, pedestrianZone, widenNarrowTrams, carveCycleways, carveTramTracks, lanesFromShoulders, crossFromA, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
-import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO, CH_ORTHO, NL_ORTHO, BE_ORTHO, LU_ORTHO, PL_ORTHO, FR_ORTHO, ES_ORTHO, PT_ORTHO, PT_MAINLAND, ES_NOT_PNOA, CY_ORTHO, MT_ORTHO, IT_ORTHO, EE_ORTHO, SI_ORTHO, FI_ORTHO, DE_ORTHO, deWmsUrl, landsAt, landAt } from "./lanes-ortho.js";
+import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO, CH_ORTHO, NL_ORTHO, BE_ORTHO, LU_ORTHO, PL_ORTHO, FR_ORTHO, ES_ORTHO, PT_ORTHO, PT_MAINLAND, ES_NOT_PNOA, CY_ORTHO, MT_ORTHO, IT_ORTHO, EE_ORTHO, SI_ORTHO, FI_ORTHO, DK_ORTHO, DE_ORTHO, deWmsUrl, landsAt, landAt } from "./lanes-ortho.js";
+import { dkToken } from "./keys.js";
 import { boxed as boxedPlace, within as withinPlace } from "./places.js";
 import { orthoOsmPolys, besidePassport, trimToEnds, P as ORTHO_P } from "./ortho-osm.js";
 import { LOOKS as HOUSE_LOOKS } from "./house-looks.js";
@@ -336,6 +337,12 @@ if (STATY?.finland) {
     kinds.ortho.push(new Fi("", { bboxUrl: (b, w, h) => o.url(b, w, h, "image/png"), maxZoom: 21, attribution: tr(o.credit), bounds: L.latLngBounds([y0, x0], [y1, x1]) }));
   }
 }
+// Denmark: GeoDanmark's spring orthophoto through Dataforsyningen (WMTS, lanes-ortho.js DK_ORTHO), only over Denmark and
+// only with the app's token (keys.js; without it no layer, the map keeps the others).
+if (STATY?.denmark && dkToken()) {
+  const Dk = insideOnly([boxedPlace("DK", STATY.denmark)]);
+  kinds.ortho.push(new Dk(DK_ORTHO("{z}", "{x}", "{y}"), { maxZoom: 21, maxNativeZoom: 20, attribution: tr("ortofoto: Indeholder data fra Styrelsen for Dataforsyning og Infrastruktur, Ortofoto forår, WMTS-tjeneste"), bounds: boundsOf(STATY.denmark) }));
+}
 // Malta: the Planning Authority's orthophoto of 2018 (in degrees: lanes-ortho.js MT_ORTHO), only over Malta.
 if (STATY?.malta) {
   const Mt = insideOnly([boxedPlace("MT", STATY.malta)]);
@@ -497,7 +504,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       // A click with no street found is logged too (Bára: how many try outside the Czech Republic): only where, to
       // about a kilometre, and whether there were any OSM data there at all (outside the country there are none).
       if (!keepWay) log("bez_ulice", { detail: osm?.elements?.length ? "bez_ulice" : "bez_dat", city: city.id, country: city.country, lat: Math.round(lat * 100) / 100, lon: Math.round(lon * 100) / 100 });
-      return status(tr("Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko, Slovensko, Rakousko, Německo, Švýcarsko, Lichtenštejnsko, Nizozemsko, Belgii, Lucembursko, Polsko, Francii, Monako, Španělsko, Portugalsko, Kypr, Maltu, části Itálie, Estonsko, Slovinsko a Finsko)."), "error");
+      return status(tr("Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko, Slovensko, Rakousko, Německo, Švýcarsko, Lichtenštejnsko, Nizozemsko, Belgii, Lucembursko, Polsko, Francii, Monako, Španělsko, Portugalsko, Kypr, Maltu, části Itálie, Estonsko, Slovinsko, Finsko a Dánsko)."), "error");
     }
     // A street of two one-way carriageways is cut from its middle (e.g. the tram belt).
     near = centerOnStreet(osm, frame, near);
@@ -663,7 +670,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // the DMVS standing in for the city's map, the orthophoto of a tram bed.
     const mv = m.status === "fulfilled" ? m.value : null;
     const bedOwn = ortho && country.bedOrtho !== "cuzk" ? country.bedOrtho : null; // the tram bed read on a state's own orthophoto
-    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.skTown && { skTown: mv.skTown }), ...(mv?.atTown && { atTown: mv.atTown }), ...(mv?.deTown && { deTown: mv.deTown }), ...(mv?.chAv && { chAv: mv.chAv }), ...(mv?.nlBgt && { nlBgt: true }), ...(mv?.plTown && { plTown: mv.plTown }), ...(mv?.frTown && { frTown: mv.frTown }), ...(mv?.esTown && { esTown: mv.esTown }), ...(mv?.itTown && { itTown: mv.itTown }), ...(mv?.eeTown && { eeTown: mv.eeTown }), ...(mv?.fiTown && { fiTown: mv.fiTown }), ...(pk.status === "fulfilled" && pk.value?.amsParking && pk.value.features?.length && { amsParking: true }), ...(pk.status === "fulfilled" && pk.value?.parisParking && { parisParking: true }), ...(atSigns?.length && signTags.__salzburg && { atSigns: "salzburg" }), ...(country.signs.ogl && result.segments?.some((s) => s.signs?.some((x) => country.signs.ogl.has(country.signs.file(x, s)))) && { ukSigns: true }), ...(mv?.skTm && { skTm: true }), ...(orthoOsm?.kerbs?.why && Object.values(orthoOsm.kerbs.why).includes("ai") && { aiKerbs: true }), ...((orthoOsm?.edges || besideUsed?.edges) && k.value?.edgesFrom && { skEdges: k.value.edgesFrom }), ...((orthoOsm?.areas || orthoOsm?.widthFrom === "zbgis" || besideUsed?.zbgis) && { zbgis: true }), ...(mv?.dmvs && { dmvs: true }), ...(typeof mv?.passport === "string" && { passport: mv.passport }), ...(((ortho && !bedOwn) || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" ? { orthoCity: laneImg.source } : bedOwn ? { orthoCity: bedOwn } : besideUsed?.image && { orthoCity: laneImg.source }) };
+    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.skTown && { skTown: mv.skTown }), ...(mv?.atTown && { atTown: mv.atTown }), ...(mv?.deTown && { deTown: mv.deTown }), ...(mv?.chAv && { chAv: mv.chAv }), ...(mv?.nlBgt && { nlBgt: true }), ...(mv?.plTown && { plTown: mv.plTown }), ...(mv?.frTown && { frTown: mv.frTown }), ...(mv?.esTown && { esTown: mv.esTown }), ...(mv?.itTown && { itTown: mv.itTown }), ...(mv?.eeTown && { eeTown: mv.eeTown }), ...(mv?.fiTown && { fiTown: mv.fiTown }), ...(pk.status === "fulfilled" && pk.value?.amsParking && pk.value.features?.length && { amsParking: true }), ...(pk.status === "fulfilled" && pk.value?.parisParking && { parisParking: true }), ...(pk.status === "fulfilled" && pk.value?.dkParking && pk.value.features?.length && { dkParking: true }), ...(atSigns?.length && signTags.__salzburg && { atSigns: "salzburg" }), ...(country.signs.ogl && result.segments?.some((s) => s.signs?.some((x) => country.signs.ogl.has(country.signs.file(x, s)))) && { ukSigns: true }), ...(mv?.skTm && { skTm: true }), ...(orthoOsm?.kerbs?.why && Object.values(orthoOsm.kerbs.why).includes("ai") && { aiKerbs: true }), ...((orthoOsm?.edges || besideUsed?.edges) && k.value?.edgesFrom && { skEdges: k.value.edgesFrom }), ...((orthoOsm?.areas || orthoOsm?.widthFrom === "zbgis" || besideUsed?.zbgis) && { zbgis: true }), ...(mv?.dmvs && { dmvs: true }), ...(typeof mv?.passport === "string" && { passport: mv.passport }), ...(((ortho && !bedOwn) || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" ? { orthoCity: laneImg.source } : bedOwn ? { orthoCity: bedOwn } : besideUsed?.image && { orthoCity: laneImg.source }) };
     // The log of cuts (log.js): the cut exactly, and how it came (a click, a moved cut, a link).
     log("rez", {
       detail: keepWay ? "posun" : bearing !== null ? "odkaz" : "klik", city: city.id, country: city.country, street: name, highway: near.way.tags.highway,
@@ -687,6 +694,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
         if (p.gurs) state.cut.sources.siGurs = true;
         // The buildings of Helsinki or of Ryhti (towns/finland.js).
         if (p.fiBuild) state.cut.sources.fiBuild = state.cut.sources.fiBuild && state.cut.sources.fiBuild !== p.fiBuild ? "both" : p.fiBuild;
+        // The buildings of Copenhagen or Aarhus (towns/denmark.js).
+        if (p.dkBuild) state.cut.sources.dkBuild = state.cut.sources.dkBuild && state.cut.sources.dkBuild !== p.dkBuild ? "both" : p.dkBuild;
         // What the building is for (ZBGIS, Slovakia), where OSM says no more than "a building".
         if (p.type && (!info.type || info.type === "yes")) info.type = p.type;
       } catch {}
@@ -724,13 +733,17 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // The orthophoto did not answer (Bára 16. 11. 2026: a failed service made a rougher profile without a word; 39 of
     // 1000 Slovak cuts in one run): said, with a hint to click again.
     const orthoDown = LANES_ORTHO && li.status === "rejected";
-    const orthoNote = orthoDown && (orthoOsm || result.estimate) ? tr("Ortofoto teď neodpovědělo: obruby jsou jen podle OSM, profil je hrubý odhad. Zkuste kliknout znovu za chvíli.")
+    // A service that needs a key (Denmark's token, keys.js) and has none, or turned it away: no orthophoto at all, said
+    // so (not "try again").
+    const orthoNoKey = orthoDown && li.reason?.noKey;
+    const orthoNote = orthoNoKey && (orthoOsm || result.estimate) ? tr("Ortofoto tu není k dispozici (aplikaci chybí přístupový klíč služby, nebo ho služba nepřijala): obruby jsou jen podle OSM, profil je hrubý odhad.")
+      : orthoDown && (orthoOsm || result.estimate) ? tr("Ortofoto teď neodpovědělo: obruby jsou jen podle OSM, profil je hrubý odhad. Zkuste kliknout znovu za chvíli.")
       : !orthoOsm ? "" : orthoOsm.image ? tr("Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.")
       : LANES_ORTHO ? tr("Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.")
       : tr("Obruby jsou podle OSM a domy z OSM, šířky ověřte.");
     const out = sources.outage({ surfaces: m, lines: k, parking: pk }, undefined, { fallback: orthoNote });
     // A town's passport answered but not at the axis (Slovakia): the profile is still the estimate.
-    state.cut.note = out.note || (orthoOsm && city.abroad ? (country.orthoEstimate ? " · odhad z ortofota a OSM" : " · jen odhad z OSM") : "");
+    state.cut.note = out.note || (orthoOsm && city.abroad ? (country.orthoEstimate && !orthoNoKey ? " · odhad z ortofota a OSM" : " · jen odhad z OSM") : "");
     // The heading is the street only (Bára 16. 11. 2026); where the data come from is said under it (#profile-sub).
     $("#street-name").textContent = streetName(state.cut);
     const junctionNote = tr("Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami.");
@@ -1039,7 +1052,7 @@ function draw() {
     box.innerHTML = `<div class="empty">
       <img src="${city.emptyImg}" alt="" width="96" height="126">
       <div><h1 class="empty-title">${tr("Příčný profil ulice")}</h1>
-      <ol><li>${tr("Klikněte v mapě na ulici kdekoli v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku, v Lichtenštejnsku, v Nizozemsku, v Belgii, v Lucembursku, v Polsku, ve Francii, v Monaku, ve Španělsku, v Portugalsku, na Kypru, na Maltě, v částech Itálie (Bolzano, Turín, Bologna, Modena), v Estonsku, ve Slovinsku nebo ve Finsku.")}</li><li>${tr("Profil od fasády k fasádě se sestaví z mapy povrchů města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy povrchů Vídně a OSM, v Německu z ortofot spolkových zemí a OSM, ve Švýcarsku a v Lichtenštejnsku z úředního vyměřování, ortofota SWISSIMAGE a OSM, v Nizozemsku z mapy povrchů BGT, ortofota PDOK a OSM, v Belgii a v Lucembursku z ortofot, čar map Flander a Valonska a OSM, v Polsku z ortofota GUGiK, mapy povrchů Krakova a OSM, ve Francii z ortofota IGN, mapy povrchů Paříže a OSM, v Monaku z ortofota IGN a OSM, ve Španělsku z ortofota PNOA, mapy povrchů Zaragozy a OSM, v Portugalsku z ortofot DGT a OSM, na Kypru z ortofota DLS a OSM, na Maltě z ortofota stavebního úřadu a OSM, v Itálii z otevřených ortofot, mapy povrchů Bologni a OSM, v Estonsku z ortofota Maa- ja Ruumiamet a OSM, ve Slovinsku z ortofota GURS, katastru budov a OSM, ve Finsku z OSM, ortofot a mapy povrchů Helsinek a registrů budov.")}</li>
+      <ol><li>${tr("Klikněte v mapě na ulici kdekoli v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku, v Lichtenštejnsku, v Nizozemsku, v Belgii, v Lucembursku, v Polsku, ve Francii, v Monaku, ve Španělsku, v Portugalsku, na Kypru, na Maltě, v částech Itálie (Bolzano, Turín, Bologna, Modena), v Estonsku, ve Slovinsku, ve Finsku nebo v Dánsku.")}</li><li>${tr("Profil od fasády k fasádě se sestaví z mapy povrchů města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy povrchů Vídně a OSM, v Německu z ortofot spolkových zemí a OSM, ve Švýcarsku a v Lichtenštejnsku z úředního vyměřování, ortofota SWISSIMAGE a OSM, v Nizozemsku z mapy povrchů BGT, ortofota PDOK a OSM, v Belgii a v Lucembursku z ortofot, čar map Flander a Valonska a OSM, v Polsku z ortofota GUGiK, mapy povrchů Krakova a OSM, ve Francii z ortofota IGN, mapy povrchů Paříže a OSM, v Monaku z ortofota IGN a OSM, ve Španělsku z ortofota PNOA, mapy povrchů Zaragozy a OSM, v Portugalsku z ortofot DGT a OSM, na Kypru z ortofota DLS a OSM, na Maltě z ortofota stavebního úřadu a OSM, v Itálii z otevřených ortofot, mapy povrchů Bologni a OSM, v Estonsku z ortofota Maa- ja Ruumiamet a OSM, ve Slovinsku z ortofota GURS, katastru budov a OSM, ve Finsku z OSM, ortofot a mapy povrchů Helsinek a registrů budov, v Dánsku z ortofota GeoDanmark, OSM a budov Kodaně a Aarhusu.")}</li>
       <li>${tr("V režimu Návrh ho upravíte: táhněte hranice, klikněte na část, přidejte novou.")}</li></ol></div></div>`;
     $("#editor").replaceChildren();
     $("#palette").replaceChildren();

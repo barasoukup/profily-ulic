@@ -499,6 +499,20 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   z registru Helsinek a Ryhti (`?hkibuild=0`, `?ryhti=0`; 40 domů: podlaží 39 proti 31 z OSM, rok 36 proti 5, dřevo 4).
   Normy jen doporučení, nic červeně. Otevřené otázky v `docs/backlog.md`.
 
+## Dánsko (větev estonia, Bára 23. 11. 2026, nenasazené)
+- `countries/DK.js`, `towns/denmark.js`, `search-dk.js` (GSearch s tokenem, jinak Photon), `keys.js`, `signs-DK/`,
+  `evaluation/denmark/` (ZDROJE, NORMY, buildings-ab/). Hranice GISCO s Bornholmem (bez Faerských ostrovů a Grónska),
+  pobřeží 400 m. OSM balík `dk` (jen R2; **workflow OSM tiles se `states: dk`**), lokálně Kodaň, Aarhus, Odense, Aalborg.
+- **Token Dataforsyningen** (Bára): lokálně `DK_TOKEN` v `pilot/public/config.local.js`, na webu proměnná repozitáře
+  `DK_TOKEN` (pages.yml ji zapíše do `config.js`), nikdy ho nevypisovat ani necommitovat. Ortofoto jaro GeoDanmark (WMTS
+  z20) pro pruhy a jako mapa; bez tokenu (nebo odmítnutý) odhad jen z OSM s poctivou poznámkou, výpadek služby (platforma
+  se stěhuje, okno 26.–30. 11. 2026) jako výpadek.
+- Kodaň: okraje vozovek `vejkant` (`?kbhkant=1`), parkovací plochy (`?kbhpark=1`) a budovy (`?kbhbyg=1`) jsou hotové, ale
+  **vypnuté**, licence vrstev neuvedená (rozhodne Bára). Aarhus budovy BBR CC BY 4.0 zapnuté (`?aarbyg=0`). A/B budov
+  `evaluation/denmark/buildings-ab/ZPRAVA.md`; A/B čar a stání v aplikaci zatím neproběhlo.
+- Normy (vejregler) jen doporučení, oranžově; červeně jen obousměrná cyklostezka 2,5 m (oběžník 95/1984). Stání 3 m na
+  směr (zákon jen u plné čáry), na chodníku v obci zakázané. Otevřené otázky v `docs/backlog.md`.
+
 ## Společné pro státy (Bára 23. 11. 2026)
 - Sever Kypru a Itálie mimo otevřená ortofota (i se San Marinem a Vatikánem) profil nedostanou, aplikace to řekne
   (`city.js closedAt`, `staty.json` `closed_*`).

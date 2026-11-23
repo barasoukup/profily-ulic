@@ -124,6 +124,13 @@ async function fetchOrtho(country, b, w, h, lon, lat) {
     if (!key) throw new Error("ortofoto: ve Finsku jen Helsinki, Espoo a Turku");
     url = FI_ORTHO[key].url(b, w, h, "image/png");
   }
+  else if (country === "DK") {
+    // Denmark: GeoDanmark's spring orthophoto through Dataforsyningen's WMS in Web Mercator, with the token (keys.js:
+    // the environment variable DK_TOKEN or config.local.js; never printed).
+    const { dkToken } = await import("../../pilot/public/keys.js");
+    if (!dkToken()) throw new Error("ortofoto: chybí token Dataforsyningen (DK_TOKEN)");
+    url = `https://api.dataforsyningen.dk/orto_foraar_DAF?${new URLSearchParams({ service: "WMS", request: "GetMap", version: "1.3.0", layers: "orto_foraar", styles: "", crs: "EPSG:3857", bbox: b.join(","), width: w, height: h, format: "image/png", token: dkToken() })}`;
+  }
   else if (country === "LU") return tiles("https://wmts1.geoportail.lu/opendata/wmts/ortho_latest/GLOBAL_WEBMERCATOR_4_V3", ".jpeg", 20, b, w, h, true);
   else if (country === "DE") url = deWmsUrl(DE_ORTHO[(await landsAt(lon, lat))[0]], b, w, h, "image/png");
   else url = `https://ags.cuzk.gov.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer?${new URLSearchParams({ service: "WMS", request: "GetMap", version: "1.3.0", layers: "0", styles: "", crs: "EPSG:3857", bbox: b.join(","), width: w, height: h, format: "image/png" })}`;
