@@ -23,6 +23,30 @@ test("Slovinsko: ortofoto GURS DOF025 ve Web Mercatoru", async () => {
   assert.equal(u.searchParams.get("CRS"), "EPSG:3857");
 });
 
+test("Slovinsko: GURS, který visí, se ptá znovu (až 4×), 404 ne", async () => {
+  const L = await import("../pilot/public/lanes-ortho.js"), { localFrame } = await import("../pilot/public/derive.js");
+  const pauses = L.SI_RETRY.pauses;
+  L.SI_RETRY.pauses = [1, 1, 1];
+  try {
+    const frame = localFrame(46.0514, 14.5058), grey = (w, h) => ({ width: w, height: h, rgba: new Uint8Array(w * h * 4).fill(120) });
+    const decode = async () => grey(100, 100), ok = { ok: true, status: 200, arrayBuffer: async () => new ArrayBuffer(8) };
+    const run = (answers) => {
+      let n = 0;
+      const fetchImpl = async () => { const a = answers[Math.min(n++, answers.length - 1)]; if (a === "hang") throw Object.assign(new Error("timeout"), { name: "TimeoutError" }); return a; };
+      return { n: () => n, go: L.laneImage({ source: "si", frame, dir: [0, 1], t0: -5, t1: 5, fetchImpl, decode }) };
+    };
+    let r = run(["hang", { ok: false, status: 504 }, ok]);
+    assert.equal((await r.go).source, "si");
+    assert.equal(r.n(), 3);
+    r = run(["hang"]);
+    await assert.rejects(r.go, /timeout/);
+    assert.equal(r.n(), 4, "čtyři pokusy, pak hláška o výpadku");
+    r = run([{ ok: false, status: 404 }]);
+    assert.equal(await r.go, null);
+    assert.equal(r.n(), 1, "bez snímku se znovu neptá");
+  } finally { L.SI_RETRY.pauses = pauses; }
+});
+
 test("Slovinsko: budovy katastru GURS", async () => {
   const S = await import("../pilot/public/towns/slovenia.js");
   const json = JSON.parse(fs.readFileSync(new URL("./fixtures/gurs-stavbe.json", import.meta.url), "utf8"));

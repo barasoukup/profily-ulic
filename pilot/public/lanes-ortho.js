@@ -11,7 +11,7 @@
 // gaps look like lanes, chosen together. Anything doubtful leaves the rules' profile as it is.
 
 import { dkToken } from "./keys.js";
-const R = 6378137, ALONG = 20, TIMEOUT = 4000, SI_PAUSE = 300;
+const R = 6378137, ALONG = 20, TIMEOUT = 4000;
 const merc = (lon, lat) => [(R * lon * Math.PI) / 180, R * Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360))];
 // Each city's best orthophoto (evaluation/ortofoto/ZPRAVA.md; the key: city.js laneOrtho of the city, else the state's,
 // countries/<ISO>.js): Prague IPR 10 cm (summer 2024), Brno's 2025 (tiles of
@@ -102,7 +102,22 @@ export const EE_ORTHO = "https://tiles.maaamet.ee/tm/tms/1.0.0/foto@GMC";
 // Slovenia (Bára 23. 11. 2026): GURS's colour orthophoto DOF025 (25 cm) in its own Web Mercator pyramid (WMS of the
 // Geodetska uprava RS, CORS *, CC BY 4.0; evaluation/slovenia/ZDROJE.md). The server answers within a second or hangs
 // for 30 s and gives 504 (also inside Slovenia, at random; always beyond it, so the map's layer is kept inside, app.js
-// insideOnly): laneImage asks a second time after a short pause when the first does not answer in half the time.
+// insideOnly). Measured 23. 11. 2026: two thirds of the requests hung at times, an answer came within 3.3 s, and a hang
+// is random (the same box answers on another try). So laneImage tries four times, each cut short at SI_RETRY.timeout
+// (not GURS's 30 s), with growing pauses between, and keeps the images it got for the session (siFetch: a cut clicked
+// again asks nothing). All tries failing is told as before (app.js orthoDown).
+export const SI_RETRY = { timeout: 5000, pauses: [300, 1500, 4000] };
+const siImages = new Map(), SI_KEEP = 40;
+const siFetch = async (url, init) => {
+  const kept = siImages.get(url);
+  if (kept) return new Response(kept.slice(0), { status: 200 });
+  const r = await fetch(url, init);
+  if (!r.ok) return r;
+  const buf = await r.arrayBuffer();
+  if (siImages.size >= SI_KEEP) siImages.delete(siImages.keys().next().value);
+  siImages.set(url, buf);
+  return new Response(buf.slice(0), { status: 200 });
+};
 export const SI_ORTHO = (b, w, h, format = "image/jpeg") => `https://ipi.eprostor.gov.si/wms-si-gurs-dts/wms?${new URLSearchParams({ SERVICE: "WMS", REQUEST: "GetMap", VERSION: "1.3.0", LAYERS: "SI.GURS.ZPDZ:DOF025_3857", STYLES: "", CRS: "EPSG:3857", BBOX: b.join(","), WIDTH: w, HEIGHT: h, FORMAT: format })}`;
 // Finland (Bára 23. 11. 2026): no national orthophoto without a key (the MML's needs a personal one, which would show in
 // the browser; evaluation/finland/ZDROJE.md 1), so only the towns' own WMS in Web Mercator with CORS *, each CC BY 4.0 on
@@ -300,18 +315,22 @@ export async function laneImage(opts) {
     if (lastError) throw lastError;
     return null;
   }
-  // Slovenia: GURS's server hangs now and then (a 504 after 30 s): half the time for the first request, then one more
-  // after a short pause (a failure of both is told, as in Belgium and Portugal).
+  // Slovenia: GURS's server hangs now and then (a 504 after 30 s): up to four tries, each SI_RETRY.timeout long, after
+  // growing pauses; an image that would not decode or a 404 is no image (not tried again). A PNG (Node's evaluation,
+  // decode) takes GURS 4–7 s, twice the JPEG's time. The images kept for the session only with the browser's fetch.
   if (opts.source === "si") {
-    const start = Date.now(), budget = opts.timeout ?? TIMEOUT;
-    try {
-      return await laneImageOf("si", { ...opts, timeout: Math.max(1500, budget / 2) });
-    } catch (err) {
-      const left = budget - (Date.now() - start) - SI_PAUSE;
-      if ((!err?.outage && !["TimeoutError", "AbortError"].includes(err?.name)) || left < 1000) throw err;
-      await new Promise((r) => setTimeout(r, SI_PAUSE));
-      return laneImageOf("si", { ...opts, timeout: left });
+    const fetchImpl = opts.fetchImpl ?? siFetch;
+    let lastError = null;
+    for (let i = 0; i <= SI_RETRY.pauses.length; i++) {
+      if (i) await new Promise((r) => setTimeout(r, SI_RETRY.pauses[i - 1]));
+      try {
+        return await laneImageOf("si", { ...opts, fetchImpl, timeout: opts.timeout ?? SI_RETRY.timeout * (opts.decode ? 2 : 1) });
+      } catch (err) {
+        if (!err?.outage && !["TimeoutError", "AbortError", "TypeError"].includes(err?.name)) throw err;
+        lastError = err;
+      }
     }
+    throw lastError;
   }
   if (opts.source === "es" && !esKeys(...opts.frame.toLonLat(0, 0)).length) return null;
   if (opts.source !== "de") return laneImageOf(SOURCES[opts.source] ? opts.source : "cuzk", opts);
