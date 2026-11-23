@@ -420,6 +420,12 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Bára 23. 11. 2026: chodník červeně pod 1,5 m všude, cyklostezky podle IMT a LNEC 2024 (1,75 / 2 m, obousměrná 3 m),
   stání 3 m na směr, pěší zóna značkou G5a (zóna zákazu vjezdu).
 
+## Monako (větev monaco z portugal, Bára 23. 11. 2026, nenasazené)
+- Stát `monaco` (MC): `countries/MC.js` (Francie + monacký Code de la route), `towns/monaco.js`, hranice z OSM
+  (`tools/monaco-border.json`, v `staty.json` před Francií), OSM balík `mc` (jen R2; **workflow OSM tiles se `states: mc`**).
+- Ortofoto IGN, odhad z OSM; stání jen z OSM (čl. 31: jen na vyznačených místech), bez norem šířek (Monako je nemá),
+  značky francouzské kresby bez čísel. Měření nemá smysl (8 bodů: schody, pěší cesty, moře; fotky jen u 2).
+
 ## Měření přesnosti (Bára 17. 11. 2026)
 - Jedna univerzální metoda pro všechny státy: skill `mereni-presnosti`, kód a zpráva `evaluation/universal/`. Použít u
   každého nového státu a u starých, když Bára řekne. Hodnotí složení uličního prostoru, pak šířku; jen řezy s fotkou

@@ -47,7 +47,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
   Katalánska); měření: chybí chodník 10×, stání 8× (`evaluation/universal`, es-*).
 - Portugalsko: chybí stání (16×, často kolmé) a chodník (13×) v měření; stání EMEL Lisabon (12 tisíc úseků s orientací,
   CC BY-SA) a buspruhy Porta (CC0) jen jako statické soubory při nasazení; ortofoto Madeiry (IRIG, licence neuvedená) a
-  Azor (bez CORS, jen podklad mapy); Monako přidat k Francii (ortofoto IGN ho pokrývá), Andorra bez ortofota odložit.
+  Azor (bez CORS, jen podklad mapy); ~~Monako~~ (23. 11. přidáno), Andorra bez ortofota odložit.
 - Jihlava: pasport komunikací byl 16. 11. prázdný, ověřit (CLAUDE.md, Na 19. 11.).
 - Pasporty devíti českých měst: A/B po odstávce DMVS (`evaluation/PASPORTY-AB.md`).
 

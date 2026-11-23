@@ -82,6 +82,9 @@ const BUILD = {
   netherlands: () => gisco("NL"),
   belgium: () => gisco("BE"),
   luxembourg: () => gisco("LU"),
+  // Monaco (23. 11. 2026): GISCO's 1 : 1 M ring has 11 points for 2 km², so the land boundary of OSM (admin_level 8,
+  // without the territorial waters; tools/monaco-border.json, © OpenStreetMap contributors, ODbL), simplified as the others; before France, whose coarse ring may cover it).
+  monaco: () => JSON.parse(fs.readFileSync(new URL("./monaco-border.json", import.meta.url), "utf8")).map((r) => simplify(r)),
   // Metropolitan France only (GISCO's FR has the overseas regions too): the rings in Europe.
   france: async () => (await gisco("FR", true)).filter((r) => r.every(([x, y]) => x > -6 && x < 10 && y > 41 && y < 52)),
   // Spain with the Canary and Balearic Islands, Ceuta, Melilla and Llívia (an outer ring inside France's hole; 23. 11. 2026).

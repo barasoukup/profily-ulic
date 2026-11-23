@@ -36,6 +36,8 @@ export const TOWNS = {
   // Portugal (23. 11. 2026): the towns of the local OSM pack.
   PT: { lisboa: [38.722, -9.142], porto: [41.152, -8.612], braga: [41.550, -8.425], coimbra: [40.208, -8.425], aveiro: [40.640, -8.650],
     faro: [37.016, -7.933], funchal: [32.648, -16.910], setubal: [38.525, -8.890], evora: [38.571, -7.908], viseu: [40.657, -7.912] },
+  // Monaco (23. 11. 2026): the one town, its points within the 1.5 km of the sample (some fall in France or the sea).
+  MC: { monaco: [43.738, 7.424] },
 };
 if (process.argv[1] === new URL(import.meta.url).pathname) {
   let seed = 20261117;

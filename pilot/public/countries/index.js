@@ -14,7 +14,8 @@ import PL from "./PL.js";
 import FR from "./FR.js";
 import ES from "./ES.js";
 import PT from "./PT.js";
+import MC from "./MC.js";
 import DEFAULT from "./default.js";
 
-export const COUNTRIES = { CZ, SK, AT, DE, CH, LI, NL, BE, LU, PL, FR, ES, PT };
+export const COUNTRIES = { CZ, SK, AT, DE, CH, LI, NL, BE, LU, PL, FR, ES, PT, MC };
 export const countryOf = (code) => (code && Object.hasOwn(COUNTRIES, code) ? COUNTRIES[code] : DEFAULT);

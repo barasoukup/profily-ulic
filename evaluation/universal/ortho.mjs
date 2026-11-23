@@ -62,7 +62,7 @@ async function fetchOrtho(country, b, w, h, lon, lat) {
     if (!res.ok) throw new Error(`ortofoto ${res.status}`);
     return toPng(Buffer.from(await res.arrayBuffer()));
   }
-  else if (country === "FR") {
+  else if (country === "FR" || country === "MC") {
     const { FR_ORTHO } = await import("../../pilot/public/lanes-ortho.js");
     const res = await fetch(FR_ORTHO(b, w, h), { headers: UA });
     if (!res.ok) throw new Error(`ortofoto ${res.status}`);

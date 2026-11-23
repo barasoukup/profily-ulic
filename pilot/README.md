@@ -277,6 +277,14 @@ profil je odhad z ortofota a OSM. Hledání Photon.
   IMT a příručky Lisabonu. **Stání:** čl. 49–50 Código da Estrada (bez čísla; 3 m u plné čáry), bráno jako 3 m na směr.
   **Značky** `signs-PT/` (RST, úřední díla); pěší zónu Portugalsko nemá (G5a zóna zákazu vjezdu), obytná i sdílená zóna H46.
 
+### Monako (Bára 23. 11. 2026)
+
+Stát `monaco` (MC), `countries/MC.js` (francouzská nastavení s monackým zákonem), `towns/monaco.js`; hranice podle OSM
+(pevnina, admin_level 8, `tools/monaco-border.json`; GISCO má jen 11 bodů), v `staty.json` před Francií. OSM balík `mc`
+(jen R2). Ortofoto IGN (Francie, pokrývá i Monako). Stání podle zákona jen na vyznačených místech (čl. 31 Code de la
+route), proto se neodhaduje; stání na chodníku zakázané (čl. 32). Monako nemá předpisy šířek ulic: bez varování. Značky
+kresbou francouzské (Ženevský protokol 1949), bez francouzských čísel. Hledání Photon. Pravidla `evaluation/monaco/PRAVIDLA.md`.
+
 ### Dlaždice OSM
 
 Jedna sada dlaždic pro všechna města (`pilot/data/osm-tiles`, na webu `data/osm-tiles`) z výřezu Geofabrik Česká

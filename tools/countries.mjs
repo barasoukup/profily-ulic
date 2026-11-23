@@ -46,6 +46,8 @@ export const COUNTRIES = {
   es: { iso: "ES", geofabrik: "spain", pages: false, parts: Object.fromEntries([...[["and", "andalucia"], ["ara", "aragon"], ["ast", "asturias"], ["can", "cantabria"], ["clm", "castilla-la-mancha"], ["cyl", "castilla-y-leon"], ["cat", "cataluna"], ["ceu", "ceuta"], ["ext", "extremadura"], ["gal", "galicia"], ["bal", "islas-baleares"], ["rio", "la-rioja"], ["mad", "madrid"], ["mel", "melilla"], ["mur", "murcia"], ["nav", "navarra"], ["pv", "pais-vasco"], ["val", "valencia"]].map(([p, e]) => [`es_${p}`, `spain/${e}/${e}`]), ["es_ic", "africa/canary-islands/canary-islands"]]) },
   // Portugal (Bára 23. 11. 2026): Geofabrik's one extract with Madeira and the Azores (in a folder, as Belgium's), only on R2.
   pt: { iso: "PT", geofabrik: "portugal/portugal", pages: false },
+  // Monaco (Bára 23. 11. 2026): Geofabrik's extract (in a folder, as Belgium's), only on R2.
+  mc: { iso: "MC", geofabrik: "monaco/monaco", pages: false },
 };
 // The packs to build (osm-tiles.yml): a state's own, or its parts.
 export const PACKS = Object.entries(COUNTRIES).flatMap(([k, c]) => (c.parts ? Object.entries(c.parts).map(([code, extract]) => ({ code, extract })) : [{ code: k, extract: c.geofabrik }]));

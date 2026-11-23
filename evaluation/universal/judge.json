@@ -4123,5 +4123,27 @@
   "half": 23.8,
   "photos": true,
   "needPhoto": true
+ },
+ {
+  "id": "mc-monaco-3",
+  "country": "MC",
+  "town": "monaco",
+  "lat": 43.72896388014356,
+  "lon": 7.412469060480511,
+  "bearing": 15.568597906573537,
+  "half": 24.9,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "mc-monaco-7",
+  "country": "MC",
+  "town": "monaco",
+  "lat": 43.72979036395643,
+  "lon": 7.4231491993218714,
+  "bearing": 65.70740168862407,
+  "half": 19,
+  "photos": true,
+  "needPhoto": true
  }
 ]
