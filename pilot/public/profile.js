@@ -1049,9 +1049,8 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       pts = [...left, ...ped, ...right];
       pedestal = ped;
     }
-    // The return of the gable at the cut, a shade darker, then the gable itself.
-    if (form === "plain") pts[pts.length - 1] = [EDGE, top]; // its foot over the whole wall, the cut's strip too
-    else box(EDGE - 30, EDGE, top, Math.max(...left.filter(([d]) => d < 0.01).map(([, z]) => z)), shade);
+    // The gable itself (no darker return at the cut: the house runs on past it).
+    if (form === "plain") pts[pts.length - 1] = [EDGE, top]; // its foot over the whole wall
     poly(pts, wall, outline);
     // How wide the gable is at height z (the run of the outline holding the axis).
     const hwAt = (z) => {
@@ -1348,8 +1347,9 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     box(dCellar + 6, dCellar + 60, -cellar * 0.55, -cellar * 0.55 + 25, GLASS);
   }
   el("rect", { x, y: GROUND + 60, width: EDGE, height: 40, fill: "#9b7f5f" }, g);
-  box(0, EDGE, 0, top, wall, outline);
-  box(EDGE - 30, EDGE, 0, top, shade); // the wall turns away at the cut
+  // The wall runs on past the cut (Bára 23. 11. 2026): no strip and no outline there, only along the street and the top.
+  box(0, EDGE, 0, top, wall);
+  el("path", { d: `M${X(EDGE)} ${surface - top} L${X(0)} ${surface - top} L${X(0)} ${surface}`, fill: "none", ...outline }, g);
   // The regional walls: brick courses, azulejo tiles, the ashlar of Malta and Cyprus, boards, Haussmann's rustication.
   if (brick) for (let z = 30, i = 0; z < top; z += 30, i++) { // brick courses with staggered joints (a bond, not boards)
     box(0, EDGE - 30, z - 1.2, z + 1.2, tint(wall, 0.86));
@@ -1442,7 +1442,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       const gTop = z0 + h * (k ? 0.78 : 0.86);
       poly([[EDGE - 150, gTop], [EDGE - 100, gTop], [EDGE - 160, z0 + h * 0.12], [EDGE - 210, z0 + h * 0.12]], GLINT);
       for (let d = 8 + 120; d < EDGE - 48; d += 120) box(d - 3, d + 3, z0 + h * 0.12, gTop, FRAME);
-      if (k) { box(0, EDGE, z0 - 4, z0 + h * 0.08, accent); box(EDGE - 30, EDGE, z0 - 4, z0 + h * 0.08, tint(accent, 0.9)); } // spandrel band
+      if (k) { box(0, EDGE, z0 - 4, z0 + h * 0.08, accent); } // spandrel band
     }
     box(14, 116, 0, 262, FRAME); // glazed entrance with a flat canopy
     box(22, 108, 0, 254, GLASS);
@@ -1937,20 +1937,17 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     box(-12, EDGE, top - 62, top - 48, corn, outline);
     box(-30, EDGE, top - 48, top - 26, corn, outline);
     box(-52, EDGE, top - 26, top, corn, outline);
-    box(EDGE - 30, EDGE, top - 62, top, tint(corn, 0.9));
     box(0, EDGE, top - 104, top - 90, shade);
   } else if (kind === "typovy") {
     box(0, EDGE, top - 30, top, tint(wall, 0.92)); // a plain eaves band, nothing more
   } else if (style === "sikma") {
     box(-18, EDGE, f.ground - 18, f.ground, trim, outline); // string course
-    box(EDGE - 30, EDGE, f.ground - 18, f.ground, tint(trim, 0.9));
     box(-18, EDGE, f.ground - 30, f.ground - 18, shade);
     // Main cornice in three steps, the wall's colour lightened, with its shadow on the wall.
     const corn = tint(wall, 1.15);
     box(-14, EDGE, top - 58, top - 44, corn, outline);
     box(-28, EDGE, top - 44, top - 22, corn, outline);
     box(-44, EDGE, top - 22, top, corn, outline);
-    box(EDGE - 30, EDGE, top - 58, top, tint(corn, 0.9));
     box(0, EDGE, top - 76, top - 58, shade);
   } else if (style === "moderni") {
     for (let k = 1; k < full; k++) { // balconies: a thin white slab, a frameless glass balustrade
