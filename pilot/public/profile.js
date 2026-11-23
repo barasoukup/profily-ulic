@@ -876,6 +876,17 @@ const GABLE_TOP = { trap: 2.3, hals: 2.38, klok: 2.4, plain: 2.0, htrap: 2.38 };
 const gableTop = (kind, info) => GABLE_TOP[kind === "hanza" && gableForm(kind, info) === "trap" ? "htrap" : gableForm(kind, info)];
 const gableOn = (kind) => !!GABLE_RISE[kind] && LOOKS.gables;
 const BARN_RISE = 380; // a village house: its roof rises this high (cm) from the eaves to the ridge (6–8 m deep house)
+// A tenement's side gable (Bára 23. 11. 2026: the round window belongs under the ridge, and the ridge must show): like the
+// gabled houses' default, the frame shows the street-side part of the gable, its ridge at TENEMENT_RIDGE (cm from the
+// street facade) and the back slope running down to the cut. Only a tenement without a mansard (its gable is plain).
+const TENEMENT_RIDGE = 300;
+const tenementGable = (kind, roofRows, flat) => (kind === "sikma" || kind === "haussmann") && !roofRows && !flat;
+// The wall between the top floor's window heads and the main cornice (Bára 23. 11. 2026: the cornice must not sit on the
+// windows): the attic's knee wall over the top floor's ceiling, added to the wall's height (cm at the look's own storey,
+// scaled with it). About 1.5 m on a Prague tenement from the window head to the cornice's underside (an architrave line,
+// the frieze, the cornice on its consoles).
+const FRIEZE = { sikma: 145, mestan: 130, sorela: 180, typovy: 25, haussmann: 75, stenstad: 115, stredomori: 45, azulejo: 45, malta: 20,
+  kypr: 20, cihlovy: 65, dansky: 80 };
 function buildingForm(info, kind) {
   const style = BASE_STYLE[kind] || kind;
   const lv = buildingLevels(info);
@@ -896,7 +907,8 @@ function buildingForm(info, kind) {
   // A "cube" family house has a raised ground floor over its half-sunk garage and cellar.
   const ground = GROUND_K[kind] ? storey * GROUND_K[kind] : kind === "sikma" ? storey * 1.2 : style === "sikma" ? storey * 1.1 : style === "funkce" ? storey * 1.15
     : kind === "plocha" ? storey + 90 : kind === "kostka" ? storey + 110 : storey;
-  const body = ground + (n - roofRows - 1) * storey;
+  const frieze = FRIEZE[kind] && !gableOn(kind) ? (FRIEZE[kind] * storey) / S : 0;
+  const body = ground + (n - roofRows - 1) * storey + frieze;
   const flat = style === "plocha" || style === "funkce" || style === "povalecny" || style === "moderni" || style === "hala" || kind === "garaz"
     || (kind === "skola" && (info?.built ?? info?.period) > 1955) || (kind === "nizky" && !pitchedLow(info))
     // Malta's houses and the south's terraces (azotea, terrazza): a flat roof behind a balustrade.
@@ -904,7 +916,7 @@ function buildingForm(info, kind) {
   const pitch = ROOF_PITCH[kind] || PITCH;
   const sawtooth = style === "hala" && ["industrial", "manufacture"].includes(info?.type) && IPR_ROOF[info?.roofType] !== "plocha";
   // A family house shows its ridge inside the 4 m strip; a tenement's ridge lies deeper, past the cut.
-  const pitched = kind === "statek" ? BARN_RISE + 40 : gableOn(kind) ? gableTop(kind, info) * storey + 90 : GABLE_RISE[kind] ? GABLE_RISE[kind] + 100 : kind === "cihlovy" ? 250
+  const pitched = kind === "statek" ? BARN_RISE + 40 : tenementGable(kind, roofRows, false) ? (TENEMENT_RIDGE + 5) * pitch + 45 : gableOn(kind) ? gableTop(kind, info) * storey + 90 : GABLE_RISE[kind] ? GABLE_RISE[kind] + 100 : kind === "cihlovy" ? 250
     : style === "nizky" || SMALL_RIDGE.has(kind) ? (RIDGE + 55) * pitch + 45 : (EDGE + 35) * pitch + 45;
   const roofH = flat ? roofRows * storey + (sawtooth ? 430 : style === "hala" ? 110 : MED_LOOKS.has(kind) ? 230 : 50) : roofRows && kind !== "statek" && !gableOn(kind) ? roofRows * storey + 170 : pitched;
   return { n, roofRows: kind === "statek" ? 0 : roofRows, storey, ground, body, roofH, flat, pitch, chimney: flat ? 0 : 70 };
@@ -1275,7 +1287,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     const eave = { stredomori: 45, azulejo: 30, galeria: 40, kypr: 40, stenstad: 20, dansky: 30, drevak: 45, puukaupunki: 40, tallinnamaja: 45 }[kind]
       ?? (style === "nizky" ? (kind === "kostka" ? 30 : 55) : 35);
     const small = style === "nizky" || SMALL_RIDGE.has(kind);
-    const ridge = small ? RIDGE : EDGE + 200, P = f.pitch;
+    const ridge = small ? RIDGE : tenementGable(kind, f.roofRows, f.flat) ? TENEMENT_RIDGE : EDGE + 200, P = f.pitch;
     // The underside of the roof meets the wall top at the facade; the eaves reach lower, over the street.
     const z = (d) => top + 12 + Math.min(d, ridge) * P - Math.max(0, d - ridge) * P;
     // Chimney first (the roof hides its foot), then the gable up to the roof, then a thick tiled slab.
@@ -1284,7 +1296,8 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       box(dc - 24, dc + 24, top, z(dc) + 100, "#c46a4b");
       box(dc - 32, dc + 32, z(dc) + 90, z(dc) + 102, "#8d4a34");
     }
-    poly([[0, top], [Math.min(ridge, EDGE), z(Math.min(ridge, EDGE)) - 12], [EDGE, z(EDGE) - 12], [EDGE, top]], ["kostka", "vila", "sorela", "typovy", "mestan", "skola", "kostel"].includes(kind) ? tint(tile[0], 1.08) : shade, outline); // a hipped roof shows its slope
+    poly([[0, top], [Math.min(ridge, EDGE), z(Math.min(ridge, EDGE)) - 12], [EDGE, z(EDGE) - 12], [EDGE, top]], ["kostka", "vila", "sorela", "typovy", "mestan", "skola", "kostel"].includes(kind) ? tint(tile[0], 1.08)
+      : tenementGable(kind, f.roofRows, f.flat) ? tint(wall, 1.04) : shade, outline); // a hipped roof shows its slope; a tenement's gable is its plastered wall
     const slab = (d0, d1) => {
       poly([[d0, z(d0)], [d1, z(d1)], [d1, z(d1) + 30], [d0, z(d0) + 30]], tile[0]);
       poly([[d0, z(d0) - 12], [d1, z(d1) - 12], [d1, z(d1)], [d0, z(d0)]], tile[1]);
@@ -1295,6 +1308,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     if (style === "sikma" && kind !== "typovy" && kind !== "stenstad") for (const d of [-eave + 10, -eave / 2 + 2]) box(d - 5, d + 5, top - 16, z(d) - 12, ROOF.tileDark); // brackets
     else if (wood) box(-eave, -eave + 8, z(-eave) - 40, z(-eave) + 4, "#f6f4ee"); // the white fascia board
     else dot(-eave + 2, z(-eave) - 16, 10, tint(tile[1], 0.9)); // gutter
+    if (tenementGable(kind, f.roofRows, f.flat)) dot(-eave + 2, z(-eave) - 16, 10, tint(tile[1], 0.9)); // and a tenement's gutter at its eaves
     if (kind === "stenstad") {
       // A sheet roof: the standing seams' ribs on the slope, the snow guard (snöräcke) along the eaves, a roof ladder.
       for (let d = -eave + 20; d < Math.min(ridge, EDGE); d += 60) box(d - 2, d + 2, z(d) + 30, z(d) + 38, tint(tile[0], 1.5));
@@ -1355,9 +1369,11 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       const ww = (WINDOWS[kind] || WINDOWS[style]).w, d0 = (125 + EDGE - 30 - ww) / 2;
       window(d0, top + 50, ww, Math.min(95, Math.min(z(d0 - 10), z(d0 + ww + 10)) - 12 - top - 60 - 10), 1);
     } else {
-      const dc = (125 + EDGE - 30) / 2; // a round window in the gable in the back column, well under the roof
-      dot(dc, top + 100, 30, FRAME);
-      dot(dc, top + 100, 22, GLASS);
+      // The round window (volské oko) in the middle of the gable, under its ridge (Bára 23. 11. 2026).
+      const dc = ridge, zc = top + (z(ridge) - top) * 0.55;
+      dot(dc, zc, 40, tint(wall, 1.15)); // its plaster surround
+      dot(dc, zc, 34, FRAME);
+      dot(dc, zc, 27, GLASS);
     }
   }
 
@@ -1970,6 +1986,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     box(-20, EDGE, f.ground - 22, f.ground, tint(STONE, 1.05), outline);
     const corn = tint(wall, 1.15);
     box(0, EDGE, top - 90, top - 62, tint(wall, 0.94)); // the frieze
+    box(-4, EDGE, top - 124, top - 114, corn, outline); // its architrave line
     box(-12, EDGE, top - 62, top - 48, corn, outline);
     box(-30, EDGE, top - 48, top - 26, corn, outline);
     box(-52, EDGE, top - 26, top, corn, outline);
@@ -1981,10 +1998,17 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     box(-18, EDGE, f.ground - 30, f.ground - 18, shade);
     // Main cornice in three steps, the wall's colour lightened, with its shadow on the wall.
     const corn = tint(wall, 1.15);
+    if (kind === "sikma" || kind === "mestan") {
+      // Under the cornice the frieze, a shade lighter, over an architrave line; consoles carry the cornice.
+      const zf = top - 58 - Math.min(60, f.storey * 0.17);
+      box(0, EDGE, zf, top - 58, tint(wall, 1.07));
+      box(-6, EDGE, zf - 12, zf, corn, outline);
+      box(0, EDGE, zf - 20, zf - 12, shade);
+      for (let d = 15; d < EDGE; d += 42) box(d, d + 12, top - 88, top - 58, corn, outline);
+    } else box(0, EDGE, top - 76, top - 58, shade);
     box(-14, EDGE, top - 58, top - 44, corn, outline);
     box(-28, EDGE, top - 44, top - 22, corn, outline);
     box(-44, EDGE, top - 22, top, corn, outline);
-    box(0, EDGE, top - 76, top - 58, shade);
   } else if (style === "moderni") {
     for (let k = 1; k < full; k++) { // balconies: a thin white slab, a frameless glass balustrade
       const z = floorZ(k);

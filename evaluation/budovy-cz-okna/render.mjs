@@ -13,7 +13,17 @@ const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replac
 const P = [14.42, 50.087]; // Prague
 const h = (look, levels, extra = {}) => ({ look, info: { levels, point: P, ...extra } });
 // [title, left house, right house]
-export const CELLS = [
+// SHEET=stit-rimsa: the tenements' gables and the looks with a cornice (Bára 23. 11. 2026, stit-rimsa-pred-po.png).
+const PL = { paris: [2.33, 48.87], madrid: [-3.705, 40.415], amsterdam: [4.89, 52.37], kobenhavn: [12.56, 55.67], stockholm: [18.07, 59.31] };
+const STIT_RIMSA = [
+  ["činžák 5 · 4", h("sikma", 5), h("sikma", 4, { tint: 2 })],
+  ["činžák 6 (5 + mansarda) · 3", h("sikma", 6, { cornice: 5, roof: 1 }), h("sikma", 3, { tint: 1 })],
+  ["měšťanský dům 3 · sorela 5", h("mestan", 3), h("sorela", 5)],
+  ["zděný dům 50.–60. let 4 · haussmannovský 7", h("typovy", 4), h("haussmann", 7, { point: PL.paris })],
+  ["severský činžák 5 · dánský 5", h("stenstad", 5, { point: PL.stockholm }), h("dansky", 5, { point: PL.kobenhavn })],
+  ["středomořský 5 · amsterdamský 4", h("stredomori", 5, { point: PL.madrid }), h("cihlovy", 4, { point: PL.amsterdam })],
+];
+export const CELLS = process.env.SHEET === "stit-rimsa" ? STIT_RIMSA : ([
   ["činžák 5 · 6 (5 + mansarda)", h("sikma", 5), h("sikma", 6, { cornice: 5, roof: 1 })],
   ["činžák 7 (5 + 2 v mansardě)", h("sikma", 7, { cornice: 5, roof: 2 }), h("sikma", 4, { tint: 2 })],
   ["měšťanský dům 3 · 4 (3 + mansarda)", h("mestan", 3), h("mestan", 4, { cornice: 3, roof: 1 })],
@@ -30,7 +40,7 @@ export const CELLS = [
   ["panelák 8 · 9 (8 + ustoupené)", h("plocha", 8), h("plocha", 9, { cornice: 8, roof: 1 })],
   ["kancelář 5 · 6 (5 + ustoupené)", h("kancelar", 5), h("kancelar", 6, { cornice: 5, roof: 1 })],
   ["moderní 6 · kostel", h("moderni", 6), h("kostel", 1)],
-];
+]);
 
 // One copy of the app: the inner SVG of each cell (run in a child process, so the two copies never share modules).
 if (process.argv[2] === "--cells") {
