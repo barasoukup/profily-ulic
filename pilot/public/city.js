@@ -471,6 +471,10 @@ Object.assign(CITIES, {
   // Slovenia (Bára 23. 11. 2026): the GURS orthophoto, the buildings of its cadastre, OSM (towns/slovenia.js).
   slovenia: { ...abroad("slovenia", "SI", "Slovinsko", "ve Slovinsku", "slovinské", [46.1, 14.8], "46.051400, 14.505800"),
     dataShort: "ortofota GURS a OSM", rulesHead: "Šířky podle slovinských předpisů:" },
+  // Finland (Bára 23. 11. 2026): OSM, the towns' orthophotos (Helsinki, Espoo, Turku), Helsinki's register of public
+  // areas, the buildings of Helsinki and Ryhti (towns/finland.js).
+  finland: { ...abroad("finland", "FI", "Finsko", "ve Finsku", "finské", [62.0, 25.5], "60.169500, 24.938000"),
+    dataShort: "OSM a ortofot měst", rulesHead: "Šířky podle finských doporučení (Väylä 18/2020, Helsinki 2014), nezávazné:" },
   // Malta (Bára 23. 11. 2026): the Planning Authority's orthophoto and OSM (towns/malta.js); traffic keeps left.
   malta: { ...abroad("malta", "MT", "Malta", "na Maltě", "maltské", [35.9, 14.45], "35.898900, 14.514600"),
     dataShort: "ortofota stavebního úřadu a OSM", rulesHead: "Šířky podle maltských předpisů a doporučení:" },
@@ -578,7 +582,7 @@ export const loadTowns = (json) => { towns = [...towns.filter((b) => !(b.id in (
 // The state entry of a point: the first ring it lies in; on a coast (GISCO's 1 : 1 M ring cuts off quays and ports: the
 // review of 23. 11. 2026, Barceloneta, Cais do Sodré, Funchal, Mareterra) the entry within COAST_TOLERANCE metres, if the
 // nearest is a state of COAST or an entry kept out of it (foreign_*: Gibraltar, Andorra; closed_*).
-const COAST = new Set(["spain", "portugal", "monaco", "france"]);
+const COAST = new Set(["spain", "portugal", "monaco", "france", "finland"]);
 const COAST_TOLERANCE = 400;
 function stateEntry(lat, lon) {
   const hit = within(states, lat, lon);

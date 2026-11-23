@@ -365,6 +365,23 @@ varování (minimum nenalezeno), kolmé stání bez varování. Stání 3 m na s
 značkou a s 1,6 m pro chodce. Značky `signs-SI/` (čísla pravidla 2015/2024, kresby většinou z pravidla 2000; README tam).
 Bez paneláků (jugoslávská sídliště nejsou české panelové domy), neutrální vozidla, český mobiliář, rakouské označníky.
 
+### Finsko (Bára 23. 11. 2026)
+
+Stát `finland` (FI), `countries/FI.js`, `towns/finland.js`; hranice GISCO včetně Alandských ostrovů (finská pravidla,
+vlastní silniční zákon Alandy nečten), na pobřeží 400 m tolerance jako u Španělska (`city.js` COAST); OSM balík `fi`
+(jen R2, celé Finsko zabalené 366 MB). Celostátní ortofoto MML chce osobní klíč (v prohlížeči by byl vidět): ortofoto jen
+měst, každé jen ve svém obdélníku (`lanes-ortho.js` `FI_ORTHO`, `fi`): Helsinky 2026 (5 cm, tosiortofoto), Espoo
+„Ortokartta“ (asi 30 cm), Turku 2022 (tosiortofoto 5 cm), vše CC BY 4.0; jinde profil jen z OSM. Mapa povrchů Helsinek
+z registru veřejných ploch YLRE (WFS kartta.hel.fi, jako Tallinn: budovy OSM před ní, zeleň a voda OSM po ní, jen kde má
+vozovku nebo chodník do 15 m od středu řezu; `?helsinki=0`; A/B `evaluation/finland/ab/ZPRAVA.md`: lépe 10, hůř 3).
+Budovy: v Helsinkách registr budov města (podlaží, rok, materiál, fasáda, užití; `?hkibuild=0`), jinde Ryhti SYKE (body
+uvnitř obrysu domu z OSM; `?ryhti=0`); dřevěný dům jde do severských vzhledů (`house-looks.js nordicLook("FI")`; A/B
+`evaluation/finland/buildings-ab/ZPRAVA.md`). Hledání: Photon ve finštině/švédštině a adresy Ryhti `open_address`
+(`search-fi.js`). Normy jen doporučení (Väylä 18/2020, Helsinki „Katutilan mitoitus“ 2014): nic červeně, oranžově pod
+nejnižší doporučenou šířkou (`evaluation/finland/NORMY.md` E). Stání 3 m na směr, na chodníku zakázané. Značky
+`signs-FI/` (příloha 3 zákona 729/2018, Commons public domain; README tam). Bez paneláků, neutrální vozidla, český
+mobiliář, rakouské označníky.
+
 ### Dlaždice OSM
 
 Jedna sada dlaždic pro všechna města (`pilot/data/osm-tiles`, na webu `data/osm-tiles`) z výřezu Geofabrik Česká

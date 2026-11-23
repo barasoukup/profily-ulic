@@ -20,7 +20,11 @@ provozem a uživatel odpovídá za ochranu svého klíče. Výborná data mají 
 - **Helsinki** (CC BY 4.0, CORS `*`, EPSG:3857): ortofoto 5 cm z let 2021–2026, **mapa povrchů ulic YLRE** (vozovka,
   chodník, oddělená cyklostezka, dělicí pás, trávník, materiál, šířka dílu) a **budovy s počtem podlaží, rokem
   dokončení a materiálem fasády**. To je úroveň Vídně nebo Tallinnu.
-- **Espoo** (ortofoto 30 cm, 2026) a **Turku** (ortofoto 2025 velmi ostré) s CORS a v EPSG:3857; licence neověřená.
+- **Espoo** (ortofoto 30 cm, 2026) a **Turku** (ortofoto 2025 velmi ostré) s CORS a v EPSG:3857; licence ověřena
+  23. 11. 2026 v katalogu HRI / avoindata.fi (CKAN API): Espoo „Espoon ja Kauniaisten ortoilmakuvat“ včetně vrstvy
+  `Ortokartta` (nejnovější) **CC BY 4.0**; Turku „Turun ilmakuva 2022“ (tosiortokuva 5 cm, vrstva `Ilmakuva 2022 True ortho`)
+  **CC BY 4.0**; vrstva `Ilmakuva 2025` vlastní záznam nemá (nejspíš „Turun seudun ilmakuva“, 5 cm, CC BY 4.0, název vrstvy
+  neuveden), proto aplikace bere 2022.
 - Celostátně bez klíče a s CORS: **budovy z Ryhti (SYKE)** jako body s počtem podlaží a rokem dokončení,
   **adresy z Ryhti**, **Digiroad** (šířka vozovky, počet pruhů, rychlosti; po 18. 9. 2026 ho Väylä už neaktualizuje).
 - Normy: zákon o silničním provozu a příloha se značkami přečtené z Finlexu (1. ruka); šířky z celostátní příručky

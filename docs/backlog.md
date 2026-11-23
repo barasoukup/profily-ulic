@@ -137,6 +137,16 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Všechny jazyky kromě češtiny strojově: projít rodilým mluvčím, nejdřív irština, maltština, lotyština (tvary měst,
   Krakov, Valonsko, Flandry).
 
+- Finsko (Bára 23. 11. 2026, nenasazené; otázky): (1) normy jen doporučení, oranžově pod nejnižší doporučenou šířkou
+  (chodník 2,0, cyklopruh 1,5…; `evaluation/finland/NORMY.md` E): chceš jiné prahy?; (2) stání 3 m na směr, zákon to dává
+  jen u plné čáry (§ 37 odst. 2 bod 9): ponechat?; (3) značky z přílohy zákona jako volné dílo (§ 9 zák. 404/1961 jen
+  v překladu WIPO): potvrdit; dodatkové tabulky H nekreslíme; (4) betonová sídliště 60.–80. let (BES) jako „povalecny“,
+  ne panelák (Ryhti `construction_method` 01 = prvek by je poznal, nepoužito); (5) Alandy s finskými pravidly (vlastní
+  silniční zákon nečten); (6) Turku: bere se tosiortofoto 2022 (licence ověřená), vrstva 2025 nemá vlastní záznam
+  licence; (7) Tampere má mapu povrchů bez CORS (jen přes proxy); (8) YLRE: stání jen tam, kde ho registr má (hk2),
+  doplněné mezery přes dvory (hk23); registr Helsinek dává užití 151 (kanceláře) i domům se smíšeným užitím; Ryhti
+  v obrysu OSM se dvorní budovou bere nejbližší bod (he7); (9) ortofoto MML přes proxy (viz Nasazení).
+
 ## Nasazení a provoz
 
 - Balík OSM `be` (0,7 GB PBF) po prvním běhu workflow změřit, případně rozdělit pod 512 MB.

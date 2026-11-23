@@ -20,7 +20,8 @@ import MT from "./MT.js";
 import IT from "./IT.js";
 import EE from "./EE.js";
 import SI from "./SI.js";
+import FI from "./FI.js";
 import DEFAULT from "./default.js";
 
-export const COUNTRIES = { CZ, SK, AT, DE, CH, LI, NL, BE, LU, PL, FR, ES, PT, MC, CY, MT, IT, EE, SI };
+export const COUNTRIES = { CZ, SK, AT, DE, CH, LI, NL, BE, LU, PL, FR, ES, PT, MC, CY, MT, IT, EE, SI, FI };
 export const countryOf = (code) => (code && Object.hasOwn(COUNTRIES, code) ? COUNTRIES[code] : DEFAULT);

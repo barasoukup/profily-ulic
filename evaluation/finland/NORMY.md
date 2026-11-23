@@ -220,3 +220,14 @@ tabulka H13; aplikace nechává {need}.“
 3. Jednosměrka: E14.2 je šipka podél ulice (jako rakouská Einbahnstraße); kreslit jen E14.1 a C17?
 4. Způsob stání: Finsko ho nemá na E2, ale dodatkovou tabulkou H13 (k obrubníku) a E4; kreslit H13?
 5. Dodatkové tabulky H12.7, H12.10: ověřit licenci na Commons později (API nás omezilo).
+
+## E. Co aplikace použila (23. 11. 2026, `pilot/public/countries/FI.js`)
+
+Všechno jsou doporučení, proto nic červeně (`min: 0`); oranžově pod **nejnižší** šířkou, kterou příručka pro běžnou
+ulici doporučuje (v textu varování je i výchozí hodnota): chodník 2,0 (KTM: 2,5, v obytné ulici a vedle cyklostezky 2,0),
+společná stezka 3,0, cyklopruh 1,5 (VO18 místní trasa), jednosměrná cyklostezka 1,5, obousměrná 2,5, pruh BUS 3,5,
+BUS s koly 4,5, podélné stání 2,0, kolmé 5,0, šikmé bez varování, jízdní pruh jen vedle cyklopruhu 3,0 (jinde zdroj
+nenalezen), jednosměrka s koly v protisměru bez stání 4,25, tramvajový pás pod 6,4 m. Stání 3 m na směr (konvence
+aplikace, zákon dává 3 m jen u plné čáry), na chodníku zakázané (§ 37 odst. 2 bod 1). Otázky 1–2 výše tím Bára
+nerozhodla, jen jsou nastavené takto, dokud neřekne jinak. Otázka 3: jen E14.1 a C17 (E14.2 vynechána). Otázka 4: H13
+nekreslíme. Otázka 5: licence H12 dál neověřené (Commons API později odpovídalo, soubory H nestažené).

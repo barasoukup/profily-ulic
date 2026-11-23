@@ -71,6 +71,7 @@ export function outage({ surfaces, lines, parking }, dataName = city.dataName, {
   if (s?.plFailed) return { note: mark(" · mapa povrchů Krakova neodpověděla, odhad z ortofota a OSM"), text: t("Mapa povrchů Krakova teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };
   // Paris's Plan de voirie did not answer (towns/france.js).
   // Bologna's road areas did not answer (towns/italy.js).
+  if (s?.fiFailed) return { note: mark(" · mapa povrchů Helsinek neodpověděla, odhad z ortofota a OSM"), text: t("Mapa povrchů Helsinek teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };
   if (s?.eeFailed) return { note: mark(" · mapa povrchů Tallinnu neodpověděla, odhad z ortofota a OSM"), text: t("Mapa povrchů Tallinnu teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };
   if (s?.itFailed) return { note: mark(" · mapa povrchů Bologni neodpověděla, odhad z ortofota a OSM"), text: t("Mapa povrchů Bologni teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };
   // Zaragoza's paving map did not answer (towns/spain.js).

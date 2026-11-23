@@ -35,6 +35,10 @@ export const SOURCE_CREDITS = {
     mt: () => t("ortofoto © Planning Authority Malta, 2018 (CC BY 4.0)"),
     ee: () => t("ortofoto © Maa- ja Ruumiamet"),
     si: () => t("ortofoto DOF025 © Geodetska uprava RS, stav 11/2026 (CC BY 4.0)"),
+    // Finland: the towns' orthophotos (lanes-ortho.js FI_ORTHO).
+    "fi-hki": () => t("ortofoto © Helsingin kaupunki, kaupunkimittauspalvelut (CC BY 4.0)"),
+    "fi-esp": () => t("ortofoto © Espoon kaupunki (CC BY 4.0)"),
+    "fi-tku": () => t("ortofoto © Turun kaupunki, 2022 (CC BY 4.0)"),
     "it-bo": () => t("ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)"),
     "it-mo": () => t("ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)"),
     "it-to": () => t("ortofoto {who}", { who: TO_ORTHO_WHO }),
@@ -95,6 +99,14 @@ export const SOURCE_CREDITS = {
   // The buildings of Slovenia's cadastre (towns/slovenia.js), where they told of a house.
   siGurs: { true: () => t("budovy © Geodetska uprava RS (kataster stavb, stav 11/2026, CC BY 4.0)") },
   eeTown: { tallinn: () => t("mapa povrchů © Tallinna Linnaplaneerimise Amet") },
+  // Helsinki's register of public areas (towns/finland.js).
+  fiTown: { helsinki: () => t("mapa povrchů (Yleisten alueiden rekisteri) © Helsingin kaupunki (CC BY 4.0)") },
+  // The buildings of Helsinki's register or of Ryhti (towns/finland.js), where they told of a house.
+  fiBuild: {
+    hki: () => t("budovy © Helsingin kaupunki (CC BY 4.0)"),
+    ryhti: () => t("budovy © Suomen ympäristökeskus SYKE (Ryhti, CC BY 4.0)"),
+    both: () => `${t("budovy © Helsingin kaupunki (CC BY 4.0)")}, ${t("budovy © Suomen ympäristökeskus SYKE (Ryhti, CC BY 4.0)")}`,
+  },
   itTown: { bologna: () => t("mapa povrchů (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)") },
   nlBgt: { true: () => t("mapa povrchů BGT © Kadaster a správci BGT (PDOK, CC0)") },
   // Amsterdam's parking spaces (towns/netherlands.js).

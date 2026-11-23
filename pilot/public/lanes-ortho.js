@@ -103,6 +103,19 @@ export const EE_ORTHO = "https://tiles.maaamet.ee/tm/tms/1.0.0/foto@GMC";
 // for 30 s and gives 504 (also inside Slovenia, at random; always beyond it, so the map's layer is kept inside, app.js
 // insideOnly): laneImage asks a second time after a short pause when the first does not answer in half the time.
 export const SI_ORTHO = (b, w, h, format = "image/jpeg") => `https://ipi.eprostor.gov.si/wms-si-gurs-dts/wms?${new URLSearchParams({ SERVICE: "WMS", REQUEST: "GetMap", VERSION: "1.3.0", LAYERS: "SI.GURS.ZPDZ:DOF025_3857", STYLES: "", CRS: "EPSG:3857", BBOX: b.join(","), WIDTH: w, HEIGHT: h, FORMAT: format })}`;
+// Finland (Bára 23. 11. 2026): no national orthophoto without a key (the MML's needs a personal one, which would show in
+// the browser; evaluation/finland/ZDROJE.md 1), so only the towns' own WMS in Web Mercator with CORS *, each CC BY 4.0 on
+// HRI / avoindata.fi (checked 23. 11. 2026): Helsinki's of 2026 (5 cm, a true orthophoto), Espoo's latest "Ortokartta"
+// (about 30 cm) and Turku's true orthophoto of 2022 (5 cm; its layer of 2025 has no licence of its own published). Each
+// only over its town's box (Helsinki first where the boxes overlap); elsewhere in Finland no orthophoto (laneImage null:
+// the estimate from OSM).
+const fiWms = (base, layer) => (b, w, h, format = "image/jpeg") => `${base}?${new URLSearchParams({ SERVICE: "WMS", REQUEST: "GetMap", VERSION: "1.3.0", LAYERS: layer, STYLES: "", CRS: "EPSG:3857", BBOX: b.join(","), WIDTH: w, HEIGHT: h, FORMAT: format, ...(format === "image/png" && { TRANSPARENT: "TRUE" }) })}`;
+export const FI_ORTHO = {
+  "fi-hki": { box: [24.82, 60.125, 25.27, 60.305], res: 0.1, url: fiWms("https://kartta.hel.fi/ws/geoserver/avoindata/wms", "avoindata:Ortoilmakuva_2026_5cm"), credit: "ortofoto © Helsingin kaupunki, kaupunkimittauspalvelut (CC BY 4.0)" },
+  "fi-esp": { box: [24.50, 60.08, 24.85, 60.36], res: 0.3, url: fiWms("https://kartat.espoo.fi/teklaogcweb/wms.ashx", "Ortokartta"), credit: "ortofoto © Espoon kaupunki (CC BY 4.0)" },
+  "fi-tku": { box: [22.05, 60.33, 22.55, 60.62], res: 0.1, url: fiWms("https://turku.asiointi.fi/TeklaOGCWeb/WMS.ashx", "Ilmakuva 2022 True ortho"), credit: "ortofoto © Turun kaupunki, 2022 (CC BY 4.0)" },
+};
+export const fiOrthoAt = (lon, lat) => Object.keys(FI_ORTHO).filter((k) => { const [x0, y0, x1, y1] = FI_ORTHO[k].box; return lon >= x0 && lon <= x1 && lat >= y0 && lat <= y1; });
 export const SK_ORTHO = "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ortofoto_hres/MapServer";
 const SOURCES = {
   // The grid of z19, tiles of 512 px (about 10 cm). balance: the mosaic is bright and tinted (Košice 2025: asphalt
@@ -161,6 +174,7 @@ export const deWmsUrl = ({ wms, layers, time }, b, w, h, format = "image/jpeg", 
   crs: "EPSG:3857", bbox: b.join(","), width: w, height: h, format, ...(time && { time }), ...extra })}`;
 for (const [r, o] of Object.entries(BE_ORTHO)) SOURCES[`be-${r}`] = { res: 0.1, url: o.url };
 for (const [land, o] of Object.entries(DE_ORTHO)) SOURCES[`de-${land}`] = { res: 0.1, url: (b, w, h, format) => deWmsUrl(o, b, w, h, format) };
+for (const [k, o] of Object.entries(FI_ORTHO)) SOURCES[k] = { res: o.res, url: o.url };
 
 // The Länder a point may lie in (laender.json): the one it is in first, then those within about 2 km (the boundaries
 // are of 1 : 1 000 000), at most three.
@@ -245,6 +259,15 @@ export async function laneImage(opts) {
   if (opts.source === "it") {
     let lastError = null;
     for (const key of itOrthoAt(...opts.frame.toLonLat(0, 0))) {
+      try { const out = await laneImageOf(key, opts); if (out) return out; } catch (err) { lastError = err; }
+    }
+    if (lastError) throw lastError;
+    return null;
+  }
+  // Finland: the town's orthophoto whose box holds the cut (none elsewhere; a blank image is none).
+  if (opts.source === "fi") {
+    let lastError = null;
+    for (const key of fiOrthoAt(...opts.frame.toLonLat(0, 0))) {
       try { const out = await laneImageOf(key, opts); if (out) return out; } catch (err) { lastError = err; }
     }
     if (lastError) throw lastError;
@@ -342,7 +365,7 @@ async function laneImageOf(key, { frame, dir, t0, t1, timeout = TIMEOUT, fetchIm
       }
     }
     // Outside a Land's coverage its WMS answers white (only the German sources).
-    if ((key.startsWith("de-") || key.startsWith("be-") || key.startsWith("pt-") || key === "mt" || key.startsWith("it-")) && blank(img)) return null;
+    if ((key.startsWith("de-") || key.startsWith("be-") || key.startsWith("pt-") || key === "mt" || key.startsWith("it-") || key.startsWith("fi-")) && blank(img)) return null;
     // Resample on the grid of the cut.
     const res = src.res, nt = Math.round((t1 - t0) / res), nu = Math.round((2 * ALONG) / res), L = new Float32Array(nt * nu), G = new Float32Array(nt * nu), Y = new Float32Array(nt * nu), D = new Float32Array(nt * nu), S = new Float32Array(nt * nu);
     for (let j = 0; j < nu; j++) for (let i = 0; i < nt; i++) {
@@ -804,7 +827,7 @@ function redraw(w, lines, fine = true) {
 // model learnt it (evaluation/ai-segmentation/fetch_ortho.py): the source's shift applied as above. Returns
 // { source, img } (ImageData) or null (no photo there); a server down throws as laneImage does.
 export async function orthoPatch({ source, lon, lat, half, px, timeout = TIMEOUT }) {
-  const keys = source === "de" ? (await landsAt(lon, lat).catch(() => [])).map((l) => `de-${l}`) : source === "be" ? [...new Set([...(await beRegionsAt(lon, lat).catch(() => [])).map(beOrthoOf), "vl", "wal"])].map((r) => `be-${r}`) : source === "pt" ? ptKeys(lon, lat) : source === "es" ? esKeys(lon, lat) : source === "it" ? itOrthoAt(lon, lat) : [SOURCES[source] ? source : "cuzk"];
+  const keys = source === "de" ? (await landsAt(lon, lat).catch(() => [])).map((l) => `de-${l}`) : source === "be" ? [...new Set([...(await beRegionsAt(lon, lat).catch(() => [])).map(beOrthoOf), "vl", "wal"])].map((r) => `be-${r}`) : source === "pt" ? ptKeys(lon, lat) : source === "es" ? esKeys(lon, lat) : source === "it" ? itOrthoAt(lon, lat) : source === "fi" ? fiOrthoAt(lon, lat) : [SOURCES[source] ? source : "cuzk"];
   const seen = new Set(); // Berlin and Brandenburg: one service
   for (const key of keys) {
     const id = key.startsWith("de-") ? DE_ORTHO[key.slice(3)].wms : key;

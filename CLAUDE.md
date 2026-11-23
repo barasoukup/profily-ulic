@@ -491,6 +491,14 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   správně 31 → 37 z 54 domů, `ab/ZPRAVA.md`). Stání podle ZPrCP čl. 65 (na obousměrce jen se středovou čárou, `parkOnRoadway`). Socialistický vzhled ne.
   Kredit „stav 11/2026“ (rok náletu služba neuvádí). Otevřené otázky v `docs/backlog.md`.
 
+## Finsko (větev estonia, Bára 23. 11. 2026, nenasazené)
+- `countries/FI.js`, `towns/finland.js`, `search-fi.js` (Photon + adresy Ryhti), `signs-FI/`, `evaluation/finland/`
+  (ZDROJE, NORMY, ab/, buildings-ab/). Hranice GISCO s Alandami, pobřeží 400 m. OSM balík `fi` (jen R2, celé Finsko 366 MB;
+  **workflow OSM tiles se `states: fi`**). Bez klíče MML (Bára): ortofoto jen Helsinek, Espoo a Turku (CC BY 4.0), jinde
+  odhad jen z OSM. Mapa povrchů Helsinek YLRE (`?helsinki=0`; A/B 27 řezů: lépe 10, hůř 3, stejně 7, nejasné 7). Budovy
+  z registru Helsinek a Ryhti (`?hkibuild=0`, `?ryhti=0`; 40 domů: podlaží 39 proti 31 z OSM, rok 36 proti 5, dřevo 4).
+  Normy jen doporučení, nic červeně. Otevřené otázky v `docs/backlog.md`.
+
 ## Společné pro státy (Bára 23. 11. 2026)
 - Sever Kypru a Itálie mimo otevřená ortofota (i se San Marinem a Vatikánem) profil nedostanou, aplikace to řekne
   (`city.js closedAt`, `staty.json` `closed_*`).
