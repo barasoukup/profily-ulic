@@ -6,8 +6,8 @@ regiony Geofabriku a hranici několika dotazy. Chybu, která by Francii rozbila,
 | Nález | Co se stalo |
 |---|---|
 | Dvojitá cyklostezka: „Piste cyclable“ z mapy a cyklopruh z OSM na téže straně (Rue de Cléry, Avenue de la Bourdonnais) | opraveno obecně v `derive.js`: cyklostezka z mapy hned u obruby nahrazuje cyklopruh z OSM na té straně (`?off=kolodvakrat`); A/B znovu: změnily se jen tyto 2 řezy (`ab/vysledky/b-po-recenzi.json`) |
-| Široká vozovka z mapy jako „pruh 4 m + krajnice 5–6 m“ (Bd de Magenta, Rue de Castiglione), buspruh mapy („Couloir bus“) se ztratí | otevřené (`docs/backlog.md`): strop pruhu a buspruhy u map povrchů; mapa sama je správně |
-| Bulvár se středovou promenádou (Bd de Rochechouart) končí za terre-plein, druhá vozovka chybí | otevřené (`docs/backlog.md`): prodloužit dosah, terre-plein kreslit jako dělicí pás |
+| Široká vozovka z mapy jako „pruh 4 m + krajnice 5–6 m“ (Bd de Magenta, Rue de Castiglione), buspruh mapy („Couloir bus“) se ztratí | částečně opraveno 23. 11. (`ab/bulvary/ZPRAVA.md`): stání z evidence parkovacích míst, buspruh z krajnice; krajnice u 10 z 26 bulvárů zůstávají |
+| Bulvár se středovou promenádou (Bd de Rochechouart) končí za terre-plein, druhá vozovka chybí | opraveno 23. 11.: dosah 35 m na straně končící ve středovém pásu, vozovka jen pro autobusy jako druhá polovina ulice |
 | Výška domu z BD TOPO se zahodí bez `nombre_d_etages`, počet podlaží je zašuměný | opraveno: bez počtu nebo mimo 2,4–5 m na podlaží rozhoduje výška (asi 3 m na podlaží) |
 | Llívia (španělská enkláva) jako Francie | opraveno: hranice Francie i s vnitřními prstenci, test |
 | Minimum chodníku 1,2 m (platí jen bez zdi a překážek po obou stranách) | opraveno: 1,4 m, základ 1,8 m (Paříž); v popisku „znění z roku 2007“ |

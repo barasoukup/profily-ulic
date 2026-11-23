@@ -44,7 +44,8 @@ function limitsFR(s, segs) {
 }
 
 // The signs of the state FR (pilot/public/signs-FR/, README there; arrêté of 24. 11. 1967 on the signs of roads and
-// motorways; Wikimedia Commons). Official works as in Luxembourg (Bára 21. 11. 2026: "značky jsou úřední dílo"): the
+// motorways; Wikimedia Commons). Official works as in Luxembourg (Bára 21. 11. 2026: "značky jsou úřední dílo"; for France
+// 23. 11. 2026: "Značky jsou volně"): the
 // CC BY-SA of a redrawing on Commons is not credited. France has no sign of a cycle street, a paid zone or a path
 // split between walkers and cyclists; no plate for the disabled's parking without "SAUF" (left out).
 const FR_FILE = { b1: "B0", b11: "B7b", b8: "B9b", b30: "B9a", b28: "B6d", b29: "B6a1", ip11a: "C1a", ip14a: "C207", ip15a: "C107", ip20a: "B27a",
@@ -82,6 +83,9 @@ export default {
   parkGuess: true,
   parkByCycleLane: true,
   wideRoads: true,
+  // Paris's boulevards and avenues are 30–70 m between facades, with promenades and side roads: a main street's side
+  // ending at the reach in its median reaches 35 m (app.js).
+  wideStreets: /^(primary|secondary)$/,
   roadClassFromOsm: true,
   limits: limitsFR,
   contraflow: () => null,

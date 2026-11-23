@@ -67,3 +67,16 @@ test("Francie: hledání Géoplateforme", async () => {
   assert.ok(S.looksFrench("rue de Rivoli") && S.looksFrench("Montpellier") && S.looksFrench("Besançon"));
   assert.ok(!S.looksFrench("Vinohradská 12") && !S.looksFrench("Hlavné námestie") && !S.looksFrench("Kôlňa"), "é a ô mají i čeština a slovenština");
 });
+
+test("Francie: pařížská evidence parkovacích míst (jen stání ve vozovce, způsob stání), vypínač ?parisstani=0", async () => {
+  const F = await import("../pilot/public/towns/france.js");
+  const pt = (x) => ({ geo_point_2d: { lon: 2.35, lat: 48.86 }, lon: 12, lar: 1.8, nomvoie: "JACOB", ...x });
+  const got = F.parisParking([pt({ typsta: "Longitudinal", locsta: "Chaussée" }), pt({ typsta: "Bataille", locsta: "Faux lincoln", lar: 2.3 }),
+    pt({ typsta: "Epi", locsta: "Contre terre plein", lar: 4.5 }), pt({ typsta: "Longitudinal", locsta: "Lincoln" }), pt({ typsta: "Longitudinal", locsta: "Trottoir" }),
+    pt({ typsta: "Longitudinal", locsta: "Chaussée", lon: 0 })]);
+  assert.deepEqual(got.map((p) => [p.orient, p.w]), [["podelne", 1.8], ["kolme", 2.3], ["sikme", 4.5]], "záliv v chodníku (Lincoln) je plocha mapy, ne stání ve vozovce");
+  assert.deepEqual(got[0], { lon: 2.35, lat: 48.86, len: 12, w: 1.8, orient: "podelne", street: "JACOB" });
+  globalThis.PROFILY_FR = { parisstani: "0" };
+  try { assert.deepEqual(await F.sources.parking("2.350,48.856,2.353,48.858"), { features: [] }); } finally { delete globalThis.PROFILY_FR; }
+  assert.deepEqual(await F.sources.parking("4.832,45.759,4.835,45.761"), { features: [] }, "Lyon: bez evidence, bez dotazu");
+});

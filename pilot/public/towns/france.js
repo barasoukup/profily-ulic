@@ -149,11 +149,40 @@ async function podlaznost(lat, lon) {
   return b ? bdtopoBuilding(b) : {};
 }
 
+// ---------- parking: Paris's register of parking places ----------
+// Every regulated place on the public road (opendata.paris.fr stationnement-voie-publique-emplacements, ODbL, updated
+// daily): one point a stretch of stalls, in the middle of the strip, with its length along the kerb (lon), depth (lar),
+// arrangement (typsta: Longitudinal, Bataille perpendicular, Epi angled), use (regpri: paid, delivery, the disabled,
+// two-wheelers…) and place (locsta). Only stretches on the roadway: "Chaussée", a painted bay ("Faux lincoln") and one
+// along a median ("Contre terre plein"); a bay cut into the sidewalk (Lincoln) is the Plan de voirie's own surface.
+// The register covers all of Paris (all parking there is regulated): a kerb with no stretch at the cut has none
+// (derive.js kerbParking). Paris's wide roadways have no lines on IGN's image (shade, few markings): without it the
+// rules left their parking strips as shoulders (Bd Saint-Germain, Rue de Castiglione). ?parisstani=0 leaves it out.
+export const PARIS_PARKING_SET = "stationnement-voie-publique-emplacements";
+const PARIS_ORIENT = { Longitudinal: "podelne", Bataille: "kolme", Epi: "sikme" };
+const ON_ROAD = new Set(["Chaussée", "Faux lincoln", "Contre terre plein"]);
+export function parisParking(records) {
+  return records.filter((r) => ON_ROAD.has(r.locsta) && PARIS_ORIENT[r.typsta] && r.lon > 0 && r.lar > 0 && r.geo_point_2d)
+    .map((r) => ({ lon: r.geo_point_2d.lon, lat: r.geo_point_2d.lat, len: r.lon, w: r.lar, orient: PARIS_ORIENT[r.typsta], street: r.nomvoie || "" }));
+}
+async function parking(bbox) {
+  const [x0, y0, x1, y1] = bbox.split(",").map(Number);
+  const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
+  if (param("parisstani") === "0" || param("paris") === "0" || !inArea(AREAS.paris, cx, cy)) return { features: [] };
+  const out = [];
+  for (let offset = 0; offset < 500; offset += 100) {
+    const json = await getJSON(`${PARIS_API}/${PARIS_PARKING_SET}/records?${new URLSearchParams({ where: `in_bbox(geo_point_2d,${y0},${x0},${y1},${x1})`, select: "typsta,locsta,lon,lar,nomvoie,geo_point_2d", limit: "100", offset: String(offset) })}`);
+    out.push(...(json.results || []));
+    if ((json.results || []).length < 100) break;
+  }
+  return { features: [], kerbParking: parisParking(out), parisParking: true };
+}
+
 export const sources = {
   osm: (lat, lon, radius) => osmTiles(lat, lon, radius),
   surfaces,
   lines,
-  parking: async () => ({ features: [] }),
+  parking,
   podlaznost,
 };
 

@@ -1,0 +1,2805 @@
+[
+{
+"id": "bv1",
+"town": "paris",
+"A": {
+"name": "Boulevard Saint-Germain",
+"lat": 48.849792880652934,
+"lon": 2.3497865765220993,
+"bearing": -69.49770419263736,
+"span": {
+"left": 16.32,
+"right": 13.33
+},
+"sources": {
+"frTown": "paris"
+},
+"segments": [
+[
+"chodnik",
+5.93
+],
+[
+"stromorad",
+1.92
+],
+[
+"krajnice",
+3.07
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"krajnice",
+3.07
+],
+[
+"chodnik",
+0.91
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+5.24
+]
+]
+},
+"B": {
+"name": "Boulevard Saint-Germain",
+"lat": 48.849792880652934,
+"lon": 2.3497865765220993,
+"bearing": -69.49770419263736,
+"span": {
+"left": 16.32,
+"right": 13.33
+},
+"sources": {
+"frTown": "paris",
+"parisParking": true
+},
+"segments": [
+[
+"chodnik",
+5.93
+],
+[
+"stromorad",
+1.92
+],
+[
+"krajnice",
+2.17
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"krajnice",
+2.17
+],
+[
+"parkovani",
+1.8
+],
+[
+"chodnik",
+0.91
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+5.24
+]
+]
+}
+},
+{
+"id": "bv2",
+"town": "paris",
+"A": {
+"name": "Boulevard de Sébastopol",
+"lat": 48.86537982753122,
+"lon": 2.352071303980214,
+"bearing": 20.502505440190955,
+"span": {
+"left": 16.17,
+"right": 30.53
+},
+"sources": {
+"frTown": "paris"
+},
+"segments": [
+[
+"chodnik",
+5.62
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+0.78
+],
+[
+"cyklostezka",
+1.92
+],
+[
+"cyklostezka",
+1.92
+],
+[
+"krajnice",
+7.63
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"krajnice",
+7.63
+],
+[
+"chodnik",
+3.7
+]
+]
+},
+"B": {
+"name": "Boulevard de Sébastopol",
+"lat": 48.86537982753122,
+"lon": 2.352071303980214,
+"bearing": 20.502505440190955,
+"span": {
+"left": 16.17,
+"right": 30.53
+},
+"sources": {
+"frTown": "paris",
+"parisParking": true
+},
+"segments": [
+[
+"chodnik",
+5.62
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+0.78
+],
+[
+"cyklostezka",
+1.92
+],
+[
+"cyklostezka",
+1.92
+],
+[
+"krajnice",
+7.63
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"krajnice",
+7.63
+],
+[
+"chodnik",
+3.7
+]
+]
+}
+},
+{
+"id": "bv3",
+"town": "paris",
+"A": {
+"name": "Boulevard Voltaire",
+"lat": 48.856895144926696,
+"lon": 2.3816372993599146,
+"bearing": -47.8383310109773,
+"span": {
+"left": 14.72,
+"right": 14.83
+},
+"sources": {
+"frTown": "paris"
+},
+"segments": [
+[
+"chodnik",
+5.7
+],
+[
+"stromorad",
+1.75
+],
+[
+"cyklostezka",
+1.8
+],
+[
+"krajnice",
+1.42
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"krajnice",
+1.42
+],
+[
+"cyklostezka",
+2.25
+],
+[
+"stromorad",
+1.67
+],
+[
+"chodnik",
+5.53
+]
+]
+},
+"B": {
+"name": "Boulevard Voltaire",
+"lat": 48.856895144926696,
+"lon": 2.3816372993599146,
+"bearing": -47.8383310109773,
+"span": {
+"left": 14.72,
+"right": 14.83
+},
+"sources": {
+"frTown": "paris",
+"parisParking": true
+},
+"segments": [
+[
+"chodnik",
+5.7
+],
+[
+"stromorad",
+1.75
+],
+[
+"cyklostezka",
+1.8
+],
+[
+"parkovani",
+2
+],
+[
+"pruh",
+3.52
+],
+[
+"pruh",
+3.52
+],
+[
+"parkovani",
+1.8
+],
+[
+"cyklostezka",
+2.25
+],
+[
+"stromorad",
+1.67
+],
+[
+"chodnik",
+5.53
+]
+]
+}
+},
+{
+"id": "bv4",
+"town": "paris",
+"A": {
+"name": "Avenue de l'Opéra",
+"lat": 48.86556640990759,
+"lon": 2.3344881982989723,
+"bearing": -15.797808338023835,
+"span": {
+"left": 14.67,
+"right": 15.23
+},
+"sources": {
+"frTown": "paris"
+},
+"segments": [
+[
+"chodnik",
+5.5
+],
+[
+"krajnice",
+1.45
+],
+[
+"bus_cyklo",
+4
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"bus_cyklo",
+4
+],
+[
+"krajnice",
+1.45
+],
+[
+"chodnik",
+5.5
+]
+]
+},
+"B": {
+"name": "Avenue de l'Opéra",
+"lat": 48.86556640990759,
+"lon": 2.3344881982989723,
+"bearing": -15.797808338023835,
+"span": {
+"left": 14.67,
+"right": 15.23
+},
+"sources": {
+"frTown": "paris",
+"parisParking": true
+},
+"segments": [
+[
+"chodnik",
+5.5
+],
+[
+"krajnice",
+1.45
+],
+[
+"bus_cyklo",
+4
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"bus_cyklo",
+4
+],
+[
+"krajnice",
+1.45
+],
+[
+"chodnik",
+5.5
+]
+]
+}
+},
+{
+"id": "bv5",
+"town": "paris",
+"A": {
+"name": "Rue de Miromesnil",
+"lat": 48.87483200881395,
+"lon": 2.3158290950160367,
+"bearing": -2.736054676645544,
+"span": {
+"left": 5.07,
+"right": 4.18
+},
+"sources": {
+"frTown": "paris"
+},
+"segments": [
+[
+"chodnik",
+1.5
+],
+[
+"pruh",
+4.2
+],
+[
+"parkovani",
+2
+],
+[
+"chodnik",
+1.55
+]
+]
+},
+"B": {
+"name": "Rue de Miromesnil",
+"lat": 48.87483200881395,
+"lon": 2.3158290950160367,
+"bearing": -2.736054676645544,
+"span": {
+"left": 5.07,
+"right": 4.18
+},
+"sources": {
+"frTown": "paris",
+"parisParking": true
+},
+"segments": [
+[
+"chodnik",
+1.5
+],
+[
+"parkovani",
+1.8
+],
+[
+"pruh",
+4.4
+],
+[
+"chodnik",
+1.55
+]
+]
+}
+},
+{
+"id": "bv6",
+"town": "paris",
+"A": {
+"name": "Rue Pelée",
+"lat": 48.86008645346966,
+"lon": 2.3713161678346886,
+"bearing": 69.17838647800153,
+"span": {
+"left": 7.57,
+"right": 7.18
+},
+"sources": {
+"frTown": "paris",
+"orthoCity": "fr"
+},
+"segments": [
+[
+"chodnik",
+4.95
+],
+[
+"pruh",
+2.5
+],
+[
+"pruh",
+2.5
+],
+[
+"chodnik",
+4.8
+]
+]
+},
+"B": {
+"name": "Rue Pelée",
+"lat": 48.86008645346966,
+"lon": 2.3713161678346886,
+"bearing": 69.17838647800153,
+"span": {
+"left": 7.57,
+"right": 7.18
+},
+"sources": {
+"frTown": "paris",
+"parisParking": true,
+"orthoCity": "fr"
+},
+"segments": [
+[
+"chodnik",
+4.95
+],
+[
+"pruh",
+2.5
+],
+[
+"pruh",
+2.5
+],
+[
+"chodnik",
+4.8
+]
+]
+}
+},
+{
+"id": "bv7",
+"town": "paris",
+"A": {
+"name": "Rue Fromentin",
+"lat": 48.88286647999509,
+"lon": 2.3347859778911766,
+"bearing": 17.71313614002801,
+"span": {
+"left": 5.07,
+"right": 6.83
+},
+"sources": {
+"frTown": "paris",
+"orthoCity": "fr"
+},
+"segments": [
+[
+"chodnik",
+2.3
+],
+[
+"parkovani",
+2
+],
+[
+"pruh",
+3.07
+],
+[
+"parkovani",
+2.13
+],
+[
+"chodnik",
+2.4
+]
+]
+},
+"B": {
+"name": "Rue Fromentin",
+"lat": 48.88286647999509,
+"lon": 2.3347859778911766,
+"bearing": 17.71313614002801,
+"span": {
+"left": 5.07,
+"right": 6.83
+},
+"sources": {
+"frTown": "paris",
+"parisParking": true,
+"orthoCity": "fr"
+},
+"segments": [
+[
+"chodnik",
+2.3
+],
+[
+"pruh",
+5.07
+],
+[
+"parkovani",
+2.13
+],
+[
+"chodnik",
+2.4
+]
+]
+}
+},
+{
+"id": "bv8",
+"town": "paris",
+"A": {
+"name": "Rue des Chaufourniers",
+"lat": 48.87891900816734,
+"lon": 2.3714529045324015,
+"bearing": -58.58697222953818,
+"span": {
+"left": 6.92,
+"right": 4.24
+},
+"sources": {
+"frTown": "paris"
+},
+"segments": [
+[
+"chodnik",
+1.85
+],
+[
+"parkovani",
+2
+],
+[
+"pruh",
+3.2
+],
+[
+"parkovani",
+2
+],
+[
+"chodnik",
+2.12
+]
+]
+},
+"B": {
+"name": "Rue des Chaufourniers",
+"lat": 48.87891900816734,
+"lon": 2.3714529045324015,
+"bearing": -58.58697222953818,
+"span": {
+"left": 6.92,
+"right": 4.24
+},
+"sources": {
+"frTown": "paris",
+"parisParking": true
+},
+"segments": [
+[
+"chodnik",
+1.85
+],
+[
+"parkovani",
+2
+],
+[
+"pruh",
+5.2
+],
+[
+"chodnik",
+2.12
+]
+]
+}
+},
+{
+"id": "bv9",
+"town": "paris",
+"A": {
+"name": "Boulevard Saint-Michel",
+"lat": 48.84658797342003,
+"lon": 2.340432041143809,
+"bearing": 20.832979185152652,
+"span": {
+"left": 15.98,
+"right": 14.58
+},
+"sources": {
+"frTown": "paris"
+},
+"segments": [
+[
+"chodnik",
+5.76
+],
+[
+"cyklostezka",
+2.4
+],
+[
+"krajnice",
+3.27
+],
+[
+"pruh",
+4
+],
+[
+"bus_cyklo",
+4
+],
+[
+"krajnice",
+3.27
+],
+[
+"chodnik",
+7.85
+]
+]
+},
+"B": {
+"name": "Boulevard Saint-Michel",
+"lat": 48.84658797342003,
+"lon": 2.340432041143809,
+"bearing": 20.832979185152652,
+"span": {
+"left": 15.98,
+"right": 14.58
+},
+"sources": {
+"frTown": "paris",
+"parisParking": true
+},
+"segments": [
+[
+"chodnik",
+5.76
+],
+[
+"cyklostezka",
+2.4
+],
+[
+"krajnice",
+3.27
+],
+[
+"pruh",
+4
+],
+[
+"bus_cyklo",
+4
+],
+[
+"krajnice",
+3.27
+],
+[
+"chodnik",
+7.85
+]
+]
+}
+},
+{
+"id": "bv10",
+"town": "paris",
+"A": {
+"name": "Avenue des Champs-Élysées",
+"lat": 48.87099971090921,
+"lon": 2.3037807272428665,
+"bearing": -64.39618649313554,
+"span": {
+"left": 15.97,
+"right": 35.08
+},
+"sources": {
+"frTown": "paris",
+"orthoCity": "fr"
+},
+"segments": [
+[
+"stromorad",
+1.41
+],
+[
+"chodnik",
+1.09
+],
+[
+"pruh",
+2.89
+],
+[
+"pruh",
+2.89
+],
+[
+"pruh",
+4.6
+],
+[
+"pruh",
+3.8
+],
+[
+"pruh",
+3.8
+],
+[
+"pruh",
+4.6
+],
+[
+"pruh",
+4.58
+],
+[
+"chodnik",
+1.38
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+8.33
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+8.69
+]
+]
+},
+"B": {
+"name": "Avenue des Champs-Élysées",
+"lat": 48.87099971090921,
+"lon": 2.3037807272428665,
+"bearing": -64.39618649313554,
+"span": {
+"left": 15.97,
+"right": 35.08
+},
+"sources": {
+"frTown": "paris",
+"parisParking": true
+},
+"segments": [
+[
+"stromorad",
+1.41
+],
+[
+"chodnik",
+1.09
+],
+[
+"parkovani",
+2
+],
+[
+"pruh",
+3.59
+],
+[
+"pruh",
+3.59
+],
+[
+"pruh",
+3.59
+],
+[
+"pruh",
+3.59
+],
+[
+"pruh",
+3.59
+],
+[
+"pruh",
+3.59
+],
+[
+"pruh",
+3.59
+],
+[
+"chodnik",
+1.38
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+8.33
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+8.69
+]
+]
+}
+},
+{
+"id": "bv11",
+"town": "paris",
+"A": {
+"name": "Boulevard de Port-Royal",
+"lat": 48.837378453681374,
+"lon": 2.3468397584713863,
+"bearing": -72.2978635301007,
+"span": {
+"left": 22.48,
+"right": 17.28
+},
+"sources": {
+"frTown": "paris"
+},
+"segments": [
+[
+"chodnik",
+4.01
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+4.34
+],
+[
+"krajnice",
+3.93
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"krajnice",
+3.93
+],
+[
+"chodnik",
+4.17
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+4.38
+]
+]
+},
+"B": {
+"name": "Boulevard de Port-Royal",
+"lat": 48.837378453681374,
+"lon": 2.3468397584713863,
+"bearing": -72.2978635301007,
+"span": {
+"left": 22.48,
+"right": 17.28
+},
+"sources": {
+"frTown": "paris",
+"parisParking": true
+},
+"segments": [
+[
+"chodnik",
+4.01
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+4.34
+],
+[
+"krajnice",
+2.93
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"krajnice",
+2.93
+],
+[
+"parkovani",
+2
+],
+[
+"chodnik",
+4.17
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+4.38
+]
+]
+}
+},
+{
+"id": "bv12",
+"town": "paris",
+"A": {
+"name": "Rue Broca",
+"lat": 48.8353981718503,
+"lon": 2.346462304500221,
+"bearing": 12.441405982694143,
+"span": {
+"left": 9.72,
+"right": 5.88
+},
+"sources": {
+"frTown": "paris",
+"orthoCity": "fr"
+},
+"segments": [
+[
+"chodnik",
+5.58
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+0.77
+],
+[
+"pruh",
+3.37
+],
+[
+"parkovani",
+1.88
+],
+[
+"chodnik",
+2.5
+]
+]
+},
+"B": {
+"name": "Rue Broca",
+"lat": 48.8353981718503,
+"lon": 2.346462304500221,
+"bearing": 12.441405982694143,
+"span": {
+"left": 9.72,
+"right": 5.88
+},
+"sources": {
+"frTown": "paris",
+"parisParking": true,
+"orthoCity": "fr"
+},
+"segments": [
+[
+"chodnik",
+5.58
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+0.77
+],
+[
+"pruh",
+3.37
+],
+[
+"parkovani",
+1.88
+],
+[
+"chodnik",
+2.5
+]
+]
+}
+},
+{
+"id": "bv13",
+"town": "paris",
+"A": {
+"name": "Avenue de la République",
+"lat": 48.864850270637746,
+"lon": 2.376686039020376,
+"bearing": -73.90506043423788,
+"span": {
+"left": 14.07,
+"right": 15.83
+},
+"sources": {
+"frTown": "paris"
+},
+"segments": [
+[
+"chodnik",
+5.03
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+1.57
+],
+[
+"krajnice",
+0.59
+],
+[
+"cyklostezka",
+2
+],
+[
+"krajnice",
+0.38
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"krajnice",
+0.31
+],
+[
+"cyklostezka",
+2
+],
+[
+"krajnice",
+0.66
+],
+[
+"stromorad",
+1.41
+],
+[
+"chodnik",
+6.44
+]
+]
+},
+"B": {
+"name": "Avenue de la République",
+"lat": 48.864850270637746,
+"lon": 2.376686039020376,
+"bearing": -73.90506043423788,
+"span": {
+"left": 14.07,
+"right": 15.83
+},
+"sources": {
+"frTown": "paris",
+"parisParking": true
+},
+"segments": [
+[
+"chodnik",
+5.03
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+1.57
+],
+[
+"krajnice",
+0.59
+],
+[
+"cyklostezka",
+2
+],
+[
+"krajnice",
+0.38
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"krajnice",
+0.31
+],
+[
+"cyklostezka",
+2
+],
+[
+"krajnice",
+0.66
+],
+[
+"stromorad",
+1.41
+],
+[
+"chodnik",
+6.44
+]
+]
+}
+},
+{
+"id": "bv14",
+"town": "paris",
+"A": {
+"name": "Rue de Rivoli",
+"lat": 48.86252639585926,
+"lon": 2.336081125905279,
+"bearing": -64.50255062771998,
+"span": {
+"left": 19.13,
+"right": 3.13
+},
+"sources": {
+"frTown": "paris"
+},
+"segments": [
+[
+"chodnik",
+5.65
+],
+[
+"cyklostezka",
+10.45
+],
+[
+"pruh",
+4.75
+],
+[
+"chodnik",
+1.4
+]
+]
+},
+"B": {
+"name": "Rue de Rivoli",
+"lat": 48.86252639585926,
+"lon": 2.336081125905279,
+"bearing": -64.50255062771998,
+"span": {
+"left": 19.13,
+"right": 3.13
+},
+"sources": {
+"frTown": "paris",
+"parisParking": true
+},
+"segments": [
+[
+"chodnik",
+5.65
+],
+[
+"cyklostezka",
+10.45
+],
+[
+"pruh",
+4.75
+],
+[
+"chodnik",
+1.4
+]
+]
+}
+},
+{
+"id": "bv15",
+"town": "paris",
+"A": {
+"name": "Boulevard Raspail",
+"lat": 48.83847855293523,
+"lon": 2.3308919176492884,
+"bearing": -13.954472442495458,
+"span": {
+"left": 19.13,
+"right": 19.98
+},
+"sources": {
+"frTown": "paris",
+"orthoCity": "fr"
+},
+"segments": [
+[
+"chodnik",
+4.97
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+0.53
+],
+[
+"cyklostezka",
+1.4
+],
+[
+"chodnik",
+2.24
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+1.71
+],
+[
+"bus_cyklo",
+3.25
+],
+[
+"pruh",
+2.72
+],
+[
+"pruh",
+3.78
+],
+[
+"bus_cyklo",
+3.25
+],
+[
+"stromorad",
+1.95
+],
+[
+"chodnik",
+2.45
+],
+[
+"cyklostezka",
+1.45
+],
+[
+"stromorad",
+1.66
+],
+[
+"chodnik",
+4.74
+]
+]
+},
+"B": {
+"name": "Boulevard Raspail",
+"lat": 48.83847855293523,
+"lon": 2.3308919176492884,
+"bearing": -13.954472442495458,
+"span": {
+"left": 19.13,
+"right": 19.98
+},
+"sources": {
+"frTown": "paris",
+"parisParking": true,
+"orthoCity": "fr"
+},
+"segments": [
+[
+"chodnik",
+4.97
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+0.53
+],
+[
+"cyklostezka",
+1.4
+],
+[
+"chodnik",
+2.24
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+1.71
+],
+[
+"bus_cyklo",
+3.25
+],
+[
+"pruh",
+2.72
+],
+[
+"pruh",
+3.78
+],
+[
+"bus_cyklo",
+3.25
+],
+[
+"stromorad",
+1.95
+],
+[
+"chodnik",
+2.45
+],
+[
+"cyklostezka",
+1.45
+],
+[
+"stromorad",
+1.66
+],
+[
+"chodnik",
+4.74
+]
+]
+}
+},
+{
+"id": "bv16",
+"town": "paris",
+"A": {
+"name": "Boulevard du Montparnasse",
+"lat": 48.841624629770344,
+"lon": 2.330682313386363,
+"bearing": -63.7558474533067,
+"span": {
+"left": 17.77,
+"right": 21.18
+},
+"sources": {
+"frTown": "paris"
+},
+"segments": [
+[
+"chodnik",
+5.89
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+0.56
+],
+[
+"krajnice",
+2.15
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"krajnice",
+2.15
+],
+[
+"chodnik",
+0.89
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+8.31
+]
+]
+},
+"B": {
+"name": "Boulevard du Montparnasse",
+"lat": 48.841624629770344,
+"lon": 2.330682313386363,
+"bearing": -63.7558474533067,
+"span": {
+"left": 17.77,
+"right": 21.18
+},
+"sources": {
+"frTown": "paris",
+"parisParking": true
+},
+"segments": [
+[
+"chodnik",
+5.89
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+0.56
+],
+[
+"krajnice",
+2.15
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"krajnice",
+2.15
+],
+[
+"chodnik",
+0.89
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+8.31
+]
+]
+}
+},
+{
+"id": "bv17",
+"town": "paris",
+"A": {
+"name": "Rue Antoine-Julien Hénard",
+"lat": 48.84167072470289,
+"lon": 2.3893005819450637,
+"bearing": 18.792209263067992,
+"span": {
+"left": 9.32,
+"right": 10.08
+},
+"sources": {
+"frTown": "paris",
+"orthoCity": "fr"
+},
+"segments": [
+[
+"chodnik",
+4.8
+],
+[
+"parkovani",
+1.62
+],
+[
+"pruh",
+3
+],
+[
+"pruh",
+3.13
+],
+[
+"parkovani",
+1.75
+],
+[
+"chodnik",
+5.1
+]
+]
+},
+"B": {
+"name": "Rue Antoine-Julien Hénard",
+"lat": 48.84167072470289,
+"lon": 2.3893005819450637,
+"bearing": 18.792209263067992,
+"span": {
+"left": 9.32,
+"right": 10.08
+},
+"sources": {
+"frTown": "paris",
+"parisParking": true,
+"orthoCity": "fr"
+},
+"segments": [
+[
+"chodnik",
+4.8
+],
+[
+"parkovani",
+1.62
+],
+[
+"pruh",
+3
+],
+[
+"pruh",
+3.13
+],
+[
+"parkovani",
+1.75
+],
+[
+"chodnik",
+5.1
+]
+]
+}
+},
+{
+"id": "bv18",
+"town": "paris",
+"A": {
+"name": "Rue La Fayette",
+"lat": 48.879921625380426,
+"lon": 2.35943591106605,
+"bearing": 68.53780495858591,
+"span": {
+"left": 11.47,
+"right": 7.88
+},
+"sources": {
+"frTown": "paris"
+},
+"segments": [
+[
+"chodnik",
+3.8
+],
+[
+"krajnice",
+1.17
+],
+[
+"cyklostezka",
+2.65
+],
+[
+"pruh",
+4
+],
+[
+"krajnice",
+3.82
+],
+[
+"chodnik",
+3.9
+]
+]
+},
+"B": {
+"name": "Rue La Fayette",
+"lat": 48.879921625380426,
+"lon": 2.35943591106605,
+"bearing": 68.53780495858591,
+"span": {
+"left": 11.47,
+"right": 7.88
+},
+"sources": {
+"frTown": "paris",
+"parisParking": true
+},
+"segments": [
+[
+"chodnik",
+3.8
+],
+[
+"bus_cyklo",
+3.82
+],
+[
+"pruh",
+4
+],
+[
+"krajnice",
+3.82
+],
+[
+"chodnik",
+3.9
+]
+]
+}
+},
+{
+"id": "bv19",
+"town": "paris",
+"A": {
+"name": "Boulevard Beaumarchais",
+"lat": 48.85730544542871,
+"lon": 2.368136390127586,
+"bearing": -9.279328988314122,
+"span": {
+"left": 18.07,
+"right": 17.93
+},
+"sources": {
+"frTown": "paris"
+},
+"segments": [
+[
+"chodnik",
+7.38
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+0.67
+],
+[
+"bus_cyklo",
+4.17
+],
+[
+"pruh",
+4.17
+],
+[
+"pruh",
+4.17
+],
+[
+"bus_cyklo",
+4.17
+],
+[
+"stromorad",
+1.93
+],
+[
+"chodnik",
+7.82
+]
+]
+},
+"B": {
+"name": "Boulevard Beaumarchais",
+"lat": 48.85730544542871,
+"lon": 2.368136390127586,
+"bearing": -9.279328988314122,
+"span": {
+"left": 18.07,
+"right": 17.93
+},
+"sources": {
+"frTown": "paris",
+"parisParking": true
+},
+"segments": [
+[
+"chodnik",
+7.38
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+0.67
+],
+[
+"bus_cyklo",
+4.17
+],
+[
+"pruh",
+4.17
+],
+[
+"pruh",
+4.17
+],
+[
+"bus_cyklo",
+4.17
+],
+[
+"stromorad",
+1.93
+],
+[
+"chodnik",
+7.82
+]
+]
+}
+},
+{
+"id": "bv20",
+"town": "paris",
+"A": {
+"name": "Boulevard Diderot",
+"lat": 48.84690182093554,
+"lon": 2.3828593771825766,
+"bearing": 80.3120651810725,
+"span": {
+"left": 15.37,
+"right": 15.78
+},
+"sources": {
+"frTown": "paris"
+},
+"segments": [
+[
+"chodnik",
+5.7
+],
+[
+"cyklostezka",
+1.2
+],
+[
+"stromorad",
+1.54
+],
+[
+"chodnik",
+1.36
+],
+[
+"parkovani",
+1.6
+],
+[
+"pruh",
+3.22
+],
+[
+"bus_cyklo",
+3.22
+],
+[
+"cyklostezka",
+1.6
+],
+[
+"pruh",
+2.35
+],
+[
+"chodnik",
+1.04
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+6.81
+]
+]
+},
+"B": {
+"name": "Boulevard Diderot",
+"lat": 48.84690182093554,
+"lon": 2.3828593771825766,
+"bearing": 80.3120651810725,
+"span": {
+"left": 15.37,
+"right": 15.78
+},
+"sources": {
+"frTown": "paris",
+"parisParking": true
+},
+"segments": [
+[
+"chodnik",
+5.7
+],
+[
+"cyklostezka",
+1.2
+],
+[
+"stromorad",
+1.54
+],
+[
+"chodnik",
+1.36
+],
+[
+"parkovani",
+1.6
+],
+[
+"pruh",
+3.22
+],
+[
+"bus_cyklo",
+3.22
+],
+[
+"cyklostezka",
+1.6
+],
+[
+"pruh",
+2.35
+],
+[
+"chodnik",
+1.04
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+6.81
+]
+]
+}
+},
+{
+"id": "bv21",
+"town": "paris",
+"A": {
+"name": "Avenue Parmentier",
+"lat": 48.86414329810409,
+"lon": 2.375369875600192,
+"bearing": -26.16822942232153,
+"span": {
+"left": 10.62,
+"right": 10.88
+},
+"sources": {
+"frTown": "paris"
+},
+"segments": [
+[
+"chodnik",
+1.99
+],
+[
+"stromorad",
+1.71
+],
+[
+"krajnice",
+2.07
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"cyklostezka",
+2.07
+],
+[
+"parkovani",
+1.7
+],
+[
+"stromorad",
+1.94
+],
+[
+"chodnik",
+2.01
+]
+]
+},
+"B": {
+"name": "Avenue Parmentier",
+"lat": 48.86414329810409,
+"lon": 2.375369875600192,
+"bearing": -26.16822942232153,
+"span": {
+"left": 10.62,
+"right": 10.88
+},
+"sources": {
+"frTown": "paris",
+"parisParking": true
+},
+"segments": [
+[
+"chodnik",
+1.99
+],
+[
+"stromorad",
+1.71
+],
+[
+"parkovani",
+2
+],
+[
+"cyklostezka",
+1.07
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"krajnice",
+1.07
+],
+[
+"parkovani",
+1.7
+],
+[
+"stromorad",
+1.94
+],
+[
+"chodnik",
+2.01
+]
+]
+}
+},
+{
+"id": "bv22",
+"town": "paris",
+"A": {
+"name": "Boulevard de Magenta",
+"lat": 48.87612425763164,
+"lon": 2.3561777298713342,
+"bearing": -30.41041473913171,
+"span": {
+"left": 19.48,
+"right": 16.63
+},
+"sources": {
+"frTown": "paris",
+"orthoCity": "fr"
+},
+"segments": [
+[
+"plocha",
+0.55
+],
+[
+"chodnik",
+10.45
+],
+[
+"cyklostezka",
+1.35
+],
+[
+"chodnik",
+2
+],
+[
+"pruh",
+4.62
+],
+[
+"pruh",
+3
+],
+[
+"pruh",
+3.4
+],
+[
+"bus",
+2.98
+],
+[
+"parkovani",
+2
+],
+[
+"cyklostezka",
+1.3
+],
+[
+"stromorad",
+1.32
+],
+[
+"chodnik",
+3.13
+]
+]
+},
+"B": {
+"name": "Boulevard de Magenta",
+"lat": 48.87612425763164,
+"lon": 2.3561777298713342,
+"bearing": -30.41041473913171,
+"span": {
+"left": 19.48,
+"right": 16.63
+},
+"sources": {
+"frTown": "paris",
+"parisParking": true,
+"orthoCity": "fr"
+},
+"segments": [
+[
+"plocha",
+0.55
+],
+[
+"chodnik",
+10.45
+],
+[
+"cyklostezka",
+1.35
+],
+[
+"chodnik",
+2
+],
+[
+"pruh",
+4.62
+],
+[
+"pruh",
+3
+],
+[
+"pruh",
+3.4
+],
+[
+"bus",
+2.98
+],
+[
+"parkovani",
+2
+],
+[
+"cyklostezka",
+1.3
+],
+[
+"stromorad",
+1.32
+],
+[
+"chodnik",
+3.13
+]
+]
+}
+},
+{
+"id": "bv23",
+"town": "paris",
+"A": {
+"name": "Boulevard Marguerite de Rochechouart",
+"lat": 48.88275505820673,
+"lon": 2.3443261863899645,
+"bearing": 73.53590818181439,
+"span": {
+"left": 22.68,
+"right": 8.38
+},
+"sources": {
+"frTown": "paris",
+"orthoCity": "fr"
+},
+"segments": [
+[
+"plocha",
+13.75
+],
+[
+"cyklostezka",
+1.2
+],
+[
+"krajnice",
+2.7
+],
+[
+"pruh",
+4
+],
+[
+"krajnice",
+2.12
+],
+[
+"parkovani",
+2.38
+],
+[
+"chodnik",
+4.9
+]
+]
+},
+"B": {
+"name": "Boulevard Marguerite de Rochechouart",
+"lat": 48.88275505820673,
+"lon": 2.3443261863899645,
+"bearing": 73.53590818181439,
+"span": {
+"left": 35,
+"right": 8.38
+},
+"sources": {
+"frTown": "paris",
+"parisParking": true,
+"orthoCity": "fr"
+},
+"segments": [
+[
+"chodnik",
+1.67
+],
+[
+"krajnice",
+2.68
+],
+[
+"pruh",
+4
+],
+[
+"krajnice",
+2.68
+],
+[
+"cyklostezka",
+1.3
+],
+[
+"plocha",
+13.75
+],
+[
+"cyklostezka",
+1.2
+],
+[
+"krajnice",
+2.7
+],
+[
+"pruh",
+4
+],
+[
+"krajnice",
+2.12
+],
+[
+"parkovani",
+2.38
+],
+[
+"chodnik",
+4.9
+]
+]
+}
+},
+{
+"id": "bv24",
+"town": "paris",
+"A": {
+"name": "Rue Auguste Bartholdi",
+"lat": 48.85068812058516,
+"lon": 2.2944242286869674,
+"bearing": 44.15583015787295,
+"span": {
+"left": 6.57,
+"right": 5.88
+},
+"sources": {
+"frTown": "paris",
+"orthoCity": "fr"
+},
+"segments": [
+[
+"plocha",
+0.5
+],
+[
+"chodnik",
+2.35
+],
+[
+"parkovani",
+2
+],
+[
+"pruh",
+3.2
+],
+[
+"parkovani",
+2
+],
+[
+"chodnik",
+2.4
+]
+]
+},
+"B": {
+"name": "Rue Auguste Bartholdi",
+"lat": 48.85068812058516,
+"lon": 2.2944242286869674,
+"bearing": 44.15583015787295,
+"span": {
+"left": 6.57,
+"right": 5.88
+},
+"sources": {
+"frTown": "paris",
+"parisParking": true,
+"orthoCity": "fr"
+},
+"segments": [
+[
+"plocha",
+0.5
+],
+[
+"chodnik",
+2.35
+],
+[
+"parkovani",
+1.8
+],
+[
+"pruh",
+3.6
+],
+[
+"parkovani",
+1.8
+],
+[
+"chodnik",
+2.4
+]
+]
+}
+},
+{
+"id": "bv25",
+"town": "paris",
+"A": {
+"name": "Boulevard de Belleville",
+"lat": 48.869392272845815,
+"lon": 2.3800525587988046,
+"bearing": -40.00585728238914,
+"span": {
+"left": 15.97,
+"right": 30.58
+},
+"sources": {
+"frTown": "paris"
+},
+"segments": [
+[
+"chodnik",
+2.5
+],
+[
+"cyklostezka",
+1.5
+],
+[
+"pruh",
+3.9
+],
+[
+"parkovani",
+2
+],
+[
+"plocha",
+1.27
+],
+[
+"stromorad",
+1.5
+],
+[
+"plocha",
+6.92
+],
+[
+"stromorad",
+1.5
+],
+[
+"plocha",
+0.5
+],
+[
+"parkovani",
+2
+],
+[
+"pruh",
+2.5
+],
+[
+"parkovani",
+2
+],
+[
+"cyklostezka",
+1.6
+],
+[
+"chodnik",
+2.92
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+3.18
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+7.75
+]
+]
+},
+"B": {
+"name": "Boulevard de Belleville",
+"lat": 48.869392272845815,
+"lon": 2.3800525587988046,
+"bearing": -40.00585728238914,
+"span": {
+"left": 15.97,
+"right": 30.58
+},
+"sources": {
+"frTown": "paris",
+"parisParking": true
+},
+"segments": [
+[
+"chodnik",
+2.5
+],
+[
+"cyklostezka",
+1.5
+],
+[
+"pruh",
+4.1
+],
+[
+"parkovani",
+1.8
+],
+[
+"plocha",
+1.27
+],
+[
+"stromorad",
+1.5
+],
+[
+"plocha",
+6.92
+],
+[
+"stromorad",
+1.5
+],
+[
+"plocha",
+0.5
+],
+[
+"parkovani",
+1.8
+],
+[
+"pruh",
+4.7
+],
+[
+"cyklostezka",
+1.6
+],
+[
+"chodnik",
+2.92
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+3.18
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+7.75
+]
+]
+}
+},
+{
+"id": "bv28",
+"town": "paris",
+"A": {
+"name": "Rue de Castiglione",
+"lat": 48.86605147663452,
+"lon": 2.328014017331193,
+"bearing": 33.754071597598205,
+"span": {
+"left": 11.12,
+"right": 11.43
+},
+"sources": {
+"frTown": "paris"
+},
+"segments": [
+[
+"chodnik",
+1.15
+],
+[
+"krajnice",
+6.28
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"krajnice",
+6.28
+],
+[
+"chodnik",
+0.85
+]
+]
+},
+"B": {
+"name": "Rue de Castiglione",
+"lat": 48.86605147663452,
+"lon": 2.328014017331193,
+"bearing": 33.754071597598205,
+"span": {
+"left": 11.12,
+"right": 11.43
+},
+"sources": {
+"frTown": "paris",
+"parisParking": true
+},
+"segments": [
+[
+"chodnik",
+1.15
+],
+[
+"parkovani",
+1.8
+],
+[
+"krajnice",
+4.23
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"krajnice",
+4.23
+],
+[
+"parkovani",
+2.3
+],
+[
+"chodnik",
+0.85
+]
+]
+}
+}
+]

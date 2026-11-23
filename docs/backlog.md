@@ -33,10 +33,12 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Polsko: ortofoto GUGiK bez vlastního A/B (je v obou ramenech).
 - Paříž: u fasády často pruh „plocha“ 0,65 m (mezera mezi budovou z OSM a chodníkem Plan de voirie); A/B
   `evaluation/france/ab/ZPRAVA.md`. Zkusit budovy z BD TOPO nebo `emprises-ilots-prives` místo OSM.
-- Paříž: široká vozovka z mapy se rozpadne na „pruh 4 m + krajnice 5–6 m“ (Bd de Magenta, Rue de Castiglione), buspruh
-  mapy („Couloir bus“) se ztratí; bulvár se středovou promenádou končí za ní (Bd de Rochechouart); chybějící vrstvy
-  (ostrůvky, oddělovače, rampy, plochy bez třídy); Quai aux Fleurs bere i nižší ulici za zdí. `evaluation/france/RECENZE.md`.
-  Cílené řezy: mosty přes Périphérique, nábřeží, bulváry s promenádou.
+- ~~Paříž: široká vozovka „pruh 4 m + krajnice“, ztracený buspruh, bulvár s promenádou~~ (23. 11. částečně:
+  `evaluation/france/ab/bulvary/ZPRAVA.md`). Zbývá: krajnice u 10 z 26 bulvárů (široké vozovky bez čar na ortofotu IGN;
+  zkusit pařížský PCRS 5 cm, jen soubory), řez v ústí boční ulice (Sébastopol) a na cyklostezce za koncem bulváru
+  (Magenta), Quai aux Fleurs bere i nižší ulici za zdí, chybějící vrstvy mapy (ostrůvky, oddělovače, rampy). Cílené řezy:
+  mosty přes Périphérique, nábřeží. Evidence stání: Rue Fromentin, Chaufourniers, Place des Alpes ztratily odhad stání
+  (evidence tam nic nemá); ověřit na fotkách.
 - Francie: šířky vozovek BD TOPO (`?sirka=1`) bez A/B; další města s mapou povrchů (Lyon `pvochausseetrottoir`,
   Bordeaux, Nantes, Toulouse) neprověřená.
 - Jihlava: pasport komunikací byl 16. 11. prázdný, ověřit (CLAUDE.md, Na 19. 11.).
@@ -48,10 +50,9 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Belgie: AR 1975 platí do 31. 5. 2027, pak nové kódy (federální a regionální): přečíslovat články a značky.
 - Polsko: třída ulice (GP–D) se odhaduje ze skupin OSM, hlavní ulice jako Z (opatrně).
 - Jednosměrka s cyklisty v protisměru po směru bez dodatkové tabulky (NL, BE).
-- Francie: normy kromě přístupnosti jen z druhé ruky (CEREMA přes přílohu ministerstva, příručky Paříže a Lyonu);
-  **(Bára)** smí doporučení měst varovat v celé Francii? Tramvajová plošina bez zdroje. Arrêté 2007 ověřit na Légifrance
-  (mohl být změněn). Paneláky (grands ensembles) zatím ne, **(Bára)**. Značky: na Commons z velké části CC BY-SA
-  překreslení, Francie nemá výslovný paragraf o úředních dílech; **(Bára)** potvrdit jako u Lucemburska.
+- Francie: normy kromě přístupnosti jen z druhé ruky (CEREMA přes přílohu ministerstva, příručky Paříže a Lyonu;
+  Bára 23. 11.: smí varovat v celé Francii). Tramvajová plošina bez zdroje. Arrêté 2007 ověřit na Légifrance (mohl být
+  změněn). ~~Paneláky, licence značek~~ (Bára 23. 11.: paneláky ne, značky volně).
 
 - Maďarsko odloženo (Bára 22. 11. 2026): bez otevřeného ortofota a mapy povrchů jen odhad z OSM a nejde změřit.
   Rozpracováno ve větvi `hungary` (`evaluation/hungary/README.md`). Vrátit se, až bude otevřené ortofoto nebo mapa

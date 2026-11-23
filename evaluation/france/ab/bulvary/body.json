@@ -1,0 +1,242 @@
+[
+{
+"id": "bv1",
+"town": "paris",
+"name": "Boulevard Saint-Germain",
+"want": "Boulevard Saint-Germain",
+"lat": 48.850008,
+"lon": 2.349908
+},
+{
+"id": "bv2",
+"town": "paris",
+"name": "Boulevard de Sébastopol",
+"want": "Boulevard de Sébastopol",
+"lat": 48.865305,
+"lon": 2.352246
+},
+{
+"id": "bv3",
+"town": "paris",
+"name": "Boulevard Voltaire",
+"want": "Boulevard Voltaire",
+"lat": 48.856892,
+"lon": 2.381633
+},
+{
+"id": "bv4",
+"town": "paris",
+"name": "Avenue de l'Opéra",
+"want": "Avenue de l'Opéra",
+"lat": 48.865563,
+"lon": 2.33447
+},
+{
+"id": "bv5",
+"town": "paris",
+"name": "Boulevard Haussmann",
+"want": "Boulevard Haussmann",
+"lat": 48.874824,
+"lon": 2.315576
+},
+{
+"id": "bv6",
+"town": "paris",
+"name": "Boulevard Richard Lenoir",
+"want": "Boulevard Richard-Lenoir",
+"lat": 48.860294,
+"lon": 2.371197
+},
+{
+"id": "bv7",
+"town": "paris",
+"name": "Boulevard de Clichy",
+"want": "Boulevard de Clichy",
+"lat": 48.883486,
+"lon": 2.333953
+},
+{
+"id": "bv8",
+"town": "paris",
+"name": "Boulevard de la Villette",
+"want": "Boulevard de la Villette",
+"lat": 48.87891,
+"lon": 2.371278
+},
+{
+"id": "bv9",
+"town": "paris",
+"name": "Boulevard Saint-Michel",
+"want": "Boulevard Saint-Michel",
+"lat": 48.84653,
+"lon": 2.340662
+},
+{
+"id": "bv10",
+"town": "paris",
+"name": "Avenue des Champs Élysées",
+"want": "Avenue des Champs-Élysées",
+"lat": 48.871049,
+"lon": 2.30373
+},
+{
+"id": "bv11",
+"town": "paris",
+"name": "Boulevard de Port-Royal",
+"want": "Boulevard de Port-Royal",
+"lat": 48.837271,
+"lon": 2.346788
+},
+{
+"id": "bv12",
+"town": "paris",
+"name": "Boulevard Arago",
+"want": "Boulevard Arago",
+"lat": 48.835395,
+"lon": 2.346484
+},
+{
+"id": "bv13",
+"town": "paris",
+"name": "Avenue de la République",
+"want": "Avenue de la République",
+"lat": 48.864841,
+"lon": 2.376682
+},
+{
+"id": "bv14",
+"town": "paris",
+"name": "Rue de Rivoli",
+"want": "Rue de Rivoli",
+"lat": 48.862442,
+"lon": 2.3362
+},
+{
+"id": "bv15",
+"town": "paris",
+"name": "Boulevard Raspail",
+"want": "Boulevard Raspail",
+"lat": 48.838484,
+"lon": 2.330925
+},
+{
+"id": "bv16",
+"town": "paris",
+"name": "Boulevard du Montparnasse",
+"want": "Boulevard du Montparnasse",
+"lat": 48.841471,
+"lon": 2.330568
+},
+{
+"id": "bv17",
+"town": "paris",
+"name": "Avenue Daumesnil",
+"want": "Avenue Daumesnil",
+"lat": 48.841862,
+"lon": 2.389319
+},
+{
+"id": "bv18",
+"town": "paris",
+"name": "Rue la Fayette",
+"want": "Rue La Fayette",
+"lat": 48.87994,
+"lon": 2.359425
+},
+{
+"id": "bv19",
+"town": "paris",
+"name": "Boulevard Beaumarchais",
+"want": "Boulevard Beaumarchais",
+"lat": 48.857333,
+"lon": 2.368391
+},
+{
+"id": "bv20",
+"town": "paris",
+"name": "Boulevard Diderot",
+"want": "Boulevard Diderot",
+"lat": 48.84688,
+"lon": 2.382865
+},
+{
+"id": "bv21",
+"town": "paris",
+"name": "Avenue Parmentier",
+"want": "Avenue Parmentier",
+"lat": 48.864171,
+"lon": 2.375455
+},
+{
+"id": "bv22",
+"town": "paris",
+"name": "Boulevard de Magenta",
+"want": "Boulevard de Magenta",
+"lat": 48.876038,
+"lon": 2.356278
+},
+{
+"id": "bv23",
+"town": "paris",
+"name": "Boulevard Marguerite de Rochechouart",
+"want": "Boulevard Marguerite de Rochechouart",
+"lat": 48.883104,
+"lon": 2.344361
+},
+{
+"id": "bv24",
+"town": "paris",
+"name": "Boulevard de Grenelle",
+"want": "Boulevard de Grenelle",
+"lat": 48.850595,
+"lon": 2.294569
+},
+{
+"id": "bv25",
+"town": "paris",
+"name": "Boulevard de Belleville",
+"want": "Boulevard de Belleville",
+"lat": 48.869666,
+"lon": 2.38031
+},
+{
+"id": "bv26",
+"town": "paris",
+"name": "Avenue de Clichy",
+"want": "Avenue de Clichy",
+"lat": 48.890105,
+"lon": 2.319866
+},
+{
+"id": "bv27",
+"town": "paris",
+"name": "Boulevard Malesherbes",
+"want": "Boulevard Malesherbes",
+"lat": 48.885772,
+"lon": 2.306978
+},
+{
+"id": "bv28",
+"town": "paris",
+"name": "Rue de Castiglione",
+"want": "Rue de Castiglione",
+"lat": 48.865962,
+"lon": 2.327952
+},
+{
+"id": "bv29",
+"town": "paris",
+"name": "Avenue d'Italie",
+"want": "Avenue d'Italie",
+"lat": 48.824767,
+"lon": 2.357675
+},
+{
+"id": "bv30",
+"town": "paris",
+"name": "Boulevard Ornano",
+"want": "Boulevard Ornano",
+"lat": 48.894658,
+"lon": 2.347111
+}
+]

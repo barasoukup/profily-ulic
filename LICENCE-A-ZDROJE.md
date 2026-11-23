@@ -82,6 +82,7 @@ licence neuvedena; čteno při kliknutí, nešíří se.** Nejsou to otevřená 
 | **Francie:** BD TOPO IGN (data.geopf.fr WFS: budovy, úseky silnic) | podlaží a stáří domů | Licence Ouverte 2.0 (Etalab), „© IGN“. Čteno při kliknutí. | ✓ |
 | **Francie:** hledání adres Géoplateforme (IGN, BAN) | hledání adres | Licence Ouverte 2.0; hledaný text jde IGN. | ✓ |
 | **Francie:** mapa povrchů Paříže (Plan de voirie, opendata.paris.fr) | plochy řezu v Paříži | ODbL (Ville de Paris), uvádíme „© Ville de Paris“; odvozené profily jsou výstup z databáze. Čteno při kliknutí. | ✓ |
+| **Francie:** parkovací místa Paříže (stationnement-voie-publique-emplacements, opendata.paris.fr) | stání u obruby v Paříži | ODbL (Ville de Paris), uvádí se s mapou povrchů „© Ville de Paris“. Čteno při kliknutí. | ✓ |
 | **Francie:** hranice (Eurostat GISCO) | stát řezu | © EuroGeographics | ✓ |
 | **Francie:** dopravní značky (Wikimedia Commons), `pilot/public/signs-FR/` | řádek značek | Úřední díla (arrêté 1967); některá překreslení jsou na Commons pod CC BY-SA, v patičce se neuvádí jako u Lucemburska (Bára 21. 11. 2026), autoři v `evaluation/france/signs-licence.json` | ✓ |
 | **Rakousko:** hranice státu z Eurostat GISCO (`CNTR_RG_01M_2024_4326`, `tools/build_staty.mjs` → `staty.json`) | stát řezu | Podmínky GISCO: „© EuroGeographics for the administrative boundaries“ ([GISCO](https://ec.europa.eu/eurostat/web/gisco/geodata/administrative-units/countries)). Šíří se v `staty.json`. | ✓ |

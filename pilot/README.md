@@ -180,6 +180,14 @@ WMS-Raster v Web Mercatoru, `lanes-ortho.js` zdroj `fr`; mimo Francii bílé, pr
 - **Mapa povrchů Paříže** (Plan de voirie, opendata.paris.fr: vozovky, chodníky, cyklostezky, buspruhy, zálivy stání
   „Piste“, střední pásy) tam, kde má u středu řezu vozovku, cyklostezku nebo stání (`?paris=0`). Ostatní města (Lyon,
   Bordeaux, Nantes, Toulouse) zatím ne.
+- **Stání v Paříži** z evidence parkovacích míst města (`stationnement-voie-publique-emplacements`, ODbL): úsek stání ve
+  vozovce do 5 m od řezu u obruby = stání té hloubky a způsobu, obruba bez úseku stání nemá (`derive.js kerbParking`,
+  `?parisstani=0`). Mapa povrchů počítá podélné stání do vozovky a ortofoto IGN na bulvárech čáry nenajde (stín, Paříž
+  je často nemaluje), takže bez evidence zbylo stání jako krajnice.
+- **Hlavní ulice** (primary, secondary): strana, která skončí dosahem ve středovém pásu, promenádě nebo chodníku, sahá
+  35 m (`wideStreets`; bulvár s promenádou). Vozovka jen pro autobusy se stejným jménem je druhá polovina ulice, když
+  jiná není (`?off=busduo`, obecně); krajnice aspoň 2,75 m u obruby s buspruhem z OSM je buspruh (`?off=buskrajnice`,
+  obecně). Zpráva `evaluation/france/ab/bulvary/ZPRAVA.md`.
 - **Budovy** z BD TOPO IGN (podlaží, výška, rok, byty, užití; `?bdtopo=0`). **Šířky vozovek** BD TOPO (celé metry) jen
   s `?sirka=1`, bez A/B.
 - **Normy:** závazná je jen přístupnost (arrêté z 15. 1. 2007: chodník 1,4 m, 1,2 m bez překážek); cyklistika podle

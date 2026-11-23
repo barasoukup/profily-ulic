@@ -609,12 +609,17 @@ const LANE_CAP_DEFAULT = 4;
 // 3.5 m; a cap of 4 m for MK II and 4.5 m for MK IV did not help, so there OSM decides.
 const LANE_CAP_CLASS = { dalnice: 3.75, mk1: 3.75 };
 const KRAJNICE_MIN = 1; // narrowest shoulder / hatched strip drawn (m)
+const BUS_FROM_SHOULDER = 2.75; // a shoulder taken for a bus lane OSM tags at that kerb (m)
 // Streets where cars commonly park at the curb even where neither TSK nor OSM says so.
 // Not on main streets (secondary, tertiary and up): there the curb is mostly kept free (Bára).
 // Not in a residential zone (living_street, Bára): § 39 of act 361/2000 Sb. allows parking there only in marked
 // places, so only parking from OSM or the city's data is drawn.
 const PARK_GUESS = new Set(["residential", "unclassified"]);
 const GUESS_PARK_W = 2; // estimated parallel parking strip (m)
+const KERB_PARK_TOL = 1; // a register's parking point: slack across the kerb (m)
+// …and along the street: a gap of a driveway or a gate between two stretches is no kerb without parking (Paris, Rue
+// Jacob: the cut 4 m past the end of a delivery bay).
+const KERB_PARK_ALONG = 5;
 // § 25 of act 361/2000 Sb. (silniční provoz): a parked car leaves a lane at least LAW_LANE wide free for each
 // direction (odst. 3) and keeps LAW_RAIL from the nearest tram rail (odst. 2, from 5 to 19 h).
 const LAW_RAIL = 3.5;
@@ -806,6 +811,17 @@ function splitRoadway(run, ctx) {
     const perLane = single && Object.keys(tags).some((k) => k.startsWith("bus:lanes") || k.startsWith("psv:lanes"));
     if (st.bus && !perLane && lane?.type === "pruh" && mid.length > 1) lane.type = "bus";
     if (st.shareBus && lane?.type === "bus") lane.type = "bus_cyklo";
+  }
+  // A bus lane OSM tags along a kerb where all the lanes it counts are the cars' (lanes=1, oneway=yes, busway:left=lane
+  // with oneway:psv=no: the contraflow bus lane of Rue La Fayette in Paris): the shoulder the cap left at that kerb, wide
+  // enough for a bus, is the bus lane; contraflow on a one-way street's left (busway:<side>:oneway=-1). ?off=buskrajnice.
+  if (!ORTHO_P.off?.has("buskrajnice")) {
+    for (const [side, st, list] of [["R", sideR, rightEdge], ["L", sideL, leftEdge]]) {
+      const lane = curbLane[side], k = side === "R" ? list.at(-1) : list[0];
+      if (!st.bus || lane?.type === "bus" || lane?.type === "bus_cyklo" || k?.type !== "krajnice" || k.e - k.s < BUS_FROM_SHOULDER) continue;
+      const against = tags[`busway:${st.osmSide}:oneway`] === "-1" || (isOnewayTags(tags) && st.osmSide === drivingLeft(tags) && tags["oneway:psv"] === "no");
+      k.type = st.shareBus ? "bus_cyklo" : "bus"; k.dir = against ? flip(lane?.dir || "forward") : lane?.dir || "forward"; k.source = "osm";
+    }
   }
   // One-way street open to cyclists both ways with no marking: they share the lane in contraflow.
   const anyContra = [sideL, sideR].some((st) => st.contra);
@@ -1529,13 +1545,19 @@ function splitMedians(runs, cross, rails) {
 
 // Dual carriageway mapped as two one-way ways: the partner of the cut's way is a one-way way with
 // the same name driving the other direction, crossing the cut.
+// A carriageway only for buses (highway=busway, or a service road for public transport with no other traffic): the other
+// half of a boulevard where it has no other (Bd Marguerite de Rochechouart in Paris: the cars' carriageway, the promenade, the buses' one;
+// ?off=busduo leaves it out).
+const busOnly = (t) => !ORTHO_P.off?.has("busduo") && (t.highway === "busway" || (t.highway === "service" && ["yes", "designated"].some((v) => t.psv === v || t.bus === v) && ["no", "private"].includes(t.access || t.motor_vehicle)));
 function dualPartner(cross, way, half) {
   const own = cross.find((c) => c.way.id === way.id);
   if (!own || !isOnewayTags(way.tags) || !way.tags.name) return null;
   return cross
-    .filter((c) => c.way.id !== way.id && isOnewayTags(c.way.tags) && c.way.tags.name === way.tags.name && !MINOR.has(c.way.tags.highway) &&
+    .filter((c) => c.way.id !== way.id && isOnewayTags(c.way.tags) && c.way.tags.name === way.tags.name && (!MINOR.has(c.way.tags.highway) || busOnly(c.way.tags)) &&
       drivingDot(c, own) < 0 && Math.abs(c.t - own.t) < half)
-    .sort((a, b) => Math.abs(a.t - own.t) - Math.abs(b.t - own.t))[0] || null;
+    // A bus-only carriageway only when no other is there (Evropská in Prague: the buses' ways on the tram belt are not
+    // the street's other half).
+    .sort((a, b) => busOnly(a.way.tags) - busOnly(b.way.tags) || Math.abs(a.t - own.t) - Math.abs(b.t - own.t))[0] || null;
 }
 
 // On a dual carriageway the cut centre moves from the clicked carriageway to the middle of the
@@ -1628,7 +1650,7 @@ export function linePieces(polys, tags, center, normal, st = null, along = true)
 
 // noParkGuess: no parking estimated by the law alone (Slovakia: no paid zones known, the cars are read on the orthophoto
 // instead, ortho-osm.js carsSeen).
-export function deriveProfile({ center, dir, half, polys, osm, frame, way, tracks = [], parking = [], lines = [], reach, inZps: zoneKnown, itemReach, ortho, lanesImage, roadOnPath = false, noParkGuess = false }) {
+export function deriveProfile({ center, dir, half, polys, osm, frame, way, tracks = [], parking = [], lines = [], reach, inZps: zoneKnown, itemReach, ortho, lanesImage, roadOnPath = false, noParkGuess = false, kerbParking = null }) {
   const reachItems = { ...REACH, ...itemReach };
   // No-parking sections (Prague, TSK "Zákaz stání"): no surface of their own, they only keep a kerb free.
   const noParking = parking.filter((p) => p.kind === "zakaz");
@@ -1997,6 +2019,24 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       // A no-parking section of TSK at the kerb (Prague): no parking there, whatever OSM says.
       for (const [side, at, k] of [["L", r.e, -1], ["R", r.s, 1]]) {
         if (noParkingAt(noParking, at, k)) sideTagsLR[side] = { ...sideTagsLR[side], parking: false, parkingNo: true, kerbPos: null, kerbDepth: 0 };
+      }
+      // A city's register of parking stretches (Paris, towns/france.js: points in the middle of the strip with its length,
+      // depth and arrangement) decides each kerb: a stretch reaching the cut whose point lies at this kerb, inside the
+      // roadway up to its depth (± KERB_PARK_TOL), is parking there; a kerb with none has no parking (the register
+      // covers the whole city). Only a stretch of this street where the register names one (its nomvoie in OSM's name),
+      // except on a square: the register names its sides by the streets (Place des Alpes: Bd Vincent Auriol).
+      if (kerbParking) {
+        const plain = (v) => String(v || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().replace(/[^A-Z0-9]+/g, " ").trim();
+        const name = /^(PLACE|SQUARE|CARREFOUR|ROND POINT|PARVIS|ESPLANADE) /.test(plain(tags.name)) ? "" : plain(tags.name);
+        for (const [side, kerb, k] of [["L", r.e, -1], ["R", r.s, 1]]) {
+          const hit = kerbParking.find((p) => {
+            const a = (p.xy[0] - center[0]) * dir[0] + (p.xy[1] - center[1]) * dir[1], t = (p.xy[0] - center[0]) * normal[0] + (p.xy[1] - center[1]) * normal[1];
+            const into = (t - kerb) * k;
+            return Math.abs(a) <= p.len / 2 + KERB_PARK_ALONG && into >= -KERB_PARK_TOL && into <= p.w + KERB_PARK_TOL && (!p.street || !name || name.includes(plain(p.street)));
+          });
+          sideTagsLR[side] = hit ? { ...sideTagsLR[side], parking: true, parkingNo: false, parkingWidth: hit.w, parkingOrient: hit.orient, kerbPos: null, kerbDepth: 0 }
+            : { ...sideTagsLR[side], parking: false, parkingNo: true, kerbPos: null, kerbDepth: 0 };
+        }
       }
       // The neighbours of the roadway, past the profile end too when the end is a real one (a building), not
       // one cut by the reach.

@@ -71,6 +71,7 @@ const MAX_HALF = 70, HALF_PAD = 3;
 const MIN_REACH = 3; // shortest profile side the user can drag the cut end to (m)
 const defaultReach = () => ({ left: MAX_REACH, right: MAX_REACH });
 const WIDE_REACH = 35;
+const WIDE_END = new Set(["plocha", "delici", "zelen", "stromorad", "chodnik", "tramvaj"]); // a median's or a promenade's parts
 // Ends of the cut on the map: right end at -normal, left end at +normal.
 const cutEnds = (f, normal, reach) => [
   f.toLonLat(-normal[0] * reach.right, -normal[1] * reach.right),
@@ -497,8 +498,18 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     const inZps = z.status === "fulfilled" ? z.value : undefined;
     const laneImg = li.status === "fulfilled" ? li.value : null;
     // The same image tells grass from paving beside a roadway read from the DTM's lines (derive.js linePieces).
-    const args = { center: [0, 0], dir, half, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho, lanesImage: laneImg?.st, roadOnPath: !!city.roadOnPath, noParkGuess: !country.parkGuess || new URLSearchParams(location.search).get("odhadstani") === "0" };
+    const args = { center: [0, 0], dir, half, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho, lanesImage: laneImg?.st, roadOnPath: !!city.roadOnPath, noParkGuess: !country.parkGuess || new URLSearchParams(location.search).get("odhadstani") === "0",
+      kerbParking: pk.status === "fulfilled" && pk.value?.kerbParking && !NO_MAP ? pk.value.kerbParking.map((p) => ({ ...p, xy: frame.toXY(p.lon, p.lat) })) : null };
     let result = deriveProfile(args);
+    // A state's wide streets (countries/<ISO>.js wideStreets): a side the profile ends on at the reach, in a median, a
+    // promenade or a sidewalk, reaches WIDE_REACH (France: Bd Marguerite de Rochechouart in Paris ended at 22 m in its
+    // promenade, the other carriageway beyond). Only a new cut; the profile still ends at the facades.
+    if (!keepWay && country.wideStreets?.test(near.way.tags?.highway || "") && !result.estimate && result.extent && result.segments?.length) {
+      const longer = {};
+      if (reach.left < WIDE_REACH && result.extent[1] >= reach.left - 1 && WIDE_END.has(result.segments[0].type)) longer.left = WIDE_REACH;
+      if (reach.right < WIDE_REACH && -result.extent[0] >= reach.right - 1 && WIDE_END.has(result.segments.at(-1).type)) longer.right = WIDE_REACH;
+      if (Object.keys(longer).length) { reach = { ...reach, ...longer }; args.reach = reach; result = deriveProfile(args); }
+    }
     // No surface of the street from the technical map (no answer, nothing here, nothing at the axis): the carriageway
     // read on the orthophoto near where OSM expects it, sidewalks to the OSM buildings (ortho-osm.js; Bára 15. 11.
     // 2026: better than OSM alone), all an estimate. The map's own surfaces, where there are any, stay behind it.
@@ -590,7 +601,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // the DMVS standing in for the city's map, the orthophoto of a tram bed.
     const mv = m.status === "fulfilled" ? m.value : null;
     const bedOwn = ortho && country.bedOrtho !== "cuzk" ? country.bedOrtho : null; // the tram bed read on a state's own orthophoto
-    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.skTown && { skTown: mv.skTown }), ...(mv?.atTown && { atTown: mv.atTown }), ...(mv?.deTown && { deTown: mv.deTown }), ...(mv?.chAv && { chAv: mv.chAv }), ...(mv?.nlBgt && { nlBgt: true }), ...(mv?.plTown && { plTown: mv.plTown }), ...(mv?.frTown && { frTown: mv.frTown }), ...(pk.status === "fulfilled" && pk.value?.amsParking && pk.value.features?.length && { amsParking: true }), ...(atSigns?.length && signTags.__salzburg && { atSigns: "salzburg" }), ...(mv?.skTm && { skTm: true }), ...(orthoOsm?.kerbs?.why && Object.values(orthoOsm.kerbs.why).includes("ai") && { aiKerbs: true }), ...((orthoOsm?.edges || besideUsed?.edges) && k.value?.edgesFrom && { skEdges: k.value.edgesFrom }), ...((orthoOsm?.areas || orthoOsm?.widthFrom === "zbgis" || besideUsed?.zbgis) && { zbgis: true }), ...(mv?.dmvs && { dmvs: true }), ...(typeof mv?.passport === "string" && { passport: mv.passport }), ...(((ortho && !bedOwn) || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" ? { orthoCity: laneImg.source } : bedOwn ? { orthoCity: bedOwn } : besideUsed?.image && { orthoCity: laneImg.source }) };
+    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.skTown && { skTown: mv.skTown }), ...(mv?.atTown && { atTown: mv.atTown }), ...(mv?.deTown && { deTown: mv.deTown }), ...(mv?.chAv && { chAv: mv.chAv }), ...(mv?.nlBgt && { nlBgt: true }), ...(mv?.plTown && { plTown: mv.plTown }), ...(mv?.frTown && { frTown: mv.frTown }), ...(pk.status === "fulfilled" && pk.value?.amsParking && pk.value.features?.length && { amsParking: true }), ...(pk.status === "fulfilled" && pk.value?.parisParking && { parisParking: true }), ...(atSigns?.length && signTags.__salzburg && { atSigns: "salzburg" }), ...(mv?.skTm && { skTm: true }), ...(orthoOsm?.kerbs?.why && Object.values(orthoOsm.kerbs.why).includes("ai") && { aiKerbs: true }), ...((orthoOsm?.edges || besideUsed?.edges) && k.value?.edgesFrom && { skEdges: k.value.edgesFrom }), ...((orthoOsm?.areas || orthoOsm?.widthFrom === "zbgis" || besideUsed?.zbgis) && { zbgis: true }), ...(mv?.dmvs && { dmvs: true }), ...(typeof mv?.passport === "string" && { passport: mv.passport }), ...(((ortho && !bedOwn) || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" ? { orthoCity: laneImg.source } : bedOwn ? { orthoCity: bedOwn } : besideUsed?.image && { orthoCity: laneImg.source }) };
     // The log of cuts (log.js): the cut exactly, and how it came (a click, a moved cut, a link).
     log("rez", {
       detail: keepWay ? "posun" : bearing !== null ? "odkaz" : "klik", city: city.id, country: city.country, street: name, highway: near.way.tags.highway,
