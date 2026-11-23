@@ -460,6 +460,9 @@ Object.assign(CITIES, {
   // Spain (Bára 23. 11. 2026): IGN's PNOA orthophoto and OSM, Zaragoza's paving map where it has the street (towns/spain.js).
   spain: { ...abroad("spain", "ES", "Španělsko", "ve Španělsku", "španělské", [40.2, -3.7], "40.416800, -3.703800"),
     dataShort: "ortofota PNOA a OSM", rulesHead: "Šířky podle španělských předpisů a doporučení ministerstva dopravy:" },
+  // Portugal (Bára 23. 11. 2026): DGT's orthophotos and OSM (towns/portugal.js).
+  portugal: { ...abroad("portugal", "PT", "Portugalsko", "v Portugalsku", "portugalské", [39.6, -8.0], "38.722200, -9.139300"),
+    dataShort: "ortofota DGT a OSM", rulesHead: "Šířky podle portugalských předpisů:" },
   cizina: abroad("cizina", null, "cizinu", "v cizině", "zahraniční", [49.8, 15.5], "48.146736, 17.106998"),
 });
 // The rest of Slovakia and of Austria draws the state's own set (countries/<ISO>.js art).

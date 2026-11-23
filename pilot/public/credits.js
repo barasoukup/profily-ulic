@@ -30,6 +30,10 @@ export const SOURCE_CREDITS = {
     pl: () => t("ortofoto © GUGiK (Geoportal.gov.pl)"),
     fr: () => t("ortofoto © IGN (Géoplateforme)"),
     es: () => t("ortofoto PNOA © IGN (CC BY 4.0)"),
+    "pt-25": () => t("ortofoto © DGT"),
+    "pt-21": () => t("ortofoto © DGT"),
+    "pt-18": () => t("ortofoto © DGT"),
+    "pt-sat": () => t("ortofoto © DGT"),
     // Germany: the orthophoto of the Land (lanes-ortho.js DE_ORTHO, "de-BY" …), with the credit the Land asks for.
     ...Object.fromEntries(Object.entries(DE_ORTHO).map(([land, o]) => [`de-${land}`, () => t("ortofoto {who}", { who: o.credit })])),
   },

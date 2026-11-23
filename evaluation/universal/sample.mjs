@@ -33,6 +33,9 @@ export const TOWNS = {
   // Spain (23. 11. 2026): the towns of the local OSM pack.
   ES: { madrid: [40.425, -3.700], barcelona: [41.390, 2.165], valencia: [39.470, -0.375], sevilla: [37.390, -5.990], malaga: [36.720, -4.425],
     zaragoza: [41.650, -0.890], bilbao: [43.262, -2.935], valladolid: [41.650, -4.725], coruna: [43.365, -8.410], palma: [39.572, 2.650] },
+  // Portugal (23. 11. 2026): the towns of the local OSM pack.
+  PT: { lisboa: [38.722, -9.142], porto: [41.152, -8.612], braga: [41.550, -8.425], coimbra: [40.208, -8.425], aveiro: [40.640, -8.650],
+    faro: [37.016, -7.933], funchal: [32.648, -16.910], setubal: [38.525, -8.890], evora: [38.571, -7.908], viseu: [40.657, -7.912] },
 };
 if (process.argv[1] === new URL(import.meta.url).pathname) {
   let seed = 20261117;

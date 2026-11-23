@@ -114,6 +114,21 @@ async function image(c, tMax) {
       await fs.rm(file + ".img");
       buf = await fs.readFile(file);
       await new Promise((r) => setTimeout(r, 300));
+    } else if (process.env.ORTHO === "pt") {
+      // Portugal (evaluation/portugal/ab): the newest DGT flight with a photo here (a white JPEG is tiny).
+      const { PT_ORTHO } = await import("../../../pilot/public/lanes-ortho.js");
+      await fs.mkdir(path.dirname(file), { recursive: true });
+      let img;
+      for (const key of ["pt-25", "pt-21", "pt-18", "pt-sat"]) {
+        img = Buffer.from(await (await fetch(PT_ORTHO[key]([x0, y0, x1, y1], w, h), { headers: { "User-Agent": "profily-ulic" } })).arrayBuffer());
+        if (img.length >= w * h * 0.02) break;
+        await new Promise((r) => setTimeout(r, 300));
+      }
+      await fs.writeFile(file + ".img", img);
+      await run("magick", [file + ".img", "PNG24:" + file]);
+      await fs.rm(file + ".img");
+      buf = await fs.readFile(file);
+      await new Promise((r) => setTimeout(r, 300));
     } else if (process.env.ORTHO === "be") {
       // Belgium (evaluation/belgium/ab): Flanders' orthophoto, else Wallonia's (a blank Flemish image is small).
       const { BE_ORTHO } = await import("../../../pilot/public/lanes-ortho.js");

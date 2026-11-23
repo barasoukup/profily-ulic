@@ -48,6 +48,17 @@ export const FR_ORTHO = (b, w, h, format = "image/jpeg") => `https://data.geopf.
 // Spain (Bára 23. 11. 2026): IGN's PNOA máxima actualidad (WMS, 25 cm, the latest flight; CORS *, CC BY 4.0 scne.es).
 // Beyond Spain the service draws MODIS and Sentinel-2 (the map's layer is kept inside Spain, app.js insideOnly).
 export const ES_ORTHO = (b, w, h, format = "image/jpeg") => `https://www.ign.es/wms-inspire/pnoa-ma?${new URLSearchParams({ SERVICE: "WMS", REQUEST: "GetMap", VERSION: "1.3.0", LAYERS: "OI.OrthoimageCoverage", STYLES: "", CRS: "EPSG:3857", BBOX: b.join(","), WIDTH: w, HEIGHT: h, FORMAT: format })}`;
+// Portugal (Bára 23. 11. 2026): DGT's orthophotos (WMS, EPSG:3857, CORS *, CC BY; evaluation/portugal/ZDROJE.md): the
+// aerial of 2025 (25 cm, the whole mainland), else 2021 (30 cm, the north only), else 2018 (25 cm), else the satellite
+// mosaic of 2023 (30 cm, softer). An image white where a flight has no photo (laneImage tries the next one); Madeira and
+// the Azores have none of them (their own services: unclear licence, no CORS).
+const ptWms = (base, layer) => (b, w, h, format = "image/jpeg") => `${base}?${new URLSearchParams({ SERVICE: "WMS", REQUEST: "GetMap", VERSION: "1.3.0", LAYERS: layer, STYLES: "", CRS: "EPSG:3857", BBOX: b.join(","), WIDTH: w, HEIGHT: h, FORMAT: format })}`;
+export const PT_ORTHO = {
+  "pt-25": ptWms("https://cartografia.dgterritorio.gov.pt/wms/ortos2025", "Ortos2025-RGB"),
+  "pt-21": ptWms("https://cartografia.dgterritorio.gov.pt/wms/ortos2021", "Ortos2021-RGB"),
+  "pt-18": ptWms("https://cartografia.dgterritorio.gov.pt/wms/ortos2018", "Ortos2018-RGB"),
+  "pt-sat": ptWms("https://ortos.dgterritorio.gov.pt/wms/ortosat2023", "ortoSat2023-CorVerdadeira"),
+};
 export const SK_ORTHO = "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ortofoto_hres/MapServer";
 const SOURCES = {
   // The grid of z19, tiles of 512 px (about 10 cm). balance: the mosaic is bright and tinted (Košice 2025: asphalt
@@ -62,6 +73,10 @@ const SOURCES = {
   pl: { res: 0.1, url: (b, w, h, format) => PL_ORTHO(b, w, h, format) },
   fr: { res: 0.2, url: (b, w, h, format) => FR_ORTHO(b, w, h, format) },
   es: { res: 0.25, url: (b, w, h, format) => ES_ORTHO(b, w, h, format) },
+  "pt-25": { res: 0.25, url: (b, w, h, format) => PT_ORTHO["pt-25"](b, w, h, format) },
+  "pt-21": { res: 0.3, url: (b, w, h, format) => PT_ORTHO["pt-21"](b, w, h, format) },
+  "pt-18": { res: 0.25, url: (b, w, h, format) => PT_ORTHO["pt-18"](b, w, h, format) },
+  "pt-sat": { res: 0.3, url: (b, w, h, format) => PT_ORTHO["pt-sat"](b, w, h, format) },
   lu: { res: 0.1, tiles: LU_ORTHO, z: 20, px: 256, ext: ".jpeg", xy: true },
   brno: { res: 0.1, tiles: "https://gis.brno.cz/ags1/rest/services/OMI/OMI_basemaps_ortofoto_2025_wgs/MapServer/tile", z: 20, shift: [1.06, 3.09] },
   plzen: { res: 0.1, url: (b, w, h) => `https://ags.plzen.eu/arcgis/rest/services/Orto_2024_5cm_RGB_mimoveg/MapServer/export?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: "jpg", f: "image", datumTransformations: "[1623]" })}` },
@@ -173,6 +188,18 @@ export async function laneImage(opts) {
     if (lastError) throw lastError;
     return null;
   }
+  // Portugal: the newest flight that has a photo here (a white image is none).
+  if (opts.source === "pt") {
+    const start = Date.now(), budget = opts.timeout ?? TIMEOUT;
+    let lastError = null;
+    for (const key of ["pt-25", "pt-21", "pt-18", "pt-sat"]) {
+      const left = budget - (Date.now() - start);
+      if (left < 500) break;
+      try { const out = await laneImageOf(key, { ...opts, timeout: left }); if (out) return out; } catch (err) { lastError = err; }
+    }
+    if (lastError) throw lastError;
+    return null;
+  }
   if (opts.source !== "de") return laneImageOf(SOURCES[opts.source] ? opts.source : "cuzk", opts);
   // Germany (countries/DE.js laneOrtho "de"): the Land's orthophoto, near a border the next Land's when the first has no
   // photo there, all within one timeout (the review of Germany).
@@ -239,7 +266,7 @@ async function laneImageOf(key, { frame, dir, t0, t1, timeout = TIMEOUT, fetchIm
       }
     }
     // Outside a Land's coverage its WMS answers white (only the German sources).
-    if ((key.startsWith("de-") || key.startsWith("be-")) && blank(img)) return null;
+    if ((key.startsWith("de-") || key.startsWith("be-") || key.startsWith("pt-")) && blank(img)) return null;
     // Resample on the grid of the cut.
     const res = src.res, nt = Math.round((t1 - t0) / res), nu = Math.round((2 * ALONG) / res), L = new Float32Array(nt * nu), G = new Float32Array(nt * nu), Y = new Float32Array(nt * nu), D = new Float32Array(nt * nu), S = new Float32Array(nt * nu);
     for (let j = 0; j < nu; j++) for (let i = 0; i < nt; i++) {
@@ -701,7 +728,7 @@ function redraw(w, lines, fine = true) {
 // model learnt it (evaluation/ai-segmentation/fetch_ortho.py): the source's shift applied as above. Returns
 // { source, img } (ImageData) or null (no photo there); a server down throws as laneImage does.
 export async function orthoPatch({ source, lon, lat, half, px, timeout = TIMEOUT }) {
-  const keys = source === "de" ? (await landsAt(lon, lat).catch(() => [])).map((l) => `de-${l}`) : source === "be" ? [...new Set([...(await beRegionsAt(lon, lat).catch(() => [])).map(beOrthoOf), "vl", "wal"])].map((r) => `be-${r}`) : [SOURCES[source] ? source : "cuzk"];
+  const keys = source === "de" ? (await landsAt(lon, lat).catch(() => [])).map((l) => `de-${l}`) : source === "be" ? [...new Set([...(await beRegionsAt(lon, lat).catch(() => [])).map(beOrthoOf), "vl", "wal"])].map((r) => `be-${r}`) : source === "pt" ? ["pt-25", "pt-21", "pt-18", "pt-sat"] : [SOURCES[source] ? source : "cuzk"];
   const seen = new Set(); // Berlin and Brandenburg: one service
   for (const key of keys) {
     const id = key.startsWith("de-") ? DE_ORTHO[key.slice(3)].wms : key;
