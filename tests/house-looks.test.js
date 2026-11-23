@@ -94,15 +94,16 @@ test("haussmannovský dům: mansarda, rok a 5 podlaží, Paříž bez roku; ne n
   assert.equal(look("monaco", old([7.4246, 43.7384], { levels: 3 })), "stredomori");
 });
 
-test("severomořský cihlový dům; štít jen s ?stit=1", () => {
+test("severomořský cihlový dům; štít výchozí (Bára 23. 11. 2026), ?stit=0 vypne", () => {
+  assert.equal(LOOKS.gables, true, "štíty zapnuté bez přepínače");
   assert.equal(look("netherlands", { levels: 4, built: 1890, point: PT.amsterdam }), "cihlovy");
-  assert.equal(look("netherlands", { levels: 4, built: 1700, point: PT.amsterdam, across: 1 }), "cihlovy");
-  LOOKS.gables = true;
   assert.equal(look("netherlands", { levels: 4, built: 1700, point: PT.amsterdam, across: 1 }), "stit");
   assert.equal(look("netherlands", { levels: 4, built: 1890, point: PT.amsterdam, across: 1 }), "cihlovy");
   assert.equal(look("estonia", { levels: 3, point: PT.tallinnOld, across: 1 }), "hanza");
   LOOKS.gables = false;
+  assert.equal(look("netherlands", { levels: 4, built: 1700, point: PT.amsterdam, across: 1 }), "cihlovy");
   assert.equal(look("estonia", { levels: 3, point: PT.tallinnOld, across: 1 }), "sikma");
+  LOOKS.gables = true;
   assert.equal(look("belgium", { levels: 3, point: PT.gent }), "cihlovy"); // Flanders
   assert.equal(look("belgium", { levels: 3, point: PT.liege }), "sikma"); // Wallonia stays
 });
