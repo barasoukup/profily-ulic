@@ -273,14 +273,51 @@ const ringArea = (r) => {
 };
 
 // ---------- Types of the DTM → MTVU codes ----------
+// JVF DTM 1.5 (ČÚZK and the regions from 19. 11. 2026) names in objektovytypnazev only the group of a type
+// ("Dopravní stavby", "Vegetace a terén"); the type itself is the code of the JVF (code_base, idvf). Its name
+// from the list of object types of the decree 393/2020 Sb. (annex 1, areas and definition points; Plumlovská in
+// Prostějov, Rybova in Hradec: a roadway read as "stavby", a wall, Bára 23. 11. 2026).
+const JVF = { // the code less its agenda (01)
+  1: "budova", 3: "obvod pozemní komunikace", 5: "provozní plocha pozemní komunikace", 7: "chodník",
+  9: "cyklostezka", 11: "parkoviště, odstavná plocha", 13: "dopravní ostrůvek", 15: "dělící pás", 17: "nájezd",
+  19: "obvod dráhy", 22: "železniční přejezd", 24: "tramvajová dráha", 28: "pozemní lanová dráha",
+  35: "speciální dráha", 40: "dopravně významné místo na dráze", 41: "plavební komora", 43: "sledovaná vodní cesta",
+  45: "vodní část přístavu", 46: "vzletová a přistávací dráha", 47: "letiště", 48: "heliport", 49: "letecká stavba",
+  51: "příkop, násep, zářez dopravní stavby", 53: "nástupiště", 55: "manipulační plocha", 57: "obvod mostu",
+  58: "plocha mostní konstrukce", 60: "portál tunelu", 62: "provozní plocha tunelu", 64: "portál podchodu",
+  66: "provozní plocha podchodu", 70: "mostní váha", 72: "nádrž, zdrž se vzdouvacím objektem", 76: "stupeň",
+  78: "stavebně upravené koryto", 80: "meliorační příkop, žlab", 85: "protipovodňová zábrana", 87: "suchá nádrž",
+  91: "kolektor", 96: "jiná technologická stavba TI", 102: "výrobna elektřiny s instalovaným výkonem nad 100 kW",
+  103: "stanice elektrické sítě", 104: "jaderné zařízení", 108: "technologický objekt sítě EK",
+  112: "technologický objekt plynovodní sítě", 116: "zařízení vodovodní přípojky", 118: "přivaděč, náhon, odpad",
+  124: "zařízení kanalizační přípojky", 128: "zařízení sítě produktovodu",
+  129: "technologický objekt sítě produktovodu", 132: "technologický objekt teplovodní sítě",
+  138: "zařízení protikorozní ochrany", 139: "jiné zařízení staveb TI", 140: "důl, lom", 142: "plocha rekultivace",
+  144: "úložné místo těžebního odpadu", 146: "jiné důlní dílo, důlní stavba", 148: "skládka odpadů", 149: "spalovna",
+  150: "jiné zařízení na odstraňování, využívání nebo sběr odpadů", 151: "odkaliště", 152: "hřiště",
+  154: "drobná sakrální stavba", 157: "hřbitov", 159: "drobná kulturní stavba", 163: "podezdívka", 166: "schodiště",
+  168: "zeď", 173: "rampa", 175: "terasa", 177: "komín", 179: "skleník", 181: "zahradní bazén",
+  183: "patka, deska, monolit, pilíř", 187: "stavba pro zpevnění povrchu", 189: "dvůr, nádvoří",
+  193: "čelo propustku", 197: "podzemní objekt ZPS", 203: "vodní tok", 205: "jezero", 207: "zemědělská plocha",
+  209: "zahrada", 211: "les", 213: "hospodářsky nevyužívaná plocha", 215: "udržovaná plocha zeleně",
+  312: "souhrnná plocha železničních drah", 314: "ostatní zastřešená stavba", 315: "zastřešení",
+  320: "přidružená plocha pozemní komunikace", 322: "provozní prostor elektrické sítě", 325: "pozemní část přístavu",
+  329: "objekt odvodnění stavby", 330: "nádrž bez vzdouvacího objektu", 331: "hráz", 332: "jez",
+  333: "štěrková přehrážka", 336: "objekt vodovodní sítě", 337: "objekt stokové sítě", 338: "vegetační mísa",
+  373: "technologický portál", 379: "obvod tunelu", 381: "rozestavěná plocha"
+};
+// The name of the type of a feature of GetFeatureInfo or the WFS: by its JVF code, else as it is named.
+export const jvfName = (p) => JVF[Number(p?.code_base ?? p?.idvf) % 1e8] ?? p?.objektovytypnazev;
 // The type names of GetFeatureInfo (objektovytypnazev) → MTVU codes (as tools/build_dtm_brno.py and
 // towns/plzen.js read the JVF types). The first match wins.
 const TYPES = [
+  [/^(dopravní stavby|vodstvo|vegetace a terén|vodní díla)$/, undefined], // a group of JVF 1.5 alone tells no type
+  [/^obvod (pozemní komunikace|mostu)/, null], // the outline of a road or bridge over its areas
   [/podchod|tunel|podzemní|zastřešen/, null], // under the ground; roofs over it (a stop's canopy)
   [/tramvajov/, 705], [/cyklostezk/, 703], [/parkovišt|odstavn/, 704],
   [/mostní konstrukc|mostovk/, 700], // a bridge deck ("plocha mostovky") too (srovnani-dmvs: Hlávkův most)
   [/provozní plocha pozemní komunikace|mostní váh|přidružen/, 701],
-  [/chodník|nájezd|nástupišt|ostrůvk|schodišt|ramp/, 702],
+  [/chodník|nájezd|nástupišt|ostrův|schodišt|ramp/, 702],
   [/děl[ií]c|zelen|travnat|vegetační mís|stromů a keřů/, 401],
   [/příkop|násep|nevyužívan|hřbitov|meliorační/, 402],
   [/zahrad/, 300], [/\bles/, 200], [/orn|vinic|chmelnic|sad|travní porost|zemědělsk/, 100],
@@ -341,10 +378,11 @@ async function typeAt(v, px) {
   const out = { region: json.isDtmk?.nazev, names: [] };
   for (const f of json.features || []) {
     const p = f.properties || {}, level = Number(p.urovenumisteniobjektuzps) || 0;
-    out.names.push(p.objektovytypnazev);
+    const name = jvfName(p);
+    out.names.push(name);
     if (level < 0) continue;
-    const code = typeCode(p.objektovytypnazev);
-    if (code === undefined) console.warn("DMVS: neznámý typ", p.objektovytypnazev);
+    const code = typeCode(name);
+    if (code === undefined) console.warn("DMVS: neznámý typ", name);
     if (!code) continue;
     if (level > 0) out.above ??= code;
     else out.ground ??= code;
