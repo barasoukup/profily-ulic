@@ -399,6 +399,7 @@ export const PL = {
   "databáze ulic Cách a OSM": "bazy danych ulic Akwizgranu i OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "powierzchnie ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "ortofotomapa {who}",
+  "budovy {who}": "budynki {who}",
   "obruby vozovky: model AI učený na mapách povrchů {who}": "krawężniki jezdni: model SI wyuczony na mapach nawierzchni {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "ortofotomapa © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofotomapa © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
@@ -970,7 +971,7 @@ export const PL_HTML = {
     Belgia i Luksemburg: ortofotomapa i linie GRB © Digitaal Vlaanderen, ortofotomapa i linie PICC © SPW (Service public de Wallonie), ortofotomapa © ACT Luxembourg (geoportail.lu), granica © EuroGeographics (GISCO), znaki drogowe Wikimedia Commons (dzieła urzędowe), wyszukiwanie Photon © komoot (dane OSM) ·
     Polska: ortofotomapa i wyszukiwanie adresów © GUGiK (Geoportal.gov.pl, PRG), mapa powierzchni Krakowa (MJO) © Gmina Miejska Kraków, granica © EuroGeographics (GISCO), znaki drogowe Wikimedia Commons (dzieła urzędowe) ·
     Francja: ortofotomapa, budynki (BD TOPO) i wyszukiwanie adresów © IGN (Géoplateforme, Licence Ouverte 2.0), mapa powierzchni Paryża (Plan de voirie) © Ville de Paris (ODbL), granica © EuroGeographics (GISCO), znaki drogowe Wikimedia Commons (dzieła urzędowe) ·
-    Hiszpania: ortofotomapa PNOA i wyszukiwanie adresów CartoCiudad © IGN (CC BY 4.0 scne.es), budynki © Dirección General del Catastro, mapa powierzchni Saragossy © Ayuntamiento de Zaragoza (IDEZar), granica © EuroGeographics (GISCO), znaki drogowe Wikimedia Commons (dzieła urzędowe) ·
+    Hiszpania: ortofotomapa PNOA i wyszukiwanie adresów CartoCiudad © IGN (CC BY 4.0 scne.es), budynki © Dirección General del Catastro, w Nawarze Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), w Kraju Basków © Arabako, Bizkaiko i Gipuzkoako Foru Aldundia, mapa powierzchni Saragossy © Ayuntamiento de Zaragoza (IDEZar), granica © EuroGeographics (GISCO), znaki drogowe Wikimedia Commons (dzieła urzędowe) ·
     Portugalia: ortofotomapa © DGT (Direção-Geral do Território), granica © EuroGeographics (GISCO), znaki drogowe Wikimedia Commons (dzieła urzędowe; przerysowanie Fry1989 na licencji CC BY-SA 3.0 i Gigillo83 na licencji CC BY-SA 4.0) ·
     Monako: ortofotomapa © IGN (Géoplateforme, Licence Ouverte 2.0), granica © współtwórcy OpenStreetMap, rysunki francuskich znaków drogowych Wikimedia Commons ·
     Cypr: ortofotomapa 2019 © Department of Lands and Surveys (DLS; licencja nieokreślona), budynki © DLS (CC BY 4.0), granica © współtwórcy OpenStreetMap, znaki drogowe Wikimedia Commons (wzory brytyjskie: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·

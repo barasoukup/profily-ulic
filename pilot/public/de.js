@@ -422,6 +422,7 @@ export const DE = {
   "databáze ulic Cách a OSM": "der Straßendatenbank Aachens und OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "Straßenflächen (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "Luftbild {who}",
+  "budovy {who}": "Gebäude {who}",
   "obruby vozovky: model AI učený na mapách povrchů {who}": "Fahrbahnränder: KI-Modell, trainiert mit den Oberflächenkarten {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "Luftbild © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "Luftbild © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
@@ -968,7 +969,7 @@ export const DE_HTML = {
     Belgien und Luxemburg: Luftbild und Linien GRB © Digitaal Vlaanderen, Luftbild und Linien PICC © SPW (Service public de Wallonie), Luftbild © ACT Luxembourg (geoportail.lu), Grenzen © EuroGeographics (GISCO), Verkehrszeichen Wikimedia Commons (amtliche Werke), Suche Photon © komoot (OSM-Daten) ·
     Polen: Luftbild und Adresssuche © GUGiK (Geoportal.gov.pl, PRG), Flächenkarte Krakaus (MJO) © Gmina Miejska Kraków, Grenzen © EuroGeographics (GISCO), Verkehrszeichen Wikimedia Commons (amtliche Werke) ·
     Frankreich: Luftbild, Gebäude (BD TOPO) und Adresssuche © IGN (Géoplateforme, Licence Ouverte 2.0), Flächenkarte von Paris (Plan de voirie) © Ville de Paris (ODbL), Grenzen © EuroGeographics (GISCO), Verkehrszeichen Wikimedia Commons (amtliche Werke) ·
-    Spanien: Luftbild PNOA und Adresssuche CartoCiudad © IGN (CC BY 4.0 scne.es), Gebäude © Dirección General del Catastro, Flächenkarte von Zaragoza © Ayuntamiento de Zaragoza (IDEZar), Grenzen © EuroGeographics (GISCO), Verkehrszeichen Wikimedia Commons (amtliche Werke) ·
+    Spanien: Luftbild PNOA und Adresssuche CartoCiudad © IGN (CC BY 4.0 scne.es), Gebäude © Dirección General del Catastro, in Navarra Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), im Baskenland © Arabako, Bizkaiko und Gipuzkoako Foru Aldundia, Flächenkarte von Zaragoza © Ayuntamiento de Zaragoza (IDEZar), Grenzen © EuroGeographics (GISCO), Verkehrszeichen Wikimedia Commons (amtliche Werke) ·
     Portugal: Luftbild © DGT (Direção-Geral do Território), Grenzen © EuroGeographics (GISCO), Verkehrszeichen Wikimedia Commons (amtliche Werke; nachgezeichnet von Fry1989 unter CC BY-SA 3.0 und Gigillo83 unter CC BY-SA 4.0) ·
     Monaco: Luftbild © IGN (Géoplateforme, Licence Ouverte 2.0), Grenzen © OpenStreetMap-Mitwirkende, Zeichnungen französischer Verkehrszeichen Wikimedia Commons ·
     Zypern: Luftbild 2019 © Department of Lands and Surveys (DLS; Lizenz nicht angegeben), Gebäude © DLS (CC BY 4.0), Grenzen © OpenStreetMap-Mitwirkende, Verkehrszeichen Wikimedia Commons (britische Vorlagen: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·

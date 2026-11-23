@@ -398,6 +398,7 @@ export const SL = {
   "databáze ulic Cách a OSM": "baze ulic Aachna in OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "ulične površine (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "ortofoto {who}",
+  "budovy {who}": "stavbe {who}",
   "obruby vozovky: model AI učený na mapách povrchů {who}": "robniki vozišča: model UI, naučen na kartah površin {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "ortofoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
@@ -969,7 +970,7 @@ export const SL_HTML = {
     Belgija in Luksemburg: ortofoto in črte GRB © Digitaal Vlaanderen, ortofoto in črte PICC © SPW (Service public de Wallonie), ortofoto © ACT Luxembourg (geoportail.lu), meja © EuroGeographics (GISCO), prometni znaki Wikimedia Commons (uradna dela), iskanje Photon © komoot (podatki OSM) ·
     Poljska: ortofoto in iskanje naslovov © GUGiK (Geoportal.gov.pl, PRG), karta površin Krakova (MJO) © Gmina Miejska Kraków, meja © EuroGeographics (GISCO), prometni znaki Wikimedia Commons (uradna dela) ·
     Francija: ortofoto, stavbe (BD TOPO) in iskanje naslovov © IGN (Géoplateforme, Licence Ouverte 2.0), karta površin Pariza (Plan de voirie) © Ville de Paris (ODbL), meja © EuroGeographics (GISCO), prometni znaki Wikimedia Commons (uradna dela) ·
-    Španija: ortofoto PNOA in iskanje naslovov CartoCiudad © IGN (CC BY 4.0 scne.es), stavbe © Dirección General del Catastro, karta površin Zaragoze © Ayuntamiento de Zaragoza (IDEZar), meja © EuroGeographics (GISCO), prometni znaki Wikimedia Commons (uradna dela) ·
+    Španija: ortofoto PNOA in iskanje naslovov CartoCiudad © IGN (CC BY 4.0 scne.es), stavbe © Dirección General del Catastro, v Navarri Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), v Baskiji © Arabako, Bizkaiko in Gipuzkoako Foru Aldundia, karta površin Zaragoze © Ayuntamiento de Zaragoza (IDEZar), meja © EuroGeographics (GISCO), prometni znaki Wikimedia Commons (uradna dela) ·
     Portugalska: ortofoto © DGT (Direção-Geral do Território), meja © EuroGeographics (GISCO), prometni znaki Wikimedia Commons (uradna dela; prerisala Fry1989 pod CC BY-SA 3.0 in Gigillo83 pod CC BY-SA 4.0) ·
     Monako: ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0), meja © sodelavci OpenStreetMap, risbe francoskih prometnih znakov Wikimedia Commons ·
     Ciper: ortofoto 2019 © Department of Lands and Surveys (DLS; licenca ni navedena), stavbe © DLS (CC BY 4.0), meja © sodelavci OpenStreetMap, prometni znaki Wikimedia Commons (britanski vzorci: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·

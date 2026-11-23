@@ -1,0 +1,442 @@
+[
+ {
+  "town": "bilbao",
+  "lat": 43.2623203,
+  "lon": -2.9459115,
+  "building": "residential",
+  "osmLevels": 6,
+  "osmStart": null,
+  "foral": 10,
+  "built": 1956
+ },
+ {
+  "town": "bilbao",
+  "lat": 43.2638178,
+  "lon": -2.934938,
+  "building": "apartments",
+  "osmLevels": 6,
+  "osmStart": null,
+  "foral": 8,
+  "built": 1918
+ },
+ {
+  "town": "bilbao",
+  "lat": 43.2599493,
+  "lon": -2.9175771,
+  "building": "apartments",
+  "osmLevels": 7,
+  "osmStart": null,
+  "foral": 7,
+  "built": 1970
+ },
+ {
+  "town": "bilbao",
+  "lat": 43.2607672,
+  "lon": -2.9485368,
+  "building": "apartments",
+  "osmLevels": 5,
+  "osmStart": null,
+  "foral": 8,
+  "built": 1987
+ },
+ {
+  "town": "bilbao",
+  "lat": 43.2671942,
+  "lon": -2.921872,
+  "building": "apartments",
+  "osmLevels": 6,
+  "osmStart": null,
+  "foral": 6,
+  "built": 1890
+ },
+ {
+  "town": "bilbao",
+  "lat": 43.2545557,
+  "lon": -2.9239936,
+  "building": "apartments",
+  "osmLevels": 7,
+  "osmStart": null,
+  "foral": 8,
+  "built": 1900
+ },
+ {
+  "town": "bilbao",
+  "lat": 43.2633428,
+  "lon": -2.9164595,
+  "building": "yes",
+  "osmLevels": 1,
+  "osmStart": null,
+  "foral": null,
+  "built": null
+ },
+ {
+  "town": "bilbao",
+  "lat": 43.2602365,
+  "lon": -2.9405277,
+  "building": "parking",
+  "osmLevels": 1,
+  "osmStart": null,
+  "foral": 1,
+  "built": 1979
+ },
+ {
+  "town": "bilbao",
+  "lat": 43.2605376,
+  "lon": -2.9120634,
+  "building": "apartments",
+  "osmLevels": 6,
+  "osmStart": null,
+  "foral": 7,
+  "built": 1971
+ },
+ {
+  "town": "bilbao",
+  "lat": 43.252754,
+  "lon": -2.9036038,
+  "building": "school",
+  "osmLevels": 2,
+  "osmStart": null,
+  "foral": 2,
+  "built": 1985
+ },
+ {
+  "town": "bilbao",
+  "lat": 43.2641776,
+  "lon": -2.9448231,
+  "building": "apartments",
+  "osmLevels": 8,
+  "osmStart": null,
+  "foral": 9,
+  "built": 1960
+ },
+ {
+  "town": "bilbao",
+  "lat": 43.2757852,
+  "lon": -2.9673245,
+  "building": "industrial",
+  "osmLevels": 5,
+  "osmStart": null,
+  "foral": 5,
+  "built": 1993
+ },
+ {
+  "town": "bilbao",
+  "lat": 43.2647096,
+  "lon": -2.9414456,
+  "building": "apartments",
+  "osmLevels": 8,
+  "osmStart": null,
+  "foral": 9,
+  "built": 1940
+ },
+ {
+  "town": "bilbao",
+  "lat": 43.2635082,
+  "lon": -2.9418272,
+  "building": "apartments",
+  "osmLevels": 7,
+  "osmStart": null,
+  "foral": 8,
+  "built": 1935
+ },
+ {
+  "town": "bilbao",
+  "lat": 43.2519651,
+  "lon": -2.9316331,
+  "building": "house",
+  "osmLevels": 9,
+  "osmStart": null,
+  "foral": null,
+  "built": null
+ },
+ {
+  "town": "donostia",
+  "lat": 43.3095474,
+  "lon": -2.0073253,
+  "building": "apartments",
+  "osmLevels": 7,
+  "osmStart": null,
+  "foral": null,
+  "built": null
+ },
+ {
+  "town": "donostia",
+  "lat": 43.3222913,
+  "lon": -1.9866058,
+  "building": "yes",
+  "osmLevels": 6,
+  "osmStart": null,
+  "foral": 7,
+  "built": 2018
+ },
+ {
+  "town": "donostia",
+  "lat": 43.3150398,
+  "lon": -2.0045609,
+  "building": "yes",
+  "osmLevels": 3,
+  "osmStart": null,
+  "foral": 3,
+  "built": 1993
+ },
+ {
+  "town": "donostia",
+  "lat": 43.3256293,
+  "lon": -1.9730512,
+  "building": "yes",
+  "osmLevels": 1,
+  "osmStart": null,
+  "foral": 7,
+  "built": 1959
+ },
+ {
+  "town": "donostia",
+  "lat": 43.3051744,
+  "lon": -1.975535,
+  "building": "apartments",
+  "osmLevels": 11,
+  "osmStart": null,
+  "foral": 12,
+  "built": 1960
+ },
+ {
+  "town": "donostia",
+  "lat": 43.3046156,
+  "lon": -1.9751567,
+  "building": "apartments",
+  "osmLevels": 11,
+  "osmStart": null,
+  "foral": 12,
+  "built": 1966
+ },
+ {
+  "town": "donostia",
+  "lat": 43.3001021,
+  "lon": -1.9851406,
+  "building": "apartments",
+  "osmLevels": 4,
+  "osmStart": null,
+  "foral": 4,
+  "built": 1999
+ },
+ {
+  "town": "donostia",
+  "lat": 43.3136659,
+  "lon": -2.0028636,
+  "building": "apartments",
+  "osmLevels": 7,
+  "osmStart": 1966,
+  "foral": 7,
+  "built": 1965
+ },
+ {
+  "town": "donostia",
+  "lat": 43.3203007,
+  "lon": -1.9598374,
+  "building": "train_station",
+  "osmLevels": 1,
+  "osmStart": null,
+  "foral": null,
+  "built": null
+ },
+ {
+  "town": "donostia",
+  "lat": 43.3021186,
+  "lon": -2.0088537,
+  "building": "apartments",
+  "osmLevels": 4,
+  "osmStart": null,
+  "foral": 4,
+  "built": 1998
+ },
+ {
+  "town": "donostia",
+  "lat": 43.3213877,
+  "lon": -2.0095777,
+  "building": "tower",
+  "osmLevels": 5,
+  "osmStart": 1912,
+  "foral": null,
+  "built": null
+ },
+ {
+  "town": "donostia",
+  "lat": 43.310424,
+  "lon": -1.9804734,
+  "building": "apartments",
+  "osmLevels": 10,
+  "osmStart": null,
+  "foral": 11,
+  "built": 1954
+ },
+ {
+  "town": "donostia",
+  "lat": 43.3085166,
+  "lon": -2.0052177,
+  "building": "apartments",
+  "osmLevels": 6,
+  "osmStart": null,
+  "foral": 7,
+  "built": 1971
+ },
+ {
+  "town": "donostia",
+  "lat": 43.3082786,
+  "lon": -1.9912376,
+  "building": "apartments",
+  "osmLevels": 4,
+  "osmStart": null,
+  "foral": 4,
+  "built": 1988
+ },
+ {
+  "town": "donostia",
+  "lat": 43.3025117,
+  "lon": -1.97937,
+  "building": "apartments",
+  "osmLevels": 5,
+  "osmStart": null,
+  "foral": 4,
+  "built": 2019
+ },
+ {
+  "town": "vitoria",
+  "lat": 42.8573645,
+  "lon": -2.6862789,
+  "building": "apartments",
+  "osmLevels": 5,
+  "osmStart": null,
+  "foral": 7,
+  "built": 1974
+ },
+ {
+  "town": "vitoria",
+  "lat": 42.8603745,
+  "lon": -2.684447,
+  "building": "yes",
+  "osmLevels": 13,
+  "osmStart": null,
+  "foral": 15,
+  "built": 2000
+ },
+ {
+  "town": "vitoria",
+  "lat": 42.8435829,
+  "lon": -2.6551893,
+  "building": "yes",
+  "osmLevels": 1,
+  "osmStart": null,
+  "foral": 1,
+  "built": 2011
+ },
+ {
+  "town": "vitoria",
+  "lat": 42.8369392,
+  "lon": -2.6647103,
+  "building": "yes",
+  "osmLevels": 3,
+  "osmStart": null,
+  "foral": 6,
+  "built": 1990
+ },
+ {
+  "town": "vitoria",
+  "lat": 42.8451504,
+  "lon": -2.6752347,
+  "building": "yes",
+  "osmLevels": 3,
+  "osmStart": null,
+  "foral": 2,
+  "built": 1900
+ },
+ {
+  "town": "vitoria",
+  "lat": 42.8512099,
+  "lon": -2.6847598,
+  "building": "apartments",
+  "osmLevels": 6,
+  "osmStart": null,
+  "foral": 8,
+  "built": 1977
+ },
+ {
+  "town": "vitoria",
+  "lat": 42.8352416,
+  "lon": -2.6615656,
+  "building": "yes",
+  "osmLevels": 4,
+  "osmStart": null,
+  "foral": 8,
+  "built": 1966
+ },
+ {
+  "town": "vitoria",
+  "lat": 42.8599457,
+  "lon": -2.6838455,
+  "building": "apartments",
+  "osmLevels": 4,
+  "osmStart": null,
+  "foral": null,
+  "built": null
+ },
+ {
+  "town": "vitoria",
+  "lat": 42.8354595,
+  "lon": -2.6658643,
+  "building": "yes",
+  "osmLevels": 4,
+  "osmStart": null,
+  "foral": 6,
+  "built": 1991
+ },
+ {
+  "town": "vitoria",
+  "lat": 42.8463987,
+  "lon": -2.6783613,
+  "building": "apartments",
+  "osmLevels": 7,
+  "osmStart": null,
+  "foral": 8,
+  "built": 1988
+ },
+ {
+  "town": "vitoria",
+  "lat": 42.8571565,
+  "lon": -2.6869978,
+  "building": "apartments",
+  "osmLevels": 5,
+  "osmStart": null,
+  "foral": 7,
+  "built": 1974
+ },
+ {
+  "town": "vitoria",
+  "lat": 42.8371872,
+  "lon": -2.6656964,
+  "building": "yes",
+  "osmLevels": 5,
+  "osmStart": null,
+  "foral": 7,
+  "built": 1981
+ },
+ {
+  "town": "vitoria",
+  "lat": 42.8445642,
+  "lon": -2.6676281,
+  "building": "yes",
+  "osmLevels": 2,
+  "osmStart": null,
+  "foral": null,
+  "built": null
+ },
+ {
+  "town": "vitoria",
+  "lat": 42.8566584,
+  "lon": -2.6881245,
+  "building": "apartments",
+  "osmLevels": 5,
+  "osmStart": null,
+  "foral": 7,
+  "built": 1974
+ }
+]

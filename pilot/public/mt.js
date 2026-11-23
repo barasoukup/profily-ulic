@@ -398,6 +398,7 @@ export const MT = {
   "databáze ulic Cách a OSM": "mill-bażi tad-data tat-toroq ta' Aachen u minn OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "uċuħ tat-toroq (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "ortofoto {who}",
+  "budovy {who}": "bini {who}",
   "obruby vozovky: model AI učený na mapách povrchů {who}": "bankini tat-triq: mudell tal-IA mħarreġ fuq il-mapep tal-uċuħ {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "ortofoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
@@ -970,7 +971,7 @@ export const MT_HTML = {
     Il-Belġju u l-Lussemburgu: ortofoto u linji GRB © Digitaal Vlaanderen, ortofoto u linji PICC © SPW (Service public de Wallonie), ortofoto © ACT Luxembourg (geoportail.lu), konfini © EuroGeographics (GISCO), sinjali tat-traffiku Wikimedia Commons (xogħlijiet uffiċjali), tfittxija Photon © komoot (dejta OSM) ·
     Il-Polonja: ortofoto u tfittxija tal-indirizzi © GUGiK (Geoportal.gov.pl, PRG), mappa tal-uċuħ ta' Krakovja (MJO) © Gmina Miejska Kraków, konfini © EuroGeographics (GISCO), sinjali tat-traffiku Wikimedia Commons (xogħlijiet uffiċjali) ·
     Franza: ortofoto, bini (BD TOPO) u tfittxija tal-indirizzi © IGN (Géoplateforme, Licence Ouverte 2.0), mappa tal-uċuħ ta' Pariġi (Plan de voirie) © Ville de Paris (ODbL), konfini © EuroGeographics (GISCO), sinjali tat-traffiku Wikimedia Commons (xogħlijiet uffiċjali) ·
-    Spanja: ortofoto PNOA u tfittxija tal-indirizzi CartoCiudad © IGN (CC BY 4.0 scne.es), bini © Dirección General del Catastro, mappa tal-uċuħ ta' Zaragoza © Ayuntamiento de Zaragoza (IDEZar), konfini © EuroGeographics (GISCO), sinjali tat-traffiku Wikimedia Commons (xogħlijiet uffiċjali) ·
+    Spanja: ortofoto PNOA u tfittxija tal-indirizzi CartoCiudad © IGN (CC BY 4.0 scne.es), bini © Dirección General del Catastro, fin-Navarra Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), fil-Pajjiż Bask © Arabako, Bizkaiko u Gipuzkoako Foru Aldundia, mappa tal-uċuħ ta' Zaragoza © Ayuntamiento de Zaragoza (IDEZar), konfini © EuroGeographics (GISCO), sinjali tat-traffiku Wikimedia Commons (xogħlijiet uffiċjali) ·
     Portugall: ortofoto © DGT (Direção-Geral do Território), konfini © EuroGeographics (GISCO), sinjali tat-traffiku Wikimedia Commons (xogħlijiet uffiċjali; imfassla mill-ġdid minn Fry1989 taħt CC BY-SA 3.0 u Gigillo83 taħt CC BY-SA 4.0) ·
     Monaco: ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0), konfini © kontributuri ta' OpenStreetMap, tpinġijiet ta' sinjali tat-traffiku Franċiżi Wikimedia Commons ·
     Ċipru: ortofoto 2019 © Department of Lands and Surveys (DLS; liċenzja mhux iddikjarata), bini © DLS (CC BY 4.0), konfini © kontributuri ta' OpenStreetMap, sinjali tat-traffiku Wikimedia Commons (mudelli Brittaniċi: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·

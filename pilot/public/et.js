@@ -391,6 +391,7 @@ export const ET = {
   "databáze ulic Cách a OSM": "Aacheni tänavate andmebaasi ja OSM-i",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "tänavakatted (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "ortofoto {who}",
+  "budovy {who}": "hooned {who}",
   "obruby vozovky: model AI učený na mapách povrchů {who}": "sõidutee äärekivid: tehisintellekti mudel, õpetatud pinnakaartidel {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "ortofoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
@@ -945,7 +946,7 @@ export const ET_HTML = {
     Belgia ja Luksemburg: ortofoto ja GRB jooned © Digitaal Vlaanderen, ortofoto ja PICC jooned © SPW (Service public de Wallonie), ortofoto © ACT Luxembourg (geoportail.lu), piirid © EuroGeographics (GISCO), liiklusmärgid Wikimedia Commons (ametlikud teosed), otsing Photon © komoot (OSM-i andmed) ·
     Poola: ortofoto ja aadressiotsing © GUGiK (Geoportal.gov.pl, PRG), Krakowi pinnakatete kaart (MJO) © Gmina Miejska Kraków, piirid © EuroGeographics (GISCO), liiklusmärgid Wikimedia Commons (ametlikud teosed) ·
     Prantsusmaa: ortofoto, hooned (BD TOPO) ja aadressiotsing © IGN (Géoplateforme, Licence Ouverte 2.0), Pariisi pinnakatete kaart (Plan de voirie) © Ville de Paris (ODbL), piirid © EuroGeographics (GISCO), liiklusmärgid Wikimedia Commons (ametlikud teosed) ·
-    Hispaania: ortofoto PNOA ja aadressiotsing CartoCiudad © IGN (CC BY 4.0 scne.es), hooned © Dirección General del Catastro, Zaragoza pinnakatete kaart © Ayuntamiento de Zaragoza (IDEZar), piirid © EuroGeographics (GISCO), liiklusmärgid Wikimedia Commons (ametlikud teosed) ·
+    Hispaania: ortofoto PNOA ja aadressiotsing CartoCiudad © IGN (CC BY 4.0 scne.es), hooned © Dirección General del Catastro, Navarras Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), Baskimaal © Arabako, Bizkaiko ja Gipuzkoako Foru Aldundia, Zaragoza pinnakatete kaart © Ayuntamiento de Zaragoza (IDEZar), piirid © EuroGeographics (GISCO), liiklusmärgid Wikimedia Commons (ametlikud teosed) ·
     Portugal: ortofoto © DGT (Direção-Geral do Território), piirid © EuroGeographics (GISCO), liiklusmärgid Wikimedia Commons (ametlikud teosed; ümberjoonistused Fry1989, CC BY-SA 3.0, ja Gigillo83, CC BY-SA 4.0) ·
     Monaco: ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0), piirid © OpenStreetMapi kaastöötajad, Prantsuse liiklusmärkide joonised Wikimedia Commons ·
     Küpros: ortofoto 2019 © Department of Lands and Surveys (DLS; litsents märkimata), hooned © DLS (CC BY 4.0), piirid © OpenStreetMapi kaastöötajad, liiklusmärgid Wikimedia Commons (Briti kujundused: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·

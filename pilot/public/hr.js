@@ -398,6 +398,7 @@ export const HR = {
   "databáze ulic Cách a OSM": "baze podataka ulica Aachena i OSM-a",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "ulične površine (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "ortofoto {who}",
+  "budovy {who}": "zgrade {who}",
   "obruby vozovky: model AI učený na mapách povrchů {who}": "rubnjaci kolnika: model umjetne inteligencije naučen na kartama površina {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "ortofoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
@@ -969,7 +970,7 @@ export const HR_HTML = {
     Belgija i Luksemburg: ortofoto i linije GRB © Digitaal Vlaanderen, ortofoto i linije PICC © SPW (Service public de Wallonie), ortofoto © ACT Luxembourg (geoportail.lu), granica © EuroGeographics (GISCO), prometni znakovi Wikimedia Commons (službena djela), pretraživanje Photon © komoot (podaci OSM-a) ·
     Poljska: ortofoto i pretraživanje adresa © GUGiK (Geoportal.gov.pl, PRG), karta površina Krakova (MJO) © Gmina Miejska Kraków, granica © EuroGeographics (GISCO), prometni znakovi Wikimedia Commons (službena djela) ·
     Francuska: ortofoto, zgrade (BD TOPO) i pretraživanje adresa © IGN (Géoplateforme, Licence Ouverte 2.0), karta površina Pariza (Plan de voirie) © Ville de Paris (ODbL), granica © EuroGeographics (GISCO), prometni znakovi Wikimedia Commons (službena djela) ·
-    Španjolska: ortofoto PNOA i pretraživanje adresa CartoCiudad © IGN (CC BY 4.0 scne.es), zgrade © Dirección General del Catastro, karta površina Zaragoze © Ayuntamiento de Zaragoza (IDEZar), granica © EuroGeographics (GISCO), prometni znakovi Wikimedia Commons (službena djela) ·
+    Španjolska: ortofoto PNOA i pretraživanje adresa CartoCiudad © IGN (CC BY 4.0 scne.es), zgrade © Dirección General del Catastro, u Navarri Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), u Baskiji © Arabako, Bizkaiko i Gipuzkoako Foru Aldundia, karta površina Zaragoze © Ayuntamiento de Zaragoza (IDEZar), granica © EuroGeographics (GISCO), prometni znakovi Wikimedia Commons (službena djela) ·
     Portugal: ortofoto © DGT (Direção-Geral do Território), granica © EuroGeographics (GISCO), prometni znakovi Wikimedia Commons (službena djela; ponovno nacrtali Fry1989 pod CC BY-SA 3.0 i Gigillo83 pod CC BY-SA 4.0) ·
     Monako: ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0), granica © doprinositelji OpenStreetMapa, crteži francuskih prometnih znakova Wikimedia Commons ·
     Cipar: ortofoto 2019. © Department of Lands and Surveys (DLS; licenca nije navedena), zgrade © DLS (CC BY 4.0), granica © doprinositelji OpenStreetMapa, prometni znakovi Wikimedia Commons (britanski uzorci: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·

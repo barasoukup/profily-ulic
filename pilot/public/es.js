@@ -398,6 +398,7 @@ export const ES = {
   "databáze ulic Cách a OSM": "de la base de datos viaria de Aquisgrán y de OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "superficies viarias (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "ortofoto {who}",
+  "budovy {who}": "edificios {who}",
   "obruby vozovky: model AI učený na mapách povrchů {who}": "bordillos de la calzada: modelo de IA entrenado con los mapas de superficies {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "ortofoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
@@ -971,7 +972,7 @@ export const ES_HTML = {
     Bélgica y Luxemburgo: ortofoto y líneas GRB © Digitaal Vlaanderen, ortofoto y líneas PICC © SPW (Service public de Wallonie), ortofoto © ACT Luxembourg (geoportail.lu), límites © EuroGeographics (GISCO), señales de tráfico de Wikimedia Commons (obras oficiales), búsqueda Photon © komoot (datos de OSM) ·
     Polonia: ortofoto y búsqueda de direcciones © GUGiK (Geoportal.gov.pl, PRG), mapa de superficies de Cracovia (MJO) © Gmina Miejska Kraków, límites © EuroGeographics (GISCO), señales de tráfico de Wikimedia Commons (obras oficiales) ·
     Francia: ortofoto, edificios (BD TOPO) y búsqueda de direcciones © IGN (Géoplateforme, Licence Ouverte 2.0), mapa de superficies de París (Plan de voirie) © Ville de Paris (ODbL), límites © EuroGeographics (GISCO), señales de tráfico de Wikimedia Commons (obras oficiales) ·
-    España: ortofoto PNOA y búsqueda de direcciones CartoCiudad © IGN (CC BY 4.0 scne.es), edificios © Dirección General del Catastro, mapa de superficies de Zaragoza © Ayuntamiento de Zaragoza (IDEZar), límites © EuroGeographics (GISCO), señales de tráfico de Wikimedia Commons (obras oficiales) ·
+    España: ortofoto PNOA y búsqueda de direcciones CartoCiudad © IGN (CC BY 4.0 scne.es), edificios © Dirección General del Catastro, en Navarra Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), en el País Vasco © Arabako, Bizkaiko y Gipuzkoako Foru Aldundia, mapa de superficies de Zaragoza © Ayuntamiento de Zaragoza (IDEZar), límites © EuroGeographics (GISCO), señales de tráfico de Wikimedia Commons (obras oficiales) ·
     Portugal: ortofoto © DGT (Direção-Geral do Território), límites © EuroGeographics (GISCO), señales de tráfico de Wikimedia Commons (obras oficiales; redibujadas por Fry1989 bajo CC BY-SA 3.0 y Gigillo83 bajo CC BY-SA 4.0) ·
     Mónaco: ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0), límites © colaboradores de OpenStreetMap, dibujos de señales de tráfico francesas de Wikimedia Commons ·
     Chipre: ortofoto 2019 © Department of Lands and Surveys (DLS; licencia no indicada), edificios © DLS (CC BY 4.0), límites © colaboradores de OpenStreetMap, señales de tráfico de Wikimedia Commons (modelos británicos: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·

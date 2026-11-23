@@ -391,6 +391,7 @@ export const BG = {
   "databáze ulic Cách a OSM": "базата данни за улиците на Аахен и OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "улични настилки (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "ортофото {who}",
+  "budovy {who}": "сгради {who}",
   "obruby vozovky: model AI učený na mapách povrchů {who}": "бордюри на платното: модел с ИИ, обучен върху картите на настилките {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "ортофото © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ортофото © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
@@ -945,7 +946,7 @@ export const BG_HTML = {
     Белгия и Люксембург: ортофото и линии GRB © Digitaal Vlaanderen, ортофото и линии PICC © SPW (Service public de Wallonie), ортофото © ACT Luxembourg (geoportail.lu), граница © EuroGeographics (GISCO), пътни знаци Wikimedia Commons (официални документи), търсене Photon © komoot (данни от OSM) ·
     Полша: ортофото и търсене на адреси © GUGiK (Geoportal.gov.pl, PRG), картата на настилките на Краков (MJO) © Gmina Miejska Kraków, граница © EuroGeographics (GISCO), пътни знаци Wikimedia Commons (официални документи) ·
     Франция: ортофото, сгради (BD TOPO) и търсене на адреси © IGN (Géoplateforme, Licence Ouverte 2.0), картата на настилките на Париж (Plan de voirie) © Ville de Paris (ODbL), граница © EuroGeographics (GISCO), пътни знаци Wikimedia Commons (официални документи) ·
-    Испания: ортофото PNOA и търсене на адреси CartoCiudad © IGN (CC BY 4.0 scne.es), сгради © Dirección General del Catastro, картата на настилките на Сарагоса © Ayuntamiento de Zaragoza (IDEZar), граница © EuroGeographics (GISCO), пътни знаци Wikimedia Commons (официални документи) ·
+    Испания: ортофото PNOA и търсене на адреси CartoCiudad © IGN (CC BY 4.0 scne.es), сгради © Dirección General del Catastro, в Навара Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), в Страната на баските © Arabako, Bizkaiko и Gipuzkoako Foru Aldundia, картата на настилките на Сарагоса © Ayuntamiento de Zaragoza (IDEZar), граница © EuroGeographics (GISCO), пътни знаци Wikimedia Commons (официални документи) ·
     Португалия: ортофото © DGT (Direção-Geral do Território), граница © EuroGeographics (GISCO), пътни знаци Wikimedia Commons (официални документи; прерисувани от Fry1989 под CC BY-SA 3.0 и Gigillo83 под CC BY-SA 4.0) ·
     Монако: ортофото © IGN (Géoplateforme, Licence Ouverte 2.0), граница © сътрудници на OpenStreetMap, рисунки на френски пътни знаци Wikimedia Commons ·
     Кипър: ортофото 2019 © Department of Lands and Surveys (DLS; лицензът не е посочен), сгради © DLS (CC BY 4.0), граница © сътрудници на OpenStreetMap, пътни знаци Wikimedia Commons (британски образци: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·

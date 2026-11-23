@@ -399,6 +399,7 @@ export const FI = {
   "databáze ulic Cách a OSM": "Aachenin katutietokanta ja OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "katujen pinnat (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "ortokuva {who}",
+  "budovy {who}": "rakennukset {who}",
   "obruby vozovky: model AI učený na mapách povrchů {who}": "ajoradan reunakivet: tekoälymalli, opetettu pintakartoilla {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "ortokuva © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortokuva © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
@@ -970,7 +971,7 @@ export const FI_HTML = {
     Belgia ja Luxemburg: ortokuva ja GRB-viivat © Digitaal Vlaanderen, ortokuva ja PICC-viivat © SPW (Service public de Wallonie), ortokuva © ACT Luxembourg (geoportail.lu), rajat © EuroGeographics (GISCO), liikennemerkit Wikimedia Commons (viranomaisteokset), haku Photon © komoot (OSM-data) ·
     Puola: ortokuva ja osoitehaku © GUGiK (Geoportal.gov.pl, PRG), Krakovan pintakartta (MJO) © Gmina Miejska Kraków, rajat © EuroGeographics (GISCO), liikennemerkit Wikimedia Commons (viranomaisteokset) ·
     Ranska: ortokuva, rakennukset (BD TOPO) ja osoitehaku © IGN (Géoplateforme, Licence Ouverte 2.0), Pariisin pintakartta (Plan de voirie) © Ville de Paris (ODbL), rajat © EuroGeographics (GISCO), liikennemerkit Wikimedia Commons (viranomaisteokset) ·
-    Espanja: ortokuva PNOA ja osoitehaku CartoCiudad © IGN (CC BY 4.0 scne.es), rakennukset © Dirección General del Catastro, Zaragozan pintakartta © Ayuntamiento de Zaragoza (IDEZar), rajat © EuroGeographics (GISCO), liikennemerkit Wikimedia Commons (viranomaisteokset) ·
+    Espanja: ortokuva PNOA ja osoitehaku CartoCiudad © IGN (CC BY 4.0 scne.es), rakennukset © Dirección General del Catastro, Navarrassa Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), Baskimaassa © Arabako, Bizkaiko ja Gipuzkoako Foru Aldundia, Zaragozan pintakartta © Ayuntamiento de Zaragoza (IDEZar), rajat © EuroGeographics (GISCO), liikennemerkit Wikimedia Commons (viranomaisteokset) ·
     Portugali: ortokuva © DGT (Direção-Geral do Território), rajat © EuroGeographics (GISCO), liikennemerkit Wikimedia Commons (viranomaisteokset; uudelleenpiirrokset Fry1989, CC BY-SA 3.0, ja Gigillo83, CC BY-SA 4.0) ·
     Monaco: ortokuva © IGN (Géoplateforme, Licence Ouverte 2.0), rajat © OpenStreetMapin tekijät, ranskalaisten liikennemerkkien piirrokset Wikimedia Commons ·
     Kypros: ortokuva 2019 © Department of Lands and Surveys (DLS; lisenssiä ei mainittu), rakennukset © DLS (CC BY 4.0), rajat © OpenStreetMapin tekijät, liikennemerkit Wikimedia Commons (brittiläiset mallit: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·

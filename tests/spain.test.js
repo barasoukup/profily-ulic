@@ -37,25 +37,68 @@ test("Španělsko: budovy z katastru (podlaží části u fasády, rok, užití)
   try { assert.deepEqual(await E.sources.podlaznost(40.4, -3.7), {}); } finally { delete globalThis.PROFILY_ES; }
 });
 
-test("Španělsko: v Baskicku a Navaře se katastr neptá (regions-es.json, díry Treviño a Villaverde)", async () => {
+test("Španělsko: v Baskicku a Navaře se katastr neptá, ale foralního katastru provincie (regions-es.json, díry Treviño a Villaverde)", async () => {
   const E = await import("../pilot/public/towns/spain.js");
+  const F = await import("../pilot/public/towns/spain-foral.js");
   const orig = globalThis.fetch, asked = [];
   globalThis.fetch = async (url) => { asked.push(String(url)); return { ok: true, text: async () => "" }; };
   try {
-    for (const [name, lat, lon] of [["Bilbao", 43.263, -2.935], ["Pamplona", 42.8125, -1.6458]]) {
-      assert.deepEqual(await E.sources.podlaznost(lat, lon), {}, name);
-      assert.equal(asked.length, 0, `${name}: bez dotazu`);
+    for (const [name, lat, lon, code] of [["Bilbao", 43.263, -2.935, "bi"], ["Donostia", 43.3183, -1.9812, "gi"], ["Vitoria-Gasteiz", 42.8467, -2.6716, "ar"], ["Pamplona", 42.8125, -1.6458, "nc"]]) {
+      assert.equal(await E.foralAt(lon, lat), code, name);
+      const n = asked.length;
+      globalThis.PROFILY_ES = { foral: "1" };
+      try { assert.deepEqual(await E.sources.podlaznost(lat, lon), {}, name); } finally { delete globalThis.PROFILY_ES; }
+      assert.equal(asked.length - n, 1, `${name}: jeden dotaz`);
+      assert.ok(asked.at(-1).startsWith(F.FORAL[code].url), `${name}: katastr provincie`);
+      globalThis.PROFILY_ES = { foral: "0" };
+      try { assert.deepEqual(await E.sources.podlaznost(lat + 0.001, lon), {}); } finally { delete globalThis.PROFILY_ES; }
+      assert.equal(asked.length - n, 1, `${name}: ?foral=0 bez dotazu, ani na Catastro`);
     }
-    assert.equal(await E.foralAt(-2.6716, 42.8467), "pv", "Vitoria");
     assert.equal(await E.foralAt(-1.6064, 42.0617), "nc", "Tudela");
+    // Near the border of Bizkaia and Gipuzkoa (Ermua, Eibar): still inside the four, the province of the point.
+    assert.equal(await E.foralAt(-2.4717, 43.1844), "gi", "Eibar");
     for (const [name, lat, lon] of [["Treviño (Burgos v Álavě)", 42.735, -2.746], ["Villaverde (Kantábrie v Bizkaji)", 43.24, -3.28], ["Burgos", 42.344, -3.697], ["Santander", 43.4623, -3.81]]) {
       assert.equal(await E.foralAt(lon, lat), null, name);
+      assert.equal(await E.provinceAt(lon, lat), null, name);
       const n = asked.length;
       await E.sources.podlaznost(lat, lon);
       assert.equal(asked.length - n, 2, `${name}: dotaz na katastr`);
       assert.ok(asked.at(-1).startsWith(E.CATASTRO_WFS));
     }
   } finally { globalThis.fetch = orig; }
+});
+
+test("Španělsko: foralní katastry (Navarra, Gipuzkoa, Bizkaia, Álava): dotaz a čtení GML", async () => {
+  const F = await import("../pilot/public/towns/spain-foral.js");
+  const gml = (c) => fs.readFileSync(new URL(`fixtures/foral-${c}.xml`, import.meta.url), "utf8");
+  // Navarre: BU:Building, the year in "beginning", the use in xlink:href (public services: no type).
+  assert.deepEqual(F.foralBuilding("nc", gml("nc"), 42.81855, -1.6443), { built: 1953, office: undefined, house: undefined, type: undefined, cornice: 2, total: 2, roof: 0, foral: "nc" });
+  assert.equal(F.foralBuilding("nc", gml("nc"), 42.81828, -1.6443).total, 6, "soused v témž okně");
+  // Gipuzkoa: elements with xsi:nil="false", the year in "end", shops below flats are flats.
+  assert.deepEqual(F.foralBuilding("gi", gml("gi"), 43.3212, -1.9766), { built: 1942, office: undefined, house: undefined, type: "apartments", cornice: 7, total: 7, roof: 0, foral: "gi" });
+  assert.equal(F.foralBuilding("gi", gml("gi"), 43.3214, -1.9767).built, 1981);
+  // Bizkaia: "beginning" nil, the year in "end", the use in xlink:title with trailing spaces.
+  assert.deepEqual(F.foralBuilding("bi", gml("bi"), 43.2635, -2.9381), { built: 1920, office: undefined, house: undefined, type: "apartments", cornice: 7, total: 7, roof: 0, foral: "bi" });
+  // Álava: lon lat in the GML; read as lat lon the point would lie in no building and the other would be taken.
+  assert.equal(F.foralBuilding("ar", gml("ar"), 42.84998, -2.66812).built, 1972);
+  assert.equal(F.foralBuilding("ar", gml("ar"), 42.85, -2.66835).built, 1965);
+  assert.equal(F.foralBuilding("ar", gml("ar"), 42.84998, -2.66812).type, "apartments", "residential jako text");
+  assert.deepEqual(F.foralBuilding("nc", "", 0, 0), {});
+  // The bbox: lat lon with the CRS as a URI (Navarre, Gipuzkoa), EPSG:4258 (Bizkaia), lon lat in EPSG:4326 (Álava).
+  const bbox = (c) => new URL(F.foralUrl(c, 42.8, -1.6, 0.00001)).searchParams.get("bbox");
+  assert.equal(bbox("nc"), "42.79999,-1.60001,42.80001,-1.59999,http://www.opengis.net/def/crs/EPSG/0/4258");
+  assert.equal(bbox("bi"), "42.79999,-1.60001,42.80001,-1.59999,EPSG:4258");
+  assert.equal(bbox("ar"), "-1.60001,42.79999,-1.59999,42.80001,EPSG:4326");
+  assert.equal(new URL(F.foralUrl("gi", 43.3, -1.98, 0.00001)).searchParams.get("typeNames"), "bu-ext2d:Building");
+  // The switch: ?foral=0 none, 1 all, a list those, else the default.
+  assert.equal(F.foralEnabled("nc", "0"), false);
+  assert.equal(F.foralEnabled("bi", "1"), true);
+  assert.deepEqual(["nc", "gi", "bi", "ar"].map((c) => F.foralEnabled(c, "nc,gi")), [true, true, false, false]);
+  assert.deepEqual(["nc", "gi", "bi", "ar"].map((c) => F.foralEnabled(c, null)), ["nc", "gi", "bi", "ar"].map((c) => F.FORAL_ON.has(c)));
+  // The credit of each.
+  const { sourceCredits } = await import("../pilot/public/credits.js");
+  assert.ok(sourceCredits({ esForal: "nc" })[0].includes("Servicio proporcionado por el Gobierno de Navarra"));
+  for (const c of ["gi", "bi", "ar"]) assert.ok(sourceCredits({ esForal: c })[0].includes("Foru Aldundia"), c);
 });
 
 test("Španělsko: hledání CartoCiudad (adresa s bodem, ulice bez bodu až přes find)", async () => {

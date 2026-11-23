@@ -398,6 +398,7 @@ export const EL = {
   "databáze ulic Cách a OSM": "της βάσης δεδομένων οδών του Άαχεν και του OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "επιφάνειες οδών (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "ορθοφωτογραφία {who}",
+  "budovy {who}": "κτίρια {who}",
   "obruby vozovky: model AI učený na mapách povrchů {who}": "κράσπεδα οδοστρώματος: μοντέλο ΤΝ εκπαιδευμένο στους χάρτες επιφανειών {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "ορθοφωτογραφία © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ορθοφωτογραφία © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
@@ -970,7 +971,7 @@ export const EL_HTML = {
     Βέλγιο και Λουξεμβούργο: ορθοφωτογραφία και γραμμές GRB © Digitaal Vlaanderen, ορθοφωτογραφία και γραμμές PICC © SPW (Service public de Wallonie), ορθοφωτογραφία © ACT Luxembourg (geoportail.lu), όριο © EuroGeographics (GISCO), πινακίδες σήμανσης Wikimedia Commons (επίσημα έργα), αναζήτηση Photon © komoot (δεδομένα OSM) ·
     Πολωνία: ορθοφωτογραφία και αναζήτηση διευθύνσεων © GUGiK (Geoportal.gov.pl, PRG), χάρτης επιφανειών της Κρακοβίας (MJO) © Gmina Miejska Kraków, όριο © EuroGeographics (GISCO), πινακίδες σήμανσης Wikimedia Commons (επίσημα έργα) ·
     Γαλλία: ορθοφωτογραφία, κτίρια (BD TOPO) και αναζήτηση διευθύνσεων © IGN (Géoplateforme, Licence Ouverte 2.0), χάρτης επιφανειών του Παρισιού (Plan de voirie) © Ville de Paris (ODbL), όριο © EuroGeographics (GISCO), πινακίδες σήμανσης Wikimedia Commons (επίσημα έργα) ·
-    Ισπανία: ορθοφωτογραφία PNOA και αναζήτηση διευθύνσεων CartoCiudad © IGN (CC BY 4.0 scne.es), κτίρια © Dirección General del Catastro, χάρτης επιφανειών της Σαραγόσας © Ayuntamiento de Zaragoza (IDEZar), όριο © EuroGeographics (GISCO), πινακίδες σήμανσης Wikimedia Commons (επίσημα έργα) ·
+    Ισπανία: ορθοφωτογραφία PNOA και αναζήτηση διευθύνσεων CartoCiudad © IGN (CC BY 4.0 scne.es), κτίρια © Dirección General del Catastro, στη Ναβάρρα Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), στη Χώρα των Βάσκων © Arabako, Bizkaiko και Gipuzkoako Foru Aldundia, χάρτης επιφανειών της Σαραγόσας © Ayuntamiento de Zaragoza (IDEZar), όριο © EuroGeographics (GISCO), πινακίδες σήμανσης Wikimedia Commons (επίσημα έργα) ·
     Πορτογαλία: ορθοφωτογραφία © DGT (Direção-Geral do Território), όριο © EuroGeographics (GISCO), πινακίδες σήμανσης Wikimedia Commons (επίσημα έργα· επανασχεδίαση από τους χρήστες Fry1989 υπό CC BY-SA 3.0 και Gigillo83 υπό CC BY-SA 4.0) ·
     Μονακό: ορθοφωτογραφία © IGN (Géoplateforme, Licence Ouverte 2.0), όριο © συνεισφέροντες του OpenStreetMap, σχέδια γαλλικών πινακίδων σήμανσης Wikimedia Commons ·
     Κύπρος: ορθοφωτογραφία 2019 © Department of Lands and Surveys (DLS· η άδεια δεν αναφέρεται), κτίρια © DLS (CC BY 4.0), όριο © συνεισφέροντες του OpenStreetMap, πινακίδες σήμανσης Wikimedia Commons (βρετανικά πρότυπα: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·

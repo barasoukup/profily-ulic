@@ -1,0 +1,1034 @@
+[
+ {
+  "id": "bi1",
+  "town": "bilbao",
+  "lat": 43.2665973,
+  "lon": -2.920394,
+  "bearing": -98.1,
+  "street": "Okendo Almiranteen kalea",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 10.8,
+    "lat": 43.2664647,
+    "lon": -2.9203683,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 6,
+    "lat": 43.2666868,
+    "lon": -2.9204115,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   }
+  ]
+ },
+ {
+  "id": "bi2",
+  "town": "bilbao",
+  "lat": 43.2665933,
+  "lon": -2.9203344,
+  "bearing": -67.5,
+  "street": "Okendo Almiranteen kalea",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 10.8,
+    "lat": 43.26647,
+    "lon": -2.9204041,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 3.9,
+    "lat": 43.2666593,
+    "lon": -2.9202972,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   }
+  ]
+ },
+ {
+  "id": "bi3",
+  "town": "bilbao",
+  "lat": 43.2547312,
+  "lon": -2.9195165,
+  "bearing": 78.1,
+  "street": "Baso bidea",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 5.1,
+    "lat": 43.2548114,
+    "lon": -2.9195396,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 5.4,
+    "lat": 43.2546484,
+    "lon": -2.9194927,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   }
+  ]
+ },
+ {
+  "id": "bi4",
+  "town": "bilbao",
+  "lat": 43.2519039,
+  "lon": -2.9383043,
+  "bearing": 113.8,
+  "street": "Eskurtze kalea",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 32.1,
+    "lat": 43.2522029,
+    "lon": -2.9381246,
+    "osm": {},
+    "tags": {
+     "building": "yes"
+    }
+   }
+  ]
+ },
+ {
+  "id": "bi5",
+  "town": "bilbao",
+  "lat": 43.2574683,
+  "lon": -2.9173799,
+  "bearing": 126.9,
+  "street": "Prim kalea",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "right",
+    "facadeM": 3.7,
+    "lat": 43.257413,
+    "lon": -2.9174366,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   }
+  ]
+ },
+ {
+  "id": "bi6",
+  "town": "bilbao",
+  "lat": 43.2637572,
+  "lon": -2.9334092,
+  "bearing": 106.4,
+  "street": "Kolon Larreategi kalea",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 11.1,
+    "lat": 43.2638885,
+    "lon": -2.9333567,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 15.8,
+    "lat": 43.2635858,
+    "lon": -2.9334779,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   }
+  ]
+ },
+ {
+  "id": "bi7",
+  "town": "bilbao",
+  "lat": 43.2609849,
+  "lon": -2.9549951,
+  "bearing": -42.9,
+  "street": "Montevideo etorbidea",
+  "highway": "primary",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 32.2,
+    "lat": 43.260762,
+    "lon": -2.955322,
+    "osm": {},
+    "tags": {
+     "building": "yes"
+    }
+   }
+  ]
+ },
+ {
+  "id": "bi8",
+  "town": "bilbao",
+  "lat": 43.2593074,
+  "lon": -2.9380378,
+  "bearing": 17.3,
+  "street": "Iparraguirre kalea",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 8.6,
+    "lat": 43.2593414,
+    "lon": -2.9381865,
+    "osm": {},
+    "tags": {
+     "building": "yes"
+    }
+   }
+  ]
+ },
+ {
+  "id": "bi9",
+  "town": "bilbao",
+  "lat": 43.2538718,
+  "lon": -2.947299,
+  "bearing": -4.5,
+  "street": null,
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 30.2,
+    "lat": 43.2538473,
+    "lon": -2.9477189,
+    "osm": {},
+    "tags": {
+     "building": "yes"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 12,
+    "lat": 43.2538832,
+    "lon": -2.9471025,
+    "osm": {},
+    "tags": {
+     "building": "yes"
+    }
+   }
+  ]
+ },
+ {
+  "id": "bi10",
+  "town": "bilbao",
+  "lat": 43.2753913,
+  "lon": -2.9468961,
+  "bearing": -86.4,
+  "street": "Ganeta Mendiaren kalea",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 4.9,
+    "lat": 43.2753111,
+    "lon": -2.946903,
+    "osm": {},
+    "tags": {
+     "building": "yes"
+    }
+   }
+  ]
+ },
+ {
+  "id": "do1",
+  "town": "donostia",
+  "lat": 43.3167862,
+  "lon": -1.9705751,
+  "bearing": 60.3,
+  "street": "Iruresoro plaza",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "right",
+    "facadeM": 4.2,
+    "lat": 43.3167217,
+    "lon": -1.9705249,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   }
+  ]
+ },
+ {
+  "id": "do2",
+  "town": "donostia",
+  "lat": 43.3227748,
+  "lon": -1.9682131,
+  "bearing": 94.1,
+  "street": "Oiartzun kalea",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 6.1,
+    "lat": 43.322866,
+    "lon": -1.9682042,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 5.5,
+    "lat": 43.3226895,
+    "lon": -1.9682214,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   }
+  ]
+ },
+ {
+  "id": "do3",
+  "town": "donostia",
+  "lat": 43.3174557,
+  "lon": -1.9698488,
+  "bearing": -120.6,
+  "street": "Karmengo Andre Mariaren kalea",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 5.6,
+    "lat": 43.317381,
+    "lon": -1.9697884,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   }
+  ]
+ },
+ {
+  "id": "do4",
+  "town": "donostia",
+  "lat": 43.3228027,
+  "lon": -1.9772734,
+  "bearing": -78.9,
+  "street": "Colon pasealekua",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "right",
+    "facadeM": 23.9,
+    "lat": 43.3230502,
+    "lon": -1.977207,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   }
+  ]
+ },
+ {
+  "id": "do5",
+  "town": "donostia",
+  "lat": 43.3096241,
+  "lon": -1.9662089,
+  "bearing": -91.6,
+  "street": "Plazaburu kalea",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 3.8,
+    "lat": 43.3095533,
+    "lon": -1.9662062,
+    "osm": {},
+    "tags": {
+     "building": "yes"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 3.6,
+    "lat": 43.3096932,
+    "lon": -1.9662114,
+    "osm": {},
+    "tags": {
+     "building": "yes"
+    }
+   }
+  ]
+ },
+ {
+  "id": "do6",
+  "town": "donostia",
+  "lat": 43.3246199,
+  "lon": -1.9679337,
+  "bearing": 27,
+  "street": "Ategorrietako Galtzada Zaharra",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 11.5,
+    "lat": 43.3246835,
+    "lon": -1.968104,
+    "osm": {},
+    "tags": {
+     "building": "house"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 25,
+    "lat": 43.3245005,
+    "lon": -1.9676145,
+    "osm": {
+     "levels": 3,
+     "type": "hotel",
+     "block": {
+      "length": 25.5,
+      "width": 18.4,
+      "fill": 0.67,
+      "parts": 1
+     }
+    },
+    "tags": {
+     "building": "hotel",
+     "building:levels": "3"
+    }
+   }
+  ]
+ },
+ {
+  "id": "do7",
+  "town": "donostia",
+  "lat": 43.3135431,
+  "lon": -1.9809557,
+  "bearing": -117.1,
+  "street": "Pedro Egaña kalea",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 6.2,
+    "lat": 43.313461,
+    "lon": -1.9808983,
+    "osm": {
+     "levels": 6,
+     "type": "apartments",
+     "block": {
+      "length": 99.3,
+      "width": 61.4,
+      "fill": 0.52,
+      "parts": 5
+     }
+    },
+    "tags": {
+     "building": "apartments",
+     "building:levels": "5",
+     "roof:levels": "1"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 6.6,
+    "lat": 43.3136287,
+    "lon": -1.9810154,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   }
+  ]
+ },
+ {
+  "id": "do8",
+  "town": "donostia",
+  "lat": 43.3216029,
+  "lon": -1.9614611,
+  "bearing": -175.1,
+  "street": "Fernando Sasiain kalea",
+  "highway": "secondary",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 13.3,
+    "lat": 43.3215896,
+    "lon": -1.9612482,
+    "osm": {},
+    "tags": {
+     "building": "kindergarten"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 22.9,
+    "lat": 43.3216236,
+    "lon": -1.9617926,
+    "osm": {},
+    "tags": {
+     "building": "yes"
+    }
+   }
+  ]
+ },
+ {
+  "id": "do9",
+  "town": "donostia",
+  "lat": 43.3047049,
+  "lon": -1.973009,
+  "bearing": -61.6,
+  "street": "Toribio Alzaga kalea",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 27.6,
+    "lat": 43.3044537,
+    "lon": -1.9731948,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 12,
+    "lat": 43.3048325,
+    "lon": -1.9729147,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   }
+  ]
+ },
+ {
+  "id": "do10",
+  "town": "donostia",
+  "lat": 43.3099937,
+  "lon": -1.9678041,
+  "bearing": 142.4,
+  "street": "Madalena Jauregiberri pasealekua",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "right",
+    "facadeM": 12.4,
+    "lat": 43.3099033,
+    "lon": -1.9679642,
+    "osm": {
+     "levels": 4,
+     "type": "office",
+     "block": {
+      "length": 103.7,
+      "width": 49.8,
+      "fill": 0.74,
+      "parts": 2
+     }
+    },
+    "tags": {
+     "building": "office",
+     "building:levels": "4",
+     "roof:levels": "0"
+    }
+   }
+  ]
+ },
+ {
+  "id": "vi1",
+  "town": "vitoria",
+  "lat": 42.8530215,
+  "lon": -2.6732214,
+  "bearing": 13.8,
+  "street": "Arriagako atea",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "right",
+    "facadeM": 12.9,
+    "lat": 42.8529852,
+    "lon": -2.6730206,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   }
+  ]
+ },
+ {
+  "id": "vi2",
+  "town": "vitoria",
+  "lat": 42.8558808,
+  "lon": -2.6694598,
+  "bearing": -141.9,
+  "street": "Fermin Lasuen kalea",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 16.4,
+    "lat": 42.8557671,
+    "lon": -2.6692635,
+    "osm": {},
+    "tags": {
+     "building": "yes"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 7.2,
+    "lat": 42.8559434,
+    "lon": -2.6695679,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   }
+  ]
+ },
+ {
+  "id": "vi3",
+  "town": "vitoria",
+  "lat": 42.8512518,
+  "lon": -2.6802198,
+  "bearing": 102.7,
+  "street": "Badaia kalea",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 11,
+    "lat": 42.8513844,
+    "lon": -2.6801792,
+    "osm": {},
+    "tags": {
+     "building": "yes"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 7.9,
+    "lat": 42.851147,
+    "lon": -2.6802518,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   }
+  ]
+ },
+ {
+  "id": "vi4",
+  "town": "vitoria",
+  "lat": 42.856754,
+  "lon": -2.6734051,
+  "bearing": 0.7,
+  "street": "Arriagako atea",
+  "highway": "secondary",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 15.9,
+    "lat": 42.8567561,
+    "lon": -2.6736487,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 22.1,
+    "lat": 42.8567512,
+    "lon": -2.6730853,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   }
+  ]
+ },
+ {
+  "id": "vi5",
+  "town": "vitoria",
+  "lat": 42.8565447,
+  "lon": -2.6805065,
+  "bearing": 101.4,
+  "street": "Konstituzio plaza",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 37.7,
+    "lat": 42.856914,
+    "lon": -2.6804052,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   }
+  ]
+ },
+ {
+  "id": "vi6",
+  "town": "vitoria",
+  "lat": 42.8395537,
+  "lon": -2.6683613,
+  "bearing": -132,
+  "street": "Izardui Komandantearen kalea",
+  "highway": "secondary",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 15.7,
+    "lat": 42.8394214,
+    "lon": -2.6681997,
+    "osm": {},
+    "tags": {
+     "building": "yes"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 30.7,
+    "lat": 42.839787,
+    "lon": -2.6686463,
+    "osm": {
+     "levels": 2,
+     "type": "university",
+     "block": {
+      "length": 70.8,
+      "width": 16.4,
+      "fill": 0.85,
+      "parts": 1
+     }
+    },
+    "tags": {
+     "building": "university",
+     "building:levels": "2"
+    }
+   }
+  ]
+ },
+ {
+  "id": "vi7",
+  "town": "vitoria",
+  "lat": 42.8585402,
+  "lon": -2.6780874,
+  "bearing": -170.5,
+  "street": "Paraguai kalea",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 16.3,
+    "lat": 42.8585099,
+    "lon": -2.677842,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 23.6,
+    "lat": 42.8585815,
+    "lon": -2.6784211,
+    "osm": {},
+    "tags": {
+     "building": "apartments"
+    }
+   }
+  ]
+ },
+ {
+  "id": "vi8",
+  "town": "vitoria",
+  "lat": 42.8384501,
+  "lon": -2.6687013,
+  "bearing": -166.5,
+  "street": "Izardui Komandantearen kalea",
+  "highway": "secondary",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 22.1,
+    "lat": 42.838395,
+    "lon": -2.6683905,
+    "osm": {},
+    "tags": {
+     "building": "dormitory"
+    }
+   }
+  ]
+ },
+ {
+  "id": "vi9",
+  "town": "vitoria",
+  "lat": 42.8353289,
+  "lon": -2.6720377,
+  "bearing": -80.8,
+  "street": "Zumabide kalea",
+  "highway": "primary",
+  "houses": [
+   {
+    "side": "right",
+    "facadeM": 32.8,
+    "lat": 42.8356571,
+    "lon": -2.6719659,
+    "osm": {},
+    "tags": {
+     "building": "yes"
+    }
+   }
+  ]
+ },
+ {
+  "id": "vi10",
+  "town": "vitoria",
+  "lat": 42.8412891,
+  "lon": -2.66181,
+  "bearing": 173.4,
+  "street": "Osasun Iturri kalea",
+  "highway": "residential",
+  "houses": [
+   {
+    "side": "left",
+    "facadeM": 10.1,
+    "lat": 42.8413037,
+    "lon": -2.6616379,
+    "osm": {},
+    "tags": {
+     "building": "yes"
+    }
+   },
+   {
+    "side": "right",
+    "facadeM": 11.6,
+    "lat": 42.841273,
+    "lon": -2.6620001,
+    "osm": {},
+    "tags": {
+     "building": "yes"
+    }
+   }
+  ]
+ },
+ {
+  "id": "pa1",
+  "town": "pamplona",
+  "lat": 42.8113935,
+  "lon": -1.6436649,
+  "bearing": -19,
+  "street": null,
+  "highway": null,
+  "houses": [
+   {
+    "side": "near",
+    "facadeM": 7.4,
+    "lat": 42.8113599,
+    "lon": -1.6437969,
+    "osm": null,
+    "tags": null
+   }
+  ]
+ },
+ {
+  "id": "pa2",
+  "town": "pamplona",
+  "lat": 42.8190122,
+  "lon": -1.6583034,
+  "bearing": 60,
+  "street": null,
+  "highway": null,
+  "houses": [
+   {
+    "side": "near",
+    "facadeM": 7.2,
+    "lat": 42.8190997,
+    "lon": -1.6583719,
+    "osm": null,
+    "tags": null
+   }
+  ]
+ },
+ {
+  "id": "pa3",
+  "town": "pamplona",
+  "lat": 42.8125195,
+  "lon": -1.6572051,
+  "bearing": 263.6,
+  "street": null,
+  "highway": null,
+  "houses": [
+   {
+    "side": "near",
+    "facadeM": 4.8,
+    "lat": 42.8124407,
+    "lon": -1.6571932,
+    "osm": null,
+    "tags": null
+   }
+  ]
+ },
+ {
+  "id": "pa4",
+  "town": "pamplona",
+  "lat": 42.8021125,
+  "lon": -1.6426375,
+  "bearing": 85.1,
+  "street": null,
+  "highway": null,
+  "houses": [
+   {
+    "side": "near",
+    "facadeM": 31,
+    "lat": 42.8024278,
+    "lon": -1.6426742,
+    "osm": null,
+    "tags": null
+   }
+  ]
+ },
+ {
+  "id": "pa5",
+  "town": "pamplona",
+  "lat": 42.8131824,
+  "lon": -1.625038,
+  "bearing": 34,
+  "street": null,
+  "highway": null,
+  "houses": [
+   {
+    "side": "near",
+    "facadeM": 13.9,
+    "lat": 42.8132728,
+    "lon": -1.6252195,
+    "osm": null,
+    "tags": null
+   }
+  ]
+ },
+ {
+  "id": "pa6",
+  "town": "pamplona",
+  "lat": 42.826549,
+  "lon": -1.6414391,
+  "bearing": 98.2,
+  "street": null,
+  "highway": null,
+  "houses": [
+   {
+    "side": "near",
+    "facadeM": 17.2,
+    "lat": 42.8267389,
+    "lon": -1.6414019,
+    "osm": null,
+    "tags": null
+   }
+  ]
+ },
+ {
+  "id": "pa7",
+  "town": "pamplona",
+  "lat": 42.8142185,
+  "lon": -1.6262578,
+  "bearing": 18.3,
+  "street": null,
+  "highway": null,
+  "houses": [
+   {
+    "side": "near",
+    "facadeM": 7.3,
+    "lat": 42.8142507,
+    "lon": -1.6263895,
+    "osm": null,
+    "tags": null
+   }
+  ]
+ },
+ {
+  "id": "pa8",
+  "town": "pamplona",
+  "lat": 42.8201443,
+  "lon": -1.6299742,
+  "bearing": -26.3,
+  "street": null,
+  "highway": null,
+  "houses": [
+   {
+    "side": "near",
+    "facadeM": 22.5,
+    "lat": 42.8200379,
+    "lon": -1.6302656,
+    "osm": null,
+    "tags": null
+   }
+  ]
+ },
+ {
+  "id": "pa9",
+  "town": "pamplona",
+  "lat": 42.8246223,
+  "lon": -1.6353082,
+  "bearing": -32.6,
+  "street": null,
+  "highway": null,
+  "houses": [
+   {
+    "side": "near",
+    "facadeM": 2.9,
+    "lat": 42.8245887,
+    "lon": -1.6353792,
+    "osm": null,
+    "tags": null
+   }
+  ]
+ },
+ {
+  "id": "pa10",
+  "town": "pamplona",
+  "lat": 42.8035727,
+  "lon": -1.6500907,
+  "bearing": 111.4,
+  "street": null,
+  "highway": null,
+  "houses": [
+   {
+    "side": "near",
+    "facadeM": 6.6,
+    "lat": 42.8036616,
+    "lon": -1.6500435,
+    "osm": null,
+    "tags": null
+   }
+  ]
+ }
+]

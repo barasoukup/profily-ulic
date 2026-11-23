@@ -398,6 +398,7 @@ export const SV = {
   "databáze ulic Cách a OSM": "Aachens gatudatabas och OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "gatuytor (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "ortofoto {who}",
+  "budovy {who}": "byggnader {who}",
   "obruby vozovky: model AI učený na mapách povrchů {who}": "kantstenar vid körbanan: AI-modell tränad på ytkartorna {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "ortofoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
@@ -969,7 +970,7 @@ export const SV_HTML = {
     Belgien och Luxemburg: ortofoto och GRB-linjer © Digitaal Vlaanderen, ortofoto och PICC-linjer © SPW (Service public de Wallonie), ortofoto © ACT Luxembourg (geoportail.lu), gränser © EuroGeographics (GISCO), vägmärken Wikimedia Commons (officiella verk), sökning Photon © komoot (OSM-data) ·
     Polen: ortofoto och adressökning © GUGiK (Geoportal.gov.pl, PRG), Krakóws ytkarta (MJO) © Gmina Miejska Kraków, gränser © EuroGeographics (GISCO), vägmärken Wikimedia Commons (officiella verk) ·
     Frankrike: ortofoto, byggnader (BD TOPO) och adressökning © IGN (Géoplateforme, Licence Ouverte 2.0), Paris ytkarta (Plan de voirie) © Ville de Paris (ODbL), gränser © EuroGeographics (GISCO), vägmärken Wikimedia Commons (officiella verk) ·
-    Spanien: ortofoto PNOA och adressökning CartoCiudad © IGN (CC BY 4.0 scne.es), byggnader © Dirección General del Catastro, Zaragozas ytkarta © Ayuntamiento de Zaragoza (IDEZar), gränser © EuroGeographics (GISCO), vägmärken Wikimedia Commons (officiella verk) ·
+    Spanien: ortofoto PNOA och adressökning CartoCiudad © IGN (CC BY 4.0 scne.es), byggnader © Dirección General del Catastro, i Navarra Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), i Baskien © Arabako, Bizkaiko och Gipuzkoako Foru Aldundia, Zaragozas ytkarta © Ayuntamiento de Zaragoza (IDEZar), gränser © EuroGeographics (GISCO), vägmärken Wikimedia Commons (officiella verk) ·
     Portugal: ortofoto © DGT (Direção-Geral do Território), gränser © EuroGeographics (GISCO), vägmärken Wikimedia Commons (officiella verk; omritning Fry1989 under CC BY-SA 3.0 och Gigillo83 under CC BY-SA 4.0) ·
     Monaco: ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0), gränser © OpenStreetMap-bidragsgivare, teckningar av franska vägmärken Wikimedia Commons ·
     Cypern: ortofoto 2019 © Department of Lands and Surveys (DLS; licens ej angiven), byggnader © DLS (CC BY 4.0), gränser © OpenStreetMap-bidragsgivare, vägmärken Wikimedia Commons (brittiska förlagor: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·

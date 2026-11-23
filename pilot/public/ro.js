@@ -398,6 +398,7 @@ export const RO = {
   "databáze ulic Cách a OSM": "bazei de date a străzilor din Aachen și OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "suprafețe stradale (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "ortofoto {who}",
+  "budovy {who}": "clădiri {who}",
   "obruby vozovky: model AI učený na mapách povrchů {who}": "bordurile carosabilului: model IA antrenat pe hărțile suprafețelor {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "ortofoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
@@ -970,7 +971,7 @@ export const RO_HTML = {
     Belgia și Luxemburg: ortofoto și liniile GRB © Digitaal Vlaanderen, ortofoto și liniile PICC © SPW (Service public de Wallonie), ortofoto © ACT Luxembourg (geoportail.lu), limită © EuroGeographics (GISCO), indicatoare rutiere Wikimedia Commons (opere oficiale), căutare Photon © komoot (date OSM) ·
     Polonia: ortofoto și căutarea adreselor © GUGiK (Geoportal.gov.pl, PRG), harta suprafețelor Cracoviei (MJO) © Gmina Miejska Kraków, limită © EuroGeographics (GISCO), indicatoare rutiere Wikimedia Commons (opere oficiale) ·
     Franța: ortofoto, clădiri (BD TOPO) și căutarea adreselor © IGN (Géoplateforme, Licence Ouverte 2.0), harta suprafețelor Parisului (Plan de voirie) © Ville de Paris (ODbL), limită © EuroGeographics (GISCO), indicatoare rutiere Wikimedia Commons (opere oficiale) ·
-    Spania: ortofoto PNOA și căutarea adreselor CartoCiudad © IGN (CC BY 4.0 scne.es), clădiri © Dirección General del Catastro, harta suprafețelor Zaragozei © Ayuntamiento de Zaragoza (IDEZar), limită © EuroGeographics (GISCO), indicatoare rutiere Wikimedia Commons (opere oficiale) ·
+    Spania: ortofoto PNOA și căutarea adreselor CartoCiudad © IGN (CC BY 4.0 scne.es), clădiri © Dirección General del Catastro, în Navarra Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), în Țara Bascilor © Arabako, Bizkaiko și Gipuzkoako Foru Aldundia, harta suprafețelor Zaragozei © Ayuntamiento de Zaragoza (IDEZar), limită © EuroGeographics (GISCO), indicatoare rutiere Wikimedia Commons (opere oficiale) ·
     Portugalia: ortofoto © DGT (Direção-Geral do Território), limită © EuroGeographics (GISCO), indicatoare rutiere Wikimedia Commons (opere oficiale; redesenate de Fry1989 sub CC BY-SA 3.0 și Gigillo83 sub CC BY-SA 4.0) ·
     Monaco: ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0), limită © contribuitorii OpenStreetMap, desene ale indicatoarelor rutiere franceze Wikimedia Commons ·
     Cipru: ortofoto 2019 © Department of Lands and Surveys (DLS; licență neindicată), clădiri © DLS (CC BY 4.0), limită © contribuitorii OpenStreetMap, indicatoare rutiere Wikimedia Commons (modele britanice: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·

@@ -394,6 +394,7 @@ export const HU = {
   "databáze ulic Cách a OSM": "Aachen utcaadatbázisa és az OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "utcafelületek (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "ortofotó {who}",
+  "budovy {who}": "épületek {who}",
   "obruby vozovky: model AI učený na mapách povrchů {who}": "úttest szegélyei: a felületi térképeken {who} tanított MI-modell",
   "ortofoto © basemap.at (CC BY 4.0)": "ortofotó © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofotó © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
@@ -949,7 +950,7 @@ export const HU_HTML = {
     Belgium és Luxemburg: ortofotó és GRB-vonalak © Digitaal Vlaanderen, ortofotó és PICC-vonalak © SPW (Service public de Wallonie), ortofotó © ACT Luxembourg (geoportail.lu), határ © EuroGeographics (GISCO), jelzőtáblák: Wikimedia Commons (hivatalos művek), Photon keresés © komoot (OSM-adatok) ·
     Lengyelország: ortofotó és címkeresés © GUGiK (Geoportal.gov.pl, PRG), Krakkó felületi térképe (MJO) © Gmina Miejska Kraków, határ © EuroGeographics (GISCO), jelzőtáblák: Wikimedia Commons (hivatalos művek) ·
     Franciaország: ortofotó, épületek (BD TOPO) és címkeresés © IGN (Géoplateforme, Licence Ouverte 2.0), Párizs felületi térképe (Plan de voirie) © Ville de Paris (ODbL), határ © EuroGeographics (GISCO), jelzőtáblák: Wikimedia Commons (hivatalos művek) ·
-    Spanyolország: PNOA ortofotó és CartoCiudad címkeresés © IGN (CC BY 4.0 scne.es), épületek © Dirección General del Catastro, Zaragoza felületi térképe © Ayuntamiento de Zaragoza (IDEZar), határ © EuroGeographics (GISCO), jelzőtáblák: Wikimedia Commons (hivatalos művek) ·
+    Spanyolország: PNOA ortofotó és CartoCiudad címkeresés © IGN (CC BY 4.0 scne.es), épületek © Dirección General del Catastro, Navarrában Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), Baszkföldön © Arabako, Bizkaiko és Gipuzkoako Foru Aldundia, Zaragoza felületi térképe © Ayuntamiento de Zaragoza (IDEZar), határ © EuroGeographics (GISCO), jelzőtáblák: Wikimedia Commons (hivatalos művek) ·
     Portugália: ortofotó © DGT (Direção-Geral do Território), határ © EuroGeographics (GISCO), jelzőtáblák: Wikimedia Commons (hivatalos művek; Fry1989 újrarajzolása, CC BY-SA 3.0, és Gigillo83 újrarajzolása, CC BY-SA 4.0) ·
     Monaco: ortofotó © IGN (Géoplateforme, Licence Ouverte 2.0), határ © OpenStreetMap-közreműködők, francia jelzőtáblák rajzai: Wikimedia Commons ·
     Ciprus: ortofotó 2019 © Department of Lands and Surveys (DLS; licenc nincs megadva), épületek © DLS (CC BY 4.0), határ © OpenStreetMap-közreműködők, jelzőtáblák: Wikimedia Commons (brit minták: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·

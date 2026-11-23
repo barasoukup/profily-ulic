@@ -399,6 +399,7 @@ export const GA = {
   "databáze ulic Cách a OSM": "bunachar sonraí sráideanna Aachen agus OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "dromchlaí sráideanna (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "ortafótagraf {who}",
+  "budovy {who}": "foirgnimh {who}",
   "obruby vozovky: model AI učený na mapách povrchů {who}": "colbhaí an charrbhealaigh: samhail IS oilte ar léarscáileanna dromchla {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "ortafótagraf © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortafótagraf © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
@@ -970,7 +971,7 @@ export const GA_HTML = {
     An Bheilg agus Lucsamburg: ortafótagraf agus línte GRB © Digitaal Vlaanderen, ortafótagraf agus línte PICC © SPW (Service public de Wallonie), ortafótagraf © ACT Luxembourg (geoportail.lu), teorainneacha © EuroGeographics (GISCO), comharthaí tráchta Wikimedia Commons (saothair oifigiúla), cuardach Photon © komoot (sonraí OSM) ·
     An Pholainn: ortafótagraf agus cuardach seoltaí © GUGiK (Geoportal.gov.pl, PRG), léarscáil dromchlaí Cracó (MJO) © Gmina Miejska Kraków, teorainneacha © EuroGeographics (GISCO), comharthaí tráchta Wikimedia Commons (saothair oifigiúla) ·
     An Fhrainc: ortafótagraf, foirgnimh (BD TOPO) agus cuardach seoltaí © IGN (Géoplateforme, Licence Ouverte 2.0), léarscáil dromchlaí Pháras (Plan de voirie) © Ville de Paris (ODbL), teorainneacha © EuroGeographics (GISCO), comharthaí tráchta Wikimedia Commons (saothair oifigiúla) ·
-    An Spáinn: ortafótagraf PNOA agus cuardach seoltaí CartoCiudad © IGN (CC BY 4.0 scne.es), foirgnimh © Dirección General del Catastro, léarscáil dromchlaí Zaragoza © Ayuntamiento de Zaragoza (IDEZar), teorainneacha © EuroGeographics (GISCO), comharthaí tráchta Wikimedia Commons (saothair oifigiúla) ·
+    An Spáinn: ortafótagraf PNOA agus cuardach seoltaí CartoCiudad © IGN (CC BY 4.0 scne.es), foirgnimh © Dirección General del Catastro, i Navarra Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), i dTír na mBascach © Arabako, Bizkaiko agus Gipuzkoako Foru Aldundia, léarscáil dromchlaí Zaragoza © Ayuntamiento de Zaragoza (IDEZar), teorainneacha © EuroGeographics (GISCO), comharthaí tráchta Wikimedia Commons (saothair oifigiúla) ·
     An Phortaingéil: ortafótagraf © DGT (Direção-Geral do Território), teorainneacha © EuroGeographics (GISCO), comharthaí tráchta Wikimedia Commons (saothair oifigiúla; athdhréachtú Fry1989 faoi CC BY-SA 3.0 agus Gigillo83 faoi CC BY-SA 4.0) ·
     Monacó: ortafótagraf © IGN (Géoplateforme, Licence Ouverte 2.0), teorainneacha © rannpháirtithe OpenStreetMap, líníochtaí de chomharthaí tráchta na Fraince Wikimedia Commons ·
     An Chipir: ortafótagraf 2019 © Department of Lands and Surveys (DLS; ceadúnas gan lua), foirgnimh © DLS (CC BY 4.0), teorainneacha © rannpháirtithe OpenStreetMap, comharthaí tráchta Wikimedia Commons (dearaí Briotanacha: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·

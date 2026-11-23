@@ -1,12 +1,13 @@
 // The Basque Country and Navarre (Bára 23. 11. 2026), where the Catastro has no buildings (their own foral cadastres),
-// so a cut there does not ask it (towns/spain.js): Eurostat GISCO NUTS 2024 level 2 at 1 : 1 000 000 (© EuroGeographics;
-// the finest NUTS of 2024 in GeoJSON), ES21 and ES22 with their holes (the Treviño enclave of Burgos and the Valle de
-// Villaverde of Cantabria inside the Basque Country), simplified to about 30 m. Written into pilot/public/regions-es.json:
+// so a cut there does not ask it but the cadastre of its province (towns/spain-foral.js): Eurostat GISCO NUTS 2024
+// level 3 at 1 : 1 000 000 (© EuroGeographics; the finest NUTS of 2024 in GeoJSON), the three Basque provinces ES211
+// Álava (ar), ES212 Gipuzkoa (gi), ES213 Bizkaia (bi) and Navarre ES220 (nc), with their holes (the Treviño enclave of
+// Burgos in Álava and the Valle de Villaverde of Cantabria in Bizkaia), simplified to about 30 m. Written into pilot/public/regions-es.json:
 // node tools/build_regions_es.mjs
 import fs from "node:fs";
 
-const NUTS = { ES21: "pv", ES22: "nc" };
-const all = await (await fetch("https://gisco-services.ec.europa.eu/distribution/v2/nuts/geojson/NUTS_RG_01M_2024_4326_LEVL_2.geojson")).json();
+const NUTS = { ES211: "ar", ES212: "gi", ES213: "bi", ES220: "nc" };
+const all = await (await fetch("https://gisco-services.ec.europa.eu/distribution/v2/nuts/geojson/NUTS_RG_01M_2024_4326_LEVL_3.geojson")).json();
 // Douglas–Peucker in degrees (0.0003° ≈ 30 m), then rounded to 4 decimals.
 const simplify = (pts, tol) => {
   if (pts.length < 3) return pts;

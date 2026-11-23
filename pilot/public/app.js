@@ -664,6 +664,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
         if (p.fromHeight && info.levels) Object.assign(info, { iprKind: p.kind, area: p.area });
         else if (p.cornice) Object.assign(info, { cornice: p.cornice, roof: p.roof, levels: p.cornice + p.roof, roofType: p.roofType, iprKind: p.kind, newBuild: p.newBuild, area: p.area, src: "ipr" });
         ruianFacts(info, p);
+        // The foral cadastre of a Spanish province that told of the house (towns/spain-foral.js), for the credits.
+        if (p.foral) state.cut.sources.esForal = p.foral;
         // What the building is for (ZBGIS, Slovakia), where OSM says no more than "a building".
         if (p.type && (!info.type || info.type === "yes")) info.type = p.type;
       } catch {}

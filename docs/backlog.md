@@ -52,6 +52,11 @@ Co rozhodne Bára, je označeno **(Bára)**.
   Melillu z vrstvy vyjmout (`ES_NOT_PNOA`), nebo uvést Airbus?
 - ~~Španělsko: Catastro se ptá i v Baskicku a Navaře (recenze, nález 5)~~ (Bára 23. 11. 2026: vynecháno podle hranic NUTS 2
   GISCO, `regions-es.json`, enkláva Treviño zůstává Burgosu)
+- Španělsko: foralní katastr Álavy má proti OSM soustavně o 2 podlaží víc (`evaluation/spain/foral-ab/ZPRAVA.md`):
+  ověřit na fotkách z ulice; potvrdí-li se nadhodnocení, vypnout `ar` ve `FORAL_ON`. A/B Pamplony bez OSM (Navarra
+  chybí v lokálním výřezu i v balíku R2): zopakovat srovnání s OSM, až bude balík Navarry.
+- Španělsko: rok z katastru (Catastro i foralní) dává v `buildingStyle` české vzhledy „sorela“ (1948–57) a „typový dům“
+  (1958–69); `countries/ES.js houseLook` je přemapovat, nebo rok předat jako `start` (cizina)?
 - Španělsko **(Bára)**: Catastro („Dirección General del Catastro“) je jen v patičce, ne v kreditu exportu: přidat klíč
   zdroje (když `podlaznost` vrátí dům z katastru)?
 - Portugalsko **(Bára)**: krátký popis dat „ortofota DGT a OSM“ neplatí na Madeiře a Azorech (jen OSM): nechat, nebo

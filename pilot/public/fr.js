@@ -400,6 +400,7 @@ export const FR = {
   "databáze ulic Cách a OSM": "de la base de données de voirie d'Aix-la-Chapelle et d'OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "surfaces de voirie (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "orthophoto {who}",
+  "budovy {who}": "bâtiments {who}",
   "obruby vozovky: model AI učený na mapách povrchů {who}": "bordures de la chaussée : modèle d’IA entraîné sur les cartes des surfaces {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "orthophoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "orthophoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
@@ -972,7 +973,7 @@ export const FR_HTML = {
     Belgique et Luxembourg : orthophoto et lignes GRB © Digitaal Vlaanderen, orthophoto et lignes PICC © SPW (Service public de Wallonie), orthophoto © ACT Luxembourg (geoportail.lu), frontières © EuroGeographics (GISCO), signalisation Wikimedia Commons (œuvres officielles ), recherche Photon © komoot (données OSM) ·
     Pologne : orthophoto et recherche d'adresses © GUGiK (Geoportal.gov.pl, PRG), plan des surfaces de Cracovie (MJO) © Gmina Miejska Kraków, frontières © EuroGeographics (GISCO), signalisation Wikimedia Commons (œuvres officielles) ·
     France : orthophoto, bâtiments (BD TOPO) et recherche d'adresses © IGN (Géoplateforme, Licence Ouverte 2.0), plan des surfaces de Paris (Plan de voirie) © Ville de Paris (ODbL), frontières © EuroGeographics (GISCO), signalisation Wikimedia Commons (œuvres officielles) ·
-    Espagne : orthophoto PNOA et recherche d'adresses CartoCiudad © IGN (CC BY 4.0 scne.es), bâtiments © Dirección General del Catastro, plan des surfaces de Saragosse © Ayuntamiento de Zaragoza (IDEZar), frontières © EuroGeographics (GISCO), signalisation Wikimedia Commons (œuvres officielles) ·
+    Espagne : orthophoto PNOA et recherche d'adresses CartoCiudad © IGN (CC BY 4.0 scne.es), bâtiments © Dirección General del Catastro, en Navarre Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), au Pays basque © Arabako, Bizkaiko et Gipuzkoako Foru Aldundia, plan des surfaces de Saragosse © Ayuntamiento de Zaragoza (IDEZar), frontières © EuroGeographics (GISCO), signalisation Wikimedia Commons (œuvres officielles) ·
     Portugal : orthophoto © DGT (Direção-Geral do Território), frontières © EuroGeographics (GISCO), signalisation Wikimedia Commons (œuvres officielles ; redessinée par Fry1989 sous CC BY-SA 3.0 et Gigillo83 sous CC BY-SA 4.0) ·
     Monaco : orthophoto © IGN (Géoplateforme, Licence Ouverte 2.0), frontières © contributeurs d'OpenStreetMap, dessins des panneaux de signalisation français Wikimedia Commons ·
     Chypre : orthophoto 2019 © Department of Lands and Surveys (DLS ; licence non précisée), bâtiments © DLS (CC BY 4.0), frontières © contributeurs d'OpenStreetMap, signalisation Wikimedia Commons (modèles britanniques : Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·

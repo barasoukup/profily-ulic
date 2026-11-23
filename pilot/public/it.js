@@ -401,6 +401,7 @@ export const IT = {
   "databáze ulic Cách a OSM": "della banca dati stradale di Aquisgrana e di OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "superfici stradali (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "ortofoto {who}",
+  "budovy {who}": "edifici {who}",
   "obruby vozovky: model AI učený na mapách povrchů {who}": "cordoli della carreggiata: modello di IA addestrato sulle mappe delle superfici {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "ortofoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
@@ -974,7 +975,7 @@ export const IT_HTML = {
     Belgio e Lussemburgo: ortofoto e linee GRB © Digitaal Vlaanderen, ortofoto e linee PICC © SPW (Service public de Wallonie), ortofoto © ACT Luxembourg (geoportail.lu), confini © EuroGeographics (GISCO), segnaletica da Wikimedia Commons (opere ufficiali), ricerca Photon © komoot (dati OSM) ·
     Polonia: ortofoto e ricerca di indirizzi © GUGiK (Geoportal.gov.pl, PRG), mappa delle superfici di Cracovia (MJO) © Gmina Miejska Kraków, confini © EuroGeographics (GISCO), segnaletica da Wikimedia Commons (opere ufficiali) ·
     Francia: ortofoto, edifici (BD TOPO) e ricerca di indirizzi © IGN (Géoplateforme, Licence Ouverte 2.0), mappa delle superfici di Parigi (Plan de voirie) © Ville de Paris (ODbL), confini © EuroGeographics (GISCO), segnaletica da Wikimedia Commons (opere ufficiali) ·
-    Spagna: ortofoto PNOA e ricerca di indirizzi CartoCiudad © IGN (CC BY 4.0 scne.es), edifici © Dirección General del Catastro, mappa delle superfici di Saragozza © Ayuntamiento de Zaragoza (IDEZar), confini © EuroGeographics (GISCO), segnaletica da Wikimedia Commons (opere ufficiali) ·
+    Spagna: ortofoto PNOA e ricerca di indirizzi CartoCiudad © IGN (CC BY 4.0 scne.es), edifici © Dirección General del Catastro, in Navarra Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), nei Paesi Baschi © Arabako, Bizkaiko e Gipuzkoako Foru Aldundia, mappa delle superfici di Saragozza © Ayuntamiento de Zaragoza (IDEZar), confini © EuroGeographics (GISCO), segnaletica da Wikimedia Commons (opere ufficiali) ·
     Portogallo: ortofoto © DGT (Direção-Geral do Território), confini © EuroGeographics (GISCO), segnaletica da Wikimedia Commons (opere ufficiali; ridisegnata da Fry1989 con licenza CC BY-SA 3.0 e Gigillo83 con licenza CC BY-SA 4.0) ·
     Monaco: ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0), confini © contributori di OpenStreetMap, disegni della segnaletica francese da Wikimedia Commons ·
     Cipro: ortofoto 2019 © Department of Lands and Surveys (DLS; licenza non indicata), edifici © DLS (CC BY 4.0), confini © contributori di OpenStreetMap, segnaletica da Wikimedia Commons (modelli britannici: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·

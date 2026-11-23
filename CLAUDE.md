@@ -400,7 +400,11 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   Hranice GISCO s ostrovy, Ceutou, Melillou a Llívií. OSM po 17 společenstvích, Ceutě, Melille a Kanárských ostrovech
   (`es_*`, Kanáry pod `africa/`, jen R2). **Před nasazením workflow OSM tiles se `states: es`.**
 - Ortofoto IGN PNOA (25 cm, CORS *, CC BY 4.0; mimo Španělsko satelitní pozadí: v mapě jen nad Španělskem), budovy
-  z katastru (`?catastro=0`; Baskicko a Navarra mají vlastní katastr), hledání CartoCiudad.
+  z katastru (`?catastro=0`), hledání CartoCiudad.
+- Baskicko a Navarra: budovy z foralních katastrů provincií (`towns/spain-foral.js`, INSPIRE WFS Navarry, Álavy, Bizkaie,
+  Gipuzkoy; provincie podle NUTS 3 v `regions-es.json`; `?foral=0`, `?foral=nc,gi`). A/B 57 domů (Bára 23. 11. 2026,
+  `evaluation/spain/foral-ab/ZPRAVA.md`): podlaží a rok z ~0 na 55 z 57, shoda s OSM ±1 v Bilbau a Donostii, Álava
+  soustavně +2 (výhrada, ověřit fotkami); všechny čtyři zapnuté. OSM Navarry chybí lokálně i na R2.
 - Mapa povrchů Zaragozy (dlažby 2017: chodníky, střední a zelené pásy; vozovka jako pás kolem os OSM, `?zaragoza=0`): A/B 40
   řezů, použita ve 33: lépe 11, hůř 2, stejně 12, nejde posoudit 8; zapnutá. A Coruña (1 : 500 i s vozovkou a stáním) je ve
   složce „Intranet“ bez licence, Madrid jen jako obrázek, Barcelona jen čáry, Valencie neodpověděla.

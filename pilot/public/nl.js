@@ -399,6 +399,7 @@ export const NL = {
   "databáze ulic Cách a OSM": "van de stratendatabank van Aken en OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "straatoppervlakken (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "luchtfoto {who}",
+  "budovy {who}": "gebouwen {who}",
   "obruby vozovky: model AI učený na mapách povrchů {who}": "trottoirbanden van de rijbaan: AI-model getraind op de oppervlaktekaarten {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "luchtfoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "luchtfoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
@@ -970,7 +971,7 @@ export const NL_HTML = {
     België en Luxemburg: luchtfoto en GRB-lijnen © Digitaal Vlaanderen, luchtfoto en PICC-lijnen © SPW (Service public de Wallonie), luchtfoto © ACT Luxembourg (geoportail.lu), grenzen © EuroGeographics (GISCO), verkeersborden Wikimedia Commons (officiële werken), zoeken Photon © komoot (OSM-gegevens) ·
     Polen: luchtfoto en adreszoeker © GUGiK (Geoportal.gov.pl, PRG), oppervlakkenkaart van Krakau (MJO) © Gmina Miejska Kraków, grenzen © EuroGeographics (GISCO), verkeersborden Wikimedia Commons (officiële werken) ·
     Frankrijk: luchtfoto, gebouwen (BD TOPO) en adreszoeker © IGN (Géoplateforme, Licence Ouverte 2.0), oppervlakkenkaart van Parijs (Plan de voirie) © Ville de Paris (ODbL), grenzen © EuroGeographics (GISCO), verkeersborden Wikimedia Commons (officiële werken) ·
-    Spanje: luchtfoto PNOA en adreszoeker CartoCiudad © IGN (CC BY 4.0 scne.es), gebouwen © Dirección General del Catastro, oppervlakkenkaart van Zaragoza © Ayuntamiento de Zaragoza (IDEZar), grenzen © EuroGeographics (GISCO), verkeersborden Wikimedia Commons (officiële werken) ·
+    Spanje: luchtfoto PNOA en adreszoeker CartoCiudad © IGN (CC BY 4.0 scne.es), gebouwen © Dirección General del Catastro, in Navarra Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), in Baskenland © Arabako, Bizkaiko en Gipuzkoako Foru Aldundia, oppervlakkenkaart van Zaragoza © Ayuntamiento de Zaragoza (IDEZar), grenzen © EuroGeographics (GISCO), verkeersborden Wikimedia Commons (officiële werken) ·
     Portugal: luchtfoto © DGT (Direção-Geral do Território), grenzen © EuroGeographics (GISCO), verkeersborden Wikimedia Commons (officiële werken; hertekening Fry1989 onder CC BY-SA 3.0 en Gigillo83 onder CC BY-SA 4.0) ·
     Monaco: luchtfoto © IGN (Géoplateforme, Licence Ouverte 2.0), grenzen © OpenStreetMap-bijdragers, tekeningen van Franse verkeersborden Wikimedia Commons ·
     Cyprus: luchtfoto 2019 © Department of Lands and Surveys (DLS; licentie niet vermeld), gebouwen © DLS (CC BY 4.0), grenzen © OpenStreetMap-bijdragers, verkeersborden Wikimedia Commons (Britse ontwerpen: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·

@@ -398,6 +398,7 @@ export const LV = {
   "databáze ulic Cách a OSM": "Āhenes ielu datubāzes un OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "ielu segumi (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "ortofoto {who}",
+  "budovy {who}": "ēkas {who}",
   "obruby vozovky: model AI učený na mapách povrchů {who}": "brauktuves apmales: MI modelis, apmācīts uz virsmu kartēm {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "ortofoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
@@ -969,7 +970,7 @@ export const LV_HTML = {
     Beļģija un Luksemburga: ortofoto un GRB līnijas © Digitaal Vlaanderen, ortofoto un PICC līnijas © SPW (Service public de Wallonie), ortofoto © ACT Luxembourg (geoportail.lu), robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi), meklēšana Photon © komoot (OSM dati) ·
     Polija: ortofoto un adrešu meklēšana © GUGiK (Geoportal.gov.pl, PRG), Krakovas segumu karte (MJO) © Gmina Miejska Kraków, robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi) ·
     Francija: ortofoto, ēkas (BD TOPO) un adrešu meklēšana © IGN (Géoplateforme, Licence Ouverte 2.0), Parīzes segumu karte (Plan de voirie) © Ville de Paris (ODbL), robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi) ·
-    Spānija: ortofoto PNOA un adrešu meklēšana CartoCiudad © IGN (CC BY 4.0 scne.es), ēkas © Dirección General del Catastro, Saragosas segumu karte © Ayuntamiento de Zaragoza (IDEZar), robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi) ·
+    Spānija: ortofoto PNOA un adrešu meklēšana CartoCiudad © IGN (CC BY 4.0 scne.es), ēkas © Dirección General del Catastro, Navarrā Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), Basku zemē © Arabako, Bizkaiko un Gipuzkoako Foru Aldundia, Saragosas segumu karte © Ayuntamiento de Zaragoza (IDEZar), robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi) ·
     Portugāle: ortofoto © DGT (Direção-Geral do Território), robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi; pārzīmējuši Fry1989, CC BY-SA 3.0, un Gigillo83, CC BY-SA 4.0) ·
     Monako: ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0), robežas © OpenStreetMap līdzautori, Francijas ceļa zīmju zīmējumi Wikimedia Commons ·
     Kipra: ortofoto 2019 © Department of Lands and Surveys (DLS; licence nav norādīta), ēkas © DLS (CC BY 4.0), robežas © OpenStreetMap līdzautori, ceļa zīmes Wikimedia Commons (britu paraugi: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·

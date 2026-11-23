@@ -391,6 +391,7 @@ export const LT = {
   "databáze ulic Cách a OSM": "Acheno gatvių duomenų bazės ir OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "gatvių dangos (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "ortofoto {who}",
+  "budovy {who}": "pastatai {who}",
   "obruby vozovky: model AI učený na mapách povrchů {who}": "važiuojamosios dalies bortai: DI modelis, apmokytas paviršių žemėlapiais {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "ortofoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
@@ -945,7 +946,7 @@ export const LT_HTML = {
     Belgija ir Liuksemburgas: ortofoto ir linijos GRB © Digitaal Vlaanderen, ortofoto ir linijos PICC © SPW (Service public de Wallonie), ortofoto © ACT Luxembourg (geoportail.lu), siena © EuroGeographics (GISCO), kelio ženklai Wikimedia Commons (oficialūs dokumentai), paieška Photon © komoot (OSM duomenys) ·
     Lenkija: ortofoto ir adresų paieška © GUGiK (Geoportal.gov.pl, PRG), Krokuvos dangų žemėlapis (MJO) © Gmina Miejska Kraków, siena © EuroGeographics (GISCO), kelio ženklai Wikimedia Commons (oficialūs dokumentai) ·
     Prancūzija: ortofoto, pastatai (BD TOPO) ir adresų paieška © IGN (Géoplateforme, Licence Ouverte 2.0), Paryžiaus dangų žemėlapis (Plan de voirie) © Ville de Paris (ODbL), siena © EuroGeographics (GISCO), kelio ženklai Wikimedia Commons (oficialūs dokumentai) ·
-    Ispanija: ortofoto PNOA ir adresų paieška CartoCiudad © IGN (CC BY 4.0 scne.es), pastatai © Dirección General del Catastro, Saragosos dangų žemėlapis © Ayuntamiento de Zaragoza (IDEZar), siena © EuroGeographics (GISCO), kelio ženklai Wikimedia Commons (oficialūs dokumentai) ·
+    Ispanija: ortofoto PNOA ir adresų paieška CartoCiudad © IGN (CC BY 4.0 scne.es), pastatai © Dirección General del Catastro, Navaroje Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), Baskijoje © Arabako, Bizkaiko ir Gipuzkoako Foru Aldundia, Saragosos dangų žemėlapis © Ayuntamiento de Zaragoza (IDEZar), siena © EuroGeographics (GISCO), kelio ženklai Wikimedia Commons (oficialūs dokumentai) ·
     Portugalija: ortofoto © DGT (Direção-Geral do Território), siena © EuroGeographics (GISCO), kelio ženklai Wikimedia Commons (oficialūs dokumentai; perpiešė Fry1989, CC BY-SA 3.0, ir Gigillo83, CC BY-SA 4.0) ·
     Monakas: ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0), siena © OpenStreetMap bendradarbiai, Prancūzijos kelio ženklų piešiniai Wikimedia Commons ·
     Kipras: ortofoto 2019 © Department of Lands and Surveys (DLS; licencija nenurodyta), pastatai © DLS (CC BY 4.0), siena © OpenStreetMap bendradarbiai, kelio ženklai Wikimedia Commons (britiški pavyzdžiai: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·

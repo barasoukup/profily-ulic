@@ -1,0 +1,1819 @@
+[
+ {
+  "id": "bi1-left",
+  "town": "bilbao",
+  "street": "Okendo Almiranteen kalea",
+  "lat": 43.2664647,
+  "lon": -2.9203683,
+  "cut": {
+   "lat": 43.2665973,
+   "lon": -2.920394,
+   "bearing": -98.1
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1960,
+   "type": "apartments",
+   "cornice": 5,
+   "total": 5,
+   "roof": 0,
+   "foral": "bi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 5,
+   "year": 1960,
+   "look": "typovy"
+  }
+ },
+ {
+  "id": "bi1-right",
+  "town": "bilbao",
+  "street": "Okendo Almiranteen kalea",
+  "lat": 43.2666868,
+  "lon": -2.9204115,
+  "cut": {
+   "lat": 43.2665973,
+   "lon": -2.920394,
+   "bearing": -98.1
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1966,
+   "type": "apartments",
+   "cornice": 8,
+   "total": 8,
+   "roof": 0,
+   "foral": "bi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 8,
+   "year": 1966,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "bi2-left",
+  "town": "bilbao",
+  "street": "Okendo Almiranteen kalea",
+  "lat": 43.26647,
+  "lon": -2.9204041,
+  "cut": {
+   "lat": 43.2665933,
+   "lon": -2.9203344,
+   "bearing": -67.5
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1960,
+   "type": "apartments",
+   "cornice": 5,
+   "total": 5,
+   "roof": 0,
+   "foral": "bi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 5,
+   "year": 1960,
+   "look": "typovy"
+  }
+ },
+ {
+  "id": "bi2-right",
+  "town": "bilbao",
+  "street": "Okendo Almiranteen kalea",
+  "lat": 43.2666593,
+  "lon": -2.9202972,
+  "cut": {
+   "lat": 43.2665933,
+   "lon": -2.9203344,
+   "bearing": -67.5
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1960,
+   "type": "apartments",
+   "cornice": 7,
+   "total": 7,
+   "roof": 0,
+   "foral": "bi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 7,
+   "year": 1960,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "bi3-left",
+  "town": "bilbao",
+  "street": "Baso bidea",
+  "lat": 43.2548114,
+  "lon": -2.9195396,
+  "cut": {
+   "lat": 43.2547312,
+   "lon": -2.9195165,
+   "bearing": 78.1
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 2009,
+   "type": "apartments",
+   "cornice": 8,
+   "total": 8,
+   "roof": 0,
+   "foral": "bi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 8,
+   "year": 2009,
+   "look": "moderni"
+  }
+ },
+ {
+  "id": "bi3-right",
+  "town": "bilbao",
+  "street": "Baso bidea",
+  "lat": 43.2546484,
+  "lon": -2.9194927,
+  "cut": {
+   "lat": 43.2547312,
+   "lon": -2.9195165,
+   "bearing": 78.1
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 2008,
+   "type": "apartments",
+   "cornice": 9,
+   "total": 9,
+   "roof": 0,
+   "foral": "bi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 9,
+   "year": 2008,
+   "look": "moderni"
+  }
+ },
+ {
+  "id": "bi4-left",
+  "town": "bilbao",
+  "street": "Eskurtze kalea",
+  "lat": 43.2522029,
+  "lon": -2.9381246,
+  "cut": {
+   "lat": 43.2519039,
+   "lon": -2.9383043,
+   "bearing": 113.8
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1960,
+   "type": "apartments",
+   "cornice": 8,
+   "total": 8,
+   "roof": 0,
+   "foral": "bi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 8,
+   "year": 1960,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "bi5-right",
+  "town": "bilbao",
+  "street": "Prim kalea",
+  "lat": 43.257413,
+  "lon": -2.9174366,
+  "cut": {
+   "lat": 43.2574683,
+   "lon": -2.9173799,
+   "bearing": 126.9
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1988,
+   "type": "apartments",
+   "cornice": 7,
+   "total": 7,
+   "roof": 0,
+   "foral": "bi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 7,
+   "year": 1988,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "bi6-left",
+  "town": "bilbao",
+  "street": "Kolon Larreategi kalea",
+  "lat": 43.2638885,
+  "lon": -2.9333567,
+  "cut": {
+   "lat": 43.2637572,
+   "lon": -2.9334092,
+   "bearing": 106.4
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1910,
+   "office": true,
+   "type": "office",
+   "cornice": 7,
+   "total": 7,
+   "roof": 0,
+   "foral": "bi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 7,
+   "year": 1910,
+   "look": "sikma"
+  }
+ },
+ {
+  "id": "bi6-right",
+  "town": "bilbao",
+  "street": "Kolon Larreategi kalea",
+  "lat": 43.2635858,
+  "lon": -2.9334779,
+  "cut": {
+   "lat": 43.2637572,
+   "lon": -2.9334092,
+   "bearing": 106.4
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1921,
+   "office": true,
+   "type": "office",
+   "cornice": 10,
+   "total": 10,
+   "roof": 0,
+   "foral": "bi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 10,
+   "year": 1921,
+   "look": "kancelar"
+  }
+ },
+ {
+  "id": "bi7-left",
+  "town": "bilbao",
+  "street": "Montevideo etorbidea",
+  "lat": 43.260762,
+  "lon": -2.955322,
+  "cut": {
+   "lat": 43.2609849,
+   "lon": -2.9549951,
+   "bearing": -42.9
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 2016,
+   "type": "apartments",
+   "cornice": 8,
+   "total": 8,
+   "roof": 0,
+   "foral": "bi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 8,
+   "year": 2016,
+   "look": "moderni"
+  }
+ },
+ {
+  "id": "bi8-left",
+  "town": "bilbao",
+  "street": "Iparraguirre kalea",
+  "lat": 43.2593414,
+  "lon": -2.9381865,
+  "cut": {
+   "lat": 43.2593074,
+   "lon": -2.9380378,
+   "bearing": 17.3
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1959,
+   "type": "apartments",
+   "cornice": 10,
+   "total": 10,
+   "roof": 0,
+   "foral": "bi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 10,
+   "year": 1959,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "bi9-left",
+  "town": "bilbao",
+  "street": null,
+  "lat": 43.2538473,
+  "lon": -2.9477189,
+  "cut": {
+   "lat": 43.2538718,
+   "lon": -2.947299,
+   "bearing": -4.5
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1980,
+   "type": "apartments",
+   "cornice": 8,
+   "total": 8,
+   "roof": 0,
+   "foral": "bi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 8,
+   "year": 1980,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "bi9-right",
+  "town": "bilbao",
+  "street": null,
+  "lat": 43.2538832,
+  "lon": -2.9471025,
+  "cut": {
+   "lat": 43.2538718,
+   "lon": -2.947299,
+   "bearing": -4.5
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1960,
+   "type": "industrial",
+   "cornice": 4,
+   "total": 4,
+   "roof": 0,
+   "foral": "bi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 4,
+   "year": 1960,
+   "look": "typovy"
+  }
+ },
+ {
+  "id": "bi10-left",
+  "town": "bilbao",
+  "street": "Ganeta Mendiaren kalea",
+  "lat": 43.2753111,
+  "lon": -2.946903,
+  "cut": {
+   "lat": 43.2753913,
+   "lon": -2.9468961,
+   "bearing": -86.4
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1973,
+   "type": "apartments",
+   "cornice": 6,
+   "total": 6,
+   "roof": 0,
+   "foral": "bi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 6,
+   "year": 1973,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "do1-right",
+  "town": "donostia",
+  "street": "Iruresoro plaza",
+  "lat": 43.3167217,
+  "lon": -1.9705249,
+  "cut": {
+   "lat": 43.3167862,
+   "lon": -1.9705751,
+   "bearing": 60.3
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1959,
+   "type": "apartments",
+   "cornice": 7,
+   "total": 7,
+   "roof": 0,
+   "foral": "gi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 7,
+   "year": 1959,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "do2-left",
+  "town": "donostia",
+  "street": "Oiartzun kalea",
+  "lat": 43.322866,
+  "lon": -1.9682042,
+  "cut": {
+   "lat": 43.3227748,
+   "lon": -1.9682131,
+   "bearing": 94.1
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1957,
+   "type": "apartments",
+   "cornice": 8,
+   "total": 8,
+   "roof": 0,
+   "foral": "gi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 8,
+   "year": 1957,
+   "look": "sorela"
+  }
+ },
+ {
+  "id": "do2-right",
+  "town": "donostia",
+  "street": "Oiartzun kalea",
+  "lat": 43.3226895,
+  "lon": -1.9682214,
+  "cut": {
+   "lat": 43.3227748,
+   "lon": -1.9682131,
+   "bearing": 94.1
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1970,
+   "type": "apartments",
+   "cornice": 9,
+   "total": 9,
+   "roof": 0,
+   "foral": "gi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 9,
+   "year": 1970,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "do3-left",
+  "town": "donostia",
+  "street": "Karmengo Andre Mariaren kalea",
+  "lat": 43.317381,
+  "lon": -1.9697884,
+  "cut": {
+   "lat": 43.3174557,
+   "lon": -1.9698488,
+   "bearing": -120.6
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1908,
+   "type": "apartments",
+   "cornice": 4,
+   "total": 4,
+   "roof": 0,
+   "foral": "gi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 4,
+   "year": 1908,
+   "look": "sikma"
+  }
+ },
+ {
+  "id": "do4-right",
+  "town": "donostia",
+  "street": "Colon pasealekua",
+  "lat": 43.3230502,
+  "lon": -1.977207,
+  "cut": {
+   "lat": 43.3228027,
+   "lon": -1.9772734,
+   "bearing": -78.9
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {},
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  }
+ },
+ {
+  "id": "do5-left",
+  "town": "donostia",
+  "street": "Plazaburu kalea",
+  "lat": 43.3095533,
+  "lon": -1.9662062,
+  "cut": {
+   "lat": 43.3096241,
+   "lon": -1.9662089,
+   "bearing": -91.6
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1900,
+   "type": "apartments",
+   "cornice": 4,
+   "total": 4,
+   "roof": 0,
+   "foral": "gi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 4,
+   "year": 1900,
+   "look": "sikma"
+  }
+ },
+ {
+  "id": "do5-right",
+  "town": "donostia",
+  "street": "Plazaburu kalea",
+  "lat": 43.3096932,
+  "lon": -1.9662114,
+  "cut": {
+   "lat": 43.3096241,
+   "lon": -1.9662089,
+   "bearing": -91.6
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 2007,
+   "type": "apartments",
+   "cornice": 6,
+   "total": 6,
+   "roof": 0,
+   "foral": "gi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 6,
+   "year": 2007,
+   "look": "moderni"
+  }
+ },
+ {
+  "id": "do6-left",
+  "town": "donostia",
+  "street": "Ategorrietako Galtzada Zaharra",
+  "lat": 43.3246835,
+  "lon": -1.968104,
+  "cut": {
+   "lat": 43.3246199,
+   "lon": -1.9679337,
+   "bearing": 27
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1987,
+   "house": true,
+   "type": "house",
+   "cornice": 2,
+   "total": 2,
+   "roof": 0,
+   "foral": "gi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 2,
+   "year": 1987,
+   "look": "kostka"
+  }
+ },
+ {
+  "id": "do6-right",
+  "town": "donostia",
+  "street": "Ategorrietako Galtzada Zaharra",
+  "lat": 43.3245005,
+  "lon": -1.9676145,
+  "cut": {
+   "lat": 43.3246199,
+   "lon": -1.9679337,
+   "bearing": 27
+  },
+  "osmLevels": 3,
+  "osmStart": null,
+  "answer": {
+   "built": 2022,
+   "office": true,
+   "type": "office",
+   "cornice": 2,
+   "total": 2,
+   "roof": 0,
+   "foral": "gi"
+  },
+  "a": {
+   "levels": 3,
+   "year": null,
+   "look": "kancelar"
+  },
+  "b": {
+   "levels": 2,
+   "year": 2022,
+   "look": "nizky"
+  }
+ },
+ {
+  "id": "do7-left",
+  "town": "donostia",
+  "street": "Pedro Egaña kalea",
+  "lat": 43.313461,
+  "lon": -1.9808983,
+  "cut": {
+   "lat": 43.3135431,
+   "lon": -1.9809557,
+   "bearing": -117.1
+  },
+  "osmLevels": 6,
+  "osmStart": null,
+  "answer": {
+   "built": 1900,
+   "type": "apartments",
+   "cornice": 7,
+   "total": 7,
+   "roof": 0,
+   "foral": "gi"
+  },
+  "a": {
+   "levels": 6,
+   "year": null,
+   "look": "funkce"
+  },
+  "b": {
+   "levels": 7,
+   "year": 1900,
+   "look": "sikma"
+  }
+ },
+ {
+  "id": "do7-right",
+  "town": "donostia",
+  "street": "Pedro Egaña kalea",
+  "lat": 43.3136287,
+  "lon": -1.9810154,
+  "cut": {
+   "lat": 43.3135431,
+   "lon": -1.9809557,
+   "bearing": -117.1
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1906,
+   "type": "apartments",
+   "cornice": 7,
+   "total": 7,
+   "roof": 0,
+   "foral": "gi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 7,
+   "year": 1906,
+   "look": "sikma"
+  }
+ },
+ {
+  "id": "do8-left",
+  "town": "donostia",
+  "street": "Fernando Sasiain kalea",
+  "lat": 43.3215896,
+  "lon": -1.9612482,
+  "cut": {
+   "lat": 43.3216029,
+   "lon": -1.9614611,
+   "bearing": -175.1
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1920,
+   "office": true,
+   "type": "office",
+   "cornice": 4,
+   "total": 4,
+   "roof": 0,
+   "foral": "gi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 4,
+   "year": 1920,
+   "look": "kancelar"
+  }
+ },
+ {
+  "id": "do8-right",
+  "town": "donostia",
+  "street": "Fernando Sasiain kalea",
+  "lat": 43.3216236,
+  "lon": -1.9617926,
+  "cut": {
+   "lat": 43.3216029,
+   "lon": -1.9614611,
+   "bearing": -175.1
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 2004,
+   "type": "apartments",
+   "cornice": 4,
+   "total": 4,
+   "roof": 0,
+   "foral": "gi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 4,
+   "year": 2004,
+   "look": "moderni"
+  }
+ },
+ {
+  "id": "do9-left",
+  "town": "donostia",
+  "street": "Toribio Alzaga kalea",
+  "lat": 43.3044537,
+  "lon": -1.9731948,
+  "cut": {
+   "lat": 43.3047049,
+   "lon": -1.973009,
+   "bearing": -61.6
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1995,
+   "type": "apartments",
+   "cornice": 6,
+   "total": 6,
+   "roof": 0,
+   "foral": "gi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 6,
+   "year": 1995,
+   "look": "moderni"
+  }
+ },
+ {
+  "id": "do9-right",
+  "town": "donostia",
+  "street": "Toribio Alzaga kalea",
+  "lat": 43.3048325,
+  "lon": -1.9729147,
+  "cut": {
+   "lat": 43.3047049,
+   "lon": -1.973009,
+   "bearing": -61.6
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1994,
+   "type": "apartments",
+   "cornice": 7,
+   "total": 7,
+   "roof": 0,
+   "foral": "gi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 7,
+   "year": 1994,
+   "look": "moderni"
+  }
+ },
+ {
+  "id": "do10-right",
+  "town": "donostia",
+  "street": "Madalena Jauregiberri pasealekua",
+  "lat": 43.3099033,
+  "lon": -1.9679642,
+  "cut": {
+   "lat": 43.3099937,
+   "lon": -1.9678041,
+   "bearing": 142.4
+  },
+  "osmLevels": 4,
+  "osmStart": null,
+  "answer": {
+   "built": 1996,
+   "office": true,
+   "type": "office",
+   "cornice": 4,
+   "total": 4,
+   "roof": 0,
+   "foral": "gi"
+  },
+  "a": {
+   "levels": 4,
+   "year": null,
+   "look": "kancelar"
+  },
+  "b": {
+   "levels": 4,
+   "year": 1996,
+   "look": "kancelar"
+  }
+ },
+ {
+  "id": "vi1-right",
+  "town": "vitoria",
+  "street": "Arriagako atea",
+  "lat": 42.8529852,
+  "lon": -2.6730206,
+  "cut": {
+   "lat": 42.8530215,
+   "lon": -2.6732214,
+   "bearing": 13.8
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1972,
+   "type": "apartments",
+   "cornice": 9,
+   "total": 9,
+   "roof": 0,
+   "foral": "ar"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 9,
+   "year": 1972,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "vi2-left",
+  "town": "vitoria",
+  "street": "Fermin Lasuen kalea",
+  "lat": 42.8557671,
+  "lon": -2.6692635,
+  "cut": {
+   "lat": 42.8558808,
+   "lon": -2.6694598,
+   "bearing": -141.9
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {},
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  }
+ },
+ {
+  "id": "vi2-right",
+  "town": "vitoria",
+  "street": "Fermin Lasuen kalea",
+  "lat": 42.8559434,
+  "lon": -2.6695679,
+  "cut": {
+   "lat": 42.8558808,
+   "lon": -2.6694598,
+   "bearing": -141.9
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1969,
+   "type": "apartments",
+   "cornice": 8,
+   "total": 8,
+   "roof": 0,
+   "foral": "ar"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 8,
+   "year": 1969,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "vi3-left",
+  "town": "vitoria",
+  "street": "Badaia kalea",
+  "lat": 42.8513844,
+  "lon": -2.6801792,
+  "cut": {
+   "lat": 42.8512518,
+   "lon": -2.6802198,
+   "bearing": 102.7
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1971,
+   "cornice": 4,
+   "total": 4,
+   "roof": 0,
+   "foral": "ar"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 4,
+   "year": 1971,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "vi3-right",
+  "town": "vitoria",
+  "street": "Badaia kalea",
+  "lat": 42.851147,
+  "lon": -2.6802518,
+  "cut": {
+   "lat": 42.8512518,
+   "lon": -2.6802198,
+   "bearing": 102.7
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1979,
+   "type": "apartments",
+   "cornice": 11,
+   "total": 11,
+   "roof": 0,
+   "foral": "ar"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 11,
+   "year": 1979,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "vi4-left",
+  "town": "vitoria",
+  "street": "Arriagako atea",
+  "lat": 42.8567561,
+  "lon": -2.6736487,
+  "cut": {
+   "lat": 42.856754,
+   "lon": -2.6734051,
+   "bearing": 0.7
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1970,
+   "type": "apartments",
+   "cornice": 6,
+   "total": 6,
+   "roof": 0,
+   "foral": "ar"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 6,
+   "year": 1970,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "vi4-right",
+  "town": "vitoria",
+  "street": "Arriagako atea",
+  "lat": 42.8567512,
+  "lon": -2.6730853,
+  "cut": {
+   "lat": 42.856754,
+   "lon": -2.6734051,
+   "bearing": 0.7
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1973,
+   "type": "apartments",
+   "cornice": 7,
+   "total": 7,
+   "roof": 0,
+   "foral": "ar"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 7,
+   "year": 1973,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "vi5-left",
+  "town": "vitoria",
+  "street": "Konstituzio plaza",
+  "lat": 42.856914,
+  "lon": -2.6804052,
+  "cut": {
+   "lat": 42.8565447,
+   "lon": -2.6805065,
+   "bearing": 101.4
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1982,
+   "type": "apartments",
+   "cornice": 9,
+   "total": 9,
+   "roof": 0,
+   "foral": "ar"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 9,
+   "year": 1982,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "vi6-left",
+  "town": "vitoria",
+  "street": "Izardui Komandantearen kalea",
+  "lat": 42.8394214,
+  "lon": -2.6681997,
+  "cut": {
+   "lat": 42.8395537,
+   "lon": -2.6683613,
+   "bearing": -132
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1985,
+   "type": "apartments",
+   "cornice": 8,
+   "total": 8,
+   "roof": 0,
+   "foral": "ar"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 8,
+   "year": 1985,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "vi6-right",
+  "town": "vitoria",
+  "street": "Izardui Komandantearen kalea",
+  "lat": 42.839787,
+  "lon": -2.6686463,
+  "cut": {
+   "lat": 42.8395537,
+   "lon": -2.6683613,
+   "bearing": -132
+  },
+  "osmLevels": 2,
+  "osmStart": null,
+  "answer": {
+   "built": 1997,
+   "office": true,
+   "type": "office",
+   "cornice": 3,
+   "total": 3,
+   "roof": 0,
+   "foral": "ar"
+  },
+  "a": {
+   "levels": 2,
+   "year": null,
+   "look": "nizky"
+  },
+  "b": {
+   "levels": 3,
+   "year": 1997,
+   "look": "kancelar"
+  }
+ },
+ {
+  "id": "vi7-left",
+  "town": "vitoria",
+  "street": "Paraguai kalea",
+  "lat": 42.8585099,
+  "lon": -2.677842,
+  "cut": {
+   "lat": 42.8585402,
+   "lon": -2.6780874,
+   "bearing": -170.5
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1972,
+   "type": "apartments",
+   "cornice": 9,
+   "total": 9,
+   "roof": 0,
+   "foral": "ar"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 9,
+   "year": 1972,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "vi7-right",
+  "town": "vitoria",
+  "street": "Paraguai kalea",
+  "lat": 42.8585815,
+  "lon": -2.6784211,
+  "cut": {
+   "lat": 42.8585402,
+   "lon": -2.6780874,
+   "bearing": -170.5
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1974,
+   "type": "apartments",
+   "cornice": 9,
+   "total": 9,
+   "roof": 0,
+   "foral": "ar"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 9,
+   "year": 1974,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "vi8-left",
+  "town": "vitoria",
+  "street": "Izardui Komandantearen kalea",
+  "lat": 42.838395,
+  "lon": -2.6683905,
+  "cut": {
+   "lat": 42.8384501,
+   "lon": -2.6687013,
+   "bearing": -166.5
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 2026,
+   "office": true,
+   "type": "office",
+   "cornice": 5,
+   "total": 5,
+   "roof": 0,
+   "foral": "ar"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 5,
+   "year": 2026,
+   "look": "kancelar"
+  }
+ },
+ {
+  "id": "vi9-right",
+  "town": "vitoria",
+  "street": "Zumabide kalea",
+  "lat": 42.8356571,
+  "lon": -2.6719659,
+  "cut": {
+   "lat": 42.8353289,
+   "lon": -2.6720377,
+   "bearing": -80.8
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1974,
+   "type": "apartments",
+   "cornice": 5,
+   "total": 5,
+   "roof": 0,
+   "foral": "ar"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 5,
+   "year": 1974,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "vi10-left",
+  "town": "vitoria",
+  "street": "Osasun Iturri kalea",
+  "lat": 42.8413037,
+  "lon": -2.6616379,
+  "cut": {
+   "lat": 42.8412891,
+   "lon": -2.66181,
+   "bearing": 173.4
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1987,
+   "type": "apartments",
+   "cornice": 9,
+   "total": 9,
+   "roof": 0,
+   "foral": "ar"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 9,
+   "year": 1987,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "vi10-right",
+  "town": "vitoria",
+  "street": "Osasun Iturri kalea",
+  "lat": 42.841273,
+  "lon": -2.6620001,
+  "cut": {
+   "lat": 42.8412891,
+   "lon": -2.66181,
+   "bearing": 173.4
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1987,
+   "type": "apartments",
+   "cornice": 9,
+   "total": 9,
+   "roof": 0,
+   "foral": "ar"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 9,
+   "year": 1987,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "pa1-near",
+  "town": "pamplona",
+  "street": null,
+  "lat": 42.8113599,
+  "lon": -1.6437969,
+  "cut": {
+   "lat": 42.8113935,
+   "lon": -1.6436649,
+   "bearing": -19
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1981,
+   "type": "apartments",
+   "cornice": 8,
+   "total": 8,
+   "roof": 0,
+   "foral": "nc"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 8,
+   "year": 1981,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "pa2-near",
+  "town": "pamplona",
+  "street": null,
+  "lat": 42.8190997,
+  "lon": -1.6583719,
+  "cut": {
+   "lat": 42.8190122,
+   "lon": -1.6583034,
+   "bearing": 60
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1973,
+   "cornice": 2,
+   "total": 2,
+   "roof": 0,
+   "foral": "nc"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 2,
+   "year": 1973,
+   "look": "nizky"
+  }
+ },
+ {
+  "id": "pa3-near",
+  "town": "pamplona",
+  "street": null,
+  "lat": 42.8124407,
+  "lon": -1.6571932,
+  "cut": {
+   "lat": 42.8125195,
+   "lon": -1.6572051,
+   "bearing": 263.6
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1978,
+   "type": "apartments",
+   "cornice": 13,
+   "total": 13,
+   "roof": 0,
+   "foral": "nc"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 13,
+   "year": 1978,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "pa4-near",
+  "town": "pamplona",
+  "street": null,
+  "lat": 42.8024278,
+  "lon": -1.6426742,
+  "cut": {
+   "lat": 42.8021125,
+   "lon": -1.6426375,
+   "bearing": 85.1
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 2017,
+   "type": "apartments",
+   "cornice": 7,
+   "total": 7,
+   "roof": 0,
+   "foral": "nc"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 7,
+   "year": 2017,
+   "look": "moderni"
+  }
+ },
+ {
+  "id": "pa5-near",
+  "town": "pamplona",
+  "street": null,
+  "lat": 42.8132728,
+  "lon": -1.6252195,
+  "cut": {
+   "lat": 42.8131824,
+   "lon": -1.625038,
+   "bearing": 34
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1947,
+   "type": "industrial",
+   "cornice": 3,
+   "total": 3,
+   "roof": 0,
+   "foral": "nc"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 3,
+   "year": 1947,
+   "look": "sikma"
+  }
+ },
+ {
+  "id": "pa6-near",
+  "town": "pamplona",
+  "street": null,
+  "lat": 42.8267389,
+  "lon": -1.6414019,
+  "cut": {
+   "lat": 42.826549,
+   "lon": -1.6414391,
+   "bearing": 98.2
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1900,
+   "cornice": 2,
+   "total": 2,
+   "roof": 0,
+   "foral": "nc"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 2,
+   "year": 1900,
+   "look": "nizky"
+  }
+ },
+ {
+  "id": "pa7-near",
+  "town": "pamplona",
+  "street": null,
+  "lat": 42.8142507,
+  "lon": -1.6263895,
+  "cut": {
+   "lat": 42.8142185,
+   "lon": -1.6262578,
+   "bearing": 18.3
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 2008,
+   "house": true,
+   "type": "house",
+   "cornice": 1,
+   "total": 1,
+   "roof": 0,
+   "foral": "nc"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 1,
+   "year": 2008,
+   "look": "novyrd"
+  }
+ },
+ {
+  "id": "pa8-near",
+  "town": "pamplona",
+  "street": null,
+  "lat": 42.8200379,
+  "lon": -1.6302656,
+  "cut": {
+   "lat": 42.8201443,
+   "lon": -1.6299742,
+   "bearing": -26.3
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1960,
+   "office": true,
+   "type": "office",
+   "cornice": 1,
+   "total": 1,
+   "roof": 0,
+   "foral": "nc"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 1,
+   "year": 1960,
+   "look": "nizky"
+  }
+ },
+ {
+  "id": "pa9-near",
+  "town": "pamplona",
+  "street": null,
+  "lat": 42.8245887,
+  "lon": -1.6353792,
+  "cut": {
+   "lat": 42.8246223,
+   "lon": -1.6353082,
+   "bearing": -32.6
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1963,
+   "type": "apartments",
+   "cornice": 4,
+   "total": 4,
+   "roof": 0,
+   "foral": "nc"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 4,
+   "year": 1963,
+   "look": "typovy"
+  }
+ },
+ {
+  "id": "pa10-near",
+  "town": "pamplona",
+  "street": null,
+  "lat": 42.8036616,
+  "lon": -1.6500435,
+  "cut": {
+   "lat": 42.8035727,
+   "lon": -1.6500907,
+   "bearing": 111.4
+  },
+  "osmLevels": null,
+  "osmStart": null,
+  "answer": {
+   "built": 1972,
+   "type": "apartments",
+   "cornice": 8,
+   "total": 8,
+   "roof": 0,
+   "foral": "nc"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 8,
+   "year": 1972,
+   "look": "funkce"
+  }
+ }
+]

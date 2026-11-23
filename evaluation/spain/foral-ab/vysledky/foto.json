@@ -1,0 +1,438 @@
+[
+ {
+  "id": "bif1",
+  "town": "bilbao",
+  "photo": {
+   "id": "305157131160519",
+   "year": 2020,
+   "d": 11.7
+  },
+  "lat": 43.2712297,
+  "lon": -2.9475338,
+  "osm": true,
+  "osmLevels": null,
+  "answer": {
+   "built": 1972,
+   "type": "apartments",
+   "cornice": 8,
+   "total": 8,
+   "roof": 0,
+   "foral": "bi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 8,
+   "year": 1972,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "bif2",
+  "town": "bilbao",
+  "photo": {
+   "id": "985949395787455",
+   "year": 2023,
+   "d": 16
+  },
+  "lat": 43.2641454,
+  "lon": -2.940843,
+  "osm": true,
+  "osmLevels": null,
+  "answer": {
+   "built": 1965,
+   "type": "apartments",
+   "cornice": 15,
+   "total": 15,
+   "roof": 0,
+   "foral": "bi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 15,
+   "year": 1965,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "bif3",
+  "town": "bilbao",
+  "photo": {
+   "id": "223609743501062",
+   "year": 2023,
+   "d": 19
+  },
+  "lat": 43.25972,
+  "lon": -2.9351863,
+  "osm": true,
+  "osmLevels": null,
+  "answer": {
+   "built": 1930,
+   "type": "apartments",
+   "cornice": 9,
+   "total": 9,
+   "roof": 0,
+   "foral": "bi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 9,
+   "year": 1930,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "bif4",
+  "town": "bilbao",
+  "photo": {
+   "id": "370495664385595",
+   "year": 2020,
+   "d": 10.9
+  },
+  "lat": 43.267289,
+  "lon": -2.9343909,
+  "osm": true,
+  "osmLevels": 7,
+  "answer": {
+   "built": 1920,
+   "type": "apartments",
+   "cornice": 7,
+   "total": 7,
+   "roof": 0,
+   "foral": "bi"
+  },
+  "a": {
+   "levels": 7,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 7,
+   "year": 1920,
+   "look": "sikma"
+  }
+ },
+ {
+  "id": "dof1",
+  "town": "donostia",
+  "photo": {
+   "id": "1059002247093685",
+   "year": 2026,
+   "d": 25.7
+  },
+  "lat": 43.3118926,
+  "lon": -1.9653468,
+  "osm": true,
+  "osmLevels": null,
+  "answer": {
+   "built": 1982,
+   "office": true,
+   "type": "office",
+   "cornice": 2,
+   "total": 2,
+   "roof": 0,
+   "foral": "gi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 2,
+   "year": 1982,
+   "look": "nizky"
+  }
+ },
+ {
+  "id": "dof2",
+  "town": "donostia",
+  "photo": {
+   "id": "1823515275482357",
+   "year": 2026,
+   "d": 33.6
+  },
+  "lat": 43.3113672,
+  "lon": -1.9668638,
+  "osm": true,
+  "osmLevels": null,
+  "answer": {
+   "built": 1985,
+   "type": "apartments",
+   "cornice": 4,
+   "total": 4,
+   "roof": 0,
+   "foral": "gi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 4,
+   "year": 1985,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "dof3",
+  "town": "donostia",
+  "photo": {
+   "id": "28531944699745321",
+   "year": 2026,
+   "d": 29.2
+  },
+  "lat": 43.3080524,
+  "lon": -1.9792221,
+  "osm": true,
+  "osmLevels": 10,
+  "answer": {
+   "built": 1960,
+   "house": true,
+   "type": "house",
+   "cornice": 9,
+   "total": 9,
+   "roof": 0,
+   "foral": "gi"
+  },
+  "a": {
+   "levels": 10,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 9,
+   "year": 1960,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "dof4",
+  "town": "donostia",
+  "photo": {
+   "id": "1133109213830269",
+   "year": 2019,
+   "d": 21.4
+  },
+  "lat": 43.3234876,
+  "lon": -1.9865754,
+  "osm": true,
+  "osmLevels": null,
+  "answer": {
+   "built": 1890,
+   "type": "apartments",
+   "cornice": 5,
+   "total": 5,
+   "roof": 0,
+   "foral": "gi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 5,
+   "year": 1890,
+   "look": "sikma"
+  }
+ },
+ {
+  "id": "dof5",
+  "town": "donostia",
+  "photo": {
+   "id": "1367258851670196",
+   "year": 2026,
+   "d": 8.3
+  },
+  "lat": 43.3160051,
+  "lon": -1.9854401,
+  "osm": true,
+  "osmLevels": null,
+  "answer": {
+   "built": 2019,
+   "office": true,
+   "type": "office",
+   "cornice": 7,
+   "total": 7,
+   "roof": 0,
+   "foral": "gi"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 7,
+   "year": 2019,
+   "look": "kancelar"
+  }
+ },
+ {
+  "id": "vif1",
+  "town": "vitoria",
+  "photo": {
+   "id": "2057168794906544",
+   "year": 2026,
+   "d": 13.9
+  },
+  "lat": 42.8500383,
+  "lon": -2.6661502,
+  "osm": true,
+  "osmLevels": null,
+  "answer": {
+   "built": 1993,
+   "type": "industrial",
+   "cornice": 1,
+   "total": 1,
+   "roof": 0,
+   "foral": "ar"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 1,
+   "year": 1993,
+   "look": "hala"
+  }
+ },
+ {
+  "id": "vif2",
+  "town": "vitoria",
+  "photo": {
+   "id": "950560872176223",
+   "year": 2021,
+   "d": 25.1
+  },
+  "lat": 42.8540402,
+  "lon": -2.6805634,
+  "osm": true,
+  "osmLevels": null,
+  "answer": {
+   "built": 1971,
+   "type": "apartments",
+   "cornice": 8,
+   "total": 8,
+   "roof": 0,
+   "foral": "ar"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 8,
+   "year": 1971,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "vif3",
+  "town": "vitoria",
+  "photo": {
+   "id": "983852418686634",
+   "year": 2017,
+   "d": 30.6
+  },
+  "lat": 42.8563004,
+  "lon": -2.6760243,
+  "osm": true,
+  "osmLevels": null,
+  "answer": {
+   "built": 1970,
+   "type": "apartments",
+   "cornice": 8,
+   "total": 8,
+   "roof": 0,
+   "foral": "ar"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 8,
+   "year": 1970,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "vif4",
+  "town": "vitoria",
+  "photo": {
+   "id": "182491277058690",
+   "year": 2017,
+   "d": 12.9
+  },
+  "lat": 42.8547133,
+  "lon": -2.6762737,
+  "osm": true,
+  "osmLevels": null,
+  "answer": {
+   "built": 1964,
+   "type": "apartments",
+   "cornice": 8,
+   "total": 8,
+   "roof": 0,
+   "foral": "ar"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 8,
+   "year": 1964,
+   "look": "funkce"
+  }
+ },
+ {
+  "id": "paf1",
+  "town": "pamplona",
+  "photo": {
+   "id": "308792790629929",
+   "year": 2021,
+   "d": 31.4
+  },
+  "lat": 42.8209519,
+  "lon": -1.6582342,
+  "osm": false,
+  "osmLevels": null,
+  "answer": {
+   "built": 1989,
+   "cornice": 2,
+   "total": 2,
+   "roof": 0,
+   "foral": "nc"
+  },
+  "a": {
+   "levels": null,
+   "year": null,
+   "look": "sikma"
+  },
+  "b": {
+   "levels": 2,
+   "year": 1989,
+   "look": "nizky"
+  }
+ }
+]

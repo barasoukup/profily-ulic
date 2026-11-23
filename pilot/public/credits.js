@@ -82,6 +82,14 @@ export const SOURCE_CREDITS = {
   frTown: { paris: () => t("mapa povrchů (Plan de voirie) © Ville de Paris") },
   // Zaragoza's paving map (towns/spain.js).
   esTown: { zaragoza: () => t("mapa povrchů © Ayuntamiento de Zaragoza (IDEZar)") },
+  // The buildings of the foral cadastres of Navarre and the Basque provinces (towns/spain-foral.js), in the words each
+  // service asks for (Navarre: this sentence with CC BY 4.0; Gipuzkoa: the author named).
+  esForal: {
+    nc: () => t("budovy {who}", { who: "Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0)" }),
+    gi: () => t("budovy {who}", { who: "© Gipuzkoako Foru Aldundia" }),
+    bi: () => t("budovy {who}", { who: "© Bizkaiko Foru Aldundia – Diputación Foral de Bizkaia" }),
+    ar: () => t("budovy {who}", { who: "© Diputación Foral de Álava – Arabako Foru Aldundia" }),
+  },
   // Bologna's road areas (towns/italy.js).
   eeTown: { tallinn: () => t("mapa povrchů © Tallinna Linnaplaneerimise Amet") },
   itTown: { bologna: () => t("mapa povrchů (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)") },

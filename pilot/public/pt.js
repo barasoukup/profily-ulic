@@ -398,6 +398,7 @@ export const PT = {
   "databáze ulic Cách a OSM": "da base de dados de ruas de Aachen e do OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "superfícies das ruas (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "ortofotomapa {who}",
+  "budovy {who}": "edifícios {who}",
   "obruby vozovky: model AI učený na mapách povrchů {who}": "lancis da faixa de rodagem: modelo de IA treinado com os mapas de superfícies {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "ortofotomapa © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofotomapa © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
@@ -970,7 +971,7 @@ export const PT_HTML = {
     Bélgica e Luxemburgo: ortofotomapa e linhas GRB © Digitaal Vlaanderen, ortofotomapa e linhas PICC © SPW (Service public de Wallonie), ortofotomapa © ACT Luxembourg (geoportail.lu), limites © EuroGeographics (GISCO), sinais de trânsito Wikimedia Commons (obras oficiais), pesquisa Photon © komoot (dados do OSM) ·
     Polónia: ortofotomapa e pesquisa de moradas © GUGiK (Geoportal.gov.pl, PRG), mapa de superfícies de Cracóvia (MJO) © Gmina Miejska Kraków, limites © EuroGeographics (GISCO), sinais de trânsito Wikimedia Commons (obras oficiais) ·
     França: ortofotomapa, edifícios (BD TOPO) e pesquisa de moradas © IGN (Géoplateforme, Licence Ouverte 2.0), mapa de superfícies de Paris (Plan de voirie) © Ville de Paris (ODbL), limites © EuroGeographics (GISCO), sinais de trânsito Wikimedia Commons (obras oficiais) ·
-    Espanha: ortofotomapa PNOA e pesquisa de moradas CartoCiudad © IGN (CC BY 4.0 scne.es), edifícios © Dirección General del Catastro, mapa de superfícies de Saragoça © Ayuntamiento de Zaragoza (IDEZar), limites © EuroGeographics (GISCO), sinais de trânsito Wikimedia Commons (obras oficiais) ·
+    Espanha: ortofotomapa PNOA e pesquisa de moradas CartoCiudad © IGN (CC BY 4.0 scne.es), edifícios © Dirección General del Catastro, em Navarra Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), no País Basco © Arabako, Bizkaiko e Gipuzkoako Foru Aldundia, mapa de superfícies de Saragoça © Ayuntamiento de Zaragoza (IDEZar), limites © EuroGeographics (GISCO), sinais de trânsito Wikimedia Commons (obras oficiais) ·
     Portugal: ortofotomapa © DGT (Direção-Geral do Território), limites © EuroGeographics (GISCO), sinais de trânsito Wikimedia Commons (obras oficiais; redesenhados por Fry1989 sob CC BY-SA 3.0 e Gigillo83 sob CC BY-SA 4.0) ·
     Mónaco: ortofotomapa © IGN (Géoplateforme, Licence Ouverte 2.0), limites © contribuidores do OpenStreetMap, desenhos de sinais de trânsito franceses Wikimedia Commons ·
     Chipre: ortofotomapa 2019 © Department of Lands and Surveys (DLS; licença não indicada), edifícios © DLS (CC BY 4.0), limites © contribuidores do OpenStreetMap, sinais de trânsito Wikimedia Commons (modelos britânicos: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·

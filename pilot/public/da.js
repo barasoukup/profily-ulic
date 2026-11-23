@@ -398,6 +398,7 @@ export const DA = {
   "databáze ulic Cách a OSM": "Aachens gadedatabase og OSM",
   "povrchy ulic (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)": "gadeflader (Straßendatenbank) © Stadt Aachen (dl-de/zero-2-0)",
   "ortofoto {who}": "ortofoto {who}",
+  "budovy {who}": "bygninger {who}",
   "obruby vozovky: model AI učený na mapách povrchů {who}": "kantsten ved kørebanen: AI-model trænet på overfladekortene {who}",
   "ortofoto © basemap.at (CC BY 4.0)": "ortofoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
@@ -969,7 +970,7 @@ export const DA_HTML = {
     Belgien og Luxembourg: ortofoto og GRB-linjer © Digitaal Vlaanderen, ortofoto og PICC-linjer © SPW (Service public de Wallonie), ortofoto © ACT Luxembourg (geoportail.lu), grænser © EuroGeographics (GISCO), færdselstavler Wikimedia Commons (officielle værker), søgning Photon © komoot (OSM-data) ·
     Polen: ortofoto og adressesøgning © GUGiK (Geoportal.gov.pl, PRG), Krakóws fladekort (MJO) © Gmina Miejska Kraków, grænser © EuroGeographics (GISCO), færdselstavler Wikimedia Commons (officielle værker) ·
     Frankrig: ortofoto, bygninger (BD TOPO) og adressesøgning © IGN (Géoplateforme, Licence Ouverte 2.0), Paris' fladekort (Plan de voirie) © Ville de Paris (ODbL), grænser © EuroGeographics (GISCO), færdselstavler Wikimedia Commons (officielle værker) ·
-    Spanien: ortofoto PNOA og adressesøgning CartoCiudad © IGN (CC BY 4.0 scne.es), bygninger © Dirección General del Catastro, Zaragozas fladekort © Ayuntamiento de Zaragoza (IDEZar), grænser © EuroGeographics (GISCO), færdselstavler Wikimedia Commons (officielle værker) ·
+    Spanien: ortofoto PNOA og adressesøgning CartoCiudad © IGN (CC BY 4.0 scne.es), bygninger © Dirección General del Catastro, i Navarra Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), i Baskerlandet © Arabako, Bizkaiko og Gipuzkoako Foru Aldundia, Zaragozas fladekort © Ayuntamiento de Zaragoza (IDEZar), grænser © EuroGeographics (GISCO), færdselstavler Wikimedia Commons (officielle værker) ·
     Portugal: ortofoto © DGT (Direção-Geral do Território), grænser © EuroGeographics (GISCO), færdselstavler Wikimedia Commons (officielle værker; gentegning Fry1989 under CC BY-SA 3.0 og Gigillo83 under CC BY-SA 4.0) ·
     Monaco: ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0), grænser © OpenStreetMap-bidragydere, tegninger af franske færdselstavler Wikimedia Commons ·
     Cypern: ortofoto 2019 © Department of Lands and Surveys (DLS; licens ikke angivet), bygninger © DLS (CC BY 4.0), grænser © OpenStreetMap-bidragydere, færdselstavler Wikimedia Commons (britiske forlæg: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
