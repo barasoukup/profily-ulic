@@ -452,7 +452,9 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 ## Estonsko (větev estonia z italy, Bára 23. 11. 2026, nenasazené)
 - `countries/EE.js`, `towns/estonia.js`, `search-ee.js` (In-ADS), `signs-EE/`, `evaluation/estonia/` (ZDROJE, NORMY). Hranice
   GISCO, OSM balík `ee` (jen R2; **workflow OSM tiles se `states: ee`**). Ortofoto z dlaždic TMS z18 (WMS má vodoznak),
-  budovy ETAK s výškou. Mapa povrchů Tallinnu bez licence, nepoužitá. Otevřené otázky norem v `docs/backlog.md`.
+  budovy ETAK s výškou. Mapa povrchů Tallinnu zapnutá (`?tallinn=0`; licenci neuvádí, Bára: městské dílo s kreditem, není
+  zákaz; A/B lépe 11, hůř 4). Měření 23. 11. (12 řezů): složení 51 %, šířka do 2 m 25 %. Otevřené otázky norem v
+  `docs/backlog.md`.
 
 ## Měření přesnosti (Bára 17. 11. 2026)
 - Jedna univerzální metoda pro všechny státy: skill `mereni-presnosti`, kód a zpráva `evaluation/universal/`. Použít u

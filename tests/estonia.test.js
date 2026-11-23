@@ -22,6 +22,11 @@ test("Estonsko: budovy ETAK a hledání In-ADS", async () => {
   assert.deepEqual(E.etakBuilding({ korgus_m: 15, tyyp_tekst: "elu- või ühiskondlik hoone" }), { type: undefined, cornice: 5, total: 5, roof: 0, height: 15 });
   assert.equal(E.etakBuilding({ korgus_m: 8, tyyp_tekst: "tootmis- või abihoone" }).type, "industrial");
   assert.deepEqual(E.etakBuilding({}), { type: undefined });
+  const sq = [[[0, 0], [1, 0], [1, 1], [0, 0]]];
+  const t = E.tallinnFeatures([[701, { features: [{ geometry: { type: "MultiPolygon", coordinates: [sq, sq] } }] }], [702, { features: [{ geometry: { type: "Polygon", coordinates: sq } }] }]]);
+  assert.deepEqual(t.features.map((f) => f.attributes.code), [701, 701, 702], "mapa povrchů Tallinnu: multipolygon po polygonech");
+  assert.equal(E.TALLINN_LAYERS[36], 701);
+  assert.deepEqual(await E.sources.surfaces("26.72,58.37,26.73,58.38"), { features: [], abroad: true }, "mimo Tallinn nic");
   const S = await import("../pilot/public/search-ee.js");
   const items = S.parseEe({ addresses: [
     { ipikkaadress: "Narva mnt 10, Kesklinna linnaosa, Tallinn, Harju maakond", liikVal: "EHITISHOONE", viitepunkt_l: "24.7613", viitepunkt_b: "59.4375" },

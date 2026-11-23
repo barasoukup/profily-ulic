@@ -317,7 +317,9 @@ přístupnosti (0,9 m); stání 3 m na směr. Značky `signs-IT/` (Regolamento, 
 
 Stát `estonia` (EE), `countries/EE.js`, `towns/estonia.js`; hranice GISCO, OSM balík `ee` (jen R2). Ortofoto Maa- ja
 Ruumiamet z dlaždic TMS `foto@GMC` úrovně 18 (osa y odspodu, `lanes-ortho.js` `tms: true`; WMS v plném rozlišení má
-vodoznak, proto ne), podklad mapy do z21. Mapa povrchů Tallinnu nemá uvedenou licenci, nepoužitá. Budovy ETAK (WFS,
+vodoznak, proto ne), podklad mapy do z21. V Tallinnu mapa povrchů města (`tar_maakate`, vrstva po vrstvě; licenci
+neuvádí, Bára: městské dílo s kreditem), před ní budovy a po ní zeleň z OSM, jen kde má vozovku nebo chodník do 15 m od
+středu řezu (`?tallinn=0`; A/B lépe 11, hůř 4, `evaluation/estonia/ab/ZPRAVA.md`). Budovy ETAK (WFS,
 výška u fasády → podlaží po 3 m, `?etak=0`), hledání adres In-ADS (`search-ee.js`). Normy: chodník 1,5 / 2 m (nařízení
 o přístupnosti 2026, závazné), ostatní EVS 843 z druhé ruky; stání a tramvaj bez varování. Stání 3 m na směr, na chodníku
 jen se značkou a 1,5 m pro chodce. Značky `signs-EE/` (nařízení MKM nr 12, úřední díla; část překreslení CC BY-SA 4.0).

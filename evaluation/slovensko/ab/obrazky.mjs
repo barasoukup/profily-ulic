@@ -38,15 +38,16 @@ function bounds(segments, span) {
 }
 
 const AT_TILES = "https://mapsneu.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857";
-async function atImage([x0, y0, x1, y1], w, h) {
-  const z = 20, size = (2 * Math.PI * R) / 2 ** z;
+// tms: Estonia's tiles (level 18, y from the bottom, .jpg).
+async function atImage([x0, y0, x1, y1], w, h, tms = false) {
+  const z = tms ? 18 : 20, size = (2 * Math.PI * R) / 2 ** z;
   const tx0 = Math.floor((x0 + Math.PI * R) / size), tx1 = Math.floor((x1 + Math.PI * R) / size);
   const ty0 = Math.floor((Math.PI * R - y1) / size), ty1 = Math.floor((Math.PI * R - y0) / size);
   const dir = await fs.mkdtemp(path.join((await import("node:os")).tmpdir(), "at-"));
   const files = [];
   for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) {
     const f = path.join(dir, `${ty}-${tx}.jpg`);
-    const r = await fetch(`${AT_TILES}/${z}/${ty}/${tx}.jpeg`, { headers: { "User-Agent": "profily-ulic" } });
+    const r = await fetch(tms ? `https://tiles.maaamet.ee/tm/tms/1.0.0/foto@GMC/${z}/${tx}/${2 ** z - 1 - ty}.jpg` : `${AT_TILES}/${z}/${ty}/${tx}.jpeg`, { headers: { "User-Agent": "profily-ulic" } });
     await fs.writeFile(f, Buffer.from(await r.arrayBuffer()));
     files.push(f);
   }
@@ -153,6 +154,11 @@ async function image(c, tMax) {
       await fs.rm(file + ".jpg");
       buf = await fs.readFile(file);
       await new Promise((r) => setTimeout(r, 300));
+    } else if (process.env.ORTHO === "ee") {
+      // Estonia (evaluation/estonia/ab): the Land and Spatial Development Board's TMS tiles of level 18.
+      buf = await atImage([x0, y0, x1, y1], w, h, true);
+      await fs.mkdir(path.dirname(file), { recursive: true });
+      await fs.writeFile(file, buf);
     } else if (process.env.ORTHO === "at") {
       // Austria (evaluation/austria/ab): basemap.at's tiles of level 20 glued and cut to the box with ImageMagick.
       buf = await atImage([x0, y0, x1, y1], w, h);

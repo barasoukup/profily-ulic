@@ -80,6 +80,7 @@ export const SOURCE_CREDITS = {
   // Zaragoza's paving map (towns/spain.js).
   esTown: { zaragoza: () => t("mapa povrchů © Ayuntamiento de Zaragoza (IDEZar)") },
   // Bologna's road areas (towns/italy.js).
+  eeTown: { tallinn: () => t("mapa povrchů © Tallinna Linnaplaneerimise Amet") },
   itTown: { bologna: () => t("mapa povrchů (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)") },
   nlBgt: { true: () => t("mapa povrchů BGT © Kadaster a správci BGT (PDOK, CC0)") },
   // Amsterdam's parking spaces (towns/netherlands.js).

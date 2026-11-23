@@ -1,0 +1,242 @@
+[
+ {
+  "id": "tl1",
+  "town": "tallinn",
+  "lat": 59.430582,
+  "lon": 24.715562
+ },
+ {
+  "id": "tl2",
+  "town": "tallinn",
+  "lat": 59.453467,
+  "lon": 24.781185
+ },
+ {
+  "id": "tl3",
+  "town": "tallinn",
+  "lat": 59.431999,
+  "lon": 24.737533
+ },
+ {
+  "id": "tl4",
+  "town": "tallinn",
+  "lat": 59.413448,
+  "lon": 24.733545
+ },
+ {
+  "id": "tl5",
+  "town": "tallinn",
+  "lat": 59.430004,
+  "lon": 24.750458
+ },
+ {
+  "id": "tl6",
+  "town": "tallinn",
+  "lat": 59.412949,
+  "lon": 24.734679
+ },
+ {
+  "id": "tl7",
+  "town": "tallinn",
+  "lat": 59.4527,
+  "lon": 24.727401
+ },
+ {
+  "id": "tl8",
+  "town": "tallinn",
+  "lat": 59.420455,
+  "lon": 24.792975
+ },
+ {
+  "id": "tl9",
+  "town": "tallinn",
+  "lat": 59.448572,
+  "lon": 24.741319
+ },
+ {
+  "id": "tl10",
+  "town": "tallinn",
+  "lat": 59.461417,
+  "lon": 24.752547
+ },
+ {
+  "id": "tl11",
+  "town": "tallinn",
+  "lat": 59.411697,
+  "lon": 24.76679
+ },
+ {
+  "id": "tl12",
+  "town": "tallinn",
+  "lat": 59.462185,
+  "lon": 24.7712
+ },
+ {
+  "id": "tl13",
+  "town": "tallinn",
+  "lat": 59.420398,
+  "lon": 24.795033
+ },
+ {
+  "id": "tl14",
+  "town": "tallinn",
+  "lat": 59.423762,
+  "lon": 24.755402
+ },
+ {
+  "id": "tl15",
+  "town": "tallinn",
+  "lat": 59.453752,
+  "lon": 24.750311
+ },
+ {
+  "id": "tl16",
+  "town": "tallinn",
+  "lat": 59.431162,
+  "lon": 24.75223
+ },
+ {
+  "id": "tl17",
+  "town": "tallinn",
+  "lat": 59.425704,
+  "lon": 24.754605
+ },
+ {
+  "id": "tl18",
+  "town": "tallinn",
+  "lat": 59.461333,
+  "lon": 24.757531
+ },
+ {
+  "id": "tl19",
+  "town": "tallinn",
+  "lat": 59.44903,
+  "lon": 24.79254
+ },
+ {
+  "id": "tl20",
+  "town": "tallinn",
+  "lat": 59.445485,
+  "lon": 24.72757
+ },
+ {
+  "id": "tl21",
+  "town": "tallinn",
+  "lat": 59.452808,
+  "lon": 24.796283
+ },
+ {
+  "id": "tl22",
+  "town": "tallinn",
+  "lat": 59.419106,
+  "lon": 24.754601
+ },
+ {
+  "id": "tl23",
+  "town": "tallinn",
+  "lat": 59.450043,
+  "lon": 24.709153
+ },
+ {
+  "id": "tl24",
+  "town": "tallinn",
+  "lat": 59.420278,
+  "lon": 24.728208
+ },
+ {
+  "id": "tl25",
+  "town": "tallinn",
+  "lat": 59.41016,
+  "lon": 24.760983
+ },
+ {
+  "id": "tl26",
+  "town": "tallinn",
+  "lat": 59.42289,
+  "lon": 24.756212
+ },
+ {
+  "id": "tl27",
+  "town": "tallinn",
+  "lat": 59.453233,
+  "lon": 24.787219
+ },
+ {
+  "id": "tl28",
+  "town": "tallinn",
+  "lat": 59.434909,
+  "lon": 24.758088
+ },
+ {
+  "id": "tl29",
+  "town": "tallinn",
+  "lat": 59.455982,
+  "lon": 24.791409
+ },
+ {
+  "id": "tl30",
+  "town": "tallinn",
+  "lat": 59.411564,
+  "lon": 24.762579
+ },
+ {
+  "id": "tl31",
+  "town": "tallinn",
+  "lat": 59.450597,
+  "lon": 24.74314
+ },
+ {
+  "id": "tl32",
+  "town": "tallinn",
+  "lat": 59.422545,
+  "lon": 24.727404
+ },
+ {
+  "id": "tl33",
+  "town": "tallinn",
+  "lat": 59.443434,
+  "lon": 24.737502
+ },
+ {
+  "id": "tl34",
+  "town": "tallinn",
+  "lat": 59.424245,
+  "lon": 24.731491
+ },
+ {
+  "id": "tl35",
+  "town": "tallinn",
+  "lat": 59.428306,
+  "lon": 24.800529
+ },
+ {
+  "id": "tl36",
+  "town": "tallinn",
+  "lat": 59.41766,
+  "lon": 24.76255
+ },
+ {
+  "id": "tl37",
+  "town": "tallinn",
+  "lat": 59.430004,
+  "lon": 24.777388
+ },
+ {
+  "id": "tl38",
+  "town": "tallinn",
+  "lat": 59.420597,
+  "lon": 24.783875
+ },
+ {
+  "id": "tl39",
+  "town": "tallinn",
+  "lat": 59.451308,
+  "lon": 24.7345
+ },
+ {
+  "id": "tl40",
+  "town": "tallinn",
+  "lat": 59.425205,
+  "lon": 24.778902
+ }
+]

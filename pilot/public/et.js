@@ -898,6 +898,10 @@ export const ET = {
   "mapa povrchů (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)": "pinnakatete kaart (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)",
   " · mapa povrchů Bologni neodpověděla, odhad z ortofota a OSM": " · Bologna pinnakatete kaart ei vastanud, hinnang ortofoto ja OSM-i põhjal",
   "Mapa povrchů Bologni teď neodpovídá, profil je odhad z ortofota a OSM.": "Bologna pinnakatete kaart praegu ei vasta, profiil on hinnang ortofoto ja OSM-i põhjal.",
+  "mapa povrchů © Tallinna Linnaplaneerimise Amet": "pinnakatete kaart © Tallinna Linnaplaneerimise Amet",
+  " · mapa povrchů Tallinnu neodpověděla, odhad z ortofota a OSM": " · Tallinna pinnakatete kaart ei vastanud, hinnang ortofoto ja OSM-i põhjal",
+  "Mapa povrchů Tallinnu teď neodpovídá, profil je odhad z ortofota a OSM.": "Tallinna pinnakatete kaart praegu ei vasta, profiil on hinnang ortofoto ja OSM-i põhjal.",
+  "mapy povrchů Tallinnu, ortofota a OSM": "Tallinna pinnakatete kaart, ortofoto ja OSM",
   "chodník: přístupná trasa nejméně 0,9 m (vyhláška 236/1989, bod 8.2.1), nová ulice 1,5 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.6)": "kõnnitee: ligipääsetav teekond vähemalt 0,9 m (määrus 236/1989, p 8.2.1), uus tänav 1,5 m (5. 11. 2001 ministri määrus teede projekteerimise kohta, p 3.4.6)",
   "cyklopruh a stezka pro cyklisty jednosměrné: 1,5 m, na krátkém úseku nejméně 1 m; obousměrná stezka 2,5 m (vyhláška 557/1999, čl. 7)": "ühesuunaline jalgrattarada ja jalgrattatee: 1,5 m, lühikesel lõigul vähemalt 1 m; kahesuunaline jalgrattatee 2,5 m (määrus 557/1999, art. 7)",
   "vyhrazený pruh BUS: 3,5 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.2)": "bussirada: 3,5 m (5. 11. 2001 ministri määrus teede projekteerimise kohta, p 3.4.2)",
@@ -936,7 +940,7 @@ export const ET_HTML = {
     Küpros: ortofoto ja hooned © Department of Lands and Surveys (DLS; hooned CC BY 4.0), piirid © OpenStreetMapi kaastöötajad, liiklusmärgid Wikimedia Commons (Briti kujundused: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
     Malta: ortofoto © Planning Authority (CC BY 4.0), piirid © OpenStreetMapi kaastöötajad, liiklusmärgid Wikimedia Commons (Briti kujundused: Contains public sector information licensed under the Open Government Licence v3.0) ·
     Itaalia: ortofoto © Provincia autonoma di Bolzano, Città di Torino, Comune di Bologna ja Comune di Modena ning Regione Emilia-Romagna (kõik CC BY 4.0), Bologna pinnakatete kaart ja hooned © Comune di Bologna (CC BY 4.0), piirid © EuroGeographics (GISCO), liiklusmärgid Wikimedia Commons (ametlikud teosed) ·
-    Eesti: ortofoto, hooned (ETAK) ja aadressiotsing (In-ADS) © Maa- ja Ruumiamet, seisuga 11/2026 (avatud litsents), piirid © EuroGeographics (GISCO), liiklusmärgid Wikimedia Commons (ametlikud teosed; ümberjoonistus มองโกเลีย๔๔, CC BY-SA 4.0) ·
+    Eesti: ortofoto, hooned (ETAK) ja aadressiotsing (In-ADS) © Maa- ja Ruumiamet, seisuga 11/2026 (avatud litsents), Tallinna pinnakatete kaart © Tallinna Linnaplaneerimise Amet, piirid © EuroGeographics (GISCO), liiklusmärgid Wikimedia Commons (ametlikud teosed; ümberjoonistus มองโกเลีย๔๔, CC BY-SA 4.0) ·
     parkimine © TSK hl. m. Prahy (CC BY 4.0), parkimiskeelud, puud ja tänavaklassid <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, linnad Jihlava, Opava, Plzeň (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMapi</a> kaastöötajad (ODbL) ·
     illustratsioonid © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, litsents
@@ -945,7 +949,7 @@ export const ET_HTML = {
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Allikad ja litsentsid</a> (tšehhi keeles) ·
     kontakt <a href="mailto:bara.so@email.cz">bara.so@email.cz</a><br>
     Salvestame ainult lõiked (koht, suund, tänav, aeg), klõpsud, millega tänavat ei leitud (koht umbes kilomeetri täpsusega), kasutatud funktsioonid ja veateated, mille ise kirjutate; IP-aadresse ega küpsiseid ei salvestata. Kaardid ja andmed
-    laaditakse otse IPR-i, ČÚZK-i, linnade, maakondade, basemap.at-i, Saksamaa liidumaade, Berliini, Hamburgi, Aacheni, swisstopo, geodienste.ch-i, PDOK-i, 3D BAG-i, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK-i, Krakowi linna, IGN-i, Pariisi linna, Hispaania IGN-i ja Catastro, Zaragoza linna, DGT, Küprose DLS-i, Malta Planning Authority, Bolzano provintsi, Torino, Bologna ja Modena linnade, Emilia-Romagna maakonna, Maa- ja Ruumiameti ja OSM-i serveritest, otsingutekst ka komootilt (Photon), PDOK-ilt, GUGiK-ilt, IGN-ilt, CartoCiudadilt ja Maa- ja Ruumiametilt (In-ADS) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">privaatsus</a>, tšehhi keeles).`,
+    laaditakse otse IPR-i, ČÚZK-i, linnade, maakondade, basemap.at-i, Saksamaa liidumaade, Berliini, Hamburgi, Aacheni, swisstopo, geodienste.ch-i, PDOK-i, 3D BAG-i, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK-i, Krakowi linna, IGN-i, Pariisi linna, Hispaania IGN-i ja Catastro, Zaragoza linna, DGT, Küprose DLS-i, Malta Planning Authority, Bolzano provintsi, Torino, Bologna ja Modena linnade, Emilia-Romagna maakonna, Maa- ja Ruumiameti, Tallinna linna ja OSM-i serveritest, otsingutekst ka komootilt (Photon), PDOK-ilt, GUGiK-ilt, IGN-ilt, CartoCiudadilt ja Maa- ja Ruumiametilt (In-ADS) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">privaatsus</a>, tšehhi keeles).`,
 };
 
 // The city's texts (city.js) in Estonian, as the sentences take them: server in the genitive ("{server} server ei

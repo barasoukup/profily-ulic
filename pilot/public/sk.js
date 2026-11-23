@@ -921,6 +921,10 @@ export const SK = {
   "mapa povrchů (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)": "mapa povrchov (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)",
   " · mapa povrchů Bologni neodpověděla, odhad z ortofota a OSM": " · mapa povrchov Bologne neodpovedala, odhad z ortofota a OSM",
   "Mapa povrchů Bologni teď neodpovídá, profil je odhad z ortofota a OSM.": "Mapa povrchov Bologne teraz neodpovedá, profil je odhad z ortofota a OSM.",
+  "mapa povrchů © Tallinna Linnaplaneerimise Amet": "mapa povrchov © Tallinna Linnaplaneerimise Amet",
+  " · mapa povrchů Tallinnu neodpověděla, odhad z ortofota a OSM": " · mapa povrchov Tallinnu neodpovedala, odhad z ortofota a OSM",
+  "Mapa povrchů Tallinnu teď neodpovídá, profil je odhad z ortofota a OSM.": "Mapa povrchov Tallinnu teraz neodpovedá, profil je odhad z ortofota a OSM.",
+  "mapy povrchů Tallinnu, ortofota a OSM": "mapy povrchov Tallinnu, ortofoto a OSM",
   "chodník: přístupná trasa nejméně 0,9 m (vyhláška 236/1989, bod 8.2.1), nová ulice 1,5 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.6)": "chodník: prístupná trasa najmenej 0,9 m (vyhláška 236/1989, bod 8.2.1), nová ulica 1,5 m (vyhláška o cestách z 5. 11. 2001, bod 3.4.6)",
   "cyklopruh a stezka pro cyklisty jednosměrné: 1,5 m, na krátkém úseku nejméně 1 m; obousměrná stezka 2,5 m (vyhláška 557/1999, čl. 7)": "cyklistický pruh a cyklistický chodník jednosmerné: 1,5 m, na krátkom úseku najmenej 1 m; obojsmerný cyklistický chodník 2,5 m (vyhláška 557/1999, čl. 7)",
   "vyhrazený pruh BUS: 3,5 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.2)": "vyhradený pruh BUS: 3,5 m (vyhláška o cestách z 5. 11. 2001, bod 3.4.2)",
@@ -958,7 +962,7 @@ export const SK_HTML = {
     Cyprus: ortofoto a budovy © Department of Lands and Surveys (DLS; budovy CC BY 4.0), hranice © prispievatelia OpenStreetMap, dopravné značky Wikimedia Commons (britské vzory: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
     Malta: ortofoto © Planning Authority (CC BY 4.0), hranice © prispievatelia OpenStreetMap, dopravné značky Wikimedia Commons (britské vzory: Contains public sector information licensed under the Open Government Licence v3.0) ·
     Taliansko: ortofoto © Provincia autonoma di Bolzano, Città di Torino, Comune di Bologna a Comune di Modena s Regione Emilia-Romagna (všetko CC BY 4.0), mapa povrchov a budovy Bologne © Comune di Bologna (CC BY 4.0), hranice © EuroGeographics (GISCO), dopravné značky Wikimedia Commons (úradné diela) ·
-    Estónsko: ortofoto, budovy (ETAK) a hľadanie adries (In-ADS) © Maa- ja Ruumiamet, stav 11/2026 (otvorená licencia), hranice © EuroGeographics (GISCO), dopravné značky Wikimedia Commons (úradné diela; prekreslenie มองโกเลีย๔๔ pod CC BY-SA 4.0) ·
+    Estónsko: ortofoto, budovy (ETAK) a hľadanie adries (In-ADS) © Maa- ja Ruumiamet, stav 11/2026 (otvorená licencia), mapa povrchov Tallinnu © Tallinna Linnaplaneerimise Amet, hranice © EuroGeographics (GISCO), dopravné značky Wikimedia Commons (úradné diela; prekreslenie มองโกเลีย๔๔ pod CC BY-SA 4.0) ·
     siete pod zemou © IPR Praha, Gemeente Amsterdam a Waternet (CC BY), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, štatutárne mestá Karviná, Ostrava, mesto Břeclav ·
     parkovanie © TSK hl. m. Prahy (CC BY 4.0), zákaz státia, stromy a zaradenie komunikácií z <a href="https://opendata.geoportalpraha.cz">Geoportálu Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, mestá Jihlava, Opava, Plzeň (CC0) ·
     © prispievatelia <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·
@@ -968,7 +972,7 @@ export const SK_HTML = {
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">zdroje a licencie</a> (v češtine) ·
     kontakt <a href="mailto:bara.so@email.cz">bara.so@email.cz</a><br>
     Zaznamenávame iba rezy (miesto, smer, ulicu, čas), kliknutia, pri ktorých sa ulica nenašla (miesto zhruba na kilometer), použité funkcie a hlásenia chýb, ktoré sami napíšete; neukladáme IP adresy ani cookies. Mapy a údaje
-    sa načítavajú priamo zo serverov IPR, ČÚZK, ÚGKK SR (ZBGIS), miest (aj cez ArcGIS Online), krajov, basemap.at, spolkových krajín Nemecka, Berlína, Hamburgu, Aachenu, swisstopo, geodienste.ch, PDOK, 3D BAG, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK, mesta Krakov, IGN, mesta Paríž, španielskeho IGN a katastra, mesta Zaragoza, DGT, DLS Cyprus, maltskej Planning Authority, provincie Bolzano, miest Turín, Bologna a Modena, regiónu Emilia-Romagna, estónskeho Maa- ja Ruumiamet a OSM, hľadaný text aj komoot (Photon), PDOK, GUGiK, IGN, CartoCiudad a Maa- ja Ruumiamet (In-ADS) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">súkromie</a>, v češtine).`,
+    sa načítavajú priamo zo serverov IPR, ČÚZK, ÚGKK SR (ZBGIS), miest (aj cez ArcGIS Online), krajov, basemap.at, spolkových krajín Nemecka, Berlína, Hamburgu, Aachenu, swisstopo, geodienste.ch, PDOK, 3D BAG, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK, mesta Krakov, IGN, mesta Paríž, španielskeho IGN a katastra, mesta Zaragoza, DGT, DLS Cyprus, maltskej Planning Authority, provincie Bolzano, miest Turín, Bologna a Modena, regiónu Emilia-Romagna, estónskeho Maa- ja Ruumiamet, mesta Tallinn a OSM, hľadaný text aj komoot (Photon), PDOK, GUGiK, IGN, CartoCiudad a Maa- ja Ruumiamet (In-ADS) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">súkromie</a>, v češtine).`,
 };
 
 // The city's texts (city.js) in Slovak: its server, data and credits as sentences take them.

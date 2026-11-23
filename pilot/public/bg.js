@@ -898,6 +898,10 @@ export const BG = {
   "mapa povrchů (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)": "карта на настилките (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)",
   " · mapa povrchů Bologni neodpověděla, odhad z ortofota a OSM": " · картата на настилките на Болоня не отговори, оценка от ортофото и OSM",
   "Mapa povrchů Bologni teď neodpovídá, profil je odhad z ortofota a OSM.": "Картата на настилките на Болоня в момента не отговаря, профилът е оценка от ортофото и OSM.",
+  "mapa povrchů © Tallinna Linnaplaneerimise Amet": "карта на настилките © Tallinna Linnaplaneerimise Amet",
+  " · mapa povrchů Tallinnu neodpověděla, odhad z ortofota a OSM": " · картата на настилките на Талин не отговори, оценка от ортофото и OSM",
+  "Mapa povrchů Tallinnu teď neodpovídá, profil je odhad z ortofota a OSM.": "Картата на настилките на Талин в момента не отговаря, профилът е оценка от ортофото и OSM.",
+  "mapy povrchů Tallinnu, ortofota a OSM": "картата на настилките на Талин, ортофото и OSM",
   "chodník: přístupná trasa nejméně 0,9 m (vyhláška 236/1989, bod 8.2.1), nová ulice 1,5 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.6)": "тротоар: достъпен маршрут най-малко 0,9 m (наредба 236/1989, т. 8.2.1), нова улица 1,5 m (наредба за проектиране на пътища от 5.11.2001, т. 3.4.6)",
   "cyklopruh a stezka pro cyklisty jednosměrné: 1,5 m, na krátkém úseku nejméně 1 m; obousměrná stezka 2,5 m (vyhláška 557/1999, čl. 7)": "велолента и велоалея еднопосочни: 1,5 m, на кратък участък най-малко 1 m; двупосочна велоалея 2,5 m (наредба 557/1999, чл. 7)",
   "vyhrazený pruh BUS: 3,5 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.2)": "автобусна лента BUS: 3,5 m (наредба за проектиране на пътища от 5.11.2001, т. 3.4.2)",
@@ -936,7 +940,7 @@ export const BG_HTML = {
     Кипър: ортофото и сгради © Department of Lands and Surveys (DLS; сгради CC BY 4.0), граница © сътрудници на OpenStreetMap, пътни знаци Wikimedia Commons (британски образци: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
     Малта: ортофото © Planning Authority (CC BY 4.0), граница © сътрудници на OpenStreetMap, пътни знаци Wikimedia Commons (британски образци: Contains public sector information licensed under the Open Government Licence v3.0) ·
     Италия: ортофото © Provincia autonoma di Bolzano, Città di Torino, Comune di Bologna и Comune di Modena с Regione Emilia-Romagna (всички CC BY 4.0), картата на настилките и сградите на Болоня © Comune di Bologna (CC BY 4.0), граница © EuroGeographics (GISCO), пътни знаци Wikimedia Commons (официални документи) ·
-    Естония: ортофото, сгради (ETAK) и търсене на адреси (In-ADS) © Maa- ja Ruumiamet, към 11/2026 (отворен лиценз), граница © EuroGeographics (GISCO), пътни знаци Wikimedia Commons (официални документи; прерисувани от มองโกเลีย๔๔ под CC BY-SA 4.0) ·
+    Естония: ортофото, сгради (ETAK) и търсене на адреси (In-ADS) © Maa- ja Ruumiamet, към 11/2026 (отворен лиценз), карта на настилките на Талин © Tallinna Linnaplaneerimise Amet, граница © EuroGeographics (GISCO), пътни знаци Wikimedia Commons (официални документи; прерисувани от มองโกเลีย๔๔ под CC BY-SA 4.0) ·
     паркиране © TSK hl. m. Prahy (CC BY 4.0), забрани за паркиране, дървета и класове на улиците от <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, градовете Jihlava, Opava, Plzeň (CC0) ·
     © сътрудници на <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·
     илюстрации © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, лиценз
@@ -945,7 +949,7 @@ export const BG_HTML = {
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Източници и лицензи</a> (на чешки) ·
     контакт <a href="mailto:bara.so@email.cz">bara.so@email.cz</a><br>
     Записваме само разрезите (място, посока, улица, време), кликванията, при които не е намерена улица (мястото с точност около един километър), използваните функции и сигналите за грешки, които пишете сами; без IP адреси и без бисквитки. Картите и данните
-    се зареждат директно от сървърите на IPR, ČÚZK, градовете, регионите, basemap.at, германските федерални провинции, Берлин, Хамбург, Аахен, swisstopo, geodienste.ch, PDOK, 3D BAG, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK, град Краков, IGN, град Париж, испанския IGN и кадастъра, град Сарагоса, DGT, DLS Кипър, Органа по планиране на Малта, провинция Болцано, градовете Торино, Болоня и Модена, регион Емилия-Романя, естонския Maa- ja Ruumiamet и OSM, а текстът за търсене и от komoot (Photon), PDOK, GUGiK, IGN, CartoCiudad и Maa- ja Ruumiamet (In-ADS) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">поверителност</a>, на чешки).`,
+    се зареждат директно от сървърите на IPR, ČÚZK, градовете, регионите, basemap.at, германските федерални провинции, Берлин, Хамбург, Аахен, swisstopo, geodienste.ch, PDOK, 3D BAG, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK, град Краков, IGN, град Париж, испанския IGN и кадастъра, град Сарагоса, DGT, DLS Кипър, Органа по планиране на Малта, провинция Болцано, градовете Торино, Болоня и Модена, регион Емилия-Романя, естонския Maa- ja Ruumiamet, град Талин и OSM, а текстът за търсене и от komoot (Photon), PDOK, GUGiK, IGN, CartoCiudad и Maa- ja Ruumiamet (In-ADS) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">поверителност</a>, на чешки).`,
 };
 
 // The city's texts (city.js) in Bulgarian, as the sentences take them: server after "Сървърът …" ("Сървърът на град

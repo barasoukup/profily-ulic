@@ -922,6 +922,10 @@ export const SL = {
   "mapa povrchů (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)": "karta površin (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)",
   " · mapa povrchů Bologni neodpověděla, odhad z ortofota a OSM": " · karta površin Bologne ni odgovorila, ocena iz ortofota in OSM",
   "Mapa povrchů Bologni teď neodpovídá, profil je odhad z ortofota a OSM.": "Karta površin Bologne trenutno ne odgovarja, profil je ocena iz ortofota in OSM.",
+  "mapa povrchů © Tallinna Linnaplaneerimise Amet": "karta površin © Tallinna Linnaplaneerimise Amet",
+  " · mapa povrchů Tallinnu neodpověděla, odhad z ortofota a OSM": " · karta površin Talina ni odgovorila, ocena iz ortofota in OSM",
+  "Mapa povrchů Tallinnu teď neodpovídá, profil je odhad z ortofota a OSM.": "Karta površin Talina trenutno ne odgovarja, profil je ocena iz ortofota in OSM.",
+  "mapy povrchů Tallinnu, ortofota a OSM": "karta površin Talina, ortofoto in OSM",
   "chodník: přístupná trasa nejméně 0,9 m (vyhláška 236/1989, bod 8.2.1), nová ulice 1,5 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.6)": "pločnik: dostopna pot najmanj 0,9 m (uredba 236/1989, točka 8.2.1), nova ulica 1,5 m (uredba o projektiranju cest z dne 5. 11. 2001, točka 3.4.6)",
   "cyklopruh a stezka pro cyklisty jednosměrné: 1,5 m, na krátkém úseku nejméně 1 m; obousměrná stezka 2,5 m (vyhláška 557/1999, čl. 7)": "kolesarski pas in kolesarska steza enosmerna: 1,5 m, na kratkem odseku najmanj 1 m; dvosmerna steza 2,5 m (uredba 557/1999, čl. 7)",
   "vyhrazený pruh BUS: 3,5 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.2)": "avtobusni pas BUS: 3,5 m (uredba o projektiranju cest z dne 5. 11. 2001, točka 3.4.2)",
@@ -960,7 +964,7 @@ export const SL_HTML = {
     Ciper: ortofoto in stavbe © Department of Lands and Surveys (DLS; stavbe CC BY 4.0), meja © sodelavci OpenStreetMap, prometni znaki Wikimedia Commons (britanski vzorci: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
     Malta: ortofoto © Planning Authority (CC BY 4.0), meja © sodelavci OpenStreetMap, prometni znaki Wikimedia Commons (britanski vzorci: Contains public sector information licensed under the Open Government Licence v3.0) ·
     Italija: ortofoto © Provincia autonoma di Bolzano, Città di Torino, Comune di Bologna in Comune di Modena z Regione Emilia-Romagna (vse CC BY 4.0), karta površin in stavbe Bologne © Comune di Bologna (CC BY 4.0), meja © EuroGeographics (GISCO), prometni znaki Wikimedia Commons (uradna dela) ·
-    Estonija: ortofoto, stavbe (ETAK) in iskanje naslovov (In-ADS) © Maa- ja Ruumiamet, stanje 11/2026 (odprta licenca), meja © EuroGeographics (GISCO), prometni znaki Wikimedia Commons (uradna dela; prerisal มองโกเลีย๔๔ pod CC BY-SA 4.0) ·
+    Estonija: ortofoto, stavbe (ETAK) in iskanje naslovov (In-ADS) © Maa- ja Ruumiamet, stanje 11/2026 (odprta licenca), karta površin Talina © Tallinna Linnaplaneerimise Amet, meja © EuroGeographics (GISCO), prometni znaki Wikimedia Commons (uradna dela; prerisal มองโกเลีย๔๔ pod CC BY-SA 4.0) ·
     parkiranje © TSK hl. m. Prahy (CC BY 4.0), prepovedi parkiranja, drevesa in kategorije ulic iz <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, mesta Jihlava, Opava, Plzeň (CC0) ·
     © sodelavci <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·
     ilustracije © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licenca
@@ -969,7 +973,7 @@ export const SL_HTML = {
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Viri in licence</a> (v češčini) ·
     kontakt <a href="mailto:bara.so@email.cz">bara.so@email.cz</a><br>
     Shranjujemo samo prereze (kraj, smer, ulica, čas), klike, pri katerih ni bila najdena nobena ulica (kraj na približno kilometer natančno), uporabljene funkcije in prijave napak, ki jih napišete sami; nobenih naslovov IP in nobenih piškotkov. Zemljevidi in podatki
-    se nalagajo neposredno s strežnikov IPR, ČÚZK, mest, okrajev, basemap.at, nemških zveznih dežel, Berlina, Hamburga, Aachna, swisstopo, geodienste.ch, PDOK, 3D BAG, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK, mesta Krakov, IGN, mesta Pariz, španskega IGN in katastra, mesta Zaragoza, DGT, DLS Ciper, malteškega urada za prostorsko načrtovanje, pokrajine Bocen, mest Torino, Bologna in Modena, dežele Emilija - Romanja, estonske agencije Maa- ja Ruumiamet in OSM, iskalno besedilo tudi s komoot (Photon), PDOK, GUGiK, IGN, CartoCiudad in Maa- ja Ruumiamet (In-ADS) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">zasebnost</a>, v češčini).`,
+    se nalagajo neposredno s strežnikov IPR, ČÚZK, mest, okrajev, basemap.at, nemških zveznih dežel, Berlina, Hamburga, Aachna, swisstopo, geodienste.ch, PDOK, 3D BAG, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK, mesta Krakov, IGN, mesta Pariz, španskega IGN in katastra, mesta Zaragoza, DGT, DLS Ciper, malteškega urada za prostorsko načrtovanje, pokrajine Bocen, mest Torino, Bologna in Modena, dežele Emilija - Romanja, estonske agencije Maa- ja Ruumiamet, mesta Talin in OSM, iskalno besedilo tudi s komoot (Photon), PDOK, GUGiK, IGN, CartoCiudad in Maa- ja Ruumiamet (In-ADS) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">zasebnost</a>, v češčini).`,
 };
 
 // The city's texts (city.js) in Slovenian, as the sentences take them: server in the genitive ("Strežnik mesta Brno

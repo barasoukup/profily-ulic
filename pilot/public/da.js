@@ -922,6 +922,10 @@ export const DA = {
   "mapa povrchů (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)": "fladekort (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)",
   " · mapa povrchů Bologni neodpověděla, odhad z ortofota a OSM": " · Bolognas fladekort svarede ikke, skøn ud fra ortofoto og OSM",
   "Mapa povrchů Bologni teď neodpovídá, profil je odhad z ortofota a OSM.": "Bolognas fladekort svarer ikke lige nu, profilet er et skøn ud fra ortofoto og OSM.",
+  "mapa povrchů © Tallinna Linnaplaneerimise Amet": "fladekort © Tallinna Linnaplaneerimise Amet",
+  " · mapa povrchů Tallinnu neodpověděla, odhad z ortofota a OSM": " · Tallinns fladekort svarede ikke, skøn ud fra ortofoto og OSM",
+  "Mapa povrchů Tallinnu teď neodpovídá, profil je odhad z ortofota a OSM.": "Tallinns fladekort svarer ikke lige nu, profilet er et skøn ud fra ortofoto og OSM.",
+  "mapy povrchů Tallinnu, ortofota a OSM": "Tallinns fladekort, ortofoto og OSM",
   "chodník: přístupná trasa nejméně 0,9 m (vyhláška 236/1989, bod 8.2.1), nová ulice 1,5 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.6)": "fortov: tilgængelig rute mindst 0,9 m (dekret 236/1989, pkt. 8.2.1), ny gade 1,5 m (ministerielt dekret om vejprojektering af 5. 11. 2001, pkt. 3.4.6)",
   "cyklopruh a stezka pro cyklisty jednosměrné: 1,5 m, na krátkém úseku nejméně 1 m; obousměrná stezka 2,5 m (vyhláška 557/1999, čl. 7)": "enkeltrettet cykelbane og cykelsti: 1,5 m, på en kort strækning mindst 1 m; dobbeltrettet cykelsti 2,5 m (dekret 557/1999, art. 7)",
   "vyhrazený pruh BUS: 3,5 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.2)": "busbane: 3,5 m (ministerielt dekret om vejprojektering af 5. 11. 2001, pkt. 3.4.2)",
@@ -960,7 +964,7 @@ export const DA_HTML = {
     Cypern: ortofoto og bygninger © Department of Lands and Surveys (DLS; bygninger CC BY 4.0), grænser © OpenStreetMap-bidragydere, færdselstavler Wikimedia Commons (britiske forlæg: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
     Malta: ortofoto © Planning Authority (CC BY 4.0), grænser © OpenStreetMap-bidragydere, færdselstavler Wikimedia Commons (britiske forlæg: Contains public sector information licensed under the Open Government Licence v3.0) ·
     Italien: ortofoto © Provincia autonoma di Bolzano, Città di Torino, Comune di Bologna og Comune di Modena med Regione Emilia-Romagna (alle CC BY 4.0), Bolognas fladekort og bygninger © Comune di Bologna (CC BY 4.0), grænser © EuroGeographics (GISCO), færdselstavler Wikimedia Commons (officielle værker) ·
-    Estland: ortofoto, bygninger (ETAK) og adressesøgning (In-ADS) © Maa- ja Ruumiamet, status 11/2026 (åben licens), grænser © EuroGeographics (GISCO), færdselstavler Wikimedia Commons (officielle værker; gentegning มองโกเลีย๔๔ under CC BY-SA 4.0) ·
+    Estland: ortofoto, bygninger (ETAK) og adressesøgning (In-ADS) © Maa- ja Ruumiamet, status 11/2026 (åben licens), Tallinns fladekort © Tallinna Linnaplaneerimise Amet, grænser © EuroGeographics (GISCO), færdselstavler Wikimedia Commons (officielle værker; gentegning มองโกเลีย๔๔ under CC BY-SA 4.0) ·
     parkering © TSK hl. m. Prahy (CC BY 4.0), parkeringsforbud, træer og vejklasser fra <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, byerne Jihlava, Opava, Plzeň (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-bidragydere (ODbL) ·
     illustrationer © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licens
@@ -969,7 +973,7 @@ export const DA_HTML = {
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Kilder og licenser</a> (på tjekkisk) ·
     kontakt <a href="mailto:bara.so@email.cz">bara.so@email.cz</a><br>
     Vi gemmer kun snit (sted, retning, gade, tidspunkt), klik uden fundet gade (stedet med ca. en kilometers nøjagtighed), de anvendte funktioner og de fejlindberetninger, du selv skriver; ingen IP-adresser og ingen cookies. Kort og data
-    indlæses direkte fra serverne hos IPR, ČÚZK, byerne, regionerne, basemap.at, de tyske delstater, Berlin, Hamburg, Aachen, swisstopo, geodienste.ch, PDOK, 3D BAG, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK, Krakóws kommune, IGN, Paris' kommune, det spanske IGN og Catastro, Zaragozas kommune, DGT, DLS på Cypern, Malta Planning Authority, provinsen Bolzano, Torinos, Bolognas og Modenas kommuner, regionen Emilia-Romagna, det estiske Maa- ja Ruumiamet og OSM, søgeteksten også hos komoot (Photon), PDOK, GUGiK, IGN, CartoCiudad og Maa- ja Ruumiamet (In-ADS) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">privatliv</a>, på tjekkisk).`,
+    indlæses direkte fra serverne hos IPR, ČÚZK, byerne, regionerne, basemap.at, de tyske delstater, Berlin, Hamburg, Aachen, swisstopo, geodienste.ch, PDOK, 3D BAG, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK, Krakóws kommune, IGN, Paris' kommune, det spanske IGN og Catastro, Zaragozas kommune, DGT, DLS på Cypern, Malta Planning Authority, provinsen Bolzano, Torinos, Bolognas og Modenas kommuner, regionen Emilia-Romagna, det estiske Maa- ja Ruumiamet, Tallinns kommune og OSM, søgeteksten også hos komoot (Photon), PDOK, GUGiK, IGN, CartoCiudad og Maa- ja Ruumiamet (In-ADS) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">privatliv</a>, på tjekkisk).`,
 };
 
 // The city's texts (city.js) in Danish, as the sentences take them: server after "Serveren for …" ("Serveren for

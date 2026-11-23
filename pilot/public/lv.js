@@ -922,6 +922,10 @@ export const LV = {
   "mapa povrchů (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)": "segumu karte (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)",
   " · mapa povrchů Bologni neodpověděla, odhad z ortofota a OSM": " · Boloņas segumu karte neatbildēja, aplēse pēc ortofoto un OSM",
   "Mapa povrchů Bologni teď neodpovídá, profil je odhad z ortofota a OSM.": "Boloņas segumu karte pašlaik neatbild, profils ir aplēse pēc ortofoto un OSM.",
+  "mapa povrchů © Tallinna Linnaplaneerimise Amet": "segumu karte © Tallinna Linnaplaneerimise Amet",
+  " · mapa povrchů Tallinnu neodpověděla, odhad z ortofota a OSM": " · Tallinas segumu karte neatbildēja, aplēse pēc ortofoto un OSM",
+  "Mapa povrchů Tallinnu teď neodpovídá, profil je odhad z ortofota a OSM.": "Tallinas segumu karte pašlaik neatbild, profils ir aplēse pēc ortofoto un OSM.",
+  "mapy povrchů Tallinnu, ortofota a OSM": "Tallinas segumu karte, ortofoto un OSM",
   "chodník: přístupná trasa nejméně 0,9 m (vyhláška 236/1989, bod 8.2.1), nová ulice 1,5 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.6)": "ietve: pieejams maršruts vismaz 0,9 m (dekrēts 236/1989, 8.2.1. punkts), jauna iela 1,5 m (2001. gada 5. novembra ministrijas dekrēts par ceļu projektēšanu, 3.4.6. punkts)",
   "cyklopruh a stezka pro cyklisty jednosměrné: 1,5 m, na krátkém úseku nejméně 1 m; obousměrná stezka 2,5 m (vyhláška 557/1999, čl. 7)": "vienvirziena velojosla un veloceliņš: 1,5 m, īsā posmā vismaz 1 m; divvirzienu veloceliņš 2,5 m (dekrēts 557/1999, 7. pants)",
   "vyhrazený pruh BUS: 3,5 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.2)": "autobusu josla: 3,5 m (2001. gada 5. novembra ministrijas dekrēts par ceļu projektēšanu, 3.4.2. punkts)",
@@ -960,7 +964,7 @@ export const LV_HTML = {
     Kipra: ortofoto un ēkas © Department of Lands and Surveys (DLS; ēkas CC BY 4.0), robežas © OpenStreetMap līdzautori, ceļa zīmes Wikimedia Commons (britu paraugi: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
     Malta: ortofoto © Planning Authority (CC BY 4.0), robežas © OpenStreetMap līdzautori, ceļa zīmes Wikimedia Commons (britu paraugi: Contains public sector information licensed under the Open Government Licence v3.0) ·
     Itālija: ortofoto © Provincia autonoma di Bolzano, Città di Torino, Comune di Bologna un Comune di Modena ar Regione Emilia-Romagna (visi CC BY 4.0), Boloņas segumu karte un ēkas © Comune di Bologna (CC BY 4.0), robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi) ·
-    Igaunija: ortofoto, ēkas (ETAK) un adrešu meklēšana (In-ADS) © Maa- ja Ruumiamet, stāvoklis 11/2026 (atvērtā licence), robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi; pārzīmējis มองโกเลีย๔๔, CC BY-SA 4.0) ·
+    Igaunija: ortofoto, ēkas (ETAK) un adrešu meklēšana (In-ADS) © Maa- ja Ruumiamet, stāvoklis 11/2026 (atvērtā licence), Tallinas segumu karte © Tallinna Linnaplaneerimise Amet, robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi; pārzīmējis มองโกเลีย๔๔, CC BY-SA 4.0) ·
     stāvvietas © TSK hl. m. Prahy (CC BY 4.0), stāvēšanas aizliegumi, koki un ielu kategorijas no <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, pilsētas Jihlava, Opava, Plzeň (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> līdzautori (ODbL) ·
     ilustrācijas © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licence
@@ -969,7 +973,7 @@ export const LV_HTML = {
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Avoti un licences</a> (čehu valodā) ·
     kontakti <a href="mailto:bara.so@email.cz">bara.so@email.cz</a><br>
     Mēs saglabājam tikai griezumus (vieta, virziens, iela, laiks), klikšķus, kuros iela netika atrasta (vietu aptuveni kilometra precizitātē), izmantotās funkcijas un kļūdu ziņojumus, ko rakstāt paši; nekādas IP adreses un sīkdatnes. Kartes un dati
-    tiek ielādēti tieši no IPR, ČÚZK, pilsētu, apgabalu, basemap.at, Vācijas federālo zemju, Berlīnes, Hamburgas, Āhenes, swisstopo, geodienste.ch, PDOK, 3D BAG, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK, Krakovas pilsētas, IGN, Parīzes pilsētas, Spānijas IGN un Catastro, Saragosas pilsētas, DGT, Kipras DLS, Maltas Planning Authority, Bolcāno provinces, Turīnas, Boloņas un Modenas pilsētu, Emīlijas-Romanjas reģiona, Igaunijas Maa- ja Ruumiamet un OSM serveriem, meklēšanas teksts arī no komoot (Photon), PDOK, GUGiK, IGN, CartoCiudad un Maa- ja Ruumiamet (In-ADS) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">privātums</a>, čehu valodā).`,
+    tiek ielādēti tieši no IPR, ČÚZK, pilsētu, apgabalu, basemap.at, Vācijas federālo zemju, Berlīnes, Hamburgas, Āhenes, swisstopo, geodienste.ch, PDOK, 3D BAG, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK, Krakovas pilsētas, IGN, Parīzes pilsētas, Spānijas IGN un Catastro, Saragosas pilsētas, DGT, Kipras DLS, Maltas Planning Authority, Bolcāno provinces, Turīnas, Boloņas un Modenas pilsētu, Emīlijas-Romanjas reģiona, Igaunijas Maa- ja Ruumiamet, Tallinas pilsētas un OSM serveriem, meklēšanas teksts arī no komoot (Photon), PDOK, GUGiK, IGN, CartoCiudad un Maa- ja Ruumiamet (In-ADS) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">privātums</a>, čehu valodā).`,
 };
 
 // The city's texts (city.js) in Latvian, as the sentences take them: server in the genitive before "serveris"
