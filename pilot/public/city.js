@@ -457,6 +457,9 @@ Object.assign(CITIES, {
   // France (Bára 22. 11. 2026): IGN's orthophoto and OSM, Paris's Plan de voirie where it has the street (towns/france.js).
   france: { ...abroad("france", "FR", "Francie", "ve Francii", "francouzské", [46.6, 2.4], "48.856600, 2.352200"),
     dataShort: "ortofota IGN a OSM", rulesHead: "Šířky podle francouzských předpisů a doporučení Cerema:" },
+  // Spain (Bára 23. 11. 2026): IGN's PNOA orthophoto and OSM, Zaragoza's paving map where it has the street (towns/spain.js).
+  spain: { ...abroad("spain", "ES", "Španělsko", "ve Španělsku", "španělské", [40.2, -3.7], "40.416800, -3.703800"),
+    dataShort: "ortofota PNOA a OSM", rulesHead: "Šířky podle španělských předpisů a doporučení ministerstva dopravy:" },
   cizina: abroad("cizina", null, "cizinu", "v cizině", "zahraniční", [49.8, 15.5], "48.146736, 17.106998"),
 });
 // The rest of Slovakia and of Austria draws the state's own set (countries/<ISO>.js art).

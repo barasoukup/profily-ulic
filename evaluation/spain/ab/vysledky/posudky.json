@@ -1,0 +1,200 @@
+[
+ {
+  "id": "zg1",
+  "name": "Calle del Tejar",
+  "verdict": "unclear",
+  "why": "Hustá zeleň a stín, kraje vozovky nejde spolehlivě určit."
+ },
+ {
+  "id": "zg2",
+  "name": "Calle Mayor",
+  "verdict": "same",
+  "why": "Obě mají hranice vozovky na stejném místě, stání na snímku není poznat."
+ },
+ {
+  "id": "zg3",
+  "name": "Calle de Santa Catalina",
+  "verdict": "B",
+  "why": "Tmavá vozovka je asi 5 m široká, B (4,95 m) sedí líp než A (6,4 m)."
+ },
+ {
+  "id": "zg6",
+  "name": "Calle de José Moncasi",
+  "verdict": "same",
+  "why": "Oba profily mají shodné obruby, rozdíly na snímku nejsou rozlišitelné."
+ },
+ {
+  "id": "zg7",
+  "name": "Calle Miquel Roca i Junyent",
+  "verdict": "unclear",
+  "why": "Složitá křižovatka s kolejemi a stínem, nelze rozhodnout."
+ },
+ {
+  "id": "zg8",
+  "name": "Calle Batalla de Lepanto",
+  "verdict": "unclear",
+  "why": "Vozovka s okrajovým stíněním; ani 7,8 m (A), ani 9 m se stáním (B) nejde jednoznačně ověřit."
+ },
+ {
+  "id": "zg9",
+  "name": "",
+  "verdict": "B",
+  "why": "Na snímku je kruhový objezd s náměstím, B ho označuje jako neznámé, A jen chodník."
+ },
+ {
+  "id": "zg11",
+  "name": "Calle de la Virgen",
+  "verdict": "same",
+  "why": "Úzká dlážděná ulice, hranice jsou stejné a obě skladby neurčité."
+ },
+ {
+  "id": "zg12",
+  "name": "Calle del Marqués de la Cadena",
+  "verdict": "A",
+  "why": "Vlevo je chodník a tráva, ne jízdní pruhy; B tam kreslí pruhy, A má správně střední zeleň a boční chodníky."
+ },
+ {
+  "id": "zg13",
+  "name": "Calle Roger de Tur",
+  "verdict": "B",
+  "why": "Zaparkovaná auta a široká tmavá plocha odpovídají B se stáním po obou stranách."
+ },
+ {
+  "id": "zg14",
+  "name": "Calle de Don Jaime I",
+  "verdict": "same",
+  "why": "Úzká tmavá ulice mezi domy, obě mají kraje stejně, vnitřek nejde ověřit."
+ },
+ {
+  "id": "zg16",
+  "name": "Avenida José Atarés",
+  "verdict": "B",
+  "why": "B má chodník a kolejový pás tam, kde jsou na snímku; A jen cyklostezku."
+ },
+ {
+  "id": "zg17",
+  "name": "Calle de José Galiay Sarañana",
+  "verdict": "same",
+  "why": "Stromy zakrývají vše, obě skladby nejisté."
+ },
+ {
+  "id": "zg18",
+  "name": "Calle Privilegio de la Unión",
+  "verdict": "same",
+  "why": "Úzká ulice se stíny, rozdíl nepoznatelný."
+ },
+ {
+  "id": "zg19",
+  "name": "Calle de Domingo Miral",
+  "verdict": "unclear",
+  "why": "Světlý šedý pás, bez jasné vozovky ani cyklostezky."
+ },
+ {
+  "id": "zg20",
+  "name": "Calle de Mariano Pano y Ruata",
+  "verdict": "A",
+  "why": "Tmavá vozovka 100–148 px končí obrubou přesně jako u A; B je posunutá o asi 1,3 m."
+ },
+ {
+  "id": "zg21",
+  "name": "Calle de Alfonso Solans Serrano",
+  "verdict": "same",
+  "why": "Na snímku je uprostřed tmavá vozovka asi 5 m, kterou nemá ani A ani B."
+ },
+ {
+  "id": "zg22",
+  "name": "Calle de Pablo Ruiz Picasso",
+  "verdict": "same",
+  "why": "Široká třída s přechody, obě podobné, rozdíly jen ve středním pásu a nejistém okraji."
+ },
+ {
+  "id": "zg23",
+  "name": "",
+  "verdict": "unclear",
+  "why": "Kruhový objezd se zaparkovanými auty, geometrie obou nespolehlivá."
+ },
+ {
+  "id": "zg24",
+  "name": "",
+  "verdict": "same",
+  "why": "Náměstí bez jasné skladby, oba profily nic neříkají."
+ },
+ {
+  "id": "zg25",
+  "name": "Calle Arzobispo Apaolaza",
+  "verdict": "B",
+  "why": "Auto stojí u levého okraje vozovky, B má stání po obou stranách."
+ },
+ {
+  "id": "zg26",
+  "name": "Calle del Tiro",
+  "verdict": "B",
+  "why": "Tmavá vozovka je užší a končí dřív, B s chodníkem 4 m od 125 px sedí líp než A."
+ },
+ {
+  "id": "zg27",
+  "name": "Calle Agustín de Quinto",
+  "verdict": "unclear",
+  "why": "Úzká ulice s auty a střechami, nejasné obě."
+ },
+ {
+  "id": "zg28",
+  "name": "Calle José Pardo Asso",
+  "verdict": "B",
+  "why": "Zpevněné náměstí, B ho označuje jako chodník široký, A jen 2 m."
+ },
+ {
+  "id": "zg29",
+  "name": "Calle de Joaquín Costa",
+  "verdict": "same",
+  "why": "Obě mají podobné obruby, rozdíly (zeleň vs chodník vpravo) nejsou jisté."
+ },
+ {
+  "id": "zg30",
+  "name": "Avenida de Cesáreo Alierta",
+  "verdict": "B",
+  "why": "Široká třída se čtyřmi pruhy a středním pásem, A má jen cyklostezku."
+ },
+ {
+  "id": "zg32",
+  "name": "Calle Victoria Ocampo",
+  "verdict": "B",
+  "why": "Dlážděné prostranství se stromy, B zachycuje zeleň i plochu, A jen chodník."
+ },
+ {
+  "id": "zg33",
+  "name": "Calle Sebastián Banzo Urrea",
+  "verdict": "same",
+  "why": "Obě mají stání na pravé straně, vlevo B přidává pochybný pruh 0,35 m."
+ },
+ {
+  "id": "zg35",
+  "name": "Calle Juanito Pardo",
+  "verdict": "same",
+  "why": "Dlážděný průchod s květináči, oba jako chodník."
+ },
+ {
+  "id": "zg37",
+  "name": "Calle Alicante",
+  "verdict": "unclear",
+  "why": "Šedá plocha 8 m, nelze určit, zda je to vozovka (A) nebo vozovka s chodníkem (B)."
+ },
+ {
+  "id": "zg38",
+  "name": "Calle Hermanos Pablo y Juan Hurus",
+  "verdict": "unclear",
+  "why": "Tmavá zeleň uprostřed, ani A (vozovka) ani B (chodník) není potvrzený."
+ },
+ {
+  "id": "zg39",
+  "name": "Calle de Alagón",
+  "verdict": "B",
+  "why": "Auta stojí v řadě podél vozovky a B má stání po obou stranách."
+ },
+ {
+  "id": "zg40",
+  "name": "Autovía del Ebro",
+  "verdict": "B",
+  "why": "Autovía má střední vozovky a pruhy, A tam kreslí 15 m jinou plochu."
+ }
+]

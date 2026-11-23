@@ -54,7 +54,7 @@ test("Francie: stát podle hranic", async () => {
   assert.equal(C.cityAt(48.5700, 7.8150), "germany"); // Kehl
   assert.equal(C.cityAt(46.2044, 6.1432), "switzerland"); // Genève
   assert.equal(C.cityAt(50.8503, 4.3517), "belgium"); // Bruxelles
-  assert.equal(C.cityAt(42.465, 1.98), "cizina"); // Llívia, a Spanish enclave (a hole of France's ring)
+  assert.equal(C.cityAt(42.465, 1.98), "spain"); // Llívia, a Spanish enclave (a hole of France's ring, a ring of Spain's)
   assert.equal(C.cityAt(43.7384, 7.4246), "cizina"); // Monaco
   assert.equal(C.countryOfCity("france").code, "FR");
 });

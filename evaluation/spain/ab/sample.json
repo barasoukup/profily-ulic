@@ -1,0 +1,242 @@
+[
+ {
+  "id": "zg1",
+  "town": "zaragoza",
+  "lat": 41.634767,
+  "lon": -0.876645
+ },
+ {
+  "id": "zg2",
+  "town": "zaragoza",
+  "lat": 41.653216,
+  "lon": -0.875369
+ },
+ {
+  "id": "zg3",
+  "town": "zaragoza",
+  "lat": 41.651364,
+  "lon": -0.878207
+ },
+ {
+  "id": "zg4",
+  "town": "zaragoza",
+  "lat": 41.655821,
+  "lon": -0.859519
+ },
+ {
+  "id": "zg5",
+  "town": "zaragoza",
+  "lat": 41.640956,
+  "lon": -0.907447
+ },
+ {
+  "id": "zg6",
+  "town": "zaragoza",
+  "lat": 41.641936,
+  "lon": -0.887091
+ },
+ {
+  "id": "zg7",
+  "town": "zaragoza",
+  "lat": 41.659515,
+  "lon": -0.911672
+ },
+ {
+  "id": "zg8",
+  "town": "zaragoza",
+  "lat": 41.644187,
+  "lon": -0.859664
+ },
+ {
+  "id": "zg9",
+  "town": "zaragoza",
+  "lat": 41.668204,
+  "lon": -0.901408
+ },
+ {
+  "id": "zg10",
+  "town": "zaragoza",
+  "lat": 41.653569,
+  "lon": -0.890258
+ },
+ {
+  "id": "zg11",
+  "town": "zaragoza",
+  "lat": 41.656554,
+  "lon": -0.880744
+ },
+ {
+  "id": "zg12",
+  "town": "zaragoza",
+  "lat": 41.657467,
+  "lon": -0.86037
+ },
+ {
+  "id": "zg13",
+  "town": "zaragoza",
+  "lat": 41.646582,
+  "lon": -0.870079
+ },
+ {
+  "id": "zg14",
+  "town": "zaragoza",
+  "lat": 41.652731,
+  "lon": -0.879085
+ },
+ {
+  "id": "zg15",
+  "town": "zaragoza",
+  "lat": 41.635852,
+  "lon": -0.896474
+ },
+ {
+  "id": "zg16",
+  "town": "zaragoza",
+  "lat": 41.66125,
+  "lon": -0.885983
+ },
+ {
+  "id": "zg17",
+  "town": "zaragoza",
+  "lat": 41.635914,
+  "lon": -0.871005
+ },
+ {
+  "id": "zg18",
+  "town": "zaragoza",
+  "lat": 41.642339,
+  "lon": -0.871811
+ },
+ {
+  "id": "zg19",
+  "town": "zaragoza",
+  "lat": 41.641438,
+  "lon": -0.902248
+ },
+ {
+  "id": "zg20",
+  "town": "zaragoza",
+  "lat": 41.660931,
+  "lon": -0.874092
+ },
+ {
+  "id": "zg21",
+  "town": "zaragoza",
+  "lat": 41.656791,
+  "lon": -0.866102
+ },
+ {
+  "id": "zg22",
+  "town": "zaragoza",
+  "lat": 41.67294,
+  "lon": -0.887615
+ },
+ {
+  "id": "zg23",
+  "town": "zaragoza",
+  "lat": 41.643622,
+  "lon": -0.907562
+ },
+ {
+  "id": "zg24",
+  "town": "zaragoza",
+  "lat": 41.657325,
+  "lon": -0.900678
+ },
+ {
+  "id": "zg25",
+  "town": "zaragoza",
+  "lat": 41.638476,
+  "lon": -0.897885
+ },
+ {
+  "id": "zg26",
+  "town": "zaragoza",
+  "lat": 41.631385,
+  "lon": -0.890264
+ },
+ {
+  "id": "zg27",
+  "town": "zaragoza",
+  "lat": 41.639921,
+  "lon": -0.893213
+ },
+ {
+  "id": "zg28",
+  "town": "zaragoza",
+  "lat": 41.662484,
+  "lon": -0.88199
+ },
+ {
+  "id": "zg29",
+  "town": "zaragoza",
+  "lat": 41.648741,
+  "lon": -0.881323
+ },
+ {
+  "id": "zg30",
+  "town": "zaragoza",
+  "lat": 41.646516,
+  "lon": -0.878251
+ },
+ {
+  "id": "zg31",
+  "town": "zaragoza",
+  "lat": 41.664737,
+  "lon": -0.894225
+ },
+ {
+  "id": "zg32",
+  "town": "zaragoza",
+  "lat": 41.666303,
+  "lon": -0.888024
+ },
+ {
+  "id": "zg33",
+  "town": "zaragoza",
+  "lat": 41.656871,
+  "lon": -0.894803
+ },
+ {
+  "id": "zg34",
+  "town": "zaragoza",
+  "lat": 41.631277,
+  "lon": -0.874259
+ },
+ {
+  "id": "zg35",
+  "town": "zaragoza",
+  "lat": 41.662827,
+  "lon": -0.860463
+ },
+ {
+  "id": "zg36",
+  "town": "zaragoza",
+  "lat": 41.644867,
+  "lon": -0.906174
+ },
+ {
+  "id": "zg37",
+  "town": "zaragoza",
+  "lat": 41.631409,
+  "lon": -0.886355
+ },
+ {
+  "id": "zg38",
+  "town": "zaragoza",
+  "lat": 41.63338,
+  "lon": -0.878203
+ },
+ {
+  "id": "zg39",
+  "town": "zaragoza",
+  "lat": 41.655998,
+  "lon": -0.906036
+ },
+ {
+  "id": "zg40",
+  "town": "zaragoza",
+  "lat": 41.660461,
+  "lon": -0.910642
+ }
+]

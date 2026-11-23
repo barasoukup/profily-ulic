@@ -102,7 +102,8 @@ export function streetSigns(tags = {}) {
   const z = [];
   const hw = tags.highway;
   const zone = String(tags["zone:traffic"] || tags["zone:maxspeed"] || tags["maxspeed:type"] || "");
-  if (hw === "motorway" || hw === "motorway_link") z.push({ k: "ip14a" });
+  // The ref goes with it: Spain tells an autopista (AP-…) from an autovía (countries/ES.js).
+  if (hw === "motorway" || hw === "motorway_link") z.push({ k: "ip14a", ...(tags.ref && { ref: String(tags.ref) }) });
   else if (tags.motorroad === "yes") z.push({ k: "ip15a" });
   if (hw === "living_street") z.push({ k: "ip26a" });
   else if (hw === "pedestrian") z.push(yes(tags.bicycle) ? { k: "ip27a", plate: "kola" } : { k: "ip27a" });

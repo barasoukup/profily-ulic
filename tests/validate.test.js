@@ -87,7 +87,9 @@ test("uložený řez v Košicích, Grazu, Innsbrucku a Berlíně zůstane, dalek
   for (const [lat, lon] of [[48.719, 21.258], [47.0707, 15.4395], [47.2654, 11.3927], [48.2085, 16.3731], [50.08, 14.42]]) assert.ok(cleanCut({ lat, lon, bearing: 0 }), `${lat},${lon}`);
   assert.ok(cleanCut({ lat: 52.5, lon: 13.4, bearing: 0 }), "Berlín (Německo)");
   assert.ok(cleanCut({ lat: 48.85, lon: 2.35, bearing: 0 }), "Paříž (Francie)");
-  for (const [lat, lon] of [[47.5, 19.04], [40.42, -3.7], [45, 10]]) assert.equal(cleanCut({ lat, lon, bearing: 0 }), null, `${lat},${lon}`);
+  assert.ok(cleanCut({ lat: 40.42, lon: -3.7, bearing: 0 }), "Madrid (Španělsko)");
+  assert.ok(cleanCut({ lat: 28.12, lon: -15.43, bearing: 0 }), "Las Palmas (Kanárské ostrovy)");
+  for (const [lat, lon] of [[47.5, 19.04], [37.98, 23.73], [45, 10]]) assert.equal(cleanCut({ lat, lon, bearing: 0 }), null, `${lat},${lon}`);
 });
 test("uložený řez si nechá klíče zdrojů všech států, neznámé zahodí", () => {
   const c = cleanCut({ lat: 48.144, lon: 17.11, bearing: 0, sources: { skTown: "bratislava", skEdges: "bratislava-tm", skTm: true, zbgis: true, orthoCity: "sk", atTown: "wien", atSigns: "salzburg",

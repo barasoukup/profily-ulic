@@ -83,6 +83,11 @@ licence neuvedena; čteno při kliknutí, nešíří se.** Nejsou to otevřená 
 | **Francie:** hledání adres Géoplateforme (IGN, BAN) | hledání adres | Licence Ouverte 2.0; hledaný text jde IGN. | ✓ |
 | **Francie:** mapa povrchů Paříže (Plan de voirie, opendata.paris.fr) | plochy řezu v Paříži | ODbL (Ville de Paris), uvádíme „© Ville de Paris“; odvozené profily jsou výstup z databáze. Čteno při kliknutí. | ✓ |
 | **Francie:** parkovací místa Paříže (stationnement-voie-publique-emplacements, opendata.paris.fr) | stání u obruby v Paříži | ODbL (Ville de Paris), uvádí se s mapou povrchů „© Ville de Paris“. Čteno při kliknutí. | ✓ |
+| **Španělsko:** ortofoto IGN PNOA (www.ign.es WMS pnoa-ma) | pruhy, obruby a podkladová mapa | CC BY 4.0 (scne.es), „PNOA © IGN“. Čteno při kliknutí. Melilla je snímek Airbus (jiná licence, zatím neřešeno). | ✓ |
+| **Španělsko:** budovy katastru (Catastro INSPIRE WFS) | podlaží a stáří domů | volné užití s uvedením „Dirección General del Catastro“ (podle dokumentace). Čteno při kliknutí. | ✓ |
+| **Španělsko:** hledání CartoCiudad (IGN/CNIG) | hledání adres | CC BY 4.0 scne.es; hledaný text jde IGN. | ✓ |
+| **Španělsko:** mapa povrchů Zaragozy (IDEZar WFS, dlažby 2017) | plochy řezu v Zaragoze | bez poplatků a omezení podle služby, katalog města CC BY 4.0 (neověřeno); „© Ayuntamiento de Zaragoza“. Čteno při kliknutí. | ✓ |
+| **Španělsko:** hranice (Eurostat GISCO), dopravní značky (Wikimedia Commons) `pilot/public/signs-ES/` | stát řezu, řádek značek | © EuroGeographics; značky jsou součástí nařízení (čl. 13 LPI), na Commons PD/CC0, jedna CC BY-SA (`evaluation/spain/signs-licence.json`) | ✓ |
 | **Francie:** hranice (Eurostat GISCO) | stát řezu | © EuroGeographics | ✓ |
 | **Francie:** dopravní značky (Wikimedia Commons), `pilot/public/signs-FR/` | řádek značek | Úřední díla (arrêté 1967); některá překreslení jsou na Commons pod CC BY-SA, v patičce se neuvádí jako u Lucemburska (Bára 21. 11. 2026), autoři v `evaluation/france/signs-licence.json` | ✓ |
 | **Rakousko:** hranice státu z Eurostat GISCO (`CNTR_RG_01M_2024_4326`, `tools/build_staty.mjs` → `staty.json`) | stát řezu | Podmínky GISCO: „© EuroGeographics for the administrative boundaries“ ([GISCO](https://ec.europa.eu/eurostat/web/gisco/geodata/administrative-units/countries)). Šíří se v `staty.json`. | ✓ |

@@ -29,6 +29,7 @@ export const SOURCE_CREDITS = {
     lu: () => t("ortofoto © ACT Luxembourg (geoportail.lu)"),
     pl: () => t("ortofoto © GUGiK (Geoportal.gov.pl)"),
     fr: () => t("ortofoto © IGN (Géoplateforme)"),
+    es: () => t("ortofoto PNOA © IGN (CC BY 4.0)"),
     // Germany: the orthophoto of the Land (lanes-ortho.js DE_ORTHO, "de-BY" …), with the credit the Land asks for.
     ...Object.fromEntries(Object.entries(DE_ORTHO).map(([land, o]) => [`de-${land}`, () => t("ortofoto {who}", { who: o.credit })])),
   },
@@ -65,6 +66,8 @@ export const SOURCE_CREDITS = {
   plTown: { krakow: () => t("mapa povrchů (MJO) © Gmina Miejska Kraków") },
   // Paris's Plan de voirie (towns/france.js).
   frTown: { paris: () => t("mapa povrchů (Plan de voirie) © Ville de Paris") },
+  // Zaragoza's paving map (towns/spain.js).
+  esTown: { zaragoza: () => t("mapa povrchů © Ayuntamiento de Zaragoza (IDEZar)") },
   nlBgt: { true: () => t("mapa povrchů BGT © Kadaster a správci BGT (PDOK, CC0)") },
   // Amsterdam's parking spaces (towns/netherlands.js).
   amsParking: { true: () => t("parkovací místa © Gemeente Amsterdam") },

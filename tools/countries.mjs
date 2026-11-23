@@ -41,6 +41,9 @@ export const COUNTRIES = {
     .map(([p, e]) => [`pl_${p}`, `poland/${e}/${e}`])) },
   // France (Bára 22. 11. 2026): metropolitan, by Geofabrik's 22 old regions (each in a folder, as Poland's), only on R2.
   fr: { iso: "FR", geofabrik: "france", pages: false, parts: Object.fromEntries([["als", "alsace"], ["aqu", "aquitaine"], ["auv", "auvergne"], ["bno", "basse-normandie"], ["bou", "bourgogne"], ["bre", "bretagne"], ["cen", "centre"], ["cha", "champagne-ardenne"], ["cor", "corse"], ["frc", "franche-comte"], ["hno", "haute-normandie"], ["idf", "ile-de-france"], ["lar", "languedoc-roussillon"], ["lim", "limousin"], ["lor", "lorraine"], ["mip", "midi-pyrenees"], ["npc", "nord-pas-de-calais"], ["pdl", "pays-de-la-loire"], ["pic", "picardie"], ["poc", "poitou-charentes"], ["paca", "provence-alpes-cote-d-azur"], ["rha", "rhone-alpes"]].map(([p, e]) => [`fr_${p}`, `france/${e}/${e}`])) },
+  // Spain (Bára 23. 11. 2026): Geofabrik's 17 autonomous communities with Ceuta and Melilla (folders as France's), the
+  // Canary Islands under africa/ (osm-tiles.yml: an extract with a continent is taken as it is); only on R2.
+  es: { iso: "ES", geofabrik: "spain", pages: false, parts: Object.fromEntries([...[["and", "andalucia"], ["ara", "aragon"], ["ast", "asturias"], ["can", "cantabria"], ["clm", "castilla-la-mancha"], ["cyl", "castilla-y-leon"], ["cat", "cataluna"], ["ceu", "ceuta"], ["ext", "extremadura"], ["gal", "galicia"], ["bal", "islas-baleares"], ["rio", "la-rioja"], ["mad", "madrid"], ["mel", "melilla"], ["mur", "murcia"], ["nav", "navarra"], ["pv", "pais-vasco"], ["val", "valencia"]].map(([p, e]) => [`es_${p}`, `spain/${e}/${e}`]), ["es_ic", "africa/canary-islands/canary-islands"]]) },
 };
 // The packs to build (osm-tiles.yml): a state's own, or its parts.
 export const PACKS = Object.entries(COUNTRIES).flatMap(([k, c]) => (c.parts ? Object.entries(c.parts).map(([code, extract]) => ({ code, extract })) : [{ code: k, extract: c.geofabrik }]));

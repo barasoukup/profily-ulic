@@ -1,0 +1,2836 @@
+[
+{
+"id": "zg1",
+"town": "zaragoza",
+"A": {
+"name": "Calle del Tejar",
+"lat": 41.63475602838032,
+"lon": -0.8764740841427515,
+"bearing": 4.8762982166400315,
+"span": {
+"left": 16.72,
+"right": 9.48
+},
+"sources": {
+"aiKerbs": true,
+"orthoCity": "es"
+},
+"segments": [
+[
+"plocha",
+2
+],
+[
+"zelen",
+2.15
+],
+[
+"stromorad",
+3
+],
+[
+"zelen",
+2.65
+],
+[
+"chodnik",
+2.8
+],
+[
+"parkovani",
+2
+],
+[
+"pruh",
+3.6
+],
+[
+"parkovani",
+2
+],
+[
+"chodnik",
+3.8
+],
+[
+"plocha",
+2.2
+]
+]
+},
+"B": {
+"name": "Calle del Tejar",
+"lat": 41.63475602838032,
+"lon": -0.8764740841427515,
+"bearing": 4.8762982166400315,
+"span": {
+"left": 16.72,
+"right": 9.48
+},
+"sources": {
+"esTown": "zaragoza"
+},
+"segments": [
+[
+"chodnik",
+4.9
+],
+[
+"stromorad",
+1.5
+],
+[
+"chodnik",
+3.5
+],
+[
+"parkovani",
+2
+],
+[
+"krajnice",
+2.8
+],
+[
+"pruh",
+4.5
+],
+[
+"krajnice",
+2.8
+],
+[
+"parkovani",
+2
+],
+[
+"chodnik",
+2.2
+]
+]
+}
+},
+{
+"id": "zg2",
+"town": "zaragoza",
+"A": {
+"name": "Calle Mayor",
+"lat": 41.653104285236864,
+"lon": -0.8754727080442446,
+"bearing": -55.07303778075057,
+"span": {
+"left": 4.42,
+"right": 5.58
+},
+"sources": {
+"aiKerbs": true,
+"orthoCity": "es"
+},
+"segments": [
+[
+"chodnik",
+2.5
+],
+[
+"pruh",
+5
+],
+[
+"chodnik",
+2.5
+]
+]
+},
+"B": {
+"name": "Calle Mayor",
+"lat": 41.653104285236864,
+"lon": -0.8754727080442446,
+"bearing": -55.07303778075057,
+"span": {
+"left": 4.22,
+"right": 5.58
+},
+"sources": {
+"esTown": "zaragoza"
+},
+"segments": [
+[
+"chodnik",
+2.15
+],
+[
+"pruh",
+3.45
+],
+[
+"parkovani",
+2
+],
+[
+"chodnik",
+2.2
+]
+]
+}
+},
+{
+"id": "zg3",
+"town": "zaragoza",
+"A": {
+"name": "Calle de Santa Catalina",
+"lat": 41.65115538856348,
+"lon": -0.878568269243666,
+"bearing": 25.69362541213067,
+"span": {
+"left": 5.62,
+"right": 3.88
+},
+"sources": {
+"aiKerbs": true,
+"orthoCity": "es"
+},
+"segments": [
+[
+"chodnik",
+1.9
+],
+[
+"pruh",
+6.4
+],
+[
+"chodnik",
+1.2
+]
+]
+},
+"B": {
+"name": "Calle de Santa Catalina",
+"lat": 41.65115538856348,
+"lon": -0.878568269243666,
+"bearing": 25.69362541213067,
+"span": {
+"left": 5.62,
+"right": 3.88
+},
+"sources": {
+"esTown": "zaragoza"
+},
+"segments": [
+[
+"chodnik",
+2.4
+],
+[
+"pruh",
+4.95
+],
+[
+"chodnik",
+2.15
+]
+]
+}
+},
+{
+"id": "zg4",
+"town": "zaragoza",
+"A": {
+"name": "",
+"lat": 41.65577500651099,
+"lon": -0.8595987566362052,
+"bearing": -37.47582570214157,
+"span": {
+"left": 22,
+"right": 22
+},
+"sources": {},
+"segments": [
+[
+"chodnik",
+2
+]
+]
+},
+"B": {
+"name": "",
+"lat": 41.65577500651099,
+"lon": -0.8595987566362052,
+"bearing": -37.47582570214157,
+"span": {
+"left": 22,
+"right": 22
+},
+"sources": {},
+"segments": [
+[
+"chodnik",
+2
+]
+]
+}
+},
+{
+"id": "zg5",
+"town": "zaragoza",
+"A": {
+"name": "",
+"lat": 41.64101885556928,
+"lon": -0.9075349566359745,
+"bearing": -50.61604183287683,
+"span": {
+"left": 22,
+"right": 22
+},
+"sources": {},
+"segments": [
+[
+"chodnik",
+1.5
+]
+]
+},
+"B": {
+"name": "",
+"lat": 41.64101885556928,
+"lon": -0.9075349566359745,
+"bearing": -50.61604183287683,
+"span": {
+"left": 22,
+"right": 22
+},
+"sources": {},
+"segments": [
+[
+"chodnik",
+1.5
+]
+]
+}
+},
+{
+"id": "zg6",
+"town": "zaragoza",
+"A": {
+"name": "Calle de José Moncasi",
+"lat": 41.64145873647517,
+"lon": -0.887345830249814,
+"bearing": -68.11407826096053,
+"span": {
+"left": 6.27,
+"right": 8.18
+},
+"sources": {
+"aiKerbs": true,
+"orthoCity": "es"
+},
+"segments": [
+[
+"chodnik",
+1.15
+],
+[
+"parkovani",
+2
+],
+[
+"krajnice",
+1.45
+],
+[
+"pruh",
+4.5
+],
+[
+"krajnice",
+1.45
+],
+[
+"zelen",
+1.2
+],
+[
+"chodnik",
+2.7
+]
+]
+},
+"B": {
+"name": "Calle de José Moncasi",
+"lat": 41.64145873647517,
+"lon": -0.887345830249814,
+"bearing": -68.11407826096053,
+"span": {
+"left": 6.27,
+"right": 8.18
+},
+"sources": {
+"esTown": "zaragoza"
+},
+"segments": [
+[
+"chodnik",
+1.65
+],
+[
+"parkovani",
+2
+],
+[
+"krajnice",
+1.47
+],
+[
+"pruh",
+4.5
+],
+[
+"krajnice",
+1.47
+],
+[
+"parkovani",
+2
+],
+[
+"chodnik",
+1.35
+]
+]
+}
+},
+{
+"id": "zg7",
+"town": "zaragoza",
+"A": {
+"name": "Calle Miquel Roca i Junyent",
+"lat": 41.65964475942379,
+"lon": -0.91160807793243,
+"bearing": -69.66915947335936,
+"span": {
+"left": 15.92,
+"right": 5.19
+},
+"sources": {
+"aiKerbs": true,
+"orthoCity": "es"
+},
+"segments": [
+[
+"chodnik",
+5.6
+],
+[
+"parkovani",
+2
+],
+[
+"bus",
+4.95
+],
+[
+"pruh",
+6.95
+],
+[
+"chodnik",
+1.61
+]
+]
+},
+"B": {
+"name": "Calle Miquel Roca i Junyent",
+"lat": 41.65964475942379,
+"lon": -0.91160807793243,
+"bearing": -69.66915947335936,
+"span": {
+"left": 15.62,
+"right": 13.93
+},
+"sources": {
+"esTown": "zaragoza",
+"orthoCity": "es"
+},
+"segments": [
+[
+"chodnik",
+6.25
+],
+[
+"plocha",
+2.25
+],
+[
+"parkovani",
+2.5
+],
+[
+"bus",
+2.92
+],
+[
+"pruh",
+3.42
+],
+[
+"parkovani",
+2
+],
+[
+"chodnik",
+1.35
+],
+[
+"krajnice",
+0.31
+],
+[
+"pruh",
+4.25
+],
+[
+"pruh",
+4.3
+]
+]
+}
+},
+{
+"id": "zg8",
+"town": "zaragoza",
+"A": {
+"name": "Calle Batalla de Lepanto",
+"lat": 41.64419949603229,
+"lon": -0.85966177874524,
+"bearing": -82.38295257627311,
+"span": {
+"left": 7.32,
+"right": 7.18
+},
+"sources": {
+"aiKerbs": true,
+"orthoCity": "es"
+},
+"segments": [
+[
+"chodnik",
+3.4
+],
+[
+"pruh",
+7.8
+],
+[
+"chodnik",
+3.3
+]
+]
+},
+"B": {
+"name": "Calle Batalla de Lepanto",
+"lat": 41.64419949603229,
+"lon": -0.85966177874524,
+"bearing": -82.38295257627311,
+"span": {
+"left": 7.32,
+"right": 7.18
+},
+"sources": {
+"esTown": "zaragoza"
+},
+"segments": [
+[
+"chodnik",
+3.05
+],
+[
+"parkovani",
+2
+],
+[
+"pruh",
+4.95
+],
+[
+"parkovani",
+2
+],
+[
+"chodnik",
+2.5
+]
+]
+}
+},
+{
+"id": "zg9",
+"town": "zaragoza",
+"A": {
+"name": "",
+"lat": 41.66826465232662,
+"lon": -0.9008463374249942,
+"bearing": 50.0729786871843,
+"span": {
+"left": 22,
+"right": 22
+},
+"sources": {},
+"segments": [
+[
+"chodnik",
+2
+]
+]
+},
+"B": {
+"name": "",
+"lat": 41.66826465232662,
+"lon": -0.9008463374249942,
+"bearing": 50.0729786871843,
+"span": {
+"left": 15.47,
+"right": 8.78
+},
+"sources": {
+"esTown": "zaragoza"
+},
+"segments": [
+[
+"chodnik",
+4.85
+],
+[
+"nezname",
+16.05
+],
+[
+"chodnik",
+3.35
+]
+]
+}
+},
+{
+"id": "zg10",
+"town": "zaragoza",
+"A": {
+"name": "",
+"lat": 41.65371415882943,
+"lon": -0.8901329066787603,
+"bearing": -57.04716797036069,
+"span": {
+"left": 5.12,
+"right": 3.38
+},
+"sources": {
+"orthoCity": "es"
+},
+"segments": [
+[
+"plocha",
+3.75
+],
+[
+"obsluzna",
+4.35
+],
+[
+"plocha",
+0.4
+]
+]
+},
+"B": {
+"name": "",
+"lat": 41.65371415882943,
+"lon": -0.8901329066787603,
+"bearing": -57.04716797036069,
+"span": {
+"left": 5.12,
+"right": 3.38
+},
+"sources": {
+"orthoCity": "es"
+},
+"segments": [
+[
+"plocha",
+3.75
+],
+[
+"obsluzna",
+4.35
+],
+[
+"plocha",
+0.4
+]
+]
+}
+},
+{
+"id": "zg11",
+"town": "zaragoza",
+"A": {
+"name": "Calle de la Virgen",
+"lat": 41.65647189017995,
+"lon": -0.8809116326259545,
+"bearing": 35.00791345731796,
+"span": {
+"left": 3.32,
+"right": 3.98
+},
+"sources": {
+"orthoCity": "es"
+},
+"segments": [
+[
+"plocha",
+1.05
+],
+[
+"chodnik",
+5.5
+],
+[
+"plocha",
+0.75
+]
+]
+},
+"B": {
+"name": "Calle de la Virgen",
+"lat": 41.65647189017995,
+"lon": -0.8809116326259545,
+"bearing": 35.00791345731796,
+"span": {
+"left": 3.32,
+"right": 3.98
+},
+"sources": {
+"esTown": "zaragoza",
+"orthoCity": "es"
+},
+"segments": [
+[
+"chodnik",
+4.5
+],
+[
+"plocha",
+2.8
+]
+]
+}
+},
+{
+"id": "zg12",
+"town": "zaragoza",
+"A": {
+"name": "Calle del Marqués de la Cadena",
+"lat": 41.657361202737974,
+"lon": -0.8606394987709907,
+"bearing": -27.560756394956968,
+"span": {
+"left": 15.63,
+"right": 14.93
+},
+"sources": {
+"aiKerbs": true,
+"orthoCity": "es"
+},
+"segments": [
+[
+"nezname",
+0.61
+],
+[
+"chodnik",
+2.15
+],
+[
+"cyklostezka",
+2
+],
+[
+"pruh",
+2.7
+],
+[
+"pruh",
+2.7
+],
+[
+"pruh",
+2.7
+],
+[
+"zelen",
+5.05
+],
+[
+"pruh",
+2.8
+],
+[
+"pruh",
+2.8
+],
+[
+"pruh",
+2.8
+],
+[
+"cyklostezka",
+1.95
+],
+[
+"chodnik",
+2.3
+]
+]
+},
+"B": {
+"name": "Calle del Marqués de la Cadena",
+"lat": 41.657361202737974,
+"lon": -0.8606394987709907,
+"bearing": -27.560756394956968,
+"span": {
+"left": 21.73,
+"right": 15.78
+},
+"sources": {
+"esTown": "zaragoza",
+"orthoCity": "es"
+},
+"segments": [
+[
+"pruh",
+3.13
+],
+[
+"pruh",
+3.13
+],
+[
+"delici",
+2.95
+],
+[
+"pruh",
+3.43
+],
+[
+"pruh",
+3.43
+],
+[
+"pruh",
+3.43
+],
+[
+"delici",
+4.4
+],
+[
+"pruh",
+4.47
+],
+[
+"pruh",
+4.47
+],
+[
+"cyklostezka",
+1.2
+],
+[
+"chodnik",
+3.45
+]
+]
+}
+},
+{
+"id": "zg13",
+"town": "zaragoza",
+"A": {
+"name": "Calle Roger de Tur",
+"lat": 41.646764612036584,
+"lon": -0.8700429757103955,
+"bearing": -81.55847241792235,
+"span": {
+"left": 6.67,
+"right": 7.73
+},
+"sources": {
+"aiKerbs": true,
+"orthoCity": "es"
+},
+"segments": [
+[
+"chodnik",
+3.55
+],
+[
+"pruh",
+4.75
+],
+[
+"parkovani",
+2.05
+],
+[
+"chodnik",
+4.05
+]
+]
+},
+"B": {
+"name": "Calle Roger de Tur",
+"lat": 41.646764612036584,
+"lon": -0.8700429757103955,
+"bearing": -81.55847241792235,
+"span": {
+"left": 6.67,
+"right": 7.73
+},
+"sources": {
+"esTown": "zaragoza",
+"orthoCity": "es"
+},
+"segments": [
+[
+"chodnik",
+3.1
+],
+[
+"parkovani",
+2
+],
+[
+"pruh",
+3.2
+],
+[
+"pruh",
+2.75
+],
+[
+"parkovani",
+1.7
+],
+[
+"chodnik",
+1.65
+]
+]
+}
+},
+{
+"id": "zg14",
+"town": "zaragoza",
+"A": {
+"name": "Calle de Don Jaime I",
+"lat": 41.65272088606045,
+"lon": -0.8790115318946986,
+"bearing": 46.171545121592146,
+"span": {
+"left": 6.72,
+"right": 22
+},
+"sources": {
+"aiKerbs": true,
+"orthoCity": "es"
+},
+"segments": [
+[
+"plocha",
+3.2
+],
+[
+"pruh",
+7
+],
+[
+"plocha",
+18.52
+]
+]
+},
+"B": {
+"name": "Calle de Don Jaime I",
+"lat": 41.65272088606045,
+"lon": -0.8790115318946986,
+"bearing": 46.171545121592146,
+"span": {
+"left": 6.72,
+"right": 22
+},
+"sources": {
+"esTown": "zaragoza",
+"orthoCity": "es"
+},
+"segments": [
+[
+"chodnik",
+4.2
+],
+[
+"pruh",
+3.75
+],
+[
+"delici",
+3.65
+],
+[
+"pruh",
+2.1
+],
+[
+"plocha",
+15.02
+]
+]
+}
+},
+{
+"id": "zg15",
+"town": "zaragoza",
+"A": {
+"name": "",
+"lat": 41.63579116434163,
+"lon": -0.8965562714802008,
+"bearing": 48.863234596337634,
+"span": {
+"left": 22,
+"right": 22
+},
+"sources": {},
+"segments": [
+[
+"chodnik",
+2
+]
+]
+},
+"B": {
+"name": "",
+"lat": 41.63579116434163,
+"lon": -0.8965562714802008,
+"bearing": 48.863234596337634,
+"span": {
+"left": 22,
+"right": 22
+},
+"sources": {},
+"segments": [
+[
+"chodnik",
+2
+]
+]
+}
+},
+{
+"id": "zg16",
+"town": "zaragoza",
+"A": {
+"name": "Avenida José Atarés",
+"lat": 41.66125884551906,
+"lon": -0.8859795795156719,
+"bearing": -73.78338408363349,
+"span": {
+"left": 22,
+"right": 22
+},
+"sources": {},
+"segments": [
+[
+"cyklostezka",
+2.5
+]
+]
+},
+"B": {
+"name": "Avenida José Atarés",
+"lat": 41.66125884551906,
+"lon": -0.8859795795156719,
+"bearing": -73.78338408363349,
+"span": {
+"left": 4.12,
+"right": 1.93
+},
+"sources": {
+"esTown": "zaragoza",
+"orthoCity": "es"
+},
+"segments": [
+[
+"chodnik",
+3.25
+],
+[
+"cyklostezka",
+2.8
+]
+]
+}
+},
+{
+"id": "zg17",
+"town": "zaragoza",
+"A": {
+"name": "Calle de José Galiay Sarañana",
+"lat": 41.63633993758413,
+"lon": -0.871267123827673,
+"bearing": 65.153739064915,
+"span": {
+"left": 12.92,
+"right": 9.52
+},
+"sources": {
+"aiKerbs": true,
+"orthoCity": "es"
+},
+"segments": [
+[
+"plocha",
+8.05
+],
+[
+"chodnik",
+2
+],
+[
+"plocha",
+0.95
+],
+[
+"pruh",
+1.92
+],
+[
+"pruh",
+3.92
+],
+[
+"chodnik",
+2
+],
+[
+"plocha",
+3.59
+]
+]
+},
+"B": {
+"name": "Calle de José Galiay Sarañana",
+"lat": 41.63633993758413,
+"lon": -0.871267123827673,
+"bearing": 65.153739064915,
+"span": {
+"left": 12.92,
+"right": 9.52
+},
+"sources": {
+"esTown": "zaragoza",
+"orthoCity": "es"
+},
+"segments": [
+[
+"chodnik",
+8.55
+],
+[
+"parkovani",
+2
+],
+[
+"pruh",
+2.5
+],
+[
+"pruh",
+2.5
+],
+[
+"parkovani",
+2
+],
+[
+"chodnik",
+4.89
+]
+]
+}
+},
+{
+"id": "zg18",
+"town": "zaragoza",
+"A": {
+"name": "Calle Privilegio de la Unión",
+"lat": 41.64215760183522,
+"lon": -0.8719250415209118,
+"bearing": -64.68644441268404,
+"span": {
+"left": 4.77,
+"right": 4.53
+},
+"sources": {
+"aiKerbs": true,
+"orthoCity": "es"
+},
+"segments": [
+[
+"chodnik",
+2.7
+],
+[
+"plocha",
+1.55
+],
+[
+"pruh_piktokoridor",
+2.2
+],
+[
+"chodnik",
+2.85
+]
+]
+},
+"B": {
+"name": "Calle Privilegio de la Unión",
+"lat": 41.64215760183522,
+"lon": -0.8719250415209118,
+"bearing": -64.68644441268404,
+"span": {
+"left": 4.52,
+"right": 4.38
+},
+"sources": {
+"esTown": "zaragoza",
+"orthoCity": "es"
+},
+"segments": [
+[
+"chodnik",
+1.5
+],
+[
+"pruh_piktokoridor",
+3.9
+],
+[
+"parkovani",
+2.1
+],
+[
+"chodnik",
+1.4
+]
+]
+}
+},
+{
+"id": "zg19",
+"town": "zaragoza",
+"A": {
+"name": "Calle de Domingo Miral",
+"lat": 41.641111691530945,
+"lon": -0.9025487350065846,
+"bearing": -55.262730091355145,
+"span": {
+"left": 9.87,
+"right": 3.93
+},
+"sources": {
+"orthoCity": "es"
+},
+"segments": [
+[
+"chodnik",
+4.1
+],
+[
+"plocha",
+0.6
+],
+[
+"cyklostezka",
+2.5
+],
+[
+"plocha",
+0.9
+],
+[
+"pruh",
+3
+],
+[
+"plocha",
+0.7
+],
+[
+"chodnik",
+2
+]
+]
+},
+"B": {
+"name": "Calle de Domingo Miral",
+"lat": 41.641111691530945,
+"lon": -0.9025487350065846,
+"bearing": -55.262730091355145,
+"span": {
+"left": 9.87,
+"right": 7.03
+},
+"sources": {
+"esTown": "zaragoza",
+"orthoCity": "es"
+},
+"segments": [
+[
+"plocha",
+2.35
+],
+[
+"chodnik",
+2.25
+],
+[
+"pruh",
+4.95
+],
+[
+"parkovani",
+2
+],
+[
+"chodnik",
+2.6
+],
+[
+"pruh",
+2.75
+]
+]
+}
+},
+{
+"id": "zg20",
+"town": "zaragoza",
+"A": {
+"name": "Calle de Mariano Pano y Ruata",
+"lat": 41.66095491876278,
+"lon": -0.8740783750204089,
+"bearing": -66.80771529081339,
+"span": {
+"left": 5.62,
+"right": 6.53
+},
+"sources": {
+"aiKerbs": true,
+"orthoCity": "es"
+},
+"segments": [
+[
+"plocha",
+4.7
+],
+[
+"pruh",
+3.3
+],
+[
+"krajnice",
+1.3
+],
+[
+"chodnik",
+2.85
+]
+]
+},
+"B": {
+"name": "Calle de Mariano Pano y Ruata",
+"lat": 41.66095491876278,
+"lon": -0.8740783750204089,
+"bearing": -66.80771529081339,
+"span": {
+"left": 5.42,
+"right": 6.43
+},
+"sources": {
+"esTown": "zaragoza"
+},
+"segments": [
+[
+"chodnik",
+3.3
+],
+[
+"pruh",
+3.3
+],
+[
+"parkovani",
+2
+],
+[
+"chodnik",
+3.25
+]
+]
+}
+},
+{
+"id": "zg21",
+"town": "zaragoza",
+"A": {
+"name": "Calle de Alfonso Solans Serrano",
+"lat": 41.65687352513277,
+"lon": -0.8661041394778654,
+"bearing": 88.88285095628353,
+"span": {
+"left": 1.52,
+"right": 2.48
+},
+"sources": {
+"orthoCity": "es"
+},
+"segments": [
+[
+"chodnik",
+4
+]
+]
+},
+"B": {
+"name": "Calle de Alfonso Solans Serrano",
+"lat": 41.65687352513277,
+"lon": -0.8661041394778654,
+"bearing": 88.88285095628353,
+"span": {
+"left": 6.87,
+"right": 5.08
+},
+"sources": {
+"esTown": "zaragoza"
+},
+"segments": [
+[
+"chodnik",
+11.95
+]
+]
+}
+},
+{
+"id": "zg22",
+"town": "zaragoza",
+"A": {
+"name": "Calle de Pablo Ruiz Picasso",
+"lat": 41.67307496816455,
+"lon": -0.8875354691921135,
+"bearing": -89.53142471766836,
+"span": {
+"left": 22,
+"right": 19.03
+},
+"sources": {
+"aiKerbs": true,
+"orthoCity": "es"
+},
+"segments": [
+[
+"zelen",
+2.32
+],
+[
+"chodnik",
+5.35
+],
+[
+"pruh",
+2.95
+],
+[
+"pruh",
+3.25
+],
+[
+"pruh",
+2.75
+],
+[
+"cyklostezka",
+1.25
+],
+[
+"plocha",
+3.6
+],
+[
+"zelen",
+1.1
+],
+[
+"plocha",
+1.9
+],
+[
+"pruh",
+3.58
+],
+[
+"pruh",
+3.58
+],
+[
+"pruh",
+3.58
+],
+[
+"chodnik",
+5.8
+]
+]
+},
+"B": {
+"name": "Calle de Pablo Ruiz Picasso",
+"lat": 41.67307496816455,
+"lon": -0.8875354691921135,
+"bearing": -89.53142471766836,
+"span": {
+"left": 19.18,
+"right": 18.68
+},
+"sources": {
+"esTown": "zaragoza",
+"orthoCity": "es"
+},
+"segments": [
+[
+"chodnik",
+2.05
+],
+[
+"zelen",
+2.95
+],
+[
+"chodnik",
+0.55
+],
+[
+"krajnice",
+2.26
+],
+[
+"pruh",
+3.25
+],
+[
+"pruh",
+2.75
+],
+[
+"pruh",
+3.2
+],
+[
+"delici",
+4
+],
+[
+"krajnice",
+1.56
+],
+[
+"pruh",
+4.25
+],
+[
+"pruh",
+3
+],
+[
+"pruh",
+2.65
+],
+[
+"chodnik",
+5.4
+]
+]
+}
+},
+{
+"id": "zg23",
+"town": "zaragoza",
+"A": {
+"name": "",
+"lat": 41.64350243237992,
+"lon": -0.9074805355835652,
+"bearing": -31.614211553589726,
+"span": {
+"left": 27.83,
+"right": 6.08
+},
+"sources": {
+"aiKerbs": true,
+"orthoCity": "es"
+},
+"segments": [
+[
+"chodnik",
+2
+],
+[
+"nezname",
+0.95
+],
+[
+"plocha",
+0.6
+],
+[
+"parkovani",
+2
+],
+[
+"krajnice",
+10.93
+],
+[
+"pruh",
+4.5
+],
+[
+"krajnice",
+10.93
+],
+[
+"parkovani",
+2
+]
+]
+},
+"B": {
+"name": "",
+"lat": 41.64350243237992,
+"lon": -0.9074805355835652,
+"bearing": -31.614211553589726,
+"span": {
+"left": 30.43,
+"right": 6.98
+},
+"sources": {
+"esTown": "zaragoza",
+"orthoCity": "es"
+},
+"segments": [
+[
+"plocha",
+0.9
+],
+[
+"chodnik",
+6.2
+],
+[
+"parkovani",
+1.45
+],
+[
+"krajnice",
+2.15
+],
+[
+"pruh",
+4.5
+],
+[
+"krajnice",
+1.6
+],
+[
+"parkovani",
+2
+],
+[
+"chodnik",
+7.65
+],
+[
+"parkovani",
+2
+],
+[
+"pruh",
+3.1
+],
+[
+"pruh",
+3.84
+],
+[
+"parkovani",
+2
+]
+]
+}
+},
+{
+"id": "zg24",
+"town": "zaragoza",
+"A": {
+"name": "",
+"lat": 41.65737854000993,
+"lon": -0.9008294124937928,
+"bearing": 25.178629962194503,
+"span": {
+"left": 22,
+"right": 22
+},
+"sources": {},
+"segments": [
+[
+"chodnik",
+1.5
+]
+]
+},
+"B": {
+"name": "",
+"lat": 41.65737854000993,
+"lon": -0.9008294124937928,
+"bearing": 25.178629962194503,
+"span": {
+"left": 22,
+"right": 22
+},
+"sources": {
+"esTown": "zaragoza"
+},
+"segments": [
+[
+"nezname",
+44
+]
+]
+}
+},
+{
+"id": "zg25",
+"town": "zaragoza",
+"A": {
+"name": "Calle Arzobispo Apaolaza",
+"lat": 41.63862754554531,
+"lon": -0.8981743776132365,
+"bearing": 34.83937565190781,
+"span": {
+"left": 5.77,
+"right": 5.98
+},
+"sources": {
+"aiKerbs": true,
+"orthoCity": "es"
+},
+"segments": [
+[
+"chodnik",
+2.45
+],
+[
+"pruh",
+4.8
+],
+[
+"parkovani",
+2
+],
+[
+"chodnik",
+2.5
+]
+]
+},
+"B": {
+"name": "Calle Arzobispo Apaolaza",
+"lat": 41.63862754554531,
+"lon": -0.8981743776132365,
+"bearing": 34.83937565190781,
+"span": {
+"left": 5.77,
+"right": 5.93
+},
+"sources": {
+"esTown": "zaragoza"
+},
+"segments": [
+[
+"chodnik",
+1.95
+],
+[
+"parkovani",
+2
+],
+[
+"pruh",
+3.45
+],
+[
+"parkovani",
+2
+],
+[
+"chodnik",
+2.3
+]
+]
+}
+},
+{
+"id": "zg26",
+"town": "zaragoza",
+"A": {
+"name": "Calle del Tiro",
+"lat": 41.63146397215365,
+"lon": -0.8902450451035157,
+"bearing": -79.76220301466014,
+"span": {
+"left": 6.17,
+"right": 5.43
+},
+"sources": {
+"aiKerbs": true,
+"orthoCity": "es"
+},
+"segments": [
+[
+"chodnik",
+1.65
+],
+[
+"parkovani",
+2
+],
+[
+"pruh",
+1.8
+],
+[
+"pruh",
+3.8
+],
+[
+"chodnik",
+2.35
+]
+]
+},
+"B": {
+"name": "Calle del Tiro",
+"lat": 41.63146397215365,
+"lon": -0.8902450451035157,
+"bearing": -79.76220301466014,
+"span": {
+"left": 6.17,
+"right": 5.43
+},
+"sources": {
+"esTown": "zaragoza"
+},
+"segments": [
+[
+"chodnik",
+1.45
+],
+[
+"pruh",
+2.02
+],
+[
+"pruh",
+2.02
+],
+[
+"parkovani",
+2
+],
+[
+"chodnik",
+4.1
+]
+]
+}
+},
+{
+"id": "zg27",
+"town": "zaragoza",
+"A": {
+"name": "Calle Agustín de Quinto",
+"lat": 41.639802,
+"lon": -0.89341,
+"bearing": -40.59241811553982,
+"span": {
+"left": 22,
+"right": 6.33
+},
+"sources": {
+"aiKerbs": true,
+"orthoCity": "es"
+},
+"segments": [
+[
+"plocha",
+17.28
+],
+[
+"chodnik",
+1
+],
+[
+"pruh",
+6.2
+],
+[
+"plocha",
+3.85
+]
+]
+},
+"B": {
+"name": "Calle Agustín de Quinto",
+"lat": 41.639802,
+"lon": -0.89341,
+"bearing": -40.59241811553982,
+"span": {
+"left": 22,
+"right": 6.33
+},
+"sources": {
+"esTown": "zaragoza",
+"orthoCity": "es"
+},
+"segments": [
+[
+"plocha",
+14.98
+],
+[
+"pruh",
+2.85
+],
+[
+"delici",
+1.15
+],
+[
+"pruh",
+4.65
+],
+[
+"delici",
+1.15
+],
+[
+"pruh",
+3.55
+]
+]
+}
+},
+{
+"id": "zg28",
+"town": "zaragoza",
+"A": {
+"name": "Calle José Pardo Asso",
+"lat": 41.66278,
+"lon": -0.881968,
+"bearing": 2.118359520801837,
+"span": {
+"left": 22,
+"right": 22
+},
+"sources": {},
+"segments": [
+[
+"chodnik",
+2
+]
+]
+},
+"B": {
+"name": "Calle José Pardo Asso",
+"lat": 41.66278,
+"lon": -0.881968,
+"bearing": 2.118359520801837,
+"span": {
+"left": 6.62,
+"right": 22
+},
+"sources": {
+"esTown": "zaragoza"
+},
+"segments": [
+[
+"chodnik",
+28.62
+]
+]
+}
+},
+{
+"id": "zg29",
+"town": "zaragoza",
+"A": {
+"name": "Calle de Joaquín Costa",
+"lat": 41.64879083710552,
+"lon": -0.8812921042683578,
+"bearing": -64.9975056852748,
+"span": {
+"left": 8.22,
+"right": 11.73
+},
+"sources": {
+"aiKerbs": true,
+"orthoCity": "es"
+},
+"segments": [
+[
+"chodnik",
+2.9
+],
+[
+"parkovani",
+2
+],
+[
+"pruh",
+4.6
+],
+[
+"parkovani",
+2
+],
+[
+"zelen",
+4.2
+],
+[
+"plocha",
+4.25
+]
+]
+},
+"B": {
+"name": "Calle de Joaquín Costa",
+"lat": 41.64879083710552,
+"lon": -0.8812921042683578,
+"bearing": -64.9975056852748,
+"span": {
+"left": 8.22,
+"right": 11.73
+},
+"sources": {
+"esTown": "zaragoza",
+"orthoCity": "es"
+},
+"segments": [
+[
+"chodnik",
+2.3
+],
+[
+"parkovani",
+2
+],
+[
+"pruh",
+4.5
+],
+[
+"krajnice",
+1.45
+],
+[
+"parkovani",
+2
+],
+[
+"chodnik",
+4.95
+],
+[
+"plocha",
+2.75
+]
+]
+}
+},
+{
+"id": "zg30",
+"town": "zaragoza",
+"A": {
+"name": "Avenida de Cesáreo Alierta",
+"lat": 41.6463016294558,
+"lon": -0.8786882782441524,
+"bearing": -33.09037351492409,
+"span": {
+"left": 22,
+"right": 22
+},
+"sources": {},
+"segments": [
+[
+"cyklostezka",
+2.5
+]
+]
+},
+"B": {
+"name": "Avenida de Cesáreo Alierta",
+"lat": 41.6463016294558,
+"lon": -0.8786882782441524,
+"bearing": -33.09037351492409,
+"span": {
+"left": 35.52,
+"right": 23.33
+},
+"sources": {
+"esTown": "zaragoza",
+"orthoCity": "es"
+},
+"segments": [
+[
+"chodnik",
+8.2
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"krajnice",
+1.1
+],
+[
+"zelen",
+4.9
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"pruh",
+4
+],
+[
+"krajnice",
+3.4
+],
+[
+"zelen",
+1.75
+],
+[
+"chodnik",
+3.5
+]
+]
+}
+},
+{
+"id": "zg31",
+"town": "zaragoza",
+"A": {
+"name": "Pasarela del Voluntariado",
+"lat": 41.66491538813346,
+"lon": -0.894809030407932,
+"bearing": 22.103411347126045,
+"span": {
+"left": 22,
+"right": 22
+},
+"sources": {},
+"segments": [
+[
+"stezka_sdilena",
+1.5
+]
+]
+},
+"B": {
+"name": "Pasarela del Voluntariado",
+"lat": 41.66491538813346,
+"lon": -0.894809030407932,
+"bearing": 22.103411347126045,
+"span": {
+"left": 22,
+"right": 22
+},
+"sources": {},
+"segments": [
+[
+"stezka_sdilena",
+1.5
+]
+]
+}
+},
+{
+"id": "zg32",
+"town": "zaragoza",
+"A": {
+"name": "Calle Victoria Ocampo",
+"lat": 41.666269,
+"lon": -0.888023,
+"bearing": -66.09604348885388,
+"span": {
+"left": 22,
+"right": 22
+},
+"sources": {},
+"segments": [
+[
+"chodnik",
+4
+]
+]
+},
+"B": {
+"name": "Calle Victoria Ocampo",
+"lat": 41.666269,
+"lon": -0.888023,
+"bearing": -66.09604348885388,
+"span": {
+"left": 5.07,
+"right": 7.88
+},
+"sources": {
+"esTown": "zaragoza",
+"orthoCity": "es"
+},
+"segments": [
+[
+"chodnik",
+9.65
+],
+[
+"zelen",
+3.3
+]
+]
+}
+},
+{
+"id": "zg33",
+"town": "zaragoza",
+"A": {
+"name": "Calle Sebastián Banzo Urrea",
+"lat": 41.65688304408166,
+"lon": -0.8946907933016067,
+"bearing": -2.7234302962267134,
+"span": {
+"left": 6.92,
+"right": 5.18
+},
+"sources": {
+"aiKerbs": true,
+"orthoCity": "es"
+},
+"segments": [
+[
+"chodnik",
+3.4
+],
+[
+"pruh",
+4.4
+],
+[
+"parkovani",
+1.8
+],
+[
+"chodnik",
+2.5
+]
+]
+},
+"B": {
+"name": "Calle Sebastián Banzo Urrea",
+"lat": 41.65688304408166,
+"lon": -0.8946907933016067,
+"bearing": -2.7234302962267134,
+"span": {
+"left": 6.92,
+"right": 5.18
+},
+"sources": {
+"esTown": "zaragoza"
+},
+"segments": [
+[
+"pruh",
+0.35
+],
+[
+"chodnik",
+2.2
+],
+[
+"parkovani",
+2
+],
+[
+"pruh",
+3.45
+],
+[
+"parkovani",
+2
+],
+[
+"chodnik",
+2.1
+]
+]
+}
+},
+{
+"id": "zg34",
+"town": "zaragoza",
+"A": {
+"name": "Calle de Juan XXII",
+"lat": 41.631335993658475,
+"lon": -0.8739745260002744,
+"bearing": 72.04081956408181,
+"span": {
+"left": 10.3,
+"right": 1.13
+},
+"sources": {
+"aiKerbs": true,
+"orthoCity": "es"
+},
+"segments": [
+[
+"zelen",
+1.97
+],
+[
+"pruh",
+9.45
+]
+]
+},
+"B": {
+"name": "Calle de Juan XXII",
+"lat": 41.631335993658475,
+"lon": -0.8739745260002744,
+"bearing": 72.04081956408181,
+"span": {
+"left": 10.3,
+"right": 1.13
+},
+"sources": {
+"aiKerbs": true,
+"orthoCity": "es"
+},
+"segments": [
+[
+"zelen",
+1.97
+],
+[
+"pruh",
+9.45
+]
+]
+}
+},
+{
+"id": "zg35",
+"town": "zaragoza",
+"A": {
+"name": "Calle Juanito Pardo",
+"lat": 41.66277606676563,
+"lon": -0.8604240834201499,
+"bearing": 60.115529880612776,
+"span": {
+"left": 2.02,
+"right": 3.25
+},
+"sources": {
+"orthoCity": "es"
+},
+"segments": [
+[
+"chodnik",
+5.27
+]
+]
+},
+"B": {
+"name": "Calle Juanito Pardo",
+"lat": 41.66277606676563,
+"lon": -0.8604240834201499,
+"bearing": 60.115529880612776,
+"span": {
+"left": 3.57,
+"right": 4.33
+},
+"sources": {
+"esTown": "zaragoza"
+},
+"segments": [
+[
+"chodnik",
+7.9
+]
+]
+}
+},
+{
+"id": "zg36",
+"town": "zaragoza",
+"A": {
+"name": "",
+"lat": 41.64477976144233,
+"lon": -0.9061834368913415,
+"bearing": -85.34746721995268,
+"span": {
+"left": 22,
+"right": 22
+},
+"sources": {},
+"segments": [
+[
+"chodnik",
+2
+]
+]
+},
+"B": {
+"name": "",
+"lat": 41.64477976144233,
+"lon": -0.9061834368913415,
+"bearing": -85.34746721995268,
+"span": {
+"left": 22,
+"right": 22
+},
+"sources": {},
+"segments": [
+[
+"chodnik",
+2
+]
+]
+}
+},
+{
+"id": "zg37",
+"town": "zaragoza",
+"A": {
+"name": "Calle Alicante",
+"lat": 41.63149156954765,
+"lon": -0.8863516761945045,
+"bearing": -31.299649358067004,
+"span": {
+"left": 5.07,
+"right": 7.07
+},
+"sources": {
+"aiKerbs": true,
+"orthoCity": "es"
+},
+"segments": [
+[
+"plocha",
+1.95
+],
+[
+"pruh",
+7.8
+],
+[
+"plocha",
+0.45
+],
+[
+"zelen",
+1.95
+]
+]
+},
+"B": {
+"name": "Calle Alicante",
+"lat": 41.63149156954765,
+"lon": -0.8863516761945045,
+"bearing": -31.299649358067004,
+"span": {
+"left": 5.07,
+"right": 7.07
+},
+"sources": {
+"esTown": "zaragoza",
+"orthoCity": "es"
+},
+"segments": [
+[
+"chodnik",
+2.85
+],
+[
+"krajnice",
+1.1
+],
+[
+"pruh",
+2.8
+],
+[
+"chodnik",
+5.4
+]
+]
+}
+},
+{
+"id": "zg38",
+"town": "zaragoza",
+"A": {
+"name": "Calle Hermanos Pablo y Juan Hurus",
+"lat": 41.63330604297971,
+"lon": -0.8783076599604877,
+"bearing": -71.44456065196653,
+"span": {
+"left": 4.22,
+"right": 6.28
+},
+"sources": {
+"orthoCity": "es"
+},
+"segments": [
+[
+"plocha",
+2.7
+],
+[
+"pruh",
+2.5
+],
+[
+"plocha",
+3.17
+],
+[
+"stromorad",
+1.5
+],
+[
+"plocha",
+0.63
+]
+]
+},
+"B": {
+"name": "Calle Hermanos Pablo y Juan Hurus",
+"lat": 41.63330604297971,
+"lon": -0.8783076599604877,
+"bearing": -71.44456065196653,
+"span": {
+"left": 3.97,
+"right": 6.28
+},
+"sources": {
+"esTown": "zaragoza"
+},
+"segments": [
+[
+"chodnik",
+8.12
+],
+[
+"stromorad",
+1.5
+],
+[
+"plocha",
+0.63
+]
+]
+}
+},
+{
+"id": "zg39",
+"town": "zaragoza",
+"A": {
+"name": "Calle de Alagón",
+"lat": 41.65600391420451,
+"lon": -0.906081047532656,
+"bearing": 9.900738796690007,
+"span": {
+"left": 16.77,
+"right": 4.08
+},
+"sources": {
+"aiKerbs": true,
+"orthoCity": "es"
+},
+"segments": [
+[
+"plocha",
+7.85
+],
+[
+"chodnik",
+4.4
+],
+[
+"zelen",
+1.4
+],
+[
+"pruh",
+3.8
+],
+[
+"parkovani",
+2
+],
+[
+"chodnik",
+1.4
+]
+]
+},
+"B": {
+"name": "Calle de Alagón",
+"lat": 41.65600391420451,
+"lon": -0.906081047532656,
+"bearing": 9.900738796690007,
+"span": {
+"left": 16.77,
+"right": 4.08
+},
+"sources": {
+"esTown": "zaragoza",
+"orthoCity": "es"
+},
+"segments": [
+[
+"plocha",
+5.1
+],
+[
+"chodnik",
+7.65
+],
+[
+"parkovani",
+2
+],
+[
+"pruh",
+3.5
+],
+[
+"parkovani",
+2
+],
+[
+"chodnik",
+0.6
+]
+]
+}
+},
+{
+"id": "zg40",
+"town": "zaragoza",
+"A": {
+"name": "Autovía del Ebro",
+"lat": 41.66010920742146,
+"lon": -0.9108189808167237,
+"bearing": -69.27398608863213,
+"span": {
+"left": 22.23,
+"right": 22.03
+},
+"sources": {
+"aiKerbs": true,
+"orthoCity": "es"
+},
+"segments": [
+[
+"pruh",
+3.11
+],
+[
+"pruh",
+3.5
+],
+[
+"pruh",
+3.5
+],
+[
+"pruh",
+2.85
+],
+[
+"plocha",
+14.95
+],
+[
+"krajnice",
+2.45
+],
+[
+"pruh",
+3.25
+],
+[
+"pruh",
+3.5
+],
+[
+"pruh",
+3.5
+],
+[
+"pruh",
+3.1
+],
+[
+"plocha",
+0.55
+]
+]
+},
+"B": {
+"name": "Autovía del Ebro",
+"lat": 41.66010920742146,
+"lon": -0.9108189808167237,
+"bearing": -69.27398608863213,
+"span": {
+"left": 22,
+"right": 35
+},
+"sources": {
+"esTown": "zaragoza",
+"orthoCity": "es"
+},
+"segments": [
+[
+"pruh",
+3.11
+],
+[
+"pruh",
+3.11
+],
+[
+"pruh",
+3.11
+],
+[
+"pruh",
+3.11
+],
+[
+"delici",
+2.45
+],
+[
+"krajnice",
+1.24
+],
+[
+"pruh",
+3.28
+],
+[
+"pruh",
+3.28
+],
+[
+"delici",
+3.15
+],
+[
+"pruh",
+4.3
+],
+[
+"pruh",
+3.25
+],
+[
+"pruh",
+3.5
+],
+[
+"pruh",
+3.5
+],
+[
+"pruh",
+2.85
+],
+[
+"chodnik",
+1
+],
+[
+"cyklostezka",
+2.3
+],
+[
+"chodnik",
+2.95
+],
+[
+"zelen",
+7.53
+]
+]
+}
+}
+]

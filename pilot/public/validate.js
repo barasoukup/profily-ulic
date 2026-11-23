@@ -103,7 +103,8 @@ function cleanSigns(list) {
     ...(num(x.v, 1, 200) ? { v: x.v } : {}),
     ...(signChoice(x) ? { plate: x.plate } : {}),
     ...(["forward", "backward"].includes(x.dir) ? { dir: x.dir } : {}),
-    ...(["left", "right"].includes(x.walk) ? { walk: x.walk } : {}) })).slice(0, 12);
+    ...(["left", "right"].includes(x.walk) ? { walk: x.walk } : {}),
+    ...(x.k === "ip14a" && typeof x.ref === "string" && /^[A-Z0-9 -]{1,12}$/.test(x.ref) ? { ref: x.ref } : {}) })).slice(0, 12);
 }
 
 // Where a saved cut may lie: the states of the app with the margins of their OSM extracts (countries/<ISO>.js bounds,

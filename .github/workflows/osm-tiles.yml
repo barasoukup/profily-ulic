@@ -102,7 +102,7 @@ jobs:
         run: |
           mkdir -p data/osm
           curl -fL --retry 8 --retry-delay 60 --retry-all-errors --connect-timeout 30 -o "data/osm/${{ matrix.code }}.osm.pbf" \
-            "https://download.geofabrik.de/europe/${{ matrix.extract }}-latest.osm.pbf"
+            "https://download.geofabrik.de/$(case "${{ matrix.extract }}" in africa/*) echo "${{ matrix.extract }}";; *) echo "europe/${{ matrix.extract }}";; esac)-latest.osm.pbf"
           ls -l data/osm
       - name: Build and pack the tiles
         if: steps.wanted.outputs.go == 'true'

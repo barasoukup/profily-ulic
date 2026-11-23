@@ -249,6 +249,23 @@ WMS-Raster v Web Mercatoru, `lanes-ortho.js` zdroj `fr`; mimo Francii bílé, pr
 - **Co v ulici je** (počet pruhů, jednosměrka, tramvaj, parkování, cyklopruhy, rychlosti, zóny): dlaždice OSM
   celé ČR (viz níže).
 
+### Španělsko (Bára 23. 11. 2026)
+
+Stát `spain` (ES), `countries/ES.js`, `towns/spain.js`, `search-es.js`; hranice GISCO s Baleárami, Kanárskými ostrovy,
+Ceutou, Melillou a Llívií (prstenec uvnitř francouzské díry). OSM po 17 autonomních společenstvích, Ceutě, Melille
+a Kanárských ostrovech (`es_*`, Kanárské ostrovy u Geofabriku pod `africa/`, jen R2). Ortofoto IGN PNOA (WMS, 25 cm,
+`lanes-ortho.js` zdroj `es`; mimo Španělsko kreslí satelitní pozadí, proto v mapě jen nad Španělskem).
+- **Mapa povrchů Zaragozy** (dlažby města 2017: chodníky, střední a zelené pásy, IDEZar WFS) tam, kde má chodník do 25 m
+  od středu řezu (`?zaragoza=0`). Vozovku jako plochu nemá: je to pás kolem os silnic z OSM, až za chodníky a budovami.
+  A Coruña (1 : 500, i vozovky a stání) je ve složce „Intranet“ s nejasnou licencí, zatím ne.
+- **Budovy** z katastru (Catastro INSPIRE WFS, GML): podlaží části budovy u fasády, rok, užití, byty (`?catastro=0`).
+  Baskicko a Navarra mají vlastní katastr: tam jen OSM.
+- **Normy:** závazná přístupnost (Orden TMA/851/2021: chodník 1,8 m), ostatní podle doporučení ministerstva dopravy
+  2023/2024 (cyklo, pruhy 2,5–3 m, stání). Bez varování buspruh, tramvajový pás a sdílená stezka (5 m by svítilo všude).
+  **Stání:** vedle stojícího auta 3 m k protějšímu okraji vozovky (čl. 91.2 a RGC), odhad jako v Lucembursku; stání na
+  chodníku zakázané. **Značky** `signs-ES/` (katalog RD 465/2025, úřední díla podle čl. 13 LPI). **Hledání** CartoCiudad.
+  Bez paneláků, univerzální vozidla. Rešerše `evaluation/spain/` (ZDROJE, NORMY).
+
 ### Dlaždice OSM
 
 Jedna sada dlaždic pro všechna města (`pilot/data/osm-tiles`, na webu `data/osm-tiles`) z výřezu Geofabrik Česká
