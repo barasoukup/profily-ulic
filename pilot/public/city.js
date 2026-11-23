@@ -468,6 +468,9 @@ Object.assign(CITIES, {
   // Estonia (Bára 23. 11. 2026): the Board's orthophoto, ETAK's buildings, OSM (towns/estonia.js).
   estonia: { ...abroad("estonia", "EE", "Estonsko", "v Estonsku", "estonské", [58.7, 25.0], "59.437000, 24.753600"),
     dataShort: "ortofota Maa- ja Ruumiamet a OSM", rulesHead: "Šířky podle estonských předpisů:" },
+  // Slovenia (Bára 23. 11. 2026): the GURS orthophoto, the buildings of its cadastre, OSM (towns/slovenia.js).
+  slovenia: { ...abroad("slovenia", "SI", "Slovinsko", "ve Slovinsku", "slovinské", [46.1, 14.8], "46.051400, 14.505800"),
+    dataShort: "ortofota GURS a OSM", rulesHead: "Šířky podle slovinských předpisů:" },
   // Malta (Bára 23. 11. 2026): the Planning Authority's orthophoto and OSM (towns/malta.js); traffic keeps left.
   malta: { ...abroad("malta", "MT", "Malta", "na Maltě", "maltské", [35.9, 14.45], "35.898900, 14.514600"),
     dataShort: "ortofota stavebního úřadu a OSM", rulesHead: "Šířky podle maltských předpisů a doporučení:" },

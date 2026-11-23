@@ -1,7 +1,7 @@
 import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, SURFACES, LAMP_HEIGHTS, underSize } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, splitTwoWayLane, capWideLanes, pedestrianZone, widenNarrowTrams, carveCycleways, carveTramTracks, lanesFromShoulders, crossFromA, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
-import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO, CH_ORTHO, NL_ORTHO, BE_ORTHO, LU_ORTHO, PL_ORTHO, FR_ORTHO, ES_ORTHO, PT_ORTHO, PT_MAINLAND, ES_NOT_PNOA, CY_ORTHO, MT_ORTHO, IT_ORTHO, EE_ORTHO, DE_ORTHO, deWmsUrl, landsAt, landAt } from "./lanes-ortho.js";
+import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO, CH_ORTHO, NL_ORTHO, BE_ORTHO, LU_ORTHO, PL_ORTHO, FR_ORTHO, ES_ORTHO, PT_ORTHO, PT_MAINLAND, ES_NOT_PNOA, CY_ORTHO, MT_ORTHO, IT_ORTHO, EE_ORTHO, SI_ORTHO, DE_ORTHO, deWmsUrl, landsAt, landAt } from "./lanes-ortho.js";
 import { boxed as boxedPlace, within as withinPlace } from "./places.js";
 import { orthoOsmPolys, besidePassport, trimToEnds, P as ORTHO_P } from "./ortho-osm.js";
 import { LOOKS as HOUSE_LOOKS } from "./house-looks.js";
@@ -322,6 +322,11 @@ if (STATY?.estonia) {
   const Ee = insideOnly([boxedPlace("EE", STATY.estonia)]);
   kinds.ortho.push(new Ee(`${EE_ORTHO}/{z}/{x}/{y}.jpg`, { tms: true, maxZoom: 21, maxNativeZoom: 18, attribution: tr("ortofoto © Maa- ja Ruumiamet"), bounds: boundsOf(STATY.estonia) }));
 }
+// Slovenia: GURS's orthophoto DOF025 (WMS in Web Mercator), only over Slovenia (beyond it the server hangs and gives 504).
+if (STATY?.slovenia) {
+  const Si = insideOnly([boxedPlace("SI", STATY.slovenia)]);
+  kinds.ortho.push(new Si("", { bboxUrl: (b, w, h) => `${SI_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("ortofoto DOF025 © Geodetska uprava RS (CC BY 4.0)"), bounds: boundsOf(STATY.slovenia) }));
+}
 // Malta: the Planning Authority's orthophoto of 2018 (in degrees: lanes-ortho.js MT_ORTHO), only over Malta.
 if (STATY?.malta) {
   const Mt = insideOnly([boxedPlace("MT", STATY.malta)]);
@@ -483,7 +488,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       // A click with no street found is logged too (Bára: how many try outside the Czech Republic): only where, to
       // about a kilometre, and whether there were any OSM data there at all (outside the country there are none).
       if (!keepWay) log("bez_ulice", { detail: osm?.elements?.length ? "bez_ulice" : "bez_dat", city: city.id, country: city.country, lat: Math.round(lat * 100) / 100, lon: Math.round(lon * 100) / 100 });
-      return status(tr("Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko, Slovensko, Rakousko, Německo, Švýcarsko, Lichtenštejnsko, Nizozemsko, Belgii, Lucembursko, Polsko, Francii, Monako, Španělsko, Portugalsko, Kypr, Maltu, části Itálie a Estonsko)."), "error");
+      return status(tr("Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko, Slovensko, Rakousko, Německo, Švýcarsko, Lichtenštejnsko, Nizozemsko, Belgii, Lucembursko, Polsko, Francii, Monako, Španělsko, Portugalsko, Kypr, Maltu, části Itálie, Estonsko a Slovinsko)."), "error");
     }
     // A street of two one-way carriageways is cut from its middle (e.g. the tram belt).
     near = centerOnStreet(osm, frame, near);
@@ -669,6 +674,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
         ruianFacts(info, p);
         // The foral cadastre of a Spanish province that told of the house (towns/spain-foral.js), for the credits.
         if (p.foral) state.cut.sources.esForal = p.foral;
+        // The cadastre of Slovenia that told of the house (towns/slovenia.js).
+        if (p.gurs) state.cut.sources.siGurs = true;
         // What the building is for (ZBGIS, Slovakia), where OSM says no more than "a building".
         if (p.type && (!info.type || info.type === "yes")) info.type = p.type;
       } catch {}
@@ -1019,7 +1026,7 @@ function draw() {
     box.innerHTML = `<div class="empty">
       <img src="${city.emptyImg}" alt="" width="96" height="126">
       <div><h1 class="empty-title">${tr("Příčný profil ulice")}</h1>
-      <ol><li>${tr("Klikněte v mapě na ulici kdekoli v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku, v Lichtenštejnsku, v Nizozemsku, v Belgii, v Lucembursku, v Polsku, ve Francii, v Monaku, ve Španělsku, v Portugalsku, na Kypru, na Maltě, v částech Itálie (Bolzano, Turín, Bologna, Modena) nebo v Estonsku.")}</li><li>${tr("Profil od fasády k fasádě se sestaví z mapy povrchů města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy povrchů Vídně a OSM, v Německu z ortofot spolkových zemí a OSM, ve Švýcarsku a v Lichtenštejnsku z úředního vyměřování, ortofota SWISSIMAGE a OSM, v Nizozemsku z mapy povrchů BGT, ortofota PDOK a OSM, v Belgii a v Lucembursku z ortofot, čar map Flander a Valonska a OSM, v Polsku z ortofota GUGiK, mapy povrchů Krakova a OSM, ve Francii z ortofota IGN, mapy povrchů Paříže a OSM, v Monaku z ortofota IGN a OSM, ve Španělsku z ortofota PNOA, mapy povrchů Zaragozy a OSM, v Portugalsku z ortofot DGT a OSM, na Kypru z ortofota DLS a OSM, na Maltě z ortofota stavebního úřadu a OSM, v Itálii z otevřených ortofot, mapy povrchů Bologni a OSM, v Estonsku z ortofota Maa- ja Ruumiamet a OSM.")}</li>
+      <ol><li>${tr("Klikněte v mapě na ulici kdekoli v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku, v Lichtenštejnsku, v Nizozemsku, v Belgii, v Lucembursku, v Polsku, ve Francii, v Monaku, ve Španělsku, v Portugalsku, na Kypru, na Maltě, v částech Itálie (Bolzano, Turín, Bologna, Modena), v Estonsku nebo ve Slovinsku.")}</li><li>${tr("Profil od fasády k fasádě se sestaví z mapy povrchů města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy povrchů Vídně a OSM, v Německu z ortofot spolkových zemí a OSM, ve Švýcarsku a v Lichtenštejnsku z úředního vyměřování, ortofota SWISSIMAGE a OSM, v Nizozemsku z mapy povrchů BGT, ortofota PDOK a OSM, v Belgii a v Lucembursku z ortofot, čar map Flander a Valonska a OSM, v Polsku z ortofota GUGiK, mapy povrchů Krakova a OSM, ve Francii z ortofota IGN, mapy povrchů Paříže a OSM, v Monaku z ortofota IGN a OSM, ve Španělsku z ortofota PNOA, mapy povrchů Zaragozy a OSM, v Portugalsku z ortofot DGT a OSM, na Kypru z ortofota DLS a OSM, na Maltě z ortofota stavebního úřadu a OSM, v Itálii z otevřených ortofot, mapy povrchů Bologni a OSM, v Estonsku z ortofota Maa- ja Ruumiamet a OSM, ve Slovinsku z ortofota GURS, katastru budov a OSM.")}</li>
       <li>${tr("V režimu Návrh ho upravíte: táhněte hranice, klikněte na část, přidejte novou.")}</li></ol></div></div>`;
     $("#editor").replaceChildren();
     $("#palette").replaceChildren();

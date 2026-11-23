@@ -99,6 +99,9 @@ export default {
   freeLane: 3,
   // The width the law leaves beside parked cars, when it is not freeLane per direction: (oneway, lanes, minLane) → m.
   lawNeed: null,
+  // May the law's estimate put cars on this roadway at all: (tags, oneway, lanes) → boolean (null: yes; Slovenia: not on
+  // a two-way street without a centre line).
+  parkOnRoadway: null,
   // May the law's estimate put cars on the roadway beside a cycle lane (Switzerland: no, VRV Art. 19 Abs. 2).
   parkByCycleLane: true,
   halfKerbNote: lawNote("§ 25 odst. 3 zák. 361/2000 Sb."),

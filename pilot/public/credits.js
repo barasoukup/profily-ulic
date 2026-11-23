@@ -34,6 +34,7 @@ export const SOURCE_CREDITS = {
     cy: () => t("ortofoto © DLS Kypr"),
     mt: () => t("ortofoto © Planning Authority Malta, 2018 (CC BY 4.0)"),
     ee: () => t("ortofoto © Maa- ja Ruumiamet"),
+    si: () => t("ortofoto DOF025 © Geodetska uprava RS, stav 11/2026 (CC BY 4.0)"),
     "it-bo": () => t("ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)"),
     "it-mo": () => t("ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)"),
     "it-to": () => t("ortofoto {who}", { who: TO_ORTHO_WHO }),
@@ -91,6 +92,8 @@ export const SOURCE_CREDITS = {
     ar: () => t("budovy {who}", { who: "© Diputación Foral de Álava – Arabako Foru Aldundia" }),
   },
   // Bologna's road areas (towns/italy.js).
+  // The buildings of Slovenia's cadastre (towns/slovenia.js), where they told of a house.
+  siGurs: { true: () => t("budovy © Geodetska uprava RS (kataster stavb, stav 11/2026, CC BY 4.0)") },
   eeTown: { tallinn: () => t("mapa povrchů © Tallinna Linnaplaneerimise Amet") },
   itTown: { bologna: () => t("mapa povrchů (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)") },
   nlBgt: { true: () => t("mapa povrchů BGT © Kadaster a správci BGT (PDOK, CC0)") },

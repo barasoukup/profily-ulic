@@ -349,6 +349,21 @@ o přístupnosti 2026, závazné), ostatní EVS 843 z druhé ruky; stání a tra
 jen se značkou a 1,5 m pro chodce. Značky `signs-EE/` (nařízení MKM nr 12, úřední díla; část překreslení CC BY-SA 4.0).
 Paneláky jako v Česku (Lasnamäe, Mustamäe).
 
+### Slovinsko (Bára 23. 11. 2026)
+
+Stát `slovenia` (SI), `countries/SI.js`, `towns/slovenia.js`; hranice GISCO (za Itálií a Rakouskem, Chorvatsko zůstává
+cizina), OSM balík `si` (jen R2). Mapa povrchů ulic není (`evaluation/slovenia/ZDROJE.md`): profil je odhad z OSM a
+ortofota GURS DOF025 (25 cm, WMS ve Web Mercatoru, `lanes-ortho.js` `si`; server buď odpoví do sekundy, nebo 30 s visí
+a vrátí 504: první dotaz má polovinu času, po 300 ms jeden další; podklad mapy jen uvnitř hranice). Budovy z katastru GURS
+(WFS `wfs-si-gurs-kn`, vrstva STAVBE, filtr FES na obrys `OBRIS_GEOM` v bodě, jinak nejbližší obrys do 6 m; podlaží nad
+zemí = `STEVILO_ETAZ` − `STEVILKA_PRITL_ETAZE` + 1, rok, výška H2 − H1, nosná konstrukce, byty; `?gurs=0`; A/B
+`evaluation/slovenia/ab/ZPRAVA.md`). Hledání: Photon ve slovinštině a čísla domů GURS `NASLOVI_HS` (`search-si.js`).
+Normy: pravidla o cyklistických plochách a o projektování silnic (dál se používají, nové k ZCes-2 nevyšly), chodník bez
+varování (minimum nenalezeno), kolmé stání bez varování. Stání 3 m na směr, na obousměrce jen se středovou čárou (OSM
+`lanes` ≥ 2, ne `lane_markings=no`) a na jednosměrce s jedním pruhem (ZPrCP čl. 65, `parkOnRoadway`), na chodníku jen se
+značkou a s 1,6 m pro chodce. Značky `signs-SI/` (čísla pravidla 2015/2024, kresby většinou z pravidla 2000; README tam).
+Bez paneláků (jugoslávská sídliště nejsou české panelové domy), neutrální vozidla, český mobiliář, rakouské označníky.
+
 ### Dlaždice OSM
 
 Jedna sada dlaždic pro všechna města (`pilot/data/osm-tiles`, na webu `data/osm-tiles`) z výřezu Geofabrik Česká

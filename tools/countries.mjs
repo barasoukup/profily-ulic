@@ -56,6 +56,8 @@ export const COUNTRIES = {
   it: { iso: "IT", geofabrik: "italy", pages: false, parts: Object.fromEntries([["c", "centro"], ["i", "isole"], ["ne", "nord-est"], ["no", "nord-ovest"], ["s", "sud"]].map(([p, e]) => [`it_${p}`, `italy/${e}`])) },
   // Estonia (Bára 23. 11. 2026): Geofabrik's one extract (125 MB of PBF), only on R2.
   ee: { iso: "EE", geofabrik: "estonia", pages: false },
+  // Slovenia (Bára 23. 11. 2026): Geofabrik's one extract (315 MB of PBF), only on R2.
+  si: { iso: "SI", geofabrik: "slovenia", pages: false },
 };
 // The packs to build (osm-tiles.yml): a state's own, or its parts.
 export const PACKS = Object.entries(COUNTRIES).flatMap(([k, c]) => (c.parts ? Object.entries(c.parts).map(([code, extract]) => ({ code, extract })) : [{ code: k, extract: c.geofabrik }]));

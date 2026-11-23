@@ -712,12 +712,16 @@ function splitRoadway(run, ctx) {
   if (!ctx.inZps && (ctx.guessPark ?? PARK_GUESS.has(tags.highway))) {
     const oneway = isOnewayTags(tags) || tags.junction === "roundabout";
     const need = lawNeedFor(oneway, lanesTotal);
+    // A state whose law keeps cars off some roadways altogether (countries/<ISO>.js parkOnRoadway; Slovenia: none on a
+    // two-way street without a centre line, none on a one-way carriageway of two lanes).
+    const lawful = country.parkOnRoadway ? country.parkOnRoadway(tags, oneway, lanesTotal) : true;
     const lo = trams.length ? Math.min(...trams) - RAIL_HALF : Infinity, hi = trams.length ? Math.max(...trams) + RAIL_HALF : -Infinity;
     // Keeping left (Cyprus, Malta) cars stand along the kerb on the driver's left: on a one-way street that kerb is tried
     // first (the estimate is no part of the data, so it may sit there; review of 23. 11. 2026).
     const leftKerb = country.leftHand && oneway && dirAt((s + e) / 2) === "backward";
     const order = country.leftHand && !leftKerb ? [["L", sideL], ["R", sideR]] : [["R", sideR], ["L", sideL]];
     for (const [side, st] of order) {
+      if (!lawful) break;
       if (!(ctx.kerbOpen ?? ["L", "R"]).includes(side) || ctx.kerbBare?.includes(side) || parked.includes(side) || st.parkingNo || edge.some((x) => x.side === side && x.type === "parkovani")) continue;
       // Switzerland (countries/CH.js parkByCycleLane: VRV Art. 19 Abs. 2): no parking on the roadway beside a cycle lane.
       if (!country.parkByCycleLane && edge.some((x) => x.side === side && (x.type === "cyklopruh" || x.type === "ochranny_pruh"))) continue;

@@ -479,6 +479,14 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   základ 2,75 m (méně planých varování), vedle stání 3 m na směr, pěší zóna 381 s 432, stání a tramvaj bez varování;
   normy nekupujeme (EVS 843 jen z druhé ruky).
 
+## Slovinsko (větev estonia, Bára 23. 11. 2026, nenasazené)
+- `countries/SI.js`, `towns/slovenia.js`, `search-si.js` (Photon + čísla domů GURS), `signs-SI/`, `evaluation/slovenia/`
+  (ZDROJE, NORMY, ab/). Hranice GISCO, OSM balík `si` (jen R2; **workflow OSM tiles se `states: si`**). Mapa povrchů
+  není: odhad z OSM a ortofota GURS DOF025 25 cm (server občas 30 s visí a vrátí 504: jeden opakovaný dotaz). Budovy
+  z katastru GURS (`?gurs=0`; A/B 40 domů: podlaží 39 proti 17 z OSM, rok 39 proti 0; katastr počítá obytné podkroví
+  jako podlaží). Stání podle ZPrCP čl. 65 (na obousměrce jen se středovou čárou, `parkOnRoadway`). Socialistický vzhled ne.
+  Kredit „stav 11/2026“ (rok náletu služba neuvádí). Otevřené otázky v `docs/backlog.md`.
+
 ## Společné pro státy (Bára 23. 11. 2026)
 - Sever Kypru a Itálie mimo otevřená ortofota (i se San Marinem a Vatikánem) profil nedostanou, aplikace to řekne
   (`city.js closedAt`, `staty.json` `closed_*`).

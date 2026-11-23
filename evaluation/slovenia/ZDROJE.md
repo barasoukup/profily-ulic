@@ -159,3 +159,13 @@ po zabalení.
    „PD-Slovenia-exempt“; nová čísla (2202, 2421…) chybí. Kreslit podle obrázků pravidla 2024, nebo převzít staré
    kresby (piktogramy se zřejmě nezměnily, neověřeno)? Podrobnosti v `NORMY.md`.
 6. Hledání: stačí Photon, nebo dopsat i přesné hledání adresy přes GURS (jako RÚIAN)?
+
+## Doplněno při zapojení (23. 11. 2026)
+
+- Rok náletu DOF025 služba nedává: GetFeatureInfo vrací jen barvy pásem, rozměr času má jen historická vrstva DOF050_Z,
+  WFS `wfs-si-gurs-dts` neexistuje (404). Kredit je proto „stav 11/2026“.
+- GetMap `DOF025_3857` 23. 11.: odpověď do 1 s, nebo 30 s nic a 504 (i uvnitř státu, náhodně, opakovaný dotaz obvykle
+  projde). Aplikace dává prvnímu dotazu polovinu času a pak jeden opakuje.
+- STAVBE: výchozí geometrie je těžiště (BBOX v URL hledá těžiště); `TLORIS_GEOM` chybí v Mariboru u mnoha domů, obrys
+  `OBRIS_GEOM` mají; filtr CQL vrací 403, filtr FES (`FILTER=<fes:Filter>…`) funguje. `NASLOVI_HS` s `PropertyIsLike`
+  na `ULICA_NAZIV` a `PropertyIsEqualTo` na `HS_STEVILKA`: 0,7 s.

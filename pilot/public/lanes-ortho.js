@@ -10,7 +10,7 @@
 // bent (one direction and curve per carriageway), narrow peaks, solid or dashed by their gaps; then the lines whose
 // gaps look like lanes, chosen together. Anything doubtful leaves the rules' profile as it is.
 
-const R = 6378137, ALONG = 20, TIMEOUT = 4000;
+const R = 6378137, ALONG = 20, TIMEOUT = 4000, SI_PAUSE = 300;
 const merc = (lon, lat) => [(R * lon * Math.PI) / 180, R * Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360))];
 // Each city's best orthophoto (evaluation/ortofoto/ZPRAVA.md; the key: city.js laneOrtho of the city, else the state's,
 // countries/<ISO>.js): Prague IPR 10 cm (summer 2024), Brno's 2025 (tiles of
@@ -98,6 +98,11 @@ export const itOrthoAt = (lon, lat) => Object.keys(IT_ORTHO).filter((k) => { con
 // flipped; CORS *; its open-data licence of 1. 1. 2025), clean but only to level 18 (about 30 cm at 59° N). The WMS of
 // full resolution (to 3 cm in Tallinn) carries a watermark on a 400 px grid that would read as lines (ZDROJE.md).
 export const EE_ORTHO = "https://tiles.maaamet.ee/tm/tms/1.0.0/foto@GMC";
+// Slovenia (Bára 23. 11. 2026): GURS's colour orthophoto DOF025 (25 cm) in its own Web Mercator pyramid (WMS of the
+// Geodetska uprava RS, CORS *, CC BY 4.0; evaluation/slovenia/ZDROJE.md). The server answers within a second or hangs
+// for 30 s and gives 504 (also inside Slovenia, at random; always beyond it, so the map's layer is kept inside, app.js
+// insideOnly): laneImage asks a second time after a short pause when the first does not answer in half the time.
+export const SI_ORTHO = (b, w, h, format = "image/jpeg") => `https://ipi.eprostor.gov.si/wms-si-gurs-dts/wms?${new URLSearchParams({ SERVICE: "WMS", REQUEST: "GetMap", VERSION: "1.3.0", LAYERS: "SI.GURS.ZPDZ:DOF025_3857", STYLES: "", CRS: "EPSG:3857", BBOX: b.join(","), WIDTH: w, HEIGHT: h, FORMAT: format })}`;
 export const SK_ORTHO = "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ortofoto_hres/MapServer";
 const SOURCES = {
   // The grid of z19, tiles of 512 px (about 10 cm). balance: the mosaic is bright and tinted (Košice 2025: asphalt
@@ -117,6 +122,7 @@ const SOURCES = {
   "it-to": { res: 0.1, url: (b, w, h, format) => IT_ORTHO["it-to"].url(b, w, h, format) },
   "it-bz": { res: 0.2, url: (b, w, h, format) => IT_ORTHO["it-bz"].url(b, w, h, format) },
   ee: { res: 0.3, tiles: EE_ORTHO, z: 18, px: 256, ext: ".jpg", xy: true, tms: true },
+  si: { res: 0.25, url: (b, w, h, format) => SI_ORTHO(b, w, h, format) },
   mt: { res: 0.15, url: (b, w, h, format) => MT_ORTHO(b, w, h, format) },
   cy: { res: 0.12, tiles: CY_ORTHO, z: 20, px: 256 },
   "pt-25": { res: 0.25, url: (b, w, h, format) => PT_ORTHO["pt-25"](b, w, h, format) },
@@ -255,6 +261,19 @@ export async function laneImage(opts) {
     }
     if (lastError) throw lastError;
     return null;
+  }
+  // Slovenia: GURS's server hangs now and then (a 504 after 30 s): half the time for the first request, then one more
+  // after a short pause (a failure of both is told, as in Belgium and Portugal).
+  if (opts.source === "si") {
+    const start = Date.now(), budget = opts.timeout ?? TIMEOUT;
+    try {
+      return await laneImageOf("si", { ...opts, timeout: Math.max(1500, budget / 2) });
+    } catch (err) {
+      const left = budget - (Date.now() - start) - SI_PAUSE;
+      if ((!err?.outage && !["TimeoutError", "AbortError"].includes(err?.name)) || left < 1000) throw err;
+      await new Promise((r) => setTimeout(r, SI_PAUSE));
+      return laneImageOf("si", { ...opts, timeout: left });
+    }
   }
   if (opts.source === "es" && !esKeys(...opts.frame.toLonLat(0, 0)).length) return null;
   if (opts.source !== "de") return laneImageOf(SOURCES[opts.source] ? opts.source : "cuzk", opts);

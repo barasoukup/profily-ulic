@@ -174,3 +174,13 @@ road signs of Slovenia“, „Diagrams of indicatory road signs of Slovenia“, 
   Stání na chodníku jen se značkou a s 1,60 m pro chodce u domu.
 - Značky: čísla 2015 z [AVP] ověřit proti obrázkům tabulek pravidla 2024, než se nakreslí (PISRS soubor stáhnout
   celý, trvá to dlouho), a rozhodnout, zda použít kresby 2000 z Commons.
+
+## E. Co je v aplikaci (23. 11. 2026)
+
+- `countries/SI.js`: hodnoty z oddílu A jen tam, kde jsou ověřené; minima cyklistických ploch červeně, šířky z pravidla o
+  projektování silnic oranžově (pro nové silnice); chodník, kolmé a šikmé stání a tramvaj bez varování.
+- Zákon o stání: 3 m na směr; `parkOnRoadway`: na obousměrce jen se středovou čárou (OSM `lanes` ≥ 2), na jednosměrce
+  jen s jedním pruhem (čl. 65/4 body 12 a 14); stání na chodníku jen se značkou, 1,6 m pro chodce.
+- Značky `signs-SI/` (README tam): čísla 2015/2024 z [AVP] (2. ruka), kresby z Commons. **ZASP čl. 9/1/2** chrání jen
+  „uradna besedila“; že se výjimka týká i kreseb značek, je výklad Commons (PD-Slovenia-exempt), stejně jako u Francie:
+  **potvrdí Bára**. 2401 je CC BY-SA 4.0 (Rokbreznikar), uvedeno v patičce.
