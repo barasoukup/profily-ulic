@@ -19,8 +19,10 @@ export const FORAL = {
 };
 // Which cadastres are asked without a switch: the A/B of 23. 11. 2026 (evaluation/spain/foral-ab/ZPRAVA.md).
 // ?foral=0 none, ?foral=1 all four, ?foral=nc,gi those named.
-// Álava off (Bára 23. 11. 2026): 2 floors more than OSM throughout, not checked on photos; ?foral=ar or ?foral=1 asks it.
-export const FORAL_ON = new Set(["nc", "gi", "bi"]);
+// All four on. Álava and Navarre count 1–2 floors more than OSM's building:levels: the photos (Pamplona, Vitoria,
+// evaluation/spain/foral-ab/ZPRAVA.md) side with the cadastres; Spanish mappers write "B+4" (planta baja + 4) as 4 and
+// leave out the attic, the cadastre counts every floor above ground (Bára 23. 11. 2026).
+export const FORAL_ON = new Set(["nc", "gi", "bi", "ar"]);
 export function foralEnabled(code, sw) {
   if (sw === "0") return false;
   if (sw === "1") return true;

@@ -71,7 +71,7 @@ S katastrem správně 4–5 z 5, bez něj 1 z 5. Cíl 10–15 domů na město fo
 | Navarra (Pamplona) | 10 z 10 | bez OSM nelze; dotazy i čtení v pořádku | **zapnout** |
 | Gipuzkoa (Donostia) | 15 z 16 | ±1 u 11 z 12, fotky sedí | **zapnout** |
 | Bizkaia (Bilbao) | 15 z 15 | ±1 u 10 z 13, fotka sedí | **zapnout** |
-| Álava (Vitoria-Gasteiz) | 15 z 16 | soustavně +2 proti OSM, fotky 2 z 2 sedí | **vypnuto** (Bára 23. 11. 2026: do ověření na fotkách) |
+| Álava (Vitoria-Gasteiz) | 15 z 16 | soustavně +2 proti OSM, fotky 2 z 2 sedí | **zapnuto** (po ověření na fotkách, viz níže) |
 
 Všechny čtyři zdroje pokrytí zlepšují zásadně (z téměř nuly na skoro všechny domy) a kde je co srovnat, sedí, proto
 jsou v kódu zapnuté (`FORAL_ON` v `spain-foral.js`; `?foral=0` vše vypne, `?foral=nc,gi,bi` jen vybrané). Výhrada
@@ -81,3 +81,21 @@ nadhodnocení, Álavu vypnout (`FORAL_ON` bez `ar`).
 Vedlejší nález (platí i pro Catastro v ostatním Španělsku): rok z katastru jde v `buildingStyle` přes `yearLook`, takže
 španělský dům z let 1948–57 dostane vzhled „sorela“ a z let 1958–69 „typový dům“ z českého katalogu (ve vzorku 5×).
 `countries/ES.js houseLook` je nepřemapuje. Zapsáno do `docs/backlog.md`.
+
+
+## Proč katastr hlásí víc podlaží než OSM (23. 11. 2026)
+
+Medián rozdílu katastr − OSM `building:levels`: Bilbao +1, Donostia +1, Vitoria +2, Pamplona +2 (`vysledky/osm-levels.json`).
+`roof:levels` rozdíl nevysvětluje (přičtený k OSM mění skoro nic). Fotky Mapillary domů s největším rozdílem:
+
+| dům | katastr | OSM | na fotce |
+|---|---|---|---|
+| Pamplona, staré město (42,8166; −1,6440; 1900) | 7 | 4 | obchodní přízemí + 5–6 pater s balkony |
+| Pamplona, staré město (42,8160; −1,6475; 1900) | 6 | 4 | přízemí + 4–5 pater s balkony + podkroví |
+| Vitoria (42,8512; −2,6848; 1977) | 8 | 6 | přízemí s obchody + asi 7 pater |
+
+Fotky dávají za pravdu katastru. Systematická příčina je na straně OSM: ve Španělsku se výška domu udává jako „B+4“
+(planta baja + 4 patra) a mapovači zapisují jen patra nad přízemím, podkroví (bajocubierta) vynechají nebo dají do
+`roof:levels`; katastr počítá všechna nadzemní podlaží. Navarra uvádí i výšku, ta je ale dopočtená (6 podlaží → 18,0 m).
+Álava je proto znovu zapnutá (Bára 23. 11. 2026: vypnout jen do ověření na fotkách). Důsledek pro zbytek Španělska:
+kde dům nemá katastr, OSM `building:levels` nejspíš o 1–2 podlaží podhodnocuje (neopravuje se, chybí měření).
