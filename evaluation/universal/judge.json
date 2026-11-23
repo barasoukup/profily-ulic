@@ -4145,5 +4145,170 @@
   "half": 19,
   "photos": true,
   "needPhoto": true
+ },
+ {
+  "id": "cy-nicosia-2",
+  "country": "CY",
+  "town": "nicosia",
+  "lat": 35.17045344372116,
+  "lon": 33.361099514298495,
+  "bearing": 3.275206725374918,
+  "half": 10.6,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "cy-nicosia-3",
+  "country": "CY",
+  "town": "nicosia",
+  "lat": 35.174185586435186,
+  "lon": 33.37298157068034,
+  "bearing": 40.506232926524795,
+  "half": 17.5,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "cy-nicosia-4",
+  "country": "CY",
+  "town": "nicosia",
+  "lat": 35.16700183935872,
+  "lon": 33.35766987209304,
+  "bearing": -71.08083798819978,
+  "half": 14.1,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "cy-nicosia-5",
+  "country": "CY",
+  "town": "nicosia",
+  "lat": 35.16471087299472,
+  "lon": 33.364220170658974,
+  "bearing": 18.78259502550635,
+  "half": 10.7,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "cy-limassol-1",
+  "country": "CY",
+  "town": "limassol",
+  "lat": 34.67875529902869,
+  "lon": 33.0392877950659,
+  "bearing": 62.26557604332494,
+  "half": 26.1,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "cy-limassol-4",
+  "country": "CY",
+  "town": "limassol",
+  "lat": 34.684025,
+  "lon": 33.060186,
+  "bearing": -83.16660588210995,
+  "half": 19,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "cy-limassol-7",
+  "country": "CY",
+  "town": "limassol",
+  "lat": 34.67666170550256,
+  "lon": 33.05045665030664,
+  "bearing": 0.26207860540193834,
+  "half": 19,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "cy-larnaca-1",
+  "country": "CY",
+  "town": "larnaca",
+  "lat": 34.917090867865,
+  "lon": 33.61479687651257,
+  "bearing": 83.53429076651868,
+  "half": 26,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "cy-larnaca-3",
+  "country": "CY",
+  "town": "larnaca",
+  "lat": 34.92788462673031,
+  "lon": 33.62521726911753,
+  "bearing": 89.66319994038885,
+  "half": 7.7,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "cy-larnaca-7",
+  "country": "CY",
+  "town": "larnaca",
+  "lat": 34.92691818488753,
+  "lon": 33.63153169913634,
+  "bearing": -86.27148646489702,
+  "half": 9.7,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "cy-paphos-1",
+  "country": "CY",
+  "town": "paphos",
+  "lat": 34.78072629538107,
+  "lon": 32.415613596645116,
+  "bearing": -84.66374912682691,
+  "half": 10.3,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "cy-paphos-4",
+  "country": "CY",
+  "town": "paphos",
+  "lat": 34.76903295585469,
+  "lon": 32.40966960469081,
+  "bearing": -84.52649335903735,
+  "half": 10.8,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "cy-paphos-7",
+  "country": "CY",
+  "town": "paphos",
+  "lat": 34.77289683726426,
+  "lon": 32.41754784435442,
+  "bearing": 89.46705583299416,
+  "half": 8.5,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "cy-paphos-8",
+  "country": "CY",
+  "town": "paphos",
+  "lat": 34.75853725649572,
+  "lon": 32.42358881826161,
+  "bearing": -39.29341082599219,
+  "half": 20.1,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "cy-ayianapa-7",
+  "country": "CY",
+  "town": "ayianapa",
+  "lat": 34.98935979302227,
+  "lon": 34.00803491227439,
+  "bearing": -50.00639338184023,
+  "half": 13.9,
+  "photos": true,
+  "needPhoto": true
  }
 ]

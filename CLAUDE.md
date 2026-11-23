@@ -426,6 +426,15 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Ortofoto IGN, odhad z OSM; stání jen z OSM (čl. 31: jen na vyznačených místech), bez norem šířek (Monako je nemá),
   značky francouzské kresby bez čísel. Měření nemá smysl (8 bodů: schody, pěší cesty, moře; fotky jen u 2).
 
+## Kypr (větev cyprus z monaco, Bára 23. 11. 2026, nenasazené)
+- Stát `cyprus` (CY): `countries/CY.js`, `towns/cyprus.js`, `signs-CY/`, `evaluation/cyprus/` (ZDROJE, NORMY). Hranice z OSM
+  (`tools/cyprus-border.json`): sever je samostatný stát, který zatím nemáme; Pyla a nárazníková zóna mimo (Bára 23. 11.).
+  OSM balík `cy` (jen R2; **workflow OSM tiles se `states: cy`**).
+- **Jízda vlevo** jako vlastnost státu (`leftHand`): nic se nepřesouvá, jen se otáčí směry (Bára 23. 11. 2026).
+- Ortofoto DLS 2019 (Bára: novější, licence neuvedená), budovy DLS s podlažími, Photon. Normy jen doporučení příručky.
+- Měření 23. 11. (11 řezů v 5 městech): složení 56 %, pruhy 91 %, šířka do 2 m 27 % (promenády a pěší ulice); chybí
+  chodník 9×, stání 5×.
+
 ## Měření přesnosti (Bára 17. 11. 2026)
 - Jedna univerzální metoda pro všechny státy: skill `mereni-presnosti`, kód a zpráva `evaluation/universal/`. Použít u
   každého nového státu a u starých, když Bára řekne. Hodnotí složení uličního prostoru, pak šířku; jen řezy s fotkou

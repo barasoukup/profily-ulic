@@ -48,6 +48,9 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Portugalsko: chybí stání (16×, často kolmé) a chodník (13×) v měření; stání EMEL Lisabon (12 tisíc úseků s orientací,
   CC BY-SA) a buspruhy Porta (CC0) jen jako statické soubory při nasazení; ortofoto Madeiry (IRIG, licence neuvedená) a
   Azor (bez CORS, jen podklad mapy); ~~Monako~~ (23. 11. přidáno), Andorra bez ortofota odložit.
+- Kypr **(Bára)**: chodník 2 / 2,5 m (doporučení); 3 m na směr vedle stání; jednosměrka: stát jen vlevo?; protisměrní
+  cyklisté bez tabulky; zóna 30 nekreslit; pěší zóna jako „povinná pěší cesta“. Sever ostrova jako samostatný stát
+  (zatím nemáme). Měření: chybí chodník 9×, stání 5×.
 - Jihlava: pasport komunikací byl 16. 11. prázdný, ověřit (CLAUDE.md, Na 19. 11.).
 - Pasporty devíti českých měst: A/B po odstávce DMVS (`evaluation/PASPORTY-AB.md`).
 

@@ -217,7 +217,7 @@ u britských souborů uvedení zdroje podmínkou licence (patička nebo `LICENCE
 | b28 | „Απαγορεύεται η στάση και η στάθμευση“, str. 120 | b28.svg (UK 642) | |
 | b29 | „Απαγορεύεται η στάθμευση“, str. 120 | b29.svg (UK 636) | zónová varianta „ΠΕΡΙΟΧΗ“ existuje |
 | ip11a | „Χώρος Στάθμευσης“ (P), str. 126 | p.svg (Cyprus parking) | způsob stání Kodex nerozlišuje |
-| ip14a | dálnice (zelená tabule s piktogramem), str. 66 (konec) | motorway.svg (Vienna E5a, zelená varianta) | kyperský soubor na Commons jen PNG; ověřit barvu |
+| ip14a | dálnice (zelená tabule s piktogramem), str. 66 (konec) | motorway.svg (Vienna E5a, zelená varianta) | kyperský soubor na Commons jen PNG; E5a-V2 je zelená jako v Kodexu |
 | ip15a | „Δρόμος ταχείας κυκλοφορίας“ (modrá, auto), str. 126 | expressway.svg (Cyprus road for motorvehicles) | |
 | ip20a | „Αποκλειστική διέλευση λεωφορείων“ (modrý kruh s autobusem), str. 135 | bus.svg (Cyprus buses only) | |
 | ip26a | „Αρχή κατοικημένης περιοχής … ήπιας κυκλοφορίας“, str. 123 | ip26a.svg (Vienna E 17a) | |

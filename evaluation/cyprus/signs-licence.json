@@ -1,0 +1,227 @@
+{
+ "b1": {
+  "title": "File:UK traffic sign 617.svg",
+  "lic": "OGL v1.0",
+  "artist": "Government of the United Kingdom – Department for Transport",
+  "credit": "Traffic Signs Regulations and General Directions (TSRGD)",
+  "desc": "All vehicles prohibited except non-mechanically propelled vehicles being pushed by pedestrians.",
+  "date": "2011-11-12",
+  "note": "viewBox doplněn podle width a height"
+ },
+ "b11": {
+  "title": "File:UK traffic sign 619.svg",
+  "lic": "Public domain",
+  "artist": "UK Government",
+  "credit": "UK Traffic signs image database",
+  "desc": "UK traffic sign: Motor vehicles prohibited (TSRGDNO 619)",
+  "date": ""
+ },
+ "b28": {
+  "title": "File:UK traffic sign 642.svg",
+  "lic": "OGL v1.0",
+  "artist": "Government of the United Kingdom – Department for Transport",
+  "credit": "Traffic Signs Regulations and General Directions (TSRGD)",
+  "desc": "No stopping.",
+  "date": "2011-01-18",
+  "note": "viewBox doplněn podle width a height"
+ },
+ "b29": {
+  "title": "File:UK traffic sign 636.svg",
+  "lic": "OGL v1.0",
+  "artist": "Government of the United Kingdom – Department for Transport",
+  "credit": "Traffic Signs Regulations and General Directions (TSRGD)",
+  "desc": "No waiting.",
+  "date": "2011-01-20",
+  "note": "viewBox doplněn podle width a height"
+ },
+ "b30": {
+  "title": "File:Cyprus road sign no men.svg",
+  "lic": "Public domain",
+  "artist": "Gigillo83",
+  "credit": "Cyprus Law of Street",
+  "desc": "Cypriot regulatory road sign",
+  "date": "2013-04-03",
+  "note": "viewBox doplněn podle width a height"
+ },
+ "b8": {
+  "title": "File:UK traffic sign 951.svg",
+  "lic": "OGL v1.0",
+  "artist": "UK Government",
+  "credit": "UK Traffic signs image database",
+  "desc": "UK traffic sign: Riding of pedal cycles prohibited (TSRGDNO 951)",
+  "date": "2010-01-18"
+ },
+ "bus": {
+  "title": "File:Cyprus road sign buses only.svg",
+  "lic": "OGL v1.0",
+  "artist": "UK Government",
+  "credit": "https://www.mcw.gov.cy/mcw/RTD/rtd.nsf/2B60993CA6823820C225777C0023F9B7/$file/%CE%9A%CF%8E%CE%B4%CE%B9%CE%BA%CE%B1%CF%82%20%CE%9F%CE%B4%CE%B9%CE%BA%CE%AE%CF%82%20%CE%9A%CF%85%CE%BA%CE%BB%CE%BF%CF%86%CE%BF%CF%81%CE%AF%CE%B1%CF%82.pdf",
+  "desc": "Buses only",
+  "date": "12 November 2011"
+ },
+ "c10a": {
+  "title": "File:UK traffic sign 957.svg",
+  "lic": "OGL v1.0",
+  "artist": "Government of the United Kingdom – Department for Transport",
+  "credit": "Traffic Signs Regulations and General Directions (TSRGD)",
+  "desc": "Route for segregated use by pedal cycles and pedestrians only.",
+  "date": "2011-11-13"
+ },
+ "c8a": {
+  "title": "File:UK traffic sign 955.svg",
+  "lic": "OGL v1.0",
+  "artist": "Government of the United Kingdom – Department for Transport",
+  "credit": "Traffic Signs Regulations and General Directions (TSRGD)",
+  "desc": "Route for use by pedal cycles only.",
+  "date": "2011-11-12"
+ },
+ "c9a": {
+  "title": "File:UK traffic sign 956.svg",
+  "lic": "OGL v1.0",
+  "artist": "Government of the United Kingdom – Department for Transport",
+  "credit": "Traffic Signs Regulations and General Directions (TSRGD)",
+  "desc": "Route for shared use by pedal cycles and pedestrians only.",
+  "date": "2011-11-13"
+ },
+ "expressway": {
+  "title": "File:Cyprus road sign road for motorvehicles.svg",
+  "lic": "Public domain",
+  "artist": "Gigillo83",
+  "credit": "Cyprus Law of Street",
+  "desc": "Cypriot service road sign",
+  "date": "2013-04-17",
+  "note": "viewBox doplněn podle width a height"
+ },
+ "ip26a": {
+  "title": "File:Vienna Convention road sign E17a-EA.svg",
+  "lic": "Public domain",
+  "artist": "United Nations",
+  "credit": "Vienna Convention on Road Signs and Signals",
+  "desc": "Home zone",
+  "date": "2018-08-05"
+ },
+ "motorway": {
+  "title": "File:Vienna Convention road sign E5a-V2.svg",
+  "lic": "Public domain",
+  "artist": "United Nations",
+  "credit": "Vienna Convention on Road Signs and Signals",
+  "desc": "Motorway",
+  "date": "2018-05-09"
+ },
+ "noentry": {
+  "title": "File:UK traffic sign 616.svg",
+  "lic": "OGL v1.0",
+  "artist": "Government of the United Kingdom – Department for Transport",
+  "credit": "Traffic Signs Regulations and General Directions (TSRGD)",
+  "desc": "No entry.",
+  "date": "2011-01-18",
+  "note": "viewBox doplněn podle width a height"
+ },
+ "oneway": {
+  "title": "File:Cyprus road sign one way road.svg",
+  "lic": "Public domain",
+  "artist": "Gigillo83",
+  "credit": "Cyprus Law of Street",
+  "desc": "Cypriot mandatory road sign",
+  "date": "2013-04-06",
+  "note": "viewBox doplněn podle width a height"
+ },
+ "p": {
+  "title": "File:Cyprus road sign parking.svg",
+  "lic": "Public domain",
+  "artist": "Gigillo83",
+  "credit": "Cyprus Law of Street",
+  "desc": "Cypriot service road sign",
+  "date": "2013-04-16",
+  "note": "viewBox doplněn podle width a height"
+ },
+ "ped": {
+  "title": "File:Cyprus road sign mandatory pedestrian way.svg",
+  "lic": "Public domain",
+  "artist": "Gigillo83",
+  "credit": "Cyprus Law of Street",
+  "desc": "Cyprus road sign",
+  "date": "2013-04-06",
+  "note": "viewBox doplněn podle width a height"
+ },
+ "speed-10": {
+  "derived_from": [
+   "File:Cyprus road sign maximum speed.svg"
+  ],
+  "lic": "Public domain",
+  "artist": "Gigillo83",
+  "note": "upraveno pro aplikaci (Profily ulic), viz signs-CY/README.md; číslice odstraněny, číslo jako <text>, doplněn viewBox"
+ },
+ "speed-100": {
+  "derived_from": [
+   "File:Cyprus road sign maximum speed.svg"
+  ],
+  "lic": "Public domain",
+  "artist": "Gigillo83",
+  "note": "upraveno pro aplikaci (Profily ulic), viz signs-CY/README.md; číslice odstraněny, číslo jako <text>, doplněn viewBox"
+ },
+ "speed-20": {
+  "derived_from": [
+   "File:Cyprus road sign maximum speed.svg"
+  ],
+  "lic": "Public domain",
+  "artist": "Gigillo83",
+  "note": "upraveno pro aplikaci (Profily ulic), viz signs-CY/README.md; číslice odstraněny, číslo jako <text>, doplněn viewBox"
+ },
+ "speed-30": {
+  "derived_from": [
+   "File:Cyprus road sign maximum speed.svg"
+  ],
+  "lic": "Public domain",
+  "artist": "Gigillo83",
+  "note": "upraveno pro aplikaci (Profily ulic), viz signs-CY/README.md; číslice odstraněny, číslo jako <text>, doplněn viewBox"
+ },
+ "speed-40": {
+  "derived_from": [
+   "File:Cyprus road sign maximum speed.svg"
+  ],
+  "lic": "Public domain",
+  "artist": "Gigillo83",
+  "note": "upraveno pro aplikaci (Profily ulic), viz signs-CY/README.md; číslice odstraněny, číslo jako <text>, doplněn viewBox"
+ },
+ "speed-50": {
+  "derived_from": [
+   "File:Cyprus road sign maximum speed.svg"
+  ],
+  "lic": "Public domain",
+  "artist": "Gigillo83",
+  "note": "upraveno pro aplikaci (Profily ulic), viz signs-CY/README.md; číslice odstraněny, číslo jako <text>, doplněn viewBox"
+ },
+ "speed-60": {
+  "derived_from": [
+   "File:Cyprus road sign maximum speed.svg"
+  ],
+  "lic": "Public domain",
+  "artist": "Gigillo83",
+  "note": "upraveno pro aplikaci (Profily ulic), viz signs-CY/README.md; číslice odstraněny, číslo jako <text>, doplněn viewBox"
+ },
+ "speed-70": {
+  "derived_from": [
+   "File:Cyprus road sign maximum speed.svg"
+  ],
+  "lic": "Public domain",
+  "artist": "Gigillo83",
+  "note": "upraveno pro aplikaci (Profily ulic), viz signs-CY/README.md; číslice odstraněny, číslo jako <text>, doplněn viewBox"
+ },
+ "speed-80": {
+  "derived_from": [
+   "File:Cyprus road sign maximum speed.svg"
+  ],
+  "lic": "Public domain",
+  "artist": "Gigillo83",
+  "note": "upraveno pro aplikaci (Profily ulic), viz signs-CY/README.md; číslice odstraněny, číslo jako <text>, doplněn viewBox"
+ },
+ "speed-90": {
+  "derived_from": [
+   "File:Cyprus road sign maximum speed.svg"
+  ],
+  "lic": "Public domain",
+  "artist": "Gigillo83",
+  "note": "upraveno pro aplikaci (Profily ulic), viz signs-CY/README.md; číslice odstraněny, číslo jako <text>, doplněn viewBox"
+ }
+}
