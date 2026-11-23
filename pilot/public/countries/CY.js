@@ -52,7 +52,8 @@ function limitsCY(s, segs, i) {
 // sign (no entry alone would say the opposite of the profile; the review of 23. 11. 2026). C 10a by the side of the
 // pedestrians (the Code shows both forms; the left one is UK 957 mirrored).
 const CY_FILE = { b1: "b1", b11: "b11", b8: "b8", b30: "b30", b28: "b28", b29: "b29", ip11a: "p", ip14a: "motorway", ip15a: "expressway", ip20a: "bus",
-  ip26a: "ip26a", ip27a: "ped", c7a: "ped", c8a: "c8a", c9a: "c9a" };
+  // No pedestrian zone in the Code: not drawn (Bára 23. 11. 2026; the footpath sign "ped" stays for c7a).
+  ip26a: "ip26a", c7a: "ped", c8a: "c8a", c9a: "c9a" };
 const CY_SPEEDS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 function signFile(s, seg) {
   const dir = s.dir ?? seg?.dir;

@@ -24,7 +24,8 @@ function limitsPT(s, segs, i) {
       return { min: 1.75, zaklad: 2, why: t("stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)") };
     // IMT's 3 m is France's figure it cites (CEREMA 2016, second hand: NORMY.md A3); Lisbon's 3.25 m at the kerb.
     case "bus":
-      return { min: 3, zaklad: 3.25, why: t("vyhrazený pruh BUS: 3,25 m (příručka Lisabonu); nejméně 3 m podle IMT, který cituje francouzskou CEREMA") };
+      // Orange only (Bára 23. 11. 2026): the 3 m minimum is CEREMA's, second hand.
+      return { min: 0, zaklad: 3.25, why: t("vyhrazený pruh BUS: 3,25 m (příručka Lisabonu); nejméně 3 m podle IMT, který cituje francouzskou CEREMA") };
     // The minimum is Lisbon's; IMT recommends 3.25 m and calls the shared lane not advisable (NORMY.md A2).
     case "bus_cyklo":
       return { min: 3.25, zaklad: 3.25, why: t("společný pruh pro autobusy a cyklisty: nejméně 3,25 m (příručka Lisabonu); IMT doporučuje 3,25 m a společný pruh nedoporučuje") };

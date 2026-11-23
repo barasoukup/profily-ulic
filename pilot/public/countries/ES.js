@@ -21,10 +21,12 @@ function limitsES(s, segs) {
       return { min: 1.4, zaklad: 1.4, why: t("cyklopruh a stezka pro cyklisty jednosměrné: nejméně 1,4 m, jen výjimečně na krátkém úseku 1 m; obousměrné 2,6 m, výjimečně 2,2 m; šířky bez vodicích čar a odstupů (doporučení ministerstva dopravy 2024)") };
     case "pruh": case "pruh_piktokoridor": {
       if (s.turn) return null;
-      const L = lanes(segs), oneway = L.length > 0 && L.every((x) => (x.dir ?? "forward") === (L[0].dir ?? "forward"));
-      return oneway && L.length >= 2
+      // Several lanes one way may narrow to 2.5 m; one lane a direction keeps 3 m (Bára 23. 11. 2026, the review 14: the
+      // guide's 2.50–3.00 m, "no dimensionar por encima de los 3,00 m").
+      const L = lanes(segs), sameWay = L.filter((x) => (x.dir ?? "forward") === (s.dir ?? "forward")).length;
+      return sameWay >= 2
         ? { min: 0, zaklad: 2.5, why: t("jízdní pruh vozovky s více pruhy jedním směrem: 2,5–2,75 m (doporučení ministerstva dopravy 2024)") }
-        : { min: 0, zaklad: 2.5, why: t("jízdní pruh městské ulice: 2,5–3 m, ne víc než 3 m (doporučení ministerstva dopravy 2024)") };
+        : { min: 0, zaklad: 3, why: t("jízdní pruh městské ulice: 2,5–3 m, ne víc než 3 m (doporučení ministerstva dopravy 2024)") };
     }
     case "parkovani":
       if (s.orient === "sikme") return { min: 0, zaklad: 4, why: t("šikmé stání: pás 4 m při 45°, 4,5 m při 60° (doporučení ministerstva dopravy 2024)") };

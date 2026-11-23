@@ -1,7 +1,7 @@
 import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, SURFACES, LAMP_HEIGHTS, underSize } from "./types.js";
 import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, splitTwoWayLane, capWideLanes, pedestrianZone, widenNarrowTrams, carveCycleways, carveTramTracks, lanesFromShoulders, crossFromA, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
-import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO, CH_ORTHO, NL_ORTHO, BE_ORTHO, LU_ORTHO, PL_ORTHO, FR_ORTHO, ES_ORTHO, PT_ORTHO, PT_MAINLAND, CY_ORTHO, MT_ORTHO, IT_ORTHO, EE_ORTHO, DE_ORTHO, deWmsUrl, landsAt, landAt } from "./lanes-ortho.js";
+import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO, CH_ORTHO, NL_ORTHO, BE_ORTHO, LU_ORTHO, PL_ORTHO, FR_ORTHO, ES_ORTHO, PT_ORTHO, PT_MAINLAND, ES_NOT_PNOA, CY_ORTHO, MT_ORTHO, IT_ORTHO, EE_ORTHO, DE_ORTHO, deWmsUrl, landsAt, landAt } from "./lanes-ortho.js";
 import { boxed as boxedPlace, within as withinPlace } from "./places.js";
 import { orthoOsmPolys, besidePassport, trimToEnds, P as ORTHO_P } from "./ortho-osm.js";
 import { aiCut, aiKerbs, aiSurface, aiParking, parkFromAi, parkSkip, aiReady, onAiProgress } from "./ai-kerbs.js";
@@ -330,7 +330,10 @@ if (STATY?.monaco) {
   kinds.ortho.push(new Mc("", { bboxUrl: (b, w, h) => `${FR_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("ortofoto © IGN (Géoplateforme)"), bounds: boundsOf(STATY.monaco) }));
 }
 if (STATY?.spain) {
-  const Es = insideOnly([boxedPlace("ES", STATY.spain)]);
+  // Not over Melilla (PNOA's image there is Airbus's under a licence not cleared; Bára 23. 11. 2026, lanes-ortho.js
+  // ES_NOT_PNOA): its ring left out of the area drawn.
+  const notPnoa = (r) => ES_NOT_PNOA.some(([x0, y0, x1, y1]) => r.every(([x, y]) => x >= x0 && x <= x1 && y >= y0 && y <= y1));
+  const Es = insideOnly([boxedPlace("ES", STATY.spain.filter((r) => !notPnoa(r)))]);
   kinds.ortho.push(new Es("", { bboxUrl: (b, w, h) => `${ES_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("ortofoto PNOA © IGN (CC BY 4.0)"), bounds: boundsOf(STATY.spain) }));
 }
 // Portugal: DGT's flight of 2025 (the whole mainland; the review of 23. 11. 2026: three stacked layers tripled the
