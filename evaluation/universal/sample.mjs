@@ -38,6 +38,8 @@ export const TOWNS = {
     faro: [37.016, -7.933], funchal: [32.648, -16.910], setubal: [38.525, -8.890], evora: [38.571, -7.908], viseu: [40.657, -7.912] },
   // Monaco (23. 11. 2026): the one town, its points within the 1.5 km of the sample (some fall in France or the sea).
   MC: { monaco: [43.738, 7.424] },
+  // Cyprus (23. 11. 2026): the towns of the local OSM pack (the south: the DLS orthophoto has only it).
+  CY: { nicosia: [35.170, 33.365], limassol: [34.680, 33.045], larnaca: [34.915, 33.630], paphos: [34.770, 32.425], ayianapa: [34.985, 33.995] },
 };
 if (process.argv[1] === new URL(import.meta.url).pathname) {
   let seed = 20261117;

@@ -31,6 +31,7 @@ export const SOURCE_CREDITS = {
     fr: () => t("ortofoto © IGN (Géoplateforme)"),
     es: () => t("ortofoto PNOA © IGN (CC BY 4.0)"),
     "pt-25": () => t("ortofoto © DGT"),
+    cy: () => t("ortofoto © DLS Kypr"),
     "pt-21": () => t("ortofoto © DGT"),
     "pt-18": () => t("ortofoto © DGT"),
     "pt-sat": () => t("ortofoto © DGT"),

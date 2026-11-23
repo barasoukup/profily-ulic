@@ -457,6 +457,9 @@ Object.assign(CITIES, {
   // France (Bára 22. 11. 2026): IGN's orthophoto and OSM, Paris's Plan de voirie where it has the street (towns/france.js).
   france: { ...abroad("france", "FR", "Francie", "ve Francii", "francouzské", [46.6, 2.4], "48.856600, 2.352200"),
     dataShort: "ortofota IGN a OSM", rulesHead: "Šířky podle francouzských předpisů a doporučení Cerema:" },
+  // Cyprus (Bára 23. 11. 2026): the DLS orthophoto and buildings, OSM (towns/cyprus.js); traffic keeps left.
+  cyprus: { ...abroad("cyprus", "CY", "Kypr", "na Kypru", "kyperské", [35.1, 33.4], "35.170000, 33.360000"),
+    dataShort: "ortofota DLS a OSM", rulesHead: "Šířky podle kyperských předpisů:" },
   // Monaco (Bára 23. 11. 2026): IGN's French orthophoto and OSM (towns/monaco.js).
   monaco: { ...abroad("monaco", "MC", "Monako", "v Monaku", "monacké", [43.738, 7.424], "43.738400, 7.424600"),
     dataShort: "ortofota IGN a OSM", rulesHead: "Monako nemá předpisy šířek ulic, aplikace nevaruje:" },

@@ -59,6 +59,10 @@ export const PT_ORTHO = {
   "pt-18": ptWms("https://cartografia.dgterritorio.gov.pt/wms/ortos2018", "Ortos2018-RGB"),
   "pt-sat": ptWms("https://ortos.dgterritorio.gov.pt/wms/ortosat2023", "ortoSat2023-CorVerdadeira"),
 };
+// Cyprus (Bára 23. 11. 2026: "Orto vezměme to novější"): the DLS orthophoto of 2019 (a tile cache in Web Mercator to
+// level 21, CORS echo; no licence stated, unlike the 2014 one, CC BY 4.0), only the south and the British bases (a
+// missing tile is a 404 there). Level 20 (about 12 cm at 35° N).
+export const CY_ORTHO = "https://eservices.dls.moi.gov.cy/arcgis/rest/services/BASEMAPS/Orthoimagery_2019_WebMercator/MapServer/tile";
 export const SK_ORTHO = "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ortofoto_hres/MapServer";
 const SOURCES = {
   // The grid of z19, tiles of 512 px (about 10 cm). balance: the mosaic is bright and tinted (Košice 2025: asphalt
@@ -73,6 +77,7 @@ const SOURCES = {
   pl: { res: 0.1, url: (b, w, h, format) => PL_ORTHO(b, w, h, format) },
   fr: { res: 0.2, url: (b, w, h, format) => FR_ORTHO(b, w, h, format) },
   es: { res: 0.25, url: (b, w, h, format) => ES_ORTHO(b, w, h, format) },
+  cy: { res: 0.12, tiles: CY_ORTHO, z: 20, px: 256 },
   "pt-25": { res: 0.25, url: (b, w, h, format) => PT_ORTHO["pt-25"](b, w, h, format) },
   "pt-21": { res: 0.3, url: (b, w, h, format) => PT_ORTHO["pt-21"](b, w, h, format) },
   "pt-18": { res: 0.25, url: (b, w, h, format) => PT_ORTHO["pt-18"](b, w, h, format) },

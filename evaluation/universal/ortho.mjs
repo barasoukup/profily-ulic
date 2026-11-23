@@ -84,6 +84,10 @@ async function fetchOrtho(country, b, w, h, lon, lat) {
       if (buf.length >= w * h * 0.02 || key === "pt-sat") return toPng(buf);
     }
   }
+  else if (country === "CY") {
+    const { CY_ORTHO } = await import("../../pilot/public/lanes-ortho.js");
+    return tiles(CY_ORTHO, "", 20, b, w, h);
+  }
   else if (country === "LU") return tiles("https://wmts1.geoportail.lu/opendata/wmts/ortho_latest/GLOBAL_WEBMERCATOR_4_V3", ".jpeg", 20, b, w, h, true);
   else if (country === "DE") url = deWmsUrl(DE_ORTHO[(await landsAt(lon, lat))[0]], b, w, h, "image/png");
   else url = `https://ags.cuzk.gov.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer?${new URLSearchParams({ service: "WMS", request: "GetMap", version: "1.3.0", layers: "0", styles: "", crs: "EPSG:3857", bbox: b.join(","), width: w, height: h, format: "image/png" })}`;
