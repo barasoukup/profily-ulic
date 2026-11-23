@@ -1019,12 +1019,6 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     box(d0 - over, d1 + over, z + 12, z + 32, fill);
     for (const d of [d0 - over + 8, d1 + over - 8]) poly([[d - 6, z + 12], [d + 6, z + 12], [d, z - 14]], tint(fill, 0.85));
   };
-  const row = (d0, d1, z, h, n) => {
-    const win = WINDOWS[kind] || WINDOWS[style];
-    const count = Math.max(1, Math.floor((d1 - d0 - win.gap) / (win.w + win.gap)));
-    const start = d0 + (d1 - d0 - count * win.w - (count - 1) * win.gap) / 2;
-    for (let i = 0; i < count; i++) window(start + i * (win.w + win.gap), z, win.w, h, n * 3 + i);
-  };
 
   // The gable turned towards us (?stit=1): its outline over the wall's width, the roof hidden behind it; its windows in
   // the columns of the floors below (GABLE_AXES), one in the axis where it narrows; the hoist beam (end-on, under its
@@ -1231,19 +1225,18 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     poly([[-8, top], [run - 4, zt + 10], [EDGE, zBack + 10], [EDGE, zBack], [run, zt], [0, top]], SD);
     dot(-26, top - 6, 10, SD);
     dot(run - 14, zt + 30, 8, SD);
-    // The regional looks keep the columns of the floors below in the mansard: a column where it stands clear of the slope.
-    if (REGIONAL.has(kind)) {
-      const win = WINDOWS[kind], cols = [Math.max(65, 35 + win.w / 2) - win.w / 2, (125 + EDGE - 30 - win.w) / 2];
-      for (let k = 0; k < f.roofRows; k++) {
-        const z0 = top + k * f.storey + 0.25 * f.storey, h = 0.5 * f.storey;
-        for (const [i, d0] of cols.entries()) if (d0 >= ((z0 + h - top) / rise) * run + 10 && d0 + win.w <= EDGE - 40) {
-          box(d0 - 18, d0 + win.w + 18, z0 - 16, z0 + h + 22, kind === "haussmann" ? "#f1ece1" : tint(wall, 1.05), outline); // the dormer's face
-          window(d0, z0, win.w, h, (full + k) * 3 + i);
-          if (kind === "haussmann") { const [x1, x2] = [X(d0 - 26), X(d0 + win.w + 26)].sort((p, q) => p - q); el("path", { d: `M${x1} ${surface - z0 - h - 22} Q ${(x1 + x2) / 2} ${surface - z0 - h - 74} ${x2} ${surface - z0 - h - 22} Z`, fill: "#f1ece1", ...outline }, g); }
-          else poly([[d0 - 26, z0 + h + 22], [d0 + win.w / 2, z0 + h + 60], [d0 + win.w + 26, z0 + h + 22]], SL, outline);
-        }
+    // The mansard keeps the columns of the floors below (as wide as theirs): a column where it stands clear of the slope.
+    // The regional looks put each window in a dormer's face.
+    const win = WINDOWS[kind] || WINDOWS[style], cols = [Math.max(65, 35 + win.w / 2) - win.w / 2, (125 + EDGE - 30 - win.w) / 2];
+    for (let k = 0; k < f.roofRows; k++) {
+      const z0 = top + k * f.storey + 0.25 * f.storey, h = 0.5 * f.storey;
+      for (const [i, d0] of cols.entries()) if (d0 >= ((z0 + h - top) / rise) * run + 10 && d0 + win.w <= EDGE - 40) {
+        if (REGIONAL.has(kind)) box(d0 - 18, d0 + win.w + 18, z0 - 16, z0 + h + 22, kind === "haussmann" ? "#f1ece1" : tint(wall, 1.05), outline); // the dormer's face
+        window(d0, z0, win.w, h, REGIONAL.has(kind) ? (full + k) * 3 + i : (full + k) * 3);
+        if (kind === "haussmann") { const [x1, x2] = [X(d0 - 26), X(d0 + win.w + 26)].sort((p, q) => p - q); el("path", { d: `M${x1} ${surface - z0 - h - 22} Q ${(x1 + x2) / 2} ${surface - z0 - h - 74} ${x2} ${surface - z0 - h - 22} Z`, fill: "#f1ece1", ...outline }, g); }
+        else if (REGIONAL.has(kind)) poly([[d0 - 26, z0 + h + 22], [d0 + win.w / 2, z0 + h + 60], [d0 + win.w + 26, z0 + h + 22]], SL, outline);
       }
-    } else for (let k = 0; k < f.roofRows; k++) row(run + 40, EDGE - 40, top + k * f.storey + 0.25 * f.storey, 0.5 * f.storey, full + k);
+    }
     // Dormer: only its cheek shows, between the steep slope and its face, under a little roof.
     const slopeD = (z) => ((z - top) / rise) * run;
     const zb = REGIONAL.has(kind) ? top + 0.25 * f.storey - 16 : top + rise * 0.3, zc = REGIONAL.has(kind) ? zb + 0.5 * f.storey + 38 : zb + 140, dF = Math.max(4, slopeD(zb) - 30);
@@ -1314,30 +1307,33 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
         const d0 = (zr - top - 12) / P, d1 = Math.min(EDGE, ridge + (z(ridge) - zr) / P);
         if (d1 > d0 + 20) box(d0 + 8, d1 - 8, zr, zr + 4, tile[1], { "fill-opacity": 0.35 });
       }
-      const zb = top + 70, dw = RIDGE - 55;
-      box(dw, dw + 110, zb, zb + 110, wall, outline);
-      poly([[dw - 14, zb + 106], [dw + 55, zb + 160], [dw + 124, zb + 106]], tile[0], outline);
-      window(dw + 25, zb + 18, 60, 72, 2);
+      // its window in the back column of the floors below, as wide as theirs
+      const ww = WINDOWS[kind].w, d0 = (125 + EDGE - 30 - ww) / 2, zb = top + 70, dw = d0 - 25, dd = ww + 50;
+      box(dw, dw + dd, zb, zb + 110, wall, outline);
+      poly([[dw - 14, zb + 106], [dw + dd / 2, zb + 160], [dw + dd + 14, zb + 106]], tile[0], outline);
+      window(d0, zb + 18, ww, 72, 2);
     }
     else if (kind === "novyrd") { // a new house: a larch-clad gable with a square window
       for (let d = 30; d < Math.min(ridge, EDGE) * 2 - 30 && d < EDGE; d += 16) {
         const zt = Math.min(z(d), z(d + 8)) - 18;
         if (zt > top + 6) box(d, d + 8, top, zt, tint("#b98a5a", d % 32 ? 1 : 0.88));
       }
-      box(RIDGE - 45, RIDGE + 45, top + 30, top + 120, "#3c3f43");
-      box(RIDGE - 39, RIDGE + 39, top + 36, top + 114, GLASS);
+      const ww = WINDOWS.novyrd.w, dc = (125 + EDGE - 30) / 2; // in the back column of the floors below, as wide
+      box(dc - ww / 2, dc + ww / 2, top + 30, top + 30 + ww, "#3c3f43");
+      box(dc - ww / 2 + 6, dc + ww / 2 - 6, top + 36, top + 24 + ww, GLASS);
     } else if (wood) { // the wooden houses: the gable's window in the back column of the floors below, clear of the roof
       const ww = WINDOWS[kind].w, d0 = (125 + EDGE - 30 - ww) / 2;
       noBox = true;
       window(d0, top + 50, ww, Math.min(95, Math.min(z(d0 - 10), z(d0 + ww + 10)) - 12 - top - 60 - 10), 1);
       noBox = false;
     } else if (f.roofRows || small) {
-      // A window in the gable, under the ridge where the gable is highest, kept clear of the roof.
-      const ww = 75, wh = Math.min(95, z(RIDGE - ww / 2 - 10) - 12 - top - 60 - 10);
-      window(RIDGE - ww / 2, top + 50, ww, wh, 1);
+      // A window in the gable in the back column of the floors below (as wide as theirs), kept clear of the roof.
+      const ww = (WINDOWS[kind] || WINDOWS[style]).w, d0 = (125 + EDGE - 30 - ww) / 2;
+      window(d0, top + 50, ww, Math.min(95, Math.min(z(d0 - 10), z(d0 + ww + 10)) - 12 - top - 60 - 10), 1);
     } else {
-      dot(200, top + 100, 30, FRAME); // a round window in the gable, well under the roof
-      dot(200, top + 100, 22, GLASS);
+      const dc = (125 + EDGE - 30) / 2; // a round window in the gable in the back column, well under the roof
+      dot(dc, top + 100, 30, FRAME);
+      dot(dc, top + 100, 22, GLASS);
     }
   }
 
@@ -1392,7 +1388,9 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     || { sikma: [90, STONE], funkce: [60, "#8f887c"], povalecny: [45, "#8c8a85"], moderni: [30, "#56585b"], plocha: [100, "#8a867d"], nizky: [60, "#a59c88"] }[style];
   if (plinth) box(-8, EDGE - 30, 0, plinth[0], plinth[1]);
 
-  // Windows and the ground floor.
+  // Windows and the ground floor. A panel house and a school keep their windows (and columns) for a set-back floor
+  // (setBack(z of the floor, n, its front): below).
+  let setBack = null;
   if (factory) {
     // A Prague brick factory hall: brick courses, a dark plinth, tall gridded industrial windows.
     for (let z = 30; z < top; z += 30) box(0, EDGE - 30, z - 2, z + 2, tint(wall, 0.88));
@@ -1582,9 +1580,9 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     const PVC = "#f6f3ec";
     // A revitalised window: white plastic in three upright panes (Bára), in a deep reveal of the
     // insulation, a grey metal sill; a lit pane or flowers now and then.
-    const panelWindow = (z, n) => {
+    const panelWindow = (z, n, d = WD, w = WW) => {
       const luck = (((n + seed * 31) * 2654435761) >>> 0) % 11;
-      const d = WD, w = WW, h = WH;
+      const h = WH;
       box(d - 8, d + w + 8, z - 2, z + h + 8, tint(wall, 0.82)); // reveal
       box(d, d + w, z, z + h, PVC);
       box(d + 7, d + w - 7, z + 7, z + h - 7, luck === 4 ? LIT : GLASS);
@@ -1594,6 +1592,10 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       box(d - 12, d + w + 12, z - 9, z - 5, tint(wall, 0.9)); // shadow under the sill
       box(d - 12, d + w + 12, z - 5, z, "#c9ccd0"); // metal sill
       if (luck === 1 || luck === 8) for (let i = 0; i < 5; i++) dot(d + 14 + (i * (w - 28)) / 4, z + 6, 8, i % 2 ? "#d9748a" : "#7f9f6a");
+    };
+    setBack = (z, n, back) => { // in the axis of the windows below, as wide as the floor allows
+      const axis = WD + WW / 2, w = Math.min(WW, 2 * (axis - back - 12));
+      panelWindow(z + SILL, n, axis - w / 2, w);
     };
     // Cellar window in the plinth, above the pavement.
     box(200, 290, 30, 70, "#d9d6cf");
@@ -1674,6 +1676,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
       box(d0 - 14, d1 + 14, z - 14, z - 6, dark); // sill
     };
     big(f.ground * 0.3, f.ground * 0.55, 0);
+    setBack = (z, n, back) => { if (back <= 160) big(z + f.storey * 0.25, f.storey * 0.6, n); };
     for (let k = 1; k < full; k++) {
       box(-10, EDGE, floorZ(k) - 10, floorZ(k), trim, outline); // string course
       big(floorZ(k) + f.storey * 0.25, f.storey * 0.6, k);
@@ -1827,7 +1830,9 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
           const z = top + k * f.storey + 0.25 * f.storey, h = 0.55 * f.storey;
           box(back + 6, EDGE - 46, z - 4, z + h + 4, FRAME);
           box(back + 10, EDGE - 50, z, z + h, GLASS);
-          for (let d = back + 10 + 55; d < EDGE - 50; d += 55) box(d - 2, d + 2, z, z + h, FRAME);
+          // its mullions on the lines of the windows below: the Prague window's casement, the modern window's edge
+          const mullions = style === "funkce" ? [150 + Math.min(200, EDGE - 200) * 0.78] : [EDGE - 160, (EDGE - 160 + EDGE - 50) / 2];
+          for (const d of mullions) box(d - 2, d + 2, z, z + h, FRAME);
         }
       } else if (style === "povalecny") { // the set-back floor's window in the axis of the windows below
         const win = WINDOWS.povalecny, wd = (126 + EDGE - 30 - win.w) / 2;
@@ -1840,7 +1845,20 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
           box(wd - 8, wd + win.w + 8, z + h + 5, z + h + 26, tint(wall, 0.94), outline); // the shutter box
           box(wd - 10, wd + win.w + 10, z - 12, z - 5, "#b9b6ae");
         }
-      } else for (let k = 0; k < f.roofRows; k++) row(back, EDGE - 40, top + k * f.storey + 0.3 * f.storey, 0.45 * f.storey, full + k);
+      } else if (office) { // the offices' ribbon window, its mullions on the grid of the floors below
+        for (let k = 0; k < f.roofRows; k++) {
+          const z0 = top + k * f.storey, h = f.storey, g0 = z0 + h * 0.12, g1 = z0 + h * 0.78;
+          box(back, EDGE - 40, z0 + h * 0.08, z0 + h * 0.82, FRAME);
+          box(back + 8, EDGE - 48, g0, g1, GLASS);
+          poly([[EDGE - 150, g1], [EDGE - 100, g1], [EDGE - 160, g0], [EDGE - 210, g0]], GLINT);
+          for (let d = 8 + 120; d < EDGE - 48; d += 120) if (d > back + 8) box(d - 3, d + 3, g0, g1, FRAME);
+        }
+      } else if (setBack) for (let k = 0; k < f.roofRows; k++) setBack(top + k * f.storey, full + k, back);
+      else { // the columns of the floors below where they stand on the set-back floor
+        const win = WINDOWS[kind] || WINDOWS[style], cols = [Math.max(65, 35 + win.w / 2) - win.w / 2, (125 + EDGE - 30 - win.w) / 2];
+        for (let k = 0; k < f.roofRows; k++) for (const [i, d0] of cols.entries()) if (d0 >= back + 10 && d0 + win.w <= EDGE - 40)
+          window(d0, top + k * f.storey + win.sill * f.storey, win.w, win.h * f.storey, (full + k) * 3 + i);
+      }
     }
     const zr = top + f.roofRows * f.storey;
     if (sawtooth) {
