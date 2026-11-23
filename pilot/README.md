@@ -463,8 +463,9 @@ jádrech), cihlový dům s římsou (NL, Flandry, do 1920), tallinnský dům (2�
 `building:material` nebo dřevěné čtvrti) a malovaný dřevěný dům (EE). Severské vzhledy (omítaný činžák, malovaný
 dřevěný dům se svislými prkny ve Švédsku, dánský cihlový činžák, dřevěný městský dům) zatím jen jako `nordicLook(iso)`
 a `nordicDetails(iso)` pro budoucí moduly. Štítové domy (stupňovitý, krkový, zvonový štít; hanzovní dům) kreslí obrys
-štítu nad bočním pohledem jen s `?stit=1` (licence čeká na Bářino schválení), bez něj je pravidla nedávají a v nabídce
-nejsou. Místo domu si profil drží zaokrouhlené v `info.at` (`app.js`).
+štítu nad bočním pohledem (Bára 23. 11. 2026 schválila): štít uříznutý okrajem řezu, vidět jsou 2/3 domu se špičkou
+štítu (`?stit=cely` celý souměrný štít, `?stit=0` bez štítů). U všech domů okna pokračují za řezem ve stejné rozteči a
+u řezu není lem ani obrys: dům tam pokračuje. Místo domu si profil drží zaokrouhlené v `info.at` (`app.js`).
 Kancelář, úřad, hotel (OSM nebo RÚIAN využití 5, 11, 14, 15) kancelářská budova; OSM school a kindergarten škola,
 OSM church, chapel aj. kostel, OSM garage(s) a RÚIAN garáž garáž. Starý dům (RÚIAN do 1919, v Praze zastavěno do
 1840) do 5 podlaží v samém centru (`city.coreKm`, výchozí 0,3 km od náměstí, Praha 0,6 km) je měšťanský dům.

@@ -93,8 +93,11 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   `pilot/public/house-looks.js`, háček státu `houseLook`/`houseDetails` volaný po `westernLook`, Česko beze změny):
   haussmannovský (FR, MC, LU, Brusel), středomořský + azulejos (PT), galerie (sever ES), Malta, Kypr, cihlový s římsou
   (NL, Flandry), tallinnský a dřevěný dům (EE); severské (stenstad, dřevák, dánský, puukaupunki) jen jako pravidla
-  `nordicLook(iso)` pro budoucí moduly SE/NO/DK/FI. Štítové domy (severomořský štít, hanzovní dům) s obrysem štítu jen
-  s `?stit=1`, než je Bára schválí (`evaluation/budovy-regiony/stity.png`). Místo domu `info.at` (app.js). Snímky a zpráva
+  `nordicLook(iso)` pro budoucí moduly SE/NO/DK/FI. Štítové domy (severomořský štít před 1800 nebo ve starém jádru,
+  hanzovní dům ve starém Tallinnu, hřebenem kolmo k ulici) s obrysem štítu, schválené (Bára 23. 11. 2026): štít uříznutý
+  okrajem řezu (2/3 šířky domu, `?stit=cely` celý souměrný, `?stit=0` vypne). Okna pokračují za řezem ve stejné rozteči
+  (u okraje kus dalšího okna nebo nejvýš zeď mezi okny), vzory stěny až k okraji, u řezu žádný lem ani obrys (všechny
+  vzhledy, i české; Bára 23. 11. 2026). Místo domu `info.at` (app.js). Snímky a zpráva
   `evaluation/budovy-regiony/`.
 - Panorama z ulice: Mapy.com Panorama API, klíč jen v tajné proměnné repozitáře `MAPY_KEY` a v
   lokálním `pilot/public/config.local.js` (git ho ignoruje), nikdy v kódu.

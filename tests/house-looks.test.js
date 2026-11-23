@@ -132,3 +132,8 @@ test("Skandinávie (pravidla pro budoucí moduly SE, NO, DK, FI)", () => {
 test("každý vzhled má popisek, překlad a platí v souborech", () => {
   for (const k of Object.keys(BUILDING_STYLES)) assert.ok(EDGE_STYLES.has(k), k);
 });
+
+test("štít uříznutý okrajem (2/3) je výchozí (Bára 23. 11. 2026)", async () => {
+  const { LOOKS } = await import("../pilot/public/house-looks.js");
+  assert.equal(LOOKS.gableCut, true);
+});

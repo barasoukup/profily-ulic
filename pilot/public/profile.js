@@ -866,7 +866,7 @@ const GABLE_RISE = { stit: 400, hanza: 480 };
 // gable; Tallinn's plain gable, every fourth stepped. Heights in storeys (GABLE_TOP: the top of the outline).
 const GABLE_C = EDGE / 2;
 const GABLE_AXES = { stit: [GABLE_C - 95, GABLE_C + 95], hanza: [GABLE_C - 70, GABLE_C + 70] };
-// A variant for Bára to compare (?stit=2/3, LOOKS.gableCut): the house 6 m wide with three window columns, the frame
+// The default (Bára 23. 11. 2026; ?stit=cely: the whole symmetric gable, LOOKS.gableCut false): the house 6 m wide with three window columns, the frame
 // showing its street-side two thirds (the axis and the front column inside, the back column out of it, cut at EDGE).
 const GABLE_CUT_C = 300, GABLE_CUT_AXES = [140, 300, 460];
 const gableC = () => (LOOKS.gableCut ? GABLE_CUT_C : GABLE_C);
