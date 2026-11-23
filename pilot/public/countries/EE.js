@@ -22,7 +22,7 @@ function limitsEE(s) {
       return { min: 3, zaklad: 3, why: t("pruh pro veřejnou dopravu: nejméně 3 m (norma EVS 843, z druhé ruky)") };
     case "pruh": case "pruh_piktokoridor":
       if (s.turn) return null;
-      return { min: 0, zaklad: 3, why: t("jízdní pruh: 3 m, u místních ulic 2,75 m (příručka uličního prostoru Tallinnu a norma EVS 843, z druhé ruky)") };
+      return { min: 0, zaklad: 2.75, why: t("jízdní pruh: 3 m, u místních ulic 2,75 m (příručka uličního prostoru Tallinnu a norma EVS 843, z druhé ruky)") };
     default:
       return null;
   }

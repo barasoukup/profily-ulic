@@ -58,9 +58,8 @@ Co rozhodne Bára, je označeno **(Bára)**.
   neodpovídají, Furlansko a Trento bez CORS, Apulie 2023 bez licence); plochy silnic Bologni rozdělit čarami obrub; dílčí
   nálety Emilie-Romagny 2023–26 (CC BY 4.0) zapojit podle jejich pokrytí.
   **(Bára)**: chodník 0,9, nebo 1,5 m?; pruh podle kategorie silnice?; jednosměrka II.349, nebo II.348?
-- Estonsko **(Bára)**: chodník 2,0, nebo v Tallinnu 2,5 m?; pruh místních ulic 2,75, nebo všude 3 m?; 3 m na směr vedle
-  stání (zákon obecné číslo nemá)?; pěší zónu kreslit jako 381 s 432, i když ji předpis nezná?; stání a tramvajový pás bez
-  varování?; koupit EVS 843:2016? Mapa povrchů Tallinnu zapnutá (pole `kate` nevyužité, tl38 ztratil střední pás);
+- Estonsko: normy rozhodnuté (Bára 23. 11. 2026: chodník 2,0, pruh 2,75, 3 m na směr, pěší zóna 381 + 432, stání a tramvaj
+  bez varování). Normy nekupujeme (Bára 23. 11. 2026: EVS 843 jen z druhé ruky). Mapa povrchů Tallinnu zapnutá (pole `kate` nevyužité, tl38 ztratil střední pás);
   plochy úklidu Tartu (`Puhastusala`) by šly stejně, A/B. Stáří ortofota
   v kreditu je „stav 11/2026“ (dlaždice míchají nálety), přesnější rok by chtěl metadata snímků.
 - Jih Evropy po Itálii **odložen** (Bára 23. 11. 2026): Balkán, Řecko, Slovinsko. Až se k nim vrátíme: Albánie (ortofoto

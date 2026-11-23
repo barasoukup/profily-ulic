@@ -455,6 +455,9 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   budovy ETAK s výškou. Mapa povrchů Tallinnu zapnutá (`?tallinn=0`; licenci neuvádí, Bára: městské dílo s kreditem, není
   zákaz; A/B lépe 11, hůř 4). Měření 23. 11. (12 řezů): složení 51 %, šířka do 2 m 25 %. Otevřené otázky norem v
   `docs/backlog.md`.
+- Normy (Bára 23. 11. 2026, podle doporučení): chodník 1,5 / 2,0 m všude (tallinnských 2,5 m jen doporučení), jízdní pruh
+  základ 2,75 m (méně planých varování), vedle stání 3 m na směr, pěší zóna 381 s 432, stání a tramvaj bez varování;
+  normy nekupujeme (EVS 843 jen z druhé ruky).
 
 ## Měření přesnosti (Bára 17. 11. 2026)
 - Jedna univerzální metoda pro všechny státy: skill `mereni-presnosti`, kód a zpráva `evaluation/universal/`. Použít u
