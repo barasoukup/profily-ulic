@@ -53,7 +53,8 @@ export function roadBands(elements, lat) {
   const mx = 1 / (111320 * Math.cos((lat * Math.PI) / 180)), my = 1 / 110574, out = [];
   for (const el of elements || []) {
     const t = el.tags || {};
-    if (el.type !== "way" || !el.geometry || !ROADS.test(t.highway || "") || Number(t.layer) < 0 || t.tunnel === "yes") continue;
+    // Not a road below ground nor through a building (a passage: the review of 23. 11. 2026).
+    if (el.type !== "way" || !el.geometry || !ROADS.test(t.highway || "") || Number(t.layer) < 0 || t.tunnel === "yes" || t.tunnel === "building_passage") continue;
     const h = ROAD_HALF[String(t.highway).replace("_link", "")] ?? 7;
     for (let i = 1; i < el.geometry.length; i++) {
       const a = el.geometry[i - 1], b = el.geometry[i];
@@ -109,8 +110,13 @@ async function surfaces(bbox) {
 
 // ---------- Catastro (buildings) ----------
 export const CATASTRO_WFS = "https://ovc.catastro.meh.es/INSPIRE/wfsBU.aspx";
-const catastro = (type, lat, lon, d) => fetch(`${CATASTRO_WFS}?${new URLSearchParams({ service: "WFS", version: "2.0.0", request: "GetFeature", typenames: type, srsname: "EPSG::4326",
-  bbox: `${lat - d},${lon - d},${lat + d},${lon + d}` })}`).then((r) => { if (!r.ok) throw new Error(`Catastro ${r.status}`); return r.text(); });
+// A time limit (the review of 23. 11. 2026: app.js waits for the houses; a hanging Catastro held them as long as the
+// browser let it), the same as gis.js getJSON.
+const CATASTRO_TIMEOUT = 25000;
+export const catastroUrl = (type, lat, lon, d) => `${CATASTRO_WFS}?${new URLSearchParams({ service: "WFS", version: "2.0.0", request: "GetFeature", typenames: type, srsname: "EPSG::4326",
+  bbox: `${lat - d},${lon - d},${lat + d},${lon + d}` })}`;
+const catastro = (type, lat, lon, d) => fetch(catastroUrl(type, lat, lon, d), { signal: AbortSignal.timeout(CATASTRO_TIMEOUT) })
+  .then((r) => { if (!r.ok) throw new Error(`Catastro ${r.status}`); return r.text(); });
 // The GML's members: their id, rings (posList lat lon) and the values the app uses.
 const members = (gml) => String(gml || "").split(/<gml:featureMember>/).slice(1);
 const value = (m, tag) => m.match(new RegExp(`<[^>]*:${tag}>([^<]*)<`))?.[1] ?? null;
@@ -124,7 +130,9 @@ const ringsGml = (m) => [...m.matchAll(/<gml:posList[^>]*>([^<]*)<\/gml:posList>
 // building's own count is empty in the Catastro; a courtyard's part is lower).
 const USE = { "1_residential": "living", "4_1_office": "office", "4_2_retail": "office", "4_3_publicServices": "public", "3_industrial": "industrial", "2_agriculture": "industrial" };
 export function catastroBuilding(buildingGml, partsGml, lat, lon) {
-  const b = members(buildingGml)[0];
+  // The building the point lies in, else the first of the window (a party wall: the neighbour's year and use otherwise).
+  const all = members(buildingGml);
+  const b = all.find((m) => { const r = ringsGml(m); return r.length && inRings(r, lon, lat); }) || all[0];
   const parts = members(partsGml).map((m) => ({ floors: Number(value(m, "numberOfFloorsAboveGround")), rings: ringsGml(m) })).filter((p) => p.floors > 0);
   const here = parts.filter((p) => p.rings.length && inRings(p.rings, lon, lat));
   const floors = Math.max(0, ...(here.length ? here : parts).map((p) => p.floors)) || undefined;
@@ -138,11 +146,18 @@ export function catastroBuilding(buildingGml, partsGml, lat, lon) {
   const type = use === "industrial" ? "industrial" : living ? (dwellings > 1 ? "apartments" : dwellings === 1 ? "house" : undefined) : office ? "office" : undefined;
   return { built, office, house: (living && dwellings === 1) || undefined, type, ...(floors && { cornice: floors, total: floors, roof: 0 }) };
 }
+// One answer a point (rounded to about a metre: a cut moved a little asks the same facade again), at most 30 kept.
+const houses = new Map();
 async function podlaznost(lat, lon) {
   if (param("catastro") === "0") return {};
-  const d = 0.000005; // about half a metre around the facade's point
-  const [b, p] = await Promise.all([catastro("BU:Building", lat, lon, d), catastro("BU:BuildingPart", lat, lon, d)]);
-  return catastroBuilding(b, p, lat, lon);
+  const key = `${lat.toFixed(5)},${lon.toFixed(5)}`;
+  if (!houses.has(key)) {
+    const d = 0.000005; // about half a metre around the facade's point
+    houses.set(key, Promise.all([catastro("BU:Building", lat, lon, d), catastro("BU:BuildingPart", lat, lon, d)])
+      .then(([b, p]) => catastroBuilding(b, p, lat, lon)).catch((err) => { houses.delete(key); throw err; }));
+    if (houses.size > 30) houses.delete(houses.keys().next().value);
+  }
+  return houses.get(key);
 }
 
 export const sources = {

@@ -62,14 +62,21 @@ test("Španělsko: značky (S-11 / R-101 podle směru, R-301, autopista a autov�
   assert.equal(f({ k: "b20a", v: 35 }), null);
   assert.equal(f({ k: "ip14a", ref: "AP-7" }), "S-1");
   assert.equal(f({ k: "ip14a", ref: "A-2" }), "S-1a");
+  assert.equal(f({ k: "ip14a", ref: "E-15;AP-7" }), "S-1", "autopista i za evropským číslem");
+  assert.equal(f({ k: "ip14a", ref: "A-2;AP-7" }), "S-1");
+  assert.equal(f({ k: "ip14a", ref: "C-32" }), null, "C-32 může být obojí: bez značky");
+  assert.equal(f({ k: "ip14a" }), null);
+  assert.equal(ES.signs.label({ k: "zona30" }, null, "IZ 8a Zóna 30"), "Zóna 30", "tabule ZONA z katalogu 2003: bez kódu");
   assert.equal(f({ k: "ztp" }), null, "vyhrazené stání jen s textem: nekreslí se");
   for (const k of ["b1", "b11", "b8", "b30", "b28", "b29", "ip11a", "ip15a", "ip20a", "zona30", "ip26a", "sdilena", "ip27a", "c8a", "c9a", "c10a", "c7a"]) {
     const file = f({ k });
     assert.ok(file && fs.existsSync(new URL(`../pilot/public/signs-ES/${file}.svg`, import.meta.url)), `${k}: ${file}`);
   }
   for (const v of [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120]) assert.ok(fs.existsSync(new URL(`../pilot/public/signs-ES/R-301-${v}.svg`, import.meta.url)), `R-301-${v}`);
-  assert.equal(ES.lawNeed(false, 2), 3, "3 m k protějšímu okraji (čl. 91.2 a RGC)");
+  assert.equal(ES.lawNeed(false, 1, 2.5), 5, "obousměrka: dva průjezdné pruhy");
+  assert.equal(ES.lawNeed(true, 1, 2.5), 3, "jednosměrka: 3 m k protějšímu okraji (čl. 91.2 a RGC)");
   assert.equal(ES.limits({ type: "chodnik", width: 1.5 }, []).min, 1.8);
+  assert.deepEqual([ES.limits({ type: "cyklopruh", width: 1.2 }, []).min, ES.limits({ type: "cyklostezka", width: 1.2 }, []).zaklad], [1.4, 1.4], "1,4 m je minimum, 1 m jen výjimka");
 });
 
 test("Španělsko: stát podle hranic (ostrovy, Ceuta, Melilla, Llívia)", async () => {
@@ -86,4 +93,62 @@ test("Španělsko: stát podle hranic (ostrovy, Ceuta, Melilla, Llívia)", async
   assert.equal(C.cityAt(36.1408, -5.3536), "cizina"); // Gibraltar
   assert.equal(C.cityAt(43.48, -1.56), "france"); // Biarritz
   assert.equal(C.countryOfCity("spain").code, "ES");
+});
+
+test("Španělsko: obytná ulice S-47 (20 km/h), S-28 jen s 10 km/h; výchozí rychlost podle čl. 50 RGC", async () => {
+  const { deriveSigns, signFile } = await import("../pilot/public/signs.js");
+  const two = () => ({ segments: [{ type: "chodnik" }, { type: "pruh", dir: "backward" }, { type: "pruh" }, { type: "chodnik" }] });
+  const drawn = (tags) => deriveSigns(two(), tags, { country: "ES" }).segments[2].signs?.map((x) => signFile(x, null, "ES")) || [];
+  assert.deepEqual(drawn({ highway: "living_street" }), ["S-47"]);
+  assert.deepEqual(drawn({ highway: "living_street", maxspeed: "20" }), ["S-47"], "20 km/h říká zóna sama");
+  assert.deepEqual(drawn({ highway: "living_street", maxspeed: "10" }), ["R-301-10", "S-28"], "S-28 vždy s R-301 10");
+  // Art. 50.1: 30 with one lane a direction (no sign drawn), 50 there is a sign; with two lanes a direction 50 is the default.
+  assert.deepEqual(drawn({ highway: "residential", maxspeed: "30" }), []);
+  assert.deepEqual(drawn({ highway: "residential", maxspeed: "50" }), ["R-301-50"]);
+  assert.deepEqual(drawn({ highway: "primary", maxspeed: "50", lanes: "4" }), []);
+  assert.deepEqual(drawn({ highway: "primary", maxspeed: "30", lanes: "4" }), ["R-301-30"]);
+  // Elsewhere unchanged: the Czech 50 hidden, the living street IZ 5a.
+  assert.deepEqual(deriveSigns(two(), { highway: "residential", maxspeed: "50" }).segments[2].signs, undefined);
+});
+
+test("Španělsko: odhad stání podle zákona nechá dva průjezdné pruhy (recenze 23. 11. 2026)", async () => {
+  const C = await import("../pilot/public/city.js");
+  const { deriveProfile, localFrame } = await import("../pilot/public/derive.js");
+  const frame = localFrame(40.42, -3.7);
+  const rect = (code, x0, x1) => ({ code, label: "", rings: [[[x0, -60], [x1, -60], [x1, 60], [x0, 60]]], bbox: [x0, -60, x1, 60] });
+  const ll = (x, y) => { const [lon, lat] = frame.toLonLat(x, y); return { lon, lat }; };
+  const road = (w) => {
+    const polys = [rect(601, -w / 2 - 8, -w / 2 - 3), rect(702, -w / 2 - 3, -w / 2), rect(701, -w / 2, w / 2), rect(702, w / 2, w / 2 + 3), rect(601, w / 2 + 3, w / 2 + 8)];
+    const way = { type: "way", id: 1, tags: { highway: "residential" }, geometry: [ll(0, -60), ll(0, 60)] };
+    return deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys, osm: { elements: [way] }, frame, way, inZps: false });
+  };
+  C.setCity("spain");
+  try {
+    for (const w of [5, 6, 7, 9]) {
+      const p = road(w), segs = p.segments.map((x) => `${x.type} ${x.width.toFixed(2)}`).join(", ");
+      assert.ok(p.segments.filter((x) => x.type === "pruh").every((x) => x.width >= 2.5 - 1e-6), `${w} m: ${segs}`);
+    }
+  } finally { C.setCity("praha"); }
+});
+
+test("Španělsko: katastr (osy dotazu, budova pod bodem, ne soused), pruhy z ortofota ne v Melille", async () => {
+  const E = await import("../pilot/public/towns/spain.js");
+  const u = new URL(E.catastroUrl("BU:Building", 40.4, -3.7, 0.000005));
+  assert.deepEqual(u.searchParams.get("bbox").split(",").map((v) => Math.round(+v * 1e6) / 1e6), [40.399995, -3.700005, 40.400005, -3.699995], "bbox lat, lon");
+  const b = (year, ring) => `<gml:featureMember><bu-ext2d:Building><bu-core2d:beginning>${year}-01-01</bu-core2d:beginning><gml:posList>${ring.map(([x, y]) => `${y} ${x}`).join(" ")}</gml:posList></bu-ext2d:Building></gml:featureMember>`;
+  const sq = (x) => [[x, 0], [x + 1, 0], [x + 1, 1], [x, 1], [x, 0]];
+  assert.equal(E.catastroBuilding(b(1900, sq(0)) + b(1975, sq(1)), "", 0.5, 1.5).built, 1975, "štítová zeď: dům pod bodem");
+  const L = await import("../pilot/public/lanes-ortho.js");
+  const { localFrame } = await import("../pilot/public/derive.js");
+  assert.equal(await L.laneImage({ source: "es", frame: localFrame(35.293, -2.94), dir: [1, 0], t0: -10, t1: 10 }), null, "Melilla: snímek Airbus, licence nevyjasněná");
+});
+
+test("Španělsko: jméno ulice z CartoCiudad se shodne s OSM (Passeig de Gràcia)", async () => {
+  const { nearestStreet, localFrame } = await import("../pilot/public/derive.js");
+  const frame = localFrame(41.39, 2.16);
+  const ll = (x, y) => { const [lon, lat] = frame.toLonLat(x, y); return { lon, lat }; };
+  const osm = { elements: [{ type: "way", id: 1, tags: { highway: "residential", name: "Carrer de Mallorca" }, geometry: [ll(-50, 2), ll(50, 2)] },
+    { type: "way", id: 2, tags: { highway: "primary", name: "Passeig de Gràcia" }, geometry: [ll(10, -50), ll(10, 50)] }] };
+  assert.equal(nearestStreet(osm, frame, [0, 0]).way.id, 1);
+  assert.equal(nearestStreet(osm, frame, [0, 0], "PASEO GRACIA").way.id, 2);
 });

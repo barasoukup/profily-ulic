@@ -20,18 +20,40 @@ test("Kypr: jízda vlevo, značky a normy", async () => {
   const CY = COUNTRIES.CY, f = CY.signs.file;
   assert.equal(CY.leftHand, true);
   assert.equal(f({ k: "oneway", dir: "forward" }), "oneway");
-  assert.equal(f({ k: "oneway", dir: "backward", plate: "protismer" }), "noentry");
+  assert.equal(f({ k: "oneway", dir: "backward" }), "noentry");
+  assert.equal(f({ k: "oneway" }, { dir: "backward" }), "noentry", "směr podle pruhu");
+  assert.equal(f({ k: "oneway", dir: "backward", plate: "protismer" }), null, "tabulku „kromě cyklistů“ Kodex nemá, zákaz vjezdu by lhal");
   assert.equal(f({ k: "zona30" }), null, "zónu 30 Kodex nemá");
-  for (const k of ["b1", "b11", "b8", "b30", "b28", "b29", "ip11a", "ip14a", "ip15a", "ip20a", "ip26a", "ip27a", "c7a", "c8a", "c9a", "c10a"]) {
-    const file = f({ k });
-    assert.ok(file && fs.existsSync(new URL(`../pilot/public/signs-CY/${file}.svg`, import.meta.url)), `${k}: ${file}`);
+  assert.equal(f({ k: "c10a", walk: "left" }), "c10a-chodci-vlevo", "chodci na své straně");
+  // Each key on the sign the review checked against the Code (NORMY.md C2; signs-CY/README.md), not just some file.
+  const expected = { b1: "b1", b11: "b11", b8: "b8", b30: "b30", b28: "b28", b29: "b29", ip11a: "p", ip14a: "motorway", ip15a: "expressway",
+    ip20a: "bus", ip26a: "ip26a", ip27a: "ped", c7a: "ped", c8a: "c8a", c9a: "c9a", c10a: "c10a" };
+  for (const [k, file] of Object.entries(expected)) assert.equal(f({ k }), file, k);
+  const licence = JSON.parse(fs.readFileSync(new URL("../evaluation/cyprus/signs-licence.json", import.meta.url), "utf8"));
+  for (const file of [...new Set([...Object.values(expected), "noentry", "oneway", "c10a-chodci-vlevo"])]) {
+    assert.ok(fs.existsSync(new URL(`../pilot/public/signs-CY/${file}.svg`, import.meta.url)), file);
+    assert.ok(licence[file], `licence ${file}`);
   }
   for (const v of [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]) assert.ok(fs.existsSync(new URL(`../pilot/public/signs-CY/speed-${v}.svg`, import.meta.url)), `${v}`);
   assert.equal(CY.signs.label({ k: "b29" }, null, "B 29 Zákaz stání"), "Zákaz stání", "Kodex značky nečísluje");
+  // The files under the Open Government Licence (their credit in the export) are those of signs-licence.json.
+  const ogl = Object.entries(JSON.parse(fs.readFileSync(new URL("../evaluation/cyprus/signs-licence.json", import.meta.url), "utf8"))).filter(([, v]) => /OGL/.test(v.lic)).map(([k]) => k).sort();
+  assert.deepEqual([...CY.signs.ogl].sort(), ogl);
   assert.equal(CY.limits({ type: "parkovani", orient: "kolme" }), null, "rozměry stání nenalezeny");
+  // The manual is a recommendation: the sidewalk only orange, by the street's class (review of 23. 11. 2026).
+  const walk = (roadClass) => { const x = CY.limits({ type: "chodnik" }, [{ type: "chodnik" }, { type: "pruh", roadClass }], 0); return [x.min, x.zaklad]; };
+  assert.deepEqual(walk("mk4"), [0, 2]);
+  assert.deepEqual(walk("mk2"), [0, 2.5], "sběrná (OSM primary, secondary)");
+  assert.equal(CY.limits({ type: "pruh", roadClass: "mk2" }, [], 0).zaklad, 3.5);
+  assert.equal(CY.limits({ type: "pruh", roadClass: "mk4" }, [], 0).zaklad, 3);
+  const lane = (dir) => { const segs = [{ type: "cyklopruh", dir }, { type: "pruh", dir: "forward" }]; return CY.limits(segs[0], segs, 0); };
+  assert.equal(lane("forward").min, 1.5);
+  assert.equal(lane("backward").min, 2, "cyklopruh v protisměru 2 m");
+  assert.equal(CY.limits({ type: "cyklostezka", dir: "forward" }, [], 0).zaklad, 2);
+  assert.equal(CY.limits({ type: "cyklostezka" }, [], 0).zaklad, 3, "obousměrná");
 });
 
-test("Kypr: stát podle hranic (sever a nárazníková zóna mimo)", async () => {
+test("Kypr: stát podle hranic (sever bez profilu, nárazníková zóna podle hranice OSM)", async () => {
   const C = await import("../pilot/public/city.js");
   C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
   C.loadStates(JSON.parse(fs.readFileSync(new URL("../pilot/public/staty.json", import.meta.url), "utf8")));
@@ -41,5 +63,11 @@ test("Kypr: stát podle hranic (sever a nárazníková zóna mimo)", async () =>
   assert.equal(C.cityAt(35.0130, 33.7380), "cyprus"); // Xylotymbou, inside Dhekelia
   assert.equal(C.cityAt(35.185, 33.364), "cizina"); // Nicosia, the north
   assert.equal(C.cityAt(35.34, 33.319), "cizina"); // Kyrenia
-  assert.equal(C.cityAt(35.045, 33.712), "cizina"); // Pyla (the UN buffer zone; Bára: left out)
+  // The north: no profile (Bára 23. 11. 2026); the republic's border by OSM takes in parts of the UN buffer zone (Pyla).
+  assert.match(C.closedAt(35.185, 33.364), /Kypr/);
+  assert.equal(C.closedAt(35.17, 33.36), null);
+  // Pyla, Mammari and Nicosia airport lie in the buffer zone, inside OSM's border of the republic (review of 23. 11. 2026).
+  assert.equal(C.cityAt(35.0142, 33.6925), "cyprus"); // Pyla
+  assert.equal(C.cityAt(35.1756, 33.2051), "cyprus"); // Mammari
+  assert.equal(C.closedAt(35.0142, 33.6925), null);
 });

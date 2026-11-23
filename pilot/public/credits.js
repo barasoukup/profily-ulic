@@ -32,7 +32,7 @@ export const SOURCE_CREDITS = {
     es: () => t("ortofoto PNOA © IGN (CC BY 4.0)"),
     "pt-25": () => t("ortofoto © DGT"),
     cy: () => t("ortofoto © DLS Kypr"),
-    mt: () => t("ortofoto © Planning Authority Malta (CC BY 4.0)"),
+    mt: () => t("ortofoto © Planning Authority Malta, 2018 (CC BY 4.0)"),
     ee: () => t("ortofoto © Maa- ja Ruumiamet"),
     "it-bo": () => t("ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)"),
     "it-mo": () => t("ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)"),
@@ -61,6 +61,9 @@ export const SOURCE_CREDITS = {
   },
   // Salzburg's cadastre of signs and Vienna's Flächen-Mehrzweckkarte (towns/austria.js).
   atSigns: { salzburg: () => t("dopravní značky © Stadt Salzburg (CC BY 3.0 AT)") },
+  // The signs of Cyprus and Malta drawn after British ones (countries/CY.js, MT.js signs.ogl): the Open Government
+  // Licence v1.0 asks for this sentence where the Stav shows one.
+  ukSigns: { true: () => t("dopravní značky: Contains public sector information licensed under the Open Government Licence v1.0 (UK Department for Transport)") },
   atTown: { wien: () => t("mapa povrchů (FMZK) © Stadt Wien – data.wien.gv.at (CC BY 4.0)") },
   // The street surfaces of German cities (towns/germany.js).
   deTown: {

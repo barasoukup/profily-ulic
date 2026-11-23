@@ -129,3 +129,13 @@ s fotkou Mapillary, 22 s vozovkou (2 z nich s mapou povrchů Krakova). Ortofoto 
 - Shoda složení nejvyšší ze všech států (ostatní 52–69 %, LI 69 % na 6 řezech), šířka podprůměrná. Nejčastěji chybí
   chodník (6×) a pruh (4×); stání chybí jen 3× a 3× je navíc (zákonný odhad jako v Lucembursku).
 - Malý vzorek: 7 z 29 řezů jsou dvory, střechy, most a nábřeží.
+
+## Itálie (23. 11. 2026)
+
+Jen oblasti s otevřeným ortofotem, 6 řezů s fotkou a vozovkou (Turín 3, Bolzano 2, Bologna 1;
+`vysledky/u-it-1.jsonl`, `node evaluation/universal/score-states.mjs`).
+
+| IT | 6 | složení stejné 17 % | **shoda 56 %** | pruhy 50 % | šířka do 1 / 2 m 17 % / 33 % |
+
+- **Malý vzorek** (6 řezů ze 3 měst): čísla jsou jen orientační, k rozšíření. Nejčastěji chybí stání (4×) a chodník (2×),
+  dělicí pás navíc 2×.

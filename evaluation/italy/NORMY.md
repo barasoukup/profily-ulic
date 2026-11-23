@@ -76,7 +76,7 @@ Pozn.: [DPR503] čl. 5 odst. 1 výslovně omezuje body 4.2.2 a 8.2.2 [DM236] u c
 | Výjimečně, krátký značený úsek (stezka v samostatném tělese i na vyhrazeném pruhu) | **1,00 m** | [DM557] čl. 7 odst. 2 | ZÁV |
 | Dělicí pás mezi stezkou v samostatném tělese a vozovkou | ≥ 0,50 m | [DM557] čl. 7 odst. 4 | ZÁV |
 | Kde smí být jaká stezka | na silnicích D (urbane di scorrimento) jen v samostatném tělese nebo na chodníku; na E (quartiere) i jako vyhrazený pruh; na místních ulicích F „devono essere sempre realizzate su corsie riservate“; obousměrná na jedné straně jen výjimečně | [DM557] čl. 6 odst. 4, 6 | ZÁV |
-| Společná stezka s chodci (percorso promiscuo) na chodníku | „larghezza adeguatamente incrementata rispetto ai minimi fissati per le piste ciclabili all'articolo 7“, bez čísla | [DM557] čl. 4 odst. 5 | DOP („si ritiene opportuno“) |
+| Společná stezka s chodci (percorso promiscuo) na chodníku | „larghezza adeguatamente incrementata rispetto ai minimi fissati per le piste ciclabili all'articolo 7“, bez čísla | [DM557] čl. 4 odst. 5 | DOP („si ritiene opportuno“). Aplikace: oranžově pod 2,5 m (víc než minimum obousměrné stezky čl. 7), bez červené |
 | Cyklopruh v zákoně (CdS čl. 3 bod 12-bis „Corsia ciclabile“, od 2024) | „posta a destra“, smí být i sdílená s ostatními vozidly, jen kde se nevejde stezka; **šířku zákon nedává** | [CdS] čl. 3 | ZÁV, bez čísla |
 | Cyklopruh v protisměru (12-ter, čl. 7 odst. 1 písm. i-bis) | jen v jednosměrce s limitem ≤ 30 km/h, kde se nevejde stezka; šířka nenalezena | [CdS] | ZÁV, bez čísla |
 | Oddělení stezky od vozovky barvou | dvojčára bílá 12 cm + žlutá 30 cm (fig. II.427/b) | [Reg] čl. 140 odst. 7 | ZÁV |
@@ -138,8 +138,9 @@ Tabulka 3.4.a sl. 18: na městských silnicích D (hlavní), A stání jen v odd
 - Čl. 157 odst. 1 písm. b): zastavení „non deve comunque arrecare intralcio alla circolazione“; čl. 158 odst. 2 písm. c):
   stání zakázáno „in seconda fila“.
 - Obecné číslo pro obousměrku (jako český § 25 odst. 3) zákon **nemá**; 3 m je výslovně jen v jednosměrce se stáním
-  u levého kraje. Výklad pro aplikaci: `freeLane: 3` (3 m na směr jako v Česku, opřené o čl. 157 odst. 4), `lawNeed: null`.
-  Je to můj výklad, judikaturu jsem nehledala.
+  u levého kraje. **Rozhodnutí (Bára 23. 11. 2026):** aplikace nechává `freeLane: 3` (3 m na směr), protože tak to
+  Bára drží ve všech státech. Je to **konvence aplikace, ne italský zákon**; zákonem podložené je jen 3 m u stání vlevo
+  v jednosměrce (čl. 157 odst. 4). `lawNeed: null`. Judikaturu jsem nehledala.
 
 ### B2. Stání na chodníku: **zakázané, „salvo diversa segnalazione“**
 
@@ -198,7 +199,7 @@ Tabulka 3.4.a sl. 18: na městských silnicích D (hlavní), A stání jen v odd
 | Klíč | Značka (Regolamento) | Soubor | Poznámka |
 |---|---|---|---|
 | b1 | fig. II.46 Divieto di transito (čl. 116) | II-46.svg | |
-| b11 | fig. II.58 Transito vietato a tutti gli autoveicoli (čl. 117) | II-58.svg | „autoveicoli“ = vozidla od 4 kol a tříkolky, **ne motocykly** (ty II.56); nejbližší k B 11 |
+| b11 | fig. II.58 Transito vietato a tutti gli autoveicoli (čl. 117) | II-58.svg | „autoveicoli“ = vozidla od 4 kol a tříkolky, **ne motocykly** (ty II.56); nejbližší k B 11. Popisek v aplikaci proto „Zákaz vjezdu automobilů (motocykly smějí)“, ne český název B 11 |
 | b8 | fig. II.55 Transito vietato alle biciclette (čl. 117) | II-55.svg | |
 | b30 | fig. II.54 Transito vietato ai pedoni (čl. 117) | II-54.svg | |
 | b20a | fig. II.50 Limite massimo di velocità (čl. 116) | II-50-<v>.svg | 10–130 z Commons |
@@ -206,17 +207,17 @@ Tabulka 3.4.a sl. 18: na městských silnicích D (hlavní), A stání jen v odd
 | b29 | fig. II.74 Divieto di sosta (čl. 120) | II-74.svg | ve městě bez tabulky platí 8–20 h ([Reg] čl. 120, [CdS] čl. 7 odst. 2) |
 | oneway (po směru) | fig. II.349 Senso unico frontale (čl. 135 odst. 25) | II-349.svg | stojí čelem k řidiči jako IP 4b; II.348 (senso unico parallelo) je dlouhá šipka podél ulice u křižovatky, stažena jako II-348.svg |
 | oneway (proti směru) | fig. II.47 Senso vietato (čl. 116) | II-47.svg | |
-| oneway + protismer | II.47 + modello II.4/b „eccetto“ + kolo | II-47-plus-II-4b.svg | složeno pro aplikaci (tabulka II.4/b z Commons, kolo z II.55) |
+| oneway + protismer | II.47 + modello II.4/b „eccetto“ + kolo | II-47-plus-II-4b.svg | složeno pro aplikaci (tabulka II.4/b z Commons, kolo z II.55); popisek „II.47 + II.4/b“. Značka z dat směr nemá (bere ho z části profilu), popisek pak uvádí „II.349 / II.47“ jako česká „IP 4b / B 2“ |
 | ip11a | fig. II.76 Parcheggio (čl. 120) | II-76.svg | způsob stání značka nemá |
 | ztp | fig. II.79/a Sosta consentita a particolari categorie se symbolem II.130 (invalidi) | II-79a-invalidi.svg | |
 | ip12 | II.79/a s jinou kategorií | — | bez kategorie nekreslit |
 | ip14a | fig. II.345 Inizio autostrada (zelená) | II-345-autostrada.svg | |
 | ip15a | fig. II.314 Strada riservata ai veicoli a motore (čl. 135 odst. 9) | II-314.svg | obsahem odpovídá IZ 2a (OSM `motorroad=yes`); kategorie B „extraurbana principale“ má II.345 modrou (II-345-extraurbana.svg), otázka pro Báru |
-| ip20a | „Uso corsie“ s autobusem (figg. II.337–II.340, čl. 135 odst. 19) | bus-riservato.svg | samostatná značka „corsia riservata“ v Regolamentu není; staženo je jen modré kolečko s autobusem z Commons (Gigillo83), mimo předpis, otázka pro Báru |
+| ip20a | „Uso corsie“ s autobusem (figg. II.337–II.340, čl. 135 odst. 19) | — (nekreslí se) | samostatná značka „corsia riservata“ v Regolamentu není a Commons panel „Uso corsie“ nemá; modré kolečko s autobusem (Gigillo83) je mimo předpis, do `signs-IT/` se nedostalo. Aplikace vyhrazený pruh značkou neoznačuje. |
 | zona30 | fig. II.323/a Zona a velocità limitata (30) | II-323a-30.svg | |
 | ip26a | fig. II.318 Zona residenziale | II-318.svg | |
 | sdilena | — | | Itálie sdílenou zónu nemá |
-| ip27a | fig. II.320 Area pedonale | II-320.svg | |
+| ip27a | fig. II.320 Area pedonale | II-320.svg | i s tabulkou „s cyklisty“ z OSM: area pedonale kola pouští sama (B3), tabulka není potřeba |
 | cyklozona | — | | „Zona ciclabile“ (2024) bez značky v Regolamentu |
 | c8a | fig. II.90 Pista ciclabile (čl. 122) | II-90.svg | |
 | c9a | fig. II.92/b Percorso pedonale e ciclabile | II-92b.svg | společná (nedělená) |
@@ -224,35 +225,41 @@ Tabulka 3.4.a sl. 18: na městských silnicích D (hlavní), A stání jen v odd
 | c7a | fig. II.88 Percorso pedonale | II-88.svg | |
 | (navíc) | fig. II.322/a Zona a traffico limitato | II-322a.svg | aplikace klíč nemá |
 
-## D. Návrh `limitsIT` (konvence jako PT/ES/FR: min = červeně, zaklad = oranžově)
+## D. `limitsIT` v aplikaci (konvence jako PT/ES/FR: min = červeně, zaklad = oranžově; stav po recenzi 23. 11. 2026)
 
 | Typ | min | zaklad | Zdroj, povaha |
 |---|---|---|---|
-| chodnik, chodnik_kola | **0,9** | **1,5** | 0,9 [DM236] 8.2.1 přes [DPR503] čl. 4 (ZÁV pro každou přístupnou trasu, i stávající); 1,5 [DM01] 3.4.6 (ZÁV jen pro nové silnice) |
+| chodnik | **0,9** | **1,5** | 0,9 [DM236] 8.2.1 přes [DPR503] čl. 4 (ZÁV pro každou přístupnou trasu, i stávající); 1,5 [DM01] 3.4.6 (ZÁV jen pro nové silnice) |
+| chodnik_kola, stezka_sdilena | 0 | 2,5 | [DM557] čl. 4 odst. 5 (DOP, „adeguatamente incrementata“ nad minima čl. 7, bez čísla): oranžově pod 2,5 m obousměrné stezky |
 | cyklopruh | 1,0 | 1,5 | [DM557] čl. 7 odst. 1–2 (ZÁV; 1,0 jen krátký úsek) |
-| cyklostezka (jednosměrná) | 1,0 | 1,5 | [DM557] čl. 7; obousměrná 2,5 m (2 × 1,25) |
-| bus | 3,5 | 3,5 | [DM01] 3.4.2 (kategorie 7) |
+| cyklostezka se směrem (jednosměrná) | 1,0 | 1,5 | [DM557] čl. 7 odst. 1–2 |
+| cyklostezka bez směru (obousměrná, výchozí v OSM) | 1,0 | 2,5 | [DM557] čl. 7 odst. 1 (2 × 1,25 m) |
+| polovina obousměrné cyklostezky (sousedí s opačným směrem) | 1,0 | 1,25 | [DM557] čl. 7 odst. 1 |
+| bus | 0 | 3,5 | [DM01] 3.4.2 (kategorie 7), ZÁV jen pro nové silnice, proto jen oranžově (jako chodník 1,5 m) |
 | bus_cyklo | — | — | nenalezeno |
-| pruh (E, městská sběrná, jeden na směr) | 0 | 3,0 | [DM01] tab. 3.4.a; s autobusy 3,5 |
-| pruh (F místní, D obslužná) | 0 | 2,75 | [DM01] tab. 3.4.a; [Reg] čl. 140 nejmenší modul 2,75 (u křižovatky 2,5) |
-| pruh (D urbana di scorrimento) | 0 | 3,25 | [DM01] tab. 3.4.a |
+| pruh, třída z OSM motorway/trunk (skupina A) | 0 | 3,25 | [DM01] tab. 3.4.a, D urbana di scorrimento. Převod třídy OSM na kategorii čl. 2 CdS je výklad aplikace; městskou dálnici (3,75) aplikace od trunk nerozliší |
+| pruh, primary/secondary (B) | 0 | 3,0 | [DM01] tab. 3.4.a, E urbana di quartiere |
+| pruh, ostatní (tertiary, místní) | 0 | 2,75 | [DM01] tab. 3.4.a, F locale; [Reg] čl. 140 nejmenší modul 2,75 |
+| pruh v obytné zóně (značka II.318 na řezu) | — | — | [DM01] kap. 1 a 3.5 obytné ulice z tabulky vyjímá |
+| řadicí pruh | — | — | bez varování |
 | parkovani podélné | 1,8 | 2,0 | [DM01] 3.4.7 |
 | parkovani šikmé (45°) | 0 | 4,8 | [DM01] 3.4.7 |
-| parkovani kolmé | 0 | 5,0 | [DM01] 3.4.7 („spazi minimi“, proto i min 5,0 obhajitelné) |
-| tramvaj v pruhu s auty | 0 | 3,5 | [DM01] 3.4.2 (kategorie 11) |
+| parkovani kolmé | 0 | 5,0 | [DM01] 3.4.7 |
 | tramvajový pás | — | — | nenalezeno |
 
-Zákon o stání: `freeLane: 3`, `lawNeed: null`; `halfKerbNote`: „Stání napůl na chodníku z OSM: ve vozovce zůstává {free}.
-Zastavení i stání na chodníku je v Itálii zakázané (čl. 158 odst. 1 písm. h zákona o silničním provozu), ledaže ho
-povolí značení; vlevo v jednosměrce musí zůstat aspoň 3 m (čl. 157 odst. 4), aplikace nechává {need}.“
+Nezapracováno: 3,50 m pro pruhy s autobusy a nákladní dopravou ([DM01] 3.4.2): aplikace nepozná, kudy jezdí autobus
+mimo vyhrazený pruh.
+
+Zákon o stání: `freeLane: 3` (konvence aplikace, viz B1), `lawNeed: null`; `halfKerbNote` v kódu: „Stání napůl na
+chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je v Itálii zakázané (čl. 158 zákona o silničním provozu),
+ledaže ho povolí značka; aplikace nechává {need}.“
 
 ## Otevřené otázky pro Báru
 
 1. Chodník: červeně pod 0,9 m (přístupnost, platí všude) a oranžově pod 1,5 m (DM 2001, jen nové silnice)? Nebo červeně
    už pod 1,5 m?
-2. Pruh: rozlišovat podle kategorie z OSM (primary/secondary → E 3,0; residential/unclassified → F 2,75; trunk ve městě → D
-   3,25), nebo jedna hodnota 3,0?
-3. Zákon o stání: 3 m na směr (výklad podle čl. 157 odst. 4, který číslo dává jen pro jednosměrku se stáním vlevo)?
+2. ~~Pruh podle kategorie z OSM~~: zapracováno po recenzi 23. 11. 2026 (oddíl D).
+3. ~~Zákon o stání~~: Bára 23. 11. 2026: 3 m na směr jako ve všech státech, konvence aplikace (B1).
 4. `ip15a`: II.314 (silnice pro motorová vozidla, obsahově jako IZ 2a), nebo II.345 modrá (začátek kategorie B)?
 5. Jednosměrka: II.349 (frontální, čelem k řidiči), nebo II.348 (rovnoběžná šipka u křižovatky)?
 6. Obytná zóna bez rychlosti (zákon ji nedává), sdílená zóna a zóna cyklistů bez značky: souhlas?

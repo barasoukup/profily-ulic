@@ -459,7 +459,8 @@ Object.assign(CITIES, {
     dataShort: "ortofota IGN a OSM", rulesHead: "Šířky podle francouzských předpisů a doporučení Cerema:" },
   // Cyprus (Bára 23. 11. 2026): the DLS orthophoto and buildings, OSM (towns/cyprus.js); traffic keeps left.
   cyprus: { ...abroad("cyprus", "CY", "Kypr", "na Kypru", "kyperské", [35.1, 33.4], "35.170000, 33.360000"),
-    dataShort: "ortofota DLS a OSM", rulesHead: "Šířky podle kyperských předpisů:" },
+    dataShort: "ortofota DLS a OSM", credit: "budovy © Department of Lands and Surveys (DLS, CC BY 4.0)",
+    rulesHead: "Šířky podle doporučení kyperského odboru veřejných prací (příručka pro městské ulice):" },
   // Italy (Bára 23. 11. 2026): only where an orthophoto has an open licence (Bolzano, Turin, Bologna, Modena); Bologna's
   // road areas (towns/italy.js).
   italy: { ...abroad("italy", "IT", "Itálie", "v Itálii", "italské", [44.9, 10.4], "44.493800, 11.342600"),
@@ -478,7 +479,7 @@ Object.assign(CITIES, {
     dataShort: "ortofota PNOA a OSM", rulesHead: "Šířky podle španělských předpisů a doporučení ministerstva dopravy:" },
   // Portugal (Bára 23. 11. 2026): DGT's orthophotos and OSM (towns/portugal.js).
   portugal: { ...abroad("portugal", "PT", "Portugalsko", "v Portugalsku", "portugalské", [39.6, -8.0], "38.722200, -9.139300"),
-    dataShort: "ortofota DGT a OSM", rulesHead: "Šířky podle portugalských předpisů:" },
+    dataShort: "ortofota DGT a OSM", rulesHead: "Šířky podle portugalských předpisů a doporučení:" },
   cizina: abroad("cizina", null, "cizinu", "v cizině", "zahraniční", [49.8, 15.5], "48.146736, 17.106998"),
 });
 // The rest of Slovakia and of Austria draws the state's own set (countries/<ISO>.js art).
@@ -571,13 +572,44 @@ export const loadStates = (json) => { states = Object.entries(json).map(([id, ri
 // The cities of the other states (mesta-sk.json, mesta-at.json; STATE_TOWNS): within their state, else its rest.
 let towns = [];
 export const loadTowns = (json) => { towns = [...towns.filter((b) => !(b.id in (json || {}))), ...Object.entries(json || {}).filter(([id]) => CITIES[id]).map(([id, rings]) => boxed(id, rings))]; };
+// The state entry of a point: the first ring it lies in; on a coast (GISCO's 1 : 1 M ring cuts off quays and ports: the
+// review of 23. 11. 2026, Barceloneta, Cais do Sodré, Funchal, Mareterra) the entry within COAST_TOLERANCE metres, if the
+// nearest is a state of COAST or an entry kept out of it (foreign_*: Gibraltar, Andorra; closed_*).
+const COAST = new Set(["spain", "portugal", "monaco", "france"]);
+const COAST_TOLERANCE = 400;
+function stateEntry(lat, lon) {
+  const hit = within(states, lat, lon);
+  if (hit) return hit;
+  const kx = 111320 * Math.cos((lat * Math.PI) / 180), ky = 110540, pad = COAST_TOLERANCE / ky * 1.5;
+  let best = null, dmin = COAST_TOLERANCE;
+  for (const b of states) {
+    if (!(COAST.has(b.id) || /^(foreign|closed)_/.test(b.id))) continue;
+    if (lon < b.box[0] - pad * 2 || lon > b.box[2] + pad * 2 || lat < b.box[1] - pad || lat > b.box[3] + pad) continue;
+    for (const r of b.rings) for (let i = 1; i < r.length; i++) {
+      const ax = (r[i - 1][0] - lon) * kx, ay = (r[i - 1][1] - lat) * ky, dx = (r[i][0] - lon) * kx - ax, dy = (r[i][1] - lat) * ky - ay;
+      const q = Math.max(0, Math.min(1, -(ax * dx + ay * dy) / (dx * dx + dy * dy || 1)));
+      const d = Math.hypot(ax + q * dx, ay + q * dy);
+      if (d < dmin) { dmin = d; best = b.id; }
+    }
+  }
+  return best;
+}
+// Where the app makes no profile (tools/build_staty.mjs closed_*; Bára 23. 11. 2026): the message to show, or null.
+const CLOSED = {
+  closed_cy: () => t("Sever Kypru zatím nemáme: profily děláme jen na území, které spravuje Kyperská republika."),
+  closed_it: () => t("V Itálii děláme profily jen tam, kde má ortofoto otevřenou licenci: v Jižním Tyrolsku, Turíně, Bologni a Modeně."),
+};
+export function closedAt(lat, lon) {
+  if (!states || (bounds && within(bounds, lat, lon))) return null;
+  return CLOSED[stateEntry(lat, lon)]?.() ?? null;
+}
 export function cityAt(lat, lon) {
   if (!bounds) return city.id;
   const own = within(bounds, lat, lon);
   if (own) return own;
   if (!states) return "cesko";
-  const state = within(states, lat, lon);
-  if (!state) return "cizina";
+  const state = stateEntry(lat, lon);
+  if (!state || /^(foreign|closed)_/.test(state)) return "cizina";
   const town = within(towns.filter((b) => CITIES[b.id].like === state), lat, lon);
   return town || state;
 }

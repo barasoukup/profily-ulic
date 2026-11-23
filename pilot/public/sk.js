@@ -876,7 +876,6 @@ export const SK = {
   " · mapa povrchů Zaragozy neodpověděla, odhad z ortofota a OSM": " · mapa povrchov Zaragozy neodpovedala, odhad z ortofota a OSM",
   "Mapa povrchů Zaragozy teď neodpovídá, profil je odhad z ortofota a OSM.": "Mapa povrchov Zaragozy teraz neodpovedá, profil je odhad z ortofota a OSM.",
   "chodník: volná šířka přístupné pěší trasy nejméně 1,8 m (vyhláška o přístupnosti TMA/851/2021, čl. 5.2 b); ministerstvo doporučuje 3 m, nikdy pod 2 m": "chodník: voľná šírka prístupnej pešej trasy najmenej 1,8 m (vyhláška o prístupnosti TMA/851/2021, čl. 5.2 b); ministerstvo odporúča 3 m, nikdy pod 2 m",
-  "cyklopruh a stezka pro cyklisty jednosměrné: nejméně 1,4 m, výjimečně 1 m; obousměrné 2,6 m, výjimečně 2,2 m (doporučení ministerstva dopravy 2024)": "cyklistický pruh a cyklistický chodník jednosmerné: najmenej 1,4 m, výnimočne 1 m; obojsmerné 2,6 m, výnimočne 2,2 m (odporúčania ministerstva dopravy 2024)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,5–2,75 m (doporučení ministerstva dopravy 2024)": "jazdný pruh vozovky s viacerými pruhmi v jednom smere: 2,5–2,75 m (odporúčania ministerstva dopravy 2024)",
   "jízdní pruh městské ulice: 2,5–3 m, ne víc než 3 m (doporučení ministerstva dopravy 2024)": "jazdný pruh mestskej ulice: 2,5–3 m, nie viac ako 3 m (odporúčania ministerstva dopravy 2024)",
   "šikmé stání: pás 4 m při 45°, 4,5 m při 60° (doporučení ministerstva dopravy 2024)": "šikmé státie: pás 4 m pri 45°, 4,5 m pri 60° (odporúčania ministerstva dopravy 2024)",
@@ -886,10 +885,7 @@ export const SK = {
   // Portugal (Bára 23. 11. 2026).
   "ortofoto © DGT": "ortofoto © DGT",
   "chodník: volná šířka nejméně 1,5 m u hlavních a sběrných ulic, 1,2 m u každé pěší trasy (zákon o přístupnosti 163/2006); doporučeno 1,8 m (IMT, Lisabon)": "chodník: voľná šírka najmenej 1,5 m pri hlavných a zberných uliciach, 1,2 m pri každej pešej trase (zákon o prístupnosti 163/2006); odporúčané 1,8 m (IMT, Lisabon)",
-  "cyklopruh: 1,5 m, nejméně 1,2 m; vedle podélného stání 2,5 m (IMT, příručka Lisabonu)": "cyklistický pruh: 1,5 m, najmenej 1,2 m; vedľa pozdĺžneho státia 2,5 m (IMT, príručka Lisabonu)",
   "stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)": "jednosmerná cestička pre cyklistov: 2 m, najmenej 1,75 m; obojsmerná 3 m, pri malej premávke 2,4 m (IMT a LNEC 2024)",
-  "vyhrazený pruh BUS: 3,25 m, nejméně 3 m (IMT, příručka Lisabonu)": "vyhradený pruh BUS: 3,25 m, najmenej 3 m (IMT, príručka Lisabonu)",
-  "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (IMT, příručka Lisabonu)": "spoločný pruh pre autobusy a cyklistov: najmenej 3,25 m (IMT, príručka Lisabonu)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,75 m (příručka Lisabonu)": "jazdný pruh vozovky s viacerými pruhmi v jednom smere: 2,75 m (príručka Lisabonu)",
   "jízdní pruh: 3 m (IMT, příručka Lisabonu)": "jazdný pruh: 3 m (IMT, príručka Lisabonu)",
   "šikmé stání: pás 4,2 m (příručka Lisabonu)": "šikmé státie: pás 4,2 m (príručka Lisabonu)",
@@ -897,7 +893,6 @@ export const SK = {
   "podélné stání: pás 2 m, v historickém centru 1,8 m (IMT, příručka Lisabonu)": "pozdĺžne státie: pás 2 m, v historickom centre 1,8 m (IMT, príručka Lisabonu)",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je v Portugalsku zakázané (čl. 49 odst. 1 písm. f zákona o silničním provozu), ledaže ho povolí značka; ostatní nesmějí muset vjet do protisměru (čl. 50), aplikace nechává {need}.": "Státie napoly na chodníku z OSM: vo vozovke zostáva {free}. Státie na chodníku je v Portugalsku zakázané (čl. 49 ods. 1 písm. f zákona o cestnej premávke), ak ho nepovolí značka; ostatní nesmú musieť vojsť do protismeru (čl. 50), aplikácia necháva {need}.",
   // Monaco (Bára 23. 11. 2026).
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je v Monaku zakázané (čl. 32 zákona o silničním provozu), stát se smí jen na místech vyznačených na vozovce (čl. 31).": "Státie napoly na chodníku z OSM: vo vozovke zostáva {free}. Státie na chodníku je v Monaku zakázané (čl. 32 zákona o cestnej premávke), stáť sa smie len na miestach vyznačených na vozovke (čl. 31).",
   // Cyprus (Bára 23. 11. 2026).
   "ortofoto © DLS Kypr": "ortofoto © DLS Cyprus",
   "chodník: 2 m u místních a obslužných ulic, 2,5 m u sběrných (příručka odboru veřejných prací Kypru, doporučení)": "chodník: 2 m pri miestnych a obslužných uliciach, 2,5 m pri zberných (príručka odboru verejných prác Cypru, odporúčanie)",
@@ -906,12 +901,9 @@ export const SK = {
   "vyhrazený pruh BUS: 3,5 m, nejméně 3 m (příručka odboru veřejných prací Kypru, doporučení)": "vyhradený pruh BUS: 3,5 m, najmenej 3 m (príručka odboru verejných prác Cypru, odporúčanie)",
   "společný pruh pro autobusy a cyklisty: 4 m, nejméně 3,5 m (příručka odboru veřejných prací Kypru, doporučení)": "spoločný pruh pre autobusy a cyklistov: 4 m, najmenej 3,5 m (príručka odboru verejných prác Cypru, odporúčanie)",
   "jízdní pruh: 3 m u obslužných ulic, 3,5 m u sběrných (příručka odboru veřejných prací Kypru, doporučení)": "jazdný pruh: 3 m pri obslužných uliciach, 3,5 m pri zberných (príručka odboru verejných prác Cypru, odporúčanie)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na Kypru je stání i zastavení na chodníku zakázané bez výjimky (předpis 66/1984, čl. 58); aplikace nechává {need}.": "Státie napoly na chodníku z OSM: vo vozovke zostáva {free}. Na Cypre je státie aj zastavenie na chodníku zakázané bez výnimky (predpis 66/1984, čl. 58); aplikácia necháva {need}.",
   // Malta (Bára 23. 11. 2026).
   "ortofoto © Planning Authority Malta (CC BY 4.0)": "ortofoto © Planning Authority Malta (CC BY 4.0)",
-  "chodník: nejméně 1,2 m (zásady přístupnosti CRPD), u silnic 1,5 m (příručka Transport Malta 2003); doporučení": "chodník: najmenej 1,2 m (zásady prístupnosti CRPD), pri cestách 1,5 m (príručka Transport Malta 2003); odporúčanie",
   "kolmé stání: 4,8 m (stavební standard DC15 maltského stavebního úřadu)": "kolmé státie: 4,8 m (stavebný štandard DC15 maltskej Planning Authority)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je na Maltě zakázané (předpis S.L. 65.11, čl. 79), ledaže ho povolí značka; aplikace nechává {need} (stavební standard DC15).": "Státie napoly na chodníku z OSM: vo vozovke zostáva {free}. Státie na chodníku je na Malte zakázané (predpis S.L. 65.11, čl. 79), ak ho nepovolí značka; aplikácia necháva {need} (stavebný štandard DC15).",
   // Italy (Bára 23. 11. 2026).
   "mapy povrchů Bologni, ortofota a OSM": "mapy povrchov Bologne, ortofoto a OSM",
   "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)": "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)",
@@ -928,7 +920,6 @@ export const SK = {
   "chodník: přístupná trasa nejméně 0,9 m (vyhláška 236/1989, bod 8.2.1), nová ulice 1,5 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.6)": "chodník: prístupná trasa najmenej 0,9 m (vyhláška 236/1989, bod 8.2.1), nová ulica 1,5 m (vyhláška o cestách z 5. 11. 2001, bod 3.4.6)",
   "cyklopruh a stezka pro cyklisty jednosměrné: 1,5 m, na krátkém úseku nejméně 1 m; obousměrná stezka 2,5 m (vyhláška 557/1999, čl. 7)": "cyklistický pruh a cyklistický chodník jednosmerné: 1,5 m, na krátkom úseku najmenej 1 m; obojsmerný cyklistický chodník 2,5 m (vyhláška 557/1999, čl. 7)",
   "vyhrazený pruh BUS: 3,5 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.2)": "vyhradený pruh BUS: 3,5 m (vyhláška o cestách z 5. 11. 2001, bod 3.4.2)",
-  "jízdní pruh městské ulice: 2,75–3 m (vyhláška o silnicích z 5. 11. 2001, tab. 3.4.a)": "jazdný pruh mestskej ulice: 2,75–3 m (vyhláška o cestách z 5. 11. 2001, tab. 3.4.a)",
   "šikmé stání (45°): pás 4,8 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.7)": "šikmé státie (45°): pás 4,8 m (vyhláška o cestách z 5. 11. 2001, bod 3.4.7)",
   "kolmé stání: pás 5 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.7)": "kolmé státie: pás 5 m (vyhláška o cestách z 5. 11. 2001, bod 3.4.7)",
   "podélné stání: pás 2 m, nejméně 1,8 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.7)": "pozdĺžne státie: pás 2 m, najmenej 1,8 m (vyhláška o cestách z 5. 11. 2001, bod 3.4.7)",
@@ -942,6 +933,27 @@ export const SK = {
   "pruh pro veřejnou dopravu: nejméně 3 m (norma EVS 843, z druhé ruky)": "pruh pre verejnú dopravu: najmenej 3 m (norma EVS 843, z druhej ruky)",
   "jízdní pruh: 3 m, u místních ulic 2,75 m (příručka uličního prostoru Tallinnu a norma EVS 843, z druhé ruky)": "jazdný pruh: 3 m, na miestnych uliciach 2,75 m (príručka uličného priestoru Tallinnu a norma EVS 843, z druhej ruky)",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. V Estonsku smí auto stát na chodníku jen tam, kde to dovolí značka, a chodcům musí zůstat aspoň 1,5 m (§ 20 zákona o silničním provozu); aplikace nechává {need}.": "Státie napoly na chodníku z OSM: vo vozovke zostáva {free}. V Estónsku smie auto stáť na chodníku len tam, kde to dovolí značka, a chodcom musí zostať aspoň 1,5 m (§ 20 zákona o cestnej premávke); aplikácia necháva {need}.",
+  // Reviews of 23. 11. 2026 (Spain, Portugal, Monaco, Cyprus, Malta, Italy).
+  "Sever Kypru zatím nemáme: profily děláme jen na území, které spravuje Kyperská republika.": "Sever Cypru zatiaľ nemáme: profily robíme len na území, ktoré spravuje Cyperská republika.",
+  "V Itálii děláme profily jen tam, kde má ortofoto otevřenou licenci: v Jižním Tyrolsku, Turíně, Bologni a Modeně.": "V Taliansku robíme profily len tam, kde má ortofoto otvorenú licenciu: v Južnom Tirolsku, Turíne, Bologni a Modene.",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na Kypru je stání i zastavení na chodníku zakázané bez výjimky (předpis 66/1984, čl. 58 odst. 4 v původním znění; Kodex silničního provozu 2012); aplikace nechává {need}.": "Státie napoly na chodníku z OSM: vo vozovke zostáva {free}. Na Cypre je státie aj zastavenie na chodníku zakázané bez výnimky (predpis 66/1984, čl. 58 ods. 4 v pôvodnom znení; Kódex cestnej premávky 2012); aplikácia necháva {need}.",
+  "cyklopruh a stezka pro cyklisty jednosměrné: nejméně 1,4 m, jen výjimečně na krátkém úseku 1 m; obousměrné 2,6 m, výjimečně 2,2 m; šířky bez vodicích čar a odstupů (doporučení ministerstva dopravy 2024)": "cyklistický pruh a cyklistický chodník jednosmerné: najmenej 1,4 m, len výnimočne na krátkom úseku 1 m; obojsmerné 2,6 m, výnimočne 2,2 m; šírky bez vodiacich čiar a odstupov (odporúčania ministerstva dopravy 2024)",
+  "jízdní pruh městské průjezdní silnice (kategorie D): 3,25 m (vyhláška o silnicích z 5. 11. 2001, tab. 3.4.a)": "jazdný pruh mestskej tranzitnej cesty (kategória D): 3,25 m (vyhláška o cestách z 5. 11. 2001, tab. 3.4.a)",
+  "jízdní pruh městské sběrné ulice (kategorie E): 3 m (vyhláška o silnicích z 5. 11. 2001, tab. 3.4.a)": "jazdný pruh mestskej zbernej ulice (kategória E): 3 m (vyhláška o cestách z 5. 11. 2001, tab. 3.4.a)",
+  "jízdní pruh místní ulice (kategorie F): 2,75 m (vyhláška o silnicích z 5. 11. 2001, tab. 3.4.a)": "jazdný pruh miestnej ulice (kategória F): 2,75 m (vyhláška o cestách z 5. 11. 2001, tab. 3.4.a)",
+  "obousměrná stezka pro cyklisty: 2,5 m (2 × 1,25 m), na krátkém úseku nejméně 1 m (vyhláška 557/1999, čl. 7)": "obojsmerný cyklistický chodník: 2,5 m (2 × 1,25 m), na krátkom úseku najmenej 1 m (vyhláška 557/1999, čl. 7)",
+  "polovina obousměrné stezky pro cyklisty: 1,25 m (celkem 2,5 m), na krátkém úseku nejméně 1 m (vyhláška 557/1999, čl. 7)": "polovica obojsmerného cyklistického chodníka: 1,25 m (spolu 2,5 m), na krátkom úseku najmenej 1 m (vyhláška 557/1999, čl. 7)",
+  "společná stezka pro chodce a cyklisty: širší než stezka pro cyklisty (obousměrná 2,5 m), číslo vyhláška nedává (vyhláška 557/1999, čl. 4 odst. 5)": "spoločná cestička pre chodcov a cyklistov: širšia ako cyklistický chodník (obojsmerný 2,5 m), číslo vyhláška neuvádza (vyhláška 557/1999, čl. 4 ods. 5)",
+  "Zákaz vjezdu automobilů (motocykly smějí)": "Zákaz vjazdu automobilov (motocykle smú)",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je v Monaku zakázané (čl. 32 pravidel silničního provozu, Code de la route), stát se smí jen na místech vyznačených na vozovce (čl. 31).": "Státie napoly na chodníku z OSM: vo vozovke zostáva {free}. Státie na chodníku je v Monaku zakázané (čl. 32 pravidiel cestnej premávky, Code de la route), stáť sa smie len na miestach vyznačených na vozovke (čl. 31).",
+  "chodník: 1,2 m pro přístupnou trasu (zásady přístupnosti CRPD; doporučení)": "chodník: 1,2 m pre prístupnú trasu (zásady prístupnosti CRPD; odporúčanie)",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je na Maltě zakázané (předpis S.L. 65.11, čl. 79), ledaže ho povolí značka; volnou šířku předpis neuvádí, aplikace nechává {need} (aspoň 4,1 m na míjení podle stavebního standardu DC15, nejméně 2,5 m na každý pruh).": "Státie napoly na chodníku z OSM: vo vozovke zostáva {free}. Státie na chodníku je na Malte zakázané (predpis S.L. 65.11, čl. 79), ak ho nepovolí značka; voľnú šírku predpis neuvádza, aplikácia necháva {need} (aspoň 4,1 m na míňanie podľa stavebného štandardu DC15, najmenej 2,5 m na každý pruh).",
+  "cyklopruh: 1,5 m, nejméně 1,2 m (IMT)": "cyklistický pruh: 1,5 m, najmenej 1,2 m (IMT)",
+  "cyklopruh vedle podélného stání: nejméně 2,2 m, doporučeno 2,5 m, z toho 1 m ochranný pás (IMT)": "cyklistický pruh vedľa pozdĺžneho státia: najmenej 2,2 m, odporúčané 2,5 m, z toho 1 m ochranný pás (IMT)",
+  "vyhrazený pruh BUS: 3,25 m (příručka Lisabonu); nejméně 3 m podle IMT, který cituje francouzskou CEREMA": "vyhradený pruh BUS: 3,25 m (príručka Lisabonu); najmenej 3 m podľa IMT, ktorý cituje francúzsku CEREMA",
+  "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (příručka Lisabonu); IMT doporučuje 3,25 m a společný pruh nedoporučuje": "spoločný pruh pre autobusy a cyklistov: najmenej 3,25 m (príručka Lisabonu); IMT odporúča 3,25 m a spoločný pruh neodporúča",
+  "dopravní značky: Contains public sector information licensed under the Open Government Licence v1.0 (UK Department for Transport)": "dopravné značky: Contains public sector information licensed under the Open Government Licence v1.0 (UK Department for Transport)",
+  "ortofoto © Planning Authority Malta, 2018 (CC BY 4.0)": "ortofoto © Planning Authority Malta, 2018 (CC BY 4.0)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.
@@ -957,11 +969,11 @@ export const SK_HTML = {
     Poľsko: ortofoto a vyhľadávanie adries © GUGiK (Geoportal.gov.pl, PRG), mapa povrchov Krakova (MJO) © Gmina Miejska Kraków, hranice © EuroGeographics (GISCO), dopravné značky Wikimedia Commons (úradné diela) ·
     Francúzsko: ortofoto, budovy (BD TOPO) a vyhľadávanie adries © IGN (Géoplateforme, Licence Ouverte 2.0), mapa povrchov Paríža (Plan de voirie) © Ville de Paris (ODbL), hranice © EuroGeographics (GISCO), dopravné značky Wikimedia Commons (úradné diela) ·
     Španielsko: ortofoto PNOA a vyhľadávanie adries CartoCiudad © IGN (CC BY 4.0 scne.es), budovy © Dirección General del Catastro, mapa povrchov Zaragozy © Ayuntamiento de Zaragoza (IDEZar), hranice © EuroGeographics (GISCO), dopravné značky Wikimedia Commons (úradné diela) ·
-    Portugalsko: ortofoto © DGT (Direção-Geral do Território), hranice © EuroGeographics (GISCO), dopravné značky Wikimedia Commons (úradné diela) ·
-    Monako: ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0), hranice © prispievatelia OpenStreetMap, dopravné značky Wikimedia Commons (úradné diela) ·
-    Cyprus: ortofoto a budovy © Department of Lands and Surveys (DLS; budovy CC BY 4.0), hranice © prispievatelia OpenStreetMap, dopravné značky Wikimedia Commons (britské vzory: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
-    Malta: ortofoto © Planning Authority (CC BY 4.0), hranice © prispievatelia OpenStreetMap, dopravné značky Wikimedia Commons (britské vzory: Contains public sector information licensed under the Open Government Licence v3.0) ·
-    Taliansko: ortofoto © Provincia autonoma di Bolzano, Città di Torino, Comune di Bologna a Comune di Modena s Regione Emilia-Romagna (všetko CC BY 4.0), mapa povrchov a budovy Bologne © Comune di Bologna (CC BY 4.0), hranice © EuroGeographics (GISCO), dopravné značky Wikimedia Commons (úradné diela) ·
+    Portugalsko: ortofoto © DGT (Direção-Geral do Território), hranice © EuroGeographics (GISCO), dopravné značky Wikimedia Commons (úradné diela; prekreslenie Fry1989 pod CC BY-SA 3.0 a Gigillo83 pod CC BY-SA 4.0) ·
+    Monako: ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0), hranice © prispievatelia OpenStreetMap, kresby francúzskych dopravných značiek Wikimedia Commons ·
+    Cyprus: ortofoto 2019 © Department of Lands and Surveys (DLS; licencia neuvedená), budovy © DLS (CC BY 4.0), hranice © prispievatelia OpenStreetMap, dopravné značky Wikimedia Commons (britské vzory: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
+    Malta: ortofoto 2018 © Planning Authority (CC BY 4.0), hranice © prispievatelia OpenStreetMap, dopravné značky Wikimedia Commons (britské vzory: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
+    Taliansko: ortofoto © Provincia autonoma di Bolzano, Città di Torino, Comune di Bologna a Comune di Modena s Regione Emilia-Romagna (všetko CC BY 4.0), budovy Bologne © Comune di Bologna (CC BY 4.0), hranice © EuroGeographics (GISCO), dopravné značky Wikimedia Commons (úradné diela; prekreslenie F l a n k e r pod CC BY-SA 3.0 a 4.0) ·
     Estónsko: ortofoto, budovy (ETAK) a hľadanie adries (In-ADS) © Maa- ja Ruumiamet, stav 11/2026 (otvorená licencia), mapa povrchov Tallinnu © Tallinna Linnaplaneerimise Amet, hranice © EuroGeographics (GISCO), dopravné značky Wikimedia Commons (úradné diela; prekreslenie มองโกเลีย๔๔ pod CC BY-SA 4.0) ·
     siete pod zemou © IPR Praha, Gemeente Amsterdam a Waternet (CC BY), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, štatutárne mestá Karviná, Ostrava, mesto Břeclav ·
     parkovanie © TSK hl. m. Prahy (CC BY 4.0), zákaz státia, stromy a zaradenie komunikácií z <a href="https://opendata.geoportalpraha.cz">Geoportálu Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, mestá Jihlava, Opava, Plzeň (CC0) ·
@@ -1001,9 +1013,9 @@ export const SK_CITY = {
   poland: { ...ABROAD, dataShort: "ortofoto GUGiK a OSM", credit: "", rulesHead: "Šírky podľa poľských predpisov (nariadenie o technických podmienkach verejných ciest, 2022):" },
   france: { ...ABROAD, dataShort: "ortofoto IGN a OSM", credit: "", rulesHead: "Šírky podľa francúzskych predpisov a odporúčaní Cerema:" },
   spain: { ...ABROAD, dataShort: "ortofoto PNOA a OSM", credit: "", rulesHead: "Šírky podľa španielskych predpisov a odporúčaní ministerstva dopravy:" },
-  portugal: { ...ABROAD, dataShort: "ortofotá DGT a OSM", credit: "", rulesHead: "Šírky podľa portugalských predpisov:" },
+  portugal: { ...ABROAD, dataShort: "ortofotá DGT a OSM", credit: "", rulesHead: "Šírky podľa portugalských predpisov a odporúčaní:" },
   monaco: { ...ABROAD, dataShort: "ortofoto IGN a OSM", credit: "", rulesHead: "Monako nemá predpisy šírok ulíc, aplikácia nevaruje:" },
-  cyprus: { ...ABROAD, dataShort: "ortofota DLS a OSM", credit: "", rulesHead: "Šírky podľa cyperských predpisov:" },
+  cyprus: { ...ABROAD, dataShort: "ortofota DLS a OSM", credit: "budovy © Department of Lands and Surveys (DLS, CC BY 4.0)", rulesHead: "Šírky podľa odporúčaní cyperského odboru verejných prác (príručka pre mestské ulice):" },
   malta: { ...ABROAD, dataShort: "ortofota Planning Authority a OSM", credit: "", rulesHead: "Šírky podľa maltských predpisov a odporúčaní:" },
   italy: { ...ABROAD, dataShort: "otvorených ortofot a OSM", credit: "", rulesHead: "Šírky podľa talianskych predpisov:" },
   estonia: { ...ABROAD, dataShort: "ortofota Maa- ja Ruumiamet a OSM", credit: "", rulesHead: "Šírky podľa estónskych predpisov:" },

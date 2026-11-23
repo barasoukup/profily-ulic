@@ -10,6 +10,13 @@ test("Portugalsko: ortofota DGT (2025, 2021, 2018, satelit 2023) v EPSG:3857", a
   const u = new URL(L.PT_ORTHO["pt-25"]([1, 2, 3, 4], 100, 100));
   assert.equal(u.searchParams.get("LAYERS"), "Ortos2025-RGB");
   assert.equal(u.searchParams.get("CRS"), "EPSG:3857");
+  // Madeira and the Azores: DGT has no photo there, nothing is asked (the review of 23. 11. 2026).
+  const { localFrame } = await import("../pilot/public/derive.js");
+  for (const [lat, lon] of [[32.65, -16.91], [37.74, -25.68]])
+    assert.equal(await L.laneImage({ source: "pt", frame: localFrame(lat, lon), dir: [1, 0], t0: -10, t1: 10 }), null, `${lat},${lon}`);
+  const real = globalThis.fetch;
+  globalThis.fetch = () => { throw new Error("no request off the mainland"); };
+  try { assert.equal(await L.orthoPatch({ source: "pt", lon: -16.91, lat: 32.65, half: 10, px: 64 }), null); } finally { globalThis.fetch = real; }
 });
 
 test("Portugalsko: značky (H3 / C1 podle směru, C13, zóny)", async () => {
@@ -27,6 +34,12 @@ test("Portugalsko: značky (H3 / C1 podle směru, C13, zóny)", async () => {
   for (const file of ["H3", "C1", "C1-plus-10e", ...[10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120].map((v) => `C13-${v}`)])
     assert.ok(fs.existsSync(new URL(`../pilot/public/signs-PT/${file}.svg`, import.meta.url)), file);
   assert.equal(PT.limits({ type: "chodnik", width: 1 }, []).min, 1.5);
+  // A cycle lane beside parallel parking: IMT's 2.2 m at least (the review of 23. 11. 2026), elsewhere 1.2 m.
+  const lane = { type: "cyklopruh", width: 1.5 };
+  assert.equal(PT.limits(lane, [{ type: "pruh" }, lane], 1).min, 1.2);
+  assert.deepEqual([PT.limits(lane, [{ type: "parkovani" }, lane], 1).min, PT.limits(lane, [lane, { type: "parkovani", orient: "podelne" }], 0).zaklad], [2.2, 2.5]);
+  assert.equal(PT.limits(lane, [{ type: "parkovani", orient: "kolme" }, lane], 1).min, 1.2);
+  for (const f of ["M12a", "M12b", "G4-40"]) assert.ok(!fs.existsSync(new URL(`../pilot/public/signs-PT/${f}.svg`, import.meta.url)), `${f}: nekreslí se`);
 });
 
 test("Portugalsko: stát podle hranic (Madeira, Azory)", async () => {

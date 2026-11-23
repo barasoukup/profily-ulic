@@ -5,8 +5,9 @@
 // point and the street for the cut. CartoCiudad writes Catalan, Galician and Basque names in their Castilian form.
 export const CARTOCIUDAD = "https://www.cartociudad.es/geocoder/api/geocoder";
 const MAX = 15, FIND = 3;
-// A query that is likely Spanish (asked where the map shows another state and nothing else was found).
-export const looksSpanish = (text) => /\b(calle|c\/|avenida|avda|paseo|plaza|pza|carrer|avinguda|passeig|plaça|rúa|ronda|glorieta|camino|carretera|travesía|kalea|etorbidea)\b|[ñ]|\b(madrid|barcelona|valencia|sevilla|zaragoza|málaga|malaga|bilbao|murcia|palma|alicante|córdoba|cordoba|valladolid|vigo|gijón|gijon|coruña|coruna|granada|vitoria)\b/i.test(text);
+// A query that is likely Spanish (asked where the map shows another state and nothing else was found). Palma only with
+// "de Mallorca" ("palma" alone is a Czech word too; the review of 23. 11. 2026).
+export const looksSpanish = (text) => /\b(calle|c\/|avenida|avda|paseo|plaza|pza|carrer|avinguda|passeig|plaça|rúa|ronda|glorieta|camino|carretera|travesía|kalea|etorbidea)\b|[ñ]|\b(madrid|barcelona|valencia|sevilla|zaragoza|málaga|malaga|bilbao|murcia|palma de mallorca|alicante|córdoba|cordoba|valladolid|vigo|gijón|gijon|coruña|coruna|granada|vitoria)\b/i.test(text);
 
 const KIND = { portal: "AdresniMisto", callejero: "Ulice", carretera: "Ulice", poblacion: "Obec", Municipio: "Obec" };
 // A WKT POINT or MULTILINESTRING / LINESTRING: a point of it (a line's middle vertex).

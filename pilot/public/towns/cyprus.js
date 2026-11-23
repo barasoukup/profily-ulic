@@ -1,6 +1,6 @@
 // Cyprus (Bára 23. 11. 2026): the state of a cut inside staty.json's "cyprus" (GISCO's island). No city publishes its
 // street surfaces: the profile is the estimate from OSM and the DLS orthophoto (lanes-ortho.js "cy"). The buildings of
-// the DLS (INSPIRE BU3, CC BY 4.0): floors, roof and type. In the north and on the British bases the DLS has nothing (the
+// the DLS (INSPIRE BU3, CC BY 4.0): floors, height and type (the roof type is not read). In the north and on the British bases the DLS has nothing (the
 // estimate from OSM alone). Sources: evaluation/cyprus/ZDROJE.md.
 import { osmTiles, getJSON } from "../gis.js";
 
@@ -21,7 +21,7 @@ export function dlsBuilding(a) {
 async function podlaznost(lat, lon) {
   if (param("dls") === "0") return {};
   const json = await getJSON(`${DLS_BUILDINGS}?${new URLSearchParams({ geometry: `${lon},${lat}`, geometryType: "esriGeometryPoint", inSR: "4326", distance: "1", units: "esriSRUnit_Meter",
-    spatialRel: "esriSpatialRelIntersects", outFields: "B_TYPE,ROOF_TYPE,FLOOR_QTY,H_ROOF_A_1", returnGeometry: "false", f: "json" })}`);
+    spatialRel: "esriSpatialRelIntersects", outFields: "B_TYPE,FLOOR_QTY,H_ROOF_A_1", returnGeometry: "false", f: "json" })}`);
   const f = (json?.features || []).sort((x, y) => (y.attributes.FLOOR_QTY || 0) - (x.attributes.FLOOR_QTY || 0))[0];
   return f ? dlsBuilding(f.attributes) : {};
 }

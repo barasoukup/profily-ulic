@@ -48,16 +48,37 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Portugalsko: chybí stání (16×, často kolmé) a chodník (13×) v měření; stání EMEL Lisabon (12 tisíc úseků s orientací,
   CC BY-SA) a buspruhy Porta (CC0) jen jako statické soubory při nasazení; ortofoto Madeiry (IRIG, licence neuvedená) a
   Azor (bez CORS, jen podklad mapy); ~~Monako~~ (23. 11. přidáno), Andorra bez ortofota odložit.
-- Kypr **(Bára)**: chodník 2 / 2,5 m (doporučení); 3 m na směr vedle stání; jednosměrka: stát jen vlevo?; protisměrní
-  cyklisté bez tabulky; zóna 30 nekreslit; pěší zóna jako „povinná pěší cesta“. Sever ostrova jako samostatný stát
+- Španělsko **(Bára)**: vrstva PNOA v mapě ukazuje i Melillu (snímek Airbus, licence nevyjasněná; pruhy se tam už nečtou):
+  Melillu z vrstvy vyjmout (`ES_NOT_PNOA`), nebo uvést Airbus?
+- Španělsko **(Bára)**: Catastro („Dirección General del Catastro“) je jen v patičce, ne v kreditu exportu: přidat klíč
+  zdroje (když `podlaznost` vrátí dům z katastru)?
+- Portugalsko **(Bára)**: krátký popis dat „ortofota DGT a OSM“ neplatí na Madeiře a Azorech (jen OSM): nechat, nebo
+  „ortofota DGT (jen pevnina) a OSM“?
+- Kypr **(Bára)**: kredit ortofota v exportu bez roku („ortofoto © DLS Kypr“): doplnit „, 2019“ jako v patičce?
+- Kypr: kredit budov DLS je v exportu u každého kyperského řezu (i bez domu z DLS, britské základny); přesněji klíčem zdroje
+  (`state.cut.sources`, když `podlaznost` vrátí dům). Kredit britských značek (OGL, `credits.js ukSigns`) se počítá ze Stavu,
+  ne ze značek přidaných v Návrhu.
+- Kypr: `lanes-ortho.js` „cy“: napůl chybějící dlaždice (404 u Zelené linie) dávají jas 0 místo NaN (vyplnit NaN nebo
+  hlídat podíl prázdna). Malta: WMS vrací chybu jako 200 `text/xml` (hlídat content-type, hlásit výpadek); podklad mapy
+  jako JPEG místo PNG (`app.js`). Kypr i Malta: `streetmix.js` neposílá `leftHandTraffic`.
+- Kypr **(Bára)**: ~~chodník 2 / 2,5 m (doporučení)~~ (23. 11.: bez červené, oranžově podle třídy ulice); 3 m na směr vedle stání; jednosměrka: stát jen vlevo?; protisměrní
+  cyklisté ~~bez tabulky~~ (23. 11.: bez značky); zóna 30 nekreslit; pěší zóna jako „povinná pěší cesta“. Sever ostrova jako samostatný stát
   (zatím nemáme). Měření: chybí chodník 9×, stání 5×.
-- Malta **(Bára)**: volná šířka DC15 (4,1 / 3 m), nebo 3 m na směr?; chodník 1,2 / 1,5 m?; cyklo, BUS a pruhy bez
+- Malta **(Bára)**: ~~volná šířka DC15 (4,1 / 3 m), nebo 3 m na směr?~~ (23. 11.: v kódu větší z DC15 a 2,5 m na pruh);
+  ~~chodník 1,2 / 1,5 m?~~ (23. 11.: 1,2 m oranžově; Table 1A přečíst jako obraz); cyklo, BUS a pruhy bez
   varování, nebo britské normy (LTN 1/20)?; podélné stání 2,4 m (standard parkovišť) zatím ne; zákaz stání jako II.D6
   „No waiting“. Výškový model 2018 (1 m, CC BY 4.0) by šel na výšky domů.
 - Itálie: další regiony, jak budou otevírat ortofota (Lombardie a Ligurie mají služby rozbité, Benátsko a Sardinie
   neodpovídají, Furlansko a Trento bez CORS, Apulie 2023 bez licence); plochy silnic Bologni rozdělit čarami obrub; dílčí
   nálety Emilie-Romagny 2023–26 (CC BY 4.0) zapojit podle jejich pokrytí.
-  **(Bára)**: chodník 0,9, nebo 1,5 m?; pruh podle kategorie silnice?; jednosměrka II.349, nebo II.348?
+  **(Bára)**: chodník 0,9, nebo 1,5 m?; ~~pruh podle kategorie silnice?~~ (23. 11.: podle třídy z OSM 3,25 / 3 / 2,75 m);
+  jednosměrka II.349, nebo II.348?
+- Itálie **(Bára)**: kredit Turína „© Città di Torino (CC BY 4.0)“ je výklad; podmínky geoportálu chtějí znění „Base
+  cartografica realizzata da …, integrata con … della Città di Torino reperiti sul Geoportale del Comune di Torino“: přepsat?
+- Itálie: italská značka zastávky (modrá čtvercová s autobusem) místo rakouského „H“; mapa povrchů Bologni (vypnutá):
+  `records` končí bez varování na 500 plochách, výplň „zbytek je chodník“ rozdělit čarami obrub, než se zapne; 3,50 m pro
+  pruhy s autobusy mimo vyhrazený pruh (D.M. 2001 bod 3.4.2) aplikace nepozná; hranice obcí GISCO 1 : 1 M nahradit
+  přesnějšími (ISTAT nebo OSM); měření jen 6 řezů (`evaluation/universal/ZPRAVA.md`), rozšířit.
 - Estonsko: normy rozhodnuté (Bára 23. 11. 2026: chodník 2,0, pruh 2,75, 3 m na směr, pěší zóna 381 + 432, stání a tramvaj
   bez varování). Normy nekupujeme (Bára 23. 11. 2026: EVS 843 jen z druhé ruky). Mapa povrchů Tallinnu zapnutá (pole `kate` nevyužité, tl38 ztratil střední pás);
   plochy úklidu Tartu (`Puhastusala`) by šly stejně, A/B. Stáří ortofota
@@ -105,7 +126,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Balík OSM `be` (0,7 GB PBF) po prvním běhu workflow změřit, případně rozdělit pod 512 MB.
 - Balíky `pl_sl` a `pl_ds` zasahují obdélníkem do Česka (jen dotazy navíc).
 - Před nasazením NL, BE, LU, PL, FR: sloučit větve do `main` a ručně spustit workflow OSM tiles se `states: nl,be,lu,pl,fr`.
-- Logování: D1 potřebuje sloupec `country` a nový Worker (`logging/README.md`), nasadit musí Bára.
+- Logování: D1 potřebuje sloupec `country` a nový Worker (`logging/README.md`; hranice poloh teď pokrývají všechny státy), nasadit musí Bára.
 
 ## Licence ke kontrole
 

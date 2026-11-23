@@ -877,7 +877,6 @@ export const LV = {
   " · mapa povrchů Zaragozy neodpověděla, odhad z ortofota a OSM": " · Saragosas segumu karte neatbildēja, aplēse pēc ortofoto un OSM",
   "Mapa povrchů Zaragozy teď neodpovídá, profil je odhad z ortofota a OSM.": "Saragosas segumu karte pašlaik neatbild, profils ir aplēse pēc ortofoto un OSM.",
   "chodník: volná šířka přístupné pěší trasy nejméně 1,8 m (vyhláška o přístupnosti TMA/851/2021, čl. 5.2 b); ministerstvo doporučuje 3 m, nikdy pod 2 m": "ietve: pieejamā gājēju maršruta brīvais platums vismaz 1,8 m (pieejamības rīkojums TMA/851/2021, 5.2. panta b punkts); ministrija iesaka 3 m, nekad ne mazāk par 2 m",
-  "cyklopruh a stezka pro cyklisty jednosměrné: nejméně 1,4 m, výjimečně 1 m; obousměrné 2,6 m, výjimečně 2,2 m (doporučení ministerstva dopravy 2024)": "vienvirziena velojosla un veloceliņš: vismaz 1,4 m, izņēmuma gadījumā 1 m; divvirzienu 2,6 m, izņēmuma gadījumā 2,2 m (Transporta ministrijas ieteikums 2024)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,5–2,75 m (doporučení ministerstva dopravy 2024)": "daudzjoslu vienvirziena brauktuves braukšanas josla: 2,5–2,75 m (Transporta ministrijas ieteikums 2024)",
   "jízdní pruh městské ulice: 2,5–3 m, ne víc než 3 m (doporučení ministerstva dopravy 2024)": "pilsētas ielas braukšanas josla: 2,5–3 m, ne vairāk par 3 m (Transporta ministrijas ieteikums 2024)",
   "šikmé stání: pás 4 m při 45°, 4,5 m při 60° (doporučení ministerstva dopravy 2024)": "slīpās stāvvietas: josla 4 m pie 45°, 4,5 m pie 60° (Transporta ministrijas ieteikums 2024)",
@@ -887,10 +886,7 @@ export const LV = {
   // Portugal (Bára 23. 11. 2026).
   "ortofoto © DGT": "ortofoto © DGT",
   "chodník: volná šířka nejméně 1,5 m u hlavních a sběrných ulic, 1,2 m u každé pěší trasy (zákon o přístupnosti 163/2006); doporučeno 1,8 m (IMT, Lisabon)": "ietve: brīvais platums vismaz 1,5 m galvenajās un savācējielās, 1,2 m katrā gājēju maršrutā (pieejamības likums 163/2006); ieteicams 1,8 m (IMT, Lisabona)",
-  "cyklopruh: 1,5 m, nejméně 1,2 m; vedle podélného stání 2,5 m (IMT, příručka Lisabonu)": "velojosla: 1,5 m, vismaz 1,2 m; blakus paralēlajām stāvvietām 2,5 m (IMT, Lisabonas rokasgrāmata)",
   "stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)": "vienvirziena veloceliņš: 2 m, vismaz 1,75 m; divvirzienu 3 m, ja satiksme neliela, 2,4 m (IMT un LNEC 2024)",
-  "vyhrazený pruh BUS: 3,25 m, nejméně 3 m (IMT, příručka Lisabonu)": "autobusu josla: 3,25 m, vismaz 3 m (IMT, Lisabonas rokasgrāmata)",
-  "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (IMT, příručka Lisabonu)": "kopīga josla autobusiem un velosipēdistiem: vismaz 3,25 m (IMT, Lisabonas rokasgrāmata)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,75 m (příručka Lisabonu)": "daudzjoslu vienvirziena brauktuves braukšanas josla: 2,75 m (Lisabonas rokasgrāmata)",
   "jízdní pruh: 3 m (IMT, příručka Lisabonu)": "braukšanas josla: 3 m (IMT, Lisabonas rokasgrāmata)",
   "šikmé stání: pás 4,2 m (příručka Lisabonu)": "slīpās stāvvietas: josla 4,2 m (Lisabonas rokasgrāmata)",
@@ -898,7 +894,6 @@ export const LV = {
   "podélné stání: pás 2 m, v historickém centru 1,8 m (IMT, příručka Lisabonu)": "paralēlās stāvvietas: josla 2 m, vēsturiskajā centrā 1,8 m (IMT, Lisabonas rokasgrāmata)",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je v Portugalsku zakázané (čl. 49 odst. 1 písm. f zákona o silničním provozu), ledaže ho povolí značka; ostatní nesmějí muset vjet do protisměru (čl. 50), aplikace nechává {need}.": "Stāvēšana daļēji uz ietves pēc OSM: brauktuvē paliek {free}. Stāvēt uz ietves Portugālē ir aizliegts (Ceļu satiksmes kodeksa 49. panta 1. daļas f punkts), ja vien to neatļauj ceļa zīme; pārējiem nedrīkst nākties iebraukt pretējā braukšanas virziena joslā (50. pants), lietotne atstāj {need}.",
   // Monaco (Bára 23. 11. 2026).
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je v Monaku zakázané (čl. 32 zákona o silničním provozu), stát se smí jen na místech vyznačených na vozovce (čl. 31).": "Stāvēšana daļēji uz ietves pēc OSM: brauktuvē paliek {free}. Stāvēt uz ietves Monako ir aizliegts (Ceļu satiksmes kodeksa 32. pants), stāvēt drīkst tikai uz brauktuves apzīmētās vietās (31. pants).",
   // Cyprus (Bára 23. 11. 2026).
   "ortofoto © DLS Kypr": "ortofoto © DLS Kipra",
   "chodník: 2 m u místních a obslužných ulic, 2,5 m u sběrných (příručka odboru veřejných prací Kypru, doporučení)": "ietve: 2 m vietējās un piekļuves ielās, 2,5 m savācējielās (Kipras Sabiedrisko darbu departamenta rokasgrāmata, ieteikums)",
@@ -907,12 +902,9 @@ export const LV = {
   "vyhrazený pruh BUS: 3,5 m, nejméně 3 m (příručka odboru veřejných prací Kypru, doporučení)": "autobusu josla: 3,5 m, vismaz 3 m (Kipras Sabiedrisko darbu departamenta rokasgrāmata, ieteikums)",
   "společný pruh pro autobusy a cyklisty: 4 m, nejméně 3,5 m (příručka odboru veřejných prací Kypru, doporučení)": "kopīga josla autobusiem un velosipēdistiem: 4 m, vismaz 3,5 m (Kipras Sabiedrisko darbu departamenta rokasgrāmata, ieteikums)",
   "jízdní pruh: 3 m u obslužných ulic, 3,5 m u sběrných (příručka odboru veřejných prací Kypru, doporučení)": "braukšanas josla: 3 m piekļuves ielās, 3,5 m savācējielās (Kipras Sabiedrisko darbu departamenta rokasgrāmata, ieteikums)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na Kypru je stání i zastavení na chodníku zakázané bez výjimky (předpis 66/1984, čl. 58); aplikace nechává {need}.": "Stāvēšana daļēji uz ietves pēc OSM: brauktuvē paliek {free}. Kiprā stāvēt un apstāties uz ietves ir aizliegts bez izņēmumiem (noteikumi 66/1984, 58. pants); lietotne atstāj {need}.",
   // Malta (Bára 23. 11. 2026).
   "ortofoto © Planning Authority Malta (CC BY 4.0)": "ortofoto © Planning Authority Malta (CC BY 4.0)",
-  "chodník: nejméně 1,2 m (zásady přístupnosti CRPD), u silnic 1,5 m (příručka Transport Malta 2003); doporučení": "ietve: vismaz 1,2 m (CRPD piekļūstamības vadlīnijas), pie ceļiem 1,5 m (Transport Malta rokasgrāmata, 2003); ieteikums",
   "kolmé stání: 4,8 m (stavební standard DC15 maltského stavebního úřadu)": "perpendikulārās stāvvietas: 4,8 m (Maltas Planning Authority projektēšanas standarts DC15)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je na Maltě zakázané (předpis S.L. 65.11, čl. 79), ledaže ho povolí značka; aplikace nechává {need} (stavební standard DC15).": "Stāvēšana daļēji uz ietves pēc OSM: brauktuvē paliek {free}. Stāvēt uz ietves Maltā ir aizliegts (noteikumu S.L. 65.11 79. pants), ja vien to neatļauj ceļa zīme; lietotne atstāj {need} (projektēšanas standarts DC15).",
   // Italy (Bára 23. 11. 2026).
   "mapy povrchů Bologni, ortofota a OSM": "Boloņas segumu karte, ortofoto un OSM",
   "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)": "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)",
@@ -929,7 +921,6 @@ export const LV = {
   "chodník: přístupná trasa nejméně 0,9 m (vyhláška 236/1989, bod 8.2.1), nová ulice 1,5 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.6)": "ietve: pieejams maršruts vismaz 0,9 m (dekrēts 236/1989, 8.2.1. punkts), jauna iela 1,5 m (2001. gada 5. novembra ministrijas dekrēts par ceļu projektēšanu, 3.4.6. punkts)",
   "cyklopruh a stezka pro cyklisty jednosměrné: 1,5 m, na krátkém úseku nejméně 1 m; obousměrná stezka 2,5 m (vyhláška 557/1999, čl. 7)": "vienvirziena velojosla un veloceliņš: 1,5 m, īsā posmā vismaz 1 m; divvirzienu veloceliņš 2,5 m (dekrēts 557/1999, 7. pants)",
   "vyhrazený pruh BUS: 3,5 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.2)": "autobusu josla: 3,5 m (2001. gada 5. novembra ministrijas dekrēts par ceļu projektēšanu, 3.4.2. punkts)",
-  "jízdní pruh městské ulice: 2,75–3 m (vyhláška o silnicích z 5. 11. 2001, tab. 3.4.a)": "pilsētas ielas braukšanas josla: 2,75–3 m (2001. gada 5. novembra ministrijas dekrēts par ceļu projektēšanu, 3.4.a tabula)",
   "šikmé stání (45°): pás 4,8 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.7)": "slīpās stāvvietas (45°): josla 4,8 m (2001. gada 5. novembra ministrijas dekrēts par ceļu projektēšanu, 3.4.7. punkts)",
   "kolmé stání: pás 5 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.7)": "perpendikulārās stāvvietas: josla 5 m (2001. gada 5. novembra ministrijas dekrēts par ceļu projektēšanu, 3.4.7. punkts)",
   "podélné stání: pás 2 m, nejméně 1,8 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.7)": "paralēlās stāvvietas: josla 2 m, vismaz 1,8 m (2001. gada 5. novembra ministrijas dekrēts par ceļu projektēšanu, 3.4.7. punkts)",
@@ -943,6 +934,27 @@ export const LV = {
   "pruh pro veřejnou dopravu: nejméně 3 m (norma EVS 843, z druhé ruky)": "sabiedriskā transporta josla: vismaz 3 m (standarts EVS 843, no sekundāriem avotiem)",
   "jízdní pruh: 3 m, u místních ulic 2,75 m (příručka uličního prostoru Tallinnu a norma EVS 843, z druhé ruky)": "braukšanas josla: 3 m, vietējās ielās 2,75 m (Tallinas ielu telpas rokasgrāmata un standarts EVS 843, no sekundāriem avotiem)",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. V Estonsku smí auto stát na chodníku jen tam, kde to dovolí značka, a chodcům musí zůstat aspoň 1,5 m (§ 20 zákona o silničním provozu); aplikace nechává {need}.": "Stāvēšana daļēji uz ietves pēc OSM: brauktuvē paliek {free}. Igaunijā automašīna drīkst stāvēt uz ietves tikai tur, kur to atļauj ceļa zīme, un gājējiem jāpaliek vismaz 1,5 m (Ceļu satiksmes likuma 20. paragrāfs); lietotne atstāj {need}.",
+  // Reviews of 23. 11. 2026 (Spain, Portugal, Monaco, Cyprus, Malta, Italy).
+  "Sever Kypru zatím nemáme: profily děláme jen na území, které spravuje Kyperská republika.": "Kipras ziemeļu daļas mums vēl nav: profilus veidojam tikai teritorijā, ko pārvalda Kipras Republika.",
+  "V Itálii děláme profily jen tam, kde má ortofoto otevřenou licenci: v Jižním Tyrolsku, Turíně, Bologni a Modeně.": "Itālijā profilus veidojam tikai tur, kur ortofoto ir atvērta licence: Dienvidtirolē, Turīnā, Boloņā un Modenā.",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na Kypru je stání i zastavení na chodníku zakázané bez výjimky (předpis 66/1984, čl. 58 odst. 4 v původním znění; Kodex silničního provozu 2012); aplikace nechává {need}.": "Stāvēšana daļēji uz ietves pēc OSM: brauktuvē paliek {free}. Kiprā stāvēt un apstāties uz ietves ir aizliegts bez izņēmumiem (noteikumi 66/1984, 58. panta 4. daļa sākotnējā redakcijā; Ceļu satiksmes kodekss 2012); lietotne atstāj {need}.",
+  "cyklopruh a stezka pro cyklisty jednosměrné: nejméně 1,4 m, jen výjimečně na krátkém úseku 1 m; obousměrné 2,6 m, výjimečně 2,2 m; šířky bez vodicích čar a odstupů (doporučení ministerstva dopravy 2024)": "vienvirziena velojosla un veloceliņš: vismaz 1,4 m, tikai izņēmuma gadījumā īsā posmā 1 m; divvirzienu 2,6 m, izņēmuma gadījumā 2,2 m; platumi bez malas līnijām un atstarpēm (Transporta ministrijas ieteikums 2024)",
+  "jízdní pruh městské průjezdní silnice (kategorie D): 3,25 m (vyhláška o silnicích z 5. 11. 2001, tab. 3.4.a)": "pilsētas tranzīta ceļa braukšanas josla (D kategorija): 3,25 m (2001. gada 5. novembra ministrijas dekrēts par ceļu projektēšanu, 3.4.a tabula)",
+  "jízdní pruh městské sběrné ulice (kategorie E): 3 m (vyhláška o silnicích z 5. 11. 2001, tab. 3.4.a)": "pilsētas savācējielas braukšanas josla (E kategorija): 3 m (2001. gada 5. novembra ministrijas dekrēts par ceļu projektēšanu, 3.4.a tabula)",
+  "jízdní pruh místní ulice (kategorie F): 2,75 m (vyhláška o silnicích z 5. 11. 2001, tab. 3.4.a)": "vietējās ielas braukšanas josla (F kategorija): 2,75 m (2001. gada 5. novembra ministrijas dekrēts par ceļu projektēšanu, 3.4.a tabula)",
+  "obousměrná stezka pro cyklisty: 2,5 m (2 × 1,25 m), na krátkém úseku nejméně 1 m (vyhláška 557/1999, čl. 7)": "divvirzienu veloceliņš: 2,5 m (2 × 1,25 m), īsā posmā vismaz 1 m (dekrēts 557/1999, 7. pants)",
+  "polovina obousměrné stezky pro cyklisty: 1,25 m (celkem 2,5 m), na krátkém úseku nejméně 1 m (vyhláška 557/1999, čl. 7)": "puse no divvirzienu veloceliņa: 1,25 m (kopā 2,5 m), īsā posmā vismaz 1 m (dekrēts 557/1999, 7. pants)",
+  "společná stezka pro chodce a cyklisty: širší než stezka pro cyklisty (obousměrná 2,5 m), číslo vyhláška nedává (vyhláška 557/1999, čl. 4 odst. 5)": "kopīgs gājēju un velosipēdistu ceļš: platāks par veloceliņu (divvirzienu 2,5 m); dekrēts skaitli nenorāda (dekrēts 557/1999, 4. panta 5. daļa)",
+  "Zákaz vjezdu automobilů (motocykly smějí)": "Automobiļiem braukt aizliegts (motocikliem atļauts)",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je v Monaku zakázané (čl. 32 pravidel silničního provozu, Code de la route), stát se smí jen na místech vyznačených na vozovce (čl. 31).": "Stāvēšana daļēji uz ietves pēc OSM: brauktuvē paliek {free}. Stāvēt uz ietves Monako ir aizliegts (ceļu satiksmes noteikumu 32. pants, Code de la route); stāvēt drīkst tikai uz brauktuves apzīmētās vietās (31. pants).",
+  "chodník: 1,2 m pro přístupnou trasu (zásady přístupnosti CRPD; doporučení)": "ietve: 1,2 m piekļūstamam maršrutam (CRPD piekļūstamības vadlīnijas; ieteikums)",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je na Maltě zakázané (předpis S.L. 65.11, čl. 79), ledaže ho povolí značka; volnou šířku předpis neuvádí, aplikace nechává {need} (aspoň 4,1 m na míjení podle stavebního standardu DC15, nejméně 2,5 m na každý pruh).": "Stāvēšana daļēji uz ietves pēc OSM: brauktuvē paliek {free}. Stāvēt uz ietves Maltā ir aizliegts (noteikumu S.L. 65.11 79. pants), ja vien to neatļauj ceļa zīme; noteikumi brīvo platumu nenorāda, lietotne atstāj {need} (vismaz 4,1 m samainīšanās vajadzībām pēc projektēšanas standarta DC15, vismaz 2,5 m katrai joslai).",
+  "cyklopruh: 1,5 m, nejméně 1,2 m (IMT)": "velojosla: 1,5 m, vismaz 1,2 m (IMT)",
+  "cyklopruh vedle podélného stání: nejméně 2,2 m, doporučeno 2,5 m, z toho 1 m ochranný pás (IMT)": "velojosla blakus paralēlajām stāvvietām: vismaz 2,2 m, ieteicams 2,5 m, no tiem 1 m drošības josla (IMT)",
+  "vyhrazený pruh BUS: 3,25 m (příručka Lisabonu); nejméně 3 m podle IMT, který cituje francouzskou CEREMA": "autobusu josla: 3,25 m (Lisabonas rokasgrāmata); vismaz 3 m pēc IMT, kas citē Francijas CEREMA",
+  "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (příručka Lisabonu); IMT doporučuje 3,25 m a společný pruh nedoporučuje": "kopīga josla autobusiem un velosipēdistiem: vismaz 3,25 m (Lisabonas rokasgrāmata); IMT iesaka 3,25 m un kopīgu joslu neiesaka",
+  "dopravní značky: Contains public sector information licensed under the Open Government Licence v1.0 (UK Department for Transport)": "ceļa zīmes: Contains public sector information licensed under the Open Government Licence v1.0 (UK Department for Transport)",
+  "ortofoto © Planning Authority Malta, 2018 (CC BY 4.0)": "ortofoto © Planning Authority Malta, 2018 (CC BY 4.0)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.
@@ -959,11 +971,11 @@ export const LV_HTML = {
     Polija: ortofoto un adrešu meklēšana © GUGiK (Geoportal.gov.pl, PRG), Krakovas segumu karte (MJO) © Gmina Miejska Kraków, robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi) ·
     Francija: ortofoto, ēkas (BD TOPO) un adrešu meklēšana © IGN (Géoplateforme, Licence Ouverte 2.0), Parīzes segumu karte (Plan de voirie) © Ville de Paris (ODbL), robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi) ·
     Spānija: ortofoto PNOA un adrešu meklēšana CartoCiudad © IGN (CC BY 4.0 scne.es), ēkas © Dirección General del Catastro, Saragosas segumu karte © Ayuntamiento de Zaragoza (IDEZar), robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi) ·
-    Portugāle: ortofoto © DGT (Direção-Geral do Território), robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi) ·
-    Monako: ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0), robežas © OpenStreetMap līdzautori, ceļa zīmes Wikimedia Commons (oficiāli darbi) ·
-    Kipra: ortofoto un ēkas © Department of Lands and Surveys (DLS; ēkas CC BY 4.0), robežas © OpenStreetMap līdzautori, ceļa zīmes Wikimedia Commons (britu paraugi: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
-    Malta: ortofoto © Planning Authority (CC BY 4.0), robežas © OpenStreetMap līdzautori, ceļa zīmes Wikimedia Commons (britu paraugi: Contains public sector information licensed under the Open Government Licence v3.0) ·
-    Itālija: ortofoto © Provincia autonoma di Bolzano, Città di Torino, Comune di Bologna un Comune di Modena ar Regione Emilia-Romagna (visi CC BY 4.0), Boloņas segumu karte un ēkas © Comune di Bologna (CC BY 4.0), robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi) ·
+    Portugāle: ortofoto © DGT (Direção-Geral do Território), robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi; pārzīmējuši Fry1989, CC BY-SA 3.0, un Gigillo83, CC BY-SA 4.0) ·
+    Monako: ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0), robežas © OpenStreetMap līdzautori, Francijas ceļa zīmju zīmējumi Wikimedia Commons ·
+    Kipra: ortofoto 2019 © Department of Lands and Surveys (DLS; licence nav norādīta), ēkas © DLS (CC BY 4.0), robežas © OpenStreetMap līdzautori, ceļa zīmes Wikimedia Commons (britu paraugi: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
+    Malta: ortofoto 2018 © Planning Authority (CC BY 4.0), robežas © OpenStreetMap līdzautori, ceļa zīmes Wikimedia Commons (britu paraugi: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
+    Itālija: ortofoto © Provincia autonoma di Bolzano, Città di Torino, Comune di Bologna un Comune di Modena ar Regione Emilia-Romagna (visi CC BY 4.0), Boloņas ēkas © Comune di Bologna (CC BY 4.0), robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi; pārzīmējis F l a n k e r, CC BY-SA 3.0 un 4.0) ·
     Igaunija: ortofoto, ēkas (ETAK) un adrešu meklēšana (In-ADS) © Maa- ja Ruumiamet, stāvoklis 11/2026 (atvērtā licence), Tallinas segumu karte © Tallinna Linnaplaneerimise Amet, robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi; pārzīmējis มองโกเลีย๔๔, CC BY-SA 4.0) ·
     stāvvietas © TSK hl. m. Prahy (CC BY 4.0), stāvēšanas aizliegumi, koki un ielu kategorijas no <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, pilsētas Jihlava, Opava, Plzeň (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> līdzautori (ODbL) ·
@@ -1003,9 +1015,9 @@ export const LV_CITY = {
   poland: { ...ABROAD, dataShort: "GUGiK ortofoto un OSM", credit: "", rulesHead: "Platumi pēc Polijas noteikumiem (rīkojums par ceļu tehniskajiem nosacījumiem, 2022):" },
   france: { ...ABROAD, dataShort: "IGN ortofoto un OSM", credit: "", rulesHead: "Platumi pēc Francijas noteikumiem un Cerema ieteikumiem:" },
   spain: { ...ABROAD, dataShort: "PNOA ortofoto un OSM", credit: "", rulesHead: "Platumi pēc Spānijas noteikumiem un Transporta ministrijas ieteikumiem:" },
-  portugal: { ...ABROAD, dataShort: "DGT ortofoto un OSM", credit: "", rulesHead: "Platumi pēc Portugāles noteikumiem:" },
+  portugal: { ...ABROAD, dataShort: "DGT ortofoto un OSM", credit: "", rulesHead: "Platumi pēc Portugāles noteikumiem un ieteikumiem:" },
   monaco: { ...ABROAD, dataShort: "IGN ortofoto un OSM", credit: "", rulesHead: "Monako nav ielu platumu noteikumu, lietotne nebrīdina:" },
-  cyprus: { ...ABROAD, dataShort: "DLS ortofoto un OSM", credit: "", rulesHead: "Platumi pēc Kipras noteikumiem:" },
+  cyprus: { ...ABROAD, dataShort: "DLS ortofoto un OSM", credit: "ēkas © Department of Lands and Surveys (DLS, CC BY 4.0)", rulesHead: "Platumi pēc Kipras Sabiedrisko darbu departamenta ieteikumiem (pilsētas ielu projektēšanas rokasgrāmata):" },
   malta: { ...ABROAD, dataShort: "Planning Authority ortofoto un OSM", credit: "", rulesHead: "Platumi pēc Maltas noteikumiem un ieteikumiem:" },
   italy: { ...ABROAD, dataShort: "atvērto ortofoto un OSM", credit: "", rulesHead: "Platumi pēc Itālijas noteikumiem:" },
   estonia: { ...ABROAD, dataShort: "Maa- ja Ruumiamet ortofoto un OSM", credit: "", rulesHead: "Platumi pēc Igaunijas noteikumiem:" },

@@ -236,12 +236,12 @@ Všechna čísla jsou **doporučení** ([GDS], DOP stát); závazné šířky Ky
 
 | Typ | min | zaklad | Zdroj |
 |---|---|---|---|
-| chodnik, chodnik_kola | **2,0** | **2,5** | [GDS]: 2,0 m místní sběrné a obslužné ulice, 2,5 m hlavní a vedlejší sběrné; pěší cesta mimo vozovku 1,2 m |
-| cyklopruh | 1,5 | 1,5 | [GDS] tab. 9.1 (po směru 1,5; v protisměru 2,0) |
-| cyklostezka | 2,0 | 2,0 | [GDS] tab. 9.1 a 2.6.4.2 (jednosměrná 2,0; obousměrná 3,0) |
+| chodnik, chodnik_kola | ~~2,0~~ **0** | **2,0 / 2,5** | [GDS]: 2,0 m místní sběrné a obslužné ulice, 2,5 m hlavní a vedlejší sběrné; pěší cesta mimo vozovku 1,2 m. **Po recenzi 23. 11. 2026:** bez červené (příručka je „guide to good practice only“), oranžově 2,5 m u OSM primary/secondary/trunk, jinak 2,0 m |
+| cyklopruh | 1,5 (protisměr 2,0) | 1,5 (protisměr 2,0) | [GDS] tab. 9.1 (po směru 1,5; v protisměru 2,0); protisměr = cyklopruh opačně než vedlejší pruh |
+| cyklostezka | 2,0 | 2,0 (obousměrná 3,0) | [GDS] tab. 9.1 a 2.6.4.2 (jednosměrná 2,0; obousměrná 3,0); stezka bez směru = obousměrná |
 | bus | 3,0 | 3,5 | [GDS] 8.4.7.1 (výjimečně 2,8 na krátkém úseku) |
 | bus_cyklo | 3,5 | 4,0 | [GDS] 9.3.5.1 |
-| pruh | 0 | 3,0 | [GDS]: obslužná ulice 3,0 m; sběrné 3,5 m (lze rozlišit podle třídy silnice jako PT „wideStreets“) |
+| pruh | 0 | 3,0 / 3,5 | [GDS]: obslužná ulice 3,0 m; sběrné 3,5 m (po recenzi podle třídy OSM: primary, secondary, trunk 3,5) |
 | parkovani | — | — | nenalezeno; buď bez varování, nebo dočasně převzít PT/CZ (otázka) |
 | tramvaj | — | — | Kypr tramvaj nemá |
 
@@ -253,12 +253,13 @@ jízdy, tedy u levé obruby každého směru.
 ## Otevřené otázky pro Báru
 
 1. Chodník: červeně pod 2,0 m (místní a obslužné ulice) a oranžově pod 2,5 m (sběrné), nebo rozlišit podle třídy
-   ulice? Žádná šířka není zákonná, všechno je z manuálu Τμήμα Δημοσίων Έργων.
+   ulice? Žádná šířka není zákonná, všechno je z manuálu Τμήμα Δημοσίων Έργων. **Po recenzi 23. 11. 2026:** bez
+   červené, oranžově podle třídy ulice (2,0 / 2,5 m).
 2. Volná šířka vedle stání: Kodex jen radí „aby projela dvě auta“, číslo nemá. Brát 3 m na směr jako jinde?
 3. Jednosměrka a stání vpravo: zákaz „na opačné straně, než je směr jízdy“ (kan. 58(9) ii) na jednosměrce Kodex
-   nevysvětluje. Odhadovat stání na jednosměrce jen vlevo?
+   nevysvětluje. Odhadovat stání na jednosměrce jen vlevo? **Po recenzi:** odhad zkouší nejdřív levou obrubu.
 4. Jednosměrka s koly v protisměru: tabulku „kromě cyklistů“ Kodex nemá (jen britský návrh v manuálu). Kreslit zákaz
-   vjezdu bez tabulky, nebo nic?
+   vjezdu bez tabulky, nebo nic? **Po recenzi: nic** (samotný zákaz vjezdu by říkal opak profilu).
 5. Zóna 30: ohlášená, ale právně ani značkou nenalezená. Nekreslit?
 6. Pěší zóna (ip27a): Kypr má jen „povinnou pěší cestu“ (modrý kruh s chodci). Použít ji?
 7. Licence: britské značky jsou pod OGL v1.0, které vyžaduje uvedení zdroje (na rozdíl od PT). Doplnit do patičky nebo

@@ -16,7 +16,7 @@ Souborům bez `viewBox` jsem ho doplnila podle `width` a `height`. Odvozený sou
 | Klíč | Značka | Soubor |
 |---|---|---|
 | b1 | fig. II.46 Divieto di transito | II-46.svg |
-| b11 | fig. II.58 Transito vietato a tutti gli autoveicoli (ne motocykly) | II-58.svg |
+| b11 | fig. II.58 Transito vietato a tutti gli autoveicoli (ne motocykly; popisek „Zákaz vjezdu automobilů (motocykly smějí)“) | II-58.svg |
 | b8 | fig. II.55 Transito vietato alle biciclette | II-55.svg |
 | b30 | fig. II.54 Transito vietato ai pedoni | II-54.svg |
 | b20a | fig. II.50 Limite massimo di velocità (10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130) | II-50-<v>.svg |
@@ -30,7 +30,7 @@ Souborům bez `viewBox` jsem ho doplnila podle `width` a `height`. Odvozený sou
 | ip20a | panel Uso corsie (figg. II.337–II.340), kresbu Commons nemá: bez značky | – |
 | zona30 | fig. II.323/a Zona a velocità limitata (30) | II-323a-30.svg |
 | ip26a | fig. II.318 Zona residenziale | II-318.svg |
-| ip27a | fig. II.320 Area pedonale | II-320.svg |
+| ip27a | fig. II.320 Area pedonale (i s tabulkou „s cyklisty“ z OSM: kola pouští sama, CdS čl. 3 bod 2) | II-320.svg |
 | c8a | fig. II.90 Pista ciclabile | II-90.svg |
 | c9a | fig. II.92/b Percorso pedonale e ciclabile | II-92b.svg |
 | c10a | fig. II.92/a Pista ciclabile contigua al marciapiede | II-92a.svg |

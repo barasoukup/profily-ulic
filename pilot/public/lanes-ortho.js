@@ -59,6 +59,14 @@ export const PT_ORTHO = {
   "pt-18": ptWms("https://cartografia.dgterritorio.gov.pt/wms/ortos2018", "Ortos2018-RGB"),
   "pt-sat": ptWms("https://ortos.dgterritorio.gov.pt/wms/ortosat2023", "ortoSat2023-CorVerdadeira"),
 };
+// The mainland's box (staty.json "portugal": the mainland ring and the Berlengas): DGT has no photo on Madeira and the
+// Azores, so they are not asked there (the review of 23. 11. 2026). Melilla's box (staty.json "spain"): PNOA has a
+// Pléiades Neo image © Airbus DS there under a licence not yet cleared (evaluation/spain/ZDROJE.md 1): not read there.
+export const PT_MAINLAND = [-9.6, 36.9, -6.1, 42.2];
+export const ES_NOT_PNOA = [[-2.98, 35.26, -2.92, 35.33]];
+const inBox = ([x0, y0, x1, y1], lon, lat) => lon >= x0 && lon <= x1 && lat >= y0 && lat <= y1;
+const ptKeys = (lon, lat) => (inBox(PT_MAINLAND, lon, lat) ? ["pt-25", "pt-21", "pt-18", "pt-sat"] : []);
+const esKeys = (lon, lat) => (ES_NOT_PNOA.some((b) => inBox(b, lon, lat)) ? [] : ["es"]);
 // Cyprus (Bára 23. 11. 2026: "Orto vezměme to novější"): the DLS orthophoto of 2019 (a tile cache in Web Mercator to
 // level 21, CORS echo; no licence stated, unlike the 2014 one, CC BY 4.0), only the south and the British bases (a
 // missing tile is a 404 there). Level 20 (about 12 cm at 35° N).
@@ -69,12 +77,14 @@ export const CY_ORTHO = "https://eservices.dls.moi.gov.cy/arcgis/rest/services/B
 const mercToDeg = ([x0, y0, x1, y1]) => [x0, y0, x1, y1].map((v, i) => (i % 2 === 0 ? (v / R) * (180 / Math.PI) : (Math.atan(Math.sinh(v / R)) * 180) / Math.PI));
 export const MT_ORTHO = (b, w, h, format = "image/jpeg") => `https://malta.coverage.wetransform.eu/wms/ortho_2018/ows?${new URLSearchParams({ SERVICE: "WMS", REQUEST: "GetMap", VERSION: "1.3.0", LAYERS: "OI.OrthoimageCoverage", STYLES: "", CRS: "CRS:84", BBOX: mercToDeg(b).join(","), WIDTH: w, HEIGHT: h, FORMAT: format })}`;
 // Italy (Bára 23. 11. 2026): only orthophotos with an open licence (CC BY 4.0, evaluation/italy/ZDROJE.md), each with its
-// box: Bologna 2023 and Modena 2024 (Emilia-Romagna's services), Turin 2023 (the Comune's), the province of Bolzano 2023.
-// AGEA's (the rest of Italy) are for institutional use only. All WMS in EPSG:3857 with CORS.
+// box: Bologna 2023 and Modena 2024 (Emilia-Romagna's services), Turin 2023 (the Comune's), the province of Bolzano 2023
+// (flown in collaboration with AGEA under the monitoring plan; the province's metadata license it CC BY 4.0, Bára
+// 23. 11. 2026: use it). AGEA's own layers (the rest of Italy) are for institutional use only. All WMS in EPSG:3857 with
+// CORS. Modena's box reaches 44.75 for the town's two northern exclaves (the review of 23. 11. 2026).
 const itWms = (base, layer) => (b, w, h, format = "image/jpeg") => `${base}?${new URLSearchParams({ SERVICE: "WMS", REQUEST: "GetMap", VERSION: "1.3.0", LAYERS: layer, STYLES: "", CRS: "EPSG:3857", BBOX: b.join(","), WIDTH: w, HEIGHT: h, FORMAT: format })}`;
 export const IT_ORTHO = {
   "it-bo": { box: [11.22, 44.42, 11.44, 44.56], url: itWms("https://servizigis.regione.emilia-romagna.it/wms/comune_bo_2023_rgb", "Comune_BO_2023_RGB"), credit: "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)" },
-  "it-mo": { box: [10.80, 44.52, 11.03, 44.73], url: itWms("https://servizigis.regione.emilia-romagna.it/wms/comune_mo_2024_rgb", "Comune_MO_2024_RGB"), credit: "ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)" },
+  "it-mo": { box: [10.80, 44.52, 11.03, 44.75], url: itWms("https://servizigis.regione.emilia-romagna.it/wms/comune_mo_2024_rgb", "Comune_MO_2024_RGB"), credit: "ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)" },
   "it-to": { box: [7.57, 44.99, 7.78, 45.15], url: itWms("https://geomap.reteunitaria.piemonte.it/mapproxy/service", "coto_ortofoto_2023"), credit: "ortofoto © Città di Torino (CC BY 4.0)" },
   "it-bz": { box: [10.38, 46.21, 12.48, 47.10], url: itWms("https://geoservices.buergernetz.bz.it/mapproxy/wms", "p_bz-Orthoimagery:Aerial-2023-RGB"), credit: "ortofoto © Provincia autonoma di Bolzano (CC BY 4.0)" },
 };
@@ -219,17 +229,21 @@ export async function laneImage(opts) {
     if (lastError) throw lastError;
     return null;
   }
-  // Italy: the open orthophoto whose box holds the cut (a blank image outside its town is none).
+  // Italy: the open orthophoto whose box holds the cut (a blank image outside its town is none; a failure is told, as
+  // in Belgium and Portugal).
   if (opts.source === "it") {
-    const keys = itOrthoAt(...opts.frame.toLonLat(0, 0));
-    for (const key of keys) { const out = await laneImageOf(key, opts).catch(() => null); if (out) return out; }
+    let lastError = null;
+    for (const key of itOrthoAt(...opts.frame.toLonLat(0, 0))) {
+      try { const out = await laneImageOf(key, opts); if (out) return out; } catch (err) { lastError = err; }
+    }
+    if (lastError) throw lastError;
     return null;
   }
   // Portugal: the newest flight that has a photo here (a white image is none).
   if (opts.source === "pt") {
     const start = Date.now(), budget = opts.timeout ?? TIMEOUT;
     let lastError = null;
-    for (const key of ["pt-25", "pt-21", "pt-18", "pt-sat"]) {
+    for (const key of ptKeys(...opts.frame.toLonLat(0, 0))) {
       const left = budget - (Date.now() - start);
       if (left < 500) break;
       try { const out = await laneImageOf(key, { ...opts, timeout: left }); if (out) return out; } catch (err) { lastError = err; }
@@ -237,6 +251,7 @@ export async function laneImage(opts) {
     if (lastError) throw lastError;
     return null;
   }
+  if (opts.source === "es" && !esKeys(...opts.frame.toLonLat(0, 0)).length) return null;
   if (opts.source !== "de") return laneImageOf(SOURCES[opts.source] ? opts.source : "cuzk", opts);
   // Germany (countries/DE.js laneOrtho "de"): the Land's orthophoto, near a border the next Land's when the first has no
   // photo there, all within one timeout (the review of Germany).
@@ -765,7 +780,7 @@ function redraw(w, lines, fine = true) {
 // model learnt it (evaluation/ai-segmentation/fetch_ortho.py): the source's shift applied as above. Returns
 // { source, img } (ImageData) or null (no photo there); a server down throws as laneImage does.
 export async function orthoPatch({ source, lon, lat, half, px, timeout = TIMEOUT }) {
-  const keys = source === "de" ? (await landsAt(lon, lat).catch(() => [])).map((l) => `de-${l}`) : source === "be" ? [...new Set([...(await beRegionsAt(lon, lat).catch(() => [])).map(beOrthoOf), "vl", "wal"])].map((r) => `be-${r}`) : source === "pt" ? ["pt-25", "pt-21", "pt-18", "pt-sat"] : source === "it" ? itOrthoAt(lon, lat) : [SOURCES[source] ? source : "cuzk"];
+  const keys = source === "de" ? (await landsAt(lon, lat).catch(() => [])).map((l) => `de-${l}`) : source === "be" ? [...new Set([...(await beRegionsAt(lon, lat).catch(() => [])).map(beOrthoOf), "vl", "wal"])].map((r) => `be-${r}`) : source === "pt" ? ptKeys(lon, lat) : source === "es" ? esKeys(lon, lat) : source === "it" ? itOrthoAt(lon, lat) : [SOURCES[source] ? source : "cuzk"];
   const seen = new Set(); // Berlin and Brandenburg: one service
   for (const key of keys) {
     const id = key.startsWith("de-") ? DE_ORTHO[key.slice(3)].wms : key;

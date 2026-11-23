@@ -130,6 +130,10 @@ z povolovacího standardu [DC15]: míjení dvou vozidel 4,1 m (2.5.6, S2) a uli�
 Návrh: `lawNeed: (oneway) => (oneway ? 3 : 4.1)` (jednosměrka 3 m, obousměrka 4,1 m celkem, ne 3 m na směr), s výhradou,
 že jde o standard pro garáže a parkoviště, ne o zákon. Alternativa: `freeLane: 3` jako v Česku. **Otázka pro Báru.**
 
+**V kódu po recenzi 23. 11. 2026** (`countries/MT.js`): `lawNeed = max(4,1 m obousměrka / 3 m jednosměrka; 2,5 m ×
+počet pruhů, u obousměrky aspoň dva)`. Samotných 4,1 m nechávalo čtyřpruhu pruhy po 2 m; 2,5 m je nejužší pruh, který
+aplikace všude nechává (`derive.js MIN_LANE`), ne maltské číslo. Obousměrka tak v praxi nechává 5 m, jednosměrka 3 m.
+
 ### B2. Stání na chodníku
 
 - [MVR] reg. 79(d): zakázáno stát „on the footpath unless road signage directs otherwise“ (ZÁV, 1. ruka).
@@ -217,7 +221,7 @@ Commons není).
 
 | Typ | min | zaklad | Zdroj, povaha |
 |---|---|---|---|
-| chodnik, chodnik_kola | **1,2** | **1,5** | 1,2 [AADG] 1.1.03 (DOP stát, přístupná trasa); 1,5 [RGH] Table 1A (DOP, národní městské silnice) |
+| chodnik, chodnik_kola | ~~1,2~~ **0** | ~~1,5~~ **1,2** | 1,2 [AADG] 1.1.03 (DOP stát, přístupná trasa); 1,5 [RGH] Table 1A (DOP, národní městské silnice). **Po recenzi 23. 11. 2026:** 1,2 m jen oranžově (zásady pro přístupnou trasu k budově, ne zákon pro veřejný chodník; závaznost jen z 2. ruky), 1,5 m nepoužito, dokud Table 1A nepřečtu jako obraz (1,30 / 1,50 vypadá prohozené) |
 | cyklopruh | — | — | nenalezeno (bez varování) |
 | cyklostezka | — | — | nenalezeno (bez varování) |
 | bus, bus_cyklo | — | — | nenalezeno (bez varování) |
@@ -227,7 +231,7 @@ Commons není).
 | parkovani šikmé | — | — | [DC15] dává jen uličku a šířku místa, hloubku pásu ne |
 | tramvajový pás | — | — | Malta tramvaje nemá |
 
-Zákon o stání: `lawNeed: (oneway) => (oneway ? 3 : 4.1)` podle [DC15] (viz B1), `halfKerbNote` podle B2, `parkGuess: true`
+Zákon o stání: `lawNeed` podle [DC15] a nejužšího pruhu aplikace (viz B1), `halfKerbNote` podle B2, `parkGuess: true`
 (stání je dovolené všude, kde není zakázané, [MVR] reg. 79), stání na straně ve směru jízdy vlevo.
 
 ## Otevřené otázky pro Báru
@@ -238,4 +242,8 @@ Zákon o stání: `lawNeed: (oneway) => (oneway ? 3 : 4.1)` podle [DC15] (viz B1
    (LTN 1/20), z nichž Malta podle National Cycling Strategy vychází (2. ruka)?
 4. Podélné stání 2,4 m z DC15 (parkoviště): použít, nebo bez varování?
 5. Jednosměrka a cyklistické značky v britské podobě (TSRGD), které maltský předpis nemá, ale [HC] je ukazuje: souhlas?
-6. Kredit OGL pro britské kresby do patičky/licencí?
+   **Po recenzi 23. 11. 2026 vyřazené** (předpis uznává jen značky své přílohy, reg. 2); vrátit až po ověření na místě.
+   Totéž zákaz vjezdu s tabulkou „Except cycles“. Vlastní kresby II.E11, II.B6 a II.D12 mají popisek bez úředního čísla.
+6. Kredit OGL pro britské kresby do patičky/licencí? Zbylé britské kresby jsou všechny pod **OGL v1.0** (UK Department
+   for Transport); OGL 3 měla jen vyřazená tabulka 954.4. Patička uvádí v3.0, opravit (`index.html`, Bára).
+7. Table 1A [RGH]: přečíst tabulku jako obraz (chodník 1,30 / 1,50 m); do té doby chodník jen 1,2 m oranžově.

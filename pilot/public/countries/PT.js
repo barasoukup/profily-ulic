@@ -9,18 +9,25 @@ import base, { CZ_CODE } from "./default.js";
 // of the main and collector streets 1.5 m, of every pedestrian route 1.2 m; Bára 23. 11. 2026: 1.5 m everywhere); the rest IMT's technical documents and
 // Lisbon's guide (recommendations; the cycle tracks by IMT, Bára 23. 11. 2026). No warning for a tram belt (no source found).
 const lanes = (segs) => segs.filter((x) => x.type === "pruh" || x.type === "pruh_piktokoridor");
-function limitsPT(s, segs) {
+function limitsPT(s, segs, i) {
+  const parking = [segs[i - 1], segs[i + 1]].find((x) => x?.type === "parkovani");
   switch (s.type) {
     case "chodnik": case "chodnik_kola":
       return { min: 1.5, zaklad: 1.8, why: t("chodník: volná šířka nejméně 1,5 m u hlavních a sběrných ulic, 1,2 m u každé pěší trasy (zákon o přístupnosti 163/2006); doporučeno 1,8 m (IMT, Lisabon)") };
+    // Beside parallel parking IMT's 2.2 m at least, 2.5 m recommended, 1 m of it a buffer (NORMY.md A2; the review of
+    // 23. 11. 2026: the text said 2.5 m of Lisbon, which gives only a buffer of 0.7 m, and the code did not look).
     case "cyklopruh":
-      return { min: 1.2, zaklad: 1.5, why: t("cyklopruh: 1,5 m, nejméně 1,2 m; vedle podélného stání 2,5 m (IMT, příručka Lisabonu)") };
+      if (parking && (parking.orient || "podelne") === "podelne")
+        return { min: 2.2, zaklad: 2.5, why: t("cyklopruh vedle podélného stání: nejméně 2,2 m, doporučeno 2,5 m, z toho 1 m ochranný pás (IMT)") };
+      return { min: 1.2, zaklad: 1.5, why: t("cyklopruh: 1,5 m, nejméně 1,2 m (IMT)") };
     case "cyklostezka":
       return { min: 1.75, zaklad: 2, why: t("stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)") };
+    // IMT's 3 m is France's figure it cites (CEREMA 2016, second hand: NORMY.md A3); Lisbon's 3.25 m at the kerb.
     case "bus":
-      return { min: 3, zaklad: 3.25, why: t("vyhrazený pruh BUS: 3,25 m, nejméně 3 m (IMT, příručka Lisabonu)") };
+      return { min: 3, zaklad: 3.25, why: t("vyhrazený pruh BUS: 3,25 m (příručka Lisabonu); nejméně 3 m podle IMT, který cituje francouzskou CEREMA") };
+    // The minimum is Lisbon's; IMT recommends 3.25 m and calls the shared lane not advisable (NORMY.md A2).
     case "bus_cyklo":
-      return { min: 3.25, zaklad: 3.25, why: t("společný pruh pro autobusy a cyklisty: nejméně 3,25 m (IMT, příručka Lisabonu)") };
+      return { min: 3.25, zaklad: 3.25, why: t("společný pruh pro autobusy a cyklisty: nejméně 3,25 m (příručka Lisabonu); IMT doporučuje 3,25 m a společný pruh nedoporučuje") };
     case "pruh": case "pruh_piktokoridor": {
       if (s.turn) return null;
       const L = lanes(segs), oneway = L.length > 0 && L.every((x) => (x.dir ?? "forward") === (L[0].dir ?? "forward"));
@@ -38,8 +45,9 @@ function limitsPT(s, segs) {
 }
 
 // The signs of the state PT (pilot/public/signs-PT/, README there; Regulamento de Sinalização do Trânsito, Decreto
-// Regulamentar 22-A/98 as amended by 6/2019; Wikimedia Commons). Part of a regulation, so not protected (art. 8 and 3 of
-// the Código do Direito de Autor; as France and Spain, Bára 23. 11. 2026: "Značky jsou volně"). Portugal has no sign
+// Regulamentar 22-A/98 as amended by 6/2019; Wikimedia Commons). Part of a regulation, so by our reading not protected
+// (art. 8 and 3 of the Código do Direito de Autor speak of texts; NORMY.md C1; as France and Spain, Bára 23. 11. 2026:
+// "Značky jsou volně"). Portugal has no sign
 // of a pedestrian zone (G5a, a zone closed to traffic, stands for it), of a cycle street, nor tells a residential zone
 // from a shared one (H46 both).
 const PT_FILE = { b1: "C2", b11: "C4a", b8: "C3g", b30: "C3l", b28: "C16", b29: "C15", ip11a: "H1a", ip14a: "H24", ip15a: "H25", ip20a: "D6",

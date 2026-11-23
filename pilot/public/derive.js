@@ -118,10 +118,17 @@ function closestOnPolyline(pts, p) {
   return best;
 }
 
+// A street's name for comparing a searched one with OSM's: without accents, case, the kind of street and particles.
+// CartoCiudad (search-es.js) gives "PASEO GRACIA" where OSM has "Passeig de Gràcia" (the review of Spain).
+const STREET_WORDS = /^(calle|carrer|rua|avenida|avinguda|avda|paseo|passeig|plaza|placa|praza|ronda|camino|cami|carretera|travesia|glorieta|de|del|la|las|los|el|els|les|d|da|do|dos|das)$/;
+const looseName = (n) => String(n || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().split(/[^a-z0-9]+/).filter((w) => w && !STREET_WORDS.test(w)).join(" ");
+const sameStreet = (a, b, loose) => a === b || (!!loose && looseName(a) === loose);
+
 // Nearest street (highway way) to a point; minor ways only win when much closer.
 // name: the street the user searched for (an address on a corner, search-at.js): a way of that name within 30 m wins.
 export function nearestStreet(osm, frame, p, name = null) {
   let best = null;
+  const loose = name && looseName(name);
   for (const el of osm.elements || []) {
     if (el.type !== "way" || !el.tags?.highway || !el.geometry) continue;
     // Indoor corridors and passages through buildings are never the street being cut.
@@ -129,7 +136,7 @@ export function nearestStreet(osm, frame, p, name = null) {
     const pts = el.geometry.map((g) => frame.toXY(g.lon, g.lat));
     const c = closestOnPolyline(pts, p);
     const sidewalk = ["sidewalk", "crossing"].includes(el.tags.footway);
-    const score = c.d + (sidewalk ? 25 : MINOR.has(el.tags.highway) ? 10 : 0) - (name && el.tags.name === name && c.d < 30 ? 30 : 0);
+    const score = c.d + (sidewalk ? 25 : MINOR.has(el.tags.highway) ? 10 : 0) - (name && sameStreet(el.tags.name, name, loose) && c.d < 30 ? 30 : 0);
     if (!best || score < best.score) best = { ...c, score, way: el, pts };
   }
   return best;

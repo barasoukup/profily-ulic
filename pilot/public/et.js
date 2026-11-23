@@ -853,7 +853,6 @@ export const ET = {
   " · mapa povrchů Zaragozy neodpověděla, odhad z ortofota a OSM": " · Zaragoza pinnakatete kaart ei vastanud, hinnang ortofoto ja OSM-i põhjal",
   "Mapa povrchů Zaragozy teď neodpovídá, profil je odhad z ortofota a OSM.": "Zaragoza pinnakatete kaart praegu ei vasta, profiil on hinnang ortofoto ja OSM-i põhjal.",
   "chodník: volná šířka přístupné pěší trasy nejméně 1,8 m (vyhláška o přístupnosti TMA/851/2021, čl. 5.2 b); ministerstvo doporučuje 3 m, nikdy pod 2 m": "kõnnitee: ligipääsetava jalakäijate tee vaba laius vähemalt 1,8 m (ligipääsetavuse määrus TMA/851/2021, art. 5.2 b); ministeerium soovitab 3 m, mitte kunagi alla 2 m",
-  "cyklopruh a stezka pro cyklisty jednosměrné: nejméně 1,4 m, výjimečně 1 m; obousměrné 2,6 m, výjimečně 2,2 m (doporučení ministerstva dopravy 2024)": "ühesuunaline jalgrattarada ja jalgrattatee: vähemalt 1,4 m, erandina 1 m; kahesuunaline 2,6 m, erandina 2,2 m (transpordiministeeriumi soovitus 2024)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,5–2,75 m (doporučení ministerstva dopravy 2024)": "mitmerajalise ühesuunalise sõidutee sõidurada: 2,5–2,75 m (transpordiministeeriumi soovitus 2024)",
   "jízdní pruh městské ulice: 2,5–3 m, ne víc než 3 m (doporučení ministerstva dopravy 2024)": "linnatänava sõidurada: 2,5–3 m, mitte üle 3 m (transpordiministeeriumi soovitus 2024)",
   "šikmé stání: pás 4 m při 45°, 4,5 m při 60° (doporučení ministerstva dopravy 2024)": "nurga all parkimine: riba 4 m 45° juures, 4,5 m 60° juures (transpordiministeeriumi soovitus 2024)",
@@ -863,10 +862,7 @@ export const ET = {
   // Portugal (Bára 23. 11. 2026).
   "ortofoto © DGT": "ortofoto © DGT",
   "chodník: volná šířka nejméně 1,5 m u hlavních a sběrných ulic, 1,2 m u každé pěší trasy (zákon o přístupnosti 163/2006); doporučeno 1,8 m (IMT, Lisabon)": "kõnnitee: vaba laius vähemalt 1,5 m pea- ja jaotustänavatel, 1,2 m igal jalakäijate teel (ligipääsetavuse seadus 163/2006); soovitatav 1,8 m (IMT, Lissabon)",
-  "cyklopruh: 1,5 m, nejméně 1,2 m; vedle podélného stání 2,5 m (IMT, příručka Lisabonu)": "jalgrattarada: 1,5 m, vähemalt 1,2 m; rööbiti parkimise kõrval 2,5 m (IMT, Lissaboni käsiraamat)",
   "stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)": "ühesuunaline jalgrattatee: 2 m, vähemalt 1,75 m; kahesuunaline 3 m, väikese liikluse korral 2,4 m (IMT ja LNEC 2024)",
-  "vyhrazený pruh BUS: 3,25 m, nejméně 3 m (IMT, příručka Lisabonu)": "bussirada: 3,25 m, vähemalt 3 m (IMT, Lissaboni käsiraamat)",
-  "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (IMT, příručka Lisabonu)": "ühine rada bussidele ja jalgratturitele: vähemalt 3,25 m (IMT, Lissaboni käsiraamat)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,75 m (příručka Lisabonu)": "mitmerajalise ühesuunalise sõidutee sõidurada: 2,75 m (Lissaboni käsiraamat)",
   "jízdní pruh: 3 m (IMT, příručka Lisabonu)": "sõidurada: 3 m (IMT, Lissaboni käsiraamat)",
   "šikmé stání: pás 4,2 m (příručka Lisabonu)": "nurga all parkimine: riba 4,2 m (Lissaboni käsiraamat)",
@@ -874,7 +870,6 @@ export const ET = {
   "podélné stání: pás 2 m, v historickém centru 1,8 m (IMT, příručka Lisabonu)": "rööbiti parkimine: riba 2 m, ajaloolises kesklinnas 1,8 m (IMT, Lissaboni käsiraamat)",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je v Portugalsku zakázané (čl. 49 odst. 1 písm. f zákona o silničním provozu), ledaže ho povolí značka; ostatní nesmějí muset vjet do protisměru (čl. 50), aplikace nechává {need}.": "Poolenisti kõnniteel parkimine OSM-i järgi: sõiduteele jääb {free}. Kõnniteel parkimine on Portugalis keelatud (liiklusseadustiku art. 49 lg 1 p f), kui liiklusmärk seda ei luba; teised ei tohi olla sunnitud sõitma vastassuunavööndisse (art. 50), rakendus jätab {need}.",
   // Monaco (Bára 23. 11. 2026).
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je v Monaku zakázané (čl. 32 zákona o silničním provozu), stát se smí jen na místech vyznačených na vozovce (čl. 31).": "Poolenisti kõnniteel parkimine OSM-i järgi: sõiduteele jääb {free}. Kõnniteel parkimine on Monacos keelatud (liiklusseadustiku art. 32), parkida tohib ainult sõiduteel märgistatud kohtadel (art. 31).",
   // Cyprus (Bára 23. 11. 2026).
   "ortofoto © DLS Kypr": "ortofoto © DLS Küpros",
   "chodník: 2 m u místních a obslužných ulic, 2,5 m u sběrných (příručka odboru veřejných prací Kypru, doporučení)": "kõnnitee: 2 m kohalikel ja juurdepääsutänavatel, 2,5 m jaotustänavatel (Küprose avalike tööde osakonna käsiraamat, soovitus)",
@@ -883,12 +878,9 @@ export const ET = {
   "vyhrazený pruh BUS: 3,5 m, nejméně 3 m (příručka odboru veřejných prací Kypru, doporučení)": "bussirada: 3,5 m, vähemalt 3 m (Küprose avalike tööde osakonna käsiraamat, soovitus)",
   "společný pruh pro autobusy a cyklisty: 4 m, nejméně 3,5 m (příručka odboru veřejných prací Kypru, doporučení)": "ühine rada bussidele ja jalgratturitele: 4 m, vähemalt 3,5 m (Küprose avalike tööde osakonna käsiraamat, soovitus)",
   "jízdní pruh: 3 m u obslužných ulic, 3,5 m u sběrných (příručka odboru veřejných prací Kypru, doporučení)": "sõidurada: 3 m juurdepääsutänavatel, 3,5 m jaotustänavatel (Küprose avalike tööde osakonna käsiraamat, soovitus)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na Kypru je stání i zastavení na chodníku zakázané bez výjimky (předpis 66/1984, čl. 58); aplikace nechává {need}.": "Poolenisti kõnniteel parkimine OSM-i järgi: sõiduteele jääb {free}. Küprosel on kõnniteel parkimine ja peatumine eranditult keelatud (määrus 66/1984, art. 58); rakendus jätab {need}.",
   // Malta (Bára 23. 11. 2026).
   "ortofoto © Planning Authority Malta (CC BY 4.0)": "ortofoto © Planning Authority Malta (CC BY 4.0)",
-  "chodník: nejméně 1,2 m (zásady přístupnosti CRPD), u silnic 1,5 m (příručka Transport Malta 2003); doporučení": "kõnnitee: vähemalt 1,2 m (CRPD ligipääsetavuse juhised), teede ääres 1,5 m (Transport Malta käsiraamat 2003); soovitus",
   "kolmé stání: 4,8 m (stavební standard DC15 maltského stavebního úřadu)": "risti parkimine: 4,8 m (Malta Planning Authority projekteerimisstandard DC15)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je na Maltě zakázané (předpis S.L. 65.11, čl. 79), ledaže ho povolí značka; aplikace nechává {need} (stavební standard DC15).": "Poolenisti kõnniteel parkimine OSM-i järgi: sõiduteele jääb {free}. Kõnniteel parkimine on Maltal keelatud (määrus S.L. 65.11, art. 79), kui liiklusmärk seda ei luba; rakendus jätab {need} (projekteerimisstandard DC15).",
   // Italy (Bára 23. 11. 2026).
   "mapy povrchů Bologni, ortofota a OSM": "Bologna pinnakatete kaart, ortofoto ja OSM",
   "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)": "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)",
@@ -905,7 +897,6 @@ export const ET = {
   "chodník: přístupná trasa nejméně 0,9 m (vyhláška 236/1989, bod 8.2.1), nová ulice 1,5 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.6)": "kõnnitee: ligipääsetav teekond vähemalt 0,9 m (määrus 236/1989, p 8.2.1), uus tänav 1,5 m (5. 11. 2001 ministri määrus teede projekteerimise kohta, p 3.4.6)",
   "cyklopruh a stezka pro cyklisty jednosměrné: 1,5 m, na krátkém úseku nejméně 1 m; obousměrná stezka 2,5 m (vyhláška 557/1999, čl. 7)": "ühesuunaline jalgrattarada ja jalgrattatee: 1,5 m, lühikesel lõigul vähemalt 1 m; kahesuunaline jalgrattatee 2,5 m (määrus 557/1999, art. 7)",
   "vyhrazený pruh BUS: 3,5 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.2)": "bussirada: 3,5 m (5. 11. 2001 ministri määrus teede projekteerimise kohta, p 3.4.2)",
-  "jízdní pruh městské ulice: 2,75–3 m (vyhláška o silnicích z 5. 11. 2001, tab. 3.4.a)": "linnatänava sõidurada: 2,75–3 m (5. 11. 2001 ministri määrus teede projekteerimise kohta, tabel 3.4.a)",
   "šikmé stání (45°): pás 4,8 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.7)": "nurga all parkimine (45°): riba 4,8 m (5. 11. 2001 ministri määrus teede projekteerimise kohta, p 3.4.7)",
   "kolmé stání: pás 5 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.7)": "risti parkimine: riba 5 m (5. 11. 2001 ministri määrus teede projekteerimise kohta, p 3.4.7)",
   "podélné stání: pás 2 m, nejméně 1,8 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.7)": "rööbiti parkimine: riba 2 m, vähemalt 1,8 m (5. 11. 2001 ministri määrus teede projekteerimise kohta, p 3.4.7)",
@@ -919,6 +910,27 @@ export const ET = {
   "pruh pro veřejnou dopravu: nejméně 3 m (norma EVS 843, z druhé ruky)": "ühissõidukirada: vähemalt 3 m (standard EVS 843, teisese allika järgi)",
   "jízdní pruh: 3 m, u místních ulic 2,75 m (příručka uličního prostoru Tallinnu a norma EVS 843, z druhé ruky)": "sõidurada: 3 m, kohalikel tänavatel 2,75 m (Tallinna tänavaruumi käsiraamat ja standard EVS 843, teisese allika järgi)",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. V Estonsku smí auto stát na chodníku jen tam, kde to dovolí značka, a chodcům musí zůstat aspoň 1,5 m (§ 20 zákona o silničním provozu); aplikace nechává {need}.": "Poolenisti kõnniteel parkimine OSM-i järgi: sõiduteele jääb {free}. Eestis võib sõiduk kõnniteel seista ainult seal, kus liiklusmärk seda lubab, ja jalakäijatele peab jääma vähemalt 1,5 m (liiklusseaduse § 20); rakendus jätab {need}.",
+  // Reviews of 23. 11. 2026 (Spain, Portugal, Monaco, Cyprus, Malta, Italy).
+  "Sever Kypru zatím nemáme: profily děláme jen na území, které spravuje Kyperská republika.": "Põhja-Küprost meil veel ei ole: teeme profiile ainult Küprose Vabariigi hallataval territooriumil.",
+  "V Itálii děláme profily jen tam, kde má ortofoto otevřenou licenci: v Jižním Tyrolsku, Turíně, Bologni a Modeně.": "Itaalias teeme profiile ainult seal, kus ortofotol on avatud litsents: Lõuna-Tiroolis, Torinos, Bolognas ja Modenas.",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na Kypru je stání i zastavení na chodníku zakázané bez výjimky (předpis 66/1984, čl. 58 odst. 4 v původním znění; Kodex silničního provozu 2012); aplikace nechává {need}.": "Poolenisti kõnniteel parkimine OSM-i järgi: sõiduteele jääb {free}. Küprosel on kõnniteel parkimine ja peatumine eranditult keelatud (määrus 66/1984, art. 58 lg 4 algses redaktsioonis; liikluskoodeks 2012); rakendus jätab {need}.",
+  "cyklopruh a stezka pro cyklisty jednosměrné: nejméně 1,4 m, jen výjimečně na krátkém úseku 1 m; obousměrné 2,6 m, výjimečně 2,2 m; šířky bez vodicích čar a odstupů (doporučení ministerstva dopravy 2024)": "ühesuunaline jalgrattarada ja jalgrattatee: vähemalt 1,4 m, ainult erandina lühikesel lõigul 1 m; kahesuunaline 2,6 m, erandina 2,2 m; laiused ilma äärejoonte ja ohutusvahedeta (transpordiministeeriumi soovitus 2024)",
+  "jízdní pruh městské průjezdní silnice (kategorie D): 3,25 m (vyhláška o silnicích z 5. 11. 2001, tab. 3.4.a)": "linna transiittee sõidurada (kategooria D): 3,25 m (5. 11. 2001 ministri määrus teede projekteerimise kohta, tabel 3.4.a)",
+  "jízdní pruh městské sběrné ulice (kategorie E): 3 m (vyhláška o silnicích z 5. 11. 2001, tab. 3.4.a)": "linna jaotustänava sõidurada (kategooria E): 3 m (5. 11. 2001 ministri määrus teede projekteerimise kohta, tabel 3.4.a)",
+  "jízdní pruh místní ulice (kategorie F): 2,75 m (vyhláška o silnicích z 5. 11. 2001, tab. 3.4.a)": "kohaliku tänava sõidurada (kategooria F): 2,75 m (5. 11. 2001 ministri määrus teede projekteerimise kohta, tabel 3.4.a)",
+  "obousměrná stezka pro cyklisty: 2,5 m (2 × 1,25 m), na krátkém úseku nejméně 1 m (vyhláška 557/1999, čl. 7)": "kahesuunaline jalgrattatee: 2,5 m (2 × 1,25 m), lühikesel lõigul vähemalt 1 m (määrus 557/1999, art. 7)",
+  "polovina obousměrné stezky pro cyklisty: 1,25 m (celkem 2,5 m), na krátkém úseku nejméně 1 m (vyhláška 557/1999, čl. 7)": "pool kahesuunalisest jalgrattateest: 1,25 m (kokku 2,5 m), lühikesel lõigul vähemalt 1 m (määrus 557/1999, art. 7)",
+  "společná stezka pro chodce a cyklisty: širší než stezka pro cyklisty (obousměrná 2,5 m), číslo vyhláška nedává (vyhláška 557/1999, čl. 4 odst. 5)": "jalg- ja jalgrattatee: laiem kui jalgrattatee (kahesuunaline 2,5 m); määrus arvu ei anna (määrus 557/1999, art. 4 lg 5)",
+  "Zákaz vjezdu automobilů (motocykly smějí)": "Autode sõidu keeld (mootorrattad lubatud)",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je v Monaku zakázané (čl. 32 pravidel silničního provozu, Code de la route), stát se smí jen na místech vyznačených na vozovce (čl. 31).": "Poolenisti kõnniteel parkimine OSM-i järgi: sõiduteele jääb {free}. Kõnniteel parkimine on Monacos keelatud (liikluseeskirja art. 32, Code de la route); parkida tohib ainult sõiduteel märgistatud kohtadel (art. 31).",
+  "chodník: 1,2 m pro přístupnou trasu (zásady přístupnosti CRPD; doporučení)": "kõnnitee: 1,2 m ligipääsetava tee jaoks (CRPD ligipääsetavuse juhised; soovitus)",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je na Maltě zakázané (předpis S.L. 65.11, čl. 79), ledaže ho povolí značka; volnou šířku předpis neuvádí, aplikace nechává {need} (aspoň 4,1 m na míjení podle stavebního standardu DC15, nejméně 2,5 m na každý pruh).": "Poolenisti kõnniteel parkimine OSM-i järgi: sõiduteele jääb {free}. Kõnniteel parkimine on Maltal keelatud (määrus S.L. 65.11, art. 79), kui liiklusmärk seda ei luba; määrus vaba laiust ei anna, rakendus jätab {need} (vähemalt 4,1 m möödumiseks projekteerimisstandardi DC15 järgi, vähemalt 2,5 m iga raja kohta).",
+  "cyklopruh: 1,5 m, nejméně 1,2 m (IMT)": "jalgrattarada: 1,5 m, vähemalt 1,2 m (IMT)",
+  "cyklopruh vedle podélného stání: nejméně 2,2 m, doporučeno 2,5 m, z toho 1 m ochranný pás (IMT)": "jalgrattarada rööbiti parkimise kõrval: vähemalt 2,2 m, soovitatav 2,5 m, millest 1 m on kaitseriba (IMT)",
+  "vyhrazený pruh BUS: 3,25 m (příručka Lisabonu); nejméně 3 m podle IMT, který cituje francouzskou CEREMA": "bussirada: 3,25 m (Lissaboni käsiraamat); vähemalt 3 m IMT järgi, mis tsiteerib Prantsuse CEREMA-t",
+  "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (příručka Lisabonu); IMT doporučuje 3,25 m a společný pruh nedoporučuje": "ühine rada bussidele ja jalgratturitele: vähemalt 3,25 m (Lissaboni käsiraamat); IMT soovitab 3,25 m ega soovita ühist rada",
+  "dopravní značky: Contains public sector information licensed under the Open Government Licence v1.0 (UK Department for Transport)": "liiklusmärgid: Contains public sector information licensed under the Open Government Licence v1.0 (UK Department for Transport)",
+  "ortofoto © Planning Authority Malta, 2018 (CC BY 4.0)": "ortofoto © Planning Authority Malta, 2018 (CC BY 4.0)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.
@@ -935,11 +947,11 @@ export const ET_HTML = {
     Poola: ortofoto ja aadressiotsing © GUGiK (Geoportal.gov.pl, PRG), Krakowi pinnakatete kaart (MJO) © Gmina Miejska Kraków, piirid © EuroGeographics (GISCO), liiklusmärgid Wikimedia Commons (ametlikud teosed) ·
     Prantsusmaa: ortofoto, hooned (BD TOPO) ja aadressiotsing © IGN (Géoplateforme, Licence Ouverte 2.0), Pariisi pinnakatete kaart (Plan de voirie) © Ville de Paris (ODbL), piirid © EuroGeographics (GISCO), liiklusmärgid Wikimedia Commons (ametlikud teosed) ·
     Hispaania: ortofoto PNOA ja aadressiotsing CartoCiudad © IGN (CC BY 4.0 scne.es), hooned © Dirección General del Catastro, Zaragoza pinnakatete kaart © Ayuntamiento de Zaragoza (IDEZar), piirid © EuroGeographics (GISCO), liiklusmärgid Wikimedia Commons (ametlikud teosed) ·
-    Portugal: ortofoto © DGT (Direção-Geral do Território), piirid © EuroGeographics (GISCO), liiklusmärgid Wikimedia Commons (ametlikud teosed) ·
-    Monaco: ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0), piirid © OpenStreetMapi kaastöötajad, liiklusmärgid Wikimedia Commons (ametlikud teosed) ·
-    Küpros: ortofoto ja hooned © Department of Lands and Surveys (DLS; hooned CC BY 4.0), piirid © OpenStreetMapi kaastöötajad, liiklusmärgid Wikimedia Commons (Briti kujundused: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
-    Malta: ortofoto © Planning Authority (CC BY 4.0), piirid © OpenStreetMapi kaastöötajad, liiklusmärgid Wikimedia Commons (Briti kujundused: Contains public sector information licensed under the Open Government Licence v3.0) ·
-    Itaalia: ortofoto © Provincia autonoma di Bolzano, Città di Torino, Comune di Bologna ja Comune di Modena ning Regione Emilia-Romagna (kõik CC BY 4.0), Bologna pinnakatete kaart ja hooned © Comune di Bologna (CC BY 4.0), piirid © EuroGeographics (GISCO), liiklusmärgid Wikimedia Commons (ametlikud teosed) ·
+    Portugal: ortofoto © DGT (Direção-Geral do Território), piirid © EuroGeographics (GISCO), liiklusmärgid Wikimedia Commons (ametlikud teosed; ümberjoonistused Fry1989, CC BY-SA 3.0, ja Gigillo83, CC BY-SA 4.0) ·
+    Monaco: ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0), piirid © OpenStreetMapi kaastöötajad, Prantsuse liiklusmärkide joonised Wikimedia Commons ·
+    Küpros: ortofoto 2019 © Department of Lands and Surveys (DLS; litsents märkimata), hooned © DLS (CC BY 4.0), piirid © OpenStreetMapi kaastöötajad, liiklusmärgid Wikimedia Commons (Briti kujundused: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
+    Malta: ortofoto 2018 © Planning Authority (CC BY 4.0), piirid © OpenStreetMapi kaastöötajad, liiklusmärgid Wikimedia Commons (Briti kujundused: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
+    Itaalia: ortofoto © Provincia autonoma di Bolzano, Città di Torino, Comune di Bologna ja Comune di Modena ning Regione Emilia-Romagna (kõik CC BY 4.0), Bologna hooned © Comune di Bologna (CC BY 4.0), piirid © EuroGeographics (GISCO), liiklusmärgid Wikimedia Commons (ametlikud teosed; ümberjoonistus F l a n k e r, CC BY-SA 3.0 ja 4.0) ·
     Eesti: ortofoto, hooned (ETAK) ja aadressiotsing (In-ADS) © Maa- ja Ruumiamet, seisuga 11/2026 (avatud litsents), Tallinna pinnakatete kaart © Tallinna Linnaplaneerimise Amet, piirid © EuroGeographics (GISCO), liiklusmärgid Wikimedia Commons (ametlikud teosed; ümberjoonistus มองโกเลีย๔๔, CC BY-SA 4.0) ·
     parkimine © TSK hl. m. Prahy (CC BY 4.0), parkimiskeelud, puud ja tänavaklassid <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, linnad Jihlava, Opava, Plzeň (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMapi</a> kaastöötajad (ODbL) ·
@@ -979,9 +991,9 @@ export const ET_CITY = {
   poland: { ...ABROAD, dataShort: "GUGiK-i ortofoto ja OSM-i", credit: "", rulesHead: "Laiused Poola õigusaktide järgi (teede tehniliste tingimuste määrus, 2022):" },
   france: { ...ABROAD, dataShort: "IGN-i ortofoto ja OSM-i", credit: "", rulesHead: "Laiused Prantsusmaa õigusaktide ja Cerema soovituste järgi:" },
   spain: { ...ABROAD, dataShort: "PNOA ortofoto ja OSM-i", credit: "", rulesHead: "Laiused Hispaania õigusaktide ja transpordiministeeriumi soovituste järgi:" },
-  portugal: { ...ABROAD, dataShort: "DGT ortofotode ja OSM-i", credit: "", rulesHead: "Laiused Portugali õigusaktide järgi:" },
+  portugal: { ...ABROAD, dataShort: "DGT ortofotode ja OSM-i", credit: "", rulesHead: "Laiused Portugali õigusaktide ja soovituste järgi:" },
   monaco: { ...ABROAD, dataShort: "IGN-i ortofoto ja OSM-i", credit: "", rulesHead: "Monacos ei ole tänavate laiuste eeskirju, rakendus ei hoiata:" },
-  cyprus: { ...ABROAD, dataShort: "DLS-i ortofoto ja OSM-i", credit: "", rulesHead: "Laiused Küprose õigusaktide järgi:" },
+  cyprus: { ...ABROAD, dataShort: "DLS-i ortofoto ja OSM-i", credit: "hooned © Department of Lands and Surveys (DLS, CC BY 4.0)", rulesHead: "Laiused Küprose avalike tööde ameti soovituste järgi (linnatänavate projekteerimise käsiraamat):" },
   malta: { ...ABROAD, dataShort: "Planning Authority ortofoto ja OSM-i", credit: "", rulesHead: "Laiused Malta õigusaktide ja soovituste järgi:" },
   italy: { ...ABROAD, dataShort: "avatud ortofotode ja OSM-i", credit: "", rulesHead: "Laiused Itaalia õigusaktide järgi:" },
   estonia: { ...ABROAD, dataShort: "Maa- ja Ruumiameti ortofoto ja OSM-i", credit: "", rulesHead: "Laiused Eesti õigusaktide järgi:" },

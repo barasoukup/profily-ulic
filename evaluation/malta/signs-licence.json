@@ -8,15 +8,6 @@
   "date": "2011-01-18",
   "note": "doplněn viewBox, odstraněna metadata editoru"
  },
- "II.A4-plus-cycles": {
-  "derived_from": [
-   "File:UK traffic sign 616.svg",
-   "File:Traffic-signs-manual-chapter-3-diagram 954-4 (2008).svg"
-  ],
-  "lic": "OGL v1.0 + OGL 3",
-  "artist": "Government of the United Kingdom – Department for Transport",
-  "note": "upraveno pro aplikaci (Profily ulic), viz signs-MT/README.md; No entry nad tabulkou „Except cycles“ (TSRGD 954.4, výřez z diagramu bez kót)"
- },
  "II.A5": {
   "title": "File:UK traffic sign 617.svg",
   "lic": "OGL v1.0",
@@ -56,7 +47,7 @@
  "II.B6": {
   "lic": "vlastní kresba (MIT jako kód)",
   "artist": "Profily ulic",
-  "note": "nakresleno podle vzoru v příloze S.L. 65.05 Part II B(f)(6) „Entry to pedestrian zone restricted“; písmo Arial, není úřední"
+  "note": "nakresleno podle vzoru v příloze S.L. 65.05 Part II B(f)(6) „Entry to pedestrian zone restricted“; písmo Arial, není úřední; přibližná kresba, v popisku bez úředního čísla (recenze 23. 11. 2026)"
  },
  "II.D1-10": {
   "derived_from": [
@@ -126,7 +117,7 @@
  "II.D12-30": {
   "lic": "vlastní kresba (MIT jako kód)",
   "artist": "Profily ulic",
-  "note": "nakresleno podle vzoru v příloze S.L. 65.05 Part II D(f)(12) „Speed zone“ (35 km ZONE) s číslem 30; písmo Arial, není úřední"
+  "note": "nakresleno podle vzoru v příloze S.L. 65.05 Part II D(f)(12) „Speed zone“ (35 km ZONE) s číslem 30; písmo Arial, není úřední; přibližná kresba, v popisku bez úředního čísla (recenze 23. 11. 2026)"
  },
  "II.D6": {
   "title": "File:UK traffic sign 636.svg",
@@ -153,7 +144,7 @@
   ],
   "lic": "OGL v1.0",
   "artist": "UK Government",
-  "note": "upraveno pro aplikaci (Profily ulic), viz signs-MT/README.md; rám a čára pruhu z 959.1 (bez kola), autobus z 960, nápis „taxi“ jako <text>, podle S.L. 65.05 Part II E(h)(11)"
+  "note": "upraveno pro aplikaci (Profily ulic), viz signs-MT/README.md; rám a čára pruhu z 959.1 (bez kola), autobus z 960, nápis „taxi“ jako <text>, podle S.L. 65.05 Part II E(h)(11); přibližná kresba, v popisku bez úředního čísla (recenze 23. 11. 2026)"
  },
  "III.B1": {
   "title": "File:UK traffic sign 801.svg",
@@ -162,42 +153,6 @@
   "credit": "Traffic Signs Regulations and General Directions",
   "desc": "Parking place.",
   "date": "2011-01-20",
-  "note": "doplněn viewBox, odstraněna metadata editoru"
- },
- "UK-652": {
-  "title": "File:UK traffic sign 652.svg",
-  "lic": "OGL v1.0",
-  "artist": "Government of the United Kingdom – Department for Transport",
-  "credit": "Traffic Signs Regulations and General Directions (TSRGD)",
-  "desc": "One-way traffic.",
-  "date": "2011-11-12",
-  "note": "doplněn viewBox, odstraněna metadata editoru"
- },
- "UK-955": {
-  "title": "File:UK traffic sign 955.svg",
-  "lic": "OGL v1.0",
-  "artist": "Government of the United Kingdom – Department for Transport",
-  "credit": "Traffic Signs Regulations and General Directions (TSRGD)",
-  "desc": "Route for use by pedal cycles only.",
-  "date": "2011-11-12",
-  "note": "doplněn viewBox, odstraněna metadata editoru"
- },
- "UK-956": {
-  "title": "File:UK traffic sign 956.svg",
-  "lic": "OGL v1.0",
-  "artist": "Government of the United Kingdom – Department for Transport",
-  "credit": "Traffic Signs Regulations and General Directions (TSRGD)",
-  "desc": "Route for shared use by pedal cycles and pedestrians only.",
-  "date": "2011-11-13",
-  "note": "doplněn viewBox, odstraněna metadata editoru"
- },
- "UK-957": {
-  "title": "File:UK traffic sign 957.svg",
-  "lic": "OGL v1.0",
-  "artist": "Government of the United Kingdom – Department for Transport",
-  "credit": "Traffic Signs Regulations and General Directions (TSRGD)",
-  "desc": "Route for segregated use by pedal cycles and pedestrians only.",
-  "date": "2011-11-13",
   "note": "doplněn viewBox, odstraněna metadata editoru"
  }
 }

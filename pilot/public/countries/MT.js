@@ -5,13 +5,15 @@ import { t } from "../i18n.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
 
-// Norms (evaluation/malta/NORMY.md): no binding widths of streets; the sidewalk by Access for All (CRPD, 1.2 m) and
-// Transport Malta's Road Geometry Handbook (1.5 m), perpendicular parking by the Planning Authority's DC15 (4.8 m). No
-// Maltese figure found for lanes, bus lanes, cycle lanes and tracks, parallel parking: no warning.
+// Norms (evaluation/malta/NORMY.md): no binding widths of streets; the sidewalk by Access for All (CRPD, 1.2 m for an
+// accessible route) only orange (the review of 23. 11. 2026: guidance for routes to buildings, not a law for public
+// sidewalks; the Road Geometry Handbook's 1.5 m is from its Table 1A, whose 1.30 / 1.50 m look swapped: not used until
+// the table is read as an image), perpendicular parking by the Planning Authority's DC15 (4.8 m). No Maltese
+// figure found for lanes, bus lanes, cycle lanes and tracks, parallel parking: no warning.
 function limitsMT(s) {
   switch (s.type) {
     case "chodnik": case "chodnik_kola":
-      return { min: 1.2, zaklad: 1.5, why: t("chodník: nejméně 1,2 m (zásady přístupnosti CRPD), u silnic 1,5 m (příručka Transport Malta 2003); doporučení") };
+      return { min: 0, zaklad: 1.2, why: t("chodník: 1,2 m pro přístupnou trasu (zásady přístupnosti CRPD; doporučení)") };
     case "parkovani":
       return s.orient === "kolme" ? { min: 4.8, zaklad: 4.8, why: t("kolmé stání: 4,8 m (stavební standard DC15 maltského stavebního úřadu)") } : null;
     default:
@@ -19,23 +21,27 @@ function limitsMT(s) {
   }
 }
 
-// The signs of the state MT (pilot/public/signs-MT/, README there; S.L. 65.05 and the Highway Code of 2025). Malta's
-// copyright gives the government its drawings: only files of Commons with their own licence (UK drawings under the Open
-// Government Licence v3.0, credited in the footer; Maltese ones in the public domain; evaluation/malta/signs-licence.json).
-// No motorway, residential or shared zone in Malta.
+// The signs of the state MT (pilot/public/signs-MT/, README there; S.L. 65.05). Malta's copyright gives the government
+// its drawings: only files of Commons with their own licence (UK drawings under the Open Government Licence v1.0,
+// credited in the footer; Maltese ones in the public domain; evaluation/malta/signs-licence.json). Only the signs of the
+// regulation's Schedule (reg. 2): no one-way sign, no cycle route signs (the Highway Code's British ones are guidance)
+// and no "except cycles" plate (not verified in Malta), so a one-way street with contraflow cycling has no sign (the
+// review of 23. 11. 2026). No motorway, residential or shared zone in Malta. The own drawings after the Schedule
+// (II.E11 without its time plate, II.B6, II.D12) are labelled by name only, not as the official sign.
 const MT_FILE = { b1: "II.A5", b11: "II.A6", b8: "II.B1", b30: "II.B5", b28: "II.D7", b29: "II.D6", ip11a: "III.B1", ip20a: "II.E11",
-  zona30: "II.D12-30", ip27a: "II.B6", c8a: "UK-955", c9a: "UK-956", c10a: "UK-957" };
-const MT_CODE = { ...MT_FILE, zona30: "II.D12", c8a: null, c9a: null, c10a: null };
+  zona30: "II.D12-30", ip27a: "II.B6" };
+const MT_CODE = { ...MT_FILE, ip20a: null, zona30: null, ip27a: null };
 const MT_SPEEDS = [10, 20, 30, 40, 50, 60, 70, 80];
 function signFile(s, seg) {
   const dir = s.dir ?? seg?.dir;
-  if (s.k === "oneway") return dir === "backward" ? (s.plate === "protismer" ? "II.A4-plus-cycles" : "II.A4") : "UK-652";
+  if (s.k === "oneway") return dir === "backward" && s.plate !== "protismer" ? "II.A4" : null;
   if (s.k === "b20a") return MT_SPEEDS.includes(s.v) ? `II.D1-${s.v}` : null;
   if (s.plate && !["podelne", "kolme", "sikme", "protismer"].includes(s.plate)) return null;
   return MT_FILE[s.k] || null;
 }
 const signLabel = (x, own, label) => {
-  const code = x.k === "oneway" ? (x.dir === "backward" ? "II.A4" : null) : x.k === "b20a" ? "II.D1" : MT_CODE[x.k];
+  // A one-way sign is drawn only as II.A4 (against the lane's direction), whatever x.dir says.
+  const code = x.k === "oneway" ? "II.A4" : x.k === "b20a" ? "II.D1" : MT_CODE[x.k];
   return code ? `${code} ${label.replace(CZ_CODE, "")}` : label.replace(CZ_CODE, "");
 };
 
@@ -52,8 +58,10 @@ export default {
   // pass on 4.1 m, an aisle beside parallel parking 3 m (NORMY.md B1). Parking on the sidewalk banned (reg. 79 d) but
   // where the sign III.B8–B10 allows it.
   freeLane: 3,
-  lawNeed: (oneway) => (oneway ? 3 : 4.1),
-  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je na Maltě zakázané (předpis S.L. 65.11, čl. 79), ledaže ho povolí značka; aplikace nechává {need} (stavební standard DC15).", { free, need }),
+  // At least DC15's 4.1 m (two-way) or 3 m (one-way), and the lanes OSM counts keep MIN_LANE (2.5 m) each beside it
+  // (the review of 23. 11. 2026: 4.1 m left four lanes of 2 m); a two-way street so keeps 5 m.
+  lawNeed: (oneway, lanes, minLane) => Math.max(oneway ? 3 : 4.1, minLane * Math.max(oneway ? 1 : 2, lanes)),
+  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je na Maltě zakázané (předpis S.L. 65.11, čl. 79), ledaže ho povolí značka; volnou šířku předpis neuvádí, aplikace nechává {need} (aspoň 4,1 m na míjení podle stavebního standardu DC15, nejméně 2,5 m na každý pruh).", { free, need }),
   parkGuess: true,
   parkByCycleLane: true,
   wideRoads: true,
@@ -62,12 +70,13 @@ export default {
   limits: limitsMT,
   contraflow: () => null,
   tramBelt: () => [],
-  signs: { dir: "signs-MT", file: signFile, plate: () => null, label: signLabel, drawable: (x, seg) => !!signFile(x, seg) },
+  // ogl: the files drawn after British signs under the Open Government Licence v1.0, whose credit a cut showing one needs
+  // ("Contains public sector information licensed under the Open Government Licence v1.0"; for the export, app.js).
+  signs: { dir: "signs-MT", file: signFile, plate: () => null, label: signLabel, drawable: (x, seg) => !!signFile(x, seg),
+    ogl: new Set(["II.A4", "II.A5", "II.B1", "II.D6", "II.D7", "II.E11", "III.B1"]) },
   bedOrtho: null,
   laneOrtho: "mt",
   orthoEstimate: true,
-  besidePassport: true,
-  besideMax: 25,
   panorama: false,
   art: { malta: { ...czechFurniture, ...atPosts } },
   houseLook: (style, info, office) => (style === "plocha" ? (office ? "kancelar" : (info?.start || info?.built) > 1990 ? "moderni" : "funkce") : style),

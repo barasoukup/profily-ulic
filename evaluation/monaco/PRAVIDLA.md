@@ -59,3 +59,16 @@ https://legimonaco.mc/tnc/ordonnance/1957/12-17-1.691/ (články jsou v kodexu, 
   monacké šířky nenalezeny (FR čísla 1,4 m atd. jsou cizí předpis; buď bez varování, nebo „podle Francie, orientačně“);
   zóna 30 a obytná zóna v kodexu nejsou, jen aire piétonne; `besidePassport`/pasport Paříže a BD TOPO nepoužívat
   (BD TOPO Monako pravděpodobně nepokrývá, neověřeno).
+
+## Po recenzi 23. 11. 2026 (`RECENZE.md`)
+- Značky (Bára 23. 11. 2026: nekreslit francouzské značky, které monacký kodex nezná): kreslí se jen zákazy vjezdu
+  (B0, B7b, B9b, B9a), zákaz zastavení a stání (B6d, B6a1), parkoviště (C1a), jednosměrka (C12 / B1), vyhrazený pruh
+  (B27a, čl. 32), stezka pro cyklisty (B22a, „piste cyclable“ čl. 1), aire piétonne (B54, čl. 1) a rychlosti 30, 50 a 70
+  (čl. 11). Nekreslí se zóna 30 (B30), zone de rencontre (B52), voie verte (C115), dálnice a silnice pro motorová
+  vozidla (C207, C107), stezka pro chodce (B22b) ani tabulka „sauf cyclistes“ u jednosměrky („double sens cyclable“
+  kodex nezná). Rychlost ulice, kterou by jinak schovala zónová značka, se kreslí (`countries/MC.js` `zoneSpeed`).
+- `halfKerbNote`: „pravidla silničního provozu (Code de la route)“ místo „zákona“ (ordonnance souveraine 1.691/1957).
+- `bounds` do 7,445° v. d. (východní cíp podle OSM 7,43987).
+- Vědomě převzaté z Francie (nerozhodnuté pro Monako): `lawNeed` (bez užitku, odhad stání vypnutý), `wideStreets` a
+  `besideMax` (pařížské bulváry), vzhled domů bez paneláků.
+- Nezkontrolované řezy (recenze, nález 3) zůstávají: ruční prohlídka 15–20 řezů proti ortofotu je samostatný úkol.

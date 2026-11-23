@@ -63,6 +63,12 @@ v `towns/<stát>.js`, hranice v `staty.json`, hostitelé v CSP (hlídá `tests/c
 řezů na Slovensku, v Rakousku, v Praze, v Brně a za hranicemi, přehrané před a po změně; tabulky města, kreditů,
 značek a norem států ve čtyřech jazycích).
 
+Společné pro státy (Bára 23. 11. 2026): sever Kypru a Itálie mimo otevřená ortofota (i se San Marinem a Vatikánem) profil
+nedostanou, aplikace to řekne (`city.js closedAt`, `staty.json` `closed_*`). Na pobřeží Španělska, Portugalska, Monaka
+a Francie platí stát do 400 m za hranicí GISCO (nábřeží, přístavy; `COAST_TOLERANCE`), Gibraltar a Andorra zůstávají
+cizinou. Jízda vlevo je zabudovaná přímo v pravidlech (`derive.js`), profil se nezrcadlí. Hranice poloh ve Workeru
+logu pokrývají všechny státy (nový Worker musí nasadit Bára).
+
 ### Slovensko a cizina (Bára 15. 11. 2026)
 
 Mimo města platí stát řezu (`staty.json` z `node tools/build_staty.mjs`: Česko z RÚIAN, Slovensko ze ZBGIS ÚGKK SR,
@@ -254,23 +260,27 @@ WMS-Raster v Web Mercatoru, `lanes-ortho.js` zdroj `fr`; mimo Francii bílé, pr
 Stát `spain` (ES), `countries/ES.js`, `towns/spain.js`, `search-es.js`; hranice GISCO s Baleárami, Kanárskými ostrovy,
 Ceutou, Melillou a Llívií (prstenec uvnitř francouzské díry). OSM po 17 autonomních společenstvích, Ceutě, Melille
 a Kanárských ostrovech (`es_*`, Kanárské ostrovy u Geofabriku pod `africa/`, jen R2). Ortofoto IGN PNOA (WMS, 25 cm,
-`lanes-ortho.js` zdroj `es`; mimo Španělsko kreslí satelitní pozadí, proto v mapě jen nad Španělskem).
+`lanes-ortho.js` zdroj `es`; mimo Španělsko kreslí satelitní pozadí, proto v mapě jen nad Španělskem). V Melille se pruhy
+z PNOA nečtou (snímek Airbus, licence nevyjasněná).
 - **Mapa povrchů Zaragozy** (dlažby města 2017: chodníky, střední a zelené pásy, IDEZar WFS) tam, kde má chodník do 25 m
   od středu řezu (`?zaragoza=0`). Vozovku jako plochu nemá: je to pás kolem os silnic z OSM, až za chodníky a budovami.
   A Coruña (1 : 500, i vozovky a stání) je ve složce „Intranet“ s nejasnou licencí, zatím ne.
 - **Budovy** z katastru (Catastro INSPIRE WFS, GML): podlaží části budovy u fasády, rok, užití, byty (`?catastro=0`).
-  Baskicko a Navarra mají vlastní katastr: tam jen OSM.
+  Baskicko a Navarra mají vlastní katastr (Catastro tam nic nevrátí, zatím se ptá i tam). Limit 25 s, paměť na bod.
 - **Normy:** závazná přístupnost (Orden TMA/851/2021: chodník 1,8 m), ostatní podle doporučení ministerstva dopravy
   2023/2024 (cyklo, pruhy 2,5–3 m, stání). Bez varování buspruh, tramvajový pás a sdílená stezka (5 m by svítilo všude).
-  **Stání:** vedle stojícího auta 3 m k protějšímu okraji vozovky (čl. 91.2 a RGC), odhad jako v Lucembursku; stání na
-  chodníku zakázané. **Značky** `signs-ES/` (katalog RD 465/2025, úřední díla podle čl. 13 LPI). **Hledání** CartoCiudad.
+  **Stání:** vedle stojícího auta 3 m k protějšímu okraji vozovky (čl. 91.2 a RGC); odhad jako v Lucembursku (pruhy vedle
+  stání zůstanou průjezdné, aspoň 3 m); stání na
+  chodníku zakázané. **Značky** `signs-ES/` (katalog RD 465/2025, úřední díla podle čl. 13 LPI); obytná ulice z OSM
+  je S-47 (zóna 20 km/h), S-28 jen s maxspeed=10; výchozí rychlost bez značky podle čl. 50 RGC (20 / 30 / 50 km/h podle
+  pruhů na směr) se nekreslí; dálnice S-1 / S-1a jen podle ref AP- / A-. **Hledání** CartoCiudad.
   Bez paneláků, univerzální vozidla. Rešerše `evaluation/spain/` (ZDROJE, NORMY).
 
 ### Portugalsko (Bára 23. 11. 2026)
 
 Stát `portugal` (PT), `countries/PT.js`, `towns/portugal.js`; hranice GISCO s Madeirou a Azorami. OSM jeden balík `pt`
 (Geofabrik i s ostrovy, jen R2). Ortofoto DGT (WMS, CORS *, CC BY): nejnovější let, který místo má (2025 celá pevnina
-25 cm, 2021 sever, 2018, satelit 2023; bílý snímek = žádný), v mapě vrstvené přes sebe. Madeira a Azory ortofoto DGT
+25 cm, 2021 sever, 2018, satelit 2023; bílý snímek = žádný; jen na pevnině), v mapě jen let 2025. Madeira a Azory ortofoto DGT
 nemají (jejich služby: nejasná licence, bez CORS). Žádné město nemá mapu povrchů online (`evaluation/portugal/ZDROJE.md`),
 profil je odhad z ortofota a OSM. Hledání Photon.
 - **Normy:** chodník 1,5 m závazně u hlavních a sběrných ulic (DL 163/2006; 1,2 m u každé pěší trasy), jinak doporučení
@@ -283,37 +293,44 @@ Stát `monaco` (MC), `countries/MC.js` (francouzská nastavení s monackým zák
 (pevnina, admin_level 8, `tools/monaco-border.json`; GISCO má jen 11 bodů), v `staty.json` před Francií. OSM balík `mc`
 (jen R2). Ortofoto IGN (Francie, pokrývá i Monako). Stání podle zákona jen na vyznačených místech (čl. 31 Code de la
 route), proto se neodhaduje; stání na chodníku zakázané (čl. 32). Monako nemá předpisy šířek ulic: bez varování. Značky
-kresbou francouzské (Ženevský protokol 1949), bez francouzských čísel. Hledání Photon. Pravidla `evaluation/monaco/PRAVIDLA.md`.
+kresbou francouzské (Monako se řídí Ženevským protokolem 1949; podoba je pozorování), bez francouzských čísel, jen ty, které
+kodex zná: bez zóny 30, zone de rencontre, voie verte a dálnice (Bára 23. 11. 2026); rychlosti 30, 50, 70. Hledání Photon. Pravidla `evaluation/monaco/PRAVIDLA.md`.
 
 ### Kypr (Bára 23. 11. 2026)
 
 Stát `cyprus` (CY), `countries/CY.js`, `towns/cyprus.js`; hranice z OSM (území republiky a britské základny,
-`tools/cyprus-border.json`): **sever je samostatný stát, který zatím nemáme**, nárazníková zóna OSN (Pyla) také mimo.
+`tools/cyprus-border.json`): **sever je samostatný stát, který zatím nemáme** (`staty.json` `closed_cy`: profil se nedělá a aplikace to řekne); nárazníkovou zónu OSN hranice OSM zčásti zahrnuje (Pyla, Mammari, letiště Nikósie: odhad z OSM, ortofoto tam není).
 **Jízda vlevo** (`leftHand`): díly zůstávají tam, kam je dala data (Bára: „Přesouvat nesmíš nic, jen otáčet směr“);
 pravidla, která směr odvozují (polovina vozovky u obousměrné osy, `lanes:forward`, rozdělení pruhu z ortofota, krajnice
 dělené silnice, strana odhadu stání na jednosměrce), počítají rovnou s jízdou vlevo; jednosměrné osy jedou podle své
 geometrie a seznamy po pruzích (`turn:lanes`, `bus:lanes`) se čtou od řidičovy levice, tedy od obruby (recenze 23. 11.). Ortofoto DLS 2019
 (dlaždice, asi 12 cm; licence neuvedená, Bára: novější), budovy DLS (podlaží, výška, typ; CC BY 4.0), hledání Photon.
-Normy jen z příručky odboru veřejných prací (doporučení), stání bez varování; stání na chodníku zakázané. Značky
-`signs-CY/` (kyperský Kodex nečísluje, britské kresby pod OGL v1.0 s uvedením zdroje v patičce).
+Normy jen z příručky odboru veřejných prací (doporučení; chodník bez červené, 2 / 2,5 m oranžově podle třídy ulice,
+pruh 3 / 3,5 m, cyklopruh v protisměru 2 m), stání bez varování; stání na chodníku zakázané. Značky `signs-CY/`
+(kyperský Kodex nečísluje, britské kresby pod OGL v1.0 s uvedením zdroje v patičce i v exportu; jednosměrka s cyklisty v protisměru
+bez značky, C 10a podle strany chodců). Měření přesnosti `evaluation/cyprus/ZPRAVA.md`.
 
 ### Malta (Bára 23. 11. 2026)
 
 Stát `malta` (MT), `countries/MT.js`, `towns/malta.js`; hranice z OSM i s výsostnými vodami (`tools/malta-border.json`),
 OSM balík `mt`. Jízda vlevo. Ortofoto stavebního úřadu 2018 (15 cm, CC BY 4.0); služba nemá Web Mercator, výřez se ptá
-ve stupních (`lanes-ortho.js MT_ORTHO`, CRS:84). Mapa povrchů, stání ani budovy s podlažími nejsou. Normy: chodník 1,2 /
-1,5 m (doporučení), kolmé stání 4,8 m (DC15), jinak bez varování. Volná šířka vedle stání podle DC15: 4,1 m obousměrka,
-3 m jednosměrka. Značky `signs-MT/` (maltské kresby PD, britské pod OGL v3.0, uvedeno v patičce). Hledání Photon.
+ve stupních (`lanes-ortho.js MT_ORTHO`, CRS:84). Mapa povrchů, stání ani budovy s podlažími nejsou. Normy: chodník 1,2 m
+jen oranžově (zásady přístupnosti, doporučení), kolmé stání 4,8 m (DC15), jinak bez varování. Volná šířka vedle stání:
+aspoň 4,1 m obousměrka a 3 m jednosměrka (DC15), nejméně 2,5 m na každý pruh. Značky `signs-MT/` jen z přílohy S.L. 65.05
+(maltské kresby PD, britské pod OGL v1.0, uvedeno v patičce i v exportu; jednosměrka po směru, cyklistické stezky a „Except cycles“
+se nekreslí, vlastní kresby II.E11, II.B6, II.D12 bez úředního čísla). Hledání Photon. Měření `evaluation/malta/ZPRAVA.md`.
 
 ### Itálie (Bára 23. 11. 2026)
 
-Stát `italy` (IT), `countries/IT.js`, `towns/italy.js`; **jen oblasti s ortofotem s otevřenou licencí** (Bára: ortofota
-AGEA jsou „jen pro institucionální účely“, to nesplňujeme): provincie Bolzano (NUTS 2 ITH1) a obce Turín, Bologna, Modena
-(LAU 2024), vše GISCO. Zbytek Itálie, Vatikán a San Marino zatím mimo. Ortofota CC BY 4.0: Bologna 2023, Modena 2024
-(služby regionu Emilia-Romagna), Turín 2023, Bolzano 2023 (`lanes-ortho.js IT_ORTHO`, podle obdélníku oblasti). OSM po 5
+Stát `italy` (IT), `countries/IT.js`, `towns/italy.js`; **jen oblasti s ortofotem s otevřenou licencí** (Bára: vrstvy
+AGEA regionů jsou „jen pro institucionální účely“, to nesplňujeme): provincie Bolzano (NUTS 2 ITH1) a obce Turín, Bologna, Modena
+(LAU 2024), vše GISCO. Zbytek Itálie, Vatikán a San Marino profil nedostanou (hláška, `city.js closedAt`, `staty.json` `closed_it`).
+Ortofota CC BY 4.0: Bologna 2023, Modena 2024 (služby regionu Emilia-Romagna), Turín 2023, Bolzano 2023 (nálet provincie
+ve spolupráci s AGEA, licenci CC BY 4.0 dává provincie) (`lanes-ortho.js IT_ORTHO`, podle obdélníku oblasti; výpadek se ohlásí). OSM po 5
 dílech Geofabriku (jen R2). Výšky budov Bologni (`?bolognadomy=0`); plochy silnic Bologni vypnuté (`?bologna=1`; jsou to
-celé uliční prostory i s chodníky, A/B `evaluation/italy/ab/ZPRAVA.md`). Normy podle D.M. 5. 11. 2001, D.M. 557/1999 a
-přístupnosti (0,9 m); stání 3 m na směr. Značky `signs-IT/` (Regolamento, úřední díla).
+celé uliční prostory i s chodníky, A/B `evaluation/italy/ab/ZPRAVA.md`). Normy podle D.M. 5. 11. 2001 (pruh podle třídy z OSM:
+3,25 / 3 / 2,75 m, v obytné zóně bez varování), D.M. 557/1999 (obousměrná stezka 2,5 m, společná stezka oranžově pod 2,5 m)
+a přístupnosti (0,9 m); stání 3 m na směr (konvence aplikace, zákon dává 3 m jen u stání vlevo v jednosměrce). Značky `signs-IT/` (Regolamento, úřední díla).
 
 ### Estonsko (Bára 23. 11. 2026)
 

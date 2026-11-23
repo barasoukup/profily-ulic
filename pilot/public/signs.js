@@ -93,12 +93,16 @@ const WALK_TYPES = new Set(["chodnik", "chodnik_kola", "stezka_sdilena"]);
 const yes = (v) => ["yes", "designated", "permissive"].includes(v);
 const num = (v) => { const m = /^(\d+)/.exec(String(v ?? "")); return m ? Number(m[1]) : undefined; };
 
-// The speed that the zone sign already says (no B 20a of its own).
+// The speed that the zone sign already says (no B 20a of its own); a state may give its own (countries/<ISO>.js
+// signs.zoneSpeed: Spain's S-28 stands with its R-301 10, Monaco draws no zone signs).
 const ZONE_SPEED = { ip26a: 20, ip27a: 20, zona30: 30, cyklozona: 30, sdilena: 20 };
+const zoneSpeedOf = (country) => countryOf(country).signs.zoneSpeed || ZONE_SPEED;
+// The town's speed without a sign (50 unless the state says otherwise: countries/<ISO>.js signs.townSpeed).
+const townSpeedOf = (tags, country) => countryOf(country).signs.townSpeed?.(tags) ?? 50;
 
 // The rules of the street that belong to its driving lanes (Bára: no signs for the whole profile; speed and
 // one-way under the lanes they concern), in order of importance: the kind of road or zone, an entry ban.
-export function streetSigns(tags = {}) {
+export function streetSigns(tags = {}, country = "CZ") {
   const z = [];
   const hw = tags.highway;
   const zone = String(tags["zone:traffic"] || tags["zone:maxspeed"] || tags["maxspeed:type"] || "");
@@ -115,15 +119,17 @@ export function streetSigns(tags = {}) {
   const ban = (v) => v === "no" || v === "destination" || v === "private";
   if (ban(tags.access) || ban(tags.vehicle)) z.push({ k: "b1", ...((tags.access || tags.vehicle) === "destination" ? { plate: "obsluha" } : {}) });
   else if (ban(tags.motor_vehicle)) z.push({ k: "b11", ...(tags.motor_vehicle === "destination" ? { plate: "obsluha" } : {}) });
-  return z;
+  // A state's own zones (countries/<ISO>.js signs.zones; Spain: a living street is S-47 unless it is 10 km/h).
+  const own = countryOf(country).signs.zones;
+  return own ? own(z, tags) : z;
 }
-// The street's speed limit unless a zone sign says it, or it is the town's default 50 without a sign.
-// showDefault: the town's 50 is drawn too (another roadway of the profile has a sign of its own speed).
-function streetSpeed(tags, zones, showDefault = false) {
-  const speed = num(tags.maxspeed);
-  const zoned = zones.find((s) => ZONE_SPEED[s.k]);
-  if (!speed || (zoned && ZONE_SPEED[zoned.k] === speed)) return undefined;
-  if (speed === 50 && !showDefault && !/sign/.test(String(tags["source:maxspeed"] || "")) && !tags.traffic_sign) return undefined;
+// The street's speed limit unless a zone sign says it, or it is the town's default (50) without a sign.
+// showDefault: the town's default is drawn too (another roadway of the profile has a sign of its own speed).
+function streetSpeed(tags, zones, showDefault = false, country = "CZ") {
+  const speed = num(tags.maxspeed), zs = zoneSpeedOf(country);
+  const zoned = zones.find((s) => zs[s.k]);
+  if (!speed || (zoned && zs[zoned.k] === speed)) return undefined;
+  if (speed === townSpeedOf(tags, country) && !showDefault && !/sign/.test(String(tags["source:maxspeed"] || "")) && !tags.traffic_sign) return undefined;
   return speed;
 }
 
@@ -158,15 +164,15 @@ export function deriveSigns(profile, tags = {}, ctx = {}) {
   const dirs = new Set(lanes.map((i) => segs[i].dir || "forward"));
   // Where one roadway has a speed sign, the town's 50 of another is drawn too, so the difference shows (Bára,
   // Poncarova: 70 one way, 50 the other).
-  const signed = [...groups.keys()].some((tg) => streetSpeed(tg, streetSigns(tg)) && num(tg.maxspeed) !== 50);
+  const signed = [...groups.keys()].some((tg) => streetSpeed(tg, streetSigns(tg, ctx.country), false, ctx.country) && num(tg.maxspeed) !== townSpeedOf(tg, ctx.country));
   const ruleOf = new Map();
   for (const [tg, ls] of groups) {
-    const rules = streetSigns(tg);
+    const rules = streetSigns(tg, ctx.country);
     const oneway = ["yes", "1", "true", "-1"].includes(tg.oneway) && dirs.size === 1;
     const contra = oneway && (tg["oneway:bicycle"] === "no" || segs.some((s) => s.bikeDir && s.bikeDir !== [...dirs][0]));
     const lanesSpeed = String(tg["maxspeed:lanes"] || "").split("|").map(num);
     const forward = ls.filter((j) => (segs[j].dir || "forward") === "forward");
-    const speed = streetSpeed(tg, rules, signed && groups.size > 1);
+    const speed = streetSpeed(tg, rules, signed && groups.size > 1, ctx.country);
     for (const i of ls) {
       const out = [];
       if (oneway) out.push({ k: "oneway", ...(contra ? { plate: "protismer" } : {}) });
@@ -205,7 +211,7 @@ export function deriveSigns(profile, tags = {}, ctx = {}) {
   // A street without lanes of its own (a pedestrian zone whose whole width a town's passport or the map gives as
   // a sidewalk, Poštová in Bratislava): its zone and entry signs under its widest walking part (Bára).
   if (!lanes.length) {
-    const rules = streetSigns(tags);
+    const rules = streetSigns(tags, ctx.country);
     const walk = segs.map((s, i) => [s, i]).filter(([s]) => WALK_TYPES.has(s.type)).sort((a, b) => b[0].width - a[0].width)[0];
     if (rules.length && walk) walk[0].signs = [...(walk[0].signs || []), ...rules].slice(0, MAX_PER_PART);
   }

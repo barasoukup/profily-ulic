@@ -67,6 +67,14 @@
   "desc": "Route for segregated use by pedal cycles and pedestrians only.",
   "date": "2011-11-13"
  },
+ "c10a-chodci-vlevo": {
+  "derived_from": [
+   "File:UK traffic sign 957.svg"
+  ],
+  "lic": "OGL v1.0",
+  "artist": "Government of the United Kingdom – Department for Transport",
+  "note": "upraveno pro aplikaci (Profily ulic): c10a zrcadlově, chodci vlevo (Kodex ukazuje obě podoby); recenze 23. 11. 2026"
+ },
  "c8a": {
   "title": "File:UK traffic sign 955.svg",
   "lic": "OGL v1.0",

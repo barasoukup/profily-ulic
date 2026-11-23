@@ -30,8 +30,9 @@ async function rings(url, params) {
 // Austria from GISCO's countries of 1 : 1 000 000 (one file of all, about 60 MB; its MultiPolygon's outer rings).
 // holes: the inner rings too (France: Llívia, a Spanish enclave; cityAt counts the rings a point lies in, as
 // Switzerland's Büsingen and Campione).
+let giscoAll = null;
 async function gisco(cntr, holes = false) {
-  const all = await (await fetch("https://gisco-services.ec.europa.eu/distribution/v2/countries/geojson/CNTR_RG_01M_2024_4326.geojson")).json();
+  const all = giscoAll ??= await (await fetch("https://gisco-services.ec.europa.eu/distribution/v2/countries/geojson/CNTR_RG_01M_2024_4326.geojson")).json();
   const g = all.features.find((f) => f.properties.CNTR_ID === cntr).geometry;
   const polys = g.type === "MultiPolygon" ? g.coordinates : [g.coordinates];
   return (holes ? polys.flat() : polys.map((p) => p[0])).map((r) => r.map(([x, y]) => [+x.toFixed(4), +y.toFixed(4)]));
@@ -84,9 +85,13 @@ const BUILD = {
   luxembourg: () => gisco("LU"),
   // Monaco (23. 11. 2026): GISCO's 1 : 1 M ring has 11 points for 2 km², so the land boundary of OSM (admin_level 8,
   // without the territorial waters; tools/monaco-border.json, © OpenStreetMap contributors, ODbL), simplified as the others; before France, whose coarse ring may cover it).
-  monaco: () => JSON.parse(fs.readFileSync(new URL("./monaco-border.json", import.meta.url), "utf8")).map((r) => simplify(r)),
+  // Simplified to about 2 m, not 30 (the review of 23. 11. 2026: the state is 300 m wide in places, its second ring fell to a
+  // line and 16 of its streets were France or abroad).
+  monaco: () => JSON.parse(fs.readFileSync(new URL("./monaco-border.json", import.meta.url), "utf8")).map((r) => simplify(r, 0.00002)),
   // Metropolitan France only (GISCO's FR has the overseas regions too): the rings in Europe.
-  france: async () => (await gisco("FR", true)).filter((r) => r.every(([x, y]) => x > -6 && x < 10 && y > 41 && y < 52)),
+  // GISCO's ring of Monaco is France's too: Monaco by OSM comes first, and what GISCO gives Monaco beyond it is France
+  // (Beausoleil, Cap-d'Ail: 17 streets abroad, the review of 23. 11. 2026).
+  france: async () => [...(await gisco("FR", true)).filter((r) => r.every(([x, y]) => x > -6 && x < 10 && y > 41 && y < 52)), ...(await gisco("MC"))],
   // Spain with the Canary and Balearic Islands, Ceuta, Melilla and Llívia (an outer ring inside France's hole; 23. 11. 2026).
   spain: () => gisco("ES"),
   // Portugal with Madeira and the Azores (23. 11. 2026).
@@ -112,6 +117,14 @@ const BUILD = {
   // Malta (23. 11. 2026): OSM's boundary with the territorial waters (one ring round the islands, no neighbour; GISCO's
   // coast cuts off quays; tools/malta-border.json, © OpenStreetMap contributors, ODbL).
   malta: () => JSON.parse(fs.readFileSync(new URL("./malta-border.json", import.meta.url), "utf8")).map((r) => simplify(r)),
+  // Not ours, kept out of the coast's tolerance (city.js cityAt): Gibraltar and Andorra are abroad.
+  foreign_gi: () => gisco("GI"),
+  foreign_ad: () => gisco("AD"),
+  // Where the app makes no profile (Bára 23. 11. 2026, the review): the north of Cyprus (GISCO draws one island; the
+  // republic by OSM comes first) and Italy beyond the open orthophotos, San Marino and the Vatican with it.
+  closed_cy: () => gisco("CY"),
+  // (GISCO's outer rings of Italy take in San Marino and the Vatican.)
+  closed_it: () => gisco("IT"),
 };
 const file = new URL("../pilot/public/staty.json", import.meta.url);
 const only = process.argv.slice(2);

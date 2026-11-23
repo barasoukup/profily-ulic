@@ -7,6 +7,14 @@ Značení: **ověřeno** = odpověď přišla a byla přečtena (u ortofota i pr
 katalogu nebo vyhledávání, bez dotazu. CORS „`*`“ = `Access-Control-Allow-Origin: *`; „echo“ = server vrací náš Origin,
 z prohlížeče to funguje stejně; „bez CORS“ = hlavička chybí (obrázek jde zobrazit v `<img>`, ale ne číst pixely ani JSON).
 
+> **Stav po recenzi 23. 11. 2026** (`RECENZE.md`): aplikace používá jen ortofota Bologna 2023, Modena 2024, Torino 2023
+> a Bolzano 2023 (všechna CC BY 4.0 podle katalogů, oddíl „Ověření licencí“ na konci). **Bolzano 2023 nafotila provincie
+> ve spolupráci s AGEA v rámci monitorovacího plánu** (pole `lineage` záznamu provincie); vlastníkem záznamu je
+> provincie a licenci dává výslovně CC BY 4.0 (`useLimitation`, `otherConstraints`), Bára 23. 11. 2026: používat.
+> Mimo tyto čtyři oblasti (zbytek Itálie, San Marino, Vatikán) aplikace **profil nedělá**, kliknutí ukáže hlášku
+> (`city.js closedAt`, `staty.json` `closed_it`); hledání Photon tam ulice nabídnout může. Návrhy „odhad z OSM a
+> ortofota“ u San Marina a Vatikánu níže jsou rešerše, ne stav aplikace.
+
 Zkušební body: Bologna Piazza Maggiore (11,3426, 44,4938) a Via Rizzoli (11,3460, 44,4990), Milano Duomo (9,1900, 45,4642),
 Torino (7,6790, 45,0680), Firenze (11,2540, 43,7710), Roma (12,4823, 41,8986), Genova (8,9340, 44,4070), Trieste (13,7768,
 45,6495), Udine (13,2350, 46,0630), Trento (11,1217, 46,0679), Bolzano (11,3548, 46,4983), Perugia (12,3888, 43,1107),
@@ -33,8 +41,9 @@ v odpovědích služeb (ověřeno):
 
 Důsledek: ortofota AGEA (ER `Agea2023`, Lazio `2023_AGEA`, Umbria, Toscana, Puglia 2022, Sicílie 2022 podle všeho také)
 jsou technicky použitelná (CORS, Web Mercator), ale **licence pro naši aplikaci je přinejmenším nejasná, spíš nevyhovuje**.
-Čistě otevřená jsou jen ortofota z vlastních náletů regionů a měst: Emilia-Romagna RER 2022–2026 (CC BY 4.0, jen část
-území), Bologna 2023, Modena 2024, Torino 2023, Bolzano 2023 (provincie), Puglia 2023 (projekt Puglia Digitale), FVG true
+Čistě otevřená jsou jen ortofota s otevřenou licencí vlastníka: Emilia-Romagna RER 2022–2026 (CC BY 4.0, jen část
+území), Bologna 2023, Modena 2024, Torino 2023, Bolzano 2023 (provincie; nálet ve spolupráci s AGEA, licence provincie
+CC BY 4.0, viz úvod), Puglia 2023 (projekt Puglia Digitale), FVG true
 ortho 2017–2020 (bez CORS). Než něco s AGEA zapojíme, je potřeba se zeptat AGEA nebo regionu (ideálně Bára).
 
 AGEA má i vlastní geoportál s ortofoty celé Itálie (podle článku ItaliaOggi „scaricabili dal geoportale“), adresu služby
@@ -63,17 +72,17 @@ Režim „ArcGIS“ = `…/ImageServer/exportImage?bbox=…&bboxSR=3857&imageSR=
 | Emilia-Romagna | `…/wms/rer2022_rgb`, `RER2022_RGB` | **ověřeno: nad Boloní, Modenou, Parmou, Ravennou, Forlì, Rimini, Ferrarou i San Marinem černé** | Vlastní nálet RER 2022, 20 cm; z katalogu snímků (`ImageServer/query`) a přehledového snímku jen **malé ostrůvky** (např. Valmarecchia kolem 12,2° v. d., 43,9° s. š.) | echo | CC BY 4.0 (INSPIRE záznam, neověřeno dotazem) | černý JPEG |
 | Emilia-Romagna | ArcGIS `public/RER2023_24_RGB` (WMS `…/wms/rer2023_24_rgb`) | **ověřeno**: snímek v Apeninách (10,215, 44,485); Bologna černá | RER 2023/24, 20 cm, **pás pahorkatin a Apenin** (bez nížiny a měst) | echo | CC BY 4.0 (podle obdobných záznamů, neověřeno) | černý |
 | Emilia-Romagna | ArcGIS `public/RER2025_26_RGB` (WMS `…/wms/rer2025_26_rgb`) | **ověřeno**: Parma ostrá, Cesena černá | RER 2025/26, pixel 15 cm, zatím 2 bloky (Parma 10,12–10,51 / 44,65–45,04 a 11,64–12,16 / 43,74–44,07), přibývá | echo | CC BY 4.0 (neověřeno) | černý |
-| Emilia-Romagna (města) | ArcGIS `public/Comune_BO_2023_RGB` (WMS `…/wms/comune_bo_2023_rgb`), `public/Comune_MO_2024_RGB` | **ověřeno** Bologna: velmi ostré | Bologna 2023 a Modena 2024, 20 cm (podle `pixelSizeX`, vizuálně ostřejší než AGEA), jen území obce | echo | neuvedena (neověřeno) | černý |
+| Emilia-Romagna (města) | ArcGIS `public/Comune_BO_2023_RGB` (WMS `…/wms/comune_bo_2023_rgb`), `public/Comune_MO_2024_RGB` | **ověřeno** Bologna: velmi ostré | Bologna 2023 a Modena 2024, 20 cm (podle `pixelSizeX`, vizuálně ostřejší než AGEA), jen území obce | echo | CC BY 4.0 (ověřeno v katalogu, oddíl na konci) | černý |
 | **Lombardia** | ArcGIS `https://www.cartografia.servizirl.it/arcgis2/rest/services/BaseMap/Ortofoto2021/ImageServer` (+ WMS `…/arcgis2/services/BaseMap/Ortofoto2021/ImageServer/WMSServer`, vrstva `0`; WMTS v katalogu) | **ověřeno: nefunguje** – `exportImage` chyba 400/500 „Error exporting image“, WMS vrací 0 B, WMTS „ArcGIS Server Error“; stejně `Ortofoto2018_2019` | AGEA 2021, 20 cm | echo | AGEA, výslovně jen institucionální | – |
 | **Piemonte** (region) | WMS `https://geomap.reteunitaria.piemonte.it/mapproxy/service`, vrstva `rp_ortofoto_2010` | **ověřeno**, rozmazané | ICE 2010, asi 40–50 cm | `*` | – | – |
-| **Torino** (město) | tamtéž, vrstva `coto_ortofoto_2023` | **ověřeno**: velmi ostré (asi 10 cm, vizuálně) | 2023, jen Torino | `*` | neuvedena (Comune di Torino, neověřeno) | bílý JPEG 1 651 B, PNG průhledné |
+| **Torino** (město) | tamtéž, vrstva `coto_ortofoto_2023` | **ověřeno**: velmi ostré (asi 10 cm, vizuálně) | 2023, jen Torino | `*` | CC BY 4.0 (dataset Comune di Torino, ověřeno, oddíl na konci; záznam služby WMS „Condizioni sconosciute“) | bílý JPEG 1 651 B, PNG průhledné |
 | **Veneto** | IDT-RV 2.0, `idt2-geoserver.regione.veneto.it/geoserver` | **neověřeno**: spojení vyprší (TCP timeout) | AGEA 2024, 20 cm (stránka regionu) | ? | AGEA „tutti i diritti riservati“ | – |
 | **Toscana** | WMS `https://www502.regione.toscana.it/ows_ofc/com.rt.wms.RTmap/wms?map=owsofc`, vrstva `rt_ofc.5k22.32bit` (i `5k19`, `5k16`) | **ověřeno**: Florencie 20 cm, ale **s vepsaným copyrightem AGEA** podél okraje | AGEA 2022, 20 cm, celý region | `*` | AGEA, „fini istituzionali“, bez stahování | bílý JPEG 2,4 KB |
 | **Lazio** | WMS (GeoNode) `https://geoportale.regione.lazio.it/geoserver/ows`, vrstva `geonode:2023_AGEA_25833_COG` (i `2020_…`, `2017_…`) | **ověřeno**: Řím a **Vatikán** (kupole sv. Petra) | AGEA 2023, 20 cm, celý region **i Vatikán** | `*` | AGEA (záznam GeoNode bez licence) | bílý JPEG 909 B, PNG průhledné; 1,5–2,8 s na snímek |
 | **Liguria** | WMS `https://geoservizi.regione.liguria.it/geoserver/M2555/wms`, vrstva `L10401` (2022; 2019 `M2248:L8256`, 2016 `M1828:L5802`) | **ověřeno: nefunguje** – ServiceException „Failed to create reader from file“ u všech tří | AGEA 2022/2019/2016, celý region | `*` | AGEA | – |
 | **Friuli VG** | WMS `https://irdat-ortofoto.regione.fvg.it/geoserver/ortofoto/ows`, vrstva `trueorto_FVG_1720` | **ověřeno**: Terst a Udine velmi ostré, **true ortho** | 2017–2020, asi 10 cm (vizuálně) | **bez CORS** (i OPTIONS 403) | capabilities bez podmínek | bílý JPEG 909 B |
 | Friuli VG | `https://serviziogc.regione.fvg.it/geoserver/ORTOFOTO/wms` | **ověřeno**: CORS `*`, ale jen klady listů (bílé) | – | `*` | – | – |
-| **Bolzano / Südtirol** | WMS `https://geoservices.buergernetz.bz.it/mapproxy/wms`, vrstva `p_bz-Orthoimagery:Aerial-2023-RGB` | **ověřeno**: Bolzano ostré | 2023, 20 cm, celá provincie | echo | podle katalogu CC BY 4.0 (výslovně u AGEA 2008/2011; u 2023 neověřeno) | bílý JPEG 4,7 KB (512 px) |
+| **Bolzano / Südtirol** | WMS `https://geoservices.buergernetz.bz.it/mapproxy/wms`, vrstva `p_bz-Orthoimagery:Aerial-2023-RGB` | **ověřeno**: Bolzano ostré | 2023, 20 cm, celá provincie | echo | CC BY 4.0 (záznam provincie, ověřeno, oddíl na konci); nálet 2023 ve spolupráci s AGEA | bílý JPEG 4,7 KB (512 px) |
 | Bolzano (obce) | tamtéž `gvcc-Orthoimagery:Aerial-<rok>-RGB` | **ověřeno** (abstrakty) | ortofota jednotlivých obcí: Bolzano 2019, Merano 2023, Ora 2024… | echo | ? | bílé mimo obec |
 | **Trento** | WMS `https://siat.provincia.tn.it/geoserver/stem/ecw-rgb-2015/wms`, vrstva `ecw-rgb-2015` | **ověřeno**: snímek 200 OK | 2015, 20 cm (stránka provincie) | **bez CORS** | – | – |
 | **Marche** | `map.regione.marche.it/arcgis` | **ověřeno**: ortofoto nenabízí | – | echo | – | Sousední ER `Agea2023` pokrývá San Marino, Marche nic. |
@@ -85,8 +94,9 @@ Režim „ArcGIS“ = `…/ImageServer/exportImage?bbox=…&bboxSR=3857&imageSR=
 | Campania, Abruzzo, Molise, Basilicata, Calabria, Valle d'Aosta | – | **nehledáno do hloubky**: zkušební adresy ArcGIS/GeoServeru neodpověděly nebo 404 | – | – | – | Zbytek ve druhém kole, pokud bude potřeba. |
 
 Shrnutí ortofot: technicky použitelná (CORS + Web Mercator + 20 cm) jsou ortofota **Emilia-Romagna, Lazio, Toscana,
-Bolzano, Piemonte (jen Torino), Umbria, Puglia, Sicílie**. Bez právní nejistoty (ne AGEA): **Bolzano 2023, Puglia 2023,
-Torino 2023, Bologna 2023, Modena 2024, ER RER 2023–26 (části regionu)**. Lombardie a Ligurie mají služby rozbité, Veneto
+Bolzano, Piemonte (jen Torino), Umbria, Puglia, Sicílie**. S otevřenou licencí vlastníka: **Bolzano 2023 (nálet ve spolupráci s AGEA, licence
+provincie CC BY 4.0), Torino 2023, Bologna 2023, Modena 2024, ER RER 2023–26 (části regionu)**; Puglia 2023 licenci
+neuvádí (oddíl na konci). Lombardie a Ligurie mají služby rozbité, Veneto
 a Sardinie neodpovídají, FVG a Trento nemají CORS (jen podklad mapy, ne pruhy).
 
 Ostrost (ověřeno na snímcích 512 px na 60 m): AGEA 2020/2023 rozliší auta a vodorovné značení, AGEA 2023 v ER je měkčí než
@@ -104,7 +114,7 @@ roků, jinak Agea): ArcGIS `ImageServer/query` vrací obrysy snímků, nebo sta�
 
 | Město / region | Služba | Ověřený stav | Obsah | Licence | Použitelnost |
 |---|---|---|---|---|---|
-| **Bologna** (Carta tecnica comunale) | Opendatasoft API `https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/<id>/records?where=within_distance(geo_shape, geom'POINT(lon lat)', 60m)` | **ověřeno**: CORS `*`, GeoJSON, dotaz okolím bodu (data aktualizovaná 22. 11. 2026) | `aree-stradali` **10 636 polygonů ploch silnic** (`descrizion`: „Tracciato principale in tronco“ 6 853, „Tronco di intersezione“ 3 557, mosty, železnice…; `sede`, `fondo` asfalt/dlažba); u Via dell'Indipendenza polygon 782 m² na ~107 m, tedy **vozovka** (asi 7 m); `carta-tecnica-comunale-marciapiedi` **13 108 linií obrub** („Ciglio di marciapiede, elemento o spartitraffico“); dále `percorsi-pedonali`, `arredi-urbani` (mobiliář), `binari-ferroviari`, `recinzioni`, `filari-siepi`; ZTL, Città 30, cyklotrasy `piste-ciclopedonali` | **CC BY 4.0** | **Nejlepší italský kandidát**: vozovka jako plocha + obruby chodníků jako čáry (chodník = mezi obrubou a fasádou). Dotaz při kliknutí, 2–3 požadavky. |
+| **Bologna** (Carta tecnica comunale) | Opendatasoft API `https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/<id>/records?where=within_distance(geo_shape, geom'POINT(lon lat)', 60m)` | **ověřeno**: CORS `*`, GeoJSON, dotaz okolím bodu (data aktualizovaná 22. 11. 2026) | `aree-stradali` **10 636 polygonů ploch silnic** (`descrizion`: „Tracciato principale in tronco“ 6 853, „Tronco di intersezione“ 3 557, mosty, železnice…; `sede`, `fondo` asfalt/dlažba); u Via dell'Indipendenza polygon 782 m² na ~107 m (asi 7 m, odhad z jednoho polygonu; A/B `ab/ZPRAVA.md` ale ukázalo, že plochy jsou často **celý uliční prostor i s chodníky**, proto je mapa vypnutá); `carta-tecnica-comunale-marciapiedi` **13 108 linií obrub** („Ciglio di marciapiede, elemento o spartitraffico“); dále `percorsi-pedonali`, `arredi-urbani` (mobiliář), `binari-ferroviari`, `recinzioni`, `filari-siepi`; ZTL, Città 30, cyklotrasy `piste-ciclopedonali` | **CC BY 4.0** | **Nejlepší italský kandidát**: vozovka jako plocha + obruby chodníků jako čáry (chodník = mezi obrubou a fasádou). Dotaz při kliknutí, 2–3 požadavky. |
 | **Lombardia** (DBT regionální, 1 : 1000 ve městech) | ArcGIS `https://www.cartografia.servizirl.it/arcgis2/rest/services/BaseMap/dbtr/MapServer/<vrstva>/query` | **ověřeno**: CORS echo, `f=json` (ne `f=geojson` s outSR 4326) | `106` Area di circolazione veicolare (Milano Duomo: 28 polygonů, `ac_vei_zon` „tronco carreggiata“, `ac_vei_fon`, `ac_vei_sed`, přesnost 1 : 1000); `102` Area stradale (`ar_str_cf` „strada locale“…); `103` cyklo (v bboxu 0); **`104`/`105` pěší plochy: „Failed to execute query“** | neuvedena (Regione Lombardia; IODL/CC BY podle portálu, neověřeno) | Vozovka ano, chodníky jen jako zbytek mezi vozovkou a domy. Celá Lombardie. |
 | **Milano** (DBT 2020 města) | `dati.comune.milano.it` (CKAN) | **ověřeno**: SHP 597 MB (`gisportal.comune.milano.it/download/…/DBT_2020.zip`), online služba `gisportal…/arcgis/rest` 404 | celý DBT 2020, 1 : 1000, let 3–4/2020 (strato 01 Viabilità: plochy vozovky, chodníků, cyklo) | **CC BY** | Jen statický soubor při nasazení (předzpracovat na dlaždice); obsah nestahován. |
 | **Piemonte** (BDTRE) | WFS `https://geoservices.csi.it/ms/wfs/taims/rp-01/taimswfs/bdtre_viab` (`ac_vei`, `ac_ped`, `ac_cic`, `ar_str`…) | **ověřeno**: CORS `*`, GeoJSON, `srsName=EPSG:4326` | V Turíně `ac_vei` jeden obří polygon (bbox přes celé město), **měřítko 1 : 10 000**, `ac_ped` a `ac_cic` v centru prázdné | neuvedena | Pro profil **nepoužitelné** (hrubé). Torino má vlastní `coto_bdtre` jen jako WMS (obrázek). |
@@ -206,14 +216,14 @@ Vatikánu jako u Monaka před Francií).
 | Ortofoto ER otevřené | RER 2023/24, 2025/26, Bologna 2023, Modena 2024 | ověřeno, 15–20 cm, části | echo | CC BY 4.0 (RER) | **Použít, kde jsou** (Bologna, Modena, Parma, Apeniny) |
 | Ortofoto Lazio | `geonode:2023_AGEA_25833_COG` | ověřeno, 20 cm, + Vatikán | `*` | AGEA | Technicky ano; licence |
 | Ortofoto Toscana | `rt_ofc.5k22.32bit` | ověřeno, 20 cm, copyright v obraze | `*` | AGEA, jen institucionální | Ne (licence i nápis) |
-| Ortofoto Bolzano | `p_bz-Orthoimagery:Aerial-2023-RGB` | ověřeno, 20 cm | echo | CC BY 4.0 (asi) | **Použít** |
-| Ortofoto Torino | `coto_ortofoto_2023` | ověřeno, ~10 cm | `*` | neuvedena | **Použít** po ověření licence |
+| Ortofoto Bolzano | `p_bz-Orthoimagery:Aerial-2023-RGB` | ověřeno, 20 cm | echo | CC BY 4.0 (provincie; nálet s AGEA) | **Použito** |
+| Ortofoto Torino | `coto_ortofoto_2023` | ověřeno, ~10 cm | `*` | CC BY 4.0 (ověřeno) | **Použito** |
 | Ortofoto Puglia | `Ortofoto2023` ImageServer | ověřeno, 20 cm, vlastní nálet | echo | neuvedena | **Použít** po ověření licence |
 | Ortofoto Umbria, Sicílie | ArcGIS 2020 / 2022 | ověřeno, 20 cm | echo / `*` | AGEA („tutti i diritti“) / ? | Licence |
 | Ortofoto FVG, Trento | true ortho 2017–20 / 2015 | ověřeno | **ne** | – | Jen podklad mapy |
 | Ortofoto Lombardia, Liguria | 2021 / 2022 | ověřeno: služby chybují | echo / `*` | AGEA | Ne (zkusit později) |
 | Ortofoto Veneto, Sardinie | IDT2 / geoserverraster | neodpovídají | ? | AGEA | – |
-| Mapa povrchů | **Bologna** aree stradali + obruby | ověřeno | `*` | CC BY 4.0 | **Použít** (A/B) |
+| Mapa povrchů | **Bologna** aree stradali + obruby | ověřeno | `*` | CC BY 4.0 | Zapojeno, ale **vypnuté** (`?bologna=1`; A/B: celé uliční prostory) |
 | Mapa povrchů | Lombardia DBT `106` vozovka | ověřeno, 1 : 1000 | echo | ? | Použít po A/B (bez chodníků) |
 | Mapa povrchů | Milano DBT 2020 SHP | ověřeno, 597 MB | – | CC BY | Statický soubor, později |
 | Mapa povrchů | Piemonte BDTRE | ověřeno, 1 : 10 000 | `*` | ? | Ne (hrubé) |
@@ -228,8 +238,8 @@ Vatikánu jako u Monaka před Francií).
 | Regiony | GISCO NUTS 2 (21) | ověřeno | – | © EuroGeographics | `regioni.json` jako `laender.json` |
 
 **Doporučení.** Itálie je jako Německo: ortofoto po regionech podle NUTS 2. Na rozdíl od Německa ale většinu regionálních
-ortofot vlastní AGEA a půjčuje je jen pro institucionální účely; bez souhlasu AGEA je bezpečné zapojit jen vlastní nálety:
-**Bolzano 2023, Puglia 2023, Torino 2023, Bologna 2023, Modena 2024 a ER RER 2023–26**. AGEA vrstvy (ER, Lazio, Umbria,
+ortofot vlastní AGEA a půjčuje je jen pro institucionální účely; bez souhlasu AGEA je bezpečné zapojit jen ortofota s otevřenou licencí vlastníka:
+**Bolzano 2023 (s AGEA, licence provincie CC BY 4.0), Puglia 2023 (licence neuvedena), Torino 2023, Bologna 2023, Modena 2024 a ER RER 2023–26**. AGEA vrstvy (ER, Lazio, Umbria,
 Sicílie, Toscana) jsou technicky připravené (CORS, Web Mercator, 20 cm), stačí rozhodnutí o licenci (Bára, případně
 dotaz na AGEA). Lombardie a Ligurie mají služby teď rozbité, Veneto a Sardinie neodpovídají; ostatní jih nehledán
 do hloubky. Mapa povrchů: **Bologna** (plochy vozovky a obruby chodníků, CC BY 4.0, CORS) je nejlepší kandidát na první
@@ -238,8 +248,8 @@ Hledání Photon. OSM v pěti dílech; **San Marino potřebuje vlastní díl** (
 Vatikán je v `centro`. Hranice San Marina a hlavně Vatikánu (5 bodů) brát z OSM jako u Monaka; ortofoto je pokrývá
 z ER (SM) a Lazia (VA), obojí AGEA.
 
-Neověřeno: licence ER RER 2023–26, Bologna/Modena 2023–24, Torino 2023, Puglia 2023, Bolzano 2023, Sicílie 2022 (ověřit
-v katalozích); AGEA geoportál a jeho služby; Veneto IDT2 a Sardinie (neodpovídaly); Campania, Abruzzo, Molise,
+Neověřeno v době rešerše (licence ER RER, Bologna, Modena, Torino, Bolzano a Puglia ověřené později, oddíl na konci):
+Sicílie 2022; AGEA geoportál a jeho služby; Veneto IDT2 a Sardinie (neodpovídaly); Campania, Abruzzo, Molise,
 Basilicata, Calabria, Valle d'Aosta, Marche (bez ortofota online); Firenze a Roma (mapa povrchů); zda Bologna
 `aree-stradali` zahrnuje i parkovací pruhy; čísla relací OSM pro San Marino a Vatikán.
 

@@ -256,10 +256,10 @@ Francie bych autory v patičce neuváděla (otázka pro Báru).
 | Typ | min | zaklad | Zdroj, povaha |
 |---|---|---|---|
 | chodnik, chodnik_kola | **1,5** | **1,8** | 1,5 [DL163] 1.2.1 ZÁV (hlavní a sběrné ulice; 1,2 m 4.3.1 pro každou pěší trasu); 1,8 [F3] a [LX] DOP |
-| cyklopruh | 1,2 | 1,5 | [F2]/[F3] (AASHTO) a [LX] shodně; vedle podélného stání 2,2 / 2,5 |
+| cyklopruh | 1,2 | 1,5 | [F2]/[F3] (AASHTO) a [LX] shodně; vedle podélného stání 2,2 / 2,5 [F2]/[F3] (v kódu od recenze 23. 11. 2026, sousední díl podélné stání) |
 | cyklostezka | 1,2 | 1,5 | [LX] (jednosměrná; obousměrná 2,4 / 2,6). [F3] chce víc (1,75 / 2,0; obousměrná 3,0, výjimečně 2,4): **otázka pro Báru**, který zdroj |
-| bus_cyklo | 3,25 | 3,25 | [F3] 3.2.3.4 a [LX] (do 30 km/h 3,20 + 0,40) |
-| bus | 3,0 | 3,25 | [F2] kap. 5 (CEREMA, 2. ruka) minimum 3,0; [LX] 3,25 |
+| bus_cyklo | 3,25 | 3,25 | minimum [LX] (do 30 km/h 3,20 + 0,40, nejméně 3,25); [F3] 3.2.3.4 jen doporučuje 3,25 a společný pruh nedoporučuje (text v aplikaci to od recenze 23. 11. 2026 říká) |
+| bus | 3,0 | 3,25 | [F2] kap. 5 (CEREMA, 2. ruka) minimum 3,0; [LX] 3,25; text v aplikaci od recenze 23. 11. 2026 říká, že 3 m je francouzský údaj citovaný IMT (zda červenou hranici ponechat, otázka pro Báru) |
 | pruh (jeden na směr) | 0 | 3,0 | [F2] Quadro 2.3 (Nível II–III) a [LX] |
 | pruh (víc pruhů téhož směru) | 0 | 2,75 | [LX] 1.3 („se devidamente justificado … 2,75 m“) |
 | parkovani podélné | 1,8 | 2,0 | [F2] Quadro 6.3 (2,0–2,3), [LX] (2,00–2,25, historické centrum 1,80) |

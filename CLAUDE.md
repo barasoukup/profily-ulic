@@ -424,7 +424,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Stát `monaco` (MC): `countries/MC.js` (Francie + monacký Code de la route), `towns/monaco.js`, hranice z OSM
   (`tools/monaco-border.json`, v `staty.json` před Francií), OSM balík `mc` (jen R2; **workflow OSM tiles se `states: mc`**).
 - Ortofoto IGN, odhad z OSM; stání jen z OSM (čl. 31: jen na vyznačených místech), bez norem šířek (Monako je nemá),
-  značky francouzské kresby bez čísel. Měření nemá smysl (8 bodů: schody, pěší cesty, moře; fotky jen u 2).
+  značky francouzské kresby bez čísel, jen ty, které monacký kodex zná (bez zóny 30, zone de rencontre, voie verte, dálnice;
+  Bára 23. 11. 2026). Měření nemá smysl (8 bodů: schody, pěší cesty, moře; fotky jen u 2).
 
 ## Kypr (větev cyprus z monaco, Bára 23. 11. 2026, nenasazené)
 - Stát `cyprus` (CY): `countries/CY.js`, `towns/cyprus.js`, `signs-CY/`, `evaluation/cyprus/` (ZDROJE, NORMY). Hranice z OSM
@@ -438,13 +439,16 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 ## Malta (větev malta z cyprus, Bára 23. 11. 2026, nenasazené)
 - Stát `malta` (MT): `countries/MT.js`, `towns/malta.js`, `signs-MT/`, `evaluation/malta/` (ZDROJE, NORMY). Hranice z OSM
   s výsostnými vodami, OSM balík `mt` (jen R2; **workflow OSM tiles se `states: mt`**). Jízda vlevo.
-- Ortofoto stavebního úřadu 2018 ve stupních (služba nemá Web Mercator), jen odhad z OSM a ortofota. Normy: chodník 1,2 /
-  1,5 m, kolmé stání 4,8 m; volná šířka vedle stání 4,1 / 3 m podle DC15.
+- Ortofoto stavebního úřadu 2018 ve stupních (služba nemá Web Mercator), jen odhad z OSM a ortofota. Normy: chodník 1,2 m
+  jen oranžově, kolmé stání 4,8 m; volná šířka vedle stání 4,1 / 3 m podle DC15, nejméně 2,5 m na pruh. Britské značky pod
+  OGL v1.0: věta o licenci v patičce i v exportu (`credits.js ukSigns`), stejně na Kypru.
 - Měření 23. 11. (8 řezů v 6 městech): složení 55 %, šířka do 2 m 63 %, pruhy 38 %; chybí chodník 5×, stání 4×.
 
 ## Itálie (větev italy z malta, Bára 23. 11. 2026, nenasazené)
 - **Jen oblasti s ortofotem s otevřenou licencí** (Bára 23. 11.: ortofota AGEA „jen pro institucionální účely“ nesplňujeme):
   provincie Bolzano, Turín, Bologna, Modena. Zbytek Itálie, Vatikán a San Marino zatím mimo; Apulie 2023 bez licence.
+  Bolzano 2023: nálet provincie ve spolupráci s AGEA, licence provincie CC BY 4.0 (Bára 23. 11. 2026: používat).
+  Stání 3 m na směr je Bářina konvence (čl. 157 odst. 4 CdS mluví jen o jednosměrce se stáním vlevo).
 - `countries/IT.js`, `towns/italy.js`, `signs-IT/`, `evaluation/italy/` (ZDROJE, NORMY, ab/). OSM 5 dílů (jen R2;
   **workflow OSM tiles se `states: it`**). Plochy silnic Bologni vypnuté (celé uliční prostory), výšky budov Bologni zapnuté.
 - Měření 23. 11. (6 řezů): složení 56 %, šířka do 2 m 33 %.
@@ -458,6 +462,14 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Normy (Bára 23. 11. 2026, podle doporučení): chodník 1,5 / 2,0 m všude (tallinnských 2,5 m jen doporučení), jízdní pruh
   základ 2,75 m (méně planých varování), vedle stání 3 m na směr, pěší zóna 381 s 432, stání a tramvaj bez varování;
   normy nekupujeme (EVS 843 jen z druhé ruky).
+
+## Společné pro státy (Bára 23. 11. 2026)
+- Sever Kypru a Itálie mimo otevřená ortofota (i se San Marinem a Vatikánem) profil nedostanou, aplikace to řekne
+  (`city.js closedAt`, `staty.json` `closed_*`).
+- Pobřeží: Španělsko, Portugalsko, Monako a Francie platí do 400 m za hranicí GISCO (nábřeží, přístavy); Gibraltar a Andorra
+  zůstávají cizinou.
+- Jízda vlevo je zabudovaná přímo v pravidlech (`derive.js`), profil se nezrcadlí.
+- Hranice poloh ve Workeru logu pokrývají všechny státy; nový Worker musí nasadit Bára.
 
 ## Měření přesnosti (Bára 17. 11. 2026)
 - Jedna univerzální metoda pro všechny státy: skill `mereni-presnosti`, kód a zpráva `evaluation/universal/`. Použít u

@@ -7,7 +7,8 @@
 //   of them, marked as an estimate). OFF unless ?bologna=1: the A/B of 40 cuts (evaluation/italy/ab/ZPRAVA.md) showed the
 //   road areas are the whole street space with its sidewalks (roadways of 20 m with shoulders, the sidewalks lost).
 // - Bologna's buildings (c_a944ctc_edifici_pl): the height to the eaves, so the floors (about 3.2 m a floor), and the
-//   kind (a church, a portico…). ?bolognadomy=0 leaves them out.
+//   kind (a church, a portico…). Under a portico the building behind it (within PORTICO_REACH). ?bolognadomy=0 leaves
+//   them out.
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea } from "../places.js";
@@ -20,6 +21,8 @@ export const AREAS = { bologna: { box: [11.22, 44.42, 11.44, 44.56] } };
 // The road areas' kinds that are a roadway at the ground (not one over a river or a railway, nor one being built).
 const ROADWAY = new Set(["Tracciato principale in tronco", "Tronco di intersezione tra strade a raso"]);
 
+// At most 500 areas a box (5 pages); the map is off (?bologna=1), so a cut over more just loses the rest. Before it is
+// turned on: say so, and split the fill by the kerb lines (ab/ZPRAVA.md; the review of 23. 11. 2026, finding 18).
 async function records(dataset, bbox, select) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   const out = [];
@@ -73,7 +76,8 @@ async function surfaces(bbox) {
 
 // ---------- Bologna's buildings ----------
 // A building of the Carta tecnica → the facts of app.js ruianFacts (as BD TOPO in France): the floors from the height to
-// the eaves (about 3.2 m a floor, the ground floor of the old town higher), a church as a church.
+// the eaves (3.2 m a floor everywhere: the old town's higher ground floors and palaces are not told apart, so their
+// floors may come out too many; not measured), a church as a church.
 export function bolognaBuilding(r) {
   const h = Number(r?.altezza_gr);
   const kind = String(r?.descrizion || "");
@@ -82,10 +86,17 @@ export function bolognaBuilding(r) {
   const type = /chiesa|campanile/i.test(kind) ? "church" : undefined;
   return { type, ...(floors && { cornice: floors, total: floors, roof: 0, height: Math.round(h * 10) / 10 }) };
 }
+// The facade point of a cut under a portico hits only the portico (Bologna is full of them; the review of 23. 11. 2026):
+// then the tallest building within PORTICO_REACH of it (a portico is about 4–6 m deep).
+const PORTICO_REACH = "8m";
+const isPortico = (x) => /portico|tettoia/i.test(x?.descrizion || "");
+const tallest = (rows) => rows.filter((x) => !isPortico(x)).sort((a, b) => (b.altezza_gr || 0) - (a.altezza_gr || 0))[0];
+const buildingsWhere = async (where) => (await getJSON(`${BOLOGNA_API}/c_a944ctc_edifici_pl/records?${new URLSearchParams({ where, select: "altezza_gr,descrizion", limit: "10" })}`)).results || [];
 async function podlaznost(lat, lon) {
   if (param("bolognadomy") === "0" || !inArea(AREAS.bologna, lon, lat)) return {};
-  const json = await getJSON(`${BOLOGNA_API}/c_a944ctc_edifici_pl/records?${new URLSearchParams({ where: `intersects(geo_shape, geom'POINT(${lon} ${lat})')`, select: "altezza_gr,descrizion", limit: "5" })}`);
-  const r = (json.results || []).filter((x) => !/portico|tettoia/i.test(x.descrizion || "")).sort((a, b) => (b.altezza_gr || 0) - (a.altezza_gr || 0))[0];
+  const point = `geom'POINT(${lon} ${lat})'`;
+  const hit = await buildingsWhere(`intersects(geo_shape, ${point})`);
+  const r = tallest(hit) || (hit.some(isPortico) ? tallest(await buildingsWhere(`within_distance(geo_shape, ${point}, ${PORTICO_REACH})`)) : null);
   return r ? bolognaBuilding(r) : {};
 }
 

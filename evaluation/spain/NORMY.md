@@ -169,7 +169,10 @@ zdravotním postižením (j). Stání je zakázáno všude tam, kde je zakázán
 - Zóny podle katalogu [RD465]: S-28 Zona de estancia y juego **10 km/h** (vždy s R-301 10), hry povoleny, stání jen na
   vyznačených místech; S-47 Zona de coexistencia **20 km/h**, hry nepovoleny, kola obousměrně; S-30a Zona peatonal.
 - Pro aplikaci: výchozí rychlost bez značky je 30 (jeden pruh na směr), 50 (dva a víc), 20 (plataforma única). Zóna 30
-  jako samostatná státní značka neexistuje (viz C).
+  jako samostatná státní značka neexistuje (viz C). **V kódu od recenze 23. 11. 2026** (`countries/ES.js` `esTownSpeed`):
+  značka rychlosti se nekreslí, když se rovná výchozí; plataforma única se v OSM nepozná, bere se za ni `living_street`;
+  pruhy BUS (`lanes:bus`, `lanes:psv`) se nepočítají. Obytná ulice z OSM je S-47 (20 km/h), S-28 jen s `maxspeed=10`
+  (s R-301 10), s jinou rychlostí bez zónové značky.
 
 ### B5. Kola (čl. 153, od 1. 10. 2026)
 
@@ -208,13 +211,13 @@ jako u Francie (Bára 23. 11. 2026: „Značky jsou volně“) bych autory v pat
 | oneway (po směru) | S-11 Calzada de un carril de sentido único | S-11.svg | S-11a/S-11b pro 2 a 3 pruhy (nestaženo) |
 | oneway (proti směru) | R-101 Entrada prohibida | R-101.svg | |
 | oneway + protismer | R-101 + S-880d „EXCEPTO“ (kola) | R-101-plus-S-880d.svg | složeno pro aplikaci (katalog bod 2.3) |
-| zona30 | „ZONA“ + R-301 30 v bílé tabuli (S-30 katalogu 2003) | S-30.svg | v katalogu 2025 samostatná značka **není**; bod 2.2 dovoluje vložit značku do tabule s textem, ulice takové tabule mají |
+| zona30 | „ZONA“ + R-301 30 v bílé tabuli (S-30 katalogu 2003) | S-30.svg | v katalogu 2025 samostatná značka **není**; bod 2.2 dovoluje vložit značku do tabule s textem, ulice takové tabule mají. Popisek v aplikaci bez kódu (recenze 23. 11. 2026) |
 | ip11a (+ podelne/kolme/sikme) | S-17 Estacionamiento | S-17.svg | způsob stání značka nemá |
-| ip14a | S-1 Autopista | S-1.svg | S-1a Autovía (S-1a.svg) má jinou kresbu; OSM `motorway` je obojí (ref `AP-` = autopista, `A-` = autovía) |
+| ip14a | S-1 Autopista | S-1.svg | S-1a Autovía (S-1a.svg) má jinou kresbu; OSM `motorway` je obojí (některé z `ref` začíná `AP-` = autopista, `A-` = autovía; jiné, např. C-32, R-2, M-12, mohou být obojí: bez značky) |
 | ip15a | S-3 Vía reservada para automóviles | S-3.svg | |
 | ip20a | S-51a Carril reservado (jen piktogram autobusu) | S-51a-bus.svg | upraveno z S-51a (bus + moto + taxi): ponechán jen autobus, katalog říká „Se incluirá en la señal el pictograma representativo del tipo“ |
-| ip26a | S-28 Zona de estancia y juego (10 km/h) | S-28.svg | nejblíž obytné zóně (hry povoleny) |
-| sdilena | S-47 Zona de coexistencia (20 km/h) | S-47.svg | nejblíž sdílené zóně |
+| ip26a | S-28 Zona de estancia y juego (10 km/h) | S-28.svg | nejblíž obytné zóně (hry povoleny); jen `living_street` s `maxspeed=10` |
+| sdilena | S-47 Zona de coexistencia (20 km/h) | S-47.svg | nejblíž sdílené zóně; `living_street` bez rychlosti nebo s 20 km/h (recenze 23. 11. 2026) |
 | ip27a | S-30a Zona peatonal | S-30a.svg | s koly: žádná značka (obec upravuje vyhláškou) |
 | c8a | R-407a Vía reservada y obligatoria para ciclos | R-407a.svg | S-35 je nepovinná varianta (nestaženo) |
 | c9a | S-33 Senda ciclopeatonal (zelená, 2025) | S-33.svg | |
@@ -232,11 +235,11 @@ katalogem 2025 kromě S-33 (stará šedá „senda ciclable“, proto beru soubo
 | Typ | min | zaklad | Zdroj, povaha |
 |---|---|---|---|
 | chodnik, chodnik_kola | 1,80 | 2,00 (info 3,00) | [TMA] čl. 5.2 b) ZÁV (nové a obnovené ulice); 2,00 [GUIA] (nejpřísnější autonomní norma, „no dimensionar por debajo de 2,00 m“) |
-| cyklopruh | 1,00 | 1,40 | [GUIA-R] tab. 1 (bez čar a odstupů; vedle podélného stání navíc 0,90) |
-| cyklostezka jednosměrná / obousměrná | 1,00 / 2,20 | 1,40 / 2,60 | [GUIA-R] tab. 1 |
+| cyklopruh | 1,00 → **1,40** | 1,40 | [GUIA-R] tab. 1 (bez čar a odstupů; vedle podélného stání navíc 0,90). Recenze 23. 11. 2026: 1,40 je minimum, 1,00 jen výjimka na krátkém úseku, proto červeně pod 1,40; doporučenou vyšší šířku příručka nedává (bez oranžové) |
+| cyklostezka jednosměrná / obousměrná | 1,00 → **1,40** / 2,20 | 1,40 / 2,60 | [GUIA-R] tab. 1; obousměrnou stezku profil nerozliší, je jen v textu |
 | stezka_sdilena (senda ciclopeatonal) | 0 | 5,00 bez dělení, nebo 3,00 + 2,00 | [GUIA-R] tab. 7, **otázka pro Báru** (oranžově by svítila skoro všude) |
 | bus_cyklo, bus | — | — | státní zdroj nenalezen (Barcelona, koncept: bus 2,80/2,90) |
-| pruh (jeden na směr nebo jednosměrka s jedním pruhem) | 0 | 3,00 | [GUIA] 3.2.2.1 („no … por encima de los 3,00 m“), s autobusem 3,25 |
+| pruh (jeden na směr nebo jednosměrka s jedním pruhem) | 0 | 3,00 (kód má **2,50**, spodní mez rozmezí 2,50–3,00; nerozhodnuto, otázka pro Báru) | [GUIA] 3.2.2.1 („no … por encima de los 3,00 m“), s autobusem 3,25 |
 | pruh (víc pruhů téhož směru) | 0 | 2,50 | [GUIA] 3.2.2.1 (2,75–2,50) |
 | parkovani podélné | 1,80 | 2,00 | [GUIA] tab. 3.4 |
 | parkovani šikmé | 0 | 4,00 (45°; 60° 4,50) | [GUIA] tab. 3.4 |
@@ -245,7 +248,9 @@ katalogem 2025 kromě S-33 (stará šedá „senda ciclable“, proto beru soubo
 
 Zákon o stání pro aplikaci (`freeLane`, `lawNeed`): podle čl. 91.2 a) 3 m k protějšímu okraji nebo k plné podélné čáře.
 Návrh: `freeLane: 3`, `lawNeed: () => 3` (bez plné čáry stačí 3 m celkem i v obousměrce), s plnou osovou čarou 3 m na
-směr. `halfKerbNote`: „Stání na chodníku je ve Španělsku zakázané (čl. 94.2 e) RGC), obce smějí povolit jen jednostopá
+směr. **Po recenzi 23. 11. 2026** (3 m celkem nechávaly v obousměrce dva pruhy po 1,5 m): `lawNeed` jako ve Francii a
+Lucembursku, pruhy vedle stání zůstanou průjezdné (2,5 m každý), aspoň 3 m; doslovné 3 m k protějšímu okraji zůstávají
+v poznámce u stání napůl na chodníku. `halfKerbNote`: „Stání na chodníku je ve Španělsku zakázané (čl. 94.2 e) RGC), obce smějí povolit jen jednostopá
 vozidla (čl. 156.2); ve vozovce musí zůstat 3 m k protějšímu okraji (čl. 91.2 a)).“
 
 ## Otevřené otázky pro Báru

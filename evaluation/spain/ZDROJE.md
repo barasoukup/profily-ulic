@@ -116,14 +116,14 @@ potřeba hranice Katalánska (GISCO NUTS 2 `ES51`, jako `laender.json` v Německ
 
 | Oblast | Zdroj | Stav | CORS | Licence | Doporučení |
 |---|---|---|---|---|---|
-| Ortofoto celostátně | IGN PNOA WMS `pnoa-ma` | ověřeno, 25 cm (2023–24) | `*` | CC BY 4.0 | **Použít** (`res: 0.25`), omezit na území ES; Melilla jiná licence |
+| Ortofoto celostátně | IGN PNOA WMS `pnoa-ma` | ověřeno, 25 cm (2023–24) | `*` | CC BY 4.0 | **Použít** (`res: 0.25`), omezit na území ES; Melilla jiná licence (od recenze 23. 11. 2026 se tam pruhy z PNOA nečtou, `lanes-ortho.js` `ES_NOT_PNOA`; mapová vrstva v `app.js` zatím ano) |
 | Ortofoto Katalánsko | ICGC `ortofoto_color_vigent` | ověřeno, 25 cm 2025 | `*` | CC BY 4.0 (neověř.) | Použít v Katalánsku přednostně |
 | Mapa povrchů | A Coruña BTU viario | ověřeno, polygony s třídami | echo | neověřena („Intranet“) | **Použít po dotazu na město**, A/B |
 | Mapa povrchů | Zaragoza IDEZar WFS | ověřeno, chodníky + mediány | `*` | bez omezení (capab.) | **Použít**, vozovka jako zbytek, A/B |
 | Mapa povrchů | Madrid CARTOBASE | jen obraz (Map) | echo | Ayto. Madrid | Až po zkoušce čtení barev nebo předzpracování listů 1 : 1000 |
 | Mapa povrchů | Barcelona, ICGC CT1M | jen linie / GPKG 652 MB | `*` | CC BY 4.0 | Online ne; GPKG prozkoumat |
 | Mapa povrchů | Valencia | server nedostupný | ? | CC BY 4.0 | Ověřit znovu (obruby s typem + značení) |
-| Budovy | Catastro `BuildingPart` + `Building` | ověřeno (GML) | `*` | DG Catastro | **Použít** (podlaží, rok, užití); mimo Baskicko a Navarru |
+| Budovy | Catastro `BuildingPart` + `Building` | ověřeno (GML) | `*` | DG Catastro | **Použít** (podlaží, rok, užití); mimo Baskicko a Navarru (zatím se ptá i tam: hranice společenství aplikace nemá); od recenze 23. 11. 2026 s limitem 25 s, pamětí na bod a domem pod bodem |
 | Hledání | CartoCiudad `candidates` + `find` | ověřeno | `*` | CC BY 4.0 | **Použít** |
 | Stání | Madrid SER CSV, Barcelona TRAMS CSV | ověřeno | `*` (API) | CC BY 4.0 / Madrid | Statické soubory při nasazení |
 | OSM | Geofabrik 19 dílů + Kanáry (africa) | ověřeno | - | ODbL | díly `es_*` na R2 |

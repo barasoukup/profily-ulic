@@ -857,7 +857,6 @@ export const HU = {
   " · mapa povrchů Zaragozy neodpověděla, odhad z ortofota a OSM": " · Zaragoza felületi térképe nem válaszolt, becslés az ortofotóból és az OSM-ből",
   "Mapa povrchů Zaragozy teď neodpovídá, profil je odhad z ortofota a OSM.": "Zaragoza felületi térképe most nem válaszol, a profil az ortofotóból és az OSM-ből készült becslés.",
   "chodník: volná šířka přístupné pěší trasy nejméně 1,8 m (vyhláška o přístupnosti TMA/851/2021, čl. 5.2 b); ministerstvo doporučuje 3 m, nikdy pod 2 m": "járda: az akadálymentes gyalogos útvonal szabad szélessége legalább 1,8 m (TMA/851/2021 akadálymentességi rendelet, 5.2. cikk b) pont); a minisztérium 3 m-t javasol, soha nem kevesebbet 2 m-nél",
-  "cyklopruh a stezka pro cyklisty jednosměrné: nejméně 1,4 m, výjimečně 1 m; obousměrné 2,6 m, výjimečně 2,2 m (doporučení ministerstva dopravy 2024)": "egyirányú kerékpársáv és kerékpárút: legalább 1,4 m, kivételesen 1 m; kétirányú 2,6 m, kivételesen 2,2 m (a közlekedési minisztérium 2024-es ajánlása)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,5–2,75 m (doporučení ministerstva dopravy 2024)": "forgalmi sáv irányonként több sávos úttesten: 2,5–2,75 m (a közlekedési minisztérium 2024-es ajánlása)",
   "jízdní pruh městské ulice: 2,5–3 m, ne víc než 3 m (doporučení ministerstva dopravy 2024)": "városi utca forgalmi sávja: 2,5–3 m, legfeljebb 3 m (a közlekedési minisztérium 2024-es ajánlása)",
   "šikmé stání: pás 4 m při 45°, 4,5 m při 60° (doporučení ministerstva dopravy 2024)": "ferde parkolás: 4 m-es sáv 45°-nál, 4,5 m 60°-nál (a közlekedési minisztérium 2024-es ajánlása)",
@@ -867,10 +866,7 @@ export const HU = {
   // Portugal (Bára 23. 11. 2026).
   "ortofoto © DGT": "ortofotó © DGT",
   "chodník: volná šířka nejméně 1,5 m u hlavních a sběrných ulic, 1,2 m u každé pěší trasy (zákon o přístupnosti 163/2006); doporučeno 1,8 m (IMT, Lisabon)": "járda: szabad szélesség legalább 1,5 m fő- és gyűjtőutaknál, 1,2 m minden gyalogos útvonalon (163/2006. sz. akadálymentességi törvény); ajánlott 1,8 m (IMT, Lisszabon)",
-  "cyklopruh: 1,5 m, nejméně 1,2 m; vedle podélného stání 2,5 m (IMT, příručka Lisabonu)": "kerékpársáv: 1,5 m, legalább 1,2 m; párhuzamos parkolás mellett 2,5 m (IMT, Lisszabon kézikönyve)",
   "stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)": "egyirányú kerékpárút: 2 m, legalább 1,75 m; kétirányú 3 m, kis forgalom esetén 2,4 m (IMT és LNEC 2024)",
-  "vyhrazený pruh BUS: 3,25 m, nejméně 3 m (IMT, příručka Lisabonu)": "BUS buszsáv: 3,25 m, legalább 3 m (IMT, Lisszabon kézikönyve)",
-  "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (IMT, příručka Lisabonu)": "közös busz- és kerékpársáv: legalább 3,25 m (IMT, Lisszabon kézikönyve)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,75 m (příručka Lisabonu)": "forgalmi sáv irányonként több sávos úttesten: 2,75 m (Lisszabon kézikönyve)",
   "jízdní pruh: 3 m (IMT, příručka Lisabonu)": "forgalmi sáv: 3 m (IMT, Lisszabon kézikönyve)",
   "šikmé stání: pás 4,2 m (příručka Lisabonu)": "ferde parkolás: 4,2 m-es sáv (Lisszabon kézikönyve)",
@@ -878,7 +874,6 @@ export const HU = {
   "podélné stání: pás 2 m, v historickém centru 1,8 m (IMT, příručka Lisabonu)": "párhuzamos parkolás: 2 m-es sáv, a történelmi belvárosban 1,8 m (IMT, Lisszabon kézikönyve)",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je v Portugalsku zakázané (čl. 49 odst. 1 písm. f zákona o silničním provozu), ledaže ho povolí značka; ostatní nesmějí muset vjet do protisměru (čl. 50), aplikace nechává {need}.": "Félig a járdán parkolás az OSM szerint: az úttesten {free} marad. Portugáliában tilos a járdán parkolni (a közlekedési törvénykönyv 49. cikk (1) bekezdés f) pontja), kivéve, ha jelzőtábla megengedi; a többiek nem kényszerülhetnek a szembejövő sávba (50. cikk), az alkalmazás {need} hagy.",
   // Monaco (Bára 23. 11. 2026).
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je v Monaku zakázané (čl. 32 zákona o silničním provozu), stát se smí jen na místech vyznačených na vozovce (čl. 31).": "Félig a járdán parkolás az OSM szerint: az úttesten {free} marad. Monacóban tilos a járdán parkolni (a közlekedési törvénykönyv 32. cikke), parkolni csak az úttesten kijelölt helyeken szabad (31. cikk).",
   // Cyprus (Bára 23. 11. 2026).
   "ortofoto © DLS Kypr": "ortofotó © DLS Ciprus",
   "chodník: 2 m u místních a obslužných ulic, 2,5 m u sběrných (příručka odboru veřejných prací Kypru, doporučení)": "járda: 2 m helyi és kiszolgáló utaknál, 2,5 m gyűjtőutaknál (a ciprusi Közmunkaügyi Osztály kézikönyve, ajánlás)",
@@ -887,12 +882,9 @@ export const HU = {
   "vyhrazený pruh BUS: 3,5 m, nejméně 3 m (příručka odboru veřejných prací Kypru, doporučení)": "BUS buszsáv: 3,5 m, legalább 3 m (a ciprusi Közmunkaügyi Osztály kézikönyve, ajánlás)",
   "společný pruh pro autobusy a cyklisty: 4 m, nejméně 3,5 m (příručka odboru veřejných prací Kypru, doporučení)": "közös busz- és kerékpársáv: 4 m, legalább 3,5 m (a ciprusi Közmunkaügyi Osztály kézikönyve, ajánlás)",
   "jízdní pruh: 3 m u obslužných ulic, 3,5 m u sběrných (příručka odboru veřejných prací Kypru, doporučení)": "forgalmi sáv: 3 m kiszolgáló utaknál, 3,5 m gyűjtőutaknál (a ciprusi Közmunkaügyi Osztály kézikönyve, ajánlás)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na Kypru je stání i zastavení na chodníku zakázané bez výjimky (předpis 66/1984, čl. 58); aplikace nechává {need}.": "Félig a járdán parkolás az OSM szerint: az úttesten {free} marad. Cipruson kivétel nélkül tilos a járdán parkolni és megállni (66/1984. sz. rendelet, 58. cikk); az alkalmazás {need} hagy.",
   // Malta (Bára 23. 11. 2026).
   "ortofoto © Planning Authority Malta (CC BY 4.0)": "ortofotó © Planning Authority Málta (CC BY 4.0)",
-  "chodník: nejméně 1,2 m (zásady přístupnosti CRPD), u silnic 1,5 m (příručka Transport Malta 2003); doporučení": "járda: legalább 1,2 m (a CRPD akadálymentességi irányelvei), utaknál 1,5 m (a Transport Malta 2003-as kézikönyve); ajánlás",
   "kolmé stání: 4,8 m (stavební standard DC15 maltského stavebního úřadu)": "merőleges parkolás: 4,8 m (a máltai Tervezési Hatóság DC15 tervezési szabványa)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je na Maltě zakázané (předpis S.L. 65.11, čl. 79), ledaže ho povolí značka; aplikace nechává {need} (stavební standard DC15).": "Félig a járdán parkolás az OSM szerint: az úttesten {free} marad. Máltán tilos a járdán parkolni (S.L. 65.11, 79. cikk), kivéve, ha jelzőtábla megengedi; az alkalmazás {need} hagy (DC15 tervezési szabvány).",
   // Italy (Bára 23. 11. 2026).
   "mapy povrchů Bologni, ortofota a OSM": "Bologna felületi térképe, az ortofotó és az OSM",
   "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)": "ortofotó © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)",
@@ -909,7 +901,6 @@ export const HU = {
   "chodník: přístupná trasa nejméně 0,9 m (vyhláška 236/1989, bod 8.2.1), nová ulice 1,5 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.6)": "járda: akadálymentes útvonal legalább 0,9 m (236/1989. sz. rendelet, 8.2.1. pont), új utcában 1,5 m (a 2001. november 5-i úttervezési rendelet, 3.4.6. pont)",
   "cyklopruh a stezka pro cyklisty jednosměrné: 1,5 m, na krátkém úseku nejméně 1 m; obousměrná stezka 2,5 m (vyhláška 557/1999, čl. 7)": "egyirányú kerékpársáv és kerékpárút: 1,5 m, rövid szakaszon legalább 1 m; kétirányú kerékpárút 2,5 m (557/1999. sz. rendelet, 7. cikk)",
   "vyhrazený pruh BUS: 3,5 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.2)": "BUS buszsáv: 3,5 m (a 2001. november 5-i úttervezési rendelet, 3.4.2. pont)",
-  "jízdní pruh městské ulice: 2,75–3 m (vyhláška o silnicích z 5. 11. 2001, tab. 3.4.a)": "városi utca forgalmi sávja: 2,75–3 m (a 2001. november 5-i úttervezési rendelet, 3.4.a táblázat)",
   "šikmé stání (45°): pás 4,8 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.7)": "ferde parkolás (45°): 4,8 m-es sáv (a 2001. november 5-i úttervezési rendelet, 3.4.7. pont)",
   "kolmé stání: pás 5 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.7)": "merőleges parkolás: 5 m-es sáv (a 2001. november 5-i úttervezési rendelet, 3.4.7. pont)",
   "podélné stání: pás 2 m, nejméně 1,8 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.7)": "párhuzamos parkolás: 2 m-es sáv, legalább 1,8 m (a 2001. november 5-i úttervezési rendelet, 3.4.7. pont)",
@@ -923,6 +914,27 @@ export const HU = {
   "pruh pro veřejnou dopravu: nejméně 3 m (norma EVS 843, z druhé ruky)": "közösségi közlekedési sáv: legalább 3 m (EVS 843 szabvány, másodlagos források alapján)",
   "jízdní pruh: 3 m, u místních ulic 2,75 m (příručka uličního prostoru Tallinnu a norma EVS 843, z druhé ruky)": "forgalmi sáv: 3 m, helyi utcáknál 2,75 m (Tallinn utcai tér kézikönyve és az EVS 843 szabvány, másodlagos források alapján)",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. V Estonsku smí auto stát na chodníku jen tam, kde to dovolí značka, a chodcům musí zůstat aspoň 1,5 m (§ 20 zákona o silničním provozu); aplikace nechává {need}.": "Félig a járdán parkolás az OSM szerint: az úttesten {free} marad. Észtországban autó csak ott állhat a járdán, ahol jelzőtábla megengedi, és a gyalogosoknak legalább 1,5 m-nek kell maradnia (a közúti közlekedési törvény 20. §-a); az alkalmazás {need} hagy.",
+  // Reviews of 23. 11. 2026 (Spain, Portugal, Monaco, Cyprus, Malta, Italy).
+  "Sever Kypru zatím nemáme: profily děláme jen na území, které spravuje Kyperská republika.": "Ciprus északi részét még nem fedjük le: profilokat csak a Ciprusi Köztársaság által igazgatott területen készítünk.",
+  "V Itálii děláme profily jen tam, kde má ortofoto otevřenou licenci: v Jižním Tyrolsku, Turíně, Bologni a Modeně.": "Olaszországban csak ott készítünk profilokat, ahol az ortofotó nyílt licencű: Dél-Tirolban, Torinóban, Bolognában és Modenában.",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na Kypru je stání i zastavení na chodníku zakázané bez výjimky (předpis 66/1984, čl. 58 odst. 4 v původním znění; Kodex silničního provozu 2012); aplikace nechává {need}.": "Félig a járdán parkolás az OSM szerint: az úttesten {free} marad. Cipruson kivétel nélkül tilos a járdán parkolni és megállni (66/1984. sz. rendelet, 58. cikk (4) bekezdés az eredeti szövegben; Közlekedési Kódex, 2012); az alkalmazás {need} hagy.",
+  "cyklopruh a stezka pro cyklisty jednosměrné: nejméně 1,4 m, jen výjimečně na krátkém úseku 1 m; obousměrné 2,6 m, výjimečně 2,2 m; šířky bez vodicích čar a odstupů (doporučení ministerstva dopravy 2024)": "egyirányú kerékpársáv és kerékpárút: legalább 1,4 m, csak kivételesen, rövid szakaszon 1 m; kétirányú 2,6 m, kivételesen 2,2 m; a szélességek vezetővonalak és oldaltávolságok nélkül értendők (a közlekedési minisztérium 2024-es ajánlása)",
+  "jízdní pruh městské průjezdní silnice (kategorie D): 3,25 m (vyhláška o silnicích z 5. 11. 2001, tab. 3.4.a)": "városi főút forgalmi sávja (D kategória): 3,25 m (a 2001. november 5-i úttervezési rendelet, 3.4.a táblázat)",
+  "jízdní pruh městské sběrné ulice (kategorie E): 3 m (vyhláška o silnicích z 5. 11. 2001, tab. 3.4.a)": "városi gyűjtőút forgalmi sávja (E kategória): 3 m (a 2001. november 5-i úttervezési rendelet, 3.4.a táblázat)",
+  "jízdní pruh místní ulice (kategorie F): 2,75 m (vyhláška o silnicích z 5. 11. 2001, tab. 3.4.a)": "helyi utca forgalmi sávja (F kategória): 2,75 m (a 2001. november 5-i úttervezési rendelet, 3.4.a táblázat)",
+  "obousměrná stezka pro cyklisty: 2,5 m (2 × 1,25 m), na krátkém úseku nejméně 1 m (vyhláška 557/1999, čl. 7)": "kétirányú kerékpárút: 2,5 m (2 × 1,25 m), rövid szakaszon legalább 1 m (557/1999. sz. rendelet, 7. cikk)",
+  "polovina obousměrné stezky pro cyklisty: 1,25 m (celkem 2,5 m), na krátkém úseku nejméně 1 m (vyhláška 557/1999, čl. 7)": "kétirányú kerékpárút fele: 1,25 m (összesen 2,5 m), rövid szakaszon legalább 1 m (557/1999. sz. rendelet, 7. cikk)",
+  "společná stezka pro chodce a cyklisty: širší než stezka pro cyklisty (obousměrná 2,5 m), číslo vyhláška nedává (vyhláška 557/1999, čl. 4 odst. 5)": "gyalog- és kerékpárút: szélesebb a kerékpárútnál (kétirányú 2,5 m), számot a rendelet nem ad meg (557/1999. sz. rendelet, 4. cikk (5) bekezdés)",
+  "Zákaz vjezdu automobilů (motocykly smějí)": "Személygépkocsival behajtani tilos (motorkerékpárral szabad)",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je v Monaku zakázané (čl. 32 pravidel silničního provozu, Code de la route), stát se smí jen na místech vyznačených na vozovce (čl. 31).": "Félig a járdán parkolás az OSM szerint: az úttesten {free} marad. Monacóban tilos a járdán parkolni (a közlekedési szabályok, a Code de la route 32. cikke), parkolni csak az úttesten kijelölt helyeken szabad (31. cikk).",
+  "chodník: 1,2 m pro přístupnou trasu (zásady přístupnosti CRPD; doporučení)": "járda: 1,2 m akadálymentes útvonalhoz (a CRPD akadálymentességi irányelvei; ajánlás)",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je na Maltě zakázané (předpis S.L. 65.11, čl. 79), ledaže ho povolí značka; volnou šířku předpis neuvádí, aplikace nechává {need} (aspoň 4,1 m na míjení podle stavebního standardu DC15, nejméně 2,5 m na každý pruh).": "Félig a járdán parkolás az OSM szerint: az úttesten {free} marad. Máltán tilos a járdán parkolni (S.L. 65.11, 79. cikk), kivéve, ha jelzőtábla megengedi; szabad szélességet az előírás nem ad meg, az alkalmazás {need} hagy (a DC15 tervezési szabvány szerint legalább 4,1 m a járművek elhaladásához, sávonként legalább 2,5 m).",
+  "cyklopruh: 1,5 m, nejméně 1,2 m (IMT)": "kerékpársáv: 1,5 m, legalább 1,2 m (IMT)",
+  "cyklopruh vedle podélného stání: nejméně 2,2 m, doporučeno 2,5 m, z toho 1 m ochranný pás (IMT)": "kerékpársáv párhuzamos parkolás mellett: legalább 2,2 m, ajánlott 2,5 m, ebből 1 m biztonsági sáv (IMT)",
+  "vyhrazený pruh BUS: 3,25 m (příručka Lisabonu); nejméně 3 m podle IMT, který cituje francouzskou CEREMA": "BUS buszsáv: 3,25 m (Lisszabon kézikönyve); legalább 3 m az IMT szerint, amely a francia CEREMA-t idézi",
+  "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (příručka Lisabonu); IMT doporučuje 3,25 m a společný pruh nedoporučuje": "közös busz- és kerékpársáv: legalább 3,25 m (Lisszabon kézikönyve); az IMT 3,25 m-t javasol, a közös sávot pedig nem ajánlja",
+  "dopravní značky: Contains public sector information licensed under the Open Government Licence v1.0 (UK Department for Transport)": "jelzőtáblák: Contains public sector information licensed under the Open Government Licence v1.0 (UK Department for Transport)",
+  "ortofoto © Planning Authority Malta, 2018 (CC BY 4.0)": "ortofotó © Planning Authority Malta, 2018 (CC BY 4.0)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.
@@ -939,11 +951,11 @@ export const HU_HTML = {
     Lengyelország: ortofotó és címkeresés © GUGiK (Geoportal.gov.pl, PRG), Krakkó felületi térképe (MJO) © Gmina Miejska Kraków, határ © EuroGeographics (GISCO), jelzőtáblák: Wikimedia Commons (hivatalos művek) ·
     Franciaország: ortofotó, épületek (BD TOPO) és címkeresés © IGN (Géoplateforme, Licence Ouverte 2.0), Párizs felületi térképe (Plan de voirie) © Ville de Paris (ODbL), határ © EuroGeographics (GISCO), jelzőtáblák: Wikimedia Commons (hivatalos művek) ·
     Spanyolország: PNOA ortofotó és CartoCiudad címkeresés © IGN (CC BY 4.0 scne.es), épületek © Dirección General del Catastro, Zaragoza felületi térképe © Ayuntamiento de Zaragoza (IDEZar), határ © EuroGeographics (GISCO), jelzőtáblák: Wikimedia Commons (hivatalos művek) ·
-    Portugália: ortofotó © DGT (Direção-Geral do Território), határ © EuroGeographics (GISCO), jelzőtáblák: Wikimedia Commons (hivatalos művek) ·
-    Monaco: ortofotó © IGN (Géoplateforme, Licence Ouverte 2.0), határ © OpenStreetMap-közreműködők, jelzőtáblák: Wikimedia Commons (hivatalos művek) ·
-    Ciprus: ortofotó és épületek © Department of Lands and Surveys (DLS; épületek: CC BY 4.0), határ © OpenStreetMap-közreműködők, jelzőtáblák: Wikimedia Commons (brit minták: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
-    Málta: ortofotó © Planning Authority (CC BY 4.0), határ © OpenStreetMap-közreműködők, jelzőtáblák: Wikimedia Commons (brit minták: Contains public sector information licensed under the Open Government Licence v3.0) ·
-    Olaszország: ortofotó © Provincia autonoma di Bolzano, Città di Torino, Comune di Bologna és Comune di Modena, valamint Regione Emilia-Romagna (mind CC BY 4.0), Bologna felületi térképe és épületei © Comune di Bologna (CC BY 4.0), határ © EuroGeographics (GISCO), jelzőtáblák: Wikimedia Commons (hivatalos művek) ·
+    Portugália: ortofotó © DGT (Direção-Geral do Território), határ © EuroGeographics (GISCO), jelzőtáblák: Wikimedia Commons (hivatalos művek; Fry1989 újrarajzolása, CC BY-SA 3.0, és Gigillo83 újrarajzolása, CC BY-SA 4.0) ·
+    Monaco: ortofotó © IGN (Géoplateforme, Licence Ouverte 2.0), határ © OpenStreetMap-közreműködők, francia jelzőtáblák rajzai: Wikimedia Commons ·
+    Ciprus: ortofotó 2019 © Department of Lands and Surveys (DLS; licenc nincs megadva), épületek © DLS (CC BY 4.0), határ © OpenStreetMap-közreműködők, jelzőtáblák: Wikimedia Commons (brit minták: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
+    Málta: ortofotó 2018 © Planning Authority (CC BY 4.0), határ © OpenStreetMap-közreműködők, jelzőtáblák: Wikimedia Commons (brit minták: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
+    Olaszország: ortofotó © Provincia autonoma di Bolzano, Città di Torino, Comune di Bologna és Comune di Modena, valamint Regione Emilia-Romagna (mind CC BY 4.0), Bologna épületei © Comune di Bologna (CC BY 4.0), határ © EuroGeographics (GISCO), jelzőtáblák: Wikimedia Commons (hivatalos művek; F l a n k e r újrarajzolása, CC BY-SA 3.0 és 4.0) ·
     Észtország: ortofotó, épületek (ETAK) és címkeresés (In-ADS) © Maa- ja Ruumiamet, állapot: 11/2026 (nyílt licenc), Tallinn felületi térképe © Tallinna Linnaplaneerimise Amet, határ © EuroGeographics (GISCO), jelzőtáblák: Wikimedia Commons (hivatalos művek; มองโกเลีย๔๔ újrarajzolása, CC BY-SA 4.0) ·
     parkolás © TSK hl. m. Prahy (CC BY 4.0), várakozási tilalmak, fák és útosztályok: <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, Jihlava, Opava és Plzeň városok (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-közreműködők (ODbL) ·
@@ -985,9 +997,9 @@ export const HU_CITY = {
   poland: { ...ABROAD, dataShort: "a GUGiK ortofotója és az OSM", credit: "", rulesHead: "Szélességek a lengyel előírások szerint (a közutak műszaki feltételeiről szóló rendelet, 2022):" },
   france: { ...ABROAD, dataShort: "az IGN ortofotója és az OSM", credit: "", rulesHead: "Szélességek a francia előírások és a Cerema ajánlásai szerint:" },
   spain: { ...ABROAD, dataShort: "a PNOA ortofotó és az OSM", credit: "", rulesHead: "Szélességek a spanyol előírások és a közlekedési minisztérium ajánlásai szerint:" },
-  portugal: { ...ABROAD, dataShort: "a DGT ortofotói és az OSM", credit: "", rulesHead: "Szélességek a portugál előírások szerint:" },
+  portugal: { ...ABROAD, dataShort: "a DGT ortofotói és az OSM", credit: "", rulesHead: "Szélességek a portugál előírások és ajánlások szerint:" },
   monaco: { ...ABROAD, dataShort: "az IGN ortofotója és az OSM", credit: "", rulesHead: "Monacóban nincsenek előírások az utcák szélességére, az alkalmazás nem figyelmeztet:" },
-  cyprus: { ...ABROAD, dataShort: "a DLS ortofotója és az OSM", credit: "", rulesHead: "Szélességek a ciprusi előírások szerint:" },
+  cyprus: { ...ABROAD, dataShort: "a DLS ortofotója és az OSM", credit: "épületek © Department of Lands and Surveys (DLS, CC BY 4.0)", rulesHead: "Szélességek a ciprusi Közmunkaügyi Osztály ajánlásai szerint (városi utcák tervezési kézikönyve):" },
   malta: { ...ABROAD, dataShort: "a Tervezési Hatóság ortofotója és az OSM", credit: "", rulesHead: "Szélességek a máltai előírások és ajánlások szerint:" },
   italy: { ...ABROAD, dataShort: "a nyílt ortofotók és az OSM", credit: "", rulesHead: "Szélességek az olasz előírások szerint:" },
   estonia: { ...ABROAD, dataShort: "a Maa- ja Ruumiamet ortofotója és az OSM", credit: "", rulesHead: "Szélességek az észt előírások szerint:" },

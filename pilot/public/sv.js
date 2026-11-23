@@ -877,7 +877,6 @@ export const SV = {
   " · mapa povrchů Zaragozy neodpověděla, odhad z ortofota a OSM": " · Zaragozas ytkarta svarade inte, uppskattning från ortofoto och OSM",
   "Mapa povrchů Zaragozy teď neodpovídá, profil je odhad z ortofota a OSM.": "Zaragozas ytkarta svarar inte just nu, sektionen är en uppskattning från ortofoto och OSM.",
   "chodník: volná šířka přístupné pěší trasy nejméně 1,8 m (vyhláška o přístupnosti TMA/851/2021, čl. 5.2 b); ministerstvo doporučuje 3 m, nikdy pod 2 m": "gångbana: fri bredd på den tillgängliga gångvägen minst 1,8 m (tillgänglighetsförordningen TMA/851/2021, art. 5.2 b); ministeriet rekommenderar 3 m, aldrig under 2 m",
-  "cyklopruh a stezka pro cyklisty jednosměrné: nejméně 1,4 m, výjimečně 1 m; obousměrné 2,6 m, výjimečně 2,2 m (doporučení ministerstva dopravy 2024)": "enkelriktat cykelfält och enkelriktad cykelbana: minst 1,4 m, undantagsvis 1 m; dubbelriktade 2,6 m, undantagsvis 2,2 m (transportministeriets rekommendation 2024)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,5–2,75 m (doporučení ministerstva dopravy 2024)": "körfält på en körbana med flera körfält i samma riktning: 2,5–2,75 m (transportministeriets rekommendation 2024)",
   "jízdní pruh městské ulice: 2,5–3 m, ne víc než 3 m (doporučení ministerstva dopravy 2024)": "körfält på stadsgata: 2,5–3 m, inte mer än 3 m (transportministeriets rekommendation 2024)",
   "šikmé stání: pás 4 m při 45°, 4,5 m při 60° (doporučení ministerstva dopravy 2024)": "snedparkering: remsa på 4 m vid 45°, 4,5 m vid 60° (transportministeriets rekommendation 2024)",
@@ -887,10 +886,7 @@ export const SV = {
   // Portugal (Bára 23. 11. 2026).
   "ortofoto © DGT": "ortofoto © DGT",
   "chodník: volná šířka nejméně 1,5 m u hlavních a sběrných ulic, 1,2 m u každé pěší trasy (zákon o přístupnosti 163/2006); doporučeno 1,8 m (IMT, Lisabon)": "gångbana: fri bredd minst 1,5 m vid huvud- och uppsamlingsgator, 1,2 m vid varje gångväg (tillgänglighetslagen 163/2006); rekommenderat 1,8 m (IMT, Lissabon)",
-  "cyklopruh: 1,5 m, nejméně 1,2 m; vedle podélného stání 2,5 m (IMT, příručka Lisabonu)": "cykelfält: 1,5 m, minst 1,2 m; bredvid längsparkering 2,5 m (IMT, Lissabons handbok)",
   "stezka pro cyklisty jednosměrná: 2 m, nejméně 1,75 m; obousměrná 3 m, při malém provozu 2,4 m (IMT a LNEC 2024)": "enkelriktad cykelbana: 2 m, minst 1,75 m; dubbelriktad 3 m, vid lite trafik 2,4 m (IMT och LNEC 2024)",
-  "vyhrazený pruh BUS: 3,25 m, nejméně 3 m (IMT, příručka Lisabonu)": "busskörfält: 3,25 m, minst 3 m (IMT, Lissabons handbok)",
-  "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (IMT, příručka Lisabonu)": "gemensamt körfält för bussar och cyklister: minst 3,25 m (IMT, Lissabons handbok)",
   "jízdní pruh vozovky s více pruhy jedním směrem: 2,75 m (příručka Lisabonu)": "körfält på en körbana med flera körfält i samma riktning: 2,75 m (Lissabons handbok)",
   "jízdní pruh: 3 m (IMT, příručka Lisabonu)": "körfält: 3 m (IMT, Lissabons handbok)",
   "šikmé stání: pás 4,2 m (příručka Lisabonu)": "snedparkering: remsa på 4,2 m (Lissabons handbok)",
@@ -898,7 +894,6 @@ export const SV = {
   "podélné stání: pás 2 m, v historickém centru 1,8 m (IMT, příručka Lisabonu)": "längsparkering: remsa på 2 m, i den historiska stadskärnan 1,8 m (IMT, Lissabons handbok)",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je v Portugalsku zakázané (čl. 49 odst. 1 písm. f zákona o silničním provozu), ledaže ho povolí značka; ostatní nesmějí muset vjet do protisměru (čl. 50), aplikace nechává {need}.": "Parkering halvt på gångbanan enligt OSM: på körbanan återstår {free}. Parkering på gångbanan är förbjuden i Portugal (art. 49.1 f i vägtrafiklagen) om inte ett vägmärke tillåter det; andra får inte tvingas köra över i motsatt körriktning (art. 50), appen lämnar {need}.",
   // Monaco (Bára 23. 11. 2026).
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je v Monaku zakázané (čl. 32 zákona o silničním provozu), stát se smí jen na místech vyznačených na vozovce (čl. 31).": "Parkering halvt på gångbanan enligt OSM: på körbanan återstår {free}. Parkering på gångbanan är förbjuden i Monaco (art. 32 i vägtrafiklagen), parkering är bara tillåten på platser som är markerade på körbanan (art. 31).",
   // Cyprus (Bára 23. 11. 2026).
   "ortofoto © DLS Kypr": "ortofoto © DLS Cypern",
   "chodník: 2 m u místních a obslužných ulic, 2,5 m u sběrných (příručka odboru veřejných prací Kypru, doporučení)": "gångbana: 2 m vid lokalgator och tillfartsgator, 2,5 m vid uppsamlingsgator (handbok från Cyperns avdelning för offentliga arbeten, rekommendation)",
@@ -907,12 +902,9 @@ export const SV = {
   "vyhrazený pruh BUS: 3,5 m, nejméně 3 m (příručka odboru veřejných prací Kypru, doporučení)": "busskörfält: 3,5 m, minst 3 m (handbok från Cyperns avdelning för offentliga arbeten, rekommendation)",
   "společný pruh pro autobusy a cyklisty: 4 m, nejméně 3,5 m (příručka odboru veřejných prací Kypru, doporučení)": "gemensamt körfält för bussar och cyklister: 4 m, minst 3,5 m (handbok från Cyperns avdelning för offentliga arbeten, rekommendation)",
   "jízdní pruh: 3 m u obslužných ulic, 3,5 m u sběrných (příručka odboru veřejných prací Kypru, doporučení)": "körfält: 3 m vid tillfartsgator, 3,5 m vid uppsamlingsgator (handbok från Cyperns avdelning för offentliga arbeten, rekommendation)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na Kypru je stání i zastavení na chodníku zakázané bez výjimky (předpis 66/1984, čl. 58); aplikace nechává {need}.": "Parkering halvt på gångbanan enligt OSM: på körbanan återstår {free}. På Cypern är parkering och stannande på gångbanan förbjudet utan undantag (förordning 66/1984, art. 58); appen lämnar {need}.",
   // Malta (Bára 23. 11. 2026).
   "ortofoto © Planning Authority Malta (CC BY 4.0)": "ortofoto © Planning Authority Malta (CC BY 4.0)",
-  "chodník: nejméně 1,2 m (zásady přístupnosti CRPD), u silnic 1,5 m (příručka Transport Malta 2003); doporučení": "gångbana: minst 1,2 m (CRPD:s riktlinjer för tillgänglighet), vid vägar 1,5 m (Transport Maltas handbok 2003); rekommendation",
   "kolmé stání: 4,8 m (stavební standard DC15 maltského stavebního úřadu)": "tvärparkering: 4,8 m (utformningsstandarden DC15 från Maltas Planning Authority)",
-  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je na Maltě zakázané (předpis S.L. 65.11, čl. 79), ledaže ho povolí značka; aplikace nechává {need} (stavební standard DC15).": "Parkering halvt på gångbanan enligt OSM: på körbanan återstår {free}. Parkering på gångbanan är förbjuden på Malta (förordning S.L. 65.11, art. 79) om inte ett vägmärke tillåter det; appen lämnar {need} (utformningsstandarden DC15).",
   // Italy (Bára 23. 11. 2026).
   "mapy povrchů Bologni, ortofota a OSM": "Bolognas ytkarta, ortofoto och OSM",
   "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)": "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)",
@@ -929,7 +921,6 @@ export const SV = {
   "chodník: přístupná trasa nejméně 0,9 m (vyhláška 236/1989, bod 8.2.1), nová ulice 1,5 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.6)": "gångbana: tillgänglig gångväg minst 0,9 m (dekret 236/1989, punkt 8.2.1), ny gata 1,5 m (ministerdekretet om vägutformning av den 5 november 2001, punkt 3.4.6)",
   "cyklopruh a stezka pro cyklisty jednosměrné: 1,5 m, na krátkém úseku nejméně 1 m; obousměrná stezka 2,5 m (vyhláška 557/1999, čl. 7)": "enkelriktat cykelfält och enkelriktad cykelbana: 1,5 m, på en kort sträcka minst 1 m; dubbelriktad cykelbana 2,5 m (dekret 557/1999, art. 7)",
   "vyhrazený pruh BUS: 3,5 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.2)": "busskörfält: 3,5 m (ministerdekretet om vägutformning av den 5 november 2001, punkt 3.4.2)",
-  "jízdní pruh městské ulice: 2,75–3 m (vyhláška o silnicích z 5. 11. 2001, tab. 3.4.a)": "körfält på stadsgata: 2,75–3 m (ministerdekretet om vägutformning av den 5 november 2001, tab. 3.4.a)",
   "šikmé stání (45°): pás 4,8 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.7)": "snedparkering (45°): remsa på 4,8 m (ministerdekretet om vägutformning av den 5 november 2001, punkt 3.4.7)",
   "kolmé stání: pás 5 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.7)": "tvärparkering: remsa på 5 m (ministerdekretet om vägutformning av den 5 november 2001, punkt 3.4.7)",
   "podélné stání: pás 2 m, nejméně 1,8 m (vyhláška o silnicích z 5. 11. 2001, bod 3.4.7)": "längsparkering: remsa på 2 m, minst 1,8 m (ministerdekretet om vägutformning av den 5 november 2001, punkt 3.4.7)",
@@ -943,6 +934,27 @@ export const SV = {
   "pruh pro veřejnou dopravu: nejméně 3 m (norma EVS 843, z druhé ruky)": "körfält för kollektivtrafik: minst 3 m (standarden EVS 843, från sekundära källor)",
   "jízdní pruh: 3 m, u místních ulic 2,75 m (příručka uličního prostoru Tallinnu a norma EVS 843, z druhé ruky)": "körfält: 3 m, vid lokalgator 2,75 m (Tallinns handbok för gaturummet och standarden EVS 843, från sekundära källor)",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. V Estonsku smí auto stát na chodníku jen tam, kde to dovolí značka, a chodcům musí zůstat aspoň 1,5 m (§ 20 zákona o silničním provozu); aplikace nechává {need}.": "Parkering halvt på gångbanan enligt OSM: på körbanan återstår {free}. I Estland får en bil bara stå på gångbanan där ett vägmärke tillåter det, och för fotgängare måste minst 1,5 m lämnas fritt (§ 20 i trafiklagen); appen lämnar {need}.",
+  // Reviews of 23. 11. 2026 (Spain, Portugal, Monaco, Cyprus, Malta, Italy).
+  "Sever Kypru zatím nemáme: profily děláme jen na území, které spravuje Kyperská republika.": "Norra Cypern har vi inte ännu: vi gör profiler bara på det område som Republiken Cypern förvaltar.",
+  "V Itálii děláme profily jen tam, kde má ortofoto otevřenou licenci: v Jižním Tyrolsku, Turíně, Bologni a Modeně.": "I Italien gör vi profiler bara där ortofotot har en öppen licens: i Sydtyrolen, Turin, Bologna och Modena.",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na Kypru je stání i zastavení na chodníku zakázané bez výjimky (předpis 66/1984, čl. 58 odst. 4 v původním znění; Kodex silničního provozu 2012); aplikace nechává {need}.": "Parkering halvt på gångbanan enligt OSM: på körbanan återstår {free}. På Cypern är parkering och stannande på gångbanan förbjudet utan undantag (förordning 66/1984, art. 58.4 i ursprunglig lydelse; trafikkoden 2012); appen lämnar {need}.",
+  "cyklopruh a stezka pro cyklisty jednosměrné: nejméně 1,4 m, jen výjimečně na krátkém úseku 1 m; obousměrné 2,6 m, výjimečně 2,2 m; šířky bez vodicích čar a odstupů (doporučení ministerstva dopravy 2024)": "enkelriktat cykelfält och enkelriktad cykelbana: minst 1,4 m, bara undantagsvis 1 m på en kort sträcka; dubbelriktade 2,6 m, undantagsvis 2,2 m; bredder utan kantlinjer och avstånd (transportministeriets rekommendation 2024)",
+  "jízdní pruh městské průjezdní silnice (kategorie D): 3,25 m (vyhláška o silnicích z 5. 11. 2001, tab. 3.4.a)": "körfält på en genomfartsled i tätort (kategori D): 3,25 m (ministerdekretet om vägutformning av den 5 november 2001, tab. 3.4.a)",
+  "jízdní pruh městské sběrné ulice (kategorie E): 3 m (vyhláška o silnicích z 5. 11. 2001, tab. 3.4.a)": "körfält på en uppsamlingsgata i tätort (kategori E): 3 m (ministerdekretet om vägutformning av den 5 november 2001, tab. 3.4.a)",
+  "jízdní pruh místní ulice (kategorie F): 2,75 m (vyhláška o silnicích z 5. 11. 2001, tab. 3.4.a)": "körfält på en lokalgata (kategori F): 2,75 m (ministerdekretet om vägutformning av den 5 november 2001, tab. 3.4.a)",
+  "obousměrná stezka pro cyklisty: 2,5 m (2 × 1,25 m), na krátkém úseku nejméně 1 m (vyhláška 557/1999, čl. 7)": "dubbelriktad cykelbana: 2,5 m (2 × 1,25 m), på en kort sträcka minst 1 m (dekret 557/1999, art. 7)",
+  "polovina obousměrné stezky pro cyklisty: 1,25 m (celkem 2,5 m), na krátkém úseku nejméně 1 m (vyhláška 557/1999, čl. 7)": "hälften av en dubbelriktad cykelbana: 1,25 m (totalt 2,5 m), på en kort sträcka minst 1 m (dekret 557/1999, art. 7)",
+  "společná stezka pro chodce a cyklisty: širší než stezka pro cyklisty (obousměrná 2,5 m), číslo vyhláška nedává (vyhláška 557/1999, čl. 4 odst. 5)": "gemensam gång- och cykelbana: bredare än en cykelbana (dubbelriktad 2,5 m); dekretet anger ingen siffra (dekret 557/1999, art. 4.5)",
+  "Zákaz vjezdu automobilů (motocykly smějí)": "Förbud mot trafik med bil (motorcyklar tillåtna)",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je v Monaku zakázané (čl. 32 pravidel silničního provozu, Code de la route), stát se smí jen na místech vyznačených na vozovce (čl. 31).": "Parkering halvt på gångbanan enligt OSM: på körbanan återstår {free}. Parkering på gångbanan är förbjuden i Monaco (art. 32 i trafikreglerna, Code de la route); parkering är bara tillåten på platser som är markerade på körbanan (art. 31).",
+  "chodník: 1,2 m pro přístupnou trasu (zásady přístupnosti CRPD; doporučení)": "gångbana: 1,2 m för en tillgänglig gångväg (CRPD:s riktlinjer för tillgänglighet; rekommendation)",
+  "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je na Maltě zakázané (předpis S.L. 65.11, čl. 79), ledaže ho povolí značka; volnou šířku předpis neuvádí, aplikace nechává {need} (aspoň 4,1 m na míjení podle stavebního standardu DC15, nejméně 2,5 m na každý pruh).": "Parkering halvt på gångbanan enligt OSM: på körbanan återstår {free}. Parkering på gångbanan är förbjuden på Malta (förordning S.L. 65.11, art. 79) om inte ett vägmärke tillåter det; förordningen anger ingen fri bredd, appen lämnar {need} (minst 4,1 m för möte enligt utformningsstandarden DC15, minst 2,5 m per körfält).",
+  "cyklopruh: 1,5 m, nejméně 1,2 m (IMT)": "cykelfält: 1,5 m, minst 1,2 m (IMT)",
+  "cyklopruh vedle podélného stání: nejméně 2,2 m, doporučeno 2,5 m, z toho 1 m ochranný pás (IMT)": "cykelfält bredvid längsparkering: minst 2,2 m, rekommenderat 2,5 m, varav 1 m skyddszon (IMT)",
+  "vyhrazený pruh BUS: 3,25 m (příručka Lisabonu); nejméně 3 m podle IMT, který cituje francouzskou CEREMA": "busskörfält: 3,25 m (Lissabons handbok); minst 3 m enligt IMT, som citerar franska CEREMA",
+  "společný pruh pro autobusy a cyklisty: nejméně 3,25 m (příručka Lisabonu); IMT doporučuje 3,25 m a společný pruh nedoporučuje": "gemensamt körfält för bussar och cyklister: minst 3,25 m (Lissabons handbok); IMT rekommenderar 3,25 m och avråder från gemensamt körfält",
+  "dopravní značky: Contains public sector information licensed under the Open Government Licence v1.0 (UK Department for Transport)": "vägmärken: Contains public sector information licensed under the Open Government Licence v1.0 (UK Department for Transport)",
+  "ortofoto © Planning Authority Malta, 2018 (CC BY 4.0)": "ortofoto © Planning Authority Malta, 2018 (CC BY 4.0)",
 };
 
 // Elements of index.html replaced whole (data-i18n): the footer with its links.
@@ -959,11 +971,11 @@ export const SV_HTML = {
     Polen: ortofoto och adressökning © GUGiK (Geoportal.gov.pl, PRG), Krakóws ytkarta (MJO) © Gmina Miejska Kraków, gränser © EuroGeographics (GISCO), vägmärken Wikimedia Commons (officiella verk) ·
     Frankrike: ortofoto, byggnader (BD TOPO) och adressökning © IGN (Géoplateforme, Licence Ouverte 2.0), Paris ytkarta (Plan de voirie) © Ville de Paris (ODbL), gränser © EuroGeographics (GISCO), vägmärken Wikimedia Commons (officiella verk) ·
     Spanien: ortofoto PNOA och adressökning CartoCiudad © IGN (CC BY 4.0 scne.es), byggnader © Dirección General del Catastro, Zaragozas ytkarta © Ayuntamiento de Zaragoza (IDEZar), gränser © EuroGeographics (GISCO), vägmärken Wikimedia Commons (officiella verk) ·
-    Portugal: ortofoto © DGT (Direção-Geral do Território), gränser © EuroGeographics (GISCO), vägmärken Wikimedia Commons (officiella verk) ·
-    Monaco: ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0), gränser © OpenStreetMap-bidragsgivare, vägmärken Wikimedia Commons (officiella verk) ·
-    Cypern: ortofoto och byggnader © Department of Lands and Surveys (DLS; byggnader CC BY 4.0), gränser © OpenStreetMap-bidragsgivare, vägmärken Wikimedia Commons (brittiska förlagor: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
-    Malta: ortofoto © Planning Authority (CC BY 4.0), gränser © OpenStreetMap-bidragsgivare, vägmärken Wikimedia Commons (brittiska förlagor: Contains public sector information licensed under the Open Government Licence v3.0) ·
-    Italien: ortofoto © Provincia autonoma di Bolzano, Città di Torino, Comune di Bologna och Comune di Modena med Regione Emilia-Romagna (alla CC BY 4.0), Bolognas ytkarta och byggnader © Comune di Bologna (CC BY 4.0), gränser © EuroGeographics (GISCO), vägmärken Wikimedia Commons (officiella verk) ·
+    Portugal: ortofoto © DGT (Direção-Geral do Território), gränser © EuroGeographics (GISCO), vägmärken Wikimedia Commons (officiella verk; omritning Fry1989 under CC BY-SA 3.0 och Gigillo83 under CC BY-SA 4.0) ·
+    Monaco: ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0), gränser © OpenStreetMap-bidragsgivare, teckningar av franska vägmärken Wikimedia Commons ·
+    Cypern: ortofoto 2019 © Department of Lands and Surveys (DLS; licens ej angiven), byggnader © DLS (CC BY 4.0), gränser © OpenStreetMap-bidragsgivare, vägmärken Wikimedia Commons (brittiska förlagor: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
+    Malta: ortofoto 2018 © Planning Authority (CC BY 4.0), gränser © OpenStreetMap-bidragsgivare, vägmärken Wikimedia Commons (brittiska förlagor: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
+    Italien: ortofoto © Provincia autonoma di Bolzano, Città di Torino, Comune di Bologna och Comune di Modena med Regione Emilia-Romagna (alla CC BY 4.0), Bolognas byggnader © Comune di Bologna (CC BY 4.0), gränser © EuroGeographics (GISCO), vägmärken Wikimedia Commons (officiella verk; omritning F l a n k e r under CC BY-SA 3.0 och 4.0) ·
     Estland: ortofoto, byggnader (ETAK) och adressökning (In-ADS) © Maa- ja Ruumiamet, läge 11/2026 (öppen licens), Tallinns ytkarta © Tallinna Linnaplaneerimise Amet, gränser © EuroGeographics (GISCO), vägmärken Wikimedia Commons (officiella verk; omritning มองโกเลีย๔๔ under CC BY-SA 4.0) ·
     parkering © TSK hl. m. Prahy (CC BY 4.0), parkeringsförbud, träd och gatuklasser från <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, städerna Jihlava, Opava, Plzeň (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-bidragsgivare (ODbL) ·
@@ -1003,9 +1015,9 @@ export const SV_CITY = {
   poland: { ...ABROAD, dataShort: "GUGiK:s ortofoto och OSM", credit: "", rulesHead: "Bredder enligt polska bestämmelser (förordningen om vägars tekniska krav, 2022):" },
   france: { ...ABROAD, dataShort: "IGN:s ortofoto och OSM", credit: "", rulesHead: "Bredder enligt franska bestämmelser och Ceremas rekommendationer:" },
   spain: { ...ABROAD, dataShort: "PNOA-ortofoto och OSM", credit: "", rulesHead: "Bredder enligt spanska bestämmelser och transportministeriets rekommendationer:" },
-  portugal: { ...ABROAD, dataShort: "DGT-ortofoton och OSM", credit: "", rulesHead: "Bredder enligt portugisiska bestämmelser:" },
+  portugal: { ...ABROAD, dataShort: "DGT-ortofoton och OSM", credit: "", rulesHead: "Bredder enligt portugisiska bestämmelser och rekommendationer:" },
   monaco: { ...ABROAD, dataShort: "IGN:s ortofoto och OSM", credit: "", rulesHead: "Monaco har inga bestämmelser om gatubredder, appen varnar inte:" },
-  cyprus: { ...ABROAD, dataShort: "DLS-ortofoto och OSM", credit: "", rulesHead: "Bredder enligt cypriotiska bestämmelser:" },
+  cyprus: { ...ABROAD, dataShort: "DLS-ortofoto och OSM", credit: "byggnader © Department of Lands and Surveys (DLS, CC BY 4.0)", rulesHead: "Bredder enligt rekommendationer från Cyperns myndighet för offentliga arbeten (handbok för stadsgator):" },
   malta: { ...ABROAD, dataShort: "Planning Authoritys ortofoto och OSM", credit: "", rulesHead: "Bredder enligt maltesiska bestämmelser och rekommendationer:" },
   italy: { ...ABROAD, dataShort: "öppna ortofoton och OSM", credit: "", rulesHead: "Bredder enligt italienska bestämmelser:" },
   estonia: { ...ABROAD, dataShort: "Maa- ja Ruumiamets ortofoto och OSM", credit: "", rulesHead: "Bredder enligt estniska bestämmelser:" },
