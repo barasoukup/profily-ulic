@@ -208,7 +208,9 @@ export function aiParking(cut) {
 // stays at PARK_ON or more (gaps to 0.4 m), starting within 0.6 m of the kerb: inside the roadway it takes the strip at
 // the kerb (a shoulder first, a lane only while LANE_LEFT stays); outside it, a sidewalk, paved area or green at the
 // kerb gives its strip to cars standing on the kerb. A parallel strip the law estimated where the model sees no cars
-// (below PARK_OFF in the 2.5 m at the kerb) goes back to the lane. Parking the data put there stays. ?off=aipark.
+// (below PARK_OFF in the 2.5 m at the kerb) goes back to the roadway. Parking the data put there stays. ?off=aipark;
+// skip.old (?off=parkshare): the strip back to the lane beside it only, and the law's strip kept where the model sees
+// other cars (before 25. 11. 2026).
 export const PARK = { on: 0.4, off: 0.2, minW: 1.6, laneLeft: 2.75, road: 3 };
 const ROADISH = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "krajnice", "cyklopruh", "ochranny_pruh", "obsluzna", "parkovani"]);
 const KERBSIDE = new Set(["chodnik", "plocha", "zelen"]);
@@ -247,14 +249,31 @@ export function parkFromAi(result, pAt, skip = {}) {
   };
   const maxIn = (kerb, sg, to = 2.5) => { let m = 0; for (let d = 0.1; d < to; d += STEP) { const p = pAt(kerb + sg * d); if (p !== null) m = Math.max(m, p); } return m; };
   let changed = 0;
+  // A strip the law estimated (segment k, its kerb on side sg) goes back to the roadway: shared evenly by the run's
+  // driving lanes (evaluation/sjednoceni: two lanes of 3.05 and 5.05 m where O had 4.05 and 4.05), else to the shoulder
+  // or lane beside it. Whether it went.
+  const back = (k, sg) => {
+    const X = segs[k], Y = segs[sg < 0 ? k + 1 : k - 1];
+    if (!Y || (Y.type !== "pruh" && Y.type !== "krajnice")) return false;
+    let i0 = k, i1 = k;
+    while (ROADISH.has(segs[i0 - 1]?.type)) i0--;
+    while (ROADISH.has(segs[i1 + 1]?.type)) i1++;
+    const lanes = segs.slice(i0, i1 + 1).filter((x) => x.type === "pruh");
+    if (Y.type === "pruh" && lanes.length > 1 && !skip.old) {
+      const each = r2(X.width / lanes.length);
+      lanes.forEach((x, q) => { x.width = r2(x.width + (q === lanes.length - 1 ? X.width - each * (lanes.length - 1) : each)); });
+    } else Y.width = r2(Y.width + X.width);
+    segs.splice(k, 1);
+    return true;
+  };
   const ends = [];
   segs.forEach((s, k) => {
     if (!ROADISH.has(s.type)) return;
     if (!ROADISH.has(segs[k - 1]?.type)) ends.push({ X: s, sg: -1 }); // its high end (larger t) is a kerb; inward = lower t
     if (!ROADISH.has(segs[k + 1]?.type)) ends.push({ X: s, sg: 1 });
   });
-  for (const { X, sg } of ends) {
-    const k = segs.indexOf(X);
+  for (let { X, sg } of ends) {
+    let k = segs.indexOf(X);
     if (k < 0) continue;
     if (sg < 0 ? skip.hi : skip.lo) continue;
     const out = k + sg, L = lay(), kerb = sg < 0 ? L[k].e : L[k].s, dirIn = sg < 0 ? -1 : 1;
@@ -271,13 +290,21 @@ export function parkFromAi(result, pAt, skip = {}) {
       // No cars at this kerb: a strip the law estimated goes back to the lane. In a surface map's roadway (inside) none
       // within 2.5 m past the strip either: the map's kerb need not sit on the orthophoto's (evaluation/mapfill-cz:
       // Šatrova in Prague, MTVU's kerb 2.3 m beyond the one on the photo, the cars there read as none at the kerb).
-      if (X.type === "parkovani" && X.source === "odhad" && !X.ai && maxIn(kerb, dirIn, skip.inside ? X.width + 2.5 : 2.5) < PARK.off) {
-        const Y = segs[sg < 0 ? k + 1 : k - 1];
-        if (Y && (Y.type === "pruh" || Y.type === "krajnice")) { Y.width = r2(Y.width + X.width); segs.splice(k, 1); changed++; }
-      }
+      if (X.type === "parkovani" && X.source === "odhad" && !X.ai && maxIn(kerb, dirIn, skip.inside ? X.width + 2.5 : 2.5) < PARK.off && back(k, sg)) changed++;
       continue;
     }
-    if (a + b < PARK.minW || X.type === "parkovani") continue;
+    if (a + b < PARK.minW) continue;
+    // A strip the law estimated where the model sees the cars stand otherwise (angled or perpendicular, or on the kerb):
+    // the strip goes back to the roadway and the model's stall takes its place (evaluation/sjednoceni, Slovakia: Trenčín
+    // K výstavisku, Martin J. Mazúra, 5.4 m perpendicular rows drawn as 2 m parallel ones). Parallel cars in the roadway
+    // keep the law's strip.
+    if (X.type === "parkovani") {
+      if (skip.old || X.source !== "odhad" || X.ai || (stallOf(a + b).orient === "podelne" && (b < 0.6 || skip.inside))) continue;
+      const Y = segs[sg < 0 ? k + 1 : k - 1];
+      if (!back(k, sg)) continue;
+      X = Y;
+      k = segs.indexOf(X);
+    }
     if (a < 0.6) a = 0; // the cars stand beyond the kerb
     if (b < 0.6) b = 0; // in the roadway
     const st = stallOf(a + b), k2 = st.width / (a + b);

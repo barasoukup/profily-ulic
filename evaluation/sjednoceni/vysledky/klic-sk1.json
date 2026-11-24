@@ -1,0 +1,42 @@
+{
+ "1": {
+  "id": "sl-trnava-8",
+  "X": "N",
+  "Y": "O"
+ },
+ "2": {
+  "id": "sl-trnava-1",
+  "X": "O",
+  "Y": "N"
+ },
+ "3": {
+  "id": "sl2-petrzalka-1",
+  "X": "N",
+  "Y": "O"
+ },
+ "4": {
+  "id": "sl-trnava-7",
+  "X": "N",
+  "Y": "O"
+ },
+ "5": {
+  "id": "sl-zilina-9",
+  "X": "N",
+  "Y": "O"
+ },
+ "6": {
+  "id": "sl-kosice-1",
+  "X": "N",
+  "Y": "O"
+ },
+ "7": {
+  "id": "sl2-trencin-10",
+  "X": "O",
+  "Y": "N"
+ },
+ "8": {
+  "id": "sl-petrzalka-2",
+  "X": "N",
+  "Y": "O"
+ }
+}

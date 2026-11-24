@@ -1,0 +1,926 @@
+[
+ {
+  "id": "sl2-bratislava-1",
+  "place": "bratislava",
+  "lat": 48.167443,
+  "lon": 17.09566
+ },
+ {
+  "id": "sl2-bratislava-2",
+  "place": "bratislava",
+  "lat": 48.164538,
+  "lon": 17.092615
+ },
+ {
+  "id": "sl2-bratislava-3",
+  "place": "bratislava",
+  "lat": 48.139879,
+  "lon": 17.119095
+ },
+ {
+  "id": "sl2-bratislava-4",
+  "place": "bratislava",
+  "lat": 48.166393,
+  "lon": 17.128548
+ },
+ {
+  "id": "sl2-bratislava-5",
+  "place": "bratislava",
+  "lat": 48.129551,
+  "lon": 17.121984
+ },
+ {
+  "id": "sl2-bratislava-6",
+  "place": "bratislava",
+  "lat": 48.134775,
+  "lon": 17.124508
+ },
+ {
+  "id": "sl2-bratislava-7",
+  "place": "bratislava",
+  "lat": 48.126085,
+  "lon": 17.112964
+ },
+ {
+  "id": "sl2-bratislava-8",
+  "place": "bratislava",
+  "lat": 48.132311,
+  "lon": 17.135455
+ },
+ {
+  "id": "sl2-bratislava-9",
+  "place": "bratislava",
+  "lat": 48.169254,
+  "lon": 17.118048
+ },
+ {
+  "id": "sl2-bratislava-10",
+  "place": "bratislava",
+  "lat": 48.159042,
+  "lon": 17.124849
+ },
+ {
+  "id": "sl2-bratislava-11",
+  "place": "bratislava",
+  "lat": 48.151684,
+  "lon": 17.112819
+ },
+ {
+  "id": "sl2-bratislava-12",
+  "place": "bratislava",
+  "lat": 48.167286,
+  "lon": 17.078848
+ },
+ {
+  "id": "sl2-bratislava-13",
+  "place": "bratislava",
+  "lat": 48.142186,
+  "lon": 17.130354
+ },
+ {
+  "id": "sl2-bratislava-14",
+  "place": "bratislava",
+  "lat": 48.129446,
+  "lon": 17.085423
+ },
+ {
+  "id": "sl2-petrzalka-1",
+  "place": "petrzalka",
+  "lat": 48.130125,
+  "lon": 17.094561
+ },
+ {
+  "id": "sl2-petrzalka-2",
+  "place": "petrzalka",
+  "lat": 48.095605,
+  "lon": 17.114313
+ },
+ {
+  "id": "sl2-petrzalka-3",
+  "place": "petrzalka",
+  "lat": 48.108361,
+  "lon": 17.140623
+ },
+ {
+  "id": "sl2-petrzalka-4",
+  "place": "petrzalka",
+  "lat": 48.102139,
+  "lon": 17.097325
+ },
+ {
+  "id": "sl2-petrzalka-5",
+  "place": "petrzalka",
+  "lat": 48.133826,
+  "lon": 17.113997
+ },
+ {
+  "id": "sl2-petrzalka-6",
+  "place": "petrzalka",
+  "lat": 48.126125,
+  "lon": 17.115493
+ },
+ {
+  "id": "sl2-petrzalka-7",
+  "place": "petrzalka",
+  "lat": 48.122127,
+  "lon": 17.096093
+ },
+ {
+  "id": "sl2-petrzalka-8",
+  "place": "petrzalka",
+  "lat": 48.107541,
+  "lon": 17.142417
+ },
+ {
+  "id": "sl2-petrzalka-9",
+  "place": "petrzalka",
+  "lat": 48.117495,
+  "lon": 17.111704
+ },
+ {
+  "id": "sl2-petrzalka-10",
+  "place": "petrzalka",
+  "lat": 48.105216,
+  "lon": 17.091189
+ },
+ {
+  "id": "sl2-petrzalka-11",
+  "place": "petrzalka",
+  "lat": 48.132214,
+  "lon": 17.090576
+ },
+ {
+  "id": "sl2-petrzalka-12",
+  "place": "petrzalka",
+  "lat": 48.103275,
+  "lon": 17.096221
+ },
+ {
+  "id": "sl2-petrzalka-13",
+  "place": "petrzalka",
+  "lat": 48.122954,
+  "lon": 17.075831
+ },
+ {
+  "id": "sl2-petrzalka-14",
+  "place": "petrzalka",
+  "lat": 48.118016,
+  "lon": 17.123281
+ },
+ {
+  "id": "sl2-kosice-1",
+  "place": "kosice",
+  "lat": 48.705742,
+  "lon": 21.274944
+ },
+ {
+  "id": "sl2-kosice-2",
+  "place": "kosice",
+  "lat": 48.700028,
+  "lon": 21.260923
+ },
+ {
+  "id": "sl2-kosice-3",
+  "place": "kosice",
+  "lat": 48.694334,
+  "lon": 21.257499
+ },
+ {
+  "id": "sl2-kosice-4",
+  "place": "kosice",
+  "lat": 48.730853,
+  "lon": 21.267067
+ },
+ {
+  "id": "sl2-kosice-5",
+  "place": "kosice",
+  "lat": 48.715892,
+  "lon": 21.3003
+ },
+ {
+  "id": "sl2-kosice-6",
+  "place": "kosice",
+  "lat": 48.730619,
+  "lon": 21.2939
+ },
+ {
+  "id": "sl2-kosice-7",
+  "place": "kosice",
+  "lat": 48.691128,
+  "lon": 21.246313
+ },
+ {
+  "id": "sl2-kosice-8",
+  "place": "kosice",
+  "lat": 48.72238,
+  "lon": 21.260726
+ },
+ {
+  "id": "sl2-kosice-9",
+  "place": "kosice",
+  "lat": 48.73451,
+  "lon": 21.231286
+ },
+ {
+  "id": "sl2-kosice-10",
+  "place": "kosice",
+  "lat": 48.712843,
+  "lon": 21.29479
+ },
+ {
+  "id": "sl2-kosice-11",
+  "place": "kosice",
+  "lat": 48.717052,
+  "lon": 21.235136
+ },
+ {
+  "id": "sl2-kosice-12",
+  "place": "kosice",
+  "lat": 48.700548,
+  "lon": 21.267062
+ },
+ {
+  "id": "sl2-kosice-13",
+  "place": "kosice",
+  "lat": 48.723713,
+  "lon": 21.228791
+ },
+ {
+  "id": "sl2-kosice-14",
+  "place": "kosice",
+  "lat": 48.708146,
+  "lon": 21.294584
+ },
+ {
+  "id": "sl2-zilina-1",
+  "place": "zilina",
+  "lat": 49.226353,
+  "lon": 18.761291
+ },
+ {
+  "id": "sl2-zilina-2",
+  "place": "zilina",
+  "lat": 49.224175,
+  "lon": 18.756057
+ },
+ {
+  "id": "sl2-zilina-3",
+  "place": "zilina",
+  "lat": 49.222118,
+  "lon": 18.735846
+ },
+ {
+  "id": "sl2-zilina-4",
+  "place": "zilina",
+  "lat": 49.201843,
+  "lon": 18.75616
+ },
+ {
+  "id": "sl2-zilina-5",
+  "place": "zilina",
+  "lat": 49.230351,
+  "lon": 18.728948
+ },
+ {
+  "id": "sl2-zilina-6",
+  "place": "zilina",
+  "lat": 49.206833,
+  "lon": 18.767549
+ },
+ {
+  "id": "sl2-zilina-7",
+  "place": "zilina",
+  "lat": 49.208754,
+  "lon": 18.754844
+ },
+ {
+  "id": "sl2-zilina-8",
+  "place": "zilina",
+  "lat": 49.216852,
+  "lon": 18.704576
+ },
+ {
+  "id": "sl2-zilina-9",
+  "place": "zilina",
+  "lat": 49.218256,
+  "lon": 18.706093
+ },
+ {
+  "id": "sl2-zilina-10",
+  "place": "zilina",
+  "lat": 49.243239,
+  "lon": 18.76481
+ },
+ {
+  "id": "sl2-zilina-11",
+  "place": "zilina",
+  "lat": 49.235303,
+  "lon": 18.719384
+ },
+ {
+  "id": "sl2-zilina-12",
+  "place": "zilina",
+  "lat": 49.229499,
+  "lon": 18.724915
+ },
+ {
+  "id": "sl2-zilina-13",
+  "place": "zilina",
+  "lat": 49.244824,
+  "lon": 18.73408
+ },
+ {
+  "id": "sl2-zilina-14",
+  "place": "zilina",
+  "lat": 49.200864,
+  "lon": 18.762092
+ },
+ {
+  "id": "sl2-presov-1",
+  "place": "presov",
+  "lat": 48.975738,
+  "lon": 21.242348
+ },
+ {
+  "id": "sl2-presov-2",
+  "place": "presov",
+  "lat": 49.022545,
+  "lon": 21.239492
+ },
+ {
+  "id": "sl2-presov-3",
+  "place": "presov",
+  "lat": 49.011812,
+  "lon": 21.215111
+ },
+ {
+  "id": "sl2-presov-4",
+  "place": "presov",
+  "lat": 48.976893,
+  "lon": 21.260908
+ },
+ {
+  "id": "sl2-presov-5",
+  "place": "presov",
+  "lat": 48.995845,
+  "lon": 21.220105
+ },
+ {
+  "id": "sl2-presov-6",
+  "place": "presov",
+  "lat": 49.01268,
+  "lon": 21.246983
+ },
+ {
+  "id": "sl2-presov-7",
+  "place": "presov",
+  "lat": 48.994987,
+  "lon": 21.264016
+ },
+ {
+  "id": "sl2-presov-8",
+  "place": "presov",
+  "lat": 49.008287,
+  "lon": 21.255051
+ },
+ {
+  "id": "sl2-presov-9",
+  "place": "presov",
+  "lat": 49.022126,
+  "lon": 21.229275
+ },
+ {
+  "id": "sl2-presov-10",
+  "place": "presov",
+  "lat": 48.99341,
+  "lon": 21.271684
+ },
+ {
+  "id": "sl2-presov-11",
+  "place": "presov",
+  "lat": 49.006794,
+  "lon": 21.245802
+ },
+ {
+  "id": "sl2-presov-12",
+  "place": "presov",
+  "lat": 48.972099,
+  "lon": 21.239256
+ },
+ {
+  "id": "sl2-presov-13",
+  "place": "presov",
+  "lat": 48.994257,
+  "lon": 21.268547
+ },
+ {
+  "id": "sl2-presov-14",
+  "place": "presov",
+  "lat": 48.991448,
+  "lon": 21.25151
+ },
+ {
+  "id": "sl2-nitra-1",
+  "place": "nitra",
+  "lat": 48.323116,
+  "lon": 18.055645
+ },
+ {
+  "id": "sl2-nitra-2",
+  "place": "nitra",
+  "lat": 48.324897,
+  "lon": 18.084106
+ },
+ {
+  "id": "sl2-nitra-3",
+  "place": "nitra",
+  "lat": 48.296254,
+  "lon": 18.093496
+ },
+ {
+  "id": "sl2-nitra-4",
+  "place": "nitra",
+  "lat": 48.328014,
+  "lon": 18.076162
+ },
+ {
+  "id": "sl2-nitra-5",
+  "place": "nitra",
+  "lat": 48.314089,
+  "lon": 18.099627
+ },
+ {
+  "id": "sl2-nitra-6",
+  "place": "nitra",
+  "lat": 48.329137,
+  "lon": 18.105649
+ },
+ {
+  "id": "sl2-nitra-7",
+  "place": "nitra",
+  "lat": 48.311748,
+  "lon": 18.102183
+ },
+ {
+  "id": "sl2-nitra-8",
+  "place": "nitra",
+  "lat": 48.297219,
+  "lon": 18.103015
+ },
+ {
+  "id": "sl2-nitra-9",
+  "place": "nitra",
+  "lat": 48.311243,
+  "lon": 18.101808
+ },
+ {
+  "id": "sl2-nitra-10",
+  "place": "nitra",
+  "lat": 48.316178,
+  "lon": 18.050729
+ },
+ {
+  "id": "sl2-nitra-11",
+  "place": "nitra",
+  "lat": 48.318573,
+  "lon": 18.072292
+ },
+ {
+  "id": "sl2-nitra-12",
+  "place": "nitra",
+  "lat": 48.312572,
+  "lon": 18.092235
+ },
+ {
+  "id": "sl2-nitra-13",
+  "place": "nitra",
+  "lat": 48.300645,
+  "lon": 18.05623
+ },
+ {
+  "id": "sl2-nitra-14",
+  "place": "nitra",
+  "lat": 48.299988,
+  "lon": 18.090433
+ },
+ {
+  "id": "sl2-trnava-1",
+  "place": "trnava",
+  "lat": 48.3861,
+  "lon": 17.59634
+ },
+ {
+  "id": "sl2-trnava-2",
+  "place": "trnava",
+  "lat": 48.371526,
+  "lon": 17.618366
+ },
+ {
+  "id": "sl2-trnava-3",
+  "place": "trnava",
+  "lat": 48.385331,
+  "lon": 17.592704
+ },
+ {
+  "id": "sl2-trnava-4",
+  "place": "trnava",
+  "lat": 48.375192,
+  "lon": 17.597229
+ },
+ {
+  "id": "sl2-trnava-5",
+  "place": "trnava",
+  "lat": 48.379414,
+  "lon": 17.614744
+ },
+ {
+  "id": "sl2-trnava-6",
+  "place": "trnava",
+  "lat": 48.393273,
+  "lon": 17.587169
+ },
+ {
+  "id": "sl2-trnava-7",
+  "place": "trnava",
+  "lat": 48.358682,
+  "lon": 17.606536
+ },
+ {
+  "id": "sl2-trnava-8",
+  "place": "trnava",
+  "lat": 48.376704,
+  "lon": 17.62798
+ },
+ {
+  "id": "sl2-trnava-9",
+  "place": "trnava",
+  "lat": 48.370698,
+  "lon": 17.625643
+ },
+ {
+  "id": "sl2-trnava-10",
+  "place": "trnava",
+  "lat": 48.374672,
+  "lon": 17.60299
+ },
+ {
+  "id": "sl2-trnava-11",
+  "place": "trnava",
+  "lat": 48.378678,
+  "lon": 17.61483
+ },
+ {
+  "id": "sl2-trnava-12",
+  "place": "trnava",
+  "lat": 48.368045,
+  "lon": 17.610901
+ },
+ {
+  "id": "sl2-trnava-13",
+  "place": "trnava",
+  "lat": 48.389983,
+  "lon": 17.605282
+ },
+ {
+  "id": "sl2-trnava-14",
+  "place": "trnava",
+  "lat": 48.35953,
+  "lon": 17.560876
+ },
+ {
+  "id": "sl2-bystrica-1",
+  "place": "bystrica",
+  "lat": 48.731057,
+  "lon": 19.185405
+ },
+ {
+  "id": "sl2-bystrica-2",
+  "place": "bystrica",
+  "lat": 48.729275,
+  "lon": 19.120953
+ },
+ {
+  "id": "sl2-bystrica-3",
+  "place": "bystrica",
+  "lat": 48.725138,
+  "lon": 19.178775
+ },
+ {
+  "id": "sl2-bystrica-4",
+  "place": "bystrica",
+  "lat": 48.740787,
+  "lon": 19.132921
+ },
+ {
+  "id": "sl2-bystrica-5",
+  "place": "bystrica",
+  "lat": 48.754649,
+  "lon": 19.139752
+ },
+ {
+  "id": "sl2-bystrica-6",
+  "place": "bystrica",
+  "lat": 48.723975,
+  "lon": 19.177607
+ },
+ {
+  "id": "sl2-bystrica-7",
+  "place": "bystrica",
+  "lat": 48.729317,
+  "lon": 19.176247
+ },
+ {
+  "id": "sl2-bystrica-8",
+  "place": "bystrica",
+  "lat": 48.725229,
+  "lon": 19.161688
+ },
+ {
+  "id": "sl2-bystrica-9",
+  "place": "bystrica",
+  "lat": 48.745921,
+  "lon": 19.157528
+ },
+ {
+  "id": "sl2-bystrica-10",
+  "place": "bystrica",
+  "lat": 48.725567,
+  "lon": 19.111022
+ },
+ {
+  "id": "sl2-bystrica-11",
+  "place": "bystrica",
+  "lat": 48.73524,
+  "lon": 19.154995
+ },
+ {
+  "id": "sl2-bystrica-12",
+  "place": "bystrica",
+  "lat": 48.758765,
+  "lon": 19.128732
+ },
+ {
+  "id": "sl2-bystrica-13",
+  "place": "bystrica",
+  "lat": 48.745074,
+  "lon": 19.135846
+ },
+ {
+  "id": "sl2-bystrica-14",
+  "place": "bystrica",
+  "lat": 48.727971,
+  "lon": 19.157666
+ },
+ {
+  "id": "sl2-trencin-1",
+  "place": "trencin",
+  "lat": 48.8917,
+  "lon": 18.077382
+ },
+ {
+  "id": "sl2-trencin-2",
+  "place": "trencin",
+  "lat": 48.894435,
+  "lon": 18.038827
+ },
+ {
+  "id": "sl2-trencin-3",
+  "place": "trencin",
+  "lat": 48.881589,
+  "lon": 18.052612
+ },
+ {
+  "id": "sl2-trencin-4",
+  "place": "trencin",
+  "lat": 48.893252,
+  "lon": 18.013272
+ },
+ {
+  "id": "sl2-trencin-5",
+  "place": "trencin",
+  "lat": 48.897699,
+  "lon": 18.0179
+ },
+ {
+  "id": "sl2-trencin-6",
+  "place": "trencin",
+  "lat": 48.915507,
+  "lon": 18.063085
+ },
+ {
+  "id": "sl2-trencin-7",
+  "place": "trencin",
+  "lat": 48.880834,
+  "lon": 18.054186
+ },
+ {
+  "id": "sl2-trencin-8",
+  "place": "trencin",
+  "lat": 48.908149,
+  "lon": 18.021599
+ },
+ {
+  "id": "sl2-trencin-9",
+  "place": "trencin",
+  "lat": 48.892204,
+  "lon": 18.044269
+ },
+ {
+  "id": "sl2-trencin-10",
+  "place": "trencin",
+  "lat": 48.888149,
+  "lon": 18.063849
+ },
+ {
+  "id": "sl2-trencin-11",
+  "place": "trencin",
+  "lat": 48.906771,
+  "lon": 18.016233
+ },
+ {
+  "id": "sl2-trencin-12",
+  "place": "trencin",
+  "lat": 48.886585,
+  "lon": 18.067447
+ },
+ {
+  "id": "sl2-trencin-13",
+  "place": "trencin",
+  "lat": 48.915979,
+  "lon": 18.019557
+ },
+ {
+  "id": "sl2-trencin-14",
+  "place": "trencin",
+  "lat": 48.88168,
+  "lon": 18.038969
+ },
+ {
+  "id": "sl2-martin-1",
+  "place": "martin",
+  "lat": 49.067697,
+  "lon": 18.959468
+ },
+ {
+  "id": "sl2-martin-2",
+  "place": "martin",
+  "lat": 49.088621,
+  "lon": 18.910608
+ },
+ {
+  "id": "sl2-martin-3",
+  "place": "martin",
+  "lat": 49.060454,
+  "lon": 18.905198
+ },
+ {
+  "id": "sl2-martin-4",
+  "place": "martin",
+  "lat": 49.070567,
+  "lon": 18.901082
+ },
+ {
+  "id": "sl2-martin-5",
+  "place": "martin",
+  "lat": 49.05568,
+  "lon": 18.957774
+ },
+ {
+  "id": "sl2-martin-6",
+  "place": "martin",
+  "lat": 49.046847,
+  "lon": 18.945532
+ },
+ {
+  "id": "sl2-martin-7",
+  "place": "martin",
+  "lat": 49.087305,
+  "lon": 18.923679
+ },
+ {
+  "id": "sl2-martin-8",
+  "place": "martin",
+  "lat": 49.067284,
+  "lon": 18.953444
+ },
+ {
+  "id": "sl2-martin-9",
+  "place": "martin",
+  "lat": 49.069199,
+  "lon": 18.948999
+ },
+ {
+  "id": "sl2-martin-10",
+  "place": "martin",
+  "lat": 49.078575,
+  "lon": 18.922536
+ },
+ {
+  "id": "sl2-martin-11",
+  "place": "martin",
+  "lat": 49.056316,
+  "lon": 18.93651
+ },
+ {
+  "id": "sl2-martin-12",
+  "place": "martin",
+  "lat": 49.044297,
+  "lon": 18.922912
+ },
+ {
+  "id": "sl2-martin-13",
+  "place": "martin",
+  "lat": 49.085244,
+  "lon": 18.916133
+ },
+ {
+  "id": "sl2-martin-14",
+  "place": "martin",
+  "lat": 49.065636,
+  "lon": 18.886744
+ },
+ {
+  "id": "sl2-poprad-1",
+  "place": "poprad",
+  "lat": 49.047039,
+  "lon": 20.265446
+ },
+ {
+  "id": "sl2-poprad-2",
+  "place": "poprad",
+  "lat": 49.065221,
+  "lon": 20.308591
+ },
+ {
+  "id": "sl2-poprad-3",
+  "place": "poprad",
+  "lat": 49.033919,
+  "lon": 20.272771
+ },
+ {
+  "id": "sl2-poprad-4",
+  "place": "poprad",
+  "lat": 49.055453,
+  "lon": 20.302143
+ },
+ {
+  "id": "sl2-poprad-5",
+  "place": "poprad",
+  "lat": 49.033756,
+  "lon": 20.310147
+ },
+ {
+  "id": "sl2-poprad-6",
+  "place": "poprad",
+  "lat": 49.072148,
+  "lon": 20.295466
+ },
+ {
+  "id": "sl2-poprad-7",
+  "place": "poprad",
+  "lat": 49.07668,
+  "lon": 20.277599
+ },
+ {
+  "id": "sl2-poprad-8",
+  "place": "poprad",
+  "lat": 49.034702,
+  "lon": 20.308157
+ },
+ {
+  "id": "sl2-poprad-9",
+  "place": "poprad",
+  "lat": 49.062104,
+  "lon": 20.271389
+ },
+ {
+  "id": "sl2-poprad-10",
+  "place": "poprad",
+  "lat": 49.064803,
+  "lon": 20.271115
+ },
+ {
+  "id": "sl2-poprad-11",
+  "place": "poprad",
+  "lat": 49.047336,
+  "lon": 20.309493
+ },
+ {
+  "id": "sl2-poprad-12",
+  "place": "poprad",
+  "lat": 49.071701,
+  "lon": 20.283723
+ },
+ {
+  "id": "sl2-poprad-13",
+  "place": "poprad",
+  "lat": 49.061728,
+  "lon": 20.275599
+ },
+ {
+  "id": "sl2-poprad-14",
+  "place": "poprad",
+  "lat": 49.060625,
+  "lon": 20.335965
+ }
+]

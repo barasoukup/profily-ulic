@@ -1,0 +1,386 @@
+[
+ {
+  "id": "ko-graz-1",
+  "place": "graz",
+  "lat": 47.054106,
+  "lon": 15.445451
+ },
+ {
+  "id": "ko-graz-2",
+  "place": "graz",
+  "lat": 47.070141,
+  "lon": 15.416037
+ },
+ {
+  "id": "ko-graz-3",
+  "place": "graz",
+  "lat": 47.06981,
+  "lon": 15.457931
+ },
+ {
+  "id": "ko-graz-4",
+  "place": "graz",
+  "lat": 47.079945,
+  "lon": 15.411571
+ },
+ {
+  "id": "ko-graz-5",
+  "place": "graz",
+  "lat": 47.077398,
+  "lon": 15.455903
+ },
+ {
+  "id": "ko-graz-6",
+  "place": "graz",
+  "lat": 47.048898,
+  "lon": 15.44584
+ },
+ {
+  "id": "ko-graz-7",
+  "place": "graz",
+  "lat": 47.067764,
+  "lon": 15.435796
+ },
+ {
+  "id": "ko-graz-8",
+  "place": "graz",
+  "lat": 47.065852,
+  "lon": 15.440254
+ },
+ {
+  "id": "ko-linz-1",
+  "place": "linz",
+  "lat": 48.317179,
+  "lon": 14.295802
+ },
+ {
+  "id": "ko-linz-2",
+  "place": "linz",
+  "lat": 48.288904,
+  "lon": 14.304598
+ },
+ {
+  "id": "ko-linz-3",
+  "place": "linz",
+  "lat": 48.319738,
+  "lon": 14.266971
+ },
+ {
+  "id": "ko-linz-4",
+  "place": "linz",
+  "lat": 48.294935,
+  "lon": 14.275245
+ },
+ {
+  "id": "ko-linz-5",
+  "place": "linz",
+  "lat": 48.288612,
+  "lon": 14.30014
+ },
+ {
+  "id": "ko-linz-6",
+  "place": "linz",
+  "lat": 48.307579,
+  "lon": 14.299913
+ },
+ {
+  "id": "ko-linz-7",
+  "place": "linz",
+  "lat": 48.303899,
+  "lon": 14.274839
+ },
+ {
+  "id": "ko-linz-8",
+  "place": "linz",
+  "lat": 48.296866,
+  "lon": 14.284048
+ },
+ {
+  "id": "ko-leipzig-1",
+  "place": "leipzig",
+  "lat": 51.321025,
+  "lon": 12.375059
+ },
+ {
+  "id": "ko-leipzig-2",
+  "place": "leipzig",
+  "lat": 51.349417,
+  "lon": 12.362749
+ },
+ {
+  "id": "ko-leipzig-3",
+  "place": "leipzig",
+  "lat": 51.342889,
+  "lon": 12.374685
+ },
+ {
+  "id": "ko-leipzig-4",
+  "place": "leipzig",
+  "lat": 51.330947,
+  "lon": 12.372017
+ },
+ {
+  "id": "ko-leipzig-5",
+  "place": "leipzig",
+  "lat": 51.341703,
+  "lon": 12.358364
+ },
+ {
+  "id": "ko-leipzig-6",
+  "place": "leipzig",
+  "lat": 51.332587,
+  "lon": 12.398829
+ },
+ {
+  "id": "ko-leipzig-7",
+  "place": "leipzig",
+  "lat": 51.328451,
+  "lon": 12.394931
+ },
+ {
+  "id": "ko-leipzig-8",
+  "place": "leipzig",
+  "lat": 51.348213,
+  "lon": 12.403857
+ },
+ {
+  "id": "ko-muenchen-1",
+  "place": "muenchen",
+  "lat": 48.125352,
+  "lon": 11.553152
+ },
+ {
+  "id": "ko-muenchen-2",
+  "place": "muenchen",
+  "lat": 48.123742,
+  "lon": 11.573278
+ },
+ {
+  "id": "ko-muenchen-3",
+  "place": "muenchen",
+  "lat": 48.153472,
+  "lon": 11.558731
+ },
+ {
+  "id": "ko-muenchen-4",
+  "place": "muenchen",
+  "lat": 48.1485,
+  "lon": 11.556563
+ },
+ {
+  "id": "ko-muenchen-5",
+  "place": "muenchen",
+  "lat": 48.147784,
+  "lon": 11.573284
+ },
+ {
+  "id": "ko-muenchen-6",
+  "place": "muenchen",
+  "lat": 48.13737,
+  "lon": 11.574439
+ },
+ {
+  "id": "ko-muenchen-7",
+  "place": "muenchen",
+  "lat": 48.125567,
+  "lon": 11.571531
+ },
+ {
+  "id": "ko-muenchen-8",
+  "place": "muenchen",
+  "lat": 48.131642,
+  "lon": 11.594098
+ },
+ {
+  "id": "ko-koeln-1",
+  "place": "koeln",
+  "lat": 50.94027,
+  "lon": 6.993214
+ },
+ {
+  "id": "ko-koeln-2",
+  "place": "koeln",
+  "lat": 50.915264,
+  "lon": 6.955671
+ },
+ {
+  "id": "ko-koeln-3",
+  "place": "koeln",
+  "lat": 50.949714,
+  "lon": 6.935152
+ },
+ {
+  "id": "ko-koeln-4",
+  "place": "koeln",
+  "lat": 50.93246,
+  "lon": 6.958786
+ },
+ {
+  "id": "ko-koeln-5",
+  "place": "koeln",
+  "lat": 50.930915,
+  "lon": 6.958778
+ },
+ {
+  "id": "ko-koeln-6",
+  "place": "koeln",
+  "lat": 50.951214,
+  "lon": 6.984169
+ },
+ {
+  "id": "ko-koeln-7",
+  "place": "koeln",
+  "lat": 50.946436,
+  "lon": 6.956337
+ },
+ {
+  "id": "ko-koeln-8",
+  "place": "koeln",
+  "lat": 50.923542,
+  "lon": 6.954377
+ },
+ {
+  "id": "ko-dresden-1",
+  "place": "dresden",
+  "lat": 51.049666,
+  "lon": 13.740602
+ },
+ {
+  "id": "ko-dresden-2",
+  "place": "dresden",
+  "lat": 51.069511,
+  "lon": 13.749339
+ },
+ {
+  "id": "ko-dresden-3",
+  "place": "dresden",
+  "lat": 51.048261,
+  "lon": 13.706158
+ },
+ {
+  "id": "ko-dresden-4",
+  "place": "dresden",
+  "lat": 51.055308,
+  "lon": 13.746217
+ },
+ {
+  "id": "ko-dresden-5",
+  "place": "dresden",
+  "lat": 51.050504,
+  "lon": 13.740189
+ },
+ {
+  "id": "ko-dresden-6",
+  "place": "dresden",
+  "lat": 51.039109,
+  "lon": 13.713013
+ },
+ {
+  "id": "ko-dresden-7",
+  "place": "dresden",
+  "lat": 51.065532,
+  "lon": 13.726479
+ },
+ {
+  "id": "ko-dresden-8",
+  "place": "dresden",
+  "lat": 51.050318,
+  "lon": 13.721757
+ },
+ {
+  "id": "ko-wroclaw-1",
+  "place": "wroclaw",
+  "lat": 51.108565,
+  "lon": 17.029233
+ },
+ {
+  "id": "ko-wroclaw-2",
+  "place": "wroclaw",
+  "lat": 51.093771,
+  "lon": 17.06255
+ },
+ {
+  "id": "ko-wroclaw-3",
+  "place": "wroclaw",
+  "lat": 51.090277,
+  "lon": 17.02153
+ },
+ {
+  "id": "ko-wroclaw-4",
+  "place": "wroclaw",
+  "lat": 51.110734,
+  "lon": 17.029497
+ },
+ {
+  "id": "ko-wroclaw-5",
+  "place": "wroclaw",
+  "lat": 51.110795,
+  "lon": 17.045295
+ },
+ {
+  "id": "ko-wroclaw-6",
+  "place": "wroclaw",
+  "lat": 51.121837,
+  "lon": 17.035202
+ },
+ {
+  "id": "ko-wroclaw-7",
+  "place": "wroclaw",
+  "lat": 51.127673,
+  "lon": 17.032229
+ },
+ {
+  "id": "ko-wroclaw-8",
+  "place": "wroclaw",
+  "lat": 51.091651,
+  "lon": 17.057397
+ },
+ {
+  "id": "ko-poznan-1",
+  "place": "poznan",
+  "lat": 52.42656,
+  "lon": 16.935487
+ },
+ {
+  "id": "ko-poznan-2",
+  "place": "poznan",
+  "lat": 52.397375,
+  "lon": 16.941052
+ },
+ {
+  "id": "ko-poznan-3",
+  "place": "poznan",
+  "lat": 52.404005,
+  "lon": 16.90683
+ },
+ {
+  "id": "ko-poznan-4",
+  "place": "poznan",
+  "lat": 52.423507,
+  "lon": 16.911153
+ },
+ {
+  "id": "ko-poznan-5",
+  "place": "poznan",
+  "lat": 52.414402,
+  "lon": 16.900198
+ },
+ {
+  "id": "ko-poznan-6",
+  "place": "poznan",
+  "lat": 52.402951,
+  "lon": 16.903969
+ },
+ {
+  "id": "ko-poznan-7",
+  "place": "poznan",
+  "lat": 52.418166,
+  "lon": 16.941991
+ },
+ {
+  "id": "ko-poznan-8",
+  "place": "poznan",
+  "lat": 52.410955,
+  "lon": 16.92943
+ }
+]

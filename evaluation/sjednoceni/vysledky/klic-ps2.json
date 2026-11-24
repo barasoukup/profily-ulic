@@ -1,0 +1,37 @@
+{
+ "1": {
+  "id": "sl2-bratislava-10",
+  "X": "N",
+  "Y": "N0"
+ },
+ "2": {
+  "id": "sl-petrzalka-4",
+  "X": "N0",
+  "Y": "N"
+ },
+ "3": {
+  "id": "sl2-bratislava-9",
+  "X": "N0",
+  "Y": "N"
+ },
+ "4": {
+  "id": "sl-martin-2",
+  "X": "N",
+  "Y": "N0"
+ },
+ "5": {
+  "id": "sl2-trnava-4",
+  "X": "N",
+  "Y": "N0"
+ },
+ "6": {
+  "id": "sl2-bratislava-2",
+  "X": "N",
+  "Y": "N0"
+ },
+ "7": {
+  "id": "sl2-zilina-5",
+  "X": "N",
+  "Y": "N0"
+ }
+}

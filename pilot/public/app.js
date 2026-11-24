@@ -660,14 +660,17 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // Not where parking data decide: a paid zone, the city's parking sections at the cut, a side OSM tags.
     if (orthoOsm && aiPark && !ORTHO_P.off?.has("aipark")) {
       const along = !near.dir || dir[0] * near.dir[0] + dir[1] * near.dir[1] >= 0;
-      parkFromAi(result, aiPark, parkSkip(near.way.tags, along, inZps === true || parking.length > 0));
+      // A strip the law estimated, gone back to the roadway, keeps the lane's cap there too (as in a map's roadway below;
+      // evaluation/sjednoceni, Slovakia: Royova in Bratislava, one lane of 6 m).
+      const old = ORTHO_P.off?.has("parkshare");
+      if (parkFromAi(result, aiPark, { ...parkSkip(near.way.tags, along, inZps === true || parking.length > 0), old }) > 0 && !old) capWideLanes(result.segments, near.way.tags);
     }
     // In a surface map's roadway (mapFill above) the same, but never over the map's own sidewalk or green (inside).
     const mapPark = mapCut && aiParking(mapCut);
     let mapParked = false;
     if (mapPark && !ORTHO_P.off?.has("aipark")) {
       const along = !near.dir || dir[0] * near.dir[0] + dir[1] * near.dir[1] >= 0;
-      mapParked = parkFromAi(result, mapPark, { ...parkSkip(near.way.tags, along, inZps === true || parking.length > 0), inside: true }) > 0;
+      mapParked = parkFromAi(result, mapPark, { ...parkSkip(near.way.tags, along, inZps === true || parking.length > 0), inside: true, old: ORTHO_P.off?.has("parkshare") }) > 0;
       // A strip the law estimated, gone back to its lane where no car stands, keeps the lane's cap (capWideLanes above;
       // evaluation/mapfill-cz: Rosická in Brno 6.67 m lanes, Šatrova in Prague 5.62 m).
       if (mapParked) capWideLanes(result.segments, near.way.tags);

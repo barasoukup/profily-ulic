@@ -14,6 +14,10 @@ const SETS = {
   // More of Slovakia (the first set gave 30 local streets): another seed, 14 candidates each within 3 km.
   slovensko2: { seed: 20261124 + 19, n: 14, r: 3000, places: { bratislava: [48.1486, 17.1077], petrzalka: [48.1150, 17.1100], kosice: [48.7164, 21.2611], zilina: [49.2231, 18.7394],
     presov: [48.9976, 21.2393], nitra: [48.3069, 18.0864], trnava: [48.3774, 17.5883], bystrica: [48.7363, 19.1462], trencin: [48.8945, 18.0444], martin: [49.0665, 18.9230], poprad: [49.0555, 20.2975] } },
+  // Controls of the shared parking fix (ai-kerbs.js parkFromAi) where the law's estimate was on already: towns without
+  // a surface map in Austria, Germany and Poland, 8 candidates each within 2.5 km.
+  kontrola: { seed: 20261124 + 23, n: 8, r: 2500, places: { graz: [47.0707, 15.4395], linz: [48.3059, 14.2862], leipzig: [51.3397, 12.3731], muenchen: [48.1374, 11.5755],
+    koeln: [50.9375, 6.9603], dresden: [51.0504, 13.7373], wroclaw: [51.1079, 17.0385], poznan: [52.4064, 16.9252] } },
   // Towns with a surface map abroad (city.fix: off abroad, never tried), 7 candidates each within 2.5 km.
   mapy: { seed: 20261124 + 13, n: 7, r: 2500, places: { wien: [48.2085, 16.3731], berlin: [52.52, 13.405], hamburg: [53.5511, 9.9937], paris: [48.8566, 2.3522],
     helsinki: [60.1699, 24.9384], amsterdam: [52.3676, 4.9041], zurich: [47.3769, 8.5417], tallinn: [59.437, 24.7536], bratislava: [48.1486, 17.1077],
