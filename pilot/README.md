@@ -390,9 +390,9 @@ GeoDanmark přes Dataforsyningen (WMTS `orto_foraar_webm_DAF`, z20, asi 8 cm v K
 pro pruhy i jako podklad mapy, jen s tokenem aplikace (`keys.js`: na webu `config.js` z proměnné repozitáře `DK_TOKEN`,
 lokálně `config.local.js`). Bez tokenu nebo když ho služba odmítne (401/403 na všech dlaždicích) chyba `noKey`: profil jen
 z OSM a poznámka „Ortofoto tu není k dispozici…“; chyba serveru je výpadek („Zkuste kliknout znovu“). Kodaň (WFS
-`wfs-kbhkort.kk.dk/k101`): okraje vozovek a cyklostezek GeoDanmark `vejkant` jako čáry pro obruby (`?kbhkant=1`),
-parkovací plochy `parkering_areal` s úhlem stání (`?kbhpark=1`), budovy BBR (`?kbhbyg=1`; jen potřebná pole, nikdy
-vlastník); vše vypnuté, dokud Bára nerozhodne o licenci. Aarhus: budovy BBR (rok, užití, zdi, podlaží odhadem z ploch;
+`wfs-kbhkort.kk.dk/k101`): okraje vozovek a cyklostezek GeoDanmark `vejkant` jako čáry pro obruby (`?kbhkant=0` vypne),
+parkovací plochy `parkering_areal` s úhlem stání (`?kbhpark=0`), budovy BBR (`?kbhbyg=0`; jen potřebná pole, nikdy
+vlastník); zapnuté od 24. 11. 2026 (Bára, licence vrstev neuvedená; A/B `evaluation/denmark/ab/ZPRAVA.md`). Aarhus: budovy BBR (rok, užití, zdi, podlaží odhadem z ploch;
 CC BY 4.0, `?aarbyg=0`). Hledání GSearch (husnummer, navngivenvej; `search-dk.js`), bez tokenu Photon. Normy z vejregler
 (Tværprofiler i byer 2019, Anlæg for parkering 2023) jen oranžově, červeně obousměrná cyklostezka 2,5 m. Stání 3 m na
 směr, na chodníku v obci zakázané (§ 28). Značky `signs-DK/` (BEK 425/2023, Commons public domain; C 55 jako šablona

@@ -32,8 +32,9 @@ o mnoho horší odhad mimo Kodaň.
 3. Kodaň: zapojit `vejkant` (čáry okrajů vozovky a cyklostezky) jako „linie mapy povrchů“ podobně jako Bratislava (`?tm=1`)
    a otestovat A/B? Licence vrstvy `vejkant` a `bygning` není v katalogu výslovně uvedena (ostatní vrstvy KK CC BY 4.0,
    data GeoDanmark CC BY 4.0) → zeptat se Københavns Kommune, nebo brát jako GeoDanmark CC BY 4.0?
+   **Rozhodnuto 24. 11. 2026: použít** (i stání a budovy; viz 2a).
 4. Kodaňské budovy (`k101:bygning`: rok, podlaží, výška okapu) pro vzhled domů v Kodani; mimo Kodaň a Aarhus jen OSM
-   (BBR celostátně jen přes Datafordeler s klíčem)?
+   (BBR celostátně jen přes Datafordeler s klíčem)? **Rozhodnuto 24. 11. 2026: použít.**
 5. Datafordeler (nový `wms.datafordeler.dk` s API klíčem na 2 roky) místo Dataforsyningen? Dataforsyningen během podzimu
    2026 část služeb vypíná (forum OSM; ortofoto zatím běží). Doporučuji Dataforsyningen teď, s poznámkou v backlogu.
 6. Normy: použít vejregler „Tværprofiler i byer“ (2019, četla jsem; novější vydání 31. 5. 2024 jsem neotevřela) a
@@ -98,6 +99,13 @@ funguje, odpovědi do 2 s. Capabilities: Fees `NONE`, AccessConstraints `NONE`; 
 | `k101:belaegninger - veje` | čáry povrchů z Vejman (produkt, rok položení, `vejklasse_`) | neuvedena | spíš ne |
 | `k101:renhold_vejarealer_tap` | v testovaném bodě prázdné | | neověřeno |
 | `k101:fortovsmatrikel`, `cykelsti`, `hastighedszoner`, `gadetraer` | jen v seznamu | | neověřeno |
+
+**Rozhodnutí (Bára 24. 11. 2026):** „Kodaňská data bych použila.“ Vrstvy `vejkant`, `parkering_areal` a `bygning` jsou
+v aplikaci **zapnuté**, přestože jejich licence v katalogu uvedená není; kredit „okraje vozovek (GeoDanmark) © Københavns
+Kommune“, „parkovací plochy © Københavns Kommune“, „budovy (BBR, GeoDanmark) © Københavns Kommune“. A/B v aplikaci
+(`ab/ZPRAVA.md`, 72 řezů v Kodani a 4 kontrolní v Aarhusu): čáry okrajů lépe 5, hůř 2, stejně 3, nejasné 2; parkovací
+plochy lépe 7, hůř 2, stejně 3, nejasné 7; budovy `buildings-ab/ZPRAVA.md`. Vypnout jdou `?kbhkant=0`, `?kbhpark=0`,
+`?kbhbyg=0`.
 
 ### 2b. Aarhus: `https://webkort.aarhuskommune.dk/wfs/wfs` (Spatial Suite, WFS 2.0)
 
@@ -168,4 +176,4 @@ Vzhled domů: `house-looks.js` už má `nordicLook("DK")` (dánský cihlový či
 
 Rok aktuální jarní mozaiky; skutečná jména služeb s tokenem (GeoDanmark WFS na Dataforsyningen); cesty k ortofotu na
 novém Datafordeleru; podmínky uživatelského účtu Dataforsyningen; licence kodaňských vrstev `vejkant`, `bygning`,
-`parkering_areal`; specifikace GeoDanmark 6 (co přesně je `vejkant`); Odense, Aalborg; hranice GISCO DK.
+`parkering_areal` (Bára je 24. 11. 2026 přesto použila); specifikace GeoDanmark 6 (co přesně je `vejkant`); Odense, Aalborg; hranice GISCO DK.

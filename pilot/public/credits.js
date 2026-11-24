@@ -65,7 +65,7 @@ export const SOURCE_CREDITS = {
     presov: () => t("hranice druhov pozemkov © mesto Prešov (CC BY 4.0)"), "bratislava-tm": () => t("technická mapa © Hlavné mesto SR Bratislava"),
     // Belgium's regions (towns/belgium.js).
     grb: () => t("čáry GRB © Digitaal Vlaanderen"), picc: () => t("čáry PICC © SPW (Service public de Wallonie)"),
-    // Copenhagen's kerb lines (towns/denmark.js, ?kbhkant=1).
+    // Copenhagen's kerb lines (towns/denmark.js, on; ?kbhkant=0 leaves them out).
     "kbh-vejkant": () => t("okraje vozovek (GeoDanmark) © Københavns Kommune"),
   },
   // Salzburg's cadastre of signs and Vienna's Flächen-Mehrzweckkarte (towns/austria.js).
@@ -112,7 +112,7 @@ export const SOURCE_CREDITS = {
     aar: () => t("budovy (BBR) © Aarhus Kommune (CC BY 4.0)"),
     both: () => `${t("budovy (BBR, GeoDanmark) © Københavns Kommune")}, ${t("budovy (BBR) © Aarhus Kommune (CC BY 4.0)")}`,
   },
-  // Copenhagen's parking areas (towns/denmark.js, ?kbhpark=1).
+  // Copenhagen's parking areas (towns/denmark.js, on; ?kbhpark=0 leaves them out).
   dkParking: { true: () => t("parkovací plochy © Københavns Kommune") },
   fiBuild: {
     hki: () => t("budovy © Helsingin kaupunki (CC BY 4.0)"),

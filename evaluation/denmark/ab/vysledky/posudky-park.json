@@ -1,0 +1,78 @@
+{
+ "ko4": {
+  "v": "a",
+  "why": "Refshalevej: auta stojí po obou stranách, B má stání jen vpravo (vlevo žádná plocha města, stání se pak neodhaduje)"
+ },
+ "ko9": {
+  "v": "stejne",
+  "why": "Nordbanegade: stání vlevo 2 → 2,25 m (plocha bez záznamu, auto tam stojí), vpravo krajnice o 0,4 m užší"
+ },
+ "ko11": {
+  "v": "?",
+  "why": "Åbenrå: úzká ulice ve stínu"
+ },
+ "ko13": {
+  "v": "?",
+  "why": "Prinsessegade: vpravo krajnice místo stání, ve stínu auta nejsou vidět"
+ },
+ "ko17": {
+  "v": "?",
+  "why": "Kaj Munks Vej: tmavý snímek"
+ },
+ "ko19": {
+  "v": "a",
+  "why": "Dannevirkegade: šikmé stání vlevo, řez prošel přesně mezerou mezi dvěma plochami"
+ },
+ "ko20": {
+  "v": "?",
+  "why": "Haregade: ve stínu"
+ },
+ "ko28": {
+  "v": "b",
+  "why": "Webersgade: podélné stání vpravo s auty"
+ },
+ "ko29": {
+  "v": "?",
+  "why": "Ny Vestergade: ve stínu"
+ },
+ "ko31": {
+  "v": "b",
+  "why": "Guldbergsgade: auto stojí i vpravo, B tam má stání"
+ },
+ "ko37": {
+  "v": "b",
+  "why": "Gærdebred: auto stojí v pásu, který A kreslí jako krajnici"
+ },
+ "ko49": {
+  "v": "b",
+  "why": "Blegdamsvej: parkoviště vlevo jako stání místo plochy"
+ },
+ "ko54": {
+  "v": "?",
+  "why": "Øster Allé: stání vlevo ve stínu stromů"
+ },
+ "ko56": {
+  "v": "stejne",
+  "why": "jen jiné rozdělení pruhů"
+ },
+ "ko58": {
+  "v": "?",
+  "why": "Amaliegade: šikmé stání vlevo podle dat, snímek tmavý"
+ },
+ "ko61": {
+  "v": "b",
+  "why": "Meinungsgade: vpravo šikmo stojící auto, B tam má stání 4,2 m (plocha bez záznamu)"
+ },
+ "ko63": {
+  "v": "stejne",
+  "why": "posuny do 0,65 m"
+ },
+ "ko69": {
+  "v": "b",
+  "why": "Ny Carlsberg Vej: řez na přechodu, kde se nestojí (A tam odhadl stání)"
+ },
+ "ko71": {
+  "v": "b",
+  "why": "Hans Egedes Gade: vlevo auta nestojí, A tam odhadl stání"
+ }
+}

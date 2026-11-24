@@ -1,0 +1,5415 @@
+[
+ {
+  "id": "dkk-ko1",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.657139231231675,
+   "lon": 12.582619874980711,
+   "bearing": 30.872704050561545,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     1.5,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.657139231231675,
+   "lon": 12.582619874980711,
+   "bearing": 30.872704050561545,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     1.5,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko2",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Lille Kongensgade",
+   "lat": 55.67961631650547,
+   "lon": 12.584253111127241,
+   "bearing": 70.90982011406507,
+   "span": {
+    "left": 6.17,
+    "right": 6.28
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     3.45,
+     "odhad"
+    ],
+    [
+     "pruh_piktokoridor",
+     3.8,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Lille Kongensgade",
+   "lat": 55.67961631650547,
+   "lon": 12.584253111127241,
+   "bearing": 70.90982011406507,
+   "span": {
+    "left": 6.17,
+    "right": 6.28
+   },
+   "sources": {
+    "aiKerbs": true,
+    "skEdges": "kbh-vejkant",
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     3.45,
+     "odhad"
+    ],
+    [
+     "pruh_piktokoridor",
+     3.8,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko3",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Børsgade",
+   "lat": 55.67729833891918,
+   "lon": 12.580092588623678,
+   "bearing": -55.60264311284696,
+   "span": {
+    "left": 22,
+    "right": 14.88
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     10.47,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.9,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.9,
+     "osm"
+    ],
+    [
+     "bus",
+     4.07,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.73,
+     "osm"
+    ],
+    [
+     "chodnik",
+     0.69,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     1.31,
+     "osm"
+    ],
+    [
+     "plocha",
+     2.8,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Børsgade",
+   "lat": 55.67729833891918,
+   "lon": 12.580092588623678,
+   "bearing": -55.60264311284696,
+   "span": {
+    "left": 23.98,
+    "right": 14.88
+   },
+   "sources": {
+    "aiKerbs": true,
+    "skEdges": "kbh-vejkant",
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "zelen",
+     16.2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.25,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.9,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.9,
+     "osm"
+    ],
+    [
+     "bus",
+     4.07,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.73,
+     "osm"
+    ],
+    [
+     "chodnik",
+     0.69,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     1.31,
+     "osm"
+    ],
+    [
+     "plocha",
+     2.8,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko4",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Refshalevej",
+   "lat": 55.68249342224216,
+   "lon": 12.610061457256089,
+   "bearing": -1.9036271827772389,
+   "span": {
+    "left": 6.3,
+    "right": 3.81
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     0.98,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2.2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.94,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Refshalevej",
+   "lat": 55.68249342224216,
+   "lon": 12.610061457256089,
+   "bearing": -1.9036271827772389,
+   "span": {
+    "left": 6.3,
+    "right": 3.81
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     0.98,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2.2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.94,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko5",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.66475585279082,
+   "lon": 12.533480954883192,
+   "bearing": -67.35935889754728,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.66475585279082,
+   "lon": 12.533480954883192,
+   "bearing": -67.35935889754728,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko6",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.665804466580454,
+   "lon": 12.565733136857597,
+   "bearing": -41.522332440706656,
+   "span": {
+    "left": 2.82,
+    "right": 8.63
+   },
+   "sources": {
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "obsluzna",
+     4.1,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "plocha",
+     1.35,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.665804466580454,
+   "lon": 12.565733136857597,
+   "bearing": -41.522332440706656,
+   "span": {
+    "left": 2.82,
+    "right": 8.63
+   },
+   "sources": {
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "obsluzna",
+     4.1,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "plocha",
+     1.35,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko7",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Nordre Fasanvej",
+   "lat": 55.68669906717192,
+   "lon": 12.526547099977961,
+   "bearing": 23.003503456550558,
+   "span": {
+    "left": 8.22,
+    "right": 9.28
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.5,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.74,
+     "ortofoto"
+    ],
+    [
+     "delici",
+     0.35,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.7,
+     "osm"
+    ],
+    [
+     "plocha",
+     1,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     4.2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Nordre Fasanvej",
+   "lat": 55.68669906717192,
+   "lon": 12.526547099977961,
+   "bearing": 23.003503456550558,
+   "span": {
+    "left": 8.22,
+    "right": 9.28
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.5,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.74,
+     "ortofoto"
+    ],
+    [
+     "delici",
+     0.35,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.7,
+     "osm"
+    ],
+    [
+     "plocha",
+     1,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     4.2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko8",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.668415437227246,
+   "lon": 12.608809262449046,
+   "bearing": 51.80846823038757,
+   "span": {
+    "left": 2.97,
+    "right": 22
+   },
+   "sources": {
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "nezname",
+     0.45,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     7.6,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3,
+     "odhad"
+    ],
+    [
+     "plocha",
+     1.6,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.4,
+     "odhad"
+    ],
+    [
+     "plocha",
+     10.93,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.668415437227246,
+   "lon": 12.608809262449046,
+   "bearing": 51.80846823038757,
+   "span": {
+    "left": 2.97,
+    "right": 22
+   },
+   "sources": {
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "nezname",
+     0.45,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     7.6,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3,
+     "odhad"
+    ],
+    [
+     "plocha",
+     1.6,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.4,
+     "odhad"
+    ],
+    [
+     "plocha",
+     10.93,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko9",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Nordbanegade",
+   "lat": 55.69734124091628,
+   "lon": 12.543131692231292,
+   "bearing": 2.9471711897889663,
+   "span": {
+    "left": 16.47,
+    "right": 7.58
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "stromorad",
+     3.29,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     3.46,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     3,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.2,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.7,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.9,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Nordbanegade",
+   "lat": 55.69734124091628,
+   "lon": 12.543131692231292,
+   "bearing": 2.9471711897889663,
+   "span": {
+    "left": 16.47,
+    "right": 7.58
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "stromorad",
+     3.29,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     3.46,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     3,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.2,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.7,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.9,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko10",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.67979156452923,
+   "lon": 12.56063035837345,
+   "bearing": 8.283097826229215,
+   "span": {
+    "left": 5.42,
+    "right": 4.23
+   },
+   "sources": {
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     3.2,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     3.2,
+     "odhad"
+    ],
+    [
+     "plocha",
+     3.25,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.67979156452923,
+   "lon": 12.56063035837345,
+   "bearing": 8.283097826229215,
+   "span": {
+    "left": 5.42,
+    "right": 4.23
+   },
+   "sources": {
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     3.2,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     3.2,
+     "odhad"
+    ],
+    [
+     "plocha",
+     3.25,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko11",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Åbenrå",
+   "lat": 55.68336760774203,
+   "lon": 12.575866429659508,
+   "bearing": -62.129661404344155,
+   "span": {
+    "left": 5.77,
+    "right": 4.88
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.65,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Åbenrå",
+   "lat": 55.68336760774203,
+   "lon": 12.575866429659508,
+   "bearing": -62.129661404344155,
+   "span": {
+    "left": 5.77,
+    "right": 4.88
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.65,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko12",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Henrik Gerners Plads",
+   "lat": 55.68455166032407,
+   "lon": 12.60817254975564,
+   "bearing": -31.32097088471504,
+   "span": {
+    "left": 3.22,
+    "right": 6.68
+   },
+   "sources": {
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "pruh",
+     3.3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.3,
+     "osm"
+    ],
+    [
+     "plocha",
+     3.3,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Henrik Gerners Plads",
+   "lat": 55.68455166032407,
+   "lon": 12.60817254975564,
+   "bearing": -31.32097088471504,
+   "span": {
+    "left": 3.22,
+    "right": 6.68
+   },
+   "sources": {
+    "skEdges": "kbh-vejkant",
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "pruh",
+     2.9,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.9,
+     "osm"
+    ],
+    [
+     "plocha",
+     4.1,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko13",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Prinsessegade",
+   "lat": 55.6714724445579,
+   "lon": 12.592685204229525,
+   "bearing": 43.78717956849759,
+   "span": {
+    "left": 6.87,
+    "right": 4.78
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.95,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2.07,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.9,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2.03,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.7,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Prinsessegade",
+   "lat": 55.6714724445579,
+   "lon": 12.592685204229525,
+   "bearing": 43.78717956849759,
+   "span": {
+    "left": 6.87,
+    "right": 4.78
+   },
+   "sources": {
+    "aiKerbs": true,
+    "skEdges": "kbh-vejkant",
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.95,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2.07,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.9,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2.03,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.7,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko14",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Amagertorv",
+   "lat": 55.67879335533759,
+   "lon": 12.578493277316012,
+   "bearing": 74.99583710087981,
+   "span": {
+    "left": 6.12,
+    "right": 12.33
+   },
+   "sources": {
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     0.9,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6.8,
+     "odhad"
+    ],
+    [
+     "plocha",
+     10.75,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Amagertorv",
+   "lat": 55.67879335533759,
+   "lon": 12.578493277316012,
+   "bearing": 74.99583710087981,
+   "span": {
+    "left": 6.12,
+    "right": 12.33
+   },
+   "sources": {
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     0.9,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6.8,
+     "odhad"
+    ],
+    [
+     "plocha",
+     10.75,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko15",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Vasbygade",
+   "lat": 55.65844606814586,
+   "lon": 12.55111626515668,
+   "bearing": -55.82171062632278,
+   "span": {
+    "left": 16.5,
+    "right": 8.68
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     1.98,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     5.6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     3.6,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     3,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Vasbygade",
+   "lat": 55.65844606814586,
+   "lon": 12.55111626515668,
+   "bearing": -55.82171062632278,
+   "span": {
+    "left": 16.5,
+    "right": 8.68
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     1.98,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     5.6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     3.6,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     3,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko16",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.68871938702972,
+   "lon": 12.568185516039621,
+   "bearing": 37.11297599844811,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.68871938702972,
+   "lon": 12.568185516039621,
+   "bearing": 37.11297599844811,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko17",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Kaj Munks Vej",
+   "lat": 55.65881779411221,
+   "lon": 12.591427581362833,
+   "bearing": -78.71455584455202,
+   "span": {
+    "left": 10.52,
+    "right": 6.98
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     5.5,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.5,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Kaj Munks Vej",
+   "lat": 55.65881779411221,
+   "lon": 12.591427581362833,
+   "bearing": -78.71455584455202,
+   "span": {
+    "left": 10.52,
+    "right": 6.98
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     5.5,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.5,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko18",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.66617776744409,
+   "lon": 12.590373858799246,
+   "bearing": 13.302111232880902,
+   "span": {
+    "left": 3.62,
+    "right": 12.38
+   },
+   "sources": {
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     2.4,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     3.9,
+     "odhad"
+    ],
+    [
+     "plocha",
+     9.7,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.66617776744409,
+   "lon": 12.590373858799246,
+   "bearing": 13.302111232880902,
+   "span": {
+    "left": 3.62,
+    "right": 12.38
+   },
+   "sources": {
+    "skEdges": "kbh-vejkant",
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     1.1,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     5.2,
+     "odhad"
+    ],
+    [
+     "plocha",
+     9.7,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko19",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Dannevirkegade",
+   "lat": 55.66520024181244,
+   "lon": 12.541812727535083,
+   "bearing": 17.402678707437946,
+   "span": {
+    "left": 10.52,
+    "right": 9.53
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     3,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.92,
+     "osm"
+    ],
+    [
+     "parkovani",
+     4.53,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.65,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Dannevirkegade",
+   "lat": 55.66520024181244,
+   "lon": 12.541812727535083,
+   "bearing": 17.402678707437946,
+   "span": {
+    "left": 10.52,
+    "right": 9.53
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     3,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.92,
+     "osm"
+    ],
+    [
+     "parkovani",
+     4.53,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.65,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko20",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Haregade",
+   "lat": 55.688724153553245,
+   "lon": 12.58652662129502,
+   "bearing": -65.40508403734873,
+   "span": {
+    "left": 4.57,
+    "right": 6.63
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     1.85,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.6,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.75,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Haregade",
+   "lat": 55.688724153553245,
+   "lon": 12.58652662129502,
+   "bearing": -65.40508403734873,
+   "span": {
+    "left": 4.57,
+    "right": 6.63
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     1.85,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.6,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.75,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko21",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Orlogsværftvej",
+   "lat": 55.68317173724312,
+   "lon": 12.60079209512047,
+   "bearing": 26.011471819336908,
+   "span": {
+    "left": 2.02,
+    "right": 19.58
+   },
+   "sources": {
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "obsluzna",
+     3.2,
+     "odhad"
+    ],
+    [
+     "plocha",
+     18.4,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Orlogsværftvej",
+   "lat": 55.68317173724312,
+   "lon": 12.60079209512047,
+   "bearing": 26.011471819336908,
+   "span": {
+    "left": 2.02,
+    "right": 19.58
+   },
+   "sources": {
+    "skEdges": "kbh-vejkant",
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "obsluzna",
+     3.2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.95,
+     "odhad"
+    ],
+    [
+     "plocha",
+     10.35,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     4.1,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko22",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.70294352978469,
+   "lon": 12.565065339857163,
+   "bearing": 49.02180031820691,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.70294352978469,
+   "lon": 12.565065339857163,
+   "bearing": 49.02180031820691,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko23",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.667821,
+   "lon": 12.533281,
+   "bearing": 13.842024500667627,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.667821,
+   "lon": 12.533281,
+   "bearing": 13.842024500667627,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko24",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.68433028779765,
+   "lon": 12.54424073591493,
+   "bearing": 19.982037417397283,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.68433028779765,
+   "lon": 12.54424073591493,
+   "bearing": 19.982037417397283,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko25",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.66174184856043,
+   "lon": 12.548631694808304,
+   "bearing": -78.36232658523329,
+   "span": {
+    "left": 8.3,
+    "right": 6.28
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     0.82,
+     "odhad"
+    ],
+    [
+     "nezname",
+     1.15,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     12.6,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.66174184856043,
+   "lon": 12.548631694808304,
+   "bearing": -78.36232658523329,
+   "span": {
+    "left": 8.3,
+    "right": 6.28
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     0.82,
+     "odhad"
+    ],
+    [
+     "nezname",
+     1.15,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     12.6,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko26",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Nokken Strandvej",
+   "lat": 55.65277661387344,
+   "lon": 12.562452004929995,
+   "bearing": 21.437064997787857,
+   "span": {
+    "left": 2.52,
+    "right": 5.08
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "pruh",
+     4.8,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.8,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Nokken Strandvej",
+   "lat": 55.65277661387344,
+   "lon": 12.562452004929995,
+   "bearing": 21.437064997787857,
+   "span": {
+    "left": 2.52,
+    "right": 5.08
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "pruh",
+     4.8,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.8,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko27",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.6630789994024,
+   "lon": 12.556392167534513,
+   "bearing": 58.18425940127545,
+   "span": {
+    "left": 8.32,
+    "right": 22.58
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "obsluzna",
+     19.4,
+     "odhad"
+    ],
+    [
+     "plocha",
+     5.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.6630789994024,
+   "lon": 12.556392167534513,
+   "bearing": 58.18425940127545,
+   "span": {
+    "left": 8.32,
+    "right": 22.58
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "obsluzna",
+     19.4,
+     "odhad"
+    ],
+    [
+     "plocha",
+     5.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko28",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Webersgade",
+   "lat": 55.69035570472963,
+   "lon": 12.573718949606386,
+   "bearing": -53.72389351361946,
+   "span": {
+    "left": 8.67,
+    "right": 6.98
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     3.55,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.2,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.2,
+     "osm"
+    ],
+    [
+     "chodnik",
+     3.7,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Webersgade",
+   "lat": 55.69035570472963,
+   "lon": 12.573718949606386,
+   "bearing": -53.72389351361946,
+   "span": {
+    "left": 8.67,
+    "right": 6.98
+   },
+   "sources": {
+    "aiKerbs": true,
+    "skEdges": "kbh-vejkant",
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     3.55,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.2,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.2,
+     "osm"
+    ],
+    [
+     "chodnik",
+     3.7,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko29",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Ny Vestergade",
+   "lat": 55.67416115248971,
+   "lon": 12.5747455047825,
+   "bearing": 57.05756155849239,
+   "span": {
+    "left": 5.62,
+    "right": 7.33
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.9,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.9,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.65,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Ny Vestergade",
+   "lat": 55.67416115248971,
+   "lon": 12.5747455047825,
+   "bearing": 57.05756155849239,
+   "span": {
+    "left": 5.62,
+    "right": 7.33
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.9,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.9,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.65,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko30",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Lille Langebro",
+   "lat": 55.671137361259284,
+   "lon": 12.579575601161764,
+   "bearing": -51.992753624989945,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "stezka_sdilena",
+     7,
+     "osm"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Lille Langebro",
+   "lat": 55.671137361259284,
+   "lon": 12.579575601161764,
+   "bearing": -51.992753624989945,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "stezka_sdilena",
+     7,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko31",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Guldbergsgade",
+   "lat": 55.69330831933406,
+   "lon": 12.554954316859193,
+   "bearing": 44.999242660230074,
+   "span": {
+    "left": 5.92,
+    "right": 6.83
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.02,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.88,
+     "osm"
+    ],
+    [
+     "chodnik",
+     3.35,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Guldbergsgade",
+   "lat": 55.69330831933406,
+   "lon": 12.554954316859193,
+   "bearing": 44.999242660230074,
+   "span": {
+    "left": 5.92,
+    "right": 6.83
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.02,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.88,
+     "osm"
+    ],
+    [
+     "chodnik",
+     3.35,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko32",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Tagensvej",
+   "lat": 55.69494424339091,
+   "lon": 12.564067366550614,
+   "bearing": -43.61992176369673,
+   "span": {
+    "left": 22,
+    "right": 10.78
+   },
+   "sources": {
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     4.97,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     0.4,
+     "odhad"
+    ],
+    [
+     "plocha",
+     5.6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "ortofoto"
+    ],
+    [
+     "zelen",
+     8.89,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     3,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.51,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.9,
+     "osm"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Tagensvej",
+   "lat": 55.69494424339091,
+   "lon": 12.564067366550614,
+   "bearing": -43.61992176369673,
+   "span": {
+    "left": 15.27,
+    "right": 10.78
+   },
+   "sources": {
+    "skEdges": "kbh-vejkant",
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     3.15,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.07,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     2.93,
+     "ortofoto"
+    ],
+    [
+     "zelen",
+     8.49,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     3,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.51,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.07,
+     "ortofoto"
+    ],
+    [
+     "krajnice",
+     1.83,
+     "ortofoto"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko33",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.6838044103116,
+   "lon": 12.553245928777562,
+   "bearing": -65.8143926196887,
+   "span": {
+    "left": 20.18,
+    "right": 4.58
+   },
+   "sources": {
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     9.15,
+     "odhad"
+    ],
+    [
+     "zelen",
+     3.2,
+     "odhad"
+    ],
+    [
+     "plocha",
+     5.6,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     4.7,
+     "odhad"
+    ],
+    [
+     "plocha",
+     2.1,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.6838044103116,
+   "lon": 12.553245928777562,
+   "bearing": -65.8143926196887,
+   "span": {
+    "left": 20.18,
+    "right": 4.58
+   },
+   "sources": {
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     9.15,
+     "odhad"
+    ],
+    [
+     "zelen",
+     3.2,
+     "odhad"
+    ],
+    [
+     "plocha",
+     5.6,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     4.7,
+     "odhad"
+    ],
+    [
+     "plocha",
+     2.1,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko34",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.653025926873596,
+   "lon": 12.586755392222928,
+   "bearing": 1.0553794664185867,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "stezka_sdilena",
+     2.5,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.653025926873596,
+   "lon": 12.586755392222928,
+   "bearing": 1.0553794664185867,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "stezka_sdilena",
+     2.5,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko35",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.690842047463015,
+   "lon": 12.608080930649505,
+   "bearing": -70.34543493089562,
+   "span": {
+    "left": 5.22,
+    "right": 3.68
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "zelen",
+     2.7,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     6.2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.690842047463015,
+   "lon": 12.608080930649505,
+   "bearing": -70.34543493089562,
+   "span": {
+    "left": 5.22,
+    "right": 3.68
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "zelen",
+     2.7,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     6.2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko36",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Constantin Hansens Gade",
+   "lat": 55.66934581850973,
+   "lon": 12.535446975617136,
+   "bearing": -24.038592121899267,
+   "span": {
+    "left": 5.92,
+    "right": 7.93
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     3.4,
+     "odhad"
+    ],
+    [
+     "pruh",
+     6.4,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.6,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.45,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Constantin Hansens Gade",
+   "lat": 55.66934581850973,
+   "lon": 12.535446975617136,
+   "bearing": -24.038592121899267,
+   "span": {
+    "left": 5.92,
+    "right": 7.93
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     3.4,
+     "odhad"
+    ],
+    [
+     "pruh",
+     6.4,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.6,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.45,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-aa1",
+  "town": "aarhus",
+  "A": {
+   "name": "Sydhavnsgade",
+   "lat": 56.14529863164311,
+   "lon": 10.209947597263032,
+   "bearing": 29.868959166441382,
+   "span": {
+    "left": 9.57,
+    "right": 11.68
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk",
+    "dkBuild": "aar"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "nezname",
+     6.65,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.9,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.9,
+     "osm"
+    ],
+    [
+     "plocha",
+     8.8,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Sydhavnsgade",
+   "lat": 56.14529863164311,
+   "lon": 10.209947597263032,
+   "bearing": 29.868959166441382,
+   "span": {
+    "left": 9.57,
+    "right": 11.68
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk",
+    "dkBuild": "aar"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "nezname",
+     6.65,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.9,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.9,
+     "osm"
+    ],
+    [
+     "plocha",
+     8.8,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-aa2",
+  "town": "aarhus",
+  "A": {
+   "name": "Oliehavnsvej",
+   "lat": 56.14631010433818,
+   "lon": 10.216975975664518,
+   "bearing": 34.843166201268694,
+   "span": {
+    "left": 18.87,
+    "right": 22
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk",
+    "dkBuild": "aar"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     2.35,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.6,
+     "odhad"
+    ],
+    [
+     "plocha",
+     8,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.07,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     5.13,
+     "ortofoto"
+    ],
+    [
+     "zelen",
+     4.4,
+     "odhad"
+    ],
+    [
+     "plocha",
+     14.32,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Oliehavnsvej",
+   "lat": 56.14631010433818,
+   "lon": 10.216975975664518,
+   "bearing": 34.843166201268694,
+   "span": {
+    "left": 18.87,
+    "right": 22
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk",
+    "dkBuild": "aar"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     2.35,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.6,
+     "odhad"
+    ],
+    [
+     "plocha",
+     8,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.07,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     5.13,
+     "ortofoto"
+    ],
+    [
+     "zelen",
+     4.4,
+     "odhad"
+    ],
+    [
+     "plocha",
+     14.32,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-aa3",
+  "town": "aarhus",
+  "A": {
+   "name": "",
+   "lat": 56.160031564084754,
+   "lon": 10.194292116549308,
+   "bearing": 1.4597697450805671,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 56.160031564084754,
+   "lon": 10.194292116549308,
+   "bearing": 1.4597697450805671,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-aa4",
+  "town": "aarhus",
+  "A": {
+   "name": "",
+   "lat": 56.16269629053997,
+   "lon": 10.190559254457407,
+   "bearing": 88.7588311119312,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "stezka_sdilena",
+     2.5,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 56.16269629053997,
+   "lon": 10.190559254457407,
+   "bearing": 88.7588311119312,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "stezka_sdilena",
+     2.5,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko37",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Gærdebred",
+   "lat": 55.652673529388764,
+   "lon": 12.590889958225807,
+   "bearing": -87.6962363455794,
+   "span": {
+    "left": 10.27,
+    "right": 16.23
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     2.95,
+     "odhad"
+    ],
+    [
+     "zelen",
+     3.2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.47,
+     "ortofoto"
+    ],
+    [
+     "krajnice",
+     2.33,
+     "ortofoto"
+    ],
+    [
+     "chodnik",
+     1.8,
+     "odhad"
+    ],
+    [
+     "zelen",
+     11.75,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Gærdebred",
+   "lat": 55.652673529388764,
+   "lon": 12.590889958225807,
+   "bearing": -87.6962363455794,
+   "span": {
+    "left": 10.27,
+    "right": 16.23
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     2.95,
+     "odhad"
+    ],
+    [
+     "zelen",
+     3.2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.47,
+     "ortofoto"
+    ],
+    [
+     "krajnice",
+     2.33,
+     "ortofoto"
+    ],
+    [
+     "chodnik",
+     1.8,
+     "odhad"
+    ],
+    [
+     "zelen",
+     11.75,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko38",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.67890984890724,
+   "lon": 12.600359016328484,
+   "bearing": 26.09290296345769,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "stezka_sdilena",
+     1.5,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.67890984890724,
+   "lon": 12.600359016328484,
+   "bearing": 26.09290296345769,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "stezka_sdilena",
+     1.5,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko39",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Hf. Kløvermarken",
+   "lat": 55.67545582966247,
+   "lon": 12.61140639404647,
+   "bearing": -40.76771075049553,
+   "span": {
+    "left": 0.72,
+    "right": 1.88
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "obsluzna",
+     2.6,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Hf. Kløvermarken",
+   "lat": 55.67545582966247,
+   "lon": 12.61140639404647,
+   "bearing": -40.76771075049553,
+   "span": {
+    "left": 0.72,
+    "right": 1.88
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "obsluzna",
+     2.6,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko40",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.66518268210265,
+   "lon": 12.574243162791817,
+   "bearing": -52.836735776468736,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.66518268210265,
+   "lon": 12.574243162791817,
+   "bearing": -52.836735776468736,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko41",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Vester Farimagsgade",
+   "lat": 55.67732462871418,
+   "lon": 12.562386750449559,
+   "bearing": 5.37105510846273,
+   "span": {
+    "left": 19.18,
+    "right": 11.38
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     3.65,
+     "odhad"
+    ],
+    [
+     "cyklopruh",
+     1.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     10,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "delici",
+     1.4,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.94,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     4.56,
+     "ortofoto"
+    ],
+    [
+     "chodnik",
+     2.5,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Vester Farimagsgade",
+   "lat": 55.67732462871418,
+   "lon": 12.562386750449559,
+   "bearing": 5.37105510846273,
+   "span": {
+    "left": 19.18,
+    "right": 11.48
+   },
+   "sources": {
+    "aiKerbs": true,
+    "skEdges": "kbh-vejkant",
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     3.65,
+     "odhad"
+    ],
+    [
+     "cyklopruh",
+     1.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     10,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "delici",
+     1.4,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.93,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     4.66,
+     "ortofoto"
+    ],
+    [
+     "chodnik",
+     2.5,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko42",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.663157847591016,
+   "lon": 12.550867356948459,
+   "bearing": 72.40437993407886,
+   "span": {
+    "left": 4.02,
+    "right": 4.88
+   },
+   "sources": {
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "obsluzna",
+     7,
+     "odhad"
+    ],
+    [
+     "plocha",
+     1.9,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.663157847591016,
+   "lon": 12.550867356948459,
+   "bearing": 72.40437993407886,
+   "span": {
+    "left": 2.12,
+    "right": 4.88
+   },
+   "sources": {
+    "skEdges": "kbh-vejkant",
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "obsluzna",
+     5.1,
+     "odhad"
+    ],
+    [
+     "plocha",
+     1.9,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko43",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.68900734252199,
+   "lon": 12.591617572572932,
+   "bearing": -33.606317434154434,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.68900734252199,
+   "lon": 12.591617572572932,
+   "bearing": -33.606317434154434,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko44",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.67077858496891,
+   "lon": 12.603885247182266,
+   "bearing": 58.80686756447732,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.67077858496891,
+   "lon": 12.603885247182266,
+   "bearing": 58.80686756447732,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko45",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.65828852643982,
+   "lon": 12.587341487446329,
+   "bearing": -69.74981261068108,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.65828852643982,
+   "lon": 12.587341487446329,
+   "bearing": -69.74981261068108,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko46",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Aksel Møllers Have",
+   "lat": 55.684784605176226,
+   "lon": 12.53301020838972,
+   "bearing": 24.22703311489937,
+   "span": {
+    "left": 5.67,
+    "right": 8.08
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     1.35,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     5,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.4,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Aksel Møllers Have",
+   "lat": 55.684784605176226,
+   "lon": 12.53301020838972,
+   "bearing": 24.22703311489937,
+   "span": {
+    "left": 5.67,
+    "right": 8.08
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     1.35,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     5,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.4,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko47",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Hostrups Have",
+   "lat": 55.68438976428295,
+   "lon": 12.538754805528828,
+   "bearing": -59.011240040909804,
+   "span": {
+    "left": 9.62,
+    "right": 10.58
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     1.9,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.1,
+     "osm"
+    ],
+    [
+     "delici",
+     3.6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.17,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.2,
+     "ortofoto"
+    ],
+    [
+     "parkovani",
+     2.53,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.7,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Hostrups Have",
+   "lat": 55.68438976428295,
+   "lon": 12.538754805528828,
+   "bearing": -59.011240040909804,
+   "span": {
+    "left": 9.62,
+    "right": 10.58
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     1.9,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.1,
+     "osm"
+    ],
+    [
+     "delici",
+     3.6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.17,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.2,
+     "ortofoto"
+    ],
+    [
+     "parkovani",
+     2.53,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.7,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko48",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Frydendalsvej",
+   "lat": 55.67283106468697,
+   "lon": 12.535951490805319,
+   "bearing": 9.920590639839208,
+   "span": {
+    "left": 6.6,
+    "right": 6.27
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.28,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.57,
+     "osm"
+    ],
+    [
+     "parkovani",
+     1.63,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.39,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Frydendalsvej",
+   "lat": 55.67283106468697,
+   "lon": 12.535951490805319,
+   "bearing": 9.920590639839208,
+   "span": {
+    "left": 6.6,
+    "right": 6.27
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.28,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.57,
+     "osm"
+    ],
+    [
+     "parkovani",
+     1.63,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.39,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko49",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Blegdamsvej",
+   "lat": 55.69558464654961,
+   "lon": 12.569930584670804,
+   "bearing": 46.815031740643754,
+   "span": {
+    "left": 19.68,
+    "right": 16.13
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.5,
+     "odhad"
+    ],
+    [
+     "plocha",
+     10.65,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.65,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2.95,
+     "osm"
+    ],
+    [
+     "zelen",
+     1,
+     "odhad"
+    ],
+    [
+     "plocha",
+     0.71,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     1.5,
+     "osm"
+    ],
+    [
+     "plocha",
+     6.84,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Blegdamsvej",
+   "lat": 55.69558464654961,
+   "lon": 12.569930584670804,
+   "bearing": 46.815031740643754,
+   "span": {
+    "left": 19.68,
+    "right": 16.13
+   },
+   "sources": {
+    "aiKerbs": true,
+    "skEdges": "kbh-vejkant",
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.5,
+     "odhad"
+    ],
+    [
+     "plocha",
+     10.65,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.65,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2.95,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.71,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     1.44,
+     "osm"
+    ],
+    [
+     "plocha",
+     6.3,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     0.6,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko50",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Norddyssen",
+   "lat": 55.68163315895413,
+   "lon": 12.613365004900878,
+   "bearing": -2.994993641545644,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     1.5,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Norddyssen",
+   "lat": 55.68163315895413,
+   "lon": 12.613365004900878,
+   "bearing": -2.994993641545644,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     1.5,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko51",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.65693669466014,
+   "lon": 12.567479800632059,
+   "bearing": 78.15343594100487,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.65693669466014,
+   "lon": 12.567479800632059,
+   "bearing": 78.15343594100487,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko52",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Spanteloftvej",
+   "lat": 55.68565724239708,
+   "lon": 12.608093713095649,
+   "bearing": -12.085534602958054,
+   "span": {
+    "left": 3.52,
+    "right": 6.03
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.1,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.95,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Spanteloftvej",
+   "lat": 55.68565724239708,
+   "lon": 12.608093713095649,
+   "bearing": -12.085534602958054,
+   "span": {
+    "left": 3.52,
+    "right": 6.03
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.1,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.95,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko53",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Staldgade",
+   "lat": 55.66747117148144,
+   "lon": 12.56213741470821,
+   "bearing": 51.23398243578918,
+   "span": {
+    "left": 9.57,
+    "right": 3.68
+   },
+   "sources": {
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     8.25,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     3,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Staldgade",
+   "lat": 55.66747117148144,
+   "lon": 12.56213741470821,
+   "bearing": 51.23398243578918,
+   "span": {
+    "left": 9.57,
+    "right": 3.68
+   },
+   "sources": {
+    "skEdges": "kbh-vejkant",
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     8.25,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     3,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko54",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Øster Allé",
+   "lat": 55.703019834374366,
+   "lon": 12.569231494624598,
+   "bearing": -40.693361135015365,
+   "span": {
+    "left": 9.87,
+    "right": 22
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     3.55,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.5,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.02,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     3,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.18,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     5.6,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     2.53,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Øster Allé",
+   "lat": 55.703019834374366,
+   "lon": 12.569231494624598,
+   "bearing": -40.693361135015365,
+   "span": {
+    "left": 9.87,
+    "right": 22
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.1,
+     "odhad"
+    ],
+    [
+     "zelen",
+     3.45,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.5,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.02,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     3,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.18,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     5.6,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     2.53,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko55",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Sindshvilevej",
+   "lat": 55.68528171999845,
+   "lon": 12.535531573938437,
+   "bearing": -64.98073307319437,
+   "span": {
+    "left": 8.32,
+    "right": 11.18
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     3,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.85,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.85,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.3,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Sindshvilevej",
+   "lat": 55.68528171999845,
+   "lon": 12.535531573938437,
+   "bearing": -64.98073307319437,
+   "span": {
+    "left": 8.32,
+    "right": 11.18
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     3,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.85,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.85,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.3,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko56",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Stengade",
+   "lat": 55.688922105644664,
+   "lon": 12.556978218897804,
+   "bearing": 32.42787200991764,
+   "span": {
+    "left": 15.97,
+    "right": 6.53
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     3.85,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.8,
+     "osm"
+    ],
+    [
+     "pruh",
+     5.8,
+     "osm"
+    ],
+    [
+     "chodnik",
+     3.05,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Stengade",
+   "lat": 55.688922105644664,
+   "lon": 12.556978218897804,
+   "bearing": 32.42787200991764,
+   "span": {
+    "left": 15.97,
+    "right": 6.53
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     3.85,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.8,
+     "osm"
+    ],
+    [
+     "pruh",
+     5.8,
+     "osm"
+    ],
+    [
+     "chodnik",
+     3.05,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko57",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.65702483740306,
+   "lon": 12.565947830034235,
+   "bearing": -64.97217030513042,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.65702483740306,
+   "lon": 12.565947830034235,
+   "bearing": -64.97217030513042,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko58",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Amaliegade",
+   "lat": 55.68221220207823,
+   "lon": 12.591722843272835,
+   "bearing": 25.287277420426005,
+   "span": {
+    "left": 10.92,
+    "right": 10.83
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     4.8,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.95,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Amaliegade",
+   "lat": 55.68221220207823,
+   "lon": 12.591722843272835,
+   "bearing": 25.287277420426005,
+   "span": {
+    "left": 10.92,
+    "right": 10.83
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     4.8,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.95,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko59",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.68212107351777,
+   "lon": 12.525439451927507,
+   "bearing": 20.849252291984204,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.68212107351777,
+   "lon": 12.525439451927507,
+   "bearing": 20.849252291984204,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko60",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.65865483458099,
+   "lon": 12.55554470071927,
+   "bearing": 34.89506258683016,
+   "span": {
+    "left": 15.82,
+    "right": 22
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     9.7,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     5.4,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     22.72,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.65865483458099,
+   "lon": 12.55554470071927,
+   "bearing": 34.89506258683016,
+   "span": {
+    "left": 15.82,
+    "right": 22
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     9.7,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     5.4,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     22.72,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko61",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Meinungsgade",
+   "lat": 55.69206168827148,
+   "lon": 12.553839014232869,
+   "bearing": 41.27337939523606,
+   "span": {
+    "left": 8.07,
+    "right": 6.98
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.15,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.7,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.7,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Meinungsgade",
+   "lat": 55.69206168827148,
+   "lon": 12.553839014232869,
+   "bearing": 41.27337939523606,
+   "span": {
+    "left": 8.07,
+    "right": 6.98
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.15,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.7,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.7,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko62",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.69488174992521,
+   "lon": 12.541649929944073,
+   "bearing": -8.555845391817414,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.69488174992521,
+   "lon": 12.541649929944073,
+   "bearing": -8.555845391817414,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko63",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Klerkegade",
+   "lat": 55.68622021320183,
+   "lon": 12.586042642273137,
+   "bearing": -64.46296671632165,
+   "span": {
+    "left": 10.17,
+    "right": 16.53
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "zelen",
+     3.45,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.8,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.8,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.2,
+     "odhad"
+    ],
+    [
+     "plocha",
+     11.45,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Klerkegade",
+   "lat": 55.68622021320183,
+   "lon": 12.586042642273137,
+   "bearing": -64.46296671632165,
+   "span": {
+    "left": 10.17,
+    "right": 16.53
+   },
+   "sources": {
+    "aiKerbs": true,
+    "skEdges": "kbh-vejkant",
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "zelen",
+     3.45,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.8,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.8,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.6,
+     "odhad"
+    ],
+    [
+     "plocha",
+     7.45,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.6,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko64",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.68965048777293,
+   "lon": 12.594250206992498,
+   "bearing": 11.913863493891341,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.68965048777293,
+   "lon": 12.594250206992498,
+   "bearing": 11.913863493891341,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko65",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.67174477747205,
+   "lon": 12.569332138048138,
+   "bearing": 57.360461107427966,
+   "span": {
+    "left": 15.82,
+    "right": 8.43
+   },
+   "sources": {
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     8.2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.75,
+     "odhad"
+    ],
+    [
+     "plocha",
+     3.65,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     7.4,
+     "odhad"
+    ],
+    [
+     "plocha",
+     3.25,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.67174477747205,
+   "lon": 12.569332138048138,
+   "bearing": 57.360461107427966,
+   "span": {
+    "left": 15.82,
+    "right": 8.43
+   },
+   "sources": {
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     8.2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.75,
+     "odhad"
+    ],
+    [
+     "plocha",
+     3.65,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     7.4,
+     "odhad"
+    ],
+    [
+     "plocha",
+     3.25,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko66",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.669467715261746,
+   "lon": 12.614558658314259,
+   "bearing": 13.714401618935826,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     1.5,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.669467715261746,
+   "lon": 12.614558658314259,
+   "bearing": 13.714401618935826,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     1.5,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko67",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.66985,
+   "lon": 12.529632,
+   "bearing": -82.74408938399186,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.66985,
+   "lon": 12.529632,
+   "bearing": -82.74408938399186,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko68",
+  "town": "kobenhavn",
+  "A": {
+   "name": "A.H. Vedels Plads",
+   "lat": 55.68807913240857,
+   "lon": 12.607828174474415,
+   "bearing": -11.955990938143156,
+   "span": {
+    "left": 5.72,
+    "right": 2.08
+   },
+   "sources": {
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     1.9,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.07,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     2.83,
+     "ortofoto"
+    ]
+   ]
+  },
+  "B": {
+   "name": "A.H. Vedels Plads",
+   "lat": 55.68807913240857,
+   "lon": 12.607828174474415,
+   "bearing": -11.955990938143156,
+   "span": {
+    "left": 5.72,
+    "right": 1.58
+   },
+   "sources": {
+    "skEdges": "kbh-vejkant",
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     1.9,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.7,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     2.7,
+     "ortofoto"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko69",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Ny Carlsberg Vej",
+   "lat": 55.6665110513207,
+   "lon": 12.538977538113764,
+   "bearing": -78.92814466443771,
+   "span": {
+    "left": 10.47,
+    "right": 11.38
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     4.55,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2.07,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.23,
+     "osm"
+    ],
+    [
+     "pruh",
+     5.3,
+     "osm"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "plocha",
+     0.7,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Ny Carlsberg Vej",
+   "lat": 55.6665110513207,
+   "lon": 12.538977538113764,
+   "bearing": -78.92814466443771,
+   "span": {
+    "left": 10.47,
+    "right": 11.38
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     4.55,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2.07,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.23,
+     "osm"
+    ],
+    [
+     "pruh",
+     5.3,
+     "osm"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "plocha",
+     0.7,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko70",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Forlandet",
+   "lat": 55.68168963703208,
+   "lon": 12.614718258412509,
+   "bearing": -26.286061904417288,
+   "span": {
+    "left": 6.3,
+    "right": 6.53
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     1.98,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.27,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.73,
+     "ortofoto"
+    ],
+    [
+     "zelen",
+     2.85,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Forlandet",
+   "lat": 55.68168963703208,
+   "lon": 12.614718258412509,
+   "bearing": -26.286061904417288,
+   "span": {
+    "left": 6.3,
+    "right": 6.53
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     1.98,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.27,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.73,
+     "ortofoto"
+    ],
+    [
+     "zelen",
+     2.85,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko71",
+  "town": "kobenhavn",
+  "A": {
+   "name": "Hans Egedes Gade",
+   "lat": 55.68682937110636,
+   "lon": 12.545540589184524,
+   "bearing": -2.0544539652899934,
+   "span": {
+    "left": 5.62,
+    "right": 11.08
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "stromorad",
+     1.34,
+     "osm"
+    ],
+    [
+     "parkovani",
+     3.16,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.34,
+     "osm"
+    ],
+    [
+     "parkovani",
+     5.3,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.55,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Hans Egedes Gade",
+   "lat": 55.68682937110636,
+   "lon": 12.545540589184524,
+   "bearing": -2.0544539652899934,
+   "span": {
+    "left": 5.62,
+    "right": 11.08
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "stromorad",
+     1.34,
+     "osm"
+    ],
+    [
+     "parkovani",
+     3.16,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.34,
+     "osm"
+    ],
+    [
+     "parkovani",
+     5.3,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.55,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "dkk-ko72",
+  "town": "kobenhavn",
+  "A": {
+   "name": "",
+   "lat": 55.67949905088082,
+   "lon": 12.556156605217172,
+   "bearing": 6.032339380977053,
+   "span": {
+    "left": 4.12,
+    "right": 4.33
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "zelen",
+     0.4,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     6.6,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.45,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 55.67949905088082,
+   "lon": 12.556156605217172,
+   "bearing": 6.032339380977053,
+   "span": {
+    "left": 4.12,
+    "right": 4.33
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "dk"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "zelen",
+     0.4,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     6.6,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.45,
+     "odhad"
+    ]
+   ]
+  }
+ }
+]

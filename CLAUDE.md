@@ -507,9 +507,10 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   `DK_TOKEN` (pages.yml ji zapíše do `config.js`), nikdy ho nevypisovat ani necommitovat. Ortofoto jaro GeoDanmark (WMTS
   z20) pro pruhy a jako mapa; bez tokenu (nebo odmítnutý) odhad jen z OSM s poctivou poznámkou, výpadek služby (platforma
   se stěhuje, okno 26.–30. 11. 2026) jako výpadek.
-- Kodaň: okraje vozovek `vejkant` (`?kbhkant=1`), parkovací plochy (`?kbhpark=1`) a budovy (`?kbhbyg=1`) jsou hotové, ale
-  **vypnuté**, licence vrstev neuvedená (rozhodne Bára). Aarhus budovy BBR CC BY 4.0 zapnuté (`?aarbyg=0`). A/B budov
-  `evaluation/denmark/buildings-ab/ZPRAVA.md`; A/B čar a stání v aplikaci zatím neproběhlo.
+- Kodaň: okraje vozovek `vejkant`, parkovací plochy a budovy **zapnuté** (Bára 24. 11. 2026: „Kodaňská data bych použila“,
+  i když licence vrstev v katalogu uvedená není; `?kbhkant=0`, `?kbhpark=0`, `?kbhbyg=0` vypnou). A/B 72 řezů
+  `evaluation/denmark/ab/ZPRAVA.md` (čáry lépe 5, hůř 2; stání lépe 7, hůř 2), budovy `evaluation/denmark/buildings-ab/ZPRAVA.md`.
+  Aarhus budovy BBR CC BY 4.0 zapnuté (`?aarbyg=0`).
 - Normy (vejregler) jen doporučení, oranžově; červeně jen obousměrná cyklostezka 2,5 m (oběžník 95/1984). Stání 3 m na
   směr (zákon jen u plné čáry), na chodníku v obci zakázané. Otevřené otázky v `docs/backlog.md`.
 

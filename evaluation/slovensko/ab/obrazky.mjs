@@ -38,8 +38,8 @@ function bounds(segments, span) {
 }
 
 const AT_TILES = "https://mapsneu.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857";
-// tms: Estonia's tiles (level 18, y from the bottom, .jpg).
-async function atImage([x0, y0, x1, y1], w, h, tms = false) {
+// tms: Estonia's tiles (level 18, y from the bottom, .jpg); url: another service's tiles of level 20 (url(z, x, y)).
+async function atImage([x0, y0, x1, y1], w, h, tms = false, url = null) {
   const z = tms ? 18 : 20, size = (2 * Math.PI * R) / 2 ** z;
   const tx0 = Math.floor((x0 + Math.PI * R) / size), tx1 = Math.floor((x1 + Math.PI * R) / size);
   const ty0 = Math.floor((Math.PI * R - y1) / size), ty1 = Math.floor((Math.PI * R - y0) / size);
@@ -47,7 +47,7 @@ async function atImage([x0, y0, x1, y1], w, h, tms = false) {
   const files = [];
   for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) {
     const f = path.join(dir, `${ty}-${tx}.jpg`);
-    const r = await fetch(tms ? `https://tiles.maaamet.ee/tm/tms/1.0.0/foto@GMC/${z}/${tx}/${2 ** z - 1 - ty}.jpg` : `${AT_TILES}/${z}/${ty}/${tx}.jpeg`, { headers: { "User-Agent": "profily-ulic" } });
+    const r = await fetch(url ? url(z, tx, ty) : tms ? `https://tiles.maaamet.ee/tm/tms/1.0.0/foto@GMC/${z}/${tx}/${2 ** z - 1 - ty}.jpg` : `${AT_TILES}/${z}/${ty}/${tx}.jpeg`, { headers: { "User-Agent": "profily-ulic" } });
     await fs.writeFile(f, Buffer.from(await r.arrayBuffer()));
     files.push(f);
   }
@@ -180,6 +180,14 @@ async function image(c, tMax) {
       buf = await atImage([x0, y0, x1, y1], w, h, true);
       await fs.mkdir(path.dirname(file), { recursive: true });
       await fs.writeFile(file, buf);
+    } else if (process.env.ORTHO === "dk") {
+      // Denmark (evaluation/denmark/ab): GeoDanmark's spring orthophoto (lanes-ortho.js DK_ORTHO, with the app's token
+      // from DK_TOKEN or config.local.js, never printed), tiles of level 20 glued and cut to the box.
+      const { DK_ORTHO } = await import("../../../pilot/public/lanes-ortho.js");
+      buf = await atImage([x0, y0, x1, y1], w, h, false, (z, x, y) => DK_ORTHO(z, x, y));
+      await fs.mkdir(path.dirname(file), { recursive: true });
+      await fs.writeFile(file, buf);
+      await new Promise((r) => setTimeout(r, 300));
     } else if (process.env.ORTHO === "at") {
       // Austria (evaluation/austria/ab): basemap.at's tiles of level 20 glued and cut to the box with ImageMagick.
       buf = await atImage([x0, y0, x1, y1], w, h);

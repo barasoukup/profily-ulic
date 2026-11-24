@@ -9,9 +9,9 @@ potřebná pole, pauza 1,5 s. A = jen OSM, B = data města. Výsledky `vysledky/
 | Kodaň | 30 | 23 / 15 | 22 / 0 | 20 | 11/14 / 14/14 |
 | Aarhus | 29 | 20 / 14 | 24 / 0 | 22 | 4/11 / 10/11 |
 
-- Kodaň: BBR má počet podlaží přímo (bez podkroví, podkroví zvlášť podle plochy), shoda s OSM dobrá. **Zůstává vypnutá**
-  (`?kbhbyg=1` zapne): licence vrstvy `k101:bygning` v katalogu opendata.dk uvedená není (obrys je GeoDanmark CC BY 4.0,
-  BBR „frie data“), rozhodne Bára.
+- Kodaň: BBR má počet podlaží přímo (bez podkroví, podkroví zvlášť podle plochy), shoda s OSM dobrá.
+  **Zapnutá od 24. 11. 2026** (`?kbhbyg=0` vypne): licence vrstvy `k101:bygning` v katalogu opendata.dk uvedená není
+  (obrys je GeoDanmark CC BY 4.0, BBR „frie data“), Bára přesto rozhodla: „Kodaňská data bych použila.“
 - Aarhus: podlaží jen odhadem z ploch (celková plocha bez využitého podkroví / zastavěná plocha), proto `fromHeight`:
   kde OSM podlaží má, platí OSM. Rok stavby a materiál zdí přidává skoro všude (OSM rok v centrech nemá vůbec). Zapnutý
   (`?aarbyg=0` vypne), dataset „BBR-ejendomme og BBR-bygninger“ CC BY 4.0 (opendata.dk; vrstva v katalogu je

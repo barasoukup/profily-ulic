@@ -1,0 +1,458 @@
+[
+ {
+  "id": "ko1",
+  "town": "kobenhavn",
+  "lat": 55.65722,
+  "lon": 12.582382
+ },
+ {
+  "id": "ko2",
+  "town": "kobenhavn",
+  "lat": 55.679359,
+  "lon": 12.58441
+ },
+ {
+  "id": "ko3",
+  "town": "kobenhavn",
+  "lat": 55.677137,
+  "lon": 12.579898
+ },
+ {
+  "id": "ko4",
+  "town": "kobenhavn",
+  "lat": 55.682485,
+  "lon": 12.609615
+ },
+ {
+  "id": "ko5",
+  "town": "kobenhavn",
+  "lat": 55.664647,
+  "lon": 12.533401
+ },
+ {
+  "id": "ko6",
+  "town": "kobenhavn",
+  "lat": 55.665823,
+  "lon": 12.56577
+ },
+ {
+  "id": "ko7",
+  "town": "kobenhavn",
+  "lat": 55.686918,
+  "lon": 12.526681
+ },
+ {
+  "id": "ko8",
+  "town": "kobenhavn",
+  "lat": 55.668524,
+  "lon": 12.609383
+ },
+ {
+  "id": "ko9",
+  "town": "kobenhavn",
+  "lat": 55.697345,
+  "lon": 12.543003
+ },
+ {
+  "id": "ko10",
+  "town": "kobenhavn",
+  "lat": 55.679783,
+  "lon": 12.560734
+ },
+ {
+  "id": "ko11",
+  "town": "kobenhavn",
+  "lat": 55.683365,
+  "lon": 12.575864
+ },
+ {
+  "id": "ko12",
+  "town": "kobenhavn",
+  "lat": 55.68446,
+  "lon": 12.608261
+ },
+ {
+  "id": "ko13",
+  "town": "kobenhavn",
+  "lat": 55.671398,
+  "lon": 12.592822
+ },
+ {
+  "id": "ko14",
+  "town": "kobenhavn",
+  "lat": 55.678777,
+  "lon": 12.578501
+ },
+ {
+  "id": "ko15",
+  "town": "kobenhavn",
+  "lat": 55.658522,
+  "lon": 12.55085
+ },
+ {
+  "id": "ko16",
+  "town": "kobenhavn",
+  "lat": 55.689,
+  "lon": 12.567532
+ },
+ {
+  "id": "ko17",
+  "town": "kobenhavn",
+  "lat": 55.658597,
+  "lon": 12.59135
+ },
+ {
+  "id": "ko18",
+  "town": "kobenhavn",
+  "lat": 55.666306,
+  "lon": 12.590067
+ },
+ {
+  "id": "ko19",
+  "town": "kobenhavn",
+  "lat": 55.665226,
+  "lon": 12.541668
+ },
+ {
+  "id": "ko20",
+  "town": "kobenhavn",
+  "lat": 55.688618,
+  "lon": 12.586441
+ },
+ {
+  "id": "ko21",
+  "town": "kobenhavn",
+  "lat": 55.683649,
+  "lon": 12.599146
+ },
+ {
+  "id": "ko22",
+  "town": "kobenhavn",
+  "lat": 55.703028,
+  "lon": 12.564936
+ },
+ {
+  "id": "ko23",
+  "town": "kobenhavn",
+  "lat": 55.667847,
+  "lon": 12.533217
+ },
+ {
+  "id": "ko24",
+  "town": "kobenhavn",
+  "lat": 55.68429,
+  "lon": 12.544164
+ },
+ {
+  "id": "ko25",
+  "town": "kobenhavn",
+  "lat": 55.661671,
+  "lon": 12.548606
+ },
+ {
+  "id": "ko26",
+  "town": "kobenhavn",
+  "lat": 55.653162,
+  "lon": 12.560724
+ },
+ {
+  "id": "ko27",
+  "town": "kobenhavn",
+  "lat": 55.663405,
+  "lon": 12.556036
+ },
+ {
+  "id": "ko28",
+  "town": "kobenhavn",
+  "lat": 55.690481,
+  "lon": 12.573881
+ },
+ {
+  "id": "ko29",
+  "town": "kobenhavn",
+  "lat": 55.673989,
+  "lon": 12.574942
+ },
+ {
+  "id": "ko30",
+  "town": "kobenhavn",
+  "lat": 55.67132,
+  "lon": 12.579827
+ },
+ {
+  "id": "ko31",
+  "town": "kobenhavn",
+  "lat": 55.693185,
+  "lon": 12.554425
+ },
+ {
+  "id": "ko32",
+  "town": "kobenhavn",
+  "lat": 55.695063,
+  "lon": 12.564287
+ },
+ {
+  "id": "ko33",
+  "town": "kobenhavn",
+  "lat": 55.683746,
+  "lon": 12.553507
+ },
+ {
+  "id": "ko34",
+  "town": "kobenhavn",
+  "lat": 55.653032,
+  "lon": 12.586175
+ },
+ {
+  "id": "ko35",
+  "town": "kobenhavn",
+  "lat": 55.690893,
+  "lon": 12.608113
+ },
+ {
+  "id": "ko36",
+  "town": "kobenhavn",
+  "lat": 55.66934,
+  "lon": 12.535424
+ },
+ {
+  "id": "aa1",
+  "town": "aarhus",
+  "lat": 56.145246,
+  "lon": 10.210111
+ },
+ {
+  "id": "aa2",
+  "town": "aarhus",
+  "lat": 56.146428,
+  "lon": 10.216674
+ },
+ {
+  "id": "aa3",
+  "town": "aarhus",
+  "lat": 56.159999,
+  "lon": 10.194268
+ },
+ {
+  "id": "aa4",
+  "town": "aarhus",
+  "lat": 56.162677,
+  "lon": 10.19056
+ },
+ {
+  "id": "ko37",
+  "town": "kobenhavn",
+  "lat": 55.65266,
+  "lon": 12.590889
+ },
+ {
+  "id": "ko38",
+  "town": "kobenhavn",
+  "lat": 55.678884,
+  "lon": 12.600452
+ },
+ {
+  "id": "ko39",
+  "town": "kobenhavn",
+  "lat": 55.675597,
+  "lon": 12.611016
+ },
+ {
+  "id": "ko40",
+  "town": "kobenhavn",
+  "lat": 55.665232,
+  "lon": 12.574309
+ },
+ {
+  "id": "ko41",
+  "town": "kobenhavn",
+  "lat": 55.677341,
+  "lon": 12.56208
+ },
+ {
+  "id": "ko42",
+  "town": "kobenhavn",
+  "lat": 55.663376,
+  "lon": 12.551191
+ },
+ {
+  "id": "ko43",
+  "town": "kobenhavn",
+  "lat": 55.689029,
+  "lon": 12.591675
+ },
+ {
+  "id": "ko44",
+  "town": "kobenhavn",
+  "lat": 55.670761,
+  "lon": 12.603904
+ },
+ {
+  "id": "ko45",
+  "town": "kobenhavn",
+  "lat": 55.658277,
+  "lon": 12.587334
+ },
+ {
+  "id": "ko46",
+  "town": "kobenhavn",
+  "lat": 55.684789,
+  "lon": 12.532993
+ },
+ {
+  "id": "ko47",
+  "town": "kobenhavn",
+  "lat": 55.684578,
+  "lon": 12.538954
+ },
+ {
+  "id": "ko48",
+  "town": "kobenhavn",
+  "lat": 55.672833,
+  "lon": 12.535932
+ },
+ {
+  "id": "ko49",
+  "town": "kobenhavn",
+  "lat": 55.695585,
+  "lon": 12.56993
+ },
+ {
+  "id": "ko50",
+  "town": "kobenhavn",
+  "lat": 55.681635,
+  "lon": 12.613427
+ },
+ {
+  "id": "ko51",
+  "town": "kobenhavn",
+  "lat": 55.656858,
+  "lon": 12.567561
+ },
+ {
+  "id": "ko52",
+  "town": "kobenhavn",
+  "lat": 55.685389,
+  "lon": 12.608431
+ },
+ {
+  "id": "ko53",
+  "town": "kobenhavn",
+  "lat": 55.667475,
+  "lon": 12.562132
+ },
+ {
+  "id": "ko54",
+  "town": "kobenhavn",
+  "lat": 55.702863,
+  "lon": 12.56891
+ },
+ {
+  "id": "ko55",
+  "town": "kobenhavn",
+  "lat": 55.685342,
+  "lon": 12.53555
+ },
+ {
+  "id": "ko56",
+  "town": "kobenhavn",
+  "lat": 55.68892,
+  "lon": 12.556942
+ },
+ {
+  "id": "ko57",
+  "town": "kobenhavn",
+  "lat": 55.657081,
+  "lon": 12.565994
+ },
+ {
+  "id": "ko58",
+  "town": "kobenhavn",
+  "lat": 55.68228,
+  "lon": 12.59147
+ },
+ {
+  "id": "ko59",
+  "town": "kobenhavn",
+  "lat": 55.682159,
+  "lon": 12.525264
+ },
+ {
+  "id": "ko60",
+  "town": "kobenhavn",
+  "lat": 55.658789,
+  "lon": 12.555206
+ },
+ {
+  "id": "ko61",
+  "town": "kobenhavn",
+  "lat": 55.692118,
+  "lon": 12.553873
+ },
+ {
+  "id": "ko62",
+  "town": "kobenhavn",
+  "lat": 55.694871,
+  "lon": 12.541524
+ },
+ {
+  "id": "ko63",
+  "town": "kobenhavn",
+  "lat": 55.686381,
+  "lon": 12.586178
+ },
+ {
+  "id": "ko64",
+  "town": "kobenhavn",
+  "lat": 55.689594,
+  "lon": 12.594722
+ },
+ {
+  "id": "ko65",
+  "town": "kobenhavn",
+  "lat": 55.671692,
+  "lon": 12.569572
+ },
+ {
+  "id": "ko66",
+  "town": "kobenhavn",
+  "lat": 55.669774,
+  "lon": 12.614362
+ },
+ {
+  "id": "ko67",
+  "town": "kobenhavn",
+  "lat": 55.669448,
+  "lon": 12.529436
+ },
+ {
+  "id": "ko68",
+  "town": "kobenhavn",
+  "lat": 55.688117,
+  "lon": 12.607719
+ },
+ {
+  "id": "ko69",
+  "town": "kobenhavn",
+  "lat": 55.666486,
+  "lon": 12.538983
+ },
+ {
+  "id": "ko70",
+  "town": "kobenhavn",
+  "lat": 55.681622,
+  "lon": 12.614477
+ },
+ {
+  "id": "ko71",
+  "town": "kobenhavn",
+  "lat": 55.686826,
+  "lon": 12.545375
+ },
+ {
+  "id": "ko72",
+  "town": "kobenhavn",
+  "lat": 55.679508,
+  "lon": 12.556103
+ }
+]

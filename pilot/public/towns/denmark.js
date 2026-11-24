@@ -3,15 +3,17 @@
 // orthophoto of GeoDanmark (lanes-ortho.js "dk", with the app's token; without it OSM alone, said so). Its own sources:
 // - Copenhagen (Københavns Kommune's WFS wfs-kbhkort.kk.dk/k101, CORS *, no key; asked only inside its box):
 //   - the kerb lines of GeoDanmark (k101:vejkant: the edges of roadways and of cycle tracks along a road) as candidates
-//     for the kerbs of the estimate (ortho-osm.js edges, as Belgium's GRB and PICC), ?kbhkant=1;
+//     for the kerbs of the estimate (ortho-osm.js edges, as Belgium's GRB and PICC), ?kbhkant=0 leaves them out;
 //   - the parking areas (k101:parkering_areal: polygons with the kind and angle of the stalls and their number) as the
-//     parking of the cut (derive.js, as Amsterdam's parking spaces), ?kbhpark=1;
+//     parking of the cut (derive.js, as Amsterdam's parking spaces), ?kbhpark=0;
 //   - the buildings (k101:bygning: GeoDanmark's outlines with BBR's year, floors, attic, eaves height, walls, use; only
 //     these fields are asked: the layer holds the owner's kind too, its neighbour bygning_bbr_kbh the owner's name, never
-//     asked), ?kbhbyg=1.
+//     asked), ?kbhbyg=0.
 //   The catalogue opendata.dk states no licence for these three layers (its other layers of the city, among them the
-//   parking lines p_pladser, are CC BY 4.0; the kerb lines and outlines are GeoDanmark's data, CC BY 4.0): off until
-//   Bára decides (the rule: a source whose licence is not stated stays off), each switched on by its parameter.
+//   parking lines p_pladser, are CC BY 4.0; the kerb lines and outlines are GeoDanmark's data, CC BY 4.0). Bára
+//   24. 11. 2026 decided to use them all the same ("Kodaňská data bych použila"), credited to GeoDanmark and Københavns
+//   Kommune (credits.js). A/B (evaluation/denmark/ab/ZPRAVA.md, 72 cuts): the kerb lines better 5, worse 2; the parking
+//   areas better 7, worse 2; the buildings (buildings-ab) floors in 23 houses of 30 against OSM's 15, the year in 22.
 // - Aarhus (Aarhus Kommune's WFS webkort.aarhuskommune.dk, CORS *): the buildings of BBR (geokodede_bbr_bygninger: the
 //   year, the use, walls and roof, the areas the floors are estimated from), the dataset "BBR-ejendomme og
 //   BBR-bygninger" CC BY 4.0 on opendata.dk; ?aarbyg=0 leaves it out.
@@ -20,7 +22,7 @@ import { osmTiles, getJSON } from "../gis.js";
 import { inArea } from "../places.js";
 
 // The switches (URL parameters; in Node globalThis.PROFILY_DK) and their defaults.
-const DEFAULTS = { kbhkant: "0", kbhpark: "0", kbhbyg: "0", aarbyg: "1" };
+const DEFAULTS = { kbhkant: "1", kbhpark: "1", kbhbyg: "1", aarbyg: "1" };
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_DK?.[k] : new URLSearchParams(location.search).get(k)) ?? DEFAULTS[k];
 export const on = (k) => param(k) === "1";
 
@@ -69,6 +71,8 @@ export function parkingOrient(type) {
   if (!m) return undefined;
   return Number(m[1]) >= 85 ? "kolme" : "sikme";
 }
+// A polygon without a record (no kind, no count, no street) stays parking: in the A/B of 24. 11. 2026 cars stood on
+// one (Nordbanegade), leaving them out made it worse.
 export function kbhParking(json) {
   return {
     features: (json?.features || []).flatMap((f) => {

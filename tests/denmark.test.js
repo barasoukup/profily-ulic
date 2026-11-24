@@ -58,9 +58,12 @@ test("Dánsko: okraje vozovek a parkovací plochy Kodaně", async () => {
   assert.equal(p.length, 9);
   assert.ok(p.some((f) => f.attributes.ORIENT === "sikme" && f.attributes.KIND === "specialni"), "sdílená auta");
   assert.ok(p.every((f) => f.attributes.PS_ZPS >= 1 && Array.isArray(f.geometry.rings[0][0])));
-  // Off by default (the licence of the layers is not stated): nothing asked.
+  // On by default (Bára 24. 11. 2026, though the licence of the layers is not stated); switched off nothing is asked.
   globalThis.PROFILY_DK = {};
-  assert.equal(D.on("kbhkant"), false);
+  assert.equal(D.on("kbhkant"), true);
+  assert.equal(D.on("kbhpark"), true);
+  assert.equal(D.on("kbhbyg"), true);
+  globalThis.PROFILY_DK = { kbhkant: "0", kbhpark: "0" };
   assert.deepEqual(await D.sources.parking("12.55,55.689,12.554,55.691"), { features: [] });
   assert.deepEqual((await D.sources.lines("12.55,55.689,12.554,55.691")).edges, []);
   // Switched on, outside Copenhagen still nothing (Aarhus).
@@ -97,9 +100,10 @@ test("Dánsko: budovy Kodaně a Aarhusu", async () => {
     assert.ok(fields && !/ejer|adresse|matrikel|ejendom|Hus_Nr|VejKode/i.test(fields), fields);
   }
   assert.equal(new URL(D.kbhBuildingUrl(55.69, 12.55)).searchParams.get("typeNames"), "k101:bygning");
-  // Copenhagen's buildings off by default, Aarhus's on: in Copenhagen no request.
-  globalThis.PROFILY_DK = {};
+  // Copenhagen's buildings switched off (?kbhbyg=0): in Copenhagen no request.
+  globalThis.PROFILY_DK = { kbhbyg: "0" };
   assert.deepEqual(await D.sources.podlaznost(55.6761, 12.5685), {});
+  globalThis.PROFILY_DK = {};
 });
 
 test("Dánsko: hledání GSearch jen s tokenem", async () => {
