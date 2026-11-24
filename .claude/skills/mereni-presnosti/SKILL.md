@@ -53,3 +53,11 @@ složení; **bez fotky 28 %, tedy nepoužitelný**. Hodnotí se proto jen řezy 
 ## Výsledky 17. 11. 2026 (shoda složení / šířka do 2 m)
 
 CZ 56 % / 31 %, SK 60 % / 53 % (jen 15 řezů), AT 57 % / 27 %, DE 58 % / 35 %. V AT a DE nejčastěji chybí stání.
+
+## Přeměření starých států (24. 11. 2026)
+
+Stejná posouzení, nové profily: `zz-pts.json` z posouzených řezů (`judge.json`: poloha a azimut), v prohlížeči
+`collect24` z `collect.js` (řez jako odkaz `#rez=`, uloží i `highway`/`service` cesty z balíku OSM), název souboru
+`app-z…` bez číslic (jinak ho `score-states.mjs` nevezme). Před: `SKIP=<název> OLD=1 NOEX=1` s `DATA_DIRS` starých sběrů.
+Zkontrolovat, že státní služby odpovídají (24. 11. vypadlo ortofoto Geoportalu PL), a srovnat zdroje (`sources`) se
+starým sběrem. Výsledky 24. 11.: `vysledky/staty.md`.

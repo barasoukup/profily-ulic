@@ -158,7 +158,7 @@ vypršení), řez se neposuzoval. Posuzovatel (Sonnet, profil aplikace neviděl)
   (širokého pásu chodník/cyklostezka), Kranje 3 a krajnice v Novém Mestě.
 
 
-## Strany bez fasády a sjezdy: nové pravidlo, zatím jen Slovinsko (23.–24. 11. 2026)
+## Strany bez fasády a sjezdy: nové pravidlo, nejdřív Slovinsko (23.–24. 11. 2026)
 
 **Proč:** kde posuzovatel na straně nenašel fasádu (`facadeA`/`facadeB` false), je „celá šířka“ libovolná: posuzovatel
 přestane počítat trávu někde, aplikace u svého konce. Nově (`compare.mjs scope()`, přesně v `POKYN.md`): na takové
@@ -186,5 +186,97 @@ sjezdy 4 a parkovací ulička 1, posouzený z nich jen tenhle. Doplnění Slovin
 Ve Slovinsku má 8 z 9 řezů aspoň jednu stranu bez fasády a odhad tam končí u obruby. První verze to trestala jako
 „chybí zeleň“ (9×); zelený pás za obrubou, který to měl v odhadu doplnit, Bára zamítla jako pro uživatele zbytečný
 (`evaluation/ortofoto-osm/zelenpas/ZPRAVA.md`), a proto se zeleň za okrajem nově nehodnotí. Nejčastější rozdíly teď:
-navíc cyklostezka 2×, chybí chodník 2×. Ostatní státy novým pravidlem přepočítané, ale **nepřijaté** (Bára:
-nechce teď nová čísla): `vysledky/prepocet-2026-11-24.md`; jejich řádky výše platí dál.
+navíc cyklostezka 2×, chybí chodník 2×. Od přeměření 24. 11. 2026 platí obě pravidla ve všech státech (další oddíl).
+
+## Přeměření všech států jednou metodou (24. 11. 2026)
+
+Bára 24. 11. 2026: pravidla se změnila, proto znovu všechny státy, a Finsko a Dánsko poprvé. **Všechny řádky teď
+počítá jedna metoda:** strana bez fasády jen po okraj ulice (za ním se nehodnotí nic, ani zeleň) a body, jejichž řez
+padne na `service=driveway`, `parking_aisle` nebo `drive-through`, se vynechají **ve všech státech** (`score-states.mjs
+excluded`; dřív jen Slovinsko). Starší tabulky výše jsou historie; `vysledky/prepocet-2026-11-24.md` (počítaný první,
+zastaralou verzí pravidla) je smazaný.
+
+**Jak:** stejná posouzení jako dřív (žádné nové body, kromě FI a DK). Profily aplikace znovu ze současného kódu
+(větev `estonia`, localhost `?osm=balik`, `collect24` v `collect.js`) pro všech 503 posouzených řezů, **na posouzeném
+řezu** (poloha a azimut jako odkaz `#rez=`), uložené v `data/app-zprepocet.json` (13 řezů znovu v
+`app-zzprepocet-oprava.json`: 8 polských přes 90 s, 4 prázdné, 1 přepsaný opožděným řezem). Značky cesty řezu
+(`highway`, `service`) z balíku OSM státu podle `wayId` řezu, nově `vysledky/sluzebni-<iso>.json` pro všechny
+státy. Vynecháno z řezů s vozovkou: SK 3, AT 2, DE 1, CH 1, BE 1, PT 1, EE 1, SI 1; další sjezdy (CZ 4, PL 1,
+NL 1) jako ulici neměl posuzovatel ani aplikace, počítaly se už dřív jen řezy s vozovkou; FI a DK 0 (sjezdy do výběru
+`select.mjs` nepouští). 14 řezů nový kód posunul podél ulice o 5–31 m
+(odstup od křižovatky), azimut stejný.
+
+Tři sloupce shody složení: **oficiální** (stará metoda, profily za oficiálními řádky; `OLD=1 NOEX=1` je přesně
+zopakuje), **nová pravidla** (tytéž staré profily; `SKIP=zprepocet`), **nové profily** (nová pravidla a současný kód).
+FI a DK oficiální řádek nemají (první měření). Pruhy a šířka: oficiální → nové profily.
+
+| stát | řezů před → po | shoda složení: oficiální → nová pravidla → nové profily | pruhy stejně | šířka do 1 / 2 m | nejčastější rozdíly po (aplikace proti posuzovateli) |
+|---|---|---|---|---|---|
+| CZ | 32 → 30 | 56 % → 60 % → **48 %** | 28 % → 30 % | 25 % / 31 % → 23 % / 27 % | chybí stani 9×, chybí pruh 8×, chybí chodnik 8×, navíc chodnik 5× |
+| SK | 15 → 12 | 60 % → 71 % → **84 %** | 60 % → 75 % | 27 % / 53 % → 33 % / 50 % | chybí delici 2×, chybí pruh 2×, navíc chodnik 2×, chybí chodnik 1× |
+| AT | 33 → 29 | 58 % → 60 % → **61 %** | 30 % → 38 % | 18 % / 30 % → 28 % / 45 % | navíc stani 7×, chybí stani 5×, navíc cyklostezka 4×, navíc chodnik 4× |
+| DE | 34 → 32 | 61 % → 62 % → **56 %** | 56 % → 53 % | 15 % / 35 % → 13 % / 34 % | navíc chodnik 10×, chybí stani 7×, chybí chodnik 7×, navíc pruh 6× |
+| CH | 18 → 17 | 59 % → 62 % → **63 %** | 44 % → 47 % | 28 % / 28 % → 35 % / 41 % | navíc chodnik 5×, chybí stani 4×, chybí pruh 3×, navíc stani 2× |
+| LI | 6 → 6 | 69 % → 69 % → **69 %** | 50 % → 50 % | 17 % / 33 % → 50 % / 67 % | chybí zelen 2×, navíc delici 2×, pruh→chodnik 1×, chybí delici 1× |
+| NL | 32 → 32 | 52 % → 58 % → **58 %** | 53 % → 50 % | 31 % / 41 % → 38 % / 53 % | navíc chodnik 16×, navíc cyklostezka 12×, navíc zelen 9×, navíc stani 7× |
+| BE | 34 → 33 | 52 % → 51 % → **48 %** | 38 % → 36 % | 15 % / 26 % → 18 % / 33 % | chybí stani 10×, navíc chodnik 9×, chybí chodnik 8×, chybí pruh 5× |
+| LU | 12 → 12 | 53 % → 55 % → **53 %** | 50 % → 42 % | 25 % / 33 % → 17 % / 33 % | chodnik→cyklostezka 4×, cyklostezka→pruh 3×, chybí delici 2×, tramvaj→stani 1× |
+| PL | 22 → 22 | 67 % → 69 % → **57 %** | 45 % → 32 % | 18 % / 32 % → 18 % / 45 % | chybí stani 8×, navíc chodnik 7×, chybí chodnik 7×, chybí pruh 5× |
+| FR | 25 → 25 | 57 % → 57 % → **60 %** | 60 % → 60 % | 28 % / 48 % → 28 % / 48 % | chybí chodnik 9×, navíc stani 8×, navíc chodnik 5×, chybí stani 4× |
+| ES | 23 → 23 | 57 % → 55 % → **55 %** | 52 % → 48 % | 9 % / 26 % → 17 % / 26 % | chybí chodnik 9×, chybí stani 6×, chodnik→pruh 4×, stani→zelen 3× |
+| PT | 29 → 28 | 63 % → 67 % → **64 %** | 62 % → 64 % | 34 % / 55 % → 21 % / 46 % | chybí chodnik 14×, chybí stani 11×, navíc zelen 3×, navíc pruh 3× |
+| CY | 11 → 11 | 56 % → 53 % → **55 %** | 91 % → 82 % | 9 % / 27 % → 0 % / 18 % | chybí chodnik 8×, chybí stani 5×, chybí zelen 3×, chybí cyklostezka 2× |
+| MT | 8 → 8 | 55 % → 55 % → **55 %** | 38 % → 38 % | 38 % / 63 % → 50 % / 63 % | chybí chodnik 4×, chybí stani 3×, navíc chodnik 2×, pruh→zelen 1× |
+| IT | 6 → 6 | 56 % → 56 % → **56 %** | 50 % → 67 % | 17 % / 33 % → 0 % / 17 % | chybí stani 3×, chybí delici 2×, chybí pruh 2×, chybí chodnik 2× |
+| EE | 12 → 12 | 51 % → 43 % → **45 %** | 33 % → 33 % | 8 % / 25 % → 17 % / 33 % | navíc zelen 4×, navíc pruh 4×, chybí chodnik 3×, navíc delici 3× |
+| SI | 9 → 8 | 48 % → 58 % → **56 %** | 78 % → 63 % | 11 % / 33 % → 13 % / 38 % | navíc chodnik 2×, navíc stani 2×, navíc cyklostezka 2×, chybí chodnik 2× |
+| LT | 10 → 10 | 56 % → 50 % → **75 %** | 60 % → 60 % | 20 % / 30 % → 30 % / 60 % | navíc chodnik 4×, chybí stani 3×, stani→zelen 1×, navíc zelen 1× |
+| FI | 22 → 22 | — → 54 % → **52 %** | — → 45 % | — → 14 % / 23 % | navíc cyklostezka 5×, navíc chodnik 5×, zelen→chodnik 4×, chybí stani 3× |
+| DK | 24 → 24 | — → 57 % → **58 %** | — → 50 % | — → 33 % / 50 % | chybí chodnik 7×, chybí stani 6×, navíc cyklostezka 5×, chybí delici 4× |
+| FI s ortofotem | 13 → 13 | — → 54 % → **51 %** | — → 46 % | — → 23 % / 31 % | navíc chodnik 4×, navíc cyklostezka 2×, chybí zelen 2×, zelen→chodnik 2× |
+| FI bez ortofota | 9 → 9 | — → 54 % → **54 %** | — → 44 % | — → 0 % / 11 % | navíc cyklostezka 3×, chybí stani 2×, zelen→chodnik 2×, bus→delici 1× |
+| DK Kodaň | 15 → 15 | — → 58 % → **60 %** | — → 60 % | — → 40 % / 60 % | chybí stani 5×, chybí pruh 3×, chybí chodnik 3×, chybí cyklostezka 2× |
+| DK zbytek | 9 → 9 | — → 57 % → **57 %** | — → 33 % | — → 22 % / 33 % | chybí chodnik 4×, cyklopruh→cyklostezka 3×, navíc cyklostezka 3×, chybí delici 2× |
+
+**Co se pohnulo a proč (shoda složení, nové profily proti novým pravidlům se starými profily):**
+- **CZ 60 → 48 %: chyba čtení technické mapy krajů, ne odhadu.** Staré české profily vznikly 17. 11. za odstávky DMVS
+  (náhradou ortofoto), nové čtou DTM krajů po přechodu na JVF DTM 1.5.0.2. Řezy s DTM kraje 66 → 34 %, ostatní (Praha,
+  Brno, Plzeň, Jihlava s vlastními daty) 56 → 63 %. Příčina aspoň u WFS: služby krajů typy ploch přejmenovaly
+  `ms:zps_p_*` → `ms:zps_pl_*` (GetCapabilities Libereckého kraje 24. 11.), `dtmwfs.js AREA_TYPES` se ptá starých
+  jmen, a vozovka se ztrácí (cz-liberec-3: posuzovatel zeleň | pruh | zeleň, aplikace zeleň | **zeď** | zeleň;
+  cz-hradec-4, cz-liberec-1, cz-kolin-2 podobně). Olomoucký kraj (obrázky DMVS) se zhoršil taky. Úkol 1 „Na 19. 11.“
+  v CLAUDE.md (ověřit, že aplikace novou verzi JVF DTM umí číst): **neumí**. Po opravě české řezy přesbírat.
+- **PL 69 → 57 %: výpadek ortofota Geoportalu** (mapy.geoportal.gov.pl 24. 11. dopoledne neodpovídal ani na
+  GetCapabilities, 9 řezů přes 90 s): ortofoto použité ve 5 z 29 řezů proti 23 dřív, chybí stání 8×, pruhy 45 → 32 %.
+  Číslo neplatí pro aplikaci, jen pro výpadek; přesbírat, až Geoportal odpoví.
+- **SK 71 → 84 %, AT 60 → 61 %, CH 62 → 63 %, FR 57 → 60 %**: opravy odhadu od 17.–23. 11. (cyklostezky podél silnice,
+  stání, obruby z modelu); AT šířka do 2 m 29 → 45 %.
+- **LT 50 → 75 %**: mapa povrchů Vilniusu je vypnutá (staré profily ji měly), viz níže.
+- **DE 62 → 56 %, BE 51 → 48 %**: několik řezů, kde nový kód ze stejné polohy vybere jinou cestu (de-aachen-1 chodník
+  místo silnice, be-antwerpen-1 cyklostezka); v Belgii místo ortofota mapa GRB (Flandry), lepší i horší řezy.
+- **Nová pravidla sama** (oficiální → nová pravidla): EE 51 → 43 % (zeleň a chodníky za okrajem), SK 60 → 71 %,
+  NL 52 → 58 %, SI 48 → 58 %; šířka se většinou zlepší (konec ulice na straně bez fasády už není libovolný).
+
+**Finsko a Dánsko (poprvé).** Vzorek: původní města (FI Helsinky, Espoo, Tampere, Turku, Oulu; DK Kodaň, Aarhus,
+Odense, Aalborg) a čtvrti v `sample.mjs EXTRA` (body na konci `sample.json`, ostatní státy své body nezměnily): FI
+Tampere Kaleva a Amuri, sever Vantaa Koivukylä a Korso (bez ortofota aplikace), Helsinky Kallio a Töölö, Espoo
+Leppävaara, východ Turku; DK Østerbro, Nørrebro, Amager, Vesterbro. FI 104 bodů, DK 64; na sjezdu nebo parkovací
+uličce padlo FI 22, DK 7 (`select.mjs` je nevybírá). Oulu vypadlo (jeho ortofoto chce přihlášení). Ortofoto pro
+posuzovatele (`ortho.mjs`): ortofota měst jako v aplikaci, kde aplikace žádné nemá, Tampere 2025 (georaster.tampere.fi)
+a HSY 2023 (Vantaa); DK jarní GeoDanmark s tokenem. Posouzeno 65 řezů s fotkou Mapillary, s vozovkou FI 22, DK 24
+(`vysledky/u-fi-1.jsonl`, `u-dk-1.jsonl`). **Posuzoval agent měření sám (Opus, ne samostatný Sonnet, nástroj na
+podagenty nebyl k dispozici)**, podle `POKYN.md`, bez profilu aplikace (výjimka fi-helsinki-2, při ladění zahlédnutý
+profil pěší zóny). Kalibrace platí pro Sonnet, čísla FI a DK berte orientačně.
+
+- **FI 52 %**: s ortofotem nebo mapou povrchů (Helsinky, Espoo, Turku; 13 řezů) 51 %, pruhy 46 %, šířka do 2 m 31 %;
+  bez (Tampere, sever Vantaa; 9) 54 %, pruhy 44 %, šířka do 2 m 11 %. Ortofoto pomáhá šířce, složení ne: odhad
+  přidává oddělené stezky a chodníky, které posuzovatel nevidí nebo počítá jako zeleň.
+- **DK 58 %**: Kodaň (15) 60 %, pruhy 60 %, šířka do 2 m 60 %; zbytek (9) 57 %, pruhy 33 %, šířka 33 %. Kodaňské obruby
+  a plochy stání pomáhají pruhům a šířce; stání chybí hlavně v Kodani (5×).
+- Malé skupiny (9–15 řezů): orientačně.
+
+**Mapa povrchů Vilniusu** (`?vilnius=1`, týchž 10 litevských řezů, současný kód, `data/lt-vilnius-on.json`):
+mapa použitá v 8 z 10. S mapou shoda složení **53 %**, složení stejné 0 %, pruhy 60 %, šířka do 1 / 2 m 20 % / 20 %,
+nejčastěji navíc chodník 9×, navíc zeleň 5×; bez mapy (výchozí) **75 %**, 30 %, 60 %, 30 % / 60 %. Po řezech: s mapou
+hůř 6, stejně 4, lépe 0. Mapa dělí chodník na kusy a přidává zeleň a stání za okrajem, posuzovatel je nevidí. Stejný
+výsledek jako 24. 11. ráno (53 proti 75 %); mapa zůstává vypnutá, pokud Bára nerozhodne jinak.

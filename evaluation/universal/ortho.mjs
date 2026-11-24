@@ -120,9 +120,14 @@ async function fetchOrtho(country, b, w, h, lon, lat) {
   else if (country === "FI") {
     // Finland: the town's own orthophoto (lanes-ortho.js FI_ORTHO: Helsinki, Espoo, Turku); none elsewhere (Tampere, Oulu).
     const { FI_ORTHO, fiOrthoAt } = await import("../../pilot/public/lanes-ortho.js");
+    // For the judge only (24. 11. 2026), where the app has none: Tampere's own orthophoto 2025 (georaster.tampere.fi) and
+    // HSY's 2023 one of the capital region (the north of Vantaa); Oulu's service asks a login.
     const key = fiOrthoAt(lon, lat)[0];
-    if (!key) throw new Error("ortofoto: ve Finsku jen Helsinki, Espoo a Turku");
-    url = FI_ORTHO[key].url(b, w, h, "image/png");
+    const wms = (base, layer) => `${base}?${new URLSearchParams({ SERVICE: "WMS", VERSION: "1.3.0", REQUEST: "GetMap", LAYERS: layer, STYLES: "", CRS: "EPSG:3857", BBOX: b.join(","), WIDTH: w, HEIGHT: h, FORMAT: "image/png" })}`;
+    if (key) url = FI_ORTHO[key].url(b, w, h, "image/png");
+    else if (lon > 23.5 && lon < 24.1 && lat > 61.35 && lat < 61.6) url = wms("https://georaster.tampere.fi/geoserver/ows", "georaster:tampere_2025_3878");
+    else if (lon > 24.5 && lon < 25.3 && lat > 60.1 && lat < 60.45) url = wms("https://kartta.hsy.fi/geoserver/wms", "taustakartat_ja_aluejaot:Ortoilmakuva_2023");
+    else throw new Error("ortofoto: ve Finsku jen Helsinki, Espoo, Turku, Tampere a Vantaa");
   }
   else if (country === "DK") {
     // Denmark: GeoDanmark's spring orthophoto through Dataforsyningen's WMS in Web Mercator, with the token (keys.js:

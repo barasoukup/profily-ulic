@@ -57,11 +57,21 @@ export const TOWNS = {
   LT: { senamiestis: [54.682, 25.287], zirmunai: [54.712, 25.300], antakalnis: [54.700, 25.322], naujamiestis: [54.678, 25.262],
     zverynas: [54.693, 25.250], karoliniskes: [54.683, 25.210] },
 };
+// More towns of a state measured already, drawn after all the states above so their points stay (24. 11. 2026): Finland's
+// part without the app's orthophoto (Tampere's districts and the north of Vantaa, outside the boxes of Helsinki's, Espoo's
+// and Turku's orthophotos; the judge sees Tampere's and HSY's orthophoto; Oulu's asks a login) and Copenhagen's districts
+// (the city's kerb lines and parking areas against the rest of Denmark).
+export const EXTRA = [
+  ["FI", { "tampere-kaleva": [61.497, 23.800], "tampere-amuri": [61.501, 23.735], "vantaa-koivukyla": [60.330, 25.065], "vantaa-korso": [60.350, 25.085] }],
+  ["DK", { "kobenhavn-osterbro": [55.705, 12.575], "kobenhavn-norrebro": [55.697, 12.552], "kobenhavn-amager": [55.662, 12.590], "kobenhavn-vesterbro": [55.667, 12.553] }],
+  // and more of the part with the app's orthophoto (few of the first points fell on a roadway)
+  ["FI", { "helsinki-kallio": [60.184, 24.950], "helsinki-toolo": [60.180, 24.925], "espoo-leppavaara": [60.219, 24.805], "turku-ita": [60.448, 22.290] }],
+];
 if (process.argv[1] === new URL(import.meta.url).pathname) {
   let seed = 20261117;
   const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
   const out = [];
-  for (const [country, towns] of Object.entries(TOWNS)) for (const [town, [lat0, lon0]] of Object.entries(towns)) for (let i = 1; i <= 8; i++) {
+  for (const [country, towns] of [...Object.entries(TOWNS), ...EXTRA]) for (const [town, [lat0, lon0]] of Object.entries(towns)) for (let i = 1; i <= 8; i++) {
     const r = 1500 * Math.sqrt(rnd()), a = 2 * Math.PI * rnd();
     out.push({ id: `${country.toLowerCase()}-${town}-${i}`, country, town, lat: +(lat0 + (r * Math.cos(a)) / 110574).toFixed(6),
       lon: +(lon0 + (r * Math.sin(a)) / (111320 * Math.cos((lat0 * Math.PI) / 180))).toFixed(6) });

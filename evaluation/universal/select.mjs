@@ -12,10 +12,15 @@ const run = promisify(execFile), ROOT = path.dirname(new URL(import.meta.url).pa
 const only = process.argv.slice(2);
 const app = [];
 for (const f of (await fs.readdir(DATA)).filter((f) => /^app(-[a-z-]+)?\.json$/.test(f))) app.push(...JSON.parse(await fs.readFile(path.join(DATA, f), "utf8")).filter((r) => r.parts?.length && r.lat && (!only.length || only.includes(r.country))));
+// Cuts on a driveway, parking aisle or drive-through (vysledky/sluzebni-<iso>.json) are not judged (score-states.mjs
+// leaves them out; 24. 11. 2026), so the town's 4 go to streets.
+const noStreet = new Set();
+for (const f of (await fs.readdir(path.join(ROOT, "vysledky"))).filter((f) => /^sluzebni-[a-z]+\.json$/.test(f))) for (const r of JSON.parse(await fs.readFile(path.join(ROOT, "vysledky", f), "utf8"))) if (["driveway", "parking_aisle", "drive-through"].includes(r.service)) noStreet.add(r.id);
 const old = JSON.parse(await fs.readFile(path.join(ROOT, "judge.json"), "utf8").catch(() => "[]")).filter((r) => only.length && !only.includes(r.country));
 const chosen = [...old], PER_TOWN = 4;
 const has = async (id) => (await fs.stat(path.join(DATA, `${id}-f.jpg`)).catch(() => null)) || (await fs.stat(path.join(DATA, `${id}-b.jpg`)).catch(() => null));
 for (const r of app) {
+  if (noStreet.has(r.id) || chosen.some((c) => c.id === r.id)) continue;
   if (chosen.filter((c) => c.town === r.town && c.country === r.country).length >= PER_TOWN) continue;
   // The orthophoto wide enough for the app's profile and 4 m beyond it on each side.
   const half = Math.min(40, Math.max(r.span?.left || 15, r.span?.right || 15) + 4);

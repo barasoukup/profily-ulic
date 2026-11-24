@@ -502,6 +502,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   odhad jen z OSM. Mapa povrchů Helsinek YLRE (`?helsinki=0`; A/B 27 řezů: lépe 10, hůř 3, stejně 7, nejasné 7). Budovy
   z registru Helsinek a Ryhti (`?hkibuild=0`, `?ryhti=0`; 40 domů: podlaží 39 proti 31 z OSM, rok 36 proti 5, dřevo 4).
   Normy jen doporučení, nic červeně. Otevřené otázky v `docs/backlog.md`.
+- Měření přesnosti 24. 11. (poprvé, posuzoval Opus): shoda složení 52 % (22 řezů); Helsinky, Espoo, Turku 51 % (šířka do 2 m
+  31 %), bez ortofota (Tampere, sever Vantaa) 54 % (šířka 11 %) (`evaluation/universal/ZPRAVA.md`).
 
 ## Dánsko (větev estonia, Bára 23. 11. 2026, nenasazené)
 - `countries/DK.js`, `towns/denmark.js`, `search-dk.js` (GSearch s tokenem, jinak Photon), `keys.js`, `signs-DK/`,
@@ -517,6 +519,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   Aarhus budovy BBR CC BY 4.0 zapnuté (`?aarbyg=0`).
 - Normy (vejregler) jen doporučení, oranžově; červeně jen obousměrná cyklostezka 2,5 m (oběžník 95/1984). Stání 3 m na
   směr (zákon jen u plné čáry), na chodníku v obci zakázané. Otevřené otázky v `docs/backlog.md`.
+- Měření přesnosti 24. 11. (poprvé, posuzoval Opus): shoda složení 58 % (24 řezů), Kodaň 60 % (šířka do 2 m 60 %), zbytek 57 %
+  (33 %); nejčastěji chybí chodník a stání (`evaluation/universal/ZPRAVA.md`).
 
 ## Litva (větev estonia, Bára 24. 11. 2026, nenasazené)
 - Stát `lithuania` (LT): `countries/LT.js`, `towns/lithuania.js`, `signs-LT/`, `evaluation/lithuania/` (ZDROJE, NORMY, ZPRAVA,
@@ -536,8 +540,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   A/B 88 řezů: změněno 14, lépe 5, hůř 2; měření: složení beze změny (53 %), šířka do 1 m 0 → 20 %. Zapnuté. Hledání Photon. Normy z příruček Vilniusu a Kaunasu
   (oranžově). Stání 3 m na směr, na chodníku jen se značkou. Značky z Commons (Augustasci CC BY 4.0, tabulky Gigillo83
   CC BY-SA 4.0, v patičce). Socialistické vzhledy ano (sovětská sídliště jako v Estonsku).
-- Univerzální měření od 24. 11. 2026 vynechává body na `service=driveway/parking_aisle/drive-through` (nové pravidlo, jen LT
-  zatím; ostatní státy nepřepočítané).
+- Přeměření 24. 11. 2026: LT 75 % bez mapy Vilniusu, s `?vilnius=1` 53 % (hůř 6, lépe 0 z 10), mapa zůstává vypnutá.
 
 ## Společné pro státy (Bára 23. 11. 2026)
 - Sever Kypru a Itálie mimo otevřená ortofota (i se San Marinem a Vatikánem) profil nedostanou, aplikace to řekne
@@ -547,16 +550,21 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Jízda vlevo je zabudovaná přímo v pravidlech (`derive.js`), profil se nezrcadlí.
 - Hranice poloh ve Workeru logu pokrývají všechny státy; nový Worker musí nasadit Bára.
 
-## Měření přesnosti (Bára 17. 11. 2026)
+## Měření přesnosti (Bára 17. 11. 2026, přeměřeno 24. 11. 2026)
 - Jedna univerzální metoda pro všechny státy: skill `mereni-presnosti`, kód a zpráva `evaluation/universal/`. Použít u
   každého nového státu a u starých, když Bára řekne. Hodnotí složení uličního prostoru, pak šířku; jen řezy s fotkou
-  z ulice (Mapillary, v Česku i Mapy.com). Výsledek 17. 11.: shoda složení CZ 56 %, SK 60 %, AT 57 %, DE 58 %, CH 59 %, LI 69 %; SI 48 %
-  (23. 11. 2026, jen 9 řezů, šířka do 2 m 33 %).
-- Od 24. 11. 2026 nové pravidlo (zatím jen Slovinsko, Bára): strana bez fasády se srovnává šířkou i složením jen po
-  okraj ulice, za ním se nehodnotí nic, ani zeleň (konec u obruby je tam pro uživatele správně; zelený pás za obrubou
-  v odhadu Bára zamítla jako zbytečný, `evaluation/ortofoto-osm/zelenpas/ZPRAVA.md`); řezy na sjezdech, parkovacích
-  uličkách a drive-through se vynechají (`POKYN.md`). SI 48 % → 58 % (8 řezů, 1 sjezd vynechán), šířka do 2 m 33 → 50 %. Ostatní státy přepočítané, nepřijaté
-  (`evaluation/universal/vysledky/prepocet-2026-11-24.md`).
+  z ulice (Mapillary, v Česku i Mapy.com).
+- Pravidla od 24. 11. 2026 ve **všech** státech (všechny řádky počítá jedna metoda): strana bez fasády se srovnává šířkou
+  i složením jen po okraj ulice, za ním se nehodnotí nic, ani zeleň (konec u obruby je pro uživatele správně, zelený pás
+  za obrubou Bára zamítla, `evaluation/ortofoto-osm/zelenpas/ZPRAVA.md`); řezy na `service=driveway`, `parking_aisle` a
+  `drive-through` se vynechají (značka cesty z balíku OSM státu, `vysledky/sluzebni-<iso>.json`; `POKYN.md`).
+- Přeměření 24. 11. 2026 (stejná posouzení, profily ze současného kódu na posouzených řezech, `vysledky/staty.md`):
+  shoda složení CZ 48 %, SK 84 %, AT 61 %, DE 56 %, CH 63 %, LI 69 %, NL 58 %, BE 48 %, LU 53 %, PL 57 %, FR 60 %, ES 55 %,
+  PT 64 %, CY 55 %, MT 55 %, IT 56 %, EE 45 %, SI 56 %, LT 75 %, FI 52 %, DK 58 % (FI a DK poprvé, posuzoval Opus, ne Sonnet).
+  **CZ** je dole kvůli chybě: DTM krajů po přechodu na JVF DTM 1.5 aplikace čte špatně (WFS krajů přejmenovaly typy
+  `zps_p_*` → `zps_pl_*`, `dtmwfs.js`; řezy s DTM kraje 66 → 34 %, ostatní 56 → 63 %). **PL** měřené za výpadku ortofota
+  Geoportalu (se starými profily 69 %). Obojí po opravě a návratu služby přesbírat. Před → po a výklad v
+  `evaluation/universal/ZPRAVA.md` (oddíl 24. 11.).
 
 ## Jazyky (Bára 12. 11. 2026, slovenčina 15. 11. 2026, němčina 16. 11. 2026)
 - Anglicky se aplikace jmenuje **Street Profile**, slovensky **Profily ulíc**, německy **Straßenprofil**. Čeština, slovenčina,

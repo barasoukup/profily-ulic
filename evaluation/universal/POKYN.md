@@ -47,8 +47,8 @@ konce). Proto:
 Příklad si-kranj-2: posuzovatel zeleň 5,5 | krajnice 1 | pruh 3,25 | pruh 3,25 | krajnice 1 | zeleň 5,8, aplikace
 pruh 3,7 | pruh 5,7. Šířka 8,5 m proti 9,4 m (dřív 6,5 proti 9,4); složení se shoduje (zeleň za okrajem se nehodnotí).
 
-**Řezy, které nejsou ulice** (od 24. 11. 2026, Bára; zatím jen Slovinsko, `score-states.mjs EXCLUDE_STATES`): bod,
+**Řezy, které nejsou ulice** (od 24. 11. 2026, Bára; nejdřív Slovinsko, od přeměření 24. 11. ve všech státech, `score-states.mjs excluded`): bod,
 jehož řez padne na OSM `highway=service` se `service=driveway`, `parking_aisle` nebo `drive-through`, se z hodnocení
 vynechá (neposouvá se). Obyčejná `highway=service` bez `service`, `residential`, `living_street` atd. zůstávají.
 Značku cesty řezu bere skóre z profilu aplikace (`service`) nebo z `vysledky/sluzebni-<iso>.json` (z balíku OSM státu
-podle `wayId` řezu).
+podle `wayId` řezu; přeměření 24. 11. je má pro všechny státy, `collect24` v `collect.js`).
