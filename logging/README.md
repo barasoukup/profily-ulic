@@ -23,11 +23,13 @@ kliknutí na nic nečeká, a když Worker neodpoví, nic se nestane.
 
 ## Soukromí
 
-Zaznamenáváme jen řezy (místo, směr, ulici, čas), kliknutí, u kterých se ulice nenašla (místo zhruba na kilometr), použité funkce a hlášení chyb, která návštěvník sám napíše, abychom aplikaci zlepšili. IP adresy ani
+Zaznamenáváme řezy (místo, směr, dosah, ulici, čas), úpravy profilu v opravě dat a v Návrhu (druhy a šířky částí), kliknutí, u kterých se ulice nenašla (místo zhruba na kilometr), použité funkce a hlášení chyb, která návštěvník sám napíše, abychom aplikaci zlepšili. IP adresy ani
 cookies neukládáme; `session` je náhodné číslo jednoho načtení stránky (neukládá se v prohlížeči), aby šlo
-spočítat řezy jedné návštěvy. Záznam běží na Cloudflare (Worker a D1), který adresu požadavku vidí; Worker ji drží
-jen 10 s v paměti proti zahlcení a do databáze ji nezapisuje. Mapy a data se načítají přímo ze serverů IPR, ČÚZK, měst a krajů a z podkladové mapy
-OSM; písmo a Leaflet jsou na našem webu.
+spočítat řezy jedné návštěvy. Nastavení a poslední profil zůstávají jen v prohlížeči (localStorage) a nikam se neodesílají. Záznam běží na Cloudflare (Worker a D1), který adresu požadavku vidí; Worker ji drží
+jen 10 s v paměti proti zahlcení a do databáze ji nezapisuje. Stránku hostí GitHub Pages, dlaždice OSM Cloudflare (R2).
+
+Mapy a data se načítají přímo ze serverů poskytovatelů uvedených v patičce stránky (IPR, ČÚZK, ÚGKK SR, města a kraje i přes ArcGIS Online, basemap.at, spolkové země Německa, swisstopo, PDOK, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK, IGN, města a další) a z podkladové mapy OSM; ti vidí IP adresu a místo, na které se návštěvník dívá.
+Hledaný text dostane podle místa ČÚZK, ÚGKK SR, město Vídeň, komoot (Photon), PDOK, GUGiK, IGN France nebo CartoCiudad; komoot a IGN dostanou i střed mapy. Panorama z ulice po kliknutí načítá Mapy.com (Seznam.cz). Písmo a Leaflet jsou na našem webu.
 
 ## Limity
 
