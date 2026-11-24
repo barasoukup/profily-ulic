@@ -22,6 +22,30 @@ test("Belgie: čáry GRB a PICC jako kandidáti obrub, vypínač ?hrany=0", asyn
   try { assert.deepEqual((await B.sources.lines("5.57,50.64,5.58,50.65")).edges, []); } finally { delete globalThis.PROFILY_BE; }
 });
 
+test("Belgie: plochy GRB z WBN a čar WGO podél řezu, vypínač ?wbn=0", async () => {
+  const B = await import("../pilot/public/towns/belgium.js");
+  // A street 20 m from facade to facade along y: sidewalks 3 m (wcz at x = ±7), a parking strip 2 m on the left (wrb at
+  // x = -5), the roadway between; OSM's road along the middle; the cut 30 m along x.
+  const lat0 = 51.05, lon0 = 3.72, kx = 111320 * Math.cos((lat0 * Math.PI) / 180), ky = 110574, pad = 0.0004;
+  const ll = ([x, y]) => [lon0 + x / kx, lat0 + y / ky];
+  const line = (x, label, y0 = -20, y1 = 20) => ({ properties: { LBLTYPE: label }, geometry: { type: "LineString", coordinates: [[x, y0], [x, y1]].map(ll) } });
+  const wbn = { features: [{ properties: { TYPE: 2 }, geometry: { type: "Polygon", coordinates: [[[-10, -20], [10, -20], [10, 20], [-10, 20], [-10, -20]].map(ll)] } }] };
+  const wgo = { features: [line(-7, "grens zone zwakke weggebruiker (wcz)"), line(7, "grens zone zwakke weggebruiker (wcz)"), line(-5, "rand van de rijbaan (wrb)", -20, 3)] };
+  const osm = [{ type: "way", tags: { highway: "residential" }, geometry: [[0, -20], [0, 20]].map(ll).map(([lon, lat]) => ({ lon, lat })) }];
+  const bbox = [lon0 - 15 / kx - pad, lat0 - pad, lon0 + 15 / kx + pad, lat0 + pad].join(",");
+  const codes = (o) => o.features.map((f) => [f.attributes.code, +((f.geometry.rings[0][1][0] - f.geometry.rings[0][0][0]) * kx).toFixed(2)]).sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+  assert.deepEqual(codes(B.grbSurfaces(wbn, wgo, osm, bbox)), [[701, 5], [701, 7], [702, 3], [702, 3], [704, 2]]);
+  // A gap in the line where the cut crosses: across the wrb's gap the roadway runs on to the kerb.
+  const gap = { features: [...wgo.features.slice(0, 2), line(-5, "rand van de rijbaan (wrb)", 2, 20)] };
+  assert.deepEqual(codes(B.grbSurfaces(wbn, gap, osm, bbox)), [[701, 7], [701, 7], [702, 3], [702, 3]]);
+  // A level street (no kerb on one side), a footway, a cut outside WBN: none (the estimate).
+  assert.equal(B.grbSurfaces(wbn, { features: [wgo.features[0], line(5, "rand van de rijbaan (wrb)")] }, osm, bbox), null);
+  assert.equal(B.grbSurfaces(wbn, wgo, osm, bbox, { highway: "footway" }), null);
+  assert.equal(B.grbSurfaces({ features: [] }, wgo, osm, bbox), null);
+  globalThis.PROFILY_BE = { wbn: "0" };
+  try { assert.equal((await B.sources.surfaces("3.72,51.05,3.721,51.051")).abroad, true); } finally { delete globalThis.PROFILY_BE; }
+});
+
 test("Belgie: region podle hranic NUTS 1 (ortofoto a čáry jen svého regionu)", async () => {
   const { beRegionsAt } = await import("../pilot/public/lanes-ortho.js");
   assert.equal((await beRegionsAt(3.7174, 51.0543))[0], "vl"); // Ghent

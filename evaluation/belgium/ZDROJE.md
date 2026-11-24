@@ -18,6 +18,14 @@ Poznámka k CORS: `*` znamená povolení pro všechny. `https://streetspace.eu` 
 | Valonsko PICC, Voirie (ArcGIS MapServer) | `https://geoservices.wallonie.be/arcgis/rest/services/TOPOGRAPHIE/PICC_VDIFF/MapServer?f=json` | **ano** (JSON) | `https://streetspace.eu` (jen naše doména) | Vrstvy: 19 Voirie - Noeud (multipoint), 20 Voirie - Ligne (polyline), 21 Voirie - Axe (polyline), 24 Voirie - Surface (polygon) | © SPW, katalog geoportail.wallonie.be (licence neověřena) | **Dotaz ověřen**: `…/MapServer/24/query?where=1%3D1&geometry=5.5700%2C50.6380%2C5.5750%2C50.6420&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=false&f=json` vrátil 200 a atributy (Liège). Geometrie nebyla vrácena, zkoušet s `returnGeometry=true`. Pořadí os u `outSR=4326` je lon, lat. |
 | Valonsko PICC, Bords de voirie (FDC_SPW) | `https://geoservices.wallonie.be/arcgis/rest/services/DONNEES_BASE/FDC_SPW/MapServer/119?f=pjson` | **ano** (metadata) | `https://streetspace.eu` | Feature layer 119 „Bords de voirie, chemin ou îlot directionnel © SPW“, `esriGeometryPolyline`, zdroj VOIRIE_LIGNE z PICC | © SPW | Jen čáry hran, ne plochy. |
 
+**Doplněno 24. 11. 2026 (A/B `ab-wbn/ZPRAVA.md`):** WBN není vozovka, ale celý uliční prostor od fasády k fasádě
+(hranice leží na budovách GBG); dělí ho jen čáry WGO (`wcz` pata obruby, `wrb` okraj pásu pro auta, `woz` okraj
+nezpevněné plochy), které nemají strany a často se nedotýkají, takže plochy chodníků z nich nejdou složit. Plochy
+chodníků GRB nemá: TRN jen mimo ulici (zpevněno/tráva), WGA jen přístřešky zastávek (`bushok`), WLI čáry (horní hrana
+obruby, zídky). Aplikace čte WBN a WGO podél řezu (`towns/belgium.js`, `?wbn=0`). Licence GRB: Gratis Open Data
+Licentie Vlaanderen v1.02, uvádět „Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen“
+(https://www.vlaanderen.be/digitaal-vlaanderen/onze-diensten-en-platformen/basiskaart-vlaanderen-grb/grb-downloaden-bestellen).
+
 ## 2. Ortofoto v Web Mercatoru s CORS
 
 | Služba | URL šablona | Funguje? | CORS | Max. zoom | Licence | Poznámky |

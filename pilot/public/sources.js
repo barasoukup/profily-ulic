@@ -77,6 +77,8 @@ export function outage({ surfaces, lines, parking }, dataName = city.dataName, {
   // Zaragoza's paving map did not answer (towns/spain.js).
   if (s?.esFailed) return { note: mark(" · mapa povrchů Zaragozy neodpověděla, odhad z ortofota a OSM"), text: t("Mapa povrchů Zaragozy teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };
   if (s?.frFailed) return { note: mark(" · mapa povrchů Paříže neodpověděla, odhad z ortofota a OSM"), text: t("Mapa povrchů Paříže teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };
+  // Flanders' GRB did not answer (towns/belgium.js).
+  if (s?.beFailed) return { note: mark(" · mapa povrchů GRB neodpověděla, odhad z ortofota a OSM"), text: t("Mapa povrchů GRB (Digitaal Vlaanderen) teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };
   if (s?.nlFailed) return { note: mark(" · mapa povrchů BGT neodpověděla, odhad z ortofota a OSM"), text: t("Mapa povrchů BGT (PDOK) teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };
   if (s?.deFailed) return { note: mark(" · mapa povrchů města neodpověděla, odhad z ortofota a OSM"), text: t("Mapa povrchů města teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };
   if (s?.atFailed) return { note: mark(" · mapa povrchů Vídně neodpověděla, odhad z ortofota a OSM"), text: t("Mapa povrchů Vídně teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };

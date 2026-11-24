@@ -66,7 +66,7 @@ licence neuvedena; čteno při kliknutí, nešíří se.** Nejsou to otevřená 
 | **Nizozemsko:** dopravní značky (Wikimedia Commons, „Nederlands verkeersbord …“), `pilot/public/signs-NL/` | řádek značek | Úřední díla (čl. 11 Auteurswet), public domain; A1-50 CC0, ostatní rychlosti dokreslené číslem | ✓ |
 | **Belgie:** ortofoto Flander (Digitaal Vlaanderen, WMS OMWRGBMRVL; pokrývá i Brusel) | pruhy, obruby a podkladová mapa | Bezplatné, podmínky „gebruiksrecht“ Digitaal Vlaanderen. Čteno při kliknutí. | ? |
 | **Belgie:** ortofoto Valonska (SPW, ArcGIS ORTHO_LAST) | totéž | „SPW (2026)“, podmínky Geoportail Wallonie neověřené. Čteno při kliknutí. | ? |
-| **Belgie:** čáry GRB WGO (Digitaal Vlaanderen, WFS) | kandidáti obrub ve Flandrech | Podmínky Digitaal Vlaanderen (GRB je otevřený, licence neověřená). Čteno při kliknutí. | ? |
+| **Belgie:** GRB WBN (uliční prostor) a čáry WGO (Digitaal Vlaanderen, WFS) | plochy řezu ve Flandrech (WBN podél řezu, `?wbn=0`) a kandidáti obrub | Gratis Open Data Licentie Vlaanderen v1.02, „Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen“ (kredit u řezu). Čteno při kliknutí. | ✓ |
 | **Belgie:** čáry PICC „Voirie - Ligne“ (SPW, ArcGIS PICC_VDIFF) | kandidáti obrub ve Valonsku | Podmínky SPW neověřené. Čteno při kliknutí. | ? |
 | **Belgie a Lucembursko:** hranice (Eurostat GISCO) | stát řezu | © EuroGeographics | ✓ |
 | **Belgie:** dopravní značky (Wikimedia Commons), `pilot/public/signs-BE/` | řádek značek | Public domain (úřední díla) | ✓ |

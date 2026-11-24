@@ -1,0 +1,380 @@
+[
+ {
+  "id": "an1",
+  "town": "antwerpen",
+  "lat": 51.20996,
+  "lon": 4.408839
+ },
+ {
+  "id": "an2",
+  "town": "antwerpen",
+  "lat": 51.22103,
+  "lon": 4.409752
+ },
+ {
+  "id": "an3",
+  "town": "antwerpen",
+  "lat": 51.219919,
+  "lon": 4.40772
+ },
+ {
+  "id": "an4",
+  "town": "antwerpen",
+  "lat": 51.222593,
+  "lon": 4.421097
+ },
+ {
+  "id": "an5",
+  "town": "antwerpen",
+  "lat": 51.213673,
+  "lon": 4.386791
+ },
+ {
+  "id": "an6",
+  "town": "antwerpen",
+  "lat": 51.214262,
+  "lon": 4.401361
+ },
+ {
+  "id": "an7",
+  "town": "antwerpen",
+  "lat": 51.224809,
+  "lon": 4.383766
+ },
+ {
+  "id": "an8",
+  "town": "antwerpen",
+  "lat": 51.215612,
+  "lon": 4.420993
+ },
+ {
+  "id": "ge1",
+  "town": "gent",
+  "lat": 51.064922,
+  "lon": 3.706054
+ },
+ {
+  "id": "ge2",
+  "town": "gent",
+  "lat": 51.056141,
+  "lon": 3.714006
+ },
+ {
+  "id": "ge3",
+  "town": "gent",
+  "lat": 51.057933,
+  "lon": 3.720792
+ },
+ {
+  "id": "ge4",
+  "town": "gent",
+  "lat": 51.05848,
+  "lon": 3.735323
+ },
+ {
+  "id": "ge5",
+  "town": "gent",
+  "lat": 51.051949,
+  "lon": 3.728399
+ },
+ {
+  "id": "ge6",
+  "town": "gent",
+  "lat": 51.055638,
+  "lon": 3.721975
+ },
+ {
+  "id": "ge7",
+  "town": "gent",
+  "lat": 51.045511,
+  "lon": 3.709573
+ },
+ {
+  "id": "ge8",
+  "town": "gent",
+  "lat": 51.06075,
+  "lon": 3.717056
+ },
+ {
+  "id": "br1",
+  "town": "brugge",
+  "lat": 51.200548,
+  "lon": 3.235073
+ },
+ {
+  "id": "br2",
+  "town": "brugge",
+  "lat": 51.204403,
+  "lon": 3.234496
+ },
+ {
+  "id": "br3",
+  "town": "brugge",
+  "lat": 51.203863,
+  "lon": 3.212715
+ },
+ {
+  "id": "br4",
+  "town": "brugge",
+  "lat": 51.215559,
+  "lon": 3.232864
+ },
+ {
+  "id": "br5",
+  "town": "brugge",
+  "lat": 51.213074,
+  "lon": 3.238582
+ },
+ {
+  "id": "le1",
+  "town": "leuven",
+  "lat": 50.893264,
+  "lon": 4.698997
+ },
+ {
+  "id": "le2",
+  "town": "leuven",
+  "lat": 50.875673,
+  "lon": 4.684823
+ },
+ {
+  "id": "le3",
+  "town": "leuven",
+  "lat": 50.883895,
+  "lon": 4.689715
+ },
+ {
+  "id": "le4",
+  "town": "leuven",
+  "lat": 50.872585,
+  "lon": 4.6917
+ },
+ {
+  "id": "le5",
+  "town": "leuven",
+  "lat": 50.868331,
+  "lon": 4.697115
+ },
+ {
+  "id": "me1",
+  "town": "mechelen",
+  "lat": 51.019552,
+  "lon": 4.472103
+ },
+ {
+  "id": "me2",
+  "town": "mechelen",
+  "lat": 51.03309,
+  "lon": 4.480102
+ },
+ {
+  "id": "me3",
+  "town": "mechelen",
+  "lat": 51.024844,
+  "lon": 4.480577
+ },
+ {
+  "id": "me4",
+  "town": "mechelen",
+  "lat": 51.02351,
+  "lon": 4.482767
+ },
+ {
+  "id": "aa1",
+  "town": "aalst",
+  "lat": 50.943495,
+  "lon": 4.036162
+ },
+ {
+  "id": "aa2",
+  "town": "aalst",
+  "lat": 50.944121,
+  "lon": 4.039103
+ },
+ {
+  "id": "ko1",
+  "town": "kortrijk",
+  "lat": 50.830449,
+  "lon": 3.260498
+ },
+ {
+  "id": "ko2",
+  "town": "kortrijk",
+  "lat": 50.820211,
+  "lon": 3.270219
+ },
+ {
+  "id": "ha1",
+  "town": "hasselt",
+  "lat": 50.935631,
+  "lon": 5.349673
+ },
+ {
+  "id": "ha2",
+  "town": "hasselt",
+  "lat": 50.928447,
+  "lon": 5.327996
+ },
+ {
+  "id": "si1",
+  "town": "sintniklaas",
+  "lat": 51.157164,
+  "lon": 4.143392
+ },
+ {
+  "id": "si2",
+  "town": "sintniklaas",
+  "lat": 51.157952,
+  "lon": 4.147278
+ },
+ {
+  "id": "tu1",
+  "town": "turnhout",
+  "lat": 51.324899,
+  "lon": 4.934878
+ },
+ {
+  "id": "tu2",
+  "town": "turnhout",
+  "lat": 51.326685,
+  "lon": 4.932675
+ },
+ {
+  "id": "oo1",
+  "town": "oostende",
+  "lat": 51.221087,
+  "lon": 2.92638
+ },
+ {
+  "id": "oo2",
+  "town": "oostende",
+  "lat": 51.229828,
+  "lon": 2.92925
+ },
+ {
+  "id": "bx1",
+  "town": "brussel",
+  "lat": 50.846449,
+  "lon": 4.371574
+ },
+ {
+  "id": "bx2",
+  "town": "brussel",
+  "lat": 50.841266,
+  "lon": 4.355183
+ },
+ {
+  "id": "li1",
+  "town": "liege",
+  "lat": 50.63322,
+  "lon": 5.576935
+ },
+ {
+  "id": "li2",
+  "town": "liege",
+  "lat": 50.626238,
+  "lon": 5.572095
+ },
+ {
+  "id": "anx1",
+  "town": "antwerpen",
+  "lat": 51.210065,
+  "lon": 4.395783
+ },
+ {
+  "id": "anx2",
+  "town": "antwerpen",
+  "lat": 51.212177,
+  "lon": 4.385833
+ },
+ {
+  "id": "anx3",
+  "town": "antwerpen",
+  "lat": 51.209591,
+  "lon": 4.408201
+ },
+ {
+  "id": "anx4",
+  "town": "antwerpen",
+  "lat": 51.22886,
+  "lon": 4.389532
+ },
+ {
+  "id": "gex1",
+  "town": "gent",
+  "lat": 51.04748,
+  "lon": 3.709438
+ },
+ {
+  "id": "gex2",
+  "town": "gent",
+  "lat": 51.06384,
+  "lon": 3.721424
+ },
+ {
+  "id": "gex3",
+  "town": "gent",
+  "lat": 51.06137,
+  "lon": 3.7026
+ },
+ {
+  "id": "gex4",
+  "town": "gent",
+  "lat": 51.060375,
+  "lon": 3.699856
+ },
+ {
+  "id": "brx1",
+  "town": "brugge",
+  "lat": 51.21801,
+  "lon": 3.216308
+ },
+ {
+  "id": "brx2",
+  "town": "brugge",
+  "lat": 51.217311,
+  "lon": 3.218688
+ },
+ {
+  "id": "brx3",
+  "town": "brugge",
+  "lat": 51.210624,
+  "lon": 3.20942
+ },
+ {
+  "id": "lex1",
+  "town": "leuven",
+  "lat": 50.885765,
+  "lon": 4.709801
+ },
+ {
+  "id": "lex2",
+  "town": "leuven",
+  "lat": 50.882206,
+  "lon": 4.693482
+ },
+ {
+  "id": "lex3",
+  "town": "leuven",
+  "lat": 50.88245,
+  "lon": 4.693446
+ },
+ {
+  "id": "mex1",
+  "town": "mechelen",
+  "lat": 51.023162,
+  "lon": 4.498242
+ },
+ {
+  "id": "mex2",
+  "town": "mechelen",
+  "lat": 51.026115,
+  "lon": 4.469688
+ },
+ {
+  "id": "mex3",
+  "town": "mechelen",
+  "lat": 51.013708,
+  "lon": 4.484492
+ }
+]

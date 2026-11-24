@@ -120,6 +120,8 @@ export const SOURCE_CREDITS = {
     both: () => `${t("budovy © Helsingin kaupunki (CC BY 4.0)")}, ${t("budovy © Suomen ympäristökeskus SYKE (Ryhti, CC BY 4.0)")}`,
   },
   itTown: { bologna: () => t("mapa povrchů (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)") },
+  // Flanders' road corridors WBN and their division WGO (towns/belgium.js), in the words the licence asks for.
+  beTown: { grb: () => t("mapa povrchů (GRB): {who}", { who: "Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Gratis Open Data Licentie Vlaanderen v1.02)" }) },
   nlBgt: { true: () => t("mapa povrchů BGT © Kadaster a správci BGT (PDOK, CC0)") },
   // Amsterdam's parking spaces (towns/netherlands.js).
   amsParking: { true: () => t("parkovací místa © Gemeente Amsterdam") },

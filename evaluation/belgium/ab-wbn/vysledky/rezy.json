@@ -1,0 +1,4301 @@
+[
+ {
+  "id": "an1",
+  "town": "antwerpen",
+  "lat": 51.20996,
+  "lon": 4.408839,
+  "A": {
+   "name": "Van Breestraat",
+   "lat": 51.21002653210672,
+   "lon": 4.4087733086717105,
+   "bearing": 58.08846005629938,
+   "span": {
+    "left": 9.87,
+    "right": 10.48
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.6,
+     "odhad"
+    ],
+    [
+     "cyklostezka",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     0.95,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.33,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.33,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.33,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1,
+     "odhad"
+    ],
+    [
+     "cyklostezka",
+     1.75,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.05,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Van Breestraat",
+   "lat": 51.21002653210672,
+   "lon": 4.4087733086717105,
+   "bearing": 58.08846005629938,
+   "span": {
+    "left": 9.87,
+    "right": 10.48
+   },
+   "sources": {
+    "beTown": "grb",
+    "orthoCity": "be-vl"
+   },
+   "note": "",
+   "segments": [
+    [
+     "nezname",
+     0.55,
+     "odhad"
+    ],
+    [
+     "chodnik_kola",
+     6.5,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.17,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.33,
+     "ortofoto"
+    ],
+    [
+     "parkovani",
+     2,
+     "dtm"
+    ],
+    [
+     "chodnik_kola",
+     4.8,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "an2",
+  "town": "antwerpen",
+  "lat": 51.22103,
+  "lon": 4.409752,
+  "A": {
+   "name": "Prinsesstraat",
+   "lat": 51.220964000208596,
+   "lon": 4.41009329971235,
+   "bearing": 17.049962621417745,
+   "span": {
+    "left": 4.72,
+    "right": 5.13
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "pruh",
+     2.57,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     2.5,
+     "ortofoto"
+    ],
+    [
+     "parkovani",
+     2.33,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.45,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Prinsesstraat",
+   "lat": 51.220964000208596,
+   "lon": 4.41009329971235,
+   "bearing": 17.049962621417745,
+   "span": {
+    "left": 4.57,
+    "right": 5.13
+   },
+   "sources": {
+    "beTown": "grb"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     2.05,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.75,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.9,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "an3",
+  "town": "antwerpen",
+  "lat": 51.219919,
+  "lon": 4.40772,
+  "A": {
+   "name": "Lange Nieuwstraat",
+   "lat": 51.21981091641725,
+   "lon": 4.407698957303661,
+   "bearing": -83.00122466230293,
+   "span": {
+    "left": 5.52,
+    "right": 8.43
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.4,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2.37,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.81,
+     "osm"
+    ],
+    [
+     "tramvaj_v_pruhu",
+     3,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.37,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Lange Nieuwstraat",
+   "lat": 51.21981091641725,
+   "lon": 4.407698957303661,
+   "bearing": -83.00122466230293,
+   "span": {
+    "left": 5.52,
+    "right": 8.43
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.4,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2.37,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.81,
+     "osm"
+    ],
+    [
+     "tramvaj_v_pruhu",
+     3,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.37,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "an4",
+  "town": "antwerpen",
+  "lat": 51.222593,
+  "lon": 4.421097,
+  "A": {
+   "name": "Spoorstraat",
+   "lat": 51.222699298508644,
+   "lon": 4.42104148605372,
+   "bearing": 71.77393935368352,
+   "span": {
+    "left": 5.57,
+    "right": 5.28
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     0.5,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     1.55,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.79,
+     "osm"
+    ],
+    [
+     "tramvaj_v_pruhu",
+     4.41,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.6,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Spoorstraat",
+   "lat": 51.222699298508644,
+   "lon": 4.42104148605372,
+   "bearing": 71.77393935368352,
+   "span": {
+    "left": 5.57,
+    "right": 5.28
+   },
+   "sources": {
+    "beTown": "grb"
+   },
+   "note": "",
+   "segments": [
+    [
+     "nezname",
+     0.5,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     1.85,
+     "dtm"
+    ],
+    [
+     "tramvaj_v_pruhu",
+     3.95,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.1,
+     "dtm"
+    ],
+    [
+     "nezname",
+     0.45,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "an5",
+  "town": "antwerpen",
+  "lat": 51.213673,
+  "lon": 4.386791,
+  "A": {
+   "name": "",
+   "lat": 51.21246200913441,
+   "lon": 4.389679172420775,
+   "bearing": 33.61854280880868,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 51.21246200913441,
+   "lon": 4.389679172420775,
+   "bearing": 33.61854280880868,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "an6",
+  "town": "antwerpen",
+  "lat": 51.214262,
+  "lon": 4.401361,
+  "A": {
+   "name": "Aalmoezenierstraat",
+   "lat": 51.2140847793823,
+   "lon": 4.401333218707923,
+   "bearing": -84.35413229107169,
+   "span": {
+    "left": 4.02,
+    "right": 4.18
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     0.5,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.4,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.3,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Aalmoezenierstraat",
+   "lat": 51.2140847793823,
+   "lon": 4.401333218707923,
+   "bearing": -84.35413229107169,
+   "span": {
+    "left": 4.02,
+    "right": 4.18
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     0.5,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.4,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.3,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "an7",
+  "town": "antwerpen",
+  "lat": 51.224809,
+  "lon": 4.383766,
+  "A": {
+   "name": "Louis Paul Boonstraat",
+   "lat": 51.22486720455968,
+   "lon": 4.383768105070982,
+   "bearing": -88.6937198344418,
+   "span": {
+    "left": 7.82,
+    "right": 4.88
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.5,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.6,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.8,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.8,
+     "osm"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Louis Paul Boonstraat",
+   "lat": 51.22486720455968,
+   "lon": 4.383768105070982,
+   "bearing": -88.6937198344418,
+   "span": {
+    "left": 7.82,
+    "right": 4.88
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.5,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.6,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.8,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.8,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "an8",
+  "town": "antwerpen",
+  "lat": 51.215612,
+  "lon": 4.420993,
+  "A": {
+   "name": "",
+   "lat": 51.215618200732735,
+   "lon": 4.42081201346453,
+   "bearing": 3.109758367610036,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 51.215618200732735,
+   "lon": 4.42081201346453,
+   "bearing": 3.109758367610036,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ge1",
+  "town": "gent",
+  "lat": 51.064922,
+  "lon": 3.706054,
+  "A": {
+   "name": "Gasmeterlaan",
+   "lat": 51.06481311861295,
+   "lon": 3.7059246176000773,
+   "bearing": 76.22168425154702,
+   "span": {
+    "left": 10.42,
+    "right": 10.18
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     6.3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.07,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     2.9,
+     "ortofoto"
+    ],
+    [
+     "krajnice",
+     1.63,
+     "ortofoto"
+    ],
+    [
+     "chodnik",
+     1.2,
+     "odhad"
+    ],
+    [
+     "cyklostezka",
+     2.5,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Gasmeterlaan",
+   "lat": 51.06481311861295,
+   "lon": 3.7059246176000773,
+   "bearing": 76.22168425154702,
+   "span": {
+    "left": 10.72,
+    "right": 10.03
+   },
+   "sources": {
+    "beTown": "grb",
+    "orthoCity": "be-vl"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     7.45,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.22,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     2.9,
+     "ortofoto"
+    ],
+    [
+     "krajnice",
+     0.48,
+     "ortofoto"
+    ],
+    [
+     "chodnik_kola",
+     6.7,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ge2",
+  "town": "gent",
+  "lat": 51.056141,
+  "lon": 3.714006,
+  "A": {
+   "name": "Begijnengracht",
+   "lat": 51.056263530703355,
+   "lon": 3.713993114970967,
+   "bearing": 86.19294402683138,
+   "span": {
+    "left": 2.72,
+    "right": 4.83
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "pruh",
+     4.47,
+     "osm"
+    ],
+    [
+     "parkovani",
+     1.93,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.15,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Begijnengracht",
+   "lat": 51.056263530703355,
+   "lon": 3.713993114970967,
+   "bearing": 86.19294402683138,
+   "span": {
+    "left": 3.02,
+    "right": 4.83
+   },
+   "sources": {
+    "beTown": "grb",
+    "orthoCity": "be-vl"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     1.25,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.52,
+     "osm"
+    ],
+    [
+     "parkovani",
+     1.63,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.45,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ge3",
+  "town": "gent",
+  "lat": 51.057933,
+  "lon": 3.720792,
+  "A": {
+   "name": "Geldmunt",
+   "lat": 51.05800681879337,
+   "lon": 3.720685516871168,
+   "bearing": 88.601870173789,
+   "span": {
+    "left": 1.47,
+    "right": 1.18
+   },
+   "sources": {
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     0.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.15,
+     "osm"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Geldmunt",
+   "lat": 51.05800681879337,
+   "lon": 3.720685516871168,
+   "bearing": 88.601870173789,
+   "span": {
+    "left": 1.47,
+    "right": 1.18
+   },
+   "sources": {
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     0.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.15,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ge4",
+  "town": "gent",
+  "lat": 51.05848,
+  "lon": 3.735323,
+  "A": {
+   "name": "Zonder-Naamstraat",
+   "lat": 51.0584225771572,
+   "lon": 3.734893288072068,
+   "bearing": -11.924796611332146,
+   "span": {
+    "left": 4.97,
+    "right": 5.08
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     1.85,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.6,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.6,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Zonder-Naamstraat",
+   "lat": 51.0584225771572,
+   "lon": 3.734893288072068,
+   "bearing": -11.924796611332146,
+   "span": {
+    "left": 4.87,
+    "right": 4.93
+   },
+   "sources": {
+    "beTown": "grb"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     1.65,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     1.85,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.6,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.7,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ge5",
+  "town": "gent",
+  "lat": 51.051949,
+  "lon": 3.728399,
+  "A": {
+   "name": "Limburgstraat",
+   "lat": 51.051887735932866,
+   "lon": 3.7281740877595073,
+   "bearing": -38.44921490703033,
+   "span": {
+    "left": 8.97,
+    "right": 14.73
+   },
+   "sources": {
+    "skEdges": "grb",
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     1.89,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     1.5,
+     "osm"
+    ],
+    [
+     "plocha",
+     2.76,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.6,
+     "odhad"
+    ],
+    [
+     "tramvaj_v_pruhu",
+     4,
+     "osm"
+    ],
+    [
+     "plocha",
+     1.2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     4.8,
+     "odhad"
+    ],
+    [
+     "plocha",
+     5.95,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Limburgstraat",
+   "lat": 51.051887735932866,
+   "lon": 3.7281740877595073,
+   "bearing": -38.44921490703033,
+   "span": {
+    "left": 8.97,
+    "right": 14.73
+   },
+   "sources": {
+    "beTown": "grb"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     1.89,
+     "dtm"
+    ],
+    [
+     "stromorad",
+     1.5,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.81,
+     "dtm"
+    ],
+    [
+     "tramvaj_v_pruhu",
+     2.97,
+     "osm"
+    ],
+    [
+     "tramvaj_v_pruhu",
+     2.97,
+     "osm"
+    ],
+    [
+     "chodnik",
+     5.15,
+     "dtm"
+    ],
+    [
+     "nezname",
+     6.4,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ge6",
+  "town": "gent",
+  "lat": 51.055638,
+  "lon": 3.721975,
+  "A": {
+   "name": "Kortemunt",
+   "lat": 51.05547891932687,
+   "lon": 3.7221020994390615,
+   "bearing": 27.80440449461014,
+   "span": {
+    "left": 4.82,
+    "right": 9.93
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     1.5,
+     "odhad"
+    ],
+    [
+     "tramvaj_v_pruhu",
+     3.31,
+     "osm"
+    ],
+    [
+     "tramvaj_v_pruhu",
+     3.22,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.46,
+     "osm"
+    ],
+    [
+     "chodnik",
+     3.25,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Kortemunt",
+   "lat": 51.05547891932687,
+   "lon": 3.7221020994390615,
+   "bearing": 27.80440449461014,
+   "span": {
+    "left": 4.82,
+    "right": 9.93
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     1.5,
+     "odhad"
+    ],
+    [
+     "tramvaj_v_pruhu",
+     3.31,
+     "osm"
+    ],
+    [
+     "tramvaj_v_pruhu",
+     3.22,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.46,
+     "osm"
+    ],
+    [
+     "chodnik",
+     3.25,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ge7",
+  "town": "gent",
+  "lat": 51.045511,
+  "lon": 3.709573,
+  "A": {
+   "name": "",
+   "lat": 51.04548,
+   "lon": 3.709596,
+   "bearing": -63.94034804635781,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 51.04548,
+   "lon": 3.709596,
+   "bearing": -63.94034804635781,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ge8",
+  "town": "gent",
+  "lat": 51.06075,
+  "lon": 3.717056,
+  "A": {
+   "name": "Meelstraat",
+   "lat": 51.06068749013188,
+   "lon": 3.7170197029674994,
+   "bearing": -3.0823945215457824,
+   "span": {
+    "left": 7.47,
+    "right": 3.53
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     3.95,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.2,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.2,
+     "osm"
+    ],
+    [
+     "chodnik",
+     0.65,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Meelstraat",
+   "lat": 51.06068749013188,
+   "lon": 3.7170197029674994,
+   "bearing": -3.0823945215457824,
+   "span": {
+    "left": 7.47,
+    "right": 3.53
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     3.95,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.2,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.2,
+     "osm"
+    ],
+    [
+     "chodnik",
+     0.65,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "br1",
+  "town": "brugge",
+  "lat": 51.200548,
+  "lon": 3.235073,
+  "A": {
+   "name": "Wagnerstraat",
+   "lat": 51.200561358437014,
+   "lon": 3.2355112127077237,
+   "bearing": -2.7666075303802304,
+   "span": {
+    "left": 6.37,
+    "right": 5.33
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.25,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.9,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.9,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.65,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Wagnerstraat",
+   "lat": 51.200561358437014,
+   "lon": 3.2355112127077237,
+   "bearing": -2.7666075303802304,
+   "span": {
+    "left": 6.37,
+    "right": 5.13
+   },
+   "sources": {
+    "beTown": "grb"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.67,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.67,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2.3,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.85,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "br2",
+  "town": "brugge",
+  "lat": 51.204403,
+  "lon": 3.234496,
+  "A": {
+   "name": "Willemijnendreef",
+   "lat": 51.204226621684064,
+   "lon": 3.2344016659322516,
+   "bearing": -71.3576035904834,
+   "span": {
+    "left": 5.52,
+    "right": 22.58
+   },
+   "sources": {
+    "aiKerbs": true,
+    "skEdges": "grb",
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.6,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.2,
+     "osm"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "plocha",
+     15.3,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Willemijnendreef",
+   "lat": 51.204226621684064,
+   "lon": 3.2344016659322516,
+   "bearing": -71.3576035904834,
+   "span": {
+    "left": 5.52,
+    "right": 3.38
+   },
+   "sources": {
+    "beTown": "grb"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     1.5,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     1.65,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.25,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "br3",
+  "town": "brugge",
+  "lat": 51.203863,
+  "lon": 3.212715,
+  "A": {
+   "name": "",
+   "lat": 51.203772,
+   "lon": 3.212417,
+   "bearing": -19.535337948655275,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 51.203772,
+   "lon": 3.212417,
+   "bearing": -19.535337948655275,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "br4",
+  "town": "brugge",
+  "lat": 51.215559,
+  "lon": 3.232864,
+  "A": {
+   "name": "Snaggaardstraat",
+   "lat": 51.215365828025064,
+   "lon": 3.232971016209657,
+   "bearing": 79.26415340348825,
+   "span": {
+    "left": 10.57,
+    "right": 5.08
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     0.65,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.25,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.25,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Snaggaardstraat",
+   "lat": 51.215365828025064,
+   "lon": 3.232971016209657,
+   "bearing": 79.26415340348825,
+   "span": {
+    "left": 10.57,
+    "right": 5.08
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     0.65,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.25,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.25,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "br5",
+  "town": "brugge",
+  "lat": 51.213074,
+  "lon": 3.238582,
+  "A": {
+   "name": "",
+   "lat": 51.212906,
+   "lon": 3.23856,
+   "bearing": 69.16525706102753,
+   "span": {
+    "left": 5.07,
+    "right": 23.78
+   },
+   "sources": {
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     3.55,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     3.1,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "plocha",
+     16.2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 51.212906,
+   "lon": 3.23856,
+   "bearing": 69.16525706102753,
+   "span": {
+    "left": 5.07,
+    "right": 23.78
+   },
+   "sources": {
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     3.55,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     3.1,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "plocha",
+     16.2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "le1",
+  "town": "leuven",
+  "lat": 50.893264,
+  "lon": 4.698997,
+  "A": {
+   "name": "Kapellelaan",
+   "lat": 50.89324727309617,
+   "lon": 4.698697596539801,
+   "bearing": -5.027770830359221,
+   "span": {
+    "left": 5.72,
+    "right": 3.28
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "pruh",
+     5.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.5,
+     "osm"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Kapellelaan",
+   "lat": 50.89324727309617,
+   "lon": 4.698697596539801,
+   "bearing": -5.027770830359221,
+   "span": {
+    "left": 22.03,
+    "right": 3.78
+   },
+   "sources": {
+    "beTown": "grb"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     19.1,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.85,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.85,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "le2",
+  "town": "leuven",
+  "lat": 50.875673,
+  "lon": 4.684823,
+  "A": {
+   "name": "Tervuursevest",
+   "lat": 50.87568698385407,
+   "lon": 4.684866113804166,
+   "bearing": -27.04760506340754,
+   "span": {
+    "left": 14.27,
+    "right": 11.18
+   },
+   "sources": {
+    "aiKerbs": true,
+    "skEdges": "grb",
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     6.35,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.42,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.42,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.15,
+     "odhad"
+    ],
+    [
+     "plocha",
+     0.6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.87,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.2,
+     "ortofoto"
+    ],
+    [
+     "krajnice",
+     0.33,
+     "ortofoto"
+    ],
+    [
+     "chodnik",
+     4.1,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Tervuursevest",
+   "lat": 50.87568698385407,
+   "lon": 4.684866113804166,
+   "bearing": -27.04760506340754,
+   "span": {
+    "left": 14.02,
+    "right": 11.13
+   },
+   "sources": {
+    "beTown": "grb",
+    "orthoCity": "be-vl"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     1.95,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     1.92,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.53,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.45,
+     "osm"
+    ],
+    [
+     "delici",
+     1.1,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     0.62,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.2,
+     "ortofoto"
+    ],
+    [
+     "krajnice",
+     2.68,
+     "ortofoto"
+    ],
+    [
+     "chodnik",
+     1.7,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "le3",
+  "town": "leuven",
+  "lat": 50.883895,
+  "lon": 4.689715,
+  "A": {
+   "name": "Ierse-Predikherenstraat",
+   "lat": 50.88388068587265,
+   "lon": 4.689782342073588,
+   "bearing": 18.503256001097128,
+   "span": {
+    "left": 4.72,
+    "right": 4.78
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     5.4,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.9,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Ierse-Predikherenstraat",
+   "lat": 50.88388068587265,
+   "lon": 4.689782342073588,
+   "bearing": 18.503256001097128,
+   "span": {
+    "left": 4.72,
+    "right": 4.78
+   },
+   "sources": {
+    "beTown": "grb"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     1.25,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     1.7,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.25,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.3,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "le4",
+  "town": "leuven",
+  "lat": 50.872585,
+  "lon": 4.6917,
+  "A": {
+   "name": "Redingenstraat",
+   "lat": 50.87254278338011,
+   "lon": 4.69168626502837,
+   "bearing": -78.32180304703394,
+   "span": {
+    "left": 18.35,
+    "right": 5.03
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     0.63,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     1.39,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.13,
+     "odhad"
+    ],
+    [
+     "cyklostezka",
+     1.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     3.62,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     7.25,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.35,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Redingenstraat",
+   "lat": 50.87254278338011,
+   "lon": 4.69168626502837,
+   "bearing": -78.32180304703394,
+   "span": {
+    "left": 22,
+    "right": 5.03
+   },
+   "sources": {
+    "beTown": "grb"
+   },
+   "note": "",
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     5.8,
+     "odhad"
+    ],
+    [
+     "cyklostezka",
+     1.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     0.67,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     7.96,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.1,
+     "dtm"
+    ],
+    [
+     "nezname",
+     0.5,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "le5",
+  "town": "leuven",
+  "lat": 50.868331,
+  "lon": 4.697115,
+  "A": {
+   "name": "",
+   "lat": 50.86844735226242,
+   "lon": 4.6971778854638915,
+   "bearing": -71.04766195139017,
+   "span": {
+    "left": 22,
+    "right": 18.38
+   },
+   "sources": {
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     12.67,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     7.3,
+     "odhad"
+    ],
+    [
+     "plocha",
+     0.75,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     8.7,
+     "osm"
+    ],
+    [
+     "plocha",
+     4.95,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 50.86844735226242,
+   "lon": 4.6971778854638915,
+   "bearing": -71.04766195139017,
+   "span": {
+    "left": 22,
+    "right": 18.38
+   },
+   "sources": {
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     12.67,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     7.3,
+     "odhad"
+    ],
+    [
+     "plocha",
+     0.75,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     8.7,
+     "osm"
+    ],
+    [
+     "plocha",
+     4.95,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "me1",
+  "town": "mechelen",
+  "lat": 51.019552,
+  "lon": 4.472103,
+  "A": {
+   "name": "Brusselsesteenweg",
+   "lat": 51.01956582078893,
+   "lon": 4.472642052552306,
+   "bearing": -2.3183465307939657,
+   "span": {
+    "left": 9.27,
+    "right": 9.68
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     3.55,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2.2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.45,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.45,
+     "ortofoto"
+    ],
+    [
+     "parkovani",
+     2.5,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.8,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Brusselsesteenweg",
+   "lat": 51.01956582078893,
+   "lon": 4.472642052552306,
+   "bearing": -2.3183465307939657,
+   "span": {
+    "left": 9.27,
+    "right": 9.68
+   },
+   "sources": {
+    "beTown": "grb"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     3.8,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.25,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.25,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     3.6,
+     "dtm"
+    ],
+    [
+     "nezname",
+     1.05,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "me2",
+  "town": "mechelen",
+  "lat": 51.03309,
+  "lon": 4.480102,
+  "A": {
+   "name": "Jodenstraat",
+   "lat": 51.033036023089714,
+   "lon": 4.48006440099934,
+   "bearing": -66.2019481426159,
+   "span": {
+    "left": 4.72,
+    "right": 15.93
+   },
+   "sources": {
+    "aiKerbs": true,
+    "skEdges": "grb",
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     1.8,
+     "odhad"
+    ],
+    [
+     "pruh",
+     7,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "plocha",
+     2.75,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.1,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Jodenstraat",
+   "lat": 51.033036023089714,
+   "lon": 4.48006440099934,
+   "bearing": -66.2019481426159,
+   "span": {
+    "left": 4.72,
+    "right": 15.93
+   },
+   "sources": {
+    "aiKerbs": true,
+    "skEdges": "grb",
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     1.8,
+     "odhad"
+    ],
+    [
+     "pruh",
+     7,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "plocha",
+     2.75,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.1,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "me3",
+  "town": "mechelen",
+  "lat": 51.024844,
+  "lon": 4.480577,
+  "A": {
+   "name": "Korte Schipstraat",
+   "lat": 51.02493149537234,
+   "lon": 4.480482609383226,
+   "bearing": 69.25390018448664,
+   "span": {
+    "left": 6.02,
+    "right": 4.33
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     6.8,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.05,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Korte Schipstraat",
+   "lat": 51.02493149537234,
+   "lon": 4.480482609383226,
+   "bearing": 69.25390018448664,
+   "span": {
+    "left": 6.02,
+    "right": 4.33
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     6.8,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.05,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "me4",
+  "town": "mechelen",
+  "lat": 51.02351,
+  "lon": 4.482767,
+  "A": {
+   "name": "",
+   "lat": 51.02319674098603,
+   "lon": 4.482651220160201,
+   "bearing": -76.82726018537673,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     1.5,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 51.02319674098603,
+   "lon": 4.482651220160201,
+   "bearing": -76.82726018537673,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     1.5,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "bx1",
+  "town": "brussel",
+  "lat": 50.846449,
+  "lon": 4.371574,
+  "A": {
+   "name": "Rue Marie-Thérèse - Maria-Theresiastraat",
+   "lat": 50.846406450385615,
+   "lon": 4.371761405454774,
+   "bearing": 19.65575003242546,
+   "span": {
+    "left": 8.72,
+    "right": 5.73
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.6,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.85,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Rue Marie-Thérèse - Maria-Theresiastraat",
+   "lat": 50.846406450385615,
+   "lon": 4.371761405454774,
+   "bearing": 19.65575003242546,
+   "span": {
+    "left": 8.72,
+    "right": 5.73
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.6,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.85,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "bx2",
+  "town": "brussel",
+  "lat": 50.841266,
+  "lon": 4.355183,
+  "A": {
+   "name": "Rue Sainte-Anne - Sint-Annastraat",
+   "lat": 50.841184189574214,
+   "lon": 4.355285932403942,
+   "bearing": 51.34488540365644,
+   "span": {
+    "left": 4.27,
+    "right": 3.38
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.35,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.8,
+     "osm"
+    ],
+    [
+     "plocha",
+     1.5,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Rue Sainte-Anne - Sint-Annastraat",
+   "lat": 50.841184189574214,
+   "lon": 4.355285932403942,
+   "bearing": 51.34488540365644,
+   "span": {
+    "left": 4.27,
+    "right": 3.38
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.35,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.8,
+     "osm"
+    ],
+    [
+     "plocha",
+     1.5,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "li1",
+  "town": "liege",
+  "lat": 50.63322,
+  "lon": 5.576935,
+  "A": {
+   "name": "Quai de la Boverie",
+   "lat": 50.633291003956515,
+   "lon": 5.576902567855623,
+   "bearing": -6.0573676052526535,
+   "span": {
+    "left": 7.47,
+    "right": 5.98
+   },
+   "sources": {
+    "aiKerbs": true,
+    "skEdges": "picc",
+    "orthoCity": "be-wal"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     3.75,
+     "odhad"
+    ],
+    [
+     "pruh",
+     5.2,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.5,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Quai de la Boverie",
+   "lat": 50.633291003956515,
+   "lon": 5.576902567855623,
+   "bearing": -6.0573676052526535,
+   "span": {
+    "left": 7.47,
+    "right": 5.98
+   },
+   "sources": {
+    "aiKerbs": true,
+    "skEdges": "picc",
+    "orthoCity": "be-wal"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     3.75,
+     "odhad"
+    ],
+    [
+     "pruh",
+     5.2,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.5,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "li2",
+  "town": "liege",
+  "lat": 50.626238,
+  "lon": 5.572095,
+  "A": {
+   "name": "Rue Jean Gol",
+   "lat": 50.62601760550979,
+   "lon": 5.572319314929647,
+   "bearing": 56.975444636697134,
+   "span": {
+    "left": 7.07,
+    "right": 4.18
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-wal"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.95,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.3,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Rue Jean Gol",
+   "lat": 50.62601760550979,
+   "lon": 5.572319314929647,
+   "bearing": 56.975444636697134,
+   "span": {
+    "left": 7.07,
+    "right": 4.18
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-wal"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.95,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.3,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "anx1",
+  "town": "antwerpen",
+  "lat": 51.210065,
+  "lon": 4.395783,
+  "A": {
+   "name": "Karel Rogierstraat",
+   "lat": 51.20995480107312,
+   "lon": 4.39585725784969,
+   "bearing": 66.97477495675389,
+   "span": {
+    "left": 9.47,
+    "right": 7.88
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     1.35,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.9,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.9,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Karel Rogierstraat",
+   "lat": 51.20995480107312,
+   "lon": 4.39585725784969,
+   "bearing": 66.97477495675389,
+   "span": {
+    "left": 9.47,
+    "right": 7.88
+   },
+   "sources": {
+    "beTown": "grb"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     1.2,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.75,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.4,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "anx2",
+  "town": "antwerpen",
+  "lat": 51.212177,
+  "lon": 4.385833,
+  "A": {
+   "name": "",
+   "lat": 51.21039363481342,
+   "lon": 4.386481129118528,
+   "bearing": 41.43218136469915,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     1.5,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 51.21039363481342,
+   "lon": 4.386481129118528,
+   "bearing": 41.43218136469915,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     1.5,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "anx3",
+  "town": "antwerpen",
+  "lat": 51.209591,
+  "lon": 4.408201,
+  "A": {
+   "name": "Mechelsesteenweg",
+   "lat": 51.20955589142144,
+   "lon": 4.40805089107505,
+   "bearing": -20.346682695897275,
+   "span": {
+    "left": 12.17,
+    "right": 15.08
+   },
+   "sources": {
+    "aiKerbs": true,
+    "skEdges": "grb",
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "cyklostezka",
+     2.05,
+     "odhad"
+    ],
+    [
+     "plocha",
+     0.8,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.8,
+     "odhad"
+    ],
+    [
+     "tramvaj",
+     3.2,
+     "odhad"
+    ],
+    [
+     "delici",
+     1,
+     "odhad"
+    ],
+    [
+     "tramvaj_v_pruhu",
+     2.32,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.85,
+     "ortofoto"
+    ],
+    [
+     "krajnice",
+     2.43,
+     "ortofoto"
+    ],
+    [
+     "chodnik",
+     1,
+     "odhad"
+    ],
+    [
+     "cyklostezka",
+     1.3,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.5,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Mechelsesteenweg",
+   "lat": 51.20955589142144,
+   "lon": 4.40805089107505,
+   "bearing": -20.346682695897275,
+   "span": {
+    "left": 12.17,
+    "right": 15.08
+   },
+   "sources": {
+    "aiKerbs": true,
+    "skEdges": "grb",
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "cyklostezka",
+     2.05,
+     "odhad"
+    ],
+    [
+     "plocha",
+     0.8,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.8,
+     "odhad"
+    ],
+    [
+     "tramvaj",
+     3.2,
+     "odhad"
+    ],
+    [
+     "delici",
+     1,
+     "odhad"
+    ],
+    [
+     "tramvaj_v_pruhu",
+     2.32,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.85,
+     "ortofoto"
+    ],
+    [
+     "krajnice",
+     2.43,
+     "ortofoto"
+    ],
+    [
+     "chodnik",
+     1,
+     "odhad"
+    ],
+    [
+     "cyklostezka",
+     1.3,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.5,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "anx4",
+  "town": "antwerpen",
+  "lat": 51.22886,
+  "lon": 4.389532,
+  "A": {
+   "name": "Victor Hugostraat",
+   "lat": 51.22885995995717,
+   "lon": 4.389535076373312,
+   "bearing": 1.1827845866428723,
+   "span": {
+    "left": 18.47,
+    "right": 6.7
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "zelen",
+     3.95,
+     "odhad"
+    ],
+    [
+     "plocha",
+     1.2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     5.8,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.4,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.4,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.4,
+     "osm"
+    ],
+    [
+     "nezname",
+     2.02,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Victor Hugostraat",
+   "lat": 51.22885995995717,
+   "lon": 4.389535076373312,
+   "bearing": 1.1827845866428723,
+   "span": {
+    "left": 5.97,
+    "right": 7.13
+   },
+   "sources": {
+    "beTown": "grb"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     2.5,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.97,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.97,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.65,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "gex1",
+  "town": "gent",
+  "lat": 51.04748,
+  "lon": 3.709438,
+  "A": {
+   "name": "",
+   "lat": 51.04746419377938,
+   "lon": 3.709443469408385,
+   "bearing": 77.64681979027482,
+   "span": {
+    "left": 22.93,
+    "right": 22
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     7.6,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     31.33,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 51.04746419377938,
+   "lon": 3.709443469408385,
+   "bearing": 77.64681979027482,
+   "span": {
+    "left": 22.93,
+    "right": 22
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     7.6,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     31.33,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "gex2",
+  "town": "gent",
+  "lat": 51.06384,
+  "lon": 3.721424,
+  "A": {
+   "name": "",
+   "lat": 51.06380966376672,
+   "lon": 3.72150780126956,
+   "bearing": 69.19630428162068,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 51.06380966376672,
+   "lon": 3.72150780126956,
+   "bearing": 69.19630428162068,
+   "sources": {},
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "gex3",
+  "town": "gent",
+  "lat": 51.06137,
+  "lon": 3.7026,
+  "A": {
+   "name": "Beukelaarstraat",
+   "lat": 51.06143400935269,
+   "lon": 3.7026586764784453,
+   "bearing": 48.030779706438004,
+   "span": {
+    "left": 5.22,
+    "right": 4.73
+   },
+   "sources": {
+    "aiKerbs": true,
+    "skEdges": "grb",
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     5,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.45,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Beukelaarstraat",
+   "lat": 51.06143400935269,
+   "lon": 3.7026586764784453,
+   "bearing": 48.030779706438004,
+   "span": {
+    "left": 4.97,
+    "right": 4.73
+   },
+   "sources": {
+    "beTown": "grb"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     1.45,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.9,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.35,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "gex4",
+  "town": "gent",
+  "lat": 51.060375,
+  "lon": 3.699856,
+  "A": {
+   "name": "Acaciastraat",
+   "lat": 51.0605893779561,
+   "lon": 3.6995091957670447,
+   "bearing": 44.33180997470781,
+   "span": {
+    "left": 4.82,
+    "right": 5.13
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     1.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     5.8,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.65,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Acaciastraat",
+   "lat": 51.0605893779561,
+   "lon": 3.6995091957670447,
+   "bearing": 44.33180997470781,
+   "span": {
+    "left": 4.62,
+    "right": 5.13
+   },
+   "sources": {
+    "beTown": "grb"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     1.8,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.1,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.85,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "brx1",
+  "town": "brugge",
+  "lat": 51.21801,
+  "lon": 3.216308,
+  "A": {
+   "name": "Kardinaal Mercierstraat",
+   "lat": 51.21818435910162,
+   "lon": 3.2160937549613227,
+   "bearing": 52.23020413406497,
+   "span": {
+    "left": 6.12,
+    "right": 6.43
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.4,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.7,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.7,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.75,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Kardinaal Mercierstraat",
+   "lat": 51.21818435910162,
+   "lon": 3.2160937549613227,
+   "bearing": 52.23020413406497,
+   "span": {
+    "left": 5.92,
+    "right": 6.43
+   },
+   "sources": {
+    "beTown": "grb"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     1.95,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.02,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.02,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.95,
+     "dtm"
+    ],
+    [
+     "nezname",
+     0.4,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "brx2",
+  "town": "brugge",
+  "lat": 51.217311,
+  "lon": 3.218688,
+  "A": {
+   "segments": []
+  },
+  "B": {
+   "name": "Koningin Elisabethlaan",
+   "lat": 51.217216412104726,
+   "lon": 3.2189320306241638,
+   "bearing": 40.231707148931584,
+   "span": {
+    "left": 17.47,
+    "right": 12.28
+   },
+   "sources": {
+    "aiKerbs": true,
+    "skEdges": "grb",
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     4.75,
+     "odhad"
+    ],
+    [
+     "cyklopruh",
+     1.47,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.2,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.53,
+     "ortofoto"
+    ],
+    [
+     "plocha",
+     0.85,
+     "odhad"
+    ],
+    [
+     "zelen",
+     7.05,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.17,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.1,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.13,
+     "ortofoto"
+    ],
+    [
+     "cyklopruh",
+     1.5,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "brx3",
+  "town": "brugge",
+  "lat": 51.210624,
+  "lon": 3.20942,
+  "A": {
+   "name": "Peter Benoitlaan",
+   "lat": 51.21013518027526,
+   "lon": 3.209475026147485,
+   "bearing": 85.93904698866339,
+   "span": {
+    "left": 7.37,
+    "right": 8.23
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.5,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2.1,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "parkovani",
+     1.95,
+     "osm"
+    ],
+    [
+     "chodnik",
+     3.15,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Peter Benoitlaan",
+   "lat": 51.21013518027526,
+   "lon": 3.209475026147485,
+   "bearing": 85.93904698866339,
+   "span": {
+    "left": 7.32,
+    "right": 8.23
+   },
+   "sources": {
+    "beTown": "grb"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     2.45,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2.1,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "parkovani",
+     1.95,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.7,
+     "dtm"
+    ],
+    [
+     "nezname",
+     0.45,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "lex1",
+  "town": "leuven",
+  "lat": 50.885765,
+  "lon": 4.709801,
+  "A": {
+   "name": "Diestsevest",
+   "lat": 50.885849986963215,
+   "lon": 4.709988723381075,
+   "bearing": -35.48171841078299,
+   "span": {
+    "left": 15.82,
+    "right": 15.58
+   },
+   "sources": {
+    "aiKerbs": true,
+    "skEdges": "grb",
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.6,
+     "odhad"
+    ],
+    [
+     "cyklostezka",
+     1.5,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.4,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.18,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     2.88,
+     "ortofoto"
+    ],
+    [
+     "zelen",
+     1.9,
+     "odhad"
+    ],
+    [
+     "plocha",
+     0.45,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.75,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.75,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "chodnik",
+     0.75,
+     "odhad"
+    ],
+    [
+     "cyklostezka",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.25,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Diestsevest",
+   "lat": 50.885849986963215,
+   "lon": 4.709988723381075,
+   "bearing": -35.48171841078299,
+   "span": {
+    "left": 15.82,
+    "right": 15.58
+   },
+   "sources": {
+    "beTown": "grb"
+   },
+   "note": "",
+   "segments": [
+    [
+     "nezname",
+     0.3,
+     "odhad"
+    ],
+    [
+     "chodnik_kola",
+     4.93,
+     "dtm"
+    ],
+    [
+     "stromorad",
+     1.5,
+     "osm"
+    ],
+    [
+     "chodnik_kola",
+     1.47,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.56,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.56,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.56,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.56,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "chodnik_kola",
+     4.5,
+     "dtm"
+    ],
+    [
+     "nezname",
+     0.45,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "lex2",
+  "town": "leuven",
+  "lat": 50.882206,
+  "lon": 4.693482,
+  "A": {
+   "name": "Tessenstraat - Fonteinstraat",
+   "lat": 50.882113500022044,
+   "lon": 4.693520231184771,
+   "bearing": 3.257484923060896,
+   "span": {
+    "left": 6.92,
+    "right": 14.18
+   },
+   "sources": {
+    "aiKerbs": true,
+    "skEdges": "grb",
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     3.2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.78,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.77,
+     "ortofoto"
+    ],
+    [
+     "krajnice",
+     1.85,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "plocha",
+     2.5,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Tessenstraat - Fonteinstraat",
+   "lat": 50.882113500022044,
+   "lon": 4.693520231184771,
+   "bearing": 3.257484923060896,
+   "span": {
+    "left": 6.92,
+    "right": 14.18
+   },
+   "sources": {
+    "beTown": "grb"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     1.75,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     1.85,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.97,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.97,
+     "osm"
+    ],
+    [
+     "stromorad",
+     1.6,
+     "osm"
+    ],
+    [
+     "chodnik",
+     9.95,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "lex3",
+  "town": "leuven",
+  "lat": 50.88245,
+  "lon": 4.693446,
+  "A": {
+   "name": "Tessenstraat - Fonteinstraat",
+   "lat": 50.88244671365514,
+   "lon": 4.69354908636512,
+   "bearing": 2.8732953828780916,
+   "span": {
+    "left": 7.27,
+    "right": 18.58
+   },
+   "sources": {
+    "aiKerbs": true,
+    "skEdges": "grb",
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     3.95,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.3,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.3,
+     "osm"
+    ],
+    [
+     "chodnik",
+     6,
+     "odhad"
+    ],
+    [
+     "plocha",
+     3.1,
+     "odhad"
+    ],
+    [
+     "zelen",
+     4.2,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Tessenstraat - Fonteinstraat",
+   "lat": 50.88244671365514,
+   "lon": 4.69354908636512,
+   "bearing": 2.8732953828780916,
+   "span": {
+    "left": 7.27,
+    "right": 18.58
+   },
+   "sources": {
+    "beTown": "grb",
+    "orthoCity": "be-vl"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     2.25,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2.17,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     2.52,
+     "ortofoto"
+    ],
+    [
+     "stromorad",
+     1.61,
+     "osm"
+    ],
+    [
+     "chodnik",
+     10.09,
+     "dtm"
+    ],
+    [
+     "zelen",
+     4.2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "mex1",
+  "town": "mechelen",
+  "lat": 51.023162,
+  "lon": 4.498242,
+  "A": {
+   "name": "",
+   "lat": 51.023128073790595,
+   "lon": 4.498058537946247,
+   "bearing": -16.278910115339116,
+   "span": {
+    "left": 5.02,
+    "right": 1.68
+   },
+   "sources": {
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "zelen",
+     3,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     3.7,
+     "odhad"
+    ]
+   ]
+  },
+  "B": {
+   "name": "",
+   "lat": 51.023128073790595,
+   "lon": 4.498058537946247,
+   "bearing": -16.278910115339116,
+   "span": {
+    "left": 5.02,
+    "right": 1.68
+   },
+   "sources": {
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "zelen",
+     3,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     3.7,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "mex2",
+  "town": "mechelen",
+  "lat": 51.026115,
+  "lon": 4.469688,
+  "A": {
+   "segments": []
+  },
+  "B": {
+   "name": "Koningin Astridlaan",
+   "lat": 51.02614431885198,
+   "lon": 4.4698676728783,
+   "bearing": -14.450793952603044,
+   "span": {
+    "left": 24.18,
+    "right": 28.83
+   },
+   "sources": {
+    "beTown": "grb"
+   },
+   "note": "",
+   "segments": [
+    [
+     "krajnice",
+     10.78,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     10.78,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.45,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "mex3",
+  "town": "mechelen",
+  "lat": 51.013708,
+  "lon": 4.484492,
+  "A": {
+   "name": "Hanswijkvaart",
+   "lat": 51.01374400928607,
+   "lon": 4.484629326515102,
+   "bearing": -45.55562892897548,
+   "span": {
+    "left": 6.92,
+    "right": 2.78
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "be-vl"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "zelen",
+     2.8,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.45,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.45,
+     "osm"
+    ]
+   ]
+  },
+  "B": {
+   "name": "Hanswijkvaart",
+   "lat": 51.01374400928607,
+   "lon": 4.484629326515102,
+   "bearing": -45.55562892897548,
+   "span": {
+    "left": 6.92,
+    "right": 2.78
+   },
+   "sources": {
+    "beTown": "grb"
+   },
+   "note": "",
+   "segments": [
+    [
+     "nezname",
+     0.95,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.85,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ]
+   ]
+  }
+ }
+]

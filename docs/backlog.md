@@ -30,6 +30,9 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Krakov: A/B mapy povrchů slabé (lépe 7, hůř 6): zapnuto, **(Bára)** nechat? Přepustit A/B po vrácení „Ścieżky“
   na chodník.
 - Belgie: A/B čar GRB a PICC slabé (lépe 4, hůř 2): zapnuto.
+- Flandry, plochy GRB (WBN + WGO, `evaluation/belgium/ab-wbn/ZPRAVA.md`, lépe 10, hůř 2): zóna za obrubou je jedna,
+  s OSM `cycleway=track` vzniká „chodník s koly“ místo chodníku a cyklostezky (ge1, lex1); ulice v jedné úrovni
+  (obruba jen na jedné straně) dál odhadem; bulváry se souběžnými cestami (mex2) hrubě.
 - Polsko: ortofoto GUGiK bez vlastního A/B (je v obou ramenech).
 - Paříž: u fasády často pruh „plocha“ 0,65 m (mezera mezi budovou z OSM a chodníkem Plan de voirie); A/B
   `evaluation/france/ab/ZPRAVA.md`. Zkusit budovy z BD TOPO nebo `emprises-ilots-prives` místo OSM.
