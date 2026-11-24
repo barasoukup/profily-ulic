@@ -31,6 +31,11 @@ test("Dánsko: ortofoto jen s tokenem, bez něj poctivá chyba", async () => {
   const u = new URL(L.DK_ORTHO(20, 561234, 327654));
   assert.equal(u.origin + u.pathname, "https://api.dataforsyningen.dk/orto_foraar_webm_DAF");
   for (const [k, v] of Object.entries({ service: "WMTS", request: "GetTile", layer: "orto_foraar_webm", tilematrixset: "DFD_GoogleMapsCompatible", tilematrix: "20", tilerow: "327654", tilecol: "561234", token: "test-token" })) assert.equal(u.searchParams.get(k), v, k);
+  // The basemap's template (the review of 24. 11. 2026): Leaflet's placeholders stay as they are, not URL-encoded.
+  const tpl = L.DK_ORTHO("{z}", "{x}", "{y}");
+  for (const k of ["tilematrix={z}", "tilerow={y}", "tilecol={x}"]) assert.ok(tpl.includes(k), k);
+  assert.ok(!/%7B|%7D/i.test(tpl), "no encoded braces");
+  assert.deepEqual([...tpl.matchAll(/\{ *([\w_ -]+) *\}/g)].map((m) => m[1]).sort(), ["x", "y", "z"]);
   // The token turned away on every tile (403): no key, not an empty image; a server error on every tile: an outage.
   const asked = [];
   globalThis.OffscreenCanvas ??= class { constructor(w, h) { this.width = w; this.height = h; } getContext() { return { drawImage() {}, getImageData: (x, y, w, h) => ({ width: w, height: h, data: new Uint8ClampedArray(w * h * 4) }) }; } };
@@ -69,6 +74,23 @@ test("Dánsko: okraje vozovek a parkovací plochy Kodaně", async () => {
   // Switched on, outside Copenhagen still nothing (Aarhus).
   globalThis.PROFILY_DK = { kbhkant: "1", kbhpark: "1" };
   assert.deepEqual(await D.sources.parking("10.20,56.15,10.21,56.16"), { features: [] });
+  // The city's WFS failing once (the review of 24. 11. 2026): said (dkFailed), not kept, the next cut asks again.
+  const realFetch = globalThis.fetch;
+  let calls = 0;
+  globalThis.fetch = async () => (++calls === 1 ? new Response("", { status: 404 }) : new Response(JSON.stringify(fixture("dk-kbh-vejkant.json")), { status: 200 }));
+  try {
+    const bb = "12.5525,55.6895,12.5535,55.6901";
+    const first = await D.sources.lines(bb);
+    assert.equal(first.dkFailed, "kant");
+    assert.deepEqual(first.edges, []);
+    const second = await D.sources.lines(bb);
+    assert.ok(second.edges.length > 0 && !second.dkFailed);
+    assert.equal(calls, 2);
+    globalThis.fetch = async () => new Response("", { status: 503 });
+    const pk = await D.sources.parking(bb);
+    assert.equal(pk.dkFailed, "park");
+    assert.ok(!pk.dkParking, "no parking areas: the estimate as without them");
+  } finally { globalThis.fetch = realFetch; }
   globalThis.PROFILY_DK = {};
 });
 
@@ -86,6 +108,11 @@ test("Dánsko: budovy Kodaně a Aarhusu", async () => {
   assert.equal(D.use(110).farm, true);
   assert.equal(D.use(320).office, true);
   assert.equal(D.use(910).garage, true);
+  // Not every code of 300–499 is an office (the review of 24. 11. 2026): a church, a school, a parking house.
+  assert.equal(D.use(414).type, "church");
+  assert.equal(D.use(421).type, "school");
+  assert.equal(D.use(313).garage, true);
+  assert.equal(D.use(321).office, true);
   assert.deepEqual(D.walls(4), { solid: true }, "hrázděné zdivo není dřevěný dům");
   // Aarhus, Park Allé: 1925, brick, flats; floors from the areas (an estimate: OSM's levels win).
   const a = D.pick(fixture("dk-aar-bygning.json"), 56.1529, 10.2043, D.aarBuilding, (q) => q.Byg_Arl_Saml);
@@ -159,4 +186,27 @@ test("Dánsko: značky a normy", async () => {
   assert.equal(DK.freeLane, 3);
   assert.equal(DK.socialistLooks, false);
   assert.deepEqual(DK.tramBelt([], 5), []);
+});
+
+test("Dánsko: cyklostezka podél silnice z OSM (cycleway:<strana>=track)", async () => {
+  const D = await import("../pilot/public/derive.js");
+  const seg = () => [{ type: "chodnik", width: 4, source: "odhad" }, { type: "pruh", width: 3.5 }, { type: "pruh", width: 3.5 }, { type: "chodnik", width: 4, source: "odhad" }];
+  // Both sides: a track of the OSM width beside the roadway, the sidewalk keeps the rest; directions by the side.
+  let s = seg();
+  assert.equal(D.trackAlongRoad(s, { highway: "secondary", "cycleway:both": "track", "cycleway:both:width": "2.2" }), 2);
+  assert.deepEqual(s.map((x) => [x.type, x.width, x.dir]), [["chodnik", 1.8, undefined], ["cyklostezka", 2.2, "backward"], ["pruh", 3.5, undefined], ["pruh", 3.5, undefined], ["cyklostezka", 2.2, "forward"], ["chodnik", 1.8, undefined]]);
+  // The way's right is the profile's left when the profile looks against the way.
+  s = seg();
+  D.trackAlongRoad(s, { highway: "secondary", "cycleway:right": "track" }, false);
+  assert.equal(s[1].type, "cyklostezka");
+  assert.equal(s.at(-2).type, "pruh");
+  // A narrow estimated sidewalk keeps 1 m; a map's own surfaces give nothing; the switch off.
+  s = [{ type: "chodnik", width: 2.5, source: "odhad" }, { type: "pruh", width: 3.5 }];
+  D.trackAlongRoad(s, { "cycleway:left": "track" });
+  assert.deepEqual(s.map((x) => [x.type, x.width]), [["chodnik", 1], ["cyklostezka", 1.5], ["pruh", 3.5]]);
+  s = [{ type: "chodnik", width: 4, source: "dtm" }, { type: "pruh", width: 3.5 }];
+  assert.equal(D.trackAlongRoad(s, { "cycleway:left": "track" }), 0);
+  const O = await import("../pilot/public/ortho-osm.js");
+  O.P.off = new Set(["stezkapodel"]);
+  try { assert.equal(D.trackAlongRoad(seg(), { "cycleway:both": "track" }), 0); } finally { O.P.off = undefined; }
 });

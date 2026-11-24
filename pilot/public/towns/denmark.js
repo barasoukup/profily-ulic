@@ -18,7 +18,7 @@
 //   year, the use, walls and roof, the areas the floors are estimated from), the dataset "BBR-ejendomme og
 //   BBR-bygninger" CC BY 4.0 on opendata.dk; ?aarbyg=0 leaves it out.
 // One small request a facade, at most 6 s, kept by the point rounded to about a metre.
-import { osmTiles, getJSON } from "../gis.js";
+import { osmTiles } from "../gis.js";
 import { inArea } from "../places.js";
 
 // The switches (URL parameters; in Node globalThis.PROFILY_DK) and their defaults.
@@ -36,6 +36,10 @@ const wfsUrl = (base, typeNames, bbox, propertyName, count) => {
   return `${base}?${new URLSearchParams({ service: "WFS", version: "2.0.0", request: "GetFeature", typeNames, outputFormat: "application/json", srsName: "EPSG:4326",
     count: String(count), ...(propertyName && { propertyName }), bbox: `${y0},${x0},${y1},${x1},urn:ogc:def:crs:EPSG::4326` })}`;
 };
+// The city's WFS: one try, a short limit (the review of 24. 11. 2026: through gis.js getJSON a hanging server held every
+// Copenhagen cut up to 25 s and more with its retries): the buildings 6 s a facade, the kerb lines and parking areas 8 s.
+const TIMEOUT = 6000, LINES_TIMEOUT = 8000;
+const askCity = (url, ms) => fetch(url, { signal: AbortSignal.timeout(ms) }).then((r) => { if (!r.ok) throw new Error(`${new URL(url).hostname} ${r.status}`); return r.json(); });
 const ringsOf = (g) => (g?.type === "Polygon" ? [g.coordinates] : g?.type === "MultiPolygon" ? g.coordinates : []);
 const pathsOf = (g) => (g?.type === "LineString" ? [g.coordinates] : g?.type === "MultiLineString" ? g.coordinates : []);
 const centreOf = (bbox) => { const [x0, y0, x1, y1] = bbox.split(",").map(Number); return [(x0 + x1) / 2, (y0 + y1) / 2]; };
@@ -45,18 +49,21 @@ const centreOf = (bbox) => { const [x0, y0, x1, y1] = bbox.split(",").map(Number
 export const KANT = new Set(["Kørevej", "Cykelsti langs vej"]);
 export const kantPaths = (json) => (json?.features || []).filter((f) => KANT.has(f.properties?.vejtype)).flatMap((f) => pathsOf(f.geometry));
 export const kantUrl = (bbox) => wfsUrl(KBH_WFS, "k101:vejkant", bbox, "vejtype,wkb_geometry", 2000);
+// A failure is not kept (the review of 24. 11. 2026: one WFS hiccup left every later cut at that place without the lines
+// and said nothing): the next cut asks again, and this one tells the visitor (dkFailed, app.js).
 const memo = new Map();
 function kanter(bbox) {
   if (!memo.has(bbox)) {
     if (memo.size > 30) memo.delete(memo.keys().next().value);
-    memo.set(bbox, getJSON(kantUrl(bbox)).then(kantPaths).catch(() => []));
+    memo.set(bbox, askCity(kantUrl(bbox), LINES_TIMEOUT).then(kantPaths).catch((err) => { memo.delete(bbox); throw err; }));
   }
   return memo.get(bbox);
 }
 async function lines(bbox) {
   if (!bbox) return { features: [] };
   if (!on("kbhkant") || !inArea(AREAS.kobenhavn, ...centreOf(bbox))) return { features: [], edges: [], symbols: [], widths: [], areas: [] };
-  const edges = await kanter(bbox);
+  const edges = await kanter(bbox).catch((err) => { console.warn("Kodaň vejkant", err.message); return null; });
+  if (!edges) return { features: [], edges: [], symbols: [], widths: [], areas: [], dkFailed: "kant" };
   return { features: [], edges, edgesFrom: edges.length ? "kbh-vejkant" : null, symbols: [], widths: [], areas: [] };
 }
 
@@ -84,9 +91,12 @@ export function kbhParking(json) {
   };
 }
 export const parkingUrl = (bbox) => wfsUrl(KBH_WFS, "k101:parkering_areal", bbox, "p_type,p_ordning,antal_p_pladser,wkb_geometry", 1000);
+// Not answering: no parking areas (the estimate as where the city has none), said so (dkFailed).
 async function parking(bbox) {
   if (!on("kbhpark") || !inArea(AREAS.kobenhavn, ...centreOf(bbox))) return { features: [] };
-  return { ...kbhParking(await getJSON(parkingUrl(bbox))), dkParking: true };
+  const json = await askCity(parkingUrl(bbox), LINES_TIMEOUT).catch((err) => { console.warn("Kodaň parkering", err.message); return null; });
+  if (!json) return { features: [], dkFailed: "park" };
+  return { ...kbhParking(json), dkParking: true };
 }
 
 // ---------- buildings ----------
@@ -112,6 +122,13 @@ export function use(code) {
   if (c === 121 || (c >= 130 && c < 140)) return { house: true, type: "terrace" };
   if (c >= 140 && c < 200) return { type: "apartments" };
   if (c >= 200 && c < 300) return { type: "industrial" };
+  // Within 300–499 the kinds with looks of their own (the review of 24. 11. 2026: all of them were offices): 313 and 314
+  // a parking house or garage building, 414 a church or other house of worship, 420–429 (and the old 420) a school or
+  // university, 441 a day nursery; the rest (stations, offices, shops, hotels, culture, health) an office-like house.
+  if (c === 313 || c === 314) return { garage: true };
+  if (c === 414) return { type: "church" };
+  if (c >= 420 && c < 430) return { office: true, type: c === 422 ? "university" : "school" };
+  if (c === 441) return { office: true, type: "kindergarten" };
   if (c >= 300 && c < 500) return { office: true };
   if (c >= 900) return { garage: true };
   return {};
@@ -148,8 +165,7 @@ export function pick(json, lat, lon, read, floors) {
   const f = (here.length ? here : fs).slice().sort((a, b) => (floors(b.properties) || 0) - (floors(a.properties) || 0))[0];
   return f ? read(f.properties) : {};
 }
-const TIMEOUT = 6000;
-const ask = (url) => fetch(url, { signal: AbortSignal.timeout(TIMEOUT) }).then((r) => { if (!r.ok) throw new Error(`${new URL(url).hostname} ${r.status}`); return r.json(); });
+const ask = (url) => askCity(url, TIMEOUT);
 const box = (lat, lon) => { const d = 0.00001, e = 0.00002; return `${(lon - e).toFixed(7)},${(lat - d).toFixed(7)},${(lon + e).toFixed(7)},${(lat + d).toFixed(7)}`; };
 // Only the fields used (never the owner, the address or the cadastral number).
 export const kbhBuildingUrl = (lat, lon) => wfsUrl(KBH_WFS, "k101:bygning", box(lat, lon),

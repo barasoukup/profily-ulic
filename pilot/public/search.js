@@ -309,8 +309,11 @@ export function mountSearch(map, { status, onPick, services = () => [], inVienna
       const fi = fiHere ? await findFi(text.trim(), getJSON, mine.signal).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání Ryhti", err); return []; }) : [];
       const fiPhoton = fiHere && !services().includes("photon-fi") ? await findPhoton(text, getJSON, mine.signal, ["FI"], [map.getCenter().lat, map.getCenter().lng]).catch((err) => { if (err.name === "AbortError") throw err; return []; }) : [];
       // Denmark: GSearch where the map shows it and the app has the token (search-dk.js; else Photon above).
-      const dk = services().includes("gsearch") ? await findDk(text.trim(), getJSON, mine.signal).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání GSearch", err); return []; }) : [];
-      const found = rankResults([...dk, ...fi, ...fiPhoton, ...si, ...siPhoton, ...ee, ...es, ...fr, ...pl, ...plPhoton, ...nl, ...at, ...photon, ...cz, ...(both || cz.length || nl.length || pl.length || fr.length || es.length || ee.length || si.length || siPhoton.length || fi.length || fiPhoton.length || dk.length ? skNow : await sk())], text);
+      const dk = services().includes("gsearch") ? await findDk(text.trim(), getJSON, mine.signal, [map.getCenter().lat, map.getCenter().lng]).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání GSearch", err); return []; }) : [];
+      // GSearch failed (a token turned away: 401) or found nothing: Photon of komoot in Denmark (the review of 24. 11. 2026).
+      const dkPhoton = services().includes("photon-dk") && gsearchReady() && !dk.length && !photon.length
+        ? await findPhoton(text, getJSON, mine.signal, ["DK"], [map.getCenter().lat, map.getCenter().lng]).catch((err) => { if (err.name === "AbortError") throw err; return []; }) : [];
+      const found = rankResults([...dk, ...dkPhoton, ...fi, ...fiPhoton, ...si, ...siPhoton, ...ee, ...es, ...fr, ...pl, ...plPhoton, ...nl, ...at, ...photon, ...cz, ...(both || cz.length || nl.length || pl.length || fr.length || es.length || ee.length || si.length || siPhoton.length || fi.length || fiPhoton.length || dk.length || dkPhoton.length ? skNow : await sk())], text);
       cache.set(key, found);
       if (cache.size > 40) cache.delete(cache.keys().next().value);
       if (mine === ctrl && document.activeElement === input) show(found, t("Nic jsem nenašla."));

@@ -1,5 +1,5 @@
 import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, SURFACES, LAMP_HEIGHTS, underSize } from "./types.js";
-import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, splitTwoWayLane, capWideLanes, pedestrianZone, widenNarrowTrams, carveCycleways, carveTramTracks, lanesFromShoulders, crossFromA, MAX_REACH } from "./derive.js";
+import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, splitTwoWayLane, capWideLanes, pedestrianZone, widenNarrowTrams, carveCycleways, carveTramTracks, lanesFromShoulders, trackAlongRoad, crossFromA, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO, CH_ORTHO, NL_ORTHO, BE_ORTHO, LU_ORTHO, PL_ORTHO, FR_ORTHO, ES_ORTHO, PT_ORTHO, PT_MAINLAND, ES_NOT_PNOA, CY_ORTHO, MT_ORTHO, IT_ORTHO, EE_ORTHO, SI_ORTHO, FI_ORTHO, DK_ORTHO, DE_ORTHO, deWmsUrl, landsAt, landAt, orthoHereAt } from "./lanes-ortho.js";
 import { dkToken } from "./keys.js";
@@ -266,16 +266,24 @@ if (STATY?.netherlands) {
 const insideOnly = (places) => L.TileLayer.extend({
   getTileUrl(coords) {
     const size = this.getTileSize();
-    const inside = [[0.5, 0.5], [0, 0], [1, 0], [0, 1], [1, 1]].some(([fx, fy]) => {
+    const at = [[0.5, 0.5], [0, 0], [1, 0], [0, 1], [1, 1]].map(([fx, fy]) => {
       const q = this._map.unproject([(coords.x + fx) * size.x, (coords.y + fy) * size.y], coords.z);
       return withinPlace(places, q.lat, q.lng);
     });
+    const inside = at.some(Boolean);
     if (!inside) return "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
     if (!this.options.bboxUrl) return L.TileLayer.prototype.getTileUrl.call(this, coords);
     const nw = this._map.options.crs.project(this._map.unproject([coords.x * size.x, coords.y * size.y], coords.z));
     const se = this._map.options.crs.project(this._map.unproject([(coords.x + 1) * size.x, (coords.y + 1) * size.y], coords.z));
-    return this.options.bboxUrl([nw.x, se.y, se.x, nw.y], size.x, size.y);
+    return this.options.bboxUrl([nw.x, se.y, se.x, nw.y], size.x, size.y, at.every(Boolean));
   },
+});
+// One more try of a tile that failed (a server that answers 504 now and then: GURS), after a pause, then it stays empty.
+const retryOnce = (layer, ms = 2500) => layer.on("tileerror", ({ tile }) => {
+  if (tile.dataset.retried || !tile.src || tile.src.startsWith("data:")) return;
+  tile.dataset.retried = "1";
+  const src = tile.src;
+  setTimeout(() => { tile.src = `${src}${src.includes("?") ? "&" : "?"}retry=1`; }, ms);
 });
 const boundsOf = (rings) => { const pts = rings.flat(), xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]); return L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]); };
 // Luxembourg first, Belgium's regions over it (each answers transparent or nothing outside itself; the hostile review:
@@ -327,7 +335,10 @@ if (STATY?.estonia) {
 // Slovenia: GURS's orthophoto DOF025 (WMS in Web Mercator), only over Slovenia (beyond it the server hangs and gives 504).
 if (STATY?.slovenia) {
   const Si = insideOnly([boxedPlace("SI", STATY.slovenia)]);
-  kinds.ortho.push(new Si("", { bboxUrl: (b, w, h) => `${SI_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("ortofoto DOF025 © Geodetska uprava RS (CC BY 4.0)"), bounds: boundsOf(STATY.slovenia) }));
+  // The review of 24. 11. 2026 (RECENZE-SI 3): a tile of z9 over the whole state and some of z18 were 504 after 30 s, so the
+  // layer starts at z14 (below it the other basemaps), a tile wholly inside Slovenia is a JPEG (PNG takes GURS twice as
+  // long; transparent only at the border) and a failed tile is asked once more.
+  kinds.ortho.push(retryOnce(new Si("", { bboxUrl: (b, w, h, inside) => inside ? SI_ORTHO(b, w, h) : `${SI_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, minZoom: 14, maxZoom: 21, attribution: tr("ortofoto DOF025 © Geodetska uprava RS (CC BY 4.0)"), bounds: boundsOf(STATY.slovenia) })));
 }
 // Finland: the towns' own orthophotos (lanes-ortho.js FI_ORTHO: Helsinki, Espoo, Turku), each only over its town's box
 // and inside Finland (none elsewhere: the national one needs a personal key).
@@ -635,6 +646,10 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       const along = !near.dir || dir[0] * near.dir[0] + dir[1] * near.dir[1] >= 0;
       parkFromAi(result, aiPark, parkSkip(near.way.tags, along, inZps === true || parking.length > 0));
     }
+    // A cycle track OSM tags on the road (cycleway:<side>=track) beside its roadway (derive.js trackAlongRoad), before the
+    // cycle ways mapped on their own are carved, so one track is not drawn twice. Not over a map's own surfaces (they
+    // draw a cycle track where there is one; a shoulder there is the roadway's).
+    if (orthoOsm || result.estimate) trackAlongRoad(result.segments, near.way.tags, !near.dir || dir[0] * near.dir[0] + dir[1] * near.dir[1] >= 0);
     if (result.extent) {
       const crossA = crossFromA(osm, frame, dir, result.extent);
       carveCycleways(result.segments, crossA);
@@ -749,6 +764,12 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     const out = sources.outage({ surfaces: m, lines: k, parking: pk }, undefined, { fallback: orthoNote, orthoEstimate: country.orthoEstimate && orthoHere });
     // A town's passport answered but not at the axis (Slovakia): the profile is still the estimate.
     state.cut.note = out.note || (orthoOsm && city.abroad ? (country.orthoEstimate && orthoHere && !orthoNoKey ? " · odhad z ortofota a OSM" : " · jen odhad z OSM") : "");
+    // Copenhagen's kerb lines or parking areas did not answer (towns/denmark.js dkFailed; the review of 24. 11. 2026: said
+    // nothing before): the cut is made without them, said so.
+    if ([k, pk].some((x) => x.status === "fulfilled" && x.value?.dkFailed)) {
+      out.text = `${out.text ? out.text + " " : ""}${tr("Okraje vozovek nebo parkovací plochy Kodaně teď neodpověděly, profil je bez nich.")} ${tr("Zkuste kliknout znovu za chvíli.")}`;
+      out.error = true;
+    }
     // The heading is the street only (Bára 16. 11. 2026); where the data come from is said under it (#profile-sub).
     $("#street-name").textContent = streetName(state.cut);
     const junctionNote = tr("Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami.");

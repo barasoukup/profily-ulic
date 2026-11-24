@@ -581,6 +581,11 @@ function sideTags(tags, side) {
     kerbPos,
     kerbDepth: kerbPos ? depth : 0,
     bike: ["lane", "opposite_lane"].includes(cycle) ? "cyklopruh" : cycle === "soft_lane" ? "ochranny_pruh" : null,
+    // A cycle track along the road, mapped on the road itself (cycleway:<side>=track; Denmark's usual way: the review of
+    // 24. 11. 2026, 24 % of Copenhagen's streets), with its width where OSM has one (trackAlongRoad).
+    track: cycle === "track" || cycle === "opposite_track",
+    trackWidth: parseFloat(String(tag(tags, `cycleway:${side}:width`, "cycleway:both:width", ...(generic ? ["cycleway:width"] : [])) || "").replace(",", ".")) || null,
+    trackOneway: tag(tags, `cycleway:${side}:oneway`, "cycleway:both:oneway", ...(generic ? ["cycleway:oneway"] : [])),
     sharrow: cycle === "shared_lane",
     // Cyclists allowed in the bus lane along this curb (vyhrazený pruh BUS + cyklisté).
     shareBus: cycle === "share_busway" || cycle === "opposite_share_busway",
@@ -2427,6 +2432,55 @@ export function carveCycleways(segments, cross = []) {
   }
   return n;
 }
+// A cycle track along the road that OSM maps only as a tag of the road (cycleway[:left|:right|:both]=track), not as a
+// way of its own (the review of 24. 11. 2026: none of 76 cuts in Copenhagen had a cycle track, though 24 % of its streets
+// tag one): on that side, just beyond the roadway's outer lane or parking, a cycle track of the OSM width (else
+// country.trackWidth, else 2 m) cut out of the estimated parts there (a shoulder, sidewalk, paved area, unknown, green);
+// never out of a map's own surfaces (source dtm, pasport), not where a bicycle part lies already at that edge. Its
+// direction: the side's traffic, against it for opposite_track or cycleway:<side>:oneway=-1, none for oneway=no.
+// along: the profile looks along the way's geometry (the way's left is the profile's left). ?off=stezkapodel: the A/B.
+const TRACK_FROM = new Set(["krajnice", "chodnik", "plocha", "nezname", "zelen"]);
+const OUTER_ROAD = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "obsluzna", "parkovani"]);
+export function trackAlongRoad(segments, tags = {}, along = true) {
+  if (ORTHO_P.off?.has("stezkapodel")) return 0;
+  const first = segments.findIndex((s) => OUTER_ROAD.has(s.type)), last = segments.findLastIndex((s) => OUTER_ROAD.has(s.type));
+  if (first < 0) return 0;
+  let n = 0;
+  // The right side first, so the left side's indices stay as found.
+  for (const [pSide, edge, step] of [["R", last, 1], ["L", first, -1]]) {
+    const st = sideTags(tags, pSide === "L" ? (along ? "left" : "right") : along ? "right" : "left");
+    if (!st.track) continue;
+    // A bicycle part already at that edge (a lane, a track from the map or a way of OSM carved before).
+    const next = segments[edge + step];
+    if (BIKE_PARTS.has(segments[edge]?.type) || BIKE_PARTS.has(next?.type) || BIKE_PARTS.has(segments[edge + 2 * step]?.type)) continue;
+    const want = st.trackWidth > 0.5 && st.trackWidth < 6 ? st.trackWidth : country.trackWidth || 2;
+    // The run of estimated parts beyond the edge that may give way.
+    let q = edge + step, got = 0;
+    const taken = [];
+    while (got < want && segments[q] && TRACK_FROM.has(segments[q].type) && !["dtm", "pasport"].includes(segments[q].source)) {
+      taken.push(q); got += segments[q].width; q += step;
+    }
+    if (!taken.length || got < 0.5) continue;
+    // The estimate's sidewalk there often holds the track too (the orthophoto shows no kerb between them: Børsgade,
+    // Nordre Fasanvej): where no other sidewalk lies beyond, it keeps 1 m when the track still gets 0.8 m.
+    const walkBeyond = segments.some((x, r) => (step > 0 ? r > taken.at(-1) : r < taken.at(-1)) && x.type === "chodnik");
+    const reserve = taken.some((r) => segments[r].type === "chodnik") && !walkBeyond && got - 1 >= 0.8 ? 1 : 0;
+    const width = round(Math.min(want, got - reserve));
+    const rightTraffic = (pSide === "R") !== !!country.leftHand;
+    const contra = tags[`cycleway:${pSide === "L" ? (along ? "left" : "right") : along ? "right" : "left"}`] === "opposite_track" || st.trackOneway === "-1";
+    const dir = st.trackOneway === "no" ? undefined : (rightTraffic !== contra ? "forward" : "backward");
+    const track = { type: "cyklostezka", width, source: st.trackWidth ? "osm" : "odhad", ...(dir && { dir }) };
+    // What stays of the last part taken (scraps under 0.3 m go to the track).
+    const lastQ = taken.at(-1), rest = round(got - width);
+    const keep = rest >= 0.3 ? [{ ...segments[lastQ], width: rest }] : [];
+    if (rest > 0 && rest < 0.3) track.width = round(got);
+    const lo = Math.min(...taken), count = taken.length;
+    segments.splice(lo, count, ...(step > 0 ? [track, ...keep] : [...keep, track]));
+    n++;
+  }
+  return n;
+}
+
 // A roadway the orthophoto's lines cut into shoulders only, with no lane anywhere in the profile (995 Slovak streets:
 // Pluhová 1.67 + 2.43 m, Topoľčianska 3.67 + 4.63 m): the shoulders side by side are the roadway, one lane under 5 m,
 // a two-way street's two from 5 m, a one-way street's OSM lanes while each keeps 2.5 m. ?off=bezpruhu: the A/B.

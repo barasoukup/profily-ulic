@@ -174,8 +174,10 @@ export const orthoHereAt = (source, lon, lat) => source !== "none" && (source ==
 // config.local.js); without it laneImage throws an error marked noKey (app.js: the estimate from OSM, said so), as it
 // does when the service turns the token away (401/403 on every tile). Dataforsyningen is moving to a new platform (a
 // service window 26.–30. 11. 2026): a server error is an outage, told as one.
-export const DK_ORTHO = (z, x, y, token = dkToken()) => `https://api.dataforsyningen.dk/orto_foraar_webm_DAF?${new URLSearchParams({ service: "WMTS", request: "GetTile", version: "1.0.0",
-  layer: "orto_foraar_webm", style: "default", format: "image/jpeg", tilematrixset: "DFD_GoogleMapsCompatible", tilematrix: String(z), tilerow: String(y), tilecol: String(x), token })}`;
+// Composed by hand, not through URLSearchParams: Leaflet's layer passes "{z}", "{x}", "{y}" and replaces them itself, so
+// they must stay unencoded (the review of 24. 11. 2026: encoded to %7Bz%7D, every basemap tile was a 400).
+export const DK_ORTHO = (z, x, y, token = dkToken()) => "https://api.dataforsyningen.dk/orto_foraar_webm_DAF?service=WMTS&request=GetTile&version=1.0.0"
+  + `&layer=orto_foraar_webm&style=default&format=image%2Fjpeg&tilematrixset=DFD_GoogleMapsCompatible&tilematrix=${z}&tilerow=${y}&tilecol=${x}&token=${encodeURIComponent(token ?? "")}`;
 export const SK_ORTHO = "https://zbgis.skgeodesy.sk/zbgis/rest/services/Ortofoto_hres/MapServer";
 const SOURCES = {
   // The grid of z19, tiles of 512 px (about 10 cm). balance: the mosaic is bright and tinted (Košice 2025: asphalt

@@ -78,8 +78,12 @@ Značení: **ZÁV** = závazné (předpis), **DOP** = doporučení (dánské „
 - § 28 stk. 3: „Standsning eller parkering må ikke ske på cykelsti, gangsti eller fortov.“ Totéž na středových a dělicích
   pásech a ostrůvcích. **Jen mimo „tættere bebygget område“** smí vozidlo do 3 500 kg stát částí na chodníku nebo dělicím
   pásu (ZÁV, ověřeno). Neplatí pro kola a dvoukolové mopedy.
-- Pro aplikaci: stání napůl na chodníku z OSM ve městě **není dovolené** (výjimečně jen mimo obec); `halfKerbNote` jako
-  porušení zákona, žádná zbývající šířka pro chodce v zákoně.
+- **Místní výjimky (§ 92 stk. 1 nr. 1):** obce smějí místní úpravou (lokale bestemmelser) stání na chodníku povolit, řada
+  to dělá (podle borger.dk „Kommunen kan dog tillade parkering på fortov med to hjul“; Høje-Taastrup, Ballerup; jen
+  z druhé ruky, text vyhlášek jsme nečetli, Kodaň neověřena; nepřátelská recenze 24. 11. 2026, bod 7).
+- Pro aplikaci: stání napůl na chodníku z OSM ve městě je podle zákona zakázané, **pokud ho obec místní úpravou
+  nepovolila**; `halfKerbNote` to říká i s výjimkou podle § 92 (obecní vyhlášky aplikace nezná), mimo obec smí vozidlo
+  stát částí na chodníku; žádná zbývající šířka pro chodce v zákoně.
 - Další vzdálenosti (§ 29): 5 m před přechodem a výjezdem z cyklostezky, 10 m od křižovatky, 12 m u zastávky bez
   vyznačení, 30 m od železničního přejezdu (ZÁV, ověřeno).
 
