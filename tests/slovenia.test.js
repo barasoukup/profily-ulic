@@ -168,7 +168,7 @@ test("Slovinsko: značky, normy, zákon o stání", async () => {
   }
   assert.equal(SI.limits({ type: "chodnik" }, [], 0), null, "minimum chodníku nenalezeno");
   assert.equal(SI.limits({ type: "cyklopruh" }, [], 0).zaklad, 1.75);
-  assert.equal(SI.limits({ type: "cyklostezka" }, [], 0).min, 2);
+  assert.equal(SI.limits({ type: "cyklostezka" }, [], 0).min, 1, "bez směru jako jednosměrná");
   assert.equal(SI.limits({ type: "parkovani", orient: "kolme" }, [], 0), null);
   assert.equal(SI.limits({ type: "pruh", roadClass: "residential" }, [], 0).zaklad, 2.5);
   assert.equal(SI.limits({ type: "pruh", roadClass: "mk4" }, [], 0).zaklad, 2.5);

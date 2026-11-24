@@ -187,7 +187,7 @@ test("Finsko: značky, normy, zákon o stání", async () => {
   // Guides only: nothing red.
   for (const s of [{ type: "chodnik" }, { type: "cyklopruh" }, { type: "cyklostezka" }, { type: "bus" }, { type: "parkovani" }]) assert.equal(FI.limits(s, [], 0).min, 0, s.type);
   assert.equal(FI.limits({ type: "cyklopruh" }, [], 0).zaklad, 1.5);
-  assert.equal(FI.limits({ type: "cyklostezka" }, [], 0).zaklad, 2.5);
+  assert.equal(FI.limits({ type: "cyklostezka" }, [], 0).zaklad, 1.5, "bez směru jako jednosměrná");
   assert.equal(FI.limits({ type: "cyklostezka", dir: "forward" }, [], 0).zaklad, 1.5);
   assert.equal(FI.limits({ type: "parkovani", orient: "kolme" }, [], 0).zaklad, 5);
   assert.equal(FI.limits({ type: "parkovani", orient: "sikme" }, [], 0), null);

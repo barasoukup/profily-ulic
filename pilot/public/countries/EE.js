@@ -4,6 +4,7 @@
 import { t } from "../i18n.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
+import { cycleTrackLimits } from "./cycletrack.js";
 import { GROUP } from "../norms.js";
 import { estoniaDetails, estoniaLook } from "../house-looks.js";
 
@@ -14,7 +15,7 @@ import { estoniaDetails, estoniaLook } from "../house-looks.js";
 // The lane: 3 m (Tallinn's guide); 2.75 m is the standard's exceptional value, used only on local streets (OSM's
 // residential, living_street, unclassified, service: GROUP D) and unknown ones.
 const localStreet = (s, segs = []) => { const c = s.roadClass ?? segs.find((x) => x?.roadClass)?.roadClass; return !c || GROUP[c] === "D"; };
-function limitsEE(s, segs = []) {
+function limitsEE(s, segs = [], i = -1) {
   switch (s.type) {
     case "chodnik":
       return { min: 1.5, zaklad: 2, why: t("chodník: nejméně 1,5 m (nařízení o přístupnosti 2026, nové a přestavěné ulice); pro dva chodce 2 m (norma EVS 843, z druhé ruky)") };
@@ -22,8 +23,12 @@ function limitsEE(s, segs = []) {
       return { min: 1.5, zaklad: 2.5, why: t("stezka pro chodce a cyklisty: nejméně 1,5 m (nařízení o přístupnosti 2026); 2,5 m závazně jen mimo obec (normy projektování silnic 2023), ve městě orientačně") };
     case "cyklopruh":
       return { min: 0, zaklad: 1.5, why: t("cyklopruh: doporučeno 1,5 m, s nízkou obrubou 1 m (norma EVS 843, z druhé ruky)") };
-    case "cyklostezka":
-      return { min: 1.5, zaklad: 2.5, why: t("stezka pro cyklisty: 2,5 m, výjimečně 1,5 m (norma EVS 843, z druhé ruky)") };
+    case "cyklostezka": {
+      // The standard's figure for a track, whatever its direction; a half of a two-way track by the whole track
+      // (countries/cycletrack.js; the review of 24. 11. 2026).
+      const track = { min: 1.5, zaklad: 2.5, why: t("stezka pro cyklisty: 2,5 m, výjimečně 1,5 m (norma EVS 843, z druhé ruky)") };
+      return cycleTrackLimits(s, segs, i, track, track);
+    }
     case "bus":
       return { min: 0, zaklad: 3, why: t("pruh pro veřejnou dopravu: doporučeno nejméně 3 m (norma EVS 843, z druhé ruky)") };
     case "pruh": case "pruh_piktokoridor":

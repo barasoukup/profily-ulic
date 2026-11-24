@@ -46,6 +46,32 @@ async function gisco(cntr, holes = false) {
   return (holes ? polys.flat() : polys.map((p) => p[0])).map((r) => r.map(([x, y]) => [+x.toFixed(4), +y.toFixed(4)]));
 }
 
+// Estonia's towns on a land border (the review of 24. 11. 2026: GISCO's 1 : 1 M line cuts the river bank of Narva, Jõe
+// tänav and Sadama tee, and the streets of Valga by Valka): the cadastral boundary of the town (EHAK, WFS of the Maa- ja
+// Ruumiamet, gsavalik.envir.ee baasandmed:ehak_linn; "Haldus- ja asustusjaotus: Maa- ja Ruumiamet", its open licence),
+// which runs along the state border there. Narva linn (the municipality, with its garden exclaves) and Valga linn (the
+// settlement of Valga vald), thinned to about 2 m. Inland both: their rings are land borders too (land_estonia).
+let ehakRings = null;
+async function ehak() {
+  if (ehakRings) return ehakRings;
+  const q = new URLSearchParams({ service: "WFS", version: "2.0.0", request: "GetFeature", typeNames: "baasandmed:ehak_linn", outputFormat: "application/json",
+    srsName: "EPSG:4326", CQL_FILTER: "nimi LIKE 'Narva linn%' OR nimi LIKE 'Valga linn%'" });
+  const json = await (await fetch(`https://gsavalik.envir.ee/geoserver/baasandmed/ows?${q}`, { headers: { "User-Agent": "profily-ulic" } })).json();
+  const towns = json.features.filter((f) => ["Narva linn", "Valga linn"].includes(f.properties.nimi.trim()));
+  if (towns.length !== 2) throw new Error("EHAK: Narva a Valga nenalezeny");
+  return (ehakRings = towns.flatMap((f) => (f.geometry.type === "MultiPolygon" ? f.geometry.coordinates : [f.geometry.coordinates]).map((p) => simplify(p[0], 0.00002))));
+}
+// Helsinki and Espoo with their sea (the review of 24. 11. 2026: 17 streets of Helsinki, on bridges and islands GISCO's
+// 1 : 1 M coast leaves out, Itäväylä, Laivakoirankatu, Ramsinniementie, Hanasaarenranta, lay more than the coast's 400 m
+// off it): the municipal boundaries of HSY's regional map (Seutukartta, kartta.hel.fi avoindata:Seutukartta_aluejako_kuntarajat,
+// CC BY 4.0, Helsingin seudun ympäristöpalvelut HSY), which take in the sea up to the open water; simplified as the others.
+async function seutukartta() {
+  const q = new URLSearchParams({ service: "WFS", version: "2.0.0", request: "GetFeature", typeNames: "avoindata:Seutukartta_aluejako_kuntarajat", outputFormat: "application/json", srsName: "EPSG:4326" });
+  const json = await (await fetch(`https://kartta.hel.fi/ws/geoserver/avoindata/wfs?${q}`, { headers: { "User-Agent": "profily-ulic" } })).json();
+  const towns = json.features.filter((f) => ["Helsinki", "Espoo"].includes(f.properties.nimi));
+  if (towns.length !== 2) throw new Error("Seutukartta: Helsinki a Espoo nenalezeny");
+  return towns.flatMap((f) => (f.geometry.type === "MultiPolygon" ? f.geometry.coordinates : [f.geometry.coordinates]).map((p) => simplify(p[0])));
+}
 // swissBOUNDARIES3D (Landesgrenzen) of one state, CH or LI, with its holes (Büsingen, Campione), simplified as the
 // others (Douglas–Peucker to about 30 m).
 function simplify(ring, eps = OFFSET) {
@@ -77,6 +103,9 @@ async function swiss(iso) {
   const g = json.feature.geometry;
   return (g.type === "MultiPolygon" ? g.coordinates.flat() : g.coordinates).map((r) => simplify(r)).filter((r) => r.length >= 4);
 }
+
+// Ydre Nordhavn (denmark below): the hull of the OSM streets the review found abroad, 150 m round them.
+const NORDHAVN = [[12.6174,55.6999],[12.6176,55.6994],[12.6181,55.699],[12.6189,55.6987],[12.6198,55.6986],[12.6404,55.6986],[12.6414,55.6987],[12.6421,55.699],[12.6427,55.6995],[12.6492,55.7092],[12.6447,55.723],[12.6442,55.7235],[12.6434,55.7238],[12.6425,55.7239],[12.6299,55.7241],[12.6289,55.724],[12.6288,55.724],[12.6264,55.7227],[12.6259,55.7223],[12.6174,55.6999]];
 
 const BUILD = {
   cesko: () => rings(CZ, { where: "1=1", outFields: "nazev" }),
@@ -123,14 +152,24 @@ const BUILD = {
   italy: () => ["./italy-border.json", "./lombardy-border.json"].flatMap((f) => JSON.parse(fs.readFileSync(new URL(f, import.meta.url), "utf8"))).map((r) => simplify(r)),
   // Estonia (23. 11. 2026): GISCO's, with the islands.
   estonia: () => gisco("EE"),
+  // More rings of a state, over its own ("<id>+<what>": city.js loadStates reads them as <id>, kept apart since the rings
+  // of one entry count by parity; tools/build_coverage.mjs leaves them out; 24. 11. 2026): Narva and Valga by the
+  // cadastre (ehak above).
+  "estonia+ehak": () => ehak(),
   // Slovenia (23. 11. 2026): GISCO's, after Italy and Austria (their rings come first by the border; Croatia stays abroad).
   slovenia: () => gisco("SI"),
   // Finland (23. 11. 2026): GISCO's, with the islands and Åland (an autonomous part of Finland; the app reads it with the
   // Finnish rules, evaluation/finland/ZDROJE.md 6).
   finland: () => gisco("FI"),
+  // Helsinki and Espoo with their sea from HSY's regional map (seutukartta above, 24. 11. 2026).
+  "finland+hsy": () => seutukartta(),
   // Denmark (23. 11. 2026): GISCO's DK, with Bornholm and the islands; the Faroes (FO) and Greenland (GL) are GISCO's own
   // entries and stay abroad (no data of theirs). By Flensburg and Padborg the same GISCO line as Germany's ring.
   denmark: () => gisco("DK"),
+  // Ydre Nordhavn (the review of 24. 11. 2026: Nordsøvej and Oceankaj, land reclaimed in the 2010s, lie up to 1.3 km off
+  // GISCO's coast): the hull of its streets in OSM (the local pack of 24. 11. 2026, © OpenStreetMap contributors, ODbL),
+  // 150 m round them. Malmö is 20 km off.
+  "denmark+nordhavn": () => [NORDHAVN],
   // Lithuania (24. 11. 2026): GISCO's LT, after Poland's exact PRG ring (by Suwałki and Sejny the Polish line first);
   // Latvia, Belarus and Kaliningrad stay abroad.
   lithuania: () => gisco("LT"),
@@ -144,6 +183,10 @@ const BUILD = {
   land_lithuania: () => giscoLand("LTU"),
   land_finland: () => giscoLand("FIN"),
   land_denmark: () => giscoLand("DNK"),
+  // Estonia's and Slovenia's (24. 11. 2026, the reviews: the harbours of Haapsalu, Virtsu, Kuivastu, Heltermaa,
+  // Rohuküla and Paldiski, the old town of Koper and the west of Piran); Estonia's with the rings of Narva and Valga.
+  land_estonia: async () => [...await giscoLand("EST"), ...await ehak()],
+  land_slovenia: () => giscoLand("SVN"),
   // Not ours, kept out of the coast's tolerance (city.js cityAt): Gibraltar and Andorra are abroad.
   foreign_gi: () => gisco("GI"),
   foreign_ad: () => gisco("AD"),

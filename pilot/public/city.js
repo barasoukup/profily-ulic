@@ -586,10 +586,14 @@ let states = null;
 // 24. 11. 2026): its vertices, and the lines.
 let land = {};
 const LAND = /^land_/;
+// More rings of a state over its own (staty.json "<id>+<what>": Narva and Valga by the Estonian cadastre, Helsinki and
+// Espoo with their sea, Ydre Nordhavn; the reviews of 24. 11. 2026): an entry of their own, since the rings of one entry
+// count by parity (places.js inside), read as <id>.
+const PLUS = /\+.*$/;
 export const loadStates = (json) => {
   const entries = Object.entries(json);
   land = Object.fromEntries(entries.filter(([id]) => LAND.test(id)).map(([id, lines]) => [id.slice(5), { lines, at: new Set(lines.flat().map((p) => p.join())) }]));
-  states = entries.filter(([id]) => !LAND.test(id)).map(([id, rings]) => boxed(id, rings));
+  states = entries.filter(([id]) => !LAND.test(id)).map(([id, rings]) => ({ ...boxed(id, rings), id: id.replace(PLUS, "") }));
 };
 // The cities of the other states (mesta-sk.json, mesta-at.json; STATE_TOWNS): within their state, else its rest.
 let towns = [];
@@ -599,7 +603,9 @@ export const loadTowns = (json) => { towns = [...towns.filter((b) => !(b.id in (
 // nearest is a state of COAST or an entry kept out of it (foreign_*: Gibraltar, Andorra; closed_*). Only by the sea
 // (Bára 24. 11. 2026): a segment of a state's land border (land_<id>) does not count, and a point nearer to that border
 // than to the coast is not the state's (300 m inside Latvia, Belarus, Russia or Sweden is not Lithuania or Finland).
-const COAST = new Set(["spain", "portugal", "monaco", "france", "finland", "denmark", "lithuania"]);
+// Estonia and Slovenia too (the reviews of 24. 11. 2026: the harbours of Haapsalu, Virtsu, Kuivastu, Heltermaa, Rohuküla
+// and Paldiski, Pirita tee, the old town of Koper, Žusterna and the west of Piran were abroad), with their land borders.
+const COAST = new Set(["spain", "portugal", "monaco", "france", "finland", "denmark", "lithuania", "estonia", "slovenia"]);
 const COAST_TOLERANCE = 400;
 function stateEntry(lat, lon) {
   const hit = within(states, lat, lon);

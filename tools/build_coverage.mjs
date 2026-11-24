@@ -104,7 +104,8 @@ export async function buildCoverage({ nuts = readJson(NUTS_FILE), lau = readJson
   const { countryOfCity, cityById } = await import(new URL("city.js", PUB));
   const STATY = json("staty.json");
   const BOUNDS = Object.assign({}, ...["mesta.json", "mesta-sk.json", "mesta-at.json", "pasporty.json", "regions-be.json", "regions-es.json"].map(json));
-  const states = Object.keys(STATY).filter((id) => !/^(land|foreign|closed)_/.test(id));
+  // (Not a state's extra rings either, "<id>+<what>": tools/build_staty.mjs.)
+  const states = Object.keys(STATY).filter((id) => !/^(land|foreign|closed)_|\+/.test(id));
   const problems = [];
 
   // Each module by the places it serves (towns/index.js TOWNS: states and cities).

@@ -5,6 +5,7 @@ import { t } from "../i18n.js";
 import { GROUP } from "../norms.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
+import { cycleTrackLimits } from "./cycletrack.js";
 
 // Norms (evaluation/slovenia/NORMY.md A): the Pravilnik o kolesarskih površinah (36/18) and the Pravilnik o projektiranju
 // cest (91/05 …), both "no longer in force but still applied" until the rules of ZCes-2 come: binding for new roads, so the
@@ -23,8 +24,10 @@ function limitsSI(s, segs = [], i = -1) {
     case "cyklopruh": case "ochranny_pruh":
       return { min: 1, zaklad: 1.75, why: t("cyklopruh: 1,75 m, nejméně 1 m (pravidlo o cyklistických plochách, čl. 14)") };
     case "cyklostezka":
-      return s.dir ? { min: 1, zaklad: 2, why: t("jednosměrná stezka pro cyklisty: 2 m, nejméně 1 m (pravidlo o cyklistických plochách, čl. 13)") }
-        : { min: 2, zaklad: 3, why: t("obousměrná stezka pro cyklisty: 3 m, nejméně 2 m (pravidlo o cyklistických plochách, čl. 13)") };
+      // A half of a two-way track by the whole track; one-way, or without a direction (derive.js gives OSM's one-way
+      // tracks none), by the one-way figure (countries/cycletrack.js; the review of 24. 11. 2026).
+      return cycleTrackLimits(s, segs, i, { min: 1, zaklad: 2, why: t("jednosměrná stezka pro cyklisty: 2 m, nejméně 1 m (pravidlo o cyklistických plochách, čl. 13)") },
+        { min: 2, zaklad: 3, why: t("obousměrná stezka pro cyklisty: 3 m, nejméně 2 m (pravidlo o cyklistických plochách, čl. 13)") });
     case "bus":
       return { min: 0, zaklad: 3, why: t("pruh pro veřejnou dopravu: nejméně 3 m (pravidlo o projektování silnic, čl. 32)") };
     case "parkovani":

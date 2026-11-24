@@ -174,11 +174,11 @@ test("Dánsko: značky a normy", async () => {
   const { SPEED_TEMPLATES } = await import("../pilot/public/signs.js");
   assert.ok(SPEED_TEMPLATES.has("C55"));
   assert.match(DK.signs.label({ k: "b29" }, null, "B 29 Zákaz stání"), /^C 62 Zákaz stání$/);
-  // Recommendations are orange; only the two-way cycle track (circular 95/1984) is red.
+  // Recommendations are orange; the two-way cycle track (circular 95/1984, second hand) too (tests/cycle-track.test.js).
   const L = (s, segs = [s], i = 0) => DK.limits(s, segs, i);
   assert.equal(L({ type: "chodnik" }).min, 0);
   assert.equal(L({ type: "chodnik" }).zaklad, 1.5);
-  assert.equal(L({ type: "cyklostezka" }).min, 2.5);
+  assert.equal(L({ type: "cyklostezka" }).zaklad, 1.8, "bez směru jako jednosměrná");
   assert.equal(L({ type: "cyklostezka", dir: "forward" }).min, 0);
   const segs = [{ type: "parkovani", orient: "podelne" }, { type: "cyklopruh" }];
   assert.equal(L(segs[1], segs, 1).zaklad, 1.8);

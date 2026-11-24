@@ -6,6 +6,7 @@ import { t } from "../i18n.js";
 import { fmt } from "../norms.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
+import { cycleTrackLimits } from "./cycletrack.js";
 import { nordicDetails, nordicLook } from "../house-looks.js";
 
 // Norms (evaluation/finland/NORMY.md A, D): Finland has no binding widths of streets; only guides: the national
@@ -21,8 +22,10 @@ function limitsFI(s, segs = [], i = -1) {
     case "cyklopruh": case "ochranny_pruh":
       return { min: 0, zaklad: 1.5, why: t("cyklopruh: 1,75–2 m, na místní trase 1,5 m, krátce výjimečně 1,25 m (příručka Väylä 18/2020, tab. 14)") };
     case "cyklostezka":
-      return s.dir ? { min: 0, zaklad: 1.5, why: t("jednosměrná stezka pro cyklisty: 2–2,5 m, na místní trase 1,5 m (příručka Väylä 18/2020, tab. 15)") }
-        : { min: 0, zaklad: 2.5, why: t("obousměrná stezka pro cyklisty: 3–4 m, na místní trase 2,5 m (příručka Väylä 18/2020, tab. 16)") };
+      // A half of a two-way track by the whole track (tab. 16); one-way, or without a direction, by tab. 15
+      // (countries/cycletrack.js; the review of 24. 11. 2026).
+      return cycleTrackLimits(s, segs, i, { min: 0, zaklad: 1.5, why: t("jednosměrná stezka pro cyklisty: 2–2,5 m, na místní trase 1,5 m (příručka Väylä 18/2020, tab. 15)") },
+        { min: 0, zaklad: 2.5, why: t("obousměrná stezka pro cyklisty: 3–4 m, na místní trase 2,5 m (příručka Väylä 18/2020, tab. 16)") });
     case "bus":
       return { min: 0, zaklad: 3.5, why: t("jízdní pruh na trase autobusu: 3,5 m (helsinská příručka šířek uličního prostoru, 2014)") };
     case "bus_cyklo":

@@ -5,6 +5,7 @@
 import { t } from "../i18n.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
+import { cycleTrackLimits } from "./cycletrack.js";
 import { nordicDetails, nordicLook } from "../house-looks.js";
 
 // Norms (evaluation/denmark/NORMY.md A, D): the Danish vejregler are recommendations (vejledende), so orange only:
@@ -24,8 +25,11 @@ function limitsDK(s, segs = [], i = -1) {
         : { min: 0, zaklad: 1.5, why: t("cyklopruh: 1,5 m včetně čáry, vedle podélného stání 1,8 m (dánská příručka Tværprofiler i byer, 2019; doporučení)") };
     }
     case "cyklostezka":
-      return s.dir ? { min: 0, zaklad: 1.8, why: t("jednosměrná stezka pro cyklisty: běžně 2,25 m, nejméně 1,8 m (dánská příručka Tværprofiler i byer, 2019; doporučení)") }
-        : { min: 2.5, zaklad: 2.5, why: t("obousměrná stezka pro cyklisty podél silnice: nejméně 2,5 m (oběžník 95/1984, závazný pro správce silnic, citovaný v příručce Tværprofiler i byer)") };
+      // A half of a two-way track by the whole track; one-way, or without a direction (derive.js gives OSM's one-way
+      // tracks none), by the one-way figure (countries/cycletrack.js). Orange only (the review of 24. 11. 2026): the
+      // circular 95/1984 is known only as the handbook cites it (NORMY.md: second hand), its text and validity unread.
+      return cycleTrackLimits(s, segs, i, { min: 0, zaklad: 1.8, why: t("jednosměrná stezka pro cyklisty: běžně 2,25 m, nejméně 1,8 m (dánská příručka Tværprofiler i byer, 2019; doporučení)") },
+        { min: 0, zaklad: 2.5, why: t("obousměrná stezka pro cyklisty podél silnice: nejméně 2,5 m (oběžník 95/1984, závazný pro správce silnic, citovaný v příručce Tværprofiler i byer)") });
     case "bus":
       return { min: 0, zaklad: 3, why: t("pruh pro autobusy: běžně 3,5 m, krátce při nízké rychlosti nejméně 3 m (dánská příručka Tværprofiler i byer, 2019; doporučení)") };
     case "bus_cyklo":

@@ -5,6 +5,7 @@
 import { t } from "../i18n.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
+import { cycleTrackLimits } from "./cycletrack.js";
 
 // Norms (evaluation/lithuania/NORMY.md D): the state's STR 2.06.04:2014 was not read (e-seimas blocked), so only the
 // street guides of Vilnius (2021) and Kaunas (2024), which call themselves recommendations: orange only. Lithuania has
@@ -16,8 +17,12 @@ function limitsLT(s, segs = [], i = -1) {
       return { min: 0, zaklad: 2.5, why: t("chodník: doporučeno nejméně 2,5 m (příručka ulic Kaunasu 2024; státní minimum nenalezeno)") };
     case "cyklopruh": case "ochranny_pruh":
       return { min: 0, zaklad: 1.5, why: PARKED(segs, i) ? t("cyklopruh: nejméně 1,5 m, u podélného stání vést za stáním s ochranným pásem (příručka ulic Kaunasu 2024, doporučení)") : t("cyklopruh: nejméně 1,5 m (příručka ulic Kaunasu 2024, doporučení)") };
-    case "cyklostezka":
-      return { min: 0, zaklad: 2.5, why: t("stezka pro cyklisty: 2,5–3,5 m (příručka ulic Kaunasu 2024, doporučení)") };
+    case "cyklostezka": {
+      // Kaunas's figure for a track, whatever its direction; a half of a two-way track by the whole track
+      // (countries/cycletrack.js; the review of 24. 11. 2026).
+      const track = { min: 0, zaklad: 2.5, why: t("stezka pro cyklisty: 2,5–3,5 m (příručka ulic Kaunasu 2024, doporučení)") };
+      return cycleTrackLimits(s, segs, i, track, track);
+    }
     case "bus":
       return { min: 0, zaklad: 3.05, why: t("pruh pro veřejnou dopravu: 3,25 m při dvou pruzích, 3 m při třech a více, zúžit lze na 3,05 m (příručka ulic Vilniusu 2021, doporučení)") };
     case "pruh": case "pruh_piktokoridor":
