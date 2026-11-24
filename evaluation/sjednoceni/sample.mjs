@@ -24,6 +24,13 @@ const SETS = {
     krakow: [50.0647, 19.945], zaragoza: [41.6488, -0.8891], bologna: [44.4949, 11.3426] } },
   // Prague (city.fix off by the 100 cuts of 9. 11. 2026; MTVU is the truth), 36 candidates within 4.5 km.
   praha: { seed: 20261124 + 17, n: 36, r: 4500, places: { praha: [50.0755, 14.4378] } },
+  // Czech motorways and expressways (wideRoads: off in Czechia, "not tried"), 10 candidates each within 2 km of a stretch.
+  dalnice: { seed: 20261124 + 29, n: 10, r: 2000, places: { chodov: [50.03, 14.49], ruzyne: [50.08, 14.27], slatina: [49.17, 16.70], plzen: [49.72, 13.34],
+    zdiby: [50.16, 14.44], rudna: [49.81, 18.22], hradec: [50.24, 15.82], olomouc: [49.61, 17.22] } },
+  // Main streets of the states without wideStreets (a side ending in a median or promenade at the reach gets 35 m),
+  // 8 candidates each within 3 km.
+  hlavni: { seed: 20261124 + 31, n: 8, r: 3000, places: { praha: [50.0755, 14.4378], brno: [49.1951, 16.6068], ostrava: [49.8347, 18.282], bratislava: [48.1486, 17.1077],
+    wien: [48.2085, 16.3731], berlin: [52.52, 13.405], muenchen: [48.1374, 11.5755], warszawa: [52.2297, 21.0122], amsterdam: [52.3676, 4.9041], zurich: [47.3769, 8.5417] } },
 };
 const S = SETS[set];
 let seed = S.seed;

@@ -1,0 +1,482 @@
+[
+ {
+  "id": "da-chodov-1",
+  "place": "chodov",
+  "lat": 50.029927,
+  "lon": 14.511138
+ },
+ {
+  "id": "da-chodov-2",
+  "place": "chodov",
+  "lat": 50.026356,
+  "lon": 14.490128
+ },
+ {
+  "id": "da-chodov-3",
+  "place": "chodov",
+  "lat": 50.018482,
+  "lon": 14.480933
+ },
+ {
+  "id": "da-chodov-4",
+  "place": "chodov",
+  "lat": 50.035833,
+  "lon": 14.482983
+ },
+ {
+  "id": "da-chodov-5",
+  "place": "chodov",
+  "lat": 50.031646,
+  "lon": 14.472251
+ },
+ {
+  "id": "da-chodov-6",
+  "place": "chodov",
+  "lat": 50.021948,
+  "lon": 14.482618
+ },
+ {
+  "id": "da-chodov-7",
+  "place": "chodov",
+  "lat": 50.030964,
+  "lon": 14.48688
+ },
+ {
+  "id": "da-chodov-8",
+  "place": "chodov",
+  "lat": 50.024202,
+  "lon": 14.475616
+ },
+ {
+  "id": "da-chodov-9",
+  "place": "chodov",
+  "lat": 50.037461,
+  "lon": 14.502078
+ },
+ {
+  "id": "da-chodov-10",
+  "place": "chodov",
+  "lat": 50.032307,
+  "lon": 14.479303
+ },
+ {
+  "id": "da-ruzyne-1",
+  "place": "ruzyne",
+  "lat": 50.088166,
+  "lon": 14.270108
+ },
+ {
+  "id": "da-ruzyne-2",
+  "place": "ruzyne",
+  "lat": 50.087539,
+  "lon": 14.293434
+ },
+ {
+  "id": "da-ruzyne-3",
+  "place": "ruzyne",
+  "lat": 50.065682,
+  "lon": 14.257308
+ },
+ {
+  "id": "da-ruzyne-4",
+  "place": "ruzyne",
+  "lat": 50.089441,
+  "lon": 14.288777
+ },
+ {
+  "id": "da-ruzyne-5",
+  "place": "ruzyne",
+  "lat": 50.092284,
+  "lon": 14.258948
+ },
+ {
+  "id": "da-ruzyne-6",
+  "place": "ruzyne",
+  "lat": 50.09166,
+  "lon": 14.282832
+ },
+ {
+  "id": "da-ruzyne-7",
+  "place": "ruzyne",
+  "lat": 50.081403,
+  "lon": 14.255892
+ },
+ {
+  "id": "da-ruzyne-8",
+  "place": "ruzyne",
+  "lat": 50.090609,
+  "lon": 14.253673
+ },
+ {
+  "id": "da-ruzyne-9",
+  "place": "ruzyne",
+  "lat": 50.06601,
+  "lon": 14.256885
+ },
+ {
+  "id": "da-ruzyne-10",
+  "place": "ruzyne",
+  "lat": 50.078407,
+  "lon": 14.261635
+ },
+ {
+  "id": "da-slatina-1",
+  "place": "slatina",
+  "lat": 49.163684,
+  "lon": 16.679879
+ },
+ {
+  "id": "da-slatina-2",
+  "place": "slatina",
+  "lat": 49.179061,
+  "lon": 16.677072
+ },
+ {
+  "id": "da-slatina-3",
+  "place": "slatina",
+  "lat": 49.173687,
+  "lon": 16.680885
+ },
+ {
+  "id": "da-slatina-4",
+  "place": "slatina",
+  "lat": 49.155284,
+  "lon": 16.701089
+ },
+ {
+  "id": "da-slatina-5",
+  "place": "slatina",
+  "lat": 49.16926,
+  "lon": 16.716477
+ },
+ {
+  "id": "da-slatina-6",
+  "place": "slatina",
+  "lat": 49.156745,
+  "lon": 16.718044
+ },
+ {
+  "id": "da-slatina-7",
+  "place": "slatina",
+  "lat": 49.162729,
+  "lon": 16.696246
+ },
+ {
+  "id": "da-slatina-8",
+  "place": "slatina",
+  "lat": 49.179973,
+  "lon": 16.682421
+ },
+ {
+  "id": "da-slatina-9",
+  "place": "slatina",
+  "lat": 49.16567,
+  "lon": 16.707628
+ },
+ {
+  "id": "da-slatina-10",
+  "place": "slatina",
+  "lat": 49.179569,
+  "lon": 16.71154
+ },
+ {
+  "id": "da-plzen-1",
+  "place": "plzen",
+  "lat": 49.705859,
+  "lon": 13.331015
+ },
+ {
+  "id": "da-plzen-2",
+  "place": "plzen",
+  "lat": 49.721325,
+  "lon": 13.358902
+ },
+ {
+  "id": "da-plzen-3",
+  "place": "plzen",
+  "lat": 49.72564,
+  "lon": 13.363094
+ },
+ {
+  "id": "da-plzen-4",
+  "place": "plzen",
+  "lat": 49.732642,
+  "lon": 13.348448
+ },
+ {
+  "id": "da-plzen-5",
+  "place": "plzen",
+  "lat": 49.716405,
+  "lon": 13.358367
+ },
+ {
+  "id": "da-plzen-6",
+  "place": "plzen",
+  "lat": 49.72217,
+  "lon": 13.334349
+ },
+ {
+  "id": "da-plzen-7",
+  "place": "plzen",
+  "lat": 49.735644,
+  "lon": 13.340917
+ },
+ {
+  "id": "da-plzen-8",
+  "place": "plzen",
+  "lat": 49.735786,
+  "lon": 13.326577
+ },
+ {
+  "id": "da-plzen-9",
+  "place": "plzen",
+  "lat": 49.719297,
+  "lon": 13.365055
+ },
+ {
+  "id": "da-plzen-10",
+  "place": "plzen",
+  "lat": 49.729289,
+  "lon": 13.363482
+ },
+ {
+  "id": "da-zdiby-1",
+  "place": "zdiby",
+  "lat": 50.176782,
+  "lon": 14.449539
+ },
+ {
+  "id": "da-zdiby-2",
+  "place": "zdiby",
+  "lat": 50.166285,
+  "lon": 14.465123
+ },
+ {
+  "id": "da-zdiby-3",
+  "place": "zdiby",
+  "lat": 50.142145,
+  "lon": 14.438248
+ },
+ {
+  "id": "da-zdiby-4",
+  "place": "zdiby",
+  "lat": 50.146906,
+  "lon": 14.441463
+ },
+ {
+  "id": "da-zdiby-5",
+  "place": "zdiby",
+  "lat": 50.159066,
+  "lon": 14.439292
+ },
+ {
+  "id": "da-zdiby-6",
+  "place": "zdiby",
+  "lat": 50.154,
+  "lon": 14.440756
+ },
+ {
+  "id": "da-zdiby-7",
+  "place": "zdiby",
+  "lat": 50.174493,
+  "lon": 14.441698
+ },
+ {
+  "id": "da-zdiby-8",
+  "place": "zdiby",
+  "lat": 50.167007,
+  "lon": 14.418534
+ },
+ {
+  "id": "da-zdiby-9",
+  "place": "zdiby",
+  "lat": 50.165439,
+  "lon": 14.421187
+ },
+ {
+  "id": "da-zdiby-10",
+  "place": "zdiby",
+  "lat": 50.167898,
+  "lon": 14.425487
+ },
+ {
+  "id": "da-rudna-1",
+  "place": "rudna",
+  "lat": 49.806611,
+  "lon": 18.224071
+ },
+ {
+  "id": "da-rudna-2",
+  "place": "rudna",
+  "lat": 49.822707,
+  "lon": 18.20453
+ },
+ {
+  "id": "da-rudna-3",
+  "place": "rudna",
+  "lat": 49.79466,
+  "lon": 18.205927
+ },
+ {
+  "id": "da-rudna-4",
+  "place": "rudna",
+  "lat": 49.813713,
+  "lon": 18.231163
+ },
+ {
+  "id": "da-rudna-5",
+  "place": "rudna",
+  "lat": 49.810832,
+  "lon": 18.219666
+ },
+ {
+  "id": "da-rudna-6",
+  "place": "rudna",
+  "lat": 49.820065,
+  "lon": 18.206997
+ },
+ {
+  "id": "da-rudna-7",
+  "place": "rudna",
+  "lat": 49.803669,
+  "lon": 18.227782
+ },
+ {
+  "id": "da-rudna-8",
+  "place": "rudna",
+  "lat": 49.805124,
+  "lon": 18.224052
+ },
+ {
+  "id": "da-rudna-9",
+  "place": "rudna",
+  "lat": 49.818454,
+  "lon": 18.219445
+ },
+ {
+  "id": "da-rudna-10",
+  "place": "rudna",
+  "lat": 49.809626,
+  "lon": 18.217858
+ },
+ {
+  "id": "da-hradec-1",
+  "place": "hradec",
+  "lat": 50.233504,
+  "lon": 15.821663
+ },
+ {
+  "id": "da-hradec-2",
+  "place": "hradec",
+  "lat": 50.243773,
+  "lon": 15.836147
+ },
+ {
+  "id": "da-hradec-3",
+  "place": "hradec",
+  "lat": 50.229867,
+  "lon": 15.836045
+ },
+ {
+  "id": "da-hradec-4",
+  "place": "hradec",
+  "lat": 50.225214,
+  "lon": 15.81681
+ },
+ {
+  "id": "da-hradec-5",
+  "place": "hradec",
+  "lat": 50.250015,
+  "lon": 15.837295
+ },
+ {
+  "id": "da-hradec-6",
+  "place": "hradec",
+  "lat": 50.244119,
+  "lon": 15.800876
+ },
+ {
+  "id": "da-hradec-7",
+  "place": "hradec",
+  "lat": 50.250761,
+  "lon": 15.804891
+ },
+ {
+  "id": "da-hradec-8",
+  "place": "hradec",
+  "lat": 50.228819,
+  "lon": 15.836842
+ },
+ {
+  "id": "da-hradec-9",
+  "place": "hradec",
+  "lat": 50.240213,
+  "lon": 15.799754
+ },
+ {
+  "id": "da-hradec-10",
+  "place": "hradec",
+  "lat": 50.240713,
+  "lon": 15.817177
+ },
+ {
+  "id": "da-olomouc-1",
+  "place": "olomouc",
+  "lat": 49.596035,
+  "lon": 17.233538
+ },
+ {
+  "id": "da-olomouc-2",
+  "place": "olomouc",
+  "lat": 49.608789,
+  "lon": 17.220379
+ },
+ {
+  "id": "da-olomouc-3",
+  "place": "olomouc",
+  "lat": 49.607614,
+  "lon": 17.219518
+ },
+ {
+  "id": "da-olomouc-4",
+  "place": "olomouc",
+  "lat": 49.605648,
+  "lon": 17.215215
+ },
+ {
+  "id": "da-olomouc-5",
+  "place": "olomouc",
+  "lat": 49.624901,
+  "lon": 17.223858
+ },
+ {
+  "id": "da-olomouc-6",
+  "place": "olomouc",
+  "lat": 49.605472,
+  "lon": 17.200888
+ },
+ {
+  "id": "da-olomouc-7",
+  "place": "olomouc",
+  "lat": 49.615192,
+  "lon": 17.236673
+ },
+ {
+  "id": "da-olomouc-8",
+  "place": "olomouc",
+  "lat": 49.603007,
+  "lon": 17.203868
+ },
+ {
+  "id": "da-olomouc-9",
+  "place": "olomouc",
+  "lat": 49.606241,
+  "lon": 17.202593
+ },
+ {
+  "id": "da-olomouc-10",
+  "place": "olomouc",
+  "lat": 49.613181,
+  "lon": 17.212283
+ }
+]

@@ -530,7 +530,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     }
     osmCache = { osm, way: near.way };
     // A motorway or an expressway is wider than the usual reach (Bára: R1 in Banská Bystrica): 35 m each side for a new
-    // cut. Only in Slovakia and Austria so far (countries/<ISO>.js wideRoads; Fable: not tried on Czech motorways).
+    // cut. Not in Czechia (countries/CZ.js wideRoads: measured worse 13 : 1, evaluation/sjednoceni).
     const WIDE_ROAD = country.wideRoads && /^(motorway|trunk)$/.test(near.way.tags?.highway || "");
     reach = reach || (keepWay && state.cut?.reach) || (WIDE_ROAD ? { left: WIDE_REACH, right: WIDE_REACH } : defaultReach());
     // A new cut has A at its western end and B at the eastern (Bára): the profile is then seen

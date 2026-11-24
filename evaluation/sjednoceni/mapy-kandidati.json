@@ -1,0 +1,506 @@
+[
+ {
+  "id": "ma-wien-1",
+  "place": "wien",
+  "lat": 48.218867,
+  "lon": 16.393345
+ },
+ {
+  "id": "ma-wien-2",
+  "place": "wien",
+  "lat": 48.22055,
+  "lon": 16.400619
+ },
+ {
+  "id": "ma-wien-3",
+  "place": "wien",
+  "lat": 48.22872,
+  "lon": 16.387654
+ },
+ {
+  "id": "ma-wien-4",
+  "place": "wien",
+  "lat": 48.222741,
+  "lon": 16.377556
+ },
+ {
+  "id": "ma-wien-5",
+  "place": "wien",
+  "lat": 48.215359,
+  "lon": 16.350488
+ },
+ {
+  "id": "ma-wien-6",
+  "place": "wien",
+  "lat": 48.207241,
+  "lon": 16.38519
+ },
+ {
+  "id": "ma-wien-7",
+  "place": "wien",
+  "lat": 48.206362,
+  "lon": 16.401513
+ },
+ {
+  "id": "ma-berlin-1",
+  "place": "berlin",
+  "lat": 52.526322,
+  "lon": 13.429305
+ },
+ {
+  "id": "ma-berlin-2",
+  "place": "berlin",
+  "lat": 52.537767,
+  "lon": 13.405998
+ },
+ {
+  "id": "ma-berlin-3",
+  "place": "berlin",
+  "lat": 52.519568,
+  "lon": 13.398877
+ },
+ {
+  "id": "ma-berlin-4",
+  "place": "berlin",
+  "lat": 52.536313,
+  "lon": 13.40718
+ },
+ {
+  "id": "ma-berlin-5",
+  "place": "berlin",
+  "lat": 52.516273,
+  "lon": 13.42902
+ },
+ {
+  "id": "ma-berlin-6",
+  "place": "berlin",
+  "lat": 52.527079,
+  "lon": 13.421315
+ },
+ {
+  "id": "ma-berlin-7",
+  "place": "berlin",
+  "lat": 52.51531,
+  "lon": 13.388176
+ },
+ {
+  "id": "ma-hamburg-1",
+  "place": "hamburg",
+  "lat": 53.543875,
+  "lon": 9.958666
+ },
+ {
+  "id": "ma-hamburg-2",
+  "place": "hamburg",
+  "lat": 53.555664,
+  "lon": 9.988387
+ },
+ {
+  "id": "ma-hamburg-3",
+  "place": "hamburg",
+  "lat": 53.556646,
+  "lon": 9.994569
+ },
+ {
+  "id": "ma-hamburg-4",
+  "place": "hamburg",
+  "lat": 53.535753,
+  "lon": 9.968454
+ },
+ {
+  "id": "ma-hamburg-5",
+  "place": "hamburg",
+  "lat": 53.532339,
+  "lon": 9.996844
+ },
+ {
+  "id": "ma-hamburg-6",
+  "place": "hamburg",
+  "lat": 53.558111,
+  "lon": 9.979342
+ },
+ {
+  "id": "ma-hamburg-7",
+  "place": "hamburg",
+  "lat": 53.569444,
+  "lon": 9.98549
+ },
+ {
+  "id": "ma-paris-1",
+  "place": "paris",
+  "lat": 48.859431,
+  "lon": 2.331468
+ },
+ {
+  "id": "ma-paris-2",
+  "place": "paris",
+  "lat": 48.851757,
+  "lon": 2.344177
+ },
+ {
+  "id": "ma-paris-3",
+  "place": "paris",
+  "lat": 48.847831,
+  "lon": 2.373975
+ },
+ {
+  "id": "ma-paris-4",
+  "place": "paris",
+  "lat": 48.852611,
+  "lon": 2.385761
+ },
+ {
+  "id": "ma-paris-5",
+  "place": "paris",
+  "lat": 48.85541,
+  "lon": 2.32361
+ },
+ {
+  "id": "ma-paris-6",
+  "place": "paris",
+  "lat": 48.86449,
+  "lon": 2.369405
+ },
+ {
+  "id": "ma-paris-7",
+  "place": "paris",
+  "lat": 48.863582,
+  "lon": 2.384031
+ },
+ {
+  "id": "ma-helsinki-1",
+  "place": "helsinki",
+  "lat": 60.183277,
+  "lon": 24.938529
+ },
+ {
+  "id": "ma-helsinki-2",
+  "place": "helsinki",
+  "lat": 60.183873,
+  "lon": 24.971174
+ },
+ {
+  "id": "ma-helsinki-3",
+  "place": "helsinki",
+  "lat": 60.158816,
+  "lon": 24.939786
+ },
+ {
+  "id": "ma-helsinki-4",
+  "place": "helsinki",
+  "lat": 60.177023,
+  "lon": 24.953244
+ },
+ {
+  "id": "ma-helsinki-5",
+  "place": "helsinki",
+  "lat": 60.169682,
+  "lon": 24.940132
+ },
+ {
+  "id": "ma-helsinki-6",
+  "place": "helsinki",
+  "lat": 60.160191,
+  "lon": 24.921614
+ },
+ {
+  "id": "ma-helsinki-7",
+  "place": "helsinki",
+  "lat": 60.179296,
+  "lon": 24.955259
+ },
+ {
+  "id": "ma-amsterdam-1",
+  "place": "amsterdam",
+  "lat": 52.365805,
+  "lon": 4.896918
+ },
+ {
+  "id": "ma-amsterdam-2",
+  "place": "amsterdam",
+  "lat": 52.358069,
+  "lon": 4.917771
+ },
+ {
+  "id": "ma-amsterdam-3",
+  "place": "amsterdam",
+  "lat": 52.351354,
+  "lon": 4.906027
+ },
+ {
+  "id": "ma-amsterdam-4",
+  "place": "amsterdam",
+  "lat": 52.34867,
+  "lon": 4.912939
+ },
+ {
+  "id": "ma-amsterdam-5",
+  "place": "amsterdam",
+  "lat": 52.378372,
+  "lon": 4.876415
+ },
+ {
+  "id": "ma-amsterdam-6",
+  "place": "amsterdam",
+  "lat": 52.385987,
+  "lon": 4.913835
+ },
+ {
+  "id": "ma-amsterdam-7",
+  "place": "amsterdam",
+  "lat": 52.375912,
+  "lon": 4.930983
+ },
+ {
+  "id": "ma-zurich-1",
+  "place": "zurich",
+  "lat": 47.370764,
+  "lon": 8.545437
+ },
+ {
+  "id": "ma-zurich-2",
+  "place": "zurich",
+  "lat": 47.39131,
+  "lon": 8.522334
+ },
+ {
+  "id": "ma-zurich-3",
+  "place": "zurich",
+  "lat": 47.37538,
+  "lon": 8.544565
+ },
+ {
+  "id": "ma-zurich-4",
+  "place": "zurich",
+  "lat": 47.364952,
+  "lon": 8.531194
+ },
+ {
+  "id": "ma-zurich-5",
+  "place": "zurich",
+  "lat": 47.378091,
+  "lon": 8.536279
+ },
+ {
+  "id": "ma-zurich-6",
+  "place": "zurich",
+  "lat": 47.374017,
+  "lon": 8.558673
+ },
+ {
+  "id": "ma-zurich-7",
+  "place": "zurich",
+  "lat": 47.363644,
+  "lon": 8.567462
+ },
+ {
+  "id": "ma-tallinn-1",
+  "place": "tallinn",
+  "lat": 59.438894,
+  "lon": 24.770266
+ },
+ {
+  "id": "ma-tallinn-2",
+  "place": "tallinn",
+  "lat": 59.44983,
+  "lon": 24.737216
+ },
+ {
+  "id": "ma-tallinn-3",
+  "place": "tallinn",
+  "lat": 59.446958,
+  "lon": 24.758627
+ },
+ {
+  "id": "ma-tallinn-4",
+  "place": "tallinn",
+  "lat": 59.421945,
+  "lon": 24.765444
+ },
+ {
+  "id": "ma-tallinn-5",
+  "place": "tallinn",
+  "lat": 59.428691,
+  "lon": 24.732448
+ },
+ {
+  "id": "ma-tallinn-6",
+  "place": "tallinn",
+  "lat": 59.452105,
+  "lon": 24.75057
+ },
+ {
+  "id": "ma-tallinn-7",
+  "place": "tallinn",
+  "lat": 59.446615,
+  "lon": 24.74268
+ },
+ {
+  "id": "ma-bratislava-1",
+  "place": "bratislava",
+  "lat": 48.156785,
+  "lon": 17.122612
+ },
+ {
+  "id": "ma-bratislava-2",
+  "place": "bratislava",
+  "lat": 48.155252,
+  "lon": 17.104384
+ },
+ {
+  "id": "ma-bratislava-3",
+  "place": "bratislava",
+  "lat": 48.133012,
+  "lon": 17.093137
+ },
+ {
+  "id": "ma-bratislava-4",
+  "place": "bratislava",
+  "lat": 48.136248,
+  "lon": 17.090128
+ },
+ {
+  "id": "ma-bratislava-5",
+  "place": "bratislava",
+  "lat": 48.164865,
+  "lon": 17.121127
+ },
+ {
+  "id": "ma-bratislava-6",
+  "place": "bratislava",
+  "lat": 48.136784,
+  "lon": 17.099968
+ },
+ {
+  "id": "ma-bratislava-7",
+  "place": "bratislava",
+  "lat": 48.158909,
+  "lon": 17.109281
+ },
+ {
+  "id": "ma-krakow-1",
+  "place": "krakow",
+  "lat": 50.057152,
+  "lon": 19.918741
+ },
+ {
+  "id": "ma-krakow-2",
+  "place": "krakow",
+  "lat": 50.083716,
+  "lon": 19.955135
+ },
+ {
+  "id": "ma-krakow-3",
+  "place": "krakow",
+  "lat": 50.05599,
+  "lon": 19.959638
+ },
+ {
+  "id": "ma-krakow-4",
+  "place": "krakow",
+  "lat": 50.075652,
+  "lon": 19.943018
+ },
+ {
+  "id": "ma-krakow-5",
+  "place": "krakow",
+  "lat": 50.072551,
+  "lon": 19.968416
+ },
+ {
+  "id": "ma-krakow-6",
+  "place": "krakow",
+  "lat": 50.051958,
+  "lon": 19.960883
+ },
+ {
+  "id": "ma-krakow-7",
+  "place": "krakow",
+  "lat": 50.061344,
+  "lon": 19.971978
+ },
+ {
+  "id": "ma-zaragoza-1",
+  "place": "zaragoza",
+  "lat": 41.6589,
+  "lon": -0.87589
+ },
+ {
+  "id": "ma-zaragoza-2",
+  "place": "zaragoza",
+  "lat": 41.654831,
+  "lon": -0.883463
+ },
+ {
+  "id": "ma-zaragoza-3",
+  "place": "zaragoza",
+  "lat": 41.660777,
+  "lon": -0.891051
+ },
+ {
+  "id": "ma-zaragoza-4",
+  "place": "zaragoza",
+  "lat": 41.629811,
+  "lon": -0.899211
+ },
+ {
+  "id": "ma-zaragoza-5",
+  "place": "zaragoza",
+  "lat": 41.653337,
+  "lon": -0.865364
+ },
+ {
+  "id": "ma-zaragoza-6",
+  "place": "zaragoza",
+  "lat": 41.645688,
+  "lon": -0.879868
+ },
+ {
+  "id": "ma-zaragoza-7",
+  "place": "zaragoza",
+  "lat": 41.663499,
+  "lon": -0.891194
+ },
+ {
+  "id": "ma-bologna-1",
+  "place": "bologna",
+  "lat": 44.483056,
+  "lon": 11.332371
+ },
+ {
+  "id": "ma-bologna-2",
+  "place": "bologna",
+  "lat": 44.492271,
+  "lon": 11.362423
+ },
+ {
+  "id": "ma-bologna-3",
+  "place": "bologna",
+  "lat": 44.503991,
+  "lon": 11.341846
+ },
+ {
+  "id": "ma-bologna-4",
+  "place": "bologna",
+  "lat": 44.514923,
+  "lon": 11.348488
+ },
+ {
+  "id": "ma-bologna-5",
+  "place": "bologna",
+  "lat": 44.508674,
+  "lon": 11.323778
+ },
+ {
+  "id": "ma-bologna-6",
+  "place": "bologna",
+  "lat": 44.490984,
+  "lon": 11.362695
+ },
+ {
+  "id": "ma-bologna-7",
+  "place": "bologna",
+  "lat": 44.481113,
+  "lon": 11.330653
+ }
+]

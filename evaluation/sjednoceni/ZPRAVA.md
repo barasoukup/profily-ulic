@@ -89,3 +89,16 @@ Při slovenském A/B se ukázaly dvě chyby sdíleného kódu, které platí vš
   (J. Mazúra v Martině: model vidí u B kolmé stání, jsou tam podélná auta), stejně 1, nejde 1.
 
 Celkem **6 : 2**. Regrese beze změny (stání z modelu do ní nevstupuje), testy `tests/park-ai.test.js`.
+
+## 4. `wideRoads` v Česku: výjimka zůstává, změřeno
+
+Dálnice a silnice pro motorová vozidla mají jinde dosah 35 m (Bára: R1 v Banské Bystrici), v Česku ne („Fable: not
+tried on Czech motorways“). Vzorek `dalnice`: náhodné body do 2 km od úseků D0, D1, D5, D6, D8, D11, D35 a silnic I/50,
+I/27 (Praha Chodov a Ruzyně, Brno Slatina, Plzeň, Zdiby, Ostrava Rudná, Hradec, Olomouc), přitažené na `motorway` nebo
+`trunk` do 700 m, ne blíž než 300 m od sebe: **14 řezů** (`vysledky/dalnice2.json`). Změnilo se všech 14: technická mapa
+má plochy všude, takže 35 m vede dál do polí, lesů, na parkoviště a jiné cesty.
+
+Naslepo (balíčky wr1, wr2, posuzovatel měl říct, kde končí prostor silnice): **N 1 : O 13**. Jediná výhra N je silnice
+27 v Plzni (O vynechal druhou vozovku). Rozhodnutí: **výjimka zůstává** (`countries/CZ.js wideRoads: false` s důvodem).
+Sdílená oprava, která by ji mohla zrušit: prodloužit dosah dálnice jen tehdy, když strana na dosahu končí v části silnice
+(druhá vozovka, dělicí pás), jako `wideStreets`; to by bylo třeba změřit i na Slovensku, v Rakousku a Německu.
