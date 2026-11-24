@@ -479,6 +479,9 @@ Object.assign(CITIES, {
   // Copenhagen and Aarhus (towns/denmark.js).
   denmark: { ...abroad("denmark", "DK", "Dánsko", "v Dánsku", "dánské", [56.0, 10.5], "55.676100, 12.568300"),
     dataShort: "ortofota GeoDanmark a OSM", rulesHead: "Šířky podle dánských doporučení (vejregler), nezávazné:" },
+  // Lithuania (Bára 24. 11. 2026): OSM only (no orthophoto may be used), Vilnius's topographic areas (towns/lithuania.js).
+  lithuania: { ...abroad("lithuania", "LT", "Litva", "v Litvě", "litevské", [55.2, 23.9], "54.687200, 25.279700"),
+    dataShort: "OSM", rulesHead: "Šířky podle doporučení příruček ulic Vilniusu a Kaunasu, nezávazné:" },
   // Malta (Bára 23. 11. 2026): the Planning Authority's orthophoto and OSM (towns/malta.js); traffic keeps left.
   malta: { ...abroad("malta", "MT", "Malta", "na Maltě", "maltské", [35.9, 14.45], "35.898900, 14.514600"),
     dataShort: "ortofota stavebního úřadu a OSM", rulesHead: "Šířky podle maltských předpisů a doporučení:" },
@@ -586,7 +589,7 @@ export const loadTowns = (json) => { towns = [...towns.filter((b) => !(b.id in (
 // The state entry of a point: the first ring it lies in; on a coast (GISCO's 1 : 1 M ring cuts off quays and ports: the
 // review of 23. 11. 2026, Barceloneta, Cais do Sodré, Funchal, Mareterra) the entry within COAST_TOLERANCE metres, if the
 // nearest is a state of COAST or an entry kept out of it (foreign_*: Gibraltar, Andorra; closed_*).
-const COAST = new Set(["spain", "portugal", "monaco", "france", "finland", "denmark"]);
+const COAST = new Set(["spain", "portugal", "monaco", "france", "finland", "denmark", "lithuania"]);
 const COAST_TOLERANCE = 400;
 function stateEntry(lat, lon) {
   const hit = within(states, lat, lon);

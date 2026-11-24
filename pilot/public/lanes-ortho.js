@@ -270,6 +270,8 @@ const median = (a) => { const b = a.filter((v) => !Number.isNaN(v)).sort((x, y) 
 // st.S: the saturation (max less min of the channels; ortho-osm.js: does a column look like the roadway). decode: a PNG decoder for Node (no canvas there; the evaluation),
 // which asks ČÚZK for a PNG.
 export async function laneImage(opts) {
+  // A state with no orthophoto it may use (Lithuania: the NŽT's is for viewing on its geoportal only): none.
+  if (opts.source === "none") return null;
   // Belgium: Flanders' photo, else Wallonia's (a blank image outside a region's coverage is no photo).
   if (opts.source === "be") {
     const start = Date.now(), budget = opts.timeout ?? TIMEOUT;

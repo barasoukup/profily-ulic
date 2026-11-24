@@ -398,6 +398,22 @@ CC BY 4.0, `?aarbyg=0`). Hledání GSearch (husnummer, navngivenvej; `search-dk.
 směr, na chodníku v obci zakázané (§ 28). Značky `signs-DK/` (BEK 425/2023, Commons public domain; C 55 jako šablona
 aplikace). Bez paneláků, severské vzhledy domů (`nordicLook("DK")`), neutrální vozidla, český mobiliář, rakouské označníky.
 
+### Litva (Bára 24. 11. 2026)
+
+Stát `lithuania` (LT), `countries/LT.js`, `towns/lithuania.js`; hranice GISCO (za polskou PRG), na pobřeží 400 m tolerance
+(Klaipėda, Kuršská kosa); OSM balík `lt` (jen R2). **Žádné ortofoto:** celostátní ortofoto NŽT je licencované jen
+k prohlížení na geoportal.lt (`evaluation/lithuania/ZDROJE.md`), takže `laneOrtho: "none"` (`lanes-ortho.js` nevrátí
+snímek), pruhy z ortofota ani podklad mapy nejsou; mimo Vilnius profil jen odhadem z OSM („jen odhad z OSM“). Vilnius:
+topografické plochy 1 : 500 (`gis.vplanas.lt` … `Vilnius_basemap_LKS_su_rajonu/MapServer/13`, kód povrchu `KODAS` a účel
+`Paskirtis`: `kelias` vozovka, `pėsč` chodník, `dvir` cyklo, `park` stání, `nuovaža` vjezd…) jako plochy řezu, když pod
+středem řezu (do 3 m) leží vozovka mapy (pod pěšinou i chodník); před nimi budovy OSM, po nich zeleň a voda OSM
+(`?vilnius=0` vypne). Licence neuvedená, kredit „Vilniaus miesto savivaldybė / Vilniaus planas“ (Bára jako u Kodaně).
+A/B `evaluation/lithuania/ab/ZPRAVA.md`. Budovy jen z OSM (GRPK nemá podlaží ani rok). Hledání Photon. Normy jen
+z městských příruček Vilniusu (2021) a Kaunasu (2024), oranžově. Stání 3 m na směr (KET 150.7, z druhé ruky), na
+chodníku jen se značkou. Značky `signs-LT/` (Commons, Augustasci CC BY 4.0 / public domain, tabulky Gigillo83 CC BY-SA
+4.0; 329 jako šablona aplikace). Socialistické vzhledy domů ano (sovětská sídliště jako v Estonsku), neutrální vozidla,
+český mobiliář, rakouské označníky.
+
 ### Dlaždice OSM
 
 Jedna sada dlaždic pro všechna města (`pilot/data/osm-tiles`, na webu `data/osm-tiles`) z výřezu Geofabrik Česká

@@ -52,6 +52,10 @@ export const TOWNS = {
   FI: { helsinki: [60.170, 24.941], espoo: [60.176, 24.805], tampere: [61.498, 23.761], turku: [60.452, 22.267], oulu: [65.012, 25.465] },
   // Denmark (23. 11. 2026): the towns of the local OSM pack (last, so the earlier states keep their points).
   DK: { kobenhavn: [55.680, 12.570], aarhus: [56.155, 10.205], odense: [55.396, 10.388], aalborg: [57.048, 9.920] },
+  // Lithuania (24. 11. 2026): only Vilnius has an orthophoto the judge may see (the city's 2024 one; the NŽT's is for
+  // viewing on its geoportal only), so the "towns" are Vilnius's districts (last, so the earlier states keep their points).
+  LT: { senamiestis: [54.682, 25.287], zirmunai: [54.712, 25.300], antakalnis: [54.700, 25.322], naujamiestis: [54.678, 25.262],
+    zverynas: [54.693, 25.250], karoliniskes: [54.683, 25.210] },
 };
 if (process.argv[1] === new URL(import.meta.url).pathname) {
   let seed = 20261117;

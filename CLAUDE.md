@@ -514,6 +514,21 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Normy (vejregler) jen doporučení, oranžově; červeně jen obousměrná cyklostezka 2,5 m (oběžník 95/1984). Stání 3 m na
   směr (zákon jen u plné čáry), na chodníku v obci zakázané. Otevřené otázky v `docs/backlog.md`.
 
+## Litva (větev estonia, Bára 24. 11. 2026, nenasazené)
+- Stát `lithuania` (LT): `countries/LT.js`, `towns/lithuania.js`, `signs-LT/`, `evaluation/lithuania/` (ZDROJE, NORMY, ZPRAVA,
+  ab/). Hranice GISCO za polskou PRG, pobřeží 400 m; OSM balík `lt` (jen R2).
+- **Žádné ortofoto** (Bára 24. 11.: ortofoto NŽT je jen k prohlížení na geoportálu, nepoužívat, úřadům nepsat):
+  `laneOrtho: "none"`, mimo Vilnius jen odhad z OSM.
+- Vilnius: topografické plochy 1 : 500 (`gis.vplanas.lt` …/MapServer/13, `KODAS` + `Paskirtis`) jako plochy řezu, když pod
+  středem řezu leží vozovka mapy (pod pěšinou i chodník); `?vilnius=0`. Licence neuvedená, Bára je vzala jako kodaňské,
+  kredit „Vilniaus miesto savivaldybė / Vilniaus planas“. A/B 26 řezů: lépe 17, hůř 2; univerzální měření (10 řezů) ale
+  mapa 52 % proti odhadu 64 % (rozpor v `evaluation/lithuania/ZPRAVA.md`, rozhodne Bára).
+- Budovy jen OSM (GRPK bez podlaží a roku, kód užití nedokumentovaný). Hledání Photon. Normy z příruček Vilniusu a Kaunasu
+  (oranžově). Stání 3 m na směr, na chodníku jen se značkou. Značky z Commons (Augustasci CC BY 4.0, tabulky Gigillo83
+  CC BY-SA 4.0, v patičce). Socialistické vzhledy ano (sovětská sídliště jako v Estonsku).
+- Univerzální měření od 24. 11. 2026 vynechává body na `service=driveway/parking_aisle/drive-through` (nové pravidlo, jen LT
+  zatím; ostatní státy nepřepočítané).
+
 ## Společné pro státy (Bára 23. 11. 2026)
 - Sever Kypru a Itálie mimo otevřená ortofota (i se San Marinem a Vatikánem) profil nedostanou, aplikace to řekne
   (`city.js closedAt`, `staty.json` `closed_*`).

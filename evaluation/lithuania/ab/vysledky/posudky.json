@@ -1,0 +1,14 @@
+{
+ "B": ["vl3", "vl5", "vl6", "vl7", "vl9", "vl10", "vl16", "vl17", "vl18", "vl24", "vl27", "vl29", "vl32", "vl35", "vl37", "vl39", "vl40"],
+ "A": ["vl13", "vl28"],
+ "stejne": ["vl11", "vl19", "vl26", "vl36"],
+ "nejde": ["vl2", "vl22", "vl31"],
+ "poznamky": {
+  "vl13": "B ztratil vozovku obslužné cesty (auto stojí na asfaltu, B kreslí chodník 10 m)",
+  "vl28": "B kreslí přes parkoviště obslužnou cestu 42 m (plocha 'kelias' zahrnuje celé parkoviště)",
+  "vl26": "B dá stojící auta do vozovky 6,95 m, A je dá na chodník; obojí špatně",
+  "vl16": "B má cyklopruh se symboly kola, A ne",
+  "vl27": "B má stání 5,6 m a vozovku dvora, A jen pruh 2,75 m",
+  "vl4, vl21, vl30, vl38": "v prvním kole B bez vozovky (pod středem jen dlážděný dvůr nebo chodník mapy); po úpravě hasStreet (pod ulicí pro auta musí být vozovka mapy) odhad"
+ }
+}

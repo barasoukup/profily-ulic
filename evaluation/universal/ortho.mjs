@@ -131,6 +131,12 @@ async function fetchOrtho(country, b, w, h, lon, lat) {
     if (!dkToken()) throw new Error("ortofoto: chybí token Dataforsyningen (DK_TOKEN)");
     url = `https://api.dataforsyningen.dk/orto_foraar_DAF?${new URLSearchParams({ service: "WMS", request: "GetMap", version: "1.3.0", layers: "orto_foraar", styles: "", crs: "EPSG:3857", bbox: b.join(","), width: w, height: h, format: "image/png", token: dkToken() })}`;
   }
+  else if (country === "LT") {
+    // Lithuania: Vilnius's own orthophoto 2024 (gis.vplanas.lt, tiles of level 20, about 9 cm) for the judge only; the
+    // national NŽT orthophoto is for viewing on its geoportal only and is not used (evaluation/lithuania/ZDROJE.md 1).
+    if (lon < 25.02 || lon > 25.49 || lat < 54.56 || lat > 54.84) throw new Error("ortofoto: v Litvě jen Vilnius");
+    return tiles("https://gis.vplanas.lt/arcgis/rest/services/Baziniai_zemelapiai/ORTO_2024_WGS/MapServer/tile", "", 20, b, w, h);
+  }
   else if (country === "LU") return tiles("https://wmts1.geoportail.lu/opendata/wmts/ortho_latest/GLOBAL_WEBMERCATOR_4_V3", ".jpeg", 20, b, w, h, true);
   else if (country === "DE") url = deWmsUrl(DE_ORTHO[(await landsAt(lon, lat))[0]], b, w, h, "image/png");
   else url = `https://ags.cuzk.gov.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer?${new URLSearchParams({ service: "WMS", request: "GetMap", version: "1.3.0", layers: "0", styles: "", crs: "EPSG:3857", bbox: b.join(","), width: w, height: h, format: "image/png" })}`;

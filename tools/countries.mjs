@@ -64,6 +64,8 @@ export const COUNTRIES = {
   // Denmark (Bára 23. 11. 2026): Geofabrik's one extract with Bornholm (498 MB of PBF, dense with imported buildings and
   // addresses; the local sample of Copenhagen, Aarhus, Odense and Aalborg packed to 17 MB), only on R2.
   dk: { iso: "DK", geofabrik: "denmark", pages: false },
+  // Lithuania (Bára 24. 11. 2026): Geofabrik's one extract (224 MB of PBF), only on R2.
+  lt: { iso: "LT", geofabrik: "lithuania", pages: false },
 };
 // The packs to build (osm-tiles.yml): a state's own, or its parts.
 export const PACKS = Object.entries(COUNTRIES).flatMap(([k, c]) => (c.parts ? Object.entries(c.parts).map(([code, extract]) => ({ code, extract })) : [{ code: k, extract: c.geofabrik }]));

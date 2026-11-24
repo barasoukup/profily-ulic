@@ -4739,5 +4739,115 @@
   "half": 12.9,
   "photos": true,
   "needPhoto": true
+ },
+ {
+  "id": "lt-senamiestis-1",
+  "country": "LT",
+  "town": "senamiestis",
+  "lat": 54.6881795352842,
+  "lon": 25.26724157660624,
+  "bearing": 24.651130144324075,
+  "half": 12,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "lt-senamiestis-2",
+  "country": "LT",
+  "town": "senamiestis",
+  "lat": 54.69201639785868,
+  "lon": 25.288809652331185,
+  "bearing": -82.10113130884112,
+  "half": 26,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "lt-senamiestis-3",
+  "country": "LT",
+  "town": "senamiestis",
+  "lat": 54.66937370398175,
+  "lon": 25.286578748832483,
+  "bearing": 38.19043125567196,
+  "half": 18.1,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "lt-senamiestis-4",
+  "country": "LT",
+  "town": "senamiestis",
+  "lat": 54.670220672685495,
+  "lon": 25.295988293075638,
+  "bearing": 55.948831978185744,
+  "half": 8.8,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "lt-zirmunai-4",
+  "country": "LT",
+  "town": "zirmunai",
+  "lat": 54.71170537581327,
+  "lon": 25.315073502381114,
+  "bearing": -72.96318558095535,
+  "half": 26,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "lt-zirmunai-7",
+  "country": "LT",
+  "town": "zirmunai",
+  "lat": 54.71788673374384,
+  "lon": 25.297021201231516,
+  "bearing": 60.17739113630585,
+  "half": 40,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "lt-naujamiestis-8",
+  "country": "LT",
+  "town": "naujamiestis",
+  "lat": 54.67147239608676,
+  "lon": 25.267293358688576,
+  "bearing": 71.70624079053671,
+  "half": 19,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "lt-zverynas-1",
+  "country": "LT",
+  "town": "zverynas",
+  "lat": 54.693196656374305,
+  "lon": 25.267539510834546,
+  "bearing": 47.93427743528463,
+  "half": 24.4,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "lt-zverynas-6",
+  "country": "LT",
+  "town": "zverynas",
+  "lat": 54.694218117619165,
+  "lon": 25.256028893394603,
+  "bearing": -2.8576321772335347,
+  "half": 17,
+  "photos": true,
+  "needPhoto": true
+ },
+ {
+  "id": "lt-zverynas-7",
+  "country": "LT",
+  "town": "zverynas",
+  "lat": 54.67995563803462,
+  "lon": 25.247627878185856,
+  "bearing": 14.405188674912209,
+  "half": 39,
+  "photos": true,
+  "needPhoto": true
  }
 ]

@@ -123,6 +123,9 @@ const BUILD = {
   // Denmark (23. 11. 2026): GISCO's DK, with Bornholm and the islands; the Faroes (FO) and Greenland (GL) are GISCO's own
   // entries and stay abroad (no data of theirs). By Flensburg and Padborg the same GISCO line as Germany's ring.
   denmark: () => gisco("DK"),
+  // Lithuania (24. 11. 2026): GISCO's LT, after Poland's exact PRG ring (by Suwałki and Sejny the Polish line first);
+  // Latvia, Belarus and Kaliningrad stay abroad.
+  lithuania: () => gisco("LT"),
   // Malta (23. 11. 2026): OSM's boundary with the territorial waters (one ring round the islands, no neighbour; GISCO's
   // coast cuts off quays; tools/malta-border.json, © OpenStreetMap contributors, ODbL).
   malta: () => JSON.parse(fs.readFileSync(new URL("./malta-border.json", import.meta.url), "utf8")).map((r) => simplify(r)),

@@ -19,10 +19,11 @@ import CY from "./CY.js";
 import MT from "./MT.js";
 import IT from "./IT.js";
 import EE from "./EE.js";
+import LT from "./LT.js";
 import SI from "./SI.js";
 import FI from "./FI.js";
 import DK from "./DK.js";
 import DEFAULT from "./default.js";
 
-export const COUNTRIES = { CZ, SK, AT, DE, CH, LI, NL, BE, LU, PL, FR, ES, PT, MC, CY, MT, IT, EE, SI, FI, DK };
+export const COUNTRIES = { CZ, SK, AT, DE, CH, LI, NL, BE, LU, PL, FR, ES, PT, MC, CY, MT, IT, EE, SI, FI, DK, LT };
 export const countryOf = (code) => (code && Object.hasOwn(COUNTRIES, code) ? COUNTRIES[code] : DEFAULT);

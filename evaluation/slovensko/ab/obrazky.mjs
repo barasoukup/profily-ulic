@@ -188,6 +188,13 @@ async function image(c, tMax) {
       await fs.mkdir(path.dirname(file), { recursive: true });
       await fs.writeFile(file, buf);
       await new Promise((r) => setTimeout(r, 300));
+    } else if (process.env.ORTHO === "lt") {
+      // Lithuania (evaluation/lithuania/ab): Vilnius's own orthophoto 2024 (gis.vplanas.lt ORTO_2024_WGS, tiles of level
+      // 20, {z}/{y}/{x}), only to judge the A/B (not in the app; the national NŽT orthophoto is not used at all).
+      buf = await atImage([x0, y0, x1, y1], w, h, false, (z, x, y) => `https://gis.vplanas.lt/arcgis/rest/services/Baziniai_zemelapiai/ORTO_2024_WGS/MapServer/tile/${z}/${y}/${x}`);
+      await fs.mkdir(path.dirname(file), { recursive: true });
+      await fs.writeFile(file, buf);
+      await new Promise((r) => setTimeout(r, 300));
     } else if (process.env.ORTHO === "at") {
       // Austria (evaluation/austria/ab): basemap.at's tiles of level 20 glued and cut to the box with ImageMagick.
       buf = await atImage([x0, y0, x1, y1], w, h);
