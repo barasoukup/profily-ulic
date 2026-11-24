@@ -33,10 +33,10 @@ Všechny soubory mají `viewBox`. Odvozené soubory:
 | ip20a | 525a Ühissõidukirada; s koly 525b Ühissõiduki- ja jalgrattarada | 525a.svg, 525b.svg |
 | zona30 | 381 Üks mõjuala s 351 (30) | 381-351-30.svg (381.svg je obecná předloha) |
 | ip26a | 573 Õueala | 573.svg |
-| ip27a | 381 s 432 Jalgtee (Commons „386“; předpis pěší zónu nezná, otázka pro Báru) | 386.svg |
+| ip27a | **náhrada**: 381 s 432 Jalgtee (Commons „386“); předpis pěší zónu nezná, Bára 23. 11. 2026 schválila jako náhradu | 386.svg |
 | c8a | 431 Jalgrattatee | 431.svg |
 | c9a | 435 Jalgratta- ja jalgtee (společná) | 435.svg |
-| c10a | 433 (chodci vpravo), 434 (chodci vlevo) Jalgratta- ja jalgtee (dělená) | 433.svg, 434.svg |
+| c10a | 433 (chodci vpravo), 434 (chodci vlevo) Jalgratta- ja jalgtee (dělená); podle strany chodců, při Otočit se prohodí | 433.svg, 434.svg |
 | c7a | 432 Jalgtee | 432.svg |
 
 Bez kresby: silnice pro motorová vozidla (ip15a; Estonsko má jen kiirtee), sdílená zóna, cyklistická zóna a ulice (nemá),

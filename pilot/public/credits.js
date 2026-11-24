@@ -33,7 +33,7 @@ export const SOURCE_CREDITS = {
     "pt-25": () => t("ortofoto © DGT"),
     cy: () => t("ortofoto © DLS Kypr"),
     mt: () => t("ortofoto © Planning Authority Malta, 2018 (CC BY 4.0)"),
-    ee: () => t("ortofoto © Maa- ja Ruumiamet"),
+    ee: () => t("ortofoto © Maa- ja Ruumiamet, nálet 2024 (stav dlaždic 11/2026)"),
     si: () => t("ortofoto DOF025 © Geodetska uprava RS, stav 11/2026 (CC BY 4.0)"),
     // Finland: the towns' orthophotos (lanes-ortho.js FI_ORTHO).
     "fi-hki": () => t("ortofoto © Helsingin kaupunki, kaupunkimittauspalvelut (CC BY 4.0)"),
@@ -102,7 +102,9 @@ export const SOURCE_CREDITS = {
   // Bologna's road areas (towns/italy.js).
   // The buildings of Slovenia's cadastre (towns/slovenia.js), where they told of a house.
   siGurs: { true: () => t("budovy © Geodetska uprava RS (kataster stavb, stav 11/2026, CC BY 4.0)") },
-  eeTown: { tallinn: () => t("mapa povrchů © Tallinna Linnaplaneerimise Amet") },
+  eeTown: { tallinn: () => t("mapa povrchů Tallinnu (tar_maakate, stav 11/2026) © Tallinna Linnaplaneerimise Amet") },
+  // The buildings of Estonia's topographic database (towns/estonia.js), where they told of a house.
+  eeEtak: { true: () => t("budovy ETAK © Maa- ja Ruumiamet (stav 11/2026)") },
   // Vilnius's topographic areas 1 : 500 (towns/lithuania.js).
   ltTown: { vilnius: () => t("mapa povrchů (topografické plochy 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas") },
   ltGrpk: { true: () => t("budovy GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0)") },

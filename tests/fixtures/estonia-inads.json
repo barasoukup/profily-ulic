@@ -1,0 +1,141 @@
+{
+ "recorded": "2026-11-24",
+ "url": "https://aks.geoportaal.ee/inaks/inaadress/gazetteer?features=EHITISHOONE,TANAV,EHAK&results=15",
+ "responses": {
+  "Narva mnt 10 Tallinn": {
+   "addresses": [
+    {
+     "liikVal": "EHITISHOONE",
+     "ipikkaadress": "Narva mnt 10, Kesklinna linnaosa, Tallinn, Harju maakond",
+     "liikluspind": "Narva mnt",
+     "viitepunkt_l": "24.763481",
+     "viitepunkt_b": "59.437021"
+    },
+    {
+     "liikVal": "EHITISHOONE",
+     "ipikkaadress": "Narva mnt 10e, Kesklinna linnaosa, Tallinn, Harju maakond",
+     "liikluspind": "Narva mnt",
+     "viitepunkt_l": "24.763867",
+     "viitepunkt_b": "59.436974"
+    }
+   ]
+  },
+  "Riia tänav Tartu": {
+   "addresses": [
+    {
+     "liikVal": "TANAV",
+     "ipikkaadress": "Riia tn, Tartu linn, Tartu linn, Tartu maakond",
+     "liikluspind": "Riia tn",
+     "viitepunkt_l": "26.708358",
+     "viitepunkt_b": "58.368223"
+    },
+    {
+     "liikVal": "TANAV",
+     "ipikkaadress": "Riia tn, Räni alevik, Kambja vald, Tartu maakond",
+     "liikluspind": "Riia tn",
+     "viitepunkt_l": "26.708358",
+     "viitepunkt_b": "58.368223"
+    },
+    {
+     "liikVal": "EHITISHOONE",
+     "ipikkaadress": "Riia tn 1, Tartu linn, Tartu linn, Tartu maakond",
+     "liikluspind": "Riia tn",
+     "viitepunkt_l": "26.727407",
+     "viitepunkt_b": "58.377908"
+    },
+    {
+     "liikVal": "EHITISHOONE",
+     "ipikkaadress": "Riia tn 2, Tartu linn, Tartu linn, Tartu maakond",
+     "liikluspind": "Riia tn",
+     "viitepunkt_l": "26.728910",
+     "viitepunkt_b": "58.376987"
+    },
+    {
+     "liikVal": "EHITISHOONE",
+     "ipikkaadress": "Riia tn 3, Tartu linn, Tartu linn, Tartu maakond",
+     "liikluspind": "Riia tn",
+     "viitepunkt_l": "26.724589",
+     "viitepunkt_b": "58.375749"
+    }
+   ]
+  },
+  "Tartu linn": {
+   "addresses": [
+    {
+     "liikVal": "EHAK",
+     "ipikkaadress": "Tartu linn, Tartu linn, Tartu maakond",
+     "liikluspind": "",
+     "viitepunkt_l": "26.722101",
+     "viitepunkt_b": "58.380079"
+    },
+    {
+     "liikVal": "EHAK",
+     "ipikkaadress": "Tartu linn, Tartu maakond",
+     "liikluspind": "",
+     "viitepunkt_l": "26.722116",
+     "viitepunkt_b": "58.380052"
+    },
+    {
+     "liikVal": "EHAK",
+     "ipikkaadress": "Märja alevik, Tartu linn, Tartu maakond",
+     "liikluspind": "",
+     "viitepunkt_l": "26.651690",
+     "viitepunkt_b": "58.360796"
+    },
+    {
+     "liikVal": "EHAK",
+     "ipikkaadress": "Rahinge küla, Tartu linn, Tartu maakond",
+     "liikluspind": "",
+     "viitepunkt_l": "26.610812",
+     "viitepunkt_b": "58.385046"
+    },
+    {
+     "liikVal": "EHAK",
+     "ipikkaadress": "Haage küla, Tartu linn, Tartu maakond",
+     "liikluspind": "",
+     "viitepunkt_l": "26.619494",
+     "viitepunkt_b": "58.356403"
+    }
+   ]
+  },
+  "Tartu maakond": {
+   "addresses": [
+    {
+     "liikVal": "EHAK",
+     "ipikkaadress": "Tartu maakond",
+     "liikluspind": "",
+     "viitepunkt_l": "26.719900",
+     "viitepunkt_b": "58.373288"
+    },
+    {
+     "liikVal": "EHAK",
+     "ipikkaadress": "Tartu linn, Tartu maakond",
+     "liikluspind": "",
+     "viitepunkt_l": "26.722116",
+     "viitepunkt_b": "58.380052"
+    },
+    {
+     "liikVal": "EHAK",
+     "ipikkaadress": "Elva vald, Tartu maakond",
+     "liikluspind": "",
+     "viitepunkt_l": "26.417885",
+     "viitepunkt_b": "58.223597"
+    },
+    {
+     "liikVal": "EHAK",
+     "ipikkaadress": "Kambja vald, Tartu maakond",
+     "liikluspind": "",
+     "viitepunkt_l": "26.694972",
+     "viitepunkt_b": "58.236174"
+    },
+    {
+     "liikVal": "EHAK",
+     "ipikkaadress": "Tartu vald, Tartu maakond",
+     "liikluspind": "",
+     "viitepunkt_l": "26.764398",
+     "viitepunkt_b": "58.418951"
+    }
+   ]
+  }
+ }
+}

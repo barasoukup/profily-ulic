@@ -1,0 +1,322 @@
+[
+ {
+  "id": "ts1",
+  "town": "tallinn",
+  "name": "Pelguranna",
+  "highway": "residential",
+  "lat": 59.444534,
+  "lon": 24.687416
+ },
+ {
+  "id": "ts2",
+  "town": "tallinn",
+  "name": "Sõpruse pst",
+  "highway": "secondary",
+  "lat": 59.400937,
+  "lon": 24.694708
+ },
+ {
+  "id": "ts3",
+  "town": "tallinn",
+  "name": "Turvise",
+  "highway": "living_street",
+  "lat": 59.456552,
+  "lon": 24.681881
+ },
+ {
+  "id": "ts4",
+  "town": "tallinn",
+  "name": "Nõmme tee",
+  "highway": "tertiary",
+  "lat": 59.416635,
+  "lon": 24.720087
+ },
+ {
+  "id": "ts5",
+  "town": "tallinn",
+  "name": "Rüütli",
+  "highway": "living_street",
+  "lat": 59.434626,
+  "lon": 24.742328
+ },
+ {
+  "id": "ts6",
+  "town": "tallinn",
+  "name": "Mere pst",
+  "highway": "primary",
+  "lat": 59.441486,
+  "lon": 24.7533
+ },
+ {
+  "id": "ts7",
+  "town": "tallinn",
+  "name": "Jõe",
+  "highway": "secondary",
+  "lat": 59.439812,
+  "lon": 24.76334
+ },
+ {
+  "id": "ts8",
+  "town": "tallinn",
+  "name": "Eduard Vilde tee",
+  "highway": "tertiary",
+  "lat": 59.403196,
+  "lon": 24.68735
+ },
+ {
+  "id": "ts9",
+  "town": "tallinn",
+  "name": "Tuulemaa",
+  "highway": "residential",
+  "lat": 59.448039,
+  "lon": 24.69316
+ },
+ {
+  "id": "ts10",
+  "town": "tallinn",
+  "name": "Randla",
+  "highway": "residential",
+  "lat": 59.449954,
+  "lon": 24.689502
+ },
+ {
+  "id": "ts11",
+  "town": "tallinn",
+  "name": "Meika",
+  "highway": "residential",
+  "lat": 59.424031,
+  "lon": 24.722878
+ },
+ {
+  "id": "ts12",
+  "town": "tallinn",
+  "name": "Lootsi",
+  "highway": "tertiary",
+  "lat": 59.442509,
+  "lon": 24.764015
+ },
+ {
+  "id": "ts13",
+  "town": "tallinn",
+  "name": "A. H. Tammsaare tee",
+  "highway": "primary",
+  "lat": 59.402337,
+  "lon": 24.724499
+ },
+ {
+  "id": "ts14",
+  "town": "tallinn",
+  "name": "Imanta",
+  "highway": "residential",
+  "lat": 59.429993,
+  "lon": 24.759948
+ },
+ {
+  "id": "ts15",
+  "town": "tallinn",
+  "name": "Magdaleena",
+  "highway": "residential",
+  "lat": 59.416154,
+  "lon": 24.739674
+ },
+ {
+  "id": "ts16",
+  "town": "tallinn",
+  "name": "Paldiski mnt",
+  "highway": "secondary",
+  "lat": 59.429964,
+  "lon": 24.708036
+ },
+ {
+  "id": "ts17",
+  "town": "tallinn",
+  "name": "Juhkentali",
+  "highway": "tertiary",
+  "lat": 59.429503,
+  "lon": 24.757185
+ },
+ {
+  "id": "ts18",
+  "town": "tallinn",
+  "name": "Tondi",
+  "highway": "tertiary",
+  "lat": 59.402952,
+  "lon": 24.711672
+ },
+ {
+  "id": "ts19",
+  "town": "tallinn",
+  "name": "Ehitajate tee",
+  "highway": "primary",
+  "lat": 59.41069,
+  "lon": 24.664645
+ },
+ {
+  "id": "ts20",
+  "town": "tallinn",
+  "name": "Rapla",
+  "highway": "residential",
+  "lat": 59.414935,
+  "lon": 24.742796
+ },
+ {
+  "id": "ts21",
+  "town": "tallinn",
+  "name": "Kanuti",
+  "highway": "living_street",
+  "lat": 59.440159,
+  "lon": 24.752578
+ },
+ {
+  "id": "ts22",
+  "town": "tallinn",
+  "name": "Kadaka tee",
+  "highway": "secondary",
+  "lat": 59.405244,
+  "lon": 24.657736
+ },
+ {
+  "id": "ts23",
+  "town": "tallinn",
+  "name": "Ülase",
+  "highway": "residential",
+  "lat": 59.430407,
+  "lon": 24.721343
+ },
+ {
+  "id": "ts24",
+  "town": "tallinn",
+  "name": "Vuti",
+  "highway": "residential",
+  "lat": 59.414143,
+  "lon": 24.704218
+ },
+ {
+  "id": "ts25",
+  "town": "tallinn",
+  "name": "Kivimurru",
+  "highway": "residential",
+  "lat": 59.427666,
+  "lon": 24.787356
+ },
+ {
+  "id": "ts26",
+  "town": "tallinn",
+  "name": "Luha",
+  "highway": "residential",
+  "lat": 59.424307,
+  "lon": 24.737758
+ },
+ {
+  "id": "ts27",
+  "town": "tallinn",
+  "name": "Mustamäe tee",
+  "highway": "secondary",
+  "lat": 59.415276,
+  "lon": 24.691645
+ },
+ {
+  "id": "ts28",
+  "town": "tallinn",
+  "name": "Endla",
+  "highway": "primary",
+  "lat": 59.428703,
+  "lon": 24.707736
+ },
+ {
+  "id": "ts29",
+  "town": "tallinn",
+  "name": "Järvevana tee",
+  "highway": "primary",
+  "lat": 59.419544,
+  "lon": 24.768451
+ },
+ {
+  "id": "ts30",
+  "town": "tallinn",
+  "name": "Gonsiori",
+  "highway": "secondary",
+  "lat": 59.435131,
+  "lon": 24.761904
+ },
+ {
+  "id": "ts31",
+  "town": "tallinn",
+  "name": "Tartu mnt",
+  "highway": "primary",
+  "lat": 59.427409,
+  "lon": 24.778478
+ },
+ {
+  "id": "ts32",
+  "town": "tallinn",
+  "name": "Pirita tee",
+  "highway": "secondary",
+  "lat": 59.449144,
+  "lon": 24.804591
+ },
+ {
+  "id": "ts33",
+  "town": "tallinn",
+  "name": "Narva mnt",
+  "highway": "secondary",
+  "lat": 59.43718,
+  "lon": 24.762756
+ },
+ {
+  "id": "ts34",
+  "town": "tallinn",
+  "name": "Laeva",
+  "highway": "unclassified",
+  "lat": 59.441173,
+  "lon": 24.758331
+ },
+ {
+  "id": "ts35",
+  "town": "tallinn",
+  "name": "Kotka",
+  "highway": "tertiary",
+  "lat": 59.411834,
+  "lon": 24.733345
+ },
+ {
+  "id": "ts36",
+  "town": "tallinn",
+  "name": "Sääse",
+  "highway": "residential",
+  "lat": 59.4089,
+  "lon": 24.690745
+ },
+ {
+  "id": "ts37",
+  "town": "tallinn",
+  "name": "Veduri",
+  "highway": "residential",
+  "lat": 59.415885,
+  "lon": 24.752957
+ },
+ {
+  "id": "ts38",
+  "town": "tallinn",
+  "name": "Uue Maailma",
+  "highway": "living_street",
+  "lat": 59.424012,
+  "lon": 24.74119
+ },
+ {
+  "id": "ts39",
+  "town": "tallinn",
+  "name": "Kalasadama",
+  "highway": "unclassified",
+  "lat": 59.446443,
+  "lon": 24.75103
+ },
+ {
+  "id": "ts40",
+  "town": "tallinn",
+  "name": "Pronksi",
+  "highway": "secondary",
+  "lat": 59.434828,
+  "lon": 24.764475
+ }
+]

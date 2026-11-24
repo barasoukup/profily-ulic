@@ -4,26 +4,33 @@
 import { t } from "../i18n.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
+import { GROUP } from "../norms.js";
 import { estoniaDetails, estoniaLook } from "../house-looks.js";
 
 // Norms (evaluation/estonia/NORMY.md D): the sidewalk of 1.5 m binding (the accessibility regulation of 2026 for new and
-// rebuilt streets); the rest the street standard EVS 843:2016 (second hand: paid) and Tallinn's guide. No warning for
-// parking (no figure found), a bus lane with bikes or a tram belt.
-function limitsEE(s) {
+// rebuilt streets); the rest the street standard EVS 843:2016 (second hand: paid, unread) and Tallinn's guide, so only
+// orange (min 0, as Lithuania's; hostile review 24. 11. 2026). No warning for parking (no figure found), a bus lane with
+// bikes or a tram belt.
+// The lane: 3 m (Tallinn's guide); 2.75 m is the standard's exceptional value, used only on local streets (OSM's
+// residential, living_street, unclassified, service: GROUP D) and unknown ones.
+const localStreet = (s, segs = []) => { const c = s.roadClass ?? segs.find((x) => x?.roadClass)?.roadClass; return !c || GROUP[c] === "D"; };
+function limitsEE(s, segs = []) {
   switch (s.type) {
     case "chodnik":
       return { min: 1.5, zaklad: 2, why: t("chodník: nejméně 1,5 m (nařízení o přístupnosti 2026, nové a přestavěné ulice); pro dva chodce 2 m (norma EVS 843, z druhé ruky)") };
     case "chodnik_kola":
-      return { min: 1.5, zaklad: 2.5, why: t("stezka pro chodce a cyklisty: nejméně 1,5 m (nařízení o přístupnosti 2026), doporučeno 2,5 m (normy projektování silnic 2023)") };
+      return { min: 1.5, zaklad: 2.5, why: t("stezka pro chodce a cyklisty: nejméně 1,5 m (nařízení o přístupnosti 2026); 2,5 m závazně jen mimo obec (normy projektování silnic 2023), ve městě orientačně") };
     case "cyklopruh":
-      return { min: 1, zaklad: 1.5, why: t("cyklopruh: 1,5 m, s nízkou obrubou nejméně 1 m (norma EVS 843, z druhé ruky)") };
+      return { min: 0, zaklad: 1.5, why: t("cyklopruh: doporučeno 1,5 m, s nízkou obrubou 1 m (norma EVS 843, z druhé ruky)") };
     case "cyklostezka":
       return { min: 1.5, zaklad: 2.5, why: t("stezka pro cyklisty: 2,5 m, výjimečně 1,5 m (norma EVS 843, z druhé ruky)") };
     case "bus":
-      return { min: 3, zaklad: 3, why: t("pruh pro veřejnou dopravu: nejméně 3 m (norma EVS 843, z druhé ruky)") };
+      return { min: 0, zaklad: 3, why: t("pruh pro veřejnou dopravu: doporučeno nejméně 3 m (norma EVS 843, z druhé ruky)") };
     case "pruh": case "pruh_piktokoridor":
       if (s.turn) return null;
-      return { min: 0, zaklad: 2.75, why: t("jízdní pruh: 3 m, u místních ulic 2,75 m (příručka uličního prostoru Tallinnu a norma EVS 843, z druhé ruky)") };
+      return localStreet(s, segs)
+        ? { min: 0, zaklad: 2.75, why: t("jízdní pruh místní ulice: 3 m, výjimečně 2,75 m (norma EVS 843, z druhé ruky)") }
+        : { min: 0, zaklad: 3, why: t("jízdní pruh: doporučeno 3 m (příručka uličního prostoru Tallinnu, z druhé ruky)") };
     default:
       return null;
   }
@@ -44,11 +51,18 @@ function signFile(s, seg) {
   if (s.k === "oneway") return dir === "backward" ? (s.plate === "protismer" ? "331-plus-891a-kolo" : "331") : (s.plate === "protismer" ? "521-plus-836" : "521");
   if (s.k === "b20a") return EE_SPEEDS.includes(s.v) ? `351-${s.v}` : null;
   if (s.k === "ip20a" && s.plate === "kolo") return "525b";
+  // The pedestrians on their side (Bára 15. 11. 2026): 433 with them on the right, 434 on the left.
+  if (s.k === "c10a") return s.walk === "left" ? "434" : "433";
   if (s.plate && !["podelne", "kolme", "sikme", "protismer"].includes(s.plate)) return null;
   return EE_FILE[s.k] || null;
 }
+// The one-way sign's label (signs.js gives the item no direction, only the drawing has the segment's): "521 / 331"
+// as Finland's, unless the item says which.
+const ONEWAY = { forward: "521", backward: "331" };
 const signLabel = (x, own, label) => {
-  const code = x.k === "oneway" ? (x.dir === "backward" ? "331" : "521") + (x.plate === "protismer" ? (x.dir === "backward" ? " + 891a" : " + 836") : "") : x.k === "b20a" ? "351" : x.k === "ip20a" && x.plate === "kolo" ? "525b" : EE_CODE[x.k];
+  const plate = x.plate === "protismer" ? (x.dir === "backward" ? " + 891a" : x.dir === "forward" ? " + 836" : "") : "";
+  const code = x.k === "oneway" ? (ONEWAY[x.dir] || "521 / 331") + plate : x.k === "b20a" ? "351" : x.k === "ip20a" && x.plate === "kolo" ? "525b"
+    : x.k === "c10a" ? (x.walk === "left" ? "434" : "433") : EE_CODE[x.k];
   return code ? `${code} ${label.replace(CZ_CODE, "")}` : label.replace(CZ_CODE, "");
 };
 

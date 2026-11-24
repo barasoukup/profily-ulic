@@ -63,7 +63,7 @@ na dotaz podle geoportálu). Licence jako výše (ETAK je výslovně předmětem
 
 ### 2b. Tallinn: mapa povrchů z městské základní mapy (`tar_maakate`)
 
-`https://gis.tallinn.ee/arcgis/rest/services/tar_maakate/MapServer` (ArcGIS 10.x, **ověřeno**: CORS echo, `query` s
+`https://gis.tallinn.ee/arcgis/rest/services/tar_maakate/MapServer` (ArcGIS 11.5, **ověřeno**: CORS echo, `query` s
 obálkou ve WGS 84 a `f=geojson` funguje, maxRecordCount 5 000, data v EPSG:3301). Vrstvy pokryvu země Tallinnu,
 mimo jiné **36 Suured teed** (velké cesty = vozovky), **35 Väiksed teed** (malé cesty = chodníky, stezky), **47 Sõidetav
 plats** (pojízdná plocha: dvory, parkoviště), **46 Teepeenar** (krajnice), **45 Muu plats** (jiná plocha, např.

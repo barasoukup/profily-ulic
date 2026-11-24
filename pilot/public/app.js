@@ -330,7 +330,7 @@ if (STATY?.italy) {
 // Estonia: the Board's orthophoto tiles (TMS: the y axis flipped), only over Estonia (dark beyond).
 if (STATY?.estonia) {
   const Ee = insideOnly([boxedPlace("EE", STATY.estonia)]);
-  kinds.ortho.push(new Ee(`${EE_ORTHO}/{z}/{x}/{y}.jpg`, { tms: true, maxZoom: 21, maxNativeZoom: 18, attribution: tr("ortofoto © Maa- ja Ruumiamet"), bounds: boundsOf(STATY.estonia) }));
+  kinds.ortho.push(new Ee(`${EE_ORTHO}/{z}/{x}/{y}.jpg`, { tms: true, maxZoom: 21, maxNativeZoom: 18, attribution: tr("ortofoto © Maa- ja Ruumiamet, nálet 2024 (stav dlaždic 11/2026)"), bounds: boundsOf(STATY.estonia) }));
 }
 // Slovenia: GURS's orthophoto DOF025 (WMS in Web Mercator), only over Slovenia (beyond it the server hangs and gives 504).
 if (STATY?.slovenia) {
@@ -715,6 +715,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
         // The buildings of Helsinki or of Ryhti (towns/finland.js).
         if (p.fiBuild) state.cut.sources.fiBuild = state.cut.sources.fiBuild && state.cut.sources.fiBuild !== p.fiBuild ? "both" : p.fiBuild;
         // The buildings of Copenhagen or Aarhus (towns/denmark.js).
+        // The buildings of ETAK (towns/estonia.js).
+        if (p.etak) state.cut.sources.eeEtak = true;
         if (p.dkBuild) state.cut.sources.dkBuild = state.cut.sources.dkBuild && state.cut.sources.dkBuild !== p.dkBuild ? "both" : p.dkBuild;
         // What the building is for (ZBGIS, Slovakia), where OSM says no more than "a building".
         if (p.type && (!info.type || info.type === "yes")) info.type = p.type;

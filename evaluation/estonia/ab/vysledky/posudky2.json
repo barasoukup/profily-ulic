@@ -1,0 +1,197 @@
+{
+ "ts1": {
+  "better": "stejne",
+  "why": "obě dva pruhy, rozdíl jen ve stezce vlevo (sdílená / dvě cyklostezky)",
+  "photo": true
+ },
+ "ts2": {
+  "better": "Y",
+  "why": "X: deset pruhů po 4 m a cyklostezka 13,9 m; Y: dvě vozovky se zeleným středem a pruhem BUS jako na fotce",
+  "photo": true
+ },
+ "ts3": {
+  "better": "nejde",
+  "why": "obytná zóna, z ortofota nejde říct, kde končí vozovka",
+  "photo": false
+ },
+ "ts4": {
+  "better": "stejne",
+  "why": "obě dva pruhy a stání na jedné straně; liší se jen levá strana",
+  "photo": true
+ },
+ "ts5": {
+  "better": "X",
+  "why": "úzká dlážděná ulička s chodníkem na jedné straně; Y vozovka 9,6 m",
+  "photo": true
+ },
+ "ts6": {
+  "better": "X",
+  "why": "dvě vozovky po třech pruzích s cyklopruhy a středním pásem; Y má vlevo jen jeden pruh a zeleň 12,6 m",
+  "photo": true
+ },
+ "ts7": {
+  "better": "nejde",
+  "why": "řez přes křižovatku s přechody",
+  "photo": true
+ },
+ "ts8": {
+  "better": "X",
+  "why": "čtyři pruhy jako na fotce; Y jen dva s krajnicemi",
+  "photo": true
+ },
+ "ts9": {
+  "better": "stejne",
+  "why": "stejné složení, jiné šířky",
+  "photo": false
+ },
+ "ts10": {
+  "better": "stejne",
+  "why": "stejné složení",
+  "photo": true
+ },
+ "ts11": {
+  "better": "nejde",
+  "why": "bez fotky, nejasné, kde je vjezd a kde ulice",
+  "photo": false
+ },
+ "ts12": {
+  "better": "nejde",
+  "why": "řez přes přechod a náměstíčko",
+  "photo": true
+ },
+ "ts13": {
+  "better": "stejne",
+  "why": "stejné složení, liší se jen počet pruhů vlevo (2 + krajnice / 3), z ortofota nerozhodnu",
+  "photo": true
+ },
+ "ts14": {
+  "better": "Y",
+  "why": "vlevo suchý trávník jako na fotce (X: zpevněná plocha 9,5 m)",
+  "photo": true
+ },
+ "ts15": {
+  "better": "X",
+  "why": "Y má v křižovatce krajnice 6,6 m po obou stranách",
+  "photo": true
+ },
+ "ts16": {
+  "better": "Y",
+  "why": "hlavní silnice: Y čtyři pruhy, X dva po 2,5 m",
+  "photo": false
+ },
+ "ts17": {
+  "better": "nejde",
+  "why": "řez přes křižovatku s přechody",
+  "photo": false
+ },
+ "ts18": {
+  "better": "Y",
+  "why": "vpravo tři pruhy a vlevo stání se zelení jako na ortofotu",
+  "photo": true
+ },
+ "ts19": {
+  "better": "Y",
+  "why": "X deset pruhů po 4 m; Y dvě vozovky",
+  "photo": true
+ },
+ "ts20": {
+  "better": "stejne",
+  "why": "obě dva pruhy, liší se okolí",
+  "photo": true
+ },
+ "ts21": {
+  "better": "stejne",
+  "why": "dlážděná ulička; Y přidá cestu v parku vpravo, ale vozovku 5,9 m",
+  "photo": false
+ },
+ "ts22": {
+  "better": "stejne",
+  "why": "obě dva pruhy s krajnicí, na fotce víc pruhů: obě stejně vedle",
+  "photo": true
+ },
+ "ts24": {
+  "better": "Y",
+  "why": "jednopruhová štěrková ulička: Y jeden pruh 3,7 m, X dva po 2,5 m",
+  "photo": true
+ },
+ "ts25": {
+  "better": "stejne",
+  "why": "stejné jádro (dva pruhy, stání, chodníky)",
+  "photo": true
+ },
+ "ts26": {
+  "better": "stejne",
+  "why": "Y má správně chodník vpravo, X správně dva pruhy",
+  "photo": true
+ },
+ "ts27": {
+  "better": "X",
+  "why": "na fotce dva pruhy každým směrem: X čtyři pruhy, Y jeden a tři s dělicím pásem",
+  "photo": true
+ },
+ "ts28": {
+  "better": "Y",
+  "why": "na fotce i ortofotu pět pruhů bez středního pásu; X má dělicí pás",
+  "photo": true
+ },
+ "ts29": {
+  "better": "Y",
+  "why": "X přidá nájezdovou rampu vlevo jako krajnici 6,9 m",
+  "photo": true
+ },
+ "ts30": {
+  "better": "stejne",
+  "why": "skoro stejné složení",
+  "photo": true
+ },
+ "ts31": {
+  "better": "stejne",
+  "why": "skoro stejné složení (tramvaj, dělicí pás)",
+  "photo": true
+ },
+ "ts32": {
+  "better": "nejde",
+  "why": "řez nespadl na Pirita tee, ale na bezejmennou cestu (vyřazeno)",
+  "photo": false
+ },
+ "ts33": {
+  "better": "stejne",
+  "why": "Y lépe tramvaj v obou pruzích, ale chodník 0,55 m; X přidá falešnou zeleň",
+  "photo": true
+ },
+ "ts34": {
+  "better": "nejde",
+  "why": "bez fotky, plocha u přístavu",
+  "photo": false
+ },
+ "ts35": {
+  "better": "nejde",
+  "why": "křižovatka, noční fotka",
+  "photo": true
+ },
+ "ts36": {
+  "better": "nejde",
+  "why": "řez přes kruhový objezd, obě varianty nesmyslné",
+  "photo": false
+ },
+ "ts37": {
+  "better": "Y",
+  "why": "úzká silnička mezi zelení: Y jeden pruh 3,85 m",
+  "photo": false
+ },
+ "ts38": {
+  "better": "stejne",
+  "why": "stejné jádro (stání a pruh)",
+  "photo": false
+ },
+ "ts39": {
+  "better": "stejne",
+  "why": "podobné složení, jiné stání",
+  "photo": true
+ },
+ "ts40": {
+  "better": "nejde",
+  "why": "řez přes křižovatku s přechody",
+  "photo": false
+ }
+}

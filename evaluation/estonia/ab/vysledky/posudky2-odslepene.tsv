@@ -1,0 +1,39 @@
+ts1	Pelguranna	residential	stejne	foto	obě dva pruhy, rozdíl jen ve stezce vlevo (sdílená / dvě cyklostezky)
+ts2	Sõpruse pst	secondary	A	foto	X: deset pruhů po 4 m a cyklostezka 13,9 m; Y: dvě vozovky se zeleným středem a pruhem BUS jako na fotce
+ts3	Turvise	living_street	nejde	bez fotky	obytná zóna, z ortofota nejde říct, kde končí vozovka
+ts4	Nõmme tee	tertiary	stejne	foto	obě dva pruhy a stání na jedné straně; liší se jen levá strana
+ts5	Rüütli	living_street	B	foto	úzká dlážděná ulička s chodníkem na jedné straně; Y vozovka 9,6 m
+ts6	Mere pst	primary	B	foto	dvě vozovky po třech pruzích s cyklopruhy a středním pásem; Y má vlevo jen jeden pruh a zeleň 12,6 m
+ts7	Jõe	secondary	nejde	foto	řez přes křižovatku s přechody
+ts8	Eduard Vilde tee	tertiary	B	foto	čtyři pruhy jako na fotce; Y jen dva s krajnicemi
+ts9	Tuulemaa	residential	stejne	bez fotky	stejné složení, jiné šířky
+ts10	Randla	residential	stejne	foto	stejné složení
+ts11	Meika	residential	nejde	bez fotky	bez fotky, nejasné, kde je vjezd a kde ulice
+ts12	Lootsi	tertiary	nejde	foto	řez přes přechod a náměstíčko
+ts13	A. H. Tammsaare tee	primary	stejne	foto	stejné složení, liší se jen počet pruhů vlevo (2 + krajnice / 3), z ortofota nerozhodnu
+ts14	Imanta	residential	B	foto	vlevo suchý trávník jako na fotce (X: zpevněná plocha 9,5 m)
+ts15	Magdaleena	residential	A	foto	Y má v křižovatce krajnice 6,6 m po obou stranách
+ts16	Paldiski mnt	secondary	B	bez fotky	hlavní silnice: Y čtyři pruhy, X dva po 2,5 m
+ts17	Juhkentali	tertiary	nejde	bez fotky	řez přes křižovatku s přechody
+ts18	Tondi	tertiary	B	foto	vpravo tři pruhy a vlevo stání se zelení jako na ortofotu
+ts19	Ehitajate tee	primary	A	foto	X deset pruhů po 4 m; Y dvě vozovky
+ts20	Rapla	residential	stejne	foto	obě dva pruhy, liší se okolí
+ts21	Kanuti	living_street	stejne	bez fotky	dlážděná ulička; Y přidá cestu v parku vpravo, ale vozovku 5,9 m
+ts22	Kadaka tee	secondary	stejne	foto	obě dva pruhy s krajnicí, na fotce víc pruhů: obě stejně vedle
+ts24	Vuti	residential	B	foto	jednopruhová štěrková ulička: Y jeden pruh 3,7 m, X dva po 2,5 m
+ts25	Kivimurru	residential	stejne	foto	stejné jádro (dva pruhy, stání, chodníky)
+ts26	Luha	residential	stejne	foto	Y má správně chodník vpravo, X správně dva pruhy
+ts27	Mustamäe tee	secondary	B	foto	na fotce dva pruhy každým směrem: X čtyři pruhy, Y jeden a tři s dělicím pásem
+ts28	Endla	primary	B	foto	na fotce i ortofotu pět pruhů bez středního pásu; X má dělicí pás
+ts29	Järvevana tee	primary	A	foto	X přidá nájezdovou rampu vlevo jako krajnici 6,9 m
+ts30	Gonsiori	secondary	stejne	foto	skoro stejné složení
+ts31	Tartu mnt	primary	stejne	foto	skoro stejné složení (tramvaj, dělicí pás)
+ts32	Pirita tee	secondary	nejde	bez fotky	řez nespadl na Pirita tee, ale na bezejmennou cestu (vyřazeno)
+ts33	Narva mnt	secondary	stejne	foto	Y lépe tramvaj v obou pruzích, ale chodník 0,55 m; X přidá falešnou zeleň
+ts34	Laeva	unclassified	nejde	bez fotky	bez fotky, plocha u přístavu
+ts35	Kotka	tertiary	nejde	foto	křižovatka, noční fotka
+ts36	Sääse	residential	nejde	bez fotky	řez přes kruhový objezd, obě varianty nesmyslné
+ts37	Veduri	residential	B	bez fotky	úzká silnička mezi zelení: Y jeden pruh 3,85 m
+ts38	Uue Maailma	living_street	stejne	bez fotky	stejné jádro (stání a pruh)
+ts39	Kalasadama	unclassified	stejne	foto	podobné složení, jiné stání
+ts40	Pronksi	secondary	nejde	bez fotky	řez přes křižovatku s přechody
