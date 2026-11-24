@@ -580,7 +580,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     const laneImg = li.status === "fulfilled" ? li.value : null;
     // The same image tells grass from paving beside a roadway read from the DTM's lines (derive.js linePieces).
     const args = { center: [0, 0], dir, half, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho, lanesImage: laneImg?.st, roadOnPath: !!city.roadOnPath, noParkGuess: !country.parkGuess || new URLSearchParams(location.search).get("odhadstani") === "0",
-      osmParkGive: !!country.mapFill && !ORTHO_P.off?.has("mapfill"),
+      osmParkGive: !ORTHO_P.off?.has("mapfill"),
       kerbParking: pk.status === "fulfilled" && pk.value?.kerbParking && !NO_MAP ? pk.value.kerbParking.map((p) => ({ ...p, xy: frame.toXY(p.lon, p.lat) })) : null };
     let result = deriveProfile(args);
     // A state's wide streets (countries/<ISO>.js wideStreets): a side the profile ends on at the reach, in a median, a
@@ -631,12 +631,13 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // close by, the pieces between the town's map lines, sidewalk or green (ortho-osm.js besidePassport; Bára: Poštová,
     // 17. novembra ended at the passport's edge). The passport's own surfaces stay first.
     let besideUsed = null;
-    // Around a surface map abroad (Bára 24. 11. 2026, evaluation/finland/ab3: in Helsinki the map's own parts were right,
-    // what the app added around them was not): what the app adds is read on the orthophoto as the estimate reads it
-    // without the map, by the same model (ai-kerbs.js): beyond the map's end its kinds (besidePassport aiSurf), in the
-    // map's roadway its parked cars (parkFromAi below; the law's estimate stays where the model sees nothing to decide
-    // and where there is no orthophoto). Not in Czechia (countries/<ISO>.js mapFill). ?off=mapfill: as before.
-    const mapFill = !orthoOsm && !result.estimate && !!country.mapFill && AI_KERBS && orthoHere && !ORTHO_P.off?.has("mapfill");
+    // Around a surface map (Bára 24. 11. 2026, evaluation/finland/ab3: in Helsinki the map's own parts were right, what
+    // the app added around them was not): what the app adds is read on the orthophoto as the estimate reads it without
+    // the map, by the same model (ai-kerbs.js): beyond the map's end its kinds (besidePassport aiSurf), in the map's
+    // roadway its parked cars (parkFromAi below; the law's estimate stays where the model sees nothing to decide and where
+    // there is no orthophoto). In every state, Czechia's MTVU and technical maps too (evaluation/mapfill-cz, 25. 11.
+    // 2026: 7 of 89 cuts changed, better 6 : 2, Prague 1 : 0). ?off=mapfill: as before.
+    const mapFill = !orthoOsm && !result.estimate && AI_KERBS && orthoHere && !ORTHO_P.off?.has("mapfill");
     const mapCut = mapFill ? await modelCut() : null;
     if (!orthoOsm && m.value?.passport && country.besidePassport) {
       const beside = besidePassport({ osm, frame, dir, way: near.way, st: laneImg?.st, edges: k.status === "fulfilled" ? k.value?.edges || [] : [], symbols: k.status === "fulfilled" ? k.value?.symbols || [] : [], areas: k.status === "fulfilled" ? k.value?.areas || [] : [], polys, ...(country.besideMax && { max: country.besideMax }), aiSurf: mapCut ? aiSurface(mapCut) : null });
@@ -665,6 +666,9 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     if (mapPark && !ORTHO_P.off?.has("aipark")) {
       const along = !near.dir || dir[0] * near.dir[0] + dir[1] * near.dir[1] >= 0;
       mapParked = parkFromAi(result, mapPark, { ...parkSkip(near.way.tags, along, inZps === true || parking.length > 0), inside: true }) > 0;
+      // A strip the law estimated, gone back to its lane where no car stands, keeps the lane's cap (capWideLanes above;
+      // evaluation/mapfill-cz: Rosická in Brno 6.67 m lanes, Šatrova in Prague 5.62 m).
+      if (mapParked) capWideLanes(result.segments, near.way.tags);
     }
     // A cycle track OSM tags on the road (cycleway:<side>=track) beside its roadway (derive.js trackAlongRoad), before the
     // cycle ways mapped on their own are carved, so one track is not drawn twice. Not over a map's own surfaces (they

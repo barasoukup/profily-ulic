@@ -1,0 +1,17 @@
+{
+ "cz1": {
+  "1": { "id": "mf-ostrava-1", "lepsi": "N", "duvod": "u obruby A auta nestojí, stání v O navíc; krajnice a pruh 4,5 m sedí" },
+  "2": { "id": "mf2-brno-3", "lepsi": "O", "jistota": "nízká", "duvod": "auta stojí u keřů 7–11 m od středu na straně B (v profilu zeleň), O má aspoň stání, N jen krajnice" },
+  "3": { "id": "mf2-kolin-3", "lepsi": "N", "duvod": "úzká vozovka asi 6 m, auta podélně u A; jeden pruh se stáním sedí" },
+  "4": { "id": "mf2-budejovice-1", "lepsi": "O", "duvod": "u A zastávka (ZAS), auta nestojí; stání jen na B jako O" }
+ },
+ "cz2": {
+  "1": { "id": "mf-trebic-1", "lepsi": "N", "duvod": "auta u obruby A, B volná; O má stání na B" },
+  "2": { "id": "mf2-pardubice-1", "lepsi": "N", "jistota": "střední", "duvod": "podélné auto u A, vozovka úzká asi 4 m" },
+  "3": { "id": "mf3-praha-5", "lepsi": "O", "duvod": "auta jen u B; O má B správně a A navíc, N (bez opravy) stání nikde", "pozn": "N před opravou maxIn, viz cz3" },
+  "4": { "id": "mf2-brno-2", "lepsi": "N", "jistota": "slabá", "duvod": "řez v křižovatce, stání pod řezem není; O ho přidává na obou stranách" }
+ },
+ "cz3": {
+  "1": { "id": "mf3-praha-5", "lepsi": "N", "duvod": "auta jen u B, u A krajnice; složení N sedí, šířky vozovky stejné (11,24 m)" }
+ }
+}

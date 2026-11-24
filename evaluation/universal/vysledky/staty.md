@@ -1,12 +1,13 @@
 Výsledky univerzálního měření, přeměřené 24. 11. 2026 jednou metodou pro všechny státy (strana bez fasády jen po okraj
 ulice, body na `service=driveway` / `parking_aisle` / `drive-through` vynechané všude; profily ze současného kódu,
 `data/app-zprepocet.json`; CZ a PL znovu po opravě čtení DTM krajů a návratu ortofota Geoportalu,
-`data/app-zzzprepocet-jvf.json`). `node evaluation/universal/score-states.mjs`. Výklad, čísla před a po a výhrady (FI a DK
+`data/app-zzzprepocet-jvf.json`; CZ potřetí 25. 11. s doplněním kolem mapy povrchů i v Česku, `data/app-zzzzprepocet-mapfill.json`,
+`../mapfill-cz/ZPRAVA.md`). `node evaluation/universal/score-states.mjs`. Výklad, čísla před a po a výhrady (FI a DK
 posuzoval Opus) v `ZPRAVA.md`.
 
 | stát | řezů | složení stejné | shoda složení | pruhy stejně | šířka uličního prostoru do 1 / 2 m | nejčastější rozdíly (aplikace proti posuzovateli) |
 |---|---|---|---|---|---|---|
-| CZ | 30 | 27 % | 58 % | 30 % | 30 % / 33 % | navíc chodnik 9×, navíc pruh 6×, chybí stani 6×, navíc zelen 5×, navíc delici 4×, chybí zelen 4× |
+| CZ | 30 | 27 % | 58 % | 30 % | 30 % / 33 % | navíc chodnik 10×, navíc pruh 6×, chybí stani 6×, navíc zelen 5×, navíc delici 4×, chybí zelen 4× |
 | SK | 12 | 67 % | 84 % | 75 % | 33 % / 50 % | chybí delici 2×, chybí pruh 2×, navíc chodnik 2×, chybí chodnik 1×, chybí zelen 1× |
 | AT | 29 | 17 % | 61 % | 38 % | 28 % / 45 % | navíc stani 7×, chybí stani 5×, navíc cyklostezka 4×, navíc chodnik 4×, navíc cyklopruh 3×, stani→pruh 3× |
 | DE | 32 | 13 % | 56 % | 53 % | 13 % / 34 % | navíc chodnik 10×, chybí stani 7×, chybí chodnik 7×, navíc pruh 6×, navíc stani 5×, chybí pruh 4× |
@@ -36,7 +37,7 @@ Před → po (oficiální → nová pravidla se starými profily → nové profi
 
 | stát | řezů před → po | shoda složení: oficiální → nová pravidla → nové profily | pruhy stejně | šířka do 1 / 2 m | nejčastější rozdíly po (aplikace proti posuzovateli) |
 |---|---|---|---|---|---|
-| CZ | 32 → 30 | 56 % → 60 % → **58 %** | 28 % → 30 % | 25 % / 31 % → 30 % / 33 % | navíc chodnik 9×, navíc pruh 6×, chybí stani 6×, navíc zelen 5× |
+| CZ | 32 → 30 | 56 % → 60 % → **58 %** | 28 % → 30 % | 25 % / 31 % → 30 % / 33 % | navíc chodnik 10×, navíc pruh 6×, chybí stani 6×, navíc zelen 5× |
 | SK | 15 → 12 | 60 % → 71 % → **84 %** | 60 % → 75 % | 27 % / 53 % → 33 % / 50 % | chybí delici 2×, chybí pruh 2×, navíc chodnik 2×, chybí chodnik 1× |
 | AT | 33 → 29 | 58 % → 60 % → **61 %** | 30 % → 38 % | 18 % / 30 % → 28 % / 45 % | navíc stani 7×, chybí stani 5×, navíc cyklostezka 4×, navíc chodnik 4× |
 | DE | 34 → 32 | 61 % → 62 % → **56 %** | 56 % → 53 % | 15 % / 35 % → 13 % / 34 % | navíc chodnik 10×, chybí stani 7×, chybí chodnik 7×, navíc pruh 6× |

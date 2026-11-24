@@ -698,9 +698,9 @@ function splitRoadway(run, ctx) {
   // Parking the data put there (OSM) stays when a little room is missing in an estimated roadway (the universal
   // judging, 17. 11. 2026: an estimated roadway of 4.4 m dropped the tagged parallel parking of Großer Brockhaus for
   // 0.1 m): the stall keeps its width and the lanes give up to OSM_LANE_GIVE each (the review of the port: a narrowed
-  // stall was red in Návrh at once). A measured roadway (MTVU, a technical map) keeps the old rule, but for a town's
-  // surface map abroad (ctx.osmParkGive, app.js mapFill; Bára 24. 11. 2026, Apollonkatu in Helsinki: YLRE's roadway of
-  // 6.9 m dropped the tagged parallel parking for 0.1 m, the cars stand there).
+  // stall was red in Návrh at once). A measured roadway (MTVU, a technical map, a town's surface map) gives as much
+  // too, unless ?off=mapfill (ctx.osmParkGive, app.js mapFill; Bára 24. 11. 2026, Apollonkatu in Helsinki: YLRE's roadway
+  // of 6.9 m dropped the tagged parallel parking for 0.1 m, the cars stand there; Czechia too, evaluation/mapfill-cz).
   for (const [side, st] of [["L", sideL], ["R", sideR]]) {
     if (!st.parking || parked.includes(side)) continue;
     const w = st.parkingWidth;

@@ -133,10 +133,6 @@ export default {
   orthoEstimate: false,
   // A town's passport is filled up to the houses beside it (app.js, ortho-osm.js besidePassport).
   besidePassport: false,
-  // A town's surface map meets the orthophoto (app.js mapFill, Bára 24. 11. 2026, evaluation/finland/ab3): what the app
-  // adds around the map is read on the orthophoto by the model as the estimate reads it, OSM's parking may narrow the
-  // map's lanes as in the estimate. Not in Czechia (CZ.js: its towns' maps keep their rules). ?off=mapfill: off.
-  mapFill: true,
   // How far beyond the passport's last surface (m) the pieces up to the houses go (ortho-osm.js; null: its own 15 m).
   besideMax: null,
   // Mapy.com's panoramas (app.js).

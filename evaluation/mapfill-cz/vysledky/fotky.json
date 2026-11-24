@@ -1,0 +1,100 @@
+{
+ "mf2-pardubice-1": [
+  {
+   "k": "f",
+   "year": 2025,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2025,
+   "pano": true
+  }
+ ],
+ "mf2-brno-2": [
+  {
+   "k": "f",
+   "year": 2016,
+   "pano": false
+  }
+ ],
+ "mf2-brno-3": [
+  {
+   "k": "b",
+   "year": 2016,
+   "pano": false
+  }
+ ],
+ "mf-ostrava-1": [
+  {
+   "k": "f",
+   "year": "Mapy.com",
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": "Mapy.com",
+   "pano": false
+  }
+ ],
+ "mf-trebic-1": [
+  {
+   "k": "f",
+   "year": "Mapy.com",
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": "Mapy.com",
+   "pano": false
+  }
+ ],
+ "mf-brno-2": [
+  {
+   "k": "f",
+   "year": "Mapy.com",
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": "Mapy.com",
+   "pano": false
+  }
+ ],
+ "mf2-kolin-3": [
+  {
+   "k": "f",
+   "year": "Mapy.com",
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": "Mapy.com",
+   "pano": false
+  }
+ ],
+ "mf2-budejovice-1": [
+  {
+   "k": "f",
+   "year": "Mapy.com",
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": "Mapy.com",
+   "pano": false
+  }
+ ],
+ "mf3-praha-5": [
+  {
+   "k": "f",
+   "year": "Mapy.com",
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": "Mapy.com",
+   "pano": false
+  }
+ ]
+}

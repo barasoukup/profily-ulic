@@ -567,7 +567,12 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   PT 64 %, CY 55 %, MT 55 %, IT 56 %, EE 45 %, SI 56 %, LT 75 %, FI 52 %, DK 58 % (FI a DK poprvé, posuzoval Opus, ne Sonnet).
   CZ a PL přesbírané týž večer: CZ po opravě čtení DTM krajů po JVF DTM 1.5 (63b9726; řezy s DTM krajů 34 → 51 %, Praha,
   Brno, Plzeň, Jihlava 68 %), PL po návratu ortofota Geoportalu (ortofoto ve 23 z 29 řezů). Před → po a výklad v
-  `evaluation/universal/ZPRAVA.md` (oddíl 24. 11.).
+  `evaluation/universal/ZPRAVA.md` (oddíl 24. 11.). CZ znovu 25. 11. s doplněním kolem mapy i v Česku: 58 % beze změny
+  (2 ze 40 řezů jinak, olomouc-4 lépe).
+- Doplnění kolem mapy povrchů (mapFill: stání z aut modelu ve vozovce mapy, zákonný pruh bez aut zpět, OSM stání smí
+  ubrat pruhům 0,3 m) platí od 25. 11. 2026 ve všech státech i v Česku, příznak státu zrušen, vypíná jen `?off=mapfill`
+  (Bára: výjimka jen s měřením). A/B 90 nových českých řezů: změna 7, lépe 6 : 2 (kraje 4 : 1, Praha 1 : 0, Brno 1 : 1),
+  `evaluation/mapfill-cz/ZPRAVA.md`.
 
 ## Jazyky (Bára 12. 11. 2026, slovenčina 15. 11. 2026, němčina 16. 11. 2026)
 - Anglicky se aplikace jmenuje **Street Profile**, slovensky **Profily ulíc**, německy **Straßenprofil**. Čeština, slovenčina,

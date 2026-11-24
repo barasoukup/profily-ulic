@@ -245,7 +245,7 @@ export function parkFromAi(result, pAt, skip = {}) {
     }
     return w;
   };
-  const maxIn = (kerb, sg) => { let m = 0; for (let d = 0.1; d < 2.5; d += STEP) { const p = pAt(kerb + sg * d); if (p !== null) m = Math.max(m, p); } return m; };
+  const maxIn = (kerb, sg, to = 2.5) => { let m = 0; for (let d = 0.1; d < to; d += STEP) { const p = pAt(kerb + sg * d); if (p !== null) m = Math.max(m, p); } return m; };
   let changed = 0;
   const ends = [];
   segs.forEach((s, k) => {
@@ -268,8 +268,10 @@ export function parkFromAi(result, pAt, skip = {}) {
     if (skip.inside) b = 0;
     else if (!KERBSIDE.has(N?.type)) { a += b; b = 0; }
     if (a < 0.6 && b < 0.6) {
-      // No cars at this kerb: a strip the law estimated goes back to the lane.
-      if (X.type === "parkovani" && X.source === "odhad" && !X.ai && maxIn(kerb, dirIn) < PARK.off) {
+      // No cars at this kerb: a strip the law estimated goes back to the lane. In a surface map's roadway (inside) none
+      // within 2.5 m past the strip either: the map's kerb need not sit on the orthophoto's (evaluation/mapfill-cz:
+      // Šatrova in Prague, MTVU's kerb 2.3 m beyond the one on the photo, the cars there read as none at the kerb).
+      if (X.type === "parkovani" && X.source === "odhad" && !X.ai && maxIn(kerb, dirIn, skip.inside ? X.width + 2.5 : 2.5) < PARK.off) {
         const Y = segs[sg < 0 ? k + 1 : k - 1];
         if (Y && (Y.type === "pruh" || Y.type === "krajnice")) { Y.width = r2(Y.width + X.width); segs.splice(k, 1); changed++; }
       }

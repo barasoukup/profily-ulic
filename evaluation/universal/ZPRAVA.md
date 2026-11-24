@@ -212,7 +212,7 @@ FI a DK oficiální řádek nemají (první měření). Pruhy a šířka: ofici�
 
 | stát | řezů před → po | shoda složení: oficiální → nová pravidla → nové profily | pruhy stejně | šířka do 1 / 2 m | nejčastější rozdíly po (aplikace proti posuzovateli) |
 |---|---|---|---|---|---|
-| CZ | 32 → 30 | 56 % → 60 % → **58 %** | 28 % → 30 % | 25 % / 31 % → 30 % / 33 % | navíc chodnik 9×, navíc pruh 6×, chybí stani 6×, navíc zelen 5× |
+| CZ | 32 → 30 | 56 % → 60 % → **58 %** | 28 % → 30 % | 25 % / 31 % → 30 % / 33 % | navíc chodnik 10×, navíc pruh 6×, chybí stani 6×, navíc zelen 5× |
 | SK | 15 → 12 | 60 % → 71 % → **84 %** | 60 % → 75 % | 27 % / 53 % → 33 % / 50 % | chybí delici 2×, chybí pruh 2×, navíc chodnik 2×, chybí chodnik 1× |
 | AT | 33 → 29 | 58 % → 60 % → **61 %** | 30 % → 38 % | 18 % / 30 % → 28 % / 45 % | navíc stani 7×, chybí stani 5×, navíc cyklostezka 4×, navíc chodnik 4× |
 | DE | 34 → 32 | 61 % → 62 % → **56 %** | 56 % → 53 % | 15 % / 35 % → 13 % / 34 % | navíc chodnik 10×, chybí stani 7×, chybí chodnik 7×, navíc pruh 6× |
@@ -250,6 +250,9 @@ FI a DK oficiální řádek nemají (první měření). Pruhy a šířka: ofici�
   s obrázky DMVS 20 → 40 %: místo samotné tramvaje chodník | 2 pruhy | tramvaj | pruh | chodník, posuzovatel má vlevo
   stání, ne pruh). Proti starým profilům (60 %, za odstávky DMVS z ortofota) je CZ pořád o 2 body níž; nejčastěji
   navíc chodník 9×, navíc pruh 6×, chybí stání 6×.
+- **CZ znovu 25. 11. 2026 s doplněním kolem mapy povrchů (mapFill) i v Česku** (`../mapfill-cz/ZPRAVA.md`): `collect24` do
+  `data/app-zzzzprepocet-mapfill.json`, změnily se 2 ze 40 řezů (olomouc-4 Sokolská stání u B z OSM, řez 40 → 50 %;
+  olomouc-2 šířky o 3–5 cm). CZ **58 %** po zaokrouhlení beze změny, pruhy 30 %, šířka do 1 / 2 m 30 / 33 %.
 - **PL 69 → 63 % (přesbíráno, až Geoportal odpověděl, 24. 11. večer).** První sběr 24. 11. dopoledne (57 %) padl do
   výpadku ortofota Geoportalu (ortofoto v 5 z 29 řezů). Znovu `collect24` do `data/app-zzzprepocet-jvf.json`: ortofoto
   ve 23 z 29 řezů (jako 17. 11.), žádný řez přes 90 s; šířka do 2 m 45 → 36 %, nejčastěji chybí chodník 7×, chybí pruh
