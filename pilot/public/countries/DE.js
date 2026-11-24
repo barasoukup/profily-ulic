@@ -92,7 +92,6 @@ export default {
   // The law's estimate on local streets as in Czechia (the universal judging, 17. 11. 2026: parking was missing in 15
   // of 34 German cuts; ?odhadstani=0 in app.js leaves it out).
   parkGuess: true,
-  wideRoads: true,
   roadClassFromOsm: true,
   limits: limitsDE,
   // No public width for a one-way street with contraflow cyclists nor for a tram belt was found: no warning.

@@ -65,8 +65,6 @@ export default {
   halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je na Maltě zakázané (předpis S.L. 65.11, čl. 79), ledaže ho povolí značka; volnou šířku předpis neuvádí, aplikace nechává {need} (aspoň 4,1 m na míjení podle stavebního standardu DC15, nejméně 2,5 m na každý pruh).", { free, need }),
   parkGuess: true,
   parkByCycleLane: true,
-  wideRoads: true,
-  wideStreets: /^(primary|secondary)$/,
   roadClassFromOsm: true,
   limits: limitsMT,
   contraflow: () => null,

@@ -31,6 +31,13 @@ const SETS = {
   // 8 candidates each within 3 km.
   hlavni: { seed: 20261124 + 31, n: 8, r: 3000, places: { praha: [50.0755, 14.4378], brno: [49.1951, 16.6068], ostrava: [49.8347, 18.282], bratislava: [48.1486, 17.1077],
     wien: [48.2085, 16.3731], berlin: [52.52, 13.405], muenchen: [48.1374, 11.5755], warszawa: [52.2297, 21.0122], amsterdam: [52.3676, 4.9041], zurich: [47.3769, 8.5417] } },
+  // The wide reach as a rule of the data (Bára 25. 11. 2026): towns with a surface map, full coverage (NL BGT, the Swiss
+  // survey, Berlin) and of the street area only (Vienna, Helsinki), and Paris, 8 candidates each within 4 km.
+  siroke: { seed: 20261124 + 37, n: 8, r: 4000, places: { amsterdam: [52.3676, 4.9041], rotterdam: [51.9225, 4.4792], utrecht: [52.0907, 5.1214], zurich: [47.3769, 8.5417],
+    bern: [46.948, 7.4474], basel: [47.5596, 7.5886], wien: [48.2085, 16.3731], helsinki: [60.1699, 24.9384], berlin: [52.52, 13.405], paris: [48.8566, 2.3522] } },
+  // Controls without a surface map (SK, PL, France outside Paris), where the rule should change nothing.
+  siroke_kontrola: { prefix: "sk", seed: 20261124 + 41, n: 8, r: 4000, places: { kosice: [48.7164, 21.2611], zilina: [49.2231, 18.7394], wroclaw: [51.1079, 17.0385], lodz: [51.7592, 19.456],
+    lyon: [45.764, 4.8357], toulouse: [43.6047, 1.4442] } },
 };
 const S = SETS[set];
 let seed = S.seed;
@@ -44,7 +51,7 @@ for (const [place, [lat0, lon0]] of Object.entries(S.places)) {
     const r = S.r * Math.sqrt(rnd()), a = 2 * Math.PI * rnd();
     const lat = +(lat0 + (r * Math.cos(a)) / 110574).toFixed(6), lon = +(lon0 + (r * Math.sin(a)) / (111320 * Math.cos((lat0 * Math.PI) / 180))).toFixed(6);
     if (rings[place] && !rings[place].some((ring) => inRing(ring, lon, lat))) continue;
-    out.push({ id: `${set.slice(0, 2)}${set.match(/\d+$/)?.[0] || ""}-${place}-${++i}`, place, lat, lon });
+    out.push({ id: `${S.prefix || set.slice(0, 2)}${set.match(/\d+$/)?.[0] || ""}-${place}-${++i}`, place, lat, lon });
   }
 }
 console.log(JSON.stringify(out, null, 1));

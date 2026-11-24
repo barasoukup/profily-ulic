@@ -97,7 +97,6 @@ export default {
   // The law's estimate on local streets as in Czechia (the universal judging, 17. 11. 2026: parking was missing in 14 of
   // 33 Austrian cuts; ?odhadstani=0 leaves it out).
   parkGuess: true,
-  wideRoads: true,
   // Austria has no street classes of its own here: the OSM highway gives the group (limitsAT).
   roadClassFromOsm: true,
   limits: limitsAT,

@@ -191,7 +191,9 @@ WMS-Raster v Web Mercatoru, `lanes-ortho.js` zdroj `fr`; mimo Francii bílé, pr
   `?parisstani=0`). Mapa povrchů počítá podélné stání do vozovky a ortofoto IGN na bulvárech čáry nenajde (stín, Paříž
   je často nemaluje), takže bez evidence zbylo stání jako krajnice.
 - **Hlavní ulice** (primary, secondary): strana, která skončí dosahem ve středovém pásu, promenádě nebo chodníku, sahá
-  35 m (`wideStreets`; bulvár s promenádou). Vozovka jen pro autobusy se stejným jménem je druhá polovina ulice, když
+  35 m, když ulice za dosahem pokračuje (bulvár s promenádou; od 25. 11. 2026 všude stejné pravidlo podle dat řezu, ne
+  státu: `app.js widerSides`, `evaluation/sjednoceni/ZPRAVA.md`; za dosahem není mapa povrchů, nebo je tam druhá vozovka
+  téže ulice z OSM, nebo plochy ulice z mapy pokračují až k vozovce; totéž dálnice a silnice pro motorová vozidla). Vozovka jen pro autobusy se stejným jménem je druhá polovina ulice, když
   jiná není (`?off=busduo`, obecně); krajnice aspoň 2,75 m u obruby s buspruhem z OSM je buspruh (`?off=buskrajnice`,
   obecně). Zpráva `evaluation/france/ab/bulvary/ZPRAVA.md`.
 - **Budovy** z BD TOPO IGN (podlaží, výška, rok, byty, užití; `?bdtopo=0`). **Šířky vozovek** BD TOPO (celé metry) jen

@@ -66,7 +66,6 @@ export default {
   halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na chodníku se smí stát jen podle místní úpravy (čl. 24 AR 1975), ve vozovce musí zůstat 3 m volného průjezdu (čl. 25.1, 7°); aplikace nechává průjezdné pruhy, tedy aspoň {need}.", { free, need }),
   parkGuess: true,
   parkByCycleLane: true,
-  wideRoads: true,
   roadClassFromOsm: true,
   limits: limitsBE,
   contraflow: () => null,

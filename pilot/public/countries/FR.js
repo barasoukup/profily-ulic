@@ -83,10 +83,6 @@ export default {
   halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání auta na chodníku je ve Francii „velmi obtěžující stání“, přestupek 4. třídy (čl. R417-11 zákona o silničním provozu); volnou šířku vozovky zákon neuvádí, aplikace nechává průjezdné pruhy, tedy aspoň {need}.", { free, need }),
   parkGuess: true,
   parkByCycleLane: true,
-  wideRoads: true,
-  // Paris's boulevards and avenues are 30–70 m between facades, with promenades and side roads: a main street's side
-  // ending at the reach in its median reaches 35 m (app.js).
-  wideStreets: /^(primary|secondary)$/,
   roadClassFromOsm: true,
   limits: limitsFR,
   contraflow: () => null,

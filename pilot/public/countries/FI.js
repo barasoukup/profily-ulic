@@ -81,8 +81,6 @@ export default {
   halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Ve Finsku je stání na chodníku zakázané (§ 37 zákona o silničním provozu), dovolit ho může jen dodatková tabulka; aplikace nechává {need}.", { free, need }),
   parkGuess: true,
   parkByCycleLane: true,
-  wideRoads: true,
-  wideStreets: /^(primary|secondary)$/,
   roadClassFromOsm: true,
   limits: limitsFI,
   // Väylä 18/2020 p. 61: a one-way street with cyclists both ways, without parking, 4.25 m of roadway (a guide: orange).

@@ -117,7 +117,7 @@ Kresby jsou zdaleka nejdražší. Proto:
    ve státu funkce. Vlastnosti (výchozí hodnoty a popis v `default.js`):
    - zákon o stání: `freeLane`, `halfKerbNote(free, need)` (věta; při 3 m na směr `lawNote(zákon)` z `default.js`),
      `parkGuess` (odhad stání podle zákona);
-   - `wideRoads` (širší dosah dálnic), `roadClassFromOsm` (skupina ulice z OSM `highway`);
+   - `roadClassFromOsm` (skupina ulice z OSM `highway`); delší dosah dálnic a hlavních ulic se řídí daty řezu, ne státem;
    - normy: `limits(s, segs, i)`, `contraflow(parked)`, `tramBelt(belt, w)` (viz bod 6);
    - značky: `signs: { dir, file, plate, label, drawable }` (viz bod 7);
    - ortofoto: `bedOrtho` (tramvajové těleso), `laneOrtho` (pruhy; město ho přepíše vlastním `laneOrtho` v `city.js`);

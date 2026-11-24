@@ -90,7 +90,7 @@ Při slovenském A/B se ukázaly dvě chyby sdíleného kódu, které platí vš
 
 Celkem **6 : 2**. Regrese beze změny (stání z modelu do ní nevstupuje), testy `tests/park-ai.test.js`.
 
-## 4. `wideRoads` v Česku: výjimka zůstává, změřeno
+## 4. `wideRoads` v Česku: změřeno, pak nahrazeno pravidlem dat (bod 6)
 
 Dálnice a silnice pro motorová vozidla mají jinde dosah 35 m (Bára: R1 v Banské Bystrici), v Česku ne („Fable: not
 tried on Czech motorways“). Vzorek `dalnice`: náhodné body do 2 km od úseků D0, D1, D5, D6, D8, D11, D35 a silnic I/50,
@@ -118,3 +118,41 @@ body jako 9. 11.): Generála Šišky (dělicí pás 1,5 m se změní v pruhy), P
 strana B krajnice 9,7 m), Nad Vršovskou horou jinak (posun z křižovatky). Rozhodnutí: **sjednoceno pro všechna města kromě
 Prahy** (`city.js AXIS_FIX`, výchozí v `setCity`; Praha `fix: {}` s naměřeným důvodem). Plzeň si nechává `bedPanels`
 (data jejích tramvajových těles). Regrese beze změny, 425 testů.
+
+## 6. Delší dosah dálnic a hlavních ulic podle dat řezu místo `wideRoads` a `wideStreets`
+
+Bára 25. 11. 2026 k bodu 4: důvod (mapa povrchů kreslí plochy všude, 35 m vede do polí) je vlastnost dat, ne Česka;
+platí všude, kde mapa pokrývá všechno (BGT, švýcarské vyměřování, GRB, DBT…), kdežto mapy uličního prostoru (Vídeň,
+Helsinky, Tallinn) končí na hranici pozemku a za nimi je zase odhad. Proto jedno pravidlo z dat u řezu (`app.js
+widerSides`), oba příznaky států zrušené:
+
+- strana nového řezu, která končí na dosahu (dálnice a silnice pro motorová vozidla vždy, hlavní ulice jen v dílu
+  středového pásu, promenády nebo chodníku), sahá 35 m, jen když ulice za dosahem pokračuje: za dosahem není mapa
+  povrchů (odhad; dům se nepočítá), nebo řez tam kříží druhá vozovka téže ulice z OSM (stejné jméno nebo `ref`), nebo
+  plochy ulice z mapy (vozovka, chodník, cyklostezka, zpevněná plocha, tramvaj) pokračují bez přerušení až k vozovce;
+- bez mapy pod osou (odhad) má dálnice 35 m jako dřív;
+- `?off=widereach` vypne.
+
+První verze bez třetí podmínky na Boulevard Marguerite de Rochechouart (kvůli němuž `wideStreets` vznikl) skončila
+uprostřed promenády: druhá polovina bulváru má v OSM jiné jméno. S ní je Paříž jako dřív.
+
+Sběr `vysledky/siroke2.json` (O: příznaky států jako dosud, N: pravidlo dat; obojí na stejném místě a směru, tentýž
+sběr): **112 řezů** = 40 nových ve městech s mapou (Amsterdam, Rotterdam, Utrecht, Curych, Bern, Basilej, Vídeň,
+Helsinky, Berlín, Paříž; `siroke-kandidati.json`), 5 pařížských bulvárů (Marguerite de Rochechouart, Clichy,
+Richard-Lenoir, Grenelle, Batignolles), 14 kontrol bez mapy (Košice, Žilina, Vratislav, Lodž, Lyon, Toulouse), 14 českých
+dálnic z bodu 4 a 39 hlavních ulic v CZ, SK, AT, DE, PL, NL a CH (`hlavni2.json`). Změnilo se **7**, jeden o 0,25 m
+(šum). Kontroly bez mapy 0 ze 14, české dálnice 0 ze 14, české hlavní ulice 0, pařížské bulváry 0 z 5.
+
+Naslepo (balíček wd1, fotky Mapillary u všech): **N 4 : O 2**.
+
+| řez | O → N | posudek |
+|---|---|---|
+| Europalaan, Utrecht | A 22 → 35 m: boční ulice se stáním, pruhem a cyklopruhem | **N** |
+| Avenue Montaigne, Paříž | B 25,5 → 22 m (za ulicí park s fontánou) | **N** (slabě) |
+| Utoquai, Curych | A 22 → 35 m: promenáda se stromořadím k fasádě | **N** |
+| Lassallestraße, Vídeň | A 23 → 35 m: dlažba se stáním k fasádě a kolejím | **N** |
+| A20, Rotterdam | 35/36 → 22/21 m: souběžná vozovka komplexu dálnice odříznutá | O (nízká až střední jistota) |
+| Bajkalská, Bratislava | B 23,4 → 27,4 m: 4 m plochy, což je už budova | O |
+
+Rozhodnutí: **sjednoceno**, `wideRoads` a `wideStreets` zrušené ve všech 22 státech, pravidlo je jedno pro všechny.
+Zbývá: souběžná vozovka dálnice s jiným jménem (A20) a plocha mapy, která na ortofotu leží pod budovou (Bajkalská).
