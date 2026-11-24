@@ -1,0 +1,474 @@
+[
+ {
+  "id": "ab-1-1",
+  "name": "Monroe Street Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-1-1-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-1-1-b.jpg"
+  ],
+  "X": "zelen 4.5 | chodnik 1.7 | parkovani 2.45 | pruh 2.5 | parkovani 2.45 | chodnik 2 | zelen 1.1",
+  "Y": "zelen 3.3 | chodnik 3.8 | pruh 4.5 | krajnice 1.9 | chodnik 3.2"
+ },
+ {
+  "id": "ab-1-2",
+  "name": "V Street Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-1-2-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-1-2-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-1-2-b.jpg"
+  ],
+  "X": "chodnik 6.9 | parkovani 1.67 | cyklopruh 2.08 | pruh 2.82 | parkovani 2.23 | chodnik 6.45",
+  "Y": "chodnik 7.1 | parkovani 2.47 | cyklopruh 1.73 | pruh 3.17 | parkovani 2.43 | chodnik 7.2"
+ },
+ {
+  "id": "ab-1-3",
+  "name": "Columbia Road Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-1-3-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-1-3-b.jpg"
+  ],
+  "X": "zelen 6.2 | chodnik 3 | parkovani 2.75 | pruh_piktokoridor 3.42 | parkovani 3.23 | chodnik 2.9 | zelen 6.3",
+  "Y": "plocha 3.8 | chodnik 6 | pruh_piktokoridor 4 | pruh 4 | chodnik 6 | plocha 4.2"
+ },
+ {
+  "id": "ab-1-4",
+  "name": "Monroe Street Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-1-4-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-1-4-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-1-4-b.jpg"
+  ],
+  "X": "zelen 1.7 | chodnik 1.6 | zelen 1 | parkovani 2.45 | pruh 2.15 | pruh 2.15 | parkovani 2.45 | zelen 1.2 | chodnik 1.8 | zelen 3.5",
+  "Y": "chodnik 5.1 | parkovani 2 | pruh 2.4 | pruh 2.4 | parkovani 2 | chodnik 6 | plocha 1.25"
+ },
+ {
+  "id": "ab-1-5",
+  "name": "Clydesdale Place Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-1-5-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-1-5-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-1-5-b.jpg"
+  ],
+  "X": "krajnice 1.09 | pruh 4 | pruh 4 | krajnice 1.09 | zelen 1.5 | chodnik 5.5 | parkovani 2.27 | pruh 4.48 | parkovani 2.45 | zelen 1.1 | chodnik 1.8 | zelen 2",
+  "Y": "pruh 3 | pruh 3 | plocha 4.05 | chodnik 6.9 | krajnice 1.58 | pruh 3.01 | pruh 3.01 | chodnik 6 | plocha 0.5"
+ },
+ {
+  "id": "ab-2-1",
+  "name": "N Street Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-2-1-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-2-1-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-2-1-b.jpg"
+  ],
+  "X": "zelen 1.5 | chodnik 4 | parkovani 2.45 | pruh 3.12 | cyklopruh 1.78 | parkovani 2.45 | plocha 7.6",
+  "Y": "plocha 0.55 | chodnik 6 | parkovani 2 | pruh 3.57 | cyklopruh 1.23 | parkovani 2 | chodnik 6 | plocha 1.9"
+ },
+ {
+  "id": "ab-2-2",
+  "name": "12th Street Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-2-2-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-2-2-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-2-2-b.jpg"
+  ],
+  "X": "chodnik 1.8 | parkovani 2.57 | pruh_piktokoridor 3.88 | krajnice 0.92 | parkovani 2.63 | zelen 6.2 | chodnik 1.9 | zelen 4.9",
+  "Y": "zelen 4.35 | chodnik 2.15 | parkovani 2.47 | krajnice 1.53 | pruh_piktokoridor 4 | krajnice 2 | parkovani 2 | chodnik 1.2 | zelen 4.45 | chodnik 0.35 | plocha 4.15"
+ },
+ {
+  "id": "ab-2-3",
+  "name": "15th Street Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-2-3-ortho.jpg",
+  "halfM": 33,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-2-3-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-2-3-b.jpg"
+  ],
+  "X": "chodnik 5.2 | pruh 3.77 | pruh 3.4 | pruh 3.3 | pruh 3.3 | pruh 3.4 | pruh 3.63 | chodnik 6.1 | stromorad 3.39 | zelen 0.81 | stromorad 1.02 | chodnik 0.95 | stromorad 1.5 | chodnik 0.62 | zelen 1.54 | stromorad 3 | zelen 2.96 | stromorad 3 | zelen 1.12",
+  "Y": "chodnik 2 | cyklostezka 2.4 | cyklostezka 2.4 | krajnice 0.47 | pruh 3.4 | pruh 3.3 | pruh 3.3 | pruh 3.4 | pruh 3.7 | krajnice 1.23 | chodnik 2.5 | nezname 0.45 | chodnik 2 | nezname 0.45 | stromorad 1.9 | stromorad 3"
+ },
+ {
+  "id": "ab-2-4",
+  "name": "22nd Street Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-2-4-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-2-4-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-2-4-b.jpg"
+  ],
+  "X": "plocha 7.67 | chodnik 6 | parkovani 2 | pruh 2.97 | pruh 3.6 | pruh 3 | pruh 3.03 | parkovani 2 | chodnik 4.25",
+  "Y": "zelen 12.1 | chodnik 2 | zelen 1.9 | parkovani 3 | pruh 4.5 | pruh 4.5 | krajnice 2 | parkovani 3 | zelen 1.2 | chodnik 1.8 | zelen 3.2 | plocha 6.93"
+ },
+ {
+  "id": "ab-2-5",
+  "name": "P Street Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-2-5-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-2-5-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-2-5-b.jpg"
+  ],
+  "X": "chodnik 2.5 | plocha 3.55 | chodnik 2.25 | plocha 0.75 | krajnice 1.45 | pruh 4.5 | krajnice 1.45 | parkovani 2 | chodnik 6 | plocha 2.65",
+  "Y": "zelen 7.6 | chodnik 1.7 | zelen 3.3 | chodnik 1.8 | zelen 2.3 | parkovani 2.17 | pruh 4.58 | parkovani 2.45 | zelen 1.2 | chodnik 6.5"
+ },
+ {
+  "id": "ab-3-1",
+  "name": "Dana Place Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-3-1-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-3-1-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-3-1-b.jpg"
+  ],
+  "X": "chodnik 4.85 | pruh 4.4 | pruh 4.4 | chodnik 1.4 | zelen 6.45",
+  "Y": "zelen 1.9 | chodnik 1.7 | zelen 1.5 | parkovani 2.45 | pruh 3.82 | parkovani 2.73 | zelen 6.8"
+ },
+ {
+  "id": "ab-3-2",
+  "name": "Porter Street Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-3-2-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-3-2-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-3-2-b.jpg"
+  ],
+  "X": "zelen 4.5 | plocha 1.4 | chodnik 6 | pruh 3.68 | pruh 3.67 | krajnice 1.85 | chodnik 6 | plocha 2.4 | zelen 3 | plocha 1.25",
+  "Y": "zelen 8 | chodnik 1 | zelen 2.1 | pruh 3.67 | pruh 2.87 | parkovani 2.75 | zelen 2.4 | chodnik 1.3 | zelen 11.6"
+ },
+ {
+  "id": "ab-3-3",
+  "name": "Dalecarlia Parkway Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-3-3-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-3-3-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-3-3-b.jpg"
+  ],
+  "X": "pruh 3.37 | pruh 3.53 | delici 1.05 | pruh 3.22 | pruh 3.22 | pruh 3.22 | nezname 2.01",
+  "Y": "pruh 3.67 | pruh 3.53 | delici 0.6 | pruh 3.33 | pruh 3.33 | pruh 3.33"
+ },
+ {
+  "id": "ab-3-4",
+  "name": "Dexter Street Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-3-4-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-3-4-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-3-4-b.jpg"
+  ],
+  "X": "nezname 1.9 | pruh 4.6 | pruh 4.6 | chodnik 6 | plocha 8.45",
+  "Y": "parkovani 2.45 | pruh 3 | parkovani 2.45 | zelen 13.8"
+ },
+ {
+  "id": "ab-3-5",
+  "name": "48th Street Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-3-5-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-3-5-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-3-5-b.jpg"
+  ],
+  "X": "nezname 1.5 | pruh 3.8 | pruh 3.8 | parkovani 2 | chodnik 2.95",
+  "Y": "parkovani 2.45 | pruh 2.55 | pruh 2.55 | parkovani 2.45"
+ },
+ {
+  "id": "ab-4-1",
+  "name": "Daniel Lane Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-4-1-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-4-1-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-4-1-b.jpg"
+  ],
+  "X": "zelen 28.1 | parkovani 2.45 | pruh 4.9 | parkovani 2.45",
+  "Y": "plocha 7 | chodnik 6 | pruh 4.5 | pruh 4.5"
+ },
+ {
+  "id": "ab-4-2",
+  "name": "3rd Street Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-4-2-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-4-2-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-4-2-b.jpg"
+  ],
+  "X": "chodnik 3.7 | parkovani 2.45 | pruh 4.35 | pruh 4.35 | parkovani 2.45 | zelen 1.7 | chodnik 1.8 | zelen 6.5 | plocha 5.72",
+  "Y": "chodnik 4.55 | krajnice 3.37 | pruh 3.5 | pruh 3.5 | krajnice 2.63 | chodnik 4"
+ },
+ {
+  "id": "ab-4-3",
+  "name": "16th Street Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-4-3-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-4-3-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-4-3-b.jpg"
+  ],
+  "X": "zelen 10.2 | chodnik 2.5 | zelen 1.9 | pruh 2.87 | pruh 3.3 | krajnice 0.23 | delici 2.4 | pruh 3.37 | pruh 2.8 | krajnice 0.33 | zelen 2.5 | chodnik 1.9 | zelen 9.9",
+  "Y": "zelen 5 | plocha 3 | chodnik 6 | krajnice 0.47 | pruh 2.8 | pruh 3.13 | delici 3 | pruh 3.17 | pruh 2.53 | chodnik 6 | plocha 1.4 | zelen 7.65"
+ },
+ {
+  "id": "ab-4-4",
+  "name": "Emerson Street Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-4-4-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-4-4-b.jpg"
+  ],
+  "X": "pruh 2.32 | chodnik 4.3 | zelen 6.6 | chodnik 3.3 | parkovani 2.45 | pruh 4.27 | parkovani 2.68 | zelen 1.9 | chodnik 1.6",
+  "Y": "plocha 3.6 | chodnik 2.5 | plocha 6.2 | chodnik 4.8 | krajnice 1.65 | pruh 4.5 | krajnice 1.65 | chodnik 5.6 | zelen 11.9"
+ },
+ {
+  "id": "ab-4-5",
+  "name": "Varnum Street Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-4-5-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-4-5-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-4-5-b.jpg"
+  ],
+  "X": "zelen 3.15 | plocha 2.2 | chodnik 6 | krajnice 2.05 | pruh 4.5 | krajnice 2.05 | chodnik 6 | plocha 2.8",
+  "Y": "zelen 6.3 | chodnik 1.9 | zelen 1.7 | parkovani 2.45 | pruh 4.3 | parkovani 2.45 | zelen 1.7 | chodnik 2 | zelen 4.8"
+ },
+ {
+  "id": "ab-5-1",
+  "name": "Randolph Place Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-5-1-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-5-1-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-5-1-b.jpg"
+  ],
+  "X": "plocha 3 | chodnik 6 | pruh 3.7 | pruh 3.7 | chodnik 7.85",
+  "Y": "zelen 4.1 | chodnik 3.1 | parkovani 2.45 | pruh 2.15 | pruh 2.15 | parkovani 2.45 | chodnik 2.6 | zelen 4.9"
+ },
+ {
+  "id": "ab-5-2",
+  "name": "West Virginia Avenue Northeast",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-5-2-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-5-2-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-5-2-b.jpg"
+  ],
+  "X": "chodnik 2.55 | cyklostezka 2 | krajnice 0.37 | pruh 3.4 | pruh 3.4 | cyklostezka 2 | krajnice 1.83 | chodnik 3.6",
+  "Y": "zelen 8.5 | chodnik 1.3 | zelen 1.5 | pruh 4 | pruh 4 | cyklostezka 1.75 | parkovani 2.45 | zelen 1.2 | chodnik 1.7 | zelen 4.7 | plocha 8.23"
+ },
+ {
+  "id": "ab-5-3",
+  "name": "South Dakota Avenue Northeast",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-5-3-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-5-3-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-5-3-b.jpg"
+  ],
+  "X": "zelen 7.6 | chodnik 2.6 | pruh 3.37 | pruh 3.5 | pruh 3.2 | pruh 3.33 | chodnik 2.7 | zelen 7.2",
+  "Y": "zelen 7.4 | chodnik 4 | krajnice 2.37 | pruh 3.5 | pruh 3.2 | pruh 2.93 | chodnik 6 | zelen 3.95"
+ },
+ {
+  "id": "ab-5-4",
+  "name": "6th Street Northeast",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-5-4-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-5-4-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-5-4-b.jpg"
+  ],
+  "X": "zelen 13.5 | chodnik 1.6 | zelen 1.8 | parkovani 2.45 | pruh 2.15 | pruh 2.15 | parkovani 2.45 | zelen 2 | chodnik 1.6 | zelen 5",
+  "Y": "zelen 5.6 | chodnik 5.4 | pruh 4.8 | pruh 4.8 | chodnik 4.8 | zelen 4.05"
+ },
+ {
+  "id": "ab-5-5",
+  "name": "Washington Place Northeast",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-5-5-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-5-5-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-5-5-b.jpg"
+  ],
+  "X": "plocha 3.03 | chodnik 6.65 | pruh 3.77 | pruh 3.41 | pruh 3.41 | delici 3.8 | pruh 2.83 | pruh 2.83 | pruh 2.83 | chodnik 5.05",
+  "Y": "pruh 3.75 | delici 2.75 | pruh 2.25"
+ },
+ {
+  "id": "ab-6-1",
+  "name": "9th Street Northeast",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-6-1-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-6-1-f.jpg"
+  ],
+  "X": "plocha 2.35 | chodnik 6 | pruh 4.32 | pruh 4.68 | chodnik 6 | plocha 3.5",
+  "Y": "zelen 4.4 | chodnik 4 | parkovani 2.45 | pruh 2.52 | pruh 2.6 | parkovani 2.33 | zelen 1.1 | chodnik 7.8"
+ },
+ {
+  "id": "ab-6-2",
+  "name": "2nd Street Northeast",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-6-2-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-6-2-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-6-2-b.jpg"
+  ],
+  "X": "plocha 10.58 | zelen 2.1 | stezka_sdilena 3.8 | pruh_piktokoridor 3.52 | pruh_piktokoridor 3.52 | parkovani 2.75 | zelen 2 | chodnik 5.4 | zelen 5.5",
+  "Y": "cyklostezka 1.25 | cyklostezka 1.25 | chodnik 1.25 | pruh_piktokoridor 4 | pruh_piktokoridor 4 | krajnice 1.6 | chodnik 6 | plocha 6.45"
+ },
+ {
+  "id": "ab-6-3",
+  "name": "I Street Southwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-6-3-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-6-3-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-6-3-b.jpg"
+  ],
+  "X": "plocha 7.2 | chodnik_kola 6 | parkovani 1.87 | pruh 4.63 | pruh 4.47 | parkovani 2.03 | chodnik 2.5 | plocha 0.6 | chodnik 2.5",
+  "Y": "zelen 10.5 | chodnik 2.9 | parkovani 2.73 | pruh 2.99 | pruh 3.27 | pruh 2.84 | parkovani 2.88 | zelen 1.7 | chodnik 3"
+ },
+ {
+  "id": "ab-6-4",
+  "name": "I Street Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-6-4-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-6-4-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-6-4-b.jpg"
+  ],
+  "X": "plocha 9.45 | chodnik 6 | pruh 4.07 | pruh 4.5 | krajnice 1.03 | chodnik 6 | plocha 1",
+  "Y": "zelen 7.2 | chodnik 1.9 | zelen 0.6 | chodnik 2.7 | zelen 1.1 | chodnik 0.9 | parkovani 2.87 | pruh 2.14 | pruh 2.14 | parkovani 2.45 | chodnik 3.5 | zelen 4"
+ },
+ {
+  "id": "ab-6-5",
+  "name": "Virginia Avenue Southeast",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-6-5-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-6-5-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-6-5-b.jpg"
+  ],
+  "X": "plocha 3.12 | zelen 4.35 | plocha 2.4 | chodnik 1.95 | cyklostezka 1.25 | cyklostezka 1.25 | chodnik 1.55 | parkovani 2 | pruh 4 | pruh 3.47 | parkovani 2.53 | chodnik 2.43",
+  "Y": "zelen 11.5 | stezka_sdilena 4.2 | zelen 1 | parkovani 2.37 | pruh 3.48 | pruh 3.32 | parkovani 2.53 | chodnik 2"
+ },
+ {
+  "id": "ab-7-1",
+  "name": "H Street Southeast",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-7-1-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-7-1-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-7-1-b.jpg"
+  ],
+  "X": "plocha 0.5 | chodnik 6 | pruh 4.4 | pruh 4.4 | chodnik 4.2 | zelen 6.25",
+  "Y": "zelen 4.2 | chodnik 1.2 | zelen 1.8 | parkovani 2.45 | pruh 2.75 | pruh 2.75 | parkovani 2.45 | zelen 1.6 | chodnik 1.3 | zelen 5.4"
+ },
+ {
+  "id": "ab-7-2",
+  "name": "21st Street Northeast",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-7-2-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-7-2-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-7-2-b.jpg"
+  ],
+  "X": "chodnik 6.2 | krajnice 2 | pruh_piktokoridor 4 | pruh_piktokoridor 4 | krajnice 2 | chodnik 2.5 | plocha 2.3 | cyklostezka 1.3 | cyklostezka 1.3",
+  "Y": "zelen 3.2 | chodnik 1.7 | zelen 1.1 | parkovani 2.45 | pruh_piktokoridor 3.5 | pruh_piktokoridor 3.5 | parkovani 2.45 | zelen 5.1 | stezka_sdilena 3.5"
+ },
+ {
+  "id": "ab-7-3",
+  "name": "Pennsylvania Avenue Southeast",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-7-3-ortho.jpg",
+  "halfM": 36,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-7-3-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-7-3-b.jpg"
+  ],
+  "X": "chodnik 3.4 | zelen 2.6 | pruh 3.67 | pruh 3.3 | pruh 3.4 | pruh 3.6 | krajnice 0.13 | delici 9.1 | pruh 3.49 | pruh 3.3 | pruh 3.4 | pruh 3.73 | plocha 15.13",
+  "Y": "chodnik 6.55 | pruh 3.57 | pruh 3.3 | pruh 3.4 | pruh 3.13 | zelen 5.4 | pruh 3.75 | pruh 3.75 | pruh 3.75 | pruh 3.75 | krajnice 2.6 | chodnik 4.5"
+ },
+ {
+  "id": "ab-7-4",
+  "name": "Bangor Street Southeast",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-7-4-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-7-4-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-7-4-b.jpg"
+  ],
+  "X": "parkovani 2.45 | pruh 2.1 | pruh 2.1 | parkovani 2.45",
+  "Y": "plocha 1.6 | chodnik 6 | pruh 4.4 | pruh 4.4 | chodnik 4.2 | zelen 6.6"
+ },
+ {
+  "id": "ab-7-5",
+  "name": "Quarles Street Northeast",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-7-5-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-7-5-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-7-5-b.jpg"
+  ],
+  "X": "zelen 6.15 | chodnik 4.8 | krajnice 3.9 | pruh 4.5 | chodnik 4.4 | zelen 4.75",
+  "Y": "zelen 6.4 | chodnik 1.6 | zelen 1.8 | parkovani 2.37 | pruh 2.44 | pruh 2.44 | parkovani 2.45 | zelen 1.7 | chodnik 1.9"
+ },
+ {
+  "id": "ab-8-1",
+  "name": "Savannah Terrace Southeast",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-8-1-ortho.jpg",
+  "halfM": 30,
+  "photos": [],
+  "X": "zelen 1.7 | chodnik 1.6 | zelen 2.3 | chodnik 3 | parkovani 2.17 | pruh 3.08 | pruh 2.8 | parkovani 2.45 | chodnik 2.9 | zelen 5.4",
+  "Y": "plocha 1.9 | chodnik 6 | pruh 4.96 | pruh 5.04 | chodnik 5 | zelen 4.05"
+ },
+ {
+  "id": "ab-8-2",
+  "name": "Overlook Avenue Southwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-8-2-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-8-2-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-8-2-b.jpg"
+  ],
+  "X": "pruh 4.5 | krajnice 1.07 | zelen 2.5 | chodnik 4.3 | krajnice 3.6 | pruh 4 | delici 1.6 | pruh 3.87 | pruh 3.5 | krajnice 3.23 | chodnik 1.7",
+  "Y": "krajnice 1 | pruh 4 | krajnice 1 | plocha 9.85 | pruh 4.2 | delici 3.05 | pruh 3.41 | pruh 3.5 | krajnice 1.73 | chodnik 3.3"
+ },
+ {
+  "id": "ab-8-3",
+  "name": "South Capitol Street Southeast",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-8-3-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-8-3-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-8-3-b.jpg"
+  ],
+  "X": "pruh 3.27 | pruh 3.63 | delici 2.1 | chodnik 1.3 | krajnice 0.25 | pruh 4.1 | pruh 4.1 | pruh 4.4 | pruh 3.83 | chodnik 1.2 | delici 3.3 | pruh 3.17 | pruh 3.43",
+  "Y": "krajnice 1 | pruh 4 | krajnice 1 | delici 3.4 | pruh 3 | pruh 3 | delici 1.65 | pruh 4 | pruh 4 | krajnice 1.75 | delici 3.35 | pruh 3.42 | pruh 2.58"
+ },
+ {
+  "id": "ab-8-4",
+  "name": "Blakney Lane Southeast",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-8-4-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-8-4-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-8-4-b.jpg"
+  ],
+  "X": "zelen 3.9 | chodnik 1.8 | zelen 0.5 | parkovani 2.45 | pruh 2.75 | pruh 2.75 | parkovani 2.45",
+  "Y": "plocha 1.25 | chodnik 6 | pruh 4.7 | pruh 4.7"
+ },
+ {
+  "id": "ab-8-5",
+  "name": "22nd Street Southeast",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-8-5-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-8-5-b.jpg"
+  ],
+  "X": "zelen 5.05 | chodnik 5.4 | parkovani 2 | krajnice 1.05 | pruh 4.5 | krajnice 1.05 | chodnik 6 | plocha 3.45",
+  "Y": "zelen 7.4 | chodnik 3 | parkovani 2.45 | pruh 4.3 | parkovani 2.45 | chodnik 2.9 | zelen 3.1"
+ }
+]

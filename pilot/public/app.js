@@ -11,6 +11,8 @@ if (new URLSearchParams(location.search).get("stit") === "1") HOUSE_LOOKS.gables
 import { aiCut, aiKerbs, aiSurface, aiParking, parkFromAi, parkSkip, aiReady, onAiProgress } from "./ai-kerbs.js";
 // ?off=… switches named parts of the estimate off (the A/B tests, evaluation/ortofoto-osm/regrese.mjs).
 { const off = new URLSearchParams(location.search).get("off"); if (off) ORTHO_P.off = new Set(off.split(",")); }
+// Tree pits as sidewalk (derive.js treePitsAsSidewalk): off, ?jamky=1 turns them on.
+if (new URLSearchParams(location.search).get("jamky") === "1") ORTHO_P.jamky = true;
 // ?auta=1: parked cars told by their colours on the orthophoto (ortho-osm.js carsColoured; a trial, off by default).
 if (new URLSearchParams(location.search).get("auta") === "1") ORTHO_P.carsColour = true;
 // The model also decides sidewalk, green and other between the kerb and the house (on since 19. 11. 2026, Bára;
@@ -671,7 +673,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     capWideLanes(result.segments, near.way.tags);
     // The technical map's own roadway in a pedestrian zone stays a lane; the estimate's does not.
     pedestrianZone(result.segments, near.way.tags, { measured: !orthoOsm && !result.estimate });
-    // Tree pits in a sidewalk read on the orthophoto (derive.js treePitsAsSidewalk), ?off=jamky.
+    // Tree pits in a sidewalk read on the orthophoto (derive.js treePitsAsSidewalk), only with ?jamky=1.
     const pitsJoined = treePitsAsSidewalk(result.segments, result.extent, laneImg?.st);
     if (orthoOsm) widenNarrowTrams(result.segments);
     // Parking where the model sees cars at the kerb (ai-kerbs.js parkFromAi; Bára 20. 11. 2026), ?off=aipark.

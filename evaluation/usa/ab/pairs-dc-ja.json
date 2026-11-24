@@ -1,0 +1,48 @@
+[
+ {
+  "id": "ab-1-3",
+  "name": "Columbia Road Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-1-3-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-1-3-b.jpg"
+  ],
+  "X": "zelen 6.2 | chodnik 3 | parkovani 2.75 | pruh_piktokoridor 3.42 | parkovani 3.23 | chodnik 2.9 | zelen 6.3",
+  "Y": "zelen 6.2 | chodnik 1.9 | zelen 1.1 | parkovani 2.75 | pruh_piktokoridor 3.42 | parkovani 3.23 | chodnik 2.9 | zelen 6.3"
+ },
+ {
+  "id": "ab-5-3",
+  "name": "South Dakota Avenue Northeast",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-5-3-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-5-3-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-5-3-b.jpg"
+  ],
+  "X": "zelen 7.6 | chodnik 2.6 | pruh 3.37 | pruh 3.5 | pruh 3.2 | pruh 3.33 | zelen 1.3 | chodnik 1.4 | zelen 7.2",
+  "Y": "zelen 7.6 | chodnik 2.6 | pruh 3.37 | pruh 3.5 | pruh 3.2 | pruh 3.33 | chodnik 2.7 | zelen 7.2"
+ },
+ {
+  "id": "ab-6-3",
+  "name": "I Street Southwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-6-3-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-6-3-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-6-3-b.jpg"
+  ],
+  "X": "zelen 10.5 | chodnik 2.9 | parkovani 2.73 | pruh 2.99 | pruh 3.27 | pruh 2.84 | parkovani 2.88 | zelen 1.7 | chodnik 3",
+  "Y": "zelen 10.5 | chodnik 1.7 | zelen 1.2 | parkovani 2.73 | pruh 2.99 | pruh 3.27 | pruh 2.84 | parkovani 2.88 | zelen 1.7 | chodnik 3"
+ },
+ {
+  "id": "ab-8-5",
+  "name": "22nd Street Southeast",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-8-5-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-8-5-b.jpg"
+  ],
+  "X": "zelen 7.4 | chodnik 3 | parkovani 2.45 | pruh 4.3 | parkovani 2.45 | chodnik 2.9 | zelen 3.1",
+  "Y": "zelen 7.4 | chodnik 1.8 | zelen 1.2 | parkovani 2.45 | pruh 4.3 | parkovani 2.45 | zelen 1.2 | chodnik 1.7 | zelen 3.1"
+ }
+]

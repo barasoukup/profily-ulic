@@ -115,7 +115,9 @@ async function dcMetro() {
   const q = new URLSearchParams({ where: `GEOID IN (${DC_METRO.map((g) => `'${g}'`).join(",")})`, outFields: "GEOID", returnGeometry: "true", outSR: "4326", f: "json" });
   const json = await (await fetch(`https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/1/query?${q}`, { headers: { "User-Agent": "profily-ulic" } })).json();
   if ((json.features || []).length !== DC_METRO.length) throw new Error(`TIGERweb: ${json.features?.length} of ${DC_METRO.length} counties`);
-  return json.features.flatMap((f) => f.geometry.rings).map((r) => simplify(r)).filter((r) => r.length >= 4);
+  // Not simplified: each county simplified on its own left gaps along the shared boundaries (Southern Avenue, the DC line,
+  // fell into closed_us); the rings rounded to 1e-5° (about 1 m) only, equal on both sides of a boundary.
+  return json.features.flatMap((f) => f.geometry.rings).map((r) => r.map(([x, y]) => [+x.toFixed(5), +y.toFixed(5)])).filter((r) => r.length >= 4);
 }
 
 // Ydre Nordhavn (denmark below): the hull of the OSM streets the review found abroad, 150 m round them.

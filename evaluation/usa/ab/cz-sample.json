@@ -1,0 +1,552 @@
+[
+ {
+  "id": "cz-alley-0",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 49.528684,
+  "lon": 12.942507,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-alley-1",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 49.629077,
+  "lon": 17.330049,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-alley-2",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.071873,
+  "lon": 14.400383,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-alley-3",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.688533,
+  "lon": 15.235788,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-alley-4",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.082096,
+  "lon": 14.662625,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-alley-5",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 49.189855,
+  "lon": 17.288586,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-alley-6",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 49.250231,
+  "lon": 16.765217,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-alley-7",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 49.316097,
+  "lon": 15.644961,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-alley-8",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 49.694572,
+  "lon": 13.495076,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-alley-9",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.07393,
+  "lon": 14.683082,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-alley-10",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.617875,
+  "lon": 15.193725,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-alley-11",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.393048,
+  "lon": 15.244499,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-alley-12",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 49.189796,
+  "lon": 17.288649,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-alley-13",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 49.395967,
+  "lon": 15.639374,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-alley-14",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.101598,
+  "lon": 14.500865,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-alley-15",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 49.397469,
+  "lon": 15.639007,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-alley-16",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 49.27038,
+  "lon": 15.67744,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-alley-17",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 49.49925,
+  "lon": 15.679325,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-alley-18",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.540229,
+  "lon": 14.938948,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-alley-19",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 49.961697,
+  "lon": 15.280282,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-alley-20",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.296505,
+  "lon": 15.674947,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-alley-21",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 49.374598,
+  "lon": 15.706934,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-alley-22",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 49.404917,
+  "lon": 15.63578,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-alley-23",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.392504,
+  "lon": 15.241954,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-alley-24",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.209689,
+  "lon": 14.23718,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-lanes-0",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.212269,
+  "lon": 15.834505,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-lanes-1",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.196466,
+  "lon": 16.258376,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-lanes-2",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.079624,
+  "lon": 14.380001,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-lanes-3",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 49.599718,
+  "lon": 15.594399,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-lanes-4",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.063008,
+  "lon": 14.63089,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-lanes-5",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.071574,
+  "lon": 14.402732,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-lanes-6",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.610227,
+  "lon": 14.587915,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-lanes-7",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.190006,
+  "lon": 13.812313,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-lanes-8",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.07942,
+  "lon": 14.404721,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-lanes-9",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.332585,
+  "lon": 13.31433,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-lanes-10",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.167578,
+  "lon": 14.44264,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-lanes-11",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.074653,
+  "lon": 14.403793,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-lanes-12",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 49.991971,
+  "lon": 14.398556,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-lanes-13",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 49.538905,
+  "lon": 17.152659,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-lanes-14",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 49.974836,
+  "lon": 16.09598,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-lanes-15",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 48.853817,
+  "lon": 16.881929,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-lanes-16",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.018212,
+  "lon": 14.390701,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-lanes-17",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.172491,
+  "lon": 15.690716,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-lanes-18",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 49.848876,
+  "lon": 15.720457,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-lanes-19",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.035907,
+  "lon": 14.665457,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-lanes-20",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.418221,
+  "lon": 15.370514,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-lanes-21",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.186629,
+  "lon": 13.811322,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-lanes-22",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.092896,
+  "lon": 14.39219,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-lanes-23",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 49.219462,
+  "lon": 16.519861,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "cz-lanes-24",
+  "country": "CZ",
+  "town": "cesko",
+  "lat": 50.042394,
+  "lon": 14.429203,
+  "variants": [
+   "def",
+   "old"
+  ]
+ }
+]

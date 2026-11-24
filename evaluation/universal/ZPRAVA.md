@@ -288,3 +288,24 @@ mapa použitá v 8 z 10. S mapou shoda složení **53 %**, složení stejné 0 %
 nejčastěji navíc chodník 9×, navíc zeleň 5×; bez mapy (výchozí) **75 %**, 30 %, 60 %, 30 % / 60 %. Po řezech: s mapou
 hůř 6, stejně 4, lépe 0. Mapa dělí chodník na kusy a přidává zeleň a stání za okrajem, posuzovatel je nevidí. Stejný
 výsledek jako 24. 11. ráno (53 proti 75 %); mapa zůstává vypnutá, pokud Bára nerozhodne jinak.
+
+## USA: Washington (24. 11. 2026, fáze 2)
+
+Posouzení pilotu (`../usa-dc/vysledky/u-us-*.jsonl`, dva agenti Sonnet, 30 použitelných řezů z 32), profily nově z aplikace
+na posouzených řezech (`data/us-meas2.json` aplikace, jak zůstává; varianty v `data/us-ab.json`, řádky `dc-*`;
+`node evaluation/usa/score.mjs`, `../usa/vysledky/skore.md`). Varianty mají 29 řezů: dc-8-3 na Southern Avenue (hranice DC)
+při jejich sběru padl do `closed_us` (mezera mezi zjednodušenými hranicemi okresů, opraveno, `usa` je teď nezjednodušená).
+
+| profil | řezů | shoda složení | pruhy stejně | šířka do 1 / 2 m |
+|---|---|---|---|---|
+| aplikace (mapa DC, inventář DDOT, ortofoto, model obrub; jamky stromů vypnuté) | 30 | **61 %** | 50 % | 23 % / 40 % |
+| aplikace se všemi třemi změnami | 29 | 61 % | 52 % | 21 % / 38 % |
+| aplikace bez tří společných změn | 29 | 61 % | 45 % | 21 % / 38 % |
+| aplikace bez mapy DC (`?dc=0`) | 29 | 70 % | 66 % | 17 % / 17 % |
+| pilot offline (fáze 1) | 29 | 60 % | 45 % | 17 % / 31 % |
+
+Výhrada stejná jako v pilotu: posuzovatelé měření vynechávali úzké travnaté pásy mezi chodníkem a obrubou („navíc zelen“
+20×), které mapa DC má a ortofoto ukazuje, a stání podle inventáře DDOT zapisovali jen tam, kde auta viděli. Slepé A/B
+s výslovným pokynem tyto pásy počítat (`../usa/ab/`) vyšlo pro mapu 23 : 9 (stejně 7, nejasné 1), proto mapa zůstává
+zapnutá. Šířka uličního prostoru s mapou sedí lépe (do 2 m 40 proti 17 %). Společné změny zvedly shodu pruhů 45 → 52 %
+(hlavně počet pruhů z inventáře), složení se nezměnilo.

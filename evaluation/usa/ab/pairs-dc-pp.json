@@ -1,0 +1,74 @@
+[
+ {
+  "id": "ab-1-4",
+  "name": "Monroe Street Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-1-4-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-1-4-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-1-4-b.jpg"
+  ],
+  "X": "zelen 1.7 | chodnik 1.6 | zelen 1 | parkovani 2.45 | pruh 2.15 | pruh 2.15 | parkovani 2.45 | zelen 1.2 | chodnik 1.8 | zelen 3.5",
+  "Y": "zelen 1.7 | chodnik 1.6 | zelen 1 | parkovani 2.45 | pruh 4.3 | parkovani 2.45 | zelen 1.2 | chodnik 1.8 | zelen 3.5"
+ },
+ {
+  "id": "ab-5-1",
+  "name": "Randolph Place Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-5-1-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-5-1-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-5-1-b.jpg"
+  ],
+  "X": "zelen 4.1 | chodnik 3.1 | parkovani 2.45 | pruh 4.3 | parkovani 2.45 | chodnik 2.6 | zelen 4.9",
+  "Y": "zelen 4.1 | chodnik 3.1 | parkovani 2.45 | pruh 2.15 | pruh 2.15 | parkovani 2.45 | chodnik 2.6 | zelen 4.9"
+ },
+ {
+  "id": "ab-5-4",
+  "name": "6th Street Northeast",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-5-4-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-5-4-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-5-4-b.jpg"
+  ],
+  "X": "zelen 13.5 | chodnik 1.6 | zelen 1.8 | parkovani 2.45 | pruh 2.15 | pruh 2.15 | parkovani 2.45 | zelen 2 | chodnik 1.6 | zelen 5",
+  "Y": "zelen 13.5 | chodnik 1.6 | zelen 1.8 | parkovani 2.45 | pruh 4.3 | parkovani 2.45 | zelen 2 | chodnik 1.6 | zelen 5"
+ },
+ {
+  "id": "ab-6-4",
+  "name": "I Street Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-6-4-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-6-4-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-6-4-b.jpg"
+  ],
+  "X": "zelen 7.2 | chodnik 1.9 | zelen 0.6 | chodnik 2.7 | zelen 1.1 | chodnik 0.9 | parkovani 2.87 | pruh 2.14 | pruh 2.14 | parkovani 2.45 | chodnik 3.5 | zelen 4",
+  "Y": "zelen 7.2 | chodnik 1.9 | zelen 0.6 | chodnik 2.7 | zelen 1.1 | chodnik 0.9 | parkovani 2.87 | pruh 4.28 | parkovani 2.45 | chodnik 3.5 | zelen 4"
+ },
+ {
+  "id": "ab-7-4",
+  "name": "Bangor Street Southeast",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-7-4-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-7-4-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-7-4-b.jpg"
+  ],
+  "X": "parkovani 2.45 | pruh 2.1 | pruh 2.1 | parkovani 2.45",
+  "Y": "parkovani 2.45 | pruh 4.2 | parkovani 2.45"
+ },
+ {
+  "id": "ab-7-5",
+  "name": "Quarles Street Northeast",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-7-5-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-7-5-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-7-5-b.jpg"
+  ],
+  "X": "zelen 6.4 | chodnik 1.6 | zelen 1.8 | parkovani 2.37 | pruh 4.88 | parkovani 2.45 | zelen 1.7 | chodnik 1.9",
+  "Y": "zelen 6.4 | chodnik 1.6 | zelen 1.8 | parkovani 2.37 | pruh 2.44 | pruh 2.44 | parkovani 2.45 | zelen 1.7 | chodnik 1.9"
+ }
+]

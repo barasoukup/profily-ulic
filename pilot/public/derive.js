@@ -2403,8 +2403,9 @@ const ZONE_ROAD = new Set(["pruh", "pruh_piktokoridor", "krajnice", "obsluzna"])
 // sidewalk out of the sidewalk, and the app drew them as a green strip, dc-2-4 0.9 m): a green part no wider than
 // TREE_PIT_MAX between a sidewalk and the roadway's kerb (a lane, parking, a cycle lane, a shoulder) whose orthophoto along
 // the street (±LOOK_ALONG m) looks paved (surfaceLook's test) joins the sidewalk, its trees with it. Not without a
-// photo, nor where it looks green or unclear. In every state. extent: deriveProfile's; st: lanes-ortho.js laneImage's
-// st. Returns the parts joined. ?off=jamky: as before.
+// photo, nor where it looks green or unclear. extent: deriveProfile's; st: lanes-ortho.js laneImage's st. Returns the
+// parts joined. Off by default (the blind A/B of 24. 11. 2026, evaluation/usa/ZPRAVA.md: DC 2 : 2, Czech controls 0 : 1, a
+// real grass verge read as paving); ?jamky=1 turns it on (ortho-osm.js P.jamky).
 const TREE_PIT_MAX = 1.3;
 const PIT_KERB = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "parkovani", "cyklopruh", "ochranny_pruh", "krajnice", "obsluzna"]);
 export function stripLook(st, lo, hi) {
@@ -2427,7 +2428,7 @@ export function stripLook(st, lo, hi) {
   return looksGreen(m) ? "green" : looksPaved(m) ? "paved" : null;
 }
 export function treePitsAsSidewalk(segments, extent, st) {
-  if (ORTHO_P.off?.has("jamky") || !st || !extent || !segments?.length) return 0;
+  if (!ORTHO_P.jamky || ORTHO_P.off?.has("jamky") || !st || !extent || !segments?.length) return 0;
   let joined = 0;
   for (let i = 0; i < segments.length; i++) {
     const s = segments[i];

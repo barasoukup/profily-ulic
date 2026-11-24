@@ -546,6 +546,24 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   CC BY-SA 4.0, v patičce). Socialistické vzhledy ano (sovětská sídliště jako v Estonsku).
 - Přeměření 24. 11. 2026: LT 75 % bez mapy Vilniusu, s `?vilnius=1` 53 % (hůř 6, lépe 0 z 10), mapa zůstává vypnutá.
 
+## USA (Washington) (větev usa, Bára 24. 11. 2026, nenasazené)
+- Fáze 2 pilotu Severní Ameriky („Fáze 2 s mapou Washingtonu“): stát `usa` (US), `countries/US.js`, `towns/usa.js`,
+  `evaluation/usa/` (ZPRAVA, NORMY, ab/), pilot `evaluation/usa-dc/`. Jen metro Washingtonu (`staty.json` `usa`: DC a
+  sousední okresy Marylandu a Virginie z TIGERweb, nezjednodušené kvůli řezům na hranici DC), zbytek USA `closed_us`
+  s hláškou. OSM balík `us_dc` (DC + Maryland + Virginie oříznuté na metro, 86 MB, jen R2; **workflow OSM tiles se
+  `states: us`**, `osm-tiles.yml` umí výřezy spojené „+“ s obdélníkem za „@“).
+- DC: mapa povrchů Planimetrics 2023 (CC BY 4.0, čtená podél řezu jako GRB, `hasStreet` jako Vilnius; `?dc=0`), inventář
+  DDOT Roadway SubBlock (počet pruhů jako OSM `lanes` přes `wayTags`, stání u obrub, cyklopruhy, odhad stání tam vypnutý;
+  `?ddot=0`), uličky planimetrie jako plochy `service=alley`, ortofoto DC 2025 jen nad DC. Mimo DC jen odhad z OSM.
+  Slepé A/B 40 řezů: mapa lépe 23, odhad 9, stejně 7: **zapnutá**. Univerzální měření (30 řezů pilotu) ale 61 % s mapou
+  proti 70 % bez ní (posuzovatelé pilotu vynechávali travnaté pásy u obruby): rozpor pro Báru.
+- Normy DDOT DEM 2023, Bicycle Facility Design Guide 2020 a NACTO jen oranžově; stání 3 m na směr (IFC 503.2.1,
+  18 DCMR § 2405); bez řádku značek; bez paneláků; neutrální vozidla, český mobiliář; hledání Photon.
+- Tři společné změny z pilotu (všechny státy): ústí uličky je křižovatka (`?off=ulicky`, zapnuto), obousměrka se dělí od
+  4,0 m, kde je počet pruhů známý (`?off=pocetpruhu`, zapnuto), jamky stromů v chodníku jako chodník (**vypnuto**, `?jamky=1`:
+  DC 2 : 2, české kontroly 0 : 1). Regrese Prahy a Brna beze změny, v Evropě z 120 náhodných řezů změněno 0.
+- Před nasazením: R2 balík `us_dc`, Worker logu nezná polohy v USA (Bára).
+
 ## Společné pro státy (Bára 23. 11. 2026)
 - Sever Kypru a Itálie mimo otevřená ortofota (i se San Marinem a Vatikánem) profil nedostanou, aplikace to řekne
   (`city.js closedAt`, `staty.json` `closed_*`).

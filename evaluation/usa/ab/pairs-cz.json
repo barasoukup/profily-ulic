@@ -1,0 +1,47 @@
+[
+ {
+  "id": "cz-alley-2",
+  "name": "Plzeňská",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/cz-alley-2-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/cz-alley-2-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/cz-alley-2-b.jpg"
+  ],
+  "X": "chodnik 3.05 | pruh 3.72 | tramvaj_pruh 3.9 | tramvaj_pruh 4.1 | pruh 2.28 | pruh 2.78 | pruh 2.78 | pruh 2.78 | chodnik 3.1",
+  "Y": "pruh 3.23 | pruh 3.23 | pruh 3.23 | pruh 3.23 | pruh 3.23 | tramvaj_pruh 3.49 | tramvaj_pruh 3.49 | pruh 2.79 | pruh 2.79 | pruh 2.79 | pruh 2.79 | chodnik 3.05"
+ },
+ {
+  "id": "cz-alley-4",
+  "name": "Staroklánovická",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/cz-alley-4-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/cz-alley-4-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/cz-alley-4-b.jpg"
+  ],
+  "X": "cyklostezka 2.5 | chodnik 0.65 | zelen 0.4 | chodnik 2.5 | pruh_piktokoridor 3.47 | pruh_piktokoridor 3.43 | zelen 3.1",
+  "Y": "cyklostezka 2.5 | stromorad 2.95 | pruh_piktokoridor 3.97 | pruh_piktokoridor 3.53 | zelen 3.5"
+ },
+ {
+  "id": "cz-alley-24",
+  "name": "",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/cz-alley-24-ortho.jpg",
+  "halfM": 30,
+  "photos": [],
+  "X": "zelen 1.35 | pruh 2.23 | pruh 2.22 | zelen 1.9 | plocha 5.35",
+  "Y": "zelen 1.35 | pruh 4.45 | zelen 1.9 | plocha 5.35"
+ },
+ {
+  "id": "cz-lanes-6",
+  "name": "26832",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/cz-lanes-6-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/cz-lanes-6-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/cz-lanes-6-b.jpg"
+  ],
+  "X": "chodnik 2 | pruh 4.28 | pruh 3.16 | chodnik 3.4",
+  "Y": "chodnik 2 | pruh 4.28 | pruh 3.16 | zelen 1.25 | chodnik 2.15"
+ }
+]

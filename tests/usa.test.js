@@ -10,7 +10,9 @@ test("USA: metro Washingtonu je stát usa, zbytek USA zavřený", async () => {
   C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
   C.loadStates(JSON.parse(fs.readFileSync(new URL("../pilot/public/staty.json", import.meta.url), "utf8")));
   // The White House, Silver Spring (Montgomery), Hyattsville (Prince George's), Arlington, Alexandria, Fairfax city, Tysons.
-  for (const [lat, lon] of [[38.8977, -77.0365], [38.9907, -77.0261], [38.9559, -76.9455], [38.8816, -77.091], [38.8048, -77.0469], [38.8462, -77.3064], [38.9187, -77.2311]]) {
+  for (const [lat, lon] of [[38.8977, -77.0365], [38.9907, -77.0261], [38.9559, -76.9455], [38.8816, -77.091], [38.8048, -77.0469], [38.8462, -77.3064], [38.9187, -77.2311],
+    // On the DC line (Southern Avenue, dc-8-3): simplified county rings left a gap there.
+    [38.8436094, -76.9725878]]) {
     assert.equal(C.cityAt(lat, lon), "usa", `${lat},${lon}`);
     assert.equal(C.closedAt(lat, lon), null);
   }
@@ -95,6 +97,10 @@ test("Spočítané pruhy: obousměrka se dělí od 4 m, bez počtu od 5 m", asyn
 
 test("Jamky stromů v chodníku: dlážděný úzký pás u obruby patří chodníku", async () => {
   const { treePitsAsSidewalk } = await import("../pilot/public/derive.js");
+  const P = (await import("../pilot/public/ortho-osm.js")).P;
+  const segs0 = [{ type: "chodnik", width: 2 }, { type: "zelen", width: 1 }, { type: "parkovani", width: 2.2 }, { type: "pruh", width: 4 }];
+  assert.equal(treePitsAsSidewalk(segs0, [-6.1, 3.1], { G: [1], Y: [1] }), 0, "vypnuté bez ?jamky=1");
+  P.jamky = true;
   // An image of 0.1 m across t −10…10 m and 160 rows along, all of one look.
   const st = (look) => {
     const nt = 200, nu = 160, n = nt * nu, f = (v) => new Float32Array(n).fill(v);
@@ -110,4 +116,5 @@ test("Jamky stromů v chodníku: dlážděný úzký pás u obruby patří chodn
   const green = segs();
   assert.equal(treePitsAsSidewalk(green, [-6.1, 3.1], st("green")), 0);
   assert.equal(treePitsAsSidewalk(segs(), [-6.1, 3.1], null), 0);
+  P.jamky = false;
 });

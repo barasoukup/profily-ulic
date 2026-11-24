@@ -1,0 +1,26 @@
+[
+ {
+  "id": "ab-4-5",
+  "name": "Varnum Street Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-4-5-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-4-5-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-4-5-b.jpg"
+  ],
+  "X": "zelen 6.3 | chodnik 1.9 | zelen 1.7 | parkovani 2.45 | pruh 4.3 | parkovani 2.45 | zelen 1.7 | chodnik 2 | zelen 4.8",
+  "Y": "zelen 6.5 | chodnik 1.9 | zelen 1.6 | parkovani 2.45 | pruh 4.3 | parkovani 2.45 | chodnik 3.6 | zelen 5.1"
+ },
+ {
+  "id": "ab-5-1",
+  "name": "Randolph Place Northwest",
+  "ortho": "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-5-1-ortho.jpg",
+  "halfM": 30,
+  "photos": [
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-5-1-f.jpg",
+   "/Users/barasoukupova/streetdesign/.claude/worktrees/agent-a29244ef82f1b8e80/evaluation/usa/ab/data/ab-5-1-b.jpg"
+  ],
+  "X": "zelen 3.3 | chodnik 2.8 | parkovani 2.45 | pruh 2.1 | pruh 2.1 | parkovani 2.45 | chodnik 7.3",
+  "Y": "zelen 4.1 | chodnik 3.1 | parkovani 2.45 | pruh 2.15 | pruh 2.15 | parkovani 2.45 | chodnik 2.6 | zelen 4.9"
+ }
+]
