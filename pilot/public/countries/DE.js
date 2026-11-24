@@ -104,7 +104,6 @@ export default {
   orthoEstimate: true,
   // The street surfaces of Berlin, Hamburg and Aachen end at the street's land: filled up to the houses within 25 m
   // (Aachen's front gardens of 15–18 m).
-  besidePassport: true,
   besideMax: 25,
   panorama: false,
   art: { germany: { ...czechFurniture, ...atPosts } },

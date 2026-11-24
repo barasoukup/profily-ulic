@@ -68,7 +68,6 @@ export default {
   bedOrtho: null,
   laneOrtho: "lu",
   orthoEstimate: true,
-  besidePassport: false,
   panorama: false,
   art: { luxembourg: { ...czechFurniture, ...atPosts } },
   search: ["photon-be"],

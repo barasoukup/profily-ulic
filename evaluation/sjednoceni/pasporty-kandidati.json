@@ -1,0 +1,758 @@
+[
+ {
+  "id": "pa-chomutov-1",
+  "place": "chomutov",
+  "lat": 50.455066,
+  "lon": 13.428645
+ },
+ {
+  "id": "pa-chomutov-2",
+  "place": "chomutov",
+  "lat": 50.45429,
+  "lon": 13.424395
+ },
+ {
+  "id": "pa-chomutov-3",
+  "place": "chomutov",
+  "lat": 50.461115,
+  "lon": 13.401518
+ },
+ {
+  "id": "pa-chomutov-4",
+  "place": "chomutov",
+  "lat": 50.464735,
+  "lon": 13.416132
+ },
+ {
+  "id": "pa-chomutov-5",
+  "place": "chomutov",
+  "lat": 50.462625,
+  "lon": 13.429924
+ },
+ {
+  "id": "pa-chomutov-6",
+  "place": "chomutov",
+  "lat": 50.466454,
+  "lon": 13.431805
+ },
+ {
+  "id": "pa-chomutov-7",
+  "place": "chomutov",
+  "lat": 50.469957,
+  "lon": 13.423617
+ },
+ {
+  "id": "pa-chomutov-8",
+  "place": "chomutov",
+  "lat": 50.465733,
+  "lon": 13.418197
+ },
+ {
+  "id": "pa-chomutov-9",
+  "place": "chomutov",
+  "lat": 50.469347,
+  "lon": 13.414231
+ },
+ {
+  "id": "pa-chomutov-10",
+  "place": "chomutov",
+  "lat": 50.455731,
+  "lon": 13.431477
+ },
+ {
+  "id": "pa-chomutov-11",
+  "place": "chomutov",
+  "lat": 50.461869,
+  "lon": 13.416211
+ },
+ {
+  "id": "pa-chomutov-12",
+  "place": "chomutov",
+  "lat": 50.457586,
+  "lon": 13.400876
+ },
+ {
+  "id": "pa-chomutov-13",
+  "place": "chomutov",
+  "lat": 50.46606,
+  "lon": 13.417282
+ },
+ {
+  "id": "pa-chomutov-14",
+  "place": "chomutov",
+  "lat": 50.461126,
+  "lon": 13.402485
+ },
+ {
+  "id": "pa-sumperk-1",
+  "place": "sumperk",
+  "lat": 49.957298,
+  "lon": 16.971377
+ },
+ {
+  "id": "pa-sumperk-2",
+  "place": "sumperk",
+  "lat": 49.960917,
+  "lon": 16.982908
+ },
+ {
+  "id": "pa-sumperk-3",
+  "place": "sumperk",
+  "lat": 49.964277,
+  "lon": 16.958043
+ },
+ {
+  "id": "pa-sumperk-4",
+  "place": "sumperk",
+  "lat": 49.960643,
+  "lon": 16.960117
+ },
+ {
+  "id": "pa-sumperk-5",
+  "place": "sumperk",
+  "lat": 49.975807,
+  "lon": 16.964832
+ },
+ {
+  "id": "pa-sumperk-6",
+  "place": "sumperk",
+  "lat": 49.962121,
+  "lon": 16.962064
+ },
+ {
+  "id": "pa-sumperk-7",
+  "place": "sumperk",
+  "lat": 49.970424,
+  "lon": 16.973911
+ },
+ {
+  "id": "pa-sumperk-8",
+  "place": "sumperk",
+  "lat": 49.965101,
+  "lon": 16.974592
+ },
+ {
+  "id": "pa-sumperk-9",
+  "place": "sumperk",
+  "lat": 49.967006,
+  "lon": 16.978106
+ },
+ {
+  "id": "pa-sumperk-10",
+  "place": "sumperk",
+  "lat": 49.975433,
+  "lon": 16.973453
+ },
+ {
+  "id": "pa-sumperk-11",
+  "place": "sumperk",
+  "lat": 49.961504,
+  "lon": 16.96139
+ },
+ {
+  "id": "pa-sumperk-12",
+  "place": "sumperk",
+  "lat": 49.967975,
+  "lon": 16.966397
+ },
+ {
+  "id": "pa-sumperk-13",
+  "place": "sumperk",
+  "lat": 49.95385,
+  "lon": 16.970135
+ },
+ {
+  "id": "pa-sumperk-14",
+  "place": "sumperk",
+  "lat": 49.968565,
+  "lon": 16.986136
+ },
+ {
+  "id": "pa-roznov-1",
+  "place": "roznov",
+  "lat": 49.452705,
+  "lon": 18.135209
+ },
+ {
+  "id": "pa-roznov-2",
+  "place": "roznov",
+  "lat": 49.459708,
+  "lon": 18.13104
+ },
+ {
+  "id": "pa-roznov-3",
+  "place": "roznov",
+  "lat": 49.448183,
+  "lon": 18.146742
+ },
+ {
+  "id": "pa-roznov-4",
+  "place": "roznov",
+  "lat": 49.459368,
+  "lon": 18.148798
+ },
+ {
+  "id": "pa-roznov-5",
+  "place": "roznov",
+  "lat": 49.456967,
+  "lon": 18.14757
+ },
+ {
+  "id": "pa-roznov-6",
+  "place": "roznov",
+  "lat": 49.467585,
+  "lon": 18.149445
+ },
+ {
+  "id": "pa-roznov-7",
+  "place": "roznov",
+  "lat": 49.454227,
+  "lon": 18.130379
+ },
+ {
+  "id": "pa-roznov-8",
+  "place": "roznov",
+  "lat": 49.456745,
+  "lon": 18.145404
+ },
+ {
+  "id": "pa-roznov-9",
+  "place": "roznov",
+  "lat": 49.466261,
+  "lon": 18.134619
+ },
+ {
+  "id": "pa-roznov-10",
+  "place": "roznov",
+  "lat": 49.456451,
+  "lon": 18.132994
+ },
+ {
+  "id": "pa-roznov-11",
+  "place": "roznov",
+  "lat": 49.46072,
+  "lon": 18.147993
+ },
+ {
+  "id": "pa-roznov-12",
+  "place": "roznov",
+  "lat": 49.459592,
+  "lon": 18.151347
+ },
+ {
+  "id": "pa-roznov-13",
+  "place": "roznov",
+  "lat": 49.455453,
+  "lon": 18.158003
+ },
+ {
+  "id": "pa-roznov-14",
+  "place": "roznov",
+  "lat": 49.467053,
+  "lon": 18.146806
+ },
+ {
+  "id": "pa-litomerice-1",
+  "place": "litomerice",
+  "lat": 50.526863,
+  "lon": 14.129857
+ },
+ {
+  "id": "pa-litomerice-2",
+  "place": "litomerice",
+  "lat": 50.534935,
+  "lon": 14.132138
+ },
+ {
+  "id": "pa-litomerice-3",
+  "place": "litomerice",
+  "lat": 50.533355,
+  "lon": 14.113609
+ },
+ {
+  "id": "pa-litomerice-4",
+  "place": "litomerice",
+  "lat": 50.531382,
+  "lon": 14.114458
+ },
+ {
+  "id": "pa-litomerice-5",
+  "place": "litomerice",
+  "lat": 50.535818,
+  "lon": 14.14709
+ },
+ {
+  "id": "pa-litomerice-6",
+  "place": "litomerice",
+  "lat": 50.530812,
+  "lon": 14.143741
+ },
+ {
+  "id": "pa-litomerice-7",
+  "place": "litomerice",
+  "lat": 50.532043,
+  "lon": 14.118575
+ },
+ {
+  "id": "pa-litomerice-8",
+  "place": "litomerice",
+  "lat": 50.538111,
+  "lon": 14.13706
+ },
+ {
+  "id": "pa-litomerice-9",
+  "place": "litomerice",
+  "lat": 50.541534,
+  "lon": 14.129428
+ },
+ {
+  "id": "pa-litomerice-10",
+  "place": "litomerice",
+  "lat": 50.542538,
+  "lon": 14.132612
+ },
+ {
+  "id": "pa-litomerice-11",
+  "place": "litomerice",
+  "lat": 50.525251,
+  "lon": 14.136213
+ },
+ {
+  "id": "pa-litomerice-12",
+  "place": "litomerice",
+  "lat": 50.539306,
+  "lon": 14.131391
+ },
+ {
+  "id": "pa-litomerice-13",
+  "place": "litomerice",
+  "lat": 50.525987,
+  "lon": 14.13765
+ },
+ {
+  "id": "pa-litomerice-14",
+  "place": "litomerice",
+  "lat": 50.536888,
+  "lon": 14.114209
+ },
+ {
+  "id": "pa-chotebor-1",
+  "place": "chotebor",
+  "lat": 49.726209,
+  "lon": 15.663748
+ },
+ {
+  "id": "pa-chotebor-2",
+  "place": "chotebor",
+  "lat": 49.716915,
+  "lon": 15.684195
+ },
+ {
+  "id": "pa-chotebor-3",
+  "place": "chotebor",
+  "lat": 49.724011,
+  "lon": 15.662053
+ },
+ {
+  "id": "pa-chotebor-4",
+  "place": "chotebor",
+  "lat": 49.71682,
+  "lon": 15.672866
+ },
+ {
+  "id": "pa-chotebor-5",
+  "place": "chotebor",
+  "lat": 49.726414,
+  "lon": 15.675037
+ },
+ {
+  "id": "pa-chotebor-6",
+  "place": "chotebor",
+  "lat": 49.720821,
+  "lon": 15.666213
+ },
+ {
+  "id": "pa-chotebor-7",
+  "place": "chotebor",
+  "lat": 49.720798,
+  "lon": 15.674131
+ },
+ {
+  "id": "pa-chotebor-8",
+  "place": "chotebor",
+  "lat": 49.726628,
+  "lon": 15.68234
+ },
+ {
+  "id": "pa-chotebor-9",
+  "place": "chotebor",
+  "lat": 49.72026,
+  "lon": 15.670392
+ },
+ {
+  "id": "pa-chotebor-10",
+  "place": "chotebor",
+  "lat": 49.726041,
+  "lon": 15.663701
+ },
+ {
+  "id": "pa-chotebor-11",
+  "place": "chotebor",
+  "lat": 49.724104,
+  "lon": 15.662756
+ },
+ {
+  "id": "pa-chotebor-12",
+  "place": "chotebor",
+  "lat": 49.712187,
+  "lon": 15.669634
+ },
+ {
+  "id": "pa-chotebor-13",
+  "place": "chotebor",
+  "lat": 49.721664,
+  "lon": 15.675522
+ },
+ {
+  "id": "pa-chotebor-14",
+  "place": "chotebor",
+  "lat": 49.712284,
+  "lon": 15.680727
+ },
+ {
+  "id": "pa-slapanice-1",
+  "place": "slapanice",
+  "lat": 49.170551,
+  "lon": 16.742341
+ },
+ {
+  "id": "pa-slapanice-2",
+  "place": "slapanice",
+  "lat": 49.160718,
+  "lon": 16.725261
+ },
+ {
+  "id": "pa-slapanice-3",
+  "place": "slapanice",
+  "lat": 49.173392,
+  "lon": 16.742662
+ },
+ {
+  "id": "pa-slapanice-4",
+  "place": "slapanice",
+  "lat": 49.167063,
+  "lon": 16.734029
+ },
+ {
+  "id": "pa-slapanice-5",
+  "place": "slapanice",
+  "lat": 49.161491,
+  "lon": 16.724005
+ },
+ {
+  "id": "pa-slapanice-6",
+  "place": "slapanice",
+  "lat": 49.16997,
+  "lon": 16.712908
+ },
+ {
+  "id": "pa-slapanice-7",
+  "place": "slapanice",
+  "lat": 49.170977,
+  "lon": 16.715961
+ },
+ {
+  "id": "pa-slapanice-8",
+  "place": "slapanice",
+  "lat": 49.161347,
+  "lon": 16.737599
+ },
+ {
+  "id": "pa-slapanice-9",
+  "place": "slapanice",
+  "lat": 49.171535,
+  "lon": 16.737566
+ },
+ {
+  "id": "pa-slapanice-10",
+  "place": "slapanice",
+  "lat": 49.170994,
+  "lon": 16.736359
+ },
+ {
+  "id": "pa-slapanice-11",
+  "place": "slapanice",
+  "lat": 49.163836,
+  "lon": 16.717865
+ },
+ {
+  "id": "pa-slapanice-12",
+  "place": "slapanice",
+  "lat": 49.172385,
+  "lon": 16.720971
+ },
+ {
+  "id": "pa-slapanice-13",
+  "place": "slapanice",
+  "lat": 49.166923,
+  "lon": 16.709792
+ },
+ {
+  "id": "pa-slapanice-14",
+  "place": "slapanice",
+  "lat": 49.173196,
+  "lon": 16.740676
+ },
+ {
+  "id": "pa-kurim-1",
+  "place": "kurim",
+  "lat": 49.29764,
+  "lon": 16.529106
+ },
+ {
+  "id": "pa-kurim-2",
+  "place": "kurim",
+  "lat": 49.307509,
+  "lon": 16.542782
+ },
+ {
+  "id": "pa-kurim-3",
+  "place": "kurim",
+  "lat": 49.30317,
+  "lon": 16.527623
+ },
+ {
+  "id": "pa-kurim-4",
+  "place": "kurim",
+  "lat": 49.292835,
+  "lon": 16.524204
+ },
+ {
+  "id": "pa-kurim-5",
+  "place": "kurim",
+  "lat": 49.287255,
+  "lon": 16.528273
+ },
+ {
+  "id": "pa-kurim-6",
+  "place": "kurim",
+  "lat": 49.306615,
+  "lon": 16.529878
+ },
+ {
+  "id": "pa-kurim-7",
+  "place": "kurim",
+  "lat": 49.303751,
+  "lon": 16.535417
+ },
+ {
+  "id": "pa-kurim-8",
+  "place": "kurim",
+  "lat": 49.297604,
+  "lon": 16.526253
+ },
+ {
+  "id": "pa-kurim-9",
+  "place": "kurim",
+  "lat": 49.289692,
+  "lon": 16.543071
+ },
+ {
+  "id": "pa-kurim-10",
+  "place": "kurim",
+  "lat": 49.30495,
+  "lon": 16.525011
+ },
+ {
+  "id": "pa-kurim-11",
+  "place": "kurim",
+  "lat": 49.297414,
+  "lon": 16.547068
+ },
+ {
+  "id": "pa-kurim-12",
+  "place": "kurim",
+  "lat": 49.296751,
+  "lon": 16.538639
+ },
+ {
+  "id": "pa-kurim-13",
+  "place": "kurim",
+  "lat": 49.307829,
+  "lon": 16.539225
+ },
+ {
+  "id": "pa-kurim-14",
+  "place": "kurim",
+  "lat": 49.295253,
+  "lon": 16.519186
+ },
+ {
+  "id": "pa-prachatice-1",
+  "place": "prachatice",
+  "lat": 49.014044,
+  "lon": 13.990254
+ },
+ {
+  "id": "pa-prachatice-2",
+  "place": "prachatice",
+  "lat": 49.019749,
+  "lon": 13.989787
+ },
+ {
+  "id": "pa-prachatice-3",
+  "place": "prachatice",
+  "lat": 49.008431,
+  "lon": 14.004376
+ },
+ {
+  "id": "pa-prachatice-4",
+  "place": "prachatice",
+  "lat": 49.006733,
+  "lon": 13.997978
+ },
+ {
+  "id": "pa-prachatice-5",
+  "place": "prachatice",
+  "lat": 49.016452,
+  "lon": 14.00643
+ },
+ {
+  "id": "pa-prachatice-6",
+  "place": "prachatice",
+  "lat": 49.009171,
+  "lon": 14.00676
+ },
+ {
+  "id": "pa-prachatice-7",
+  "place": "prachatice",
+  "lat": 49.017551,
+  "lon": 13.98903
+ },
+ {
+  "id": "pa-prachatice-8",
+  "place": "prachatice",
+  "lat": 49.006243,
+  "lon": 14.011418
+ },
+ {
+  "id": "pa-prachatice-9",
+  "place": "prachatice",
+  "lat": 49.019477,
+  "lon": 14.004255
+ },
+ {
+  "id": "pa-prachatice-10",
+  "place": "prachatice",
+  "lat": 49.015214,
+  "lon": 13.986281
+ },
+ {
+  "id": "pa-prachatice-11",
+  "place": "prachatice",
+  "lat": 49.008885,
+  "lon": 13.981018
+ },
+ {
+  "id": "pa-prachatice-12",
+  "place": "prachatice",
+  "lat": 49.005659,
+  "lon": 13.990213
+ },
+ {
+  "id": "pa-prachatice-13",
+  "place": "prachatice",
+  "lat": 49.005346,
+  "lon": 13.989318
+ },
+ {
+  "id": "pa-prachatice-14",
+  "place": "prachatice",
+  "lat": 49.009798,
+  "lon": 14.000675
+ },
+ {
+  "id": "pa-roudnice-1",
+  "place": "roudnice",
+  "lat": 50.424435,
+  "lon": 14.26104
+ },
+ {
+  "id": "pa-roudnice-2",
+  "place": "roudnice",
+  "lat": 50.415171,
+  "lon": 14.268203
+ },
+ {
+  "id": "pa-roudnice-3",
+  "place": "roudnice",
+  "lat": 50.42705,
+  "lon": 14.272914
+ },
+ {
+  "id": "pa-roudnice-4",
+  "place": "roudnice",
+  "lat": 50.42156,
+  "lon": 14.246568
+ },
+ {
+  "id": "pa-roudnice-5",
+  "place": "roudnice",
+  "lat": 50.426299,
+  "lon": 14.273506
+ },
+ {
+  "id": "pa-roudnice-6",
+  "place": "roudnice",
+  "lat": 50.419316,
+  "lon": 14.249857
+ },
+ {
+  "id": "pa-roudnice-7",
+  "place": "roudnice",
+  "lat": 50.423159,
+  "lon": 14.270977
+ },
+ {
+  "id": "pa-roudnice-8",
+  "place": "roudnice",
+  "lat": 50.417799,
+  "lon": 14.26286
+ },
+ {
+  "id": "pa-roudnice-9",
+  "place": "roudnice",
+  "lat": 50.417607,
+  "lon": 14.261615
+ },
+ {
+  "id": "pa-roudnice-10",
+  "place": "roudnice",
+  "lat": 50.419738,
+  "lon": 14.259778
+ },
+ {
+  "id": "pa-roudnice-11",
+  "place": "roudnice",
+  "lat": 50.416955,
+  "lon": 14.260447
+ },
+ {
+  "id": "pa-roudnice-12",
+  "place": "roudnice",
+  "lat": 50.422753,
+  "lon": 14.261411
+ },
+ {
+  "id": "pa-roudnice-13",
+  "place": "roudnice",
+  "lat": 50.425748,
+  "lon": 14.244782
+ },
+ {
+  "id": "pa-roudnice-14",
+  "place": "roudnice",
+  "lat": 50.420245,
+  "lon": 14.269417
+ }
+]

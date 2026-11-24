@@ -639,7 +639,9 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // 2026: 7 of 89 cuts changed, better 6 : 2, Prague 1 : 0). ?off=mapfill: as before.
     const mapFill = !orthoOsm && !result.estimate && AI_KERBS && orthoHere && !ORTHO_P.off?.has("mapfill");
     const mapCut = mapFill ? await modelCut() : null;
-    if (!orthoOsm && m.value?.passport && country.besidePassport) {
+    // In every state (evaluation/sjednoceni, 24. 11. 2026: Czechia's nine passport towns, 2 of 47 cuts changed, better 1,
+    // the same 1; it was off there without a measurement).
+    if (!orthoOsm && m.value?.passport) {
       const beside = besidePassport({ osm, frame, dir, way: near.way, st: laneImg?.st, edges: k.status === "fulfilled" ? k.value?.edges || [] : [], symbols: k.status === "fulfilled" ? k.value?.symbols || [] : [], areas: k.status === "fulfilled" ? k.value?.areas || [] : [], polys, ...(country.besideMax && { max: country.besideMax }), aiSurf: mapCut ? aiSurface(mapCut) : null });
       if (beside.length) {
         const again = deriveProfile({ ...args, polys: [...polys, ...beside] });

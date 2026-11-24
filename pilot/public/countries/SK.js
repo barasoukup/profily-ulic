@@ -161,7 +161,6 @@ export default {
   bedOrtho: "sk",
   laneOrtho: "sk",
   orthoEstimate: true,
-  besidePassport: true,
   panorama: false,
   linesMissing: mark("mapy města a ZBGIS"),
   art: SK_ART,

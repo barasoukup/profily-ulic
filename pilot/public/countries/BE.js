@@ -75,7 +75,6 @@ export default {
   bedOrtho: null,
   laneOrtho: "be",
   orthoEstimate: true,
-  besidePassport: false,
   panorama: false,
   art: { belgium: { ...czechFurniture, ...atPosts } },
   search: ["photon-be"],

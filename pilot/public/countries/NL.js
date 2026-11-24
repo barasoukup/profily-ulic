@@ -93,7 +93,6 @@ export default {
   laneOrtho: "nl",
   orthoEstimate: true,
   // The BGT covers all land: a street's surface ends at a front garden or a yard, filled up to the houses within 25 m.
-  besidePassport: true,
   besideMax: 25,
   panorama: false,
   art: { netherlands: { ...czechFurniture, ...atPosts } },

@@ -106,7 +106,6 @@ export default {
   bedOrtho: null,
   laneOrtho: "pl",
   orthoEstimate: true,
-  besidePassport: true,
   besideMax: 25,
   panorama: false,
   art: { poland: { ...czechFurniture, ...atPosts } },

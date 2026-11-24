@@ -104,7 +104,6 @@ export default {
   bedOrtho: null,
   laneOrtho: "dk",
   orthoEstimate: true,
-  besidePassport: true,
   besideMax: 25,
   panorama: false,
   art: { denmark: { ...czechFurniture, ...atPosts } },

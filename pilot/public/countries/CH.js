@@ -101,7 +101,6 @@ export default {
   orthoEstimate: true,
   // The survey's land cover covers all land, but a street's surface may end at the parcel: filled up to the houses
   // within 25 m (as Germany's city maps).
-  besidePassport: true,
   besideMax: 25,
   panorama: false,
   // No drawings of its own (Bára 17. 11. 2026: the neutral vehicles of generic/, no new illustrations): the Czech

@@ -121,7 +121,8 @@ Kresby jsou zdaleka nejdražší. Proto:
    - normy: `limits(s, segs, i)`, `contraflow(parked)`, `tramBelt(belt, w)` (viz bod 6);
    - značky: `signs: { dir, file, plate, label, drawable }` (viz bod 7);
    - ortofoto: `bedOrtho` (tramvajové těleso), `laneOrtho` (pruhy; město ho přepíše vlastním `laneOrtho` v `city.js`);
-   - `orthoEstimate` (poznámka „odhad z ortofota a OSM“), `besidePassport` (pasport doplnit k domům), `panorama`
+   - `orthoEstimate` (poznámka „odhad z ortofota a OSM“), `besideMax` (jak daleko za pasportem k domům; doplnění
+     za pasportem platí ve všech státech), `panorama`
      (Mapy.com), `linesMissing` (co chybí, když čáry neodpoví; `mark()`);
    - ilustrace: `art` (sady měst státu podle id města a sada zbytku státu), domy: `houseLook(style, info, office)`;
    - `search`: služby hledání, které se ptají, když mapa ukazuje stát (`"zbgis"`, `"photon"`, nový přidat v `search.js`).
@@ -240,7 +241,7 @@ Agent nezapisuje do repozitáře, výsledek dává do scratchpadu.
 | Druh zdroje | Jak | Pozor |
 |---|---|---|
 | Pasport nebo mapa povrchů města (plochy) | `SK_TOWNS` / `towns/austria.js`, třídy → MTVU kódy (701, 702, 703, 704, 705, 1003, 401, 601 …) přes `asMtvu` | **jen když má plochu ulice (701–705, 1003) pod středem řezu**, ne trávník ani dvůr; posun v délce dělit `cos(lat)`. Nadstavby (podloubí, přístřešky: FMZK 12, 13) podle plochy pod nimi (`KLASSE_SUB`). **Všechny vrstvy, nebo žádná:** když jedna neodpoví, nepoužít nic a říct to v poznámce. |
-| Za pasportem až k domům | `besidePassport` (jen SK) | jen když dům, plot nebo chodník OSM stojí do 15 m |
+| Za pasportem až k domům | `besidePassport` (všechny státy, `besideMax`) | jen když dům, plot nebo chodník OSM stojí do 15 m (`besideMax`, většinou 25) |
 | Národní šířky silnic | osa se šířkou → `orthoOsmPolys widths` | jen bez OSM `width` |
 | Národní plochy (parkoviště, tráva) | do odhadu (`orthoOsmPolys areas`), **ne do ploch řezu** | v plochách řezu zablokují odhad |
 | Samostatný chodník OSM | `orthoOsmPolys` přebije trávník národní mapy | — |

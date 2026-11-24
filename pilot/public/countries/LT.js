@@ -94,7 +94,6 @@ export default {
   // No orthophoto may be used (lanes-ortho.js "none"): the estimate from OSM.
   laneOrtho: "none",
   orthoEstimate: false,
-  besidePassport: true,
   besideMax: 25,
   panorama: false,
   art: { lithuania: { ...czechFurniture, ...atPosts } },

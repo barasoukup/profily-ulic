@@ -131,9 +131,8 @@ export default {
   laneOrtho: "cuzk",
   // The profile made from the orthophoto and OSM is said as such ("odhad z ortofota a OSM"; else "jen odhad z OSM").
   orthoEstimate: false,
-  // A town's passport is filled up to the houses beside it (app.js, ortho-osm.js besidePassport).
-  besidePassport: false,
-  // How far beyond the passport's last surface (m) the pieces up to the houses go (ortho-osm.js; null: its own 15 m).
+  // How far beyond a town's passport or surface map (m) the pieces up to the houses go (app.js, ortho-osm.js
+  // besidePassport, in every state; null: its own 15 m).
   besideMax: null,
   // Mapy.com's panoramas (app.js).
   panorama: true,
