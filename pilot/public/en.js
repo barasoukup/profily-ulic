@@ -1047,6 +1047,7 @@ export const EN = {
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. V Litvě smí auto stát na chodníku jen tam, kde to dovolí značka způsobu stání (bod 150.5 pravidel silničního provozu, z druhé ruky); volnou šířku pro chodce jsme v pravidlech nenašli, aplikace nechává {need}.": "Parking half on the sidewalk from OSM: {free} remains on the carriageway. In Lithuania a car may stand on the sidewalk only where a parking-method sign allows it (point 150.5 of the road traffic rules, second-hand); we found no free width for pedestrians in the rules, the app leaves {need}.",
   "mapy povrchů Vilniusu a OSM": "Vilnius's surface map and OSM",
   "mapa povrchů (topografické plochy 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas": "surface map (topographic areas 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas",
+  "budovy GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0)": "buildings GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0)",
   " · mapa povrchů Vilniusu neodpověděla, jen odhad z OSM": " · Vilnius's surface map did not answer, only an estimate from OSM",
   "Mapa povrchů Vilniusu teď neodpovídá, profil je odhad z OSM.": "Vilnius's surface map is not answering now; the profile is an estimate from OSM.",
 };

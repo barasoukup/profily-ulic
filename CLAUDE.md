@@ -516,15 +516,19 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 
 ## Litva (větev estonia, Bára 24. 11. 2026, nenasazené)
 - Stát `lithuania` (LT): `countries/LT.js`, `towns/lithuania.js`, `signs-LT/`, `evaluation/lithuania/` (ZDROJE, NORMY, ZPRAVA,
-  ab/). Hranice GISCO za polskou PRG, pobřeží 400 m; OSM balík `lt` (jen R2).
+  ab/). Hranice GISCO za polskou PRG; OSM balík `lt` (jen R2).
+- Pobřeží 400 m (LT, FI, DK) jen u moře (Bára 24. 11. 2026): úseky hranic na souši (`staty.json` `land_*`, čáry GISCO bez
+  příznaku pobřeží) se nepočítají a bod blíž hranici než pobřeží státu nepatří (300 m v Lotyšsku, Bělorusku, Rusku, Švédsku ne).
 - **Žádné ortofoto** (Bára 24. 11.: ortofoto NŽT je jen k prohlížení na geoportálu, nepoužívat, úřadům nepsat):
   `laneOrtho: "none"`, mimo Vilnius jen odhad z OSM.
 - Vilnius: topografické plochy 1 : 500 (`gis.vplanas.lt` …/MapServer/13, `KODAS` + `Paskirtis`) jako plochy řezu, když pod
   středem řezu leží vozovka mapy (pod pěšinou i chodník); `?vilnius=0`. Licence neuvedená, Bára je vzala jako kodaňské,
   kredit „Vilniaus miesto savivaldybė / Vilniaus planas“. A/B 26 řezů: lépe 17, hůř 2 (na ulicích 6 : 0, zbytek pěšiny
-  a obslužné cesty); univerzální měření (10 řezů) ale mapa 53 % proti odhadu 64 % (rozpor v `evaluation/lithuania/ZPRAVA.md`,
-  rozhodne Bára). Recenze `evaluation/lithuania/RECENZE.md`; model obrub (`?ai`) v Litvě neběží (bez ortofota).
-- Budovy jen OSM (GRPK bez podlaží a roku, kód užití nedokumentovaný). Hledání Photon. Normy z příruček Vilniusu a Kaunasu
+  a obslužné cesty); univerzální měření (10 řezů) ale mapa 53 % proti odhadu 75 % (`evaluation/lithuania/ZPRAVA.md`).
+  Bára 24. 11. 2026: mapa zůstává zapnutá. Recenze `evaluation/lithuania/RECENZE.md`; model obrub (`?ai`) v Litvě neběží (bez ortofota).
+- Vzhled domů z OSM (GRPK bez podlaží a roku). Obrysy budov GRPK (geoportal.lt `NZT/GRPK/MapServer/22`, CC BY 4.0, Bára
+  24. 11. 2026) ukončují řez u fasády: pod mapou Vilniusu před budovami OSM, v odhadu jen domy, které OSM nemá; `?grpk=0`.
+  A/B 88 řezů: změněno 14, lépe 5, hůř 2; měření: složení beze změny (53 %), šířka do 1 m 0 → 20 %. Zapnuté. Hledání Photon. Normy z příruček Vilniusu a Kaunasu
   (oranžově). Stání 3 m na směr, na chodníku jen se značkou. Značky z Commons (Augustasci CC BY 4.0, tabulky Gigillo83
   CC BY-SA 4.0, v patičce). Socialistické vzhledy ano (sovětská sídliště jako v Estonsku).
 - Univerzální měření od 24. 11. 2026 vynechává body na `service=driveway/parking_aisle/drive-through` (nové pravidlo, jen LT

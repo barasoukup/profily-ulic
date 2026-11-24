@@ -1025,6 +1025,7 @@ export const LT = {
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. V Litvě smí auto stát na chodníku jen tam, kde to dovolí značka způsobu stání (bod 150.5 pravidel silničního provozu, z druhé ruky); volnou šířku pro chodce jsme v pravidlech nenašli, aplikace nechává {need}.": "Stovėjimas pusiau ant šaligatvio pagal OSM: važiuojamojoje dalyje lieka {free}. Lietuvoje automobilis ant šaligatvio gali stovėti tik ten, kur tai leidžia stovėjimo būdo ženklas (Kelių eismo taisyklių 150.5 punktas, iš antrų rankų); laisvo pločio pėstiesiems taisyklėse neradome, programa palieka {need}.",
   "mapy povrchů Vilniusu a OSM": "Vilniaus dangų žemėlapis ir OSM",
   "mapa povrchů (topografické plochy 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas": "dangų žemėlapis (topografiniai plotai 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas",
+  "budovy GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0)": "pastatai GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0)",
   " · mapa povrchů Vilniusu neodpověděla, jen odhad z OSM": " · Vilniaus dangų žemėlapis neatsakė, tik įvertis pagal OSM",
   "Mapa povrchů Vilniusu teď neodpovídá, profil je odhad z OSM.": "Vilniaus dangų žemėlapis šiuo metu neatsako, profilis yra įvertis pagal OSM.",
 };

@@ -1050,6 +1050,7 @@ export const EL = {
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. V Litvě smí auto stát na chodníku jen tam, kde to dovolí značka způsobu stání (bod 150.5 pravidel silničního provozu, z druhé ruky); volnou šířku pro chodce jsme v pravidlech nenašli, aplikace nechává {need}.": "Στάθμευση μισή στο πεζοδρόμιο από το OSM: στο οδόστρωμα μένουν {free}. Στη Λιθουανία το αυτοκίνητο επιτρέπεται να σταθμεύει στο πεζοδρόμιο μόνο εκεί όπου το επιτρέπει η πινακίδα του τρόπου στάθμευσης (σημείο 150.5 του κώδικα οδικής κυκλοφορίας, από δεύτερο χέρι)· ελεύθερο πλάτος για πεζούς δεν βρήκαμε στους κανόνες, η εφαρμογή αφήνει {need}.",
   "mapy povrchů Vilniusu a OSM": "του χάρτη επιφανειών του Βίλνιους και του OSM",
   "mapa povrchů (topografické plochy 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas": "χάρτης επιφανειών (τοπογραφικές επιφάνειες 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas",
+  "budovy GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0)": "κτίρια GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0)",
   " · mapa povrchů Vilniusu neodpověděla, jen odhad z OSM": " · ο χάρτης επιφανειών του Βίλνιους δεν απάντησε, μόνο εκτίμηση από το OSM",
   "Mapa povrchů Vilniusu teď neodpovídá, profil je odhad z OSM.": "Ο χάρτης επιφανειών του Βίλνιους δεν απαντά αυτή τη στιγμή, το προφίλ είναι εκτίμηση από το OSM.",
 };

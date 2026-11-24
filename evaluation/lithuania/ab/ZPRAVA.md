@@ -28,3 +28,6 @@ Některé hlavní silnice (Žirmūnai) mapa nemá vůbec, v sídlištích má `k
   uvedené licence, Vilnius stejně, s kreditem města.
 
 Univerzální měření (10 řezů s fotkou, 7 s mapou) vyšlo pro mapu hůř než odhad: viz `../ZPRAVA.md`.
+
+Budovy GRPK (24. 11. 2026): A/B na stejných 40 bodech a 48 bodech měření (A `?grpk=0`, B s obrysy GRPK), lépe 5, hůř 2,
+stejně 7 ze 14 změněných; `vysledky/rezy-grpk.json`, obrázky `images-grpk/` jen lokálně, rozbor v `../ZPRAVA.md`.

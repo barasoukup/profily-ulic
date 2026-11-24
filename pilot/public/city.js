@@ -582,29 +582,47 @@ export const loadBounds = (json) => { bounds = Object.entries(json).map(([id, ri
 // The states (staty.json, tools/build_staty.mjs): the Czech Republic (RÚIAN) and Slovakia; a point in neither is
 // "cizina". Without the file (or before it has loaded) a point outside the cities is "cesko", as before.
 let states = null;
-export const loadStates = (json) => { states = Object.entries(json).map(([id, rings]) => boxed(id, rings)); };
+// The land borders of a state of COAST whose neighbours are abroad (staty.json land_<id>: lines, not rings; Bára
+// 24. 11. 2026): its vertices, and the lines.
+let land = {};
+const LAND = /^land_/;
+export const loadStates = (json) => {
+  const entries = Object.entries(json);
+  land = Object.fromEntries(entries.filter(([id]) => LAND.test(id)).map(([id, lines]) => [id.slice(5), { lines, at: new Set(lines.flat().map((p) => p.join())) }]));
+  states = entries.filter(([id]) => !LAND.test(id)).map(([id, rings]) => boxed(id, rings));
+};
 // The cities of the other states (mesta-sk.json, mesta-at.json; STATE_TOWNS): within their state, else its rest.
 let towns = [];
 export const loadTowns = (json) => { towns = [...towns.filter((b) => !(b.id in (json || {}))), ...Object.entries(json || {}).filter(([id]) => CITIES[id]).map(([id, rings]) => boxed(id, rings))]; };
 // The state entry of a point: the first ring it lies in; on a coast (GISCO's 1 : 1 M ring cuts off quays and ports: the
 // review of 23. 11. 2026, Barceloneta, Cais do Sodré, Funchal, Mareterra) the entry within COAST_TOLERANCE metres, if the
-// nearest is a state of COAST or an entry kept out of it (foreign_*: Gibraltar, Andorra; closed_*).
+// nearest is a state of COAST or an entry kept out of it (foreign_*: Gibraltar, Andorra; closed_*). Only by the sea
+// (Bára 24. 11. 2026): a segment of a state's land border (land_<id>) does not count, and a point nearer to that border
+// than to the coast is not the state's (300 m inside Latvia, Belarus, Russia or Sweden is not Lithuania or Finland).
 const COAST = new Set(["spain", "portugal", "monaco", "france", "finland", "denmark", "lithuania"]);
 const COAST_TOLERANCE = 400;
 function stateEntry(lat, lon) {
   const hit = within(states, lat, lon);
   if (hit) return hit;
   const kx = 111320 * Math.cos((lat * Math.PI) / 180), ky = 110540, pad = COAST_TOLERANCE / ky * 1.5;
+  const dist = (p, q) => {
+    const ax = (p[0] - lon) * kx, ay = (p[1] - lat) * ky, dx = (q[0] - lon) * kx - ax, dy = (q[1] - lat) * ky - ay;
+    const u = Math.max(0, Math.min(1, -(ax * dx + ay * dy) / (dx * dx + dy * dy || 1)));
+    return Math.hypot(ax + u * dx, ay + u * dy);
+  };
   let best = null, dmin = COAST_TOLERANCE;
   for (const b of states) {
     if (!(COAST.has(b.id) || /^(foreign|closed)_/.test(b.id))) continue;
     if (lon < b.box[0] - pad * 2 || lon > b.box[2] + pad * 2 || lat < b.box[1] - pad || lat > b.box[3] + pad) continue;
+    const own = land[b.id];
+    let d0 = dmin;
     for (const r of b.rings) for (let i = 1; i < r.length; i++) {
-      const ax = (r[i - 1][0] - lon) * kx, ay = (r[i - 1][1] - lat) * ky, dx = (r[i][0] - lon) * kx - ax, dy = (r[i][1] - lat) * ky - ay;
-      const q = Math.max(0, Math.min(1, -(ax * dx + ay * dy) / (dx * dx + dy * dy || 1)));
-      const d = Math.hypot(ax + q * dx, ay + q * dy);
-      if (d < dmin) { dmin = d; best = b.id; }
+      if (own?.at.has(r[i - 1].join()) && own.at.has(r[i].join())) continue;
+      d0 = Math.min(d0, dist(r[i - 1], r[i]));
     }
+    if (d0 >= dmin) continue;
+    if (own && own.lines.some((l) => l.some((p, i) => i > 0 && dist(l[i - 1], p) <= d0))) continue;
+    dmin = d0; best = b.id;
   }
   return best;
 }

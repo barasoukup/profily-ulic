@@ -1025,6 +1025,7 @@ export const BG = {
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. V Litvě smí auto stát na chodníku jen tam, kde to dovolí značka způsobu stání (bod 150.5 pravidel silničního provozu, z druhé ruky); volnou šířku pro chodce jsme v pravidlech nenašli, aplikace nechává {need}.": "Паркиране наполовина на тротоара по OSM: на платното остава {free}. В Литва автомобил може да стои на тротоара само там, където го позволява знакът за начина на паркиране (т. 150.5 от правилата за движение по пътищата, от втора ръка); свободна ширина за пешеходци в правилата не открихме, приложението оставя {need}.",
   "mapy povrchů Vilniusu a OSM": "картата на настилките на Вилнюс и OSM",
   "mapa povrchů (topografické plochy 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas": "карта на настилките (топографски площи 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas",
+  "budovy GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0)": "сгради GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0)",
   " · mapa povrchů Vilniusu neodpověděla, jen odhad z OSM": " · картата на настилките на Вилнюс не отговори, само оценка от OSM",
   "Mapa povrchů Vilniusu teď neodpovídá, profil je odhad z OSM.": "Картата на настилките на Вилнюс в момента не отговаря, профилът е оценка от OSM.",
 };

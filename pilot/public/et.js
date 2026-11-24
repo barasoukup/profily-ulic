@@ -1025,6 +1025,7 @@ export const ET = {
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. V Litvě smí auto stát na chodníku jen tam, kde to dovolí značka způsobu stání (bod 150.5 pravidel silničního provozu, z druhé ruky); volnou šířku pro chodce jsme v pravidlech nenašli, aplikace nechává {need}.": "Poolenisti kõnniteel parkimine OSM-i järgi: sõiduteele jääb {free}. Leedus tohib auto kõnniteel seista ainult seal, kus seda lubab parkimisviisi märk (liikluseeskirjade punkt 150.5, teisest allikast); jalakäijate vaba laiust me eeskirjades ei leidnud, rakendus jätab {need}.",
   "mapy povrchů Vilniusu a OSM": "Vilniuse pinnakatete kaart ja OSM",
   "mapa povrchů (topografické plochy 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas": "pinnakatete kaart (topograafilised pinnad 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas",
+  "budovy GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0)": "hooned GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0)",
   " · mapa povrchů Vilniusu neodpověděla, jen odhad z OSM": " · Vilniuse pinnakatete kaart ei vastanud, ainult hinnang OSM-i põhjal",
   "Mapa povrchů Vilniusu teď neodpovídá, profil je odhad z OSM.": "Vilniuse pinnakatete kaart praegu ei vasta, profiil on hinnang OSM-i põhjal.",
 };

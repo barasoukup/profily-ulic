@@ -105,6 +105,7 @@ export const SOURCE_CREDITS = {
   eeTown: { tallinn: () => t("mapa povrchů © Tallinna Linnaplaneerimise Amet") },
   // Vilnius's topographic areas 1 : 500 (towns/lithuania.js).
   ltTown: { vilnius: () => t("mapa povrchů (topografické plochy 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas") },
+  ltGrpk: { true: () => t("budovy GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0)") },
   // Helsinki's register of public areas (towns/finland.js).
   fiTown: { helsinki: () => t("mapa povrchů (Yleisten alueiden rekisteri) © Helsingin kaupunki (CC BY 4.0)") },
   // The buildings of Helsinki's register or of Ryhti (towns/finland.js), where they told of a house.

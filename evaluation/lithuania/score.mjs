@@ -1,7 +1,8 @@
 // The universal accuracy measurement of Lithuania (Bára 24. 11. 2026), as evaluation/universal/score-states.mjs, for LT
 // only and twice: the app as it is (vysledky/app-lt.json: Vilnius's surface map where it has the street) and the estimate
 // from OSM alone (vysledky/lt-odhad.json, the same cuts with ?vilnius=0: what the rest of Lithuania gets). The judge's
-// profiles: vysledky/u-lt-*.jsonl. Sample points on service=driveway, parking_aisle or drive-through are left out (new
+// profiles: vysledky/u-lt-*.jsonl. The app also with the GRPK's buildings (vysledky/app-lt-grpk.json, 24. 11. 2026;
+// app-lt.json is the app before them, as ?grpk=0). Sample points on service=driveway, parking_aisle or drive-through are left out (new
 // rule of 24. 11. 2026), as are footways and paths (no roadway).
 //   node evaluation/lithuania/score.mjs
 import fs from "node:fs/promises";
@@ -18,7 +19,7 @@ const judged = (await Promise.all((await fs.readdir(path.join(U, "vysledky"))).f
 const ROAD = ["pruh", "pruh_piktokoridor", "obsluzna", "bus", "bus_cyklo", "tramvaj_v_pruhu"];
 const pct = (a, n) => `${Math.round((100 * a) / n)} %`;
 console.log("| varianta | řezů | složení stejné | shoda složení | pruhy stejně | šířka do 1 / 2 m | nejčastější rozdíly |\n|---|---|---|---|---|---|---|");
-for (const [label, file] of [["aplikace (s mapou povrchů Vilniusu)", "app-lt.json"], ["jen odhad z OSM (?vilnius=0)", "lt-odhad.json"]]) {
+for (const [label, file] of [["aplikace bez budov GRPK (?grpk=0)", "app-lt.json"], ["aplikace s budovami GRPK", "app-lt-grpk.json"], ["jen odhad z OSM (?vilnius=0&grpk=0)", "lt-odhad.json"]]) {
   const app = await load(file);
   const rows = judged.filter((j) => app.get(j.id)?.parts?.length && !EX.has(app.get(j.id).service))
     .filter((j) => [...app.get(j.id).parts.map((p) => p[0]), ...j.parts.map((p) => String(p[0]).replace("?", ""))].some((t) => ROAD.includes(t)))

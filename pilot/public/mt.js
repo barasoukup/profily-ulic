@@ -1050,6 +1050,7 @@ export const MT = {
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. V Litvě smí auto stát na chodníku jen tam, kde to dovolí značka způsobu stání (bod 150.5 pravidel silničního provozu, z druhé ruky); volnou šířku pro chodce jsme v pravidlech nenašli, aplikace nechává {need}.": "Parkeġġ nofsu fuq il-bankina skont OSM: fil-karreġġjata jibqa' {free}. Fil-Litwanja karozza tista' tieqaf fuq il-bankina biss fejn sinjal tal-metodu tal-parkeġġ jippermetti dan (punt 150.5 tar-regoli tat-traffiku fit-toroq, minn tieni id); wisa' ħieles għall-persuni mixjin ma sibniehx fir-regoli, l-applikazzjoni tħalli {need}.",
   "mapy povrchů Vilniusu a OSM": "il-mappa tal-uċuħ ta' Vilnius u OSM",
   "mapa povrchů (topografické plochy 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas": "mappa tal-uċuħ (uċuħ topografiċi 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas",
+  "budovy GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0)": "bini GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0)",
   " · mapa povrchů Vilniusu neodpověděla, jen odhad z OSM": " · il-mappa tal-uċuħ ta' Vilnius ma wieġbitx, stima minn OSM biss",
   "Mapa povrchů Vilniusu teď neodpovídá, profil je odhad z OSM.": "Il-mappa tal-uċuħ ta' Vilnius m'hijiex twieġeb issa, il-profil huwa stima minn OSM.",
 };

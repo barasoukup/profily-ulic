@@ -10,14 +10,23 @@
 //   street for cars; the map leaves out many main roads, whose sidewalks alone would make the street a sidewalk); a map that does not answer: the
 //   estimate, with a note. ?vilnius=0 leaves it out.
 // The buildings: OSM's (the GRPK's PASK use code is undocumented and gives no floors nor year; NŽT's NTR has them but
-// no geometry nor CORS; ZDROJE.md 3).
+// no geometry nor CORS; ZDROJE.md 3), and for the facades the outlines of the GRPK (Bára 24. 11. 2026: the cut ends at
+// the facade): geoportal.lt NZT/GRPK layer 22 Pastatai, CORS for the origin asking, the dataset CC BY 4.0 (geoportal.lt
+// Open data), credited "budovy GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0)". Everywhere in
+// Lithuania: under Vilnius's map before OSM's buildings (the nearer facade ends a side); for the estimate the houses OSM
+// lacks join OSM's (grpkAsOsm). A failure leaves OSM's alone, silently. ?grpk=0 leaves it out. A/B of 88 cuts in Vilnius
+// (evaluation/lithuania/ZPRAVA.md): 14 changed, better 5, worse 2, same 7; the universal measurement's composition the same.
 import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea } from "../places.js";
 import { osmAreas } from "./slovensko.js";
 
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_LT?.[k] ?? null : new URLSearchParams(location.search).get(k));
+// Both on by default (Bára 24. 11. 2026): Vilnius's map (?vilnius=0 leaves it out) and the GRPK's houses (?grpk=0).
+export const vilniusOn = () => param("vilnius") !== "0";
+export const grpkOn = () => param("grpk") !== "0";
 export const VILNIUS_MAP = "https://gis.vplanas.lt/arcgis/rest/services/Baziniai_zemelapiai/Vilnius_basemap_LKS_su_rajonu/MapServer/13";
+export const GRPK_BUILDINGS = "https://www.geoportal.lt/arcgis/rest/services/NZT/GRPK/MapServer/22";
 // Vilnius's box (the map covers the city and the district around it; the cut's town decides beyond).
 export const AREAS = { vilnius: { box: [25.02, 54.56, 25.49, 54.84] } };
 
@@ -82,6 +91,63 @@ function cached(bbox) {
   }
   return memo.get(key);
 }
+// The GRPK's buildings (GKODAS by the layer's legend: pa0 a building, pa23 a garage, pa6 a tower, pa58 a greenhouse;
+// pa651/652 wind mills are left out). Esri JSON (the service gives no GeoJSON): the rings of a polygon, holes among them.
+const GRPK_KINDS = new Set(["pa0", "pa23", "pa6", "pa58"]);
+// No paging (the MapServer refuses orderByFields and resultOffset); a cut's box holds far fewer than its 1 000 houses.
+export const grpkUrl = (bbox) => `${GRPK_BUILDINGS}/query?${new URLSearchParams({ f: "json", geometry: bbox, geometryType: "esriGeometryEnvelope", inSR: "4326", outSR: "4326",
+  spatialRel: "esriSpatialRelIntersects", outFields: "GKODAS", returnGeometry: "true", maxAllowableOffset: "0.000003" })}`;
+export function grpkFeatures(json) {
+  return (json?.features || []).filter((f) => GRPK_KINDS.has(f.attributes?.GKODAS) && f.geometry?.rings?.length)
+    .map((f) => ({ attributes: { CTVUK_KOD: 601, CTVUK_POPIS: MTVU_LABELS[601], ODHAD: 0 }, geometry: { rings: f.geometry.rings } }));
+}
+const grpk = async (bbox) => grpkFeatures(await getJSON(grpkUrl(bbox)));
+const grpkMemo = new Map();
+function grpkCached(bbox) {
+  const key = bbox.split(",").map((v) => (+v).toFixed(4)).join(",");
+  if (!grpkMemo.has(key)) {
+    grpkMemo.set(key, grpk(bbox).catch((err) => { grpkMemo.delete(key); throw err; }));
+    if (grpkMemo.size > 30) grpkMemo.delete(grpkMemo.keys().next().value);
+  }
+  return grpkMemo.get(key);
+}
+// The GRPK's houses of the cut, or none (switched off, or no answer: OSM's alone).
+async function grpkHouses(bbox) {
+  if (!grpkOn()) return [];
+  try { return await grpkCached(bbox); } catch (err) { console.warn("GRPK", err); return []; }
+}
+// The estimate (ortho-osm.js, derive.js) reads the houses of OSM: the GRPK's that OSM lacks join them as OSM areas
+// (building=yes, no floors), so that a side ends at its facade. A GRPK house is OSM's already when its centre lies in
+// an OSM building or an OSM building's centre lies in it. Esri's outer rings run clockwise, holes the other way.
+const signed = (r) => r.reduce((a, [x, y], i) => { const [x2, y2] = r[(i + 1) % r.length]; return a + x * y2 - x2 * y; }, 0) / 2;
+const centre = (r) => { let x = 0, y = 0; for (const p of r) { x += p[0]; y += p[1]; } return [x / r.length, y / r.length]; };
+export function grpkAsOsm(houses, elements) {
+  const osm = (elements || []).filter((el) => el.type === "area" && el.tags?.building && el.tags.building !== "no" && el.geometry?.length > 2)
+    .map((el) => [el.geometry.map((p) => [p.lon, p.lat])]);
+  const out = [];
+  houses.forEach((h, k) => {
+    const outers = h.geometry.rings.filter((r) => signed(r) < 0), holes = h.geometry.rings.filter((r) => signed(r) >= 0);
+    for (const [i, r] of (outers.length ? outers : h.geometry.rings.slice(0, 1)).entries()) {
+      const c = centre(r);
+      if (osm.some((o) => inRings(o, c[0], c[1]) || inRings([r], ...centre(o[0])))) continue;
+      out.push({ type: "area", id: -(k * 10 + i + 1), tags: { building: "yes", source: "GRPK" }, geometry: r.map(([lon, lat]) => ({ lat, lon })),
+        holes: holes.filter((q) => inRings([r], q[0][0], q[0][1])).map((q) => q.map(([lon, lat]) => ({ lat, lon }))) });
+    }
+  });
+  return out;
+}
+// The houses the last OSM request took from the GRPK (for the credit of the cut that follows).
+let grpkAdded = 0;
+async function osm(lat, lon, radius) {
+  const [o, h] = await Promise.all([osmTiles(lat, lon, radius), !grpkOn() ? [] : (() => {
+    const dy = radius / 110574, dx = radius / (111320 * Math.cos((lat * Math.PI) / 180));
+    return grpkHouses([lon - dx, lat - dy, lon + dx, lat + dy].map((v) => v.toFixed(6)).join(","));
+  })()]);
+  const add = grpkAsOsm(h, o.elements);
+  grpkAdded = add.length;
+  return add.length ? { ...o, elements: [...o.elements, ...add] } : o;
+}
+
 const inRings = (rings, x, y) => {
   let c = false;
   for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; }
@@ -100,20 +166,23 @@ export function hasStreet(features, cx, cy, tags = null) {
 async function surfaces(bbox, tags = null) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
-  if (param("vilnius") === "0" || !inArea(AREAS.vilnius, cx, cy)) return { features: [], abroad: true };
+  // Without the map the estimate: the GRPK's houses came with OSM's (osm above).
+  const estimate = (extra = {}) => ({ features: [], abroad: true, ...extra, ...(grpkAdded && { ltGrpk: true }) });
+  if (!vilniusOn() || !inArea(AREAS.vilnius, cx, cy)) return estimate();
   let own;
   try {
     own = asMtvu([[await cached(bbox), (a) => a.code]], MTVU_LABELS);
   } catch {
-    return { features: [], abroad: true, ltFailed: "vilnius" };
+    return estimate({ ltFailed: "vilnius" });
   }
-  if (!hasStreet(own.features, cx, cy, tags)) return { features: [], abroad: true };
-  const o = await osmAreas(bbox);
-  return { features: [...o.buildings, ...asPassport(own).features, ...o.rest], ltTown: "vilnius", passport: true };
+  if (!hasStreet(own.features, cx, cy, tags)) return estimate();
+  // With the map: the GRPK's houses before OSM's, the nearer facade ends a side.
+  const [o, h] = await Promise.all([osmAreas(bbox), grpkHouses(bbox)]);
+  return { features: [...h, ...o.buildings, ...asPassport(own).features, ...o.rest], ltTown: "vilnius", passport: true, ...(h.length && { ltGrpk: true }) };
 }
 
 export const sources = {
-  osm: (lat, lon, radius) => osmTiles(lat, lon, radius),
+  osm,
   surfaces,
   lines: async () => ({ features: [], edges: [], widths: [], areas: [] }),
   parking: async () => ({ features: [] }),

@@ -1050,6 +1050,7 @@ export const RO = {
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. V Litvě smí auto stát na chodníku jen tam, kde to dovolí značka způsobu stání (bod 150.5 pravidel silničního provozu, z druhé ruky); volnou šířku pro chodce jsme v pravidlech nenašli, aplikace nechává {need}.": "Parcare pe jumătate pe trotuar din OSM: pe carosabil rămân {free}. În Lituania un autoturism poate staționa pe trotuar doar acolo unde îl permite indicatorul modului de parcare (punctul 150.5 din regulile de circulație, mâna a doua); o lățime liberă pentru pietoni nu am găsit în reguli, aplicația lasă {need}.",
   "mapy povrchů Vilniusu a OSM": "harta suprafețelor orașului Vilnius și OSM",
   "mapa povrchů (topografické plochy 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas": "harta suprafețelor (suprafețe topografice 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas",
+  "budovy GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0)": "clădiri GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0)",
   " · mapa povrchů Vilniusu neodpověděla, jen odhad z OSM": " · harta suprafețelor orașului Vilnius nu a răspuns, doar o estimare din OSM",
   "Mapa povrchů Vilniusu teď neodpovídá, profil je odhad z OSM.": "Harta suprafețelor orașului Vilnius nu răspunde acum, profilul este o estimare din OSM.",
 };

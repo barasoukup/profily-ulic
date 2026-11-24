@@ -1050,6 +1050,7 @@ export const GA = {
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. V Litvě smí auto stát na chodníku jen tam, kde to dovolí značka způsobu stání (bod 150.5 pravidel silničního provozu, z druhé ruky); volnou šířku pro chodce jsme v pravidlech nenašli, aplikace nechává {need}.": "Páirceáil leath ar an gcosán de réir OSM: fanann {free} sa charrbhealach. Sa Liotuáin ní fhéadfaidh carr seasamh ar an gcosán ach amháin san áit a gceadaíonn comhartha an mhodha páirceála é (pointe 150.5 de rialacha an tráchta ar bhóithre, ó dhara láimh); ní bhfuaireamar leithead saor do choisithe sna rialacha, fágann an aip {need}.",
   "mapy povrchů Vilniusu a OSM": "léarscáil dromchlaí Vilnias agus OSM",
   "mapa povrchů (topografické plochy 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas": "léarscáil dromchlaí (limistéir thopagrafacha 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas",
+  "budovy GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0)": "foirgnimh GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0)",
   " · mapa povrchů Vilniusu neodpověděla, jen odhad z OSM": " · níor fhreagair léarscáil dromchlaí Vilnias, meastachán ó OSM amháin",
   "Mapa povrchů Vilniusu teď neodpovídá, profil je odhad z OSM.": "Níl léarscáil dromchlaí Vilnias ag freagairt anois, is meastachán ó OSM an phróifíl.",
 };

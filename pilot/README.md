@@ -408,7 +408,9 @@ topografické plochy 1 : 500 (`gis.vplanas.lt` … `Vilnius_basemap_LKS_su_rajon
 `Paskirtis`: `kelias` vozovka, `pėsč` chodník, `dvir` cyklo, `park` stání, `nuovaža` vjezd…) jako plochy řezu, když pod
 středem řezu (do 3 m) leží vozovka mapy (pod pěšinou i chodník); před nimi budovy OSM, po nich zeleň a voda OSM
 (`?vilnius=0` vypne). Licence neuvedená, kredit „Vilniaus miesto savivaldybė / Vilniaus planas“ (Bára jako u Kodaně).
-A/B `evaluation/lithuania/ab/ZPRAVA.md`. Budovy jen z OSM (GRPK nemá podlaží ani rok). Hledání Photon. Normy jen
+A/B `evaluation/lithuania/ab/ZPRAVA.md`. Vzhled domů z OSM (GRPK nemá podlaží ani rok); obrysy budov GRPK
+(geoportal.lt `NZT/GRPK/MapServer/22`, CC BY 4.0) ukončují řez u fasády: pod mapou Vilniusu před budovami OSM, v odhadu
+jen domy, které OSM nemá (`?grpk=0` vypne; A/B v `evaluation/lithuania/ZPRAVA.md`). Hledání Photon. Normy jen
 z městských příruček Vilniusu (2021) a Kaunasu (2024), oranžově. Stání 3 m na směr (KET 150.7, z druhé ruky), na
 chodníku jen se značkou. Značky `signs-LT/` (Commons, Augustasci CC BY 4.0 / public domain, tabulky Gigillo83 CC BY-SA
 4.0; 329 jako šablona aplikace). Socialistické vzhledy domů ano (sovětská sídliště jako v Estonsku), neutrální vozidla,
