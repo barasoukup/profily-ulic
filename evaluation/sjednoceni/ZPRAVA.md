@@ -156,3 +156,24 @@ Naslepo (balíček wd1, fotky Mapillary u všech): **N 4 : O 2**.
 
 Rozhodnutí: **sjednoceno**, `wideRoads` a `wideStreets` zrušené ve všech 22 státech, pravidlo je jedno pro všechny.
 Zbývá: souběžná vozovka dálnice s jiným jménem (A20) a plocha mapy, která na ortofotu leží pod budovou (Bajkalská).
+
+## 7. Zákonný odhad stání podle dat místo `parkGuess` na Slovensku: zkoušeno, prohrává, výjimka zůstává
+
+Bára 25. 11. 2026 k bodu 2: důvody (zákonné pruhy tam, kde auta nestojí; ztracené čáry pruhů) jsou vlastnost dat
+(dobré ortofoto s pruhy a auty přečtenými modelem), ne Slovenska. Zkoušené pravidlo: zákonný pruh stání jen tam, kde
+model ortofoto u řezu pro auta nepřečetl (bez ortofota, model nenačtený); kde ho přečetl, rozhodují jeho auta
+(`parkFromAi`). Kritérium je čtení aut modelem, ne pruhů z ortofota: čáry pruhů o autech nic neříkají. Na Slovensku
+`parkGuess: true` s tímto pravidlem.
+
+- **Slovensko** (58 ulic z bodu 2, `vysledky/law-sk.json`): změněno **0 z 58** (model přečetl všechny řezy), tedy totéž
+  co dnešní výjimka.
+- **Státy se zákonným odhadem**, posouzené řezy univerzálního měření (místní ulice, 170 z 176 s profilem,
+  `vysledky/law-univ.json`): změněno **44**, proti posuzovatelům **lépe 7, hůř 15**, stejně 21; nejhůř PL (0 : 4), FR
+  (2 : 3), AT a DE (1 : 2). Pravidlo bere stání tam, kde model řadu aut nepřečte, ale posuzovatel ji na fotce vidí.
+- Naslepo (balíček lw1: 22 kontrol z bodu 3, změněno 7, posouzeno 6 bez Rosické): **N 2 : O 4** (Šatrova bez stání
+  u zdi, Melicharstraße a Katharinenstraße bez řady aut; lépe Vltavínská a Kalchberggasse).
+
+Rozhodnutí: sdílené pravidlo **prohrává**, kód vrácený, `countries/SK.js parkGuess: false` zůstává s doplněným
+důvodem. Slovenská výhoda je nejspíš v tom, že model na ortofotu ZBGIS 10 cm auta čte spolehlivě a slovenské místní ulice
+mají stání řidší; měřit by šlo práh jistoty modelu (zákonný pruh jen tam, kde model nevidí nic ani slabě), ne vypnutí
+zákona.

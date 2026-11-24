@@ -573,6 +573,11 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   ubrat pruhům 0,3 m) platí od 25. 11. 2026 ve všech státech i v Česku, příznak státu zrušen, vypíná jen `?off=mapfill`
   (Bára: výjimka jen s měřením). A/B 90 nových českých řezů: změna 7, lépe 6 : 2 (kraje 4 : 1, Praha 1 : 0, Brno 1 : 1),
   `evaluation/mapfill-cz/ZPRAVA.md`.
+- Sjednocení výjimek (Bára 24. 11. 2026: co nejvíc sdíleně, výjimka jen s měřením nebo rozdílem zákona, norem a dat;
+  `evaluation/sjednoceni/AUDIT.md`, `ZPRAVA.md`): `besidePassport` všude (i CZ), osy OSM (`city.fix`, `city.js AXIS_FIX`)
+  všude kromě Prahy (změřeno hůř), delší dosah dálnic a hlavních ulic jedním pravidlem dat řezu (`app.js widerSides`,
+  příznaky `wideRoads`/`wideStreets` zrušené), oprava stání z modelu u zákonného pruhu (`?off=parkshare`); SK bez
+  zákonného odhadu stání zůstává (změřeno; pravidlo dat prohrálo ve státech se zákonem 7 : 15).
 
 ## Jazyky (Bára 12. 11. 2026, slovenčina 15. 11. 2026, němčina 16. 11. 2026)
 - Anglicky se aplikace jmenuje **Street Profile**, slovensky **Profily ulíc**, německy **Straßenprofil**. Čeština, slovenčina,

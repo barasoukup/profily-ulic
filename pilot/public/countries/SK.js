@@ -150,7 +150,10 @@ export default {
   // No parking estimated by the law (§ 23 ods. 1 zák. 8/2009 Z. z. would allow it as in Czechia): measured, the A/B of
   // 25. 11. 2026 (evaluation/sjednoceni, 58 random local streets in 11 towns): 8 changed beyond noise, blind worse
   // 4 : 1 (same 2, unclear 1): strips where no car stands that the model does not clear (Jána Bottu, K výstavisku), and
-  // the lanes read on the orthophoto lost beside the law's strips (Masarykova, Petržalka).
+  // the lanes read on the orthophoto lost beside the law's strips (Masarykova, Petržalka). Tried as a rule of the data
+  // instead (the law's strip only where the model has not read the cut's cars): in Slovakia the same as this flag (0 of
+  // 58 changed), but in the states with the law's estimate worse: against the universal judges 7 : 15 (44 of 170 changed,
+  // the model misses rows of cars the law's strip had), blind 2 : 4 (evaluation/sjednoceni, 25. 11. 2026).
   parkGuess: false,
   limits: limitsSK,
   // Slovakia: 3.75 m in a town, 3.5 m where it cannot be had, 4.75 m with much cycling or freight (TP 117, tab. 4).

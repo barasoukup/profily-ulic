@@ -58,4 +58,18 @@ plus globální P), (c) 8** (`besidePassport`, `besideMax`, `parkGuess` SK, `wid
 4. `wideStreets` a `wideRoads` v zemích bez nich.
 5. `besideMax` 15 → 25 na Slovensku, `roadOnPath` mimo Prahu, `roadClassFromOsm` (jen varování).
 
-Výsledky a rozhodnutí: `ZPRAVA.md`.
+## Výsledky (24.–25. 11. 2026; podrobně `ZPRAVA.md`)
+
+| příznak | A/B | rozhodnutí | commit |
+|---|---|---|---|
+| `besidePassport` | 47 řezů v 9 českých městech s pasportem: změna 2 (+1 šum), N 1 : O 0, stejně 1 | sjednoceno, příznak zrušen | 725908a |
+| `parkGuess` SK | 58 slovenských místních ulic: změna 8, N 1 : O 4 | výjimka s důvodem; pravidlo dat (zákon jen bez čtení aut modelem) zkoušeno: SK 0 změn z 58, státy se zákonem 7 : 15 a naslepo 2 : 4, vráceno | 57f0947, bod 7 |
+| sdílená oprava `parkFromAi` | 22 kontrol + 7 SK: nový 6 : starý 2; univerzální měření 3 : 3 | zapnuto | 211284f, 409baaa |
+| `wideRoads` CZ | 14 českých dálnic: N 1 : O 13 | nahrazeno pravidlem dat | 4f661d8 → 55bb8d9 |
+| `wideRoads`, `wideStreets` (všechny státy) | pravidlo dat `widerSides`, 112 řezů: změna 6, N 4 : O 2; kontroly bez mapy, české dálnice a Paříž beze změny | sjednoceno, oba příznaky zrušeny | 55bb8d9 |
+| `city.fix` (3 pravidla os) | 54 řezů (39 v cizině s mapou, 15 v Praze): 0 změn; staré pražské prohry trvají | sjednoceno mimo Prahu (Praha `fix: {}` s důvodem) | bf4160d |
+
+Zbývá (doporučení): `besideMax` (SK 15 m, jinde 25 m; A/B na Slovensku, na českých pasportech je to jedno),
+`roadOnPath` (jen Praha; zkusit na DTM ČÚZK a mapách měst, data mohou mít stejnou chybu), `roadClassFromOsm` (CZ, SK;
+geometrii nemění, jen normu varování; sjednotit bez A/B, ale je to výklad normy, rozhodnout s Bárou), `orthoEstimate`
+(jen text, je to `laneOrtho !== "none"`; zjednodušit).
