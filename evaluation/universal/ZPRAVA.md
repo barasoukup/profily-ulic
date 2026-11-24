@@ -163,11 +163,12 @@ vypršení), řez se neposuzoval. Posuzovatel (Sonnet, profil aplikace neviděl)
 **Proč:** kde posuzovatel na straně nenašel fasádu (`facadeA`/`facadeB` false), je „celá šířka“ libovolná: posuzovatel
 přestane počítat trávu někde, aplikace u svého konce. Nově (`compare.mjs scope()`, přesně v `POKYN.md`): na takové
 straně se **šířka** srovnává jen po okraj ulice samotné (vozovka s krajnicí, chodník nebo cyklostezka hned za ní, i
-přes pás zeleně do 3 m), **složení** ale dál počítá, co je za okrajem: viděl-li tam posuzovatel zeleň, musí ji mít
-i aplikace (jen přítomnost, šířka se nehodnotí). Strany s fasádou beze změny.
+přes pás zeleně do 3 m) a **složení** taky; co je za okrajem, se nehodnotí, ani zeleň (Bára 24. 11. 2026: konec
+u obruby je tam pro uživatele správně; první verze 23. 11. počítala zeleň za okrajem jako přítomnost, viz níže).
+Strany s fasádou beze změny.
 
 Příklad **si-kranj-2**: posuzovatel zeleň 5,5 | krajnice 1 | pruh | pruh | krajnice 1 | zeleň 5,8, aplikace pruh 3,7 |
-pruh 5,7. Šířka se srovná 8,5 proti 9,4 m (do 1 m, dřív 6,5 proti 9,4), složení: chybí zeleň na obou stranách.
+pruh 5,7. Šířka se srovná 8,5 proti 9,4 m (do 1 m, dřív 6,5 proti 9,4), složení se shoduje.
 
 **Sjezdy** (Bára 24. 11. 2026): bod, jehož řez padne na `highway=service` se `service=driveway`, `parking_aisle` nebo
 `drive-through`, se vynechá (neposouvá se); obyčejná `service` zůstává. Ve Slovinsku 1 z 9 posouzených řezů
@@ -179,9 +180,11 @@ sjezdy 4 a parkovací ulička 1, posouzený z nich jen tenhle. Doplnění Slovin
 | dřív (23. 11.) | 9 | 11 % | 48 % | 78 % | 11 % / 33 % |
 | jen bez sjezdu | 8 | 13 % | 50 % | 88 % | 13 % / 38 % |
 | jen nové pravidlo bez fasády | 9 | 0 % | 34 % | 78 % | 11 % / 44 % |
-| **nové: obojí** | **8** | 0 % | **36 %** | 88 % | 13 % / 50 % |
+| zeleň za okrajem jako přítomnost, bez sjezdu (první verze) | 8 | 0 % | 36 % | 88 % | 13 % / 50 % |
+| **nové: bez sjezdu, za okrajem nic (24. 11.)** | **8** | **13 %** | **58 %** | **88 %** | **13 % / 50 %** |
 
-Ve Slovinsku má 8 z 9 řezů aspoň jednu stranu bez fasády a odhad končí u obruby, takže teď nejčastěji „chybí zeleň“
-(9×). To je přesně to, co má opravit zelený pás za obrubou (`evaluation/ortofoto-osm/zelenpas/ZPRAVA.md`); je zatím
-vypnutý a profily s ním nasbírané nejsou. Ostatní státy novým pravidlem přepočítané, ale **nepřijaté** (Bára:
+Ve Slovinsku má 8 z 9 řezů aspoň jednu stranu bez fasády a odhad tam končí u obruby. První verze to trestala jako
+„chybí zeleň“ (9×); zelený pás za obrubou, který to měl v odhadu doplnit, Bára zamítla jako pro uživatele zbytečný
+(`evaluation/ortofoto-osm/zelenpas/ZPRAVA.md`), a proto se zeleň za okrajem nově nehodnotí. Nejčastější rozdíly teď:
+navíc cyklostezka 2×, chybí chodník 2×. Ostatní státy novým pravidlem přepočítané, ale **nepřijaté** (Bára:
 nechce teď nová čísla): `vysledky/prepocet-2026-11-24.md`; jejich řádky výše platí dál.

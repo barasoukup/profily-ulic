@@ -56,12 +56,12 @@ export function diff(a, b) {
 // own outermost part at the road: from the outermost part of the roadway (a lane, BUS, tram, parking, a cycle lane, a
 // shoulder) outwards a sidewalk, a cycle track or a platform directly beyond it, each of them also across a verge (green,
 // trees, a shoulder) of at most VERGE_MAX between it and the road; nothing farther (a path across a lawn, a car park).
-// The width counts up to that edge (the shoulder at the road included). The composition keeps one item of presence
-// beyond it: "zelen" where the first part beyond the edge (of at least BEYOND_MIN) is green or trees, whatever its width
-// ("jine" is not one: the app's "unknown" is "jine" too, so it would match the judge's yard by chance).
-const VERGE_MAX = 3, BEYOND_MIN = 0.5;
+// The width and the composition count up to that edge (the shoulder at the road included); nothing beyond it, not even
+// green (Bára 24. 11. 2026: ending at the kerb there is right for the user, so the measurement must not count it as
+// missing green).
+const VERGE_MAX = 3;
 const ROAD_EDGE = new Set(["pruh", "bus", "tramvaj", "stani", "cyklopruh", "krajnice"]), WALK = new Set(["chodnik", "cyklostezka", "nastupiste"]), VERGE = new Set(["zelen", "krajnice"]);
-// open: { A, B } true where the side has no facade. Returns the street's parts and the presence items before and after.
+// open: { A, B } true where the side has no facade. Returns the street's parts.
 export function scope(cls, open = {}) {
   const out = cls.map(([c, w], i) => {
     if (c !== "zelen" && c !== "stromy") return [c, w];
@@ -69,7 +69,7 @@ export function scope(cls, open = {}) {
     return [between ? "delici" : "zelen", w]; // as core(): trees beside the street are green
   });
   let i = out.findIndex(([c]) => CORE.has(c)), j = out.findLastIndex(([c]) => CORE.has(c));
-  if (i < 0) return { parts: [], pre: null, post: null };
+  if (i < 0) return { parts: [] };
   // The street's edge going outwards from index r by step (+1 towards B, -1 towards A).
   const edge = (r, step) => {
     let k = r;
@@ -81,20 +81,14 @@ export function scope(cls, open = {}) {
     }
     return k;
   };
-  const beyond = (k, step) => {
-    for (let q = k + step; q >= 0 && q < out.length; q += step) if (out[q][1] >= BEYOND_MIN) return out[q][0] === "zelen" ? "zelen" : null;
-    return null;
-  };
-  let pre = null, post = null;
   const r0 = out.findIndex(([c]) => ROAD_EDGE.has(c)), r1 = out.findLastIndex(([c]) => ROAD_EDGE.has(c));
-  if (open.A && r0 >= 0) { i = edge(r0, -1); pre = beyond(i, -1); }
-  if (open.B && r1 >= 0) { j = edge(r1, 1); post = beyond(j, 1); }
-  return { parts: out.slice(i, j + 1), pre, post };
+  if (open.A && r0 >= 0) i = edge(r0, -1);
+  if (open.B && r1 >= 0) j = edge(r1, 1);
+  return { parts: out.slice(i, j + 1) };
 }
-function compositionOf({ parts, pre, post }) {
-  const seq = pre ? [pre] : [];
+function compositionOf({ parts }) {
+  const seq = [];
   for (const [c] of parts) if (c !== "krajnice" && c !== "jine" && seq.at(-1) !== c) seq.push(c);
-  if (post && seq.at(-1) !== post) seq.push(post);
   return seq;
 }
 // a: the reference, b: the judged profile. open: { A, B } the sides without a facade (the judge's), the same for both;

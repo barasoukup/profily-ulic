@@ -5,7 +5,9 @@
 skončí 3 m za ním (nejvýš šířka té zeleně), jako odhad. Nic jiného se nedomýšlí (ploty ani příkopy).
 Kód: `pilot/public/ortho-osm.js trimToEnds` (`GREEN_STRIP`, `GREEN_STRIP_MIN`, `P.greenStrip`).
 
-**Stav: vypnuto** (`P.greenStripOn`; v aplikaci `?zelenpas=1`, v regresi `ZELENPAS=1`). Regrese se tím nemění.
+**Stav: zamítnuto a kód odstraněn** (Bára 24. 11. 2026: pro uživatele zbytečné, skončit u obruby dává smysl; pomohlo by
+jen internímu měření, a to se řeší jeho pravidlem: za okrajem ulice na straně bez fasády se nehodnotí nic, ani zeleň,
+`evaluation/universal/POKYN.md`). Kód je v historii, commit a3ec1ff.
 
 ## Regrese Prahy a Brna (`node evaluation/ortofoto-osm/regrese.mjs`)
 

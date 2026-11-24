@@ -40,14 +40,12 @@ konce). Proto:
 - **Okraj ulice** na té straně: od vnější části vozovky (pruh, BUS, tramvaj, stání, cyklopruh, krajnice) ven ještě
   chodník, cyklostezka nebo nástupiště hned za ní, i přes pás zeleně nebo krajnici nejvýš 3 m (`VERGE_MAX`) mezi nimi
   a vozovkou; dál nic (pěšina přes trávník, parkoviště, dvůr).
-- **Šířka** se počítá jen po tento okraj (krajnice u vozovky se započítá).
-- **Složení** si za okrajem nechá jednu položku přítomnosti: `zelen`, je-li první část za okrajem (aspoň 0,5 m) zeleň
-  nebo stromy, bez ohledu na šířku. `jine` za okrajem se nepočítá (aplikace má „neurčeno“ také jako `jine`, shodovalo
-  by se náhodou).
+- **Šířka i složení** se počítají jen po tento okraj (krajnice u vozovky se započítá). Co je za ním, ani zeleň, se
+  nehodnotí (Bára 24. 11. 2026: skončit tam u obruby je pro uživatele správně, měření to nesmí trestat jako chybějící zeleň).
 - Strany s fasádou se hodnotí jako dřív.
 
 Příklad si-kranj-2: posuzovatel zeleň 5,5 | krajnice 1 | pruh 3,25 | pruh 3,25 | krajnice 1 | zeleň 5,8, aplikace
-pruh 3,7 | pruh 5,7. Šířka 8,5 m proti 9,4 m (dřív 6,5 proti 9,4); složení: chybí zeleň na obou stranách (shoda 33 %).
+pruh 3,7 | pruh 5,7. Šířka 8,5 m proti 9,4 m (dřív 6,5 proti 9,4); složení se shoduje (zeleň za okrajem se nehodnotí).
 
 **Řezy, které nejsou ulice** (od 24. 11. 2026, Bára; zatím jen Slovinsko, `score-states.mjs EXCLUDE_STATES`): bod,
 jehož řez padne na OSM `highway=service` se `service=driveway`, `parking_aisle` nebo `drive-through`, se z hodnocení

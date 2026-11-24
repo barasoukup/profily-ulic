@@ -11,8 +11,6 @@ if (new URLSearchParams(location.search).get("stit") === "1") HOUSE_LOOKS.gables
 import { aiCut, aiKerbs, aiSurface, aiParking, parkFromAi, parkSkip, aiReady, onAiProgress } from "./ai-kerbs.js";
 // ?off=… switches named parts of the estimate off (the A/B tests, evaluation/ortofoto-osm/regrese.mjs).
 { const off = new URLSearchParams(location.search).get("off"); if (off) ORTHO_P.off = new Set(off.split(",")); }
-// ?zelenpas=1: a green strip beyond the kerb where no facade is within reach (ortho-osm.js trimToEnds; a trial, off).
-if (new URLSearchParams(location.search).get("zelenpas") === "1") ORTHO_P.greenStripOn = true;
 // ?auta=1: parked cars told by their colours on the orthophoto (ortho-osm.js carsColoured; a trial, off by default).
 if (new URLSearchParams(location.search).get("auta") === "1") ORTHO_P.carsColour = true;
 // The model also decides sidewalk, green and other between the kerb and the house (on since 19. 11. 2026, Bára;

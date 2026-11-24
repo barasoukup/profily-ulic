@@ -20,8 +20,6 @@ P.off = new Set(OFF);
 // CARS=1: with the parked cars read on the image (off in the app).
 P.cars = process.env.CARS === "1";
 // AUTA=1: parked cars by their colours (ortho-osm.js carsColoured).
-// ZELENPAS=1: the green strip beyond the kerb where no facade is within reach (ortho-osm.js trimToEnds, off in the app).
-P.greenStripOn = process.env.ZELENPAS === "1";
 P.carsColour = process.env.AUTA === "1";
 // PSET='{"beta":0.25}': other values of the kerb parameters (ortho-osm.js P), for sweeps.
 if (process.env.PSET) Object.assign(P, JSON.parse(process.env.PSET));
