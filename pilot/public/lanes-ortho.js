@@ -162,11 +162,23 @@ export const FI_ORTHO = {
   "fi-tku": { box: [22.05, 60.33, 22.55, 60.62], res: 0.1, url: fiWms("https://turku.asiointi.fi/TeklaOGCWeb/WMS.ashx", "Ilmakuva 2022 True ortho"), credit: "ortofoto © Turun kaupunki, 2022 (CC BY 4.0)" },
 };
 export const fiOrthoAt = (lon, lat) => Object.keys(FI_ORTHO).filter((k) => { const [x0, y0, x1, y1] = FI_ORTHO[k].box; return lon >= x0 && lon <= x1 && lat >= y0 && lat <= y1; });
+// The USA (Bára 24. 11. 2026, phase 2): DC's orthophoto of 2025 (OCTO, Ortho2025_WebMercator, a tile cache in Web Mercator
+// to level 23, 7.5 cm at level 21; flown 27. 3. 2025, 8 cm; CORS for the origin asking; CC BY 4.0 by opendata.dc.gov,
+// "Office of the Chief Technology Officer"), read through its export in Web Mercator, only over DC's box. Elsewhere in the
+// metro (Maryland, Virginia) no orthophoto yet: the estimate from OSM.
+export const DC_ORTHO = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Ortho2025_WebMercator/MapServer";
+const dcExport = (b, w, h, format = "image/jpeg") => `${DC_ORTHO}/export?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: format === "image/png" ? "png32" : "jpg", ...(format === "image/png" && { transparent: "true" }), f: "image" })}`;
+export const US_ORTHO = {
+  "us-dc": { box: [-77.12, 38.79, -76.909, 38.996], res: 0.1, url: dcExport, credit: "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)" },
+};
+export const usOrthoAt = (lon, lat) => Object.keys(US_ORTHO).filter((k) => { const [x0, y0, x1, y1] = US_ORTHO[k].box; return lon >= x0 && lon <= x1 && lat >= y0 && lat <= y1; });
+// The sources whose orthophotos cover only some towns, each by its box (Finland, the USA).
+const BOXED = { fi: fiOrthoAt, us: usOrthoAt };
 // Is there an orthophoto of the source (countries/<ISO>.js laneOrtho) at the point? "none" never; the states whose
 // orthophotos cover only some towns (Italy, Finland) by their boxes; the others everywhere (a blank photo is found out
 // when it comes). The question is the place's, not the state's (the review of 24. 11. 2026: in Lombardy the kerb model
 // was loaded and the note said "orthophoto" where there is none).
-export const orthoHereAt = (source, lon, lat) => source !== "none" && (source === "it" ? itOrthoAt(lon, lat).length > 0 : source === "fi" ? fiOrthoAt(lon, lat).length > 0 : true);
+export const orthoHereAt = (source, lon, lat) => source !== "none" && (source === "it" ? itOrthoAt(lon, lat).length > 0 : BOXED[source] ? BOXED[source](lon, lat).length > 0 : true);
 // Denmark (Bára 23. 11. 2026): the spring orthophoto of GeoDanmark (Klimadatastyrelsen, "Ortofoto forår", 10–12.5 cm, a
 // new national mosaic each spring) as WMTS tiles in Web Mercator to level 20 (DFD_GoogleMapsCompatible, about 8 cm a pixel
 // in Copenhagen), CORS for the origin asking, free data with credit (evaluation/denmark/ZDROJE.md 1). Only with the app's
@@ -238,7 +250,7 @@ export const deWmsUrl = ({ wms, layers, time }, b, w, h, format = "image/jpeg", 
   crs: "EPSG:3857", bbox: b.join(","), width: w, height: h, format, ...(time && { time }), ...extra })}`;
 for (const [r, o] of Object.entries(BE_ORTHO)) SOURCES[`be-${r}`] = { res: 0.1, url: o.url };
 for (const [land, o] of Object.entries(DE_ORTHO)) SOURCES[`de-${land}`] = { res: 0.1, url: (b, w, h, format) => deWmsUrl(o, b, w, h, format) };
-for (const [k, o] of Object.entries(FI_ORTHO)) SOURCES[k] = { res: o.res, url: o.url };
+for (const [k, o] of Object.entries({ ...FI_ORTHO, ...US_ORTHO })) SOURCES[k] = { res: o.res, url: o.url };
 // The URL of a tile: the source's own (tileUrl, WMTS by key-value pairs) or the path {z}/{y}/{x} (xy: {z}/{x}/{y}; tms: y
 // from the bottom).
 const tileUrlOf = (src, tx, ty) => (src.tileUrl ? src.tileUrl(src.z, tx, ty) : `${src.tiles}/${src.z}/${src.xy ? `${tx}/${src.tms ? 2 ** src.z - 1 - ty : ty}` : `${ty}/${tx}`}${src.ext || ""}`);
@@ -333,10 +345,10 @@ export async function laneImage(opts) {
     if (lastError) throw lastError;
     return null;
   }
-  // Finland: the town's orthophoto whose box holds the cut (none elsewhere; a blank image is none).
-  if (opts.source === "fi") {
+  // Finland and the USA: the town's orthophoto whose box holds the cut (none elsewhere; a blank image is none).
+  if (BOXED[opts.source]) {
     let lastError = null;
-    for (const key of fiOrthoAt(...opts.frame.toLonLat(0, 0))) {
+    for (const key of BOXED[opts.source](...opts.frame.toLonLat(0, 0))) {
       try { const out = await laneImageOf(key, opts); if (out) return out; } catch (err) { lastError = err; }
     }
     if (lastError) throw lastError;
@@ -902,7 +914,7 @@ export async function orthoPatch({ source, lon, lat, half, px, timeout = TIMEOUT
     const img = await siTries((t) => patchOf("si", lon, lat, half, px, t, fetchImpl ?? siFetch), SI_RETRY.timeout, SI_RETRY.patchBudget);
     return img ? { source: "si", img } : null;
   }
-  const keys = source === "de" ? (await landsAt(lon, lat).catch(() => [])).map((l) => `de-${l}`) : source === "be" ? [...new Set([...(await beRegionsAt(lon, lat).catch(() => [])).map(beOrthoOf), "vl", "wal"])].map((r) => `be-${r}`) : source === "pt" ? ptKeys(lon, lat) : source === "es" ? esKeys(lon, lat) : source === "it" ? itOrthoAt(lon, lat) : source === "fi" ? fiOrthoAt(lon, lat) : [SOURCES[source] ? source : "cuzk"];
+  const keys = source === "de" ? (await landsAt(lon, lat).catch(() => [])).map((l) => `de-${l}`) : source === "be" ? [...new Set([...(await beRegionsAt(lon, lat).catch(() => [])).map(beOrthoOf), "vl", "wal"])].map((r) => `be-${r}`) : source === "pt" ? ptKeys(lon, lat) : source === "es" ? esKeys(lon, lat) : source === "it" ? itOrthoAt(lon, lat) : BOXED[source] ? BOXED[source](lon, lat) : [SOURCES[source] ? source : "cuzk"];
   const seen = new Set(); // Berlin and Brandenburg: one service
   for (const key of keys) {
     const id = key.startsWith("de-") ? DE_ORTHO[key.slice(3)].wms : key;

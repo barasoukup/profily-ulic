@@ -173,6 +173,13 @@ const CROSSING_CLEARANCE = 6; // …and from a pedestrian crossing (m)
 const LOOP_CLEARANCE = 12; // …and from any point of a roundabout's ring or a turning circle (m): a cut there
 // runs over the ring and its island (Jihlava č. 23, 52)
 const NOT_JUNCTION_SERVICE = new Set(["driveway", "parking_aisle", "drive-through"]);
+// The mouth of an alley joins as a crossing does (Bára 24. 11. 2026, the USA pilot dc-1-1: a cut on an alley's mouth ran
+// along the alley, 36 m of paving and no sidewalk): an OSM way service=alley meeting the street, in every state, and an
+// alley's area (an OSM area with area:highway=service or service=alley, or a surface map's alley a state's module adds
+// to the OSM elements as such, towns/usa.js) within ALLEY_REACH of the street's axis, at the point of the axis nearest to
+// it. The clearance: CROSSING_CLEARANCE beyond the alley's half width. ?off=ulicky: as before.
+const ALLEY_REACH = 12; // m from the axis (a wide roadway's kerb and its sidewalk)
+const isAlleyArea = (el) => el.type === "area" && el.geometry?.length > 2 && (el.tags?.["area:highway"] === "service" || el.tags?.service === "alley");
 const AXIS_SNAP = 4.5; // m: an OSM axis this close beside the roadway belongs to it (city.fix.axisToRoadway)
 // Streets for those fixes: roads and residential streets, not tracks or bridleways (Brno test č. 99).
 const STREETS = new Set(["motorway", "trunk", "primary", "secondary", "tertiary", "unclassified", "residential", "living_street",
@@ -186,13 +193,42 @@ const ROAD_ON_PATH_MIN = 5; // m (deriveProfile roadOnPath)
 // perpendicular cut runs along a side street or over a zebra. Junctions are nodes the way shares
 // with another street (its plain continuation under the same name does not count); the way ends
 // keep END_CLEARANCE as before. The point stays on its own way, as close to the click as possible.
+// Where an alley's area meets the street's axis pts (local metres): { p, clear } or null. Its vertices within
+// ALLEY_REACH of the axis are the mouth: the point of the axis nearest to their middle, the clearance beyond their half
+// spread along the axis.
+function alleyMouth(el, pts, frame) {
+  const ring = el.geometry.map((g) => frame.toXY(g.lon, g.lat));
+  const near = [];
+  for (const q of ring) {
+    let best = null;
+    for (let i = 1; i < pts.length; i++) {
+      const [a, b] = [pts[i - 1], pts[i]], d = [b[0] - a[0], b[1] - a[1]], L2 = d[0] * d[0] + d[1] * d[1];
+      if (!L2) continue;
+      const u = Math.max(0, Math.min(1, ((q[0] - a[0]) * d[0] + (q[1] - a[1]) * d[1]) / L2)), p = [a[0] + u * d[0], a[1] + u * d[1]];
+      const dist = Math.hypot(q[0] - p[0], q[1] - p[1]);
+      if (!best || dist < best.dist) best = { dist, p };
+    }
+    if (best && best.dist <= ALLEY_REACH) near.push(best.p);
+  }
+  if (!near.length) return null;
+  const c = [near.reduce((s, p) => s + p[0], 0) / near.length, near.reduce((s, p) => s + p[1], 0) / near.length];
+  const spread = Math.max(...near.map((p) => Math.hypot(p[0] - c[0], p[1] - c[1])));
+  return { p: c, clear: CROSSING_CLEARANCE + spread };
+}
+
 export function awayFromJunctions(osm, frame, near) {
   const geom = near.way.geometry, pts = near.pts;
   const key = (g) => `${g.lat.toFixed(7)},${g.lon.toFixed(7)}`;
   const idx = new Map(geom.map((g, i) => [key(g), i]));
   const lastI = geom.length - 1;
   const hits = [];
+  const alleys = !ORTHO_P.off?.has("ulicky");
   for (const el of osm.elements || []) {
+    if (alleys && isAlleyArea(el)) {
+      const hit = alleyMouth(el, pts, frame);
+      if (hit) hits.push(hit);
+      continue;
+    }
     if (el.id === near.way.id || !el.tags?.highway || !el.geometry) continue;
     if (el.type === "node" && ["turning_circle", "turning_loop"].includes(el.tags.highway)) {
       hits.push({ p: frame.toXY(el.geometry[0].lon, el.geometry[0].lat), clear: LOOP_CLEARANCE });
@@ -205,7 +241,8 @@ export function awayFromJunctions(osm, frame, near) {
     const crossing = el.tags.footway === "crossing" || el.tags.cycleway === "crossing";
     // A service road joins like a street where the city says so (Brno: side streets are often service
     // in OSM, e.g. Kohoutova, Pivoňkova); driveways and parking aisles do not.
-    const sideService = city.fix?.serviceJunctions && el.tags.highway === "service" && !NOT_JUNCTION_SERVICE.has(el.tags.service);
+    const sideService = (city.fix?.serviceJunctions && el.tags.highway === "service" && !NOT_JUNCTION_SERVICE.has(el.tags.service))
+      || (alleys && el.tags.highway === "service" && el.tags.service === "alley");
     if (MINOR.has(el.tags.highway) && !crossing && !sideService) continue;
     el.geometry.forEach((g, j) => {
       const i = idx.get(key(g));
@@ -2298,6 +2335,10 @@ function aisleOrient(segs) {
 // 1000 Slovak cuts: 65 lanes over 4.6 m, most of them such). Not a zone (one paved roadway), a one-way street, a
 // roundabout, a street with trams or of several roadways. The lanes keep the old one's source. ?off=dvapruhy: the A/B.
 export const TWO_WAY_SPLIT = 5.0;
+// Where the street's lanes are counted (OSM lanes ≥ 2, or a map's inventory: DDOT's TOTALTRAVELLANES, towns/usa.js), a
+// two-way roadway of one lane is split from 4.0 m (Bára 24. 11. 2026, the USA pilot: DDOT counts two lanes of 8 ft on its
+// local streets of 16 ft, and the roadway left beside the parking strips measured 4.25–4.55 m). ?off=pocetpruhu: 5.0 m.
+export const TWO_WAY_SPLIT_COUNTED = 4.0;
 export function splitTwoWayLane(segments, tags = {}) {
   if (ORTHO_P.off?.has("dvapruhy")) return 0;
   // OSM lanes=1 on a two-way road is a single-lane road (passing places): kept.
@@ -2317,7 +2358,8 @@ export function splitTwoWayLane(segments, tags = {}) {
     else if (l < Infinity) { i--; n++; }
   }
   const width = round(segments.slice(i, i + n).reduce((a, x) => a + x.width, 0));
-  if (!(width >= TWO_WAY_SPLIT - 1e-6)) return 0;
+  const split = (+tags.lanes || 0) >= 2 && !ORTHO_P.off?.has("pocetpruhu") ? TWO_WAY_SPLIT_COUNTED : TWO_WAY_SPLIT;
+  if (!(width >= split - 1e-6)) return 0;
   const half = round(width / 2);
   const { turn, ...rest } = lane;
   const [d0, d1] = country.leftHand ? ["forward", "backward"] : ["backward", "forward"];
@@ -2357,6 +2399,57 @@ export function widenNarrowTrams(segments) {
 // really draws there stays a lane (measured; Bára: "pokud je v datech fakt pruh, tak nakreslit, ale spíš se tomu
 // vyhýbat"): only the estimate's lanes go. Returns the parts changed (?off=pesizona).
 const ZONE_ROAD = new Set(["pruh", "pruh_piktokoridor", "krajnice", "obsluzna"]);
+// Tree pits in a sidewalk are the sidewalk (Bára 24. 11. 2026, the USA pilot: DC's maps leave the tree boxes of a brick
+// sidewalk out of the sidewalk, and the app drew them as a green strip, dc-2-4 0.9 m): a green part no wider than
+// TREE_PIT_MAX between a sidewalk and the roadway's kerb (a lane, parking, a cycle lane, a shoulder) whose orthophoto along
+// the street (±LOOK_ALONG m) looks paved (surfaceLook's test) joins the sidewalk, its trees with it. Not without a
+// photo, nor where it looks green or unclear. In every state. extent: deriveProfile's; st: lanes-ortho.js laneImage's
+// st. Returns the parts joined. ?off=jamky: as before.
+const TREE_PIT_MAX = 1.3;
+const PIT_KERB = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "parkovani", "cyklopruh", "ochranny_pruh", "krajnice", "obsluzna"]);
+export function stripLook(st, lo, hi) {
+  if (!st?.G || !st.Y) return null;
+  lo += 0.25; hi -= 0.25;
+  if (!(hi - lo >= 0.3)) return null;
+  const half = st.nu / 2, rows = Math.round(LOOK_ALONG / st.res), m = { G: 0, Y: 0, D: 0, L: 0, LL: 0 };
+  let n = 0;
+  for (let i = Math.ceil((lo - st.t0) / st.res); i <= Math.floor((hi - st.t0) / st.res); i++) {
+    if (i < 0 || i >= st.nt) continue;
+    for (let j = Math.max(0, Math.floor(half - rows)); j < Math.min(st.nu, half + rows); j++) {
+      const k = j * st.nt + i;
+      if (Number.isNaN(st.G[k])) continue;
+      m.G += st.G[k]; m.Y += st.Y[k]; m.D += st.D[k]; m.L += st.L[k]; m.LL += st.L[k] * st.L[k]; n++;
+    }
+  }
+  if (!n) return null;
+  for (const c of "GYDL") m[c] /= n;
+  m.SD = Math.sqrt(Math.max(0, m.LL / n - m.L * m.L));
+  return looksGreen(m) ? "green" : looksPaved(m) ? "paved" : null;
+}
+export function treePitsAsSidewalk(segments, extent, st) {
+  if (ORTHO_P.off?.has("jamky") || !st || !extent || !segments?.length) return 0;
+  let joined = 0;
+  for (let i = 0; i < segments.length; i++) {
+    const s = segments[i];
+    if (s.type !== "zelen" || !(s.width <= TREE_PIT_MAX)) continue;
+    const [a, b] = [segments[i - 1], segments[i + 1]];
+    const walk = a?.type === "chodnik" && PIT_KERB.has(b?.type) ? i - 1 : b?.type === "chodnik" && PIT_KERB.has(a?.type) ? i + 1 : -1;
+    if (walk < 0) continue;
+    // The part's stretch across the cut: the segments run from the cut's high t to its low t (applyLanes).
+    const lo = extent[0] + segments.slice(i + 1).reduce((x, y) => x + y.width, 0);
+    if (stripLook(st, lo, lo + s.width) !== "paved") continue;
+    const w = segments[walk], [first, second] = walk < i ? [w, s] : [s, w], total = first.width + second.width;
+    const items = [...(first.items || []).map((it) => ({ ...it, f: +((it.f ?? 0.5) * first.width / total).toFixed(3) })),
+      ...(second.items || []).map((it) => ({ ...it, f: +((first.width + (it.f ?? 0.5) * second.width) / total).toFixed(3) }))];
+    w.width = +total.toFixed(2);
+    if (items.length) w.items = items;
+    segments.splice(i, 1);
+    i = Math.max(-1, Math.min(i, walk) - 1);
+    joined++;
+  }
+  return joined;
+}
+
 export function pedestrianZone(segments, tags = {}, { measured = false } = {}) {
   if (tags.highway !== "pedestrian" || measured || ORTHO_P.off?.has("pesizona")) return 0;
   let n = 0;

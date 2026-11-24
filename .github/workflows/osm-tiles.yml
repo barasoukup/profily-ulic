@@ -101,8 +101,25 @@ jobs:
         timeout-minutes: 60
         run: |
           mkdir -p data/osm
-          curl -fL --retry 8 --retry-delay 60 --retry-all-errors --connect-timeout 30 -o "data/osm/${{ matrix.code }}.osm.pbf" \
-            "https://download.geofabrik.de/$(case "${{ matrix.extract }}" in africa/*) echo "${{ matrix.extract }}";; *) echo "europe/${{ matrix.extract }}";; esac)-latest.osm.pbf"
+          # An extract with a continent (africa/, north-america/) is taken as it is, the others are under europe/.
+          # Several extracts joined by "+" with a box after "@" (tools/countries.mjs, the USA's us_dc): each is cut to the
+          # box with osmium and the pieces are merged.
+          e="${{ matrix.extract }}"; box=""
+          case "$e" in *@*) box="${e##*@}"; e="${e%@*}";; esac
+          url() { case "$1" in africa/*|north-america/*) echo "https://download.geofabrik.de/$1-latest.osm.pbf";; *) echo "https://download.geofabrik.de/europe/$1-latest.osm.pbf";; esac; }
+          if [ -z "$box" ] && [ "${e#*+}" = "$e" ]; then
+            curl -fL --retry 8 --retry-delay 60 --retry-all-errors --connect-timeout 30 -o "data/osm/${{ matrix.code }}.osm.pbf" "$(url "$e")"
+          else
+            sudo apt-get install -y -q --no-install-recommends osmium-tool
+            i=0; parts=()
+            for x in ${e//+/ }; do
+              i=$((i + 1))
+              curl -fL --retry 8 --retry-delay 60 --retry-all-errors --connect-timeout 30 -o "data/osm/part$i.osm.pbf" "$(url "$x")"
+              if [ -n "$box" ]; then osmium extract -b "$box" "data/osm/part$i.osm.pbf" -o "data/osm/cut$i.osm.pbf" --overwrite; rm "data/osm/part$i.osm.pbf"; parts+=("data/osm/cut$i.osm.pbf"); else parts+=("data/osm/part$i.osm.pbf"); fi
+            done
+            osmium merge "${parts[@]}" -o "data/osm/${{ matrix.code }}.osm.pbf" --overwrite
+            rm -f "${parts[@]}"
+          fi
           ls -l data/osm
       - name: Build and pack the tiles
         if: steps.wanted.outputs.go == 'true'

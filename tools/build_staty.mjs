@@ -104,6 +104,20 @@ async function swiss(iso) {
   return (g.type === "MultiPolygon" ? g.coordinates.flat() : g.coordinates).map((r) => simplify(r)).filter((r) => r.length >= 4);
 }
 
+// The USA (Bára 24. 11. 2026, phase 2 of the North America pilot): only the metro of Washington DC is covered, the
+// District and the counties and cities around it whose OSM the pack us_dc holds (tools/countries.mjs): Montgomery and
+// Prince George's in Maryland; Arlington, Fairfax County, Fairfax city, Falls Church and Alexandria in Virginia. Their
+// boundaries from the Census Bureau's TIGERweb (State_County, layer Counties; works of the federal government, public
+// domain), with their holes (Fairfax County's ring has Fairfax city as a hole: the rings of one entry count by parity,
+// so the city's own ring makes it inside again), simplified as the others.
+const DC_METRO = ["11001", "24031", "24033", "51013", "51059", "51600", "51610", "51510"];
+async function dcMetro() {
+  const q = new URLSearchParams({ where: `GEOID IN (${DC_METRO.map((g) => `'${g}'`).join(",")})`, outFields: "GEOID", returnGeometry: "true", outSR: "4326", f: "json" });
+  const json = await (await fetch(`https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/1/query?${q}`, { headers: { "User-Agent": "profily-ulic" } })).json();
+  if ((json.features || []).length !== DC_METRO.length) throw new Error(`TIGERweb: ${json.features?.length} of ${DC_METRO.length} counties`);
+  return json.features.flatMap((f) => f.geometry.rings).map((r) => simplify(r)).filter((r) => r.length >= 4);
+}
+
 // Ydre Nordhavn (denmark below): the hull of the OSM streets the review found abroad, 150 m round them.
 const NORDHAVN = [[12.6174,55.6999],[12.6176,55.6994],[12.6181,55.699],[12.6189,55.6987],[12.6198,55.6986],[12.6404,55.6986],[12.6414,55.6987],[12.6421,55.699],[12.6427,55.6995],[12.6492,55.7092],[12.6447,55.723],[12.6442,55.7235],[12.6434,55.7238],[12.6425,55.7239],[12.6299,55.7241],[12.6289,55.724],[12.6288,55.724],[12.6264,55.7227],[12.6259,55.7223],[12.6174,55.6999]];
 
@@ -173,6 +187,8 @@ const BUILD = {
   // Lithuania (24. 11. 2026): GISCO's LT, after Poland's exact PRG ring (by Suwałki and Sejny the Polish line first);
   // Latvia, Belarus and Kaliningrad stay abroad.
   lithuania: () => gisco("LT"),
+  // The USA (24. 11. 2026): the metro of Washington DC (dcMetro above); the rest of the USA is closed_us below.
+  usa: () => dcMetro(),
   // Malta (23. 11. 2026): OSM's boundary with the territorial waters (one ring round the islands, no neighbour; GISCO's
   // coast cuts off quays; tools/malta-border.json, © OpenStreetMap contributors, ODbL).
   malta: () => JSON.parse(fs.readFileSync(new URL("./malta-border.json", import.meta.url), "utf8")).map((r) => simplify(r)),
@@ -195,6 +211,9 @@ const BUILD = {
   closed_cy: () => gisco("CY"),
   // (GISCO's outer rings of Italy take in San Marino and the Vatican.)
   closed_it: () => gisco("IT"),
+  // The USA beyond the metro of Washington (24. 11. 2026: the OSM pack us_dc holds only the metro): GISCO's US with
+  // Alaska, Hawaii and the islands, simplified to about 1 km (a message, not a border to cut by).
+  closed_us: async () => (await gisco("US")).map((r) => simplify(r, 0.01)).filter((r) => r.length >= 4),
 };
 const file = new URL("../pilot/public/staty.json", import.meta.url);
 const only = process.argv.slice(2);

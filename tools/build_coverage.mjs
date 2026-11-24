@@ -33,6 +33,7 @@ const lanes = await import(new URL("lanes-ortho.js", PUB));
 export const ORTHO_ONLY = {
   it: Object.values(lanes.IT_ORTHO).map((o) => o.box),
   fi: Object.values(lanes.FI_ORTHO).map((o) => o.box),
+  us: Object.values(lanes.US_ORTHO).map((o) => o.box),
   pt: [lanes.PT_MAINLAND],
 };
 export const ORTHO_BUT = { es: lanes.ES_NOT_PNOA };

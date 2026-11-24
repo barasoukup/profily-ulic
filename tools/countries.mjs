@@ -66,6 +66,11 @@ export const COUNTRIES = {
   dk: { iso: "DK", geofabrik: "denmark", pages: false },
   // Lithuania (Bára 24. 11. 2026): Geofabrik's one extract (224 MB of PBF), only on R2.
   lt: { iso: "LT", geofabrik: "lithuania", pages: false },
+  // The USA (Bára 24. 11. 2026, phase 2 of the North America pilot): only the metro of Washington DC, one pack us_dc of
+  // Geofabrik's District of Columbia with the parts of Maryland and Virginia in the metro's box (osm-tiles.yml: extracts
+  // joined by "+" are each cut to the box after "@" with osmium and merged; locally 86 MB), only on R2.
+  us: { iso: "US", geofabrik: "north-america/us/district-of-columbia", pages: false, parts: {
+    us_dc: "north-america/us/district-of-columbia+north-america/us/maryland+north-america/us/virginia@-77.56,38.52,-76.64,39.37" } },
 };
 // The packs to build (osm-tiles.yml): a state's own, or its parts.
 export const PACKS = Object.entries(COUNTRIES).flatMap(([k, c]) => (c.parts ? Object.entries(c.parts).map(([code, extract]) => ({ code, extract })) : [{ code: k, extract: c.geofabrik }]));

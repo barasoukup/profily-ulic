@@ -482,6 +482,10 @@ Object.assign(CITIES, {
   // Lithuania (Bára 24. 11. 2026): OSM only (no orthophoto may be used), Vilnius's topographic areas (towns/lithuania.js).
   lithuania: { ...abroad("lithuania", "LT", "Litva", "v Litvě", "litevské", [55.2, 23.9], "54.687200, 25.279700"),
     dataShort: "OSM", rulesHead: "Šířky podle doporučení příruček ulic Vilniusu a Kaunasu, nezávazné:" },
+  // The USA (Bára 24. 11. 2026, phase 2): only the metro of Washington DC; DC's Planimetrics and DDOT's inventory, DC's
+  // orthophoto, OSM (towns/usa.js).
+  usa: { ...abroad("usa", "US", "USA", "v USA", "americké", [38.9, -77.03], "38.897700, -77.036500"),
+    dataShort: "map DC a OSM", rulesHead: "Šířky podle DDOT (Design and Engineering Manual 2023) a NACTO, orientačně:" },
   // Malta (Bára 23. 11. 2026): the Planning Authority's orthophoto and OSM (towns/malta.js); traffic keeps left.
   malta: { ...abroad("malta", "MT", "Malta", "na Maltě", "maltské", [35.9, 14.45], "35.898900, 14.514600"),
     dataShort: "ortofota stavebního úřadu a OSM", rulesHead: "Šířky podle maltských předpisů a doporučení:" },
@@ -635,6 +639,7 @@ function stateEntry(lat, lon) {
 // Where the app makes no profile (tools/build_staty.mjs closed_*; Bára 23. 11. 2026): the message to show, or null.
 const CLOSED = {
   closed_cy: () => t("Sever Kypru zatím nemáme: profily děláme jen na území, které spravuje Kyperská republika."),
+  closed_us: () => t("V USA zatím děláme profily jen ve Washingtonu a okolí (District of Columbia a sousední okresy Marylandu a Virginie)."),
   closed_it: () => t("V Itálii děláme profily jen tam, kde má otevřenou licenci ortofoto nebo mapa povrchů: v Jižním Tyrolsku, Lombardii, Turíně, Bologni a Modeně."),
 };
 export function closedAt(lat, lon) {
