@@ -1,0 +1,248 @@
+[
+ {
+  "id": "mil1",
+  "town": "milano",
+  "lat": 45.448467,
+  "lon": 9.199434
+ },
+ {
+  "id": "mil2",
+  "town": "milano",
+  "lat": 45.466916,
+  "lon": 9.200794
+ },
+ {
+  "id": "mil3",
+  "town": "milano",
+  "lat": 45.465064,
+  "lon": 9.19777
+ },
+ {
+  "id": "mil4",
+  "town": "milano",
+  "lat": 45.469521,
+  "lon": 9.21768
+ },
+ {
+  "id": "mil5",
+  "town": "milano",
+  "lat": 45.454656,
+  "lon": 9.166618
+ },
+ {
+  "id": "mil6",
+  "town": "milano",
+  "lat": 45.455636,
+  "lon": 9.188305
+ },
+ {
+  "id": "mil7",
+  "town": "milano",
+  "lat": 45.473215,
+  "lon": 9.162116
+ },
+ {
+  "id": "mil8",
+  "town": "milano",
+  "lat": 45.457887,
+  "lon": 9.217525
+ },
+ {
+  "id": "mil9",
+  "town": "milano",
+  "lat": 45.481904,
+  "lon": 9.173052
+ },
+ {
+  "id": "mil10",
+  "town": "milano",
+  "lat": 45.467269,
+  "lon": 9.184931
+ },
+ {
+  "id": "mil11",
+  "town": "milano",
+  "lat": 45.470254,
+  "lon": 9.195067
+ },
+ {
+  "id": "mil12",
+  "town": "milano",
+  "lat": 45.471167,
+  "lon": 9.216773
+ },
+ {
+  "id": "mil13",
+  "town": "milano",
+  "lat": 45.460282,
+  "lon": 9.206429
+ },
+ {
+  "id": "mil14",
+  "town": "milano",
+  "lat": 45.466431,
+  "lon": 9.196834
+ },
+ {
+  "id": "mil15",
+  "town": "milano",
+  "lat": 45.449552,
+  "lon": 9.178309
+ },
+ {
+  "id": "mil16",
+  "town": "milano",
+  "lat": 45.47495,
+  "lon": 9.189486
+ },
+ {
+  "id": "mon1",
+  "town": "monza",
+  "lat": 45.577499,
+  "lon": 9.281829
+ },
+ {
+  "id": "mon2",
+  "town": "monza",
+  "lat": 45.580583,
+  "lon": 9.281415
+ },
+ {
+  "id": "mon3",
+  "town": "monza",
+  "lat": 45.58015,
+  "lon": 9.265817
+ },
+ {
+  "id": "ber1",
+  "town": "bergamo",
+  "lat": 45.700007,
+  "lon": 9.675858
+ },
+ {
+  "id": "ber2",
+  "town": "bergamo",
+  "lat": 45.69802,
+  "lon": 9.679961
+ },
+ {
+  "id": "ber3",
+  "town": "bergamo",
+  "lat": 45.705771,
+  "lon": 9.668914
+ },
+ {
+  "id": "bre1",
+  "town": "brescia",
+  "lat": 45.534873,
+  "lon": 10.205878
+ },
+ {
+  "id": "bre2",
+  "town": "brescia",
+  "lat": 45.543095,
+  "lon": 10.210285
+ },
+ {
+  "id": "bre3",
+  "town": "brescia",
+  "lat": 45.531785,
+  "lon": 10.212073
+ },
+ {
+  "id": "com1",
+  "town": "como",
+  "lat": 45.803119,
+  "lon": 9.083161
+ },
+ {
+  "id": "com2",
+  "town": "como",
+  "lat": 45.806191,
+  "lon": 9.082024
+ },
+ {
+  "id": "var1",
+  "town": "varese",
+  "lat": 45.824314,
+  "lon": 8.826355
+ },
+ {
+  "id": "var2",
+  "town": "varese",
+  "lat": 45.819367,
+  "lon": 8.826612
+ },
+ {
+  "id": "pav1",
+  "town": "pavia",
+  "lat": 45.183566,
+  "lon": 9.157766
+ },
+ {
+  "id": "pav2",
+  "town": "pavia",
+  "lat": 45.190125,
+  "lon": 9.15167
+ },
+ {
+  "id": "cre1",
+  "town": "cremona",
+  "lat": 45.140689,
+  "lon": 10.024038
+ },
+ {
+  "id": "cre2",
+  "town": "cremona",
+  "lat": 45.137294,
+  "lon": 10.021453
+ },
+ {
+  "id": "man1",
+  "town": "mantova",
+  "lat": 45.152618,
+  "lon": 10.795335
+ },
+ {
+  "id": "man2",
+  "town": "mantova",
+  "lat": 45.161452,
+  "lon": 10.799428
+ },
+ {
+  "id": "lec1",
+  "town": "lecco",
+  "lat": 45.853197,
+  "lon": 9.387902
+ },
+ {
+  "id": "lec2",
+  "town": "lecco",
+  "lat": 45.848891,
+  "lon": 9.394706
+ },
+ {
+  "id": "lod1",
+  "town": "lodi",
+  "lat": 45.308522,
+  "lon": 9.505481
+ },
+ {
+  "id": "lod2",
+  "town": "lodi",
+  "lat": 45.315759,
+  "lon": 9.496017
+ },
+ {
+  "id": "bus1",
+  "town": "busto",
+  "lat": 45.614586,
+  "lon": 8.841332
+ },
+ {
+  "id": "bus2",
+  "town": "busto",
+  "lat": 45.603968,
+  "lon": 8.856463
+ }
+]

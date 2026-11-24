@@ -608,7 +608,7 @@ function stateEntry(lat, lon) {
 // Where the app makes no profile (tools/build_staty.mjs closed_*; Bára 23. 11. 2026): the message to show, or null.
 const CLOSED = {
   closed_cy: () => t("Sever Kypru zatím nemáme: profily děláme jen na území, které spravuje Kyperská republika."),
-  closed_it: () => t("V Itálii děláme profily jen tam, kde má ortofoto otevřenou licenci: v Jižním Tyrolsku, Turíně, Bologni a Modeně."),
+  closed_it: () => t("V Itálii děláme profily jen tam, kde má otevřenou licenci ortofoto nebo mapa povrchů: v Jižním Tyrolsku, Lombardii, Turíně, Bologni a Modeně."),
 };
 export function closedAt(lat, lon) {
   if (!states || (bounds && within(bounds, lat, lon))) return null;

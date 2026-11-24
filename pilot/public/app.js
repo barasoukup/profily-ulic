@@ -1007,6 +1007,8 @@ function cutData() {
   // Helsinki's register of public areas (towns/finland.js).
   if (state.cut?.sources?.fiTown === "helsinki") return tr("mapy povrchů Helsinek, ortofota a OSM");
   if (state.cut?.sources?.itTown === "bologna") return tr("mapy povrchů Bologni, ortofota a OSM");
+  // Lombardy's DBT (towns/lombardy.js).
+  if (state.cut?.sources?.itTown === "lombardia") return tr("mapy povrchů Lombardie a OSM");
   // Zaragoza's paving map (towns/spain.js).
   if (state.cut?.sources?.esTown === "zaragoza") return tr("mapy povrchů Zaragozy, ortofota PNOA a OSM");
   // Flanders' road corridors and their division (towns/belgium.js).

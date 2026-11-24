@@ -8,8 +8,10 @@ test("Itálie: jen oblasti s ortofotem s otevřenou licencí, jinde (i Vatikán 
   const C = await import("../pilot/public/city.js");
   C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
   C.loadStates(JSON.parse(fs.readFileSync(new URL("../pilot/public/staty.json", import.meta.url), "utf8")));
-  for (const [lat, lon] of [[44.4949, 11.3426], [44.6471, 10.9252], [45.0703, 7.6869], [46.4983, 11.3548], [46.6713, 11.159]]) assert.equal(C.cityAt(lat, lon), "italy", `${lat},${lon}`);
-  for (const [lat, lon] of [[41.9028, 12.4964], [45.4642, 9.19], [41.1171, 16.8719], [41.9029, 12.4534], [43.9356, 12.4473]]) {
+  // Lombardy by its DBT (Milan, Campione d'Italia inside Switzerland).
+  for (const [lat, lon] of [[44.4949, 11.3426], [44.6471, 10.9252], [45.0703, 7.6869], [46.4983, 11.3548], [46.6713, 11.159], [45.4642, 9.19], [45.6950, 9.67], [45.9690, 8.9710]]) assert.equal(C.cityAt(lat, lon), "italy", `${lat},${lon}`);
+  // Rome, Genoa (Liguria), Novara (Piedmont by the Ticino), Verona (Veneto), Bari, the Vatican, San Marino.
+  for (const [lat, lon] of [[41.9028, 12.4964], [44.407, 8.934], [45.4469, 8.6218], [45.4384, 10.9916], [41.1171, 16.8719], [41.9029, 12.4534], [43.9356, 12.4473]]) {
     assert.equal(C.cityAt(lat, lon), "cizina", `${lat},${lon}`);
     assert.match(C.closedAt(lat, lon) || "", /Itálii/, `bez profilu ${lat},${lon}`);
   }
@@ -72,7 +74,9 @@ test("Itálie: hranice obcí ISTAT, ortofoto pokrývá celé území, kredit Tur
     assert.match(C.closedAt(lat, lon) || "", /Itálii/, `bez profilu ${lat},${lon}`);
   }
   const L = await import("../pilot/public/lanes-ortho.js");
-  for (const ring of staty.italy) for (const [lon, lat] of ring) assert.ok(L.itOrthoAt(lon, lat).length, `mimo obdélníky ortofot ${lon},${lat}`);
+  // Lombardy has the DBT, no orthophoto (towns/lombardy.js).
+  const { inLombardy } = await import("../pilot/public/towns/lombardy.js");
+  for (const ring of staty.italy) if (!inLombardy(...ring[0])) for (const [lon, lat] of ring) assert.ok(L.itOrthoAt(lon, lat).length, `mimo obdélníky ortofot ${lon},${lat}`);
   const { SOURCE_CREDITS } = await import("../pilot/public/credits.js");
   assert.match(SOURCE_CREDITS.orthoCity["it-to"](), /Base cartografica realizzata da .+, integrata con Ortofoto digitale colore 2023 della Città di Torino reperiti sul Geoportale del Comune di Torino/);
 });
@@ -158,4 +162,56 @@ test("Itálie: normy podle třídy ulice, cyklostezky, společná stezka, BUS", 
   assert.equal(lim(two[0], two, 0).zaklad, 1.25, "polovina obousměrné");
   for (const type of ["chodnik_kola", "stezka_sdilena"]) assert.deepEqual([lim({ type }, [], 0).min, lim({ type }, [], 0).zaklad], [0, 2.5], type);
   assert.equal(lim({ type: "bus" }, [], 0).min, 0, "BUS 3,5 m jen pro nové silnice: oranžově");
+});
+
+// Lombardy's DBT (Bára 24. 11. 2026; towns/lombardy.js): the region told from South Tyrol and Modena, the kinds of the
+// layers, one identify request, the map only with a street surface at the centre, an outage told.
+test("Lombardie: území, druhy ploch DBT, identify, výpadek", async () => {
+  const B = await import("../pilot/public/towns/lombardy.js");
+  const L = JSON.parse(fs.readFileSync(new URL("../tools/lombardy-border.json", import.meta.url), "utf8"));
+  const I = JSON.parse(fs.readFileSync(new URL("../tools/italy-border.json", import.meta.url), "utf8"));
+  // Vertices farther than 800 m from the other boundary (at the Stelvio the two sources differ by some hundred metres).
+  const K = 111320 * Math.cos((46 * Math.PI) / 180), near = (p, set) => set.some(([a, b]) => Math.hypot((a - p[0]) * K, (b - p[1]) * 110574) < 800);
+  assert.deepEqual(L.flat().filter((p) => !B.inLombardy(...p) && !near(p, I[0])), [], "Lombardie");
+  assert.deepEqual(I.flat().filter((p) => B.inLombardy(...p) && !near(p, L[0])), [], "Jižní Tyrolsko, Turín, Bologna, Modena");
+  for (const [lon, lat, inside] of [[10.594, 46.519, false], [11.354, 46.498, false], [10.37, 46.467, true], [10.51, 46.259, true], [10.925, 44.647, false], [10.79, 45.156, true]]) assert.equal(B.inLombardy(lon, lat), inside, `${lon},${lat}`);
+  assert.equal(B.dbtCode(106, { ZONA: "tronco carreggiata", SEDE: "a raso" }), 701);
+  assert.equal(B.dbtCode(106, { ZONA: "fascia di sosta laterale" }), 704);
+  assert.equal(B.dbtCode(106, { ZONA: "area a traffico non strutturato - in area di pertinenza" }), 1003);
+  assert.equal(B.dbtCode(106, { ZONA: "tronco carreggiata", SEDE: "in galleria" }), null);
+  assert.equal(B.dbtCode(105, { ZONA: "su marciapiede" }), 702);
+  assert.equal(B.dbtCode(105, { ZONA: "su salvagente" }), 1003);
+  assert.equal(B.dbtCode(101, { TIPO: "giardino" }), 402);
+  assert.equal(B.dbtCode(113, { TIPO: "cortile" }), 603);
+  assert.equal(B.dbtCode(97, { cr_edf_ct: "edificio" }), 601);
+  // A bed of rails is a railway, a tram bed only with an OSM tram track in it (Brescia's station in the A/B).
+  const bed = () => ({ features: [{ attributes: { CTVUK_KOD: B.dbtCode(114, { TIPO: "Null" }) }, geometry: { rings: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] } }] });
+  assert.equal(B.trams(bed(), { elements: [] }).features[0].attributes.CTVUK_KOD, 1100);
+  assert.equal(B.trams(bed(), { elements: [{ type: "way", tags: { railway: "tram" }, geometry: [{ lon: 0.5, lat: 0.5 }] }] }).features[0].attributes.CTVUK_KOD, 705);
+  assert.equal(B.trams(bed(), { elements: [{ type: "way", tags: { railway: "rail" }, geometry: [{ lon: 0.5, lat: 0.5 }] }] }).features[0].attributes.CTVUK_KOD, 1100);
+  // A portico's walkway comes before the building over it.
+  const sq = (x, y, d) => ({ rings: [[[x, y], [x + d, y], [x + d, y + d], [x, y + d], [x, y]]] });
+  const out = B.dbtSurfaces([{ layer: 97, attributes: { cr_edf_ct: "edificio" }, geometry: sq(9, 45, 1) }, { layer: 105, attributes: { ZONA: "area a porticato" }, geometry: sq(9, 45, 1) }]);
+  assert.deepEqual(out.features.map((f) => f.attributes.CTVUK_KOD), [702, 601]);
+
+  const bbox = "9.1890,45.4635,9.1910,45.4649", c = [9.19, 45.4642];
+  const road = { layerId: 106, attributes: { ZONA: "tronco carreggiata", SEDE: "a raso" }, geometry: sq(c[0] - 0.0001, c[1] - 0.0001, 0.0002) };
+  const s = stubFetch([{ json: { results: [road, { layerId: 97, attributes: { cr_edf_ct: "edificio" }, geometry: sq(9.1891, 45.4636, 0.0001) }] } }]);
+  try {
+    const r = await B.surfaces(bbox);
+    assert.equal(r.itTown, "lombardia");
+    assert.deepEqual(r.features.map((f) => f.attributes.CTVUK_KOD), [601, 701]);
+    assert.equal(s.urls.length, 1);
+    const u = new URL(s.urls[0]);
+    assert.match(u.pathname, /dbtr\/MapServer\/identify$/);
+    assert.equal(u.searchParams.get("layers"), `all:${B.LAYERS}`);
+  } finally { s.restore(); }
+  // No street surface at the centre: the estimate.
+  const g = stubFetch([{ json: { results: [{ ...road, geometry: sq(9.1891, 45.4636, 0.0001) }] } }]);
+  try { assert.deepEqual(await B.surfaces("9.1890,45.4635,9.1911,45.4649"), { features: [], abroad: true }); } finally { g.restore(); }
+  const e = stubFetch([{ status: 400, json: {} }]);
+  try { assert.deepEqual(await B.surfaces("9.1890,45.4635,9.1912,45.4649"), { features: [], abroad: true, itFailed: "lombardia" }); } finally { e.restore(); }
+  globalThis.PROFILY_IT = { lombardia: "0" };
+  try { assert.equal(await B.surfaces(bbox), null, "?lombardia=0"); } finally { delete globalThis.PROFILY_IT; }
+  assert.equal(await B.surfaces("11.340,44.492,11.345,44.495"), null, "Bologna: ne");
 });

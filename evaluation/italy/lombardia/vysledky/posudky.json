@@ -1,0 +1,107 @@
+[
+ {
+  "id": "mil1",
+  "lepsi": "nejde",
+  "proc": "Panorama z křižovatky, stromy a stání jsou vidět, ale rozlišení X a Y nelze určit."
+ },
+ {
+  "id": "mil2",
+  "lepsi": "nejde",
+  "proc": "Panorama uprostřed křižovatky s červeným přejezdem pro kola, profil úzké ulice není dobře vidět."
+ },
+ {
+  "id": "mil5",
+  "lepsi": "B",
+  "proc": "Úzká ulice s podélným stáním aut u jedné strany a malými chodníky, což odpovídá X."
+ },
+ {
+  "id": "mil6",
+  "lepsi": "B",
+  "proc": "Auta parkují podél jedné strany vozovky a chodníky jsou úzké, jak má Y."
+ },
+ {
+  "id": "mil7",
+  "lepsi": "A",
+  "proc": "Široká ulice se středním pásem a stáním u kraje odpovídá X."
+ },
+ {
+  "id": "mil8",
+  "lepsi": "nejde",
+  "proc": "Noční snímek, prvky bulváru nejsou čitelné."
+ },
+ {
+  "id": "mil9",
+  "lepsi": "B",
+  "proc": "Úzká ulice se stojícími auty na obou stranách, jak má Y."
+ },
+ {
+  "id": "mil10",
+  "lepsi": "B",
+  "proc": "Dlážděná ulice s úzkými chodníky a šířkou kolem 6 m, Y má jen jeden pruh."
+ },
+ {
+  "id": "mil11",
+  "lepsi": "B",
+  "proc": "Úzká ulice s úzkými chodníky, Y bez chodníků je nepravděpodobné."
+ },
+ {
+  "id": "mil13",
+  "lepsi": "nejde",
+  "proc": "Noční rozmazaný snímek."
+ },
+ {
+  "id": "mil14",
+  "lepsi": "nejde",
+  "proc": "Podloubí galerie, šířka ani uspořádání nejsou jasné."
+ },
+ {
+  "id": "mil16",
+  "lepsi": "nejde",
+  "proc": "Snímek z úzké ulice s parkováním, ale cut je na rozlehlém náměstí a nelze ho ověřit."
+ },
+ {
+  "id": "ber1",
+  "lepsi": "nejde",
+  "proc": "Silnice s chodníkem a zdí, ale profil neodpovídá jasně X ani Y."
+ },
+ {
+  "id": "bre1",
+  "lepsi": "nejde",
+  "proc": "Silnice se zdí a chodníkem vpravo, ale kolo a stání nejsou vidět."
+ },
+ {
+  "id": "com1",
+  "lepsi": "B",
+  "proc": "Široká silnice se čtyřmi pruhy a vpravo širší zelený a parkovací pás, což sedí k Y."
+ },
+ {
+  "id": "var2",
+  "lepsi": "A",
+  "proc": "Pěší dlážděná ulička bez vozovky, X je chodník."
+ },
+ {
+  "id": "pav1",
+  "lepsi": "A",
+  "proc": "Úzká dlážděná ulice s oboustrannými zvýšenými chodníky, Y bez chodníku nesedí."
+ },
+ {
+  "id": "pav2",
+  "lepsi": "nejde",
+  "proc": "Vidět jen jednu stranu bulváru, uspořádání celku nejasné."
+ },
+ {
+  "id": "man2",
+  "lepsi": "nejde",
+  "proc": "Snímek z okolí okružní křižovatky, ne z ulice se stáním."
+ },
+ {
+  "id": "lec1",
+  "lepsi": "nejde",
+  "proc": "Snímek ukazuje jinou ulici se stáním a stromy, ne lungolario."
+ },
+ {
+  "id": "bus2",
+  "lepsi": "B",
+  "proc": "Dva široké pruhy a stání vpravo se stromy po stranách, Y odpovídá šířce lépe."
+ }
+]

@@ -15,6 +15,13 @@ z prohlížeče to funguje stejně; „bez CORS“ = hlavička chybí (obrázek 
 > (`city.js closedAt`, `staty.json` `closed_it`); hledání Photon tam ulice nabídnout může. Návrhy „odhad z OSM a
 > ortofota“ u San Marina a Vatikánu níže jsou rešerše, ne stav aplikace.
 >
+> **Lombardie (24. 11. 2026, `lombardia/ZPRAVA.md`):** Database Topografico Regionale (DBT) je zapojená jako mapa
+> povrchů celé Lombardie (`towns/lombardy.js`). Oprava řádků níže: geometrii vrací jen `identify` (i `f=kmz`), ne
+> `query`; vrstvy 105 (pěší plochy) i 94 (výšky) přes `identify` odpovídají do 1 s. **Licence ověřena: CC BY 4.0**
+> (záznam Geoportale `r_lombar:1CE0E71B-6451-4B5D-8E4D-BC0FF6E0A46F`, „Dati di proprietà di Regione Lombardia“).
+> Pokryto všech 1 502 obcí (rok zaměření 2005–2022). A/B 41 řezů: DBT ve 32, podle fotek lépe 7, hůř 3, nejde 11; zapnuto,
+> Lombardie otevřená v `staty.json`. Ortofoto Lombardie (AGEA) dál nepoužité.
+>
 > **Hranice a kredit Turína (Bára 23. 11. 2026, recenze body 13 a 15):** oblasti jsou od 23. 11. hranice ISTAT „Confini
 > delle unità amministrative a fini statistici al 1° gennaio 2026“, negeneralizované (shapefile v EPSG:32632,
 > https://www.istat.it/storage/cartografia/confini_amministrativi/non_generalizzati/2026/Limiti01012026.zip; licence

@@ -108,7 +108,11 @@ const BUILD = {
   // are in EPSG:32632; tools/italy-border.json holds their rings in WGS 84 (ogr2ogr -t_srs EPSG:4326, thinned to 5 m), from
   // https://www.istat.it/storage/cartografia/confini_amministrativi/non_generalizzati/2026/Limiti01012026.zip. The rest of
   // Italy, San Marino and the Vatican are not covered yet.
-  italy: () => JSON.parse(fs.readFileSync(new URL("./italy-border.json", import.meta.url), "utf8")).map((r) => simplify(r)),
+  // Lombardy (24. 11. 2026): where Regione Lombardia's DBT is the surface map (towns/lombardy.js), with Campione d'Italia,
+  // the exclaves by Piedmont and the holes of the Oltrepò; tools/lombardy-border.json holds the region's boundary
+  // ("Limiti amministrativi Regione Lombardia 2020 con aggiornamenti DbT/PGT", dati.lombardia.it b7fb-r6ie, CC0 1.0,
+  // Regione Lombardia), thinned to 5 m.
+  italy: () => ["./italy-border.json", "./lombardy-border.json"].flatMap((f) => JSON.parse(fs.readFileSync(new URL(f, import.meta.url), "utf8"))).map((r) => simplify(r)),
   // Estonia (23. 11. 2026): GISCO's, with the islands.
   estonia: () => gisco("EE"),
   // Slovenia (23. 11. 2026): GISCO's, after Italy and Austria (their rings come first by the border; Croatia stays abroad).

@@ -1,6 +1,7 @@
-// Italy (Bára 23. 11. 2026): the state of a cut inside staty.json's "italy", which is only where an orthophoto has an
-// open licence (the province of Bolzano, Turin, Bologna, Modena; evaluation/italy/ZDROJE.md). The profile is the estimate
-// from OSM and that orthophoto (lanes-ortho.js "it"), except in Bologna:
+// Italy (Bára 23. 11. 2026): the state of a cut inside staty.json's "italy", which is only where an orthophoto or a
+// surface map has an open licence (the province of Bolzano, Turin, Bologna, Modena; Lombardy by its DBT since 24. 11. 2026,
+// towns/lombardy.js; evaluation/italy/ZDROJE.md). The profile is the estimate from OSM and that orthophoto
+// (lanes-ortho.js "it"), except in Lombardy (the DBT's surfaces, no orthophoto) and Bologna:
 // - Bologna's Carta tecnica comunale (opendata.comune.bologna.it, Opendatasoft, CORS *, CC BY 4.0): the road areas
 //   (aree stradali: the carriageway of the streets and of their junctions) as polygons. The sidewalks are only lines
 //   there: what lies between the roadway, OSM's buildings, green and water is paved walking area (a fill after all
@@ -13,11 +14,12 @@ import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea } from "../places.js";
 import { osmAreas } from "./slovensko.js";
+import { surfaces as lombardySurfaces, AREAS as LOMBARDY_AREAS } from "./lombardy.js";
 
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_IT?.[k] ?? null : new URLSearchParams(location.search).get(k));
 
 export const BOLOGNA_API = "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets";
-export const AREAS = { bologna: { box: [11.22, 44.42, 11.44, 44.56] } };
+export const AREAS = { bologna: { box: [11.22, 44.42, 11.44, 44.56] }, ...LOMBARDY_AREAS };
 // The road areas' kinds that are a roadway at the ground (not one over a river or a railway, nor one being built).
 const ROADWAY = new Set(["Tracciato principale in tronco", "Tronco di intersezione tra strade a raso"]);
 
@@ -58,6 +60,9 @@ const AROUND = [[0, 0], ...[2, 5, 10].flatMap(ring)];
 async function surfaces(bbox) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
+  // Lombardy's DBT (towns/lombardy.js; null outside the region or with ?lombardia=0).
+  const lombardy = await lombardySurfaces(bbox);
+  if (lombardy) return lombardy;
   if (param("bologna") !== "1" || !inArea(AREAS.bologna, cx, cy)) return { features: [], abroad: true };
   let own;
   try {
