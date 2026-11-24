@@ -147,7 +147,11 @@ export default {
   // The author's name (about.js).
   author: "Bára Soukupová",
   halfKerbNote: lawNote("§ 23 ods. 1 zák. 8/2009 Z. z."),
-  // No parking estimated by the law (Bára: not tried in Slovakia); the motorways wider (R1 in Banská Bystrica).
+  // No parking estimated by the law (§ 23 ods. 1 zák. 8/2009 Z. z. would allow it as in Czechia): measured, the A/B of
+  // 25. 11. 2026 (evaluation/sjednoceni, 58 random local streets in 11 towns): 8 changed beyond noise, blind worse
+  // 4 : 1 (same 2, unclear 1): strips where no car stands that the model does not clear (Jána Bottu, K výstavisku), and
+  // the lanes read on the orthophoto lost beside the law's strips (Masarykova, Petržalka). The motorways wider (R1 in
+  // Banská Bystrica).
   parkGuess: false,
   wideRoads: true,
   limits: limitsSK,
