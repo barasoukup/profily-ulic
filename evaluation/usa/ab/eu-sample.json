@@ -1,0 +1,1322 @@
+[
+ {
+  "id": "eu-cz-jihlava-4",
+  "country": "CZ",
+  "town": "jihlava",
+  "lat": 49.403214,
+  "lon": 15.592078,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-cz-praha-5",
+  "country": "CZ",
+  "town": "praha",
+  "lat": 50.096955,
+  "lon": 14.435705,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-cz-praha-8",
+  "country": "CZ",
+  "town": "praha",
+  "lat": 50.079944,
+  "lon": 14.413659,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-cz-brno-1",
+  "country": "CZ",
+  "town": "brno",
+  "lat": 49.198669,
+  "lon": 16.59948,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-cz-olomouc-4",
+  "country": "CZ",
+  "town": "olomouc",
+  "lat": 49.596159,
+  "lon": 17.251029,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-cz-ostrava-7",
+  "country": "CZ",
+  "town": "ostrava",
+  "lat": 49.836564,
+  "lon": 18.297008,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-cz-plzen-8",
+  "country": "CZ",
+  "town": "plzen",
+  "lat": 49.747319,
+  "lon": 13.358023,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-cz-olomouc-1",
+  "country": "CZ",
+  "town": "olomouc",
+  "lat": 49.587869,
+  "lon": 17.256691,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-cz-plzen-5",
+  "country": "CZ",
+  "town": "plzen",
+  "lat": 49.757704,
+  "lon": 13.382441,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-cz-jihlava-7",
+  "country": "CZ",
+  "town": "jihlava",
+  "lat": 49.400834,
+  "lon": 15.575834,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-cz-liberec-6",
+  "country": "CZ",
+  "town": "liberec",
+  "lat": 50.755993,
+  "lon": 15.060736,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-cz-jihlava-1",
+  "country": "CZ",
+  "town": "jihlava",
+  "lat": 49.393066,
+  "lon": 15.60012,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-sk-martin-2",
+  "country": "SK",
+  "town": "martin",
+  "lat": 49.074326,
+  "lon": 18.9322,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-sk-martin-1",
+  "country": "SK",
+  "town": "martin",
+  "lat": 49.062566,
+  "lon": 18.925531,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-sk-bystrica-6",
+  "country": "SK",
+  "town": "bystrica",
+  "lat": 48.729614,
+  "lon": 19.144745,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-sk-bratislava-2",
+  "country": "SK",
+  "town": "bratislava",
+  "lat": 48.149663,
+  "lon": 17.094643,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-sk-nitra-3",
+  "country": "SK",
+  "town": "nitra",
+  "lat": 48.30599,
+  "lon": 18.080554,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-sk-poprad-6",
+  "country": "SK",
+  "town": "poprad",
+  "lat": 49.063587,
+  "lon": 20.308608,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-sk-zilina-6",
+  "country": "SK",
+  "town": "zilina",
+  "lat": 49.213685,
+  "lon": 18.746913,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-sk-zvolen-8",
+  "country": "SK",
+  "town": "zvolen",
+  "lat": 48.569623,
+  "lon": 19.128822,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-sk-martin-5",
+  "country": "SK",
+  "town": "martin",
+  "lat": 49.057272,
+  "lon": 18.931236,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-sk-presov-5",
+  "country": "SK",
+  "town": "presov",
+  "lat": 49.009941,
+  "lon": 21.247085,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-sk-zvolen-6",
+  "country": "SK",
+  "town": "zvolen",
+  "lat": 48.573846,
+  "lon": 19.116644,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-sk-martin-3",
+  "country": "SK",
+  "town": "martin",
+  "lat": 49.059458,
+  "lon": 18.915403,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-at-dornbirn-3",
+  "country": "AT",
+  "town": "dornbirn",
+  "lat": 47.404087,
+  "lon": 9.750776,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-at-salzburg-5",
+  "country": "AT",
+  "town": "salzburg",
+  "lat": 47.797765,
+  "lon": 13.030246,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-at-wels-2",
+  "country": "AT",
+  "town": "wels",
+  "lat": 48.160041,
+  "lon": 14.031715,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-at-graz-3",
+  "country": "AT",
+  "town": "graz",
+  "lat": 47.065253,
+  "lon": 15.446749,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-at-klagenfurt-8",
+  "country": "AT",
+  "town": "klagenfurt",
+  "lat": 46.634777,
+  "lon": 14.309582,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-at-linz-5",
+  "country": "AT",
+  "town": "linz",
+  "lat": 48.307431,
+  "lon": 14.299837,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-at-innsbruck-7",
+  "country": "AT",
+  "town": "innsbruck",
+  "lat": 47.274737,
+  "lon": 11.376546,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-at-stpoelten-4",
+  "country": "AT",
+  "town": "stpoelten",
+  "lat": 48.196606,
+  "lon": 15.638049,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-at-linz-8",
+  "country": "AT",
+  "town": "linz",
+  "lat": 48.297029,
+  "lon": 14.275798,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-at-klagenfurt-5",
+  "country": "AT",
+  "town": "klagenfurt",
+  "lat": 46.630246,
+  "lon": 14.316413,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-at-wels-1",
+  "country": "AT",
+  "town": "wels",
+  "lat": 48.155719,
+  "lon": 14.0204,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-at-innsbruck-3",
+  "country": "AT",
+  "town": "innsbruck",
+  "lat": 47.276119,
+  "lon": 11.390835,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-de-berlin-2",
+  "country": "DE",
+  "town": "berlin",
+  "lat": 52.521717,
+  "lon": 13.412109,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-de-dresden-1",
+  "country": "DE",
+  "town": "dresden",
+  "lat": 51.048162,
+  "lon": 13.744842,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-de-frankfurt-7",
+  "country": "DE",
+  "town": "frankfurt",
+  "lat": 50.118753,
+  "lon": 8.680375,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-de-frankfurt-3",
+  "country": "DE",
+  "town": "frankfurt",
+  "lat": 50.113992,
+  "lon": 8.694226,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-de-dresden-8",
+  "country": "DE",
+  "town": "dresden",
+  "lat": 51.044064,
+  "lon": 13.751717,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-de-koeln-6",
+  "country": "DE",
+  "town": "koeln",
+  "lat": 50.933111,
+  "lon": 6.945787,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-de-muenchen-3",
+  "country": "DE",
+  "town": "muenchen",
+  "lat": 48.136515,
+  "lon": 11.573072,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-de-freiburg-2",
+  "country": "DE",
+  "town": "freiburg",
+  "lat": 47.9961,
+  "lon": 7.832905,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-de-leipzig-6",
+  "country": "DE",
+  "town": "leipzig",
+  "lat": 51.32861,
+  "lon": 12.371281,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-de-muenchen-8",
+  "country": "DE",
+  "town": "muenchen",
+  "lat": 48.139614,
+  "lon": 11.58853,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-de-leipzig-2",
+  "country": "DE",
+  "town": "leipzig",
+  "lat": 51.340205,
+  "lon": 12.386219,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-de-nuernberg-3",
+  "country": "DE",
+  "town": "nuernberg",
+  "lat": 49.455584,
+  "lon": 11.094803,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-nl-utrecht-5",
+  "country": "NL",
+  "town": "utrecht",
+  "lat": 52.092131,
+  "lon": 5.115276,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-nl-rotterdam-1",
+  "country": "NL",
+  "town": "rotterdam",
+  "lat": 51.934163,
+  "lon": 4.472244,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-nl-schiedam-8",
+  "country": "NL",
+  "town": "schiedam",
+  "lat": 51.917005,
+  "lon": 4.391268,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-nl-leiden-4",
+  "country": "NL",
+  "town": "leiden",
+  "lat": 52.149355,
+  "lon": 4.478095,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-nl-denhaag-4",
+  "country": "NL",
+  "town": "denhaag",
+  "lat": 52.069372,
+  "lon": 4.317272,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-nl-haarlem-4",
+  "country": "NL",
+  "town": "haarlem",
+  "lat": 52.386286,
+  "lon": 4.616594,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-nl-amsterdam-5",
+  "country": "NL",
+  "town": "amsterdam",
+  "lat": 52.379799,
+  "lon": 4.911635,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-nl-schiedam-3",
+  "country": "NL",
+  "town": "schiedam",
+  "lat": 51.91388,
+  "lon": 4.38899,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-nl-diemen-3",
+  "country": "NL",
+  "town": "diemen",
+  "lat": 52.345538,
+  "lon": 4.957254,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-nl-denhaag-5",
+  "country": "NL",
+  "town": "denhaag",
+  "lat": 52.084733,
+  "lon": 4.294181,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-nl-denhaag-8",
+  "country": "NL",
+  "town": "denhaag",
+  "lat": 52.092229,
+  "lon": 4.318705,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-nl-delft-1",
+  "country": "NL",
+  "town": "delft",
+  "lat": 52.00492,
+  "lon": 4.375593,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-pl-lodz-4",
+  "country": "PL",
+  "town": "lodz",
+  "lat": 51.754264,
+  "lon": 19.445643,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-pl-lublin-3",
+  "country": "PL",
+  "town": "lublin",
+  "lat": 51.23773,
+  "lon": 22.552109,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-pl-gdansk-5",
+  "country": "PL",
+  "town": "gdansk",
+  "lat": 54.349244,
+  "lon": 18.658533,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-pl-gdansk-4",
+  "country": "PL",
+  "town": "gdansk",
+  "lat": 54.353908,
+  "lon": 18.642513,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-pl-gdansk-1",
+  "country": "PL",
+  "town": "gdansk",
+  "lat": 54.343806,
+  "lon": 18.648013,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-pl-gdansk-7",
+  "country": "PL",
+  "town": "gdansk",
+  "lat": 54.346494,
+  "lon": 18.656903,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-pl-lodz-1",
+  "country": "PL",
+  "town": "lodz",
+  "lat": 51.756217,
+  "lon": 19.471686,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-pl-bydgoszcz-8",
+  "country": "PL",
+  "town": "bydgoszcz",
+  "lat": 53.112828,
+  "lon": 18.002845,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-pl-krakow-5",
+  "country": "PL",
+  "town": "krakow",
+  "lat": 50.06432,
+  "lon": 19.925858,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-pl-wroclaw-7",
+  "country": "PL",
+  "town": "wroclaw",
+  "lat": 51.111898,
+  "lon": 17.035393,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-pl-lublin-2",
+  "country": "PL",
+  "town": "lublin",
+  "lat": 51.257046,
+  "lon": 22.579413,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-pl-szczecin-4",
+  "country": "PL",
+  "town": "szczecin",
+  "lat": 53.437493,
+  "lon": 14.554598,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-fr-strasbourg-6",
+  "country": "FR",
+  "town": "strasbourg",
+  "lat": 48.571845,
+  "lon": 7.74728,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-fr-toulouse-3",
+  "country": "FR",
+  "town": "toulouse",
+  "lat": 43.598321,
+  "lon": 1.445011,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-fr-bordeaux-7",
+  "country": "FR",
+  "town": "bordeaux",
+  "lat": 44.827243,
+  "lon": -0.57646,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-fr-strasbourg-8",
+  "country": "FR",
+  "town": "strasbourg",
+  "lat": 48.575178,
+  "lon": 7.74653,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-fr-montpellier-7",
+  "country": "FR",
+  "town": "montpellier",
+  "lat": 43.61418,
+  "lon": 3.883387,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-fr-nantes-6",
+  "country": "FR",
+  "town": "nantes",
+  "lat": 47.204681,
+  "lon": -1.553786,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-fr-paris-8",
+  "country": "FR",
+  "town": "paris",
+  "lat": 48.85285,
+  "lon": 2.36122,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-fr-toulouse-5",
+  "country": "FR",
+  "town": "toulouse",
+  "lat": 43.600717,
+  "lon": 1.454051,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-fr-lille-6",
+  "country": "FR",
+  "town": "lille",
+  "lat": 50.621963,
+  "lon": 3.055492,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-fr-nice-7",
+  "country": "FR",
+  "town": "nice",
+  "lat": 43.717205,
+  "lon": 7.266609,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-fr-nantes-8",
+  "country": "FR",
+  "town": "nantes",
+  "lat": 47.221139,
+  "lon": -1.53614,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-fr-lille-7",
+  "country": "FR",
+  "town": "lille",
+  "lat": 50.63189,
+  "lon": 3.045509,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-es-barcelona-7",
+  "country": "ES",
+  "town": "barcelona",
+  "lat": 41.385521,
+  "lon": 2.153192,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-es-bilbao-1",
+  "country": "ES",
+  "town": "bilbao",
+  "lat": 43.265122,
+  "lon": -2.945352,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-es-malaga-4",
+  "country": "ES",
+  "town": "malaga",
+  "lat": 36.714535,
+  "lon": -4.43382,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-es-palma-5",
+  "country": "ES",
+  "town": "palma",
+  "lat": 39.570238,
+  "lon": 2.660968,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-es-madrid-6",
+  "country": "ES",
+  "town": "madrid",
+  "lat": 40.428956,
+  "lon": -3.692649,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-es-valladolid-8",
+  "country": "ES",
+  "town": "valladolid",
+  "lat": 41.644167,
+  "lon": -4.733295,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-es-sevilla-7",
+  "country": "ES",
+  "town": "sevilla",
+  "lat": 37.379117,
+  "lon": -5.986265,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-es-coruna-6",
+  "country": "ES",
+  "town": "coruna",
+  "lat": 43.368715,
+  "lon": -8.403968,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-es-malaga-8",
+  "country": "ES",
+  "town": "malaga",
+  "lat": 36.722943,
+  "lon": -4.409922,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-es-malaga-6",
+  "country": "ES",
+  "town": "malaga",
+  "lat": 36.724993,
+  "lon": -4.410763,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-es-palma-2",
+  "country": "ES",
+  "town": "palma",
+  "lat": 39.573382,
+  "lon": 2.646671,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-es-barcelona-5",
+  "country": "ES",
+  "town": "barcelona",
+  "lat": 41.397944,
+  "lon": 2.155002,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-fi-tampere-kaleva-8",
+  "country": "FI",
+  "town": "tampere-kaleva",
+  "lat": 61.484629,
+  "lon": 23.795683,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-fi-helsinki-7",
+  "country": "FI",
+  "town": "helsinki",
+  "lat": 60.168185,
+  "lon": 24.917812,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-fi-espoo-5",
+  "country": "FI",
+  "town": "espoo",
+  "lat": 60.169305,
+  "lon": 24.785268,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-fi-helsinki-kallio-6",
+  "country": "FI",
+  "town": "helsinki-kallio",
+  "lat": 60.196842,
+  "lon": 24.958105,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-fi-tampere-6",
+  "country": "FI",
+  "town": "tampere",
+  "lat": 61.510467,
+  "lon": 23.761509,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-fi-tampere-kaleva-5",
+  "country": "FI",
+  "town": "tampere-kaleva",
+  "lat": 61.487842,
+  "lon": 23.809549,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-fi-turku-5",
+  "country": "FI",
+  "town": "turku",
+  "lat": 60.464846,
+  "lon": 22.275013,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-fi-turku-1",
+  "country": "FI",
+  "town": "turku",
+  "lat": 60.451353,
+  "lon": 22.270602,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-fi-helsinki-toolo-5",
+  "country": "FI",
+  "town": "helsinki-toolo",
+  "lat": 60.180163,
+  "lon": 24.912487,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-fi-espoo-leppavaara-1",
+  "country": "FI",
+  "town": "espoo-leppavaara",
+  "lat": 60.213188,
+  "lon": 24.812648,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-fi-tampere-3",
+  "country": "FI",
+  "town": "tampere",
+  "lat": 61.494001,
+  "lon": 23.766911,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-fi-espoo-3",
+  "country": "FI",
+  "town": "espoo",
+  "lat": 60.177857,
+  "lon": 24.826905,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-dk-kobenhavn-vesterbro-8",
+  "country": "DK",
+  "town": "kobenhavn-vesterbro",
+  "lat": 55.666721,
+  "lon": 12.552882,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-dk-kobenhavn-osterbro-5",
+  "country": "DK",
+  "town": "kobenhavn-osterbro",
+  "lat": 55.709722,
+  "lon": 12.56953,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-dk-aarhus-6",
+  "country": "DK",
+  "town": "aarhus",
+  "lat": 56.152433,
+  "lon": 10.225742,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-dk-aalborg-3",
+  "country": "DK",
+  "town": "aalborg",
+  "lat": 57.039624,
+  "lon": 9.925056,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-dk-kobenhavn-osterbro-6",
+  "country": "DK",
+  "town": "kobenhavn-osterbro",
+  "lat": 55.717558,
+  "lon": 12.567532,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-dk-aarhus-7",
+  "country": "DK",
+  "town": "aarhus",
+  "lat": 56.167456,
+  "lon": 10.204667,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-dk-kobenhavn-norrebro-8",
+  "country": "DK",
+  "town": "kobenhavn-norrebro",
+  "lat": 55.69028,
+  "lon": 12.560549,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-dk-odense-8",
+  "country": "DK",
+  "town": "odense",
+  "lat": 55.38712,
+  "lon": 10.372395,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-dk-kobenhavn-vesterbro-2",
+  "country": "DK",
+  "town": "kobenhavn-vesterbro",
+  "lat": 55.657878,
+  "lon": 12.554832,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-dk-odense-3",
+  "country": "DK",
+  "town": "odense",
+  "lat": 55.39151,
+  "lon": 10.372725,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-dk-kobenhavn-8",
+  "country": "DK",
+  "town": "kobenhavn",
+  "lat": 55.688387,
+  "lon": 12.584718,
+  "variants": [
+   "def",
+   "old"
+  ]
+ },
+ {
+  "id": "eu-dk-kobenhavn-amager-2",
+  "country": "DK",
+  "town": "kobenhavn-amager",
+  "lat": 55.668006,
+  "lon": 12.595745,
+  "variants": [
+   "def",
+   "old"
+  ]
+ }
+]

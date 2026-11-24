@@ -416,6 +416,32 @@ chodníku jen se značkou. Značky `signs-LT/` (Commons, Augustasci CC BY 4.0 / 
 4.0; 329 jako šablona aplikace). Socialistické vzhledy domů ano (sovětská sídliště jako v Estonsku), neutrální vozidla,
 český mobiliář, rakouské označníky.
 
+### USA: Washington (Bára 24. 11. 2026, fáze 2 pilotu Severní Ameriky)
+
+Stát `usa` (US), `countries/US.js`, `towns/usa.js`; v `staty.json` jen metro Washingtonu (`usa`: District of Columbia,
+Montgomery a Prince George's v Marylandu, Arlington, Fairfax County, Fairfax city, Falls Church a Alexandria ve Virginii,
+hranice okresů z TIGERweb Census Bureau), zbytek USA je `closed_us` s hláškou (jako Itálie mimo pokrytí). OSM balík
+`us_dc` (výřez Geofabriku District of Columbia a Marylandu a Virginie oříznutých na obdélník metra, sloučené osmiem;
+`osm-tiles.yml` umí výřezy spojené „+“ s obdélníkem za „@“), jen R2. V DC:
+- **mapa povrchů** DC Planimetrics 2023 (`maps2.dcgis.dc.gov` `Planimetrics_2023/MapServer` 10 vozovky, 11 chodníky,
+  1 budovy; CC BY 4.0) čtená podél řezu po 0,1 m jako GRB Flander (mapování z pilotu `evaluation/usa-dc/build.mjs`: mezera
+  mezi plochami je zeleň, parkoviště, uličky a vjezdy jiná zpevněná plocha), jen kde má ulici pod středem řezu
+  (`hasStreet` jako Vilnius a Helsinky); `?dc=0` vypne;
+- **inventář DDOT** Roadway SubBlock (`Transportation_WebMercator/MapServer/162`): počet pruhů jako OSM `lanes` cesty
+  (`app.js` `wayTags`), pruhy stání u vnějších obrub vozovky (704) a cyklopruhy, kde je OSM nemá; kde blok je, odhad stání
+  podle pravidel je vypnutý (`noParkGuess`); `?ddot=0` vypne;
+- **uličky** z planimetrie jako plochy `service=alley` v prvcích OSM (ústí uličky = křižovatka, `derive.js`);
+- **ortofoto** DC 2025 (`Ortho2025_WebMercator`, export v Web Mercatoru, jen nad obdélníkem DC: `lanes-ortho.js us-dc`)
+  pro pruhy, model obrub a podklad mapy. Mimo DC v metru jen odhad z OSM.
+Normy DDOT (DEM 2023, Bicycle Facility Design Guide 2020) a NACTO jen oranžově (`evaluation/usa/NORMY.md`), stání 3 m na
+směr (IFC 503.2.1, 18 DCMR § 2405), bez řádku značek, bez paneláků, neutrální vozidla, český mobiliář, rakouské
+označníky. Hledání Photon v obdélníku metra. A/B a měření v `evaluation/usa/`.
+
+Tři společné změny z pilotu (všechny státy, každá s vypínačem): ústí uličky (OSM `service=alley` a plochy uliček) je
+křižovatka (`?off=ulicky`); jamky stromů v chodníku, tedy pás zeleně do 1,3 m mezi chodníkem a obrubou, který na ortofotu
+vypadá jako dlažba, patří chodníku (`derive.js treePitsAsSidewalk`, `?off=jamky`); obousměrka s jedním pruhem se dělí na dva
+už od 4,0 m, kde je počet pruhů známý (OSM `lanes` ≥ 2 nebo inventář; `?off=pocetpruhu`).
+
 ### Dlaždice OSM
 
 Jedna sada dlaždic pro všechna města (`pilot/data/osm-tiles`, na webu `data/osm-tiles`) z výřezu Geofabrik Česká
