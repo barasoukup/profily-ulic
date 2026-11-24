@@ -23,16 +23,16 @@ export const AREAS = { vilnius: { box: [25.02, 54.56, 25.49, 54.84] } };
 
 // The area's code and purpose → MTVU codes (city.js MTVU_LABELS). The codes by the map's legend (22xx water, 23xx
 // vegetation, 2413 a cemetery, 2421–2430 paved: asphalt, concrete, setts, blocks, tiles, gravel, wood, other, steps);
-// 2403 is grass (seen over the city's orthophoto), the other 24xx below 2413 are not in the legend and look like
-// gardens and unpaved yards: other green. Gravel without a purpose and 2410 (gravel ground) are left to OSM.
-const PURPOSE = {
-  kelias: 701, "pėsč": 702, aikšt: 702, dvir: 703, park: 704,
-  "nuovaža": 1003, "šalik": 1003, kelkr: 1003, "pavirš": 1003, stat: 1003, kita: 1003, sport: 901,
-};
+// 2403 is grass (seen over the city's orthophoto). The other 24xx are not in the legend: those that looked like gardens
+// and green yards are other green; 2401 (also arable land), 2409 (also garages), 2410 (gravel ground) and 2414 are left
+// to OSM (the review of 24. 11. 2026). The purpose is matched by its start, in any case (sport, sporto). A square
+// (aikšt) is any paved place (a square, a playground, a car park): paved.
+const PURPOSE = [[/^kelias/, 701], [/^pėsč/, 702], [/^dvir/, 703], [/^park/, 704], [/^sport/, 901]];
 export function vilniusCode(p) {
-  const k = Number(p?.KODAS), purpose = String(p?.Paskirtis || "").trim();
+  const k = Number(p?.KODAS), purpose = String(p?.Paskirtis || "").trim().toLowerCase();
   if (k >= 2421 && k <= 2430) {
-    if (PURPOSE[purpose]) return PURPOSE[purpose];
+    const hit = PURPOSE.find(([re]) => re.test(purpose));
+    if (hit) return hit[1];
     if (purpose) return 1003;
     // A paved area with no purpose: setts, blocks, tiles, concrete or other paving are walked on (the sidewalks of
     // Gedimino prospektas have none), asphalt is a yard or a lane, gravel is left to OSM.
@@ -42,12 +42,13 @@ export function vilniusCode(p) {
   }
   if (k === 2403) return 401;
   if (k === 2413) return 402;
-  if (k >= 2401 && k <= 2412 && k !== 2410) return 402;
+  if ([2402, 2404, 2405, 2406, 2407, 2408, 2411, 2412].includes(k)) return 402;
   if (k >= 2301 && k <= 2305) return 200;
   if (k === 2307) return 300;
   if (k >= 2306 && k <= 2308) return 402;
-  if (k === 2201 || k === 2202 || k === 2205) return 501;
-  if (k >= 2203 && k <= 2206) return 502;
+  if (k === 2201 || k === 2202) return 501;
+  if (k >= 2203 && k <= 2205) return 502;
+  if (k === 2206) return 402; // a marsh
   return null;
 }
 export function vilniusFeatures(json) {
@@ -59,8 +60,9 @@ export function vilniusFeatures(json) {
   }
   return { features: out };
 }
+// Ordered by OBJECTID so that the pages neither repeat nor skip an area (the review).
 export const vilniusUrl = (bbox, offset = 0) => `${VILNIUS_MAP}/query?${new URLSearchParams({ f: "geojson", geometry: bbox, geometryType: "esriGeometryEnvelope", inSR: "4326", outSR: "4326",
-  spatialRel: "esriSpatialRelIntersects", outFields: "KODAS,Paskirtis", maxAllowableOffset: "0.000003", ...(offset && { resultOffset: String(offset), resultRecordCount: "1000" }) })}`;
+  spatialRel: "esriSpatialRelIntersects", outFields: "KODAS,Paskirtis", maxAllowableOffset: "0.000003", orderByFields: "OBJECTID", resultOffset: String(offset), resultRecordCount: "1000" })}`;
 // The service gives 1 000 areas an answer: the next pages, at most three in all (the centre has about 300 in 160 m).
 async function vilnius(bbox) {
   const features = [];

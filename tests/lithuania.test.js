@@ -20,7 +20,12 @@ test("Litva: mapa povrchů Vilniusu (kód a účel plochy)", async () => {
   assert.equal(c(2421, "kelias"), 701);
   assert.equal(c(2426, "kelias"), 701, "štěrková cesta je vozovka");
   assert.equal(c(2424, "pėsč"), 702);
-  assert.equal(c(2422, "aikšt"), 702);
+  assert.equal(c(2422, "aikšt"), 1003);
+  assert.equal(c(2428, "sporto"), 901);
+  assert.equal(c(2421, "Kelias"), 701);
+  assert.equal(c(2409), null);
+  assert.equal(c(2414), null);
+  assert.equal(c(2206), 402);
   assert.equal(c(2421, "dvir"), 703);
   assert.equal(c(2424, "park"), 704);
   assert.equal(c(2424, "nuovaža"), 1003);
@@ -83,6 +88,7 @@ test("Litva: značky, normy, bez ortofota", async () => {
   assert.equal(LT.socialistLooks, true);
   const L = await import("../pilot/public/lanes-ortho.js");
   assert.equal(await L.laneImage({ source: "none" }), null, "ortofoto NŽT se nepoužívá");
+  assert.equal(await L.orthoPatch({ source: "none", lon: 25.28, lat: 54.69, half: 20, px: 256 }), null, "ani pro model obrub, nic na ČÚZK");
 });
 
 test("Litva: pod ulicí pro auta musí být vozovka mapy", async () => {

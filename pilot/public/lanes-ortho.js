@@ -867,6 +867,8 @@ function redraw(w, lines, fine = true) {
 // model learnt it (evaluation/ai-segmentation/fetch_ortho.py): the source's shift applied as above. Returns
 // { source, img } (ImageData) or null (no photo there); a server down throws as laneImage does.
 export async function orthoPatch({ source, lon, lat, half, px, timeout = TIMEOUT }) {
+  // No orthophoto it may use (Lithuania): none, and nothing asked of ČÚZK (the review of Lithuania).
+  if (source === "none") return null;
   const keys = source === "de" ? (await landsAt(lon, lat).catch(() => [])).map((l) => `de-${l}`) : source === "be" ? [...new Set([...(await beRegionsAt(lon, lat).catch(() => [])).map(beOrthoOf), "vl", "wal"])].map((r) => `be-${r}`) : source === "pt" ? ptKeys(lon, lat) : source === "es" ? esKeys(lon, lat) : source === "it" ? itOrthoAt(lon, lat) : source === "fi" ? fiOrthoAt(lon, lat) : [SOURCES[source] ? source : "cuzk"];
   const seen = new Set(); // Berlin and Brandenburg: one service
   for (const key of keys) {

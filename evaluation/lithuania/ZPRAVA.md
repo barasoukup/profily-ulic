@@ -10,7 +10,7 @@ Bára 24. 11. 2026: mapy povrchů jsou lepší než ortofota, vzít nejslibněj�
   Vilnius „jen odhad z OSM“.
 - **Vilnius:** topografické plochy 1 : 500 jako plochy řezu (`?vilnius=0`), licence neuvedená, kredit
   „Vilniaus miesto savivaldybė / Vilniaus planas“. A/B 40 řezů: použita v 26, lépe 17, hůř 2, stejně 4, nejasné 3
-  (`ab/ZPRAVA.md`).
+  (`ab/ZPRAVA.md`); z výher B jsou ale 4 pěšiny a 7 obslužných cest, na ulicích 6 : 0.
 - **Budovy:** jen OSM. GRPK (CC BY 4.0) má jen obrys a nedokumentovaný kód užití `PASK` (110, 240, 266…), bez podlaží a roku;
   NTR (podlaží, rok) nemá geometrii ani CORS. Nezapojeno (otázka pro Báru).
 - **Hledání:** Photon (`photon-lt`, jen LT, místní jazyk). Lokátor Vilniusu nezapojen (licence neuvedená, Photon stačí).
@@ -33,10 +33,15 @@ stejně pěšiny (23). Zbylo 13 ulic, s fotkou Mapillary 10 (posuzovatel Sonnet,
 
 | varianta | řezů | shoda složení | pruhy stejně | šířka do 1 / 2 m |
 |---|---|---|---|---|
-| aplikace (mapa povrchů Vilniusu, kde ji má: 7 z 10) | 10 | 52 % | 60 % | 0 / 10 % |
+| aplikace (mapa povrchů Vilniusu, kde ji má: 8 z 10) | 10 | 53 % | 60 % | 0 / 10 % |
 | jen odhad z OSM (`?vilnius=0`, jako zbytek Litvy) | 10 | 64 % | 60 % | 20 / 50 % |
 
 Rozpor s A/B: okem nad ortofotem mapa vyhrává (vozovka a obruby podle skutečného asfaltu), měření ji tresty za „navíc
 chodník, navíc zeleň“: mapa dělí chodník na kousky (dlažba, zeleň, stromy) a sahá dál za fasádu, kde posuzovatel končí;
-u zirmunai-7 kreslí 5 pruhů místo 6 a šířku 46 m proti 24 m. Vzorek je malý (10 řezů). Mapa zůstává zapnutá, rozhodnutí
-pro Báru.
+u zirmunai-7 kreslí 5 pruhů místo 6 a šířku 46 m proti 24 m. Vzorek je malý (10 řezů). Mapa zůstává zapnutá, **rozhodnutí
+pro Báru** (vypnout `?vilnius=0` jako výchozí, nebo nechat). Pravidlo o vjezdech a uličkách parkovišť platí zatím jen
+v `evaluation/lithuania/score.mjs`, takže číslo LT není přímo srovnatelné s ostatními státy (ty jsou měřené bez něj).
+Profily 10 posuzovaných řezů sebrané znovu po opravě z recenze (model obrub už v Litvě neběží; 52 → 53 %).
+
+## Recenze
+`RECENZE.md` (nepřátelská recenze 24. 11. 2026, co se opravilo).

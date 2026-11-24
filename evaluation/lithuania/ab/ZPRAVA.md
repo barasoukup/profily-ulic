@@ -20,7 +20,11 @@ Některé hlavní silnice (Žirmūnai) mapa nemá vůbec, v sídlištích má `k
     pěšin a chodníků (vl3, vl10, vl29), cyklopruh (vl16), stání a dvůr (vl27), dělicí pás se zelení (vl40), počet pruhů
     (vl9, vl17, vl24).
   - Lépe A: vl13 (B ztratil vozovku obslužné cesty), vl28 (plocha `kelias` je celé parkoviště: obslužná cesta 42 m).
-- Mapa zůstává zapnutá (`?vilnius=0` vypne). Licence: služba ji neuvádí; Bára 24. 11. 2026 přijala kodaňské vrstvy bez
+- Podle druhu cesty (recenze): z 17 výher B jsou 4 pěšiny (vl3, vl10, vl18, vl29) a 7 obslužných cest (vl5, vl6, vl7,
+  vl27, vl32, vl35, vl37); na ulicích 6 : 0 pro B (vl9, vl16, vl17, vl24, vl39, vl40). Obě prohry B jsou obslužné cesty.
+  Posudek nebyl naslepo (B vždy dole, červeně) a byl bez fotek.
+- Obrázky (`images/`) jen lokálně: výřezy ortofota Vilniusu s neuvedenou licencí do veřejného repozitáře nedáváme.
+- Mapa zůstává zapnutá (`?vilnius=0` vypne); univerzální měření ale vyšlo opačně, rozhodne Bára. Licence: služba ji neuvádí; Bára 24. 11. 2026 přijala kodaňské vrstvy bez
   uvedené licence, Vilnius stejně, s kreditem města.
 
 Univerzální měření (10 řezů s fotkou, 7 s mapou) vyšlo pro mapu hůř než odhad: viz `../ZPRAVA.md`.

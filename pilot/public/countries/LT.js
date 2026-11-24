@@ -24,7 +24,9 @@ function limitsLT(s, segs = [], i = -1) {
       if (s.turn) return null;
       return { min: 0, zaklad: 2.75, why: t("jízdní pruh: 3 m při 50 km/h, 2,75 m při 30 km/h (příručka ulic Vilniusu 2021, doporučení)") };
     case "parkovani":
-      if (s.orient === "kolme" || s.orient === "sikme") return { min: 0, zaklad: 4.35, why: t("kolmé stání: místo 4,35 m a ochranný pás 0,75 m, jen výjimečně (příručka ulic Kaunasu 2024, doporučení)") };
+      // Angled stalls: the guide gives no size (only "in exceptional cases"); no warning.
+      if (s.orient === "sikme") return null;
+      if (s.orient === "kolme") return { min: 0, zaklad: 4.35, why: t("kolmé stání: místo 4,35 m a ochranný pás 0,75 m, jen výjimečně (příručka ulic Kaunasu 2024, doporučení)") };
       return { min: 0, zaklad: 2.3, why: t("podélné stání: 2,3–2,5 m (příručka ulic Kaunasu 2024, doporučení)") };
     default:
       return null;

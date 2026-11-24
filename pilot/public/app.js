@@ -587,7 +587,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       // A trial (Bára 18. 11. 2026, ?ai=1): the carriageway's kerbs read by a trained model (ai-kerbs.js); without the
       // model or the photo the estimate's own.
       let ai = null, aiSurf = null;
-      if (AI_KERBS) {
+      // Not where the state has no orthophoto it may use (Lithuania: countries/LT.js laneOrtho "none"; the review).
+      if (AI_KERBS && (city.laneOrtho || country.laneOrtho) !== "none") {
         // The first time: the library and the model come (about 7 MB), with their progress; past AI_WAIT the cut is
         // drawn with the estimate's own kerbs and the download goes on for the next cut (Bára 19. 11. 2026).
         if (aiReady()) status(tr("Načítám ortofoto…"));

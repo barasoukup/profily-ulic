@@ -521,8 +521,9 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   `laneOrtho: "none"`, mimo Vilnius jen odhad z OSM.
 - Vilnius: topografické plochy 1 : 500 (`gis.vplanas.lt` …/MapServer/13, `KODAS` + `Paskirtis`) jako plochy řezu, když pod
   středem řezu leží vozovka mapy (pod pěšinou i chodník); `?vilnius=0`. Licence neuvedená, Bára je vzala jako kodaňské,
-  kredit „Vilniaus miesto savivaldybė / Vilniaus planas“. A/B 26 řezů: lépe 17, hůř 2; univerzální měření (10 řezů) ale
-  mapa 52 % proti odhadu 64 % (rozpor v `evaluation/lithuania/ZPRAVA.md`, rozhodne Bára).
+  kredit „Vilniaus miesto savivaldybė / Vilniaus planas“. A/B 26 řezů: lépe 17, hůř 2 (na ulicích 6 : 0, zbytek pěšiny
+  a obslužné cesty); univerzální měření (10 řezů) ale mapa 53 % proti odhadu 64 % (rozpor v `evaluation/lithuania/ZPRAVA.md`,
+  rozhodne Bára). Recenze `evaluation/lithuania/RECENZE.md`; model obrub (`?ai`) v Litvě neběží (bez ortofota).
 - Budovy jen OSM (GRPK bez podlaží a roku, kód užití nedokumentovaný). Hledání Photon. Normy z příruček Vilniusu a Kaunasu
   (oranžově). Stání 3 m na směr, na chodníku jen se značkou. Značky z Commons (Augustasci CC BY 4.0, tabulky Gigillo83
   CC BY-SA 4.0, v patičce). Socialistické vzhledy ano (sovětská sídliště jako v Estonsku).
