@@ -1,0 +1,101 @@
+[
+ {
+  "n": 1,
+  "id": "laut2",
+  "place": "lauttasaari",
+  "highway": "residential",
+  "name": "Lahnaruohontie",
+  "lepsi": "N",
+  "proc": "Na straně B je úzký chodník a za ním zeleň se stromy, Y má jen široký chodník."
+ },
+ {
+  "n": 2,
+  "id": "kapy2",
+  "place": "kapyla",
+  "highway": "residential",
+  "name": "Osmontie",
+  "lepsi": "stejne",
+  "proc": "Obě mají chodník u A a dva pruhy, rozdíly v šířkách jsou malé a z fotky nerozhodnutelné."
+ },
+ {
+  "n": 3,
+  "id": "kruu2",
+  "place": "kruununhaka",
+  "highway": "residential",
+  "name": "Vironkatu",
+  "lepsi": "N",
+  "proc": "Mezi stáním na obou stranách je jen jeden jízdní pruh (asi 4,5 m), ne dva."
+ },
+ {
+  "n": 4,
+  "id": "malm3",
+  "place": "malmi",
+  "highway": "secondary",
+  "name": "Malmin asematie",
+  "lepsi": "N",
+  "proc": "Y zachycuje zeleň u budovy na straně A a širokou cestu před vozovkou, X stranu A ořezává; obě jsou jen přibližné."
+ },
+ {
+  "n": 5,
+  "id": "oulu4",
+  "place": "oulunkyla",
+  "highway": "residential",
+  "name": "Teinintie",
+  "lepsi": "N",
+  "proc": "Y má i trávník na straně A a podélné stání u B, kde na fotce stojí auto; jinak jsou podobné."
+ },
+ {
+  "n": 6,
+  "id": "munk4",
+  "place": "munkkiniemi",
+  "highway": "residential",
+  "name": "Tammitie",
+  "lepsi": "stejne",
+  "proc": "Složení je shodné (zeleň, chodník, vozovka, chodník, zeleň), šířky se liší jen málo."
+ },
+ {
+  "n": 7,
+  "id": "pihl1",
+  "place": "pihlajamaki",
+  "highway": "residential",
+  "name": "Maasälväntie",
+  "lepsi": "stejne",
+  "proc": "Prakticky totožné, X navíc jen pruh plochy 0,45 m."
+ },
+ {
+  "n": 8,
+  "id": "munk2",
+  "place": "munkkiniemi",
+  "highway": "residential",
+  "name": "Tiilimäki",
+  "lepsi": "N",
+  "proc": "Na straně A přiléhá zeleň přímo k obrubníku vozovky bez chodníku, jak to má Y."
+ },
+ {
+  "n": 9,
+  "id": "munk3",
+  "place": "munkkiniemi",
+  "highway": "residential",
+  "name": "Tammitie",
+  "lepsi": "stejne",
+  "proc": "Složení je shodné, šířky se liší jen o desítky centimetrů."
+ },
+ {
+  "n": 10,
+  "id": "ulla2",
+  "place": "ullanlinna",
+  "highway": "unclassified",
+  "name": "Ehrenströmintie",
+  "lepsi": "N",
+  "proc": "Na straně A je šedý chodník a vedle něj červená cyklostezka; X chodník vynechává."
+ },
+ {
+  "n": 11,
+  "id": "tool3",
+  "place": "toolo",
+  "highway": "residential",
+  "name": "Apollonkatu",
+  "lepsi": "stejne",
+  "proc": "Profily jsou prakticky totožné, Y má navíc jen 0,35 m neznámé plochy u fasády."
+ }
+]

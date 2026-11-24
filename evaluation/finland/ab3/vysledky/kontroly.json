@@ -1,0 +1,3009 @@
+[
+ {
+  "id": "ts1",
+  "group": "control",
+  "place": "tallinn",
+  "O": {
+   "name": "Pelguranna",
+   "wayId": 156068681,
+   "lat": 59.444534,
+   "lon": 24.687416,
+   "bearing": -5.862657653766809,
+   "span": {
+    "left": 8.92,
+    "right": 10.53
+   },
+   "sources": {
+    "eeTown": "tallinn",
+    "orthoCity": "ee",
+    "eeEtak": true
+   },
+   "note": "",
+   "segments": [
+    [
+     "stezka_sdilena",
+     3.15,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     2.35,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.17,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.17,
+     "ortofoto"
+    ],
+    [
+     "chodnik",
+     1.65,
+     "pasport"
+    ],
+    [
+     "zelen",
+     5.95,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "zelen",
+    "budova"
+   ]
+  },
+  "N": {
+   "name": "Pelguranna",
+   "wayId": 156068681,
+   "lat": 59.444534,
+   "lon": 24.687416,
+   "bearing": -5.862657653766809,
+   "span": {
+    "left": 8.92,
+    "right": 10.53
+   },
+   "sources": {
+    "eeTown": "tallinn",
+    "orthoCity": "ee",
+    "eeEtak": true
+   },
+   "note": "",
+   "segments": [
+    [
+     "stezka_sdilena",
+     3.15,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     2.35,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.17,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.17,
+     "ortofoto"
+    ],
+    [
+     "chodnik",
+     1.65,
+     "pasport"
+    ],
+    [
+     "zelen",
+     5.1,
+     "pasport"
+    ],
+    [
+     "plocha",
+     0.85,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "zelen",
+    "budova"
+   ]
+  },
+  "highway": "residential",
+  "service": null
+ },
+ {
+  "id": "ts2",
+  "group": "control",
+  "place": "tallinn",
+  "O": {
+   "name": "Sõpruse pst",
+   "wayId": 127375379,
+   "lat": 59.40104168946029,
+   "lon": 24.694582647919507,
+   "bearing": 45.70517064148875,
+   "span": {
+    "left": 35,
+    "right": 22
+   },
+   "sources": {
+    "eeTown": "tallinn"
+   },
+   "note": "",
+   "segments": [
+    [
+     "cyklostezka",
+     13.88,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     0.35,
+     "pasport"
+    ],
+    [
+     "krajnice",
+     1.39,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.39,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "volno",
+    "volno"
+   ]
+  },
+  "N": {
+   "name": "Sõpruse pst",
+   "wayId": 127375379,
+   "lat": 59.40104168946029,
+   "lon": 24.694582647919507,
+   "bearing": 45.70517064148875,
+   "span": {
+    "left": 35,
+    "right": 22
+   },
+   "sources": {
+    "eeTown": "tallinn"
+   },
+   "note": "",
+   "segments": [
+    [
+     "cyklostezka",
+     13.88,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     0.35,
+     "pasport"
+    ],
+    [
+     "krajnice",
+     1.39,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.39,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "volno",
+    "volno"
+   ]
+  },
+  "highway": "secondary",
+  "service": null
+ },
+ {
+  "id": "ts3",
+  "group": "control",
+  "place": "tallinn",
+  "O": {
+   "name": "Turvise",
+   "wayId": 37382127,
+   "lat": 59.45659941145113,
+   "lon": 24.681981293454307,
+   "bearing": 47.26265678912497,
+   "span": {
+    "left": 3.82,
+    "right": 4.08
+   },
+   "sources": {
+    "eeTown": "tallinn",
+    "orthoCity": "ee",
+    "eeEtak": true
+   },
+   "note": "",
+   "segments": [
+    [
+     "pruh",
+     6.2,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.15,
+     "pasport"
+    ],
+    [
+     "plocha",
+     0.55,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "zelen",
+    "budova"
+   ]
+  },
+  "N": {
+   "name": "Turvise",
+   "wayId": 37382127,
+   "lat": 59.45659941145113,
+   "lon": 24.681981293454307,
+   "bearing": 47.26265678912497,
+   "span": {
+    "left": 3.82,
+    "right": 4.08
+   },
+   "sources": {
+    "eeTown": "tallinn",
+    "orthoCity": "ee",
+    "eeEtak": true
+   },
+   "note": "",
+   "segments": [
+    [
+     "pruh",
+     6.2,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.15,
+     "pasport"
+    ],
+    [
+     "plocha",
+     0.55,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "zelen",
+    "budova"
+   ]
+  },
+  "highway": "living_street",
+  "service": null
+ },
+ {
+  "id": "ts4",
+  "group": "control",
+  "place": "tallinn",
+  "O": {
+   "name": "Nõmme tee",
+   "wayId": 1387043404,
+   "lat": 59.416534778198574,
+   "lon": 24.719996869180868,
+   "bearing": 24.733163434817655,
+   "span": {
+    "left": 10.42,
+    "right": 10.93
+   },
+   "sources": {
+    "eeTown": "tallinn"
+   },
+   "note": "",
+   "segments": [
+    [
+     "stezka_sdilena",
+     6.7,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.65,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.65,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2.65,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     2.8,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     1.9,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "parkoviste",
+    "volno"
+   ]
+  },
+  "N": {
+   "name": "Nõmme tee",
+   "wayId": 1387043404,
+   "lat": 59.416534778198574,
+   "lon": 24.719996869180868,
+   "bearing": 24.733163434817655,
+   "span": {
+    "left": 10.42,
+    "right": 10.93
+   },
+   "sources": {
+    "eeTown": "tallinn"
+   },
+   "note": "",
+   "segments": [
+    [
+     "stezka_sdilena",
+     6.7,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.65,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.65,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2.65,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     2.8,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     1.9,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "parkoviste",
+    "volno"
+   ]
+  },
+  "highway": "tertiary",
+  "service": null
+ },
+ {
+  "id": "ts5",
+  "group": "control",
+  "place": "tallinn",
+  "O": {
+   "name": "Rüütli",
+   "wayId": 4853851,
+   "lat": 59.434626,
+   "lon": 24.742328,
+   "bearing": -75.94088645751657,
+   "span": {
+    "left": 2.37,
+    "right": 12.13
+   },
+   "sources": {
+    "eeTown": "tallinn",
+    "eeEtak": true
+   },
+   "note": "",
+   "segments": [
+    [
+     "pruh",
+     5.35,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.5,
+     "pasport"
+    ],
+    [
+     "plocha",
+     7.65,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "zelen",
+    "budova"
+   ]
+  },
+  "N": {
+   "name": "Rüütli",
+   "wayId": 4853851,
+   "lat": 59.434626,
+   "lon": 24.742328,
+   "bearing": -75.94088645751657,
+   "span": {
+    "left": 2.37,
+    "right": 12.13
+   },
+   "sources": {
+    "eeTown": "tallinn",
+    "eeEtak": true
+   },
+   "note": "",
+   "segments": [
+    [
+     "pruh",
+     5.35,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.5,
+     "pasport"
+    ],
+    [
+     "plocha",
+     7.65,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "zelen",
+    "budova"
+   ]
+  },
+  "highway": "living_street",
+  "service": null
+ },
+ {
+  "id": "ts6",
+  "group": "control",
+  "place": "tallinn",
+  "O": {
+   "name": "Mere pst",
+   "wayId": 1347532233,
+   "lat": 59.44138581675628,
+   "lon": 24.7532076019299,
+   "bearing": -30.292383858570712,
+   "span": {
+    "left": 14.12,
+    "right": 35
+   },
+   "sources": {
+    "eeTown": "tallinn"
+   },
+   "note": "",
+   "segments": [
+    [
+     "plocha",
+     1,
+     "pasport"
+    ],
+    [
+     "cyklopruh",
+     1.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.3,
+     "osm"
+    ],
+    [
+     "plocha",
+     0.9,
+     "pasport"
+    ],
+    [
+     "zelen",
+     4.65,
+     "pasport"
+    ],
+    [
+     "plocha",
+     0.9,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.23,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.23,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.23,
+     "osm"
+    ],
+    [
+     "cyklopruh",
+     1.5,
+     "osm"
+    ],
+    [
+     "plocha",
+     1,
+     "pasport"
+    ],
+    [
+     "zelen",
+     3.7,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     2.55,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     11.82,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "zelen",
+    "volno"
+   ]
+  },
+  "N": {
+   "name": "Mere pst",
+   "wayId": 1347532233,
+   "lat": 59.44138581675628,
+   "lon": 24.7532076019299,
+   "bearing": -30.292383858570712,
+   "span": {
+    "left": 14.12,
+    "right": 35
+   },
+   "sources": {
+    "eeTown": "tallinn"
+   },
+   "note": "",
+   "segments": [
+    [
+     "plocha",
+     1,
+     "pasport"
+    ],
+    [
+     "cyklopruh",
+     1.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.3,
+     "osm"
+    ],
+    [
+     "plocha",
+     0.9,
+     "pasport"
+    ],
+    [
+     "zelen",
+     4.65,
+     "pasport"
+    ],
+    [
+     "plocha",
+     0.9,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.23,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.23,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.23,
+     "osm"
+    ],
+    [
+     "cyklopruh",
+     1.5,
+     "osm"
+    ],
+    [
+     "plocha",
+     1,
+     "pasport"
+    ],
+    [
+     "zelen",
+     3.7,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     2.55,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     11.82,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "zelen",
+    "volno"
+   ]
+  },
+  "highway": "primary",
+  "service": null
+ },
+ {
+  "id": "ts7",
+  "group": "control",
+  "place": "tallinn",
+  "O": {
+   "name": "Jõe",
+   "wayId": 134790461,
+   "lat": 59.43978180540865,
+   "lon": 24.763489606601322,
+   "bearing": -21.436472220325467,
+   "span": {
+    "left": 22,
+    "right": 22
+   },
+   "sources": {
+    "eeTown": "tallinn",
+    "orthoCity": "ee"
+   },
+   "note": "",
+   "segments": [
+    [
+     "krajnice",
+     1.96,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.96,
+     "odhad"
+    ],
+    [
+     "delici",
+     3.5,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4.38,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     2.55,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     4.23,
+     "ortofoto"
+    ],
+    [
+     "delici",
+     0.5,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4.46,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.46,
+     "osm"
+    ]
+   ],
+   "edges": [
+    "volno",
+    "volno"
+   ]
+  },
+  "N": {
+   "name": "Jõe",
+   "wayId": 134790461,
+   "lat": 59.43978180540865,
+   "lon": 24.763489606601322,
+   "bearing": -21.436472220325467,
+   "span": {
+    "left": 22,
+    "right": 22
+   },
+   "sources": {
+    "eeTown": "tallinn",
+    "orthoCity": "ee"
+   },
+   "note": "",
+   "segments": [
+    [
+     "krajnice",
+     1.96,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.96,
+     "odhad"
+    ],
+    [
+     "delici",
+     3.5,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4.38,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     2.55,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     4.23,
+     "ortofoto"
+    ],
+    [
+     "delici",
+     0.5,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4.46,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.46,
+     "osm"
+    ]
+   ],
+   "edges": [
+    "volno",
+    "volno"
+   ]
+  },
+  "highway": "secondary",
+  "service": null
+ },
+ {
+  "id": "ts8",
+  "group": "control",
+  "place": "tallinn",
+  "O": {
+   "name": "Eduard Vilde tee",
+   "wayId": 977589943,
+   "lat": 59.403196,
+   "lon": 24.68735,
+   "bearing": -62.86009845433678,
+   "span": {
+    "left": 17.52,
+    "right": 22
+   },
+   "sources": {
+    "eeTown": "tallinn",
+    "orthoCity": "ee"
+   },
+   "note": "",
+   "segments": [
+    [
+     "stezka_sdilena",
+     8.15,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.92,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.9,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.9,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.9,
+     "ortofoto"
+    ],
+    [
+     "krajnice",
+     1.58,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6.9,
+     "pasport"
+    ],
+    [
+     "obsluzna",
+     4.8,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     2.47,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "zelen",
+    "volno"
+   ]
+  },
+  "N": {
+   "name": "Eduard Vilde tee",
+   "wayId": 977589943,
+   "lat": 59.403196,
+   "lon": 24.68735,
+   "bearing": -62.86009845433678,
+   "span": {
+    "left": 17.52,
+    "right": 22
+   },
+   "sources": {
+    "eeTown": "tallinn",
+    "orthoCity": "ee"
+   },
+   "note": "",
+   "segments": [
+    [
+     "stezka_sdilena",
+     8.15,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.92,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.9,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.9,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.9,
+     "ortofoto"
+    ],
+    [
+     "krajnice",
+     1.58,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     6.9,
+     "pasport"
+    ],
+    [
+     "obsluzna",
+     4.8,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     2.47,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "zelen",
+    "volno"
+   ]
+  },
+  "highway": "tertiary",
+  "service": null
+ },
+ {
+  "id": "ts9",
+  "group": "control",
+  "place": "tallinn",
+  "O": {
+   "name": "Tuulemaa",
+   "wayId": 1312149114,
+   "lat": 59.44790258095829,
+   "lon": 24.693184538791037,
+   "bearing": -5.259392613223611,
+   "span": {
+    "left": 19.63,
+    "right": 17.08
+   },
+   "sources": {
+    "eeTown": "tallinn",
+    "orthoCity": "ee",
+    "eeEtak": true
+   },
+   "note": "",
+   "segments": [
+    [
+     "plocha",
+     0.45,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.3,
+     "pasport"
+    ],
+    [
+     "zelen",
+     4.1,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     4.25,
+     "pasport"
+    ],
+    [
+     "zelen",
+     2.35,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     3.12,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.98,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.62,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2.38,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     2.55,
+     "pasport"
+    ],
+    [
+     "zelen",
+     8.6,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "N": {
+   "name": "Tuulemaa",
+   "wayId": 1312149114,
+   "lat": 59.44790258095829,
+   "lon": 24.693184538791037,
+   "bearing": -5.259392613223611,
+   "span": {
+    "left": 19.63,
+    "right": 17.08
+   },
+   "sources": {
+    "eeTown": "tallinn",
+    "orthoCity": "ee",
+    "eeEtak": true
+   },
+   "note": "",
+   "segments": [
+    [
+     "plocha",
+     0.45,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.3,
+     "pasport"
+    ],
+    [
+     "zelen",
+     4.1,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     4.25,
+     "pasport"
+    ],
+    [
+     "zelen",
+     2.35,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     3.12,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.98,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.62,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2.38,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     2.55,
+     "pasport"
+    ],
+    [
+     "zelen",
+     8.6,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "highway": "residential",
+  "service": null
+ },
+ {
+  "id": "ts10",
+  "group": "control",
+  "place": "tallinn",
+  "O": {
+   "name": "Randla",
+   "wayId": 156068683,
+   "lat": 59.450063438939935,
+   "lon": 24.689345352105576,
+   "bearing": -36.22135876281501,
+   "span": {
+    "left": 6.47,
+    "right": 16.83
+   },
+   "sources": {
+    "eeTown": "tallinn",
+    "eeEtak": true
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     3.35,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.3,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.8,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     2.15,
+     "pasport"
+    ],
+    [
+     "zelen",
+     8.4,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "N": {
+   "name": "Randla",
+   "wayId": 156068683,
+   "lat": 59.450063438939935,
+   "lon": 24.689345352105576,
+   "bearing": -36.22135876281501,
+   "span": {
+    "left": 6.47,
+    "right": 16.83
+   },
+   "sources": {
+    "eeTown": "tallinn",
+    "eeEtak": true
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     3.35,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.3,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.8,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     2.15,
+     "pasport"
+    ],
+    [
+     "zelen",
+     8.4,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "highway": "residential",
+  "service": null
+ },
+ {
+  "id": "ts11",
+  "group": "control",
+  "place": "tallinn",
+  "O": {
+   "name": "Meika",
+   "wayId": 33779415,
+   "lat": 59.424031,
+   "lon": 24.722878,
+   "bearing": -14.034061618166099,
+   "span": {
+    "left": 16.37,
+    "right": 3.48
+   },
+   "sources": {
+    "eeTown": "tallinn",
+    "eeEtak": true
+   },
+   "note": "",
+   "segments": [
+    [
+     "zelen",
+     14.75,
+     "pasport"
+    ],
+    [
+     "pruh",
+     2.55,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.55,
+     "osm"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "parkoviste"
+   ]
+  },
+  "N": {
+   "name": "Meika",
+   "wayId": 33779415,
+   "lat": 59.424031,
+   "lon": 24.722878,
+   "bearing": -14.034061618166099,
+   "span": {
+    "left": 16.37,
+    "right": 3.48
+   },
+   "sources": {
+    "eeTown": "tallinn",
+    "eeEtak": true
+   },
+   "note": "",
+   "segments": [
+    [
+     "zelen",
+     14.75,
+     "pasport"
+    ],
+    [
+     "pruh",
+     2.55,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.55,
+     "osm"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "parkoviste"
+   ]
+  },
+  "highway": "residential",
+  "service": null
+ },
+ {
+  "id": "ts12",
+  "group": "control",
+  "place": "tallinn",
+  "O": {
+   "name": "Lootsi",
+   "wayId": 1310467667,
+   "lat": 59.4424748181861,
+   "lon": 24.76391509057474,
+   "bearing": 12.724468999025927,
+   "span": {
+    "left": 22,
+    "right": 22
+   },
+   "sources": {
+    "eeTown": "tallinn",
+    "orthoCity": "ee"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     3.23,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     1.5,
+     "osm"
+    ],
+    [
+     "chodnik",
+     8.9,
+     "pasport"
+    ],
+    [
+     "krajnice",
+     2.85,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "ortofoto"
+    ],
+    [
+     "delici",
+     2.85,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.6,
+     "odhad"
+    ],
+    [
+     "cyklostezka",
+     7.54,
+     "osm"
+    ],
+    [
+     "chodnik",
+     7.54,
+     "osm"
+    ]
+   ],
+   "edges": [
+    "volno",
+    "volno"
+   ]
+  },
+  "N": {
+   "name": "Lootsi",
+   "wayId": 1310467667,
+   "lat": 59.4424748181861,
+   "lon": 24.76391509057474,
+   "bearing": 12.724468999025927,
+   "span": {
+    "left": 22,
+    "right": 22
+   },
+   "sources": {
+    "eeTown": "tallinn",
+    "orthoCity": "ee"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     3.23,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     1.5,
+     "osm"
+    ],
+    [
+     "chodnik",
+     8.9,
+     "pasport"
+    ],
+    [
+     "krajnice",
+     2.85,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "ortofoto"
+    ],
+    [
+     "delici",
+     2.85,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.6,
+     "odhad"
+    ],
+    [
+     "cyklostezka",
+     7.54,
+     "osm"
+    ],
+    [
+     "chodnik",
+     7.54,
+     "osm"
+    ]
+   ],
+   "edges": [
+    "volno",
+    "volno"
+   ]
+  },
+  "highway": "tertiary",
+  "service": null
+ },
+ {
+  "id": "w1",
+  "group": "control",
+  "place": "wien",
+  "O": {
+   "name": "Strohgasse",
+   "wayId": 5889575,
+   "lat": 48.198277529202144,
+   "lon": 16.386668903048996,
+   "bearing": -86.09827260734762,
+   "span": {
+    "left": 7.82,
+    "right": 7.93
+   },
+   "sources": {
+    "atTown": "wien",
+    "orthoCity": "at"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     2.6,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2,
+     "dtm"
+    ],
+    [
+     "pruh_piktokoridor",
+     5.37,
+     "osm"
+    ],
+    [
+     "parkovani",
+     3.63,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.15,
+     "dtm"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "N": {
+   "name": "Strohgasse",
+   "wayId": 5889575,
+   "lat": 48.198277529202144,
+   "lon": 16.386668903048996,
+   "bearing": -86.09827260734762,
+   "span": {
+    "left": 7.82,
+    "right": 7.93
+   },
+   "sources": {
+    "atTown": "wien",
+    "orthoCity": "at"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     2.6,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2,
+     "dtm"
+    ],
+    [
+     "pruh_piktokoridor",
+     5.37,
+     "osm"
+    ],
+    [
+     "parkovani",
+     3.63,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.15,
+     "dtm"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "highway": "residential",
+  "service": null
+ },
+ {
+  "id": "w2",
+  "group": "control",
+  "place": "wien",
+  "O": {
+   "name": "Walfischgasse",
+   "wayId": 8072740,
+   "lat": 48.203272565554,
+   "lon": 16.371779325907596,
+   "bearing": -71.472077434831,
+   "span": {
+    "left": 7.62,
+    "right": 7.53
+   },
+   "sources": {
+    "atTown": "wien"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     2.5,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     1.95,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.45,
+     "osm"
+    ],
+    [
+     "cyklopruh",
+     1.75,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.5,
+     "dtm"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "N": {
+   "name": "Walfischgasse",
+   "wayId": 8072740,
+   "lat": 48.203272565554,
+   "lon": 16.371779325907596,
+   "bearing": -71.472077434831,
+   "span": {
+    "left": 7.62,
+    "right": 7.53
+   },
+   "sources": {
+    "atTown": "wien"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     2.5,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     1.95,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.45,
+     "osm"
+    ],
+    [
+     "cyklopruh",
+     1.75,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.5,
+     "dtm"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "highway": "residential",
+  "service": null
+ },
+ {
+  "id": "w3",
+  "group": "control",
+  "place": "wien",
+  "O": {
+   "name": "Theresianumgasse",
+   "wayId": 1312856118,
+   "lat": 48.19253228595475,
+   "lon": 16.37711711334156,
+   "bearing": 67.97799906295656,
+   "span": {
+    "left": 7.37,
+    "right": 7.53
+   },
+   "sources": {
+    "atTown": "wien",
+    "orthoCity": "at"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     2.2,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.92,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.1,
+     "ortofoto"
+    ],
+    [
+     "parkovani",
+     2.02,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.65,
+     "dtm"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "N": {
+   "name": "Theresianumgasse",
+   "wayId": 1312856118,
+   "lat": 48.19253228595475,
+   "lon": 16.37711711334156,
+   "bearing": 67.97799906295656,
+   "span": {
+    "left": 7.37,
+    "right": 7.53
+   },
+   "sources": {
+    "atTown": "wien",
+    "orthoCity": "at"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     2.2,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.92,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.1,
+     "ortofoto"
+    ],
+    [
+     "parkovani",
+     2.02,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.65,
+     "dtm"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "highway": "residential",
+  "service": null
+ },
+ {
+  "id": "w4",
+  "group": "control",
+  "place": "wien",
+  "O": {
+   "name": "Friedrich-Schmidt-Platz",
+   "wayId": 126046671,
+   "lat": 48.210507984996475,
+   "lon": 16.355457204289966,
+   "bearing": 9.085916246916545,
+   "span": {
+    "left": 22,
+    "right": 22
+   },
+   "sources": {
+    "atTown": "wien",
+    "orthoCity": "at"
+   },
+   "note": "",
+   "segments": [
+    [
+     "plocha",
+     17.32,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     3.62,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.4,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.78,
+     "ortofoto"
+    ],
+    [
+     "plocha",
+     15.88,
+     "dtm"
+    ]
+   ],
+   "edges": [
+    "volno",
+    "volno"
+   ]
+  },
+  "N": {
+   "name": "Friedrich-Schmidt-Platz",
+   "wayId": 126046671,
+   "lat": 48.210507984996475,
+   "lon": 16.355457204289966,
+   "bearing": 9.085916246916545,
+   "span": {
+    "left": 22,
+    "right": 22
+   },
+   "sources": {
+    "atTown": "wien",
+    "orthoCity": "at"
+   },
+   "note": "",
+   "segments": [
+    [
+     "plocha",
+     17.32,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     3.62,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.4,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.78,
+     "ortofoto"
+    ],
+    [
+     "plocha",
+     15.88,
+     "dtm"
+    ]
+   ],
+   "edges": [
+    "volno",
+    "volno"
+   ]
+  },
+  "highway": "secondary",
+  "service": null
+ },
+ {
+  "id": "w5",
+  "group": "control",
+  "place": "wien",
+  "O": {
+   "name": "",
+   "wayId": 25520686,
+   "lat": 48.2120312822803,
+   "lon": 16.386321263141788,
+   "bearing": 33.45905467074654,
+   "span": {
+    "left": 8.97,
+    "right": 21.28
+   },
+   "sources": {
+    "atTown": "wien"
+   },
+   "note": "",
+   "segments": [
+    [
+     "plocha",
+     0.45,
+     "dtm"
+    ],
+    [
+     "zed",
+     0.3,
+     "dtm"
+    ],
+    [
+     "plocha",
+     8.95,
+     "dtm"
+    ],
+    [
+     "stezka_sdilena",
+     6.45,
+     "dtm"
+    ],
+    [
+     "zed",
+     0.4,
+     "dtm"
+    ],
+    [
+     "plocha",
+     1.8,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.85,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2.05,
+     "dtm"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "zelen"
+   ]
+  },
+  "N": {
+   "name": "",
+   "wayId": 25520686,
+   "lat": 48.2120312822803,
+   "lon": 16.386321263141788,
+   "bearing": 33.45905467074654,
+   "span": {
+    "left": 8.97,
+    "right": 21.28
+   },
+   "sources": {
+    "atTown": "wien"
+   },
+   "note": "",
+   "segments": [
+    [
+     "plocha",
+     0.45,
+     "dtm"
+    ],
+    [
+     "zed",
+     0.3,
+     "dtm"
+    ],
+    [
+     "plocha",
+     8.95,
+     "dtm"
+    ],
+    [
+     "stezka_sdilena",
+     6.45,
+     "dtm"
+    ],
+    [
+     "zed",
+     0.4,
+     "dtm"
+    ],
+    [
+     "plocha",
+     1.8,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.85,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2.05,
+     "dtm"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "zelen"
+   ]
+  },
+  "highway": "footway",
+  "service": null
+ },
+ {
+  "id": "w6",
+  "group": "control",
+  "place": "wien",
+  "O": {
+   "name": "",
+   "wayId": 191072099,
+   "lat": 48.20512135089836,
+   "lon": 16.378681687335597,
+   "bearing": 34.45407236385756,
+   "span": {
+    "left": 22.48,
+    "right": 9.93
+   },
+   "sources": {
+    "atTown": "wien",
+    "orthoCity": "at"
+   },
+   "note": "",
+   "segments": [
+    [
+     "pruh",
+     2.61,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     2.6,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     2.83,
+     "ortofoto"
+    ],
+    [
+     "tramvaj",
+     0.95,
+     "dtm"
+    ],
+    [
+     "tramvaj_v_pruhu",
+     1.45,
+     "osm"
+    ],
+    [
+     "tramvaj",
+     0.65,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     0.7,
+     "dtm"
+    ],
+    [
+     "stromorad",
+     2.5,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     3.6,
+     "dtm"
+    ],
+    [
+     "stromorad",
+     2.5,
+     "dtm"
+    ],
+    [
+     "chodnik_kola",
+     4.35,
+     "dtm"
+    ],
+    [
+     "stromorad",
+     2.45,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     5.2,
+     "dtm"
+    ]
+   ],
+   "edges": [
+    "volno",
+    "zelen"
+   ]
+  },
+  "N": {
+   "name": "",
+   "wayId": 191072099,
+   "lat": 48.20512135089836,
+   "lon": 16.378681687335597,
+   "bearing": 34.45407236385756,
+   "span": {
+    "left": 22.48,
+    "right": 9.93
+   },
+   "sources": {
+    "atTown": "wien",
+    "orthoCity": "at"
+   },
+   "note": "",
+   "segments": [
+    [
+     "pruh",
+     2.61,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     2.6,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     2.83,
+     "ortofoto"
+    ],
+    [
+     "tramvaj",
+     0.95,
+     "dtm"
+    ],
+    [
+     "tramvaj_v_pruhu",
+     1.45,
+     "osm"
+    ],
+    [
+     "tramvaj",
+     0.65,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     0.7,
+     "dtm"
+    ],
+    [
+     "stromorad",
+     2.5,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     3.6,
+     "dtm"
+    ],
+    [
+     "stromorad",
+     2.5,
+     "dtm"
+    ],
+    [
+     "chodnik_kola",
+     4.35,
+     "dtm"
+    ],
+    [
+     "stromorad",
+     2.45,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     5.2,
+     "dtm"
+    ]
+   ],
+   "edges": [
+    "volno",
+    "zelen"
+   ]
+  },
+  "highway": "cycleway",
+  "service": null
+ },
+ {
+  "id": "w7",
+  "group": "control",
+  "place": "wien",
+  "O": {
+   "name": "",
+   "wayId": 280489855,
+   "lat": 48.19939290495564,
+   "lon": 16.369386319498766,
+   "bearing": 61.91276844758509,
+   "span": {
+    "left": 19.93,
+    "right": 2.53
+   },
+   "sources": {
+    "atTown": "wien"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     4.51,
+     "dtm"
+    ],
+    [
+     "stromorad",
+     1.5,
+     "osm"
+    ],
+    [
+     "chodnik",
+     4.24,
+     "dtm"
+    ],
+    [
+     "zelen",
+     4.55,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     7.65,
+     "dtm"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "zelen"
+   ]
+  },
+  "N": {
+   "name": "",
+   "wayId": 280489855,
+   "lat": 48.19939290495564,
+   "lon": 16.369386319498766,
+   "bearing": 61.91276844758509,
+   "span": {
+    "left": 19.93,
+    "right": 2.53
+   },
+   "sources": {
+    "atTown": "wien"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     4.51,
+     "dtm"
+    ],
+    [
+     "stromorad",
+     1.5,
+     "osm"
+    ],
+    [
+     "chodnik",
+     4.24,
+     "dtm"
+    ],
+    [
+     "zelen",
+     4.55,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     7.65,
+     "dtm"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "zelen"
+   ]
+  },
+  "highway": "footway",
+  "service": null
+ },
+ {
+  "id": "w8",
+  "group": "control",
+  "place": "wien",
+  "O": {
+   "name": "Große Pfarrgasse",
+   "wayId": 8024172,
+   "lat": 48.21863296751816,
+   "lon": 16.37945015958522,
+   "bearing": -80.34326660255759,
+   "span": {
+    "left": 6.77,
+    "right": 20.98
+   },
+   "sources": {
+    "atTown": "wien"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     2.35,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "parkovani",
+     4.9,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.75,
+     "dtm"
+    ],
+    [
+     "stromorad",
+     3.47,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.48,
+     "dtm"
+    ],
+    [
+     "stromorad",
+     3,
+     "dtm"
+    ],
+    [
+     "zelen",
+     5.8,
+     "dtm"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "N": {
+   "name": "Große Pfarrgasse",
+   "wayId": 8024172,
+   "lat": 48.21863296751816,
+   "lon": 16.37945015958522,
+   "bearing": -80.34326660255759,
+   "span": {
+    "left": 6.77,
+    "right": 20.98
+   },
+   "sources": {
+    "atTown": "wien"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     2.35,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "parkovani",
+     4.9,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.75,
+     "dtm"
+    ],
+    [
+     "stromorad",
+     3.47,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.48,
+     "dtm"
+    ],
+    [
+     "stromorad",
+     3,
+     "dtm"
+    ],
+    [
+     "zelen",
+     5.8,
+     "dtm"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "highway": "residential",
+  "service": null
+ },
+ {
+  "id": "w9",
+  "group": "control",
+  "place": "wien",
+  "O": {
+   "name": "Garnisongasse",
+   "wayId": 899096765,
+   "lat": 48.21579378844038,
+   "lon": 16.356726876454637,
+   "bearing": 8.409243646262015,
+   "span": {
+    "left": 10.17,
+    "right": 7.88
+   },
+   "sources": {
+    "atTown": "wien",
+    "orthoCity": "at"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     3,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2.02,
+     "dtm"
+    ],
+    [
+     "cyklopruh",
+     1.73,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.67,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     2.57,
+     "ortofoto"
+    ],
+    [
+     "cyklopruh",
+     1.75,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.3,
+     "dtm"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "N": {
+   "name": "Garnisongasse",
+   "wayId": 899096765,
+   "lat": 48.21579378844038,
+   "lon": 16.356726876454637,
+   "bearing": 8.409243646262015,
+   "span": {
+    "left": 10.17,
+    "right": 7.88
+   },
+   "sources": {
+    "atTown": "wien",
+    "orthoCity": "at"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     3,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2.02,
+     "dtm"
+    ],
+    [
+     "cyklopruh",
+     1.73,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.67,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     2.57,
+     "ortofoto"
+    ],
+    [
+     "cyklopruh",
+     1.75,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.3,
+     "dtm"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "highway": "tertiary",
+  "service": null
+ },
+ {
+  "id": "w10",
+  "group": "control",
+  "place": "wien",
+  "O": {
+   "name": "",
+   "wayId": 122592497,
+   "lat": 48.200133451331766,
+   "lon": 16.396472726042138,
+   "bearing": 31.881263225055285,
+   "span": {
+    "left": 9.92,
+    "right": 4.3
+   },
+   "sources": {
+    "atTown": "wien"
+   },
+   "note": "",
+   "segments": [
+    [
+     "plocha",
+     13.15,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.08,
+     "dtm"
+    ]
+   ],
+   "edges": [
+    "zelen",
+    "plot"
+   ]
+  },
+  "N": {
+   "name": "",
+   "wayId": 122592497,
+   "lat": 48.200133451331766,
+   "lon": 16.396472726042138,
+   "bearing": 31.881263225055285,
+   "span": {
+    "left": 9.92,
+    "right": 4.3
+   },
+   "sources": {
+    "atTown": "wien"
+   },
+   "note": "",
+   "segments": [
+    [
+     "plocha",
+     13.15,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.08,
+     "dtm"
+    ]
+   ],
+   "edges": [
+    "zelen",
+    "plot"
+   ]
+  },
+  "highway": "footway",
+  "service": null
+ },
+ {
+  "id": "w11",
+  "group": "control",
+  "place": "wien",
+  "O": {
+   "name": "Kettenbrückengasse",
+   "wayId": 28667827,
+   "lat": 48.19523291071214,
+   "lon": 16.3605882871259,
+   "bearing": -29.930145772071395,
+   "span": {
+    "left": 5.92,
+    "right": 6.88
+   },
+   "sources": {
+    "atTown": "wien",
+    "orthoCity": "at"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     2.45,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.12,
+     "osm"
+    ],
+    [
+     "parkovani",
+     1.93,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.3,
+     "dtm"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "N": {
+   "name": "Kettenbrückengasse",
+   "wayId": 28667827,
+   "lat": 48.19523291071214,
+   "lon": 16.3605882871259,
+   "bearing": -29.930145772071395,
+   "span": {
+    "left": 5.92,
+    "right": 6.88
+   },
+   "sources": {
+    "atTown": "wien",
+    "orthoCity": "at"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     2.45,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.12,
+     "osm"
+    ],
+    [
+     "parkovani",
+     1.93,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.3,
+     "dtm"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "highway": "residential",
+  "service": null
+ },
+ {
+  "id": "w12",
+  "group": "control",
+  "place": "wien",
+  "O": {
+   "name": "Schauflergasse",
+   "wayId": 1324975135,
+   "lat": 48.20830444028832,
+   "lon": 16.365336639608728,
+   "bearing": -83.78590947756881,
+   "span": {
+    "left": 8.92,
+    "right": 6.98
+   },
+   "sources": {
+    "atTown": "wien"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     3.45,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2.15,
+     "dtm"
+    ],
+    [
+     "pruh",
+     5.45,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2.15,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.7,
+     "dtm"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "N": {
+   "name": "Schauflergasse",
+   "wayId": 1324975135,
+   "lat": 48.20830444028832,
+   "lon": 16.365336639608728,
+   "bearing": -83.78590947756881,
+   "span": {
+    "left": 8.92,
+    "right": 6.98
+   },
+   "sources": {
+    "atTown": "wien"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     3.45,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2.15,
+     "dtm"
+    ],
+    [
+     "pruh",
+     5.45,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2.15,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.7,
+     "dtm"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "highway": "residential",
+  "service": null
+ }
+]

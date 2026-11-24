@@ -580,6 +580,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     const laneImg = li.status === "fulfilled" ? li.value : null;
     // The same image tells grass from paving beside a roadway read from the DTM's lines (derive.js linePieces).
     const args = { center: [0, 0], dir, half, polys, osm, frame, way: near.way, tracks, parking, lines, reach, inZps, ortho, lanesImage: laneImg?.st, roadOnPath: !!city.roadOnPath, noParkGuess: !country.parkGuess || new URLSearchParams(location.search).get("odhadstani") === "0",
+      osmParkGive: !!country.mapFill && !ORTHO_P.off?.has("mapfill"),
       kerbParking: pk.status === "fulfilled" && pk.value?.kerbParking && !NO_MAP ? pk.value.kerbParking.map((p) => ({ ...p, xy: frame.toXY(p.lon, p.lat) })) : null };
     let result = deriveProfile(args);
     // A state's wide streets (countries/<ISO>.js wideStreets): a side the profile ends on at the reach, in a median, a
@@ -595,6 +596,17 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // read on the orthophoto near where OSM expects it, sidewalks to the OSM buildings (ortho-osm.js; Bára 15. 11.
     // 2026: better than OSM alone), all an estimate. The map's own surfaces, where there are any, stay behind it.
     let orthoOsm = null, aiPark = null;
+    // The model's reading of the orthophoto across the cut (ai-kerbs.js aiCut). The first time the library and the model
+    // come (about 7 MB), with their progress; past AI_WAIT the cut is drawn without it and the download goes on for the
+    // next cut (Bára 19. 11. 2026).
+    const modelCut = async () => {
+      if (aiReady()) status(tr("Načítám ortofoto…"));
+      else { status(tr("Načítám model pro obruby (jen poprvé)…")); onAiProgress((p) => status(tr("Načítám model pro obruby (jen poprvé)… {p} %", { p: Math.round(100 * p) }))); }
+      const job = aiCut({ osm, frame, dir, source: city.laneOrtho || country.laneOrtho }).catch((err) => { console.warn("AI", err); return null; });
+      const cut = aiReady() ? await job : await Promise.race([job, new Promise((r) => setTimeout(() => r(null), AI_WAIT))]);
+      onAiProgress(null);
+      return cut;
+    };
     // Is there an orthophoto here at all (lanes-ortho.js orthoHereAt: Lombardy and most of Italy and Finland have none)?
     const orthoHere = orthoHereAt(city.laneOrtho || country.laneOrtho, clon, clat);
     if (result.estimate) {
@@ -604,13 +616,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       // Not where there is no orthophoto it may use (Lithuania: countries/LT.js laneOrtho "none"; Lombardy and the rest of
       // Italy and Finland outside their orthophotos' boxes; the reviews of 24. 11. 2026).
       if (AI_KERBS && orthoHere) {
-        // The first time: the library and the model come (about 7 MB), with their progress; past AI_WAIT the cut is
-        // drawn with the estimate's own kerbs and the download goes on for the next cut (Bára 19. 11. 2026).
-        if (aiReady()) status(tr("Načítám ortofoto…"));
-        else { status(tr("Načítám model pro obruby (jen poprvé)…")); onAiProgress((p) => status(tr("Načítám model pro obruby (jen poprvé)… {p} %", { p: Math.round(100 * p) }))); }
-        const job = aiCut({ osm, frame, dir, source: city.laneOrtho || country.laneOrtho }).catch((err) => { console.warn("AI", err); return null; });
-        const cut = aiReady() ? await job : await Promise.race([job, new Promise((r) => setTimeout(() => r(null), AI_WAIT))]);
-        onAiProgress(null);
+        const cut = await modelCut();
         if (cut) { ai = (axis) => aiKerbs(cut, axis); aiSurf = aiSurface(cut); aiPark = aiParking(cut); }
       }
       // The map's runs where it has surfaces but none at the axis: its sidewalks and buildings bound the estimate.
@@ -625,8 +631,15 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // close by, the pieces between the town's map lines, sidewalk or green (ortho-osm.js besidePassport; Bára: Poštová,
     // 17. novembra ended at the passport's edge). The passport's own surfaces stay first.
     let besideUsed = null;
+    // Around a surface map abroad (Bára 24. 11. 2026, evaluation/finland/ab3: in Helsinki the map's own parts were right,
+    // what the app added around them was not): what the app adds is read on the orthophoto as the estimate reads it
+    // without the map, by the same model (ai-kerbs.js): beyond the map's end its kinds (besidePassport aiSurf), in the
+    // map's roadway its parked cars (parkFromAi below; the law's estimate stays where the model sees nothing to decide
+    // and where there is no orthophoto). Not in Czechia (countries/<ISO>.js mapFill). ?off=mapfill: as before.
+    const mapFill = !orthoOsm && !result.estimate && !!country.mapFill && AI_KERBS && orthoHere && !ORTHO_P.off?.has("mapfill");
+    const mapCut = mapFill ? await modelCut() : null;
     if (!orthoOsm && m.value?.passport && country.besidePassport) {
-      const beside = besidePassport({ osm, frame, dir, way: near.way, st: laneImg?.st, edges: k.status === "fulfilled" ? k.value?.edges || [] : [], symbols: k.status === "fulfilled" ? k.value?.symbols || [] : [], areas: k.status === "fulfilled" ? k.value?.areas || [] : [], polys, ...(country.besideMax && { max: country.besideMax }) });
+      const beside = besidePassport({ osm, frame, dir, way: near.way, st: laneImg?.st, edges: k.status === "fulfilled" ? k.value?.edges || [] : [], symbols: k.status === "fulfilled" ? k.value?.symbols || [] : [], areas: k.status === "fulfilled" ? k.value?.areas || [] : [], polys, ...(country.besideMax && { max: country.besideMax }), aiSurf: mapCut ? aiSurface(mapCut) : null });
       if (beside.length) {
         const again = deriveProfile({ ...args, polys: [...polys, ...beside] });
         if (!again.estimate) { result = again; besideUsed = beside.used; }
@@ -645,6 +658,13 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     if (orthoOsm && aiPark && !ORTHO_P.off?.has("aipark")) {
       const along = !near.dir || dir[0] * near.dir[0] + dir[1] * near.dir[1] >= 0;
       parkFromAi(result, aiPark, parkSkip(near.way.tags, along, inZps === true || parking.length > 0));
+    }
+    // In a surface map's roadway (mapFill above) the same, but never over the map's own sidewalk or green (inside).
+    const mapPark = mapCut && aiParking(mapCut);
+    let mapParked = false;
+    if (mapPark && !ORTHO_P.off?.has("aipark")) {
+      const along = !near.dir || dir[0] * near.dir[0] + dir[1] * near.dir[1] >= 0;
+      mapParked = parkFromAi(result, mapPark, { ...parkSkip(near.way.tags, along, inZps === true || parking.length > 0), inside: true }) > 0;
     }
     // A cycle track OSM tags on the road (cycleway:<side>=track) beside its roadway (derive.js trackAlongRoad), before the
     // cycle ways mapped on their own are carved, so one track is not drawn twice. Not over a map's own surfaces (they
@@ -690,7 +710,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // the DMVS standing in for the city's map, the orthophoto of a tram bed.
     const mv = m.status === "fulfilled" ? m.value : null;
     const bedOwn = ortho && country.bedOrtho !== "cuzk" ? country.bedOrtho : null; // the tram bed read on a state's own orthophoto
-    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.skTown && { skTown: mv.skTown }), ...(mv?.atTown && { atTown: mv.atTown }), ...(mv?.deTown && { deTown: mv.deTown }), ...(mv?.chAv && { chAv: mv.chAv }), ...(mv?.nlBgt && { nlBgt: true }), ...(mv?.beTown && { beTown: mv.beTown }), ...(mv?.plTown && { plTown: mv.plTown }), ...(mv?.frTown && { frTown: mv.frTown }), ...(mv?.esTown && { esTown: mv.esTown }), ...(mv?.itTown && { itTown: mv.itTown }), ...(mv?.eeTown && { eeTown: mv.eeTown }), ...(mv?.fiTown && { fiTown: mv.fiTown }), ...(mv?.ltTown && { ltTown: mv.ltTown }), ...(mv?.ltGrpk && { ltGrpk: true }), ...(pk.status === "fulfilled" && pk.value?.amsParking && pk.value.features?.length && { amsParking: true }), ...(pk.status === "fulfilled" && pk.value?.parisParking && { parisParking: true }), ...(pk.status === "fulfilled" && pk.value?.dkParking && pk.value.features?.length && { dkParking: true }), ...(atSigns?.length && signTags.__salzburg && { atSigns: "salzburg" }), ...(country.signs.ogl && result.segments?.some((s) => s.signs?.some((x) => country.signs.ogl.has(country.signs.file(x, s)))) && { ukSigns: true }), ...(mv?.skTm && { skTm: true }), ...(orthoOsm?.kerbs?.why && Object.values(orthoOsm.kerbs.why).includes("ai") && { aiKerbs: true }), ...((orthoOsm?.edges || besideUsed?.edges) && k.value?.edgesFrom && { skEdges: k.value.edgesFrom }), ...((orthoOsm?.areas || orthoOsm?.widthFrom === "zbgis" || besideUsed?.zbgis) && { zbgis: true }), ...(mv?.dmvs && { dmvs: true }), ...(typeof mv?.passport === "string" && { passport: mv.passport }), ...(((ortho && !bedOwn) || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" ? { orthoCity: laneImg.source } : bedOwn ? { orthoCity: bedOwn } : besideUsed?.image && { orthoCity: laneImg.source }) };
+    state.cut.sources = { ...(mv?.region && { region: mv.region }), ...(mv?.skTown && { skTown: mv.skTown }), ...(mv?.atTown && { atTown: mv.atTown }), ...(mv?.deTown && { deTown: mv.deTown }), ...(mv?.chAv && { chAv: mv.chAv }), ...(mv?.nlBgt && { nlBgt: true }), ...(mv?.beTown && { beTown: mv.beTown }), ...(mv?.plTown && { plTown: mv.plTown }), ...(mv?.frTown && { frTown: mv.frTown }), ...(mv?.esTown && { esTown: mv.esTown }), ...(mv?.itTown && { itTown: mv.itTown }), ...(mv?.eeTown && { eeTown: mv.eeTown }), ...(mv?.fiTown && { fiTown: mv.fiTown }), ...(mv?.ltTown && { ltTown: mv.ltTown }), ...(mv?.ltGrpk && { ltGrpk: true }), ...(pk.status === "fulfilled" && pk.value?.amsParking && pk.value.features?.length && { amsParking: true }), ...(pk.status === "fulfilled" && pk.value?.parisParking && { parisParking: true }), ...(pk.status === "fulfilled" && pk.value?.dkParking && pk.value.features?.length && { dkParking: true }), ...(atSigns?.length && signTags.__salzburg && { atSigns: "salzburg" }), ...(country.signs.ogl && result.segments?.some((s) => s.signs?.some((x) => country.signs.ogl.has(country.signs.file(x, s)))) && { ukSigns: true }), ...(mv?.skTm && { skTm: true }), ...(orthoOsm?.kerbs?.why && Object.values(orthoOsm.kerbs.why).includes("ai") && { aiKerbs: true }), ...((orthoOsm?.edges || besideUsed?.edges) && k.value?.edgesFrom && { skEdges: k.value.edgesFrom }), ...((orthoOsm?.areas || orthoOsm?.widthFrom === "zbgis" || besideUsed?.zbgis) && { zbgis: true }), ...(mv?.dmvs && { dmvs: true }), ...(typeof mv?.passport === "string" && { passport: mv.passport }), ...(((ortho && !bedOwn) || ((lanesFromOrtho || orthoOsm?.image) && laneImg.source === "cuzk")) && { ortho: true }), ...((lanesFromOrtho || orthoOsm?.image) && laneImg.source !== "cuzk" ? { orthoCity: laneImg.source } : bedOwn ? { orthoCity: bedOwn } : (besideUsed?.image || mapParked) && laneImg && { orthoCity: laneImg.source }) };
     // The log of cuts (log.js): the cut exactly, and how it came (a click, a moved cut, a link).
     log("rez", {
       detail: keepWay ? "posun" : bearing !== null ? "odkaz" : "klik", city: city.id, country: city.country, street: name, highway: near.way.tags.highway,

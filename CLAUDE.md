@@ -504,6 +504,10 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   Normy jen doporučení, nic červeně. Otevřené otázky v `docs/backlog.md`.
 - Měření přesnosti 24. 11. (poprvé, posuzoval Opus): shoda složení 52 % (22 řezů); Helsinky, Espoo, Turku 51 % (šířka do 2 m
   31 %), bez ortofota (Tampere, sever Vantaa) 54 % (šířka 11 %) (`evaluation/universal/ZPRAVA.md`).
+- Doplnění kolem mapy povrchů (Bára 24. 11. 2026, všude v zahraničí, kde je ortofoto; `?off=mapfill`): za koncem mapy
+  zeleň a chodníky podle modelu jako v odhadu, ve vozovce mapy stání podle aut na ortofotu a stání z OSM smí zúžit pruhy.
+  Nový slepý A/B obytných ulic Helsinek: lépe 14 : 4 proti dřívějšímu, mapa proti odhadu 11 : 7; Tallinn, Vídeň bez prohry
+  (`evaluation/finland/ab3/ZPRAVA.md`).
 
 ## Dánsko (větev estonia, Bára 23. 11. 2026, nenasazené)
 - `countries/DK.js`, `towns/denmark.js`, `search-dk.js` (GSearch s tokenem, jinak Photon), `keys.js`, `signs-DK/`,

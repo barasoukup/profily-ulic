@@ -1,0 +1,843 @@
+{
+ "nmalm3": [
+  {
+   "k": "f",
+   "year": 2022,
+   "pano": false
+  }
+ ],
+ "nmalm6": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "nkont10": [],
+ "nhert11": [
+  {
+   "k": "f",
+   "year": 2023,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2023,
+   "pano": false
+  }
+ ],
+ "nhert14": [
+  {
+   "k": "f",
+   "year": 2023,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2017,
+   "pano": false
+  }
+ ],
+ "nmunk1": [
+  {
+   "k": "f",
+   "year": 2021,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2015,
+   "pano": false
+  }
+ ],
+ "nmunk5": [],
+ "nkann14": [
+  {
+   "k": "f",
+   "year": 2020,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "nkann16": [
+  {
+   "k": "f",
+   "year": 2018,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2020,
+   "pano": false
+  }
+ ],
+ "noulu1": [
+  {
+   "k": "f",
+   "year": 2018,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2021,
+   "pano": true
+  }
+ ],
+ "noulu4": [],
+ "npihl12": [
+  {
+   "k": "f",
+   "year": 2022,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2022,
+   "pano": false
+  }
+ ],
+ "npihl14": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2019,
+   "pano": false
+  }
+ ],
+ "nlaut1": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "nlaut3": [
+  {
+   "k": "b",
+   "year": 2017,
+   "pano": false
+  }
+ ],
+ "nkapy3": [
+  {
+   "k": "f",
+   "year": 2021,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2021,
+   "pano": true
+  }
+ ],
+ "nkapy6": [
+  {
+   "k": "f",
+   "year": 2018,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "nhaag3": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "nhaag6": [
+  {
+   "k": "b",
+   "year": 2017,
+   "pano": false
+  }
+ ],
+ "npuki3": [],
+ "npuki6": [
+  {
+   "k": "f",
+   "year": 2022,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2022,
+   "pano": false
+  }
+ ],
+ "nmaun2": [],
+ "nmaun6": [
+  {
+   "k": "f",
+   "year": 2018,
+   "pano": false
+  }
+ ],
+ "npaki1": [
+  {
+   "k": "b",
+   "year": 2018,
+   "pano": false
+  }
+ ],
+ "npaki2": [
+  {
+   "k": "f",
+   "year": 2017,
+   "pano": false
+  }
+ ],
+ "nlaaj1": [
+  {
+   "k": "f",
+   "year": 2017,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2018,
+   "pano": false
+  }
+ ],
+ "nlaaj4": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2017,
+   "pano": false
+  }
+ ],
+ "ntapa2": [],
+ "ntapa10": [
+  {
+   "k": "f",
+   "year": 2022,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "npuis1": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "npuis3": [],
+ "nvart2": [],
+ "kall1": [
+  {
+   "k": "f",
+   "year": 2025,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "kall2": [
+  {
+   "k": "f",
+   "year": 2025,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2020,
+   "pano": false
+  }
+ ],
+ "kall3": [
+  {
+   "k": "f",
+   "year": 2025,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2024,
+   "pano": false
+  }
+ ],
+ "tool3": [
+  {
+   "k": "f",
+   "year": 2018,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "kamp1": [
+  {
+   "k": "f",
+   "year": 2022,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2022,
+   "pano": false
+  }
+ ],
+ "kamp3": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "kruu2": [
+  {
+   "k": "f",
+   "year": 2020,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2021,
+   "pano": false
+  }
+ ],
+ "kruu3": [
+  {
+   "k": "f",
+   "year": 2024,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "ulla2": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2025,
+   "pano": false
+  }
+ ],
+ "malm2": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "malm3": [
+  {
+   "k": "f",
+   "year": 2022,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2022,
+   "pano": false
+  }
+ ],
+ "kont3": [
+  {
+   "k": "f",
+   "year": 2022,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2025,
+   "pano": false
+  }
+ ],
+ "munk2": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "munk3": [
+  {
+   "k": "f",
+   "year": 2020,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "munk4": [
+  {
+   "k": "f",
+   "year": 2020,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "kann2": [
+  {
+   "k": "f",
+   "year": 2020,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2020,
+   "pano": false
+  }
+ ],
+ "kann4": [
+  {
+   "k": "f",
+   "year": 2019,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "pasi1": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": true
+  }
+ ],
+ "pasi2": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "pasi3": [
+  {
+   "k": "f",
+   "year": 2025,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2023,
+   "pano": false
+  }
+ ],
+ "pasi4": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2021,
+   "pano": true
+  }
+ ],
+ "oulu2": [
+  {
+   "k": "f",
+   "year": 2021,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2021,
+   "pano": true
+  }
+ ],
+ "oulu4": [
+  {
+   "k": "f",
+   "year": 2019,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2021,
+   "pano": true
+  }
+ ],
+ "itak3": [],
+ "pihl1": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2019,
+   "pano": false
+  }
+ ],
+ "pihl2": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2025,
+   "pano": false
+  }
+ ],
+ "laut2": [
+  {
+   "k": "f",
+   "year": 2019,
+   "pano": false
+  }
+ ],
+ "kapy2": [
+  {
+   "k": "f",
+   "year": 2018,
+   "pano": false
+  }
+ ],
+ "kapy4": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2024,
+   "pano": false
+  }
+ ],
+ "haag4": [
+  {
+   "k": "f",
+   "year": 2017,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2023,
+   "pano": false
+  }
+ ],
+ "mell3": [
+  {
+   "k": "b",
+   "year": 2019,
+   "pano": false
+  }
+ ],
+ "ts1": [
+  {
+   "k": "f",
+   "year": 2021,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2021,
+   "pano": false
+  }
+ ],
+ "ts2": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "ts3": [],
+ "ts4": [
+  {
+   "k": "f",
+   "year": 2023,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2025,
+   "pano": false
+  }
+ ],
+ "ts5": [
+  {
+   "k": "f",
+   "year": 2014,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2019,
+   "pano": false
+  }
+ ],
+ "ts6": [
+  {
+   "k": "f",
+   "year": 2025,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "ts7": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "ts8": [
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "ts9": [],
+ "ts10": [
+  {
+   "k": "f",
+   "year": 2021,
+   "pano": false
+  }
+ ],
+ "ts11": [],
+ "ts12": [
+  {
+   "k": "f",
+   "year": 2022,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2022,
+   "pano": false
+  }
+ ],
+ "w1": [
+  {
+   "k": "f",
+   "year": 2023,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2020,
+   "pano": false
+  }
+ ],
+ "w2": [
+  {
+   "k": "f",
+   "year": 2025,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "w3": [
+  {
+   "k": "f",
+   "year": 2022,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2021,
+   "pano": false
+  }
+ ],
+ "w4": [
+  {
+   "k": "f",
+   "year": 2020,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2024,
+   "pano": false
+  }
+ ],
+ "w5": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": true
+  }
+ ],
+ "w6": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "w7": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2022,
+   "pano": false
+  }
+ ],
+ "w8": [
+  {
+   "k": "f",
+   "year": 2025,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2020,
+   "pano": false
+  }
+ ],
+ "w9": [
+  {
+   "k": "f",
+   "year": 2020,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2020,
+   "pano": false
+  }
+ ],
+ "w10": [],
+ "w11": [
+  {
+   "k": "f",
+   "year": 2020,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2020,
+   "pano": false
+  }
+ ],
+ "w12": [
+  {
+   "k": "f",
+   "year": 2020,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ]
+}

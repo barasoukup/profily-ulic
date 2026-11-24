@@ -1,0 +1,1838 @@
+[
+ {
+  "id": "tool3",
+  "group": "inner",
+  "place": "toolo",
+  "A": {
+   "name": "Apollonkatu",
+   "wayId": 1545472083,
+   "lat": 60.176251753750044,
+   "lon": 24.924443264231165,
+   "bearing": 77.38345070728484,
+   "span": {
+    "left": 7.72,
+    "right": 10.58
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "fi-hki",
+    "fiBuild": "hki"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     3.4,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.4,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.97,
+     "osm"
+    ],
+    [
+     "parkovani",
+     4.23,
+     "osm"
+    ],
+    [
+     "chodnik",
+     3.3,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "O": {
+   "name": "Apollonkatu",
+   "wayId": 1545472083,
+   "lat": 60.176251753750044,
+   "lon": 24.924443264231165,
+   "bearing": 77.38345070728484,
+   "span": {
+    "left": 7.67,
+    "right": 10.58
+   },
+   "sources": {
+    "fiTown": "helsinki",
+    "orthoCity": "fi-hki",
+    "fiBuild": "hki"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     3.25,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.45,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.02,
+     "osm"
+    ],
+    [
+     "parkovani",
+     4.23,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.95,
+     "pasport"
+    ],
+    [
+     "nezname",
+     0.35,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "N": {
+   "name": "Apollonkatu",
+   "wayId": 1545472083,
+   "lat": 60.176251753750044,
+   "lon": 24.924443264231165,
+   "bearing": 77.38345070728484,
+   "span": {
+    "left": 7.67,
+    "right": 10.58
+   },
+   "sources": {
+    "fiTown": "helsinki",
+    "orthoCity": "fi-hki",
+    "fiBuild": "hki"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     3.25,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.45,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.02,
+     "osm"
+    ],
+    [
+     "parkovani",
+     4.23,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.95,
+     "pasport"
+    ],
+    [
+     "nezname",
+     0.35,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "highway": "residential",
+  "service": null
+ },
+ {
+  "id": "kruu2",
+  "group": "inner",
+  "place": "kruununhaka",
+  "A": {
+   "name": "Vironkatu",
+   "wayId": 4250285,
+   "lat": 60.17236367082863,
+   "lon": 24.95693602639138,
+   "bearing": 86.8575702851171,
+   "span": {
+    "left": 7.32,
+    "right": 7.58
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "fi-hki",
+    "fiBuild": "hki"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.4,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.79,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.78,
+     "osm"
+    ],
+    [
+     "parkovani",
+     1.53,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.9,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "O": {
+   "name": "Vironkatu",
+   "wayId": 4250285,
+   "lat": 60.17236367082863,
+   "lon": 24.95693602639138,
+   "bearing": 86.8575702851171,
+   "span": {
+    "left": 7.32,
+    "right": 7.38
+   },
+   "sources": {
+    "fiTown": "helsinki",
+    "fiBuild": "hki"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     2.9,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.47,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.47,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.85,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "N": {
+   "name": "Vironkatu",
+   "wayId": 4250285,
+   "lat": 60.17236367082863,
+   "lon": 24.95693602639138,
+   "bearing": 86.8575702851171,
+   "span": {
+    "left": 7.32,
+    "right": 7.38
+   },
+   "sources": {
+    "fiTown": "helsinki",
+    "orthoCity": "fi-hki",
+    "fiBuild": "hki"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     2.9,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     2.2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.74,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.85,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "highway": "residential",
+  "service": null
+ },
+ {
+  "id": "ulla2",
+  "group": "inner",
+  "place": "ullanlinna",
+  "A": {
+   "name": "Ehrenströmintie",
+   "wayId": 80327003,
+   "lat": 60.15507567431415,
+   "lon": 24.952343466385265,
+   "bearing": -56.89507811107982,
+   "span": {
+    "left": 8.87,
+    "right": 7.43
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "fi-hki"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "cyklostezka",
+     1.3,
+     "odhad"
+    ],
+    [
+     "cyklostezka",
+     1.3,
+     "odhad"
+    ],
+    [
+     "plocha",
+     0.75,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     1.97,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.63,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.6,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "plocha",
+     0.8,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.5,
+     "odhad"
+    ],
+    [
+     "plocha",
+     0.45,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "zelen",
+    "zelen"
+   ]
+  },
+  "O": {
+   "name": "Ehrenströmintie",
+   "wayId": 80327003,
+   "lat": 60.15507567431415,
+   "lon": 24.952343466385265,
+   "bearing": -56.89507811107982,
+   "span": {
+    "left": 9.92,
+    "right": 6.63
+   },
+   "sources": {
+    "fiTown": "helsinki",
+    "orthoCity": "fi-hki"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     2.15,
+     "pasport"
+    ],
+    [
+     "cyklostezka",
+     1.85,
+     "pasport"
+    ],
+    [
+     "plocha",
+     0.55,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     1.82,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.65,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.47,
+     "osm"
+    ],
+    [
+     "chodnik",
+     3.05,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "zelen",
+    "zelen"
+   ]
+  },
+  "N": {
+   "name": "Ehrenströmintie",
+   "wayId": 80327003,
+   "lat": 60.15507567431415,
+   "lon": 24.952343466385265,
+   "bearing": -56.89507811107982,
+   "span": {
+    "left": 9.92,
+    "right": 6.63
+   },
+   "sources": {
+    "fiTown": "helsinki",
+    "orthoCity": "fi-hki"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     2.15,
+     "pasport"
+    ],
+    [
+     "cyklostezka",
+     1.85,
+     "pasport"
+    ],
+    [
+     "plocha",
+     0.55,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     1.82,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.65,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.47,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "chodnik",
+     3.05,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "zelen",
+    "zelen"
+   ]
+  },
+  "highway": "unclassified",
+  "service": null
+ },
+ {
+  "id": "malm3",
+  "group": "suburb",
+  "place": "malmi",
+  "A": {
+   "name": "Malmin asematie",
+   "wayId": 160278215,
+   "lat": 60.24855458113532,
+   "lon": 25.00742138065425,
+   "bearing": -41.87924095236717,
+   "span": {
+    "left": 17.12,
+    "right": 11.73
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "fi-hki"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "plocha",
+     2.55,
+     "odhad"
+    ],
+    [
+     "cyklostezka",
+     1.25,
+     "odhad"
+    ],
+    [
+     "cyklostezka",
+     1.25,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.75,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.17,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     4.4,
+     "ortofoto"
+    ],
+    [
+     "krajnice",
+     1.03,
+     "ortofoto"
+    ],
+    [
+     "delici",
+     3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.27,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.6,
+     "ortofoto"
+    ],
+    [
+     "krajnice",
+     1.03,
+     "ortofoto"
+    ],
+    [
+     "cyklostezka",
+     1.28,
+     "odhad"
+    ],
+    [
+     "cyklostezka",
+     1.28,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "zelen",
+    "volno"
+   ]
+  },
+  "O": {
+   "name": "Malmin asematie",
+   "wayId": 160278215,
+   "lat": 60.24855458113532,
+   "lon": 25.00742138065425,
+   "bearing": -41.87924095236717,
+   "span": {
+    "left": 27.98,
+    "right": 12.53
+   },
+   "sources": {
+    "fiTown": "helsinki",
+    "orthoCity": "fi-hki",
+    "fiBuild": "hki"
+   },
+   "note": "",
+   "segments": [
+    [
+     "plocha",
+     4.65,
+     "odhad"
+    ],
+    [
+     "zelen",
+     7.65,
+     "pasport"
+    ],
+    [
+     "stezka_sdilena",
+     3.75,
+     "pasport"
+    ],
+    [
+     "plocha",
+     4.5,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4.56,
+     "ortofoto"
+    ],
+    [
+     "krajnice",
+     1.28,
+     "ortofoto"
+    ],
+    [
+     "delici",
+     2.7,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.42,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.58,
+     "ortofoto"
+    ],
+    [
+     "stezka_sdilena",
+     4.4,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "volno"
+   ]
+  },
+  "N": {
+   "name": "Malmin asematie",
+   "wayId": 160278215,
+   "lat": 60.24855458113532,
+   "lon": 25.00742138065425,
+   "bearing": -41.87924095236717,
+   "span": {
+    "left": 27.98,
+    "right": 12.53
+   },
+   "sources": {
+    "fiTown": "helsinki",
+    "orthoCity": "fi-hki",
+    "fiBuild": "hki"
+   },
+   "note": "",
+   "segments": [
+    [
+     "zelen",
+     12.3,
+     "pasport"
+    ],
+    [
+     "stezka_sdilena",
+     3.75,
+     "pasport"
+    ],
+    [
+     "plocha",
+     4.5,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4.56,
+     "ortofoto"
+    ],
+    [
+     "krajnice",
+     1.28,
+     "ortofoto"
+    ],
+    [
+     "delici",
+     2.7,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.42,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.58,
+     "ortofoto"
+    ],
+    [
+     "stezka_sdilena",
+     4.4,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "volno"
+   ]
+  },
+  "highway": "secondary",
+  "service": null
+ },
+ {
+  "id": "munk2",
+  "group": "suburb",
+  "place": "munkkiniemi",
+  "A": {
+   "name": "Tiilimäki",
+   "wayId": 4468804,
+   "lat": 60.19681730393891,
+   "lon": 24.871784791924405,
+   "bearing": -22.828659236825587,
+   "span": {
+    "left": 24.03,
+    "right": 11.58
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "fi-hki",
+    "fiBuild": "hki"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "zelen",
+     19.1,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.4,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.8,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.4,
+     "odhad"
+    ],
+    [
+     "zelen",
+     5.9,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "O": {
+   "name": "Tiilimäki",
+   "wayId": 4468804,
+   "lat": 60.19681730393891,
+   "lon": 24.871784791924405,
+   "bearing": -22.828659236825587,
+   "span": {
+    "left": 5.02,
+    "right": 11.58
+   },
+   "sources": {
+    "fiTown": "helsinki",
+    "orthoCity": "fi-hki",
+    "fiBuild": "hki"
+   },
+   "note": "",
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.6,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.25,
+     "pasport"
+    ],
+    [
+     "plocha",
+     6.75,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "zelen",
+    "budova"
+   ]
+  },
+  "N": {
+   "name": "Tiilimäki",
+   "wayId": 4468804,
+   "lat": 60.19681730393891,
+   "lon": 24.871784791924405,
+   "bearing": -22.828659236825587,
+   "span": {
+    "left": 24.03,
+    "right": 11.58
+   },
+   "sources": {
+    "fiTown": "helsinki",
+    "orthoCity": "fi-hki",
+    "fiBuild": "hki"
+   },
+   "note": "",
+   "segments": [
+    [
+     "zelen",
+     19,
+     "dtm"
+    ],
+    [
+     "pruh",
+     5.6,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.25,
+     "pasport"
+    ],
+    [
+     "zelen",
+     6.75,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "highway": "residential",
+  "service": null
+ },
+ {
+  "id": "munk3",
+  "group": "suburb",
+  "place": "munkkiniemi",
+  "A": {
+   "name": "Tammitie",
+   "wayId": 1410966917,
+   "lat": 60.194016831593,
+   "lon": 24.877893182011874,
+   "bearing": 65.53395035543454,
+   "span": {
+    "left": 17.97,
+    "right": 11.43
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "fi-hki",
+    "fiBuild": "hki"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "zelen",
+     12.45,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.4,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.1,
+     "odhad"
+    ],
+    [
+     "zelen",
+     5.85,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "O": {
+   "name": "Tammitie",
+   "wayId": 1410966917,
+   "lat": 60.194016831593,
+   "lon": 24.877893182011874,
+   "bearing": 65.53395035543454,
+   "span": {
+    "left": 22,
+    "right": 11.43
+   },
+   "sources": {
+    "fiTown": "helsinki",
+    "orthoCity": "fi-hki",
+    "fiBuild": "hki"
+   },
+   "note": "",
+   "segments": [
+    [
+     "nezname",
+     4.02,
+     "odhad"
+    ],
+    [
+     "plocha",
+     12,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.95,
+     "pasport"
+    ],
+    [
+     "plocha",
+     5.45,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "volno",
+    "budova"
+   ]
+  },
+  "N": {
+   "name": "Tammitie",
+   "wayId": 1410966917,
+   "lat": 60.194016831593,
+   "lon": 24.877893182011874,
+   "bearing": 65.53395035543454,
+   "span": {
+    "left": 17.97,
+    "right": 11.43
+   },
+   "sources": {
+    "fiTown": "helsinki",
+    "orthoCity": "fi-hki",
+    "fiBuild": "hki"
+   },
+   "note": "",
+   "segments": [
+    [
+     "zelen",
+     12,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.95,
+     "pasport"
+    ],
+    [
+     "zelen",
+     5.45,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "highway": "residential",
+  "service": null
+ },
+ {
+  "id": "munk4",
+  "group": "suburb",
+  "place": "munkkiniemi",
+  "A": {
+   "name": "Tammitie",
+   "wayId": 27737310,
+   "lat": 60.194566586443436,
+   "lon": 24.880301344530416,
+   "bearing": 66.93869107724954,
+   "span": {
+    "left": 11.72,
+    "right": 8.28
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "fi-hki",
+    "fiBuild": "hki"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "zelen",
+     6.4,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.8,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.8,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.4,
+     "odhad"
+    ],
+    [
+     "zelen",
+     3.6,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "O": {
+   "name": "Tammitie",
+   "wayId": 27737310,
+   "lat": 60.194566586443436,
+   "lon": 24.880301344530416,
+   "bearing": 66.93869107724954,
+   "span": {
+    "left": 11.72,
+    "right": 8.28
+   },
+   "sources": {
+    "fiTown": "helsinki",
+    "orthoCity": "fi-hki",
+    "fiBuild": "hki"
+   },
+   "note": "",
+   "segments": [
+    [
+     "plocha",
+     6.85,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.5,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.95,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.5,
+     "pasport"
+    ],
+    [
+     "plocha",
+     4.2,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "N": {
+   "name": "Tammitie",
+   "wayId": 27737310,
+   "lat": 60.194566586443436,
+   "lon": 24.880301344530416,
+   "bearing": 66.93869107724954,
+   "span": {
+    "left": 11.72,
+    "right": 8.28
+   },
+   "sources": {
+    "fiTown": "helsinki",
+    "orthoCity": "fi-hki",
+    "fiBuild": "hki"
+   },
+   "note": "",
+   "segments": [
+    [
+     "zelen",
+     6.85,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.5,
+     "pasport"
+    ],
+    [
+     "pruh",
+     5.95,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.5,
+     "pasport"
+    ],
+    [
+     "zelen",
+     4.2,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "highway": "residential",
+  "service": null
+ },
+ {
+  "id": "oulu4",
+  "group": "suburb",
+  "place": "oulunkyla",
+  "A": {
+   "name": "Teinintie",
+   "wayId": 61492534,
+   "lat": 60.230565323765504,
+   "lon": 24.959578245270805,
+   "bearing": 55.55940221423982,
+   "span": {
+    "left": 5.77,
+    "right": 10.98
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "fi-hki",
+    "fiBuild": "hki"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     3.25,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "zelen",
+     7.5,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "zelen",
+    "budova"
+   ]
+  },
+  "O": {
+   "name": "Teinintie",
+   "wayId": 61492534,
+   "lat": 60.230565323765504,
+   "lon": 24.959578245270805,
+   "bearing": 55.55940221423982,
+   "span": {
+    "left": 9.07,
+    "right": 10.73
+   },
+   "sources": {
+    "fiTown": "helsinki",
+    "orthoCity": "fi-hki",
+    "fiBuild": "hki"
+   },
+   "note": "",
+   "segments": [
+    [
+     "nezname",
+     2.6,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.5,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     2.25,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "chodnik",
+     0.5,
+     "pasport"
+    ],
+    [
+     "plocha",
+     7.25,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "zelen",
+    "budova"
+   ]
+  },
+  "N": {
+   "name": "Teinintie",
+   "wayId": 61492534,
+   "lat": 60.230565323765504,
+   "lon": 24.959578245270805,
+   "bearing": 55.55940221423982,
+   "span": {
+    "left": 9.07,
+    "right": 10.73
+   },
+   "sources": {
+    "fiTown": "helsinki",
+    "orthoCity": "fi-hki",
+    "fiBuild": "hki"
+   },
+   "note": "",
+   "segments": [
+    [
+     "nezname",
+     2.6,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.5,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     2.25,
+     "pasport"
+    ],
+    [
+     "pruh",
+     2.35,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.35,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "chodnik",
+     0.5,
+     "pasport"
+    ],
+    [
+     "zelen",
+     7.25,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "zelen",
+    "budova"
+   ]
+  },
+  "highway": "residential",
+  "service": null
+ },
+ {
+  "id": "pihl1",
+  "group": "suburb",
+  "place": "pihlajamaki",
+  "A": {
+   "name": "Maasälväntie",
+   "wayId": 4341417,
+   "lat": 60.23677299810724,
+   "lon": 25.009746792335715,
+   "bearing": -19.470133200314677,
+   "span": {
+    "left": 12.52,
+    "right": 7.08
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "fi-hki"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2.55,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     4.8,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.87,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.87,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.5,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "zelen",
+    "volno"
+   ]
+  },
+  "O": {
+   "name": "Maasälväntie",
+   "wayId": 4341417,
+   "lat": 60.23677299810724,
+   "lon": 25.009746792335715,
+   "bearing": -19.470133200314677,
+   "span": {
+    "left": 9.97,
+    "right": 7.28
+   },
+   "sources": {
+    "fiTown": "helsinki"
+   },
+   "note": "",
+   "segments": [
+    [
+     "parkovani",
+     4.8,
+     "osm"
+    ],
+    [
+     "nezname",
+     0.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.62,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.62,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.7,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "volno",
+    "volno"
+   ]
+  },
+  "N": {
+   "name": "Maasälväntie",
+   "wayId": 4341417,
+   "lat": 60.23677299810724,
+   "lon": 25.009746792335715,
+   "bearing": -19.470133200314677,
+   "span": {
+    "left": 12.52,
+    "right": 7.28
+   },
+   "sources": {
+    "fiTown": "helsinki",
+    "orthoCity": "fi-hki"
+   },
+   "note": "",
+   "segments": [
+    [
+     "chodnik",
+     2.55,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     4.8,
+     "osm"
+    ],
+    [
+     "plocha",
+     0.45,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.65,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.65,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.7,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "volno",
+    "volno"
+   ]
+  },
+  "highway": "residential",
+  "service": null
+ },
+ {
+  "id": "laut2",
+  "group": "suburb",
+  "place": "lauttasaari",
+  "A": {
+   "name": "Lahnaruohontie",
+   "wayId": 8597258,
+   "lat": 60.16013970294078,
+   "lon": 24.872828006461944,
+   "bearing": 11.303990651308686,
+   "span": {
+    "left": 3.57,
+    "right": 7.28
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "fi-hki"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "chodnik",
+     4.65,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "plot",
+    "budova"
+   ]
+  },
+  "O": {
+   "name": "Lahnaruohontie",
+   "wayId": 8597258,
+   "lat": 60.16013970294078,
+   "lon": 24.872828006461944,
+   "bearing": 11.303990651308686,
+   "span": {
+    "left": 3.67,
+    "right": 6.28
+   },
+   "sources": {
+    "fiTown": "helsinki",
+    "orthoCity": "fi-hki"
+   },
+   "note": "",
+   "segments": [
+    [
+     "pruh",
+     2.97,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.97,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.15,
+     "pasport"
+    ],
+    [
+     "plocha",
+     1.85,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "volno",
+    "volno"
+   ]
+  },
+  "N": {
+   "name": "Lahnaruohontie",
+   "wayId": 8597258,
+   "lat": 60.16013970294078,
+   "lon": 24.872828006461944,
+   "bearing": 11.303990651308686,
+   "span": {
+    "left": 3.67,
+    "right": 6.28
+   },
+   "sources": {
+    "fiTown": "helsinki",
+    "orthoCity": "fi-hki"
+   },
+   "note": "",
+   "segments": [
+    [
+     "pruh",
+     2.97,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.97,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.15,
+     "pasport"
+    ],
+    [
+     "zelen",
+     1.85,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "volno",
+    "volno"
+   ]
+  },
+  "highway": "residential",
+  "service": null
+ },
+ {
+  "id": "kapy2",
+  "group": "suburb",
+  "place": "kapyla",
+  "A": {
+   "name": "Osmontie",
+   "wayId": 24592573,
+   "lat": 60.21212840079304,
+   "lon": 24.947829538352238,
+   "bearing": -22.97213351311479,
+   "span": {
+    "left": 4.27,
+    "right": 3.28
+   },
+   "sources": {
+    "aiKerbs": true,
+    "orthoCity": "fi-hki"
+   },
+   "note": " · odhad z ortofota a OSM",
+   "segments": [
+    [
+     "chodnik",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.77,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.77,
+     "osm"
+    ]
+   ],
+   "edges": [
+    "volno",
+    "volno"
+   ]
+  },
+  "O": {
+   "name": "Osmontie",
+   "wayId": 24592573,
+   "lat": 60.21212840079304,
+   "lon": 24.947829538352238,
+   "bearing": -22.97213351311479,
+   "span": {
+    "left": 4.82,
+    "right": 3.48
+   },
+   "sources": {
+    "fiTown": "helsinki",
+    "orthoCity": "fi-hki"
+   },
+   "note": "",
+   "segments": [
+    [
+     "plocha",
+     0.35,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.65,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.15,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.15,
+     "osm"
+    ]
+   ],
+   "edges": [
+    "volno",
+    "volno"
+   ]
+  },
+  "N": {
+   "name": "Osmontie",
+   "wayId": 24592573,
+   "lat": 60.21212840079304,
+   "lon": 24.947829538352238,
+   "bearing": -22.97213351311479,
+   "span": {
+    "left": 4.82,
+    "right": 3.48
+   },
+   "sources": {
+    "fiTown": "helsinki",
+    "orthoCity": "fi-hki"
+   },
+   "note": "",
+   "segments": [
+    [
+     "zelen",
+     0.35,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.65,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.15,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.15,
+     "osm"
+    ]
+   ],
+   "edges": [
+    "volno",
+    "volno"
+   ]
+  },
+  "highway": "residential",
+  "service": null
+ }
+]

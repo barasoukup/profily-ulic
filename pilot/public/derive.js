@@ -698,11 +698,13 @@ function splitRoadway(run, ctx) {
   // Parking the data put there (OSM) stays when a little room is missing in an estimated roadway (the universal
   // judging, 17. 11. 2026: an estimated roadway of 4.4 m dropped the tagged parallel parking of Großer Brockhaus for
   // 0.1 m): the stall keeps its width and the lanes give up to OSM_LANE_GIVE each (the review of the port: a narrowed
-  // stall was red in Návrh at once). A measured roadway (MTVU, a technical map) keeps the old rule.
+  // stall was red in Návrh at once). A measured roadway (MTVU, a technical map) keeps the old rule, but for a town's
+  // surface map abroad (ctx.osmParkGive, app.js mapFill; Bára 24. 11. 2026, Apollonkatu in Helsinki: YLRE's roadway of
+  // 6.9 m dropped the tagged parallel parking for 0.1 m, the cars stand there).
   for (const [side, st] of [["L", sideL], ["R", sideR]]) {
     if (!st.parking || parked.includes(side)) continue;
     const w = st.parkingWidth;
-    if (fits(side, w) || (run.guess && left + OSM_LANE_GIVE * lanesTotal >= w - 1e-6 && clear[side] >= w - 0.1)) {
+    if (fits(side, w) || ((run.guess || ctx.osmParkGive) && left + OSM_LANE_GIVE * lanesTotal >= w - 1e-6 && clear[side] >= w - 0.1)) {
       edge.push({ side, type: "parkovani", w, orient: st.parkingOrient });
       take(side, w);
     }
@@ -1672,7 +1674,7 @@ export function linePieces(polys, tags, center, normal, st = null, along = true)
 
 // noParkGuess: no parking estimated by the law alone (Slovakia: no paid zones known, the cars are read on the orthophoto
 // instead, ortho-osm.js carsSeen).
-export function deriveProfile({ center, dir, half, polys, osm, frame, way, tracks = [], parking = [], lines = [], reach, inZps: zoneKnown, itemReach, ortho, lanesImage, roadOnPath = false, noParkGuess = false, kerbParking = null }) {
+export function deriveProfile({ center, dir, half, polys, osm, frame, way, tracks = [], parking = [], lines = [], reach, inZps: zoneKnown, itemReach, ortho, lanesImage, roadOnPath = false, noParkGuess = false, kerbParking = null, osmParkGive = false }) {
   const reachItems = { ...REACH, ...itemReach };
   // No-parking sections (Prague, TSK "Zákaz stání"): no surface of their own, they only keep a kerb free.
   const noParking = parking.filter((p) => p.kind === "zakaz");
@@ -2096,7 +2098,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       // A state without street classes of its own here (Austria): the OSM highway gives the group (countries/AT.js).
       const roadClass = classGroup(cls) ?? (country.roadClassFromOsm ? osmGroup(tags.highway) : null);
       roads.push({ s: r.s, e: r.e, tags });
-      segs.push(...splitRoadway(r, { guessPark, tags, trams: inside, dirAt, lanesTotal, along: ownAxis ? (ownAxis.along !== (tags.oneway === "-1")) : true, single: new Set(axes.map((a) => a.id)).size === 1, parked, sides: sideTagsLR, kerbOpen, kerbBare, inZps, axesOneway: axes.every((a) => a.oneway), axisInside: here.length > 0, divided, roadClass }).map((x) => ({ ...x, mtvu: r.code,
+      segs.push(...splitRoadway(r, { guessPark, osmParkGive, tags, trams: inside, dirAt, lanesTotal, along: ownAxis ? (ownAxis.along !== (tags.oneway === "-1")) : true, single: new Set(axes.map((a) => a.id)).size === 1, parked, sides: sideTagsLR, kerbOpen, kerbBare, inZps, axesOneway: axes.every((a) => a.oneway), axisInside: here.length > 0, divided, roadClass }).map((x) => ({ ...x, mtvu: r.code,
         // Bus lanes carry trolleybuses; so does the lane of a zone closed to cars but open to public transport
         // (třída Míru in Pardubice: motor_vehicle=delivery, psv=yes).
         trolley: trolley && (x.type === "bus" || x.type === "bus_cyklo" || (x.type === "pruh" && transitOnly(tags))),

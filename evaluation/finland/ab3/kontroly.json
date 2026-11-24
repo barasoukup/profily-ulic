@@ -1,0 +1,170 @@
+[
+ {
+  "id": "ts1",
+  "group": "control",
+  "place": "tallinn",
+  "lat": 59.444534,
+  "lon": 24.687416
+ },
+ {
+  "id": "ts2",
+  "group": "control",
+  "place": "tallinn",
+  "lat": 59.400937,
+  "lon": 24.694708
+ },
+ {
+  "id": "ts3",
+  "group": "control",
+  "place": "tallinn",
+  "lat": 59.456552,
+  "lon": 24.681881
+ },
+ {
+  "id": "ts4",
+  "group": "control",
+  "place": "tallinn",
+  "lat": 59.416635,
+  "lon": 24.720087
+ },
+ {
+  "id": "ts5",
+  "group": "control",
+  "place": "tallinn",
+  "lat": 59.434626,
+  "lon": 24.742328
+ },
+ {
+  "id": "ts6",
+  "group": "control",
+  "place": "tallinn",
+  "lat": 59.441486,
+  "lon": 24.7533
+ },
+ {
+  "id": "ts7",
+  "group": "control",
+  "place": "tallinn",
+  "lat": 59.439812,
+  "lon": 24.76334
+ },
+ {
+  "id": "ts8",
+  "group": "control",
+  "place": "tallinn",
+  "lat": 59.403196,
+  "lon": 24.68735
+ },
+ {
+  "id": "ts9",
+  "group": "control",
+  "place": "tallinn",
+  "lat": 59.448039,
+  "lon": 24.69316
+ },
+ {
+  "id": "ts10",
+  "group": "control",
+  "place": "tallinn",
+  "lat": 59.449954,
+  "lon": 24.689502
+ },
+ {
+  "id": "ts11",
+  "group": "control",
+  "place": "tallinn",
+  "lat": 59.424031,
+  "lon": 24.722878
+ },
+ {
+  "id": "ts12",
+  "group": "control",
+  "place": "tallinn",
+  "lat": 59.442509,
+  "lon": 24.764015
+ },
+ {
+  "id": "w1",
+  "group": "control",
+  "place": "wien",
+  "lat": 48.198308,
+  "lon": 16.386672
+ },
+ {
+  "id": "w2",
+  "group": "control",
+  "place": "wien",
+  "lat": 48.203354,
+  "lon": 16.37182
+ },
+ {
+  "id": "w3",
+  "group": "control",
+  "place": "wien",
+  "lat": 48.192564,
+  "lon": 16.377098
+ },
+ {
+  "id": "w4",
+  "group": "control",
+  "place": "wien",
+  "lat": 48.210477,
+  "lon": 16.355746
+ },
+ {
+  "id": "w5",
+  "group": "control",
+  "place": "wien",
+  "lat": 48.212058,
+  "lon": 16.386261
+ },
+ {
+  "id": "w6",
+  "group": "control",
+  "place": "wien",
+  "lat": 48.205112,
+  "lon": 16.378702
+ },
+ {
+  "id": "w7",
+  "group": "control",
+  "place": "wien",
+  "lat": 48.199431,
+  "lon": 16.369469
+ },
+ {
+  "id": "w8",
+  "group": "control",
+  "place": "wien",
+  "lat": 48.218928,
+  "lon": 16.379525
+ },
+ {
+  "id": "w9",
+  "group": "control",
+  "place": "wien",
+  "lat": 48.215779,
+  "lon": 16.356876
+ },
+ {
+  "id": "w10",
+  "group": "control",
+  "place": "wien",
+  "lat": 48.200082,
+  "lon": 16.396596
+ },
+ {
+  "id": "w11",
+  "group": "control",
+  "place": "wien",
+  "lat": 48.195255,
+  "lon": 16.360437
+ },
+ {
+  "id": "w12",
+  "group": "control",
+  "place": "wien",
+  "lat": 48.20851,
+  "lon": 16.36537
+ }
+]

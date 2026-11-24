@@ -263,7 +263,10 @@ export function parkFromAi(result, pAt, skip = {}) {
     const N = segs[out];
     // Cars cannot stand in a row of trees or beyond the profile: what reaches there counts to the roadway (the kerb is
     // a little off; Charbulova in Brno).
-    if (!KERBSIDE.has(N?.type)) { a += b; b = 0; }
+    // skip.inside (a surface map's roadway, app.js mapFill): the map measured what lies beyond its kerb, only the cars in
+    // the roadway count.
+    if (skip.inside) b = 0;
+    else if (!KERBSIDE.has(N?.type)) { a += b; b = 0; }
     if (a < 0.6 && b < 0.6) {
       // No cars at this kerb: a strip the law estimated goes back to the lane.
       if (X.type === "parkovani" && X.source === "odhad" && !X.ai && maxIn(kerb, dirIn) < PARK.off) {

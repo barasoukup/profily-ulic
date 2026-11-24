@@ -914,13 +914,17 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
 // sidewalk or green by the map's symbol, else by the image (against the green at the axis); an OSM sidewalk is a
 // sidewalk; a stretch without lines wider than SIDEWALK_MAX a sidewalk by the street and the rest green or paving by
 // the image. All an estimate. polys: the surfaces as derive.js takes them (frame XY). P.off "beside": off (the A/B).
-const BESIDE_MAX = 15, BESIDE_GREEN = 0.22, BARRIER = (t) => ["fence", "wall", "retaining_wall", "hedge"].includes(t.barrier);
+const BESIDE_MAX = 15, WALK_REACH = 8, BESIDE_GREEN = 0.22, BARRIER = (t) => ["fence", "wall", "retaining_wall", "hedge"].includes(t.barrier);
 const OSM_SIDEWALK = (t) => t.highway === "footway" && t.footway === "sidewalk";
 const OSM_CYCLEWAY = (t) => t.highway === "cycleway" || (["path", "footway"].includes(t.highway) && t.bicycle === "designated");
 const inRing = (r, x, y) => { let c = false; for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; } return c; };
 // max: how far beyond the last surface the end may lie (countries/<ISO>.js besideMax; Germany 25 m for Aachen's front
 // gardens of 15–18 m, A/B of 17. 11. 2026; else BESIDE_MAX).
-export function besidePassport({ osm, frame, dir, way, st, edges = [], symbols = [], areas = [], polys = [], max = BESIDE_MAX }) {
+// aiSurf: the model's kinds across the cut (ai-kerbs.js aiSurface: t → "chodník", "zeleň", "vozovka", "budova", "jiné" or
+// null), where it read the orthophoto: the pieces take its kinds as the estimate's sidewalks and front gardens do without
+// the map (Bára 24. 11. 2026, evaluation/finland/ab3: Helsinki's gardens beyond YLRE were "plocha (odhad)", the image's
+// green share there is near nil; the model told them). ?off=mapfill: as before (also the house beside the cut below).
+export function besidePassport({ osm, frame, dir, way, st, edges = [], symbols = [], areas = [], polys = [], max = BESIDE_MAX, aiSurf = null }) {
   // Not beside a motorway or an expressway (R1 in Banská Bystrica: a sidewalk up to a hall across the ditch).
   if (P.off?.has("beside") || !way || /^(motorway|trunk)/.test(way.tags?.highway || "")) return [];
   const normal = [-dir[1], dir[0]];
@@ -964,6 +968,7 @@ export function besidePassport({ osm, frame, dir, way, st, edges = [], symbols =
     if (LABEL[sym]) { out.push({ ...rect(sym, LABEL[sym], a, b), guess: false }); out.used.edges = true; return sym === 702; }
     const z = zbAt((a + b) / 2);
     if (ZB_LABEL[z]) { out.push(rect(z, ZB_LABEL[z], a, b)); out.used.zbgis = true; return false; }
+    if (model) return byModel(a, b, near, walk);
     const g = greenOf(a, b);
     if (Number.isFinite(g)) out.used.image = true;
     const green = Number.isFinite(g) && g >= Math.min(BESIDE_GREEN, PIECE_GREEN + axisGreen);
@@ -975,6 +980,56 @@ export function besidePassport({ osm, frame, dir, way, st, edges = [], symbols =
     const [r0, r1] = s0 === a ? [s1, b] : [a, s0], gr = greenOf(r0, r1);
     out.push(Number.isFinite(gr) && gr >= GREEN_AREA ? rect(401, "zeleň (ortofoto)", r0, r1) : rect(1003, "plocha před domem (odhad)", r0, r1));
     return true;
+  };
+  // The model's runs over [a, b] (from the street out), each at least AI_RUN (a shorter one joins its neighbour): a
+  // sidewalk only where the side has none yet, its first run (behind a car park too), at most SIDEWALK_MAX of it (as the
+  // estimate's aiWalkCap), the rest a paved area (another run of sidewalk: green or paving by the image's green share, as
+  // without the model); green as green; a roadway, a house's roof or anything else as a paved area (the
+  // surfaces and OSM's houses decide those).
+  const model = !!aiSurf && !P.off?.has("mapfill");
+  const runsOf = (a, b) => {
+    const runs = [];
+    for (let t = a + 0.1; t < b; t += 0.2) { const k = aiSurf(t), c = k === "chodník" ? 702 : k === "zeleň" ? 401 : k ? 1003 : runs.at(-1)?.c ?? 1003; const l = runs.at(-1); if (l && l.c === c) l.e = Math.min(b, t + 0.1); else runs.push({ c, s: Math.max(a, t - 0.1), e: Math.min(b, t + 0.1) }); }
+    for (let q = 0; q < runs.length; q++) if (runs.length > 1 && runs[q].e - runs[q].s < AI_RUN) { const nb = q > 0 ? q - 1 : q + 1; runs[nb].s = Math.min(runs[nb].s, runs[q].s); runs[nb].e = Math.max(runs[nb].e, runs[q].e); runs.splice(q, 1); q = -1; }
+    if (runs.length) { runs[0].s = a; runs.at(-1).e = b; }
+    return runs;
+  };
+  // A street the surfaces draw without any sidewalk or cycle track across the cut (a narrow lane between lawns,
+  // Runoilijanpolku in Helsinki) gets none from the model either: what it reads there as a sidewalk is the lane's edge.
+  const mapWalks = model && (() => { for (let t = o.own.t - 30; t <= o.own.t + 30; t += 0.25) if ([702, 703].includes(at(t))) return true; return false; })();
+  const byModel = (a, b, near, walk) => {
+    out.used.image = true;
+    walk = walk && mapWalks;
+    const runs = runsOf(a, b), from = near === a ? 1 : -1;
+    if (from < 0) runs.reverse();
+    let took = false;
+    for (const r of runs) {
+      if (r.c === 702 && walk && !took) {
+        const cap = from > 0 ? [r.s, Math.min(r.e, r.s + SIDEWALK_MAX)] : [Math.max(r.s, r.e - SIDEWALK_MAX), r.e];
+        out.push(rect(702, "chodník (AI)", ...cap));
+        if (cap[1] - cap[0] < r.e - r.s - 0.05) out.push(from > 0 ? rect(1003, "plocha před domem (AI)", cap[1], r.e) : rect(1003, "plocha před domem (AI)", r.s, cap[0]));
+        took = true;
+        continue;
+      }
+      // A sidewalk the side may not take: the image's green share decides, as without the model.
+      if (r.c === 702) { const g = greenOf(r.s, r.e); out.push(Number.isFinite(g) && g >= Math.min(BESIDE_GREEN, PIECE_GREEN + axisGreen) ? rect(401, "zeleň (ortofoto)", r.s, r.e) : rect(1003, "plocha před domem (odhad)", r.s, r.e)); continue; }
+      out.push(r.c === 401 ? rect(401, "zeleň (AI)", r.s, r.e) : rect(1003, "plocha před domem (AI)", r.s, r.e));
+    }
+    return took;
+  };
+  // Where the end lies farther than max (a house 30 m off across a car park and a lawn), with the model: the side goes
+  // on to the far edge of the first sidewalk the model reads within WALK_REACH of the map's last surface, else as before
+  // (Maasälväntie in Helsinki: the sidewalk behind perpendicular parking was missing).
+  const walkBeyond = (last, sg) => {
+    if (!model || !mapWalks) return null;
+    let on = null;
+    for (let d = 0.1; d < WALK_REACH + SIDEWALK_MAX; d += 0.2) {
+      const t = last + sg * d, k = aiSurf(t);
+      if (k === null) break;
+      if (k === "chodník") { if (on === null) { if (d > WALK_REACH) break; on = d; } }
+      else if (on !== null) { if (d - on >= AI_RUN) return last + sg * d; on = null; }
+    }
+    return on !== null && WALK_REACH + SIDEWALK_MAX - on >= AI_RUN ? last + sg * (WALK_REACH + SIDEWALK_MAX) : null;
   };
   const STEP = 0.1;
   for (const [side, sg] of [["A", -1], ["B", 1]]) {
@@ -993,8 +1048,12 @@ export function besidePassport({ osm, frame, dir, way, st, edges = [], symbols =
     const ends = [house, o.facade[side], ...o.ways.filter((w) => BARRIER(w.tags) && sg * (w.t - o.own.t) > 0.3).map((w) => w.t), ...walks.map((w) => w.t + sg * 1)]
       .filter((x) => x !== null && x !== undefined && sg * (x - o.own.t) > 0.3);
     if (!ends.length) continue;
-    const to = ends.reduce((a, b) => (sg * (b - a) < 0 ? b : a));
-    if (sg * (to - last) > max) continue;
+    let to = ends.reduce((a, b) => (sg * (b - a) < 0 ? b : a)), farEnd = false;
+    if (sg * (to - last) > max) {
+      const w = walkBeyond(last, sg);
+      if (w === null || sg * (to - w) < 0) continue;
+      to = w; farEnd = true;
+    }
     // The OSM sidewalk before the end: 2 m about its line.
     const walk = walks.filter((w) => sg * (to - w.t) >= 0).sort((a, b) => sg * (a.t - b.t))[0];
     const walkAt = walk ? [walk.t - 1, walk.t + 1] : null;
@@ -1023,7 +1082,9 @@ export function besidePassport({ osm, frame, dir, way, st, edges = [], symbols =
       }
     }
     // The house found beside the cut only: its front across the cut, the profile ends at it.
-    if (out.length > before && to === o.facade[side] && house === null && o.facadeU[side] !== 0) out.push({ ...rect(601, "budova (OSM, vedle řezu)", ...(sg < 0 ? [to - HOUSE, to] : [to, to + HOUSE])), guess: false });
+    // With ?off=mapfill only where the surfaces have no house farther on (Tammitie in Helsinki: OSM's house beside the
+    // cut stood nearer than the city's outline across it, the profile ran on past it as "neurčeno").
+    if (!farEnd && out.length > before && to === o.facade[side] && (house === null || (!P.off?.has("mapfill") && sg * (house - to) > 0.3)) && o.facadeU[side] !== 0) out.push({ ...rect(601, "budova (OSM, vedle řezu)", ...(sg < 0 ? [to - HOUSE, to] : [to, to + HOUSE])), guess: false });
   }
   return out;
 }

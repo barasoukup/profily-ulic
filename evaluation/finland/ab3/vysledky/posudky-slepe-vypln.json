@@ -1,0 +1,22 @@
+[
+{"n":1,"lepsi":"X","proc":"Na straně A je u budovy osázený záhon, který X má a Y ne; strana B je u obou nepřesná."},
+{"n":2,"lepsi":"Y","proc":"Na řezu jsou na obou stranách spíš zpevněné plochy (kůlna, cesta k domu) než trávník; těsné."},
+{"n":3,"lepsi":"X","proc":"Okolí je les a zahrady se stromy, X má zeleň, Y zpevněné plochy."},
+{"n":4,"lepsi":"X","proc":"Za chodníkem na straně A je zahrada za zdí, ne zpevněná plocha."},
+{"n":5,"lepsi":"X","proc":"Na straně A je zpevněná plocha před garážemi (parkování), ne chodník."},
+{"n":6,"lepsi":"Y","proc":"Na straně B chodník není, jen travnatý pás a živý plot."},
+{"n":7,"lepsi":"X","proc":"Na straně A žádný 6m chodník není, jen zahrady a živý plot."},
+{"n":8,"lepsi":"Y","proc":"Na straně A je zahrada se stromy, ne zpevněná plocha."},
+{"n":9,"lepsi":"X","proc":"Úzké pásy u budov vypadají zpevněně (dlažba), rozdíl je malý."},
+{"n":10,"lepsi":"X","proc":"X má chodník/zpevněnou plochu na straně A a za stezkou pás trávy a hřiště, odpovídá ortofotu i fotce."},
+{"n":11,"lepsi":"Y","proc":"Na straně A je dvůr se stromy, ne 6m chodník."},
+{"n":12,"lepsi":"X","proc":"Mezi budovou a chodníkem je jen tráva a strana B končí stromy, ne 11 m zpevněné plochy."},
+{"n":13,"lepsi":"X","proc":"Řez na straně A vede po zpevněné boční cestě, ne po trávníku."},
+{"n":14,"lepsi":"X","proc":"Na straně A parkují auta podél vozovky, X má stání."},
+{"n":15,"lepsi":"Y","proc":"Na straně B se nestojí (zákaz zastavení, žádná auta na ortofotu), stání je jen na straně A."},
+{"n":16,"lepsi":"X","proc":"Na straně B je trávník se stromy, žádný 5,6m chodník jako v Y."},
+{"n":17,"lepsi":"stejne","proc":"Liší se jen první dva metry, které leží na budově."},
+{"n":18,"lepsi":"Y","proc":"Za živým plotem na straně B začíná parkoviště, Y ho má jako zpevněnou plochu."},
+{"n":19,"lepsi":"Y","proc":"Po obou stranách jsou zahrady bez chodníků, Y má zeleň."},
+{"n":20,"lepsi":"X","proc":"Mezi domem a chodníkem je převážně zeleň s keři, ne zpevněná plocha."}
+]

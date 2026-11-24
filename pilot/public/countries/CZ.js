@@ -11,6 +11,8 @@ export default {
   bedOrtho: "cuzk",
   // The Czech house looks: sorela, the brick block of the 1950s–60s, the panel house.
   socialistLooks: true,
+  // The fill around a town's map (default.js mapFill): the Czech maps keep their rules.
+  mapFill: false,
   // The author's name (about.js).
   author: "Bára Soukupová",
 };

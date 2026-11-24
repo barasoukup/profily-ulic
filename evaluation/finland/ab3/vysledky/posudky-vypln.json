@@ -1,0 +1,182 @@
+[
+ {
+  "n": 1,
+  "id": "noulu4",
+  "place": "oulunkyla",
+  "highway": "residential",
+  "name": "Teininrinne",
+  "lepsi": "N",
+  "proc": "Na straně A je u budovy osázený záhon, který X má a Y ne; strana B je u obou nepřesná."
+ },
+ {
+  "n": 2,
+  "id": "nlaut3",
+  "place": "lauttasaari",
+  "highway": "residential",
+  "name": "Haahkatie",
+  "lepsi": "O",
+  "proc": "Na řezu jsou na obou stranách spíš zpevněné plochy (kůlna, cesta k domu) než trávník; těsné."
+ },
+ {
+  "n": 3,
+  "id": "npuis3",
+  "place": "puistola",
+  "highway": "residential",
+  "name": "Aurinkomäentie",
+  "lepsi": "N",
+  "proc": "Okolí je les a zahrady se stromy, X má zeleň, Y zpevněné plochy."
+ },
+ {
+  "n": 4,
+  "id": "noulu1",
+  "place": "oulunkyla",
+  "highway": "residential",
+  "name": "Veräjämäentie",
+  "lepsi": "N",
+  "proc": "Za chodníkem na straně A je zahrada za zdí, ne zpevněná plocha."
+ },
+ {
+  "n": 5,
+  "id": "nhert11",
+  "place": "herttoniemi",
+  "highway": "residential",
+  "name": "Hirvitie",
+  "lepsi": "N",
+  "proc": "Na straně A je zpevněná plocha před garážemi (parkování), ne chodník."
+ },
+ {
+  "n": 6,
+  "id": "nmaun6",
+  "place": "maunula",
+  "highway": "residential",
+  "name": "Papinmäentie",
+  "lepsi": "N",
+  "proc": "Na straně B chodník není, jen travnatý pás a živý plot."
+ },
+ {
+  "n": 7,
+  "id": "npaki2",
+  "place": "pakila",
+  "highway": "residential",
+  "name": "Jakotie",
+  "lepsi": "N",
+  "proc": "Na straně A žádný 6m chodník není, jen zahrady a živý plot."
+ },
+ {
+  "n": 8,
+  "id": "nmaun2",
+  "place": "maunula",
+  "highway": "residential",
+  "name": "Petaksentie",
+  "lepsi": "N",
+  "proc": "Na straně A je zahrada se stromy, ne zpevněná plocha."
+ },
+ {
+  "n": 9,
+  "id": "nmalm3",
+  "place": "malmi",
+  "highway": "residential",
+  "name": "Hietakummuntie",
+  "lepsi": "O",
+  "proc": "Úzké pásy u budov vypadají zpevněně (dlažba), rozdíl je malý."
+ },
+ {
+  "n": 10,
+  "id": "nkann14",
+  "place": "kannelmaki",
+  "highway": "residential",
+  "name": "Posetiivarinkuja",
+  "lepsi": "O",
+  "proc": "X má chodník/zpevněnou plochu na straně A a za stezkou pás trávy a hřiště, odpovídá ortofotu i fotce."
+ },
+ {
+  "n": 11,
+  "id": "nmunk5",
+  "place": "munkkiniemi",
+  "highway": "residential",
+  "name": "Uimarinpolku",
+  "lepsi": "N",
+  "proc": "Na straně A je dvůr se stromy, ne 6m chodník."
+ },
+ {
+  "n": 12,
+  "id": "npuki6",
+  "place": "pukinmaki",
+  "highway": "residential",
+  "name": "Rälssintie",
+  "lepsi": "N",
+  "proc": "Mezi budovou a chodníkem je jen tráva a strana B končí stromy, ne 11 m zpevněné plochy."
+ },
+ {
+  "n": 13,
+  "id": "npaki1",
+  "place": "pakila",
+  "highway": "residential",
+  "name": "Tervastie",
+  "lepsi": "O",
+  "proc": "Řez na straně A vede po zpevněné boční cestě, ne po trávníku."
+ },
+ {
+  "n": 14,
+  "id": "nkapy3",
+  "place": "kapyla",
+  "highway": "residential",
+  "name": "Pellervontie",
+  "lepsi": "N",
+  "proc": "Na straně A parkují auta podél vozovky, X má stání."
+ },
+ {
+  "n": 15,
+  "id": "nlaut1",
+  "place": "lauttasaari",
+  "highway": "residential",
+  "name": "Itälahdenkatu",
+  "lepsi": "N",
+  "proc": "Na straně B se nestojí (zákaz zastavení, žádná auta na ortofotu), stání je jen na straně A."
+ },
+ {
+  "n": 16,
+  "id": "nlaaj4",
+  "place": "laajasalo",
+  "highway": "residential",
+  "name": "Laajasalonkaari",
+  "lepsi": "N",
+  "proc": "Na straně B je trávník se stromy, žádný 5,6m chodník jako v Y."
+ },
+ {
+  "n": 17,
+  "id": "npuki3",
+  "place": "pukinmaki",
+  "highway": "residential",
+  "name": "Rälssintie",
+  "lepsi": "stejne",
+  "proc": "Liší se jen první dva metry, které leží na budově."
+ },
+ {
+  "n": 18,
+  "id": "ts1",
+  "place": "tallinn",
+  "highway": "residential",
+  "name": "Pelguranna",
+  "lepsi": "N",
+  "proc": "Za živým plotem na straně B začíná parkoviště, Y ho má jako zpevněnou plochu."
+ },
+ {
+  "n": 19,
+  "id": "nvart2",
+  "place": "vartiokyla",
+  "highway": "residential",
+  "name": "Savitaipaleentie",
+  "lepsi": "N",
+  "proc": "Po obou stranách jsou zahrady bez chodníků, Y má zeleň."
+ },
+ {
+  "n": 20,
+  "id": "nmalm6",
+  "place": "malmi",
+  "highway": "residential",
+  "name": "Markkinatie",
+  "lepsi": "N",
+  "proc": "Mezi domem a chodníkem je převážně zeleň s keři, ne zpevněná plocha."
+ }
+]

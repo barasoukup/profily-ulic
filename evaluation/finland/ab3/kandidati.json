@@ -1,0 +1,2235 @@
+[
+ {
+  "id": "nvuos1",
+  "group": "suburb",
+  "place": "vuosaari",
+  "lat": 60.205266,
+  "lon": 25.139613
+ },
+ {
+  "id": "nvuos2",
+  "group": "suburb",
+  "place": "vuosaari",
+  "lat": 60.206111,
+  "lon": 25.134596
+ },
+ {
+  "id": "nvuos3",
+  "group": "suburb",
+  "place": "vuosaari",
+  "lat": 60.205076,
+  "lon": 25.145875
+ },
+ {
+  "id": "nvuos4",
+  "group": "suburb",
+  "place": "vuosaari",
+  "lat": 60.212784,
+  "lon": 25.136461
+ },
+ {
+  "id": "nvuos5",
+  "group": "suburb",
+  "place": "vuosaari",
+  "lat": 60.206272,
+  "lon": 25.138971
+ },
+ {
+  "id": "nvuos6",
+  "group": "suburb",
+  "place": "vuosaari",
+  "lat": 60.212816,
+  "lon": 25.145036
+ },
+ {
+  "id": "nvuos7",
+  "group": "suburb",
+  "place": "vuosaari",
+  "lat": 60.211828,
+  "lon": 25.13551
+ },
+ {
+  "id": "nvuos8",
+  "group": "suburb",
+  "place": "vuosaari",
+  "lat": 60.21143,
+  "lon": 25.134122
+ },
+ {
+  "id": "nvuos9",
+  "group": "suburb",
+  "place": "vuosaari",
+  "lat": 60.212484,
+  "lon": 25.138768
+ },
+ {
+  "id": "nvuos10",
+  "group": "suburb",
+  "place": "vuosaari",
+  "lat": 60.212205,
+  "lon": 25.139968
+ },
+ {
+  "id": "nvuos11",
+  "group": "suburb",
+  "place": "vuosaari",
+  "lat": 60.20953,
+  "lon": 25.135293
+ },
+ {
+  "id": "nvuos12",
+  "group": "suburb",
+  "place": "vuosaari",
+  "lat": 60.211386,
+  "lon": 25.147725
+ },
+ {
+  "id": "nvuos13",
+  "group": "suburb",
+  "place": "vuosaari",
+  "lat": 60.209962,
+  "lon": 25.139435
+ },
+ {
+  "id": "nvuos14",
+  "group": "suburb",
+  "place": "vuosaari",
+  "lat": 60.21006,
+  "lon": 25.139417
+ },
+ {
+  "id": "nvuos15",
+  "group": "suburb",
+  "place": "vuosaari",
+  "lat": 60.207905,
+  "lon": 25.153452
+ },
+ {
+  "id": "nvuos16",
+  "group": "suburb",
+  "place": "vuosaari",
+  "lat": 60.209086,
+  "lon": 25.138993
+ },
+ {
+  "id": "nmalm1",
+  "group": "suburb",
+  "place": "malmi",
+  "lat": 60.246123,
+  "lon": 25.014494
+ },
+ {
+  "id": "nmalm2",
+  "group": "suburb",
+  "place": "malmi",
+  "lat": 60.250414,
+  "lon": 25.008292
+ },
+ {
+  "id": "nmalm3",
+  "group": "suburb",
+  "place": "malmi",
+  "lat": 60.249541,
+  "lon": 25.012927
+ },
+ {
+  "id": "nmalm4",
+  "group": "suburb",
+  "place": "malmi",
+  "lat": 60.247839,
+  "lon": 25.012006
+ },
+ {
+  "id": "nmalm5",
+  "group": "suburb",
+  "place": "malmi",
+  "lat": 60.253307,
+  "lon": 25.01913
+ },
+ {
+  "id": "nmalm6",
+  "group": "suburb",
+  "place": "malmi",
+  "lat": 60.250772,
+  "lon": 25.001841
+ },
+ {
+  "id": "nmalm7",
+  "group": "suburb",
+  "place": "malmi",
+  "lat": 60.251184,
+  "lon": 25.005234
+ },
+ {
+  "id": "nmalm8",
+  "group": "suburb",
+  "place": "malmi",
+  "lat": 60.25001,
+  "lon": 25.000444
+ },
+ {
+  "id": "nmalm9",
+  "group": "suburb",
+  "place": "malmi",
+  "lat": 60.255467,
+  "lon": 25.013375
+ },
+ {
+  "id": "nmalm10",
+  "group": "suburb",
+  "place": "malmi",
+  "lat": 60.254857,
+  "lon": 25.011351
+ },
+ {
+  "id": "nmalm11",
+  "group": "suburb",
+  "place": "malmi",
+  "lat": 60.253399,
+  "lon": 25.004788
+ },
+ {
+  "id": "nmalm12",
+  "group": "suburb",
+  "place": "malmi",
+  "lat": 60.252329,
+  "lon": 25.019371
+ },
+ {
+  "id": "nmalm13",
+  "group": "suburb",
+  "place": "malmi",
+  "lat": 60.251513,
+  "lon": 25.018703
+ },
+ {
+  "id": "nmalm14",
+  "group": "suburb",
+  "place": "malmi",
+  "lat": 60.246404,
+  "lon": 25.016759
+ },
+ {
+  "id": "nmalm15",
+  "group": "suburb",
+  "place": "malmi",
+  "lat": 60.247902,
+  "lon": 25.013648
+ },
+ {
+  "id": "nmalm16",
+  "group": "suburb",
+  "place": "malmi",
+  "lat": 60.250817,
+  "lon": 25.012125
+ },
+ {
+  "id": "nkont1",
+  "group": "suburb",
+  "place": "kontula",
+  "lat": 60.234592,
+  "lon": 25.086339
+ },
+ {
+  "id": "nkont2",
+  "group": "suburb",
+  "place": "kontula",
+  "lat": 60.234075,
+  "lon": 25.082396
+ },
+ {
+  "id": "nkont3",
+  "group": "suburb",
+  "place": "kontula",
+  "lat": 60.236609,
+  "lon": 25.09345
+ },
+ {
+  "id": "nkont4",
+  "group": "suburb",
+  "place": "kontula",
+  "lat": 60.236905,
+  "lon": 25.083978
+ },
+ {
+  "id": "nkont5",
+  "group": "suburb",
+  "place": "kontula",
+  "lat": 60.23128,
+  "lon": 25.088255
+ },
+ {
+  "id": "nkont6",
+  "group": "suburb",
+  "place": "kontula",
+  "lat": 60.237881,
+  "lon": 25.080777
+ },
+ {
+  "id": "nkont7",
+  "group": "suburb",
+  "place": "kontula",
+  "lat": 60.238264,
+  "lon": 25.077123
+ },
+ {
+  "id": "nkont8",
+  "group": "suburb",
+  "place": "kontula",
+  "lat": 60.232404,
+  "lon": 25.077952
+ },
+ {
+  "id": "nkont9",
+  "group": "suburb",
+  "place": "kontula",
+  "lat": 60.231352,
+  "lon": 25.080254
+ },
+ {
+  "id": "nkont10",
+  "group": "suburb",
+  "place": "kontula",
+  "lat": 60.239225,
+  "lon": 25.079149
+ },
+ {
+  "id": "nkont11",
+  "group": "suburb",
+  "place": "kontula",
+  "lat": 60.239285,
+  "lon": 25.077045
+ },
+ {
+  "id": "nkont12",
+  "group": "suburb",
+  "place": "kontula",
+  "lat": 60.238295,
+  "lon": 25.0923
+ },
+ {
+  "id": "nkont13",
+  "group": "suburb",
+  "place": "kontula",
+  "lat": 60.235739,
+  "lon": 25.08162
+ },
+ {
+  "id": "nkont14",
+  "group": "suburb",
+  "place": "kontula",
+  "lat": 60.239494,
+  "lon": 25.078568
+ },
+ {
+  "id": "nkont15",
+  "group": "suburb",
+  "place": "kontula",
+  "lat": 60.232881,
+  "lon": 25.075424
+ },
+ {
+  "id": "nkont16",
+  "group": "suburb",
+  "place": "kontula",
+  "lat": 60.23752,
+  "lon": 25.086541
+ },
+ {
+  "id": "nhert1",
+  "group": "suburb",
+  "place": "herttoniemi",
+  "lat": 60.194992,
+  "lon": 25.03551
+ },
+ {
+  "id": "nhert2",
+  "group": "suburb",
+  "place": "herttoniemi",
+  "lat": 60.195635,
+  "lon": 25.04531
+ },
+ {
+  "id": "nhert3",
+  "group": "suburb",
+  "place": "herttoniemi",
+  "lat": 60.194842,
+  "lon": 25.036144
+ },
+ {
+  "id": "nhert4",
+  "group": "suburb",
+  "place": "herttoniemi",
+  "lat": 60.198834,
+  "lon": 25.029457
+ },
+ {
+  "id": "nhert5",
+  "group": "suburb",
+  "place": "herttoniemi",
+  "lat": 60.191095,
+  "lon": 25.030761
+ },
+ {
+  "id": "nhert6",
+  "group": "suburb",
+  "place": "herttoniemi",
+  "lat": 60.195024,
+  "lon": 25.0443
+ },
+ {
+  "id": "nhert7",
+  "group": "suburb",
+  "place": "herttoniemi",
+  "lat": 60.196053,
+  "lon": 25.035026
+ },
+ {
+  "id": "nhert8",
+  "group": "suburb",
+  "place": "herttoniemi",
+  "lat": 60.199411,
+  "lon": 25.031295
+ },
+ {
+  "id": "nhert9",
+  "group": "suburb",
+  "place": "herttoniemi",
+  "lat": 60.190751,
+  "lon": 25.037635
+ },
+ {
+  "id": "nhert10",
+  "group": "suburb",
+  "place": "herttoniemi",
+  "lat": 60.197339,
+  "lon": 25.028037
+ },
+ {
+  "id": "nhert11",
+  "group": "suburb",
+  "place": "herttoniemi",
+  "lat": 60.199564,
+  "lon": 25.03711
+ },
+ {
+  "id": "nhert12",
+  "group": "suburb",
+  "place": "herttoniemi",
+  "lat": 60.200077,
+  "lon": 25.038744
+ },
+ {
+  "id": "nhert13",
+  "group": "suburb",
+  "place": "herttoniemi",
+  "lat": 60.195918,
+  "lon": 25.026914
+ },
+ {
+  "id": "nhert14",
+  "group": "suburb",
+  "place": "herttoniemi",
+  "lat": 60.192577,
+  "lon": 25.031737
+ },
+ {
+  "id": "nhert15",
+  "group": "suburb",
+  "place": "herttoniemi",
+  "lat": 60.189888,
+  "lon": 25.035096
+ },
+ {
+  "id": "nhert16",
+  "group": "suburb",
+  "place": "herttoniemi",
+  "lat": 60.19618,
+  "lon": 25.02838
+ },
+ {
+  "id": "nmunk1",
+  "group": "suburb",
+  "place": "munkkiniemi",
+  "lat": 60.198206,
+  "lon": 24.886533
+ },
+ {
+  "id": "nmunk2",
+  "group": "suburb",
+  "place": "munkkiniemi",
+  "lat": 60.193695,
+  "lon": 24.875575
+ },
+ {
+  "id": "nmunk3",
+  "group": "suburb",
+  "place": "munkkiniemi",
+  "lat": 60.199217,
+  "lon": 24.871284
+ },
+ {
+  "id": "nmunk4",
+  "group": "suburb",
+  "place": "munkkiniemi",
+  "lat": 60.192789,
+  "lon": 24.876609
+ },
+ {
+  "id": "nmunk5",
+  "group": "suburb",
+  "place": "munkkiniemi",
+  "lat": 60.195158,
+  "lon": 24.872551
+ },
+ {
+  "id": "nmunk6",
+  "group": "suburb",
+  "place": "munkkiniemi",
+  "lat": 60.200742,
+  "lon": 24.884088
+ },
+ {
+  "id": "nmunk7",
+  "group": "suburb",
+  "place": "munkkiniemi",
+  "lat": 60.196358,
+  "lon": 24.872915
+ },
+ {
+  "id": "nmunk8",
+  "group": "suburb",
+  "place": "munkkiniemi",
+  "lat": 60.196486,
+  "lon": 24.884459
+ },
+ {
+  "id": "nmunk9",
+  "group": "suburb",
+  "place": "munkkiniemi",
+  "lat": 60.201363,
+  "lon": 24.881446
+ },
+ {
+  "id": "nmunk10",
+  "group": "suburb",
+  "place": "munkkiniemi",
+  "lat": 60.198369,
+  "lon": 24.874369
+ },
+ {
+  "id": "nmunk11",
+  "group": "suburb",
+  "place": "munkkiniemi",
+  "lat": 60.195491,
+  "lon": 24.885067
+ },
+ {
+  "id": "nmunk12",
+  "group": "suburb",
+  "place": "munkkiniemi",
+  "lat": 60.198847,
+  "lon": 24.870175
+ },
+ {
+  "id": "nmunk13",
+  "group": "suburb",
+  "place": "munkkiniemi",
+  "lat": 60.193547,
+  "lon": 24.872668
+ },
+ {
+  "id": "nmunk14",
+  "group": "suburb",
+  "place": "munkkiniemi",
+  "lat": 60.201912,
+  "lon": 24.879857
+ },
+ {
+  "id": "nmunk15",
+  "group": "suburb",
+  "place": "munkkiniemi",
+  "lat": 60.193013,
+  "lon": 24.880293
+ },
+ {
+  "id": "nmunk16",
+  "group": "suburb",
+  "place": "munkkiniemi",
+  "lat": 60.195243,
+  "lon": 24.88523
+ },
+ {
+  "id": "nkann1",
+  "group": "suburb",
+  "place": "kannelmaki",
+  "lat": 60.237992,
+  "lon": 24.889138
+ },
+ {
+  "id": "nkann2",
+  "group": "suburb",
+  "place": "kannelmaki",
+  "lat": 60.238805,
+  "lon": 24.88099
+ },
+ {
+  "id": "nkann3",
+  "group": "suburb",
+  "place": "kannelmaki",
+  "lat": 60.238337,
+  "lon": 24.88059
+ },
+ {
+  "id": "nkann4",
+  "group": "suburb",
+  "place": "kannelmaki",
+  "lat": 60.242558,
+  "lon": 24.875449
+ },
+ {
+  "id": "nkann5",
+  "group": "suburb",
+  "place": "kannelmaki",
+  "lat": 60.239528,
+  "lon": 24.876933
+ },
+ {
+  "id": "nkann6",
+  "group": "suburb",
+  "place": "kannelmaki",
+  "lat": 60.238408,
+  "lon": 24.884185
+ },
+ {
+  "id": "nkann7",
+  "group": "suburb",
+  "place": "kannelmaki",
+  "lat": 60.242341,
+  "lon": 24.885451
+ },
+ {
+  "id": "nkann8",
+  "group": "suburb",
+  "place": "kannelmaki",
+  "lat": 60.239409,
+  "lon": 24.870508
+ },
+ {
+  "id": "nkann9",
+  "group": "suburb",
+  "place": "kannelmaki",
+  "lat": 60.241568,
+  "lon": 24.870338
+ },
+ {
+  "id": "nkann10",
+  "group": "suburb",
+  "place": "kannelmaki",
+  "lat": 60.240782,
+  "lon": 24.874843
+ },
+ {
+  "id": "nkann11",
+  "group": "suburb",
+  "place": "kannelmaki",
+  "lat": 60.239647,
+  "lon": 24.886714
+ },
+ {
+  "id": "nkann12",
+  "group": "suburb",
+  "place": "kannelmaki",
+  "lat": 60.236602,
+  "lon": 24.880684
+ },
+ {
+  "id": "nkann13",
+  "group": "suburb",
+  "place": "kannelmaki",
+  "lat": 60.23801,
+  "lon": 24.882279
+ },
+ {
+  "id": "nkann14",
+  "group": "suburb",
+  "place": "kannelmaki",
+  "lat": 60.244714,
+  "lon": 24.875742
+ },
+ {
+  "id": "nkann15",
+  "group": "suburb",
+  "place": "kannelmaki",
+  "lat": 60.239773,
+  "lon": 24.869552
+ },
+ {
+  "id": "nkann16",
+  "group": "suburb",
+  "place": "kannelmaki",
+  "lat": 60.240628,
+  "lon": 24.890489
+ },
+ {
+  "id": "noulu1",
+  "group": "suburb",
+  "place": "oulunkyla",
+  "lat": 60.225636,
+  "lon": 24.970841
+ },
+ {
+  "id": "noulu2",
+  "group": "suburb",
+  "place": "oulunkyla",
+  "lat": 60.22799,
+  "lon": 24.971436
+ },
+ {
+  "id": "noulu3",
+  "group": "suburb",
+  "place": "oulunkyla",
+  "lat": 60.232863,
+  "lon": 24.959797
+ },
+ {
+  "id": "noulu4",
+  "group": "suburb",
+  "place": "oulunkyla",
+  "lat": 60.231187,
+  "lon": 24.959322
+ },
+ {
+  "id": "noulu5",
+  "group": "suburb",
+  "place": "oulunkyla",
+  "lat": 60.227654,
+  "lon": 24.959656
+ },
+ {
+  "id": "noulu6",
+  "group": "suburb",
+  "place": "oulunkyla",
+  "lat": 60.227,
+  "lon": 24.960811
+ },
+ {
+  "id": "noulu7",
+  "group": "suburb",
+  "place": "oulunkyla",
+  "lat": 60.229079,
+  "lon": 24.961668
+ },
+ {
+  "id": "noulu8",
+  "group": "suburb",
+  "place": "oulunkyla",
+  "lat": 60.230698,
+  "lon": 24.967734
+ },
+ {
+  "id": "noulu9",
+  "group": "suburb",
+  "place": "oulunkyla",
+  "lat": 60.231779,
+  "lon": 24.958456
+ },
+ {
+  "id": "noulu10",
+  "group": "suburb",
+  "place": "oulunkyla",
+  "lat": 60.224821,
+  "lon": 24.959708
+ },
+ {
+  "id": "noulu11",
+  "group": "suburb",
+  "place": "oulunkyla",
+  "lat": 60.231831,
+  "lon": 24.964925
+ },
+ {
+  "id": "noulu12",
+  "group": "suburb",
+  "place": "oulunkyla",
+  "lat": 60.229838,
+  "lon": 24.960828
+ },
+ {
+  "id": "noulu13",
+  "group": "suburb",
+  "place": "oulunkyla",
+  "lat": 60.224989,
+  "lon": 24.962769
+ },
+ {
+  "id": "noulu14",
+  "group": "suburb",
+  "place": "oulunkyla",
+  "lat": 60.225585,
+  "lon": 24.962217
+ },
+ {
+  "id": "noulu15",
+  "group": "suburb",
+  "place": "oulunkyla",
+  "lat": 60.226607,
+  "lon": 24.967742
+ },
+ {
+  "id": "noulu16",
+  "group": "suburb",
+  "place": "oulunkyla",
+  "lat": 60.230272,
+  "lon": 24.975576
+ },
+ {
+  "id": "npihl1",
+  "group": "suburb",
+  "place": "pihlajamaki",
+  "lat": 60.235188,
+  "lon": 25.011879
+ },
+ {
+  "id": "npihl2",
+  "group": "suburb",
+  "place": "pihlajamaki",
+  "lat": 60.239913,
+  "lon": 25.010033
+ },
+ {
+  "id": "npihl3",
+  "group": "suburb",
+  "place": "pihlajamaki",
+  "lat": 60.244114,
+  "lon": 25.00657
+ },
+ {
+  "id": "npihl4",
+  "group": "suburb",
+  "place": "pihlajamaki",
+  "lat": 60.238988,
+  "lon": 24.999371
+ },
+ {
+  "id": "npihl5",
+  "group": "suburb",
+  "place": "pihlajamaki",
+  "lat": 60.239369,
+  "lon": 25.0186
+ },
+ {
+  "id": "npihl6",
+  "group": "suburb",
+  "place": "pihlajamaki",
+  "lat": 60.239257,
+  "lon": 25.018969
+ },
+ {
+  "id": "npihl7",
+  "group": "suburb",
+  "place": "pihlajamaki",
+  "lat": 60.237103,
+  "lon": 25.01415
+ },
+ {
+  "id": "npihl8",
+  "group": "suburb",
+  "place": "pihlajamaki",
+  "lat": 60.235944,
+  "lon": 25.003853
+ },
+ {
+  "id": "npihl9",
+  "group": "suburb",
+  "place": "pihlajamaki",
+  "lat": 60.238292,
+  "lon": 25.007802
+ },
+ {
+  "id": "npihl10",
+  "group": "suburb",
+  "place": "pihlajamaki",
+  "lat": 60.241656,
+  "lon": 25.000464
+ },
+ {
+  "id": "npihl11",
+  "group": "suburb",
+  "place": "pihlajamaki",
+  "lat": 60.241706,
+  "lon": 25.01077
+ },
+ {
+  "id": "npihl12",
+  "group": "suburb",
+  "place": "pihlajamaki",
+  "lat": 60.236752,
+  "lon": 25.007365
+ },
+ {
+  "id": "npihl13",
+  "group": "suburb",
+  "place": "pihlajamaki",
+  "lat": 60.241391,
+  "lon": 25.001734
+ },
+ {
+  "id": "npihl14",
+  "group": "suburb",
+  "place": "pihlajamaki",
+  "lat": 60.237436,
+  "lon": 25.009098
+ },
+ {
+  "id": "npihl15",
+  "group": "suburb",
+  "place": "pihlajamaki",
+  "lat": 60.242969,
+  "lon": 25.018185
+ },
+ {
+  "id": "npihl16",
+  "group": "suburb",
+  "place": "pihlajamaki",
+  "lat": 60.239509,
+  "lon": 25.010503
+ },
+ {
+  "id": "nlaut1",
+  "group": "suburb",
+  "place": "lauttasaari",
+  "lat": 60.153295,
+  "lon": 24.879845
+ },
+ {
+  "id": "nlaut2",
+  "group": "suburb",
+  "place": "lauttasaari",
+  "lat": 60.157683,
+  "lon": 24.866552
+ },
+ {
+  "id": "nlaut3",
+  "group": "suburb",
+  "place": "lauttasaari",
+  "lat": 60.1565,
+  "lon": 24.877078
+ },
+ {
+  "id": "nlaut5",
+  "group": "suburb",
+  "place": "lauttasaari",
+  "lat": 60.15564,
+  "lon": 24.866286
+ },
+ {
+  "id": "nlaut6",
+  "group": "suburb",
+  "place": "lauttasaari",
+  "lat": 60.15433,
+  "lon": 24.880326
+ },
+ {
+  "id": "nlaut7",
+  "group": "suburb",
+  "place": "lauttasaari",
+  "lat": 60.158784,
+  "lon": 24.885443
+ },
+ {
+  "id": "nlaut8",
+  "group": "suburb",
+  "place": "lauttasaari",
+  "lat": 60.159229,
+  "lon": 24.874031
+ },
+ {
+  "id": "nlaut9",
+  "group": "suburb",
+  "place": "lauttasaari",
+  "lat": 60.155471,
+  "lon": 24.873713
+ },
+ {
+  "id": "nlaut10",
+  "group": "suburb",
+  "place": "lauttasaari",
+  "lat": 60.156103,
+  "lon": 24.878222
+ },
+ {
+  "id": "nlaut11",
+  "group": "suburb",
+  "place": "lauttasaari",
+  "lat": 60.160357,
+  "lon": 24.86875
+ },
+ {
+  "id": "nlaut12",
+  "group": "suburb",
+  "place": "lauttasaari",
+  "lat": 60.156854,
+  "lon": 24.871108
+ },
+ {
+  "id": "nlaut13",
+  "group": "suburb",
+  "place": "lauttasaari",
+  "lat": 60.155503,
+  "lon": 24.875448
+ },
+ {
+  "id": "nlaut14",
+  "group": "suburb",
+  "place": "lauttasaari",
+  "lat": 60.154127,
+  "lon": 24.880293
+ },
+ {
+  "id": "nlaut15",
+  "group": "suburb",
+  "place": "lauttasaari",
+  "lat": 60.160429,
+  "lon": 24.868142
+ },
+ {
+  "id": "nlaut16",
+  "group": "suburb",
+  "place": "lauttasaari",
+  "lat": 60.161473,
+  "lon": 24.879151
+ },
+ {
+  "id": "nkapy1",
+  "group": "suburb",
+  "place": "kapyla",
+  "lat": 60.214744,
+  "lon": 24.960387
+ },
+ {
+  "id": "nkapy2",
+  "group": "suburb",
+  "place": "kapyla",
+  "lat": 60.21722,
+  "lon": 24.955954
+ },
+ {
+  "id": "nkapy3",
+  "group": "suburb",
+  "place": "kapyla",
+  "lat": 60.214728,
+  "lon": 24.952619
+ },
+ {
+  "id": "nkapy4",
+  "group": "suburb",
+  "place": "kapyla",
+  "lat": 60.212325,
+  "lon": 24.945063
+ },
+ {
+  "id": "nkapy5",
+  "group": "suburb",
+  "place": "kapyla",
+  "lat": 60.212111,
+  "lon": 24.9552
+ },
+ {
+  "id": "nkapy6",
+  "group": "suburb",
+  "place": "kapyla",
+  "lat": 60.214822,
+  "lon": 24.94995
+ },
+ {
+  "id": "nkapy7",
+  "group": "suburb",
+  "place": "kapyla",
+  "lat": 60.216965,
+  "lon": 24.942235
+ },
+ {
+  "id": "nkapy8",
+  "group": "suburb",
+  "place": "kapyla",
+  "lat": 60.211514,
+  "lon": 24.949258
+ },
+ {
+  "id": "nkapy9",
+  "group": "suburb",
+  "place": "kapyla",
+  "lat": 60.217939,
+  "lon": 24.951783
+ },
+ {
+  "id": "nkapy10",
+  "group": "suburb",
+  "place": "kapyla",
+  "lat": 60.210111,
+  "lon": 24.951218
+ },
+ {
+  "id": "nkapy11",
+  "group": "suburb",
+  "place": "kapyla",
+  "lat": 60.213697,
+  "lon": 24.951334
+ },
+ {
+  "id": "nkapy12",
+  "group": "suburb",
+  "place": "kapyla",
+  "lat": 60.210461,
+  "lon": 24.95147
+ },
+ {
+  "id": "nkapy13",
+  "group": "suburb",
+  "place": "kapyla",
+  "lat": 60.215479,
+  "lon": 24.949002
+ },
+ {
+  "id": "nkapy14",
+  "group": "suburb",
+  "place": "kapyla",
+  "lat": 60.212034,
+  "lon": 24.958435
+ },
+ {
+  "id": "nkapy15",
+  "group": "suburb",
+  "place": "kapyla",
+  "lat": 60.218813,
+  "lon": 24.943109
+ },
+ {
+  "id": "nkapy16",
+  "group": "suburb",
+  "place": "kapyla",
+  "lat": 60.214325,
+  "lon": 24.951948
+ },
+ {
+  "id": "nhaag1",
+  "group": "suburb",
+  "place": "haaga",
+  "lat": 60.2198,
+  "lon": 24.903463
+ },
+ {
+  "id": "nhaag2",
+  "group": "suburb",
+  "place": "haaga",
+  "lat": 60.223913,
+  "lon": 24.908012
+ },
+ {
+  "id": "nhaag3",
+  "group": "suburb",
+  "place": "haaga",
+  "lat": 60.216809,
+  "lon": 24.89837
+ },
+ {
+  "id": "nhaag4",
+  "group": "suburb",
+  "place": "haaga",
+  "lat": 60.222341,
+  "lon": 24.900202
+ },
+ {
+  "id": "nhaag5",
+  "group": "suburb",
+  "place": "haaga",
+  "lat": 60.225015,
+  "lon": 24.898961
+ },
+ {
+  "id": "nhaag6",
+  "group": "suburb",
+  "place": "haaga",
+  "lat": 60.224226,
+  "lon": 24.894076
+ },
+ {
+  "id": "nhaag7",
+  "group": "suburb",
+  "place": "haaga",
+  "lat": 60.221092,
+  "lon": 24.890486
+ },
+ {
+  "id": "nhaag8",
+  "group": "suburb",
+  "place": "haaga",
+  "lat": 60.223611,
+  "lon": 24.890374
+ },
+ {
+  "id": "nhaag9",
+  "group": "suburb",
+  "place": "haaga",
+  "lat": 60.220017,
+  "lon": 24.894793
+ },
+ {
+  "id": "nhaag10",
+  "group": "suburb",
+  "place": "haaga",
+  "lat": 60.222868,
+  "lon": 24.901019
+ },
+ {
+  "id": "nhaag11",
+  "group": "suburb",
+  "place": "haaga",
+  "lat": 60.223163,
+  "lon": 24.891428
+ },
+ {
+  "id": "nhaag12",
+  "group": "suburb",
+  "place": "haaga",
+  "lat": 60.223038,
+  "lon": 24.902265
+ },
+ {
+  "id": "nhaag13",
+  "group": "suburb",
+  "place": "haaga",
+  "lat": 60.226965,
+  "lon": 24.902705
+ },
+ {
+  "id": "nhaag14",
+  "group": "suburb",
+  "place": "haaga",
+  "lat": 60.218761,
+  "lon": 24.900105
+ },
+ {
+  "id": "nhaag15",
+  "group": "suburb",
+  "place": "haaga",
+  "lat": 60.220851,
+  "lon": 24.903995
+ },
+ {
+  "id": "nhaag16",
+  "group": "suburb",
+  "place": "haaga",
+  "lat": 60.21802,
+  "lon": 24.906762
+ },
+ {
+  "id": "npuki1",
+  "group": "suburb",
+  "place": "pukinmaki",
+  "lat": 60.244848,
+  "lon": 24.980766
+ },
+ {
+  "id": "npuki2",
+  "group": "suburb",
+  "place": "pukinmaki",
+  "lat": 60.240931,
+  "lon": 24.996611
+ },
+ {
+  "id": "npuki3",
+  "group": "suburb",
+  "place": "pukinmaki",
+  "lat": 60.241429,
+  "lon": 24.988386
+ },
+ {
+  "id": "npuki4",
+  "group": "suburb",
+  "place": "pukinmaki",
+  "lat": 60.24171,
+  "lon": 24.993014
+ },
+ {
+  "id": "npuki5",
+  "group": "suburb",
+  "place": "pukinmaki",
+  "lat": 60.244053,
+  "lon": 24.99286
+ },
+ {
+  "id": "npuki6",
+  "group": "suburb",
+  "place": "pukinmaki",
+  "lat": 60.241117,
+  "lon": 24.985656
+ },
+ {
+  "id": "npuki7",
+  "group": "suburb",
+  "place": "pukinmaki",
+  "lat": 60.241515,
+  "lon": 24.997839
+ },
+ {
+  "id": "npuki8",
+  "group": "suburb",
+  "place": "pukinmaki",
+  "lat": 60.241704,
+  "lon": 24.997328
+ },
+ {
+  "id": "npuki9",
+  "group": "suburb",
+  "place": "pukinmaki",
+  "lat": 60.243377,
+  "lon": 24.991182
+ },
+ {
+  "id": "npuki10",
+  "group": "suburb",
+  "place": "pukinmaki",
+  "lat": 60.247287,
+  "lon": 24.992845
+ },
+ {
+  "id": "npuki11",
+  "group": "suburb",
+  "place": "pukinmaki",
+  "lat": 60.24303,
+  "lon": 24.986748
+ },
+ {
+  "id": "npuki12",
+  "group": "suburb",
+  "place": "pukinmaki",
+  "lat": 60.2428,
+  "lon": 24.99854
+ },
+ {
+  "id": "npuki13",
+  "group": "suburb",
+  "place": "pukinmaki",
+  "lat": 60.245598,
+  "lon": 24.994174
+ },
+ {
+  "id": "npuki14",
+  "group": "suburb",
+  "place": "pukinmaki",
+  "lat": 60.245664,
+  "lon": 24.992037
+ },
+ {
+  "id": "npuki15",
+  "group": "suburb",
+  "place": "pukinmaki",
+  "lat": 60.244612,
+  "lon": 24.999153
+ },
+ {
+  "id": "npuki16",
+  "group": "suburb",
+  "place": "pukinmaki",
+  "lat": 60.243288,
+  "lon": 24.995561
+ },
+ {
+  "id": "nmell1",
+  "group": "suburb",
+  "place": "mellunmaki",
+  "lat": 60.237323,
+  "lon": 25.11879
+ },
+ {
+  "id": "nmell2",
+  "group": "suburb",
+  "place": "mellunmaki",
+  "lat": 60.243009,
+  "lon": 25.109395
+ },
+ {
+  "id": "nmell3",
+  "group": "suburb",
+  "place": "mellunmaki",
+  "lat": 60.239545,
+  "lon": 25.118206
+ },
+ {
+  "id": "nmell4",
+  "group": "suburb",
+  "place": "mellunmaki",
+  "lat": 60.23284,
+  "lon": 25.10771
+ },
+ {
+  "id": "nmell5",
+  "group": "suburb",
+  "place": "mellunmaki",
+  "lat": 60.238402,
+  "lon": 25.105453
+ },
+ {
+  "id": "nmell6",
+  "group": "suburb",
+  "place": "mellunmaki",
+  "lat": 60.24077,
+  "lon": 25.116013
+ },
+ {
+  "id": "nmell7",
+  "group": "suburb",
+  "place": "mellunmaki",
+  "lat": 60.239508,
+  "lon": 25.116821
+ },
+ {
+  "id": "nmell8",
+  "group": "suburb",
+  "place": "mellunmaki",
+  "lat": 60.234401,
+  "lon": 25.116834
+ },
+ {
+  "id": "nmell9",
+  "group": "suburb",
+  "place": "mellunmaki",
+  "lat": 60.234074,
+  "lon": 25.105382
+ },
+ {
+  "id": "nmell10",
+  "group": "suburb",
+  "place": "mellunmaki",
+  "lat": 60.242577,
+  "lon": 25.114763
+ },
+ {
+  "id": "nmell11",
+  "group": "suburb",
+  "place": "mellunmaki",
+  "lat": 60.241858,
+  "lon": 25.105033
+ },
+ {
+  "id": "nmell12",
+  "group": "suburb",
+  "place": "mellunmaki",
+  "lat": 60.235476,
+  "lon": 25.10326
+ },
+ {
+  "id": "nmell13",
+  "group": "suburb",
+  "place": "mellunmaki",
+  "lat": 60.234374,
+  "lon": 25.102093
+ },
+ {
+  "id": "nmell14",
+  "group": "suburb",
+  "place": "mellunmaki",
+  "lat": 60.2381,
+  "lon": 25.104
+ },
+ {
+  "id": "nmell15",
+  "group": "suburb",
+  "place": "mellunmaki",
+  "lat": 60.237303,
+  "lon": 25.11271
+ },
+ {
+  "id": "nmell16",
+  "group": "suburb",
+  "place": "mellunmaki",
+  "lat": 60.234732,
+  "lon": 25.110506
+ },
+ {
+  "id": "nmaun1",
+  "group": "suburb",
+  "place": "maunula",
+  "lat": 60.236556,
+  "lon": 24.91966
+ },
+ {
+  "id": "nmaun2",
+  "group": "suburb",
+  "place": "maunula",
+  "lat": 60.234862,
+  "lon": 24.929065
+ },
+ {
+  "id": "nmaun3",
+  "group": "suburb",
+  "place": "maunula",
+  "lat": 60.235801,
+  "lon": 24.924981
+ },
+ {
+  "id": "nmaun4",
+  "group": "suburb",
+  "place": "maunula",
+  "lat": 60.23142,
+  "lon": 24.91894
+ },
+ {
+  "id": "nmaun5",
+  "group": "suburb",
+  "place": "maunula",
+  "lat": 60.23221,
+  "lon": 24.921266
+ },
+ {
+  "id": "nmaun6",
+  "group": "suburb",
+  "place": "maunula",
+  "lat": 60.235301,
+  "lon": 24.922425
+ },
+ {
+  "id": "nmaun7",
+  "group": "suburb",
+  "place": "maunula",
+  "lat": 60.230657,
+  "lon": 24.919595
+ },
+ {
+  "id": "nmaun8",
+  "group": "suburb",
+  "place": "maunula",
+  "lat": 60.233658,
+  "lon": 24.930863
+ },
+ {
+  "id": "nmaun9",
+  "group": "suburb",
+  "place": "maunula",
+  "lat": 60.2284,
+  "lon": 24.919978
+ },
+ {
+  "id": "nmaun10",
+  "group": "suburb",
+  "place": "maunula",
+  "lat": 60.234553,
+  "lon": 24.929506
+ },
+ {
+  "id": "nmaun11",
+  "group": "suburb",
+  "place": "maunula",
+  "lat": 60.236301,
+  "lon": 24.927639
+ },
+ {
+  "id": "nmaun12",
+  "group": "suburb",
+  "place": "maunula",
+  "lat": 60.228597,
+  "lon": 24.933051
+ },
+ {
+  "id": "nmaun13",
+  "group": "suburb",
+  "place": "maunula",
+  "lat": 60.234045,
+  "lon": 24.930388
+ },
+ {
+  "id": "nmaun14",
+  "group": "suburb",
+  "place": "maunula",
+  "lat": 60.236056,
+  "lon": 24.92716
+ },
+ {
+  "id": "nmaun15",
+  "group": "suburb",
+  "place": "maunula",
+  "lat": 60.226962,
+  "lon": 24.926373
+ },
+ {
+  "id": "nmaun16",
+  "group": "suburb",
+  "place": "maunula",
+  "lat": 60.22899,
+  "lon": 24.926719
+ },
+ {
+  "id": "npaki1",
+  "group": "suburb",
+  "place": "pakila",
+  "lat": 60.250751,
+  "lon": 24.939971
+ },
+ {
+  "id": "npaki2",
+  "group": "suburb",
+  "place": "pakila",
+  "lat": 60.241177,
+  "lon": 24.94152
+ },
+ {
+  "id": "npaki3",
+  "group": "suburb",
+  "place": "pakila",
+  "lat": 60.241707,
+  "lon": 24.938571
+ },
+ {
+  "id": "npaki4",
+  "group": "suburb",
+  "place": "pakila",
+  "lat": 60.249687,
+  "lon": 24.948897
+ },
+ {
+  "id": "npaki5",
+  "group": "suburb",
+  "place": "pakila",
+  "lat": 60.248912,
+  "lon": 24.941988
+ },
+ {
+  "id": "npaki6",
+  "group": "suburb",
+  "place": "pakila",
+  "lat": 60.246513,
+  "lon": 24.94827
+ },
+ {
+  "id": "npaki7",
+  "group": "suburb",
+  "place": "pakila",
+  "lat": 60.24333,
+  "lon": 24.941059
+ },
+ {
+  "id": "npaki8",
+  "group": "suburb",
+  "place": "pakila",
+  "lat": 60.250958,
+  "lon": 24.949388
+ },
+ {
+  "id": "npaki9",
+  "group": "suburb",
+  "place": "pakila",
+  "lat": 60.246012,
+  "lon": 24.95461
+ },
+ {
+  "id": "npaki10",
+  "group": "suburb",
+  "place": "pakila",
+  "lat": 60.244312,
+  "lon": 24.935947
+ },
+ {
+  "id": "npaki11",
+  "group": "suburb",
+  "place": "pakila",
+  "lat": 60.249496,
+  "lon": 24.9486
+ },
+ {
+  "id": "npaki12",
+  "group": "suburb",
+  "place": "pakila",
+  "lat": 60.240863,
+  "lon": 24.942568
+ },
+ {
+  "id": "npaki13",
+  "group": "suburb",
+  "place": "pakila",
+  "lat": 60.241222,
+  "lon": 24.948492
+ },
+ {
+  "id": "npaki14",
+  "group": "suburb",
+  "place": "pakila",
+  "lat": 60.244528,
+  "lon": 24.935236
+ },
+ {
+  "id": "npaki15",
+  "group": "suburb",
+  "place": "pakila",
+  "lat": 60.248232,
+  "lon": 24.940834
+ },
+ {
+  "id": "npaki16",
+  "group": "suburb",
+  "place": "pakila",
+  "lat": 60.244916,
+  "lon": 24.943013
+ },
+ {
+  "id": "nlaaj1",
+  "group": "suburb",
+  "place": "laajasalo",
+  "lat": 60.174481,
+  "lon": 25.053102
+ },
+ {
+  "id": "nlaaj2",
+  "group": "suburb",
+  "place": "laajasalo",
+  "lat": 60.173614,
+  "lon": 25.044394
+ },
+ {
+  "id": "nlaaj3",
+  "group": "suburb",
+  "place": "laajasalo",
+  "lat": 60.173873,
+  "lon": 25.047868
+ },
+ {
+  "id": "nlaaj4",
+  "group": "suburb",
+  "place": "laajasalo",
+  "lat": 60.172178,
+  "lon": 25.054346
+ },
+ {
+  "id": "nlaaj5",
+  "group": "suburb",
+  "place": "laajasalo",
+  "lat": 60.174372,
+  "lon": 25.051451
+ },
+ {
+  "id": "nlaaj6",
+  "group": "suburb",
+  "place": "laajasalo",
+  "lat": 60.169658,
+  "lon": 25.04433
+ },
+ {
+  "id": "nlaaj7",
+  "group": "suburb",
+  "place": "laajasalo",
+  "lat": 60.169661,
+  "lon": 25.047289
+ },
+ {
+  "id": "nlaaj8",
+  "group": "suburb",
+  "place": "laajasalo",
+  "lat": 60.173502,
+  "lon": 25.046951
+ },
+ {
+  "id": "nlaaj9",
+  "group": "suburb",
+  "place": "laajasalo",
+  "lat": 60.172765,
+  "lon": 25.05944
+ },
+ {
+  "id": "nlaaj10",
+  "group": "suburb",
+  "place": "laajasalo",
+  "lat": 60.170911,
+  "lon": 25.056688
+ },
+ {
+  "id": "nlaaj11",
+  "group": "suburb",
+  "place": "laajasalo",
+  "lat": 60.176705,
+  "lon": 25.045046
+ },
+ {
+  "id": "nlaaj12",
+  "group": "suburb",
+  "place": "laajasalo",
+  "lat": 60.170971,
+  "lon": 25.046846
+ },
+ {
+  "id": "nlaaj13",
+  "group": "suburb",
+  "place": "laajasalo",
+  "lat": 60.168009,
+  "lon": 25.047081
+ },
+ {
+  "id": "nlaaj14",
+  "group": "suburb",
+  "place": "laajasalo",
+  "lat": 60.170494,
+  "lon": 25.040955
+ },
+ {
+  "id": "nlaaj15",
+  "group": "suburb",
+  "place": "laajasalo",
+  "lat": 60.171099,
+  "lon": 25.058764
+ },
+ {
+  "id": "nlaaj16",
+  "group": "suburb",
+  "place": "laajasalo",
+  "lat": 60.169075,
+  "lon": 25.044975
+ },
+ {
+  "id": "nkona1",
+  "group": "suburb",
+  "place": "konala",
+  "lat": 60.234831,
+  "lon": 24.859962
+ },
+ {
+  "id": "nkona2",
+  "group": "suburb",
+  "place": "konala",
+  "lat": 60.238048,
+  "lon": 24.856494
+ },
+ {
+  "id": "nkona3",
+  "group": "suburb",
+  "place": "konala",
+  "lat": 60.23152,
+  "lon": 24.853175
+ },
+ {
+  "id": "nkona4",
+  "group": "suburb",
+  "place": "konala",
+  "lat": 60.236732,
+  "lon": 24.839246
+ },
+ {
+  "id": "nkona5",
+  "group": "suburb",
+  "place": "konala",
+  "lat": 60.237492,
+  "lon": 24.843883
+ },
+ {
+  "id": "nkona6",
+  "group": "suburb",
+  "place": "konala",
+  "lat": 60.230721,
+  "lon": 24.849447
+ },
+ {
+  "id": "nkona7",
+  "group": "suburb",
+  "place": "konala",
+  "lat": 60.234554,
+  "lon": 24.855737
+ },
+ {
+  "id": "nkona8",
+  "group": "suburb",
+  "place": "konala",
+  "lat": 60.237288,
+  "lon": 24.846105
+ },
+ {
+  "id": "nkona9",
+  "group": "suburb",
+  "place": "konala",
+  "lat": 60.231237,
+  "lon": 24.850784
+ },
+ {
+  "id": "nkona10",
+  "group": "suburb",
+  "place": "konala",
+  "lat": 60.238439,
+  "lon": 24.859252
+ },
+ {
+  "id": "nkona11",
+  "group": "suburb",
+  "place": "konala",
+  "lat": 60.238592,
+  "lon": 24.843691
+ },
+ {
+  "id": "nkona12",
+  "group": "suburb",
+  "place": "konala",
+  "lat": 60.233574,
+  "lon": 24.858278
+ },
+ {
+  "id": "nkona13",
+  "group": "suburb",
+  "place": "konala",
+  "lat": 60.232378,
+  "lon": 24.85078
+ },
+ {
+  "id": "nkona14",
+  "group": "suburb",
+  "place": "konala",
+  "lat": 60.240629,
+  "lon": 24.847614
+ },
+ {
+  "id": "nkona15",
+  "group": "suburb",
+  "place": "konala",
+  "lat": 60.2384,
+  "lon": 24.857102
+ },
+ {
+  "id": "nkona16",
+  "group": "suburb",
+  "place": "konala",
+  "lat": 60.233091,
+  "lon": 24.846149
+ },
+ {
+  "id": "ntapa1",
+  "group": "suburb",
+  "place": "tapanila",
+  "lat": 60.258283,
+  "lon": 25.034369
+ },
+ {
+  "id": "ntapa2",
+  "group": "suburb",
+  "place": "tapanila",
+  "lat": 60.264512,
+  "lon": 25.021194
+ },
+ {
+  "id": "ntapa3",
+  "group": "suburb",
+  "place": "tapanila",
+  "lat": 60.262875,
+  "lon": 25.036516
+ },
+ {
+  "id": "ntapa4",
+  "group": "suburb",
+  "place": "tapanila",
+  "lat": 60.265889,
+  "lon": 25.030082
+ },
+ {
+  "id": "ntapa5",
+  "group": "suburb",
+  "place": "tapanila",
+  "lat": 60.268146,
+  "lon": 25.030039
+ },
+ {
+  "id": "ntapa6",
+  "group": "suburb",
+  "place": "tapanila",
+  "lat": 60.258822,
+  "lon": 25.023092
+ },
+ {
+  "id": "ntapa7",
+  "group": "suburb",
+  "place": "tapanila",
+  "lat": 60.259757,
+  "lon": 25.024041
+ },
+ {
+  "id": "ntapa8",
+  "group": "suburb",
+  "place": "tapanila",
+  "lat": 60.259567,
+  "lon": 25.027954
+ },
+ {
+  "id": "ntapa9",
+  "group": "suburb",
+  "place": "tapanila",
+  "lat": 60.262939,
+  "lon": 25.028583
+ },
+ {
+  "id": "ntapa10",
+  "group": "suburb",
+  "place": "tapanila",
+  "lat": 60.261036,
+  "lon": 25.028489
+ },
+ {
+  "id": "ntapa11",
+  "group": "suburb",
+  "place": "tapanila",
+  "lat": 60.265463,
+  "lon": 25.020772
+ },
+ {
+  "id": "ntapa12",
+  "group": "suburb",
+  "place": "tapanila",
+  "lat": 60.261756,
+  "lon": 25.032516
+ },
+ {
+  "id": "ntapa13",
+  "group": "suburb",
+  "place": "tapanila",
+  "lat": 60.263719,
+  "lon": 25.020775
+ },
+ {
+  "id": "ntapa14",
+  "group": "suburb",
+  "place": "tapanila",
+  "lat": 60.264097,
+  "lon": 25.038308
+ },
+ {
+  "id": "ntapa15",
+  "group": "suburb",
+  "place": "tapanila",
+  "lat": 60.261084,
+  "lon": 25.036925
+ },
+ {
+  "id": "ntapa16",
+  "group": "suburb",
+  "place": "tapanila",
+  "lat": 60.267961,
+  "lon": 25.026295
+ },
+ {
+  "id": "npuis1",
+  "group": "suburb",
+  "place": "puistola",
+  "lat": 60.271737,
+  "lon": 25.033829
+ },
+ {
+  "id": "npuis2",
+  "group": "suburb",
+  "place": "puistola",
+  "lat": 60.271493,
+  "lon": 25.026214
+ },
+ {
+  "id": "npuis3",
+  "group": "suburb",
+  "place": "puistola",
+  "lat": 60.268066,
+  "lon": 25.03494
+ },
+ {
+  "id": "npuis4",
+  "group": "suburb",
+  "place": "puistola",
+  "lat": 60.270993,
+  "lon": 25.035062
+ },
+ {
+  "id": "npuis5",
+  "group": "suburb",
+  "place": "puistola",
+  "lat": 60.27265,
+  "lon": 25.031468
+ },
+ {
+  "id": "npuis6",
+  "group": "suburb",
+  "place": "puistola",
+  "lat": 60.268357,
+  "lon": 25.042828
+ },
+ {
+  "id": "npuis7",
+  "group": "suburb",
+  "place": "puistola",
+  "lat": 60.276002,
+  "lon": 25.036773
+ },
+ {
+  "id": "npuis8",
+  "group": "suburb",
+  "place": "puistola",
+  "lat": 60.273616,
+  "lon": 25.038301
+ },
+ {
+  "id": "npuis9",
+  "group": "suburb",
+  "place": "puistola",
+  "lat": 60.276144,
+  "lon": 25.038469
+ },
+ {
+  "id": "npuis10",
+  "group": "suburb",
+  "place": "puistola",
+  "lat": 60.272488,
+  "lon": 25.024751
+ },
+ {
+  "id": "npuis11",
+  "group": "suburb",
+  "place": "puistola",
+  "lat": 60.270664,
+  "lon": 25.044083
+ },
+ {
+  "id": "npuis12",
+  "group": "suburb",
+  "place": "puistola",
+  "lat": 60.270161,
+  "lon": 25.029322
+ },
+ {
+  "id": "npuis13",
+  "group": "suburb",
+  "place": "puistola",
+  "lat": 60.27003,
+  "lon": 25.025335
+ },
+ {
+  "id": "npuis14",
+  "group": "suburb",
+  "place": "puistola",
+  "lat": 60.27379,
+  "lon": 25.042784
+ },
+ {
+  "id": "npuis15",
+  "group": "suburb",
+  "place": "puistola",
+  "lat": 60.270309,
+  "lon": 25.038587
+ },
+ {
+  "id": "npuis16",
+  "group": "suburb",
+  "place": "puistola",
+  "lat": 60.272174,
+  "lon": 25.03306
+ },
+ {
+  "id": "nvart1",
+  "group": "suburb",
+  "place": "vartiokyla",
+  "lat": 60.214956,
+  "lon": 25.09167
+ },
+ {
+  "id": "nvart2",
+  "group": "suburb",
+  "place": "vartiokyla",
+  "lat": 60.221821,
+  "lon": 25.09758
+ },
+ {
+  "id": "nvart3",
+  "group": "suburb",
+  "place": "vartiokyla",
+  "lat": 60.218551,
+  "lon": 25.099172
+ },
+ {
+  "id": "nvart4",
+  "group": "suburb",
+  "place": "vartiokyla",
+  "lat": 60.220683,
+  "lon": 25.082562
+ },
+ {
+  "id": "nvart5",
+  "group": "suburb",
+  "place": "vartiokyla",
+  "lat": 60.223171,
+  "lon": 25.08194
+ },
+ {
+  "id": "nvart6",
+  "group": "suburb",
+  "place": "vartiokyla",
+  "lat": 60.218356,
+  "lon": 25.083764
+ },
+ {
+  "id": "nvart7",
+  "group": "suburb",
+  "place": "vartiokyla",
+  "lat": 60.221671,
+  "lon": 25.085193
+ },
+ {
+  "id": "nvart8",
+  "group": "suburb",
+  "place": "vartiokyla",
+  "lat": 60.219596,
+  "lon": 25.086098
+ },
+ {
+  "id": "nvart9",
+  "group": "suburb",
+  "place": "vartiokyla",
+  "lat": 60.215478,
+  "lon": 25.089117
+ },
+ {
+  "id": "nvart10",
+  "group": "suburb",
+  "place": "vartiokyla",
+  "lat": 60.214751,
+  "lon": 25.090982
+ },
+ {
+  "id": "nvart11",
+  "group": "suburb",
+  "place": "vartiokyla",
+  "lat": 60.219525,
+  "lon": 25.087388
+ },
+ {
+  "id": "nvart12",
+  "group": "suburb",
+  "place": "vartiokyla",
+  "lat": 60.218694,
+  "lon": 25.095059
+ },
+ {
+  "id": "nvart13",
+  "group": "suburb",
+  "place": "vartiokyla",
+  "lat": 60.221919,
+  "lon": 25.084424
+ },
+ {
+  "id": "nvart14",
+  "group": "suburb",
+  "place": "vartiokyla",
+  "lat": 60.21729,
+  "lon": 25.099264
+ },
+ {
+  "id": "nvart15",
+  "group": "suburb",
+  "place": "vartiokyla",
+  "lat": 60.221515,
+  "lon": 25.096755
+ },
+ {
+  "id": "nvart16",
+  "group": "suburb",
+  "place": "vartiokyla",
+  "lat": 60.216768,
+  "lon": 25.084009
+ }
+]

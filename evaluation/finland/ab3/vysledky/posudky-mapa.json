@@ -1,0 +1,263 @@
+[
+ {
+  "n": 1,
+  "id": "npuki6",
+  "place": "pukinmaki",
+  "highway": "residential",
+  "name": "Rälssintie",
+  "lepsi": "stejne",
+  "proc": "Oba mají stejné složení (zeleň, chodník, dva pruhy, stání, stromořadí, chodník) a šířky se liší jen málo."
+ },
+ {
+  "n": 2,
+  "id": "nkapy6",
+  "place": "kapyla",
+  "highway": "residential",
+  "name": "Metsolantie",
+  "lepsi": "N",
+  "proc": "X zachycuje štěrkovou plochu a zeleň na straně A a vozovku kolem 5,5 m, Y končí hned za vozovkou s neznámým dílem."
+ },
+ {
+  "n": 3,
+  "id": "npuis1",
+  "place": "puistola",
+  "highway": "residential",
+  "name": "Porvarintie",
+  "lepsi": "stejne",
+  "proc": "Chodník, dva pruhy, chodník u obou, šířky téměř shodné."
+ },
+ {
+  "n": 4,
+  "id": "nvart2",
+  "place": "vartiokyla",
+  "highway": "residential",
+  "name": "Savitaipaleentie",
+  "lepsi": "A",
+  "proc": "Na ortofotu podél vozovky žádné stání není, X si ho přidává."
+ },
+ {
+  "n": 5,
+  "id": "nmaun2",
+  "place": "maunula",
+  "highway": "residential",
+  "name": "Petaksentie",
+  "lepsi": "A",
+  "proc": "Na straně B je zahrada (zeleň), Y tam má neznámý díl."
+ },
+ {
+  "n": 6,
+  "id": "nkann14",
+  "place": "kannelmaki",
+  "highway": "residential",
+  "name": "Posetiivarinkuja",
+  "lepsi": "N",
+  "proc": "Za vozovkou je stromořadí a široká společná stezka jako v X, Y má neznámý pás a dvě úzké cyklostezky."
+ },
+ {
+  "n": 7,
+  "id": "nmalm3",
+  "place": "malmi",
+  "highway": "residential",
+  "name": "Hietakummuntie",
+  "lepsi": "N",
+  "proc": "Na straně B je pás dlažby z kostek a široká společná stezka, X to vystihuje lépe než Y s rozdělením na chodník a cyklostezku."
+ },
+ {
+  "n": 8,
+  "id": "nkapy3",
+  "place": "kapyla",
+  "highway": "residential",
+  "name": "Pellervontie",
+  "lepsi": "N",
+  "proc": "Na fotce stojí auta podél strany A, to má jen Y."
+ },
+ {
+  "n": 9,
+  "id": "npuis3",
+  "place": "puistola",
+  "highway": "residential",
+  "name": "Aurinkomäentie",
+  "lepsi": "A",
+  "proc": "Úzká cesta kolem 4–5 m bez chodníků, X přidává dva pruhy a chodníky."
+ },
+ {
+  "n": 10,
+  "id": "npuki3",
+  "place": "pukinmaki",
+  "highway": "residential",
+  "name": "Rälssintie",
+  "lepsi": "A",
+  "proc": "Na straně A je kolmé stání aut, Y ho má jako stání, X jako obecnou plochu."
+ },
+ {
+  "n": 11,
+  "id": "nkann16",
+  "place": "kannelmaki",
+  "highway": "residential",
+  "name": "Raitamaantie",
+  "lepsi": "stejne",
+  "proc": "Prakticky stejné složení i šířky, rozdíl jen v drobných dílech na okraji B."
+ },
+ {
+  "n": 12,
+  "id": "nmunk5",
+  "place": "munkkiniemi",
+  "highway": "residential",
+  "name": "Uimarinpolku",
+  "lepsi": "stejne",
+  "proc": "Jádro (zeleň, pruh, stání) shodné; X má celý dvůr jako zeleň, ačkoli je částečně zpevněný, Y končí brzy."
+ },
+ {
+  "n": 13,
+  "id": "nmaun6",
+  "place": "maunula",
+  "highway": "residential",
+  "name": "Papinmäentie",
+  "lepsi": "stejne",
+  "proc": "Oba mají vozovku a zeleň, Y navíc úzký travnatý okraj na A, X přesnější šířku vozovky."
+ },
+ {
+  "n": 14,
+  "id": "nlaaj4",
+  "place": "laajasalo",
+  "highway": "residential",
+  "name": "Laajasalonkaari",
+  "lepsi": "A",
+  "proc": "Pás mezi zelení u domů je chodník, X ho tak má, Y jen jako plochu."
+ },
+ {
+  "n": 15,
+  "id": "npihl14",
+  "place": "pihlajamaki",
+  "highway": "residential",
+  "name": "Maasälväntie",
+  "lepsi": "A",
+  "proc": "Stejné jádro, X navíc pokračuje až k domům na obou stranách."
+ },
+ {
+  "n": 16,
+  "id": "noulu1",
+  "place": "oulunkyla",
+  "highway": "residential",
+  "name": "Veräjämäentie",
+  "lepsi": "stejne",
+  "proc": "Stejné složení (zeleň, chodník, dva pruhy, zeleň), X jen sahá dál do zahrad."
+ },
+ {
+  "n": 17,
+  "id": "nlaut1",
+  "place": "lauttasaari",
+  "highway": "residential",
+  "name": "Itälahdenkatu",
+  "lepsi": "A",
+  "proc": "Y zachycuje i parkoviště a stromořadí na straně A až k fasádě, střed ulice mají oba podobně."
+ },
+ {
+  "n": 18,
+  "id": "noulu4",
+  "place": "oulunkyla",
+  "highway": "residential",
+  "name": "Teininrinne",
+  "lepsi": "N",
+  "proc": "X má rozumné dva pruhy a chodníky kolem, Y nesmyslně široké pruhy 6,5 a 4,5 m a krajnici."
+ },
+ {
+  "n": 19,
+  "id": "nhaag3",
+  "place": "haaga",
+  "highway": "residential",
+  "name": "Haagan pappilantie",
+  "lepsi": "N",
+  "proc": "Stezka podél protihlukové stěny, zeleň a obousměrná vozovka jako v X; Y má jen jeden pruh a stání."
+ },
+ {
+  "n": 20,
+  "id": "nhert14",
+  "place": "herttoniemi",
+  "highway": "residential",
+  "name": "Petter Wetterin tie",
+  "lepsi": "N",
+  "proc": "Stromořadí na straně B v ortofotu je, X ho má, Y místo něj krajnici."
+ },
+ {
+  "n": 21,
+  "id": "nlaut3",
+  "place": "lauttasaari",
+  "highway": "residential",
+  "name": "Haahkatie",
+  "lepsi": "stejne",
+  "proc": "Shodné složení i šířky."
+ },
+ {
+  "n": 22,
+  "id": "nlaaj1",
+  "place": "laajasalo",
+  "highway": "residential",
+  "name": "Laajasalonkaari",
+  "lepsi": "N",
+  "proc": "Na fotce ani ortofotu stání podél vozovky není, X ho přidává."
+ },
+ {
+  "n": 23,
+  "id": "npaki2",
+  "place": "pakila",
+  "highway": "residential",
+  "name": "Jakotie",
+  "lepsi": "stejne",
+  "proc": "Prakticky totožné profily."
+ },
+ {
+  "n": 24,
+  "id": "nhaag6",
+  "place": "haaga",
+  "highway": "residential",
+  "name": "Ida Ekmanin tie",
+  "lepsi": "N",
+  "proc": "Na straně A je trávník, který má Y, X tam má neznámý díl; stání chybí oběma."
+ },
+ {
+  "n": 25,
+  "id": "nmunk1",
+  "place": "munkkiniemi",
+  "highway": "residential",
+  "name": "Rakuunantie",
+  "lepsi": "stejne",
+  "proc": "Stejné složení, šířky se liší málo a ze stínu se nedají rozhodnout."
+ },
+ {
+  "n": 26,
+  "id": "nmalm6",
+  "place": "malmi",
+  "highway": "residential",
+  "name": "Markkinatie",
+  "lepsi": "stejne",
+  "proc": "Prakticky totožné profily."
+ },
+ {
+  "n": 27,
+  "id": "npaki1",
+  "place": "pakila",
+  "highway": "residential",
+  "name": "Tervastie",
+  "lepsi": "N",
+  "proc": "Mezi chodníkem a plotem na A je trávník, který má jen Y; šířky obou přijatelné."
+ },
+ {
+  "n": 28,
+  "id": "nhert11",
+  "place": "herttoniemi",
+  "highway": "residential",
+  "name": "Hirvitie",
+  "lepsi": "N",
+  "proc": "X zachycuje i schodiště, chodník a cyklostezku u trati na straně B, Y přidává stání, které tam není."
+ },
+ {
+  "n": 29,
+  "id": "nkont10",
+  "place": "kontula",
+  "highway": "residential",
+  "name": "Kaarikuja",
+  "lepsi": "stejne",
+  "proc": "Shodné složení, šířky jen mírně odlišné."
+ }
+]

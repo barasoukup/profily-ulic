@@ -1,0 +1,13 @@
+[
+{"n":1,"lepsi":"X","proc":"Na straně B je úzký chodník a za ním zeleň se stromy, Y má jen široký chodník."},
+{"n":2,"lepsi":"stejne","proc":"Obě mají chodník u A a dva pruhy, rozdíly v šířkách jsou malé a z fotky nerozhodnutelné."},
+{"n":3,"lepsi":"Y","proc":"Mezi stáním na obou stranách je jen jeden jízdní pruh (asi 4,5 m), ne dva."},
+{"n":4,"lepsi":"Y","proc":"Y zachycuje zeleň u budovy na straně A a širokou cestu před vozovkou, X stranu A ořezává; obě jsou jen přibližné."},
+{"n":5,"lepsi":"Y","proc":"Y má i trávník na straně A a podélné stání u B, kde na fotce stojí auto; jinak jsou podobné."},
+{"n":6,"lepsi":"stejne","proc":"Složení je shodné (zeleň, chodník, vozovka, chodník, zeleň), šířky se liší jen málo."},
+{"n":7,"lepsi":"stejne","proc":"Prakticky totožné, X navíc jen pruh plochy 0,45 m."},
+{"n":8,"lepsi":"Y","proc":"Na straně A přiléhá zeleň přímo k obrubníku vozovky bez chodníku, jak to má Y."},
+{"n":9,"lepsi":"stejne","proc":"Složení je shodné, šířky se liší jen o desítky centimetrů."},
+{"n":10,"lepsi":"Y","proc":"Na straně A je šedý chodník a vedle něj červená cyklostezka; X chodník vynechává."},
+{"n":11,"lepsi":"stejne","proc":"Profily jsou prakticky totožné, Y má navíc jen 0,35 m neznámé plochy u fasády."}
+]
