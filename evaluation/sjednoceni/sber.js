@@ -53,12 +53,15 @@ export async function collect(pts, VARIANTS, name) {
         COUNTRIES[iso][k] = val;
       }
       if ("fix" in v) globalThis.PROFILY_FIX = v.fix; else delete globalThis.PROFILY_FIX;
+      // app.js sets the city only when a cut changes it: set it again, so the fix (or the city's own) holds now.
+      C.setCity(C.city.id);
       oo.P.off = new Set(v.off || []);
       localStorage.removeItem("streetdesign-pilot");
       const t0 = Date.now();
       try {
         // The same place and direction for every variant: the first one's snapped point and bearing (a fix may move the cut).
-        const job = at && !v.free ? window.cutAt(at.lat, at.lon, false, at.bearing) : window.cutAt(p.lat, p.lon);
+        // A point with a bearing (a judged cut of the universal measurement) is cut as its link reopens it.
+        const job = at && !v.free ? window.cutAt(at.lat, at.lon, false, at.bearing) : p.bearing != null ? window.cutAt(p.lat, p.lon, false, p.bearing) : window.cutAt(p.lat, p.lon);
         await Promise.race([job, new Promise((_, no) => setTimeout(() => no(new Error("timeout")), 120000))]);
         row[v.key] = { ...one(read()), country: C.city.country };
         if (!at) at = row[v.key];
@@ -67,6 +70,7 @@ export async function collect(pts, VARIANTS, name) {
       for (const [m, k, own, val] of kept.reverse()) { if (own) m[k] = val; else delete m[k]; }
     }
     delete globalThis.PROFILY_FIX;
+    C.setCity(C.city.id);
     oo.P.off = new Set();
     rows.push(row);
     window.__sjStatus = `${rows.length}/${pts.length}`;

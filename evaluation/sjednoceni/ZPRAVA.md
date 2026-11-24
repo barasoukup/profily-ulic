@@ -102,3 +102,19 @@ Naslepo (balíčky wr1, wr2, posuzovatel měl říct, kde končí prostor silnic
 27 v Plzni (O vynechal druhou vozovku). Rozhodnutí: **výjimka zůstává** (`countries/CZ.js wideRoads: false` s důvodem).
 Sdílená oprava, která by ji mohla zrušit: prodloužit dosah dálnice jen tehdy, když strana na dosahu končí v části silnice
 (druhá vozovka, dělicí pás), jako `wideStreets`; to by bylo třeba změřit i na Slovensku, v Rakousku a Německu.
+
+## 5. `city.fix` (osa OSM k vozovce mapy, obslužné cesty jako křižovatky, zpevněná plocha pod osou): sjednoceno mimo Prahu
+
+Tři úpravy z Brna (9. 11. 2026) platily ve všech českých městech kromě Prahy a v cizině nikde (nikdy nezkoušené).
+Praha je měla vypnuté po měření 100 řezů (1 lépe, 2 hůř).
+
+Vzorek: 39 nových náhodných řezů ve 12 městech s mapou povrchů (Vídeň, Berlín, Hamburk, Paříž, Helsinky, Amsterdam,
+Curych, Tallinn, Bratislava, Krakov, Zaragoza, Bologna) a 15 v Praze; každý řez třikrát na stejném místě (O, O2 bez úprav,
+N s nimi; `vysledky/fix2.json`). První sběr (`fix-mapy.json`, `fix-praha.json`) byl neplatný: aplikace nastaví město jen,
+když se změní, takže přepnutí za běhu se neprojevilo; rozdíly v něm byly jen šum nového kliknutí (`fix-re.json`: O2 = N).
+
+Výsledek: **0 z 54 změněno** (šum O ↔ O2 1 řez). Starší pražské prohry jsou ale pořád stejné (`fix-p100.json`, tytéž
+body jako 9. 11.): Generála Šišky (dělicí pás 1,5 m se změní v pruhy), Poděbradská (řez posunutý obslužnou cestou,
+strana B krajnice 9,7 m), Nad Vršovskou horou jinak (posun z křižovatky). Rozhodnutí: **sjednoceno pro všechna města kromě
+Prahy** (`city.js AXIS_FIX`, výchozí v `setCity`; Praha `fix: {}` s naměřeným důvodem). Plzeň si nechává `bedPanels`
+(data jejích tramvajových těles). Regrese beze změny, 425 testů.
