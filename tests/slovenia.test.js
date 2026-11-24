@@ -191,3 +191,16 @@ test("Slovinsko: značky, normy, zákon o stání", async () => {
   assert.equal(SI.laneOrtho, "si");
   assert.equal(SI.socialistLooks, false);
 });
+
+// The contraflow rule reaches Slovenia through rules.js (it passes the run; Bára 24. 11. 2026): on a tertiary road and up
+// the 3 m minimum, on a residential street no warning (čl. 38 odst. 2 gives no width).
+import { checkRules } from "../pilot/public/rules.js";
+import { setCity } from "../pilot/public/city.js";
+test("SI: cyklisté v protisměru jen na silnici třetí třídy a výš", () => {
+  setCity("slovenia");
+  const ip4c = [{ k: "oneway", plate: "protismer" }];
+  const lvl = (roadClass) => checkRules({ segments: [{ type: "pruh", width: 2.8, roadClass, signs: ip4c }] }).map((f) => `${f.i}:${f.level}`).join();
+  assert.equal(lvl("mk3"), "0:min");
+  assert.equal(lvl("mk4"), "");
+  setCity("praha");
+});

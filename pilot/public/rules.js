@@ -41,11 +41,12 @@ export function checkRules(profile) {
     const run = segs.slice(i, j);
     const bikeLane = [segs[i - 1], segs[j]].some((x) => BIKE_LANE.has(x?.type));
     // null: the state has no rule for it (Germany): the lanes keep their own warnings.
-    if (!bikeLane && country.contraflow(false) && run.some((x) => x.signs?.some((g) => g.k === "oneway" && g.plate === "protismer"))) {
+    if (!bikeLane && country.contraflow(false, run) && run.some((x) => x.signs?.some((g) => g.k === "oneway" && g.plate === "protismer"))) {
       for (let k = out.length - 1; k >= 0; k--) if (out[k].i >= i && out[k].i < j) out.splice(k, 1);
-      // The basic width and the minimum by the state (countries/<ISO>.js contraflow), beside parking or not.
+      // The basic width and the minimum by the state (countries/<ISO>.js contraflow), beside parking or not; the run itself
+    // too, for a state whose rule holds only on some roads (Slovenia: tertiary and up, contraflowSI).
       const parked = [segs[i - 1], segs[j], ...run].some((x) => x?.type === "parkovani");
-      const { lo, base, why } = country.contraflow(parked);
+      const { lo, base, why } = country.contraflow(parked, run);
       const v = { label: t("Vozovka"), w: fmt(w), why };
       if (w < lo - 0.005) out.push({ i, level: "min", text: t("Vozovka {w} je pod minimem ({why}).", v), short: t("{label} {w}: pod minimem", v), why });
       else if (w < base - 0.005) out.push({ i, level: "zaklad", text: t("Vozovka {w} je užší než základ ({why}).", v), short: t("{label} {w}: užší než základ", v), why });
