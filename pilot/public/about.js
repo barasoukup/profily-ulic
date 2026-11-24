@@ -52,6 +52,15 @@ export function setupAbout({ $, cut, country, lang }) {
     showMap($("#about-map"));
   };
   $("#about-close").onclick = () => dlg.close();
+  // The footer's "kontakt" links open the dialog at the form (Bára 24. 11. 2026: the form instead of the e-mail address).
+  // Delegated, because the footer's text is replaced by the language's; the hash stays (#rez= is the cut's link).
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest?.(".open-contact")) return;
+    e.preventDefault();
+    $("#menu-about").onclick();
+    $("#contact-text").scrollIntoView({ block: "center" });
+    $("#contact-text").focus({ preventScroll: true });
+  });
   send.onclick = async () => {
     const message = $("#contact-text").value.trim().slice(0, CONTACT_MAX), email = $("#contact-email").value.trim();
     if (!message) { say(t("Napište prosím zprávu.")); $("#contact-text").focus(); return; }

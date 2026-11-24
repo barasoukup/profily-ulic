@@ -1107,7 +1107,7 @@ export const HR_HTML = {
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
     lokalne ilustracije i kôd © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Izvori i licencije</a> (na češkom) ·
-    kontakt <a href="mailto:bara.so@email.cz">bara.so@email.cz</a><br>
+    <a href="#kontakt" class="open-contact">kontakt</a><br>
     Spremamo samo presjeke (mjesto, smjer, ulicu, vrijeme), klikove bez pronađene ulice (mjesto s točnošću od oko kilometar), korištene funkcije i prijave pogrešaka koje sami napišete; nikakve IP adrese ni kolačiće. Karte i podaci
     učitavaju se izravno s poslužitelja IPR-a, ČÚZK-a, gradova, regija, basemap.at, njemačkih saveznih zemalja, Berlina, Hamburga, Aachena, swisstopa, geodienste.ch, PDOK-a, 3D BAG-a, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK-a, grada Krakova, IGN-a, grada Pariza, španjolskog IGN-a i katastra, grada Zaragoze, DGT-a, DLS-a Cipra, malteške Uprave za prostorno planiranje, pokrajine Bolzano, gradova Torina, Bologne i Modene, regije Emilija-Romanja, estonske agencije Maa- ja Ruumiamet, grada Tallinna, slovenske geodetske uprave (GURS), gradova Helsinkija, Espooa i Turkua, finskog SYKE-a (Ryhti), danske agencije Klimadatastyrelsen (Dataforsyningen), grada Aarhusa, grada Vilniusa (Vilniaus planas) i OSM-a, a tekst pretraživanja i s komoota (Photon), PDOK-a, GUGiK-a, IGN-a, CartoCiudada, agencije Maa- ja Ruumiamet (In-ADS), GURS-a, SYKE-a i agencije Klimadatastyrelsen (GSearch) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">privatnost</a>, na češkom).`,
 };

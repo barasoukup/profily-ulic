@@ -1107,7 +1107,7 @@ export const SV_HTML = {
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
     lokala illustrationer och kod © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Källor och licenser</a> (på tjeckiska) ·
-    kontakt <a href="mailto:bara.so@email.cz">bara.so@email.cz</a><br>
+    <a href="#kontakt" class="open-contact">kontakt</a><br>
     Vi sparar endast snitt (plats, riktning, gata, tid), klick där ingen gata hittades (platsen med ungefär en kilometers noggrannhet), de funktioner som används och de felrapporter du själv skriver; inga IP-adresser och inga cookies. Kartor och data
     hämtas direkt från servrarna hos IPR, ČÚZK, städerna, regionerna, basemap.at, de tyska delstaterna, Berlin, Hamburg, Aachen, swisstopo, geodienste.ch, PDOK, 3D BAG, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK, Krakóws stad, IGN, Paris stad, spanska IGN och Catastro, Zaragozas stad, DGT, DLS på Cypern, Malta Planning Authority, provinsen Bolzano, städerna Turin, Bologna och Modena, regionen Emilia-Romagna, estniska Maa- ja Ruumiamet, staden Tallinn, Sloveniens geodetiska myndighet (GURS), städerna Helsingfors, Esbo och Åbo, finska SYKE (Ryhti), danska Klimadatastyrelsen (Dataforsyningen), Aarhus kommun, Vilnius stad (Vilniaus planas) och OSM, söktexten även från komoot (Photon), PDOK, GUGiK, IGN, CartoCiudad, Maa- ja Ruumiamet (In-ADS), GURS, SYKE och Klimadatastyrelsen (GSearch) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">integritet</a>, på tjeckiska).`,
 };

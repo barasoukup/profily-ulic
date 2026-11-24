@@ -1083,7 +1083,7 @@ export const ET_HTML = {
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
     kohalikud illustratsioonid ja kood © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Allikad ja litsentsid</a> (tšehhi keeles) ·
-    kontakt <a href="mailto:bara.so@email.cz">bara.so@email.cz</a><br>
+    <a href="#kontakt" class="open-contact">kontakt</a><br>
     Salvestame ainult lõiked (koht, suund, tänav, aeg), klõpsud, millega tänavat ei leitud (koht umbes kilomeetri täpsusega), kasutatud funktsioonid ja veateated, mille ise kirjutate; IP-aadresse ega küpsiseid ei salvestata. Kaardid ja andmed
     laaditakse otse IPR-i, ČÚZK-i, linnade, maakondade, basemap.at-i, Saksamaa liidumaade, Berliini, Hamburgi, Aacheni, swisstopo, geodienste.ch-i, PDOK-i, 3D BAG-i, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK-i, Krakowi linna, IGN-i, Pariisi linna, Hispaania IGN-i ja Catastro, Zaragoza linna, DGT, Küprose DLS-i, Malta Planning Authority, Bolzano provintsi, Torino, Bologna ja Modena linnade, Emilia-Romagna maakonna, Maa- ja Ruumiameti, Tallinna linna, Sloveenia geodeesiaameti (GURS), Helsingi, Espoo ja Turu linna, Soome SYKE (Ryhti), Taani Klimadatastyrelseni (Dataforsyningen), Aarhusi linna, Vilniuse linna (Vilniaus planas) ja OSM-i serveritest, otsingutekst ka komootilt (Photon), PDOK-ilt, GUGiK-ilt, IGN-ilt, CartoCiudadilt, Maa- ja Ruumiametilt (In-ADS), GURS-ilt, SYKE-lt ja Klimadatastyrelsenilt (GSearch) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">privaatsus</a>, tšehhi keeles).`,
 };

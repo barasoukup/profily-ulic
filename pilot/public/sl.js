@@ -1107,7 +1107,7 @@ export const SL_HTML = {
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
     lokalne ilustracije in koda © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Viri in licence</a> (v češčini) ·
-    kontakt <a href="mailto:bara.so@email.cz">bara.so@email.cz</a><br>
+    <a href="#kontakt" class="open-contact">kontakt</a><br>
     Shranjujemo samo prereze (kraj, smer, ulica, čas), klike, pri katerih ni bila najdena nobena ulica (kraj na približno kilometer natančno), uporabljene funkcije in prijave napak, ki jih napišete sami; nobenih naslovov IP in nobenih piškotkov. Zemljevidi in podatki
     se nalagajo neposredno s strežnikov IPR, ČÚZK, mest, okrajev, basemap.at, nemških zveznih dežel, Berlina, Hamburga, Aachna, swisstopo, geodienste.ch, PDOK, 3D BAG, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK, mesta Krakov, IGN, mesta Pariz, španskega IGN in katastra, mesta Zaragoza, DGT, DLS Ciper, malteškega urada za prostorsko načrtovanje, pokrajine Bocen, mest Torino, Bologna in Modena, dežele Emilija - Romanja, estonske agencije Maa- ja Ruumiamet, mesta Talin, Geodetske uprave RS (GURS), mest Helsinki, Espoo in Turku, finskega SYKE (Ryhti), danske agencije Klimadatastyrelsen (Dataforsyningen), mesta Aarhus, mesta Vilnius (Vilniaus planas) in OSM, iskalno besedilo tudi s komoot (Photon), PDOK, GUGiK, IGN, CartoCiudad, Maa- ja Ruumiamet (In-ADS), GURS, SYKE in Klimadatastyrelsen (GSearch) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">zasebnost</a>, v češčini).`,
 };

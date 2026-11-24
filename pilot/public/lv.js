@@ -1107,7 +1107,7 @@ export const LV_HTML = {
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
     vietējās ilustrācijas un kods © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Avoti un licences</a> (čehu valodā) ·
-    kontakti <a href="mailto:bara.so@email.cz">bara.so@email.cz</a><br>
+    <a href="#kontakt" class="open-contact">kontakti</a><br>
     Mēs saglabājam tikai griezumus (vieta, virziens, iela, laiks), klikšķus, kuros iela netika atrasta (vietu aptuveni kilometra precizitātē), izmantotās funkcijas un kļūdu ziņojumus, ko rakstāt paši; nekādas IP adreses un sīkdatnes. Kartes un dati
     tiek ielādēti tieši no IPR, ČÚZK, pilsētu, apgabalu, basemap.at, Vācijas federālo zemju, Berlīnes, Hamburgas, Āhenes, swisstopo, geodienste.ch, PDOK, 3D BAG, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK, Krakovas pilsētas, IGN, Parīzes pilsētas, Spānijas IGN un Catastro, Saragosas pilsētas, DGT, Kipras DLS, Maltas Planning Authority, Bolcāno provinces, Turīnas, Boloņas un Modenas pilsētu, Emīlijas-Romanjas reģiona, Igaunijas Maa- ja Ruumiamet, Tallinas pilsētas, Slovēnijas ģeodēzijas pārvaldes (GURS), Helsinku, Espo un Turku pilsētu, Somijas SYKE (Ryhti), Dānijas Klimadatastyrelsen (Dataforsyningen), Orhūsas pilsētas, Viļņas pilsētas (Vilniaus planas) un OSM serveriem, meklēšanas teksts arī no komoot (Photon), PDOK, GUGiK, IGN, CartoCiudad, Maa- ja Ruumiamet (In-ADS), GURS, SYKE un Klimadatastyrelsen (GSearch) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">privātums</a>, čehu valodā).`,
 };

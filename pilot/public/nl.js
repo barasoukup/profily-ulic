@@ -1108,7 +1108,7 @@ export const NL_HTML = {
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
     lokale illustraties en code © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">bronnen en licenties</a> (in het Tsjechisch) ·
-    contact <a href="mailto:bara.so@email.cz">bara.so@email.cz</a><br>
+    <a href="#kontakt" class="open-contact">contact</a><br>
     We slaan alleen doorsneden op (plaats, richting, straat, tijd), klikken waarbij geen straat is gevonden (de plaats tot op ongeveer een kilometer), de gebruikte functies en de foutmeldingen die u zelf schrijft; geen IP-adressen en geen cookies. Kaarten en gegevens
     worden rechtstreeks geladen van de servers van het IPR, het ČÚZK, de steden, de regio's, basemap.at, de Duitse deelstaten, Berlijn, Hamburg, Aken, swisstopo, geodienste.ch, PDOK, 3D BAG, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK, de stad Krakau, het IGN, de stad Parijs, het Spaanse IGN en Catastro, de stad Zaragoza, het DGT, het DLS van Cyprus, de Malta Planning Authority, de provincie Bolzano, de steden Turijn, Bologna en Modena, de regio Emilia-Romagna, het Estse Maa- ja Ruumiamet, de stad Tallinn, de Sloveense geodetische dienst (GURS), de steden Helsinki, Espoo en Turku, het Finse SYKE (Ryhti), het Deense Klimadatastyrelsen (Dataforsyningen), de stad Aarhus, de stad Vilnius (Vilniaus planas) en OSM, de zoektekst ook van komoot (Photon), PDOK, GUGiK, IGN, CartoCiudad, Maa- ja Ruumiamet (In-ADS), GURS, SYKE en Klimadatastyrelsen (GSearch) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">privacy</a>, in het Tsjechisch).`,
 };

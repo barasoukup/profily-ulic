@@ -1087,7 +1087,7 @@ export const HU_HTML = {
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
     helyi illusztrációk és kód © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Források és licencek</a> (csehül) ·
-    kapcsolat <a href="mailto:bara.so@email.cz">bara.so@email.cz</a><br>
+    <a href="#kontakt" class="open-contact">kapcsolat</a><br>
     Csak a metszeteket rögzítjük (hely, irány, utca, idő), a kattintásokat, ahol nem található utca (a helyet kb. egy kilométer pontossággal), a használt funkciókat és az Ön által írt hibabejelentéseket; IP-címeket és sütiket nem. A térképek és az adatok
     közvetlenül az IPR, a ČÚZK, a városok, a kerületek, a basemap.at, a német tartományok, Berlin, Hamburg, Aachen, a swisstopo, a geodienste.ch, a PDOK, a 3D BAG, a Digitaal Vlaanderen, az SPW, az ACT Luxembourg, a GUGiK, Krakkó városa, az IGN, Párizs városa, a spanyol IGN és kataszter, Zaragoza városa, a DGT, a ciprusi DLS, a máltai Tervezési Hatóság, Bolzano autonóm megye, Torino, Bologna és Modena városa, Emilia-Romagna régió, az észt Maa- ja Ruumiamet, Tallinn városa, a szlovén geodéziai hivatal (GURS), Helsinki, Espoo és Turku városa, a finn SYKE (Ryhti), a dán Klimadatastyrelsen (Dataforsyningen), Aarhus városa, Vilnius városa (Vilniaus planas) és az OSM szervereiről töltődnek be, a keresett szöveg a komoot (Photon), a PDOK, a GUGiK, az IGN, a CartoCiudad, a Maa- ja Ruumiamet (In-ADS), a GURS, a SYKE és a Klimadatastyrelsen (GSearch) szerveréről is (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">adatvédelem</a>, csehül).`,
 };

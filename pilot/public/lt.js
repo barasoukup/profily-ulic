@@ -1083,7 +1083,7 @@ export const LT_HTML = {
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
     vietinės iliustracijos ir programinis kodas © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Šaltiniai ir licencijos</a> (čekų kalba) ·
-    kontaktai <a href="mailto:bara.so@email.cz">bara.so@email.cz</a><br>
+    <a href="#kontakt" class="open-contact">kontaktai</a><br>
     Įrašome tik pjūvius (vietą, kryptį, gatvę, laiką), spustelėjimus, kuriais gatvė nerasta (vietą maždaug kilometro tikslumu), naudotas funkcijas ir jūsų pačių parašytus pranešimus apie klaidas; jokių IP adresų ir slapukų. Žemėlapiai ir duomenys
     įkeliami tiesiai iš IPR, ČÚZK, miestų, kraštų, basemap.at, Vokietijos federalinių žemių, Berlyno, Hamburgo, Acheno, swisstopo, geodienste.ch, PDOK, 3D BAG, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK, Krokuvos miesto, IGN, Paryžiaus miesto, Ispanijos IGN ir Catastro, Saragosos miesto, DGT, Kipro DLS, Maltos Planning Authority, Bolcano provincijos, Turino, Bolonijos ir Modenos miestų, Emilijos-Romanijos regiono, Estijos Maa- ja Ruumiamet, Talino miesto, Slovėnijos geodezijos administracijos (GURS), Helsinkio, Espo ir Turku miestų, Suomijos SYKE (Ryhti), Danijos Klimadatastyrelsen (Dataforsyningen), Orhuso miesto, Vilniaus miesto (Vilniaus planas) ir OSM serverių, paieškos tekstas – ir iš komoot (Photon), PDOK, GUGiK, IGN, CartoCiudad, Maa- ja Ruumiamet (In-ADS), GURS, SYKE bei Klimadatastyrelsen (GSearch) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">privatumas</a>, čekų kalba).`,
 };

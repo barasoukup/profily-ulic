@@ -1083,7 +1083,7 @@ export const BG_HTML = {
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
     местни илюстрации и код © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Източници и лицензи</a> (на чешки) ·
-    контакт <a href="mailto:bara.so@email.cz">bara.so@email.cz</a><br>
+    <a href="#kontakt" class="open-contact">контакт</a><br>
     Записваме само разрезите (място, посока, улица, време), кликванията, при които не е намерена улица (мястото с точност около един километър), използваните функции и сигналите за грешки, които пишете сами; без IP адреси и без бисквитки. Картите и данните
     се зареждат директно от сървърите на IPR, ČÚZK, градовете, регионите, basemap.at, германските федерални провинции, Берлин, Хамбург, Аахен, swisstopo, geodienste.ch, PDOK, 3D BAG, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK, град Краков, IGN, град Париж, испанския IGN и кадастъра, град Сарагоса, DGT, DLS Кипър, Органа по планиране на Малта, провинция Болцано, градовете Торино, Болоня и Модена, регион Емилия-Романя, естонския Maa- ja Ruumiamet, град Талин, словенската геодезическа управа (GURS), градовете Хелзинки, Еспоо и Турку, финландския SYKE (Ryhti), датската Klimadatastyrelsen (Dataforsyningen), град Орхус, град Вилнюс (Vilniaus planas) и OSM, а текстът за търсене и от komoot (Photon), PDOK, GUGiK, IGN, CartoCiudad, Maa- ja Ruumiamet (In-ADS), GURS, SYKE и Klimadatastyrelsen (GSearch) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">поверителност</a>, на чешки).`,
 };
