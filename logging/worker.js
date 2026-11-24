@@ -45,7 +45,7 @@ export default {
       const values = [
         e.kind, str(e.detail, 20), str(e.city, 30), str(e.street, 120), str(e.highway, 40),
         Number.isSafeInteger(e.wayId) ? e.wayId : null,
-        num(e.lat, 45.5, 55.5), num(e.lon, 5.5, 23), num(e.bearing, -360, 360), // CZ, SK, AT, DE (Germany 17. 11. 2026)
+        num(e.lat, 27, 56), num(e.lon, -19, 25), num(e.bearing, -360, 360), // Europe of our states, Canary Islands to Poland (before: 45.5–55.5° N, 5.5–23° E lost Spain, most of France, Belgium and Amsterdam)
         num(e.reachLeft, 0, 100), num(e.reachRight, 0, 100), str(e.session, 40),
         e.profile && typeof e.profile === "object" && (e.kind === "upravy" || e.kind === "hlaseni") ? profileText(e.kind === "hlaseni" ? reportOf(e.profile) : e.profile) : null,
       ];
