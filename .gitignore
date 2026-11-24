@@ -40,3 +40,11 @@ Profily-ulic-Plus.docx
 evaluation/budovy-panel/cache.json
 # Copies of evaluation scripts served to the app page during a run (evaluation/slovensko/kontrola)
 pilot/public/evaluation-*
+# Working files of the agents' runs in the app's folder (copies of collectors, point lists), never deployed or committed
+pilot/public/zz-*
+# Esri World Imagery crops of the Lombardy A/B (not to be published: evaluation/italy/lombardia/ZPRAVA.md) and its data
+evaluation/italy/lombardia/obrazky/
+evaluation/italy/lombardia/data/
+# Images over orthophotos licensed for viewing only (Vilnius's own orthophoto, Esri), wherever an A/B keeps them
+evaluation/**/esri/
+evaluation/*/ab/data/

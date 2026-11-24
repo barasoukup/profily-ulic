@@ -8,7 +8,8 @@
 //   credited "Vilniaus miesto savivaldybė / Vilniaus planas". As Tallinn's map: OSM's buildings before it, OSM's green
 //   and water after, only where the map has the street under the cut's centre (hasStreet: within 3 m, a roadway under a
 //   street for cars; the map leaves out many main roads, whose sidewalks alone would make the street a sidewalk); a map that does not answer: the
-//   estimate, with a note. ?vilnius=0 leaves it out.
+//   estimate, with a note. Off by default (Bára 24. 11. 2026, after the hostile review: the universal measurement found
+// the map worse than the estimate, 53 against 75 % of the composition, and what is worse stays off); ?vilnius=1 turns it on.
 // The buildings: OSM's (the GRPK's PASK use code is undocumented and gives no floors nor year; NŽT's NTR has them but
 // no geometry nor CORS; ZDROJE.md 3), and for the facades the outlines of the GRPK (Bára 24. 11. 2026: the cut ends at
 // the facade): geoportal.lt NZT/GRPK layer 22 Pastatai, CORS for the origin asking, the dataset CC BY 4.0 (geoportal.lt
@@ -22,8 +23,8 @@ import { inArea } from "../places.js";
 import { osmAreas } from "./slovensko.js";
 
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_LT?.[k] ?? null : new URLSearchParams(location.search).get(k));
-// Both on by default (Bára 24. 11. 2026): Vilnius's map (?vilnius=0 leaves it out) and the GRPK's houses (?grpk=0).
-export const vilniusOn = () => param("vilnius") !== "0";
+// Vilnius's map off by default (?vilnius=1 turns it on; Bára 24. 11. 2026), the GRPK's houses on (?grpk=0 leaves them out).
+export const vilniusOn = () => param("vilnius") === "1";
 export const grpkOn = () => param("grpk") !== "0";
 export const VILNIUS_MAP = "https://gis.vplanas.lt/arcgis/rest/services/Baziniai_zemelapiai/Vilnius_basemap_LKS_su_rajonu/MapServer/13";
 export const GRPK_BUILDINGS = "https://www.geoportal.lt/arcgis/rest/services/NZT/GRPK/MapServer/22";
@@ -194,5 +195,5 @@ export const national = true;
 export const ortho = null;
 
 // The overview map of the About dialog (tools/build_coverage.mjs): where this module's own map of the street surfaces
-// answers: Vilnius's topographic areas.
-export const SURFACE_MAPS = ["vilnius"];
+// answers by default: none (Vilnius's topographic areas only with ?vilnius=1).
+export const SURFACE_MAPS = [];

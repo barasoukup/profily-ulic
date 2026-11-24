@@ -110,11 +110,13 @@ const inRings = (rings, x, y) => rings.reduce((c, r) => (inRing(r, x, y) ? !c : 
 
 // The parts of the cut (metres from its centre along dir, a unit vector; half its length) from WBN's polygons and WGO's
 // lines in metres around the centre: [{ from, to, code }], or null where the centre lies outside WBN. start: the kind
-// at the axis ("road", or "walk" on a path).
-export function grbAlong(wbn, wgo, dir, half, start = "road") {
+// at the anchor ("road", or "walk" on a path); anchor: where the reading starts, as a fraction of the cut (0.5 its
+// centre; a street of two carriageways is cut in the middle of its median, so the reading starts on the carriageway
+// OSM draws, grbSurfaces; the review of 24. 11. 2026: from the median as "road" every kind came out inverted).
+export function grbAlong(wbn, wgo, dir, half, start = "road", anchor = 0.5) {
   const A = [-dir[0] * half, -dir[1] * half], B = [dir[0] * half, dir[1] * half], at = (t) => [A[0] + (B[0] - A[0]) * t, A[1] + (B[1] - A[1]) * t];
   const inWbn = (t) => { const [x, y] = at(t); return wbn.some((rings) => inRings(rings, x, y)); };
-  if (!inWbn(0.5)) return null;
+  if (!inWbn(0.5) || !inWbn(anchor)) return null;
   const ev = [];
   for (const rings of wbn) for (const r of rings) for (let i = 1; i < r.length; i++) { const t = cross(A, B, r[i - 1], r[i]); if (t != null) ev.push({ t, type: "wbn" }); }
   for (const l of wgo) for (let i = 1; i < l.pts.length; i++) { const t = cross(A, B, l.pts[i - 1], l.pts[i]); if (t != null) ev.push({ t, type: l.type }); }
@@ -128,8 +130,8 @@ export function grbAlong(wbn, wgo, dir, half, start = "road") {
   const parts = [];
   let kerbs = 0;
   for (const side of [1, -1]) {
-    const list = side > 0 ? uniq.filter((e) => e.t > 0.5) : uniq.filter((e) => e.t < 0.5).reverse();
-    let kind = start, from = 0.5;
+    const list = side > 0 ? uniq.filter((e) => e.t > anchor) : uniq.filter((e) => e.t < anchor).reverse();
+    let kind = start, from = anchor;
     for (let i = 0; i <= list.length; i++) {
       const e = list[i], to = e ? e.t : side > 0 ? 1 : 0;
       parts.push({ a: Math.min(from, to), b: Math.max(from, to), kind, end: e?.type, side });
@@ -166,12 +168,21 @@ export function cutOfBox(bbox, osmElements, pad = 0.0004) {
       const [a, b] = [g[i - 1], g[i]], d = [b[0] - a[0], b[1] - a[1]], L2 = d[0] * d[0] + d[1] * d[1];
       if (!L2) continue;
       const t = Math.max(0, Math.min(1, -(a[0] * d[0] + a[1] * d[1]) / L2)), dist = Math.hypot(a[0] + t * d[0], a[1] + t * d[1]);
-      if (!best || dist < best.dist) best = { dist, along: [d[0] / Math.sqrt(L2), d[1] / Math.sqrt(L2)], tags: el.tags };
+      if (!best || dist < best.dist) best = { dist, along: [d[0] / Math.sqrt(L2), d[1] / Math.sqrt(L2)], tags: el.tags, g };
     }
   }
   const dirs = [[hx / cut, hy / cut], [hx / cut, -hy / cut]];
   const dir = best ? dirs.sort((p, q) => Math.abs(p[0] * best.along[0] + p[1] * best.along[1]) - Math.abs(q[0] * best.along[0] + q[1] * best.along[1]))[0] : dirs[0];
-  return { lat0, lon0, kx, ky, dir, half, tags: best?.tags };
+  // Where the nearest way crosses the cut (a fraction of it, 0.5 the centre), the crossing nearest the centre.
+  let axis = null;
+  if (best) {
+    const A = [-dir[0] * half, -dir[1] * half], B = [dir[0] * half, dir[1] * half];
+    for (let i = 1; i < best.g.length; i++) {
+      const t = cross(A, B, best.g[i - 1], best.g[i]);
+      if (t != null && (axis == null || Math.abs(t - 0.5) < Math.abs(axis - 0.5))) axis = t;
+    }
+  }
+  return { lat0, lon0, kx, ky, dir, half, tags: best?.tags, axis };
 }
 
 // WBN and WGO of a cut's box as thin MTVU features along the cut (2 m along the street), or null.
@@ -191,7 +202,10 @@ export function grbSurfaces(wbnJson, wgoJson, osmElements, bbox, tags = null) {
   }
   // Only a street for cars: a path's corridor (a park, a square) has no lines to read.
   if (!ROADS.test((tags || c.tags)?.highway || "")) return null;
-  const parts = grbAlong(wbn, wgo, c.dir, c.half);
+  // A cut whose centre is off its road (app.js centerOnStreet: the middle of a street of two carriageways) is read from
+  // where the road crosses it; a cut on its road from its centre, as before.
+  const anchor = c.axis != null && ROADS.test(c.tags?.highway || "") && Math.abs(c.axis - 0.5) * 2 * c.half > 1 ? c.axis : 0.5;
+  const parts = grbAlong(wbn, wgo, c.dir, c.half, "road", anchor);
   if (!parts) return null;
   const [nx, ny] = c.dir, along = [-ny, nx];
   return {

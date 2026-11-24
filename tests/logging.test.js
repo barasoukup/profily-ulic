@@ -105,30 +105,29 @@ test("záznam řezu: poloha ve všech státech aplikace (Kanáry, Azory, Kypr, E
 });
 
 // The contact form of the About dialog (POST /contact): a message is kept with its e-mail and cut, a robot's field and an
-// empty message are not, one address sends at most five an hour.
-function contactDb() {
-  const contacts = [], rate = new Map();
+// empty message are not, one address sends at most five an hour. The fake D1 keeps SQLite's order: each statement runs
+// whole, with a delay before it answers (the review of 24. 11. 2026: a read, then a write, let 40 parallel messages pass).
+function contactDb({ delay = 0 } = {}) {
+  const contacts = [], rate = new Map(), wait = () => new Promise((r) => setTimeout(r, delay));
   return {
     contacts, rate,
     prepare(sql) {
-      return {
-        bind: (...v) => ({
-          run: async () => {
-            if (/^INSERT INTO contacts/.test(sql)) contacts.push(v);
-            else if (/^INSERT INTO contact_rate/.test(sql)) rate.set(v[0], { hour: v[1], n: (rate.get(v[0])?.n || 0) + 1 });
-            else if (/^DELETE FROM contact_rate/.test(sql)) for (const [k, r] of rate) if (r.hour < v[0]) rate.delete(k);
-          },
-          first: async () => (/WHERE k = /.test(sql) ? rate.get(v[0]) || null
-            : { n: [...rate.values()].filter((r) => r.hour === v[0]).reduce((s, r) => s + r.n, 0) }),
-        }),
+      const exec = (v) => {
+        if (/^INSERT INTO contacts/.test(sql)) contacts.push(v);
+        else if (/^INSERT INTO contact_rate .* RETURNING n$/.test(sql)) { const r = { hour: v[1], n: (rate.get(v[0])?.n || 0) + 1 }; rate.set(v[0], r); return { n: r.n }; }
+        else if (/^DELETE FROM contact_rate WHERE hour < \?$/.test(sql)) { for (const [k, r] of rate) if (r.hour < v[0]) rate.delete(k); }
+        else throw new Error(`unknown SQL ${sql}`);
+        return null;
       };
+      return { bind: (...v) => ({ run: async () => { exec(v); await wait(); }, first: async () => { const r = exec(v); await wait(); return r; } }) };
     },
   };
 }
+const contactEnv = (db, more = {}) => ({ ...env(db), RATE_SALT: "s", ...more });
 const contactPost = (body, ip = "1.2.3.4", origin = "https://barasoukup.github.io") => new Request("https://w.example/contact", { method: "POST", body: JSON.stringify(body), headers: { Origin: origin, "Content-Type": "text/plain", "CF-Connecting-IP": ip } });
 
 test("kontaktní formulář: zpráva se uloží, robot a prázdná zpráva ne, nejvýš pět za hodinu", async () => {
-  const db = contactDb(), e = env(db);
+  const db = contactDb(), e = contactEnv(db);
   const cut = "https://barasoukup.github.io/profily-ulic/#rez=50.08,14.42,90,20.0,20.0";
   let r = await worker.fetch(contactPost({ message: " Dobrý den ", email: "a@b.cz", cut, lang: "cs", country: "CZ" }), e);
   assert.equal(r.status, 204);
@@ -148,6 +147,54 @@ test("kontaktní formulář: zpráva se uloží, robot a prázdná zpráva ne, n
   assert.equal((await worker.fetch(contactPost({ message: "jiná adresa" }, "5.6.7.8"), e)).status, 204);
   // The address itself is never kept.
   assert.ok(![...db.rate.keys()].some((k) => k.includes("1.2.3.4")));
+});
+
+test("kontaktní formulář: souběžné zprávy limit neobejdou, IPv6 po /64, bez soli nic", async () => {
+  const db = contactDb({ delay: 1 }), e = contactEnv(db);
+  const codes = await Promise.all(Array.from({ length: 40 }, (_, i) => worker.fetch(contactPost({ message: `m${i}` }), e).then((r) => r.status)));
+  assert.equal(db.contacts.length, 5);
+  assert.equal(codes.filter((c) => c === 204).length, 5);
+  assert.equal(codes.filter((c) => c === 429).length, 35);
+  // One /64 is one address, however its last 64 bits are written; another network has its own count.
+  const v6 = await Promise.all(Array.from({ length: 20 }, (_, i) => worker.fetch(contactPost({ message: "v6" }, `2001:db8:0:1::${(i + 1).toString(16)}`), e).then((r) => r.status)));
+  assert.equal(v6.filter((c) => c === 204).length, 5);
+  assert.equal((await worker.fetch(contactPost({ message: "v6" }, "2001:db8:0:2:aa::1"), e)).status, 204);
+  // No cap over everyone: a hundred addresses do not switch the form off for the next one.
+  for (let i = 0; i < 100; i++) await worker.fetch(contactPost({ message: "x" }, `10.0.${i >> 8}.${i & 255}`), e);
+  assert.equal((await worker.fetch(contactPost({ message: "poctivá" }, "9.9.9.9"), e)).status, 204);
+  // Without RATE_SALT: not configured, nothing kept, nothing counted.
+  const bare = contactDb();
+  assert.equal((await worker.fetch(contactPost({ message: "x" }), { ...env(bare) })).status, 503);
+  assert.equal(bare.contacts.length + bare.rate.size, 0);
+});
+
+test("kontaktní formulář: e-mail nejvýš dvakrát z adresy a desetkrát za hodinu, staré řádky pryč", async () => {
+  const W = await import("../logging/worker.js");
+  assert.equal(W.rateAddress("2001:DB8:0:1::5"), W.rateAddress("2001:db8:0:1:ffff:1:2:3"));
+  assert.notEqual(W.rateAddress("2001:db8:0:1::5"), W.rateAddress("2001:db8:0:2::5"));
+  assert.equal(W.rateAddress("::ffff:1.2.3.4"), "1.2.3.4");
+  // The cut's link: only our page and a position after #rez=.
+  const O = ["https://streetspace.eu", "http://localhost:5173"];
+  assert.ok(W.cutOf("https://streetspace.eu/profily/?lang=sk#rez=48.1,17.1,90,20.0,20.0", O));
+  for (const bad of ["https://streetspace.eu/x?<script>#rez=1", "https://streetspace.eu/@evil.example/#rez=1", "http://localhost:5173/#rez=1\r\nBcc: a@b.cz", "https://streetspace.eu.evil.example/#rez=1"]) assert.equal(W.cutOf(bad, O), null, bad);
+  // The e-mail: with a binding, the first two of an address, at most ten of everyone (the rest only in D1). Node has no
+  // cloudflare:email, so the sending is counted by its attempts (the import fails after the decision).
+  const db = contactDb(), sent = [];
+  const e = contactEnv(db, { MAIL: { send: async (m) => sent.push(m) }, CONTACT_FROM: "f@x.example", CONTACT_TO: "t@x.example" });
+  let tried = 0;
+  const warn = console.warn;
+  console.warn = () => { tried++; };
+  try {
+    for (let i = 0; i < 4; i++) await worker.fetch(contactPost({ message: "a" }, "1.1.1.1"), e);
+    assert.equal(tried, 2, "dva e-maily z jedné adresy");
+    for (let i = 0; i < 20; i++) await worker.fetch(contactPost({ message: "b" }, `10.1.0.${i}`), e);
+    assert.equal(tried, 10, "deset e-mailů za hodinu");
+  } finally { console.warn = warn; }
+  assert.equal(db.contacts.length, 24, "uloží se všechny");
+  // The hourly cron trigger deletes the rows of past hours.
+  db.rate.set("old", { hour: "2000-01-01T00", n: 3 });
+  await worker.scheduled({ scheduledTime: Date.now() }, e);
+  assert.ok(!db.rate.has("old") && db.rate.size > 0);
 });
 
 test("kontaktní formulář na stránce: bez adresy Workera se nic neposílá", async () => {

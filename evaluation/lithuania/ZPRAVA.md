@@ -9,7 +9,7 @@ Bára 24. 11. 2026: mapy povrchů jsou lepší než ortofota, vzít nejslibněj�
   lokálně výřez Vilniusu, Kaunasu, Klaipėdy, Šiauliů, Panevėžysu a Alytusu, 10 MB).
 - **Bez ortofota:** NŽT jen k prohlížení na geoportálu (nepoužito; úřadům jsme nepsaly). `laneOrtho: "none"`, mimo
   Vilnius „jen odhad z OSM“.
-- **Vilnius:** topografické plochy 1 : 500 jako plochy řezu, **zapnuté** (Bára 24. 11. 2026; `?vilnius=0` vypne), licence neuvedená, kredit
+- **Vilnius:** topografické plochy 1 : 500 jako plochy řezu, **vypnuté** (Bára 24. 11. 2026 po nepřátelské recenzi: co je horší, zůstane vypnuté; `?vilnius=1` zapne), licence neuvedená, kredit
   „Vilniaus miesto savivaldybė / Vilniaus planas“. A/B 40 řezů: použita v 26, lépe 17, hůř 2, stejně 4, nejasné 3
   (`ab/ZPRAVA.md`); z výher B jsou ale 4 pěšiny a 7 obslužných cest, na ulicích 6 : 0.
 - **Budovy:** vzhled domů z OSM. GRPK (CC BY 4.0) má jen obrys a nedokumentovaný kód užití `PASK`, bez podlaží a roku; NTR
@@ -39,8 +39,10 @@ stejně pěšiny (23). Zbylo 13 ulic, s fotkou Mapillary 10 (posuzovatel Sonnet,
 
 Rozpor s A/B: okem nad ortofotem mapa vyhrává (vozovka a obruby podle skutečného asfaltu), měření ji tresty za „navíc
 chodník, navíc zeleň“: mapa dělí chodník na kousky (dlažba, zeleň, stromy) a sahá dál za fasádu, kde posuzovatel končí;
-u zirmunai-7 kreslí 5 pruhů místo 6 a šířku 46 m proti 24 m. Vzorek je malý (10 řezů). **Bára 24. 11. 2026: mapa
-zůstává zapnutá** (`?vilnius=0` vypne) a fasádu mají dát budovy GRPK (níže). Pravidlo o vjezdech a uličkách parkovišť platí zatím jen
+u zirmunai-7 kreslí 5 pruhů místo 6 a šířku 46 m proti 24 m. Vzorek je malý (10 řezů). Bára 24. 11. 2026 nejdřív
+nechala mapu zapnutou a fasádu měly dát budovy GRPK (níže); GRPK složení nezlepšilo, a po nepřátelské recenzi téhož dne
+(z 8 řezů s mapou je mapa horší v 6, stejná ve 2, lepší v žádném) **je mapa vypnutá** (`?vilnius=1` zapne), dokud ji
+nepotvrdí větší vzorek naslepo (aspoň 30 ulic s fotkou). Pravidlo o vjezdech a uličkách parkovišť platí zatím jen
 v `evaluation/lithuania/score.mjs`, takže číslo LT není přímo srovnatelné s ostatními státy (ty jsou měřené bez něj).
 Profily 10 posuzovaných řezů sebrané znovu po opravě z recenze (model obrub už v Litvě neběží; 52 → 53 %).
 
@@ -79,6 +81,12 @@ dnešním pravidlem, že strana bez fasády se za okrajem ulice nehodnotí, prot
 
 Složení se nezměnilo: rozdíl mapy Vilniusu proti odhadu (navíc chodník 9×, navíc zeleň 5×) nedělá fasáda, ale to, že
 mapa dělí chodník a okolí na víc kusů (dlažba, zeleň, stromy), které posuzovatel z fotky slučuje. GRPK zlepšilo jen šířku.
+
+## Vypnutí mapy Vilniusu (24. 11. 2026)
+Podle pravidla „co zhorší, zůstane vypnuté“ je mapa Vilniusu od 24. 11. 2026 ve výchozím stavu vypnutá: ve Vilniusu
+platí odhad z OSM s obrysy budov GRPK (`?vilnius=1` vrátí mapu). Mapa pokrytí v okně „O aplikaci“ ukazuje Vilnius jako
+zbytek Litvy (jen OSM). Možná oprava do budoucna: brát z mapy jen vozovku a obruby, sloučit sousední kusy chodníku a
+končit na fasádě, pak změřit znovu.
 
 ## Recenze
 `RECENZE.md` (nepřátelská recenze 24. 11. 2026, co se opravilo).

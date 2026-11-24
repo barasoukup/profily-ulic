@@ -25,16 +25,40 @@ const reportOf = (p) => ({ ...p, text: str(p.text, 1000), co: Array.isArray(p.co
 const str = (v, n) => (typeof v === "string" && v ? v.slice(0, n) : null);
 
 // A message to Bára from the About dialog (Bára 24. 11. 2026): the text (required, at most CONTACT_MAX characters), an
-// e-mail for a reply and the link of the cut (both optional). A hidden field "website" only a robot fills: answered 204,
-// nothing kept. At most CONTACT_PER_HOUR messages an hour from one address and CONTACT_ALL_HOUR from everyone: the table
-// contact_rate counts them by a SHA-256 of the hour, the address and the secret RATE_SALT (the address itself is never
-// kept, a row is deleted after two hours). With the send_email binding MAIL and the variables CONTACT_FROM and CONTACT_TO
-// (logging/README.md: the addresses only in the Worker's settings, never here) the message also comes as an e-mail; a
-// failed e-mail leaves the message kept.
-const CONTACT_MAX = 3000, CONTACT_PER_HOUR = 5, CONTACT_ALL_HOUR = 60;
+// e-mail for a reply and the link of the cut (both optional), the page's language and the cut's state. A hidden field
+// only a robot fills: answered 204, nothing kept. The rate limit (the review of 24. 11. 2026): the table contact_rate
+// counts one row an hour per address (IPv6 per /64, a network has 2^64 addresses) by a SHA-256 of the hour, the address
+// and the secret RATE_SALT; without the salt the Worker refuses messages (503) rather than keep hashes anyone could
+// reverse. Each count is one INSERT … ON CONFLICT DO UPDATE … RETURNING, so parallel requests cannot all read zero:
+// at most CONTACT_PER_HOUR messages an hour are kept from one address, and nothing caps the others (no switch that turns
+// the form off for everyone). The e-mail is capped lower: the first MAIL_PER_HOUR of an address and MAIL_ALL_HOUR from
+// everyone (the row "mail|<hour>"); the messages beyond are only kept in D1. The rows of past hours are deleted by the
+// hourly cron trigger (wrangler.toml, scheduled below) and at each message. With the send_email binding MAIL and the
+// variables CONTACT_FROM and CONTACT_TO (logging/README.md: the addresses only in the Worker's settings, never here)
+// the message also comes as an e-mail; a failed e-mail leaves the message kept.
+export const CONTACT_MAX = 3000, CONTACT_PER_HOUR = 5, MAIL_PER_HOUR = 2, MAIL_ALL_HOUR = 10;
 const EMAIL = /^[^\s@<>()",;:]{1,64}@[A-Za-z0-9.-]{1,190}\.[A-Za-z]{2,24}$/;
+// The cut's link: our own page (a path and the switches of its query, ?lang=sk&vilnius=1) with only the position after
+// #rez= (the review: anything after an allowed start passed, a script or a CR/LF too).
+const CUT_PATH = /^\/[A-Za-z0-9._~\/-]{0,200}(\?[A-Za-z0-9._~=&%-]{0,200})?#rez=[0-9.,-]{1,120}$/;
 const sha = async (s) => [...new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s)))].map((b) => b.toString(16).padStart(2, "0")).join("");
 const b64 = (s) => { let bin = ""; for (const b of new TextEncoder().encode(s)) bin += String.fromCharCode(b); return btoa(bin); };
+// The address as it is counted: IPv4 whole, IPv6 its first 64 bits (expanded, so "2001:db8::1" and "2001:db8:0:0::2" are one).
+export function rateAddress(ip) {
+  if (!ip || !ip.includes(":")) return ip || "?";
+  if (ip.includes(".")) return ip.slice(ip.lastIndexOf(":") + 1); // ::ffff:1.2.3.4 is IPv4
+  const [head, tail = ""] = ip.toLowerCase().split("%")[0].split("::");
+  const a = head ? head.split(":") : [], b = ip.includes("::") ? (tail ? tail.split(":") : []) : [];
+  const groups = ip.includes("::") ? [...a, ...Array(Math.max(0, 8 - a.length - b.length)).fill("0"), ...b] : a;
+  return groups.slice(0, 4).map((g) => (parseInt(g, 16) || 0).toString(16)).join(":") + "::/64";
+}
+export const cutOf = (cut, origins) => {
+  if (typeof cut !== "string" || cut.length > 400) return null;
+  const o = origins.find((x) => cut.startsWith(x + "/"));
+  return o && CUT_PATH.test(cut.slice(o.length)) ? cut : null;
+};
+const count = async (env, k, hour) => (await env.DB.prepare("INSERT INTO contact_rate (k, hour, n) VALUES (?, ?, 1) ON CONFLICT(k) DO UPDATE SET n = n + 1 RETURNING n").bind(k, hour).first())?.n ?? Infinity;
+const sweep = (env, hour) => env.DB.prepare("DELETE FROM contact_rate WHERE hour < ?").bind(hour).run();
 async function mailContact(env, m) {
   if (!env.MAIL || !env.CONTACT_FROM || !env.CONTACT_TO) return;
   const body = [m.message, "", m.email ? `E-mail: ${m.email}` : "E-mail: –", m.cut ? `Řez: ${m.cut}` : null, m.lang ? `Jazyk: ${m.lang}` : null, m.country ? `Stát: ${m.country}` : null].filter((x) => x !== null).join("\n");
@@ -60,18 +84,15 @@ async function contact(req, env, cors, origins) {
   if (message.length > CONTACT_MAX) return new Response("size", { status: 413, headers: cors });
   const email = typeof e.email === "string" && e.email.trim() ? e.email.trim() : null;
   if (email && !EMAIL.test(email)) return new Response("email", { status: 400, headers: cors });
-  // The cut's link only on our own page (#rez=…).
-  const cut = typeof e.cut === "string" && e.cut.length <= 2000 && e.cut.includes("#rez=") && origins.some((o) => o && e.cut.startsWith(o + "/")) ? e.cut : null;
-  const now = new Date(), hour = now.toISOString().slice(0, 13), old = new Date(now - 2 * 3600e3).toISOString().slice(0, 13);
-  const k = await sha(`${hour}|${req.headers.get("CF-Connecting-IP") || "?"}|${env.RATE_SALT || ""}`);
-  await env.DB.prepare("DELETE FROM contact_rate WHERE hour < ?").bind(old).run();
-  const mine = await env.DB.prepare("SELECT n FROM contact_rate WHERE k = ?").bind(k).first();
-  const all = await env.DB.prepare("SELECT sum(n) AS n FROM contact_rate WHERE hour = ?").bind(hour).first();
-  if ((mine?.n || 0) >= CONTACT_PER_HOUR || (all?.n || 0) >= CONTACT_ALL_HOUR) return new Response(null, { status: 429, headers: cors });
-  await env.DB.prepare("INSERT INTO contact_rate (k, hour, n) VALUES (?, ?, 1) ON CONFLICT(k) DO UPDATE SET n = n + 1").bind(k, hour).run();
-  const m = { message, email, cut, lang: str(e.lang, 5), country: typeof e.country === "string" && /^[A-Z]{2}$/.test(e.country) ? e.country : null };
+  const cut = cutOf(e.cut, origins);
+  if (!env.RATE_SALT) return new Response("not configured", { status: 503, headers: cors });
+  const hour = new Date().toISOString().slice(0, 13);
+  const n = await count(env, await sha(`${hour}|${rateAddress(req.headers.get("CF-Connecting-IP"))}|${env.RATE_SALT}`), hour);
+  if (n > CONTACT_PER_HOUR) return new Response(null, { status: 429, headers: cors });
+  const m = { message, email, cut, lang: typeof e.lang === "string" && /^[a-z]{2}$/.test(e.lang) ? e.lang : null, country: typeof e.country === "string" && /^[A-Z]{2}$/.test(e.country) ? e.country : null };
   await env.DB.prepare("INSERT INTO contacts (message, email, cut, lang, country) VALUES (?, ?, ?, ?, ?)").bind(m.message, m.email, m.cut, m.lang, m.country).run();
-  await mailContact(env, m);
+  if (n <= MAIL_PER_HOUR && (await count(env, `mail|${hour}`, hour)) <= MAIL_ALL_HOUR) await mailContact(env, m);
+  await sweep(env, hour);
   return new Response(null, { status: 204, headers: cors });
 }
 
@@ -79,7 +100,7 @@ export default {
   async fetch(req, env) {
     const url = new URL(req.url);
     const origin = req.headers.get("Origin") || "";
-    const origins = (env.ALLOWED_ORIGINS || "").split(",").map((s) => s.trim());
+    const origins = (env.ALLOWED_ORIGINS || "").split(",").map((s) => s.trim()).filter(Boolean);
     const allowed = origins.includes(origin);
     const cors = allowed ? { "Access-Control-Allow-Origin": origin, Vary: "Origin" } : {};
     if (req.method === "OPTIONS") {
@@ -129,5 +150,9 @@ export default {
       return new Response(csv, { headers: { "Content-Type": "text/csv; charset=utf-8", "Content-Disposition": "attachment; filename=profily-ulic.csv" } });
     }
     return new Response("Profily ulic – záznam řezů", { status: 404 });
+  },
+  // The hourly cron trigger (wrangler.toml): the rate rows of past hours go, even when no message comes after them.
+  async scheduled(event, env) {
+    await sweep(env, new Date(event?.scheduledTime ?? Date.now()).toISOString().slice(0, 13));
   },
 };

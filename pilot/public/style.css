@@ -151,7 +151,7 @@ button.pano-link { width: 100%; text-align: left; background: var(--panel); bord
 .about-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 0; padding: 0; list-style: none; font-size: 13px; }
 .about-legend li { display: inline-flex; align-items: center; gap: 6px; }
 .about-legend i { width: 14px; height: 14px; border: 1px solid #3d5a48; border-radius: 3px; }
-.cov-povrch { background: #1d6b52; } .cov-ortofoto { background: #7fbf8e; } .cov-osm { background: #d9ecb8; } .cov-mimo { background: #fff; border-color: var(--line-strong) !important; }
+.cov-surface { background: #1d6b52; } .cov-ortho { background: #7fbf8e; } .cov-osm { background: #d9ecb8; } .cov-none { background: #fff; border-color: var(--line-strong) !important; }
 .about-note { font-size: 13px; }
 #contact-text, #contact-email { width: 100%; box-sizing: border-box; font: inherit; padding: 8px; border: 1px solid var(--line-strong); border-radius: 8px; }
 #contact-text { resize: vertical; }

@@ -1,6 +1,8 @@
 // The green strip beyond the kerb (ortho-osm.js trimToEnds, P.greenStripOn; Bára 23. 11. 2026) against MTVU: for the
 // regression's cuts of Prague and Brno, the profile with and without it; what MTVU has on the metres the strip adds.
 //   W=3 node evaluation/ortofoto-osm/zelenpas/mtvu.mjs   (W: the strip's width, m)
+// A record only (ZPRAVA.md): the green strip and its P.greenStripOn were taken out of ortho-osm.js on 24. 11. 2026, so
+// this script no longer runs as it is.
 import { cuts, truthOf, osmAround, stripOf } from "../lib.mjs";
 import { orthoOsmPolys, trimToEnds, P } from "../../../pilot/public/ortho-osm.js";
 import { localFrame, deriveProfile } from "../../../pilot/public/derive.js";

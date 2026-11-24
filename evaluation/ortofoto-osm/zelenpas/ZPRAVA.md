@@ -26,6 +26,9 @@ Podle pravidla (co zhorší, zůstane vypnuté) je pás vypnutý. Šířka 2 m (
 
 ## Co je pod pásem podle MTVU (`W=3 node evaluation/ortofoto-osm/zelenpas/mtvu.mjs`)
 
+(Skript zůstává jako záznam, jak čísla vznikla; po odstranění pásu z `ortho-osm.js` už nejde spustit, `P.greenStripOn`
+neexistuje. Nepřátelská recenze 24. 11. 2026.)
+
 Pás se přidá na 81 stranách (65 řezů × ortofot), dohromady 83 m:
 
 | MTVU pod pásem | m | podíl |

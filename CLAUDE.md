@@ -522,10 +522,11 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - **Žádné ortofoto** (Bára 24. 11.: ortofoto NŽT je jen k prohlížení na geoportálu, nepoužívat, úřadům nepsat):
   `laneOrtho: "none"`, mimo Vilnius jen odhad z OSM.
 - Vilnius: topografické plochy 1 : 500 (`gis.vplanas.lt` …/MapServer/13, `KODAS` + `Paskirtis`) jako plochy řezu, když pod
-  středem řezu leží vozovka mapy (pod pěšinou i chodník); `?vilnius=0`. Licence neuvedená, Bára je vzala jako kodaňské,
+  středem řezu leží vozovka mapy (pod pěšinou i chodník). **Vypnutá** (`?vilnius=1` zapne). Licence neuvedená, Bára je vzala jako kodaňské,
   kredit „Vilniaus miesto savivaldybė / Vilniaus planas“. A/B 26 řezů: lépe 17, hůř 2 (na ulicích 6 : 0, zbytek pěšiny
   a obslužné cesty); univerzální měření (10 řezů) ale mapa 53 % proti odhadu 75 % (`evaluation/lithuania/ZPRAVA.md`).
-  Bára 24. 11. 2026: mapa zůstává zapnutá. Recenze `evaluation/lithuania/RECENZE.md`; model obrub (`?ai`) v Litvě neběží (bez ortofota).
+  Bára 24. 11. 2026 po nepřátelské recenzi: co je horší, zůstane vypnuté, mapa je vypnutá a v mapě pokrytí není (do
+  většího vzorku naslepo). Recenze `evaluation/lithuania/RECENZE.md`; model obrub (`?ai`) v Litvě neběží (bez ortofota).
 - Vzhled domů z OSM (GRPK bez podlaží a roku). Obrysy budov GRPK (geoportal.lt `NZT/GRPK/MapServer/22`, CC BY 4.0, Bára
   24. 11. 2026) ukončují řez u fasády: pod mapou Vilniusu před budovami OSM, v odhadu jen domy, které OSM nemá; `?grpk=0`.
   A/B 88 řezů: změněno 14, lépe 5, hůř 2; měření: složení beze změny (53 %), šířka do 1 m 0 → 20 %. Zapnuté. Hledání Photon. Normy z příruček Vilniusu a Kaunasu
@@ -614,11 +615,15 @@ Odstávka IS DMVS a DTM krajů 12.–18. 11. (přechod na JVF DTM 1.5.0.2), pln�
 ## O aplikaci (Bára 24. 11. 2026, větev estonia, nenasazené)
 - Menu Soubor → „O aplikaci“ (`pilot/public/about.js`, dialog v `index.html`): text o aplikaci, autorka podle státu řezu
   (`countries/*.js author`: v CZ a SK Bára Soukupová, jinde Bara Soukup), MIT a odkazy na repo a `LICENCE-A-ZDROJE.md`.
-- Mapa pokrytí `pilot/public/coverage.json` (306 kB) dělá `node tools/build_coverage.mjs` z modulů: `SURFACE_MAPS` v každém
+- Mapa pokrytí `pilot/public/coverage.json` (309 kB) dělá `node tools/build_coverage.mjs` z modulů: `SURFACE_MAPS` v každém
   `towns/*.js` („all“, id z AREAS, klíč hranic, „-NUTS3“ vynechá), `laneOrtho` států a částečná ortofota z `lanes-ortho.js`.
-  Nový zdroj = upravit `SURFACE_MAPS` a přestavět; `tests/coverage.test.js` hlídá aktuálnost a zařazení všech států.
+  Nový zdroj = upravit `SURFACE_MAPS` a přestavět; `tests/coverage.test.js` hlídá aktuálnost, zařazení všech států a modulů
+  a třídy v bodech (i těsně za hranicí města). Města z obdélníků AREAS se kreslí hranicí obce (GISCO LAU 2024,
+  `LAU_TOWNS`, `tools/coverage-lau.json`, `--lau=<soubor>`), pod legendou „mapu povrchů bereme jen tam, kde má ulici pod řezem“.
 - Kontaktní formulář přes Workera (`POST /contact`, tabulky `contacts` a `contact_rate`, skryté pole, 5 zpráv za hodinu
-  z adresy), e-mail volitelně přes `send_email`; nasazení v `logging/README.md` (Bára). Bez `LOG_URL` „zatím nejde“.
+  z adresy, IPv6 po /64, počítáno atomicky `INSERT … RETURNING`, bez celkového stropu; e-mail 2× z adresy a 10× za hodinu
+  celkem; bez `RATE_SALT` odpověď 503; staré řádky maže hodinový cron; Bára 24. 11. 2026: jen limit, žádný Turnstile),
+  e-mail volitelně přes `send_email`; nasazení v `logging/README.md` (Bára). Bez `LOG_URL` „zatím nejde“.
 
 ## Licence
 - Kód MIT. Ilustrace Streetmix CC BY-SA 4.0 (s uvedením autora), pražské ilustrace (`pilot/public/praha/`)

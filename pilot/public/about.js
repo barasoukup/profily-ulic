@@ -13,14 +13,14 @@ export async function sendContact(data, { url = CONTACT_URL, fetchFn = globalThi
   if (!url) return "off";
   try {
     const r = await fetchFn(url, { method: "POST", body: JSON.stringify(data), headers: { "Content-Type": "text/plain" }, signal: AbortSignal.timeout(10000) });
-    return r.ok ? "ok" : r.status === 429 ? "limit" : r.status === 404 ? "off" : "fail";
+    return r.ok ? "ok" : r.status === 429 ? "limit" : r.status === 404 || r.status === 503 ? "off" : "fail";
   } catch {
     return "off";
   }
 }
 
 // The classes of the overview map, drawn in the order of coverage.json (later over earlier).
-const COLORS = { povrch: "#1d6b52", ortofoto: "#7fbf8e", osm: "#d9ecb8" };
+const COLORS = { surface: "#1d6b52", ortho: "#7fbf8e", osm: "#d9ecb8" };
 let map = null;
 async function showMap(el) {
   if (map) { map.invalidateSize(); return; }

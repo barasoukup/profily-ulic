@@ -4,6 +4,7 @@
 // (B, red). Thick lines are the edges of the carriageway, thin the other boundaries; yellow the centre of the cut.
 // Only cuts whose profiles differ; the orthophoto is asked once and kept in data/ (git ignores it).
 //   node evaluation/slovensko/ab/obrazky.mjs
+//   ORTHO=dk TITLE="čáry obrub Kodaně" LA="bez čar" LB="s čarami" IN=… OUT=… node evaluation/slovensko/ab/obrazky.mjs
 import fs from "node:fs/promises";
 import path from "node:path";
 import { execFile } from "node:child_process";
@@ -20,6 +21,33 @@ const run = promisify(execFile);
 // IN, OUT: another results file and pictures folder (the technical map of Bratislava: vysledky/rezy-tm.json, obrazky-tm).
 const IN = process.env.IN || "vysledky/rezy.json", OUT = process.env.OUT || "obrazky";
 const rows = JSON.parse(await fs.readFile(path.join(ROOT, IN), "utf8"));
+// The state of the orthophoto (ORTHO) and its credit, for the page's title and its footer (the review of 24. 11. 2026: the
+// pages of Denmark and Flanders carried the Slovak title and GKÚ's credit over GeoDanmark's and Flanders' photos).
+// TITLE names the test, LA and LB the two variants.
+export const ORTHO_PAGE = {
+  sk: { state: "Slovensko", credit: "Ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)." },
+  de: { state: "Německo", credit: "Ortofota © zeměměřické úřady spolkových zemí (dl-de/by-2-0, dl-de/zero-2-0, CC BY 4.0; seznam v patičce aplikace)." },
+  ch: { state: "Švýcarsko", credit: "Ortofoto SWISSIMAGE © swisstopo." },
+  pl: { state: "Polsko", credit: "Ortofoto © GUGiK (Geoportal.gov.pl)." },
+  fr: { state: "Francie", credit: "Ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0)." },
+  si: { state: "Slovinsko", credit: "Ortofoto DOF025 © Geodetska uprava RS (CC BY 4.0)." },
+  fi: { state: "Finsko", credit: "Ortofoto © Helsingin kaupunki, kaupunkimittauspalvelut, Espoon kaupunki, Turun kaupunki (CC BY 4.0)." },
+  es: { state: "Španělsko", credit: "Ortofoto PNOA © IGN (CC BY 4.0 scne.es)." },
+  pt: { state: "Portugalsko", credit: "Ortofoto © DGT (Direção-Geral do Território)." },
+  be: { state: "Belgie", credit: "Ortofoto © Digitaal Vlaanderen, SPW (Service public de Wallonie)." },
+  nl: { state: "Nizozemsko", credit: "Luchtfoto © Beeldmateriaal Nederland (PDOK, CC BY 4.0)." },
+  ee: { state: "Estonsko", credit: "Ortofoto © Maa- ja Ruumiamet." },
+  dk: { state: "Dánsko", credit: "Indeholder data fra Styrelsen for Dataforsyning og Infrastruktur, Ortofoto forår, WMTS-tjeneste." },
+  lt: { state: "Litva", credit: "Ortofoto 2024 © Vilniaus miesto savivaldybė / Vilniaus planas (jen k posouzení A/B, v aplikaci se nepoužívá)." },
+  at: { state: "Rakousko", credit: "Ortofoto © basemap.at (CC BY 4.0)." },
+};
+export const pageHead = (ortho = "sk", { title = null, la = "bez pasportu", lb = "s pasportem" } = {}) => {
+  const m = ORTHO_PAGE[ortho] || ORTHO_PAGE.sk, name = title || (ortho === "sk" ? "pasporty měst" : "A/B");
+  return `<title>${m.state}: ${name}, A/B</title>
+<style>body{font:14px system-ui;margin:16px;background:#fff;color:#222}figure{margin:0 0 24px}img{max-width:100%;display:block}figcaption{margin-top:4px}</style>
+<h1>${m.state}, ${name}: ${la} (nahoře, modře) a ${lb} (dole, červeně)</h1>
+<p>Řez zleva (A) doprava (B), ±10 m podél ulice, 10 px = 1 m. Silné čáry = okraje vozovky, tenké = ostatní hranice, žlutá = střed řezu, * = odhad. ${m.credit}</p>`;
+};
 export const parts = (p) => (p?.segments || []).map(([t, w]) => `${t}:${w}`).join(" ");
 export const differs = (r) => parts(r.A) !== parts(r.B);
 
@@ -250,10 +278,7 @@ if (process.argv[1] === new URL(import.meta.url).pathname) {
     items.push(`<figure><img src="${r.id}.jpg" alt=""><figcaption>${r.id} · ${c.name || "(bez názvu)"} (${r.town})<br><b style="color:#2878ff">${process.env.LA || "bez pasportu"}:</b> ${fmt(r.A)}<br><b style="color:#e22">${process.env.LB || "s pasportem"}:</b> ${fmt(r.B)}</figcaption></figure>`);
     console.log(r.id, c.name);
   }
-  await fs.writeFile(path.join(ROOT, OUT, "index.html"), `<!doctype html><meta charset="utf-8"><title>Slovensko: pasporty měst, A/B</title>
-<style>body{font:14px system-ui;margin:16px;background:#fff;color:#222}figure{margin:0 0 24px}img{max-width:100%;display:block}figcaption{margin-top:4px}</style>
-<h1>Pasporty slovenských měst: bez pasportu (nahoře, modře) a s pasportem (dole, červeně)</h1>
-<p>Řez zleva (A) doprava (B), ±10 m podél ulice, 10 px = 1 m. Silné čáry = okraje vozovky, tenké = ostatní hranice, žlutá = střed řezu, * = odhad. Ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0).</p>
+  await fs.writeFile(path.join(ROOT, OUT, "index.html"), `<!doctype html><meta charset="utf-8">${pageHead(process.env.ORTHO || "sk", { title: process.env.TITLE, la: process.env.LA, lb: process.env.LB })}
 ${items.join("\n")}`);
   console.log("hotovo:", items.length);
 }

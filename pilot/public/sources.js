@@ -50,7 +50,8 @@ export const mtvu = (bbox, tags) => (town() ? town().surfaces(bbox, tags) : isBr
 // "opendata" when the tiles of its open data failed (street classes of TSK, trees).
 // fallback: the sentence of the profile made without the map (app.js, ortho-osm.js): it takes the place of "the
 // profile is an estimate from OSM", before what else is missing and the advice to click again.
-export function outage({ surfaces, lines, parking }, dataName = city.dataName, { fallback = "" } = {}) {
+// orthoEstimate: the estimate here is read on an orthophoto (app.js: the state's and the place's, lanes-ortho.js orthoHereAt).
+export function outage({ surfaces, lines, parking }, dataName = city.dataName, { fallback = "", orthoEstimate = country.orthoEstimate } = {}) {
   const s = surfaces.status === "fulfilled" ? surfaces.value : null;
   const lacks = [];
   // What the lines are by the state (countries/<ISO>.js linesMissing; in Slovakia the town's map and ZBGIS).
@@ -85,7 +86,7 @@ export function outage({ surfaces, lines, parking }, dataName = city.dataName, {
   if (s?.nlFailed) return { note: mark(" · mapa povrchů BGT neodpověděla, odhad z ortofota a OSM"), text: t("Mapa povrchů BGT (PDOK) teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };
   if (s?.deFailed) return { note: mark(" · mapa povrchů města neodpověděla, odhad z ortofota a OSM"), text: t("Mapa povrchů města teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };
   if (s?.atFailed) return { note: mark(" · mapa povrchů Vídně neodpověděla, odhad z ortofota a OSM"), text: t("Mapa povrchů Vídně teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };
-  if (s?.abroad) return { note: country.orthoEstimate ? mark(" · odhad z ortofota a OSM") : mark(" · jen odhad z OSM"), text: t("Mapu povrchů tu zatím nemáme, profil je odhad."), error: false };
+  if (s?.abroad) return { note: orthoEstimate ? mark(" · odhad z ortofota a OSM") : mark(" · jen odhad z OSM"), text: t("Mapu povrchů tu zatím nemáme, profil je odhad."), error: false };
   const note = failed ? mark(" · mapa povrchů neodpověděla, jen odhad")
     : s.fallback ? mark(" · plochy z technické mapy ČÚZK")
     : empty ? (s.dmvsFailed ? mark(" · mapa povrchů neodpověděla, jen odhad") : s.linesOnly ? mark(" · mapa povrchů tu má jen čáry, jen odhad") : mark(" · mimo mapu povrchů, jen odhad"))

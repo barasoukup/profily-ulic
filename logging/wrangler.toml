@@ -10,3 +10,7 @@ ALLOWED_ORIGINS = "https://streetspace.eu,https://barasoukup.github.io,http://lo
 binding = "DB"
 database_name = "profily-ulic-log"
 database_id = "6674c597-2e83-4a25-aa8c-e65d7db75ed9"
+
+# Every hour: the rate rows of the contact form's past hours are deleted (worker.js scheduled).
+[triggers]
+crons = ["17 * * * *"]

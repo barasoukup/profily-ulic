@@ -76,6 +76,8 @@ test("Litva: mapa povrchů Vilniusu (kód a účel plochy)", async () => {
   assert.match(V.vilniusUrl("25.27,54.68,25.28,54.69", 1000), /resultOffset=1000/);
   globalThis.PROFILY_LT = { grpk: "0" };
   assert.deepEqual(await V.sources.surfaces("23.92,54.89,23.93,54.90"), { features: [], abroad: true }, "mimo Vilnius nic");
+  globalThis.PROFILY_LT = { grpk: "0" };
+  assert.deepEqual(await V.sources.surfaces("25.27,54.68,25.28,54.69"), { features: [], abroad: true }, "výchozí: bez mapy Vilniusu");
   globalThis.PROFILY_LT = { vilnius: "0", grpk: "0" };
   assert.deepEqual(await V.sources.surfaces("25.27,54.68,25.28,54.69"), { features: [], abroad: true }, "?vilnius=0");
   delete globalThis.PROFILY_LT;
@@ -127,14 +129,14 @@ test("Litva: pod ulicí pro auta musí být vozovka mapy", async () => {
   assert.ok(V.hasStreet(walk, 25.0005, 54.0005, { highway: "footway" }), "pěšina nad chodníkem mapy: mapa");
 });
 
-// Vilnius's map and the GRPK's houses are on by default (Bára 24. 11. 2026); the GRPK's houses that OSM lacks join
-// OSM's for the estimate, those OSM has stay OSM's.
-test("Litva: mapa Vilniusu a budovy GRPK zapnuté, GRPK doplní domy, které OSM nemá", async () => {
+// Vilnius's map is off by default (?vilnius=1; Bára 24. 11. 2026: what is worse stays off), the GRPK's houses on; the
+// GRPK's houses that OSM lacks join OSM's for the estimate, those OSM has stay OSM's.
+test("Litva: mapa Vilniusu vypnutá (?vilnius=1), budovy GRPK zapnuté, GRPK doplní domy, které OSM nemá", async () => {
   const V = await import("../pilot/public/towns/lithuania.js");
   delete globalThis.PROFILY_LT;
-  assert.ok(V.vilniusOn() && V.grpkOn(), "výchozí: zapnuto");
-  globalThis.PROFILY_LT = { vilnius: "0", grpk: "0" };
-  assert.ok(!V.vilniusOn() && !V.grpkOn(), "?vilnius=0, ?grpk=0");
+  assert.ok(!V.vilniusOn() && V.grpkOn(), "výchozí: mapa Vilniusu vypnutá, GRPK zapnuté");
+  globalThis.PROFILY_LT = { vilnius: "1", grpk: "0" };
+  assert.ok(V.vilniusOn() && !V.grpkOn(), "?vilnius=1, ?grpk=0");
   delete globalThis.PROFILY_LT;
   const url = new URL(V.grpkUrl("25.27,54.68,25.28,54.69"));
   assert.equal(url.origin + url.pathname, "https://www.geoportal.lt/arcgis/rest/services/NZT/GRPK/MapServer/22/query");

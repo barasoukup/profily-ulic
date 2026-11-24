@@ -42,6 +42,22 @@ test("Belgie: plochy GRB z WBN a čar WGO podél řezu, vypínač ?wbn=0", async
   assert.equal(B.grbSurfaces(wbn, { features: [wgo.features[0], line(5, "rand van de rijbaan (wrb)")] }, osm, bbox), null);
   assert.equal(B.grbSurfaces(wbn, wgo, osm, bbox, { highway: "footway" }), null);
   assert.equal(B.grbSurfaces({ features: [] }, wgo, osm, bbox), null);
+  // A street of two carriageways cut in the middle of its kerbed median (the review of 24. 11. 2026): a corridor 24 m,
+  // the median's kerbs at ±1.5 m, the outer kerbs at ±9 m, OSM's two one-way roads at ±5 m. Read from the road OSM draws,
+  // not from the median as "road": the median and the sidewalks walked on, the carriageways roads (before: inverted).
+  const wide = { features: [{ properties: { TYPE: 2 }, geometry: { type: "Polygon", coordinates: [[[-12, -20], [12, -20], [12, 20], [-12, 20], [-12, -20]].map(ll)] } }] };
+  const kerb = "grens zone zwakke weggebruiker (wcz)";
+  const dual = { features: [line(-9, kerb), line(-1.5, kerb), line(1.5, kerb), line(9, kerb)] };
+  const ways = [5, -5].map((x) => ({ type: "way", tags: { highway: "secondary", oneway: "yes" }, geometry: [[x, -20], [x, 20]].map(ll).map(([lon, lat]) => ({ lon, lat })) }));
+  const wideBox = [lon0 - 12 / kx - pad, lat0 - pad, lon0 + 12 / kx + pad, lat0 + pad].join(",");
+  const got = B.grbSurfaces(wide, dual, ways, wideBox);
+  const parts = got.features.map((f) => { const xs = f.geometry.rings[0].map(([lon]) => (lon - lon0) * kx); return { a: Math.min(...xs), b: Math.max(...xs), code: f.attributes.code }; });
+  const codeAt = (x) => parts.find((p) => p.a <= x && x <= p.b)?.code;
+  assert.deepEqual([-10.5, -5, -3, 0, 3, 5, 10.5].map(codeAt), [702, 701, 701, 702, 701, 701, 702]);
+  assert.deepEqual(codes(got), [[701, 3.5], [701, 4], [701, 7.5], [702, 3], [702, 3], [702, 3]]);
+  // Without OSM's roads off the centre (a street of one carriageway cut on its axis) the reading stays at the centre.
+  const one = B.grbSurfaces(wbn, wgo, osm, bbox, null);
+  assert.deepEqual(codes(one), [[701, 5], [701, 7], [702, 3], [702, 3], [704, 2]]);
   globalThis.PROFILY_BE = { wbn: "0" };
   try { assert.equal((await B.sources.surfaces("3.72,51.05,3.721,51.051")).abroad, true); } finally { delete globalThis.PROFILY_BE; }
 });

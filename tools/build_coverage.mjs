@@ -5,14 +5,23 @@
 // files, "-<NUTS 3>" left out) and the boundaries of the towns (mesta*.json, pasporty.json, regions-*.json). Simplified
 // to about 500 m and written into pilot/public/coverage.json (tests/coverage.test.js checks it is up to date):
 //   node tools/build_coverage.mjs            (offline; the NUTS 3 areas a module leaves out come from tools/coverage-nuts3.json)
-//   node tools/build_coverage.mjs --fetch    (first fetches those NUTS 3 areas from Eurostat GISCO, © EuroGeographics)
-// Each feature: { c: "povrch" | "ortofoto" | "osm", id } (no feature: not covered, closed_* and foreign_* too), a Polygon whose rings are read even-odd (as staty.json
+//   node tools/build_coverage.mjs --fetch    (first fetches those NUTS 3 areas and the towns' LAU from Eurostat GISCO,
+//                                             © EuroGeographics)
+//   node tools/build_coverage.mjs --lau=<LAU_RG_01M_2024_4326.geojson downloaded before>   (the towns' LAU only)
+// A town whose map is a box of its module's AREAS (Berlin, Kraków, Paris…) is drawn by its municipality's boundary
+// (LAU_TOWNS, kept in tools/coverage-lau.json) cut to that box, not as the box (the review of 24. 11. 2026).
+// Each feature: { c: "surface" | "ortho" | "osm", id } (no feature: not covered, closed_* and foreign_* too), a Polygon whose rings are read even-odd (as staty.json
 // and city.js inside: islands and holes alike); the features are drawn in order, later over earlier.
 import fs from "node:fs";
 import { pathToFileURL } from "node:url";
 
 const PUB = new URL("../pilot/public/", import.meta.url);
 const NUTS_FILE = new URL("coverage-nuts3.json", import.meta.url);
+const LAU_FILE = new URL("coverage-lau.json", import.meta.url);
+const LAU_URL = "https://gisco-services.ec.europa.eu/distribution/v2/lau/geojson/LAU_RG_01M_2024_4326.geojson";
+// The towns of the modules' AREAS without a boundary of their own in the repo: their GISCO LAU 2024 id.
+export const LAU_TOWNS = { berlin: "DE_11000000", hamburg: "DE_02000000", aachen: "DE_05334002", krakow: "PL_1001121216101", paris: "FR_75056",
+  zaragoza: "ES_50297", tallinn: "EE_0784", helsinki: "FI_091", vilnius: "LT_13" };
 export const OUT = new URL("coverage.json", PUB);
 const json = (f) => JSON.parse(fs.readFileSync(new URL(f, PUB), "utf8"));
 
@@ -88,7 +97,8 @@ function tidy(rings) {
 }
 
 // ---------- the build ----------
-export async function buildCoverage({ nuts = fs.existsSync(NUTS_FILE) ? JSON.parse(fs.readFileSync(NUTS_FILE, "utf8")) : {} } = {}) {
+const readJson = (f) => (fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, "utf8")) : {});
+export async function buildCoverage({ nuts = readJson(NUTS_FILE), lau = readJson(LAU_FILE) } = {}) {
   const { TOWNS } = await import(new URL("towns/index.js", PUB));
   const { COUNTRIES } = await import(new URL("countries/index.js", PUB));
   const { countryOfCity, cityById } = await import(new URL("city.js", PUB));
@@ -108,13 +118,13 @@ export async function buildCoverage({ nuts = fs.existsSync(NUTS_FILE) ? JSON.par
     const key = country.laneOrtho;
     if (!country.code) { problems.push(`${s}: stát bez kódu ISO`); continue; }
     if (key === "none") base[s] = "osm";
-    else if (ORTHO_FULL.has(key)) base[s] = "ortofoto";
+    else if (ORTHO_FULL.has(key)) base[s] = "ortho";
     else if (ORTHO_ONLY[key]) {
       base[s] = "osm";
-      for (const box of ORTHO_ONLY[key]) overlays.push({ c: "ortofoto", id: `${s}-orto`, rings: STATY[s].map((r) => clip(r, box)) });
+      for (const box of ORTHO_ONLY[key]) overlays.push({ c: "ortho", id: `${s}-ortho`, rings: STATY[s].map((r) => clip(r, box)) });
     } else if (ORTHO_BUT[key]) {
-      base[s] = "ortofoto";
-      for (const box of ORTHO_BUT[key]) overlays.push({ c: "osm", id: `${s}-bez-orto`, rings: STATY[s].map((r) => clip(r, box)) });
+      base[s] = "ortho";
+      for (const box of ORTHO_BUT[key]) overlays.push({ c: "osm", id: `${s}-no-ortho`, rings: STATY[s].map((r) => clip(r, box)) });
     } else problems.push(`${s}: ortofoto „${key}“ není v tools/build_coverage.mjs zařazené`);
   }
 
@@ -127,7 +137,7 @@ export async function buildCoverage({ nuts = fs.existsSync(NUTS_FILE) ? JSON.par
     const own = ids.filter((id) => states.includes(id));
     for (const e of m.SURFACE_MAPS) {
       if (e === "all") {
-        if (own.length) { for (const s of own) base[s] = "povrch"; continue; }
+        if (own.length) { for (const s of own) base[s] = "surface"; continue; }
         for (const id of ids) {
           if (!BOUNDS[id]) { problems.push(`${id}: bez hranice města`); continue; }
           surfaces.push({ id, rings: BOUNDS[id], state: stateOf(id) });
@@ -139,6 +149,9 @@ export async function buildCoverage({ nuts = fs.existsSync(NUTS_FILE) ? JSON.par
       } else if (m.AREAS?.[e]) {
         const a = m.AREAS[e], town = BOUNDS[a.town] || BOUNDS[e];
         if (town) { surfaces.push({ id: e, rings: town, state: own[0] }); continue; }
+        // A town by its municipality, cut to the box its module asks.
+        if (lau[e]) { surfaces.push({ id: e, rings: lau[e].map((r) => clip(r, a.box)).filter((r) => r.length >= 3), state: own[0] }); continue; }
+        if (!a.inside) problems.push(`${e}: oblast bez hranice (LAU_TOWNS v tools/build_coverage.mjs a --fetch)`);
         // The box within the state; a piece the area's own test (inside) does not have is left out.
         const rings = own.flatMap((s) => STATY[s].map((r) => clip(r, a.box)))
           .filter((r) => r.length >= 3 && (!a.inside || r.filter((p) => a.inside(p[0], p[1])).length * 2 > r.length));
@@ -156,9 +169,9 @@ export async function buildCoverage({ nuts = fs.existsSync(NUTS_FILE) ? JSON.par
   };
   for (const s of states) if (base[s]) add(base[s], s, STATY[s]);
   // An overlay on a state whose own map covers it all says nothing.
-  for (const o of overlays) if (base[o.id.split("-")[0]] !== "povrch") add(o.c, o.id, o.rings);
-  for (const f of surfaces) if (base[f.state] !== "povrch") add("povrch", f.id, f.rings);
-  for (const h of holes) add(base[h.state] === "povrch" ? (ORTHO_FULL.has(countryOfCity(h.state).laneOrtho) ? "ortofoto" : "osm") : base[h.state], h.id, h.rings);
+  for (const o of overlays) if (base[o.id.split("-")[0]] !== "surface") add(o.c, o.id, o.rings);
+  for (const f of surfaces) if (base[f.state] !== "surface") add("surface", f.id, f.rings);
+  for (const h of holes) add(base[h.state] === "surface" ? (ORTHO_FULL.has(countryOfCity(h.state).laneOrtho) ? "ortho" : "osm") : base[h.state], h.id, h.rings);
   // Every state of the app is on the map.
   for (const code of Object.keys(COUNTRIES)) if (!states.some((s) => countryOfCity(s).code === code && base[s])) problems.push(`${code}: stát bez třídy`);
   return { coverage: { type: "FeatureCollection", features }, problems };
@@ -178,9 +191,26 @@ async function fetchNuts() {
   fs.writeFileSync(NUTS_FILE, JSON.stringify(out));
   console.log("NUTS 3:", Object.keys(out).join(", "));
 }
+async function fetchLau() {
+  // The towns' municipalities (LAU 2024, 1 : 1 000 000; about 150 MB, or a file downloaded before).
+  const file = process.argv.find((a) => a.startsWith("--lau="))?.slice(6);
+  const lauAll = file ? JSON.parse(fs.readFileSync(file, "utf8")) : await (await fetch(LAU_URL, { headers: { "User-Agent": "profily-ulic" } })).json();
+  const towns = {};
+  for (const f of lauAll.features) {
+    const id = Object.keys(LAU_TOWNS).find((k) => LAU_TOWNS[k] === f.properties.GISCO_ID);
+    if (!id) continue;
+    const g = f.geometry, polys = g.type === "MultiPolygon" ? g.coordinates : [g.coordinates];
+    towns[id] = polys.flat().map((r) => r.map(([x, y]) => [+x.toFixed(4), +y.toFixed(4)]));
+  }
+  const missing = Object.keys(LAU_TOWNS).filter((k) => !towns[k]);
+  if (missing.length) throw new Error(`LAU nenalezeno: ${missing.join(", ")}`);
+  fs.writeFileSync(LAU_FILE, JSON.stringify(towns));
+  console.log("LAU:", Object.keys(towns).join(", "));
+}
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   if (process.argv.includes("--fetch")) await fetchNuts();
+  if (process.argv.includes("--fetch") || process.argv.some((a) => a.startsWith("--lau="))) await fetchLau();
   const { coverage, problems } = await buildCoverage();
   if (problems.length) { console.error(problems.join("\n")); process.exit(1); }
   const text = JSON.stringify(coverage);

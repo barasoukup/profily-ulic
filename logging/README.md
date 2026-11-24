@@ -23,17 +23,23 @@ kliknutí na nic nečeká, a když Worker neodpoví, nic se nestane.
 
 - **zprávy z okna „O aplikaci“** (od 24. 11. 2026, `POST /contact`, tabulka `contacts`): text (nejvýš 3 000 znaků),
   nepovinný e-mail pro odpověď a, když ho návštěvník přiloží, odkaz na řez (`#rez=…`, jen z našich adres), k tomu jazyk
-  stránky a stát řezu. Skryté pole pro roboty: co ho vyplní, se neuloží. Z jedné adresy nejvýš 5 zpráv za hodinu, od
-  všech nejvýš 60; počítá se v tabulce `contact_rate` podle otisku SHA-256 z hodiny, adresy a tajného `RATE_SALT`
-  (adresa sama se neukládá, řádek se po dvou hodinách smaže). Zprávu smaže na požádání Bára
-  (`DELETE FROM contacts WHERE id = …`).
+  stránky a stát řezu (posílají se vždy, formulář to u tlačítka říká). Skryté pole pro roboty: co ho vyplní, se neuloží.
+  E-mail návštěvníka se drží, dokud zprávu Bára nesmaže (`DELETE FROM contacts WHERE id = …`).
+  **Limit:** z jedné adresy nejvýš 5 zpráv za hodinu (IPv6 se počítá po sítích /64, jedna síť má 2^64 adres); limit pro
+  všechny dohromady není, aby jeden skript nemohl formulář vypnout ostatním. E-mailem přijdou z jedné adresy nejvýš
+  2 zprávy za hodinu a od všech nejvýš 10; další se jen uloží do databáze. Počítá se v tabulce `contact_rate` podle
+  otisku SHA-256 z hodiny, adresy a tajného `RATE_SALT` (adresa sama se neukládá), jedním příkazem
+  `INSERT … ON CONFLICT DO UPDATE … RETURNING`, takže ani souběžné požadavky limit neobejdou. Bez `RATE_SALT` Worker
+  zprávy nebere (odpoví 503 „not configured“), aby neukládal otisky bez soli, ze kterých jde adresa dopočítat.
+  Řádky minulých hodin maže Worker každou hodinu (cron v `wrangler.toml`) a při každé zprávě, takže otisk v databázi
+  vydrží nejvýš asi dvě hodiny.
 
 ## Soukromí
 
-Zaznamenáváme jen řezy (místo, směr, ulici, čas), kliknutí, u kterých se ulice nenašla (místo zhruba na kilometr), použité funkce, hlášení chyb a zprávy, které návštěvník sám napíše, abychom aplikaci zlepšili. IP adresy ani
+Zaznamenáváme jen řezy (místo, směr, ulici, čas), kliknutí, u kterých se ulice nenašla (místo zhruba na kilometr), použité funkce, hlášení chyb a zprávy, které návštěvník sám napíše (s nepovinným e-mailem pro odpověď, jazykem stránky a státem řezu), abychom aplikaci zlepšili. IP adresy ani
 cookies neukládáme; `session` je náhodné číslo jednoho načtení stránky (neukládá se v prohlížeči), aby šlo
 spočítat řezy jedné návštěvy. Záznam běží na Cloudflare (Worker a D1), který adresu požadavku vidí; Worker ji drží
-jen 10 s v paměti proti zahlcení a do databáze ji nezapisuje. Mapy a data se načítají přímo ze serverů IPR, ČÚZK, měst a krajů a z podkladové mapy
+jen 10 s v paměti proti zahlcení a do databáze ji nezapisuje (u zpráv z formuláře jen otisk se solí na počítání limitu, smazaný nejvýš asi po dvou hodinách). Mapy a data se načítají přímo ze serverů IPR, ČÚZK, měst a krajů a z podkladové mapy
 OSM; písmo a Leaflet jsou na našem webu.
 
 ## Limity
@@ -120,11 +126,12 @@ nejde.“ a nic neposílá. Nasazení (ve složce `logging/`, jednou):
    ```bash
    npx wrangler d1 execute profily-ulic-log --remote --file schema.sql
    ```
-2. Nastav tajnou „sůl“ pro počítání zpráv z jedné adresy (vymysli si dlouhý náhodný text a zadej ho, když se příkaz zeptá):
+2. Nastav tajnou „sůl“ pro počítání zpráv z jedné adresy (vymysli si dlouhý náhodný text a zadej ho, když se příkaz zeptá;
+   bez ní Worker zprávy odmítá):
    ```bash
    npx wrangler secret put RATE_SALT
    ```
-3. Nasaď nového Workera:
+3. Nasaď nového Workera (`wrangler.toml` má i hodinový cron, který maže staré řádky limitu):
    ```bash
    npx wrangler deploy
    ```

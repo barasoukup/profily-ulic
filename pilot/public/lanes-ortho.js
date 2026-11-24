@@ -11,6 +11,7 @@
 // gaps look like lanes, chosen together. Anything doubtful leaves the rules' profile as it is.
 
 import { dkToken } from "./keys.js";
+import { inLombardy } from "./towns/lombardy-area.js";
 const R = 6378137, ALONG = 20, TIMEOUT = 4000;
 const merc = (lon, lat) => [(R * lon * Math.PI) / 180, R * Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360))];
 // Each city's best orthophoto (evaluation/ortofoto/ZPRAVA.md; the key: city.js laneOrtho of the city, else the state's,
@@ -92,9 +93,11 @@ export const IT_ORTHO = {
   "it-bo": { box: [11.22, 44.42, 11.44, 44.56], url: itWms("https://servizigis.regione.emilia-romagna.it/wms/comune_bo_2023_rgb", "Comune_BO_2023_RGB"), credit: "ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)" },
   "it-mo": { box: [10.77, 44.52, 11.03, 44.75], url: itWms("https://servizigis.regione.emilia-romagna.it/wms/comune_mo_2024_rgb", "Comune_MO_2024_RGB"), credit: "ortofoto © Comune di Modena, Regione Emilia-Romagna (CC BY 4.0)" },
   "it-to": { box: [7.57, 44.99, 7.78, 45.15], url: itWms("https://geomap.reteunitaria.piemonte.it/mapproxy/service", "coto_ortofoto_2023"), who: TO_ORTHO_WHO },
-  "it-bz": { box: [10.38, 46.21, 12.48, 47.10], url: itWms("https://geoservices.buergernetz.bz.it/mapproxy/wms", "p_bz-Orthoimagery:Aerial-2023-RGB"), credit: "ortofoto © Provincia autonoma di Bolzano (CC BY 4.0)" },
+  "it-bz": { box: [10.38, 46.21, 12.48, 47.10], url: itWms("https://geoservices.buergernetz.bz.it/mapproxy/wms", "p_bz-Orthoimagery:Aerial-2023-RGB"), credit: "ortofoto © Provincia autonoma di Bolzano (CC BY 4.0)", outside: inLombardy },
 };
-export const itOrthoAt = (lon, lat) => Object.keys(IT_ORTHO).filter((k) => { const [x0, y0, x1, y1] = IT_ORTHO[k].box; return lon >= x0 && lon <= x1 && lat >= y0 && lat <= y1; });
+// The orthophotos of a point; a box's "outside" is the territory it overlaps and does not cover (Bolzano's box reaches
+// into Lombardy: Ponte di Legno, Valfurva; the review of 24. 11. 2026).
+export const itOrthoAt = (lon, lat) => Object.keys(IT_ORTHO).filter((k) => { const [x0, y0, x1, y1] = IT_ORTHO[k].box; return lon >= x0 && lon <= x1 && lat >= y0 && lat <= y1 && !IT_ORTHO[k].outside?.(lon, lat); });
 // Estonia (Bára 23. 11. 2026): the Land and Spatial Development Board's orthophoto as TMS tiles in Web Mercator (the y axis
 // flipped; CORS *; its open-data licence of 1. 1. 2025), clean but only to level 18 (about 30 cm at 59° N). The WMS of
 // full resolution (to 3 cm in Tallinn) carries a watermark on a 400 px grid that would read as lines (ZDROJE.md).
@@ -132,6 +135,11 @@ export const FI_ORTHO = {
   "fi-tku": { box: [22.05, 60.33, 22.55, 60.62], res: 0.1, url: fiWms("https://turku.asiointi.fi/TeklaOGCWeb/WMS.ashx", "Ilmakuva 2022 True ortho"), credit: "ortofoto © Turun kaupunki, 2022 (CC BY 4.0)" },
 };
 export const fiOrthoAt = (lon, lat) => Object.keys(FI_ORTHO).filter((k) => { const [x0, y0, x1, y1] = FI_ORTHO[k].box; return lon >= x0 && lon <= x1 && lat >= y0 && lat <= y1; });
+// Is there an orthophoto of the source (countries/<ISO>.js laneOrtho) at the point? "none" never; the states whose
+// orthophotos cover only some towns (Italy, Finland) by their boxes; the others everywhere (a blank photo is found out
+// when it comes). The question is the place's, not the state's (the review of 24. 11. 2026: in Lombardy the kerb model
+// was loaded and the note said "orthophoto" where there is none).
+export const orthoHereAt = (source, lon, lat) => source !== "none" && (source === "it" ? itOrthoAt(lon, lat).length > 0 : source === "fi" ? fiOrthoAt(lon, lat).length > 0 : true);
 // Denmark (Bára 23. 11. 2026): the spring orthophoto of GeoDanmark (Klimadatastyrelsen, "Ortofoto forår", 10–12.5 cm, a
 // new national mosaic each spring) as WMTS tiles in Web Mercator to level 20 (DFD_GoogleMapsCompatible, about 8 cm a pixel
 // in Copenhagen), CORS for the origin asking, free data with credit (evaluation/denmark/ZDROJE.md 1). Only with the app's

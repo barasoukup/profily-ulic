@@ -76,7 +76,17 @@ test("Itálie: hranice obcí ISTAT, ortofoto pokrývá celé území, kredit Tur
   const L = await import("../pilot/public/lanes-ortho.js");
   // Lombardy has the DBT, no orthophoto (towns/lombardy.js).
   const { inLombardy } = await import("../pilot/public/towns/lombardy.js");
-  for (const ring of staty.italy) if (!inLombardy(...ring[0])) for (const [lon, lat] of ring) assert.ok(L.itOrthoAt(lon, lat).length, `mimo obdélníky ortofot ${lon},${lat}`);
+  // Every point outside Lombardy has an orthophoto; inside it none (Bolzano's box reaches in: Ponte di Legno, Valfurva;
+  // the review of 24. 11. 2026), and the kerb model is not loaded there (lanes-ortho.js orthoHereAt).
+  for (const ring of staty.italy) for (const [lon, lat] of ring) if (!inLombardy(lon, lat)) assert.ok(L.itOrthoAt(lon, lat).length, `mimo obdélníky ortofot ${lon},${lat}`);
+  for (const [lon, lat] of [[10.51, 46.26], [10.50, 46.41], [9.19, 45.46]]) {
+    assert.deepEqual(L.itOrthoAt(lon, lat), [], `Lombardie ${lon},${lat}`);
+    assert.equal(L.orthoHereAt("it", lon, lat), false);
+  }
+  assert.equal(L.orthoHereAt("it", 11.35, 46.5), true, "Bolzano");
+  assert.equal(L.orthoHereAt("none", 25.28, 54.69), false, "Litva");
+  assert.equal(L.orthoHereAt("fi", 23.76, 61.5), false, "Tampere");
+  assert.equal(L.orthoHereAt("cuzk", 14.42, 50.08), true);
   const { SOURCE_CREDITS } = await import("../pilot/public/credits.js");
   assert.match(SOURCE_CREDITS.orthoCity["it-to"](), /Base cartografica realizzata da .+, integrata con Ortofoto digitale colore 2023 della Città di Torino reperiti sul Geoportale del Comune di Torino/);
 });

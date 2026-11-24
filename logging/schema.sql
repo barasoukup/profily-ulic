@@ -34,10 +34,12 @@ CREATE TABLE IF NOT EXISTS contacts (
   lang TEXT,                 -- the page's language (cs, en …)
   country TEXT               -- the state of the cut, ISO 3166-1
 );
--- The rate limit of messages: a count an hour by a SHA-256 of the hour, the address and the secret RATE_SALT (the address
--- itself is never kept); rows older than two hours are deleted by the Worker.
+-- The rate limit of messages (worker.js contact): a count an hour by a SHA-256 of the hour, the address (IPv6 by its /64)
+-- and the secret RATE_SALT (the address itself is never kept), and the row "mail|<hour>" counting the e-mails of the
+-- hour. The rows of past hours are deleted by the Worker's hourly cron trigger (wrangler.toml) and at each message.
 CREATE TABLE IF NOT EXISTS contact_rate (
   k TEXT PRIMARY KEY,
   hour TEXT NOT NULL,
   n INTEGER NOT NULL
 );
+CREATE INDEX IF NOT EXISTS contact_rate_hour ON contact_rate (hour);
