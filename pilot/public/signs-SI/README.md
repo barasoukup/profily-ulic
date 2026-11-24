@@ -8,6 +8,11 @@ Government of Slovenia“, šablona PD-Slovenia-exempt). Nová čísla mají na 
 odst. 1 bod 2: „uradna besedila“); že se to týká i kreseb značek, je výklad Commons (rozhodne Bára). Autoři a licence:
 `evaluation/slovenia/signs-licence.json`. Souborům bez `viewBox` byl doplněn podle `width`/`height`.
 
+`2401.svg` (Znak 2401 – Avtocesta, © Rokbreznikar, CC BY-SA 4.0,
+https://commons.wikimedia.org/wiki/File:Znak_2401_-_Avtocesta.svg): `viewBox` měl už na Commons, obsah se neupravoval,
+soubor je jen přejmenovaný na číslo značky. Úprava tedy žádná není; kdyby se kresba měnila, patří sem, co se změnilo
+(podmínka licence CC BY-SA 4.0), a výsledek pod stejnou licencí.
+
 Rychlost 2232 Omejitev hitrosti: Commons má slovinskou kresbu jen s číslem 40 (`2232-40.svg`, II-30 (40)); ostatní čísla
 jsou kresby české B 20a ze `znacky/` (stejný vzor podle Vídeňské úmluvy, červený kruh, černé číslo).
 

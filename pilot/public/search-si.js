@@ -4,15 +4,23 @@
 // matches the beginning of the name, no full text). One request a pause in typing (search.js debounces and cancels).
 export const GURS_NASLOVI = "https://ipi.eprostor.gov.si/wfs-si-gurs-kn/wfs";
 const MAX = 15;
-// A query that is likely Slovenian (asked where the map shows another state and nothing else was found).
-export const looksSlovenian = (text) => /\b(ulica|cesta|trg|nabrežje|pot|ul\.)\b|\b(ljubljana|maribor|celje|kranj|koper|velenje|novo mesto|ptuj|nova gorica|murska sobota|piran|bled)\b/i.test(text);
-// "Trubarjeva cesta 5a, Ljubljana" → { street, number, extra, town } (null without a house number).
+// A query that is likely Slovenian (asked where the map shows another state and nothing else was found): a Slovenian
+// town, or a street word with no letter Slovenian lacks ("ulica" is Slovak, Polish and Croatian too, "cesta" Czech,
+// "trg" Croatian: "Hlavná ulica", "Trg bana Jelačića" stay at home; the review of 24. 11. 2026) and "ulica" after the
+// name as Slovenian has it ("Celovška ulica", not the Polish "ulica Długa").
+const SI_TOWN = /(^|[^\p{L}])(ljubljana|maribor|celje|kranj|koper|velenje|novo mesto|ptuj|nova gorica|murska sobota|piran|bled)(?!\p{L})/iu;
+const SI_WORD = /(^|[^\p{L}])(cesta|trg|nabrežje|pot)(?!\p{L})|\p{L}\s+ulica(?!\p{L})/iu;
+export const looksSlovenian = (text) => SI_TOWN.test(text) || (SI_WORD.test(text) && !/[^a-zčšž]/i.test(text.replace(/[^\p{L}]/gu, "")));
+// "Trubarjeva cesta 5a, Ljubljana" → { street, number, extra, town } (null without a house number). The number is the
+// last one before the town, and a number with a full stop is a date of the street's name ("Cesta 27. aprila 31",
+// "Ulica 1. maja"; the review of 24. 11. 2026).
 export function parseSiQuery(text) {
-  const m = /^\s*(.+?)\s+(\d{1,4})([a-zA-Z](?!\p{L}))?\s*(?:,\s*|\s+)?([^\d,][^,]*)?\s*$/u.exec(String(text || ""));
+  const m = /^\s*(.+)\s+(\d{1,4})(?!\d|\.)([a-zA-Z](?!\p{L}))?\s*(?:,\s*|\s+)?([^\d,][^,\d]*)?\s*$/u.exec(String(text || ""));
   if (!m || m[1].replace(/[^\p{L}]/gu, "").length < 3) return null;
   return { street: m[1].trim(), number: Number(m[2]), extra: m[3]?.toUpperCase() || null, town: m[4]?.trim() || null };
 }
-const lit = (s) => s.replace(/[*.!<>&"']/g, "");
+// "." is the filter's single character, so the date's full stop of "Cesta 27. aprila" matches itself.
+const lit = (s) => s.replace(/[*!<>&"']/g, "");
 const like = (field, value) => `<fes:PropertyIsLike wildCard="*" singleChar="." escapeChar="!" matchCase="false"><fes:ValueReference>${field}</fes:ValueReference><fes:Literal>${lit(value)}*</fes:Literal></fes:PropertyIsLike>`;
 export function gursAddressUrl(q) {
   const parts = [like("ULICA_NAZIV", q.street), `<fes:PropertyIsEqualTo><fes:ValueReference>HS_STEVILKA</fes:ValueReference><fes:Literal>${q.number}</fes:Literal></fes:PropertyIsEqualTo>`, ...(q.town ? [like("NASELJE_NAZIV", q.town)] : [])];

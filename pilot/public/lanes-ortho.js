@@ -106,10 +106,37 @@ export const EE_ORTHO = "https://tiles.maaamet.ee/tm/tms/1.0.0/foto@GMC";
 // Geodetska uprava RS, CORS *, CC BY 4.0; evaluation/slovenia/ZDROJE.md). The server answers within a second or hangs
 // for 30 s and gives 504 (also inside Slovenia, at random; always beyond it, so the map's layer is kept inside, app.js
 // insideOnly). Measured 23. 11. 2026: two thirds of the requests hung at times, an answer came within 3.3 s, and a hang
-// is random (the same box answers on another try). So laneImage tries four times, each cut short at SI_RETRY.timeout
-// (not GURS's 30 s), with growing pauses between, and keeps the images it got for the session (siFetch: a cut clicked
-// again asks nothing). All tries failing is told as before (app.js orthoDown).
-export const SI_RETRY = { timeout: 5000, pauses: [300, 1500, 4000] };
+// is random (the same box answers on another try). So laneImage tries again, each try cut short at SI_RETRY.timeout
+// (not GURS's 30 s), with growing pauses between, all within SI_RETRY.budget (the review of 24. 11. 2026: four tries
+// held a cut 26 s), and keeps the images it got for the session (siFetch: a cut clicked again asks nothing). All tries
+// failing is told as before (app.js orthoDown). The kerb model's square (orthoPatch) is asked the same way, within
+// patchBudget, and kept too, so the same click gives the same profile; while GURS has just failed (downFor after
+// laneImage's last try) it is not asked at all, the cut is not held a second time.
+export const SI_RETRY = { timeout: 4000, pauses: [300, 1500], budget: 12000, patchBudget: 9000, downFor: 60000 };
+let siDownAt = 0;
+const siDown = () => siDownAt && Date.now() - siDownAt < SI_RETRY.downFor;
+const siRetryable = (err) => err?.outage || ["TimeoutError", "AbortError", "TypeError"].includes(err?.name);
+// run(timeout) once a try, within budget ms in all; a server down on every try throws the last error.
+async function siTries(run, timeout, budget) {
+  const start = Date.now();
+  let lastError = null;
+  for (let i = 0; i <= SI_RETRY.pauses.length; i++) {
+    if (i) {
+      if (budget - (Date.now() - start) - SI_RETRY.pauses[i - 1] < 1000) break;
+      await new Promise((r) => setTimeout(r, SI_RETRY.pauses[i - 1]));
+    }
+    try {
+      const out = await run(Math.min(timeout, budget - (Date.now() - start)));
+      siDownAt = 0;
+      return out;
+    } catch (err) {
+      if (!siRetryable(err)) throw err;
+      lastError = err;
+    }
+  }
+  siDownAt = Date.now();
+  throw lastError;
+}
 const siImages = new Map(), SI_KEEP = 40;
 const siFetch = async (url, init) => {
   const kept = siImages.get(url);
@@ -325,22 +352,12 @@ export async function laneImage(opts) {
     if (lastError) throw lastError;
     return null;
   }
-  // Slovenia: GURS's server hangs now and then (a 504 after 30 s): up to four tries, each SI_RETRY.timeout long, after
-  // growing pauses; an image that would not decode or a 404 is no image (not tried again). A PNG (Node's evaluation,
-  // decode) takes GURS 4–7 s, twice the JPEG's time. The images kept for the session only with the browser's fetch.
+  // Slovenia: GURS's server hangs now and then (a 504 after 30 s): siTries, each try SI_RETRY.timeout long; an image that
+  // would not decode or a 404 is no image (not tried again). A PNG (Node's evaluation, decode) takes GURS 4–7 s, twice
+  // the JPEG's time. The images kept for the session only with the browser's fetch.
   if (opts.source === "si") {
-    const fetchImpl = opts.fetchImpl ?? siFetch;
-    let lastError = null;
-    for (let i = 0; i <= SI_RETRY.pauses.length; i++) {
-      if (i) await new Promise((r) => setTimeout(r, SI_RETRY.pauses[i - 1]));
-      try {
-        return await laneImageOf("si", { ...opts, fetchImpl, timeout: opts.timeout ?? SI_RETRY.timeout * (opts.decode ? 2 : 1) });
-      } catch (err) {
-        if (!err?.outage && !["TimeoutError", "AbortError", "TypeError"].includes(err?.name)) throw err;
-        lastError = err;
-      }
-    }
-    throw lastError;
+    const fetchImpl = opts.fetchImpl ?? siFetch, slow = opts.decode ? 2 : 1;
+    return siTries((timeout) => laneImageOf("si", { ...opts, fetchImpl, timeout }), opts.timeout ?? SI_RETRY.timeout * slow, SI_RETRY.budget * slow);
   }
   if (opts.source === "es" && !esKeys(...opts.frame.toLonLat(0, 0)).length) return null;
   if (opts.source !== "de") return laneImageOf(SOURCES[opts.source] ? opts.source : "cuzk", opts);
@@ -874,9 +891,15 @@ function redraw(w, lines, fine = true) {
 // The square of side 2 × half m on the ground around lon, lat, px × px pixels, north up, in Web Mercator as the AI
 // model learnt it (evaluation/ai-segmentation/fetch_ortho.py): the source's shift applied as above. Returns
 // { source, img } (ImageData) or null (no photo there); a server down throws as laneImage does.
-export async function orthoPatch({ source, lon, lat, half, px, timeout = TIMEOUT }) {
+export async function orthoPatch({ source, lon, lat, half, px, timeout = TIMEOUT, fetchImpl = null }) {
   // No orthophoto it may use (Lithuania): none, and nothing asked of ČÚZK (the review of Lithuania).
   if (source === "none") return null;
+  // Slovenia: GURS tried again and the square kept (siTries, siFetch); GURS just down: an outage at once.
+  if (source === "si") {
+    if (siDown()) throw Object.assign(new Error("ortofoto GURS nedostupné"), { outage: true });
+    const img = await siTries((t) => patchOf("si", lon, lat, half, px, t, fetchImpl ?? siFetch), SI_RETRY.timeout, SI_RETRY.patchBudget);
+    return img ? { source: "si", img } : null;
+  }
   const keys = source === "de" ? (await landsAt(lon, lat).catch(() => [])).map((l) => `de-${l}`) : source === "be" ? [...new Set([...(await beRegionsAt(lon, lat).catch(() => [])).map(beOrthoOf), "vl", "wal"])].map((r) => `be-${r}`) : source === "pt" ? ptKeys(lon, lat) : source === "es" ? esKeys(lon, lat) : source === "it" ? itOrthoAt(lon, lat) : source === "fi" ? fiOrthoAt(lon, lat) : [SOURCES[source] ? source : "cuzk"];
   const seen = new Set(); // Berlin and Brandenburg: one service
   for (const key of keys) {
@@ -888,7 +911,7 @@ export async function orthoPatch({ source, lon, lat, half, px, timeout = TIMEOUT
   }
   return null;
 }
-async function patchOf(key, lon, lat, half, px, timeout) {
+async function patchOf(key, lon, lat, half, px, timeout, fetchImpl = fetch) {
   if (SOURCES[key]?.key && !SOURCES[key].key()) return null;
   const src = SOURCES[key], k = Math.cos((lat * Math.PI) / 180), h = half / k;
   const [sx, sy] = (src.shift || [0, 0]).map((v) => v / k), [cx, cy] = merc(lon, lat);
@@ -913,7 +936,7 @@ async function patchOf(key, lon, lat, half, px, timeout) {
     if (jobs.length && down === jobs.length) throw Object.assign(new Error(`ortofoto ${down}× 5xx`), { outage: true });
     if (missing && src.fallback) return patchOf(src.fallback, lon, lat, half, px, timeout);
   } else {
-    const r = await fetch(src.url(b, px, px), { signal });
+    const r = await fetchImpl(src.url(b, px, px), { signal });
     if (!r.ok) { if (r.status >= 500) throw Object.assign(new Error(`ortofoto ${r.status}`), { outage: true }); return null; }
     g.drawImage(await createImageBitmap(await r.blob()), 0, 0, px, px);
   }

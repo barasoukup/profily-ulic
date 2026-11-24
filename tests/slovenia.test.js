@@ -23,7 +23,7 @@ test("Slovinsko: ortofoto GURS DOF025 ve Web Mercatoru", async () => {
   assert.equal(u.searchParams.get("CRS"), "EPSG:3857");
 });
 
-test("Slovinsko: GURS, který visí, se ptá znovu (až 4×), 404 ne", async () => {
+test("Slovinsko: GURS, který visí, se ptá znovu (podle počtu pauz), 404 ne", async () => {
   const L = await import("../pilot/public/lanes-ortho.js"), { localFrame } = await import("../pilot/public/derive.js");
   const pauses = L.SI_RETRY.pauses;
   L.SI_RETRY.pauses = [1, 1, 1];
@@ -45,6 +45,43 @@ test("Slovinsko: GURS, který visí, se ptá znovu (až 4×), 404 ne", async () 
     assert.equal(await r.go, null);
     assert.equal(r.n(), 1, "bez snímku se znovu neptá");
   } finally { L.SI_RETRY.pauses = pauses; }
+  // The default tries fit in SI_RETRY.budget: a hanging GURS holds a cut about 12 s, not 26 s (the review of 24. 11. 2026).
+  const R = L.SI_RETRY, worst = R.timeout * (R.pauses.length + 1) + R.pauses.reduce((a, b) => a + b, 0);
+  assert.ok(R.budget <= 13000 && R.patchBudget <= 10000, `${R.budget}, ${R.patchBudget}`);
+  assert.ok(worst > R.budget, "rozpočet zkrátí poslední pokus");
+});
+
+test("Slovinsko: model obrub se GURS ptá znovu, při výpadku nečeká podruhé", async () => {
+  const L = await import("../pilot/public/lanes-ortho.js");
+  const keep = { pauses: L.SI_RETRY.pauses, downFor: L.SI_RETRY.downFor, OC: globalThis.OffscreenCanvas, CIB: globalThis.createImageBitmap };
+  // The browser's canvas, stubbed: every pixel grey (not blank).
+  globalThis.OffscreenCanvas = class { constructor(w, h) { this.w = w; this.h = h; } getContext() { return { drawImage() {}, getImageData: (x, y, w, h) => ({ width: w, height: h, data: new Uint8ClampedArray(w * h * 4).fill(120) }) }; } };
+  globalThis.createImageBitmap = async () => ({});
+  L.SI_RETRY.pauses = [1, 1];
+  L.SI_RETRY.downFor = 0;
+  try {
+    const ok = () => new Response(new Uint8Array(8), { status: 200 });
+    let n = 0, urls = [];
+    const flaky = async (url) => { urls.push(url); return n++ === 0 ? new Response("", { status: 504 }) : ok(); };
+    const a = await L.orthoPatch({ source: "si", lon: 14.5058, lat: 46.0514, half: 40, px: 16, fetchImpl: flaky });
+    assert.equal(a.source, "si");
+    assert.equal(n, 2, "504, pak snímek");
+    assert.match(urls[0], /ipi\.eprostor\.gov\.si\/wms-si-gurs-dts/);
+    n = 0;
+    assert.equal(await L.orthoPatch({ source: "si", lon: 14.5058, lat: 46.0514, half: 40, px: 16, fetchImpl: async () => { n++; return new Response("", { status: 404 }); } }), null);
+    assert.equal(n, 1);
+    n = 0;
+    await assert.rejects(L.orthoPatch({ source: "si", lon: 14.5058, lat: 46.0514, half: 40, px: 16, fetchImpl: async () => { n++; return new Response("", { status: 504 }); } }), (e) => e.outage);
+    assert.equal(n, 3, "tři pokusy, pak výpadek (app.js ho nepočítá jako žádný snímek)");
+    // Just down (after laneImage's last try): not asked again, the cut not held a second time.
+    L.SI_RETRY.downFor = 60000;
+    n = 0;
+    await assert.rejects(L.orthoPatch({ source: "si", lon: 14.5058, lat: 46.0514, half: 40, px: 16, fetchImpl: async () => { n++; return ok(); } }), (e) => e.outage);
+    assert.equal(n, 0, "nic se neptá");
+  } finally {
+    Object.assign(L.SI_RETRY, { pauses: keep.pauses, downFor: keep.downFor });
+    globalThis.OffscreenCanvas = keep.OC; globalThis.createImageBitmap = keep.CIB;
+  }
 });
 
 test("Slovinsko: budovy katastru GURS", async () => {
@@ -82,6 +119,9 @@ test("Slovinsko: podkroví podle výšky katastru GURS", async () => {
   assert.equal(S.gursBuilding({ ...fx["lj12-left"].properties, VISINA_H3: null }).height, 12.3);
   assert.deepEqual(floors("lj12-left").slice(0, 3), [2, 1, 3]);
   assert.equal(S.gursBuilding({ ...fx["lj12-left"].properties, VISINA_H3: null, VISINA_H1: null }).roof, 0);
+  // ?off=podkrovi: the cadastre's floors as they are (the A/B of the rule alone).
+  globalThis.PROFILY_SI = { off: "podkrovi" };
+  try { assert.deepEqual(floors("lj12-left"), [3, 0, 3, 9.9, undefined]); } finally { delete globalThis.PROFILY_SI; }
 });
 
 test("Slovinsko: hledání adres GURS", async () => {
@@ -96,6 +136,14 @@ test("Slovinsko: hledání adres GURS", async () => {
   assert.deepEqual(items.map((x) => x.text), ["Trubarjeva cesta 5, Ljubljana", "Trubarjeva cesta 5a, Ljubljana"]);
   assert.match(new URL(S.gursAddressUrl({ street: "Trub*<x>", number: 5, town: null })).searchParams.get("FILTER"), /<fes:Literal>Trubx\*<\/fes:Literal>/);
   assert.ok(S.looksSlovenian("Slovenska cesta 9") && !S.looksSlovenian("Karlova 5"));
+  // Not the neighbours' streets (the review of 24. 11. 2026).
+  for (const q of ["Celovška ulica 10", "Prešernov trg", "Kolesarska pot 3", "Ulica 1. maja 3, Maribor"]) assert.ok(S.looksSlovenian(q), q);
+  for (const q of ["Hlavná ulica 5", "Trg bana Jelačića 1", "ulica Mokotowska 5", "Masarykova 5 Brno"]) assert.ok(!S.looksSlovenian(q), q);
+  // A date in the street's name is not the house number, and its full stop matches itself in the filter.
+  assert.deepEqual(S.parseSiQuery("Cesta 27. aprila 31"), { street: "Cesta 27. aprila", number: 31, extra: null, town: null });
+  assert.deepEqual(S.parseSiQuery("Ulica 1. maja 3 Novo mesto"), { street: "Ulica 1. maja", number: 3, extra: null, town: "Novo mesto" });
+  assert.equal(S.parseSiQuery("Cesta 27. aprila"), null);
+  assert.match(new URL(S.gursAddressUrl(S.parseSiQuery("Cesta 27. aprila 31"))).searchParams.get("FILTER"), /<fes:Literal>Cesta 27\. aprila\*<\/fes:Literal>/);
 });
 
 test("Slovinsko: značky, normy, zákon o stání", async () => {
@@ -123,6 +171,10 @@ test("Slovinsko: značky, normy, zákon o stání", async () => {
   assert.equal(SI.limits({ type: "cyklostezka" }, [], 0).min, 2);
   assert.equal(SI.limits({ type: "parkovani", orient: "kolme" }, [], 0), null);
   assert.equal(SI.limits({ type: "pruh", roadClass: "residential" }, [], 0).zaklad, 2.5);
+  assert.equal(SI.limits({ type: "pruh", roadClass: "mk4" }, [], 0).zaklad, 2.5);
+  assert.equal(SI.limits({ type: "pruh", roadClass: "dalnice" }, [], 0).zaklad, 3.25);
+  assert.equal(SI.limits({ type: "pruh", roadClass: "mk2" }, [], 0), null, "spojovací silnice: šířka podle rychlosti, kterou neznáme");
+  assert.equal(SI.limits({ type: "pruh", turn: "left" }, [], 0).zaklad, 3, "řadicí pruh: základ 3 m, 2,75 m je výjimka");
   assert.equal(SI.limits({ type: "chodnik" }, [{ type: "parkovani", position: "half_on_kerb" }, { type: "chodnik" }], 1).min, 1.6);
   // ZPrCP čl. 65/4: none on a two-way street without a centre line, none on a one-way carriageway of two lanes.
   assert.equal(SI.parkOnRoadway({ highway: "residential" }, false, 2), false);
@@ -130,6 +182,12 @@ test("Slovinsko: značky, normy, zákon o stání", async () => {
   assert.equal(SI.parkOnRoadway({ highway: "residential", lanes: "2", lane_markings: "no" }, false, 2), false);
   assert.equal(SI.parkOnRoadway({ oneway: "yes" }, true, 1), true);
   assert.equal(SI.parkOnRoadway({ oneway: "yes" }, true, 2), false);
+  // Pravilnik o kolesarskih površinah čl. 38: a width only on a collector road and above, not on an access road (odst. 2).
+  assert.equal(SI.contraflow(false, [{ type: "pruh", roadClass: "mk3" }]).base, 3.2);
+  assert.equal(SI.contraflow(false, [{ type: "pruh", roadClass: "mk2" }]).lo, 3);
+  assert.equal(SI.contraflow(false, [{ type: "pruh", roadClass: "mk4" }]), null, "obslužná ulice: čl. 38 odst. 2 šířku nedává");
+  assert.equal(SI.contraflow(false, [{ type: "pruh" }]), null);
+  assert.equal(SI.contraflow(false), null);
   assert.equal(SI.laneOrtho, "si");
   assert.equal(SI.socialistLooks, false);
 });

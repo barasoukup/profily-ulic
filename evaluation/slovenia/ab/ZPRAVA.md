@@ -100,6 +100,12 @@ plná podlaží, lj5-left nově 1 + 1 místo 2 (chyba).
 
 ## Verdikt
 
-**B je lepší**: podlaží u 39 ze 40 domů proti 17, rok u 39 proti 0, shoda s OSM tam, kde OSM údaj má. Katastr zůstává
-zapnutý (`?gurs=0` ho vypne). Podkroví počítané jako podlaží pravidlo z výšky opraví zhruba u poloviny domů (správně
-31 → 37 z 54); přesněji by to šlo jen s výškou okapu, kterou katastr nevede (snad z DMR nebo z lidarových dat GURS).
+**B má víc údajů**: podlaží u 39 ze 40 domů proti 17, rok u 39 proti 0. To je pokrytí, ne správnost (opraveno po
+recenzi 24. 11. 2026): správnost šla posoudit jen na 9 fotkách (5 správně, 4 o patro víc), posuzovala je autorka, která
+čísla katastru znala (ne naslepo), a shoda s OSM `building:levels` (19 z 29) nic nedokazuje, OSM mohlo údaj převzít
+z katastru. Katastr zůstává zapnutý (`?gurs=0` ho vypne). Podkroví počítané jako podlaží pravidlo z výšky opraví zhruba
+u poloviny domů (správně 31 → 37 z 54); **práh i přídavek se ladily na stejných 54 domech, na kterých se hodnotí**, bez
+odloženého vzorku je +6 z 54 v pásmu šumu a lj5-left zůstává chybou. Pravidlo má vlastní přepínač `?off=podkrovi`
+(katastr bez pravidla), aby šlo A/B zopakovat; ověřit ho na nových 30–40 domech z jiných měst (Kranj, Celje, Novo mesto)
+s fotkami posouzenými naslepo. Přesněji by to šlo jen s výškou okapu, kterou katastr nevede (snad z DMR nebo z lidarových
+dat GURS).

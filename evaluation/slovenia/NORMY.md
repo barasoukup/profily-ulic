@@ -166,11 +166,21 @@ road signs of Slovenia“, „Diagrams of indicatory road signs of Slovenia“, 
 
 ## D. Co z toho pro aplikaci
 
-- `limits` SI: pruh 2,50 m (místní) / 3,00 m (sběrná 70 km/h), bus 3,00, podélné stání 2,50, cyklopruh 1,00 (min) /
-  1,75 (norm.), cyklostezka 1,00 / 2,00 (obousměrná 2,00 / 3,00), společný chodník 2,00 (výjimečně 1,60); odstupy od
-  stání 0,75 / 1,10. Chodník a kolmé stání bez varování (nenalezeno).
-- Zákonný odhad stání: volný průjezd 3 m (čl. 65/4/10), **jen na pravé straně** (obě strany jen na jednosměrce),
-  **a vůbec ne na obousměrce v obci bez středové čáry** (čl. 65/4/12) a ne na vozovce s 2+ pruhy v jednom směru.
+- `limits` SI (opraveno po recenzi 24. 11. 2026, aby to sedělo s kódem): pruh 2,50 m (místní a sběrné ulice do
+  50 km/h, OSM `residential`, `tertiary` a podobné), 3,25 m dálková silnice (`motorway`, `trunk`); `primary` a
+  `secondary` **bez varování** (může to být sběrná ulice 50 km/h s 2,50 m i spojovací silnice 60–90 km/h s 2,75–3,50 m,
+  aplikace nezná druh ani návrhovou rychlost); řadicí pruh 3,00 m (2,75 m je výjimka při < 5 % nákladních), bus 3,00,
+  podélné stání 2,50, cyklopruh 1,00 (min) / 1,75 (norm.), cyklostezka 1,00 / 2,00 (obousměrná 2,00 / 3,00), společný
+  chodník 2,00 (výjimečně 1,60). Chodník a kolmé stání bez varování (nenalezeno).
+- Cyklisté v protisměru (čl. 38): odst. 2 je na jednosměrné **dostopne cesti** a v zóně umirjenega prometa pouští oběma
+  směry **bez předepsané šířky**; 3,20 m (odst. 4) a 3,00 m v zóně (odst. 5) platí pro ostatní ulice v obci. Aplikace
+  proto varuje jen na sběrných a vyšších (OSM `tertiary` a výš), na `residential`, `living_street`, `service` ne.
+- Zákonný odhad stání: volný průjezd 3 m (čl. 65/4/10); na obousměrce smí auto stát jen vpravo ve směru jízdy, tedy
+  každý směr u své pravé obruby (obě strany ulice), na jednosměrce na obou stranách (čl. 65/1); **vůbec ne na obousměrce
+  v obci bez středové čáry** (čl. 65/4/12) a ne na vozovce s 2+ pruhy v jednom směru. Známá zjednodušení (recenze
+  24. 11. 2026, k rozhodnutí): středová čára se čte z OSM `lanes` ≥ 2, což ji nedokazuje; bod 10 u **plné** středové čáry
+  měří 3 m k čáře, ne k protějšímu okraji (vozovka 8 m s plnou čarou uprostřed stání nedovolí, odhad ho dá). OSM plnou
+  a přerušovanou čáru nerozlišuje.
   Stání na chodníku jen se značkou a s 1,60 m pro chodce u domu.
 - Značky: čísla 2015 z [AVP] ověřit proti obrázkům tabulek pravidla 2024, než se nakreslí (PISRS soubor stáhnout
   celý, trvá to dlouho), a rozhodnout, zda použít kresby 2000 z Commons.

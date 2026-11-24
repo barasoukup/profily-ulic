@@ -30,14 +30,29 @@ function limitsSI(s, segs = [], i = -1) {
     case "parkovani":
       return s.orient === "kolme" || s.orient === "sikme" ? null : { min: 0, zaklad: 2.5, why: t("podélné stání: 2,5 m (pravidlo o projektování silnic, čl. 33)") };
     case "pruh": case "pruh_piktokoridor":
-      if (s.turn) return { min: 0, zaklad: 2.75, why: t("řadicí pruh pro odbočení vlevo ve městě: 3 m, při málo nákladních vozidlech 2,75 m (pravidlo o projektování silnic, čl. 28)") };
+      if (s.turn) return { min: 0, zaklad: 3, why: t("řadicí pruh pro odbočení vlevo ve městě: 3 m, při málo nákladních vozidlech 2,75 m (pravidlo o projektování silnic, čl. 28)") };
       // The OSM class as the regulation's kind of road is the app's reading (NORMY.md A): a motorway or trunk road as a
-      // "daljinska cesta", the rest as the local and collector streets of 50 km/h.
-      return GROUP[s.roadClass ?? segs.find((x) => x?.roadClass)?.roadClass] === "A" ? SI_LANE_A : SI_LANE;
+      // "daljinska cesta", a primary or secondary one (GROUP B) none: it may be a collector street of 50 km/h (2.5 m) or a
+      // "povezovalna cesta" of 60–90 km/h (2.75–3.5 m) and the app knows neither its kind nor its design speed (the review
+      // of 24. 11. 2026); the rest as the local and collector streets of 50 km/h.
+      switch (GROUP[s.roadClass ?? segs.find((x) => x?.roadClass)?.roadClass]) {
+        case "A": return SI_LANE_A;
+        case "B": return null;
+        default: return SI_LANE;
+      }
     default:
       return null;
   }
 }
+
+// A one-way street with contraflow cyclists (Pravilnik o kolesarskih površinah čl. 38): odst. 2 lets them ride both ways
+// on a one-way access road (dostopna cesta) and in a zone of calmed traffic with no width given; odst. 4 asks 3.2 m of
+// the "other" streets in a town, odst. 5 3 m where a zone of calmed traffic is set up. So only on a collector road or
+// above (the OSM class tertiary and up, GROUP A–C; the review of 24. 11. 2026): a residential, living or service street
+// (mk4) and a road of unknown class get no warning, the lanes keep their own. run: the carriageway's parts (rules.js);
+// without it (an older caller) none, so no width is claimed where the article gives none.
+const CONTRA_SI = { lo: 3, base: 3.2, why: t("jednosměrka s cyklisty v protisměru: vozovka nejméně 3,2 m, v zóně zklidněného provozu 3 m (pravidlo o cyklistických plochách, čl. 38)") };
+export const contraflowSI = (parked, run) => (Array.isArray(run) && run.some((x) => ["A", "B", "C"].includes(GROUP[x?.roadClass])) ? CONTRA_SI : null);
 
 // The signs of the state SI (pilot/public/signs-SI/, README there). The numbers are those of the rule of 2015 kept by
 // the Pravilnik o prometni signalizaciji of 2024 (from the AVP's booklet, second hand; NORMY.md C); the drawings on
@@ -84,7 +99,7 @@ export default {
   wideStreets: /^(primary|secondary)$/,
   roadClassFromOsm: true,
   limits: limitsSI,
-  contraflow: () => ({ lo: 3, base: 3.2, why: t("jednosměrka s cyklisty v protisměru: vozovka nejméně 3,2 m, v zóně zklidněného provozu 3 m (pravidlo o cyklistických plochách, čl. 38)") }),
+  contraflow: contraflowSI,
   tramBelt: () => [],
   signs: { dir: "signs-SI", file: signFile, plate: () => null, label: signLabel, drawable: (x, seg) => !!signFile(x, seg) },
   bedOrtho: null,

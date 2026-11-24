@@ -6,7 +6,7 @@
 //   and the dwellings. One small request a facade on a click (the outline OBRIS_GEOM at the point (TLORIS_GEOM, the footprint, is empty for many houses of Maribor), only the fields
 //   used: the server refuses big queries as bulk downloads; a second one of about 7 m around when the first has no
 //   footprint at the point), at most 6 s each, kept by the point rounded to about a metre.
-//   ?gurs=0 leaves them out.
+//   ?gurs=0 leaves them out; ?off=podkrovi only the rule of the attic (gursBuilding).
 import { osmTiles } from "../gis.js";
 
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_SI?.[k] ?? null : new URLSearchParams(location.search).get(k));
@@ -40,12 +40,14 @@ const num = (v) => (v === null || v === undefined || v === "" ? NaN : Number(v))
 //   H2 − H1). The cadastre has no eaves height;
 // - the attic (Bára 23. 11. 2026): the cadastre counts a habitable attic as a floor. A house of 2 to 4 floors whose roof's
 //   top stands less than 3 m a floor + 2 m above the entrance has no room for that many full floors under a roof: its
-//   top floor is drawn in the roof (a pitched one). Checked on 54 houses (OSM's building:levels + roof:levels and photos,
-//   ab/ZPRAVA.md): right 31 → 37; it misses most attics (the heights overlap) and takes some flat roofs for one;
+//   top floor is drawn in the roof (a pitched one). Tuned and scored on the same 54 houses (OSM's building:levels +
+//   roof:levels and photos, ab/ZPRAVA.md): right 31 → 37, within the noise without a held-out sample; it misses most
+//   attics (the heights overlap) and takes some flat roofs for one. ?off=podkrovi turns it off (the review of 24. 11. 2026);
 // - the year LETO_IZGRADNJE;
 // - the walls: brick, stone, wood (solid; NOSILNE_KONSTRUKCIJE_NAZIV_SL); concrete says nothing of a panel house;
 // - one dwelling and no business: a house; more dwellings: a block of flats.
 export const ATTIC = { min: 2, max: 4, perFloor: 3, roof: 2 };
+const offList = () => String(param("off") || "").split(",");
 export function gursBuilding(p) {
   if (!p) return {};
   const all = num(p.STEVILO_ETAZ), ground = num(p.STEVILKA_PRITL_ETAZE);
@@ -56,7 +58,7 @@ export function gursBuilding(p) {
   const top = num(p.VISINA_H2), base = num(p.VISINA_H3) > 0 ? num(p.VISINA_H3) : num(p.VISINA_H1);
   const h = top - base;
   const height = h > 1 && h < 300 ? Math.round(h * 10) / 10 : undefined;
-  const attic = floors >= ATTIC.min && floors <= ATTIC.max && height && height < ATTIC.perFloor * floors + ATTIC.roof ? 1 : 0;
+  const attic = !offList().includes("podkrovi") && floors >= ATTIC.min && floors <= ATTIC.max && height && height < ATTIC.perFloor * floors + ATTIC.roof ? 1 : 0;
   const walls = String(p.NOSILNE_KONSTRUKCIJE_NAZIV_SL || "");
   const solid = /opeka|kamen|les|zidan/i.test(walls) || undefined;
   const flats = num(p.STEVILO_STANOVANJ), shops = num(p.STEVILO_POSLOVNIH_PROSTOROV);

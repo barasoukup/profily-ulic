@@ -165,7 +165,10 @@ po zabalení.
 - Rok náletu DOF025 služba nedává: GetFeatureInfo vrací jen barvy pásem, rozměr času má jen historická vrstva DOF050_Z,
   WFS `wfs-si-gurs-dts` neexistuje (404). Kredit je proto „stav 11/2026“.
 - GetMap `DOF025_3857` 23. 11.: odpověď do 1 s, nebo 30 s nic a 504 (i uvnitř státu, náhodně, opakovaný dotaz obvykle
-  projde). Aplikace dává prvnímu dotazu polovinu času a pak jeden opakuje.
+  projde). Aplikace (od 88912d7, upraveno po recenzi 24. 11. 2026, `lanes-ortho.js` `SI_RETRY`): obrázek pro pruhy až
+  3 pokusy po 4 s s pauzami 0,3 a 1,5 s, celkem nejvýš 12 s (dřív 4 × 5 s, až 26 s); čtverec pro model obrub
+  (`orthoPatch`) stejně, celkem do 9 s, a pamatuje se jako obrázky pruhů, takže tentýž klik dá tentýž profil. Selže-li
+  obrázek pro pruhy úplně, model se GURS minutu neptá (výpadek hned, řez nečeká podruhé).
 - STAVBE: výchozí geometrie je těžiště (BBOX v URL hledá těžiště); `TLORIS_GEOM` chybí v Mariboru u mnoha domů, obrys
   `OBRIS_GEOM` mají; filtr CQL vrací 403, filtr FES (`FILTER=<fes:Filter>…`) funguje. `NASLOVI_HS` s `PropertyIsLike`
   na `ULICA_NAZIV` a `PropertyIsEqualTo` na `HS_STEVILKA`: 0,7 s.
