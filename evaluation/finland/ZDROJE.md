@@ -4,6 +4,11 @@ Ověřeno 23. 11. 2026, asi 60 požadavků (1–6 na službu), User-Agent `profi
 Overpass ani Nominatim nebyly použity, žádné osobní údaje se neposílaly, žádný klíč. Commons API nás po dvou
 dotazech omezilo (429), proto u části souborů značek není licence ověřená (viz `NORMY.md`).
 
+Licence všech zdrojů, které aplikace používá, jsou CC BY 4.0 a ověřené v katalozích HRI a avoindata.fi (CKAN API,
+23. a 24. 11. 2026, recenze bod 10); kde tabulky níže říkají „neověřena“, jde o zdroje, které aplikace nepoužívá.
+Hranice Helsinek (`towns/finland-helsinki.js`) je z vrstvy `avoindata:Kaupunginosajako` téže služby (CC BY 4.0,
+Helsingin kaupunki), sloučené čtvrti i s vodami, zjednodušené na 5 m (`border/helsinki.mjs`).
+
 Značení: **ověřeno** = odpověď přišla a byla přečtena (u obrázků i prohlédnuta); **neověřeno** = jen z dokumentace,
 katalogu nebo vyhledávání. CORS „`*`“ = `Access-Control-Allow-Origin: *`; „bez CORS“ = hlavička chybí (z prohlížeče
 se obraz ukáže, ale pixely ani JSON číst nejdou).
@@ -57,9 +62,9 @@ Espoo a Turku (ortofoto podle města, jako Německo podle zemí). Varianta (b) j
 |---|---|---|---|---|---|---|---|
 | **MML ortokuva** `https://avoin-karttakuva.maanmittauslaitos.fi/avoin/wmts/1.0.0/ortokuva/default/WGS84_Pseudo-Mercator/{z}/{y}/{x}.jpg` | WMTS, 3857 | při 401 hlavička `Access-Control-Allow-Origin:` **prázdná**; s klíčem neověřeno | **ano** (`api-key=`, osobní, zdarma) | 0,5 m celostátně, obnova po 3 letech (v Laponsku 12) | CC BY 4.0 (MML) | **s podmínkou** (klíč) | 401 ověřeno (tile i capabilities); rozlišení neověřeno |
 | **Helsinki** `https://kartta.hel.fi/ws/geoserver/avoindata/wms`, vrstvy `avoindata:Ortoilmakuva_2026_5cm`, `_2025_5cm`, `_2024_5cm` … (také WMTS `…/gwc/service/wmts`) | WMS 1.3.0 GeoServer, **EPSG:3857 funguje** | `*` | ne | **5 cm**, každoročně 2021–2026; `Ortoilmakuva_2024_30cm` | **CC BY 4.0** (HRI `helsingin-ortoilmakuvat`) | **ano** (jen území Helsinek: 24,82–25,27° v. d., 60,12–60,30° s. š.) | **ověřeno**: GetMap 3857 200 `image/jpeg`, Aleksanterinkatu ostrá střecha se solárními panely, bez vodoznaku |
-| **Espoo** `https://kartat.espoo.fi/teklaogcweb/wms.ashx`, vrstvy `Ortokartta` (2026, 11.–14. 4.), `Ortokartta_2024` | WMS, 3857 v capabilities | `*` | ne | **0,30 m** (abstrakt vrstvy); 5 cm jen `Ortokartta_2026_rajoitettu` = „käyttöluvallinen“ (na povolení) | neověřena (Fees/AccessConstraints „none“) | s podmínkou (licence; 30 cm je hrubé na pruhy) | **ověřeno**: GetMap 3857 200, PNG, Tapiola |
-| `Ortokartta_HSY-alue` na téže službě Espoo | WMS | `*` | ne | 0,40 m, 2021, celé území HSY | neověřena | jen podklad | capabilities ověřeny |
-| **Turku** `https://turku.asiointi.fi/TeklaOGCWeb/WMS.ashx` (stará `opaskartta.turku.fi` → 301), vrstva `Ilmakuva 2025`, také `Ilmakuva 2022 True ortho` | WMS, 3857 | `*` | ne | odhadem **5–8 cm** (prohlédnuto, ostré lavičky, zábradlí) | neověřena (Fees/AccessConstraints „none“) | s podmínkou (licence) | **ověřeno**: GetMap 3857 200, Kauppatori |
+| **Espoo** `https://kartat.espoo.fi/teklaogcweb/wms.ashx`, vrstvy `Ortokartta` (2026, 11.–14. 4.), `Ortokartta_2024` | WMS, 3857 v capabilities | `*` | ne | **0,30 m** (abstrakt vrstvy); 5 cm jen `Ortokartta_2026_rajoitettu` = „käyttöluvallinen“ (na povolení) | **CC BY 4.0** (HRI `espoon-ja-kauniaisten-ortoilmakuvat`, ověřeno v CKAN 23. a 24. 11. 2026) | s podmínkou (licence; 30 cm je hrubé na pruhy) | **ověřeno**: GetMap 3857 200, PNG, Tapiola |
+| `Ortokartta_HSY-alue` na téže službě Espoo | WMS | `*` | ne | 0,40 m, 2021, celé území HSY | neověřena (aplikace nepoužívá) | jen podklad | capabilities ověřeny |
+| **Turku** `https://turku.asiointi.fi/TeklaOGCWeb/WMS.ashx` (stará `opaskartta.turku.fi` → 301), vrstva `Ilmakuva 2025`, také `Ilmakuva 2022 True ortho` | WMS, 3857 | `*` | ne | odhadem **5–8 cm** (prohlédnuto, ostré lavičky, zábradlí) | **CC BY 4.0** pro `Ilmakuva 2022 True ortho` (avoindata.fi `turun-ilmakuva-2022`, ověřeno v CKAN); `Ilmakuva 2025` vlastní záznam nemá | s podmínkou (licence) | **ověřeno**: GetMap 3857 200, Kauppatori |
 | HSY `https://kartta.hsy.fi/geoserver/wms`, `taustakartat_ja_aluejaot:Ortoilmakuva_2023` | WMS; v capabilities jen 3879, 3067, ale GetMap 3857 vrací 200 | **bez CORS** | ne | neověřeno | neověřena | ne (bez CORS) | ověřeno |
 | Tampere `https://geodata.tampere.fi/geoserver/ows` | WMS | **bez CORS** | ne | ortofoto ve WMS nenalezeno (jen `ortokuvat:ilmakuvaindeksi_polygon_gk24`) | — | ne | ověřeno (capabilities) |
 | Kapsi (komunitní zrcadlo ortofota MML) `tiles.kartat.kapsi.fi/ortokuva/…` | XYZ | — | ne | — | — | ne | 307 na `kapsi-tiles.y2k.fi`, ten neodpověděl (ověřeno); neoficiální |
@@ -103,8 +108,8 @@ Kaupunkiympäristö (ne pozemky jiných úřadů a soukromé plochy, podle popis
 
 | Zdroj | Endpoint | Pole | CORS | Licence | Použitelné | Stav |
 |---|---|---|---|---|---|---|
-| **Helsinki** | WFS `avoindata:Rakennukset_alue_rekisteritiedot` (kartta.hel.fi, jako výše) | polygon, `tyyppi` (Asuinrakennus, Liikerakennus…), **`i_kerrlkm`** (podlaží), **`c_valmpvm`** (dokončení, např. 1892), `c_julkisivu` (kód fasády), `c_rakeaine` (materiál), `c_kayttark`, adresa | `*` | CC BY 4.0 (HRI `helsingin-rakennukset`, podle vyhledávání; **neověřeno** v katalogu) | **ano** | **ověřeno**: Bulevardi 38 domů, např. Bulevardi 14: 5 podlaží, 1898 |
-| **Ryhti (SYKE), celostátně** | WFS 2.0 `https://paikkatiedot.ymparisto.fi/geoserver/ryhti_building/wfs`, `ryhti_building:open_building` (`srsName=EPSG:4326`, JSON); také OGC API `…/ryhti_building/ogc/features/v1` | **bod**, **`number_of_storeys`**, **`completion_date`**, `main_purpose` (kód), `facade_material`, `material_of_load_bearing_structures`, **`construction_method`** (prvek/na místě), `apartment_count`, `is_protected` | `*` | CC BY 4.0 podle vyhledávání (stránka licence SYKE **neotevřena**); capabilities: Fees „Maksuton“, AccessConstraints „Lisenssi“ | **ano** (podlaží a rok k obrysu z OSM) | **ověřeno**: Tampere centrum 3 domy (4 podl./1901, 3 podl./1882); limit 3 000 prvků na dotaz (ověřeno na stránce Ryhti) |
+| **Helsinki** | WFS `avoindata:Rakennukset_alue_rekisteritiedot` (kartta.hel.fi, jako výše) | polygon, `tyyppi` (Asuinrakennus, Liikerakennus…), **`i_kerrlkm`** (podlaží), **`c_valmpvm`** (dokončení, např. 1892), `c_julkisivu` (kód fasády), `c_rakeaine` (materiál), `c_kayttark`, adresa | `*` | **CC BY 4.0** (HRI `helsingin-rakennukset`, ověřeno v CKAN 24. 11. 2026) | **ano** | **ověřeno**: Bulevardi 38 domů, např. Bulevardi 14: 5 podlaží, 1898 |
+| **Ryhti (SYKE), celostátně** | WFS 2.0 `https://paikkatiedot.ymparisto.fi/geoserver/ryhti_building/wfs`, `ryhti_building:open_building` (`srsName=EPSG:4326`, JSON); také OGC API `…/ryhti_building/ogc/features/v1` | **bod**, **`number_of_storeys`**, **`completion_date`**, `main_purpose` (kód), `facade_material`, `material_of_load_bearing_structures`, **`construction_method`** (prvek/na místě), `apartment_count`, `is_protected` | `*` | **CC BY 4.0** (avoindata.fi `rakennetun-ympariston-tietojarjestelman-rakennustiedot` a `…-rakennusten-osoitetiedot`, ověřeno v CKAN 24. 11. 2026); capabilities: Fees „Maksuton“, AccessConstraints „Lisenssi“ | **ano** (podlaží a rok k obrysu z OSM) | **ověřeno**: Tampere centrum 3 domy (4 podl./1901, 3 podl./1882); limit 3 000 prvků na dotaz (ověřeno na stránce Ryhti) |
 | MML Maastotietokanta / rakennuspalvelu | OGC API (klíč) | obrys, podlaží částečně | — | CC BY 4.0 | s podmínkou (klíč) | neověřeno |
 | Espoo, Turku, Tampere | `kanta:Rakennus`, `GIS:Rakennukset`, `rakennukset:RAKENNUKSET_JULKINEN_MVIEW` | neověřeno | Espoo, Turku `*`; Tampere bez | neověřena | neověřeno | jen seznam vrstev |
 
@@ -161,14 +166,14 @@ zabalením).
 |---|---|---|---|---|---|
 | Ortofoto celostátní | MML ortokuva WMTS 3857 | 401 bez klíče | prázdná hlavička při 401 | CC BY 4.0 | jen s klíčem (rozhodne Bára) |
 | Ortofoto Helsinki | kartta.hel.fi WMS, 5 cm, 2026 | ověřeno | `*` | CC BY 4.0 | **použít** (`res` 0,05–0,1) |
-| Ortofoto Espoo | kartat.espoo.fi WMS, 30 cm, 2026 | ověřeno | `*` | neověřena | podklad; zeptat se na licenci |
-| Ortofoto Turku | turku.asiointi.fi WMS, 2025 | ověřeno, ostré | `*` | neověřena | použít po ověření licence |
+| Ortofoto Espoo | kartat.espoo.fi WMS, 30 cm, 2026 | ověřeno | `*` | CC BY 4.0 | použito (pruhy, podklad) |
+| Ortofoto Turku | turku.asiointi.fi WMS, 2022 True ortho | ověřeno, ostré | `*` | CC BY 4.0 | použito (vrstva 2022) |
 | Mapa povrchů Helsinki | YLRE WFS | ověřeno, sedí | `*` | CC BY 4.0 | **použít** jako FMZK, A/B |
 | Mapa povrchů Tampere | locus WFS | ověřeno | bez | neověřena | ne bez proxy |
 | Mapa povrchů Turku, Espoo | Tekla WFS (čáry) | částečně | `*` | neověřena | později |
 | Šířka vozovky celostátně | Digiroad `dr_leveys` | ověřeno | `*` | CC BY 4.0 (neověř.) | nápověda k odhadu |
 | Budovy Helsinki | `Rakennukset_alue_rekisteritiedot` | ověřeno | `*` | CC BY 4.0 | **použít** |
-| Budovy celostátně | Ryhti `open_building` (body) | ověřeno | `*` | CC BY 4.0 (neověř.) | **použít** s obrysy z OSM |
-| Hledání | Ryhti `open_address` + Photon | ověřeno (Ryhti) | `*` | — | Photon, Ryhti doplňkově |
+| Budovy celostátně | Ryhti `open_building` (body) | ověřeno | `*` | CC BY 4.0 | **použít** s obrysy z OSM |
+| Hledání | Ryhti `open_address` + Photon | ověřeno (Ryhti) | `*` | CC BY 4.0 (Ryhti), ODbL (Photon) | Photon, Ryhti doplňkově |
 | OSM | Geofabrik `finland` 778 MB | ověřeno | — | ODbL | jeden balík `fi` |
 | Hranice | GISCO `FI` | ověřeno | `*` | © EuroGeographics | přidat do `build_staty.mjs` |

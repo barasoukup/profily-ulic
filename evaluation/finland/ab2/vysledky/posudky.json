@@ -1,0 +1,281 @@
+[
+ {
+  "n": 1,
+  "id": "malm3",
+  "group": "suburb",
+  "highway": "secondary",
+  "name": "Malmin asematie",
+  "lepsi": "B",
+  "proc": "X končí u fasády A a má trávník před domem; Y začíná až u stezky, pravá strana nejistá; fotka f z jiného místa"
+ },
+ {
+  "n": 2,
+  "id": "kall3",
+  "group": "inner",
+  "highway": "residential",
+  "name": "Agricolankatu",
+  "lepsi": "B",
+  "proc": "čistá skladba chodník–stání–pruhy–šikmé stání–chodník; Y má navíc „neurčeno“ 1,8 a 0,85 u chodníku B"
+ },
+ {
+  "n": 3,
+  "id": "pasi3",
+  "group": "suburb",
+  "highway": "residential",
+  "name": "Firdonkatu",
+  "lepsi": "B",
+  "proc": "fotka: pod stavbou obousměrná cyklostezka a chodník u stěny; Y je má, X tam má krajnici 5,9 a stání, na straně A zeleň pod střechou"
+ },
+ {
+  "n": 4,
+  "id": "laut2",
+  "group": "suburb",
+  "highway": "residential",
+  "name": "Lahnaruohontie",
+  "lepsi": "B",
+  "proc": "chodník B asi 2 m, za ním zeleň; X 2,15 blíž než Y 4,65"
+ },
+ {
+  "n": 5,
+  "id": "mell3",
+  "group": "suburb",
+  "highway": "tertiary",
+  "name": "Naulakalliontie",
+  "lepsi": "B",
+  "proc": "chodník A začíná dál od vozovky (Y), na straně B bez proužku mezi vozovkou a chodníkem"
+ },
+ {
+  "n": 6,
+  "id": "kapy2",
+  "group": "suburb",
+  "highway": "residential",
+  "name": "Osmontie",
+  "lepsi": "A",
+  "proc": "chodník A asi 2 m a vozovka asi 6 m odpovídají X; rozdíl malý"
+ },
+ {
+  "n": 7,
+  "id": "pasi4",
+  "group": "suburb",
+  "highway": "residential",
+  "name": "Pasilankatu",
+  "lepsi": "B",
+  "proc": "Y má celou ulici od domu po skálu (chodník, cyklopruh, pruhy, nástupiště, tramvaj, pruhy, cyklostezka); X jen tramvaj a nástupiště"
+ },
+ {
+  "n": 8,
+  "id": "kann2",
+  "group": "suburb",
+  "highway": "residential",
+  "name": "Pasuunakuja",
+  "lepsi": "B",
+  "proc": "na ortofotu stromy po straně A, na fotce zákaz stání; X má stromořadí a žádné stání"
+ },
+ {
+  "n": 9,
+  "id": "kamp3",
+  "group": "inner",
+  "highway": "tertiary",
+  "name": "Simonkatu",
+  "lepsi": "B",
+  "proc": "na straně A náměstí se stromy, Y ho má; vozovka u obou podobně"
+ },
+ {
+  "n": 10,
+  "id": "ulla2",
+  "group": "inner",
+  "highway": "unclassified",
+  "name": "Ehrenströmintie",
+  "lepsi": "stejne",
+  "proc": "fotka: chodník, obousměrná cyklostezka, stání A, pruhy, stání B; X nemá stání B, Y nemá chodník A"
+ },
+ {
+  "n": 11,
+  "id": "munk3",
+  "group": "suburb",
+  "highway": "residential",
+  "name": "Tammitie",
+  "lepsi": "A",
+  "proc": "fotka: strana A trávník se stromy a cestou, B chodník a živý plot; Y zeleň, X plocha a neurčeno"
+ },
+ {
+  "n": 12,
+  "id": "tool3",
+  "group": "inner",
+  "highway": "residential",
+  "name": "Apollonkatu",
+  "lepsi": "A",
+  "proc": "na ortofotu podélné stání u chodníku A (auta), Y ho má"
+ },
+ {
+  "n": 13,
+  "id": "kall1",
+  "group": "inner",
+  "highway": "residential",
+  "name": "Hämeentie",
+  "lepsi": "B",
+  "proc": "Hämeentie: cyklostezky po obou stranách, pruh, tramvaj, pruh; X nemá cyklostezku A a má dělicí pás"
+ },
+ {
+  "n": 14,
+  "id": "munk2",
+  "group": "suburb",
+  "highway": "residential",
+  "name": "Tiilimäki",
+  "lepsi": "A",
+  "proc": "fotka: strana A zahrada bez stání, stání jen B, chodník B; X má stání na A a plochu místo zeleně"
+ },
+ {
+  "n": 15,
+  "id": "haag4",
+  "group": "suburb",
+  "highway": "trunk_link",
+  "name": "",
+  "lepsi": "stejne",
+  "proc": "lesní silnice, profily skoro stejné"
+ },
+ {
+  "n": 16,
+  "id": "itak3",
+  "group": "suburb",
+  "highway": "residential",
+  "name": "Kastelholmantie",
+  "lepsi": "A",
+  "proc": "Y začíná cestou u domu A, jinak stejné"
+ },
+ {
+  "n": 17,
+  "id": "kont3",
+  "group": "suburb",
+  "highway": "primary",
+  "name": "Kontulantie",
+  "lepsi": "B",
+  "proc": "vozovka B má dva pruhy (čára uprostřed), Y je má, X jeden pruh s krajnicí"
+ },
+ {
+  "n": 18,
+  "id": "kann4",
+  "group": "suburb",
+  "highway": "secondary",
+  "name": "Kantelettarentie",
+  "lepsi": "B",
+  "proc": "fotka: cyklopruhy u obou obrub, chodník; Y má oba cyklopruhy bez proužků plochy"
+ },
+ {
+  "n": 19,
+  "id": "pihl1",
+  "group": "suburb",
+  "highway": "residential",
+  "name": "Maasälväntie",
+  "lepsi": "A",
+  "proc": "šedý pás chodníku za kolmým stáním na A, Y ho má"
+ },
+ {
+  "n": 20,
+  "id": "kamp1",
+  "group": "inner",
+  "highway": "tertiary",
+  "name": "Runeberginkatu",
+  "lepsi": "B",
+  "proc": "fotka: auta stojí na straně A u stromořadí, X má stání, Y chodník"
+ },
+ {
+  "n": 21,
+  "id": "kapy4",
+  "group": "suburb",
+  "highway": "motorway",
+  "name": "Tuusulanväylä",
+  "lepsi": "B",
+  "proc": "X má trávník a cestu na A a tři pruhy (jeden je krajnice), Y jen dva pruhy na A a končí u krajnice"
+ },
+ {
+  "n": 22,
+  "id": "oulu2",
+  "group": "suburb",
+  "highway": "residential",
+  "name": "Runoilijanpolku",
+  "lepsi": "B",
+  "proc": "úzká jednopruhová cesta bez chodníků mezi zelení, Y; X přidá dva chodníky a dva pruhy"
+ },
+ {
+  "n": 23,
+  "id": "kall2",
+  "group": "inner",
+  "highway": "tertiary",
+  "name": "Fleminginkatu",
+  "lepsi": "stejne",
+  "proc": "stejná skladba, rozdíl v šířce chodníku A o 0,9 m"
+ },
+ {
+  "n": 24,
+  "id": "oulu4",
+  "group": "suburb",
+  "highway": "residential",
+  "name": "Teinintie",
+  "lepsi": "A",
+  "proc": "fotka: chodník a trávník na A, na B živý plot bez chodníku; Y zeleň na B, X chodník 0,5 a plocha"
+ },
+ {
+  "n": 25,
+  "id": "kruu3",
+  "group": "inner",
+  "highway": "unclassified",
+  "name": "Aleksanterinkatu",
+  "lepsi": "B",
+  "proc": "strana A Senátní náměstí a řada stání, X je má; Y jen chodník–tramvaj–chodník"
+ },
+ {
+  "n": 26,
+  "id": "pasi1",
+  "group": "suburb",
+  "highway": "secondary",
+  "name": "",
+  "lepsi": "stejne",
+  "proc": "křižovatka u smyčky, profily skoro stejné"
+ },
+ {
+  "n": 27,
+  "id": "kruu2",
+  "group": "inner",
+  "highway": "residential",
+  "name": "Vironkatu",
+  "lepsi": "A",
+  "proc": "auta stojí po obou stranách (ortofoto i fotka), Y má stání na obou"
+ },
+ {
+  "n": 28,
+  "id": "pasi2",
+  "group": "suburb",
+  "highway": "primary",
+  "name": "Teollisuuskatu",
+  "lepsi": "nejde",
+  "proc": "řez pod mostem a u stavby, ortofoto nečitelné"
+ },
+ {
+  "n": 29,
+  "id": "munk4",
+  "group": "suburb",
+  "highway": "residential",
+  "name": "Tammitie",
+  "lepsi": "A",
+  "proc": "na straně A zahrada, Y zeleň místo plochy; stání nejisté"
+ },
+ {
+  "n": 30,
+  "id": "pihl2",
+  "group": "suburb",
+  "highway": "trunk",
+  "name": "Kehä I",
+  "lepsi": "B",
+  "proc": "Y zachytí i rampu na straně A, střed stejný"
+ },
+ {
+  "n": 31,
+  "id": "malm2",
+  "group": "suburb",
+  "highway": "secondary",
+  "name": "Kirkonkyläntie",
+  "lepsi": "stejne",
+  "proc": "křižovatka, obě strany podobné; na B chodník a cyklostezka u obou"
+ }
+]

@@ -3,10 +3,15 @@
 // orthophoto in Helsinki, Espoo and Turku (lanes-ortho.js "fi"). Its own sources:
 // - Helsinki's register of public areas YLRE (Yleisten alueiden rekisteri, kartta.hel.fi WFS, CORS *, CC BY 4.0 on HRI
 //   "Helsingin kaupunki"): the parts of the streets (roadway, sidewalk, separated cycle track, island, divider, lawn,
-//   planting, parking area) as surfaces of the cut, as Tallinn's map: OSM's buildings before it, OSM's green and water
-//   after, only where the register has a roadway or sidewalk within 15 m of the cut's centre (it covers only the
-//   streets the city keeps, not yards); a register that does not answer: the estimate, with a note. ?helsinki=0 leaves
-//   it out. Only the fields used are asked (the records name the clerk who last changed them).
+//   planting, parking area) as surfaces of the cut, as Tallinn's map: the city's building outlines and OSM's buildings
+//   before it, OSM's green and water after, only inside the city's border (finland-helsinki.js) and where the register
+//   has the street under the cut's centre (hasStreet, after the hostile review of 24. 11. 2026 as in Vilnius: within
+//   3 m a roadway under a street for cars, a roadway, sidewalk or cycle track under a path; the register covers only
+//   the streets the city keeps, not yards); a register that does not answer: the estimate, with a note. ?helsinki=0
+//   leaves it out. Only the fields used are asked (the records name the clerk who last changed them).
+// - the city's building outlines (Rakennukset_alue_rekisteritiedot, same WFS and licence) before OSM's under the
+//   register: the register's sidewalks end at the city's own outlines, OSM's lie a metre or two off and left strips of
+//   "plocha (odhad)" at the facades (the review, bod 6); ?hkihouses=0 leaves them out.
 // - the buildings: in Helsinki the city's building register (Rakennukset_alue_rekisteritiedot, same WFS and licence:
 //   floors, the year completed, walls and facade, use), ?hkibuild=0; elsewhere (and where Helsinki's has no house) the
 //   national buildings of Ryhti (SYKE, open_building: points with floors, the year, walls, facade, use; CORS *, CC BY
@@ -16,19 +21,33 @@ import { osmTiles, getJSON, asMtvu, asPassport } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea } from "../places.js";
 import { osmAreas } from "./slovensko.js";
+import { HELSINKI_RINGS } from "./finland-helsinki.js";
 
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_FI?.[k] ?? null : new URLSearchParams(location.search).get(k));
 export const HEL_WFS = "https://kartta.hel.fi/ws/geoserver/avoindata/wfs";
-// Helsinki's box (the city's orthophoto's; the register is empty beyond the city).
-export const AREAS = { helsinki: { box: [24.78, 60.10, 25.27, 60.31] } };
+const inRings = (rings, x, y) => {
+  let c = false;
+  for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; }
+  return c;
+};
+// Helsinki: its box and its border with its waters (the city's districts; the box alone took parts of Espoo and Vantaa,
+// where the register is empty: a request for nothing and, when Helsinki did not answer, a note about its map there).
+const ringsBox = (rings) => { const p = rings.flat(); return [Math.min(...p.map((q) => q[0])), Math.min(...p.map((q) => q[1])), Math.max(...p.map((q) => q[0])), Math.max(...p.map((q) => q[1]))]; };
+export const AREAS = { helsinki: { box: ringsBox(HELSINKI_RINGS) } };
+export const inHelsinki = (lon, lat) => inArea(AREAS.helsinki, lon, lat) && inRings(HELSINKI_RINGS, lon, lat);
 
 // ---------- YLRE: the parts of Helsinki's streets ----------
 // The register's kinds (paatyyppi / alatyyppi, counted over four districts, ZDROJE.md 2) → MTVU codes (city.js
 // MTVU_LABELS). A bridge's parts ("Ajorata (Silta)") are the same parts. Furniture, walls, gutters, steps' cheeks and
 // play areas are left to what lies under them (OSM). A divider (Erotusalue) is paved unless its material is grass.
+// After the hostile review (24. 11. 2026, bod 9): a square (Aukiot) is paving, not a sidewalk (as in Vilnius); a
+// driveway across the sidewalk (Tonttiliittymä) is the sidewalk it crosses; a cycling area or lane (Pyöräilyalue/kaista)
+// in a street (alueen_kayttotarkoitus …katu: Konalantie, Pohjoisranta, a red lane at the kerb) is the roadway's, and
+// the cycle lane comes from OSM as on any roadway; on a square or in a park it is a cycle track. A combined footway and
+// cycleway stays a sidewalk (OSM tells the shared path).
 const SUB = {
-  "Ajorata": 701, "Ajorata, muu": 701, "Tonttiliittymä": 1003, "Koroke": 1003, "Pysäköintialue": 704,
-  "Jalankulkualue": 702, "Erotettu jalkakäytävä": 702, "Yhdistetty jk ja pp": 702, "Puistokäytävät": 702, "Aukiot": 702,
+  "Ajorata": 701, "Ajorata, muu": 701, "Tonttiliittymä": 702, "Koroke": 1003, "Pysäköintialue": 704,
+  "Jalankulkualue": 702, "Erotettu jalkakäytävä": 702, "Yhdistetty jk ja pp": 702, "Puistokäytävät": 702, "Aukiot": 1003,
   "Kevyt liikenne": 702, "Portaat": 702, "Lämmitettävät portaat": 702, "Polku": 702, "Pelastusreitit": 702, "Juuristoritilä": 702,
   "Erotettu pyörätie": 703, "Pyöräilyalue/kaista": 703,
   "Erotusalue": 1003, "Muu katutilan osa": 1003, "Muu alue": 1003,
@@ -40,6 +59,7 @@ export function ylreCode(p) {
   const sub = String(p?.alatyyppi || "").replace(/\s*\(Silta\)$/, "").trim();
   if (GREEN_MAIN.has(p?.paatyyppi) || sub === "Istutusallas") return 401;
   if (sub === "Erotusalue" && /nurmi|istutus|kasvi/i.test(String(p?.materiaali || ""))) return 401;
+  if (sub === "Pyöräilyalue/kaista" && /katu/i.test(String(p?.alueen_kayttotarkoitus || ""))) return 701;
   return SUB[sub] ?? null;
 }
 // The combined footway and cycleway is drawn over other parts in places (a route): it yields to them.
@@ -57,7 +77,7 @@ export function ylreFeatures(json) {
 export const ylreUrl = (bbox) => {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   return `${HEL_WFS}?${new URLSearchParams({ service: "WFS", version: "2.0.0", request: "GetFeature", typeNames: "avoindata:YLRE_Katu_ja_viherosat_kaikki_alue",
-    outputFormat: "application/json", srsName: "EPSG:4326", count: "3000", propertyName: "paatyyppi,alatyyppi,materiaali,geom",
+    outputFormat: "application/json", srsName: "EPSG:4326", count: "3000", propertyName: "paatyyppi,alatyyppi,materiaali,alueen_kayttotarkoitus,geom",
     bbox: `${y0},${x0},${y1},${x1},urn:ogc:def:crs:EPSG::4326` })}`;
 };
 const memo = new Map();
@@ -69,29 +89,54 @@ function cached(bbox) {
   }
   return memo.get(key);
 }
-const inRings = (rings, x, y) => {
-  let c = false;
-  for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; }
-  return c;
+// The register has the street when a part of its kind lies under the cut's centre (within 3 m): a roadway under a
+// street for cars, a roadway, sidewalk or cycle track under a footway, path or cycleway (the hostile review of
+// 24. 11. 2026, bod 1: the old rule, a roadway or sidewalk within 15 m, took the register 29 m beside a park path and
+// for cuts where none of its parts came into the profile).
+const AROUND = [[0, 0], ...Array.from({ length: 12 }, (_, i) => [3 * Math.cos((i * Math.PI) / 6), 3 * Math.sin((i * Math.PI) / 6)])];
+const WALKED = new Set(["footway", "path", "pedestrian", "cycleway", "steps", "bridleway", "corridor"]);
+export function hasStreet(features, cx, cy, tags = null) {
+  const my = 1 / 110574, mx = 1 / (111320 * Math.cos((cy * Math.PI) / 180));
+  const kinds = !tags?.highway || WALKED.has(tags.highway) ? [701, 702, 703] : [701];
+  return features.some((f) => kinds.includes(f.attributes.CTVUK_KOD) && AROUND.some(([ox, oy]) => inRings(f.geometry.rings, cx + ox * mx, cy + oy * my)));
+}
+// The city's building outlines of the cut (as surfaces, before OSM's), or none (switched off, or no answer: OSM's alone).
+export const hkiHousesUrl = (bbox) => {
+  const [x0, y0, x1, y1] = bbox.split(",").map(Number);
+  return `${HEL_WFS}?${new URLSearchParams({ service: "WFS", version: "2.0.0", request: "GetFeature", typeNames: "avoindata:Rakennukset_alue_rekisteritiedot",
+    outputFormat: "application/json", srsName: "EPSG:4326", count: "500", propertyName: "tila,geom", bbox: `${y0},${x0},${y1},${x1},urn:ogc:def:crs:EPSG::4326` })}`;
 };
-// A roadway or sidewalk of the register within 15 m of the cut's centre (the register has this street).
-const ring = (r) => Array.from({ length: 12 }, (_, i) => [r * Math.cos((i * Math.PI) / 6), r * Math.sin((i * Math.PI) / 6)]);
-const AROUND = [[0, 0], ...[3, 8, 15].flatMap(ring)];
-async function surfaces(bbox) {
+export function hkiHouseFeatures(json) {
+  const out = [];
+  for (const f of json?.features || []) {
+    if (f.properties?.tila && f.properties.tila !== "voimassa") continue;
+    for (const rings of ringsOf(f.geometry)) out.push({ attributes: { CTVUK_KOD: 601, CTVUK_POPIS: MTVU_LABELS[601], ODHAD: 0 }, geometry: { rings } });
+  }
+  return out;
+}
+const houseMemo = new Map();
+async function hkiHouses(bbox) {
+  if (param("hkihouses") === "0") return [];
+  const key = bbox.split(",").map((v) => (+v).toFixed(4)).join(",");
+  if (!houseMemo.has(key)) {
+    houseMemo.set(key, getJSON(hkiHousesUrl(bbox)).then(hkiHouseFeatures).catch((err) => { houseMemo.delete(key); console.warn("Helsinki buildings", err); return []; }));
+    if (houseMemo.size > 30) houseMemo.delete(houseMemo.keys().next().value);
+  }
+  return houseMemo.get(key);
+}
+async function surfaces(bbox, tags = null) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
   const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
-  if (param("helsinki") === "0" || !inArea(AREAS.helsinki, cx, cy)) return { features: [], abroad: true };
+  if (param("helsinki") === "0" || !inHelsinki(cx, cy)) return { features: [], abroad: true };
   let own;
   try {
     own = asMtvu([[await cached(bbox), (a) => a.code]], MTVU_LABELS);
   } catch {
     return { features: [], abroad: true, fiFailed: "helsinki" };
   }
-  const my = 1 / 110574, mx = 1 / (111320 * Math.cos((cy * Math.PI) / 180));
-  const at = own.features.some((f) => [701, 702].includes(f.attributes.CTVUK_KOD) && AROUND.some(([ox, oy]) => inRings(f.geometry.rings, cx + ox * mx, cy + oy * my)));
-  if (!at) return { features: [], abroad: true };
-  const o = await osmAreas(bbox);
-  return { features: [...o.buildings, ...asPassport(own).features, ...o.rest], fiTown: "helsinki", passport: true };
+  if (!hasStreet(own.features, cx, cy, tags)) return { features: [], abroad: true };
+  const [o, h] = await Promise.all([osmAreas(bbox), hkiHouses(bbox)]);
+  return { features: [...h, ...o.buildings, ...asPassport(own).features, ...o.rest], fiTown: "helsinki", passport: true };
 }
 
 // ---------- buildings ----------
@@ -110,10 +155,14 @@ function walls(load, facade) {
 // Helsinki's register: the floors (i_kerrlkm), the year completed (c_valmpvm), the walls (c_rakeaine) and facade
 // (c_julkisivu), the use by the classification of 1994 (c_kayttark: 011–013 detached houses, 021–022 terraced, 032–039
 // blocks of flats, 121–124 hotels, 151 offices, 2xx–5xx care, assembly and schools, 6xx–7xx industry and storage).
+// Ryhti's open classification has only "07 public building" (school, church, hospital, office of the state alike) and
+// "02 offices, production and other": 07 stays an office, 02 says nothing (checked on koodistot.suomi.fi 24. 11. 2026).
 export function hkiBuilding(p) {
   if (!p) return {};
   const n = num(p.i_kerrlkm), floors = n >= 1 && n <= 60 ? n : undefined, use = String(p.c_kayttark || "");
-  const type = /^01/.test(use) ? "house" : /^02/.test(use) ? "terrace" : /^03/.test(use) ? "apartments" : /^[67]/.test(use) ? "industrial" : undefined;
+  // 341 churches and chapels, 51x–54x schools (the review of 24. 11. 2026, bod 14: else drawn as offices).
+  const type = /^01/.test(use) ? "house" : /^02/.test(use) ? "terrace" : /^03/.test(use) ? "apartments" : /^[67]/.test(use) ? "industrial"
+    : /^341/.test(use) ? "church" : /^5[1-4]/.test(use) ? "school" : undefined;
   const office = /^(12|15|[2-5])/.test(use) || undefined;
   return { built: yearOf(p.c_valmpvm), ...walls(p.c_rakeaine, p.c_julkisivu), ...(type === "house" && { house: true }), type, office, ...(floors && { cornice: floors, total: floors, roof: 0 }) };
 }
@@ -183,7 +232,7 @@ async function podlaznost(lat, lon) {
   const key = `${lat.toFixed(5)},${lon.toFixed(5)},${param("hkibuild")},${param("ryhti")}`;
   if (!houses.has(key)) {
     houses.set(key, (async () => {
-      if (param("hkibuild") !== "0" && inArea(AREAS.helsinki, lon, lat)) {
+      if (param("hkibuild") !== "0" && inHelsinki(lon, lat)) {
         const p = await ask(hkiBuildingUrl(lat, lon)).then((j) => hkiPick(j, lat, lon)).catch(() => ({}));
         if (p.fiBuild) return p;
       }

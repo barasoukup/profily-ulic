@@ -65,6 +65,33 @@ test("Finsko: mapa povrchů Helsinek (YLRE)", async () => {
   assert.deepEqual(await F.sources.surfaces("24.93,60.16,24.94,60.17"), { features: [], abroad: true }, "?helsinki=0");
   globalThis.PROFILY_FI = {};
   assert.deepEqual(await F.sources.surfaces("23.75,61.49,23.76,61.50"), { features: [], abroad: true }, "mimo Helsinky nic");
+  // The review of 24. 11. 2026, bod 9: a square is paving, a driveway the sidewalk, a cycle lane in a street the roadway.
+  assert.equal(F.ylreCode({ paatyyppi: "Kevyt liikenne", alatyyppi: "Aukiot" }), 1003);
+  assert.equal(F.ylreCode({ paatyyppi: "Ajorata", alatyyppi: "Tonttiliittymä" }), 702);
+  assert.equal(F.ylreCode({ paatyyppi: "Kevyt liikenne", alatyyppi: "Pyöräilyalue/kaista", alueen_kayttotarkoitus: "Kokoojakatu alueellinen" }), 701);
+  assert.equal(F.ylreCode({ paatyyppi: "Kevyt liikenne", alatyyppi: "Pyöräilyalue/kaista", alueen_kayttotarkoitus: "Tori" }), 703);
+  // Bod 7: Helsinki by its border with its waters, not the box (Espoo's Tapiola and Otaniemi, Vantaa's Tikkurila and
+  // Myyrmäki, Hanasaari of Espoo are out; Suomenlinna, the bridge to Kulosaari, Laivakoirankatu, Östersundom in).
+  for (const [lon, lat] of [[24.938, 60.1695], [24.988, 60.1455], [24.9891, 60.1858], [25.0159, 60.16], [25.19, 60.25], [25.14, 60.21]]) assert.ok(F.inHelsinki(lon, lat), `${lon},${lat}`);
+  for (const [lon, lat] of [[24.805, 60.176], [24.83, 60.185], [25.04, 60.293], [24.85, 60.26], [24.84, 60.165], [24.81, 60.22]]) assert.ok(!F.inHelsinki(lon, lat), `${lon},${lat}`);
+  // Bod 1: the register has the street when a part of its kind lies under the cut's centre (3 m): a roadway under a
+  // street for cars; a sidewalk will do under a path.
+  const sq = (code, x0, x1) => ({ attributes: { CTVUK_KOD: code }, geometry: { rings: [[[x0, 60.1999], [x1, 60.1999], [x1, 60.2001], [x0, 60.2001], [x0, 60.1999]]] } });
+  const m = 1 / (111320 * Math.cos((60.2 * Math.PI) / 180));
+  const walk = [sq(702, 25 - 6 * m, 25 + 6 * m)], road = [sq(701, 25 - 6 * m, 25 + 6 * m)], aside = [sq(701, 25 + 10 * m, 25 + 20 * m)];
+  assert.ok(!F.hasStreet(walk, 25, 60.2, { highway: "residential" }), "pod ulicí jen chodník");
+  assert.ok(F.hasStreet(road, 25, 60.2, { highway: "residential" }));
+  assert.ok(F.hasStreet(walk, 25, 60.2, { highway: "footway" }));
+  assert.ok(!F.hasStreet(aside, 25, 60.2, { highway: "residential" }), "vozovka 10 m vedle");
+  // Bod 6: the city's building outlines (only those in force) as surfaces before OSM's.
+  const houses = F.hkiHouseFeatures({ features: [{ properties: { tila: "voimassa" }, geometry: { type: "Polygon", coordinates: [[[0, 0], [1, 0], [1, 1], [0, 0]]] } },
+    { properties: { tila: "purettu" }, geometry: { type: "Polygon", coordinates: [[[0, 0], [1, 0], [1, 1], [0, 0]]] } },
+    { properties: {}, geometry: { type: "MultiPolygon", coordinates: [[[[0, 0], [1, 0], [1, 1], [0, 0]]], [[[2, 2], [3, 2], [3, 3], [2, 2]]]] } }] });
+  assert.equal(houses.length, 3);
+  assert.ok(houses.every((h) => h.attributes.CTVUK_KOD === 601));
+  const hu = new URL(F.hkiHousesUrl("24.93,60.16,24.94,60.17"));
+  assert.equal(hu.searchParams.get("typeNames"), "avoindata:Rakennukset_alue_rekisteritiedot");
+  assert.equal(hu.searchParams.get("propertyName"), "tila,geom");
 });
 
 test("Finsko: budovy Helsinek a Ryhti", async () => {
@@ -76,6 +103,8 @@ test("Finsko: budovy Helsinek a Ryhti", async () => {
     { built: 1952, material: "wood", solid: true, house: true, type: "house", office: undefined, cornice: 2, total: 2, roof: 0 });
   assert.equal(F.hkiBuilding({ c_kayttark: "032" }).type, "apartments");
   assert.equal(F.hkiBuilding({ c_kayttark: "021" }).type, "terrace");
+  assert.equal(F.hkiBuilding({ c_kayttark: "341" }).type, "church");
+  assert.equal(F.hkiBuilding({ c_kayttark: "511" }).type, "school");
   assert.deepEqual(F.hkiPick({ features: [] }, 60, 25), {});
   // Ryhti: the codes as URIs; 04 wooden walls, 05 wooden facade, 07 a public building, 05 a small house, 06 flats.
   assert.deepEqual(F.ryhtiBuilding({ number_of_storeys: 2, completion_date: "1920-01-01Z", main_purpose: "http://uri.suomi.fi/codelist/rytj/avoin_rakennusluokitus/code/07",
@@ -103,9 +132,26 @@ test("Finsko: hledání adres Ryhti", async () => {
   assert.deepEqual(S.parseFiQuery("Hämeenkatu 10 Tampere"), { street: "Hämeenkatu", number: 10, extra: null, town: "Tampere" });
   assert.equal(S.parseFiQuery("Mannerheimintie 12 b").extra, "b");
   assert.equal(S.parseFiQuery("Esplanadi"), null);
-  const f = new URL(S.ryhtiAddressUrl({ street: "O'Bri%en", number: 5, extra: null, town: "Åbo" })).searchParams.get("filter");
+  // The fast query by the fields (the review of 24. 11. 2026, bod 12), the old ILIKE only when it finds nothing.
+  const fast = new URL(S.ryhtiAddressUrl({ street: "kolmas linja", number: 5, extra: "b", town: "Helsinki" })).searchParams.get("filter");
+  assert.match(fast, /address_name_fin IN \('kolmas linja','Kolmas linja','Kolmas Linja'\)/);
+  assert.match(fast, /number_part_of_address_number = 5 AND subdivision_letter_of_address_number = 'b'/);
+  assert.match(fast, /postal_office_fin = 'HELSINKI'/);
+  assert.doesNotMatch(fast, /ILIKE/);
+  const f = new URL(S.ryhtiAddressLikeUrl({ street: "O'Bri%en", number: 5, extra: null, town: "Åbo" })).searchParams.get("filter");
   assert.match(f, /address_fin ILIKE 'O''Brien 5'/);
   assert.match(f, /postal_office_swe ILIKE 'Åbo%'/);
+  const asked = [];
+  const answer = { features: [{ geometry: { coordinates: [24.95, 60.18] }, properties: { address_fin: "Kolmas linja 5", address_name_fin: "Kolmas linja", postal_office_fin: "HELSINKI" } }] };
+  assert.equal((await S.findFi("kolmas linja 5", async (u) => { asked.push(u); return answer; })).length, 1);
+  assert.equal(asked.length, 1, "jeden dotaz, když rychlý najde");
+  asked.length = 0;
+  await S.findFi("kolmas Linja 5", async (u) => { asked.push(u); return asked.length === 1 ? { features: [] } : answer; });
+  assert.equal(asked.length, 2, "ILIKE jen po prázdném rychlém");
+  assert.match(new URL(asked[1]).searchParams.get("filter"), /ILIKE/);
+  // Only a Swedish address (Åland): kept.
+  assert.deepEqual(S.parseFi({ features: [{ geometry: { coordinates: [19.94, 60.1] }, properties: { address_swe: "Torggatan 2", address_name_swe: "Torggatan", postal_office_swe: "MARIEHAMN" } }] }).map((x) => [x.text, x.at.street]),
+    [["Torggatan 2, Mariehamn", "Torggatan"]]);
   const items = S.parseFi({ features: [
     { geometry: { coordinates: [24.9387, 60.1653] }, properties: { address_fin: "Bulevardi 5", address_name_fin: "Bulevardi", postal_office_fin: "HELSINKI" } },
     { geometry: { coordinates: [24.9388, 60.1654] }, properties: { address_fin: "Bulevardi 5", address_name_fin: "Bulevardi", postal_office_fin: "HELSINKI" } },

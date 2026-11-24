@@ -97,7 +97,8 @@ export default {
   panorama: false,
   art: { finland: { ...czechFurniture, ...atPosts } },
   // Finland's concrete estates of the 1960s–80s are not drawn as the Czech panel houses (Bára's memory: the socialist
-  // looks only in CZ, SK, PL, EE and the GDR); question 4 of ZDROJE.md stays open.
+  // looks only in CZ, SK, PL, EE and the GDR); question 4 of ZDROJE.md decided so (docs/backlog.md, Bára 23. 11. 2026:
+  // the estates as "povalecny").
   socialistLooks: false,
   search: ["photon-fi", "ryhti"],
   // The Nordic looks (house-looks.js): the stone town's tenement, the painted wooden house, the wooden town house.

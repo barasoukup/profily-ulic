@@ -193,6 +193,8 @@ jsem přímo předpis nebo dokument (**ověřeno**), **2. ruka** = hodnotu cituj
 
 ## D. Návrh `limitsFI` (konvence jako jinde: min = červeně, zaklad = oranžově)
 
+> **Nepoužitý návrh.** Aplikace červená minima nepoužila (Finsko má jen doporučení); co platí, je v části E.
+
 | Typ | min | zaklad | Zdroj, povaha |
 |---|---|---|---|
 | chodnik | 1,5 | 2,5 | 1,5 [SURAKU1] volná šířka, [KTM] místní ulice vedle cyklostezky; 2,5 [KTM] výchozí (vše DOP Helsinki) |

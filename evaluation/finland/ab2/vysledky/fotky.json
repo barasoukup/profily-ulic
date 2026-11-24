@@ -1,0 +1,348 @@
+{
+ "kall1": [
+  {
+   "k": "f",
+   "year": 2025,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "kall2": [
+  {
+   "k": "f",
+   "year": 2025,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2020,
+   "pano": false
+  }
+ ],
+ "kall3": [
+  {
+   "k": "f",
+   "year": 2025,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2024,
+   "pano": false
+  }
+ ],
+ "tool3": [
+  {
+   "k": "f",
+   "year": 2018,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "kamp1": [
+  {
+   "k": "f",
+   "year": 2022,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2022,
+   "pano": false
+  }
+ ],
+ "kamp3": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "kruu2": [
+  {
+   "k": "f",
+   "year": 2020,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2021,
+   "pano": false
+  }
+ ],
+ "kruu3": [
+  {
+   "k": "f",
+   "year": 2024,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "ulla2": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2025,
+   "pano": false
+  }
+ ],
+ "malm2": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "malm3": [
+  {
+   "k": "f",
+   "year": 2022,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2022,
+   "pano": false
+  }
+ ],
+ "kont3": [
+  {
+   "k": "f",
+   "year": 2022,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2025,
+   "pano": false
+  }
+ ],
+ "munk2": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "munk3": [
+  {
+   "k": "f",
+   "year": 2020,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "munk4": [
+  {
+   "k": "f",
+   "year": 2020,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "kann2": [
+  {
+   "k": "f",
+   "year": 2020,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2020,
+   "pano": false
+  }
+ ],
+ "kann4": [
+  {
+   "k": "f",
+   "year": 2019,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "pasi1": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": true
+  }
+ ],
+ "pasi2": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "pasi3": [
+  {
+   "k": "f",
+   "year": 2025,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2023,
+   "pano": false
+  }
+ ],
+ "pasi4": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2021,
+   "pano": true
+  }
+ ],
+ "oulu2": [
+  {
+   "k": "f",
+   "year": 2021,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2021,
+   "pano": true
+  }
+ ],
+ "oulu4": [
+  {
+   "k": "f",
+   "year": 2019,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2021,
+   "pano": true
+  }
+ ],
+ "itak3": [],
+ "pihl1": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2019,
+   "pano": false
+  }
+ ],
+ "pihl2": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2025,
+   "pano": false
+  }
+ ],
+ "laut2": [
+  {
+   "k": "f",
+   "year": 2019,
+   "pano": false
+  }
+ ],
+ "kapy2": [
+  {
+   "k": "f",
+   "year": 2018,
+   "pano": false
+  }
+ ],
+ "kapy4": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2024,
+   "pano": false
+  }
+ ],
+ "haag4": [
+  {
+   "k": "f",
+   "year": 2017,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2023,
+   "pano": false
+  }
+ ],
+ "mell3": [
+  {
+   "k": "b",
+   "year": 2019,
+   "pano": false
+  }
+ ]
+}

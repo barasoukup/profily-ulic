@@ -22,3 +22,11 @@ trávník, výsadba, parkoviště; před ním budovy z OSM, po něm zeleň a vod
 
 Otevřené: stání podle YLRE neúplné (hk2); hk36 má řez mimo snímek (rozpětí −29 m), prověřit; pole `materiaali` (povrch) je
 využité jen u dělicího pásu (tráva / dlažba).
+
+## Po recenzi (24. 11. 2026)
+
+Toto A/B nebylo slepé (B vždy dole, červeně, s popisky) a bylo bez fotek. Podle druhu cesty (přepočet recenze): ulice
+pro auta 15 řezů, lépe B 5, lépe A 2, stejně 6, nejasné 2; pěšiny a parkové cesty 12, lépe B 5, lépe A 1; na běžných
+činžovních ulicích (hk1, 2, 11, 14, 17, 26, 28) lépe B 0, hůř 2, stejně 5. hk6 a hk31 nebyly „použito“ (žádný díl z mapy),
+hk36 měl profil mimo řez; po opravě (`hasStreet`) mapu nepoužijí. Nové slepé A/B na ulicích pro auta s předměstími a
+kontrolami je v `../ab2/ZPRAVA.md`.

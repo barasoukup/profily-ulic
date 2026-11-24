@@ -1,0 +1,650 @@
+[
+ {
+  "id": "kall1",
+  "group": "inner",
+  "place": "kallio",
+  "lat": 60.180853,
+  "lon": 24.952662
+ },
+ {
+  "id": "kall2",
+  "group": "inner",
+  "place": "kallio",
+  "lat": 60.184543,
+  "lon": 24.953045
+ },
+ {
+  "id": "kall3",
+  "group": "inner",
+  "place": "kallio",
+  "lat": 60.184173,
+  "lon": 24.952192
+ },
+ {
+  "id": "tool1",
+  "group": "inner",
+  "place": "toolo",
+  "lat": 60.179064,
+  "lon": 24.932807
+ },
+ {
+  "id": "tool2",
+  "group": "inner",
+  "place": "toolo",
+  "lat": 60.176091,
+  "lon": 24.918405
+ },
+ {
+  "id": "tool3",
+  "group": "inner",
+  "place": "toolo",
+  "lat": 60.176287,
+  "lon": 24.924522
+ },
+ {
+  "id": "puna1",
+  "group": "inner",
+  "place": "punavuori",
+  "lat": 60.162803,
+  "lon": 24.932139
+ },
+ {
+  "id": "puna2",
+  "group": "inner",
+  "place": "punavuori",
+  "lat": 60.159737,
+  "lon": 24.94776
+ },
+ {
+  "id": "puna3",
+  "group": "inner",
+  "place": "punavuori",
+  "lat": 60.164541,
+  "lon": 24.935222
+ },
+ {
+  "id": "kamp1",
+  "group": "inner",
+  "place": "kamppi",
+  "lat": 60.168614,
+  "lon": 24.928571
+ },
+ {
+  "id": "kamp2",
+  "group": "inner",
+  "place": "kamppi",
+  "lat": 60.169211,
+  "lon": 24.931429
+ },
+ {
+  "id": "kamp3",
+  "group": "inner",
+  "place": "kamppi",
+  "lat": 60.169393,
+  "lon": 24.937549
+ },
+ {
+  "id": "kruu1",
+  "group": "inner",
+  "place": "kruununhaka",
+  "lat": 60.171216,
+  "lon": 24.959633
+ },
+ {
+  "id": "kruu2",
+  "group": "inner",
+  "place": "kruununhaka",
+  "lat": 60.172446,
+  "lon": 24.956927
+ },
+ {
+  "id": "kruu3",
+  "group": "inner",
+  "place": "kruununhaka",
+  "lat": 60.16907,
+  "lon": 24.951703
+ },
+ {
+  "id": "ulla1",
+  "group": "inner",
+  "place": "ullanlinna",
+  "lat": 60.16015,
+  "lon": 24.947855
+ },
+ {
+  "id": "ulla2",
+  "group": "inner",
+  "place": "ullanlinna",
+  "lat": 60.155083,
+  "lon": 24.952353
+ },
+ {
+  "id": "ulla3",
+  "group": "inner",
+  "place": "ullanlinna",
+  "lat": 60.156368,
+  "lon": 24.952111
+ },
+ {
+  "id": "vuos1",
+  "group": "suburb",
+  "place": "vuosaari",
+  "lat": 60.207188,
+  "lon": 25.137962
+ },
+ {
+  "id": "vuos2",
+  "group": "suburb",
+  "place": "vuosaari",
+  "lat": 60.211086,
+  "lon": 25.146431
+ },
+ {
+  "id": "vuos3",
+  "group": "suburb",
+  "place": "vuosaari",
+  "lat": 60.210258,
+  "lon": 25.148835
+ },
+ {
+  "id": "vuos4",
+  "group": "suburb",
+  "place": "vuosaari",
+  "lat": 60.213488,
+  "lon": 25.142364
+ },
+ {
+  "id": "malm1",
+  "group": "suburb",
+  "place": "malmi",
+  "lat": 60.249624,
+  "lon": 25.004355
+ },
+ {
+  "id": "malm2",
+  "group": "suburb",
+  "place": "malmi",
+  "lat": 60.252365,
+  "lon": 25.006429
+ },
+ {
+  "id": "malm3",
+  "group": "suburb",
+  "place": "malmi",
+  "lat": 60.248595,
+  "lon": 25.00727
+ },
+ {
+  "id": "malm4",
+  "group": "suburb",
+  "place": "malmi",
+  "lat": 60.247177,
+  "lon": 25.009565
+ },
+ {
+  "id": "kont1",
+  "group": "suburb",
+  "place": "kontula",
+  "lat": 60.233884,
+  "lon": 25.080678
+ },
+ {
+  "id": "kont2",
+  "group": "suburb",
+  "place": "kontula",
+  "lat": 60.238397,
+  "lon": 25.084057
+ },
+ {
+  "id": "kont3",
+  "group": "suburb",
+  "place": "kontula",
+  "lat": 60.235648,
+  "lon": 25.084257
+ },
+ {
+  "id": "kont4",
+  "group": "suburb",
+  "place": "kontula",
+  "lat": 60.235203,
+  "lon": 25.085182
+ },
+ {
+  "id": "hert1",
+  "group": "suburb",
+  "place": "herttoniemi",
+  "lat": 60.197847,
+  "lon": 25.032377
+ },
+ {
+  "id": "hert2",
+  "group": "suburb",
+  "place": "herttoniemi",
+  "lat": 60.198161,
+  "lon": 25.034241
+ },
+ {
+  "id": "hert3",
+  "group": "suburb",
+  "place": "herttoniemi",
+  "lat": 60.196274,
+  "lon": 25.032203
+ },
+ {
+  "id": "hert4",
+  "group": "suburb",
+  "place": "herttoniemi",
+  "lat": 60.191155,
+  "lon": 25.03838
+ },
+ {
+  "id": "munk1",
+  "group": "suburb",
+  "place": "munkkiniemi",
+  "lat": 60.200465,
+  "lon": 24.885528
+ },
+ {
+  "id": "munk2",
+  "group": "suburb",
+  "place": "munkkiniemi",
+  "lat": 60.196873,
+  "lon": 24.871784
+ },
+ {
+  "id": "munk3",
+  "group": "suburb",
+  "place": "munkkiniemi",
+  "lat": 60.194182,
+  "lon": 24.877743
+ },
+ {
+  "id": "munk4",
+  "group": "suburb",
+  "place": "munkkiniemi",
+  "lat": 60.194576,
+  "lon": 24.880194
+ },
+ {
+  "id": "kann1",
+  "group": "suburb",
+  "place": "kannelmaki",
+  "lat": 60.2411,
+  "lon": 24.873817
+ },
+ {
+  "id": "kann2",
+  "group": "suburb",
+  "place": "kannelmaki",
+  "lat": 60.241992,
+  "lon": 24.87243
+ },
+ {
+  "id": "kann3",
+  "group": "suburb",
+  "place": "kannelmaki",
+  "lat": 60.236093,
+  "lon": 24.884277
+ },
+ {
+  "id": "kann4",
+  "group": "suburb",
+  "place": "kannelmaki",
+  "lat": 60.240464,
+  "lon": 24.886087
+ },
+ {
+  "id": "pasi1",
+  "group": "suburb",
+  "place": "pasila",
+  "lat": 60.198916,
+  "lon": 24.940077
+ },
+ {
+  "id": "pasi2",
+  "group": "suburb",
+  "place": "pasila",
+  "lat": 60.197189,
+  "lon": 24.933136
+ },
+ {
+  "id": "pasi3",
+  "group": "suburb",
+  "place": "pasila",
+  "lat": 60.199207,
+  "lon": 24.930824
+ },
+ {
+  "id": "pasi4",
+  "group": "suburb",
+  "place": "pasila",
+  "lat": 60.196879,
+  "lon": 24.928765
+ },
+ {
+  "id": "oulu1",
+  "group": "suburb",
+  "place": "oulunkyla",
+  "lat": 60.231155,
+  "lon": 24.970424
+ },
+ {
+  "id": "oulu2",
+  "group": "suburb",
+  "place": "oulunkyla",
+  "lat": 60.22811,
+  "lon": 24.972739
+ },
+ {
+  "id": "oulu3",
+  "group": "suburb",
+  "place": "oulunkyla",
+  "lat": 60.22603,
+  "lon": 24.969603
+ },
+ {
+  "id": "oulu4",
+  "group": "suburb",
+  "place": "oulunkyla",
+  "lat": 60.230448,
+  "lon": 24.959318
+ },
+ {
+  "id": "itak1",
+  "group": "suburb",
+  "place": "itakeskus",
+  "lat": 60.212413,
+  "lon": 25.075449
+ },
+ {
+  "id": "itak2",
+  "group": "suburb",
+  "place": "itakeskus",
+  "lat": 60.210455,
+  "lon": 25.074877
+ },
+ {
+  "id": "itak3",
+  "group": "suburb",
+  "place": "itakeskus",
+  "lat": 60.214247,
+  "lon": 25.081308
+ },
+ {
+  "id": "itak4",
+  "group": "suburb",
+  "place": "itakeskus",
+  "lat": 60.211923,
+  "lon": 25.089536
+ },
+ {
+  "id": "pihl1",
+  "group": "suburb",
+  "place": "pihlajamaki",
+  "lat": 60.236793,
+  "lon": 25.00986
+ },
+ {
+  "id": "pihl2",
+  "group": "suburb",
+  "place": "pihlajamaki",
+  "lat": 60.241548,
+  "lon": 25.017598
+ },
+ {
+  "id": "pihl3",
+  "group": "suburb",
+  "place": "pihlajamaki",
+  "lat": 60.238562,
+  "lon": 25.008832
+ },
+ {
+  "id": "pihl4",
+  "group": "suburb",
+  "place": "pihlajamaki",
+  "lat": 60.244461,
+  "lon": 25.010115
+ },
+ {
+  "id": "laut1",
+  "group": "suburb",
+  "place": "lauttasaari",
+  "lat": 60.15954,
+  "lon": 24.868815
+ },
+ {
+  "id": "laut2",
+  "group": "suburb",
+  "place": "lauttasaari",
+  "lat": 60.160137,
+  "lon": 24.872855
+ },
+ {
+  "id": "laut3",
+  "group": "suburb",
+  "place": "lauttasaari",
+  "lat": 60.15483,
+  "lon": 24.874565
+ },
+ {
+  "id": "laut4",
+  "group": "suburb",
+  "place": "lauttasaari",
+  "lat": 60.15903,
+  "lon": 24.879376
+ },
+ {
+  "id": "kapy1",
+  "group": "suburb",
+  "place": "kapyla",
+  "lat": 60.21601,
+  "lon": 24.941858
+ },
+ {
+  "id": "kapy2",
+  "group": "suburb",
+  "place": "kapyla",
+  "lat": 60.212115,
+  "lon": 24.947523
+ },
+ {
+  "id": "kapy3",
+  "group": "suburb",
+  "place": "kapyla",
+  "lat": 60.21767,
+  "lon": 24.947271
+ },
+ {
+  "id": "kapy4",
+  "group": "suburb",
+  "place": "kapyla",
+  "lat": 60.218129,
+  "lon": 24.944934
+ },
+ {
+  "id": "haag1",
+  "group": "suburb",
+  "place": "haaga",
+  "lat": 60.223714,
+  "lon": 24.903383
+ },
+ {
+  "id": "haag2",
+  "group": "suburb",
+  "place": "haaga",
+  "lat": 60.224249,
+  "lon": 24.905
+ },
+ {
+  "id": "haag3",
+  "group": "suburb",
+  "place": "haaga",
+  "lat": 60.221265,
+  "lon": 24.900241
+ },
+ {
+  "id": "haag4",
+  "group": "suburb",
+  "place": "haaga",
+  "lat": 60.220946,
+  "lon": 24.908716
+ },
+ {
+  "id": "puki1",
+  "group": "suburb",
+  "place": "pukinmaki",
+  "lat": 60.243891,
+  "lon": 24.982641
+ },
+ {
+  "id": "puki2",
+  "group": "suburb",
+  "place": "pukinmaki",
+  "lat": 60.247003,
+  "lon": 24.997464
+ },
+ {
+  "id": "puki3",
+  "group": "suburb",
+  "place": "pukinmaki",
+  "lat": 60.243398,
+  "lon": 24.984448
+ },
+ {
+  "id": "puki4",
+  "group": "suburb",
+  "place": "pukinmaki",
+  "lat": 60.24592,
+  "lon": 24.998744
+ },
+ {
+  "id": "mell1",
+  "group": "suburb",
+  "place": "mellunmaki",
+  "lat": 60.239788,
+  "lon": 25.10566
+ },
+ {
+  "id": "mell2",
+  "group": "suburb",
+  "place": "mellunmaki",
+  "lat": 60.238568,
+  "lon": 25.107691
+ },
+ {
+  "id": "mell3",
+  "group": "suburb",
+  "place": "mellunmaki",
+  "lat": 60.234968,
+  "lon": 25.115271
+ },
+ {
+  "id": "mell4",
+  "group": "suburb",
+  "place": "mellunmaki",
+  "lat": 60.236186,
+  "lon": 25.112373
+ },
+ {
+  "id": "tapi1",
+  "group": "control",
+  "place": "tapiola",
+  "lat": 60.177517,
+  "lon": 24.797718
+ },
+ {
+  "id": "tapi2",
+  "group": "control",
+  "place": "tapiola",
+  "lat": 60.174777,
+  "lon": 24.804197
+ },
+ {
+  "id": "otan1",
+  "group": "control",
+  "place": "otaniemi",
+  "lat": 60.186864,
+  "lon": 24.824093
+ },
+ {
+  "id": "otan2",
+  "group": "control",
+  "place": "otaniemi",
+  "lat": 60.185365,
+  "lon": 24.837344
+ },
+ {
+  "id": "lepp1",
+  "group": "control",
+  "place": "leppavaara",
+  "lat": 60.21793,
+  "lon": 24.811987
+ },
+ {
+  "id": "lepp2",
+  "group": "control",
+  "place": "leppavaara",
+  "lat": 60.218785,
+  "lon": 24.804098
+ },
+ {
+  "id": "tikk1",
+  "group": "control",
+  "place": "tikkurila",
+  "lat": 60.292557,
+  "lon": 25.043271
+ },
+ {
+  "id": "tikk2",
+  "group": "control",
+  "place": "tikkurila",
+  "lat": 60.291575,
+  "lon": 25.040584
+ },
+ {
+  "id": "myyr1",
+  "group": "control",
+  "place": "myyrmaki",
+  "lat": 60.263626,
+  "lon": 24.853161
+ },
+ {
+  "id": "myyr2",
+  "group": "control",
+  "place": "myyrmaki",
+  "lat": 60.25849,
+  "lon": 24.859704
+ },
+ {
+  "id": "hk6",
+  "town": "helsinki",
+  "lat": 60.192937,
+  "lon": 24.95928,
+  "group": "review",
+  "place": "review"
+ },
+ {
+  "id": "hk31",
+  "town": "helsinki",
+  "lat": 60.168739,
+  "lon": 24.953127,
+  "group": "review",
+  "place": "review"
+ },
+ {
+  "id": "hk33",
+  "town": "helsinki",
+  "lat": 60.174164,
+  "lon": 24.961156,
+  "group": "review",
+  "place": "review"
+ },
+ {
+  "id": "hk36",
+  "town": "helsinki",
+  "lat": 60.183005,
+  "lon": 24.936416,
+  "group": "review",
+  "place": "review"
+ }
+]
