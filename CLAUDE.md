@@ -559,11 +559,10 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   za obrubou Bára zamítla, `evaluation/ortofoto-osm/zelenpas/ZPRAVA.md`); řezy na `service=driveway`, `parking_aisle` a
   `drive-through` se vynechají (značka cesty z balíku OSM státu, `vysledky/sluzebni-<iso>.json`; `POKYN.md`).
 - Přeměření 24. 11. 2026 (stejná posouzení, profily ze současného kódu na posouzených řezech, `vysledky/staty.md`):
-  shoda složení CZ 48 %, SK 84 %, AT 61 %, DE 56 %, CH 63 %, LI 69 %, NL 58 %, BE 48 %, LU 53 %, PL 57 %, FR 60 %, ES 55 %,
+  shoda složení CZ 58 %, SK 84 %, AT 61 %, DE 56 %, CH 63 %, LI 69 %, NL 58 %, BE 48 %, LU 53 %, PL 63 %, FR 60 %, ES 55 %,
   PT 64 %, CY 55 %, MT 55 %, IT 56 %, EE 45 %, SI 56 %, LT 75 %, FI 52 %, DK 58 % (FI a DK poprvé, posuzoval Opus, ne Sonnet).
-  **CZ** je dole kvůli chybě: DTM krajů po přechodu na JVF DTM 1.5 aplikace čte špatně (WFS krajů přejmenovaly typy
-  `zps_p_*` → `zps_pl_*`, `dtmwfs.js`; řezy s DTM kraje 66 → 34 %, ostatní 56 → 63 %). **PL** měřené za výpadku ortofota
-  Geoportalu (se starými profily 69 %). Obojí po opravě a návratu služby přesbírat. Před → po a výklad v
+  CZ a PL přesbírané týž večer: CZ po opravě čtení DTM krajů po JVF DTM 1.5 (63b9726; řezy s DTM krajů 34 → 51 %, Praha,
+  Brno, Plzeň, Jihlava 68 %), PL po návratu ortofota Geoportalu (ortofoto ve 23 z 29 řezů). Před → po a výklad v
   `evaluation/universal/ZPRAVA.md` (oddíl 24. 11.).
 
 ## Jazyky (Bára 12. 11. 2026, slovenčina 15. 11. 2026, němčina 16. 11. 2026)

@@ -212,7 +212,7 @@ FI a DK oficiální řádek nemají (první měření). Pruhy a šířka: ofici�
 
 | stát | řezů před → po | shoda složení: oficiální → nová pravidla → nové profily | pruhy stejně | šířka do 1 / 2 m | nejčastější rozdíly po (aplikace proti posuzovateli) |
 |---|---|---|---|---|---|
-| CZ | 32 → 30 | 56 % → 60 % → **48 %** | 28 % → 30 % | 25 % / 31 % → 23 % / 27 % | chybí stani 9×, chybí pruh 8×, chybí chodnik 8×, navíc chodnik 5× |
+| CZ | 32 → 30 | 56 % → 60 % → **58 %** | 28 % → 30 % | 25 % / 31 % → 30 % / 33 % | navíc chodnik 9×, navíc pruh 6×, chybí stani 6×, navíc zelen 5× |
 | SK | 15 → 12 | 60 % → 71 % → **84 %** | 60 % → 75 % | 27 % / 53 % → 33 % / 50 % | chybí delici 2×, chybí pruh 2×, navíc chodnik 2×, chybí chodnik 1× |
 | AT | 33 → 29 | 58 % → 60 % → **61 %** | 30 % → 38 % | 18 % / 30 % → 28 % / 45 % | navíc stani 7×, chybí stani 5×, navíc cyklostezka 4×, navíc chodnik 4× |
 | DE | 34 → 32 | 61 % → 62 % → **56 %** | 56 % → 53 % | 15 % / 35 % → 13 % / 34 % | navíc chodnik 10×, chybí stani 7×, chybí chodnik 7×, navíc pruh 6× |
@@ -221,7 +221,7 @@ FI a DK oficiální řádek nemají (první měření). Pruhy a šířka: ofici�
 | NL | 32 → 32 | 52 % → 58 % → **58 %** | 53 % → 50 % | 31 % / 41 % → 38 % / 53 % | navíc chodnik 16×, navíc cyklostezka 12×, navíc zelen 9×, navíc stani 7× |
 | BE | 34 → 33 | 52 % → 51 % → **48 %** | 38 % → 36 % | 15 % / 26 % → 18 % / 33 % | chybí stani 10×, navíc chodnik 9×, chybí chodnik 8×, chybí pruh 5× |
 | LU | 12 → 12 | 53 % → 55 % → **53 %** | 50 % → 42 % | 25 % / 33 % → 17 % / 33 % | chodnik→cyklostezka 4×, cyklostezka→pruh 3×, chybí delici 2×, tramvaj→stani 1× |
-| PL | 22 → 22 | 67 % → 69 % → **57 %** | 45 % → 32 % | 18 % / 32 % → 18 % / 45 % | chybí stani 8×, navíc chodnik 7×, chybí chodnik 7×, chybí pruh 5× |
+| PL | 22 → 22 | 67 % → 69 % → **63 %** | 45 % → 32 % | 18 % / 32 % → 23 % / 36 % | chybí chodnik 7×, chybí pruh 6×, chybí stani 4×, chybí delici 4× |
 | FR | 25 → 25 | 57 % → 57 % → **60 %** | 60 % → 60 % | 28 % / 48 % → 28 % / 48 % | chybí chodnik 9×, navíc stani 8×, navíc chodnik 5×, chybí stani 4× |
 | ES | 23 → 23 | 57 % → 55 % → **55 %** | 52 % → 48 % | 9 % / 26 % → 17 % / 26 % | chybí chodnik 9×, chybí stani 6×, chodnik→pruh 4×, stani→zelen 3× |
 | PT | 29 → 28 | 63 % → 67 % → **64 %** | 62 % → 64 % | 34 % / 55 % → 21 % / 46 % | chybí chodnik 14×, chybí stani 11×, navíc zelen 3×, navíc pruh 3× |
@@ -239,16 +239,21 @@ FI a DK oficiální řádek nemají (první měření). Pruhy a šířka: ofici�
 | DK zbytek | 9 → 9 | — → 57 % → **57 %** | — → 33 % | — → 22 % / 33 % | chybí chodnik 4×, cyklopruh→cyklostezka 3×, navíc cyklostezka 3×, chybí delici 2× |
 
 **Co se pohnulo a proč (shoda složení, nové profily proti novým pravidlům se starými profily):**
-- **CZ 60 → 48 %: chyba čtení technické mapy krajů, ne odhadu.** Staré české profily vznikly 17. 11. za odstávky DMVS
-  (náhradou ortofoto), nové čtou DTM krajů po přechodu na JVF DTM 1.5.0.2. Řezy s DTM kraje 66 → 34 %, ostatní (Praha,
-  Brno, Plzeň, Jihlava s vlastními daty) 56 → 63 %. Příčina aspoň u WFS: služby krajů typy ploch přejmenovaly
-  `ms:zps_p_*` → `ms:zps_pl_*` (GetCapabilities Libereckého kraje 24. 11.), `dtmwfs.js AREA_TYPES` se ptá starých
-  jmen, a vozovka se ztrácí (cz-liberec-3: posuzovatel zeleň | pruh | zeleň, aplikace zeleň | **zeď** | zeleň;
-  cz-hradec-4, cz-liberec-1, cz-kolin-2 podobně). Olomoucký kraj (obrázky DMVS) se zhoršil taky. Úkol 1 „Na 19. 11.“
-  v CLAUDE.md (ověřit, že aplikace novou verzi JVF DTM umí číst): **neumí**. Po opravě české řezy přesbírat.
-- **PL 69 → 57 %: výpadek ortofota Geoportalu** (mapy.geoportal.gov.pl 24. 11. dopoledne neodpovídal ani na
-  GetCapabilities, 9 řezů přes 90 s): ortofoto použité ve 5 z 29 řezů proti 23 dřív, chybí stání 8×, pruhy 45 → 32 %.
-  Číslo neplatí pro aplikaci, jen pro výpadek; přesbírat, až Geoportal odpoví.
+- **CZ 60 → 58 % (přesbíráno po opravě čtení DTM krajů, 24. 11. večer).** První sběr 24. 11. dal 48 %: aplikace po
+  přechodu DTM na JVF DTM 1.5.0.2 četla technickou mapu krajů špatně (WFS krajů přejmenovaly typy `ms:zps_p_*` →
+  `ms:zps_pl_*`, GetFeatureInfo obrázků DMVS jmenuje jen skupinu plochy, „Dopravní stavby“ se četly jako stavba, tedy
+  zeď přes vozovku; cz-liberec-3 zeleň | **zeď** | zeleň). Oprava z `main` (commit 63b9726, `dmvs.js`, `dtmwfs.js`,
+  `gis.js`), české a polské řezy znovu `collect24` do `data/app-zzzprepocet-jvf.json`
+  (z čistého stavu větve c518735, bez rozpracovaných změn v pracovní složce). Řezy s DTM krajů (18) 34 → **51 %**,
+  ostatní (Praha, Brno, Plzeň, Jihlava s vlastními daty, 12) 68 → 68 %; šířka do 2 m 27 → 33 %. Vozovka je zpátky
+  (cz-liberec-3 zeleň | pruh | zeleň jako posuzovatel, liberec-1 33 → 100 %, olomouc-2 29 → 67 %, olomouc-4 Sokolská
+  s obrázky DMVS 20 → 40 %: místo samotné tramvaje chodník | 2 pruhy | tramvaj | pruh | chodník, posuzovatel má vlevo
+  stání, ne pruh). Proti starým profilům (60 %, za odstávky DMVS z ortofota) je CZ pořád o 2 body níž; nejčastěji
+  navíc chodník 9×, navíc pruh 6×, chybí stání 6×.
+- **PL 69 → 63 % (přesbíráno, až Geoportal odpověděl, 24. 11. večer).** První sběr 24. 11. dopoledne (57 %) padl do
+  výpadku ortofota Geoportalu (ortofoto v 5 z 29 řezů). Znovu `collect24` do `data/app-zzzprepocet-jvf.json`: ortofoto
+  ve 23 z 29 řezů (jako 17. 11.), žádný řez přes 90 s; šířka do 2 m 45 → 36 %, nejčastěji chybí chodník 7×, chybí pruh
+  6×. Proti starým profilům (69 %) zůstává 6 bodů pod.
 - **SK 71 → 84 %, AT 60 → 61 %, CH 62 → 63 %, FR 57 → 60 %**: opravy odhadu od 17.–23. 11. (cyklostezky podél silnice,
   stání, obruby z modelu); AT šířka do 2 m 29 → 45 %.
 - **LT 50 → 75 %**: mapa povrchů Vilniusu je vypnutá (staré profily ji měly), viz níže.
