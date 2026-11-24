@@ -205,3 +205,7 @@ export const sources = {
 // No fallback to the DMVS (sources.js national).
 export const national = true;
 export const ortho = null;
+
+// The overview map of the About dialog (tools/build_coverage.mjs): where this module's own map of the street surfaces
+// answers: Helsinki's register of public areas.
+export const SURFACE_MAPS = ["helsinki"];

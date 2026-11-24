@@ -41,6 +41,7 @@ import { checkRules, checkUnder, checkTrees } from "./rules.js";
 import { city, country, setCity, cityAt, closedAt, countryOfCity, loadBounds, loadStates, loadSkTowns, loadTowns } from "./city.js";
 import { TOWNS, placeAt } from "./towns/index.js";
 import { log, logOn, sendReport, shortProfile } from "./log.js";
+import { setupAbout } from "./about.js";
 import { createDataLayers, PLOCHY_PANE } from "./maplayers.js";
 import { PASSPORT_NAMES, GREEN_PASSPORTS } from "./towns/pasporty-names.js";
 import { mountSearch } from "./search.js";
@@ -2195,6 +2196,10 @@ $("#report-send").onclick = async () => {
   $("#report-dialog").close();
   status(tr("Děkujeme, hlášení je odesláno."), "ok");
 };
+
+// About (menu Soubor): the app, its author, where it has which data, a message (about.js).
+setupAbout({ $, lang, country: () => country,
+  cut: () => (location.hash.startsWith("#rez=") ? location.href.split("#")[0] + location.hash.split("&")[0] : null) });
 
 // The header menus close after a choice or a click elsewhere.
 document.addEventListener("click", (e) => {

@@ -103,3 +103,58 @@ test("záznam řezu: poloha ve všech státech aplikace (Kanáry, Azory, Kypr, E
     assert.deepEqual(db.rows.at(-1).slice(6, 8), [lat, lon]);
   }
 });
+
+// The contact form of the About dialog (POST /contact): a message is kept with its e-mail and cut, a robot's field and an
+// empty message are not, one address sends at most five an hour.
+function contactDb() {
+  const contacts = [], rate = new Map();
+  return {
+    contacts, rate,
+    prepare(sql) {
+      return {
+        bind: (...v) => ({
+          run: async () => {
+            if (/^INSERT INTO contacts/.test(sql)) contacts.push(v);
+            else if (/^INSERT INTO contact_rate/.test(sql)) rate.set(v[0], { hour: v[1], n: (rate.get(v[0])?.n || 0) + 1 });
+            else if (/^DELETE FROM contact_rate/.test(sql)) for (const [k, r] of rate) if (r.hour < v[0]) rate.delete(k);
+          },
+          first: async () => (/WHERE k = /.test(sql) ? rate.get(v[0]) || null
+            : { n: [...rate.values()].filter((r) => r.hour === v[0]).reduce((s, r) => s + r.n, 0) }),
+        }),
+      };
+    },
+  };
+}
+const contactPost = (body, ip = "1.2.3.4", origin = "https://barasoukup.github.io") => new Request("https://w.example/contact", { method: "POST", body: JSON.stringify(body), headers: { Origin: origin, "Content-Type": "text/plain", "CF-Connecting-IP": ip } });
+
+test("kontaktní formulář: zpráva se uloží, robot a prázdná zpráva ne, nejvýš pět za hodinu", async () => {
+  const db = contactDb(), e = env(db);
+  const cut = "https://barasoukup.github.io/profily-ulic/#rez=50.08,14.42,90,20.0,20.0";
+  let r = await worker.fetch(contactPost({ message: " Dobrý den ", email: "a@b.cz", cut, lang: "cs", country: "CZ" }), e);
+  assert.equal(r.status, 204);
+  assert.equal(r.headers.get("Access-Control-Allow-Origin"), "https://barasoukup.github.io");
+  assert.deepEqual(db.contacts[0], ["Dobrý den", "a@b.cz", cut, "cs", "CZ"]);
+  // A cut of another site is dropped, the message kept.
+  await worker.fetch(contactPost({ message: "x", cut: "https://evil.example/#rez=1,2,3" }), e);
+  assert.equal(db.contacts[1][2], null);
+  assert.equal((await worker.fetch(contactPost({ message: "spam", website: "http://spam" }), e)).status, 204);
+  assert.equal(db.contacts.length, 2, "pole pro roboty");
+  assert.equal((await worker.fetch(contactPost({ message: "  " }), e)).status, 400);
+  assert.equal((await worker.fetch(contactPost({ message: "x", email: "a@b.cz\r\nBcc: c@d.cz" }), e)).status, 400);
+  assert.equal((await worker.fetch(contactPost({ message: "x".repeat(3001) }), e)).status, 413);
+  assert.equal((await worker.fetch(contactPost({ message: "x" }, "1.2.3.4", "https://evil.example"), e)).status, 403);
+  for (let i = 0; i < 3; i++) assert.equal((await worker.fetch(contactPost({ message: `m${i}` }), e)).status, 204);
+  assert.equal((await worker.fetch(contactPost({ message: "šestá" }), e)).status, 429);
+  assert.equal((await worker.fetch(contactPost({ message: "jiná adresa" }, "5.6.7.8"), e)).status, 204);
+  // The address itself is never kept.
+  assert.ok(![...db.rate.keys()].some((k) => k.includes("1.2.3.4")));
+});
+
+test("kontaktní formulář na stránce: bez adresy Workera se nic neposílá", async () => {
+  const { sendContact, CONTACT_URL } = await import("../pilot/public/about.js");
+  assert.equal(CONTACT_URL, "");
+  assert.equal(await sendContact({ message: "x" }), "off");
+  assert.equal(await sendContact({ message: "x" }, { url: "https://w.example/contact", fetchFn: async () => new Response(null, { status: 204 }) }), "ok");
+  assert.equal(await sendContact({ message: "x" }, { url: "https://w.example/contact", fetchFn: async () => new Response(null, { status: 429 }) }), "limit");
+  assert.equal(await sendContact({ message: "x" }, { url: "https://w.example/contact", fetchFn: async () => { throw new Error("down"); } }), "off");
+});

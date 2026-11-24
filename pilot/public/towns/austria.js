@@ -122,3 +122,7 @@ export const ortho = null;
 
 // The sources with a territory of their own (towns/index.js placeAt).
 export const AREAS = { wien: AT_AREAS.wien, salzburg: AT_AREAS.salzburg };
+
+// The overview map of the About dialog (tools/build_coverage.mjs): where this module's own map of the street surfaces
+// answers: Vienna's FMZK (Salzburg's area is its signs).
+export const SURFACE_MAPS = ["wien"];

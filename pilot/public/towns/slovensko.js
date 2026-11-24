@@ -409,3 +409,8 @@ export const AREAS = {
   ...Object.fromEntries(EDGE_SOURCES.map((e) => [`${e.id}-kresba`, { box: e.box, town: e.id }])),
   "bratislava-tm": { box: SK_TOWNS.bratislava.box },
 };
+
+// The overview map of the About dialog (tools/build_coverage.mjs): where this module's own map of the street surfaces
+// answers: the towns' passports that are on by default (their AREAS, each town's boundary in mesta-sk.json); the lines of
+// the towns' maps (kresba) are no map of surfaces, Bratislava's technical map is off (?tm=1).
+export const SURFACE_MAPS = Object.entries(SK_TOWNS).filter(([, t]) => !t.optIn).map(([id]) => `${id}-pasport`);

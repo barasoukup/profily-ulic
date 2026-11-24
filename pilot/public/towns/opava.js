@@ -152,3 +152,7 @@ export function maps({ ArcgisExport, BIG_TILES, osm: osmLayer, cuzk }) {
 
 // No orthophoto of its own: the evaluation (evaluation/run_brno.mjs) takes ČÚZK's.
 export const ortho = null;
+
+// The overview map of the About dialog (tools/build_coverage.mjs): where this module's own map of the street surfaces
+// answers. "all": the whole town (its own services and the DMVS under them, as all of Czechia).
+export const SURFACE_MAPS = ["all"];

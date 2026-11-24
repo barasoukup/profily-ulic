@@ -611,6 +611,15 @@ Odstávka IS DMVS a DTM krajů 12.–18. 11. (přechod na JVF DTM 1.5.0.2), pln�
 3. Jihlava: pasport komunikací (`ost/Pasporty` vrstvy 1, 2, 34, 111–115) byl 16. 11. prázdný. Je-li pořád, při
    prázdném pasportu brát DTM ČÚZK a případně se zeptat města.
 
+## O aplikaci (Bára 24. 11. 2026, větev estonia, nenasazené)
+- Menu Soubor → „O aplikaci“ (`pilot/public/about.js`, dialog v `index.html`): text o aplikaci, autorka podle státu řezu
+  (`countries/*.js author`: v CZ a SK Bára Soukupová, jinde Bara Soukup), MIT a odkazy na repo a `LICENCE-A-ZDROJE.md`.
+- Mapa pokrytí `pilot/public/coverage.json` (306 kB) dělá `node tools/build_coverage.mjs` z modulů: `SURFACE_MAPS` v každém
+  `towns/*.js` („all“, id z AREAS, klíč hranic, „-NUTS3“ vynechá), `laneOrtho` států a částečná ortofota z `lanes-ortho.js`.
+  Nový zdroj = upravit `SURFACE_MAPS` a přestavět; `tests/coverage.test.js` hlídá aktuálnost a zařazení všech států.
+- Kontaktní formulář přes Workera (`POST /contact`, tabulky `contacts` a `contact_rate`, skryté pole, 5 zpráv za hodinu
+  z adresy), e-mail volitelně přes `send_email`; nasazení v `logging/README.md` (Bára). Bez `LOG_URL` „zatím nejde“.
+
 ## Licence
 - Kód MIT. Ilustrace Streetmix CC BY-SA 4.0 (s uvedením autora), pražské ilustrace (`pilot/public/praha/`)
   pod MIT jako kód (Bára rozhodla 8. 11. 2026), kód Streetmixu AGPL-3.0 (jen kopie

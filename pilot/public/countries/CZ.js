@@ -11,4 +11,6 @@ export default {
   bedOrtho: "cuzk",
   // The Czech house looks: sorela, the brick block of the 1950s–60s, the panel house.
   socialistLooks: true,
+  // The author's name (about.js).
+  author: "Bára Soukupová",
 };

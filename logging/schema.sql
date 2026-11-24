@@ -22,3 +22,22 @@ CREATE TABLE IF NOT EXISTS events (
 -- Added 16. 11. 2026 (cities of every state, the state apart): ALTER TABLE events ADD COLUMN country TEXT;
 CREATE INDEX IF NOT EXISTS events_ts ON events (ts);
 CREATE INDEX IF NOT EXISTS events_kind_city ON events (kind, city);
+
+-- Messages from the About dialog (Bára 24. 11. 2026; worker.js POST /contact). For the existing database run this file
+-- again (logging/README.md): every table is IF NOT EXISTS, nothing else changes.
+CREATE TABLE IF NOT EXISTS contacts (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  ts TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
+  message TEXT NOT NULL,     -- at most 3 000 characters
+  email TEXT,                -- for a reply, only when the visitor gave one
+  cut TEXT,                  -- the link of the cut (#rez=…), only when attached
+  lang TEXT,                 -- the page's language (cs, en …)
+  country TEXT               -- the state of the cut, ISO 3166-1
+);
+-- The rate limit of messages: a count an hour by a SHA-256 of the hour, the address and the secret RATE_SALT (the address
+-- itself is never kept); rows older than two hours are deleted by the Worker.
+CREATE TABLE IF NOT EXISTS contact_rate (
+  k TEXT PRIMARY KEY,
+  hour TEXT NOT NULL,
+  n INTEGER NOT NULL
+);

@@ -133,4 +133,5 @@ export async function surfaces(bbox) {
   return { ...copy, itTown: "lombardia" };
 }
 
-export const AREAS = { lombardia: { box: LOMBARDY_BOX } };
+// inside: the region within its box (only the overview map of tools/build_coverage.mjs reads it; placeAt takes the box).
+export const AREAS = { lombardia: { box: LOMBARDY_BOX, inside: inLombardy } };

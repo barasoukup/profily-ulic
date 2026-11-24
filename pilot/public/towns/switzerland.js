@@ -109,3 +109,8 @@ export const sources = {
 // No fallback to the DMVS (sources.js national).
 export const national = true;
 export const ortho = null;
+
+// The overview map of the About dialog (tools/build_coverage.mjs): where this module's own map of the street surfaces
+// answers: the cadastral survey of every canton and of Liechtenstein, but Vaud and Lucerne, which answer empty (by their
+// NUTS 3 codes: CH011 Vaud, CH061 Luzern; "-" leaves an area out).
+export const SURFACE_MAPS = ["all", "-CH011", "-CH061"];

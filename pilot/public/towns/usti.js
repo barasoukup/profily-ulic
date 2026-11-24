@@ -35,3 +35,7 @@ export const ortho = null;
 
 // The surfaces already are the national DTM: no fallback to it (sources.js), no base maps of its own.
 export const national = true;
+
+// The overview map of the About dialog (tools/build_coverage.mjs): where this module's own map of the street surfaces
+// answers. "all": the whole town (its own services and the DMVS under them, as all of Czechia).
+export const SURFACE_MAPS = ["all"];

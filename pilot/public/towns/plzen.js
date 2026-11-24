@@ -299,3 +299,7 @@ export function maps({ ArcgisExport, BIG_TILES, osm: osmLayer, cuzk }) {
 
 // The orthophoto for the evaluation (evaluation/run_brno.mjs): an ArcGIS export in Web Mercator.
 export const ortho = { service: `${ORTHO}/export`, datum: 1623 };
+
+// The overview map of the About dialog (tools/build_coverage.mjs): where this module's own map of the street surfaces
+// answers. "all": the whole town (its own services and the DMVS under them, as all of Czechia).
+export const SURFACE_MAPS = ["all"];

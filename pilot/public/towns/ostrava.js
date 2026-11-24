@@ -91,3 +91,7 @@ export { RUIAN_HALL, RUIAN_LOW } from "../gis.js";
 // No base maps of its own yet (the national ones show the city); the orthophoto of the evaluation is ČÚZK's.
 // Where the city's map has nothing (outlying parts), sources.js asks the national DTM.
 export const ortho = null;
+
+// The overview map of the About dialog (tools/build_coverage.mjs): where this module's own map of the street surfaces
+// answers. "all": the whole town (its own services and the DMVS under them, as all of Czechia).
+export const SURFACE_MAPS = ["all"];

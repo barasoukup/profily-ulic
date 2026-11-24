@@ -144,6 +144,8 @@ export default {
   ...base,
   code: "SK",
   bounds: [16.8, 47.7, 22.6, 49.7],
+  // The author's name (about.js).
+  author: "Bára Soukupová",
   halfKerbNote: lawNote("§ 23 ods. 1 zák. 8/2009 Z. z."),
   // No parking estimated by the law (Bára: not tried in Slovakia); the motorways wider (R1 in Banská Bystrica).
   parkGuess: false,

@@ -55,6 +55,8 @@
           <summary><svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M2 8h12M8 2c-2.2 2.4-2.2 9.6 0 12M8 2c2.2 2.4 2.2 9.6 0 12" fill="none" stroke="currentColor" stroke-width="1.2"/></svg><span>Jazyk</span><span class="lang-current" id="lang-current"></span></summary>
           <div class="lang-list" id="lang-list"></div>
         </details>
+        <hr>
+        <button id="menu-about">O aplikaci</button>
       </div>
     </details>
   </header>
@@ -165,6 +167,35 @@
       <textarea id="report-text" rows="5" maxlength="1000"></textarea>
       <p class="muted report-note">Odešle se poloha řezu, jeho profil a váš text, nic dalšího. Nepište prosím osobní údaje.</p>
       <div class="report-buttons"><span id="report-status" class="muted" role="status" aria-live="assertive"></span><button id="report-cancel">Zrušit</button><button id="report-send" class="primary">Odeslat</button></div>
+    </div>
+  </dialog>
+  <dialog id="about-dialog" aria-labelledby="about-title">
+    <div class="pano-head">
+      <strong id="about-title">O aplikaci</strong>
+      <button id="about-close" class="close" aria-label="Zavřít">×</button>
+    </div>
+    <div class="about-body">
+      <p>Profily ulic skládají příčný řez ulicí od fasády k fasádě z otevřených dat: map povrchů, ortofot a OpenStreetMap.</p>
+      <p>Stav ukazuje ulici, jak je dnes, v Návrhu ji upravíte a Porovnat ukáže změny. Profil uložíte jako PNG, SVG nebo JSON.</p>
+      <p><span id="about-author"></span> · <a href="https://github.com/barasoukup/profily-ulic" target="_blank" rel="noopener">kód na GitHubu</a> (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE" target="_blank" rel="noopener">MIT</a>) · <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md" target="_blank" rel="noopener">zdroje dat a licence</a></p>
+      <h2>Kde máme jaká data</h2>
+      <div id="about-map" role="img" aria-label="Kde máme jaká data"></div>
+      <ul class="about-legend">
+        <li><i class="cov-povrch"></i>mapa povrchů</li>
+        <li><i class="cov-ortofoto"></i>ortofoto a OSM</li>
+        <li><i class="cov-osm"></i>jen OSM</li>
+        <li><i class="cov-mimo"></i>bez dat</li>
+      </ul>
+      <p class="muted about-note">Mapa povrchů je přesnější než odhad z ortofota a OSM.</p>
+      <h2>Napište nám</h2>
+      <label for="contact-text" class="muted">Zpráva</label>
+      <textarea id="contact-text" rows="4" maxlength="3000"></textarea>
+      <label for="contact-email" class="muted">E-mail pro odpověď (nepovinné)</label>
+      <input id="contact-email" type="email" maxlength="200" autocomplete="email">
+      <label id="contact-cut-row" class="contact-cut"><input id="contact-cut" type="checkbox">Přiložit odkaz na tento řez</label>
+      <div class="contact-hp" aria-hidden="true"><input id="contact-web" name="website" tabindex="-1" autocomplete="off"></div>
+      <p class="muted report-note">Odešle se jen to, co sem napíšete, a případně odkaz na řez.</p>
+      <div class="report-buttons"><span id="contact-status" class="muted" role="status" aria-live="polite"></span><button id="contact-send" class="primary">Odeslat</button></div>
     </div>
   </dialog>
   <dialog id="pano-dialog" aria-label="Panorama z ulice">

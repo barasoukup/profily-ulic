@@ -155,4 +155,7 @@ export default {
   search: [],
   // What the state decides by the place of the cut, set on the city (app.js): async (lon, lat) → { … }, or null.
   atPlace: null,
+  // The author's name as the About dialog gives it (about.js; Bára 23. 11. 2026: "Bara Soukup" outside Czechia and
+  // Slovakia, as in the credits of foreign data).
+  author: "Bara Soukup",
 };

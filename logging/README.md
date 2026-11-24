@@ -21,9 +21,16 @@ kliknutí na nic nečeká, a když Worker neodpoví, nic se nestane.
   upozornění, ať nepíše osobní údaje. Hlášení smaže na požádání Bára (`DELETE FROM events WHERE id = …`);
   výpis `hlaseni.mjs` se nikam nesdílí.
 
+- **zprávy z okna „O aplikaci“** (od 24. 11. 2026, `POST /contact`, tabulka `contacts`): text (nejvýš 3 000 znaků),
+  nepovinný e-mail pro odpověď a, když ho návštěvník přiloží, odkaz na řez (`#rez=…`, jen z našich adres), k tomu jazyk
+  stránky a stát řezu. Skryté pole pro roboty: co ho vyplní, se neuloží. Z jedné adresy nejvýš 5 zpráv za hodinu, od
+  všech nejvýš 60; počítá se v tabulce `contact_rate` podle otisku SHA-256 z hodiny, adresy a tajného `RATE_SALT`
+  (adresa sama se neukládá, řádek se po dvou hodinách smaže). Zprávu smaže na požádání Bára
+  (`DELETE FROM contacts WHERE id = …`).
+
 ## Soukromí
 
-Zaznamenáváme jen řezy (místo, směr, ulici, čas), kliknutí, u kterých se ulice nenašla (místo zhruba na kilometr), použité funkce a hlášení chyb, která návštěvník sám napíše, abychom aplikaci zlepšili. IP adresy ani
+Zaznamenáváme jen řezy (místo, směr, ulici, čas), kliknutí, u kterých se ulice nenašla (místo zhruba na kilometr), použité funkce, hlášení chyb a zprávy, které návštěvník sám napíše, abychom aplikaci zlepšili. IP adresy ani
 cookies neukládáme; `session` je náhodné číslo jednoho načtení stránky (neukládá se v prohlížeči), aby šlo
 spočítat řezy jedné návštěvy. Záznam běží na Cloudflare (Worker a D1), který adresu požadavku vidí; Worker ji drží
 jen 10 s v paměti proti zahlcení a do databáze ji nezapisuje. Mapy a data se načítají přímo ze serverů IPR, ČÚZK, měst a krajů a z podkladové mapy
@@ -101,3 +108,51 @@ npx wrangler deploy
 ```
 
 Lokálně (`node pilot/server.mjs`) se nic nezaznamenává, `LOG_URL` je tam prázdné.
+
+## Kontaktní formulář (okno „O aplikaci“, 24. 11. 2026)
+
+Formulář posílá na stejného Workera jako záznam řezů, na adresu z `LOG_URL` s koncovkou `/contact` místo `/log`
+(`pilot/public/about.js`). Dokud `LOG_URL` není nastavené nebo Worker neodpovídá, okno napíše „Odesílání zpráv tu zatím
+nejde.“ a nic neposílá. Nasazení (ve složce `logging/`, jednou):
+
+1. Přidej do databáze dvě nové tabulky. `schema.sql` má všechno s `IF NOT EXISTS`, takže stačí ho spustit znovu
+   (stávající tabulka `events` zůstane, jak je):
+   ```bash
+   npx wrangler d1 execute profily-ulic-log --remote --file schema.sql
+   ```
+2. Nastav tajnou „sůl“ pro počítání zpráv z jedné adresy (vymysli si dlouhý náhodný text a zadej ho, když se příkaz zeptá):
+   ```bash
+   npx wrangler secret put RATE_SALT
+   ```
+3. Nasaď nového Workera:
+   ```bash
+   npx wrangler deploy
+   ```
+4. Vyzkoušej to na webu (O aplikaci → Napište nám) a podívej se, že zpráva dorazila:
+   ```bash
+   npx wrangler d1 execute profily-ulic-log --remote --command "SELECT id, ts, email, cut, lang, country, message FROM contacts ORDER BY id DESC LIMIT 20"
+   ```
+   Proměnná `LOG_URL` na GitHubu zůstává, jak je; formulář začne fungovat při dalším nasazení stránky s ní (bez ní je
+   formulář jen „zatím nejde“).
+
+### Upozornění e-mailem (nepovinné)
+
+Worker umí každou zprávu poslat i e-mailem přes Cloudflare Email Routing. Adresy nejsou v kódu ani v `wrangler.toml`
+(ten je v repozitáři), jen v nastavení Workera:
+
+1. V nástěnce Cloudflare otevři doménu **streetspace.eu → Email → Email Routing**, zapni ho (Cloudflare přidá záznamy MX
+   a SPF do DNS) a v **Destination addresses** přidej a potvrď adresu, kam mají zprávy chodit.
+2. Do `wrangler.toml` přidej vazbu bez adresy (adresa příjemce zůstane jen v tajné proměnné; Cloudflare pošle jen na
+   potvrzenou adresu):
+   ```toml
+   [[send_email]]
+   name = "MAIL"
+   ```
+3. Nastav odesílatele (adresa na doméně s Email Routingem, nemusí existovat, např. `profily@streetspace.eu`) a příjemce
+   (potvrzená adresa z kroku 1), oba jako tajné proměnné:
+   ```bash
+   npx wrangler secret put CONTACT_FROM
+   npx wrangler secret put CONTACT_TO
+   ```
+4. `npx wrangler deploy`. E-mail má předmět „Profily ulic: zpráva“ a odpověď (Reply-To) míří na e-mail návštěvníka,
+   pokud ho vyplnil. Když se e-mail nepodaří poslat, zpráva zůstane uložená v databázi.

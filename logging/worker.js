@@ -3,6 +3,7 @@
 // browser needs no preflight and the click never waits for it.
 //   POST /log      one event as JSON, from the allowed origins only; answers 204
 //   GET  /export   all events as CSV (or ?since=2026-11-01), with the header "Authorization: Bearer <EXPORT_TOKEN>"
+//   POST /contact  a message from the About dialog (pilot/public/about.js), kept in the table contacts; answers 204
 // Setup: logging/README.md.
 const KINDS = new Set(["rez", "export", "ulozeni", "sdileni", "navrh", "porovnat", "oprava", "hledani", "upravy", "hlaseni", "bez_ulice"]);
 // An edit record carries two short profiles (log.js shortProfile), a report a visitor's text and the profile.
@@ -23,11 +24,63 @@ const num = (v, lo, hi) => (typeof v === "number" && Number.isFinite(v) && v >= 
 const reportOf = (p) => ({ ...p, text: str(p.text, 1000), co: Array.isArray(p.co) ? p.co.slice(0, 10).map((c) => str(c, 30)).filter(Boolean) : [] });
 const str = (v, n) => (typeof v === "string" && v ? v.slice(0, n) : null);
 
+// A message to Bára from the About dialog (Bára 24. 11. 2026): the text (required, at most CONTACT_MAX characters), an
+// e-mail for a reply and the link of the cut (both optional). A hidden field "website" only a robot fills: answered 204,
+// nothing kept. At most CONTACT_PER_HOUR messages an hour from one address and CONTACT_ALL_HOUR from everyone: the table
+// contact_rate counts them by a SHA-256 of the hour, the address and the secret RATE_SALT (the address itself is never
+// kept, a row is deleted after two hours). With the send_email binding MAIL and the variables CONTACT_FROM and CONTACT_TO
+// (logging/README.md: the addresses only in the Worker's settings, never here) the message also comes as an e-mail; a
+// failed e-mail leaves the message kept.
+const CONTACT_MAX = 3000, CONTACT_PER_HOUR = 5, CONTACT_ALL_HOUR = 60;
+const EMAIL = /^[^\s@<>()",;:]{1,64}@[A-Za-z0-9.-]{1,190}\.[A-Za-z]{2,24}$/;
+const sha = async (s) => [...new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s)))].map((b) => b.toString(16).padStart(2, "0")).join("");
+const b64 = (s) => { let bin = ""; for (const b of new TextEncoder().encode(s)) bin += String.fromCharCode(b); return btoa(bin); };
+async function mailContact(env, m) {
+  if (!env.MAIL || !env.CONTACT_FROM || !env.CONTACT_TO) return;
+  const body = [m.message, "", m.email ? `E-mail: ${m.email}` : "E-mail: –", m.cut ? `Řez: ${m.cut}` : null, m.lang ? `Jazyk: ${m.lang}` : null, m.country ? `Stát: ${m.country}` : null].filter((x) => x !== null).join("\n");
+  const raw = [`From: Profily ulic <${env.CONTACT_FROM}>`, `To: ${env.CONTACT_TO}`, m.email ? `Reply-To: ${m.email}` : null,
+    `Subject: =?UTF-8?B?${b64("Profily ulic: zpráva")}?=`, `Message-ID: <${crypto.randomUUID()}@${env.CONTACT_FROM.split("@")[1]}>`,
+    `Date: ${new Date().toUTCString()}`, "MIME-Version: 1.0", "Content-Type: text/plain; charset=utf-8", "Content-Transfer-Encoding: base64", "",
+    b64(body).replace(/.{76}/g, "$&\r\n")].filter((x) => x !== null).join("\r\n");
+  try {
+    const { EmailMessage } = await import("cloudflare:email");
+    await env.MAIL.send(new EmailMessage(env.CONTACT_FROM, env.CONTACT_TO, raw));
+  } catch (err) { console.warn("contact e-mail", String(err?.message || err)); }
+}
+async function contact(req, env, cors, origins) {
+  const text = await req.text();
+  if (text.length > CONTACT_MAX * 3 + 4000) return new Response("size", { status: 413, headers: cors });
+  let e;
+  try { e = JSON.parse(text); } catch { return new Response("json", { status: 400, headers: cors }); }
+  if (!e || typeof e !== "object" || Array.isArray(e)) return new Response("json", { status: 400, headers: cors });
+  // The robots' field: thanked, not kept.
+  if (e.website) return new Response(null, { status: 204, headers: cors });
+  const message = typeof e.message === "string" ? e.message.trim() : "";
+  if (!message) return new Response("message", { status: 400, headers: cors });
+  if (message.length > CONTACT_MAX) return new Response("size", { status: 413, headers: cors });
+  const email = typeof e.email === "string" && e.email.trim() ? e.email.trim() : null;
+  if (email && !EMAIL.test(email)) return new Response("email", { status: 400, headers: cors });
+  // The cut's link only on our own page (#rez=…).
+  const cut = typeof e.cut === "string" && e.cut.length <= 2000 && e.cut.includes("#rez=") && origins.some((o) => o && e.cut.startsWith(o + "/")) ? e.cut : null;
+  const now = new Date(), hour = now.toISOString().slice(0, 13), old = new Date(now - 2 * 3600e3).toISOString().slice(0, 13);
+  const k = await sha(`${hour}|${req.headers.get("CF-Connecting-IP") || "?"}|${env.RATE_SALT || ""}`);
+  await env.DB.prepare("DELETE FROM contact_rate WHERE hour < ?").bind(old).run();
+  const mine = await env.DB.prepare("SELECT n FROM contact_rate WHERE k = ?").bind(k).first();
+  const all = await env.DB.prepare("SELECT sum(n) AS n FROM contact_rate WHERE hour = ?").bind(hour).first();
+  if ((mine?.n || 0) >= CONTACT_PER_HOUR || (all?.n || 0) >= CONTACT_ALL_HOUR) return new Response(null, { status: 429, headers: cors });
+  await env.DB.prepare("INSERT INTO contact_rate (k, hour, n) VALUES (?, ?, 1) ON CONFLICT(k) DO UPDATE SET n = n + 1").bind(k, hour).run();
+  const m = { message, email, cut, lang: str(e.lang, 5), country: typeof e.country === "string" && /^[A-Z]{2}$/.test(e.country) ? e.country : null };
+  await env.DB.prepare("INSERT INTO contacts (message, email, cut, lang, country) VALUES (?, ?, ?, ?, ?)").bind(m.message, m.email, m.cut, m.lang, m.country).run();
+  await mailContact(env, m);
+  return new Response(null, { status: 204, headers: cors });
+}
+
 export default {
   async fetch(req, env) {
     const url = new URL(req.url);
     const origin = req.headers.get("Origin") || "";
-    const allowed = (env.ALLOWED_ORIGINS || "").split(",").map((s) => s.trim()).includes(origin);
+    const origins = (env.ALLOWED_ORIGINS || "").split(",").map((s) => s.trim());
+    const allowed = origins.includes(origin);
     const cors = allowed ? { "Access-Control-Allow-Origin": origin, Vary: "Origin" } : {};
     if (req.method === "OPTIONS") {
       return new Response(null, { status: 204, headers: { ...cors, "Access-Control-Allow-Methods": "POST", "Access-Control-Allow-Headers": "Content-Type", "Access-Control-Max-Age": "86400" } });
@@ -61,6 +114,10 @@ export default {
         await env.DB.prepare(`INSERT INTO events (${COLS}) VALUES (${values.map(() => "?").join(", ")})`).bind(...values).run();
       }
       return new Response(null, { status: 204, headers: cors });
+    }
+    if (req.method === "POST" && url.pathname === "/contact") {
+      if (!allowed) return new Response("origin", { status: 403 });
+      return contact(req, env, cors, origins);
     }
     if (req.method === "GET" && url.pathname === "/export") {
       if (!env.EXPORT_TOKEN || req.headers.get("Authorization") !== `Bearer ${env.EXPORT_TOKEN}`) return new Response("token", { status: 401 });
