@@ -26,3 +26,31 @@ Výstup jeden JSON řádek na řez do `vysledky/<soubor>.jsonl`:
 {"id":"p1","usable":true,"facadeA":true,"facadeB":false,"parts":[["chodnik",3.5],["stani",2,"podelne"],["pruh",3.2],["pruh",3.2],["chodnik",4]],"note":"krátce česky"}
 `facadeA` / `facadeB`: zda profil na té straně končí fasádou domu. `usable: false`, když řez na ortofotu není ulice
 (střecha, tunel, mrak).
+
+## Jak se profil hodnotí (pro autora měření, posuzovatel to nepotřebuje)
+
+`compare.mjs` srovná profil posuzovatele s profilem aplikace: složení (pořadí tříd, sousední stejné sloučené, krajnice
+a `jine` se nepočítají) editační vzdáleností, počet pruhů a šířku uličního prostoru. Uliční prostor je od první po
+poslední část ulice (chodník, stání, pruh, BUS, cyklopruh, cyklostezka, tramvaj, nástupiště, dělicí pás); zeleň mezi
+pruhy je dělicí pás.
+
+**Strana bez fasády** (`facadeA` / `facadeB` false; od 23. 11. 2026, Bára; `compare.mjs scope()`, stejně pro oba
+profily): kde ulice na takové straně „končí“, je libovolné (posuzovatel přestane počítat trávu někde, aplikace u svého
+konce). Proto:
+- **Okraj ulice** na té straně: od vnější části vozovky (pruh, BUS, tramvaj, stání, cyklopruh, krajnice) ven ještě
+  chodník, cyklostezka nebo nástupiště hned za ní, i přes pás zeleně nebo krajnici nejvýš 3 m (`VERGE_MAX`) mezi nimi
+  a vozovkou; dál nic (pěšina přes trávník, parkoviště, dvůr).
+- **Šířka** se počítá jen po tento okraj (krajnice u vozovky se započítá).
+- **Složení** si za okrajem nechá jednu položku přítomnosti: `zelen`, je-li první část za okrajem (aspoň 0,5 m) zeleň
+  nebo stromy, bez ohledu na šířku. `jine` za okrajem se nepočítá (aplikace má „neurčeno“ také jako `jine`, shodovalo
+  by se náhodou).
+- Strany s fasádou se hodnotí jako dřív.
+
+Příklad si-kranj-2: posuzovatel zeleň 5,5 | krajnice 1 | pruh 3,25 | pruh 3,25 | krajnice 1 | zeleň 5,8, aplikace
+pruh 3,7 | pruh 5,7. Šířka 8,5 m proti 9,4 m (dřív 6,5 proti 9,4); složení: chybí zeleň na obou stranách (shoda 33 %).
+
+**Řezy, které nejsou ulice** (od 24. 11. 2026, Bára; zatím jen Slovinsko, `score-states.mjs EXCLUDE_STATES`): bod,
+jehož řez padne na OSM `highway=service` se `service=driveway`, `parking_aisle` nebo `drive-through`, se z hodnocení
+vynechá (neposouvá se). Obyčejná `highway=service` bez `service`, `residential`, `living_street` atd. zůstávají.
+Značku cesty řezu bere skóre z profilu aplikace (`service`) nebo z `vysledky/sluzebni-<iso>.json` (z balíku OSM státu
+podle `wayId` řezu).

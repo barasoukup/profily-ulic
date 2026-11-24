@@ -51,8 +51,61 @@ export function diff(a, b) {
   }
   return { dist: d[n][m], edits };
 }
-// a: the reference, b: the judged profile.
-export function compare(aParts, bParts, aJudge = false, bJudge = false) {
-  const a = asClasses(aParts, aJudge), b = asClasses(bParts, bJudge), ca = composition(a), cb = composition(b), { dist, edits } = diff(ca, cb);
-  return { same: dist === 0, score: 1 - dist / Math.max(ca.length, cb.length, 1), edits, lanesA: lanes(a), lanesB: lanes(b), widthA: streetWidth(a), widthB: streetWidth(b) };
+// A side without a facade (the judge's facadeA / facadeB false; Bára 23. 11. 2026): where the street space ends there is
+// arbitrary (the judge stops counting grass somewhere, the app at its own end), so on that side the street ends at its
+// own outermost part at the road: from the outermost part of the roadway (a lane, BUS, tram, parking, a cycle lane, a
+// shoulder) outwards a sidewalk, a cycle track or a platform directly beyond it, each of them also across a verge (green,
+// trees, a shoulder) of at most VERGE_MAX between it and the road; nothing farther (a path across a lawn, a car park).
+// The width counts up to that edge (the shoulder at the road included). The composition keeps one item of presence
+// beyond it: "zelen" where the first part beyond the edge (of at least BEYOND_MIN) is green or trees, whatever its width
+// ("jine" is not one: the app's "unknown" is "jine" too, so it would match the judge's yard by chance).
+const VERGE_MAX = 3, BEYOND_MIN = 0.5;
+const ROAD_EDGE = new Set(["pruh", "bus", "tramvaj", "stani", "cyklopruh", "krajnice"]), WALK = new Set(["chodnik", "cyklostezka", "nastupiste"]), VERGE = new Set(["zelen", "krajnice"]);
+// open: { A, B } true where the side has no facade. Returns the street's parts and the presence items before and after.
+export function scope(cls, open = {}) {
+  const out = cls.map(([c, w], i) => {
+    if (c !== "zelen" && c !== "stromy") return [c, w];
+    const between = cls.slice(0, i).some(([x]) => ROADWAY.has(x)) && cls.slice(i + 1).some(([x]) => ROADWAY.has(x));
+    return [between ? "delici" : "zelen", w]; // as core(): trees beside the street are green
+  });
+  let i = out.findIndex(([c]) => CORE.has(c)), j = out.findLastIndex(([c]) => CORE.has(c));
+  if (i < 0) return { parts: [], pre: null, post: null };
+  // The street's edge going outwards from index r by step (+1 towards B, -1 towards A).
+  const edge = (r, step) => {
+    let k = r;
+    for (let q = r + step; q >= 0 && q < out.length;) {
+      if (WALK.has(out[q][0])) { k = q; q += step; continue; }
+      const n = q + step;
+      if (VERGE.has(out[q][0]) && out[q][1] <= VERGE_MAX && n >= 0 && n < out.length && WALK.has(out[n][0])) { k = n; q = n + step; continue; }
+      break;
+    }
+    return k;
+  };
+  const beyond = (k, step) => {
+    for (let q = k + step; q >= 0 && q < out.length; q += step) if (out[q][1] >= BEYOND_MIN) return out[q][0] === "zelen" ? "zelen" : null;
+    return null;
+  };
+  let pre = null, post = null;
+  const r0 = out.findIndex(([c]) => ROAD_EDGE.has(c)), r1 = out.findLastIndex(([c]) => ROAD_EDGE.has(c));
+  if (open.A && r0 >= 0) { i = edge(r0, -1); pre = beyond(i, -1); }
+  if (open.B && r1 >= 0) { j = edge(r1, 1); post = beyond(j, 1); }
+  return { parts: out.slice(i, j + 1), pre, post };
+}
+function compositionOf({ parts, pre, post }) {
+  const seq = pre ? [pre] : [];
+  for (const [c] of parts) if (c !== "krajnice" && c !== "jine" && seq.at(-1) !== c) seq.push(c);
+  if (post && seq.at(-1) !== post) seq.push(post);
+  return seq;
+}
+// a: the reference, b: the judged profile. open: { A, B } the sides without a facade (the judge's), the same for both;
+// none given: the street space as core() (the calibration, OLD=1 in score-states.mjs).
+export function compare(aParts, bParts, aJudge = false, bJudge = false, open = null) {
+  const a = asClasses(aParts, aJudge), b = asClasses(bParts, bJudge);
+  if (!open) {
+    const ca = composition(a), cb = composition(b), { dist, edits } = diff(ca, cb);
+    return { same: dist === 0, score: 1 - dist / Math.max(ca.length, cb.length, 1), edits, lanesA: lanes(a), lanesB: lanes(b), widthA: streetWidth(a), widthB: streetWidth(b) };
+  }
+  const sa = scope(a, open), sb = scope(b, open), ca = compositionOf(sa), cb = compositionOf(sb), { dist, edits } = diff(ca, cb);
+  const width = (s) => s.parts.reduce((x, [, w]) => x + w, 0);
+  return { same: dist === 0, score: 1 - dist / Math.max(ca.length, cb.length, 1), edits, lanesA: lanes(a), lanesB: lanes(b), widthA: width(sa), widthB: width(sb) };
 }

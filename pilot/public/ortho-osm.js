@@ -1036,14 +1036,34 @@ export function trimToEnds(result, ends) {
   // A soft end (nothing of OSM there) goes out to the outer edge of the last part that is the street's own (not green,
   // unknown, paving or water beyond it).
   const OPEN = new Set(["zelen", "nezname", "plocha", "voda", "predzahradka"]);
+  const GREEN_STRIP = 3, GREEN_STRIP_MIN = 1; // m
   if (ends.soft) {
-    let t = result.extent[1];
+    let t = result.extent[1], outA = Infinity, outB = -Infinity;
+    const laidOut = [];
     for (const s of result.segments) {
       const e = t, b = t - s.width;
       t = b;
+      laidOut.push({ s, b, e });
       if (OPEN.has(s.type)) continue;
+      outA = Math.min(outA, b); outB = Math.max(outB, e);
       if (ends.soft.A && b < lo) lo = b;
       if (ends.soft.B && e > hi) hi = e;
+    }
+    // A green strip beyond the street's last part (Bára 23. 11. 2026: a road through greenery should read as such): where
+    // the part just beyond the kerb or sidewalk is green (the image's or OSM's) of at least GREEN_STRIP_MIN, the side
+    // ends GREEN_STRIP past it (at most the green's own width), an estimate like the green itself. Off by default (the
+    // regression: Prague's sidewalk recall −1 pp from the new metres, evaluation/ortofoto-osm/zelenpas/ZPRAVA.md);
+    // ?zelenpas=1 (app.js) or P.greenStripOn: on.
+    if (P.greenStripOn && !P.off?.has("zelenpas")) {
+      const strip = P.greenStrip ?? GREEN_STRIP;
+      if (ends.soft.A && Number.isFinite(outA)) {
+        const g = laidOut.find((x) => Math.abs(x.e - outA) < 0.05 && x.s.type === "zelen");
+        if (g && g.e - g.b >= GREEN_STRIP_MIN) lo = Math.min(lo, outA - Math.min(strip, g.e - g.b));
+      }
+      if (ends.soft.B && Number.isFinite(outB)) {
+        const g = laidOut.find((x) => Math.abs(x.b - outB) < 0.05 && x.s.type === "zelen");
+        if (g && g.e - g.b >= GREEN_STRIP_MIN) hi = Math.max(hi, outB + Math.min(strip, g.e - g.b));
+      }
     }
   }
   if (lo <= result.extent[0] + 0.05 && hi >= result.extent[1] - 0.05) return result;

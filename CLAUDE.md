@@ -543,6 +543,10 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   každého nového státu a u starých, když Bára řekne. Hodnotí složení uličního prostoru, pak šířku; jen řezy s fotkou
   z ulice (Mapillary, v Česku i Mapy.com). Výsledek 17. 11.: shoda složení CZ 56 %, SK 60 %, AT 57 %, DE 58 %, CH 59 %, LI 69 %; SI 48 %
   (23. 11. 2026, jen 9 řezů, šířka do 2 m 33 %).
+- Od 24. 11. 2026 nové pravidlo (zatím jen Slovinsko, Bára): strana bez fasády se srovnává šířkou jen po okraj ulice,
+  zeleň za ním jako přítomnost; řezy na sjezdech, parkovacích uličkách a drive-through se vynechají (`POKYN.md`).
+  SI 48 % → 36 % (8 řezů, 1 sjezd vynechán), šířka do 2 m 33 → 50 %. Ostatní státy přepočítané, nepřijaté
+  (`evaluation/universal/vysledky/prepocet-2026-11-24.md`).
 
 ## Jazyky (Bára 12. 11. 2026, slovenčina 15. 11. 2026, němčina 16. 11. 2026)
 - Anglicky se aplikace jmenuje **Street Profile**, slovensky **Profily ulíc**, německy **Straßenprofil**. Čeština, slovenčina,
