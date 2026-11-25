@@ -3,5 +3,13 @@
  {"id":"dc-alley-h","lat":38.9272197,"lon":-77.0246532,"way":293279529,"max":3,"why":"an alley of several arms in one area: 83 m before"},
  {"id":"dc-alley-long","lat":38.9528572,"lon":-77.0900636,"way":342133616,"max":3,"why":"97 m before"},
  {"id":"warszawa-alley","lat":52.231545,"lon":21.021358,"way":23039922,"max":3,"why":"OSM area:highway=service: 81 m before"},
- {"id":"gdansk-alley","lat":54.361699,"lon":18.659741,"way":824208847,"max":3,"why":"OSM area:highway=service: 71 m before"}
+ {"id":"gdansk-alley","lat":54.361699,"lon":18.659741,"way":824208847,"max":3,"why":"OSM area:highway=service: 71 m before"},
+ {"id":"wien-1","lat":48.195007,"lon":16.391859,"way":30083087,"min":0,"max":1,"why":"a click in mid-block stays"},
+ {"id":"praha-20","lat":50.085928,"lon":14.404213,"way":56183634,"min":5.3,"max":7.3,"why":"a crossing"},
+ {"id":"brno-3","lat":49.179828,"lon":16.617866,"way":64757386,"min":14.8,"max":16.8,"why":"a service road joins as a street"},
+ {"id":"praha-17","lat":50.105199,"lon":14.43335,"way":1508890562,"min":12.9,"max":14.9,"why":"a service road, a short way: no free place on it"},
+ {"id":"paris-7","lat":48.843433,"lon":2.35428,"way":313694980,"min":6.3,"max":8.3,"why":"the end of a way"},
+ {"id":"praha-7","lat":50.075559,"lon":14.422195,"way":985195853,"min":26.5,"max":28.5,"why":"a junction at a way shorter than its clearance: the click goes past the next one"},
+ {"id":"helsinki-1","lat":60.182573,"lon":24.942681,"way":75511781,"min":2.6,"max":4.6,"why":"a way of 24 m or less"},
+ {"id":"amsterdam-23","lat":52.358761,"lon":4.912872,"way":7370335,"min":8.8,"max":10.8,"why":"a sidewalk is not the street: the click beside it takes the street"}
 ]

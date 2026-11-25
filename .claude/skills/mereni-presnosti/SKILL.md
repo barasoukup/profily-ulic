@@ -66,3 +66,14 @@ Stejná posouzení, nové profily: `zz-pts.json` z posouzených řezů (`judge.j
 `app-z…` bez číslic (jinak ho `score-states.mjs` nevezme). Před: `SKIP=<název> OLD=1 NOEX=1` s `DATA_DIRS` starých sběrů.
 Zkontrolovat, že státní služby odpovídají (24. 11. vypadlo ortofoto Geoportalu PL), a srovnat zdroje (`sources`) se
 starým sběrem. Výsledky 24. 11.: `vysledky/staty.md`.
+
+## Kontrola umístění kliknutí (25. 11. 2026)
+
+Uložené řezy se otevírají přesně, takže žádné měření s uloženou polohou neukáže, kam padne kliknutí. Po každé změně v
+`derive.js` `nearestStreet`, `placeCut`, `awayFromJunctions`, `alleyMouths`, `partnerJunctions`, `centerOnStreet`:
+1. `git archive <commit před> pilot/public | tar -x -C <složka>`; `OLD=<složka>/pilot/public node evaluation/kliky/collect.mjs`
+   (440 kliků, bez prohlížeče) a `node evaluation/kliky/report.mjs vysledky/kliky.json now` (posuny, nad 25 m s příčinou, chyby).
+   Velký sběr: `times=10 seed=… city=…`. Washington jen, když je jeho balík OSM.
+2. `node --test tests/placement.test.js` (nahrané scény; nová scéna: `evaluation/kliky/scenes.json`, `record.mjs`).
+3. Kde se místa liší: proti mapám měst `podil.js`, `podil-souhrn.mjs`, naslepo `vyber.mjs`, `profily.js`, `baliky.mjs`, `skore.mjs`
+   (nové semínko, čerstvá místa, zmrazená kopie kódu). Zpráva `evaluation/kliky/ZPRAVA.md`.

@@ -589,7 +589,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   `evaluation/mapfill-cz/ZPRAVA.md`.
 - Sjednocení výjimek (Bára 24. 11. 2026: co nejvíc sdíleně, výjimka jen s měřením nebo rozdílem zákona, norem a dat;
   `evaluation/sjednoceni/AUDIT.md`, `ZPRAVA.md`): `besidePassport` všude (i CZ), osy OSM, obslužné cesty a ústí uliček jako křižovatky
-  všude i v Praze (`city.fix` zrušené, `evaluation/sjednoceni/praha/ZPRAVA.md`; plocha uličky jen pro ulici, do které ústí, kliky `evaluation/kliky/ZPRAVA.md`), delší dosah dálnic a hlavních ulic jedním pravidlem dat řezu (`app.js widerSides`,
+  všude i v Praze (`city.fix` zrušené, `evaluation/sjednoceni/praha/ZPRAVA.md`; plocha uličky jen pro ulici, do které ústí, kliky `evaluation/kliky/ZPRAVA.md`: oprava naslepo 17 : 2, obslužné cesty zůstávají, limit posunu nezapnutý; po změně pravidel umístění `node evaluation/kliky/collect.mjs`), delší dosah dálnic a hlavních ulic jedním pravidlem dat řezu (`app.js widerSides`,
   příznaky `wideRoads`/`wideStreets` zrušené), oprava stání z modelu u zákonného pruhu (`?off=parkshare`). Zákonný odhad
   stání platí i na Slovensku (25. 11.: jeho prohry byly z chyby sdíleného kódu, zákonný pruh ležel ve vozovce dřív, než se měřily
   pruhy; teď pruhy napřed, `ai-kerbs.js lawKerbs`, `?off=lawlanes`, A/B oprava 13 : 6, SK se zákonem 6 : 7 a CZ 5 : 5,

@@ -1,0 +1,38 @@
+--- a/pilot/public/derive.js
++++ b/pilot/public/derive.js
+@@ -331,20 +331,31 @@
+     }
+   };
+   // Slack of a position: how far it is past the clearance of the nearest junction or way end.
+-  const slack = (d, p, of = hits) => Math.min(
+-    Math.min(d, total - d) - Math.min(END_CLEARANCE, total / 2),
++  const T = ORTHO_P.trial || {};
++  const ends = [0, total].map((d) => { if (!T.cont) return true; const g = near.way.geometry[d ? near.way.geometry.length - 1 : 0]; const others = (osm.elements || []).filter((el) => el.type === "way" && el.id !== near.way.id && el.geometry && el.tags?.highway && [el.geometry[0], el.geometry.at(-1)].some((q) => q.lat === g.lat && q.lon === g.lon)); return !(near.way.tags.name && others.some((el) => el.tags.name === near.way.tags.name)); });
++  const endSlack = (d) => Math.min(ends[0] ? d : Infinity, ends[1] ? total - d : Infinity) - Math.min(END_CLEARANCE, total / 2);
++  const slack = (d, p, of = hits) => Math.min(endSlack(d),
+     ...of.map((h) => Math.hypot(p[0] - h.p[0], p[1] - h.p[1]) - h.clear),
+   );
+   const start = lens.slice(0, near.index).reduce((a, b) => a + b, 0) +
+     Math.hypot(near.point[0] - pts[near.index][0], near.point[1] - pts[near.index][1]);
+   if (slack(start, near.point) >= 0) return near;
+   let best = null;
++  const soft = (d, p) => Math.max(T.w * -Math.min(0, endSlack(d)), ...hits.map((h) => Math.max(0, h.clear - Math.hypot(p[0] - h.p[0], p[1] - h.p[1])) * (h.kind === "service" ? T.ws : T.w)));
+   for (let d = 0; d <= total; d += 1) {
++    if (T.limit && Math.abs(d - start) > T.limit) continue;
+     const c = at(d);
+-    const sl = slack(d, c.point);
+-    const score = sl >= 0 ? Math.abs(d - start) : 1e6 - sl; // closest free spot, else the freest
++    let score;
++    if (T.w) score = Math.abs(d - start) + soft(d, c.point);
++    else { const sl = slack(d, c.point); score = sl >= 0 ? Math.abs(d - start) : 1e6 - sl; }
+     if (!best || score < best.score) best = { ...c, score };
+   }
++  if (T.unsat && best?.score > 1e5 && hits.some((h) => h.service)) {
++    const hard = hits.filter((h) => !h.service); let b2 = null;
++    for (let d = 0; d <= total; d += 1) { const c = at(d), sl = slack(d, c.point, hard), score = sl >= 0 ? Math.abs(d - start) : 1e6 - sl; if (!b2 || score < b2.score) b2 = { ...c, score }; }
++    if (slack(start, near.point, hard) >= 0) return near;
++    best = b2;
++  }
+   if (best && !ORTHO_P.off?.has("protejsi") && hits.some((h) => h.service) && slack(start, near.point, hits.filter((h) => !h.service)) >= 0
+     && partnerJunctions(osm, frame, near).some((h) => Math.hypot(best.point[0] - h[0], best.point[1] - h[1]) < JUNCTION_CLEARANCE)) return near;
+   return best ? { ...near, point: best.point, dir: best.dir, index: best.index } : near;

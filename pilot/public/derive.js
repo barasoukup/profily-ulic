@@ -278,7 +278,9 @@ function alleyMouths(el, pts, frame) {
     .map(([s, e]) => ({ p: along((s + e) / 2), clear: CROSSING_CLEARANCE + (e - s) / 2 }));
 }
 
-export function awayFromJunctions(osm, frame, near) {
+// What a click on a street keeps away from (local metres): { p, clear, service, kind }: the mouths of alleys, other streets
+// and service ways that join, crossings, roundabouts and turning circles. Exported for evaluation/kliky.
+export function junctionHits(osm, frame, near) {
   const geom = near.way.geometry, pts = near.pts;
   const key = (g) => `${g.lat.toFixed(7)},${g.lon.toFixed(7)}`;
   const idx = new Map(geom.map((g, i) => [key(g), i]));
@@ -287,17 +289,17 @@ export function awayFromJunctions(osm, frame, near) {
   const alleys = !ORTHO_P.off?.has("ulicky"), services = !ORTHO_P.off?.has("obsluzne");
   for (const el of osm.elements || []) {
     if (alleys && isAlleyArea(el)) {
-      for (const hit of alleyMouths(el, pts, frame)) hits.push({ ...hit, service: true });
+      for (const hit of alleyMouths(el, pts, frame)) hits.push({ ...hit, service: true, kind: "alley" });
       continue;
     }
     if (el.id === near.way.id || !el.tags?.highway || !el.geometry) continue;
     if (el.type === "node" && ["turning_circle", "turning_loop"].includes(el.tags.highway)) {
-      hits.push({ p: frame.toXY(el.geometry[0].lon, el.geometry[0].lat), clear: LOOP_CLEARANCE });
+      hits.push({ p: frame.toXY(el.geometry[0].lon, el.geometry[0].lat), clear: LOOP_CLEARANCE, kind: "loop" });
       continue;
     }
     if (el.type !== "way") continue;
     if (el.tags.junction === "roundabout" || el.tags.junction === "circular") {
-      for (const g of el.geometry) hits.push({ p: frame.toXY(g.lon, g.lat), clear: LOOP_CLEARANCE });
+      for (const g of el.geometry) hits.push({ p: frame.toXY(g.lon, g.lat), clear: LOOP_CLEARANCE, kind: "loop" });
     }
     const crossing = el.tags.footway === "crossing" || el.tags.cycleway === "crossing";
     // A service road joins like a street (NOT_JUNCTION_SERVICE above), an alley always.
@@ -308,9 +310,14 @@ export function awayFromJunctions(osm, frame, near) {
       if (i === undefined) return;
       const endToEnd = (i === 0 || i === lastI) && (j === 0 || j === el.geometry.length - 1);
       if (!crossing && endToEnd && el.tags.name === near.way.tags.name) return; // the street goes on
-      hits.push({ p: pts[i], clear: crossing ? CROSSING_CLEARANCE : JUNCTION_CLEARANCE, service: sideService });
+      hits.push({ p: pts[i], clear: crossing ? CROSSING_CLEARANCE : JUNCTION_CLEARANCE, service: sideService, kind: crossing ? "crossing" : sideService ? "service" : "street" });
     });
   }
+  return hits;
+}
+
+export function awayFromJunctions(osm, frame, near) {
+  const pts = near.pts, hits = junctionHits(osm, frame, near);
   const lens = pts.slice(1).map((q, i) => Math.hypot(q[0] - pts[i][0], q[1] - pts[i][1]));
   const total = lens.reduce((a, b) => a + b, 0);
   const at = (d) => {
