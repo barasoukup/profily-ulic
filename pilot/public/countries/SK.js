@@ -147,13 +147,10 @@ export default {
   // The author's name (about.js).
   author: "Bára Soukupová",
   halfKerbNote: lawNote("§ 23 ods. 1 zák. 8/2009 Z. z."),
-  // No parking estimated by the law (§ 23 ods. 1 zák. 8/2009 Z. z. would allow it as in Czechia): measured, the A/B of
-  // 25. 11. 2026 (evaluation/sjednoceni, 58 random local streets in 11 towns): 8 changed beyond noise, blind worse
-  // 4 : 1 (same 2, unclear 1): strips where no car stands that the model does not clear (Jána Bottu, K výstavisku), and
-  // the lanes read on the orthophoto lost beside the law's strips (Masarykova, Petržalka). The motorways wider (R1 in
-  // Banská Bystrica).
-  parkGuess: false,
-  wideRoads: true,
+  // The law's parking as everywhere (§ 23 ods. 1 zák. 8/2009 Z. z., 3 m per direction as Czechia's § 25 odst. 3). Off until
+  // 25. 11. 2026: its losses were a fault of the shared code (ai-kerbs.js layLaw), without it Slovakia 6 : 7 on 148
+  // local streets, Czechia 5 : 5 on 63 (evaluation/sjednoceni/slovensko-stani).
+  parkGuess: true,
   limits: limitsSK,
   // Slovakia: 3.75 m in a town, 3.5 m where it cannot be had, 4.75 m with much cycling or freight (TP 117, tab. 4).
   contraflow: () => ({ lo: 3.5, base: 3.75, why: t("jednosměrka s cyklisty v protisměru: 3,75 m, ve stísněných poměrech 3,5 m, při silném provozu 4,75 m (TP 117, tab. 4)") }),

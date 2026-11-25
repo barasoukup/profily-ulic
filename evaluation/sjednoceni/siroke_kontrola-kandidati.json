@@ -1,0 +1,290 @@
+[
+ {
+  "id": "sk-kosice-1",
+  "place": "kosice",
+  "lat": 48.729468,
+  "lon": 21.22494
+ },
+ {
+  "id": "sk-kosice-2",
+  "place": "kosice",
+  "lat": 48.728281,
+  "lon": 21.261119
+ },
+ {
+  "id": "sk-kosice-3",
+  "place": "kosice",
+  "lat": 48.726521,
+  "lon": 21.310582
+ },
+ {
+  "id": "sk-kosice-4",
+  "place": "kosice",
+  "lat": 48.746311,
+  "lon": 21.273009
+ },
+ {
+  "id": "sk-kosice-5",
+  "place": "kosice",
+  "lat": 48.743468,
+  "lon": 21.258275
+ },
+ {
+  "id": "sk-kosice-6",
+  "place": "kosice",
+  "lat": 48.730413,
+  "lon": 21.214895
+ },
+ {
+  "id": "sk-kosice-7",
+  "place": "kosice",
+  "lat": 48.719603,
+  "lon": 21.314987
+ },
+ {
+  "id": "sk-kosice-8",
+  "place": "kosice",
+  "lat": 48.719774,
+  "lon": 21.261667
+ },
+ {
+  "id": "sk-zilina-1",
+  "place": "zilina",
+  "lat": 49.227296,
+  "lon": 18.774064
+ },
+ {
+  "id": "sk-zilina-2",
+  "place": "zilina",
+  "lat": 49.197922,
+  "lon": 18.710335
+ },
+ {
+  "id": "sk-zilina-3",
+  "place": "zilina",
+  "lat": 49.223874,
+  "lon": 18.764804
+ },
+ {
+  "id": "sk-zilina-4",
+  "place": "zilina",
+  "lat": 49.20397,
+  "lon": 18.784178
+ },
+ {
+  "id": "sk-zilina-5",
+  "place": "zilina",
+  "lat": 49.252928,
+  "lon": 18.708953
+ },
+ {
+  "id": "sk-zilina-6",
+  "place": "zilina",
+  "lat": 49.25593,
+  "lon": 18.736814
+ },
+ {
+  "id": "sk-zilina-7",
+  "place": "zilina",
+  "lat": 49.209423,
+  "lon": 18.776961
+ },
+ {
+  "id": "sk-zilina-8",
+  "place": "zilina",
+  "lat": 49.223985,
+  "lon": 18.78016
+ },
+ {
+  "id": "sk-wroclaw-1",
+  "place": "wroclaw",
+  "lat": 51.095026,
+  "lon": 17.06893
+ },
+ {
+  "id": "sk-wroclaw-2",
+  "place": "wroclaw",
+  "lat": 51.118121,
+  "lon": 17.000656
+ },
+ {
+  "id": "sk-wroclaw-3",
+  "place": "wroclaw",
+  "lat": 51.095943,
+  "lon": 17.00715
+ },
+ {
+  "id": "sk-wroclaw-4",
+  "place": "wroclaw",
+  "lat": 51.138468,
+  "lon": 17.068535
+ },
+ {
+  "id": "sk-wroclaw-5",
+  "place": "wroclaw",
+  "lat": 51.07987,
+  "lon": 17.047022
+ },
+ {
+  "id": "sk-wroclaw-6",
+  "place": "wroclaw",
+  "lat": 51.128193,
+  "lon": 17.006925
+ },
+ {
+  "id": "sk-wroclaw-7",
+  "place": "wroclaw",
+  "lat": 51.097404,
+  "lon": 17.009348
+ },
+ {
+  "id": "sk-wroclaw-8",
+  "place": "wroclaw",
+  "lat": 51.121735,
+  "lon": 17.056317
+ },
+ {
+  "id": "sk-lodz-1",
+  "place": "lodz",
+  "lat": 51.730404,
+  "lon": 19.456645
+ },
+ {
+  "id": "sk-lodz-2",
+  "place": "lodz",
+  "lat": 51.770169,
+  "lon": 19.471817
+ },
+ {
+  "id": "sk-lodz-3",
+  "place": "lodz",
+  "lat": 51.763129,
+  "lon": 19.447438
+ },
+ {
+  "id": "sk-lodz-4",
+  "place": "lodz",
+  "lat": 51.762841,
+  "lon": 19.449054
+ },
+ {
+  "id": "sk-lodz-5",
+  "place": "lodz",
+  "lat": 51.782768,
+  "lon": 19.498979
+ },
+ {
+  "id": "sk-lodz-6",
+  "place": "lodz",
+  "lat": 51.77018,
+  "lon": 19.425579
+ },
+ {
+  "id": "sk-lodz-7",
+  "place": "lodz",
+  "lat": 51.738878,
+  "lon": 19.426628
+ },
+ {
+  "id": "sk-lodz-8",
+  "place": "lodz",
+  "lat": 51.786507,
+  "lon": 19.473772
+ },
+ {
+  "id": "sk-lyon-1",
+  "place": "lyon",
+  "lat": 45.784817,
+  "lon": 4.863742
+ },
+ {
+  "id": "sk-lyon-2",
+  "place": "lyon",
+  "lat": 45.782046,
+  "lon": 4.87305
+ },
+ {
+  "id": "sk-lyon-3",
+  "place": "lyon",
+  "lat": 45.777916,
+  "lon": 4.878842
+ },
+ {
+  "id": "sk-lyon-4",
+  "place": "lyon",
+  "lat": 45.755384,
+  "lon": 4.840159
+ },
+ {
+  "id": "sk-lyon-5",
+  "place": "lyon",
+  "lat": 45.773696,
+  "lon": 4.833235
+ },
+ {
+  "id": "sk-lyon-6",
+  "place": "lyon",
+  "lat": 45.74256,
+  "lon": 4.837063
+ },
+ {
+  "id": "sk-lyon-7",
+  "place": "lyon",
+  "lat": 45.771392,
+  "lon": 4.822624
+ },
+ {
+  "id": "sk-lyon-8",
+  "place": "lyon",
+  "lat": 45.753787,
+  "lon": 4.845511
+ },
+ {
+  "id": "sk-toulouse-1",
+  "place": "toulouse",
+  "lat": 43.572634,
+  "lon": 1.426686
+ },
+ {
+  "id": "sk-toulouse-2",
+  "place": "toulouse",
+  "lat": 43.593041,
+  "lon": 1.449112
+ },
+ {
+  "id": "sk-toulouse-3",
+  "place": "toulouse",
+  "lat": 43.62565,
+  "lon": 1.456545
+ },
+ {
+  "id": "sk-toulouse-4",
+  "place": "toulouse",
+  "lat": 43.612261,
+  "lon": 1.472173
+ },
+ {
+  "id": "sk-toulouse-5",
+  "place": "toulouse",
+  "lat": 43.608042,
+  "lon": 1.493531
+ },
+ {
+  "id": "sk-toulouse-6",
+  "place": "toulouse",
+  "lat": 43.622637,
+  "lon": 1.484612
+ },
+ {
+  "id": "sk-toulouse-7",
+  "place": "toulouse",
+  "lat": 43.620604,
+  "lon": 1.484655
+ },
+ {
+  "id": "sk-toulouse-8",
+  "place": "toulouse",
+  "lat": 43.637281,
+  "lon": 1.437509
+ }
+]

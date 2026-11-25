@@ -2,7 +2,7 @@
 // lanes, and a law strip where the model sees perpendicular cars gives way to them (evaluation/sjednoceni, 25. 11. 2026).
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { parkFromAi } from "../pilot/public/ai-kerbs.js";
+import { parkFromAi, lawKerbs, layLaw, widenLaw } from "../pilot/public/ai-kerbs.js";
 
 // A cut from t = 5 (A) to t = -5 (B): law strip 2 m, two lanes of 3 m, a sidewalk 2 m beyond.
 const cut = () => ({ extent: [-5, 5], segments: [
@@ -35,4 +35,31 @@ test("perpendicular cars at a law strip take its place", () => {
   const q = cut();
   parkFromAi(q, (t) => (t > 3 && t <= 5 ? 0.9 : 0));
   assert.deepEqual(q.segments.map((s) => [s.type, s.width, !!s.ai]), [["parkovani", 2, false], ["pruh", 3, false], ["pruh", 3, false], ["chodnik", 2, false]]);
+});
+
+// The law's strips after the lanes (evaluation/sjednoceni/slovensko-stani, 25. 11. 2026): A at t = 5, the roadway 8 m.
+const road = (w = [4, 4]) => ({ extent: [-5, 5], segments: [...w.map((x) => ({ type: "pruh", width: x })), { type: "chodnik", width: 2 }] });
+test("the kerbs of the law's strips", () => {
+  assert.deepEqual(lawKerbs(cut()), [{ t: 5, sg: -1 }]);
+});
+test("a law strip laid in doubt while the law's width is left, none where the model is sure of no cars", () => {
+  const at = [{ t: 5, sg: -1 }], need = (n) => 3 * Math.max(2, n), r = road();
+  assert.equal(layLaw(r, at, () => 0.1, need), 0);
+  assert.equal(layLaw(r, at, () => 0.3, need), 1);
+  assert.deepEqual(r.segments.map((s) => [s.type, s.width]), [["parkovani", 2], ["pruh", 3], ["pruh", 3], ["chodnik", 2]]);
+  // Trenčín, K výstavisku: the model's perpendicular row left 7.1 m, the law's strip would leave 5.1 m.
+  assert.equal(layLaw(road([3.5, 3.6]), [{ t: 5, sg: -1 }], () => 0.3, need), 0);
+});
+test("a row the model sees: the strip as wide as the row, not for a perpendicular one", () => {
+  const at = [{ t: 5, sg: -1 }], need = () => 3, r = road([6]), rows = [];
+  assert.equal(layLaw(r, at, (t) => (t <= 5 && t > 2.7 ? 0.9 : 0), need, { sure: true, rows }), 1);
+  assert.equal(r.segments[0].width, 2);
+  widenLaw(r, rows);
+  assert.ok(r.segments[0].type === "parkovani" && r.segments[0].width > 2.1 && r.segments[0].width <= 2.5);
+  assert.equal(layLaw(road([6]), at, (t) => (t <= 5 && t > 0 ? 0.9 : 0), need, { sure: true }), 0);
+});
+test("the strip takes the shoulder at the kerb first", () => {
+  const r = { extent: [-5, 5], segments: [{ type: "krajnice", width: 1.5, source: "odhad" }, { type: "pruh", width: 4.5 }, { type: "chodnik", width: 4 }] };
+  assert.equal(layLaw(r, [{ t: 5, sg: -1 }], () => 0.3, () => 3), 1);
+  assert.deepEqual(r.segments.map((s) => [s.type, s.width]), [["parkovani", 2], ["pruh", 4], ["chodnik", 4]]);
 });

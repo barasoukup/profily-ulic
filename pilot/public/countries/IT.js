@@ -95,8 +95,6 @@ export default {
   halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je v Itálii zakázané (čl. 158 zákona o silničním provozu), ledaže ho povolí značka; aplikace nechává {need}.", { free, need }),
   parkGuess: true,
   parkByCycleLane: true,
-  wideRoads: true,
-  wideStreets: /^(primary|secondary)$/,
   roadClassFromOsm: true,
   limits: limitsIT,
   contraflow: () => null,

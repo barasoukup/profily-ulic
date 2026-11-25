@@ -289,6 +289,17 @@ nejčastěji navíc chodník 9×, navíc zeleň 5×; bez mapy (výchozí) **75 %
 hůř 6, stejně 4, lépe 0. Mapa dělí chodník na kusy a přidává zeleň a stání za okrajem, posuzovatel je nevidí. Stejný
 výsledek jako 24. 11. ráno (53 proti 75 %); mapa zůstává vypnutá, pokud Bára nerozhodne jinak.
 
+## Stání z modelu u zákonného pruhu (25. 11. 2026)
+
+Sdílená oprava `parkFromAi` z `../sjednoceni/ZPRAVA.md` (bod 3) mění jen místní ulice států se zákonným odhadem stání,
+proto přesbírané jen posouzené řezy na `residential` a `unclassified` mimo SK a MC: 176 řezů ve 20 státech, každý starým
+kódem (`?off=parkshare`) a novým v jednom sběru (`../sjednoceni/vysledky/univ-parkshare.json`). Jinak se změnilo 26,
+dva z nich nový kód nedokreslil (Liège, Štětín; v obou kódech šum modelu a ortofota), posouzení má 23. Po řezech proti
+posuzovateli: **lépe 3, hůř 3, stejně 17**. Ve stejném sběru starý → nový: DE 56 → 55 %, PL pruhy 36 → 32 % (Lublin:
+stání z modelu vzalo vozovce druhý pruh), ostatní státy beze změny po zaokrouhlení. Řádky DE, PL, FR a DK ve
+`vysledky/staty.md` přepsané novým sběrem (`data/app-zzzzzz-sjednoceni.json`): DE 56 → 55 %, PL 63 → 64 %, FR 60 → 59 %,
+DK 58 % (Kodaň 60 → 59 %, zbytek 57 → 58 %); posun PL, FR a DK je i ve starém kódu (šum sběru).
+
 ## USA: Washington (24. 11. 2026, fáze 2)
 
 Posouzení pilotu (`../usa-dc/vysledky/u-us-*.jsonl`, dva agenti Sonnet, 30 použitelných řezů z 32), profily nově z aplikace

@@ -86,13 +86,15 @@ test("Ústí uličky je křižovatka (OSM service=alley i plocha uličky)", asyn
   try { assert.equal(Math.abs(awayFromJunctions({ elements: [way, alley] }, frame, near).point[1]) < 0.01, true); } finally { P.off = new Set(); }
 });
 
-test("Spočítané pruhy: obousměrka se dělí od 4 m, bez počtu od 5 m", async () => {
+test("Spočítané pruhy: obousměrka se stáním se dělí od 4 m, bez počtu nebo bez stání od 5 m", async () => {
   const { splitTwoWayLane } = await import("../pilot/public/derive.js");
-  const segs = () => [{ type: "chodnik", width: 2 }, { type: "pruh", width: 4.3 }, { type: "chodnik", width: 2 }];
+  const segs = (beside = "parkovani") => [{ type: "chodnik", width: 2 }, { type: beside, width: 2 }, { type: "pruh", width: 4.3 }, { type: "chodnik", width: 2 }];
   const a = segs(); splitTwoWayLane(a, { highway: "residential", lanes: "2" });
   assert.equal(a.filter((s) => s.type === "pruh").length, 2);
   const b = segs(); splitTwoWayLane(b, { highway: "residential" });
   assert.equal(b.filter((s) => s.type === "pruh").length, 1);
+  const c = segs("zelen"); splitTwoWayLane(c, { highway: "residential", lanes: "2" });
+  assert.equal(c.filter((s) => s.type === "pruh").length, 1);
 });
 
 test("Jamky stromů v chodníku: dlážděný úzký pás u obruby patří chodníku", async () => {

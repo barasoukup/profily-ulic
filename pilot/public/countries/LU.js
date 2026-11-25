@@ -59,7 +59,6 @@ export default {
   // everywhere, so all the more estimated): only the general duty not to obstruct, kept by the lanes left drivable.
   parkGuess: true,
   parkByCycleLane: true,
-  wideRoads: true,
   roadClassFromOsm: true,
   limits: limitsLU,
   contraflow: () => null,

@@ -1,0 +1,10 @@
+{
+ "pk-1": "O = O O = N N N = N = N",
+ "pk-2": "O N N N = O N =",
+ "br-1 (9 m)": "= = = O O O N N N N",
+ "brz-1 (9 m proti nic)": "O N N N O N",
+ "pr-1 (9 m)": "N = N = N = N O N N = =",
+ "pr-2 (9 m)": "= = O O O N =",
+ "sv-1 (9 m proti 15 m)": "O nejde N = = = O N nejde O nejde O",
+ "sv-2 (9 m proti 15 m)": "O N O O"
+}

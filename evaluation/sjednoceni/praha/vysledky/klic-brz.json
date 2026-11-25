@@ -1,0 +1,37 @@
+{
+ "brz-1/1": {
+  "id": "brno-s4",
+  "X": "O",
+  "Y": "N",
+  "noise": false
+ },
+ "brz-1/2": {
+  "id": "brno-s8",
+  "X": "O",
+  "Y": "N",
+  "noise": false
+ },
+ "brz-1/3": {
+  "id": "brno100-75",
+  "X": "N",
+  "Y": "O"
+ },
+ "brz-1/4": {
+  "id": "brno-s7",
+  "X": "O",
+  "Y": "N",
+  "noise": false
+ },
+ "brz-1/5": {
+  "id": "brno-s6",
+  "X": "O",
+  "Y": "N",
+  "noise": false
+ },
+ "brz-1/6": {
+  "id": "brno-s3",
+  "X": "N",
+  "Y": "O",
+  "noise": false
+ }
+}

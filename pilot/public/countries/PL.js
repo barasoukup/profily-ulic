@@ -82,7 +82,6 @@ export default {
   // RMI 2022 § 44 odst. 2: parking beside a cycle lane only parallel and 0.5 m from it (art. 49 forbids stopping on the
   // lane itself, not beside it: the hostile review).
   parkByCycleLane: true,
-  wideRoads: true,
   roadClassFromOsm: true,
   limits: limitsPL,
   // A contraflow cycle lane (kontrapas): 1.5 m (RMI 2022 § 42 odst. 5), no width of the whole street.

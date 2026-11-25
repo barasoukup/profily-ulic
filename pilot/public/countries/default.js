@@ -106,9 +106,7 @@ export default {
   parkByCycleLane: true,
   halfKerbNote: lawNote("§ 25 odst. 3 zák. 361/2000 Sb."),
   parkGuess: true,
-  // A motorway or trunk road gets the wider reach (app.js); the group of a street from its OSM class where there is
-  // no class of the city's own (derive.js).
-  wideRoads: false,
+  // The group of a street from its OSM class where there is no class of the city's own (derive.js).
   roadClassFromOsm: false,
   // The width rules (rules.js): the minimum and basic width of a part, the one-way street with contraflow cyclists
   // without a cycle lane (null: no rule known), the tram belt of two tracks ([{ level, text }]).

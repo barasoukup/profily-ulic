@@ -82,8 +82,6 @@ export default {
   halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Na Kypru je stání i zastavení na chodníku zakázané bez výjimky (předpis 66/1984, čl. 58 odst. 4 v původním znění; Kodex silničního provozu 2012); aplikace nechává {need}.", { free, need }),
   parkGuess: true,
   parkByCycleLane: true,
-  wideRoads: true,
-  wideStreets: /^(primary|secondary)$/,
   roadClassFromOsm: true,
   limits: limitsCY,
   contraflow: () => null,

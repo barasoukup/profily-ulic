@@ -100,9 +100,6 @@ export default {
   halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Stání na chodníku je ve Španělsku zakázané (čl. 94.2 e nařízení o silničním provozu); vedle stojícího auta musí zůstat aspoň 3 m k protějšímu okraji vozovky (čl. 91.2 a), aplikace nechává {need}.", { free, need }),
   parkGuess: true,
   parkByCycleLane: true,
-  wideRoads: true,
-  // Main streets ending at the reach in their median reach 35 m (app.js; the paseos and ramblas).
-  wideStreets: /^(primary|secondary)$/,
   roadClassFromOsm: true,
   limits: limitsES,
   contraflow: () => null,

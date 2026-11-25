@@ -86,7 +86,6 @@ export default {
   parkByCycleLane: false,
   halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Zákon šířku neuvádí (VRV čl. 19), pomůcky kantonů Bern a Luzern berou 3 m na projetí, aplikace navíc nechává průjezdné pruhy, tedy aspoň {need}; na chodníku musí zůstat 1,5 m (VRV čl. 41).", { free, need }),
   parkGuess: true,
-  wideRoads: true,
   roadClassFromOsm: true,
   limits: limitsCH,
   // A one-way street with contraflow cyclists and no cycle lane: a roadway of 4.8 m for a bicycle meeting a lorry (Kanton

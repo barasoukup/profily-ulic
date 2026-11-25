@@ -60,8 +60,6 @@ export default {
   halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Ve Washingtonu je stání na chodníku zakázané (18 DCMR § 2405, z druhé ruky); aplikace nechává {need}.", { free, need }),
   parkGuess: true,
   parkByCycleLane: true,
-  wideRoads: true,
-  wideStreets: /^(primary|secondary)$/,
   roadClassFromOsm: true,
   limits: limitsUS,
   contraflow: () => null,

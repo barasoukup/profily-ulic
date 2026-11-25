@@ -191,7 +191,9 @@ WMS-Raster v Web Mercatoru, `lanes-ortho.js` zdroj `fr`; mimo Francii bílé, pr
   `?parisstani=0`). Mapa povrchů počítá podélné stání do vozovky a ortofoto IGN na bulvárech čáry nenajde (stín, Paříž
   je často nemaluje), takže bez evidence zbylo stání jako krajnice.
 - **Hlavní ulice** (primary, secondary): strana, která skončí dosahem ve středovém pásu, promenádě nebo chodníku, sahá
-  35 m (`wideStreets`; bulvár s promenádou). Vozovka jen pro autobusy se stejným jménem je druhá polovina ulice, když
+  35 m, když ulice za dosahem pokračuje (bulvár s promenádou; od 25. 11. 2026 všude stejné pravidlo podle dat řezu, ne
+  státu: `app.js widerSides`, `evaluation/sjednoceni/ZPRAVA.md`; za dosahem není mapa povrchů, nebo je tam druhá vozovka
+  téže ulice z OSM, nebo plochy ulice z mapy pokračují až k vozovce; totéž dálnice a silnice pro motorová vozidla). Vozovka jen pro autobusy se stejným jménem je druhá polovina ulice, když
   jiná není (`?off=busduo`, obecně); krajnice aspoň 2,75 m u obruby s buspruhem z OSM je buspruh (`?off=buskrajnice`,
   obecně). Zpráva `evaluation/france/ab/bulvary/ZPRAVA.md`.
 - **Budovy** z BD TOPO IGN (podlaží, výška, rok, byty, užití; `?bdtopo=0`). **Šířky vozovek** BD TOPO (celé metry) jen
@@ -553,9 +555,13 @@ Podloubí jen podle dat (Bára): cesta OSM `covered=arcade|colonnade|building_ar
 
 ## Brno
 
-Stejně jako Praha se Brno ptá služeb města při kliknutí (přímo z prohlížeče, služby povolují CORS). Úpravy
-výpočtu, které platí všude kromě Prahy, zapíná `city.fix` (`city.js`): křižovatky i se `service`, osa OSM vedle
-vozovky se posune na ni, zpevněná plocha do 25 m pod osou silnice je vozovka.
+Stejně jako Praha se Brno ptá služeb města při kliknutí (přímo z prohlížeče, služby povolují CORS). Úpravy výpočtu,
+které vznikly v Brně, platí od 25. 11. 2026 všude i v Praze (`derive.js`, `city.fix` zrušené,
+`evaluation/sjednoceni/praha/ZPRAVA.md`): obslužná cesta (`service`, ne vjezd ani parkoviště) je křižovatka
+(`?off=obsluzne`), ale na dvouvozovkové ulici neodsune řez na křižovatku protější vozovky (`?off=protejsi`); ústí uličky
+(`service=alley`, i plocha) také (`?off=ulicky`); osa OSM do 4,5 m vedle vozovky se posune na ni a zpevněná plocha pod osou
+je vozovka (`?off=osafix`), ne však dělicí pás mezi dvěma vozovkami ani pás užší než 3 m (`?off=osaroad`). Obousměrka se
+stáním u vozovky a s počtem pruhů z OSM ≥ 2 se dělí na dva pruhy už od 4,0 m (`?off=pocetpruhu`).
 
 - plochy: MTVU města (`gis.brno.cz/ags3 … PUBLIC/opendata_mtvu`, vrstva 1). Brněnské kódy 5100xxx
   (číselník v legendě `PUBLIC/ted_MTVU_plochy_povrch`) převádí `brnoMtvuCode` v `sources.js` na pražské;

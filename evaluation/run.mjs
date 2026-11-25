@@ -6,8 +6,6 @@ import fs from "node:fs/promises";
 import path from "node:path";
 // DERIVE=pilot uses the live pilot code (results in data/results2, ortho in data/ortho2).
 const LIVE = process.env.DERIVE === "pilot";
-// FIX=1: the profile changes tried in Brno (city.fix) switched on for this run.
-if (process.env.FIX) globalThis.PROFILY_FIX = { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true };
 const D = await import(LIVE ? "../pilot/public/derive.js" : "./snapshot/derive.js");
 const { localFrame, nearestStreet, awayFromEnds, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, MAX_REACH } = D;
 // OUT overrides the results folder (the orthophotos are reused, so a re-run downloads none).

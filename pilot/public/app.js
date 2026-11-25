@@ -1,5 +1,5 @@
 import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, SURFACES, LAMP_HEIGHTS, underSize } from "./types.js";
-import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, splitTwoWayLane, capWideLanes, pedestrianZone, treePitsAsSidewalk, widenNarrowTrams, carveCycleways, carveTramTracks, lanesFromShoulders, trackAlongRoad, crossFromA, MAX_REACH } from "./derive.js";
+import { localFrame, nearestStreet, snapToWay, placeCut, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, splitTwoWayLane, capWideLanes, pedestrianZone, treePitsAsSidewalk, widenNarrowTrams, carveCycleways, carveTramTracks, lanesFromShoulders, trackAlongRoad, crossFromA, lawNeedFor, isOnewayTags, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO, CH_ORTHO, NL_ORTHO, BE_ORTHO, LU_ORTHO, PL_ORTHO, FR_ORTHO, ES_ORTHO, PT_ORTHO, PT_MAINLAND, ES_NOT_PNOA, CY_ORTHO, MT_ORTHO, IT_ORTHO, EE_ORTHO, SI_ORTHO, FI_ORTHO, US_ORTHO, DK_ORTHO, DE_ORTHO, deWmsUrl, landsAt, landAt, orthoHereAt } from "./lanes-ortho.js";
 import { dkToken } from "./keys.js";
@@ -8,7 +8,7 @@ import { orthoOsmPolys, besidePassport, trimToEnds, P as ORTHO_P } from "./ortho
 import { LOOKS as HOUSE_LOOKS } from "./house-looks.js";
 // The gabled house looks with the gable's outline (house-looks.js; Bára to approve it, 23. 11. 2026): ?stit=1.
 if (new URLSearchParams(location.search).get("stit") === "1") HOUSE_LOOKS.gables = true;
-import { aiCut, aiKerbs, aiSurface, aiParking, parkFromAi, parkSkip, aiReady, onAiProgress } from "./ai-kerbs.js";
+import { aiCut, aiKerbs, aiSurface, aiParking, parkFromAi, parkSkip, lawKerbs, layLaw, widenLaw, aiReady, onAiProgress } from "./ai-kerbs.js";
 // ?off=… switches named parts of the estimate off (the A/B tests, evaluation/ortofoto-osm/regrese.mjs).
 { const off = new URLSearchParams(location.search).get("off"); if (off) ORTHO_P.off = new Set(off.split(",")); }
 // Tree pits as sidewalk (derive.js treePitsAsSidewalk): off, ?jamky=1 turns them on.
@@ -79,6 +79,41 @@ const MIN_REACH = 3; // shortest profile side the user can drag the cut end to (
 const defaultReach = () => ({ left: MAX_REACH, right: MAX_REACH });
 const WIDE_REACH = 35;
 const WIDE_END = new Set(["plocha", "delici", "zelen", "stromorad", "chodnik", "tramvaj"]); // a median's or a promenade's parts
+// A side of a new cut that may reach WIDE_REACH (evaluation/sjednoceni, Bára 25. 11. 2026: a rule of the data at the cut,
+// not of a state; it replaced the states' wideRoads and wideStreets: A/B of 112 cuts, 6 changed, better 4 : 2, Paris's
+// boulevards as before, the states without a map unchanged): a motorway or an expressway, or a main street ending at the reach in a median's, promenade's or
+// sidewalk's part, whose profile ends at the reach on that side, and only where the street goes on beyond it: no surface
+// map lies there (the estimate's land: a street-area map such as Vienna's ends at the parcel line), the street's own
+// other carriageway (an OSM way of its name or ref) crosses the cut there, or the map's street surfaces go on from the
+// reach to a roadway. A map that draws all land (the Czech DTM, the
+// BGT, the cadastral survey) has fields, woods and car parks beyond a motorway's verge: 35 m ran into them (Czech
+// motorways, worse 13 : 1). ?off=widereach: never.
+const WIDE_ROADS = /^(motorway|trunk)(_link)?$/, WIDE_STREETS = /^(primary|secondary)$/;
+const CAR_WAYS = /^(motorway|trunk|primary|secondary|tertiary|unclassified|residential)(_link)?$/;
+// MTVU codes: a roadway or a tram bed; the surfaces of a street (with a sidewalk, a cycle track, a median, other paving).
+const WIDE_ROADWAY = new Set([700, 701, 705]), STREET_SURFACE = new Set([700, 701, 702, 703, 705, 1003, 9950]);
+const inRingXY = (r, x, y) => { let c = false; for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if ((yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; } return c; };
+function widerSides(result, reach, way, osm, frame, dir, polys) {
+  const hw = way?.tags?.highway || "", road = WIDE_ROADS.test(hw);
+  if (!(road || WIDE_STREETS.test(hw)) || !result?.extent || !result.segments?.length) return null;
+  const normal = [-dir[1], dir[0]];
+  // A house is no land of a map (the estimate's states have their buildings too).
+  const codeAt = (t) => { const x = normal[0] * t, y = normal[1] * t; return polys.find((p) => (!p.bbox || (x >= p.bbox[0] && x <= p.bbox[2] && y >= p.bbox[1] && y <= p.bbox[3])) && p.rings?.length && inRingXY(p.rings[0], x, y))?.code ?? null; };
+  const mapAt = (t) => { const c = codeAt(t); return c !== null && c !== 601; };
+  // The map's street surfaces from the reach on, without a break, up to a roadway (Paris: the promenade of Bd Marguerite
+  // de Rochechouart, its cycle track, then the other carriageway; the other half of the boulevard has another name).
+  const roadwayOn = (from, sg) => { for (let d = 0.25; d <= WIDE_REACH - from; d += 0.5) { const c = codeAt(sg * (from + d)); if (WIDE_ROADWAY.has(c)) return true; if (!STREET_SURFACE.has(c)) return false; } return false; };
+  const name = way.tags.name, ref = way.tags.ref;
+  // The street's other carriageways across the cut, by their offset along the normal (+: side A).
+  const own = crossFromA(osm, frame, dir, [-WIDE_REACH, WIDE_REACH]).filter((c) => CAR_WAYS.test(c.tags.highway || "") && ((name && c.tags.name === name) || (ref && c.tags.ref === ref))).map((c) => WIDE_REACH - c.at);
+  const longer = {};
+  for (const [side, sg, end, part] of [["left", 1, result.extent[1], result.segments[0]], ["right", -1, -result.extent[0], result.segments.at(-1)]]) {
+    if (reach[side] >= WIDE_REACH || end < reach[side] - 1 || !(road || WIDE_END.has(part.type))) continue;
+    const beyond = [0.5, 1.5, 3].map((d) => sg * (reach[side] + d));
+    if (!beyond.some(mapAt) || own.some((t) => sg * t > reach[side] && sg * t <= WIDE_REACH) || roadwayOn(reach[side], sg)) longer[side] = WIDE_REACH;
+  }
+  return Object.keys(longer).length ? longer : null;
+}
 // Ends of the cut on the map: right end at -normal, left end at +normal.
 const cutEnds = (f, normal, reach) => [
   f.toLonLat(-normal[0] * reach.right, -normal[1] * reach.right),
@@ -519,8 +554,9 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       near = { ...snapToWay(pts, [0, 0]), way: osmCache.way, pts };
     } else {
       near = nearestStreet(osm, frame, [0, 0], wantName);
-      // A click lands the cut away from junctions and crossings; a dragged cut stays where it is put.
-      if (near) near = awayFromJunctions(osm, frame, near);
+      // A click lands the cut away from junctions and crossings; a dragged cut stays where it is put, a saved one (a link,
+      // a pasted position with its azimuth) exactly where it was saved.
+      if (near) near = placeCut(osm, frame, near, bearing !== null);
     }
     if (!near) {
       // A click with no street found is logged too (Bára: how many try outside the Czech Republic): only where, to
@@ -529,7 +565,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       return status(tr("Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko, Slovensko, Rakousko, Německo, Švýcarsko, Lichtenštejnsko, Nizozemsko, Belgii, Lucembursko, Polsko, Francii, Monako, Španělsko, Portugalsko, Kypr, Maltu, části Itálie, Estonsko, Slovinsko, Finsko, Dánsko, Litvu a okolí Washingtonu v USA)."), "error");
     }
     // A street of two one-way carriageways is cut from its middle (e.g. the tram belt).
-    near = centerOnStreet(osm, frame, near);
+    if (keepWay && osmCache) near = centerOnStreet(osm, frame, near);
     // Re-centre the frame on the snapped point.
     const [clon, clat] = frame.toLonLat(...near.point);
     frame = localFrame(clat, clon);
@@ -539,10 +575,11 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       dir = [Math.sin(r), Math.cos(r)];
     }
     osmCache = { osm, way: near.way };
-    // A motorway or an expressway is wider than the usual reach (Bára: R1 in Banská Bystrica): 35 m each side for a new
-    // cut. Only in Slovakia and Austria so far (countries/<ISO>.js wideRoads; Fable: not tried on Czech motorways).
-    const WIDE_ROAD = country.wideRoads && /^(motorway|trunk)$/.test(near.way.tags?.highway || "");
-    reach = reach || (keepWay && state.cut?.reach) || (WIDE_ROAD ? { left: WIDE_REACH, right: WIDE_REACH } : defaultReach());
+    // The usual reach for a new cut; a motorway, an expressway or a main street may reach WIDE_REACH on a side where the
+    // street goes on beyond it (widerSides below; Bára: R1 in Banská Bystrica, the boulevards of Paris). A reach given or
+    // kept stays as it is.
+    const freshReach = !reach && !(keepWay && state.cut?.reach);
+    reach = reach || (keepWay && state.cut?.reach) || defaultReach();
     // A new cut has A at its western end and B at the eastern (Bára): the profile is then seen
     // looking northwards, A on the left. A lies left of the street direction, so that direction
     // points north (a street running exactly east–west points east, A at the north end). A moved
@@ -601,19 +638,19 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       osmParkGive: !ORTHO_P.off?.has("mapfill"),
       kerbParking: pk.status === "fulfilled" && pk.value?.kerbParking && !NO_MAP ? pk.value.kerbParking.map((p) => ({ ...p, xy: frame.toXY(p.lon, p.lat) })) : null };
     let result = deriveProfile(args);
-    // A state's wide streets (countries/<ISO>.js wideStreets): a side the profile ends on at the reach, in a median, a
-    // promenade or a sidewalk, reaches WIDE_REACH (France: Bd Marguerite de Rochechouart in Paris ended at 22 m in its
-    // promenade, the other carriageway beyond). Only a new cut; the profile still ends at the facades.
-    if (!keepWay && country.wideStreets?.test(near.way.tags?.highway || "") && !result.estimate && result.extent && result.segments?.length) {
-      const longer = {};
-      if (reach.left < WIDE_REACH && result.extent[1] >= reach.left - 1 && WIDE_END.has(result.segments[0].type)) longer.left = WIDE_REACH;
-      if (reach.right < WIDE_REACH && -result.extent[0] >= reach.right - 1 && WIDE_END.has(result.segments.at(-1).type)) longer.right = WIDE_REACH;
-      if (Object.keys(longer).length) { reach = { ...reach, ...longer }; args.reach = reach; result = deriveProfile(args); }
+    if (freshReach && !ORTHO_P.off?.has("widereach")) {
+      // No surface map at the axis (the estimate below): a motorway's sides reach WIDE_REACH, as the estimate finds its
+      // own ends; under a map, by what the map has beyond the reach (widerSides).
+      if (result.estimate && WIDE_ROADS.test(near.way.tags?.highway || "")) { reach = { left: WIDE_REACH, right: WIDE_REACH }; args.reach = reach; result = deriveProfile(args); }
+      else if (!result.estimate) {
+        const longer = widerSides(result, reach, near.way, osm, frame, dir, polys);
+        if (longer) { reach = { ...reach, ...longer }; args.reach = reach; result = deriveProfile(args); }
+      }
     }
     // No surface of the street from the technical map (no answer, nothing here, nothing at the axis): the carriageway
     // read on the orthophoto near where OSM expects it, sidewalks to the OSM buildings (ortho-osm.js; Bára 15. 11.
     // 2026: better than OSM alone), all an estimate. The map's own surfaces, where there are any, stay behind it.
-    let orthoOsm = null, aiPark = null;
+    let orthoOsm = null, aiPark = null, lastPolys = polys, lastEnds = null;
     // The model's reading of the orthophoto across the cut (ai-kerbs.js aiCut). The first time the library and the model
     // come (about 7 MB), with their progress; past AI_WAIT the cut is drawn without it and the download goes on for the
     // next cut (Bára 19. 11. 2026).
@@ -642,7 +679,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       if (fb) {
         const again = deriveProfile({ ...args, polys: [fb[0], ...polys, ...fb.slice(1)] });
         // A side without a house ends where orthoOsmPolys found (steps, a fence, the last thing of the street).
-        if (!again.estimate) { result = trimToEnds(again, fb.ends); orthoOsm = fb; }
+        if (!again.estimate) { result = trimToEnds(again, fb.ends); orthoOsm = fb; lastPolys = [fb[0], ...polys, ...fb.slice(1)]; lastEnds = fb.ends; }
       }
     }
     // A town's passport (Slovakia) keeps the roads it maintains: beyond it, up to a house or a fence of OSM standing
@@ -663,8 +700,16 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       const beside = besidePassport({ osm, frame, dir, way: near.way, st: laneImg?.st, edges: k.status === "fulfilled" ? k.value?.edges || [] : [], symbols: k.status === "fulfilled" ? k.value?.symbols || [] : [], areas: k.status === "fulfilled" ? k.value?.areas || [] : [], polys, ...(country.besideMax && { max: country.besideMax }), aiSurf: mapCut ? aiSurface(mapCut) : null });
       if (beside.length) {
         const again = deriveProfile({ ...args, polys: [...polys, ...beside] });
-        if (!again.estimate) { result = again; besideUsed = beside.used; }
+        if (!again.estimate) { result = again; besideUsed = beside.used; lastPolys = [...polys, ...beside]; }
       }
+    }
+    // The law's parking waits for the lanes and the model's cars (ai-kerbs.js lawKerbs, layLaw; ?off=lawlanes).
+    const lawPark = ORTHO_P.off?.has("aipark") || ORTHO_P.off?.has("lawlanes") ? null : orthoOsm ? aiPark : mapCut && aiParking(mapCut);
+    const lawSkip = parkSkip(near.way.tags, !near.dir || dir[0] * near.dir[0] + dir[1] * near.dir[1] >= 0, inZps === true || parking.length > 0);
+    const lawAt = lawPark && !lawSkip.all ? lawKerbs(result) : [];
+    if (lawAt.length) {
+      const again = deriveProfile({ ...args, polys: lastPolys, noParkGuess: true });
+      result = lastEnds ? trimToEnds(again, lastEnds) : again;
     }
     // Lanes, shoulders and parking on its own paving measured on the orthophoto (lanes-ortho.js).
     const lanesFromOrtho = laneImg ? applyLanes(result, laneImg) : 0;
@@ -676,6 +721,9 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // Tree pits in a sidewalk read on the orthophoto (derive.js treePitsAsSidewalk), only with ?jamky=1.
     const pitsJoined = treePitsAsSidewalk(result.segments, result.extent, laneImg?.st);
     if (orthoOsm) widenNarrowTrams(result.segments);
+    const lawRows = [];
+    const lawOneway = isOnewayTags(near.way.tags) || near.way.tags?.junction === "roundabout", lawNeed = (lanes) => lawNeedFor(lawOneway, lanes);
+    if (lawAt.length) layLaw(result, lawAt, lawPark, lawNeed, { sure: true, skip: lawSkip, rows: lawRows });
     // Parking where the model sees cars at the kerb (ai-kerbs.js parkFromAi; Bára 20. 11. 2026), ?off=aipark.
     // Not where parking data decide: a paid zone, the city's parking sections at the cut, a side OSM tags.
     if (orthoOsm && aiPark && !ORTHO_P.off?.has("aipark")) {
@@ -694,6 +742,10 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       // A strip the law estimated, gone back to its lane where no car stands, keeps the lane's cap (capWideLanes above;
       // evaluation/mapfill-cz: Rosická in Brno 6.67 m lanes, Šatrova in Prague 5.62 m).
       if (mapParked) capWideLanes(result.segments, near.way.tags);
+    }
+    if (lawAt.length) {
+      layLaw(result, lawAt, lawPark, lawNeed, { inside: !orthoOsm, skip: lawSkip });
+      widenLaw(result, lawRows);
     }
     // A cycle track OSM tags on the road (cycleway:<side>=track) beside its roadway (derive.js trackAlongRoad), before the
     // cycle ways mapped on their own are carved, so one track is not drawn twice. Not over a map's own surfaces (they

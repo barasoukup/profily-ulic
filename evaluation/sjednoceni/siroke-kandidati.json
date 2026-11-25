@@ -1,0 +1,482 @@
+[
+ {
+  "id": "si-amsterdam-1",
+  "place": "amsterdam",
+  "lat": 52.358637,
+  "lon": 4.946124
+ },
+ {
+  "id": "si-amsterdam-2",
+  "place": "amsterdam",
+  "lat": 52.37295,
+  "lon": 4.918938
+ },
+ {
+  "id": "si-amsterdam-3",
+  "place": "amsterdam",
+  "lat": 52.352875,
+  "lon": 4.949951
+ },
+ {
+  "id": "si-amsterdam-4",
+  "place": "amsterdam",
+  "lat": 52.355392,
+  "lon": 4.942663
+ },
+ {
+  "id": "si-amsterdam-5",
+  "place": "amsterdam",
+  "lat": 52.367555,
+  "lon": 4.958208
+ },
+ {
+  "id": "si-amsterdam-6",
+  "place": "amsterdam",
+  "lat": 52.36635,
+  "lon": 4.870056
+ },
+ {
+  "id": "si-amsterdam-7",
+  "place": "amsterdam",
+  "lat": 52.391698,
+  "lon": 4.931654
+ },
+ {
+  "id": "si-amsterdam-8",
+  "place": "amsterdam",
+  "lat": 52.393562,
+  "lon": 4.872965
+ },
+ {
+  "id": "si-rotterdam-1",
+  "place": "rotterdam",
+  "lat": 51.933804,
+  "lon": 4.525379
+ },
+ {
+  "id": "si-rotterdam-2",
+  "place": "rotterdam",
+  "lat": 51.913581,
+  "lon": 4.503157
+ },
+ {
+  "id": "si-rotterdam-3",
+  "place": "rotterdam",
+  "lat": 51.895836,
+  "lon": 4.480403
+ },
+ {
+  "id": "si-rotterdam-4",
+  "place": "rotterdam",
+  "lat": 51.902305,
+  "lon": 4.448673
+ },
+ {
+  "id": "si-rotterdam-5",
+  "place": "rotterdam",
+  "lat": 51.930868,
+  "lon": 4.436071
+ },
+ {
+  "id": "si-rotterdam-6",
+  "place": "rotterdam",
+  "lat": 51.905071,
+  "lon": 4.506889
+ },
+ {
+  "id": "si-rotterdam-7",
+  "place": "rotterdam",
+  "lat": 51.887791,
+  "lon": 4.470084
+ },
+ {
+  "id": "si-rotterdam-8",
+  "place": "rotterdam",
+  "lat": 51.933984,
+  "lon": 4.531554
+ },
+ {
+  "id": "si-utrecht-1",
+  "place": "utrecht",
+  "lat": 52.103003,
+  "lon": 5.150282
+ },
+ {
+  "id": "si-utrecht-2",
+  "place": "utrecht",
+  "lat": 52.063323,
+  "lon": 5.12103
+ },
+ {
+  "id": "si-utrecht-3",
+  "place": "utrecht",
+  "lat": 52.068749,
+  "lon": 5.079611
+ },
+ {
+  "id": "si-utrecht-4",
+  "place": "utrecht",
+  "lat": 52.086683,
+  "lon": 5.114733
+ },
+ {
+  "id": "si-utrecht-5",
+  "place": "utrecht",
+  "lat": 52.062773,
+  "lon": 5.109935
+ },
+ {
+  "id": "si-utrecht-6",
+  "place": "utrecht",
+  "lat": 52.11081,
+  "lon": 5.083526
+ },
+ {
+  "id": "si-utrecht-7",
+  "place": "utrecht",
+  "lat": 52.068478,
+  "lon": 5.1565
+ },
+ {
+  "id": "si-utrecht-8",
+  "place": "utrecht",
+  "lat": 52.062984,
+  "lon": 5.100345
+ },
+ {
+  "id": "si-zurich-1",
+  "place": "zurich",
+  "lat": 47.377257,
+  "lon": 8.502606
+ },
+ {
+  "id": "si-zurich-2",
+  "place": "zurich",
+  "lat": 47.380055,
+  "lon": 8.557847
+ },
+ {
+  "id": "si-zurich-3",
+  "place": "zurich",
+  "lat": 47.376991,
+  "lon": 8.526464
+ },
+ {
+  "id": "si-zurich-4",
+  "place": "zurich",
+  "lat": 47.386246,
+  "lon": 8.579987
+ },
+ {
+  "id": "si-zurich-5",
+  "place": "zurich",
+  "lat": 47.371239,
+  "lon": 8.539315
+ },
+ {
+  "id": "si-zurich-6",
+  "place": "zurich",
+  "lat": 47.350941,
+  "lon": 8.517097
+ },
+ {
+  "id": "si-zurich-7",
+  "place": "zurich",
+  "lat": 47.348148,
+  "lon": 8.511624
+ },
+ {
+  "id": "si-zurich-8",
+  "place": "zurich",
+  "lat": 47.383037,
+  "lon": 8.501653
+ },
+ {
+  "id": "si-bern-1",
+  "place": "bern",
+  "lat": 46.966343,
+  "lon": 7.481668
+ },
+ {
+  "id": "si-bern-2",
+  "place": "bern",
+  "lat": 46.955796,
+  "lon": 7.40452
+ },
+ {
+  "id": "si-bern-3",
+  "place": "bern",
+  "lat": 46.954616,
+  "lon": 7.439071
+ },
+ {
+  "id": "si-bern-4",
+  "place": "bern",
+  "lat": 46.955506,
+  "lon": 7.44027
+ },
+ {
+  "id": "si-bern-5",
+  "place": "bern",
+  "lat": 46.933552,
+  "lon": 7.494664
+ },
+ {
+  "id": "si-bern-6",
+  "place": "bern",
+  "lat": 46.936462,
+  "lon": 7.428331
+ },
+ {
+  "id": "si-bern-7",
+  "place": "bern",
+  "lat": 46.936384,
+  "lon": 7.421659
+ },
+ {
+  "id": "si-bern-8",
+  "place": "bern",
+  "lat": 46.943672,
+  "lon": 7.459813
+ },
+ {
+  "id": "si-basel-1",
+  "place": "basel",
+  "lat": 47.585706,
+  "lon": 7.603493
+ },
+ {
+  "id": "si-basel-2",
+  "place": "basel",
+  "lat": 47.557035,
+  "lon": 7.577283
+ },
+ {
+  "id": "si-basel-3",
+  "place": "basel",
+  "lat": 47.526289,
+  "lon": 7.573885
+ },
+ {
+  "id": "si-basel-4",
+  "place": "basel",
+  "lat": 47.553532,
+  "lon": 7.621786
+ },
+ {
+  "id": "si-basel-5",
+  "place": "basel",
+  "lat": 47.544404,
+  "lon": 7.540309
+ },
+ {
+  "id": "si-basel-6",
+  "place": "basel",
+  "lat": 47.592638,
+  "lon": 7.568518
+ },
+ {
+  "id": "si-basel-7",
+  "place": "basel",
+  "lat": 47.577554,
+  "lon": 7.612858
+ },
+ {
+  "id": "si-basel-8",
+  "place": "basel",
+  "lat": 47.538978,
+  "lon": 7.568682
+ },
+ {
+  "id": "si-wien-1",
+  "place": "wien",
+  "lat": 48.176968,
+  "lon": 16.358105
+ },
+ {
+  "id": "si-wien-2",
+  "place": "wien",
+  "lat": 48.219797,
+  "lon": 16.411813
+ },
+ {
+  "id": "si-wien-3",
+  "place": "wien",
+  "lat": 48.222459,
+  "lon": 16.397574
+ },
+ {
+  "id": "si-wien-4",
+  "place": "wien",
+  "lat": 48.203621,
+  "lon": 16.388525
+ },
+ {
+  "id": "si-wien-5",
+  "place": "wien",
+  "lat": 48.217373,
+  "lon": 16.39359
+ },
+ {
+  "id": "si-wien-6",
+  "place": "wien",
+  "lat": 48.182029,
+  "lon": 16.388975
+ },
+ {
+  "id": "si-wien-7",
+  "place": "wien",
+  "lat": 48.22653,
+  "lon": 16.363849
+ },
+ {
+  "id": "si-wien-8",
+  "place": "wien",
+  "lat": 48.21908,
+  "lon": 16.357372
+ },
+ {
+  "id": "si-helsinki-1",
+  "place": "helsinki",
+  "lat": 60.141219,
+  "lon": 24.931655
+ },
+ {
+  "id": "si-helsinki-2",
+  "place": "helsinki",
+  "lat": 60.175944,
+  "lon": 24.956779
+ },
+ {
+  "id": "si-helsinki-3",
+  "place": "helsinki",
+  "lat": 60.161296,
+  "lon": 24.890462
+ },
+ {
+  "id": "si-helsinki-4",
+  "place": "helsinki",
+  "lat": 60.170218,
+  "lon": 24.876938
+ },
+ {
+  "id": "si-helsinki-5",
+  "place": "helsinki",
+  "lat": 60.153864,
+  "lon": 24.879543
+ },
+ {
+  "id": "si-helsinki-6",
+  "place": "helsinki",
+  "lat": 60.147117,
+  "lon": 24.93584
+ },
+ {
+  "id": "si-helsinki-7",
+  "place": "helsinki",
+  "lat": 60.201581,
+  "lon": 24.959844
+ },
+ {
+  "id": "si-helsinki-8",
+  "place": "helsinki",
+  "lat": 60.155414,
+  "lon": 24.94959
+ },
+ {
+  "id": "si-berlin-1",
+  "place": "berlin",
+  "lat": 52.513922,
+  "lon": 13.385901
+ },
+ {
+  "id": "si-berlin-2",
+  "place": "berlin",
+  "lat": 52.548105,
+  "lon": 13.410164
+ },
+ {
+  "id": "si-berlin-3",
+  "place": "berlin",
+  "lat": 52.503284,
+  "lon": 13.45196
+ },
+ {
+  "id": "si-berlin-4",
+  "place": "berlin",
+  "lat": 52.48736,
+  "lon": 13.411991
+ },
+ {
+  "id": "si-berlin-5",
+  "place": "berlin",
+  "lat": 52.543743,
+  "lon": 13.387608
+ },
+ {
+  "id": "si-berlin-6",
+  "place": "berlin",
+  "lat": 52.492778,
+  "lon": 13.38268
+ },
+ {
+  "id": "si-berlin-7",
+  "place": "berlin",
+  "lat": 52.545449,
+  "lon": 13.41952
+ },
+ {
+  "id": "si-berlin-8",
+  "place": "berlin",
+  "lat": 52.506072,
+  "lon": 13.372356
+ },
+ {
+  "id": "si-paris-1",
+  "place": "paris",
+  "lat": 48.865265,
+  "lon": 2.302542
+ },
+ {
+  "id": "si-paris-2",
+  "place": "paris",
+  "lat": 48.869162,
+  "lon": 2.369612
+ },
+ {
+  "id": "si-paris-3",
+  "place": "paris",
+  "lat": 48.884654,
+  "lon": 2.333791
+ },
+ {
+  "id": "si-paris-4",
+  "place": "paris",
+  "lat": 48.843158,
+  "lon": 2.370475
+ },
+ {
+  "id": "si-paris-5",
+  "place": "paris",
+  "lat": 48.860734,
+  "lon": 2.316008
+ },
+ {
+  "id": "si-paris-6",
+  "place": "paris",
+  "lat": 48.853906,
+  "lon": 2.341774
+ },
+ {
+  "id": "si-paris-7",
+  "place": "paris",
+  "lat": 48.877043,
+  "lon": 2.332382
+ },
+ {
+  "id": "si-paris-8",
+  "place": "paris",
+  "lat": 48.855675,
+  "lon": 2.367725
+ }
+]

@@ -89,3 +89,95 @@ Při slovenském A/B se ukázaly dvě chyby sdíleného kódu, které platí vš
   (J. Mazúra v Martině: model vidí u B kolmé stání, jsou tam podélná auta), stejně 1, nejde 1.
 
 Celkem **6 : 2**. Regrese beze změny (stání z modelu do ní nevstupuje), testy `tests/park-ai.test.js`.
+
+## 4. `wideRoads` v Česku: změřeno, pak nahrazeno pravidlem dat (bod 6)
+
+Dálnice a silnice pro motorová vozidla mají jinde dosah 35 m (Bára: R1 v Banské Bystrici), v Česku ne („Fable: not
+tried on Czech motorways“). Vzorek `dalnice`: náhodné body do 2 km od úseků D0, D1, D5, D6, D8, D11, D35 a silnic I/50,
+I/27 (Praha Chodov a Ruzyně, Brno Slatina, Plzeň, Zdiby, Ostrava Rudná, Hradec, Olomouc), přitažené na `motorway` nebo
+`trunk` do 700 m, ne blíž než 300 m od sebe: **14 řezů** (`vysledky/dalnice2.json`). Změnilo se všech 14: technická mapa
+má plochy všude, takže 35 m vede dál do polí, lesů, na parkoviště a jiné cesty.
+
+Naslepo (balíčky wr1, wr2, posuzovatel měl říct, kde končí prostor silnice): **N 1 : O 13**. Jediná výhra N je silnice
+27 v Plzni (O vynechal druhou vozovku). Rozhodnutí: **výjimka zůstává** (`countries/CZ.js wideRoads: false` s důvodem).
+Sdílená oprava, která by ji mohla zrušit: prodloužit dosah dálnice jen tehdy, když strana na dosahu končí v části silnice
+(druhá vozovka, dělicí pás), jako `wideStreets`; to by bylo třeba změřit i na Slovensku, v Rakousku a Německu.
+
+## 5. `city.fix` (osa OSM k vozovce mapy, obslužné cesty jako křižovatky, zpevněná plocha pod osou): sjednoceno mimo Prahu
+
+Tři úpravy z Brna (9. 11. 2026) platily ve všech českých městech kromě Prahy a v cizině nikde (nikdy nezkoušené).
+Praha je měla vypnuté po měření 100 řezů (1 lépe, 2 hůř).
+
+Vzorek: 39 nových náhodných řezů ve 12 městech s mapou povrchů (Vídeň, Berlín, Hamburk, Paříž, Helsinky, Amsterdam,
+Curych, Tallinn, Bratislava, Krakov, Zaragoza, Bologna) a 15 v Praze; každý řez třikrát na stejném místě (O, O2 bez úprav,
+N s nimi; `vysledky/fix2.json`). První sběr (`fix-mapy.json`, `fix-praha.json`) byl neplatný: aplikace nastaví město jen,
+když se změní, takže přepnutí za běhu se neprojevilo; rozdíly v něm byly jen šum nového kliknutí (`fix-re.json`: O2 = N).
+
+Výsledek: **0 z 54 změněno** (šum O ↔ O2 1 řez). Starší pražské prohry jsou ale pořád stejné (`fix-p100.json`, tytéž
+body jako 9. 11.): Generála Šišky (dělicí pás 1,5 m se změní v pruhy), Poděbradská (řez posunutý obslužnou cestou,
+strana B krajnice 9,7 m), Nad Vršovskou horou jinak (posun z křižovatky). Rozhodnutí: **sjednoceno pro všechna města kromě
+Prahy** (`city.js AXIS_FIX`, výchozí v `setCity`; Praha `fix: {}` s naměřeným důvodem). Plzeň si nechává `bedPanels`
+(data jejích tramvajových těles). Regrese beze změny, 425 testů.
+
+**Pokračování 25. 11. 2026: výjimka Prahy zrušená, `praha/ZPRAVA.md`.**
+
+## 6. Delší dosah dálnic a hlavních ulic podle dat řezu místo `wideRoads` a `wideStreets`
+
+Bára 25. 11. 2026 k bodu 4: důvod (mapa povrchů kreslí plochy všude, 35 m vede do polí) je vlastnost dat, ne Česka;
+platí všude, kde mapa pokrývá všechno (BGT, švýcarské vyměřování, GRB, DBT…), kdežto mapy uličního prostoru (Vídeň,
+Helsinky, Tallinn) končí na hranici pozemku a za nimi je zase odhad. Proto jedno pravidlo z dat u řezu (`app.js
+widerSides`), oba příznaky států zrušené:
+
+- strana nového řezu, která končí na dosahu (dálnice a silnice pro motorová vozidla vždy, hlavní ulice jen v dílu
+  středového pásu, promenády nebo chodníku), sahá 35 m, jen když ulice za dosahem pokračuje: za dosahem není mapa
+  povrchů (odhad; dům se nepočítá), nebo řez tam kříží druhá vozovka téže ulice z OSM (stejné jméno nebo `ref`), nebo
+  plochy ulice z mapy (vozovka, chodník, cyklostezka, zpevněná plocha, tramvaj) pokračují bez přerušení až k vozovce;
+- bez mapy pod osou (odhad) má dálnice 35 m jako dřív;
+- `?off=widereach` vypne.
+
+První verze bez třetí podmínky na Boulevard Marguerite de Rochechouart (kvůli němuž `wideStreets` vznikl) skončila
+uprostřed promenády: druhá polovina bulváru má v OSM jiné jméno. S ní je Paříž jako dřív.
+
+Sběr `vysledky/siroke2.json` (O: příznaky států jako dosud, N: pravidlo dat; obojí na stejném místě a směru, tentýž
+sběr): **112 řezů** = 40 nových ve městech s mapou (Amsterdam, Rotterdam, Utrecht, Curych, Bern, Basilej, Vídeň,
+Helsinky, Berlín, Paříž; `siroke-kandidati.json`), 5 pařížských bulvárů (Marguerite de Rochechouart, Clichy,
+Richard-Lenoir, Grenelle, Batignolles), 14 kontrol bez mapy (Košice, Žilina, Vratislav, Lodž, Lyon, Toulouse), 14 českých
+dálnic z bodu 4 a 39 hlavních ulic v CZ, SK, AT, DE, PL, NL a CH (`hlavni2.json`). Změnilo se **7**, jeden o 0,25 m
+(šum). Kontroly bez mapy 0 ze 14, české dálnice 0 ze 14, české hlavní ulice 0, pařížské bulváry 0 z 5.
+
+Naslepo (balíček wd1, fotky Mapillary u všech): **N 4 : O 2**.
+
+| řez | O → N | posudek |
+|---|---|---|
+| Europalaan, Utrecht | A 22 → 35 m: boční ulice se stáním, pruhem a cyklopruhem | **N** |
+| Avenue Montaigne, Paříž | B 25,5 → 22 m (za ulicí park s fontánou) | **N** (slabě) |
+| Utoquai, Curych | A 22 → 35 m: promenáda se stromořadím k fasádě | **N** |
+| Lassallestraße, Vídeň | A 23 → 35 m: dlažba se stáním k fasádě a kolejím | **N** |
+| A20, Rotterdam | 35/36 → 22/21 m: souběžná vozovka komplexu dálnice odříznutá | O (nízká až střední jistota) |
+| Bajkalská, Bratislava | B 23,4 → 27,4 m: 4 m plochy, což je už budova | O |
+
+Rozhodnutí: **sjednoceno**, `wideRoads` a `wideStreets` zrušené ve všech 22 státech, pravidlo je jedno pro všechny.
+Zbývá: souběžná vozovka dálnice s jiným jménem (A20) a plocha mapy, která na ortofotu leží pod budovou (Bajkalská).
+
+## 7. Zákonný odhad stání podle dat místo `parkGuess` na Slovensku: zkoušeno, prohrává, výjimka zůstává
+
+Bára 25. 11. 2026 k bodu 2: důvody (zákonné pruhy tam, kde auta nestojí; ztracené čáry pruhů) jsou vlastnost dat
+(dobré ortofoto s pruhy a auty přečtenými modelem), ne Slovenska. Zkoušené pravidlo: zákonný pruh stání jen tam, kde
+model ortofoto u řezu pro auta nepřečetl (bez ortofota, model nenačtený); kde ho přečetl, rozhodují jeho auta
+(`parkFromAi`). Kritérium je čtení aut modelem, ne pruhů z ortofota: čáry pruhů o autech nic neříkají. Na Slovensku
+`parkGuess: true` s tímto pravidlem.
+
+- **Slovensko** (58 ulic z bodu 2, `vysledky/law-sk.json`): změněno **0 z 58** (model přečetl všechny řezy), tedy totéž
+  co dnešní výjimka.
+- **Státy se zákonným odhadem**, posouzené řezy univerzálního měření (místní ulice, 170 z 176 s profilem,
+  `vysledky/law-univ.json`): změněno **44**, proti posuzovatelům **lépe 7, hůř 15**, stejně 21; nejhůř PL (0 : 4), FR
+  (2 : 3), AT a DE (1 : 2). Pravidlo bere stání tam, kde model řadu aut nepřečte, ale posuzovatel ji na fotce vidí.
+- Naslepo (balíček lw1: 22 kontrol z bodu 3, změněno 7, posouzeno 6 bez Rosické): **N 2 : O 4** (Šatrova bez stání
+  u zdi, Melicharstraße a Katharinenstraße bez řady aut; lépe Vltavínská a Kalchberggasse).
+
+Rozhodnutí: sdílené pravidlo **prohrává**, kód vrácený, `countries/SK.js parkGuess: false` zůstává s doplněným
+důvodem. Slovenská výhoda je nejspíš v tom, že model na ortofotu ZBGIS 10 cm auta čte spolehlivě a slovenské místní ulice
+mají stání řidší; měřit by šlo práh jistoty modelu (zákonný pruh jen tam, kde model nevidí nic ani slabě), ne vypnutí
+zákona.
+
+**Nahrazeno 25. 11. 2026** (body 2 a 7): výjimka na Slovensku je zrušená, prohry byly z chyby sdíleného kódu, viz `slovensko-stani/ZPRAVA.md`.

@@ -81,7 +81,6 @@ export default {
   // RVV 1990 art. 23 (1b): no stopping on a cycle lane nor on the roadway beside it.
   parkByCycleLane: false,
   parkGuess: true,
-  wideRoads: true,
   roadClassFromOsm: true,
   limits: limitsNL,
   // A one-way street with contraflow cyclists: Amsterdam's cycle street of one way for cars, both for bicycles, 3.5 m,

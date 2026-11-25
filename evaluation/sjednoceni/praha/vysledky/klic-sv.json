@@ -1,0 +1,98 @@
+{
+ "sv-1/1": {
+  "id": "lyon-s2",
+  "X": "O",
+  "Y": "N",
+  "noise": false
+ },
+ "sv-1/2": {
+  "id": "krakov-s1",
+  "X": "N",
+  "Y": "O",
+  "noise": true
+ },
+ "sv-1/3": {
+  "id": "lyon-s1",
+  "X": "O",
+  "Y": "N",
+  "noise": false
+ },
+ "sv-1/4": {
+  "id": "krakov-s2",
+  "X": "O",
+  "Y": "N",
+  "noise": false
+ },
+ "sv-1/5": {
+  "id": "helsinki-s1",
+  "X": "O",
+  "Y": "N",
+  "noise": false
+ },
+ "sv-1/6": {
+  "id": "pariz-s1",
+  "X": "N",
+  "Y": "O",
+  "noise": false
+ },
+ "sv-1/7": {
+  "id": "zilina-s1",
+  "X": "O",
+  "Y": "N",
+  "noise": false
+ },
+ "sv-1/8": {
+  "id": "bratislava-d2",
+  "X": "O",
+  "Y": "N",
+  "noise": false
+ },
+ "sv-1/9": {
+  "id": "lodz-s1",
+  "X": "O",
+  "Y": "N",
+  "noise": false
+ },
+ "sv-1/10": {
+  "id": "bratislava-s2",
+  "X": "N",
+  "Y": "O",
+  "noise": false
+ },
+ "sv-1/11": {
+  "id": "lodz-s2",
+  "X": "N",
+  "Y": "O",
+  "noise": true
+ },
+ "sv-1/12": {
+  "id": "zilina-s2",
+  "X": "N",
+  "Y": "O",
+  "noise": false
+ },
+ "sv-2/1": {
+  "id": "bratislava-s1",
+  "X": "N",
+  "Y": "O",
+  "noise": false
+ },
+ "sv-2/2": {
+  "id": "berlin-s2",
+  "X": "N",
+  "Y": "O",
+  "noise": false
+ },
+ "sv-2/3": {
+  "id": "helsinki-s2",
+  "X": "O",
+  "Y": "N",
+  "noise": false
+ },
+ "sv-2/4": {
+  "id": "viden-s1",
+  "X": "N",
+  "Y": "O",
+  "noise": false
+ }
+}

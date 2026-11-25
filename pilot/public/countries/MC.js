@@ -19,8 +19,8 @@ function signFile(s, seg) {
   return FR.signs.file(s, seg);
 }
 
-// What Monaco takes from France knowingly: the parking law's figure (lawNeed; unused, no estimate here), the wide main
-// streets and the reach beside them (wideStreets, besideMax: Paris's boulevards, not tried in Monaco), the look of the
+// What Monaco takes from France knowingly: the parking law's figure (lawNeed; unused, no estimate here), the reach
+// beside a town's map (besideMax: Paris's boulevards, not tried in Monaco), the look of the
 // houses without panel houses, the estimate from OSM and the orthophoto. Nothing of these was decided for Monaco.
 export default {
   ...FR,
