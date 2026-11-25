@@ -12,7 +12,9 @@ const VARIANTS = {
   ja: { q: "off=treepits", off: ["treepits"] },
   pp: { q: "off=pocetpruhu", off: ["pocetpruhu"] },
   // Without DC's map, the orthophoto and the model: the page itself loaded with ?dc=0&orto=0&ai=0 (read once at the load).
-  osm: { q: "dc=0&orto=0&ai=0", off: [], load: true },
+  map0: { q: "toronto=0", off: [] }, // Canada (evaluation/canada): without the map of Toronto
+  rt0: { q: "off=roadtracks", off: [] }, // Canada: without OSM's cycle tracks in the map's carriageway
+  osm: { q: "dc=0&toronto=0&orto=0&ai=0", off: [], load: true },
   old: { q: "off=ulicky,treepits,pocetpruhu", off: ["ulicky", "treepits", "pocetpruhu"] },
 };
 async function collectUs(name) {

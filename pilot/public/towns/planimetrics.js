@@ -5,8 +5,8 @@
 //   layers: [{ id, fields, code(attributes) → [MTVU code, priority (lower first), true for a parking area] or null }, …],
 //   junction: { layer, test(attributes) } the polygons of intersections,
 //   alleys: { layer, where, test(attributes), source, off } the alleys drawn as the street's crossings, or none,
-//   prepare(runs, { tracks() }) the city's own rules on the runs (islandsBeside, gapsBetweenRoads, kerbBays; tracks: where
-//   OSM's tram tracks cross the cut), extra(bbox) a further request, and adjust(runs, cut) what the city's own data add
+//   prepare(runs, { tags, tracks(), cycleTracks() }) the city's own rules on the runs (islandsBeside, gapsBetweenRoads, kerbBays,
+//   osmTracks; where OSM's tram and cycle tracks cross the cut), extra(bbox) a further request, and adjust(runs, cut) what the city's own data add
 //   (further fields of the answer; towns/usa.js: DDOT's inventory).
 // A gap between the polygons (the tree strip, a front yard, a lawn) is green 401.
 import { osmTiles, getJSON, envelope, asMtvu } from "../gis.js";
@@ -95,6 +95,50 @@ export function carriageway(runs) {
   return [lo, hi];
 }
 
+// A strip of width w and code cut off the outer kerb of the carriageway's run r on side s ("lo", "hi"), or null.
+export function kerbStrip(r, s, w, code) {
+  if (r.e - r.s < w + 2.5) return null; // no room for a lane beside it
+  if (s === "lo") { const x = { code, s: r.s, e: r.s + w }; r.s += w; return x; }
+  const x = { code, s: r.e - w, e: r.e }; r.e -= w;
+  return x;
+}
+
+// A way of OSM that is a cycle track (not the crossing of one).
+export const isTrack = (el) => el.tags.cycleway !== "crossing" && el.tags.footway !== "crossing"
+  && (el.tags.highway === "cycleway" || (el.tags.highway === "path" && el.tags.bicycle === "designated"));
+
+// Where a cycle track of width w at t lies in the carriageway lo…hi: at a kerb ("lo", "hi") or in its middle ("mid"), and
+// carveTrack the track 703 cut there (at: carriageway's; in place, the runs to be sorted after; null when there is no room).
+export const trackPlace = (t, lo, hi, w) => (Math.min(t - lo, hi - t) >= w + 3 ? "mid" : t - lo < hi - t ? "lo" : "hi");
+export function carveTrack(runs, at, place, w, t) {
+  if (place !== "mid") {
+    const cut = kerbStrip(runs[place === "lo" ? at[0] : at[1]], place, w, 703);
+    if (cut) runs.push(cut);
+    return cut;
+  }
+  const r = runs.find((q) => q.s <= t && q.e >= t && (q.code === 701 || q.code === 9950));
+  if (!r) return null;
+  const s = Math.max(r.s, t - w / 2), e = Math.min(r.e, t + w / 2);
+  runs.push(...[{ code: r.code, s: r.s, e: s }, { code: 703, s, e }, { code: r.code, s: e, e: r.e }].filter((q) => q.e - q.s > 0.05));
+  runs.splice(runs.indexOf(r), 1);
+  return r;
+}
+// A map older than the cycle tracks (Toronto's of 2021): a track OSM has as a way of its own in the map's carriageway is cut
+// out at its kerb or in its middle, as wide as OSM says or 1.8 m.
+export function osmTracks(runs, tracks, width = 1.8) {
+  const done = [];
+  for (const { t, w = width } of tracks) {
+    const at = carriageway(runs);
+    if (!at) break;
+    const lo = runs[at[0]].s, hi = runs[at[1]].e;
+    if (t < lo - 0.3 || t > hi + 0.3 || runs.some((r) => r.code === 703 && r.s <= t && r.e >= t)) continue;
+    const place = trackPlace(t, lo, hi, w);
+    if (done.includes(place)) continue;
+    if (carveTrack(runs, at, place, Math.min(3.5, Math.max(1.2, w)), t)) { done.push(place); runs.sort((x, y) => x.s - y.s); }
+  }
+  return done;
+}
+
 // Where the ways of OSM that pass the test run along the street across the cut: their t (metres from the centre along dir).
 export function parallelsAt(osmElements, c, test) {
   const out = [];
@@ -110,7 +154,7 @@ export function parallelsAt(osmElements, c, test) {
   return out;
 }
 
-// The map has the street when a kind of it lies within 3 m of the cut's centre: a roadway or a median under a street for
+// The map has the street when a kind of it lies within 3 m of the cut's centre: a roadway, a median or a tram bed under a street for
 // cars (a dual carriageway is cut in its middle), a roadway or a sidewalk under a footway, path or cycleway.
 export const WALKED = new Set(["footway", "path", "pedestrian", "cycleway", "steps", "bridleway", "corridor"]);
 // A service road whose way lies on an alley or a drive of the map has it as its roadway (runs changed in place; a wider
@@ -122,7 +166,7 @@ export function alleyRoadway(runs, tags = null) {
   return runs;
 }
 export function hasStreet(runs, tags = null) {
-  const kinds = !tags?.highway || WALKED.has(tags.highway) ? [701, 702] : [701, 9950];
+  const kinds = !tags?.highway || WALKED.has(tags.highway) ? [701, 702] : [701, 9950, 705];
   return runs.some((r) => kinds.includes(r.code) && r.s <= 3 && r.e >= -3);
 }
 
@@ -148,7 +192,9 @@ export function planimetricCut(d, answers, osmElements, bbox, tags = null, { way
   if (!c) return null;
   const runs = runsAlong(d.layers.map((l, i) => [l.code, answers[i]]), c);
   tags ||= c.tags;
-  d.prepare?.(runs, { tracks: () => parallelsAt(osmElements, c, (el) => /^(tram|light_rail)$/.test(el.tags.railway)) });
+  d.prepare?.(runs, { tags, tracks: () => parallelsAt(osmElements, c, (el) => /^(tram|light_rail)$/.test(el.tags.railway)),
+    cycleTracks: () => (osmElements || []).filter((el) => el.tags && el.id !== way?.id && isTrack(el))
+      .flatMap((el) => parallelsAt([el], c, () => true).map((t) => ({ t, w: parseFloat(el.tags.width) || (el.tags.oneway === "yes" ? undefined : 3) }))) });
   alleyRoadway(runs, tags);
   if (!hasStreet(runs, tags)) return null;
   const street = [-c.dir[1], c.dir[0]];

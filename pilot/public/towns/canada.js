@@ -6,16 +6,18 @@
 //   the surface map by the shared adapter (planimetrics.js): roads, highways, ramps, bridges and intersections 701,
 //   laneways 1003 (the roadway of a cut across one), sidewalks 702, parking lots 1003 (a bay at the kerb 704), buildings
 //   601. The map has no medians and no tram beds: a gap between two roadways is the median, or the bed of the streetcar
-//   where OSM has its tracks. ?toronto=0 leaves the map out (the estimate from OSM and the orthophoto).
+//   where OSM has its tracks; the cycle tracks built since the map (2021) come from OSM where they are ways of their own in
+//   its carriageway (?off=roadtracks: not). ?toronto=0 leaves the map out (the estimate from OSM and the orthophoto).
 // - the houses (podlaznost): the height of the building outline under the facade (DERIVED_HEIGHT; no request of its own) as
 //   floors, which OSM's building:levels overrules, and a garage. ?torontohouse=0 leaves it out.
 // A map that does not answer: the estimate, said so (sources.js mapFailed). Requests: four a cut (memo by the box) and the
 // orthophoto's images.
 import { osmTiles } from "../gis.js";
 import { inArea } from "../places.js";
-import { planimetricMap, gapsBetweenRoads, kerbBays } from "./planimetrics.js";
+import { planimetricMap, gapsBetweenRoads, kerbBays, osmTracks, WALKED } from "./planimetrics.js";
 
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_CA?.[k] ?? null : new URLSearchParams(location.search).get(k));
+const off = (name) => (param("off") || "").split(",").includes(name);
 export const AREAS = { toronto: { box: [-79.645, 43.575, -79.11, 43.86], town: "toronto", near: 30 } };
 export const TORONTO_MAP = {
   id: "toronto", area: AREAS.toronto, on: () => param("toronto") !== "0", fields: "SUBTYPE_DESC",
@@ -27,7 +29,7 @@ export const TORONTO_MAP = {
     { id: 13, code: () => [1003, 5, true] },
   ],
   junction: { layer: 3, test: (a) => /intersection/i.test(a.SUBTYPE_DESC || "") },
-  prepare: (runs, { tracks }) => { gapsBetweenRoads(runs, tracks()); kerbBays(runs); },
+  prepare: (runs, { tags, tracks, cycleTracks }) => { gapsBetweenRoads(runs, tracks()); kerbBays(runs); if (!WALKED.has(tags?.highway) && !off("roadtracks")) osmTracks(runs, cycleTracks()); },
 };
 const map = planimetricMap(TORONTO_MAP);
 

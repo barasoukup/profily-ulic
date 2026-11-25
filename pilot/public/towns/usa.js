@@ -46,7 +46,7 @@
 //   floors and its units are not on the lot: not asked.
 import { getJSON, envelope } from "../gis.js";
 import { inArea } from "../places.js";
-import { planimetricMap, planimetricCut, memory, carriageway, parallelsAt, islandsBeside, inRings, WALKED } from "./planimetrics.js";
+import { planimetricMap, planimetricCut, memory, carriageway, kerbStrip, carveTrack, trackPlace, isTrack, parallelsAt, islandsBeside, inRings, WALKED } from "./planimetrics.js";
 
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_US?.[k] ?? null : new URLSearchParams(location.search).get(k));
 export const dcOn = () => param("dc") !== "0";
@@ -71,17 +71,6 @@ export function dcCode(layer, d) {
   return null;
 }
 
-// A strip of width w and code cut off the outer kerb of the carriageway's run r on side s ("lo", "hi"), or null.
-function kerbStrip(r, s, w, code) {
-  if (r.e - r.s < w + 2.5) return null; // no room for a lane beside it
-  if (s === "lo") { const x = { code, s: r.s, e: r.s + w }; r.s += w; return x; }
-  const x = { code, s: r.e - w, e: r.e }; r.e -= w;
-  return x;
-}
-
-const isTrack = (el) => el.tags.cycleway !== "crossing" && el.tags.footway !== "crossing"
-  && (el.tags.highway === "cycleway" || (el.tags.highway === "path" && el.tags.bicycle === "designated"));
-
 // The block's protected bike lanes that OSM has as ways of their own (cycleway[:side]=separate) as cycle tracks 703: where
 // OSM's own way lies (at a kerb, or in the middle of the carriageway: Pennsylvania Avenue NW); without such a way on the
 // side OSM tags, and only where neither says it on the inventory's side. A side OSM says has none (cycleway:right=no) gets
@@ -101,8 +90,7 @@ export function carveTracks(runs, block, tags = {}, { wayAlong = true, tracks = 
   if (tracks.length) {
     for (const t of tracks) {
       if (t < lo - 1.5 || t > hi + 1.5) continue; // on the sidewalk or beyond it: the map's own surfaces
-      const edge = Math.min(t - lo, hi - t);
-      places.set(edge >= w + 3 ? "mid" : t - lo < hi - t ? "lo" : "hi", t);
+      places.set(trackPlace(t, lo, hi, w), t);
     }
   } else {
     const osmAt = { right: wayAlong ? "hi" : "lo", left: wayAlong ? "lo" : "hi" };
@@ -114,20 +102,7 @@ export function carveTracks(runs, block, tags = {}, { wayAlong = true, tracks = 
     sides = sides.filter((x) => !others.some((t) => (x === "hi" ? t > way + 2 : t < way - 2)));
     for (const x of sides) places.set(x, null);
   }
-  const done = [];
-  for (const [x, t] of places) {
-    if (x !== "mid") {
-      const cut = kerbStrip(runs[x === "lo" ? at[0] : at[1]], x, w, 703);
-      if (cut) { runs.push(cut); done.push(x); }
-      continue;
-    }
-    const r = runs.find((q) => q.s <= t && q.e >= t && (q.code === 701 || q.code === 9950));
-    if (!r) continue;
-    const s = Math.max(r.s, t - w / 2), e = Math.min(r.e, t + w / 2);
-    runs.push(...[{ code: r.code, s: r.s, e: s }, { code: 703, s, e }, { code: r.code, s: e, e: r.e }].filter((q) => q.e - q.s > 0.05));
-    runs.splice(runs.indexOf(r), 1);
-    done.push(x);
-  }
+  const done = [...places].filter(([x, t]) => carveTrack(runs, at, x, w, t)).map(([x]) => x);
   runs.sort((x, y) => x.s - y.s);
   return done;
 }

@@ -1,0 +1,602 @@
+[
+ {
+  "id": "c-1",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Sheppard Avenue West",
+  "highway": "secondary",
+  "wayId": 37020317,
+  "lat": 43.7420348,
+  "lon": -79.4991167,
+  "bearing": 72.8,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-2",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Kipling Avenue",
+  "highway": "secondary",
+  "wayId": 37024418,
+  "lat": 43.7480218,
+  "lon": -79.5843575,
+  "bearing": -20.6,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-3",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Middlefield Road",
+  "highway": "secondary",
+  "wayId": 435632348,
+  "lat": 43.7990945,
+  "lon": -79.2607756,
+  "bearing": 73.1,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-4",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Sherbourne Street",
+  "highway": "tertiary",
+  "wayId": 234362960,
+  "lat": 43.6532026,
+  "lon": -79.3690432,
+  "bearing": -16.4,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-5",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Lake Shore Boulevard East",
+  "highway": "primary",
+  "wayId": 248061547,
+  "lat": 43.6617287,
+  "lon": -79.3172437,
+  "bearing": 73.4,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-6",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Kipling Avenue",
+  "highway": "secondary",
+  "wayId": 632327597,
+  "lat": 43.6402202,
+  "lon": -79.5347104,
+  "bearing": -15.6,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-7",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Moriyama Drive",
+  "highway": "tertiary",
+  "wayId": 1285803446,
+  "lat": 43.722519,
+  "lon": -79.3424427,
+  "bearing": 76.6,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-8",
+  "country": "CA",
+  "town": "toronto",
+  "name": "McCowan Road",
+  "highway": "secondary",
+  "wayId": 1329510824,
+  "lat": 43.8176175,
+  "lon": -79.271844,
+  "bearing": -18.3,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-9",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Finch Avenue East",
+  "highway": "secondary",
+  "wayId": 27649207,
+  "lat": 43.7889357,
+  "lon": -79.3743512,
+  "bearing": 72.8,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-10",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Commissioners Street",
+  "highway": "tertiary",
+  "wayId": 1418441606,
+  "lat": 43.6484944,
+  "lon": -79.3453619,
+  "bearing": 58.4,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-11",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Bayview Avenue",
+  "highway": "secondary",
+  "wayId": 445042514,
+  "lat": 43.6877809,
+  "lon": -79.363489,
+  "bearing": -19.3,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-12",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Finch Avenue West",
+  "highway": "secondary",
+  "wayId": 37025769,
+  "lat": 43.7521013,
+  "lon": -79.5420275,
+  "bearing": 75,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-13",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Bushmills Square",
+  "highway": "residential",
+  "wayId": 36372510,
+  "lat": 43.8065285,
+  "lon": -79.2785777,
+  "bearing": 3.4,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-14",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Cherry Street",
+  "highway": "tertiary",
+  "wayId": 1033412779,
+  "lat": 43.6440152,
+  "lon": -79.3523788,
+  "bearing": -63.8,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-15",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Haliburton Avenue",
+  "highway": "residential",
+  "wayId": 27155249,
+  "lat": 43.6533636,
+  "lon": -79.5436983,
+  "bearing": -35.7,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-16",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Wellington Street West",
+  "highway": "residential",
+  "wayId": 390882901,
+  "lat": 43.6430401,
+  "lon": -79.3992716,
+  "bearing": 74.1,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-17",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Lake Shore Boulevard West",
+  "highway": "primary",
+  "wayId": 40473493,
+  "lat": 43.6030204,
+  "lon": -79.4947154,
+  "bearing": 61.5,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-18",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Moran Road",
+  "highway": "residential",
+  "wayId": 25482856,
+  "lat": 43.7963163,
+  "lon": -79.2750454,
+  "bearing": 6.5,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-19",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Lawrence Avenue East",
+  "highway": "secondary",
+  "wayId": 5379239,
+  "lat": 43.7805744,
+  "lon": -79.1322279,
+  "bearing": 72.3,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-20",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Bayview Avenue",
+  "highway": "secondary",
+  "wayId": 163859550,
+  "lat": 43.7108863,
+  "lon": -79.3770773,
+  "bearing": -11.3,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-21",
+  "country": "CA",
+  "town": "toronto",
+  "name": "L'Amoreaux Drive",
+  "highway": "tertiary",
+  "wayId": 308784916,
+  "lat": 43.7996142,
+  "lon": -79.3110225,
+  "bearing": 78.7,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-22",
+  "country": "CA",
+  "town": "toronto",
+  "name": "River Street",
+  "highway": "secondary",
+  "wayId": 25847027,
+  "lat": 43.6649036,
+  "lon": -79.3576866,
+  "bearing": 9.9,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-23",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Steeles Avenue East",
+  "highway": "secondary",
+  "wayId": 36820830,
+  "lat": 43.8281748,
+  "lon": -79.2876261,
+  "bearing": 72.2,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-24",
+  "country": "CA",
+  "town": "toronto",
+  "name": "York Gate Boulevard",
+  "highway": "tertiary",
+  "wayId": 37045559,
+  "lat": 43.7604055,
+  "lon": -79.5206637,
+  "bearing": 6.7,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-25",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Romac Drive",
+  "highway": "residential",
+  "wayId": 136941299,
+  "lat": 43.7867433,
+  "lon": -79.1706303,
+  "bearing": -16.8,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-26",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Midland Avenue",
+  "highway": "secondary",
+  "wayId": 143186675,
+  "lat": 43.803515,
+  "lon": -79.2861885,
+  "bearing": -10.2,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-27",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Truro Crescent",
+  "highway": "residential",
+  "wayId": 36746375,
+  "lat": 43.8235595,
+  "lon": -79.2954334,
+  "bearing": -9.4,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-28",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Kipling Avenue",
+  "highway": "secondary",
+  "wayId": 37024107,
+  "lat": 43.7537614,
+  "lon": -79.5871214,
+  "bearing": -18.9,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-29",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Silas Hill Drive",
+  "highway": "residential",
+  "wayId": 24446495,
+  "lat": 43.7877055,
+  "lon": -79.3609977,
+  "bearing": -19.4,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-30",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Alcorn Avenue",
+  "highway": "residential",
+  "wayId": 22372296,
+  "lat": 43.6810122,
+  "lon": -79.3970967,
+  "bearing": 63.7,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-31",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Greenfield Drive",
+  "highway": "residential",
+  "wayId": 707092780,
+  "lat": 43.6384114,
+  "lon": -79.5455981,
+  "bearing": 73.3,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-32",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Helicon Gate",
+  "highway": "residential",
+  "wayId": 89185298,
+  "lat": 43.7787934,
+  "lon": -79.2223038,
+  "bearing": -14.3,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-33",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Commissioners Street",
+  "highway": "tertiary",
+  "wayId": 4006129,
+  "lat": 43.6527075,
+  "lon": -79.3352679,
+  "bearing": 59.3,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-34",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Perth Avenue",
+  "highway": "residential",
+  "wayId": 23296900,
+  "lat": 43.6549105,
+  "lon": -79.4469361,
+  "bearing": 87.4,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-35",
+  "country": "CA",
+  "town": "toronto",
+  "name": "The Chimneystack Road",
+  "highway": "unclassified",
+  "wayId": 33569136,
+  "lat": 43.7772714,
+  "lon": -79.4965089,
+  "bearing": 73,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-36",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Eglinton Avenue West",
+  "highway": "primary",
+  "wayId": 1420864549,
+  "lat": 43.7035077,
+  "lon": -79.413662,
+  "bearing": 74.5,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-37",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Adelaide Street West",
+  "highway": "residential",
+  "wayId": 1300984807,
+  "lat": 43.6448256,
+  "lon": -79.4033776,
+  "bearing": 75.8,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-38",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Birchmount Road",
+  "highway": "secondary",
+  "wayId": 237028355,
+  "lat": 43.8138564,
+  "lon": -79.3135134,
+  "bearing": -18.4,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-39",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Portland Street",
+  "highway": "residential",
+  "wayId": 149582480,
+  "lat": 43.6471015,
+  "lon": -79.4011489,
+  "bearing": -18.7,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ },
+ {
+  "id": "c-40",
+  "country": "CA",
+  "town": "toronto",
+  "name": "Canmore Boulevard",
+  "highway": "tertiary",
+  "wayId": 36854611,
+  "lat": 43.7939439,
+  "lon": -79.1764865,
+  "bearing": 72.2,
+  "variants": [
+   "def",
+   "rt0"
+  ]
+ }
+]

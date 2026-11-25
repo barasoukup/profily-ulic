@@ -42,6 +42,11 @@ test("Toronto: plochy podél řezu, mezera mezi vozovkami je dělicí pás nebo 
   assert.deepEqual(codes(cut([], [], two, [], [way, tram(-1.6), tram(1.6)])), [401, 701, 401, 705, 401, 701, 401]);
   assert.deepEqual(codes(cut([], [["Sidewalk", 7, 10]], [["Road Edge", -5, 5]], [["Parking Lot", 5, 7]])), [401, 701, 704, 702, 401]);
   assert.deepEqual(codes(cut([], [], [["Road Edge", -5, 5]], [["Parking Lot", 5, 20]])), [401, 701, 1003, 401]);
+  // A cycle track OSM has as a way of its own in the map's carriageway (not one on the sidewalk, nor a crossing).
+  const track = (x, tags = {}) => ({ type: "way", id: 90, tags: { highway: "cycleway", oneway: "yes", ...tags }, geometry: [ll(x, -60), ll(x, 60)].map(([lon, lat]) => ({ lon, lat })) });
+  assert.deepEqual(codes(cut([], [], [["Road Edge", -6, 6]], [], [way, track(5)])), [401, 701, 703, 401]);
+  assert.deepEqual(codes(cut([], [["Sidewalk", 6, 9]], [["Road Edge", -6, 6]], [], [way, track(7)])), [401, 701, 702, 401]);
+  assert.deepEqual(codes(cut([], [], [["Road Edge", -6, 6]], [], [way, track(5, { cycleway: "crossing" })])), [401, 701, 401]);
   // A laneway is the roadway only of a cut across one; a yard alone is no street.
   assert.ok(codes(cut([], [], [["Lane Edge", -2, 2]], [], [way], { highway: "service" })).includes(701));
   assert.equal(cut([], [], [["Road Edge", 10, 18]], []), null);

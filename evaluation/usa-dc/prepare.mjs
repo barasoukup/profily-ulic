@@ -19,7 +19,7 @@ export const DC_ORTHO = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DA
 const TOKEN = (await fs.readFile(path.join(ROOT, "..", "streetview", "token.local"), "utf8")).trim();
 const angle = (a, b) => Math.abs(((a - b + 540) % 360) - 180);
 
-export async function orthoImage({ lat, lon, bearing, half = 30 }, out, { cut = true } = {}) {
+export async function orthoImage({ lat, lon, bearing, half = 30 }, out, { cut = true, service = DC_ORTHO } = {}) {
   const b = (bearing * Math.PI) / 180, dir = [Math.sin(b), Math.cos(b)], normal = [-Math.cos(b), Math.sin(b)];
   const kx = 111320 * Math.cos((lat * Math.PI) / 180), ky = 110574;
   const ll = (t, u) => [lon + (normal[0] * t + dir[0] * u) / kx, lat + (normal[1] * t + dir[1] * u) / ky];
@@ -28,7 +28,7 @@ export async function orthoImage({ lat, lon, bearing, half = 30 }, out, { cut = 
   const x0 = Math.min(...corners.map((p) => p[0])), x1 = Math.max(...corners.map((p) => p[0]));
   const y0 = Math.min(...corners.map((p) => p[1])), y1 = Math.max(...corners.map((p) => p[1]));
   const k = Math.cos((lat * Math.PI) / 180), w = Math.round(((x1 - x0) * k) / RES), h = Math.round(((y1 - y0) * k) / RES);
-  const res = await fetch(`${DC_ORTHO}?${new URLSearchParams({ bbox: [x0, y0, x1, y1].join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: "png24", f: "image" })}`, { headers: { "User-Agent": "profily-ulic evaluation" } });
+  const res = await fetch(`${service}?${new URLSearchParams({ bbox: [x0, y0, x1, y1].join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: "png24", f: "image" })}`, { headers: { "User-Agent": "profily-ulic evaluation" } });
   if (!res.ok) throw new Error(`ortofoto ${res.status}`);
   const img = await decodePng(Buffer.from(await res.arrayBuffer()));
   const W = Math.round((2 * half) / RES), H = Math.round((2 * ALONG) / RES), px = new Uint8Array(W * H * 4);

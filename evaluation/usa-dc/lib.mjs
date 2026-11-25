@@ -10,7 +10,7 @@ import { localFrame, nearestStreet, awayFromJunctions, centerOnStreet } from "..
 
 export const ROOT = path.dirname(new URL(import.meta.url).pathname);
 export const DATA = path.join(ROOT, "data");
-const TILES = path.join(DATA, "osm-tiles"), CACHE = path.join(DATA, "cache");
+const TILES = process.env.OSM_TILES || path.join(DATA, "osm-tiles"), CACHE = path.join(DATA, "cache");
 const UA = { "User-Agent": "profily-ulic evaluation (street cross-sections)" };
 
 async function tile(name) {
