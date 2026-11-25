@@ -556,7 +556,9 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   DDOT Roadway SubBlock (počet pruhů jako OSM `lanes` přes `wayTags`, stání u obrub, cyklopruhy, odhad stání tam vypnutý;
   `?ddot=0`), uličky planimetrie jako plochy `service=alley`, ortofoto DC 2025 jen nad DC. Mimo DC jen odhad z OSM.
   Slepé A/B 40 řezů: mapa lépe 23, odhad 9, stejně 7: **zapnutá**. Univerzální měření (30 řezů pilotu) ale 61 % s mapou
-  proti 70 % bez ní (posuzovatelé pilotu vynechávali travnaté pásy u obruby): rozpor pro Báru.
+  proti 70 % bez ní (posuzovatelé pilotu vynechávali travnaté pásy u obruby). Přeposouzeno 25. 11. 2026 s přesnějším pokynem
+  (29 řezů, noví posuzovatelé naslepo): s mapou **66 %**, bez mapy 60 %, jen OSM 56 %, šířka do 2 m 59 / 14 / 48 %: mapa
+  **zůstává zapnutá** (rozdíl složení sám o sobě neprůkazný; na tepnách mapa hůř).
 - Normy DDOT DEM 2023, Bicycle Facility Design Guide 2020 a NACTO jen oranžově; stání 3 m na směr (IFC 503.2.1,
   18 DCMR § 2405); bez řádku značek; bez paneláků; neutrální vozidla, český mobiliář; hledání Photon.
 - Tři společné změny z pilotu (všechny státy): ústí uličky je křižovatka (`?off=ulicky`, zapnuto), obousměrka se dělí od

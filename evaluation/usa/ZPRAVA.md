@@ -60,6 +60,9 @@ pásů zeleně vycházelo už v pilotu DC 67 % a OSM 68 %. Šířka uličního p
 přeměřit USA novými posuzovateli s pokynem o pásech, než se rozhodne definitivně (Bářin princip „co je horší, zůstane
 vypnuté“ tu stojí proti A/B).
 
+**Přeposouzeno 25. 11. 2026** s přesnějším pokynem (`score-pokyn2.mjs`, `vysledky/skore-pokyn2.md`, výklad v
+`../universal/ZPRAVA.md`): 29 řezů, s mapou 66 %, bez mapy 60 %, jen OSM 56 %. Rozpor s A/B zmizel, mapa zůstává zapnutá.
+
 ## Opravy po cestě
 
 - dc-8-3 (Southern Avenue, hranice DC): zjednodušené hranice okresů nechaly na společných hranicích mezery a bod padl do

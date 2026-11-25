@@ -343,3 +343,26 @@ jiní se starým pokynem na týchž balíčcích (bez ní by nešel odlišit pok
 **Doporučení:** staré státy kvůli pokynu **neposuzovat znovu** (celé přeposouzení stojí asi 16 tisíc tokenů na řez, tedy
 přes 8 milionů, a posun je v mezích šumu). Nový pokyn používat u nových států a při každém dalším posuzování; čísla starého a
 nového pokynu brát jako srovnatelná do asi 5 bodů. Rozhodne Bára.
+
+## USA: Washington znovu s přesnějším pokynem (25. 11. 2026)
+
+Tytéž řezy pilotu a snímky (fotky Mapillary, ortofoto DC 2025), tři noví posuzovatelé Sonnet naslepo podle `POKYN.md`
+z 25. 11. s neutrálním zadáním (`../usa-dc/vysledky/pokyn2/`), profily aplikace z fáze 2 (`us-meas2.json`, `us-ab.json`) a
+OSM bez ortofota z pilotu. `node evaluation/usa/score-pokyn2.mjs`, `../usa/vysledky/skore-pokyn2.md`. 29 řezů (30 pilotu
+bez dc-8-3, který bez mapy profil nemá; na všech 30 má mapa 65 %, jen OSM 56 %).
+
+| profil | shoda složení: starý pokyn → **nový** | pruhy stejně | šířka do 1 / 2 m | stání souhlasí (z 29) |
+|---|---|---|---|---|
+| s mapou DC | 61 → **66 %** | 55 % | 34 / 59 % | 21 |
+| bez mapy (`?dc=0`) | 70 → **60 %** | 55 % | 3 / 14 % | 14 |
+| jen OSM | 64 → **56 %** | 59 % | 41 / 48 % | 8 |
+
+- **Pořadí se otočilo:** mapa proti odhadu po řezech lépe 15, hůř 11, stejně 3, rozdíl +6 bodů (95 % −5 až +17, sám o sobě
+  neprůkazný; starý pokyn −9, −20 až +2). Posuzovatelé mají zeleň ve 12 řezech (dřív 6), stání ve 21 (dřív 17).
+- Obytné ulice 75 proti 56 % (15 řezů), sběrné 56 proti 49 (7), **tepny 57 proti 79** (7, mapa hůř: Military Road).
+  Zbývá „navíc zelen“ 13× a „navíc stani“ 9×.
+- **Citlivost na zadání:** první běh měl v zadání „v DC velmi časté“ (nápověda): mapa 70 %, bez mapy 56 %. Je jen pro srovnání
+  (`../usa-dc/vysledky/pokyn2-napoveda/`), za výsledek platí neutrální běh, o kterém bylo rozhodnuto před skórováním.
+- **Mapa zůstává zapnutá:** slepé A/B 23 : 9, složení teď taky pro mapu, šířka do 2 m 59 proti 14 %, stání 21 proti 14 z 29.
+- Výhrady: profily bez mapy jsou z doby, kdy byly jamky stromů zapnuté; noví posuzovatelé řekli u dc-3-1 a dc-6-2, že ulice
+  jsou (s nimi 31 řezů: 64, 60 a 56 %); šířka jen orientačně.
