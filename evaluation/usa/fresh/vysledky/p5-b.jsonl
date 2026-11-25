@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "úzká vozovka s jedním parkujícím autem a dvorky; Y přidává chodníky a plochy, které tam nejsou"}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "dva pruhy se středovou čarou, chodník a zelený pás s chodníkem u zdi; Y bez zeleně a s příliš širokými chodníky"}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "široké cihlové chodníky na obou stranách, stání po obou stranách a úzká vozovka; X má chodníky příliš úzké"}
+{"n": 4, "verdict": "X", "jistota": "nizka", "why": "úzká obslužná cihlová ulička ~4,7 m; Y má obslužnou 17 m (zahrnuje parkoviště)"}
+{"n": 5, "verdict": "Y", "jistota": "nizka", "why": "vlevo nároží/chodník, ne čtyři pruhy jako v X; čtyři pruhy s cyklopruhy sedí v obou"}
+{"n": 6, "verdict": "X", "jistota": "stredni", "why": "betonová ulička mezi dvorky bez chodníku; Y přidává chodník"}
+{"n": 7, "verdict": "Y", "jistota": "nizka", "why": "úzká polní cesta ~4-5 m těsně u zástavby, bez chodníku"}
+{"n": 8, "verdict": "Y", "jistota": "nizka", "why": "velmi úzká ulička ~3,4 m mezi ploty a domy, X ji má širší se zelení"}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "zpevněný dvůr/ulička široká ~10 m mezi budovami, ne zeleň jako v X"}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "obě mají 2+2 pruhy s dělicím pásem v lese, drobné rozdíly v šířkách"}

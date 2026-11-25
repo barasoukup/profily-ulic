@@ -1,0 +1,9 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "Stromy u obruby a parkování po obou stranách odpovídají spíš X; cyklopruh nejistý."}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "Parkování po obou stranách (auta na fotkách i ortofotu), dva pruhy kolem žluté čáry; Y místo stání dává široké krajnice."}
+{"n": 3, "verdict": "X", "jistota": "stredni", "why": "Úzká ulice s parkovanými auty po obou stranách a stromy; X má parkování oboustranně."}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "Chaotický řez; Y lépe sedí na pravý okraj (pruh s kosým stáním) a šířku trávníku."}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "Profily téměř shodné, dva pruhy, krajnice a chodníky; rozdíly v desetinách metru."}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "Parkování vlevo, úzký pruh, parkující auta vpravo (krajnice) a úzký chodník; X má 6 m chodník a široký pruh."}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "Čtyři pruhy s parkováním po obou stranách a dvojitou žlutou, šířka vozovky kolem 18 m sedí."}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "Červený ostrůvek zhruba 5 m odpovídá dělicímu pásu X a vpravo je cyklopruh; počet pruhů vpravo ani jeden nesedí."}
+{"n": 9, "verdict": "stejne", "jistota": "nizka", "why": "Rezidenční ulice se dvěma pruhy, parkování jen na straně B; X má stání oboustranně, Y chodníky tam, kde je trávník."}

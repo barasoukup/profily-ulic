@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "Úzká ulice cca 5,5 m (stání + jeden pruh) mezi zelení a zahradami; Y má dva pruhy, chodníky a plochy, které tam nejsou."}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "Vozovka cca 9 m se dvěma pruhy a žlutou osou, s obrubami a chodníky po stranách; stání na straně B není vidět."}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "Stání po obou stranách, dvě jízdní stopy, široký cihlový chodník vlevo; celková šířka k fasádám sedí lépe."}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "Dlážděná ulička široká asi 4,7 m; Y má obslužnou 17 m, která zahrnuje soukromé parkoviště."}
+{"n": 5, "verdict": "X", "jistota": "stredni", "why": "Křižovatka s diagonální širokou ulicí vlevo, nároží a širokou ulicí s cyklopruhem; celková šířka k budově sedí u X, Y je příliš krátký."}
+{"n": 6, "verdict": "stejne", "jistota": "nizka", "why": "Betonová ulička 4-4,7 m mezi zahradami, rozdíl jen v pásu/zpevněné ploše vlevo."}
+{"n": 7, "verdict": "X", "jistota": "nizka", "why": "Úzká nezpevněná ulička uprostřed s dvory po stranách; Y začíná uličkou už u A, což nesedí."}
+{"n": 8, "verdict": "Y", "jistota": "nizka", "why": "Mezera mezi domy jen asi 4,5-5 m, u X je celková šířka 8,5 m příliš velká."}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "Široká zpevněná obslužná plocha mezi budovami cca 10 m, zeleň u X tam není."}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "Dvě vozovky s dělicím pásem, stromy po okrajích; obě složení podobná, podklady nerozliší."}

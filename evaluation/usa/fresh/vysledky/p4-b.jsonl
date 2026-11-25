@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "Křižovatka; úzká ulice se stáním po okrajích a dvěma pruhy, Y má dva 4,5 m pruhy; bez chodníku na straně lesa."}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "Bulvár s dělicím pásem uprostřed a vícepruhovými vozovkami; X střed zredukoval na plochu."}
+{"n": 3, "verdict": "X", "jistota": "stredni", "why": "Mnohopruhová silnice, zelený pás uprostřed, další vozovka a chodník; Y má velké plochy místo vozovky."}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "Stezka 5 m, zeleň, vozovka s autobusem a stáním vpravo, štěrkové parkové plochy; Y má jen krajnice."}
+{"n": 5, "verdict": "stejne", "why": "Zadní ulička mezi domy, oba mají obslužnou komunikaci, okraje nejisté.", "jistota": "nizka"}
+{"n": 6, "verdict": "X", "jistota": "vysoka", "why": "Úzká ulice se stáním na obou stranách, travnatým pásem a chodníky; Y má chodníky 6 m a bez stání."}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "Stání na obou stranách vozovky a dva pruhy; Y má stání jen na jedné straně."}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "Stejné složení vozovky; Y má nepravděpodobný 6 m chodník, X věrohodnější zeleň a chodník na straně A."}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "Zadní ulička šířky asi 5 m mezi fasádami bez zeleně."}
+{"n": 10, "verdict": "Y", "jistota": "vysoka", "why": "Stání na obou stranách, dva pruhy, chodníky; X stání úplně chybí."}

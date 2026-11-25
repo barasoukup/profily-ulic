@@ -550,18 +550,21 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 ## USA (Washington) (větev usa, Bára 24. 11. 2026, nenasazené)
 - Fáze 2 pilotu Severní Ameriky („Fáze 2 s mapou Washingtonu“): stát `usa` (US), `countries/US.js`, `towns/usa.js`,
   `evaluation/usa/` (ZPRAVA, NORMY, ab/), pilot `evaluation/usa-dc/`. Jen metro Washingtonu (`staty.json` `usa`: DC a
-  sousední okresy Marylandu a Virginie z TIGERweb, nezjednodušené kvůli řezům na hranici DC), zbytek USA `closed_us`
+  sousední okresy Marylandu a Virginie z TIGERweb, sloučené v jeden obrys a až pak zjednodušené), zbytek USA `closed_us`
   s hláškou. OSM balík `us_dc` (DC + Maryland + Virginie oříznuté na metro, 86 MB, jen R2; **workflow OSM tiles se
   `states: us`**, `osm-tiles.yml` umí výřezy spojené „+“ s obdélníkem za „@“).
 - DC: mapa povrchů Planimetrics 2023 (CC BY 4.0, čtená podél řezu jako GRB, `hasStreet` jako Vilnius; `?dc=0`), inventář
   DDOT Roadway SubBlock (počet pruhů jako OSM `lanes` přes `wayTags`, stání u obrub, cyklopruhy, odhad stání tam vypnutý;
-  `?ddot=0`), uličky planimetrie jako plochy `service=alley`, ortofoto DC 2025 jen nad DC. Mimo DC jen odhad z OSM.
-  Slepé A/B 40 řezů: mapa lépe 23, odhad 9, stejně 7: **zapnutá**. Univerzální měření (30 řezů pilotu) ale 61 % s mapou
-  proti 70 % bez ní (posuzovatelé pilotu vynechávali travnaté pásy u obruby). Přeposouzeno 25. 11. 2026 s přesnějším pokynem
-  (29 řezů, noví posuzovatelé naslepo): s mapou **66 %**, bez mapy 60 %, jen OSM 56 %, šířka do 2 m 59 / 14 / 48 %: mapa
-  **zůstává zapnutá** (rozdíl složení sám o sobě neprůkazný; na 7 tepnách mapa hůř).
-  Tepny 25. 11. 2026 (`evaluation/usa/tepny/ZPRAVA.md`): svodidla planimetrie jako střed, pruhy inventáře po směrech, strana stání,
-  chráněné cyklostezky (`?off=dcarterials`); na 25 nových tepnách naslepo mapa : bez mapy 19 : 6, nový : starý kód 8 : 2.
+  `?ddot=0`), uličky planimetrie jako plochy `service=alley`, ortofoto DC 2025 jen nad Districtem (a 60 m za ním). Mimo DC jen odhad z OSM.
+  **Po nepřátelské recenzi 25. 11. 2026** (926de8d): DC je District podle hranice (`mesta-us.json`, 60 m za ní), strany z inventáře
+  podle cesty řezu, chráněná cyklostezka tam, kde ji má OSM (Pennsylvania Avenue uprostřed), řez v ploše „Intersection“ to řekne,
+  `RPPSIDE` není strana stání, výpadek inventáře se ohlásí.
+  **Čerstvé měření** (`evaluation/usa/fresh/ZPRAVA.md`, 60 náhodných řezů podle délky sítě, zmrazený kód, dva slepí posuzovatelé,
+  neutrální pokyn): mapa : odhad **41 : 10** (nerozhodně 8), univerzální měření 76 % s mapou, 61 % bez ní, 53 % jen OSM (29 řezů,
+  čtvrtina uličky): mapa **zůstává zapnutá**. Slabiny: uličky mezi domy (zeleň místo dvora), dálnice a rampy (3 řezy, 44 : 63 %).
+  Starší čísla neplatí jako důkaz: A/B 23 : 9 mělo nápovědu v pokynu, 66 % stálo na řezech pilotu, na kterých se ladilo.
+  Tepny (`evaluation/usa/tepny/ZPRAVA.md`, `?off=dcarterials`): na 25 nových naslepo mapa : bez mapy 19 : 6; nový : starý kód jen
+  3 změny na nových řezech (2 : 0 : 1), neprůkazné.
 - Normy DDOT DEM 2023, Bicycle Facility Design Guide 2020 a NACTO jen oranžově; stání 3 m na směr (IFC 503.2.1,
   18 DCMR § 2405); bez řádku značek; bez paneláků; neutrální vozidla, český mobiliář; hledání Photon.
 - Tři společné změny z pilotu (všechny státy, podoba z `estonia` 83734e7): ústí uličky je křižovatka (`?off=ulicky`, zapnuto), obousměrka se dělí od

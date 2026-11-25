@@ -74,6 +74,11 @@ a kód je starší než oprava tepen.
 naslepo (neutrální pokyn) mapa : bez mapy **19 : 6**. Nový kód : starý 8 : 2 je z 11 změněných řezů z 97, na nových místech
 jen 2 : 0 : 1; zbylých 6 : 2 jsou řezy, na kterých se ladilo, takže to důkaz není.
 
+## Čerstvé měření po recenzi (25. 11. 2026)
+
+`fresh/ZPRAVA.md`: 60 nových řezů podle délky sítě, zmrazený kód, dva posuzovatelé, neutrální pokyn: mapa : odhad **41 : 10**
+(nerozhodně 8); univerzální měření 76 : 61 % (jen OSM 53 %). **Mapa zůstává zapnutá**, oficiální řádek US je odtud.
+
 ## Opravy po cestě
 
 - dc-8-3 (Southern Avenue, hranice DC): zjednodušené hranice okresů nechaly na společných hranicích mezery a bod padl do

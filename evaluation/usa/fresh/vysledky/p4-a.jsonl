@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "Vozovka cca 10,5 m u přechodu, vedle trávník a chodník; X sedí lépe šířkou i složením, Y má nereálné pruhy 4,5 m"}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "Ortofoto ukazuje dvě vozovky s travnatým středním pásem (cca 6 m), vozovka s 2 a vozovka s 3 pruhy; X střední pás nemá"}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "Rampa s šrafami, široká vozovka s 5-6 pruhy, pás zeleně a druhá vozovka; Y má méně pruhů a velké plochy"}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "Široká cesta, trávník, stání/autobus, jeden pruh, stání, štěrková cesta se stromy; Y stání nemá"}
+{"n": 5, "verdict": "X", "jistota": "nizka", "why": "Úzká obslužná ulička mezi domy, vlevo světlý pás chodníku; Y dává zeleň na obě strany bez opory"}
+{"n": 6, "verdict": "X", "jistota": "vysoka", "why": "Úzká ulice se stáním po obou stranách, travnatým pásem a chodníkem; Y bez stání a s chodníky 6 m"}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "Dva pruhy se stáním po obou stranách, chodník a pás trávy; Y má stání jen na jedné straně"}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "Obě mají stání, cyklopruh a pruh; X má na straně A travnatý pás a chodník jako na fotce, Y chodník 6 m je přehnaný"}
+{"n": 9, "verdict": "X", "jistota": "nizka", "why": "Ulička mezi domy bez zeleně, X jen obslužná komunikace"}
+{"n": 10, "verdict": "Y", "jistota": "vysoka", "why": "Ortofoto i fotky ukazují stání na obou stranách, dva pruhy, trávníky a chodníky; X stání nemá"}

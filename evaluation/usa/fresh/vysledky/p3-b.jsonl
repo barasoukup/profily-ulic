@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "Chodnik s travnatym pasem u obruby a parkovani odpovida fotce; Y ma siroke chodniky 4,8 a 6 m, ktere tam nejsou."}
+{"n": 2, "verdict": "Y", "jistota": "vysoka", "why": "Dvousmerka se zlutou dvojitou carou a parkovanim po obou stranach, chodnik z cihel; X parkovani nema."}
+{"n": 3, "verdict": "Y", "jistota": "vysoka", "why": "Dva pruhy bez cary, parkovani po obou stranach, travnate pasy a uzke chodniky; X ma siroky chodnik a zadne stani."}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "Dvakrat dva pruhy se stredovym pasem a chodnikem vpravo, vlevo travnaty svah; Y vymysli vodu 21 m."}
+{"n": 5, "verdict": "X", "jistota": "stredni", "why": "Vozovka 10 m bez car, travnate pasy a uzke chodniky, stani vpravo; Y ma chodniky po 6 m."}
+{"n": 6, "verdict": "X", "jistota": "nizka", "why": "Rez vede krizovatkou; X zahrnuje ustí vedlejsi ulice i hlavni vozovku se dvema pruhy, Y hlavni vozovku vynechava jako plochu."}
+{"n": 7, "verdict": "Y", "jistota": "stredni", "why": "Zadni ulicka asi 5 m a travnata plocha k domu vpravo; X ulicku zdvojuje (chodnik 6 plus obsluzna 7,2)."}
+{"n": 8, "verdict": "stejne", "why": "Obe davaji stejnou plochu ostruvku 21,7 m a stejnou celkovou sirku vozovky vpravo, lisi se jen rozdeleni krajnic.", "jistota": "nizka"}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "Vlevo vice pruhu, travnaty stredni pas a vpravo dva pruhy; Y ma levou vozovku jako jeden pruh a plochu 8,4 m misto pasu."}
+{"n": 10, "verdict": "stejne", "why": "Obe maji jen uzkou obsluznou cestu a travu, lisi se stranou travy; podklady nerozhodnou.", "jistota": "nizka"}

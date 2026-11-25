@@ -135,6 +135,11 @@ Co rozhodne Bára, je označeno **(Bára)**.
   ostatní bez otevřeného ortofota (`docs/states-survey/c-vychod-balkan.md`).
 - Jihlava: pasport komunikací byl 16. 11. prázdný, ověřit (CLAUDE.md, Na 19. 11.).
 - Pasporty devíti českých měst: A/B po odstávce DMVS (`evaluation/PASPORTY-AB.md`).
+- **USA (Washington, recenze a čerstvé měření 25. 11. 2026, `evaluation/usa/fresh`):** uličky mezi domy: mezera mezi polygony se
+  čte jako zeleň, i kde je zpevněný dvůr, a bere soukromé dvorky za uličkou; rampy a dálnice (3 řezy, 44 : 63 %); klik v ploše
+  „Intersection“ se jen ohlásí, neposune; čísla tabulek DEM 2023 a BFDG ověřit a dát s čísly stran; předpis o stání
+  v Marylandu a Virginii; Photon nabízí i místa mimo metro (hláška řekne proč, jako Itálie); česká jména `?off=ulicky`,
+  `pocetpruhu` jsou sdílená s `estonia`. Strana stání RPP: význam kódů `RPPSIDE` by musel říct DDOT.
 
 ## Státy a pravidla
 

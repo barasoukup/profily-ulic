@@ -1,0 +1,9 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "obě mají stejné složení se stáním, jízdním pruhem a cyklopruhem; liší se jen drobnými šířkami a zelení/plochou na kraji"}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "stání po obou stranách a dva jízdní pruhy se středovou čárou, odpovídá fotkám; Y místo stání kreslí krajnice a široké plochy"}
+{"n": 3, "verdict": "X", "jistota": "stredni", "why": "auta stojí podél obou obrub a po stranách jsou chodníky se zelení a stromy; Y nemá stání na straně A"}
+{"n": 4, "verdict": "stejne", "jistota": "nizka", "why": "obě stejně zjednodušují hlavní vozovku na krajnici a mají podobný sled pruhů, trávníku a pruhu s kolmým stáním"}
+{"n": 5, "verdict": "stejne", "jistota": "stredni", "why": "téměř totožné složení chodník, šrafovaný okraj, dva pruhy, chodník; šířky se liší jen o desítky cm"}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "úzká ulice se stáním u jedné obruby a jedním projížděným pruhem; X stání nemá a vozovku nadhodnocuje pruhem 4,5 m"}
+{"n": 7, "verdict": "Y", "jistota": "stredni", "why": "na ortofotu je pět jízdních pruhů (dva vlevo a tři vpravo od žluté čáry); X má jen čtyři pruhy a stání po obou stranách"}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "tři pruhy, široký červený střední pás s cyklostezkou a vpravo jen dva pruhy; Y má vpravo třípruh o šířce přes 12 m, což ortofoto nepotvrzuje"}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "obytná ulice s parkujícími auty a trávníky až k obrubě; Y vykresluje chodníky a široké pruhy bez stání"}

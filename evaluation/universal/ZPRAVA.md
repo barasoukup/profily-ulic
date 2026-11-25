@@ -384,6 +384,13 @@ bez dc-8-3, který bez mapy profil nemá; na všech 30 má mapa 65 %, jen OSM 56
   Zbývá „navíc zelen“ 13× a „navíc stani“ 9×.
 - **Citlivost na zadání:** první běh měl v zadání „v DC velmi časté“ (nápověda): mapa 70 %, bez mapy 56 %. Je jen pro srovnání
   (`../usa-dc/vysledky/pokyn2-napoveda/`), za výsledek platí neutrální běh, o kterém bylo rozhodnuto před skórováním.
-- **Mapa zůstává zapnutá:** slepé A/B 23 : 9, složení teď taky pro mapu, šířka do 2 m 59 proti 14 %, stání 21 proti 14 z 29.
+- (Tehdejší závěr, nahrazuje ho čerstvé měření níže; 23 : 9 mělo v pokynu nápovědu.) Mapa zůstala zapnutá: slepé A/B 23 : 9, složení teď taky pro mapu, šířka do 2 m 59 proti 14 %, stání 21 proti 14 z 29.
 - Výhrady: profily bez mapy jsou z doby, kdy byly jamky stromů zapnuté; noví posuzovatelé řekli u dc-3-1 a dc-6-2, že ulice
   jsou (s nimi 31 řezů: 64, 60 a 56 %); šířka jen orientačně.
+
+## USA: Washington na čerstvých řezech (25. 11. 2026)
+
+Oficiální řádek US je odtud: 29 řezů náhodných podle délky sítě (místní 10, obslužné a uličky 7, tepny 5, sběrné 4, dálnice a rampy 3),
+kód po recenzi se sloučenou `estonia`, zmrazený před vzorkem. S mapou **76 %** (95 % 68–84), bez mapy 61 %, jen OSM 53 %;
+mapa proti `?dc=0` +15 bodů (+5 až +24). Slepé A/B se dvěma posuzovateli a neutrálním pokynem 41 : 10 (59 řezů). Není
+srovnatelný s 66 % pilotu (jiné řezy, čtvrtina jsou uličky). `../usa/fresh/ZPRAVA.md`.

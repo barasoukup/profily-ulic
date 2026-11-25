@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "Mezi budovami převažuje zeleň/dvory, žádné chodníky ani široká zpevněná plocha jako v Y; bez fotek nejisté."}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "Chodník s pásem zeleně, parkoviště a obslužný jízdní pás blízko budovy; obslužná v Y leží blíž skutečné poloze."}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "Chodník, jízdní pruh se stáním a druhý chodník mezi budovami; X má zeleň na okrajích, která tam není."}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "Úzká cesta mezi trávou a budovami; X přidává chodník a plochu bez opory."}
+{"n": 5, "verdict": "X", "jistota": "vysoka", "why": "Úzká ulice se stáním po obou stranách, jedním průjezdním pruhem, pásy zeleně a chodníky; Y má široké chodníky a dva pruhy bez stání."}
+{"n": 6, "verdict": "X", "jistota": "nizka", "why": "Křižovatka; X začíná vozovku tam, kde skutečně je, Y dává chodník a vozovku do zeleně u domu."}
+{"n": 7, "verdict": "Y", "jistota": "nizka", "why": "Úzká obslužná ulička mezi ploty a zelení; X přidává chodník a plochu."}
+{"n": 8, "verdict": "X", "jistota": "stredni", "why": "Dva jízdní pruhy se žlutou osou, okraje vozovky a chodník vpravo; Y má dvojí krajnici a málo pruhů."}
+{"n": 9, "verdict": "X", "jistota": "nizka", "why": "X zahrnuje i rampu o dvou pruzích a trávu před ní i dálnici vlevo; Y jen samotnou rampu."}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "Obě popisují úzkou zadní ulici, X blíže šířce zpevněné části, Y chybně dává zeleň místo dvorů."}

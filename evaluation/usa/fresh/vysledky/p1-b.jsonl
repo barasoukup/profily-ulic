@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "V řezu je jen zahrady a úzká obslužná ulička kolem 22-29 m; Y s 6m chodníky a 12m obslužnou nesedí."}
+{"n": 2, "verdict": "Y", "jistota": "nizka", "why": "Parkoviště, ostrůvek zeleně, jízdní ulička; Y má zeleň následovanou obslužnou, X pořadí nesedí."}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "Mezi budovami chodníky a dopravní prostor; X bez chodníků a jen dva úzké pruhy mezi zelení nesedí."}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "Úzký průchod s trávou po stranách, fotka ukazuje ulici se zelenými pásy po obou stranách."}
+{"n": 5, "verdict": "X", "jistota": "vysoka", "why": "Úzká ulice se stáním po obou stranách a jedním průjezdným pruhem, chodníky se zelení; Y dva 4,4 m pruhy bez stání nesedí."}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "Trávník, chodník, dvoupruhová vozovka, cyklo značení, zeleň a odbočující větev vpravo; X se čtyřmi pruhy a 7m krajnicemi nesedí."}
+{"n": 7, "verdict": "X", "jistota": "nizka", "why": "Ulička kolem 4-5 m a vpravo zpevněná plocha se stáním a pak dvůr; Y má vpravo jen zeleň."}
+{"n": 8, "verdict": "X", "jistota": "vysoka", "why": "Dvoupruhová silnice s krajnicemi a chodníkem; Y má nesmyslně dvě krajnice vedle sebe."}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "Dálniční pruh, plocha, zeleň a dvoupruhová rampa; Y zachycuje jen samotnou rampu."}
+{"n": 10, "verdict": "Y", "jistota": "stredni", "why": "Ulička 4-5 m s dvorem vpravo; X má plochu vlevo a končí uličkou."}

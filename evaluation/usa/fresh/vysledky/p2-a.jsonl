@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "stredni", "why": "Zadní ulička mezi ploty, bez 19 m zeleně; Y je jen vozovka"}
+{"n": 2, "verdict": "stejne", "jistota": "nizka", "why": "Ulička mezi budovami asi 9 m, obě verze podobně dlouhé, rozdíl v okrajích nerozhodnutelný"}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "Úzká ulička, Y přidává 17 m zeleně, které jsou soukromé dvorky"}
+{"n": 4, "verdict": "Y", "jistota": "vysoka", "why": "Dvě vozovky se středním zeleným pásem a stáním; X střed a stání vlevo nemá"}
+{"n": 5, "verdict": "X", "jistota": "vysoka", "why": "Úzká ulice se stáním po obou stranách a zelenými pásy; Y stání nemá"}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "Vlevo velká výsadba a široká dlážděná plocha se stromořadím u vozovky, X to zjednodušuje"}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "Čtyři jízdní pruhy (dvojitá žlutá, přerušované čáry v obou polovinách), Y má jen dva"}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "Mnohapruhová komunikace s několika vozovkami, počet pruhů blíž X (Y jen 7)"}
+{"n": 9, "verdict": "X", "jistota": "nizka", "why": "Pět pruhů obě; vlevo chodník, pás trávy a zvýšená plocha sahají ~12 m, Y vlevo jen 1,9 m"}
+{"n": 10, "verdict": "Y", "jistota": "stredni", "why": "Úzká ulička s ploty asi 3,5-5 m; X má chodník 6 m, který v řezu není"}

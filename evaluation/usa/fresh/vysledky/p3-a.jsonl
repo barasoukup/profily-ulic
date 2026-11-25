@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "Úzký chodník se zelení, stání u obou obrub a jeden pruh; Y má široké chodníky bez stání."}
+{"n": 2, "verdict": "Y", "jistota": "vysoka", "why": "Dva pruhy s dvojitou žlutou, podélné stání po obou stranách, chodníky; X stání nemá."}
+{"n": 3, "verdict": "Y", "jistota": "vysoka", "why": "Úzká ulice se stáním po obou stranách a dvěma pruhy, zelené pásy a úzké chodníky."}
+{"n": 4, "verdict": "X", "jistota": "vysoka", "why": "Dvě vozovky po dvou pruzích s dělicím pásem a krajnicemi; Y vkládá cyklostezku a 21 m vody, které tam nejsou."}
+{"n": 5, "verdict": "X", "jistota": "vysoka", "why": "Vozovka asi 10,5 m s občasným stáním, úzké chodníky se zelení; Y má 6m chodníky a žádné stání."}
+{"n": 6, "verdict": "X", "jistota": "nizka", "why": "Řez vede boční ulicí se stáním po obou stranách a pak hlavní dvoupruhovou silnicí; Y boční ulici vynechává."}
+{"n": 7, "verdict": "Y", "jistota": "stredni", "why": "Je tu jen úzká obslužná cesta asi 5 m a trávník; X přidává chodníky, které nejsou, a příliš široký obslužný pás."}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "Řez vede trojúhelníkovým ostrůvkem zhruba 20 m mezi dvěma silnicemi; Y ho členění na dělicí pás nepodložené."}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "Vícepruhová levá vozovka, travnatý střední pás a dvoupruhová pravá; Y má levou vozovku s jedním pruhem."}
+{"n": 10, "verdict": "X", "jistota": "nizka", "why": "Obslužná cesta asi 4,5 m u okraje a zeleň až k fasádě na druhé straně, polohou sedí lépe než Y."}

@@ -30,9 +30,9 @@ metrů, jeden polský byl přepsaný jiným). Co je změna kódu a co posun a š
 | FI bez ortofota | 9 | 11 % | 54 % | 44 % | 0 % / 11 % | navíc cyklostezka 3×, chybí stani 2×, zelen→chodnik 2×, bus→delici 1×, tramvaj→pruh 1×, pruh→chodnik 1× |
 | DK Kodaň | 15 | 20 % | 60 % | 53 % | 40 % / 60 % | chybí stani 5×, chybí pruh 3×, chybí chodnik 3×, chodnik→cyklostezka 3×, chybí cyklostezka 2×, chybí cyklopruh 2× |
 | DK zbytek | 9 | 11 % | 57 % | 33 % | 22 % / 33 % | chybí chodnik 4×, cyklopruh→cyklostezka 3×, navíc cyklostezka 3×, chybí delici 2×, chybí stani 1×, chybí pruh 1× |
-| US (Washington, 25. 11. přesnější pokyn) | 29 | 14 % | 66 % | 55 % | 34 % / 59 % | navíc zelen 13×, navíc stani 9×, navíc chodnik 7×, chybí delici 4×, navíc cyklopruh 3×, chybí pruh 3× |
-| US bez mapy DC (?dc=0) | 29 | 14 % | 60 % | 55 % | 3 % / 14 % | chybí stani 23×, chybí zelen 14×, chybí delici 3×, chybí pruh 3×, zelen→pruh 2×, pruh→chodnik 2× |
-| US jen OSM (bez ortofota) | 29 | 10 % | 56 % | 59 % | 41 % / 48 % | chybí stani 29×, chybí zelen 15×, chybí delici 5×, navíc chodnik 3×, chybí chodnik 3×, chybí pruh 3× |
+| US (Washington, čerstvé řezy 25. 11.) | 29 | 38 % | 76 % | 48 % | 48 % / 59 % | navíc zelen 8×, navíc chodnik 6×, navíc cyklopruh 4×, chybí delici 3×, chybí pruh 3×, navíc stani 3× |
+| US bez mapy DC (?dc=0) | 29 | 21 % | 61 % | 52 % | 21 % / 41 % | chybí stani 14×, chybí zelen 10×, navíc chodnik 6×, chybí delici 6×, chybí pruh 5×, navíc cyklopruh 3× |
+| US jen OSM (bez ortofota) | 29 | 14 % | 53 % | 55 % | 28 % / 41 % | chybí stani 17×, navíc chodnik 13×, chybí zelen 10×, chybí delici 4×, chybí pruh 4×, chybí chodnik 3× |
 
 Přeměření 24. 11. 2026, před → po (oficiální → nová pravidla se starými profily → nové profily):
 
