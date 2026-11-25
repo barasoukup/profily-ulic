@@ -37,6 +37,9 @@ Co rozhodne Bára, je označeno **(Bára)**.
 
 ## Mapy povrchů a data měst
 
+- Prešov: vrstvy `vw_dp_cesty`, `vw_dp_parkoviska`, `vw_dp_spev_plochy` jsou od neznámého data za tokenem (ArcGIS 499, zjištěno
+  25. 11. 2026 kontrolou zdrojů), zůstaly chodníky: profil je odhad. Týdenní kontrola kvůli tomu padá, dokud se vrstvy
+  nevrátí, nebo Prešov nevyřadíme **(Bára)**.
 - Nizozemsko: BGT kreslí červené cyklopruhy na vozovce jako „fietspad“ (měření: 13× cyklostezka navíc). Pokus
   `?fietsstrook=1` nepomohl; zkusit jinak (barva na ortofotu, OSM `cycleway=lane` a šířka).
 - Nizozemsko: Nassauplein v Haagu (střední pás přes 16 m) dostane odhad místo BGT, vozovky jsou dál než 10 m.
