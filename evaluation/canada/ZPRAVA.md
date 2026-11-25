@@ -85,7 +85,7 @@ u 1 domu z 30, mění hlavně počet podlaží; samostatné A/B výšek proti OS
 ## Nejisté
 
 - Licence: Topographic Mapping a Web Map Services (kde je `cot_ortho`) jsou v katalogu OGL – Toronto; služba `cot_geospatial3` sama licenci nenese, jen
-  odpovídá týmž datům. Bára: napsat městu, jestli smíme volat přímo `gis.toronto.ca` (CORS ozvěna, bez klíče).
+  odpovídá týmž datům. Bára 25. 11. 2026: používat s kreditem (CORS ozvěna, bez klíče), záloha je hostovat data z katalogu.
 - Stav ploch: vozovky a chodníky naposledy upravené hlavně 2021, jednotlivé do 2024. Stání, cyklopruhy a stopy po přestavbách jsou z OSM a ortofota.
 - StatCan Open Licence (hranice), překlady strojové.
 

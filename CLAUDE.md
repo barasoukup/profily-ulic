@@ -555,7 +555,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   a výpadek mapy podle klíče města (`cityMap`, `mapFailed`).
 - Čerstvé měření 60 řezů: slepé A/B mapa : odhad 44 : 6 (7 nerozhodně); univerzální měření 74 % s mapou, 68 % bez (rozdíl +7, −3 až +18,
   **složení neprůkazně, šířka ano**), jen OSM 70 %. Zpráva `evaluation/canada/ZPRAVA.md`, normy `NORMY.md` (jen oranžově).
-- Před nasazením workflow OSM tiles se `states: ca`; licenci přímého volání `gis.toronto.ca` vyjasnit s městem. Překlady strojové.
+- Před nasazením workflow OSM tiles se `states: ca`; služba `gis.toronto.ca` podmínky neuvádí,
+  Bára 25. 11. 2026: používat s kreditem (záloha: plochy z katalogu hostovat). Překlady strojové.
 
 ## USA (Washington) (větev usa, Bára 24. 11. 2026, nenasazené)
 - Fáze 2 pilotu Severní Ameriky („Fáze 2 s mapou Washingtonu“): stát `usa` (US), `countries/US.js`, `towns/usa.js`,

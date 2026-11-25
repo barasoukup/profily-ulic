@@ -141,7 +141,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Pasporty devíti českých měst: A/B po odstávce DMVS (`evaluation/PASPORTY-AB.md`).
 - **Kanada (Toronto, `evaluation/canada`):** řez uprostřed The Queensway (t-48) mapu nenajde; podium s věží, komerční domy a řady se kreslí jako
   `baygable`; A/B výšek domů (`?torontohouse=0`); mapa je z 2021, cyklostezky z OSM u křižovatky ulic ukrajují i sousední (1 z 9); kosé a kolmé
-  stání bez norem; dotazy na licenci služby; předpisy obcí kolem Toronta.
+  stání bez norem; předpisy obcí kolem Toronta.
 - **USA (Washington, recenze a čerstvé měření 25. 11. 2026, `evaluation/usa/fresh`):** uličky mezi domy: mezera mezi polygony se
   čte jako zeleň, i kde je zpevněný dvůr, a bere soukromé dvorky za uličkou; rampy a dálnice (3 řezy, 44 : 63 %); klik v ploše
   „Intersection“ se jen ohlásí, neposune; čísla tabulek DEM 2023 a BFDG ověřit a dát s čísly stran; předpis o stání
