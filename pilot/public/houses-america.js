@@ -254,8 +254,10 @@ export function drawAmerican(kind, { g, el, X, surface, EDGE, f, seed, wall, det
     each(95, (i, d) => { if (i) sash(d, base + 0.26 * S, 95, 0.54 * S, i, { lintel: brickWall ? tint(wall, 0.8) : null, sill: LIME, muntin: 2 }); });
     for (let k = 1; k < n; k++) each(95, (i, d) => sash(d, floorZ(k) + 0.26 * S, 95, 0.52 * S, k * 3 + i, { lintel: tint(wall, 0.8), sill: LIME, muntin: 2 }));
     front();
-    flight(-P - 6, base, { c: "#b5b1a7", rail: IRON, tread: 25 });
-    porch(P, base, base + 235, { pier: tint(wall, 0.92), skirt: tint(wall, 0.84), lattice: true, halfPier: true, post: PAINT, roof: R, pitch: 62 });
+    // (No porch on the sidewalk: a house without a front yard has its stoop alone.)
+    flight(info?.atWalk ? -70 : -P - 6, base, { c: "#b5b1a7", rail: IRON, tread: 25 });
+    if (info?.atWalk) box(-74, 0, 0, base, "#a59c8c", thin("#a59c8c"));
+    if (!info?.atWalk) porch(P, base, base + 235, { pier: tint(wall, 0.92), skirt: tint(wall, 0.84), lattice: true, halfPier: true, post: PAINT, roof: R, pitch: 62 });
   } else if (kind === "framehouse") {
     // The detached house: clapboards (or brick), a gable roof of asphalt shingles, a front porch on posts.
     const R = SHINGLE[seed % 3], ridge = 260, P = Math.tan((34 * Math.PI) / 180), zz = (d) => top + 10 + (d < ridge ? d : 2 * ridge - d) * P, eave = 45;
@@ -280,7 +282,7 @@ export function drawAmerican(kind, { g, el, X, surface, EDGE, f, seed, wall, det
     each(88, (i, d) => { if (i) win(d, base + 0.28 * S, i); });
     for (let k = 1; k < n; k++) each(88, (i, d) => win(d, floorZ(k) + 0.26 * S, k * 3 + i));
     front();
-    if (!det.stoop) {
+    if (!det.stoop && !info?.atWalk) {
       flight(-168, base, { c: "#b5b1a7", rail: tint(PAINT, 0.75), tread: 25 });
       porch(160, base, base + 225, { skirt: bw ? "#a59c8c" : "#c4beb0", lattice: !bw, post: PAINT, roof: R, pitch: 72 });
     } else {

@@ -39,7 +39,7 @@ test("Toronto: plochy podél řezu, mezera mezi vozovkami je dělicí pás nebo 
   assert.equal(cut([], [], [["Intersection", -5, 5]], []).junction, true);
   const two = [["Road Edge", -12, -5], ["Road Edge", 5, 12]];
   assert.deepEqual(codes(cut([], [], two, [])), [401, 701, 9950, 701, 401]);
-  assert.deepEqual(codes(cut([], [], two, [], [way, tram(-1.6), tram(1.6)])), [401, 701, 401, 705, 401, 701, 401]);
+  assert.deepEqual(codes(cut([], [], two, [], [way, tram(-1.6), tram(1.6)])), [401, 701, 9950, 705, 9950, 701, 401]);
   assert.deepEqual(codes(cut([], [["Sidewalk", 7, 10]], [["Road Edge", -5, 5]], [["Parking Lot", 5, 7]])), [401, 701, 704, 702, 401]);
   assert.deepEqual(codes(cut([], [], [["Road Edge", -5, 5]], [["Parking Lot", 5, 20]])), [401, 701, 1003, 401]);
   // A cycle track OSM has as a way of its own in the map's carriageway (not one on the sidewalk, nor a crossing).
@@ -54,7 +54,7 @@ test("Toronto: plochy podél řezu, mezera mezi vozovkami je dělicí pás nebo 
 
 test("Toronto: domy podle výšky obrysu", async () => {
   const { torontoHouse, floorsOf } = await import("../pilot/public/towns/canada.js");
-  assert.deepEqual([5, 6.5, 8, 11, 40].map(floorsOf), [1, 2, 2, 3, 13]);
+  assert.deepEqual([5, 6.5, 8, 11, 40].map(floorsOf), [1, 1, 2, 3, 12]);
   assert.deepEqual(torontoHouse({ SUBTYPE_DESC: "Garage", DERIVED_HEIGHT: 3 }), { type: "garage", garage: true, caHouse: true });
   assert.equal(torontoHouse({ SUBTYPE_DESC: "Building Outline", DERIVED_HEIGHT: 8 }).fromHeight, true);
   assert.deepEqual(torontoHouse(null), {});

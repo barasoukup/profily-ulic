@@ -29,12 +29,15 @@ export const TORONTO_MAP = {
     { id: 13, code: () => [1003, 5, true] },
   ],
   junction: { layer: 3, test: (a) => /intersection/i.test(a.SUBTYPE_DESC || "") },
-  prepare: (runs, { tags, tracks, cycleTracks }) => { gapsBetweenRoads(runs, tracks()); kerbBays(runs); if (!WALKED.has(tags?.highway) && !off("roadtracks")) osmTracks(runs, cycleTracks()); },
+  // ?off=mapgaps, kerbbays, roadtracks: without the rule (the A/B of 25. 11. 2026).
+  prepare: (runs, { tags, tracks, cycleTracks }) => { if (!off("mapgaps")) gapsBetweenRoads(runs, tracks()); if (!off("kerbbays")) kerbBays(runs); if (!WALKED.has(tags?.highway) && !off("roadtracks")) osmTracks(runs, cycleTracks()); },
 };
 const map = planimetricMap(TORONTO_MAP);
 
-// A house by its height (the roof's included): up to 13 m a roof of 2 m over floors of 3 m, a taller one floors of 3.1 m.
-export const floorsOf = (h) => (h > 2 && h < 400 ? (h <= 13 ? Math.max(1, Math.round((h - 2) / 3)) : Math.round(h / 3.1)) : undefined);
+// A house by its height (to the ridge, or the parapet of a flat roof): 2.2 m of roof and plinth over floors of 3.3 m, from 25 m
+// on floors of 3.05 m (the review of 25. 11. 2026: the old 3 m made Markham Street's and Queen Street West's houses a floor too
+// tall; the 22 judged houses of houses.json: exact 13, bias +0.14, before 11 and +0.45; 575 houses of OSM: 76 %, bias −0.17).
+export const floorsOf = (h) => (h > 2 && h < 400 ? Math.max(1, Math.round((h - 2.2) / (h <= 25 ? 3.3 : 3.05))) : undefined);
 export function torontoHouse(a) {
   if (!a) return {};
   if (/garage/i.test(a.SUBTYPE_DESC || "")) return { type: "garage", garage: true, caHouse: true };

@@ -154,7 +154,11 @@ test("severoamerické domy podle druhu, roku a místa; bez dat prostý vzhled", 
   assert.equal(look("usa", { levels: 10, type: "office", point: DT }), "kancelar");
   assert.equal(look("usa", { levels: 2, type: "retail", point: CH }), "mainstreet");
   assert.equal(look("usa", { levels: 1, type: "retail", point: MD }), "stripmall");
-  assert.equal(look("usa", { levels: 2, type: "school", point: CH }), "skola");
+  assert.equal(look("usa", { levels: 2, type: "school", point: CH }), "brickblock");
+  // At the sidewalk of a main street a joined row of no known kind is shops; a house stays a house.
+  assert.equal(look("usa", { levels: 3, block: row, point: MD, atWalk: 1, main: 1 }), "mainstreet");
+  assert.equal(look("usa", { levels: 2, type: "terrace", block: row, point: MD, atWalk: 1, main: 1 }), "porchrow");
+  assert.equal(look("usa", { levels: 2, block: row, point: MD, atWalk: 1 }), "porchrow");
   assert.equal(look("usa", { levels: 1, type: "church", point: CH }), "kostel");
   assert.equal(na("sikma", { block: row, type: "house", point: [-73.972, 40.679] }, 4), "brownstone");
   assert.equal(na("sikma", { block: row, type: "apartments", point: [-73.985, 40.725] }, 5), "tenement");

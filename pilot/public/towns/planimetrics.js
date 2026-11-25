@@ -35,7 +35,7 @@ export function runsAlong(layers, c) {
     const x = c.dir[0] * (t + STEP / 2), y = c.dir[1] * (t + STEP / 2);
     const p = polys.find((q) => x >= q.box[0] && x <= q.box[2] && y >= q.box[1] && y <= q.box[3] && inRings(q.rings, x, y));
     const code = p ? p.code : 401, last = runs.at(-1);
-    if (last && last.code === code) last.e = t + STEP; else runs.push({ code, s: t, e: t + STEP, ...(!p && { gap: true }), ...(p?.lot && { lot: true }) });
+    if (last && last.code === code && !last.lot === !p?.lot) last.e = t + STEP; else runs.push({ code, s: t, e: t + STEP, ...(!p && { gap: true }), ...(p?.lot && { lot: true }) });
   }
   return runs;
 }
@@ -48,7 +48,8 @@ export function islandsBeside(runs) {
   return merged(runs);
 }
 // A map without its medians: a gap between two roadways is the median (9950), with tram tracks in it (tracks: their t) a
-// tram bed 705 as far as BED_SIDE beyond the outer axes, what stays beside it green (Toronto's Spadina Avenue).
+// tram bed 705 as far as BED_SIDE beyond the outer axes, what stays beside it the median (Toronto's Spadina Avenue; The
+// Queensway, whose cut stands in the median beside the bed).
 const BED_SIDE = 1.6, GAP_MEDIAN = 30; // m; a wider gap is two streets
 export function gapsBetweenRoads(runs, tracks = []) {
   for (let i = runs.length - 2; i > 0; i--) {
@@ -57,7 +58,7 @@ export function gapsBetweenRoads(runs, tracks = []) {
     const on = tracks.filter((t) => t > r.s - 0.5 && t < r.e + 0.5);
     if (!on.length) { r.code = 9950; continue; }
     const s = Math.max(r.s, Math.min(...on) - BED_SIDE), e = Math.min(r.e, Math.max(...on) + BED_SIDE);
-    runs.splice(i, 1, ...[{ code: 401, s: r.s, e: s }, { code: 705, s, e }, { code: 401, s: e, e: r.e }].filter((x) => x.e - x.s > (x.code === 705 ? 0 : 0.5)));
+    runs.splice(i, 1, ...[{ code: 9950, s: r.s, e: s }, { code: 705, s, e }, { code: 9950, s: e, e: r.e }].filter((x) => x.e - x.s > (x.code === 705 ? 0 : 0.5)));
     // (A rest of half a metre at most is the bed's.)
     const bed = runs.find((x) => x.code === 705 && x.s === s);
     if (s - r.s <= 0.5) bed.s = r.s;
@@ -124,13 +125,15 @@ export function carveTrack(runs, at, place, w, t) {
   return r;
 }
 // A map older than the cycle tracks (Toronto's of 2021): a track OSM has as a way of its own in the map's carriageway is cut
-// out at its kerb or in its middle, as wide as OSM says or 1.8 m.
+// out at its kerb or in its middle, as wide as OSM says or 1.8 m; one OSM only tags on the road (cycleway:<side>=track)
+// at that side's kerb (kerb: "lo", "hi"; University Avenue), unless the map has a track there.
 export function osmTracks(runs, tracks, width = 1.8) {
   const done = [];
-  for (const { t, w = width } of tracks) {
+  for (const { t: at0, kerb, w = width } of tracks) {
     const at = carriageway(runs);
     if (!at) break;
-    const lo = runs[at[0]].s, hi = runs[at[1]].e;
+    const lo = runs[at[0]].s, hi = runs[at[1]].e, t = kerb === "lo" ? lo + 0.5 : kerb === "hi" ? hi - 0.5 : at0;
+    if (kerb && runs.some((r) => r.code === 703 && (kerb === "lo" ? Math.abs(r.e - lo) < 3 : Math.abs(r.s - hi) < 3))) continue;
     if (t < lo - 0.3 || t > hi + 0.3 || runs.some((r) => r.code === 703 && r.s <= t && r.e >= t)) continue;
     const place = trackPlace(t, lo, hi, w);
     if (done.includes(place)) continue;
@@ -139,11 +142,16 @@ export function osmTracks(runs, tracks, width = 1.8) {
   return done;
 }
 
+// Under the ground: a way in a tunnel (not a passage through a building) or said so (Line 5 under Eglinton Avenue, the
+// streetcar's tunnel north of Spadina and Sussex).
+const underground = (tags) => (tags.tunnel && tags.tunnel !== "no" && tags.tunnel !== "building_passage") || tags.location === "underground";
+// The sides of the cut's way OSM tags with a cycle track of its road: "right" / "left".
+const taggedTracks = (tags = {}) => ["right", "left"].filter((k) => [tags.cycleway, tags["cycleway:both"], tags[`cycleway:${k}`]].includes("track"));
 // Where the ways of OSM that pass the test run along the street across the cut: their t (metres from the centre along dir).
 export function parallelsAt(osmElements, c, test) {
   const out = [];
   for (const el of osmElements || []) {
-    if (el.type !== "way" || !(el.tags?.highway || el.tags?.railway) || !el.geometry || !test(el)) continue;
+    if (el.type !== "way" || !(el.tags?.highway || el.tags?.railway) || !el.geometry || underground(el.tags) || !test(el)) continue;
     const g = el.geometry.map((p) => [(p.lon - c.lon0) * c.kx, (p.lat - c.lat0) * c.ky]).map(([x, y]) => [x * c.dir[0] + y * c.dir[1], -x * c.dir[1] + y * c.dir[0]]); // [t, along]
     for (let i = 1; i < g.length; i++) {
       const [p, q] = [g[i - 1], g[i]], L = Math.hypot(q[0] - p[0], q[1] - p[1]);
@@ -187,17 +195,18 @@ export function alongOf(way, c, street) {
 
 // The cut's answer from the layers' answers (in the order of d.layers): { features, junction, …adjust's } or null where the
 // map has not the street. way: the cut's way; without it the one of OSM nearest the box's centre.
-export function planimetricCut(d, answers, osmElements, bbox, tags = null, { way = null, extra = null } = {}) {
+export function planimetricCut(d, answers, osmElements, bbox, tags = null, { way = null, extra } = {}) {
   const c = cutOfBox(bbox, way?.geometry ? [way] : osmElements);
   if (!c) return null;
   const runs = runsAlong(d.layers.map((l, i) => [l.code, answers[i]]), c);
   tags ||= c.tags;
+  const street = [-c.dir[1], c.dir[0]], along = way ? alongOf(way, c, street) : true;
   d.prepare?.(runs, { tags, tracks: () => parallelsAt(osmElements, c, (el) => /^(tram|light_rail)$/.test(el.tags.railway)),
-    cycleTracks: () => (osmElements || []).filter((el) => el.tags && el.id !== way?.id && isTrack(el))
-      .flatMap((el) => parallelsAt([el], c, () => true).map((t) => ({ t, w: parseFloat(el.tags.width) || (el.tags.oneway === "yes" ? undefined : 3) }))) });
+    cycleTracks: () => [...(osmElements || []).filter((el) => el.tags && el.id !== way?.id && isTrack(el))
+      .flatMap((el) => parallelsAt([el], c, () => true).map((t) => ({ t, w: parseFloat(el.tags.width) || (el.tags.oneway === "yes" ? undefined : 3) }))),
+      ...taggedTracks(tags || {}).map((k) => ({ kerb: (k === "right") === along ? "hi" : "lo" }))] });
   alleyRoadway(runs, tags);
   if (!hasStreet(runs, tags)) return null;
-  const street = [-c.dir[1], c.dir[0]];
   way ||= (osmElements || []).find((el) => el.type === "way" && el.tags === c.tags && el.geometry?.length > 1);
   const more = d.adjust?.(runs, { c, tags: tags || {}, way, wayAlong: way ? alongOf(way, c, street) : true, osmElements, extra }) || {};
   const at = d.junction && answers[d.layers.findIndex((l) => l.id === d.junction.layer)];
@@ -254,16 +263,20 @@ export function planimetricMap(d) {
   async function surfaces(bbox, tags = null, way = null) {
     if (!here(bbox)) return estimate();
     const [x0, y0, x1, y1] = bbox.split(",").map(Number), cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
-    let own;
+    let own, o;
+    const osmAsk = osmTiles(cy, cx, Math.max((x1 - x0) * 111320 * Math.cos((cy * Math.PI) / 180), (y1 - y0) * 110574) / 2);
     try {
-      const r = Math.max((x1 - x0) * 111320 * Math.cos((cy * Math.PI) / 180), (y1 - y0) * 110574) / 2;
       const asks = d.layers.map((l) => { const a = ask(l.id, bbox); asked.unshift([bbox, a, l.id]); return a; });
       asked.length = Math.min(asked.length, 12);
-      const [extra, o, ...answers] = await Promise.all([d.extra ? d.extra(bbox) : null, osmTiles(cy, cx, r), ...asks]);
-      own = planimetricCut(d, answers, o.elements, bbox, tags, { way, extra });
+      const [extra, osm, ...answers] = await Promise.all([d.extra ? d.extra(bbox) : null, osmAsk.catch(() => null), ...asks]);
+      o = osm;
+      // An answer cut off by the service's limit would draw a street with holes.
+      if (answers.some((a) => a?.exceededTransferLimit)) throw new Error("exceededTransferLimit");
+      own = o && planimetricCut(d, answers, o.elements, bbox, tags, { way, extra });
     } catch {
       return estimate({ mapFailed: d.id });
     }
+    if (!o) await osmAsk; // OSM's tiles did not answer: not the map's outage
     if (!own) return estimate();
     const { features, junction, ...more } = own;
     return { features: asMtvu([[{ features }, (a) => a.code]], MTVU_LABELS).features, cityMap: d.id, ...(junction && { junction: true }), ...more };

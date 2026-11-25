@@ -49,7 +49,7 @@ Aplikace čte stávající ulice (a metro mimo DC, kde DEM neplatí), proto **v�
 - Stání na chodníku: 18 DCMR § 2405 ho zakazuje (z druhé ruky). `halfKerbNote` o zákazu od 25. 11. 2026 nic netvrdí, platí
   i v Marylandu a Virginii (recenze).
 - Neověřeno (recenze 25. 11. 2026): čísla tabulek DEM 2023 (30-13, 30-14, 31-1, 45-1), § 29.3.3 a 29.4.1, tabulka 2 BFDG;
-  čísla stran chybí.
+  čísla stran chybí. Aplikace proto od druhé recenze (25. 11. 2026) cituje jen „DDOT DEM 2023“ bez čísel tabulek a oddílů.
 - Neověřeno: 18 DCMR § 2406.1 (prahy 20 ft a 30 ft vozovky pro zákaz stání, jen ze shrnutí vyhledávače) a současný dodatek
   DC k IFC 503.2.1 (vydání 2017 a novější se nepodařilo otevřít).
 

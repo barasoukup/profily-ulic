@@ -251,7 +251,7 @@ const naTown = (p) => (p ? NA_TOWNS.find((t) => inOldTown(t.places, p)) : undefi
 const NA_FLATS = new Set(["apartments", "dormitory", "condominium"]);
 const NA_SHOPS = new Set(["retail", "commercial", "shop", "supermarket", "restaurant", "kiosk"]);
 const NA_ROWS = new Set(["terrace", "semidetached_house", "townhouse"]);
-const NA_OWN = new Set(["kostel", "skola", "garaz"]); // a look of the house's use stays
+const NA_OWN = new Set(["kostel", "garaz"]); // a look of the house's use stays
 // What a footprint covers (m²) and one house of a joined row (block: derive.js blockShape).
 const partArea = (b) => (b ? (b.length * b.width * b.fill) / Math.max(1, b.parts) : 0);
 const inRow = (b) => !!b && b.parts >= 3;
@@ -260,12 +260,15 @@ const inRow = (b) => !!b && b.parts >= 3;
 export function northAmericaLook(style, info, n) {
   const type = info?.type, b = info?.block, y = yearOf(info), p = placeOf(info), town = naTown(p), area = partArea(b);
   if (NA_OWN.has(style)) return undefined;
+  if (style === "skola") return n >= 5 ? "kancelar" : "brickblock"; // not the Czech school's red roof
   if (style === "hala") return NA_SHOPS.has(type) ? (n >= 2 || inRow(b) ? "mainstreet" : "stripmall") : undefined; // works and warehouses stay halls
   const office = style === "kancelar" || info?.office || (OFFICE.has(type) && type !== "commercial" && type !== "hotel");
   // An office of masonry walls (CAMA) is no glass tower (evaluation/north-america-art/cama).
   if (office) return y >= 1990 && n >= 10 && !/brick|stone|concrete/.test(info?.material || "") ? "glasstower" : "kancelar";
   if (NA_SHOPS.has(type)) return n >= 5 ? (y >= 1990 ? "podium" : "kancelar") : n >= 2 || (!n && inRow(b)) ? "mainstreet" : "stripmall";
   const row = () => {
+    // A joined row of no known kind at the sidewalk of a main street: shops (Queen Street West; the review of 25. 11. 2026).
+    if (info?.main && info.atWalk && inRow(b) && !HOUSE_TYPES.has(type) && !NA_ROWS.has(type)) return "mainstreet";
     if (y >= 1990) return "bayrow"; // a new townhouse: flat-fronted (northAmericaDetails)
     if (!town) return inRow(b) || NA_ROWS.has(type) ? "porchrow" : "framehouse";
     if (town.look === "bayrow" && y > 1920 && !town.front) return "porchrow";

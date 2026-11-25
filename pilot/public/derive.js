@@ -205,6 +205,15 @@ const ALLEY_REACH = 12; // m from the axis (a wide roadway's kerb and its sidewa
 const isAlleyArea = (el) => el.type === "area" && el.geometry?.length > 2 && (el.tags?.["area:highway"] === "service" || el.tags?.service === "alley");
 const AXIS_SNAP = 4.5; // m: an OSM axis this close beside the roadway belongs to it (deriveProfile, the axis to the roadway)
 // Streets for the axis fixes: roads and residential streets, not tracks or bridleways (Brno test č. 99).
+const isRoadway = (c) => c === 700 || c === 701;
+const OTHER_WALK = 1.5, OTHER_ANGLE = Math.cos((20 * Math.PI) / 180); // m of sidewalk or green before the other street; an axis turned more than 20° from the cut's street
+// A crossing c of the cut's line by another street for cars: named otherwise, turned away, not a link nor on another level.
+const levelTag = (t) => Number(t?.layer) || (inTunnel(t) ? -1 : t?.bridge && t.bridge !== "no" ? 1 : 0);
+const otherStreet = (c, way, dir, cross) => {
+  const t = c.way.tags || {}, own = way?.tags || {};
+  return c.way.id !== way?.id && !!own.name && !!t.name && t.name !== own.name && CAR_ROADS.has(t.highway) && !/_link$/.test(t.highway) && levelTag(t) === levelTag(own)
+    && Math.abs(c.d[0] * dir[0] + c.d[1] * dir[1]) < OTHER_ANGLE && !cross.some((x) => x.way.id !== c.way.id && x.way.tags?.name === own.name && Math.abs(x.t - c.t) < 4);
+};
 const STREETS = new Set(["motorway", "trunk", "primary", "secondary", "tertiary", "unclassified", "residential", "living_street",
   "motorway_link", "trunk_link", "primary_link", "secondary_link", "tertiary_link"]);
 // Roads for cars, not living streets or pedestrian zones (deriveProfile roadOnPath).
@@ -559,13 +568,17 @@ function absorbParkingSlivers(runs) {
   return mergeTiny(runs);
 }
 
-// Where OSM ways cross the cut, as offsets along the normal.
-function crossings(osm, frame, center, normal, half) {
+// Tracks in a tunnel are under a street that is not (Toronto's streetcar north of Spadina and Sussex, Line 5 under Eglinton:
+// the review of 25. 11. 2026); a passage through a building is on the ground. ?off=tunneltracks: as before.
+const inTunnel = (t) => !!t?.tunnel && t.tunnel !== "no" && t.tunnel !== "building_passage";
+const tunnelTrack = (t, way) => !!t?.railway && !t.highway && inTunnel(t) && !inTunnel(way?.tags) && !ORTHO_P.off?.has("tunneltracks");
+// Where OSM ways cross the cut, as offsets along the normal. way: the cut's street.
+function crossings(osm, frame, center, normal, half, way = null) {
   const a = [center[0] - normal[0] * half, center[1] - normal[1] * half];
   const b = [center[0] + normal[0] * half, center[1] + normal[1] * half];
   const out = [];
   for (const el of osm.elements || []) {
-    if (el.type !== "way" || !el.geometry) continue;
+    if (el.type !== "way" || !el.geometry || tunnelTrack(el.tags, way)) continue;
     const pts = el.geometry.map((g) => frame.toXY(g.lon, g.lat));
     for (let i = 0; i < pts.length - 1; i++) {
       const hit = segIntersect(a, b, pts[i], pts[i + 1]);
@@ -1437,6 +1450,7 @@ function mainAxis(pts) {
 }
 // A house standing with its gable to the street (a village house, Bára 16. 11. 2026): a narrow footprint, clearly
 // longer than wide, its long side running away from the street (along the cut).
+const WALK_FRONT = 6; // m: a wider paving before a house is a yard read as a sidewalk
 const ARCADE_COVER = new Set(["arcade", "colonnade", "building_arcade"]);
 const GABLE_MAX_W = 11, GABLE_RATIO = 1.4, GABLE_COS = 0.85;
 const gableToStreet = (axis, normal) => !!axis && axis.width <= GABLE_MAX_W && axis.length >= GABLE_RATIO * axis.width
@@ -1810,7 +1824,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     return best?.cls || null;
   };
   const normal = [-dir[1], dir[0]];
-  const cross = crossings(osm, frame, center, normal, half);
+  const cross = crossings(osm, frame, center, normal, half, way);
   const own = cross.find((c) => c.way.id === way?.id);
   polys = linePieces(polys, way?.tags || {}, center, normal, lanesImage, own ? own.d[0] * dir[0] + own.d[1] * dir[1] >= 0 : true);
   // A tram area that maps the tracks in the asphalt too (Berlin's Gleiskörper; Neue Schönhauser Straße: Bára 17. 11.
@@ -1989,6 +2003,24 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     return { lo, hi, right, left };
   };
   let { lo, hi, right, left } = walk();
+  // Another street inside the profile, at an angle (S Street SE and Minnesota Avenue meeting at 34°, H Street NW in the
+  // fork with New York Avenue: the review of 25. 11. 2026): its roadway is not this street's. The profile ends at the sidewalk
+  // or green before it; where nothing but a median lies between, or it is the street's own roadway, the cut runs through a
+  // junction. ?off=otherstreet: neither.
+  let forks = false;
+  const foreign = ORTHO_P.off?.has("otherstreet") ? [] : cross.filter((c) => otherStreet(c, way, dir, cross));
+  for (const step of foreign.length ? [1, -1] : []) {
+    let at0 = i0;
+    while (at0 >= lo && at0 <= hi && !(isRoadway(runs[at0].code) && foreign.some((c) => c.t > runs[at0].s && c.t < runs[at0].e))) at0 += step;
+    if (at0 < lo || at0 > hi) continue;
+    // Back from the foreign roadway to the sidewalk or green of at least OTHER_WALK before it, on the cut's own side.
+    let end = at0 - step, walked = 0;
+    while (end !== i0 && !carriage(runs[end].code) && runs[end].code !== OSM_PARKING) { if (runs[end].code === 702 || runs[end].code === 703 || isOpenLand(runs[end].code)) walked += runs[end].e - runs[end].s; end -= step; }
+    const byHandHere = byHand[step > 0 ? "L" : "R"];
+    if (at0 === i0 || byHandHere) { forks ||= at0 === i0; continue; }
+    if (walked < OTHER_WALK) { forks = true; continue; }
+    if (step > 0) { hi = at0 - 1; left = "volno"; } else { lo = at0 + 1; right = "volno"; }
+  }
   const handSet = (v) => typeof v === "number" && Math.abs(v - MAX_REACH) > 0.05;
   const pastL = !byHand.L && handSet(reach?.left) && left !== "budova" && reach.left > runs[hi].e - ref + 0.5;
   const pastR = !byHand.R && handSet(reach?.right) && right !== "budova" && reach.right > ref - runs[lo].s + 0.5;
@@ -2308,6 +2340,11 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     // (house-looks.js); no Czech look reads it.
     if (b?.material) edges[`${side}Info`].material = b.material;
     if (gableToStreet(b?.axis, normal)) edges[`${side}Info`].across = 1;
+    // The house stands at the sidewalk (no front yard), on a main street or one with tracks (house-looks.js, North America: no
+    // porch there, a joined row a shopping street's).
+    const endRun = side === "left" ? kept.at(-1) : kept[0];
+    if ((endRun.code === 702 || endRun.code === 703) && endRun.e - endRun.s <= WALK_FRONT) edges[`${side}Info`].atWalk = 1;
+    if (/^(primary|secondary)$/.test(way.tags?.highway || "") || tramTs.length) edges[`${side}Info`].main = 1;
     // An arcade under the house (Bára 16. 11. 2026: only where the data say so): an OSM way tagged covered=arcade,
     // colonnade or building_arcade crossing the cut by the facade (5 m in front of it to 8 m behind).
     const edgeT = side === "left" ? kept.at(-1).e : kept[0].s, out = side === "left" ? 1 : -1;
@@ -2358,7 +2395,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     roads,
     extent: [kept[0].s, kept.at(-1).e], // offsets of the right and left profile ends along the cut
     // A roadway this wide along the cut usually means the cut crosses a junction.
-    junction: kept.some((r) => (r.code === 701 || r.code === 700) && r.e - r.s > 25),
+    junction: forks || kept.some((r) => (r.code === 701 || r.code === 700) && r.e - r.s > 25),
     ...(kerbNotes.length ? { notice: kerbNotes.join(" ") } : {}),
   };
 }
@@ -2708,9 +2745,9 @@ export function carveTramTracks(segments, cross = []) {
 }
 
 // The OSM ways crossing the cut, with their place from the profile's end A (extent: deriveProfile's [right, left]).
-export function crossFromA(osm, frame, dir, extent) {
+export function crossFromA(osm, frame, dir, extent, way = null) {
   const normal = [-dir[1], dir[0]], half = Math.max(Math.abs(extent[0]), Math.abs(extent[1])) + 1;
-  return crossings(osm, frame, [0, 0], normal, half).map((c) => ({ at: extent[1] - c.t, tags: c.way.tags || {} }));
+  return crossings(osm, frame, [0, 0], normal, half, way).map((c) => ({ at: extent[1] - c.t, tags: c.way.tags || {} }));
 }
 
 // Fallback outside MTVU coverage: a typical profile from OSM tags.

@@ -757,7 +757,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // draw a cycle track where there is one; a shoulder there is the roadway's).
     if (orthoOsm || result.estimate) trackAlongRoad(result.segments, near.way.tags, !near.dir || dir[0] * near.dir[0] + dir[1] * near.dir[1] >= 0);
     if (result.extent) {
-      const crossA = crossFromA(osm, frame, dir, result.extent);
+      const crossA = crossFromA(osm, frame, dir, result.extent, near.way);
       carveCycleways(result.segments, crossA);
       carveTramTracks(result.segments, crossA);
     }
@@ -823,8 +823,9 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
         // The buildings of Copenhagen or Aarhus (towns/denmark.js).
         // The buildings of ETAK (towns/estonia.js).
         if (p.etak) state.cut.sources.eeEtak = true;
+        // (Toronto's heights only where they gave the floors or the garage, not under OSM's own count.)
+        if (p.caHouse && (info.src === "ipr" || p.garage)) state.cut.sources.caHouse = true;
         // Washington's assessment tables that told of the house (towns/usa.js).
-        if (p.caHouse) state.cut.sources.caHouse = true;
         if (p.usCama) state.cut.sources.usCama = true;
         if (p.dkBuild) state.cut.sources.dkBuild = state.cut.sources.dkBuild && state.cut.sources.dkBuild !== p.dkBuild ? "both" : p.dkBuild;
         // What the building is for (ZBGIS, Slovakia), where OSM says no more than "a building".

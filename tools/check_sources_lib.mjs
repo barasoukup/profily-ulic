@@ -88,7 +88,7 @@ export async function attempt(run, need) {
   let state, note = "", thrown = false;
   try {
     const json = await asked.run(trouble, run);
-    const n = count(json), unanswered = Object.keys(json || {}).filter((k) => /^([a-z]{2}|map)Failed$/.test(k) && json[k]);
+    const n = count(json), unanswered = Object.keys(json || {}).filter((k) => /^([a-z]{2}|map|ddot)Failed$/.test(k) && json[k]);
     if (json?.dmvs) { state = need ? "náhrada ČÚZK" : "ok"; note = `${n} prvků z technické mapy ČÚZK, vlastní služba nic nevrátila`; }
     else if (unanswered.length) { state = "CHYBA"; note = "mapa povrchů neodpověděla"; }
     else if (n || (json && !json.features && !json.elements)) { state = "ok"; note = n ? `${n} prvků` : ""; }
