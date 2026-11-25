@@ -46,8 +46,8 @@ Struktura je všude stejná: stát → město → zdroje (`docs/architecture-cou
   `city.country` zůstává kód ISO. Mimo `countries/` není žádná podmínka na stát.
 - **Město** je záznam v `city.js` (a modul `towns/<město>.js`, má-li vlastní zdroje); co nemá svého (ortofoto, značky,
   normy), dědí od státu. Zbytek státu je město `cesko`, `slovensko`, `austria`, mimo státy `cizina` (`towns/cizina.js`).
-  Slovenská a rakouská města (`city.js STATE_TOWNS`: Bratislava, Košice … Vídeň, Graz …) jsou města podle hranic obcí
-  (`mesta-sk.json`, `mesta-at.json`, `tools/build_towns_sk.mjs`, `build_towns_at.mjs`); texty, zdroje a normy mají od zbytku
+  Slovenská a rakouská města a Washington (`city.js STATE_TOWNS`: Bratislava, Košice … Vídeň, Graz …) jsou města podle hranic
+  (`mesta-sk.json`, `mesta-at.json`, `mesta-us.json`, `tools/build_towns_sk.mjs`, `build_towns_at.mjs`, `build_towns_us.mjs`); texty, zdroje a normy mají od zbytku
   státu, ilustrace své, má-li je stát nakreslené (`countries/<ISO>.js art`), jinak státu.
 - **Zdroj** s vlastním územím (pasport, čáry mapy města, mapa povrchů Vídně, značky Salcburku) má `area` (box, případně
   hranice obce, `places.js inArea`) a jeho modul ho uvádí v `AREAS`. `towns/index.js placeAt(lat, lon)` vrací stát,

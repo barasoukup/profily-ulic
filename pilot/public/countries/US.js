@@ -43,9 +43,14 @@ function limitsUS(s, segs = [], i = -1) {
   }
 }
 
-// No drawings of its own: the neutral vehicles of generic/, the Czech furniture, the Austrian stop posts (as Lithuania,
-// Finland and Denmark; an American stop sign is not drawn).
-const atPosts = Object.fromEntries(["stop-post-left", "stop-post-right", "stop-post-tram-left", "stop-post-tram-right"].map((k) => [k, `../austria/${TOWN_ART[k]}`]));
+// The furniture of North America (northamerica/, Bára 25. 11. 2026; the plants of the swale and the reeds the Czech
+// ones), in Washington its globe lamp and its bus stop, also by the shelter. New York, Toronto, Boston and San Francisco have their pieces
+// drawn (newyork/, toronto/, boston/, sanfrancisco/), for the time the app covers them.
+const PLANTS = new Set(["swale-plants", "reeds-left", "reeds-right"]);
+const northAmerica = Object.fromEntries(Object.entries(czechFurniture).map(([k, v]) => [k, PLANTS.has(k) ? v : `../northamerica/${TOWN_ART[k]}`]));
+const own = (keys) => Object.fromEntries(keys.map((k) => [k, TOWN_ART[k]]));
+const washington = { ...northAmerica, ...own(["lamp-modern-left", "lamp-modern-right", "stop-post-left", "stop-post-right",
+  "transit-shelter-01-left", "transit-shelter-01-right", "transit-shelter-green-left", "transit-shelter-green-right"]) };
 
 export default {
   ...base,
@@ -73,7 +78,7 @@ export default {
   orthoEstimate: true,
   besideMax: 25,
   panorama: false,
-  art: { usa: { ...czechFurniture, ...atPosts } },
+  art: { usa: northAmerica, washington },
   // No panel estates drawn as the Czech ones (Bára's memory: the socialist looks only where they were built).
   socialistLooks: false,
   // The houses of North America (house-looks.js, docs/house-types-north-america.md; Bára 25. 11. 2026).

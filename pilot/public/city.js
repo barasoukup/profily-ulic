@@ -487,20 +487,23 @@ Object.assign(CITIES, {
 for (const c of Object.values(CITIES)) if (c.abroad && c.country) { c.art = c.id; delete c.artMap; }
 
 // The Slovak and Austrian cities (step 4b of docs/architecture-countries.md; Bára 16. 11. 2026: cities everywhere, as
-// Brno): by their boundaries (mesta-sk.json from ZBGIS, mesta-at.json from GISCO's LAU), everything else of their
+// Brno): by their boundaries (mesta-sk.json from ZBGIS, mesta-at.json from GISCO's LAU, mesta-us.json of DC), everything else of their
 // state's rest (texts, sources, orthophoto), only the illustrations their own where the state has a set of the town
 // (else the state's). Their sources keep their own territories (towns/slovensko.js, towns/austria.js AREAS).
 const stateTown = (id, state, view) => ({ ...CITIES[state], id, like: state, view, art: COUNTRIES[CITIES[state].country].art[id] ? id : state });
 export const STATE_TOWNS = {
   SK: ["bratislava", "kosice", "zilina", "bystrica", "presov", "nitra", "trnava", "trencin", "martin", "poprad", "piestany", "hlohovec", "zvolen"],
   AT: ["wien", "graz", "linz", "salzburg", "innsbruck"],
+  US: ["washington"],
 };
 const VIEW = { bratislava: [48.1440, 17.1100], kosice: [48.7190, 21.2580], zilina: [49.2230, 18.7400], bystrica: [48.7360, 19.1460], presov: [48.9980, 21.2400],
   nitra: [48.3120, 18.0870], trnava: [48.3774, 17.5883], trencin: [48.8945, 18.0444], martin: [49.0665, 18.9230], poprad: [49.0555, 20.2975],
   piestany: [48.5918, 17.8273], hlohovec: [48.4310, 17.8030], zvolen: [48.5762, 19.1371],
-  wien: [48.2085, 16.3731], graz: [47.0707, 15.4395], linz: [48.3059, 14.2862], salzburg: [47.8, 13.045], innsbruck: [47.2654, 11.3927] };
+  wien: [48.2085, 16.3731], graz: [47.0707, 15.4395], linz: [48.3059, 14.2862], salzburg: [47.8, 13.045], innsbruck: [47.2654, 11.3927],
+  washington: [38.8977, -77.0365] };
 for (const id of STATE_TOWNS.SK) CITIES[id] = stateTown(id, "slovensko", VIEW[id]);
 for (const id of STATE_TOWNS.AT) CITIES[id] = stateTown(id, "austria", VIEW[id]);
+for (const id of STATE_TOWNS.US) CITIES[id] = stateTown(id, "usa", VIEW[id]);
 
 // Towns with no data of their own (the national DTM of ČÚZK, as "cesko"), only their own vehicles.
 const artTown = (id, inCity, adjective, art) => ({ ...CITIES.cesko, id, like: "cesko", inCity, adjective, art: id, artMap: { ...art, ...TOWN_ART } });
@@ -580,7 +583,7 @@ export const loadStates = (json) => {
   land = Object.fromEntries(entries.filter(([id]) => LAND.test(id)).map(([id, lines]) => [id.slice(5), { lines, at: new Set(lines.flat().map((p) => p.join())) }]));
   states = entries.filter(([id]) => !LAND.test(id)).map(([id, rings]) => ({ ...boxed(id, rings), id: id.replace(PLUS, "") }));
 };
-// The cities of the other states (mesta-sk.json, mesta-at.json; STATE_TOWNS): within their state, else its rest.
+// The cities of the other states (mesta-sk.json, mesta-at.json, mesta-us.json; STATE_TOWNS): within their state, else its rest.
 let towns = [];
 export const loadTowns = (json) => { towns = [...towns.filter((b) => !(b.id in (json || {}))), ...Object.entries(json || {}).filter(([id]) => CITIES[id]).map(([id, rings]) => boxed(id, rings))]; };
 // The state entry of a point: the first ring it lies in; on a coast (GISCO's 1 : 1 M ring cuts off quays and ports: the

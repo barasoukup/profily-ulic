@@ -1,0 +1,75 @@
+<svg viewBox="0 0 370 930" xmlns="http://www.w3.org/2000/svg">
+  <!-- New York Bishop's Crook (historic districts): ductile iron post, aluminium arm, black, teardrop pendant; 26 ft 3 in (8.0 m) overall (Street Design Manual 4.2.2), the light hangs at 6.6 m, 0.9 m before the post. Foot at x = 348. Mirror of the left one. 1 px = 1 cm. -->
+  <g transform="matrix(-1 0 0 1 370 0)">
+  <path d="M346 250 C338 240 325 234 311 232 C286 228 270 210 273 188 C276 168 298 158 314 168 C328 177 327 198 311 201 C299 203 291 191 298 183 C302 179 308 181 308 186" stroke="#34393c" stroke-width="4.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M290 224 C282 222 276 228 279 234 M284 170 C276 168 272 160 268 160 M330 238 C332 228 340 222 345 222" stroke="#34393c" stroke-width="3.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="308" cy="187" r="4" fill="#34393c"/>
+  <circle cx="279" cy="235" r="3.4" fill="#34393c"/>
+  <circle cx="327" cy="176" r="3" fill="#34393c"/>
+  <path d="M312 170 C320 168 330 168 342 176" stroke="#34393c" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M348 262 V192 A45 45 0 0 0 258 192 V206" stroke="#34393c" stroke-width="9" fill="none" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M351 262 V192 A48 48 0 0 0 303 144" stroke="#23272a" stroke-width="3" fill="none" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M345 256 V192 A42 42 0 0 0 268 169" stroke="#666e72" stroke-width="1.4" fill="none" stroke-linecap="butt" stroke-linejoin="round"/>
+  <rect x="340.5" y="226" width="15" height="5" rx="1" fill="#34393c"/>
+  <rect x="340.5" y="196" width="15" height="4" rx="1" fill="#34393c"/>
+  <rect x="251" y="200" width="14" height="4" rx="1" fill="#34393c"/>
+  <circle cx="303" cy="140.5" r="4" fill="#34393c"/>
+  <circle cx="303" cy="135.5" r="2.2" fill="#34393c"/>
+  <rect x="254.5" y="204" width="7" height="9" fill="#34393c"/>
+  <path d="M252 212 H264 L268 218 H248 Z" fill="#666e72"/>
+  <rect x="248" y="218" width="20" height="15" rx="2" fill="#34393c"/>
+  <rect x="261" y="218" width="7" height="15" rx="2" fill="#23272a"/>
+  <path d="M253 220 V231 M258 220 V231" stroke="#666e72" stroke-width="1.1" fill="none" stroke-linecap="butt" stroke-linejoin="round"/>
+  <rect x="246" y="232" width="24" height="3" rx="1" fill="#666e72"/>
+  <path d="M247 235 H269 C272 239 271 246 274.5 254 H241.5 C245 246 244 239 247 235 Z" fill="#34393c"/>
+  <path d="M262 235 H269 C272 239 271 246 274.5 254 H265 Z" fill="#23272a"/>
+  <path d="M250 237 Q248 246 246 253 M256 237 L254 250" stroke="#666e72" stroke-width="1.2" fill="none" stroke-linecap="butt" stroke-linejoin="round"/>
+  <rect x="240.5" y="253" width="35" height="3.4" rx="1.4" fill="#34393c"/>
+  <path d="M245 256 H271 Q271 264 263 270 Q258 273 253 270 Q245 264 245 256 Z" fill="#e9e2c4"/>
+  <path d="M263 256 H271 Q271 264 263 270 Z" fill="#d3cba8"/>
+  <path d="M342.5 290 H353.5 L356 640 H340 Z" fill="#34393c"/>
+  <path d="M349.65 290 H353.5 L356 640 H350.4 Z" fill="#23272a"/>
+  <path d="M344.04 290 H345.8 L344.8 640 H342.24 Z" fill="#666e72"/>
+  <path d="M347.45 290 L347.2 640" stroke="#191c1e" stroke-width="1" fill="none" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M351.41 290 L352.96 640" stroke="#191c1e" stroke-width="1" fill="none" stroke-linecap="butt" stroke-linejoin="round"/>
+  <rect x="339" y="256" width="18" height="6" rx="1" fill="#34393c"/>
+  <rect x="350.7" y="256" width="6.3" height="6" rx="1" fill="#23272a"/>
+  <rect x="340.8" y="256" width="4.5" height="1.4" fill="#666e72"/>
+  <path d="M339 290 L342 262 H354 L357 290 Z" fill="#34393c"/>
+  <path d="M351 262 H354 L357 290 H351 Z" fill="#23272a"/>
+  <rect x="337" y="286" width="22" height="5" rx="1" fill="#34393c"/>
+  <rect x="351.3" y="286" width="7.7" height="5" rx="1" fill="#23272a"/>
+  <rect x="339.2" y="286" width="5.5" height="1.4" fill="#666e72"/>
+  <rect x="337.5" y="520" width="21" height="5" rx="1" fill="#34393c"/>
+  <rect x="351.15" y="520" width="7.35" height="5" rx="1" fill="#23272a"/>
+  <rect x="339.6" y="520" width="5.25" height="1.4" fill="#666e72"/>
+  <rect x="335" y="636" width="26" height="6" rx="1" fill="#34393c"/>
+  <rect x="351.9" y="636" width="9.1" height="6" rx="1" fill="#23272a"/>
+  <rect x="337.6" y="636" width="6.5" height="1.4" fill="#666e72"/>
+  <path d="M339 642 H357 L360 772 H336 Z" fill="#34393c"/>
+  <path d="M350.7 642 H357 L360 772 H351.6 Z" fill="#23272a"/>
+  <path d="M341.52 642 H344.4 L343.2 772 H339.36 Z" fill="#666e72"/>
+  <path d="M339.1 669 L356.9 647 V651 L339.1 673 Z" fill="#50585b"/>
+  <path d="M338.4076923076923 699 L357.5923076923077 677 V681 L338.4076923076923 703 Z" fill="#50585b"/>
+  <path d="M337.7153846153846 729 L358.2846153846154 707 V711 L337.7153846153846 733 Z" fill="#50585b"/>
+  <path d="M337.0230769230769 759 L358.9769230769231 737 V741 L337.0230769230769 763 Z" fill="#50585b"/>
+  <rect x="332" y="770" width="32" height="7" rx="1" fill="#34393c"/>
+  <rect x="352.8" y="770" width="11.2" height="7" rx="1" fill="#23272a"/>
+  <rect x="335.2" y="770" width="8" height="1.4" fill="#666e72"/>
+  <path d="M335 777 H361 Q366 790 365 806 H331 Q330 790 335 777 Z" fill="#34393c"/>
+  <path d="M353 777 H361 Q366 790 365 806 H354 Z" fill="#23272a"/>
+  <path d="M338 780 Q335 792 335 804 M344 780 Q342 792 342 804" stroke="#666e72" stroke-width="1.2" fill="none" stroke-linecap="butt" stroke-linejoin="round"/>
+  <rect x="330" y="804" width="36" height="6" rx="1" fill="#34393c"/>
+  <rect x="353.4" y="804" width="12.6" height="6" rx="1" fill="#23272a"/>
+  <rect x="333.6" y="804" width="9" height="1.4" fill="#666e72"/>
+  <path d="M333 810 H363 L366 896 H330 Z" fill="#34393c"/>
+  <path d="M352 810 H363 L366 896 H353 Z" fill="#23272a"/>
+  <rect x="336" y="822" width="13" height="56" rx="1" fill="#666e72"/>
+  <rect x="337.2" y="823.4" width="11.6" height="54" rx="1" fill="#34393c"/>
+  <rect x="327" y="896" width="42" height="10" rx="1" fill="#34393c"/>
+  <rect x="352" y="896" width="17" height="10" rx="1" fill="#23272a"/>
+  <rect x="326" y="906" width="44" height="24" fill="#34393c"/>
+  <rect x="352" y="906" width="18" height="24" fill="#23272a"/>
+  <rect x="326" y="906" width="26" height="1.6" fill="#666e72"/>
+  </g>
+</svg>

@@ -125,9 +125,9 @@ const cutSpan = (cut) => cut?.span || cut?.reach || defaultReach();
 const STORE = "streetdesign-pilot" + (LANES_ORTHO ? "" : "-bez-orto"); // the last cut (Prague's key from the time of one page per city); ?orto=0 its own
 // The boundaries of the cities with their own sources (tools/build_mesta.mjs): a cut takes its city by them.
 const statyJson = fetch("staty.json").then((r) => (r.ok ? r.json() : null), () => null);
-// The boundaries of the Slovak and Austrian cities (tools/build_towns_sk.mjs, build_towns_at.mjs): the city of a cut
+// The boundaries of the Slovak, Austrian and American cities (tools/build_towns_sk.mjs, build_towns_at.mjs, build_towns_us.mjs): the city of a cut
 // and the territories of the Slovak towns' sources. Without them those cuts are their state's rest.
-const townsJson = Promise.all(["mesta-sk.json", "mesta-at.json"].map((f) => fetch(f).then((r) => (r.ok ? r.json() : null), () => null)));
+const townsJson = Promise.all(["mesta-sk.json", "mesta-at.json", "mesta-us.json"].map((f) => fetch(f).then((r) => (r.ok ? r.json() : null), () => null)));
 const MESTA = await fetch("mesta.json").then((r) => (r.ok ? r.json() : null), () => null);
 // Without the file every cut keeps the current city (rather than all becoming "cesko").
 if (MESTA) loadBounds(MESTA); else console.warn("mesta.json se nenačetl: město se podle polohy nepozná");
@@ -136,9 +136,10 @@ if (MESTA) loadBounds(MESTA); else console.warn("mesta.json se nenačetl: město
 const STATY = await statyJson;
 if (STATY) loadStates(STATY); else console.warn("staty.json se nenačetl: stát se podle polohy nepozná");
 {
-  const [sk, at] = await townsJson;
+  const [sk, at, us] = await townsJson;
   if (sk) { loadSkTowns(sk); loadTowns(sk); }
   if (at) loadTowns(at);
+  if (us) loadTowns(us);
 }
 // The city of a point becomes the current one (city.js): its sources, texts and illustrations.
 async function useCity(lat, lon) {

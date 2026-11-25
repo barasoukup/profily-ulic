@@ -1,0 +1,27 @@
+<svg viewBox="0 0 370 930" xmlns="http://www.w3.org/2000/svg">
+  <!-- New York standard street light: tapered octagonal galvanised pole, 8 ft arm rising 3 ft, LED cobra head, 22 in base; 30 ft overall (Street Design Manual 4.1.1, NYC DOT LP-038: shaft 25 ft, 7.7 in at the bottom, 4.2 in at the top). Foot at x = 348. 1 px = 1 cm. -->
+  <path d="M347 118 C334 84 300 62 258 53 L176 38" stroke="#b4b9bb" stroke-width="6.5" fill="none" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M347 121 C334 87.2 300 65.2 258 56.2 L176 41" stroke="#8f9699" stroke-width="2" fill="none" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M346 160 C340 140 330 104 318 80" stroke="#8f9699" stroke-width="3" fill="none" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M180 31 L160 29 Q124 25 108 34 L106 40 L160 45 L180 45 Z" fill="#8b9194"/>
+  <path d="M180 31 L160 29 Q124 25 108 34 L108 37 L160 35 L180 36.5 Z" fill="#b4b9bb"/>
+  <path d="M108 40 L154 44.4 L154 47.6 L109 43.6 Z" fill="#e6dca8"/>
+  <rect x="138" y="23" width="7" height="5" rx="1.5" fill="#55595b"/>
+  <path d="M342.5 106 H353.5 L359 872 H337 Z" fill="#b4b9bb"/>
+  <path d="M349.65 106 H353.5 L359 872 H351.3 Z" fill="#8f9699"/>
+  <path d="M344.04 106 H345.8 L343.6 872 H340.08 Z" fill="#d0d4d5"/>
+  <path d="M342 106 L344 100 H352 L354 106 Z" fill="#8f9699"/>
+  <rect x="340.5" y="114" width="15" height="10" rx="1" fill="#b4b9bb"/>
+  <rect x="350" y="114" width="5.5" height="10" rx="1" fill="#8f9699"/>
+  <rect x="340.5" y="157" width="15" height="8" rx="1" fill="#b4b9bb"/>
+  <rect x="350" y="157" width="5.5" height="8" rx="1" fill="#8f9699"/>
+  <path d="M350.2 124 L351.6 872 M345.6 124 L344.6 872" stroke="#7c8386" stroke-width="1.2" fill="none" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M333 874 H363 L367 922 H329 Z" fill="#b4b9bb"/>
+  <path d="M353 874 H363 L367 922 H355 Z" fill="#8f9699"/>
+  <rect x="328" y="922" width="40" height="8" fill="#8f9699"/>
+  <rect x="328" y="922" width="27" height="2" fill="#d0d4d5"/>
+  <path d="M339 886 H350 L351 910 H338 Z" fill="#8f9699"/>
+  <path d="M340 888 H349 L349.8 908 H339.3 Z" fill="#b4b9bb"/>
+  <rect x="335" y="870" width="26" height="4" fill="#d0d4d5"/>
+  <rect x="352" y="870" width="9" height="4" fill="#8f9699"/>
+</svg>

@@ -3,7 +3,7 @@
 import { TYPES, SOURCES, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURNS, HDV_UNDER, LAMP_H, underSize } from "./types.js";
 import { city, country, cityById, CITY_IDS, creditLines } from "./city.js";
 import { COUNTRIES } from "./countries/index.js";
-import { GENERIC_VEHICLES } from "./art.js";
+import { GENERIC_VEHICLES, LAMP_PICTURE, LAMP_PICTURES } from "./art.js";
 import { PLATES, signFile, plateFile, signLabel, signDir, SPEED_TEMPLATES } from "./signs.js";
 // tr: t is a part's type here.
 import { t as tr, num } from "./i18n.js";
@@ -411,9 +411,12 @@ export function nearestRoadway(segs, i, f) {
   for (let k = i + 1; k < segs.length; d += segs[k].width, k++) if (ROADWAY.has(segs[k].type)) { right = d; break; }
   return left === Infinity && right === Infinity ? null : left <= right ? "left" : "right";
 }
-// Where the luminaire of the city's lamp picture hangs (m): Brno's at 7.4 m, the others' (Prague's and its copies,
+// The city's lamp picture (art.js LAMP_PICTURES) and where its luminaire hangs (m): Brno's at 7.4 m, the others' (Prague's and its copies,
 // Streetmix's) at LAMP_H (Fable: Brno's "6 m" came out lower than a 5 m post-top lamp).
-const lampLight = () => (artKey() === "brno" ? 7.4 : LAMP_H);
+const lampPicture = () => ({ light: LAMP_H, ...LAMP_PICTURE, ...LAMP_PICTURES[artKey()] });
+const lampLight = () => lampPicture().light;
+// A lamp without an arm: a post-top picture, or the post-top lamp up to 5 m.
+const postTopLamp = (it) => lampPicture().postTop || it.h <= 5;
 const POLE_SCALE = 0.93; // overhead-line poles: their contact wire (5.9 m in the picture) at WIRE_H
 // A span wire (spanPlan) from a pole across the tracks to its other end, with an insulator by each end and a hanger
 // down to the contact wire over each track (as the poles' brackets); on a building, a wall rosette.
@@ -440,10 +443,10 @@ function drawItem(g, it, x, top, right) {
       // lamp with its mast longer or shorter: the bracket and luminaire (the top 300 cm of the 930 cm picture) and
       // the foot (its bottom 130 cm) at their size, the mast between them stretched. Up to 5 m a post-top lamp: a
       // slim pole with the luminaire on top, as in parks and quiet streets.
-      const name = right ? "lamp-modern-left" : "lamp-modern-right", anchor = right ? 348 : 22;
+      const pic = lampPicture(), name = right ? "lamp-modern-left" : "lamp-modern-right", anchor = pic.postTop ? null : right ? 348 : 22;
       if (!it.h) return sprite(g, name, x, top, false, anchor);
       const dark = artKey() === "brno", pole = dark ? "#3d4246" : "#b5b9ba", shade = dark ? "#2c3033" : "#94989a";
-      if (it.h <= 5) {
+      if (it.h <= 5 && !pic.postTop) {
         const head = top - it.h * 100;
         el("path", { d: `M${x - 15} ${top} L${x - 13} ${top - 70} H${x + 13} L${x + 15} ${top} Z`, fill: dark ? "#33373a" : "#727678" }, g);
         el("rect", { x: x - 6, y: head + 30, width: 12, height: it.h * 100 - 100, fill: pole }, g);
@@ -453,15 +456,15 @@ function drawItem(g, it, x, top, right) {
         el("rect", { x: x - 3, y: head, width: 6, height: 9, rx: 2, fill: dark ? "#3d4246" : "#2f3335" }, g);
         return;
       }
-      const d = it.h * 100 - lampLight() * 100, base = top - 930;
+      const d = it.h * 100 - pic.light * 100, base = top - pic.h, mast = pic.foot - pic.cut;
       const part = (y0, y1, transform) => {
         const id = `lamp${++clipN}`, og = el("g", transform ? { transform } : {}, g);
         el("rect", { x: x - 400, y: base + y0, width: 800, height: y1 - y0 }, el("clipPath", { id }, og));
         sprite(el("g", { "clip-path": `url(#${id})` }, og), name, x, top, false, anchor);
       };
-      part(0, 301, `translate(0 ${-d})`); // the top up or down by d
-      part(299, 801, `translate(0 ${base + 800}) scale(1 ${(500 + d) / 500}) translate(0 ${-(base + 800)})`); // the mast
-      part(799, 930); // the foot
+      part(0, pic.cut + 1, `translate(0 ${-d})`); // the top up or down by d
+      part(pic.cut - 1, pic.foot + 1, `translate(0 ${base + pic.foot}) scale(1 ${(mast + d) / mast}) translate(0 ${-(base + pic.foot)})`); // the mast
+      part(pic.foot - 1, pic.h); // the foot
       return;
     }
     // The Prague bench has its back on the left: on the right half it turns to face the street too.
@@ -2683,7 +2686,7 @@ export function buildSvg(profile, opts = {}) {
         // Only on a true median (a dividing strip, green or a tram bed between two roadways of a big road), not on a
         // walkway island by a turn (Bára, náměstí Jana Palacha).
         // (A post-top lamp has no arms: once is enough.)
-        if (MEDIAN_LAMP.has(s.type) && ROADWAY.has(segs[i - 1]?.type) && ROADWAY.has(segs[i + 1]?.type) && !(it.h <= 5)) drawItem(g, it, ix, top, !onRight);
+        if (MEDIAN_LAMP.has(s.type) && ROADWAY.has(segs[i - 1]?.type) && ROADWAY.has(segs[i + 1]?.type) && !postTopLamp(it)) drawItem(g, it, ix, top, !onRight);
       }
       const key = `${i}:${s.items.indexOf(it)}`;
       if (spans.free.has(key)) { drawItem(g, { ...it, span: true }, ix, top, spans.free.get(key)); continue; }

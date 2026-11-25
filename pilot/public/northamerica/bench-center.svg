@@ -1,0 +1,22 @@
+<svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
+  <!-- American street bench, seen from its end: back on the left, one sits to the right. Steel slats (6 x 4 cm, their ends) on a black cast end frame with a loop arm. Seat 46 cm, back 86 cm, armrest 64 cm, 62 cm deep. 1 px = 1 cm. -->
+  <path d="M14.4 8 Q13 10 14 13 L20 34 C22 42 25 48 25.4 56 L22.4 86 H27.6 L31 58 C40 55 58 54 66 57 L69 86 H74.2 L71.8 52 Q71.6 48.6 68 48.4 C58 49 48 50.4 40 49 C30 46.6 25 36 21.6 25 L17.6 8 Q16 6 14.4 8 Z" fill="#3a4043"/>
+  <path d="M14.4 8 Q13 10 14 13 L20 34 C22 42 25 48 25.4 56 L22.4 86 H24 L27 56 C26.6 47 23.4 41 21.4 33 L15.8 13 Z" fill="#666e72"/>
+  <path d="M66 57 L69 86 H70.8 L68.4 56 Z M71.8 52 L74.2 86 H72.6 L70 52 Z" fill="#23272a"/>
+  <rect x="18.6" y="85.6" width="12" height="4.4" rx="1.4" fill="#23272a"/>
+  <rect x="66" y="85.6" width="12" height="4.4" rx="1.4" fill="#23272a"/>
+  <path d="M26.4 72 C40 66 56 66 70 72" stroke="#3a4043" stroke-width="2.6" fill="none" stroke-linecap="butt" stroke-linejoin="round"/>
+  <rect x="14.1" y="7.1" width="5.8" height="3.8" rx="0.8" fill="#6b7276" transform="rotate(-108 17 9)"/><rect x="14.1" y="7.1" width="5.8" height="1.2" rx="0.6" fill="#9aa1a4" transform="rotate(-108 17 9)"/>
+  <rect x="15.299999999999999" y="14.700000000000001" width="5.8" height="3.8" rx="0.8" fill="#6b7276" transform="rotate(-108 18.2 16.6)"/><rect x="15.299999999999999" y="14.700000000000001" width="5.8" height="1.2" rx="0.6" fill="#9aa1a4" transform="rotate(-108 18.2 16.6)"/>
+  <rect x="17.700000000000003" y="22.1" width="5.8" height="3.8" rx="0.8" fill="#6b7276" transform="rotate(-110 20.6 24)"/><rect x="17.700000000000003" y="22.1" width="5.8" height="1.2" rx="0.6" fill="#9aa1a4" transform="rotate(-110 20.6 24)"/>
+  <rect x="20.5" y="29.1" width="5.8" height="3.8" rx="0.8" fill="#6b7276" transform="rotate(-114 23.4 31)"/><rect x="20.5" y="29.1" width="5.8" height="1.2" rx="0.6" fill="#9aa1a4" transform="rotate(-114 23.4 31)"/>
+  <rect x="24.3" y="35.7" width="5.8" height="3.8" rx="0.8" fill="#6b7276" transform="rotate(-128 27.2 37.6)"/><rect x="24.3" y="35.7" width="5.8" height="1.2" rx="0.6" fill="#9aa1a4" transform="rotate(-128 27.2 37.6)"/>
+  <rect x="30.1" y="40.7" width="5.8" height="3.8" rx="0.8" fill="#6b7276" transform="rotate(26 33 42.6)"/><rect x="30.1" y="40.7" width="5.8" height="1.2" rx="0.6" fill="#9aa1a4" transform="rotate(26 33 42.6)"/>
+  <rect x="37.5" y="43.1" width="5.8" height="3.8" rx="0.8" fill="#6b7276" transform="rotate(10 40.4 45)"/><rect x="37.5" y="43.1" width="5.8" height="1.2" rx="0.6" fill="#9aa1a4" transform="rotate(10 40.4 45)"/>
+  <rect x="45.1" y="43.7" width="5.8" height="3.8" rx="0.8" fill="#6b7276" transform="rotate(0 48 45.6)"/><rect x="45.1" y="43.7" width="5.8" height="1.2" rx="0.6" fill="#9aa1a4" transform="rotate(0 48 45.6)"/>
+  <rect x="52.7" y="43.300000000000004" width="5.8" height="3.8" rx="0.8" fill="#6b7276" transform="rotate(-3 55.6 45.2)"/><rect x="52.7" y="43.300000000000004" width="5.8" height="1.2" rx="0.6" fill="#9aa1a4" transform="rotate(-3 55.6 45.2)"/>
+  <rect x="60.300000000000004" y="42.7" width="5.8" height="3.8" rx="0.8" fill="#6b7276" transform="rotate(-4 63.2 44.6)"/><rect x="60.300000000000004" y="42.7" width="5.8" height="1.2" rx="0.6" fill="#9aa1a4" transform="rotate(-4 63.2 44.6)"/>
+  <rect x="67.89999999999999" y="43.5" width="5.8" height="3.8" rx="0.8" fill="#6b7276" transform="rotate(18 70.8 45.4)"/><rect x="67.89999999999999" y="43.5" width="5.8" height="1.2" rx="0.6" fill="#9aa1a4" transform="rotate(18 70.8 45.4)"/>
+  <path d="M22.6 28 C34 24 54 23 64 25.6 Q72.6 28 71.6 35 Q71 41 68.8 48" stroke="#3a4043" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M24 27 C35 23.2 54 22 63.6 24.4" stroke="#666e72" stroke-width="1.1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
