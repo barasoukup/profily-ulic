@@ -448,7 +448,9 @@ směr (IFC 503.2.1, 18 DCMR § 2405), bez řádku značek, bez paneláků, sever
 Stát `canada` (CA), `countries/CA.js`, `towns/canada.js`; Toronto a obce kolem (StatCan), zbytek Kanady `closed_ca`. Mapa povrchů města
 (`cot_geospatial3`: vozovky, chodníky, parkoviště, budovy) jde společným adaptérem **`towns/planimetrics.js`** (popis města: vrstvy a jejich
 kódy, křižovatky, `prepare`, `adjust`), který sdílí s Washingtonem (`towns/usa.js` je popis, inventář DDOT a CAMA). Mezera mezi vozovkami = dělicí
-pás, s kolejí OSM = tramvajové těleso; pruh stání z parkoviště u obruby; cyklostezky novější než mapa z OSM (`?off=roadtracks`).
+pás (`?off=mapgaps`), s kolejí OSM = tramvajové těleso (koleje v tunelu ne); pruh stání z parkoviště u obruby (`?off=kerbbays`); cyklostezky novější
+než mapa z OSM, samostatné i jen jako tag silnice (`?off=roadtracks`). Stát, zdroje a domy Severní Ameriky se načtou, až když tam je řez nebo mapa
+(`late.js` `ensurePlace`, `america.js`, `staty-america.json`, `mesta-us.json`, `mesta-ca.json`).
 `?toronto=0` vypne. Ortofoto `cot_ortho`, OSM balík `ca_on_toronto`. Měření `evaluation/canada/ZPRAVA.md`. Obdobné město = popis v
 `towns/…`, kredity (`cityMap`), texty.
 
@@ -566,7 +568,7 @@ OSM church, chapel aj. kostel, OSM garage(s) a RÚIAN garáž garáž. Starý d�
 Podloubí jen podle dat (Bára): cesta OSM `covered=arcade|colonnade|building_arcade` přes řez u fasády (5 m před ní až
 8 m za ní, `derive.js`) → u jakéhokoli domu klenutý průchod v přízemí, v kartě „s podloubím (OSM)“. Věžák zvlášť nekreslíme: vysoký dům stejného stáří a využití vypadá po podlažích stejně (Bára).
 
-Severní Amerika má 14 vlastních vzhledů (`houses-america.js`, výběr `house-looks.js` `northAmericaLook`, USA i budoucí Kanada;
+Severní Amerika má 14 vlastních vzhledů (`houses-america.js`, výběr `house-looks-america.js` `northAmericaLook`, USA i Kanada;
 `docs/house-types-north-america.md`, `evaluation/north-america-art/houses/ZPRAVA.md`); bez dat prostý řadový nebo rodinný dům.
 Vzhled domu čte všechny budovy OSM, i bez podlaží a výšky, ve všech státech (`?off=vsedomy` jen dřívější; `evaluation/all-buildings/ZPRAVA.md`);
 registr budov má přednost. Panelák jen z tvaru bloku bez podlaží a druhu se nedělá, dům v řadě bez podlaží je ve Flandrech cihlový městský.

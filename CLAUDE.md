@@ -556,7 +556,13 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Jeden adaptér ArcGIS planimetrií pro Washington a Toronto: `towns/planimetrics.js` (popis města; 100 řezů DC bajt po bajtu stejné). Kredity
   a výpadek mapy podle klíče města (`cityMap`, `mapFailed`).
 - Čerstvé měření 60 řezů: slepé A/B mapa : odhad 44 : 6 (7 nerozhodně); univerzální měření 74 % s mapou, 68 % bez (rozdíl +7, −3 až +18,
-  **složení neprůkazně, šířka ano**), jen OSM 70 %. Zpráva `evaluation/canada/ZPRAVA.md`, normy `NORMY.md` (jen oranžově).
+  **složení neprůkazně, šířka ano**), jen OSM 70 %. **Výhrada:** vzorek podmínila fotka, 83 ze 143 bodů vypadlo (hlavně místní a obslužné
+  ulice), čtvrtina dvojic jsou dálnice a obslužné; není to obraz celé sítě.
+  **Druhá nepřátelská recenze (25. 11. 2026, `evaluation/canada/review/`, vzorky po zmrazení, dva slepí posuzovatelé):** mezery mezi vozovkami
+  15 : 7 (p 0,13, `?off=mapgaps`), cyklostezky z OSM 13 : 6 (p 0,17, `?off=roadtracks`), zálivy 5 : 1 (jen 9 změněných ze 34, `?off=kerbbays`): nic
+  neprohrálo, nic průkazně nevyhrálo, zůstávají zapnuté (rozhodne Bára). Podlaží z výšky proti fotce blíž 10 : 7 z 23 (průměrná chyba 1,35 → 0,65):
+  remíza, zapnuté. **Okolí Toronta a Washingtonu bez mapy: složení 51 % (42–64), 19 použitelných řezů z 30, šířka do 1 m 11 %**
+  (Washington 47 %, Toronto 55 %): slabé, rozhodne Bára. Opravené: koleje v tunelu (`?off=tunneltracks`, i Evropa), The Queensway, podlaží, veranda. Zpráva `evaluation/canada/ZPRAVA.md`, normy `NORMY.md` (jen oranžově).
 - Před nasazením workflow OSM tiles se `states: ca`; služba `gis.toronto.ca` podmínky neuvádí,
   Bára 25. 11. 2026: používat s kreditem (záloha: plochy z katalogu hostovat). Překlady strojové.
 
@@ -578,11 +584,17 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   Starší čísla neplatí jako důkaz: A/B 23 : 9 mělo nápovědu v pokynu, 66 % stálo na řezech pilotu, na kterých se ladilo.
   Tepny (`evaluation/usa/arterials/ZPRAVA.md`, `?off=dcarterials`): na 25 nových naslepo mapa : bez mapy 19 : 6; nový : starý kód jen
   3 změny na nových řezech (2 : 0 : 1), neprůkazné.
-- Normy DDOT DEM 2023, Bicycle Facility Design Guide 2020 a NACTO jen oranžově; stání 3 m na směr (IFC 503.2.1,
+- **Druhá nepřátelská recenze (25. 11. 2026):** inventář DDOT má vlastní A/B (`?ddot=0`): 21 : 11 ze 45 změněných řezů z 90 (p 0,11; místní 15 : 5, tepny
+  3 : 4), počet pruhů 20 proti 19 z 33, strany stání 49 proti 45 ze 73: **neprůkazné, zůstává zapnutý** (rozhodne Bára). Kliknutí ve Washingtonu a
+  Torontu (46 a 46, z toho 13 uliček): po opravě uličky (`74fcb46`) žádná ulička přes 15 m. Jiná ulice šikmo v profilu se jen ohlásí (křižovatka);
+  ukončení profilu před ní je remíza 13 : 10 (Evropa 9 : 10), vypnuté (`?otherstreet=1`; `?off=otherstreet` vypne i hlášku; sdílené).
+- **Severní Amerika se načítá až na místě** (`late.js`, `america.js`, `staty-america.json`; `usa`, `canada` a `closed_*` už nejsou ve `staty.json`): start v Evropě
+  o 11 kB gzip víc než `estonia` (dřív o 161). Nové věci obou států přidávej tam, ne do statických importů (hlídá `tests/canada.test.js`).
+- Normy DDOT DEM 2023 (aplikace cituje bez čísel tabulek, neověřená), Bicycle Facility Design Guide 2020 a NACTO jen oranžově; stání 3 m na směr (IFC 503.2.1,
   18 DCMR § 2405); bez řádku značek; bez paneláků; hledání Photon.
 - Ilustrace (větev north-america-art, sloučená 25. 11. 2026, `evaluation/north-america-art/`): severoamerické domy (`houses-america.js`,
-  `house-looks.js northAmericaLook`), mobiliář `northamerica/`, autobus Metrobus v celém metru, Washington má svůj označník a glóbus do
-  5 m (`lamp-post-top`), bez tramvaje; domy v DC z CAMA (`?cama=0`). New York, Boston, Toronto, San Francisco nakreslené, nezapojené.
+  `house-looks-america.js northAmericaLook`), mobiliář `northamerica/`, autobus Metrobus v celém metru, Washington má svůj označník a glóbus do
+  5 m (`lamp-post-top`), bez tramvaje; domy v DC z CAMA (`?cama=0`). Toronto zapojené (stát `canada`), New York, Boston a San Francisco nakreslené, nezapojené.
 - Tři společné změny z pilotu (všechny státy, podoba z `estonia` 83734e7): ústí uličky je křižovatka (`?off=ulicky`, zapnuto), obousměrka se dělí od
   4,0 m, kde je počet pruhů známý a u vozovky je stání (`?off=pocetpruhu`, zapnuto), jamky stromů v chodníku jako chodník (**vypnuto**, `?treepits=1`:
   DC 2 : 2, české kontroly 0 : 1). Regrese Prahy a Brna beze změny, v Evropě z 120 náhodných řezů změněno 0.

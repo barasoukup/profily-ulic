@@ -222,3 +222,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Srovnávat a přepínat normy různých států, aby byly vidět rozdíly přístupů (Bára 20. 11. 2026).
 - Výšky povrchu v profilu (DMR 5G, výškové body), jedna strana ulice výš než druhá (Bára 12. 11. 2026).
 - Zóny a rychlosti po pruzích z OSM, povrch, názvy zastávek MHD, přechody.
+- **Severní Amerika, druhá recenze (25. 11. 2026, `evaluation/canada/review`):** okolí Washingtonu a Toronta bez mapy 51 % (zúžit, nebo přidat ortofoto: USGS/NAIP,
+  Maryland 15 cm, Ontario 16 cm, licence neprověřené); Queen Street West má tři pruhy místo čtyř (koleje OSM asi metr vedle středu vozovky mapy);
+  ulička v ohybu širší než 9 m bez mapy; inventář DDOT na tepnách nezlepší počet pruhů; kostely v Americe české; ukončení profilu před jinou ulicí (`?otherstreet=1`,
+  13 : 10) v Evropě nejisté.

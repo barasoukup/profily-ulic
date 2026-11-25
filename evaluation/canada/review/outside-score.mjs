@@ -1,7 +1,7 @@
 // The surroundings of Washington and Toronto by the universal measurement (outside.mjs; one judging a cut).   node outside-score.mjs
 import fs from "node:fs";
 import { compare } from "../../universal/compare.mjs";
-const here = (f) => new URL(f, import.meta.url), J = fs.readFileSync(here("results/outside-judged.jsonl"), "utf8").trim().split("\n").map((l) => JSON.parse(l)), P = new Map(JSON.parse(fs.readFileSync(here("results/outside.json"), "utf8")).map((r) => [r.id, r]));
+const here = (f) => new URL(f, import.meta.url), L = (f) => fs.readFileSync(here(f), "utf8").trim().split("\n").map((l) => JSON.parse(l)), M = L("results/outside-judged-md.jsonl"), J = L("results/outside-judged.jsonl").map((j) => M.find((m) => m.id === j.id) || j), P = new Map(JSON.parse(fs.readFileSync(here("results/outside.json"), "utf8")).map((r) => [r.id, r]));
 const app = new Map(JSON.parse(fs.readFileSync(here("../../universal/data/na-review.json"), "utf8")).filter((r) => r.variant === "def").map((r) => [r.id, r])), LANE = ["pruh", "bus", "tramvaj"];
 const use = J.filter((j) => j.usable && app.get(j.id)?.parts?.length && j.parts.some((p) => LANE.includes(String(p[0]).replace("?", ""))));
 let seed = 7; const rnd = () => ((seed = (seed * 1103515245 + 12345) % 2147483648) / 2147483648);

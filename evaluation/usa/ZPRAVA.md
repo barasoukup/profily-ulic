@@ -74,6 +74,11 @@ a kód je starší než oprava tepen.
 naslepo (neutrální pokyn) mapa : bez mapy **19 : 6**. Nový kód : starý 8 : 2 je z 11 změněných řezů z 97, na nových místech
 jen 2 : 0 : 1; zbylých 6 : 2 jsou řezy, na kterých se ladilo, takže to důkaz není.
 
+## Inventář DDOT a kliknutí (druhá recenze, 25. 11. 2026)
+
+`../canada/review/`: `?ddot=0` proti výchozímu stavu 21 : 11 ze 45 změněných z 90 (p 0,11, neprůkazné; místní 15 : 5), počet pruhů beze změny
+(20 proti 19 z 33). Kliknutí na uličky po opravě z `estonia` nejvýš 15 m. Okolí bez mapy 47 % (8 řezů). Podrobnosti `../canada/ZPRAVA.md`.
+
 ## Čerstvé měření po recenzi (25. 11. 2026)
 
 `fresh/ZPRAVA.md`: 60 nových řezů podle délky sítě, zmrazený kód, dva posuzovatelé, neutrální pokyn: mapa : odhad **41 : 10**
