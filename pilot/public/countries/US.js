@@ -49,12 +49,13 @@ function limitsUS(s, segs = [], i = -1) {
 const PLANTS = new Set(["swale-plants", "reeds-left", "reeds-right"]);
 const northAmerica = Object.fromEntries(Object.entries(czechFurniture).map(([k, v]) => [k, PLANTS.has(k) ? v : `../northamerica/${TOWN_ART[k]}`]));
 const own = (keys) => Object.fromEntries(keys.map((k) => [k, TOWN_ART[k]]));
-const usa = northAmerica;
+// The bus of the whole state is Metrobus (WMATA): the state is the metro of Washington alone and WMATA runs in its
+// suburbs too (Bára 25. 11. 2026); a further metro spreads its own buses (art.js NORTH_AMERICA_VEHICLES). No tram of its
+// own: the streetcar closed on 31. 3. 2026.
+const usa = { ...northAmerica, "bus-inbound": "../washington/bus-inbound", "bus-outbound": "../washington/bus-outbound" };
 // In Washington its bus stop, also by the shelter, and its globe as the lamp up to 5 m (Boston's: "lamp-acorn-left").
 const washington = { ...usa, ...own(["stop-post-left", "stop-post-right",
-  "transit-shelter-01-left", "transit-shelter-01-right", "transit-shelter-green-left", "transit-shelter-green-right",
-  // Its bus, Metrobus; no tram of its own: the streetcar closed on 31. 3. 2026.
-  "bus-inbound", "bus-outbound"]), "lamp-post-top": "lamp-globe-left" };
+  "transit-shelter-01-left", "transit-shelter-01-right", "transit-shelter-green-left", "transit-shelter-green-right"]), "lamp-post-top": "lamp-globe-left" };
 
 export default {
   ...base,

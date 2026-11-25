@@ -27,6 +27,11 @@ bez log, nápisů dopravců a čísel vozů; na tabuli číslo linky (u Bostonu 
 - Boston, San Francisco: zadní čela Type 9 a LRV4 jsou stejná jako přední (obousměrné vozy), jen koncová světla; fotka zádi nebyla.
 - PCC: tyčový sběrač; aplikace tramvaji kreslí pantograf, vůz proto v sadě zatím není.
 
+## Metrobus v celém metru (Bára 25. 11. 2026)
+Stát USA je v aplikaci jen metro Washingtonu a WMATA jezdí i na jeho předměstích, proto je Metrobus autobus státu
+(`countries/US.js` `usa`), Washington ho dědí; žádná zvláštní podmínka. Další metro dostane svá vozidla
+(`NORTH_AMERICA_VEHICLES`). Snímek z aplikace (Silver Spring, Arlington; buspruh vložený v Návrhu) `metrobus-metro-app.png`.
+
 ## Postup
 Tři kola s kritičkou (samostatný agent, který viděl kresby vedle fotek a stávajících sad, sám nic nekreslil). Známky
 po kolech (1. → 2. → 3., 5 = bez chyby):

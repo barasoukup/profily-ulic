@@ -27,12 +27,13 @@ test("USA kreslí severoamerický mobiliář, Washington svůj označník, spole
   }
 });
 
-test("Washington kreslí svůj autobus, tramvaj neutrální; vozidla dalších měst mají soubory", async () => {
+test("USA kreslí Metrobus, tramvaj neutrální; vozidla dalších měst mají soubory", async () => {
   const P = await import("../pilot/public/profile.js");
   const { NORTH_AMERICA_VEHICLES } = await import("../pilot/public/art.js");
-  assert.equal(P.artSet("washington")["bus-inbound"], "bus-inbound");
+  // Metrobus in the whole metro (WMATA runs in the suburbs too).
+  assert.equal(P.artSet("washington")["bus-inbound"], "../washington/bus-inbound");
   assert.equal(P.artSet("washington")["streetcar-inbound"], "../generic/tram-inbound");
-  assert.equal(P.artSet("usa")["bus-inbound"], "../generic/bus-inbound");
+  assert.equal(P.artSet("usa")["bus-inbound"], "../washington/bus-inbound");
   const file = (town, f) => new URL(`../pilot/public/${town}/${f}.svg`, import.meta.url);
   for (const [town, map] of Object.entries(NORTH_AMERICA_VEHICLES)) for (const f of Object.values(map)) assert.ok(fs.existsSync(file(town, f)), `${town}/${f}`);
   for (const f of ["bus-inbound", "bus-outbound"]) assert.ok(fs.existsSync(file("washington", f)));
