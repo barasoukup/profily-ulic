@@ -558,11 +558,13 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   Slepé A/B 40 řezů: mapa lépe 23, odhad 9, stejně 7: **zapnutá**. Univerzální měření (30 řezů pilotu) ale 61 % s mapou
   proti 70 % bez ní (posuzovatelé pilotu vynechávali travnaté pásy u obruby). Přeposouzeno 25. 11. 2026 s přesnějším pokynem
   (29 řezů, noví posuzovatelé naslepo): s mapou **66 %**, bez mapy 60 %, jen OSM 56 %, šířka do 2 m 59 / 14 / 48 %: mapa
-  **zůstává zapnutá** (rozdíl složení sám o sobě neprůkazný; na tepnách mapa hůř).
+  **zůstává zapnutá** (rozdíl složení sám o sobě neprůkazný; na 7 tepnách mapa hůř).
+  Tepny 25. 11. 2026 (`evaluation/usa/tepny/ZPRAVA.md`): svodidla planimetrie jako střed, pruhy inventáře po směrech, strana stání,
+  chráněné cyklostezky (`?off=dctepny`); na 25 nových tepnách naslepo mapa : bez mapy 19 : 6, nový : starý kód 8 : 2.
 - Normy DDOT DEM 2023, Bicycle Facility Design Guide 2020 a NACTO jen oranžově; stání 3 m na směr (IFC 503.2.1,
   18 DCMR § 2405); bez řádku značek; bez paneláků; neutrální vozidla, český mobiliář; hledání Photon.
-- Tři společné změny z pilotu (všechny státy): ústí uličky je křižovatka (`?off=ulicky`, zapnuto), obousměrka se dělí od
-  4,0 m, kde je počet pruhů známý (`?off=pocetpruhu`, zapnuto), jamky stromů v chodníku jako chodník (**vypnuto**, `?jamky=1`:
+- Tři společné změny z pilotu (všechny státy, podoba z `estonia` 83734e7): ústí uličky je křižovatka (`?off=ulicky`, zapnuto), obousměrka se dělí od
+  4,0 m, kde je počet pruhů známý a u vozovky je stání (`?off=pocetpruhu`, zapnuto), jamky stromů v chodníku jako chodník (**vypnuto**, `?jamky=1`:
   DC 2 : 2, české kontroly 0 : 1). Regrese Prahy a Brna beze změny, v Evropě z 120 náhodných řezů změněno 0.
 - Před nasazením: R2 balík `us_dc`, nový Worker logu (Bára).
 

@@ -63,6 +63,11 @@ vypnuté“ tu stojí proti A/B).
 **Přeposouzeno 25. 11. 2026** s přesnějším pokynem (`score-pokyn2.mjs`, `vysledky/skore-pokyn2.md`, výklad v
 `../universal/ZPRAVA.md`): 29 řezů, s mapou 66 %, bez mapy 60 %, jen OSM 56 %. Rozpor s A/B zmizel, mapa zůstává zapnutá.
 
+## Hlavní ulice (25. 11. 2026)
+
+`tepny/ZPRAVA.md`: čtení dat DC opravené (svodidla, pruhy směru, strana stání, chráněné cyklostezky); na 25 nových tepnách
+naslepo mapa : bez mapy **19 : 6**, nový kód : starý 8 : 2 (z 11 změněných řezů z 97).
+
 ## Opravy po cestě
 
 - dc-8-3 (Southern Avenue, hranice DC): zjednodušené hranice okresů nechaly na společných hranicích mezery a bod padl do

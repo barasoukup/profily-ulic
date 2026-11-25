@@ -1,0 +1,452 @@
+[
+ {
+  "id": "te-1",
+  "country": "US",
+  "town": "washington",
+  "ward": 5,
+  "kind": "arterial",
+  "name": "Sargent Road Northeast",
+  "highway": "secondary",
+  "wayId": 130908233,
+  "lat": 38.9536407,
+  "lon": -76.9880392,
+  "bearing": 24.7,
+  "variants": [
+   "def",
+   "dcold",
+   "dc0"
+  ]
+ },
+ {
+  "id": "te-2",
+  "country": "US",
+  "town": "washington",
+  "ward": 7,
+  "kind": "arterial",
+  "name": "Alabama Avenue Southeast",
+  "highway": "secondary",
+  "wayId": 397274673,
+  "lat": 38.8611706,
+  "lon": -76.9635652,
+  "bearing": 65.7,
+  "variants": [
+   "def",
+   "dcold",
+   "dc0"
+  ]
+ },
+ {
+  "id": "te-3",
+  "country": "US",
+  "town": "washington",
+  "ward": 3,
+  "kind": "arterial",
+  "name": "Ward Circle Northwest",
+  "highway": "primary",
+  "wayId": 640274775,
+  "lat": 38.938118,
+  "lon": -77.0860234,
+  "bearing": 43.7,
+  "variants": [
+   "def",
+   "dcold",
+   "dc0"
+  ]
+ },
+ {
+  "id": "te-4",
+  "country": "US",
+  "town": "washington",
+  "ward": 8,
+  "kind": "arterial",
+  "name": "Alabama Avenue Southeast",
+  "highway": "secondary",
+  "wayId": 468440673,
+  "lat": 38.8438798,
+  "lon": -76.9931225,
+  "bearing": 78,
+  "variants": [
+   "def",
+   "dcold",
+   "dc0"
+  ]
+ },
+ {
+  "id": "te-5",
+  "country": "US",
+  "town": "washington",
+  "ward": 2,
+  "kind": "arterial",
+  "name": "12th Street Northwest",
+  "highway": "secondary",
+  "wayId": 1212569776,
+  "lat": 38.8935565,
+  "lon": -77.0281327,
+  "bearing": 0.2,
+  "variants": [
+   "def",
+   "dcold",
+   "dc0"
+  ]
+ },
+ {
+  "id": "te-6",
+  "country": "US",
+  "town": "washington",
+  "ward": 7,
+  "kind": "arterial",
+  "name": "Benning Road Northeast",
+  "highway": "primary",
+  "wayId": 468466040,
+  "lat": 38.8968297,
+  "lon": -76.9596145,
+  "bearing": -79.4,
+  "variants": [
+   "def",
+   "dcold",
+   "dc0"
+  ]
+ },
+ {
+  "id": "te-7",
+  "country": "US",
+  "town": "washington",
+  "ward": 6,
+  "kind": "arterial",
+  "name": "7th Street Southwest",
+  "highway": "primary",
+  "wayId": 1112885557,
+  "lat": 38.8788286,
+  "lon": -77.0224802,
+  "bearing": 46.7,
+  "variants": [
+   "def",
+   "dcold",
+   "dc0"
+  ]
+ },
+ {
+  "id": "te-8",
+  "country": "US",
+  "town": "washington",
+  "ward": 6,
+  "kind": "arterial",
+  "name": "North Capitol Street Northeast",
+  "highway": "primary",
+  "wayId": 50752706,
+  "lat": 38.8976785,
+  "lon": -77.0090128,
+  "bearing": 0.2,
+  "variants": [
+   "def",
+   "dcold",
+   "dc0"
+  ]
+ },
+ {
+  "id": "te-9",
+  "country": "US",
+  "town": "washington",
+  "ward": 6,
+  "kind": "arterial",
+  "name": "Pennsylvania Avenue Southeast",
+  "highway": "primary",
+  "wayId": 1172309394,
+  "lat": 38.8811017,
+  "lon": -76.9873888,
+  "bearing": -61.8,
+  "variants": [
+   "def",
+   "dcold",
+   "dc0"
+  ]
+ },
+ {
+  "id": "te-10",
+  "country": "US",
+  "town": "washington",
+  "ward": 4,
+  "kind": "arterial",
+  "name": "Blair Road Northwest",
+  "highway": "secondary",
+  "wayId": 808375197,
+  "lat": 38.9625706,
+  "lon": -77.0108563,
+  "bearing": -31.9,
+  "variants": [
+   "def",
+   "dcold",
+   "dc0"
+  ]
+ },
+ {
+  "id": "te-11",
+  "country": "US",
+  "town": "washington",
+  "ward": 2,
+  "kind": "arterial",
+  "name": "New Hampshire Avenue Northwest",
+  "highway": "secondary",
+  "wayId": 469165494,
+  "lat": 38.9032892,
+  "lon": -77.0494153,
+  "bearing": 35.9,
+  "variants": [
+   "def",
+   "dcold",
+   "dc0"
+  ]
+ },
+ {
+  "id": "te-12",
+  "country": "US",
+  "town": "washington",
+  "ward": 6,
+  "kind": "arterial",
+  "name": "Pennsylvania Avenue Southeast",
+  "highway": "primary",
+  "wayId": 203009036,
+  "lat": 38.8792478,
+  "lon": -76.9828505,
+  "bearing": -62.6,
+  "variants": [
+   "def",
+   "dcold",
+   "dc0"
+  ]
+ },
+ {
+  "id": "te-13",
+  "country": "US",
+  "town": "washington",
+  "ward": 5,
+  "kind": "arterial",
+  "name": "Taylor Street Northeast",
+  "highway": "secondary",
+  "wayId": 590581613,
+  "lat": 38.940726,
+  "lon": -76.9929508,
+  "bearing": 90,
+  "variants": [
+   "def",
+   "dcold",
+   "dc0"
+  ]
+ },
+ {
+  "id": "te-14",
+  "country": "US",
+  "town": "washington",
+  "ward": 5,
+  "kind": "arterial",
+  "name": "Rhode Island Avenue Northwest",
+  "highway": "primary",
+  "wayId": 422355423,
+  "lat": 38.9158675,
+  "lon": -77.0117476,
+  "bearing": 66.7,
+  "variants": [
+   "def",
+   "dcold",
+   "dc0"
+  ]
+ },
+ {
+  "id": "te-15",
+  "country": "US",
+  "town": "washington",
+  "ward": 8,
+  "kind": "arterial",
+  "name": "Suitland Parkway Southeast",
+  "highway": "trunk",
+  "wayId": 889053930,
+  "lat": 38.8524473,
+  "lon": -76.9742021,
+  "bearing": -42.1,
+  "variants": [
+   "def",
+   "dcold",
+   "dc0"
+  ]
+ },
+ {
+  "id": "te-16",
+  "country": "US",
+  "town": "washington",
+  "ward": 2,
+  "kind": "arterial",
+  "name": "P Street Northwest",
+  "highway": "secondary",
+  "wayId": 6056237,
+  "lat": 38.9096617,
+  "lon": -77.0321979,
+  "bearing": 89.7,
+  "variants": [
+   "def",
+   "dcold",
+   "dc0"
+  ]
+ },
+ {
+  "id": "te-17",
+  "country": "US",
+  "town": "washington",
+  "ward": 8,
+  "kind": "arterial",
+  "name": "Southern Avenue Southeast",
+  "highway": "secondary",
+  "wayId": 1208504150,
+  "lat": 38.8385825,
+  "lon": -76.9790315,
+  "bearing": 46.7,
+  "variants": [
+   "def",
+   "dcold",
+   "dc0"
+  ]
+ },
+ {
+  "id": "te-18",
+  "country": "US",
+  "town": "washington",
+  "ward": 5,
+  "kind": "arterial",
+  "name": "Michigan Avenue Northeast",
+  "highway": "secondary",
+  "wayId": 397298341,
+  "lat": 38.9266944,
+  "lon": -77.0087512,
+  "bearing": 80.8,
+  "variants": [
+   "def",
+   "dcold",
+   "dc0"
+  ]
+ },
+ {
+  "id": "te-19",
+  "country": "US",
+  "town": "washington",
+  "ward": 3,
+  "kind": "arterial",
+  "name": "Porter Street Northwest",
+  "highway": "secondary",
+  "wayId": 130808364,
+  "lat": 38.936048,
+  "lon": -77.0568901,
+  "bearing": -71.2,
+  "variants": [
+   "def",
+   "dcold",
+   "dc0"
+  ]
+ },
+ {
+  "id": "te-20",
+  "country": "US",
+  "town": "washington",
+  "ward": 3,
+  "kind": "arterial",
+  "name": "Western Avenue Northwest",
+  "highway": "secondary",
+  "wayId": 50532459,
+  "lat": 38.9684092,
+  "lon": -77.0759804,
+  "bearing": 45.8,
+  "variants": [
+   "def",
+   "dcold",
+   "dc0"
+  ]
+ },
+ {
+  "id": "te-21",
+  "country": "US",
+  "town": "washington",
+  "ward": 7,
+  "kind": "arterial",
+  "name": "Pennsylvania Avenue Southeast",
+  "highway": "trunk",
+  "wayId": 1125371217,
+  "lat": 38.8639443,
+  "lon": -76.9472751,
+  "bearing": -63.5,
+  "variants": [
+   "def",
+   "dcold",
+   "dc0"
+  ]
+ },
+ {
+  "id": "te-22",
+  "country": "US",
+  "town": "washington",
+  "ward": 2,
+  "kind": "arterial",
+  "name": "12th Street Northwest",
+  "highway": "secondary",
+  "wayId": 1411426414,
+  "lat": 38.900958,
+  "lon": -77.0281022,
+  "bearing": -0.1,
+  "variants": [
+   "def",
+   "dcold",
+   "dc0"
+  ]
+ },
+ {
+  "id": "te-23",
+  "country": "US",
+  "town": "washington",
+  "ward": 4,
+  "kind": "arterial",
+  "name": "Piney Branch Road Northwest",
+  "highway": "secondary",
+  "wayId": 1383754536,
+  "lat": 38.9726935,
+  "lon": -77.0234207,
+  "bearing": 27.2,
+  "variants": [
+   "def",
+   "dcold",
+   "dc0"
+  ]
+ },
+ {
+  "id": "te-24",
+  "country": "US",
+  "town": "washington",
+  "ward": 3,
+  "kind": "arterial",
+  "name": "Connecticut Avenue Northwest",
+  "highway": "primary",
+  "wayId": 344674243,
+  "lat": 38.9474507,
+  "lon": -77.0654205,
+  "bearing": -24.7,
+  "variants": [
+   "def",
+   "dcold",
+   "dc0"
+  ]
+ },
+ {
+  "id": "te-25",
+  "country": "US",
+  "town": "washington",
+  "ward": 6,
+  "kind": "arterial",
+  "name": "M Street Southwest",
+  "highway": "primary",
+  "wayId": 468495104,
+  "lat": 38.8764654,
+  "lon": -77.0174158,
+  "bearing": -89.9,
+  "variants": [
+   "def",
+   "dcold",
+   "dc0"
+  ]
+ }
+]

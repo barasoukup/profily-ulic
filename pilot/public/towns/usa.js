@@ -19,7 +19,16 @@
 //   O right of the line's direction, I left, a reading of the field; else OSM's parking:<side>, else the line's right),
 //   and the law's estimate is off there (noParkGuess); a bike lane of the inventory (BIKELANE_CONVENTIONAL, _BUFFERED,
 //   _PROTECTED: BD both sides, IB/OB one) is OSM's cycleway:<side>=lane where OSM tags none. ?ddot=0 leaves it out.
-// A map that does not answer: the estimate, said so (sources.js usFailed). Requests: four a cut (memo by the box).
+// Arterials (25. 11. 2026, evaluation/usa/tepny; ?off=dctepny: as before):
+// - the Planimetrics' Traffic Barrier (layer 13, "Barrier") is handed on as a guard-rail line: the roadway polygons of
+//   DC run across a median of concrete barriers (Military Road: 27.3 m, seven lanes), and derive.js splitMedians cuts a
+//   roadway where a guard rail lies between two street axes;
+// - a traffic or median island with no roadway on both sides of it is no median (the corner lawn of 3rd Street NW);
+// - the one parking lane with no side known lies on the side of fewer lanes of a two-way block (3rd Street NW);
+// - a protected bike lane or a two-way protected one (BIKELANE_PROTECTED, _DUAL_PROTECTED, _DUAL_BUFFERED) that OSM has
+//   as a way of its own (cycleway=separate) is a cycle track at that kerb (703; 15th Street NW).
+// - TOTALTRAVELLANES counts both carriageways: on a one-way way of a two-way block OSM's lanes stand, else the direction's.
+// A map that does not answer: the estimate, said so (sources.js usFailed). Requests: six a cut (memo by the box).
 import { osmTiles, getJSON, envelope, asMtvu } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea } from "../places.js";
@@ -36,7 +45,8 @@ const DC_BOX = [-77.12, 38.79, -76.909, 38.996];
 export const AREAS = { dc: { box: DC_BOX, inside: (lon, lat) => lon >= DC_BOX[0] && lon <= DC_BOX[2] && lat >= DC_BOX[1] && lat <= DC_BOX[3] } };
 const ft = (x) => (Number(x) || 0) * 0.3048;
 const STEP = 0.1;
-const SUB_FIELDS = "TOTALTRAVELLANES,TOTALPARKINGLANES,TOTALPARKINGLANEWIDTH,RPPSIDE,BIKELANE_CONVENTIONAL,BIKELANE_BUFFERED,BIKELANE_PROTECTED,ROUTENAME";
+const off = (name) => (param("off") || "").split(",").includes(name);
+const SUB_FIELDS = "TOTALTRAVELLANES,TOTALTRAVELLANESINBOUND,TOTALTRAVELLANESOUTBOUND,TOTALBIKELANES,TOTALBIKELANEWIDTH,BIKELANE_DUAL_PROTECTED,BIKELANE_DUAL_BUFFERED,TOTALPARKINGLANES,TOTALPARKINGLANEWIDTH,RPPSIDE,BIKELANE_CONVENTIONAL,BIKELANE_BUFFERED,BIKELANE_PROTECTED,ROUTENAME";
 
 // A kind of the Planimetrics as [MTVU code, priority] (lower first), or null (left out: canopies, the rest of layer 1).
 export function dcCode(layer, d) {
@@ -73,6 +83,56 @@ export function runsAlong(layers, c) {
   return runs;
 }
 
+// An island with a roadway on both sides of it stays a median; any other is land beside the street, green as the
+// map's other gaps (the runs changed in place).
+export function islandsBeside(runs) {
+  const roads = runs.filter((r) => r.code === 701);
+  for (const r of runs) if (r.code === 9950 && !(roads.some((x) => x.e <= r.s + 0.01) && roads.some((x) => x.s >= r.e - 0.01))) r.code = 401;
+  for (let i = runs.length - 1; i > 0; i--) if (runs[i].code === runs[i - 1].code) { runs[i - 1].e = runs[i].e; runs.splice(i, 1); }
+  return runs;
+}
+
+// The carriageway at the cut's centre: the roadway run there (or the nearest) with its neighbours of roadway or median,
+// as [lo, hi] its outer roadway runs; null without one.
+function carriageway(runs) {
+  const road = (r) => r.code === 701 || r.code === 9950;
+  let i = runs.findIndex((r) => r.code === 701 && r.s <= 0 && r.e >= 0);
+  if (i < 0) {
+    const near = runs.map((r, k) => [k, r]).filter(([, r]) => r.code === 701).sort(([, x], [, y]) => Math.min(Math.abs(x.s), Math.abs(x.e)) - Math.min(Math.abs(y.s), Math.abs(y.e)))[0];
+    if (!near) return null;
+    i = near[0];
+  }
+  let lo = i, hi = i;
+  while (lo > 0 && road(runs[lo - 1])) lo--;
+  while (hi < runs.length - 1 && road(runs[hi + 1])) hi++;
+  while (runs[lo].code !== 701) lo++;
+  while (runs[hi].code !== 701) hi--;
+  return [lo, hi];
+}
+// A strip of width w and code cut off the outer kerb of the carriageway's run r on side s ("lo", "hi"), or null.
+function kerbStrip(r, s, w, code) {
+  if (r.e - r.s < w + 2.5) return null; // no room for a lane beside it
+  if (s === "lo") { const x = { code, s: r.s, e: r.s + w }; r.s += w; return x; }
+  const x = { code, s: r.e - w, e: r.e }; r.e -= w;
+  return x;
+}
+
+// The block's protected bike lanes that OSM has as ways of their own (cycleway[:side]=separate), cut off the kerbs as
+// cycle tracks 703. Returns the sides.
+export function carveTracks(runs, block, tags = {}) {
+  const a = block.a, dual = a.BIKELANE_DUAL_PROTECTED || a.BIKELANE_DUAL_BUFFERED, one = a.BIKELANE_PROTECTED;
+  if (!(dual || one) || !Object.entries(tags).some(([k, v]) => /^cycleway(:(left|right|both))?$/.test(k) && v === "separate")) return [];
+  const at = carriageway(runs);
+  if (!at) return [];
+  const right = block.along ? "hi" : "lo", left = right === "hi" ? "lo" : "hi", all = ft(a.TOTALBIKELANEWIDTH);
+  const sides = { BD: [right, left], OB: [right], IB: [left] }[dual || one] || [];
+  const w = dual ? Math.min(3.7, Math.max(2.4, all || 3)) : Math.min(2.5, Math.max(1.2, all / (Number(a.TOTALBIKELANES) || 1) || 1.5));
+  const out = sides.map((s) => kerbStrip(runs[s === "lo" ? at[0] : at[1]], s, w, 703)).filter(Boolean);
+  runs.push(...out);
+  runs.sort((x, y) => x.s - y.s);
+  return sides;
+}
+
 // The map has the street when a kind of it lies within 3 m of the cut's centre: a roadway or a median under a street for
 // cars (a dual carriageway is cut in its middle), a roadway or a sidewalk under a footway, path or cycleway.
 const WALKED = new Set(["footway", "path", "pedestrian", "cycleway", "steps", "bridleway", "corridor"]);
@@ -104,22 +164,13 @@ export function blockOf(json, c) {
 // roadway run at the centre (or the nearest) and its neighbours of roadway or median. Sides: "lo" the run at low t,
 // "hi" at high t. wayAlong: does the OSM way run along the street's direction (for its parking:<side>). Returns the
 // sides with parking.
-export function carveParking(runs, block, tags = {}, wayAlong = true) {
+export function carveParking(runs, block, tags = {}, wayAlong = true, { bySide = true } = {}) {
   const a = block.a, n = Number(a.TOTALPARKINGLANES) || 0;
   if (!n) return [];
   const w = Math.min(3, Math.max(1.8, ft(a.TOTALPARKINGLANEWIDTH) / n || 2.4));
-  const road = (r) => r.code === 701 || r.code === 9950;
-  let i = runs.findIndex((r) => r.code === 701 && r.s <= 0 && r.e >= 0);
-  if (i < 0) {
-    const near = runs.map((r, k) => [k, r]).filter(([, r]) => r.code === 701).sort(([, x], [, y]) => Math.min(Math.abs(x.s), Math.abs(x.e)) - Math.min(Math.abs(y.s), Math.abs(y.e)))[0];
-    if (!near) return [];
-    i = near[0];
-  }
-  let lo = i, hi = i;
-  while (lo > 0 && road(runs[lo - 1])) lo--;
-  while (hi < runs.length - 1 && road(runs[hi + 1])) hi++;
-  while (runs[lo].code !== 701) lo++;
-  while (runs[hi].code !== 701) hi--;
+  const at = carriageway(runs);
+  if (!at) return [];
+  const [lo, hi] = at;
   // The street's direction is the cut's dir turned left, so the cut's dir points to the street's right: +t (hi) is its right, −t (lo) its left.
   let sides;
   if (n >= 2) sides = ["lo", "hi"];
@@ -128,14 +179,12 @@ export function carveParking(runs, block, tags = {}, wayAlong = true) {
     const rpp = String(a.RPPSIDE || "").toUpperCase();
     const osmSide = ["left", "right"].find((s) => tags[`parking:${s}`] && !/^no/.test(tags[`parking:${s}`]));
     const osmAt = osmSide && ((osmSide === "right") === wayAlong ? "hi" : "lo");
-    sides = [rpp === "I" ? left : rpp === "O" ? right : osmAt || right];
+    // A two-way block: the side of fewer lanes has the parking (inbound runs against the line, so on its left).
+    const ib = Number(a.TOTALTRAVELLANESINBOUND) || 0, ob = Number(a.TOTALTRAVELLANESOUTBOUND) || 0, fewer = bySide && ib && ob && ib !== ob ? (ib < ob ? left : right) : null;
+    sides = [rpp === "I" ? left : rpp === "O" ? right : osmAt || fewer || right];
   }
   const out = [];
-  for (const s of sides) {
-    const r = s === "lo" ? runs[lo] : runs[hi];
-    if (r.e - r.s < w + 2.5) continue; // no room for a lane beside it
-    if (s === "lo") { out.push({ code: 704, s: r.s, e: r.s + w }); r.s += w; } else { out.push({ code: 704, s: r.e - w, e: r.e }); r.e -= w; }
-  }
+  for (const s of sides) { const x = kerbStrip(s === "lo" ? runs[lo] : runs[hi], s, w, 704); if (x) out.push(x); }
   runs.push(...out);
   runs.sort((x, y) => x.s - y.s);
   return out.length ? sides : [];
@@ -143,9 +192,16 @@ export function carveParking(runs, block, tags = {}, wayAlong = true) {
 
 // The inventory's lanes and bike lanes as the way's OSM tags (app.js wayTags): lanes from TOTALTRAVELLANES, a bike lane
 // where OSM tags no cycleway. wayAlong: does the OSM way run along the street's direction.
-export function blockTags(block, tags = {}, wayAlong = true) {
+export function blockTags(block, tags = {}, wayAlong = true, { byDirection = true } = {}) {
   const a = block.a, out = {};
   if (+a.TOTALTRAVELLANES > 0) out.lanes = String(a.TOTALTRAVELLANES);
+  // A one-way carriageway of a two-way block: the block's total is both carriageways' (Military Road got four lanes on a
+  // carriageway of two); OSM's own count stands, else the block's lanes of the way's direction.
+  const ib = +a.TOTALTRAVELLANESINBOUND || 0, ob = +a.TOTALTRAVELLANESOUTBOUND || 0;
+  if (byDirection && out.lanes && /^(yes|1|true|-1)$/.test(tags.oneway || "") && ib && ob) {
+    if (+tags.lanes > 0) delete out.lanes;
+    else out.lanes = String((block.along === wayAlong) !== (tags.oneway === "-1") ? ob : ib);
+  }
   const bike = [a.BIKELANE_CONVENTIONAL, a.BIKELANE_BUFFERED, a.BIKELANE_PROTECTED].find(Boolean);
   if (bike && !Object.keys(tags).some((k) => /^cycleway/.test(k))) {
     if (bike === "BD") out["cycleway:both"] = "lane";
@@ -159,10 +215,11 @@ export function blockTags(block, tags = {}, wayAlong = true) {
 }
 
 // The cut's features from the answers (Node tests call it with saved answers): null where the map has not the street.
-export function dcSurfaces({ roads, walks, bldg, sub }, osmElements, bbox, tags = null, { ddot = true } = {}) {
+export function dcSurfaces({ roads, walks, bldg, sub }, osmElements, bbox, tags = null, { ddot = true, arterial = true } = {}) {
   const c = cutOfBox(bbox, osmElements);
   if (!c) return null;
   const runs = runsAlong([[1, bldg], [11, walks], [10, roads]], c);
+  if (arterial) islandsBeside(runs);
   if (!hasStreet(runs, tags || c.tags)) return null;
   const block = ddot ? blockOf(sub, c) : null;
   const street = [-c.dir[1], c.dir[0]];
@@ -173,8 +230,9 @@ export function dcSurfaces({ roads, walks, bldg, sub }, osmElements, bbox, tags 
     const g = way.geometry, [p, q] = [g[0], g.at(-1)];
     wayAlong = (q.lon - p.lon) * c.kx * street[0] + (q.lat - p.lat) * c.ky * street[1] >= 0;
   }
-  const parked = block ? carveParking(runs, block, tags || c.tags || {}, wayAlong) : [];
-  const wayTags = block ? blockTags(block, tags || c.tags || {}, wayAlong) : null;
+  if (block && arterial) carveTracks(runs, block, tags || c.tags || {});
+  const parked = block ? carveParking(runs, block, tags || c.tags || {}, wayAlong, { bySide: arterial }) : [];
+  const wayTags = block ? blockTags(block, tags || c.tags || {}, wayAlong, { byDirection: arterial }) : null;
   const back = ([x, y]) => [x / c.kx + c.lon0, y / c.ky + c.lat0];
   const features = runs.map((r) => ({ attributes: { code: r.code }, geometry: { rings: [[[r.s, -1], [r.e, -1], [r.e, 1], [r.s, 1], [r.s, -1]]
     .map(([t, u]) => back([c.dir[0] * t + street[0] * u, c.dir[1] * t + street[1] * u]))] } }));
@@ -202,7 +260,7 @@ async function surfaces(bbox, tags = null) {
     const r = Math.max((x1 - x0) * 111320 * Math.cos((cy * Math.PI) / 180), (y1 - y0) * 110574) / 2;
     const ddot = ddotOn();
     const [roads, walks, bldg, sub, o] = await Promise.all([plan(10, bbox), plan(11, bbox), plan(1, bbox), ddot ? subBlock(bbox).catch(() => null) : null, osmTiles(cy, cx, r)]);
-    own = dcSurfaces({ roads, walks, bldg, sub }, o.elements, bbox, tags, { ddot: ddot && !!sub });
+    own = dcSurfaces({ roads, walks, bldg, sub }, o.elements, bbox, tags, { ddot: ddot && !!sub, arterial: !off("dctepny") });
   } catch {
     return estimate({ usFailed: "dc" });
   }
@@ -222,8 +280,7 @@ export function alleyAreas(json) {
 }
 async function osm(lat, lon, radius) {
   const o = await osmTiles(lat, lon, radius);
-  const off = typeof location !== "undefined" && (new URLSearchParams(location.search).get("off") || "").split(",").includes("ulicky");
-  if (!dcOn() || off || !inArea(AREAS.dc, lon, lat)) return o;
+  if (!dcOn() || off("ulicky") || !inArea(AREAS.dc, lon, lat)) return o;
   const dy = radius / 110574, dx = radius / (111320 * Math.cos((lat * Math.PI) / 180));
   const bbox = [lon - dx, lat - dy, lon + dx, lat + dy].map((v) => v.toFixed(5)).join(",");
   try {
@@ -233,10 +290,20 @@ async function osm(lat, lon, radius) {
   } catch (err) { console.warn("DC alleys", err); return o; }
 }
 
+// The Planimetrics' concrete barriers as guard-rail lines (MTVU code 71540, derive.js splitMedians); a failure leaves them out.
+const NO_LINES = { features: [], edges: [], widths: [], areas: [] };
+export const barrierLines = (json) => (json?.features || []).filter((f) => f.attributes?.DESCRIPTION === "Barrier" && f.geometry?.paths?.length)
+  .map((f) => ({ attributes: { CTMTP_KOD: 71540 }, geometry: f.geometry }));
+async function lines(bbox) {
+  const [x0, y0, x1, y1] = bbox.split(",").map(Number);
+  if (!dcOn() || off("dctepny") || !inArea(AREAS.dc, (x0 + x1) / 2, (y0 + y1) / 2)) return NO_LINES;
+  try { return { ...NO_LINES, features: barrierLines(await plan(13, bbox)) }; } catch (err) { console.warn("DC barriers", err); return NO_LINES; }
+}
+
 export const sources = {
   osm,
   surfaces,
-  lines: async () => ({ features: [], edges: [], widths: [], areas: [] }),
+  lines,
   parking: async () => ({ features: [] }),
   podlaznost: async () => ({}),
 };

@@ -1,0 +1,13 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "podélné stání a buspruhy po obou stranách a střední pás 13 m odpovídají; Y bez stání"}
+{"n": 2, "verdict": "Y", "jistota": "vysoka", "why": "úzký chodník s trávníkem u obruby a trávou za ním; X má chodník 6 m a krajnici, které tam nejsou"}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "6 pruhů shodně; na straně B spíš chodník od obruby (zastávka) než pás trávy; rozdíl jen v pravé části"}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "jemnější skladba vlevo (tráva, chodník, plocha parkoviště); vozovka se stáním a pruhem pro kola v obou stejná"}
+{"n": 5, "verdict": "X", "jistota": "nizka", "why": "na straně A pás trávy u obruby a chodník za ním, dělicí pás asi 2 m; počet pruhů vpravo spíš sporný u obou"}
+{"n": 6, "verdict": "X", "jistota": "stredni", "why": "plocha vlevo, dělicí pás, 3 pruhy vpravo, chodník 6 m a plocha před budovou sedí; Y bez středního pásu, 6 pruhů po 4 m"}
+{"n": 7, "verdict": "Y", "jistota": "stredni", "why": "4 pruhy a stání po obou stranách, široká dlažba vlevo s pásem zeleně; X má 6 pruhů bez stání"}
+{"n": 8, "verdict": "X", "jistota": "stredni", "why": "šířky pruhů 3,4 a cyklopruh 1,4 sedí, vpravo široký chodník s kolostanicemi a stromy (roh); Y vpravo příliš úzké"}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "fyzický střední pás a 4 pruhy vlevo s šířkami odpovídajícími; Y bez středního pásu"}
+{"n": 10, "verdict": "X", "jistota": "nizka", "why": "stání u obruby na obou stranách a šířky vozovky sedí; Y má stání uprostřed vozovky, ale X má vlevo trávu místo dlažby"}
+{"n": 11, "verdict": "Y", "jistota": "nizka", "why": "v řezu je křižovatka bez středního pásu, vpravo stání u obruby a široká dlažba s chodníkem; X má 5m dělicí pás a bez stání"}
+{"n": 12, "verdict": "Y", "jistota": "stredni", "why": "vlevo vozovka se 2 pruhy a ostrůvek, uprostřed 2+2 pruhy se dvojitou žlutou, vpravo pruh; X vynechává levou vozovku"}
+{"n": 13, "verdict": "X", "jistota": "vysoka", "why": "stání u obruby A i B, pruhy, pás trávy a chodník s trávou jako na fotkách; Y bez stání a s chodníky 6 m"}

@@ -1,0 +1,12 @@
+{"n": 1, "verdict": "Y", "jistota": "nizka", "why": "vozovka v řezu cca 13 m bez trávníku u chodníku, X má zelen a stání obou stran; Y sedí na celkovou šířku"}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "úzký chodník, trávník a parkoviště vpravo odpovídá X; Y má široký chodník"}
+{"n": 3, "verdict": "Y", "jistota": "vysoka", "why": "vlevo parkoviště, zeleň, chodník, pás trávy, pak 4 pruhy, úzký dělicí pás 2 m a 4 pruhy"}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "dvě vozovky 2+2 s dělicím pásem, úzké chodníky a zeleň kolem; Y bez středního pásu a se 6m chodníky"}
+{"n": 5, "verdict": "Y", "jistota": "stredni", "why": "vlevo chodník 2 m, hnědý pás, stání, cyklopruhy, střední zelený pás; vpravo nesedí ani jeden"}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "široký zelený střední pás 13 m, stání a pruhy po obou stranách, ostrůvek zastávky; X nemá stání"}
+{"n": 7, "verdict": "Y", "jistota": "stredni", "why": "široký chodník vlevo (6-7 m) a velká plocha vpravo, 5 pruhů se stáním po stranách"}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "dvě dvoupruhové vozovky s travnatým středem 4,5-5 m; šířky X blíž (19,4 vs 20,8 m), Y má jinak stejné složení"}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "vozovka asi 11-12 m odpovídá dvěma pruhům a stání po stranách, úzké chodníky 2 m; Y vozovka jen 7 m"}
+{"n": 10, "verdict": "Y", "jistota": "stredni", "why": "vlevo široký chodník se stromy v dlažbě, pět pruhů a cyklopruhy, vpravo široký chodník/plocha"}
+{"n": 11, "verdict": "Y", "jistota": "stredni", "why": "4 pruhy, vpravo chodník 2 m a travnatý pás s keři 4-5 m, pak další chodník; X má chodník 6 m"}
+{"n": 12, "verdict": "Y", "jistota": "vysoka", "why": "dvě dvoupruhové vozovky oddělené travnatým pásem asi 10 m, za ním tráva; X zachycuje jen jednu vozovku"}

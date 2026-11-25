@@ -1,0 +1,11 @@
+{"n": 1, "verdict": "Y", "jistota": "nizka", "why": "u levé obruby stojí zaparkované auto (stání na straně A), Y má stání tam; X ho má na B bez vidného auta"}
+{"n": 2, "verdict": "X", "jistota": "vysoka", "why": "mezi vozovkami je betonový středový pás, který Y vynechává; dvě vozovky s čarami"}
+{"n": 3, "verdict": "X", "jistota": "stredni", "why": "dvě dvoupruhové vozovky oddělené fyzickým pásem uprostřed (X), Y dělá 4 pruhy bez dělení"}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "vlevo je dvousměrná cyklostezka (zelené přechody) a vozovka má asi 5 pruhů, ne 6"}
+{"n": 5, "verdict": "Y", "jistota": "nizka", "why": "za ostrůvkem na straně B jsou 2 jízdní pruhy, ne 3"}
+{"n": 6, "verdict": "X", "jistota": "nizka", "why": "cyklopruh u obou okrajů a 4-5 pruhů, Y má nemožných 6 pruhů a stání vedle cyklopruhu"}
+{"n": 7, "verdict": "Y", "jistota": "stredni", "why": "dva jízdní pruhy s šrafovaným středem a chráněnými pásy u obrub; X má tři pruhy"}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "vidím 3+3 jízdní pruhy se středním pásem, ne 7"}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "dva pruhy a stání u pravého okraje, kde stojí auto; Y má tři úzké pruhy"}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "skutečnost je stání-pruh-pruh-stání, X i Y trefí jen jednu stranu"}
+{"n": 11, "verdict": "X", "jistota": "nizka", "why": "u křižovatky několik užších pruhů a odbočovací pruhy, X má 4 pruhy po 3,3 m"}

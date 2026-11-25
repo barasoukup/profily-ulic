@@ -7,6 +7,7 @@
 const VARIANTS = {
   def: { q: "", off: [] },
   dc0: { q: "dc=0", off: [] },
+  dcold: { q: "off=dctepny", off: ["dctepny"] }, // the arterials as before 25. 11. 2026 (towns/usa.js)
   ul: { q: "off=ulicky", off: ["ulicky"] },
   ja: { q: "off=jamky", off: ["jamky"] },
   pp: { q: "off=pocetpruhu", off: ["pocetpruhu"] },

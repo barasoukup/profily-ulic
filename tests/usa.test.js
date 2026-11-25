@@ -120,3 +120,25 @@ test("Jamky stromů v chodníku: dlážděný úzký pás u obruby patří chodn
   assert.equal(treePitsAsSidewalk(segs(), [-6.1, 3.1], null), 0);
   P.jamky = false;
 });
+
+test("Tepny Washingtonu: svodidla, ostrůvky mimo vozovku, stání u méně pruhů, chráněná cyklostezka, pruhy směru", async () => {
+  const u = await import("../pilot/public/towns/usa.js");
+  const R = (...a) => a.map(([code, s, e]) => ({ code, s, e }));
+  const f = [{ attributes: { DESCRIPTION: "Barrier" }, geometry: { paths: [[[0, 0], [1, 1]]] } }, { attributes: { DESCRIPTION: "Guardrail" }, geometry: { paths: [[[0, 0], [1, 1]]] } }];
+  assert.deepEqual(u.barrierLines({ features: f }).map((x) => x.attributes.CTMTP_KOD), [71540]);
+  assert.deepEqual(u.islandsBeside(R([9950, -20, -8], [702, -8, -6], [701, -6, -1], [9950, -1, 1], [701, 1, 6])).map((r) => r.code), [401, 702, 701, 9950, 701]);
+  const block = (a) => ({ a, along: true });
+  const runs = () => R([702, -8, -6], [701, -6, 6], [702, 6, 8]);
+  const park = { TOTALPARKINGLANES: 1, TOTALPARKINGLANEWIDTH: 8, TOTALTRAVELLANESINBOUND: 1, TOTALTRAVELLANESOUTBOUND: 2 };
+  assert.deepEqual(u.carveParking(runs(), block(park)), ["lo"]);
+  assert.deepEqual(u.carveParking(runs(), block(park), {}, true, { bySide: false }), ["hi"]);
+  const bike = { BIKELANE_DUAL_PROTECTED: "IB", TOTALBIKELANEWIDTH: 10, TOTALBIKELANES: 2 }, r = runs();
+  assert.deepEqual(u.carveTracks(r, block(bike), { "cycleway:right": "separate" }), ["lo"]);
+  assert.equal(r[1].code, 703);
+  assert.deepEqual(u.carveTracks(runs(), block(bike), {}), []);
+  const lanes = { TOTALTRAVELLANES: 5, TOTALTRAVELLANESINBOUND: 2, TOTALTRAVELLANESOUTBOUND: 3 };
+  assert.equal(u.blockTags(block(lanes), { oneway: "yes", lanes: "2" }).lanes, undefined);
+  assert.equal(u.blockTags(block(lanes), { oneway: "yes" }).lanes, "3");
+  assert.equal(u.blockTags(block(lanes), { oneway: "-1" }).lanes, "2");
+  assert.equal(u.blockTags(block(lanes), {}).lanes, "5");
+});
