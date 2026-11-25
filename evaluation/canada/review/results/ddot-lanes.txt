@@ -1,0 +1,2 @@
+pruhy: 33 posouzených (12 bez shody posuzovatelů), správně s inventářem 20, bez něj 19; lépe 2, hůř 1, p = 1.000
+stání (strany): 73 posouzených (17 bez shody posuzovatelů), správně s inventářem 49, bez něj 45; lépe 22, hůř 18, p = 0.636

@@ -1,0 +1,916 @@
+{
+ "ddot-1/1": {
+  "id": "ddot-62",
+  "kind": "local",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-1/2": {
+  "id": "ddot-34",
+  "kind": "local",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-1/3": {
+  "id": "ddot-37",
+  "kind": "arterial",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-1/4": {
+  "id": "ddot-22",
+  "kind": "local",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-1/5": {
+  "id": "ddot-61",
+  "kind": "collector",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-1/6": {
+  "id": "ddot-66",
+  "kind": "arterial",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-1/7": {
+  "id": "ddot-52",
+  "kind": "arterial",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-1/8": {
+  "id": "ddot-36",
+  "kind": "local",
+  "X": "def",
+  "Y": "ddot0",
+  "photo": true
+ },
+ "ddot-1/9": {
+  "id": "ddot-26",
+  "kind": "arterial",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-1/10": {
+  "id": "ddot-7",
+  "kind": "arterial",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-2/1": {
+  "id": "ddot-11",
+  "kind": "arterial",
+  "X": "def",
+  "Y": "ddot0",
+  "photo": true
+ },
+ "ddot-2/2": {
+  "id": "ddot-80",
+  "kind": "collector",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-2/3": {
+  "id": "ddot-40",
+  "kind": "local",
+  "X": "def",
+  "Y": "ddot0",
+  "photo": true
+ },
+ "ddot-2/4": {
+  "id": "ddot-44",
+  "kind": "local",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-2/5": {
+  "id": "ddot-54",
+  "kind": "arterial",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-2/6": {
+  "id": "ddot-72",
+  "kind": "local",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-2/7": {
+  "id": "ddot-60",
+  "kind": "collector",
+  "X": "def",
+  "Y": "ddot0",
+  "photo": true
+ },
+ "ddot-2/8": {
+  "id": "ddot-42",
+  "kind": "local",
+  "X": "def",
+  "Y": "ddot0",
+  "photo": true
+ },
+ "ddot-2/9": {
+  "id": "ddot-14",
+  "kind": "collector",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-2/10": {
+  "id": "ddot-56",
+  "kind": "local",
+  "X": "def",
+  "Y": "ddot0",
+  "photo": true
+ },
+ "ddot-3/1": {
+  "id": "ddot-35",
+  "kind": "local",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-3/2": {
+  "id": "ddot-2",
+  "kind": "local",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-3/3": {
+  "id": "ddot-51",
+  "kind": "local",
+  "X": "def",
+  "Y": "ddot0",
+  "photo": true
+ },
+ "ddot-3/4": {
+  "id": "ddot-29",
+  "kind": "local",
+  "X": "def",
+  "Y": "ddot0",
+  "photo": true
+ },
+ "ddot-3/5": {
+  "id": "ddot-12",
+  "kind": "local",
+  "X": "def",
+  "Y": "ddot0",
+  "photo": true
+ },
+ "ddot-3/6": {
+  "id": "ddot-83",
+  "kind": "arterial",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-3/7": {
+  "id": "ddot-31",
+  "kind": "local",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-3/8": {
+  "id": "ddot-50",
+  "kind": "local",
+  "X": "def",
+  "Y": "ddot0",
+  "photo": true
+ },
+ "ddot-3/9": {
+  "id": "ddot-48",
+  "kind": "local",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-3/10": {
+  "id": "ddot-85",
+  "kind": "local",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-4/1": {
+  "id": "ddot-79",
+  "kind": "local",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-4/2": {
+  "id": "ddot-53",
+  "kind": "arterial",
+  "X": "def",
+  "Y": "ddot0",
+  "photo": true
+ },
+ "ddot-4/3": {
+  "id": "ddot-64",
+  "kind": "arterial",
+  "X": "def",
+  "Y": "ddot0",
+  "photo": true
+ },
+ "ddot-4/4": {
+  "id": "ddot-5",
+  "kind": "local",
+  "X": "def",
+  "Y": "ddot0",
+  "photo": true
+ },
+ "ddot-4/5": {
+  "id": "ddot-13",
+  "kind": "collector",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-4/6": {
+  "id": "ddot-23",
+  "kind": "local",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-4/7": {
+  "id": "ddot-32",
+  "kind": "local",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-4/8": {
+  "id": "ddot-73",
+  "kind": "local",
+  "X": "def",
+  "Y": "ddot0",
+  "photo": true
+ },
+ "ddot-4/9": {
+  "id": "ddot-84",
+  "kind": "local",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-4/10": {
+  "id": "ddot-90",
+  "kind": "collector",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-5/1": {
+  "id": "ddot-77",
+  "kind": "local",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-5/2": {
+  "id": "ddot-3",
+  "kind": "local",
+  "X": "def",
+  "Y": "ddot0",
+  "photo": true
+ },
+ "ddot-5/3": {
+  "id": "ddot-76",
+  "kind": "arterial",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-5/4": {
+  "id": "ddot-43",
+  "kind": "arterial",
+  "X": "ddot0",
+  "Y": "def",
+  "photo": true
+ },
+ "ddot-5/5": {
+  "id": "ddot-88",
+  "kind": "collector",
+  "X": "def",
+  "Y": "ddot0",
+  "photo": true
+ },
+ "gaps-1/1": {
+  "id": "tram-28",
+  "kind": "arterial",
+  "X": "def",
+  "Y": "gaps0",
+  "photo": true
+ },
+ "gaps-1/2": {
+  "id": "dual-29",
+  "kind": "arterial",
+  "X": "def",
+  "Y": "gaps0",
+  "photo": true
+ },
+ "gaps-1/3": {
+  "id": "dual-3",
+  "kind": "arterial",
+  "X": "gaps0",
+  "Y": "def",
+  "photo": true
+ },
+ "gaps-1/4": {
+  "id": "dual-18",
+  "kind": "arterial",
+  "X": "gaps0",
+  "Y": "def",
+  "photo": true
+ },
+ "gaps-1/5": {
+  "id": "dual-20",
+  "kind": "arterial",
+  "X": "def",
+  "Y": "gaps0",
+  "photo": false
+ },
+ "gaps-1/6": {
+  "id": "dual-9",
+  "kind": "arterial",
+  "X": "def",
+  "Y": "gaps0",
+  "photo": true
+ },
+ "gaps-1/7": {
+  "id": "dual-8",
+  "kind": "arterial",
+  "X": "def",
+  "Y": "gaps0",
+  "photo": true
+ },
+ "gaps-1/8": {
+  "id": "dual-28",
+  "kind": "arterial",
+  "X": "gaps0",
+  "Y": "def",
+  "photo": true
+ },
+ "gaps-1/9": {
+  "id": "dual-10",
+  "kind": "arterial",
+  "X": "def",
+  "Y": "gaps0",
+  "photo": true
+ },
+ "gaps-1/10": {
+  "id": "dual-13",
+  "kind": "collector",
+  "X": "gaps0",
+  "Y": "def",
+  "photo": true
+ },
+ "gaps-2/1": {
+  "id": "dual-7",
+  "kind": "arterial",
+  "X": "def",
+  "Y": "gaps0",
+  "photo": true
+ },
+ "gaps-2/2": {
+  "id": "dual-4",
+  "kind": "arterial",
+  "X": "gaps0",
+  "Y": "def",
+  "photo": true
+ },
+ "gaps-2/3": {
+  "id": "dual-26",
+  "kind": "arterial",
+  "X": "gaps0",
+  "Y": "def",
+  "photo": true
+ },
+ "gaps-2/4": {
+  "id": "dual-17",
+  "kind": "arterial",
+  "X": "def",
+  "Y": "gaps0",
+  "photo": true
+ },
+ "gaps-2/5": {
+  "id": "dual-30",
+  "kind": "arterial",
+  "X": "def",
+  "Y": "gaps0",
+  "photo": true
+ },
+ "gaps-2/6": {
+  "id": "dual-12",
+  "kind": "arterial",
+  "X": "def",
+  "Y": "gaps0",
+  "photo": true
+ },
+ "gaps-2/7": {
+  "id": "dual-14",
+  "kind": "arterial",
+  "X": "gaps0",
+  "Y": "def",
+  "photo": true
+ },
+ "gaps-2/8": {
+  "id": "tram-16",
+  "kind": "arterial",
+  "X": "gaps0",
+  "Y": "def",
+  "photo": true
+ },
+ "gaps-2/9": {
+  "id": "dual-5",
+  "kind": "arterial",
+  "X": "def",
+  "Y": "gaps0",
+  "photo": true
+ },
+ "gaps-2/10": {
+  "id": "dual-1",
+  "kind": "arterial",
+  "X": "gaps0",
+  "Y": "def",
+  "photo": true
+ },
+ "gaps-3/1": {
+  "id": "tram-27",
+  "kind": "arterial",
+  "X": "gaps0",
+  "Y": "def",
+  "photo": true
+ },
+ "gaps-3/2": {
+  "id": "dual-21",
+  "kind": "arterial",
+  "X": "gaps0",
+  "Y": "def",
+  "photo": true
+ },
+ "gaps-3/3": {
+  "id": "dual-2",
+  "kind": "arterial",
+  "X": "gaps0",
+  "Y": "def",
+  "photo": true
+ },
+ "gaps-3/4": {
+  "id": "dual-19",
+  "kind": "arterial",
+  "X": "def",
+  "Y": "gaps0",
+  "photo": true
+ },
+ "gaps-3/5": {
+  "id": "dual-16",
+  "kind": "arterial",
+  "X": "def",
+  "Y": "gaps0",
+  "photo": true
+ },
+ "gaps-3/6": {
+  "id": "dual-6",
+  "kind": "arterial",
+  "X": "gaps0",
+  "Y": "def",
+  "photo": true
+ },
+ "tracks-1/1": {
+  "id": "track-86",
+  "kind": "arterial",
+  "X": "rt0",
+  "Y": "def",
+  "photo": true
+ },
+ "tracks-1/2": {
+  "id": "track-74",
+  "kind": "collector",
+  "X": "rt0",
+  "Y": "def",
+  "photo": true
+ },
+ "tracks-1/3": {
+  "id": "track-49",
+  "kind": "arterial",
+  "X": "def",
+  "Y": "rt0",
+  "photo": true
+ },
+ "tracks-1/4": {
+  "id": "track-2",
+  "kind": "local",
+  "X": "def",
+  "Y": "rt0",
+  "photo": true
+ },
+ "tracks-1/5": {
+  "id": "track-42",
+  "kind": "collector",
+  "X": "rt0",
+  "Y": "def",
+  "photo": true
+ },
+ "tracks-1/6": {
+  "id": "track-26",
+  "kind": "arterial",
+  "X": "rt0",
+  "Y": "def",
+  "photo": true
+ },
+ "tracks-1/7": {
+  "id": "track-41",
+  "kind": "collector",
+  "X": "def",
+  "Y": "rt0",
+  "photo": true
+ },
+ "tracks-1/8": {
+  "id": "track-57",
+  "kind": "arterial",
+  "X": "def",
+  "Y": "rt0",
+  "photo": true
+ },
+ "tracks-1/9": {
+  "id": "track-53",
+  "kind": "arterial",
+  "X": "def",
+  "Y": "rt0",
+  "photo": true
+ },
+ "tracks-1/10": {
+  "id": "track-70",
+  "kind": "arterial",
+  "X": "def",
+  "Y": "rt0",
+  "photo": true
+ },
+ "tracks-2/1": {
+  "id": "track-63",
+  "kind": "collector",
+  "X": "def",
+  "Y": "rt0",
+  "photo": true
+ },
+ "tracks-2/2": {
+  "id": "track-37",
+  "kind": "collector",
+  "X": "rt0",
+  "Y": "def",
+  "photo": true
+ },
+ "tracks-2/3": {
+  "id": "track-22",
+  "kind": "arterial",
+  "X": "def",
+  "Y": "rt0",
+  "photo": true
+ },
+ "tracks-2/4": {
+  "id": "track-40",
+  "kind": "collector",
+  "X": "def",
+  "Y": "rt0",
+  "photo": true
+ },
+ "tracks-2/5": {
+  "id": "track-33",
+  "kind": "collector",
+  "X": "def",
+  "Y": "rt0",
+  "photo": true
+ },
+ "tracks-2/6": {
+  "id": "track-39",
+  "kind": "arterial",
+  "X": "rt0",
+  "Y": "def",
+  "photo": true
+ },
+ "tracks-2/7": {
+  "id": "track-84",
+  "kind": "arterial",
+  "X": "rt0",
+  "Y": "def",
+  "photo": true
+ },
+ "tracks-2/8": {
+  "id": "track-56",
+  "kind": "arterial",
+  "X": "def",
+  "Y": "rt0",
+  "photo": true
+ },
+ "tracks-2/9": {
+  "id": "track-24",
+  "kind": "arterial",
+  "X": "rt0",
+  "Y": "def",
+  "photo": true
+ },
+ "tracks-2/10": {
+  "id": "track-46",
+  "kind": "local",
+  "X": "def",
+  "Y": "rt0",
+  "photo": true
+ },
+ "tracks-3/1": {
+  "id": "track-64",
+  "kind": "arterial",
+  "X": "def",
+  "Y": "rt0",
+  "photo": true
+ },
+ "tracks-3/2": {
+  "id": "track-32",
+  "kind": "local",
+  "X": "rt0",
+  "Y": "def",
+  "photo": true
+ },
+ "tracks-3/3": {
+  "id": "track-68",
+  "kind": "arterial",
+  "X": "rt0",
+  "Y": "def",
+  "photo": true
+ },
+ "tracks-3/4": {
+  "id": "track-77",
+  "kind": "arterial",
+  "X": "def",
+  "Y": "rt0",
+  "photo": true
+ },
+ "bays-1/1": {
+  "id": "bay-29",
+  "kind": "collector",
+  "X": "def",
+  "Y": "bays0",
+  "photo": true
+ },
+ "bays-1/2": {
+  "id": "bay-27",
+  "kind": "collector",
+  "X": "def",
+  "Y": "bays0",
+  "photo": true
+ },
+ "bays-1/3": {
+  "id": "bay-22",
+  "kind": "local",
+  "X": "def",
+  "Y": "bays0",
+  "photo": true
+ },
+ "bays-1/4": {
+  "id": "bay-7",
+  "kind": "collector",
+  "X": "def",
+  "Y": "bays0",
+  "photo": true
+ },
+ "bays-1/5": {
+  "id": "bay-33",
+  "kind": "arterial",
+  "X": "def",
+  "Y": "bays0",
+  "photo": true
+ },
+ "bays-1/6": {
+  "id": "bay-28",
+  "kind": "collector",
+  "X": "def",
+  "Y": "bays0",
+  "photo": true
+ },
+ "bays-1/7": {
+  "id": "bay-25",
+  "kind": "collector",
+  "X": "bays0",
+  "Y": "def",
+  "photo": false
+ },
+ "bays-1/8": {
+  "id": "bay-31",
+  "kind": "collector",
+  "X": "bays0",
+  "Y": "def",
+  "photo": true
+ },
+ "bays-1/9": {
+  "id": "bay-11",
+  "kind": "arterial",
+  "X": "def",
+  "Y": "bays0",
+  "photo": true
+ },
+ "fork-1/1": {
+  "id": "fork-graz-1",
+  "X": "os0",
+  "Y": "def",
+  "photo": true
+ },
+ "fork-1/2": {
+  "id": "fork-zuerich-2",
+  "X": "os0",
+  "Y": "def",
+  "photo": true
+ },
+ "fork-1/3": {
+  "id": "fork-helsinki-2",
+  "X": "def",
+  "Y": "os0",
+  "photo": true
+ },
+ "fork-1/4": {
+  "id": "fork-berlin-7",
+  "X": "def",
+  "Y": "os0",
+  "photo": true
+ },
+ "fork-1/5": {
+  "id": "fork-praha-8",
+  "X": "os0",
+  "Y": "def",
+  "photo": false
+ },
+ "fork-1/6": {
+  "id": "fork-washington-5",
+  "X": "def",
+  "Y": "os0",
+  "photo": true
+ },
+ "fork-1/7": {
+  "id": "fork-zuerich-4",
+  "X": "os0",
+  "Y": "def",
+  "photo": true
+ },
+ "fork-1/8": {
+  "id": "fork-wien-2",
+  "X": "os0",
+  "Y": "def",
+  "photo": true
+ },
+ "fork-1/9": {
+  "id": "fork-koeln-6",
+  "X": "os0",
+  "Y": "def",
+  "photo": true
+ },
+ "fork-1/10": {
+  "id": "fork-zuerich-1",
+  "X": "def",
+  "Y": "os0",
+  "photo": true
+ },
+ "fork-2/1": {
+  "id": "fork-amsterdam-1",
+  "X": "os0",
+  "Y": "def",
+  "photo": true
+ },
+ "fork-2/2": {
+  "id": "fork-bratislava-2",
+  "X": "os0",
+  "Y": "def",
+  "photo": true
+ },
+ "fork-2/3": {
+  "id": "fork-berlin-4",
+  "X": "def",
+  "Y": "os0",
+  "photo": true
+ },
+ "fork-2/4": {
+  "id": "fork-berlin-3",
+  "X": "def",
+  "Y": "os0",
+  "photo": true
+ },
+ "fork-2/5": {
+  "id": "fork-plzen-4",
+  "X": "def",
+  "Y": "os0",
+  "photo": false
+ },
+ "fork-2/6": {
+  "id": "fork-wien-4",
+  "X": "def",
+  "Y": "os0",
+  "photo": true
+ },
+ "fork-2/7": {
+  "id": "fork-brno-6",
+  "X": "def",
+  "Y": "os0",
+  "photo": true
+ },
+ "fork-2/8": {
+  "id": "fork-koeln-2",
+  "X": "def",
+  "Y": "os0",
+  "photo": true
+ },
+ "fork-2/9": {
+  "id": "fork-washington-4",
+  "X": "os0",
+  "Y": "def",
+  "photo": true
+ },
+ "fork-2/10": {
+  "id": "fork-paris-3",
+  "X": "os0",
+  "Y": "def",
+  "photo": true
+ },
+ "fork-3/1": {
+  "id": "fork-berlin-5",
+  "X": "os0",
+  "Y": "def",
+  "photo": true
+ },
+ "fork-3/2": {
+  "id": "fork-toronto-1",
+  "X": "os0",
+  "Y": "def",
+  "photo": true
+ },
+ "fork-3/3": {
+  "id": "fork-praha-4",
+  "X": "os0",
+  "Y": "def",
+  "photo": true
+ },
+ "fork-3/4": {
+  "id": "fork-berlin-6",
+  "X": "os0",
+  "Y": "def",
+  "photo": true
+ },
+ "fork-3/5": {
+  "id": "fork-plzen-1",
+  "X": "os0",
+  "Y": "def",
+  "photo": true
+ },
+ "fork-3/6": {
+  "id": "fork-wien-7",
+  "X": "def",
+  "Y": "os0",
+  "photo": true
+ },
+ "fork-3/7": {
+  "id": "fork-praha-3",
+  "X": "os0",
+  "Y": "def",
+  "photo": true
+ },
+ "fork-3/8": {
+  "id": "fork-amsterdam-2",
+  "X": "def",
+  "Y": "os0",
+  "photo": true
+ },
+ "fork-3/9": {
+  "id": "fork-antwerpen-2",
+  "X": "def",
+  "Y": "os0",
+  "photo": true
+ },
+ "fork-3/10": {
+  "id": "fork-praha-1",
+  "X": "def",
+  "Y": "os0",
+  "photo": true
+ },
+ "fork-4/1": {
+  "id": "fork-washington-7",
+  "X": "def",
+  "Y": "os0",
+  "photo": true
+ }
+}

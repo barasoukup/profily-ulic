@@ -1,0 +1,45 @@
+{"pack": 1, "n": 1, "lanes": 1, "parkA": 1, "parkB": 1, "why": "parked both sides, narrow unmarked"}
+{"pack": 1, "n": 2, "lanes": 2, "parkA": 1, "parkB": 1, "why": "yellow centre, parked both"}
+{"pack": 1, "n": 3, "lanes": null, "parkA": null, "parkB": null, "why": "wide intersection, unclear"}
+{"pack": 1, "n": 4, "lanes": 2, "parkA": 1, "parkB": 0, "why": "side street, parked A"}
+{"pack": 1, "n": 5, "lanes": 2, "parkA": 0, "parkB": 0, "why": "yellow centre, no parking"}
+{"pack": 1, "n": 6, "lanes": null, "parkA": null, "parkB": null, "why": "big intersection"}
+{"pack": 1, "n": 7, "lanes": 3, "parkA": 0, "parkB": 0, "why": "dashed lines, ~3 lanes"}
+{"pack": 1, "n": 8, "lanes": 1, "parkA": 1, "parkB": 1, "why": "parked both, one lane"}
+{"pack": 1, "n": 9, "lanes": 4, "parkA": 1, "parkB": 1, "why": "two carriageways 2+2, parked kerbs"}
+{"pack": 1, "n": 10, "lanes": 2, "parkA": 1, "parkB": 0, "why": "photos mismatch, ortho only"}
+{"pack": 2, "n": 1, "lanes": 6, "parkA": 0, "parkB": 0, "why": "3+3 lanes, bike lanes in middle"}
+{"pack": 2, "n": 2, "lanes": 2, "parkA": 1, "parkB": 1, "why": "yellow centre, parked both"}
+{"pack": 2, "n": 3, "lanes": 2, "parkA": 0, "parkB": 1, "why": "yellow centre, parked B"}
+{"pack": 2, "n": 4, "lanes": 2, "parkA": 1, "parkB": 1, "why": "parked both, wide enough for 2"}
+{"pack": 2, "n": 5, "lanes": null, "parkA": null, "parkB": null, "why": "signalised intersection"}
+{"pack": 2, "n": 6, "lanes": 2, "parkA": 1, "parkB": 1, "why": "parked both, wide"}
+{"pack": 2, "n": 7, "lanes": null, "parkA": null, "parkB": null, "why": "complex corner"}
+{"pack": 2, "n": 8, "lanes": 2, "parkA": 1, "parkB": 1, "why": "yellow centre, parked both"}
+{"pack": 2, "n": 9, "lanes": 2, "parkA": 0, "parkB": 1, "why": "yellow centre, bays B, bike lane A"}
+{"pack": 2, "n": 10, "lanes": 2, "parkA": 0, "parkB": 0, "why": "diagonal road on bridge"}
+{"pack": 3, "n": 1, "lanes": 2, "parkA": 1, "parkB": 1, "why": "yellow centre, angled parking both"}
+{"pack": 3, "n": 2, "lanes": 2, "parkA": 0, "parkB": 1, "why": "yellow centre, parked B"}
+{"pack": 3, "n": 3, "lanes": 1, "parkA": 1, "parkB": 1, "why": "parked both, narrow"}
+{"pack": 3, "n": 4, "lanes": 2, "parkA": 0, "parkB": 0, "why": "unmarked 9 m, none at cut"}
+{"pack": 3, "n": 5, "lanes": 2, "parkA": null, "parkB": null, "why": "unmarked, parking unclear"}
+{"pack": 3, "n": 6, "lanes": null, "parkA": null, "parkB": null, "why": "large intersection"}
+{"pack": 3, "n": 7, "lanes": 1, "parkA": 1, "parkB": 1, "why": "parked both"}
+{"pack": 3, "n": 8, "lanes": 2, "parkA": 0, "parkB": 0, "why": "empty at cut"}
+{"pack": 3, "n": 9, "lanes": 1, "parkA": 1, "parkB": 1, "why": "parked both"}
+{"pack": 3, "n": 10, "lanes": 1, "parkA": 1, "parkB": 1, "why": "marked bays both"}
+{"pack": 4, "n": 1, "lanes": 2, "parkA": 0, "parkB": 0, "why": "unmarked, none at cut"}
+{"pack": 4, "n": 2, "lanes": 3, "parkA": 1, "parkB": 0, "why": "2 lanes + bus lane, parked A"}
+{"pack": 4, "n": 3, "lanes": 4, "parkA": 0, "parkB": 0, "why": "intersection, uncertain"}
+{"pack": 4, "n": 4, "lanes": 2, "parkA": 1, "parkB": 0, "why": "parked A"}
+{"pack": 4, "n": 5, "lanes": 4, "parkA": 0, "parkB": 0, "why": "dual carriageway, uncertain"}
+{"pack": 4, "n": 6, "lanes": 2, "parkA": 1, "parkB": 1, "why": "bays both"}
+{"pack": 4, "n": 7, "lanes": 2, "parkA": 0, "parkB": 0, "why": "no parking"}
+{"pack": 4, "n": 8, "lanes": 1, "parkA": 1, "parkB": 1, "why": "parked both, narrow"}
+{"pack": 4, "n": 9, "lanes": 2, "parkA": 1, "parkB": 1, "why": "parked both"}
+{"pack": 4, "n": 10, "lanes": 2, "parkA": 1, "parkB": 1, "why": "yellow centre, parked both"}
+{"pack": 5, "n": 1, "lanes": 1, "parkA": 1, "parkB": 1, "why": "parked both"}
+{"pack": 5, "n": 2, "lanes": 1, "parkA": 0, "parkB": 1, "why": "parked B"}
+{"pack": 5, "n": 3, "lanes": 3, "parkA": 0, "parkB": 0, "why": "approach with queue"}
+{"pack": 5, "n": 4, "lanes": null, "parkA": 1, "parkB": 1, "why": "unclear, frontage roads with parking"}
+{"pack": 5, "n": 5, "lanes": 2, "parkA": 1, "parkB": 1, "why": "yellow centre, parked both"}

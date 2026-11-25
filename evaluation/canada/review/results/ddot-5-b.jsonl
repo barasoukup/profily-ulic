@@ -1,0 +1,5 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "Stání po obou stranách a dva pruhy u obou, liší se jen v desetinách metru."}
+{"n": 2, "verdict": "Y", "jistota": "nizka", "why": "Úzká vozovka, auto stojí na straně B u chodníku, na A žádné stání; Y dává krajnici na B."}
+{"n": 3, "verdict": "X", "jistota": "stredni", "why": "U křižovatky zákaz stání a tři pruhy bez stání, Y přidává neexistující stání."}
+{"n": 4, "verdict": "X", "jistota": "nizka", "why": "Vedlejší komunikace na A nemá cyklopruh, X dává krajnici, zbytek shodný."}
+{"n": 5, "verdict": "Y", "jistota": "nizka", "why": "Stání po obou stranách a cyklopruh na obou, na B je cyklopruh podle značení vidět."}

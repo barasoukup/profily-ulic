@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "Obe maji stejny celek, rozpor cyklopruhy vs pocet pruhu"}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "Cyklopruhy po stranach dvou pruhu"}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "Strana B pruh a cyklopruh/stani"}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "Cyklopruh na strane A viditelny"}
+{"n": 5, "verdict": "X", "jistota": "nizka", "why": "Sirky pruhu a cyklopruh A blizko skutecnosti"}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "Zelený cyklopruh na strane B"}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "Ctyri jizdni pruhy"}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "Ctyri pruhy bez cyklopruhu"}
+{"n": 9, "verdict": "stejne", "jistota": "nizka", "why": "Obe velmi podobne"}
+{"n": 10, "verdict": "X", "jistota": "stredni", "why": "Cyklopruhy po obou stranach"}

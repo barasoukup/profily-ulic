@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "stredni", "why": "úzká obytná ulice, auta parkují po obou stranách, vozovka kolem 9 m"}
+{"n": 2, "verdict": "Y", "jistota": "vysoka", "why": "dva jízdní pruhy a stání po obou stranách, ne tři pruhy"}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "široká vícepruhová silnice, na straně A nejsou vidět zaparkovaná auta"}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "úzká ulice se stáním aspoň na jedné straně; X bez stání je méně pravděpodobné"}
+{"n": 5, "verdict": "X", "jistota": "vysoka", "why": "dva pruhy se žlutou čarou, bez stání, široké okraje vozovky"}
+{"n": 6, "verdict": "stejne", "jistota": "nizka", "why": "křižovatka s přechodem, rozdíl pruh/stání nelze rozhodnout"}
+{"n": 7, "verdict": "Y", "jistota": "nizka", "why": "ortofoto ukazuje stání na okrajích a pruhy uprostřed"}
+{"n": 8, "verdict": "X", "jistota": "vysoka", "why": "zaparkovaná auta po obou stranách úzké ulice se dvěma pruhy"}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "dvě vozovky se středním pásem, každá se stáním u obruby a dvěma pruhy"}
+{"n": 10, "verdict": "X", "jistota": "nizka", "why": "šířky 3,3 m odpovídají pruhům, na straně A pás pro stání/okraj; složení u obou nepřesné"}

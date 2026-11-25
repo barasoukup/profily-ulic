@@ -1,0 +1,6 @@
+{"n": 1, "verdict": "Y", "jistota": "nizka", "why": "Jedna strana B chodnik 3.8 sedi, pruhy shodne"}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "Y vymysleny dalsi pruhy na pustych plochach"}
+{"n": 3, "verdict": "stejne", "jistota": "nizka", "why": "Neni jasne"}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "Median betonovy ostruvek"}
+{"n": 5, "verdict": "X", "jistota": "stredni", "why": "Median betonovy"}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "Median betonovy"}

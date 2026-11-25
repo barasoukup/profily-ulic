@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "vysoka", "why": "Úzká obytná ulice, auta stojí po obou stranách, dva pruhy mezi nimi"}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "Stání po obou stranách a dva pruhy, ne tři pruhy"}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "Široká ulice bez parkujících aut, široké pruhy s ostrůvkem"}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "Místní ulice se stáním po obou stranách"}
+{"n": 5, "verdict": "Y", "jistota": "nizka", "why": "Dva pruhy s dvojitou žlutou a okraj vozovky odpovídající stání"}
+{"n": 6, "verdict": "nejde", "jistota": "nizka", "why": "Křižovatka, ortofoto i fotka nedovolují určit pruhy"}
+{"n": 7, "verdict": "X", "jistota": "nizka", "why": "Asi tři pruhy a stání jen na jedné straně"}
+{"n": 8, "verdict": "X", "jistota": "vysoka", "why": "Auta stojí po obou stranách úzké ulice"}
+{"n": 9, "verdict": "Y", "jistota": "vysoka", "why": "Dvě vozovky se středním pásem, stání po vnějších stranách, 2 pruhy na směr"}
+{"n": 10, "verdict": "Y", "jistota": "nizka", "why": "Dva pruhy a pás podél chodníku, Y blíž složením"}

@@ -1,0 +1,9 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "parkovani u obruby bez plochy, sirsi pruhy"}
+{"n": 2, "verdict": "X", "jistota": "nizka", "why": "parkovani u obruby, bez navic plochy"}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "mezera mezi obrubou a auty"}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "parkovani u obruby, sirka silnice sedi"}
+{"n": 5, "verdict": "X", "jistota": "stredni", "why": "parkovani i na strane B, ne plocha"}
+{"n": 6, "verdict": "X", "jistota": "stredni", "why": "parkovani u obruby"}
+{"n": 7, "verdict": "Y", "jistota": "stredni", "why": "parkovani i na strane B"}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "cyklopruh, bez plochy za parkovanim"}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "pet pruhu vcetne stredoveho, chodnik bez plochy"}

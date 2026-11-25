@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "Šikmé stání a pruhy vlevo od ostrůvku jsou v X, chybí v Y."}
+{"n": 2, "verdict": "Y", "jistota": "nizka", "why": "Bez ortofota: fotka ukazuje fasádu a chodník na straně A, X přidává pruhy před fasádu."}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "Ulice končí zelení a chodníkem; dva pruhy navíc v X patří jiné komunikaci."}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "Svislá ulice s tramvají končí chodníkem u náměstí; X přidává odbočnou vozovku."}
+{"n": 5, "verdict": "X", "jistota": "nizka", "why": "X zahrnuje i vozovku za ostrůvkem a chodník; Y končí ostrůvkem."}
+{"n": 6, "verdict": "X", "jistota": "nizka", "why": "Y přidává pruh před okrajem chodníku, mimo ulici."}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "X obsahuje vozovku za ostrůvkem, kde jezdí auta; Y ji nemá."}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "Y přesahuje okraj parku."}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "Tramvajová ulice s chodníky; Y přidává nepotřebnou vozovku vlevo."}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "Rozdíl je jen úzký pruh na kraji."}

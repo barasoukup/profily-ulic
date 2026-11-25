@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "vysoka", "why": "Delici pas a pocet pruhu sedi"}
+{"n": 2, "verdict": "X", "jistota": "nizka", "why": "Median 1.2 a 4.4 jsou zpevnene"}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "Zelen v medianu"}
+{"n": 4, "verdict": "stejne", "jistota": "nizka", "why": "Zadny skutecny median v rezu"}
+{"n": 5, "verdict": "X", "jistota": "stredni", "why": "Median je betonovy"}
+{"n": 6, "verdict": "X", "jistota": "stredni", "why": "Betonovy median"}
+{"n": 7, "verdict": "X", "jistota": "nizka", "why": "Median zpevneny"}
+{"n": 8, "verdict": "X", "jistota": "stredni", "why": "Median je travnik se stromy"}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "Tri pruhy vpravo, tramvajove teleso oddelene"}
+{"n": 10, "verdict": "Y", "jistota": "nizka", "why": "Median je betonovy pas"}

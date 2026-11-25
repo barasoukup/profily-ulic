@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "Rozbor krizovatky, ani jeden profil nesedi"}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "Vpravo je druha vozovka, kterou ma jen X"}
+{"n": 3, "verdict": "X", "jistota": "stredni", "why": "Y pridava vozovku tam, kde je nam namesti"}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "Y zahrnuje siroke ulici vpravo vcetne tri pruhu"}
+{"n": 5, "verdict": "Y", "jistota": "nizka", "why": "Na kraji A je jeste vozovka, kterou ma jen Y"}
+{"n": 6, "verdict": "X", "jistota": "nizka", "why": "Zahrnuje jen uzkou ulici, Y pridava nabrezni silnici"}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "Y pridava vozovku za zdi a budovou"}
+{"n": 8, "verdict": "Y", "jistota": "nizka", "why": "Vlevo je vozovka se stanim, kterou ma jen Y"}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "Vedlejsi ulice, X pridava cast bulvaru"}
+{"n": 10, "verdict": "X", "jistota": "stredni", "why": "Vpravo je vozovka se stanim a chodnikem, jak ukazuje foto"}

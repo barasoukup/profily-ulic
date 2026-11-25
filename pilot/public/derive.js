@@ -211,6 +211,7 @@ const isAlleyArea = (el) => el.type === "area" && el.geometry?.length > 2 && (el
 const AXIS_SNAP = 4.5; // m: an OSM axis this close beside the roadway belongs to it (deriveProfile, the axis to the roadway)
 // Streets for the axis fixes: roads and residential streets, not tracks or bridleways (Brno test č. 99).
 const isRoadway = (c) => c === 700 || c === 701;
+const OTHER_CUT = typeof location !== "undefined" && new URLSearchParams(location.search).get("otherstreet") === "1";
 const OTHER_WALK = 1.5, OTHER_ANGLE = Math.cos((20 * Math.PI) / 180); // m of sidewalk or green before the other street; an axis turned more than 20° from the cut's street
 // A crossing c of the cut's line by another street for cars: named otherwise, turned away, not a link nor on another level.
 const levelTag = (t) => Number(t?.layer) || (inTunnel(t) ? -1 : t?.bridge && t.bridge !== "no" ? 1 : 0);
@@ -2028,9 +2029,10 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   };
   let { lo, hi, right, left } = walk();
   // Another street inside the profile, at an angle (S Street SE and Minnesota Avenue meeting at 34°, H Street NW in the
-  // fork with New York Avenue: the review of 25. 11. 2026): its roadway is not this street's. The profile ends at the sidewalk
-  // or green before it; where nothing but a median lies between, or it is the street's own roadway, the cut runs through a
-  // junction. ?off=otherstreet: neither.
+  // fork with New York Avenue: the review of 25. 11. 2026): its roadway is not this street's: the cut runs
+  // through a junction, said so (?off=otherstreet: not). With ?otherstreet=1 the profile ends at the sidewalk or green before
+  // it, where there is one: off, the blind A/B of 25. 11. 2026 is a tie (13 : 10 of 31 changed cuts, Europe 9 : 10,
+  // Washington and Toronto 4 : 0; evaluation/canada/review).
   let forks = false;
   const foreign = ORTHO_P.off?.has("otherstreet") ? [] : cross.filter((c) => otherStreet(c, way, dir, cross));
   for (const step of foreign.length ? [1, -1] : []) {
@@ -2042,7 +2044,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     // Back from the foreign roadway to the sidewalk or green of at least OTHER_WALK before it, on the cut's own side.
     let end = at0 - step, walked = 0;
     while (end !== i0 && !carriage(runs[end].code) && runs[end].code !== OSM_PARKING) { if (runs[end].code === 702 || runs[end].code === 703 || isOpenLand(runs[end].code)) walked += runs[end].e - runs[end].s; end -= step; }
-    if (walked < OTHER_WALK) { forks = true; continue; }
+    if (walked < OTHER_WALK || !OTHER_CUT) { forks = true; continue; }
     if (step > 0) { hi = at0 - 1; left = "volno"; } else { lo = at0 + 1; right = "volno"; }
   }
   const handSet = (v) => typeof v === "number" && Math.abs(v - MAX_REACH) > 0.05;

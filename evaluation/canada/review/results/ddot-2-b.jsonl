@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "vysoka", "why": "čtyři pruhy na každé straně a dvousměrná cyklostezka uprostřed, Y má jen pruhy"}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "stání, cyklopruh a dva pruhy se žlutou čarou; šířky Y sedí na značení"}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "auta stojí jen na straně B, dva pruhy se středovou čarou"}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "na ortofotu stojí auta na obou stranách úzké ulice"}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "profily se liší jen drobně, podklady (křižovatka, tunel) nerozhodnou"}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "auta zaparkovaná u obou obrubníků, mezi nimi dva pruhy"}
+{"n": 7, "verdict": "X", "jistota": "nizka", "why": "na ortofotu stojí auta u okraje strany B, mezi čárou a obrubou je pás pro stání"}
+{"n": 8, "verdict": "X", "jistota": "vysoka", "why": "stání po obou stranách a dva pruhy se žlutou čarou"}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "dva pruhy, stání na straně B, na straně A pás stání/cyklopruh; šířky Y blíž značení"}
+{"n": 10, "verdict": "Y", "jistota": "nizka", "why": "úzká vozovka bez vidných stání, širší pruh a krajnice, podklady slabé"}

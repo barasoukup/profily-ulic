@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "nizka", "why": "Obě strany mají kolmé stání kolem 4,5 m; Y má větší stání a menší krajnici, blíž skutečnosti."}
+{"n": 2, "verdict": "stejne", "jistota": "nizka", "why": "Na A krajnice, na B vyznačené stání; X trefí A, Y trefí B."}
+{"n": 3, "verdict": "stejne", "jistota": "nizka", "why": "Stání po obou stranách a úzký jízdní pruh, oba profily mají stejnou celkovou šířku."}
+{"n": 4, "verdict": "stejne", "jistota": "nizka", "why": "Úzká neznačená ulice s ad hoc stáním, obě varianty plausibilní."}
+{"n": 5, "verdict": "X", "jistota": "stredni", "why": "Auta parkují po obou stranách vozovky 10 m, X má stání na obou stranách a dva pruhy."}
+{"n": 6, "verdict": "nejde", "jistota": "stredni", "why": "Složitá křižovatka s kruhovým objezdem a ostrůvky, profily bez chodníků ani ostrůvků neodpovídají."}
+{"n": 7, "verdict": "Y", "jistota": "stredni", "why": "Auta parkují po obou stranách úzké ulice, Y má stání na obou stranách."}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "Neznačená ulice, na straně A stojí auto u obruby, X má stání na A."}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "Auta stojí po obou stranách vozovky, Y má stání na obou stranách a úzký středový průjezd."}
+{"n": 10, "verdict": "Y", "jistota": "vysoka", "why": "Stání po obou stranách vozovky podle ortofota i fotky, X ho má jen na B."}

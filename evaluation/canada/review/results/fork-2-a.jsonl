@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "X obsahuje cihlovou vozovku a kolové pruhy; Y vozovku vynechává."}
+{"n": 2, "verdict": "Y", "jistota": "nizka", "why": "Za ostrůvkem na straně B není další vozovka, X ji přidává."}
+{"n": 3, "verdict": "X", "jistota": "stredni", "why": "Chodníky, 2 pruhy, tramvajový pás a 2 pruhy po fasádu sedí; Y přidává vozovku za plazou."}
+{"n": 4, "verdict": "X", "jistota": "nizka", "why": "Svislá ulice končí ostrůvkem; Y přidává křižující širokou křižovatku."}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "Rozdíl je jen úzký pruh na kraji u křižující vozovky."}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "Y zahrnuje širokou vozovku s přechodem i úzkou ulici se stáním u domů; X jen to druhé."}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "X končí fasádou domu; Y přidává pruh a chodník na střeše domu."}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "Ostrůvek zeleně, vozovka a chodník u domů; Y přidává dílčí levou vozovku."}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "Y odpovídá boční ulici se stáním a chodníky; X přidává pruh z přilehlé diagonální třídy."}
+{"n": 10, "verdict": "X", "jistota": "stredni", "why": "X pokrývá celý bulvár s oběma vozovkami a fasádou; Y končí uprostřed."}

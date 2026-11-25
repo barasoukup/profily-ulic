@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "vysoka", "why": "Čtyři pruhy, uprostřed cyklostezka a další čtyři pruhy"}
+{"n": 2, "verdict": "stejne", "jistota": "nizka", "why": "Stejné složení, parkování, cyklopruhy a dva pruhy; šířky vychází podobně"}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "Stání jen na jedné straně a dva pruhy"}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "Stání po obou stranách"}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "Totéž složení, liší se jen šířky krajnice a stání"}
+{"n": 6, "verdict": "Y", "jistota": "vysoka", "why": "Stání po obou stranách a dva úzké pruhy"}
+{"n": 7, "verdict": "X", "jistota": "nizka", "why": "Dva pruhy a stání na straně chodníku"}
+{"n": 8, "verdict": "X", "jistota": "stredni", "why": "Stání po obou stranách dvou pruhů"}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "Stání, dva pruhy s dvojitou žlutou a stání"}
+{"n": 10, "verdict": "Y", "jistota": "nizka", "why": "Široká vozovka s volným pásem u obrubníku"}

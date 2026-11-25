@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "Ulice se dvěma pruhy, plocha a chodník na straně B jsou jen v X; Y končí před vozovkou."}
+{"n": 2, "verdict": "Y", "jistota": "nizka", "why": "Ulice je zhruba 25 m mezi fasádami; X přidává příčnou křižující komunikaci vlevo."}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "Svislá ulice s přechodem je boční ulice se stáním a dvěma pruhy končící chodníkem; Y přidává hlavní třídu."}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "Široké dlážděné náměstí/ulice, Y se šířkou 31 m je blíž; X je užší."}
+{"n": 5, "verdict": "Y", "jistota": "stredni", "why": "Dva pruhy v X leží v parku se stromy, ne na vozovce."}
+{"n": 6, "verdict": "X", "jistota": "nizka", "why": "Cihlová plocha až k ulici s přidanou odbočující komunikací v Y navíc."}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "X zahrnuje hlavní dvoupruhovou vozovku s chodníky i boční úzkou ulici; Y hlavní vozovku vynechává."}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "Vlevo je vozovka se značením, kterou má jen X."}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "Vozovka 2 pruhy se stáním a chodníkem u domů sedí; X dává pruh a cyklopruh do parku."}
+{"n": 10, "verdict": "Y", "jistota": "stredni", "why": "V ortofotu jsou dvě tramvajové koleje v řezu, které má jen Y."}

@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "Y nema stani na strane A a kratsi vlevo"}
+{"n": 2, "verdict": "Y", "jistota": "nizka", "why": "Na strane A je hned chodnik a fasada, X pridava dva pruhy"}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "Vpravo pokracuje asfaltova plocha s pruhy"}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "Vpravo za chodnikem je jina ulice a nam."}
+{"n": 5, "verdict": "Y", "jistota": "nizka", "why": "Vpravo je okraj mostu, druha vozovka je jina silnice"}
+{"n": 6, "verdict": "X", "jistota": "nizka", "why": "Y ma pruh navic u A bez podpory"}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "Vpravo ctyri pruhy, Y je nema"}
+{"n": 8, "verdict": "X", "jistota": "stredni", "why": "Vpravo je park, Y pridava neexistujici silnici"}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "Vlevo vedlejsi ulice nepatri do profilu"}
+{"n": 10, "verdict": "Y", "jistota": "nizka", "why": "Vlevo je jeste pruh vozovky u okraje"}

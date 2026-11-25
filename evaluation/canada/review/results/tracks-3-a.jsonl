@@ -1,0 +1,4 @@
+{"n": 1, "verdict": "Y", "jistota": "nizka", "why": "Cyklopruh jen na strane A, strana B bez"}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "Jeden cyklopruh a dva pruhy"}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "Cyklopruhy na obou stranach"}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "Chranený cyklopruh na A, tri pruhy"}

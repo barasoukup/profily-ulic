@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "stredni", "why": "Travnaty median se stromem"}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "Betonovy ostruvek"}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "Siroky betonovy median"}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "Uzky betonovy median"}
+{"n": 5, "verdict": "Y", "jistota": "stredni", "why": "Travnik s teleso tramvaje a stromy"}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "Travnaty median"}
+{"n": 7, "verdict": "Y", "jistota": "nizka", "why": "Zpevneny stredni pas"}
+{"n": 8, "verdict": "Y", "jistota": "vysoka", "why": "Dva pruhy a tramvaj odpovidaji, X ma tri pruhy"}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "Parkovani na strane B a tri pruhy"}
+{"n": 10, "verdict": "Y", "jistota": "nizka", "why": "Median bily beton"}

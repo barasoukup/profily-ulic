@@ -1,0 +1,4 @@
+{"n": 1, "verdict": "Y", "jistota": "nizka", "why": "Na B žádný cyklopruh, cyklopruh na A"}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "Cyklopruh na B a dva pruhy bez krajnice"}
+{"n": 3, "verdict": "stejne", "jistota": "nizka", "why": "Podobné složení, cyklopruh na B"}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "Parkování a pruhy bez cyklopruhu na B"}

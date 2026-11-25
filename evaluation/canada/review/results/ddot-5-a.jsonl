@@ -1,0 +1,5 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "stani po obou stranach a dva pruhy v obou profilech, sirky blizke"}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "auta stoji na strane B, strana A travnik bez stani"}
+{"n": 3, "verdict": "X", "jistota": "stredni", "why": "na strane B zakaz stani, tri jizdni pruhy, bez stani"}
+{"n": 4, "verdict": "X", "jistota": "nizka", "why": "na strane A jen stani/krajnice u obruby, cyklopruh tam neni"}
+{"n": 5, "verdict": "Y", "jistota": "stredni", "why": "cyklopruh i na strane B (dashed, symbol kola) a stani po obou stranach"}

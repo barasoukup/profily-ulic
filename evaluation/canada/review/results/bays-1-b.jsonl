@@ -1,0 +1,9 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "Auta stoji primo u obrubniku"}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "Parkovani primo u chodniku"}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "Auta jsou odsazena od obruby"}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "Auta u obruby"}
+{"n": 5, "verdict": "Y", "jistota": "nizka", "why": "Pas pred stanim a plocha misto parkovani na B"}
+{"n": 6, "verdict": "X", "jistota": "stredni", "why": "Auta u obruby"}
+{"n": 7, "verdict": "Y", "jistota": "nizka", "why": "Na B spis plocha"}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "Celkova sirka sedi lepe"}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "Ctyri pruhy a parkovani po obou stranach"}

@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "nizka", "why": "Neznačená ulice kolem 9 m s auty zaparkovanými u obrub, Y má stání po obou stranách."}
+{"n": 2, "verdict": "Y", "jistota": "nizka", "why": "Červený bus pruh sousedí s chodníkem na B, což má Y; X dává stání na B místo na A."}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "Široká třída se stáním po obou stranách a pěti pruhy; X má stání na obou stranách, Y žádné."}
+{"n": 4, "verdict": "stejne", "jistota": "nizka", "why": "Stání jen na A, každý profil trefí jednu stranu."}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "Stejné složení se středním pásem, liší se jen šířky cyklopruhu a pruhu."}
+{"n": 6, "verdict": "stejne", "jistota": "nizka", "why": "Stání po obou stranách a dva pruhy, rozdíl jen v desetinách metru."}
+{"n": 7, "verdict": "X", "jistota": "nizka", "why": "Na ortofotu ani fotce žádná zaparkovaná auta, Y má i podivný pruh 2,5 m."}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "Na ortofotu stojí auta u obou okrajů vozovky, X má stání na obou stranách."}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "Auta stojí po obou stranách dvousměrné ulice a jsou tam cyklo značky, Y má stání a cyklopruh."}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "Stejné složení stání, cyklopruhů a dvou pruhů, liší se jen šířky."}

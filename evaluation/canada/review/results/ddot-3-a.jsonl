@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "nizka", "why": "parkovani na obou stranach siroke (auta kolmo/sikmo), Y ma vetsi stani"}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "na strane B stoji auta u obruby, ne krajnice"}
+{"n": 3, "verdict": "stejne", "jistota": "nizka", "why": "parkovani po obou stranach a jeden stredni pruh, obe odpovidaji, sirky v toleranci"}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "v rezu mistni vozovka bez parkovani, jen okraje"}
+{"n": 5, "verdict": "X", "jistota": "nizka", "why": "auta parkuji u obrubniku, ulice sirka 10 m na parkovani a dva pruhy"}
+{"n": 6, "verdict": "nejde", "jistota": "nizka", "why": "slozita krizovatka s medianem, podklady nestaci"}
+{"n": 7, "verdict": "Y", "jistota": "vysoka", "why": "parkovani na obou stranach, zbyva uzky stredni pruh"}
+{"n": 8, "verdict": "Y", "jistota": "nizka", "why": "na strane A zadne parkovani, vozovka s okraji"}
+{"n": 9, "verdict": "Y", "jistota": "vysoka", "why": "auta zaparkovana na obou stranach, dva pruhy mezi nimi"}
+{"n": 10, "verdict": "Y", "jistota": "vysoka", "why": "parkovani po obou stranach vozovky"}

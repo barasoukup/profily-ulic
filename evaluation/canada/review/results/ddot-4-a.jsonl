@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "v rezu zadna zaparkovana auta, dva pruhy bez stani"}
+{"n": 2, "verdict": "nejde", "jistota": "nizka", "why": "stinene ortofoto, slozita ulice s busovym pruhem, podklady nestaci"}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "stani na strane A, siroka vozovka asi 5 pruhu"}
+{"n": 4, "verdict": "stejne", "jistota": "nizka", "why": "stani je jen na strane A, oba profily jednu stranu spatne"}
+{"n": 5, "verdict": "X", "jistota": "nizka", "why": "oddelene vozovky shodneho slozeni, X presnejsi u okraje A"}
+{"n": 6, "verdict": "stejne", "jistota": "stredni", "why": "stani po obou stranach a dva pruhy, rozdily v sirkach male"}
+{"n": 7, "verdict": "X", "jistota": "nizka", "why": "u obrubniku v rezu zadna auta, dva pruhy"}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "auta parkuji na obou stranach ulice, i kdyz v rezu zrovna prazdno"}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "stani A, pruh, cyklopruh/pruh B a stani B odpovida ortofotu"}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "stejne slozeni, obdobne sirky"}

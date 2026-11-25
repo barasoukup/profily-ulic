@@ -1,0 +1,82 @@
+{
+ "ddot": {
+  "sample": 90,
+  "profiles": 90,
+  "map": 79,
+  "changed": 45,
+  "judged": 45,
+  "photo": {
+   "local": [
+    26,
+    26
+   ],
+   "arterial": [
+    12,
+    12
+   ],
+   "collector": [
+    7,
+    7
+   ]
+  }
+ },
+ "gaps": {
+  "sample": 70,
+  "profiles": 70,
+  "map": 70,
+  "changed": 26,
+  "judged": 26,
+  "photo": {
+   "arterial": [
+    24,
+    25
+   ],
+   "collector": [
+    1,
+    1
+   ]
+  }
+ },
+ "tracks": {
+  "sample": 90,
+  "profiles": 90,
+  "map": 87,
+  "changed": 56,
+  "judged": 24,
+  "photo": {
+   "arterial": [
+    14,
+    14
+   ],
+   "collector": [
+    7,
+    7
+   ],
+   "local": [
+    3,
+    3
+   ]
+  }
+ },
+ "bays": {
+  "sample": 34,
+  "profiles": 34,
+  "map": 34,
+  "changed": 9,
+  "judged": 9,
+  "photo": {
+   "collector": [
+    5,
+    6
+   ],
+   "local": [
+    1,
+    1
+   ],
+   "arterial": [
+    2,
+    2
+   ]
+  }
+ }
+}

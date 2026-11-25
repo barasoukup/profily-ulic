@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "Cyklopruh na A vs 4 pruhy, každý má část pravdy"}
+{"n": 2, "verdict": "Y", "jistota": "nizka", "why": "Pruh vedle obruby na A vypadá jako cyklopruh"}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "Cyklopruh u B, tramvaj uprostřed"}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "Cyklopruh na straně A vedle chodníku"}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "Obě podobné, cyklopruhy na A i B"}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "Cyklopruh na B, čtyři pruhy v pravé vozovce"}
+{"n": 7, "verdict": "X", "jistota": "nizka", "why": "Čtyři jízdní pruhy, parkování, bez cyklopruhů"}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "Široká vozovka s cyklistickým okrajem, 4 pruhy"}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "Cyklopruh na straně B u křižovatky"}
+{"n": 10, "verdict": "X", "jistota": "stredni", "why": "Cyklopruh po obou stranách a dva pruhy"}

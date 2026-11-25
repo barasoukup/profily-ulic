@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "Pruhy vozovky jsou jen v X, Y je bez vozovky"}
+{"n": 2, "verdict": "Y", "jistota": "nizka", "why": "Vedlejsi ulice u A do hlavni ulice nepatri"}
+{"n": 3, "verdict": "nejde", "jistota": "nizka", "why": "Podklady nestaci: kriz a prechod"}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "Trh na dlazbe je siroky, Y pokryva siri plochu"}
+{"n": 5, "verdict": "X", "jistota": "nizka", "why": "Y konci krizovatkou, X ma vozovku a stani"}
+{"n": 6, "verdict": "X", "jistota": "nizka", "why": "Roh u A je plocha chodniku, Y pridava boční ulici"}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "Hlavni vozovka v X chybi v Y"}
+{"n": 8, "verdict": "Y", "jistota": "nizka", "why": "Leva silnice je jina ulice"}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "Druhy pruh a cyklopruh vlevo nejsou, tam je chodnik a park"}
+{"n": 10, "verdict": "Y", "jistota": "stredni", "why": "Tramvaj a vozovka vpravo jsou videt, X je nema"}

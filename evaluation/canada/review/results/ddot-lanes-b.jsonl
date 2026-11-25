@@ -1,0 +1,45 @@
+{"pack":1,"n":1,"lanes":1,"parkA":1,"parkB":1,"why":"narrow unmarked residential street, cars both kerbs"}
+{"pack":1,"n":2,"lanes":2,"parkA":1,"parkB":1,"why":"parked cars both sides, centre dashed line in photo"}
+{"pack":1,"n":3,"lanes":3,"parkA":0,"parkB":0,"why":"wide avenue with dashed lane lines, construction staging at A, no parking seen"}
+{"pack":1,"n":4,"lanes":1,"parkA":1,"parkB":0,"why":"narrow unmarked street, cars parked on A side"}
+{"pack":1,"n":5,"lanes":2,"parkA":0,"parkB":0,"why":"double yellow centre line, no kerb parking"}
+{"pack":1,"n":6,"lanes":null,"parkA":null,"parkB":null,"why":"intersection/plaza, cannot tell"}
+{"pack":1,"n":7,"lanes":4,"parkA":0,"parkB":0,"why":"dashed lane lines, about 12 m roadway, no clear parking"}
+{"pack":1,"n":8,"lanes":1,"parkA":1,"parkB":1,"why":"narrow street, cars parked both sides"}
+{"pack":1,"n":9,"lanes":4,"parkA":1,"parkB":1,"why":"divided road, 2 lanes each way, parked cars at both outer kerbs"}
+{"pack":1,"n":10,"lanes":2,"parkA":0,"parkB":0,"why":"two marked lanes, no parking strip at cut"}
+{"pack":2,"n":1,"lanes":6,"parkA":0,"parkB":0,"why":"wide avenue, ~3 lanes each side of centre protected bike lanes, no kerb parking; lane count approximate"}
+{"pack":2,"n":2,"lanes":2,"parkA":1,"parkB":1,"why":"double yellow centre, parked cars at both kerbs beside bike lanes"}
+{"pack":2,"n":3,"lanes":2,"parkA":0,"parkB":1,"why":"side street ~10 m wide, cars parked on B side"}
+{"pack":2,"n":4,"lanes":1,"parkA":1,"parkB":1,"why":"shaded street, cars along both kerbs, ~5.5 m free middle"}
+{"pack":2,"n":5,"lanes":6,"parkA":0,"parkB":0,"why":"signalised approach with turn lanes either side of red bike track; count approximate"}
+{"pack":2,"n":6,"lanes":2,"parkA":1,"parkB":1,"why":"cars parked at both kerbs, ~8 m free middle"}
+{"pack":2,"n":7,"lanes":2,"parkA":0,"parkB":0,"why":"two-way with centre line, queued traffic, no kerb parking at cut"}
+{"pack":2,"n":8,"lanes":2,"parkA":1,"parkB":1,"why":"double yellow, cars parked at both kerbs"}
+{"pack":2,"n":9,"lanes":2,"parkA":0,"parkB":1,"why":"double yellow, bike lane with bollards at A, marked parking stalls at B"}
+{"pack":2,"n":10,"lanes":2,"parkA":0,"parkB":0,"why":"unmarked ~9 m concrete/asphalt roadway on bridge, no parking seen"}
+{"pack":3,"n":1,"lanes":2,"parkA":1,"parkB":1,"why":"centre yellow line, parked cars along A kerb and angled/perpendicular parking at B"}
+{"pack":3,"n":2,"lanes":2,"parkA":1,"parkB":1,"why":"double yellow centre, outer strips outside edge lines hold parked cars"}
+{"pack":3,"n":3,"lanes":1,"parkA":1,"parkB":1,"why":"narrow street, cars parked both kerbs, single shared middle lane"}
+{"pack":3,"n":4,"lanes":1,"parkA":null,"parkB":null,"why":"street end at junction, no cars at the cut, photos conflict"}
+{"pack":3,"n":5,"lanes":2,"parkA":null,"parkB":null,"why":"unmarked ~9 m road, no cars at cut but photo shows parked cars nearby"}
+{"pack":3,"n":6,"lanes":null,"parkA":null,"parkB":null,"why":"large signalised intersection, cannot tell"}
+{"pack":3,"n":7,"lanes":1,"parkA":1,"parkB":1,"why":"cars parked both kerbs, narrow free middle"}
+{"pack":3,"n":8,"lanes":2,"parkA":0,"parkB":0,"why":"unmarked ~8.5 m road, no parked cars at cut"}
+{"pack":3,"n":9,"lanes":1,"parkA":1,"parkB":1,"why":"cars parked at both kerbs on narrow street"}
+{"pack":3,"n":10,"lanes":1,"parkA":1,"parkB":1,"why":"continuous parked cars both sides, one shared lane"}
+{"pack":4,"n":1,"lanes":2,"parkA":0,"parkB":0,"why":"unmarked ~9 m street, no parked cars at the cut, speed hump"}
+{"pack":4,"n":2,"lanes":3,"parkA":1,"parkB":0,"why":"parking at A, two lanes plus ONLY BUS lane, separate red bike lane at B"}
+{"pack":4,"n":3,"lanes":5,"parkA":0,"parkB":0,"why":"wide avenue near intersection, centre yellow, bus at B; count approximate"}
+{"pack":4,"n":4,"lanes":2,"parkA":1,"parkB":0,"why":"unmarked ~10 m street, cars parked along A kerb"}
+{"pack":4,"n":5,"lanes":3,"parkA":1,"parkB":0,"why":"divided road: one lane plus parked strip at A, two lanes at B carriageway"}
+{"pack":5,"n":1,"lanes":1,"parkA":1,"parkB":1,"why":"narrow street, cars parked both sides"}
+{"pack":5,"n":2,"lanes":1,"parkA":0,"parkB":1,"why":"narrow ~6.5 m unmarked street, cars parked on B side"}
+{"pack":5,"n":3,"lanes":3,"parkA":0,"parkB":0,"why":"signal approach: two lanes at A of yellow line, one at B, no parking"}
+{"pack":5,"n":4,"lanes":4,"parkA":1,"parkB":1,"why":"wide central roadway with several lane lines, parked cars on side strips at both sides"}
+{"pack":5,"n":5,"lanes":2,"parkA":1,"parkB":1,"why":"double yellow, parked cars both sides, bike lane at B between lane and parking"}
+{"pack":4,"n":6,"lanes":2,"parkA":1,"parkB":1,"why":"cars at both kerbs of ~12 m street, ~7.5 m free middle; street photo is blank"}
+{"pack":4,"n":7,"lanes":2,"parkA":0,"parkB":0,"why":"shaded unmarked ~10 m street, no parked cars at cut"}
+{"pack":4,"n":8,"lanes":1,"parkA":1,"parkB":1,"why":"narrow ~8.5 m street with cars at both kerbs near the cut"}
+{"pack":4,"n":9,"lanes":2,"parkA":1,"parkB":1,"why":"yellow centre line, parked cars at both kerbs, marked bike lane at B"}
+{"pack":4,"n":10,"lanes":2,"parkA":1,"parkB":1,"why":"double yellow, parked cars along both kerbs"}

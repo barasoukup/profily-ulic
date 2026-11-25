@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "stredni", "why": "travnaty stred"}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "betonovy ostruvek"}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "siroky betonovy stred"}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "uzky tvrdy stred"}
+{"n": 5, "verdict": "Y", "jistota": "nizka", "why": "trava se stromy kolem trati"}
+{"n": 6, "verdict": "Y", "jistota": "vysoka", "why": "travnaty stred"}
+{"n": 7, "verdict": "X", "jistota": "nizka", "why": "uzky betonovy stred"}
+{"n": 8, "verdict": "Y", "jistota": "vysoka", "why": "plocha vlevo, dva pruhy po 3.5, koleje 2x3.5"}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "parkovani vpravo a stromorad sedi"}
+{"n": 10, "verdict": "X", "jistota": "nizka", "why": "stred spise travnaty"}

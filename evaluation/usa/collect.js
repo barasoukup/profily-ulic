@@ -16,6 +16,7 @@ const VARIANTS = {
   ddot0: { q: "ddot=0", off: [] }, // Washington: the map without DDOT's inventory
   gaps0: { q: "off=mapgaps", off: [] }, // Toronto's rules one by one
   bays0: { q: "off=kerbbays", off: [] },
+  // (os0 was measured when the default was what ?otherstreet=1 is now.)
   os0: { q: "off=otherstreet", off: ["otherstreet"] }, // the shared rules of the second review
   tt0: { q: "off=tunneltracks", off: ["tunneltracks"] },
   rt0: { q: "off=roadtracks", off: [] }, // Canada: without OSM's cycle tracks in the map's carriageway

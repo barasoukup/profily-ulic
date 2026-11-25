@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "Obě téměř shodné, 4 pruhy a cyklopruhy po obou stranách"}
+{"n": 2, "verdict": "Y", "jistota": "nizka", "why": "Na fotce značení cyklopruhu u okraje, X má jen krajnice"}
+{"n": 3, "verdict": "stejne", "jistota": "nizka", "why": "Parkování a cyklopruh jen na jedné straně, ani jeden přesně"}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "Žádný cyklopruh, široká vozovka s krajnicemi"}
+{"n": 5, "verdict": "Y", "jistota": "nizka", "why": "Cyklopruh se šrafovaným pásem u zdi na straně B"}
+{"n": 6, "verdict": "X", "jistota": "nizka", "why": "Parkování po obou stranách a 3 pruhy, cyklopruhy nevidět"}
+{"n": 7, "verdict": "Y", "jistota": "nizka", "why": "Široká krajnice/pruh na A, bez cyklopruhů v realitě"}
+{"n": 8, "verdict": "X", "jistota": "stredni", "why": "Cyklopruh na obou stranách, 2 pruhy"}
+{"n": 9, "verdict": "X", "jistota": "nizka", "why": "Dvě oddělené části vozovky s kolejemi mezi nimi"}
+{"n": 10, "verdict": "Y", "jistota": "stredni", "why": "Čtyři jízdní pruhy (2+2 kolem tramvajového pásu)"}
