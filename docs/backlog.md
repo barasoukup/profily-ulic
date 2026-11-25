@@ -28,7 +28,10 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Zákonné stání po pruzích (měření 25. 11. 2026, `evaluation/sjednoceni/mereni/ZPRAVA.md`, oddíl 4) **(Bára)**: `layLaw` nebere
   `pruh_piktokoridor` jako pruh; `markIslands` udělá z chodníku vedle stání dělicí pás; jednosměrka změřená na dva pruhy ztratí
   zákonný pruh; model pod stromy auta nevidí a zákonný pruh v mapě povrchů vrátí do vozovky (Zaragoza 0 : 4).
-- Uložený řez dvouvozovkové ulice se chytí jiné cesty OSM (odkaz nemá `wayId`): 10 z 226, jiný profil u 7 (`mereni/ZPRAVA.md`, oddíl 5).
+- ~~Uložený řez dvouvozovkové ulice se chytí jiné cesty OSM (odkaz nemá `wayId`): 10 z 226, jiný profil u 7~~ (25. 11. 2026:
+  cesta je v odkazu; všech 10 se chytí své, `mereni2/ZPRAVA.md`).
+- Odkaz `#rez=` zaokrouhluje azimut na celé stupně: profil z odkazu se od kliknutí liší o centimetry, výjimečně o díl (Versmannstraße:
+  dva pruhy → pruh s krajnicí). Jedno desetinné místo by čtečky i Worker vzaly **(Bára)**.
 
 ## Mapy povrchů a data měst
 

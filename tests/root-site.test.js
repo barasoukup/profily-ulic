@@ -14,6 +14,7 @@ const sent = (href) => {
 test("kořen webu: staré odkazy a kořen domény vedou do profily/ i s řezem, adresy v profily/ zůstávají", () => {
   assert.equal(sent("https://streetspace.eu/"), "/profily/");
   assert.equal(sent("https://streetspace.eu/#rez=50.1,14.4,-99,22.0,22.0"), "/profily/#rez=50.1,14.4,-99,22.0,22.0");
+  assert.equal(sent("https://streetspace.eu/#rez=50.1,14.4,-99,22.0,22.0,4441474&navrh=abc"), "/profily/#rez=50.1,14.4,-99,22.0,22.0,4441474&navrh=abc");
   assert.equal(sent("https://streetspace.eu/?mesto=brno#rez=49.2,16.6,10"), "/profily/?mesto=brno#rez=49.2,16.6,10");
   assert.equal(sent("https://streetspace.eu/brno/#rez=49.2,16.6,10"), "/profily/brno/#rez=49.2,16.6,10");
   assert.equal(sent("https://streetspace.eu/profily/neni.html"), null);

@@ -71,7 +71,7 @@ plus globální P), (c) 8** (`besidePassport`, `besideMax`, `parkGuess` SK, `wid
 | `city.fix` (3 pravidla os) | 54 řezů (39 v cizině s mapou, 15 v Praze): 0 změn; staré pražské prohry trvají | sjednoceno mimo Prahu (Praha `fix: {}` s důvodem) | bf4160d |
 | `city.fix` v Praze | pravidla upravená (dělicí pás, protější vozovka); Praha 152 řezů: naslepo N 9 : O 4, proti MTVU ze 131 posunutých míst lépe 54, hůř 30; Brno 118: změna 1 (N), cizina 50: 0 | **sjednoceno, `city.fix`, `AXIS_FIX` i `PROFILY_FIX` zrušené**; Plzeň jen `bedPanels` (data) | `praha/ZPRAVA.md` |
 | ústí uličky, spočítané pruhy (z pilotu USA) | viz `praha/ZPRAVA.md` | přenesené; spočítané pruhy jen se stáním u vozovky (Odlehlá prohrála) | `praha/ZPRAVA.md` |
-| uložený řez (`#rez=`, vložená poloha s azimutem) | pravidla křižovatek ho posouvala (Stará cesta 6,8 m); 4 řezy ověřené, 0,00 m | otevře se přesně, kde byl uložen (`derive.js placeCut`); posouvá se jen kliknutí | b4b8964 |
+| uložený řez (`#rez=`, vložená poloha s azimutem) | pravidla křižovatek ho posouvala (Stará cesta 6,8 m); 4 řezy ověřené, 0,00 m | otevře se přesně, kde byl uložen (`derive.js placeCut`); posouvá se jen kliknutí; odkaz nese i cestu OSM (šesté číslo; `share.js cutHash`, `derive.js savedStreet`) | b4b8964, `mereni2/ZPRAVA.md` |
 
 Zbývá (doporučení): `besideMax` (SK 15 m, jinde 25 m; A/B na Slovensku, na českých pasportech je to jedno),
 `roadOnPath` (jen Praha; zkusit na DTM ČÚZK a mapách měst, data mohou mít stejnou chybu), `roadClassFromOsm` (CZ, SK;

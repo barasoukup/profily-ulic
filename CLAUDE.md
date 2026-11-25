@@ -589,7 +589,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   pruhy; teď pruhy napřed, `ai-kerbs.js lawKerbs`, `?off=lawlanes`, A/B oprava 13 : 6, SK se zákonem 6 : 7 a CZ 5 : 5,
   `evaluation/sjednoceni/slovensko-stani/ZPRAVA.md`); výjimku stání má jen Monako (zákon). Uložený řez (`#rez=`, vložená
   poloha s azimutem) se otevře přesně tam, kde byl uložen (`derive.js placeCut`), pravidla křižovatek a středu dvou vozovek
-  posouvají jen kliknutí.
+  posouvají jen kliknutí. Odkaz nese i cestu OSM (`#rez=lat,lon,azimut,vlevo,vpravo,way`; `share.js`, `derive.js savedStreet`);
+  starý odkaz nebo zaniklá cesta: nejbližší ulice jako dřív.
 
 ## Jazyky (Bára 12. 11. 2026, slovenčina 15. 11. 2026, němčina 16. 11. 2026)
 - Anglicky se aplikace jmenuje **Street Profile**, slovensky **Profily ulíc**, německy **Straßenprofil**. Čeština, slovenčina,

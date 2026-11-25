@@ -124,15 +124,15 @@ const STREET_WORDS = /^(calle|carrer|rua|avenida|avinguda|avda|paseo|passeig|pla
 const looseName = (n) => String(n || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().split(/[^a-z0-9]+/).filter((w) => w && !STREET_WORDS.test(w)).join(" ");
 const sameStreet = (a, b, loose) => a === b || (!!loose && looseName(a) === loose);
 
+// Indoor corridors and passages through buildings are never the street being cut.
+const isStreet = (el) => el.type === "way" && !!el.tags?.highway && !!el.geometry && el.tags.highway !== "corridor" && el.tags.indoor !== "yes" && el.tags.tunnel !== "building_passage" && !isUnderground(el.tags);
 // Nearest street (highway way) to a point; minor ways only win when much closer.
 // name: the street the user searched for (an address on a corner, search-at.js): a way of that name within 30 m wins.
 export function nearestStreet(osm, frame, p, name = null) {
   let best = null;
   const loose = name && looseName(name);
   for (const el of osm.elements || []) {
-    if (el.type !== "way" || !el.tags?.highway || !el.geometry) continue;
-    // Indoor corridors and passages through buildings are never the street being cut.
-    if (el.tags.highway === "corridor" || el.tags.indoor === "yes" || el.tags.tunnel === "building_passage" || isUnderground(el.tags)) continue;
+    if (!isStreet(el)) continue;
     const pts = el.geometry.map((g) => frame.toXY(g.lon, g.lat));
     const c = closestOnPolyline(pts, p);
     const sidewalk = ["sidewalk", "crossing"].includes(el.tags.footway);
@@ -140,6 +140,21 @@ export function nearestStreet(osm, frame, p, name = null) {
     if (!best || score < best.score) best = { ...c, score, way: el, pts };
   }
   return best;
+}
+
+// The street of a saved cut (the way in its link, share.js cutHash) at the frame's origin, as nearestStreet gives it, or
+// null where it is not any more: the way deleted, underground, farther than SAVED_MAX, or ending before the cut (OSM
+// split it; a piece ending a few metres short, SAVED_GAP, still is the street).
+const SAVED_GAP = 5; // m
+export function savedStreet(osm, frame, id) {
+  const way = (osm.elements || []).find((el) => el.id === id && isStreet(el));
+  if (!way) return null;
+  const pts = way.geometry.map((g) => frame.toXY(g.lon, g.lat)), c = closestOnPolyline(pts, [0, 0]);
+  if (!c.point || c.d > SAVED_MAX) return null;
+  const ring = Math.hypot(pts[0][0] - pts.at(-1)[0], pts[0][1] - pts.at(-1)[1]) < 0.01;
+  const past = !ring && [pts[0], pts.at(-1)].some((q) => Math.hypot(q[0] - c.point[0], q[1] - c.point[1]) < 0.01);
+  if (past && Math.abs(c.point[0] * c.dir[0] + c.point[1] * c.dir[1]) > SAVED_GAP) return null;
+  return { ...c, way, pts };
 }
 
 export function snapToWay(wayPts, p) {

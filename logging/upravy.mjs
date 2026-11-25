@@ -6,7 +6,7 @@
 import { execFileSync } from "node:child_process";
 
 const only = process.argv[2];
-const sql = `SELECT ts, detail, city, street, lat, lon, bearing, profile FROM events WHERE kind='upravy'${only ? ` AND detail='${only.replace(/\W/g, "")}'` : ""} ORDER BY id`;
+const sql = `SELECT ts, detail, city, street, lat, lon, bearing, reach_left, reach_right, way_id, profile FROM events WHERE kind='upravy'${only ? ` AND detail='${only.replace(/\W/g, "")}'` : ""} ORDER BY id`;
 const out = execFileSync("npx", ["wrangler", "d1", "execute", "profily-ulic-log", "--remote", "--json", "--command", sql], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] });
 const rows = JSON.parse(out)[0].results;
 
@@ -43,7 +43,7 @@ const tally = {};
 for (const r of rows) {
   const { pred, po } = JSON.parse(r.profile);
   const list = changes(pred, po);
-  console.log(`\n${r.ts.slice(0, 16).replace("T", " ")}  ${r.detail.toUpperCase()}  ${r.street || "?"} (${r.city})  #rez=${(+r.lat).toFixed(6)},${(+r.lon).toFixed(6)},${Math.round(r.bearing)}`);
+  console.log(`\n${r.ts.slice(0, 16).replace("T", " ")}  ${r.detail.toUpperCase()}  ${r.street || "?"} (${r.city})  #rez=${(+r.lat).toFixed(6)},${(+r.lon).toFixed(6)},${Math.round(r.bearing)}${r.reach_left != null ? `,${(+r.reach_left).toFixed(1)},${(+r.reach_right).toFixed(1)}${r.way_id ? `,${r.way_id}` : ""}` : ""}`);
   for (const c of list) console.log("   " + c);
   // For the summary: a change without its widths ("pruh: … → …", "+ cyklopruh").
   for (const c of new Set(list.map((c) => c.replace(/\s*[\d,]+ m/g, "").replace(/: →$/, ": šířka")))) {
