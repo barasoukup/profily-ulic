@@ -9,9 +9,10 @@ const C = await import("../pilot/public/city.js");
 const SK = await import("../pilot/public/towns/slovensko.js");
 const read = (f) => fs.readFileSync(new URL(`../pilot/public/${f}`, import.meta.url), "utf8");
 
-test("pasporty měst: Bratislava, Prešov, Žilina, Banská Bystrica, Košice, Zvolen jen na přání", () => {
+test("pasporty měst: Bratislava, Žilina, Banská Bystrica, Košice, Zvolen jen na přání; Prešov jen stromy (vrstvy uzavřel)", () => {
   assert.deepEqual(Object.keys(SK.SK_TOWNS).sort(), ["bratislava", "bystrica", "kosice", "presov", "zilina", "zvolen"]);
-  for (const t of Object.values(SK.SK_TOWNS)) assert.equal(typeof t.own, "function");
+  for (const [id, t] of Object.entries(SK.SK_TOWNS)) assert.equal(typeof t.own, id === "presov" ? "undefined" : "function");
+  assert.ok(SK.SK_TOWNS.presov.points.length && !SK.SURFACE_MAPS.includes("presov-pasport"));
   assert.equal(SK.SK_TOWNS.zvolen.optIn, "zvolen");
 });
 

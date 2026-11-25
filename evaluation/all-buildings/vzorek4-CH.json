@@ -1,0 +1,2019 @@
+{
+ "stat": {
+  "houses": 5829,
+  "yard": 105,
+  "all": 1619,
+  "todayAll": 1650,
+  "regFailed": 0,
+  "noPhoto": {
+   "yard": 63,
+   "all": 0
+  }
+ },
+ "changes": {
+  "povalecny>sikma": 97,
+  "povalecny>funkce": 8
+ },
+ "rows": [
+  {
+   "id": "CHy01",
+   "town": "bern",
+   "city": "switzerland",
+   "point": [
+    7.440437,
+    46.9505997
+   ],
+   "mapillary": "1938756502954340",
+   "pano": false,
+   "dist": 8.2,
+   "off": 18.6,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       7.440436983958839,
+       46.95059974667464
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       7.440436983958839,
+       46.95059974667464
+      ],
+      "km": 99,
+      "block": {
+       "length": 194.6,
+       "width": 32.6,
+       "fill": 0.37,
+       "parts": 4
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       7.440436983958839,
+       46.95059974667464
+      ],
+      "km": 99,
+      "block": {
+       "length": 194.6,
+       "width": 32.6,
+       "fill": 0.37,
+       "parts": 4,
+       "hull": 0.57
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy02",
+   "town": "stgallen",
+   "city": "switzerland",
+   "point": [
+    9.3763269,
+    47.4268598
+   ],
+   "mapillary": "3726833867427781",
+   "pano": false,
+   "dist": 6.6,
+   "off": 2.6,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       9.376326920358078,
+       47.42685979424919
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       9.376326920358078,
+       47.42685979424919
+      ],
+      "km": 99,
+      "block": {
+       "length": 85.9,
+       "width": 36,
+       "fill": 0.46,
+       "parts": 4
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       9.376326920358078,
+       47.42685979424919
+      ],
+      "km": 99,
+      "block": {
+       "length": 85.9,
+       "width": 36,
+       "fill": 0.46,
+       "parts": 4,
+       "hull": 0.63
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy03",
+   "town": "stgallen",
+   "city": "switzerland",
+   "point": [
+    9.3801802,
+    47.4246185
+   ],
+   "mapillary": "5349948601746088",
+   "pano": false,
+   "dist": 21.1,
+   "off": -7.7,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       9.38018018475321,
+       47.42461852042632
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       9.38018018475321,
+       47.42461852042632
+      ],
+      "km": 99,
+      "block": {
+       "length": 147.6,
+       "width": 124.6,
+       "fill": 0.39,
+       "parts": 4
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       9.38018018475321,
+       47.42461852042632
+      ],
+      "km": 99,
+      "block": {
+       "length": 147.6,
+       "width": 124.6,
+       "fill": 0.39,
+       "parts": 4,
+       "hull": 0.6
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy04",
+   "town": "luzern",
+   "city": "switzerland",
+   "point": [
+    8.3103043,
+    47.0573805
+   ],
+   "mapillary": "1505951597813355",
+   "pano": true,
+   "dist": 14.8,
+   "off": -167.9,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 7,
+      "point": [
+       8.31030426393497,
+       47.05738049283864
+      ],
+      "km": 99,
+      "block": {
+       "length": 156,
+       "width": 35.4,
+       "fill": 0.49,
+       "parts": 2
+      },
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 7,
+      "point": [
+       8.31030426393497,
+       47.05738049283864
+      ],
+      "km": 99,
+      "block": {
+       "length": 156,
+       "width": 39.2,
+       "fill": 0.53,
+       "parts": 3
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 7,
+      "point": [
+       8.31030426393497,
+       47.05738049283864
+      ],
+      "km": 99,
+      "block": {
+       "length": 156,
+       "width": 39.2,
+       "fill": 0.53,
+       "parts": 3,
+       "hull": 0.69
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy05",
+   "town": "biel",
+   "city": "switzerland",
+   "point": [
+    7.2597775,
+    47.1438103
+   ],
+   "mapillary": "2351069265645349",
+   "pano": false,
+   "dist": 20.5,
+   "off": 26.3,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "levels": 8,
+      "point": [
+       7.2597774753762945,
+       47.14381029973907
+      ],
+      "km": 99,
+      "block": {
+       "length": 66.9,
+       "width": 18.1,
+       "fill": 0.78,
+       "parts": 1
+      },
+      "tint": 0,
+      "type": "industrial"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 8,
+      "point": [
+       7.2597774753762945,
+       47.14381029973907
+      ],
+      "km": 99,
+      "block": {
+       "length": 217.3,
+       "width": 142.8,
+       "fill": 0.35,
+       "parts": 12
+      },
+      "tint": 0,
+      "type": "industrial"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 8,
+      "point": [
+       7.2597774753762945,
+       47.14381029973907
+      ],
+      "km": 99,
+      "block": {
+       "length": 217.3,
+       "width": 142.8,
+       "fill": 0.35,
+       "parts": 12,
+       "hull": 0.47
+      },
+      "tint": 0,
+      "type": "industrial"
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy06",
+   "town": "stgallen",
+   "city": "switzerland",
+   "point": [
+    9.385171,
+    47.4344797
+   ],
+   "mapillary": "4468507100065348",
+   "pano": false,
+   "dist": 24.9,
+   "off": 28.2,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       9.385170961244745,
+       47.43447972910103
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       9.385170961244745,
+       47.43447972910103
+      ],
+      "km": 99,
+      "block": {
+       "length": 134.2,
+       "width": 56.3,
+       "fill": 0.44,
+       "parts": 5
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       9.385170961244745,
+       47.43447972910103
+      ],
+      "km": 99,
+      "block": {
+       "length": 134.2,
+       "width": 56.3,
+       "fill": 0.44,
+       "parts": 5,
+       "hull": 0.66
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy07",
+   "town": "luzern",
+   "city": "switzerland",
+   "point": [
+    8.3088313,
+    47.0607653
+   ],
+   "mapillary": "1294750152450144",
+   "pano": true,
+   "dist": 13.1,
+   "off": -94.3,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 6,
+      "point": [
+       8.308831318667073,
+       47.06076525714432
+      ],
+      "km": 99,
+      "block": {
+       "length": 51.9,
+       "width": 39.9,
+       "fill": 0.53,
+       "parts": 2
+      },
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 6,
+      "point": [
+       8.308831318667073,
+       47.06076525714432
+      ],
+      "km": 99,
+      "block": {
+       "length": 70.6,
+       "width": 54.8,
+       "fill": 0.38,
+       "parts": 3
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 6,
+      "point": [
+       8.308831318667073,
+       47.06076525714432
+      ],
+      "km": 99,
+      "block": {
+       "length": 70.6,
+       "width": 54.8,
+       "fill": 0.38,
+       "parts": 3,
+       "hull": 0.65
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy08",
+   "town": "lausanne",
+   "city": "switzerland",
+   "point": [
+    6.6405769,
+    46.5086105
+   ],
+   "mapillary": "858759499323188",
+   "pano": true,
+   "dist": 14.8,
+   "off": -82.4,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       6.640576897306849,
+       46.508610483310264
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       6.640576897306849,
+       46.508610483310264
+      ],
+      "km": 99,
+      "block": {
+       "length": 146.3,
+       "width": 33.2,
+       "fill": 0.46,
+       "parts": 3
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       6.640576897306849,
+       46.508610483310264
+      ],
+      "km": 99,
+      "block": {
+       "length": 146.3,
+       "width": 33.2,
+       "fill": 0.46,
+       "parts": 3,
+       "hull": 0.6
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy09",
+   "town": "luzern",
+   "city": "switzerland",
+   "point": [
+    8.3047696,
+    47.0499415
+   ],
+   "mapillary": "1904464783511540",
+   "pano": true,
+   "dist": 15.5,
+   "off": -127.7,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       8.304769648636734,
+       47.049941538474684
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       8.304769648636734,
+       47.049941538474684
+      ],
+      "km": 99,
+      "block": {
+       "length": 150.2,
+       "width": 92.3,
+       "fill": 0.41,
+       "parts": 3
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       8.304769648636734,
+       47.049941538474684
+      ],
+      "km": 99,
+      "block": {
+       "length": 150.2,
+       "width": 92.3,
+       "fill": 0.41,
+       "parts": 3,
+       "hull": 0.59
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy10",
+   "town": "zurich",
+   "city": "switzerland",
+   "point": [
+    8.5300736,
+    47.3725881
+   ],
+   "mapillary": "1114448535689216",
+   "pano": false,
+   "dist": 19.1,
+   "off": 24.8,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       8.530073562953737,
+       47.37258805931841
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       8.530073562953737,
+       47.37258805931841
+      ],
+      "km": 99,
+      "block": {
+       "length": 143.9,
+       "width": 123,
+       "fill": 0.41,
+       "parts": 6
+      },
+      "tint": 0,
+      "type": "construction"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       8.530073562953737,
+       47.37258805931841
+      ],
+      "km": 99,
+      "block": {
+       "length": 143.9,
+       "width": 123,
+       "fill": 0.41,
+       "parts": 6,
+       "hull": 0.73
+      },
+      "tint": 0,
+      "type": "construction"
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy11",
+   "town": "zurich",
+   "city": "switzerland",
+   "point": [
+    8.5389206,
+    47.3775655
+   ],
+   "mapillary": "1042766297216798",
+   "pano": false,
+   "dist": 6.5,
+   "off": -31,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "height": 20,
+      "point": [
+       8.538920555229351,
+       47.377565471167934
+      ],
+      "km": 99,
+      "block": {
+       "length": 449.3,
+       "width": 195.8,
+       "fill": 0.72,
+       "parts": 4
+      },
+      "tint": 0,
+      "type": "train_station"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "height": 20,
+      "point": [
+       8.538920555229351,
+       47.377565471167934
+      ],
+      "km": 99,
+      "block": {
+       "length": 449.3,
+       "width": 195.8,
+       "fill": 0.72,
+       "parts": 4
+      },
+      "tint": 0,
+      "type": "train_station"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "height": 20,
+      "point": [
+       8.538920555229351,
+       47.377565471167934
+      ],
+      "km": 99,
+      "block": {
+       "length": 449.3,
+       "width": 195.8,
+       "fill": 0.72,
+       "parts": 4,
+       "hull": 0.95
+      },
+      "tint": 0,
+      "type": "train_station"
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy12",
+   "town": "lugano",
+   "city": "switzerland",
+   "point": [
+    8.9554671,
+    46.0103646
+   ],
+   "mapillary": "171863348157823",
+   "pano": false,
+   "dist": 22.6,
+   "off": 14.3,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       8.95546710452582,
+       46.01036464574968
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       8.95546710452582,
+       46.01036464574968
+      ],
+      "km": 99,
+      "block": {
+       "length": 52.8,
+       "width": 52.2,
+       "fill": 0.52,
+       "parts": 3
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       8.95546710452582,
+       46.01036464574968
+      ],
+      "km": 99,
+      "block": {
+       "length": 52.8,
+       "width": 52.2,
+       "fill": 0.52,
+       "parts": 3,
+       "hull": 0.69
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy13",
+   "town": "bern",
+   "city": "switzerland",
+   "point": [
+    7.4368028,
+    46.9398662
+   ],
+   "mapillary": "1011129068028085",
+   "pano": false,
+   "dist": 24.1,
+   "off": 19.9,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       7.436802814480878,
+       46.939866179373645
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       7.436802814480878,
+       46.939866179373645
+      ],
+      "km": 99,
+      "block": {
+       "length": 242.2,
+       "width": 92,
+       "fill": 0.31,
+       "parts": 5
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       7.436802814480878,
+       46.939866179373645
+      ],
+      "km": 99,
+      "block": {
+       "length": 242.2,
+       "width": 92,
+       "fill": 0.31,
+       "parts": 5,
+       "hull": 0.45
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy14",
+   "town": "zurich",
+   "city": "switzerland",
+   "point": [
+    8.5407824,
+    47.3782876
+   ],
+   "mapillary": "3314445755353268",
+   "pano": false,
+   "dist": 14.7,
+   "off": 13.9,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "height": 20,
+      "point": [
+       8.540782351687843,
+       47.3782875633724
+      ],
+      "km": 99,
+      "block": {
+       "length": 449.3,
+       "width": 195.8,
+       "fill": 0.72,
+       "parts": 4
+      },
+      "tint": 0,
+      "type": "train_station"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "height": 20,
+      "point": [
+       8.540782351687843,
+       47.3782875633724
+      ],
+      "km": 99,
+      "block": {
+       "length": 449.3,
+       "width": 195.8,
+       "fill": 0.72,
+       "parts": 4
+      },
+      "tint": 0,
+      "type": "train_station"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "height": 20,
+      "point": [
+       8.540782351687843,
+       47.3782875633724
+      ],
+      "km": 99,
+      "block": {
+       "length": 449.3,
+       "width": 195.8,
+       "fill": 0.72,
+       "parts": 4,
+       "hull": 0.95
+      },
+      "tint": 0,
+      "type": "train_station"
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy15",
+   "town": "lausanne",
+   "city": "switzerland",
+   "point": [
+    6.6298933,
+    46.5305718
+   ],
+   "mapillary": "520623125762206",
+   "pano": false,
+   "dist": 9.9,
+   "off": -32.4,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 6,
+      "point": [
+       6.629893278753395,
+       46.53057182448079
+      ],
+      "km": 99,
+      "block": {
+       "length": 52.7,
+       "width": 16,
+       "fill": 0.83,
+       "parts": 1
+      },
+      "tint": 0,
+      "type": "residential"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 6,
+      "point": [
+       6.629893278753395,
+       46.53057182448079
+      ],
+      "km": 99,
+      "block": {
+       "length": 152.1,
+       "width": 27.4,
+       "fill": 0.5,
+       "parts": 5
+      },
+      "tint": 0,
+      "type": "residential"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 6,
+      "point": [
+       6.629893278753395,
+       46.53057182448079
+      ],
+      "km": 99,
+      "block": {
+       "length": 152.1,
+       "width": 27.4,
+       "fill": 0.5,
+       "parts": 5,
+       "hull": 0.62
+      },
+      "tint": 0,
+      "type": "residential"
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy16",
+   "town": "bern",
+   "city": "switzerland",
+   "point": [
+    7.4368182,
+    46.9363635
+   ],
+   "mapillary": "5506817016101885",
+   "pano": false,
+   "dist": 25.3,
+   "off": 29.9,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       7.436818191988075,
+       46.936363527054894
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       7.436818191988075,
+       46.936363527054894
+      ],
+      "km": 99,
+      "block": {
+       "length": 123.5,
+       "width": 83.4,
+       "fill": 0.43,
+       "parts": 3
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       7.436818191988075,
+       46.936363527054894
+      ],
+      "km": 99,
+      "block": {
+       "length": 123.5,
+       "width": 83.4,
+       "fill": 0.43,
+       "parts": 3,
+       "hull": 0.58
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy17",
+   "town": "lausanne",
+   "city": "switzerland",
+   "point": [
+    6.6334898,
+    46.5141729
+   ],
+   "mapillary": "491731541867232",
+   "pano": false,
+   "dist": 13.3,
+   "off": -24.9,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 7,
+      "point": [
+       6.633489820277339,
+       46.51417285361884
+      ],
+      "km": 99,
+      "block": {
+       "length": 107.8,
+       "width": 45.4,
+       "fill": 0.44,
+       "parts": 4
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 7,
+      "point": [
+       6.633489820277339,
+       46.51417285361884
+      ],
+      "km": 99,
+      "block": {
+       "length": 141.4,
+       "width": 56.9,
+       "fill": 0.32,
+       "parts": 5
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 7,
+      "point": [
+       6.633489820277339,
+       46.51417285361884
+      ],
+      "km": 99,
+      "block": {
+       "length": 141.4,
+       "width": 56.9,
+       "fill": 0.32,
+       "parts": 5,
+       "hull": 0.6
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy18",
+   "town": "lausanne",
+   "city": "switzerland",
+   "point": [
+    6.6345409,
+    46.5227931
+   ],
+   "mapillary": "164423402733450",
+   "pano": true,
+   "dist": 18.1,
+   "off": -96.5,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       6.634540861369576,
+       46.52279312022131
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       6.634540861369576,
+       46.52279312022131
+      ],
+      "km": 99,
+      "block": {
+       "length": 123.6,
+       "width": 53.5,
+       "fill": 0.36,
+       "parts": 4
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       6.634540861369576,
+       46.52279312022131
+      ],
+      "km": 99,
+      "block": {
+       "length": 123.6,
+       "width": 53.5,
+       "fill": 0.36,
+       "parts": 4,
+       "hull": 0.49
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy19",
+   "town": "geneve",
+   "city": "switzerland",
+   "point": [
+    6.1440962,
+    46.1989715
+   ],
+   "mapillary": "165949492028666",
+   "pano": true,
+   "dist": 13,
+   "off": -113.4,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       6.144096199339507,
+       46.19897152786827
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       6.144096199339507,
+       46.19897152786827
+      ],
+      "km": 99,
+      "block": {
+       "length": 145.2,
+       "width": 101.6,
+       "fill": 0.36,
+       "parts": 7
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       6.144096199339507,
+       46.19897152786827
+      ],
+      "km": 99,
+      "block": {
+       "length": 145.2,
+       "width": 101.6,
+       "fill": 0.36,
+       "parts": 7,
+       "hull": 0.45
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy20",
+   "town": "lugano",
+   "city": "switzerland",
+   "point": [
+    8.9654866,
+    46.0062569
+   ],
+   "mapillary": "205568381138292",
+   "pano": true,
+   "dist": 9.7,
+   "off": 0.7,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 8,
+      "point": [
+       8.965486635116818,
+       46.00625690672929
+      ],
+      "km": 99,
+      "block": {
+       "length": 63.5,
+       "width": 15.8,
+       "fill": 0.9,
+       "parts": 1
+      },
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 8,
+      "point": [
+       8.965486635116818,
+       46.00625690672929
+      ],
+      "km": 99,
+      "block": {
+       "length": 98.6,
+       "width": 42.7,
+       "fill": 0.47,
+       "parts": 3
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 8,
+      "point": [
+       8.965486635116818,
+       46.00625690672929
+      ],
+      "km": 99,
+      "block": {
+       "length": 98.6,
+       "width": 42.7,
+       "fill": 0.47,
+       "parts": 3,
+       "hull": 0.69
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy21",
+   "town": "bern",
+   "city": "switzerland",
+   "point": [
+    7.4339073,
+    46.9571469
+   ],
+   "mapillary": "315262560212847",
+   "pano": false,
+   "dist": 15.8,
+   "off": 4.6,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 6,
+      "point": [
+       7.433907312764449,
+       46.957146939988256
+      ],
+      "km": 99,
+      "block": {
+       "length": 87.6,
+       "width": 15.3,
+       "fill": 0.77,
+       "parts": 5
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 6,
+      "point": [
+       7.433907312764449,
+       46.957146939988256
+      ],
+      "km": 99,
+      "block": {
+       "length": 118.9,
+       "width": 86.9,
+       "fill": 0.29,
+       "parts": 6
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 6,
+      "point": [
+       7.433907312764449,
+       46.957146939988256
+      ],
+      "km": 99,
+      "block": {
+       "length": 118.9,
+       "width": 86.9,
+       "fill": 0.29,
+       "parts": 6,
+       "hull": 0.55
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy22",
+   "town": "bern",
+   "city": "switzerland",
+   "point": [
+    7.4331572,
+    46.9475304
+   ],
+   "mapillary": "533993194434394",
+   "pano": false,
+   "dist": 12.3,
+   "off": 3.1,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       7.433157185146167,
+       46.94753035085645
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       7.433157185146167,
+       46.94753035085645
+      ],
+      "km": 99,
+      "block": {
+       "length": 255.4,
+       "width": 34.4,
+       "fill": 0.5,
+       "parts": 6
+      },
+      "tint": 0,
+      "type": "transportation",
+      "roofShape": "flat"
+     }
+    },
+    "new": {
+     "look": "funkce",
+     "info": {
+      "point": [
+       7.433157185146167,
+       46.94753035085645
+      ],
+      "km": 99,
+      "block": {
+       "length": 255.4,
+       "width": 34.4,
+       "fill": 0.5,
+       "parts": 6,
+       "hull": 0.84
+      },
+      "tint": 0,
+      "type": "transportation",
+      "roofShape": "flat"
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy23",
+   "town": "winterthur",
+   "city": "switzerland",
+   "point": [
+    8.7298976,
+    47.5013803
+   ],
+   "mapillary": "1666709048384550",
+   "pano": true,
+   "dist": 15,
+   "off": 92.3,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       8.729897619962829,
+       47.501380322266606
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       8.729897619962829,
+       47.501380322266606
+      ],
+      "km": 99,
+      "block": {
+       "length": 111.5,
+       "width": 59.9,
+       "fill": 0.5,
+       "parts": 3
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       8.729897619962829,
+       47.501380322266606
+      ],
+      "km": 99,
+      "block": {
+       "length": 111.5,
+       "width": 59.9,
+       "fill": 0.5,
+       "parts": 3,
+       "hull": 0.69
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy24",
+   "town": "luzern",
+   "city": "switzerland",
+   "point": [
+    8.3096261,
+    47.0501885
+   ],
+   "mapillary": "1251609973092159",
+   "pano": true,
+   "dist": 23.2,
+   "off": 96,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       8.309626057956889,
+       47.050188489197225
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       8.309626057956889,
+       47.050188489197225
+      ],
+      "km": 99,
+      "block": {
+       "length": 305.2,
+       "width": 150.4,
+       "fill": 0.74,
+       "parts": 8
+      },
+      "tint": 0,
+      "type": "train_station"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       8.309626057956889,
+       47.050188489197225
+      ],
+      "km": 99,
+      "block": {
+       "length": 305.2,
+       "width": 150.4,
+       "fill": 0.74,
+       "parts": 8,
+       "hull": 0.87
+      },
+      "tint": 0,
+      "type": "train_station"
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy25",
+   "town": "geneve",
+   "city": "switzerland",
+   "point": [
+    6.126142,
+    46.2020757
+   ],
+   "mapillary": "470816377514912",
+   "pano": true,
+   "dist": 14.5,
+   "off": -6.3,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 3,
+      "point": [
+       6.1261419651410325,
+       46.202075656375584
+      ],
+      "km": 99,
+      "block": {
+       "length": 209.1,
+       "width": 175.7,
+       "fill": 0.47,
+       "parts": 3
+      },
+      "tint": 0,
+      "type": "transportation"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 3,
+      "point": [
+       6.1261419651410325,
+       46.202075656375584
+      ],
+      "km": 99,
+      "block": {
+       "length": 209.1,
+       "width": 175.7,
+       "fill": 0.47,
+       "parts": 3
+      },
+      "tint": 0,
+      "type": "transportation"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 3,
+      "point": [
+       6.1261419651410325,
+       46.202075656375584
+      ],
+      "km": 99,
+      "block": {
+       "length": 209.1,
+       "width": 175.7,
+       "fill": 0.47,
+       "parts": 3,
+       "hull": 0.9
+      },
+      "tint": 0,
+      "type": "transportation"
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy26",
+   "town": "zurich",
+   "city": "switzerland",
+   "point": [
+    8.5570048,
+    47.3717336
+   ],
+   "mapillary": "1119391965213122",
+   "pano": true,
+   "dist": 15.5,
+   "off": 94.3,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 4,
+      "point": [
+       8.557004817051928,
+       47.37173357271503
+      ],
+      "km": 99,
+      "block": {
+       "length": 187.7,
+       "width": 90.8,
+       "fill": 0.38,
+       "parts": 8
+      },
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 4,
+      "point": [
+       8.557004817051928,
+       47.37173357271503
+      ],
+      "km": 99,
+      "block": {
+       "length": 187.8,
+       "width": 91.3,
+       "fill": 0.39,
+       "parts": 9
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 4,
+      "point": [
+       8.557004817051928,
+       47.37173357271503
+      ],
+      "km": 99,
+      "block": {
+       "length": 187.8,
+       "width": 91.3,
+       "fill": 0.39,
+       "parts": 9,
+       "hull": 0.55
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy27",
+   "town": "lausanne",
+   "city": "switzerland",
+   "point": [
+    6.6341375,
+    46.5246218
+   ],
+   "mapillary": "4011525312439987",
+   "pano": false,
+   "dist": 14.6,
+   "off": -4.8,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 5,
+      "point": [
+       6.634137526264333,
+       46.5246218346058
+      ],
+      "km": 99,
+      "block": {
+       "length": 98.4,
+       "width": 77.5,
+       "fill": 0.29,
+       "parts": 2
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 5,
+      "point": [
+       6.634137526264333,
+       46.5246218346058
+      ],
+      "km": 99,
+      "block": {
+       "length": 102.6,
+       "width": 81.1,
+       "fill": 0.32,
+       "parts": 3
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 5,
+      "point": [
+       6.634137526264333,
+       46.5246218346058
+      ],
+      "km": 99,
+      "block": {
+       "length": 102.6,
+       "width": 81.1,
+       "fill": 0.32,
+       "parts": 3,
+       "hull": 0.6
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy28",
+   "town": "lausanne",
+   "city": "switzerland",
+   "point": [
+    6.640413,
+    46.5178665
+   ],
+   "mapillary": "316679180018810",
+   "pano": false,
+   "dist": 21.1,
+   "off": 1.9,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 8,
+      "point": [
+       6.64041304402513,
+       46.517866543082114
+      ],
+      "km": 99,
+      "block": {
+       "length": 60,
+       "width": 15.7,
+       "fill": 0.83,
+       "parts": 1
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 8,
+      "point": [
+       6.64041304402513,
+       46.517866543082114
+      ],
+      "km": 99,
+      "block": {
+       "length": 89.4,
+       "width": 61.6,
+       "fill": 0.41,
+       "parts": 5
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 8,
+      "point": [
+       6.64041304402513,
+       46.517866543082114
+      ],
+      "km": 99,
+      "block": {
+       "length": 89.4,
+       "width": 61.6,
+       "fill": 0.41,
+       "parts": 5,
+       "hull": 0.45
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy29",
+   "town": "zurich",
+   "city": "switzerland",
+   "point": [
+    8.5464141,
+    47.3671283
+   ],
+   "mapillary": "464946771444436",
+   "pano": false,
+   "dist": 19.3,
+   "off": 14.3,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       8.546414132788817,
+       47.36712829751379
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       8.546414132788817,
+       47.36712829751379
+      ],
+      "km": 99,
+      "block": {
+       "length": 118.8,
+       "width": 89.3,
+       "fill": 0.38,
+       "parts": 6
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       8.546414132788817,
+       47.36712829751379
+      ],
+      "km": 99,
+      "block": {
+       "length": 118.8,
+       "width": 89.3,
+       "fill": 0.38,
+       "parts": 6,
+       "hull": 0.67
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "CHy30",
+   "town": "luzern",
+   "city": "switzerland",
+   "point": [
+    8.3055159,
+    47.0448089
+   ],
+   "mapillary": "296389682094832",
+   "pano": false,
+   "dist": 14.3,
+   "off": 4.4,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "levels": 3,
+      "point": [
+       8.305515927465692,
+       47.04480891086449
+      ],
+      "km": 99,
+      "block": {
+       "length": 55.1,
+       "width": 18.2,
+       "fill": 0.66,
+       "parts": 1
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 3,
+      "point": [
+       8.305515927465692,
+       47.04480891086449
+      ],
+      "km": 99,
+      "block": {
+       "length": 171,
+       "width": 61.6,
+       "fill": 0.26,
+       "parts": 7
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 3,
+      "point": [
+       8.305515927465692,
+       47.04480891086449
+      ],
+      "km": 99,
+      "block": {
+       "length": 171,
+       "width": 61.6,
+       "fill": 0.26,
+       "parts": 7,
+       "hull": 0.39
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  }
+ ]
+}

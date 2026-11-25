@@ -1,0 +1,7 @@
+[
+ {"id":"dc-alley","lat":38.913357,"lon":-77.032674,"way":150699010,"max":3,"why":"the way inside an alley's area (DC Planimetrics): 75 m to its end on S Street before"},
+ {"id":"dc-alley-h","lat":38.9272197,"lon":-77.0246532,"way":293279529,"max":3,"why":"an alley of several arms in one area: 83 m before"},
+ {"id":"dc-alley-long","lat":38.9528572,"lon":-77.0900636,"way":342133616,"max":3,"why":"97 m before"},
+ {"id":"warszawa-alley","lat":52.231545,"lon":21.021358,"way":23039922,"max":3,"why":"OSM area:highway=service: 81 m before"},
+ {"id":"gdansk-alley","lat":54.361699,"lon":18.659741,"way":824208847,"max":3,"why":"OSM area:highway=service: 71 m before"}
+]

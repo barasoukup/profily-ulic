@@ -1,0 +1,677 @@
+{
+ "stat": {
+  "houses": 3131,
+  "yard": 18,
+  "all": 950,
+  "todayAll": 962,
+  "regFailed": 0,
+  "noPhoto": {
+   "yard": 7,
+   "all": 0
+  }
+ },
+ "changes": {
+  "povalecny>haussmann": 8,
+  "povalecny>cihlovy": 4,
+  "povalecny>sikma": 6
+ },
+ "rows": [
+  {
+   "id": "BEy01",
+   "town": "bruxelles",
+   "city": "belgium",
+   "point": [
+    4.3632335,
+    50.852702
+   ],
+   "mapillary": "1223900569906362",
+   "pano": true,
+   "dist": 15.6,
+   "off": 83.6,
+   "arms": {
+    "old": {
+     "look": "haussmann",
+     "info": {
+      "point": [
+       4.363233518483976,
+       50.85270196640593
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       4.363233518483976,
+       50.85270196640593
+      ],
+      "km": 99,
+      "block": {
+       "length": 322.4,
+       "width": 168.2,
+       "fill": 0.44,
+       "parts": 9
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "haussmann",
+     "info": {
+      "point": [
+       4.363233518483976,
+       50.85270196640593
+      ],
+      "km": 99,
+      "block": {
+       "length": 322.4,
+       "width": 168.2,
+       "fill": 0.44,
+       "parts": 9,
+       "hull": 0.65
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "BEy02",
+   "town": "bruxelles",
+   "city": "belgium",
+   "point": [
+    4.3396521,
+    50.8362631
+   ],
+   "mapillary": "1918073755607358",
+   "pano": true,
+   "dist": 12.5,
+   "off": 46.8,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 6,
+      "point": [
+       4.339652122698991,
+       50.8362631269902
+      ],
+      "km": 99,
+      "block": {
+       "length": 90.3,
+       "width": 74.2,
+       "fill": 0.59,
+       "parts": 4
+      },
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 6,
+      "point": [
+       4.339652122698991,
+       50.8362631269902
+      ],
+      "km": 99,
+      "block": {
+       "length": 90.3,
+       "width": 74.2,
+       "fill": 0.59,
+       "parts": 4
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "haussmann",
+     "info": {
+      "levels": 6,
+      "point": [
+       4.339652122698991,
+       50.8362631269902
+      ],
+      "km": 99,
+      "block": {
+       "length": 90.3,
+       "width": 74.2,
+       "fill": 0.59,
+       "parts": 4,
+       "hull": 0.63
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "BEy03",
+   "town": "liege",
+   "city": "belgium",
+   "point": [
+    5.5887148,
+    50.6449832
+   ],
+   "mapillary": "741631857761276",
+   "pano": true,
+   "dist": 15,
+   "off": -26.4,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       5.588714797504249,
+       50.6449831503128
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       5.588714797504249,
+       50.6449831503128
+      ],
+      "km": 99,
+      "block": {
+       "length": 92.6,
+       "width": 69.7,
+       "fill": 0.53,
+       "parts": 3
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       5.588714797504249,
+       50.6449831503128
+      ],
+      "km": 99,
+      "block": {
+       "length": 92.6,
+       "width": 69.7,
+       "fill": 0.53,
+       "parts": 3,
+       "hull": 0.67
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "BEy04",
+   "town": "liege",
+   "city": "belgium",
+   "point": [
+    5.5652296,
+    50.626615
+   ],
+   "mapillary": "794915425601931",
+   "pano": true,
+   "dist": 14.2,
+   "off": 67.5,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 7,
+      "point": [
+       5.565229648308593,
+       50.62661497645263
+      ],
+      "km": 99,
+      "block": {
+       "length": 464.4,
+       "width": 164.1,
+       "fill": 0.39,
+       "parts": 3
+      },
+      "tint": 0,
+      "type": "construction"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 7,
+      "point": [
+       5.565229648308593,
+       50.62661497645263
+      ],
+      "km": 99,
+      "block": {
+       "length": 464.4,
+       "width": 164.1,
+       "fill": 0.39,
+       "parts": 3
+      },
+      "tint": 0,
+      "type": "construction"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 7,
+      "point": [
+       5.565229648308593,
+       50.62661497645263
+      ],
+      "km": 99,
+      "block": {
+       "length": 464.4,
+       "width": 164.1,
+       "fill": 0.39,
+       "parts": 3,
+       "hull": 0.63
+      },
+      "tint": 0,
+      "type": "construction"
+     }
+    }
+   }
+  },
+  {
+   "id": "BEy05",
+   "town": "bruxelles",
+   "city": "belgium",
+   "point": [
+    4.3601323,
+    50.8429757
+   ],
+   "mapillary": "1136434890189679",
+   "pano": false,
+   "dist": 19.3,
+   "off": -27.8,
+   "arms": {
+    "old": {
+     "look": "haussmann",
+     "info": {
+      "point": [
+       4.360132309416401,
+       50.842975662160875
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       4.360132309416401,
+       50.842975662160875
+      ],
+      "km": 99,
+      "block": {
+       "length": 97.4,
+       "width": 73.9,
+       "fill": 0.46,
+       "parts": 5
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "haussmann",
+     "info": {
+      "point": [
+       4.360132309416401,
+       50.842975662160875
+      ],
+      "km": 99,
+      "block": {
+       "length": 97.4,
+       "width": 73.9,
+       "fill": 0.46,
+       "parts": 5,
+       "hull": 0.67
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "BEy06",
+   "town": "brugge",
+   "city": "belgium",
+   "point": [
+    3.231003,
+    51.1989923
+   ],
+   "mapillary": "145776047521433",
+   "pano": true,
+   "dist": 23.3,
+   "off": 142,
+   "arms": {
+    "old": {
+     "look": "cihlovy",
+     "info": {
+      "point": [
+       3.231002963708561,
+       51.198992328803065
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       3.231002963708561,
+       51.198992328803065
+      ],
+      "km": 99,
+      "block": {
+       "length": 139.8,
+       "width": 42.3,
+       "fill": 0.42,
+       "parts": 3
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "cihlovy",
+     "info": {
+      "point": [
+       3.231002963708561,
+       51.198992328803065
+      ],
+      "km": 99,
+      "block": {
+       "length": 139.8,
+       "width": 42.3,
+       "fill": 0.42,
+       "parts": 3,
+       "hull": 0.53
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "BEy07",
+   "town": "mons",
+   "city": "belgium",
+   "point": [
+    3.9633577,
+    50.4624006
+   ],
+   "mapillary": "2410991305905737",
+   "pano": true,
+   "dist": 15.7,
+   "off": 80.3,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       3.9633576690124492,
+       50.46240058389553
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       3.9633576690124492,
+       50.46240058389553
+      ],
+      "km": 99,
+      "block": {
+       "length": 67.9,
+       "width": 15.9,
+       "fill": 0.85,
+       "parts": 1
+      },
+      "tint": 0,
+      "type": "stadium"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       3.9633576690124492,
+       50.46240058389553
+      ],
+      "km": 99,
+      "block": {
+       "length": 67.9,
+       "width": 15.9,
+       "fill": 0.85,
+       "parts": 1,
+       "hull": 1
+      },
+      "tint": 0,
+      "type": "stadium"
+     }
+    }
+   }
+  },
+  {
+   "id": "BEy08",
+   "town": "bruxelles",
+   "city": "belgium",
+   "point": [
+    4.3581961,
+    50.8527359
+   ],
+   "mapillary": "1419556855979879",
+   "pano": true,
+   "dist": 17.1,
+   "off": 78.5,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 8,
+      "point": [
+       4.358196096508723,
+       50.8527359119048
+      ],
+      "km": 99,
+      "block": {
+       "length": 104.2,
+       "width": 52.3,
+       "fill": 0.47,
+       "parts": 2
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 8,
+      "point": [
+       4.358196096508723,
+       50.8527359119048
+      ],
+      "km": 99,
+      "block": {
+       "length": 144.3,
+       "width": 51.9,
+       "fill": 0.48,
+       "parts": 4
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "haussmann",
+     "info": {
+      "levels": 8,
+      "point": [
+       4.358196096508723,
+       50.8527359119048
+      ],
+      "km": 99,
+      "block": {
+       "length": 144.3,
+       "width": 51.9,
+       "fill": 0.48,
+       "parts": 4,
+       "hull": 0.68
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "BEy09",
+   "town": "namur",
+   "city": "belgium",
+   "point": [
+    4.8761294,
+    50.4618648
+   ],
+   "mapillary": "798063624158403",
+   "pano": false,
+   "dist": 25.6,
+   "off": 21.6,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       4.87612940095269,
+       50.46186482556133
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       4.87612940095269,
+       50.46186482556133
+      ],
+      "km": 99,
+      "block": {
+       "length": 95.8,
+       "width": 54.4,
+       "fill": 0.33,
+       "parts": 4
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       4.87612940095269,
+       50.46186482556133
+      ],
+      "km": 99,
+      "block": {
+       "length": 95.8,
+       "width": 54.4,
+       "fill": 0.33,
+       "parts": 4,
+       "hull": 0.54
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "BEy10",
+   "town": "namur",
+   "city": "belgium",
+   "point": [
+    4.8626004,
+    50.4685983
+   ],
+   "mapillary": "325446540369542",
+   "pano": true,
+   "dist": 15,
+   "off": -159.3,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "levels": 3,
+      "point": [
+       4.862600394897109,
+       50.46859825464644
+      ],
+      "km": 99,
+      "block": {
+       "length": 154.8,
+       "width": 115.6,
+       "fill": 0.8,
+       "parts": 1
+      },
+      "tint": 0,
+      "type": "train_station"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 3,
+      "point": [
+       4.862600394897109,
+       50.46859825464644
+      ],
+      "km": 99,
+      "block": {
+       "length": 307.5,
+       "width": 167.7,
+       "fill": 0.75,
+       "parts": 3
+      },
+      "tint": 0,
+      "type": "train_station"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 3,
+      "point": [
+       4.862600394897109,
+       50.46859825464644
+      ],
+      "km": 99,
+      "block": {
+       "length": 307.5,
+       "width": 167.7,
+       "fill": 0.75,
+       "parts": 3,
+       "hull": 1.05
+      },
+      "tint": 0,
+      "type": "train_station"
+     }
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,3935 @@
+{
+ "stat": {
+  "houses": 1665,
+  "yard": 52,
+  "all": 437,
+  "todayAll": 441,
+  "regFailed": 0,
+  "noPhoto": {
+   "yard": 18,
+   "all": 57
+  }
+ },
+ "changes": {
+  "povalecny>sikma": 45,
+  "povalecny>funkce": 7
+ },
+ "rows": [
+  {
+   "id": "ATa01",
+   "town": "villach",
+   "city": "austria",
+   "point": [
+    13.8497318,
+    46.6079773
+   ],
+   "mapillary": "294152232351622",
+   "pano": false,
+   "dist": 14.8,
+   "off": 1.9,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       13.849731791326121,
+       46.60797732117542
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       13.849731791326121,
+       46.60797732117542
+      ],
+      "km": 99,
+      "block": {
+       "length": 83.7,
+       "width": 11.4,
+       "fill": 0.94,
+       "parts": 4
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       13.849731791326121,
+       46.60797732117542
+      ],
+      "km": 99,
+      "block": {
+       "length": 83.7,
+       "width": 11.4,
+       "fill": 0.94,
+       "parts": 4,
+       "hull": 0.99
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa02",
+   "town": "graz",
+   "city": "graz",
+   "point": [
+    15.4504973,
+    47.0765449
+   ],
+   "mapillary": "3068585830038031",
+   "pano": true,
+   "dist": 12.4,
+   "off": 112.7,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       15.450497318841842,
+       47.07654486432207
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "kancelar",
+     "info": {
+      "point": [
+       15.450497318841842,
+       47.07654486432207
+      ],
+      "km": 99,
+      "block": {
+       "length": 72.6,
+       "width": 68.1,
+       "fill": 0.63,
+       "parts": 1
+      },
+      "tint": 0,
+      "type": "university"
+     }
+    },
+    "new": {
+     "look": "kancelar",
+     "info": {
+      "point": [
+       15.450497318841842,
+       47.07654486432207
+      ],
+      "km": 99,
+      "block": {
+       "length": 72.6,
+       "width": 68.1,
+       "fill": 0.63,
+       "parts": 1,
+       "hull": 0.87
+      },
+      "tint": 0,
+      "type": "university"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa03",
+   "town": "wels",
+   "city": "austria",
+   "point": [
+    14.0141882,
+    48.1523367
+   ],
+   "mapillary": "373612461556076",
+   "pano": false,
+   "dist": 12.7,
+   "off": -2.4,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       14.014188191957473,
+       48.15233671225575
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "hala",
+     "info": {
+      "point": [
+       14.014188191957473,
+       48.15233671225575
+      ],
+      "km": 99,
+      "block": {
+       "length": 106,
+       "width": 87.8,
+       "fill": 0.58,
+       "parts": 1
+      },
+      "tint": 0,
+      "type": "industrial"
+     }
+    },
+    "new": {
+     "look": "hala",
+     "info": {
+      "point": [
+       14.014188191957473,
+       48.15233671225575
+      ],
+      "km": 99,
+      "block": {
+       "length": 106,
+       "width": 87.8,
+       "fill": 0.58,
+       "parts": 1,
+       "hull": 0.93
+      },
+      "tint": 0,
+      "type": "industrial"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy01",
+   "town": "wien",
+   "city": "wien",
+   "point": [
+    16.3903077,
+    48.205167
+   ],
+   "mapillary": "1401284685084848",
+   "pano": false,
+   "dist": 15.4,
+   "off": -25.2,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 6,
+      "point": [
+       16.390307650492833,
+       48.2051669552802
+      ],
+      "km": 99,
+      "block": {
+       "length": 73.1,
+       "width": 80.1,
+       "fill": 0.44,
+       "parts": 5
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 6,
+      "point": [
+       16.390307650492833,
+       48.2051669552802
+      ],
+      "km": 99,
+      "block": {
+       "length": 73.1,
+       "width": 80.1,
+       "fill": 0.44,
+       "parts": 5
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 6,
+      "point": [
+       16.390307650492833,
+       48.2051669552802
+      ],
+      "km": 99,
+      "block": {
+       "length": 73.1,
+       "width": 80.1,
+       "fill": 0.44,
+       "parts": 5,
+       "hull": 0.63
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa04",
+   "town": "innsbruck",
+   "city": "innsbruck",
+   "point": [
+    11.4003075,
+    47.25586
+   ],
+   "mapillary": "935894148911497",
+   "pano": true,
+   "dist": 17.8,
+   "off": 170.6,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       11.400307523095913,
+       47.25585995803208
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       11.400307523095913,
+       47.25585995803208
+      ],
+      "km": 99,
+      "block": {
+       "length": 25.6,
+       "width": 13.6,
+       "fill": 0.86,
+       "parts": 2
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       11.400307523095913,
+       47.25585995803208
+      ],
+      "km": 99,
+      "block": {
+       "length": 25.6,
+       "width": 13.6,
+       "fill": 0.86,
+       "parts": 2,
+       "hull": 1
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa05",
+   "town": "villach",
+   "city": "austria",
+   "point": [
+    13.8422064,
+    46.6137693
+   ],
+   "mapillary": "1130652565994581",
+   "pano": true,
+   "dist": 14,
+   "off": 125.9,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       13.842206412171684,
+       46.61376931639558
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       13.842206412171684,
+       46.61376931639558
+      ],
+      "km": 99,
+      "block": {
+       "length": 11.6,
+       "width": 8.8,
+       "fill": 0.74,
+       "parts": 1
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       13.842206412171684,
+       46.61376931639558
+      ],
+      "km": 99,
+      "block": {
+       "length": 11.6,
+       "width": 8.8,
+       "fill": 0.74,
+       "parts": 1,
+       "hull": 1
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa06",
+   "town": "linz",
+   "city": "linz",
+   "point": [
+    14.298692,
+    48.29718
+   ],
+   "mapillary": "297057153353321",
+   "pano": false,
+   "dist": 13.1,
+   "off": -10,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 6,
+      "point": [
+       14.298691955112107,
+       48.29717997882032
+      ],
+      "km": 99,
+      "block": {
+       "length": 180.3,
+       "width": 95.6,
+       "fill": 0.2,
+       "parts": 8
+      },
+      "tint": 0,
+      "type": "apartments",
+      "roofShape": "flat"
+     }
+    },
+    "today": {
+     "look": "funkce",
+     "info": {
+      "levels": 6,
+      "point": [
+       14.298691955112107,
+       48.29717997882032
+      ],
+      "km": 99,
+      "block": {
+       "length": 143.1,
+       "width": 132,
+       "fill": 0.47,
+       "parts": 17
+      },
+      "tint": 0,
+      "type": "apartments",
+      "roofShape": "flat"
+     }
+    },
+    "new": {
+     "look": "funkce",
+     "info": {
+      "levels": 6,
+      "point": [
+       14.298691955112107,
+       48.29717997882032
+      ],
+      "km": 99,
+      "block": {
+       "length": 143.1,
+       "width": 132,
+       "fill": 0.47,
+       "parts": 17,
+       "hull": 0.62
+      },
+      "tint": 0,
+      "type": "apartments",
+      "roofShape": "flat"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa07",
+   "town": "innsbruck",
+   "city": "innsbruck",
+   "point": [
+    11.4104247,
+    47.2684147
+   ],
+   "mapillary": "372989082560393",
+   "pano": false,
+   "dist": 13.4,
+   "off": 12.7,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       11.410424686695606,
+       47.268414659415726
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       11.410424686695606,
+       47.268414659415726
+      ],
+      "km": 99,
+      "block": {
+       "length": 50,
+       "width": 35,
+       "fill": 0.4,
+       "parts": 2
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       11.410424686695606,
+       47.268414659415726
+      ],
+      "km": 99,
+      "block": {
+       "length": 50,
+       "width": 35,
+       "fill": 0.4,
+       "parts": 2,
+       "hull": 0.62
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa08",
+   "town": "innsbruck",
+   "city": "innsbruck",
+   "point": [
+    11.3910197,
+    47.2670516
+   ],
+   "mapillary": "1546297807286352",
+   "pano": true,
+   "dist": 13.9,
+   "off": 47.8,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       11.391019650308932,
+       47.26705158285225
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "kostel",
+     "info": {
+      "point": [
+       11.391019650308932,
+       47.26705158285225
+      ],
+      "km": 99,
+      "block": {
+       "length": 236.4,
+       "width": 133.6,
+       "fill": 0.43,
+       "parts": 31
+      },
+      "tint": 0,
+      "type": "monastery"
+     }
+    },
+    "new": {
+     "look": "kostel",
+     "info": {
+      "point": [
+       11.391019650308932,
+       47.26705158285225
+      ],
+      "km": 99,
+      "block": {
+       "length": 236.4,
+       "width": 133.6,
+       "fill": 0.43,
+       "parts": 31,
+       "hull": 0.54
+      },
+      "tint": 0,
+      "type": "monastery"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa09",
+   "town": "stpoelten",
+   "city": "austria",
+   "point": [
+    15.6188545,
+    48.2011113
+   ],
+   "mapillary": "882372842817398",
+   "pano": false,
+   "dist": 22.1,
+   "off": 29,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       15.618854473066932,
+       48.20111129205812
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       15.618854473066932,
+       48.20111129205812
+      ],
+      "km": 99,
+      "block": {
+       "length": 138.9,
+       "width": 79.8,
+       "fill": 0.56,
+       "parts": 4
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       15.618854473066932,
+       48.20111129205812
+      ],
+      "km": 99,
+      "block": {
+       "length": 138.9,
+       "width": 79.8,
+       "fill": 0.56,
+       "parts": 4,
+       "hull": 0.78
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa10",
+   "town": "stpoelten",
+   "city": "austria",
+   "point": [
+    15.6193384,
+    48.2017786
+   ],
+   "mapillary": "1185202003569447",
+   "pano": false,
+   "dist": 24.7,
+   "off": 12.1,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       15.619338432152007,
+       48.20177858517954
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       15.619338432152007,
+       48.20177858517954
+      ],
+      "km": 99,
+      "block": {
+       "length": 138.9,
+       "width": 79.7,
+       "fill": 0.56,
+       "parts": 4
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       15.619338432152007,
+       48.20177858517954
+      ],
+      "km": 99,
+      "block": {
+       "length": 138.9,
+       "width": 79.7,
+       "fill": 0.56,
+       "parts": 4,
+       "hull": 0.78
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa11",
+   "town": "innsbruck",
+   "city": "innsbruck",
+   "point": [
+    11.3899222,
+    47.2560461
+   ],
+   "mapillary": "1451116786166751",
+   "pano": true,
+   "dist": 14,
+   "off": -156,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       11.389922198775906,
+       47.256046138148555
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       11.389922198775906,
+       47.256046138148555
+      ],
+      "km": 99,
+      "block": {
+       "length": 113.6,
+       "width": 33.8,
+       "fill": 0.61,
+       "parts": 2
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       11.389922198775906,
+       47.256046138148555
+      ],
+      "km": 99,
+      "block": {
+       "length": 113.6,
+       "width": 33.8,
+       "fill": 0.61,
+       "parts": 2,
+       "hull": 0.85
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa12",
+   "town": "stpoelten",
+   "city": "austria",
+   "point": [
+    15.6312503,
+    48.2064276
+   ],
+   "mapillary": "947769524495553",
+   "pano": true,
+   "dist": 14.7,
+   "off": 176.1,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       15.631250264331644,
+       48.20642758077007
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       15.631250264331644,
+       48.20642758077007
+      ],
+      "km": 99,
+      "block": {
+       "length": 221.6,
+       "width": 120.4,
+       "fill": 0.44,
+       "parts": 6
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       15.631250264331644,
+       48.20642758077007
+      ],
+      "km": 99,
+      "block": {
+       "length": 221.6,
+       "width": 120.4,
+       "fill": 0.44,
+       "parts": 6,
+       "hull": 0.74
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa13",
+   "town": "stpoelten",
+   "city": "austria",
+   "point": [
+    15.624924,
+    48.1931636
+   ],
+   "mapillary": "563324714800810",
+   "pano": true,
+   "dist": 16.9,
+   "off": 70.8,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       15.624924015913232,
+       48.19316360048865
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       15.624924015913232,
+       48.19316360048865
+      ],
+      "km": 99,
+      "block": {
+       "length": 14.1,
+       "width": 9.4,
+       "fill": 0.75,
+       "parts": 1
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       15.624924015913232,
+       48.19316360048865
+      ],
+      "km": 99,
+      "block": {
+       "length": 14.1,
+       "width": 9.4,
+       "fill": 0.75,
+       "parts": 1,
+       "hull": 1
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa14",
+   "town": "innsbruck",
+   "city": "innsbruck",
+   "point": [
+    11.3850544,
+    47.2625714
+   ],
+   "mapillary": "1409229810528155",
+   "pano": true,
+   "dist": 15.4,
+   "off": -131.2,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       11.385054387972728,
+       47.26257141968592
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "kancelar",
+     "info": {
+      "point": [
+       11.385054387972728,
+       47.26257141968592
+      ],
+      "km": 99,
+      "block": {
+       "length": 25.5,
+       "width": 10.7,
+       "fill": 0.65,
+       "parts": 1
+      },
+      "tint": 0,
+      "type": "hospital"
+     }
+    },
+    "new": {
+     "look": "kancelar",
+     "info": {
+      "point": [
+       11.385054387972728,
+       47.26257141968592
+      ],
+      "km": 99,
+      "block": {
+       "length": 25.5,
+       "width": 10.7,
+       "fill": 0.65,
+       "parts": 1,
+       "hull": 0.87
+      },
+      "tint": 0,
+      "type": "hospital"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy02",
+   "town": "stpoelten",
+   "city": "austria",
+   "point": [
+    15.6246635,
+    48.2092209
+   ],
+   "mapillary": "810366829657341",
+   "pano": true,
+   "dist": 12.2,
+   "off": 21.3,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       15.62466354394053,
+       48.20922091245905
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       15.62466354394053,
+       48.20922091245905
+      ],
+      "km": 99,
+      "block": {
+       "length": 209.6,
+       "width": 179.1,
+       "fill": 0.27,
+       "parts": 11
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       15.62466354394053,
+       48.20922091245905
+      ],
+      "km": 99,
+      "block": {
+       "length": 209.6,
+       "width": 179.1,
+       "fill": 0.27,
+       "parts": 11,
+       "hull": 0.44
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa15",
+   "town": "salzburg",
+   "city": "salzburg",
+   "point": [
+    13.0333457,
+    47.8018564
+   ],
+   "mapillary": "503907175646963",
+   "pano": true,
+   "dist": 14.1,
+   "off": -47,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       13.033345652336582,
+       47.80185639122889
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "kostel",
+     "info": {
+      "point": [
+       13.033345652336582,
+       47.80185639122889
+      ],
+      "km": 99,
+      "block": {
+       "length": 81.8,
+       "width": 37.4,
+       "fill": 0.41,
+       "parts": 2
+      },
+      "tint": 0,
+      "type": "church"
+     }
+    },
+    "new": {
+     "look": "kostel",
+     "info": {
+      "point": [
+       13.033345652336582,
+       47.80185639122889
+      ],
+      "km": 99,
+      "block": {
+       "length": 81.8,
+       "width": 37.4,
+       "fill": 0.41,
+       "parts": 2,
+       "hull": 0.57
+      },
+      "tint": 0,
+      "type": "church"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa16",
+   "town": "wels",
+   "city": "austria",
+   "point": [
+    14.0398562,
+    48.1496384
+   ],
+   "mapillary": "1205304617360711",
+   "pano": false,
+   "dist": 19.2,
+   "off": 14.6,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       14.039856243699628,
+       48.14963839016749
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       14.039856243699628,
+       48.14963839016749
+      ],
+      "km": 99,
+      "block": {
+       "length": 36.8,
+       "width": 14.5,
+       "fill": 0.74,
+       "parts": 1
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       14.039856243699628,
+       48.14963839016749
+      ],
+      "km": 99,
+      "block": {
+       "length": 36.8,
+       "width": 14.5,
+       "fill": 0.74,
+       "parts": 1,
+       "hull": 0.86
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy03",
+   "town": "stpoelten",
+   "city": "austria",
+   "point": [
+    15.6337501,
+    48.2073131
+   ],
+   "mapillary": "362883252121374",
+   "pano": true,
+   "dist": 23.7,
+   "off": -71.7,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 7,
+      "point": [
+       15.633750055910946,
+       48.20731308773818
+      ],
+      "km": 99,
+      "block": {
+       "length": 136.4,
+       "width": 81.8,
+       "fill": 0.35,
+       "parts": 5
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 7,
+      "point": [
+       15.633750055910946,
+       48.20731308773818
+      ],
+      "km": 99,
+      "block": {
+       "length": 136.4,
+       "width": 81.8,
+       "fill": 0.35,
+       "parts": 5
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 7,
+      "point": [
+       15.633750055910946,
+       48.20731308773818
+      ],
+      "km": 99,
+      "block": {
+       "length": 136.4,
+       "width": 81.8,
+       "fill": 0.35,
+       "parts": 5,
+       "hull": 0.51
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy04",
+   "town": "wien",
+   "city": "wien",
+   "point": [
+    16.3912128,
+    48.204096
+   ],
+   "mapillary": "1312935387676679",
+   "pano": false,
+   "dist": 23,
+   "off": 3.8,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 3,
+      "point": [
+       16.39121275979436,
+       48.204096006190305
+      ],
+      "km": 99,
+      "block": {
+       "length": 107,
+       "width": 71.4,
+       "fill": 0.61,
+       "parts": 5
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 3,
+      "point": [
+       16.39121275979436,
+       48.204096006190305
+      ],
+      "km": 99,
+      "block": {
+       "length": 107,
+       "width": 71.4,
+       "fill": 0.61,
+       "parts": 5
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 3,
+      "point": [
+       16.39121275979436,
+       48.204096006190305
+      ],
+      "km": 99,
+      "block": {
+       "length": 107,
+       "width": 71.4,
+       "fill": 0.61,
+       "parts": 5,
+       "hull": 0.64
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa17",
+   "town": "salzburg",
+   "city": "salzburg",
+   "point": [
+    13.0408405,
+    47.8140596
+   ],
+   "mapillary": "1652932378946801",
+   "pano": true,
+   "dist": 11.6,
+   "off": 120.7,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       13.040840533700969,
+       47.81405963258799
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       13.040840533700969,
+       47.81405963258799
+      ],
+      "km": 99,
+      "block": {
+       "length": 61.8,
+       "width": 37.6,
+       "fill": 0.52,
+       "parts": 2
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       13.040840533700969,
+       47.81405963258799
+      ],
+      "km": 99,
+      "block": {
+       "length": 61.8,
+       "width": 37.6,
+       "fill": 0.52,
+       "parts": 2,
+       "hull": 0.7
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa18",
+   "town": "villach",
+   "city": "austria",
+   "point": [
+    13.8610511,
+    46.6208193
+   ],
+   "mapillary": "3141245459503024",
+   "pano": true,
+   "dist": 17.2,
+   "off": -95.3,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       13.861051095984777,
+       46.62081932429933
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       13.861051095984777,
+       46.62081932429933
+      ],
+      "km": 99,
+      "block": {
+       "length": 19.3,
+       "width": 15.8,
+       "fill": 0.68,
+       "parts": 1
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       13.861051095984777,
+       46.62081932429933
+      ],
+      "km": 99,
+      "block": {
+       "length": 19.3,
+       "width": 15.8,
+       "fill": 0.68,
+       "parts": 1,
+       "hull": 1
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa19",
+   "town": "salzburg",
+   "city": "salzburg",
+   "point": [
+    13.0256035,
+    47.7961472
+   ],
+   "mapillary": "1228075368681148",
+   "pano": true,
+   "dist": 20,
+   "off": 100.4,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       13.025603458637852,
+       47.79614722048361
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "vila",
+     "info": {
+      "point": [
+       13.025603458637852,
+       47.79614722048361
+      ],
+      "km": 99,
+      "block": {
+       "length": 22.9,
+       "width": 18.6,
+       "fill": 0.58,
+       "parts": 1
+      },
+      "tint": 0,
+      "type": "house"
+     }
+    },
+    "new": {
+     "look": "vila",
+     "info": {
+      "point": [
+       13.025603458637852,
+       47.79614722048361
+      ],
+      "km": 99,
+      "block": {
+       "length": 22.9,
+       "width": 18.6,
+       "fill": 0.58,
+       "parts": 1,
+       "hull": 0.95
+      },
+      "tint": 0,
+      "type": "house"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa20",
+   "town": "linz",
+   "city": "linz",
+   "point": [
+    14.2965932,
+    48.2958553
+   ],
+   "mapillary": "1493311321012055",
+   "pano": false,
+   "dist": 17.7,
+   "off": 27.8,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 7,
+      "point": [
+       14.296593212776093,
+       48.29585534036078
+      ],
+      "km": 99,
+      "block": {
+       "length": 53.1,
+       "width": 38.4,
+       "fill": 0.44,
+       "parts": 2
+      },
+      "tint": 0,
+      "type": "apartments",
+      "roofShape": "flat"
+     }
+    },
+    "today": {
+     "look": "funkce",
+     "info": {
+      "levels": 7,
+      "point": [
+       14.296593212776093,
+       48.29585534036078
+      ],
+      "km": 99,
+      "block": {
+       "length": 93,
+       "width": 66.5,
+       "fill": 0.66,
+       "parts": 15
+      },
+      "tint": 0,
+      "type": "apartments",
+      "roofShape": "flat"
+     }
+    },
+    "new": {
+     "look": "funkce",
+     "info": {
+      "levels": 7,
+      "point": [
+       14.296593212776093,
+       48.29585534036078
+      ],
+      "km": 99,
+      "block": {
+       "length": 93,
+       "width": 66.5,
+       "fill": 0.66,
+       "parts": 15,
+       "hull": 0.73
+      },
+      "tint": 0,
+      "type": "apartments",
+      "roofShape": "flat"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa21",
+   "town": "stpoelten",
+   "city": "austria",
+   "point": [
+    15.640999,
+    48.2136082
+   ],
+   "mapillary": "171118875970231",
+   "pano": false,
+   "dist": 21.8,
+   "off": 29.5,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       15.640999021654697,
+       48.213608222541126
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       15.640999021654697,
+       48.213608222541126
+      ],
+      "km": 99,
+      "block": {
+       "length": 18.9,
+       "width": 8,
+       "fill": 0.82,
+       "parts": 2
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       15.640999021654697,
+       48.213608222541126
+      ],
+      "km": 99,
+      "block": {
+       "length": 18.9,
+       "width": 8,
+       "fill": 0.82,
+       "parts": 2,
+       "hull": 0.96
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa22",
+   "town": "villach",
+   "city": "austria",
+   "point": [
+    13.8418093,
+    46.6149769
+   ],
+   "mapillary": "1685755962933711",
+   "pano": true,
+   "dist": 14.6,
+   "off": -3.6,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       13.841809309311312,
+       46.6149768665114
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "hala",
+     "info": {
+      "point": [
+       13.841809309311312,
+       46.6149768665114
+      ],
+      "km": 99,
+      "block": {
+       "length": 117.8,
+       "width": 118.2,
+       "fill": 0.55,
+       "parts": 3
+      },
+      "tint": 0,
+      "type": "retail"
+     }
+    },
+    "new": {
+     "look": "hala",
+     "info": {
+      "point": [
+       13.841809309311312,
+       46.6149768665114
+      ],
+      "km": 99,
+      "block": {
+       "length": 117.8,
+       "width": 118.2,
+       "fill": 0.55,
+       "parts": 3,
+       "hull": 0.97
+      },
+      "tint": 0,
+      "type": "retail"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa23",
+   "town": "villach",
+   "city": "austria",
+   "point": [
+    13.8537711,
+    46.6119763
+   ],
+   "mapillary": "299263915139850",
+   "pano": false,
+   "dist": 17.3,
+   "off": -20.6,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       13.85377111326074,
+       46.61197630655019
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       13.85377111326074,
+       46.61197630655019
+      ],
+      "km": 99,
+      "block": {
+       "length": 47,
+       "width": 14.7,
+       "fill": 0.71,
+       "parts": 2
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       13.85377111326074,
+       46.61197630655019
+      ],
+      "km": 99,
+      "block": {
+       "length": 47,
+       "width": 14.7,
+       "fill": 0.71,
+       "parts": 2,
+       "hull": 0.89
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa24",
+   "town": "salzburg",
+   "city": "salzburg",
+   "point": [
+    13.0348857,
+    47.8055346
+   ],
+   "mapillary": "1249426343961748",
+   "pano": true,
+   "dist": 13.9,
+   "off": 113.8,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       13.034885675373985,
+       47.80553457777061
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "kostel",
+     "info": {
+      "point": [
+       13.034885675373985,
+       47.80553457777061
+      ],
+      "km": 99,
+      "block": {
+       "length": 154.1,
+       "width": 182.9,
+       "fill": 0.27,
+       "parts": 18
+      },
+      "tint": 0,
+      "type": "church"
+     }
+    },
+    "new": {
+     "look": "kostel",
+     "info": {
+      "point": [
+       13.034885675373985,
+       47.80553457777061
+      ],
+      "km": 99,
+      "block": {
+       "length": 154.1,
+       "width": 182.9,
+       "fill": 0.27,
+       "parts": 18,
+       "hull": 0.37
+      },
+      "tint": 0,
+      "type": "church"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy05",
+   "town": "wels",
+   "city": "austria",
+   "point": [
+    14.0276236,
+    48.1659518
+   ],
+   "mapillary": "498301864635787",
+   "pano": false,
+   "dist": 25.7,
+   "off": 17.1,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 4,
+      "point": [
+       14.02762359226168,
+       48.16595179822294
+      ],
+      "km": 99,
+      "block": {
+       "length": 72.1,
+       "width": 18.6,
+       "fill": 0.73,
+       "parts": 2
+      },
+      "tint": 0,
+      "type": "train_station"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 4,
+      "point": [
+       14.02762359226168,
+       48.16595179822294
+      ],
+      "km": 99,
+      "block": {
+       "length": 180.1,
+       "width": 159.5,
+       "fill": 0.18,
+       "parts": 4
+      },
+      "tint": 0,
+      "type": "train_station"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 4,
+      "point": [
+       14.02762359226168,
+       48.16595179822294
+      ],
+      "km": 99,
+      "block": {
+       "length": 180.1,
+       "width": 159.5,
+       "fill": 0.18,
+       "parts": 4,
+       "hull": 0.29
+      },
+      "tint": 0,
+      "type": "train_station"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa25",
+   "town": "villach",
+   "city": "austria",
+   "point": [
+    13.8413555,
+    46.6092627
+   ],
+   "mapillary": "1356697496570281",
+   "pano": false,
+   "dist": 16.4,
+   "off": 3.9,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       13.841355501759116,
+       46.6092627076412
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       13.841355501759116,
+       46.6092627076412
+      ],
+      "km": 99,
+      "block": {
+       "length": 51.9,
+       "width": 28.3,
+       "fill": 0.38,
+       "parts": 2
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       13.841355501759116,
+       46.6092627076412
+      ],
+      "km": 99,
+      "block": {
+       "length": 51.9,
+       "width": 28.3,
+       "fill": 0.38,
+       "parts": 2,
+       "hull": 0.61
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa26",
+   "town": "graz",
+   "city": "graz",
+   "point": [
+    15.4310893,
+    47.0829924
+   ],
+   "mapillary": "227555335374776",
+   "pano": false,
+   "dist": 14.8,
+   "off": 1.8,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 4,
+      "point": [
+       15.431089274927707,
+       47.08299235718746
+      ],
+      "km": 99,
+      "block": {
+       "length": 85.4,
+       "width": 23,
+       "fill": 0.83,
+       "parts": 2
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "today": {
+     "look": "sikma",
+     "info": {
+      "levels": 4,
+      "point": [
+       15.431089274927707,
+       47.08299235718746
+      ],
+      "km": 99,
+      "block": {
+       "length": 133.5,
+       "width": 112.1,
+       "fill": 0.5,
+       "parts": 15
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 4,
+      "point": [
+       15.431089274927707,
+       47.08299235718746
+      ],
+      "km": 99,
+      "block": {
+       "length": 133.5,
+       "width": 112.1,
+       "fill": 0.5,
+       "parts": 15,
+       "hull": 0.62
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa27",
+   "town": "klagenfurt",
+   "city": "austria",
+   "point": [
+    14.3234211,
+    46.6254391
+   ],
+   "mapillary": "931281951312661",
+   "pano": true,
+   "dist": 10.1,
+   "off": -1.2,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       14.32342114144066,
+       46.62543909814751
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       14.32342114144066,
+       46.62543909814751
+      ],
+      "km": 99,
+      "block": {
+       "length": 23.3,
+       "width": 15.2,
+       "fill": 0.74,
+       "parts": 1
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       14.32342114144066,
+       46.62543909814751
+      ],
+      "km": 99,
+      "block": {
+       "length": 23.3,
+       "width": 15.2,
+       "fill": 0.74,
+       "parts": 1,
+       "hull": 1
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa28",
+   "town": "salzburg",
+   "city": "salzburg",
+   "point": [
+    13.0310652,
+    47.79944
+   ],
+   "mapillary": "1293026305096116",
+   "pano": true,
+   "dist": 13.8,
+   "off": -3.2,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       13.031065203613725,
+       47.79944004759787
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       13.031065203613725,
+       47.79944004759787
+      ],
+      "km": 99,
+      "block": {
+       "length": 28.5,
+       "width": 10.2,
+       "fill": 0.96,
+       "parts": 1
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       13.031065203613725,
+       47.79944004759787
+      ],
+      "km": 99,
+      "block": {
+       "length": 28.5,
+       "width": 10.2,
+       "fill": 0.96,
+       "parts": 1,
+       "hull": 0.99
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy06",
+   "town": "wien",
+   "city": "wien",
+   "point": [
+    16.3824823,
+    48.214434
+   ],
+   "mapillary": "1430985718479994",
+   "pano": false,
+   "dist": 25.1,
+   "off": 32.4,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 7,
+      "point": [
+       16.382482325485356,
+       48.21443395552341
+      ],
+      "km": 99,
+      "block": {
+       "length": 277.7,
+       "width": 66,
+       "fill": 0.49,
+       "parts": 7
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 7,
+      "point": [
+       16.382482325485356,
+       48.21443395552341
+      ],
+      "km": 99,
+      "block": {
+       "length": 277.7,
+       "width": 66,
+       "fill": 0.49,
+       "parts": 7
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 7,
+      "point": [
+       16.382482325485356,
+       48.21443395552341
+      ],
+      "km": 99,
+      "block": {
+       "length": 277.7,
+       "width": 66,
+       "fill": 0.49,
+       "parts": 7,
+       "hull": 0.64
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa29",
+   "town": "stpoelten",
+   "city": "austria",
+   "point": [
+    15.6145309,
+    48.1955519
+   ],
+   "mapillary": "339727511266915",
+   "pano": true,
+   "dist": 13.9,
+   "off": 46.8,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       15.614530926299052,
+       48.19555193588295
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "vila",
+     "info": {
+      "point": [
+       15.614530926299052,
+       48.19555193588295
+      ],
+      "km": 99,
+      "block": {
+       "length": 15.2,
+       "width": 11.4,
+       "fill": 0.78,
+       "parts": 1
+      },
+      "tint": 0,
+      "type": "detached"
+     }
+    },
+    "new": {
+     "look": "vila",
+     "info": {
+      "point": [
+       15.614530926299052,
+       48.19555193588295
+      ],
+      "km": 99,
+      "block": {
+       "length": 15.2,
+       "width": 11.4,
+       "fill": 0.78,
+       "parts": 1,
+       "hull": 1
+      },
+      "tint": 0,
+      "type": "detached"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATa30",
+   "town": "wels",
+   "city": "austria",
+   "point": [
+    14.0310356,
+    48.1667979
+   ],
+   "mapillary": "2884861425126897",
+   "pano": false,
+   "dist": 21.1,
+   "off": 30.9,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       14.031035578794269,
+       48.16679793512252
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "kancelar",
+     "info": {
+      "point": [
+       14.031035578794269,
+       48.16679793512252
+      ],
+      "km": 99,
+      "block": {
+       "length": 280.5,
+       "width": 127.5,
+       "fill": 0.64,
+       "parts": 1
+      },
+      "tint": 0,
+      "type": "commercial",
+      "roofShape": "flat"
+     }
+    },
+    "new": {
+     "look": "kancelar",
+     "info": {
+      "point": [
+       14.031035578794269,
+       48.16679793512252
+      ],
+      "km": 99,
+      "block": {
+       "length": 280.5,
+       "width": 127.5,
+       "fill": 0.64,
+       "parts": 1,
+       "hull": 0.83
+      },
+      "tint": 0,
+      "type": "commercial",
+      "roofShape": "flat"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy07",
+   "town": "graz",
+   "city": "graz",
+   "point": [
+    15.4306588,
+    47.070807
+   ],
+   "mapillary": "1163062557440180",
+   "pano": true,
+   "dist": 23.5,
+   "off": -67.9,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 3,
+      "point": [
+       15.430658849379887,
+       47.07080698608903
+      ],
+      "km": 99,
+      "block": {
+       "length": 51.8,
+       "width": 54.9,
+       "fill": 0.44,
+       "parts": 2
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 3,
+      "point": [
+       15.430658849379887,
+       47.07080698608903
+      ],
+      "km": 99,
+      "block": {
+       "length": 63,
+       "width": 51,
+       "fill": 0.42,
+       "parts": 3
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 3,
+      "point": [
+       15.430658849379887,
+       47.07080698608903
+      ],
+      "km": 99,
+      "block": {
+       "length": 63,
+       "width": 51,
+       "fill": 0.42,
+       "parts": 3,
+       "hull": 0.68
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy08",
+   "town": "innsbruck",
+   "city": "innsbruck",
+   "point": [
+    11.4054054,
+    47.2611127
+   ],
+   "mapillary": "3367934880012276",
+   "pano": true,
+   "dist": 13.7,
+   "off": -126.2,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "height": 14,
+      "point": [
+       11.405405445157664,
+       47.26111269998293
+      ],
+      "km": 99,
+      "block": {
+       "length": 65.6,
+       "width": 11.6,
+       "fill": 0.87,
+       "parts": 1
+      },
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "height": 14,
+      "point": [
+       11.405405445157664,
+       47.26111269998293
+      ],
+      "km": 99,
+      "block": {
+       "length": 117.3,
+       "width": 112,
+       "fill": 0.36,
+       "parts": 4
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "height": 14,
+      "point": [
+       11.405405445157664,
+       47.26111269998293
+      ],
+      "km": 99,
+      "block": {
+       "length": 117.3,
+       "width": 112,
+       "fill": 0.36,
+       "parts": 4,
+       "hull": 0.63
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy09",
+   "town": "innsbruck",
+   "city": "innsbruck",
+   "point": [
+    11.4048166,
+    47.2788443
+   ],
+   "mapillary": "1730252258053046",
+   "pano": true,
+   "dist": 14,
+   "off": -117.4,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       11.404816610334853,
+       47.27884433922332
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       11.404816610334853,
+       47.27884433922332
+      ],
+      "km": 99,
+      "block": {
+       "length": 144.5,
+       "width": 105.4,
+       "fill": 0.42,
+       "parts": 7
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       11.404816610334853,
+       47.27884433922332
+      ],
+      "km": 99,
+      "block": {
+       "length": 144.5,
+       "width": 105.4,
+       "fill": 0.42,
+       "parts": 7,
+       "hull": 0.57
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy10",
+   "town": "villach",
+   "city": "austria",
+   "point": [
+    13.8603528,
+    46.6171774
+   ],
+   "mapillary": "1758667715217895",
+   "pano": true,
+   "dist": 13.4,
+   "off": 171.5,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       13.860352831999887,
+       46.617177368415
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       13.860352831999887,
+       46.617177368415
+      ],
+      "km": 99,
+      "block": {
+       "length": 73.3,
+       "width": 55.1,
+       "fill": 0.36,
+       "parts": 4
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       13.860352831999887,
+       46.617177368415
+      ],
+      "km": 99,
+      "block": {
+       "length": 73.3,
+       "width": 55.1,
+       "fill": 0.36,
+       "parts": 4,
+       "hull": 0.53
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy11",
+   "town": "salzburg",
+   "city": "salzburg",
+   "point": [
+    13.0437473,
+    47.8081682
+   ],
+   "mapillary": "1166726541922802",
+   "pano": true,
+   "dist": 19.9,
+   "off": -8.6,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       13.043747268182347,
+       47.80816817777157
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       13.043747268182347,
+       47.80816817777157
+      ],
+      "km": 99,
+      "block": {
+       "length": 125.6,
+       "width": 62.8,
+       "fill": 0.53,
+       "parts": 3
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       13.043747268182347,
+       47.80816817777157
+      ],
+      "km": 99,
+      "block": {
+       "length": 125.6,
+       "width": 62.8,
+       "fill": 0.53,
+       "parts": 3,
+       "hull": 0.58
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy12",
+   "town": "wels",
+   "city": "austria",
+   "point": [
+    14.0234091,
+    48.1579386
+   ],
+   "mapillary": "1275512076700099",
+   "pano": false,
+   "dist": 22.8,
+   "off": 13.6,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       14.023409085115954,
+       48.15793861783661
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       14.023409085115954,
+       48.15793861783661
+      ],
+      "km": 99,
+      "block": {
+       "length": 130.6,
+       "width": 61.7,
+       "fill": 0.37,
+       "parts": 4
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       14.023409085115954,
+       48.15793861783661
+      ],
+      "km": 99,
+      "block": {
+       "length": 130.6,
+       "width": 61.7,
+       "fill": 0.37,
+       "parts": 4,
+       "hull": 0.54
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy13",
+   "town": "linz",
+   "city": "linz",
+   "point": [
+    14.2963399,
+    48.3119444
+   ],
+   "mapillary": "1219212506489352",
+   "pano": true,
+   "dist": 24.2,
+   "off": 174.5,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 3,
+      "point": [
+       14.296339938311853,
+       48.31194439820312
+      ],
+      "km": 99,
+      "block": {
+       "length": 334.5,
+       "width": 90.3,
+       "fill": 0.5,
+       "parts": 3
+      },
+      "tint": 0,
+      "roofShape": "flat"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 3,
+      "point": [
+       14.296339938311853,
+       48.31194439820312
+      ],
+      "km": 99,
+      "block": {
+       "length": 334.5,
+       "width": 92.3,
+       "fill": 0.51,
+       "parts": 4
+      },
+      "tint": 0,
+      "roofShape": "flat"
+     }
+    },
+    "new": {
+     "look": "funkce",
+     "info": {
+      "levels": 3,
+      "point": [
+       14.296339938311853,
+       48.31194439820312
+      ],
+      "km": 99,
+      "block": {
+       "length": 334.5,
+       "width": 92.3,
+       "fill": 0.51,
+       "parts": 4,
+       "hull": 0.67
+      },
+      "tint": 0,
+      "roofShape": "flat"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy14",
+   "town": "innsbruck",
+   "city": "innsbruck",
+   "point": [
+    11.4072492,
+    47.2671472
+   ],
+   "mapillary": "2287880804877083",
+   "pano": false,
+   "dist": 14.4,
+   "off": 15.7,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       11.40724921547167,
+       47.26714723128354
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       11.40724921547167,
+       47.26714723128354
+      ],
+      "km": 99,
+      "block": {
+       "length": 82.5,
+       "width": 75.9,
+       "fill": 0.47,
+       "parts": 4
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       11.40724921547167,
+       47.26714723128354
+      ],
+      "km": 99,
+      "block": {
+       "length": 82.5,
+       "width": 75.9,
+       "fill": 0.47,
+       "parts": 4,
+       "hull": 0.63
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy15",
+   "town": "salzburg",
+   "city": "salzburg",
+   "point": [
+    13.0434697,
+    47.8115242
+   ],
+   "mapillary": "2096092667951087",
+   "pano": true,
+   "dist": 18.7,
+   "off": 14.1,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 8,
+      "point": [
+       13.04346965147035,
+       47.811524166740334
+      ],
+      "km": 99,
+      "block": {
+       "length": 171.7,
+       "width": 89.1,
+       "fill": 0.26,
+       "parts": 8
+      },
+      "tint": 0,
+      "type": "apartments",
+      "roofShape": "flat"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 8,
+      "point": [
+       13.04346965147035,
+       47.811524166740334
+      ],
+      "km": 99,
+      "block": {
+       "length": 171.7,
+       "width": 89.1,
+       "fill": 0.26,
+       "parts": 8
+      },
+      "tint": 0,
+      "type": "apartments",
+      "roofShape": "flat"
+     }
+    },
+    "new": {
+     "look": "funkce",
+     "info": {
+      "levels": 8,
+      "point": [
+       13.04346965147035,
+       47.811524166740334
+      ],
+      "km": 99,
+      "block": {
+       "length": 171.7,
+       "width": 89.1,
+       "fill": 0.26,
+       "parts": 8,
+       "hull": 0.35
+      },
+      "tint": 0,
+      "type": "apartments",
+      "roofShape": "flat"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy16",
+   "town": "wien",
+   "city": "wien",
+   "point": [
+    16.365844,
+    48.2081581
+   ],
+   "mapillary": "1667038984957451",
+   "pano": false,
+   "dist": 16.2,
+   "off": 4.5,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       16.365843996587113,
+       48.20815813324767
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       16.365843996587113,
+       48.20815813324767
+      ],
+      "km": 99,
+      "block": {
+       "length": 522.1,
+       "width": 450.1,
+       "fill": 0.32,
+       "parts": 5
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       16.365843996587113,
+       48.20815813324767
+      ],
+      "km": 99,
+      "block": {
+       "length": 522.1,
+       "width": 450.1,
+       "fill": 0.32,
+       "parts": 5,
+       "hull": 0.42
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy17",
+   "town": "stpoelten",
+   "city": "austria",
+   "point": [
+    15.6397877,
+    48.2031685
+   ],
+   "mapillary": "1307880302952686",
+   "pano": true,
+   "dist": 12.7,
+   "off": 118.1,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       15.639787711862265,
+       48.20316851876722
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       15.639787711862265,
+       48.20316851876722
+      ],
+      "km": 99,
+      "block": {
+       "length": 106.7,
+       "width": 62.1,
+       "fill": 0.41,
+       "parts": 4
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       15.639787711862265,
+       48.20316851876722
+      ],
+      "km": 99,
+      "block": {
+       "length": 106.7,
+       "width": 62.1,
+       "fill": 0.41,
+       "parts": 4,
+       "hull": 0.61
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy18",
+   "town": "salzburg",
+   "city": "salzburg",
+   "point": [
+    13.0547453,
+    47.806293
+   ],
+   "mapillary": "1718762248700732",
+   "pano": true,
+   "dist": 16.5,
+   "off": 12.4,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       13.054745304899798,
+       47.806292954100215
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       13.054745304899798,
+       47.806292954100215
+      ],
+      "km": 99,
+      "block": {
+       "length": 84,
+       "width": 26.9,
+       "fill": 0.42,
+       "parts": 3
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       13.054745304899798,
+       47.806292954100215
+      ],
+      "km": 99,
+      "block": {
+       "length": 84,
+       "width": 26.9,
+       "fill": 0.42,
+       "parts": 3,
+       "hull": 0.59
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy19",
+   "town": "innsbruck",
+   "city": "innsbruck",
+   "point": [
+    11.39486,
+    47.2710589
+   ],
+   "mapillary": "1395663538978753",
+   "pano": true,
+   "dist": 19.3,
+   "off": 7.8,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       11.394859990080523,
+       47.27105886246067
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       11.394859990080523,
+       47.27105886246067
+      ],
+      "km": 99,
+      "block": {
+       "length": 297.3,
+       "width": 144.3,
+       "fill": 0.49,
+       "parts": 13
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       11.394859990080523,
+       47.27105886246067
+      ],
+      "km": 99,
+      "block": {
+       "length": 297.3,
+       "width": 144.3,
+       "fill": 0.49,
+       "parts": 13,
+       "hull": 0.64
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy20",
+   "town": "wien",
+   "city": "wien",
+   "point": [
+    16.3679318,
+    48.198291
+   ],
+   "mapillary": "1573473437696569",
+   "pano": false,
+   "dist": 22.5,
+   "off": 20,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 5,
+      "point": [
+       16.367931755696127,
+       48.1982910343696
+      ],
+      "km": 99,
+      "block": {
+       "length": 221.3,
+       "width": 144.1,
+       "fill": 0.54,
+       "parts": 8
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 5,
+      "point": [
+       16.367931755696127,
+       48.1982910343696
+      ],
+      "km": 99,
+      "block": {
+       "length": 221.4,
+       "width": 144.1,
+       "fill": 0.57,
+       "parts": 10
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 5,
+      "point": [
+       16.367931755696127,
+       48.1982910343696
+      ],
+      "km": 99,
+      "block": {
+       "length": 221.4,
+       "width": 144.1,
+       "fill": 0.57,
+       "parts": 10,
+       "hull": 0.56
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy21",
+   "town": "salzburg",
+   "city": "salzburg",
+   "point": [
+    13.0378831,
+    47.8032465
+   ],
+   "mapillary": "1413272456473361",
+   "pano": true,
+   "dist": 15.3,
+   "off": -121.7,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       13.037883122790548,
+       47.80324646193616
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       13.037883122790548,
+       47.80324646193616
+      ],
+      "km": 99,
+      "block": {
+       "length": 16.3,
+       "width": 8.2,
+       "fill": 0.87,
+       "parts": 1
+      },
+      "tint": 0,
+      "type": "castle"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       13.037883122790548,
+       47.80324646193616
+      ],
+      "km": 99,
+      "block": {
+       "length": 16.3,
+       "width": 8.2,
+       "fill": 0.87,
+       "parts": 1,
+       "hull": 0.99
+      },
+      "tint": 0,
+      "type": "castle"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy22",
+   "town": "dornbirn",
+   "city": "austria",
+   "point": [
+    9.7439821,
+    47.4129197
+   ],
+   "mapillary": "1473307357346634",
+   "pano": false,
+   "dist": 20.8,
+   "off": 24.5,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       9.743982135308539,
+       47.412919693802976
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       9.743982135308539,
+       47.412919693802976
+      ],
+      "km": 99,
+      "block": {
+       "length": 193.4,
+       "width": 133.3,
+       "fill": 0.4,
+       "parts": 5
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       9.743982135308539,
+       47.412919693802976
+      ],
+      "km": 99,
+      "block": {
+       "length": 193.4,
+       "width": 133.3,
+       "fill": 0.4,
+       "parts": 5,
+       "hull": 0.68
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy23",
+   "town": "salzburg",
+   "city": "salzburg",
+   "point": [
+    13.0468728,
+    47.8113131
+   ],
+   "mapillary": "1030242452480067",
+   "pano": true,
+   "dist": 20.3,
+   "off": 32,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 6,
+      "point": [
+       13.046872843731721,
+       47.81131306494794
+      ],
+      "km": 99,
+      "block": {
+       "length": 140.1,
+       "width": 58.4,
+       "fill": 0.33,
+       "parts": 3
+      },
+      "tint": 0,
+      "type": "apartments",
+      "roofShape": "flat"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 6,
+      "point": [
+       13.046872843731721,
+       47.81131306494794
+      ],
+      "km": 99,
+      "block": {
+       "length": 137,
+       "width": 72.2,
+       "fill": 0.29,
+       "parts": 4
+      },
+      "tint": 0,
+      "type": "apartments",
+      "roofShape": "flat"
+     }
+    },
+    "new": {
+     "look": "funkce",
+     "info": {
+      "levels": 6,
+      "point": [
+       13.046872843731721,
+       47.81131306494794
+      ],
+      "km": 99,
+      "block": {
+       "length": 137,
+       "width": 72.2,
+       "fill": 0.29,
+       "parts": 4,
+       "hull": 0.39
+      },
+      "tint": 0,
+      "type": "apartments",
+      "roofShape": "flat"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy24",
+   "town": "stpoelten",
+   "city": "austria",
+   "point": [
+    15.6334143,
+    48.2043342
+   ],
+   "mapillary": "913496144892353",
+   "pano": true,
+   "dist": 18.7,
+   "off": 61.6,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "levels": 6,
+      "point": [
+       15.63341434372539,
+       48.20433422761247
+      ],
+      "km": 99,
+      "block": {
+       "length": 113.4,
+       "width": 23.1,
+       "fill": 0.86,
+       "parts": 1
+      },
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 6,
+      "point": [
+       15.63341434372539,
+       48.20433422761247
+      ],
+      "km": 99,
+      "block": {
+       "length": 125,
+       "width": 81.7,
+       "fill": 0.41,
+       "parts": 4
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 6,
+      "point": [
+       15.63341434372539,
+       48.20433422761247
+      ],
+      "km": 99,
+      "block": {
+       "length": 125,
+       "width": 81.7,
+       "fill": 0.41,
+       "parts": 4,
+       "hull": 0.63
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy25",
+   "town": "innsbruck",
+   "city": "innsbruck",
+   "point": [
+    11.4134363,
+    47.2738769
+   ],
+   "mapillary": "1179727653097058",
+   "pano": true,
+   "dist": 15.9,
+   "off": -133,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 4,
+      "point": [
+       11.413436278719114,
+       47.27387694222769
+      ],
+      "km": 99,
+      "block": {
+       "length": 108.8,
+       "width": 64.3,
+       "fill": 0.27,
+       "parts": 5
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 4,
+      "point": [
+       11.413436278719114,
+       47.27387694222769
+      ],
+      "km": 99,
+      "block": {
+       "length": 108.8,
+       "width": 64.3,
+       "fill": 0.27,
+       "parts": 5
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 4,
+      "point": [
+       11.413436278719114,
+       47.27387694222769
+      ],
+      "km": 99,
+      "block": {
+       "length": 108.8,
+       "width": 64.3,
+       "fill": 0.27,
+       "parts": 5,
+       "hull": 0.47
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy26",
+   "town": "linz",
+   "city": "linz",
+   "point": [
+    14.2917216,
+    48.3026639
+   ],
+   "mapillary": "905158137263710",
+   "pano": false,
+   "dist": 14.8,
+   "off": 2.3,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       14.29172164845783,
+       48.30266391043118
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       14.29172164845783,
+       48.30266391043118
+      ],
+      "km": 99,
+      "block": {
+       "length": 192.8,
+       "width": 159.7,
+       "fill": 0.21,
+       "parts": 9
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       14.29172164845783,
+       48.30266391043118
+      ],
+      "km": 99,
+      "block": {
+       "length": 192.8,
+       "width": 159.7,
+       "fill": 0.21,
+       "parts": 9,
+       "hull": 0.38
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy27",
+   "town": "wien",
+   "city": "wien",
+   "point": [
+    16.3672171,
+    48.2069222
+   ],
+   "mapillary": "1032108956376940",
+   "pano": false,
+   "dist": 12.8,
+   "off": 3.3,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       16.367217112520592,
+       48.206922213509735
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       16.367217112520592,
+       48.206922213509735
+      ],
+      "km": 99,
+      "block": {
+       "length": 522.1,
+       "width": 450.1,
+       "fill": 0.32,
+       "parts": 5
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       16.367217112520592,
+       48.206922213509735
+      ],
+      "km": 99,
+      "block": {
+       "length": 522.1,
+       "width": 450.1,
+       "fill": 0.32,
+       "parts": 5,
+       "hull": 0.42
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy28",
+   "town": "wien",
+   "city": "wien",
+   "point": [
+    16.3806843,
+    48.2214066
+   ],
+   "mapillary": "529020749615545",
+   "pano": true,
+   "dist": 12.8,
+   "off": -144.5,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 4,
+      "point": [
+       16.380684323722182,
+       48.22140662355483
+      ],
+      "km": 99,
+      "block": {
+       "length": 215.7,
+       "width": 31.5,
+       "fill": 0.51,
+       "parts": 8
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 4,
+      "point": [
+       16.380684323722182,
+       48.22140662355483
+      ],
+      "km": 99,
+      "block": {
+       "length": 215.1,
+       "width": 140.6,
+       "fill": 0.17,
+       "parts": 9
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 4,
+      "point": [
+       16.380684323722182,
+       48.22140662355483
+      ],
+      "km": 99,
+      "block": {
+       "length": 215.1,
+       "width": 140.6,
+       "fill": 0.17,
+       "parts": 9,
+       "hull": 0.3
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy29",
+   "town": "graz",
+   "city": "graz",
+   "point": [
+    15.43314,
+    47.0804799
+   ],
+   "mapillary": "521775368830642",
+   "pano": false,
+   "dist": 22.4,
+   "off": 2,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 6,
+      "point": [
+       15.433139959153328,
+       47.08047985138151
+      ],
+      "km": 99,
+      "block": {
+       "length": 78.1,
+       "width": 35,
+       "fill": 0.39,
+       "parts": 3
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 6,
+      "point": [
+       15.433139959153328,
+       47.08047985138151
+      ],
+      "km": 99,
+      "block": {
+       "length": 100.3,
+       "width": 61.5,
+       "fill": 0.24,
+       "parts": 5
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 6,
+      "point": [
+       15.433139959153328,
+       47.08047985138151
+      ],
+      "km": 99,
+      "block": {
+       "length": 100.3,
+       "width": 61.5,
+       "fill": 0.24,
+       "parts": 5,
+       "hull": 0.45
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "ATy30",
+   "town": "salzburg",
+   "city": "salzburg",
+   "point": [
+    13.0340052,
+    47.7974502
+   ],
+   "mapillary": "1070154334834840",
+   "pano": true,
+   "dist": 12.3,
+   "off": 152.9,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       13.034005198557292,
+       47.79745021165049
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       13.034005198557292,
+       47.79745021165049
+      ],
+      "km": 99,
+      "block": {
+       "length": 76.6,
+       "width": 52,
+       "fill": 0.32,
+       "parts": 3
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       13.034005198557292,
+       47.79745021165049
+      ],
+      "km": 99,
+      "block": {
+       "length": 76.6,
+       "width": 52,
+       "fill": 0.32,
+       "parts": 3,
+       "hull": 0.6
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  }
+ ]
+}

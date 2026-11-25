@@ -1,0 +1,3026 @@
+{
+ "a": {
+  "ATy01": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "Gründerzeit corner tenement, 5-6 storeys, stone facade"
+  },
+  "CHy15": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "1960s block of flats, 5 storeys, flat roof, balconies"
+  },
+  "ATa25": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2",
+   "type": "low historic railway station, 1-2 storeys, hipped roof"
+  },
+  "CHy23": {
+   "r": [
+    "partly",
+    "wrong",
+    "partly"
+   ],
+   "best": "same",
+   "rank": "1=3>2",
+   "type": "large neoclassical public building, stone, low roof"
+  },
+  "CHy18": {
+   "r": [
+    "partly",
+    "partly",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2>3",
+   "type": "old plastered town house, 2-3 storeys, pitched roof"
+  },
+  "BEy08": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "modern block of flats, 6-7 storeys, flat roof"
+  },
+  "ATa21": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2",
+   "type": "detached villa, 2 storeys, hipped roof"
+  },
+  "ATa10": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "modern glazed office building, 4-5 storeys, flat roof"
+  },
+  "CHy27": {
+   "r": [
+    "partly",
+    "partly"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "old 19th-century hotel tenement, 5 storeys, balconies"
+  },
+  "LUy09": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "no house visible, park and wall"
+  },
+  "ATa17": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "interwar curved corner block, 4 storeys, flat roof, shop"
+  },
+  "ATy02": {
+   "r": [
+    "wrong",
+    "partly",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "plain modern block of flats, 4-5 storeys, flat roof"
+  },
+  "FIy10": {
+   "r": [
+    "partly",
+    "partly",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "1960s brick block of flats, 4-5 storeys, flat roof"
+  },
+  "ATy22": {
+   "r": [
+    "wrong",
+    "wrong",
+    "partly"
+   ],
+   "best": "3",
+   "rank": "3>1=2",
+   "type": "1960s office block, 6 storeys, flat roof, cladding"
+  },
+  "BEy01": {
+   "r": [
+    "partly",
+    "wrong",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2=3",
+   "type": "modern curved office building, stone and glass, flat roof"
+  },
+  "ATy16": {
+   "r": [
+    "partly",
+    "partly",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2>3",
+   "type": "large baroque palace, stone facade, 4-5 storeys"
+  },
+  "CHy07": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "interwar curved block of flats, 6 storeys, flat roof"
+  },
+  "ATa09": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "grey office building, 3-4 storeys, low roof"
+  },
+  "ATa03": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "long industrial hall, low roof"
+  },
+  "ITy05": {
+   "r": [
+    "partly",
+    "partly",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2>3",
+   "type": "historic stone church or palazzo, old city"
+  },
+  "FRy07": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2=3",
+   "type": "old brick stone institutional building, 4 storeys"
+  },
+  "FIy03": {
+   "r": [
+    "partly",
+    "wrong",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2=3",
+   "type": "modern curved block, glazed shop ground floor, flat roof"
+  },
+  "ATy03": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "modern round block of flats, 6-7 storeys, flat roof"
+  },
+  "ATa27": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "hidden behind tree, old low building"
+  },
+  "ATa29": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2",
+   "type": "old small house, 1 storey, steep gable roof"
+  },
+  "FRy06": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "modern office block, 7 storeys, flat roof, columns"
+  },
+  "ATy17": {
+   "r": [
+    "wrong",
+    "partly",
+    "partly"
+   ],
+   "best": "same",
+   "rank": "2=3>1",
+   "type": "yellow baroque manor, 2 storeys, hipped roof"
+  },
+  "ATy07": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "19th c. corner house, 3-4 storeys, hip roof"
+  },
+  "CHy29": {
+   "r": [
+    "partly",
+    "wrong",
+    "partly"
+   ],
+   "best": "same",
+   "rank": "1=3>2",
+   "type": "old stone-faced commercial building, glass canopy"
+  },
+  "ATa11": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2",
+   "type": "low 1-2 storey shop/workshop building"
+  },
+  "BEy05": {
+   "r": [
+    "partly",
+    "partly",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2>3",
+   "type": "monumental old stone palace wall, tall"
+  },
+  "BEy07": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2=3",
+   "type": "low stadium stand with graffiti wall"
+  },
+  "FRy05": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "brick post-war block, 5 storeys, balconies"
+  },
+  "ATa20": {
+   "r": [
+    "right",
+    "right"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "post-war 6-storey block with shops, rounded corner"
+  },
+  "ATy23": {
+   "r": [
+    "partly",
+    "partly"
+   ],
+   "best": "same",
+   "rank": "1=2",
+   "type": "4-storey post-war shop and office building"
+  },
+  "ATa28": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "3-storey post-war block, balconies, flat roof"
+  },
+  "ATy18": {
+   "r": [
+    "wrong",
+    "partly",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "post-war 4-storey plain block, flat roof"
+  },
+  "DEy04": {
+   "r": [
+    "partly",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "modern stone-clad office, big glazing, 5 storeys"
+  },
+  "ATa16": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2",
+   "type": "long low 1-storey clad hall, pitched roof"
+  },
+  "ATy19": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2=3",
+   "type": "dark concrete brutalist hall, 2-3 storeys"
+  },
+  "CHy25": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "old industrial building, 2-3 storeys, curved"
+  },
+  "DKy08": {
+   "r": [
+    "wrong",
+    "partly",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "modern glass apartment block, 6 storeys, flat roof"
+  },
+  "ATy10": {
+   "r": [
+    "wrong",
+    "partly",
+    "partly"
+   ],
+   "best": "same",
+   "rank": "2=3>1",
+   "type": "old corner building 3 storeys, hip roof, shops"
+  },
+  "FRy01": {
+   "r": [
+    "wrong",
+    "partly",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "old stone institutional building, 3-4 storeys"
+  },
+  "FRy02": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2=3",
+   "type": "modern station and commercial structure, glass"
+  },
+  "ATy09": {
+   "r": [
+    "partly",
+    "wrong",
+    "partly"
+   ],
+   "best": "same",
+   "rank": "1=3>2",
+   "type": "old plain 2-3 storey building, curved roof"
+  },
+  "CHy11": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "escalator and floor, house not shown"
+  },
+  "ATy08": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "modern concrete fire station, 3 storeys, flat"
+  },
+  "ITy02": {
+   "r": [
+    "right",
+    "right",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2>3",
+   "type": "old brick palazzo, 4 storeys, arched portal"
+  },
+  "DKy04": {
+   "r": [
+    "right",
+    "partly"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "brick courtyard buildings, 4-5 storeys"
+  },
+  "CHy02": {
+   "r": [
+    "right",
+    "wrong",
+    "right"
+   ],
+   "best": "same",
+   "rank": "1=3>2",
+   "type": "old yellow town house, 4 storeys, bay"
+  },
+  "FRy10": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "plain whitewashed wall, house hidden"
+  },
+  "ATy11": {
+   "r": [
+    "right",
+    "wrong",
+    "right"
+   ],
+   "best": "same",
+   "rank": "1=3>2",
+   "type": "historicist corner house, 4-5 storeys, bays"
+  },
+  "CHy22": {
+   "r": [
+    "partly",
+    "wrong",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2=3",
+   "type": "low 1-2 storey flat-roofed shed building"
+  },
+  "BEy03": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1=2>3",
+   "type": "long 2-storey brick school/industrial building"
+  },
+  "DKy05": {
+   "r": [
+    "wrong",
+    "partly",
+    "partly"
+   ],
+   "best": "same",
+   "rank": "2=3>1",
+   "type": "4-storey red brick 19th-century hipped roof"
+  },
+  "ITy07": {
+   "r": [
+    "wrong",
+    "partly",
+    "partly"
+   ],
+   "best": "same",
+   "rank": "2=3>1",
+   "type": "long plain yellow palazzo, 4-5 storeys"
+  },
+  "BEy09": {
+   "r": [
+    "wrong",
+    "partly",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "post-war brick block of flats, 6 storeys, balconies"
+  },
+  "ATy21": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "photo dark tunnel, house not visible"
+  },
+  "DEy02": {
+   "r": [
+    "wrong",
+    "partly",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "modern white block, 4 storeys, flat roof"
+  },
+  "CHy04": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "modern curved office/commercial block, 5-6 storeys"
+  },
+  "CHy20": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2",
+   "type": "low supermarket (Migros) with canopy, 1-2 storeys"
+  },
+  "FRy08": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2>3",
+   "type": "low modern brick public building, 2 storeys"
+  },
+  "FIy02": {
+   "r": [
+    "partly",
+    "partly"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "plain stucco block with shop ground floor, 4-5 storeys"
+  },
+  "ITy06": {
+   "r": [
+    "partly",
+    "wrong",
+    "partly"
+   ],
+   "best": "same",
+   "rank": "1=3>2",
+   "type": "large stone Renaissance palazzo, 3 storeys"
+  },
+  "FIy04": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "house hidden by trees"
+  },
+  "DEy08": {
+   "r": [
+    "right",
+    "right"
+   ],
+   "best": "same",
+   "rank": "1=2",
+   "type": "modern 5-storey block, flat roof, panel facade"
+  },
+  "DEy09": {
+   "r": [
+    "partly",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "modern brick block, 6-7 storeys, balconies"
+  },
+  "FRy04": {
+   "r": [
+    "partly",
+    "partly",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2>3",
+   "type": "old brick town houses, 3-4 storeys, tiled roof"
+  },
+  "DEy03": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "modern dark brick and white office blocks, 5-6 storeys"
+  },
+  "CHy06": {
+   "r": [
+    "wrong",
+    "partly",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "modern office/block, 4 storeys, flat roof"
+  },
+  "LUy07": {
+   "r": [
+    "wrong",
+    "partly",
+    "partly"
+   ],
+   "best": "same",
+   "rank": "2=3>1",
+   "type": "plain old stone building, 4 storeys"
+  },
+  "ATy20": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "Gruenderzeit ornate tenement, 5 storeys"
+  },
+  "CHy17": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "post-war block, shops below, 5 storeys, flat roof"
+  },
+  "FIy05": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "modern 6-7 storey block, shop ground floor"
+  },
+  "ATy24": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "curved 1960s-70s concrete office building, 5 storeys, flat roof"
+  },
+  "ATy06": {
+   "r": [
+    "right",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "post-war Gemeindebau block, 6-7 storeys, flat roof"
+  },
+  "DEy05": {
+   "r": [
+    "partly",
+    "wrong",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2=3",
+   "type": "post-war red brick institutional building, 4 storeys"
+  },
+  "CHy28": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "post-war white block, 6 storeys, balconies"
+  },
+  "ATa14": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "billboard wall in front, house not visible"
+  },
+  "BEy06": {
+   "r": [
+    "partly",
+    "wrong",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2=3",
+   "type": "modern glass office building, 3 storeys, curved"
+  },
+  "CHy14": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "large modern stone-clad institutional building"
+  },
+  "ITy03": {
+   "r": [
+    "wrong",
+    "partly",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2=3>1",
+   "type": "old 19th-century station building, ochre, arches"
+  },
+  "ATa05": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "house not visible (sky, trees, sheds)"
+  },
+  "CHy13": {
+   "r": [
+    "wrong",
+    "right",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "post-war block with balconies, 5-6 storeys"
+  },
+  "CHy03": {
+   "r": [
+    "wrong",
+    "partly",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2=3>1",
+   "type": "historicist stone tenement, 5 storeys, shop"
+  },
+  "DEy01": {
+   "r": [
+    "wrong",
+    "right"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "old sandstone tenement, 5 storeys, bays, shop"
+  },
+  "ATy05": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "historic 3-4 storey hotel building, hipped roof"
+  },
+  "CHy12": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2=3",
+   "type": "church with round apse, stone"
+  },
+  "ITy01": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "hidden behind trees and wall"
+  },
+  "ATa07": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "old plain plastered house, 3 storeys, pitched roof"
+  },
+  "CHy10": {
+   "r": [
+    "partly",
+    "wrong",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2=3",
+   "type": "modern glazed commercial building, flat roof"
+  },
+  "ITy10": {
+   "r": [
+    "right",
+    "partly"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "mid-century 8-storey block, balconies, stone-clad"
+  },
+  "DEy07": {
+   "r": [
+    "right",
+    "wrong",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2=3",
+   "type": "1930s plain block, 5 storeys, dormers"
+  },
+  "FRy03": {
+   "r": [
+    "partly",
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1=2>3",
+   "type": "19th-century red sandstone public building, arches"
+  },
+  "ITy09": {
+   "r": [
+    "partly",
+    "wrong",
+    "partly"
+   ],
+   "best": "1",
+   "rank": "1=3>2",
+   "type": "old stone-based tenement, several storeys"
+  },
+  "ATy14": {
+   "r": [
+    "partly",
+    "wrong",
+    "partly"
+   ],
+   "best": "1",
+   "rank": "1=3>2",
+   "type": "early-20th-century plastered school, arched windows"
+  },
+  "CHy08": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "house hidden by trees"
+  },
+  "FIy07": {
+   "r": [
+    "wrong",
+    "partly",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "modern brick-and-glass commercial building, shop ground floor"
+  },
+  "LUy05": {
+   "r": [
+    "partly",
+    "wrong",
+    "partly"
+   ],
+   "best": "1",
+   "rank": "1=3>2",
+   "type": "old plastered stone houses, 2-3 storeys"
+  },
+  "DKy03": {
+   "r": [
+    "partly",
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1=2>3",
+   "type": "19th-century plastered tenement, 4 storeys"
+  },
+  "DKy02": {
+   "r": [
+    "right",
+    "wrong",
+    "right"
+   ],
+   "best": "1",
+   "rank": "1=3>2",
+   "type": "dark red-brick historic building, stone base, multi-storey"
+  },
+  "ATa02": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "modern curved glass-fronted building"
+  },
+  "ATa19": {
+   "r": [
+    "partly",
+    "right"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "historic corner house, 3 storeys, hipped roof, shop"
+  },
+  "ATy26": {
+   "r": [
+    "partly",
+    "partly",
+    "partly"
+   ],
+   "best": "same",
+   "rank": "1=2=3",
+   "type": "yellow 3-storey building with shopfronts, flat roof"
+  },
+  "LUy04": {
+   "r": [
+    "wrong",
+    "wrong",
+    "partly"
+   ],
+   "best": "3",
+   "rank": "3>1=2",
+   "type": "modern curved glass public building"
+  },
+  "BEy04": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "no house, grass slope and bridge"
+  },
+  "LUy01": {
+   "r": [
+    "partly",
+    "wrong",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2=3",
+   "type": "plain plastered 3-storey utility building, flat roof"
+  },
+  "ATy29": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2",
+   "type": "low old inn, tiled pitched roof, 1-2 storeys"
+  },
+  "FIy08": {
+   "r": [
+    "wrong",
+    "partly",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "1930s functionalist corner block, flat roof, shops"
+  },
+  "ATy25": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "modern 4-storey housing block, curved flat roof"
+  },
+  "CHy24": {
+   "r": [
+    "wrong",
+    "partly",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "large modern civic building, dark cladding, flat"
+  },
+  "ATa12": {
+   "r": [
+    "wrong",
+    "right"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "Wilhelminian corner tenement, ornate, 5 storeys"
+  },
+  "ATa18": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "plain 3-storey house, hipped tile roof"
+  },
+  "DEy06": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "modern stone-clad office block, flat roof, 5 storeys"
+  },
+  "DKy09": {
+   "r": [
+    "right",
+    "wrong",
+    "right"
+   ],
+   "best": "1",
+   "rank": "1=3>2",
+   "type": "brick tenement, 5 storeys, pitched roof dormers"
+  },
+  "ATa30": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "industrial office building, metal cladding, flat, 3-4 storeys"
+  },
+  "ATy15": {
+   "r": [
+    "partly",
+    "partly"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "1950s 8-storey ribbon-window block, shops below"
+  },
+  "ATa06": {
+   "r": [
+    "partly",
+    "partly"
+   ],
+   "best": "same",
+   "rank": "1=2",
+   "type": "mid-century block on pilotis, oriels, flat roof"
+  },
+  "CHy01": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "house not identifiable, backlit street"
+  },
+  "LUy06": {
+   "r": [
+    "wrong",
+    "partly",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2=3>1",
+   "type": "3-storey rounded manor house, hipped slate roof"
+  },
+  "BEy02": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "contemporary apartment block, 5-6 storeys, shops"
+  },
+  "CHy21": {
+   "r": [
+    "partly",
+    "partly"
+   ],
+   "best": "same",
+   "rank": "1=2",
+   "type": "interwar 5-storey flats, shutters, pitched roof"
+  },
+  "DEy10": {
+   "r": [
+    "right",
+    "right",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1=2>3",
+   "type": "old stone city palais, 4-5 storeys, curved corner"
+  },
+  "FIy09": {
+   "r": [
+    "right",
+    "wrong",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2=3",
+   "type": "1960s flat-roofed block of flats, 4-5 storeys"
+  },
+  "CHy19": {
+   "r": [
+    "wrong",
+    "partly",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2=3>1",
+   "type": "19th-century monumental stone building, 4 storeys"
+  },
+  "BEy10": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "monumental 19th-century railway station hall"
+  },
+  "ATa22": {
+   "r": [
+    "right",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "retail store hall, curved metal roof, 1-2 storeys"
+  },
+  "ATa01": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "1950s plain 3-storey block, low hipped roof"
+  },
+  "LUy02": {
+   "r": [
+    "right",
+    "wrong",
+    "right"
+   ],
+   "best": "1",
+   "rank": "1=3>2",
+   "type": "old stone town house, archway, 4 storeys"
+  },
+  "ATa04": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "interwar semi-detached villa, hipped tile roof"
+  },
+  "FIy01": {
+   "r": [
+    "partly",
+    "right"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "1930s plain 6-storey block, flat roof"
+  },
+  "DKy10": {
+   "r": [
+    "right",
+    "right",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1=2>3",
+   "type": "brick tenement, 4-5 storeys, pitched dormer roof"
+  },
+  "ITy04": {
+   "r": [
+    "partly",
+    "wrong",
+    "partly"
+   ],
+   "best": "1",
+   "rank": "1=3>2",
+   "type": "3-4 storey Italian arcaded town building"
+  },
+  "ATy12": {
+   "r": [
+    "partly",
+    "wrong",
+    "partly"
+   ],
+   "best": "1",
+   "rank": "1=3>2",
+   "type": "5 storey Gruenderzeit tenement, ornate, flat-ish roof"
+  },
+  "ATa15": {
+   "r": [
+    "right",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "white church with curved apse"
+  },
+  "ATa13": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2",
+   "type": "2-3 storey villa, hipped roof"
+  },
+  "CHy16": {
+   "r": [
+    "wrong",
+    "partly",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "5 storey plain office/commercial block, low roof"
+  },
+  "ATy27": {
+   "r": [
+    "partly",
+    "wrong",
+    "partly"
+   ],
+   "best": "1",
+   "rank": "1=3>2",
+   "type": "4 storey baroque palace, cornice roof"
+  },
+  "CHy05": {
+   "r": [
+    "right",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "1960s block of flats, balconies, flat roof"
+  },
+  "LUy03": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "house hidden by trees and wall"
+  },
+  "CHy09": {
+   "r": [
+    "wrong",
+    "partly",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2=3>1",
+   "type": "4 storey large historicist stone building, hipped roof"
+  },
+  "DKy01": {
+   "r": [
+    "partly",
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1=2>3",
+   "type": "4 storey red brick corner block, pitched roof"
+  },
+  "ATy30": {
+   "r": [
+    "wrong",
+    "wrong",
+    "right"
+   ],
+   "best": "3",
+   "rank": "3>1=2",
+   "type": "3-4 storey modern building, flat roof, shop below"
+  },
+  "ATy28": {
+   "r": [
+    "right",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "4-5 storey Gruenderzeit tenement"
+  },
+  "DKy06": {
+   "r": [
+    "partly",
+    "partly",
+    "partly"
+   ],
+   "best": "3",
+   "rank": "3>1=2",
+   "type": "4 storey post-war brick block, shops below, low roof"
+  },
+  "ATa23": {
+   "r": [
+    "right",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "3-4 storey modern block, flat roof"
+  },
+  "LUy08": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "house hidden behind trees"
+  },
+  "DKy07": {
+   "r": [
+    "wrong",
+    "partly",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "modern concrete block and low industrial hall"
+  },
+  "ATy13": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2",
+   "type": "low arena hall, flat curved roof"
+  },
+  "FRy09": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2",
+   "type": "large industrial hall with steel canopy"
+  },
+  "ATa24": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "3 storey baroque plastered building with arch"
+  },
+  "ATa26": {
+   "r": [
+    "right",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "4 storey modern block, arcade ground floor, flat roof"
+  },
+  "FIy06": {
+   "r": [
+    "wrong",
+    "right"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "5 storey brick office, flat curved roof"
+  },
+  "ATy04": {
+   "r": [
+    "partly",
+    "right"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "4 storey 1950s plain block, flat roof"
+  },
+  "CHy30": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "4-5 storey 1930s block of flats with balconies"
+  },
+  "ITy08": {
+   "r": [
+    "partly",
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1=2>3",
+   "type": "3 storey brick palazzo, low roof"
+  },
+  "CHy26": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "3-4 storey modern hospital building, flat roof"
+  },
+  "ATa08": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "3-4 storey plastered Heimatstil block, curved"
+  }
+ },
+ "b": {
+  "ATy01": {
+   "r": [
+    "right",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "Gründerzeit stone corner tenement, 5-6 storeys"
+  },
+  "CHy15": {
+   "r": [
+    "wrong",
+    "right"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "post-war block with balconies, shops, 5-6 storeys"
+  },
+  "ATa25": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "old 3-4 storey corner house, bay, hipped roof"
+  },
+  "CHy23": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1=3>2",
+   "type": "monumental neoclassical stone institutional building, long"
+  },
+  "CHy18": {
+   "r": [
+    "partly",
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1=2>3",
+   "type": "old town rendered house, 2-3 storeys, pitched roof"
+  },
+  "BEy08": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "modern curved apartment block, 6 storeys, balconies"
+  },
+  "ATa21": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2",
+   "type": "yellow villa, 2 storeys, hipped roof"
+  },
+  "ATa10": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "modern glass office building, flat roof"
+  },
+  "CHy27": {
+   "r": [
+    "right",
+    "partly"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "19th-century hotel-like block, 5 storeys, balconies"
+  },
+  "LUy09": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "no house visible, park and wall"
+  },
+  "ATa17": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "interwar rounded corner house, 4 storeys, shop, flat roof"
+  },
+  "ATy02": {
+   "r": [
+    "wrong",
+    "partly",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "modern plain block, 4-5 storeys, flat roof"
+  },
+  "FIy10": {
+   "r": [
+    "wrong",
+    "right",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "post-war brick apartment block, 4-5 storeys, glazed balconies"
+  },
+  "ATy22": {
+   "r": [
+    "wrong",
+    "wrong",
+    "partly"
+   ],
+   "best": "3",
+   "rank": "3>1=2",
+   "type": "1960s office block, 5 storeys, ribbon windows"
+  },
+  "BEy01": {
+   "r": [
+    "partly",
+    "wrong",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2=3",
+   "type": "modern curved stone-clad office building, 4 storeys"
+  },
+  "ATy16": {
+   "r": [
+    "partly",
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1=2>3",
+   "type": "Vienna neo-baroque stone palace, 4-5 storeys"
+  },
+  "CHy07": {
+   "r": [
+    "wrong",
+    "right"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "1930s curved apartment block, 5-6 storeys, balconies"
+  },
+  "ATa09": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "mid-century office building, 4 storeys, flat roof"
+  },
+  "ATa03": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "long industrial hall, low roof"
+  },
+  "ITy05": {
+   "r": [
+    "partly",
+    "partly",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "nearest is church wall; Turin palazzi behind"
+  },
+  "FRy07": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2=3",
+   "type": "red sandstone institutional building, high wall"
+  },
+  "FIy03": {
+   "r": [
+    "partly",
+    "wrong",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2=3",
+   "type": "modern curved block, glazed shop floor, 5 storeys"
+  },
+  "ATy03": {
+   "r": [
+    "wrong",
+    "right"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "modern round apartment block, 6 storeys, terraces"
+  },
+  "ATy17": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2=3>1",
+   "type": "baroque manor house, 2 storeys, hipped roof"
+  },
+  "ATa27": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "old masonry building behind tree, 3 storeys"
+  },
+  "ATa29": {
+   "r": [
+    "right",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "small old house, 1-2 storeys, gabled roof"
+  },
+  "FRy06": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "modern stone office block, 6 storeys, colonnade base"
+  },
+  "ATy07": {
+   "r": [
+    "right",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "historicist corner tenement, 3-4 storeys, hip roof"
+  },
+  "CHy29": {
+   "r": [
+    "partly",
+    "wrong",
+    "partly"
+   ],
+   "best": "same",
+   "rank": "1=3>2",
+   "type": "older stone-clad commercial building, glazed shopfront"
+  },
+  "ATa11": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2",
+   "type": "low 1-2 storey workshop or shop sheds"
+  },
+  "BEy05": {
+   "r": [
+    "partly",
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1=2>3",
+   "type": "monumental old stone building with balustrade"
+  },
+  "BEy07": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2=3",
+   "type": "low stadium stand with graffiti wall"
+  },
+  "FRy05": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "brick interwar block, 5 storeys, flat roof, balconies"
+  },
+  "ATa20": {
+   "r": [
+    "partly",
+    "partly"
+   ],
+   "best": "same",
+   "rank": "1=2",
+   "type": "1960s block, about 4 storeys, shops below"
+  },
+  "ATy23": {
+   "r": [
+    "partly",
+    "right"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "post-war 6 storey block, shops, ribbon windows"
+  },
+  "ATa28": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "post-war 3 storey block, curved roof, balconies"
+  },
+  "ATy18": {
+   "r": [
+    "wrong",
+    "right",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "1950s plain block, 4 storeys"
+  },
+  "DEy04": {
+   "r": [
+    "partly",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "stone-clad office, about 5 storeys, big glazing"
+  },
+  "ATa16": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2",
+   "type": "low timber-clad pitched-roof building, 1-2 storeys"
+  },
+  "ATy19": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2=3",
+   "type": "brutalist dark concrete festival hall"
+  },
+  "CHy25": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "old industrial range, 3 storeys, plastered"
+  },
+  "DKy08": {
+   "r": [
+    "wrong",
+    "partly",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "modern glazed waterfront block, 6 storeys, flat roof"
+  },
+  "ATy10": {
+   "r": [
+    "wrong",
+    "partly",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2=3>1",
+   "type": "3 storey old corner house, hip roof, shop"
+  },
+  "FRy01": {
+   "r": [
+    "wrong",
+    "partly",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "19th century sandstone town building"
+  },
+  "FRy02": {
+   "r": [
+    "wrong",
+    "partly",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2=3>1",
+   "type": "modern glass transit and office complex"
+  },
+  "ATy09": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2=3",
+   "type": "low plastered building 2-3 storeys, curved roof"
+  },
+  "CHy11": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "photo shows escalator floor, no house"
+  },
+  "ATy08": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "1970s concrete fire station, flat roof, glass band"
+  },
+  "ITy02": {
+   "r": [
+    "right",
+    "right",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1=2>3",
+   "type": "old brick palazzo, 3-4 storeys, arched portal"
+  },
+  "DKy04": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "old brick/plaster tenement, 5 storeys"
+  },
+  "CHy02": {
+   "r": [
+    "right",
+    "wrong",
+    "right"
+   ],
+   "best": "1",
+   "rank": "1=3>2",
+   "type": "old town tenement, 4 storeys, shutters, pitched roof"
+  },
+  "FRy10": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "blank white wall, house not visible"
+  },
+  "ATy11": {
+   "r": [
+    "right",
+    "wrong",
+    "right"
+   ],
+   "best": "1",
+   "rank": "1=3>2",
+   "type": "early 20th c. tenement, 4-5 storeys, bay"
+  },
+  "CHy22": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2=3",
+   "type": "low modern building behind wall, 1-2 storeys"
+  },
+  "BEy03": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2=3",
+   "type": "long 2-storey brick institutional building, hipped roof"
+  },
+  "DKy05": {
+   "r": [
+    "wrong",
+    "right",
+    "right"
+   ],
+   "best": "same",
+   "rank": "2=3>1",
+   "type": "4-storey red brick tenement, pitched roof"
+  },
+  "ITy07": {
+   "r": [
+    "wrong",
+    "right",
+    "right"
+   ],
+   "best": "same",
+   "rank": "2=3>1",
+   "type": "4-storey plain historic palazzo, ochre plaster"
+  },
+  "BEy09": {
+   "r": [
+    "wrong",
+    "right",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "6-storey postwar brick block, balconies, flat roof"
+  },
+  "ATy21": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "dark tunnel, house not visible"
+  },
+  "DEy02": {
+   "r": [
+    "wrong",
+    "partly",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "3-4 storey modern white flats, flat roof"
+  },
+  "CHy04": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "5-6 storey curved modern office, glazed shops"
+  },
+  "CHy20": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2",
+   "type": "low Migros supermarket with canopy"
+  },
+  "FRy08": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2=3",
+   "type": "low 1-2 storey modern brick building, flat roof"
+  },
+  "FIy02": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2",
+   "type": "2-3 storey grey building with shopfront"
+  },
+  "ITy06": {
+   "r": [
+    "partly",
+    "wrong",
+    "partly"
+   ],
+   "best": "same",
+   "rank": "1=3>2",
+   "type": "large 3-4 storey stone Renaissance palazzo"
+  },
+  "FIy04": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "house hidden by trees"
+  },
+  "DEy08": {
+   "r": [
+    "partly",
+    "partly"
+   ],
+   "best": "same",
+   "rank": "1=2",
+   "type": "5-storey modern curved clad office, flat roof"
+  },
+  "DEy09": {
+   "r": [
+    "partly",
+    "right"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "6-7 storey modern brick flats, balconies, flat roof"
+  },
+  "FRy04": {
+   "r": [
+    "partly",
+    "partly",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2>3",
+   "type": "3-4 storey old brick townhouse, pitched roof"
+  },
+  "DEy03": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "modern offices and container building, unclear"
+  },
+  "CHy06": {
+   "r": [
+    "wrong",
+    "right",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "4-storey modern beige block, flat roof"
+  },
+  "LUy07": {
+   "r": [
+    "wrong",
+    "partly",
+    "partly"
+   ],
+   "best": "same",
+   "rank": "2=3>1",
+   "type": "massive plain old stone building, 4 storeys"
+  },
+  "ATy20": {
+   "r": [
+    "wrong",
+    "right"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "5-storey ornate Gruenderzeit tenement, shops below"
+  },
+  "CHy17": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "5-storey postwar block, balconies, shops below"
+  },
+  "FIy05": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "7-storey modern flats, flat roof, shop ground floor"
+  },
+  "ATy24": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "5-storey curved modern office, glazed ground floor"
+  },
+  "ATy06": {
+   "r": [
+    "right",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "6-7 storey postwar flat block, balconies"
+  },
+  "DEy05": {
+   "r": [
+    "partly",
+    "wrong",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2=3",
+   "type": "4-storey 1950s brick institutional building, flat roof"
+  },
+  "CHy28": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "5-6 storey white 1960s block, balconies"
+  },
+  "ATa14": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "billboard wall, house not visible"
+  },
+  "BEy06": {
+   "r": [
+    "partly",
+    "wrong",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2=3",
+   "type": "curved modern glazed office, flat roof"
+  },
+  "CHy14": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "large modern granite-clad block, flat roof"
+  },
+  "ITy03": {
+   "r": [
+    "wrong",
+    "partly",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2=3>1",
+   "type": "old 3-storey ochre station building, low roof"
+  },
+  "ATa05": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "house not visible, sheds and trees"
+  },
+  "CHy13": {
+   "r": [
+    "wrong",
+    "right",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "5-storey post-war block with balconies, flat roof"
+  },
+  "CHy03": {
+   "r": [
+    "wrong",
+    "partly",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2=3>1",
+   "type": "old stone tenement 5 storeys, oriels, shop"
+  },
+  "DEy01": {
+   "r": [
+    "wrong",
+    "right"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "5-storey sandstone corner tenement, bays, shop"
+  },
+  "ATy05": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "old 4-storey plain hotel, pitched roof"
+  },
+  "CHy12": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "",
+   "type": "domed brick church, not a house"
+  },
+  "ITy01": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "hidden behind tree and wall"
+  },
+  "ATa07": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "old plastered house 2-3 storeys, pitched roof"
+  },
+  "CHy10": {
+   "r": [
+    "partly",
+    "wrong",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2=3",
+   "type": "modern glass-fronted office building"
+  },
+  "ITy10": {
+   "r": [
+    "right",
+    "partly"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "8-storey interwar/post-war block, balconies, flat roof"
+  },
+  "DEy07": {
+   "r": [
+    "partly",
+    "wrong",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2=3",
+   "type": "1930s 5-storey white block, plain, dormers"
+  },
+  "FRy03": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "",
+   "type": "large red sandstone institutional building, arches"
+  },
+  "ITy09": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "old stone building at pavement, mostly hidden"
+  },
+  "ATy14": {
+   "r": [
+    "partly",
+    "wrong",
+    "partly"
+   ],
+   "best": "1",
+   "rank": "1=3>2",
+   "type": "yellow plastered school, 3-4 storeys, arched windows"
+  },
+  "CHy08": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "house hidden by trees"
+  },
+  "FIy07": {
+   "r": [
+    "wrong",
+    "partly",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "modern brick-and-glass commercial block, flat roof"
+  },
+  "LUy05": {
+   "r": [
+    "partly",
+    "wrong",
+    "partly"
+   ],
+   "best": "1",
+   "rank": "1=3>2",
+   "type": "old plastered stone houses, narrow lane"
+  },
+  "DKy03": {
+   "r": [
+    "right",
+    "right",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1=2>3",
+   "type": "19th-century 4-storey plastered tenement"
+  },
+  "DKy02": {
+   "r": [
+    "partly",
+    "wrong",
+    "partly"
+   ],
+   "best": "1",
+   "rank": "1=3>2",
+   "type": "old 4-5 storey dark brick and stone building"
+  },
+  "ATa02": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "modern glass curved building"
+  },
+  "ATa19": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "old 3-storey pink corner house, hipped roof"
+  },
+  "ATy26": {
+   "r": [
+    "partly",
+    "wrong",
+    "partly"
+   ],
+   "best": "1",
+   "rank": "1=3>2",
+   "type": "3-storey yellow commercial building with shopfronts"
+  },
+  "LUy04": {
+   "r": [
+    "wrong",
+    "wrong",
+    "partly"
+   ],
+   "best": "3",
+   "rank": "3>1=2",
+   "type": "modern curved glass building"
+  },
+  "BEy04": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "no house visible, grass and bridge"
+  },
+  "LUy01": {
+   "r": [
+    "partly",
+    "wrong",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2=3",
+   "type": "plain 2-3 storey stucco building, low roof"
+  },
+  "ATy29": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "low 2 storey inn, tiled pitched roof"
+  },
+  "FIy08": {
+   "r": [
+    "wrong",
+    "partly",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "1930s functionalist corner block, 7 storeys, flat roof, shop base"
+  },
+  "ATy25": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "modern 4 storey housing block, curved flat roof"
+  },
+  "CHy24": {
+   "r": [
+    "wrong",
+    "partly",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "large modern dark public building, flat roof"
+  },
+  "ATa12": {
+   "r": [
+    "wrong",
+    "right"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "Gruenderzeit corner tenement, 4-5 storeys"
+  },
+  "ATa18": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2",
+   "type": "3 storey post-war house, pitched roof, behind hedge"
+  },
+  "DEy06": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "modern stone-clad block, 5 storeys, flat roof"
+  },
+  "DKy09": {
+   "r": [
+    "right",
+    "wrong",
+    "right"
+   ],
+   "best": "1",
+   "rank": "1=3>2",
+   "type": "red brick tenement, 4-5 storeys, pitched roof"
+  },
+  "ATa30": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "3 storey clad industrial office building, flat roof"
+  },
+  "ATy15": {
+   "r": [
+    "right",
+    "partly"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "post-war 8 storey office block, ribbon windows"
+  },
+  "ATa06": {
+   "r": [
+    "partly",
+    "partly"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "blurred post-war block with arcade columns"
+  },
+  "CHy01": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "dark large stone building, house not clear"
+  },
+  "LUy06": {
+   "r": [
+    "wrong",
+    "partly",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2=3>1",
+   "type": "3 storey old mansion, mansard roof"
+  },
+  "BEy02": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "modern 5-6 storey block, flat roof"
+  },
+  "CHy21": {
+   "r": [
+    "partly",
+    "partly"
+   ],
+   "best": "same",
+   "rank": "1=2",
+   "type": "interwar 4-5 storey block, pitched roof, plain"
+  },
+  "DEy10": {
+   "r": [
+    "right",
+    "right",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1=2>3",
+   "type": "old stone town house, 4-5 storeys"
+  },
+  "FIy09": {
+   "r": [
+    "right",
+    "partly",
+    "partly"
+   ],
+   "best": "1",
+   "rank": "1>2=3",
+   "type": "post-war 4 storey block, flat roof, balconies"
+  },
+  "CHy19": {
+   "r": [
+    "wrong",
+    "partly",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2=3>1",
+   "type": "19th c. stone institutional building, 4 storeys"
+  },
+  "BEy10": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "monumental 19th c. railway station hall"
+  },
+  "ATa22": {
+   "r": [
+    "right",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "large shop with metal-clad curved roof"
+  },
+  "ATa01": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "3 storey post-war block, plain, low roof"
+  },
+  "LUy02": {
+   "r": [
+    "partly",
+    "wrong",
+    "partly"
+   ],
+   "best": "1",
+   "rank": "1=3>2",
+   "type": "old 3-4 storey stone house with archway"
+  },
+  "ATa04": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "interwar villa, 3 storeys, hipped roof dormers"
+  },
+  "FIy01": {
+   "r": [
+    "partly",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "1930s plain 6 storey block, flat roof"
+  },
+  "DKy10": {
+   "r": [
+    "right",
+    "right",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1=2>3",
+   "type": "red brick tenement, 5 storeys, dormer roof"
+  },
+  "ITy04": {
+   "r": [
+    "partly",
+    "right",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "3-4 storey postwar plain block, flat roof"
+  },
+  "ATy12": {
+   "r": [
+    "right",
+    "wrong",
+    "right"
+   ],
+   "best": "same",
+   "rank": "1=3>2",
+   "type": "5-storey historicist tenement, ornate facade"
+  },
+  "ATa15": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "white church with rounded apse"
+  },
+  "ATa13": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2",
+   "type": "3-storey villa, steep roof, 1930s"
+  },
+  "CHy16": {
+   "r": [
+    "wrong",
+    "partly",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "4-5 storey institutional office, flat roof, sandstone"
+  },
+  "ATy27": {
+   "r": [
+    "partly",
+    "wrong",
+    "partly"
+   ],
+   "best": "same",
+   "rank": "1=3>2",
+   "type": "4-storey baroque/historicist palace-like tenement"
+  },
+  "CHy05": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "1960s block of flats, 6-8 storeys, flat roof"
+  },
+  "LUy03": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "house hidden, only wall and trees visible"
+  },
+  "CHy09": {
+   "r": [
+    "wrong",
+    "partly",
+    "partly"
+   ],
+   "best": "same",
+   "rank": "2=3>1",
+   "type": "large historicist institutional building, hip tile roof"
+  },
+  "DKy01": {
+   "r": [
+    "partly",
+    "partly",
+    "partly"
+   ],
+   "best": "same",
+   "rank": "1=2=3",
+   "type": "4-storey red-brick block, low roof"
+  },
+  "ATy30": {
+   "r": [
+    "wrong",
+    "wrong",
+    "partly"
+   ],
+   "best": "3",
+   "rank": "3>1=2",
+   "type": "modern 3-4 storey shop and office, flat roof"
+  },
+  "ATy28": {
+   "r": [
+    "right",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "4-storey Gruenderzeit tenement, ornate facade"
+  },
+  "DKy06": {
+   "r": [
+    "partly",
+    "partly",
+    "partly"
+   ],
+   "best": "3",
+   "rank": "3>1=2",
+   "type": "4-storey red-brick 1930s-50s block with shops"
+  },
+  "ATa23": {
+   "r": [
+    "right",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "modern 4-storey block, flat roof"
+  },
+  "LUy08": {
+   "r": [
+    "wrong",
+    "wrong",
+    "wrong"
+   ],
+   "best": "unclear",
+   "rank": "",
+   "type": "tree-lined avenue, house not identifiable"
+  },
+  "DKy07": {
+   "r": [
+    "wrong",
+    "partly",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1=3",
+   "type": "low industrial hall, flat roof"
+  },
+  "ATy13": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "large arena hall with shop base, flat"
+  },
+  "FRy09": {
+   "r": [
+    "wrong",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2",
+   "type": "long industrial hall or stadium wall"
+  },
+  "ATa24": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "baroque 3-4 storey monastery buildings, rendered"
+  },
+  "ATa26": {
+   "r": [
+    "partly",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "modern 4-5 storey commercial block, flat roof"
+  },
+  "FIy06": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "5-storey red-brick office, flat curved roof"
+  },
+  "ATy04": {
+   "r": [
+    "wrong",
+    "right"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "4-storey postwar plain block, flat roof"
+  },
+  "CHy30": {
+   "r": [
+    "right",
+    "partly"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "4-storey interwar block with balconies"
+  },
+  "ITy08": {
+   "r": [
+    "partly",
+    "partly",
+    "wrong"
+   ],
+   "best": "same",
+   "rank": "1=2>3",
+   "type": "large Italian brick palazzo, 3-4 storeys"
+  },
+  "CHy26": {
+   "r": [
+    "right",
+    "wrong"
+   ],
+   "best": "1",
+   "rank": "1>2",
+   "type": "1960s hospital block, 4 storeys, flat"
+  },
+  "ATa08": {
+   "r": [
+    "wrong",
+    "partly"
+   ],
+   "best": "2",
+   "rank": "2>1",
+   "type": "1930s rendered rounded block, 4 storeys"
+  }
+ }
+}

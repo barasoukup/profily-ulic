@@ -9,7 +9,6 @@ export const POINTS = {
   switzerland: { of: "switzerland", at: "47.374786, 8.536135" }, // Löwenstrasse, Zürich
   netherlands: { of: "netherlands", at: "52.369860, 4.895240" }, // Oudezijds Achterburgwal, Amsterdam
   "bratislava-pasport": { of: "slovensko", at: "48.148683, 17.108843" }, // Hodžovo námestie
-  "presov-pasport": { of: "slovensko", at: "48.999031, 21.239896" }, // Hlavná
   "zilina-pasport": { of: "slovensko", at: "49.221362, 18.734724" }, // Jesenského
   "bystrica-pasport": { of: "slovensko", at: "48.739840, 19.149898" }, // Kollárova
   "kosice-pasport": { of: "slovensko", at: "48.713249, 21.224115" }, // Toryská

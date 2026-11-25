@@ -201,7 +201,12 @@ const NOT_JUNCTION_SERVICE = new Set(["driveway", "parking_aisle", "drive-throug
 // OSM area with area:highway=service or service=alley, or a surface map's alley a module adds to the OSM elements as
 // such) within ALLEY_REACH of the street's axis, at the point of the axis nearest to it. The clearance: CROSSING_CLEARANCE
 // beyond the alley's half width. ?off=ulicky: as before.
+// Only for a street it opens onto (Bára 25. 11. 2026, the review's W1: an alley's area was a mouth of the way inside it too
+// and a click there went to the way's end, 75–137 m): an area beside the axis for longer than ALLEY_MOUTH, or with most
+// of the way inside it, is the way's own (along its middle, its edge or a part of it). Measured around five places of
+// Washington: mouths onto streets 0–16 m long, the ways' own areas 24 m and more. ?off=ulickysve: the area of any way.
 const ALLEY_REACH = 12; // m from the axis (a wide roadway's kerb and its sidewalk)
+const ALLEY_MOUTH = 20; // m along the axis
 const isAlleyArea = (el) => el.type === "area" && el.geometry?.length > 2 && (el.tags?.["area:highway"] === "service" || el.tags?.service === "alley");
 const AXIS_SNAP = 4.5; // m: an OSM axis this close beside the roadway belongs to it (deriveProfile, the axis to the roadway)
 // Streets for the axis fixes: roads and residential streets, not tracks or bridleways (Brno test č. 99).
@@ -247,19 +252,39 @@ export function placeCut(osm, frame, near, exact = false) {
   return centerOnStreet(osm, frame, awayFromJunctions(osm, frame, near));
 }
 
-// Where an alley's area meets the street's axis pts (local metres): { p, clear } or null. Its vertices within
-// ALLEY_REACH of the axis are the mouth: the point of the axis nearest to their middle, the clearance beyond their half
-// spread along the axis.
-function alleyMouth(el, pts, frame) {
-  const near = [];
-  for (const g of el.geometry) {
-    const best = nearestOnLine(pts, frame.toXY(g.lon, g.lat));
-    if (best && best.dist <= ALLEY_REACH) near.push(best.p);
+// Where an alley's area meets the street's axis pts (local metres): a list of { p, clear }, one a mouth (an alley round a
+// block has several). The points of its ring within ALLEY_REACH of the axis, in stretches along the axis (a gap of more than
+// ALLEY_REACH ends one): the middle of the stretch, the clearance beyond its half. A stretch over ALLEY_MOUTH is no mouth.
+function alleyMouths(el, pts, frame) {
+  const ring = el.geometry.map((g) => frame.toXY(g.lon, g.lat)), at = [], cum = [0];
+  for (let i = 1; i < pts.length; i++) cum.push(cum[i - 1] + Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]));
+  const total = cum.at(-1), b = bboxOf(pts), along = (d) => {
+    const i = Math.max(1, cum.findIndex((c) => c >= d)), l = cum[i] - cum[i - 1] || 1, u = Math.min(1, (d - cum[i - 1]) / l);
+    return [pts[i - 1][0] + u * (pts[i][0] - pts[i - 1][0]), pts[i - 1][1] + u * (pts[i][1] - pts[i - 1][1])];
+  };
+  ring.forEach((q, i) => {
+    const o = ring[(i + 1) % ring.length], n = Math.max(1, Math.ceil(Math.hypot(o[0] - q[0], o[1] - q[1])));
+    for (let k = 0; k < n; k++) {
+      const r = [q[0] + ((o[0] - q[0]) * k) / n, q[1] + ((o[1] - q[1]) * k) / n];
+      if (r[0] < b[0] - ALLEY_REACH || r[0] > b[2] + ALLEY_REACH || r[1] < b[1] - ALLEY_REACH || r[1] > b[3] + ALLEY_REACH) continue;
+      const best = closestOnPolyline(pts, r);
+      if (best.d <= ALLEY_REACH) at.push(cum[best.index] + Math.hypot(best.point[0] - pts[best.index][0], best.point[1] - pts[best.index][1]));
+    }
+  });
+  if (!at.length) return [];
+  if (!ORTHO_P.off?.has("ulickysve")) {
+    let ins = 0, n = 0;
+    for (let d = 0.5; d < total; d++, n++) if (inside([ring], ...along(d))) ins++;
+    if (ins > n / 2) return [];
   }
-  if (!near.length) return null;
-  const c = [near.reduce((s, p) => s + p[0], 0) / near.length, near.reduce((s, p) => s + p[1], 0) / near.length];
-  const spread = Math.max(...near.map((p) => Math.hypot(p[0] - c[0], p[1] - c[1])));
-  return { p: c, clear: CROSSING_CLEARANCE + spread };
+  at.sort((x, y) => x - y);
+  const stretches = [];
+  for (const d of at) {
+    const last = stretches.at(-1);
+    if (last && d - last[1] <= ALLEY_REACH) last[1] = d; else stretches.push([d, d]);
+  }
+  return stretches.filter(([s, e]) => e - s <= ALLEY_MOUTH || ORTHO_P.off?.has("ulickysve"))
+    .map(([s, e]) => ({ p: along((s + e) / 2), clear: CROSSING_CLEARANCE + (e - s) / 2 }));
 }
 
 export function awayFromJunctions(osm, frame, near) {
@@ -271,8 +296,7 @@ export function awayFromJunctions(osm, frame, near) {
   const alleys = !ORTHO_P.off?.has("ulicky"), services = !ORTHO_P.off?.has("obsluzne");
   for (const el of osm.elements || []) {
     if (alleys && isAlleyArea(el)) {
-      const hit = alleyMouth(el, pts, frame);
-      if (hit) hits.push({ ...hit, service: true });
+      for (const hit of alleyMouths(el, pts, frame)) hits.push({ ...hit, service: true });
       continue;
     }
     if (el.id === near.way.id || !el.tags?.highway || !el.geometry) continue;

@@ -87,7 +87,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   z `tools/build_vyvoj.mjs` při nasazení; Bára 8. 11. 2026: plošná vrstva je výchozí odhad, který
   přebijí údaje o domě).
 - Vzhled domu čte všechny budovy OSM ve všech státech (`?off=vsedomy`; `evaluation/all-buildings/ZPRAVA.md`, Bára 25. 11. 2026);
-  sada mobiliáře smí mít lampu do 5 m (`lamp-post-top`). Rakousko na čerstvém vzorku 3 : 6, výjimka není.
+  sada mobiliáře smí mít lampu do 5 m (`lamp-post-top`). Rakousko ve všech kolech 19 : 18, výjimka není.
+  Blok kolem dvora jako „není poválečný dům“ zkoušeno, nevyhrálo (47 : 50; CH by ztratilo), v aplikaci není.
 - Socialistické vzhledy (sorela, zděný dům 50.–60. let, panelák) jen v CZ, SK, PL, EE a bývalé NDR (Bára 23. 11. 2026,
   `countries/<ISO>.js` `socialistLooks`, DE podle `city.panels`); jinde i v „cizině“ `profile.js` `westernLook`: 1946–90
   poválečný bytový dům, deska před 1946 funkcionalistický, po 1990 moderní. Snímky `evaluation/budovy-povalecny/`.
@@ -245,10 +246,11 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   jako vzor: chodci vpravo); IZ 10a Sdílená zóna jen podle `traffic_sign` v OSM; C 7a Stezka pro chodce na pěší cestě;
   E 13 „Mimo dopravní obsluhy“ (2. pád, gramaticky správně).
 - Pasporty měst (Bára 16. 11. 2026, `towns/slovensko.js` SK_TOWNS, jen ve větvi `slovensko`): Bratislava (magistrát:
-  chodníky, vozovky, parkoviště; MČ Dúbravka), Prešov (doprava, zeleň, stromy; CC BY 4.0), Žilina a Banská Bystrica
+  chodníky, vozovky, parkoviště; MČ Dúbravka), Žilina a Banská Bystrica
   (T-MAPY PaKom); jen kde má pasport plochu pod středem řezu, kolem budovy, zeleň a voda z OSM; `?pasport=0` vypne.
   A/B 115 řezů: lépe 28, hůř 7 (`evaluation/slovensko/ab/ZPRAVA.md`). Technická mapa Bratislavy (čáry + značky ploch)
-  zapojená, ale vypnutá (`?tm=1`): málo značek, otevřené čáry. Licence kromě Prešova neuvedené.
+  zapojená, ale vypnutá (`?tm=1`): málo značek, otevřené čáry. Licence neuvedené. Prešov vyřazený
+  (Bára 25. 11. 2026: uzavřel vozovky a parkoviště, ArcGIS 499; zůstaly jeho stromy a čáry mapy, CC BY 4.0).
 - Mimo Česko se vzhled domu neodvozuje od vzdálenosti od centra (žádné není), ale z OSM (rok, střecha, deska); panelák
   jen obytným domům (ZBGIS druh budovy). Ulice ze dvou jednosměrných vozovek má v odhadu obě. V nadpisu jen ulice,
   poznámka o datech pod ním. Panorama Mapy.com jen v CZ. Jazyky v rozbalovacím menu s vlajkami (vše Bára 16. 11. 2026; od 17. 11. v menu Soubor bez vlajek).
@@ -624,7 +626,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   `evaluation/mapfill-cz/ZPRAVA.md`.
 - Sjednocení výjimek (Bára 24. 11. 2026: co nejvíc sdíleně, výjimka jen s měřením nebo rozdílem zákona, norem a dat;
   `evaluation/sjednoceni/AUDIT.md`, `ZPRAVA.md`): `besidePassport` všude (i CZ), osy OSM, obslužné cesty a ústí uliček jako křižovatky
-  všude i v Praze (`city.fix` zrušené, `evaluation/sjednoceni/praha/ZPRAVA.md`), delší dosah dálnic a hlavních ulic jedním pravidlem dat řezu (`app.js widerSides`,
+  všude i v Praze (`city.fix` zrušené, `evaluation/sjednoceni/praha/ZPRAVA.md`; plocha uličky jen pro ulici, do které ústí, kliky `evaluation/kliky/ZPRAVA.md`), delší dosah dálnic a hlavních ulic jedním pravidlem dat řezu (`app.js widerSides`,
   příznaky `wideRoads`/`wideStreets` zrušené), oprava stání z modelu u zákonného pruhu (`?off=parkshare`). Zákonný odhad
   stání platí i na Slovensku (25. 11.: jeho prohry byly z chyby sdíleného kódu, zákonný pruh ležel ve vozovce dřív, než se měřily
   pruhy; teď pruhy napřed, `ai-kerbs.js lawKerbs`, `?off=lawlanes`, A/B oprava 13 : 6, SK se zákonem 6 : 7 a CZ 5 : 5,

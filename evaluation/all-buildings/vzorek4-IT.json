@@ -1,0 +1,682 @@
+{
+ "stat": {
+  "houses": 437,
+  "yard": 26,
+  "all": 121,
+  "todayAll": 139,
+  "regFailed": 0,
+  "noPhoto": {
+   "yard": 16,
+   "all": 0
+  }
+ },
+ "changes": {
+  "povalecny>stredomori": 23,
+  "povalecny>sikma": 3
+ },
+ "rows": [
+  {
+   "id": "ITy01",
+   "town": "modena",
+   "city": "italy",
+   "point": [
+    10.9329702,
+    44.6528663
+   ],
+   "mapillary": "780692337708841",
+   "pano": true,
+   "dist": 19.9,
+   "off": -174.8,
+   "arms": {
+    "old": {
+     "look": "stredomori",
+     "info": {
+      "point": [
+       10.932970242668143,
+       44.65286634286397
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       10.932970242668143,
+       44.65286634286397
+      ],
+      "km": 99,
+      "block": {
+       "length": 58.7,
+       "width": 40.8,
+       "fill": 0.46,
+       "parts": 3
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "stredomori",
+     "info": {
+      "point": [
+       10.932970242668143,
+       44.65286634286397
+      ],
+      "km": 99,
+      "block": {
+       "length": 58.7,
+       "width": 40.8,
+       "fill": 0.46,
+       "parts": 3,
+       "hull": 0.67
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ITy02",
+   "town": "modena",
+   "city": "italy",
+   "point": [
+    10.9202936,
+    44.6461264
+   ],
+   "mapillary": "1323727343103833",
+   "pano": true,
+   "dist": 13.1,
+   "off": 7.9,
+   "arms": {
+    "old": {
+     "look": "stredomori",
+     "info": {
+      "point": [
+       10.920293563160167,
+       44.64612642421789
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       10.920293563160167,
+       44.64612642421789
+      ],
+      "km": 99,
+      "block": {
+       "length": 286.7,
+       "width": 110.8,
+       "fill": 0.47,
+       "parts": 11
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "stredomori",
+     "info": {
+      "point": [
+       10.920293563160167,
+       44.64612642421789
+      ],
+      "km": 99,
+      "block": {
+       "length": 286.7,
+       "width": 110.8,
+       "fill": 0.47,
+       "parts": 11,
+       "hull": 0.64
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ITy03",
+   "town": "bologna",
+   "city": "italy",
+   "point": [
+    11.3594813,
+    44.4974544
+   ],
+   "mapillary": "1311266375937253",
+   "pano": false,
+   "dist": 14.1,
+   "off": -4.2,
+   "arms": {
+    "old": {
+     "look": "stredomori",
+     "info": {
+      "levels": 3,
+      "point": [
+       11.35948126702876,
+       44.497454449629885
+      ],
+      "km": 99,
+      "tint": 0,
+      "cornice": 3,
+      "roof": 0,
+      "src": "ipr"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 3,
+      "point": [
+       11.35948126702876,
+       44.497454449629885
+      ],
+      "km": 99,
+      "block": {
+       "length": 54.3,
+       "width": 15.5,
+       "fill": 0.85,
+       "parts": 1
+      },
+      "tint": 0,
+      "type": "train_station",
+      "cornice": 3,
+      "roof": 0,
+      "src": "ipr"
+     }
+    },
+    "new": {
+     "look": "stredomori",
+     "info": {
+      "levels": 3,
+      "point": [
+       11.35948126702876,
+       44.497454449629885
+      ],
+      "km": 99,
+      "block": {
+       "length": 54.3,
+       "width": 15.5,
+       "fill": 0.85,
+       "parts": 1,
+       "hull": 1
+      },
+      "tint": 0,
+      "type": "train_station",
+      "cornice": 3,
+      "roof": 0,
+      "src": "ipr"
+     }
+    }
+   }
+  },
+  {
+   "id": "ITy04",
+   "town": "bologna",
+   "city": "italy",
+   "point": [
+    11.3595208,
+    44.4999635
+   ],
+   "mapillary": "329930458548668",
+   "pano": false,
+   "dist": 25,
+   "off": -21.9,
+   "arms": {
+    "old": {
+     "look": "stredomori",
+     "info": {
+      "levels": 3,
+      "point": [
+       11.359520830080593,
+       44.49996347345409
+      ],
+      "km": 99,
+      "tint": 0,
+      "cornice": 3,
+      "roof": 0,
+      "src": "ipr"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 3,
+      "point": [
+       11.359520830080593,
+       44.49996347345409
+      ],
+      "km": 99,
+      "block": {
+       "length": 161.7,
+       "width": 95.3,
+       "fill": 0.22,
+       "parts": 5
+      },
+      "tint": 0,
+      "type": "industrial",
+      "cornice": 3,
+      "roof": 0,
+      "src": "ipr"
+     }
+    },
+    "new": {
+     "look": "stredomori",
+     "info": {
+      "levels": 3,
+      "point": [
+       11.359520830080593,
+       44.49996347345409
+      ],
+      "km": 99,
+      "block": {
+       "length": 161.7,
+       "width": 95.3,
+       "fill": 0.22,
+       "parts": 5,
+       "hull": 0.27
+      },
+      "tint": 0,
+      "type": "industrial",
+      "cornice": 3,
+      "roof": 0,
+      "src": "ipr"
+     }
+    }
+   }
+  },
+  {
+   "id": "ITy05",
+   "town": "torino",
+   "city": "italy",
+   "point": [
+    7.6825498,
+    45.0748211
+   ],
+   "mapillary": "870278146859851",
+   "pano": false,
+   "dist": 16.4,
+   "off": 6.1,
+   "arms": {
+    "old": {
+     "look": "stredomori",
+     "info": {
+      "point": [
+       7.6825498001637555,
+       45.07482108266385
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       7.6825498001637555,
+       45.07482108266385
+      ],
+      "km": 99,
+      "block": {
+       "length": 131.4,
+       "width": 106.3,
+       "fill": 0.43,
+       "parts": 5
+      },
+      "tint": 0,
+      "type": "basilica"
+     }
+    },
+    "new": {
+     "look": "stredomori",
+     "info": {
+      "point": [
+       7.6825498001637555,
+       45.07482108266385
+      ],
+      "km": 99,
+      "block": {
+       "length": 131.4,
+       "width": 106.3,
+       "fill": 0.43,
+       "parts": 5,
+       "hull": 0.6
+      },
+      "tint": 0,
+      "type": "basilica"
+     }
+    }
+   }
+  },
+  {
+   "id": "ITy06",
+   "town": "bologna",
+   "city": "italy",
+   "point": [
+    11.3444978,
+    44.505124
+   ],
+   "mapillary": "819561981995395",
+   "pano": false,
+   "dist": 25.8,
+   "off": -23.3,
+   "arms": {
+    "old": {
+     "look": "stredomori",
+     "info": {
+      "levels": 6,
+      "point": [
+       11.344497769784098,
+       44.50512396822924
+      ],
+      "km": 99,
+      "tint": 0,
+      "cornice": 6,
+      "roof": 0,
+      "src": "ipr"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 6,
+      "point": [
+       11.344497769784098,
+       44.50512396822924
+      ],
+      "km": 99,
+      "block": {
+       "length": 129.9,
+       "width": 85.3,
+       "fill": 0.29,
+       "parts": 5
+      },
+      "tint": 0,
+      "cornice": 6,
+      "roof": 0,
+      "src": "ipr"
+     }
+    },
+    "new": {
+     "look": "stredomori",
+     "info": {
+      "levels": 6,
+      "point": [
+       11.344497769784098,
+       44.50512396822924
+      ],
+      "km": 99,
+      "block": {
+       "length": 129.9,
+       "width": 85.3,
+       "fill": 0.29,
+       "parts": 5,
+       "hull": 0.45
+      },
+      "tint": 0,
+      "cornice": 6,
+      "roof": 0,
+      "src": "ipr"
+     }
+    }
+   }
+  },
+  {
+   "id": "ITy07",
+   "town": "torino",
+   "city": "italy",
+   "point": [
+    7.6896441,
+    45.0644769
+   ],
+   "mapillary": "582942419326186",
+   "pano": true,
+   "dist": 14.2,
+   "off": 100,
+   "arms": {
+    "old": {
+     "look": "stredomori",
+     "info": {
+      "point": [
+       7.6896441291864654,
+       45.06447688508275
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       7.6896441291864654,
+       45.06447688508275
+      ],
+      "km": 99,
+      "block": {
+       "length": 181.4,
+       "width": 152.9,
+       "fill": 0.43,
+       "parts": 10
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "stredomori",
+     "info": {
+      "point": [
+       7.6896441291864654,
+       45.06447688508275
+      ],
+      "km": 99,
+      "block": {
+       "length": 181.4,
+       "width": 152.9,
+       "fill": 0.43,
+       "parts": 10,
+       "hull": 0.69
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ITy08",
+   "town": "modena",
+   "city": "italy",
+   "point": [
+    10.9299922,
+    44.6492445
+   ],
+   "mapillary": "1500557244455171",
+   "pano": true,
+   "dist": 13.5,
+   "off": 113.4,
+   "arms": {
+    "old": {
+     "look": "stredomori",
+     "info": {
+      "point": [
+       10.929992169770706,
+       44.64924452471343
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       10.929992169770706,
+       44.64924452471343
+      ],
+      "km": 99,
+      "block": {
+       "length": 263.2,
+       "width": 269.8,
+       "fill": 0.38,
+       "parts": 7
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "stredomori",
+     "info": {
+      "point": [
+       10.929992169770706,
+       44.64924452471343
+      ],
+      "km": 99,
+      "block": {
+       "length": 263.2,
+       "width": 269.8,
+       "fill": 0.38,
+       "parts": 7,
+       "hull": 0.43
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "ITy09",
+   "town": "torino",
+   "city": "italy",
+   "point": [
+    7.6746104,
+    45.060861
+   ],
+   "mapillary": "1265835168813193",
+   "pano": false,
+   "dist": 16.5,
+   "off": -9,
+   "arms": {
+    "old": {
+     "look": "stredomori",
+     "info": {
+      "point": [
+       7.674610392940884,
+       45.0608609579558
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       7.674610392940884,
+       45.0608609579558
+      ],
+      "km": 99,
+      "block": {
+       "length": 106.2,
+       "width": 75.5,
+       "fill": 0.45,
+       "parts": 6
+      },
+      "tint": 0,
+      "type": "residential"
+     }
+    },
+    "new": {
+     "look": "stredomori",
+     "info": {
+      "point": [
+       7.674610392940884,
+       45.0608609579558
+      ],
+      "km": 99,
+      "block": {
+       "length": 106.2,
+       "width": 75.5,
+       "fill": 0.45,
+       "parts": 6,
+       "hull": 0.66
+      },
+      "tint": 0,
+      "type": "residential"
+     }
+    }
+   }
+  },
+  {
+   "id": "ITy10",
+   "town": "torino",
+   "city": "italy",
+   "point": [
+    7.6879994,
+    45.0789931
+   ],
+   "mapillary": "212128397170655",
+   "pano": false,
+   "dist": 21.9,
+   "off": 29.4,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 8,
+      "point": [
+       7.687999364345639,
+       45.07899311923448
+      ],
+      "km": 99,
+      "block": {
+       "length": 109,
+       "width": 76.2,
+       "fill": 0.42,
+       "parts": 4
+      },
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 8,
+      "point": [
+       7.687999364345639,
+       45.07899311923448
+      ],
+      "km": 99,
+      "block": {
+       "length": 109,
+       "width": 76.2,
+       "fill": 0.42,
+       "parts": 4
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "stredomori",
+     "info": {
+      "levels": 8,
+      "point": [
+       7.687999364345639,
+       45.07899311923448
+      ],
+      "km": 99,
+      "block": {
+       "length": 109,
+       "width": 76.2,
+       "fill": 0.42,
+       "parts": 4,
+       "hull": 0.65
+      },
+      "tint": 0
+     }
+    }
+   }
+  }
+ ]
+}

@@ -578,7 +578,8 @@ Stejně jako Praha se Brno ptá služeb města při kliknutí (přímo z prohlí
 které vznikly v Brně, platí od 25. 11. 2026 všude i v Praze (`derive.js`, `city.fix` zrušené,
 `evaluation/sjednoceni/praha/ZPRAVA.md`): obslužná cesta (`service`, ne vjezd ani parkoviště) je křižovatka
 (`?off=obsluzne`), ale na dvouvozovkové ulici neodsune řez na křižovatku protější vozovky (`?off=protejsi`); ústí uličky
-(`service=alley`, i plocha) také (`?off=ulicky`); osa OSM do 4,5 m vedle vozovky se posune na ni a zpevněná plocha pod osou
+(`service=alley`, i plocha) také (`?off=ulicky`), plocha jen pro ulici, do které se otevírá (do 20 m podél osy), ne pro cestu,
+která jí vede (`?off=ulickysve`, `tests/placement.test.js`); osa OSM do 4,5 m vedle vozovky se posune na ni a zpevněná plocha pod osou
 je vozovka (`?off=osafix`), ne však dělicí pás mezi dvěma vozovkami ani pás užší než 3 m (`?off=osaroad`). Obousměrka se
 stáním u vozovky a s počtem pruhů z OSM ≥ 2 se dělí na dva pruhy už od 4,0 m (`?off=pocetpruhu`).
 
