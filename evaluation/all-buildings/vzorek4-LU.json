@@ -1,0 +1,569 @@
+{
+ "stat": {
+  "houses": 4549,
+  "yard": 43,
+  "all": 2235,
+  "todayAll": 2276,
+  "regFailed": 0,
+  "noPhoto": {
+   "yard": 29,
+   "all": 0
+  }
+ },
+ "changes": {
+  "povalecny>sikma": 43
+ },
+ "rows": [
+  {
+   "id": "LUy01",
+   "town": "diekirch",
+   "city": "luxembourg",
+   "point": [
+    6.175274,
+    49.8644642
+   ],
+   "mapillary": "1523142059427430",
+   "pano": true,
+   "dist": 13.4,
+   "off": -150.9,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       6.175274031270614,
+       49.86446424240096
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       6.175274031270614,
+       49.86446424240096
+      ],
+      "km": 99,
+      "block": {
+       "length": 50.3,
+       "width": 45.8,
+       "fill": 0.36,
+       "parts": 3
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       6.175274031270614,
+       49.86446424240096
+      ],
+      "km": 99,
+      "block": {
+       "length": 50.3,
+       "width": 45.8,
+       "fill": 0.36,
+       "parts": 3,
+       "hull": 0.55
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "LUy02",
+   "town": "luxembourg",
+   "city": "luxembourg",
+   "point": [
+    6.1444578,
+    49.613041
+   ],
+   "mapillary": "1846070752226876",
+   "pano": false,
+   "dist": 20.8,
+   "off": -16.3,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       6.1444578108211,
+       49.61304100976827
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       6.1444578108211,
+       49.61304100976827
+      ],
+      "km": 99,
+      "block": {
+       "length": 98.3,
+       "width": 85,
+       "fill": 0.42,
+       "parts": 6
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       6.1444578108211,
+       49.61304100976827
+      ],
+      "km": 99,
+      "block": {
+       "length": 98.3,
+       "width": 85,
+       "fill": 0.42,
+       "parts": 6,
+       "hull": 0.65
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "LUy03",
+   "town": "luxembourg",
+   "city": "luxembourg",
+   "point": [
+    6.1360174,
+    49.6100843
+   ],
+   "mapillary": "1193658164405630",
+   "pano": false,
+   "dist": 18.7,
+   "off": -29.6,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       6.136017421753292,
+       49.6100843008196
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       6.136017421753292,
+       49.6100843008196
+      ],
+      "km": 99,
+      "block": {
+       "length": 112.5,
+       "width": 89.5,
+       "fill": 0.47,
+       "parts": 4
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       6.136017421753292,
+       49.6100843008196
+      ],
+      "km": 99,
+      "block": {
+       "length": 112.5,
+       "width": 89.5,
+       "fill": 0.47,
+       "parts": 4,
+       "hull": 0.52
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "LUy04",
+   "town": "ettelbruck",
+   "city": "luxembourg",
+   "point": [
+    6.1040162,
+    49.8463904
+   ],
+   "mapillary": "1475442391183675",
+   "pano": true,
+   "dist": 14.9,
+   "off": -47.5,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       6.1040161999856295,
+       49.84639036483626
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       6.1040161999856295,
+       49.84639036483626
+      ],
+      "km": 99,
+      "block": {
+       "length": 118.5,
+       "width": 76.7,
+       "fill": 0.36,
+       "parts": 3
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       6.1040161999856295,
+       49.84639036483626
+      ],
+      "km": 99,
+      "block": {
+       "length": 118.5,
+       "width": 76.7,
+       "fill": 0.36,
+       "parts": 3,
+       "hull": 0.62
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "LUy05",
+   "town": "luxembourg",
+   "city": "luxembourg",
+   "point": [
+    6.1337471,
+    49.6118577
+   ],
+   "mapillary": "1698510734997896",
+   "pano": false,
+   "dist": 19.4,
+   "off": -27.6,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       6.133747090165022,
+       49.61185773020123
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       6.133747090165022,
+       49.61185773020123
+      ],
+      "km": 99,
+      "block": {
+       "length": 144.5,
+       "width": 61.8,
+       "fill": 0.38,
+       "parts": 4
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       6.133747090165022,
+       49.61185773020123
+      ],
+      "km": 99,
+      "block": {
+       "length": 144.5,
+       "width": 61.8,
+       "fill": 0.38,
+       "parts": 4,
+       "hull": 0.58
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "LUy06",
+   "town": "diekirch",
+   "city": "luxembourg",
+   "point": [
+    6.1563638,
+    49.8654085
+   ],
+   "mapillary": "1452349616694163",
+   "pano": true,
+   "dist": 23.2,
+   "off": -101.7,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       6.156363756774546,
+       49.86540852106918
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       6.156363756774546,
+       49.86540852106918
+      ],
+      "km": 99,
+      "block": {
+       "length": 145.2,
+       "width": 103,
+       "fill": 0.36,
+       "parts": 3
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       6.156363756774546,
+       49.86540852106918
+      ],
+      "km": 99,
+      "block": {
+       "length": 145.2,
+       "width": 103,
+       "fill": 0.36,
+       "parts": 3,
+       "hull": 0.49
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "LUy07",
+   "town": "luxembourg",
+   "city": "luxembourg",
+   "point": [
+    6.1305043,
+    49.6098389
+   ],
+   "mapillary": "192917333108454",
+   "pano": false,
+   "dist": 21.3,
+   "off": 23.5,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       6.130504330573096,
+       49.60983890218328
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       6.130504330573096,
+       49.60983890218328
+      ],
+      "km": 99,
+      "block": {
+       "length": 89.3,
+       "width": 132.6,
+       "fill": 0.39,
+       "parts": 3
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       6.130504330573096,
+       49.60983890218328
+      ],
+      "km": 99,
+      "block": {
+       "length": 89.3,
+       "width": 132.6,
+       "fill": 0.39,
+       "parts": 3,
+       "hull": 0.53
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "LUy08",
+   "town": "luxembourg",
+   "city": "luxembourg",
+   "point": [
+    6.1220137,
+    49.607221
+   ],
+   "mapillary": "1204260557231837",
+   "pano": false,
+   "dist": 25,
+   "off": 31,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       6.122013700390945,
+       49.607221046350915
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       6.122013700390945,
+       49.607221046350915
+      ],
+      "km": 99,
+      "block": {
+       "length": 102.9,
+       "width": 58.2,
+       "fill": 0.36,
+       "parts": 3
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       6.122013700390945,
+       49.607221046350915
+      ],
+      "km": 99,
+      "block": {
+       "length": 102.9,
+       "width": 58.2,
+       "fill": 0.36,
+       "parts": 3,
+       "hull": 0.56
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "LUy09",
+   "town": "wiltz",
+   "city": "luxembourg",
+   "point": [
+    5.9307301,
+    49.9667309
+   ],
+   "mapillary": "1751662719399726",
+   "pano": false,
+   "dist": 21.5,
+   "off": -3.8,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       5.9307300883186755,
+       49.966730907083154
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       5.9307300883186755,
+       49.966730907083154
+      ],
+      "km": 99,
+      "block": {
+       "length": 6.7,
+       "width": 5.9,
+       "fill": 0.76,
+       "parts": 1
+      },
+      "tint": 0,
+      "type": "tower"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       5.9307300883186755,
+       49.966730907083154
+      ],
+      "km": 99,
+      "block": {
+       "length": 6.7,
+       "width": 5.9,
+       "fill": 0.76,
+       "parts": 1,
+       "hull": 1
+      },
+      "tint": 0,
+      "type": "tower"
+     }
+    }
+   }
+  }
+ ]
+}

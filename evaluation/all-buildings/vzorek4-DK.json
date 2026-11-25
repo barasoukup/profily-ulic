@@ -1,0 +1,643 @@
+{
+ "stat": {
+  "houses": 110,
+  "yard": 15,
+  "all": 32,
+  "todayAll": 39,
+  "regFailed": 0,
+  "noPhoto": {
+   "yard": 4,
+   "all": 0
+  }
+ },
+ "changes": {
+  "povalecny>dansky": 14,
+  "povalecny>funkce": 1
+ },
+ "rows": [
+  {
+   "id": "DKy01",
+   "town": "aarhus",
+   "city": "denmark",
+   "point": [
+    10.2137405,
+    56.1610213
+   ],
+   "mapillary": "2816968678632703",
+   "pano": false,
+   "dist": 20.9,
+   "off": -9.8,
+   "arms": {
+    "old": {
+     "look": "dansky",
+     "info": {
+      "point": [
+       10.213740516087322,
+       56.16102125108053
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       10.213740516087322,
+       56.16102125108053
+      ],
+      "km": 99,
+      "block": {
+       "length": 108.5,
+       "width": 59.7,
+       "fill": 0.61,
+       "parts": 3
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "dansky",
+     "info": {
+      "point": [
+       10.213740516087322,
+       56.16102125108053
+      ],
+      "km": 99,
+      "block": {
+       "length": 108.5,
+       "width": 59.7,
+       "fill": 0.61,
+       "parts": 3,
+       "hull": 0.6
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "DKy02",
+   "town": "kobenhavn",
+   "city": "denmark",
+   "point": [
+    12.5866105,
+    55.6777976
+   ],
+   "mapillary": "1391085184905239",
+   "pano": true,
+   "dist": 11.8,
+   "off": 171.7,
+   "arms": {
+    "old": {
+     "look": "dansky",
+     "info": {
+      "point": [
+       12.586610542573677,
+       55.67779757887155
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       12.586610542573677,
+       55.67779757887155
+      ],
+      "km": 99,
+      "block": {
+       "length": 300.5,
+       "width": 128.2,
+       "fill": 0.44,
+       "parts": 8
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "dansky",
+     "info": {
+      "point": [
+       12.586610542573677,
+       55.67779757887155
+      ],
+      "km": 99,
+      "block": {
+       "length": 300.5,
+       "width": 128.2,
+       "fill": 0.44,
+       "parts": 8,
+       "hull": 0.56
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "DKy03",
+   "town": "odense",
+   "city": "denmark",
+   "point": [
+    10.3906946,
+    55.3903831
+   ],
+   "mapillary": "1847519469133017",
+   "pano": false,
+   "dist": 24.7,
+   "off": -27.9,
+   "arms": {
+    "old": {
+     "look": "dansky",
+     "info": {
+      "point": [
+       10.390694551357173,
+       55.390383136622724
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       10.390694551357173,
+       55.390383136622724
+      ],
+      "km": 99,
+      "block": {
+       "length": 123.9,
+       "width": 28.6,
+       "fill": 0.52,
+       "parts": 3
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "dansky",
+     "info": {
+      "point": [
+       10.390694551357173,
+       55.390383136622724
+      ],
+      "km": 99,
+      "block": {
+       "length": 123.9,
+       "width": 28.6,
+       "fill": 0.52,
+       "parts": 3,
+       "hull": 0.65
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "DKy04",
+   "town": "kobenhavn",
+   "city": "denmark",
+   "point": [
+    12.557965,
+    55.6838834
+   ],
+   "mapillary": "322193209319427",
+   "pano": false,
+   "dist": 24,
+   "off": -12.1,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 5,
+      "point": [
+       12.557965036301752,
+       55.68388340779351
+      ],
+      "km": 99,
+      "block": {
+       "length": 170.7,
+       "width": 85.2,
+       "fill": 0.3,
+       "parts": 7
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 5,
+      "point": [
+       12.557965036301752,
+       55.68388340779351
+      ],
+      "km": 99,
+      "block": {
+       "length": 170.7,
+       "width": 85.2,
+       "fill": 0.3,
+       "parts": 7
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "dansky",
+     "info": {
+      "levels": 5,
+      "point": [
+       12.557965036301752,
+       55.68388340779351
+      ],
+      "km": 99,
+      "block": {
+       "length": 170.7,
+       "width": 85.2,
+       "fill": 0.3,
+       "parts": 7,
+       "hull": 0.36
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "DKy05",
+   "town": "odense",
+   "city": "denmark",
+   "point": [
+    10.3772464,
+    55.3979378
+   ],
+   "mapillary": "1967115947093766",
+   "pano": false,
+   "dist": 24.9,
+   "off": -2.4,
+   "arms": {
+    "old": {
+     "look": "dansky",
+     "info": {
+      "point": [
+       10.377246385453926,
+       55.397937782564405
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       10.377246385453926,
+       55.397937782564405
+      ],
+      "km": 99,
+      "block": {
+       "length": 116.7,
+       "width": 69.6,
+       "fill": 0.36,
+       "parts": 3
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "dansky",
+     "info": {
+      "point": [
+       10.377246385453926,
+       55.397937782564405
+      ],
+      "km": 99,
+      "block": {
+       "length": 116.7,
+       "width": 69.6,
+       "fill": 0.36,
+       "parts": 3,
+       "hull": 0.51
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "DKy06",
+   "town": "odense",
+   "city": "denmark",
+   "point": [
+    10.4101034,
+    55.3937035
+   ],
+   "mapillary": "1069115003497755",
+   "pano": true,
+   "dist": 25.5,
+   "off": -128.4,
+   "arms": {
+    "old": {
+     "look": "dansky",
+     "info": {
+      "point": [
+       10.410103374523489,
+       55.39370353707872
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       10.410103374523489,
+       55.39370353707872
+      ],
+      "km": 99,
+      "block": {
+       "length": 280.9,
+       "width": 63.7,
+       "fill": 0.23,
+       "parts": 8
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "dansky",
+     "info": {
+      "point": [
+       10.410103374523489,
+       55.39370353707872
+      ],
+      "km": 99,
+      "block": {
+       "length": 280.9,
+       "width": 63.7,
+       "fill": 0.23,
+       "parts": 8,
+       "hull": 0.31
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "DKy07",
+   "town": "aarhus",
+   "city": "denmark",
+   "point": [
+    10.1845649,
+    56.1561525
+   ],
+   "mapillary": "868156203770873",
+   "pano": false,
+   "dist": 7.7,
+   "off": -7.5,
+   "arms": {
+    "old": {
+     "look": "dansky",
+     "info": {
+      "point": [
+       10.18456486408405,
+       56.156152534415725
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       10.18456486408405,
+       56.156152534415725
+      ],
+      "km": 99,
+      "block": {
+       "length": 193.6,
+       "width": 75,
+       "fill": 0.59,
+       "parts": 5
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "dansky",
+     "info": {
+      "point": [
+       10.18456486408405,
+       56.156152534415725
+      ],
+      "km": 99,
+      "block": {
+       "length": 193.6,
+       "width": 75,
+       "fill": 0.59,
+       "parts": 5,
+       "hull": 0.65
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "DKy08",
+   "town": "kobenhavn",
+   "city": "denmark",
+   "point": [
+    12.5882954,
+    55.6718737
+   ],
+   "mapillary": "1546557585933664",
+   "pano": false,
+   "dist": 9.9,
+   "off": -11.8,
+   "arms": {
+    "old": {
+     "look": "dansky",
+     "info": {
+      "point": [
+       12.58829541215882,
+       55.67187365508673
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       12.58829541215882,
+       55.67187365508673
+      ],
+      "km": 99,
+      "block": {
+       "length": 151.1,
+       "width": 59.4,
+       "fill": 0.52,
+       "parts": 5
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "dansky",
+     "info": {
+      "point": [
+       12.58829541215882,
+       55.67187365508673
+      ],
+      "km": 99,
+      "block": {
+       "length": 151.1,
+       "width": 59.4,
+       "fill": 0.52,
+       "parts": 5,
+       "hull": 0.64
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "DKy09",
+   "town": "odense",
+   "city": "denmark",
+   "point": [
+    10.3850889,
+    55.4060509
+   ],
+   "mapillary": "1056462708215652",
+   "pano": false,
+   "dist": 18.3,
+   "off": 23.5,
+   "arms": {
+    "old": {
+     "look": "dansky",
+     "info": {
+      "point": [
+       10.385088881578234,
+       55.40605086476291
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       10.385088881578234,
+       55.40605086476291
+      ],
+      "km": 99,
+      "block": {
+       "length": 168.3,
+       "width": 100.4,
+       "fill": 0.3,
+       "parts": 3
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "dansky",
+     "info": {
+      "point": [
+       10.385088881578234,
+       55.40605086476291
+      ],
+      "km": 99,
+      "block": {
+       "length": 168.3,
+       "width": 100.4,
+       "fill": 0.3,
+       "parts": 3,
+       "hull": 0.48
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "DKy10",
+   "town": "aarhus",
+   "city": "denmark",
+   "point": [
+    10.2009623,
+    56.1604604
+   ],
+   "mapillary": "1180452849077142",
+   "pano": true,
+   "dist": 19.2,
+   "off": -3.4,
+   "arms": {
+    "old": {
+     "look": "dansky",
+     "info": {
+      "point": [
+       10.200962289013479,
+       56.160460358046564
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       10.200962289013479,
+       56.160460358046564
+      ],
+      "km": 99,
+      "block": {
+       "length": 107.4,
+       "width": 37.5,
+       "fill": 0.34,
+       "parts": 3
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "dansky",
+     "info": {
+      "point": [
+       10.200962289013479,
+       56.160460358046564
+      ],
+      "km": 99,
+      "block": {
+       "length": 107.4,
+       "width": 37.5,
+       "fill": 0.34,
+       "parts": 3,
+       "hull": 0.39
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  }
+ ]
+}

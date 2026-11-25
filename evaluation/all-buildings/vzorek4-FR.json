@@ -1,0 +1,794 @@
+{
+ "stat": {
+  "houses": 2980,
+  "yard": 16,
+  "all": 289,
+  "todayAll": 283,
+  "regFailed": 0,
+  "noPhoto": {
+   "yard": 4,
+   "all": 0
+  }
+ },
+ "changes": {
+  "kancelar>haussmann": 2,
+  "kancelar>funkce": 1,
+  "povalecny>haussmann": 6,
+  "povalecny>sikma": 3,
+  "sikma>haussmann": 2,
+  "povalecny>stredomori": 2
+ },
+ "rows": [
+  {
+   "id": "FRy01",
+   "town": "strasbourg",
+   "city": "france",
+   "point": [
+    7.7441409,
+    48.5772736
+   ],
+   "mapillary": "532907984598146",
+   "pano": false,
+   "dist": 13.2,
+   "off": 4.2,
+   "arms": {
+    "old": {
+     "look": "kancelar",
+     "info": {
+      "levels": 5,
+      "point": [
+       7.744140908116383,
+       48.57727355353749
+      ],
+      "km": 99,
+      "tint": 0,
+      "cornice": 5,
+      "roof": 0,
+      "src": "ipr",
+      "office": 1,
+      "type": "office"
+     }
+    },
+    "today": {
+     "look": "kancelar",
+     "info": {
+      "levels": 5,
+      "point": [
+       7.744140908116383,
+       48.57727355353749
+      ],
+      "km": 99,
+      "block": {
+       "length": 178.1,
+       "width": 123.3,
+       "fill": 0.29,
+       "parts": 10
+      },
+      "tint": 0,
+      "type": "dormitory",
+      "cornice": 5,
+      "roof": 0,
+      "src": "ipr",
+      "office": 1
+     }
+    },
+    "new": {
+     "look": "haussmann",
+     "info": {
+      "levels": 5,
+      "point": [
+       7.744140908116383,
+       48.57727355353749
+      ],
+      "km": 99,
+      "block": {
+       "length": 178.1,
+       "width": 123.3,
+       "fill": 0.29,
+       "parts": 10,
+       "hull": 0.39
+      },
+      "tint": 0,
+      "type": "dormitory",
+      "cornice": 5,
+      "roof": 0,
+      "src": "ipr",
+      "office": 1
+     }
+    }
+   }
+  },
+  {
+   "id": "FRy02",
+   "town": "lille",
+   "city": "france",
+   "point": [
+    3.0736309,
+    50.6368813
+   ],
+   "mapillary": "329202642488881",
+   "pano": true,
+   "dist": 21.7,
+   "off": 151.8,
+   "arms": {
+    "old": {
+     "look": "kancelar",
+     "info": {
+      "levels": 8,
+      "point": [
+       3.0736309223879195,
+       50.636881343831526
+      ],
+      "km": 99,
+      "tint": 0,
+      "cornice": 8,
+      "roof": 0,
+      "src": "ipr",
+      "office": 1,
+      "type": "office"
+     }
+    },
+    "today": {
+     "look": "kancelar",
+     "info": {
+      "levels": 8,
+      "point": [
+       3.0736309223879195,
+       50.636881343831526
+      ],
+      "km": 99,
+      "block": {
+       "length": 431.1,
+       "width": 606.1,
+       "fill": 0.31,
+       "parts": 8
+      },
+      "tint": 0,
+      "type": "retail",
+      "cornice": 8,
+      "roof": 0,
+      "src": "ipr",
+      "office": 1
+     }
+    },
+    "new": {
+     "look": "haussmann",
+     "info": {
+      "levels": 8,
+      "point": [
+       3.0736309223879195,
+       50.636881343831526
+      ],
+      "km": 99,
+      "block": {
+       "length": 431.1,
+       "width": 606.1,
+       "fill": 0.31,
+       "parts": 8,
+       "hull": 0.56
+      },
+      "tint": 0,
+      "type": "retail",
+      "cornice": 8,
+      "roof": 0,
+      "src": "ipr",
+      "office": 1
+     }
+    }
+   }
+  },
+  {
+   "id": "FRy03",
+   "town": "strasbourg",
+   "city": "france",
+   "point": [
+    7.7574211,
+    48.5810396
+   ],
+   "mapillary": "1084418968717011",
+   "pano": false,
+   "dist": 15.7,
+   "off": 18.3,
+   "arms": {
+    "old": {
+     "look": "haussmann",
+     "info": {
+      "levels": 6,
+      "point": [
+       7.7574211320259545,
+       48.581039600996824
+      ],
+      "km": 99,
+      "tint": 0,
+      "cornice": 6,
+      "roof": 0,
+      "src": "ipr",
+      "type": "industrial"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 6,
+      "point": [
+       7.7574211320259545,
+       48.581039600996824
+      ],
+      "km": 99,
+      "block": {
+       "length": 179.5,
+       "width": 142.1,
+       "fill": 0.57,
+       "parts": 3
+      },
+      "tint": 0,
+      "type": "industrial",
+      "cornice": 6,
+      "roof": 0,
+      "src": "ipr"
+     }
+    },
+    "new": {
+     "look": "haussmann",
+     "info": {
+      "levels": 6,
+      "point": [
+       7.7574211320259545,
+       48.581039600996824
+      ],
+      "km": 99,
+      "block": {
+       "length": 179.5,
+       "width": 142.1,
+       "fill": 0.57,
+       "parts": 3,
+       "hull": 0.53
+      },
+      "tint": 0,
+      "type": "industrial",
+      "cornice": 6,
+      "roof": 0,
+      "src": "ipr"
+     }
+    }
+   }
+  },
+  {
+   "id": "FRy04",
+   "town": "toulouse",
+   "city": "france",
+   "point": [
+    1.442197,
+    43.6074784
+   ],
+   "mapillary": "908578200182584",
+   "pano": true,
+   "dist": 16.7,
+   "off": 173.5,
+   "arms": {
+    "old": {
+     "look": "haussmann",
+     "info": {
+      "levels": 7,
+      "point": [
+       1.4421970301233424,
+       43.60747841201578
+      ],
+      "km": 99,
+      "tint": 0,
+      "cornice": 7,
+      "roof": 0,
+      "src": "ipr"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 7,
+      "point": [
+       1.4421970301233424,
+       43.60747841201578
+      ],
+      "km": 99,
+      "block": {
+       "length": 114.3,
+       "width": 91.5,
+       "fill": 0.44,
+       "parts": 6
+      },
+      "tint": 0,
+      "cornice": 7,
+      "roof": 0,
+      "src": "ipr"
+     }
+    },
+    "new": {
+     "look": "haussmann",
+     "info": {
+      "levels": 7,
+      "point": [
+       1.4421970301233424,
+       43.60747841201578
+      ],
+      "km": 99,
+      "block": {
+       "length": 114.3,
+       "width": 91.5,
+       "fill": 0.44,
+       "parts": 6,
+       "hull": 0.49
+      },
+      "tint": 0,
+      "cornice": 7,
+      "roof": 0,
+      "src": "ipr"
+     }
+    }
+   }
+  },
+  {
+   "id": "FRy05",
+   "town": "lille",
+   "city": "france",
+   "point": [
+    3.0449815,
+    50.6342748
+   ],
+   "mapillary": "217986376430826",
+   "pano": false,
+   "dist": 22.1,
+   "off": 20.3,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 3,
+      "height": 12,
+      "point": [
+       3.0449814853386936,
+       50.63427480616778
+      ],
+      "km": 99,
+      "block": {
+       "length": 118.1,
+       "width": 61.1,
+       "fill": 0.44,
+       "parts": 4
+      },
+      "tint": 0,
+      "type": "apartments",
+      "material": "brick",
+      "cornice": 3,
+      "roof": 0,
+      "src": "ipr"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 3,
+      "height": 12,
+      "point": [
+       3.0449814853386936,
+       50.63427480616778
+      ],
+      "km": 99,
+      "block": {
+       "length": 118.1,
+       "width": 61.1,
+       "fill": 0.44,
+       "parts": 4
+      },
+      "tint": 0,
+      "type": "apartments",
+      "material": "brick",
+      "cornice": 3,
+      "roof": 0,
+      "src": "ipr"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 3,
+      "height": 12,
+      "point": [
+       3.0449814853386936,
+       50.63427480616778
+      ],
+      "km": 99,
+      "block": {
+       "length": 118.1,
+       "width": 61.1,
+       "fill": 0.44,
+       "parts": 4,
+       "hull": 0.49
+      },
+      "tint": 0,
+      "type": "apartments",
+      "material": "brick",
+      "cornice": 3,
+      "roof": 0,
+      "src": "ipr"
+     }
+    }
+   }
+  },
+  {
+   "id": "FRy06",
+   "town": "marseille",
+   "city": "france",
+   "point": [
+    5.3765937,
+    43.3032956
+   ],
+   "mapillary": "303055481380574",
+   "pano": false,
+   "dist": 15.7,
+   "off": 12.9,
+   "arms": {
+    "old": {
+     "look": "haussmann",
+     "info": {
+      "levels": 7,
+      "point": [
+       5.376593652871495,
+       43.30329557757373
+      ],
+      "km": 99,
+      "block": {
+       "length": 53.3,
+       "width": 50.2,
+       "fill": 0.49,
+       "parts": 1
+      },
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 7,
+      "point": [
+       5.376593652871495,
+       43.30329557757373
+      ],
+      "km": 99,
+      "block": {
+       "length": 95.2,
+       "width": 47.2,
+       "fill": 0.4,
+       "parts": 3
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "haussmann",
+     "info": {
+      "levels": 7,
+      "point": [
+       5.376593652871495,
+       43.30329557757373
+      ],
+      "km": 99,
+      "block": {
+       "length": 95.2,
+       "width": 47.2,
+       "fill": 0.4,
+       "parts": 3,
+       "hull": 0.67
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "FRy07",
+   "town": "strasbourg",
+   "city": "france",
+   "point": [
+    7.7586519,
+    48.5816349
+   ],
+   "mapillary": "797223294255098",
+   "pano": false,
+   "dist": 14.7,
+   "off": 20.2,
+   "arms": {
+    "old": {
+     "look": "haussmann",
+     "info": {
+      "levels": 6,
+      "point": [
+       7.75865191110514,
+       48.58163493508728
+      ],
+      "km": 99,
+      "tint": 0,
+      "cornice": 6,
+      "roof": 0,
+      "src": "ipr",
+      "type": "industrial"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 6,
+      "point": [
+       7.75865191110514,
+       48.58163493508728
+      ],
+      "km": 99,
+      "block": {
+       "length": 179.5,
+       "width": 142.1,
+       "fill": 0.57,
+       "parts": 3
+      },
+      "tint": 0,
+      "type": "industrial",
+      "cornice": 6,
+      "roof": 0,
+      "src": "ipr"
+     }
+    },
+    "new": {
+     "look": "haussmann",
+     "info": {
+      "levels": 6,
+      "point": [
+       7.75865191110514,
+       48.58163493508728
+      ],
+      "km": 99,
+      "block": {
+       "length": 179.5,
+       "width": 142.1,
+       "fill": 0.57,
+       "parts": 3,
+       "hull": 0.53
+      },
+      "tint": 0,
+      "type": "industrial",
+      "cornice": 6,
+      "roof": 0,
+      "src": "ipr"
+     }
+    }
+   }
+  },
+  {
+   "id": "FRy08",
+   "town": "strasbourg",
+   "city": "france",
+   "point": [
+    7.7709154,
+    48.5724633
+   ],
+   "mapillary": "1749073172755220",
+   "pano": false,
+   "dist": 6.6,
+   "off": 26.3,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 8,
+      "point": [
+       7.770915387577564,
+       48.572463274152376
+      ],
+      "km": 99,
+      "tint": 0,
+      "cornice": 8,
+      "roof": 0,
+      "src": "ipr"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 8,
+      "point": [
+       7.770915387577564,
+       48.572463274152376
+      ],
+      "km": 99,
+      "block": {
+       "length": 88.2,
+       "width": 27.5,
+       "fill": 0.67,
+       "parts": 2
+      },
+      "tint": 0,
+      "type": "construction",
+      "cornice": 8,
+      "roof": 0,
+      "src": "ipr"
+     }
+    },
+    "new": {
+     "look": "haussmann",
+     "info": {
+      "levels": 8,
+      "point": [
+       7.770915387577564,
+       48.572463274152376
+      ],
+      "km": 99,
+      "block": {
+       "length": 88.2,
+       "width": 27.5,
+       "fill": 0.67,
+       "parts": 2,
+       "hull": 0.75
+      },
+      "tint": 0,
+      "type": "construction",
+      "cornice": 8,
+      "roof": 0,
+      "src": "ipr"
+     }
+    }
+   }
+  },
+  {
+   "id": "FRy09",
+   "town": "montpellier",
+   "city": "france",
+   "point": [
+    3.8679734,
+    43.617467
+   ],
+   "mapillary": "896732707538035",
+   "pano": false,
+   "dist": 13.7,
+   "off": 19.4,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 3,
+      "height": 11,
+      "point": [
+       3.867973422449065,
+       43.61746699807658
+      ],
+      "km": 99,
+      "block": {
+       "length": 58.2,
+       "width": 20.9,
+       "fill": 0.67,
+       "parts": 2
+      },
+      "tint": 0,
+      "type": "grandstand",
+      "cornice": 3,
+      "roof": 0,
+      "src": "ipr"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 3,
+      "height": 11,
+      "point": [
+       3.867973422449065,
+       43.61746699807658
+      ],
+      "km": 99,
+      "block": {
+       "length": 58.2,
+       "width": 20.9,
+       "fill": 0.67,
+       "parts": 2
+      },
+      "tint": 0,
+      "type": "grandstand",
+      "cornice": 3,
+      "roof": 0,
+      "src": "ipr"
+     }
+    },
+    "new": {
+     "look": "stredomori",
+     "info": {
+      "levels": 3,
+      "height": 11,
+      "point": [
+       3.867973422449065,
+       43.61746699807658
+      ],
+      "km": 99,
+      "block": {
+       "length": 58.2,
+       "width": 20.9,
+       "fill": 0.67,
+       "parts": 2,
+       "hull": 0.83
+      },
+      "tint": 0,
+      "type": "grandstand",
+      "cornice": 3,
+      "roof": 0,
+      "src": "ipr"
+     }
+    }
+   }
+  },
+  {
+   "id": "FRy10",
+   "town": "lyon",
+   "city": "france",
+   "point": [
+    4.822826,
+    45.7599714
+   ],
+   "mapillary": "159979782736108",
+   "pano": false,
+   "dist": 14.2,
+   "off": -4,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 3,
+      "point": [
+       4.822825989291533,
+       45.75997139287036
+      ],
+      "km": 99,
+      "block": {
+       "length": 173.2,
+       "width": 84.7,
+       "fill": 0.33,
+       "parts": 3
+      },
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 3,
+      "point": [
+       4.822825989291533,
+       45.75997139287036
+      ],
+      "km": 99,
+      "block": {
+       "length": 171.5,
+       "width": 86.4,
+       "fill": 0.33,
+       "parts": 6
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 3,
+      "point": [
+       4.822825989291533,
+       45.75997139287036
+      ],
+      "km": 99,
+      "block": {
+       "length": 171.5,
+       "width": 86.4,
+       "fill": 0.33,
+       "parts": 6,
+       "hull": 0.54
+      },
+      "tint": 0
+     }
+    }
+   }
+  }
+ ]
+}

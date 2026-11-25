@@ -1,0 +1,703 @@
+{
+ "stat": {
+  "houses": 301,
+  "yard": 30,
+  "all": 64,
+  "todayAll": 54,
+  "regFailed": 0,
+  "noPhoto": {
+   "yard": 20,
+   "all": 0
+  }
+ },
+ "changes": {
+  "povalecny>stenstad": 28,
+  "povalecny>funkce": 2
+ },
+ "rows": [
+  {
+   "id": "FIy01",
+   "town": "helsinki",
+   "city": "finland",
+   "point": [
+    24.9584307,
+    60.1739205
+   ],
+   "mapillary": "1049087722583529",
+   "pano": true,
+   "dist": 15.4,
+   "off": 166.5,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 6,
+      "point": [
+       24.958430722819184,
+       60.173920541007575
+      ],
+      "km": 99,
+      "block": {
+       "length": 105.3,
+       "width": 89.7,
+       "fill": 0.4,
+       "parts": 5
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 6,
+      "point": [
+       24.958430722819184,
+       60.173920541007575
+      ],
+      "km": 99,
+      "block": {
+       "length": 105.3,
+       "width": 89.7,
+       "fill": 0.4,
+       "parts": 5
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "stenstad",
+     "info": {
+      "levels": 6,
+      "point": [
+       24.958430722819184,
+       60.173920541007575
+      ],
+      "km": 99,
+      "block": {
+       "length": 105.3,
+       "width": 89.7,
+       "fill": 0.4,
+       "parts": 5,
+       "hull": 0.68
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "FIy02",
+   "town": "tampere",
+   "city": "finland",
+   "point": [
+    23.7850618,
+    61.4991897
+   ],
+   "mapillary": "145948367505475",
+   "pano": false,
+   "dist": 8.6,
+   "off": -1.4,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 7,
+      "height": 30,
+      "point": [
+       23.78506176533236,
+       61.499189672981245
+      ],
+      "km": 99,
+      "block": {
+       "length": 121.9,
+       "width": 78.4,
+       "fill": 0.35,
+       "parts": 4
+      },
+      "tint": 0,
+      "type": "apartments",
+      "roofShape": "flat"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 7,
+      "height": 30,
+      "point": [
+       23.78506176533236,
+       61.499189672981245
+      ],
+      "km": 99,
+      "block": {
+       "length": 122.4,
+       "width": 79.8,
+       "fill": 0.35,
+       "parts": 5
+      },
+      "tint": 0,
+      "type": "apartments",
+      "roofShape": "flat"
+     }
+    },
+    "new": {
+     "look": "funkce",
+     "info": {
+      "levels": 7,
+      "height": 30,
+      "point": [
+       23.78506176533236,
+       61.499189672981245
+      ],
+      "km": 99,
+      "block": {
+       "length": 122.4,
+       "width": 79.8,
+       "fill": 0.35,
+       "parts": 5,
+       "hull": 0.51
+      },
+      "tint": 0,
+      "type": "apartments",
+      "roofShape": "flat"
+     }
+    }
+   }
+  },
+  {
+   "id": "FIy03",
+   "town": "helsinki",
+   "city": "finland",
+   "point": [
+    24.9368911,
+    60.1614813
+   ],
+   "mapillary": "1189510232357237",
+   "pano": true,
+   "dist": 11.2,
+   "off": 63.8,
+   "arms": {
+    "old": {
+     "look": "stenstad",
+     "info": {
+      "point": [
+       24.936891065375576,
+       60.16148134456756
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       24.936891065375576,
+       60.16148134456756
+      ],
+      "km": 99,
+      "block": {
+       "length": 84.2,
+       "width": 82.2,
+       "fill": 0.4,
+       "parts": 5
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "stenstad",
+     "info": {
+      "point": [
+       24.936891065375576,
+       60.16148134456756
+      ],
+      "km": 99,
+      "block": {
+       "length": 84.2,
+       "width": 82.2,
+       "fill": 0.4,
+       "parts": 5,
+       "hull": 0.61
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "FIy04",
+   "town": "tampere",
+   "city": "finland",
+   "point": [
+    23.7645159,
+    61.4933966
+   ],
+   "mapillary": "581610842809846",
+   "pano": false,
+   "dist": 13.1,
+   "off": -18.4,
+   "arms": {
+    "old": {
+     "look": "stenstad",
+     "info": {
+      "height": 15,
+      "point": [
+       23.764515906863227,
+       61.49339658684062
+      ],
+      "km": 99,
+      "block": {
+       "length": 123,
+       "width": 29.3,
+       "fill": 0.88,
+       "parts": 1
+      },
+      "tint": 0,
+      "type": "grandstand"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "height": 15,
+      "point": [
+       23.764515906863227,
+       61.49339658684062
+      ],
+      "km": 99,
+      "block": {
+       "length": 230.6,
+       "width": 142.6,
+       "fill": 0.3,
+       "parts": 2
+      },
+      "tint": 0,
+      "type": "grandstand"
+     }
+    },
+    "new": {
+     "look": "stenstad",
+     "info": {
+      "height": 15,
+      "point": [
+       23.764515906863227,
+       61.49339658684062
+      ],
+      "km": 99,
+      "block": {
+       "length": 230.6,
+       "width": 142.6,
+       "fill": 0.3,
+       "parts": 2,
+       "hull": 0.36
+      },
+      "tint": 0,
+      "type": "grandstand"
+     }
+    }
+   }
+  },
+  {
+   "id": "FIy05",
+   "town": "helsinki",
+   "city": "finland",
+   "point": [
+    24.9217322,
+    60.168109
+   ],
+   "mapillary": "1027892066794990",
+   "pano": false,
+   "dist": 12.6,
+   "off": 2.9,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 8,
+      "point": [
+       24.921732213315618,
+       60.16810901508454
+      ],
+      "km": 99,
+      "block": {
+       "length": 121.1,
+       "width": 49.1,
+       "fill": 0.43,
+       "parts": 3
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 8,
+      "point": [
+       24.921732213315618,
+       60.16810901508454
+      ],
+      "km": 99,
+      "block": {
+       "length": 121.1,
+       "width": 49.1,
+       "fill": 0.43,
+       "parts": 3
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "stenstad",
+     "info": {
+      "levels": 8,
+      "point": [
+       24.921732213315618,
+       60.16810901508454
+      ],
+      "km": 99,
+      "block": {
+       "length": 121.1,
+       "width": 49.1,
+       "fill": 0.43,
+       "parts": 3,
+       "hull": 0.5
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "FIy06",
+   "town": "oulu",
+   "city": "finland",
+   "point": [
+    25.4675413,
+    65.0067476
+   ],
+   "mapillary": "845088759486555",
+   "pano": true,
+   "dist": 18.8,
+   "off": 61.8,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 5,
+      "height": 20,
+      "point": [
+       25.467541269853527,
+       65.00674764680656
+      ],
+      "km": 99,
+      "block": {
+       "length": 90.1,
+       "width": 38.3,
+       "fill": 0.5,
+       "parts": 2
+      },
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 5,
+      "height": 20,
+      "point": [
+       25.467541269853527,
+       65.00674764680656
+      ],
+      "km": 99,
+      "block": {
+       "length": 113.9,
+       "width": 84,
+       "fill": 0.26,
+       "parts": 4
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "stenstad",
+     "info": {
+      "levels": 5,
+      "height": 20,
+      "point": [
+       25.467541269853527,
+       65.00674764680656
+      ],
+      "km": 99,
+      "block": {
+       "length": 113.9,
+       "width": 84,
+       "fill": 0.26,
+       "parts": 4,
+       "hull": 0.49
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "FIy07",
+   "town": "tampere",
+   "city": "finland",
+   "point": [
+    23.7575072,
+    61.5007035
+   ],
+   "mapillary": "472460503810820",
+   "pano": false,
+   "dist": 18.9,
+   "off": 18.5,
+   "arms": {
+    "old": {
+     "look": "stenstad",
+     "info": {
+      "point": [
+       23.757507234852767,
+       61.50070347029395
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       23.757507234852767,
+       61.50070347029395
+      ],
+      "km": 99,
+      "block": {
+       "length": 98.6,
+       "width": 60.7,
+       "fill": 0.44,
+       "parts": 3
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "stenstad",
+     "info": {
+      "point": [
+       23.757507234852767,
+       61.50070347029395
+      ],
+      "km": 99,
+      "block": {
+       "length": 98.6,
+       "width": 60.7,
+       "fill": 0.44,
+       "parts": 3,
+       "hull": 0.51
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "FIy08",
+   "town": "helsinki",
+   "city": "finland",
+   "point": [
+    24.9268791,
+    60.1817579
+   ],
+   "mapillary": "1103641270884326",
+   "pano": true,
+   "dist": 12.7,
+   "off": 83.6,
+   "arms": {
+    "old": {
+     "look": "stenstad",
+     "info": {
+      "point": [
+       24.926879127798966,
+       60.18175790212834
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       24.926879127798966,
+       60.18175790212834
+      ],
+      "km": 99,
+      "block": {
+       "length": 207.2,
+       "width": 92.3,
+       "fill": 0.28,
+       "parts": 8
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "stenstad",
+     "info": {
+      "point": [
+       24.926879127798966,
+       60.18175790212834
+      ],
+      "km": 99,
+      "block": {
+       "length": 207.2,
+       "width": 92.3,
+       "fill": 0.28,
+       "parts": 8,
+       "hull": 0.41
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "FIy09",
+   "town": "tampere",
+   "city": "finland",
+   "point": [
+    23.7479485,
+    61.4951001
+   ],
+   "mapillary": "224733582411007",
+   "pano": false,
+   "dist": 13.8,
+   "off": -2.3,
+   "arms": {
+    "old": {
+     "look": "stenstad",
+     "info": {
+      "point": [
+       23.747948494459933,
+       61.495100140450525
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       23.747948494459933,
+       61.495100140450525
+      ],
+      "km": 99,
+      "block": {
+       "length": 134.8,
+       "width": 54.6,
+       "fill": 0.34,
+       "parts": 5
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "stenstad",
+     "info": {
+      "point": [
+       23.747948494459933,
+       61.495100140450525
+      ],
+      "km": 99,
+      "block": {
+       "length": 134.8,
+       "width": 54.6,
+       "fill": 0.34,
+       "parts": 5,
+       "hull": 0.51
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "FIy10",
+   "town": "tampere",
+   "city": "finland",
+   "point": [
+    23.7528932,
+    61.4928581
+   ],
+   "mapillary": "161301592578457",
+   "pano": false,
+   "dist": 21,
+   "off": 13.1,
+   "arms": {
+    "old": {
+     "look": "stenstad",
+     "info": {
+      "point": [
+       23.752893249404732,
+       61.49285807017369
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       23.752893249404732,
+       61.49285807017369
+      ],
+      "km": 99,
+      "block": {
+       "length": 101.2,
+       "width": 56.7,
+       "fill": 0.39,
+       "parts": 4
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "stenstad",
+     "info": {
+      "point": [
+       23.752893249404732,
+       61.49285807017369
+      ],
+      "km": 99,
+      "block": {
+       "length": 101.2,
+       "width": 56.7,
+       "fill": 0.39,
+       "parts": 4,
+       "hull": 0.5
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  }
+ ]
+}

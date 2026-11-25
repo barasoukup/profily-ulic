@@ -1,0 +1,718 @@
+{
+ "stat": {
+  "houses": 1049,
+  "yard": 12,
+  "all": 147,
+  "todayAll": 145,
+  "regFailed": 0,
+  "noPhoto": {
+   "yard": 2,
+   "all": 0
+  }
+ },
+ "changes": {
+  "povalecny>sikma": 8,
+  "povalecny>funkce": 4
+ },
+ "rows": [
+  {
+   "id": "DEy01",
+   "town": "nuernberg",
+   "city": "germany",
+   "point": [
+    11.0826099,
+    49.4644295
+   ],
+   "mapillary": "1324750579350485",
+   "pano": true,
+   "dist": 13.8,
+   "off": 124.4,
+   "panels": false,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 5,
+      "point": [
+       11.082609866239716,
+       49.46442945825227
+      ],
+      "km": 99,
+      "block": {
+       "length": 175.6,
+       "width": 66.1,
+       "fill": 0.34,
+       "parts": 5
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 5,
+      "point": [
+       11.082609866239716,
+       49.46442945825227
+      ],
+      "km": 99,
+      "block": {
+       "length": 175.6,
+       "width": 66.1,
+       "fill": 0.34,
+       "parts": 5
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 5,
+      "point": [
+       11.082609866239716,
+       49.46442945825227
+      ],
+      "km": 99,
+      "block": {
+       "length": 175.6,
+       "width": 66.1,
+       "fill": 0.34,
+       "parts": 5,
+       "hull": 0.46
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "DEy02",
+   "town": "nuernberg",
+   "city": "germany",
+   "point": [
+    11.0872892,
+    49.4561986
+   ],
+   "mapillary": "490345822020397",
+   "pano": false,
+   "dist": 16.5,
+   "off": -15.4,
+   "panels": false,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       11.087289206078657,
+       49.456198580553846
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       11.087289206078657,
+       49.456198580553846
+      ],
+      "km": 99,
+      "block": {
+       "length": 61.6,
+       "width": 38.5,
+       "fill": 0.39,
+       "parts": 3
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       11.087289206078657,
+       49.456198580553846
+      ],
+      "km": 99,
+      "block": {
+       "length": 61.6,
+       "width": 38.5,
+       "fill": 0.39,
+       "parts": 3,
+       "hull": 0.66
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "DEy03",
+   "town": "hamburg",
+   "city": "germany",
+   "point": [
+    10.0038387,
+    53.5414716
+   ],
+   "mapillary": "1527549661605435",
+   "pano": false,
+   "dist": 25.7,
+   "off": -22.9,
+   "panels": false,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 8,
+      "point": [
+       10.003838674476633,
+       53.54147164474787
+      ],
+      "km": 99,
+      "block": {
+       "length": 99.9,
+       "width": 101.7,
+       "fill": 0.31,
+       "parts": 2
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 8,
+      "point": [
+       10.003838674476633,
+       53.54147164474787
+      ],
+      "km": 99,
+      "block": {
+       "length": 98.5,
+       "width": 98.5,
+       "fill": 0.34,
+       "parts": 3
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 8,
+      "point": [
+       10.003838674476633,
+       53.54147164474787
+      ],
+      "km": 99,
+      "block": {
+       "length": 98.5,
+       "width": 98.5,
+       "fill": 0.34,
+       "parts": 3,
+       "hull": 0.64
+      },
+      "tint": 0,
+      "type": "apartments"
+     }
+    }
+   }
+  },
+  {
+   "id": "DEy04",
+   "town": "muenchen",
+   "city": "germany",
+   "point": [
+    11.5720842,
+    48.1446284
+   ],
+   "mapillary": "1699178576938828",
+   "pano": false,
+   "dist": 17.5,
+   "off": 9.8,
+   "panels": false,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 7,
+      "point": [
+       11.572084221661225,
+       48.144628446580036
+      ],
+      "km": 99,
+      "block": {
+       "length": 73.6,
+       "width": 59.2,
+       "fill": 0.41,
+       "parts": 2
+      },
+      "tint": 0,
+      "type": "apartments",
+      "roofShape": "flat"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 7,
+      "point": [
+       11.572084221661225,
+       48.144628446580036
+      ],
+      "km": 99,
+      "block": {
+       "length": 201.4,
+       "width": 60.3,
+       "fill": 0.43,
+       "parts": 8
+      },
+      "tint": 0,
+      "type": "apartments",
+      "roofShape": "flat"
+     }
+    },
+    "new": {
+     "look": "funkce",
+     "info": {
+      "levels": 7,
+      "point": [
+       11.572084221661225,
+       48.144628446580036
+      ],
+      "km": 99,
+      "block": {
+       "length": 201.4,
+       "width": 60.3,
+       "fill": 0.43,
+       "parts": 8,
+       "hull": 0.62
+      },
+      "tint": 0,
+      "type": "apartments",
+      "roofShape": "flat"
+     }
+    }
+   }
+  },
+  {
+   "id": "DEy05",
+   "town": "koeln",
+   "city": "germany",
+   "point": [
+    6.9513658,
+    50.9410224
+   ],
+   "mapillary": "2402765446874782",
+   "pano": true,
+   "dist": 20,
+   "off": -172.8,
+   "panels": false,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       6.951365754661798,
+       50.941022406752836
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       6.951365754661798,
+       50.941022406752836
+      ],
+      "km": 99,
+      "block": {
+       "length": 119.2,
+       "width": 88.7,
+       "fill": 0.48,
+       "parts": 5
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       6.951365754661798,
+       50.941022406752836
+      ],
+      "km": 99,
+      "block": {
+       "length": 119.2,
+       "width": 88.7,
+       "fill": 0.48,
+       "parts": 5,
+       "hull": 0.66
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "DEy06",
+   "town": "muenchen",
+   "city": "germany",
+   "point": [
+    11.5691532,
+    48.1397427
+   ],
+   "mapillary": "1069097367955285",
+   "pano": false,
+   "dist": 12.2,
+   "off": 4.2,
+   "panels": false,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 5,
+      "point": [
+       11.56915323867003,
+       48.139742702686824
+      ],
+      "km": 99,
+      "block": {
+       "length": 178.1,
+       "width": 157.4,
+       "fill": 0.32,
+       "parts": 4
+      },
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 5,
+      "point": [
+       11.56915323867003,
+       48.139742702686824
+      ],
+      "km": 99,
+      "block": {
+       "length": 207.4,
+       "width": 180.1,
+       "fill": 0.32,
+       "parts": 6
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "levels": 5,
+      "point": [
+       11.56915323867003,
+       48.139742702686824
+      ],
+      "km": 99,
+      "block": {
+       "length": 207.4,
+       "width": 180.1,
+       "fill": 0.32,
+       "parts": 6,
+       "hull": 0.54
+      },
+      "tint": 0
+     }
+    }
+   }
+  },
+  {
+   "id": "DEy07",
+   "town": "muenchen",
+   "city": "germany",
+   "point": [
+    11.5822858,
+    48.1502912
+   ],
+   "mapillary": "1053588870771510",
+   "pano": true,
+   "dist": 14.3,
+   "off": -151.5,
+   "panels": false,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       11.582285832158385,
+       48.15029120916775
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       11.582285832158385,
+       48.15029120916775
+      ],
+      "km": 99,
+      "block": {
+       "length": 103.5,
+       "width": 67.3,
+       "fill": 0.31,
+       "parts": 3
+      },
+      "tint": 0,
+      "type": "dormitory"
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       11.582285832158385,
+       48.15029120916775
+      ],
+      "km": 99,
+      "block": {
+       "length": 103.5,
+       "width": 67.3,
+       "fill": 0.31,
+       "parts": 3,
+       "hull": 0.47
+      },
+      "tint": 0,
+      "type": "dormitory"
+     }
+    }
+   }
+  },
+  {
+   "id": "DEy08",
+   "town": "aachen",
+   "city": "germany",
+   "point": [
+    6.077251,
+    50.7682809
+   ],
+   "mapillary": "1460711415997194",
+   "pano": true,
+   "dist": 15.5,
+   "off": 1.9,
+   "panels": false,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 5,
+      "point": [
+       6.077251037012593,
+       50.76828092922638
+      ],
+      "km": 99,
+      "block": {
+       "length": 176.5,
+       "width": 118.2,
+       "fill": 0.4,
+       "parts": 8
+      },
+      "tint": 0,
+      "roofShape": "flat"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 5,
+      "point": [
+       6.077251037012593,
+       50.76828092922638
+      ],
+      "km": 99,
+      "block": {
+       "length": 192.4,
+       "width": 115,
+       "fill": 0.42,
+       "parts": 9
+      },
+      "tint": 0,
+      "roofShape": "flat"
+     }
+    },
+    "new": {
+     "look": "funkce",
+     "info": {
+      "levels": 5,
+      "point": [
+       6.077251037012593,
+       50.76828092922638
+      ],
+      "km": 99,
+      "block": {
+       "length": 192.4,
+       "width": 115,
+       "fill": 0.42,
+       "parts": 9,
+       "hull": 0.61
+      },
+      "tint": 0,
+      "roofShape": "flat"
+     }
+    }
+   }
+  },
+  {
+   "id": "DEy09",
+   "town": "hamburg",
+   "city": "germany",
+   "point": [
+    9.9960289,
+    53.5416667
+   ],
+   "mapillary": "219791879948627",
+   "pano": false,
+   "dist": 10,
+   "off": 3.5,
+   "panels": false,
+   "arms": {
+    "old": {
+     "look": "povalecny",
+     "info": {
+      "levels": 8,
+      "point": [
+       9.996028921668481,
+       53.54166665636514
+      ],
+      "km": 99,
+      "block": {
+       "length": 67.6,
+       "width": 63.5,
+       "fill": 0.49,
+       "parts": 3
+      },
+      "tint": 0,
+      "type": "apartments",
+      "roofShape": "flat"
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "levels": 8,
+      "point": [
+       9.996028921668481,
+       53.54166665636514
+      ],
+      "km": 99,
+      "block": {
+       "length": 67.6,
+       "width": 63.5,
+       "fill": 0.49,
+       "parts": 3
+      },
+      "tint": 0,
+      "type": "apartments",
+      "roofShape": "flat"
+     }
+    },
+    "new": {
+     "look": "funkce",
+     "info": {
+      "levels": 8,
+      "point": [
+       9.996028921668481,
+       53.54166665636514
+      ],
+      "km": 99,
+      "block": {
+       "length": 67.6,
+       "width": 63.5,
+       "fill": 0.49,
+       "parts": 3,
+       "hull": 0.58
+      },
+      "tint": 0,
+      "type": "apartments",
+      "roofShape": "flat"
+     }
+    }
+   }
+  },
+  {
+   "id": "DEy10",
+   "town": "muenchen",
+   "city": "germany",
+   "point": [
+    11.5727633,
+    48.1396017
+   ],
+   "mapillary": "1581456889603424",
+   "pano": true,
+   "dist": 13.8,
+   "off": -160.7,
+   "panels": false,
+   "arms": {
+    "old": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       11.57276326055401,
+       48.13960174426665
+      ],
+      "km": 99,
+      "tint": 0
+     }
+    },
+    "today": {
+     "look": "povalecny",
+     "info": {
+      "point": [
+       11.57276326055401,
+       48.13960174426665
+      ],
+      "km": 99,
+      "block": {
+       "length": 145.4,
+       "width": 111.5,
+       "fill": 0.38,
+       "parts": 6
+      },
+      "tint": 0
+     }
+    },
+    "new": {
+     "look": "sikma",
+     "info": {
+      "point": [
+       11.57276326055401,
+       48.13960174426665
+      ],
+      "km": 99,
+      "block": {
+       "length": 145.4,
+       "width": 111.5,
+       "fill": 0.38,
+       "parts": 6,
+       "hull": 0.68
+      },
+      "tint": 0
+     }
+    }
+   }
+  }
+ ]
+}

@@ -87,7 +87,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   z `tools/build_vyvoj.mjs` při nasazení; Bára 8. 11. 2026: plošná vrstva je výchozí odhad, který
   přebijí údaje o domě).
 - Vzhled domu čte všechny budovy OSM ve všech státech (`?off=vsedomy`; `evaluation/all-buildings/ZPRAVA.md`, Bára 25. 11. 2026);
-  sada mobiliáře smí mít lampu do 5 m (`lamp-post-top`). Rakousko na čerstvém vzorku 3 : 6, výjimka není.
+  sada mobiliáře smí mít lampu do 5 m (`lamp-post-top`). Rakousko ve všech kolech 19 : 18, výjimka není.
+  Blok kolem dvora jako „není poválečný dům“ zkoušeno, nevyhrálo (47 : 50; CH by ztratilo), v aplikaci není.
 - Socialistické vzhledy (sorela, zděný dům 50.–60. let, panelák) jen v CZ, SK, PL, EE a bývalé NDR (Bára 23. 11. 2026,
   `countries/<ISO>.js` `socialistLooks`, DE podle `city.panels`); jinde i v „cizině“ `profile.js` `westernLook`: 1946–90
   poválečný bytový dům, deska před 1946 funkcionalistický, po 1990 moderní. Snímky `evaluation/budovy-povalecny/`.
