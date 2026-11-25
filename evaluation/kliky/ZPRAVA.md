@@ -1,6 +1,6 @@
 # Kam padne kliknutí (25. 11. 2026)
 
-**Oprava uličky (nález W1 recenze Severní Ameriky): commit `HASH`** (`derive.js alleyMouths`, `tests/placement.test.js`;
+**Oprava uličky (nález W1 recenze Severní Ameriky): commit `74fcb46`** (`derive.js alleyMouths`, `tests/placement.test.js`;
 samostatný, pro sloučení do `canada`).
 
 Plocha uličky (`area:highway=service`, uličky planimetrie Washingtonu) je ústím jen pro ulici, do které se otevírá. Úsek, na
