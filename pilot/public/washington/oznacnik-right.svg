@@ -1,5 +1,5 @@
 <svg viewBox="0 0 170 340" xmlns="http://www.w3.org/2000/svg">
-  <!-- Washington Metrobus stop without the operator's name and mark: the flag 36 x 18 in (91 x 46 cm; WMATA 2009) of a white upright panel with a navy disc and a red and navy board, a schedule case, on a U-channel post; the board's bottom edge at 2.5 m. shade on the right (left half of the street); the bottom edge = the sidewalk, the middle = the post's axis. Mirror of the left one. 1 px = 1 cm. -->
+  <!-- Washington Metrobus stop without the operator's name and mark: a flag 72 x 61 cm (the real one is 36 x 18 in, WMATA 2009) of a plain white upright panel with a generic bus pictogram and a plain slate board, without the disc, the lettering and the second colour of the real one, a schedule case, on a U-channel post; the board's bottom edge at 2.5 m. shade on the right (left half of the street); the bottom edge = the sidewalk, the middle = the post's axis. Mirror of the left one. 1 px = 1 cm. -->
   <g transform="matrix(-1 0 0 1 170 0)">
   <rect x="82.2" y="44" width="5.6" height="296" fill="#c3c8ca"/>
   <rect x="86" y="44" width="1.8" height="296" fill="#8f9699"/>
@@ -29,34 +29,27 @@
   <circle cx="84.8" cy="298" r="1" fill="#4b5154"/>
   <circle cx="84.8" cy="307" r="1" fill="#4b5154"/>
   <circle cx="84.8" cy="316" r="1" fill="#4b5154"/>
-  <rect x="15" y="42" width="62" height="47" rx="2" fill="#8f9699"/>
-  <rect x="15.6" y="42.6" width="62" height="11.4" fill="#1f2f63"/>
-  <rect x="15.6" y="54" width="62" height="29" fill="#c8102e"/>
-  <rect x="15.6" y="83" width="62" height="5.4" fill="#f4f4f0"/>
-  <rect x="20" y="46" width="9" height="4.4" rx="1" fill="#8fa0cf"/>
-  <rect x="32" y="45.6" width="20" height="5.2" rx="1" fill="#f4f4f0"/>
-  <rect x="36" y="59" width="28" height="11" rx="1.5" fill="#f4f4f0"/>
-  <rect x="20" y="60" width="11" height="2" fill="#eab9c0"/>
-  <rect x="20" y="64" width="9" height="2" fill="#eab9c0"/>
-  <rect x="36" y="74" width="24" height="3" rx="1" fill="#f3d3d8"/>
-  <rect x="20" y="85" width="20" height="1.6" fill="#55595b"/>
-  <rect x="54" y="85" width="18" height="1.6" fill="#55595b"/>
-  <path d="M74 89 V36 A11.5 11.5 0 0 1 97 36 V86 Q97 89 94 89 Z" fill="#7c8386"/>
-  <path d="M74.8 88.2 V36 A10.7 10.7 0 0 1 96.2 36 V86 Q96.2 88.2 94 88.2 Z" fill="#f4f4f0"/>
-  <path d="M92 27 A10.7 10.7 0 0 1 96.2 36 V86 Q96.2 88.2 94 88.2 H92 Z" fill="#dcddd9"/>
-  <circle cx="85.5" cy="36.4" r="8.6" fill="#1f2f63"/>
-  <rect x="80.8" y="31.74" width="9.4" height="7.99" rx="1.2220000000000002" fill="#f4f4f0"/>
-  <rect x="81.83" y="34.04" width="7.33" height="2.82" rx="0.329" fill="#1f2f63"/>
-  <rect x="82.96" y="32.44" width="5.08" height="0.89" rx="0.28200000000000003" fill="#1f2f63"/>
-  <circle cx="82.398" cy="38.362" r="0.6345000000000001" fill="#1f2f63"/>
-  <circle cx="88.602" cy="38.362" r="0.6345000000000001" fill="#1f2f63"/>
-  <rect x="81.74" y="39.49" width="1.88" height="1.41" rx="0.42300000000000004" fill="#f4f4f0"/>
-  <rect x="87.38" y="39.49" width="1.88" height="1.41" rx="0.42300000000000004" fill="#f4f4f0"/>
-  <rect x="79.77" y="33.85" width="0.75" height="2.16" rx="0.329" fill="#f4f4f0"/>
-  <rect x="90.48" y="33.85" width="0.75" height="2.16" rx="0.329" fill="#f4f4f0"/>
-  <rect x="82.6" y="50" width="5.8" height="17" rx="1" fill="#c8102e"/>
-  <rect x="82.6" y="69" width="5.8" height="14" rx="1" fill="#1f2f63"/>
-  <circle cx="85.5" cy="47.6" r="0.8" fill="#7c8386"/>
+  <rect x="25" y="44" width="52" height="42" rx="2" fill="#7c8386"/>
+  <rect x="25.7" y="44.7" width="51" height="40.6" rx="1.6" fill="#4a5f72"/>
+  <rect x="30" y="50" width="24" height="4.4" rx="1" fill="#f4f4f0"/>
+  <rect x="30" y="59" width="30" height="9" rx="1.5" fill="#f4f4f0"/>
+  <rect x="30" y="73" width="26" height="2.6" rx="1" fill="#b9c4cd"/>
+  <rect x="30" y="78.5" width="17" height="2.4" rx="1" fill="#b9c4cd"/>
+  <rect x="74" y="28" width="23" height="61" rx="2.4" fill="#7c8386"/>
+  <rect x="74.8" y="28.8" width="21.4" height="59.4" rx="2" fill="#f4f4f0"/>
+  <rect x="92" y="28.8" width="4.2" height="59.4" rx="2" fill="#dcddd9"/>
+  <rect x="78" y="35.35" width="14" height="11.9" rx="1.8199999999999998" fill="#3b4146"/>
+  <rect x="79.54" y="38.78" width="10.92" height="4.2" rx="0.48999999999999994" fill="#f4f4f0"/>
+  <rect x="81.22" y="36.4" width="7.56" height="1.33" rx="0.42" fill="#f4f4f0"/>
+  <circle cx="80.38" cy="45.22" r="0.945" fill="#f4f4f0"/>
+  <circle cx="89.62" cy="45.22" r="0.945" fill="#f4f4f0"/>
+  <rect x="79.4" y="46.9" width="2.8" height="2.1" rx="0.63" fill="#3b4146"/>
+  <rect x="87.8" y="46.9" width="2.8" height="2.1" rx="0.63" fill="#3b4146"/>
+  <rect x="76.46" y="38.5" width="1.12" height="3.22" rx="0.48999999999999994" fill="#3b4146"/>
+  <rect x="92.42" y="38.5" width="1.12" height="3.22" rx="0.48999999999999994" fill="#3b4146"/>
+  <rect x="79" y="56" width="12" height="2.4" rx="1" fill="#8f9699"/>
+  <rect x="79" y="61.5" width="12" height="2.4" rx="1" fill="#8f9699"/>
+  <rect x="79" y="67" width="8" height="2.4" rx="1" fill="#8f9699"/>
   <rect x="74" y="150" width="22" height="50" rx="1.5" fill="#55595b"/>
   <rect x="76" y="152" width="18" height="46" fill="#f4f4f0"/>
   <rect x="78" y="155" width="14" height="4" fill="#1f56a8"/>

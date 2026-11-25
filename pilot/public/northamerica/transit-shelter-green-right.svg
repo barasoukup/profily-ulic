@@ -38,7 +38,7 @@
   <rect x="18" y="356" width="17" height="4" fill="#50575a"/>
   <rect x="154" y="356" width="17" height="4" fill="#50575a"/>
   <g transform="rotate(-2.46 103 104)">
-  <path d="M16 104 H188 V95 H16 Z" fill="#8a7458"/>
+  <rect x="16" y="95" width="172" height="9" fill="#8a7458"/>
   <rect x="16" y="101" width="172" height="3" fill="#4a4036"/>
   <g transform="translate(0 8) rotate(-0.64 103 88)">
   

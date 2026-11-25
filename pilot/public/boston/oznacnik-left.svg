@@ -1,25 +1,21 @@
 <svg viewBox="0 0 50 340" xmlns="http://www.w3.org/2000/svg">
-  <!-- Boston bus stop: a round-topped yellow panel 32 x 92 cm (estimated from photos) with a black cap and a red foot, on a steel post; its bottom edge at 2.3 m. No agency's mark. shade on the right (left half of the street); the bottom edge = the sidewalk, the middle = the post's axis. 1 px = 1 cm. -->
+  <!-- Boston bus stop: a plain yellow panel 32 x 94 cm (estimated from photos) with a generic bus pictogram, without the real sign's round top, cap and mark, on a steel post; its bottom edge at 2.3 m. No agency's mark. shade on the right (left half of the street); the bottom edge = the sidewalk, the middle = the post's axis. 1 px = 1 cm. -->
   <rect x="22.1" y="30" width="5.8" height="310" rx="2" fill="#b4b9bb"/>
   <rect x="26.02" y="30" width="1.89" height="310" rx="1" fill="#8f9699"/>
   <rect x="22.82" y="30" width="1.16" height="310" fill="#d0d4d5"/>
-  <path d="M8 108 V32 A17 17 0 0 1 42 32 V108 Q42 111 39 111 H11 Q8 111 8 108 Z" fill="#2a2b2a"/>
-  <path d="M9 107.6 V32 A16 16 0 0 1 41 32 V107.6 Q41 110 38.6 110 H11.4 Q9 110 9 107.6 Z" fill="#f4f4f0"/>
-  <path d="M10.2 98 V42 H39.8 V98 Z" fill="#f0a222"/>
-  <path d="M10.2 41 V32 A14.8 14.8 0 0 1 39.8 32 V41 Z" fill="#1c1d1c"/>
-  <path d="M10.2 98 H39.8 V107.4 Q39.8 108.8 38.4 108.8 H11.6 Q10.2 108.8 10.2 107.4 Z" fill="#c8102e"/>
-  <path d="M36 42 H39.8 V98 H36 Z" fill="#d99a1c"/>
-  <rect x="15.75" y="22.21" width="18.5" height="15.73" rx="2.4050000000000002" fill="#f0a222"/>
-  <rect x="17.79" y="26.75" width="14.43" height="5.55" rx="0.6475" fill="#1c1d1c"/>
-  <rect x="20" y="23.6" width="9.99" height="1.76" rx="0.555" fill="#1c1d1c"/>
-  <circle cx="18.895" cy="35.255" r="1.2487500000000002" fill="#1c1d1c"/>
-  <circle cx="31.105" cy="35.255" r="1.2487500000000002" fill="#1c1d1c"/>
-  <rect x="17.6" y="37.48" width="3.7" height="2.78" rx="0.8325" fill="#f0a222"/>
-  <rect x="28.7" y="37.48" width="3.7" height="2.78" rx="0.8325" fill="#f0a222"/>
-  <rect x="13.71" y="26.38" width="1.48" height="4.25" rx="0.6475" fill="#f0a222"/>
-  <rect x="34.8" y="26.38" width="1.48" height="4.25" rx="0.6475" fill="#f0a222"/>
-  <circle cx="25" cy="66" r="1.1" fill="#7c5a12"/>
-  <circle cx="25" cy="94" r="1.1" fill="#7c5a12"/>
+  <rect x="8" y="15" width="34" height="96" rx="5" fill="#6f7679"/>
+  <rect x="9" y="16" width="32" height="94" rx="4" fill="#f4f4f0"/>
+  <rect x="10.2" y="17.4" width="29.6" height="91.4" rx="3" fill="#f0a222"/>
+  <rect x="36" y="18" width="3.8" height="90" rx="2" fill="#d99a1c"/>
+  <rect x="14.9" y="21.98" width="19" height="16.15" rx="2.4699999999999998" fill="#2a2b2a"/>
+  <rect x="16.99" y="26.63" width="14.82" height="5.7" rx="0.6649999999999999" fill="#f0a222"/>
+  <rect x="19.27" y="23.4" width="10.26" height="1.8" rx="0.57" fill="#f0a222"/>
+  <circle cx="18.13" cy="35.37" r="1.2825" fill="#f0a222"/>
+  <circle cx="30.669999999999998" cy="35.37" r="1.2825" fill="#f0a222"/>
+  <rect x="16.8" y="37.65" width="3.8" height="2.85" rx="0.855" fill="#2a2b2a"/>
+  <rect x="28.2" y="37.65" width="3.8" height="2.85" rx="0.855" fill="#2a2b2a"/>
+  <rect x="12.81" y="26.25" width="1.52" height="4.37" rx="0.6649999999999999" fill="#2a2b2a"/>
+  <rect x="34.47" y="26.25" width="1.52" height="4.37" rx="0.6649999999999999" fill="#2a2b2a"/>
   <rect x="13.4" y="47" width="10" height="5.4" rx="0.8" fill="#1c1d1c"/>
   <rect x="26" y="47.4" width="9" height="1.8" fill="#1c1d1c"/>
   <rect x="26" y="51" width="7" height="1.4" fill="#1c1d1c"/>
@@ -28,7 +24,6 @@
   <rect x="26" y="60" width="6" height="1.4" fill="#1c1d1c"/>
   <rect x="13.4" y="72" width="21" height="2" fill="#6b5115"/>
   <rect x="13.4" y="78" width="15" height="2" fill="#6b5115"/>
-  <rect x="14" y="101" width="22" height="2.2" fill="#f4f4f0"/>
-  <rect x="18" y="105" width="14" height="1.6" fill="#f3d3d8"/>
+  <rect x="13.4" y="98" width="21" height="2.2" fill="#6b5115"/>
   <rect x="20.6" y="334" width="8.8" height="6" fill="#8f9699"/>
 </svg>

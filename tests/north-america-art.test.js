@@ -1,11 +1,11 @@
 // The furniture of North America (pilot/public/northamerica/, Bára 25. 11. 2026): the USA draws it, Washington its own
-// lamp and stop; every file of both sets exists.
+// stop; every file of both sets exists.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 const read = (f) => JSON.parse(fs.readFileSync(new URL(`../pilot/public/${f}`, import.meta.url), "utf8"));
 
-test("USA kreslí severoamerický mobiliář, Washington svou lampu a označník", async () => {
+test("USA kreslí severoamerický mobiliář, Washington svůj označník a společnou lampu", async () => {
   const C = await import("../pilot/public/city.js");
   const P = await import("../pilot/public/profile.js");
   C.loadBounds(read("mesta.json")); C.loadStates(read("staty.json")); C.loadTowns(read("mesta-us.json"));
@@ -16,7 +16,9 @@ test("USA kreslí severoamerický mobiliář, Washington svou lampu a označník
   assert.equal(C.countryOfCity("washington").code, "US");
   assert.equal(art("usa")["lamp-modern-left"], "../northamerica/lamp-left");
   assert.equal(art("usa")["reeds-left"], "../cesko/rakos-left");
-  assert.equal(art("washington")["lamp-modern-left"], "lamp-left");
+  // The shared cobra head is Washington's lamp too (Bára 25. 11. 2026; the globe is not wired).
+  assert.equal(art("washington")["lamp-modern-left"], "../northamerica/lamp-left");
+  assert.equal(art("washington")["stop-post-left"], "oznacnik-left");
   assert.equal(art("washington")["bench-center"], "../northamerica/bench-center");
   for (const id of ["usa", "washington"]) for (const f of Object.values(art(id))) {
     assert.ok(fs.existsSync(new URL(`../pilot/public/${id}/${f}.svg`.replace(`${id}/../`, ""), import.meta.url)), `${id} ${f}`);

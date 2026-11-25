@@ -77,18 +77,18 @@ pair("newyork/lamp-bishop", 370, 930, "New York Bishop's Crook (historic distric
     shaft(348, 642, 772, 9, 12, BLACK), wrapBands, ring(348, 770, 7, 16, BLACK), P("M335 777 H361 Q366 790 365 806 H331 Q330 790 335 777 Z", BLACK[0]), P("M353 777 H361 Q366 790 365 806 H354 Z", BLACK[1]), L("M338 780 Q335 792 335 804 M344 780 Q342 792 342 804", BLACK[2], 1.2),
     ring(348, 804, 6, 18, BLACK), P("M333 810 H363 L366 896 H330 Z", BLACK[0]), P("M352 810 H363 L366 896 H353 Z", BLACK[1]), R(336, 822, 13, 56, BLACK[2], 1), R(337.2, 823.4, 11.6, 54, BLACK[0], 1), R(327, 896, 42, 10, BLACK[0], 1), R(352, 896, 17, 10, BLACK[1], 1), R(326, 906, 44, 24, BLACK[0]), R(352, 906, 18, 24, BLACK[1]), R(326, 906, 26, 1.6, BLACK[2])]);
 
-// Post-top lamps (anchored in the middle of a 140 cm wide picture, art.js LAMP_PICTURES).
+// Post-top lamps (centred in a 140 cm wide picture), not wired: the park lamp of the app (up to 5 m) has no picture (ZDROJE.md).
 const X = 70, CREAM = ["#f1ecd9", "#ded6ba", "#fbf9f0"];
 const globe = (x, y) => [ // Washington globe, 43 cm wide, fullest above the middle, 58 high from its cup
   P(`M${x - 13} ${y} H${x + 13} C${x + 20} ${y - 10} ${x + 23.5} ${y - 22} ${x + 21.5} ${y - 36} C${x + 20} ${y - 46} ${x + 14} ${y - 53} ${x + 9} ${y - 58} H${x - 9} C${x - 14} ${y - 53} ${x - 20} ${y - 46} ${x - 21.5} ${y - 36} C${x - 23.5} ${y - 22} ${x - 20} ${y - 10} ${x - 13} ${y} Z`, CREAM[0]),
   P(`M${x + 13} ${y} C${x + 20} ${y - 10} ${x + 23.5} ${y - 22} ${x + 21.5} ${y - 36} C${x + 20} ${y - 46} ${x + 14} ${y - 53} ${x + 9} ${y - 58} C${x + 16} ${y - 42} ${x + 15} ${y - 18} ${x + 6} ${y} Z`, CREAM[1]),
   P(`M${x - 13} ${y - 48} Q${x - 19} ${y - 38} ${x - 16.5} ${y - 24} Q${x - 14.5} ${y - 38} ${x - 10} ${y - 49} Z`, CREAM[2])];
-pair("washington/lamp", 140, 930, "Washington Globe (Washington Upright No. 16, DDOT Streetlight Policy and Design Guidelines 2013): 16 ft fluted post, black, on a 24 in base, one opal globe; 5.6 m overall, the light at 5.2 m. Centred (post-top).",
+pair("washington/lamp-globe", 140, 930, "Washington Globe (Washington Upright No. 16, DDOT Streetlight Policy and Design Guidelines 2013): 16 ft fluted post, black, on a 24 in base, one opal globe; 5.6 m overall, the light at 5.2 m. Centred (post-top).",
   [P("M60.5 385 L62 379 H78 L79.5 385 Z", BLACK[0]), R(60.5, 383, 14, 1.4, BLACK[2]), R(64.5, 373, 11, 7, BLACK[0], 1.5), P("M65 373 Q66 366 69 365 H71 Q74 366 75 373 Z", BLACK[0]), R(68.4, 357, 3.2, 9, BLACK[0], 1.4), C(70, 357.5, 2.4, BLACK[0]), globe(X, 441),
     ring(X, 439, 7, 17, BLACK), P("M56 446 H84 Q82 456 77 462 H63 Q58 456 56 446 Z", BLACK[0]), P("M75 446 H84 Q82 456 77 462 H73 Z", BLACK[1]), ring(X, 462, 5, 11.5, BLACK), ring(X, 480, 4, 10.5, BLACK), shaft(X, 467, 480, 7, 7.5, BLACK),
     shaft(X, 484, 832, 7.5, 10, BLACK, 1), L("M69 486 L68 830", BLACK[2], 1.1), ring(X, 830, 6, 14, BLACK), P("M58 836 H82 Q90 848 90 862 H50 Q50 848 58 836 Z", BLACK[0]), P("M74 836 H82 Q90 848 90 862 H76 Z", BLACK[1]), P("M56 845 Q53 852 53 859 H57 Q57 851 60 845 Z", BLACK[2]),
     ring(X, 860, 6, 24, BLACK), P("M48 866 H92 L98 904 H42 Z", BLACK[0]), P("M78 866 H92 L98 904 H80 Z", BLACK[1]), L("M60 867 L57 903", BLACK[2], 1.4), R(40, 902, 60, 8, BLACK[0], 1), R(79, 902, 21, 8, BLACK[1], 1), R(39.5, 910, 61, 20, BLACK[0]), R(79, 910, 21.5, 20, BLACK[1]), R(39.5, 910, 39, 1.6, BLACK[2])]);
-pair("boston/lamp", 140, 930, "Boston Neighborhood Acorn (Boston Street Lighting Standards, October 2026: fixture L.1.1 35 5/8 in high, steel post 13 ft 4 in L.1.2.2, 12 flat flutes, 6.57 in shaft, 18 in wrap base 28 7/8 in high). Overall about 5.1 m, the light at 4.7 m. Centred (post-top).",
+pair("boston/lamp-acorn", 140, 930, "Boston Neighborhood Acorn (Boston Street Lighting Standards, October 2026: fixture L.1.1 35 5/8 in high, steel post 13 ft 4 in L.1.2.2, 12 flat flutes, 6.57 in shaft, 18 in wrap base 28 7/8 in high). Overall about 5.1 m, the light at 4.7 m. Centred (post-top).",
   [R(64.5, 415, 11, 8, "#7c8386", 2), R(63.5, 422, 13, 4, BLACK[0], 1), P("M63 426 H77 L76 433 H64 Z", BLACK[0]), R(62, 432, 16, 3, BLACK[2], 1), P("M55 449 C57 441 60 436 63 434.5 H77 C80 436 83 441 85 449 Z", BLACK[0]), P("M74 434.5 H77 C80 436 83 441 85 449 H77 Z", BLACK[1]), L("M65 436 Q61 441 59.5 448", BLACK[2], 1.3), R(53.5, 448, 33, 4, BLACK[0], 1.5), R(76, 448, 10.5, 4, BLACK[1], 1.5),
     P("M54.5 452 H85.5 C90.5 456 92.4 463 91 472 C89.4 483 84 491 80.5 498 H59.5 C56 491 50.6 483 49 472 C47.6 463 49.5 456 54.5 452 Z", CREAM[0]), P("M76 452 H85.5 C90.5 456 92.4 463 91 472 C89.4 483 84 491 80.5 498 H73 C79 486 82 466 76 452 Z", CREAM[1]), P("M55.5 455 C51.6 460 51.4 468 53.6 477 Q54.6 481 56.4 484 C55 474 55 464 59 455 Z", CREAM[2]), L("M70 452 V498 M62 452 C56.5 464 59 484 64.5 498 M78 452 C83.5 464 81 484 75.5 498", "#d8d0b4", 0.8),
     ring(X, 496, 6, 13, BLACK), R(62, 502, 16, 4, BLACK[0]), P("M57 506 H83 Q81 518 76 526 H64 Q59 518 57 506 Z", BLACK[0]), P("M74 506 H83 Q81 518 76 526 H72 Z", BLACK[1]), L("M60 508 Q62 518 66 525 M65 508 Q66 518 68 525 M70 508 V525 M75 508 Q75 518 73 525", BLACK[2], 1.2), ring(X, 525, 5, 10.5, BLACK), P("M62.5 530 H77.5 L76 538 H64 Z", BLACK[0]),
@@ -103,7 +103,7 @@ const lantern = (x, y) => [P(`M${x - 11} ${y} H${x + 11} C${x + 18} ${y - 12} ${
   R(x - 14, y - 1, 28, 5, GREEN[0], 1.5), R(x + 4, y - 1, 10, 5, GREEN[1], 1.5), P(`M${x - 12} ${y + 4} H${x + 12} Q${x + 10} ${y + 16} ${x + 6} ${y + 22} H${x - 6} Q${x - 10} ${y + 16} ${x - 12} ${y + 4} Z`, GREEN[0]), P(`M${x + 4} ${y + 4} H${x + 12} Q${x + 10} ${y + 16} ${x + 6} ${y + 22} H${x + 2} Z`, GREEN[1])];
 // The heavy pendant under a side cup.
 const pendant = (x, y) => [P(`M${x - 8} ${y} H${x + 8} Q${x + 8} ${y + 14} ${x + 4.6} ${y + 26} L${x + 2.6} ${y + 40} Q${x} ${y + 46} ${x - 2.6} ${y + 40} L${x - 4.6} ${y + 26} Q${x - 8} ${y + 14} ${x - 8} ${y} Z`, GREEN[0]), P(`M${x + 2} ${y} H${x + 8} Q${x + 8} ${y + 14} ${x + 4.6} ${y + 26} L${x + 2.6} ${y + 40} Z`, GREEN[1]), R(x - 9, y, 18, 4, GREEN[0], 1)];
-pair("sanfrancisco/lamp", 140, 985, "San Francisco Path of Gold light standard (Market Street, city landmark 200): cast and wrought iron, three tear-shaped glass lanterns; 32 ft 3 in (9.83 m) overall (2018-002022COA), the light at 9.2 m. Centred (post-top).",
+pair("sanfrancisco/lamp-path-of-gold", 140, 985, "San Francisco Path of Gold light standard (Market Street, city landmark 200): cast and wrought iron, three tear-shaped glass lanterns; 32 ft 3 in (9.83 m) overall (2018-002022COA), the light at 9.2 m. Centred (post-top).",
   [lantern(70, 76), P("M62 96 H78 L83 132 H57 Z", GREEN[0]), P("M72 96 H78 L83 132 H74 Z", GREEN[1]), L("M65.4 98 L62 128", GREEN[2], 1.5), ring(70, 92, 5, 12, GREEN), ring(70, 106, 5, 13, GREEN),
     P("M24 138 H42 C50 137 55 130 58 122 H82 C85 130 90 137 98 138 H116 V150 H104 C94 151 88 158 84 170 H56 C52 158 46 151 36 150 H24 Z", GREEN[0]), P("M74 122 H82 C85 130 90 137 98 138 H116 V150 H104 C94 151 88 158 84 170 H74 Z", GREEN[1]), L("M30 140 H43 C52 138 56 132 60 125 M46 151 C53 154 56 160 59 168", GREEN[2], 1.6),
     pendant(24, 146), pendant(116, 146), lantern(24, 124), lantern(116, 124), P("M57 168 H83 L79 206 H61 Z", GREEN[0]), P("M74 168 H83 L79 206 H73 Z", GREEN[1]), L("M62 172 L64.5 203 M68 172 L68.6 203", GREEN[2], 1.5), ring(70, 164, 7, 17, GREEN), ring(70, 204, 7, 13.5, GREEN),
@@ -154,33 +154,32 @@ const NOTE = "shade on the right (left half of the street); the bottom edge = th
 pair("northamerica/oznacnik", 50, 340, `North American bus stop: a 12 x 18 in (30 x 46 cm) sign with a plain bus pictogram and a plate of routes, a schedule case, on a perforated square steel post (2.5 in), 3.2 m; the sign's bottom edge at 2.45 m (at least 7 ft). No agency's mark. ${NOTE}`, usPost(25, bus(25, 43, 17, WHITE, "#1d5fa8")));
 pair("northamerica/oznacnik-tram", 50, 340, `North American streetcar stop: as the bus stop, with a streetcar pictogram. ${NOTE}`, usPost(25, tram(25, 42.4, 17, WHITE, "#1d5fa8")));
 // Washington: the flag of Metrobus stops, plain: 36 x 18 in on a U-channel post; the board towards the sidewalk.
-const NAVY = "#1f2f63", WRED = "#c8102e";
+const WRED = "#c8102e";
 const dcPost = [R(82.2, 44, 5.6, 296, "#c3c8ca"), R(86, 44, 1.8, 296, "#8f9699"), R(82.2, 44, 1.2, 296, "#dfe2e3"), Array.from({ length: 25 }, (_, i) => C(84.8, 100 + i * 9, 1, "#4b5154")),
-    R(15, 42, 62, 47, "#8f9699", 2), R(15.6, 42.6, 62, 11.4, NAVY), R(15.6, 54, 62, 29, WRED), R(15.6, 83, 62, 5.4, WHITE), R(20, 46, 9, 4.4, "#8fa0cf", 1), R(32, 45.6, 20, 5.2, WHITE, 1), R(36, 59, 28, 11, WHITE, 1.5), R(20, 60, 11, 2, "#eab9c0"), R(20, 64, 9, 2, "#eab9c0"), R(36, 74, 24, 3, "#f3d3d8", 1), R(20, 85, 20, 1.6, "#55595b"), R(54, 85, 18, 1.6, "#55595b"),
-    P("M74 89 V36 A11.5 11.5 0 0 1 97 36 V86 Q97 89 94 89 Z", "#7c8386"), P("M74.8 88.2 V36 A10.7 10.7 0 0 1 96.2 36 V86 Q96.2 88.2 94 88.2 Z", WHITE), P("M92 27 A10.7 10.7 0 0 1 96.2 36 V86 Q96.2 88.2 94 88.2 H92 Z", "#dcddd9"), C(85.5, 36.4, 8.6, NAVY), bus(85.5, 36.2, 9.4, WHITE, NAVY), R(82.6, 50, 5.8, 17, WRED, 1), R(82.6, 69, 5.8, 14, NAVY, 1), C(85.5, 47.6, 0.8, "#7c8386"), caseBox(85, 150, 22, 50)];
-pair("washington/oznacnik", 170, 340, `Washington Metrobus stop without the operator's name and mark: the flag 36 x 18 in (91 x 46 cm; WMATA 2009) of a white upright panel with a navy disc and a red and navy board, a schedule case, on a U-channel post; the board's bottom edge at 2.5 m. ${NOTE}`,
+    R(25, 44, 52, 42, "#7c8386", 2), R(25.7, 44.7, 51, 40.6, "#4a5f72", 1.6), R(30, 50, 24, 4.4, WHITE, 1), R(30, 59, 30, 9, WHITE, 1.5), R(30, 73, 26, 2.6, "#b9c4cd", 1), R(30, 78.5, 17, 2.4, "#b9c4cd", 1),
+    R(74, 28, 23, 61, "#7c8386", 2.4), R(74.8, 28.8, 21.4, 59.4, WHITE, 2), R(92, 28.8, 4.2, 59.4, "#dcddd9", 2), bus(85, 42, 14, "#3b4146", WHITE), R(79, 56, 12, 2.4, "#8f9699", 1), R(79, 61.5, 12, 2.4, "#8f9699", 1), R(79, 67, 8, 2.4, "#8f9699", 1), caseBox(85, 150, 22, 50)];
+pair("washington/oznacnik", 170, 340, `Washington Metrobus stop without the operator's name and mark: a flag 72 x 61 cm (the real one is 36 x 18 in, WMATA 2009) of a plain white upright panel with a generic bus pictogram and a plain slate board, without the disc, the lettering and the second colour of the real one, a schedule case, on a U-channel post; the board's bottom edge at 2.5 m. ${NOTE}`,
   dcPost);
-// New York: a disc on a dark green pole, a red band in it, route plates to both sides under it, the timetable box.
-const NYB = "#1f3f87", NYG = ["#40604f", "#2d483b", "#678a77"];
-pair("newyork/oznacnik", 90, 340, `New York bus stop: a blue disc with a red lower band (about 50 cm, estimated from photos), plates of the destinations and routes under it, a four-sided timetable case at the eye's height, on a dark green pole; 3.4 m. No agency's mark. ${NOTE}`,
-  [tube(45, 46, 3.2, NYG), C(45, 26, 25.4, "#22304f"), C(45, 26, 24.6, NYB), P("M21.6 33.6 A24.6 24.6 0 0 0 68.4 33.6 Z", WRED), L("M21.6 33.6 H68.4", WHITE, 1.2), bus(45, 20, 22, WHITE, NYB), R(33, 38.4, 24, 3.2, WHITE, 1), R(38, 43.8, 14, 2.2, "#f3d3d8", 1),
-    R(4, 58, 37, 22, NYB, 1.5), R(8, 62, 24, 3, WHITE, 1), R(8, 68, 28, 2, "#a9b6d6"), R(8, 73, 20, 2, "#a9b6d6"), R(3.4, 79, 38.2, 17.6, "#7c8386", 1), R(4.2, 80, 36.6, 15.8, WHITE, 0.6), R(8, 85, 22, 2.6, "#2a2b2a"), R(8, 90, 16, 2, "#9a9b9c"), R(49, 58, 28, 19, NYB, 1.5), R(53, 62, 15, 4.4, WHITE, 1), R(53, 70, 11, 3, "#a9b6d6"),
-    R(35, 158, 20, 74, "#8f9699", 1.5), R(36.5, 161, 13, 68, WHITE), P("M49.5 161 L54 163 V227 L49.5 229 Z", "#d5d8d8"), R(38, 164, 7, 4, NYB), L("M40 174 V222 M40 176 H47 M40 190 H47 M40 204 H47 M40 218 H47", "#3a63b0", 1.2), R(33.5, 155, 23, 3.4, "#6f7679", 1), R(33.5, 232, 23, 3.4, "#6f7679", 1), R(40.4, 334, 9.2, 6, NYG[1])]);
-// Toronto: the wrap on a pole, white between red bands with the routes' red boxes.
-const ttc = (x, y1, pict) => [tube(x, 100, 6.5, GALV, y1), R(x - 12, 14, 24, 152, "#8f9699", 2.4), R(x - 11.4, 14.6, 22.8, 150.8, WHITE, 2), R(x + 4.6, 14.6, 6.8, 150.8, "#d5d6d2", 2), R(x - 11.4, 14.6, 2.2, 150.8, "#e3e4e0", 2),
-  P(`M${x - 11.4} 44 V16.6 Q${x - 11.4} 14.6 ${x - 9} 14.6 H${x + 9} Q${x + 11.4} 14.6 ${x + 11.4} 16.6 V44 Z`, "#d0202e"), P(`M${x + 4.6} 14.6 H${x + 9} Q${x + 11.4} 14.6 ${x + 11.4} 16.6 V44 H${x + 4.6} Z`, "#a51822"), P(`M${x - 11.4} 136 H${x + 11.4} V165.4 H${x - 11.4} Z`, "#d0202e"), P(`M${x + 4.6} 136 H${x + 11.4} V165.4 H${x + 4.6} Z`, "#a51822"), pict,
-  [49, 65, 81].map((y) => [R(x - 9.4, y, 18.8, 14.6, "#d0202e", 2.2), R(x - 5, y + 4, 10, 6.6, WHITE, 1)]), R(x - 9, 124, 18, 8, "#2a2b2a", 0.8), R(x - 7, 127, 14, 1.8, WHITE), R(x - 6.5, 146, 13, 11, "#1d5fa8", 1), R(x - 4, 149.6, 8, 3.6, WHITE, 1), R(x - 9, y1 - 6, 18, 6, GALV[1])];
-pair("toronto/oznacnik", 50, 340, `Toronto stop pole: a white wrap between two red bands with red boxes of the routes (1.5 m high, 24 cm, estimated from photos), on a steel pole 13 cm; 3.3 m. No operator's mark. ${NOTE}`, ttc(25, 340, bus(25, 30, 17, WHITE, "#d0202e")));
-pair("toronto/oznacnik-tram", 50, 340, `Toronto streetcar stop pole: as the bus stop's, with a streetcar pictogram. ${NOTE}`, ttc(25, 340, tram(25, 29, 16, WHITE, "#d0202e")));
-// Boston: a round-topped panel, black cap, yellow, red foot.
+// New York: a plain sign on a dark green pole (no disc, no red band: Bára 25. 11. 2026), route plates to both sides under it, the timetable box.
+const NYG = ["#40604f", "#2d483b", "#678a77"];
+pair("newyork/oznacnik", 90, 340, `New York bus stop, simplified: a plain blue rounded square with a generic bus pictogram (not the operator's round sign), plates of destinations and routes under it, a timetable case at the eye's height, on a dark green pole; 3.4 m. ${NOTE}`,
+  [tube(45, 46, 3.2, NYG), R(24, 4, 42, 48, "#7c8386", 4), R(25, 5, 40, 46, "#2a5c9c", 3.2), bus(45, 25, 25, WHITE, "#2a5c9c"), R(33, 43, 24, 3, WHITE, 1),
+    R(8, 58, 33, 20, "#4a5358", 1.5), R(12, 62, 20, 3, WHITE, 1), R(12, 68, 24, 2, "#b9bfc2"), R(12, 73, 17, 2, "#b9bfc2"), R(7.4, 79, 34.2, 17.6, "#7c8386", 1), R(8.2, 80, 32.6, 15.8, WHITE, 0.6), R(12, 85, 20, 2.6, "#2a2b2a"), R(12, 90, 15, 2, "#9a9b9c"), R(49, 58, 26, 18, "#4a5358", 1.5), R(53, 62, 14, 4.4, WHITE, 1), R(53, 70, 10, 3, "#b9bfc2"),
+    R(35, 158, 20, 74, "#8f9699", 1.5), R(36.5, 161, 13, 68, WHITE), P("M49.5 161 L54 163 V227 L49.5 229 Z", "#d5d8d8"), R(38, 164, 7, 4, "#2a5c9c"), L("M40 174 V222 M40 176 H47 M40 190 H47 M40 204 H47 M40 218 H47", "#6f7679", 1.2), R(33.5, 155, 23, 3.4, "#6f7679", 1), R(33.5, 232, 23, 3.4, "#6f7679", 1), R(40.4, 334, 9.2, 6, NYG[1])]);
+// Toronto: a plain sleeve on a pole, one coloured head with the pictogram, grey route boxes (no red foot: Bára 25. 11. 2026).
+const ttc = (x, y1, pict) => [tube(x, 100, 6.5, GALV, y1), R(x - 12, 14, 24, 100, "#8f9699", 2.4), R(x - 11.4, 14.6, 22.8, 98.8, WHITE, 2), R(x + 4.6, 14.6, 6.8, 98.8, "#d5d6d2", 2), R(x - 11.4, 14.6, 2.2, 98.8, "#e3e4e0", 2),
+  P(`M${x - 11.4} 46 V16.6 Q${x - 11.4} 14.6 ${x - 9} 14.6 H${x + 9} Q${x + 11.4} 14.6 ${x + 11.4} 16.6 V46 Z`, "#b5303a"), P(`M${x + 4.6} 14.6 H${x + 9} Q${x + 11.4} 14.6 ${x + 11.4} 16.6 V46 H${x + 4.6} Z`, "#93252e"), pict,
+  [53, 69].map((y) => [R(x - 8, y, 16, 11, "#6f7679", 1.5), R(x - 5, y + 3.6, 10, 3.6, WHITE, 0.8)]), R(x - 8, 90, 16, 2, "#9a9b9c"), R(x - 8, 96, 12, 2, "#9a9b9c"), R(x - 9, y1 - 6, 18, 6, GALV[1])];
+pair("toronto/oznacnik", 50, 340, `Toronto stop pole: a plain white sleeve (1.0 m high, 24 cm) with one red head, a generic pictogram and grey route boxes, simplified from the real one, on a steel pole 13 cm; 3.3 m. No operator's mark. ${NOTE}`, ttc(25, 340, bus(25, 30, 17, WHITE, "#b5303a")));
+pair("toronto/oznacnik-tram", 50, 340, `Toronto streetcar stop pole: as the bus stop's, with a streetcar pictogram. ${NOTE}`, ttc(25, 340, tram(25, 29, 16, WHITE, "#b5303a")));
+// Boston: a plain yellow panel.
 const YEL = "#f0a222";
-pair("boston/oznacnik", 50, 340, `Boston bus stop: a round-topped yellow panel 32 x 92 cm (estimated from photos) with a black cap and a red foot, on a steel post; its bottom edge at 2.3 m. No agency's mark. ${NOTE}`,
-  [tube(25, 30, 2.9, GALV), P("M8 108 V32 A17 17 0 0 1 42 32 V108 Q42 111 39 111 H11 Q8 111 8 108 Z", "#2a2b2a"), P("M9 107.6 V32 A16 16 0 0 1 41 32 V107.6 Q41 110 38.6 110 H11.4 Q9 110 9 107.6 Z", WHITE), P("M10.2 98 V42 H39.8 V98 Z", YEL), P("M10.2 41 V32 A14.8 14.8 0 0 1 39.8 32 V41 Z", "#1c1d1c"), P("M10.2 98 H39.8 V107.4 Q39.8 108.8 38.4 108.8 H11.6 Q10.2 108.8 10.2 107.4 Z", WRED), P("M36 42 H39.8 V98 H36 Z", "#d99a1c"), bus(25, 31, 18.5, YEL, "#1c1d1c"), C(25, 66, 1.1, "#7c5a12"), C(25, 94, 1.1, "#7c5a12"),
-    R(13.4, 47, 10, 5.4, "#1c1d1c", 0.8), R(26, 47.4, 9, 1.8, "#1c1d1c"), R(26, 51, 7, 1.4, "#1c1d1c"), R(13.4, 56, 10, 5.4, "#1c1d1c", 0.8), R(26, 56.4, 9, 1.8, "#1c1d1c"), R(26, 60, 6, 1.4, "#1c1d1c"), R(13.4, 72, 21, 2, "#6b5115"), R(13.4, 78, 15, 2, "#6b5115"), R(14, 101, 22, 2.2, WHITE), R(18, 105, 14, 1.6, "#f3d3d8"), R(20.6, 334, 8.8, 6, GALV[1])]);
+pair("boston/oznacnik", 50, 340, `Boston bus stop: a plain yellow panel 32 x 94 cm (estimated from photos) with a generic bus pictogram, without the real sign's round top, cap and mark, on a steel post; its bottom edge at 2.3 m. No agency's mark. ${NOTE}`,
+  [tube(25, 30, 2.9, GALV), R(8, 15, 34, 96, "#6f7679", 5), R(9, 16, 32, 94, WHITE, 4), R(10.2, 17.4, 29.6, 91.4, YEL, 3), R(36, 18, 3.8, 90, "#d99a1c", 2), bus(24.4, 31, 19, "#2a2b2a", YEL), R(13.4, 47, 10, 5.4, "#1c1d1c", 0.8), R(26, 47.4, 9, 1.8, "#1c1d1c"), R(26, 51, 7, 1.4, "#1c1d1c"), R(13.4, 56, 10, 5.4, "#1c1d1c", 0.8), R(26, 56.4, 9, 1.8, "#1c1d1c"), R(26, 60, 6, 1.4, "#1c1d1c"), R(13.4, 72, 21, 2, "#6b5115"), R(13.4, 78, 15, 2, "#6b5115"), R(13.4, 98, 21, 2.2, "#6b5115"), R(20.6, 334, 8.8, 6, GALV[1])]);
 // San Francisco: a dark panel on the side of a round pole.
-pair("sanfrancisco/oznacnik", 100, 340, `San Francisco stop: a dark grey panel 40 x 105 cm (estimated from photos) with a red field and the rows of routes, at the side of a galvanised pole 11 cm; 3.3 m. No operator's mark. ${NOTE}`,
-  [R(5, 26, 41, 108, "#33363f", 1.5), R(5, 26, 41, 46, "#c5203f", 1.5), bus(25.5, 48, 25, WHITE, "#c5203f"), R(11, 64, 29, 3.4, WHITE, 1), R(8.6, 77, 8.6, 8.6, "#3f8fc9", 4.3), R(20, 78, 18, 2.4, WHITE), R(20, 82.6, 13, 1.6, "#a7abb5"), R(5, 89, 41, 13, "#c5203f"), R(8.6, 92, 9.4, 6.6, WHITE, 1), R(21, 92.6, 18, 2, WHITE), R(21, 96.4, 12, 1.6, "#f3d3d8"), R(8.6, 105, 9.4, 6.6, WHITE, 1), R(21, 105.6, 18, 2, WHITE), R(21, 109.4, 14, 1.6, "#a7abb5"), R(8.6, 119, 30, 2, "#8b8f99"), R(8.6, 125, 20, 2, "#8b8f99"),
-    tube(50, 12, 5.6, GALV), P("M44.4 14 Q50 7 55.6 14 Z", GALV[1]), R(44, 34, 12, 3, "#6f7679"), R(44, 122, 12, 3, "#6f7679"), R(44.4, 142, 11.2, 22, WHITE), R(44.4, 147, 11.2, 4, WRED), R(52.2, 142, 3.4, 22, "rgba(0,0,0,.15)"), R(42, 334, 16, 6, GALV[1])]);
+pair("sanfrancisco/oznacnik", 100, 340, `San Francisco stop: a dark grey panel 40 x 105 cm (estimated from photos) with a plain light field, a generic bus pictogram and the rows of routes, at the side of a galvanised pole 11 cm; 3.3 m. No operator's mark. ${NOTE}`,
+  [R(5, 26, 41, 108, "#33363f", 1.5), R(5, 26, 41, 46, "#e6e6e1", 1.5), bus(25.5, 46, 25, "#33363f", "#e6e6e1"), R(11, 64, 29, 3, "#8b8f99", 1), R(8.6, 78, 9.4, 6.6, WHITE, 1), R(20, 78, 18, 2.4, WHITE), R(20, 82.6, 13, 1.6, "#a7abb5"), R(5, 89, 41, 13, "#a8505c"), R(8.6, 92, 9.4, 6.6, WHITE, 1), R(21, 92.6, 18, 2, WHITE), R(21, 96.4, 12, 1.6, "#f3d3d8"), R(8.6, 105, 9.4, 6.6, WHITE, 1), R(21, 105.6, 18, 2, WHITE), R(21, 109.4, 14, 1.6, "#a7abb5"), R(8.6, 119, 30, 2, "#8b8f99"), R(8.6, 125, 20, 2, "#8b8f99"),
+    tube(50, 12, 5.6, GALV), P("M44.4 14 Q50 7 55.6 14 Z", GALV[1]), R(44, 34, 12, 3, "#6f7679"), R(44, 122, 12, 3, "#6f7679"), R(44.4, 142, 11.2, 22, WHITE), R(52.2, 142, 3.4, 22, "rgba(0,0,0,.15)"), R(42, 334, 16, 6, GALV[1])]);
 
 /* ---------- shelters ---------- */
 const DKA = ["#6b7276", "#50575a", "#8c9497"];
@@ -188,8 +187,9 @@ const DKA = ["#6b7276", "#50575a", "#8c9497"];
 const sedum = fs.readFileSync(new URL("praha/transit-shelter-green-left.svg", PUB), "utf8").match(/<!-- rozchodníky[\s\S]*?(?=\s*<!-- obrubový)/)[0].replace(/<!--[\s\S]*?-->/g, "");
 const post = (x, y0, w = 8, c = DKA) => [R(x, y0, w, 360 - y0, c[0]), R(x + w * 0.65, y0, w * 0.35, 360 - y0, c[1]), R(x, y0, w * 0.2, 360 - y0, c[2])];
 const US_STOP = ['<g transform="translate(219 20)">', usPost(25, bus(25, 43, 17, WHITE, "#1d5fa8"), 340), "</g>"];
-const DC_STOP = ['<g transform="translate(165 20)">', dcPost, "</g>"];
-const shelter = (green, stop = US_STOP) => [
+const DC_STOP = ['<g transform="translate(167 20)">', dcPost, "</g>"];
+// The roof to x = e (shorter by Washington's wide flag).
+const shelter = (green, stop = US_STOP, e = 196) => { const yE = 108 - ((e - 10) * 8) / 186, plants = e === 196 ? sedum : sedum.split("\n").filter((l) => !(+(l.match(/(?:d="M|cx=")([\d.]+)/)?.[1] ?? 0) > e - 20)).join("\n"); return [
   // the end wall's glass in clamps, the bench within
   R(31, 118, 127, 228, GLASS), P("M31 300 L124 118 H154 L31 346 Z", "#e6eeec"), P("M92 346 L158 216 V228 L99 346 Z", "#e6eeec"),
   R(30, 256, 7, 4, "#454b4e"), P("M34 252 H39.6 L42 298 H36.4 Z", "#5d6468"), P("M34 252 H35.6 L38 298 H36.4 Z", "#8c9497"), R(34, 296, 56, 8, "#5d6468", 1.5), R(34, 296, 56, 2, "#8c9497", 1), R(40, 304, 7, 56, "#5d6468"), R(76, 304, 7, 56, "#5d6468"), R(44.6, 304, 2.4, 56, "#454b4e"), R(80.6, 304, 2.4, 56, "#454b4e"),
@@ -197,14 +197,14 @@ const shelter = (green, stop = US_STOP) => [
   R(31, 214, 127, 4, DKA[0]), R(31, 214, 127, 1.2, DKA[2]), R(31, 346, 127, 6, DKA[1]), R(31, 118, 127, 4, DKA[0]), post(22, 112, 9), post(158, 108, 9), [130, 330].map((y) => [R(29, y, 6, 8, DKA[1], 1), R(155, y, 6, 8, DKA[1], 1)]),
   R(18, 356, 17, 4, DKA[1]), R(154, 356, 17, 4, DKA[1]),
   // the roof
-  green ? ['<g transform="rotate(-2.46 103 104)">', P("M16 104 H188 V95 H16 Z", "#8a7458"), R(16, 101, 172, 3, "#4a4036"), '<g transform="translate(0 8) rotate(-0.64 103 88)">', sedum, "</g>", R(12, 95, 4.4, 11, DKA[0]), R(187, 95, 4.4, 11, DKA[0]), "</g>"]
-    : [P("M14 108 L192 100.2 Q104 84 14 108 Z", "#c3d6d4"), L("M14 108 Q104 84 192 100.2", "#8c9497", 2), L("M72 96.4 L73 105 M132 93.6 L133 102.6", "#8c9497", 1.2)],
-  P("M10 108 L196 100 V113 L10 121 Z", DKA[0]), P("M10 108 L196 100 V102.6 L10 110.6 Z", DKA[2]), P("M10 118.6 L196 110.6 V113 L10 121 Z", DKA[1]),
-  stop];
+  green ? ['<g transform="rotate(-2.46 103 104)">', R(16, 95, e - 24, 9, "#8a7458"), R(16, 101, e - 24, 3, "#4a4036"), '<g transform="translate(0 8) rotate(-0.64 103 88)">', plants, "</g>", R(12, 95, 4.4, 11, DKA[0]), R(e - 9, 95, 4.4, 11, DKA[0]), "</g>"]
+    : [P(`M14 108 L${e - 4} ${yE + 0.2} Q${(e + 12) / 2} 84 14 108 Z`, "#c3d6d4"), L(`M14 108 Q${(e + 12) / 2} 84 ${e - 4} ${yE + 0.2}`, "#8c9497", 2), L("M72 96.4 L73 105 M132 93.6 L133 102.6", "#8c9497", 1.2)],
+  P(`M10 108 L${e} ${yE} V${yE + 13} L10 121 Z`, DKA[0]), P(`M10 108 L${e} ${yE} V${yE + 2.6} L10 110.6 Z`, DKA[2]), P(`M10 118.6 L${e} ${yE + 10.6} V${yE + 13} L10 121 Z`, DKA[1]),
+  stop]; };
 pair("northamerica/transit-shelter", 270, 360, "North American bus shelter from its end: aluminium frame, glass walls, a low translucent vault on the roof's frame, a bench; 5 ft (1.5 m) deep, about 8 ft (2.5 m) high, back wall on the left, with the shared bus stop at the kerb. No advertisement.", shelter(false));
 pair("northamerica/transit-shelter-green", 270, 360, "The North American bus shelter with a planted roof (the planting of Prague's green shelter).", shelter(true));
-pair("washington/transit-shelter", 270, 360, "The North American bus shelter with the Washington bus stop at the kerb.", shelter(false, DC_STOP));
-pair("washington/transit-shelter-green", 270, 360, "The North American bus shelter with a planted roof and the Washington bus stop at the kerb.", shelter(true, DC_STOP));
+pair("washington/transit-shelter", 270, 360, "The North American bus shelter with the Washington bus stop at the kerb.", shelter(false, DC_STOP, 176));
+pair("washington/transit-shelter-green", 270, 360, "The North American bus shelter with a planted roof and the Washington bus stop at the kerb.", shelter(true, DC_STOP, 176));
 // Toronto: posts of tube, a curved glass roof, glass end wall.
 const TA = ["#a9afb2", "#858c90", "#c9ced0"];
 // The Prague planting bent along the roof's curve: each plant moved and turned to the arc's place.
@@ -219,7 +219,7 @@ const toShelter = (green) => [
   post(34, 106, 10, TA), post(144, 85, 10, TA), [134, 320].map((y) => [R(42, y + 0, 6, 8, TA[1], 1), R(140, y, 6, 8, TA[1], 1)]), P("M30 346 H48 L50 360 H28 Z", TA[0]), P("M42 346 H48 L50 360 H43 Z", TA[1]), P("M140 346 H158 L160 360 H138 Z", TA[0]), P("M152 346 H158 L160 360 H153 Z", TA[1]),
   P("M14 118 Q90 66 192 89 L192 92.4 Q92 70.6 15 121.6 Z", "#8ec4bd"), P("M14 118 Q90 66 192 89 V90.2 Q90 67.6 14.6 119.4 Z", "#c6e3dd"), L("M36 110 Q92 78 158 88", TA[1], 4),
   green ? [`<g transform="translate(0 3.5)">`, toGreen, "</g>"] : "",
-  '<g transform="translate(219 20)">', ttc(25, 340, bus(25, 30, 17, WHITE, "#d0202e")), "</g>"];
+  '<g transform="translate(219 20)">', ttc(25, 340, bus(25, 30, 17, WHITE, "#b5303a")), "</g>"];
 pair("toronto/transit-shelter", 270, 360, "Toronto street shelter (the coordinated street furniture of 2007) from its end: tubular posts on cast feet, glass walls, a curved glass roof, a timber bench; about 1.2 m between the posts, the roof 1.7 m, 2.7 m high (estimated from photos); with the Toronto stop pole at the kerb. No advertisement, no operator's mark.", toShelter(false));
 pair("toronto/transit-shelter-green", 270, 360, "The Toronto shelter with a planted roof.", toShelter(true));
 

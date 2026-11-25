@@ -44,12 +44,12 @@ function limitsUS(s, segs = [], i = -1) {
 }
 
 // The furniture of North America (northamerica/, Bára 25. 11. 2026; the plants of the swale and the reeds the Czech
-// ones), in Washington its globe lamp and its bus stop, also by the shelter. New York, Toronto, Boston and San Francisco have their pieces
+// ones), in Washington its bus stop, also by the shelter. New York, Toronto, Boston and San Francisco have their pieces
 // drawn (newyork/, toronto/, boston/, sanfrancisco/), for the time the app covers them.
 const PLANTS = new Set(["swale-plants", "reeds-left", "reeds-right"]);
 const northAmerica = Object.fromEntries(Object.entries(czechFurniture).map(([k, v]) => [k, PLANTS.has(k) ? v : `../northamerica/${TOWN_ART[k]}`]));
 const own = (keys) => Object.fromEntries(keys.map((k) => [k, TOWN_ART[k]]));
-const washington = { ...northAmerica, ...own(["lamp-modern-left", "lamp-modern-right", "stop-post-left", "stop-post-right",
+const washington = { ...northAmerica, ...own(["stop-post-left", "stop-post-right",
   "transit-shelter-01-left", "transit-shelter-01-right", "transit-shelter-green-left", "transit-shelter-green-right",
   // Its bus, Metrobus; no tram of its own: the streetcar closed on 31. 3. 2026.
   "bus-inbound", "bus-outbound"]) };

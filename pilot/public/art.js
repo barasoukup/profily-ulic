@@ -25,15 +25,6 @@ export const TROLLEY = { "trolleybus-inbound": "trolejbus-inbound", "trolleybus-
 // a state without its own.
 export const czechFurniture = Object.fromEntries(Object.entries(TOWN_ART).filter(([k]) => !k.startsWith("bus-")).map(([k, v]) => [k, `../cesko/${v}`]));
 
-// The street lamp's picture of a set (by art folder) where it is not the usual one: where its luminaire hangs (light, m),
-// the end of its top part and the start of its foot from the top of the picture (cut, foot, cm; between them the mast
-// stretches to a lamp's own height, profile.js), a post-top lamp (postTop: centred, no arm, drawn for every height).
-// The pictures wait for their cities with these: boston { light: 4.7, cut: 545, foot: 840, postTop: true },
-// sanfrancisco { light: 9.2, cut: 215, foot: 580, postTop: true, h: 985 }, newyork { light: 8.75 } (lamp-bishop: 6.6,
-// cut: 300, foot: 630).
-export const LAMP_PICTURES = { brno: { light: 7.4 }, washington: { light: 5.2, cut: 500, foot: 820, postTop: true } };
-export const LAMP_PICTURE = { cut: 300, foot: 800, h: 930, postTop: false };
-
 // The neutral tram and bus (generic/: no operator's livery, no logo; Bára 17. 11. 2026: "všude, kde nemáme
 // specifickou"): drawn in every set that has no tram or bus of its own, in place of Streetmix's. Trolleybuses and cars
 // stay Streetmix's.

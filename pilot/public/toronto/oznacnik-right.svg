@@ -1,36 +1,30 @@
 <svg viewBox="0 0 50 340" xmlns="http://www.w3.org/2000/svg">
-  <!-- Toronto stop pole: a white wrap between two red bands with red boxes of the routes (1.5 m high, 24 cm, estimated from photos), on a steel pole 13 cm; 3.3 m. No operator's mark. shade on the right (left half of the street); the bottom edge = the sidewalk, the middle = the post's axis. Mirror of the left one. 1 px = 1 cm. -->
+  <!-- Toronto stop pole: a plain white sleeve (1.0 m high, 24 cm) with one red head, a generic pictogram and grey route boxes, simplified from the real one, on a steel pole 13 cm; 3.3 m. No operator's mark. shade on the right (left half of the street); the bottom edge = the sidewalk, the middle = the post's axis. Mirror of the left one. 1 px = 1 cm. -->
   <g transform="matrix(-1 0 0 1 50 0)">
   <rect x="18.5" y="100" width="13" height="240" rx="2" fill="#b4b9bb"/>
   <rect x="27.27" y="100" width="4.23" height="240" rx="1" fill="#8f9699"/>
   <rect x="20.13" y="100" width="2.6" height="240" fill="#d0d4d5"/>
-  <rect x="13" y="14" width="24" height="152" rx="2.4" fill="#8f9699"/>
-  <rect x="13.6" y="14.6" width="22.8" height="150.8" rx="2" fill="#f4f4f0"/>
-  <rect x="29.6" y="14.6" width="6.8" height="150.8" rx="2" fill="#d5d6d2"/>
-  <rect x="13.6" y="14.6" width="2.2" height="150.8" rx="2" fill="#e3e4e0"/>
-  <path d="M13.6 44 V16.6 Q13.6 14.6 16 14.6 H34 Q36.4 14.6 36.4 16.6 V44 Z" fill="#d0202e"/>
-  <path d="M29.6 14.6 H34 Q36.4 14.6 36.4 16.6 V44 H29.6 Z" fill="#a51822"/>
-  <path d="M13.6 136 H36.4 V165.4 H13.6 Z" fill="#d0202e"/>
-  <path d="M29.6 136 H36.4 V165.4 H29.6 Z" fill="#a51822"/>
+  <rect x="13" y="14" width="24" height="100" rx="2.4" fill="#8f9699"/>
+  <rect x="13.6" y="14.6" width="22.8" height="98.8" rx="2" fill="#f4f4f0"/>
+  <rect x="29.6" y="14.6" width="6.8" height="98.8" rx="2" fill="#d5d6d2"/>
+  <rect x="13.6" y="14.6" width="2.2" height="98.8" rx="2" fill="#e3e4e0"/>
+  <path d="M13.6 46 V16.6 Q13.6 14.6 16 14.6 H34 Q36.4 14.6 36.4 16.6 V46 Z" fill="#b5303a"/>
+  <path d="M29.6 14.6 H34 Q36.4 14.6 36.4 16.6 V46 H29.6 Z" fill="#93252e"/>
   <rect x="16.5" y="21.93" width="17" height="14.45" rx="2.21" fill="#f4f4f0"/>
-  <rect x="18.37" y="26.09" width="13.26" height="5.1" rx="0.595" fill="#d0202e"/>
-  <rect x="20.41" y="23.2" width="9.18" height="1.61" rx="0.51" fill="#d0202e"/>
-  <circle cx="19.39" cy="33.91" r="1.1475" fill="#d0202e"/>
-  <circle cx="30.61" cy="33.91" r="1.1475" fill="#d0202e"/>
+  <rect x="18.37" y="26.09" width="13.26" height="5.1" rx="0.595" fill="#b5303a"/>
+  <rect x="20.41" y="23.2" width="9.18" height="1.61" rx="0.51" fill="#b5303a"/>
+  <circle cx="19.39" cy="33.91" r="1.1475" fill="#b5303a"/>
+  <circle cx="30.61" cy="33.91" r="1.1475" fill="#b5303a"/>
   <rect x="18.2" y="35.95" width="3.4" height="2.55" rx="0.765" fill="#f4f4f0"/>
   <rect x="28.4" y="35.95" width="3.4" height="2.55" rx="0.765" fill="#f4f4f0"/>
   <rect x="14.63" y="25.75" width="1.36" height="3.91" rx="0.595" fill="#f4f4f0"/>
   <rect x="34.01" y="25.75" width="1.36" height="3.91" rx="0.595" fill="#f4f4f0"/>
-  <rect x="15.6" y="49" width="18.8" height="14.6" rx="2.2" fill="#d0202e"/>
-  <rect x="20" y="53" width="10" height="6.6" rx="1" fill="#f4f4f0"/>
-  <rect x="15.6" y="65" width="18.8" height="14.6" rx="2.2" fill="#d0202e"/>
-  <rect x="20" y="69" width="10" height="6.6" rx="1" fill="#f4f4f0"/>
-  <rect x="15.6" y="81" width="18.8" height="14.6" rx="2.2" fill="#d0202e"/>
-  <rect x="20" y="85" width="10" height="6.6" rx="1" fill="#f4f4f0"/>
-  <rect x="16" y="124" width="18" height="8" rx="0.8" fill="#2a2b2a"/>
-  <rect x="18" y="127" width="14" height="1.8" fill="#f4f4f0"/>
-  <rect x="18.5" y="146" width="13" height="11" rx="1" fill="#1d5fa8"/>
-  <rect x="21" y="149.6" width="8" height="3.6" rx="1" fill="#f4f4f0"/>
+  <rect x="17" y="53" width="16" height="11" rx="1.5" fill="#6f7679"/>
+  <rect x="20" y="56.6" width="10" height="3.6" rx="0.8" fill="#f4f4f0"/>
+  <rect x="17" y="69" width="16" height="11" rx="1.5" fill="#6f7679"/>
+  <rect x="20" y="72.6" width="10" height="3.6" rx="0.8" fill="#f4f4f0"/>
+  <rect x="17" y="90" width="16" height="2" fill="#9a9b9c"/>
+  <rect x="17" y="96" width="12" height="2" fill="#9a9b9c"/>
   <rect x="16" y="334" width="18" height="6" fill="#8f9699"/>
   </g>
 </svg>
