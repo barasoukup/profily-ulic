@@ -46,8 +46,8 @@ Struktura je všude stejná: stát → město → zdroje (`docs/architecture-cou
   `city.country` zůstává kód ISO. Mimo `countries/` není žádná podmínka na stát.
 - **Město** je záznam v `city.js` (a modul `towns/<město>.js`, má-li vlastní zdroje); co nemá svého (ortofoto, značky,
   normy), dědí od státu. Zbytek státu je město `cesko`, `slovensko`, `austria`, mimo státy `cizina` (`towns/cizina.js`).
-  Slovenská a rakouská města (`city.js STATE_TOWNS`: Bratislava, Košice … Vídeň, Graz …) jsou města podle hranic obcí
-  (`mesta-sk.json`, `mesta-at.json`, `tools/build_towns_sk.mjs`, `build_towns_at.mjs`); texty, zdroje a normy mají od zbytku
+  Slovenská a rakouská města a Washington (`city.js STATE_TOWNS`: Bratislava, Košice … Vídeň, Graz …) jsou města podle hranic
+  (`mesta-sk.json`, `mesta-at.json`, `mesta-us.json`, `tools/build_towns_sk.mjs`, `build_towns_at.mjs`, `build_towns_us.mjs`); texty, zdroje a normy mají od zbytku
   státu, ilustrace své, má-li je stát nakreslené (`countries/<ISO>.js art`), jinak státu.
 - **Zdroj** s vlastním územím (pasport, čáry mapy města, mapa povrchů Vídně, značky Salcburku) má `area` (box, případně
   hranice obce, `places.js inArea`) a jeho modul ho uvádí v `AREAS`. `towns/index.js placeAt(lat, lon)` vrací stát,
@@ -435,11 +435,13 @@ hranice okresů z TIGERweb Census Bureau), zbytek USA je `closed_us` s hláškou
   podle cesty řezu, chráněná cyklostezka tam, kde ji má OSM (i uprostřed ulice), blok podle druhu a jen vyplněný; kde blok je, odhad stání
   podle pravidel je vypnutý (`noParkGuess`); `?ddot=0` vypne;
 - **uličky** z planimetrie jako plochy `service=alley` v prvcích OSM (ústí uličky = křižovatka, `derive.js`);
+- **domy** z odhadních tabulek CAMA (rok, podlaží, druh, zdivo podle pozemku pod domem; `evaluation/north-america-art/cama/ZPRAVA.md`),
+  2–3 dotazy na řez, nejdéle 3,5 s; `?cama=0` vypne;
 - **ortofoto** DC 2025 (`Ortho2025_WebMercator`, export v Web Mercatoru, jen nad Districtem podle hranice `mesta-us.json` a 60 m za ní: `lanes-ortho.js us-dc`)
   pro pruhy, model obrub a podklad mapy. Mimo DC v metru jen odhad z OSM.
 Normy DDOT (DEM 2023, Bicycle Facility Design Guide 2020) a NACTO jen oranžově (`evaluation/usa/NORMY.md`), stání 3 m na
-směr (IFC 503.2.1, 18 DCMR § 2405), bez řádku značek, bez paneláků, neutrální vozidla, český mobiliář, rakouské
-označníky. Hledání Photon v obdélníku metra. A/B a měření v `evaluation/usa/`.
+směr (IFC 503.2.1, 18 DCMR § 2405), bez řádku značek, bez paneláků, severoamerické domy, mobiliář a autobus Metrobus
+(`northamerica/`, `washington/`; `evaluation/north-america-art/`). Hledání Photon v obdélníku metra. A/B a měření v `evaluation/usa/`.
 
 Tři společné změny z pilotu (všechny státy, každá s vypínačem): ústí uličky (OSM `service=alley` a plochy uliček) je
 křižovatka (`?off=ulicky`); jamky stromů v chodníku, tedy pás zeleně do 1,3 m mezi chodníkem a obrubou, který na ortofotu
@@ -555,9 +557,11 @@ OSM church, chapel aj. kostel, OSM garage(s) a RÚIAN garáž garáž. Starý d�
 Podloubí jen podle dat (Bára): cesta OSM `covered=arcade|colonnade|building_arcade` přes řez u fasády (5 m před ní až
 8 m za ní, `derive.js`) → u jakéhokoli domu klenutý průchod v přízemí, v kartě „s podloubím (OSM)“. Věžák zvlášť nekreslíme: vysoký dům stejného stáří a využití vypadá po podlažích stejně (Bára).
 
+Severní Amerika má 14 vlastních vzhledů (`houses-america.js`, výběr `house-looks.js` `northAmericaLook`, USA i budoucí Kanada;
+`docs/house-types-north-america.md`, `evaluation/north-america-art/houses/ZPRAVA.md`); bez dat prostý řadový nebo rodinný dům.
 Vzhled domu čte všechny budovy OSM, i bez podlaží a výšky, ve všech státech (`?off=vsedomy` jen dřívější; `evaluation/all-buildings/ZPRAVA.md`);
 registr budov má přednost. Panelák jen z tvaru bloku bez podlaží a druhu se nedělá, dům v řadě bez podlaží je ve Flandrech cihlový městský.
-Sada mobiliáře smí mít vlastní lampu do 5 m (`lamp-post-top`, světlo `data-light` ve zvolené výšce, `profile.js postTopLamp`); zatím ji žádná nemá.
+Sada mobiliáře smí mít vlastní lampu do 5 m (`lamp-post-top`, světlo `data-light` ve zvolené výšce, `profile.js postTopLamp`): Washington svůj glóbus, Boston je připravený.
 
 ## Brno
 

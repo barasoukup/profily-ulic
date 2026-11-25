@@ -1,0 +1,41 @@
+<svg viewBox="0 0 370 1010" xmlns="http://www.w3.org/2000/svg">
+  <!-- North American streetcar overhead pole: one tapered galvanised steel tube 9.5 m, a pipe bracket held by a tie and a knee, dark insulators, the contact wire at 5.9 m, 2.86 m from the pole (as the other sets' poles). Foot at x = 348. 1 px = 1 cm. -->
+  
+  <path d="M344 214 L120 356" stroke="#8f9699" stroke-width="3" fill="none" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M344 300 C300 312 270 330 250 357" stroke="#8f9699" stroke-width="5" fill="none" stroke-linecap="butt" stroke-linejoin="round"/>
+  <rect x="42" y="355" width="300" height="8" fill="#b4b9bb"/>
+  <rect x="42" y="360" width="300" height="3" fill="#8f9699"/>
+  <rect x="38" y="354" width="5" height="10" rx="2" fill="#8f9699"/>
+  <path d="M318 230.5 L306 238" stroke="#6b4a36" stroke-width="7" fill="none" stroke-linecap="butt" stroke-linejoin="round"/>
+  <rect x="296" y="352.5" width="14" height="13" rx="2" fill="#6b4a36"/>
+  <rect x="114" y="352" width="10" height="14" rx="1" fill="#8f9699"/>
+  <rect x="58" y="363" width="8" height="16" rx="2" fill="#6b4a36"/>
+  <path d="M62 379V417" stroke="#55595b" stroke-width="2.5" fill="none" stroke-linecap="butt" stroke-linejoin="round"/>
+  <rect x="55.5" y="415" width="13" height="6" rx="1" fill="#55595b"/>
+  <circle cx="62" cy="424" r="3.4" fill="#2f3234"/>
+  <path d="M339 62 H357 L362.5 946 H333.5 Z" fill="#b4b9bb"/>
+  <path d="M350.7 62 H357 L362.5 946 H352.35 Z" fill="#8f9699"/>
+  <path d="M341.52 62 H344.4 L342.2 946 H337.56 Z" fill="#d0d4d5"/>
+  <path d="M339 62 Q339 54 348 53 Q357 54 357 62 Z" fill="#b4b9bb"/>
+  <path d="M351 53.4 Q357 55 357 62 H350.7 Z" fill="#8f9699"/>
+  <rect x="335.5" y="350" width="25" height="18" rx="2" fill="#b4b9bb"/>
+  <rect x="351" y="350" width="9.5" height="18" rx="2" fill="#8f9699"/>
+  <rect x="337" y="294" width="22" height="12" rx="2" fill="#b4b9bb"/>
+  <rect x="351" y="294" width="8" height="12" rx="2" fill="#8f9699"/>
+  <rect x="246" y="352" width="10" height="14" rx="1" fill="#8f9699"/>
+  <rect x="337" y="207" width="22" height="12" rx="2" fill="#b4b9bb"/>
+  <rect x="351" y="207" width="8" height="12" rx="2" fill="#8f9699"/>
+  
+  <path d="M333 946 H363 L369 978 H327 Z" fill="#b4b9bb"/>
+  <path d="M353 946 H363 L369 978 H355 Z" fill="#8f9699"/>
+  <rect x="326" y="978" width="44" height="32" fill="#b4b9bb"/>
+  <rect x="355" y="978" width="15" height="32" fill="#8f9699"/>
+  <rect x="324" y="975" width="46" height="5" rx="1" fill="#8f9699"/>
+  <rect x="324" y="975" width="30" height="1.6" fill="#d0d4d5"/>
+  <rect x="340" y="880" width="9" height="24" rx="2" fill="#8f9699"/>
+  <rect x="341" y="881" width="7" height="22" rx="2" fill="#b4b9bb"/>
+  <rect x="339" y="720" width="12" height="22" rx="1" fill="#e9c53a"/>
+  <rect x="341.5" y="724" width="7" height="2.4" fill="#2f3234"/>
+  <rect x="341.5" y="729" width="7" height="2.4" fill="#2f3234"/>
+  <rect x="341.5" y="734" width="7" height="2.4" fill="#2f3234"/>
+</svg>

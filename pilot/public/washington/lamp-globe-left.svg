@@ -1,0 +1,49 @@
+<svg data-light="520" viewBox="0 0 140 930" xmlns="http://www.w3.org/2000/svg">
+  <!-- Washington Globe (Washington Upright No. 16, DDOT Streetlight Policy and Design Guidelines 2013): 16 ft fluted post, black, on a 24 in base, one opal globe; 5.6 m overall, the light at 5.2 m. Centred (post-top). 1 px = 1 cm. -->
+  <path d="M60.5 385 L62 379 H78 L79.5 385 Z" fill="#34393c"/>
+  <rect x="60.5" y="383" width="14" height="1.4" fill="#666e72"/>
+  <rect x="64.5" y="373" width="11" height="7" rx="1.5" fill="#34393c"/>
+  <path d="M65 373 Q66 366 69 365 H71 Q74 366 75 373 Z" fill="#34393c"/>
+  <rect x="68.4" y="357" width="3.2" height="9" rx="1.4" fill="#34393c"/>
+  <circle cx="70" cy="357.5" r="2.4" fill="#34393c"/>
+  <path d="M57 441 H83 C90 431 93.5 419 91.5 405 C90 395 84 388 79 383 H61 C56 388 50 395 48.5 405 C46.5 419 50 431 57 441 Z" fill="#f1ecd9"/>
+  <path d="M83 441 C90 431 93.5 419 91.5 405 C90 395 84 388 79 383 C86 399 85 423 76 441 Z" fill="#ded6ba"/>
+  <path d="M57 393 Q51 403 53.5 417 Q55.5 403 60 392 Z" fill="#fbf9f0"/>
+  <rect x="53" y="439" width="34" height="7" rx="1" fill="#34393c"/>
+  <rect x="75.1" y="439" width="11.9" height="7" rx="1" fill="#23272a"/>
+  <rect x="56.4" y="439" width="8.5" height="1.4" fill="#666e72"/>
+  <path d="M56 446 H84 Q82 456 77 462 H63 Q58 456 56 446 Z" fill="#34393c"/>
+  <path d="M75 446 H84 Q82 456 77 462 H73 Z" fill="#23272a"/>
+  <rect x="58.5" y="462" width="23" height="5" rx="1" fill="#34393c"/>
+  <rect x="73.45" y="462" width="8.05" height="5" rx="1" fill="#23272a"/>
+  <rect x="60.8" y="462" width="5.75" height="1.4" fill="#666e72"/>
+  <rect x="59.5" y="480" width="21" height="4" rx="1" fill="#34393c"/>
+  <rect x="73.15" y="480" width="7.35" height="4" rx="1" fill="#23272a"/>
+  <rect x="61.6" y="480" width="5.25" height="1.4" fill="#666e72"/>
+  <path d="M63 467 H77 L77.5 480 H62.5 Z" fill="#34393c"/>
+  <path d="M72.1 467 H77 L77.5 480 H72.25 Z" fill="#23272a"/>
+  <path d="M64.96 467 H67.2 L67 480 H64.6 Z" fill="#666e72"/>
+  <path d="M62.5 484 H77.5 L80 832 H60 Z" fill="#34393c"/>
+  <path d="M72.25 484 H77.5 L80 832 H73 Z" fill="#23272a"/>
+  <path d="M64.6 484 H67 L66 832 H62.8 Z" fill="#666e72"/>
+  <path d="M69.25 484 L69 832" stroke="#191c1e" stroke-width="1" fill="none" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M74.65 484 L76.2 832" stroke="#191c1e" stroke-width="1" fill="none" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M69 486 L68 830" stroke="#666e72" stroke-width="1.1" fill="none" stroke-linecap="butt" stroke-linejoin="round"/>
+  <rect x="56" y="830" width="28" height="6" rx="1" fill="#34393c"/>
+  <rect x="74.2" y="830" width="9.8" height="6" rx="1" fill="#23272a"/>
+  <rect x="58.8" y="830" width="7" height="1.4" fill="#666e72"/>
+  <path d="M58 836 H82 Q90 848 90 862 H50 Q50 848 58 836 Z" fill="#34393c"/>
+  <path d="M74 836 H82 Q90 848 90 862 H76 Z" fill="#23272a"/>
+  <path d="M56 845 Q53 852 53 859 H57 Q57 851 60 845 Z" fill="#666e72"/>
+  <rect x="46" y="860" width="48" height="6" rx="1" fill="#34393c"/>
+  <rect x="77.2" y="860" width="16.8" height="6" rx="1" fill="#23272a"/>
+  <rect x="50.8" y="860" width="12" height="1.4" fill="#666e72"/>
+  <path d="M48 866 H92 L98 904 H42 Z" fill="#34393c"/>
+  <path d="M78 866 H92 L98 904 H80 Z" fill="#23272a"/>
+  <path d="M60 867 L57 903" stroke="#666e72" stroke-width="1.4" fill="none" stroke-linecap="butt" stroke-linejoin="round"/>
+  <rect x="40" y="902" width="60" height="8" rx="1" fill="#34393c"/>
+  <rect x="79" y="902" width="21" height="8" rx="1" fill="#23272a"/>
+  <rect x="39.5" y="910" width="61" height="20" fill="#34393c"/>
+  <rect x="79" y="910" width="21.5" height="20" fill="#23272a"/>
+  <rect x="39.5" y="910" width="39" height="1.6" fill="#666e72"/>
+</svg>

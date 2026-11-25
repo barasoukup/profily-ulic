@@ -824,6 +824,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
         // The buildings of Copenhagen or Aarhus (towns/denmark.js).
         // The buildings of ETAK (towns/estonia.js).
         if (p.etak) state.cut.sources.eeEtak = true;
+        // Washington's assessment tables that told of the house (towns/usa.js).
+        if (p.usCama) state.cut.sources.usCama = true;
         if (p.dkBuild) state.cut.sources.dkBuild = state.cut.sources.dkBuild && state.cut.sources.dkBuild !== p.dkBuild ? "both" : p.dkBuild;
         // What the building is for (ZBGIS, Slovakia), where OSM says no more than "a building".
         if (p.type && (!info.type || info.type === "yes")) info.type = p.type;

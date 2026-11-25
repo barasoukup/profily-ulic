@@ -1,0 +1,57 @@
+<svg viewBox="0 0 270 360" xmlns="http://www.w3.org/2000/svg">
+  <!-- Toronto street shelter (the coordinated street furniture of 2007) from its end: tubular posts on cast feet, glass walls, a curved glass roof, a timber bench; about 1.2 m between the posts, the roof 1.7 m, 2.7 m high (estimated from photos); with the Toronto stop pole at the kerb. No advertisement, no operator's mark. 1 px = 1 cm. -->
+  <rect x="44" y="120" width="100" height="224" fill="#d7e1e0"/>
+  <rect x="44" y="341" width="100" height="4" fill="#858c90"/>
+  <path d="M44 300 L128 120 H144 L44 340 Z" fill="#e1edee"/>
+  <rect x="44" y="140" width="100" height="13" fill="#3f8fb8"/>
+  <rect x="44" y="222" width="100" height="2.6" fill="#858c90"/>
+  <rect x="40" y="300" width="46" height="5" fill="#5a3f33"/>
+  <rect x="40" y="300" width="46" height="1.5" fill="#7a5a4a"/>
+  <rect x="56" y="305" width="14" height="55" fill="#858c90"/>
+  <rect x="56" y="305" width="4" height="55" fill="#a9afb2"/>
+  <rect x="34" y="106" width="10" height="254" fill="#a9afb2"/>
+  <rect x="40.5" y="106" width="3.5" height="254" fill="#858c90"/>
+  <rect x="34" y="106" width="2" height="254" fill="#c9ced0"/>
+  <rect x="144" y="85" width="10" height="275" fill="#a9afb2"/>
+  <rect x="150.5" y="85" width="3.5" height="275" fill="#858c90"/>
+  <rect x="144" y="85" width="2" height="275" fill="#c9ced0"/>
+  <rect x="42" y="134" width="6" height="8" rx="1" fill="#858c90"/>
+  <rect x="140" y="134" width="6" height="8" rx="1" fill="#858c90"/>
+  <rect x="42" y="320" width="6" height="8" rx="1" fill="#858c90"/>
+  <rect x="140" y="320" width="6" height="8" rx="1" fill="#858c90"/>
+  <path d="M30 346 H48 L50 360 H28 Z" fill="#a9afb2"/>
+  <path d="M42 346 H48 L50 360 H43 Z" fill="#858c90"/>
+  <path d="M140 346 H158 L160 360 H138 Z" fill="#a9afb2"/>
+  <path d="M152 346 H158 L160 360 H153 Z" fill="#858c90"/>
+  <path d="M14 118 Q90 66 192 89 L192 92.4 Q92 70.6 15 121.6 Z" fill="#8ec4bd"/>
+  <path d="M14 118 Q90 66 192 89 V90.2 Q90 67.6 14.6 119.4 Z" fill="#c6e3dd"/>
+  <path d="M36 110 Q92 78 158 88" stroke="#858c90" stroke-width="4" fill="none" stroke-linecap="butt" stroke-linejoin="round"/>
+  
+  <g transform="translate(219 20)">
+  <rect x="18.5" y="100" width="13" height="240" rx="2" fill="#b4b9bb"/>
+  <rect x="27.27" y="100" width="4.23" height="240" rx="1" fill="#8f9699"/>
+  <rect x="20.13" y="100" width="2.6" height="240" fill="#d0d4d5"/>
+  <rect x="13" y="14" width="24" height="100" rx="2.4" fill="#8f9699"/>
+  <rect x="13.6" y="14.6" width="22.8" height="98.8" rx="2" fill="#f4f4f0"/>
+  <rect x="29.6" y="14.6" width="6.8" height="98.8" rx="2" fill="#d5d6d2"/>
+  <rect x="13.6" y="14.6" width="2.2" height="98.8" rx="2" fill="#e3e4e0"/>
+  <path d="M13.6 46 V16.6 Q13.6 14.6 16 14.6 H34 Q36.4 14.6 36.4 16.6 V46 Z" fill="#b5303a"/>
+  <path d="M29.6 14.6 H34 Q36.4 14.6 36.4 16.6 V46 H29.6 Z" fill="#93252e"/>
+  <rect x="16.5" y="21.93" width="17" height="14.45" rx="2.21" fill="#f4f4f0"/>
+  <rect x="18.37" y="26.09" width="13.26" height="5.1" rx="0.595" fill="#b5303a"/>
+  <rect x="20.41" y="23.2" width="9.18" height="1.61" rx="0.51" fill="#b5303a"/>
+  <circle cx="19.39" cy="33.91" r="1.1475" fill="#b5303a"/>
+  <circle cx="30.61" cy="33.91" r="1.1475" fill="#b5303a"/>
+  <rect x="18.2" y="35.95" width="3.4" height="2.55" rx="0.765" fill="#f4f4f0"/>
+  <rect x="28.4" y="35.95" width="3.4" height="2.55" rx="0.765" fill="#f4f4f0"/>
+  <rect x="14.63" y="25.75" width="1.36" height="3.91" rx="0.595" fill="#f4f4f0"/>
+  <rect x="34.01" y="25.75" width="1.36" height="3.91" rx="0.595" fill="#f4f4f0"/>
+  <rect x="17" y="53" width="16" height="11" rx="1.5" fill="#6f7679"/>
+  <rect x="20" y="56.6" width="10" height="3.6" rx="0.8" fill="#f4f4f0"/>
+  <rect x="17" y="69" width="16" height="11" rx="1.5" fill="#6f7679"/>
+  <rect x="20" y="72.6" width="10" height="3.6" rx="0.8" fill="#f4f4f0"/>
+  <rect x="17" y="90" width="16" height="2" fill="#9a9b9c"/>
+  <rect x="17" y="96" width="12" height="2" fill="#9a9b9c"/>
+  <rect x="16" y="334" width="18" height="6" fill="#8f9699"/>
+  </g>
+</svg>

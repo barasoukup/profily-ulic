@@ -4,6 +4,7 @@
 // lanes and parking), the orthophoto DC's of 2025 (lanes-ortho.js "us", only over DC). Sources and norms:
 // evaluation/usa/ (NORMY.md), the pilot evaluation/usa-dc/.
 import { t } from "../i18n.js";
+import { northAmericaLook, northAmericaDetails } from "../house-looks.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
 import { cycleTrackLimits } from "./cycletrack.js";
@@ -42,9 +43,19 @@ function limitsUS(s, segs = [], i = -1) {
   }
 }
 
-// No drawings of its own: the neutral vehicles of generic/, the Czech furniture, the Austrian stop posts (as Lithuania,
-// Finland and Denmark; an American stop sign is not drawn).
-const atPosts = Object.fromEntries(["stop-post-left", "stop-post-right", "stop-post-tram-left", "stop-post-tram-right"].map((k) => [k, `../austria/${TOWN_ART[k]}`]));
+// The furniture of North America (northamerica/, Bára 25. 11. 2026; the plants of the swale and the reeds the Czech
+// ones). New York, Toronto, Boston and San Francisco have their pieces drawn (newyork/, toronto/, boston/, sanfrancisco/),
+// for the time the app covers them.
+const PLANTS = new Set(["swale-plants", "reeds-left", "reeds-right"]);
+const northAmerica = Object.fromEntries(Object.entries(czechFurniture).map(([k, v]) => [k, PLANTS.has(k) ? v : `../northamerica/${TOWN_ART[k]}`]));
+const own = (keys) => Object.fromEntries(keys.map((k) => [k, TOWN_ART[k]]));
+// The bus of the whole state is Metrobus (WMATA): the state is the metro of Washington alone and WMATA runs in its
+// suburbs too (Bára 25. 11. 2026); a further metro spreads its own buses (art.js NORTH_AMERICA_VEHICLES). No tram of its
+// own: the streetcar closed on 31. 3. 2026.
+const usa = { ...northAmerica, "bus-inbound": "../washington/bus-inbound", "bus-outbound": "../washington/bus-outbound" };
+// In Washington its bus stop, also by the shelter, and its globe as the lamp up to 5 m (Boston's: "lamp-acorn-left").
+const washington = { ...usa, ...own(["stop-post-left", "stop-post-right",
+  "transit-shelter-01-left", "transit-shelter-01-right", "transit-shelter-green-left", "transit-shelter-green-right"]), "lamp-post-top": "lamp-globe-left" };
 
 export default {
   ...base,
@@ -73,8 +84,11 @@ export default {
   orthoEstimate: true,
   besideMax: 25,
   panorama: false,
-  art: { usa: { ...czechFurniture, ...atPosts } },
+  art: { usa, washington },
   // No panel estates drawn as the Czech ones (Bára's memory: the socialist looks only where they were built).
   socialistLooks: false,
+  // The houses of North America (house-looks.js, docs/house-types-north-america.md; Bára 25. 11. 2026).
+  houseLook: northAmericaLook,
+  houseDetails: northAmericaDetails,
   search: ["photon-us"],
 };

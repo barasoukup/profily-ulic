@@ -112,6 +112,8 @@ export const SOURCE_CREDITS = {
   ltGrpk: { true: () => t("budovy GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0)") },
   // DC's Planimetrics and DDOT's inventory (towns/usa.js).
   usTown: { dc: () => t("mapa povrchů (Planimetrics 2023) © DC GIS, Office of the Chief Technology Officer (CC BY 4.0)") },
+  // DC's assessment tables, where they told of a house.
+  usCama: { true: () => t("domy (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)") },
   usDdot: { true: () => t("pruhy a stání (Roadway SubBlock) © DDOT, DC GIS (CC BY 4.0)") },
   // Helsinki's register of public areas (towns/finland.js).
   fiTown: { helsinki: () => t("mapa povrchů (Yleisten alueiden rekisteri) © Helsingin kaupunki (CC BY 4.0)") },

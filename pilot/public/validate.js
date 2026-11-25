@@ -12,6 +12,7 @@ const EDGE_KINDS = new Set(["budova", "stavba", "zahrada", "zelen", "voda", "par
 export const EDGE_STYLES = new Set(["sikma", "sorela", "typovy", "povalecny", "funkce", "plocha", "moderni", "kancelar", "nizky", "vila", "kostka", "novyrd",
   "statek", "mestan", "skola", "kostel", "garaz", "hala",
   "haussmann", "stredomori", "azulejo", "galeria", "malta", "kypr", "cihlovy", "stit", "dansky", "stenstad", "drevak", "puukaupunki", "tallinnamaja", "hanza",
+  "bayrow", "porchrow", "framehouse", "brickblock", "slab", "podium", "glasstower", "mainstreet", "stripmall", "brownstone", "tenement", "tripledecker", "baygable", "victorian",
   "centrum", "centrum-obchod", "sidliste", "sidliste-lodzie", "rd"]);
 
 const num = (v, lo, hi) => typeof v === "number" && Number.isFinite(v) && v >= lo && v <= hi;

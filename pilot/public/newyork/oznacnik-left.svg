@@ -1,0 +1,37 @@
+<svg viewBox="0 0 90 340" xmlns="http://www.w3.org/2000/svg">
+  <!-- New York bus stop, simplified: a plain blue rounded square with a generic bus pictogram (not the operator's round sign), plates of destinations and routes under it, a timetable case at the eye's height, on a dark green pole; 3.4 m. shade on the right (left half of the street); the bottom edge = the sidewalk, the middle = the post's axis. 1 px = 1 cm. -->
+  <rect x="41.8" y="46" width="6.4" height="294" rx="2" fill="#40604f"/>
+  <rect x="46.12" y="46" width="2.08" height="294" rx="1" fill="#2d483b"/>
+  <rect x="42.6" y="46" width="1.28" height="294" fill="#678a77"/>
+  <rect x="24" y="4" width="42" height="48" rx="4" fill="#7c8386"/>
+  <rect x="25" y="5" width="40" height="46" rx="3.2" fill="#2a5c9c"/>
+  <rect x="32.5" y="13.13" width="25" height="21.25" rx="3.25" fill="#f4f4f0"/>
+  <rect x="35.25" y="19.25" width="19.5" height="7.5" rx="0.875" fill="#2a5c9c"/>
+  <rect x="38.25" y="15" width="13.5" height="2.38" rx="0.75" fill="#2a5c9c"/>
+  <circle cx="36.75" cy="30.75" r="1.6875" fill="#2a5c9c"/>
+  <circle cx="53.25" cy="30.75" r="1.6875" fill="#2a5c9c"/>
+  <rect x="35" y="33.75" width="5" height="3.75" rx="1.125" fill="#f4f4f0"/>
+  <rect x="50" y="33.75" width="5" height="3.75" rx="1.125" fill="#f4f4f0"/>
+  <rect x="29.75" y="18.75" width="2" height="5.75" rx="0.875" fill="#f4f4f0"/>
+  <rect x="58.25" y="18.75" width="2" height="5.75" rx="0.875" fill="#f4f4f0"/>
+  <rect x="33" y="43" width="24" height="3" rx="1" fill="#f4f4f0"/>
+  <rect x="8" y="58" width="33" height="20" rx="1.5" fill="#4a5358"/>
+  <rect x="12" y="62" width="20" height="3" rx="1" fill="#f4f4f0"/>
+  <rect x="12" y="68" width="24" height="2" fill="#b9bfc2"/>
+  <rect x="12" y="73" width="17" height="2" fill="#b9bfc2"/>
+  <rect x="7.4" y="79" width="34.2" height="17.6" rx="1" fill="#7c8386"/>
+  <rect x="8.2" y="80" width="32.6" height="15.8" rx="0.6" fill="#f4f4f0"/>
+  <rect x="12" y="85" width="20" height="2.6" fill="#2a2b2a"/>
+  <rect x="12" y="90" width="15" height="2" fill="#9a9b9c"/>
+  <rect x="49" y="58" width="26" height="18" rx="1.5" fill="#4a5358"/>
+  <rect x="53" y="62" width="14" height="4.4" rx="1" fill="#f4f4f0"/>
+  <rect x="53" y="70" width="10" height="3" fill="#b9bfc2"/>
+  <rect x="35" y="158" width="20" height="74" rx="1.5" fill="#8f9699"/>
+  <rect x="36.5" y="161" width="13" height="68" fill="#f4f4f0"/>
+  <path d="M49.5 161 L54 163 V227 L49.5 229 Z" fill="#d5d8d8"/>
+  <rect x="38" y="164" width="7" height="4" fill="#2a5c9c"/>
+  <path d="M40 174 V222 M40 176 H47 M40 190 H47 M40 204 H47 M40 218 H47" stroke="#6f7679" stroke-width="1.2" fill="none" stroke-linecap="butt" stroke-linejoin="round"/>
+  <rect x="33.5" y="155" width="23" height="3.4" rx="1" fill="#6f7679"/>
+  <rect x="33.5" y="232" width="23" height="3.4" rx="1" fill="#6f7679"/>
+  <rect x="40.4" y="334" width="9.2" height="6" fill="#2d483b"/>
+</svg>

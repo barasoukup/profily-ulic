@@ -1,0 +1,10 @@
+<svg viewBox="0 0 20 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Pipe bollard: steel pipe 4.5 in (11.4 cm), 30 in (76 cm) above the sidewalk, domed for drainage (NYC DOT cutsheet 2021). 1 px = 1 cm. -->
+  <path d="M4.3 27.6 Q10 20.6 15.7 27.6 V100 H4.3 Z" fill="#9da4a7"/>
+  <path d="M11.8 24.4 Q14 25.4 15.7 27.6 V100 H11.8 Z" fill="#767d80"/>
+  <rect x="5.6" y="28" width="1.9" height="72" fill="#c9ced0"/>
+  <rect x="4.3" y="34" width="11.4" height="5" fill="#f2c230"/>
+  <rect x="11.8" y="34" width="3.9" height="5" fill="#c79a1d"/>
+  <rect x="2.4" y="97.4" width="15.2" height="2.6" rx="0.8" fill="#767d80"/>
+  <rect x="2.4" y="97.4" width="10" height="0.9" fill="#c9ced0"/>
+</svg>

@@ -568,7 +568,10 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   Tepny (`evaluation/usa/tepny/ZPRAVA.md`, `?off=dcarterials`): na 25 nových naslepo mapa : bez mapy 19 : 6; nový : starý kód jen
   3 změny na nových řezech (2 : 0 : 1), neprůkazné.
 - Normy DDOT DEM 2023, Bicycle Facility Design Guide 2020 a NACTO jen oranžově; stání 3 m na směr (IFC 503.2.1,
-  18 DCMR § 2405); bez řádku značek; bez paneláků; neutrální vozidla, český mobiliář; hledání Photon.
+  18 DCMR § 2405); bez řádku značek; bez paneláků; hledání Photon.
+- Ilustrace (větev north-america-art, sloučená 25. 11. 2026, `evaluation/north-america-art/`): severoamerické domy (`houses-america.js`,
+  `house-looks.js northAmericaLook`), mobiliář `northamerica/`, autobus Metrobus v celém metru, Washington má svůj označník a glóbus do
+  5 m (`lamp-post-top`), bez tramvaje; domy v DC z CAMA (`?cama=0`). New York, Boston, Toronto, San Francisco nakreslené, nezapojené.
 - Tři společné změny z pilotu (všechny státy, podoba z `estonia` 83734e7): ústí uličky je křižovatka (`?off=ulicky`, zapnuto), obousměrka se dělí od
   4,0 m, kde je počet pruhů známý a u vozovky je stání (`?off=pocetpruhu`, zapnuto), jamky stromů v chodníku jako chodník (**vypnuto**, `?treepits=1`:
   DC 2 : 2, české kontroly 0 : 1). Regrese Prahy a Brna beze změny, v Evropě z 120 náhodných řezů změněno 0.

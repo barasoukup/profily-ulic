@@ -7,7 +7,7 @@ Bára schválila 24. 11. 2026 („Fáze 2 s mapou Washingtonu“). Pilot fáze 1
 - **Stát US** (`pilot/public/countries/US.js`): jen metro Washingtonu (`staty.json` `usa`: DC, Montgomery, Prince George's,
   Arlington, Fairfax County a city, Falls Church, Alexandria; hranice okresů TIGERweb, sloučené v jeden obrys a pak zjednodušené na 10 m), zbytek USA
   `closed_us` s hláškou. Normy DDOT a NACTO jen oranžově (`NORMY.md`), stání 3 m na směr, bez značek, bez paneláků,
-  neutrální vozidla, český mobiliář, rakouské označníky, hledání Photon.
+  hledání Photon; od 25. 11. 2026 severoamerické domy, mobiliář a Metrobus (`../north-america-art/`).
 - **Washington** (`pilot/public/towns/usa.js`): mapa povrchů Planimetrics 2023 (`?dc=0`), inventář DDOT Roadway SubBlock
   (`?ddot=0`: počet pruhů, stání u obrub, cyklopruhy; odhad stání podle pravidel tam vypnutý), uličky z planimetrie jako
   plochy `service=alley`, ortofoto DC 2025 pro pruhy, model obrub a podklad mapy (`lanes-ortho.js us-dc`).

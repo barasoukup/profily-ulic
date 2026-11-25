@@ -228,3 +228,28 @@ test("Tepny Washingtonu: svodidla, ostrůvky mimo vozovku, stání u méně pruh
   assert.equal(u.blockTags(block(lanes), { oneway: "-1" }).lanes, "2");
   assert.equal(u.blockTags(block(lanes), {}).lanes, "5");
 });
+
+test("Washington: domy z CAMA podle pozemku, výpadek nic nezdrží", async () => {
+  const U = await import("../pilot/public/towns/usa.js");
+  assert.deepEqual(U.camaHouse({ AYB: 1937, STORIES: 2, STRUCT_D: "Row Inside", EXTWALL_D: "Common Brick", USECODE: 11 }), { usCama: true, built: 1937, cornice: 2, roof: 0, total: 2, type: "terrace", material: "brick" });
+  // Half a storey: in the roof of a detached house, a floor of a row house; 25 storeys of a house is a slip.
+  assert.equal(U.camaHouse({ STORIES: 2.5, STRUCT_D: "Single" }).cornice, 2);
+  assert.equal(U.camaHouse({ STORIES: 2.5, STRUCT_D: "Row End" }).cornice, 3);
+  assert.equal(U.camaHouse({ STORIES: 25, STRUCT_D: "Row End" }).cornice, undefined);
+  // A church's lot tells no kind of house; no year 0.
+  assert.deepEqual(U.camaHouse(null, { AYB: 0, EXTWALL_D: "Brick", USECODE: 81 }), { usCama: true, material: "brick" });
+  assert.deepEqual(U.camaHouse(null, null, null), {});
+  const lot = (ssl, x) => ({ attributes: { SSL: ssl, USECODE: "011" }, geometry: { rings: [[[x, 0], [x + 1, 0], [x + 1, 1], [x, 1], [x, 0]]] } });
+  const at = U.camaAt([[0.5, 0.5], [5.5, 0.5]], { features: [lot("0001    0002", 0)] }, { features: [{ attributes: { SSL: "0001    0002", BLDG_NUM: 1, AYB: 1900, STORIES: 3, STRUCT_D: "Row End" } }] }, null);
+  assert.equal(at[0].cornice, 3);
+  assert.deepEqual(at[1], {});
+  const fetch0 = globalThis.fetch, warn = console.warn;
+  let asked = 0;
+  console.warn = () => {};
+  globalThis.fetch = async () => { asked++; throw new Error("down"); };
+  assert.deepEqual(await Promise.all([U.sources.podlaznost(38.9, -77.01), U.sources.podlaznost(38.9001, -77.01)]), [{}, {}]);
+  assert.deepEqual(await U.sources.podlaznost(38.91, -77.02), {}); // rests after a failure
+  assert.equal(asked, 1);
+  assert.deepEqual(await U.sources.podlaznost(38.8816, -77.2), {}); // outside DC's box
+  globalThis.fetch = fetch0; console.warn = warn;
+});

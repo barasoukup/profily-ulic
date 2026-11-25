@@ -60,5 +60,3 @@ hala (PT 0 : 2), historické úřady a hotely jako kancelář (nerozhodně). Rak
 Sonnet (`vzorek3-AT.json`, `vysledky/posudek3-AT.json`): **nové lépe 3, staré lépe 6**, stejně 3, nelze 5. S 1. kolem 6 : 9
 (p = 0,6). Prohrává `sikma>povalecny` (0 : 4, jeden stejně, tři nelze): dům bez podlaží je podle půdorysu poválečný dům, na
 fotkách jsou starší domy. `kancelar` 1 : 1, `garaz` 1 : 0, `povalecny>sikma` 1 : 1. Výjimka není; rozhodne Bára.
-
-Na `estonia` kreslí archy `north-america-art/houses/render.mjs` z větve `north-america-art` (`sheets.mjs`).

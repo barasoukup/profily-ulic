@@ -1,0 +1,25 @@
+<svg viewBox="0 0 370 930" xmlns="http://www.w3.org/2000/svg">
+  <!-- North American street lamp: cobra head on a davit arm, tapered galvanised steel pole on a cast transformer base (22 in). Light at 8.7 m (28 ft 6 in pole, DDOT), the arm 1.8 m; pole about 1.3 times wider for legibility, the head its real size (0.72 m). Foot at x = 348. Mirror of the left one. 1 px = 1 cm. -->
+  <g transform="matrix(-1 0 0 1 370 0)">
+  <path d="M348 178 C344 118 300 78 226 64 L208 62" stroke="#b4b9bb" stroke-width="8" fill="none" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M350 180 C346 122 301 81.5 226 67 L208 65" stroke="#8f9699" stroke-width="2.4" fill="none" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M210 58 L192 54 Q178 48 160 52 Q142 56 138 65 L138 67 L190 68 L210 66 Z" fill="#8b9194"/>
+  <path d="M210 58 L192 54 Q178 48 160 52 Q146 55 140 61 Q162 55 190 59 L210 61.4 Z" fill="#b4b9bb"/>
+  <path d="M138 66 L182 67.6 L181 70.4 Q156 73 140 69 Z" fill="#e6dca8"/>
+  <rect x="169" y="43.5" width="8" height="6" rx="1.5" fill="#55595b"/>
+  <rect x="340" y="172" width="16" height="5" rx="1" fill="#d0d4d5"/>
+  <rect x="340" y="177" width="16" height="14" fill="#b4b9bb"/>
+  <rect x="351" y="177" width="5" height="14" fill="#8f9699"/>
+  <path d="M342 188 H354 L359 872 H337 Z" fill="#b4b9bb"/>
+  <path d="M349.8 188 H354 L359 872 H351.3 Z" fill="#8f9699"/>
+  <path d="M343.68 188 H345.6 L343.6 872 H340.08 Z" fill="#d0d4d5"/>
+  <path d="M333 874 H363 L367 922 H329 Z" fill="#b4b9bb"/>
+  <path d="M353 874 H363 L367 922 H355 Z" fill="#8f9699"/>
+  <rect x="328" y="922" width="40" height="8" fill="#8f9699"/>
+  <rect x="328" y="922" width="27" height="2" fill="#d0d4d5"/>
+  <path d="M339 886 H350 L351 910 H338 Z" fill="#8f9699"/>
+  <path d="M340 888 H349 L349.8 908 H339.3 Z" fill="#b4b9bb"/>
+  <rect x="335" y="870" width="26" height="4" fill="#d0d4d5"/>
+  <rect x="352" y="870" width="9" height="4" fill="#8f9699"/>
+  </g>
+</svg>
