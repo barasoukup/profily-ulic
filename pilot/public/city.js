@@ -468,6 +468,10 @@ Object.assign(CITIES, {
   // orthophoto, OSM (towns/usa.js).
   usa: { ...abroad("usa", "US", "USA", "v USA", "americké", [38.9, -77.03], "38.897700, -77.036500"),
     dataShort: "map DC a OSM", rulesHead: "Šířky podle DDOT (Design and Engineering Manual 2023) a NACTO, orientačně:" },
+  // Canada (Bára 25. 11. 2026): only Toronto and its surroundings; Toronto's topographic mapping and orthophoto, OSM
+  // (towns/canada.js).
+  canada: { ...abroad("canada", "CA", "Kanada", "v Kanadě", "kanadské", [43.7, -79.4], "43.658890, -79.416460"),
+    dataShort: "map Toronta a OSM", rulesHead: "Šířky podle příruček města Toronta, orientačně:" },
   // Malta (Bára 23. 11. 2026): the Planning Authority's orthophoto and OSM (towns/malta.js); traffic keeps left.
   malta: { ...abroad("malta", "MT", "Malta", "na Maltě", "maltské", [35.9, 14.45], "35.898900, 14.514600"),
     dataShort: "ortofota stavebního úřadu a OSM", rulesHead: "Šířky podle maltských předpisů a doporučení:" },
@@ -487,7 +491,7 @@ Object.assign(CITIES, {
 for (const c of Object.values(CITIES)) if (c.abroad && c.country) { c.art = c.id; delete c.artMap; }
 
 // The Slovak and Austrian cities (step 4b of docs/architecture-countries.md; Bára 16. 11. 2026: cities everywhere, as
-// Brno): by their boundaries (mesta-sk.json from ZBGIS, mesta-at.json from GISCO's LAU, mesta-us.json of DC), everything else of their
+// Brno): by their boundaries (mesta-sk.json from ZBGIS, mesta-at.json from GISCO's LAU, mesta-us.json of DC, mesta-ca.json of Toronto), everything else of their
 // state's rest (texts, sources, orthophoto), only the illustrations their own where the state has a set of the town
 // (else the state's). Their sources keep their own territories (towns/slovensko.js, towns/austria.js AREAS).
 const stateTown = (id, state, view) => ({ ...CITIES[state], id, like: state, view, art: COUNTRIES[CITIES[state].country].art[id] ? id : state });
@@ -495,15 +499,17 @@ export const STATE_TOWNS = {
   SK: ["bratislava", "kosice", "zilina", "bystrica", "presov", "nitra", "trnava", "trencin", "martin", "poprad", "piestany", "hlohovec", "zvolen"],
   AT: ["wien", "graz", "linz", "salzburg", "innsbruck"],
   US: ["washington"],
+  CA: ["toronto"],
 };
 const VIEW = { bratislava: [48.1440, 17.1100], kosice: [48.7190, 21.2580], zilina: [49.2230, 18.7400], bystrica: [48.7360, 19.1460], presov: [48.9980, 21.2400],
   nitra: [48.3120, 18.0870], trnava: [48.3774, 17.5883], trencin: [48.8945, 18.0444], martin: [49.0665, 18.9230], poprad: [49.0555, 20.2975],
   piestany: [48.5918, 17.8273], hlohovec: [48.4310, 17.8030], zvolen: [48.5762, 19.1371],
   wien: [48.2085, 16.3731], graz: [47.0707, 15.4395], linz: [48.3059, 14.2862], salzburg: [47.8, 13.045], innsbruck: [47.2654, 11.3927],
-  washington: [38.8977, -77.0365] };
+  washington: [38.8977, -77.0365], toronto: [43.6535, -79.3839] };
 for (const id of STATE_TOWNS.SK) CITIES[id] = stateTown(id, "slovensko", VIEW[id]);
 for (const id of STATE_TOWNS.AT) CITIES[id] = stateTown(id, "austria", VIEW[id]);
 for (const id of STATE_TOWNS.US) CITIES[id] = stateTown(id, "usa", VIEW[id]);
+for (const id of STATE_TOWNS.CA) CITIES[id] = stateTown(id, "canada", VIEW[id]);
 
 // Towns with no data of their own (the national DTM of ČÚZK, as "cesko"), only their own vehicles.
 const artTown = (id, inCity, adjective, art) => ({ ...CITIES.cesko, id, like: "cesko", inCity, adjective, art: id, artMap: { ...art, ...TOWN_ART } });
@@ -606,8 +612,8 @@ function stateEntry(lat, lon) {
   };
   let best = null, dmin = COAST_TOLERANCE;
   for (const b of states) {
-    // (Not the message of the USA: no state of COAST is near, and 400 m beyond its line are Windsor and Nuevo Laredo.)
-    if (b.id === "closed_us" || !(COAST.has(b.id) || /^(foreign|closed)_/.test(b.id))) continue;
+    // (Not the messages of the USA and Canada: no state of COAST is near, and 400 m beyond the line are Windsor, Detroit and Nuevo Laredo.)
+    if (/^closed_(us|ca)$/.test(b.id) || !(COAST.has(b.id) || /^(foreign|closed)_/.test(b.id))) continue;
     if (lon < b.box[0] - pad * 2 || lon > b.box[2] + pad * 2 || lat < b.box[1] - pad || lat > b.box[3] + pad) continue;
     const own = land[b.id];
     let d0 = dmin;
@@ -625,6 +631,7 @@ function stateEntry(lat, lon) {
 const CLOSED = {
   closed_cy: () => t("Sever Kypru zatím nemáme: profily děláme jen na území, které spravuje Kyperská republika."),
   closed_us: () => t("V USA zatím děláme profily jen ve Washingtonu a okolí (District of Columbia a sousední okresy Marylandu a Virginie)."),
+  closed_ca: () => t("V Kanadě zatím děláme profily jen v Torontu a okolí."),
   closed_it: () => t("V Itálii děláme profily jen tam, kde má otevřenou licenci ortofoto nebo mapa povrchů: v Jižním Tyrolsku, Lombardii, Turíně, Bologni a Modeně."),
 };
 export function closedAt(lat, lon) {

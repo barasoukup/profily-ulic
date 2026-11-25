@@ -71,6 +71,9 @@ export const COUNTRIES = {
   // joined by "+" are each cut to the box after "@" with osmium and merged; locally 86 MB), only on R2.
   us: { iso: "US", geofabrik: "north-america/us/district-of-columbia", pages: false, parts: {
     us_dc: "north-america/us/district-of-columbia+north-america/us/maryland+north-america/us/virginia@-77.56,38.52,-76.64,39.37" } },
+  // Canada (Bára 25. 11. 2026): only Toronto and the municipalities around it, one pack ca_on_toronto of Geofabrik's Ontario
+  // (1 GB of PBF) cut to their box (locally 46 MB), only on R2.
+  ca: { iso: "CA", geofabrik: "north-america/canada/ontario", pages: false, parts: { ca_on_toronto: "north-america/canada/ontario@-79.92,43.46,-78.98,44.03" } },
 };
 // The packs to build (osm-tiles.yml): a state's own, or its parts.
 export const PACKS = Object.entries(COUNTRIES).flatMap(([k, c]) => (c.parts ? Object.entries(c.parts).map(([code, extract]) => ({ code, extract })) : [{ code: k, extract: c.geofabrik }]));

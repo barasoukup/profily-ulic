@@ -41,6 +41,7 @@ export const SOURCE_CREDITS = {
     "fi-tku": () => t("ortofoto © Turun kaupunki, 2022 (CC BY 4.0)"),
     // The USA: DC's orthophoto (lanes-ortho.js US_ORTHO).
     "us-dc": () => t("ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)"),
+    "ca-tor": () => t("ortofoto © City of Toronto, 2025 (Open Government Licence – Toronto)"),
     // Denmark: GeoDanmark's spring orthophoto through Dataforsyningen, credited as its terms ask (evaluation/denmark/ZDROJE.md 1).
     dk: () => t("ortofoto: Indeholder data fra Styrelsen for Dataforsyning og Infrastruktur, Ortofoto forår, WMTS-tjeneste"),
     "it-bo": () => t("ortofoto © Comune di Bologna, Regione Emilia-Romagna (CC BY 4.0)"),
@@ -111,7 +112,10 @@ export const SOURCE_CREDITS = {
   ltTown: { vilnius: () => t("mapa povrchů (topografické plochy 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas") },
   ltGrpk: { true: () => t("budovy GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0)") },
   // DC's Planimetrics and DDOT's inventory (towns/usa.js).
-  usTown: { dc: () => t("mapa povrchů (Planimetrics 2023) © DC GIS, Office of the Chief Technology Officer (CC BY 4.0)") },
+  cityMap: { dc: () => t("mapa povrchů (Planimetrics 2023) © DC GIS, Office of the Chief Technology Officer (CC BY 4.0)"),
+    // Toronto's topographic mapping (towns/canada.js), with the statement its licence asks for.
+    toronto: () => t("mapa povrchů: Contains information licensed under the Open Government Licence – Toronto.") },
+  caHouse: { true: () => t("výšky domů © City of Toronto (Open Government Licence – Toronto)") },
   // DC's assessment tables, where they told of a house.
   usCama: { true: () => t("domy (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)") },
   usDdot: { true: () => t("pruhy a stání (Roadway SubBlock) © DDOT, DC GIS (CC BY 4.0)") },

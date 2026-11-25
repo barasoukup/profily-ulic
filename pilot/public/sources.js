@@ -74,7 +74,8 @@ export function outage({ surfaces, lines, parking }, dataName = city.dataName, {
   // Paris's Plan de voirie did not answer (towns/france.js).
   // Bologna's road areas did not answer (towns/italy.js).
   if (s?.fiFailed) return { note: mark(" · mapa povrchů Helsinek neodpověděla, odhad z ortofota a OSM"), text: t("Mapa povrchů Helsinek teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };
-  if (s?.usFailed) return { note: mark(" · mapa povrchů Washingtonu neodpověděla, odhad z ortofota a OSM"), text: t("Mapa povrchů Washingtonu (DC GIS) teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };
+  if (s?.mapFailed === "dc") return { note: mark(" · mapa povrchů Washingtonu neodpověděla, odhad z ortofota a OSM"), text: t("Mapa povrchů Washingtonu (DC GIS) teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };
+  if (s?.mapFailed === "toronto") return { note: mark(" · mapa povrchů Toronta neodpověděla, odhad z ortofota a OSM"), text: t("Mapa povrchů Toronta teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };
   if (s?.ltFailed) return { note: mark(" · mapa povrchů Vilniusu neodpověděla, jen odhad z OSM"), text: t("Mapa povrchů Vilniusu teď neodpovídá, profil je odhad z OSM.") + again, error: true };
   if (s?.eeFailed) return { note: mark(" · mapa povrchů Tallinnu neodpověděla, odhad z ortofota a OSM"), text: t("Mapa povrchů Tallinnu teď neodpovídá, profil je odhad z ortofota a OSM.") + again, error: true };
   // Lombardy's DBT did not answer (towns/lombardy.js): no orthophoto there, the estimate from OSM.

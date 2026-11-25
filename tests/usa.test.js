@@ -32,8 +32,9 @@ test("USA: mezi okresy ani na hranici DC nejsou díry, staty.json nenese společ
   C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
   C.loadStates(staty);
   for (const [lon, lat] of us.washington[0]) for (const [dx, dy] of [[0, 0], [2e-4, 0], [-2e-4, 0], [0, 2e-4], [0, -2e-4]]) assert.equal(C.closedAt(lat + dy, lon + dx), null, `${lat},${lon}`);
-  // The quays across the border have not the message of the USA (Windsor, Nuevo Laredo), Detroit and Laredo have.
-  for (const [lat, lon] of [[42.3190, -83.0390], [27.4950, -99.5069]]) assert.equal(C.closedAt(lat, lon), null, `${lat},${lon}`);
+  // The quays across the border have not the message of the USA (Windsor has Canada's, Nuevo Laredo none), Detroit and Laredo have.
+  assert.match(C.closedAt(42.3190, -83.0390) || "", /Torontu/);
+  assert.equal(C.closedAt(27.4950, -99.5069), null);
   for (const [lat, lon] of [[42.3314, -83.0458], [27.5064, -99.5075]]) assert.match(C.closedAt(lat, lon) || "", /Washingtonu/);
 });
 
@@ -82,11 +83,11 @@ test("USA: plochy DC podél řezu, stání a pruhy z inventáře DDOT", async ()
   assert.deepEqual([...new Set(codes)].sort(), [401, 601, 701, 702, 704]);
   assert.equal(codes.filter((c) => c === 704).length, 2);
   assert.deepEqual(out.wayTags, { lanes: "2", "cycleway:both": "lane" });
-  assert.equal(out.block, true);
+  assert.equal(out.usDdot, true);
   // Without the inventory: no parking strips nor tags.
   const bare = U.dcSurfaces({ roads, walks, bldg, sub }, [way], BBOX, way.tags, { ddot: false });
   assert.equal(bare.features.filter((f) => f.attributes.code === 704).length, 0);
-  assert.equal(bare.wayTags, null);
+  assert.equal(bare.wayTags, undefined);
   // Only a yard under the centre (no roadway within 3 m): not the street.
   assert.equal(U.dcSurfaces({ roads: esri([["Road", 10, 18]]), walks, bldg, sub }, [way], BBOX, way.tags), null);
 });
@@ -211,7 +212,7 @@ test("Tepny Washingtonu: svodidla, ostrůvky mimo vozovku, stání u méně pruh
   const R = (...a) => a.map(([code, s, e]) => ({ code, s, e }));
   const f = [{ attributes: { DESCRIPTION: "Barrier" }, geometry: { paths: [[[0, 0], [1, 1]]] } }, { attributes: { DESCRIPTION: "Guardrail" }, geometry: { paths: [[[0, 0], [1, 1]]] } }];
   assert.deepEqual(u.barrierLines({ features: f }).map((x) => x.attributes.CTMTP_KOD), [71540]);
-  assert.deepEqual(u.islandsBeside(R([9950, -20, -8], [702, -8, -6], [701, -6, -1], [9950, -1, 1], [701, 1, 6])).map((r) => r.code), [401, 702, 701, 9950, 701]);
+  assert.deepEqual((await import("../pilot/public/towns/planimetrics.js")).islandsBeside(R([9950, -20, -8], [702, -8, -6], [701, -6, -1], [9950, -1, 1], [701, 1, 6])).map((r) => r.code), [401, 702, 701, 9950, 701]);
   const block = (a) => ({ a, along: true });
   const runs = () => R([702, -8, -6], [701, -6, 6], [702, 6, 8]);
   const park = { TOTALPARKINGLANES: 1, TOTALPARKINGLANEWIDTH: 8, TOTALTRAVELLANESINBOUND: 1, TOTALTRAVELLANESOUTBOUND: 2 };

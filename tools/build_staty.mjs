@@ -146,15 +146,29 @@ export function outline(list) {
   return out;
 }
 
-function closedUs(rings) {
+// Toronto and the municipalities around it whose OSM the pack ca_on_toronto holds (Bára 25. 11. 2026): Toronto, Mississauga,
+// Brampton, Vaughan, Richmond Hill, Markham and Pickering, Statistics Canada's census subdivisions of 2021 (the digital
+// boundary file, with the lake; Statistics Canada Open Licence), merged to one outline, then simplified to about 10 m.
+const GTA = ["3520005", "3521005", "3521010", "3519028", "3519036", "3519038", "3518001"];
+async function statcan(ids) {
+  const q = new URLSearchParams({ where: `CSDUID IN (${ids.map((i) => `'${i}'`).join(",")})`, outFields: "CSDUID", returnGeometry: "true", outSR: "4326", f: "json" });
+  const json = await (await fetch(`https://geo.statcan.gc.ca/geo_wa/rest/services/2021/Digital_boundary_files/MapServer/9/query?${q}`, { headers: { "User-Agent": "profily-ulic" } })).json();
+  if (json.features?.length !== ids.length) throw new Error(`StatCan: ${json.features?.length} of ${ids.length}`);
+  return outline(json.features.flatMap((f) => f.geometry.rings));
+}
+
+const US_BORDER = ([x, y]) => (x > -83.6 && x < -66.9 && y > 41.6) || (x < -97 && y < 32.8 && (y < 30.2 || x < -101)); // Detroit to Maine, Mexico
+const CA_BORDER = ([x, y]) => x > -83.6 && x < -66.9 && y > 41.6 && y < 47.5;
+// coarse0: how coarse it is away from the border (degrees; south of 49.6° N, where people live, 0.01), islands: the smallest island that does (square degrees).
+function closedFar(rings, onBorder, coarse0 = 0.01, islands = 0) {
   const area = (r) => { let a = 0; for (let i = 1; i < r.length; i++) a += (r[i][0] - r[i - 1][0]) * (r[i][1] + r[i - 1][1]); return Math.abs(a / 2); };
-  const onBorder = ([x, y]) => (x > -83.6 && x < -66.9 && y > 41.6) || (x < -97 && y < 32.8 && (y < 30.2 || x < -101)); // Detroit to Maine, Mexico
   return rings.map((r) => {
     const a = area(r);
-    if (r[0][1] > 50) return a < 0.003 ? [] : simplify(r, 0.03);
-    const coarse = simplify(r, 0.01);
+    if (Math.min(...r.map((p) => p[1])) > 50) return a < Math.max(0.003, islands * 10) ? [] : simplify(r, Math.max(0.03, coarse0 * 2));
+    if (a < islands && !r.some(onBorder)) return [];
+    const coarse = simplify(r, a < 100 ? 0.01 : coarse0);
     if (a < 100) return coarse;
-    const keep = new Set([...coarse, ...simplify(r, 0.001).filter(onBorder)].map((p) => p.join()));
+    const keep = new Set([...coarse, ...(coarse0 > 0.01 ? simplify(r, 0.01).filter((p) => p[1] < 49.6) : []), ...simplify(r, 0.001).filter(onBorder)].map((p) => p.join()));
     return r.filter((p) => keep.has(p.join()));
   }).map((r) => r.map(([x, y]) => [+x.toFixed(3), +y.toFixed(3)])).filter((r) => r.length >= 4);
 }
@@ -230,6 +244,8 @@ const BUILD = {
   lithuania: () => gisco("LT"),
   // The USA (24. 11. 2026): the metro of Washington DC (dcMetro above); the rest of the USA is closed_us below.
   usa: () => dcMetro(),
+  // Canada (25. 11. 2026): Toronto and its surroundings (statcan above); the rest of Canada is closed_ca below.
+  canada: async () => (await statcan(GTA)).map((r) => simplify(r, 0.0001)).filter((r) => r.length >= 4),
   // Malta (23. 11. 2026): OSM's boundary with the territorial waters (one ring round the islands, no neighbour; GISCO's
   // coast cuts off quays; tools/malta-border.json, © OpenStreetMap contributors, ODbL).
   malta: () => JSON.parse(fs.readFileSync(new URL("./malta-border.json", import.meta.url), "utf8")).map((r) => simplify(r)),
@@ -255,7 +271,9 @@ const BUILD = {
   // The USA beyond the metro of Washington (24. 11. 2026: the OSM pack us_dc holds only the metro): GISCO's US, a message
   // and not a border to cut by: to about 1 km, Alaska to 3 km without its small islands; along the land borders to 100 m
   // (at 1 km the quays of Windsor in Ontario and of Nuevo Laredo got the message of the USA).
-  closed_us: async () => closedUs(await gisco("US")),
+  closed_us: async () => closedFar(await gisco("US"), US_BORDER),
+  // Canada beyond Toronto's surroundings (25. 11. 2026), as the USA's: the same line at Windsor and Niagara.
+  closed_ca: async () => closedFar(await gisco("CA"), CA_BORDER, 0.05, 0.02),
 };
 const file = new URL("../pilot/public/staty.json", import.meta.url);
 const only = process.argv.slice(2);

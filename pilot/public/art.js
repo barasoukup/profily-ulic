@@ -25,6 +25,13 @@ export const TROLLEY = { "trolleybus-inbound": "trolejbus-inbound", "trolleybus-
 // a state without its own.
 export const czechFurniture = Object.fromEntries(Object.entries(TOWN_ART).filter(([k]) => !k.startsWith("bus-")).map(([k, v]) => [k, `../cesko/${v}`]));
 
+// The furniture of North America (northamerica/, Bára 25. 11. 2026; the plants of the swale and the reeds the Czech
+// ones), and the pieces a city has of its own in its folder (ownArt). New York, Boston and San Francisco have theirs drawn
+// (newyork/, boston/, sanfrancisco/), for the time the app covers them.
+const PLANTS = new Set(["swale-plants", "reeds-left", "reeds-right"]);
+export const northAmericaFurniture = Object.fromEntries(Object.entries(czechFurniture).map(([k, v]) => [k, PLANTS.has(k) ? v : `../northamerica/${TOWN_ART[k]}`]));
+export const ownArt = (keys) => Object.fromEntries(keys.map((k) => [k, TOWN_ART[k]]));
+
 // The neutral tram and bus (generic/: no operator's livery, no logo; Bára 17. 11. 2026: "všude, kde nemáme
 // specifickou"): drawn in every set that has no tram or bus of its own, in place of Streetmix's. Trolleybuses and cars
 // stay Streetmix's.
@@ -33,7 +40,7 @@ export const GENERIC_VEHICLES = {
   "bus-inbound": "../generic/bus-inbound", "bus-outbound": "../generic/bus-outbound",
 };
 
-// The vehicles of the North American cities the app does not cover yet (Bára 25. 11. 2026; evaluation/north-america-art/
+// The vehicles of the North American cities (Toronto's in countries/CA.js, the others not covered yet; Bára 25. 11. 2026; evaluation/north-america-art/
 // vehicles): spread into the city's set of its state (countries/<ISO>.js art) when it is added, as TRAM and TROLLEY.
 // The second tram of San Francisco (sanfrancisco/pcc-*, the F line) has no place in a set yet.
 const BUS = { "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound" };

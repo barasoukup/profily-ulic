@@ -169,13 +169,20 @@ export const fiOrthoAt = (lon, lat) => Object.keys(FI_ORTHO).filter((k) => { con
 // farther out). Elsewhere in the
 // metro (Maryland, Virginia) no orthophoto yet: the estimate from OSM.
 export const DC_ORTHO = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Ortho2025_WebMercator/MapServer";
-const dcExport = (b, w, h, format = "image/jpeg") => `${DC_ORTHO}/export?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: format === "image/png" ? "png32" : "jpg", ...(format === "image/png" && { transparent: "true" }), f: "image" })}`;
+const agsExport = (service) => (b, w, h, format = "image/jpeg") => `${service}/export?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: format === "image/png" ? "png32" : "jpg", ...(format === "image/png" && { transparent: "true" }), f: "image" })}`;
 export const US_ORTHO = {
-  "us-dc": { box: [-77.12, 38.79, -76.909, 38.997], town: "washington", near: 60, res: 0.1, url: dcExport, credit: "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)" },
+  "us-dc": { box: [-77.12, 38.79, -76.909, 38.997], town: "washington", near: 60, res: 0.1, url: agsExport(DC_ORTHO), credit: "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)" },
+};
+// Canada (Bára 25. 11. 2026): the City of Toronto's orthophoto of the current year (cot_ortho; 2025, 8 cm, a tile cache in Web
+// Mercator to level 23; CORS for the origin asking; Open Government Licence – Toronto by the catalogue's "Web Map Services"),
+// read as DC's, only inside the city (mesta-ca.json) and 30 m beyond it. Around the city no orthophoto yet.
+export const CA_ORTHO = {
+  "ca-tor": { box: [-79.645, 43.575, -79.11, 43.86], town: "toronto", near: 30, res: 0.1, url: agsExport("https://gis.toronto.ca/arcgis/rest/services/basemap/cot_ortho/MapServer"), credit: "ortofoto © City of Toronto, 2025 (Open Government Licence – Toronto)" },
 };
 export const usOrthoAt = (lon, lat) => Object.keys(US_ORTHO).filter((k) => inArea(US_ORTHO[k], lon, lat));
-// The sources whose orthophotos cover only some towns, each by its box (Finland, the USA).
-const BOXED = { fi: fiOrthoAt, us: usOrthoAt };
+export const caOrthoAt = (lon, lat) => Object.keys(CA_ORTHO).filter((k) => inArea(CA_ORTHO[k], lon, lat));
+// The sources whose orthophotos cover only some towns, each by its box (Finland, the USA, Canada).
+const BOXED = { fi: fiOrthoAt, us: usOrthoAt, ca: caOrthoAt };
 // Is there an orthophoto of the source (countries/<ISO>.js laneOrtho) at the point? "none" never; the states whose
 // orthophotos cover only some towns (Italy, Finland) by their boxes; the others everywhere (a blank photo is found out
 // when it comes). The question is the place's, not the state's (the review of 24. 11. 2026: in Lombardy the kerb model
@@ -252,7 +259,7 @@ export const deWmsUrl = ({ wms, layers, time }, b, w, h, format = "image/jpeg", 
   crs: "EPSG:3857", bbox: b.join(","), width: w, height: h, format, ...(time && { time }), ...extra })}`;
 for (const [r, o] of Object.entries(BE_ORTHO)) SOURCES[`be-${r}`] = { res: 0.1, url: o.url };
 for (const [land, o] of Object.entries(DE_ORTHO)) SOURCES[`de-${land}`] = { res: 0.1, url: (b, w, h, format) => deWmsUrl(o, b, w, h, format) };
-for (const [k, o] of Object.entries({ ...FI_ORTHO, ...US_ORTHO })) SOURCES[k] = { res: o.res, url: o.url };
+for (const [k, o] of Object.entries({ ...FI_ORTHO, ...US_ORTHO, ...CA_ORTHO })) SOURCES[k] = { res: o.res, url: o.url };
 // The URL of a tile: the source's own (tileUrl, WMTS by key-value pairs) or the path {z}/{y}/{x} (xy: {z}/{x}/{y}; tms: y
 // from the bottom).
 const tileUrlOf = (src, tx, ty) => (src.tileUrl ? src.tileUrl(src.z, tx, ty) : `${src.tiles}/${src.z}/${src.xy ? `${tx}/${src.tms ? 2 ** src.z - 1 - ty : ty}` : `${ty}/${tx}`}${src.ext || ""}`);

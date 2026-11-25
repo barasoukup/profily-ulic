@@ -24,6 +24,7 @@ export const POINTS = {
   tallinn: { of: "estonia", at: "59.435198, 24.753544" }, // Estonia pst
   helsinki: { of: "finland", at: "60.168852, 24.943633" }, // Aleksanterinkatu
   zaragoza: { of: "spain", at: "41.650391, -0.877306" }, // Calle de Hermanos Ibarra
+  toronto: { of: "canada", at: "43.658890, -79.416460" }, // Jersey Avenue, Toronto
   dc: { of: "usa", at: "38.932773, -77.036860" }, // Monroe Street NW, Washington
 };
 const latLon = (s) => s.split(",").map(Number);
@@ -87,7 +88,7 @@ export async function attempt(run, need) {
   let state, note = "", thrown = false;
   try {
     const json = await asked.run(trouble, run);
-    const n = count(json), unanswered = Object.keys(json || {}).filter((k) => /^[a-z]{2}Failed$/.test(k) && json[k]);
+    const n = count(json), unanswered = Object.keys(json || {}).filter((k) => /^([a-z]{2}|map)Failed$/.test(k) && json[k]);
     if (json?.dmvs) { state = need ? "náhrada ČÚZK" : "ok"; note = `${n} prvků z technické mapy ČÚZK, vlastní služba nic nevrátila`; }
     else if (unanswered.length) { state = "CHYBA"; note = "mapa povrchů neodpověděla"; }
     else if (n || (json && !json.features && !json.elements)) { state = "ok"; note = n ? `${n} prvků` : ""; }
