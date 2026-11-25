@@ -43,19 +43,25 @@ test("okraj upravený ručně: podlaží jdou do odkazu, nahradí data a vadná 
 
 test("odkaz na řez nese cestu OSM, starý odkaz se čte jako dřív", () => {
   const cut = { lat: 50.1, lon: -8.4, bearing: -98.6, wayId: 4441474 }, hash = cutHash(cut, { left: 22, right: 21.53 });
-  assert.equal(hash, "#rez=50.100000,-8.400000,-99,22.0,21.5,4441474");
-  assert.deepEqual(parseCutHash(hash), { lat: 50.1, lon: -8.4, bearing: -99, reach: { left: 22, right: 21.5 }, way: 4441474 });
+  assert.equal(hash, "#rez=50.100000,-8.400000,-98.6,22.0,21.5,4441474");
+  assert.deepEqual(parseCutHash(hash), { lat: 50.1, lon: -8.4, bearing: -98.6, reach: { left: 22, right: 21.5 }, way: 4441474 });
   // With a design after it, and inside the copied position.
   assert.equal(parseCutHash(`50.1, -8.4 · azimut 171° (Ulice) https://x.example/${hash}&navrh=abc`).way, 4441474);
   assert.deepEqual(designParams(`${hash}&navrh=abc&stav=def`), { navrh: "abc", stav: "def" });
   // Without a usable way the link is the old one.
-  for (const wayId of [undefined, null, -5, "x"]) assert.equal(cutHash({ ...cut, wayId }, { left: 22, right: 22 }), "#rez=50.100000,-8.400000,-99,22.0,22.0");
+  for (const wayId of [undefined, null, -5, "x"]) assert.equal(cutHash({ ...cut, wayId }, { left: 22, right: 22 }), "#rez=50.100000,-8.400000,-98.6,22.0,22.0");
   assert.deepEqual(parseCutHash("#rez=50.1,14.4,10,22.0,22.0&navrh=abc"), { lat: 50.1, lon: 14.4, bearing: 10, reach: { left: 22, right: 22 }, way: null });
   assert.deepEqual(parseCutHash("#rez=50.1,14.4,10"), { lat: 50.1, lon: 14.4, bearing: 10, reach: null, way: null });
   assert.equal(parseCutHash("50.1, 14.4"), null);
   // The reader before 25. 11. 2026 takes the new link too (an open page not yet reloaded).
-  assert.deepEqual([...hash.match(/#rez=(-?[\d.]+),(-?[\d.]+),(-?[\d.]+)(?:,([\d.]+),([\d.]+))?/)].slice(1), ["50.100000", "-8.400000", "-99", "22.0", "21.5"]);
+  assert.deepEqual([...hash.match(/#rez=(-?[\d.]+),(-?[\d.]+),(-?[\d.]+)(?:,([\d.]+),([\d.]+))?/)].slice(1), ["50.100000", "-8.400000", "-98.6", "22.0", "21.5"]);
   assert.ok(sameCut(parseCutHash("#rez=50.1,-8.4,-99,22.0,22.0"), cut), "starý odkaz: uložená práce zůstane");
   assert.ok(sameCut(parseCutHash(hash), cut));
   assert.ok(!sameCut(parseCutHash(hash), { ...cut, wayId: 5 }), "jiná vozovka je jiný řez");
+  // One decimal of the bearing: whole degrees stay whole, no "-0", every other tenth is another cut.
+  const at = (bearing) => cutHash({ ...cut, bearing }, { left: 22, right: 22 }).split(",")[2];
+  assert.deepEqual([-99, 12.04, 12.06, -0.02, 359.96, 0].map(at), ["-99", "12", "12.1", "0", "360", "0"]);
+  assert.ok(!sameCut(parseCutHash("#rez=50.1,-8.4,-98.2,22.0,22.0"), cut));
+  assert.ok(sameCut(parseCutHash("#rez=50.1,-8.4,0,22.0,22.0"), { ...cut, bearing: -0.4 }));
+  for (const b of [-179.96, -98.55, 0.05, 33.333, 179.95]) assert.ok(sameCut(parseCutHash(cutHash({ ...cut, bearing: b }, { left: 22, right: 22 })), { ...cut, bearing: b }), String(b));
 });
