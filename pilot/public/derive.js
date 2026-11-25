@@ -2037,11 +2037,11 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
     let at0 = i0;
     while (at0 >= lo && at0 <= hi && !(isRoadway(runs[at0].code) && foreign.some((c) => c.t > runs[at0].s && c.t < runs[at0].e))) at0 += step;
     if (at0 < lo || at0 > hi) continue;
+    if (at0 === i0) { forks = true; continue; }
+    if (byHand[step > 0 ? "L" : "R"]) continue;
     // Back from the foreign roadway to the sidewalk or green of at least OTHER_WALK before it, on the cut's own side.
     let end = at0 - step, walked = 0;
     while (end !== i0 && !carriage(runs[end].code) && runs[end].code !== OSM_PARKING) { if (runs[end].code === 702 || runs[end].code === 703 || isOpenLand(runs[end].code)) walked += runs[end].e - runs[end].s; end -= step; }
-    const byHandHere = byHand[step > 0 ? "L" : "R"];
-    if (at0 === i0 || byHandHere) { forks ||= at0 === i0; continue; }
     if (walked < OTHER_WALK) { forks = true; continue; }
     if (step > 0) { hi = at0 - 1; left = "volno"; } else { lo = at0 + 1; right = "volno"; }
   }
