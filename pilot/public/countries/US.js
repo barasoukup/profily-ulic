@@ -89,6 +89,5 @@ export default {
   // The houses of North America (house-looks.js, docs/house-types-north-america.md; Bára 25. 11. 2026).
   houseLook: northAmericaLook,
   houseDetails: northAmericaDetails,
-  allBuildings: true,
   search: ["photon-us"],
 };

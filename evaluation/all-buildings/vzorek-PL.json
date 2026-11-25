@@ -1,0 +1,526 @@
+{
+ "stat": {
+  "houses": 149,
+  "tunedFound": 95,
+  "allFound": 145,
+  "changed": 24,
+  "look": 24,
+  "asked": 81,
+  "regFailed": 0,
+  "noPhoto": 12,
+  "out": 3,
+  "outAsHouse": 1
+ },
+ "rows": [
+  {
+   "id": "PL01",
+   "town": "katowice",
+   "city": "poland",
+   "point": [
+    19.0191018,
+    50.2755003
+   ],
+   "mapillary": "209122390745510",
+   "pano": false,
+   "dist": 25.3,
+   "off": 26.3,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      19.019101833013572,
+      50.2755002658759
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "garaz",
+    "info": {
+     "point": [
+      19.019101833013572,
+      50.2755002658759
+     ],
+     "km": 99,
+     "block": {
+      "length": 14.4,
+      "width": 6.7,
+      "fill": 0.76,
+      "parts": 5
+     },
+     "tint": 0,
+     "type": "garage"
+    }
+   }
+  },
+  {
+   "id": "PL02",
+   "town": "katowice",
+   "city": "poland",
+   "point": [
+    19.0212402,
+    50.2754097
+   ],
+   "mapillary": "179864127320847",
+   "pano": false,
+   "dist": 19.1,
+   "off": -17.9,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      19.021240210335385,
+      50.27540970955302
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "point": [
+      19.021240210335385,
+      50.27540970955302
+     ],
+     "km": 99,
+     "block": {
+      "length": 40.4,
+      "width": 38.1,
+      "fill": 0.35,
+      "parts": 3
+     },
+     "tint": 0,
+     "type": "commercial"
+    }
+   }
+  },
+  {
+   "id": "PL03",
+   "town": "bydgoszcz",
+   "city": "poland",
+   "point": [
+    18.0203526,
+    53.1187545
+   ],
+   "mapillary": "491723212031113",
+   "pano": false,
+   "dist": 20.3,
+   "off": 11.1,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      18.020352557270094,
+      53.11875445824003
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "point": [
+      18.020352557270094,
+      53.11875445824003
+     ],
+     "km": 99,
+     "block": {
+      "length": 14.3,
+      "width": 11.7,
+      "fill": 0.82,
+      "parts": 1
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "PL04",
+   "town": "wroclaw",
+   "city": "poland",
+   "point": [
+    17.0462716,
+    51.1140604
+   ],
+   "mapillary": "219176662904033",
+   "pano": false,
+   "dist": 14.9,
+   "off": -32.5,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      17.04627159932201,
+      51.11406038105781
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "kostel",
+    "info": {
+     "point": [
+      17.04627159932201,
+      51.11406038105781
+     ],
+     "km": 99,
+     "block": {
+      "length": 98.1,
+      "width": 48.2,
+      "fill": 0.66,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "cathedral",
+     "material": "brick"
+    }
+   }
+  },
+  {
+   "id": "PL05",
+   "town": "bydgoszcz",
+   "city": "poland",
+   "point": [
+    18.0301569,
+    53.117553
+   ],
+   "mapillary": "816714405894299",
+   "pano": false,
+   "dist": 20.9,
+   "off": -19.8,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      18.030156856867354,
+      53.117552967811726
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "point": [
+      18.030156856867354,
+      53.117552967811726
+     ],
+     "km": 99,
+     "block": {
+      "length": 20.1,
+      "width": 10.2,
+      "fill": 0.8,
+      "parts": 1
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "PL06",
+   "town": "lublin",
+   "city": "poland",
+   "point": [
+    22.5610075,
+    51.2427238
+   ],
+   "mapillary": "868596070668652",
+   "pano": false,
+   "dist": 11.2,
+   "off": 29.9,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      22.56100746186241,
+      51.2427237847654
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "point": [
+      22.56100746186241,
+      51.2427237847654
+     ],
+     "km": 99,
+     "block": {
+      "length": 13,
+      "width": 6.6,
+      "fill": 0.86,
+      "parts": 1
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "PL07",
+   "town": "wroclaw",
+   "city": "poland",
+   "point": [
+    17.0410289,
+    51.1199927
+   ],
+   "mapillary": "3342590192682908",
+   "pano": false,
+   "dist": 15,
+   "off": 5.2,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      17.041028924477157,
+      51.11999267317899
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "point": [
+      17.041028924477157,
+      51.11999267317899
+     ],
+     "km": 99,
+     "block": {
+      "length": 86.3,
+      "width": 38.3,
+      "fill": 0.54,
+      "parts": 3
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   }
+  },
+  {
+   "id": "PL08",
+   "town": "warszawa",
+   "city": "poland",
+   "point": [
+    21.018714,
+    52.2199585
+   ],
+   "mapillary": "1025282996603858",
+   "pano": true,
+   "dist": 9.1,
+   "off": -113.8,
+   "before": {
+    "look": "funkce",
+    "info": {
+     "levels": 7,
+     "point": [
+      21.018714028265826,
+      52.219958509454486
+     ],
+     "km": 99,
+     "block": {
+      "length": 96.4,
+      "width": 85.5,
+      "fill": 0.4,
+      "parts": 7
+     },
+     "tint": 0,
+     "type": "apartments",
+     "roofShape": "flat"
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "levels": 7,
+     "point": [
+      21.018714028265826,
+      52.219958509454486
+     ],
+     "km": 99,
+     "block": {
+      "length": 363.5,
+      "width": 91.2,
+      "fill": 0.24,
+      "parts": 14
+     },
+     "tint": 0,
+     "type": "apartments",
+     "roofShape": "flat"
+    }
+   }
+  },
+  {
+   "id": "PL09",
+   "town": "gdansk",
+   "city": "poland",
+   "point": [
+    18.6407613,
+    54.346412
+   ],
+   "mapillary": "215586796794991",
+   "pano": false,
+   "dist": 22.1,
+   "off": 8.8,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      18.64076128744527,
+      54.34641198493194
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "point": [
+      18.64076128744527,
+      54.34641198493194
+     ],
+     "km": 99,
+     "block": {
+      "length": 54.5,
+      "width": 13.8,
+      "fill": 0.77,
+      "parts": 4
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "PL10",
+   "town": "gdansk",
+   "city": "poland",
+   "point": [
+    18.6429479,
+    54.3442894
+   ],
+   "mapillary": "300997971426618",
+   "pano": false,
+   "dist": 18.4,
+   "off": 25.6,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      18.642947893086053,
+      54.344289382706954
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "point": [
+      18.642947893086053,
+      54.344289382706954
+     ],
+     "km": 99,
+     "block": {
+      "length": 21,
+      "width": 10.6,
+      "fill": 0.77,
+      "parts": 1
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "PL11",
+   "town": "bydgoszcz",
+   "city": "poland",
+   "point": [
+    17.9980088,
+    53.1320228
+   ],
+   "mapillary": "223226329225091",
+   "pano": false,
+   "dist": 11,
+   "off": 29.3,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      17.99800875624088,
+      53.13202277329768
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "kostel",
+    "info": {
+     "point": [
+      17.99800875624088,
+      53.13202277329768
+     ],
+     "km": 99,
+     "block": {
+      "length": 52.2,
+      "width": 31.4,
+      "fill": 0.71,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "church"
+    }
+   }
+  },
+  {
+   "id": "PL12",
+   "town": "lodz",
+   "city": "poland",
+   "point": [
+    19.4417963,
+    51.7516247
+   ],
+   "mapillary": "785811017855368",
+   "pano": false,
+   "dist": 18.1,
+   "off": 17.7,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      19.441796306133647,
+      51.7516246585377
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "point": [
+      19.441796306133647,
+      51.7516246585377
+     ],
+     "km": 99,
+     "block": {
+      "length": 30.8,
+      "width": 14.4,
+      "fill": 0.82,
+      "parts": 1
+     },
+     "tint": 0
+    }
+   }
+  }
+ ]
+}

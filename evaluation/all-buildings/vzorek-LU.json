@@ -1,0 +1,514 @@
+{
+ "stat": {
+  "houses": 126,
+  "tunedFound": 15,
+  "allFound": 120,
+  "changed": 60,
+  "look": 60,
+  "asked": 110,
+  "regFailed": 0,
+  "noPhoto": 48,
+  "out": 1,
+  "outAsHouse": 1
+ },
+ "rows": [
+  {
+   "id": "LU01",
+   "town": "ettelbruck",
+   "city": "luxembourg",
+   "point": [
+    6.1002128,
+    49.8459324
+   ],
+   "mapillary": "1675951020776531",
+   "pano": true,
+   "dist": 14.1,
+   "off": 36.3,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      6.100212821549646,
+      49.84593242066514
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "hala",
+    "info": {
+     "point": [
+      6.100212821549646,
+      49.84593242066514
+     ],
+     "km": 99,
+     "block": {
+      "length": 240.5,
+      "width": 108.3,
+      "fill": 0.29,
+      "parts": 26
+     },
+     "tint": 0,
+     "type": "service"
+    }
+   }
+  },
+  {
+   "id": "LU02",
+   "town": "remich",
+   "city": "luxembourg",
+   "point": [
+    6.356152,
+    49.5389975
+   ],
+   "mapillary": "2178715005861898",
+   "pano": false,
+   "dist": 21.3,
+   "off": -11.9,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      6.356152045500312,
+      49.53899749578812
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      6.356152045500312,
+      49.53899749578812
+     ],
+     "km": 99,
+     "block": {
+      "length": 9.6,
+      "width": 6.8,
+      "fill": 0.76,
+      "parts": 1
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "LU03",
+   "town": "esch",
+   "city": "luxembourg",
+   "point": [
+    5.988376,
+    49.496779
+   ],
+   "mapillary": "302098087953654",
+   "pano": false,
+   "dist": 21.7,
+   "off": 4.1,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      5.988376018093807,
+      49.49677896559535
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      5.988376018093807,
+      49.49677896559535
+     ],
+     "km": 99,
+     "block": {
+      "length": 90.8,
+      "width": 15.8,
+      "fill": 0.71,
+      "parts": 9
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "LU04",
+   "town": "wiltz",
+   "city": "luxembourg",
+   "point": [
+    5.9451054,
+    49.9726447
+   ],
+   "mapillary": "254712980726536",
+   "pano": false,
+   "dist": 11.2,
+   "off": -6.3,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      5.945105433340427,
+      49.97264469505324
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "point": [
+      5.945105433340427,
+      49.97264469505324
+     ],
+     "km": 99,
+     "block": {
+      "length": 58.3,
+      "width": 20.1,
+      "fill": 0.49,
+      "parts": 7
+     },
+     "tint": 0,
+     "type": "house"
+    }
+   }
+  },
+  {
+   "id": "LU05",
+   "town": "luxembourg",
+   "city": "luxembourg",
+   "point": [
+    6.1323579,
+    49.6080948
+   ],
+   "mapillary": "342167338167637",
+   "pano": false,
+   "dist": 21.3,
+   "off": 12.1,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      6.132357932755152,
+      49.60809478073654
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      6.132357932755152,
+      49.60809478073654
+     ],
+     "km": 99,
+     "block": {
+      "length": 110.1,
+      "width": 59.2,
+      "fill": 0.51,
+      "parts": 4
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "LU06",
+   "town": "grevenmacher",
+   "city": "luxembourg",
+   "point": [
+    6.4332476,
+    49.6694627
+   ],
+   "mapillary": "158742796124449",
+   "pano": false,
+   "dist": 22.9,
+   "off": -5.2,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      6.433247611015015,
+      49.669462669103766
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "point": [
+      6.433247611015015,
+      49.669462669103766
+     ],
+     "km": 99,
+     "block": {
+      "length": 64.6,
+      "width": 47.3,
+      "fill": 0.32,
+      "parts": 7
+     },
+     "tint": 0,
+     "type": "house"
+    }
+   }
+  },
+  {
+   "id": "LU07",
+   "town": "echternach",
+   "city": "luxembourg",
+   "point": [
+    6.412073,
+    49.8088624
+   ],
+   "mapillary": "139330018177225",
+   "pano": false,
+   "dist": 5.9,
+   "off": 1.7,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      6.412072957368763,
+      49.8088623622557
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      6.412072957368763,
+      49.8088623622557
+     ],
+     "km": 99,
+     "block": {
+      "length": 12.1,
+      "width": 11.9,
+      "fill": 0.61,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "house"
+    }
+   }
+  },
+  {
+   "id": "LU08",
+   "town": "grevenmacher",
+   "city": "luxembourg",
+   "point": [
+    6.4373342,
+    49.6792785
+   ],
+   "mapillary": "860355141233851",
+   "pano": false,
+   "dist": 8.6,
+   "off": 4.6,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      6.437334238427146,
+      49.67927846475608
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      6.437334238427146,
+      49.67927846475608
+     ],
+     "km": 99,
+     "block": {
+      "length": 34.2,
+      "width": 11.2,
+      "fill": 0.85,
+      "parts": 4
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "LU09",
+   "town": "esch",
+   "city": "luxembourg",
+   "point": [
+    5.9777955,
+    49.4838392
+   ],
+   "mapillary": "193288309831167",
+   "pano": false,
+   "dist": 19.5,
+   "off": 16.5,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      5.977795533213068,
+      49.483839232449355
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      5.977795533213068,
+      49.483839232449355
+     ],
+     "km": 99,
+     "block": {
+      "length": 17.6,
+      "width": 16,
+      "fill": 0.68,
+      "parts": 1
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "LU10",
+   "town": "grevenmacher",
+   "city": "luxembourg",
+   "point": [
+    6.4392697,
+    49.6747974
+   ],
+   "mapillary": "1129078406698230",
+   "pano": true,
+   "dist": 13,
+   "off": 31.3,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      6.439269741319854,
+      49.67479736487587
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      6.439269741319854,
+      49.67479736487587
+     ],
+     "km": 99,
+     "block": {
+      "length": 17.3,
+      "width": 13.6,
+      "fill": 0.65,
+      "parts": 1
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "LU11",
+   "town": "ettelbruck",
+   "city": "luxembourg",
+   "point": [
+    6.0973326,
+    49.8348181
+   ],
+   "mapillary": "547308897489547",
+   "pano": false,
+   "dist": 23.6,
+   "off": 24.4,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      6.097332586821566,
+      49.83481810335198
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      6.097332586821566,
+      49.83481810335198
+     ],
+     "km": 99,
+     "block": {
+      "length": 25.6,
+      "width": 18.8,
+      "fill": 0.49,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "house"
+    }
+   }
+  },
+  {
+   "id": "LU12",
+   "town": "echternach",
+   "city": "luxembourg",
+   "point": [
+    6.4062845,
+    49.8061974
+   ],
+   "mapillary": "1369617891262683",
+   "pano": false,
+   "dist": 18,
+   "off": 31.1,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      6.406284532197054,
+      49.80619737160729
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      6.406284532197054,
+      49.80619737160729
+     ],
+     "km": 99,
+     "block": {
+      "length": 13.5,
+      "width": 10.5,
+      "fill": 0.79,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "house"
+    }
+   }
+  }
+ ]
+}

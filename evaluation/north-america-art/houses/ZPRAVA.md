@@ -49,7 +49,7 @@ Který je blíž fotce: vzorek 1 nový 27, dnes 2, stejně 4, nejasné 7; vzorek
 - **Co data neříkají (80 domů):** rok u žádného, podlaží chybí u 53 (66 %), druh u 20 (25 %), obojí u 17 (21 %), u 4 (5 %)
   aplikace pod řezem dům v OSM nenašla (bod 4 m uvnitř fasády). Celé DC: podlaží 37 %, rok 0,1 %.
 - **Hlavní příčina zlepšení:** dům bez podlaží dnes dostane pražský pětipodlažní činžák. Nově se čte i druh domu a blok
-  (`allBuildings`, jen USA).
+  (tehdy jen USA, od 25. 11. 2026 všude, `evaluation/all-buildings/ZPRAVA.md`).
 - **Chyby nového:** přízemní obchody bez druhu kreslené jako řadový nebo samostatný dům (3), dům se stromy okolo bez domu v OSM
   jako řadový (1), dílna jako bytový dům (1), velký bytový dům v řadové čtvrti jako řadový (1), jeden činžák (28, vzorek 1), kde
   posuzovatel dal přednost dnešnímu.

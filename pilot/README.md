@@ -555,6 +555,8 @@ Podloubí jen podle dat (Bára): cesta OSM `covered=arcade|colonnade|building_ar
 
 Severní Amerika má 14 vlastních vzhledů (`houses-america.js`, výběr `house-looks.js` `northAmericaLook`, USA i budoucí Kanada;
 `docs/house-types-north-america.md`, `evaluation/north-america-art/houses/ZPRAVA.md`); bez dat prostý řadový nebo rodinný dům.
+Vzhled domu čte všechny budovy OSM, i bez podlaží a výšky, ve všech státech (`?off=vsedomy` jen dřívější; `evaluation/all-buildings/ZPRAVA.md`);
+registr budov má přednost. Panelák jen z tvaru bloku bez podlaží a druhu se nedělá, dům v řadě bez podlaží je ve Flandrech cihlový městský.
 
 ## Brno
 

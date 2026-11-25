@@ -1,0 +1,654 @@
+{
+ "stat": {
+  "houses": 454,
+  "tunedFound": 392,
+  "allFound": 420,
+  "changed": 25,
+  "look": 25,
+  "asked": 96,
+  "regFailed": 0,
+  "noPhoto": 13,
+  "out": 0,
+  "outAsHouse": 0
+ },
+ "rows": [
+  {
+   "id": "EEx01",
+   "town": "parnu",
+   "city": "estonia",
+   "point": [
+    24.5146461,
+    58.3844711
+   ],
+   "mapillary": "1768722410163753",
+   "pano": false,
+   "dist": 12,
+   "off": -5.3,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 3,
+     "height": 11,
+     "point": [
+      24.5146460715463,
+      58.38447114118828
+     ],
+     "km": 99,
+     "block": {
+      "length": 46.8,
+      "width": 13.7,
+      "fill": 0.81,
+      "parts": 2
+     },
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr"
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 3,
+     "height": 11,
+     "point": [
+      24.5146460715463,
+      58.38447114118828
+     ],
+     "km": 99,
+     "block": {
+      "length": 63.7,
+      "width": 62.7,
+      "fill": 0.46,
+      "parts": 11
+     },
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "EEx02",
+   "town": "narva",
+   "city": "estonia",
+   "point": [
+    28.2044407,
+    59.3673625
+   ],
+   "mapillary": "572018200469246",
+   "pano": false,
+   "dist": 21.7,
+   "off": 2.8,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      28.204440697400106,
+      59.36736252435606
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "point": [
+      28.204440697400106,
+      59.36736252435606
+     ],
+     "km": 99,
+     "block": {
+      "length": 6.2,
+      "width": 2.9,
+      "fill": 0.85,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "container"
+    }
+   }
+  },
+  {
+   "id": "EEx03",
+   "town": "tartu",
+   "city": "estonia",
+   "point": [
+    26.7122783,
+    58.3711274
+   ],
+   "mapillary": "1426258887772732",
+   "pano": false,
+   "dist": 13.3,
+   "off": 6.9,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "levels": 4,
+     "point": [
+      26.712278255588185,
+      58.37112738000459
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 4,
+     "roof": 0,
+     "src": "ipr"
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "levels": 4,
+     "point": [
+      26.712278255588185,
+      58.37112738000459
+     ],
+     "km": 99,
+     "block": {
+      "length": 68.7,
+      "width": 18.1,
+      "fill": 0.83,
+      "parts": 2
+     },
+     "tint": 0,
+     "cornice": 4,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "EEx04",
+   "town": "tallinn",
+   "city": "estonia",
+   "point": [
+    24.7545693,
+    59.4472021
+   ],
+   "mapillary": "2997422010491741",
+   "pano": false,
+   "dist": 24.9,
+   "off": 23.4,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "levels": 5,
+     "height": 0.3,
+     "point": [
+      24.754569325535588,
+      59.44720214668731
+     ],
+     "km": 99,
+     "block": {
+      "length": 398.8,
+      "width": 173.7,
+      "fill": 0.46,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "abandoned",
+     "cornice": 5,
+     "roof": 0,
+     "src": "ipr"
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "levels": 5,
+     "height": 0.3,
+     "point": [
+      24.754569325535588,
+      59.44720214668731
+     ],
+     "km": 99,
+     "block": {
+      "length": 402,
+      "width": 173.7,
+      "fill": 0.46,
+      "parts": 2
+     },
+     "tint": 0,
+     "type": "abandoned",
+     "cornice": 5,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "EEx05",
+   "town": "tallinn",
+   "city": "estonia",
+   "point": [
+    24.7538065,
+    59.4474651
+   ],
+   "mapillary": "1536909193307748",
+   "pano": false,
+   "dist": 21.8,
+   "off": 3.2,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "levels": 5,
+     "height": 0.3,
+     "point": [
+      24.75380654208368,
+      59.4474650901065
+     ],
+     "km": 99,
+     "block": {
+      "length": 398.8,
+      "width": 173.7,
+      "fill": 0.46,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "abandoned",
+     "cornice": 5,
+     "roof": 0,
+     "src": "ipr"
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "levels": 5,
+     "height": 0.3,
+     "point": [
+      24.75380654208368,
+      59.4474650901065
+     ],
+     "km": 99,
+     "block": {
+      "length": 402,
+      "width": 173.7,
+      "fill": 0.46,
+      "parts": 2
+     },
+     "tint": 0,
+     "type": "abandoned",
+     "cornice": 5,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "EEx06",
+   "town": "tallinn",
+   "city": "estonia",
+   "point": [
+    24.7584306,
+    59.4293348
+   ],
+   "mapillary": "1211614973325331",
+   "pano": false,
+   "dist": 21,
+   "off": -31.7,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      24.758430613433216,
+      59.42933480131267
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "point": [
+      24.758430613433216,
+      59.42933480131267
+     ],
+     "km": 99,
+     "block": {
+      "length": 107.3,
+      "width": 77.7,
+      "fill": 0.6,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "office"
+    }
+   }
+  },
+  {
+   "id": "EEx07",
+   "town": "parnu",
+   "city": "estonia",
+   "point": [
+    24.5112325,
+    58.3819139
+   ],
+   "mapillary": "3664496270368208",
+   "pano": false,
+   "dist": 24.5,
+   "off": 18.6,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "levels": 3,
+     "height": 11,
+     "point": [
+      24.51123249943798,
+      58.38191391111762
+     ],
+     "km": 99,
+     "block": {
+      "length": 63.5,
+      "width": 54.6,
+      "fill": 0.58,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "retail",
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr"
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "levels": 3,
+     "height": 11,
+     "point": [
+      24.51123249943798,
+      58.38191391111762
+     ],
+     "km": 99,
+     "block": {
+      "length": 63.4,
+      "width": 54.6,
+      "fill": 0.59,
+      "parts": 2
+     },
+     "tint": 0,
+     "type": "retail",
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "EEx08",
+   "town": "tartu",
+   "city": "estonia",
+   "point": [
+    26.7228245,
+    58.3812897
+   ],
+   "mapillary": "3391946227574081",
+   "pano": false,
+   "dist": 13,
+   "off": -5.8,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 5,
+     "height": 19,
+     "point": [
+      26.722824531873073,
+      58.381289700384066
+     ],
+     "km": 99,
+     "block": {
+      "length": 57.3,
+      "width": 30.4,
+      "fill": 0.6,
+      "parts": 2
+     },
+     "tint": 0,
+     "cornice": 5,
+     "roof": 0,
+     "src": "ipr"
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 5,
+     "height": 19,
+     "point": [
+      26.722824531873073,
+      58.381289700384066
+     ],
+     "km": 99,
+     "block": {
+      "length": 93.9,
+      "width": 83.6,
+      "fill": 0.41,
+      "parts": 7
+     },
+     "tint": 0,
+     "cornice": 5,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "EEx09",
+   "town": "parnu",
+   "city": "estonia",
+   "point": [
+    24.5029851,
+    58.385601
+   ],
+   "mapillary": "125190022922133",
+   "pano": false,
+   "dist": 20,
+   "off": 17.4,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "levels": 3,
+     "point": [
+      24.502985077263606,
+      58.3856010116603
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr"
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "levels": 3,
+     "point": [
+      24.502985077263606,
+      58.3856010116603
+     ],
+     "km": 99,
+     "block": {
+      "length": 42.5,
+      "width": 19,
+      "fill": 0.59,
+      "parts": 2
+     },
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "EEx10",
+   "town": "tallinn",
+   "city": "estonia",
+   "point": [
+    24.7529477,
+    59.4476888
+   ],
+   "mapillary": "1217528751992474",
+   "pano": false,
+   "dist": 16,
+   "off": 7,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "levels": 5,
+     "height": 0.3,
+     "point": [
+      24.75294767427483,
+      59.44768878601688
+     ],
+     "km": 99,
+     "block": {
+      "length": 398.8,
+      "width": 173.7,
+      "fill": 0.46,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "abandoned",
+     "cornice": 5,
+     "roof": 0,
+     "src": "ipr"
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "levels": 5,
+     "height": 0.3,
+     "point": [
+      24.75294767427483,
+      59.44768878601688
+     ],
+     "km": 99,
+     "block": {
+      "length": 402,
+      "width": 173.7,
+      "fill": 0.46,
+      "parts": 2
+     },
+     "tint": 0,
+     "type": "abandoned",
+     "cornice": 5,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "EEx11",
+   "town": "tartu",
+   "city": "estonia",
+   "point": [
+    26.7200827,
+    58.3866513
+   ],
+   "mapillary": "394596685441919",
+   "pano": false,
+   "dist": 21.2,
+   "off": -7.4,
+   "before": {
+    "look": "tallinnamaja",
+    "info": {
+     "levels": 3,
+     "height": 12,
+     "point": [
+      26.720082740098263,
+      58.38665131514664
+     ],
+     "km": 99,
+     "block": {
+      "length": 62.5,
+      "width": 48.5,
+      "fill": 0.41,
+      "parts": 1
+     },
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr"
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "levels": 3,
+     "height": 12,
+     "point": [
+      26.720082740098263,
+      58.38665131514664
+     ],
+     "km": 99,
+     "block": {
+      "length": 62.5,
+      "width": 47.2,
+      "fill": 0.44,
+      "parts": 2
+     },
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "EEx12",
+   "town": "tartu",
+   "city": "estonia",
+   "point": [
+    26.7386162,
+    58.3802385
+   ],
+   "mapillary": "1040729990116756",
+   "pano": false,
+   "dist": 24.9,
+   "off": -10.7,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "levels": 4,
+     "point": [
+      26.73861618560972,
+      58.38023852078144
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 4,
+     "roof": 0,
+     "src": "ipr"
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "levels": 4,
+     "point": [
+      26.73861618560972,
+      58.38023852078144
+     ],
+     "km": 99,
+     "block": {
+      "length": 63.2,
+      "width": 44.7,
+      "fill": 0.57,
+      "parts": 3
+     },
+     "tint": 0,
+     "cornice": 4,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  }
+ ]
+}

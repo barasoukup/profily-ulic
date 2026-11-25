@@ -1,0 +1,570 @@
+{
+ "stat": {
+  "houses": 111,
+  "tunedFound": 80,
+  "allFound": 109,
+  "changed": 15,
+  "look": 15,
+  "asked": 66,
+  "regFailed": 0,
+  "noPhoto": 3,
+  "out": 1,
+  "outAsHouse": 1
+ },
+ "rows": [
+  {
+   "id": "DE01",
+   "town": "nuernberg",
+   "city": "germany",
+   "point": [
+    11.0882467,
+    49.4444328
+   ],
+   "mapillary": "175022401147778",
+   "pano": false,
+   "dist": 21.2,
+   "off": 32.2,
+   "panels": false,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      11.088246746673537,
+      49.44443281339492
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "kancelar",
+    "info": {
+     "point": [
+      11.088246746673537,
+      49.44443281339492
+     ],
+     "km": 99,
+     "block": {
+      "length": 82.9,
+      "width": 58.6,
+      "fill": 0.34,
+      "parts": 5
+     },
+     "tint": 0,
+     "type": "hotel"
+    }
+   }
+  },
+  {
+   "id": "DE02",
+   "town": "dresden",
+   "city": "germany",
+   "point": [
+    13.7310672,
+    51.0585634
+   ],
+   "mapillary": "1115242008977945",
+   "pano": false,
+   "dist": 13.2,
+   "off": 23.1,
+   "panels": true,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      13.731067172708514,
+      51.05856340111717
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "point": [
+      13.731067172708514,
+      51.05856340111717
+     ],
+     "km": 99,
+     "block": {
+      "length": 164,
+      "width": 74.2,
+      "fill": 0.97,
+      "parts": 2
+     },
+     "tint": 0,
+     "material": "glass"
+    }
+   }
+  },
+  {
+   "id": "DE03",
+   "town": "aachen",
+   "city": "germany",
+   "point": [
+    6.1001929,
+    50.7832473
+   ],
+   "mapillary": "661986268550143",
+   "pano": false,
+   "dist": 22.4,
+   "off": -27.8,
+   "panels": false,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      6.100192930996444,
+      50.78324725796149
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "kancelar",
+    "info": {
+     "point": [
+      6.100192930996444,
+      50.78324725796149
+     ],
+     "km": 99,
+     "block": {
+      "length": 81.2,
+      "width": 67.2,
+      "fill": 0.43,
+      "parts": 3
+     },
+     "tint": 0,
+     "type": "office"
+    }
+   }
+  },
+  {
+   "id": "DE04",
+   "town": "frankfurt",
+   "city": "germany",
+   "point": [
+    8.6649396,
+    50.110065
+   ],
+   "mapillary": "1997936103935324",
+   "pano": false,
+   "dist": 15.6,
+   "off": 25.8,
+   "panels": false,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      8.664939579507616,
+      50.11006495901799
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "kancelar",
+    "info": {
+     "point": [
+      8.664939579507616,
+      50.11006495901799
+     ],
+     "km": 99,
+     "block": {
+      "length": 149.8,
+      "width": 112.4,
+      "fill": 0.35,
+      "parts": 11
+     },
+     "tint": 0,
+     "type": "commercial"
+    }
+   }
+  },
+  {
+   "id": "DE05",
+   "town": "muenchen",
+   "city": "germany",
+   "point": [
+    11.5646544,
+    48.138439
+   ],
+   "mapillary": "1376912446791806",
+   "pano": true,
+   "dist": 18.1,
+   "off": -167.6,
+   "panels": false,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "levels": 8,
+     "point": [
+      11.564654373757847,
+      48.13843902900184
+     ],
+     "km": 99,
+     "block": {
+      "length": 161.8,
+      "width": 80.2,
+      "fill": 0.35,
+      "parts": 6
+     },
+     "tint": 0,
+     "type": "retail",
+     "roofShape": "flat"
+    }
+   },
+   "after": {
+    "look": "funkce",
+    "info": {
+     "levels": 8,
+     "point": [
+      11.564654373757847,
+      48.13843902900184
+     ],
+     "km": 99,
+     "block": {
+      "length": 172.6,
+      "width": 82.2,
+      "fill": 0.83,
+      "parts": 12
+     },
+     "tint": 0,
+     "type": "retail",
+     "roofShape": "flat"
+    }
+   }
+  },
+  {
+   "id": "DE06",
+   "town": "frankfurt",
+   "city": "germany",
+   "point": [
+    8.6751885,
+    50.1088106
+   ],
+   "mapillary": "1066803624577133",
+   "pano": false,
+   "dist": 16,
+   "off": 8,
+   "panels": false,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      8.675188460514644,
+      50.1088106059611
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "kancelar",
+    "info": {
+     "point": [
+      8.675188460514644,
+      50.1088106059611
+     ],
+     "km": 99,
+     "block": {
+      "length": 130.2,
+      "width": 89,
+      "fill": 0.53,
+      "parts": 7
+     },
+     "tint": 0,
+     "type": "commercial"
+    }
+   }
+  },
+  {
+   "id": "DE07",
+   "town": "berlin",
+   "city": "germany",
+   "point": [
+    13.3938288,
+    52.5149094
+   ],
+   "mapillary": "1248480229867327",
+   "pano": false,
+   "dist": 13.3,
+   "off": -27.2,
+   "panels": true,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 6,
+     "point": [
+      13.393828786510289,
+      52.51490940848713
+     ],
+     "km": 99,
+     "block": {
+      "length": 83.1,
+      "width": 75.8,
+      "fill": 0.35,
+      "parts": 3
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 6,
+     "point": [
+      13.393828786510289,
+      52.51490940848713
+     ],
+     "km": 99,
+     "block": {
+      "length": 242.4,
+      "width": 85.8,
+      "fill": 0.58,
+      "parts": 25
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   }
+  },
+  {
+   "id": "DE08",
+   "town": "freiburg",
+   "city": "germany",
+   "point": [
+    7.8578572,
+    47.9856507
+   ],
+   "mapillary": "774991203210511",
+   "pano": false,
+   "dist": 19.3,
+   "off": 25.2,
+   "panels": false,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "levels": 4,
+     "point": [
+      7.857857207769525,
+      47.98565066541168
+     ],
+     "km": 99,
+     "block": {
+      "length": 24.7,
+      "width": 15.4,
+      "fill": 0.72,
+      "parts": 2
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 4,
+     "point": [
+      7.857857207769525,
+      47.98565066541168
+     ],
+     "km": 99,
+     "block": {
+      "length": 38,
+      "width": 17.3,
+      "fill": 0.7,
+      "parts": 5
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   }
+  },
+  {
+   "id": "DE09",
+   "town": "aachen",
+   "city": "germany",
+   "point": [
+    6.0955931,
+    50.7728179
+   ],
+   "mapillary": "1172287058653074",
+   "pano": true,
+   "dist": 20.8,
+   "off": -111.9,
+   "panels": false,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      6.095593060914439,
+      50.77281787165774
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "funkce",
+    "info": {
+     "point": [
+      6.095593060914439,
+      50.77281787165774
+     ],
+     "km": 99,
+     "block": {
+      "length": 188.1,
+      "width": 83.8,
+      "fill": 0.58,
+      "parts": 32
+     },
+     "tint": 0,
+     "type": "apartments",
+     "roofShape": "flat"
+    }
+   }
+  },
+  {
+   "id": "DE10",
+   "town": "muenchen",
+   "city": "germany",
+   "point": [
+    11.5556753,
+    48.1367514
+   ],
+   "mapillary": "1518096130326114",
+   "pano": true,
+   "dist": 15,
+   "off": -156.4,
+   "panels": false,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "levels": 6,
+     "point": [
+      11.555675333202938,
+      48.13675138339603
+     ],
+     "km": 99,
+     "block": {
+      "length": 81.5,
+      "width": 47.6,
+      "fill": 0.36,
+      "parts": 4
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 6,
+     "point": [
+      11.555675333202938,
+      48.13675138339603
+     ],
+     "km": 99,
+     "block": {
+      "length": 199,
+      "width": 124.9,
+      "fill": 0.37,
+      "parts": 23
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   }
+  },
+  {
+   "id": "DE11",
+   "town": "berlin",
+   "city": "germany",
+   "point": [
+    13.3860565,
+    52.514359
+   ],
+   "mapillary": "116665868173938",
+   "pano": false,
+   "dist": 6.8,
+   "off": 27.2,
+   "panels": true,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      13.386056469939879,
+      52.51435895727649
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "point": [
+      13.386056469939879,
+      52.51435895727649
+     ],
+     "km": 99,
+     "block": {
+      "length": 309.9,
+      "width": 189.1,
+      "fill": 0.3,
+      "parts": 11
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "DE12",
+   "town": "hamburg",
+   "city": "germany",
+   "point": [
+    10.0065339,
+    53.5444204
+   ],
+   "mapillary": "759150978299608",
+   "pano": false,
+   "dist": 11.8,
+   "off": -8.5,
+   "panels": false,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      10.006533924685153,
+      53.544420393222985
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "hala",
+    "info": {
+     "point": [
+      10.006533924685153,
+      53.544420393222985
+     ],
+     "km": 99,
+     "block": {
+      "length": 844.8,
+      "width": 218.8,
+      "fill": 0.06,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "service"
+    }
+   }
+  }
+ ]
+}

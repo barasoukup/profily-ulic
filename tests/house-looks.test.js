@@ -166,3 +166,24 @@ test("severoamerické domy podle druhu, roku a místa; bez dat prostý vzhled", 
   assert.equal(det("bayrow", { point: GT, block: row }).front, "flat");
   assert.equal(det("slab", { point: MD }).balconies, false);
 });
+
+test("Vzhled čte všechny budovy OSM, panelák ne z tvaru samotného, řadový dům Flander bez podlaží je cihlový", async () => {
+  const D = await import("../pilot/public/derive.js"), P = await import("../pilot/public/profile.js"), C = await import("../pilot/public/city.js");
+  const O = await import("../pilot/public/ortho-osm.js"), { brickLook } = await import("../pilot/public/house-looks.js");
+  const frame = { toXY: (x, y) => [x, y], toLonLat: (x, y) => [x, y] }, box = (tags) => ({ type: "area", tags, geometry: [[-5, -5], [5, -5], [5, 5], [-5, 5], [-5, -5]].map(([lon, lat]) => ({ lon, lat })) });
+  assert.equal(D.buildingAt({ elements: [box({ building: "house" })] }, frame, [0, 0]).type, "house");
+  assert.equal(D.buildingAt({ elements: [box({ building: "roof" })] }, frame, [0, 0]), null);
+  const off = O.P.off;
+  O.P.off = new Set(["vsedomy"]);
+  assert.equal(D.buildingAt({ elements: [box({ building: "house" })] }, frame, [0, 0]), null);
+  O.P.off = off;
+  const slab = { block: { length: 60, width: 12, fill: 0.9, parts: 1 }, km: 99, point: [19.94, 50.06] };
+  C.setCity("poland");
+  assert.equal(P.buildingStyle(slab), "sikma");
+  assert.equal(P.buildingStyle({ ...slab, levels: 5 }), "plocha");
+  C.setCity("austria");
+  assert.equal(P.buildingStyle(slab), "povalecny");
+  C.setCity("praha");
+  assert.equal(brickLook()("nizky", { type: "house", block: { parts: 5 } }, null), "cihlovy");
+  assert.equal(brickLook()("nizky", { type: "house", block: { parts: 5 } }, 1), undefined);
+});

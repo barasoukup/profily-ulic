@@ -864,7 +864,8 @@ function abroadStyle(info, n) {
   const rs = info?.roofShape;
   if (rs && rs !== "flat") return "sikma";
   if (OFFICE_TYPES.has(info?.type)) return "plocha";
-  if (isSlab(info?.block) || (n >= PANEL_FLOORS && !info?.block)) return "plocha";
+  // Where panel houses were built, the shape of a block alone (no floors, no kind) tells none (evaluation/all-buildings).
+  if ((isSlab(info?.block) && (n || info?.type || !socialistLooks())) || (n >= PANEL_FLOORS && !info?.block)) return "plocha";
   return rs === "flat" ? "funkce" : "sikma";
 }
 

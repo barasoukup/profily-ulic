@@ -6,6 +6,7 @@ import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 const ME = fileURLToPath(import.meta.url), NEW = path.join(path.dirname(ME), "../../../pilot/public");
+if (!process.env.ONE && !process.env.OLD) throw new Error("OLD=<old pilot/public>");
 if (!process.env.ONE) {
   const run = (pub) => JSON.parse(execFileSync("node", [ME], { env: { ...process.env, ONE: pub }, maxBuffer: 1e9 }).toString());
   const a = run(process.env.OLD), b = run(NEW);

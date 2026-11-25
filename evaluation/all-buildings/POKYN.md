@@ -1,0 +1,8 @@
+# Judging house drawings against photos
+Each sheet <id>.jpg has, left to right: a street photo (the house in question is the one in the MIDDLE of the photo, nearest to the camera; flat photos: around the centre), drawing X, drawing Y. The drawings show one generic house type from the side (we look along the street; the street is on the right, so porches, bays, stairs, balconies stick out to the right; facade windows and door are drawn on the side wall by artistic licence). Colours vary at random: ignore exact colour, judge the TYPE: kind of building (row house, detached, apartment block, shop, office, garage…), storeys, roof form, wall material, front (porch, bay, stoop, flat).
+For each sheet (read every image yourself): 
+- X and Y each: "right" (the type is right, floors within one), "partly" (the general kind is right but a main thing is wrong), "wrong", or "unclear" (the photo does not show the house).
+- better: "X", "Y", "same" or "unclear".
+- type: in 3–6 words what the house really is, and whether it has a projecting bay / a porch / neither if visible.
+Write JSON to the file named in your task: {"01": {"X": "...", "Y": "...", "better": "...", "type": "..."}, …} and reply with one line only.
+In Europe the drawings are the app's types of houses (tenement with a pitched roof, post-war block, panel block, functionalist house, villa, small town house, row house with a brick cornice, shop or works hall, office building, school, church, garage…). "right" needs the kind and the floors within one; a block of flats drawn as a tenement of another era is "partly". If X and Y look the same, say "same". Judge honestly: there is no expected answer.
