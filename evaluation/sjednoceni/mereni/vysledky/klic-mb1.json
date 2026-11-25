@@ -1,0 +1,62 @@
+{
+ "1": {
+  "id": "me-fi-p-helsinki-1",
+  "X": "N",
+  "Y": "lawlanes"
+ },
+ "2": {
+  "id": "me-de-hamburg-hamburg-28",
+  "X": "N",
+  "Y": "lawlanes"
+ },
+ "3": {
+  "id": "me-be-m-gent-2",
+  "X": "lawlanes",
+  "Y": "N"
+ },
+ "4": {
+  "id": "me-pl-krakow-krakow-3",
+  "X": "N",
+  "Y": "lawlanes"
+ },
+ "5": {
+  "id": "me-es-zaragoza-zaragoza-11",
+  "X": "lawlanes",
+  "Y": "N"
+ },
+ "6": {
+  "id": "me-es-zaragoza-zaragoza-24",
+  "X": "lawlanes",
+  "Y": "N"
+ },
+ "7": {
+  "id": "me-be-m-leuven-6",
+  "X": "lawlanes",
+  "Y": "N"
+ },
+ "8": {
+  "id": "me-sk-m-bratislava-4",
+  "X": "lawlanes",
+  "Y": "N"
+ },
+ "9": {
+  "id": "me-pt-p-porto-10",
+  "X": "lawlanes",
+  "Y": "N"
+ },
+ "10": {
+  "id": "me-pl-p-lodz-3",
+  "X": "lawlanes",
+  "Y": "N"
+ },
+ "11": {
+  "id": "me-be-p-liege-5",
+  "X": "N",
+  "Y": "lawlanes"
+ },
+ "12": {
+  "id": "me-ch-m-bern-12",
+  "X": "N",
+  "Y": "lawlanes"
+ }
+}

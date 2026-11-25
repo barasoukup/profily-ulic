@@ -18,7 +18,7 @@ Třídy: **(a)** oprávněný rozdíl (zákon, normy, značky, zdroj dat, jazyk 
 |---|---|---|---|---|---|
 | `besidePassport` | výchozí false: CZ, BE, LU, AT (a cizina); true: SK, DE, CH, NL, PL, FR, ES, PT, IT, EE, SI, FI, DK, LT | za koncem pasportu nebo mapy města doplní kusy až k domu (ortofoto, model, čáry mapy) | CZ žádný; BE a LU nemají mapu s `passport` (příznak mrtvý), AT také ne | žádné pro CZ | **(c)** |
 | `besideMax` | null (15 m) v CZ, SK a výchozím; 25 m všude jinde, kde je `besidePassport` | jak daleko za pasportem se doplňuje | DE: předzahrádky Cách 15–18 m; ostatní převzaly | jen pozorování v Cáchách | **(c)** |
-| `parkGuess` | false: SK, MC; jinde true | zákonný odhad podélného stání v místních ulicích | SK: „nevyzkoušeno“, Bára 16. 11. po prohlídce slovenských řezů (4504dfc, ještě bez modelu aut); MC: Code de la route čl. 31 (stání jen na vyznačených místech) | SK žádné počítané; AT a DE zapnuté po měření 17. 11. (chybí stání 14 → 11, 15 → 8) | SK **(c)**, MC (a) |
+| `parkGuess` (SK zrušeno 25. 11.) | false: SK, MC; jinde true | zákonný odhad podélného stání v místních ulicích | SK: „nevyzkoušeno“, Bára 16. 11. po prohlídce slovenských řezů (4504dfc, ještě bez modelu aut); MC: Code de la route čl. 31 (stání jen na vyznačených místech) | SK žádné počítané; AT a DE zapnuté po měření 17. 11. (chybí stání 14 → 11, 15 → 8) | SK **(c)**, MC (a) |
 | `wideRoads` | false: CZ (výchozí); true všude jinde | dálnice a silnice pro motorová vozidla dostanou dosah 35 m | „Fable: not tried on Czech motorways“ | žádné | **(c)** |
 | `wideStreets` | jen CY, DK, EE, ES, FI, FR (MC), IT, LT, MT, PT, SI | hlavní ulice, jejíž strana končí na dosahu ve středovém pásu, promenádě nebo chodníku, dostane dosah 35 m | Paříž (51dfd19, bulváry), do dalších států zkopírováno | jen Paříž | **(c)** |
 | `roadClassFromOsm` | false: CZ, SK (výchozí); true jinde | skupina ulice z OSM `highway`, kde město nemá svou třídu (TSK v Praze) | „Austria has no street classes of its own“ | žádné | **(c)**, na geometrii profilu bez vlivu (strop pruhu dálnice 3,75 m dává `LANE_CAP` stejně), mění jen normu pro varování |
@@ -64,14 +64,20 @@ plus globální P), (c) 8** (`besidePassport`, `besideMax`, `parkGuess` SK, `wid
 |---|---|---|---|
 | `besidePassport` | 47 řezů v 9 českých městech s pasportem: změna 2 (+1 šum), N 1 : O 0, stejně 1 | sjednoceno, příznak zrušen | 725908a |
 | `parkGuess` SK | 58 slovenských místních ulic: změna 8, N 1 : O 4 | výjimka s důvodem; pravidlo dat (zákon jen bez čtení aut modelem) zkoušeno: SK 0 změn z 58, státy se zákonem 7 : 15 a naslepo 2 : 4, vráceno | 57f0947, bod 7 |
+| `parkGuess` SK znovu | prohry byly z chyby sdíleného kódu: zákonný pruh ležel ve vozovce dřív, než se měřily pruhy. Oprava (`lawKerbs`, `layLaw`, `widenLaw`, `?off=lawlanes`) CZ, AT, DE 13 : 6; SK se zákonem 6 : 7 (148 ulic), CZ 5 : 5 | **výjimka zrušená, zákonný odhad i na Slovensku**; jen MC (zákon) | f08d4fe, `slovensko-stani/ZPRAVA.md` |
 | sdílená oprava `parkFromAi` | 22 kontrol + 7 SK: nový 6 : starý 2; univerzální měření 3 : 3 | zapnuto | 211284f, 409baaa |
 | `wideRoads` CZ | 14 českých dálnic: N 1 : O 13 | nahrazeno pravidlem dat | 4f661d8 → 55bb8d9 |
 | `wideRoads`, `wideStreets` (všechny státy) | pravidlo dat `widerSides`, 112 řezů: změna 6, N 4 : O 2; kontroly bez mapy, české dálnice a Paříž beze změny | sjednoceno, oba příznaky zrušeny | 55bb8d9 |
 | `city.fix` (3 pravidla os) | 54 řezů (39 v cizině s mapou, 15 v Praze): 0 změn; staré pražské prohry trvají | sjednoceno mimo Prahu (Praha `fix: {}` s důvodem) | bf4160d |
 | `city.fix` v Praze | pravidla upravená (dělicí pás, protější vozovka); Praha 152 řezů: naslepo N 9 : O 4, proti MTVU ze 131 posunutých míst lépe 54, hůř 30; Brno 118: změna 1 (N), cizina 50: 0 | **sjednoceno, `city.fix`, `AXIS_FIX` i `PROFILY_FIX` zrušené**; Plzeň jen `bedPanels` (data) | `praha/ZPRAVA.md` |
 | ústí uličky, spočítané pruhy (z pilotu USA) | viz `praha/ZPRAVA.md` | přenesené; spočítané pruhy jen se stáním u vozovky (Odlehlá prohrála) | `praha/ZPRAVA.md` |
+| uložený řez (`#rez=`, vložená poloha s azimutem) | pravidla křižovatek ho posouvala (Stará cesta 6,8 m); 4 řezy ověřené, 0,00 m | otevře se přesně, kde byl uložen (`derive.js placeCut`); posouvá se jen kliknutí | b4b8964 |
 
 Zbývá (doporučení): `besideMax` (SK 15 m, jinde 25 m; A/B na Slovensku, na českých pasportech je to jedno),
 `roadOnPath` (jen Praha; zkusit na DTM ČÚZK a mapách měst, data mohou mít stejnou chybu), `roadClassFromOsm` (CZ, SK;
 geometrii nemění, jen normu varování; sjednotit bez A/B, ale je to výklad normy, rozhodnout s Bárou), `orthoEstimate`
 (jen text, je to `laneOrtho !== "none"`; zjednodušit).
+
+**Změřeno ve státech bez měření (25. 11. 2026, `mereni/ZPRAVA.md`):** oficiální body 58 → 58 % (59 ze 402 jinak, lépe 9, hůř 10); 226 nových
+ulic naslepo mapFill 8 : 7 a lawlanes 7 : 8. Prohry mají příčinu ve sdíleném kódu (piktokoridor v `layLaw`, `markIslands`
+po odebrání zákonných pruhů, jednosměrka změřená na dva pruhy), ne ve státech; žádná výjimka státu.

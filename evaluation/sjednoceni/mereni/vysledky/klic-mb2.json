@@ -1,0 +1,62 @@
+{
+ "1": {
+  "id": "me-es-p-valladolid-9",
+  "X": "lawlanes",
+  "Y": "N"
+ },
+ "2": {
+  "id": "me-pl-p-poznan-5",
+  "X": "N",
+  "Y": "lawlanes"
+ },
+ "3": {
+  "id": "me-be-m-gent-7",
+  "X": "N",
+  "Y": "lawlanes"
+ },
+ "4": {
+  "id": "me-fr-p-lyon-7",
+  "X": "lawlanes",
+  "Y": "N"
+ },
+ "5": {
+  "id": "me-be-p-liege-1",
+  "X": "N",
+  "Y": "lawlanes"
+ },
+ "6": {
+  "id": "me-sk-m-bystrica-9",
+  "X": "N",
+  "Y": "lawlanes"
+ },
+ "7": {
+  "id": "me-dk-p-aarhus-3",
+  "X": "N",
+  "Y": "lawlanes"
+ },
+ "8": {
+  "id": "me-es-zaragoza-zaragoza-19",
+  "X": "lawlanes",
+  "Y": "N"
+ },
+ "9": {
+  "id": "me-pl-krakow-krakow-29",
+  "X": "lawlanes",
+  "Y": "N"
+ },
+ "10": {
+  "id": "me-es-zaragoza-zaragoza-8",
+  "X": "N",
+  "Y": "lawlanes"
+ },
+ "11": {
+  "id": "me-pt-p-porto-11",
+  "X": "N",
+  "Y": "lawlanes"
+ },
+ "12": {
+  "id": "me-ch-m-basel-2",
+  "X": "lawlanes",
+  "Y": "N"
+ }
+}

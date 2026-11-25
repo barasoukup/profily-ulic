@@ -275,7 +275,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Normy `countries/AT.js` limits (`evaluation/austria/NORMY.md`): cyklo podle RVS 03.02.13 (přes NÖ Leitfaden, druhotně), ostatní
   Wiener Projektierungshandbuch (MA 18, 2011); RVS 03.02.12, 03.04.12, 03.07.11 nejsou veřejné.
 - Značky `signs-AT/` (StVO § 52–53, Commons, úřední díla); stání na chodníku, vyhrazené stání a cyklopruh nemají značku.
-- Bez odhadu stání podle zákona (StVO § 24: dva volné pruhy, judikatura asi 2,6 m na pruh; zatím vypnuto jako na SK).
+- Odhad stání podle zákona zapnutý od 17. 11. 2026 (StVO § 24 odst. 3: dva volné pruhy, judikatura asi 2,6 m na pruh, v jednosměrce jeden).
 - Jednosměrka se v Rakousku pod pruhem neznačí (Bára: Einbahnstraße je jen tabule podél ulice); odvozené značky bez
   rakouské kresby a značky s dodatkovou tabulkou se zahodí.
 - Nepřátelská recenze 16. 11. 2026 zapracovaná (cache nasazení podle států, skupiny silnic z OSM, StVO § 24, mapování
@@ -404,7 +404,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   `?off=kolodvakrat`), Llívia, výšky BD TOPO, normy.
 - Bára 23. 11. 2026: paneláky ne (sídliště vypadají jinak než česká), značky volně (úřední díla), doporučení měst smí
   varovat v celé Francii. Bulváry a krajnice (`evaluation/france/ab/bulvary/ZPRAVA.md`): stání z pařížské evidence
-  parkovacích míst (`?parisstani=0`), delší dosah hlavních ulic končících ve středovém pásu (`wideStreets`), vozovka jen
+  parkovacích míst (`?parisstani=0`), delší dosah hlavních ulic končících ve středovém pásu (dnes `app.js widerSides`), vozovka jen
   pro autobusy jako druhá polovina ulice (`?off=busduo`) a buspruh z krajnice (`?off=buskrajnice`; obojí obecně, Praha
   a Brno beze změny). Krajnice zůstávají u 10 z 26 bulvárů (široké vozovky bez čar na ortofotu); vypnout je bylo horší.
 
@@ -499,7 +499,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - `countries/FI.js`, `towns/finland.js`, `search-fi.js` (Photon + adresy Ryhti), `signs-FI/`, `evaluation/finland/`
   (ZDROJE, NORMY, ab/, buildings-ab/). Hranice GISCO s Alandami, pobřeží 400 m. OSM balík `fi` (jen R2, celé Finsko 366 MB;
   **workflow OSM tiles se `states: fi`**). Bez klíče MML (Bára): ortofoto jen Helsinek, Espoo a Turku (CC BY 4.0), jinde
-  odhad jen z OSM. Mapa povrchů Helsinek YLRE (`?helsinki=0`; A/B 27 řezů: lépe 10, hůř 3, stejně 7, nejasné 7). Budovy
+  odhad jen z OSM. Mapa povrchů Helsinek YLRE (`?helsinki=0`; slepé A/B 31 ulic pro auta: lépe 16, hůř 9 (`evaluation/finland/ab2`), s doplněním
+  kolem mapy na týchž (ladicích) ulicích 20 : 1, na nových obytných ulicích 11 : 7 (`ab3`); první A/B z 23. 11. (10 : 3) nebylo slepé). Budovy
   z registru Helsinek a Ryhti (`?hkibuild=0`, `?ryhti=0`; 40 domů: podlaží 39 proti 31 z OSM, rok 36 proti 5, dřevo 4).
   Normy jen doporučení, nic červeně. Otevřené otázky v `docs/backlog.md`.
 - Měření přesnosti 24. 11. (poprvé, posuzoval Opus): shoda složení 52 % (22 řezů); Helsinky, Espoo, Turku 51 % (šířka do 2 m
@@ -562,9 +563,13 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   i složením jen po okraj ulice, za ním se nehodnotí nic, ani zeleň (konec u obruby je pro uživatele správně, zelený pás
   za obrubou Bára zamítla, `evaluation/ortofoto-osm/zelenpas/ZPRAVA.md`); řezy na `service=driveway`, `parking_aisle` a
   `drive-through` se vynechají (značka cesty z balíku OSM státu, `vysledky/sluzebni-<iso>.json`; `POKYN.md`).
-- Přeměření 24. 11. 2026 (stejná posouzení, profily ze současného kódu na posouzených řezech, `vysledky/staty.md`):
-  shoda složení CZ 58 %, SK 84 %, AT 61 %, DE 56 %, CH 63 %, LI 69 %, NL 58 %, BE 48 %, LU 53 %, PL 63 %, FR 60 %, ES 55 %,
-  PT 64 %, CY 55 %, MT 55 %, IT 56 %, EE 45 %, SI 56 %, LT 75 %, FI 52 %, DK 58 % (FI a DK poprvé, posuzoval Opus, ne Sonnet).
+- Přesbíráno 25. 11. 2026 (stejná posouzení, 467 řezů přesně na posouzeném místě, kód b4b8964, `vysledky/staty.md`):
+  shoda složení CZ 58 %, SK 84 %, AT 58 %, DE 57 %, CH 62 %, LI 69 %, NL 59 %, BE 47 %, LU 51 %, PL 65 %, FR 58 %, ES 56 %,
+  PT 64 %, CY 55 %, MT 58 %, IT 56 %, EE 44 %, SI 62 %, LT 75 %, FI 52 %, DK 59 % (FI a DK posuzoval Opus, ne Sonnet). Sdílené změny
+  24.–25. 11. (mapFill, lawlanes, parkshare, křižovatky a osy, widereach) zapnuté proti vypnutým v témže sběru: 59 ze 402 řezů
+  jinak, lépe 9, hůř 10, celkem 58 → 58 %; 226 nových ulic naslepo: mapFill 8 : 7 (Zaragoza 0 : 4, jinde 8 : 3), lawlanes 7 : 8.
+  Nalezené chyby sdíleného kódu (piktokoridor, `markIslands`, jednosměrka na dva pruhy) neopravené, rozhodne Bára (`evaluation/sjednoceni/mereni/ZPRAVA.md`).
+- Přeměření 24. 11. 2026 (předchozí řádky v `evaluation/universal/ZPRAVA.md`):
   CZ a PL přesbírané týž večer: CZ po opravě čtení DTM krajů po JVF DTM 1.5 (63b9726; řezy s DTM krajů 34 → 51 %, Praha,
   Brno, Plzeň, Jihlava 68 %), PL po návratu ortofota Geoportalu (ortofoto ve 23 z 29 řezů). Před → po a výklad v
   `evaluation/universal/ZPRAVA.md` (oddíl 24. 11.). CZ znovu 25. 11. s doplněním kolem mapy i v Česku: 58 % beze změny
@@ -579,8 +584,12 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Sjednocení výjimek (Bára 24. 11. 2026: co nejvíc sdíleně, výjimka jen s měřením nebo rozdílem zákona, norem a dat;
   `evaluation/sjednoceni/AUDIT.md`, `ZPRAVA.md`): `besidePassport` všude (i CZ), osy OSM, obslužné cesty a ústí uliček jako křižovatky
   všude i v Praze (`city.fix` zrušené, `evaluation/sjednoceni/praha/ZPRAVA.md`), delší dosah dálnic a hlavních ulic jedním pravidlem dat řezu (`app.js widerSides`,
-  příznaky `wideRoads`/`wideStreets` zrušené), oprava stání z modelu u zákonného pruhu (`?off=parkshare`); SK bez
-  zákonného odhadu stání zůstává (změřeno; pravidlo dat prohrálo ve státech se zákonem 7 : 15).
+  příznaky `wideRoads`/`wideStreets` zrušené), oprava stání z modelu u zákonného pruhu (`?off=parkshare`). Zákonný odhad
+  stání platí i na Slovensku (25. 11.: jeho prohry byly z chyby sdíleného kódu, zákonný pruh ležel ve vozovce dřív, než se měřily
+  pruhy; teď pruhy napřed, `ai-kerbs.js lawKerbs`, `?off=lawlanes`, A/B oprava 13 : 6, SK se zákonem 6 : 7 a CZ 5 : 5,
+  `evaluation/sjednoceni/slovensko-stani/ZPRAVA.md`); výjimku stání má jen Monako (zákon). Uložený řez (`#rez=`, vložená
+  poloha s azimutem) se otevře přesně tam, kde byl uložen (`derive.js placeCut`), pravidla křižovatek a středu dvou vozovek
+  posouvají jen kliknutí.
 
 ## Jazyky (Bára 12. 11. 2026, slovenčina 15. 11. 2026, němčina 16. 11. 2026)
 - Anglicky se aplikace jmenuje **Street Profile**, slovensky **Profily ulíc**, německy **Straßenprofil**. Čeština, slovenčina,

@@ -1,0 +1,67 @@
+{
+ "1": {
+  "id": "me-pl-krakow-krakow-8",
+  "X": "mapfill",
+  "Y": "N"
+ },
+ "2": {
+  "id": "me-de-berlin-berlin-9",
+  "X": "N",
+  "Y": "mapfill"
+ },
+ "3": {
+  "id": "me-pl-krakow-krakow-2",
+  "X": "mapfill",
+  "Y": "N"
+ },
+ "4": {
+  "id": "me-es-zaragoza-zaragoza-11",
+  "X": "N",
+  "Y": "mapfill"
+ },
+ "5": {
+  "id": "me-be-m-leuven-6",
+  "X": "mapfill",
+  "Y": "N"
+ },
+ "6": {
+  "id": "me-sk-m-bystrica-9",
+  "X": "mapfill",
+  "Y": "N"
+ },
+ "7": {
+  "id": "me-be-m-gent-2",
+  "X": "N",
+  "Y": "mapfill"
+ },
+ "8": {
+  "id": "me-de-hamburg-hamburg-2",
+  "X": "N",
+  "Y": "mapfill"
+ },
+ "9": {
+  "id": "me-es-zaragoza-zaragoza-9",
+  "X": "mapfill",
+  "Y": "N"
+ },
+ "10": {
+  "id": "me-es-zaragoza-zaragoza-21",
+  "X": "mapfill",
+  "Y": "N"
+ },
+ "11": {
+  "id": "me-fi-p-helsinki-1",
+  "X": "mapfill",
+  "Y": "N"
+ },
+ "12": {
+  "id": "me-sk-m-bratislava-3",
+  "X": "mapfill",
+  "Y": "N"
+ },
+ "13": {
+  "id": "me-ch-m-bern-12",
+  "X": "N",
+  "Y": "mapfill"
+ }
+}

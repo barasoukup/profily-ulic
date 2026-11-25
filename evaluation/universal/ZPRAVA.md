@@ -333,3 +333,12 @@ jiní se starým pokynem na týchž balíčcích (bez ní by nešel odlišit pok
 **Doporučení:** staré státy kvůli pokynu **neposuzovat znovu** (celé přeposouzení stojí asi 16 tisíc tokenů na řez, tedy
 přes 8 milionů, a posun je v mezích šumu). Nový pokyn používat u nových států a při každém dalším posuzování; čísla starého a
 nového pokynu brát jako srovnatelná do asi 5 bodů. Rozhodne Bára.
+
+## Přesbíráno po změnách sdíleného kódu (25. 11. 2026)
+
+Tytéž posudky (znovu se neposuzovalo, Bára), 467 použitelných řezů, dnešní kód (b4b8964) a v témže sběru rameno s vypnutými
+sdílenými změnami (`mapfill`, `lawlanes`, `parkshare`, pravidla křižovatek a os, `widereach`); uložený řez se otevřel
+vždy přesně na posouzeném místě (dřívější kolo 21 řezů posunulo). Nově je oficiální řádek N: CZ 58 %, SK 84 %, AT 58 %, DE 57 %,
+CH 62 %, LI 69 %, NL 59 %, BE 47 %, LU 51 %, PL 65 %, FR 58 %, ES 56 %, PT 64 %, CY 55 %, MT 58 %, IT 56 %, EE 44 %, SI 62 %,
+LT 75 %, FI 52 %, DK 59 %. Sdílené změny posunuly 59 ze 402 řezů, proti posuzovatelům lépe 9 a hůř 10, celkem beze změny
+(58 %). Tabulka po státech, přičtení jednotlivým vypínačům, slepé A/B a příčiny proher: `evaluation/sjednoceni/mereni/ZPRAVA.md`.
