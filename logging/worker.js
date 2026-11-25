@@ -114,14 +114,13 @@ export default {
       let e;
       try { e = JSON.parse(text); } catch { return new Response("json", { status: 400, headers: cors }); }
       if (!e || typeof e !== "object" || !KINDS.has(e.kind)) return new Response("kind", { status: 400, headers: cors });
-      // The state of the cut (ISO 3166-1, step 4b of docs/architecture-countries.md) next to its city; the box takes
-      // Austria and Slovakia whole (before: 47–52° N, 11–20° E lost Košice's and Bregenz's position).
+      // The state of the cut (ISO 3166-1, step 4b of docs/architecture-countries.md) next to its city.
       const values = [
         e.kind, str(e.detail, 20), str(e.city, 30), str(e.street, 120), str(e.highway, 40),
         Number.isSafeInteger(e.wayId) ? e.wayId : null,
-        // All the states of the app (countries/*.js bounds): the Canaries (27.6° N), the Azores (31.3° W), Estonia (59.8° N),
-        // Cyprus (34.7° E); before, 45.5–55.5° N and 5.5–23° E lost the south, Estonia and Cyprus (the review of 23. 11. 2026).
-        num(e.lat, 27, 61), num(e.lon, -32, 35), num(e.bearing, -360, 360),
+        // Any valid position: boxes of the app's states went out of date with every new state and dropped the rest
+        // (the review of 23. 11. 2026; Washington DC 25. 11. 2026).
+        num(e.lat, -90, 90), num(e.lon, -180, 180), num(e.bearing, -360, 360),
         num(e.reachLeft, 0, 100), num(e.reachRight, 0, 100), str(e.session, 40),
         e.profile && typeof e.profile === "object" && (e.kind === "upravy" || e.kind === "hlaseni") ? profileText(e.kind === "hlaseni" ? reportOf(e.profile) : e.profile) : null,
       ];

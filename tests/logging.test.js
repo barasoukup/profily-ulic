@@ -96,11 +96,16 @@ test("záznam řezu: stát vedle města, poloha v celém Slovensku a Rakousku", 
 });
 
 // The review of 23. 11. 2026: the position of cuts in the south, Estonia and Cyprus was dropped.
-test("záznam řezu: poloha ve všech státech aplikace (Kanáry, Azory, Kypr, Estonsko)", async () => {
+// Any valid position since 25. 11. 2026 (Washington DC, Toronto, Auckland), nothing that is no position.
+test("záznam řezu: každá platná poloha (Kanáry, Kypr, Estonsko, Washington, Auckland), neplatná ne", async () => {
   const db = fakeDb();
-  for (const [lat, lon] of [[27.643, -17.981], [37.74, -25.67], [35.17, 33.36], [59.437, 24.75], [44.494, 11.343]]) {
+  for (const [lat, lon] of [[27.643, -17.981], [37.74, -25.67], [35.17, 33.36], [59.437, 24.75], [44.494, 11.343], [38.9072, -77.0369], [43.651, -79.383], [-36.848, 174.763]]) {
     assert.equal((await worker.fetch(post({ kind: "rez", detail: "klik", city: "x", lat, lon, session: "s1" }), env(db))).status, 204);
     assert.deepEqual(db.rows.at(-1).slice(6, 8), [lat, lon]);
+  }
+  for (const [lat, lon] of [[91, 181], ["50", "14"], [null, undefined]]) {
+    await worker.fetch(post({ kind: "rez", detail: "klik", city: "x", lat, lon, session: "s1" }), env(db));
+    assert.deepEqual(db.rows.at(-1).slice(6, 8), [null, null]);
   }
 });
 

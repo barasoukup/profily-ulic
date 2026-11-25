@@ -564,7 +564,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Tři společné změny z pilotu (všechny státy): ústí uličky je křižovatka (`?off=ulicky`, zapnuto), obousměrka se dělí od
   4,0 m, kde je počet pruhů známý (`?off=pocetpruhu`, zapnuto), jamky stromů v chodníku jako chodník (**vypnuto**, `?jamky=1`:
   DC 2 : 2, české kontroly 0 : 1). Regrese Prahy a Brna beze změny, v Evropě z 120 náhodných řezů změněno 0.
-- Před nasazením: R2 balík `us_dc`, Worker logu nezná polohy v USA (Bára).
+- Před nasazením: R2 balík `us_dc`, nový Worker logu (Bára).
 
 ## Společné pro státy (Bára 23. 11. 2026)
 - Sever Kypru a Itálie mimo otevřená ortofota (i se San Marinem a Vatikánem) profil nedostanou, aplikace to řekne
@@ -572,7 +572,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Pobřeží: Španělsko, Portugalsko, Monako a Francie platí do 400 m za hranicí GISCO (nábřeží, přístavy); Gibraltar a Andorra
   zůstávají cizinou.
 - Jízda vlevo je zabudovaná přímo v pravidlech (`derive.js`), profil se nezrcadlí.
-- Hranice poloh ve Workeru logu pokrývají všechny státy; nový Worker musí nasadit Bára.
+- Worker logu ukládá každou platnou polohu (25. 11. 2026); nový Worker musí nasadit Bára.
 
 ## Měření přesnosti (Bára 17. 11. 2026, přeměřeno 24. 11. 2026)
 - Jedna univerzální metoda pro všechny státy: skill `mereni-presnosti`, kód a zpráva `evaluation/universal/`. Použít u

@@ -74,8 +74,7 @@ vypnuté“ tu stojí proti A/B).
 1. **OSM balík na R2:** spustit workflow OSM tiles ručně se `states: us` (job `us_dc` stáhne DC, Maryland 218 MB a Virginii
    430 MB, ořízne osmiem, nainstaluje `osmium-tool`) a ověřit `data.streetspace.eu/osm/index.json` (klíč `us_dc`).
    Lokálně postavený balík je `pilot/data/osm-pack/us_dc-novy.posm`.
-2. Worker logu: poloha řezu v USA (−77° z. d.) leží mimo dnešní rozsah polohy (27–56° s. š., 19° z. d.–25° v. d.), řezy
-   by se uložily bez souřadnic. Rozšířit rozsah a nasadit Workera (Bára).
+2. Worker logu: od 25. 11. 2026 ukládá každou platnou polohu (dřív jen obdélník evropských států); nasadit ho musí Bára.
 3. CSP má `maps2.dcgis.dc.gov` v `connect-src` i `img-src`.
 
 ## Otevřené otázky
