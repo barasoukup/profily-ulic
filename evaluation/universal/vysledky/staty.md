@@ -1,13 +1,13 @@
-Výsledky univerzálního měření (jedna metoda pro všechny státy), **přesbírané 25. 11. 2026** (`data/app-zzzzzzz-mereni.json`, kód
-b4b8964): tytéž posudky, 467 použitelných řezů znovu a přesně na posouzeném místě a azimutu (dřív se 21 řezů posunulo, 13 z nich o 5 a víc
+Výsledky univerzálního měření (jedna metoda pro všechny státy), **přesbírané 25. 11. 2026** (`data/app-zzzzzzz-mereni.json`, po opravách
+`data/app-zzzzzzzz-opravy.json`, kód 7af8747): tytéž posudky, 467 použitelných řezů znovu a přesně na posouzeném místě a azimutu (dřív se 21 řezů posunulo, 13 z nich o 5 a víc
 metrů, jeden polský byl přepsaný jiným). Co je změna kódu a co posun a šum, ukazuje druhé rameno téhož sběru
 (`../../sjednoceni/mereni/ZPRAVA.md`). `node evaluation/universal/score-states.mjs`. Výklad v `ZPRAVA.md`. FI a DK posuzoval Opus.
 
 | stát | řezů | složení stejné | shoda složení | pruhy stejně | šířka uličního prostoru do 1 / 2 m | nejčastější rozdíly (aplikace proti posuzovateli) |
 |---|---|---|---|---|---|---|
-| CZ | 30 | 27 % | 58 % | 30 % | 30 % / 33 % | navíc chodnik 10×, navíc pruh 6×, chybí stani 6×, navíc zelen 5×, navíc delici 4×, chybí chodnik 4× |
+| CZ | 30 | 27 % | 58 % | 30 % | 30 % / 33 % | navíc chodnik 10×, navíc pruh 6×, chybí stani 6×, navíc zelen 5×, navíc delici 4×, chybí zelen 4× |
 | SK | 12 | 67 % | 84 % | 75 % | 33 % / 50 % | chybí delici 2×, chybí pruh 2×, navíc chodnik 2×, chybí chodnik 1×, chybí zelen 1× |
-| AT | 29 | 14 % | 58 % | 38 % | 28 % / 45 % | navíc stani 7×, chybí stani 7×, chybí chodnik 5×, navíc cyklostezka 4×, navíc chodnik 4×, stani→pruh 3× |
+| AT | 29 | 17 % | 60 % | 38 % | 28 % / 45 % | navíc stani 7×, chybí chodnik 5×, chybí stani 5×, navíc cyklostezka 4×, navíc chodnik 4×, stani→pruh 3× |
 | DE | 32 | 16 % | 57 % | 50 % | 16 % / 38 % | navíc chodnik 11×, chybí stani 7×, chybí chodnik 7×, navíc stani 5×, navíc pruh 4×, chybí pruh 4× |
 | CH | 17 | 18 % | 62 % | 41 % | 29 % / 35 % | navíc chodnik 5×, chybí stani 3×, chybí zelen 3×, chybí pruh 2×, navíc cyklopruh 2×, navíc stani 2× |
 | LI | 6 | 33 % | 69 % | 50 % | 50 % / 67 % | chybí zelen 2×, navíc delici 2×, pruh→chodnik 1×, chybí delici 1×, cyklopruh→pruh 1×, navíc pruh 1× |
@@ -16,8 +16,8 @@ metrů, jeden polský byl přepsaný jiným). Co je změna kódu a co posun a š
 | LU | 12 | 25 % | 51 % | 42 % | 8 % / 25 % | chodnik→cyklostezka 4×, cyklostezka→pruh 3×, chybí delici 2×, chybí chodnik 2×, tramvaj→stani 1×, zelen→delici 1× |
 | PL | 22 | 18 % | 65 % | 36 % | 23 % / 36 % | chybí chodnik 7×, chybí pruh 6×, chybí delici 4×, navíc stani 3×, navíc delici 3×, chybí stani 3× |
 | FR | 25 | 4 % | 58 % | 52 % | 32 % / 52 % | chybí chodnik 10×, navíc stani 9×, navíc chodnik 6×, navíc zelen 4×, chybí stani 4×, pruh→chodnik 2× |
-| ES | 23 | 13 % | 56 % | 52 % | 17 % / 26 % | chybí chodnik 9×, chybí stani 7×, chodnik→pruh 4×, stani→zelen 3×, navíc bus 3×, navíc stani 3× |
-| PT | 28 | 29 % | 64 % | 68 % | 25 % / 54 % | chybí stani 13×, chybí chodnik 13×, navíc pruh 2×, stani→pruh 2×, chybí zelen 2×, chybí delici 2× |
+| ES | 23 | 13 % | 55 % | 48 % | 17 % / 26 % | chybí chodnik 9×, chybí stani 6×, chodnik→pruh 4×, stani→zelen 3×, navíc bus 3×, navíc stani 3× |
+| PT | 28 | 29 % | 65 % | 64 % | 25 % / 54 % | chybí chodnik 13×, chybí stani 12×, navíc pruh 2×, stani→pruh 2×, chybí zelen 2×, chybí delici 2× |
 | CY | 11 | 18 % | 55 % | 82 % | 0 % / 18 % | chybí chodnik 8×, chybí stani 5×, chybí zelen 3×, chybí cyklostezka 2×, navíc chodnik 1×, navíc zelen 1× |
 | MT | 8 | 13 % | 58 % | 38 % | 50 % / 75 % | chybí chodnik 3×, chybí stani 3×, navíc chodnik 2×, pruh→zelen 1×, navíc zelen 1×, chodnik→pruh 1× |
 | IT | 6 | 17 % | 56 % | 67 % | 0 % / 17 % | chybí stani 3×, chybí delici 2×, chybí pruh 2×, chybí chodnik 2×, chybí bus 1×, chybí cyklostezka 1× |

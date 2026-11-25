@@ -1,0 +1,15 @@
+{
+"1":{"a":"nejde","j":"nízká","d":"Ortofoto chybí, fotky jsou 360° panoramata bez čitelného uspořádání; profily se liší jen krajnicí o 1 m."},
+"2":{"a":"stejne","j":"nízká","d":"Složení shodné, šířky se liší o desítky cm, rozdíl na ortofotu nepoznat."},
+"3":{"a":"nejde","j":"nízká","d":"Koruna stromu zakrývá ulici; stání na straně B se nedá potvrdit ani vyvrátit."},
+"4":{"a":"nejde","j":"nízká","d":"Ortofoto zakryté stromy, fotky ukazují velký bulvár; šířky pruhů nelze změřit."},
+"5":{"a":"stejne","j":"nízká","d":"Stejné složení, parkování u B, rozdíly šířek 0,3 m nepoznatelné."},
+"6":{"a":"nejde","j":"nízká","d":"Úzká ulice, poloha krajnice nepoznatelná; slabá nápověda pro Y podle pravého okraje vozovky."},
+"7":{"a":"nejde","j":"nízká","d":"Parkoviště, ulice nejasná; profily se liší jen rozdělením krajnic."},
+"8":{"a":"X","j":"střední","d":"Na ortofotu stojí auta u A strany vozovky, X má tam stání, Y žádné."},
+"9":{"a":"nejde","j":"nízká","d":"Ortofoto ukazuje velkou zpevněnou plochu; fotka je pravděpodobně z jiné části; rozdíl 0,5 m nepoznatelný."},
+"10":{"a":"stejne","j":"nízká","d":"Stejné složení; součet pruhů shodný, stání u B vidět, rozdíl jen v rozdělení pruhů."},
+"11":{"a":"Y","j":"vysoká","d":"Přerušovaná středová čára na ortofotu i fotce znamená dva pruhy; Y má dva pruhy, X jeden s krajnicí."},
+"12":{"a":"stejne","j":"nízká","d":"Totéž složení, rozdíl 0,25 m mezi pruhem a stáním nejde změřit."},
+"13":{"a":"stejne","j":"nízká","d":"Stejné složení, auta vidět u A, rozdíly šířek malé; stín a střecha zakrývají B stranu."}
+}

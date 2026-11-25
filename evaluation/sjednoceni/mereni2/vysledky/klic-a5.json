@@ -1,0 +1,72 @@
+{
+ "1": {
+  "id": "m2-at-wien-2",
+  "X": "N",
+  "Y": "L"
+ },
+ "2": {
+  "id": "m2-be-bruxelles-15",
+  "X": "L",
+  "Y": "N"
+ },
+ "3": {
+  "id": "m2-dk-odense-30",
+  "X": "N",
+  "Y": "L"
+ },
+ "4": {
+  "id": "m2-es-valencia-2",
+  "X": "N",
+  "Y": "L"
+ },
+ "5": {
+  "id": "m2-it-modena-24",
+  "X": "N",
+  "Y": "L"
+ },
+ "6": {
+  "id": "m2-es-sevilla-12",
+  "X": "L",
+  "Y": "N"
+ },
+ "7": {
+  "id": "m2-pl-wroclaw-34",
+  "X": "N",
+  "Y": "L"
+ },
+ "8": {
+  "id": "m2b-sk-trencin-14",
+  "X": "L",
+  "Y": "N"
+ },
+ "9": {
+  "id": "m2-de-muenchen-3",
+  "X": "L",
+  "Y": "N"
+ },
+ "10": {
+  "id": "m2-dk-odense-23",
+  "X": "N",
+  "Y": "L"
+ },
+ "11": {
+  "id": "m2-es-malaga-27",
+  "X": "N",
+  "Y": "L"
+ },
+ "12": {
+  "id": "m2-sk-bratislava-15",
+  "X": "N",
+  "Y": "L"
+ },
+ "13": {
+  "id": "m2-pt-porto-13",
+  "X": "N",
+  "Y": "L"
+ },
+ "14": {
+  "id": "m2-it-modena-9",
+  "X": "L",
+  "Y": "N"
+ }
+}

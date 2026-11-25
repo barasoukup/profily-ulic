@@ -342,3 +342,4 @@ vždy přesně na posouzeném místě (dřívější kolo 21 řezů posunulo). N
 CH 62 %, LI 69 %, NL 59 %, BE 47 %, LU 51 %, PL 65 %, FR 58 %, ES 56 %, PT 64 %, CY 55 %, MT 58 %, IT 56 %, EE 44 %, SI 62 %,
 LT 75 %, FI 52 %, DK 59 %. Sdílené změny posunuly 59 ze 402 řezů, proti posuzovatelům lépe 9 a hůř 10, celkem beze změny
 (58 %). Tabulka po státech, přičtení jednotlivým vypínačům, slepé A/B a příčiny proher: `evaluation/sjednoceni/mereni/ZPRAVA.md`.
+Po opravách zákonného stání (7af8747, tytéž posudky): AT 60 %, ES 55 %, PT 65 %, jinak beze změny (`evaluation/sjednoceni/mereni2/ZPRAVA.md`).

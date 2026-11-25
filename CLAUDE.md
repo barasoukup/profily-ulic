@@ -568,7 +568,9 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   PT 64 %, CY 55 %, MT 58 %, IT 56 %, EE 44 %, SI 62 %, LT 75 %, FI 52 %, DK 59 % (FI a DK posuzoval Opus, ne Sonnet). Sdílené změny
   24.–25. 11. (mapFill, lawlanes, parkshare, křižovatky a osy, widereach) zapnuté proti vypnutým v témže sběru: 59 ze 402 řezů
   jinak, lépe 9, hůř 10, celkem 58 → 58 %; 226 nových ulic naslepo: mapFill 8 : 7 (Zaragoza 0 : 4, jinde 8 : 3), lawlanes 7 : 8.
-  Nalezené chyby sdíleného kódu (piktokoridor, `markIslands`, jednosměrka na dva pruhy) neopravené, rozhodne Bára (`evaluation/sjednoceni/mereni/ZPRAVA.md`).
+  Nalezené chyby (piktokoridor, `markIslands`, jednosměrka na dva pruhy) opravené 25. 11. (7af8747, AT 60 %, ES 55 %, PT 65 %). Na 571 nových
+  ulicích `lawlanes` proti vypnutému 34 : 21 (složení 11 : 11, šířky 23 : 10), oficiálně 1 : 3 beze změny shody: zůstává zapnuté, rozhodne Bára
+  (`evaluation/sjednoceni/mereni2/ZPRAVA.md`). SK odhad stání zapnutý 12 : 7, bez `lawlanes` 16 : 11.
 - Přeměření 24. 11. 2026 (předchozí řádky v `evaluation/universal/ZPRAVA.md`):
   CZ a PL přesbírané týž večer: CZ po opravě čtení DTM krajů po JVF DTM 1.5 (63b9726; řezy s DTM krajů 34 → 51 %, Praha,
   Brno, Plzeň, Jihlava 68 %), PL po návratu ortofota Geoportalu (ortofoto ve 23 z 29 řezů). Před → po a výklad v

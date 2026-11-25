@@ -1,0 +1,87 @@
+{
+ "1": {
+  "a": "nejde",
+  "j": "nízká",
+  "d": "parkoviště a dvůr, ulice nejasná"
+ },
+ "2": {
+  "a": "X",
+  "j": "vysoká",
+  "d": "stání na obou stranách, jeden pruh mezi nimi, shoduje se s auty na ortofotu"
+ },
+ "3": {
+  "a": "stejne",
+  "j": "nízká",
+  "d": "venkovská silnice, rozdíl jen v poloze středu"
+ },
+ "4": {
+  "a": "nejde",
+  "j": "nízká",
+  "d": "bez fotek, krajnice nelze odlišit"
+ },
+ "5": {
+  "a": "X",
+  "j": "střední",
+  "d": "bez stání, dvě jízdní pruhy; Y přidává stání na trávě"
+ },
+ "6": {
+  "a": "X",
+  "j": "nízká",
+  "d": "stání vpravo není vidět; Y bez důvodu"
+ },
+ "7": {
+  "a": "X",
+  "j": "nízká",
+  "d": "dva pruhy podle čar, bez krajnice vlevo"
+ },
+ "8": {
+  "a": "X",
+  "j": "nízká",
+  "d": "auta stojí u obrub i vpravo"
+ },
+ "9": {
+  "a": "nejde",
+  "j": "nízká",
+  "d": "parkoviště, rozdíl v krajnicích nejde změřit"
+ },
+ "10": {
+  "a": "Y",
+  "j": "střední",
+  "d": "šířky pruhů 3,7 a 3,4 sedí s ortofotem, stání vlevo"
+ },
+ "11": {
+  "a": "nejde",
+  "j": "nízká",
+  "d": "parkoviště a zeleň, ne ulice"
+ },
+ "12": {
+  "a": "X",
+  "j": "nízká",
+  "d": "auta stojí u pravé obruby, vozovka dost široká pro pruh a stání"
+ },
+ "13": {
+  "a": "stejne",
+  "j": "nízká",
+  "d": "stání na levé straně, ani jeden ho nemá"
+ },
+ "14": {
+  "a": "X",
+  "j": "nízká",
+  "d": "vozovka 6 m, dva pruhy, auto vpravo u okraje"
+ },
+ "15": {
+  "a": "X",
+  "j": "nízká",
+  "d": "stání vlevo i vpravo, dva proudy se středovým značením"
+ },
+ "16": {
+  "a": "nejde",
+  "j": "nízká",
+  "d": "velké parkoviště, ne ulice"
+ },
+ "17": {
+  "a": "X",
+  "j": "střední",
+  "d": "pruhy 4,1 se shodují s vozovkou, stání tam není"
+ }
+}

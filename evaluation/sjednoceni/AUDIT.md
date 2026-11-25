@@ -81,3 +81,7 @@ geometrii nemění, jen normu varování; sjednotit bez A/B, ale je to výklad n
 **Změřeno ve státech bez měření (25. 11. 2026, `mereni/ZPRAVA.md`):** oficiální body 58 → 58 % (59 ze 402 jinak, lépe 9, hůř 10); 226 nových
 ulic naslepo mapFill 8 : 7 a lawlanes 7 : 8. Prohry mají příčinu ve sdíleném kódu (piktokoridor v `layLaw`, `markIslands`
 po odebrání zákonných pruhů, jednosměrka změřená na dva pruhy), ne ve státech; žádná výjimka státu.
+
+**Opravy a nové změření (25. 11. 2026, `mereni2/ZPRAVA.md`):** tři příčiny opravené (7af8747), 571 nových ulic `lawlanes` proti vypnutému naslepo
+34 : 21 (p = 0,10; složení 11 : 11, šířky 23 : 10), oficiální body 1 : 3 bez změny shody složení. Zapnuté jako dosud, rozhodne Bára; `parkGuess`
+SK zapnutý proti vypnutému 12 : 7, bez `lawlanes` 16 : 11.

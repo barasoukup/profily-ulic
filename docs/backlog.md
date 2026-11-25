@@ -25,9 +25,10 @@ Co rozhodne Bára, je označeno **(Bára)**.
   **(Bára)**), `orthoEstimate` (jen text, totéž co `laneOrtho !== "none"`).
 - Pravidlo obslužných cest (`?off=obsluzne`) v Berlíně proti jeho mapě 10 : 12, jediné město, kde nepomáhá
   (Vídeň 16 : 9, Amsterdam 11 : 4, Helsinky 13 : 7; `evaluation/sjednoceni/praha/ZPRAVA.md`).
-- Zákonné stání po pruzích (měření 25. 11. 2026, `evaluation/sjednoceni/mereni/ZPRAVA.md`, oddíl 4) **(Bára)**: `layLaw` nebere
-  `pruh_piktokoridor` jako pruh; `markIslands` udělá z chodníku vedle stání dělicí pás; jednosměrka změřená na dva pruhy ztratí
-  zákonný pruh; model pod stromy auta nevidí a zákonný pruh v mapě povrchů vrátí do vozovky (Zaragoza 0 : 4).
+- Zákonné stání po pruzích: ~~`layLaw` nebere `pruh_piktokoridor`, `markIslands` udělá z chodníku dělicí pás, jednosměrka na dva pruhy ztratí
+  zákonný pruh~~ (25. 11. 2026, `mereni2/ZPRAVA.md`). Zbývá: **(Bára)** nechat `lawlanes` zapnuté (34 : 21, oficiálně 1 : 3)?
+  **(Bára)** odhad stání na Slovensku (12 : 7); model pod stromy auta nevidí (Zaragoza); slabé čáry dělí pruhy i v
+  obousměrce (nl-schiedam-5) a kde se stání vejde (fr-toulouse-2); `parkFromAi` nebere piktokoridor; Belgie 2 : 5.
 - ~~Uložený řez dvouvozovkové ulice se chytí jiné cesty OSM (odkaz nemá `wayId`): 10 z 226, jiný profil u 7~~ (25. 11. 2026:
   cesta je v odkazu; všech 10 se chytí své, `mereni2/ZPRAVA.md`).
 - Odkaz `#rez=` zaokrouhluje azimut na celé stupně: profil z odkazu se od kliknutí liší o centimetry, výjimečně o díl (Versmannstraße:

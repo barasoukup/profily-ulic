@@ -1,0 +1,72 @@
+{
+ "1": {
+  "a": "stejne",
+  "j": "nízká",
+  "d": "stejné složení, rozdíl jen v šířkách stání, nejde rozlišit"
+ },
+ "2": {
+  "a": "stejne",
+  "j": "nízká",
+  "d": "fotka z parku, ne z ulice; oba mají jeden pruh a stání, cik-cak značení u stání, rozdíl neprůkazný"
+ },
+ "3": {
+  "a": "stejne",
+  "j": "nízká",
+  "d": "stejné složení, dělicí čára pruhů uprostřed, rozdíl 0,3 m nerozhodný"
+ },
+ "4": {
+  "a": "nejde",
+  "j": "nízká",
+  "d": "chybí ortofoto, fotky z náměstí/pěší plochy, rozdíl jen v šířce krajnic"
+ },
+ "5": {
+  "a": "stejne",
+  "j": "nízká",
+  "d": "oba bez stání, i když fotka ukazuje stojící auta; rozdíl pruhy vs. krajnice nejde určit"
+ },
+ "6": {
+  "a": "Y",
+  "j": "střední",
+  "d": "dělicí čára vozovky leží u Y (~3 m od chodníku), krajnice u okraje"
+ },
+ "7": {
+  "a": "stejne",
+  "j": "nízká",
+  "d": "stejné složení, rozdíl jen v rozdělení krajnic a pruhů vlevo"
+ },
+ "8": {
+  "a": "nejde",
+  "j": "nízká",
+  "d": "bez fotek, ortofoto ve stínu, profil neodpovídá šířce vozovky"
+ },
+ "9": {
+  "a": "Y",
+  "j": "nízká",
+  "d": "pruh končí u pravé obruby jako na ortofotu, krajnice jen vlevo"
+ },
+ "10": {
+  "a": "X",
+  "j": "nízká",
+  "d": "fotky: stání po obou stranách, neznačená vozovka mezi nimi ~6 m = dva pruhy"
+ },
+ "11": {
+  "a": "stejne",
+  "j": "nízká",
+  "d": "stejné složení, obě bez stání na straně A, které fotka ukazuje"
+ },
+ "12": {
+  "a": "Y",
+  "j": "střední",
+  "d": "na straně B je na ortofotu šikmé stání, Y ho má, X ne"
+ },
+ "13": {
+  "a": "Y",
+  "j": "nízká",
+  "d": "asfaltová vozovka leží níž k středu řezu, Y pruh posouvá blíž; fotka z jiného místa"
+ },
+ "14": {
+  "a": "stejne",
+  "j": "nízká",
+  "d": "stejné složení, stání po obou stranách, rozdíl jen 0,5 m šířky stání/krajnice"
+ }
+}

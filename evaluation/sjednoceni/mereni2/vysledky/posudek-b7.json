@@ -1,0 +1,15 @@
+{
+"1":{"a":"stejne","j":"nízká","d":"Úzká vozovka ~5-6 m, stání jen na straně B na okraji; oba profily to zachycují podobně."},
+"2":{"a":"nejde","j":"nízká","d":"Žádné ortofoto ani fotka."},
+"3":{"a":"stejne","j":"nízká","d":"Chybí ortofoto; fotky ukazují stání na obou stranách a středovou čáru, rozdíl X/Y je jen v krajnici a šířkách."},
+"4":{"a":"Y","j":"střední","d":"Auto stojí u obruby strany B (foto f, ortofoto) a vozovka ~5 m je s parkováním na obou stranách; X B stání nemá."},
+"5":{"a":"X","j":"nízká","d":"Kolmé stání obou stran, ulička ~3,5 m blíž X (3,7); jinak shodné složení."},
+"6":{"a":"Y","j":"nízká","d":"Vozovka na ortofotu je těsně u fasády A a pruh v Y leží blíž ní; fotka je z křižovatky/dlážděné plochy, ne z řezu."},
+"7":{"a":"stejne","j":"nízká","d":"Šikmé/kolmé stání na A, vozovka ~6 m; obě varianty mají stejné složení a podobné šířky."},
+"8":{"a":"nejde","j":"nízká","d":"Chybí ortofoto; fotky neukazují šířky pruhů ani rozdíl mezi profily."},
+"9":{"a":"X","j":"střední","d":"Auta parkují u obruby strany A na ortofotu i na fotce; Y tam stání nemá."},
+"10":{"a":"stejne","j":"nízká","d":"Široká vozovka u křižovatky, dva pruhy v obou; rozdíl jen v rozdělení krajnic."},
+"11":{"a":"Y","j":"nízká","d":"Úzká ulice s auty u obou obrub a jedním pruhem ~3,5 m; Y má stání B 2 m místo 1,53."},
+"12":{"a":"stejne","j":"nízká","d":"Oba bez chodníků a stejně složené; rozdíl jen v šířkách dvou pruhů, nerozpoznatelný."},
+"13":{"a":"X","j":"střední","d":"Střední přerušovaná čára na ortofotu leží mezi pruhy X (3,9+3,9); kolmé stání po obou stranách shodně."}
+}

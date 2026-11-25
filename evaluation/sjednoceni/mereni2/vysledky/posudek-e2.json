@@ -1,0 +1,82 @@
+{
+ "1": {
+  "a": "nejde",
+  "j": "nízká",
+  "d": "stání B vs. širší pruhy nejde z ortofota poznat"
+ },
+ "2": {
+  "a": "Y",
+  "j": "nízká",
+  "d": "fotka b ukazuje stání u B; vozovka 9 m je na dva pruhy se stáním"
+ },
+ "3": {
+  "a": "Y",
+  "j": "střední",
+  "d": "přerušovaná osa uprostřed vozovky, dva pruhy; stání nevidět"
+ },
+ "4": {
+  "a": "X",
+  "j": "nízká",
+  "d": "auta stojí u B okraje vozovky; vozovka ~5,5 m"
+ },
+ "5": {
+  "a": "Y",
+  "j": "střední",
+  "d": "auta stojí u A, na B stromy bez stání; dva pruhy v 6,6 m"
+ },
+ "6": {
+  "a": "X",
+  "j": "vysoká",
+  "d": "šikmé stání na B straně sedí; Y stání na A nemá oporu"
+ },
+ "7": {
+  "a": "Y",
+  "j": "nízká",
+  "d": "fotka b: stání na straně B; X ho nemá"
+ },
+ "8": {
+  "a": "nejde",
+  "j": "nízká",
+  "d": "oba profily podobné, rozdíl nejde poznat"
+ },
+ "9": {
+  "a": "nejde",
+  "j": "nízká",
+  "d": "tmavé ortofoto, bez fotek"
+ },
+ "10": {
+  "a": "X",
+  "j": "nízká",
+  "d": "široká vozovka na obloukové křižovatce, X blíže šířkou"
+ },
+ "11": {
+  "a": "Y",
+  "j": "střední",
+  "d": "osa dělí vozovku symetricky na dva pruhy ~3,7; X posunuté"
+ },
+ "12": {
+  "a": "X",
+  "j": "střední",
+  "d": "osa vozovky na 195 sedí k X, stání u B"
+ },
+ "13": {
+  "a": "Y",
+  "j": "nízká",
+  "d": "u A kontejnery bez stání (X ho má); stání na B v obou chybí"
+ },
+ "14": {
+  "a": "Y",
+  "j": "nízká",
+  "d": "značené stání u B obrubníku, X ho nemá"
+ },
+ "15": {
+  "a": "Y",
+  "j": "nízká",
+  "d": "u B cik-cak značení zastávky, stání tam není"
+ },
+ "16": {
+  "a": "Y",
+  "j": "střední",
+  "d": "červená cyklostezka sedí polohou lépe, stání nevidět"
+ }
+}
