@@ -1387,7 +1387,7 @@ const centreKm = ([lon, lat]) => {
 // (evaluation/budovy-typ, the 100 cuts).
 const TUNED_BUILDING = (t) => !!t?.building && (t["building:levels"] !== undefined || t.height !== undefined || t["roof:levels"] !== undefined);
 export function buildingAt(osm, frame, p) {
-  const all = (osm.elements || []).filter((el) => el.type === "area" && TUNED_BUILDING(el.tags))
+  const all = (osm.elements || []).filter((el) => el.type === "area" && (TUNED_BUILDING(el.tags) || (country.allBuildings && el.tags?.building && el.tags.building !== "roof")))
     .map((el) => {
       const ring = el.geometry.map((g) => frame.toXY(g.lon, g.lat));
       return { el, ring, rings: [ring, ...(el.holes || []).map((r) => r.map((g) => frame.toXY(g.lon, g.lat)))], bbox: bboxOf(ring) };

@@ -1,0 +1,883 @@
+[
+ {
+  "id": "01",
+  "street": "C Street Northeast",
+  "probe": [
+   -76.9769467,
+   38.8935574
+  ],
+  "mapillary": "1017341755632583",
+  "pano": true,
+  "dist": 15.9,
+  "off": 88,
+  "tags": {
+   "osm_way_id": "296077600",
+   "building": "house",
+   "addr:housenumber": "1906",
+   "addr:postcode": "20002",
+   "addr:street": "C Street Northeast",
+   "building:levels": "2",
+   "dcgis:gis_id": "85956",
+   "house": "terraced"
+  }
+ },
+ {
+  "id": "02",
+  "street": "11th Street Southeast",
+  "probe": [
+   -76.9917427,
+   38.8832719
+  ],
+  "mapillary": "106963675437254",
+  "pano": true,
+  "dist": 16,
+  "off": -86.6,
+  "tags": {
+   "osm_way_id": "295844539",
+   "building": "yes",
+   "dcgis:gis_id": "80212"
+  }
+ },
+ {
+  "id": "03",
+  "street": "14th Street Northwest",
+  "probe": [
+   -77.0317084,
+   38.8978834
+  ],
+  "mapillary": "1306901827440765",
+  "pano": true,
+  "dist": 14.9,
+  "off": -26.1,
+  "tags": {
+   "osm_way_id": "48041579",
+   "building": "office",
+   "addr:housenumber": "607",
+   "addr:postcode": "20005",
+   "addr:street": "14th Street Northwest",
+   "building:levels": "12",
+   "dcgis:captureyear": "19990331",
+   "dcgis:dataset": "buildings",
+   "dcgis:featurecode": "2000",
+   "height": "43.50",
+   "mappingdc:gid": "3777",
+   "website": "https://www.thewestory.com/"
+  }
+ },
+ {
+  "id": "04",
+  "street": "Fulton Street Northwest",
+  "probe": [
+   -77.0678706,
+   38.9260088
+  ],
+  "mapillary": "1234980950345653",
+  "pano": true,
+  "dist": 18.5,
+  "off": -141.7,
+  "tags": {
+   "osm_way_id": "67828578",
+   "building": "detached",
+   "addr:housenumber": "2740",
+   "addr:state": "DC",
+   "addr:street": "34th Place Northwest",
+   "dataset": "buildings",
+   "dcgis:captureyear": "19990331",
+   "dcgis:gis_id": "99446",
+   "dcgis:lot": "0035",
+   "dcgis:square": "1939"
+  }
+ },
+ {
+  "id": "05",
+  "street": "E Street Northeast",
+  "probe": [
+   -76.9775407,
+   38.8959486
+  ],
+  "mapillary": "1035768737370831",
+  "pano": false,
+  "dist": 16.1,
+  "off": 6.7,
+  "tags": {
+   "osm_way_id": "65733181",
+   "building": "house",
+   "addr:housenumber": "438",
+   "addr:street": "19th Street Northeast",
+   "captureyear": "Wed Mar 31 00:00:00 EST 1999",
+   "dataset": "buildings",
+   "dcgis:gis_id": "79922",
+   "dcgis:lot": "0088",
+   "dcgis:square": "4547",
+   "house": "terraced"
+  }
+ },
+ {
+  "id": "06",
+  "street": "Decatur Street Northeast",
+  "probe": [
+   -76.9953156,
+   38.9481204
+  ],
+  "mapillary": "1123099608409010",
+  "pano": false,
+  "dist": 16.4,
+  "off": -21.4,
+  "tags": {
+   "osm_way_id": "296203106",
+   "building": "yes",
+   "addr:housenumber": "747",
+   "addr:postcode": "20017",
+   "addr:street": "Decatur Street Northeast",
+   "building:levels": "2",
+   "dcgis:gis_id": "102552"
+  }
+ },
+ {
+  "id": "07",
+  "street": "Murdock Mill Road Northwest",
+  "probe": [
+   -77.0856743,
+   38.9486738
+  ],
+  "mapillary": "1336936280075395",
+  "pano": true,
+  "dist": 12.7,
+  "off": -77,
+  "tags": {
+   "osm_way_id": "66876579",
+   "building": "garage",
+   "dataset": "buildings",
+   "dcgis:captureyear": "20050405",
+   "dcgis:gis_id": "139331"
+  }
+ },
+ {
+  "id": "08",
+  "street": "Upshur Street Northeast",
+  "probe": [
+   -76.98804,
+   38.9416288
+  ],
+  "mapillary": "131212799257253",
+  "pano": true,
+  "dist": 16.7,
+  "off": 101.2,
+  "tags": {
+   "osm_way_id": "297366791",
+   "building": "semidetached_house",
+   "addr:housenumber": "4225",
+   "addr:postcode": "20017",
+   "addr:street": "13th Street Northeast",
+   "building:levels": "2",
+   "dcgis:gis_id": "72541"
+  }
+ },
+ {
+  "id": "09",
+  "street": "3rd Street Southeast",
+  "probe": [
+   -77.0018384,
+   38.8777308
+  ],
+  "mapillary": "1426286554472571",
+  "pano": true,
+  "dist": 16.3,
+  "off": -111.6,
+  "tags": {
+   "osm_way_id": "67260472",
+   "building": "house",
+   "addr:housenumber": "1026",
+   "addr:street": "3rd Street Southeast",
+   "dataset": "buildings",
+   "dcgis:captureyear": "19990331",
+   "dcgis:lot": "0805",
+   "dcgis:square": "0799",
+   "house": "terraced"
+  }
+ },
+ {
+  "id": "10",
+  "street": "16th Street Northeast",
+  "probe": [
+   -76.9823944,
+   38.9035228
+  ],
+  "mapillary": "182450014177824",
+  "pano": true,
+  "dist": 18,
+  "off": -167.7,
+  "tags": {
+   "osm_way_id": "55325291",
+   "building": "yes",
+   "dcgis:captureyear": "19990331",
+   "dcgis:dataset": "buildings",
+   "dcgis:featurecode": "2000",
+   "mappingdc:gid": "81942"
+  }
+ },
+ {
+  "id": "11",
+  "street": "Robert Clifton Weaver",
+  "probe": [
+   -76.9595309,
+   38.923806
+  ],
+  "mapillary": "486334749255478",
+  "pano": true,
+  "dist": 14,
+  "off": -101.7,
+  "tags": {
+   "osm_way_id": "307732588",
+   "building": "house",
+   "addr:housenumber": "3237",
+   "addr:postcode": "20018",
+   "addr:street": "Fort Lincoln Drive Northeast",
+   "building:levels": "2",
+   "dcgis:gis_id": "62934",
+   "house": "terraced"
+  }
+ },
+ {
+  "id": "12",
+  "street": "Woodcrest Drive Southeast",
+  "probe": [
+   -76.9996848,
+   38.8376763
+  ],
+  "mapillary": "1141460213362013",
+  "pano": true,
+  "dist": 19.7,
+  "off": -52.8,
+  "tags": {
+   "osm_way_id": "1021965249",
+   "building": "house",
+   "house": "terraced"
+  }
+ },
+ {
+  "id": "13",
+  "street": "Oliver Street Northwest",
+  "probe": [
+   -77.0654958,
+   38.9669043
+  ],
+  "mapillary": "1176769202929004",
+  "pano": false,
+  "dist": 24.1,
+  "off": 27.7,
+  "tags": {
+   "osm_way_id": "70653201",
+   "building": "detached",
+   "addr:housenumber": "3219",
+   "addr:street": "Oliver Street Northwest",
+   "dataset": "buildings",
+   "dcgis:captureyear": "19990331",
+   "dcgis:gis_id": "141284",
+   "dcgis:lot": "0832",
+   "dcgis:square": "2022"
+  }
+ },
+ {
+  "id": "14",
+  "street": "Mount Olivet Road Northeast",
+  "probe": [
+   -76.9842552,
+   38.9101085
+  ],
+  "mapillary": "1203131987402096",
+  "pano": false,
+  "dist": 6.5,
+  "off": -19.6,
+  "tags": {
+   "osm_way_id": "296452727",
+   "building": "yes",
+   "addr:housenumber": "1228",
+   "addr:postcode": "20002",
+   "addr:street": "Mount Olivet Road Northeast",
+   "dcgis:gis_id": "63343"
+  }
+ },
+ {
+  "id": "15",
+  "street": "R Street Northwest",
+  "probe": [
+   -77.0378952,
+   38.9124721
+  ],
+  "mapillary": "1017532955622962",
+  "pano": true,
+  "dist": 18.9,
+  "off": -45.1,
+  "tags": {
+   "osm_way_id": "548047367",
+   "building": "house",
+   "addr:city": "Washington",
+   "addr:housenumber": "1634",
+   "addr:postcode": "20009",
+   "addr:state": "DC",
+   "addr:street": "R Street Northwest",
+   "house": "terraced"
+  }
+ },
+ {
+  "id": "16",
+  "street": "Varnum Street Northwest",
+  "probe": [
+   -77.0392081,
+   38.9431792
+  ],
+  "mapillary": "1003009456939775",
+  "pano": true,
+  "dist": 21.8,
+  "off": -77.5,
+  "tags": {
+   "osm_way_id": "70075745",
+   "building": "detached",
+   "addr:housenumber": "1701",
+   "addr:street": "Varnum Street Northwest",
+   "dataset": "buildings",
+   "dcgis:captureyear": "19990331",
+   "dcgis:gis_id": "129441",
+   "dcgis:lot": "0825",
+   "dcgis:square": "2647"
+  }
+ },
+ {
+  "id": "17",
+  "street": "Hamilton Street Northwest",
+  "probe": [
+   -77.0230496,
+   38.9528713
+  ],
+  "mapillary": "1068035661259446",
+  "pano": false,
+  "dist": 16.3,
+  "off": 16.1,
+  "tags": {
+   "osm_way_id": "296029241",
+   "building": "house",
+   "addr:housenumber": "726",
+   "addr:postcode": "20011",
+   "addr:street": "Hamilton Street Northwest",
+   "building:levels": "2",
+   "dcgis:gis_id": "158568",
+   "house": "terraced"
+  }
+ },
+ {
+  "id": "18",
+  "street": "2nd Street Northwest",
+  "probe": [
+   -77.0146711,
+   38.9167318
+  ],
+  "mapillary": "102614335533247",
+  "pano": true,
+  "dist": 16.2,
+  "off": -57.4,
+  "tags": {
+   "osm_way_id": "74055272",
+   "building": "house",
+   "addr:housenumber": "1938",
+   "addr:street": "2nd Street Northwest",
+   "dataset": "buildings",
+   "dcgis:captureyear": "19990331",
+   "dcgis:gis_id": "96272",
+   "dcgis:lot": "0041",
+   "dcgis:square": "3088",
+   "house": "terraced"
+  }
+ },
+ {
+  "id": "19",
+  "street": "Anacostia Avenue Northeast",
+  "probe": [
+   -76.9527731,
+   38.900135
+  ],
+  "mapillary": "2857293934566457",
+  "pano": true,
+  "dist": 13.4,
+  "off": 42.4,
+  "tags": {
+   "osm_way_id": "1218983836",
+   "building": "residential",
+   "addr:city": "Washington",
+   "addr:housenumber": "600",
+   "addr:postcode": "20019",
+   "addr:state": "DC",
+   "addr:street": "Barnes Street Northeast"
+  }
+ },
+ {
+  "id": "20",
+  "street": "Barnaby Terrace Southeast",
+  "probe": [
+   -76.988383,
+   38.8343536
+  ],
+  "mapillary": "1273330850142922",
+  "pano": true,
+  "dist": 13.8,
+  "off": 63.5,
+  "tags": {
+   "osm_way_id": "67385288",
+   "building": "house",
+   "addr:housenumber": "1367",
+   "addr:street": "Barnaby Terrace Southeast",
+   "dataset": "buildings",
+   "dcgis:captureyear": "19990331",
+   "dcgis:gis_id": "40001",
+   "dcgis:lot": "0040",
+   "dcgis:square": "5923",
+   "house": "terraced"
+  }
+ },
+ {
+  "id": "21",
+  "street": "56th Street Northeast",
+  "probe": [
+   -76.9202982,
+   38.8950707
+  ],
+  "mapillary": "2915808105359080",
+  "pano": true,
+  "dist": 14.4,
+  "off": 62.7,
+  "tags": {
+   "osm_way_id": "294993671",
+   "building": "detached",
+   "addr:housenumber": "411",
+   "addr:postcode": "20019",
+   "addr:state": "DC",
+   "addr:street": "56th Street Northeast",
+   "building:levels": "2",
+   "dcgis:gis_id": "55586"
+  }
+ },
+ {
+  "id": "22",
+  "street": "Danbury Street Southwest",
+  "probe": [
+   -77.0090438,
+   38.8276377
+  ],
+  "mapillary": "1293002314479408",
+  "pano": true,
+  "dist": 15.2,
+  "off": 102.3,
+  "tags": {
+   "osm_way_id": "67349103",
+   "building": "yes",
+   "dataset": "buildings",
+   "dcgis:captureyear": "19990331",
+   "dcgis:gis_id": "38128"
+  }
+ },
+ {
+  "id": "23",
+  "street": "N Street Southeast",
+  "probe": [
+   -76.9629656,
+   38.874364
+  ],
+  "mapillary": "182275240352613",
+  "pano": true,
+  "dist": 23.3,
+  "off": -94.8,
+  "tags": {
+   "osm_way_id": "295096349",
+   "building": "detached",
+   "addr:housenumber": "3033",
+   "addr:postcode": "20019",
+   "addr:state": "DC",
+   "addr:street": "N Street Southeast",
+   "building:levels": "1",
+   "dcgis:gis_id": "38094"
+  }
+ },
+ {
+  "id": "24",
+  "street": "Seaton Place Northwest",
+  "probe": [
+   -77.0128463,
+   38.9146957
+  ],
+  "mapillary": "127304203180989",
+  "pano": true,
+  "dist": 18.3,
+  "off": 32.9,
+  "tags": {
+   "osm_way_id": "55254534",
+   "building": "house",
+   "addr:city": "Washington",
+   "addr:housenumber": "116",
+   "addr:postcode": "20001",
+   "addr:state": "DC",
+   "addr:street": "Seaton Place Northwest",
+   "dcgis:captureyear": "19990331",
+   "dcgis:dataset": "buildings",
+   "dcgis:featurecode": "2000",
+   "house": "terraced"
+  }
+ },
+ {
+  "id": "25",
+  "street": "P Street Northwest",
+  "probe": [
+   -77.014469,
+   38.9098073
+  ],
+  "mapillary": "1021992615073646",
+  "pano": false,
+  "dist": 23.2,
+  "off": -20.3,
+  "tags": {
+   "osm_way_id": "67246853",
+   "building": "house",
+   "addr:housenumber": "227",
+   "addr:street": "P Street Northwest",
+   "dataset": "buildings",
+   "dcgis:captureyear": "19990331",
+   "dcgis:lot": "0117",
+   "dcgis:square": "0552",
+   "house": "terraced"
+  }
+ },
+ {
+  "id": "26",
+  "street": "Queens Chapel Terrace Northeast",
+  "probe": [
+   -76.9790734,
+   38.9453816
+  ],
+  "mapillary": "1172656529966276",
+  "pano": true,
+  "dist": 25.6,
+  "off": 51.3,
+  "tags": {
+   "osm_way_id": "296462533",
+   "building": "detached",
+   "addr:housenumber": "1748",
+   "addr:postcode": "20017",
+   "addr:street": "Allison Street Northeast",
+   "building:levels": "1",
+   "dcgis:gis_id": "75061"
+  }
+ },
+ {
+  "id": "27",
+  "street": "13th Street Northwest",
+  "probe": [
+   -77.0293862,
+   38.9088153
+  ],
+  "mapillary": "1095535727987705",
+  "pano": true,
+  "dist": 14.6,
+  "off": 105.8,
+  "tags": {
+   "osm_way_id": "66816429",
+   "building": "house",
+   "addr:housenumber": "1229",
+   "addr:state": "DC",
+   "addr:street": "O Street Northwest",
+   "dataset": "buildings",
+   "dcgis:captureyear": "19990331",
+   "dcgis:lot": "0031",
+   "dcgis:square": "0279",
+   "house": "terraced"
+  }
+ },
+ {
+  "id": "28",
+  "street": "Franklin Street Northeast",
+  "probe": [
+   -76.9819113,
+   38.9254271
+  ],
+  "mapillary": "1118520865443305",
+  "pano": true,
+  "dist": 16.5,
+  "off": 113.2,
+  "tags": {
+   "osm_way_id": "296481153",
+   "building": "yes",
+   "addr:housenumber": "1625",
+   "addr:postcode": "20018",
+   "addr:street": "Franklin Street Northeast",
+   "dcgis:gis_id": "65039"
+  }
+ },
+ {
+  "id": "29",
+  "street": "Independence Avenue Southeast",
+  "probe": [
+   -76.9931075,
+   38.8877375
+  ],
+  "mapillary": "1011233169558662",
+  "pano": true,
+  "dist": 16,
+  "off": -50.4,
+  "tags": {
+   "osm_way_id": "296088931",
+   "building": "house",
+   "addr:housenumber": "912",
+   "addr:postcode": "20003",
+   "addr:street": "Independence Avenue Southeast",
+   "building:levels": "2",
+   "dcgis:gis_id": "3705",
+   "house": "terraced"
+  }
+ },
+ {
+  "id": "30",
+  "street": "Lee Street Northeast",
+  "probe": [
+   -76.930524,
+   38.9045079
+  ],
+  "mapillary": "1501005661682965",
+  "pano": false,
+  "dist": 22.5,
+  "off": 1.3,
+  "tags": {
+   "osm_way_id": "294829543",
+   "building": "detached",
+   "addr:housenumber": "4919",
+   "addr:postcode": "20019",
+   "addr:state": "DC",
+   "addr:street": "Lee Street Northeast",
+   "building:levels": "2",
+   "dcgis:gis_id": "58360"
+  }
+ },
+ {
+  "id": "31",
+  "street": "East Beach Drive Northwest",
+  "probe": [
+   -77.0434798,
+   38.9905562
+  ],
+  "mapillary": "1042281949936873",
+  "pano": true,
+  "dist": 17,
+  "off": -70.6,
+  "tags": {
+   "osm_way_id": "71222011",
+   "building": "detached",
+   "addr:housenumber": "8145",
+   "addr:street": "East Beach Drive Northwest",
+   "dataset": "buildings",
+   "dcgis:captureyear": "19990331",
+   "dcgis:gis_id": "150471",
+   "dcgis:lot": "0002",
+   "dcgis:square": "2759"
+  }
+ },
+ {
+  "id": "32",
+  "street": "Bryant Street Northwest",
+  "probe": [
+   -77.0184069,
+   38.9204637
+  ],
+  "mapillary": "1187486695152370",
+  "pano": true,
+  "dist": 11.5,
+  "off": -79.1,
+  "tags": {
+   "osm_way_id": "226022601",
+   "building": "yes",
+   "description": "Buildings subdivided by roofbreaks"
+  }
+ },
+ {
+  "id": "33",
+  "street": "6th Place Northeast",
+  "probe": [
+   -76.9976,
+   38.9475946
+  ],
+  "mapillary": "2594070574222629",
+  "pano": true,
+  "dist": 24.1,
+  "off": 14.1,
+  "tags": {
+   "osm_way_id": "296461051",
+   "building": "yes",
+   "building:levels": "2",
+   "dcgis:gis_id": "98318"
+  }
+ },
+ {
+  "id": "34",
+  "street": "New Hampshire Avenue Northwest",
+  "probe": [
+   -77.0204659,
+   38.9410944
+  ],
+  "mapillary": "158901859540557",
+  "pano": true,
+  "dist": 14.7,
+  "off": 14.1,
+  "tags": {
+   "osm_way_id": "70143197",
+   "building": "house",
+   "addr:housenumber": "4101",
+   "addr:street": "New Hampshire Avenue Northwest",
+   "dataset": "buildings",
+   "dcgis:captureyear": "19990331",
+   "dcgis:gis_id": "30812",
+   "dcgis:lot": "0051",
+   "dcgis:square": "3228",
+   "house": "terraced"
+  }
+ },
+ {
+  "id": "35",
+  "street": "Galloway Street Northeast",
+  "probe": [
+   -76.9922358,
+   38.9537396
+  ],
+  "mapillary": "1177943286390604",
+  "pano": true,
+  "dist": 12.3,
+  "off": -125.3,
+  "tags": {
+   "osm_way_id": "296236905",
+   "building": "semidetached_house",
+   "addr:housenumber": "1016",
+   "addr:postcode": "20011",
+   "addr:street": "Galloway Street Northeast",
+   "building:levels": "2",
+   "dcgis:gis_id": "74881"
+  }
+ },
+ {
+  "id": "36",
+  "street": "1st Place Northeast",
+  "probe": [
+   -77.0071457,
+   38.965337
+  ],
+  "mapillary": "1104389793537793",
+  "pano": true,
+  "dist": 13.4,
+  "off": -103,
+  "tags": {
+   "osm_way_id": "296238992",
+   "building": "semidetached_house",
+   "addr:housenumber": "6164",
+   "addr:postcode": "20011",
+   "addr:street": "1st Place Northeast",
+   "building:levels": "2",
+   "dcgis:gis_id": "107574"
+  }
+ },
+ {
+  "id": "37",
+  "street": "E Street Southeast",
+  "probe": [
+   -77.0077558,
+   38.883397
+  ],
+  "mapillary": "1110512412803343",
+  "pano": true,
+  "dist": 13.9,
+  "off": -108.3,
+  "tags": {
+   "osm_way_id": "48039955",
+   "building": "yes",
+   "addr:city": "Washington",
+   "addr:country": "US",
+   "addr:housenumber": "14",
+   "addr:postcode": "20003",
+   "addr:state": "DC",
+   "addr:street": "E Street Southeast",
+   "dcgis:captureyear": "19990331",
+   "dcgis:dataset": "buildings",
+   "dcgis:featurecode": "2000",
+   "mappingdc:gid": "8704"
+  }
+ },
+ {
+  "id": "38",
+  "street": "Southern Avenue Southeast",
+  "probe": [
+   -76.9173655,
+   38.8868808
+  ],
+  "mapillary": "1250064252463976",
+  "pano": true,
+  "dist": 17.5,
+  "off": -125.1,
+  "tags": {
+   "osm_way_id": "55439528",
+   "building": "semidetached_house",
+   "addr:city": "Washington",
+   "addr:country": "US",
+   "addr:housenumber": "5748",
+   "addr:postcode": "20019",
+   "addr:state": "DC",
+   "addr:street": "Southern Avenue Southeast",
+   "dcgis:captureyear": "19990331",
+   "dcgis:dataset": "buildings",
+   "dcgis:featurecode": "2000",
+   "mappingdc:gid": "66276"
+  }
+ },
+ {
+  "id": "39",
+  "street": "Davenport Street Northwest",
+  "probe": [
+   -77.0953384,
+   38.9519336
+  ],
+  "mapillary": "1392521594461204",
+  "pano": true,
+  "dist": 23.7,
+  "off": 125.3,
+  "tags": {
+   "osm_way_id": "66898530",
+   "building": "detached",
+   "addr:housenumber": "4820",
+   "addr:state": "DC",
+   "addr:street": "Davenport Street Northwest",
+   "dataset": "buildings",
+   "dcgis:captureyear": "19990331",
+   "dcgis:gis_id": "130287",
+   "dcgis:lot": "0031",
+   "dcgis:square": "1493"
+  }
+ },
+ {
+  "id": "40",
+  "street": "5th Street Southeast",
+  "probe": [
+   -76.9992917,
+   38.8804916
+  ],
+  "mapillary": "149375977549632",
+  "pano": true,
+  "dist": 16.6,
+  "off": -120,
+  "tags": {
+   "osm_way_id": "55331763",
+   "building": "house",
+   "addr:city": "Washington",
+   "addr:country": "US",
+   "addr:housenumber": "722",
+   "addr:postcode": "20003",
+   "addr:state": "DC",
+   "addr:street": "5th Street Southeast",
+   "dcgis:captureyear": "19990331",
+   "dcgis:dataset": "buildings",
+   "dcgis:featurecode": "2000",
+   "house": "terraced"
+  }
+ }
+]

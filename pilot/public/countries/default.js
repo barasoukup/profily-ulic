@@ -148,6 +148,9 @@ export default {
   houseLook: null,
   // What the state changes in drawing a look (profile.js): (look, info, city) → { terrace, blinds, boards, palette }.
   houseDetails: null,
+  // The look of a house reads every OSM building, also one of no floors and no height (derive.js buildingAt): where the
+  // kind and the block are often all OSM has (two thirds of Washington's houses). Not the built-up test.
+  allBuildings: false,
   // The search services asked where the map shows the state (search.js), besides RÚIAN.
   search: [],
   // What the state decides by the place of the cut, set on the city (app.js): async (lon, lat) → { … }, or null.

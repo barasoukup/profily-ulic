@@ -41,7 +41,7 @@ test("jinde poválečný bytový dům, před 1946 funkcionalistický, po 1990 mo
   at("praha");
   assert.equal(buildingStyle(HOUSES[1975], "povalecny"), "povalecny");
   assert.ok(BUILDING_STYLES.povalecny);
-  assert.equal(Object.keys(BUILDING_STYLES).length, 32);
+  assert.equal(Object.keys(BUILDING_STYLES).length, 46);
 });
 
 // The regional looks of Europe's old houses (docs/house-types-europe.md, house-looks.js; Bára 23. 11. 2026): a state's
@@ -136,4 +136,33 @@ test("každý vzhled má popisek, překlad a platí v souborech", () => {
 test("štít uříznutý okrajem (2/3) je výchozí (Bára 23. 11. 2026)", async () => {
   const { LOOKS } = await import("../pilot/public/house-looks.js");
   assert.equal(LOOKS.gableCut, true);
+});
+
+// North America (docs/house-types-north-america.md; Bára 25. 11. 2026).
+test("severoamerické domy podle druhu, roku a místa; bez dat prostý vzhled", async () => {
+  const { northAmericaLook: na, northAmericaDetails: det } = await import("../pilot/public/house-looks.js");
+  const row = { length: 60, width: 12, fill: 0.9, parts: 10 }, alone = { length: 11, width: 9, fill: 0.9, parts: 1 };
+  const CH = [-76.993, 38.886], PET = [-77.02, 38.942], MD = [-77.2, 39.1], GT = [-77.065, 38.908], DT = [-77.035, 38.902];
+  assert.equal(look("usa", { levels: 2, type: "house", block: row, point: CH }), "bayrow");
+  assert.equal(look("usa", { type: "house", block: row, point: PET }), "porchrow"); // no floors
+  assert.equal(look("usa", { levels: 2, type: "detached", block: alone, point: PET }), "framehouse");
+  assert.equal(look("usa", { point: MD }), "framehouse"); // nothing known
+  assert.equal(look("usa", { levels: 4, type: "apartments", point: PET }), "brickblock");
+  assert.equal(look("usa", { levels: 9, type: "apartments", start: 1965, point: PET }), "slab");
+  assert.equal(look("usa", { levels: 5, type: "apartments", start: 2012, point: DT }), "podium");
+  assert.equal(look("usa", { levels: 12, type: "apartments", start: 2012, point: DT }), "glasstower");
+  assert.equal(look("usa", { levels: 10, type: "office", point: DT }), "kancelar");
+  assert.equal(look("usa", { levels: 2, type: "retail", point: CH }), "mainstreet");
+  assert.equal(look("usa", { levels: 1, type: "retail", point: MD }), "stripmall");
+  assert.equal(look("usa", { levels: 2, type: "school", point: CH }), "skola");
+  assert.equal(look("usa", { levels: 1, type: "church", point: CH }), "kostel");
+  assert.equal(na("sikma", { block: row, type: "house", point: [-73.972, 40.679] }, 4), "brownstone");
+  assert.equal(na("sikma", { block: row, type: "apartments", point: [-73.985, 40.725] }, 5), "tenement");
+  assert.equal(na("sikma", { block: alone, type: "house", point: [-71.06, 42.31] }, 3), "tripledecker");
+  assert.equal(na("sikma", { block: row, type: "house", point: [-79.366, 43.666] }, 3), "baygable");
+  assert.equal(na("sikma", { block: row, type: "house", point: [-122.435, 37.774] }, 3), "victorian");
+  assert.equal(det("bayrow", { point: CH, block: row }).front, "bay");
+  assert.equal(det("bayrow", { point: CH }).front, "flat"); // nothing known of the house: no bay
+  assert.equal(det("bayrow", { point: GT, block: row }).front, "flat");
+  assert.equal(det("slab", { point: MD }).balconies, false);
 });

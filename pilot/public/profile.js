@@ -8,6 +8,7 @@ import { PLATES, signFile, plateFile, signLabel, signDir, SPEED_TEMPLATES } from
 // tr: t is a part's type here.
 import { t as tr, num } from "./i18n.js";
 import { LOOKS, houseHash } from "./house-looks.js";
+import { AMERICA, AMERICA_PALETTES, drawAmerican } from "./houses-america.js";
 
 const NS = "http://www.w3.org/2000/svg";
 const GROUND = 760; // roadway surface
@@ -97,13 +98,20 @@ export const BUILDING_STYLES = {
   cihlovy: tr("cihlový dům s římsou"), stit: tr("cihlový dům se štítem do ulice"), dansky: tr("dánský cihlový činžák"),
   stenstad: tr("severský omítaný činžák"), drevak: tr("malovaný dřevěný dům"), puukaupunki: tr("dřevěný městský dům"),
   tallinnamaja: tr("tallinnský dům"), hanza: tr("hanzovní dům se štítem"),
+  // North America (houses-america.js, docs/house-types-north-america.md; Bára 25. 11. 2026), given by the states' houseLook.
+  bayrow: tr("cihlový řadový dům s arkýřem"), porchrow: tr("řadový dům s verandou"), framehouse: tr("americký dům s verandou"),
+  brickblock: tr("americký cihlový bytový dům"), slab: tr("americký deskový bytový dům"), podium: tr("bytový dům nad obchody"),
+  glasstower: tr("prosklená věž"), mainstreet: tr("americký dům s obchodem v přízemí"), stripmall: tr("přízemní obchody"),
+  brownstone: tr("newyorský dům z hnědého pískovce"), tenement: tr("newyorský činžák s požárním schodištěm"), tripledecker: tr("bostonský třípodlažní dřevěný dům"),
+  baygable: tr("torontský dům s arkýřem a štítem"), victorian: tr("sanfranciský viktoriánský dům"),
 };
 // The gabled looks draw a licence Bára has yet to approve: offered by hand only with ?stit=1.
 export const GABLE_LOOKS = new Set(["stit", "hanza"]);
 const BASE_STYLE = { sorela: "sikma", typovy: "sikma", mestan: "sikma", kancelar: "plocha", vila: "nizky", kostka: "nizky", novyrd: "nizky", statek: "nizky",
   // The regional looks: four drawings of their own (stredomori, cihla, drevo) and the tenement's (sikma).
   haussmann: "sikma", stenstad: "sikma", stredomori: "stredomori", azulejo: "stredomori", galeria: "stredomori", malta: "stredomori", kypr: "stredomori",
-  cihlovy: "cihla", stit: "cihla", dansky: "cihla", hanza: "cihla", drevak: "drevo", puukaupunki: "drevo", tallinnamaja: "drevo" };
+  cihlovy: "cihla", stit: "cihla", dansky: "cihla", hanza: "cihla", drevak: "drevo", puukaupunki: "drevo", tallinnamaja: "drevo",
+  ...Object.fromEntries(Object.keys(AMERICA).map((k) => [k, "america"])) };
 const MED_LOOKS = new Set(["stredomori", "azulejo", "galeria", "malta", "kypr"]);
 const REGIONAL = new Set(Object.keys(BASE_STYLE).filter((k) => ["stredomori", "cihla", "drevo"].includes(BASE_STYLE[k]) || k === "haussmann" || k === "stenstad"));
 const OLD_STYLES = { centrum: "sikma", "centrum-obchod": "sikma", sidliste: "plocha", "sidliste-lodzie": "plocha", rd: "vila" };
@@ -205,6 +213,7 @@ const PALETTES = {
   puukaupunki: ["#e7c873", "#b5c8a0", "#a8bccc", "#9a3a2a", "#d9a441", "#d9a6a0"],
   tallinnamaja: ["#d9b36a", "#a9bf98", "#8ea4b3", "#e9d79a", "#8a6a4a", "#9aa596"],
   hanza: ["#efeee6", "#e2c27a", "#e6b8a6", "#c8c4bb", "#c9d4b4"],
+  ...AMERICA_PALETTES,
 };
 const ROOF = { tile: "#c25a3c", tileDark: "#8f3f2b", slate: "#4f5d6b", slateDark: "#36414c" };
 const BRICK = "#b8644a", SKLEP = "#8e8a82";
@@ -887,7 +896,18 @@ const tenementGable = (kind, roofRows, flat) => (kind === "sikma" || kind === "h
 // the frieze, the cornice on its consoles).
 const FRIEZE = { sikma: 145, mestan: 130, sorela: 180, typovy: 25, haussmann: 75, stenstad: 115, stredomori: 45, azulejo: 45, malta: 20,
   kypr: 20, cihlovy: 65, dansky: 80 };
+// A house of North America (houses-america.js): its first floor over its base, the known height setting the storey.
+function americaForm(info, kind) {
+  const A = AMERICA[kind], h = buildingHeight(info), lv = buildingLevels(info);
+  const k = A.groundK || 1;
+  const n = Math.max(1, lv?.n || (h ? Math.max(1, Math.round((h * 100 - A.base - A.attic) / A.storey)) : A.floors));
+  const s0 = info?.height ? (info.height * 100 - A.base - A.attic) / (n - 1 + k) : A.storey;
+  const storey = Math.min(A.storey * 1.5, Math.max(A.storey * 0.7, s0));
+  const ground = A.base + storey * k;
+  return { n, roofRows: 0, storey, base: A.base, ground, body: ground + (n - 1) * storey + A.attic, roofH: A.roof, flat: true, pitch: PITCH, chimney: 0 };
+}
 function buildingForm(info, kind) {
+  if (AMERICA[kind]) return americaForm(info, kind);
   const style = BASE_STYLE[kind] || kind;
   const lv = buildingLevels(info);
   const h = buildingHeight(info);
@@ -951,7 +971,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
   const f = buildingForm(info, kind);
   // tint belongs to the house (set by derive.js), so a flipped profile keeps each house's colours.
   const seed = (info?.levels || 0) * 7 + Math.round((info?.km || 0) * 10) + (info?.tint ?? (side === "left" ? 0 : 3));
-  const det = REGIONAL.has(kind) ? houseDetails(kind, info) : {};
+  const det = REGIONAL.has(kind) || AMERICA[kind] ? houseDetails(kind, info) : {};
   const pal = (k) => (k === kind && det.palette ? det.palette : PALETTES[k])[seed % (k === kind && det.palette ? det.palette : PALETTES[k]).length];
   const accent = pal(PALETTES[kind] ? kind : style);
   const med = MED_LOOKS.has(kind), brick = kind === "cihlovy" || kind === "stit" || kind === "dansky", wood = style === "drevo";
@@ -993,6 +1013,14 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
   // the door and the old end of the wall, then on the same pitch to the cut and one across it (Bára 23. 11. 2026: no more
   // wall at the cut than between two windows, the next window is there, out of the frame).
   const colAxes = (w) => { const a = Math.max(65, 35 + w / 2), b = (125 + EDGE - 30) / 2, out = [a, b]; for (let c = 2 * b - a; c - w / 2 < EDGE; c += b - a) out.push(c); return out; };
+  if (AMERICA[kind]) { // North America: a drawing of its own over the same cellar and earth
+    const cellarA = GROUND + 60 - surface;
+    el("rect", { x, y: surface, width: EDGE, height: cellarA, fill: SKLEP }, g);
+    box(0, EDGE, -8, 0, tint(SKLEP, 0.85));
+    el("rect", { x, y: GROUND + 60, width: EDGE, height: 40, fill: "#9b7f5f" }, g);
+    drawAmerican(kind, { g, el, X, surface, EDGE, f, seed, wall, det, info, box, poly, dot, tint, outline, colAxes });
+    return surface - (top + f.roofH);
+  }
   // A Streetmix window: cream frame, dark glass with a glint, a transom, a sill with its shadow; now and then
   // a lit pane, a flower box or a curtain.
   let noBox = false; // no flower boxes (the gable's windows)

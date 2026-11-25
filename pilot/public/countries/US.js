@@ -4,6 +4,7 @@
 // lanes and parking), the orthophoto DC's of 2025 (lanes-ortho.js "us", only over DC). Sources and norms:
 // evaluation/usa/ (NORMY.md), the pilot evaluation/usa-dc/.
 import { t } from "../i18n.js";
+import { northAmericaLook, northAmericaDetails } from "../house-looks.js";
 import { czechFurniture, TOWN_ART } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
 import { cycleTrackLimits } from "./cycletrack.js";
@@ -75,5 +76,9 @@ export default {
   art: { usa: { ...czechFurniture, ...atPosts } },
   // No panel estates drawn as the Czech ones (Bára's memory: the socialist looks only where they were built).
   socialistLooks: false,
+  // The houses of North America (house-looks.js, docs/house-types-north-america.md; Bára 25. 11. 2026).
+  houseLook: northAmericaLook,
+  houseDetails: northAmericaDetails,
+  allBuildings: true,
   search: ["photon-us"],
 };
