@@ -88,7 +88,7 @@ export const EN = {
   "tallinnský dům": "Tallinn house",
   "hanzovní dům se štítem": "Hanseatic gabled house",
   // The houses of North America (25. 11. 2026; machine translation).
-  "cihlový řadový dům s arkýřem": "brick row house with a bay",
+  "americký cihlový řadový dům": "American brick row house",
   "řadový dům s verandou": "row house with a porch",
   "americký dům s verandou": "American house with a porch",
   "americký cihlový bytový dům": "American brick apartment house",

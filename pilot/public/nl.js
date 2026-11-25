@@ -23,7 +23,7 @@ export const NL = {
   "tallinnský dům": "Tallinns huis",
   "hanzovní dům se štítem": "Hanzehuis met topgevel",
   // The houses of North America (25. 11. 2026; machine translation).
-  "cihlový řadový dům s arkýřem": "bakstenen rijhuis met erker",
+  "americký cihlový řadový dům": "Amerikaans bakstenen rijhuis",
   "řadový dům s verandou": "rijhuis met veranda",
   "americký dům s verandou": "Amerikaans huis met veranda",
   "americký cihlový bytový dům": "Amerikaans bakstenen appartementengebouw",

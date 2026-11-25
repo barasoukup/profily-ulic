@@ -25,7 +25,7 @@ export const IT = {
   "tallinnský dům": "casa di Tallinn",
   "hanzovní dům se štítem": "casa anseatica con timpano",
   // The houses of North America (25. 11. 2026; machine translation).
-  "cihlový řadový dům s arkýřem": "casa a schiera in mattoni con bovindo",
+  "americký cihlový řadový dům": "casa a schiera americana in mattoni",
   "řadový dům s verandou": "casa a schiera con veranda",
   "americký dům s verandou": "casa americana con veranda",
   "americký cihlový bytový dům": "casa americana di appartamenti in mattoni",

@@ -22,7 +22,7 @@ export const DA = {
   "tallinnský dům": "Tallinn-hus",
   "hanzovní dům se štítem": "hanseatisk gavlhus",
   // The houses of North America (25. 11. 2026; machine translation).
-  "cihlový řadový dům s arkýřem": "murstensrækkehus med karnap",
+  "americký cihlový řadový dům": "amerikansk murstensrækkehus",
   "řadový dům s verandou": "rækkehus med veranda",
   "americký dům s verandou": "amerikansk hus med veranda",
   "americký cihlový bytový dům": "amerikansk murstensetagehus",

@@ -22,7 +22,7 @@ export const EL = {
   "tallinnský dům": "σπίτι του Ταλίν",
   "hanzovní dům se štítem": "χανσεατικό σπίτι με αέτωμα",
   // The houses of North America (25. 11. 2026; machine translation).
-  "cihlový řadový dům s arkýřem": "πλινθόκτιστη κατοικία σε σειρά με έρκερ",
+  "americký cihlový řadový dům": "αμερικανική πλινθόκτιστη κατοικία σε σειρά",
   "řadový dům s verandou": "κατοικία σε σειρά με βεράντα",
   "americký dům s verandou": "αμερικανικό σπίτι με βεράντα",
   "americký cihlový bytový dům": "αμερικανική πλινθόκτιστη πολυκατοικία",

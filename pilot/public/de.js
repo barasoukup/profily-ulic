@@ -22,7 +22,7 @@ export const DE = {
   "tallinnský dům": "Tallinner Haus",
   "hanzovní dům se štítem": "hanseatisches Giebelhaus",
   // The houses of North America (25. 11. 2026; machine translation).
-  "cihlový řadový dům s arkýřem": "Reihenhaus aus Backstein mit Erker",
+  "americký cihlový řadový dům": "amerikanisches Reihenhaus aus Backstein",
   "řadový dům s verandou": "Reihenhaus mit Veranda",
   "americký dům s verandou": "amerikanisches Haus mit Veranda",
   "americký cihlový bytový dům": "amerikanisches Backstein-Mietshaus",

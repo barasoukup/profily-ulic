@@ -22,7 +22,7 @@ export const MT = {
   "tallinnský dům": "dar ta' Tallinn",
   "hanzovní dům se štítem": "dar Ħanseatika bil-gable",
   // The houses of North America (25. 11. 2026; machine translation).
-  "cihlový řadový dům s arkýřem": "dar tal-briks fir-ringiela b'bow window",
+  "americký cihlový řadový dům": "dar Amerikana tal-briks fir-ringiela",
   "řadový dům s verandou": "dar fir-ringiela b'veranda",
   "americký dům s verandou": "dar Amerikana b'veranda",
   "americký cihlový bytový dům": "blokka tal-appartamenti Amerikana tal-briks",

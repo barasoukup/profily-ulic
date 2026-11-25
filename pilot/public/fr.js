@@ -24,7 +24,7 @@ export const FR = {
   "tallinnský dům": "maison de Tallinn",
   "hanzovní dům se štítem": "maison hanséatique à pignon",
   // The houses of North America (25. 11. 2026; machine translation).
-  "cihlový řadový dům s arkýřem": "maison en rangée en brique avec oriel",
+  "americký cihlový řadový dům": "maison en rangée américaine en brique",
   "řadový dům s verandou": "maison en rangée avec porche",
   "americký dům s verandou": "maison américaine avec porche",
   "americký cihlový bytový dům": "immeuble américain en brique",

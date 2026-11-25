@@ -23,7 +23,7 @@ export const FI = {
   "tallinnský dům": "Tallinnan talo",
   "hanzovní dům se štítem": "hansakaupungin päätytalo",
   // The houses of North America (25. 11. 2026; machine translation).
-  "cihlový řadový dům s arkýřem": "erkkerillinen tiilirivitalo",
+  "americký cihlový řadový dům": "amerikkalainen tiilirivitalo",
   "řadový dům s verandou": "kuistillinen rivitalo",
   "americký dům s verandou": "amerikkalainen kuistitalo",
   "americký cihlový bytový dům": "amerikkalainen tiilikerrostalo",

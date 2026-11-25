@@ -267,6 +267,7 @@ export function northAmericaLook(style, info, n) {
     if (y >= 1990) return "bayrow"; // a new townhouse: flat-fronted (northAmericaDetails)
     if (!town) return inRow(b) || NA_ROWS.has(type) ? "porchrow" : "framehouse";
     if (town.look === "bayrow" && y > 1920 && !town.front) return "porchrow";
+    if (town.look === "porchrow" && !town.deck && !type && !y) return "bayrow"; // a row of no known kind: the plain front
     if (town.deck) return n === 3 && !(y > 1940) ? "tripledecker" : "framehouse";
     if (town.tall && n >= 5) return town.tall;
     return town.look;
@@ -295,7 +296,7 @@ const OFFICE = new Set(["office", "commercial", "civic", "government", "public",
 // balconies of a slab (only where its year is known).
 export function northAmericaDetails(look, info) {
   const p = placeOf(info), town = naTown(p), y = yearOf(info);
-  if (look === "bayrow") return { front: y >= 1990 || !town || town.look !== "bayrow" || town.front === "flat" || !info?.block ? "flat" : "bay", round: !!town?.round };
+  if (look === "bayrow") return { front: y >= 1990 || !town || town.look !== "bayrow" || town.front === "flat" || !info?.block || !info?.type ? "flat" : "bay", round: !!town?.round };
   if (look === "victorian") return { plain: !town || town.look !== "victorian" || !!town.plain };
   if (look === "framehouse") {
     const brick = /brick/.test(info?.material || "") || (!info?.material && town?.look === "porchrow" && houseHash(info) % 2 === 0);

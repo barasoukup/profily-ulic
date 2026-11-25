@@ -23,7 +23,7 @@ export const PL = {
   "tallinnský dům": "dom tallinński",
   "hanzovní dům se štítem": "hanzeatycki dom szczytowy",
   // The houses of North America (25. 11. 2026; machine translation).
-  "cihlový řadový dům s arkýřem": "ceglany dom szeregowy z wykuszem",
+  "americký cihlový řadový dům": "amerykański ceglany dom szeregowy",
   "řadový dům s verandou": "dom szeregowy z gankiem",
   "americký dům s verandou": "amerykański dom z gankiem",
   "americký cihlový bytový dům": "amerykański ceglany budynek mieszkalny",

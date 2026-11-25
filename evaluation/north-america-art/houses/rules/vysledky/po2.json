@@ -1,0 +1,795 @@
+[
+ {
+  "id": "01",
+  "found": true,
+  "info": {
+   "point": [
+    -77.0254684,
+    38.9366771
+   ],
+   "km": 99,
+   "block": {
+    "length": 108.5,
+    "width": 20.1,
+    "fill": 0.68,
+    "parts": 21
+   },
+   "tint": 1,
+   "type": "house"
+  },
+  "look": "porchrow"
+ },
+ {
+  "id": "02",
+  "found": true,
+  "info": {
+   "point": [
+    -77.028976,
+    38.9278033
+   ],
+   "km": 99,
+   "block": {
+    "length": 97.7,
+    "width": 28.4,
+    "fill": 0.58,
+    "parts": 17
+   },
+   "tint": 2,
+   "type": "house"
+  },
+  "look": "bayrow"
+ },
+ {
+  "id": "03",
+  "found": true,
+  "info": {
+   "point": [
+    -77.0018004,
+    38.8877527
+   ],
+   "km": 99,
+   "block": {
+    "length": 95.3,
+    "width": 56.5,
+    "fill": 0.42,
+    "parts": 11
+   },
+   "tint": 3
+  },
+  "look": "bayrow"
+ },
+ {
+  "id": "04",
+  "found": true,
+  "info": {
+   "point": [
+    -77.0230635,
+    38.9264966
+   ],
+   "km": 99,
+   "block": {
+    "length": 25,
+    "width": 17.7,
+    "fill": 0.79,
+    "parts": 4
+   },
+   "tint": 0,
+   "type": "semidetached_house"
+  },
+  "look": "bayrow"
+ },
+ {
+  "id": "05",
+  "found": true,
+  "info": {
+   "point": [
+    -76.9959721,
+    38.8924205
+   ],
+   "km": 99,
+   "block": {
+    "length": 164.4,
+    "width": 82,
+    "fill": 0.41,
+    "parts": 2
+   },
+   "tint": 1,
+   "type": "apartments"
+  },
+  "look": "brickblock"
+ },
+ {
+  "id": "06",
+  "found": true,
+  "info": {
+   "levels": 2,
+   "point": [
+    -76.929827,
+    38.891643
+   ],
+   "km": 99,
+   "block": {
+    "length": 14,
+    "width": 12.9,
+    "fill": 0.69,
+    "parts": 1
+   },
+   "tint": 2,
+   "type": "detached"
+  },
+  "look": "framehouse"
+ },
+ {
+  "id": "07",
+  "found": true,
+  "info": {
+   "levels": 2,
+   "point": [
+    -77.0307745,
+    38.9549656
+   ],
+   "km": 99,
+   "block": {
+    "length": 16.5,
+    "width": 12.1,
+    "fill": 0.6,
+    "parts": 1
+   },
+   "tint": 3,
+   "type": "detached"
+  },
+  "look": "framehouse"
+ },
+ {
+  "id": "08",
+  "found": true,
+  "info": {
+   "point": [
+    -77.0642251,
+    38.9105642
+   ],
+   "km": 99,
+   "block": {
+    "length": 59,
+    "width": 14.8,
+    "fill": 0.75,
+    "parts": 6
+   },
+   "tint": 0,
+   "type": "house"
+  },
+  "look": "bayrow"
+ },
+ {
+  "id": "09",
+  "found": true,
+  "info": {
+   "levels": 2,
+   "point": [
+    -76.9866272,
+    38.9447636
+   ],
+   "km": 99,
+   "block": {
+    "length": 18.2,
+    "width": 20.2,
+    "fill": 0.76,
+    "parts": 3
+   },
+   "tint": 1,
+   "type": "house"
+  },
+  "look": "porchrow"
+ },
+ {
+  "id": "10",
+  "found": true,
+  "info": {
+   "point": [
+    -77.0446627,
+    38.912248
+   ],
+   "km": 99,
+   "block": {
+    "length": 157,
+    "width": 45.7,
+    "fill": 0.54,
+    "parts": 17
+   },
+   "tint": 2,
+   "type": "house"
+  },
+  "look": "bayrow"
+ },
+ {
+  "id": "11",
+  "found": true,
+  "info": {
+   "levels": 2,
+   "point": [
+    -77.0012667,
+    38.9211631
+   ],
+   "km": 99,
+   "block": {
+    "length": 78,
+    "width": 18.2,
+    "fill": 0.8,
+    "parts": 14
+   },
+   "tint": 3,
+   "type": "house"
+  },
+  "look": "porchrow"
+ },
+ {
+  "id": "12",
+  "found": true,
+  "info": {
+   "levels": 2,
+   "point": [
+    -76.9799914,
+    38.9411529
+   ],
+   "km": 99,
+   "block": {
+    "length": 11.7,
+    "width": 7.5,
+    "fill": 0.82,
+    "parts": 1
+   },
+   "tint": 0,
+   "type": "detached"
+  },
+  "look": "framehouse"
+ },
+ {
+  "id": "13",
+  "found": true,
+  "info": {
+   "levels": 2,
+   "point": [
+    -76.9580938,
+    38.8596102
+   ],
+   "km": 99,
+   "block": {
+    "length": 14.1,
+    "width": 10.4,
+    "fill": 0.7,
+    "parts": 1
+   },
+   "tint": 1,
+   "type": "detached"
+  },
+  "look": "framehouse"
+ },
+ {
+  "id": "14",
+  "found": true,
+  "info": {
+   "levels": 1,
+   "point": [
+    -77.0078118,
+    38.9598517
+   ],
+   "km": 99,
+   "block": {
+    "length": 25.1,
+    "width": 11.5,
+    "fill": 0.74,
+    "parts": 1
+   },
+   "tint": 2
+  },
+  "look": "framehouse"
+ },
+ {
+  "id": "15",
+  "found": true,
+  "info": {
+   "point": [
+    -77.0018418,
+    38.8949271
+   ],
+   "km": 99,
+   "block": {
+    "length": 80.3,
+    "width": 19.2,
+    "fill": 0.74,
+    "parts": 14
+   },
+   "tint": 3,
+   "type": "house"
+  },
+  "look": "bayrow"
+ },
+ {
+  "id": "16",
+  "found": true,
+  "info": {
+   "point": [
+    -76.9992859,
+    38.904838
+   ],
+   "km": 99,
+   "block": {
+    "length": 71.1,
+    "width": 20.1,
+    "fill": 0.64,
+    "parts": 12
+   },
+   "tint": 0,
+   "type": "house"
+  },
+  "look": "bayrow"
+ },
+ {
+  "id": "17",
+  "found": true,
+  "info": {
+   "point": [
+    -77.0087403,
+    38.8760544
+   ],
+   "km": 99,
+   "block": {
+    "length": 111.3,
+    "width": 56.9,
+    "fill": 0.72,
+    "parts": 3
+   },
+   "tint": 1,
+   "type": "residential"
+  },
+  "look": "brickblock"
+ },
+ {
+  "id": "18",
+  "found": true,
+  "info": {
+   "point": [
+    -77.0960445,
+    38.9522699
+   ],
+   "km": 99,
+   "block": {
+    "length": 14.4,
+    "width": 11.2,
+    "fill": 0.57,
+    "parts": 1
+   },
+   "tint": 2,
+   "type": "detached"
+  },
+  "look": "framehouse"
+ },
+ {
+  "id": "19",
+  "found": true,
+  "info": {
+   "point": [
+    -77.0970338,
+    38.9391632
+   ],
+   "km": 99,
+   "block": {
+    "length": 20.1,
+    "width": 9.4,
+    "fill": 0.74,
+    "parts": 1
+   },
+   "tint": 3,
+   "type": "detached"
+  },
+  "look": "framehouse"
+ },
+ {
+  "id": "20",
+  "found": true,
+  "info": {
+   "levels": 2,
+   "point": [
+    -77.0359722,
+    38.9591216
+   ],
+   "km": 99,
+   "block": {
+    "length": 16.9,
+    "width": 13.9,
+    "fill": 0.79,
+    "parts": 1
+   },
+   "tint": 0,
+   "type": "detached"
+  },
+  "look": "framehouse"
+ },
+ {
+  "id": "21",
+  "found": false,
+  "info": {
+   "point": [
+    -76.9787032,
+    38.9378161
+   ],
+   "km": 99,
+   "tint": 1
+  },
+  "look": "bayrow"
+ },
+ {
+  "id": "22",
+  "found": true,
+  "info": {
+   "levels": 2,
+   "point": [
+    -76.9776411,
+    38.9342568
+   ],
+   "km": 99,
+   "block": {
+    "length": 15.2,
+    "width": 12.2,
+    "fill": 0.84,
+    "parts": 2
+   },
+   "tint": 2,
+   "type": "semidetached_house"
+  },
+  "look": "porchrow"
+ },
+ {
+  "id": "23",
+  "found": true,
+  "info": {
+   "point": [
+    -77.070898,
+    38.9277556
+   ],
+   "km": 99,
+   "block": {
+    "length": 91.9,
+    "width": 57.9,
+    "fill": 0.64,
+    "parts": 1
+   },
+   "tint": 3,
+   "type": "school"
+  },
+  "look": "skola"
+ },
+ {
+  "id": "24",
+  "found": false,
+  "info": {
+   "point": [
+    -77.1102146,
+    38.9305276
+   ],
+   "km": 99,
+   "tint": 0
+  },
+  "look": "bayrow"
+ },
+ {
+  "id": "25",
+  "found": true,
+  "info": {
+   "point": [
+    -76.9649465,
+    38.8537674
+   ],
+   "km": 99,
+   "block": {
+    "length": 19.8,
+    "width": 15.1,
+    "fill": 0.67,
+    "parts": 1
+   },
+   "tint": 1,
+   "type": "detached"
+  },
+  "look": "framehouse"
+ },
+ {
+  "id": "26",
+  "found": true,
+  "info": {
+   "levels": 8,
+   "point": [
+    -77.0468568,
+    38.8964154
+   ],
+   "km": 99,
+   "block": {
+    "length": 90.2,
+    "width": 48.8,
+    "fill": 0.61,
+    "parts": 5
+   },
+   "tint": 2,
+   "type": "apartments"
+  },
+  "look": "brickblock"
+ },
+ {
+  "id": "27",
+  "found": true,
+  "info": {
+   "point": [
+    -76.9367518,
+    38.8894831
+   ],
+   "km": 99,
+   "block": {
+    "length": 82.2,
+    "width": 40.4,
+    "fill": 0.56,
+    "parts": 5
+   },
+   "tint": 3
+  },
+  "look": "bayrow"
+ },
+ {
+  "id": "28",
+  "found": true,
+  "info": {
+   "point": [
+    -77.0086811,
+    38.8288221
+   ],
+   "km": 99,
+   "block": {
+    "length": 29.1,
+    "width": 11.3,
+    "fill": 0.86,
+    "parts": 1
+   },
+   "tint": 0
+  },
+  "look": "framehouse"
+ },
+ {
+  "id": "29",
+  "found": true,
+  "info": {
+   "point": [
+    -77.0200656,
+    38.9223891
+   ],
+   "km": 99,
+   "block": {
+    "length": 130.5,
+    "width": 61.9,
+    "fill": 0.64,
+    "parts": 1
+   },
+   "tint": 1
+  },
+  "look": "brickblock"
+ },
+ {
+  "id": "30",
+  "found": true,
+  "info": {
+   "point": [
+    -77.0369145,
+    38.9886455
+   ],
+   "km": 99,
+   "block": {
+    "length": 15.2,
+    "width": 10.6,
+    "fill": 0.66,
+    "parts": 1
+   },
+   "tint": 2,
+   "type": "detached"
+  },
+  "look": "framehouse"
+ },
+ {
+  "id": "31",
+  "found": true,
+  "info": {
+   "levels": 12,
+   "point": [
+    -77.0018373,
+    38.9059982
+   ],
+   "km": 99,
+   "block": {
+    "length": 112.3,
+    "width": 85.9,
+    "fill": 0.66,
+    "parts": 2
+   },
+   "tint": 3,
+   "type": "apartments"
+  },
+  "look": "brickblock"
+ },
+ {
+  "id": "32",
+  "found": true,
+  "info": {
+   "point": [
+    -77.0192006,
+    38.89997
+   ],
+   "km": 99,
+   "block": {
+    "length": 58,
+    "width": 25.9,
+    "fill": 0.7,
+    "parts": 12
+   },
+   "tint": 0
+  },
+  "look": "bayrow"
+ },
+ {
+  "id": "33",
+  "found": true,
+  "info": {
+   "point": [
+    -77.0257601,
+    38.9681791
+   ],
+   "km": 99,
+   "block": {
+    "length": 11,
+    "width": 9.5,
+    "fill": 0.81,
+    "parts": 1
+   },
+   "tint": 1,
+   "type": "detached"
+  },
+  "look": "framehouse"
+ },
+ {
+  "id": "34",
+  "found": true,
+  "info": {
+   "levels": 2,
+   "point": [
+    -76.9885819,
+    38.9334917
+   ],
+   "km": 99,
+   "block": {
+    "length": 16.9,
+    "width": 11.5,
+    "fill": 0.61,
+    "parts": 1
+   },
+   "tint": 2,
+   "type": "detached"
+  },
+  "look": "framehouse"
+ },
+ {
+  "id": "35",
+  "found": true,
+  "info": {
+   "point": [
+    -76.9733041,
+    38.9199881
+   ],
+   "km": 99,
+   "block": {
+    "length": 83.7,
+    "width": 67.7,
+    "fill": 0.55,
+    "parts": 1
+   },
+   "tint": 3
+  },
+  "look": "brickblock"
+ },
+ {
+  "id": "36",
+  "found": true,
+  "info": {
+   "point": [
+    -77.0648702,
+    38.9356593
+   ],
+   "km": 99,
+   "block": {
+    "length": 23,
+    "width": 20.7,
+    "fill": 0.55,
+    "parts": 1
+   },
+   "tint": 0,
+   "type": "detached"
+  },
+  "look": "framehouse"
+ },
+ {
+  "id": "37",
+  "found": true,
+  "info": {
+   "levels": 10,
+   "point": [
+    -77.0468482,
+    38.9063491
+   ],
+   "km": 99,
+   "block": {
+    "length": 108.8,
+    "width": 48.8,
+    "fill": 0.52,
+    "parts": 2
+   },
+   "tint": 1,
+   "type": "apartments"
+  },
+  "look": "brickblock"
+ },
+ {
+  "id": "38",
+  "found": true,
+  "info": {
+   "point": [
+    -77.0100367,
+    38.9166834
+   ],
+   "km": 99,
+   "block": {
+    "length": 243,
+    "width": 34.1,
+    "fill": 0.49,
+    "parts": 32
+   },
+   "tint": 2,
+   "type": "house"
+  },
+  "look": "bayrow"
+ },
+ {
+  "id": "39",
+  "found": true,
+  "info": {
+   "point": [
+    -77.024681,
+    38.9747059
+   ],
+   "km": 99,
+   "block": {
+    "length": 13.6,
+    "width": 13.5,
+    "fill": 0.51,
+    "parts": 1
+   },
+   "tint": 3,
+   "type": "detached"
+  },
+  "look": "framehouse"
+ },
+ {
+  "id": "40",
+  "found": true,
+  "info": {
+   "levels": 2,
+   "point": [
+    -76.9387017,
+    38.8766821
+   ],
+   "km": 99,
+   "block": {
+    "length": 16,
+    "width": 14.3,
+    "fill": 0.59,
+    "parts": 1
+   },
+   "tint": 0,
+   "type": "detached"
+  },
+  "look": "framehouse"
+ }
+]

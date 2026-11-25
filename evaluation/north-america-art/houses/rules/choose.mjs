@@ -10,7 +10,7 @@ const { setCity } = await imp("city.js"), D = await imp("derive.js"), P = await 
 setCity("usa");
 const { buildings } = JSON.parse(fs.readFileSync(path.join(process.argv[2], "dc.json")));
 const out = [];
-for (const s of JSON.parse(fs.readFileSync(path.join(HERE, "sample.json")))) {
+for (const s of JSON.parse(fs.readFileSync(path.join(HERE, process.env.SAMPLE || "sample.json")))) {
   const [lon, lat] = s.probe, kx = 111320 * Math.cos((lat * Math.PI) / 180), ky = 110574;
   const near = buildings.filter((b) => Math.abs(b.geometry[0].lon - lon) < 0.0025 && Math.abs(b.geometry[0].lat - lat) < 0.002);
   const frame = { toXY: (a, b) => [(a - lon) * kx, (b - lat) * ky], toLonLat: (x, y) => [lon + x / kx, lat + y / ky] };

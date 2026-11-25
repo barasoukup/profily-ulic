@@ -22,7 +22,7 @@ export const ES = {
   "tallinnský dům": "casa de Tallin",
   "hanzovní dům se štítem": "casa hanseática con hastial",
   // The houses of North America (25. 11. 2026; machine translation).
-  "cihlový řadový dům s arkýřem": "casa adosada de ladrillo con mirador",
+  "americký cihlový řadový dům": "casa adosada americana de ladrillo",
   "řadový dům s verandou": "casa adosada con porche",
   "americký dům s verandou": "casa americana con porche",
   "americký cihlový bytový dům": "edificio americano de viviendas de ladrillo",

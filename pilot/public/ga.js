@@ -23,7 +23,7 @@ export const GA = {
   "tallinnský dům": "teach Tallinn",
   "hanzovní dům se štítem": "teach binne Hansach",
   // The houses of North America (25. 11. 2026; machine translation).
-  "cihlový řadový dům s arkýřem": "teach sraithe bríce le bá-fhuinneog",
+  "americký cihlový řadový dům": "teach sraithe bríce Meiriceánach",
   "řadový dům s verandou": "teach sraithe le póirse",
   "americký dům s verandou": "teach Meiriceánach le póirse",
   "americký cihlový bytový dům": "teach árasán bríce Meiriceánach",

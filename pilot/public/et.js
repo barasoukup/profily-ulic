@@ -22,7 +22,7 @@ export const ET = {
   "tallinnský dům": "Tallinna maja",
   "hanzovní dům se štítem": "viiluga hansamaja",
   // The houses of North America (25. 11. 2026; machine translation).
-  "cihlový řadový dům s arkýřem": "ärkliga telliskivist ridaelamu",
+  "americký cihlový řadový dům": "Ameerika telliskivist ridaelamu",
   "řadový dům s verandou": "verandaga ridaelamu",
   "americký dům s verandou": "Ameerika verandaga maja",
   "americký cihlový bytový dům": "Ameerika telliskivist kortermaja",

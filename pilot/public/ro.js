@@ -22,7 +22,7 @@ export const RO = {
   "tallinnský dům": "casă din Tallinn",
   "hanzovní dům se štítem": "casă hanseatică cu fronton",
   // The houses of North America (25. 11. 2026; machine translation).
-  "cihlový řadový dům s arkýřem": "casă înșiruită din cărămidă cu bovindou",
+  "americký cihlový řadový dům": "casă înșiruită americană din cărămidă",
   "řadový dům s verandou": "casă înșiruită cu verandă",
   "americký dům s verandou": "casă americană cu verandă",
   "americký cihlový bytový dům": "bloc american din cărămidă",

@@ -22,7 +22,7 @@ export const PT = {
   "tallinnský dům": "casa de Taline",
   "hanzovní dům se štítem": "casa hanseática com empena",
   // The houses of North America (25. 11. 2026; machine translation).
-  "cihlový řadový dům s arkýřem": "casa em banda de tijolo com janela saliente",
+  "americký cihlový řadový dům": "casa em banda americana de tijolo",
   "řadový dům s verandou": "casa em banda com alpendre",
   "americký dům s verandou": "casa americana com alpendre",
   "americký cihlový bytový dům": "prédio americano de tijolo",

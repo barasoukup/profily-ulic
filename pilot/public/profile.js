@@ -99,7 +99,7 @@ export const BUILDING_STYLES = {
   stenstad: tr("severský omítaný činžák"), drevak: tr("malovaný dřevěný dům"), puukaupunki: tr("dřevěný městský dům"),
   tallinnamaja: tr("tallinnský dům"), hanza: tr("hanzovní dům se štítem"),
   // North America (houses-america.js, docs/house-types-north-america.md; Bára 25. 11. 2026), given by the states' houseLook.
-  bayrow: tr("cihlový řadový dům s arkýřem"), porchrow: tr("řadový dům s verandou"), framehouse: tr("americký dům s verandou"),
+  bayrow: tr("americký cihlový řadový dům"), porchrow: tr("řadový dům s verandou"), framehouse: tr("americký dům s verandou"),
   brickblock: tr("americký cihlový bytový dům"), slab: tr("americký deskový bytový dům"), podium: tr("bytový dům nad obchody"),
   glasstower: tr("prosklená věž"), mainstreet: tr("americký dům s obchodem v přízemí"), stripmall: tr("přízemní obchody"),
   brownstone: tr("newyorský dům z hnědého pískovce"), tenement: tr("newyorský činžák s požárním schodištěm"), tripledecker: tr("bostonský třípodlažní dřevěný dům"),

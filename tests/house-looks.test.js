@@ -161,7 +161,7 @@ test("severoamerické domy podle druhu, roku a místa; bez dat prostý vzhled", 
   assert.equal(na("sikma", { block: alone, type: "house", point: [-71.06, 42.31] }, 3), "tripledecker");
   assert.equal(na("sikma", { block: row, type: "house", point: [-79.366, 43.666] }, 3), "baygable");
   assert.equal(na("sikma", { block: row, type: "house", point: [-122.435, 37.774] }, 3), "victorian");
-  assert.equal(det("bayrow", { point: CH, block: row }).front, "bay");
+  assert.equal(det("bayrow", { point: CH, block: row, type: "house" }).front, "bay");
   assert.equal(det("bayrow", { point: CH }).front, "flat"); // nothing known of the house: no bay
   assert.equal(det("bayrow", { point: GT, block: row }).front, "flat");
   assert.equal(det("slab", { point: MD }).balconies, false);

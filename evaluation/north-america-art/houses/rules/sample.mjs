@@ -10,7 +10,7 @@ const HERE = path.dirname(fileURLToPath(import.meta.url));
 const OUT = process.argv[2], N = Number(process.argv[3] || 40);
 const DC = [[-77.1198, 38.9343], [-77.041, 38.9958], [-76.9094, 38.8927], [-77.039, 38.7916], [-77.0316, 38.85], [-77.06, 38.9]];
 const inDC = ([x, y]) => DC.reduce((r, a, i) => { const b = DC.at(i - 1); return (a[1] > y) !== (b[1] > y) && x < ((b[0] - a[0]) * (y - a[1])) / (b[1] - a[1]) + a[0] ? !r : r; }, false);
-let seed = 20261125;
+let seed = Number(process.env.SEED || 20261125);
 const rnd = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 2 ** 32; };
 async function load(file, keep) {
   const out = [];
@@ -79,5 +79,5 @@ while (sample.length < N && tries++ < 600) {
   fs.writeFileSync(path.join(OUT, `${id}.jpg`), buf);
   sample.push({ id, street: w.name, probe: at(d + 4).map((v) => +v.toFixed(7)), mapillary: p.x.id, pano: !!p.x.is_pano, dist: +p.dist.toFixed(1), off: +((((p.brg - (p.x.computed_compass_angle ?? p.x.compass_angle) + 540) % 360) - 180).toFixed(1)), tags: h.tags });
 }
-fs.writeFileSync(path.join(HERE, "sample.json"), JSON.stringify(sample, null, 1));
+fs.writeFileSync(path.join(HERE, process.env.SAMPLE || "sample.json"), JSON.stringify(sample, null, 1));
 console.log(sample.length, "of", tries, sample.filter((s) => s.pano).length, "pano");

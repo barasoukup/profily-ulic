@@ -22,7 +22,7 @@ export const BG = {
   "tallinnský dům": "талинска къща",
   "hanzovní dům se štítem": "ханзейска къща с фронтон",
   // The houses of North America (25. 11. 2026; machine translation).
-  "cihlový řadový dům s arkýřem": "тухлена редова къща с еркер",
+  "americký cihlový řadový dům": "американска тухлена редова къща",
   "řadový dům s verandou": "редова къща с веранда",
   "americký dům s verandou": "американска къща с веранда",
   "americký cihlový bytový dům": "американска тухлена жилищна сграда",

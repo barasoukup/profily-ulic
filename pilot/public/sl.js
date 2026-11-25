@@ -22,7 +22,7 @@ export const SL = {
   "tallinnský dům": "talinska hiša",
   "hanzovní dům se štítem": "hanzeatska hiša s čelom",
   // The houses of North America (25. 11. 2026; machine translation).
-  "cihlový řadový dům s arkýřem": "opečna vrstna hiša z zidnim pomolom",
+  "americký cihlový řadový dům": "ameriška opečna vrstna hiša",
   "řadový dům s verandou": "vrstna hiša z verando",
   "americký dům s verandou": "ameriška hiša z verando",
   "americký cihlový bytový dům": "ameriška opečna stanovanjska hiša",

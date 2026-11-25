@@ -1,0 +1,625 @@
+[
+ {
+  "id": "01",
+  "found": true,
+  "info": {
+   "levels": 2,
+   "point": [
+    -76.9769467,
+    38.8935574
+   ],
+   "km": 99,
+   "block": {
+    "length": 74.8,
+    "width": 19.8,
+    "fill": 0.7,
+    "parts": 14
+   },
+   "tint": 1,
+   "type": "house"
+  },
+  "look": "nizky"
+ },
+ {
+  "id": "02",
+  "found": false,
+  "info": {
+   "point": [
+    -76.9917427,
+    38.8832719
+   ],
+   "km": 99,
+   "tint": 2
+  },
+  "look": "sikma"
+ },
+ {
+  "id": "03",
+  "found": true,
+  "info": {
+   "levels": 12,
+   "height": 43.5,
+   "point": [
+    -77.0317084,
+    38.8978834
+   ],
+   "km": 99,
+   "block": {
+    "length": 55.1,
+    "width": 37.3,
+    "fill": 0.81,
+    "parts": 1
+   },
+   "tint": 3,
+   "type": "office"
+  },
+  "look": "kancelar"
+ },
+ {
+  "id": "04",
+  "found": false,
+  "info": {
+   "point": [
+    -77.0678706,
+    38.9260088
+   ],
+   "km": 99,
+   "tint": 0
+  },
+  "look": "sikma"
+ },
+ {
+  "id": "05",
+  "found": false,
+  "info": {
+   "point": [
+    -76.9775407,
+    38.8959486
+   ],
+   "km": 99,
+   "tint": 1
+  },
+  "look": "sikma"
+ },
+ {
+  "id": "06",
+  "found": true,
+  "info": {
+   "levels": 2,
+   "point": [
+    -76.9953156,
+    38.9481204
+   ],
+   "km": 99,
+   "block": {
+    "length": 13.9,
+    "width": 9.1,
+    "fill": 0.79,
+    "parts": 1
+   },
+   "tint": 2
+  },
+  "look": "nizky"
+ },
+ {
+  "id": "07",
+  "found": false,
+  "info": {
+   "point": [
+    -77.0856743,
+    38.9486738
+   ],
+   "km": 99,
+   "tint": 3
+  },
+  "look": "sikma"
+ },
+ {
+  "id": "08",
+  "found": true,
+  "info": {
+   "levels": 2,
+   "point": [
+    -76.98804,
+    38.9416288
+   ],
+   "km": 99,
+   "block": {
+    "length": 15.9,
+    "width": 12.3,
+    "fill": 0.94,
+    "parts": 2
+   },
+   "tint": 0,
+   "type": "semidetached_house"
+  },
+  "look": "vila"
+ },
+ {
+  "id": "09",
+  "found": false,
+  "info": {
+   "point": [
+    -77.0018384,
+    38.8777308
+   ],
+   "km": 99,
+   "tint": 1
+  },
+  "look": "sikma"
+ },
+ {
+  "id": "10",
+  "found": false,
+  "info": {
+   "point": [
+    -76.9823944,
+    38.9035228
+   ],
+   "km": 99,
+   "tint": 2
+  },
+  "look": "sikma"
+ },
+ {
+  "id": "11",
+  "found": true,
+  "info": {
+   "levels": 2,
+   "point": [
+    -76.9595309,
+    38.923806
+   ],
+   "km": 99,
+   "block": {
+    "length": 38.7,
+    "width": 15.9,
+    "fill": 0.81,
+    "parts": 6
+   },
+   "tint": 3,
+   "type": "house"
+  },
+  "look": "nizky"
+ },
+ {
+  "id": "12",
+  "found": false,
+  "info": {
+   "point": [
+    -76.9996848,
+    38.8376763
+   ],
+   "km": 99,
+   "tint": 0
+  },
+  "look": "sikma"
+ },
+ {
+  "id": "13",
+  "found": false,
+  "info": {
+   "point": [
+    -77.0654958,
+    38.9669043
+   ],
+   "km": 99,
+   "tint": 1
+  },
+  "look": "sikma"
+ },
+ {
+  "id": "14",
+  "found": false,
+  "info": {
+   "point": [
+    -76.9842552,
+    38.9101085
+   ],
+   "km": 99,
+   "tint": 2
+  },
+  "look": "sikma"
+ },
+ {
+  "id": "15",
+  "found": false,
+  "info": {
+   "point": [
+    -77.0378952,
+    38.9124721
+   ],
+   "km": 99,
+   "tint": 3
+  },
+  "look": "sikma"
+ },
+ {
+  "id": "16",
+  "found": false,
+  "info": {
+   "point": [
+    -77.0392081,
+    38.9431792
+   ],
+   "km": 99,
+   "tint": 0
+  },
+  "look": "sikma"
+ },
+ {
+  "id": "17",
+  "found": true,
+  "info": {
+   "levels": 2,
+   "point": [
+    -77.0230496,
+    38.9528713
+   ],
+   "km": 99,
+   "block": {
+    "length": 61.2,
+    "width": 15.3,
+    "fill": 0.91,
+    "parts": 12
+   },
+   "tint": 1,
+   "type": "house"
+  },
+  "look": "nizky"
+ },
+ {
+  "id": "18",
+  "found": false,
+  "info": {
+   "point": [
+    -77.0146711,
+    38.9167318
+   ],
+   "km": 99,
+   "tint": 2
+  },
+  "look": "sikma"
+ },
+ {
+  "id": "19",
+  "found": false,
+  "info": {
+   "point": [
+    -76.9527731,
+    38.900135
+   ],
+   "km": 99,
+   "tint": 3
+  },
+  "look": "sikma"
+ },
+ {
+  "id": "20",
+  "found": false,
+  "info": {
+   "point": [
+    -76.988383,
+    38.8343536
+   ],
+   "km": 99,
+   "tint": 0
+  },
+  "look": "sikma"
+ },
+ {
+  "id": "21",
+  "found": true,
+  "info": {
+   "levels": 2,
+   "point": [
+    -76.9202982,
+    38.8950707
+   ],
+   "km": 99,
+   "block": {
+    "length": 14.9,
+    "width": 6.1,
+    "fill": 0.74,
+    "parts": 1
+   },
+   "tint": 1,
+   "type": "detached"
+  },
+  "look": "vila"
+ },
+ {
+  "id": "22",
+  "found": false,
+  "info": {
+   "point": [
+    -77.0090438,
+    38.8276377
+   ],
+   "km": 99,
+   "tint": 2
+  },
+  "look": "sikma"
+ },
+ {
+  "id": "23",
+  "found": true,
+  "info": {
+   "levels": 1,
+   "point": [
+    -76.9629656,
+    38.874364
+   ],
+   "km": 99,
+   "block": {
+    "length": 16.5,
+    "width": 16,
+    "fill": 0.57,
+    "parts": 1
+   },
+   "tint": 3,
+   "type": "detached"
+  },
+  "look": "vila"
+ },
+ {
+  "id": "24",
+  "found": false,
+  "info": {
+   "point": [
+    -77.0128463,
+    38.9146957
+   ],
+   "km": 99,
+   "tint": 0
+  },
+  "look": "sikma"
+ },
+ {
+  "id": "25",
+  "found": false,
+  "info": {
+   "point": [
+    -77.014469,
+    38.9098073
+   ],
+   "km": 99,
+   "tint": 1
+  },
+  "look": "sikma"
+ },
+ {
+  "id": "26",
+  "found": false,
+  "info": {
+   "point": [
+    -76.9790734,
+    38.9453816
+   ],
+   "km": 99,
+   "tint": 2
+  },
+  "look": "sikma"
+ },
+ {
+  "id": "27",
+  "found": false,
+  "info": {
+   "point": [
+    -77.0293862,
+    38.9088153
+   ],
+   "km": 99,
+   "tint": 3
+  },
+  "look": "sikma"
+ },
+ {
+  "id": "28",
+  "found": false,
+  "info": {
+   "point": [
+    -76.9819113,
+    38.9254271
+   ],
+   "km": 99,
+   "tint": 0
+  },
+  "look": "sikma"
+ },
+ {
+  "id": "29",
+  "found": true,
+  "info": {
+   "levels": 2,
+   "point": [
+    -76.9931075,
+    38.8877375
+   ],
+   "km": 99,
+   "block": {
+    "length": 32.7,
+    "width": 15.1,
+    "fill": 0.76,
+    "parts": 5
+   },
+   "tint": 1,
+   "type": "house"
+  },
+  "look": "nizky"
+ },
+ {
+  "id": "30",
+  "found": true,
+  "info": {
+   "levels": 2,
+   "point": [
+    -76.930524,
+    38.9045079
+   ],
+   "km": 99,
+   "block": {
+    "length": 19.6,
+    "width": 10,
+    "fill": 0.68,
+    "parts": 1
+   },
+   "tint": 2,
+   "type": "detached"
+  },
+  "look": "vila"
+ },
+ {
+  "id": "31",
+  "found": false,
+  "info": {
+   "point": [
+    -77.0434798,
+    38.9905562
+   ],
+   "km": 99,
+   "tint": 3
+  },
+  "look": "sikma"
+ },
+ {
+  "id": "32",
+  "found": false,
+  "info": {
+   "point": [
+    -77.0184069,
+    38.9204637
+   ],
+   "km": 99,
+   "tint": 0
+  },
+  "look": "sikma"
+ },
+ {
+  "id": "33",
+  "found": true,
+  "info": {
+   "levels": 2,
+   "point": [
+    -76.9976,
+    38.9475946
+   ],
+   "km": 99,
+   "block": {
+    "length": 18.2,
+    "width": 12,
+    "fill": 0.74,
+    "parts": 1
+   },
+   "tint": 1
+  },
+  "look": "nizky"
+ },
+ {
+  "id": "34",
+  "found": false,
+  "info": {
+   "point": [
+    -77.0204659,
+    38.9410944
+   ],
+   "km": 99,
+   "tint": 2
+  },
+  "look": "sikma"
+ },
+ {
+  "id": "35",
+  "found": true,
+  "info": {
+   "levels": 2,
+   "point": [
+    -76.9922358,
+    38.9537396
+   ],
+   "km": 99,
+   "block": {
+    "length": 16.2,
+    "width": 11.7,
+    "fill": 0.86,
+    "parts": 2
+   },
+   "tint": 3,
+   "type": "semidetached_house"
+  },
+  "look": "vila"
+ },
+ {
+  "id": "36",
+  "found": true,
+  "info": {
+   "levels": 2,
+   "point": [
+    -77.0071457,
+    38.965337
+   ],
+   "km": 99,
+   "block": {
+    "length": 13.7,
+    "width": 13.6,
+    "fill": 0.56,
+    "parts": 2
+   },
+   "tint": 0,
+   "type": "semidetached_house"
+  },
+  "look": "vila"
+ },
+ {
+  "id": "37",
+  "found": false,
+  "info": {
+   "point": [
+    -77.0077558,
+    38.883397
+   ],
+   "km": 99,
+   "tint": 1
+  },
+  "look": "sikma"
+ },
+ {
+  "id": "38",
+  "found": false,
+  "info": {
+   "point": [
+    -76.9173655,
+    38.8868808
+   ],
+   "km": 99,
+   "tint": 2
+  },
+  "look": "sikma"
+ },
+ {
+  "id": "39",
+  "found": false,
+  "info": {
+   "point": [
+    -77.0953384,
+    38.9519336
+   ],
+   "km": 99,
+   "tint": 3
+  },
+  "look": "sikma"
+ },
+ {
+  "id": "40",
+  "found": false,
+  "info": {
+   "point": [
+    -76.9992917,
+    38.8804916
+   ],
+   "km": 99,
+   "tint": 0
+  },
+  "look": "sikma"
+ }
+]

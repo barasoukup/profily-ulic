@@ -632,7 +632,7 @@ export const SK = {
   "tallinnský dům": "tallinnský dom",
   "hanzovní dům se štítem": "hanzový dom so štítom",
   // The houses of North America (25. 11. 2026; machine translation).
-  "cihlový řadový dům s arkýřem": "tehlový radový dom s arkierom",
+  "americký cihlový řadový dům": "americký tehlový radový dom",
   "řadový dům s verandou": "radový dom s verandou",
   "americký dům s verandou": "americký dom s verandou",
   "americký cihlový bytový dům": "americký tehlový bytový dom",

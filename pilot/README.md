@@ -553,6 +553,9 @@ OSM church, chapel aj. kostel, OSM garage(s) a RÚIAN garáž garáž. Starý d�
 Podloubí jen podle dat (Bára): cesta OSM `covered=arcade|colonnade|building_arcade` přes řez u fasády (5 m před ní až
 8 m za ní, `derive.js`) → u jakéhokoli domu klenutý průchod v přízemí, v kartě „s podloubím (OSM)“. Věžák zvlášť nekreslíme: vysoký dům stejného stáří a využití vypadá po podlažích stejně (Bára).
 
+Severní Amerika má 14 vlastních vzhledů (`houses-america.js`, výběr `house-looks.js` `northAmericaLook`, USA i budoucí Kanada;
+`docs/house-types-north-america.md`, `evaluation/north-america-art/houses/ZPRAVA.md`); bez dat prostý řadový nebo rodinný dům.
+
 ## Brno
 
 Stejně jako Praha se Brno ptá služeb města při kliknutí (přímo z prohlížeče, služby povolují CORS). Úpravy výpočtu,

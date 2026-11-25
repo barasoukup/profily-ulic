@@ -22,7 +22,7 @@ export const HR = {
   "tallinnský dům": "talinska kuća",
   "hanzovní dům se štítem": "hanzeatska kuća sa zabatom",
   // The houses of North America (25. 11. 2026; machine translation).
-  "cihlový řadový dům s arkýřem": "zidani niz s erkerom",
+  "americký cihlový řadový dům": "američka zidana kuća u nizu",
   "řadový dům s verandou": "kuća u nizu s trijemom",
   "americký dům s verandou": "američka kuća s trijemom",
   "americký cihlový bytový dům": "američka zidana stambena zgrada",

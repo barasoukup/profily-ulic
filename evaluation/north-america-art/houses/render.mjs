@@ -64,19 +64,19 @@ export async function renderCells(cells, dest, { k = 0.28, cols = 6, text = true
 }
 const P = { dc: [-76.9935, 38.8870], george: [-77.065, 38.908], petworth: [-77.02, 38.942], nyc: [-73.968, 40.78], bos: [-71.06, 42.31], bk: [-71.077, 42.346], tor: [-79.366, 43.666], sf: [-122.435, 37.774], sunset: [-122.49, 37.75], any: [-77.2, 38.85], any2: [-77.2, 38.8503], any3: [-77.2001, 38.85], praha: [14.42, 50.087], paris: [2.33, 48.87], ams: [4.89, 52.37], berlin: [13.35, 52.5] };
 const blk = { length: 40, width: 12, fill: 0.9, parts: 8 };
-const h = (look, levels, at, extra = {}) => ({ look, info: { ...(levels ? { levels } : {}), point: P[at], block: blk, ...extra } });
+const h = (look, levels, at, extra = {}) => ({ look, info: { ...(levels ? { levels } : {}), point: P[at], block: blk, type: "house", ...extra } });
 const c = (title, house, cityId = "usa") => ({ title, house, cityId });
 export const SHEET = [
   c("bayrow, Capitol Hill", h("bayrow", 2, "dc", { tint: 0 })), c("bayrow 3 floors", h("bayrow", 3, "dc", { tint: 4 })), c("bayrow, flat (Georgetown)", h("bayrow", 3, "george", { tint: 1 })),
-  c("bayrow, Boston South End", h("bayrow", 4, "bk", { tint: 2 })), c("porchrow, Petworth", h("porchrow", 2, "petworth", { tint: 0 })), c("porchrow", h("porchrow", 2, "petworth", { tint: 2 })),
+  c("bayrow, Boston South End", h("bayrow", 4, "bk", { tint: 2 })), c("porchrow, Petworth", h("porchrow", 2, "petworth", { tint: 0 })), c("bayrow, unknown kind (plain)", h("bayrow", 2, "petworth", { tint: 2, type: undefined })), c("porchrow 2", h("porchrow", 3, "petworth", { tint: 2 })),
   c("framehouse, siding", h("framehouse", 2, "any2", { tint: 2 })), c("framehouse, stoop", h("framehouse", 2, "any", { tint: 3, start: 1955 })), c("framehouse, brick", h("framehouse", 1, "any", { material: "brick", tint: 1 })),
   c("brickblock, garden", h("brickblock", 3, "any", { tint: 0 })), c("brickblock 1928", h("brickblock", 8, "any", { start: 1928, tint: 1 })), c("brickblock, no year", h("brickblock", 5, "any", { tint: 3 })),
   c("mainstreet", h("mainstreet", 2, "any", { tint: 0 })), c("mainstreet 3", h("mainstreet", 3, "any", { tint: 2 })), c("stripmall", h("stripmall", 1, "any", { tint: 1 })),
   c("brownstone, New York", h("brownstone", 4, "nyc", { tint: 0 })), c("tenement, New York", h("tenement", 5, "nyc", { tint: 0 })), c("tripledecker, Boston", h("tripledecker", 3, "bos", { tint: 1 })),
   c("baygable, Toronto", h("baygable", 3, "tor", { tint: 0 })), c("baygable 2", h("baygable", 2, "tor", { tint: 4 })), c("victorian, San Francisco", h("victorian", 3, "sf", { tint: 0 })),
-  c("victorian 2", h("victorian", 3, "sf", { tint: 4 })), c("victorian, plain (Sunset)", h("victorian", 2, "sunset", { tint: 5 })), c("podium", h("podium", 5, "any", { start: 2015, tint: 0 })),
+  c("victorian, plain (Sunset)", h("victorian", 2, "sunset", { tint: 5 })), c("podium", h("podium", 5, "any", { start: 2015, tint: 0 })),
   c("podium 6", h("podium", 6, "any", { start: 2018, tint: 2 })), c("slab 1965", h("slab", 9, "any", { start: 1965, tint: 1 })), c("slab, no year", h("slab", 9, "any", { tint: 3 })),
-  c("glasstower", h("glasstower", 12, "any", { start: 2012 })), c("glasstower, office", h("glasstower", 11, "any", { start: 2005, type: "office" })), c("reused: kancelar", h("kancelar", 8, "any", { type: "office" })),
+  c("glasstower", h("glasstower", 12, "any", { start: 2012, type: "apartments" })), c("glasstower, office", h("glasstower", 11, "any", { start: 2005, type: "office" })), c("reused: kancelar", h("kancelar", 8, "any", { type: "office" })),
   c("reused: skola", h("skola", 2, "any", { type: "school" })), c("reused: kostel", h("kostel", 1, "any", { type: "church" })), c("Praha: činžák", h("sikma", 5, "praha", {}), "praha"),
   c("Paris: haussmann", h("haussmann", 7, "paris", {}), "france"), c("Amsterdam: cihlovy", h("cihlovy", 4, "ams", {}), "netherlands"), c("Berlin: povalecny", h("povalecny", 5, "berlin", {}), "germany"),
 ];

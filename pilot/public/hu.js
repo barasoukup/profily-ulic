@@ -25,7 +25,7 @@ export const HU = {
   "tallinnský dům": "tallinni ház",
   "hanzovní dům se štítem": "hanza oromzatos ház",
   // The houses of North America (25. 11. 2026; machine translation).
-  "cihlový řadový dům s arkýřem": "zárterkélyes tégla sorház",
+  "americký cihlový řadový dům": "amerikai tégla sorház",
   "řadový dům s verandou": "verandás sorház",
   "americký dům s verandou": "amerikai verandás ház",
   "americký cihlový bytový dům": "amerikai tégla társasház",

@@ -22,7 +22,7 @@ export const LT = {
   "tallinnský dům": "Talino namas",
   "hanzovní dům se štítem": "hanzietiškas namas su skydu",
   // The houses of North America (25. 11. 2026; machine translation).
-  "cihlový řadový dům s arkýřem": "plytinis eilinis namas su erkeriu",
+  "americký cihlový řadový dům": "amerikietiškas plytinis eilinis namas",
   "řadový dům s verandou": "eilinis namas su veranda",
   "americký dům s verandou": "amerikietiškas namas su veranda",
   "americký cihlový bytový dům": "amerikietiškas plytinis daugiabutis",
