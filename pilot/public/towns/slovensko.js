@@ -118,13 +118,9 @@ export const SK_TOWNS = {
       ]);
       return asMtvu([[d, (a) => DUBRAVKA[a.Typ_kom] ?? null], [shiftBa(walk), (a) => BA_WALK[a.vyuzitie] ?? null], [shiftBa(road), ROAD], [shiftBa(park), PARK]], MTVU_LABELS);
     } },
-  presov: { box: [21.15, 48.94, 21.33, 49.06], credit: "pasport dopravy a zelene © mesto Prešov (CC BY 4.0)",
-    async own(bbox) {
-      const [road, walk, park, paved] = await Promise.all(["vw_dp_cesty", "vw_dp_chodniky", "vw_dp_parkoviska", "vw_dp_spev_plochy"]
-        .map((n) => arc(`${AGO_PRESOV}/${n}/FeatureServer/0`, "ObjectId", bbox).catch(() => null)));
-      return asMtvu([[road, ROAD], [walk, WALK], [park, PARK], [paved, OTHER]], MTVU_LABELS);
-    },
-    under: async (bbox) => asMtvu([[await arc(`${AGO_PRESOV}/Plochy_zelene/FeatureServer/275`, "OBJECTID", bbox), GREEN]], MTVU_LABELS),
+  // Prešov closed its roadways, car parks and paved areas (vw_dp_*, ArcGIS 499 "Token Required", found 25. 11. 2026), and
+  // sidewalks alone make no street, so no passport any more (Bára): its trees and the lines of its map (EDGE_SOURCES) stay.
+  presov: { box: [21.15, 48.94, 21.33, 49.06],
     // The town's trees (dreviny) where OSM has none nearby.
     points: [[`${AGO_PRESOV}/Dreviny_-_pohľad/FeatureServer/12`, () => ({ natural: "tree" }), "FID"]] },
   // Zvolen: the town's lines of roads and sidewalks with their width (komunikácie, SIRKA "1,4 - 1,7 m": the mean),
@@ -361,7 +357,7 @@ async function surfaces(bbox) {
   // A passport that does not answer: the estimate, as where there is none (no outage to report).
   const [tm, own, under] = await Promise.all([
     useTm(cx, cy) ? baTm(bbox) : { features: [] },
-    t ? t.own(bbox).catch(() => ({ features: [] })) : { features: [] },
+    t?.own ? t.own(bbox).catch(() => ({ features: [] })) : { features: [] },
     t?.under ? t.under(bbox).catch(() => ({ features: [] })) : { features: [] },
   ]);
   // Only where the technical map or the passport has a surface at the cut's centre (the street clicked): elsewhere
@@ -413,4 +409,4 @@ export const AREAS = {
 // The overview map of the About dialog (tools/build_coverage.mjs): where this module's own map of the street surfaces
 // answers: the towns' passports that are on by default (their AREAS, each town's boundary in mesta-sk.json); the lines of
 // the towns' maps (kresba) are no map of surfaces, Bratislava's technical map is off (?tm=1).
-export const SURFACE_MAPS = Object.entries(SK_TOWNS).filter(([, t]) => !t.optIn).map(([id]) => `${id}-pasport`);
+export const SURFACE_MAPS = Object.entries(SK_TOWNS).filter(([, t]) => t.own && !t.optIn).map(([id]) => `${id}-pasport`);

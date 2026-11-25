@@ -245,10 +245,11 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   jako vzor: chodci vpravo); IZ 10a Sdílená zóna jen podle `traffic_sign` v OSM; C 7a Stezka pro chodce na pěší cestě;
   E 13 „Mimo dopravní obsluhy“ (2. pád, gramaticky správně).
 - Pasporty měst (Bára 16. 11. 2026, `towns/slovensko.js` SK_TOWNS, jen ve větvi `slovensko`): Bratislava (magistrát:
-  chodníky, vozovky, parkoviště; MČ Dúbravka), Prešov (doprava, zeleň, stromy; CC BY 4.0), Žilina a Banská Bystrica
+  chodníky, vozovky, parkoviště; MČ Dúbravka), Žilina a Banská Bystrica
   (T-MAPY PaKom); jen kde má pasport plochu pod středem řezu, kolem budovy, zeleň a voda z OSM; `?pasport=0` vypne.
   A/B 115 řezů: lépe 28, hůř 7 (`evaluation/slovensko/ab/ZPRAVA.md`). Technická mapa Bratislavy (čáry + značky ploch)
-  zapojená, ale vypnutá (`?tm=1`): málo značek, otevřené čáry. Licence kromě Prešova neuvedené.
+  zapojená, ale vypnutá (`?tm=1`): málo značek, otevřené čáry. Licence neuvedené. Prešov vyřazený
+  (Bára 25. 11. 2026: uzavřel vozovky a parkoviště, ArcGIS 499; zůstaly jeho stromy a čáry mapy, CC BY 4.0).
 - Mimo Česko se vzhled domu neodvozuje od vzdálenosti od centra (žádné není), ale z OSM (rok, střecha, deska); panelák
   jen obytným domům (ZBGIS druh budovy). Ulice ze dvou jednosměrných vozovek má v odhadu obě. V nadpisu jen ulice,
   poznámka o datech pod ním. Panorama Mapy.com jen v CZ. Jazyky v rozbalovacím menu s vlajkami (vše Bára 16. 11. 2026; od 17. 11. v menu Soubor bez vlajek).
