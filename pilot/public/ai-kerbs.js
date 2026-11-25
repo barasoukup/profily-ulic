@@ -377,7 +377,10 @@ function shareLanes(lanes, dw) {
   const total = r2(lanes.reduce((q, x) => q + x.width, 0) + dw), each = r2(total / lanes.length);
   lanes.forEach((x, q) => { x.width = q === lanes.length - 1 ? r2(total - each * (lanes.length - 1)) : each; });
 }
-const free = (run) => run.filter((x) => x.type === "pruh" || x.type === "krajnice").reduce((q, x) => q + x.width, 0);
+// A lane with a shared-lane marking is a driving lane like any other (Naglergasse in Graz, Rua António Cândido in Lisbon:
+// the only lane of the street; evaluation/sjednoceni/mereni2).
+const LAW_LANE = new Set(["pruh", "pruh_piktokoridor"]);
+const free = (run) => run.filter((x) => LAW_LANE.has(x.type) || x.type === "krajnice").reduce((q, x) => q + x.width, 0);
 const LAW_LANE_MIN = 2.5; // the narrowest lane beside the strip (derive.js MIN_LANE)
 // Lays a law's strip back at the kerbs where the model is sure a row of parallel cars stands (sure), else where it is in
 // doubt (neither sure of cars nor of none, PARK.off; a side OSM tags, skip, is not the model's to decide), while
@@ -394,12 +397,12 @@ export function layLaw(result, kerbs, pAt, need, { sure = false, inside = false,
       if (ROADISH.has(s.type) && !ROADISH.has(segs[sg < 0 ? i - 1 : i + 1]?.type) && Math.abs((sg < 0 ? hi : lo) - t) < 1) k = i;
     });
     const X = segs[k], d = sg < 0 ? -1 : 1;
-    if (!X || !["pruh", "krajnice", "cyklopruh", "ochranny_pruh"].includes(X.type)) continue;
+    if (!X || !(LAW_LANE.has(X.type) || ["krajnice", "cyklopruh", "ochranny_pruh"].includes(X.type))) continue;
     const most = (from, to) => { let m = 0; for (let q = from; q < to; q += STEP) { const p = pAt(t + d * q); if (p !== null) m = Math.max(m, p); } return m; };
     const cars = most(0.1, inside ? LAW_W + 2.5 : 2.5), tagged = sg < 0 ? skip.hi : skip.lo;
     // Parallel cars in the roadway: the model sees them in the strip, not beyond it nor on the kerb.
     if (sure ? tagged || most(0.1, 2.5) < PARK.on || most(3.2, 4) >= PARK.on || most(-1, -0.6) >= PARK.on : cars < PARK.off && !tagged) continue;
-    const run = roadRun(segs, k), lanes = run.filter((x) => x.type === "pruh");
+    const run = roadRun(segs, k), lanes = run.filter((x) => LAW_LANE.has(x.type));
     if (!lanes.length || free(run) - LAW_W < need(lanes.length) - 1e-6) continue;
     const give = [X, ...run.filter((x) => x !== X && x.source === "odhad")].filter((x) => x.type === "krajnice");
     let left = LAW_W;
@@ -419,6 +422,20 @@ export function layLaw(result, kerbs, pAt, need, { sure = false, inside = false,
   }
   return laid;
 }
+// Lines of the orthophoto that make more lanes of a one-way street than the rules had, measured without the law's strips
+// (the edge of a row of cars, a seam of the asphalt: Kraszewskiego in Kraków, Jesenského in Banská Bystrica, Bartoňova in
+// Bratislava, most of them weak), would leave the law's strip no room: the split is decided with the parking known. Whether
+// the rules' lanes (before) take more of the law's strips than the measured ones (after). The caller asks only where OSM
+// does not count two lanes or more.
+const lanesOf = (r) => r.segments.filter((x) => LAW_LANE.has(x.type)).length;
+export function lawUnsplits(before, after, kerbs, pAt, need, skip = {}, inside = false) {
+  if (lanesOf(after) <= lanesOf(before)) return false;
+  const lays = (r) => {
+    const c = structuredClone({ segments: r.segments, extent: r.extent });
+    return layLaw(c, kerbs, pAt, need, { sure: true, skip }) + layLaw(c, kerbs, pAt, need, { inside, skip });
+  };
+  return lays(before) > lays(after);
+}
 // Once the other cars are drawn, a strip the model saw a row in (rows, from layLaw) is widened to the row (2–2.5 m, as
 // parkFromAi draws its own), from the shoulder beside it first, while the lanes keep PARK.laneLeft each.
 export function widenLaw(result, rows) {
@@ -426,7 +443,7 @@ export function widenLaw(result, rows) {
   for (const { strip, row } of rows) {
     const k = segs.indexOf(strip);
     if (k < 0) continue;
-    const run = roadRun(segs, k), lanes = run.filter((x) => x.type === "pruh");
+    const run = roadRun(segs, k), lanes = run.filter((x) => LAW_LANE.has(x.type));
     let more = r2(row - strip.width);
     for (const x of [segs[k - 1], segs[k + 1]]) {
       if (x?.type !== "krajnice" || more <= 1e-6) continue;

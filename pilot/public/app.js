@@ -8,7 +8,7 @@ import { orthoOsmPolys, besidePassport, trimToEnds, P as ORTHO_P } from "./ortho
 import { LOOKS as HOUSE_LOOKS } from "./house-looks.js";
 // The gabled house looks with the gable's outline (house-looks.js; Bára to approve it, 23. 11. 2026): ?stit=1.
 if (new URLSearchParams(location.search).get("stit") === "1") HOUSE_LOOKS.gables = true;
-import { aiCut, aiKerbs, aiSurface, aiParking, parkFromAi, parkSkip, lawKerbs, layLaw, widenLaw, aiReady, onAiProgress } from "./ai-kerbs.js";
+import { aiCut, aiKerbs, aiSurface, aiParking, parkFromAi, parkSkip, lawKerbs, layLaw, lawUnsplits, widenLaw, aiReady, onAiProgress } from "./ai-kerbs.js";
 // ?off=… switches named parts of the estimate off (the A/B tests, evaluation/ortofoto-osm/regrese.mjs).
 { const off = new URLSearchParams(location.search).get("off"); if (off) ORTHO_P.off = new Set(off.split(",")); }
 // ?auta=1: parked cars told by their colours on the orthophoto (ortho-osm.js carsColoured; a trial, off by default).
@@ -691,19 +691,22 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     const lawSkip = parkSkip(near.way.tags, !near.dir || dir[0] * near.dir[0] + dir[1] * near.dir[1] >= 0, inZps === true || parking.length > 0);
     const lawAt = lawPark && !lawSkip.all ? lawKerbs(result) : [];
     if (lawAt.length) {
-      const again = deriveProfile({ ...args, polys: lastPolys, noParkGuess: true });
+      const again = deriveProfile({ ...args, polys: lastPolys, noParkGuess: true, lawAt });
       result = lastEnds ? trimToEnds(again, lastEnds) : again;
     }
     // Lanes, shoulders and parking on its own paving measured on the orthophoto (lanes-ortho.js).
-    const lanesFromOrtho = laneImg ? applyLanes(result, laneImg) : 0;
+    const lawOneway = isOnewayTags(near.way.tags) || near.way.tags?.junction === "roundabout", lawNeed = (lanes) => lawNeedFor(lawOneway, lanes);
+    const byRules = lawAt.length && lawOneway && !(+near.way.tags?.lanes >= 2) ? structuredClone({ segments: result.segments, extent: result.extent }) : null;
+    let lanesFromOrtho = laneImg ? applyLanes(result, laneImg) : 0;
     lanesFromShoulders(result.segments, near.way.tags);
+    // A one-way street the lines (or the width, lanesFromShoulders) split, the law's parking known (lawUnsplits).
+    if (byRules && lawUnsplits(byRules, result, lawAt, lawPark, lawNeed, lawSkip, !orthoOsm)) { result.segments = byRules.segments; lanesFromOrtho = 0; }
     splitTwoWayLane(result.segments, near.way.tags);
     capWideLanes(result.segments, near.way.tags);
     // The technical map's own roadway in a pedestrian zone stays a lane; the estimate's does not.
     pedestrianZone(result.segments, near.way.tags, { measured: !orthoOsm && !result.estimate });
     if (orthoOsm) widenNarrowTrams(result.segments);
     const lawRows = [];
-    const lawOneway = isOnewayTags(near.way.tags) || near.way.tags?.junction === "roundabout", lawNeed = (lanes) => lawNeedFor(lawOneway, lanes);
     if (lawAt.length) layLaw(result, lawAt, lawPark, lawNeed, { sure: true, skip: lawSkip, rows: lawRows });
     // Parking where the model sees cars at the kerb (ai-kerbs.js parkFromAi; Bára 20. 11. 2026), ?off=aipark.
     // Not where parking data decide: a paid zone, the city's parking sections at the cut, a side OSM tags.

@@ -2,7 +2,7 @@
 // lanes, and a law strip where the model sees perpendicular cars gives way to them (evaluation/sjednoceni, 25. 11. 2026).
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { parkFromAi, lawKerbs, layLaw, widenLaw } from "../pilot/public/ai-kerbs.js";
+import { parkFromAi, lawKerbs, layLaw, lawUnsplits, widenLaw } from "../pilot/public/ai-kerbs.js";
 
 // A cut from t = 5 (A) to t = -5 (B): law strip 2 m, two lanes of 3 m, a sidewalk 2 m beyond.
 const cut = () => ({ extent: [-5, 5], segments: [
@@ -62,4 +62,30 @@ test("the strip takes the shoulder at the kerb first", () => {
   const r = { extent: [-5, 5], segments: [{ type: "krajnice", width: 1.5, source: "odhad" }, { type: "pruh", width: 4.5 }, { type: "chodnik", width: 4 }] };
   assert.equal(layLaw(r, [{ t: 5, sg: -1 }], () => 0.3, () => 3), 1);
   assert.deepEqual(r.segments.map((s) => [s.type, s.width]), [["parkovani", 2], ["pruh", 4], ["chodnik", 4]]);
+});
+test("a lane with a shared-lane marking is a lane for the law's strip (Graz Naglergasse)", () => {
+  const at = [{ t: 5, sg: -1 }], need = (n) => 3 * n;
+  const r = { extent: [-5, 5], segments: [{ type: "krajnice", width: 1.5, source: "odhad" }, { type: "pruh_piktokoridor", width: 4.5 }, { type: "chodnik", width: 4 }] };
+  assert.equal(layLaw(r, at, () => 0.3, need), 1);
+  assert.deepEqual(r.segments.map((s) => [s.type, s.width]), [["parkovani", 2], ["pruh_piktokoridor", 4], ["chodnik", 4]]);
+  // The strip in the place of the lane at the kerb itself, and the law's width kept.
+  const q = { extent: [-5, 5], segments: [{ type: "pruh_piktokoridor", width: 4 }, { type: "pruh_piktokoridor", width: 4 }, { type: "chodnik", width: 2 }] };
+  assert.equal(layLaw(q, at, () => 0.3, need), 1);
+  assert.deepEqual(q.segments.map((s) => s.width), [2, 3, 3, 2]);
+  assert.equal(layLaw(q, [{ t: -3, sg: 1 }], () => 0.3, need), 0);
+});
+
+test("a one-way street's split by a line gives way to the law's strip, not where the model is sure of no cars", () => {
+  const at = [{ t: 5, sg: -1 }], need = (n) => 3 * Math.max(1, n);
+  // Jesenského: the rules 1.55 | 4.5 | 1.55, the lines 4.17 | 3.43.
+  const rules = { extent: [-5, 5], segments: [{ type: "krajnice", width: 1.5, source: "odhad" }, { type: "pruh", width: 4.5 }, { type: "krajnice", width: 1.5, source: "odhad" }, { type: "chodnik", width: 2.5 }] };
+  const lines = { extent: [-5, 5], segments: [{ type: "pruh", width: 4.1, source: "ortofoto" }, { type: "pruh", width: 3.4, source: "ortofoto" }, { type: "chodnik", width: 2.5 }] };
+  assert.equal(lawUnsplits(rules, lines, at, () => 0.3, need), true);
+  assert.equal(lawUnsplits(rules, lines, at, () => 0.1, need), false);
+  assert.equal(rules.segments.length, 4, "nic se nepřekreslí");
+  // Two lanes that leave the strip its room stay split, and so does a roadway with as many lanes as the rules had.
+  const wide = { extent: [-5, 5], segments: [{ type: "pruh", width: 4 }, { type: "pruh", width: 4 }, { type: "chodnik", width: 2 }] };
+  const wideRules = { extent: [-5, 5], segments: [{ type: "krajnice", width: 1.75, source: "odhad" }, { type: "pruh", width: 4.5 }, { type: "krajnice", width: 1.75, source: "odhad" }, { type: "chodnik", width: 2 }] };
+  assert.equal(lawUnsplits(wideRules, wide, at, () => 0.3, need), false);
+  assert.equal(lawUnsplits(rules, rules, at, () => 0.3, need), false);
 });

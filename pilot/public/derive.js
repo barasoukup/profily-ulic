@@ -1242,9 +1242,12 @@ function cycleTrack(r, cross, dir) {
 
 // A narrow raised paved strip between two carriageways is a median / traffic island.
 const ROADWAY = new Set(["pruh", "pruh_piktokoridor", "bus", "bus_cyklo", "tramvaj_v_pruhu", "tramvaj_pruh", "tramvaj", "cyklopruh", "ochranny_pruh", "parkovani", "krajnice"]);
-function markIslands(segs) {
+// keep: the kerbs of the law's parking strips left out of this profile (deriveProfile lawAt): the sidewalk behind such a
+// kerb is one as it was with the strip (Calle de Yolanda de Bar and Avenida Sáinz de Varanda in Zaragoza, 25. 11. 2026).
+function markIslands(segs, keep = []) {
   segs.forEach((x, i) => {
     if (!WALK.has(x.type) || x.e - x.s > ISLAND_MAX) return;
+    if (keep.some(({ t, sg }) => Math.abs((sg < 0 ? x.s : x.e) - t) < 0.3)) return;
     // Between two carriageways: a parking strip (e.g. a small car park beyond the sidewalk) does not count.
     const lane = (y) => ROADWAY.has(y?.type) && y.type !== "parkovani";
     if (lane(segs[i - 1]) && lane(segs[i + 1])) x.type = "delici";
@@ -1774,7 +1777,7 @@ export function linePieces(polys, tags, center, normal, st = null, along = true)
 
 // noParkGuess: no parking estimated by the law alone (Monaco; and everywhere for the profile the lanes are measured on,
 // app.js lawAt).
-export function deriveProfile({ center, dir, half, polys, osm, frame, way, tracks = [], parking = [], lines = [], reach, inZps: zoneKnown, itemReach, ortho, lanesImage, roadOnPath = false, noParkGuess = false, kerbParking = null, osmParkGive = false }) {
+export function deriveProfile({ center, dir, half, polys, osm, frame, way, tracks = [], parking = [], lines = [], reach, inZps: zoneKnown, itemReach, ortho, lanesImage, roadOnPath = false, noParkGuess = false, lawAt = [], kerbParking = null, osmParkGive = false }) {
   const reachItems = { ...REACH, ...itemReach };
   // No-parking sections (Prague, TSK "Zákaz stání"): no surface of their own, they only keep a kerb free.
   const noParking = parking.filter((p) => p.kind === "zakaz");
@@ -2283,7 +2286,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   bedSurfaces(segs, { rails: tramTs, ortho, at, dir, highway: way.tags?.highway });
   // Roadway outer edges are measured; only the internal split comes from OSM.
   const kerbNotes = [];
-  const withKerb = carveKerbParking(markIslands(segs), kerbReqs, kerbNotes);
+  const withKerb = carveKerbParking(markIslands(segs, lawAt), kerbReqs, kerbNotes);
   const withPlatforms = insertPlatforms(withKerb, platformPositions(osm, frame, center, normal, half), axisT);
   const parkedTrees = [];
   // In a pedestrian zone the estimate's unknown is the zone's walking surface (pedestrianZone below makes it a
