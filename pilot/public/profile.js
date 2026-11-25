@@ -226,7 +226,9 @@ async function loadSprite(key, path) {
     const vb = text.match(/viewBox="([^"]+)"/)?.[1].split(/\s+/).map(Number);
     if (!vb) throw new Error("bez viewBox");
     const uri = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(text);
-    sprites[key] = { uri, w: vb[2], h: vb[3] };
+    // data-roof: where a tram's roof lies in its picture (tramSprite), for a picture not 420 high.
+    const roof = Number(text.match(/data-roof="([\d.]+)"/)?.[1]) || null;
+    sprites[key] = { uri, w: vb[2], h: vb[3], roof };
   } catch (err) {
     console.warn("ilustrace chybí", path, err.message);
   }
@@ -604,7 +606,7 @@ let clipN = 0;
 function tramSprite(g, name, cx, bottom) {
   const s = (cityArt() && sprites[`${artKey()}/${CITY_ART[artKey()]?.[name]}`]) || sprites[name];
   if (!s) return;
-  const k = s.h / 420, x = cx - s.w / 2, y = bottom - s.h, roof = y + PANTO_CUT * k + 6;
+  const k = s.h / 420, x = cx - s.w / 2, y = bottom - s.h, roof = y + (s.roof ?? PANTO_CUT * k + 6);
   const head = bottom - WIRE_H, id = `pc${++clipN}`;
   el("rect", { x, y: roof - 8, width: s.w, height: bottom - roof + 8 }, el("clipPath", { id }, el("defs", {}, g)));
   const ink = "#2a2c2e", rise = roof - head, base = roof - 8;

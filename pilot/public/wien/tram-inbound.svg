@@ -1,4 +1,4 @@
-<svg viewBox="0 0 320 600" xmlns="http://www.w3.org/2000/svg">
+<svg data-roof="258" viewBox="0 0 320 600" xmlns="http://www.w3.org/2000/svg">
 <!-- Tramvaj Flexity Wien, typ D (Bombardier/Alstom, Wiener Linien; jednosměrná, nízkopodlažní, zaoblené čelo), čelní pohled. Vycházeno z textových popisů (ne obkresleno): Wikipedie „Flexity Wien“ (de, en: Bombardier/Alstom, 100% nízká podlaha, šířka 2,40 m, jednosměrná), Wikimedia Commons kategorie „Flexity Wien“ (popisy fotek), Wiener Linien – barvy (červená skříň, bílý pás, šedá spodní lišta). 1 px = 1 cm. -->
 <g transform="translate(0,180)">
 <path d="M165 70 L135 -42 L172 -132 M150 70 L135 -42" stroke="#3f4245" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="75" y="-140" width="170" height="6" rx="3" fill="#3f4245"/><rect x="140" y="68" width="44" height="8" rx="2" fill="#4a4b4c"/>
