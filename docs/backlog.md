@@ -20,6 +20,20 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Francie (měření 22. 11., 25 řezů): v odhadu často chybí chodník (10×) a přebývá stání (8×); prověřit na řezech
   `evaluation/universal` (fr-*), zda jde o úzké chodníky u fasády nebo o zákonný odhad stání.
 
+- Sjednocení, zbývající kandidáti (`evaluation/sjednoceni/AUDIT.md`): `besideMax` (SK 15 m, jinde 25 m; A/B na Slovensku),
+  `roadOnPath` (jen Praha; zkusit na DTM ČÚZK a mapách měst), `roadClassFromOsm` (CZ, SK; jen norma varování, výklad
+  **(Bára)**), `orthoEstimate` (jen text, totéž co `laneOrtho !== "none"`).
+- Pravidlo obslužných cest (`?off=obsluzne`) v Berlíně proti jeho mapě 10 : 12, jediné město, kde nepomáhá
+  (Vídeň 16 : 9, Amsterdam 11 : 4, Helsinky 13 : 7; `evaluation/sjednoceni/praha/ZPRAVA.md`).
+- Zákonné stání po pruzích: ~~`layLaw` nebere `pruh_piktokoridor`, `markIslands` udělá z chodníku dělicí pás, jednosměrka na dva pruhy ztratí
+  zákonný pruh~~ (25. 11. 2026, `mereni2/ZPRAVA.md`). Zbývá: **(Bára)** nechat `lawlanes` zapnuté (34 : 21, oficiálně 1 : 3)?
+  **(Bára)** odhad stání na Slovensku (12 : 7); model pod stromy auta nevidí (Zaragoza); slabé čáry dělí pruhy i v
+  obousměrce (nl-schiedam-5) a kde se stání vejde (fr-toulouse-2); `parkFromAi` nebere piktokoridor; Belgie 2 : 5.
+- ~~Uložený řez dvouvozovkové ulice se chytí jiné cesty OSM (odkaz nemá `wayId`): 10 z 226, jiný profil u 7~~ (25. 11. 2026:
+  cesta je v odkazu; všech 10 se chytí své, `mereni2/ZPRAVA.md`).
+- Odkaz `#rez=` zaokrouhluje azimut na celé stupně: profil z odkazu se od kliknutí liší o centimetry, výjimečně o díl (Versmannstraße:
+  dva pruhy → pruh s krajnicí). Jedno desetinné místo by čtečky i Worker vzaly **(Bára)**.
+
 ## Mapy povrchů a data měst
 
 - Nizozemsko: BGT kreslí červené cyklopruhy na vozovce jako „fietspad“ (měření: 13× cyklostezka navíc). Pokus
@@ -102,6 +116,20 @@ Co rozhodne Bára, je označeno **(Bára)**.
   vzhled jugoslávské moderny (Fužine, Štepanjsko naselje, Maribor Tabor, Velenje) jako nápad na později, zatím
   „povalecny“ (Bára: Jugoslávie nemá socialistické typy); rok náletu DOF025 služba nedává (kredit „stav 11/2026“);
   sítě GJI (3D trasy) na později.
+- Estonsko, zbytky recenze 24. 11. 2026 (129abaf): Sõpruse pst a Ehitajate tee s mapou Tallinnu dávají deset pruhů po 4 m
+  (slabina mapy, A/B 10 : 4); dotazy na Tallinn podle obdélníku města, ne podle jeho hranice; nadpis „Šířky podle estonských
+  předpisů“ (`city.js`) není přesný; u odhadu stání chybí „orientačně“; `ee` chybí mezi ortofoty hlídanými na prázdný snímek
+  (`lanes-ortho.js`); dotaz městu na licenci neodeslán. Bod 6: univerzální měření je přepočítané, vzorek jen 12 řezů.
+- Slovinsko, zbytky recenze 24. 11. 2026 (982927a): chybí poznámka v řezu, že model obrub nedostal ortofoto (`app.js`); A/B
+  s ortofotem a bez něj; pravidlo podkroví (`?off=podkrovi`) na nových domech naslepo; čísla značek proti obrázkům pravidla
+  26/2024; přesná pozemní hranice GURS; čtení středové čáry z `lanes` ≥ 2 a 3 m k plné čáře **(Bára)**.
+- Finsko, zbytky recenze 24. 11. 2026 (edfdd21): proužek „plocha“ do 1,5 m u fasády přičíst k chodníku (`besidePassport`);
+  obrázky prvního A/B v gitu; prodleva při psaní do hledání (`search.js`); Karesuando u Švédska (řešit se Švédskem);
+  Ryhti má jen „07 veřejná budova“ (škola a kostel se nepoznají).
+- Dánsko, zbytky recenze 24. 11. 2026 (f55df4b): Bornholm bez vlastních vzhledů domů (chybí fotky); plocha stání kdekoli
+  v okolí vypne odhad stání na obou stranách, i ve Frederiksbergu (bod 14); dlaždice ortofota 400/429 nechávají černé díry
+  (`lanes-ortho.js`); kredit ortofota ověřit po 30. 11. na nové platformě; čára `Cykelsti langs vej` jako vnější hrana
+  cyklostezky nezapojená (`ortho-osm.js`); A/B kodaňských vrstev nebylo slepé; titulek a kredit jeho obrázků.
 - Jih Evropy po Itálii **odložen** (Bára 23. 11. 2026): Balkán, Řecko, Slovinsko. Až se k nim vrátíme: Albánie (ortofoto
   v albánských souřadnicích, ověřit stupně), Chorvatsko (jen přes proxy, západ), ~~Slovinsko (služby GURS neodpovídaly)~~ (přidáno 23. 11. 2026 přes `ipi.eprostor.gov.si`);
   ostatní bez otevřeného ortofota (`docs/states-survey/c-vychod-balkan.md`).

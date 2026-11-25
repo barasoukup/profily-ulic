@@ -1,0 +1,688 @@
+{
+ "m2-es-madrid-2": [
+  {
+   "k": "f",
+   "year": 2018,
+   "pano": false
+  }
+ ],
+ "m2-es-madrid-6": [
+  {
+   "k": "f",
+   "year": 2025,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": true
+  }
+ ],
+ "m2-es-madrid-17": [
+  {
+   "k": "f",
+   "year": 2017,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2025,
+   "pano": false
+  }
+ ],
+ "m2-es-barcelona-7": [
+  {
+   "k": "f",
+   "year": 2015,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2015,
+   "pano": false
+  }
+ ],
+ "m2-es-valencia-2": [
+  {
+   "k": "f",
+   "year": 2023,
+   "pano": false
+  }
+ ],
+ "m2-es-valencia-10": [
+  {
+   "k": "f",
+   "year": 2021,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2021,
+   "pano": false
+  }
+ ],
+ "m2-es-sevilla-12": [
+  {
+   "k": "f",
+   "year": 2015,
+   "pano": false
+  }
+ ],
+ "m2-es-malaga-27": [
+  {
+   "k": "b",
+   "year": 2017,
+   "pano": false
+  }
+ ],
+ "m2-pt-lisboa-5": [
+  {
+   "k": "f",
+   "year": 2020,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2020,
+   "pano": false
+  }
+ ],
+ "m2-pt-lisboa-16": [
+  {
+   "k": "f",
+   "year": 2023,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2021,
+   "pano": false
+  }
+ ],
+ "m2-pt-braga-4": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": true
+  }
+ ],
+ "m2-pt-braga-10": [
+  {
+   "k": "f",
+   "year": 2024,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2024,
+   "pano": false
+  }
+ ],
+ "m2-it-bologna-23": [
+  {
+   "k": "f",
+   "year": 2015,
+   "pano": false
+  }
+ ],
+ "m2-it-torino-2": [
+  {
+   "k": "f",
+   "year": 2025,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2021,
+   "pano": false
+  }
+ ],
+ "m2-it-torino-3": [
+  {
+   "k": "b",
+   "year": 2025,
+   "pano": false
+  }
+ ],
+ "m2-it-torino-24": [
+  {
+   "k": "f",
+   "year": 2017,
+   "pano": false
+  }
+ ],
+ "m2-it-torino-25": [
+  {
+   "k": "f",
+   "year": 2019,
+   "pano": false
+  }
+ ],
+ "m2-pl-warszawa-8": [
+  {
+   "k": "f",
+   "year": 2019,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2019,
+   "pano": false
+  }
+ ],
+ "m2-pl-gdansk-1": [
+  {
+   "k": "f",
+   "year": 2022,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2015,
+   "pano": false
+  }
+ ],
+ "m2-pl-katowice-17": [
+  {
+   "k": "f",
+   "year": 2018,
+   "pano": false
+  }
+ ],
+ "m2-pl-szczecin-9": [
+  {
+   "k": "f",
+   "year": 2023,
+   "pano": false
+  }
+ ],
+ "m2-pl-szczecin-17": [
+  {
+   "k": "f",
+   "year": 2024,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2021,
+   "pano": false
+  }
+ ],
+ "m2-sk-bratislava-19": [
+  {
+   "k": "f",
+   "year": 2024,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2024,
+   "pano": true
+  }
+ ],
+ "m2-sk-kosice-8": [
+  {
+   "k": "b",
+   "year": 2018,
+   "pano": false
+  }
+ ],
+ "m2-sk-presov-38": [
+  {
+   "k": "f",
+   "year": 2020,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2019,
+   "pano": false
+  }
+ ],
+ "m2-sk-poprad-3": [
+  {
+   "k": "b",
+   "year": 2025,
+   "pano": false
+  }
+ ],
+ "m2-sk-prievidza-15": [
+  {
+   "k": "f",
+   "year": 2018,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2018,
+   "pano": true
+  }
+ ],
+ "m2b-sk-levice-16": [
+  {
+   "k": "f",
+   "year": 2016,
+   "pano": false
+  }
+ ],
+ "m2b-sk-ruzomberok-28": [
+  {
+   "k": "f",
+   "year": 2020,
+   "pano": false
+  }
+ ],
+ "m2b-sk-piestany-9": [
+  {
+   "k": "f",
+   "year": 2021,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2022,
+   "pano": false
+  }
+ ],
+ "m2b-sk-piestany-13": [
+  {
+   "k": "f",
+   "year": 2018,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2018,
+   "pano": false
+  }
+ ],
+ "m2b-sk-petrzalka-10": [
+  {
+   "k": "f",
+   "year": 2025,
+   "pano": false
+  }
+ ],
+ "m2b-sk-levice-20": [
+  {
+   "k": "b",
+   "year": 2016,
+   "pano": false
+  }
+ ],
+ "m2b-sk-levice-33": [
+  {
+   "k": "f",
+   "year": 2018,
+   "pano": false
+  }
+ ],
+ "m2b-sk-komarno-31": [
+  {
+   "k": "f",
+   "year": 2015,
+   "pano": false
+  }
+ ],
+ "m2b-sk-piestany-8": [
+  {
+   "k": "f",
+   "year": 2018,
+   "pano": false
+  }
+ ],
+ "m2-at-wien-2": [
+  {
+   "k": "f",
+   "year": 2020,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2020,
+   "pano": false
+  }
+ ],
+ "m2-at-wels-7": [
+  {
+   "k": "f",
+   "year": 2019,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2018,
+   "pano": false
+  }
+ ],
+ "m2-de-muenchen-3": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "m2-de-muenchen-19": [
+  {
+   "k": "f",
+   "year": 2023,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2019,
+   "pano": false
+  }
+ ],
+ "m2-de-muenchen-26": [
+  {
+   "k": "f",
+   "year": 2019,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2023,
+   "pano": false
+  }
+ ],
+ "m2-de-koeln-1": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": true
+  }
+ ],
+ "m2-de-koeln-14": [
+  {
+   "k": "f",
+   "year": 2019,
+   "pano": false
+  }
+ ],
+ "m2-de-koeln-21": [
+  {
+   "k": "f",
+   "year": 2023,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": true
+  }
+ ],
+ "m2-de-leipzig-33": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "m2-de-nuernberg-2": [
+  {
+   "k": "b",
+   "year": 2025,
+   "pano": false
+  }
+ ],
+ "m2-de-nuernberg-6": [
+  {
+   "k": "f",
+   "year": 2018,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2016,
+   "pano": false
+  }
+ ],
+ "m2-de-freiburg-13": [
+  {
+   "k": "f",
+   "year": 2022,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "m2-be-bruxelles-1": [
+  {
+   "k": "f",
+   "year": 2024,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2024,
+   "pano": true
+  }
+ ],
+ "m2-be-bruxelles-15": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": true
+  }
+ ],
+ "m2-be-antwerpen-34": [
+  {
+   "k": "b",
+   "year": 2018,
+   "pano": false
+  }
+ ],
+ "m2-be-gent-10": [
+  {
+   "k": "f",
+   "year": 2019,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2025,
+   "pano": false
+  }
+ ],
+ "m2-be-liege-31": [
+  {
+   "k": "f",
+   "year": 2021,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2023,
+   "pano": true
+  }
+ ],
+ "m2-be-charleroi-28": [
+  {
+   "k": "b",
+   "year": 2019,
+   "pano": false
+  }
+ ],
+ "m2-dk-odense-22": [
+  {
+   "k": "f",
+   "year": 2024,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2021,
+   "pano": false
+  }
+ ],
+ "m2-dk-odense-23": [
+  {
+   "k": "f",
+   "year": 2019,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2019,
+   "pano": false
+  }
+ ],
+ "m2-dk-odense-30": [
+  {
+   "k": "f",
+   "year": 2022,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2025,
+   "pano": false
+  }
+ ],
+ "m2-dk-aalborg-12": [
+  {
+   "k": "f",
+   "year": 2016,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2016,
+   "pano": false
+  }
+ ],
+ "m2-es-valencia-3": [],
+ "m2-es-valencia-8": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "m2-es-valencia-9": [],
+ "m2-es-valencia-15": [],
+ "m2-es-sevilla-2": [],
+ "m2-es-sevilla-8": [],
+ "m2-es-sevilla-15": [],
+ "m2-es-sevilla-16": [],
+ "m2-es-malaga-7": [],
+ "m2-es-bilbao-2": [],
+ "m2-es-bilbao-7": [],
+ "m2-pt-porto-13": [],
+ "m2-pt-braga-3": [],
+ "m2-pt-setubal-28": [],
+ "m2-it-bologna-38": [],
+ "m2-it-modena-5": [
+  {
+   "k": "b",
+   "year": 2021,
+   "pano": false
+  }
+ ],
+ "m2-it-modena-9": [],
+ "m2-it-modena-12": [],
+ "m2-it-modena-23": [],
+ "m2-it-modena-24": [],
+ "m2-it-modena-27": [],
+ "m2-it-torino-20": [],
+ "m2-pl-wroclaw-10": [],
+ "m2-pl-wroclaw-11": [],
+ "m2-pl-wroclaw-18": [
+  {
+   "k": "f",
+   "year": 2022,
+   "pano": false
+  }
+ ],
+ "m2-pl-wroclaw-28": [],
+ "m2-pl-wroclaw-34": [],
+ "m2-pl-gdansk-14": [],
+ "m2-pl-katowice-22": [],
+ "m2-pl-katowice-29": [],
+ "m2-sk-bratislava-15": [],
+ "m2-sk-zilina-7": [
+  {
+   "k": "f",
+   "year": 2015,
+   "pano": false
+  }
+ ],
+ "m2-sk-nitra-21": [],
+ "m2-sk-trnava-11": [],
+ "m2-sk-trnava-20": [],
+ "m2-sk-trnava-38": [],
+ "m2-sk-martin-32": [],
+ "m2-sk-poprad-12": [],
+ "m2-sk-zvolen-29": [],
+ "m2-sk-michalovce-6": [],
+ "m2b-sk-ruzinov-18": [],
+ "m2b-sk-ruzinov-39": [],
+ "m2b-sk-trencin-21": [],
+ "m2b-sk-bardejov-14": [],
+ "m2b-sk-ruzomberok-10": [
+  {
+   "k": "f",
+   "year": 2024,
+   "pano": false
+  }
+ ],
+ "m2b-sk-trencin-14": [
+  {
+   "k": "b",
+   "year": 2025,
+   "pano": false
+  }
+ ],
+ "m2b-sk-lucenec-15": [],
+ "m2b-sk-lucenec-38": [],
+ "m2b-sk-nove_zamky-4": [],
+ "m2b-sk-piestany-26": [],
+ "m2-cz-ostrava-26": [],
+ "m2-cz-olomouc-6": [],
+ "m2-cz-olomouc-21": [],
+ "m2-cz-teplice-17": [],
+ "m2-cz-teplice-23": [],
+ "m2-at-linz-8": [],
+ "m2-at-linz-21": [],
+ "m2-at-klagenfurt-17": [],
+ "m2-at-wels-21": [],
+ "m2-be-liege-1": [],
+ "m2-be-liege-4": [],
+ "m2-be-charleroi-16": [],
+ "m2-be-charleroi-27": [
+  {
+   "k": "b",
+   "year": 2015,
+   "pano": false
+  }
+ ]
+}

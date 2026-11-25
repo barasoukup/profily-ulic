@@ -1,0 +1,289 @@
+{
+ "me-ch-m-zurich-4": [
+  {
+   "k": "f",
+   "year": 2016,
+   "pano": false
+  }
+ ],
+ "me-ch-m-bern-12": [
+  {
+   "k": "f",
+   "year": 2014,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2016,
+   "pano": false
+  }
+ ],
+ "me-ch-m-basel-2": [],
+ "me-de-berlin-berlin-9": [
+  {
+   "k": "f",
+   "year": 2023,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2023,
+   "pano": false
+  }
+ ],
+ "me-de-berlin-berlin-19": [
+  {
+   "k": "f",
+   "year": 2023,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2023,
+   "pano": false
+  }
+ ],
+ "me-pl-krakow-krakow-2": [
+  {
+   "k": "f",
+   "year": 2025,
+   "pano": false
+  }
+ ],
+ "me-pl-krakow-krakow-3": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2025,
+   "pano": false
+  }
+ ],
+ "me-pl-krakow-krakow-8": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2023,
+   "pano": false
+  }
+ ],
+ "me-pl-krakow-krakow-29": [],
+ "me-sk-m-bratislava-3": [
+  {
+   "k": "f",
+   "year": 2018,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2018,
+   "pano": false
+  }
+ ],
+ "me-sk-m-bratislava-4": [],
+ "me-sk-m-bystrica-8": [],
+ "me-sk-m-bystrica-9": [],
+ "me-sk-m-bystrica-10": [],
+ "me-pl-p-wroclaw-19": [
+  {
+   "k": "f",
+   "year": 2023,
+   "pano": false
+  }
+ ],
+ "me-pl-p-lodz-3": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "me-pl-p-poznan-5": [
+  {
+   "k": "b",
+   "year": 2024,
+   "pano": false
+  }
+ ],
+ "me-de-hamburg-hamburg-2": [
+  {
+   "k": "f",
+   "year": 2021,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2025,
+   "pano": false
+  }
+ ],
+ "me-de-hamburg-hamburg-28": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2024,
+   "pano": false
+  }
+ ],
+ "me-fr-p-lyon-7": [],
+ "me-ee-p-parnu-2": [
+  {
+   "k": "f",
+   "year": 2025,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2025,
+   "pano": false
+  }
+ ],
+ "me-be-m-gent-2": [
+  {
+   "k": "f",
+   "year": 2025,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2025,
+   "pano": true
+  }
+ ],
+ "me-be-m-gent-7": [
+  {
+   "k": "f",
+   "year": 2019,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2022,
+   "pano": true
+  }
+ ],
+ "me-be-m-gent-8": [
+  {
+   "k": "f",
+   "year": 2020,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2020,
+   "pano": false
+  }
+ ],
+ "me-be-m-leuven-6": [
+  {
+   "k": "f",
+   "year": 2025,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2025,
+   "pano": false
+  }
+ ],
+ "me-be-p-liege-1": [
+  {
+   "k": "f",
+   "year": 2023,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2023,
+   "pano": true
+  }
+ ],
+ "me-be-p-liege-4": [],
+ "me-be-p-liege-5": [],
+ "me-es-zaragoza-zaragoza-8": [
+  {
+   "k": "f",
+   "year": 2018,
+   "pano": false
+  }
+ ],
+ "me-es-zaragoza-zaragoza-9": [],
+ "me-es-zaragoza-zaragoza-10": [],
+ "me-es-zaragoza-zaragoza-11": [
+  {
+   "k": "f",
+   "year": 2021,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "me-es-zaragoza-zaragoza-19": [],
+ "me-es-zaragoza-zaragoza-21": [],
+ "me-es-zaragoza-zaragoza-24": [],
+ "me-es-p-valladolid-9": [],
+ "me-pt-p-lisboa-8": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "me-pt-p-porto-10": [
+  {
+   "k": "b",
+   "year": 2023,
+   "pano": false
+  }
+ ],
+ "me-pt-p-porto-11": [
+  {
+   "k": "f",
+   "year": 2024,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2022,
+   "pano": true
+  }
+ ],
+ "me-it-p-modena-7": [],
+ "me-fi-p-helsinki-1": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "me-dk-p-aarhus-3": []
+}

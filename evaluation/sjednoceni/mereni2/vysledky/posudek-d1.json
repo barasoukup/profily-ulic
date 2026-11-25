@@ -1,0 +1,12 @@
+{"1":{"a":"X","j":"nízká","d":"auta stojí podél obruby, krajnice nahoře nevysvětlí stání"},
+"2":{"a":"Y","j":"nízká","d":"auta jen na straně A, vozovka dva pruhy; X má stání i na B bez opory"},
+"3":{"a":"X","j":"nízká","d":"na straně B je parkoviště kolmého stání"},
+"4":{"a":"X","j":"nízká","d":"u B šrafy/zigzag, stání tam není"},
+"5":{"a":"stejne","j":"nízká","d":"obě mají stání na B, rozdíl šířek nejde změřit"},
+"6":{"a":"Y","j":"střední","d":"auto stojí u B obruby"},
+"7":{"a":"X","j":"nízká","d":"u B stojí auto na kraji vozovky"},
+"8":{"a":"Y","j":"nízká","d":"šikmé/kolmé stání u B podél vozovky"},
+"9":{"a":"X","j":"střední","d":"dva pruhy ~8 m bez stání, žádná auta u obrub"},
+"10":{"a":"Y","j":"nízká","d":"auta stojí na straně B, vozovka užší"},
+"11":{"a":"X","j":"nízká","d":"parkoviště s auty u B"},
+"12":{"a":"X","j":"nízká","d":"auta stojí i na straně A"}}

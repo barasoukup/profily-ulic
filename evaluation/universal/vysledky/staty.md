@@ -1,43 +1,40 @@
-Výsledky univerzálního měření, přeměřené 24. 11. 2026 jednou metodou pro všechny státy (strana bez fasády jen po okraj
-ulice, body na `service=driveway` / `parking_aisle` / `drive-through` vynechané všude; profily ze současného kódu,
-`data/app-zprepocet.json`; CZ a PL znovu po opravě čtení DTM krajů a návratu ortofota Geoportalu,
-`data/app-zzzprepocet-jvf.json`; CZ potřetí 25. 11. s doplněním kolem mapy povrchů i v Česku, `data/app-zzzzprepocet-mapfill.json`,
-`../mapfill-cz/ZPRAVA.md`; 25. 11. stání z modelu u zákonného pruhu, `../sjednoceni/ZPRAVA.md`: řezy, které se změnily,
-v `data/app-zzzzzz-sjednoceni.json`, DE 56 → 55 %, PL 63 → 64 %, FR 60 → 59 %). `node evaluation/universal/score-states.mjs`. Výklad, čísla před a po a výhrady (FI a DK
-posuzoval Opus) v `ZPRAVA.md`.
+Výsledky univerzálního měření (jedna metoda pro všechny státy), **přesbírané 25. 11. 2026** (`data/app-zzzzzzz-mereni.json`, po opravách
+`data/app-zzzzzzzz-opravy.json`, kód 7af8747): tytéž posudky, 467 použitelných řezů znovu a přesně na posouzeném místě a azimutu (dřív se 21 řezů posunulo, 13 z nich o 5 a víc
+metrů, jeden polský byl přepsaný jiným). Co je změna kódu a co posun a šum, ukazuje druhé rameno téhož sběru
+(`../../sjednoceni/mereni/ZPRAVA.md`). `node evaluation/universal/score-states.mjs`. Výklad v `ZPRAVA.md`. FI a DK posuzoval Opus.
 
 | stát | řezů | složení stejné | shoda složení | pruhy stejně | šířka uličního prostoru do 1 / 2 m | nejčastější rozdíly (aplikace proti posuzovateli) |
 |---|---|---|---|---|---|---|
 | CZ | 30 | 27 % | 58 % | 30 % | 30 % / 33 % | navíc chodnik 10×, navíc pruh 6×, chybí stani 6×, navíc zelen 5×, navíc delici 4×, chybí zelen 4× |
 | SK | 12 | 67 % | 84 % | 75 % | 33 % / 50 % | chybí delici 2×, chybí pruh 2×, navíc chodnik 2×, chybí chodnik 1×, chybí zelen 1× |
-| AT | 29 | 17 % | 61 % | 38 % | 28 % / 45 % | navíc stani 7×, chybí stani 5×, navíc cyklostezka 4×, navíc chodnik 4×, navíc cyklopruh 3×, stani→pruh 3× |
-| DE | 32 | 13 % | 55 % | 53 % | 13 % / 34 % | navíc chodnik 10×, chybí stani 7×, chybí chodnik 7×, navíc pruh 6×, navíc stani 5×, chybí pruh 4× |
-| CH | 17 | 24 % | 63 % | 47 % | 35 % / 41 % | navíc chodnik 5×, chybí stani 4×, chybí pruh 3×, navíc stani 2×, chybí zelen 2×, pruh→tramvaj 1× |
+| AT | 29 | 17 % | 60 % | 38 % | 28 % / 45 % | navíc stani 7×, chybí chodnik 5×, chybí stani 5×, navíc cyklostezka 4×, navíc chodnik 4×, stani→pruh 3× |
+| DE | 32 | 16 % | 57 % | 50 % | 16 % / 38 % | navíc chodnik 11×, chybí stani 7×, chybí chodnik 7×, navíc stani 5×, navíc pruh 4×, chybí pruh 4× |
+| CH | 17 | 18 % | 62 % | 41 % | 29 % / 35 % | navíc chodnik 5×, chybí stani 3×, chybí zelen 3×, chybí pruh 2×, navíc cyklopruh 2×, navíc stani 2× |
 | LI | 6 | 33 % | 69 % | 50 % | 50 % / 67 % | chybí zelen 2×, navíc delici 2×, pruh→chodnik 1×, chybí delici 1×, cyklopruh→pruh 1×, navíc pruh 1× |
-| NL | 32 | 25 % | 58 % | 50 % | 38 % / 53 % | navíc chodnik 16×, navíc cyklostezka 12×, navíc zelen 9×, navíc stani 7×, chybí stani 5×, chodnik→pruh 4× |
-| BE | 33 | 9 % | 48 % | 36 % | 18 % / 33 % | chybí stani 10×, navíc chodnik 9×, chybí chodnik 8×, chybí pruh 5×, chodnik→pruh 5×, pruh→chodnik 4× |
-| LU | 12 | 25 % | 53 % | 42 % | 17 % / 33 % | chodnik→cyklostezka 4×, cyklostezka→pruh 3×, chybí delici 2×, tramvaj→stani 1×, zelen→delici 1×, chybí pruh 1× |
-| PL | 22 | 18 % | 64 % | 32 % | 23 % / 36 % | chybí chodnik 7×, chybí pruh 6×, chybí delici 4×, chybí stani 3×, navíc stani 2×, navíc delici 2× |
-| FR | 25 | 4 % | 59 % | 60 % | 28 % / 48 % | navíc stani 9×, chybí chodnik 9×, navíc zelen 4×, navíc chodnik 4×, chybí stani 4×, navíc pruh 2× |
+| NL | 32 | 25 % | 59 % | 47 % | 44 % / 56 % | navíc chodnik 14×, navíc cyklostezka 12×, navíc zelen 8×, navíc stani 6×, chybí stani 5×, navíc pruh 4× |
+| BE | 33 | 9 % | 47 % | 36 % | 18 % / 33 % | chybí stani 10×, chybí chodnik 9×, navíc chodnik 9×, chybí pruh 5×, stani→pruh 4×, chodnik→pruh 4× |
+| LU | 12 | 25 % | 51 % | 42 % | 8 % / 25 % | chodnik→cyklostezka 4×, cyklostezka→pruh 3×, chybí delici 2×, chybí chodnik 2×, tramvaj→stani 1×, zelen→delici 1× |
+| PL | 22 | 18 % | 65 % | 36 % | 23 % / 36 % | chybí chodnik 7×, chybí pruh 6×, chybí delici 4×, navíc stani 3×, navíc delici 3×, chybí stani 3× |
+| FR | 25 | 4 % | 58 % | 52 % | 32 % / 52 % | chybí chodnik 10×, navíc stani 9×, navíc chodnik 6×, navíc zelen 4×, chybí stani 4×, pruh→chodnik 2× |
 | ES | 23 | 13 % | 55 % | 48 % | 17 % / 26 % | chybí chodnik 9×, chybí stani 6×, chodnik→pruh 4×, stani→zelen 3×, navíc bus 3×, navíc stani 3× |
-| PT | 28 | 25 % | 64 % | 64 % | 21 % / 46 % | chybí chodnik 14×, chybí stani 11×, navíc zelen 3×, navíc pruh 3×, stani→pruh 2×, chybí zelen 2× |
+| PT | 28 | 29 % | 65 % | 64 % | 25 % / 54 % | chybí chodnik 13×, chybí stani 12×, navíc pruh 2×, stani→pruh 2×, chybí zelen 2×, chybí delici 2× |
 | CY | 11 | 18 % | 55 % | 82 % | 0 % / 18 % | chybí chodnik 8×, chybí stani 5×, chybí zelen 3×, chybí cyklostezka 2×, navíc chodnik 1×, navíc zelen 1× |
-| MT | 8 | 13 % | 55 % | 38 % | 50 % / 63 % | chybí chodnik 4×, chybí stani 3×, navíc chodnik 2×, pruh→zelen 1×, navíc zelen 1×, chodnik→pruh 1× |
+| MT | 8 | 13 % | 58 % | 38 % | 50 % / 75 % | chybí chodnik 3×, chybí stani 3×, navíc chodnik 2×, pruh→zelen 1×, navíc zelen 1×, chodnik→pruh 1× |
 | IT | 6 | 17 % | 56 % | 67 % | 0 % / 17 % | chybí stani 3×, chybí delici 2×, chybí pruh 2×, chybí chodnik 2×, chybí bus 1×, chybí cyklostezka 1× |
-| EE | 12 | 8 % | 45 % | 33 % | 17 % / 33 % | navíc zelen 4×, navíc pruh 4×, chybí chodnik 3×, navíc delici 3×, navíc chodnik 2×, pruh→chodnik 2× |
-| SI | 8 | 13 % | 56 % | 63 % | 13 % / 38 % | navíc chodnik 2×, navíc stani 2×, navíc cyklostezka 2×, chybí chodnik 2×, navíc cyklopruh 1×, chybí pruh 1× |
+| EE | 12 | 8 % | 44 % | 33 % | 17 % / 42 % | navíc zelen 4×, navíc pruh 4×, chybí chodnik 3×, navíc chodnik 2×, navíc delici 2×, pruh→chodnik 2× |
+| SI | 8 | 25 % | 62 % | 63 % | 13 % / 38 % | navíc stani 2×, navíc cyklostezka 2×, chybí chodnik 2×, navíc cyklopruh 1×, navíc chodnik 1×, chybí pruh 1× |
 | LT | 10 | 30 % | 75 % | 60 % | 30 % / 60 % | navíc chodnik 4×, chybí stani 3×, stani→zelen 1×, navíc zelen 1×, stani→chodnik 1× |
-| FI | 22 | 14 % | 52 % | 45 % | 14 % / 23 % | navíc cyklostezka 5×, navíc chodnik 5×, zelen→chodnik 4×, chybí stani 3×, pruh→chodnik 3×, chybí pruh 2× |
-| DK | 24 | 17 % | 58 % | 50 % | 33 % / 50 % | chybí chodnik 7×, chybí stani 6×, navíc cyklostezka 5×, chybí delici 4×, chybí pruh 4×, cyklopruh→cyklostezka 4× |
-| FI s ortofotem | 13 | 15 % | 51 % | 46 % | 23 % / 31 % | navíc chodnik 4×, navíc cyklostezka 2×, chybí zelen 2×, zelen→chodnik 2×, pruh→chodnik 2×, stani→cyklostezka 2× |
+| FI | 22 | 14 % | 52 % | 41 % | 14 % / 23 % | navíc cyklostezka 5×, navíc chodnik 5×, zelen→chodnik 4×, chybí stani 3×, pruh→chodnik 3×, chybí pruh 2× |
+| DK | 24 | 17 % | 59 % | 46 % | 33 % / 50 % | chybí chodnik 7×, chybí stani 6×, chybí delici 4×, chybí pruh 4×, cyklopruh→cyklostezka 4×, navíc cyklostezka 4× |
+| FI s ortofotem | 13 | 15 % | 51 % | 38 % | 23 % / 31 % | navíc chodnik 4×, navíc cyklostezka 2×, chybí zelen 2×, zelen→chodnik 2×, pruh→chodnik 2×, stani→cyklostezka 2× |
 | FI bez ortofota | 9 | 11 % | 54 % | 44 % | 0 % / 11 % | navíc cyklostezka 3×, chybí stani 2×, zelen→chodnik 2×, bus→delici 1×, tramvaj→pruh 1×, pruh→chodnik 1× |
-| DK Kodaň | 14 | 21 % | 59 % | 64 % | 36 % / 57 % | chybí stani 5×, chybí pruh 3×, chybí cyklostezka 2×, chybí cyklopruh 2×, chybí delici 2×, chybí chodnik 2× |
-| DK zbytek | 10 | 10 % | 58 % | 30 % | 30 % / 40 % | chybí chodnik 5×, cyklopruh→cyklostezka 3×, navíc cyklostezka 3×, navíc chodnik 2×, chybí delici 2×, chybí stani 1× |
+| DK Kodaň | 15 | 20 % | 60 % | 53 % | 40 % / 60 % | chybí stani 5×, chybí pruh 3×, chybí chodnik 3×, chodnik→cyklostezka 3×, chybí cyklostezka 2×, chybí cyklopruh 2× |
+| DK zbytek | 9 | 11 % | 57 % | 33 % | 22 % / 33 % | chybí chodnik 4×, cyklopruh→cyklostezka 3×, navíc cyklostezka 3×, chybí delici 2×, chybí stani 1×, chybí pruh 1× |
 | US (Washington, 25. 11. přesnější pokyn) | 29 | 14 % | 66 % | 55 % | 34 % / 59 % | navíc zelen 13×, navíc stani 9×, navíc chodnik 7×, chybí delici 4×, navíc cyklopruh 3×, chybí pruh 3× |
 | US bez mapy DC (?dc=0) | 29 | 14 % | 60 % | 55 % | 3 % / 14 % | chybí stani 23×, chybí zelen 14×, chybí delici 3×, chybí pruh 3×, zelen→pruh 2×, pruh→chodnik 2× |
 | US jen OSM (bez ortofota) | 29 | 10 % | 56 % | 59 % | 41 % / 48 % | chybí stani 29×, chybí zelen 15×, chybí delici 5×, navíc chodnik 3×, chybí chodnik 3×, chybí pruh 3× |
 
-Před → po (oficiální → nová pravidla se starými profily → nové profily):
+Přeměření 24. 11. 2026, před → po (oficiální → nová pravidla se starými profily → nové profily):
 
 | stát | řezů před → po | shoda složení: oficiální → nová pravidla → nové profily | pruhy stejně | šířka do 1 / 2 m | nejčastější rozdíly po (aplikace proti posuzovateli) |
 |---|---|---|---|---|---|

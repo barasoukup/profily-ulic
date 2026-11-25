@@ -3,6 +3,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { localFrame, deriveProfile, techLines, classGroup } from "../pilot/public/derive.js";
+import { lawKerbs } from "../pilot/public/ai-kerbs.js";
 import { checkRules } from "../pilot/public/rules.js";
 import { signFits } from "../pilot/public/signs.js";
 import { cleanProfile } from "../pilot/public/validate.js";
@@ -427,4 +428,17 @@ test("osy kolejí blíž než 2,5 m jsou jedna kolej (výhybka v křižovatce), 
   assert.equal(trams([-1.6, 0, 1.6, 4.7]), 2, "čtyři osy 1,6, 1,6 a 3,1 m od sebe jsou dvě koleje");
   assert.equal(trams([-1.5, 1.5]), 2, "dvoukolejka s osovou vzdáleností 3 m");
   assert.equal(trams([0]), 1);
+});
+
+// Calle de Yolanda de Bar, Avenida Sáinz de Varanda in Zaragoza (evaluation/sjednoceni/mereni2, 25. 11. 2026).
+test("chodník mezi dvěma vozovkami zůstane chodníkem, když se zákonné stání odloží", () => {
+  const poly = [rect(601, -24, -19), rect(702, -19, -16), rect(701, -16, -8), rect(702, -8, -4), rect(701, -4, 4), rect(702, 4, 7), rect(601, 7, 12)];
+  const ways = [1, 2].map((id) => ({ type: "way", id, tags: { highway: "residential", oneway: "yes", lanes: "1" }, geometry: line(id === 1 ? 0 : -12) }));
+  const derive = (extra) => deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys: poly, osm: { elements: ways }, frame, way: ways[0], inZps: false, ...extra });
+  const types = (p) => p.segments.map((s) => s.type).join(" ");
+  const withLaw = derive({}), at = lawKerbs(withLaw);
+  assert.ok(at.length >= 2 && !types(withLaw).includes("delici"), types(withLaw));
+  assert.ok(types(derive({ noParkGuess: true })).includes("delici"), "bez znalosti zákonného stání ostrůvek");
+  const again = derive({ noParkGuess: true, lawAt: at });
+  assert.ok(!types(again).includes("delici") && !types(again).includes("parkovani"), types(again));
 });

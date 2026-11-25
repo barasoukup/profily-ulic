@@ -1,0 +1,62 @@
+{
+ "1": {
+  "id": "m2-sk-prievidza-15",
+  "X": "G",
+  "Y": "N"
+ },
+ "2": {
+  "id": "m2b-sk-lucenec-15",
+  "X": "N",
+  "Y": "G"
+ },
+ "3": {
+  "id": "m2b-sk-bardejov-14",
+  "X": "G",
+  "Y": "N"
+ },
+ "4": {
+  "id": "m2b-sk-petrzalka-10",
+  "X": "N",
+  "Y": "G"
+ },
+ "5": {
+  "id": "m2b-sk-levice-33",
+  "X": "G",
+  "Y": "N"
+ },
+ "6": {
+  "id": "m2-sk-bratislava-19",
+  "X": "G",
+  "Y": "N"
+ },
+ "7": {
+  "id": "m2b-sk-piestany-13",
+  "X": "G",
+  "Y": "N"
+ },
+ "8": {
+  "id": "m2b-sk-komarno-31",
+  "X": "N",
+  "Y": "G"
+ },
+ "9": {
+  "id": "m2b-sk-piestany-8",
+  "X": "G",
+  "Y": "N"
+ },
+ "10": {
+  "id": "m2-sk-poprad-12",
+  "X": "G",
+  "Y": "N"
+ },
+ "11": {
+  "id": "m2-sk-trnava-20",
+  "X": "G",
+  "Y": "N"
+ },
+ "12": {
+  "id": "m2-sk-trnava-38",
+  "X": "G",
+  "Y": "N"
+ }
+}

@@ -1,0 +1,62 @@
+{
+ "1": {
+  "id": "me-be-p-liege-4",
+  "X": "N",
+  "Y": "lawlanes"
+ },
+ "2": {
+  "id": "me-es-zaragoza-zaragoza-21",
+  "X": "N",
+  "Y": "lawlanes"
+ },
+ "3": {
+  "id": "me-be-m-gent-8",
+  "X": "lawlanes",
+  "Y": "N"
+ },
+ "4": {
+  "id": "me-it-p-modena-7",
+  "X": "N",
+  "Y": "lawlanes"
+ },
+ "5": {
+  "id": "me-de-hamburg-hamburg-2",
+  "X": "lawlanes",
+  "Y": "N"
+ },
+ "6": {
+  "id": "me-pt-p-lisboa-8",
+  "X": "N",
+  "Y": "lawlanes"
+ },
+ "7": {
+  "id": "me-sk-m-bratislava-3",
+  "X": "N",
+  "Y": "lawlanes"
+ },
+ "8": {
+  "id": "me-es-zaragoza-zaragoza-10",
+  "X": "N",
+  "Y": "lawlanes"
+ },
+ "9": {
+  "id": "me-ee-p-parnu-2",
+  "X": "N",
+  "Y": "lawlanes"
+ },
+ "10": {
+  "id": "me-es-zaragoza-zaragoza-11",
+  "X": "N",
+  "Y": "osaroad"
+ },
+ "11": {
+  "id": "me-pl-p-wroclaw-19",
+  "X": "lawlanes",
+  "Y": "N"
+ },
+ "12": {
+  "id": "me-pl-krakow-krakow-2",
+  "X": "N",
+  "Y": "lawlanes"
+ }
+}

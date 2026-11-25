@@ -1,0 +1,436 @@
+{
+ "mapfill me-pl-krakow-krakow-29": [
+  {
+   "w": "stejne",
+   "j": "nizka",
+   "d": "Slozeni stejne, lisi se jen sirka pruhu; bez fotek nelze rozlisit."
+  }
+ ],
+ "mapfill me-pl-krakow-krakow-3": [
+  {
+   "w": "stejne",
+   "j": "nizka",
+   "d": "Na fotce stani u obruby na obou stranach, rozdil jen ve 0,4 m krajnice."
+  }
+ ],
+ "mapfill me-es-zaragoza-zaragoza-24": [
+  {
+   "w": "nejde",
+   "j": "nizka",
+   "d": "Na ortofotu nelze potvrdit cyklostezku ani stani vedle chodniku."
+  }
+ ],
+ "mapfill me-de-hamburg-hamburg-28": [
+  {
+   "w": "N",
+   "j": "nizka",
+   "d": "Pas 4,7 m za stanim vypada jako vozovka u zabradli rampy, ne chodnik; foto ukazuje chodnik s cyklostezkou jen na strane B."
+  }
+ ],
+ "mapfill me-es-zaragoza-zaragoza-10": [
+  {
+   "w": "O",
+   "j": "nizka",
+   "d": "Ortofoto ukazuje auta stojici kolem stromoradi uprostred, Y ma stani a stromy, X misto toho pruh a krajnici."
+  }
+ ],
+ "mapfill me-de-berlin-berlin-19": [
+  {
+   "w": "N",
+   "j": "nizka",
+   "d": "Na fotce trava s lavickami u chodniku na strane A, X ji zapisuje jako zelen."
+  }
+ ],
+ "mapfill me-es-zaragoza-zaragoza-8": [
+  {
+   "w": "stejne",
+   "j": "nizka",
+   "d": "Stejne slozeni, rozdil jen 0,3 m; stromy zakryvaji ortofoto."
+  }
+ ],
+ "mapfill me-sk-m-bystrica-8": [
+  {
+   "w": "N",
+   "j": "nizka",
+   "d": "Na strane A je zahrada a zed, sirokych 6 m chodnik neni videt."
+  }
+ ],
+ "mapfill me-sk-m-bystrica-10": [
+  {
+   "w": "N",
+   "j": "nizka",
+   "d": "Na ortofotu nejsou zaparkovana auta, vozovka je siroka asi 10 m bez stani."
+  }
+ ],
+ "mapfill me-es-zaragoza-zaragoza-19": [
+  {
+   "w": "O",
+   "j": "nizka",
+   "d": "Tmavy pas vozovky na strane B ma zaparkovana auta, X stani nema."
+  }
+ ],
+ "mapfill me-be-m-gent-8": [
+  {
+   "w": "stejne",
+   "j": "nizka",
+   "d": "Profily se lisi jen posledni 1,6 m, ktery je moc uzky na stani."
+  }
+ ],
+ "mapfill me-ch-m-basel-2": [
+  {
+   "w": "stejne",
+   "j": "nizka",
+   "d": "Stani na strane B sedi u obou, rozdil jen v rozmisteni krajnic."
+  }
+ ],
+ "mapfill me-ch-m-zurich-4": [
+  {
+   "w": "nejde",
+   "j": "nizka",
+   "d": "Siroka asfaltova plocha s obrubou, nejasne co je pruh a co stani."
+  }
+ ],
+ "mapfill me-pl-krakow-krakow-8": [
+  {
+   "w": "N",
+   "j": "stredni",
+   "d": "Na ortofotu jde od A pruh, pak šrafy, úzký pás zeleně a druhý pruh; X dává krajnici na začátek před pruh."
+  }
+ ],
+ "mapfill me-de-berlin-berlin-9": [
+  {
+   "w": "N",
+   "j": "nizka",
+   "d": "Plocha za jízdními pruhy je parkoviště se stojícími auty, ne chodník jako v Y."
+  }
+ ],
+ "mapfill me-pl-krakow-krakow-2": [
+  {
+   "w": "O",
+   "j": "nizka",
+   "d": "Na ortofotu stojí auta u obou stran úzké vozovky, jeden pruh se stáním po obou stranách."
+  }
+ ],
+ "mapfill me-es-zaragoza-zaragoza-11": [
+  {
+   "w": "O",
+   "j": "stredni",
+   "d": "Foto b ukazuje dláždění oddělený pás mezi vozovkami a zaparkovaná auta u obrub; v X stání chybí."
+  }
+ ],
+ "mapfill me-be-m-leuven-6": [
+  {
+   "w": "O",
+   "j": "stredni",
+   "d": "Přerušovaná čára na ortofotu sedí na hranici druhého pruhu a vedle ní je vymezené stání s autem."
+  }
+ ],
+ "mapfill me-sk-m-bystrica-9": [
+  {
+   "w": "O",
+   "j": "nizka",
+   "d": "Bez fotek; auto na ortofotu stojí u pravého okraje, což odpovídá stání v X, vozovka je pod stromy špatně vidět."
+  }
+ ],
+ "mapfill me-be-m-gent-2": [
+  {
+   "w": "stejne",
+   "j": "nizka",
+   "d": "Úzká dlážděná ulice s parkováním z jedné strany; rozdíl je jen 0,4 m krajnice."
+  }
+ ],
+ "mapfill me-de-hamburg-hamburg-2": [
+  {
+   "w": "N",
+   "j": "nizka",
+   "d": "Na straně A jsou stromy a na foto kola u fasády, parkování tam nevidím; stání na B sedí na auta na ortofotu."
+  }
+ ],
+ "mapfill me-es-zaragoza-zaragoza-9": [
+  {
+   "w": "nejde",
+   "j": "nizka",
+   "d": "Rozmazané ortofoto bez fotek, vozovku nelze spolehlivě vymezit."
+  }
+ ],
+ "mapfill me-es-zaragoza-zaragoza-21": [
+  {
+   "w": "O",
+   "j": "stredni",
+   "d": "Na ortofotu stojí auta u obou stran úzké vozovky, v Y chybí stání a dělicí pás tam není."
+  }
+ ],
+ "mapfill me-fi-p-helsinki-1": [
+  {
+   "w": "nejde",
+   "j": "nizka",
+   "d": "Vozovka na ortofotu leží jinde, než ji kreslí oba profily, a rozdíl je jen stání."
+  }
+ ],
+ "mapfill me-sk-m-bratislava-3": [
+  {
+   "w": "stejne",
+   "j": "nizka",
+   "d": "Profily se liší jen 0,47 m krajnice u stání, v obou je stejné složení."
+  }
+ ],
+ "mapfill me-ch-m-bern-12": [
+  {
+   "w": "N",
+   "j": "stredni",
+   "d": "Vlevo je tráva a les bez zaparkovaných aut, stání je jen vpravo; Y dává stání i vlevo."
+  }
+ ],
+ "lawlanes me-fi-p-helsinki-1": [
+  {
+   "w": "stejne",
+   "j": "nizka",
+   "d": "Stejné složení, jedna nemarkovaná vozovka asi 5,5 m; rozdělení na dva pruhy nejde ověřit."
+  }
+ ],
+ "lawlanes me-de-hamburg-hamburg-28": [
+  {
+   "w": "N",
+   "j": "nizka",
+   "d": "Pás 4,7 m u levého okraje mostu je spíš dělicí/zábradlí než chodník; na fotkách u vozovky chodník není."
+  }
+ ],
+ "lawlanes me-be-m-gent-2": [
+  {
+   "w": "stejne",
+   "j": "nizka",
+   "d": "Úzká dlážděná ulice se stáním, rozdíl je jen úzká krajnice 0,4 m, která není vidět."
+  }
+ ],
+ "lawlanes me-pl-krakow-krakow-3": [
+  {
+   "w": "stejne",
+   "j": "nizka",
+   "d": "Obě mají stejné složení, rozdíl jen 0,38 m krajnice vedle stání u křižovatky."
+  }
+ ],
+ "lawlanes me-es-zaragoza-zaragoza-11": [
+  {
+   "w": "N",
+   "j": "nizka",
+   "d": "Střed je dělicí pás se dlažbou, pruhy 5,26 m jsou nereálně široké, Y je věrohodnější."
+  }
+ ],
+ "lawlanes me-es-zaragoza-zaragoza-24": [
+  {
+   "w": "O",
+   "j": "stredni",
+   "d": "Za vozovkou je chodník se stromy široký asi 6 m, ne dělicí pás; vpravo je pak parkoviště, oba ho vystihují špatně."
+  }
+ ],
+ "lawlanes me-be-m-leuven-6": [
+  {
+   "w": "nejde",
+   "j": "nizka",
+   "d": "Široká vozovka s nápisem BUS a čárkovanou čárou, rozdělení pruhů a krajnice nejde spolehlivě určit."
+  }
+ ],
+ "lawlanes me-sk-m-bratislava-4": [
+  {
+   "w": "O",
+   "j": "stredni",
+   "d": "Na ortofotu stojí auta podél pravého okraje vozovky, takže pruh plus stání sedí lépe než dva pruhy."
+  }
+ ],
+ "lawlanes me-pt-p-porto-10": [
+  {
+   "w": "stejne",
+   "j": "nizka",
+   "d": "Fotka b ukazuje stání po obou stranách; X má úzké stání, Y krajnici nemá, obě jsou nedokonalé."
+  }
+ ],
+ "lawlanes me-pl-p-lodz-3": [
+  {
+   "w": "stejne",
+   "j": "nizka",
+   "d": "Stejné složení, vozovka asi 6 m, rozdíly v šířkách stání nejsou z fotek měřitelné."
+  }
+ ],
+ "lawlanes me-be-p-liege-5": [
+  {
+   "w": "nejde",
+   "j": "nizka",
+   "d": "Ortofoto je ve stínu, úzká ulice mezi domy, bez fotek, nepoznám pruhy ani stání."
+  }
+ ],
+ "lawlanes me-ch-m-bern-12": [
+  {
+   "w": "N",
+   "j": "stredni",
+   "d": "Vozovka je asi 5,5 m a vlevo je vegetace, X ji vystihuje (krajnice, dva úzké pruhy), Y má pruhy příliš široké."
+  }
+ ],
+ "lawlanes me-es-p-valladolid-9": [
+  {
+   "w": "N",
+   "j": "nizka",
+   "d": "Vozovka na ortofotu působí dvoupruhově se zelenými pásy po stranách, tři pruhy jsou nepravděpodobné."
+  }
+ ],
+ "lawlanes me-pl-p-poznan-5": [
+  {
+   "w": "stejne",
+   "j": "nizka",
+   "d": "Rozdíl 0,4 m v pruhu a stání na ortofotu ani fotce nelze rozlišit."
+  }
+ ],
+ "lawlanes me-be-m-gent-7": [
+  {
+   "w": "N",
+   "j": "nizka",
+   "d": "Na ortofotu stojí auto u obruby na straně B, stání tam je."
+  }
+ ],
+ "lawlanes me-fr-p-lyon-7": [
+  {
+   "w": "stejne",
+   "j": "nizka",
+   "d": "Bez fotek, stání i cyklopruh jsou v obou stejně, šířky nejsou rozlišitelné."
+  }
+ ],
+ "lawlanes me-be-p-liege-1": [
+  {
+   "w": "stejne",
+   "j": "nizka",
+   "d": "Dva pruhy a stání na jedné straně v obou, krajnice 0,43 m je zanedbatelná."
+  }
+ ],
+ "lawlanes me-sk-m-bystrica-9": [
+  {
+   "w": "O",
+   "j": "nizka",
+   "d": "Na ortofotu stojí auto u okraje na straně B, stání je pravděpodobné."
+  }
+ ],
+ "lawlanes me-dk-p-aarhus-3": [
+  {
+   "w": "N",
+   "j": "stredni",
+   "d": "Na ortofotu je přerušovaná osa uprostřed vozovky, tedy dva pruhy, ne krajnice a pruh."
+  }
+ ],
+ "lawlanes me-es-zaragoza-zaragoza-19": [
+  {
+   "w": "nejde",
+   "j": "nizka",
+   "d": "Ortofoto zakrývají stromy, střední pás nelze rozlišit."
+  }
+ ],
+ "lawlanes me-pl-krakow-krakow-29": [
+  {
+   "w": "stejne",
+   "j": "nizka",
+   "d": "Složení stejné, šířky pruhů nejsou na ortofotu měřitelné."
+  }
+ ],
+ "lawlanes me-es-zaragoza-zaragoza-8": [
+  {
+   "w": "N",
+   "j": "nizka",
+   "d": "Na ortofotu i na fotce stojí auta u obruby, stání tam je."
+  }
+ ],
+ "lawlanes me-pt-p-porto-11": [
+  {
+   "w": "stejne",
+   "j": "nizka",
+   "d": "Rozdíl je jen krajnice 0,3 m, fotky ho neukazují."
+  }
+ ],
+ "lawlanes me-ch-m-basel-2": [
+  {
+   "w": "stejne",
+   "j": "nizka",
+   "d": "Auta stojí u obou obrubníků, rozdíly šířek krajnic nejsou na ortofotu rozlišitelné."
+  }
+ ],
+ "lawlanes me-be-p-liege-4": [
+  {
+   "w": "O",
+   "j": "stredni",
+   "d": "Auta stojí u obou okrajů úzké ulice, takže stání na obou stranách."
+  }
+ ],
+ "lawlanes me-es-zaragoza-zaragoza-21": [
+  {
+   "w": "O",
+   "j": "nizka",
+   "d": "Na ortofotu jsou auta podél obou okrajů vozovky, ne dělicí pás."
+  }
+ ],
+ "lawlanes me-be-m-gent-8": [
+  {
+   "w": "nejde",
+   "j": "nizka",
+   "d": "Řez padá do křižovatky a náměstí, rozdíl je jen v šířce pruhu a krajnici na B."
+  }
+ ],
+ "lawlanes me-it-p-modena-7": [
+  {
+   "w": "stejne",
+   "j": "nizka",
+   "d": "Neznačená vozovka asi 8 m, stín zakrývá pravý okraj, obě varianty mají dva pruhy."
+  }
+ ],
+ "lawlanes me-de-hamburg-hamburg-2": [
+  {
+   "w": "stejne",
+   "j": "nizka",
+   "d": "Fotky nejsou z tohoto místa; obě varianty vynechávají širokou dlážděnou plochu u B a liší se jen šířkou krajnic."
+  }
+ ],
+ "lawlanes me-pt-p-lisboa-8": [
+  {
+   "w": "O",
+   "j": "vysoka",
+   "d": "Na fotkách stojí auta u obruby na obou stranách dlážděné ulice."
+  }
+ ],
+ "lawlanes me-sk-m-bratislava-3": [
+  {
+   "w": "stejne",
+   "j": "nizka",
+   "d": "Rozdíl je jen úzká krajnice 0,47 m proti širšímu stání na A."
+  }
+ ],
+ "lawlanes me-es-zaragoza-zaragoza-10": [
+  {
+   "w": "O",
+   "j": "nizka",
+   "d": "Strom ve střední řadě stání odpovídá stromořadí v Y, X tam má dělicí pás bez opory."
+  }
+ ],
+ "lawlanes me-ee-p-parnu-2": [
+  {
+   "w": "stejne",
+   "j": "nizka",
+   "d": "Chodník a vozovka jsou shodné, liší se jen detail stání a krajnice u A."
+  }
+ ],
+ "osaroad me-es-zaragoza-zaragoza-11": [
+  {
+   "w": "N",
+   "j": "stredni",
+   "d": "Na ortofotu i fotce je dělicí pás uprostřed, Y ho nemá a má pruhy v jednom bloku."
+  }
+ ],
+ "lawlanes me-pl-p-wroclaw-19": [
+  {
+   "w": "nejde",
+   "j": "nizka",
+   "d": "Stání na straně A nejde z fotky ani ze stínu ortofota ověřit."
+  }
+ ],
+ "lawlanes me-pl-krakow-krakow-2": [
+  {
+   "w": "O",
+   "j": "stredni",
+   "d": "Auta parkují u obrub na obou stranách, vozovka je mezi nimi asi 5 m."
+  }
+ ]
+}

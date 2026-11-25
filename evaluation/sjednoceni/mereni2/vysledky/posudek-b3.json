@@ -1,0 +1,16 @@
+{
+"1":{"a":"stejne","j":"nízká","d":"Složení stejné, rozdíl jen v dělení vozovky, ortofoto zastíněné, bez fotek"},
+"2":{"a":"Y","j":"nízká","d":"Vozovka asi 6 m bez značení pojme dva pruhy; X má jeden široký pruh a krajnici"},
+"3":{"a":"X","j":"nízká","d":"Hranice pruhu a cyklopruhu na ortofotu vychází blíž k X; složení stejné"},
+"4":{"a":"stejne","j":"nízká","d":"Složení stejné, dělení pruhů na ortofotu a fotkách nejde spolehlivě určit"},
+"5":{"a":"X","j":"vysoká","d":"Stání na obou stranách vozovky (šikmá auta vpravo, auta vlevo); Y stání vpravo ztrácí"},
+"6":{"a":"stejne","j":"nízká","d":"Obě mají stání, vozovku a chodníky; rozdíl v počtu pruhů nejde z ortofota poznat"},
+"7":{"a":"nejde","j":"nízká","d":"Bez ortofoto i fotek"},
+"8":{"a":"Y","j":"nízká","d":"Auta stojí u levé fasády, Y má tam pás krajnice/stání; X ho nemá"},
+"9":{"a":"Y","j":"nízká","d":"Vozovka asi 9 m bez viditelných krajnic, dva široké pruhy; X krajnice navíc"},
+"10":{"a":"stejne","j":"nízká","d":"Rozdíl jen v šířkách levé vozovky, neurčitelný"},
+"11":{"a":"Y","j":"střední","d":"Na fotce stání vpravo u obruby (značka P, auto); Y ho má, X ne"},
+"12":{"a":"nejde","j":"nízká","d":"Ortofoto ukazuje dvůr/parkoviště, ne jasnou ulici"},
+"13":{"a":"X","j":"střední","d":"Vpravo vyznačená stání s čárami; X je má, Y ne"},
+"14":{"a":"X","j":"nízká","d":"Dělicí čára pruhů leží uprostřed profilu jako u X, Y má krajnici bez opory"}
+}

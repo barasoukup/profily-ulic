@@ -1,0 +1,67 @@
+{
+ "1": {
+  "id": "m2-pl-katowice-29",
+  "X": "N",
+  "Y": "L"
+ },
+ "2": {
+  "id": "m2-at-linz-21",
+  "X": "L",
+  "Y": "N"
+ },
+ "3": {
+  "id": "m2b-sk-levice-16",
+  "X": "L",
+  "Y": "N"
+ },
+ "4": {
+  "id": "m2b-sk-piestany-8",
+  "X": "L",
+  "Y": "N"
+ },
+ "5": {
+  "id": "m2b-sk-ruzinov-39",
+  "X": "N",
+  "Y": "L"
+ },
+ "6": {
+  "id": "m2b-sk-lucenec-15",
+  "X": "N",
+  "Y": "L"
+ },
+ "7": {
+  "id": "m2-pt-setubal-28",
+  "X": "L",
+  "Y": "N"
+ },
+ "8": {
+  "id": "m2-de-nuernberg-6",
+  "X": "N",
+  "Y": "L"
+ },
+ "9": {
+  "id": "m2-sk-trnava-38",
+  "X": "N",
+  "Y": "L"
+ },
+ "10": {
+  "id": "m2-cz-teplice-17",
+  "X": "N",
+  "Y": "L"
+ },
+ "11": {
+  "id": "m2-pl-wroclaw-11",
+  "X": "L",
+  "Y": "N"
+ },
+ "12": {
+  "id": "m2-es-sevilla-8",
+  "X": "N",
+  "Y": "L"
+ },
+ "13": {
+  "id": "m2-pl-katowice-17",
+  "X": "L",
+  "Y": "N"
+ }
+}

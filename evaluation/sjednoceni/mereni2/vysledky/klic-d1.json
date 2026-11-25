@@ -1,0 +1,62 @@
+{
+ "1": {
+  "id": "m2-sk-kosice-8",
+  "X": "N",
+  "Y": "G"
+ },
+ "2": {
+  "id": "m2b-sk-nove_zamky-4",
+  "X": "N",
+  "Y": "G"
+ },
+ "3": {
+  "id": "m2b-sk-trencin-21",
+  "X": "N",
+  "Y": "G"
+ },
+ "4": {
+  "id": "m2b-sk-trencin-14",
+  "X": "G",
+  "Y": "N"
+ },
+ "5": {
+  "id": "m2b-sk-lucenec-38",
+  "X": "N",
+  "Y": "G"
+ },
+ "6": {
+  "id": "m2-sk-martin-32",
+  "X": "G",
+  "Y": "N"
+ },
+ "7": {
+  "id": "m2b-sk-ruzinov-18",
+  "X": "N",
+  "Y": "G"
+ },
+ "8": {
+  "id": "m2-sk-nitra-21",
+  "X": "G",
+  "Y": "N"
+ },
+ "9": {
+  "id": "m2-sk-michalovce-6",
+  "X": "G",
+  "Y": "N"
+ },
+ "10": {
+  "id": "m2b-sk-piestany-9",
+  "X": "G",
+  "Y": "N"
+ },
+ "11": {
+  "id": "m2-sk-bratislava-15",
+  "X": "N",
+  "Y": "G"
+ },
+ "12": {
+  "id": "m2b-sk-piestany-26",
+  "X": "N",
+  "Y": "G"
+ }
+}

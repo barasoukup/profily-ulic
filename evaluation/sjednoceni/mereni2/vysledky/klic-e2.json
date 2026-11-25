@@ -1,0 +1,82 @@
+{
+ "1": {
+  "id": "m2-sk-prievidza-15",
+  "X": "G",
+  "Y": "L"
+ },
+ "2": {
+  "id": "m2b-sk-piestany-9",
+  "X": "G",
+  "Y": "L"
+ },
+ "3": {
+  "id": "m2-sk-michalovce-6",
+  "X": "L",
+  "Y": "G"
+ },
+ "4": {
+  "id": "m2b-sk-levice-33",
+  "X": "L",
+  "Y": "G"
+ },
+ "5": {
+  "id": "m2b-sk-nove_zamky-4",
+  "X": "L",
+  "Y": "G"
+ },
+ "6": {
+  "id": "m2b-sk-lucenec-38",
+  "X": "G",
+  "Y": "L"
+ },
+ "7": {
+  "id": "m2-sk-kosice-8",
+  "X": "G",
+  "Y": "L"
+ },
+ "8": {
+  "id": "m2-sk-zvolen-29",
+  "X": "L",
+  "Y": "G"
+ },
+ "9": {
+  "id": "m2b-sk-lucenec-15",
+  "X": "L",
+  "Y": "G"
+ },
+ "10": {
+  "id": "m2b-sk-ruzomberok-28",
+  "X": "L",
+  "Y": "G"
+ },
+ "11": {
+  "id": "m2b-sk-ruzinov-39",
+  "X": "G",
+  "Y": "L"
+ },
+ "12": {
+  "id": "m2b-sk-ruzomberok-10",
+  "X": "G",
+  "Y": "L"
+ },
+ "13": {
+  "id": "m2b-sk-piestany-8",
+  "X": "L",
+  "Y": "G"
+ },
+ "14": {
+  "id": "m2-sk-poprad-12",
+  "X": "G",
+  "Y": "L"
+ },
+ "15": {
+  "id": "m2b-sk-trencin-14",
+  "X": "L",
+  "Y": "G"
+ },
+ "16": {
+  "id": "m2-sk-presov-38",
+  "X": "L",
+  "Y": "G"
+ }
+}

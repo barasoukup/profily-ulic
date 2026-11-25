@@ -1,0 +1,87 @@
+{
+ "1": {
+  "id": "m2b-sk-piestany-26",
+  "X": "L",
+  "Y": "G"
+ },
+ "2": {
+  "id": "m2-sk-bratislava-19",
+  "X": "L",
+  "Y": "G"
+ },
+ "3": {
+  "id": "m2-sk-poprad-3",
+  "X": "G",
+  "Y": "L"
+ },
+ "4": {
+  "id": "m2-sk-trnava-11",
+  "X": "L",
+  "Y": "G"
+ },
+ "5": {
+  "id": "m2b-sk-piestany-13",
+  "X": "G",
+  "Y": "L"
+ },
+ "6": {
+  "id": "m2-sk-trnava-20",
+  "X": "G",
+  "Y": "L"
+ },
+ "7": {
+  "id": "m2-sk-zilina-7",
+  "X": "G",
+  "Y": "L"
+ },
+ "8": {
+  "id": "m2-sk-trnava-38",
+  "X": "L",
+  "Y": "G"
+ },
+ "9": {
+  "id": "m2b-sk-levice-16",
+  "X": "G",
+  "Y": "L"
+ },
+ "10": {
+  "id": "m2b-sk-petrzalka-10",
+  "X": "L",
+  "Y": "G"
+ },
+ "11": {
+  "id": "m2-sk-bratislava-15",
+  "X": "G",
+  "Y": "L"
+ },
+ "12": {
+  "id": "m2-sk-martin-32",
+  "X": "L",
+  "Y": "G"
+ },
+ "13": {
+  "id": "m2b-sk-komarno-31",
+  "X": "G",
+  "Y": "L"
+ },
+ "14": {
+  "id": "m2b-sk-levice-20",
+  "X": "L",
+  "Y": "G"
+ },
+ "15": {
+  "id": "m2b-sk-ruzinov-18",
+  "X": "L",
+  "Y": "G"
+ },
+ "16": {
+  "id": "m2b-sk-trencin-21",
+  "X": "G",
+  "Y": "L"
+ },
+ "17": {
+  "id": "m2b-sk-bardejov-14",
+  "X": "G",
+  "Y": "L"
+ }
+}

@@ -375,7 +375,8 @@ vlastní silniční zákon Alandy nečten), na pobřeží 400 m tolerance jako u
 měst, každé jen ve svém obdélníku (`lanes-ortho.js` `FI_ORTHO`, `fi`): Helsinky 2026 (5 cm, tosiortofoto), Espoo
 „Ortokartta“ (asi 30 cm), Turku 2022 (tosiortofoto 5 cm), vše CC BY 4.0; jinde profil jen z OSM. Mapa povrchů Helsinek
 z registru veřejných ploch YLRE (WFS kartta.hel.fi, jako Tallinn: budovy OSM před ní, zeleň a voda OSM po ní, jen kde má
-vozovku nebo chodník do 15 m od středu řezu; `?helsinki=0`; A/B `evaluation/finland/ab/ZPRAVA.md`: lépe 10, hůř 3).
+pod středem řezu (do 3 m) díl svého druhu, pod ulicí pro auta vozovku; `?helsinki=0`; slepé A/B ulic pro auta
+`evaluation/finland/ab2/ZPRAVA.md`: lépe 16, hůř 9; s doplněním kolem mapy na nových obytných ulicích 11 : 7, `ab3`).
 Budovy: v Helsinkách registr budov města (podlaží, rok, materiál, fasáda, užití; `?hkibuild=0`), jinde Ryhti SYKE (body
 uvnitř obrysu domu z OSM; `?ryhti=0`); dřevěný dům jde do severských vzhledů (`house-looks.js nordicLook("FI")`; A/B
 `evaluation/finland/buildings-ab/ZPRAVA.md`). Hledání: Photon ve finštině/švédštině a adresy Ryhti `open_address`

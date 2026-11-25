@@ -1,5 +1,5 @@
 import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, SURFACES, LAMP_HEIGHTS, underSize } from "./types.js";
-import { localFrame, nearestStreet, snapToWay, placeCut, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, splitTwoWayLane, capWideLanes, pedestrianZone, treePitsAsSidewalk, widenNarrowTrams, carveCycleways, carveTramTracks, lanesFromShoulders, trackAlongRoad, crossFromA, lawNeedFor, isOnewayTags, MAX_REACH } from "./derive.js";
+import { localFrame, nearestStreet, savedStreet, snapToWay, placeCut, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, splitTwoWayLane, capWideLanes, pedestrianZone, treePitsAsSidewalk, widenNarrowTrams, carveCycleways, carveTramTracks, lanesFromShoulders, trackAlongRoad, crossFromA, lawNeedFor, isOnewayTags, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO, CH_ORTHO, NL_ORTHO, BE_ORTHO, LU_ORTHO, PL_ORTHO, FR_ORTHO, ES_ORTHO, PT_ORTHO, PT_MAINLAND, ES_NOT_PNOA, CY_ORTHO, MT_ORTHO, IT_ORTHO, EE_ORTHO, SI_ORTHO, FI_ORTHO, US_ORTHO, DK_ORTHO, DE_ORTHO, deWmsUrl, landsAt, landAt, orthoHereAt } from "./lanes-ortho.js";
 import { dkToken } from "./keys.js";
@@ -8,7 +8,7 @@ import { orthoOsmPolys, besidePassport, trimToEnds, P as ORTHO_P } from "./ortho
 import { LOOKS as HOUSE_LOOKS } from "./house-looks.js";
 // The gabled house looks with the gable's outline (house-looks.js; Bára to approve it, 23. 11. 2026): ?stit=1.
 if (new URLSearchParams(location.search).get("stit") === "1") HOUSE_LOOKS.gables = true;
-import { aiCut, aiKerbs, aiSurface, aiParking, parkFromAi, parkSkip, lawKerbs, layLaw, widenLaw, aiReady, onAiProgress } from "./ai-kerbs.js";
+import { aiCut, aiKerbs, aiSurface, aiParking, parkFromAi, parkSkip, lawKerbs, layLaw, lawUnsplits, widenLaw, aiReady, onAiProgress } from "./ai-kerbs.js";
 // ?off=… switches named parts of the estimate off (the A/B tests, evaluation/ortofoto-osm/regrese.mjs).
 { const off = new URLSearchParams(location.search).get("off"); if (off) ORTHO_P.off = new Set(off.split(",")); }
 // Tree pits as sidewalk (derive.js treePitsAsSidewalk): off, ?treepits=1 turns them on.
@@ -38,7 +38,7 @@ import { ruianBuilding } from "./gis.js";
 import { MAPY_KEY } from "./config.js";
 import { cleanProfile, cleanCut, retype } from "./validate.js";
 import { shares, surfaces } from "./shares.js";
-import { packProfile, unpackProfile, designParams } from "./share.js";
+import { packProfile, unpackProfile, designParams, cutHash, parseCutHash, sameCut } from "./share.js";
 import { checkRules, checkUnder, checkTrees } from "./rules.js";
 import { city, country, setCity, cityAt, closedAt, countryOfCity, loadBounds, loadStates, loadSkTowns, loadTowns } from "./city.js";
 import { TOWNS, placeAt } from "./towns/index.js";
@@ -540,7 +540,7 @@ window.cutAt = cutAt; // handy for testing from the console
 // The replay of recorded data (evaluation/replay/harness.js) reads what a visitor would see.
 if (globalThis.PROFILY_REPLAY) Object.assign(globalThis.PROFILY_REPLAY, { state, exportSvgs, restore, render });
 
-async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wantName = null) {
+async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wantName = null, wantWay = null) {
   logEdits(); // what was done with the previous cut, before it is replaced
   try {
     // The north of Cyprus, Italy beyond the open orthophotos: no profile (city.js closedAt).
@@ -555,7 +555,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       const pts = osmCache.way.geometry.map((g) => frame.toXY(g.lon, g.lat));
       near = { ...snapToWay(pts, [0, 0]), way: osmCache.way, pts };
     } else {
-      near = nearestStreet(osm, frame, [0, 0], wantName);
+      // The street the link names, if it is still there (derive.js savedStreet), else the nearest one.
+      near = (wantWay && savedStreet(osm, frame, wantWay)) || nearestStreet(osm, frame, [0, 0], wantName);
       // A click lands the cut away from junctions and crossings; a dragged cut stays where it is put, a saved one (a link,
       // a pasted position with its azimuth) exactly where it was saved.
       if (near) near = placeCut(osm, frame, near, bearing !== null);
@@ -710,12 +711,16 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     const lawSkip = parkSkip(near.way.tags, !near.dir || dir[0] * near.dir[0] + dir[1] * near.dir[1] >= 0, inZps === true || parking.length > 0);
     const lawAt = lawPark && !lawSkip.all ? lawKerbs(result) : [];
     if (lawAt.length) {
-      const again = deriveProfile({ ...args, polys: lastPolys, noParkGuess: true });
+      const again = deriveProfile({ ...args, polys: lastPolys, noParkGuess: true, lawAt });
       result = lastEnds ? trimToEnds(again, lastEnds) : again;
     }
     // Lanes, shoulders and parking on its own paving measured on the orthophoto (lanes-ortho.js).
-    const lanesFromOrtho = laneImg ? applyLanes(result, laneImg) : 0;
+    const lawOneway = isOnewayTags(near.way.tags) || near.way.tags?.junction === "roundabout", lawNeed = (lanes) => lawNeedFor(lawOneway, lanes);
+    const byRules = lawAt.length && lawOneway && !(+near.way.tags?.lanes >= 2) ? structuredClone({ segments: result.segments, extent: result.extent }) : null;
+    let lanesFromOrtho = laneImg ? applyLanes(result, laneImg) : 0;
     lanesFromShoulders(result.segments, near.way.tags);
+    // A one-way street the lines (or the width, lanesFromShoulders) split, the law's parking known (lawUnsplits).
+    if (byRules && lawUnsplits(byRules, result, lawAt, lawPark, lawNeed, lawSkip, !orthoOsm)) { result.segments = byRules.segments; lanesFromOrtho = 0; }
     splitTwoWayLane(result.segments, near.way.tags);
     capWideLanes(result.segments, near.way.tags);
     // The technical map's own roadway in a pedestrian zone stays a lane; the estimate's does not.
@@ -724,7 +729,6 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     const pitsJoined = treePitsAsSidewalk(result.segments, result.extent, laneImg?.st);
     if (orthoOsm) widenNarrowTrams(result.segments);
     const lawRows = [];
-    const lawOneway = isOnewayTags(near.way.tags) || near.way.tags?.junction === "roundabout", lawNeed = (lanes) => lawNeedFor(lawOneway, lanes);
     if (lawAt.length) layLaw(result, lawAt, lawPark, lawNeed, { sure: true, skip: lawSkip, rows: lawRows });
     // Parking where the model sees cars at the kerb (ai-kerbs.js parkFromAi; Bára 20. 11. 2026), ?off=aipark.
     // Not where parking data decide: a paid zone, the city's parking sections at the cut, a side OSM tags.
@@ -925,7 +929,7 @@ function cutText(cut) {
 function showCutInfo() {
   if (!state.cut) return;
   const r = state.cut.reach || defaultReach();
-  history.replaceState(null, "", `#rez=${state.cut.lat.toFixed(6)},${state.cut.lon.toFixed(6)},${Math.round(state.cut.bearing)},${r.left.toFixed(1)},${r.right.toFixed(1)}`);
+  history.replaceState(null, "", cutHash(state.cut, r));
   // Mapy.com at the cut with the panorama layer on (ovl=8). A link straight into a panorama needs
   // the photo's id (pid), which only their Panorama API (with a key) gives; one click on the street opens it.
   // With a Mapy.com key the panorama opens here; without one, a link to Mapy.com at the cut.
@@ -988,8 +992,8 @@ $("#btn-copy-cut").onclick = async () => {
 // Paste "lat, lon · azimut N°" (or a #rez= link) to jump to a cut.
 function parseCut(text) {
   const m = text.match(/(-?\d+\.\d+)\s*,\s*(-?\d+\.\d+)(?:[^\d]+?(\d+(?:\.\d+)?)\s*°?)?/);
-  const h = text.match(/#rez=(-?[\d.]+),(-?[\d.]+),(-?[\d.]+)(?:,([\d.]+),([\d.]+))?/);
-  if (h) return { lat: +h[1], lon: +h[2], bearing: +h[3], reach: h[4] ? { left: +h[4], right: +h[5] } : null };
+  const h = parseCutHash(text);
+  if (h) return h;
   if (!m) return null;
   return { lat: +m[1], lon: +m[2], bearing: m[3] !== undefined ? +m[3] + 90 : null };
 }
@@ -998,7 +1002,7 @@ $("#cut-goto").onchange = (e) => {
   const c = parseCut(e.target.value);
   if (!c) return status(tr("Polohu jsem nepoznala. Vložte třeba: {example} · azimut 344°", { example: city.example }), "error");
   map.setView([c.lat, c.lon], 19);
-  cutAt(c.lat, c.lon, false, c.bearing, c.reach);
+  cutAt(c.lat, c.lon, false, c.bearing, c.reach, null, c.way);
   e.target.value = "";
 };
 
@@ -2632,9 +2636,8 @@ try {
   try { tab = JSON.parse(sessionStorage.getItem("profily-tab") || "null"); sessionStorage.removeItem("profily-tab"); } catch {}
   const saved = tab || JSON.parse(localStorage.getItem(STORE) || "null");
   // A reload of the same cut (no design in the link) keeps the work saved in this browser.
-  const same = (a, b) => a && b && a.lat.toFixed(6) === b.lat.toFixed(6) && a.lon.toFixed(6) === b.lon.toFixed(6) && Math.round(a.bearing) === Math.round(b.bearing);
   const design = linked && designParams(location.hash);
-  if (linked && saved?.stav && !design.navrh && !design.stav && same(linked, saved.cut) && (tab || (saved.opts ?? "") === optsKey())) linked = null;
+  if (linked && saved?.stav && !design.navrh && !design.stav && sameCut(linked, saved.cut) && (tab || (saved.opts ?? "") === optsKey())) linked = null;
   // A former city page (?mesto=) opens over that city, not over a cut saved elsewhere.
   const elsewhere = startCity && !linked && saved?.cut && cityAt(saved.cut.lat, saved.cut.lon) !== startCity;
   if (saved?.stav && !linked && !elsewhere) {
@@ -2652,7 +2655,7 @@ async function openLink(hash) {
   const design = designParams(hash);
   $("#pano-dialog").close();
   map.setView([c.lat, c.lon], 19);
-  await cutAt(c.lat, c.lon, false, c.bearing, c.reach);
+  await cutAt(c.lat, c.lon, false, c.bearing, c.reach, null, c.way);
   if (!state.stav || (!design.navrh && !design.stav)) return;
   try {
     const take = async (text, into) => {
