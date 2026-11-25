@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "stredni", "why": "Jedna obslužná vozovka mezi obrubami, v ortofotu asi 6,5 m; 6,4 a 6,2 se prakticky neliší."}
+{"n": 2, "verdict": "X", "jistota": "vysoka", "why": "Dva pruhy asi 9 m začínají 12 m od fasády haly a vpravo úzký chodník s trávou; Y má vlevo falešný široký chodník a plochu a vpravo chodník 5,6 m, který je tráva."}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "Šest pruhů v obou, ale vlevo je skutečný chodník asi 3,3 m přímo u vozovky (Y), X tam dává zeleň a chodník 1,7; vpravo také chodník kolem 2,5-3 m."}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "Y správně vidí krajnice a svodidla mezi vozovkami a 5 pruhů ve střední vozovce; X je useknutý, zato lépe chytá oddělení 2+3 pruhy; Y ale na pravé vozovce má 3 pruhy místo 4."}
+{"n": 5, "verdict": "X", "jistota": "vysoka", "why": "Dva pruhy asi 9 m mezi obrubami, po obou stranách pás trávy a chodník (vpravo 1,5 m) a pak trávník k domu; Y má široké chodníky a plochu, které tam nejsou."}
+{"n": 6, "verdict": "X", "jistota": "stredni", "why": "Sedm pruhů (4 + 3) s úzkým středovým pásem a chodníky u obrub; Y má jen 6 pruhů a dva dělicí pásy tam, kde je jeden dvojitý žlutý pás."}
+{"n": 7, "verdict": "Y", "jistota": "nizka", "why": "Ortofoto ukazuje chodník 1,5 m, 3,5 m trávníku, vozovku s chráněnými cyklopruhy a vpravo chodník u okraje; Y sedí v zeleni a šířkách, X má vlevo 4,9 m chodníku, který je tráva, ač cyklopruhy tuší."}
+{"n": 8, "verdict": "X", "jistota": "vysoka", "why": "Vozovka mezi obrubami asi 9 m, vpravo chodník 1,5 m, jinak předzahrádky až k domům (13,6 a 15,3 m); Y má vozovku 6,8 m a plochy a chodníky, které tam nejsou."}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "Úzká ulice (~7,5 m) s parkováním jen na jedné straně (auta v ortofotu i na fotce vpravo); Y dává parkování po obou stranách."}
+{"n": 10, "verdict": "X", "jistota": "nizka", "why": "Okraje sedí (chodník, 4 m trávy, vozovka, vpravo trávník a chodník), ale má o jeden pruh víc (7 místo 6); Y má správných 3+3 pruhy, ale falešné krajnice a chodníky kolem vozovky."}

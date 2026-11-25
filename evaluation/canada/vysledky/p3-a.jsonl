@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "stredni", "why": "Vozovka cca 11 m, vlevo zelený pás a chodník, vpravo chodník u obruby; Y má chodníky z obou stran, X má 6 m chodník/plochu bez opory."}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "Dva pruhy, stání na pravé straně, vlevo trávník a chodník dál od vozovky; X má 6 m chodník vpravo, který tam není."}
+{"n": 3, "verdict": "X", "jistota": "stredni", "why": "Vícepruhová dálnice se čtyřmi jízdními drahami a středovými bariérami (5+4+3+3 pruhů); Y má jen 2 až 3 pruhy a obří plochy."}
+{"n": 4, "verdict": "Y", "jistota": "vysoka", "why": "Sedm pruhů se středním odbočovacím, po obou stranách trávník, chodník a trávník; X má vpravo 6 m chodník, který neexistuje."}
+{"n": 5, "verdict": "Y", "jistota": "stredni", "why": "Jednopruhový úzký most (Baileyho), asi 3 až 4 m; X má dva pruhy 5,4 m."}
+{"n": 6, "verdict": "X", "jistota": "vysoka", "why": "Dvě vozovky oddělené 6 m pásem se stromy, chodník a zeleň vlevo, vpravo cyklopruh, trávník a chodník; X to sedí i v šířkách."}
+{"n": 7, "verdict": "X", "jistota": "nizka", "why": "Vlevo dvorek a chodník, dva pruhy kolem 9 m, vpravo chodník těsně u domu; X sedí lépe než Y s 6 m chodníkem."}
+{"n": 8, "verdict": "X", "jistota": "stredni", "why": "Dvoupruhová místní ulice se zelenými pásy a chodníky odsazenými od vozovky po obou stranách; Y má 6 m chodník u vozovky."}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "Křižovatka, vlevo široký roh chodníku, vpravo obruba, zelený pás a plocha; šířka vozovky a úzký střed odpovídají Y."}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "Rampa se dvěma pruhy a zvýšeným středem, oba profily mají stejné pořadí a podobné šířky; liší se jen okraje."}

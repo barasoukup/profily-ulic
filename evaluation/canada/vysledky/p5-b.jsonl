@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "Vozovka asi 22 m se 4 jizdnimi pruhy a stredovym pasem; X ma 4 pruhy, Y jen 3 a siroke plochy misto travniku."}
+{"n": 2, "verdict": "X", "jistota": "nizka", "why": "Obe maji 4+3 pruhy se stredovym delicim; X lepe sedi na delici 1,5 m, pravou stranu (chodnik, plocha) a levy chodnik, Y ma vlevo 15 m zelene."}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "Yonge St: chodnik se stromy, vozovka se stredovym delicim (kvetinace) a parkovanim; X ma vozovku s delicim, Y ma uprostred 11 m plochy."}
+{"n": 4, "verdict": "X", "jistota": "nizka", "why": "Vpravo travnik mezi obrubou a chodnikem sedi u X, vlevo chodnik u obruby a stani; dva pruhy ve stejnem poctu."}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "Dva jizdni pruhy, chodniky u obou; sirka vozovky a travnik vlevo se nedaji rozlisit, kazdy ma neco lepsi."}
+{"n": 6, "verdict": "X", "jistota": "stredni", "why": "Vozovka asi 7,5-8 m s travnatymi pasy a chodnikem dal od obruby; Y ma 6 m chodniky u obruby a stani, ktere tam neni."}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "Uzky chodnik 1,5 m vlevo u obruby a dva pruhy sedi; Y ma 6 m chodniky na obou stranach, ktere tam nejsou."}
+{"n": 8, "verdict": "X", "jistota": "vysoka", "why": "Dvoupruhova silnice bez chodniku (zluta osa, bile krajni cary), okolo travnik a parkoviste; Y vymysli 6 m chodniky."}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "Nalezi parkoviste a travnaty pas, prvni vozovka s jednim pruhem a krajnici, mezera s zabradlim, druha vozovka se 3 pruhy a krajnicemi; Y sedi na delici a tri pruhy."}
+{"n": 10, "verdict": "X", "jistota": "vysoka", "why": "V ortofotu je dvoukolejna tramvaj uprostred, cyklopruhy a pruhy po stranach; X ma tramvaj i sled chodnik-zelen-cyklopruh-2 pruhy, Y tramvaj nema."}

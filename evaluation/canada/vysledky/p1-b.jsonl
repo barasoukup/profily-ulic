@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "dvě vozovky s bariérou uprostřed a asi 15-18 pruhy; X má pruhů a středových pásů blíž (15 pruhů), Y jen 9 pruhů a středový pás 4,3 m na špatném místě"}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "dvojitá žlutá uprostřed a 2+2 pruhy s širokými zpevněnými krajnicemi; Y má střed a širší krajnice, X je jen 4 pruhy a krajnice 1,6 m (střed zelení u Y je chybný typ)"}
+{"n": 3, "verdict": "X", "jistota": "vysoka", "why": "kolektor 2 pruhy, bariéra, 3 pruhy, široký střed s bariérou, 5 pruhů vpravo; X to věrně kopíruje, Y má jen po jednom pruhu"}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "úzká ulice mezi domy asi 20 m s chodníky a zelení/stromy vpravo; Y sedí šířkou a zelení vpravo, X má jen 15 m"}
+{"n": 5, "verdict": "Y", "jistota": "stredni", "why": "3 pruhy, žlutý dělicí pás uprostřed a 2 pruhy vpravo; Y má střed a 3+2, X nemá dělicí pás a pravé pruhy přehnaně široké"}
+{"n": 6, "verdict": "Y", "jistota": "vysoka", "why": "4 pruhy, dělicí ostrůvek, 3 pruhy; Y přesně, X má 6 pruhů bez středu a chodníky 6 m"}
+{"n": 7, "verdict": "X", "jistota": "nizka", "why": "dálnice 6+6 pruhů s bariérou uprostřed; X má bariéru jako delici, Y střed jako plocha 14 m; šířky podobně nepřesné"}
+{"n": 8, "verdict": "X", "jistota": "vysoka", "why": "2 pruhy, bariéra, 3 pruhy, široký střed s bariérou a 5 pruhů; X souhlasí, Y má vpravo jen jeden pruh"}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "vlevo úzký chodník a trávník, vpravo široká zpevněná plocha před domy; Y strany sedí, X je prohodil (chodník 6 m vlevo); 4 pruhy u obou"}
+{"n": 10, "verdict": "X", "jistota": "stredni", "why": "jednopruhová rampa s krajnicemi a zelení; X bez vymyšleného chodníku a plochy, které Y přidává vpravo"}

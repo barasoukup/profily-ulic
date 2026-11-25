@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "stredni", "why": "jedna vozovka asi 6,5 m bez chodniku a zeleni, oba profily prakticky shodne"}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "travnik, 2 pruhy asi 9 m a pas za nimi sedi; Y ma misto travniku chodnik a plochu"}
+{"n": 3, "verdict": "Y", "jistota": "vysoka", "why": "sest pruhu bez zelenych pasu, chodniky primo u obruby na obou stranach"}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "deliciho pasy a rozlozeni vozovek odpovida (30 m, 26 m mezi bariérami); X zacina posunuty a konci u prvni bariery"}
+{"n": 5, "verdict": "X", "jistota": "stredni", "why": "vozovka asi 8 m, na obou stranach zelený pas a tenky chodnik; Y ma vpravo siroky chodnik a plochu"}
+{"n": 6, "verdict": "X", "jistota": "vysoka", "why": "4 pruhy, jeden stredni pas a 3 pruhy, chodniky u okraju; Y ma dva deliciho pasy"}
+{"n": 7, "verdict": "Y", "jistota": "vysoka", "why": "tenky chodnik, zelen, siroka krajnice, 2 pruhy, krajnice, chodnik; X ma siroky chodnik a cyklostezky"}
+{"n": 8, "verdict": "X", "jistota": "stredni", "why": "vozovka asi 8,7 m, vpravo hned chodnik, vlevo zelen a domy; Y ma chodniky a plochy jinde"}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "parkovani jen na jedne strane, zelene pasy a chodniky za nimi na obou stranach"}
+{"n": 10, "verdict": "X", "jistota": "vysoka", "why": "chodnik, zelen, 3 pruhy, stredni pas, 3-4 pruhy, zelen, chodnik; Y ma siroke krajnice a chodnik u vozovky"}

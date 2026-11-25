@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "stredni", "why": "Vozovka v ortofotu je asi 13 m, po stranách úzké chodníky 1,5-2 m u budov; X má chodníky 6 m, které tam nejsou."}
+{"n": 2, "verdict": "Y", "jistota": "nizka", "why": "Dva jízdní pruhy, vozovka asi 8,5 m, na obou stranách stromy a zeleň; Y sedí šířkou vozovky, X ji zužuje krajnicí."}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "Vlevo zelený pás, úzký chodník a další trávník, vozovka asi 11 m s úzkými chodníky; X má 6,75 m chodník vlevo, který tam není."}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "Pětipruhová vozovka asi 14-15 m, úzké chodníky 1,5-2 m u zástavby; X má na pravé straně chodník 6 m, který tam není."}
+{"n": 5, "verdict": "Y", "jistota": "nizka", "why": "Úzká obslužná komunikace do 9 m v trávě; šířka 7 m sedí lépe než 5,4 m, malý chodník vlevo je sporný."}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "Úzké chodníky u obou okrajů, vozovka asi 14 m s cyklopruhem vpravo; X má 6 m chodníky, které tam nejsou."}
+{"n": 7, "verdict": "X", "jistota": "vysoka", "why": "Vlevo úzký chodník a široký zelený pás, vozovka asi 16 m a vpravo zpevněná plocha parkoviště s chodníkem; Y má vpravo chodník 4 m a širší vozovku."}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "Úzké chodníky 2 m na obou stranách, vozovka asi 14 m s parkovacím pásem vlevo a cyklopruhem vpravo; X má vlevo chodník 6 m."}
+{"n": 9, "verdict": "stejne", "jistota": "nizka", "why": "Jen úzká komunikace asi 5,5-6 m v zeleni, oba profily jsou prakticky shodné."}
+{"n": 10, "verdict": "X", "jistota": "stredni", "why": "Řez v ústí vedlejší ulice: vlevo parkoviště/plocha, zeleň a chodník, vozovka asi 14,5 m, vpravo chodník a prázdná plocha; Y končí chodníky těsně u vozovky a plochu vynechává."}

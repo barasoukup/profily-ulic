@@ -1,0 +1,7 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "dvě auta v pruzích, vlevo chodník u hřiště, vpravo úzký chodník a pás zeleně se stromy; Y má vpravo 5 m chodník, který tam není"}
+{"n": 2, "verdict": "X", "jistota": "vysoka", "why": "dvě 5m pruhy se střední čárou, po stranách zelený pás, chodník a dál zeleň k domům; sedí na obě strany"}
+{"n": 3, "verdict": "X", "jistota": "stredni", "why": "vlevo zeleň a chodník, vozovka s ostrůvkem a další pruhy; Y s jediným pruhem neodpovídá"}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "čtyři pruhy v obou; vlevo zpevněné příjezdy a chodník u vozovky, ne 18 m zeleně; šířka chodníku nepřesná"}
+{"n": 5, "verdict": "Y", "jistota": "nizka", "why": "dva pruhy, vlevo chodník u obrubníku, vpravo zpevněná plocha křižovatky; X má jen zeleň bez chodníku"}
+{"n": 6, "verdict": "Y", "jistota": "nizka", "why": "vlevo zeleň, chodník se stromovým pásem, pak široká vozovka s krajnicemi a vpravo stezka; X nemá levý pás zeleně správně"}
+{"n": 7, "verdict": "Y", "jistota": "nizka", "why": "více pruhů v několika větvích s dělicím pásem a zelení mezi nimi; Y lépe popisuje jedno až dva pruhy a úzké krajnice"}

@@ -1,0 +1,962 @@
+[
+ {
+  "id": "t-1",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "arterial",
+  "name": "Eglinton Avenue East",
+  "highway": "primary",
+  "wayId": 37229593,
+  "lat": 43.7432406,
+  "lon": -79.2186472,
+  "bearing": 71.1,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-2",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "local",
+  "name": "Metropolitan Road",
+  "highway": "residential",
+  "wayId": 24501834,
+  "lat": 43.7681258,
+  "lon": -79.298691,
+  "bearing": 72.7,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-3",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "arterial",
+  "name": "Leslie Street",
+  "highway": "secondary",
+  "wayId": 1391990035,
+  "lat": 43.7563407,
+  "lon": -79.360726,
+  "bearing": -8.4,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-4",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "local",
+  "name": "Coulter Avenue",
+  "highway": "residential",
+  "wayId": 9874247,
+  "lat": 43.7047301,
+  "lon": -79.5275368,
+  "bearing": 72.1,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-5",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "service",
+  "name": "Lakeshore Avenue",
+  "highway": "service",
+  "wayId": 7779140,
+  "lat": 43.6133271,
+  "lon": -79.3813831,
+  "bearing": 67.2,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-6",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "collector",
+  "name": "Rogers Road",
+  "highway": "tertiary",
+  "wayId": 513099066,
+  "lat": 43.6830697,
+  "lon": -79.4569358,
+  "bearing": 76.8,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-7",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "service",
+  "name": "",
+  "highway": "service",
+  "wayId": 1245175616,
+  "lat": 43.6019963,
+  "lon": -79.5447926,
+  "bearing": 72.7,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-8",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "arterial",
+  "name": "Rathburn Road",
+  "highway": "secondary",
+  "wayId": 23127413,
+  "lat": 43.6540177,
+  "lon": -79.5684166,
+  "bearing": 71,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-9",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "collector",
+  "name": "Runnymede Road",
+  "highway": "tertiary",
+  "wayId": 26827976,
+  "lat": 43.6555009,
+  "lon": -79.4780881,
+  "bearing": -17.1,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-10",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "local",
+  "name": "Sheridan Avenue",
+  "highway": "residential",
+  "wayId": 335622228,
+  "lat": 43.6523767,
+  "lon": -79.4346366,
+  "bearing": -15.7,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-11",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "arterial",
+  "name": "Lawrence Avenue West",
+  "highway": "secondary",
+  "wayId": 38518766,
+  "lat": 43.7223562,
+  "lon": -79.4150997,
+  "bearing": 73,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-12",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "local",
+  "name": "Parkway Forest Drive",
+  "highway": "residential",
+  "wayId": 284060424,
+  "lat": 43.7694833,
+  "lon": -79.3428848,
+  "bearing": 76.4,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-13",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "arterial",
+  "name": "Meadowvale Road",
+  "highway": "secondary",
+  "wayId": 1385481581,
+  "lat": 43.8009957,
+  "lon": -79.1669242,
+  "bearing": -20.5,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-14",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "local",
+  "name": "Chetta Place",
+  "highway": "residential",
+  "wayId": 491647830,
+  "lat": 43.6959995,
+  "lon": -79.5522801,
+  "bearing": -2.7,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-15",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "collector",
+  "name": "Sentinel Road",
+  "highway": "tertiary",
+  "wayId": 8068383,
+  "lat": 43.7631056,
+  "lon": -79.5007396,
+  "bearing": -11.7,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-16",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "arterial",
+  "name": "Lawrence Avenue East",
+  "highway": "secondary",
+  "wayId": 43172651,
+  "lat": 43.7621791,
+  "lon": -79.2142722,
+  "bearing": 75,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-17",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "motorway",
+  "name": "",
+  "highway": "motorway_link",
+  "wayId": 4663415,
+  "lat": 43.712065,
+  "lon": -79.504188,
+  "bearing": -35.4,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-18",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "arterial",
+  "name": "Kennedy Road",
+  "highway": "secondary",
+  "wayId": 234348552,
+  "lat": 43.7806619,
+  "lon": -79.2869613,
+  "bearing": -18.1,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-19",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "arterial",
+  "name": "Bathurst Street",
+  "highway": "secondary",
+  "wayId": 552490264,
+  "lat": 43.7301701,
+  "lon": -79.4322659,
+  "bearing": -9.6,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-20",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "collector",
+  "name": "Three Valleys Drive",
+  "highway": "tertiary",
+  "wayId": 36250559,
+  "lat": 43.7518955,
+  "lon": -79.334241,
+  "bearing": 71.3,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-21",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "arterial",
+  "name": "Bathurst Street",
+  "highway": "secondary",
+  "wayId": 37181791,
+  "lat": 43.7922239,
+  "lon": -79.4456612,
+  "bearing": -12.6,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-22",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "arterial",
+  "name": "Avenue Road",
+  "highway": "secondary",
+  "wayId": 44077189,
+  "lat": 43.7089503,
+  "lon": -79.4105563,
+  "bearing": -17.2,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-23",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "local",
+  "name": "Valdor Drive",
+  "highway": "residential",
+  "wayId": 1499783163,
+  "lat": 43.8124173,
+  "lon": -79.2865904,
+  "bearing": 73.4,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-24",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "motorway",
+  "name": "Highway 401 Collector",
+  "highway": "motorway",
+  "wayId": 250655297,
+  "lat": 43.7170221,
+  "lon": -79.5114049,
+  "bearing": 81.5,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-25",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "arterial",
+  "name": "Lawrence Avenue West",
+  "highway": "secondary",
+  "wayId": 1264790052,
+  "lat": 43.7012929,
+  "lon": -79.5112512,
+  "bearing": 72.3,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-26",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "motorway",
+  "name": "Highway 401 Express",
+  "highway": "motorway",
+  "wayId": 86811236,
+  "lat": 43.7972612,
+  "lon": -79.191064,
+  "bearing": 79.8,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-27",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "local",
+  "name": "Boreal Road",
+  "highway": "residential",
+  "wayId": 34237023,
+  "lat": 43.640907,
+  "lon": -79.5732928,
+  "bearing": 72.1,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-28",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "service",
+  "name": "",
+  "highway": "service",
+  "wayId": 32399225,
+  "lat": 43.705268,
+  "lon": -79.3355964,
+  "bearing": -21.4,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-29",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "motorway",
+  "name": "Highway 401 Express",
+  "highway": "motorway",
+  "wayId": 33765234,
+  "lat": 43.7657629,
+  "lon": -79.3730355,
+  "bearing": 83.6,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-30",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "arterial",
+  "name": "Yonge Street",
+  "highway": "primary",
+  "wayId": 25757063,
+  "lat": 43.6605276,
+  "lon": -79.3828143,
+  "bearing": -18.8,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-31",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "service",
+  "name": "",
+  "highway": "service",
+  "wayId": 503659173,
+  "lat": 43.7292799,
+  "lon": -79.2282482,
+  "bearing": -48.1,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-32",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "local",
+  "name": "Markland Drive",
+  "highway": "residential",
+  "wayId": 551912975,
+  "lat": 43.6301965,
+  "lon": -79.5815714,
+  "bearing": -46.8,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-33",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "motorway",
+  "name": "Highway 404",
+  "highway": "motorway",
+  "wayId": 857361648,
+  "lat": 43.7902215,
+  "lon": -79.342546,
+  "bearing": -8.4,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-34",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "local",
+  "name": "Fleeceline Road",
+  "highway": "residential",
+  "wayId": 27207691,
+  "lat": 43.6199682,
+  "lon": -79.4856892,
+  "bearing": -38.9,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-35",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "motorway",
+  "name": "",
+  "highway": "motorway_link",
+  "wayId": 86805364,
+  "lat": 43.7966084,
+  "lon": -79.1486783,
+  "bearing": 55.2,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-36",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "local",
+  "name": "Royaleigh Avenue",
+  "highway": "residential",
+  "wayId": 9233278,
+  "lat": 43.698798,
+  "lon": -79.5328255,
+  "bearing": 74.2,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-37",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "local",
+  "name": "Lake Shore Drive",
+  "highway": "residential",
+  "wayId": 33539703,
+  "lat": 43.6005707,
+  "lon": -79.4983721,
+  "bearing": 29.3,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-38",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "motorway",
+  "name": "Highway 27",
+  "highway": "motorway",
+  "wayId": 553533098,
+  "lat": 43.6823183,
+  "lon": -79.5797113,
+  "bearing": -12.9,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-39",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "collector",
+  "name": "Old Finch Avenue",
+  "highway": "tertiary",
+  "wayId": 14265067,
+  "lat": 43.8254705,
+  "lon": -79.1969229,
+  "bearing": -56.4,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-40",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "local",
+  "name": "Kilgour Road",
+  "highway": "residential",
+  "wayId": 34315533,
+  "lat": 43.7167718,
+  "lon": -79.3778883,
+  "bearing": 74.6,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-41",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "collector",
+  "name": "Leslie Street",
+  "highway": "tertiary",
+  "wayId": 14746698,
+  "lat": 43.6537019,
+  "lon": -79.3239896,
+  "bearing": -29.6,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-42",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "service",
+  "name": "Elmcrest Road",
+  "highway": "service",
+  "wayId": 34221859,
+  "lat": 43.6478445,
+  "lon": -79.587259,
+  "bearing": -45,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-43",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "motorway",
+  "name": "Highway 401 Collector",
+  "highway": "motorway",
+  "wayId": 286782347,
+  "lat": 43.7840614,
+  "lon": -79.239706,
+  "bearing": 70.5,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-44",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "local",
+  "name": "Fenwick Avenue",
+  "highway": "residential",
+  "wayId": 4853772,
+  "lat": 43.6776672,
+  "lon": -79.3482542,
+  "bearing": -16.7,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-45",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "motorway",
+  "name": "Highway 427 Express",
+  "highway": "motorway",
+  "wayId": 31963890,
+  "lat": 43.6239014,
+  "lon": -79.5549202,
+  "bearing": -18.3,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-46",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "local",
+  "name": "Charlemont Crescent",
+  "highway": "residential",
+  "wayId": 36367551,
+  "lat": 43.7716643,
+  "lon": -79.3143033,
+  "bearing": -54.8,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-47",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "local",
+  "name": "Gair Drive",
+  "highway": "residential",
+  "wayId": 27208413,
+  "lat": 43.6057589,
+  "lon": -79.5503258,
+  "bearing": -17,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-48",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "arterial",
+  "name": "The Queensway",
+  "highway": "secondary",
+  "wayId": 1270300294,
+  "lat": 43.6324859,
+  "lon": -79.476544,
+  "bearing": 47.8,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-49",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "motorway",
+  "name": "Bayview-Bloor Ramp",
+  "highway": "motorway_link",
+  "wayId": 195203649,
+  "lat": 43.682855,
+  "lon": -79.3603235,
+  "bearing": 27.6,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-50",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "local",
+  "name": "Debby Court",
+  "highway": "residential",
+  "wayId": 9522831,
+  "lat": 43.7082448,
+  "lon": -79.5252254,
+  "bearing": 73.3,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-51",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "arterial",
+  "name": "Progress Avenue",
+  "highway": "secondary",
+  "wayId": 607539921,
+  "lat": 43.783209,
+  "lon": -79.2319067,
+  "bearing": 21.4,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-52",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "local",
+  "name": "Stilecroft Drive",
+  "highway": "residential",
+  "wayId": 37048923,
+  "lat": 43.7503896,
+  "lon": -79.4943753,
+  "bearing": 70.1,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-53",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "local",
+  "name": "Thurodale Avenue",
+  "highway": "residential",
+  "wayId": 37102846,
+  "lat": 43.702593,
+  "lon": -79.4975986,
+  "bearing": 72.6,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-54",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "arterial",
+  "name": "Dixon Road",
+  "highway": "secondary",
+  "wayId": 206187573,
+  "lat": 43.686474,
+  "lon": -79.6003413,
+  "bearing": 83.7,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-55",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "local",
+  "name": "Rolark Drive",
+  "highway": "residential",
+  "wayId": 38521536,
+  "lat": 43.7645244,
+  "lon": -79.2933631,
+  "bearing": -20.4,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-56",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "arterial",
+  "name": "Eglinton Avenue East",
+  "highway": "primary",
+  "wayId": 434802682,
+  "lat": 43.7219656,
+  "lon": -79.3341715,
+  "bearing": 67.5,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-57",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "collector",
+  "name": "Davenport Road",
+  "highway": "tertiary",
+  "wayId": 35038704,
+  "lat": 43.6767333,
+  "lon": -79.4176677,
+  "bearing": 85.7,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-58",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "local",
+  "name": "Henning Avenue",
+  "highway": "residential",
+  "wayId": 10153792,
+  "lat": 43.7064261,
+  "lon": -79.4015526,
+  "bearing": -16.2,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-59",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "motorway",
+  "name": "",
+  "highway": "motorway_link",
+  "wayId": 3979892,
+  "lat": 43.765799,
+  "lon": -79.3398121,
+  "bearing": -72.7,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ },
+ {
+  "id": "t-60",
+  "country": "CA",
+  "town": "toronto",
+  "kind": "collector",
+  "name": "Conlins Road",
+  "highway": "tertiary",
+  "wayId": 1052052971,
+  "lat": 43.8003254,
+  "lon": -79.1884079,
+  "bearing": -17.2,
+  "variants": [
+   "def",
+   "map0"
+  ]
+ }
+]

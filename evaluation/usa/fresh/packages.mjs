@@ -7,13 +7,15 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { orthoImage } from "../../usa-dc/prepare.mjs";
-const HERE = path.dirname(new URL(import.meta.url).pathname), FOTO = path.join(HERE, "data", "foto");
+// (Another city's measurement by the same code: EVAL_DIR, EVAL_DATA, EVAL_OFF, EVAL_ORTHO, evaluation/canada/measure.sh.)
+const HERE = process.env.EVAL_DIR || path.dirname(new URL(import.meta.url).pathname), NAME = process.env.EVAL_DATA || "us-fresh", OFF = process.env.EVAL_OFF || "dc0", UNI = new URL("../../universal/data/", import.meta.url).pathname;
+const FOTO = path.join(HERE, "data", "foto");
 let seed = 251127;
 const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
 const shuffle = (a) => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
-const TOKEN = (await fs.readFile(path.join(HERE, "..", "..", "streetview", "token.local"), "utf8")).trim();
+const TOKEN = (await fs.readFile(new URL("../../streetview/token.local", import.meta.url).pathname, "utf8")).trim();
 const angle = (a, b) => Math.abs(((a - b + 540) % 360) - 180);
-const sample = JSON.parse(await fs.readFile(path.join(HERE, "sample.json"), "utf8")), rows = JSON.parse(await fs.readFile(path.join(HERE, "..", "..", "universal", "data", "us-fresh.json"), "utf8"));
+const sample = JSON.parse(await fs.readFile(path.join(HERE, process.env.EVAL_SAMPLE || "sample.json"), "utf8")), rows = JSON.parse(await fs.readFile(path.join(UNI, `${NAME}.json`), "utf8"));
 const row = (id, v) => rows.find((r) => r.id === id && r.variant === v);
 await fs.mkdir(FOTO, { recursive: true }); await fs.mkdir(path.join(HERE, "vysledky"), { recursive: true });
 async function photos(r) {
@@ -31,24 +33,24 @@ async function photos(r) {
 }
 const ortho = async (r, half, out) => {
   const f = path.join(FOTO, `${r.id}-${half}-ortho.jpg`);
-  if (!(await fs.stat(f).catch(() => null))) { await orthoImage({ lat: r.lat, lon: r.lon, bearing: r.bearing, half }, f); await new Promise((q) => setTimeout(q, 500)); }
+  if (!(await fs.stat(f).catch(() => null))) { await orthoImage({ lat: r.lat, lon: r.lon, bearing: r.bearing, half }, f, process.env.EVAL_ORTHO ? { service: process.env.EVAL_ORTHO } : {}); await new Promise((q) => setTimeout(q, 500)); }
   await fs.copyFile(f, out);
 };
 const fmt = (r) => r.parts.map(([t, w]) => `${t} ${w}`).join(" | "), differs = (a, b) => a.parts.length !== b.parts.length || a.parts.some(([t, w], i) => t !== b.parts[i][0] || Math.abs(w - b.parts[i][1]) >= 0.2);
 const halfOf = (...p) => Math.max(30, Math.ceil(Math.max(...p.map((r) => r.parts.reduce((s, x) => s + x[1], 0))) / 2) + 12);
-const full = sample.filter((s) => row(s.id, "def")?.parts?.length && row(s.id, "dc0")?.parts?.length);
+const full = sample.filter((s) => row(s.id, "def")?.parts?.length && row(s.id, OFF)?.parts?.length);
 console.log("bez profilu:", sample.filter((s) => !full.includes(s)).map((s) => s.id).join(", ") || "žádný");
-const pairs = shuffle(full.filter((s) => differs(row(s.id, "def"), row(s.id, "dc0"))));
+const pairs = shuffle(full.filter((s) => differs(row(s.id, "def"), row(s.id, OFF))));
 console.log("dvojic", pairs.length, "beze změny:", full.filter((s) => !pairs.includes(s)).map((s) => s.id).join(", ") || "žádný");
 const key = {}, noPhoto = [];
 for (let k = 0; k * 10 < pairs.length; k++) {
-  const dir = path.join(HERE, "data", `ab-${k + 1}`), L = [await fs.readFile(path.join(HERE, "POKYN-AB.md"), "utf8"), ""];
+  const dir = path.join(HERE, "data", `ab-${k + 1}`), L = [await fs.readFile(new URL("POKYN-AB.md", import.meta.url), "utf8"), ""];
   await fs.mkdir(dir, { recursive: true });
   let n = 0;
   for (const s of pairs.slice(k * 10, (k + 1) * 10)) {
     n++;
-    const a = row(s.id, "def"), b = row(s.id, "dc0"), swap = rnd() < 0.5;
-    key[`${k + 1}/${n}`] = { id: s.id, X: swap ? "dc0" : "def", Y: swap ? "def" : "dc0" };
+    const a = row(s.id, "def"), b = row(s.id, OFF), swap = rnd() < 0.5;
+    key[`${k + 1}/${n}`] = { id: s.id, X: swap ? OFF : "def", Y: swap ? "def" : OFF };
     const half = halfOf(a, b), ph = await photos(a);
     await ortho(a, half, path.join(dir, `${n}-ortho.jpg`));
     if (!ph.length) noPhoto.push(s.id);

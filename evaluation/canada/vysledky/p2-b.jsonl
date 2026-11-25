@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "stredni", "why": "Vozovka asi 14 m, cyklopruhy, 2 pruhy; chodniky na obou stranach uzke (ok 2 m), vlevo budovy temer u vozovky, vpravo zelen. X ma nereálné 6m chodniky."}
+{"n": 2, "verdict": "X", "jistota": "nizka", "why": "Vozovka asi 7,5 m, 2 pruhy, vlevo stesnany stezkovy okraj/krajnice a zelen; X sedi sirkou vozovky i krajnici, Y je vozovka prilis siroka."}
+{"n": 3, "verdict": "Y", "jistota": "vysoka", "why": "Vlevo travnik, uzky chodnik 1,5 m a travnik u vozovky, vozovka 2 pruhy + stani; X ma vlevo 6,75 m chodnik, ktery tam neni."}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "Vicepruhova vozovka asi 15 m, pruhy a stani u obruby, chodniky uzke (ok 2 m) se zeleni; X ma 5-6 m chodniky."}
+{"n": 5, "verdict": "Y", "jistota": "nizka", "why": "Vozovka s krajem siroka ok 9 m s uzkym svetlym okrajem vlevo; Y (8,7 m) je bliz nez X (5,4 m)."}
+{"n": 6, "verdict": "Y", "jistota": "nizka", "why": "Chodniky uzke (vlevo za vjezdem, vpravo u zdi ok 1,5-2 m), vozovka ok 14 m s cyklopruhem; X ma nereálné 6m chodniky. Zadny z nich nema stani na A strane."}
+{"n": 7, "verdict": "X", "jistota": "vysoka", "why": "Vozovka ok 16 m s 5 pruhy (odbocovaci), vlevo uzky chodnik + zelen, vpravo ustí vedlejsi ulice (plocha) a chodnik 1,5 m; Y ma 6 pruhu a vozovku 21 m."}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "Vozovka ok 14 m (shoduje se s Y), uzke chodniky ok 1,6-2 m, vpravo cyklopruh; X ma vlevo 6m chodnik. Zadny nezachycuje stani vlevo."}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "Obsluzna komunikace v parku sirka ok 5,5 m, Y 5,8 m je o neco blize nez X 6,2 m."}
+{"n": 10, "verdict": "X", "jistota": "stredni", "why": "Vlevo zelen/stromy pred chodnikem, vpravo chodnik a pak volna plocha trávy; vozovka s krajnicemi ok 13-14 m. Y ma vlevo prilis siroky chodnik a konci hned za nim."}

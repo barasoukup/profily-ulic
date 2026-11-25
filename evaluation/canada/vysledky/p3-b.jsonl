@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "stredni", "why": "Dvě zelené pásy s chodníky po obou stranách vozovky, na straně B pás se stromy a chodník; X má na B široký chodník/plochu."}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "Chodník, zelený pás, vozovka s parkováním na straně B a zelený pás s chodníkem; X má na B široký chodník."}
+{"n": 3, "verdict": "X", "jistota": "stredni", "why": "Vícepruhová dálnice se středovými bariérami a několika jízdními pásy; X odpovídá počtem pruhů, Y má velké plochy a krajnice."}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "Sedm pruhů, na obou stranách zelený pás a chodník u obruby; X má na A široký chodník na místě parkoviště a na B plochu."}
+{"n": 5, "verdict": "Y", "jistota": "stredni", "why": "Jednopruhový ocelový most; jeden pruh odpovídá lépe než dva úzké."}
+{"n": 6, "verdict": "X", "jistota": "stredni", "why": "Dvě vozovky oddělené širokým středním pásem se stromy (6 m), cyklopruhy a zelené pásy s chodníky; Y má střed jako zeleň 3,6 m a široký chodník."}
+{"n": 7, "verdict": "X", "jistota": "nizka", "why": "Na straně A zeleň a chodník přímo u vozovky, dva pruhy; Y má na A chodník a zeleň ve špatném pořadí."}
+{"n": 8, "verdict": "X", "jistota": "vysoka", "why": "Zahrada, chodník, zelený pás, vozovka 8,7 m, zelený pás, chodník; přesně sedí, Y má plochu a široký chodník."}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "Tři pruhy na každou stranu s úzkým středním pásem, na B zelený pás mezi chodníky; X má široký dělicí pás a plochu."}
+{"n": 10, "verdict": "stejne", "jistota": "stredni", "why": "Stejné složení: krajnice, dva pruhy s dvojitou žlutou, krajnice; liší se jen okraje mimo vozovku."}

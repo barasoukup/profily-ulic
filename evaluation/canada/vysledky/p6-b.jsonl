@@ -1,0 +1,7 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "chodník vlevo, vozovka asi 7 m, vpravo chodník a zeleň; Y má vpravo nepodložený chodník 5 m"}
+{"n": 2, "verdict": "X", "jistota": "vysoka", "why": "chodník, travnatý pás, dva pruhy ~10 m, pás, chodník, trávník; Y má široké chodníky, které tam nejsou"}
+{"n": 3, "verdict": "X", "jistota": "stredni", "why": "křižovatka s ostrůvky a více jízdními pásy; Y s jedním pruhem je zcela nedostatečný"}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "vlevo zpevněná plocha a chodník místo 18 m zeleně, 4 pruhy a chodník vpravo sedí u obou"}
+{"n": 5, "verdict": "X", "jistota": "nizka", "why": "vozovka asi 6,7 m sedí na pozici; Y má chodníky 6 m, které tam nejsou, chodník 2 m chybí oběma"}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "vlevo zeleň, chodník, zeleň a vpravo sdílená stezka podle fotky; X má dvě cyklostezky 1,3 m"}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "tři oddělené jízdní pásy po jednom pruhu s krajnicí; Y vkládá do prostředního dva pruhy"}

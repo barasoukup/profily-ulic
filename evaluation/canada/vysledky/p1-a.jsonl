@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "Kolektory a expresy s mnoha pruhy (asi 15-19) a betonovym stredem; X ma tento pocet pruhu a stredni pas, Y jen 8 pruhu a 11 m plochy."}
+{"n": 2, "verdict": "X", "jistota": "vysoka", "why": "Ctyrpruhova silnice se dvema pruhy na smer, dvojita zluta a krajnice po stranach; X sedi, Y ma zelen, plochu a 5 pruhu."}
+{"n": 3, "verdict": "X", "jistota": "vysoka", "why": "Dalnice se stredovou bariérou, 3 pruhy vlevo, siroka krajnice, pak 5 pruhu a krajnice; X to kopiruje, Y ma jen po jednom pruhu a plochu."}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "Mestska ulice fasada k fasade asi 20 m s uzkym chodnikem vlevo, vozovkou a sirokym chodnikem se stromy vpravo; Y ma tuto sirku, X jen 15 m a bez zelene."}
+{"n": 5, "verdict": "stejne", "why": "Obe maji 3+2 pruhy; X trefuje sirky levych pruhu a chodnik 1,9 m, Y deleni dvojitou zlutou a sirky praveho smeru, ale chodnik 6 m vlevo je spatne.", "jistota": "nizka"}
+{"n": 6, "verdict": "Y", "jistota": "vysoka", "why": "Ctyri pruhy vlevo, stredovy ostruvek 1,2 m a tri pruhy vpravo, chodniky uzke se zeleni; Y sedi, X ma 6 pruhu bez deliciho pasu."}
+{"n": 7, "verdict": "stejne", "why": "Dalnice se sirokym stredem a asi 5-6 pruhy na smer; X ma spravny pocet pruhu ale stred 1,4 m a obrovske krajnice, Y ma sirsi stred (plocha) ale vlevo jen 5 pruhu.", "jistota": "nizka"}
+{"n": 8, "verdict": "X", "jistota": "vysoka", "why": "Vpravo od bariery 5 pruhu s krajnicemi, vlevo 2 pruhy a dalsi pruhy; X to sedi, Y ma vpravo jediny pruh."}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "Vlevo zahrada se stromem a uzky chodnik 2,6 m, ctyri pruhy asi 3 m; Y ma zelen a chodnik 1,8 m, X ma sirokou plochu a chodnik 6 m; cyklopruhy nejsou ani v jednom dolozene."}
+{"n": 10, "verdict": "X", "jistota": "stredni", "why": "Jedna rampa s jednim pruhem a krajnicemi asi 7-8 m, bez chodniku; X sedi, Y ma sirsi vozovku a chodnik 6 m."}

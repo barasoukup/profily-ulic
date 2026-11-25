@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "Ortofoto: dvě dvoupruhové vozovky se středovým pásem, chodníky s trávou po stranách; X má 4 pruhy a pás zeleně, Y jen 3 pruhy a plochu 8 m vlevo."}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "Obě mají 7 pruhů s dělicím ostrůvkem a bus; X lépe sedí šířkou vozovky a okraji (zpevněná plocha vlevo, chodník s plochou vpravo), Y má vlevo 15 m zeleně, kde je parkoviště."}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "Vlevo chodník se stromem a dva pruhy (7 m), vpravo široká zpevněná plocha, ne druhá dvojice pruhů s pásem jako v X."}
+{"n": 4, "verdict": "X", "jistota": "nizka", "why": "Chodníky u okraje jsou úzké (2 m) a vpravo odděluje chodník pruh trávy, Y má chodníky 3,4 a 4,8 m; šířka vozovky sedí lépe u Y, složení u X."}
+{"n": 5, "verdict": "Y", "jistota": "nizka", "why": "Dva pruhy mezi chodníky bez trávníku mezi chodníkem a vozovkou; X má zeleň u vozovky a krajnici na straně, kde je jízdní pruh."}
+{"n": 6, "verdict": "X", "jistota": "vysoka", "why": "Ulice s trávníkem mezi obrubou a chodníkem, 2 pruhy bez značení; Y má 6 m široké chodníky u vozovky."}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "Vpravo je travnatý ostrůvek, ne chodník; vlevo úzký pás u obruby, Y má chodníky 6 m po obou stranách."}
+{"n": 8, "verdict": "X", "jistota": "vysoka", "why": "Dva pruhy bez chodníků, okolo tráva a plot; Y vymýšlí chodníky 6 m."}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "Parkoviště, zelený pás, rampa s krajnicemi, bariéra a hlavní vozovka se 3 pruhy a krajnicí; X hlavní vozovku rozděluje špatně."}
+{"n": 10, "verdict": "X", "jistota": "vysoka", "why": "Na ortofotu jsou tramvajové koleje uprostřed, zelené pásy, cyklopruhy a pruhy po obou stranách; Y tramvaj nemá a dává 13 m zeleně."}
