@@ -1,8 +1,8 @@
 // The blind judging of the arterials (25. 11. 2026): from ../../universal/data/us-tepny.json (../collect.js) the pairs of two
 // variants whose parts differ (a type, or a width by 0.2 m), X and Y in a random order (a fixed seed), without sources, at
 // most PER cuts a package, each with DC's orthophoto of the cut and the Mapillary photos both ways within 30 m. Writes
-// data/<name>-<k>/ (git ignores data/) and vysledky/klic-<name>.json (not to be read before the judging is done).
-//   node evaluation/usa/tepny/baliky.mjs <name> <A> <B> <seed> [id regex]
+// data/<name>-<k>/ (git ignores data/) and results/klic-<name>.json (not to be read before the judging is done).
+//   node evaluation/usa/arterials/packages.mjs <name> <A> <B> <seed> [id regex]
 import fs from "node:fs/promises";
 import path from "node:path";
 import { orthoImage } from "../../usa-dc/prepare.mjs";
@@ -14,7 +14,7 @@ const TOKEN = (await fs.readFile(path.join(HERE, "..", "..", "streetview", "toke
 const angle = (a, b) => Math.abs(((a - b + 540) % 360) - 180);
 const rows = JSON.parse(await fs.readFile(path.join(HERE, "..", "..", "universal", "data", "us-tepny.json"), "utf8"));
 const differs = (a, b) => a.parts.length !== b.parts.length || a.parts.some(([t, w], i) => t !== b.parts[i][0] || Math.abs(w - b.parts[i][1]) >= 0.2);
-await fs.mkdir(FOTO, { recursive: true }); await fs.mkdir(path.join(HERE, "vysledky"), { recursive: true });
+await fs.mkdir(FOTO, { recursive: true }); await fs.mkdir(path.join(HERE, "results"), { recursive: true });
 async function photos(r) {
   const q = new URLSearchParams({ access_token: TOKEN, lat: r.lat, lng: r.lon, radius: 30, limit: 100, fields: "id,captured_at,compass_angle,computed_compass_angle,is_pano,thumb_1024_url" });
   let imgs = null; const got = [];
@@ -51,5 +51,5 @@ for (let k = 0; k * PER < todo.length; k++) {
   }
   await fs.writeFile(path.join(dir, "ZADANI.md"), L.join("\n"));
 }
-await fs.writeFile(path.join(HERE, "vysledky", `klic-${name}.json`), JSON.stringify(key, null, 1));
+await fs.writeFile(path.join(HERE, "results", `klic-${name}.json`), JSON.stringify(key, null, 1));
 console.log(name, todo.length, "dvojic");

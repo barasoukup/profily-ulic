@@ -576,7 +576,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   neutrální pokyn): mapa : odhad **41 : 10** (nerozhodně 8), univerzální měření 76 % s mapou, 61 % bez ní, 53 % jen OSM (29 řezů,
   čtvrtina uličky): mapa **zůstává zapnutá**. Slabiny: uličky mezi domy (zeleň místo dvora), dálnice a rampy (3 řezy, 44 : 63 %).
   Starší čísla neplatí jako důkaz: A/B 23 : 9 mělo nápovědu v pokynu, 66 % stálo na řezech pilotu, na kterých se ladilo.
-  Tepny (`evaluation/usa/tepny/ZPRAVA.md`, `?off=dcarterials`): na 25 nových naslepo mapa : bez mapy 19 : 6; nový : starý kód jen
+  Tepny (`evaluation/usa/arterials/ZPRAVA.md`, `?off=dcarterials`): na 25 nových naslepo mapa : bez mapy 19 : 6; nový : starý kód jen
   3 změny na nových řezech (2 : 0 : 1), neprůkazné.
 - Normy DDOT DEM 2023, Bicycle Facility Design Guide 2020 a NACTO jen oranžově; stání 3 m na směr (IFC 503.2.1,
   18 DCMR § 2405); bez řádku značek; bez paneláků; hledání Photon.

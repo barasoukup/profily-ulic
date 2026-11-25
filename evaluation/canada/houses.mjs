@@ -1,6 +1,7 @@
 // Toronto's houses (towns/canada.js podlaznost, northAmericaLook): 30 random houses (a fixed seed), a Mapillary photo facing
 // each; the app's facts without and with the city's height. The code is evaluation/north-america-art/cama/ab.mjs.
-//   SITE=<local server> TOKEN=<token.local> node houses.mjs <scratch dir> 30     photos go to the scratch directory only
+//   SITE=<local server> TOKEN=<token.local> node houses.mjs <scratch dir> 30     photos go to the scratch directory only;
+// OUT=<file>: another sample (OUT=review/houses.json SEED=20261209, after the floors' fix; none within 80 m of houses.json's)
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -9,6 +10,8 @@ const imp = (f) => import(pathToFileURL(path.join(PUB, f)));
 const OUT = process.argv[2], WANT = Number(process.argv[3] || 40);
 globalThis.document ??= { createElementNS: () => ({}) };
 const C = await imp("city.js"), D = await imp("derive.js"), P = await imp("profile.js"), US = await imp("towns/canada.js");
+await imp("america.js");
+C.loadTowns(JSON.parse(fs.readFileSync(path.join(PUB, "mesta-ca.json"))));
 C.setCity("toronto");
 const { decodeTile, mergePieces } = await imp("osmtile.js"), { inside } = await imp("places.js");
 const T = JSON.parse(fs.readFileSync(path.join(PUB, "mesta-ca.json"))).toronto, TILES = path.join(HERE, "data/osm-tiles");
@@ -21,7 +24,7 @@ const native = fetch; globalThis.fetch = (u, o) => native(/^https?:/.test(String
 let seed = Number(process.env.SEED || 20261203);
 const rnd = () => { seed = (seed + 0x6d2b79f5) >>> 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 2 ** 32; };
 const KX = 111320 * Math.cos((43.7 * Math.PI) / 180), KY = 110574;
-const old = [];
+const FILE = process.env.OUT || "houses.json", old = FILE === "houses.json" ? [] : JSON.parse(fs.readFileSync(path.join(HERE, "houses.json"))).rows.map((r) => r.probe);
 const token = fs.readFileSync(process.env.TOKEN, "utf8").trim().replace(/^.*=/, "").replace(/["']/g, "");
 const mly = async (q) => { for (let i = 0; i < 3; i++) { try { const r = await fetch(`https://graph.mapillary.com/${q}`, { headers: { Authorization: `OAuth ${token}` } }); if (r.ok) return await r.json(); } catch {} await new Promise((s) => setTimeout(s, 1500)); } return { data: [] }; };
 const lens = data.ways.map((w) => w.g.slice(1).reduce((s, q, i) => s + Math.hypot((q[0] - w.g[i][0]) * KX, (q[1] - w.g[i][1]) * KY), 0)), total = lens.reduce((a, b) => a + b, 0);
@@ -71,5 +74,5 @@ while (rows.length < WANT) {
   await new Promise((s) => setTimeout(s, 700));
   rows.push({ id, street: w.name, city: "toronto", point: probe.map((v) => +v.toFixed(7)), probe, mapillary: best.x.id, pano: !!best.x.is_pano, dist: +best.dist.toFixed(1), off: +best.off.toFixed(1), tags: h.tags, cama, before: facts({}), after: facts(cama) });
 }
-fs.writeFileSync(path.join(HERE, "houses.json"), JSON.stringify({ rows }, null, 1));
+fs.writeFileSync(path.join(HERE, FILE), JSON.stringify({ rows }, null, 1));
 console.log(rows.map((r) => `${r.id} ${r.tags.building} ${r.tags["building:levels"] || "-"} | ${r.cama.type || "-"} ${r.cama.cornice || "-"} ${r.cama.built || "-"} ${r.cama.material || "-"} | ${r.before.look} > ${r.after.look}`).join("\n"));

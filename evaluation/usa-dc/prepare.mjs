@@ -16,7 +16,7 @@ const run = promisify(execFile), R = 6378137, RES = 0.1, ALONG = 15;
 const FONT = "/System/Library/Fonts/Supplemental/Arial Bold.ttf";
 const merc = (lon, lat) => [(R * lon * Math.PI) / 180, R * Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360))];
 export const DC_ORTHO = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Ortho2025_WebMercator/MapServer/export";
-const TOKEN = (await fs.readFile(path.join(ROOT, "..", "streetview", "token.local"), "utf8")).trim();
+const TOKEN = (await fs.readFile(process.env.TOKEN || path.join(ROOT, "..", "streetview", "token.local"), "utf8")).trim();
 const angle = (a, b) => Math.abs(((a - b + 540) % 360) - 180);
 
 export async function orthoImage({ lat, lon, bearing, half = 30 }, out, { cut = true, service = DC_ORTHO } = {}) {
@@ -28,7 +28,7 @@ export async function orthoImage({ lat, lon, bearing, half = 30 }, out, { cut = 
   const x0 = Math.min(...corners.map((p) => p[0])), x1 = Math.max(...corners.map((p) => p[0]));
   const y0 = Math.min(...corners.map((p) => p[1])), y1 = Math.max(...corners.map((p) => p[1]));
   const k = Math.cos((lat * Math.PI) / 180), w = Math.round(((x1 - x0) * k) / RES), h = Math.round(((y1 - y0) * k) / RES);
-  const res = await fetch(`${service}?${new URLSearchParams({ bbox: [x0, y0, x1, y1].join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: "png24", f: "image" })}`, { headers: { "User-Agent": "profily-ulic evaluation" } });
+  const res = await fetch(`${service}${service.includes("?") ? "" : "?"}${new URLSearchParams({ bbox: [x0, y0, x1, y1].join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: "png24", f: "image" })}`, { headers: { "User-Agent": "profily-ulic evaluation" } });
   if (!res.ok) throw new Error(`ortofoto ${res.status}`);
   const img = await decodePng(Buffer.from(await res.arrayBuffer()));
   const W = Math.round((2 * half) / RES), H = Math.round((2 * ALONG) / RES), px = new Uint8Array(W * H * 4);

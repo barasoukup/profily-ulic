@@ -1,10 +1,10 @@
-// The universal measurement of the USA (phase 2, 24. 11. 2026): the pilot's judges (evaluation/usa-dc/vysledky/u-us-*.jsonl,
+// The universal measurement of the USA (phase 2, 24. 11. 2026): the pilot's judges (evaluation/usa-dc/results/u-us-*.jsonl,
 // 30 usable cuts of 32) against the app's profiles collected at the judged cuts (evaluation/universal/data/us-ab.json,
 // the rows dc-* in the variants def: with all three shared changes, old: without them, dc0: without DC's map; us-meas2.json:
 // the app as it stays, tree pits off), and the
 // pilot's offline profile (evaluation/usa-dc/data/app-dc.json) for comparison. The rules as in evaluation/usa-dc/score.mjs
 // (a side without a facade counts up to the street's edge; only cuts with a roadway).
-//   node evaluation/usa/score.mjs > evaluation/usa/vysledky/skore.md
+//   node evaluation/usa/score.mjs > evaluation/usa/results/score.md
 import fs from "node:fs/promises";
 import path from "node:path";
 import { compare, asClasses, composition } from "../universal/compare.mjs";
@@ -14,7 +14,7 @@ const rows = JSON.parse(await fs.readFile(path.join(HERE, "..", "universal", "da
 const variant = (v) => new Map(rows.filter((r) => r.variant === v && r.parts?.length).map((r) => [r.id, r]));
 const pilot = new Map(JSON.parse(await fs.readFile(path.join(PILOT, "data", "app-dc.json"), "utf8")).map((r) => [r.id, r]));
 const sample = new Map(JSON.parse(await fs.readFile(path.join(PILOT, "sample.json"), "utf8")).map((r) => [r.id, r]));
-const judged = (await Promise.all((await fs.readdir(path.join(PILOT, "vysledky"))).filter((f) => /^u-.*\.jsonl$/.test(f)).map((f) => fs.readFile(path.join(PILOT, "vysledky", f), "utf8"))))
+const judged = (await Promise.all((await fs.readdir(path.join(PILOT, "results"))).filter((f) => /^u-.*\.jsonl$/.test(f)).map((f) => fs.readFile(path.join(PILOT, "results", f), "utf8"))))
   .join("\n").split("\n").filter(Boolean).map((l) => JSON.parse(l));
 const LANE = ["pruh", "pruh_piktokoridor", "obsluzna", "bus", "bus_cyklo", "tramvaj_v_pruhu"];
 // The app as it stays (tree pits off, ?jamky=1; the DC line fixed in staty.json): collected again into us-meas2.json.

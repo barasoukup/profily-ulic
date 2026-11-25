@@ -31,7 +31,7 @@ for (const w of mergePieces(tiles).filter(ok).sort((a, b) => a.id - b.id)) for (
   byKind[KIND[w.tags.highway]] = (byKind[KIND[w.tags.highway]] || 0) + len;
 }
 for (const [k, v] of Object.entries(byKind)) console.error(k, (v / 1000).toFixed(0), "km", ((100 * v) / total).toFixed(0), "%");
-const TOKEN = (await fs.readFile(path.join(ROOT, "..", "streetview", "token.local"), "utf8").catch(() => fs.readFile("/Users/barasoukupova/streetdesign/.claude/worktrees/france/evaluation/streetview/token.local", "utf8"))).trim();
+const TOKEN = (await fs.readFile(process.env.TOKEN || path.join(ROOT, "..", "streetview", "token.local"), "utf8")).trim();
 async function photoNear(lat, lon) {
   await new Promise((r) => setTimeout(r, 300));
   const r = await fetch(`https://graph.mapillary.com/images?${new URLSearchParams({ access_token: TOKEN, lat, lng: lon, radius: 30, limit: 5, fields: "id" })}`);

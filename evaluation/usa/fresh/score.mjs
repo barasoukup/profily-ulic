@@ -1,17 +1,17 @@
 // The fresh measurement's score (packages.mjs): the blind A/B (two judges a cut, p<k>-a/-b.jsonl) and the universal
-// measurement of 30 cuts (q<k>.jsonl) of the app with DC's map, ?dc=0 and OSM only.   node evaluation/usa/fresh/score.mjs > vysledky/skore.md
+// measurement of 30 cuts (q<k>.jsonl) of the app with DC's map, ?dc=0 and OSM only.   node evaluation/usa/fresh/score.mjs > results/score.md
 import fs from "node:fs";
 import { compare } from "../../universal/compare.mjs";
 const HERE = process.env.EVAL_DIR ? `file://${process.env.EVAL_DIR}/` : import.meta.url, NAME = process.env.EVAL_DATA || "us-fresh", OFF = process.env.EVAL_OFF || "dc0", WHO = process.env.EVAL_WHO || "mapou DC";
 const here = (f) => new URL(f, HERE), json = (f) => JSON.parse(fs.readFileSync(here(f), "utf8"));
 const lines = (f) => fs.readFileSync(here(f), "utf8").split("\n").filter((l) => l.trim()).map((l) => JSON.parse(l));
-const kind = new Map(json(process.env.EVAL_SAMPLE || "sample.json").map((s) => [s.id, s.kind])), key = json("vysledky/key.json"), KINDS = ["local", "service", "arterial", "collector", "motorway"];
+const kind = new Map(json(process.env.EVAL_SAMPLE || "sample.json").map((s) => [s.id, s.kind])), key = json("results/key.json"), KINDS = ["local", "service", "arterial", "collector", "motorway"];
 const choose = (n, k) => { let c = 1; for (let i = 0; i < k; i++) c = (c * (n - i)) / (i + 1); return c; };
 const sign = (a, b) => { const n = a + b; let s = 0; for (let i = Math.max(a, b); i <= n; i++) s += choose(n, i); return Math.min(1, (2 * s) / 2 ** n); };
 const wilson = (a, n) => { const z = 1.96, p = a / n, d = 1 + z * z / n, m = p + z * z / (2 * n), q = z * Math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)); return `${Math.round(100 * (m - q) / d)}–${Math.round(100 * (m + q) / d)} %`; };
 const V = {};
 for (const k of Object.keys(key)) V[k] = [];
-for (let k = 1; fs.existsSync(here(`vysledky/p${k}-a.jsonl`)); k++) for (const j of ["a", "b"]) for (const r of lines(`vysledky/p${k}-${j}.jsonl`)) { const q = key[`${k}/${r.n}`]; V[`${k}/${r.n}`].push(r.verdict === "X" || r.verdict === "Y" ? q[r.verdict] : r.verdict); }
+for (let k = 1; fs.existsSync(here(`results/p${k}-a.jsonl`)); k++) for (const j of ["a", "b"]) for (const r of lines(`results/p${k}-${j}.jsonl`)) { const q = key[`${k}/${r.n}`]; V[`${k}/${r.n}`].push(r.verdict === "X" || r.verdict === "Y" ? q[r.verdict] : r.verdict); }
 const tot = { def: 0, [OFF]: 0, stejne: 0, nejde: 0 }, per = {}, out = [];
 let agree = 0, bothSides = 0, agreeSides = 0;
 for (const [k, v] of Object.entries(V)) {
@@ -32,7 +32,7 @@ console.log(row("bez obslužných", out.filter((x) => x.kind !== "service")));
 for (const k of KINDS) console.log(row(k, out.filter((x) => x.kind === k)));
 // ---- the universal measurement
 const D = new URL("../../universal/data/", import.meta.url).href, A = { [`s ${WHO}`]: new Map(json(D + `${NAME}.json`).filter((r) => r.variant === "def").map((r) => [r.id, r])), "bez mapy": new Map(json(D + `${NAME}.json`).filter((r) => r.variant === OFF).map((r) => [r.id, r])), "jen OSM": new Map(json(D + `${NAME}-osm.json`).map((r) => [r.id, r])) };
-const J = [1, 2, 3].flatMap((k) => lines(`vysledky/q${k}.jsonl`));
+const J = [1, 2, 3].flatMap((k) => lines(`results/q${k}.jsonl`));
 const LANE = ["pruh", "bus", "tramvaj"], use = J.filter((j) => j.usable && Object.values(A).every((m) => m.get(j.id)?.parts?.length) && j.parts.some((p) => LANE.includes(String(p[0]).replace("?", ""))));
 console.log(`\n## Univerzální měření: ${use.length} z ${J.length} řezů (nepoužité: ${J.filter((j) => !use.includes(j)).map((j) => `${j.id}${j.usable ? "" : " není ulice"}`).join(", ") || "žádný"})\n`);
 const pct = (a, n) => `${Math.round((100 * a) / n)} %`, sc = {};

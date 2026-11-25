@@ -69,12 +69,12 @@ Nejde posoudit 0. Shoda posuzovatelů 48/57, kde oba vybrali stranu 46/51.
 
 Mapa proti bez mapy +7 bodů (**−3 až +18, tedy neprůkazně**), proti jen OSM +5 (−7 až +16). Co mapa prokazatelně zlepší, je šířka
 ulice; v A/B vede jasně. Ortofotový odhad tu nad samotným OSM ve složení nic nepřidává. **Mapa zůstává zapnutá** (A/B), složení neprůkazně.
-Měření jen s fotkou a na místech Mapillary; tepny a obslužné jsou málo řezů. `./measure.sh score`, `vysledky/skore.md`.
+Měření jen s fotkou a na místech Mapillary; tepny a obslužné jsou málo řezů. `./measure.sh score`, `results/score.md`.
 
 ## Kontrola Evropy
 
 60 řezů (10 států po 6, `eu-sample.json`): starý kód (c20d8bc) proti novému se změnil **0** (jeden český se lišil, protože ČÚZK právě neodpovídal;
-znovu beze změny). Regrese Prahy a Brna shodná s `vysledky/regrese.txt`.
+znovu beze změny). Regrese Prahy a Brna shodná s `results/regrese.txt`.
 
 ## Domy (30 náhodných domů s fotkou, `houses.mjs`, jeden posuzovatel, neladěno)
 

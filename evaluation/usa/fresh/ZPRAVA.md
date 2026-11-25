@@ -12,7 +12,7 @@ Kód zmrazený před vzorkem: 077bc2d (opravy recenze 926de8d a sloučená `esto
 - **Univerzální měření:** 30 z těchto řezů (podle typů), tři posuzovatelé po 10 podle `../../universal/POKYN.md`, bez profilů, jeden
   posudek na řez. Tento schválený pokyn (stejný všude) pásy zeleně a stání výslovně jmenuje; A/B ne.
 
-Vše `node evaluation/usa/fresh/score.mjs`, `vysledky/skore.md`.
+Vše `node evaluation/usa/fresh/score.mjs`, `results/score.md`.
 
 ## Slepé A/B
 

@@ -13,7 +13,7 @@ const P = "../../../pilot/public/", far = await read(`${P}staty-america.json`), 
 const AREA = { dc: [DC], toronto: [TO], usout: [far.usa, DC], caout: [far.canada, TO] };
 const within = (k, lon, lat) => inside(AREA[k][0], lon, lat) && !(AREA[k][1] && inside(AREA[k][1], lon, lat));
 const list = (x) => (Array.isArray(x) ? x : x.rows || []);
-const USED = (await Promise.all(["../../usa-dc/sample.json", "../../usa/ab/sample.json", "../../usa/tepny/sample.json", "../../usa/fresh/sample.json", "../dev.json", "../fresh.json", "../tracks.json"].map(read))).flatMap(list)
+const USED = (await Promise.all(["../../usa-dc/sample.json", "../../usa/ab/sample.json", "../../usa/arterials/sample.json", "../../usa/fresh/sample.json", "../dev.json", "../fresh.json", "../tracks.json"].map(read))).flatMap(list)
   .concat([[38.895285, -77.029047], [38.8946, -77.0268], [38.96509, -77.00168], [38.8682366, -76.9815684], [38.8998559, -77.0300845], [43.66610, -79.40340], [43.660410, -79.410616], [43.647936, -79.400367], [43.655881, -79.388607], [43.65998, -79.41110], [43.7640, -79.4000], [43.6535, -79.3839],
     [43.649, -79.396], [43.657, -79.4], [43.676, -79.42], [43.6488, -79.378], [43.83, -79.53], [43.5935, -79.6377]].map(([lat, lon]) => ({ lat, lon })));
 const KIND = { motorway: "motorway", motorway_link: "motorway", trunk: "arterial", trunk_link: "arterial", primary: "arterial", primary_link: "arterial", secondary: "arterial", secondary_link: "arterial",

@@ -1,9 +1,9 @@
 // Washington judged again (25. 11. 2026) with the instruction of 25. 11. (../universal/POKYN.md): new blind judges of
-// the pilot's 32 cuts (../usa-dc/vysledky/pokyn2, the neutral prompt: the result) against the app with DC's map
+// the pilot's 32 cuts (../usa-dc/results/pokyn2, the neutral prompt: the result) against the app with DC's map
 // (us-meas2.json, as it stays), without it (us-ab.json dc0; collected with the tree pits still on and without dc-8-3) and OSM only (the pilot's app-osm.json). Beside it the
 // pilot's judges (the old instruction) and the first run of the new ones, whose prompt said the strips are very common in
 // DC (pokyn2-napoveda: a leading hint, kept for comparison only). The profiles are compared on the same cuts.
-//   node evaluation/usa/score-pokyn2.mjs > evaluation/usa/vysledky/skore-pokyn2.md
+//   node evaluation/usa/score-pokyn2.mjs > evaluation/usa/results/score-pokyn2.md
 import fs from "node:fs/promises";
 import path from "node:path";
 import { compare, asClasses, composition, scope } from "../universal/compare.mjs";
@@ -11,7 +11,7 @@ import { compare, asClasses, composition, scope } from "../universal/compare.mjs
 const HERE = path.dirname(new URL(import.meta.url).pathname), PILOT = path.join(HERE, "..", "usa-dc"), UD = path.join(HERE, "..", "universal", "data");
 const json = async (p) => JSON.parse(await fs.readFile(p, "utf8"));
 const read = async (dir) => new Map((await Promise.all((await fs.readdir(dir)).filter((f) => /^u-us.*\.jsonl$/.test(f)).map((f) => fs.readFile(path.join(dir, f), "utf8")))).join("\n").split("\n").filter(Boolean).map((l) => JSON.parse(l)).map((j) => [j.id, j]));
-const J = { pilot: await read(path.join(PILOT, "vysledky")), hint: await read(path.join(PILOT, "vysledky", "pokyn2-napoveda")), nove: await read(path.join(PILOT, "vysledky", "pokyn2")) };
+const J = { pilot: await read(path.join(PILOT, "results")), hint: await read(path.join(PILOT, "results", "pokyn2-napoveda")), nove: await read(path.join(PILOT, "results", "pokyn2")) };
 const mapOf = (rows) => new Map(rows.filter((r) => r.parts?.length).map((r) => [r.id, r]));
 const A = {
   "s mapou DC": mapOf(await json(path.join(UD, "us-meas2.json"))),

@@ -22,7 +22,7 @@
 //   permit holds, with codes nobody published),
 //   and the law's estimate is off there (noParkGuess); a bike lane of the inventory (BIKELANE_CONVENTIONAL, _BUFFERED,
 //   _PROTECTED: BD both sides, IB/OB one) is OSM's cycleway:<side>=lane where OSM tags none. ?ddot=0 leaves it out.
-// Arterials (25. 11. 2026, evaluation/usa/tepny; ?off=dcarterials: as before):
+// Arterials (25. 11. 2026, evaluation/usa/arterials; ?off=dcarterials: as before):
 // - the Planimetrics' Traffic Barrier (layer 13, "Barrier") is handed on as a guard-rail line: the roadway polygons of
 //   DC run across a median of concrete barriers (Military Road: 27.3 m, seven lanes), and derive.js splitMedians cuts a
 //   roadway where a guard rail lies between two street axes;

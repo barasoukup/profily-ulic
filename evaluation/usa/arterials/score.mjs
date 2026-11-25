@@ -1,6 +1,6 @@
-// The verdicts against the keys:   node evaluation/usa/tepny/score.mjs tm tn
+// The verdicts against the keys:   node evaluation/usa/arterials/score.mjs tm tn
 import fs from "node:fs";
-const D = new URL("./vysledky/", import.meta.url).pathname;
+const D = new URL("./results/", import.meta.url).pathname;
 for (const name of process.argv.slice(2)) {
   const key = JSON.parse(fs.readFileSync(`${D}klic-${name}.json`)), c = {};
   for (const f of fs.readdirSync(D).filter((f) => f.startsWith(`posudky-${name}-`)).sort()) for (const l of fs.readFileSync(D + f, "utf8").split("\n").filter(Boolean)) {

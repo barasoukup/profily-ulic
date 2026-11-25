@@ -1,6 +1,6 @@
 // 25 fresh arterial cuts of Washington (25. 11. 2026): random points on trunk, primary and secondary streets as
 // ../ab/sample.mjs, a fixed seed, none within 150 m of the judged cuts (the pilot's and the A/B's), each with a Mapillary
-// photo within 30 m. Writes sample.json.   node evaluation/usa/tepny/sample.mjs
+// photo within 30 m. Writes sample.json.   node evaluation/usa/arterials/sample.mjs
 import fs from "node:fs/promises";
 import path from "node:path";
 import { decodeTile } from "../../../pilot/public/osmtile.js";

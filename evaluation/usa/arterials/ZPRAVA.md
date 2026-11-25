@@ -31,7 +31,7 @@ South Capitol Street (svodidla mezi vozovkami).
 
 25 nových tepen (`sample.mjs`, semínko 251126, ne blíž než 150 m k dřívějším řezům, s fotkou). Sběr `../collect.js`
 (def, dcold, dc0 na témže místě). Tři noví posuzovatelé Sonnet naslepo, neutrální `POKYN.md`, X/Y náhodně, zdroje skryté.
-**Mapa se použila ve všech 25.** `node evaluation/usa/tepny/score.mjs tm tn`.
+**Mapa se použila ve všech 25.** `node evaluation/usa/arterials/score.mjs tm tn`.
 
 | | výsledek |
 |---|---|

@@ -1,7 +1,7 @@
 // The packages of the fresh measurement (25. 11. 2026): from ../../universal/data/us-fresh.json (../collect.js, variants
 // def and dc0) 1. the pairs of the blind A/B, X and Y in a random order (a fixed seed), without sources, in packages of at
 // most 10, each with DC's orthophoto and the Mapillary photos both ways within 30 m (data/ab-<k>/, git ignores data/;
-// the key vysledky/key.json, not read before the judging is done); 2. the universal measurement of 30 of the cuts (drawn
+// the key results/key.json, not read before the judging is done); 2. the universal measurement of 30 of the cuts (drawn
 // with the same seed, in the proportion of the types): the images of ../../universal/POKYN.md without any profile
 // (data/u-<k>/).   node evaluation/usa/fresh/packages.mjs
 import fs from "node:fs/promises";
@@ -13,11 +13,11 @@ const FOTO = path.join(HERE, "data", "foto");
 let seed = 251127;
 const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
 const shuffle = (a) => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
-const TOKEN = (await fs.readFile(new URL("../../streetview/token.local", import.meta.url).pathname, "utf8")).trim();
+const TOKEN = (await fs.readFile(process.env.TOKEN || new URL("../../streetview/token.local", import.meta.url).pathname, "utf8")).trim();
 const angle = (a, b) => Math.abs(((a - b + 540) % 360) - 180);
 const sample = JSON.parse(await fs.readFile(path.join(HERE, process.env.EVAL_SAMPLE || "sample.json"), "utf8")), rows = JSON.parse(await fs.readFile(path.join(UNI, `${NAME}.json`), "utf8"));
 const row = (id, v) => rows.find((r) => r.id === id && r.variant === v);
-await fs.mkdir(FOTO, { recursive: true }); await fs.mkdir(path.join(HERE, "vysledky"), { recursive: true });
+await fs.mkdir(FOTO, { recursive: true }); await fs.mkdir(path.join(HERE, "results"), { recursive: true });
 async function photos(r) {
   const got = [];
   let imgs = null;
@@ -59,7 +59,7 @@ for (let k = 0; k * 10 < pairs.length; k++) {
   }
   await fs.writeFile(path.join(dir, "ZADANI.md"), L.join("\n"));
 }
-await fs.writeFile(path.join(HERE, "vysledky", "key.json"), JSON.stringify(key, null, 1));
+await fs.writeFile(path.join(HERE, "results", "key.json"), JSON.stringify(key, null, 1));
 // The universal measurement: 30 of the cuts with a photo, by types in the sample's proportion.
 const left = full.filter((s) => !noPhoto.includes(s.id)), kinds = [...new Set(left.map((s) => s.kind))], pick = [];
 for (const kind of kinds) { const l = shuffle(left.filter((s) => s.kind === kind)); pick.push(...l.slice(0, Math.round((30 * l.length) / left.length))); }
@@ -78,5 +78,5 @@ for (let k = 0; k * 10 < u.length; k++) {
   }
   await fs.writeFile(path.join(dir, "SEZNAM.md"), L.join("\n"));
 }
-await fs.writeFile(path.join(HERE, "vysledky", "u-cuts.json"), JSON.stringify(u.map((s) => s.id)));
+await fs.writeFile(path.join(HERE, "results", "u-cuts.json"), JSON.stringify(u.map((s) => s.id)));
 console.log("bez fotky podél ulice:", noPhoto.join(", ") || "žádný", "| univerzální měření", u.length, JSON.stringify(Object.fromEntries(kinds.map((k) => [k, u.filter((s) => s.kind === k).length]))));

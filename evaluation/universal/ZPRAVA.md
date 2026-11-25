@@ -304,7 +304,7 @@ DK 58 % (Kodaň 60 → 59 %, zbytek 57 → 58 %); posun PL, FR a DK je i ve star
 
 Posouzení pilotu (`../usa-dc/vysledky/u-us-*.jsonl`, dva agenti Sonnet, 30 použitelných řezů z 32), profily nově z aplikace
 na posouzených řezech (`data/us-meas2.json` aplikace, jak zůstává; varianty v `data/us-ab.json`, řádky `dc-*`;
-`node evaluation/usa/score.mjs`, `../usa/vysledky/skore.md`). Varianty mají 29 řezů: dc-8-3 na Southern Avenue (hranice DC)
+`node evaluation/usa/score.mjs`, `../usa/results/score.md`). Varianty mají 29 řezů: dc-8-3 na Southern Avenue (hranice DC)
 při jejich sběru padl do `closed_us` (mezera mezi zjednodušenými hranicemi okresů, opraveno, `usa` je teď nezjednodušená).
 
 | profil | řezů | shoda složení | pruhy stejně | šířka do 1 / 2 m |
@@ -369,7 +369,7 @@ Po opravách zákonného stání (7af8747, tytéž posudky): AT 60 %, ES 55 %, P
 
 Tytéž řezy pilotu a snímky (fotky Mapillary, ortofoto DC 2025), tři noví posuzovatelé Sonnet naslepo podle `POKYN.md`
 z 25. 11. s neutrálním zadáním (`../usa-dc/vysledky/pokyn2/`), profily aplikace z fáze 2 (`us-meas2.json`, `us-ab.json`) a
-OSM bez ortofota z pilotu. `node evaluation/usa/score-pokyn2.mjs`, `../usa/vysledky/skore-pokyn2.md`. 29 řezů (30 pilotu
+OSM bez ortofota z pilotu. `node evaluation/usa/score-pokyn2.mjs`, `../usa/results/score-pokyn2.md`. 29 řezů (30 pilotu
 bez dc-8-3, který bez mapy profil nemá; na všech 30 má mapa 65 %, jen OSM 56 %).
 
 | profil | shoda složení: starý pokyn → **nový** | pruhy stejně | šířka do 1 / 2 m | stání souhlasí (z 29) |

@@ -21,7 +21,7 @@ Bára schválila 24. 11. 2026 („Fáze 2 s mapou Washingtonu“). Pilot fáze 1
 `ab/sample.mjs` (osm obvodů, 5 řezů v každém: obytné, sběrné, tepny; pevné semínko 20261125, nejméně 150 m od řezů
 pilotu, jen s fotkou Mapillary). Sběr v aplikaci (`collect.js`, `../universal/data/us-ab.json`), varianty `def` (mapa)
 a `dc0` (`?dc=0`: odhad z OSM a ortofota). Mapa se použila ve všech 40 řezech, všech 40 profilů se liší.
-Posuzovali dva agenti Sonnet, každý svou polovinu, **každou dvojici tedy jeden** (`ab/POKYN.md`, pořadí X/Y losované, klíč v `ab/vysledky/key-*.json`, zdroje skryté),
+Posuzovali dva agenti Sonnet, každý svou polovinu, **každou dvojici tedy jeden** (`ab/POKYN.md`, pořadí X/Y losované, klíč v `ab/results/key-*.json`, zdroje skryté),
 ortofoto DC a fotky Mapillary, s výslovným pokynem počítat úzké travnaté pásy mezi chodníkem a obrubou.
 
 | | mapa lépe | odhad lépe | stejně | nejasné |
@@ -30,7 +30,7 @@ ortofoto DC a fotky Mapillary, s výslovným pokynem počítat úzké travnaté 
 
 **Výhrada (recenze 25. 11. 2026):** pokyn tučně říkal, že profil s pásy trávy tam, kde jsou, je lepší, a ty má hlavně rameno
 s mapou. 23 : 9 je proto nadsazené a jako důkaz se nebere; platí čerstvé měření níže (`fresh/`).
-(`node evaluation/usa/ab/score.mjs`, posudky `ab/vysledky/`.)
+(`node evaluation/usa/ab/score.mjs`, posudky `ab/results/`.)
 
 ## Tři společné změny (všechny státy, každá s vypínačem)
 
@@ -44,12 +44,12 @@ DE, NL, PL, FR, ES, FI, DK) a 50 cílených českých řezů (25 u ústí `servi
 | počet pruhů: obousměrka se dělí od 4,0 m, když je počet pruhů známý (`?off=pocetpruhu`) | 6 / 40 | 3 : 0 : 3 | 0 / 120, 1 / 50 | 0 : 0 : 1 | **zapnuto** |
 | jamky stromů v chodníku patří chodníku (`?jamky=1`) | 4 / 40 | 2 : 2 : 0 | 0 / 120, 1 / 50 | 0 : 1 : 0 | **vypnuto** (v Česku skutečný travnatý pás u stání přečtený jako dlažba) |
 
-Regrese Prahy a Brna (`node evaluation/ortofoto-osm/regrese.mjs`) beze změny proti `vysledky/regrese.txt`. Evropa:
+Regrese Prahy a Brna (`node evaluation/ortofoto-osm/regrese.mjs`) beze změny proti `results/regrese.txt`. Evropa:
 v náhodném vzorku se nezměnil žádný řez, takže změny Evropu neškodí, ale ani tam téměř nic nedělají.
 
 ## Univerzální měření (30 řezů pilotu)
 
-Posudky pilotu, profily znovu z aplikace na posouzených řezech (`score.mjs`, `vysledky/skore.md`):
+Posudky pilotu, profily znovu z aplikace na posouzených řezech (`score.mjs`, `results/score.md`):
 
 | profil | řezů | shoda složení | pruhy stejně | šířka do 1 / 2 m |
 |---|---|---|---|---|
@@ -63,14 +63,14 @@ pásů zeleně vycházelo už v pilotu DC 67 % a OSM 68 %. Šířka uličního p
 přeměřit USA novými posuzovateli s pokynem o pásech, než se rozhodne definitivně (Bářin princip „co je horší, zůstane
 vypnuté“ tu stojí proti A/B).
 
-**Přeposouzeno 25. 11. 2026** s přesnějším pokynem (`score-pokyn2.mjs`, `vysledky/skore-pokyn2.md`, výklad v
+**Přeposouzeno 25. 11. 2026** s přesnějším pokynem (`score-pokyn2.mjs`, `results/score-pokyn2.md`, výklad v
 `../universal/ZPRAVA.md`): 29 řezů, s mapou 66 %, bez mapy 60 %, jen OSM 56 %. Rozpor s A/B se zmenšil, ale
 nezmizel: rozdíl +6 bodů má 95 % interval −5 až +17, na 7 tepnách vede odhad 79 : 57, řezy jsou pilotu (ladilo se na nich)
 a kód je starší než oprava tepen.
 
 ## Hlavní ulice (25. 11. 2026)
 
-`tepny/ZPRAVA.md`: čtení dat DC opravené (svodidla, pruhy směru, strana stání, chráněné cyklostezky); na 25 nových tepnách
+`arterials/ZPRAVA.md`: čtení dat DC opravené (svodidla, pruhy směru, strana stání, chráněné cyklostezky); na 25 nových tepnách
 naslepo (neutrální pokyn) mapa : bez mapy **19 : 6**. Nový kód : starý 8 : 2 je z 11 změněných řezů z 97, na nových místech
 jen 2 : 0 : 1; zbylých 6 : 2 jsou řezy, na kterých se ladilo, takže to důkaz není.
 
