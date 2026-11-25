@@ -1,0 +1,644 @@
+{
+ "stat": {
+  "houses": 97,
+  "tunedFound": 23,
+  "allFound": 95,
+  "changed": 26,
+  "look": 26,
+  "asked": 85,
+  "regFailed": 0,
+  "noPhoto": 14,
+  "out": 1,
+  "outAsHouse": 0
+ },
+ "rows": [
+  {
+   "id": "NL01",
+   "town": "amstelveen",
+   "city": "netherlands",
+   "point": [
+    4.8604699,
+    52.3095702
+   ],
+   "mapillary": "491097128606090",
+   "pano": true,
+   "dist": 14.3,
+   "off": 34.7,
+   "before": {
+    "look": "vila",
+    "info": {
+     "levels": 3,
+     "point": [
+      4.860469929081238,
+      52.30957021438842
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "roofType": 1,
+     "src": "ipr",
+     "built": 1940,
+     "house": 1,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "levels": 3,
+     "point": [
+      4.860469929081238,
+      52.30957021438842
+     ],
+     "km": 99,
+     "block": {
+      "length": 77.5,
+      "width": 60.4,
+      "fill": 0.34,
+      "parts": 21
+     },
+     "tint": 0,
+     "type": "house",
+     "start": 1940,
+     "cornice": 3,
+     "roof": 0,
+     "roofType": 1,
+     "src": "ipr",
+     "built": 1940,
+     "house": 1
+    }
+   }
+  },
+  {
+   "id": "NL02",
+   "town": "amsterdam",
+   "city": "netherlands",
+   "point": [
+    4.8972697,
+    52.3672003
+   ],
+   "mapillary": "1075178231550497",
+   "pano": true,
+   "dist": 22,
+   "off": 47.7,
+   "before": {
+    "look": "cihlovy",
+    "info": {
+     "point": [
+      4.89726969723029,
+      52.3672002724255
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      4.89726969723029,
+      52.3672002724255
+     ],
+     "km": 99,
+     "block": {
+      "length": 15.1,
+      "width": 5.2,
+      "fill": 0.85,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "houseboat"
+    }
+   }
+  },
+  {
+   "id": "NL03",
+   "town": "amstelveen",
+   "city": "netherlands",
+   "point": [
+    4.860143,
+    52.3157312
+   ],
+   "mapillary": "307840654047656",
+   "pano": true,
+   "dist": 14,
+   "off": 47.3,
+   "before": {
+    "look": "vila",
+    "info": {
+     "levels": 3,
+     "point": [
+      4.860143043277502,
+      52.31573118994756
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "roofType": 1,
+     "src": "ipr",
+     "built": 1959,
+     "house": 1,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "levels": 3,
+     "point": [
+      4.860143043277502,
+      52.31573118994756
+     ],
+     "km": 99,
+     "block": {
+      "length": 114.6,
+      "width": 13.7,
+      "fill": 0.64,
+      "parts": 12
+     },
+     "tint": 0,
+     "type": "house",
+     "start": 1959,
+     "cornice": 3,
+     "roof": 0,
+     "roofType": 1,
+     "src": "ipr",
+     "built": 1959,
+     "house": 1
+    }
+   }
+  },
+  {
+   "id": "NL04",
+   "town": "delft",
+   "city": "netherlands",
+   "point": [
+    4.3631255,
+    52.0166132
+   ],
+   "mapillary": "1990940237723994",
+   "pano": false,
+   "dist": 21.3,
+   "off": -18.9,
+   "before": {
+    "look": "vila",
+    "info": {
+     "levels": 2,
+     "point": [
+      4.363125544337871,
+      52.016613189432384
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 2,
+     "roof": 0,
+     "roofType": 3,
+     "src": "ipr",
+     "built": 1922,
+     "house": 1,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "levels": 2,
+     "point": [
+      4.363125544337871,
+      52.016613189432384
+     ],
+     "km": 99,
+     "block": {
+      "length": 97.3,
+      "width": 10.2,
+      "fill": 0.88,
+      "parts": 17
+     },
+     "tint": 0,
+     "type": "house",
+     "start": 1922,
+     "cornice": 2,
+     "roof": 0,
+     "roofType": 3,
+     "src": "ipr",
+     "built": 1922,
+     "house": 1
+    }
+   }
+  },
+  {
+   "id": "NL05",
+   "town": "haarlem",
+   "city": "netherlands",
+   "point": [
+    4.6405759,
+    52.3868593
+   ],
+   "mapillary": "292804695640840",
+   "pano": false,
+   "dist": 22.9,
+   "off": 18.1,
+   "before": {
+    "look": "vila",
+    "info": {
+     "levels": 3,
+     "point": [
+      4.640575894964071,
+      52.38685929108373
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "roofType": 1,
+     "src": "ipr",
+     "built": 1885,
+     "house": 1,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "cihlovy",
+    "info": {
+     "levels": 3,
+     "point": [
+      4.640575894964071,
+      52.38685929108373
+     ],
+     "km": 99,
+     "block": {
+      "length": 90.8,
+      "width": 82.1,
+      "fill": 0.46,
+      "parts": 20
+     },
+     "tint": 0,
+     "type": "house",
+     "start": 1885,
+     "cornice": 3,
+     "roof": 0,
+     "roofType": 1,
+     "src": "ipr",
+     "built": 1885,
+     "house": 1
+    }
+   }
+  },
+  {
+   "id": "NL06",
+   "town": "schiedam",
+   "city": "netherlands",
+   "point": [
+    4.3832623,
+    51.9225164
+   ],
+   "mapillary": "368731664562847",
+   "pano": false,
+   "dist": 17.6,
+   "off": 21,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      4.383262276995281,
+      51.92251639744869
+     ],
+     "km": 99,
+     "tint": 0,
+     "built": 1975
+    }
+   },
+   "after": {
+    "look": "funkce",
+    "info": {
+     "point": [
+      4.383262276995281,
+      51.92251639744869
+     ],
+     "km": 99,
+     "block": {
+      "length": 13.3,
+      "width": 10,
+      "fill": 0.61,
+      "parts": 1
+     },
+     "tint": 0,
+     "start": 1212,
+     "built": 1975
+    }
+   }
+  },
+  {
+   "id": "NL07",
+   "town": "utrecht",
+   "city": "netherlands",
+   "point": [
+    5.1107559,
+    52.0833403
+   ],
+   "mapillary": "2614189679049396",
+   "pano": true,
+   "dist": 20.1,
+   "off": 6.9,
+   "before": {
+    "look": "vila",
+    "info": {
+     "levels": 3,
+     "point": [
+      5.110755937028001,
+      52.08334027163466
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "roofType": 1,
+     "src": "ipr",
+     "built": 1935,
+     "house": 1,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "levels": 3,
+     "point": [
+      5.110755937028001,
+      52.08334027163466
+     ],
+     "km": 99,
+     "block": {
+      "length": 76.7,
+      "width": 36.6,
+      "fill": 0.4,
+      "parts": 27
+     },
+     "tint": 0,
+     "type": "house",
+     "start": 1935,
+     "cornice": 3,
+     "roof": 0,
+     "roofType": 1,
+     "src": "ipr",
+     "built": 1935,
+     "house": 1
+    }
+   }
+  },
+  {
+   "id": "NL08",
+   "town": "amstelveen",
+   "city": "netherlands",
+   "point": [
+    4.860963,
+    52.3021063
+   ],
+   "mapillary": "1813087585517853",
+   "pano": true,
+   "dist": 14.2,
+   "off": 59.1,
+   "before": {
+    "look": "moderni",
+    "info": {
+     "point": [
+      4.860963045026507,
+      52.30210632558769
+     ],
+     "km": 99,
+     "tint": 0,
+     "built": 2006,
+     "type": "apartments"
+    }
+   },
+   "after": {
+    "look": "hala",
+    "info": {
+     "point": [
+      4.860963045026507,
+      52.30210632558769
+     ],
+     "km": 99,
+     "block": {
+      "length": 255.3,
+      "width": 87.6,
+      "fill": 0.43,
+      "parts": 5
+     },
+     "tint": 0,
+     "type": "retail",
+     "start": 2006,
+     "built": 2006
+    }
+   }
+  },
+  {
+   "id": "NL09",
+   "town": "leiden",
+   "city": "netherlands",
+   "point": [
+    4.4892468,
+    52.1667088
+   ],
+   "mapillary": "1595795475197494",
+   "pano": true,
+   "dist": 14.1,
+   "off": 29.8,
+   "before": {
+    "look": "vila",
+    "info": {
+     "levels": 2,
+     "point": [
+      4.48924678515213,
+      52.16670883407655
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 2,
+     "roof": 0,
+     "roofType": 1,
+     "src": "ipr",
+     "built": 1875,
+     "house": 1,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "cihlovy",
+    "info": {
+     "levels": 2,
+     "point": [
+      4.48924678515213,
+      52.16670883407655
+     ],
+     "km": 99,
+     "block": {
+      "length": 147.7,
+      "width": 32.6,
+      "fill": 0.52,
+      "parts": 42
+     },
+     "tint": 0,
+     "type": "house",
+     "start": 1875,
+     "cornice": 2,
+     "roof": 0,
+     "roofType": 1,
+     "src": "ipr",
+     "built": 1875,
+     "house": 1
+    }
+   }
+  },
+  {
+   "id": "NL10",
+   "town": "amsterdam",
+   "city": "netherlands",
+   "point": [
+    4.903761,
+    52.3629095
+   ],
+   "mapillary": "1715277862919598",
+   "pano": true,
+   "dist": 19.3,
+   "off": 133.2,
+   "before": {
+    "look": "cihlovy",
+    "info": {
+     "point": [
+      4.903760971551544,
+      52.36290951399648
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      4.903760971551544,
+      52.36290951399648
+     ],
+     "km": 99,
+     "block": {
+      "length": 14.6,
+      "width": 6.3,
+      "fill": 0.8,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "houseboat"
+    }
+   }
+  },
+  {
+   "id": "NL11",
+   "town": "utrecht",
+   "city": "netherlands",
+   "point": [
+    5.1249888,
+    52.0823638
+   ],
+   "mapillary": "1826935770820629",
+   "pano": false,
+   "dist": 6.4,
+   "off": 23,
+   "before": {
+    "look": "skola",
+    "info": {
+     "point": [
+      5.124988815471598,
+      52.08236379184805
+     ],
+     "km": 99,
+     "tint": 0,
+     "built": 1900,
+     "office": 1,
+     "type": "school"
+    }
+   },
+   "after": {
+    "look": "hala",
+    "info": {
+     "point": [
+      5.124988815471598,
+      52.08236379184805
+     ],
+     "km": 99,
+     "block": {
+      "length": 46.6,
+      "width": 36.4,
+      "fill": 0.45,
+      "parts": 15
+     },
+     "tint": 0,
+     "type": "industrial",
+     "start": 1900,
+     "built": 1900,
+     "office": 1
+    }
+   }
+  },
+  {
+   "id": "NL12",
+   "town": "utrecht",
+   "city": "netherlands",
+   "point": [
+    5.0984339,
+    52.0912565
+   ],
+   "mapillary": "968556661579407",
+   "pano": false,
+   "dist": 15.9,
+   "off": 24.6,
+   "before": {
+    "look": "vila",
+    "info": {
+     "levels": 3,
+     "point": [
+      5.098433900026774,
+      52.091256521187695
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "roofType": 3,
+     "src": "ipr",
+     "built": 1926,
+     "house": 1,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "levels": 3,
+     "point": [
+      5.098433900026774,
+      52.091256521187695
+     ],
+     "km": 99,
+     "block": {
+      "length": 105,
+      "width": 94.7,
+      "fill": 0.31,
+      "parts": 33
+     },
+     "tint": 0,
+     "start": 1926,
+     "cornice": 3,
+     "roof": 0,
+     "roofType": 3,
+     "src": "ipr",
+     "built": 1926,
+     "house": 1,
+     "type": "house"
+    }
+   }
+  }
+ ]
+}

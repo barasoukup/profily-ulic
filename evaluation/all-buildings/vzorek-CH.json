@@ -1,0 +1,494 @@
+{
+ "stat": {
+  "houses": 203,
+  "tunedFound": 78,
+  "allFound": 196,
+  "changed": 57,
+  "look": 57,
+  "asked": 146,
+  "regFailed": 0,
+  "noPhoto": 46,
+  "out": 1,
+  "outAsHouse": 0
+ },
+ "rows": [
+  {
+   "id": "CH01",
+   "town": "basel",
+   "city": "switzerland",
+   "point": [
+    7.583336,
+    47.5573396
+   ],
+   "mapillary": "1409716784528176",
+   "pano": false,
+   "dist": 21.1,
+   "off": 10.6,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      7.58333604816971,
+      47.55733956550093
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "kancelar",
+    "info": {
+     "point": [
+      7.58333604816971,
+      47.55733956550093
+     ],
+     "km": 99,
+     "block": {
+      "length": 98.6,
+      "width": 63.1,
+      "fill": 0.61,
+      "parts": 8
+     },
+     "tint": 0,
+     "type": "office"
+    }
+   }
+  },
+  {
+   "id": "CH02",
+   "town": "zurich",
+   "city": "switzerland",
+   "point": [
+    8.5413102,
+    47.3854149
+   ],
+   "mapillary": "2200901143430636",
+   "pano": false,
+   "dist": 17.5,
+   "off": -0.7,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      8.541310165318933,
+      47.38541493499094
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "kostel",
+    "info": {
+     "point": [
+      8.541310165318933,
+      47.38541493499094
+     ],
+     "km": 99,
+     "block": {
+      "length": 35.5,
+      "width": 14.3,
+      "fill": 0.68,
+      "parts": 2
+     },
+     "tint": 0,
+     "type": "church",
+     "start": 1957
+    }
+   }
+  },
+  {
+   "id": "CH03",
+   "town": "lausanne",
+   "city": "switzerland",
+   "point": [
+    6.6353631,
+    46.5224628
+   ],
+   "mapillary": "4403742292992859",
+   "pano": false,
+   "dist": 16.8,
+   "off": 31.7,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      6.635363102243113,
+      46.522462785092564
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "kostel",
+    "info": {
+     "point": [
+      6.635363102243113,
+      46.522462785092564
+     ],
+     "km": 99,
+     "block": {
+      "length": 99.2,
+      "width": 47,
+      "fill": 0.6,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "cathedral"
+    }
+   }
+  },
+  {
+   "id": "CH04",
+   "town": "zurich",
+   "city": "switzerland",
+   "point": [
+    8.5507621,
+    47.3819645
+   ],
+   "mapillary": "182471530317960",
+   "pano": true,
+   "dist": 10.7,
+   "off": -160.7,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      8.55076210249362,
+      47.381964470839506
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      8.55076210249362,
+      47.381964470839506
+     ],
+     "km": 99,
+     "block": {
+      "length": 60.9,
+      "width": 31.7,
+      "fill": 0.53,
+      "parts": 2
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "CH05",
+   "town": "luzern",
+   "city": "switzerland",
+   "point": [
+    8.2927675,
+    47.0560758
+   ],
+   "mapillary": "1304684451527783",
+   "pano": true,
+   "dist": 14.5,
+   "off": 114.5,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      8.292767515694345,
+      47.05607575354289
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      8.292767515694345,
+      47.05607575354289
+     ],
+     "km": 99,
+     "block": {
+      "length": 29.8,
+      "width": 15.8,
+      "fill": 0.8,
+      "parts": 1
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "CH06",
+   "town": "winterthur",
+   "city": "switzerland",
+   "point": [
+    8.7391307,
+    47.5009225
+   ],
+   "mapillary": "1467396775509953",
+   "pano": true,
+   "dist": 15,
+   "off": -146.9,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      8.739130677020114,
+      47.50092254148814
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "garaz",
+    "info": {
+     "point": [
+      8.739130677020114,
+      47.50092254148814
+     ],
+     "km": 99,
+     "block": {
+      "length": 9.3,
+      "width": 9.2,
+      "fill": 0.51,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "garages"
+    }
+   }
+  },
+  {
+   "id": "CH07",
+   "town": "basel",
+   "city": "switzerland",
+   "point": [
+    7.5831458,
+    47.5669186
+   ],
+   "mapillary": "1498633563926855",
+   "pano": false,
+   "dist": 13.7,
+   "off": -3.5,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      7.583145763170201,
+      47.56691864995055
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "hala",
+    "info": {
+     "point": [
+      7.583145763170201,
+      47.56691864995055
+     ],
+     "km": 99,
+     "block": {
+      "length": 16.9,
+      "width": 7.7,
+      "fill": 0.76,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "retail"
+    }
+   }
+  },
+  {
+   "id": "CH08",
+   "town": "bern",
+   "city": "switzerland",
+   "point": [
+    7.4499688,
+    46.9390539
+   ],
+   "mapillary": "485123692911541",
+   "pano": false,
+   "dist": 23.6,
+   "off": 27.2,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      7.449968774443858,
+      46.939053877438134
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      7.449968774443858,
+      46.939053877438134
+     ],
+     "km": 99,
+     "block": {
+      "length": 24.8,
+      "width": 14,
+      "fill": 0.76,
+      "parts": 2
+     },
+     "tint": 0,
+     "type": "residential"
+    }
+   }
+  },
+  {
+   "id": "CH09",
+   "town": "luzern",
+   "city": "switzerland",
+   "point": [
+    8.2980531,
+    47.0518239
+   ],
+   "mapillary": "1028368974989601",
+   "pano": false,
+   "dist": 13.2,
+   "off": 0.3,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "levels": 6,
+     "point": [
+      8.298053139559984,
+      47.05182393322595
+     ],
+     "km": 99,
+     "block": {
+      "length": 38.2,
+      "width": 21.3,
+      "fill": 0.7,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "levels": 6,
+     "point": [
+      8.298053139559984,
+      47.05182393322595
+     ],
+     "km": 99,
+     "block": {
+      "length": 76,
+      "width": 72.1,
+      "fill": 0.52,
+      "parts": 4
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   }
+  },
+  {
+   "id": "CH10",
+   "town": "lugano",
+   "city": "switzerland",
+   "point": [
+    8.9481101,
+    45.9985084
+   ],
+   "mapillary": "1111003280125789",
+   "pano": false,
+   "dist": 17,
+   "off": -8,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "levels": 9,
+     "point": [
+      8.948110119911345,
+      45.99850844727555
+     ],
+     "km": 99,
+     "block": {
+      "length": 38.5,
+      "width": 28.2,
+      "fill": 0.75,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "retail"
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "levels": 9,
+     "point": [
+      8.948110119911345,
+      45.99850844727555
+     ],
+     "km": 99,
+     "block": {
+      "length": 44.1,
+      "width": 38.8,
+      "fill": 0.71,
+      "parts": 2
+     },
+     "tint": 0,
+     "type": "retail"
+    }
+   }
+  },
+  {
+   "id": "CH11",
+   "town": "lugano",
+   "city": "switzerland",
+   "point": [
+    8.9548701,
+    46.0095232
+   ],
+   "mapillary": "284031640062701",
+   "pano": false,
+   "dist": 22.2,
+   "off": -15.5,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      8.954870121032023,
+      46.009523228196684
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      8.954870121032023,
+      46.009523228196684
+     ],
+     "km": 99,
+     "block": {
+      "length": 41.6,
+      "width": 22,
+      "fill": 0.79,
+      "parts": 2
+     },
+     "tint": 0
+    }
+   }
+  }
+ ]
+}

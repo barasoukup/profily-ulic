@@ -43,7 +43,7 @@ const tally = {};
 for (const r of rows) {
   const { pred, po } = JSON.parse(r.profile);
   const list = changes(pred, po);
-  console.log(`\n${r.ts.slice(0, 16).replace("T", " ")}  ${r.detail.toUpperCase()}  ${r.street || "?"} (${r.city})  #rez=${(+r.lat).toFixed(6)},${(+r.lon).toFixed(6)},${Math.round(r.bearing)}${r.reach_left != null ? `,${(+r.reach_left).toFixed(1)},${(+r.reach_right).toFixed(1)}${r.way_id ? `,${r.way_id}` : ""}` : ""}`);
+  console.log(`\n${r.ts.slice(0, 16).replace("T", " ")}  ${r.detail.toUpperCase()}  ${r.street || "?"} (${r.city})  #rez=${(+r.lat).toFixed(6)},${(+r.lon).toFixed(6)},${Math.round(r.bearing * 10) / 10}${r.reach_left != null ? `,${(+r.reach_left).toFixed(1)},${(+r.reach_right).toFixed(1)}${r.way_id ? `,${r.way_id}` : ""}` : ""}`);
   for (const c of list) console.log("   " + c);
   // For the summary: a change without its widths ("pruh: … → …", "+ cyklopruh").
   for (const c of new Set(list.map((c) => c.replace(/\s*[\d,]+ m/g, "").replace(/: →$/, ": šířka")))) {

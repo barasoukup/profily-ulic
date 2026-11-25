@@ -1,0 +1,19 @@
+{
+"ATx01":{"X":"partly","Y":"wrong","better":"X","type":"3-storey rendered townhouse with curved bay-like facade, cornice; no porch"},
+"ATx02":{"X":"unclear","Y":"unclear","better":"unclear","type":"photo shows street with grey apartment block and old timber house; house in middle unclear"},
+"ATx03":{"X":"right","Y":"wrong","better":"X","type":"5-6 storey post-war apartment block with balconies, shops at ground floor; balconies not bay"},
+"ATx04":{"X":"unclear","Y":"unclear","better":"unclear","type":"photo shows road; no clear house in middle"},
+"ATx05":{"X":"partly","Y":"wrong","better":"X","type":"2-3 storey old plastered works/commercial building; neither bay nor porch"},
+"ATx06":{"X":"wrong","Y":"wrong","better":"unclear","type":"house not visible; street with trees and hedge, office/glass building on left"},
+"ATx07":{"X":"partly","Y":"wrong","better":"X","type":"5-storey historicist tenement with rich facade, cream, bay on right; no porch"},
+"ATx08":{"X":"right","Y":"right","better":"same","type":"3-storey rendered round-cornered house with shutters, porch canopy at door"},
+"ATx09":{"X":"unclear","Y":"unclear","better":"unclear","type":"photo shows empty road with trees and wall; no house"},
+"ATx10":{"X":"wrong","Y":"wrong","better":"unclear","type":"modern 4-storey apartment house with ground-floor shop, balconies; neither bay nor porch"},
+"ATx11":{"X":"wrong","Y":"partly","better":"Y","type":"2-3 storey old plastered townhouse, pitched roof, curved corner; no bay/porch"},
+"ATx12":{"X":"partly","Y":"wrong","better":"X","type":"3-storey modern flat-roof housing block, terraces; no porch"},
+"ATx13":{"X":"wrong","Y":"wrong","better":"same","type":"3-storey large detached timber-clad farmhouse with big gable roof; no bay/porch"},
+"ATx14":{"X":"wrong","Y":"wrong","better":"same","type":"small single-storey hip-roofed utility hut"},
+"ATx15":{"X":"wrong","Y":"partly","better":"Y","type":"4-storey old tenement with dark stone/plaster facade, pitched roof; neither bay nor porch"},
+"ATx16":{"X":"partly","Y":"wrong","better":"X","type":"4-5 storey historicist tenement row with shops at ground floor; neither"},
+"ATx17":{"X":"partly","Y":"wrong","better":"X","type":"4-storey brown plastered 1930s corner block with strip windows below; no porch"}
+}

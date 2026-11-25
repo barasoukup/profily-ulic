@@ -1,0 +1,547 @@
+{
+ "stat": {
+  "houses": 108,
+  "tunedFound": 13,
+  "allFound": 106,
+  "changed": 30,
+  "look": 30,
+  "asked": 102,
+  "regFailed": 0,
+  "noPhoto": 18,
+  "out": 0,
+  "outAsHouse": 0
+ },
+ "rows": [
+  {
+   "id": "IT01",
+   "town": "bolzano",
+   "city": "italy",
+   "point": [
+    11.3452818,
+    46.4967517
+   ],
+   "mapillary": "106491144859610",
+   "pano": false,
+   "dist": 24.4,
+   "off": -14.6,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      11.345281782756823,
+      46.49675167158512
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      11.345281782756823,
+      46.49675167158512
+     ],
+     "km": 99,
+     "block": {
+      "length": 159.3,
+      "width": 40,
+      "fill": 0.47,
+      "parts": 2
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "IT02",
+   "town": "torino",
+   "city": "italy",
+   "point": [
+    7.6882382,
+    45.0596545
+   ],
+   "mapillary": "709901215372147",
+   "pano": true,
+   "dist": 16.2,
+   "off": -168,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "levels": 7,
+     "point": [
+      7.688238184349968,
+      45.05965452132395
+     ],
+     "km": 99,
+     "block": {
+      "length": 111.9,
+      "width": 63.2,
+      "fill": 0.4,
+      "parts": 4
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   },
+   "after": {
+    "look": "stredomori",
+    "info": {
+     "levels": 7,
+     "point": [
+      7.688238184349968,
+      45.05965452132395
+     ],
+     "km": 99,
+     "block": {
+      "length": 183,
+      "width": 135.1,
+      "fill": 0.46,
+      "parts": 20
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   }
+  },
+  {
+   "id": "IT03",
+   "town": "bolzano",
+   "city": "italy",
+   "point": [
+    11.3565341,
+    46.4958215
+   ],
+   "mapillary": "271441531353895",
+   "pano": false,
+   "dist": 16.2,
+   "off": 7.9,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "levels": 7,
+     "point": [
+      11.356534071656933,
+      46.495821515221834
+     ],
+     "km": 99,
+     "block": {
+      "length": 41.4,
+      "width": 33.3,
+      "fill": 0.62,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "levels": 7,
+     "point": [
+      11.356534071656933,
+      46.495821515221834
+     ],
+     "km": 99,
+     "block": {
+      "length": 230.9,
+      "width": 131.3,
+      "fill": 0.48,
+      "parts": 5
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   }
+  },
+  {
+   "id": "IT04",
+   "town": "modena",
+   "city": "italy",
+   "point": [
+    10.9262067,
+    44.6535334
+   ],
+   "mapillary": "306570140831035",
+   "pano": false,
+   "dist": 24.9,
+   "off": 8.4,
+   "before": {
+    "look": "stredomori",
+    "info": {
+     "point": [
+      10.926206744835596,
+      44.65353338986341
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      10.926206744835596,
+      44.65353338986341
+     ],
+     "km": 99,
+     "block": {
+      "length": 23.5,
+      "width": 13.4,
+      "fill": 0.76,
+      "parts": 1
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "IT05",
+   "town": "bologna",
+   "city": "italy",
+   "point": [
+    11.3302298,
+    44.5022453
+   ],
+   "mapillary": "1201654496935690",
+   "pano": false,
+   "dist": 20.8,
+   "off": 10.7,
+   "before": {
+    "look": "stredomori",
+    "info": {
+     "levels": 3,
+     "point": [
+      11.330229789927282,
+      44.502245285900486
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr"
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "levels": 3,
+     "point": [
+      11.330229789927282,
+      44.502245285900486
+     ],
+     "km": 99,
+     "block": {
+      "length": 22.7,
+      "width": 13.2,
+      "fill": 0.65,
+      "parts": 1
+     },
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "IT06",
+   "town": "bolzano",
+   "city": "italy",
+   "point": [
+    11.3496079,
+    46.5017408
+   ],
+   "mapillary": "1611458535858744",
+   "pano": false,
+   "dist": 25.6,
+   "off": -27,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      11.349607897612227,
+      46.501740844181825
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      11.349607897612227,
+      46.501740844181825
+     ],
+     "km": 99,
+     "block": {
+      "length": 25.6,
+      "width": 15.2,
+      "fill": 0.77,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   }
+  },
+  {
+   "id": "IT07",
+   "town": "bolzano",
+   "city": "italy",
+   "point": [
+    11.3377119,
+    46.5000719
+   ],
+   "mapillary": "934018544029034",
+   "pano": false,
+   "dist": 19.8,
+   "off": -0.3,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      11.337711894999842,
+      46.50007186475826
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      11.337711894999842,
+      46.50007186475826
+     ],
+     "km": 99,
+     "block": {
+      "length": 17.3,
+      "width": 16,
+      "fill": 0.6,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "house"
+    }
+   }
+  },
+  {
+   "id": "IT08",
+   "town": "bolzano",
+   "city": "italy",
+   "point": [
+    11.3540767,
+    46.5083506
+   ],
+   "mapillary": "4129752907118534",
+   "pano": false,
+   "dist": 10,
+   "off": -5.6,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      11.354076715031963,
+      46.508350580550456
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      11.354076715031963,
+      46.508350580550456
+     ],
+     "km": 99,
+     "block": {
+      "length": 47.7,
+      "width": 16.3,
+      "fill": 0.67,
+      "parts": 2
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "IT09",
+   "town": "modena",
+   "city": "italy",
+   "point": [
+    10.9287949,
+    44.6484143
+   ],
+   "mapillary": "665842345867921",
+   "pano": true,
+   "dist": 22.6,
+   "off": -85.5,
+   "before": {
+    "look": "stredomori",
+    "info": {
+     "point": [
+      10.92879492506348,
+      44.648414319290396
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      10.92879492506348,
+      44.648414319290396
+     ],
+     "km": 99,
+     "block": {
+      "length": 263.2,
+      "width": 269.8,
+      "fill": 0.38,
+      "parts": 7
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "IT10",
+   "town": "bolzano",
+   "city": "italy",
+   "point": [
+    11.3410401,
+    46.4949913
+   ],
+   "mapillary": "176401081050992",
+   "pano": false,
+   "dist": 24.5,
+   "off": -22.3,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      11.341040127926469,
+      46.49499125895581
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      11.341040127926469,
+      46.49499125895581
+     ],
+     "km": 99,
+     "block": {
+      "length": 105.7,
+      "width": 51.6,
+      "fill": 0.35,
+      "parts": 2
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "IT11",
+   "town": "bologna",
+   "city": "italy",
+   "point": [
+    11.3384757,
+    44.4985506
+   ],
+   "mapillary": "1043048837436731",
+   "pano": false,
+   "dist": 22,
+   "off": -20.6,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "levels": 11,
+     "point": [
+      11.33847569922679,
+      44.498550619533624
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 11,
+     "roof": 0,
+     "src": "ipr"
+    }
+   },
+   "after": {
+    "look": "stredomori",
+    "info": {
+     "levels": 11,
+     "point": [
+      11.33847569922679,
+      44.498550619533624
+     ],
+     "km": 99,
+     "block": {
+      "length": 80.7,
+      "width": 58.8,
+      "fill": 0.78,
+      "parts": 11
+     },
+     "tint": 0,
+     "cornice": 11,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "IT12",
+   "town": "bolzano",
+   "city": "italy",
+   "point": [
+    11.3654834,
+    46.497909
+   ],
+   "mapillary": "1528824734960354",
+   "pano": false,
+   "dist": 18.9,
+   "off": 12.4,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      11.365483439100004,
+      46.49790903328248
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "kancelar",
+    "info": {
+     "point": [
+      11.365483439100004,
+      46.49790903328248
+     ],
+     "km": 99,
+     "block": {
+      "length": 94.6,
+      "width": 68.9,
+      "fill": 0.51,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "public"
+    }
+   }
+  }
+ ]
+}

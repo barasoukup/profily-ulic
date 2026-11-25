@@ -182,6 +182,7 @@ test("kontaktní formulář: e-mail nejvýš dvakrát z adresy a desetkrát za h
   const O = ["https://streetspace.eu", "http://localhost:5173"];
   assert.ok(W.cutOf("https://streetspace.eu/profily/?lang=sk#rez=48.1,17.1,90,20.0,20.0", O));
   assert.ok(W.cutOf("https://streetspace.eu/profily/#rez=48.1,17.1,-90,20.0,20.0,123456789", O), "odkaz s cestou OSM");
+  assert.ok(W.cutOf("https://streetspace.eu/profily/#rez=48.1,17.1,-90.4,20.0,20.0,123456789", O), "azimut s desetinou");
   for (const bad of ["https://streetspace.eu/x?<script>#rez=1", "https://streetspace.eu/@evil.example/#rez=1", "http://localhost:5173/#rez=1\r\nBcc: a@b.cz", "https://streetspace.eu.evil.example/#rez=1"]) assert.equal(W.cutOf(bad, O), null, bad);
   // The e-mail: with a binding, the first two of an address, at most ten of everyone (the rest only in D1). Node has no
   // cloudflare:email, so the sending is counted by its attempts (the import fails after the decision).

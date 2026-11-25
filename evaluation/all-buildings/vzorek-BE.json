@@ -1,0 +1,520 @@
+{
+ "stat": {
+  "houses": 33,
+  "tunedFound": 2,
+  "allFound": 32,
+  "changed": 20,
+  "look": 20,
+  "asked": 32,
+  "regFailed": 0,
+  "noPhoto": 8,
+  "out": 0,
+  "outAsHouse": 0
+ },
+ "rows": [
+  {
+   "id": "BE01",
+   "town": "liege",
+   "city": "belgium",
+   "point": [
+    5.5686183,
+    50.6298922
+   ],
+   "mapillary": "562997702491342",
+   "pano": true,
+   "dist": 15.3,
+   "off": 138.4,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      5.568618316509492,
+      50.62989224298076
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "point": [
+      5.568618316509492,
+      50.62989224298076
+     ],
+     "km": 99,
+     "block": {
+      "length": 87,
+      "width": 55.5,
+      "fill": 0.32,
+      "parts": 15
+     },
+     "tint": 0,
+     "type": "house"
+    }
+   }
+  },
+  {
+   "id": "BE02",
+   "town": "mechelen",
+   "city": "belgium",
+   "point": [
+    4.4668933,
+    51.0327162
+   ],
+   "mapillary": "1132436314273698",
+   "pano": false,
+   "dist": 14.5,
+   "off": -10,
+   "before": {
+    "look": "cihlovy",
+    "info": {
+     "point": [
+      4.4668933434372775,
+      51.03271619205838
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "point": [
+      4.4668933434372775,
+      51.03271619205838
+     ],
+     "km": 99,
+     "block": {
+      "length": 130.2,
+      "width": 25.3,
+      "fill": 0.44,
+      "parts": 20
+     },
+     "tint": 0,
+     "type": "house"
+    }
+   }
+  },
+  {
+   "id": "BE03",
+   "town": "brugge",
+   "city": "belgium",
+   "point": [
+    3.231826,
+    51.2089669
+   ],
+   "mapillary": "1038106264850811",
+   "pano": true,
+   "dist": 13.4,
+   "off": 33.1,
+   "before": {
+    "look": "cihlovy",
+    "info": {
+     "point": [
+      3.231825967978683,
+      51.20896691745341
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "point": [
+      3.231825967978683,
+      51.20896691745341
+     ],
+     "km": 99,
+     "block": {
+      "length": 134.7,
+      "width": 50.8,
+      "fill": 0.5,
+      "parts": 41
+     },
+     "tint": 0,
+     "type": "house"
+    }
+   }
+  },
+  {
+   "id": "BE04",
+   "town": "charleroi",
+   "city": "belgium",
+   "point": [
+    4.4554003,
+    50.4192261
+   ],
+   "mapillary": "570938388787523",
+   "pano": true,
+   "dist": 12.5,
+   "off": 25.4,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      4.455400329081562,
+      50.419226061392884
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "point": [
+      4.455400329081562,
+      50.419226061392884
+     ],
+     "km": 99,
+     "block": {
+      "length": 87.7,
+      "width": 27.5,
+      "fill": 0.59,
+      "parts": 20
+     },
+     "tint": 0,
+     "type": "house"
+    }
+   }
+  },
+  {
+   "id": "BE05",
+   "town": "namur",
+   "city": "belgium",
+   "point": [
+    4.8797715,
+    50.4812033
+   ],
+   "mapillary": "2021818918186562",
+   "pano": true,
+   "dist": 15.2,
+   "off": -89.4,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      4.879771515732774,
+      50.481203253818165
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "point": [
+      4.879771515732774,
+      50.481203253818165
+     ],
+     "km": 99,
+     "block": {
+      "length": 169.4,
+      "width": 44.1,
+      "fill": 0.36,
+      "parts": 25
+     },
+     "tint": 0,
+     "type": "house"
+    }
+   }
+  },
+  {
+   "id": "BE06",
+   "town": "mons",
+   "city": "belgium",
+   "point": [
+    3.9468815,
+    50.4425414
+   ],
+   "mapillary": "1434806977115662",
+   "pano": true,
+   "dist": 14.8,
+   "off": 51.4,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      3.9468814637719007,
+      50.44254136788938
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "point": [
+      3.9468814637719007,
+      50.44254136788938
+     ],
+     "km": 99,
+     "block": {
+      "length": 34,
+      "width": 15.6,
+      "fill": 0.71,
+      "parts": 3
+     },
+     "tint": 0,
+     "type": "house"
+    }
+   }
+  },
+  {
+   "id": "BE07",
+   "town": "brugge",
+   "city": "belgium",
+   "point": [
+    3.2348596,
+    51.2073746
+   ],
+   "mapillary": "2941582852783791",
+   "pano": false,
+   "dist": 18.6,
+   "off": 4.4,
+   "before": {
+    "look": "cihlovy",
+    "info": {
+     "point": [
+      3.2348595685227344,
+      51.207374584392646
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "point": [
+      3.2348595685227344,
+      51.207374584392646
+     ],
+     "km": 99,
+     "block": {
+      "length": 111.1,
+      "width": 115.2,
+      "fill": 0.36,
+      "parts": 40
+     },
+     "tint": 0,
+     "type": "house"
+    }
+   }
+  },
+  {
+   "id": "BE08",
+   "town": "gent",
+   "city": "belgium",
+   "point": [
+    3.7018955,
+    51.0611474
+   ],
+   "mapillary": "661349436464977",
+   "pano": true,
+   "dist": 14.1,
+   "off": 41,
+   "before": {
+    "look": "cihlovy",
+    "info": {
+     "point": [
+      3.7018955200195025,
+      51.06114738242451
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "point": [
+      3.7018955200195025,
+      51.06114738242451
+     ],
+     "km": 99,
+     "block": {
+      "length": 106.2,
+      "width": 47.5,
+      "fill": 0.69,
+      "parts": 41
+     },
+     "tint": 0,
+     "type": "house"
+    }
+   }
+  },
+  {
+   "id": "BE09",
+   "town": "gent",
+   "city": "belgium",
+   "point": [
+    3.7047327,
+    51.0631259
+   ],
+   "mapillary": "568380009500929",
+   "pano": true,
+   "dist": 13.5,
+   "off": -132,
+   "before": {
+    "look": "cihlovy",
+    "info": {
+     "point": [
+      3.7047326715199587,
+      51.06312586159986
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "point": [
+      3.7047326715199587,
+      51.06312586159986
+     ],
+     "km": 99,
+     "block": {
+      "length": 108,
+      "width": 36,
+      "fill": 0.74,
+      "parts": 43
+     },
+     "tint": 0,
+     "type": "house"
+    }
+   }
+  },
+  {
+   "id": "BE10",
+   "town": "leuven",
+   "city": "belgium",
+   "point": [
+    4.6855653,
+    50.8765181
+   ],
+   "mapillary": "284007090059001",
+   "pano": false,
+   "dist": 12.6,
+   "off": -32.7,
+   "before": {
+    "look": "cihlovy",
+    "info": {
+     "point": [
+      4.685565335840896,
+      50.87651809094195
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "point": [
+      4.685565335840896,
+      50.87651809094195
+     ],
+     "km": 99,
+     "block": {
+      "length": 189.6,
+      "width": 19.8,
+      "fill": 0.71,
+      "parts": 40
+     },
+     "tint": 0,
+     "type": "house"
+    }
+   }
+  },
+  {
+   "id": "BE11",
+   "town": "namur",
+   "city": "belgium",
+   "point": [
+    4.859609,
+    50.4741298
+   ],
+   "mapillary": "1704984783392828",
+   "pano": true,
+   "dist": 14.5,
+   "off": -153.8,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      4.859609026996992,
+      50.47412978820144
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "point": [
+      4.859609026996992,
+      50.47412978820144
+     ],
+     "km": 99,
+     "block": {
+      "length": 48.3,
+      "width": 19.5,
+      "fill": 0.57,
+      "parts": 8
+     },
+     "tint": 0,
+     "type": "house"
+    }
+   }
+  },
+  {
+   "id": "BE12",
+   "town": "mechelen",
+   "city": "belgium",
+   "point": [
+    4.4683147,
+    51.0269161
+   ],
+   "mapillary": "106576672050716",
+   "pano": false,
+   "dist": 26,
+   "off": -9.7,
+   "before": {
+    "look": "cihlovy",
+    "info": {
+     "point": [
+      4.468314677909452,
+      51.026916095369444
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "point": [
+      4.468314677909452,
+      51.026916095369444
+     ],
+     "km": 99,
+     "block": {
+      "length": 157.5,
+      "width": 112.5,
+      "fill": 0.18,
+      "parts": 40
+     },
+     "tint": 0,
+     "type": "house"
+    }
+   }
+  }
+ ]
+}

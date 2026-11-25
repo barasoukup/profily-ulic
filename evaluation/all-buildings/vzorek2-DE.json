@@ -1,0 +1,585 @@
+{
+ "stat": {
+  "houses": 133,
+  "tunedFound": 88,
+  "allFound": 129,
+  "changed": 17,
+  "look": 17,
+  "asked": 84,
+  "regFailed": 0,
+  "noPhoto": 5,
+  "out": 1,
+  "outAsHouse": 0
+ },
+ "rows": [
+  {
+   "id": "DEx01",
+   "town": "leipzig",
+   "city": "germany",
+   "point": [
+    12.3753493,
+    51.3431691
+   ],
+   "mapillary": "1421512464876493",
+   "pano": false,
+   "dist": 12.1,
+   "off": -12.9,
+   "panels": true,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      12.375349253971676,
+      51.343169080112744
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "moderni",
+    "info": {
+     "point": [
+      12.375349253971676,
+      51.343169080112744
+     ],
+     "km": 99,
+     "block": {
+      "length": 297.7,
+      "width": 99,
+      "fill": 0.72,
+      "parts": 3
+     },
+     "tint": 0,
+     "type": "mall",
+     "start": 2012
+    }
+   }
+  },
+  {
+   "id": "DEx02",
+   "town": "nuernberg",
+   "city": "germany",
+   "point": [
+    11.0608659,
+    49.4607793
+   ],
+   "mapillary": "432758258600509",
+   "pano": false,
+   "dist": 12.9,
+   "off": 8,
+   "panels": false,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "levels": 3,
+     "point": [
+      11.060865920780627,
+      49.460779264751004
+     ],
+     "km": 99,
+     "block": {
+      "length": 66.2,
+      "width": 42.7,
+      "fill": 0.39,
+      "parts": 3
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 3,
+     "point": [
+      11.060865920780627,
+      49.460779264751004
+     ],
+     "km": 99,
+     "block": {
+      "length": 134.5,
+      "width": 55.7,
+      "fill": 0.44,
+      "parts": 9
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   }
+  },
+  {
+   "id": "DEx03",
+   "town": "aachen",
+   "city": "germany",
+   "point": [
+    6.0668294,
+    50.7683949
+   ],
+   "mapillary": "606571167427016",
+   "pano": false,
+   "dist": 18,
+   "off": -32.1,
+   "panels": false,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      6.066829403729908,
+      50.768394873080645
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      6.066829403729908,
+      50.768394873080645
+     ],
+     "km": 99,
+     "block": {
+      "length": 12,
+      "width": 11.6,
+      "fill": 0.52,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "detached"
+    }
+   }
+  },
+  {
+   "id": "DEx04",
+   "town": "muenchen",
+   "city": "germany",
+   "point": [
+    11.5544955,
+    48.1376362
+   ],
+   "mapillary": "3533323303486304",
+   "pano": true,
+   "dist": 14.6,
+   "off": 3,
+   "panels": false,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      11.554495472765984,
+      48.13763622516904
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "kancelar",
+    "info": {
+     "point": [
+      11.554495472765984,
+      48.13763622516904
+     ],
+     "km": 99,
+     "block": {
+      "length": 42.4,
+      "width": 30,
+      "fill": 0.59,
+      "parts": 2
+     },
+     "tint": 0,
+     "type": "office",
+     "roofShape": "flat"
+    }
+   }
+  },
+  {
+   "id": "DEx05",
+   "town": "hamburg",
+   "city": "germany",
+   "point": [
+    9.9901114,
+    53.5480446
+   ],
+   "mapillary": "1228451729568803",
+   "pano": true,
+   "dist": 10.1,
+   "off": 93.2,
+   "panels": false,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "levels": 7,
+     "height": 37,
+     "point": [
+      9.990111352258326,
+      53.54804462541359
+     ],
+     "km": 99,
+     "block": {
+      "length": 57.2,
+      "width": 34.2,
+      "fill": 0.65,
+      "parts": 3
+     },
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 7,
+     "height": 37,
+     "point": [
+      9.990111352258326,
+      53.54804462541359
+     ],
+     "km": 99,
+     "block": {
+      "length": 99.9,
+      "width": 62.9,
+      "fill": 0.62,
+      "parts": 9
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "DEx06",
+   "town": "koeln",
+   "city": "germany",
+   "point": [
+    6.9501691,
+    50.9320679
+   ],
+   "mapillary": "1010245808587742",
+   "pano": true,
+   "dist": 15.1,
+   "off": 22.9,
+   "panels": false,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      6.950169117327389,
+      50.93206792614013
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "skola",
+    "info": {
+     "point": [
+      6.950169117327389,
+      50.93206792614013
+     ],
+     "km": 99,
+     "block": {
+      "length": 113.4,
+      "width": 96.4,
+      "fill": 0.33,
+      "parts": 10
+     },
+     "tint": 0,
+     "type": "school"
+    }
+   }
+  },
+  {
+   "id": "DEx07",
+   "town": "aachen",
+   "city": "germany",
+   "point": [
+    6.0932681,
+    50.7778123
+   ],
+   "mapillary": "432057095286517",
+   "pano": false,
+   "dist": 21.3,
+   "off": 31.5,
+   "panels": false,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      6.093268118213233,
+      50.77781229915204
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "funkce",
+    "info": {
+     "point": [
+      6.093268118213233,
+      50.77781229915204
+     ],
+     "km": 99,
+     "block": {
+      "length": 152.7,
+      "width": 81.3,
+      "fill": 0.53,
+      "parts": 40
+     },
+     "tint": 0,
+     "roofShape": "flat"
+    }
+   }
+  },
+  {
+   "id": "DEx08",
+   "town": "nuernberg",
+   "city": "germany",
+   "point": [
+    11.0804082,
+    49.4502559
+   ],
+   "mapillary": "1204580994112500",
+   "pano": true,
+   "dist": 15.7,
+   "off": 5.6,
+   "panels": false,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "levels": 4,
+     "height": 15,
+     "point": [
+      11.08040822313464,
+      49.45025592617618
+     ],
+     "km": 99,
+     "block": {
+      "length": 156.4,
+      "width": 71.7,
+      "fill": 0.43,
+      "parts": 7
+     },
+     "tint": 0,
+     "type": "bridge",
+     "roofShape": "flat",
+     "material": "glass"
+    }
+   },
+   "after": {
+    "look": "funkce",
+    "info": {
+     "levels": 4,
+     "height": 15,
+     "point": [
+      11.08040822313464,
+      49.45025592617618
+     ],
+     "km": 99,
+     "block": {
+      "length": 306.3,
+      "width": 142.9,
+      "fill": 0.29,
+      "parts": 17
+     },
+     "tint": 0,
+     "type": "bridge",
+     "roofShape": "flat",
+     "material": "glass"
+    }
+   }
+  },
+  {
+   "id": "DEx09",
+   "town": "leipzig",
+   "city": "germany",
+   "point": [
+    12.3552666,
+    51.3443801
+   ],
+   "mapillary": "1655492072204161",
+   "pano": false,
+   "dist": 18.2,
+   "off": -6.3,
+   "panels": true,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 6,
+     "point": [
+      12.355266550241563,
+      51.34438014710743
+     ],
+     "km": 99,
+     "block": {
+      "length": 105.5,
+      "width": 27.2,
+      "fill": 0.58,
+      "parts": 4
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 6,
+     "point": [
+      12.355266550241563,
+      51.34438014710743
+     ],
+     "km": 99,
+     "block": {
+      "length": 174,
+      "width": 116.5,
+      "fill": 0.35,
+      "parts": 32
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   }
+  },
+  {
+   "id": "DEx10",
+   "town": "nuernberg",
+   "city": "germany",
+   "point": [
+    11.0560125,
+    49.451081
+   ],
+   "mapillary": "1319654823349233",
+   "pano": false,
+   "dist": 25.9,
+   "off": -26.8,
+   "panels": false,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "levels": 4,
+     "point": [
+      11.056012465643848,
+      49.45108104532185
+     ],
+     "km": 99,
+     "block": {
+      "length": 132.8,
+      "width": 82.8,
+      "fill": 0.27,
+      "parts": 3
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 4,
+     "point": [
+      11.056012465643848,
+      49.45108104532185
+     ],
+     "km": 99,
+     "block": {
+      "length": 127.7,
+      "width": 123.4,
+      "fill": 0.32,
+      "parts": 17
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   }
+  },
+  {
+   "id": "DEx11",
+   "town": "aachen",
+   "city": "germany",
+   "point": [
+    6.1001251,
+    50.7832926
+   ],
+   "mapillary": "670534114078811",
+   "pano": false,
+   "dist": 23.9,
+   "off": -25.5,
+   "panels": false,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      6.100125084477719,
+      50.78329259108601
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "kancelar",
+    "info": {
+     "point": [
+      6.100125084477719,
+      50.78329259108601
+     ],
+     "km": 99,
+     "block": {
+      "length": 81.2,
+      "width": 67.2,
+      "fill": 0.43,
+      "parts": 3
+     },
+     "tint": 0,
+     "type": "office"
+    }
+   }
+  },
+  {
+   "id": "DEx12",
+   "town": "hamburg",
+   "city": "germany",
+   "point": [
+    9.9844201,
+    53.5569419
+   ],
+   "mapillary": "218105453235831",
+   "pano": false,
+   "dist": 15.5,
+   "off": 16.6,
+   "panels": false,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      9.984420094277873,
+      53.55694193989457
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "kancelar",
+    "info": {
+     "point": [
+      9.984420094277873,
+      53.55694193989457
+     ],
+     "km": 99,
+     "block": {
+      "length": 184.8,
+      "width": 101.7,
+      "fill": 0.66,
+      "parts": 6
+     },
+     "tint": 0,
+     "type": "public"
+    }
+   }
+  }
+ ]
+}

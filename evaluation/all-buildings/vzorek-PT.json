@@ -1,0 +1,534 @@
+{
+ "stat": {
+  "houses": 117,
+  "tunedFound": 24,
+  "allFound": 112,
+  "changed": 34,
+  "look": 34,
+  "asked": 101,
+  "regFailed": 0,
+  "noPhoto": 22,
+  "out": 0,
+  "outAsHouse": 0
+ },
+ "rows": [
+  {
+   "id": "PT01",
+   "town": "coimbra",
+   "city": "portugal",
+   "point": [
+    -8.4250456,
+    40.2117832
+   ],
+   "mapillary": "1220631481692271",
+   "pano": false,
+   "dist": 17.4,
+   "off": -22.4,
+   "before": {
+    "look": "azulejo",
+    "info": {
+     "point": [
+      -8.42504563618218,
+      40.211783220332606
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "skola",
+    "info": {
+     "point": [
+      -8.42504563618218,
+      40.211783220332606
+     ],
+     "km": 99,
+     "block": {
+      "length": 76.6,
+      "width": 31.9,
+      "fill": 0.48,
+      "parts": 5
+     },
+     "tint": 0,
+     "type": "school"
+    }
+   }
+  },
+  {
+   "id": "PT02",
+   "town": "setubal",
+   "city": "portugal",
+   "point": [
+    -8.8825881,
+    38.5359414
+   ],
+   "mapillary": "485931389396859",
+   "pano": false,
+   "dist": 20.6,
+   "off": -31.4,
+   "before": {
+    "look": "azulejo",
+    "info": {
+     "point": [
+      -8.88258812703289,
+      38.53594143086419
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      -8.88258812703289,
+      38.53594143086419
+     ],
+     "km": 99,
+     "block": {
+      "length": 11.2,
+      "width": 8.9,
+      "fill": 0.69,
+      "parts": 1
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "PT03",
+   "town": "braga",
+   "city": "portugal",
+   "point": [
+    -8.4354469,
+    41.5431531
+   ],
+   "mapillary": "1131721892167110",
+   "pano": true,
+   "dist": 22.6,
+   "off": 74,
+   "before": {
+    "look": "vila",
+    "info": {
+     "levels": 2,
+     "point": [
+      -8.435446878640535,
+      41.543153067986616
+     ],
+     "km": 99,
+     "block": {
+      "length": 20.1,
+      "width": 18,
+      "fill": 0.84,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "house",
+     "roofShape": "gabled"
+    }
+   },
+   "after": {
+    "look": "stredomori",
+    "info": {
+     "levels": 2,
+     "point": [
+      -8.435446878640535,
+      41.543153067986616
+     ],
+     "km": 99,
+     "block": {
+      "length": 59,
+      "width": 26.8,
+      "fill": 0.54,
+      "parts": 3
+     },
+     "tint": 0,
+     "type": "house",
+     "roofShape": "gabled"
+    }
+   }
+  },
+  {
+   "id": "PT04",
+   "town": "lisboa",
+   "city": "portugal",
+   "point": [
+    -9.143248,
+    38.7299083
+   ],
+   "mapillary": "1089038449954499",
+   "pano": false,
+   "dist": 14.1,
+   "off": -10.9,
+   "before": {
+    "look": "stredomori",
+    "info": {
+     "point": [
+      -9.143247982116192,
+      38.7299083303891
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "skola",
+    "info": {
+     "point": [
+      -9.143247982116192,
+      38.7299083303891
+     ],
+     "km": 99,
+     "block": {
+      "length": 123.8,
+      "width": 64.7,
+      "fill": 0.45,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "school"
+    }
+   }
+  },
+  {
+   "id": "PT05",
+   "town": "lisboa",
+   "city": "portugal",
+   "point": [
+    -9.1249238,
+    38.7210436
+   ],
+   "mapillary": "180114850660416",
+   "pano": false,
+   "dist": 17,
+   "off": -5.3,
+   "before": {
+    "look": "stredomori",
+    "info": {
+     "levels": 3,
+     "point": [
+      -9.124923779700575,
+      38.721043589002186
+     ],
+     "km": 99,
+     "block": {
+      "length": 25.6,
+      "width": 15.7,
+      "fill": 0.48,
+      "parts": 2
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "levels": 3,
+     "point": [
+      -9.124923779700575,
+      38.721043589002186
+     ],
+     "km": 99,
+     "block": {
+      "length": 76.9,
+      "width": 21.1,
+      "fill": 0.82,
+      "parts": 3
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   }
+  },
+  {
+   "id": "PT06",
+   "town": "setubal",
+   "city": "portugal",
+   "point": [
+    -8.9055116,
+    38.5250339
+   ],
+   "mapillary": "1007305783900355",
+   "pano": false,
+   "dist": 16.5,
+   "off": -30.2,
+   "before": {
+    "look": "stredomori",
+    "info": {
+     "point": [
+      -8.905511588574202,
+      38.52503385319057
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      -8.905511588574202,
+      38.52503385319057
+     ],
+     "km": 99,
+     "block": {
+      "length": 74,
+      "width": 14,
+      "fill": 0.86,
+      "parts": 5
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "PT07",
+   "town": "setubal",
+   "city": "portugal",
+   "point": [
+    -8.9047382,
+    38.5181816
+   ],
+   "mapillary": "1255790369560810",
+   "pano": false,
+   "dist": 9.7,
+   "off": 30.8,
+   "before": {
+    "look": "stredomori",
+    "info": {
+     "point": [
+      -8.90473823590023,
+      38.51818159801651
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      -8.90473823590023,
+      38.51818159801651
+     ],
+     "km": 99,
+     "block": {
+      "length": 74.1,
+      "width": 73.4,
+      "fill": 0.55,
+      "parts": 4
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "PT08",
+   "town": "lisboa",
+   "city": "portugal",
+   "point": [
+    -9.1299367,
+    38.7301399
+   ],
+   "mapillary": "160730755987390",
+   "pano": false,
+   "dist": 21.7,
+   "off": -14.4,
+   "before": {
+    "look": "stredomori",
+    "info": {
+     "point": [
+      -9.129936682539817,
+      38.73013990924796
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      -9.129936682539817,
+      38.73013990924796
+     ],
+     "km": 99,
+     "block": {
+      "length": 56.5,
+      "width": 39.2,
+      "fill": 0.62,
+      "parts": 2
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "PT09",
+   "town": "porto",
+   "city": "portugal",
+   "point": [
+    -8.6242651,
+    41.1457824
+   ],
+   "mapillary": "471110244152019",
+   "pano": false,
+   "dist": 10.7,
+   "off": -28.7,
+   "before": {
+    "look": "azulejo",
+    "info": {
+     "point": [
+      -8.624265061400965,
+      41.14578242764358
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "hala",
+    "info": {
+     "point": [
+      -8.624265061400965,
+      41.14578242764358
+     ],
+     "km": 99,
+     "block": {
+      "length": 160.9,
+      "width": 96.7,
+      "fill": 0.44,
+      "parts": 17
+     },
+     "tint": 0,
+     "type": "industrial"
+    }
+   }
+  },
+  {
+   "id": "PT10",
+   "town": "funchal",
+   "city": "portugal",
+   "point": [
+    -16.9196969,
+    32.6432226
+   ],
+   "mapillary": "1030542984351738",
+   "pano": false,
+   "dist": 24,
+   "off": -5.4,
+   "before": {
+    "look": "stredomori",
+    "info": {
+     "point": [
+      -16.91969690390347,
+      32.64322259973126
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "hala",
+    "info": {
+     "point": [
+      -16.91969690390347,
+      32.64322259973126
+     ],
+     "km": 99,
+     "block": {
+      "length": 125.6,
+      "width": 18,
+      "fill": 0.74,
+      "parts": 5
+     },
+     "tint": 0,
+     "type": "retail"
+    }
+   }
+  },
+  {
+   "id": "PT11",
+   "town": "viseu",
+   "city": "portugal",
+   "point": [
+    -7.9101476,
+    40.6436723
+   ],
+   "mapillary": "111968211432364",
+   "pano": false,
+   "dist": 23.6,
+   "off": 27,
+   "before": {
+    "look": "stredomori",
+    "info": {
+     "point": [
+      -7.910147607020878,
+      40.643672255355696
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      -7.910147607020878,
+      40.643672255355696
+     ],
+     "km": 99,
+     "block": {
+      "length": 203,
+      "width": 116.8,
+      "fill": 1.16,
+      "parts": 5
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "PT12",
+   "town": "setubal",
+   "city": "portugal",
+   "point": [
+    -8.9061058,
+    38.5250295
+   ],
+   "mapillary": "1014486899833671",
+   "pano": false,
+   "dist": 21.5,
+   "off": 2.6,
+   "before": {
+    "look": "stredomori",
+    "info": {
+     "point": [
+      -8.906105761515015,
+      38.52502952940101
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "povalecny",
+    "info": {
+     "point": [
+      -8.906105761515015,
+      38.52502952940101
+     ],
+     "km": 99,
+     "block": {
+      "length": 74,
+      "width": 14,
+      "fill": 0.86,
+      "parts": 5
+     },
+     "tint": 0
+    }
+   }
+  }
+ ]
+}

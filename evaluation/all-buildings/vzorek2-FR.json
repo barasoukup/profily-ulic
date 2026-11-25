@@ -1,0 +1,637 @@
+{
+ "stat": {
+  "houses": 290,
+  "tunedFound": 152,
+  "allFound": 283,
+  "changed": 22,
+  "look": 22,
+  "asked": 219,
+  "regFailed": 0,
+  "noPhoto": 10,
+  "out": 0,
+  "outAsHouse": 0
+ },
+ "rows": [
+  {
+   "id": "FRx01",
+   "town": "toulouse",
+   "city": "france",
+   "point": [
+    1.450401,
+    43.6025087
+   ],
+   "mapillary": "830242894283677",
+   "pano": true,
+   "dist": 14.7,
+   "off": 154.9,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "levels": 8,
+     "point": [
+      1.4504010385156536,
+      43.602508698117994
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 8,
+     "roof": 0,
+     "src": "ipr"
+    }
+   },
+   "after": {
+    "look": "funkce",
+    "info": {
+     "levels": 8,
+     "point": [
+      1.4504010385156536,
+      43.602508698117994
+     ],
+     "km": 99,
+     "block": {
+      "length": 365.8,
+      "width": 224.9,
+      "fill": 0.31,
+      "parts": 33
+     },
+     "tint": 0,
+     "roofShape": "flat",
+     "cornice": 8,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "FRx02",
+   "town": "lille",
+   "city": "france",
+   "point": [
+    3.0737554,
+    50.6274904
+   ],
+   "mapillary": "1691293927940904",
+   "pano": true,
+   "dist": 14.2,
+   "off": 145.8,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "levels": 3,
+     "point": [
+      3.073755352259372,
+      50.6274904371733
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr"
+    }
+   },
+   "after": {
+    "look": "kancelar",
+    "info": {
+     "levels": 3,
+     "point": [
+      3.073755352259372,
+      50.6274904371733
+     ],
+     "km": 99,
+     "block": {
+      "length": 236.3,
+      "width": 136.4,
+      "fill": 0.56,
+      "parts": 4
+     },
+     "tint": 0,
+     "type": "civic",
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "FRx03",
+   "town": "lille",
+   "city": "france",
+   "point": [
+    3.0646348,
+    50.6394965
+   ],
+   "mapillary": "1384992548809582",
+   "pano": true,
+   "dist": 12.9,
+   "off": 43.3,
+   "before": {
+    "look": "vila",
+    "info": {
+     "levels": 3,
+     "point": [
+      3.06463482164213,
+      50.63949647183262
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1900,
+     "house": 1,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "levels": 3,
+     "point": [
+      3.06463482164213,
+      50.63949647183262
+     ],
+     "km": 99,
+     "block": {
+      "length": 111,
+      "width": 65.4,
+      "fill": 0.49,
+      "parts": 40
+     },
+     "tint": 0,
+     "start": 1650,
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1900,
+     "house": 1,
+     "type": "house"
+    }
+   }
+  },
+  {
+   "id": "FRx04",
+   "town": "marseille",
+   "city": "france",
+   "point": [
+    5.3602279,
+    43.2920693
+   ],
+   "mapillary": "2924023451142472",
+   "pano": false,
+   "dist": 18.4,
+   "off": -30.9,
+   "before": {
+    "look": "stredomori",
+    "info": {
+     "point": [
+      5.3602279183299855,
+      43.292069283335955
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "kancelar",
+    "info": {
+     "point": [
+      5.3602279183299855,
+      43.292069283335955
+     ],
+     "km": 99,
+     "block": {
+      "length": 67,
+      "width": 46.4,
+      "fill": 0.72,
+      "parts": 3
+     },
+     "tint": 0,
+     "type": "hotel"
+    }
+   }
+  },
+  {
+   "id": "FRx05",
+   "town": "lille",
+   "city": "france",
+   "point": [
+    3.0495216,
+    50.6338519
+   ],
+   "mapillary": "1078394733425954",
+   "pano": true,
+   "dist": 11.4,
+   "off": -113.7,
+   "before": {
+    "look": "kancelar",
+    "info": {
+     "levels": 7,
+     "point": [
+      3.0495216434698853,
+      50.633851876696525
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 7,
+     "roof": 0,
+     "src": "ipr",
+     "office": 1,
+     "type": "office"
+    }
+   },
+   "after": {
+    "look": "skola",
+    "info": {
+     "levels": 7,
+     "point": [
+      3.0495216434698853,
+      50.633851876696525
+     ],
+     "km": 99,
+     "block": {
+      "length": 158.6,
+      "width": 78.3,
+      "fill": 0.46,
+      "parts": 4
+     },
+     "tint": 0,
+     "type": "school",
+     "cornice": 7,
+     "roof": 0,
+     "src": "ipr",
+     "office": 1
+    }
+   }
+  },
+  {
+   "id": "FRx06",
+   "town": "marseille",
+   "city": "france",
+   "point": [
+    5.3819538,
+    43.3007449
+   ],
+   "mapillary": "769797561086604",
+   "pano": true,
+   "dist": 18.9,
+   "off": -126.9,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "levels": 10,
+     "point": [
+      5.381953841010131,
+      43.300744891475084
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 10,
+     "roof": 0,
+     "src": "ipr"
+    }
+   },
+   "after": {
+    "look": "stredomori",
+    "info": {
+     "levels": 10,
+     "point": [
+      5.381953841010131,
+      43.300744891475084
+     ],
+     "km": 99,
+     "block": {
+      "length": 51.5,
+      "width": 48.7,
+      "fill": 0.68,
+      "parts": 15
+     },
+     "tint": 0,
+     "cornice": 10,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "FRx07",
+   "town": "toulouse",
+   "city": "france",
+   "point": [
+    1.4393703,
+    43.6021509
+   ],
+   "mapillary": "535918217816308",
+   "pano": true,
+   "dist": 13.5,
+   "off": 173.3,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      1.4393703392898678,
+      43.60215086680073
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "hala",
+    "info": {
+     "point": [
+      1.4393703392898678,
+      43.60215086680073
+     ],
+     "km": 99,
+     "block": {
+      "length": 346.7,
+      "width": 211.9,
+      "fill": 0.29,
+      "parts": 42
+     },
+     "tint": 0,
+     "type": "sports_hall"
+    }
+   }
+  },
+  {
+   "id": "FRx08",
+   "town": "montpellier",
+   "city": "france",
+   "point": [
+    3.872035,
+    43.6181281
+   ],
+   "mapillary": "520047836035927",
+   "pano": false,
+   "dist": 11.7,
+   "off": -27.2,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "levels": 5,
+     "height": 21,
+     "point": [
+      3.8720349653234485,
+      43.61812812632964
+     ],
+     "km": 99,
+     "block": {
+      "length": 82,
+      "width": 42.9,
+      "fill": 0.67,
+      "parts": 3
+     },
+     "tint": 0,
+     "cornice": 5,
+     "roof": 0,
+     "src": "ipr",
+     "type": "apartments"
+    }
+   },
+   "after": {
+    "look": "haussmann",
+    "info": {
+     "levels": 5,
+     "height": 21,
+     "point": [
+      3.8720349653234485,
+      43.61812812632964
+     ],
+     "km": 99,
+     "block": {
+      "length": 81.3,
+      "width": 41.7,
+      "fill": 0.69,
+      "parts": 5
+     },
+     "tint": 0,
+     "cornice": 5,
+     "roof": 0,
+     "src": "ipr",
+     "type": "apartments"
+    }
+   }
+  },
+  {
+   "id": "FRx09",
+   "town": "lille",
+   "city": "france",
+   "point": [
+    3.0683919,
+    50.6214163
+   ],
+   "mapillary": "1140072246938983",
+   "pano": true,
+   "dist": 14.4,
+   "off": -23.9,
+   "before": {
+    "look": "vila",
+    "info": {
+     "levels": 2,
+     "point": [
+      3.068391922374442,
+      50.621416329053496
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1850,
+     "house": 1,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "levels": 2,
+     "point": [
+      3.068391922374442,
+      50.621416329053496
+     ],
+     "km": 99,
+     "block": {
+      "length": 179.7,
+      "width": 96.5,
+      "fill": 0.29,
+      "parts": 40
+     },
+     "tint": 0,
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1850,
+     "house": 1,
+     "type": "house"
+    }
+   }
+  },
+  {
+   "id": "FRx10",
+   "town": "lille",
+   "city": "france",
+   "point": [
+    3.0606278,
+    50.6208936
+   ],
+   "mapillary": "784948266985554",
+   "pano": true,
+   "dist": 15.5,
+   "off": -16.7,
+   "before": {
+    "look": "vila",
+    "info": {
+     "levels": 1,
+     "point": [
+      3.0606277997144953,
+      50.620893585760655
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 1,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1900,
+     "house": 1,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "levels": 1,
+     "point": [
+      3.0606277997144953,
+      50.620893585760655
+     ],
+     "km": 99,
+     "block": {
+      "length": 151.2,
+      "width": 70.3,
+      "fill": 0.45,
+      "parts": 33
+     },
+     "tint": 0,
+     "cornice": 1,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1900,
+     "house": 1,
+     "type": "house"
+    }
+   }
+  },
+  {
+   "id": "FRx11",
+   "town": "lille",
+   "city": "france",
+   "point": [
+    3.0543959,
+    50.6206194
+   ],
+   "mapillary": "1121166262575532",
+   "pano": true,
+   "dist": 10.1,
+   "off": -16.2,
+   "before": {
+    "look": "vila",
+    "info": {
+     "levels": 3,
+     "point": [
+      3.0543959382717527,
+      50.62061939107042
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1896,
+     "house": 1,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "levels": 3,
+     "point": [
+      3.0543959382717527,
+      50.62061939107042
+     ],
+     "km": 99,
+     "block": {
+      "length": 130.5,
+      "width": 44.7,
+      "fill": 0.42,
+      "parts": 40
+     },
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1896,
+     "house": 1,
+     "type": "house"
+    }
+   }
+  },
+  {
+   "id": "FRx12",
+   "town": "bordeaux",
+   "city": "france",
+   "point": [
+    -0.5867038,
+    44.8298858
+   ],
+   "mapillary": "222046217034886",
+   "pano": false,
+   "dist": 16,
+   "off": 9.4,
+   "before": {
+    "look": "vila",
+    "info": {
+     "levels": 2,
+     "point": [
+      -0.5867038307853304,
+      44.829885802273736
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1906,
+     "house": 1,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "levels": 2,
+     "point": [
+      -0.5867038307853304,
+      44.829885802273736
+     ],
+     "km": 99,
+     "block": {
+      "length": 191,
+      "width": 30.4,
+      "fill": 0.51,
+      "parts": 40
+     },
+     "tint": 0,
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1906,
+     "house": 1,
+     "type": "house"
+    }
+   }
+  }
+ ]
+}

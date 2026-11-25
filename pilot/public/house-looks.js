@@ -131,7 +131,8 @@ export const BE_GABLE_TOWNS = [
 export function brickLook(gableTowns = []) {
   return (style, info, n) => {
     if (!OLD.has(style)) return undefined;
-    if (style === "nizky" && !(n >= 2)) return undefined;
+    // A house of a row of no known floors is a town house too (Flanders: 3 floors; evaluation/all-buildings).
+    if (style === "nizky" && !(n >= 2) && !(!n && HOUSE_TYPES.has(info?.type) && info?.block?.parts >= 3)) return undefined;
     const y = yearOf(info);
     if (y > 1920) return undefined; // the Amsterdam School stays functionalist
     if (LOOKS.gables && info?.across && (y ? y < 1800 : inOldTown(gableTowns, placeOf(info)))) return "stit";

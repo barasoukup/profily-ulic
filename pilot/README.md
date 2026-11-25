@@ -555,6 +555,10 @@ OSM church, chapel aj. kostel, OSM garage(s) a RÚIAN garáž garáž. Starý d�
 Podloubí jen podle dat (Bára): cesta OSM `covered=arcade|colonnade|building_arcade` přes řez u fasády (5 m před ní až
 8 m za ní, `derive.js`) → u jakéhokoli domu klenutý průchod v přízemí, v kartě „s podloubím (OSM)“. Věžák zvlášť nekreslíme: vysoký dům stejného stáří a využití vypadá po podlažích stejně (Bára).
 
+Vzhled domu čte všechny budovy OSM, i bez podlaží a výšky, ve všech státech (`?off=vsedomy` jen dřívější; `evaluation/all-buildings/ZPRAVA.md`);
+registr budov má přednost. Panelák jen z tvaru bloku bez podlaží a druhu se nedělá, dům v řadě bez podlaží je ve Flandrech cihlový městský.
+Sada mobiliáře smí mít vlastní lampu do 5 m (`lamp-post-top`, světlo `data-light` ve zvolené výšce, `profile.js postTopLamp`); zatím ji žádná nemá.
+
 ## Brno
 
 Stejně jako Praha se Brno ptá služeb města při kliknutí (přímo z prohlížeče, služby povolují CORS). Úpravy výpočtu,
@@ -1123,6 +1127,8 @@ prázdné plochy či OSM běh shodí a GitHub pošle e-mail; tabulka je v souhrn
 týdně, město po městě. Lokálně proti místnímu serveru: `SITE=http://localhost:5173/ node tools/check_sources.mjs`,
 jen některá města: `node tools/check_sources.mjs praha brno podklad`. Mezilehlé certifikáty, které některé
 servery neposílají (Frýdek-Místek), jsou v `tools/ca/`.
+Plochy jsou povinné jen tam, kde je mapa povrchů (`SURFACE_MAPS` modulů, bod v ulici pro každou v `tools/check_sources_lib.mjs`
+`POINTS`). Co selže, zkusí se po pauze znovu; jen pomalá služba (dvakrát vypršela) je varování, když povinné dotazy státu prošly.
 
 ## Licence a uvedení zdrojů
 

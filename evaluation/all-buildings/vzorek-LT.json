@@ -1,0 +1,543 @@
+{
+ "stat": {
+  "houses": 60,
+  "tunedFound": 38,
+  "allFound": 59,
+  "changed": 15,
+  "look": 15,
+  "asked": 36,
+  "regFailed": 0,
+  "noPhoto": 3,
+  "out": 1,
+  "outAsHouse": 0
+ },
+ "rows": [
+  {
+   "id": "LT01",
+   "town": "zirmunai",
+   "city": "lithuania",
+   "point": [
+    25.31638,
+    54.7056419
+   ],
+   "mapillary": "1412873080299568",
+   "pano": true,
+   "dist": 11.5,
+   "off": 118.5,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      25.3163800408083,
+      54.7056418989437
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "point": [
+      25.3163800408083,
+      54.7056418989437
+     ],
+     "km": 99,
+     "block": {
+      "length": 98.9,
+      "width": 30.7,
+      "fill": 0.58,
+      "parts": 2
+     },
+     "tint": 0,
+     "type": "office"
+    }
+   }
+  },
+  {
+   "id": "LT02",
+   "town": "antakalnis",
+   "city": "lithuania",
+   "point": [
+    25.3177379,
+    54.7112587
+   ],
+   "mapillary": "1433930382000559",
+   "pano": true,
+   "dist": 13.8,
+   "off": -48.3,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      25.317737930581092,
+      54.71125873636516
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "point": [
+      25.317737930581092,
+      54.71125873636516
+     ],
+     "km": 99,
+     "block": {
+      "length": 29.5,
+      "width": 7,
+      "fill": 0.95,
+      "parts": 1
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "LT03",
+   "town": "naujamiestis",
+   "city": "lithuania",
+   "point": [
+    25.2823077,
+    54.6784642
+   ],
+   "mapillary": "1054257484318955",
+   "pano": true,
+   "dist": 14.1,
+   "off": -152.7,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 3,
+     "point": [
+      25.282307680370973,
+      54.67846420628188
+     ],
+     "km": 99,
+     "block": {
+      "length": 90.2,
+      "width": 40.1,
+      "fill": 0.44,
+      "parts": 4
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 3,
+     "point": [
+      25.282307680370973,
+      54.67846420628188
+     ],
+     "km": 99,
+     "block": {
+      "length": 183,
+      "width": 95.3,
+      "fill": 0.36,
+      "parts": 17
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   }
+  },
+  {
+   "id": "LT04",
+   "town": "naujamiestis",
+   "city": "lithuania",
+   "point": [
+    25.2688237,
+    54.6896848
+   ],
+   "mapillary": "762688824444726",
+   "pano": false,
+   "dist": 16.4,
+   "off": -4,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      25.26882372937566,
+      54.68968476158306
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "point": [
+      25.26882372937566,
+      54.68968476158306
+     ],
+     "km": 99,
+     "block": {
+      "length": 109.6,
+      "width": 108,
+      "fill": 0.36,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "government"
+    }
+   }
+  },
+  {
+   "id": "LT05",
+   "town": "naujamiestis",
+   "city": "lithuania",
+   "point": [
+    25.2693699,
+    54.6774
+   ],
+   "mapillary": "1083207471246068",
+   "pano": true,
+   "dist": 23.9,
+   "off": 83.9,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      25.269369861557124,
+      54.67740000129527
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "garaz",
+    "info": {
+     "point": [
+      25.269369861557124,
+      54.67740000129527
+     ],
+     "km": 99,
+     "block": {
+      "length": 9.7,
+      "width": 6.8,
+      "fill": 0.65,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "garages"
+    }
+   }
+  },
+  {
+   "id": "LT06",
+   "town": "naujamiestis",
+   "city": "lithuania",
+   "point": [
+    25.2608728,
+    54.6691789
+   ],
+   "mapillary": "1124081713634592",
+   "pano": true,
+   "dist": 15.8,
+   "off": -104.2,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      25.260872807584224,
+      54.669178922687514
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "point": [
+      25.260872807584224,
+      54.669178922687514
+     ],
+     "km": 99,
+     "block": {
+      "length": 212.6,
+      "width": 146.7,
+      "fill": 0.33,
+      "parts": 6
+     },
+     "tint": 0,
+     "type": "office"
+    }
+   }
+  },
+  {
+   "id": "LT07",
+   "town": "senamiestis",
+   "city": "lithuania",
+   "point": [
+    25.2766781,
+    54.6738989
+   ],
+   "mapillary": "1120597933890974",
+   "pano": true,
+   "dist": 15.9,
+   "off": 26.7,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      25.276678055357728,
+      54.67389893277509
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "point": [
+      25.276678055357728,
+      54.67389893277509
+     ],
+     "km": 99,
+     "block": {
+      "length": 84.8,
+      "width": 62.6,
+      "fill": 0.3,
+      "parts": 3
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "LT08",
+   "town": "naujamiestis",
+   "city": "lithuania",
+   "point": [
+    25.2834491,
+    54.6778829
+   ],
+   "mapillary": "1129964172904524",
+   "pano": true,
+   "dist": 14.6,
+   "off": -8.2,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 3,
+     "point": [
+      25.283449137344995,
+      54.677882925526085
+     ],
+     "km": 99,
+     "block": {
+      "length": 36,
+      "width": 14.8,
+      "fill": 0.89,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 3,
+     "point": [
+      25.283449137344995,
+      54.677882925526085
+     ],
+     "km": 99,
+     "block": {
+      "length": 155.3,
+      "width": 153.2,
+      "fill": 0.34,
+      "parts": 14
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   }
+  },
+  {
+   "id": "LT09",
+   "town": "naujamiestis",
+   "city": "lithuania",
+   "point": [
+    25.2696392,
+    54.6818656
+   ],
+   "mapillary": "1655288329500284",
+   "pano": true,
+   "dist": 24,
+   "off": -142.4,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 4,
+     "point": [
+      25.2696391596436,
+      54.68186561384663
+     ],
+     "km": 99,
+     "block": {
+      "length": 230.5,
+      "width": 75.2,
+      "fill": 0.27,
+      "parts": 8
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 4,
+     "point": [
+      25.2696391596436,
+      54.68186561384663
+     ],
+     "km": 99,
+     "block": {
+      "length": 231.6,
+      "width": 102.6,
+      "fill": 0.3,
+      "parts": 12
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   }
+  },
+  {
+   "id": "LT10",
+   "town": "zverynas",
+   "city": "lithuania",
+   "point": [
+    25.2512326,
+    54.6860978
+   ],
+   "mapillary": "1119743123910299",
+   "pano": true,
+   "dist": 13.7,
+   "off": -100.8,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      25.251232581942684,
+      54.68609782314391
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "vila",
+    "info": {
+     "point": [
+      25.251232581942684,
+      54.68609782314391
+     ],
+     "km": 99,
+     "block": {
+      "length": 24.9,
+      "width": 15.3,
+      "fill": 0.66,
+      "parts": 2
+     },
+     "tint": 0,
+     "type": "detached"
+    }
+   }
+  },
+  {
+   "id": "LT11",
+   "town": "naujamiestis",
+   "city": "lithuania",
+   "point": [
+    25.2594836,
+    54.6674425
+   ],
+   "mapillary": "1636884921408195",
+   "pano": true,
+   "dist": 12.1,
+   "off": 102.9,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      25.259483633370586,
+      54.667442488556375
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "point": [
+      25.259483633370586,
+      54.667442488556375
+     ],
+     "km": 99,
+     "block": {
+      "length": 28.2,
+      "width": 13.1,
+      "fill": 0.85,
+      "parts": 1
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "LT12",
+   "town": "zirmunai",
+   "city": "lithuania",
+   "point": [
+    25.2827799,
+    54.7099696
+   ],
+   "mapillary": "1540300844807903",
+   "pano": true,
+   "dist": 14.4,
+   "off": 51.3,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      25.28277989667097,
+      54.70996957547316
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "point": [
+      25.28277989667097,
+      54.70996957547316
+     ],
+     "km": 99,
+     "block": {
+      "length": 16.5,
+      "width": 12.8,
+      "fill": 0.73,
+      "parts": 1
+     },
+     "tint": 0
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,614 @@
+{
+ "AT01": {
+  "X": "after",
+  "Y": "before"
+ },
+ "AT02": {
+  "X": "after",
+  "Y": "before"
+ },
+ "AT03": {
+  "X": "after",
+  "Y": "before"
+ },
+ "AT04": {
+  "X": "after",
+  "Y": "before"
+ },
+ "AT05": {
+  "X": "after",
+  "Y": "before"
+ },
+ "AT06": {
+  "X": "after",
+  "Y": "before"
+ },
+ "AT07": {
+  "X": "before",
+  "Y": "after"
+ },
+ "AT08": {
+  "X": "after",
+  "Y": "before"
+ },
+ "AT09": {
+  "X": "after",
+  "Y": "before"
+ },
+ "AT10": {
+  "X": "before",
+  "Y": "after"
+ },
+ "AT11": {
+  "X": "before",
+  "Y": "after"
+ },
+ "AT12": {
+  "X": "after",
+  "Y": "before"
+ },
+ "DE01": {
+  "X": "before",
+  "Y": "after"
+ },
+ "DE02": {
+  "X": "after",
+  "Y": "before"
+ },
+ "DE03": {
+  "X": "after",
+  "Y": "before"
+ },
+ "DE04": {
+  "X": "before",
+  "Y": "after"
+ },
+ "DE05": {
+  "X": "before",
+  "Y": "after"
+ },
+ "DE06": {
+  "X": "before",
+  "Y": "after"
+ },
+ "DE07": {
+  "X": "before",
+  "Y": "after"
+ },
+ "DE08": {
+  "X": "before",
+  "Y": "after"
+ },
+ "DE09": {
+  "X": "after",
+  "Y": "before"
+ },
+ "DE10": {
+  "X": "before",
+  "Y": "after"
+ },
+ "DE11": {
+  "X": "after",
+  "Y": "before"
+ },
+ "DE12": {
+  "X": "after",
+  "Y": "before"
+ },
+ "BE01": {
+  "X": "before",
+  "Y": "after"
+ },
+ "BE02": {
+  "X": "after",
+  "Y": "before"
+ },
+ "BE03": {
+  "X": "after",
+  "Y": "before"
+ },
+ "BE04": {
+  "X": "after",
+  "Y": "before"
+ },
+ "BE05": {
+  "X": "before",
+  "Y": "after"
+ },
+ "BE06": {
+  "X": "after",
+  "Y": "before"
+ },
+ "BE07": {
+  "X": "before",
+  "Y": "after"
+ },
+ "BE08": {
+  "X": "before",
+  "Y": "after"
+ },
+ "BE09": {
+  "X": "after",
+  "Y": "before"
+ },
+ "BE10": {
+  "X": "after",
+  "Y": "before"
+ },
+ "BE11": {
+  "X": "before",
+  "Y": "after"
+ },
+ "BE12": {
+  "X": "before",
+  "Y": "after"
+ },
+ "PL01": {
+  "X": "after",
+  "Y": "before"
+ },
+ "PL02": {
+  "X": "before",
+  "Y": "after"
+ },
+ "PL03": {
+  "X": "after",
+  "Y": "before"
+ },
+ "PL04": {
+  "X": "after",
+  "Y": "before"
+ },
+ "PL05": {
+  "X": "after",
+  "Y": "before"
+ },
+ "PL06": {
+  "X": "before",
+  "Y": "after"
+ },
+ "PL07": {
+  "X": "after",
+  "Y": "before"
+ },
+ "PL08": {
+  "X": "after",
+  "Y": "before"
+ },
+ "PL09": {
+  "X": "before",
+  "Y": "after"
+ },
+ "PL10": {
+  "X": "before",
+  "Y": "after"
+ },
+ "PL11": {
+  "X": "before",
+  "Y": "after"
+ },
+ "PL12": {
+  "X": "after",
+  "Y": "before"
+ },
+ "PT01": {
+  "X": "before",
+  "Y": "after"
+ },
+ "PT02": {
+  "X": "after",
+  "Y": "before"
+ },
+ "PT03": {
+  "X": "before",
+  "Y": "after"
+ },
+ "PT04": {
+  "X": "after",
+  "Y": "before"
+ },
+ "PT05": {
+  "X": "after",
+  "Y": "before"
+ },
+ "PT06": {
+  "X": "before",
+  "Y": "after"
+ },
+ "PT07": {
+  "X": "after",
+  "Y": "before"
+ },
+ "PT08": {
+  "X": "before",
+  "Y": "after"
+ },
+ "PT09": {
+  "X": "before",
+  "Y": "after"
+ },
+ "PT10": {
+  "X": "after",
+  "Y": "before"
+ },
+ "PT11": {
+  "X": "after",
+  "Y": "before"
+ },
+ "PT12": {
+  "X": "before",
+  "Y": "after"
+ },
+ "CH01": {
+  "X": "before",
+  "Y": "after"
+ },
+ "CH02": {
+  "X": "before",
+  "Y": "after"
+ },
+ "CH03": {
+  "X": "before",
+  "Y": "after"
+ },
+ "CH04": {
+  "X": "after",
+  "Y": "before"
+ },
+ "CH05": {
+  "X": "before",
+  "Y": "after"
+ },
+ "CH06": {
+  "X": "after",
+  "Y": "before"
+ },
+ "CH07": {
+  "X": "before",
+  "Y": "after"
+ },
+ "CH08": {
+  "X": "after",
+  "Y": "before"
+ },
+ "CH09": {
+  "X": "before",
+  "Y": "after"
+ },
+ "CH10": {
+  "X": "after",
+  "Y": "before"
+ },
+ "CH11": {
+  "X": "before",
+  "Y": "after"
+ },
+ "LT01": {
+  "X": "before",
+  "Y": "after"
+ },
+ "LT02": {
+  "X": "after",
+  "Y": "before"
+ },
+ "LT03": {
+  "X": "after",
+  "Y": "before"
+ },
+ "LT04": {
+  "X": "before",
+  "Y": "after"
+ },
+ "LT05": {
+  "X": "before",
+  "Y": "after"
+ },
+ "LT06": {
+  "X": "before",
+  "Y": "after"
+ },
+ "LT07": {
+  "X": "after",
+  "Y": "before"
+ },
+ "LT08": {
+  "X": "after",
+  "Y": "before"
+ },
+ "LT09": {
+  "X": "after",
+  "Y": "before"
+ },
+ "LT10": {
+  "X": "before",
+  "Y": "after"
+ },
+ "LT11": {
+  "X": "after",
+  "Y": "before"
+ },
+ "LT12": {
+  "X": "after",
+  "Y": "before"
+ },
+ "IT01": {
+  "X": "before",
+  "Y": "after"
+ },
+ "IT02": {
+  "X": "before",
+  "Y": "after"
+ },
+ "IT03": {
+  "X": "after",
+  "Y": "before"
+ },
+ "IT04": {
+  "X": "before",
+  "Y": "after"
+ },
+ "IT05": {
+  "X": "after",
+  "Y": "before"
+ },
+ "IT06": {
+  "X": "before",
+  "Y": "after"
+ },
+ "IT07": {
+  "X": "before",
+  "Y": "after"
+ },
+ "IT08": {
+  "X": "before",
+  "Y": "after"
+ },
+ "IT09": {
+  "X": "before",
+  "Y": "after"
+ },
+ "IT10": {
+  "X": "after",
+  "Y": "before"
+ },
+ "IT11": {
+  "X": "after",
+  "Y": "before"
+ },
+ "IT12": {
+  "X": "after",
+  "Y": "before"
+ },
+ "LU01": {
+  "X": "before",
+  "Y": "after"
+ },
+ "LU02": {
+  "X": "after",
+  "Y": "before"
+ },
+ "LU03": {
+  "X": "after",
+  "Y": "before"
+ },
+ "LU04": {
+  "X": "after",
+  "Y": "before"
+ },
+ "LU05": {
+  "X": "after",
+  "Y": "before"
+ },
+ "LU06": {
+  "X": "after",
+  "Y": "before"
+ },
+ "LU07": {
+  "X": "after",
+  "Y": "before"
+ },
+ "LU08": {
+  "X": "after",
+  "Y": "before"
+ },
+ "LU09": {
+  "X": "before",
+  "Y": "after"
+ },
+ "LU10": {
+  "X": "before",
+  "Y": "after"
+ },
+ "LU11": {
+  "X": "after",
+  "Y": "before"
+ },
+ "LU12": {
+  "X": "after",
+  "Y": "before"
+ },
+ "CZ01": {
+  "X": "after",
+  "Y": "before"
+ },
+ "CZ02": {
+  "X": "after",
+  "Y": "before"
+ },
+ "CZ03": {
+  "X": "after",
+  "Y": "before"
+ },
+ "CZ04": {
+  "X": "after",
+  "Y": "before"
+ },
+ "CZ05": {
+  "X": "after",
+  "Y": "before"
+ },
+ "CZ06": {
+  "X": "after",
+  "Y": "before"
+ },
+ "CZ07": {
+  "X": "before",
+  "Y": "after"
+ },
+ "CZ08": {
+  "X": "after",
+  "Y": "before"
+ },
+ "CZ09": {
+  "X": "after",
+  "Y": "before"
+ },
+ "CZ10": {
+  "X": "before",
+  "Y": "after"
+ },
+ "SK01": {
+  "X": "before",
+  "Y": "after"
+ },
+ "SK02": {
+  "X": "after",
+  "Y": "before"
+ },
+ "SK03": {
+  "X": "before",
+  "Y": "after"
+ },
+ "SK04": {
+  "X": "after",
+  "Y": "before"
+ },
+ "SK05": {
+  "X": "after",
+  "Y": "before"
+ },
+ "SK06": {
+  "X": "before",
+  "Y": "after"
+ },
+ "SK07": {
+  "X": "before",
+  "Y": "after"
+ },
+ "SK08": {
+  "X": "before",
+  "Y": "after"
+ },
+ "SK09": {
+  "X": "before",
+  "Y": "after"
+ },
+ "SK10": {
+  "X": "before",
+  "Y": "after"
+ },
+ "SK11": {
+  "X": "after",
+  "Y": "before"
+ },
+ "SK12": {
+  "X": "before",
+  "Y": "after"
+ },
+ "FR01": {
+  "X": "after",
+  "Y": "before"
+ },
+ "FR02": {
+  "X": "after",
+  "Y": "before"
+ },
+ "FR03": {
+  "X": "before",
+  "Y": "after"
+ },
+ "FR04": {
+  "X": "after",
+  "Y": "before"
+ },
+ "FR05": {
+  "X": "after",
+  "Y": "before"
+ },
+ "FR06": {
+  "X": "after",
+  "Y": "before"
+ },
+ "FR07": {
+  "X": "before",
+  "Y": "after"
+ },
+ "FR08": {
+  "X": "after",
+  "Y": "before"
+ },
+ "FR09": {
+  "X": "before",
+  "Y": "after"
+ },
+ "FR10": {
+  "X": "before",
+  "Y": "after"
+ },
+ "FR11": {
+  "X": "after",
+  "Y": "before"
+ },
+ "FR12": {
+  "X": "after",
+  "Y": "before"
+ },
+ "NL01": {
+  "X": "after",
+  "Y": "before"
+ },
+ "NL02": {
+  "X": "after",
+  "Y": "before"
+ },
+ "NL03": {
+  "X": "after",
+  "Y": "before"
+ },
+ "NL04": {
+  "X": "after",
+  "Y": "before"
+ },
+ "NL05": {
+  "X": "after",
+  "Y": "before"
+ },
+ "NL06": {
+  "X": "after",
+  "Y": "before"
+ },
+ "NL07": {
+  "X": "before",
+  "Y": "after"
+ },
+ "NL08": {
+  "X": "after",
+  "Y": "before"
+ },
+ "NL09": {
+  "X": "after",
+  "Y": "before"
+ },
+ "NL10": {
+  "X": "before",
+  "Y": "after"
+ },
+ "NL11": {
+  "X": "before",
+  "Y": "after"
+ },
+ "NL12": {
+  "X": "after",
+  "Y": "before"
+ }
+}

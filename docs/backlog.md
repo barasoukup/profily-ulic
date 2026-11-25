@@ -31,11 +31,15 @@ Co rozhodne Bára, je označeno **(Bára)**.
   obousměrce (nl-schiedam-5) a kde se stání vejde (fr-toulouse-2); `parkFromAi` nebere piktokoridor; Belgie 2 : 5.
 - ~~Uložený řez dvouvozovkové ulice se chytí jiné cesty OSM (odkaz nemá `wayId`): 10 z 226, jiný profil u 7~~ (25. 11. 2026:
   cesta je v odkazu; všech 10 se chytí své, `mereni2/ZPRAVA.md`).
-- Odkaz `#rez=` zaokrouhluje azimut na celé stupně: profil z odkazu se od kliknutí liší o centimetry, výjimečně o díl (Versmannstraße:
-  dva pruhy → pruh s krajnicí). Jedno desetinné místo by čtečky i Worker vzaly **(Bára)**.
+- ~~Odkaz `#rez=` zaokrouhluje azimut na celé stupně~~ (25. 11. 2026: jedno desetinné místo, `share.js linkBearing`; staré odkazy
+  beze změny, Worker i starší stránka desetinu berou).
+- Vzhled domu ze všech budov OSM v Rakousku: čerstvý vzorek nové 3 : 6 staré, s 1. kolem 6 : 9 (`evaluation/all-buildings/ZPRAVA.md`) **(Bára)**.
 
 ## Mapy povrchů a data měst
 
+- Prešov: vrstvy `vw_dp_cesty`, `vw_dp_parkoviska`, `vw_dp_spev_plochy` jsou od neznámého data za tokenem (ArcGIS 499, zjištěno
+  25. 11. 2026 kontrolou zdrojů), zůstaly chodníky: profil je odhad. Týdenní kontrola kvůli tomu padá, dokud se vrstvy
+  nevrátí, nebo Prešov nevyřadíme **(Bára)**.
 - Nizozemsko: BGT kreslí červené cyklopruhy na vozovce jako „fietspad“ (měření: 13× cyklostezka navíc). Pokus
   `?fietsstrook=1` nepomohl; zkusit jinak (barva na ortofotu, OSM `cycleway=lane` a šířka).
 - Nizozemsko: Nassauplein v Haagu (střední pás přes 16 m) dostane odhad místo BGT, vozovky jsou dál než 10 m.

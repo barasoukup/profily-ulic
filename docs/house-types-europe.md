@@ -25,7 +25,7 @@ nic z toho není nakreslené ani zapojené. Číselné hodnoty jsou ve stejných
   je **`sikma`**, tj. pražský činžák. To je hlavní místo, kde se mají uplatnit nové vzhledy.
 - Z OSM se dnes čte jen `building`, `building:levels`, `roof:levels`, `height`, `roof:shape`, `start_date`.
   Dlaždice (`tools/build_osm_tiles.mjs` `BUILDING_KEYS`) nesou i `building:material`, ale `derive.js buildingAt` ho
-  nečte. `roof:material`, `roof:colour`, `building:colour` v dlaždicích nejsou. Navíc `buildingAt` bere jen domy se
+  nečte. `roof:material`, `roof:colour`, `building:colour` v dlaždicích nejsou. Navíc `buildingAt` bral do 25. 11. 2026 (dnes všechny, `evaluation/all-buildings`) jen domy se
   zadanými podlažími nebo výškou (`TUNED_BUILDING`); starý dům bez nich má `info` prázdné a v cizině z něj je `sikma`.
 
 ## Navržené zapojení (pro všechny vzhledy níže)
