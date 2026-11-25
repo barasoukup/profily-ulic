@@ -36,6 +36,11 @@ složení; **bez fotky 28 %, tedy nepoužitelný**. Hodnotí se proto jen řezy 
 6. **Posuzovatelé:** agenti Sonnet po ~20 řezech, podle `POKYN.md`, **fotky povinně** (bez toho je přeskočí),
    profil aplikace nesmí vidět, výstup `vysledky/u-<iso>-N.jsonl`. Zkontrolovat, že každý řez má ortofoto
    (`data/<id>-ortho.jpg`); agent bez ortofota vymýšlí.
+   Pokyn od 25. 11. 2026 (oddíl „Co do profilu patří“): každá část od asi 0,5 m včetně pásů trávy a stromů mezi chodníkem a
+   obrubou, stání podle pruhu u obruby (ne jen kde stojí auto), chodník až k fasádě a po kusech, pruhy neznačené obousměrky.
+   Zadání agentovi neutrální: odkázat na `POKYN.md`, nic nepřidávat (nápověda „pásy jsou tu časté“ zvedla ve Washingtonu
+   skóre s mapou o 4 body a bez ní ho o 4 snížila). Posudky se liší i při stejném pokynu (shoda asi 75 %, skóre ±5 bodů): při změně pokynu
+   dát i kontrolu starým pokynem (`pokyn2-select.mjs`, `pokyn2-score.mjs`).
 7. **Skóre** `node evaluation/universal/score-states.mjs` (jen řezy s vozovkou), uložit do `vysledky/staty.md`,
    doplnit ZPRAVA.md, commit.
 8. **Úklid:** `node evaluation/universal/clean.mjs` (panoramata Mapy.com se podle podmínek nesmí uchovávat),

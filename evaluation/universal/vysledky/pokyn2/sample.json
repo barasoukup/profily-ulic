@@ -1,0 +1,254 @@
+[
+ {
+  "id": "pl-szczecin-1",
+  "country": "PL",
+  "strip": false,
+  "pkg": "eu-1"
+ },
+ {
+  "id": "nl-utrecht-5",
+  "country": "NL",
+  "strip": false,
+  "pkg": "eu-2"
+ },
+ {
+  "id": "at-graz-7",
+  "country": "AT",
+  "strip": true,
+  "pkg": "eu-3"
+ },
+ {
+  "id": "fi-helsinki-5",
+  "country": "FI",
+  "strip": false,
+  "pkg": "eu-4"
+ },
+ {
+  "id": "dk-aalborg-5",
+  "country": "DK",
+  "strip": false,
+  "pkg": "eu-1"
+ },
+ {
+  "id": "at-stpoelten-8",
+  "country": "AT",
+  "strip": false,
+  "pkg": "eu-2"
+ },
+ {
+  "id": "pl-krakow-3",
+  "country": "PL",
+  "strip": false,
+  "pkg": "eu-3"
+ },
+ {
+  "id": "at-graz-1",
+  "country": "AT",
+  "strip": false,
+  "pkg": "eu-4"
+ },
+ {
+  "id": "cz-liberec-4",
+  "country": "CZ",
+  "strip": false,
+  "pkg": "eu-1"
+ },
+ {
+  "id": "nl-denhaag-2",
+  "country": "NL",
+  "strip": false,
+  "pkg": "eu-2"
+ },
+ {
+  "id": "cz-liberec-1",
+  "country": "CZ",
+  "strip": false,
+  "pkg": "eu-3"
+ },
+ {
+  "id": "de-frankfurt-4",
+  "country": "DE",
+  "strip": false,
+  "pkg": "eu-4"
+ },
+ {
+  "id": "at-salzburg-4",
+  "country": "AT",
+  "strip": false,
+  "pkg": "eu-1"
+ },
+ {
+  "id": "cz-praha-4",
+  "country": "CZ",
+  "strip": false,
+  "pkg": "eu-2"
+ },
+ {
+  "id": "nl-utrecht-3",
+  "country": "NL",
+  "strip": false,
+  "pkg": "eu-3"
+ },
+ {
+  "id": "de-nuernberg-5",
+  "country": "DE",
+  "strip": false,
+  "pkg": "eu-4"
+ },
+ {
+  "id": "pl-bydgoszcz-1",
+  "country": "PL",
+  "strip": false,
+  "pkg": "eu-1"
+ },
+ {
+  "id": "de-aachen-3",
+  "country": "DE",
+  "strip": false,
+  "pkg": "eu-2"
+ },
+ {
+  "id": "de-koeln-3",
+  "country": "DE",
+  "strip": true,
+  "pkg": "eu-3"
+ },
+ {
+  "id": "de-freiburg-3",
+  "country": "DE",
+  "strip": true,
+  "pkg": "eu-4"
+ },
+ {
+  "id": "nl-diemen-4",
+  "country": "NL",
+  "strip": true,
+  "pkg": "eu-1"
+ },
+ {
+  "id": "fi-tampere-kaleva-2",
+  "country": "FI",
+  "strip": false,
+  "pkg": "eu-2"
+ },
+ {
+  "id": "fi-helsinki-kallio-4",
+  "country": "FI",
+  "strip": false,
+  "pkg": "eu-3"
+ },
+ {
+  "id": "fi-helsinki-toolo-4",
+  "country": "FI",
+  "strip": false,
+  "pkg": "eu-4"
+ },
+ {
+  "id": "nl-schiedam-8",
+  "country": "NL",
+  "strip": false,
+  "pkg": "eu-1"
+ },
+ {
+  "id": "nl-delft-1",
+  "country": "NL",
+  "strip": false,
+  "pkg": "eu-2"
+ },
+ {
+  "id": "dk-odense-4",
+  "country": "DK",
+  "strip": false,
+  "pkg": "eu-3"
+ },
+ {
+  "id": "cz-jihlava-2",
+  "country": "CZ",
+  "strip": true,
+  "pkg": "eu-4"
+ },
+ {
+  "id": "dk-kobenhavn-norrebro-1",
+  "country": "DK",
+  "strip": false,
+  "pkg": "eu-1"
+ },
+ {
+  "id": "dk-aarhus-3",
+  "country": "DK",
+  "strip": false,
+  "pkg": "eu-2"
+ },
+ {
+  "id": "de-hamburg-7",
+  "country": "DE",
+  "strip": true,
+  "pkg": "eu-3"
+ },
+ {
+  "id": "dk-odense-1",
+  "country": "DK",
+  "strip": false,
+  "pkg": "eu-4"
+ },
+ {
+  "id": "pl-warszawa-3",
+  "country": "PL",
+  "strip": true,
+  "pkg": "eu-1"
+ },
+ {
+  "id": "fi-espoo-leppavaara-5",
+  "country": "FI",
+  "strip": true,
+  "pkg": "eu-2"
+ },
+ {
+  "id": "pl-lublin-1",
+  "country": "PL",
+  "strip": true,
+  "pkg": "eu-3"
+ },
+ {
+  "id": "fi-espoo-leppavaara-3",
+  "country": "FI",
+  "strip": true,
+  "pkg": "eu-4"
+ },
+ {
+  "id": "pl-warszawa-1",
+  "country": "PL",
+  "strip": true,
+  "pkg": "eu-1"
+ },
+ {
+  "id": "de-muenchen-4",
+  "country": "DE",
+  "strip": true,
+  "pkg": "eu-2"
+ },
+ {
+  "id": "cz-olomouc-2",
+  "country": "CZ",
+  "strip": true,
+  "pkg": "eu-3"
+ },
+ {
+  "id": "cz-plzen-5",
+  "country": "CZ",
+  "strip": true,
+  "pkg": "eu-4"
+ },
+ {
+  "id": "nl-schiedam-4",
+  "country": "NL",
+  "strip": true,
+  "pkg": "eu-1"
+ },
+ {
+  "id": "dk-kobenhavn-amager-4",
+  "country": "DK",
+  "strip": true,
+  "pkg": "eu-2"
+ }
+]

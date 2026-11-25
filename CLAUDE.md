@@ -569,6 +569,9 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   Brno, Plzeň, Jihlava 68 %), PL po návratu ortofota Geoportalu (ortofoto ve 23 z 29 řezů). Před → po a výklad v
   `evaluation/universal/ZPRAVA.md` (oddíl 24. 11.). CZ znovu 25. 11. s doplněním kolem mapy i v Česku: 58 % beze změny
   (2 ze 40 řezů jinak, olomouc-4 lépe).
+- Přesnější pokyn posuzovatelům (25. 11. 2026, `POKYN.md`: každá část od 0,5 m i pásy trávy u obruby, stání podle pruhu, ne podle
+  aut): 40 evropských řezů 54 → 55 %, kontrola starým pokynem 50 % (šum posuzovatelů); doporučení: staré státy neposuzovat
+  znovu, pokyn používat dál (Bára rozhodne; `evaluation/universal/ZPRAVA.md`).
 - Doplnění kolem mapy povrchů (mapFill: stání z aut modelu ve vozovce mapy, zákonný pruh bez aut zpět, OSM stání smí
   ubrat pruhům 0,3 m) platí od 25. 11. 2026 ve všech státech i v Česku, příznak státu zrušen, vypíná jen `?off=mapfill`
   (Bára: výjimka jen s měřením). A/B 90 nových českých řezů: změna 7, lépe 6 : 2 (kraje 4 : 1, Praha 1 : 0, Brno 1 : 1),

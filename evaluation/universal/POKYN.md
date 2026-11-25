@@ -1,4 +1,4 @@
-# Pokyn pro posuzovatele řezu ulicí (univerzální metoda, 17. 11. 2026)
+# Pokyn pro posuzovatele řezu ulicí (univerzální metoda, 17. 11. 2026; upřesněno 25. 11. 2026)
 
 U každého řezu máš:
 - `data/<id>-ortho.jpg`: ortofoto shora. Řez vede **vodorovně** (žlutá čárkovaná čára uprostřed), ulice běží **nahoru a dolů**.
@@ -16,6 +16,27 @@ zvlášť), `bus` (vyhrazený pruh BUS), `cyklopruh` (na vozovce), `cyklostezka`
 s auty, nebo samostatné těleso), `zelen` (tráva, keře), `stromy` (pás se stromy), `delici` (dělicí pás, ostrůvek, svodidla
 uprostřed), `nastupiste`, `krajnice` (nepojížděný asfalt u kraje, šrafy), `jine` (předzahrádka, dvůr, parkoviště, plocha
 mimo ulici).
+
+**Co do profilu patří (upřesnění 25. 11. 2026, Bára):**
+- **Každá část od fasády k fasádě, která je široká aspoň asi 0,5 m**, i úzká. Hlavně **pás trávy nebo pás se stromy
+  mezi chodníkem a obrubou** (i 1 m, jen tráva, keře nebo hlína se stromy): zapiš ho jako `zelen` nebo `stromy` mezi
+  `chodnik` a `stani`/`pruh`, ne jako součást chodníku. Na ortofotu je to zelený nebo hnědý pás podél obruby, na fotce
+  tráva mezi chodníkem a vozovkou nebo auty. Co popíšeš v `note`, musí být i v `parts`.
+- Naopak jednotlivé jamky stromů v dlážděném chodníku (mezi stromy je dlažba) pás zeleně nejsou: to je `chodnik`.
+- **Chodník dělený pásem zeleně nebo cyklostezkou** zapiš po kusech (`chodnik`, `stromy`, `chodnik`), ne jako jeden.
+- **Stání** (`stani`) zapiš všude, kde je pruh u obruby určený ke stání: vyznačená stání (čáry, jiná dlažba, zálivy),
+  značka, nebo auta stojící u té obruby na kterékoli fotce nebo na ortofotu. Ne jen tam, kde zrovna teď auto stojí;
+  prázdný úsek mezi auty je pořád stání. Kde stání zjevně není (plná čára u obruby, zákaz, vjezdy, cyklopruh u obruby),
+  nezapisuj ho.
+- **Chodník na obou stranách:** skonči až u fasády (plotu, zahrady), ne u obruby. Chodník bývá pod korunami stromů nebo
+  za zaparkovanými auty; hledej ho na fotkách. Když na straně chodník opravdu není, napiš to do `note`.
+- **Pruhy:** každý jízdní pruh zvlášť. Neznačená obousměrná vozovka má dva pruhy, když se v ní (bez stání) vedle sebe
+  vejdou dvě auta, asi od 5 m; užší jeden. Šrafy uprostřed jsou `krajnice`, ne `delici`; `delici` je jen fyzický pás
+  (obruba, tráva, svodidla).
+- **Tramvaj na samostatném tělese** (tráva, štěrk, obruby) zapiš jako `tramvaj` celou šířkou tělesa; `delici` vedle ní
+  jen tam, kde je mezi tělesem a vozovkou opravdu další pás.
+- Fotka, která zjevně není z tohoto místa (jiná ulice než na ortofotu), se nepočítá; napiš to do `note` a řiď se
+  ortofotem a druhou fotkou.
 
 Ortofoto ukáže pruhy (podle značení), dělicí pás, obruby a šířky; fotky ukážou stání, chodníky, stromy, cyklopruhy.
 **Fotky jsou povinné:** u každého řezu otevři každou fotku, která existuje, a do `note` napiš, co na ní je
