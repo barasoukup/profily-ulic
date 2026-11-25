@@ -33,6 +33,9 @@ metrů, jeden polský byl přepsaný jiným). Co je změna kódu a co posun a š
 | US (Washington, čerstvé řezy 25. 11.) | 29 | 38 % | 76 % | 48 % | 48 % / 59 % | navíc zelen 8×, navíc chodnik 6×, navíc cyklopruh 4×, chybí delici 3×, chybí pruh 3×, navíc stani 3× |
 | US bez mapy DC (?dc=0) | 29 | 21 % | 61 % | 52 % | 21 % / 41 % | chybí stani 14×, chybí zelen 10×, navíc chodnik 6×, chybí delici 6×, chybí pruh 5×, navíc cyklopruh 3× |
 | US jen OSM (bez ortofota) | 29 | 14 % | 53 % | 55 % | 28 % / 41 % | chybí stani 17×, navíc chodnik 13×, chybí zelen 10×, chybí delici 4×, chybí pruh 4×, chybí chodnik 3× |
+| CA (Toronto, čerstvé řezy 25. 11.) | 29 | 34 % | 74 % | 66 % | 41 % / 59 % | navíc zelen 8×, navíc pruh 3×, chybí stani 3× |
+| CA bez mapy Toronta (?toronto=0) | 29 | 24 % | 68 % | 66 % | 7 % / 17 % | navíc chodnik 6×, chybí delici 6×, chybí pruh 4× |
+| CA jen OSM (bez ortofota) | 29 | 34 % | 70 % | 62 % | 14 % / 24 % | chybí delici 7×, chybí pruh 6×, chybí stani 5× |
 
 Přeměření 24. 11. 2026, před → po (oficiální → nová pravidla se starými profily → nové profily):
 

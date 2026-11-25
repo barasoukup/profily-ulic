@@ -549,6 +549,14 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   CC BY-SA 4.0, v patičce). Socialistické vzhledy ano (sovětská sídliště jako v Estonsku).
 - Přeměření 24. 11. 2026: LT 75 % bez mapy Vilniusu, s `?vilnius=1` 53 % (hůř 6, lépe 0 z 10), mapa zůstává vypnutá.
 
+## Kanada (Toronto) (větev canada, Bára 25. 11. 2026, nenasazené)
+- Stát `canada` (CA): Toronto a obce kolem (StatCan), zbytek `closed_ca`; mapa povrchů Toronta (OGL – Toronto) a ortofoto 2025, `?toronto=0`.
+- Jeden adaptér ArcGIS planimetrií pro Washington a Toronto: `towns/planimetrics.js` (popis města; 100 řezů DC bajt po bajtu stejné). Kredity
+  a výpadek mapy podle klíče města (`cityMap`, `mapFailed`).
+- Čerstvé měření 60 řezů: slepé A/B mapa : odhad 44 : 6 (7 nerozhodně); univerzální měření 74 % s mapou, 68 % bez (rozdíl +7, −3 až +18,
+  **složení neprůkazně, šířka ano**), jen OSM 70 %. Zpráva `evaluation/canada/ZPRAVA.md`, normy `NORMY.md` (jen oranžově).
+- Před nasazením workflow OSM tiles se `states: ca`; licenci přímého volání `gis.toronto.ca` vyjasnit s městem. Překlady strojové.
+
 ## USA (Washington) (větev usa, Bára 24. 11. 2026, nenasazené)
 - Fáze 2 pilotu Severní Ameriky („Fáze 2 s mapou Washingtonu“): stát `usa` (US), `countries/US.js`, `towns/usa.js`,
   `evaluation/usa/` (ZPRAVA, NORMY, ab/), pilot `evaluation/usa-dc/`. Jen metro Washingtonu (`staty.json` `usa`: DC a

@@ -443,6 +443,15 @@ Normy DDOT (DEM 2023, Bicycle Facility Design Guide 2020) a NACTO jen oranžově
 směr (IFC 503.2.1, 18 DCMR § 2405), bez řádku značek, bez paneláků, severoamerické domy, mobiliář a autobus Metrobus
 (`northamerica/`, `washington/`; `evaluation/north-america-art/`). Hledání Photon v obdélníku metra. A/B a měření v `evaluation/usa/`.
 
+### Kanada: Toronto (Bára 25. 11. 2026)
+
+Stát `canada` (CA), `countries/CA.js`, `towns/canada.js`; Toronto a obce kolem (StatCan), zbytek Kanady `closed_ca`. Mapa povrchů města
+(`cot_geospatial3`: vozovky, chodníky, parkoviště, budovy) jde společným adaptérem **`towns/planimetrics.js`** (popis města: vrstvy a jejich
+kódy, křižovatky, `prepare`, `adjust`), který sdílí s Washingtonem (`towns/usa.js` je popis, inventář DDOT a CAMA). Mezera mezi vozovkami = dělicí
+pás, s kolejí OSM = tramvajové těleso; pruh stání z parkoviště u obruby; cyklostezky novější než mapa z OSM (`?off=roadtracks`).
+`?toronto=0` vypne. Ortofoto `cot_ortho`, OSM balík `ca_on_toronto`. Měření `evaluation/canada/ZPRAVA.md`. Obdobné město = popis v
+`towns/…`, kredity (`cityMap`), texty.
+
 Tři společné změny z pilotu (všechny státy, každá s vypínačem): ústí uličky (OSM `service=alley` a plochy uliček) je
 křižovatka (`?off=ulicky`); jamky stromů v chodníku, tedy pás zeleně do 1,3 m mezi chodníkem a obrubou, který na ortofotu
 vypadá jako dlažba, patří chodníku (`derive.js treePitsAsSidewalk`; **vypnuté**, `?treepits=1` zapne: slepé A/B DC 2 : 2,

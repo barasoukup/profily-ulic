@@ -1,0 +1,152 @@
+{
+ "H01": {
+  "type": "Victorian red-brick house, gable",
+  "floors": 2.5,
+  "fit": "right"
+ },
+ "H02": {
+  "type": "brown brick townhouse block with garages, flat/low roof",
+  "floors": 2,
+  "fit": "partly"
+ },
+ "H03": {
+  "type": "detached brick house, pitched roof, garage",
+  "floors": 2,
+  "fit": "right"
+ },
+ "H04": {
+  "type": "detached brick bungalow, hip roof",
+  "floors": 1,
+  "fit": "right"
+ },
+ "H05": {
+  "type": "brick house, pitched roof",
+  "floors": 2,
+  "fit": "right"
+ },
+ "H06": {
+  "type": "brick bungalow, pitched roof",
+  "floors": 1,
+  "fit": "right"
+ },
+ "H07": {
+  "type": "commercial podium building with apartment tower",
+  "floors": 3,
+  "fit": "partly"
+ },
+ "H08": {
+  "type": "brick semi-detached house, hip roof",
+  "floors": 2,
+  "fit": "partly"
+ },
+ "H09": {
+  "type": "brick bungalow with garage, hip roof",
+  "floors": 1,
+  "fit": "right"
+ },
+ "H10": {
+  "type": "brick bungalow, hip roof",
+  "floors": 1,
+  "fit": "right"
+ },
+ "H11": {
+  "type": "brick house/townhouse, pitched roof",
+  "floors": 2,
+  "fit": "partly"
+ },
+ "H12": {
+  "type": "not visible",
+  "floors": null,
+  "fit": "unclear"
+ },
+ "H13": {
+  "type": "brick bungalow, pitched roof",
+  "floors": 1,
+  "fit": "right"
+ },
+ "H14": {
+  "type": "buff brick commercial/apartment building, flat roof",
+  "floors": 3,
+  "fit": "partly"
+ },
+ "H15": {
+  "type": "brick townhouse row, siding accents",
+  "floors": 3,
+  "fit": "wrong"
+ },
+ "H16": {
+  "type": "white siding bungalow with dormer, pitched roof",
+  "floors": 1.5,
+  "fit": "right"
+ },
+ "H17": {
+  "type": "brick bungalow with garage, pitched roof",
+  "floors": 1,
+  "fit": "right"
+ },
+ "H18": {
+  "type": "red brick Victorian house, gable",
+  "floors": 2.5,
+  "fit": "right"
+ },
+ "H19": {
+  "type": "stone/brick condo apartment building, flat roof",
+  "floors": 4,
+  "fit": "partly"
+ },
+ "H20": {
+  "type": "brick bungalow, hip roof",
+  "floors": 1,
+  "fit": "right"
+ },
+ "H21": {
+  "type": "brick and siding house with gable dormer, porch",
+  "floors": 2,
+  "fit": "right"
+ },
+ "H22": {
+  "type": "red brick commercial/institutional building, flat roof",
+  "floors": 2,
+  "fit": "partly"
+ },
+ "H23": {
+  "type": "dark brick commercial/industrial building, flat roof",
+  "floors": 2,
+  "fit": "wrong"
+ },
+ "H24": {
+  "type": "brick house with flat roof, duplex",
+  "floors": 2,
+  "fit": "partly"
+ },
+ "H25": {
+  "type": "house hidden",
+  "floors": null,
+  "fit": "unclear"
+ },
+ "H26": {
+  "type": "dark brick house with porch, pitched roof",
+  "floors": 2,
+  "fit": "partly"
+ },
+ "H27": {
+  "type": "brick house behind trees, porch",
+  "floors": 2,
+  "fit": "unclear"
+ },
+ "H28": {
+  "type": "low house with garage behind trees, pitched roof",
+  "floors": 1,
+  "fit": "right"
+ },
+ "H29": {
+  "type": "row house gray siding/brick with gables",
+  "floors": 2.5,
+  "fit": "partly"
+ },
+ "H30": {
+  "type": "red brick Victorian with gable",
+  "floors": 2.5,
+  "fit": "wrong"
+ }
+}

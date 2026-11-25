@@ -1,0 +1,1976 @@
+{
+ "rows": [
+  {
+   "id": "H01",
+   "street": "Victor Avenue",
+   "city": "toronto",
+   "point": [
+    -79.3499962,
+    43.6674789
+   ],
+   "probe": [
+    -79.3499962425321,
+    43.66747889769136
+   ],
+   "mapillary": "264991001982209",
+   "pano": false,
+   "dist": 25.7,
+   "off": 19.5,
+   "tags": {
+    "building": "semidetached_house"
+   },
+   "cama": {
+    "cornice": 3,
+    "roof": 0,
+    "total": 3,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "baygable",
+    "info": {
+     "point": [
+      -79.3499962425321,
+      43.66747889769136
+     ],
+     "km": 99,
+     "block": {
+      "length": 89.8,
+      "width": 24.4,
+      "fill": 0.57,
+      "parts": 8
+     },
+     "tint": 0,
+     "type": "semidetached_house"
+    }
+   },
+   "after": {
+    "look": "baygable",
+    "info": {
+     "levels": 3,
+     "point": [
+      -79.3499962425321,
+      43.66747889769136
+     ],
+     "km": 99,
+     "block": {
+      "length": 89.8,
+      "width": 24.4,
+      "fill": 0.57,
+      "parts": 8
+     },
+     "tint": 0,
+     "type": "semidetached_house",
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "H02",
+   "street": "Huntingwood Drive",
+   "city": "toronto",
+   "point": [
+    -79.3036,
+    43.7898599
+   ],
+   "probe": [
+    -79.30359996792208,
+    43.78985986246418
+   ],
+   "mapillary": "1966054610905146",
+   "pano": true,
+   "dist": 22.8,
+   "off": 99.7,
+   "tags": {
+    "building": "terrace"
+   },
+   "cama": {
+    "cornice": 2,
+    "roof": 0,
+    "total": 2,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "porchrow",
+    "info": {
+     "point": [
+      -79.30359996792208,
+      43.78985986246418
+     ],
+     "km": 99,
+     "block": {
+      "length": 75.1,
+      "width": 18,
+      "fill": 0.63,
+      "parts": 1
+     },
+     "tint": 1,
+     "type": "terrace"
+    }
+   },
+   "after": {
+    "look": "porchrow",
+    "info": {
+     "levels": 2,
+     "point": [
+      -79.30359996792208,
+      43.78985986246418
+     ],
+     "km": 99,
+     "block": {
+      "length": 75.1,
+      "width": 18,
+      "fill": 0.63,
+      "parts": 1
+     },
+     "tint": 1,
+     "type": "terrace",
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "H03",
+   "street": "Chester Le Boulevard",
+   "city": "toronto",
+   "point": [
+    -79.3331787,
+    43.8008762
+   ],
+   "probe": [
+    -79.33317866511334,
+    43.80087620533826
+   ],
+   "mapillary": "1303346537584458",
+   "pano": true,
+   "dist": 17.2,
+   "off": 98.2,
+   "tags": {
+    "building": "detached"
+   },
+   "cama": {
+    "cornice": 1,
+    "roof": 0,
+    "total": 1,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -79.33317866511334,
+      43.80087620533826
+     ],
+     "km": 99,
+     "tint": 2
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "levels": 1,
+     "point": [
+      -79.33317866511334,
+      43.80087620533826
+     ],
+     "km": 99,
+     "tint": 2,
+     "cornice": 1,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "H04",
+   "street": "Scarborough Heights Boulevard",
+   "city": "toronto",
+   "point": [
+    -79.227741,
+    43.7212534
+   ],
+   "probe": [
+    -79.22774099012125,
+    43.72125340030783
+   ],
+   "mapillary": "1569648164538874",
+   "pano": true,
+   "dist": 22.9,
+   "off": 99.4,
+   "tags": {
+    "building": "detached"
+   },
+   "cama": {
+    "cornice": 1,
+    "roof": 0,
+    "total": 1,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -79.22774099012125,
+      43.72125340030783
+     ],
+     "km": 99,
+     "block": {
+      "length": 16,
+      "width": 13.7,
+      "fill": 0.67,
+      "parts": 1
+     },
+     "tint": 3,
+     "type": "detached"
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "levels": 1,
+     "point": [
+      -79.22774099012125,
+      43.72125340030783
+     ],
+     "km": 99,
+     "block": {
+      "length": 16,
+      "width": 13.7,
+      "fill": 0.67,
+      "parts": 1
+     },
+     "tint": 3,
+     "type": "detached",
+     "cornice": 1,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "H05",
+   "street": "Royal York Road",
+   "city": "toronto",
+   "point": [
+    -79.519409,
+    43.666296
+   ],
+   "probe": [
+    -79.51940903177426,
+    43.666295954689396
+   ],
+   "mapillary": "1324244128748786",
+   "pano": true,
+   "dist": 21.4,
+   "off": 43.7,
+   "tags": {
+    "building": "detached"
+   },
+   "cama": {
+    "cornice": 2,
+    "roof": 0,
+    "total": 2,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -79.51940903177426,
+      43.666295954689396
+     ],
+     "km": 99,
+     "block": {
+      "length": 16.8,
+      "width": 12,
+      "fill": 0.56,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "detached"
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "levels": 2,
+     "point": [
+      -79.51940903177426,
+      43.666295954689396
+     ],
+     "km": 99,
+     "block": {
+      "length": 16.8,
+      "width": 12,
+      "fill": 0.56,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "detached",
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "H06",
+   "street": "Gloucester Grove",
+   "city": "toronto",
+   "point": [
+    -79.4418573,
+    43.6956618
+   ],
+   "probe": [
+    -79.44185734505905,
+    43.69566184609438
+   ],
+   "mapillary": "848823924849268",
+   "pano": true,
+   "dist": 20.9,
+   "off": -77.8,
+   "tags": {
+    "building": "detached"
+   },
+   "cama": {
+    "cornice": 1,
+    "roof": 0,
+    "total": 1,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -79.44185734505905,
+      43.69566184609438
+     ],
+     "km": 99,
+     "block": {
+      "length": 16.8,
+      "width": 7,
+      "fill": 0.86,
+      "parts": 1
+     },
+     "tint": 1,
+     "type": "detached"
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "levels": 1,
+     "point": [
+      -79.44185734505905,
+      43.69566184609438
+     ],
+     "km": 99,
+     "block": {
+      "length": 16.8,
+      "width": 7,
+      "fill": 0.86,
+      "parts": 1
+     },
+     "tint": 1,
+     "type": "detached",
+     "cornice": 1,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "H07",
+   "street": "Wellesley Street East",
+   "city": "toronto",
+   "point": [
+    -79.3725766,
+    43.6673877
+   ],
+   "probe": [
+    -79.37257661571748,
+    43.66738769631919
+   ],
+   "mapillary": "4222348694720688",
+   "pano": true,
+   "dist": 14.7,
+   "off": -130.2,
+   "tags": {
+    "building:levels": "12",
+    "building": "apartments"
+   },
+   "cama": {
+    "cornice": 14,
+    "roof": 0,
+    "total": 14,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "brickblock",
+    "info": {
+     "levels": 12,
+     "point": [
+      -79.37257661571748,
+      43.66738769631919
+     ],
+     "km": 99,
+     "block": {
+      "length": 64.4,
+      "width": 38.5,
+      "fill": 0.68,
+      "parts": 1
+     },
+     "tint": 2,
+     "type": "apartments"
+    }
+   },
+   "after": {
+    "look": "brickblock",
+    "info": {
+     "levels": 12,
+     "point": [
+      -79.37257661571748,
+      43.66738769631919
+     ],
+     "km": 99,
+     "block": {
+      "length": 64.4,
+      "width": 38.5,
+      "fill": 0.68,
+      "parts": 1
+     },
+     "tint": 2,
+     "type": "apartments"
+    }
+   }
+  },
+  {
+   "id": "H08",
+   "street": "Jane Street",
+   "city": "toronto",
+   "point": [
+    -79.4885948,
+    43.6587902
+   ],
+   "probe": [
+    -79.4885947832352,
+    43.65879022784637
+   ],
+   "mapillary": "464503948154111",
+   "pano": false,
+   "dist": 22.6,
+   "off": 17,
+   "tags": {
+    "building": "residential"
+   },
+   "cama": {
+    "cornice": 2,
+    "roof": 0,
+    "total": 2,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -79.4885947832352,
+      43.65879022784637
+     ],
+     "km": 99,
+     "block": {
+      "length": 15,
+      "width": 15,
+      "fill": 0.51,
+      "parts": 1
+     },
+     "tint": 3,
+     "type": "residential"
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "levels": 2,
+     "point": [
+      -79.4885947832352,
+      43.65879022784637
+     ],
+     "km": 99,
+     "block": {
+      "length": 15,
+      "width": 15,
+      "fill": 0.51,
+      "parts": 1
+     },
+     "tint": 3,
+     "type": "residential",
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "H09",
+   "street": "Corinthian Boulevard",
+   "city": "toronto",
+   "point": [
+    -79.3273086,
+    43.7889197
+   ],
+   "probe": [
+    -79.32730860161053,
+    43.7889196653909
+   ],
+   "mapillary": "795185136396907",
+   "pano": true,
+   "dist": 17.9,
+   "off": 111.5,
+   "tags": {
+    "building": "detached"
+   },
+   "cama": {
+    "cornice": 1,
+    "roof": 0,
+    "total": 1,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -79.32730860161053,
+      43.7889196653909
+     ],
+     "km": 99,
+     "block": {
+      "length": 20.7,
+      "width": 16.6,
+      "fill": 0.6,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "detached"
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "levels": 1,
+     "point": [
+      -79.32730860161053,
+      43.7889196653909
+     ],
+     "km": 99,
+     "block": {
+      "length": 20.7,
+      "width": 16.6,
+      "fill": 0.6,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "detached",
+     "cornice": 1,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "H10",
+   "street": "Hawkins Drive",
+   "city": "toronto",
+   "point": [
+    -79.4824002,
+    43.7020829
+   ],
+   "probe": [
+    -79.48240017224774,
+    43.70208291335306
+   ],
+   "mapillary": "300888741518044",
+   "pano": false,
+   "dist": 23.9,
+   "off": -20.4,
+   "tags": {
+    "building": "detached"
+   },
+   "cama": {
+    "cornice": 1,
+    "roof": 0,
+    "total": 1,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -79.48240017224774,
+      43.70208291335306
+     ],
+     "km": 99,
+     "block": {
+      "length": 20.4,
+      "width": 13.3,
+      "fill": 0.56,
+      "parts": 1
+     },
+     "tint": 1,
+     "type": "detached"
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "levels": 1,
+     "point": [
+      -79.48240017224774,
+      43.70208291335306
+     ],
+     "km": 99,
+     "block": {
+      "length": 20.4,
+      "width": 13.3,
+      "fill": 0.56,
+      "parts": 1
+     },
+     "tint": 1,
+     "type": "detached",
+     "cornice": 1,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "H11",
+   "street": "Eglinton Avenue West",
+   "city": "toronto",
+   "point": [
+    -79.4913353,
+    43.6867502
+   ],
+   "probe": [
+    -79.4913353475443,
+    43.68675015402996
+   ],
+   "mapillary": "2367888870284108",
+   "pano": true,
+   "dist": 25.7,
+   "off": 77.8,
+   "tags": {
+    "building": "detached"
+   },
+   "cama": {},
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -79.4913353475443,
+      43.68675015402996
+     ],
+     "km": 99,
+     "block": {
+      "length": 22.6,
+      "width": 16.6,
+      "fill": 0.72,
+      "parts": 1
+     },
+     "tint": 2,
+     "type": "detached"
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -79.4913353475443,
+      43.68675015402996
+     ],
+     "km": 99,
+     "block": {
+      "length": 22.6,
+      "width": 16.6,
+      "fill": 0.72,
+      "parts": 1
+     },
+     "tint": 2,
+     "type": "detached"
+    }
+   }
+  },
+  {
+   "id": "H12",
+   "street": "Carl Hall Road",
+   "city": "toronto",
+   "point": [
+    -79.4816832,
+    43.7466625
+   ],
+   "probe": [
+    -79.48168316946655,
+    43.746662462321645
+   ],
+   "mapillary": "1224876143013449",
+   "pano": true,
+   "dist": 19.5,
+   "off": -9.5,
+   "tags": {
+    "building": "yes"
+   },
+   "cama": {
+    "cornice": 1,
+    "roof": 0,
+    "total": 1,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "brickblock",
+    "info": {
+     "point": [
+      -79.48168316946655,
+      43.746662462321645
+     ],
+     "km": 99,
+     "block": {
+      "length": 30.4,
+      "width": 26.5,
+      "fill": 0.69,
+      "parts": 1
+     },
+     "tint": 3
+    }
+   },
+   "after": {
+    "look": "stripmall",
+    "info": {
+     "levels": 1,
+     "point": [
+      -79.48168316946655,
+      43.746662462321645
+     ],
+     "km": 99,
+     "block": {
+      "length": 30.4,
+      "width": 26.5,
+      "fill": 0.69,
+      "parts": 1
+     },
+     "tint": 3,
+     "cornice": 1,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "H13",
+   "street": "Corbett Avenue",
+   "city": "toronto",
+   "point": [
+    -79.4919578,
+    43.670818
+   ],
+   "probe": [
+    -79.49195776963471,
+    43.67081801039083
+   ],
+   "mapillary": "306398647704447",
+   "pano": false,
+   "dist": 17.5,
+   "off": -21.3,
+   "tags": {
+    "building": "detached"
+   },
+   "cama": {
+    "cornice": 1,
+    "roof": 0,
+    "total": 1,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -79.49195776963471,
+      43.67081801039083
+     ],
+     "km": 99,
+     "block": {
+      "length": 29.9,
+      "width": 16.2,
+      "fill": 0.68,
+      "parts": 3
+     },
+     "tint": 0,
+     "type": "detached"
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "levels": 1,
+     "point": [
+      -79.49195776963471,
+      43.67081801039083
+     ],
+     "km": 99,
+     "block": {
+      "length": 29.9,
+      "width": 16.2,
+      "fill": 0.68,
+      "parts": 3
+     },
+     "tint": 0,
+     "type": "detached",
+     "cornice": 1,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "H14",
+   "street": "Eglinton Avenue West",
+   "city": "toronto",
+   "point": [
+    -79.4472059,
+    43.6962094
+   ],
+   "probe": [
+    -79.44720587949347,
+    43.69620943370895
+   ],
+   "mapillary": "2914401505445266",
+   "pano": false,
+   "dist": 25.4,
+   "off": 26.4,
+   "tags": {
+    "building": "public"
+   },
+   "cama": {
+    "cornice": 5,
+    "roof": 0,
+    "total": 5,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "kancelar",
+    "info": {
+     "point": [
+      -79.44720587949347,
+      43.69620943370895
+     ],
+     "km": 99,
+     "block": {
+      "length": 35.8,
+      "width": 27.3,
+      "fill": 0.92,
+      "parts": 1
+     },
+     "tint": 1,
+     "type": "public"
+    }
+   },
+   "after": {
+    "look": "kancelar",
+    "info": {
+     "levels": 5,
+     "point": [
+      -79.44720587949347,
+      43.69620943370895
+     ],
+     "km": 99,
+     "block": {
+      "length": 35.8,
+      "width": 27.3,
+      "fill": 0.92,
+      "parts": 1
+     },
+     "tint": 1,
+     "type": "public",
+     "cornice": 5,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "H15",
+   "street": "Shuter Street",
+   "city": "toronto",
+   "point": [
+    -79.3612944,
+    43.6575818
+   ],
+   "probe": [
+    -79.36129438017771,
+    43.657581754629035
+   ],
+   "mapillary": "1110609150498023",
+   "pano": true,
+   "dist": 14.5,
+   "off": -119.1,
+   "tags": {
+    "building": "yes"
+   },
+   "cama": {
+    "cornice": 4,
+    "roof": 0,
+    "total": 4,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "brickblock",
+    "info": {
+     "point": [
+      -79.36129438017771,
+      43.657581754629035
+     ],
+     "km": 99,
+     "block": {
+      "length": 52.9,
+      "width": 16,
+      "fill": 0.71,
+      "parts": 2
+     },
+     "tint": 2
+    }
+   },
+   "after": {
+    "look": "brickblock",
+    "info": {
+     "levels": 4,
+     "point": [
+      -79.36129438017771,
+      43.657581754629035
+     ],
+     "km": 99,
+     "block": {
+      "length": 52.9,
+      "width": 16,
+      "fill": 0.71,
+      "parts": 2
+     },
+     "tint": 2,
+     "cornice": 4,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "H16",
+   "street": "Lee Avenue",
+   "city": "toronto",
+   "point": [
+    -79.2989506,
+    43.6722774
+   ],
+   "probe": [
+    -79.29895061514091,
+    43.67227736652473
+   ],
+   "mapillary": "1738898430785898",
+   "pano": true,
+   "dist": 15.4,
+   "off": 133.6,
+   "tags": {
+    "building": "house"
+   },
+   "cama": {
+    "cornice": 2,
+    "roof": 0,
+    "total": 2,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -79.29895061514091,
+      43.67227736652473
+     ],
+     "km": 99,
+     "block": {
+      "length": 17.8,
+      "width": 8,
+      "fill": 0.88,
+      "parts": 1
+     },
+     "tint": 3,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "levels": 2,
+     "point": [
+      -79.29895061514091,
+      43.67227736652473
+     ],
+     "km": 99,
+     "block": {
+      "length": 17.8,
+      "width": 8,
+      "fill": 0.88,
+      "parts": 1
+     },
+     "tint": 3,
+     "type": "house",
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "H17",
+   "street": "Scarden Avenue",
+   "city": "toronto",
+   "point": [
+    -79.2995718,
+    43.7736177
+   ],
+   "probe": [
+    -79.29957177777675,
+    43.77361765099042
+   ],
+   "mapillary": "3621662291309541",
+   "pano": true,
+   "dist": 13.4,
+   "off": 111.5,
+   "tags": {
+    "building": "detached"
+   },
+   "cama": {
+    "cornice": 1,
+    "roof": 0,
+    "total": 1,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -79.29957177777675,
+      43.77361765099042
+     ],
+     "km": 99,
+     "block": {
+      "length": 27.9,
+      "width": 26.9,
+      "fill": 0.5,
+      "parts": 2
+     },
+     "tint": 0,
+     "type": "detached"
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "levels": 1,
+     "point": [
+      -79.29957177777675,
+      43.77361765099042
+     ],
+     "km": 99,
+     "block": {
+      "length": 27.9,
+      "width": 26.9,
+      "fill": 0.5,
+      "parts": 2
+     },
+     "tint": 0,
+     "type": "detached",
+     "cornice": 1,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "H18",
+   "street": "Winchester Street",
+   "city": "toronto",
+   "point": [
+    -79.3664777,
+    43.6665401
+   ],
+   "probe": [
+    -79.3664777081446,
+    43.66654013556151
+   ],
+   "mapillary": "789043750210245",
+   "pano": true,
+   "dist": 14.5,
+   "off": -49.9,
+   "tags": {
+    "building": "detached"
+   },
+   "cama": {
+    "cornice": 3,
+    "roof": 0,
+    "total": 3,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "baygable",
+    "info": {
+     "point": [
+      -79.3664777081446,
+      43.66654013556151
+     ],
+     "km": 99,
+     "block": {
+      "length": 33.3,
+      "width": 22.2,
+      "fill": 0.73,
+      "parts": 3
+     },
+     "tint": 1,
+     "type": "detached"
+    }
+   },
+   "after": {
+    "look": "baygable",
+    "info": {
+     "levels": 3,
+     "point": [
+      -79.3664777081446,
+      43.66654013556151
+     ],
+     "km": 99,
+     "block": {
+      "length": 33.3,
+      "width": 22.2,
+      "fill": 0.73,
+      "parts": 3
+     },
+     "tint": 1,
+     "type": "detached",
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "H19",
+   "street": "Boardwalk Drive",
+   "city": "toronto",
+   "point": [
+    -79.3084803,
+    43.6644422
+   ],
+   "probe": [
+    -79.30848029517075,
+    43.66444217899309
+   ],
+   "mapillary": "1243795294486839",
+   "pano": true,
+   "dist": 18.3,
+   "off": -101.2,
+   "tags": {
+    "building:levels": "5",
+    "building": "apartments"
+   },
+   "cama": {
+    "cornice": 6,
+    "roof": 0,
+    "total": 6,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "brickblock",
+    "info": {
+     "levels": 5,
+     "point": [
+      -79.30848029517075,
+      43.66444217899309
+     ],
+     "km": 99,
+     "block": {
+      "length": 78.3,
+      "width": 68.3,
+      "fill": 0.49,
+      "parts": 3
+     },
+     "tint": 2,
+     "type": "apartments"
+    }
+   },
+   "after": {
+    "look": "brickblock",
+    "info": {
+     "levels": 5,
+     "point": [
+      -79.30848029517075,
+      43.66444217899309
+     ],
+     "km": 99,
+     "block": {
+      "length": 78.3,
+      "width": 68.3,
+      "fill": 0.49,
+      "parts": 3
+     },
+     "tint": 2,
+     "type": "apartments"
+    }
+   }
+  },
+  {
+   "id": "H20",
+   "street": "Eringate Drive",
+   "city": "toronto",
+   "point": [
+    -79.5748804,
+    43.6623899
+   ],
+   "probe": [
+    -79.57488040289556,
+    43.66238989252428
+   ],
+   "mapillary": "952407425513789",
+   "pano": false,
+   "dist": 25.6,
+   "off": 19.9,
+   "tags": {
+    "building": "detached"
+   },
+   "cama": {
+    "cornice": 1,
+    "roof": 0,
+    "total": 1,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -79.57488040289556,
+      43.66238989252428
+     ],
+     "km": 99,
+     "block": {
+      "length": 15.5,
+      "width": 13.7,
+      "fill": 0.61,
+      "parts": 1
+     },
+     "tint": 3,
+     "type": "detached"
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "levels": 1,
+     "point": [
+      -79.57488040289556,
+      43.66238989252428
+     ],
+     "km": 99,
+     "block": {
+      "length": 15.5,
+      "width": 13.7,
+      "fill": 0.61,
+      "parts": 1
+     },
+     "tint": 3,
+     "type": "detached",
+     "cornice": 1,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "H21",
+   "street": "Dewhurst Boulevard",
+   "city": "toronto",
+   "point": [
+    -79.3411059,
+    43.6839725
+   ],
+   "probe": [
+    -79.3411058975072,
+    43.68397252430613
+   ],
+   "mapillary": "488195835713018",
+   "pano": false,
+   "dist": 22.5,
+   "off": 7.8,
+   "tags": {
+    "building": "detached"
+   },
+   "cama": {
+    "cornice": 2,
+    "roof": 0,
+    "total": 2,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -79.3411058975072,
+      43.68397252430613
+     ],
+     "km": 99,
+     "block": {
+      "length": 11,
+      "width": 6.8,
+      "fill": 0.86,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "detached"
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "levels": 2,
+     "point": [
+      -79.3411058975072,
+      43.68397252430613
+     ],
+     "km": 99,
+     "block": {
+      "length": 11,
+      "width": 6.8,
+      "fill": 0.86,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "detached",
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "H22",
+   "street": "Parliament Street",
+   "city": "toronto",
+   "point": [
+    -79.3646024,
+    43.6564531
+   ],
+   "probe": [
+    -79.36460235185362,
+    43.65645305635713
+   ],
+   "mapillary": "179861420656598",
+   "pano": false,
+   "dist": 9,
+   "off": 21.4,
+   "tags": {
+    "building": "yes"
+   },
+   "cama": {
+    "cornice": 6,
+    "roof": 0,
+    "total": 6,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "brickblock",
+    "info": {
+     "point": [
+      -79.36460235185362,
+      43.65645305635713
+     ],
+     "km": 99,
+     "block": {
+      "length": 62.5,
+      "width": 52.3,
+      "fill": 0.61,
+      "parts": 2
+     },
+     "tint": 1
+    }
+   },
+   "after": {
+    "look": "brickblock",
+    "info": {
+     "levels": 6,
+     "point": [
+      -79.36460235185362,
+      43.65645305635713
+     ],
+     "km": 99,
+     "block": {
+      "length": 62.5,
+      "width": 52.3,
+      "fill": 0.61,
+      "parts": 2
+     },
+     "tint": 1,
+     "cornice": 6,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "H23",
+   "street": "Niagara Street",
+   "city": "toronto",
+   "point": [
+    -79.4093951,
+    43.644652
+   ],
+   "probe": [
+    -79.4093950778422,
+    43.64465198728836
+   ],
+   "mapillary": "132595298898684",
+   "pano": false,
+   "dist": 20.3,
+   "off": 4.6,
+   "tags": {
+    "building": "yes"
+   },
+   "cama": {
+    "cornice": 3,
+    "roof": 0,
+    "total": 3,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "baygable",
+    "info": {
+     "point": [
+      -79.4093950778422,
+      43.64465198728836
+     ],
+     "km": 99,
+     "block": {
+      "length": 121.4,
+      "width": 87.3,
+      "fill": 0.44,
+      "parts": 13
+     },
+     "tint": 2
+    }
+   },
+   "after": {
+    "look": "baygable",
+    "info": {
+     "levels": 3,
+     "point": [
+      -79.4093950778422,
+      43.64465198728836
+     ],
+     "km": 99,
+     "block": {
+      "length": 121.4,
+      "width": 87.3,
+      "fill": 0.44,
+      "parts": 13
+     },
+     "tint": 2,
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "H24",
+   "street": "Winona Drive",
+   "city": "toronto",
+   "point": [
+    -79.4318061,
+    43.6778967
+   ],
+   "probe": [
+    -79.43180610553223,
+    43.67789667753001
+   ],
+   "mapillary": "947081441104328",
+   "pano": true,
+   "dist": 19.5,
+   "off": -88.8,
+   "tags": {
+    "building": "semidetached_house"
+   },
+   "cama": {
+    "cornice": 2,
+    "roof": 0,
+    "total": 2,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "porchrow",
+    "info": {
+     "point": [
+      -79.43180610553223,
+      43.67789667753001
+     ],
+     "km": 99,
+     "block": {
+      "length": 16.7,
+      "width": 9.8,
+      "fill": 0.94,
+      "parts": 2
+     },
+     "tint": 3,
+     "type": "semidetached_house"
+    }
+   },
+   "after": {
+    "look": "porchrow",
+    "info": {
+     "levels": 2,
+     "point": [
+      -79.43180610553223,
+      43.67789667753001
+     ],
+     "km": 99,
+     "block": {
+      "length": 16.7,
+      "width": 9.8,
+      "fill": 0.94,
+      "parts": 2
+     },
+     "tint": 3,
+     "type": "semidetached_house",
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "H25",
+   "street": "Raymore Drive",
+   "city": "toronto",
+   "point": [
+    -79.5195177,
+    43.6966574
+   ],
+   "probe": [
+    -79.51951774657483,
+    43.69665736146702
+   ],
+   "mapillary": "2964740217107401",
+   "pano": false,
+   "dist": 13.3,
+   "off": 7.9,
+   "tags": {
+    "building": "detached"
+   },
+   "cama": {
+    "cornice": 2,
+    "roof": 0,
+    "total": 2,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -79.51951774657483,
+      43.69665736146702
+     ],
+     "km": 99,
+     "block": {
+      "length": 21.1,
+      "width": 15.5,
+      "fill": 0.65,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "detached"
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "levels": 2,
+     "point": [
+      -79.51951774657483,
+      43.69665736146702
+     ],
+     "km": 99,
+     "block": {
+      "length": 21.1,
+      "width": 15.5,
+      "fill": 0.65,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "detached",
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "H26",
+   "street": "Vaughan Road",
+   "city": "toronto",
+   "point": [
+    -79.4251623,
+    43.6880502
+   ],
+   "probe": [
+    -79.4251623306679,
+    43.68805023208953
+   ],
+   "mapillary": "1034848169396148",
+   "pano": true,
+   "dist": 12.6,
+   "off": 59.6,
+   "tags": {
+    "building": "yes"
+   },
+   "cama": {
+    "cornice": 1,
+    "roof": 0,
+    "total": 1,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "porchrow",
+    "info": {
+     "point": [
+      -79.4251623306679,
+      43.68805023208953
+     ],
+     "km": 99,
+     "block": {
+      "length": 42.1,
+      "width": 32.1,
+      "fill": 0.44,
+      "parts": 7
+     },
+     "tint": 1
+    }
+   },
+   "after": {
+    "look": "porchrow",
+    "info": {
+     "levels": 1,
+     "point": [
+      -79.4251623306679,
+      43.68805023208953
+     ],
+     "km": 99,
+     "block": {
+      "length": 42.1,
+      "width": 32.1,
+      "fill": 0.44,
+      "parts": 7
+     },
+     "tint": 1,
+     "cornice": 1,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "H27",
+   "street": "Brunswick Avenue",
+   "city": "toronto",
+   "point": [
+    -79.4046263,
+    43.6581163
+   ],
+   "probe": [
+    -79.40462627171561,
+    43.658116270807994
+   ],
+   "mapillary": "753590154264953",
+   "pano": true,
+   "dist": 18.6,
+   "off": 102.2,
+   "tags": {
+    "building": "house"
+   },
+   "cama": {
+    "cornice": 4,
+    "roof": 0,
+    "total": 4,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "baygable",
+    "info": {
+     "point": [
+      -79.40462627171561,
+      43.658116270807994
+     ],
+     "km": 99,
+     "block": {
+      "length": 24.7,
+      "width": 16.2,
+      "fill": 0.68,
+      "parts": 1
+     },
+     "tint": 2,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "baygable",
+    "info": {
+     "levels": 4,
+     "point": [
+      -79.40462627171561,
+      43.658116270807994
+     ],
+     "km": 99,
+     "block": {
+      "length": 24.7,
+      "width": 16.2,
+      "fill": 0.68,
+      "parts": 1
+     },
+     "tint": 2,
+     "type": "house",
+     "cornice": 4,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "H28",
+   "street": "Woodbine Avenue",
+   "city": "toronto",
+   "point": [
+    -79.3088736,
+    43.6754224
+   ],
+   "probe": [
+    -79.30887361149183,
+    43.67542240892416
+   ],
+   "mapillary": "751359234490853",
+   "pano": true,
+   "dist": 17.2,
+   "off": 107.9,
+   "tags": {
+    "building": "yes"
+   },
+   "cama": {
+    "cornice": 2,
+    "roof": 0,
+    "total": 2,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -79.30887361149183,
+      43.67542240892416
+     ],
+     "km": 99,
+     "block": {
+      "length": 22.1,
+      "width": 12.9,
+      "fill": 0.54,
+      "parts": 2
+     },
+     "tint": 3
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "levels": 2,
+     "point": [
+      -79.30887361149183,
+      43.67542240892416
+     ],
+     "km": 99,
+     "block": {
+      "length": 22.1,
+      "width": 12.9,
+      "fill": 0.54,
+      "parts": 2
+     },
+     "tint": 3,
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "H29",
+   "street": "Jones Avenue",
+   "city": "toronto",
+   "point": [
+    -79.3340605,
+    43.6660554
+   ],
+   "probe": [
+    -79.33406048589197,
+    43.666055361267254
+   ],
+   "mapillary": "1642136633810935",
+   "pano": true,
+   "dist": 12.1,
+   "off": 137.9,
+   "tags": {
+    "building": "terrace"
+   },
+   "cama": {
+    "cornice": 3,
+    "roof": 0,
+    "total": 3,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "baygable",
+    "info": {
+     "point": [
+      -79.33406048589197,
+      43.666055361267254
+     ],
+     "km": 99,
+     "block": {
+      "length": 68.8,
+      "width": 21.5,
+      "fill": 0.65,
+      "parts": 6
+     },
+     "tint": 0,
+     "type": "terrace"
+    }
+   },
+   "after": {
+    "look": "baygable",
+    "info": {
+     "levels": 3,
+     "point": [
+      -79.33406048589197,
+      43.666055361267254
+     ],
+     "km": 99,
+     "block": {
+      "length": 68.8,
+      "width": 21.5,
+      "fill": 0.65,
+      "parts": 6
+     },
+     "tint": 0,
+     "type": "terrace",
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "H30",
+   "street": "Dufferin Street",
+   "city": "toronto",
+   "point": [
+    -79.4376775,
+    43.6657905
+   ],
+   "probe": [
+    -79.43767750847462,
+    43.66579045021356
+   ],
+   "mapillary": "2397545077308238",
+   "pano": true,
+   "dist": 14.7,
+   "off": 100.1,
+   "tags": {
+    "building": "house"
+   },
+   "cama": {
+    "cornice": 2,
+    "roof": 0,
+    "total": 2,
+    "fromHeight": true,
+    "caHouse": true
+   },
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -79.43767750847462,
+      43.66579045021356
+     ],
+     "km": 99,
+     "block": {
+      "length": 21.8,
+      "width": 22.7,
+      "fill": 0.46,
+      "parts": 1
+     },
+     "tint": 1,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "levels": 2,
+     "point": [
+      -79.43767750847462,
+      43.66579045021356
+     ],
+     "km": 99,
+     "block": {
+      "length": 21.8,
+      "width": 22.7,
+      "fill": 0.46,
+      "parts": 1
+     },
+     "tint": 1,
+     "type": "house",
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  }
+ ]
+}
