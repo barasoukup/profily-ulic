@@ -1,0 +1,515 @@
+{
+ "stat": {
+  "houses": 900,
+  "tunedFound": 586,
+  "allFound": 852,
+  "changed": 37,
+  "look": 36,
+  "asked": 445,
+  "regFailed": 0,
+  "noPhoto": 27,
+  "out": 3,
+  "outAsHouse": 0
+ },
+ "rows": [
+  {
+   "id": "CZ01",
+   "town": "olomouc",
+   "city": "olomouc",
+   "point": [
+    17.2481491,
+    49.5818819
+   ],
+   "mapillary": "1325015805673250",
+   "pano": true,
+   "dist": 22.8,
+   "off": -75.9,
+   "before": {
+    "look": "hala",
+    "info": {
+     "levels": 2,
+     "point": [
+      17.24814908917832,
+      49.58188194132654
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 2,
+     "roof": 0,
+     "newBuild": false,
+     "area": 1678,
+     "src": "ipr",
+     "built": 2021
+    }
+   },
+   "after": {
+    "look": "hala",
+    "info": {
+     "levels": 2,
+     "point": [
+      17.24814908917832,
+      49.58188194132654
+     ],
+     "km": 99,
+     "block": {
+      "length": 66.9,
+      "width": 34.6,
+      "fill": 0.71,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "retail",
+     "roofShape": "flat",
+     "cornice": 2,
+     "roof": 0,
+     "newBuild": false,
+     "area": 1678,
+     "src": "ipr",
+     "built": 2021
+    }
+   }
+  },
+  {
+   "id": "CZ02",
+   "town": "olomouc",
+   "city": "olomouc",
+   "point": [
+    17.24168,
+    49.6053474
+   ],
+   "mapillary": "1030391744337856",
+   "pano": false,
+   "dist": 21.3,
+   "off": 11.8,
+   "before": {
+    "look": "moderni",
+    "info": {
+     "point": [
+      17.241679981818585,
+      49.605347395232776
+     ],
+     "km": 99,
+     "tint": 0,
+     "built": 2001
+    }
+   },
+   "after": {
+    "look": "hala",
+    "info": {
+     "point": [
+      17.241679981818585,
+      49.605347395232776
+     ],
+     "km": 99,
+     "block": {
+      "length": 67.7,
+      "width": 17.4,
+      "fill": 0.84,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "warehouse",
+     "start": 2001,
+     "built": 2001
+    }
+   }
+  },
+  {
+   "id": "CZ03",
+   "town": "plzen",
+   "city": "plzen",
+   "point": [
+    13.3641027,
+    49.7461187
+   ],
+   "mapillary": "1600369560840553",
+   "pano": false,
+   "dist": 13.7,
+   "off": 10,
+   "before": {
+    "look": "vila",
+    "info": {
+     "point": [
+      13.364102678022,
+      49.746118652058264
+     ],
+     "km": 1,
+     "tint": 0,
+     "house": 1
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "point": [
+      13.364102678022,
+      49.746118652058264
+     ],
+     "km": 1,
+     "block": {
+      "length": 42.7,
+      "width": 18.6,
+      "fill": 0.81,
+      "parts": 3
+     },
+     "tint": 0,
+     "type": "apartments",
+     "house": 1
+    }
+   }
+  },
+  {
+   "id": "CZ04",
+   "town": "liberec",
+   "city": "liberec",
+   "point": [
+    15.0631803,
+    50.7707269
+   ],
+   "mapillary": "953744982798275",
+   "pano": false,
+   "dist": 8.4,
+   "off": -9,
+   "before": {
+    "look": "moderni",
+    "info": {
+     "point": [
+      15.063180346746678,
+      50.77072692329882
+     ],
+     "km": 99,
+     "tint": 0,
+     "built": 2005
+    }
+   },
+   "after": {
+    "look": "kancelar",
+    "info": {
+     "point": [
+      15.063180346746678,
+      50.77072692329882
+     ],
+     "km": 99,
+     "block": {
+      "length": 8.4,
+      "width": 9,
+      "fill": 0.53,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "commercial",
+     "start": 2005,
+     "built": 2005
+    }
+   }
+  },
+  {
+   "id": "CZ05",
+   "town": "trebic",
+   "city": "trebic",
+   "point": [
+    15.8950029,
+    49.2089394
+   ],
+   "mapillary": "1002895673578722",
+   "pano": false,
+   "dist": 24.8,
+   "off": 30,
+   "before": {
+    "look": "nizky",
+    "info": {
+     "point": [
+      15.895002887780828,
+      49.208939411206686
+     ],
+     "km": 1.3,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "hala",
+    "info": {
+     "point": [
+      15.895002887780828,
+      49.208939411206686
+     ],
+     "km": 1.3,
+     "block": {
+      "length": 44.8,
+      "width": 29.6,
+      "fill": 0.71,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "industrial"
+    }
+   }
+  },
+  {
+   "id": "CZ06",
+   "town": "kolin",
+   "city": "cesko",
+   "point": [
+    15.203997,
+    50.0266497
+   ],
+   "mapillary": "1411766016113669",
+   "pano": true,
+   "dist": 24.7,
+   "off": -12.5,
+   "before": {
+    "look": "nizky",
+    "info": {
+     "point": [
+      15.203996996856715,
+      50.02664970001999
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "kostel",
+    "info": {
+     "point": [
+      15.203996996856715,
+      50.02664970001999
+     ],
+     "km": 99,
+     "block": {
+      "length": 65.1,
+      "width": 38.8,
+      "fill": 0.76,
+      "parts": 3
+     },
+     "tint": 0,
+     "type": "church",
+     "roofShape": "gabled",
+     "start": 1677
+    }
+   }
+  },
+  {
+   "id": "CZ07",
+   "town": "plzen",
+   "city": "plzen",
+   "point": [
+    13.3800533,
+    49.7370039
+   ],
+   "mapillary": "1822447155616073",
+   "pano": false,
+   "dist": 22.6,
+   "off": 31,
+   "before": {
+    "look": "vila",
+    "info": {
+     "levels": 3,
+     "point": [
+      13.38005325844376,
+      49.73700393748011
+     ],
+     "km": 1.2,
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "roofType": 1,
+     "newBuild": false,
+     "area": 243,
+     "src": "ipr",
+     "built": 1945,
+     "house": 1
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "levels": 3,
+     "point": [
+      13.38005325844376,
+      49.73700393748011
+     ],
+     "km": 1.2,
+     "block": {
+      "length": 52.9,
+      "width": 30.3,
+      "fill": 0.51,
+      "parts": 6
+     },
+     "tint": 0,
+     "type": "residential",
+     "cornice": 3,
+     "roof": 0,
+     "roofType": 1,
+     "newBuild": false,
+     "area": 243,
+     "src": "ipr",
+     "built": 1945,
+     "house": 1
+    }
+   }
+  },
+  {
+   "id": "CZ08",
+   "town": "plzen",
+   "city": "plzen",
+   "point": [
+    13.36927,
+    49.7361069
+   ],
+   "mapillary": "1158204118533769",
+   "pano": false,
+   "dist": 24.9,
+   "off": 9.5,
+   "before": {
+    "look": "vila",
+    "info": {
+     "levels": 2,
+     "point": [
+      13.36927001170162,
+      49.73610694786834
+     ],
+     "km": 1.4,
+     "tint": 0,
+     "cornice": 2,
+     "roof": 0,
+     "roofType": 1,
+     "newBuild": false,
+     "area": 140,
+     "src": "ipr",
+     "built": 1945,
+     "house": 1
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "levels": 2,
+     "point": [
+      13.36927001170162,
+      49.73610694786834
+     ],
+     "km": 1.4,
+     "block": {
+      "length": 190.5,
+      "width": 142,
+      "fill": 0.23,
+      "parts": 33
+     },
+     "tint": 0,
+     "cornice": 2,
+     "roof": 0,
+     "roofType": 1,
+     "newBuild": false,
+     "area": 140,
+     "src": "ipr",
+     "built": 1945,
+     "house": 1
+    }
+   }
+  },
+  {
+   "id": "CZ09",
+   "town": "olomouc",
+   "city": "olomouc",
+   "point": [
+    17.2486126,
+    49.5870157
+   ],
+   "mapillary": "1585923982950628",
+   "pano": false,
+   "dist": 14.1,
+   "off": -1,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 3,
+     "point": [
+      17.248612554221232,
+      49.58701570004867
+     ],
+     "km": 99,
+     "block": {
+      "length": 75,
+      "width": 42.5,
+      "fill": 0.42,
+      "parts": 3
+     },
+     "tint": 0,
+     "type": "residential",
+     "cornice": 3,
+     "roof": 0,
+     "newBuild": false,
+     "area": 626,
+     "src": "ipr"
+    }
+   },
+   "after": {
+    "look": "funkce",
+    "info": {
+     "levels": 3,
+     "point": [
+      17.248612554221232,
+      49.58701570004867
+     ],
+     "km": 99,
+     "block": {
+      "length": 75.4,
+      "width": 44,
+      "fill": 0.42,
+      "parts": 4
+     },
+     "tint": 0,
+     "type": "residential",
+     "cornice": 3,
+     "roof": 0,
+     "newBuild": false,
+     "area": 626,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "CZ10",
+   "town": "liberec",
+   "city": "liberec",
+   "point": [
+    15.0646606,
+    50.7787365
+   ],
+   "mapillary": "2324053264775068",
+   "pano": false,
+   "dist": 23,
+   "off": -19.3,
+   "before": {
+    "look": "nizky",
+    "info": {
+     "point": [
+      15.064660568917029,
+      50.77873654269599
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "garaz",
+    "info": {
+     "point": [
+      15.064660568917029,
+      50.77873654269599
+     ],
+     "km": 99,
+     "block": {
+      "length": 13.8,
+      "width": 7.6,
+      "fill": 0.77,
+      "parts": 4
+     },
+     "tint": 0,
+     "type": "garage"
+    }
+   }
+  }
+ ]
+}

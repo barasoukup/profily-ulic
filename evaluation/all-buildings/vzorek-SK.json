@@ -1,0 +1,653 @@
+{
+ "stat": {
+  "houses": 329,
+  "tunedFound": 102,
+  "allFound": 313,
+  "changed": 77,
+  "look": 77,
+  "asked": 253,
+  "regFailed": 0,
+  "noPhoto": 65,
+  "out": 7,
+  "outAsHouse": 0
+ },
+ "rows": [
+  {
+   "id": "SK01",
+   "town": "presov",
+   "city": "slovensko",
+   "point": [
+    21.2337577,
+    49.0071109
+   ],
+   "mapillary": "532352247773506",
+   "pano": false,
+   "dist": 22.7,
+   "off": 24.4,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      21.233757657108427,
+      49.00711087852055
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "garaz",
+    "info": {
+     "point": [
+      21.233757657108427,
+      49.00711087852055
+     ],
+     "km": 99,
+     "block": {
+      "length": 29.3,
+      "width": 6.6,
+      "fill": 0.87,
+      "parts": 2
+     },
+     "tint": 0,
+     "type": "garage"
+    }
+   }
+  },
+  {
+   "id": "SK02",
+   "town": "zilina",
+   "city": "slovensko",
+   "point": [
+    18.7380611,
+    49.2360411
+   ],
+   "mapillary": "1389510265785018",
+   "pano": true,
+   "dist": 21.7,
+   "off": 82.5,
+   "before": {
+    "look": "vila",
+    "info": {
+     "levels": 2,
+     "point": [
+      18.73806112113533,
+      49.23604110424994
+     ],
+     "km": 99,
+     "block": {
+      "length": 26.9,
+      "width": 19.6,
+      "fill": 0.73,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "house",
+     "roofShape": "hipped",
+     "area": 368
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "levels": 2,
+     "point": [
+      18.73806112113533,
+      49.23604110424994
+     ],
+     "km": 99,
+     "block": {
+      "length": 44.2,
+      "width": 28.5,
+      "fill": 0.6,
+      "parts": 3
+     },
+     "tint": 0,
+     "type": "house",
+     "roofShape": "hipped",
+     "area": 368
+    }
+   }
+  },
+  {
+   "id": "SK03",
+   "town": "poprad",
+   "city": "slovensko",
+   "point": [
+    20.3060511,
+    49.0560789
+   ],
+   "mapillary": "2244055009318783",
+   "pano": false,
+   "dist": 26,
+   "off": -0.2,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 4,
+     "point": [
+      20.306051052377175,
+      49.05607885373447
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 4,
+     "roof": 0,
+     "newBuild": false,
+     "area": 217,
+     "src": "ipr",
+     "type": "commercial"
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 4,
+     "point": [
+      20.306051052377175,
+      49.05607885373447
+     ],
+     "km": 99,
+     "block": {
+      "length": 35.8,
+      "width": 30.1,
+      "fill": 0.75,
+      "parts": 5
+     },
+     "tint": 0,
+     "type": "apartments",
+     "cornice": 4,
+     "roof": 0,
+     "newBuild": false,
+     "area": 217,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "SK04",
+   "town": "nitra",
+   "city": "slovensko",
+   "point": [
+    18.087146,
+    48.3069229
+   ],
+   "mapillary": "2801486076772775",
+   "pano": false,
+   "dist": 6.3,
+   "off": -3.5,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "levels": 7,
+     "point": [
+      18.087145989673868,
+      48.3069229065573
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 7,
+     "roof": 0,
+     "iprKind": 3,
+     "newBuild": false,
+     "area": 16735,
+     "src": "ipr"
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "levels": 7,
+     "point": [
+      18.087145989673868,
+      48.3069229065573
+     ],
+     "km": 99,
+     "block": {
+      "length": 200.7,
+      "width": 124.6,
+      "fill": 0.74,
+      "parts": 4
+     },
+     "tint": 0,
+     "type": "commercial",
+     "roofShape": "flat",
+     "cornice": 7,
+     "roof": 0,
+     "iprKind": 3,
+     "newBuild": false,
+     "area": 16735,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "SK05",
+   "town": "kosice",
+   "city": "slovensko",
+   "point": [
+    21.2597711,
+    48.7251941
+   ],
+   "mapillary": "204093144690098",
+   "pano": false,
+   "dist": 17.3,
+   "off": -27,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 4,
+     "point": [
+      21.259771071867707,
+      48.72519406581056
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 4,
+     "roof": 0,
+     "newBuild": false,
+     "area": 987,
+     "src": "ipr",
+     "type": "commercial"
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 4,
+     "point": [
+      21.259771071867707,
+      48.72519406581056
+     ],
+     "km": 99,
+     "block": {
+      "length": 143.8,
+      "width": 120.4,
+      "fill": 0.23,
+      "parts": 14
+     },
+     "tint": 0,
+     "type": "apartments",
+     "cornice": 4,
+     "roof": 0,
+     "newBuild": false,
+     "area": 987,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "SK06",
+   "town": "bratislava",
+   "city": "slovensko",
+   "point": [
+    17.1302522,
+    48.1418421
+   ],
+   "mapillary": "1354129155005010",
+   "pano": false,
+   "dist": 17.8,
+   "off": 21.4,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "point": [
+      17.130252186404586,
+      48.14184214575079
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "hala",
+    "info": {
+     "point": [
+      17.130252186404586,
+      48.14184214575079
+     ],
+     "km": 99,
+     "block": {
+      "length": 42.3,
+      "width": 23.9,
+      "fill": 0.4,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "warehouse"
+    }
+   }
+  },
+  {
+   "id": "SK07",
+   "town": "bystrica",
+   "city": "slovensko",
+   "point": [
+    19.1396076,
+    48.7321869
+   ],
+   "mapillary": "331480358363583",
+   "pano": false,
+   "dist": 13.8,
+   "off": -2.3,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 3,
+     "point": [
+      19.139607622744368,
+      48.73218685627207
+     ],
+     "km": 99,
+     "block": {
+      "length": 104,
+      "width": 62.2,
+      "fill": 0.32,
+      "parts": 4
+     },
+     "tint": 0,
+     "type": "retail",
+     "area": 749
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 3,
+     "point": [
+      19.139607622744368,
+      48.73218685627207
+     ],
+     "km": 99,
+     "block": {
+      "length": 109.5,
+      "width": 67,
+      "fill": 0.45,
+      "parts": 10
+     },
+     "tint": 0,
+     "type": "retail",
+     "area": 749
+    }
+   }
+  },
+  {
+   "id": "SK08",
+   "town": "poprad",
+   "city": "slovensko",
+   "point": [
+    20.2830326,
+    49.0678298
+   ],
+   "mapillary": "4348155211875362",
+   "pano": false,
+   "dist": 18.6,
+   "off": -17.9,
+   "before": {
+    "look": "plocha",
+    "info": {
+     "levels": 4,
+     "point": [
+      20.28303255005823,
+      49.0678297602478
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 4,
+     "roof": 0,
+     "newBuild": false,
+     "area": 247,
+     "src": "ipr",
+     "type": "commercial"
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 4,
+     "point": [
+      20.28303255005823,
+      49.0678297602478
+     ],
+     "km": 99,
+     "block": {
+      "length": 169.7,
+      "width": 87.6,
+      "fill": 0.35,
+      "parts": 30
+     },
+     "tint": 0,
+     "type": "residential",
+     "cornice": 4,
+     "roof": 0,
+     "newBuild": false,
+     "area": 247,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "SK09",
+   "town": "nitra",
+   "city": "slovensko",
+   "point": [
+    18.0857785,
+    48.3069
+   ],
+   "mapillary": "351073904343359",
+   "pano": false,
+   "dist": 16.7,
+   "off": 17.5,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "levels": 7,
+     "point": [
+      18.08577850368958,
+      48.306900012647596
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 7,
+     "roof": 0,
+     "iprKind": 3,
+     "newBuild": false,
+     "area": 16735,
+     "src": "ipr"
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "levels": 7,
+     "point": [
+      18.08577850368958,
+      48.306900012647596
+     ],
+     "km": 99,
+     "block": {
+      "length": 200.7,
+      "width": 124.6,
+      "fill": 0.74,
+      "parts": 4
+     },
+     "tint": 0,
+     "type": "commercial",
+     "roofShape": "flat",
+     "cornice": 7,
+     "roof": 0,
+     "iprKind": 3,
+     "newBuild": false,
+     "area": 16735,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "SK10",
+   "town": "nitra",
+   "city": "slovensko",
+   "point": [
+    18.0797866,
+    48.3122644
+   ],
+   "mapillary": "1021870836552669",
+   "pano": false,
+   "dist": 18.1,
+   "off": 3.6,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "levels": 6,
+     "point": [
+      18.079786623922338,
+      48.31226440018201
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 6,
+     "roof": 0,
+     "newBuild": false,
+     "area": 656,
+     "src": "ipr",
+     "type": "apartments"
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "levels": 6,
+     "point": [
+      18.079786623922338,
+      48.31226440018201
+     ],
+     "km": 99,
+     "block": {
+      "length": 50.9,
+      "width": 12.6,
+      "fill": 0.93,
+      "parts": 2
+     },
+     "tint": 0,
+     "type": "apartments",
+     "cornice": 6,
+     "roof": 0,
+     "newBuild": false,
+     "area": 656,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "SK11",
+   "town": "trnava",
+   "city": "slovensko",
+   "point": [
+    17.5851958,
+    48.3817015
+   ],
+   "mapillary": "3147434318720305",
+   "pano": false,
+   "dist": 24.1,
+   "off": -26.1,
+   "before": {
+    "look": "vila",
+    "info": {
+     "levels": 2,
+     "point": [
+      17.58519578388187,
+      48.38170154699505
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 2,
+     "roof": 0,
+     "newBuild": false,
+     "area": 319,
+     "src": "ipr",
+     "house": 1
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "levels": 2,
+     "point": [
+      17.58519578388187,
+      48.38170154699505
+     ],
+     "km": 99,
+     "block": {
+      "length": 58.1,
+      "width": 31.5,
+      "fill": 0.4,
+      "parts": 4
+     },
+     "tint": 0,
+     "cornice": 2,
+     "roof": 0,
+     "newBuild": false,
+     "area": 319,
+     "src": "ipr",
+     "house": 1
+    }
+   }
+  },
+  {
+   "id": "SK12",
+   "town": "trnava",
+   "city": "slovensko",
+   "point": [
+    17.5916153,
+    48.3849872
+   ],
+   "mapillary": "770566333645840",
+   "pano": false,
+   "dist": 12.7,
+   "off": 28.1,
+   "before": {
+    "look": "sikma",
+    "info": {
+     "levels": 4,
+     "point": [
+      17.59161534028755,
+      48.38498724542103
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 4,
+     "roof": 0,
+     "newBuild": false,
+     "area": 443,
+     "src": "ipr",
+     "type": "apartments"
+    }
+   },
+   "after": {
+    "look": "plocha",
+    "info": {
+     "levels": 4,
+     "point": [
+      17.59161534028755,
+      48.38498724542103
+     ],
+     "km": 99,
+     "block": {
+      "length": 38.4,
+      "width": 14.3,
+      "fill": 0.84,
+      "parts": 1
+     },
+     "tint": 0,
+     "roofShape": "flat",
+     "cornice": 4,
+     "roof": 0,
+     "newBuild": false,
+     "area": 443,
+     "src": "ipr",
+     "type": "apartments"
+    }
+   }
+  }
+ ]
+}

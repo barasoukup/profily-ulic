@@ -1,0 +1,233 @@
+{
+ "stat": {
+  "houses": 213,
+  "tunedFound": 101,
+  "allFound": 205,
+  "changed": 15,
+  "look": 15,
+  "asked": 128,
+  "regFailed": 0,
+  "noPhoto": 11,
+  "out": 0,
+  "outAsHouse": 0
+ },
+ "rows": [
+  {
+   "id": "ES01",
+   "town": "barcelona",
+   "city": "spain",
+   "point": [
+    2.1575809,
+    41.3929971
+   ],
+   "mapillary": "257965262729225",
+   "pano": false,
+   "dist": 20.1,
+   "off": -26.3,
+   "before": {
+    "look": "stredomori",
+    "info": {
+     "levels": 6,
+     "point": [
+      2.157580903336606,
+      41.39299707578277
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 6,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1922,
+     "house": 1,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "funkce",
+    "info": {
+     "levels": 6,
+     "point": [
+      2.157580903336606,
+      41.39299707578277
+     ],
+     "km": 99,
+     "block": {
+      "length": 141.6,
+      "width": 141.7,
+      "fill": 0.6,
+      "parts": 26
+     },
+     "tint": 0,
+     "type": "apartments",
+     "cornice": 6,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1922,
+     "house": 1
+    }
+   }
+  },
+  {
+   "id": "ES02",
+   "town": "madrid",
+   "city": "spain",
+   "point": [
+    -3.7000125,
+    40.4164994
+   ],
+   "mapillary": "1327826832264748",
+   "pano": false,
+   "dist": 18.9,
+   "off": 10.5,
+   "before": {
+    "look": "kancelar",
+    "info": {
+     "levels": 6,
+     "point": [
+      -3.7000124715087215,
+      40.41649941519083
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 6,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1920,
+     "office": 1,
+     "type": "office"
+    }
+   },
+   "after": {
+    "look": "stredomori",
+    "info": {
+     "levels": 6,
+     "point": [
+      -3.7000124715087215,
+      40.41649941519083
+     ],
+     "km": 99,
+     "block": {
+      "length": 156.1,
+      "width": 64.9,
+      "fill": 0.74,
+      "parts": 25
+     },
+     "tint": 0,
+     "type": "apartments",
+     "cornice": 6,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1920,
+     "office": 1
+    }
+   }
+  },
+  {
+   "id": "ES03",
+   "town": "zaragoza",
+   "city": "spain",
+   "point": [
+    -0.8777428,
+    41.6479526
+   ],
+   "mapillary": "528385991663051",
+   "pano": false,
+   "dist": 25.5,
+   "off": 26,
+   "before": {
+    "look": "stredomori",
+    "info": {
+     "levels": 2,
+     "point": [
+      -0.8777428460096173,
+      41.6479526469154
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1908
+    }
+   },
+   "after": {
+    "look": "skola",
+    "info": {
+     "levels": 2,
+     "point": [
+      -0.8777428460096173,
+      41.6479526469154
+     ],
+     "km": 99,
+     "block": {
+      "length": 66,
+      "width": 58.7,
+      "fill": 0.65,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "school",
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1908
+    }
+   }
+  },
+  {
+   "id": "ES04",
+   "town": "malaga",
+   "city": "spain",
+   "point": [
+    -4.4267623,
+    36.7179158
+   ],
+   "mapillary": "510276030343861",
+   "pano": false,
+   "dist": 13.3,
+   "off": 12.2,
+   "before": {
+    "look": "nizky",
+    "info": {
+     "levels": 1,
+     "point": [
+      -4.42676231020472,
+      36.717915794953065
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 1,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1976,
+     "office": 1,
+     "type": "office"
+    }
+   },
+   "after": {
+    "look": "kostel",
+    "info": {
+     "levels": 1,
+     "point": [
+      -4.42676231020472,
+      36.717915794953065
+     ],
+     "km": 99,
+     "block": {
+      "length": 71.1,
+      "width": 41.5,
+      "fill": 0.51,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "church",
+     "cornice": 1,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1976,
+     "office": 1
+    }
+   }
+  }
+ ]
+}

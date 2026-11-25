@@ -1,0 +1,70 @@
+{
+ "ATx01": {
+  "X": "before",
+  "Y": "after"
+ },
+ "ATx02": {
+  "X": "after",
+  "Y": "before"
+ },
+ "ATx03": {
+  "X": "before",
+  "Y": "after"
+ },
+ "ATx04": {
+  "X": "after",
+  "Y": "before"
+ },
+ "ATx05": {
+  "X": "before",
+  "Y": "after"
+ },
+ "ATx06": {
+  "X": "before",
+  "Y": "after"
+ },
+ "ATx07": {
+  "X": "before",
+  "Y": "after"
+ },
+ "ATx08": {
+  "X": "before",
+  "Y": "after"
+ },
+ "ATx09": {
+  "X": "before",
+  "Y": "after"
+ },
+ "ATx10": {
+  "X": "after",
+  "Y": "before"
+ },
+ "ATx11": {
+  "X": "after",
+  "Y": "before"
+ },
+ "ATx12": {
+  "X": "before",
+  "Y": "after"
+ },
+ "ATx13": {
+  "X": "before",
+  "Y": "after"
+ },
+ "ATx14": {
+  "X": "after",
+  "Y": "before"
+ },
+ "ATx15": {
+  "X": "before",
+  "Y": "after"
+ },
+ "ATx16": {
+  "X": "after",
+  "Y": "before"
+ },
+ "ATx17": {
+  "X": "after",
+  "Y": "before"
+ }
+}

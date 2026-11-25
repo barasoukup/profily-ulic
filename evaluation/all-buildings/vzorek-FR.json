@@ -1,0 +1,649 @@
+{
+ "stat": {
+  "houses": 344,
+  "tunedFound": 185,
+  "allFound": 326,
+  "changed": 32,
+  "look": 32,
+  "asked": 263,
+  "regFailed": 0,
+  "noPhoto": 20,
+  "out": 2,
+  "outAsHouse": 0
+ },
+ "rows": [
+  {
+   "id": "FR01",
+   "town": "marseille",
+   "city": "france",
+   "point": [
+    5.3688394,
+    43.2927032
+   ],
+   "mapillary": "2792137707763845",
+   "pano": false,
+   "dist": 12.4,
+   "off": 1.6,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "levels": 3,
+     "point": [
+      5.368839385024297,
+      43.29270321744167
+     ],
+     "km": 99,
+     "block": {
+      "length": 48.8,
+      "width": 35.1,
+      "fill": 0.63,
+      "parts": 2
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   },
+   "after": {
+    "look": "stredomori",
+    "info": {
+     "levels": 3,
+     "point": [
+      5.368839385024297,
+      43.29270321744167
+     ],
+     "km": 99,
+     "block": {
+      "length": 200.5,
+      "width": 74.8,
+      "fill": 0.79,
+      "parts": 20
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   }
+  },
+  {
+   "id": "FR02",
+   "town": "toulouse",
+   "city": "france",
+   "point": [
+    1.4412498,
+    43.6048541
+   ],
+   "mapillary": "1347478276043544",
+   "pano": true,
+   "dist": 15,
+   "off": 108.3,
+   "before": {
+    "look": "haussmann",
+    "info": {
+     "levels": 7,
+     "point": [
+      1.441249779504592,
+      43.60485414358179
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 7,
+     "roof": 0,
+     "src": "ipr"
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 7,
+     "point": [
+      1.441249779504592,
+      43.60485414358179
+     ],
+     "km": 99,
+     "block": {
+      "length": 148,
+      "width": 85.7,
+      "fill": 0.42,
+      "parts": 14
+     },
+     "tint": 0,
+     "start": 1457,
+     "cornice": 7,
+     "roof": 0,
+     "src": "ipr"
+    }
+   }
+  },
+  {
+   "id": "FR03",
+   "town": "nantes",
+   "city": "france",
+   "point": [
+    -1.5705636,
+    47.2211315
+   ],
+   "mapillary": "444285807334851",
+   "pano": true,
+   "dist": 12.9,
+   "off": -155.8,
+   "before": {
+    "look": "vila",
+    "info": {
+     "levels": 3,
+     "point": [
+      -1.5705636475080922,
+      47.221131548142644
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1920,
+     "house": 1,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "levels": 3,
+     "point": [
+      -1.5705636475080922,
+      47.221131548142644
+     ],
+     "km": 99,
+     "block": {
+      "length": 123.8,
+      "width": 22.9,
+      "fill": 0.45,
+      "parts": 13
+     },
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1920,
+     "house": 1,
+     "type": "house"
+    }
+   }
+  },
+  {
+   "id": "FR04",
+   "town": "bordeaux",
+   "city": "france",
+   "point": [
+    -0.5790797,
+    44.8371294
+   ],
+   "mapillary": "160221629354248",
+   "pano": false,
+   "dist": 19.3,
+   "off": 13.6,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "levels": 3,
+     "point": [
+      -0.5790796735167469,
+      44.83712935912176
+     ],
+     "km": 99,
+     "block": {
+      "length": 33.5,
+      "width": 12.1,
+      "fill": 0.88,
+      "parts": 2
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 3,
+     "point": [
+      -0.5790796735167469,
+      44.83712935912176
+     ],
+     "km": 99,
+     "block": {
+      "length": 126.7,
+      "width": 59,
+      "fill": 0.66,
+      "parts": 40
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   }
+  },
+  {
+   "id": "FR05",
+   "town": "strasbourg",
+   "city": "france",
+   "point": [
+    7.7604352,
+    48.5706124
+   ],
+   "mapillary": "1622197589293233",
+   "pano": true,
+   "dist": 21.2,
+   "off": -24.7,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "levels": 5,
+     "point": [
+      7.760435180461715,
+      48.57061235612761
+     ],
+     "km": 99,
+     "block": {
+      "length": 83.8,
+      "width": 13.8,
+      "fill": 0.79,
+      "parts": 5
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   },
+   "after": {
+    "look": "haussmann",
+    "info": {
+     "levels": 5,
+     "point": [
+      7.760435180461715,
+      48.57061235612761
+     ],
+     "km": 99,
+     "block": {
+      "length": 112.3,
+      "width": 24.8,
+      "fill": 0.54,
+      "parts": 6
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   }
+  },
+  {
+   "id": "FR06",
+   "town": "lille",
+   "city": "france",
+   "point": [
+    3.0480479,
+    50.6265537
+   ],
+   "mapillary": "1039465427132403",
+   "pano": true,
+   "dist": 17.9,
+   "off": -41.3,
+   "before": {
+    "look": "nizky",
+    "info": {
+     "levels": 4,
+     "point": [
+      3.0480478966477884,
+      50.626553744176
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 4,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1888,
+     "house": 1,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "sikma",
+    "info": {
+     "levels": 4,
+     "point": [
+      3.0480478966477884,
+      50.626553744176
+     ],
+     "km": 99,
+     "block": {
+      "length": 106.5,
+      "width": 47.2,
+      "fill": 0.78,
+      "parts": 40
+     },
+     "tint": 0,
+     "type": "retail",
+     "cornice": 4,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1888,
+     "house": 1
+    }
+   }
+  },
+  {
+   "id": "FR07",
+   "town": "nantes",
+   "city": "france",
+   "point": [
+    -1.5709956,
+    47.2219719
+   ],
+   "mapillary": "359711815548011",
+   "pano": true,
+   "dist": 22.5,
+   "off": -37.8,
+   "before": {
+    "look": "vila",
+    "info": {
+     "levels": 3,
+     "point": [
+      -1.5709955832919278,
+      47.22197189227416
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1938,
+     "house": 1,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "levels": 3,
+     "point": [
+      -1.5709955832919278,
+      47.22197189227416
+     ],
+     "km": 99,
+     "block": {
+      "length": 110.3,
+      "width": 17.6,
+      "fill": 0.67,
+      "parts": 11
+     },
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1938,
+     "house": 1,
+     "type": "house"
+    }
+   }
+  },
+  {
+   "id": "FR08",
+   "town": "strasbourg",
+   "city": "france",
+   "point": [
+    7.7534001,
+    48.585017
+   ],
+   "mapillary": "2303088193470563",
+   "pano": false,
+   "dist": 14.7,
+   "off": 13.5,
+   "before": {
+    "look": "vila",
+    "info": {
+     "levels": 3,
+     "point": [
+      7.75340007344317,
+      48.58501695630091
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1874,
+     "house": 1,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "levels": 3,
+     "point": [
+      7.75340007344317,
+      48.58501695630091
+     ],
+     "km": 99,
+     "block": {
+      "length": 108.5,
+      "width": 63.2,
+      "fill": 0.51,
+      "parts": 13
+     },
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1874,
+     "house": 1,
+     "type": "house"
+    }
+   }
+  },
+  {
+   "id": "FR09",
+   "town": "bordeaux",
+   "city": "france",
+   "point": [
+    -0.5775482,
+    44.8325869
+   ],
+   "mapillary": "375385300472887",
+   "pano": false,
+   "dist": 16.9,
+   "off": 7.9,
+   "before": {
+    "look": "vila",
+    "info": {
+     "levels": 3,
+     "point": [
+      -0.5775482032644544,
+      44.83258687820613
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1930,
+     "house": 1,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "levels": 3,
+     "point": [
+      -0.5775482032644544,
+      44.83258687820613
+     ],
+     "km": 99,
+     "block": {
+      "length": 75.6,
+      "width": 48.9,
+      "fill": 0.55,
+      "parts": 24
+     },
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1930,
+     "house": 1,
+     "type": "house"
+    }
+   }
+  },
+  {
+   "id": "FR10",
+   "town": "marseille",
+   "city": "france",
+   "point": [
+    5.3702141,
+    43.3049942
+   ],
+   "mapillary": "1150722005613051",
+   "pano": true,
+   "dist": 12.7,
+   "off": -80.3,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "levels": 3,
+     "point": [
+      5.370214117364499,
+      43.304994181268775
+     ],
+     "km": 99,
+     "block": {
+      "length": 197.2,
+      "width": 165,
+      "fill": 0.32,
+      "parts": 10
+     },
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "stredomori",
+    "info": {
+     "levels": 3,
+     "point": [
+      5.370214117364499,
+      43.304994181268775
+     ],
+     "km": 99,
+     "block": {
+      "length": 198.6,
+      "width": 165.5,
+      "fill": 0.39,
+      "parts": 30
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "FR11",
+   "town": "toulouse",
+   "city": "france",
+   "point": [
+    1.4503127,
+    43.60146
+   ],
+   "mapillary": "642087923856569",
+   "pano": true,
+   "dist": 12.4,
+   "off": -65.9,
+   "before": {
+    "look": "povalecny",
+    "info": {
+     "levels": 5,
+     "point": [
+      1.450312711114912,
+      43.601460035341965
+     ],
+     "km": 99,
+     "block": {
+      "length": 61.7,
+      "width": 26.9,
+      "fill": 0.41,
+      "parts": 2
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   },
+   "after": {
+    "look": "haussmann",
+    "info": {
+     "levels": 5,
+     "point": [
+      1.450312711114912,
+      43.601460035341965
+     ],
+     "km": 99,
+     "block": {
+      "length": 104.2,
+      "width": 49.3,
+      "fill": 0.61,
+      "parts": 13
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   }
+  },
+  {
+   "id": "FR12",
+   "town": "bordeaux",
+   "city": "france",
+   "point": [
+    -0.5806257,
+    44.8443995
+   ],
+   "mapillary": "302491554564106",
+   "pano": false,
+   "dist": 18.9,
+   "off": -21.1,
+   "before": {
+    "look": "vila",
+    "info": {
+     "levels": 3,
+     "point": [
+      -0.5806257006500178,
+      44.844399467499564
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1880,
+     "house": 1,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "nizky",
+    "info": {
+     "levels": 3,
+     "point": [
+      -0.5806257006500178,
+      44.844399467499564
+     ],
+     "km": 99,
+     "block": {
+      "length": 142.1,
+      "width": 89.6,
+      "fill": 0.58,
+      "parts": 40
+     },
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1880,
+     "house": 1,
+     "type": "house"
+    }
+   }
+  }
+ ]
+}

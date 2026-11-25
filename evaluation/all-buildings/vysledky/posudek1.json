@@ -1,0 +1,920 @@
+{
+ "AT01": {
+  "X": "wrong",
+  "Y": "wrong",
+  "better": "same",
+  "type": "2-storey plain house, pitched roof, neither"
+ },
+ "AT02": {
+  "X": "partly",
+  "Y": "right",
+  "better": "Y",
+  "type": "4-5 storey tenement, pitched roof, neither"
+ },
+ "AT03": {
+  "X": "partly",
+  "Y": "right",
+  "better": "Y",
+  "type": "4-storey corner tenement, hip roof, neither"
+ },
+ "AT04": {
+  "X": "right",
+  "Y": "partly",
+  "better": "X",
+  "type": "5-6 storey Gruenderzeit tenement, neither"
+ },
+ "AT05": {
+  "X": "partly",
+  "Y": "wrong",
+  "better": "X",
+  "type": "timber alpine farmhouse, big gable roof"
+ },
+ "AT06": {
+  "X": "wrong",
+  "Y": "wrong",
+  "better": "same",
+  "type": "12-storey slab block"
+ },
+ "AT07": {
+  "X": "unclear",
+  "Y": "unclear",
+  "better": "unclear",
+  "type": "3-4 storey white block, unclear"
+ },
+ "AT08": {
+  "X": "unclear",
+  "Y": "unclear",
+  "better": "unclear",
+  "type": "villa/house behind hedge, unclear"
+ },
+ "AT09": {
+  "X": "partly",
+  "Y": "partly",
+  "better": "same",
+  "type": "4-storey office/commercial curved, dormers"
+ },
+ "AT10": {
+  "X": "wrong",
+  "Y": "partly",
+  "better": "Y",
+  "type": "7-storey modern curved apartment block, balconies"
+ },
+ "AT11": {
+  "X": "partly",
+  "Y": "partly",
+  "better": "same",
+  "type": "3-storey yellow house/shop, pitched roof"
+ },
+ "AT12": {
+  "X": "partly",
+  "Y": "right",
+  "better": "Y",
+  "type": "4-5 storey old tenement, plain facade"
+ },
+ "BE01": {
+  "X": "partly",
+  "Y": "wrong",
+  "better": "X",
+  "type": "5-storey curved shop/apartment building, bay"
+ },
+ "BE02": {
+  "X": "partly",
+  "Y": "partly",
+  "better": "Y",
+  "type": "3-storey brick row/apartment house, flat roof"
+ },
+ "BE03": {
+  "X": "wrong",
+  "Y": "partly",
+  "better": "Y",
+  "type": "3-storey brick stepped-gable row house"
+ },
+ "BE04": {
+  "X": "partly",
+  "Y": "wrong",
+  "better": "X",
+  "type": "3-storey brick corner house with shop, flat roof"
+ },
+ "BE05": {
+  "X": "partly",
+  "Y": "wrong",
+  "better": "Y",
+  "type": "3-storey brick row houses, garages, pitched roof"
+ },
+ "BE06": {
+  "X": "partly",
+  "Y": "wrong",
+  "better": "X",
+  "type": "2-3 storey modernist brick house, curved roof"
+ },
+ "BE07": {
+  "X": "partly",
+  "Y": "wrong",
+  "better": "X",
+  "type": "3-storey brick row house, stepped gable"
+ },
+ "BE08": {
+  "X": "partly",
+  "Y": "partly",
+  "better": "same",
+  "type": "2-3 storey rendered house, flat roof"
+ },
+ "BE09": {
+  "X": "partly",
+  "Y": "partly",
+  "better": "Y",
+  "type": "3-storey terraced houses, flat roof"
+ },
+ "BE10": {
+  "X": "right",
+  "Y": "partly",
+  "better": "X",
+  "type": "2-storey brick worker row houses"
+ },
+ "BE11": {
+  "X": "wrong",
+  "Y": "partly",
+  "better": "Y",
+  "type": "2-storey works hall/workshop with large door"
+ },
+ "BE12": {
+  "X": "partly",
+  "Y": "wrong",
+  "better": "X",
+  "type": "3-storey apartment block, garage ground floor, flat roof"
+ },
+ "DE01": {
+  "X": "partly",
+  "Y": "partly",
+  "better": "same",
+  "type": "4-5 storey plastered apartment block"
+ },
+ "DE02": {
+  "X": "unclear",
+  "Y": "unclear",
+  "better": "unclear",
+  "type": "glass office building, unclear"
+ },
+ "DE03": {
+  "X": "partly",
+  "Y": "partly",
+  "better": "same",
+  "type": "4-storey brick post-war block, pitched roof"
+ },
+ "DE04": {
+  "X": "wrong",
+  "Y": "right",
+  "better": "Y",
+  "type": "6-7 storey modern office/commercial"
+ },
+ "DE05": {
+  "X": "partly",
+  "Y": "right",
+  "better": "Y",
+  "type": "8-storey department store/office"
+ },
+ "DE06": {
+  "X": "wrong",
+  "Y": "partly",
+  "better": "Y",
+  "type": "high-rise office with shops"
+ },
+ "DE07": {
+  "X": "partly",
+  "Y": "partly",
+  "better": "same",
+  "type": "6-storey stone office/apartment block"
+ },
+ "DE08": {
+  "X": "partly",
+  "Y": "right",
+  "better": "Y",
+  "type": "4-5 storey Gruenderzeit tenement, balconies"
+ },
+ "DE09": {
+  "X": "right",
+  "Y": "partly",
+  "better": "X",
+  "type": "5-storey modern apartment block with shop"
+ },
+ "DE10": {
+  "X": "partly",
+  "Y": "right",
+  "better": "Y",
+  "type": "6-storey tenement with bay"
+ },
+ "DE11": {
+  "X": "partly",
+  "Y": "partly",
+  "better": "same",
+  "type": "5-6 storey stone block"
+ },
+ "DE12": {
+  "X": "unclear",
+  "Y": "unclear",
+  "better": "unclear",
+  "type": "railway, no house"
+ },
+ "NL01": {
+  "X": "partly",
+  "Y": "partly",
+  "better": "same",
+  "type": "3-storey brick semi-detached villa, hip roof, bay"
+ },
+ "NL02": {
+  "X": "unclear",
+  "Y": "unclear",
+  "better": "unclear",
+  "type": "canal, house not visible"
+ },
+ "NL03": {
+  "X": "unclear",
+  "Y": "unclear",
+  "better": "unclear",
+  "type": "hidden behind tree"
+ },
+ "NL04": {
+  "X": "right",
+  "Y": "partly",
+  "better": "X",
+  "type": "2-storey brick row house, flat roof"
+ },
+ "NL05": {
+  "X": "right",
+  "Y": "partly",
+  "better": "X",
+  "type": "3-storey brick row house, flat roof"
+ },
+ "NL06": {
+  "X": "unclear",
+  "Y": "unclear",
+  "better": "unclear",
+  "type": "construction site, brick block left"
+ },
+ "NL07": {
+  "X": "right",
+  "Y": "right",
+  "better": "same",
+  "type": "3-storey brick corner house, pitched roof"
+ },
+ "NL08": {
+  "X": "wrong",
+  "Y": "partly",
+  "better": "Y",
+  "type": "4-storey brick apartment block, garage base"
+ },
+ "NL09": {
+  "X": "right",
+  "Y": "partly",
+  "better": "X",
+  "type": "2-storey brick corner house with shop, flat roof"
+ },
+ "NL10": {
+  "X": "unclear",
+  "Y": "unclear",
+  "better": "unclear",
+  "type": "construction under scaffolding"
+ },
+ "NL11": {
+  "X": "wrong",
+  "Y": "partly",
+  "better": "Y",
+  "type": "brick warehouse/hall with arches"
+ },
+ "NL12": {
+  "X": "right",
+  "Y": "partly",
+  "better": "X",
+  "type": "3-storey brick block, flat roof"
+ },
+ "CH01": {
+  "X": "partly",
+  "Y": "wrong",
+  "better": "X",
+  "type": "old town tenement/sandstone building, bay"
+ },
+ "CH02": {
+  "X": "wrong",
+  "Y": "partly",
+  "better": "Y",
+  "type": "modern angular building with steep roof, stair, neither"
+ },
+ "CH03": {
+  "X": "wrong",
+  "Y": "right",
+  "better": "Y",
+  "type": "stone church, neither"
+ },
+ "CH04": {
+  "X": "right",
+  "Y": "wrong",
+  "better": "X",
+  "type": "3-4 storey flat-roof apartment block"
+ },
+ "CH05": {
+  "X": "wrong",
+  "Y": "partly",
+  "better": "Y",
+  "type": "3 storey modern block, balcony galleries"
+ },
+ "CH06": {
+  "X": "unclear",
+  "Y": "unclear",
+  "better": "unclear",
+  "type": "hedge, house not visible"
+ },
+ "CH07": {
+  "X": "wrong",
+  "Y": "partly",
+  "better": "Y",
+  "type": "stone tower and white shed, neither"
+ },
+ "CH08": {
+  "X": "wrong",
+  "Y": "partly",
+  "better": "Y",
+  "type": "2-3 storey villa steep roof, bay"
+ },
+ "CH09": {
+  "X": "partly",
+  "Y": "right",
+  "better": "Y",
+  "type": "5-6 storey commercial/apartment block, balconies"
+ },
+ "CH10": {
+  "X": "right",
+  "Y": "wrong",
+  "better": "X",
+  "type": "9 storey apartment block, balconies"
+ },
+ "CH11": {
+  "X": "partly",
+  "Y": "right",
+  "better": "Y",
+  "type": "5 storey apartment block, balconies"
+ },
+ "LT01": {
+  "X": "partly",
+  "Y": "wrong",
+  "better": "X",
+  "type": "3 storey rounded corner house, mansard, neither"
+ },
+ "LT02": {
+  "X": "unclear",
+  "Y": "unclear",
+  "better": "unclear",
+  "type": "trees hide house"
+ },
+ "LT03": {
+  "X": "partly",
+  "Y": "right",
+  "better": "Y",
+  "type": "3 storey white modern flat-roof building, neither"
+ },
+ "LT04": {
+  "X": "partly",
+  "Y": "wrong",
+  "better": "X",
+  "type": "large stone institutional building 5 storeys, neither"
+ },
+ "LT05": {
+  "X": "unclear",
+  "Y": "unclear",
+  "better": "unclear",
+  "type": "park, no house"
+ },
+ "LT06": {
+  "X": "wrong",
+  "Y": "partly",
+  "better": "Y",
+  "type": "4 storey office/works building flat roof"
+ },
+ "LT07": {
+  "X": "partly",
+  "Y": "partly",
+  "better": "Y",
+  "type": "3 storey old tenement, post-war block behind"
+ },
+ "LT08": {
+  "X": "wrong",
+  "Y": "right",
+  "better": "Y",
+  "type": "3-4 storey block with balcony galleries"
+ },
+ "LT09": {
+  "X": "right",
+  "Y": "wrong",
+  "better": "X",
+  "type": "4 storey old tenement, bay/balcony"
+ },
+ "LT10": {
+  "X": "wrong",
+  "Y": "right",
+  "better": "Y",
+  "type": "small pitched-roof detached house, neither"
+ },
+ "LT11": {
+  "X": "wrong",
+  "Y": "wrong",
+  "better": "same",
+  "type": "multi-storey brick works building"
+ },
+ "LT12": {
+  "X": "wrong",
+  "Y": "wrong",
+  "better": "same",
+  "type": "2 storey detached villa with garage, porch"
+ },
+ "PL01": {
+  "X": "wrong",
+  "Y": "wrong",
+  "better": "same",
+  "type": "distant 10 storey panel block"
+ },
+ "PL02": {
+  "X": "wrong",
+  "Y": "right",
+  "better": "Y",
+  "type": "7 storey brick post-war block"
+ },
+ "PL03": {
+  "X": "wrong",
+  "Y": "wrong",
+  "better": "same",
+  "type": "wooden shed/garage wall"
+ },
+ "PL04": {
+  "X": "unclear",
+  "Y": "partly",
+  "better": "Y",
+  "type": "night, old tenement and church"
+ },
+ "PL05": {
+  "X": "wrong",
+  "Y": "wrong",
+  "better": "same",
+  "type": "low old house with steep roof"
+ },
+ "PL06": {
+  "X": "wrong",
+  "Y": "partly",
+  "better": "Y",
+  "type": "3 storey old tenement, neither"
+ },
+ "PL07": {
+  "X": "partly",
+  "Y": "partly",
+  "better": "same",
+  "type": "4-5 storey apartment blocks"
+ },
+ "PL08": {
+  "X": "partly",
+  "Y": "partly",
+  "better": "Y",
+  "type": "6 storey neoclassical arcaded block, neither"
+ },
+ "PL09": {
+  "X": "partly",
+  "Y": "wrong",
+  "better": "X",
+  "type": "4-5 storey old tenements"
+ },
+ "PL10": {
+  "X": "partly",
+  "Y": "wrong",
+  "better": "X",
+  "type": "5 storey old tenement block"
+ },
+ "PL11": {
+  "X": "wrong",
+  "Y": "partly",
+  "better": "Y",
+  "type": "baroque church, neither"
+ },
+ "PL12": {
+  "X": "wrong",
+  "Y": "partly",
+  "better": "Y",
+  "type": "2-3 storey red brick public building, porch"
+ },
+ "PT01": {
+  "X": "partly",
+  "Y": "right",
+  "better": "Y",
+  "type": "3 storey old palace-like house pitched roof"
+ },
+ "PT02": {
+  "X": "unclear",
+  "Y": "unclear",
+  "better": "unclear",
+  "type": "distant blocks only"
+ },
+ "PT03": {
+  "X": "right",
+  "Y": "partly",
+  "better": "X",
+  "type": "2 storey house dark pitched roof, neither"
+ },
+ "PT04": {
+  "X": "partly",
+  "Y": "wrong",
+  "better": "X",
+  "type": "3 storey neoclassical school-like building"
+ },
+ "PT05": {
+  "X": "right",
+  "Y": "partly",
+  "better": "X",
+  "type": "3-4 storey old flat-roof tenement"
+ },
+ "PT06": {
+  "X": "partly",
+  "Y": "right",
+  "better": "Y",
+  "type": "4-5 storey post-war apartment blocks"
+ },
+ "PT07": {
+  "X": "unclear",
+  "Y": "unclear",
+  "better": "unclear",
+  "type": "old works walls"
+ },
+ "PT08": {
+  "X": "partly",
+  "Y": "right",
+  "better": "Y",
+  "type": "4 storey old tenements"
+ },
+ "PT09": {
+  "X": "partly",
+  "Y": "wrong",
+  "better": "X",
+  "type": "3 storey functionalist corner building"
+ },
+ "PT10": {
+  "X": "wrong",
+  "Y": "partly",
+  "better": "Y",
+  "type": "old arcaded 2-3 storey house"
+ },
+ "PT11": {
+  "X": "wrong",
+  "Y": "wrong",
+  "better": "same",
+  "type": "large modern commercial building"
+ },
+ "PT12": {
+  "X": "wrong",
+  "Y": "partly",
+  "better": "Y",
+  "type": "large curved apartment block, balconies"
+ },
+ "CZ01": {
+  "X": "right",
+  "Y": "right",
+  "better": "same",
+  "type": "large shop/hall, neither bay nor porch"
+ },
+ "CZ02": {
+  "X": "partly",
+  "Y": "wrong",
+  "better": "X",
+  "type": "long 2-3 storey plain block, neither"
+ },
+ "CZ03": {
+  "X": "wrong",
+  "Y": "wrong",
+  "better": "same",
+  "type": "3-storey functionalist block, neither"
+ },
+ "CZ04": {
+  "X": "right",
+  "Y": "partly",
+  "better": "X",
+  "type": "5-storey office/block, flat roof, neither"
+ },
+ "CZ05": {
+  "X": "unclear",
+  "Y": "unclear",
+  "better": "unclear",
+  "type": "house not visible, hedges and industrial hall"
+ },
+ "CZ06": {
+  "X": "right",
+  "Y": "wrong",
+  "better": "X",
+  "type": "baroque church with pitched roof"
+ },
+ "CZ07": {
+  "X": "partly",
+  "Y": "partly",
+  "better": "same",
+  "type": "3-4 storey row houses with shop, neither"
+ },
+ "CZ08": {
+  "X": "wrong",
+  "Y": "wrong",
+  "better": "same",
+  "type": "4-storey tenement with bay and garage"
+ },
+ "CZ09": {
+  "X": "partly",
+  "Y": "partly",
+  "better": "same",
+  "type": "3-4 storey tenement with balcony, blurred"
+ },
+ "CZ10": {
+  "X": "wrong",
+  "Y": "wrong",
+  "better": "same",
+  "type": "2-3 storey villa with hip roof, neither"
+ },
+ "FR01": {
+  "X": "right",
+  "Y": "partly",
+  "better": "X",
+  "type": "3-storey town tenement, neither"
+ },
+ "FR02": {
+  "X": "wrong",
+  "Y": "wrong",
+  "better": "same",
+  "type": "3-4 storey brick corner building, curved bay"
+ },
+ "FR03": {
+  "X": "right",
+  "Y": "right",
+  "better": "same",
+  "type": "3-storey bourgeois house mansard, balcony"
+ },
+ "FR04": {
+  "X": "unclear",
+  "Y": "unclear",
+  "better": "unclear",
+  "type": "medieval tower/wall, no house"
+ },
+ "FR05": {
+  "X": "partly",
+  "Y": "right",
+  "better": "Y",
+  "type": "4-5 storey white apartment block with stoop"
+ },
+ "FR06": {
+  "X": "partly",
+  "Y": "partly",
+  "better": "same",
+  "type": "4-storey corner block with shop, curved"
+ },
+ "FR07": {
+  "X": "right",
+  "Y": "right",
+  "better": "same",
+  "type": "3-storey brick corner house, curved"
+ },
+ "FR08": {
+  "X": "right",
+  "Y": "right",
+  "better": "same",
+  "type": "3-storey stone town house, neither"
+ },
+ "FR09": {
+  "X": "wrong",
+  "Y": "wrong",
+  "better": "same",
+  "type": "5-6 storey apartment block, neither"
+ },
+ "FR10": {
+  "X": "right",
+  "Y": "partly",
+  "better": "X",
+  "type": "3-storey modern curved block, flat roof"
+ },
+ "FR11": {
+  "X": "partly",
+  "Y": "right",
+  "better": "Y",
+  "type": "5-storey curved flat-roof block with garage"
+ },
+ "FR12": {
+  "X": "partly",
+  "Y": "partly",
+  "better": "same",
+  "type": "4-5 storey stone tenement with balconies"
+ },
+ "IT01": {
+  "X": "partly",
+  "Y": "partly",
+  "better": "X",
+  "type": "4-storey villa/tenement, pitched, balconies"
+ },
+ "IT02": {
+  "X": "right",
+  "Y": "partly",
+  "better": "X",
+  "type": "7-8 storey curved 1930s block, balconies"
+ },
+ "IT03": {
+  "X": "partly",
+  "Y": "wrong",
+  "better": "X",
+  "type": "4-storey flat-roof office, neither"
+ },
+ "IT04": {
+  "X": "wrong",
+  "Y": "wrong",
+  "better": "same",
+  "type": "low shop/workshop buildings, 2-3 storeys"
+ },
+ "IT05": {
+  "X": "unclear",
+  "Y": "unclear",
+  "better": "unclear",
+  "type": "dark blurred stone building"
+ },
+ "IT06": {
+  "X": "unclear",
+  "Y": "unclear",
+  "better": "unclear",
+  "type": "hedge and wall, house hidden"
+ },
+ "IT07": {
+  "X": "wrong",
+  "Y": "wrong",
+  "better": "same",
+  "type": "4-storey post-war block with balconies"
+ },
+ "IT08": {
+  "X": "wrong",
+  "Y": "wrong",
+  "better": "same",
+  "type": "wall of large house/convent, no bay"
+ },
+ "IT09": {
+  "X": "wrong",
+  "Y": "wrong",
+  "better": "same",
+  "type": "baroque palace with columns"
+ },
+ "IT10": {
+  "X": "right",
+  "Y": "wrong",
+  "better": "X",
+  "type": "4-storey apartment block with balconies"
+ },
+ "IT11": {
+  "X": "wrong",
+  "Y": "wrong",
+  "better": "same",
+  "type": "4-storey block with arcade shops"
+ },
+ "IT12": {
+  "X": "right",
+  "Y": "wrong",
+  "better": "X",
+  "type": "5-storey flat-roof modern block"
+ },
+ "LU01": {
+  "X": "wrong",
+  "Y": "wrong",
+  "better": "same",
+  "type": "2-storey house and office mix, neither"
+ },
+ "LU02": {
+  "X": "unclear",
+  "Y": "unclear",
+  "better": "unclear",
+  "type": "bus stop, building not shown"
+ },
+ "LU03": {
+  "X": "wrong",
+  "Y": "wrong",
+  "better": "same",
+  "type": "2-storey pitched row houses, neither"
+ },
+ "LU04": {
+  "X": "partly",
+  "Y": "wrong",
+  "better": "X",
+  "type": "3-storey new row house under construction"
+ },
+ "LU05": {
+  "X": "right",
+  "Y": "wrong",
+  "better": "X",
+  "type": "5-storey stone office block, flat"
+ },
+ "LU06": {
+  "X": "right",
+  "Y": "wrong",
+  "better": "X",
+  "type": "2-3 storey house with garage, pitched"
+ },
+ "LU07": {
+  "X": "partly",
+  "Y": "wrong",
+  "better": "X",
+  "type": "showroom/shop building 2-3 storeys"
+ },
+ "LU08": {
+  "X": "wrong",
+  "Y": "wrong",
+  "better": "same",
+  "type": "modern house with garage, blurred"
+ },
+ "LU09": {
+  "X": "unclear",
+  "Y": "unclear",
+  "better": "unclear",
+  "type": "mural wall, house not shown"
+ },
+ "LU10": {
+  "X": "wrong",
+  "Y": "wrong",
+  "better": "same",
+  "type": "pink 2-3 storey villa, hip roof"
+ },
+ "LU11": {
+  "X": "right",
+  "Y": "wrong",
+  "better": "X",
+  "type": "3-storey apartment house, pitched roof"
+ },
+ "LU12": {
+  "X": "partly",
+  "Y": "wrong",
+  "better": "X",
+  "type": "2-3 storey pitched houses"
+ },
+ "SK01": {
+  "X": "wrong",
+  "Y": "partly",
+  "better": "Y",
+  "type": "garages and low industrial walls"
+ },
+ "SK02": {
+  "X": "partly",
+  "Y": "partly",
+  "better": "same",
+  "type": "small modern commercial building 2-3 storeys"
+ },
+ "SK03": {
+  "X": "wrong",
+  "Y": "right",
+  "better": "Y",
+  "type": "3-storey corner tenement, hip roof"
+ },
+ "SK04": {
+  "X": "wrong",
+  "Y": "wrong",
+  "better": "same",
+  "type": "car park garage, large box"
+ },
+ "SK05": {
+  "X": "right",
+  "Y": "wrong",
+  "better": "X",
+  "type": "curved 3-4 storey tenement"
+ },
+ "SK06": {
+  "X": "unclear",
+  "Y": "unclear",
+  "better": "unclear",
+  "type": "billboards, no house"
+ },
+ "SK07": {
+  "X": "partly",
+  "Y": "wrong",
+  "better": "X",
+  "type": "modern 3-4 storey commercial building"
+ },
+ "SK08": {
+  "X": "wrong",
+  "Y": "wrong",
+  "better": "same",
+  "type": "low 1-2 storey row houses"
+ },
+ "SK09": {
+  "X": "wrong",
+  "Y": "wrong",
+  "better": "same",
+  "type": "large glass shopping mall, neither"
+ },
+ "SK10": {
+  "X": "wrong",
+  "Y": "right",
+  "better": "Y",
+  "type": "6-storey panel block with balconies"
+ },
+ "SK11": {
+  "X": "right",
+  "Y": "right",
+  "better": "same",
+  "type": "small 1-2 storey houses, pitched"
+ },
+ "SK12": {
+  "X": "wrong",
+  "Y": "right",
+  "better": "Y",
+  "type": "5-storey panel/apartment block"
+ }
+}

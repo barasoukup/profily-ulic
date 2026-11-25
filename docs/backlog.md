@@ -31,8 +31,9 @@ Co rozhodne Bára, je označeno **(Bára)**.
   obousměrce (nl-schiedam-5) a kde se stání vejde (fr-toulouse-2); `parkFromAi` nebere piktokoridor; Belgie 2 : 5.
 - ~~Uložený řez dvouvozovkové ulice se chytí jiné cesty OSM (odkaz nemá `wayId`): 10 z 226, jiný profil u 7~~ (25. 11. 2026:
   cesta je v odkazu; všech 10 se chytí své, `mereni2/ZPRAVA.md`).
-- Odkaz `#rez=` zaokrouhluje azimut na celé stupně: profil z odkazu se od kliknutí liší o centimetry, výjimečně o díl (Versmannstraße:
-  dva pruhy → pruh s krajnicí). Jedno desetinné místo by čtečky i Worker vzaly **(Bára)**.
+- ~~Odkaz `#rez=` zaokrouhluje azimut na celé stupně~~ (25. 11. 2026: jedno desetinné místo, `share.js linkBearing`; staré odkazy
+  beze změny, Worker i starší stránka desetinu berou).
+- Vzhled domu ze všech budov OSM v Rakousku: čerstvý vzorek nové 3 : 6 staré, s 1. kolem 6 : 9 (`evaluation/all-buildings/ZPRAVA.md`) **(Bára)**.
 
 ## Mapy povrchů a data měst
 
