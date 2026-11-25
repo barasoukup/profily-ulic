@@ -11,24 +11,28 @@ const VARIANTS = {
   ul: { q: "off=ulicky", off: ["ulicky"] },
   ja: { q: "off=treepits", off: ["treepits"] },
   pp: { q: "off=pocetpruhu", off: ["pocetpruhu"] },
+  // Without DC's map, the orthophoto and the model: the page itself loaded with ?dc=0&orto=0&ai=0 (read once at the load).
+  osm: { q: "dc=0&orto=0&ai=0", off: [], load: true },
   old: { q: "off=ulicky,treepits,pocetpruhu", off: ["ulicky", "treepits", "pocetpruhu"] },
 };
 async function collectUs(name) {
   const pts = await (await fetch("/zz-pts.json", { cache: "reload" })).json();
   const P = (await import("/ortho-osm.js")).P;
-  const read = () => JSON.parse(localStorage.getItem("streetdesign-pilot") || "{}");
+  const STORE = location.search.includes("orto=0") ? "streetdesign-pilot-bez-orto" : "streetdesign-pilot";
+  const read = () => JSON.parse(localStorage.getItem(STORE) || "{}");
   window.__app = window.__app || [];
   const save = () => fetch(`/api/eval-save?name=${name}`, { method: "POST", body: JSON.stringify(window.__app) });
-  for (const p of pts) for (const v of p.variants || ["def"]) {
+  const only = location.search.includes("orto=0") ? ["osm"] : null;
+  for (const p of pts) for (const v of only || p.variants || ["def"]) {
     if (window.__app.some((r) => r.id === p.id && r.variant === v)) continue;
     const V = VARIANTS[v];
     history.replaceState(null, "", `/?osm=balik${V.q ? `&${V.q}` : ""}`);
     P.off = new Set(V.off);
-    localStorage.removeItem("streetdesign-pilot");
+    localStorage.removeItem(STORE);
     let row = { id: p.id, variant: v, country: p.country, town: p.town };
     const t0 = Date.now();
     try {
-      await Promise.race([window.cutAt(p.lat, p.lon, false, p.bearing ?? null), new Promise((_, no) => setTimeout(() => no(new Error("timeout 90 s")), 90000))]);
+      await Promise.race([window.cutAt(p.lat, p.lon, false, p.bearing ?? null, null, null, p.wayId ?? null), new Promise((_, no) => setTimeout(() => no(new Error("timeout 90 s")), 90000))]);
       const s = read();
       row = { ...row, lat: s.cut?.lat, lon: s.cut?.lon, bearing: s.cut?.bearing, wayId: s.cut?.wayId, name: s.cut?.name || "", sources: s.cut?.sources, note: s.cut?.note,
         parts: (s.stav?.segments || []).map((x) => [x.type, +x.width.toFixed(2)]) };

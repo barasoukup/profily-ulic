@@ -1,0 +1,962 @@
+[
+ {
+  "id": "f-1",
+  "country": "US",
+  "town": "washington",
+  "kind": "service",
+  "name": "",
+  "highway": "service",
+  "wayId": 273277385,
+  "lat": 38.9263051,
+  "lon": -77.0549257,
+  "bearing": -80.4,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-2",
+  "country": "US",
+  "town": "washington",
+  "kind": "collector",
+  "name": "Madison Drive Northwest",
+  "highway": "tertiary",
+  "wayId": 6062978,
+  "lat": 38.890564,
+  "lon": -77.0204981,
+  "bearing": 89.5,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-3",
+  "country": "US",
+  "town": "washington",
+  "kind": "local",
+  "name": "35th Street Northwest",
+  "highway": "residential",
+  "wayId": 589905517,
+  "lat": 38.9108496,
+  "lon": -77.0691696,
+  "bearing": -2,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-4",
+  "country": "US",
+  "town": "washington",
+  "kind": "collector",
+  "name": "Illinois Avenue Northwest",
+  "highway": "tertiary",
+  "wayId": 1444759641,
+  "lat": 38.9478808,
+  "lon": -77.0222176,
+  "bearing": 10,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-5",
+  "country": "US",
+  "town": "washington",
+  "kind": "motorway",
+  "name": "Anacostia Freeway",
+  "highway": "motorway",
+  "wayId": 37867134,
+  "lat": 38.886861,
+  "lon": -76.9622024,
+  "bearing": 25.5,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-6",
+  "country": "US",
+  "town": "washington",
+  "kind": "local",
+  "name": "Jasper Street Southeast",
+  "highway": "residential",
+  "wayId": 1303651287,
+  "lat": 38.8513056,
+  "lon": -76.9670078,
+  "bearing": -89.4,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-7",
+  "country": "US",
+  "town": "washington",
+  "kind": "collector",
+  "name": "25th Street Southeast",
+  "highway": "tertiary",
+  "wayId": 697832895,
+  "lat": 38.8716603,
+  "lon": -76.970937,
+  "bearing": 0,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-8",
+  "country": "US",
+  "town": "washington",
+  "kind": "service",
+  "name": "",
+  "highway": "service",
+  "wayId": 121871915,
+  "lat": 38.9804999,
+  "lon": -77.0263564,
+  "bearing": -88,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-9",
+  "country": "US",
+  "town": "washington",
+  "kind": "service",
+  "name": "",
+  "highway": "service",
+  "wayId": 133235649,
+  "lat": 38.8452384,
+  "lon": -76.9711129,
+  "bearing": 44.6,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-10",
+  "country": "US",
+  "town": "washington",
+  "kind": "collector",
+  "name": "Rock Creek Church Road Northwest",
+  "highway": "tertiary",
+  "wayId": 45850029,
+  "lat": 38.9367324,
+  "lon": -77.0226847,
+  "bearing": 72.8,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-11",
+  "country": "US",
+  "town": "washington",
+  "kind": "service",
+  "name": "",
+  "highway": "service",
+  "wayId": 565149663,
+  "lat": 38.8969344,
+  "lon": -77.047195,
+  "bearing": -89.7,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-12",
+  "country": "US",
+  "town": "washington",
+  "kind": "arterial",
+  "name": "Canal Road Northwest",
+  "highway": "trunk",
+  "wayId": 397350557,
+  "lat": 38.9053545,
+  "lon": -77.0729693,
+  "bearing": -80.7,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-13",
+  "country": "US",
+  "town": "washington",
+  "kind": "service",
+  "name": "",
+  "highway": "service",
+  "wayId": 293279529,
+  "lat": 38.9272197,
+  "lon": -77.0246532,
+  "bearing": 83.2,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-14",
+  "country": "US",
+  "town": "washington",
+  "kind": "local",
+  "name": "Water Street Southwest",
+  "highway": "unclassified",
+  "wayId": 671409840,
+  "lat": 38.8762285,
+  "lon": -77.0207904,
+  "bearing": 0.8,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-15",
+  "country": "US",
+  "town": "washington",
+  "kind": "collector",
+  "name": "Brandywine Street Northwest",
+  "highway": "tertiary",
+  "wayId": 683221678,
+  "lat": 38.9505197,
+  "lon": -77.0532067,
+  "bearing": 82.8,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-16",
+  "country": "US",
+  "town": "washington",
+  "kind": "arterial",
+  "name": "Nebraska Avenue Northwest",
+  "highway": "primary",
+  "wayId": 589126905,
+  "lat": 38.9455424,
+  "lon": -77.0793927,
+  "bearing": 33.7,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-17",
+  "country": "US",
+  "town": "washington",
+  "kind": "local",
+  "name": "S Street Southeast",
+  "highway": "residential",
+  "wayId": 1528489014,
+  "lat": 38.8682366,
+  "lon": -76.9815684,
+  "bearing": 89.8,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-18",
+  "country": "US",
+  "town": "washington",
+  "kind": "service",
+  "name": "",
+  "highway": "service",
+  "wayId": 342133616,
+  "lat": 38.9528572,
+  "lon": -77.0900636,
+  "bearing": -0.8,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-19",
+  "country": "US",
+  "town": "washington",
+  "kind": "collector",
+  "name": "Overlook Avenue Southwest",
+  "highway": "tertiary",
+  "wayId": 135619145,
+  "lat": 38.8250095,
+  "lon": -77.0173755,
+  "bearing": 0.1,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-20",
+  "country": "US",
+  "town": "washington",
+  "kind": "service",
+  "name": "",
+  "highway": "service",
+  "wayId": 777928010,
+  "lat": 38.9203613,
+  "lon": -76.9865408,
+  "bearing": 31.6,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-21",
+  "country": "US",
+  "town": "washington",
+  "kind": "local",
+  "name": "Texas Avenue Southeast",
+  "highway": "residential",
+  "wayId": 6054286,
+  "lat": 38.8677053,
+  "lon": -76.9679636,
+  "bearing": -71.7,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-22",
+  "country": "US",
+  "town": "washington",
+  "kind": "arterial",
+  "name": "Michigan Avenue Northeast",
+  "highway": "primary",
+  "wayId": 130927040,
+  "lat": 38.9326532,
+  "lon": -76.9974155,
+  "bearing": 62.3,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-23",
+  "country": "US",
+  "town": "washington",
+  "kind": "service",
+  "name": "",
+  "highway": "service",
+  "wayId": 164126867,
+  "lat": 38.9312191,
+  "lon": -77.0393819,
+  "bearing": 0.2,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-24",
+  "country": "US",
+  "town": "washington",
+  "kind": "service",
+  "name": "",
+  "highway": "service",
+  "wayId": 757120556,
+  "lat": 38.9111984,
+  "lon": -77.0819584,
+  "bearing": 89.8,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-25",
+  "country": "US",
+  "town": "washington",
+  "kind": "local",
+  "name": "Meridian Place Northwest",
+  "highway": "residential",
+  "wayId": 131233768,
+  "lat": 38.9337805,
+  "lon": -77.0347779,
+  "bearing": -63.6,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-26",
+  "country": "US",
+  "town": "washington",
+  "kind": "motorway",
+  "name": "",
+  "highway": "motorway_link",
+  "wayId": 50505157,
+  "lat": 38.8808287,
+  "lon": -77.009217,
+  "bearing": 0.2,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-27",
+  "country": "US",
+  "town": "washington",
+  "kind": "local",
+  "name": "47th Street Northwest",
+  "highway": "residential",
+  "wayId": 117117777,
+  "lat": 38.9500993,
+  "lon": -77.092617,
+  "bearing": 0,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-28",
+  "country": "US",
+  "town": "washington",
+  "kind": "local",
+  "name": "Queens Chapel Terrace Northeast",
+  "highway": "residential",
+  "wayId": 6061325,
+  "lat": 38.9473288,
+  "lon": -76.9810775,
+  "bearing": -45.3,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-29",
+  "country": "US",
+  "town": "washington",
+  "kind": "motorway",
+  "name": "",
+  "highway": "motorway_link",
+  "wayId": 121980337,
+  "lat": 38.8827389,
+  "lon": -77.0213963,
+  "bearing": -78.7,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-30",
+  "country": "US",
+  "town": "washington",
+  "kind": "arterial",
+  "name": "13th Street Northwest",
+  "highway": "secondary",
+  "wayId": 520463951,
+  "lat": 38.9050882,
+  "lon": -77.0296257,
+  "bearing": -0.5,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-31",
+  "country": "US",
+  "town": "washington",
+  "kind": "motorway",
+  "name": "",
+  "highway": "motorway_link",
+  "wayId": 121980324,
+  "lat": 38.8872893,
+  "lon": -77.0604581,
+  "bearing": -27,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-32",
+  "country": "US",
+  "town": "washington",
+  "kind": "arterial",
+  "name": "Dalecarlia Parkway Northwest",
+  "highway": "secondary",
+  "wayId": 130788122,
+  "lat": 38.9419947,
+  "lon": -77.1038185,
+  "bearing": 1.1,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-33",
+  "country": "US",
+  "town": "washington",
+  "kind": "motorway",
+  "name": "",
+  "highway": "motorway_link",
+  "wayId": 121980303,
+  "lat": 38.8845832,
+  "lon": -77.0119189,
+  "bearing": 24.4,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-34",
+  "country": "US",
+  "town": "washington",
+  "kind": "service",
+  "name": "",
+  "highway": "service",
+  "wayId": 565838326,
+  "lat": 38.8804867,
+  "lon": -76.997064,
+  "bearing": -0.3,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-35",
+  "country": "US",
+  "town": "washington",
+  "kind": "local",
+  "name": "N Street Northwest",
+  "highway": "residential",
+  "wayId": 215306712,
+  "lat": 38.9072456,
+  "lon": -77.0485437,
+  "bearing": -89.8,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-36",
+  "country": "US",
+  "town": "washington",
+  "kind": "service",
+  "name": "",
+  "highway": "service",
+  "wayId": 274391003,
+  "lat": 38.9091258,
+  "lon": -77.0400404,
+  "bearing": -74.4,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-37",
+  "country": "US",
+  "town": "washington",
+  "kind": "service",
+  "name": "",
+  "highway": "service",
+  "wayId": 71457182,
+  "lat": 38.9507483,
+  "lon": -76.9872483,
+  "bearing": -7.3,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-38",
+  "country": "US",
+  "town": "washington",
+  "kind": "service",
+  "name": "",
+  "highway": "service",
+  "wayId": 1041731995,
+  "lat": 38.8924084,
+  "lon": -76.9990294,
+  "bearing": 89.9,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-39",
+  "country": "US",
+  "town": "washington",
+  "kind": "service",
+  "name": "",
+  "highway": "service",
+  "wayId": 135367238,
+  "lat": 38.8464969,
+  "lon": -76.9978349,
+  "bearing": -51.9,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-40",
+  "country": "US",
+  "town": "washington",
+  "kind": "service",
+  "name": "",
+  "highway": "service",
+  "wayId": 71454738,
+  "lat": 38.9712752,
+  "lon": -77.0146365,
+  "bearing": 76.4,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-41",
+  "country": "US",
+  "town": "washington",
+  "kind": "arterial",
+  "name": "Virginia Avenue Northwest",
+  "highway": "primary",
+  "wayId": 50431292,
+  "lat": 38.8944478,
+  "lon": -77.0450727,
+  "bearing": -50.6,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-42",
+  "country": "US",
+  "town": "washington",
+  "kind": "arterial",
+  "name": "Southern Avenue Southeast",
+  "highway": "secondary",
+  "wayId": 521659142,
+  "lat": 38.866692,
+  "lon": -76.9429785,
+  "bearing": 45.4,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-43",
+  "country": "US",
+  "town": "washington",
+  "kind": "local",
+  "name": "Yards Place Southeast",
+  "highway": "unclassified",
+  "wayId": 953612078,
+  "lat": 38.8744173,
+  "lon": -77.0047744,
+  "bearing": 0.1,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-44",
+  "country": "US",
+  "town": "washington",
+  "kind": "local",
+  "name": "Chesapeake Street Northwest",
+  "highway": "residential",
+  "wayId": 6056696,
+  "lat": 38.9507401,
+  "lon": -77.0600901,
+  "bearing": -83.5,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-45",
+  "country": "US",
+  "town": "washington",
+  "kind": "local",
+  "name": "34th Street Southeast",
+  "highway": "residential",
+  "wayId": 6055705,
+  "lat": 38.8612527,
+  "lon": -76.957563,
+  "bearing": 0.2,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-46",
+  "country": "US",
+  "town": "washington",
+  "kind": "service",
+  "name": "",
+  "highway": "service",
+  "wayId": 71455368,
+  "lat": 38.960873,
+  "lon": -77.0032764,
+  "bearing": 90,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-47",
+  "country": "US",
+  "town": "washington",
+  "kind": "service",
+  "name": "",
+  "highway": "service",
+  "wayId": 135360944,
+  "lat": 38.8422302,
+  "lon": -76.9918933,
+  "bearing": 77.5,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-48",
+  "country": "US",
+  "town": "washington",
+  "kind": "arterial",
+  "name": "South Capitol Street Southwest",
+  "highway": "primary",
+  "wayId": 50464870,
+  "lat": 38.86342,
+  "lon": -77.0027469,
+  "bearing": 0.9,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-49",
+  "country": "US",
+  "town": "washington",
+  "kind": "local",
+  "name": "51st Street Northeast",
+  "highway": "residential",
+  "wayId": 590581544,
+  "lat": 38.9045293,
+  "lon": -76.9262802,
+  "bearing": 0.1,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-50",
+  "country": "US",
+  "town": "washington",
+  "kind": "local",
+  "name": "5th Street Northeast",
+  "highway": "residential",
+  "wayId": 1008019921,
+  "lat": 38.9008855,
+  "lon": -76.999508,
+  "bearing": 0,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-51",
+  "country": "US",
+  "town": "washington",
+  "kind": "local",
+  "name": "Rittenhouse Street Northwest",
+  "highway": "residential",
+  "wayId": 392358469,
+  "lat": 38.9654249,
+  "lon": -77.036147,
+  "bearing": -89.8,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-52",
+  "country": "US",
+  "town": "washington",
+  "kind": "arterial",
+  "name": "Connecticut Avenue Northwest",
+  "highway": "primary",
+  "wayId": 130285117,
+  "lat": 38.9246548,
+  "lon": -77.0521654,
+  "bearing": -24.5,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-53",
+  "country": "US",
+  "town": "washington",
+  "kind": "service",
+  "name": "",
+  "highway": "service",
+  "wayId": 565471475,
+  "lat": 38.9195214,
+  "lon": -77.0227175,
+  "bearing": 88.9,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-54",
+  "country": "US",
+  "town": "washington",
+  "kind": "local",
+  "name": "R Street Northwest",
+  "highway": "residential",
+  "wayId": 6058586,
+  "lat": 38.913126,
+  "lon": -77.0624255,
+  "bearing": -72.4,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-55",
+  "country": "US",
+  "town": "washington",
+  "kind": "collector",
+  "name": "Tilden Street Northwest",
+  "highway": "tertiary",
+  "wayId": 1144542226,
+  "lat": 38.9409669,
+  "lon": -77.0607203,
+  "bearing": 90,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-56",
+  "country": "US",
+  "town": "washington",
+  "kind": "collector",
+  "name": "V Street Northeast",
+  "highway": "tertiary",
+  "wayId": 6061763,
+  "lat": 38.9189611,
+  "lon": -76.9678354,
+  "bearing": -86.7,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-57",
+  "country": "US",
+  "town": "washington",
+  "kind": "local",
+  "name": "Veazey Street Northwest",
+  "highway": "residential",
+  "wayId": 6055208,
+  "lat": 38.943972,
+  "lon": -77.0759771,
+  "bearing": 90,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-58",
+  "country": "US",
+  "town": "washington",
+  "kind": "local",
+  "name": "Tilden Street Northwest",
+  "highway": "residential",
+  "wayId": 117125671,
+  "lat": 38.9412673,
+  "lon": -77.093982,
+  "bearing": -89.9,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-59",
+  "country": "US",
+  "town": "washington",
+  "kind": "service",
+  "name": "",
+  "highway": "service",
+  "wayId": 71455861,
+  "lat": 38.958443,
+  "lon": -76.9967309,
+  "bearing": 31.5,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ },
+ {
+  "id": "f-60",
+  "country": "US",
+  "town": "washington",
+  "kind": "local",
+  "name": "Fort Davis Street Southeast",
+  "highway": "residential",
+  "wayId": 6060270,
+  "lat": 38.8664663,
+  "lon": -76.9489304,
+  "bearing": 27.9,
+  "variants": [
+   "def",
+   "dc0"
+  ]
+ }
+]
