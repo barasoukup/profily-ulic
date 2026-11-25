@@ -5,7 +5,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 const read = (f) => JSON.parse(fs.readFileSync(new URL(`../pilot/public/${f}`, import.meta.url), "utf8"));
 
-test("USA kreslí severoamerický mobiliář, Washington svůj označník a společnou lampu", async () => {
+test("USA kreslí severoamerický mobiliář, Washington svůj označník, společnou lampu a do 5 m svůj glóbus", async () => {
   const C = await import("../pilot/public/city.js");
   const P = await import("../pilot/public/profile.js");
   C.loadBounds(read("mesta.json")); C.loadStates(read("staty.json")); C.loadTowns(read("mesta-us.json"));
@@ -16,8 +16,10 @@ test("USA kreslí severoamerický mobiliář, Washington svůj označník a spol
   assert.equal(C.countryOfCity("washington").code, "US");
   assert.equal(art("usa")["lamp-modern-left"], "../northamerica/lamp-left");
   assert.equal(art("usa")["reeds-left"], "../cesko/rakos-left");
-  // The shared cobra head is Washington's lamp too (Bára 25. 11. 2026; the globe is not wired).
+  // The shared cobra head is Washington's lamp too (Bára 25. 11. 2026); its globe is the lamp up to 5 m.
   assert.equal(art("washington")["lamp-modern-left"], "../northamerica/lamp-left");
+  assert.equal(art("washington")["lamp-post-top"], "lamp-globe-left");
+  assert.equal(art("usa")["lamp-post-top"], undefined);
   assert.equal(art("washington")["stop-post-left"], "oznacnik-left");
   assert.equal(art("washington")["bench-center"], "../northamerica/bench-center");
   for (const id of ["usa", "washington"]) for (const f of Object.values(art(id))) {

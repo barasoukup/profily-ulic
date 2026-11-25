@@ -9,8 +9,8 @@ známého rozměru vedle, ne z normy.
 | Lampa společná | světlo 8,7 m (sloup 28 ft 6 in), výložník 1,8 m, patka 22 in (56 cm) | DDOT Streetlight Policy and Design Guidelines 2013, s. 22–25 (obr. 7, 9); NYC Street Design Manual, kap. Lighting |
 | Lampa New York | 30 ft (9,1 m), výložník 8 ft, stoupá 3 ft, patka 22 in, dřík 7,7 → 4,2 in (kresleno širší pro čitelnost) | NYC Street Design Manual 2020, 4.1.1, s. 155; NYC DOT Street Lighting Standard Drawings, LP-038 |
 | Bishop's Crook | 26 ft 3 in (8,0 m), svítidlo asi 0,9 m od sloupu (fotka spíš 0,75 m), patka zúžená na 44 cm kvůli kotvě obrázku | Street Design Manual 4.2.2, s. 160; Standard Drawings PIC-004, LP-026 |
-| Lampa Washington Globe (No. 16), `lamp-globe`, nezapojená | sloup 16 ft, patka 24 in, koule asi 43 cm a celková výška 5,6 m odhad, světlo 5,2 m | DDOT Guidelines 2013, s. 21–22 a 54 (obr. 6; č. 16 nejběžnější, svislé sloupy černé); Commons: Twin-20 Washington Upright Pole - Washington DC; Street light in Washington, D.C - 2019; Cobrahead Pendant Pole and Washington Upright Pole |
-| Lampa Boston (Neighborhood Acorn), `lamp-acorn`, nezapojená | svítidlo 35 5/8 in, sloup 13 ft 4 in, dřík 6,57 in (12 žlábků), patka Ø 18 in, výška 28 7/8 in | Boston Street Lighting Standards, říjen 2026, L.1.1, L.1.2.2, L.1.2.4 |
+| Lampa Washington Globe (No. 16), `lamp-globe`, lampa do 5 m | sloup 16 ft, patka 24 in, koule asi 43 cm a celková výška 5,6 m odhad, světlo 5,2 m | DDOT Guidelines 2013, s. 21–22 a 54 (obr. 6; č. 16 nejběžnější, svislé sloupy černé); Commons: Twin-20 Washington Upright Pole - Washington DC; Street light in Washington, D.C - 2019; Cobrahead Pendant Pole and Washington Upright Pole |
+| Lampa Boston (Neighborhood Acorn), `lamp-acorn`, připravená | svítidlo 35 5/8 in, sloup 13 ft 4 in, dřík 6,57 in (12 žlábků), patka Ø 18 in, výška 28 7/8 in | Boston Street Lighting Standards, říjen 2026, L.1.1, L.1.2.2, L.1.2.4 |
 | Lampa San Francisco (Path of Gold), `lamp-path-of-gold`, nezapojená | 32 ft 3 in (9,83 m); lucerny asi 41 cm odhad. Tři lucerny slzovitého tvaru | SF Planning 2018-002022COA (výška); Commons: Path of Gold streetlight at Kearny & Market (2008); San Francisco Path Of Gold Lamp at Market and Powell Streets |
 | Trakční sloup (i s lampou) | 9,5 m, trolej 5,9 m a 2,86 m od sloupu: stejně jako ostatní sady (poloha daná aplikací); tvar obecný | obecné fotky, žádná norma |
 | Lavička | sedák 46, opěradlo 86, područka 64, hloubka 62 cm: obvyklé rozměry, ne norma | obecná ocelová laťová lavička |
@@ -28,15 +28,16 @@ známého rozměru vedle, ne z normy.
 
 Rostliny zelených střech, průlehu a nádrže a kolo u stojanu jsou z pražské sady.
 
-Zapojeno: USA i Washington společná sada, Washington (hranice DC, `mesta-us.json`) svůj označník a přístřešek s ním
+Zapojeno: USA i Washington společná sada, Washington (hranice DC, `mesta-us.json`) svou lampu do 5 m, označník a přístřešek s ním
 (střecha kratší o 20 cm, aby tabule nezasahovala do jejího okraje). Nezapojené (města v aplikaci zatím nejsou): `newyork/`,
 `toronto/`, `boston/`, `sanfrancisco/`.
 
-Lampy: výchozí je všude společná cobra head (Bára 25. 11. 2026). Globe Washingtonu a acorn Bostonu mají být volba: lampa
-do 5 m. Tu ale aplikace kreslí přímo v kódu (`profile.js drawItem`, sloupek se svítidlem), obrázek ze sady nečte, takže
-dnešní prostředky to nedají. Chybělo by: jedno nepovinné jméno obrázku v sadě (třeba `lamp-post-top`) a v `drawItem` ve
-větvi `it.h <= 5` nakreslit tento obrázek, je-li (část s hlavou posunout, dřík natáhnout, jak to dělá vyšší lampa). Nad
-5 m by zůstala cobra head, takže desetimetrový Globe nemůže vzniknout. Nezapojeno, rozhodne Bára.
+Lampy: výchozí je všude společná cobra head (Bára 25. 11. 2026). Globe Washingtonu je jeho lampa do 5 m (volba výšky):
+sada smí mít jedno nepovinné jméno obrázku `lamp-post-top` (`profile.js postTopLamp`), obrázek vystředěný, s výškou
+světla v `data-light`; světlo se posune do zvolené výšky, hlava a patka zůstanou, dřík mezi nimi se natáhne nebo zkrátí.
+Sada bez něj kreslí sloupek se svítidlem jako dřív. Nad 5 m cobra head, takže desetimetrový Globe nevznikne. Acorn Bostonu
+je na to připravený (`lamp-post-top: "lamp-acorn-left"`), Boston v aplikaci není. Kontrola `compare-lamps.mjs`: 61 měst,
+36 kreseb každé (výšky 3–10 m), liší se jen Washington. Snímky `lampy.png`, `lampa-app.png`.
 
 Označníky jsou zjednodušené, aby nepřipomínaly skutečné značky dopravců (Bára 25. 11. 2026): New York bez kruhu a
 červené úseče (obyčejná modrá tabule, šedé tabulky tras), Washington bez kruhu s autobusem, svislých pruhů v místě nápisu,

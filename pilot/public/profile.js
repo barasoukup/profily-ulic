@@ -237,7 +237,9 @@ async function loadSprite(key, path) {
     const uri = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(text);
     // data-roof: where a tram's roof lies in its picture (tramSprite), for a picture not 420 high.
     const roof = Number(text.match(/data-roof="([\d.]+)"/)?.[1]) || null;
-    sprites[key] = { uri, w: vb[2], h: vb[3], roof };
+    // data-light: the height (cm) of the light of a post-top lamp's picture (postTopLamp).
+    const light = Number(text.match(/data-light="([\d.]+)"/)?.[1]) || null;
+    sprites[key] = { uri, w: vb[2], h: vb[3], roof, light };
   } catch (err) {
     console.warn("ilustrace chybí", path, err.message);
   }
@@ -432,6 +434,25 @@ function spanWire(g, { x, y, end, xs }) {
     el("circle", { cx, cy: yWire + 2, r: 3.4, fill: "#2f3234" }, sg);
   }
 }
+// A town's own post-top lamp (a set's lamp-post-top: Washington's globe, Boston's acorn; Bára 25. 11. 2026), or false
+// where the set has none. The picture is centred and has its foot at its bottom; its light (data-light) comes to the
+// chosen height, the head (above POST_TOP) and the foot (below POST_FOOT) at their size, the straight shaft between
+// them longer or shorter.
+const POST_TOP = 540, POST_FOOT = 830;
+function postTopLamp(g, x, top, h) {
+  const s = ownSprite("lamp-post-top");
+  if (!s?.light) return false;
+  const base = top - s.h, d = Math.max(h * 100 - s.light, POST_TOP - POST_FOOT + 20), shaft = POST_FOOT - POST_TOP;
+  const part = (y0, y1, transform) => {
+    const id = `lamp${++clipN}`, og = el("g", transform ? { transform } : {}, g);
+    el("rect", { x: x - s.w / 2, y: base + y0, width: s.w, height: y1 - y0 }, el("clipPath", { id }, og));
+    sprite(el("g", { "clip-path": `url(#${id})` }, og), "lamp-post-top", x, top);
+  };
+  part(0, POST_TOP + 1, `translate(0 ${-d})`);
+  part(POST_TOP - 1, POST_FOOT + 1, `translate(0 ${base + POST_FOOT}) scale(1 ${(shaft + d) / shaft}) translate(0 ${-(base + POST_FOOT)})`);
+  part(POST_FOOT - 1, s.h);
+  return true;
+}
 function drawItem(g, it, x, top, right) {
   const line = (attrs) => el("rect", attrs, g);
   switch (it.kind) {
@@ -441,11 +462,13 @@ function drawItem(g, it, x, top, right) {
       // A lamp of its own height (it.h, m; Bára: a small lamp is not a big one made smaller). From 6 m the city's
       // lamp with its mast longer or shorter: the bracket and luminaire (the top 300 cm of the 930 cm picture) and
       // the foot (its bottom 130 cm) at their size, the mast between them stretched. Up to 5 m a post-top lamp: a
-      // slim pole with the luminaire on top, as in parks and quiet streets.
+      // slim pole with the luminaire on top, as in parks and quiet streets (the set's own picture, lamp-post-top, where
+      // it has one).
       const name = right ? "lamp-modern-left" : "lamp-modern-right", anchor = right ? 348 : 22;
       if (!it.h) return sprite(g, name, x, top, false, anchor);
       const dark = artKey() === "brno", pole = dark ? "#3d4246" : "#b5b9ba", shade = dark ? "#2c3033" : "#94989a";
       if (it.h <= 5) {
+        if (postTopLamp(g, x, top, it.h)) return;
         const head = top - it.h * 100;
         el("path", { d: `M${x - 15} ${top} L${x - 13} ${top - 70} H${x + 13} L${x + 15} ${top} Z`, fill: dark ? "#33373a" : "#727678" }, g);
         el("rect", { x: x - 6, y: head + 30, width: 12, height: it.h * 100 - 100, fill: pole }, g);

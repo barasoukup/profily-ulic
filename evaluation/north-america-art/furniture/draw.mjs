@@ -9,7 +9,9 @@ const R = (x, y, w, h, f, rx) => `<rect x="${+x.toFixed(2)}" y="${+y.toFixed(2)}
 const P = (d, f) => `<path d="${d}" fill="${f}"/>`;
 const L = (d, s, w, cap = "butt") => `<path d="${d}" stroke="${s}" stroke-width="${w}" fill="none" stroke-linecap="${cap}" stroke-linejoin="round"/>`;
 const C = (x, y, r, f) => `<circle cx="${x}" cy="${y}" r="${r}" fill="${f}"/>`;
-const svg = (w, h, note, body) => `<svg viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg">\n  <!-- ${note} 1 px = 1 cm. -->\n  ${body.flat(9).join("\n  ")}\n</svg>\n`;
+// The light's height of a post-top lamp (profile.js postTopLamp).
+const LIGHT = (note) => (/^Washington Globe/.test(note) ? ' data-light="520"' : /^Boston Neighborhood Acorn/.test(note) ? ' data-light="470"' : "");
+const svg = (w, h, note, body) => `<svg${LIGHT(note)} viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg">\n  <!-- ${note} 1 px = 1 cm. -->\n  ${body.flat(9).join("\n  ")}\n</svg>\n`;
 const write = (f, s, base = PUB) => { const u = new URL(f, base); fs.mkdirSync(new URL("./", u), { recursive: true }); fs.writeFileSync(u, s); };
 // Both sides: name-left, name-right (the mirror).
 const pair = (name, w, h, note, body, base) => {
