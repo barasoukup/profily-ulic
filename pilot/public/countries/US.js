@@ -55,9 +55,10 @@ export default {
   // keeps 20 ft (6.10 m) unobstructed, about 3 m a direction; 18 DCMR 2405.2(g) forbids parking where less than 10 ft of
   // open roadway stays (NORMY.md B). So the app's 3 m a direction. DC itself parks on both sides of local streets of
   // 16 ft lanes and 16 ft parking (about 8.75–9.75 m, DDOT's inventory); where the inventory answers it decides the
-  // parking, not this estimate (towns/usa.js).
+  // parking, not this estimate (towns/usa.js), so the 3 m work in Maryland and Virginia, for which NORMY.md has no source
+  // of their own: the app's usual width, not their law.
   freeLane: 3,
-  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Ve Washingtonu je stání na chodníku zakázané (18 DCMR § 2405, z druhé ruky); aplikace nechává {need}.", { free, need }),
+  halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Aplikace nechává {need}.", { free, need }),
   parkGuess: true,
   parkByCycleLane: true,
   roadClassFromOsm: true,

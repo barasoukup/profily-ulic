@@ -33,7 +33,7 @@ const lanes = await import(new URL("lanes-ortho.js", PUB));
 export const ORTHO_ONLY = {
   it: Object.values(lanes.IT_ORTHO).map((o) => o.box),
   fi: Object.values(lanes.FI_ORTHO).map((o) => o.box),
-  us: Object.values(lanes.US_ORTHO).map((o) => o.box),
+  us: Object.values(lanes.US_ORTHO),
   pt: [lanes.PT_MAINLAND],
 };
 export const ORTHO_BUT = { es: lanes.ES_NOT_PNOA };
@@ -104,7 +104,7 @@ export async function buildCoverage({ nuts = readJson(NUTS_FILE), lau = readJson
   const { COUNTRIES } = await import(new URL("countries/index.js", PUB));
   const { countryOfCity, cityById } = await import(new URL("city.js", PUB));
   const STATY = json("staty.json");
-  const BOUNDS = Object.assign({}, ...["mesta.json", "mesta-sk.json", "mesta-at.json", "pasporty.json", "regions-be.json", "regions-es.json"].map(json));
+  const BOUNDS = Object.assign({}, ...["mesta.json", "mesta-sk.json", "mesta-at.json", "mesta-us.json", "pasporty.json", "regions-be.json", "regions-es.json"].map(json));
   // (Not a state's extra rings either, "<id>+<what>": tools/build_staty.mjs.)
   const states = Object.keys(STATY).filter((id) => !/^(land|foreign|closed)_|\+/.test(id));
   const problems = [];
@@ -123,7 +123,8 @@ export async function buildCoverage({ nuts = readJson(NUTS_FILE), lau = readJson
     else if (ORTHO_FULL.has(key)) base[s] = "ortho";
     else if (ORTHO_ONLY[key]) {
       base[s] = "osm";
-      for (const box of ORTHO_ONLY[key]) overlays.push({ c: "ortho", id: `${s}-ortho`, rings: STATY[s].map((r) => clip(r, box)) });
+      // A box, or an orthophoto of a town of the boundary files (its own rings).
+      for (const o of ORTHO_ONLY[key]) overlays.push({ c: "ortho", id: `${s}-ortho`, rings: o.town ? BOUNDS[o.town] : STATY[s].map((r) => clip(r, o)) });
     } else if (ORTHO_BUT[key]) {
       base[s] = "ortho";
       for (const box of ORTHO_BUT[key]) overlays.push({ c: "osm", id: `${s}-no-ortho`, rings: STATY[s].map((r) => clip(r, box)) });

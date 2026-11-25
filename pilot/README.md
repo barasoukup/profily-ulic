@@ -441,7 +441,7 @@ označníky. Hledání Photon v obdélníku metra. A/B a měření v `evaluation
 
 Tři společné změny z pilotu (všechny státy, každá s vypínačem): ústí uličky (OSM `service=alley` a plochy uliček) je
 křižovatka (`?off=ulicky`); jamky stromů v chodníku, tedy pás zeleně do 1,3 m mezi chodníkem a obrubou, který na ortofotu
-vypadá jako dlažba, patří chodníku (`derive.js treePitsAsSidewalk`; **vypnuté**, `?jamky=1` zapne: slepé A/B DC 2 : 2,
+vypadá jako dlažba, patří chodníku (`derive.js treePitsAsSidewalk`; **vypnuté**, `?treepits=1` zapne: slepé A/B DC 2 : 2,
 české kontroly 0 : 1); obousměrka s jedním pruhem se dělí na dva
 už od 4,0 m, kde je počet pruhů známý (OSM `lanes` ≥ 2 nebo inventář; `?off=pocetpruhu`).
 

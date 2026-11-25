@@ -17,7 +17,8 @@ export const within = (list, lat, lon) => list.find((b) => lon >= b.box[0] && lo
 // The Slovak towns' boundaries: is the point in town id? undefined without the file or the town (the caller keeps its
 // box then).
 let skTowns = null;
-export const loadSkTowns = (json) => { skTowns = Object.fromEntries(Object.entries(json || {}).map(([id, rings]) => [id, boxed(id, rings)])); };
+export const loadSkTowns = (json) => { skTowns = { ...skTowns, ...Object.fromEntries(Object.entries(json || {}).map(([id, rings]) => [id, boxed(id, rings)])) }; };
+// (The cities of the other states join them: city.js loadTowns, mesta-at.json, mesta-us.json.)
 export const inSkTown = (id, lon, lat) => {
   const b = skTowns?.[id];
   if (!b) return undefined;
@@ -25,10 +26,21 @@ export const inSkTown = (id, lon, lat) => {
 };
 
 // The territory of a source, a set of illustrations or a city that is not one of mesta.json (docs/architecture-countries.md,
-// step 4): a box [lon0, lat0, lon1, lat1] and, where mesta-sk.json has the town's boundary, the town (the box cut to it;
+// step 4): a box [lon0, lat0, lon1, lat1] and, where mesta-sk.json or mesta-us.json has the town's boundary, the town (the box cut to it;
 // without the file the box alone).
+// near: metres beyond the town's boundary that still count (a street along the boundary: Washington's Southern Avenue).
 export const inArea = (area, lon, lat) => lon >= area.box[0] && lon <= area.box[2] && lat >= area.box[1] && lat <= area.box[3]
-  && (area.town ? inSkTown(area.town, lon, lat) ?? true : true);
+  && (area.town ? (inSkTown(area.town, lon, lat) ?? true) || (!!area.near && metresTo(skTowns[area.town].rings, lon, lat) <= area.near) : true);
+function metresTo(rings, lon, lat) {
+  const kx = 111320 * Math.cos((lat * Math.PI) / 180), ky = 110574;
+  let d = Infinity;
+  for (const r of rings) for (let i = 1; i < r.length; i++) {
+    const ax = (r[i - 1][0] - lon) * kx, ay = (r[i - 1][1] - lat) * ky, dx = (r[i][0] - lon) * kx - ax, dy = (r[i][1] - lat) * ky - ay;
+    const u = Math.max(0, Math.min(1, -(ax * dx + ay * dy) / (dx * dx + dy * dy || 1)));
+    d = Math.min(d, Math.hypot(ax + u * dx, ay + u * dy));
+  }
+  return d;
+}
 // The first of named areas ({ id: area }) that has the point, or null.
 export const areaAt = (areas, lon, lat) => Object.entries(areas).find(([, a]) => inArea(a, lon, lat))?.[0] ?? null;
 // Austria's cities by their boxes (towns/austria.js: Vienna's map of surfaces, Salzburg's signs; countries/AT.js: the

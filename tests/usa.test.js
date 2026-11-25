@@ -24,11 +24,40 @@ test("USA: metro Washingtonu je stát usa, zbytek USA zavřený", async () => {
   assert.equal(C.countryOfCity("usa").code, "US");
 });
 
-test("USA: ortofoto DC jen nad DC", async () => {
+test("USA: mezi okresy ani na hranici DC nejsou díry, staty.json nenese společné hranice dvakrát", async () => {
+  const C = await import("../pilot/public/city.js");
+  const staty = JSON.parse(fs.readFileSync(new URL("../pilot/public/staty.json", import.meta.url), "utf8"));
+  const us = JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta-us.json", import.meta.url), "utf8"));
+  assert.ok(JSON.stringify(staty.usa).length < 60_000, `${JSON.stringify(staty.usa).length} B`);
+  C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
+  C.loadStates(staty);
+  for (const [lon, lat] of us.washington[0]) for (const [dx, dy] of [[0, 0], [2e-4, 0], [-2e-4, 0], [0, 2e-4], [0, -2e-4]]) assert.equal(C.closedAt(lat + dy, lon + dx), null, `${lat},${lon}`);
+  // The quays across the border have not the message of the USA (Windsor, Nuevo Laredo), Detroit and Laredo have.
+  for (const [lat, lon] of [[42.3190, -83.0390], [27.4950, -99.5069]]) assert.equal(C.closedAt(lat, lon), null, `${lat},${lon}`);
+  for (const [lat, lon] of [[42.3314, -83.0458], [27.5064, -99.5075]]) assert.match(C.closedAt(lat, lon) || "", /Washingtonu/);
+});
+
+const loadWashington = async () => {
+  const C = await import("../pilot/public/city.js");
+  C.loadTowns(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta-us.json", import.meta.url), "utf8")));
+  return C;
+};
+test("USA: DC je District, ne obdélník (ortofoto, mapa povrchů, město)", async () => {
   const { orthoHereAt, usOrthoAt } = await import("../pilot/public/lanes-ortho.js");
-  assert.equal(orthoHereAt("us", -77.0365, 38.8977), true);
+  const { AREAS } = await import("../pilot/public/towns/usa.js");
+  const { inArea } = await import("../pilot/public/places.js");
+  const C = await loadWashington();
+  C.loadStates(JSON.parse(fs.readFileSync(new URL("../pilot/public/staty.json", import.meta.url), "utf8")));
   assert.deepEqual(usOrthoAt(-77.0365, 38.8977), ["us-dc"]);
-  assert.equal(orthoHereAt("us", -77.3064, 38.8462), false); // Fairfax
+  assert.equal(C.cityAt(38.8977, -77.0365), "washington");
+  // Inside the box, outside the District: Clarendon, Bethesda, Silver Spring, Old Town Alexandria, the airport; and Fairfax.
+  for (const [lat, lon] of [[38.8868, -77.0953], [38.9847, -77.0947], [38.9935, -77.0265], [38.8048, -77.0469], [38.8512, -77.0402], [38.8462, -77.3064]]) {
+    assert.equal(orthoHereAt("us", lon, lat), false, `${lat},${lon}`);
+    assert.equal(inArea(AREAS.dc, lon, lat), false, `${lat},${lon}`);
+    assert.equal(C.cityAt(lat, lon), "usa");
+  }
+  // The streets along the line are read (Southern, Western and Eastern Avenue).
+  for (const [lat, lon] of [[38.8436094, -76.9725878], [38.96689, -77.07792], [38.96509, -77.00168]]) assert.equal(inArea(AREAS.dc, lon, lat), true, `${lat},${lon}`);
 });
 
 // A straight street along the y axis at the cut's centre, the cut along x (a box 30 m each way around 38.9, -77.0).
@@ -62,14 +91,70 @@ test("USA: plochy DC podél řezu, stání a pruhy z inventáře DDOT", async ()
   assert.equal(U.dcSurfaces({ roads: esri([["Road", 10, 18]]), walks, bldg, sub }, [way], BBOX, way.tags), null);
 });
 
-test("USA: jedno stání podle RPPSIDE na straně podle směru čáry inventáře", async () => {
+test("USA: RPPSIDE neříká, na které straně se stojí (zóna rezidentů, ne pruh)", async () => {
   const U = await import("../pilot/public/towns/usa.js");
   const runs = () => [{ code: 702, s: -8, e: -5 }, { code: 701, s: -5, e: 5 }, { code: 702, s: 5, e: 8 }];
-  // The cut's dir points to the street's right: a line along the street has O (its right) at +t.
-  const r1 = runs(); U.carveParking(r1, { a: { TOTALPARKINGLANES: 1, TOTALPARKINGLANEWIDTH: 8, RPPSIDE: "O" }, along: true });
-  assert.ok(r1.some((r) => r.code === 704 && r.e === 5));
-  const r2 = runs(); U.carveParking(r2, { a: { TOTALPARKINGLANES: 1, TOTALPARKINGLANEWIDTH: 8, RPPSIDE: "I" }, along: true });
-  assert.ok(r2.some((r) => r.code === 704 && r.s === -5));
+  const one = { TOTALPARKINGLANES: 1, TOTALPARKINGLANEWIDTH: 8 };
+  for (const RPPSIDE of ["O", "I", "B", "AO", null]) {
+    assert.deepEqual(U.carveParking(runs(), { a: { ...one, RPPSIDE }, along: true }, { "parking:left": "lane" }), ["lo"], `${RPPSIDE}`);
+    assert.deepEqual(U.carveParking(runs(), { a: { ...one, RPPSIDE }, along: true }), ["hi"], `${RPPSIDE}`);
+  }
+});
+
+test("USA: strany podle cesty řezu, ne podle nejbližší cesty OSM (dvě vozovky a stezka uprostřed)", async () => {
+  const U = await import("../pilot/public/towns/usa.js");
+  const line = (id, x, tags, down = false) => ({ type: "way", id, tags, geometry: (down ? [ll(x, 80), ll(x, -80)] : [ll(x, -80), ll(x, 80)]).map(([lon, lat]) => ({ lat, lon })) });
+  const tags = { highway: "primary", name: "A St", oneway: "yes", "parking:right": "lane" };
+  const own = line(1, 8, tags), other = line(2, -8, { highway: "primary", name: "A St", oneway: "yes" }, true);
+  const roads = esri([["Road", -15, -2], ["Median Island", -2, 2], ["Road", 2, 15]]), walks = esri([["Sidewalk", -18, -15], ["Sidewalk", 15, 18]]), bldg = esri([]);
+  const sub = { features: [{ attributes: { ROADTYPE: "1", TOTALTRAVELLANES: 4, TOTALTRAVELLANESINBOUND: 1, TOTALTRAVELLANESOUTBOUND: 3, TOTALPARKINGLANES: 1, TOTALPARKINGLANEWIDTH: 8, BIKELANE_CONVENTIONAL: "OB" }, geometry: { paths: [[ll(0, -50), ll(0, 50)]] } }] };
+  const read = (median) => {
+    const r = U.dcSurfaces({ roads, walks, bldg, sub }, [median, other, own], BBOX, tags, { way: own });
+    const xs = r.features.filter((f) => f.attributes.code === 704).flatMap((f) => f.geometry.rings[0].map((p) => (p[0] - LON) * KX));
+    return { tags: r.wayTags, x: Math.round(xs.reduce((p, q) => p + q, 0) / xs.length) };
+  };
+  const up = read(line(3, 0, { highway: "cycleway" })), down = read(line(3, 0, { highway: "cycleway" }, true));
+  assert.deepEqual(up, down);
+  assert.deepEqual(up.tags, { lanes: "3", "cycleway:right": "lane" });
+  assert.ok(up.x > 10, `stání u x = ${up.x}`);
+});
+
+test("USA: chráněná cyklostezka podle OSM: uprostřed (Pennsylvania Avenue), na straně z tagů, zakázaná strana", async () => {
+  const U = await import("../pilot/public/towns/usa.js");
+  const runs = () => [[702, -16, -13], [701, -13, 13], [702, 13, 16]].map(([code, s, e]) => ({ code, s, e }));
+  const b = { a: { BIKELANE_DUAL_PROTECTED: "IB", TOTALBIKELANEWIDTH: 12, TOTALBIKELANES: 2 }, along: true };
+  const tags = { "cycleway:left": "separate", "cycleway:right": "no", oneway: "yes" };
+  const r = runs();
+  assert.deepEqual(U.carveTracks(r, b, tags, { tracks: [0.7], way: 8, others: [-8] }), ["mid"]);
+  assert.deepEqual(r.map((x) => x.code), [702, 701, 703, 701, 702]);
+  assert.ok(Math.abs((r[2].s + r[2].e) / 2 - 0.7) < 0.01);
+  // Parking is still cut off the outer kerbs.
+  assert.deepEqual(U.carveParking(r, { a: { TOTALPARKINGLANES: 2, TOTALPARKINGLANEWIDTH: 16 }, along: true }), ["lo", "hi"]);
+  assert.deepEqual(r.map((x) => x.code), [702, 704, 701, 703, 701, 704, 702]);
+  // No way of OSM: the inner side of one of two carriageways and a side tagged "no" get none.
+  assert.deepEqual(U.carveTracks(runs(), b, tags, { way: 8, others: [-8] }), []);
+  assert.deepEqual(U.carveTracks(runs(), b, { "cycleway:right": "no", "cycleway:left": "separate" }), ["lo"]);
+  assert.deepEqual(U.carveTracks(runs(), { ...b, a: { ...b.a, BIKELANE_DUAL_PROTECTED: "OB" } }, { "cycleway": "separate", "cycleway:right": "no" }), []);
+  // Its way on the sidewalk: the map's own surfaces.
+  assert.deepEqual(U.carveTracks(runs(), b, tags, { tracks: [15] }), []);
+});
+
+test("USA: střed řezu v polygonu Intersection, ulička pod service, blok podle druhu a vyplněnosti", async () => {
+  const U = await import("../pilot/public/towns/usa.js");
+  const walks = esri([["Sidewalk", -8, -6], ["Sidewalk", 6, 8]]), bldg = esri([]), sub = { features: [] };
+  assert.equal(U.dcSurfaces({ roads: esri([["Intersection", -5, 5]]), walks, bldg, sub }, [way], BBOX, way.tags).junction, true);
+  assert.equal(U.dcSurfaces({ roads: esri([["Road", -5, 5]]), walks, bldg, sub }, [way], BBOX, way.tags).junction, false);
+  const service = { ...way, tags: { highway: "service" } };
+  const alley = U.dcSurfaces({ roads: esri([["Alley", -2, 2]]), walks: esri([]), bldg, sub }, [service], BBOX, service.tags, { way: service });
+  assert.ok(alley.features.some((f) => f.attributes.code === 701));
+  assert.equal(U.dcSurfaces({ roads: esri([["Parking Lot", -20, 20]]), walks: esri([]), bldg, sub }, [service], BBOX, service.tags, { way: service }), null);
+  const line = (x, attributes) => ({ attributes, geometry: { paths: [[ll(x, -50), ll(x, 50)]] } });
+  const c = { lat0: LAT, lon0: LON, kx: KX, ky: KY, dir: [1, 0] };
+  const street = line(8, { ROADTYPE: "1", TOTALTRAVELLANES: 2 }), lane = line(1, { ROADTYPE: "4", TOTALTRAVELLANES: 1 });
+  assert.equal(U.blockOf({ features: [lane, street] }, c, way.tags).a.TOTALTRAVELLANES, 2);
+  assert.equal(U.blockOf({ features: [line(1, { ROADTYPE: "5", TOTALTRAVELLANES: 1 })] }, c, way.tags), null);
+  assert.equal(U.blockOf({ features: [line(1, { ROADTYPE: "6", TOTALTRAVELLANES: 1 })] }, c, way.tags), null);
+  assert.equal(U.blockOf({ features: [line(1, { ROADTYPE: "1", TOTALTRAVELLANES: 0, TOTALPARKINGLANES: 0 })] }, c, way.tags), null);
 });
 
 test("Ústí uličky je křižovatka (OSM service=alley i plocha uličky)", async () => {
@@ -101,8 +186,8 @@ test("Jamky stromů v chodníku: dlážděný úzký pás u obruby patří chodn
   const { treePitsAsSidewalk } = await import("../pilot/public/derive.js");
   const P = (await import("../pilot/public/ortho-osm.js")).P;
   const segs0 = [{ type: "chodnik", width: 2 }, { type: "zelen", width: 1 }, { type: "parkovani", width: 2.2 }, { type: "pruh", width: 4 }];
-  assert.equal(treePitsAsSidewalk(segs0, [-6.1, 3.1], { G: [1], Y: [1] }), 0, "vypnuté bez ?jamky=1");
-  P.jamky = true;
+  assert.equal(treePitsAsSidewalk(segs0, [-6.1, 3.1], { G: [1], Y: [1] }), 0, "vypnuté bez ?treepits=1");
+  P.treepits = true;
   // An image of 0.1 m across t −10…10 m and 160 rows along, all of one look.
   const st = (look) => {
     const nt = 200, nu = 160, n = nt * nu, f = (v) => new Float32Array(n).fill(v);
@@ -118,7 +203,7 @@ test("Jamky stromů v chodníku: dlážděný úzký pás u obruby patří chodn
   const green = segs();
   assert.equal(treePitsAsSidewalk(green, [-6.1, 3.1], st("green")), 0);
   assert.equal(treePitsAsSidewalk(segs(), [-6.1, 3.1], null), 0);
-  P.jamky = false;
+  P.treepits = false;
 });
 
 test("Tepny Washingtonu: svodidla, ostrůvky mimo vozovku, stání u méně pruhů, chráněná cyklostezka, pruhy směru", async () => {
@@ -133,8 +218,9 @@ test("Tepny Washingtonu: svodidla, ostrůvky mimo vozovku, stání u méně pruh
   assert.deepEqual(u.carveParking(runs(), block(park)), ["lo"]);
   assert.deepEqual(u.carveParking(runs(), block(park), {}, true, { bySide: false }), ["hi"]);
   const bike = { BIKELANE_DUAL_PROTECTED: "IB", TOTALBIKELANEWIDTH: 10, TOTALBIKELANES: 2 }, r = runs();
-  assert.deepEqual(u.carveTracks(r, block(bike), { "cycleway:right": "separate" }), ["lo"]);
+  assert.deepEqual(u.carveTracks(r, block(bike), { "cycleway:both": "separate" }), ["lo"]);
   assert.equal(r[1].code, 703);
+  assert.deepEqual(u.carveTracks(runs(), block(bike), { "cycleway:right": "separate" }), ["hi"]);
   assert.deepEqual(u.carveTracks(runs(), block(bike), {}), []);
   const lanes = { TOTALTRAVELLANES: 5, TOTALTRAVELLANESINBOUND: 2, TOTALTRAVELLANESOUTBOUND: 3 };
   assert.equal(u.blockTags(block(lanes), { oneway: "yes", lanes: "2" }).lanes, undefined);

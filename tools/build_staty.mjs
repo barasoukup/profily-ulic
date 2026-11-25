@@ -109,15 +109,54 @@ async function swiss(iso) {
 // Prince George's in Maryland; Arlington, Fairfax County, Fairfax city, Falls Church and Alexandria in Virginia. Their
 // boundaries from the Census Bureau's TIGERweb (State_County, layer Counties; works of the federal government, public
 // domain), with their holes (Fairfax County's ring has Fairfax city as a hole: the rings of one entry count by parity,
-// so the city's own ring makes it inside again), simplified as the others.
+// so the city's own ring makes it inside again): merged to one outline, then simplified to about 10 m.
 const DC_METRO = ["11001", "24031", "24033", "51013", "51059", "51600", "51610", "51510"];
 async function dcMetro() {
   const q = new URLSearchParams({ where: `GEOID IN (${DC_METRO.map((g) => `'${g}'`).join(",")})`, outFields: "GEOID", returnGeometry: "true", outSR: "4326", f: "json" });
   const json = await (await fetch(`https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/1/query?${q}`, { headers: { "User-Agent": "profily-ulic" } })).json();
   if ((json.features || []).length !== DC_METRO.length) throw new Error(`TIGERweb: ${json.features?.length} of ${DC_METRO.length} counties`);
-  // Not simplified: each county simplified on its own left gaps along the shared boundaries (Southern Avenue, the DC line,
-  // fell into closed_us); the rings rounded to 1e-5° (about 1 m) only, equal on both sides of a boundary.
-  return json.features.flatMap((f) => f.geometry.rings).map((r) => r.map(([x, y]) => [+x.toFixed(5), +y.toFixed(5)])).filter((r) => r.length >= 4);
+  return outline(json.features.flatMap((f) => f.geometry.rings)).map((r) => simplify(r, 0.0001)).filter((r) => r.length >= 4);
+}
+// Areas with common boundaries (the same vertices on both sides) merged to their outline before it is simplified: the
+// edges two of them share cancel out, so nothing stays along the common lines (each county simplified alone left gaps
+// there: Southern Avenue, the DC line, fell into closed_us; unsimplified it was 863 kB for every visitor).
+export function outline(list) {
+  const key = (p) => `${p[0].toFixed(5)},${p[1].toFixed(5)}`, at = new Map(), edges = new Map();
+  for (const r of list) for (let i = 1; i < r.length; i++) {
+    const a = key(r[i - 1]), b = key(r[i]);
+    if (a === b) continue;
+    at.set(a, r[i - 1]); at.set(b, r[i]);
+    const k = a < b ? `${a} ${b}` : `${b} ${a}`;
+    if (edges.has(k)) edges.delete(k); else edges.set(k, [a, b]);
+  }
+  const next = new Map();
+  for (const [k, [a, b]] of edges) for (const [p, q] of [[a, b], [b, a]]) next.set(p, [...(next.get(p) || []), { q, k }]);
+  const used = new Set(), out = [];
+  for (const [k, [a, b]] of edges) {
+    if (used.has(k)) continue;
+    used.add(k);
+    const ring = [a, b];
+    while (ring.at(-1) !== a) {
+      const e = (next.get(ring.at(-1)) || []).find((x) => !used.has(x.k));
+      if (!e) break;
+      used.add(e.k); ring.push(e.q);
+    }
+    if (ring.at(-1) === a) out.push(ring.map((p) => at.get(p)));
+  }
+  return out;
+}
+
+function closedUs(rings) {
+  const area = (r) => { let a = 0; for (let i = 1; i < r.length; i++) a += (r[i][0] - r[i - 1][0]) * (r[i][1] + r[i - 1][1]); return Math.abs(a / 2); };
+  const onBorder = ([x, y]) => (x > -83.6 && x < -66.9 && y > 41.6) || (x < -97 && y < 32.8 && (y < 30.2 || x < -101)); // Detroit to Maine, Mexico
+  return rings.map((r) => {
+    const a = area(r);
+    if (r[0][1] > 50) return a < 0.003 ? [] : simplify(r, 0.03);
+    const coarse = simplify(r, 0.01);
+    if (a < 100) return coarse;
+    const keep = new Set([...coarse, ...simplify(r, 0.001).filter(onBorder)].map((p) => p.join()));
+    return r.filter((p) => keep.has(p.join()));
+  }).map((r) => r.map(([x, y]) => [+x.toFixed(3), +y.toFixed(3)])).filter((r) => r.length >= 4);
 }
 
 // Ydre Nordhavn (denmark below): the hull of the OSM streets the review found abroad, 150 m round them.
@@ -213,9 +252,10 @@ const BUILD = {
   closed_cy: () => gisco("CY"),
   // (GISCO's outer rings of Italy take in San Marino and the Vatican.)
   closed_it: () => gisco("IT"),
-  // The USA beyond the metro of Washington (24. 11. 2026: the OSM pack us_dc holds only the metro): GISCO's US with
-  // Alaska, Hawaii and the islands, simplified to about 1 km (a message, not a border to cut by).
-  closed_us: async () => (await gisco("US")).map((r) => simplify(r, 0.01)).filter((r) => r.length >= 4),
+  // The USA beyond the metro of Washington (24. 11. 2026: the OSM pack us_dc holds only the metro): GISCO's US, a message
+  // and not a border to cut by: to about 1 km, Alaska to 3 km without its small islands; along the land borders to 100 m
+  // (at 1 km the quays of Windsor in Ontario and of Nuevo Laredo got the message of the USA).
+  closed_us: async () => closedUs(await gisco("US")),
 };
 const file = new URL("../pilot/public/staty.json", import.meta.url);
 const only = process.argv.slice(2);

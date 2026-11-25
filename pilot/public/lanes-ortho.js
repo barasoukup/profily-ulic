@@ -11,6 +11,7 @@
 // gaps look like lanes, chosen together. Anything doubtful leaves the rules' profile as it is.
 
 import { dkToken } from "./keys.js";
+import { inArea } from "./places.js";
 import { inLombardy } from "./towns/lombardy-area.js";
 const R = 6378137, ALONG = 20, TIMEOUT = 4000;
 const merc = (lon, lat) => [(R * lon * Math.PI) / 180, R * Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360))];
@@ -164,14 +165,15 @@ export const FI_ORTHO = {
 export const fiOrthoAt = (lon, lat) => Object.keys(FI_ORTHO).filter((k) => { const [x0, y0, x1, y1] = FI_ORTHO[k].box; return lon >= x0 && lon <= x1 && lat >= y0 && lat <= y1; });
 // The USA (Bára 24. 11. 2026, phase 2): DC's orthophoto of 2025 (OCTO, Ortho2025_WebMercator, a tile cache in Web Mercator
 // to level 23, 7.5 cm at level 21; flown 27. 3. 2025, 8 cm; CORS for the origin asking; CC BY 4.0 by opendata.dc.gov,
-// "Office of the Chief Technology Officer"), read through its export in Web Mercator, only over DC's box. Elsewhere in the
+// "Office of the Chief Technology Officer"), read through its export in Web Mercator, only inside the District (mesta-us.json) and 60 m beyond it (the cache is white
+// farther out). Elsewhere in the
 // metro (Maryland, Virginia) no orthophoto yet: the estimate from OSM.
 export const DC_ORTHO = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Ortho2025_WebMercator/MapServer";
 const dcExport = (b, w, h, format = "image/jpeg") => `${DC_ORTHO}/export?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: format === "image/png" ? "png32" : "jpg", ...(format === "image/png" && { transparent: "true" }), f: "image" })}`;
 export const US_ORTHO = {
-  "us-dc": { box: [-77.12, 38.79, -76.909, 38.996], res: 0.1, url: dcExport, credit: "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)" },
+  "us-dc": { box: [-77.12, 38.79, -76.909, 38.997], town: "washington", near: 60, res: 0.1, url: dcExport, credit: "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)" },
 };
-export const usOrthoAt = (lon, lat) => Object.keys(US_ORTHO).filter((k) => { const [x0, y0, x1, y1] = US_ORTHO[k].box; return lon >= x0 && lon <= x1 && lat >= y0 && lat <= y1; });
+export const usOrthoAt = (lon, lat) => Object.keys(US_ORTHO).filter((k) => inArea(US_ORTHO[k], lon, lat));
 // The sources whose orthophotos cover only some towns, each by its box (Finland, the USA).
 const BOXED = { fi: fiOrthoAt, us: usOrthoAt };
 // Is there an orthophoto of the source (countries/<ISO>.js laneOrtho) at the point? "none" never; the states whose

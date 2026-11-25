@@ -11,8 +11,8 @@ if (new URLSearchParams(location.search).get("stit") === "1") HOUSE_LOOKS.gables
 import { aiCut, aiKerbs, aiSurface, aiParking, parkFromAi, parkSkip, lawKerbs, layLaw, widenLaw, aiReady, onAiProgress } from "./ai-kerbs.js";
 // ?off=… switches named parts of the estimate off (the A/B tests, evaluation/ortofoto-osm/regrese.mjs).
 { const off = new URLSearchParams(location.search).get("off"); if (off) ORTHO_P.off = new Set(off.split(",")); }
-// Tree pits as sidewalk (derive.js treePitsAsSidewalk): off, ?jamky=1 turns them on.
-if (new URLSearchParams(location.search).get("jamky") === "1") ORTHO_P.jamky = true;
+// Tree pits as sidewalk (derive.js treePitsAsSidewalk): off, ?treepits=1 turns them on.
+if (new URLSearchParams(location.search).get("treepits") === "1") ORTHO_P.treepits = true;
 // ?auta=1: parked cars told by their colours on the orthophoto (ortho-osm.js carsColoured; a trial, off by default).
 if (new URLSearchParams(location.search).get("auta") === "1") ORTHO_P.carsColour = true;
 // The model also decides sidewalk, green and other between the kerb and the house (on since 19. 11. 2026, Bára;
@@ -125,9 +125,9 @@ const cutSpan = (cut) => cut?.span || cut?.reach || defaultReach();
 const STORE = "streetdesign-pilot" + (LANES_ORTHO ? "" : "-bez-orto"); // the last cut (Prague's key from the time of one page per city); ?orto=0 its own
 // The boundaries of the cities with their own sources (tools/build_mesta.mjs): a cut takes its city by them.
 const statyJson = fetch("staty.json").then((r) => (r.ok ? r.json() : null), () => null);
-// The boundaries of the Slovak and Austrian cities (tools/build_towns_sk.mjs, build_towns_at.mjs): the city of a cut
+// The boundaries of the Slovak, Austrian and American cities (tools/build_towns_sk.mjs, build_towns_at.mjs, build_towns_us.mjs): the city of a cut
 // and the territories of the Slovak towns' sources. Without them those cuts are their state's rest.
-const townsJson = Promise.all(["mesta-sk.json", "mesta-at.json"].map((f) => fetch(f).then((r) => (r.ok ? r.json() : null), () => null)));
+const townsJson = Promise.all(["mesta-sk.json", "mesta-at.json", "mesta-us.json"].map((f) => fetch(f).then((r) => (r.ok ? r.json() : null), () => null)));
 const MESTA = await fetch("mesta.json").then((r) => (r.ok ? r.json() : null), () => null);
 // Without the file every cut keeps the current city (rather than all becoming "cesko").
 if (MESTA) loadBounds(MESTA); else console.warn("mesta.json se nenačetl: město se podle polohy nepozná");
@@ -135,10 +135,12 @@ if (MESTA) loadBounds(MESTA); else console.warn("mesta.json se nenačetl: město
 // Loaded with the cities' file (both before the first cut, a linked one included).
 const STATY = await statyJson;
 if (STATY) loadStates(STATY); else console.warn("staty.json se nenačetl: stát se podle polohy nepozná");
+const US_TOWNS = (await townsJson)[2];
 {
-  const [sk, at] = await townsJson;
+  const [sk, at, us] = await townsJson;
   if (sk) { loadSkTowns(sk); loadTowns(sk); }
   if (at) loadTowns(at);
+  if (us) loadTowns(us);
 }
 // The city of a point becomes the current one (city.js): its sources, texts and illustrations.
 async function useCity(lat, lon) {
@@ -386,10 +388,10 @@ if (STATY?.finland) {
     kinds.ortho.push(new Fi("", { bboxUrl: (b, w, h) => o.url(b, w, h, "image/png"), maxZoom: 21, attribution: tr(o.credit), bounds: L.latLngBounds([y0, x0], [y1, x1]) }));
   }
 }
-// The USA: DC's orthophoto of 2025 (lanes-ortho.js US_ORTHO), only over DC's box and inside the metro.
-if (STATY?.usa) {
-  const Us = insideOnly([boxedPlace("US", STATY.usa)]);
+// The USA: DC's orthophoto of 2025 (lanes-ortho.js US_ORTHO), only over the District (mesta-us.json).
+if (US_TOWNS) {
   for (const o of Object.values(US_ORTHO)) {
+    const Us = insideOnly([boxedPlace("US", US_TOWNS[o.town])]);
     const [x0, y0, x1, y1] = o.box;
     kinds.ortho.push(new Us("", { bboxUrl: (b, w, h) => o.url(b, w, h, "image/png"), maxZoom: 21, attribution: tr(o.credit), bounds: L.latLngBounds([y0, x0], [y1, x1]) }));
   }
@@ -604,7 +606,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     const zone = sources.zps(clat, clon).catch(() => undefined);
     const [m, k, pk, z, o, li] = await Promise.allSettled([
       // The zone file is local (and loaded once), so knowing the zone first costs nothing.
-      sources.mtvu(bbox, near.way.tags), sources.linie(bbox), zone.then((inZone) => sources.parkovani(bbox, inZone)), zone,
+      sources.mtvu(bbox, near.way.tags, near.way), sources.linie(bbox), zone.then((inZone) => sources.parkovani(bbox, inZone)), zone,
       // Where OSM has tram tracks across the cut: one small image of the orthophoto for the surface of the bed
       // (ortho.js, a short timeout; without it the rules decide).
       // The state's orthophoto (countries/<ISO>.js bedOrtho; Slovakia its own, elsewhere abroad none: ČÚZK's is blank there).
@@ -718,7 +720,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     capWideLanes(result.segments, near.way.tags);
     // The technical map's own roadway in a pedestrian zone stays a lane; the estimate's does not.
     pedestrianZone(result.segments, near.way.tags, { measured: !orthoOsm && !result.estimate });
-    // Tree pits in a sidewalk read on the orthophoto (derive.js treePitsAsSidewalk), only with ?jamky=1.
+    // Tree pits in a sidewalk read on the orthophoto (derive.js treePitsAsSidewalk), only with ?treepits=1.
     const pitsJoined = treePitsAsSidewalk(result.segments, result.extent, laneImg?.st);
     if (orthoOsm) widenNarrowTrams(result.segments);
     const lawRows = [];
@@ -873,6 +875,13 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       out.text = `${out.text ? out.text + " " : ""}${tr("Okraje vozovek nebo parkovací plochy Kodaně teď neodpověděly, profil je bez nich.")} ${tr("Zkuste kliknout znovu za chvíli.")}`;
       out.error = true;
     }
+    // DDOT's inventory did not answer (towns/usa.js): the map's surfaces without it, said so.
+    if (mv?.ddotFailed && !NO_MAP) {
+      out.text = `${out.text ? out.text + " " : ""}${tr("Inventář ulic Washingtonu (DDOT) teď neodpovídá: stání a počty pruhů jsou odhad.")} ${tr("Zkuste kliknout znovu za chvíli.")}`;
+      out.error = true;
+    }
+    // The map itself has an intersection at the cut's centre (towns/usa.js).
+    if (mv?.junction && !NO_MAP) result.junction = true;
     // The heading is the street only (Bára 16. 11. 2026); where the data come from is said under it (#profile-sub).
     $("#street-name").textContent = streetName(state.cut);
     const junctionNote = tr("Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami.");

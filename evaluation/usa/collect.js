@@ -7,11 +7,11 @@
 const VARIANTS = {
   def: { q: "", off: [] },
   dc0: { q: "dc=0", off: [] },
-  dcold: { q: "off=dctepny", off: ["dctepny"] }, // the arterials as before 25. 11. 2026 (towns/usa.js)
+  dcold: { q: "off=dcarterials", off: ["dcarterials"] }, // the arterials as before 25. 11. 2026 (towns/usa.js)
   ul: { q: "off=ulicky", off: ["ulicky"] },
-  ja: { q: "off=jamky", off: ["jamky"] },
+  ja: { q: "off=treepits", off: ["treepits"] },
   pp: { q: "off=pocetpruhu", off: ["pocetpruhu"] },
-  old: { q: "off=ulicky,jamky,pocetpruhu", off: ["ulicky", "jamky", "pocetpruhu"] },
+  old: { q: "off=ulicky,treepits,pocetpruhu", off: ["ulicky", "treepits", "pocetpruhu"] },
 };
 async function collectUs(name) {
   const pts = await (await fetch("/zz-pts.json", { cache: "reload" })).json();
