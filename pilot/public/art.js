@@ -41,3 +41,9 @@ export const GENERIC_VEHICLES = {
   "streetcar-inbound": "../generic/tram-inbound", "streetcar-outbound": "../generic/tram-outbound",
   "bus-inbound": "../generic/bus-inbound", "bus-outbound": "../generic/bus-outbound",
 };
+
+// The vehicles of the North American cities the app does not cover yet (Bára 25. 11. 2026; evaluation/north-america-art/
+// vehicles): spread into the city's set of its state (countries/<ISO>.js art) when it is added, as TRAM and TROLLEY.
+// The second tram of San Francisco (sanfrancisco/pcc-*, the F line) has no place in a set yet.
+const BUS = { "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound" };
+export const NORTH_AMERICA_VEHICLES = { toronto: { ...TRAM, ...BUS }, newyork: BUS, boston: { ...TRAM, ...BUS }, sanfrancisco: { ...TRAM, ...TROLLEY, ...BUS } };

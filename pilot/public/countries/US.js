@@ -50,7 +50,9 @@ const PLANTS = new Set(["swale-plants", "reeds-left", "reeds-right"]);
 const northAmerica = Object.fromEntries(Object.entries(czechFurniture).map(([k, v]) => [k, PLANTS.has(k) ? v : `../northamerica/${TOWN_ART[k]}`]));
 const own = (keys) => Object.fromEntries(keys.map((k) => [k, TOWN_ART[k]]));
 const washington = { ...northAmerica, ...own(["lamp-modern-left", "lamp-modern-right", "stop-post-left", "stop-post-right",
-  "transit-shelter-01-left", "transit-shelter-01-right", "transit-shelter-green-left", "transit-shelter-green-right"]) };
+  "transit-shelter-01-left", "transit-shelter-01-right", "transit-shelter-green-left", "transit-shelter-green-right",
+  // Its bus, Metrobus; no tram of its own: the streetcar closed on 31. 3. 2026.
+  "bus-inbound", "bus-outbound"]) };
 
 export default {
   ...base,
