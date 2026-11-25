@@ -214,6 +214,15 @@ function nearestOnLine(pts, q) {
   }
   return best;
 }
+// Where a cut stands on the street found (near): a click is moved away from junctions and, on a street of two one-way
+// carriageways, to their middle; a saved cut (exact: a #rez= link or a pasted position with its azimuth) stays where it
+// was saved, whatever the rules or OSM say today (Bára 25. 11. 2026), unless the street is too far to be the one saved.
+const SAVED_MAX = 40; // m, the reach of centerOnStreet
+export function placeCut(osm, frame, near, exact = false) {
+  if (exact && Math.hypot(...near.point) <= SAVED_MAX) return { ...near, point: [0, 0] };
+  return centerOnStreet(osm, frame, awayFromJunctions(osm, frame, near));
+}
+
 // Where an alley's area meets the street's axis pts (local metres): { p, clear } or null. Its vertices within
 // ALLEY_REACH of the axis are the mouth: the point of the axis nearest to their middle, the clearance beyond their half
 // spread along the axis.

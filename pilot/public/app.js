@@ -1,5 +1,5 @@
 import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, SURFACES, LAMP_HEIGHTS, underSize } from "./types.js";
-import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, splitTwoWayLane, capWideLanes, pedestrianZone, widenNarrowTrams, carveCycleways, carveTramTracks, lanesFromShoulders, trackAlongRoad, crossFromA, lawNeedFor, isOnewayTags, MAX_REACH } from "./derive.js";
+import { localFrame, nearestStreet, snapToWay, placeCut, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, splitTwoWayLane, capWideLanes, pedestrianZone, widenNarrowTrams, carveCycleways, carveTramTracks, lanesFromShoulders, trackAlongRoad, crossFromA, lawNeedFor, isOnewayTags, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO, CH_ORTHO, NL_ORTHO, BE_ORTHO, LU_ORTHO, PL_ORTHO, FR_ORTHO, ES_ORTHO, PT_ORTHO, PT_MAINLAND, ES_NOT_PNOA, CY_ORTHO, MT_ORTHO, IT_ORTHO, EE_ORTHO, SI_ORTHO, FI_ORTHO, DK_ORTHO, DE_ORTHO, deWmsUrl, landsAt, landAt, orthoHereAt } from "./lanes-ortho.js";
 import { dkToken } from "./keys.js";
@@ -544,8 +544,9 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       near = { ...snapToWay(pts, [0, 0]), way: osmCache.way, pts };
     } else {
       near = nearestStreet(osm, frame, [0, 0], wantName);
-      // A click lands the cut away from junctions and crossings; a dragged cut stays where it is put.
-      if (near) near = awayFromJunctions(osm, frame, near);
+      // A click lands the cut away from junctions and crossings; a dragged cut stays where it is put, a saved one (a link,
+      // a pasted position with its azimuth) exactly where it was saved.
+      if (near) near = placeCut(osm, frame, near, bearing !== null);
     }
     if (!near) {
       // A click with no street found is logged too (Bára: how many try outside the Czech Republic): only where, to
@@ -554,7 +555,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       return status(tr("Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko, Slovensko, Rakousko, Německo, Švýcarsko, Lichtenštejnsko, Nizozemsko, Belgii, Lucembursko, Polsko, Francii, Monako, Španělsko, Portugalsko, Kypr, Maltu, části Itálie, Estonsko, Slovinsko, Finsko, Dánsko a Litvu)."), "error");
     }
     // A street of two one-way carriageways is cut from its middle (e.g. the tram belt).
-    near = centerOnStreet(osm, frame, near);
+    if (keepWay && osmCache) near = centerOnStreet(osm, frame, near);
     // Re-centre the frame on the snapped point.
     const [clon, clat] = frame.toLonLat(...near.point);
     frame = localFrame(clat, clon);
