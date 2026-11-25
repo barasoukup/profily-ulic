@@ -309,3 +309,37 @@ Výhrada stejná jako v pilotu: posuzovatelé měření vynechávali úzké trav
 s výslovným pokynem tyto pásy počítat (`../usa/ab/`) vyšlo pro mapu 23 : 9 (stejně 7, nejasné 1), proto mapa zůstává
 zapnutá. Šířka uličního prostoru s mapou sedí lépe (do 2 m 40 proti 17 %). Společné změny zvedly shodu pruhů 45 → 52 %
 (hlavně počet pruhů z inventáře), složení se nezměnilo.
+
+## Přesnější pokyn posuzovatelům (25. 11. 2026)
+
+**Proč:** v pilotu Washingtonu posuzovatelé vynechávali travnaté pásy mezi chodníkem a obrubou a stání psali jen tam, kde
+zrovna stálo auto. `POKYN.md` má nový oddíl „Co do profilu patří“ (Bára schválila 25. 11. 2026): každá část od asi 0,5 m
+včetně pásů trávy a stromů, stání podle pruhu u obruby; z kalibrace v Praze (chybí chodník 34×, chybí pruh 10×, navíc dělicí
+pás 7×) chodník až k fasádě, chodník po kusech, pruhy neznačené obousměrky, těleso tramvaje bez vymyšlených dělicích pásů,
+fotky z jiného místa. Hodnocení (`compare.mjs`) beze změny, oficiální posudky zůstávají.
+
+**Test:** 42 už posouzených evropských řezů s fotkou (`pokyn2-select.mjs`: CZ 6, DE 7, NL 7, PL 6, FI 6, DK 6, AT 4; 15 z nich
+s pásem zeleně v profilu aplikace), tytéž snímky, čtyři noví posuzovatelé Sonnet naslepo s novým pokynem a **kontrola**: čtyři
+jiní se starým pokynem na týchž balíčcích (bez ní by nešel odlišit pokyn od šumu posuzování). Použitelných ve všech třech
+40 (`vysledky/pokyn2/`, `node evaluation/universal/pokyn2-score.mjs`, `skore.md`), profily aplikace současné.
+
+| posudky | shoda složení | pruhy stejně | šířka do 1 / 2 m | řezů s pásem (pásů) | řezů se stáním (pruhů stání) |
+|---|---|---|---|---|---|
+| oficiální (starý pokyn) | 54 % | 43 % | 10 / 30 % | 10 (14) | 21 (29) |
+| kontrola (noví, starý pokyn) | 50 % | 48 % | 25 / 43 % | 13 (14) | 20 (31) |
+| **noví, nový pokyn** | **55 %** | 50 % | 28 / 45 % | 13 (18) | 18 (28) |
+| (aplikace) | | | | 18 (21) | 17 (25) |
+
+- **Skóre se pohnulo málo:** proti oficiálním +1 bod (95 % −4 až +6), proti kontrole +5 (+1 až +10). Samo nové posouzení
+  starým pokynem dalo −4 (−10 až +1), takže posun pokynu je stejně velký jako šum posuzovatelů. Posudky mezi sebou:
+  oficiální ↔ kontrola 75 %, oficiální ↔ nové 78 %, kontrola ↔ nové 79 %.
+- **Pásy:** 14 → 18 (kontrola 14); nově v 5 řezech, ubylo ve 2. Starý pokyn tedy v tomto vzorku vynechal asi pětinu pásů.
+- **Stání:** nepřibylo (29 → 28, kontrola 31): v Evropě posuzovatelé stání už dřív psali, upřesnění tu nic nezměnilo.
+- Řezy s pásem v aplikaci 54 → 52 % (kontrola 46), ostatní 54 → 57 % (52). Po státech 5–7 řezů, jen orientačně.
+- **Výhrady:** zadání nových posuzovatelů navíc v závorce připomnělo pásy, stání a chodníky (kontrola ne); FI a DK
+  posuzoval původně Opus; CZ jen z 12 řezů s fotkou Mapillary (panoramata Mapy.com jsou smazaná); vzorek je pásy obohacený
+  podle aplikace. Oficiální šířky jsou hrubší než obojí nové posouzení.
+
+**Doporučení:** staré státy kvůli pokynu **neposuzovat znovu** (celé přeposouzení stojí asi 16 tisíc tokenů na řez, tedy
+přes 8 milionů, a posun je v mezích šumu). Nový pokyn používat u nových států a při každém dalším posuzování; čísla starého a
+nového pokynu brát jako srovnatelná do asi 5 bodů. Rozhodne Bára.
