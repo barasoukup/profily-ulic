@@ -106,4 +106,4 @@ zástavby, ne tvaru, a výjimku státu jsem nedělal.
 
 **Stojí čtení všech budov v Rakousku za to?** Na blocích kolem dvora dnešek : `?off=vsedomy` 5 : 8, na ostatních změněných domech (30 s fotkou,
 `ATa…`) **13 : 9** (stejně 4, nelze 4, p = 0,52, shoda 22 z 26). S 1. a 3. kolem (3 : 3 a 3 : 6) je to na náhodných změněných domech 19 : 18.
-Bloků kolem dvora, které čtení mění, je mezi 437 změněnými domy jen malá část, ostatní mírně vyhrávají: prohra není, výhra také ne; rozhodne Bára.
+Bloků kolem dvora, které čtení mění, je mezi 437 změněnými domy jen malá část, ostatní mírně vyhrávají: prohra není, výhra také ne. **Bára 25. 11. 2026: Rakousko zůstává na společném pravidle.**
