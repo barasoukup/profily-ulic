@@ -13,6 +13,11 @@ const VARIANTS = {
   pp: { q: "off=pocetpruhu", off: ["pocetpruhu"] },
   // Without DC's map, the orthophoto and the model: the page itself loaded with ?dc=0&orto=0&ai=0 (read once at the load).
   map0: { q: "toronto=0", off: [] }, // Canada (evaluation/canada): without the map of Toronto
+  ddot0: { q: "ddot=0", off: [] }, // Washington: the map without DDOT's inventory
+  gaps0: { q: "off=mapgaps", off: [] }, // Toronto's rules one by one
+  bays0: { q: "off=kerbbays", off: [] },
+  os0: { q: "off=otherstreet", off: ["otherstreet"] }, // the shared rules of the second review
+  tt0: { q: "off=tunneltracks", off: ["tunneltracks"] },
   rt0: { q: "off=roadtracks", off: [] }, // Canada: without OSM's cycle tracks in the map's carriageway
   osm: { q: "dc=0&toronto=0&orto=0&ai=0", off: [], load: true },
   old: { q: "off=ulicky,treepits,pocetpruhu", off: ["ulicky", "treepits", "pocetpruhu"] },
@@ -34,9 +39,9 @@ async function collectUs(name) {
     let row = { id: p.id, variant: v, country: p.country, town: p.town };
     const t0 = Date.now();
     try {
-      await Promise.race([window.cutAt(p.lat, p.lon, false, p.bearing ?? null, null, null, p.wayId ?? null), new Promise((_, no) => setTimeout(() => no(new Error("timeout 90 s")), 90000))]);
+      await Promise.race([window.cutAt(p.lat, p.lon, false, p.click ? null : p.bearing ?? null, null, null, p.click ? null : p.wayId ?? null), new Promise((_, no) => setTimeout(() => no(new Error("timeout 90 s")), 90000))]);
       const s = read();
-      row = { ...row, lat: s.cut?.lat, lon: s.cut?.lon, bearing: s.cut?.bearing, wayId: s.cut?.wayId, name: s.cut?.name || "", sources: s.cut?.sources, note: s.cut?.note,
+      row = { ...row, lat: s.cut?.lat, lon: s.cut?.lon, bearing: s.cut?.bearing, wayId: s.cut?.wayId, name: s.cut?.name || "", sources: s.cut?.sources, note: s.cut?.note, status: document.querySelector("#status")?.textContent || "", edges: s.stav?.edges,
         parts: (s.stav?.segments || []).map((x) => [x.type, +x.width.toFixed(2)]) };
     } catch (e) { row.error = String(e); }
     row.ms = Date.now() - t0;

@@ -204,7 +204,9 @@ export function planimetricCut(d, answers, osmElements, bbox, tags = null, { way
   d.prepare?.(runs, { tags, tracks: () => parallelsAt(osmElements, c, (el) => /^(tram|light_rail)$/.test(el.tags.railway)),
     cycleTracks: () => [...(osmElements || []).filter((el) => el.tags && el.id !== way?.id && isTrack(el))
       .flatMap((el) => parallelsAt([el], c, () => true).map((t) => ({ t, w: parseFloat(el.tags.width) || (el.tags.oneway === "yes" ? undefined : 3) }))),
-      ...taggedTracks(tags || {}).map((k) => ({ kerb: (k === "right") === along ? "hi" : "lo" }))] });
+      // (Of a street of two carriageways the other one's too, University Avenue.)
+      ...[[tags || {}, along], ...(osmElements || []).filter((el) => el.tags && el.id !== way?.id && tags?.name && el.tags.name === tags.name && el.tags.highway && !WALKED.has(el.tags.highway) && parallelsAt([el], c, () => true).length)
+        .map((el) => [el.tags, alongOf(el, c, street)])].flatMap(([t, a]) => taggedTracks(t).map((k) => ({ kerb: (k === "right") === a ? "hi" : "lo" })))] });
   alleyRoadway(runs, tags);
   if (!hasStreet(runs, tags)) return null;
   way ||= (osmElements || []).find((el) => el.type === "way" && el.tags === c.tags && el.geometry?.length > 1);
