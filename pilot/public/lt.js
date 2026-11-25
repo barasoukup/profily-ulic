@@ -1064,6 +1064,7 @@ export const LT = {
   "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)": "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)",
   "mapa povrchů (Planimetrics 2023) © DC GIS, Office of the Chief Technology Officer (CC BY 4.0)": "dangų žemėlapis (Planimetrics 2023) © DC GIS, Office of the Chief Technology Officer (CC BY 4.0)",
   "pruhy a stání (Roadway SubBlock) © DDOT, DC GIS (CC BY 4.0)": "juostos ir stovėjimas (Roadway SubBlock) © DDOT, DC GIS (CC BY 4.0)",
+  "domy (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)": "pastatai (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)",
   " · mapa povrchů Washingtonu neodpověděla, odhad z ortofota a OSM": " · Vašingtono dangų žemėlapis neatsakė, įvertis iš ortofoto ir OSM",
   "Mapa povrchů Washingtonu (DC GIS) teď neodpovídá, profil je odhad z ortofota a OSM.": "Vašingtono dangų žemėlapis šiuo metu neatsako, profilis yra įvertis iš ortofoto ir OSM.",
   "mapy povrchů Washingtonu, inventáře DDOT, ortofota a OSM": "Vašingtono dangų žemėlapio, DDOT inventoriaus, ortofoto ir OSM",

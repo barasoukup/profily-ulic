@@ -433,6 +433,8 @@ hranice okresů z TIGERweb Census Bureau), zbytek USA je `closed_us` s hláškou
   (`app.js` `wayTags`), pruhy stání u vnějších obrub vozovky (704) a cyklopruhy, kde je OSM nemá; kde blok je, odhad stání
   podle pravidel je vypnutý (`noParkGuess`); `?ddot=0` vypne;
 - **uličky** z planimetrie jako plochy `service=alley` v prvcích OSM (ústí uličky = křižovatka, `derive.js`);
+- **domy** z odhadních tabulek CAMA (rok, podlaží, druh, zdivo podle pozemku pod domem; `evaluation/north-america-art/cama/ZPRAVA.md`),
+  2–3 dotazy na řez, nejdéle 3,5 s; `?cama=0` vypne;
 - **ortofoto** DC 2025 (`Ortho2025_WebMercator`, export v Web Mercatoru, jen nad obdélníkem DC: `lanes-ortho.js us-dc`)
   pro pruhy, model obrub a podklad mapy. Mimo DC v metru jen odhad z OSM.
 Normy DDOT (DEM 2023, Bicycle Facility Design Guide 2020) a NACTO jen oranžově (`evaluation/usa/NORMY.md`), stání 3 m na

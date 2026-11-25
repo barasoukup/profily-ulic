@@ -46,12 +46,13 @@ The postwar block of the west (`povalecny`) is not used: roller shutters and col
    footprint an apartment house (an office in the office districts).
 4. Nothing known: the plain row house in the cities, the detached house elsewhere.
 
-`allBuildings` (`countries/default.js` false, US true): the look reads every OSM building, not only those with floors
+The look reads every OSM building, not only those with floors
 or a height. In DC proper 159 780 OSM buildings: floors 37 %, a height 0.2 %, year 0.1 %, roof shape 0.2 %, material
-0.05 %; the kind (not `yes`) 69 %. The built-up test is not touched.
+0.05 %; the kind (not `yes`) 69 %. The built-up test is not touched
+(since 25. 11. 2026 in every state, `evaluation/all-buildings/ZPRAVA.md`).
 
-Not used yet, would decide the year and floors: NYC PLUTO (`yearbuilt`, `numfloors`, `bldgclass`), DC's CAMA tables
-(`AYB`, `STORIES`, `STYLE_D`), Boston's property assessment (`YR_BUILT`, `RES_FLOOR`, `LU`), Toronto has 3D Massing
+Used in Washington: DC's CAMA tables (`towns/usa.js podlaznost`, `evaluation/north-america-art/cama/ZPRAVA.md`). Not used yet,
+would decide the year and floors: NYC PLUTO (`yearbuilt`, `numfloors`, `bldgclass`), Boston's property assessment (`YR_BUILT`, `RES_FLOOR`, `LU`), Toronto has 3D Massing
 (height). Field names from memory, to be checked when wired.
 
 ## References

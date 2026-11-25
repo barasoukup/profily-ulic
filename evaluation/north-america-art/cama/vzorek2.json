@@ -1,0 +1,2863 @@
+{
+ "rows": [
+  {
+   "id": "Cx01",
+   "street": "T Street Northwest",
+   "city": "washington",
+   "point": [
+    -77.0195635,
+    38.9155753
+   ],
+   "probe": [
+    -77.01956353043492,
+    38.91557533176954
+   ],
+   "mapillary": "105516745349161",
+   "pano": true,
+   "dist": 14.2,
+   "off": 120.4,
+   "tags": {
+    "osm_way_id": "74040907",
+    "building": "house",
+    "addr:housenumber": "524",
+    "addr:state": "DC",
+    "addr:street": "T Street Northwest",
+    "dataset": "buildings",
+    "dcgis:captureyear": "19990331",
+    "dcgis:gis_id": "92017",
+    "dcgis:lot": "0050",
+    "dcgis:square": "3093",
+    "house": "terraced"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 1890,
+    "cornice": 3,
+    "roof": 0,
+    "total": 3,
+    "type": "terrace",
+    "material": "brick"
+   },
+   "before": {
+    "look": "bayrow",
+    "info": {
+     "point": [
+      -77.01956353043492,
+      38.91557533176954
+     ],
+     "km": 99,
+     "block": {
+      "length": 139.9,
+      "width": 49.7,
+      "fill": 0.34,
+      "parts": 33
+     },
+     "tint": 0,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "bayrow",
+    "info": {
+     "levels": 3,
+     "point": [
+      -77.01956353043492,
+      38.91557533176954
+     ],
+     "km": 99,
+     "block": {
+      "length": 139.9,
+      "width": 49.7,
+      "fill": 0.34,
+      "parts": 33
+     },
+     "tint": 0,
+     "type": "house",
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1890,
+     "material": "brick"
+    }
+   }
+  },
+  {
+   "id": "Cx02",
+   "street": "Eckington Place Northeast",
+   "city": "washington",
+   "point": [
+    -77.0046261,
+    38.9108496
+   ],
+   "probe": [
+    -77.00462609798404,
+    38.91084963196617
+   ],
+   "mapillary": "1814924769379085",
+   "pano": true,
+   "dist": 15.9,
+   "off": -131.4,
+   "tags": {
+    "osm_way_id": "399138396",
+    "building": "apartments",
+    "addr:city": "Washington",
+    "addr:housenumber": "151",
+    "addr:postcode": "20002",
+    "addr:state": "DC",
+    "addr:street": "Q Street Northeast"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 2012,
+    "type": "apartments",
+    "material": "brick"
+   },
+   "before": {
+    "look": "brickblock",
+    "info": {
+     "point": [
+      -77.00462609798404,
+      38.91084963196617
+     ],
+     "km": 99,
+     "block": {
+      "length": 167.7,
+      "width": 43.5,
+      "fill": 0.6,
+      "parts": 1
+     },
+     "tint": 1,
+     "type": "apartments"
+    }
+   },
+   "after": {
+    "look": "podium",
+    "info": {
+     "point": [
+      -77.00462609798404,
+      38.91084963196617
+     ],
+     "km": 99,
+     "block": {
+      "length": 167.7,
+      "width": 43.5,
+      "fill": 0.6,
+      "parts": 1
+     },
+     "tint": 1,
+     "type": "apartments",
+     "built": 2012,
+     "material": "brick"
+    }
+   }
+  },
+  {
+   "id": "Cx03",
+   "street": "Quincy Street Northwest",
+   "city": "washington",
+   "point": [
+    -77.019396,
+    38.9375539
+   ],
+   "probe": [
+    -77.01939602243505,
+    38.93755393551949
+   ],
+   "mapillary": "1156176818849990",
+   "pano": true,
+   "dist": 24.6,
+   "off": 166.8,
+   "tags": {
+    "osm_way_id": "70142343",
+    "building": "detached",
+    "addr:housenumber": "503",
+    "addr:street": "Rock Creek Church Road Northwest",
+    "dataset": "buildings",
+    "dcgis:captureyear": "19990331",
+    "dcgis:gis_id": "118298",
+    "dcgis:lot": "0011",
+    "dcgis:square": "3234"
+   },
+   "cama": {
+    "usCama": true,
+    "material": "metal"
+   },
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -77.01939602243505,
+      38.93755393551949
+     ],
+     "km": 99,
+     "block": {
+      "length": 19.2,
+      "width": 14.7,
+      "fill": 0.73,
+      "parts": 1
+     },
+     "tint": 2,
+     "type": "detached"
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -77.01939602243505,
+      38.93755393551949
+     ],
+     "km": 99,
+     "block": {
+      "length": 19.2,
+      "width": 14.7,
+      "fill": 0.73,
+      "parts": 1
+     },
+     "tint": 2,
+     "type": "detached",
+     "material": "metal"
+    }
+   }
+  },
+  {
+   "id": "Cx04",
+   "street": "Bryant Street Northeast",
+   "city": "washington",
+   "point": [
+    -76.9872268,
+    38.9212713
+   ],
+   "probe": [
+    -76.9872268285005,
+    38.92127129138821
+   ],
+   "mapillary": "1152244938629226",
+   "pano": true,
+   "dist": 18.7,
+   "off": 41.3,
+   "tags": {
+    "osm_way_id": "298584428",
+    "building": "yes",
+    "addr:housenumber": "1348",
+    "addr:postcode": "20018",
+    "addr:street": "Bryant Street Northeast",
+    "dcgis:gis_id": "63856"
+   },
+   "cama": {},
+   "before": {
+    "look": "bayrow",
+    "info": {
+     "point": [
+      -76.9872268285005,
+      38.92127129138821
+     ],
+     "km": 99,
+     "block": {
+      "length": 217.8,
+      "width": 19.8,
+      "fill": 0.79,
+      "parts": 21
+     },
+     "tint": 3
+    }
+   },
+   "after": {
+    "look": "bayrow",
+    "info": {
+     "point": [
+      -76.9872268285005,
+      38.92127129138821
+     ],
+     "km": 99,
+     "block": {
+      "length": 217.8,
+      "width": 19.8,
+      "fill": 0.79,
+      "parts": 21
+     },
+     "tint": 3
+    }
+   }
+  },
+  {
+   "id": "Cx05",
+   "street": "Rhode Island Avenue Northeast",
+   "city": "washington",
+   "point": [
+    -76.9685284,
+    38.9325081
+   ],
+   "probe": [
+    -76.96852838649546,
+    38.93250810878243
+   ],
+   "mapillary": "1130105294213567",
+   "pano": true,
+   "dist": 24.7,
+   "off": -123.2,
+   "tags": {
+    "osm_way_id": "297219305",
+    "building": "detached",
+    "addr:housenumber": "2675",
+    "addr:postcode": "20018",
+    "addr:street": "Rhode Island Avenue Northeast",
+    "dcgis:gis_id": "62404"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 1923,
+    "cornice": 2,
+    "roof": 0,
+    "total": 2,
+    "type": "detached",
+    "material": "wood"
+   },
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -76.96852838649546,
+      38.93250810878243
+     ],
+     "km": 99,
+     "block": {
+      "length": 14,
+      "width": 10.1,
+      "fill": 0.79,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "detached"
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "levels": 2,
+     "point": [
+      -76.96852838649546,
+      38.93250810878243
+     ],
+     "km": 99,
+     "block": {
+      "length": 14,
+      "width": 10.1,
+      "fill": 0.79,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "detached",
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1923,
+     "material": "wood"
+    }
+   }
+  },
+  {
+   "id": "Cx06",
+   "street": "4th Street Northwest",
+   "city": "washington",
+   "point": [
+    -77.016002,
+    38.9009714
+   ],
+   "probe": [
+    -77.01600204725973,
+    38.90097141121278
+   ],
+   "mapillary": "1247019706121031",
+   "pano": false,
+   "dist": 22.5,
+   "off": -28.6,
+   "tags": {
+    "osm_way_id": "67093389",
+    "building": "yes",
+    "addr:housenumber": "811",
+    "addr:street": "4th Street Northwest",
+    "building:levels": "12",
+    "dataset": "buildings",
+    "dcgis:captureyear": "20080530",
+    "dcgis:gis_id": "94916",
+    "dcgis:lot": "0031",
+    "dcgis:square": "0528",
+    "height": "43.50"
+   },
+   "cama": {},
+   "before": {
+    "look": "brickblock",
+    "info": {
+     "levels": 12,
+     "height": 43.5,
+     "point": [
+      -77.01600204725973,
+      38.90097141121278
+     ],
+     "km": 99,
+     "block": {
+      "length": 77.2,
+      "width": 58,
+      "fill": 0.45,
+      "parts": 1
+     },
+     "tint": 1
+    }
+   },
+   "after": {
+    "look": "brickblock",
+    "info": {
+     "levels": 12,
+     "height": 43.5,
+     "point": [
+      -77.01600204725973,
+      38.90097141121278
+     ],
+     "km": 99,
+     "block": {
+      "length": 77.2,
+      "width": 58,
+      "fill": 0.45,
+      "parts": 1
+     },
+     "tint": 1
+    }
+   }
+  },
+  {
+   "id": "Cx07",
+   "street": "34th Street Southeast",
+   "city": "washington",
+   "point": [
+    -76.9572699,
+    38.8592673
+   ],
+   "probe": [
+    -76.95726989289166,
+    38.85926726919
+   ],
+   "mapillary": "1073559960177738",
+   "pano": true,
+   "dist": 20.5,
+   "off": 62.7,
+   "tags": {
+    "osm_way_id": "295823158",
+    "building": "detached",
+    "addr:housenumber": "2500",
+    "addr:postcode": "20020",
+    "addr:state": "DC",
+    "addr:street": "34th Street Southeast",
+    "building:levels": "2",
+    "dcgis:gis_id": "37823"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 1939,
+    "cornice": 2,
+    "roof": 0,
+    "total": 2,
+    "type": "detached",
+    "material": "brick"
+   },
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "levels": 2,
+     "point": [
+      -76.95726989289166,
+      38.85926726919
+     ],
+     "km": 99,
+     "block": {
+      "length": 19.8,
+      "width": 13.2,
+      "fill": 0.59,
+      "parts": 1
+     },
+     "tint": 2,
+     "type": "detached"
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "levels": 2,
+     "point": [
+      -76.95726989289166,
+      38.85926726919
+     ],
+     "km": 99,
+     "block": {
+      "length": 19.8,
+      "width": 13.2,
+      "fill": 0.59,
+      "parts": 1
+     },
+     "tint": 2,
+     "type": "detached",
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1939,
+     "material": "brick"
+    }
+   }
+  },
+  {
+   "id": "Cx08",
+   "street": "Woodmont Place Southeast",
+   "city": "washington",
+   "point": [
+    -76.9756718,
+    38.8636809
+   ],
+   "probe": [
+    -76.97567177718926,
+    38.86368085724903
+   ],
+   "mapillary": "1196898574456480",
+   "pano": true,
+   "dist": 11.9,
+   "off": 103.5,
+   "tags": {
+    "osm_way_id": "55377326",
+    "building": "detached",
+    "addr:city": "Washington",
+    "addr:country": "US",
+    "addr:housenumber": "1848",
+    "addr:postcode": "20020",
+    "addr:state": "DC",
+    "addr:street": "Woodmont Place Southeast",
+    "dcgis:captureyear": "20080530",
+    "dcgis:dataset": "buildings",
+    "dcgis:featurecode": "2000",
+    "mappingdc:gid": "124641"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 2006,
+    "cornice": 2,
+    "roof": 0,
+    "total": 2,
+    "type": "detached",
+    "material": "brick"
+   },
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -76.97567177718926,
+      38.86368085724903
+     ],
+     "km": 99,
+     "block": {
+      "length": 21.9,
+      "width": 11.8,
+      "fill": 0.65,
+      "parts": 1
+     },
+     "tint": 3,
+     "type": "detached"
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "levels": 2,
+     "point": [
+      -76.97567177718926,
+      38.86368085724903
+     ],
+     "km": 99,
+     "block": {
+      "length": 21.9,
+      "width": 11.8,
+      "fill": 0.65,
+      "parts": 1
+     },
+     "tint": 3,
+     "type": "detached",
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr",
+     "built": 2006,
+     "material": "brick"
+    }
+   }
+  },
+  {
+   "id": "Cx09",
+   "street": "W Street Northwest",
+   "city": "washington",
+   "point": [
+    -77.0337714,
+    38.9193156
+   ],
+   "probe": [
+    -77.03377136467637,
+    38.91931563742621
+   ],
+   "mapillary": "109273691868749",
+   "pano": true,
+   "dist": 12.9,
+   "off": -32.2,
+   "tags": {
+    "osm_way_id": "67128094",
+    "building": "house",
+    "addr:housenumber": "1447",
+    "addr:state": "DC",
+    "addr:street": "W Street Northwest",
+    "dataset": "buildings",
+    "dcgis:captureyear": "19990331",
+    "dcgis:gis_id": "21055",
+    "dcgis:lot": "0812",
+    "dcgis:square": "0202",
+    "house": "terraced"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 1890,
+    "cornice": 2,
+    "roof": 0,
+    "total": 2,
+    "type": "terrace",
+    "material": "brick"
+   },
+   "before": {
+    "look": "bayrow",
+    "info": {
+     "point": [
+      -77.03377136467637,
+      38.91931563742621
+     ],
+     "km": 99,
+     "block": {
+      "length": 49.1,
+      "width": 17.2,
+      "fill": 0.77,
+      "parts": 8
+     },
+     "tint": 0,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "bayrow",
+    "info": {
+     "levels": 2,
+     "point": [
+      -77.03377136467637,
+      38.91931563742621
+     ],
+     "km": 99,
+     "block": {
+      "length": 49.1,
+      "width": 17.2,
+      "fill": 0.77,
+      "parts": 8
+     },
+     "tint": 0,
+     "type": "house",
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1890,
+     "material": "brick"
+    }
+   }
+  },
+  {
+   "id": "Cx10",
+   "street": "Fern Place Northwest",
+   "city": "washington",
+   "point": [
+    -77.0260192,
+    38.978154
+   ],
+   "probe": [
+    -77.02601919594001,
+    38.97815396133463
+   ],
+   "mapillary": "122281416582464",
+   "pano": true,
+   "dist": 19,
+   "off": 135.1,
+   "tags": {
+    "osm_way_id": "1086096139",
+    "building": "yes"
+   },
+   "cama": {},
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -77.02601919594001,
+      38.97815396133463
+     ],
+     "km": 99,
+     "block": {
+      "length": 20.1,
+      "width": 17.9,
+      "fill": 0.62,
+      "parts": 1
+     },
+     "tint": 1
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -77.02601919594001,
+      38.97815396133463
+     ],
+     "km": 99,
+     "block": {
+      "length": 20.1,
+      "width": 17.9,
+      "fill": 0.62,
+      "parts": 1
+     },
+     "tint": 1
+    }
+   }
+  },
+  {
+   "id": "Cx11",
+   "street": "42nd Street Northwest",
+   "city": "washington",
+   "point": [
+    -77.0816891,
+    38.9228602
+   ],
+   "probe": [
+    -77.08168912468,
+    38.9228601576126
+   ],
+   "mapillary": "1116651099176716",
+   "pano": true,
+   "dist": 17.7,
+   "off": -55.8,
+   "tags": {
+    "osm_way_id": "68034236",
+    "building": "yes",
+    "building:levels": "4",
+    "dataset": "buildings",
+    "dcgis:captureyear": "19990331",
+    "dcgis:gis_id": "101130"
+   },
+   "cama": {},
+   "before": {
+    "look": "brickblock",
+    "info": {
+     "levels": 4,
+     "point": [
+      -77.08168912468,
+      38.9228601576126
+     ],
+     "km": 99,
+     "block": {
+      "length": 87.7,
+      "width": 48.3,
+      "fill": 0.43,
+      "parts": 1
+     },
+     "tint": 2
+    }
+   },
+   "after": {
+    "look": "brickblock",
+    "info": {
+     "levels": 4,
+     "point": [
+      -77.08168912468,
+      38.9228601576126
+     ],
+     "km": 99,
+     "block": {
+      "length": 87.7,
+      "width": 48.3,
+      "fill": 0.43,
+      "parts": 1
+     },
+     "tint": 2
+    }
+   }
+  },
+  {
+   "id": "Cx12",
+   "street": "Kennedy Street Northwest",
+   "city": "washington",
+   "point": [
+    -77.0206486,
+    38.9562502
+   ],
+   "probe": [
+    -77.02064857280841,
+    38.95625021546162
+   ],
+   "mapillary": "119433120623271",
+   "pano": true,
+   "dist": 16.7,
+   "off": 70.3,
+   "tags": {
+    "osm_way_id": "297356805",
+    "building": "house",
+    "addr:housenumber": "516",
+    "addr:postcode": "20011",
+    "addr:street": "Kennedy Street Northwest",
+    "dcgis:gis_id": "159511",
+    "house": "terraced"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 1927,
+    "type": "retail",
+    "material": "brick"
+   },
+   "before": {
+    "look": "porchrow",
+    "info": {
+     "point": [
+      -77.02064857280841,
+      38.95625021546162
+     ],
+     "km": 99,
+     "block": {
+      "length": 106.8,
+      "width": 43.6,
+      "fill": 0.64,
+      "parts": 10
+     },
+     "tint": 3,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "porchrow",
+    "info": {
+     "point": [
+      -77.02064857280841,
+      38.95625021546162
+     ],
+     "km": 99,
+     "block": {
+      "length": 106.8,
+      "width": 43.6,
+      "fill": 0.64,
+      "parts": 10
+     },
+     "tint": 3,
+     "type": "house",
+     "built": 1927,
+     "material": "brick"
+    }
+   }
+  },
+  {
+   "id": "Cx13",
+   "street": "35th Street Northwest",
+   "city": "washington",
+   "point": [
+    -77.0687936,
+    38.9095717
+   ],
+   "probe": [
+    -77.06879362282281,
+    38.909571683189604
+   ],
+   "mapillary": "1126028894994859",
+   "pano": false,
+   "dist": 24.9,
+   "off": -19.6,
+   "tags": {
+    "osm_way_id": "66347682",
+    "building": "yes",
+    "dataset": "buildings",
+    "dcgis:captureyear": "19990331",
+    "dcgis:gis_id": "16962"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 1854,
+    "cornice": 3,
+    "roof": 0,
+    "total": 3,
+    "type": "terrace",
+    "material": "stone"
+   },
+   "before": {
+    "look": "bayrow",
+    "info": {
+     "point": [
+      -77.06879362282281,
+      38.909571683189604
+     ],
+     "km": 99,
+     "block": {
+      "length": 31.3,
+      "width": 24.8,
+      "fill": 0.53,
+      "parts": 4
+     },
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "bayrow",
+    "info": {
+     "levels": 3,
+     "point": [
+      -77.06879362282281,
+      38.909571683189604
+     ],
+     "km": 99,
+     "block": {
+      "length": 31.3,
+      "width": 24.8,
+      "fill": 0.53,
+      "parts": 4
+     },
+     "tint": 0,
+     "cornice": 3,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1854,
+     "material": "stone",
+     "type": "terrace"
+    }
+   }
+  },
+  {
+   "id": "Cx14",
+   "street": "W Street Southeast",
+   "city": "washington",
+   "point": [
+    -76.9798438,
+    38.8629305
+   ],
+   "probe": [
+    -76.97984379617114,
+    38.862930451042175
+   ],
+   "mapillary": "1070074567727726",
+   "pano": false,
+   "dist": 25.1,
+   "off": -18.9,
+   "tags": {
+    "osm_way_id": "55377470",
+    "building": "detached",
+    "addr:city": "Washington",
+    "addr:country": "US",
+    "addr:housenumber": "1724",
+    "addr:postcode": "20020",
+    "addr:state": "DC",
+    "addr:street": "W Street Southeast",
+    "dcgis:captureyear": "19990331",
+    "dcgis:dataset": "buildings",
+    "dcgis:featurecode": "2000",
+    "mappingdc:gid": "47877"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 1965,
+    "type": "apartments",
+    "material": "brick"
+   },
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -76.97984379617114,
+      38.862930451042175
+     ],
+     "km": 99,
+     "block": {
+      "length": 75.7,
+      "width": 27.6,
+      "fill": 0.53,
+      "parts": 7
+     },
+     "tint": 1,
+     "type": "detached"
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -76.97984379617114,
+      38.862930451042175
+     ],
+     "km": 99,
+     "block": {
+      "length": 75.7,
+      "width": 27.6,
+      "fill": 0.53,
+      "parts": 7
+     },
+     "tint": 1,
+     "type": "detached",
+     "built": 1965,
+     "material": "brick"
+    }
+   }
+  },
+  {
+   "id": "Cx15",
+   "street": "T Street Northeast",
+   "city": "washington",
+   "point": [
+    -77.0078243,
+    38.9154362
+   ],
+   "probe": [
+    -77.00782430831792,
+    38.91543623343148
+   ],
+   "mapillary": "1025220071696487",
+   "pano": true,
+   "dist": 14.6,
+   "off": 21.7,
+   "tags": {
+    "osm_way_id": "296215182",
+    "building": "yes",
+    "building:levels": "2",
+    "dcgis:gis_id": "16357"
+   },
+   "cama": {},
+   "before": {
+    "look": "bayrow",
+    "info": {
+     "point": [
+      -77.00782430831792,
+      38.91543623343148
+     ],
+     "km": 99,
+     "tint": 2
+    }
+   },
+   "after": {
+    "look": "bayrow",
+    "info": {
+     "point": [
+      -77.00782430831792,
+      38.91543623343148
+     ],
+     "km": 99,
+     "tint": 2
+    }
+   }
+  },
+  {
+   "id": "Cx16",
+   "street": "4th Street Northeast",
+   "city": "washington",
+   "point": [
+    -77.0003709,
+    38.9243441
+   ],
+   "probe": [
+    -77.00037088655071,
+    38.92434407032851
+   ],
+   "mapillary": "1130375534210765",
+   "pano": true,
+   "dist": 15.6,
+   "off": 43.1,
+   "tags": {
+    "osm_way_id": "55321738",
+    "building": "detached",
+    "addr:city": "Washington",
+    "addr:country": "US",
+    "addr:housenumber": "401",
+    "addr:postcode": "20017",
+    "addr:state": "DC",
+    "addr:street": "Evarts Street Northeast",
+    "dcgis:captureyear": "19990331",
+    "dcgis:dataset": "buildings",
+    "dcgis:featurecode": "2000",
+    "mappingdc:gid": "103934"
+   },
+   "cama": {},
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -77.00037088655071,
+      38.92434407032851
+     ],
+     "km": 99,
+     "block": {
+      "length": 28.6,
+      "width": 19.1,
+      "fill": 0.54,
+      "parts": 1
+     },
+     "tint": 3,
+     "type": "detached"
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -77.00037088655071,
+      38.92434407032851
+     ],
+     "km": 99,
+     "block": {
+      "length": 28.6,
+      "width": 19.1,
+      "fill": 0.54,
+      "parts": 1
+     },
+     "tint": 3,
+     "type": "detached"
+    }
+   }
+  },
+  {
+   "id": "Cx17",
+   "street": "3rd Street Southeast",
+   "city": "washington",
+   "point": [
+    -77.0017929,
+    38.830656
+   ],
+   "probe": [
+    -77.00179293100732,
+    38.83065601522185
+   ],
+   "mapillary": "1190915328363637",
+   "pano": true,
+   "dist": 15.6,
+   "off": -106.1,
+   "tags": {
+    "osm_way_id": "67292789",
+    "building": "yes",
+    "dataset": "buildings",
+    "dcgis:captureyear": "19990331",
+    "dcgis:gis_id": "41481"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 1943,
+    "cornice": 2,
+    "roof": 0,
+    "total": 2,
+    "type": "semidetached_house",
+    "material": "brick"
+   },
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -77.00179293100732,
+      38.83065601522185
+     ],
+     "km": 99,
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "porchrow",
+    "info": {
+     "levels": 2,
+     "point": [
+      -77.00179293100732,
+      38.83065601522185
+     ],
+     "km": 99,
+     "tint": 0,
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1943,
+     "material": "brick",
+     "type": "semidetached_house"
+    }
+   }
+  },
+  {
+   "id": "Cx18",
+   "street": "N Street Southeast",
+   "city": "washington",
+   "point": [
+    -77.0063619,
+    38.8744771
+   ],
+   "probe": [
+    -77.00636189358298,
+    38.874477092692246
+   ],
+   "mapillary": "289100539844227",
+   "pano": true,
+   "dist": 14.9,
+   "off": 60.9,
+   "tags": {
+    "osm_way_id": "67263504",
+    "building": "parking",
+    "fee": "yes",
+    "park_ride": "no",
+    "parking": "multi-storey"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 2021
+   },
+   "before": {
+    "look": "brickblock",
+    "info": {
+     "point": [
+      -77.00636189358298,
+      38.874477092692246
+     ],
+     "km": 99,
+     "block": {
+      "length": 85.5,
+      "width": 57.2,
+      "fill": 0.96,
+      "parts": 1
+     },
+     "tint": 1,
+     "type": "parking"
+    }
+   },
+   "after": {
+    "look": "podium",
+    "info": {
+     "point": [
+      -77.00636189358298,
+      38.874477092692246
+     ],
+     "km": 99,
+     "block": {
+      "length": 85.5,
+      "width": 57.2,
+      "fill": 0.96,
+      "parts": 1
+     },
+     "tint": 1,
+     "type": "parking",
+     "built": 2021
+    }
+   }
+  },
+  {
+   "id": "Cx19",
+   "street": "10th Street Northeast",
+   "city": "washington",
+   "point": [
+    -76.9925761,
+    38.9522419
+   ],
+   "probe": [
+    -76.99257614144945,
+    38.952241939530865
+   ],
+   "mapillary": "1120091078844166",
+   "pano": true,
+   "dist": 21.7,
+   "off": -133.7,
+   "tags": {
+    "osm_way_id": "296209080",
+    "building": "semidetached_house",
+    "addr:housenumber": "5081",
+    "addr:postcode": "20017",
+    "addr:street": "10th Street Northeast",
+    "building:levels": "2",
+    "dcgis:gis_id": "72687"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 1951,
+    "cornice": 2,
+    "roof": 0,
+    "total": 2,
+    "type": "semidetached_house",
+    "material": "brick"
+   },
+   "before": {
+    "look": "porchrow",
+    "info": {
+     "levels": 2,
+     "point": [
+      -76.99257614144945,
+      38.952241939530865
+     ],
+     "km": 99,
+     "block": {
+      "length": 16.7,
+      "width": 13,
+      "fill": 0.64,
+      "parts": 2
+     },
+     "tint": 2,
+     "type": "semidetached_house"
+    }
+   },
+   "after": {
+    "look": "porchrow",
+    "info": {
+     "levels": 2,
+     "point": [
+      -76.99257614144945,
+      38.952241939530865
+     ],
+     "km": 99,
+     "block": {
+      "length": 16.7,
+      "width": 13,
+      "fill": 0.64,
+      "parts": 2
+     },
+     "tint": 2,
+     "type": "semidetached_house",
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1951,
+     "material": "brick"
+    }
+   }
+  },
+  {
+   "id": "Cx20",
+   "street": "Ridge Square Northwest",
+   "city": "washington",
+   "point": [
+    -77.0775304,
+    38.9409991
+   ],
+   "probe": [
+    -77.07753038628617,
+    38.940999115026905
+   ],
+   "mapillary": "1616311713063993",
+   "pano": false,
+   "dist": 16.3,
+   "off": 7.5,
+   "tags": {
+    "osm_way_id": "1066990586",
+    "building": "apartments"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 2022,
+    "type": "apartments",
+    "material": "brick"
+   },
+   "before": {
+    "look": "brickblock",
+    "info": {
+     "point": [
+      -77.07753038628617,
+      38.940999115026905
+     ],
+     "km": 99,
+     "block": {
+      "length": 193.9,
+      "width": 124.4,
+      "fill": 0.31,
+      "parts": 5
+     },
+     "tint": 3,
+     "type": "apartments"
+    }
+   },
+   "after": {
+    "look": "podium",
+    "info": {
+     "point": [
+      -77.07753038628617,
+      38.940999115026905
+     ],
+     "km": 99,
+     "block": {
+      "length": 193.9,
+      "width": 124.4,
+      "fill": 0.31,
+      "parts": 5
+     },
+     "tint": 3,
+     "type": "apartments",
+     "built": 2022,
+     "material": "brick"
+    }
+   }
+  },
+  {
+   "id": "Cx21",
+   "street": "Hawthorne Lane Northwest",
+   "city": "washington",
+   "point": [
+    -77.0922332,
+    38.9286648
+   ],
+   "probe": [
+    -77.09223323097619,
+    38.92866481520163
+   ],
+   "mapillary": "382281869777892",
+   "pano": true,
+   "dist": 23.4,
+   "off": 52.3,
+   "tags": {
+    "osm_way_id": "91603783",
+    "building": "detached",
+    "addr:housenumber": "4638",
+    "addr:state": "DC",
+    "addr:street": "Hawthorne Lane Northwest",
+    "dataset": "buildings",
+    "dcgis:captureyear": "19990331",
+    "dcgis:gis_id": "113084",
+    "dcgis:lot": "0818",
+    "dcgis:square": "1406"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 1938,
+    "cornice": 2,
+    "roof": 0,
+    "total": 2,
+    "type": "detached",
+    "material": "stone"
+   },
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -77.09223323097619,
+      38.92866481520163
+     ],
+     "km": 99,
+     "block": {
+      "length": 17.1,
+      "width": 17.2,
+      "fill": 0.69,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "detached"
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "levels": 2,
+     "point": [
+      -77.09223323097619,
+      38.92866481520163
+     ],
+     "km": 99,
+     "block": {
+      "length": 17.1,
+      "width": 17.2,
+      "fill": 0.69,
+      "parts": 1
+     },
+     "tint": 0,
+     "type": "detached",
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1938,
+     "material": "stone"
+    }
+   }
+  },
+  {
+   "id": "Cx22",
+   "street": "Maryland Avenue Northeast",
+   "city": "washington",
+   "point": [
+    -77.0047543,
+    38.8917303
+   ],
+   "probe": [
+    -77.00475429764246,
+    38.89173031689863
+   ],
+   "mapillary": "1016789375521579",
+   "pano": true,
+   "dist": 21.4,
+   "off": -171.5,
+   "tags": {
+    "osm_way_id": "66732871",
+    "building": "house",
+    "addr:city": "Washington",
+    "addr:housenumber": "122",
+    "addr:state": "DC",
+    "addr:street": "Maryland Avenue Northeast",
+    "dataset": "buildings",
+    "dcgis:captureyear": "19990331",
+    "dcgis:lot": "0007",
+    "dcgis:square": "0726",
+    "wikidata": "Q5769319",
+    "wikipedia": "en:Hiram W. Johnson House"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 1952,
+    "type": "office",
+    "material": "brick"
+   },
+   "before": {
+    "look": "bayrow",
+    "info": {
+     "point": [
+      -77.00475429764246,
+      38.89173031689863
+     ],
+     "km": 99,
+     "block": {
+      "length": 99.9,
+      "width": 45.4,
+      "fill": 0.54,
+      "parts": 8
+     },
+     "tint": 1,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "porchrow",
+    "info": {
+     "point": [
+      -77.00475429764246,
+      38.89173031689863
+     ],
+     "km": 99,
+     "block": {
+      "length": 99.9,
+      "width": 45.4,
+      "fill": 0.54,
+      "parts": 8
+     },
+     "tint": 1,
+     "type": "house",
+     "built": 1952,
+     "material": "brick"
+    }
+   }
+  },
+  {
+   "id": "Cx23",
+   "street": "Girard Street Northeast",
+   "city": "washington",
+   "point": [
+    -76.9927368,
+    38.9263388
+   ],
+   "probe": [
+    -76.99273678395078,
+    38.9263388375527
+   ],
+   "mapillary": "1521670934836438",
+   "pano": false,
+   "dist": 22,
+   "off": 0.8,
+   "tags": {
+    "osm_way_id": "296508062",
+    "building": "yes",
+    "dcgis:gis_id": "75464"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 1955,
+    "type": "industrial",
+    "material": "wood"
+   },
+   "before": {
+    "look": "brickblock",
+    "info": {
+     "point": [
+      -76.99273678395078,
+      38.9263388375527
+     ],
+     "km": 99,
+     "block": {
+      "length": 86,
+      "width": 50.6,
+      "fill": 0.78,
+      "parts": 3
+     },
+     "tint": 2
+    }
+   },
+   "after": {
+    "look": "hala",
+    "info": {
+     "point": [
+      -76.99273678395078,
+      38.9263388375527
+     ],
+     "km": 99,
+     "block": {
+      "length": 86,
+      "width": 50.6,
+      "fill": 0.78,
+      "parts": 3
+     },
+     "tint": 2,
+     "built": 1955,
+     "material": "wood",
+     "type": "industrial"
+    }
+   }
+  },
+  {
+   "id": "Cx24",
+   "street": "S Street Northwest",
+   "city": "washington",
+   "point": [
+    -77.07086,
+    38.9146975
+   ],
+   "probe": [
+    -77.0708599879971,
+    38.914697527952235
+   ],
+   "mapillary": "130357189557871",
+   "pano": true,
+   "dist": 15.7,
+   "off": -94.5,
+   "tags": {
+    "osm_way_id": "67528209",
+    "building": "house",
+    "addr:housenumber": "3545",
+    "addr:state": "DC",
+    "addr:street": "S Street Northwest",
+    "dataset": "buildings",
+    "dcgis:captureyear": "19990331",
+    "dcgis:gis_id": "17819",
+    "dcgis:lot": "0029",
+    "dcgis:square": "1302",
+    "house": "terraced"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 1912,
+    "cornice": 2,
+    "roof": 0,
+    "total": 2,
+    "type": "terrace",
+    "material": "brick"
+   },
+   "before": {
+    "look": "bayrow",
+    "info": {
+     "point": [
+      -77.0708599879971,
+      38.914697527952235
+     ],
+     "km": 99,
+     "block": {
+      "length": 75.2,
+      "width": 23.6,
+      "fill": 0.58,
+      "parts": 13
+     },
+     "tint": 3,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "bayrow",
+    "info": {
+     "levels": 2,
+     "point": [
+      -77.0708599879971,
+      38.914697527952235
+     ],
+     "km": 99,
+     "block": {
+      "length": 75.2,
+      "width": 23.6,
+      "fill": 0.58,
+      "parts": 13
+     },
+     "tint": 3,
+     "type": "house",
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1912,
+     "material": "brick"
+    }
+   }
+  },
+  {
+   "id": "Cx25",
+   "street": "Nannie Helen Burroughs Avenue Northeast",
+   "city": "washington",
+   "point": [
+    -76.9229438,
+    38.8985521
+   ],
+   "probe": [
+    -76.92294379669823,
+    38.89855208795262
+   ],
+   "mapillary": "1008108809896383",
+   "pano": true,
+   "dist": 13.7,
+   "off": 109.2,
+   "tags": {
+    "osm_way_id": "294867082",
+    "building": "semidetached_house",
+    "addr:housenumber": "5360",
+    "addr:postcode": "20019",
+    "addr:street": "Nannie Helen Burroughs Avenue Northeast",
+    "building:levels": "2",
+    "dcgis:gis_id": "54272"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 1968,
+    "cornice": 2,
+    "roof": 0,
+    "total": 2,
+    "type": "semidetached_house",
+    "material": "brick"
+   },
+   "before": {
+    "look": "porchrow",
+    "info": {
+     "levels": 2,
+     "point": [
+      -76.92294379669823,
+      38.89855208795262
+     ],
+     "km": 99,
+     "block": {
+      "length": 17.2,
+      "width": 14.3,
+      "fill": 0.67,
+      "parts": 2
+     },
+     "tint": 0,
+     "type": "semidetached_house"
+    }
+   },
+   "after": {
+    "look": "porchrow",
+    "info": {
+     "levels": 2,
+     "point": [
+      -76.92294379669823,
+      38.89855208795262
+     ],
+     "km": 99,
+     "block": {
+      "length": 17.2,
+      "width": 14.3,
+      "fill": 0.67,
+      "parts": 2
+     },
+     "tint": 0,
+     "type": "semidetached_house",
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1968,
+     "material": "brick"
+    }
+   }
+  },
+  {
+   "id": "Cx26",
+   "street": "7th Street Northwest",
+   "city": "washington",
+   "point": [
+    -77.0221019,
+    38.8995093
+   ],
+   "probe": [
+    -77.02210187362861,
+    38.89950927322468
+   ],
+   "mapillary": "1199225467598703",
+   "pano": true,
+   "dist": 11.3,
+   "off": 40,
+   "tags": {
+    "osm_way_id": "48041444",
+    "building": "yes",
+    "dcgis:captureyear": "20050404",
+    "dcgis:dataset": "buildings",
+    "dcgis:featurecode": "2000"
+   },
+   "cama": {},
+   "before": {
+    "look": "bayrow",
+    "info": {
+     "point": [
+      -77.02210187362861,
+      38.89950927322468
+     ],
+     "km": 99,
+     "block": {
+      "length": 128.9,
+      "width": 77.8,
+      "fill": 0.71,
+      "parts": 16
+     },
+     "tint": 1
+    }
+   },
+   "after": {
+    "look": "bayrow",
+    "info": {
+     "point": [
+      -77.02210187362861,
+      38.89950927322468
+     ],
+     "km": 99,
+     "block": {
+      "length": 128.9,
+      "width": 77.8,
+      "fill": 0.71,
+      "parts": 16
+     },
+     "tint": 1
+    }
+   }
+  },
+  {
+   "id": "Cx27",
+   "street": "Harewood Road Northwest",
+   "city": "washington",
+   "point": [
+    -77.0094492,
+    38.9429686
+   ],
+   "probe": [
+    -77.00944923787611,
+    38.942968647181544
+   ],
+   "mapillary": "433224745351535",
+   "pano": true,
+   "dist": 14,
+   "off": 58.7,
+   "tags": {
+    "osm_way_id": "297762325",
+    "building": "yes",
+    "dcgis:gis_id": "105355"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 1870,
+    "material": "brick"
+   },
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -77.00944923787611,
+      38.942968647181544
+     ],
+     "km": 99,
+     "block": {
+      "length": 22,
+      "width": 12.7,
+      "fill": 0.61,
+      "parts": 1
+     },
+     "tint": 2
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -77.00944923787611,
+      38.942968647181544
+     ],
+     "km": 99,
+     "block": {
+      "length": 22,
+      "width": 12.7,
+      "fill": 0.61,
+      "parts": 1
+     },
+     "tint": 2,
+     "built": 1870,
+     "material": "brick"
+    }
+   }
+  },
+  {
+   "id": "Cx28",
+   "street": "21st Street Northwest",
+   "city": "washington",
+   "point": [
+    -77.0464313,
+    38.9093766
+   ],
+   "probe": [
+    -77.04643131374375,
+    38.909376589300095
+   ],
+   "mapillary": "1090664228230149",
+   "pano": true,
+   "dist": 17,
+   "off": -135.5,
+   "tags": {
+    "osm_way_id": "66646763",
+    "building": "house",
+    "addr:housenumber": "1429",
+    "addr:state": "DC",
+    "addr:street": "21st Street Northwest",
+    "dataset": "buildings",
+    "dcgis:captureyear": "19990331",
+    "dcgis:lot": "0104",
+    "dcgis:square": "0096",
+    "house": "terraced"
+   },
+   "cama": {
+    "usCama": true,
+    "type": "office",
+    "material": "brick"
+   },
+   "before": {
+    "look": "bayrow",
+    "info": {
+     "point": [
+      -77.04643131374375,
+      38.909376589300095
+     ],
+     "km": 99,
+     "block": {
+      "length": 31.8,
+      "width": 23.3,
+      "fill": 0.55,
+      "parts": 5
+     },
+     "tint": 3,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "bayrow",
+    "info": {
+     "point": [
+      -77.04643131374375,
+      38.909376589300095
+     ],
+     "km": 99,
+     "block": {
+      "length": 31.8,
+      "width": 23.3,
+      "fill": 0.55,
+      "parts": 5
+     },
+     "tint": 3,
+     "type": "house",
+     "material": "brick"
+    }
+   }
+  },
+  {
+   "id": "Cx29",
+   "street": "Chesapeake Street Southwest",
+   "city": "washington",
+   "point": [
+    -77.0170555,
+    38.8282189
+   ],
+   "probe": [
+    -77.01705549443592,
+    38.8282189001903
+   ],
+   "mapillary": "1071191603521372",
+   "pano": true,
+   "dist": 16.3,
+   "off": -82.2,
+   "tags": {
+    "osm_way_id": "67349079",
+    "building": "yes",
+    "dataset": "buildings",
+    "dcgis:captureyear": "20050405",
+    "dcgis:gis_id": "39132"
+   },
+   "cama": {},
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -77.01705549443592,
+      38.8282189001903
+     ],
+     "km": 99,
+     "block": {
+      "length": 4.9,
+      "width": 3.9,
+      "fill": 0.67,
+      "parts": 1
+     },
+     "tint": 0
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -77.01705549443592,
+      38.8282189001903
+     ],
+     "km": 99,
+     "block": {
+      "length": 4.9,
+      "width": 3.9,
+      "fill": 0.67,
+      "parts": 1
+     },
+     "tint": 0
+    }
+   }
+  },
+  {
+   "id": "Cx30",
+   "street": "2nd Street Southeast",
+   "city": "washington",
+   "point": [
+    -77.0033078,
+    38.8795322
+   ],
+   "probe": [
+    -77.00330778709187,
+    38.87953219345583
+   ],
+   "mapillary": "1343324852800439",
+   "pano": true,
+   "dist": 22.9,
+   "off": 23.6,
+   "tags": {
+    "osm_way_id": "67260242",
+    "building": "office",
+    "addr:city": "Washington",
+    "addr:housenumber": "200",
+    "addr:postcode": "20003",
+    "addr:street": "I Street Southeast",
+    "dataset": "buildings",
+    "dcgis:captureyear": "19990331",
+    "dcgis:lot": "0036",
+    "dcgis:square": "0766"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 1950,
+    "type": "office",
+    "material": "concrete"
+   },
+   "before": {
+    "look": "kancelar",
+    "info": {
+     "point": [
+      -77.00330778709187,
+      38.87953219345583
+     ],
+     "km": 99,
+     "block": {
+      "length": 108.4,
+      "width": 111.1,
+      "fill": 0.54,
+      "parts": 1
+     },
+     "tint": 1,
+     "type": "office"
+    }
+   },
+   "after": {
+    "look": "kancelar",
+    "info": {
+     "point": [
+      -77.00330778709187,
+      38.87953219345583
+     ],
+     "km": 99,
+     "block": {
+      "length": 108.4,
+      "width": 111.1,
+      "fill": 0.54,
+      "parts": 1
+     },
+     "tint": 1,
+     "type": "office",
+     "built": 1950,
+     "material": "concrete"
+    }
+   }
+  },
+  {
+   "id": "Cx31",
+   "street": "Mount Pleasant Street Northwest",
+   "city": "washington",
+   "point": [
+    -77.0374531,
+    38.9284895
+   ],
+   "probe": [
+    -77.03745313962102,
+    38.92848946653944
+   ],
+   "mapillary": "1076173249689365",
+   "pano": true,
+   "dist": 13.2,
+   "off": -77.9,
+   "tags": {
+    "osm_way_id": "68304454",
+    "building": "house",
+    "addr:housenumber": "3066",
+    "addr:state": "DC",
+    "addr:street": "Mount Pleasant Street Northwest",
+    "building:levels": "1",
+    "dataset": "buildings",
+    "dcgis:captureyear": "19990331",
+    "dcgis:gis_id": "23262",
+    "dcgis:lot": "0665",
+    "dcgis:square": "2591",
+    "house": "terraced"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 1911,
+    "type": "retail",
+    "material": "brick"
+   },
+   "before": {
+    "look": "bayrow",
+    "info": {
+     "levels": 1,
+     "point": [
+      -77.03745313962102,
+      38.92848946653944
+     ],
+     "km": 99,
+     "block": {
+      "length": 53.8,
+      "width": 28.8,
+      "fill": 0.56,
+      "parts": 7
+     },
+     "tint": 2,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "bayrow",
+    "info": {
+     "levels": 1,
+     "point": [
+      -77.03745313962102,
+      38.92848946653944
+     ],
+     "km": 99,
+     "block": {
+      "length": 53.8,
+      "width": 28.8,
+      "fill": 0.56,
+      "parts": 7
+     },
+     "tint": 2,
+     "type": "house",
+     "built": 1911,
+     "material": "brick"
+    }
+   }
+  },
+  {
+   "id": "Cx32",
+   "street": "Riggs Road Northeast",
+   "city": "washington",
+   "point": [
+    -77.0032618,
+    38.9564146
+   ],
+   "probe": [
+    -77.00326182014754,
+    38.95641464270119
+   ],
+   "mapillary": "1149907175541891",
+   "pano": true,
+   "dist": 25.5,
+   "off": 68.2,
+   "tags": {
+    "osm_way_id": "296206981",
+    "building": "yes",
+    "dcgis:gis_id": "107351"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 1968,
+    "type": "retail",
+    "material": "brick"
+   },
+   "before": {
+    "look": "brickblock",
+    "info": {
+     "point": [
+      -77.00326182014754,
+      38.95641464270119
+     ],
+     "km": 99,
+     "block": {
+      "length": 50.3,
+      "width": 28.5,
+      "fill": 0.56,
+      "parts": 1
+     },
+     "tint": 3
+    }
+   },
+   "after": {
+    "look": "stripmall",
+    "info": {
+     "point": [
+      -77.00326182014754,
+      38.95641464270119
+     ],
+     "km": 99,
+     "block": {
+      "length": 50.3,
+      "width": 28.5,
+      "fill": 0.56,
+      "parts": 1
+     },
+     "tint": 3,
+     "built": 1968,
+     "material": "brick",
+     "type": "retail"
+    }
+   }
+  },
+  {
+   "id": "Cx33",
+   "street": "K Street Southeast",
+   "city": "washington",
+   "point": [
+    -77.0043203,
+    38.8782653
+   ],
+   "probe": [
+    -77.00432028173184,
+    38.87826529818215
+   ],
+   "mapillary": "279772840494810",
+   "pano": true,
+   "dist": 13.2,
+   "off": -163.9,
+   "tags": {
+    "osm_way_id": "67260200",
+    "building": "apartments",
+    "addr:city": "Washington",
+    "addr:housenumber": "140",
+    "addr:postcode": "20003",
+    "addr:state": "DC",
+    "addr:street": "L Street Southeast",
+    "branch": "Washington Capitol Hill/Navy Yard",
+    "brand": "Courtyard",
+    "brand:wikidata": "Q1053170",
+    "check_date": "2025-12-28",
+    "dataset": "buildings;ABRA locations",
+    "dcgis:captureyear": "20080530",
+    "dcgis:gis_id": "78455",
+    "official_name": "Courtyard by Marriott",
+    "phone": "+1 202-479-0027",
+    "ref": "WASNY",
+    "website": "https://www.marriott.com/wasny"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 2006,
+    "type": "apartments",
+    "material": "concrete"
+   },
+   "before": {
+    "look": "brickblock",
+    "info": {
+     "point": [
+      -77.00432028173184,
+      38.87826529818215
+     ],
+     "km": 99,
+     "block": {
+      "length": 95.9,
+      "width": 87.7,
+      "fill": 0.41,
+      "parts": 3
+     },
+     "tint": 0,
+     "type": "apartments"
+    }
+   },
+   "after": {
+    "look": "podium",
+    "info": {
+     "point": [
+      -77.00432028173184,
+      38.87826529818215
+     ],
+     "km": 99,
+     "block": {
+      "length": 95.9,
+      "width": 87.7,
+      "fill": 0.41,
+      "parts": 3
+     },
+     "tint": 0,
+     "type": "apartments",
+     "built": 2006,
+     "material": "concrete"
+    }
+   }
+  },
+  {
+   "id": "Cx34",
+   "street": "18th Street Southeast",
+   "city": "washington",
+   "point": [
+    -76.9787968,
+    38.8571002
+   ],
+   "probe": [
+    -76.97879682176051,
+    38.8571002015463
+   ],
+   "mapillary": "1070782450199346",
+   "pano": true,
+   "dist": 14.5,
+   "off": 65,
+   "tags": {
+    "osm_way_id": "55329646",
+    "building": "house",
+    "addr:city": "Washington",
+    "addr:country": "US",
+    "addr:housenumber": "1801",
+    "addr:postcode": "20020",
+    "addr:state": "DC",
+    "addr:street": "Erie Street Southeast",
+    "dcgis:captureyear": "19990331",
+    "dcgis:dataset": "buildings",
+    "dcgis:featurecode": "2000",
+    "house": "terraced",
+    "mappingdc:gid": "2473"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 1947,
+    "cornice": 2,
+    "roof": 0,
+    "total": 2,
+    "type": "semidetached_house",
+    "material": "brick"
+   },
+   "before": {
+    "look": "porchrow",
+    "info": {
+     "point": [
+      -76.97879682176051,
+      38.8571002015463
+     ],
+     "km": 99,
+     "block": {
+      "length": 9.8,
+      "width": 10.8,
+      "fill": 0.98,
+      "parts": 2
+     },
+     "tint": 1,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "porchrow",
+    "info": {
+     "levels": 2,
+     "point": [
+      -76.97879682176051,
+      38.8571002015463
+     ],
+     "km": 99,
+     "block": {
+      "length": 9.8,
+      "width": 10.8,
+      "fill": 0.98,
+      "parts": 2
+     },
+     "tint": 1,
+     "type": "house",
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1947,
+     "material": "brick"
+    }
+   }
+  },
+  {
+   "id": "Cx35",
+   "street": "Overlook Road Northwest",
+   "city": "washington",
+   "point": [
+    -77.1023448,
+    38.9362745
+   ],
+   "probe": [
+    -77.102344750553,
+    38.93627445239915
+   ],
+   "mapillary": "138985154946448",
+   "pano": true,
+   "dist": 21.2,
+   "off": 97.1,
+   "tags": {
+    "osm_way_id": "91534916",
+    "building": "detached",
+    "addr:housenumber": "5028",
+    "addr:state": "DC",
+    "addr:street": "Overlook Road Northwest",
+    "dataset": "buildings",
+    "dcgis:captureyear": "19990331",
+    "dcgis:gis_id": "27914",
+    "dcgis:lot": "0003",
+    "dcgis:square": "1431"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 1953,
+    "cornice": 1,
+    "roof": 0,
+    "total": 1,
+    "type": "detached",
+    "material": "brick"
+   },
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -77.102344750553,
+      38.93627445239915
+     ],
+     "km": 99,
+     "block": {
+      "length": 23.5,
+      "width": 21.7,
+      "fill": 0.5,
+      "parts": 1
+     },
+     "tint": 2,
+     "type": "detached"
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "levels": 1,
+     "point": [
+      -77.102344750553,
+      38.93627445239915
+     ],
+     "km": 99,
+     "block": {
+      "length": 23.5,
+      "width": 21.7,
+      "fill": 0.5,
+      "parts": 1
+     },
+     "tint": 2,
+     "type": "detached",
+     "cornice": 1,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1953,
+     "material": "brick"
+    }
+   }
+  },
+  {
+   "id": "Cx36",
+   "street": "1st Street Northeast",
+   "city": "washington",
+   "point": [
+    -77.006011,
+    38.9582765
+   ],
+   "probe": [
+    -77.00601101416517,
+    38.95827652937729
+   ],
+   "mapillary": "1081895522585819",
+   "pano": true,
+   "dist": 20,
+   "off": -69.4,
+   "tags": {
+    "osm_way_id": "296206590",
+    "building": "detached",
+    "addr:housenumber": "5617",
+    "addr:postcode": "20011",
+    "addr:street": "1st Street Northeast",
+    "building:levels": "2",
+    "dcgis:gis_id": "106677"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 1937,
+    "cornice": 2,
+    "roof": 0,
+    "total": 2,
+    "type": "detached",
+    "material": "brick"
+   },
+   "before": {
+    "look": "bayrow",
+    "info": {
+     "point": [
+      -77.00601101416517,
+      38.95827652937729
+     ],
+     "km": 99,
+     "tint": 3
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "levels": 2,
+     "point": [
+      -77.00601101416517,
+      38.95827652937729
+     ],
+     "km": 99,
+     "tint": 3,
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1937,
+     "material": "brick",
+     "type": "detached"
+    }
+   }
+  },
+  {
+   "id": "Cx37",
+   "street": "North Carolina Avenue Northeast",
+   "city": "washington",
+   "point": [
+    -76.9878721,
+    38.8910429
+   ],
+   "probe": [
+    -76.98787205828704,
+    38.891042925021715
+   ],
+   "mapillary": "1418662425212047",
+   "pano": true,
+   "dist": 18.1,
+   "off": 93.4,
+   "tags": {
+    "osm_way_id": "294985296",
+    "building": "house",
+    "addr:housenumber": "1308",
+    "addr:postcode": "20002",
+    "addr:street": "North Carolina Avenue Northeast",
+    "building:levels": "2",
+    "dcgis:gis_id": "86563",
+    "house": "terraced"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 1913,
+    "cornice": 2,
+    "roof": 0,
+    "total": 2,
+    "type": "terrace",
+    "material": "brick"
+   },
+   "before": {
+    "look": "bayrow",
+    "info": {
+     "levels": 2,
+     "point": [
+      -76.98787205828704,
+      38.891042925021715
+     ],
+     "km": 99,
+     "block": {
+      "length": 175.2,
+      "width": 30.6,
+      "fill": 0.52,
+      "parts": 31
+     },
+     "tint": 0,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "bayrow",
+    "info": {
+     "levels": 2,
+     "point": [
+      -76.98787205828704,
+      38.891042925021715
+     ],
+     "km": 99,
+     "block": {
+      "length": 175.2,
+      "width": 30.6,
+      "fill": 0.52,
+      "parts": 31
+     },
+     "tint": 0,
+     "type": "house",
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1913,
+     "material": "brick"
+    }
+   }
+  },
+  {
+   "id": "Cx38",
+   "street": "7th Street Northwest",
+   "city": "washington",
+   "point": [
+    -77.0215993,
+    38.9371989
+   ],
+   "probe": [
+    -77.02159934416463,
+    38.93719887796872
+   ],
+   "mapillary": "1016637298999983",
+   "pano": true,
+   "dist": 20.2,
+   "off": -30.4,
+   "tags": {
+    "osm_way_id": "70142323",
+    "building": "house",
+    "addr:housenumber": "701",
+    "addr:street": "Rock Creek Church Road Northwest",
+    "dataset": "buildings",
+    "dcgis:captureyear": "19990331",
+    "dcgis:gis_id": "25525",
+    "dcgis:lot": "0039",
+    "dcgis:square": "3130",
+    "house": "terraced"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 1909,
+    "cornice": 2,
+    "roof": 0,
+    "total": 2,
+    "type": "semidetached_house",
+    "material": "brick"
+   },
+   "before": {
+    "look": "porchrow",
+    "info": {
+     "point": [
+      -77.02159934416463,
+      38.93719887796872
+     ],
+     "km": 99,
+     "block": {
+      "length": 18.1,
+      "width": 17.1,
+      "fill": 0.6,
+      "parts": 2
+     },
+     "tint": 1,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "porchrow",
+    "info": {
+     "levels": 2,
+     "point": [
+      -77.02159934416463,
+      38.93719887796872
+     ],
+     "km": 99,
+     "block": {
+      "length": 18.1,
+      "width": 17.1,
+      "fill": 0.6,
+      "parts": 2
+     },
+     "tint": 1,
+     "type": "house",
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1909,
+     "material": "brick"
+    }
+   }
+  },
+  {
+   "id": "Cx39",
+   "street": "Nebraska Avenue Northwest",
+   "city": "washington",
+   "point": [
+    -77.054169,
+    38.9703665
+   ],
+   "probe": [
+    -77.05416904484692,
+    38.97036651681073
+   ],
+   "mapillary": "608415837301012",
+   "pano": true,
+   "dist": 23.2,
+   "off": 87.3,
+   "tags": {
+    "osm_way_id": "71013550",
+    "building": "detached",
+    "addr:housenumber": "6217",
+    "addr:street": "Nebraska Avenue Northwest",
+    "dataset": "buildings",
+    "dcgis:captureyear": "19990331",
+    "dcgis:gis_id": "39188",
+    "dcgis:lot": "0007",
+    "dcgis:square": "2341"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 1947,
+    "cornice": 2,
+    "roof": 0,
+    "total": 2,
+    "type": "detached",
+    "material": "brick"
+   },
+   "before": {
+    "look": "framehouse",
+    "info": {
+     "point": [
+      -77.05416904484692,
+      38.97036651681073
+     ],
+     "km": 99,
+     "block": {
+      "length": 15.5,
+      "width": 10.7,
+      "fill": 0.68,
+      "parts": 1
+     },
+     "tint": 2,
+     "type": "detached"
+    }
+   },
+   "after": {
+    "look": "framehouse",
+    "info": {
+     "levels": 2,
+     "point": [
+      -77.05416904484692,
+      38.97036651681073
+     ],
+     "km": 99,
+     "block": {
+      "length": 15.5,
+      "width": 10.7,
+      "fill": 0.68,
+      "parts": 1
+     },
+     "tint": 2,
+     "type": "detached",
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1947,
+     "material": "brick"
+    }
+   }
+  },
+  {
+   "id": "Cx40",
+   "street": "3rd Street Northeast",
+   "city": "washington",
+   "point": [
+    -77.0018337,
+    38.9047192
+   ],
+   "probe": [
+    -77.0018336873508,
+    38.90471924125753
+   ],
+   "mapillary": "134730195386272",
+   "pano": true,
+   "dist": 15.7,
+   "off": -72.8,
+   "tags": {
+    "osm_way_id": "66796555",
+    "building": "house",
+    "addr:housenumber": "1141",
+    "addr:street": "3rd Street Northeast",
+    "dataset": "buildings",
+    "dcgis:captureyear": "19990331",
+    "dcgis:lot": "0258",
+    "dcgis:square": "0773",
+    "house": "terraced"
+   },
+   "cama": {
+    "usCama": true,
+    "built": 1925,
+    "cornice": 2,
+    "roof": 0,
+    "total": 2,
+    "type": "terrace",
+    "material": "brick"
+   },
+   "before": {
+    "look": "bayrow",
+    "info": {
+     "point": [
+      -77.0018336873508,
+      38.90471924125753
+     ],
+     "km": 99,
+     "block": {
+      "length": 158.5,
+      "width": 17.7,
+      "fill": 0.57,
+      "parts": 35
+     },
+     "tint": 3,
+     "type": "house"
+    }
+   },
+   "after": {
+    "look": "porchrow",
+    "info": {
+     "levels": 2,
+     "point": [
+      -77.0018336873508,
+      38.90471924125753
+     ],
+     "km": 99,
+     "block": {
+      "length": 158.5,
+      "width": 17.7,
+      "fill": 0.57,
+      "parts": 35
+     },
+     "tint": 3,
+     "type": "house",
+     "cornice": 2,
+     "roof": 0,
+     "src": "ipr",
+     "built": 1925,
+     "material": "brick"
+    }
+   }
+  }
+ ]
+}

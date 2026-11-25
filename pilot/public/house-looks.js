@@ -262,7 +262,8 @@ export function northAmericaLook(style, info, n) {
   if (NA_OWN.has(style)) return undefined;
   if (style === "hala") return NA_SHOPS.has(type) ? (n >= 2 || inRow(b) ? "mainstreet" : "stripmall") : undefined; // works and warehouses stay halls
   const office = style === "kancelar" || info?.office || (OFFICE.has(type) && type !== "commercial" && type !== "hotel");
-  if (office) return y >= 1990 && n >= 10 ? "glasstower" : "kancelar";
+  // An office of masonry walls (CAMA) is no glass tower (evaluation/north-america-art/cama).
+  if (office) return y >= 1990 && n >= 10 && !/brick|stone|concrete/.test(info?.material || "") ? "glasstower" : "kancelar";
   if (NA_SHOPS.has(type)) return n >= 5 ? (y >= 1990 ? "podium" : "kancelar") : n >= 2 || (!n && inRow(b)) ? "mainstreet" : "stripmall";
   const row = () => {
     if (y >= 1990) return "bayrow"; // a new townhouse: flat-fronted (northAmericaDetails)
@@ -274,7 +275,7 @@ export function northAmericaLook(style, info, n) {
     return town.look;
   };
   const flats = () => {
-    if (y >= 1990) return n >= 8 ? "glasstower" : n >= 4 ? "podium" : "moderni";
+    if (y >= 1990) return n >= 8 ? "glasstower" : !n || n >= 4 ? "podium" : "moderni";
     if (y >= 1946 && n >= 6) return "slab";
     if (!y && n >= 13) return "slab";
     if (town?.tall && n >= 5 && n <= 6 && !(y > 1920)) return town.tall;

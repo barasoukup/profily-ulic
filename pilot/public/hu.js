@@ -1068,6 +1068,7 @@ export const HU = {
   "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)": "ortofotó © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)",
   "mapa povrchů (Planimetrics 2023) © DC GIS, Office of the Chief Technology Officer (CC BY 4.0)": "felületi térkép (Planimetrics 2023) © DC GIS, Office of the Chief Technology Officer (CC BY 4.0)",
   "pruhy a stání (Roadway SubBlock) © DDOT, DC GIS (CC BY 4.0)": "sávok és parkolás (Roadway SubBlock) © DDOT, DC GIS (CC BY 4.0)",
+  "domy (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)": "épületek (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)",
   " · mapa povrchů Washingtonu neodpověděla, odhad z ortofota a OSM": " · Washington felületi térképe nem válaszolt, becslés az ortofotóból és az OSM-ből",
   "Mapa povrchů Washingtonu (DC GIS) teď neodpovídá, profil je odhad z ortofota a OSM.": "Washington felületi térképe most nem válaszol, a profil az ortofotóból és az OSM-ből készült becslés.",
   "mapy povrchů Washingtonu, inventáře DDOT, ortofota a OSM": "Washington felületi térképe, a DDOT leltára, az ortofotó és az OSM",

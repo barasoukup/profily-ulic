@@ -1089,6 +1089,7 @@ export const EL = {
   "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)": "ορθοφωτογραφία © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)",
   "mapa povrchů (Planimetrics 2023) © DC GIS, Office of the Chief Technology Officer (CC BY 4.0)": "χάρτης επιφανειών (Planimetrics 2023) © DC GIS, Office of the Chief Technology Officer (CC BY 4.0)",
   "pruhy a stání (Roadway SubBlock) © DDOT, DC GIS (CC BY 4.0)": "λωρίδες και στάθμευση (Roadway SubBlock) © DDOT, DC GIS (CC BY 4.0)",
+  "domy (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)": "κτίρια (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)",
   " · mapa povrchů Washingtonu neodpověděla, odhad z ortofota a OSM": " · ο χάρτης επιφανειών της Ουάσιγκτον δεν απάντησε, εκτίμηση από ορθοφωτογραφία και OSM",
   "Mapa povrchů Washingtonu (DC GIS) teď neodpovídá, profil je odhad z ortofota a OSM.": "Ο χάρτης επιφανειών της Ουάσιγκτον δεν απαντά αυτή τη στιγμή, το προφίλ είναι εκτίμηση από ορθοφωτογραφία και OSM.",
   "mapy povrchů Washingtonu, inventáře DDOT, ortofota a OSM": "χάρτης επιφανειών της Ουάσιγκτον, απογραφή του DDOT, ορθοφωτογραφία και OSM",

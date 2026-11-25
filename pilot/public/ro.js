@@ -1089,6 +1089,7 @@ export const RO = {
   "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)": "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)",
   "mapa povrchů (Planimetrics 2023) © DC GIS, Office of the Chief Technology Officer (CC BY 4.0)": "harta suprafețelor (Planimetrics 2023) © DC GIS, Office of the Chief Technology Officer (CC BY 4.0)",
   "pruhy a stání (Roadway SubBlock) © DDOT, DC GIS (CC BY 4.0)": "benzi și parcare (Roadway SubBlock) © DDOT, DC GIS (CC BY 4.0)",
+  "domy (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)": "clădiri (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)",
   " · mapa povrchů Washingtonu neodpověděla, odhad z ortofota a OSM": " · harta suprafețelor orașului Washington nu a răspuns, estimare din ortofoto și OSM",
   "Mapa povrchů Washingtonu (DC GIS) teď neodpovídá, profil je odhad z ortofota a OSM.": "Harta suprafețelor orașului Washington nu răspunde acum, profilul este o estimare din ortofoto și OSM.",
   "mapy povrchů Washingtonu, inventáře DDOT, ortofota a OSM": "harta suprafețelor orașului Washington, inventarul DDOT, ortofoto și OSM",

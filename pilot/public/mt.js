@@ -1089,6 +1089,7 @@ export const MT = {
   "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)": "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)",
   "mapa povrchů (Planimetrics 2023) © DC GIS, Office of the Chief Technology Officer (CC BY 4.0)": "mappa tal-uċuħ (Planimetrics 2023) © DC GIS, Office of the Chief Technology Officer (CC BY 4.0)",
   "pruhy a stání (Roadway SubBlock) © DDOT, DC GIS (CC BY 4.0)": "korsiji u parkeġġ (Roadway SubBlock) © DDOT, DC GIS (CC BY 4.0)",
+  "domy (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)": "bini (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)",
   " · mapa povrchů Washingtonu neodpověděla, odhad z ortofota a OSM": " · il-mappa tal-uċuħ ta' Washington ma wieġbitx, stima mill-ortofoto u minn OSM",
   "Mapa povrchů Washingtonu (DC GIS) teď neodpovídá, profil je odhad z ortofota a OSM.": "Il-mappa tal-uċuħ ta' Washington m'hijiex twieġeb issa, il-profil huwa stima mill-ortofoto u minn OSM.",
   "mapy povrchů Washingtonu, inventáře DDOT, ortofota a OSM": "mappa tal-uċuħ ta' Washington, l-inventarju tad-DDOT, ortofoto u OSM",

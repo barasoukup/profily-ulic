@@ -20,6 +20,12 @@
 //   and the law's estimate is off there (noParkGuess); a bike lane of the inventory (BIKELANE_CONVENTIONAL, _BUFFERED,
 //   _PROTECTED: BD both sides, IB/OB one) is OSM's cycleway:<side>=lane where OSM tags none. ?ddot=0 leaves it out.
 // A map that does not answer: the estimate, said so (sources.js usFailed). Requests: four a cut (memo by the box).
+// - The houses (podlaznost): DC's assessment tables CAMA (Office of Tax and Revenue, Property_and_Land_WebMercator:
+//   25 residential, 23 commercial; CC BY 4.0) by the lot under the facade's point (40, Owner Polygons: only its SSL and
+//   use code are asked, never the owner). Both houses of a cut in three requests: the lots along the line between the two
+//   points, the residential rows of them, the commercial ones only where a lot has no residential row. An answer later
+//   than CAMA_MS is left out (the house as OSM has it). ?cama=0 leaves it out. The condominium table (24) has no
+//   floors and its units are not on the lot: not asked.
 import { osmTiles, getJSON, envelope, asMtvu } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { inArea } from "../places.js";
@@ -233,12 +239,88 @@ async function osm(lat, lon, radius) {
   } catch (err) { console.warn("DC alleys", err); return o; }
 }
 
+// ---- The houses: CAMA ----
+export const camaOn = () => param("cama") !== "0";
+export const DC_LAND = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Property_and_Land_WebMercator/MapServer";
+const CAMA_MS = 3500, CAMA_REST = 60000; // ms: the longest wait; the rest after a failure
+// The kind of a house by its structure (25 STRUCT_D), else by the lot's use code (the USECODE table, 54). A use that does not
+// tell the building (a church's or a school's lot may be a row house) gives none.
+const STRUCT = [[/^(row|town)/i, "terrace"], [/^semi/i, "semidetached_house"], [/^single/i, "detached"], [/^multi/i, "apartments"]];
+const USE = (c) => {
+  if ([21, 22, 26, 27, 28, 29].includes(c)) return "apartments";
+  if ([31, 32, 33].includes(c)) return "hotel";
+  if ([41, 42, 43, 44, 45, 46, 47, 49, 67, 68].includes(c)) return "retail";
+  if ([51, 52, 53, 59, 61].includes(c)) return "office";
+  if (c >= 71 && c <= 79) return "industrial";
+  return undefined;
+};
+const WALL = [[/brick/i, "brick"], [/stone/i, "stone"], [/wood|shingle|log/i, "wood"], [/vinyl|aluminum|hardboard|plywood/i, "vinyl"], [/stucco|plaster|adobe/i, "stucco"], [/concr/i, "concrete"], [/metal/i, "metal"]];
+const first = (list, d) => list.find(([re]) => re.test(d || ""))?.[1];
+// A house's facts as app.js takes them. STORIES counts halves (2.5: a finished attic): an attic under the gable of a
+// detached house is in its roof, in a row it is a floor of its own (a mansard). A count no house has (25, 65) is a slip.
+export function camaHouse(res, com, use) {
+  const a = res || com;
+  if (!a && !use) return {};
+  const year = Number(a?.AYB), st = Number(res?.STORIES), type = (res && first(STRUCT, res.STRUCT_D)) || USE(Number(a?.USECODE ?? use));
+  const n = st >= 1 && st <= 6 ? (type === "detached" ? Math.floor(st + 0.25) : Math.round(st)) : undefined;
+  const material = first(WALL, a?.EXTWALL_D);
+  if (!(year > 1700) && !n && !type && !material) return {};
+  return { usCama: true, ...(year > 1700 && year < 2100 && { built: year }), ...(n && { cornice: n, roof: 0, total: n }), ...(type && { type }), ...(material && { material }) };
+}
+// The house at each point ([lon, lat]) from the lots (layer 40) and the tables' rows.
+export function camaAt(points, lots, res, com) {
+  const row = (json, ssl) => (json?.features || []).map((f) => f.attributes).filter((a) => a.SSL === ssl).sort((a, b) => (a.BLDG_NUM || 1) - (b.BLDG_NUM || 1))[0];
+  return points.map(([x, y]) => {
+    const here = (lots?.features || []).filter((f) => f.geometry?.rings && inRings(f.geometry.rings, x, y)).map((f) => f.attributes);
+    const rows = here.map((a) => [row(res, a.SSL), row(com, a.SSL), a.USECODE]);
+    const best = rows.find((r) => r[0]) || rows.find((r) => r[1]) || rows[0];
+    return best ? camaHouse(...best) : {};
+  });
+}
+const camaAsk = (layer, params) => fetch(`${DC_LAND}/${layer}/query?${new URLSearchParams({ f: "json", ...params })}`, { signal: AbortSignal.timeout(CAMA_MS) })
+  .then((r) => { if (!r.ok) throw new Error(`CAMA ${r.status}`); return r.json(); }).then((j) => { if (j.error) throw new Error(`CAMA ${j.error.message}`); return j; });
+async function camaOf(points) {
+  const deadline = new Promise((_, no) => setTimeout(() => no(new Error("CAMA timeout")), CAMA_MS));
+  const work = (async () => {
+    const path = points.length > 1 ? points : [points[0], [points[0][0] + 1e-6, points[0][1]]];
+    const lots = await camaAsk(40, { geometry: JSON.stringify({ paths: [path] }), geometryType: "esriGeometryPolyline", inSR: "4326", outSR: "4326",
+      spatialRel: "esriSpatialRelIntersects", outFields: "SSL,USECODE", returnGeometry: "true", geometryPrecision: "7" });
+    const here = (lots.features || []).filter((f) => f.geometry?.rings && points.some(([x, y]) => inRings(f.geometry.rings, x, y)));
+    const ssl = [...new Set(here.map((f) => f.attributes.SSL).filter((v) => /^[\w ]+$/.test(v || "")))].slice(0, 40);
+    if (!ssl.length) return points.map(() => ({}));
+    const where = (list) => `SSL IN (${list.map((v) => `'${v}'`).join(",")})`;
+    const res = await camaAsk(25, { where: where(ssl), outFields: "SSL,BLDG_NUM,AYB,STORIES,STRUCT_D,EXTWALL_D,USECODE" });
+    const left = ssl.filter((v) => !(res.features || []).some((f) => f.attributes.SSL === v));
+    const com = left.length ? await camaAsk(23, { where: where(left), outFields: "SSL,BLDG_NUM,AYB,EXTWALL_D,USECODE" }).catch(() => null) : null;
+    return camaAt(points, lots, res, com);
+  })();
+  return Promise.race([work, deadline]);
+}
+// Both houses of a cut are asked in the same turn (app.js): one batch.
+let batch = null, camaRest = 0;
+const houses = new Map();
+async function podlaznost(lat, lon) {
+  if (!camaOn() || !inArea(AREAS.dc, lon, lat) || Date.now() < camaRest) return {};
+  const key = `${lat.toFixed(6)},${lon.toFixed(6)}`;
+  if (!houses.has(key)) {
+    if (!batch) {
+      const b = batch = { points: [] };
+      b.done = new Promise((ok) => setTimeout(ok, 0)).then(() => { batch = null; return camaOf(b.points); })
+        .catch((err) => { console.warn("CAMA", err.message); camaRest = Date.now() + CAMA_REST; return null; });
+    }
+    const i = batch.points.push([lon, lat]) - 1;
+    houses.set(key, batch.done.then((all) => { if (!all) houses.delete(key); return all?.[i] || {}; }));
+    if (houses.size > 30) houses.delete(houses.keys().next().value);
+  }
+  return houses.get(key);
+}
+
 export const sources = {
   osm,
   surfaces,
   lines: async () => ({ features: [], edges: [], widths: [], areas: [] }),
   parking: async () => ({ features: [] }),
-  podlaznost: async () => ({}),
+  podlaznost,
 };
 
 // No fallback to the DMVS (sources.js national).

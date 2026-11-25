@@ -1089,6 +1089,7 @@ export const GA = {
   "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)": "ortafótagraf © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)",
   "mapa povrchů (Planimetrics 2023) © DC GIS, Office of the Chief Technology Officer (CC BY 4.0)": "léarscáil dromchlaí (Planimetrics 2023) © DC GIS, Office of the Chief Technology Officer (CC BY 4.0)",
   "pruhy a stání (Roadway SubBlock) © DDOT, DC GIS (CC BY 4.0)": "lánaí agus páirceáil (Roadway SubBlock) © DDOT, DC GIS (CC BY 4.0)",
+  "domy (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)": "foirgnimh (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)",
   " · mapa povrchů Washingtonu neodpověděla, odhad z ortofota a OSM": " · níor fhreagair léarscáil dromchlaí Washington, meastachán ón ortafótagraf agus OSM",
   "Mapa povrchů Washingtonu (DC GIS) teď neodpovídá, profil je odhad z ortofota a OSM.": "Níl léarscáil dromchlaí Washington ag freagairt anois, is meastachán ón ortafótagraf agus OSM an phróifíl.",
   "mapy povrchů Washingtonu, inventáře DDOT, ortofota a OSM": "léarscáil dromchlaí Washington, fardal DDOT, ortafótagraf agus OSM",

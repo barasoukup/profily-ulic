@@ -1,0 +1,226 @@
+{
+ "Cx01": {
+  "X": "right",
+  "Y": "right",
+  "better": "Y",
+  "type": "3-floor row house, projecting bay",
+  "floors": 3
+ },
+ "Cx02": {
+  "X": "right",
+  "Y": "wrong",
+  "better": "X",
+  "type": "5-floor brick apartment block, curved bay",
+  "floors": 5
+ },
+ "Cx03": {
+  "X": "right",
+  "Y": "right",
+  "better": "same",
+  "type": "2.5-floor frame house, hidden by trees",
+  "floors": 2.5
+ },
+ "Cx05": {
+  "X": "right",
+  "Y": "right",
+  "better": "same",
+  "type": "2.5-floor frame house with porch",
+  "floors": 2.5
+ },
+ "Cx07": {
+  "X": "right",
+  "Y": "right",
+  "better": "same",
+  "type": "2-floor brick colonial, sunroom",
+  "floors": 2
+ },
+ "Cx08": {
+  "X": "partly",
+  "Y": "partly",
+  "better": "X",
+  "type": "suburban detached house with garage, no porch",
+  "floors": 2
+ },
+ "Cx09": {
+  "X": "right",
+  "Y": "partly",
+  "better": "X",
+  "type": "3-floor brick row house with turret and bay",
+  "floors": 3
+ },
+ "Cx12": {
+  "X": "right",
+  "Y": "right",
+  "better": "same",
+  "type": "2-floor row house with porch",
+  "floors": 2
+ },
+ "Cx13": {
+  "X": "right",
+  "Y": "partly",
+  "better": "X",
+  "type": "3-floor row house with stoop, balcony",
+  "floors": 3
+ },
+ "Cx14": {
+  "X": "unclear",
+  "Y": "unclear",
+  "better": "unclear",
+  "type": "photo shows only asphalt",
+  "floors": null
+ },
+ "Cx17": {
+  "X": "unclear",
+  "Y": "unclear",
+  "better": "unclear",
+  "type": "overgrown empty lot",
+  "floors": null
+ },
+ "Cx18": {
+  "X": "wrong",
+  "Y": "wrong",
+  "better": "same",
+  "type": "multi-storey parking garage",
+  "floors": null
+ },
+ "Cx19": {
+  "X": "partly",
+  "Y": "partly",
+  "better": "same",
+  "type": "2-floor brick duplex, hip roof, awning",
+  "floors": 2
+ },
+ "Cx20": {
+  "X": "right",
+  "Y": "wrong",
+  "better": "X",
+  "type": "5-floor mixed-use apartment block, retail ground floor",
+  "floors": 5
+ },
+ "Cx21": {
+  "X": "right",
+  "Y": "right",
+  "better": "same",
+  "type": "2-floor stone detached house, pitched roof, no porch",
+  "floors": 2
+ },
+ "Cx22": {
+  "X": "partly",
+  "Y": "wrong",
+  "better": "X",
+  "type": "3-4 floor stucco mansion, curved front, mansard",
+  "floors": 3.5
+ },
+ "Cx23": {
+  "X": "wrong",
+  "Y": "partly",
+  "better": "Y",
+  "type": "1-floor brick warehouse/works hall, no porch",
+  "floors": 1
+ },
+ "Cx24": {
+  "X": "partly",
+  "Y": "partly",
+  "better": "same",
+  "type": "2.5-floor frame house, hidden by tree",
+  "floors": 2.5
+ },
+ "Cx25": {
+  "X": "partly",
+  "Y": "partly",
+  "better": "same",
+  "type": "1.5-floor small brick house, hidden",
+  "floors": 1.5
+ },
+ "Cx27": {
+  "X": "partly",
+  "Y": "partly",
+  "better": "same",
+  "type": "1.5-floor Victorian stone gatehouse, tower",
+  "floors": 1.5
+ },
+ "Cx28": {
+  "X": "partly",
+  "Y": "partly",
+  "better": "same",
+  "type": "4-floor row house with stoop",
+  "floors": 4
+ },
+ "Cx30": {
+  "X": "right",
+  "Y": "right",
+  "better": "same",
+  "type": "4-floor glass office building",
+  "floors": 4
+ },
+ "Cx31": {
+  "X": "wrong",
+  "Y": "wrong",
+  "better": "same",
+  "type": "1-floor commercial shop strip",
+  "floors": 1
+ },
+ "Cx32": {
+  "X": "partly",
+  "Y": "wrong",
+  "better": "X",
+  "type": "2-floor commercial building, ground shops",
+  "floors": 2
+ },
+ "Cx33": {
+  "X": "unclear",
+  "Y": "unclear",
+  "better": "unclear",
+  "type": "aerial image, no house visible",
+  "floors": null
+ },
+ "Cx34": {
+  "X": "right",
+  "Y": "right",
+  "better": "same",
+  "type": "2-3 floor brick end row house",
+  "floors": 2
+ },
+ "Cx35": {
+  "X": "right",
+  "Y": "partly",
+  "better": "X",
+  "type": "1.5-floor Cape Cod detached house, dormers",
+  "floors": 1.5
+ },
+ "Cx36": {
+  "X": "unclear",
+  "Y": "unclear",
+  "better": "unclear",
+  "type": "house hidden by trees",
+  "floors": null
+ },
+ "Cx37": {
+  "X": "right",
+  "Y": "right",
+  "better": "same",
+  "type": "3-floor brick row house, bay",
+  "floors": 3
+ },
+ "Cx38": {
+  "X": "right",
+  "Y": "right",
+  "better": "same",
+  "type": "2.5-floor row end house with porch",
+  "floors": 2.5
+ },
+ "Cx39": {
+  "X": "right",
+  "Y": "right",
+  "better": "Y",
+  "type": "2-floor brick colonial, stoop with portico",
+  "floors": 2
+ },
+ "Cx40": {
+  "X": "partly",
+  "Y": "partly",
+  "better": "same",
+  "type": "2-floor row house, bay, stoop",
+  "floors": 2
+ }
+}

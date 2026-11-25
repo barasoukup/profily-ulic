@@ -1064,6 +1064,7 @@ export const ET = {
   "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)": "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)",
   "mapa povrchů (Planimetrics 2023) © DC GIS, Office of the Chief Technology Officer (CC BY 4.0)": "pinnakatete kaart (Planimetrics 2023) © DC GIS, Office of the Chief Technology Officer (CC BY 4.0)",
   "pruhy a stání (Roadway SubBlock) © DDOT, DC GIS (CC BY 4.0)": "sõiduradad ja parkimine (Roadway SubBlock) © DDOT, DC GIS (CC BY 4.0)",
+  "domy (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)": "hooned (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)",
   " · mapa povrchů Washingtonu neodpověděla, odhad z ortofota a OSM": " · Washingtoni pinnakatete kaart ei vastanud, hinnang ortofoto ja OSM-i põhjal",
   "Mapa povrchů Washingtonu (DC GIS) teď neodpovídá, profil je odhad z ortofota a OSM.": "Washingtoni pinnakatete kaart praegu ei vasta, profiil on hinnang ortofoto ja OSM-i põhjal.",
   "mapy povrchů Washingtonu, inventáře DDOT, ortofota a OSM": "Washingtoni pinnakatete kaart, DDOT-i inventar, ortofoto ja OSM",

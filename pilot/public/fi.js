@@ -1089,6 +1089,7 @@ export const FI = {
   "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)": "ortokuva © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)",
   "mapa povrchů (Planimetrics 2023) © DC GIS, Office of the Chief Technology Officer (CC BY 4.0)": "pintakartta (Planimetrics 2023) © DC GIS, Office of the Chief Technology Officer (CC BY 4.0)",
   "pruhy a stání (Roadway SubBlock) © DDOT, DC GIS (CC BY 4.0)": "kaistat ja pysäköinti (Roadway SubBlock) © DDOT, DC GIS (CC BY 4.0)",
+  "domy (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)": "rakennukset (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)",
   " · mapa povrchů Washingtonu neodpověděla, odhad z ortofota a OSM": " · Washingtonin pintakartta ei vastannut, arvio ortokuvasta ja OSM:stä",
   "Mapa povrchů Washingtonu (DC GIS) teď neodpovídá, profil je odhad z ortofota a OSM.": "Washingtonin pintakartta ei nyt vastaa, poikkileikkaus on arvio ortokuvasta ja OSM:stä.",
   "mapy povrchů Washingtonu, inventáře DDOT, ortofota a OSM": "Washingtonin pintakartta, DDOT:n inventaario, ortokuva ja OSM",

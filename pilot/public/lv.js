@@ -1088,6 +1088,7 @@ export const LV = {
   "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)": "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)",
   "mapa povrchů (Planimetrics 2023) © DC GIS, Office of the Chief Technology Officer (CC BY 4.0)": "segumu karte (Planimetrics 2023) © DC GIS, Office of the Chief Technology Officer (CC BY 4.0)",
   "pruhy a stání (Roadway SubBlock) © DDOT, DC GIS (CC BY 4.0)": "joslas un stāvvietas (Roadway SubBlock) © DDOT, DC GIS (CC BY 4.0)",
+  "domy (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)": "ēkas (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)",
   " · mapa povrchů Washingtonu neodpověděla, odhad z ortofota a OSM": " · Vašingtonas segumu karte neatbildēja, aplēse pēc ortofoto un OSM",
   "Mapa povrchů Washingtonu (DC GIS) teď neodpovídá, profil je odhad z ortofota a OSM.": "Vašingtonas segumu karte pašlaik neatbild, profils ir aplēse pēc ortofoto un OSM.",
   "mapy povrchů Washingtonu, inventáře DDOT, ortofota a OSM": "Vašingtonas segumu karte, DDOT inventārs, ortofoto un OSM",

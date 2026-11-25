@@ -1091,6 +1091,7 @@ export const FR = {
   "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)": "orthophoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)",
   "mapa povrchů (Planimetrics 2023) © DC GIS, Office of the Chief Technology Officer (CC BY 4.0)": "plan des surfaces (Planimetrics 2023) © DC GIS, Office of the Chief Technology Officer (CC BY 4.0)",
   "pruhy a stání (Roadway SubBlock) © DDOT, DC GIS (CC BY 4.0)": "voies et stationnement (Roadway SubBlock) © DDOT, DC GIS (CC BY 4.0)",
+  "domy (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)": "bâtiments (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)",
   " · mapa povrchů Washingtonu neodpověděla, odhad z ortofota a OSM": " · le plan des surfaces de Washington n'a pas répondu, estimation à partir de l'orthophoto et d'OSM",
   "Mapa povrchů Washingtonu (DC GIS) teď neodpovídá, profil je odhad z ortofota a OSM.": "Le plan des surfaces de Washington ne répond pas pour le moment, le profil est une estimation à partir de l'orthophoto et d'OSM.",
   "mapy povrchů Washingtonu, inventáře DDOT, ortofota a OSM": "du plan des surfaces de Washington, de l'inventaire du DDOT, de l'orthophoto et d'OSM",
