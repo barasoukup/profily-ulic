@@ -36,7 +36,7 @@ South Capitol Street (svodidla mezi vozovkami).
 | | výsledek |
 |---|---|
 | mapa (s opravami) : bez mapy (`?dc=0`), 25 nových tepen | **19 : 6**, stejně 0, nejde posoudit 0 |
-| nový kód : starý kód, všech 97 řezů (25 nových, 40 starého A/B, 32 pilotu), změněno 11 | **8 : 2**, stejně 1, nejde posoudit 0 |
+| nový kód : starý kód, všech 97 řezů (25 nových, 40 starého A/B, 32 pilotu), změněno 11 | 8 : 2, stejně 1, nejde posoudit 0 (většinou laděné řezy, viz dva řádky níže) |
 | z toho 3 změněné mezi 25 novými | 2 : 0, stejně 1 |
 | z toho 8 změněných na řezech, z nichž se ladilo nebo které jsou ze starých vzorků | 6 : 2 |
 

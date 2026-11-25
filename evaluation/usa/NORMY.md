@@ -40,11 +40,16 @@ Aplikace čte stávající ulice (a metro mimo DC, kde DEM neplatí), proto **v�
 
 - **3 m na směr** (`freeLane: 3`): IFC 503.2.1 požaduje u příjezdové komunikace pro hasiče 20 ft (6,10 m) volné šířky,
   tedy asi 3 m na směr; 18 DCMR § 2405.2(g) zakazuje stát tam, kde zůstane méně než 10 ft (3,05 m) otevřené vozovky.
-  Pravidlo aplikace je tedy blízko obojímu.
+  Pravidlo aplikace je tedy blízko IFC; § 2405.2(g) mluví o 10 ft **celkem**, ne na směr. Platí přitom jen v Marylandu a Virginii
+  (v DC rozhoduje inventář), kde DCMR ani dodatek DC k IFC neplatí a vlastní zdroj pro ně nemáme: 3 m je tam obvyklá šířka
+  aplikace, ne jejich předpis.
 - **DC ve skutečnosti parkuje oboustranně už od asi 8,75–9,75 m** (inventář DDOT: místní ulice se dvěma pruhy po 8 ft
   a dvěma pruhy stání po 8 ft). V DC proto o stání rozhoduje inventář DDOT, kde blok najde (`towns/usa.js`), a odhad podle
   pravidel je tam vypnutý; jinde v metru (Maryland, Virginie) platí odhad 3 m na směr.
-- Stání na chodníku: 18 DCMR § 2405 ho zakazuje (z druhé ruky), věta `halfKerbNote`.
+- Stání na chodníku: 18 DCMR § 2405 ho zakazuje (z druhé ruky). `halfKerbNote` o zákazu od 25. 11. 2026 nic netvrdí, platí
+  i v Marylandu a Virginii (recenze).
+- Neověřeno (recenze 25. 11. 2026): čísla tabulek DEM 2023 (30-13, 30-14, 31-1, 45-1), § 29.3.3 a 29.4.1, tabulka 2 BFDG;
+  čísla stran chybí.
 - Neověřeno: 18 DCMR § 2406.1 (prahy 20 ft a 30 ft vozovky pro zákaz stání, jen ze shrnutí vyhledávače) a současný dodatek
   DC k IFC 503.2.1 (vydání 2017 a novější se nepodařilo otevřít).
 

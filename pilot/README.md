@@ -428,12 +428,13 @@ hranice okresů z TIGERweb Census Bureau), zbytek USA je `closed_us` s hláškou
 - **mapa povrchů** DC Planimetrics 2023 (`maps2.dcgis.dc.gov` `Planimetrics_2023/MapServer` 10 vozovky, 11 chodníky,
   1 budovy; CC BY 4.0) čtená podél řezu po 0,1 m jako GRB Flander (mapování z pilotu `evaluation/usa-dc/build.mjs`: mezera
   mezi plochami je zeleň, parkoviště, uličky a vjezdy jiná zpevněná plocha), jen kde má ulici pod středem řezu
-  (`hasStreet` jako Vilnius a Helsinky); `?dc=0` vypne;
+  (`hasStreet` jako Vilnius a Helsinky); řez ve středu plochy „Intersection“ to řekne; `?dc=0` vypne;
 - **inventář DDOT** Roadway SubBlock (`Transportation_WebMercator/MapServer/162`): počet pruhů jako OSM `lanes` cesty
-  (`app.js` `wayTags`), pruhy stání u vnějších obrub vozovky (704) a cyklopruhy, kde je OSM nemá; kde blok je, odhad stání
+  (`app.js` `wayTags`), pruhy stání u vnějších obrub vozovky (704) a cyklopruhy, kde je OSM nemá; strany
+  podle cesty řezu, chráněná cyklostezka tam, kde ji má OSM (i uprostřed ulice), blok podle druhu a jen vyplněný; kde blok je, odhad stání
   podle pravidel je vypnutý (`noParkGuess`); `?ddot=0` vypne;
 - **uličky** z planimetrie jako plochy `service=alley` v prvcích OSM (ústí uličky = křižovatka, `derive.js`);
-- **ortofoto** DC 2025 (`Ortho2025_WebMercator`, export v Web Mercatoru, jen nad obdélníkem DC: `lanes-ortho.js us-dc`)
+- **ortofoto** DC 2025 (`Ortho2025_WebMercator`, export v Web Mercatoru, jen nad Districtem podle hranice `mesta-us.json` a 60 m za ní: `lanes-ortho.js us-dc`)
   pro pruhy, model obrub a podklad mapy. Mimo DC v metru jen odhad z OSM.
 Normy DDOT (DEM 2023, Bicycle Facility Design Guide 2020) a NACTO jen oranžově (`evaluation/usa/NORMY.md`), stání 3 m na
 směr (IFC 503.2.1, 18 DCMR § 2405), bez řádku značek, bez paneláků, neutrální vozidla, český mobiliář, rakouské
