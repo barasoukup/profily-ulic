@@ -1097,10 +1097,10 @@ tabulku zdroj × stav: `ok`, `prázdné`, `náhrada ČÚZK` (služba města nic 
 `varování` (jen neúplný řetězec certifikátů serveru; prohlížeče si poradí) a `CHYBA`. Chyba, tichá chyba nebo
 prázdné plochy či OSM běh shodí a GitHub pošle e-mail; tabulka je v souhrnu běhu. Je to asi sto malých dotazů
 týdně, město po městě. Lokálně proti místnímu serveru: `SITE=http://localhost:5173/ node tools/check_sources.mjs`,
-plochy jsou povinné jen tam, kde je mapa povrchů (`SURFACE_MAPS` modulů, bod v ulici pro každou v `tools/check_sources_lib.mjs`
-`POINTS`); co selže, se po pauze zeptá znovu a jen pomalá služba (timeout dvakrát) je varování, když povinné dotazy státu prošly;
 jen některá města: `node tools/check_sources.mjs praha brno podklad`. Mezilehlé certifikáty, které některé
 servery neposílají (Frýdek-Místek), jsou v `tools/ca/`.
+Plochy jsou povinné jen tam, kde je mapa povrchů (`SURFACE_MAPS` modulů, bod v ulici pro každou v `tools/check_sources_lib.mjs`
+`POINTS`). Co selže, zkusí se po pauze znovu; jen pomalá služba (dvakrát vypršela) je varování, když povinné dotazy státu prošly.
 
 ## Licence a uvedení zdrojů
 
