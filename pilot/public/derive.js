@@ -52,7 +52,7 @@ export function bedSurfaces(segs, { rails = [], ortho, at, dir, highway } = {}) 
     const between = segs.slice(0, i).some((x) => ROADWAY_PART.has(x.type)) && segs.slice(j + 1).some((x) => ROADWAY_PART.has(x.type));
     const kind = seen === "trava" ? "trava"
       : bus ? "asfalt"
-      : highway === "pedestrian" || city.fix?.bedPanels ? "panely" // Plzeň: mostly panel beds about 6 m wide (A/B)
+      : highway === "pedestrian" || city.bedPanels ? "panely" // Plzeň: mostly panel beds about 6 m wide (A/B)
       : !between || e - s >= BED_WIDE - 1e-9 ? "strk" : "panely";
     for (const x of bed) Object.assign(x, { bed: kind, bedSource: "odhad" });
     i = j;
@@ -172,27 +172,76 @@ const JUNCTION_CLEARANCE = 15; // keep the cut this far from where another stree
 const CROSSING_CLEARANCE = 6; // …and from a pedestrian crossing (m)
 const LOOP_CLEARANCE = 12; // …and from any point of a roundabout's ring or a turning circle (m): a cut there
 // runs over the ring and its island (Jihlava č. 23, 52)
+// A service way joins like a street (Bára 25. 11. 2026, one rule everywhere; first Brno's, 9. 11. 2026: side streets are
+// often service in OSM, Kohoutova's unnamed dead-end access roads of 130–150 m, so a name or a way through tells nothing),
+// but not a driveway, a parking aisle or a drive-through. ?off=obsluzne: no service way joins (Prague before; an alley
+// still does). On a dual carriageway a service way alone does not push the cut to where it would cross a junction of the
+// street's other carriageway: it stays (Poděbradská, Prague č. 20 of 9. 11.: from 7 m off one mouth onto the mouth of a car
+// park opposite; ?off=protejsi: it goes). A clearance of 9 m in place of a street's was tried: in Prague as good against
+// MTVU, in Brno and abroad worse (evaluation/sjednoceni/praha).
+const PARTNER_REACH = 40; // m: how far the other carriageway may lie
 const NOT_JUNCTION_SERVICE = new Set(["driveway", "parking_aisle", "drive-through"]);
-const AXIS_SNAP = 4.5; // m: an OSM axis this close beside the roadway belongs to it (city.fix.axisToRoadway)
-// Streets for those fixes: roads and residential streets, not tracks or bridleways (Brno test č. 99).
+// The mouth of an alley joins as a crossing does (Bára 24. 11. 2026, the USA pilot dc-1-1: a cut on an alley's mouth ran
+// along the alley, 36 m of paving and no sidewalk): an OSM way service=alley meeting the street, and an alley's area (an
+// OSM area with area:highway=service or service=alley, or a surface map's alley a module adds to the OSM elements as
+// such) within ALLEY_REACH of the street's axis, at the point of the axis nearest to it. The clearance: CROSSING_CLEARANCE
+// beyond the alley's half width. ?off=ulicky: as before.
+const ALLEY_REACH = 12; // m from the axis (a wide roadway's kerb and its sidewalk)
+const isAlleyArea = (el) => el.type === "area" && el.geometry?.length > 2 && (el.tags?.["area:highway"] === "service" || el.tags?.service === "alley");
+const AXIS_SNAP = 4.5; // m: an OSM axis this close beside the roadway belongs to it (deriveProfile, the axis to the roadway)
+// Streets for the axis fixes: roads and residential streets, not tracks or bridleways (Brno test č. 99).
 const STREETS = new Set(["motorway", "trunk", "primary", "secondary", "tertiary", "unclassified", "residential", "living_street",
   "motorway_link", "trunk_link", "primary_link", "secondary_link", "tertiary_link"]);
 // Roads for cars, not living streets or pedestrian zones (deriveProfile roadOnPath).
 const CAR_ROADS = new Set([...STREETS].filter((h) => h !== "living_street"));
 const ROAD_ON_PATH_MIN = 5; // m (deriveProfile roadOnPath)
+const ROAD_UNDER_AXIS_MIN = 3; // m: a paved area under the axis narrower than a lane (3.00 m) is no roadway
 
 
 // Move a snapped point along its way away from junctions and pedestrian crossings, where a
 // perpendicular cut runs along a side street or over a zebra. Junctions are nodes the way shares
 // with another street (its plain continuation under the same name does not count); the way ends
 // keep END_CLEARANCE as before. The point stays on its own way, as close to the click as possible.
+// The point of the polyline pts nearest to q: { dist, p }.
+function nearestOnLine(pts, q) {
+  let best = null;
+  for (let i = 1; i < pts.length; i++) {
+    const [a, b] = [pts[i - 1], pts[i]], d = [b[0] - a[0], b[1] - a[1]], L2 = d[0] * d[0] + d[1] * d[1];
+    if (!L2) continue;
+    const u = Math.max(0, Math.min(1, ((q[0] - a[0]) * d[0] + (q[1] - a[1]) * d[1]) / L2)), p = [a[0] + u * d[0], a[1] + u * d[1]];
+    const dist = Math.hypot(q[0] - p[0], q[1] - p[1]);
+    if (!best || dist < best.dist) best = { dist, p };
+  }
+  return best;
+}
+// Where an alley's area meets the street's axis pts (local metres): { p, clear } or null. Its vertices within
+// ALLEY_REACH of the axis are the mouth: the point of the axis nearest to their middle, the clearance beyond their half
+// spread along the axis.
+function alleyMouth(el, pts, frame) {
+  const near = [];
+  for (const g of el.geometry) {
+    const best = nearestOnLine(pts, frame.toXY(g.lon, g.lat));
+    if (best && best.dist <= ALLEY_REACH) near.push(best.p);
+  }
+  if (!near.length) return null;
+  const c = [near.reduce((s, p) => s + p[0], 0) / near.length, near.reduce((s, p) => s + p[1], 0) / near.length];
+  const spread = Math.max(...near.map((p) => Math.hypot(p[0] - c[0], p[1] - c[1])));
+  return { p: c, clear: CROSSING_CLEARANCE + spread };
+}
+
 export function awayFromJunctions(osm, frame, near) {
   const geom = near.way.geometry, pts = near.pts;
   const key = (g) => `${g.lat.toFixed(7)},${g.lon.toFixed(7)}`;
   const idx = new Map(geom.map((g, i) => [key(g), i]));
   const lastI = geom.length - 1;
   const hits = [];
+  const alleys = !ORTHO_P.off?.has("ulicky"), services = !ORTHO_P.off?.has("obsluzne");
   for (const el of osm.elements || []) {
+    if (alleys && isAlleyArea(el)) {
+      const hit = alleyMouth(el, pts, frame);
+      if (hit) hits.push({ ...hit, service: true });
+      continue;
+    }
     if (el.id === near.way.id || !el.tags?.highway || !el.geometry) continue;
     if (el.type === "node" && ["turning_circle", "turning_loop"].includes(el.tags.highway)) {
       hits.push({ p: frame.toXY(el.geometry[0].lon, el.geometry[0].lat), clear: LOOP_CLEARANCE });
@@ -203,16 +252,15 @@ export function awayFromJunctions(osm, frame, near) {
       for (const g of el.geometry) hits.push({ p: frame.toXY(g.lon, g.lat), clear: LOOP_CLEARANCE });
     }
     const crossing = el.tags.footway === "crossing" || el.tags.cycleway === "crossing";
-    // A service road joins like a street where the city says so (Brno: side streets are often service
-    // in OSM, e.g. Kohoutova, Pivoňkova); driveways and parking aisles do not.
-    const sideService = city.fix?.serviceJunctions && el.tags.highway === "service" && !NOT_JUNCTION_SERVICE.has(el.tags.service);
+    // A service road joins like a street (NOT_JUNCTION_SERVICE above), an alley always.
+    const sideService = el.tags.highway === "service" && ((services && !NOT_JUNCTION_SERVICE.has(el.tags.service)) || (alleys && el.tags.service === "alley"));
     if (MINOR.has(el.tags.highway) && !crossing && !sideService) continue;
     el.geometry.forEach((g, j) => {
       const i = idx.get(key(g));
       if (i === undefined) return;
       const endToEnd = (i === 0 || i === lastI) && (j === 0 || j === el.geometry.length - 1);
       if (!crossing && endToEnd && el.tags.name === near.way.tags.name) return; // the street goes on
-      hits.push({ p: pts[i], clear: crossing ? CROSSING_CLEARANCE : JUNCTION_CLEARANCE });
+      hits.push({ p: pts[i], clear: crossing ? CROSSING_CLEARANCE : JUNCTION_CLEARANCE, service: sideService });
     });
   }
   const lens = pts.slice(1).map((q, i) => Math.hypot(q[0] - pts[i][0], q[1] - pts[i][1]));
@@ -228,9 +276,9 @@ export function awayFromJunctions(osm, frame, near) {
     }
   };
   // Slack of a position: how far it is past the clearance of the nearest junction or way end.
-  const slack = (d, p) => Math.min(
+  const slack = (d, p, of = hits) => Math.min(
     Math.min(d, total - d) - Math.min(END_CLEARANCE, total / 2),
-    ...hits.map((h) => Math.hypot(p[0] - h.p[0], p[1] - h.p[1]) - h.clear),
+    ...of.map((h) => Math.hypot(p[0] - h.p[0], p[1] - h.p[1]) - h.clear),
   );
   const start = lens.slice(0, near.index).reduce((a, b) => a + b, 0) +
     Math.hypot(near.point[0] - pts[near.index][0], near.point[1] - pts[near.index][1]);
@@ -242,7 +290,35 @@ export function awayFromJunctions(osm, frame, near) {
     const score = sl >= 0 ? Math.abs(d - start) : 1e6 - sl; // closest free spot, else the freest
     if (!best || score < best.score) best = { ...c, score };
   }
+  if (best && !ORTHO_P.off?.has("protejsi") && hits.some((h) => h.service) && slack(start, near.point, hits.filter((h) => !h.service)) >= 0
+    && partnerJunctions(osm, frame, near).some((h) => Math.hypot(best.point[0] - h[0], best.point[1] - h[1]) < JUNCTION_CLEARANCE)) return near;
   return best ? { ...near, point: best.point, dir: best.dir, index: best.index } : near;
+}
+
+// The junctions on the other carriageway of a street of two one-way halves (its name, driving the other way, dualPartner's
+// test along the whole street), as points of the cut's own axis.
+function partnerJunctions(osm, frame, near) {
+  const name = near.way.tags?.name;
+  if (!name || !isOnewayTags(near.way.tags)) return [];
+  const key = (g) => `${g.lat.toFixed(7)},${g.lon.toFixed(7)}`;
+  const vector = (el) => {
+    const [a, b] = [el.geometry[0], el.geometry[el.geometry.length - 1]].map((g) => frame.toXY(g.lon, g.lat)), sgn = el.tags.oneway === "-1" ? -1 : 1;
+    return [sgn * (b[0] - a[0]), sgn * (b[1] - a[1])];
+  };
+  const own = vector(near.way), at = new Map(), partners = new Set();
+  const ways = (osm.elements || []).filter((el) => el.type === "way" && el.id !== near.way.id && el.geometry && el.tags?.highway);
+  for (const el of ways) {
+    if (el.tags.name !== name || !isOnewayTags(el.tags) || MINOR.has(el.tags.highway)) continue;
+    const v = vector(el);
+    if (v[0] * own[0] + v[1] * own[1] >= 0) continue;
+    partners.add(el.id);
+    for (const g of el.geometry) {
+      const q = nearestOnLine(near.pts, frame.toXY(g.lon, g.lat));
+      if (q && q.dist <= PARTNER_REACH) at.set(key(g), q.p);
+    }
+  }
+  return ways.filter((el) => !partners.has(el.id) && el.tags.name !== name && (!MINOR.has(el.tags.highway) || (el.tags.highway === "service" && !NOT_JUNCTION_SERVICE.has(el.tags.service))))
+    .flatMap((el) => el.geometry.map((g) => at.get(key(g))).filter(Boolean));
 }
 
 function bboxOf(ring) {
@@ -1781,17 +1857,28 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   }
   if (i0 < 0) return { ...estimateFromOsm(way), runs };
   const carriage = (c) => c === 700 || c === 701 || c === 705;
-  // A paved area under the axis of a street (not a path) is its roadway, as an estimate (Brno's MTVU
-  // codes a rebuilt road as "manipulační plocha", e.g. Žabovřeská).
-  // Not a wide one: a 55 m construction site is no roadway to split into lanes.
-  if (city.fix?.roadUnderAxis && STREETS.has(way.tags?.highway) && (runs[i0].code === 1003 || runs[i0].code === 603) && runs[i0].e - runs[i0].s <= 25) {
+  // The OSM axis fixes (first Brno's, 9. 11. 2026; every city since 25. 11. 2026, Bára: one rule everywhere;
+  // ?off=osafix: none, Prague's old behaviour). A paved strip under the axis between two roadways is a median, whose
+  // axis is the street's middle (Prague č. 42, Generála Šišky: a single OSM axis on the 1.5 m paved divider of two
+  // roadways, which the old rules made a lane and moved off the middle); ?off=osaroad drops that test.
+  const axisFix = STREETS.has(way.tags?.highway) && !ORTHO_P.off?.has("osafix"), guarded = !ORTHO_P.off?.has("osaroad");
+  const gap = (r) => (axisT < r.s ? r.s - axisT : axisT > r.e ? axisT - r.e : 0);
+  const roadsNear = (side) => runs.some((r) => carriage(r.code) && gap(r) <= AXIS_SNAP && (side < 0 ? r.e <= axisT : r.s >= axisT));
+  const onDivider = guarded && roadsNear(-1) && roadsNear(1);
+  // A paved area under the axis of a street (not a path) is its roadway, as an estimate (Brno's MTVU codes a rebuilt
+  // road as "manipulační plocha", e.g. Žabovřeská). Not a wide one (a 55 m construction site is no roadway to split
+  // into lanes), not one narrower than a lane (ROAD_UNDER_AXIS_MIN), not a divider between two roadways.
+  const paved = runs[i0].code === 1003 || runs[i0].code === 603, pavedW = runs[i0].e - runs[i0].s;
+  if (axisFix && paved && pavedW <= 25 && !onDivider && !(guarded && pavedW < ROAD_UNDER_AXIS_MIN)) {
     runs[i0] = { ...runs[i0], code: 701, guess: true };
   }
-  // An OSM axis a few metres beside the roadway (on its sidewalk or verge) is moved onto it, so the
-  // profile does not start beside the street (Brno test of 100 cuts: axes 2–4 m off).
-  if (city.fix?.axisToRoadway && STREETS.has(way.tags?.highway) && !carriage(runs[i0].code)) {
-    const gap = (r) => (axisT < r.s ? r.s - axisT : axisT > r.e ? axisT - r.e : 0);
-    const road = runs.filter((r) => carriage(r.code) && gap(r) <= AXIS_SNAP).sort((a, b) => gap(a) - gap(b))[0];
+  // An OSM axis a few metres beside the roadway (on its sidewalk or verge) is moved onto it, so the profile does not
+  // start beside the street (Brno test of 100 cuts: axes 2–4 m off). Not from a divider between two roadways, and on a
+  // dual carriageway not across to the other carriageway's side: the axis belongs to the roadway on its own side.
+  if (axisFix && !carriage(runs[i0].code) && !onDivider) {
+    const partnerT = guarded ? dualPartner(cross, way, half)?.t : undefined;
+    const ownSide = (r) => partnerT === undefined || Math.sign(r.s + (r.e - r.s) / 2 - axisT) !== Math.sign(partnerT - axisT);
+    const road = runs.filter((r) => carriage(r.code) && gap(r) <= AXIS_SNAP && ownSide(r)).sort((a, b) => gap(a) - gap(b))[0];
     if (road) {
       axisT = road.s + (road.e - road.s) / 2;
       i0 = runs.indexOf(road);
@@ -2298,6 +2385,12 @@ function aisleOrient(segs) {
 // 1000 Slovak cuts: 65 lanes over 4.6 m, most of them such). Not a zone (one paved roadway), a one-way street, a
 // roundabout, a street with trams or of several roadways. The lanes keep the old one's source. ?off=dvapruhy: the A/B.
 export const TWO_WAY_SPLIT = 5.0;
+// Where the street's lanes are counted (OSM lanes ≥ 2, or a map's inventory a module adds to the way's tags) and parking
+// stands beside the roadway, a two-way roadway of one lane is split from 4.0 m (Bára 24. 11. 2026, the USA pilot: DDOT
+// counts two lanes of 8 ft on its local streets of 16 ft, and the roadway left beside the parking strips measured
+// 4.25–4.55 m; all the judged cuts there had the strips). Without parking a roadway of 4.25 m is one lane (Odlehlá in
+// Prague, evaluation/sjednoceni/praha). ?off=pocetpruhu: 5.0 m.
+export const TWO_WAY_SPLIT_COUNTED = 4.0;
 export function splitTwoWayLane(segments, tags = {}) {
   if (ORTHO_P.off?.has("dvapruhy")) return 0;
   // OSM lanes=1 on a two-way road is a single-lane road (passing places): kept.
@@ -2317,7 +2410,9 @@ export function splitTwoWayLane(segments, tags = {}) {
     else if (l < Infinity) { i--; n++; }
   }
   const width = round(segments.slice(i, i + n).reduce((a, x) => a + x.width, 0));
-  if (!(width >= TWO_WAY_SPLIT - 1e-6)) return 0;
+  const beside = [segments[i - 1], segments[i + n]].some((x) => x?.type === "parkovani");
+  const split = (+tags.lanes || 0) >= 2 && beside && !ORTHO_P.off?.has("pocetpruhu") ? TWO_WAY_SPLIT_COUNTED : TWO_WAY_SPLIT;
+  if (!(width >= split - 1e-6)) return 0;
   const half = round(width / 2);
   const { turn, ...rest } = lane;
   const [d0, d1] = country.leftHand ? ["forward", "backward"] : ["backward", "forward"];

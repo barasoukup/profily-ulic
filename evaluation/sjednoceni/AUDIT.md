@@ -22,10 +22,10 @@ Třídy: **(a)** oprávněný rozdíl (zákon, normy, značky, zdroj dat, jazyk 
 | `wideRoads` | false: CZ (výchozí); true všude jinde | dálnice a silnice pro motorová vozidla dostanou dosah 35 m | „Fable: not tried on Czech motorways“ | žádné | **(c)** |
 | `wideStreets` | jen CY, DK, EE, ES, FI, FR (MC), IT, LT, MT, PT, SI | hlavní ulice, jejíž strana končí na dosahu ve středovém pásu, promenádě nebo chodníku, dostane dosah 35 m | Paříž (51dfd19, bulváry), do dalších států zkopírováno | jen Paříž | **(c)** |
 | `roadClassFromOsm` | false: CZ, SK (výchozí); true jinde | skupina ulice z OSM `highway`, kde město nemá svou třídu (TSK v Praze) | „Austria has no street classes of its own“ | žádné | **(c)**, na geometrii profilu bez vlivu (strop pruhu dálnice 3,75 m dává `LANE_CAP` stejně), mění jen normu pro varování |
-| `city.fix.serviceJunctions` | všechna česká města kromě Prahy; v cizině nikde | obslužná cesta (ne vjezd ani parkoviště) se počítá jako křižovatka, řez od ní odskočí | Brno: boční ulice jsou v OSM `service` (Kohoutova) | Praha 9. 11. 2026 (7757f5a), 100 řezů: 1 lépe, 2 hůř (č. 20 posun o obslužnou cestu na horší místo); cizina nikdy | Praha **(b)**, cizina **(c)** |
-| `city.fix.axisToRoadway` | jako výše | osa OSM do 4,5 m vedle vozovky mapy se přesune na vozovku | Brno, 100 řezů: osy 2–4 m vedle | Praha jako výše (č. 42 středový pás jako pruh 1,55 m); cizina nikdy | Praha **(b)**, cizina **(c)** |
-| `city.fix.roadUnderAxis` | jako výše | zpevněná plocha nebo dvůr (1003, 603) do 25 m pod osou ulice je vozovka (odhad) | Brno: MTVU kóduje přestavěnou silnici jako manipulační plochu | Praha jako výše; cizina nikdy | Praha **(b)**, cizina **(c)** |
-| `city.fix.bedPanels` | Plzeň | tramvajové těleso bez údaje je z panelů | data Plzně (A/B) | A/B Plzně | (a) |
+| `city.fix.serviceJunctions` (zrušeno 25. 11.) | všechna česká města kromě Prahy; v cizině nikde | obslužná cesta (ne vjezd ani parkoviště) se počítá jako křižovatka, řez od ní odskočí | Brno: boční ulice jsou v OSM `service` (Kohoutova) | Praha 9. 11. 2026 (7757f5a), 100 řezů: 1 lépe, 2 hůř (č. 20 posun o obslužnou cestu na horší místo); cizina nikdy | Praha **(b)**, cizina **(c)** |
+| `city.fix.axisToRoadway` (zrušeno 25. 11.) | jako výše | osa OSM do 4,5 m vedle vozovky mapy se přesune na vozovku | Brno, 100 řezů: osy 2–4 m vedle | Praha jako výše (č. 42 středový pás jako pruh 1,55 m); cizina nikdy | Praha **(b)**, cizina **(c)** |
+| `city.fix.roadUnderAxis` (zrušeno 25. 11.) | jako výše | zpevněná plocha nebo dvůr (1003, 603) do 25 m pod osou ulice je vozovka (odhad) | Brno: MTVU kóduje přestavěnou silnici jako manipulační plochu | Praha jako výše; cizina nikdy | Praha **(b)**, cizina **(c)** |
+| `city.bedPanels` | Plzeň | tramvajové těleso bez údaje je z panelů | data Plzně (A/B) | A/B Plzně | (a) |
 | `city.roadOnPath` | jen Praha | chodník/cesta MTVU (702) aspoň 5 m pod silnicí OSM je vozovka (odhad), když vozovku mapa v řezu nemá | hlášení Poncarové: dvoupruhová silnice kódovaná 702 | 142 pražských řezů beze změny (jen neutralita v Praze) | **(c)**, nízký dopad |
 | `trackWidth` | DK 2,25 m | šířka cyklostezky z tagů OSM bez šířky | dánská příručka Tværprofiler i byer | recenze 24. 11. | (a) norma |
 | `freeLane`, `lawNeed`, `parkOnRoadway`, `parkByCycleLane` | po státech | zákon o stání (volný pruh, SI bez stání na obousměrce bez osy, CH a NL ne vedle cyklopruhu) | zákony států | – | (a) |
@@ -68,6 +68,8 @@ plus globální P), (c) 8** (`besidePassport`, `besideMax`, `parkGuess` SK, `wid
 | `wideRoads` CZ | 14 českých dálnic: N 1 : O 13 | nahrazeno pravidlem dat | 4f661d8 → 55bb8d9 |
 | `wideRoads`, `wideStreets` (všechny státy) | pravidlo dat `widerSides`, 112 řezů: změna 6, N 4 : O 2; kontroly bez mapy, české dálnice a Paříž beze změny | sjednoceno, oba příznaky zrušeny | 55bb8d9 |
 | `city.fix` (3 pravidla os) | 54 řezů (39 v cizině s mapou, 15 v Praze): 0 změn; staré pražské prohry trvají | sjednoceno mimo Prahu (Praha `fix: {}` s důvodem) | bf4160d |
+| `city.fix` v Praze | pravidla upravená (dělicí pás, protější vozovka); Praha 152 řezů: naslepo N 9 : O 4, proti MTVU ze 131 posunutých míst lépe 54, hůř 30; Brno 118: změna 1 (N), cizina 50: 0 | **sjednoceno, `city.fix`, `AXIS_FIX` i `PROFILY_FIX` zrušené**; Plzeň jen `bedPanels` (data) | `praha/ZPRAVA.md` |
+| ústí uličky, spočítané pruhy (z pilotu USA) | viz `praha/ZPRAVA.md` | přenesené; spočítané pruhy jen se stáním u vozovky (Odlehlá prohrála) | `praha/ZPRAVA.md` |
 
 Zbývá (doporučení): `besideMax` (SK 15 m, jinde 25 m; A/B na Slovensku, na českých pasportech je to jedno),
 `roadOnPath` (jen Praha; zkusit na DTM ČÚZK a mapách měst, data mohou mít stejnou chybu), `roadClassFromOsm` (CZ, SK;

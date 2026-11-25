@@ -135,7 +135,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   (gis.brno.cz ags3 PUBLIC/opendata_mtvu), linie a body z kresby technické mapy UMPS (opendata_umps),
   budovy z KAM. Lokálně dlaždice OSM a parkování z mapy parkovanivbrne.cz (Bára: otevřená data
   z 2/2024 vynechat, stáhnout aktuální mapu; oblasti nepoužívat, rozhoduje úsek u řezu).
-- Úpravy výpočtu jen pro Brno přes `city.fix` (Bára: do Prahy zatím nezasahovat).
+- Úpravy výpočtu z Brna (dřív `city.fix`) platí od 25. 11. 2026 všude i v Praze.
 - Záložní postup z veřejné DTM kraje (`tools/fetch_dtm_brno.sh`, `tools/build_dtm_brno.py`) si Bára
   přeje schovat pro města bez vlastní služby (DTM kraje má u velkých silnic chybějící obruby).
 - Ilustrace (`pilot/public/brno/`): tramvaj Tatra T3 v nátěru DPMB (Bára: je hezčí; 45T a 13T nakreslené taky), autobus DPMB, mobiliář podle
@@ -577,8 +577,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   (Bára: výjimka jen s měřením). A/B 90 nových českých řezů: změna 7, lépe 6 : 2 (kraje 4 : 1, Praha 1 : 0, Brno 1 : 1),
   `evaluation/mapfill-cz/ZPRAVA.md`.
 - Sjednocení výjimek (Bára 24. 11. 2026: co nejvíc sdíleně, výjimka jen s měřením nebo rozdílem zákona, norem a dat;
-  `evaluation/sjednoceni/AUDIT.md`, `ZPRAVA.md`): `besidePassport` všude (i CZ), osy OSM (`city.fix`, `city.js AXIS_FIX`)
-  všude kromě Prahy (změřeno hůř), delší dosah dálnic a hlavních ulic jedním pravidlem dat řezu (`app.js widerSides`,
+  `evaluation/sjednoceni/AUDIT.md`, `ZPRAVA.md`): `besidePassport` všude (i CZ), osy OSM, obslužné cesty a ústí uliček jako křižovatky
+  všude i v Praze (`city.fix` zrušené, `evaluation/sjednoceni/praha/ZPRAVA.md`), delší dosah dálnic a hlavních ulic jedním pravidlem dat řezu (`app.js widerSides`,
   příznaky `wideRoads`/`wideStreets` zrušené), oprava stání z modelu u zákonného pruhu (`?off=parkshare`); SK bez
   zákonného odhadu stání zůstává (změřeno; pravidlo dat prohrálo ve státech se zákonem 7 : 15).
 

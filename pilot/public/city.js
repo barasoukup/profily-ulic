@@ -20,12 +20,6 @@ export const MTVU_LABELS = {
   1003: "ostatní plochy - zpevněné plochy kolem zástavby", 1100: "železnice",
 };
 
-// The OSM axis fixes of the profile (derive.js city.fix; first Brno's, 9. 11. 2026): a service road joins like a street
-// (the cut keeps off it), an OSM axis a few metres beside the map's roadway moves onto it, a paved area under the axis of
-// a street is its roadway. In every city but Prague (evaluation/sjednoceni, 25. 11. 2026: 0 of 39 random cuts abroad
-// changed, with Vienna's, Berlin's, Hamburg's, Paris's, Helsinki's, Amsterdam's, Zurich's, Tallinn's, Bratislava's,
-// Kraków's, Zaragoza's and Bologna's maps; Bára: an exception only with a measurement).
-export const AXIS_FIX = { serviceJunctions: true, axisToRoadway: true, roadUnderAxis: true };
 const CITIES = {
   // Anywhere outside the cities above: the national DTM of ČÚZK (dmvs.js), RÚIAN houses, OSM.
   cesko: {
@@ -79,10 +73,6 @@ const CITIES = {
     // (data/vyvoj, sources.js vyvoj); iprHouseKind: IPR's kind of building 6 is a family house (profile.js);
     // ruianYear: the year, walls and use of a house from RÚIAN (app.js), as IPR gives none.
     roadOnPath: true, slowServer: true, paidZoneFile: true, builtAgeTiles: true, iprHouseKind: true, ruianYear: true,
-    // Not the OSM axis fixes of every other city (AXIS_FIX): measured worse in Prague, 100 cuts of 9. 11. 2026 (1 better,
-    // 2 worse) and again on 25. 11. (evaluation/sjednoceni: Generála Šišky's median read as lanes, Poděbradská moved by a
-    // service road; 0 of 15 new random cuts changed). MTVU draws the roadway where OSM's axis is.
-    fix: {},
     // Its own orthophoto for the lanes (lanes-ortho.js), in place of the state's.
     laneOrtho: "ipr",
     example: "50.082707, 14.419918",
@@ -109,10 +99,6 @@ const CITIES = {
     credit: "data © Statutární město Brno (technická mapa a MTVU; budovy a cykloopatření, data.brno.cz, CC BY 4.0, upraveno), parkování © parkovanivbrne.cz",
     // KAM gives floors and roofs but not the year of a house: RÚIAN's (app.js). Its own orthophoto for the lanes.
     ruianYear: true, laneOrtho: "brno",
-    // Changes to the profile tried in Brno first (derive.js); Prague keeps its behaviour until they are
-    // checked there too. serviceJunctions: a service road joining counts as a junction; axisToRoadway:
-    // an OSM axis up to 4.5 m beside the roadway moves onto it; roadUnderAxis: a paved area under a
-    // street axis is its roadway (estimate).
     example: "49.195100, 16.608500",
   },
   jihlava: {
@@ -238,7 +224,7 @@ const CITIES = {
     credit: "data © Statutární město Plzeň (technická mapa, budovy 3D, pasport zeleně a mobiliáře, parkovací zóny), RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 1.3, estateKm: 3,
-    fix: { ...AXIS_FIX, bedPanels: true },
+    bedPanels: true, // a tram bed without data is of panels (derive.js; Plzeň's data, A/B)
     laneOrtho: "plzen", // its own orthophoto for the lanes (lanes-ortho.js)
     example: "49.747700, 13.377600",
     // Plzeň illustrations (plzen/): PMDP's yellow tram Škoda 40T, green trolleybus Škoda 26Tr (Solaris body) and red
@@ -551,7 +537,7 @@ export const CITY_IDS = Object.keys(CITIES);
 export const cityById = (id) => CITIES[id];
 
 // The city of the current cut. globalThis.PROFILY_CITY lets a script (tools/build_og.mjs, the evaluation)
-// start in another city; globalThis.PROFILY_FIX lets a test (evaluation/run.mjs FIX=1) try the Brno fixes on Prague.
+// start in another city.
 export const city = {};
 // The state of the current cut as a module (countries/<ISO>.js; countries/default.js outside the states the app knows):
 // what differs by state (norms, signs, orthophoto, houses, illustrations…). city.country stays its ISO code.
@@ -562,11 +548,10 @@ export function setCity(id) {
   for (const k of Object.keys(city)) delete city[k];
   // country: the state of the cut (ISO 3166-1: "CZ", "SK"; null elsewhere), for its data, norms and signs; the
   // language of the interface is the visitor's (i18n.js), not the place's.
-  const c = { country: "CZ", fix: AXIS_FIX, ...(CITIES[id] || CITIES.cesko) };
+  const c = { country: "CZ", ...(CITIES[id] || CITIES.cesko) };
   // In English and Slovak the city's texts of en.js and sk.js (its name in sentences, its data, its credits).
   Object.assign(city, c, cityTexts(c.id, c.like));
   country = countryOf(city.country);
-  if (globalThis.PROFILY_FIX) city.fix = globalThis.PROFILY_FIX;
   return city;
 }
 setCity(globalThis.PROFILY_CITY || "praha");

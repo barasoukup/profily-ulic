@@ -119,6 +119,8 @@ strana B krajnice 9,7 m), Nad Vršovskou horou jinak (posun z křižovatky). Roz
 Prahy** (`city.js AXIS_FIX`, výchozí v `setCity`; Praha `fix: {}` s naměřeným důvodem). Plzeň si nechává `bedPanels`
 (data jejích tramvajových těles). Regrese beze změny, 425 testů.
 
+**Pokračování 25. 11. 2026: výjimka Prahy zrušená, `praha/ZPRAVA.md`.**
+
 ## 6. Delší dosah dálnic a hlavních ulic podle dat řezu místo `wideRoads` a `wideStreets`
 
 Bára 25. 11. 2026 k bodu 4: důvod (mapa povrchů kreslí plochy všude, 35 m vede do polí) je vlastnost dat, ne Česka;

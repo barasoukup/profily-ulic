@@ -3,8 +3,9 @@
 //   const m = await import("/zz-sjed.js");
 //   const pts = await m.pick(CANDIDATES);                       // snapped onto car streets
 //   await m.collect(pts, [{ key: "O" }, { key: "N", set: { CZ: { besidePassport: true, besideMax: 25 } } }], "sj-pasporty")
-// A variant: key, set (country module fields set live, by ISO code), fix (globalThis.PROFILY_FIX: city.fix for every
-// city; null leaves each city its own), off (ortho-osm.js P.off). Each point is cut once per variant in the same place
+// A variant: key, set (country module fields set live, by ISO code), off (ortho-osm.js P.off; city.fix is gone since
+// 25. 11. 2026, its rules have ?off= switches: obsluzne, ulicky, protejsi, osafix, osaroad, pocetpruhu), free (cut from the point itself,
+// not from the first variant's). Each point is cut once per variant in the same place
 // (the first variant's snapped point and bearing). Saved to evaluation/universal/data/<name>.json.
 const CAR = new Set(["primary", "secondary", "tertiary", "unclassified", "residential", "living_street", "trunk", "motorway",
   "primary_link", "secondary_link", "tertiary_link", "trunk_link", "motorway_link"]);
@@ -52,8 +53,7 @@ export async function collect(pts, VARIANTS, name) {
         kept.push([COUNTRIES[iso], k, Object.hasOwn(COUNTRIES[iso], k), COUNTRIES[iso][k]]);
         COUNTRIES[iso][k] = val;
       }
-      if ("fix" in v) globalThis.PROFILY_FIX = v.fix; else delete globalThis.PROFILY_FIX;
-      // app.js sets the city only when a cut changes it: set it again, so the fix (or the city's own) holds now.
+      // app.js sets the city only when a cut changes it: set it again, so a changed field of the city holds now.
       C.setCity(C.city.id);
       oo.P.off = new Set(v.off || []);
       localStorage.removeItem("streetdesign-pilot");
@@ -69,7 +69,6 @@ export async function collect(pts, VARIANTS, name) {
       row[v.key].ms = Date.now() - t0;
       for (const [m, k, own, val] of kept.reverse()) { if (own) m[k] = val; else delete m[k]; }
     }
-    delete globalThis.PROFILY_FIX;
     C.setCity(C.city.id);
     oo.P.off = new Set();
     rows.push(row);

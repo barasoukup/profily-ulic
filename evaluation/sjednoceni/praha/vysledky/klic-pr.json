@@ -1,0 +1,113 @@
+{
+ "pr-1/1": {
+  "id": "praha-s22",
+  "X": "O",
+  "Y": "N",
+  "noise": false
+ },
+ "pr-1/2": {
+  "id": "praha-s20",
+  "X": "N",
+  "Y": "O",
+  "noise": false
+ },
+ "pr-1/3": {
+  "id": "praha-s10",
+  "X": "O",
+  "Y": "N",
+  "noise": false
+ },
+ "pr-1/4": {
+  "id": "praha-s9",
+  "X": "N",
+  "Y": "O",
+  "noise": false
+ },
+ "pr-1/5": {
+  "id": "praha-s7",
+  "X": "O",
+  "Y": "N",
+  "noise": false
+ },
+ "pr-1/6": {
+  "id": "praha100-20",
+  "X": "N",
+  "Y": "O"
+ },
+ "pr-1/7": {
+  "id": "praha-s19",
+  "X": "O",
+  "Y": "N",
+  "noise": false
+ },
+ "pr-1/8": {
+  "id": "praha-s5",
+  "X": "N",
+  "Y": "O",
+  "noise": false
+ },
+ "pr-1/9": {
+  "id": "praha-s18",
+  "X": "N",
+  "Y": "O",
+  "noise": false
+ },
+ "pr-1/10": {
+  "id": "praha-d16",
+  "X": "O",
+  "Y": "N",
+  "noise": false
+ },
+ "pr-1/11": {
+  "id": "praha100-67",
+  "X": "O",
+  "Y": "N"
+ },
+ "pr-1/12": {
+  "id": "praha-s16",
+  "X": "N",
+  "Y": "O",
+  "noise": false
+ },
+ "pr-2/1": {
+  "id": "praha-s4",
+  "X": "N",
+  "Y": "O",
+  "noise": false
+ },
+ "pr-2/2": {
+  "id": "praha-s14",
+  "X": "N",
+  "Y": "O",
+  "noise": false
+ },
+ "pr-2/3": {
+  "id": "praha-s17",
+  "X": "O",
+  "Y": "N",
+  "noise": false
+ },
+ "pr-2/4": {
+  "id": "praha-s15",
+  "X": "N",
+  "Y": "O",
+  "noise": false
+ },
+ "pr-2/5": {
+  "id": "praha-s13",
+  "X": "O",
+  "Y": "N",
+  "noise": false
+ },
+ "pr-2/6": {
+  "id": "praha100-69",
+  "X": "N",
+  "Y": "O"
+ },
+ "pr-2/7": {
+  "id": "praha-s1",
+  "X": "N",
+  "Y": "O",
+  "noise": false
+ }
+}

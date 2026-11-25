@@ -1,0 +1,505 @@
+{
+ "praha-s1": [],
+ "praha-s3": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "praha-s4": [],
+ "praha-s5": [],
+ "praha-d3": [],
+ "praha-s6": [],
+ "praha-s7": [],
+ "praha-s9": [
+  {
+   "k": "f",
+   "year": 2025,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "praha-s10": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "praha-s13": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "praha-s14": [],
+ "praha-s15": [
+  {
+   "k": "b",
+   "year": 2015,
+   "pano": false
+  }
+ ],
+ "praha-s16": [],
+ "praha-s17": [],
+ "praha-s18": [],
+ "praha-s19": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "praha-d16": [
+  {
+   "k": "f",
+   "year": 2019,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2018,
+   "pano": false
+  }
+ ],
+ "praha-s20": [
+  {
+   "k": "f",
+   "year": 2025,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2017,
+   "pano": false
+  }
+ ],
+ "praha-s22": [
+  {
+   "k": "f",
+   "year": 2024,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2024,
+   "pano": false
+  }
+ ],
+ "praha100-9": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "praha100-20": [
+  {
+   "k": "f",
+   "year": 2024,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2017,
+   "pano": false
+  }
+ ],
+ "praha100-26": [
+  {
+   "k": "f",
+   "year": 2022,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "praha100-27": [
+  {
+   "k": "f",
+   "year": 2022,
+   "pano": false
+  }
+ ],
+ "praha100-32": [
+  {
+   "k": "b",
+   "year": 2015,
+   "pano": false
+  }
+ ],
+ "praha100-45": [
+  {
+   "k": "f",
+   "year": 2023,
+   "pano": false
+  }
+ ],
+ "praha100-67": [],
+ "praha100-69": [
+  {
+   "k": "f",
+   "year": 2024,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2024,
+   "pano": true
+  }
+ ],
+ "viden-s1": [
+  {
+   "k": "f",
+   "year": 2020,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2020,
+   "pano": false
+  }
+ ],
+ "viden-s2": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": true
+  }
+ ],
+ "berlin-s1": [
+  {
+   "k": "f",
+   "year": 2017,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2015,
+   "pano": false
+  }
+ ],
+ "berlin-s2": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "helsinki-s1": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "helsinki-s2": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "bratislava-s1": [
+  {
+   "k": "f",
+   "year": 2015,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2018,
+   "pano": false
+  }
+ ],
+ "bratislava-s2": [],
+ "bratislava-d2": [
+  {
+   "k": "f",
+   "year": 2017,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2019,
+   "pano": false
+  }
+ ],
+ "krakov-s1": [],
+ "krakov-s2": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": true
+  }
+ ],
+ "pariz-s1": [
+  {
+   "k": "f",
+   "year": 2025,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2024,
+   "pano": false
+  }
+ ],
+ "pariz-d2": [],
+ "pariz-s2": [
+  {
+   "k": "f",
+   "year": 2018,
+   "pano": false
+  }
+ ],
+ "amsterdam-s1": [
+  {
+   "k": "f",
+   "year": 2017,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2017,
+   "pano": true
+  }
+ ],
+ "zilina-s1": [],
+ "zilina-s2": [
+  {
+   "k": "f",
+   "year": 2017,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2017,
+   "pano": false
+  }
+ ],
+ "lodz-s1": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "lodz-s2": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "lyon-s1": [
+  {
+   "k": "f",
+   "year": 2020,
+   "pano": false
+  }
+ ],
+ "lyon-s2": [
+  {
+   "k": "f",
+   "year": 2018,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2016,
+   "pano": false
+  }
+ ],
+ "brno-s1": [
+  {
+   "k": "f",
+   "year": 2017,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2016,
+   "pano": false
+  }
+ ],
+ "brno-s2": [
+  {
+   "k": "f",
+   "year": 2016,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2016,
+   "pano": false
+  }
+ ],
+ "brno-s3": [
+  {
+   "k": "b",
+   "year": 2025,
+   "pano": false
+  }
+ ],
+ "brno-s4": [
+  {
+   "k": "f",
+   "year": 2015,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2016,
+   "pano": false
+  }
+ ],
+ "brno-s5": [],
+ "brno-s6": [
+  {
+   "k": "f",
+   "year": 2016,
+   "pano": false
+  }
+ ],
+ "brno-s7": [],
+ "brno-s8": [],
+ "brno100-8": [
+  {
+   "k": "f",
+   "year": 2019,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": true
+  }
+ ],
+ "brno100-16": [
+  {
+   "k": "f",
+   "year": 2021,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "brno100-32": [
+  {
+   "k": "f",
+   "year": 2015,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2025,
+   "pano": false
+  }
+ ],
+ "brno100-39": [
+  {
+   "k": "f",
+   "year": 2020,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2018,
+   "pano": false
+  }
+ ],
+ "brno100-46": [
+  {
+   "k": "b",
+   "year": 2017,
+   "pano": false
+  }
+ ],
+ "brno100-51": [],
+ "brno100-75": [
+  {
+   "k": "f",
+   "year": 2025,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2025,
+   "pano": false
+  }
+ ],
+ "brno100-91": []
+}

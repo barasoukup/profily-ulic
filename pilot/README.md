@@ -528,9 +528,13 @@ Podloubí jen podle dat (Bára): cesta OSM `covered=arcade|colonnade|building_ar
 
 ## Brno
 
-Stejně jako Praha se Brno ptá služeb města při kliknutí (přímo z prohlížeče, služby povolují CORS). Úpravy
-výpočtu, které platí všude kromě Prahy, zapíná `city.fix` (`city.js`): křižovatky i se `service`, osa OSM vedle
-vozovky se posune na ni, zpevněná plocha do 25 m pod osou silnice je vozovka.
+Stejně jako Praha se Brno ptá služeb města při kliknutí (přímo z prohlížeče, služby povolují CORS). Úpravy výpočtu,
+které vznikly v Brně, platí od 25. 11. 2026 všude i v Praze (`derive.js`, `city.fix` zrušené,
+`evaluation/sjednoceni/praha/ZPRAVA.md`): obslužná cesta (`service`, ne vjezd ani parkoviště) je křižovatka
+(`?off=obsluzne`), ale na dvouvozovkové ulici neodsune řez na křižovatku protější vozovky (`?off=protejsi`); ústí uličky
+(`service=alley`, i plocha) také (`?off=ulicky`); osa OSM do 4,5 m vedle vozovky se posune na ni a zpevněná plocha pod osou
+je vozovka (`?off=osafix`), ne však dělicí pás mezi dvěma vozovkami ani pás užší než 3 m (`?off=osaroad`). Obousměrka se
+stáním u vozovky a s počtem pruhů z OSM ≥ 2 se dělí na dva pruhy už od 4,0 m (`?off=pocetpruhu`).
 
 - plochy: MTVU města (`gis.brno.cz/ags3 … PUBLIC/opendata_mtvu`, vrstva 1). Brněnské kódy 5100xxx
   (číselník v legendě `PUBLIC/ted_MTVU_plochy_povrch`) převádí `brnoMtvuCode` v `sources.js` na pražské;
