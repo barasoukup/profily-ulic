@@ -5,6 +5,7 @@ import { TYPES, SOURCES, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, HDV_UN
 import { SIGNS, signChoice, MAX_PER_PART } from "./signs.js";
 import { knownSources } from "./credits.js";
 import { COUNTRIES } from "./countries/index.js";
+import { LATE_BOUNDS } from "./late.js";
 import { t } from "./i18n.js";
 
 const EDGE_KINDS = new Set(["budova", "stavba", "zahrada", "zelen", "voda", "parkoviste", "plot", "volno"]);
@@ -112,7 +113,7 @@ function cleanSigns(list) {
 
 // Where a saved cut may lie: the states of the app with the margins of their OSM extracts (countries/<ISO>.js bounds,
 // [lon0, lat0, lon1, lat1]; Bára 16. 11. 2026: a cut in Košice or Graz was lost on reload).
-const inStates = (lat, lon) => Object.values(COUNTRIES).some(({ bounds: [x0, y0, x1, y1] }) => num(lat, y0, y1) && num(lon, x0, x1));
+const inStates = (lat, lon) => [...Object.values(COUNTRIES).map((c) => c.bounds), ...Object.values(LATE_BOUNDS)].some(([x0, y0, x1, y1]) => num(lat, y0, y1) && num(lon, x0, x1));
 
 // Position of the cut: numbers in and around the states of the app, reach of each side 1–70 m; else no cut.
 export function cleanCut(c) {

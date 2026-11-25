@@ -41,13 +41,14 @@ const native = globalThis.fetch;
 globalThis.fetch = watched(native, SITE);
 console.warn = () => {}; // the sources' own notes on retries; the table says what came of them
 
+await import("../pilot/public/america.js"); // North America's modules (late.js)
 const cityModule = await import("../pilot/public/city.js");
 const sources = await import("../pilot/public/sources.js");
 const { TOWNS } = await import("../pilot/public/towns/index.js");
 // The boundaries, as app.js loads them (a source asks in which town or state its box lies).
 const json = (f) => { const u = new URL(`../pilot/public/${f}`, import.meta.url); return fs.existsSync(u) ? JSON.parse(fs.readFileSync(u, "utf8")) : null; };
 cityModule.loadBounds(json("mesta.json"));
-cityModule.loadStates(json("staty.json"));
+cityModule.loadStates({ ...json("staty.json"), ...json("staty-america.json") });
 if (json("mesta-sk.json")) cityModule.loadSkTowns(json("mesta-sk.json"));
 for (const f of fs.readdirSync(new URL("../pilot/public/", import.meta.url)).filter((f) => /^mesta-[a-z]{2}\.json$/.test(f))) cityModule.loadTowns(json(f));
 

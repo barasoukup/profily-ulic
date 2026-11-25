@@ -32,7 +32,7 @@ const AI_WAIT = 12000; // ms: the longest the first estimated cut waits for the 
 // parking sections left out), to compare the two (evaluation/ortofoto-osm/chyby.mjs, Bára 18. 11. 2026).
 const NO_MAP = new URLSearchParams(location.search).get("mapa") === "0";
 import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, signFits, signFile, keepDrawable, drawable, MAX_PER_PART } from "./signs.js";
-import { loadSprites, loadSigns, layoutSigns, buildSvg, isHole, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, edgeInfo, underDepth, ROADWAY, nearestRoadway, BUILDING_STYLES, GABLE_LOOKS, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
+import { loadSprites, loadSigns, layoutSigns, buildSvg, isHole, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, artEvents, edgeInfo, underDepth, ROADWAY, nearestRoadway, BUILDING_STYLES, GABLE_LOOKS, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
 import * as sources from "./sources.js";
 import { ruianBuilding } from "./gis.js";
 import { MAPY_KEY } from "./config.js";
@@ -42,6 +42,7 @@ import { packProfile, unpackProfile, designParams, cutHash, parseCutHash, sameCu
 import { checkRules, checkUnder, checkTrees } from "./rules.js";
 import { city, country, setCity, cityAt, closedAt, countryOfCity, loadBounds, loadStates, loadSkTowns, loadTowns } from "./city.js";
 import { TOWNS, placeAt } from "./towns/index.js";
+import { ensurePlace, isLate, onAmerica } from "./late.js";
 import { log, logOn, sendReport, shortProfile } from "./log.js";
 import { setupAbout } from "./about.js";
 import { createDataLayers, PLOCHY_PANE } from "./maplayers.js";
@@ -125,9 +126,9 @@ const cutSpan = (cut) => cut?.span || cut?.reach || defaultReach();
 const STORE = "streetdesign-pilot" + (LANES_ORTHO ? "" : "-bez-orto"); // the last cut (Prague's key from the time of one page per city); ?orto=0 its own
 // The boundaries of the cities with their own sources (tools/build_mesta.mjs): a cut takes its city by them.
 const statyJson = fetch("staty.json").then((r) => (r.ok ? r.json() : null), () => null);
-// The boundaries of the Slovak, Austrian, American and Canadian cities (tools/build_towns_sk.mjs, build_towns_at.mjs, build_towns_us.mjs, build_towns_ca.mjs): the city of a cut
+// The boundaries of the Slovak and Austrian cities (tools/build_towns_sk.mjs, build_towns_at.mjs; the American and Canadian ones come with a cut there, late.js): the city of a cut
 // and the territories of the Slovak towns' sources. Without them those cuts are their state's rest.
-const townsJson = Promise.all(["mesta-sk.json", "mesta-at.json", "mesta-us.json", "mesta-ca.json"].map((f) => fetch(f).then((r) => (r.ok ? r.json() : null), () => null)));
+const townsJson = Promise.all(["mesta-sk.json", "mesta-at.json"].map((f) => fetch(f).then((r) => (r.ok ? r.json() : null), () => null)));
 const MESTA = await fetch("mesta.json").then((r) => (r.ok ? r.json() : null), () => null);
 // Without the file every cut keeps the current city (rather than all becoming "cesko").
 if (MESTA) loadBounds(MESTA); else console.warn("mesta.json se nenačetl: město se podle polohy nepozná");
@@ -135,7 +136,6 @@ if (MESTA) loadBounds(MESTA); else console.warn("mesta.json se nenačetl: město
 // Loaded with the cities' file (both before the first cut, a linked one included).
 const STATY = await statyJson;
 if (STATY) loadStates(STATY); else console.warn("staty.json se nenačetl: stát se podle polohy nepozná");
-const NA_TOWNS = Object.assign({}, ...(await townsJson).slice(2));
 {
   const [sk, ...rest] = await townsJson;
   if (sk) { loadSkTowns(sk); loadTowns(sk); }
@@ -143,7 +143,8 @@ const NA_TOWNS = Object.assign({}, ...(await townsJson).slice(2));
 }
 // The city of a point becomes the current one (city.js): its sources, texts and illustrations.
 async function useCity(lat, lon) {
-  const id = cityAt(lat, lon), changed = id !== city.id;
+  await ensurePlace(lat, lon);
+  const id = cityAt(lat, lon), changed = id !== city.id || countryOfCity(id) !== country;
   if (changed) setCity(id);
   // What the state decides by the place itself (countries/<ISO>.js atPlace; Germany: panel houses only in the GDR).
   if (country.atPlace) Object.assign(city, await country.atPlace(lon, lat));
@@ -172,7 +173,7 @@ const status = (msg, kind = "") => {
 // ---------- map ----------
 // An old city page (/brno/ …) sends its visitors here with ?mesto=brno: the map opens over that city.
 const startCity = new URLSearchParams(location.search).get("mesto");
-if (startCity) { setCity(startCity); history.replaceState(null, "", location.pathname + location.hash); }
+if (startCity) { setCity(startCity); if (isLate(...city.view)) { await ensurePlace(...city.view).catch(() => {}); setCity(startCity); } history.replaceState(null, "", location.pathname + location.hash); }
 const map = L.map("map", { maxZoom: 21, zoomControl: false }).setView(city.view, startCity === "cesko" ? 8 : 18);
 // The layers' credits are written in Czech: in another language they are translated as they are added and removed.
 if (lang !== "cs") for (const m of ["addAttribution", "removeAttribution"]) {
@@ -387,14 +388,6 @@ if (STATY?.finland) {
     kinds.ortho.push(new Fi("", { bboxUrl: (b, w, h) => o.url(b, w, h, "image/png"), maxZoom: 21, attribution: tr(o.credit), bounds: L.latLngBounds([y0, x0], [y1, x1]) }));
   }
 }
-// North America: the cities' orthophotos (lanes-ortho.js US_ORTHO, CA_ORTHO), each only over its city (mesta-us.json, mesta-ca.json).
-for (const o of [...Object.values(US_ORTHO), ...Object.values(CA_ORTHO)]) {
-  if (NA_TOWNS[o.town]) {
-    const Own = insideOnly([boxedPlace(o.town, NA_TOWNS[o.town])]);
-    const [x0, y0, x1, y1] = o.box;
-    kinds.ortho.push(new Own("", { bboxUrl: (b, w, h) => o.url(b, w, h, "image/png"), maxZoom: 21, attribution: tr(o.credit), bounds: L.latLngBounds([y0, x0], [y1, x1]) }));
-  }
-}
 // Denmark: GeoDanmark's spring orthophoto through Dataforsyningen (WMTS, lanes-ortho.js DK_ORTHO), only over Denmark and
 // only with the app's token (keys.js; without it no layer, the map keeps the others).
 if (STATY?.denmark && dkToken()) {
@@ -483,6 +476,20 @@ function creditCities() {
   for (const a of want) if (!credited.has(a)) { map.attributionControl.addAttribution(a); credited.add(a); }
 }
 map.on("moveend layeradd layerremove", creditCities);
+// North America, when the map or a cut is there (late.js): the cities' orthophotos (lanes-ortho.js US_ORTHO, CA_ORTHO), each
+// only over its city (mesta-us.json, mesta-ca.json).
+onAmerica((towns) => {
+  for (const o of [...Object.values(US_ORTHO), ...Object.values(CA_ORTHO)]) if (towns[o.town]) {
+    const Own = insideOnly([boxedPlace(o.town, towns[o.town])]);
+    const [x0, y0, x1, y1] = o.box;
+    const layer = new Own("", { bboxUrl: (b, w, h) => o.url(b, w, h, "image/png"), maxZoom: 21, cityAttribution: tr(o.credit), bounds: L.latLngBounds([y0, x0], [y1, x1]) });
+    cityCredited.push(layer);
+    baseMaps[tr("Ortofoto")].addLayer(layer);
+  }
+  creditCities();
+});
+const lateMap = () => { const c = map.getCenter(); if (isLate(c.lat, c.lng)) ensurePlace(c.lat, c.lng).catch((err) => console.warn("America", err)); };
+map.on("moveend", lateMap);
 const baseMaps = { [tr("Mapa")]: L.layerGroup(kinds.map), [tr("Ortofoto")]: L.layerGroup(kinds.ortho), [tr("Mapa povrchů")]: L.layerGroup(kinds.tech), "OpenStreetMap": osmLayer() };
 const BASE_KEY = "streetdesign-basemap-cr";
 // Remembered by its Czech name, so that the choice holds in either language.
@@ -542,6 +549,8 @@ if (globalThis.PROFILY_REPLAY) Object.assign(globalThis.PROFILY_REPLAY, { state,
 async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wantName = null, wantWay = null) {
   logEdits(); // what was done with the previous cut, before it is replaced
   try {
+    // Another continent's borders, sources and drawings first (late.js; nothing for Europe).
+    await ensurePlace(lat, lon);
     // The north of Cyprus, Italy beyond the open orthophotos: no profile (city.js closedAt).
     const closed = closedAt(lat, lon);
     if (closed) return status(closed, "error");
@@ -2426,7 +2435,9 @@ $("#file-load").onchange = async (e) => {
   const file = e.target.files[0];
   if (!file) return;
   try {
-    restore(JSON.parse(await file.text()));
+    const data = JSON.parse(await file.text());
+    await savedPlace(data);
+    restore(data);
   } catch (err) {
     status(tr("Soubor se nepodařilo načíst: {error}", { error: err.message }), "error");
   }
@@ -2476,6 +2487,8 @@ $("#btn-flip").onclick = () => {
   render();
 };
 
+// The place of a saved cut, before it is restored (late.js): without a connection its state is unknown, the profile shows.
+const savedPlace = (data) => { const { lat, lon } = data?.cut || {}; return typeof lat === "number" && typeof lon === "number" ? ensurePlace(lat, lon).catch((err) => console.warn("America", err)) : null; };
 function restore(data) {
   cleanProfile(data?.stav, tr("stav"));
   if (data.navrh) cleanProfile(data.navrh, tr("návrh"));
@@ -2630,6 +2643,7 @@ function optsKey() {
   return [...q].sort().map(([k, v]) => `${k}=${v}`).join("&");
 }
 
+artEvents.addEventListener("ready", () => render()); // a house of North America drawn in Europe (profile.js)
 render(); // the intro shows at once; the illustrations follow
 window.profilyReady = true; // errors.js: from now on a failure is not a failed start
 await loadSprites();
@@ -2645,6 +2659,7 @@ try {
   // A former city page (?mesto=) opens over that city, not over a cut saved elsewhere.
   const elsewhere = startCity && !linked && saved?.cut && cityAt(saved.cut.lat, saved.cut.lon) !== startCity;
   if (saved?.stav && !linked && !elsewhere) {
+    await savedPlace(saved);
     restore(saved);
     takeMode();
   } else render();

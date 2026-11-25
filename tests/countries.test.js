@@ -1,6 +1,7 @@
 // The states as modules (docs/architecture-countries.md): no condition on a state outside countries/, and a state other
 // than Czechia says its own law of parking, orthophotos, panorama, signs and norms (else it would take the Czech ones of
 // countries/default.js without anyone deciding so; the review of the rebuild, 16. 11. 2026).
+import "../pilot/public/america.js"; // the states of North America (late.js)
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";

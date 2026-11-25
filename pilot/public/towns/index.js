@@ -36,23 +36,27 @@ import * as slovenia from "./slovenia.js";
 import * as finland from "./finland.js";
 import * as denmark from "./denmark.js";
 import * as lithuania from "./lithuania.js";
-import * as usa from "./usa.js";
-import * as canada from "./canada.js";
 import * as cizina from "./cizina.js";
 
 export const TOWNS = { cesko, jihlava, most, opava, pardubice, plzen, usti, ostrava, "frydek-mistek": frydekMistek, karvina, trebic, prerov,
   // Towns with only their own vehicles: the national data.
   olomouc: cesko, liberec: cesko, hradec: cesko, budejovice: cesko, zlin: cesko,
   // Slovakia, Austria, Germany, Switzerland, Liechtenstein, the Netherlands, Belgium and Luxembourg: their national and towns' sources; elsewhere OSM only.
-  slovensko, austria, germany, switzerland, liechtenstein: switzerland, netherlands, belgium, luxembourg, poland, france, spain, portugal, monaco, cyprus, malta, italy, estonia, slovenia, finland, denmark, lithuania, usa, canada, cizina };
+  slovensko, austria, germany, switzerland, liechtenstein: switzerland, netherlands, belgium, luxembourg, poland, france, spain, portugal, monaco, cyprus, malta, italy, estonia, slovenia, finland, denmark, lithuania, cizina };
 
 // Where a point lies (docs/architecture-countries.md): its state (ISO code), its city (mesta.json, else the rest of the
 // state), its illustrations (city.js art: its own set or its state's), and the
 // sources with a territory of their own that have it (each module's AREAS).
 // The other cities of a state take their state's sources (Bratislava, Vienna…: towns/slovensko.js, towns/austria.js).
-for (const id of CITY_IDS) if (!TOWNS[id] && TOWNS[cityById(id).like] && cityById(id).like !== "cesko") TOWNS[id] = TOWNS[cityById(id).like];
 // (Every module's AREAS; the switches of the sources, ?pasport=0, ?tm=1…, are not considered: where a source could answer.)
-const AREAS = [...new Set(Object.values(TOWNS))].flatMap((m) => Object.entries(m.AREAS || {}).map(([id, area]) => ({ m, id, area })));
+let AREAS = [];
+const complete = () => {
+  for (const id of CITY_IDS) if (!TOWNS[id] && TOWNS[cityById(id).like] && cityById(id).like !== "cesko") TOWNS[id] = TOWNS[cityById(id).like];
+  AREAS = [...new Set(Object.values(TOWNS))].flatMap((m) => Object.entries(m.AREAS || {}).map(([id, area]) => ({ m, id, area })));
+};
+complete();
+// The modules of another continent, loaded when a cut is there (late.js, america.js).
+export const addTowns = (more) => { Object.assign(TOWNS, more); complete(); };
 export function placeAt(lat, lon) {
   const id = cityAt(lat, lon);
   return { country: countryOfCity(id).code, city: id, art: cityById(id).art,

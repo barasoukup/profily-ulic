@@ -4,11 +4,13 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import "../pilot/public/america.js";
+const STATY = { ...JSON.parse(fs.readFileSync(new URL("../pilot/public/staty.json", import.meta.url), "utf8")), ...JSON.parse(fs.readFileSync(new URL("../pilot/public/staty-america.json", import.meta.url), "utf8")) };
 
 test("USA: metro Washingtonu je stát usa, zbytek USA zavřený", async () => {
   const C = await import("../pilot/public/city.js");
   C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../pilot/public/staty.json", import.meta.url), "utf8")));
+  C.loadStates(STATY);
   // The White House, Silver Spring (Montgomery), Hyattsville (Prince George's), Arlington, Alexandria, Fairfax city, Tysons.
   for (const [lat, lon] of [[38.8977, -77.0365], [38.9907, -77.0261], [38.9559, -76.9455], [38.8816, -77.091], [38.8048, -77.0469], [38.8462, -77.3064], [38.9187, -77.2311],
     // On the DC line (Southern Avenue, dc-8-3): simplified county rings left a gap there.
@@ -26,7 +28,7 @@ test("USA: metro Washingtonu je stát usa, zbytek USA zavřený", async () => {
 
 test("USA: mezi okresy ani na hranici DC nejsou díry, staty.json nenese společné hranice dvakrát", async () => {
   const C = await import("../pilot/public/city.js");
-  const staty = JSON.parse(fs.readFileSync(new URL("../pilot/public/staty.json", import.meta.url), "utf8"));
+  const staty = STATY;
   const us = JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta-us.json", import.meta.url), "utf8"));
   assert.ok(JSON.stringify(staty.usa).length < 60_000, `${JSON.stringify(staty.usa).length} B`);
   C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
@@ -48,7 +50,7 @@ test("USA: DC je District, ne obdélník (ortofoto, mapa povrchů, město)", asy
   const { AREAS } = await import("../pilot/public/towns/usa.js");
   const { inArea } = await import("../pilot/public/places.js");
   const C = await loadWashington();
-  C.loadStates(JSON.parse(fs.readFileSync(new URL("../pilot/public/staty.json", import.meta.url), "utf8")));
+  C.loadStates(STATY);
   assert.deepEqual(usOrthoAt(-77.0365, 38.8977), ["us-dc"]);
   assert.equal(C.cityAt(38.8977, -77.0365), "washington");
   // Inside the box, outside the District: Clarendon, Bethesda, Silver Spring, Old Town Alexandria, the airport; and Fairfax.
@@ -253,4 +255,15 @@ test("Washington: domy z CAMA podle pozemku, výpadek nic nezdrží", async () =
   assert.equal(asked, 1);
   assert.deepEqual(await U.sources.podlaznost(38.8816, -77.2), {}); // outside DC's box
   globalThis.fetch = fetch0; console.warn = warn;
+});
+
+test("DC: vypnutý inventář (?ddot=0) není výpadek, neodpovídající ano", async () => {
+  const U = await import("../pilot/public/towns/usa.js");
+  const LAT = 38.9, LON = -77.03, KX = 111320 * Math.cos((LAT * Math.PI) / 180), KY = 110574, ll = (x, y) => [LON + x / KX, LAT + y / KY];
+  const esri = (list) => ({ features: list.map(([d, x0, x1]) => ({ attributes: { DESCRIPTION: d }, geometry: { rings: [[[x0, -50], [x1, -50], [x1, 50], [x0, 50], [x0, -50]].map(([x, y]) => ll(x, y))] } })) });
+  const way = { type: "way", id: 1, tags: { highway: "residential" }, geometry: [ll(0, -60), ll(0, 60)].map(([lon, lat]) => ({ lon, lat })) };
+  const bbox = [...ll(-30, -1), ...ll(30, 1)].map((v, i) => v + (i < 2 ? -4e-4 : 4e-4)).join(",");
+  const ask = (sub, o) => U.dcSurfaces({ roads: esri([["Road", -5, 5]]), walks: esri([]), bldg: esri([]), sub }, [way], bbox, way.tags, { way, ...o });
+  assert.equal(ask({ features: [] }, { ddot: false }).ddotFailed, undefined);
+  assert.equal(ask(null, {}).ddotFailed, true);
 });

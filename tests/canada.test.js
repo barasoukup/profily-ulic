@@ -3,11 +3,12 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import "../pilot/public/america.js";
 const read = (f) => JSON.parse(fs.readFileSync(new URL(`../pilot/public/${f}`, import.meta.url), "utf8"));
 
 test("Kanada: Toronto a okolí, zbytek Kanady s hláškou, hranice s USA u Windsoru a Niagary", async () => {
   const C = await import("../pilot/public/city.js");
-  const staty = read("staty.json");
+  const staty = ({ ...read("staty.json"), ...read("staty-america.json") });
   C.loadBounds(read("mesta.json")); C.loadStates(staty); C.loadTowns(read("mesta-us.json")); C.loadTowns(read("mesta-ca.json"));
   assert.ok(JSON.stringify(staty.canada).length < 10_000);
   assert.ok(JSON.stringify(staty.closed_ca).length < 150_000);
@@ -17,6 +18,10 @@ test("Kanada: Toronto a okolí, zbytek Kanady s hláškou, hranice s USA u Winds
   assert.equal(C.countryOfCity("toronto").code, "CA");
   // Windsor, Niagara-on-the-Lake's Queenston, Niagara Falls ON, Fort Erie, Sarnia, Hamilton, Montreal, Vancouver.
   for (const p of [[42.3185, -83.0395], [43.165, -79.053], [43.0896, -79.075], [42.905, -78.925], [42.975, -82.405], [43.2557, -79.8711], [45.5019, -73.5674], [49.2827, -123.1207]]) assert.match(C.closedAt(...p) || "", /Torontu/, `${p}`);
+  // The coasts: Halifax, Prince Rupert, Tofino; Juneau, Ketchikan, Sitka, the Battery, the Ferry Building, Charleston. Not Nuevo Laredo, Tijuana, Matamoros, Juárez.
+  for (const p of [[44.6488, -63.5752], [54.3150, -130.3209], [49.1530, -125.9066]]) assert.match(C.closedAt(...p) || "", /Torontu/, `${p}`);
+  for (const p of [[58.3019, -134.4197], [55.3422, -131.6461], [57.0531, -135.33], [40.7033, -74.017], [37.7955, -122.3937], [32.7765, -79.9311]]) assert.match(C.closedAt(...p) || "", /Washingtonu/, `${p}`);
+  for (const p of [[27.4861, -99.507], [32.5149, -117.0382], [25.8690, -97.5027], [31.7300, -106.4850], [32.6245, -115.4523]]) assert.equal(C.closedAt(...p), null, `${p}`);
   // Detroit, Lewiston, Niagara Falls NY, Buffalo, Port Huron.
   for (const p of [[42.33, -83.044], [43.1726, -79.0354], [43.087, -79.06], [42.8864, -78.8784], [42.975, -82.425]]) assert.match(C.closedAt(...p) || "", /Washingtonu/, `${p}`);
 });
@@ -58,4 +63,48 @@ test("Toronto: domy podle výšky obrysu", async () => {
   assert.deepEqual(torontoHouse({ SUBTYPE_DESC: "Garage", DERIVED_HEIGHT: 3 }), { type: "garage", garage: true, caHouse: true });
   assert.equal(torontoHouse({ SUBTYPE_DESC: "Building Outline", DERIVED_HEIGHT: 8 }).fromHeight, true);
   assert.deepEqual(torontoHouse(null), {});
+});
+
+test("Severní Amerika se načítá, až když tam řez nebo mapa je (late.js)", async () => {
+  const L = await import("../pilot/public/late.js");
+  const staty = read("staty.json"), far = read("staty-america.json");
+  assert.deepEqual(Object.keys(far).sort(), ["canada", "closed_ca", "closed_us", "usa"]);
+  assert.ok(!Object.keys(staty).some((id) => id in far));
+  // Every place of America is in the box (Alaska's islands beyond 170° W aside), none of Europe's.
+  for (const rings of Object.values(far)) for (const [x, y] of rings.flat()) assert.ok(L.isLate(y, x) || x < -169 || x > 170, `${x},${y}`);
+  for (const [id, rings] of Object.entries(staty)) for (const [x, y] of rings.flat()) assert.ok(!L.isLate(y, x), `${id} ${x},${y}`);
+  // No module of the app's start imports America's.
+  const dir = new URL("../pilot/public/", import.meta.url), seen = new Set();
+  const walk = (u) => { if (seen.has(u.href)) return; seen.add(u.href); for (const m of fs.readFileSync(u, "utf8").matchAll(/^\s*(?:import|export)\b[^;'"]*?["'](\.[^"']+\.js)["']/gm)) walk(new URL(m[1], u)); };
+  walk(new URL("app.js", dir));
+  for (const f of ["america.js", "countries/US.js", "countries/CA.js", "towns/usa.js", "towns/canada.js", "towns/planimetrics.js", "houses-america.js", "house-looks-america.js"]) assert.ok(!seen.has(new URL(f, dir).href), f);
+  // A failed load is asked again, a loaded one not.
+  const native = globalThis.fetch;
+  let asked = 0;
+  globalThis.fetch = async (f) => { asked++; if (asked <= 3) throw new Error("offline"); return { ok: true, json: async () => read(f) }; };
+  try {
+    await L.ensurePlace(50, 14);
+    assert.equal(asked, 0);
+    await assert.rejects(L.ensurePlace(43.65, -79.38));
+    assert.equal(L.lateReady(43.65, -79.38), false);
+    await L.ensurePlace(43.65, -79.38);
+    await L.ensurePlace(38.9, -77);
+    assert.equal(asked, 6);
+    assert.equal(L.lateReady(38.9, -77), true);
+  } finally { globalThis.fetch = native; }
+});
+
+test("Toronto: koleje v tunelu nejsou na povrchu, cyklostezka jako tag silnice u obruby, ulička vedle parkoviště", async () => {
+  const { TORONTO_MAP } = await import("../pilot/public/towns/canada.js");
+  const { planimetricCut } = await import("../pilot/public/towns/planimetrics.js");
+  const cut = (b, s, r, p, osm = [way], w = way) => planimetricCut(TORONTO_MAP, [esri(b), esri(s), esri(r), esri(p)], osm, BBOX, w.tags, { way: w });
+  const two = [["Road Edge", -12, -5], ["Road Edge", 5, 12]], under = { ...tram(0), tags: { railway: "tram", tunnel: "yes", layer: "-1" } };
+  assert.deepEqual(codes(cut([], [], two, [], [way, under])), [401, 701, 9950, 701, 401]);
+  const tagged = { ...way, tags: { highway: "primary", "cycleway:right": "track" } };
+  // BBOX's dir points east, the way runs north: its right is the east side.
+  assert.deepEqual(codes(cut([], [], [["Road Edge", -8, 8]], [], [tagged], tagged)), [401, 701, 703, 401]);
+  // The cut stands in the median beside a bed (The Queensway).
+  assert.ok(cut([], [], [["Road Edge", -21, -10.5], ["Road Edge", 10.6, 21.7]], [], [way, tram(-9.5), tram(-6.6)]));
+  const lane = { ...way, tags: { highway: "service" } };
+  assert.deepEqual(codes(cut([], [], [["Lane Edge", -2, 2]], [["Parking Lot", 2, 22]], [lane], lane)), [401, 701, 1003, 401]);
 });

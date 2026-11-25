@@ -277,9 +277,11 @@ const BUILD = {
 };
 const file = new URL("../pilot/public/staty.json", import.meta.url);
 const only = process.argv.slice(2);
-const old = only.length ? JSON.parse(fs.readFileSync(file, "utf8")) : {};
+// North America's entries have a file of their own, asked for only when a cut or the map is there (pilot/public/late.js).
+const AMERICA = /^(closed_)?(usa?|canada|ca)$/, farFile = new URL("../pilot/public/staty-america.json", import.meta.url);
+const old = only.length ? { ...JSON.parse(fs.readFileSync(file, "utf8")), ...JSON.parse(fs.readFileSync(farFile, "utf8")) } : {};
 // The order of BUILD is the order of staty.json (city.js cityAt takes the first state a point lies in).
 const out = {};
 for (const id of Object.keys(BUILD)) out[id] = !only.length || only.includes(id) ? await BUILD[id]() : old[id];
 for (const [id, r] of Object.entries(out)) console.log(id, r.length, "kruhů,", r.reduce((a, x) => a + x.length, 0), "bodů");
-fs.writeFileSync(file, JSON.stringify(out));
+for (const [f, far] of [[file, false], [farFile, true]]) fs.writeFileSync(f, JSON.stringify(Object.fromEntries(Object.entries(out).filter(([id]) => AMERICA.test(id) === far))));

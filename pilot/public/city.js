@@ -7,6 +7,7 @@ import { sourceCredits } from "./credits.js";
 import { TOWN_ART, TRAM, TROLLEY } from "./art.js";
 import { boxed, within, loadSkTowns, inSkTown } from "./places.js";
 import { countryOf, COUNTRIES } from "./countries/index.js";
+import { isLate } from "./late.js";
 export { loadSkTowns, inSkTown };
 import { t, cityTexts } from "./i18n.js";
 
@@ -494,7 +495,8 @@ for (const c of Object.values(CITIES)) if (c.abroad && c.country) { c.art = c.id
 // Brno): by their boundaries (mesta-sk.json from ZBGIS, mesta-at.json from GISCO's LAU, mesta-us.json of DC, mesta-ca.json of Toronto), everything else of their
 // state's rest (texts, sources, orthophoto), only the illustrations their own where the state has a set of the town
 // (else the state's). Their sources keep their own territories (towns/slovensko.js, towns/austria.js AREAS).
-const stateTown = (id, state, view) => ({ ...CITIES[state], id, like: state, view, art: COUNTRIES[CITIES[state].country].art[id] ? id : state });
+const LATE_ART = new Set(["washington", "toronto"]); // their states' sets come later (late.js)
+const stateTown = (id, state, view) => ({ ...CITIES[state], id, like: state, view, art: LATE_ART.has(id) || COUNTRIES[CITIES[state].country].art[id] ? id : state });
 export const STATE_TOWNS = {
   SK: ["bratislava", "kosice", "zilina", "bystrica", "presov", "nitra", "trnava", "trencin", "martin", "poprad", "piestany", "hlohovec", "zvolen"],
   AT: ["wien", "graz", "linz", "salzburg", "innsbruck"],
@@ -584,10 +586,12 @@ const LAND = /^land_/;
 // Espoo with their sea, Ydre Nordhavn; the reviews of 24. 11. 2026): an entry of their own, since the rings of one entry
 // count by parity (places.js inside), read as <id>.
 const PLUS = /\+.*$/;
-export const loadStates = (json) => {
+export const loadStates = (json) => { land = {}; states = []; addStates(json); };
+// (staty-america.json joins it: late.js.)
+export const addStates = (json) => {
   const entries = Object.entries(json);
-  land = Object.fromEntries(entries.filter(([id]) => LAND.test(id)).map(([id, lines]) => [id.slice(5), { lines, at: new Set(lines.flat().map((p) => p.join())) }]));
-  states = entries.filter(([id]) => !LAND.test(id)).map(([id, rings]) => ({ ...boxed(id, rings), id: id.replace(PLUS, "") }));
+  Object.assign(land, Object.fromEntries(entries.filter(([id]) => LAND.test(id)).map(([id, lines]) => [id.slice(5), { lines, at: new Set(lines.flat().map((p) => p.join())) }])));
+  states = [...(states || []), ...entries.filter(([id]) => !LAND.test(id)).map(([id, rings]) => ({ ...boxed(id, rings), id: id.replace(PLUS, "") }))];
 };
 // The cities of the other states (mesta-sk.json, mesta-at.json, mesta-us.json; STATE_TOWNS): within their state, else its rest.
 let towns = [];
@@ -612,7 +616,7 @@ function stateEntry(lat, lon) {
   };
   let best = null, dmin = COAST_TOLERANCE;
   for (const b of states) {
-    // (Not the messages of the USA and Canada: no state of COAST is near, and 400 m beyond the line are Windsor, Detroit and Nuevo Laredo.)
+    // (Not the messages of the USA and Canada: americanCoast below.)
     if (/^closed_(us|ca)$/.test(b.id) || !(COAST.has(b.id) || /^(foreign|closed)_/.test(b.id))) continue;
     if (lon < b.box[0] - pad * 2 || lon > b.box[2] + pad * 2 || lat < b.box[1] - pad || lat > b.box[3] + pad) continue;
     const own = land[b.id];
@@ -624,6 +628,25 @@ function stateEntry(lat, lon) {
     if (d0 >= dmin) continue;
     if (own && own.lines.some((l) => l.some((p, i) => i > 0 && dist(l[i - 1], p) <= d0))) continue;
     dmin = d0; best = b.id;
+  }
+  return best || americanCoast(lat, lon, dist);
+}
+// The coasts of the USA and Canada, whose messages' rings are drawn to a kilometre or three (staty-america.json: Halifax, Juneau,
+// the Battery and the Ferry Building had no message: the review of 25. 11. 2026): the nearest ring within AMERICAN_COAST,
+// not near the line with Mexico (MEXICO: a rough one; Nuevo Laredo is no place of the USA).
+const AMERICAN_COAST = 6000, NEAR_MEXICO = 40000;
+const MEXICO = [[-117.12, 32.53], [-114.72, 32.72], [-114.81, 32.49], [-111.07, 31.33], [-108.21, 31.33], [-108.21, 31.78], [-106.53, 31.78], [-104.9, 30.6], [-103.15, 28.98],
+  [-102.4, 29.77], [-101.4, 29.77], [-100.3, 28.28], [-99.5, 27.5], [-99.1, 26.4], [-97.14, 25.95]];
+function americanCoast(lat, lon, dist) {
+  if (!isLate(lat, lon) || MEXICO.some((p, i) => i > 0 && lon > -117.1 && dist(MEXICO[i - 1], p) < NEAR_MEXICO)) return null;
+  let best = null, dmin = AMERICAN_COAST;
+  for (const b of states) {
+    if (!/^(usa|canada|closed_(us|ca))$/.test(b.id) || lon < b.box[0] - 0.2 || lon > b.box[2] + 0.2 || lat < b.box[1] - 0.1 || lat > b.box[3] + 0.1) continue;
+    for (const r of b.rings) for (let i = 1; i < r.length; i++) {
+      if (Math.abs(r[i][1] - lat) > 2 && Math.abs(r[i - 1][1] - lat) > 2) continue;
+      const d = dist(r[i - 1], r[i]);
+      if (d < dmin) { dmin = d; best = b.id; }
+    }
   }
   return best;
 }

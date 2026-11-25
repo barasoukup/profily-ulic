@@ -8,7 +8,7 @@ import { PLATES, signFile, plateFile, signLabel, signDir, SPEED_TEMPLATES } from
 // tr: t is a part's type here.
 import { t as tr, num } from "./i18n.js";
 import { LOOKS, houseHash } from "./house-looks.js";
-import { AMERICA, AMERICA_PALETTES, drawAmerican } from "./houses-america.js";
+import { AMERICA, AMERICA_PALETTES } from "./houses-america-spec.js";
 
 const NS = "http://www.w3.org/2000/svg";
 const GROUND = 760; // roadway surface
@@ -70,6 +70,14 @@ for (const id of CITY_IDS) { const c = cityById(id); if (c.artMap) CITY_ART[c.ar
 for (const c of Object.values(COUNTRIES)) Object.assign(CITY_ART, c.art);
 // A set without a tram or a bus of its own draws the neutral ones (art.js GENERIC_VEHICLES).
 for (const [k, v] of Object.entries(CITY_ART)) CITY_ART[k] = { ...GENERIC_VEHICLES, ...v };
+// The sets and the houses of another continent, loaded when a cut is there (late.js, america.js).
+export const addArt = (...sets) => { for (const s of sets) for (const [k, v] of Object.entries(s)) CITY_ART[k] = { ...GENERIC_VEHICLES, ...v }; };
+let drawAmerican = null;
+export const setAmericanDrawing = (f) => { drawAmerican = f; };
+// A house of North America chosen by hand elsewhere: its drawing comes at once, "ready" asks for a new render.
+export const artEvents = new EventTarget();
+let drawing = null;
+const askAmerican = () => { drawing ??= import("./houses-america.js").then((m) => { drawAmerican = m.drawAmerican; artEvents.dispatchEvent(new Event("ready")); }, () => { drawing = null; }); };
 // The illustrations of the current cut's city, or Streetmix's (the switch "Ilustrace" off).
 let artOn = true;
 const artKey = () => (artOn ? city.art : "streetmix");
@@ -1044,7 +1052,7 @@ function drawPrahaBuilding(g, x, side, surface, info, chosen) {
     el("rect", { x, y: surface, width: EDGE, height: cellarA, fill: SKLEP }, g);
     box(0, EDGE, -8, 0, tint(SKLEP, 0.85));
     el("rect", { x, y: GROUND + 60, width: EDGE, height: 40, fill: "#9b7f5f" }, g);
-    drawAmerican(kind, { g, el, X, surface, EDGE, f, seed, wall, det, info, box, poly, dot, tint, outline, colAxes });
+    if (!drawAmerican) { askAmerican(); box(0, EDGE, 0, top, wall, outline); } else drawAmerican(kind, { g, el, X, surface, EDGE, f, seed, wall, det, info, box, poly, dot, tint, outline, colAxes });
     return surface - (top + f.roofH);
   }
   // A Streetmix window: cream frame, dark glass with a glint, a transom, a sill with its shadow; now and then

@@ -23,9 +23,9 @@ import LT from "./LT.js";
 import SI from "./SI.js";
 import FI from "./FI.js";
 import DK from "./DK.js";
-import US from "./US.js";
-import CA from "./CA.js";
 import DEFAULT from "./default.js";
 
-export const COUNTRIES = { CZ, SK, AT, DE, CH, LI, NL, BE, LU, PL, FR, ES, PT, MC, CY, MT, IT, EE, SI, FI, DK, LT, US, CA };
+export const COUNTRIES = { CZ, SK, AT, DE, CH, LI, NL, BE, LU, PL, FR, ES, PT, MC, CY, MT, IT, EE, SI, FI, DK, LT };
+// The states of another continent, loaded when a cut is there (late.js, america.js).
+export const addCountries = (more) => Object.assign(COUNTRIES, more);
 export const countryOf = (code) => (code && Object.hasOwn(COUNTRIES, code) ? COUNTRIES[code] : DEFAULT);

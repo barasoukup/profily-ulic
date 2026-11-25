@@ -1,6 +1,7 @@
 // The overview map of the About dialog (tools/build_coverage.mjs, pilot/public/coverage.json; Bára 24. 11. 2026): every
 // source module says where its surface map answers, every state's orthophoto is classified, every state of the app is on
 // the map, and the file is what the build makes of the modules now (else: node tools/build_coverage.mjs).
+import "../pilot/public/america.js"; // the states of North America (late.js)
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";

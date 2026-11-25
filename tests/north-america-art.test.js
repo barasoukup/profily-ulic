@@ -3,12 +3,13 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import "../pilot/public/america.js";
 const read = (f) => JSON.parse(fs.readFileSync(new URL(`../pilot/public/${f}`, import.meta.url), "utf8"));
 
 test("USA kreslí severoamerický mobiliář, Washington svůj označník, společnou lampu a do 5 m svůj glóbus", async () => {
   const C = await import("../pilot/public/city.js");
   const P = await import("../pilot/public/profile.js");
-  C.loadBounds(read("mesta.json")); C.loadStates(read("staty.json")); C.loadTowns(read("mesta-us.json"));
+  C.loadBounds(read("mesta.json")); C.loadStates(({ ...read("staty.json"), ...read("staty-america.json") })); C.loadTowns(read("mesta-us.json"));
   // The White House and Southern Avenue are Washington, Silver Spring and Arlington the rest of the metro.
   assert.equal(C.cityAt(38.8977, -77.0365), "washington");
   for (const [lat, lon] of [[38.9907, -77.0261], [38.8816, -77.091]]) assert.equal(C.cityAt(lat, lon), "usa");

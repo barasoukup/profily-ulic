@@ -4,7 +4,8 @@
 // lanes and parking), the orthophoto DC's of 2025 (lanes-ortho.js "us", only over DC). Sources and norms:
 // evaluation/usa/ (NORMY.md), the pilot evaluation/usa-dc/.
 import { t } from "../i18n.js";
-import { northAmericaLook, northAmericaDetails } from "../house-looks.js";
+import { northAmericaLook, northAmericaDetails } from "../house-looks-america.js";
+import { LATE_BOUNDS } from "../late.js";
 import { northAmericaFurniture, ownArt } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
 import { cycleTrackLimits } from "./cycletrack.js";
@@ -55,7 +56,7 @@ export default {
   ...base,
   code: "US",
   // The metro of Washington (staty.json "usa", the OSM pack us_dc).
-  bounds: [-77.6, 38.5, -76.6, 39.4],
+  bounds: LATE_BOUNDS.US,
   // The International Fire Code 503.2.1 (adopted by DC with its supplement, 12 DCMR H): a fire apparatus access road
   // keeps 20 ft (6.10 m) unobstructed, about 3 m a direction; 18 DCMR 2405.2(g) forbids parking where less than 10 ft of
   // open roadway stays (NORMY.md B). So the app's 3 m a direction. DC itself parks on both sides of local streets of

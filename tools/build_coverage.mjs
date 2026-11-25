@@ -102,9 +102,10 @@ function tidy(rings) {
 const readJson = (f) => (fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, "utf8")) : {});
 export async function buildCoverage({ nuts = readJson(NUTS_FILE), lau = readJson(LAU_FILE) } = {}) {
   const { TOWNS } = await import(new URL("towns/index.js", PUB));
+  await import(new URL("america.js", PUB)); // North America's modules (late.js)
   const { COUNTRIES } = await import(new URL("countries/index.js", PUB));
   const { countryOfCity, cityById } = await import(new URL("city.js", PUB));
-  const STATY = json("staty.json");
+  const STATY = { ...json("staty.json"), ...json("staty-america.json") };
   const BOUNDS = Object.assign({}, ...["mesta.json", "mesta-sk.json", "mesta-at.json", "mesta-us.json", "mesta-ca.json", "pasporty.json", "regions-be.json", "regions-es.json"].map(json));
   // (Not a state's extra rings either, "<id>+<what>": tools/build_staty.mjs.)
   const states = Object.keys(STATY).filter((id) => !/^(land|foreign|closed)_|\+/.test(id));

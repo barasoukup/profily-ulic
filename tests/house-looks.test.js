@@ -1,6 +1,7 @@
 // The socialist house looks (sorela, the brick block of the 1950s–60s, the panel house) only in the states that built
 // them (Bára 23. 11. 2026): Czechia, Slovakia, Poland, Estonia and the former GDR; elsewhere, and abroad ("cizina"),
 // the postwar block of flats (profile.js westernLook).
+import "../pilot/public/america.js"; // the states of North America (late.js)
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { buildingStyle, BUILDING_STYLES } from "../pilot/public/profile.js";
@@ -140,7 +141,7 @@ test("štít uříznutý okrajem (2/3) je výchozí (Bára 23. 11. 2026)", async
 
 // North America (docs/house-types-north-america.md; Bára 25. 11. 2026).
 test("severoamerické domy podle druhu, roku a místa; bez dat prostý vzhled", async () => {
-  const { northAmericaLook: na, northAmericaDetails: det } = await import("../pilot/public/house-looks.js");
+  const { northAmericaLook: na, northAmericaDetails: det } = await import("../pilot/public/house-looks-america.js");
   const row = { length: 60, width: 12, fill: 0.9, parts: 10 }, alone = { length: 11, width: 9, fill: 0.9, parts: 1 };
   const CH = [-76.993, 38.886], PET = [-77.02, 38.942], MD = [-77.2, 39.1], GT = [-77.065, 38.908], DT = [-77.035, 38.902];
   assert.equal(look("usa", { levels: 2, type: "house", block: row, point: CH }), "bayrow");

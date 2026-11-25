@@ -1,6 +1,7 @@
 // The page's CSP (index.html) is written by hand, but every host the app's code asks for data must be in its
 // connect-src (docs/architecture-countries.md, step 5): a new state's or city's source that is not there would fail
 // only in the browser, on the web. Hosts the code names only for map tiles (img-src) or links are listed here.
+import "../pilot/public/america.js"; // the states of North America (late.js)
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";

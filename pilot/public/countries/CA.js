@@ -3,7 +3,8 @@
 // (the City of Toronto's topographic mapping as the surface map), the orthophoto Toronto's current year (lanes-ortho.js
 // "ca", only over the city). Sources and norms: evaluation/canada/ (NORMY.md).
 import { t } from "../i18n.js";
-import { northAmericaLook, northAmericaDetails } from "../house-looks.js";
+import { northAmericaLook, northAmericaDetails } from "../house-looks-america.js";
+import { LATE_BOUNDS } from "../late.js";
 import { northAmericaFurniture, ownArt, NORTH_AMERICA_VEHICLES } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
 import { cycleTrackLimits } from "./cycletrack.js";
@@ -42,7 +43,7 @@ export default {
   ...base,
   code: "CA",
   // Toronto and its surroundings (staty.json "canada", the OSM pack ca_on_toronto).
-  bounds: [-79.95, 43.45, -78.95, 44.05],
+  bounds: LATE_BOUNDS.CA,
   // No width that must stay free beside a parked car was found (Ontario's Highway Traffic Act s. 170 and Toronto's Municipal
   // Code ch. 950 name none; NORMY.md), so the app's usual 3 m a direction and not their law.
   freeLane: 3,
