@@ -1,0 +1,112 @@
+{
+ "1": {
+  "id": "st-AT-linz-35",
+  "X": "L",
+  "Y": "N"
+ },
+ "2": {
+  "id": "st-CZ-zlin-7",
+  "X": "N",
+  "Y": "L"
+ },
+ "3": {
+  "id": "st-CZ-kladno-26",
+  "X": "L",
+  "Y": "N"
+ },
+ "4": {
+  "id": "st-AT-salzburg-5",
+  "X": "N",
+  "Y": "L"
+ },
+ "5": {
+  "id": "st-AT-innsbruck-23",
+  "X": "L",
+  "Y": "N"
+ },
+ "6": {
+  "id": "st-DE-koeln-15",
+  "X": "L",
+  "Y": "N"
+ },
+ "7": {
+  "id": "st-AT-salzburg-23",
+  "X": "L",
+  "Y": "N"
+ },
+ "8": {
+  "id": "st-AT-graz-9",
+  "X": "L",
+  "Y": "N"
+ },
+ "9": {
+  "id": "st-CZ-liberec-19",
+  "X": "L",
+  "Y": "N"
+ },
+ "10": {
+  "id": "st-CZ-olomouc-14",
+  "X": "L",
+  "Y": "N"
+ },
+ "11": {
+  "id": "st-AT-graz-6",
+  "X": "N",
+  "Y": "L"
+ },
+ "12": {
+  "id": "st-CZ-kladno-13",
+  "X": "N",
+  "Y": "L"
+ },
+ "13": {
+  "id": "st-AT-linz-11",
+  "X": "N",
+  "Y": "L"
+ },
+ "14": {
+  "id": "st-AT-graz-17",
+  "X": "N",
+  "Y": "L"
+ },
+ "15": {
+  "id": "st-AT-salzburg-29",
+  "X": "N",
+  "Y": "L"
+ },
+ "16": {
+  "id": "st-CZ-kladno-7",
+  "X": "N",
+  "Y": "L"
+ },
+ "17": {
+  "id": "st-AT-graz-1",
+  "X": "N",
+  "Y": "L"
+ },
+ "18": {
+  "id": "st-AT-linz-13",
+  "X": "N",
+  "Y": "L"
+ },
+ "19": {
+  "id": "st-DE-leipzig-14",
+  "X": "L",
+  "Y": "N"
+ },
+ "20": {
+  "id": "st-DE-dresden-17",
+  "X": "L",
+  "Y": "N"
+ },
+ "21": {
+  "id": "st-CZ-zlin-4",
+  "X": "L",
+  "Y": "N"
+ },
+ "22": {
+  "id": "st-CZ-hradec-4",
+  "X": "L",
+  "Y": "N"
+ }
+}

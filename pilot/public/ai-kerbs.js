@@ -341,3 +341,102 @@ export function parkFromAi(result, pAt, skip = {}) {
   }
   return changed;
 }
+
+// The law's strips and the model (Bára 25. 11. 2026, evaluation/sjednoceni/slovensko-stani; ?off=lawlanes: as before). A
+// strip the law estimated lying in the roadway before the lanes are measured hides the orthophoto's lines (lanes-ortho.js
+// measured() wants only lanes and shoulders), and it was judged on the whole roadway, before the model's cars (a row
+// across the kerb) took their part of it. Where the model reads the cut, the lanes are measured on the profile without
+// the law's strips; layLaw lays a strip where the model sees a row of parallel cars there (sure), the model's other cars
+// follow (parkFromAi), and then layLaw lays the strips of the kerbs the model is in doubt about, while the law's free
+// width is left beside what is there by then.
+// lawKerbs: the kerbs of the law's strips, [{ t, sg }] (sg -1: the roadway's high end, +1: its low end).
+export function lawKerbs(result) {
+  const out = [];
+  if (!result?.segments?.length || !result.extent) return out;
+  let t = result.extent[1];
+  result.segments.forEach((s, k, segs) => {
+    if (isLaw(s)) {
+      if (!ROADISH.has(segs[k - 1]?.type)) out.push({ t, sg: -1 });
+      else if (!ROADISH.has(segs[k + 1]?.type)) out.push({ t: t - s.width, sg: 1 });
+    }
+    t -= s.width;
+  });
+  return out;
+}
+const isLaw = (s) => s.type === "parkovani" && s.source === "odhad" && !s.ai;
+const LAW_W = 2; // the law's parallel strip (derive.js GUESS_PARK_W)
+// The run of roadway parts around segment k: [first, last].
+function roadRun(segs, k) {
+  let a = k, b = k;
+  while (ROADISH.has(segs[a - 1]?.type)) a--;
+  while (ROADISH.has(segs[b + 1]?.type)) b++;
+  return segs.slice(a, b + 1);
+}
+// Each driving lane of the list gets an equal share of the change dw.
+function shareLanes(lanes, dw) {
+  const total = r2(lanes.reduce((q, x) => q + x.width, 0) + dw), each = r2(total / lanes.length);
+  lanes.forEach((x, q) => { x.width = q === lanes.length - 1 ? r2(total - each * (lanes.length - 1)) : each; });
+}
+const free = (run) => run.filter((x) => x.type === "pruh" || x.type === "krajnice").reduce((q, x) => q + x.width, 0);
+const LAW_LANE_MIN = 2.5; // the narrowest lane beside the strip (derive.js MIN_LANE)
+// Lays a law's strip back at the kerbs where the model is sure a row of parallel cars stands (sure), else where it is in
+// doubt (neither sure of cars nor of none, PARK.off; a side OSM tags, skip, is not the model's to decide), while
+// need(lanes) stays free beside it: the shoulder at the kerb gives first, then an estimated one, then the lanes evenly.
+// A bike lane at the kerb stays inside the strip. Returns the number laid.
+export function layLaw(result, kerbs, pAt, need, { sure = false, inside = false, skip = {}, rows = [] } = {}) {
+  const segs = result.segments;
+  let laid = 0;
+  for (const { t, sg } of kerbs) {
+    let at = result.extent[1], k = -1;
+    segs.forEach((s, i) => {
+      const hi = at, lo = at - s.width;
+      at = lo;
+      if (ROADISH.has(s.type) && !ROADISH.has(segs[sg < 0 ? i - 1 : i + 1]?.type) && Math.abs((sg < 0 ? hi : lo) - t) < 1) k = i;
+    });
+    const X = segs[k], d = sg < 0 ? -1 : 1;
+    if (!X || !["pruh", "krajnice", "cyklopruh", "ochranny_pruh"].includes(X.type)) continue;
+    const most = (from, to) => { let m = 0; for (let q = from; q < to; q += STEP) { const p = pAt(t + d * q); if (p !== null) m = Math.max(m, p); } return m; };
+    const cars = most(0.1, inside ? LAW_W + 2.5 : 2.5), tagged = sg < 0 ? skip.hi : skip.lo;
+    // Parallel cars in the roadway: the model sees them in the strip, not beyond it nor on the kerb.
+    if (sure ? tagged || most(0.1, 2.5) < PARK.on || most(3.2, 4) >= PARK.on || most(-1, -0.6) >= PARK.on : cars < PARK.off && !tagged) continue;
+    const run = roadRun(segs, k), lanes = run.filter((x) => x.type === "pruh");
+    if (!lanes.length || free(run) - LAW_W < need(lanes.length) - 1e-6) continue;
+    const give = [X, ...run.filter((x) => x !== X && x.source === "odhad")].filter((x) => x.type === "krajnice");
+    let left = LAW_W;
+    const takes = give.map((x) => { const w = Math.min(x.width, left); left = r2(left - w); return w; });
+    if ((lanes.reduce((q, x) => q + x.width, 0) - left) / lanes.length < LAW_LANE_MIN - 1e-6) continue;
+    give.forEach((x, q) => { x.width = r2(x.width - takes[q]); });
+    if (left > 1e-6) shareLanes(lanes, -left);
+    // How wide the model sees the row, for widenLaw.
+    let row = 0;
+    if (sure) for (let q = 0.1; q < 3.2; q += STEP) if ((pAt(t + d * q) ?? 0) >= PARK.on) row = q + STEP / 2;
+    // At the kerb, outside X (or in its place); a shoulder eaten up goes, its rest to the strip or the lane beside it.
+    const strip = { type: "parkovani", width: LAW_W, orient: "podelne", source: "odhad" };
+    segs.splice(sg < 0 ? k : k + 1, 0, strip);
+    if (row) rows.push({ strip, row: Math.min(row, 2.5) });
+    for (const x of give) if (x.width < 0.3) { const to = x === X ? strip : lanes[0]; to.width = r2(to.width + x.width); segs.splice(segs.indexOf(x), 1); }
+    laid++;
+  }
+  return laid;
+}
+// Once the other cars are drawn, a strip the model saw a row in (rows, from layLaw) is widened to the row (2–2.5 m, as
+// parkFromAi draws its own), from the shoulder beside it first, while the lanes keep PARK.laneLeft each.
+export function widenLaw(result, rows) {
+  const segs = result.segments;
+  for (const { strip, row } of rows) {
+    const k = segs.indexOf(strip);
+    if (k < 0) continue;
+    const run = roadRun(segs, k), lanes = run.filter((x) => x.type === "pruh");
+    let more = r2(row - strip.width);
+    for (const x of [segs[k - 1], segs[k + 1]]) {
+      if (x?.type !== "krajnice" || more <= 1e-6) continue;
+      const w = Math.min(x.width, more);
+      x.width = r2(x.width - w); strip.width = r2(strip.width + w); more = r2(more - w);
+    }
+    if (lanes.length && more > 1e-6) {
+      const w = r2(Math.min(more, lanes.reduce((q, x) => q + x.width, 0) - PARK.laneLeft * lanes.length));
+      if (w > 0.05) { shareLanes(lanes, -w); strip.width = r2(strip.width + w); }
+    }
+    for (const x of [segs[k - 1], segs[k + 1]]) if (x?.type === "krajnice" && x.width < 0.3) { strip.width = r2(strip.width + x.width); segs.splice(segs.indexOf(x), 1); }
+  }
+}

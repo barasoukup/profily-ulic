@@ -1,5 +1,5 @@
 import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, SURFACES, LAMP_HEIGHTS, underSize } from "./types.js";
-import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, splitTwoWayLane, capWideLanes, pedestrianZone, widenNarrowTrams, carveCycleways, carveTramTracks, lanesFromShoulders, trackAlongRoad, crossFromA, MAX_REACH } from "./derive.js";
+import { localFrame, nearestStreet, snapToWay, awayFromJunctions, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, splitTwoWayLane, capWideLanes, pedestrianZone, widenNarrowTrams, carveCycleways, carveTramTracks, lanesFromShoulders, trackAlongRoad, crossFromA, lawNeedFor, isOnewayTags, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO, CH_ORTHO, NL_ORTHO, BE_ORTHO, LU_ORTHO, PL_ORTHO, FR_ORTHO, ES_ORTHO, PT_ORTHO, PT_MAINLAND, ES_NOT_PNOA, CY_ORTHO, MT_ORTHO, IT_ORTHO, EE_ORTHO, SI_ORTHO, FI_ORTHO, DK_ORTHO, DE_ORTHO, deWmsUrl, landsAt, landAt, orthoHereAt } from "./lanes-ortho.js";
 import { dkToken } from "./keys.js";
@@ -8,7 +8,7 @@ import { orthoOsmPolys, besidePassport, trimToEnds, P as ORTHO_P } from "./ortho
 import { LOOKS as HOUSE_LOOKS } from "./house-looks.js";
 // The gabled house looks with the gable's outline (house-looks.js; Bára to approve it, 23. 11. 2026): ?stit=1.
 if (new URLSearchParams(location.search).get("stit") === "1") HOUSE_LOOKS.gables = true;
-import { aiCut, aiKerbs, aiSurface, aiParking, parkFromAi, parkSkip, aiReady, onAiProgress } from "./ai-kerbs.js";
+import { aiCut, aiKerbs, aiSurface, aiParking, parkFromAi, parkSkip, lawKerbs, layLaw, widenLaw, aiReady, onAiProgress } from "./ai-kerbs.js";
 // ?off=… switches named parts of the estimate off (the A/B tests, evaluation/ortofoto-osm/regrese.mjs).
 { const off = new URLSearchParams(location.search).get("off"); if (off) ORTHO_P.off = new Set(off.split(",")); }
 // ?auta=1: parked cars told by their colours on the orthophoto (ortho-osm.js carsColoured; a trial, off by default).
@@ -631,7 +631,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // No surface of the street from the technical map (no answer, nothing here, nothing at the axis): the carriageway
     // read on the orthophoto near where OSM expects it, sidewalks to the OSM buildings (ortho-osm.js; Bára 15. 11.
     // 2026: better than OSM alone), all an estimate. The map's own surfaces, where there are any, stay behind it.
-    let orthoOsm = null, aiPark = null;
+    let orthoOsm = null, aiPark = null, lastPolys = polys, lastEnds = null;
     // The model's reading of the orthophoto across the cut (ai-kerbs.js aiCut). The first time the library and the model
     // come (about 7 MB), with their progress; past AI_WAIT the cut is drawn without it and the download goes on for the
     // next cut (Bára 19. 11. 2026).
@@ -660,7 +660,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       if (fb) {
         const again = deriveProfile({ ...args, polys: [fb[0], ...polys, ...fb.slice(1)] });
         // A side without a house ends where orthoOsmPolys found (steps, a fence, the last thing of the street).
-        if (!again.estimate) { result = trimToEnds(again, fb.ends); orthoOsm = fb; }
+        if (!again.estimate) { result = trimToEnds(again, fb.ends); orthoOsm = fb; lastPolys = [fb[0], ...polys, ...fb.slice(1)]; lastEnds = fb.ends; }
       }
     }
     // A town's passport (Slovakia) keeps the roads it maintains: beyond it, up to a house or a fence of OSM standing
@@ -681,8 +681,16 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       const beside = besidePassport({ osm, frame, dir, way: near.way, st: laneImg?.st, edges: k.status === "fulfilled" ? k.value?.edges || [] : [], symbols: k.status === "fulfilled" ? k.value?.symbols || [] : [], areas: k.status === "fulfilled" ? k.value?.areas || [] : [], polys, ...(country.besideMax && { max: country.besideMax }), aiSurf: mapCut ? aiSurface(mapCut) : null });
       if (beside.length) {
         const again = deriveProfile({ ...args, polys: [...polys, ...beside] });
-        if (!again.estimate) { result = again; besideUsed = beside.used; }
+        if (!again.estimate) { result = again; besideUsed = beside.used; lastPolys = [...polys, ...beside]; }
       }
+    }
+    // The law's parking waits for the lanes and the model's cars (ai-kerbs.js lawKerbs, layLaw; ?off=lawlanes).
+    const lawPark = ORTHO_P.off?.has("aipark") || ORTHO_P.off?.has("lawlanes") ? null : orthoOsm ? aiPark : mapCut && aiParking(mapCut);
+    const lawSkip = parkSkip(near.way.tags, !near.dir || dir[0] * near.dir[0] + dir[1] * near.dir[1] >= 0, inZps === true || parking.length > 0);
+    const lawAt = lawPark && !lawSkip.all ? lawKerbs(result) : [];
+    if (lawAt.length) {
+      const again = deriveProfile({ ...args, polys: lastPolys, noParkGuess: true });
+      result = lastEnds ? trimToEnds(again, lastEnds) : again;
     }
     // Lanes, shoulders and parking on its own paving measured on the orthophoto (lanes-ortho.js).
     const lanesFromOrtho = laneImg ? applyLanes(result, laneImg) : 0;
@@ -692,6 +700,9 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // The technical map's own roadway in a pedestrian zone stays a lane; the estimate's does not.
     pedestrianZone(result.segments, near.way.tags, { measured: !orthoOsm && !result.estimate });
     if (orthoOsm) widenNarrowTrams(result.segments);
+    const lawRows = [];
+    const lawOneway = isOnewayTags(near.way.tags) || near.way.tags?.junction === "roundabout", lawNeed = (lanes) => lawNeedFor(lawOneway, lanes);
+    if (lawAt.length) layLaw(result, lawAt, lawPark, lawNeed, { sure: true, skip: lawSkip, rows: lawRows });
     // Parking where the model sees cars at the kerb (ai-kerbs.js parkFromAi; Bára 20. 11. 2026), ?off=aipark.
     // Not where parking data decide: a paid zone, the city's parking sections at the cut, a side OSM tags.
     if (orthoOsm && aiPark && !ORTHO_P.off?.has("aipark")) {
@@ -710,6 +721,10 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       // A strip the law estimated, gone back to its lane where no car stands, keeps the lane's cap (capWideLanes above;
       // evaluation/mapfill-cz: Rosická in Brno 6.67 m lanes, Šatrova in Prague 5.62 m).
       if (mapParked) capWideLanes(result.segments, near.way.tags);
+    }
+    if (lawAt.length) {
+      layLaw(result, lawAt, lawPark, lawNeed, { inside: !orthoOsm, skip: lawSkip });
+      widenLaw(result, lawRows);
     }
     // A cycle track OSM tags on the road (cycleway:<side>=track) beside its roadway (derive.js trackAlongRoad), before the
     // cycle ways mapped on their own are carved, so one track is not drawn twice. Not over a map's own surfaces (they

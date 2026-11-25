@@ -179,3 +179,5 @@ Rozhodnutí: sdílené pravidlo **prohrává**, kód vrácený, `countries/SK.js
 důvodem. Slovenská výhoda je nejspíš v tom, že model na ortofotu ZBGIS 10 cm auta čte spolehlivě a slovenské místní ulice
 mají stání řidší; měřit by šlo práh jistoty modelu (zákonný pruh jen tam, kde model nevidí nic ani slabě), ne vypnutí
 zákona.
+
+**Nahrazeno 25. 11. 2026** (body 2 a 7): výjimka na Slovensku je zrušená, prohry byly z chyby sdíleného kódu, viz `slovensko-stani/ZPRAVA.md`.

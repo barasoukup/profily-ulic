@@ -624,7 +624,7 @@ function segIntersect(p, p2, q, q2) {
 const tag = (tags, ...keys) => keys.map((k) => tags[k]).find((v) => v !== undefined);
 
 const COLOURS = { red: "#c0503f", green: "#5f9e4a", blue: "#3f6fb0" };
-const isOnewayTags = (t) => ["yes", "1", "true", "-1"].includes(t?.oneway);
+export const isOnewayTags = (t) => ["yes", "1", "true", "-1"].includes(t?.oneway);
 // The way side on the drivers' left: the way's left, or its right on oneway=-1 (traffic against the geometry).
 // The side of a one-way way the contraflow keeps to (the way's left where traffic keeps right; its right where it keeps
 // left, countries/<ISO>.js leftHand: Cyprus).
@@ -718,7 +718,7 @@ const LAW_RAIL = 3.5;
 const lawLane = () => country.freeLane;
 // The width the law leaves beside parked cars: the free lane per direction, or the state's own rule
 // (countries/<ISO>.js lawNeed; Germany: 3.05 m to pass, the lanes kept at MIN_LANE each).
-const lawNeedFor = (oneway, lanesTotal) => (country.lawNeed ? country.lawNeed(oneway, lanesTotal, MIN_LANE) : lawLane() * Math.max(oneway ? 1 : 2, lanesTotal));
+export const lawNeedFor = (oneway, lanesTotal) => (country.lawNeed ? country.lawNeed(oneway, lanesTotal, MIN_LANE) : lawLane() * Math.max(oneway ? 1 : 2, lanesTotal));
 // Outside the built-up area a kerb without a sidewalk gets no estimate (Bára): no building of OSM or of the
 // city's surfaces within BUILT_ALONG along the street and BUILT_OUT out from the kerb on that side. A sidewalk
 // is a footway surface beyond the kerb, past a green strip up to WALK_GREEN, or OSM's sidewalk tags or a
@@ -1748,8 +1748,8 @@ export function linePieces(polys, tags, center, normal, st = null, along = true)
   return polys.map((p) => (code.has(p) && code.get(p) !== p.code ? { ...p, code: code.get(p), label: "" } : p));
 }
 
-// noParkGuess: no parking estimated by the law alone (Slovakia: no paid zones known, the cars are read on the orthophoto
-// instead, ortho-osm.js carsSeen).
+// noParkGuess: no parking estimated by the law alone (Monaco; and everywhere for the profile the lanes are measured on,
+// app.js lawAt).
 export function deriveProfile({ center, dir, half, polys, osm, frame, way, tracks = [], parking = [], lines = [], reach, inZps: zoneKnown, itemReach, ortho, lanesImage, roadOnPath = false, noParkGuess = false, kerbParking = null, osmParkGive = false }) {
   const reachItems = { ...REACH, ...itemReach };
   // No-parking sections (Prague, TSK "Zákaz stání"): no surface of their own, they only keep a kerb free.

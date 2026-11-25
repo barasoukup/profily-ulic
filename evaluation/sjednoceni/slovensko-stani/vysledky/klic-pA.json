@@ -1,0 +1,82 @@
+{
+ "1": {
+  "id": "st-SK-trnava-45",
+  "X": "N",
+  "Y": "F"
+ },
+ "2": {
+  "id": "st-SK-trnava-39",
+  "X": "F",
+  "Y": "N"
+ },
+ "3": {
+  "id": "st-SK-presov-44",
+  "X": "F",
+  "Y": "N"
+ },
+ "4": {
+  "id": "st-SK-trnava-41",
+  "X": "N",
+  "Y": "F"
+ },
+ "5": {
+  "id": "st-SK-trnava-10",
+  "X": "N",
+  "Y": "F"
+ },
+ "6": {
+  "id": "st-SK-trnava-16",
+  "X": "N",
+  "Y": "F"
+ },
+ "7": {
+  "id": "st-SK-nitra-4",
+  "X": "N",
+  "Y": "F"
+ },
+ "8": {
+  "id": "st-SK-presov-4",
+  "X": "N",
+  "Y": "F"
+ },
+ "9": {
+  "id": "st-SK-bratislava-33",
+  "X": "F",
+  "Y": "N"
+ },
+ "10": {
+  "id": "sl-trnava-8",
+  "X": "N",
+  "Y": "F"
+ },
+ "11": {
+  "id": "st-SK-trnava-28",
+  "X": "F",
+  "Y": "N"
+ },
+ "12": {
+  "id": "st-SK-bratislava-41",
+  "X": "N",
+  "Y": "F"
+ },
+ "13": {
+  "id": "st-SK-trnava-30",
+  "X": "F",
+  "Y": "N"
+ },
+ "14": {
+  "id": "st-SK-kosice-44",
+  "X": "N",
+  "Y": "F"
+ },
+ "15": {
+  "id": "sl2-petrzalka-1",
+  "X": "N",
+  "Y": "F"
+ },
+ "16": {
+  "id": "sl-kosice-1",
+  "X": "N",
+  "Y": "F"
+ }
+}

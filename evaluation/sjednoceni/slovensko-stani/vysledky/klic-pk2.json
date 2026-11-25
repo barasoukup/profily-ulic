@@ -1,0 +1,52 @@
+{
+ "1": {
+  "id": "st-AT-graz-9",
+  "X": "N",
+  "Y": "L"
+ },
+ "2": {
+  "id": "st-AT-innsbruck-23",
+  "X": "N",
+  "Y": "L"
+ },
+ "3": {
+  "id": "st-AT-salzburg-23",
+  "X": "L",
+  "Y": "N"
+ },
+ "4": {
+  "id": "st-AT-graz-17",
+  "X": "N",
+  "Y": "L"
+ },
+ "5": {
+  "id": "st-AT-linz-13",
+  "X": "N",
+  "Y": "L"
+ },
+ "6": {
+  "id": "st-AT-linz-35",
+  "X": "L",
+  "Y": "N"
+ },
+ "7": {
+  "id": "st-AT-salzburg-29",
+  "X": "L",
+  "Y": "N"
+ },
+ "8": {
+  "id": "st-AT-salzburg-5",
+  "X": "N",
+  "Y": "L"
+ },
+ "9": {
+  "id": "st-AT-linz-11",
+  "X": "L",
+  "Y": "N"
+ },
+ "10": {
+  "id": "st-AT-graz-1",
+  "X": "L",
+  "Y": "N"
+ }
+}
