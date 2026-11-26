@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "Otevřený průmyslový dvůr bez chodníku, celá zpevněná plocha; Y vkládá chodník a obslužnou, které tam nejsou."}
+{"n": 2, "verdict": "X", "jistota": "vysoka", "why": "Úzká cesta asi 3 m mezi zahradami a loukou; Y má obslužnou 17 m, která neodpovídá."}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "Úzká vozovka mezi zelení a ploty, X je kompaktnější a drží se okraje ulice; Y zasahuje 8 m zeleně až k domu."}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "Úzká vozovka se skutečně parkujícími auty na straně B, Y parkování nemá a kreslí dva plné jízdní pruhy."}
+{"n": 5, "verdict": "Y", "jistota": "stredni", "why": "Dvě vozovky s parkujícími auty a pruhy mezi domy; Y má dva pruhy a parkování, X jen jeden pruh bez stání."}
+{"n": 6, "verdict": "Y", "jistota": "nizka", "why": "Průmyslový areál se zelení, štěrkem a zpevněnými plochami; hrubá plocha Y vystihuje víc než jediná obslužná 6 m."}
+{"n": 7, "verdict": "Y", "jistota": "stredni", "why": "Dvoupruhová ulice s chodníky po obou stranách (viz fotka i ortofoto), X chodník vlevo nemá."}
+{"n": 8, "verdict": "stejne", "jistota": "nizka", "why": "Obě dávají dvoupruhovou vozovku asi 6,5 m se zelení po stranách, rozdíl je jen v krajnicích; stání vlevo žádný nemá."}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "Vozovka asi 7 m, vlevo pole se zelení, vpravo chodník; Y přidává stání a chodník vlevo, které na ortofotu nejsou."}
+{"n": 10, "verdict": "stejne", "jistota": "stredni", "why": "Prakticky shodné složení: krajnice, dva pruhy, krajnice, zeleň a chodník vpravo; liší se o desetiny metru."}

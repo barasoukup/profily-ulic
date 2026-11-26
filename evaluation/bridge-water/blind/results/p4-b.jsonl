@@ -1,0 +1,9 @@
+{"n": 1, "verdict": "Y", "jistota": "vysoka", "why": "Most má vozovku se dvěma pruhy a krajnicí i světlé chodníky po obou stranách (cca 14 m široká deska); X chodníky vynechává."}
+{"n": 2, "verdict": "Y", "jistota": "vysoka", "why": "Mezi vozovkami je dělicí pás a po stranách zpevněná plocha mostu, ne voda; X dává vodu na mostovku."}
+{"n": 3, "verdict": "stejne", "why": "Profily se liší jen o 0,25 m šířky chodníku na straně A, složení je shodné.", "jistota": "vysoka"}
+{"n": 4, "verdict": "X", "jistota": "nizka", "why": "Střed je bílý betonový dělicí pás (ne zeleň) a pravý okraj mostu je jednolitý chodník; Y zeleň nevidím."}
+{"n": 5, "verdict": "Y", "jistota": "stredni", "why": "Na straně A je za vozovkou zvýšený pás s obrubou a zábradlím (plocha), vozovka na mostě má dva pruhy."}
+{"n": 6, "verdict": "X", "jistota": "vysoka", "why": "Mezi oběma mosty je vodní hladina, ne plocha; tři pruhy každým směrem sedí v obou."}
+{"n": 7, "verdict": "X", "jistota": "vysoka", "why": "Na mostě jsou vedle tramvajových kolejí chodníky po obou stranách (fotka), Y je nemá."}
+{"n": 8, "verdict": "Y", "jistota": "nizka", "why": "Vozovka mostu s chodníkem; za ní je voda, takže zeleň a nezname z X tam nejsou."}
+{"n": 9, "verdict": "X", "jistota": "nizka", "why": "Úzká ulice s fasádami a vozovkou kolem 8 m; Y s cyklostezkou a 8,5 m plochami (cca 40 m) neodpovídá ani zhruba."}

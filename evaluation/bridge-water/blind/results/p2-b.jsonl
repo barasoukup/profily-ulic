@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "vysoka", "why": "Most 20 m: 4 jízdní pruhy a chodníky po obou stranách; X má vodu a nemá pravý chodník."}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "Most s chodníky po obou stranách, tramvaj a pruhy; Y má na mostě vodu a chybí mu pravý chodník."}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "Most asi 11 m, 2 pruhy a okraje (římsy/chodníčky) po stranách; Y je zahrnuje, X ne."}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "Most s chodníky po obou stranách a jízdní plochou; X klade na most vodu."}
+{"n": 5, "verdict": "X", "jistota": "nizka", "why": "Profily se liší jen šířkou pravého chodníku; ortofoto ukazuje asi 1,5 m, blíž 1,75."}
+{"n": 6, "verdict": "stejne", "jistota": "nizka", "why": "Oba popisují 6 pruhů dálnice pod mostem místo úzké mostovky; liší se jen zelení 2 m na kraji."}
+{"n": 7, "verdict": "Y", "jistota": "stredni", "why": "Úzký most se 2 pruhy bez chodníků a zábradlím; voda na mostě (X) je chyba, nezname je menší."}
+{"n": 8, "verdict": "stejne", "jistota": "nizka", "why": "Dva pruhy a krajnice shodně; rozdíl je jen 0,75 m plochy na kraji, kde je spíš zeleň/příkop."}
+{"n": 9, "verdict": "stejne", "jistota": "nizka", "why": "Liší se jen krajní pruh vlevo 1,35 vs 2,95 m, ani jeden neodpovídá chodníku vlevo; zbytek shodný."}
+{"n": 10, "verdict": "Y", "jistota": "stredni", "why": "Most se 4 pruhy, chodníky a cyklopásy po stranách; X dává vodu na most."}

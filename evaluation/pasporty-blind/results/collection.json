@@ -1,0 +1,18 @@
+{
+ "slapanice": {
+  "cuts": 60,
+  "changed": 50,
+  "passportUsed": 52,
+  "estimateWithout": 38,
+  "estimateWith": 6,
+  "changedEstimateWithout": 32
+ },
+ "kurim": {
+  "cuts": 60,
+  "changed": 32,
+  "passportUsed": 41,
+  "estimateWithout": 41,
+  "estimateWith": 12,
+  "changedEstimateWithout": 29
+ }
+}

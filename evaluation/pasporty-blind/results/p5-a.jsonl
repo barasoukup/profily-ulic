@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "stání vlevo u úzké dlážděné vozovky, šířka pruhu kolem 4 m; zbytek obou profilů srovnatelný"}
+{"n": 2, "verdict": "stejne", "jistota": "nizka", "why": "dvoupruhová vozovka asi 6 m, okraje zelené, rozdíly jen v rozdělení zeleně"}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "úzká vozovka asi 3,5 m s okrajem a zelení, Y má příliš širokou vozovku a chodník, který není vidět"}
+{"n": 4, "verdict": "nejde", "jistota": "nizka", "why": "řez vede křižovatkou, ani jeden profil nesedí jednoznačně"}
+{"n": 5, "verdict": "X", "jistota": "nizka", "why": "vozovka asi 6 m (2x3), vlevo trávník; X má vozovku blíž skutečnosti"}
+{"n": 6, "verdict": "X", "jistota": "nizka", "why": "dlážděná vozovka asi 7 m s chodníkem/zpevněnou plochou vlevo, X ji věrněji vystihuje"}
+{"n": 7, "verdict": "X", "jistota": "nizka", "why": "vlevo vozovka široká asi 5,7 m odpovídá X, Y ji má užší a končí před střední ulicí"}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "jízdní pruh vedle stání měří asi 4,5 m, ne 5,3 m; zbytek podobný"}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "vlevo budova a zpevněná plocha, vpravo štěrková plocha; vozovka asi 4-5 m"}
+{"n": 10, "verdict": "stejne", "jistota": "stredni", "why": "profily se liší jen v desetinách metru, tři pruhy a okraje shodně"}

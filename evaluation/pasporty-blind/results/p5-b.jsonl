@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "nizka", "why": "úzká dlážděná ulice s podélným stáním, vpravo živý plot a zahrada; užší pruh 3,6 a delší zeleň sedí lépe"}
+{"n": 2, "verdict": "X", "jistota": "nizka", "why": "vozovka asi 5,8 m s alejí vlevo a zelení vpravo; X má šířku pruhů blíž, jinak téměř stejné"}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "široká asfaltová plocha křižovatky, vpravo zelený pás; chodník z Y tam není"}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "vícepruhová hlavní silnice s krajnicemi a chodníky, Y má jen jeden pruh"}
+{"n": 5, "verdict": "X", "jistota": "nizka", "why": "vozovka asi 6 m, vlevo zeleň parku, vpravo pás a plocha; X sedí o něco lépe"}
+{"n": 6, "verdict": "Y", "jistota": "nizka", "why": "dlážděná ulice s chodníkem vlevo a zelení vpravo; X má nesmyslných 18 m plochy"}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "vozovka asi 6 m s okrajem u zástavby, Y s pruhem 4 m je příliš úzký"}
+{"n": 8, "verdict": "X", "jistota": "stredni", "why": "vozovka s podélným stáním, chodník a cyklostezka; X sedí šířkou i polohou vozovky"}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "vpravo od vozovky je zpevněná plocha, kterou má jen Y, vlevo dům hned u okraje"}
+{"n": 10, "verdict": "stejne", "why": "oba profily mají shodné složení a téměř shodné šířky, odpovídají třípruhové silnici s chodníky"}

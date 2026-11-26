@@ -1,0 +1,12 @@
+{"n": 1, "A": 2.8, "B": 2.8, "jistota": "stredni", "why": "most, oba chodníky mezi zábradlím a obrubou, fotka b ukazuje dlážděný chodník"}
+{"n": 2, "A": 1.0, "B": 3.0, "jistota": "nizka", "why": "malý most, strana A úzký pás u zábradlí, B širší světlý pás"}
+{"n": 3, "A": 3.1, "B": 3.0, "jistota": "stredni", "why": "most, oba chodníky vyznačené světlým pásem s lampami"}
+{"n": 4, "A": 3.0, "B": 5.0, "jistota": "nizka", "why": "A pás vlevo oříznutý přechodem; B cihlový pás (společný?) a šedý chodník za parkováním"}
+{"n": 5, "A": 7.5, "B": 0, "jistota": "nizka", "why": "A široká plocha s přístřeškem; B u obruby jen žlutá čára a zábradlí, chodník nevidět"}
+{"n": 6, "A": 6.5, "B": 4.5, "jistota": "nizka", "why": "most, A široká plocha za zábradlím, B pás s ochozem a zábradlím"}
+{"n": 7, "A": 1.2, "B": 1.8, "jistota": "stredni", "why": "kamenný most, úzké chodníky u parapetů, B s patníky"}
+{"n": 8, "A": 2.2, "B": 0, "jistota": "nizka", "why": "A chodník za svodidlem (fotka b); B jen svodidlo u jízdního pruhu"}
+{"n": 9, "A": 0, "B": 0, "jistota": "nizka", "why": "dálniční most, jen svodidlo a římsa, chodník nevidět"}
+{"n": 10, "A": 0, "B": 0, "jistota": "vysoka", "why": "silnice mimo zástavbu, trávník bez chodníku"}
+{"n": 11, "A": 1.8, "B": 2.0, "jistota": "stredni", "why": "příhradový most, chodníky za nosnými prvky, B dle fotky spíš širší"}
+{"n": 12, "A": 0, "B": 0, "jistota": "nizka", "why": "malý most, jen parapety, chodník nerozlišen"}

@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "vysoka", "why": "Na mostě jsou po obou stranách chodníky, Y je nemá."}
+{"n": 2, "verdict": "X", "jistota": "nizka", "why": "Po obou stranách vozovky jsou úzké okraje/chodníky, Y je vynechává; šířky nepřesné u obou."}
+{"n": 3, "verdict": "X", "jistota": "stredni", "why": "Vpravo je na mostě chodník, X ho má; Y místo něj nic a vlevo vodu pod mostem."}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "Uprostřed jsou tramvajové koleje na mostě, X tam dává vodu; Y má tramvaj a dělicí pás."}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "Zpevněná plocha/křižovatka; profily se liší jen dělicím pásem vs. zelení, ani jedno jasně nesedí."}
+{"n": 6, "verdict": "stejne", "jistota": "nizka", "why": "Úzká cesta bez značení, oba mají dva pruhy; 0,55 m plochy nic nemění."}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "Most má dva pruhy s okraji po obou stranách; Y dává na pravou stranu zeleň."}
+{"n": 8, "verdict": "nejde", "jistota": "vysoka", "why": "Ortofoto je prázdné a fotka ukazuje jen křižovatku."}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "Na mostě jsou okraje/chodníky na obou stranách, Y je má, X jen vpravo."}
+{"n": 10, "verdict": "X", "jistota": "stredni", "why": "Most je celý zpevněný s chodníky po stranách, Y do něj dává vodu."}

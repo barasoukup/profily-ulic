@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "mezi halou a budkou je asfalt, dlážděný pás a zpevněná plocha, členěný X sedí lépe než jedna plocha"}
+{"n": 2, "verdict": "stejne", "jistota": "nizka", "why": "úzká silnice se stromořadím z obou stran, oba profily podobné, Y má lehce širší vozovku"}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "vozovka má asi 6 m, Y 2x3,05 sedí lépe než X 2x2,8; zeleň po stranách u obou"}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "vozovka asi 6 m a po stranách zeleň a zpevněné plochy; X má zbytečně široké krajnice a neznámé plochy"}
+{"n": 5, "verdict": "nejde", "jistota": "nizka", "why": "štěrková plocha, auta a pole, ortofoto nestačí k určení pořadí dílů"}
+{"n": 6, "verdict": "X", "jistota": "nizka", "why": "úzká ulice s jedním použitelným pruhem a zelení u domu, celková šířka X sedí lépe k ortofotu"}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "dvoupruhová silnice s krajnicemi a zelení, rozdíly jen v desítkách centimetrů"}
+{"n": 8, "verdict": "X", "jistota": "stredni", "why": "zpevněná obslužná plocha mezi halami; Y s 25 m zeleně neodpovídá"}
+{"n": 9, "verdict": "nejde", "jistota": "nizka", "why": "hustý les ve stínu, na ortofotu není vidět ani vozovka"}
+{"n": 10, "verdict": "Y", "jistota": "stredni", "why": "dvoupruhová vozovka s živým plotem a zpevněnými plochami nájezdů po stranách; X vymýšlí chodník a zeleň"}

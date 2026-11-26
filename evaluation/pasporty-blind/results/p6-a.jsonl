@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "průmyslový dvůr od fasády haly po uhelné skladiště je jedna zpevněná plocha cca 30 m; Y vymýšlí chodník a obslužnou"}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "úzká obslužná cesta cca 3 m mezi zahradami; Y má obslužnou 17 m"}
+{"n": 3, "verdict": "stejne", "jistota": "nizka", "why": "úzká vozovka cca 6 m se zelení po stranách, oba tak odpovídají, rozdíl jen v krajích"}
+{"n": 4, "verdict": "X", "jistota": "vysoka", "why": "úzká vozovka s podélným stáním vpravo a chodníkem za ním; Y má dva pruhy bez stání"}
+{"n": 5, "verdict": "Y", "jistota": "stredni", "why": "vozovka se stáním na okrajích a chodníčkem; X stání vůbec nemá"}
+{"n": 6, "verdict": "stejne", "jistota": "nizka", "why": "průmyslový areál, podklady nestačí na určení uliční čáry, oba hrubé"}
+{"n": 7, "verdict": "Y", "jistota": "stredni", "why": "dvoupruhová vozovka mezi domy s chodníkem na obou stranách; X má vlevo zeleň místo chodníku"}
+{"n": 8, "verdict": "stejne", "jistota": "nizka", "why": "dvoupruhová vozovka cca 6 m, oba nezachytí šikmé stání vlevo, liší se jen krajnicemi"}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "zeleň, dvoupruhová vozovka, chodník/zeleň vpravo; Y vymýšlí stání vlevo a jeden široký pruh"}
+{"n": 10, "verdict": "stejne", "jistota": "stredni", "why": "profily téměř shodné (krajnice, dva pruhy, zeleň, chodník vpravo), rozdíl pár desítek cm"}
