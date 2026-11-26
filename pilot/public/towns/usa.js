@@ -1,5 +1,7 @@
 // The USA (Bára 24. 11. 2026, phase 2 of the North America pilot; evaluation/usa-dc/ZPRAVA.md, evaluation/usa/): the state
-// of a cut inside staty.json's "usa", the metro of Washington DC. Outside DC the estimate from OSM (and nothing else). In
+// of a cut inside staty.json's "usa", the metros of Washington DC and Boston (Bára 26. 11. 2026: Boston's and Cambridge's
+// surface maps in towns/boston.js, picked below by the place). Outside DC, Boston and Cambridge the estimate (in Boston's
+// metro with MassGIS's orthophoto). In
 // DC (the District by its boundary, mesta-us.json, and 60 m beyond it for the streets along the line; AREAS.dc):
 // - DC Planimetrics 2023 (OCTO, maps2.dcgis.dc.gov DCGIS_DATA/Planimetrics_2023/MapServer, layers 10 Roads, 11 Sidewalks,
 //   1 Building Footprints; CORS for the origin asking; CC BY 4.0, "DC GIS / Office of the Chief Technology Officer") as
@@ -46,6 +48,7 @@
 //   floors and its units are not on the lot: not asked.
 import { getJSON, envelope } from "../gis.js";
 import { inArea } from "../places.js";
+import { BOSTON_MAPS, bostonPodlaznost, AREAS as BOSTON_AREAS } from "./boston.js";
 import { planimetricMap, planimetricCut, memory, carriageway, kerbStrip, carveTrack, trackPlace, isTrack, parallelsAt, islandsBeside, inRings, WALKED } from "./planimetrics.js";
 
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_US?.[k] ?? null : new URLSearchParams(location.search).get(k));
@@ -309,17 +312,22 @@ async function podlaznost(lat, lon) {
   return houses.get(key);
 }
 
+// The map of the cut's place: DC's, else the one of Boston's metro (towns/boston.js) whose city holds the box's centre (inside
+// its boundary before the metres beyond it: Memorial Drive is Cambridge's, the Charles Boston's), else DC's (the estimate).
+const strictly = (m, bbox) => { const [x0, y0, x1, y1] = bbox.split(",").map(Number); return inArea({ ...BOSTON_AREAS[m === BOSTON_MAPS[0] ? "boston" : "cambridge"], near: 0 }, (x0 + x1) / 2, (y0 + y1) / 2); };
+const mapOf = (bbox) => (map.here(bbox) ? map : BOSTON_MAPS.find((m) => m.here(bbox) && strictly(m, bbox)) || BOSTON_MAPS.find((m) => m.here(bbox)) || map);
+const box = (lat, lon, r = 1) => { const dy = r / 110574, dx = r / (111320 * Math.cos((lat * Math.PI) / 180)); return [lon - dx, lat - dy, lon + dx, lat + dy].join(","); };
 export const sources = {
-  osm: map.osm,
-  surfaces: map.surfaces,
+  osm: (lat, lon, radius) => mapOf(box(lat, lon)).osm(lat, lon, radius),
+  surfaces: (bbox, ...rest) => mapOf(bbox).surfaces(bbox, ...rest),
   lines,
   parking: async () => ({ features: [] }),
-  podlaznost,
+  podlaznost: async (lat, lon) => (inArea(AREAS.dc, lon, lat) ? podlaznost(lat, lon) : bostonPodlaznost(lat, lon)),
 };
 
 // No fallback to the DMVS (sources.js national).
 export const national = true;
 export const ortho = null;
 
-// The overview map of the About dialog (tools/build_coverage.mjs): DC's Planimetrics.
-export const SURFACE_MAPS = ["dc"];
+// The overview map of the About dialog (tools/build_coverage.mjs): DC's Planimetrics, the maps of Boston and Cambridge.
+export const SURFACE_MAPS = ["dc", "boston", "cambridge"];

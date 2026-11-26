@@ -102,7 +102,7 @@ jobs:
         run: |
           mkdir -p data/osm
           # An extract with a continent (africa/, north-america/) is taken as it is, the others are under europe/.
-          # Several extracts joined by "+" with a box after "@" (tools/countries.mjs, the USA's us_dc): each is cut to the
+          # Several extracts joined by "+" with a box after "@" (tools/countries.mjs, the USA's us_dc, us_bos): each is cut to the
           # box with osmium and the pieces are merged.
           e="${{ matrix.extract }}"; box=""
           case "$e" in *@*) box="${e##*@}"; e="${e%@*}";; esac

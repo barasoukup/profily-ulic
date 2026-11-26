@@ -155,6 +155,30 @@ jobs:
           else
             echo "::warning::no Plzeň parking zones"
           fi
+      # Boston's and Cambridge's surface maps (towns/boston.js, PDDL): their roadways are a few polygons of the whole city,
+      # too big for a click, so cut once into small tiles (data/us-plan, about 45 MB) by tools/build_planimetrics_us.mjs.
+      # Built at most once a week (the cache's key is the week; the cities' servers are asked about 120 times, one request
+      # at a time); when the download fails, the tiles of an earlier week; with neither, Boston's profiles estimate.
+      - id: us-plan-week
+        run: echo "week=$(date -u +%G-%V)" >> "$GITHUB_OUTPUT"
+      - id: us-plan-cache
+        uses: actions/cache@v4
+        with:
+          path: data/us-plan-last
+          key: us-plan-${{ steps.us-plan-week.outputs.week }}
+          restore-keys: us-plan-
+      - name: Boston surface maps
+        continue-on-error: true
+        timeout-minutes: 30
+        run: |
+          if [ "${{ steps.us-plan-cache.outputs.cache-hit }}" != "true" ]; then
+            if node tools/build_planimetrics_us.mjs site-us-plan; then
+              rm -rf data/us-plan-last && mkdir -p data/us-plan-last && cp -R site-us-plan/. data/us-plan-last/
+            else
+              echo "::warning::the surface maps of Boston or Cambridge did not answer, using the tiles of an earlier deploy"
+            fi
+          fi
+          if [ -d data/us-plan-last/boston ]; then rm -rf site-us-plan && cp -R data/us-plan-last site-us-plan; else echo "::warning::no surface maps of Boston, profiles there estimate"; fi
       - name: Assemble the site
         env:
           MAPY_KEY: ${{ secrets.MAPY_KEY }} # Mapy.com key for the street panorama; empty → a plain link instead
@@ -185,6 +209,7 @@ jobs:
           if [ -f site-osm/index.json ] && ls site-osm/*.posm > /dev/null 2>&1; then mkdir -p _site/data/osm-pack && cp site-osm/*.posm site-osm/index.json _site/data/osm-pack/; fi
           mv site-zps.json _site/data/zps.json
           [ -d site-vyvoj ] && mv site-vyvoj _site/data/vyvoj || echo "::warning::no built-up area tiles, flat roofs judged by the house alone"
+          [ -d site-us-plan ] && mv site-us-plan _site/data/us-plan || true
           cp LICENCE-A-ZDROJE.md _site/data/LICENCE-A-ZDROJE.md
           # One page for the whole Czech Republic: the cities' own data under data/<city>/ (Brno's parking,
           # Plzeň's zones, Prague's open data), the former city sites as pages sending to it (old links keep working).

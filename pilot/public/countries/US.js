@@ -1,14 +1,16 @@
 // The USA (US; Bára 24. 11. 2026, phase 2 of the North America pilot): what differs from the Czech rules of
-// countries/default.js. Only the metro of Washington DC is covered (staty.json "usa"; the rest of the USA is closed_us);
-// its sources are towns/usa.js (DC's Planimetrics 2023 as the surface map, DDOT's Roadway SubBlock inventory for the
-// lanes and parking), the orthophoto DC's of 2025 (lanes-ortho.js "us", only over DC). Sources and norms:
-// evaluation/usa/ (NORMY.md), the pilot evaluation/usa-dc/.
+// countries/default.js. Only the metros of Washington DC and Boston are covered (staty.json "usa"; the rest of the USA is
+// closed_us); their sources are towns/usa.js (DC's Planimetrics 2023 as the surface map, DDOT's Roadway SubBlock inventory
+// for the lanes and parking) and towns/boston.js (the surface maps of Boston and Cambridge), the orthophotos DC's of 2025
+// over DC and MassGIS's of 2025 over Boston's metro (lanes-ortho.js "us"). Sources and norms: evaluation/usa/ (NORMY.md),
+// evaluation/usa/boston/ (NORMY.md), the pilot evaluation/usa-dc/.
 import { t } from "../i18n.js";
 import { northAmericaLook, northAmericaDetails } from "../house-looks-america.js";
 import { LATE_BOUNDS } from "../late.js";
-import { northAmericaFurniture, ownArt } from "../art.js";
+import { northAmericaFurniture, ownArt, NORTH_AMERICA_VEHICLES } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
 import { cycleTrackLimits } from "./cycletrack.js";
+import { city } from "../city.js";
 
 // Norms (evaluation/usa/NORMY.md): DDOT's Design and Engineering Manual (DEM, December 2023), its Bicycle Facility Design
 // Guide (v2, 2020) and NACTO's guides. The DEM is binding for new streets in DC, but DDOT may keep existing conditions
@@ -44,18 +46,49 @@ function limitsUS(s, segs = [], i = -1) {
   }
 }
 
+// Boston's metro (Bára 26. 11. 2026; evaluation/usa/boston/NORMY.md): the Boston Complete Streets Guidelines (Boston
+// Transportation Department, 2013), its tables "Preferred and Minimum Widths for Sidewalk Zones" (p. 23) and "Minimum Widths
+// for Roadway Lanes" (p. 103). Guidelines for the city's own design, and the app reads existing streets (and the cities
+// around), so orange only. No figure for a cycle track, a shared path, an angled or perpendicular stall was read in
+// them: none is warned of.
+function limitsBoston(s) {
+  switch (s.type) {
+    case "chodnik":
+      return { min: 0, zaklad: 2.13, why: t("chodník: celkem nejméně 7 ft (2,13 m), v centru 10 ft (3,05 m); průchozí pás nejméně 5 ft (1,52 m) (Boston Complete Streets Guidelines 2013, s. 23)") };
+    case "cyklopruh": case "ochranny_pruh":
+      return { min: 0, zaklad: 1.52, why: t("cyklopruh: nejméně 5 ft (1,52 m), při silném provozu kol 6 ft (1,83 m) (Boston Complete Streets Guidelines 2013, s. 103)") };
+    case "bus":
+      return { min: 0, zaklad: 3.35, why: t("pruh pro autobusy: nejméně 11 ft (3,35 m) (Boston Complete Streets Guidelines 2013, s. 103)") };
+    case "bus_cyklo":
+      return { min: 0, zaklad: 3.66, why: t("společný pruh pro autobusy a kola: nejméně 12 ft (3,66 m), lépe 13–15 ft (Boston Complete Streets Guidelines 2013, s. 103)") };
+    case "pruh": case "pruh_piktokoridor":
+      return { min: 0, zaklad: 3.05, why: s.turn ? t("řadicí pruh: nejméně 10 ft (3,05 m) (Boston Complete Streets Guidelines 2013, s. 103)")
+        : t("jízdní pruh: nejméně 10 ft (3,05 m), při více než 8 % těžkých vozidel 11–12 ft (Boston Complete Streets Guidelines 2013, s. 103)") };
+    case "parkovani":
+      return s.orient === "kolme" || s.orient === "sikme" ? null : { min: 0, zaklad: 2.13, why: t("podélné stání: nejméně 7 ft (2,13 m) (Boston Complete Streets Guidelines 2013, s. 103)") };
+    default:
+      return null;
+  }
+}
+const BOSTON_TOWNS = new Set(["boston", "bostonmetro"]);
+
 // The bus of the whole state is Metrobus (WMATA): the state is the metro of Washington alone and WMATA runs in its
 // suburbs too (Bára 25. 11. 2026); a further metro spreads its own buses (art.js NORTH_AMERICA_VEHICLES). No tram of its
 // own: the streetcar closed on 31. 3. 2026.
 const usa = { ...northAmericaFurniture, "bus-inbound": "../washington/bus-inbound", "bus-outbound": "../washington/bus-outbound" };
-// In Washington its bus stop, also by the shelter, and its globe as the lamp up to 5 m (Boston's: "lamp-acorn-left").
+// In Washington its bus stop, also by the shelter, and its globe as the lamp up to 5 m.
 const washington = { ...usa, ...ownArt(["stop-post-left", "stop-post-right",
   "transit-shelter-01-left", "transit-shelter-01-right", "transit-shelter-green-left", "transit-shelter-green-right"]), "lamp-post-top": "lamp-globe-left" };
+// Boston's metro (Bára 26. 11. 2026): the MBTA's bus everywhere in it (the MBTA runs in the cities around), its Green Line
+// tram where OSM has the tracks (the tram is drawn only on them), its stop post; in the City of Boston its acorn lamp up to
+// 5 m. No shelter of its own drawn: North America's.
+const bostonmetro = { ...northAmericaFurniture, ...NORTH_AMERICA_VEHICLES.boston, ...ownArt(["stop-post-left", "stop-post-right"]) };
+const boston = { ...bostonmetro, "lamp-post-top": "lamp-acorn-left" };
 
 export default {
   ...base,
   code: "US",
-  // The metro of Washington (staty.json "usa", the OSM pack us_dc).
+  // The metros of Washington and Boston (staty.json "usa", the OSM packs us_dc, us_bos).
   bounds: LATE_BOUNDS.US,
   // The International Fire Code 503.2.1 (adopted by DC with its supplement, 12 DCMR H): a fire apparatus access road
   // keeps 20 ft (6.10 m) unobstructed, about 3 m a direction; 18 DCMR 2405.2(g) forbids parking where less than 10 ft of
@@ -68,18 +101,20 @@ export default {
   parkGuess: true,
   parkByCycleLane: true,
   roadClassFromOsm: true,
-  limits: limitsUS,
+  // Boston's metro by Boston's guidelines, the rest by DC's (the town of the cut, city.js STATE_TOWNS).
+  limits: (s, segs, i) => (BOSTON_TOWNS.has(city.id) ? limitsBoston(s, segs, i) : limitsUS(s, segs, i)),
   contraflow: () => null,
   tramBelt: () => [],
   // No sign row in phase 2 (Bára 24. 11. 2026; MUTCD later): nothing drawn, nothing offered in the design.
   signs: { dir: "signs-US", file: () => null, plate: () => null, label: (x, own, label) => label.replace(CZ_CODE, ""), drawable: () => false },
   bedOrtho: null,
-  // DC's orthophoto of 2025 over DC only (lanes-ortho.js US_ORTHO); elsewhere in the metro the estimate from OSM.
+  // DC's orthophoto of 2025 over DC only, MassGIS's of 2025 over Boston's metro (lanes-ortho.js US_ORTHO); elsewhere in
+  // Washington's metro the estimate from OSM.
   laneOrtho: "us",
   orthoEstimate: true,
   besideMax: 25,
   panorama: false,
-  art: { usa, washington },
+  art: { usa, washington, boston, bostonmetro },
   // No panel estates drawn as the Czech ones (Bára's memory: the socialist looks only where they were built).
   socialistLooks: false,
   // The houses of North America (house-looks.js, docs/house-types-north-america.md; Bára 25. 11. 2026).

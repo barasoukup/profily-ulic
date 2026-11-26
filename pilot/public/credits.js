@@ -41,6 +41,7 @@ export const SOURCE_CREDITS = {
     "fi-tku": () => t("ortofoto © Turun kaupunki, 2022 (CC BY 4.0)"),
     // The USA: DC's orthophoto (lanes-ortho.js US_ORTHO).
     "us-dc": () => t("ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)"),
+    "us-ma": () => t("ortofoto © MassGIS (Bureau of Geographic Information), 2025"),
     "ca-tor": () => t("ortofoto © City of Toronto, 2025 (Open Government Licence – Toronto)"),
     // Denmark: GeoDanmark's spring orthophoto through Dataforsyningen, credited as its terms ask (evaluation/denmark/ZDROJE.md 1).
     dk: () => t("ortofoto: Indeholder data fra Styrelsen for Dataforsyning og Infrastruktur, Ortofoto forår, WMTS-tjeneste"),
@@ -114,7 +115,11 @@ export const SOURCE_CREDITS = {
   // DC's Planimetrics and DDOT's inventory (towns/usa.js).
   cityMap: { dc: () => t("mapa povrchů (Planimetrics 2023) © DC GIS, Office of the Chief Technology Officer (CC BY 4.0)"),
     // Toronto's topographic mapping (towns/canada.js), with the statement its licence asks for.
-    toronto: () => t("mapa povrchů: Contains information licensed under the Open Government Licence – Toronto.") },
+    toronto: () => t("mapa povrchů: Contains information licensed under the Open Government Licence – Toronto."),
+    // Boston's and Cambridge's (towns/boston.js), both under the PDDL (no credit asked, given).
+    boston: () => t("mapa povrchů (Street Edges, Sidewalk Inventory, budovy) © City of Boston (ODC PDDL)"),
+    cambridge: () => t("mapa povrchů © City of Cambridge GIS (ODC PDDL)") },
+  usHouse: { boston: () => t("podlaží domů © City of Boston (ODC PDDL)") },
   caHouse: { true: () => t("výšky domů © City of Toronto (Open Government Licence – Toronto)") },
   // DC's assessment tables, where they told of a house.
   usCama: { true: () => t("domy (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)") },

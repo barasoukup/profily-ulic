@@ -170,8 +170,13 @@ export const fiOrthoAt = (lon, lat) => Object.keys(FI_ORTHO).filter((k) => { con
 // metro (Maryland, Virginia) no orthophoto yet: the estimate from OSM.
 export const DC_ORTHO = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Ortho2025_WebMercator/MapServer";
 const agsExport = (service) => (b, w, h, format = "image/jpeg") => `${service}/export?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: format === "image/png" ? "png32" : "jpg", ...(format === "image/png" && { transparent: "true" }), f: "image" })}`;
+// Boston's metro (Bára 26. 11. 2026): MassGIS's spring orthophoto of 2025 (15 cm, a tile cache in Web Mercator to level
+// 23 on ArcGIS Online, read at level 20 as {z}/{y}/{x}; CORS for the origin asking; "No restrictions apply to these data …
+// Acknowledgement of MassGIS would be appreciated", the item's licence), over the metro (mesta-us.json "bostonmetro").
+export const MA_ORTHO = "https://tiles.arcgis.com/tiles/hGdibHYSPO59RG1h/arcgis/rest/services/Massachusetts_Aerial_Imagery_2025/MapServer/tile";
 export const US_ORTHO = {
   "us-dc": { box: [-77.12, 38.79, -76.909, 38.997], town: "washington", near: 60, res: 0.1, url: agsExport(DC_ORTHO), credit: "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)" },
+  "us-ma": { box: [-71.9, 41.98, -70.64, 42.74], town: "bostonmetro", near: 60, res: 0.15, tiles: MA_ORTHO, z: 20, px: 256, credit: "ortofoto © MassGIS (Bureau of Geographic Information), 2025" },
 };
 // Canada (Bára 25. 11. 2026): the City of Toronto's orthophoto of the current year (cot_ortho; 2025, 8 cm, a tile cache in Web
 // Mercator to level 23; CORS for the origin asking; Open Government Licence – Toronto by the catalogue's "Web Map Services"),
@@ -259,7 +264,7 @@ export const deWmsUrl = ({ wms, layers, time }, b, w, h, format = "image/jpeg", 
   crs: "EPSG:3857", bbox: b.join(","), width: w, height: h, format, ...(time && { time }), ...extra })}`;
 for (const [r, o] of Object.entries(BE_ORTHO)) SOURCES[`be-${r}`] = { res: 0.1, url: o.url };
 for (const [land, o] of Object.entries(DE_ORTHO)) SOURCES[`de-${land}`] = { res: 0.1, url: (b, w, h, format) => deWmsUrl(o, b, w, h, format) };
-for (const [k, o] of Object.entries({ ...FI_ORTHO, ...US_ORTHO, ...CA_ORTHO })) SOURCES[k] = { res: o.res, url: o.url };
+for (const [k, o] of Object.entries({ ...FI_ORTHO, ...US_ORTHO, ...CA_ORTHO })) SOURCES[k] = o.tiles ? { res: o.res, tiles: o.tiles, z: o.z, px: o.px } : { res: o.res, url: o.url };
 // The URL of a tile: the source's own (tileUrl, WMTS by key-value pairs) or the path {z}/{y}/{x} (xy: {z}/{x}/{y}; tms: y
 // from the bottom).
 const tileUrlOf = (src, tx, ty) => (src.tileUrl ? src.tileUrl(src.z, tx, ty) : `${src.tiles}/${src.z}/${src.xy ? `${tx}/${src.tms ? 2 ** src.z - 1 - ty : ty}` : `${ty}/${tx}`}${src.ext || ""}`);

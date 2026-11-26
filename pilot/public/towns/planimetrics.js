@@ -1,7 +1,8 @@
 // A city's planimetric map behind ArcGIS as the surface map (Washington: towns/usa.js, Toronto: towns/canada.js; taken out
 // of usa.js, Bára 25. 11. 2026): the polygons of some layers read along the cut every 0.1 m (as Flanders' GRB,
 // towns/belgium.js) and handed on as MTVU-coded strips 2 m along the street. A city is a description (planimetricMap):
-//   id, area (places.js inArea), on() (its switch), service (the MapServer),
+//   id, area (places.js inArea), on() (its switch), service (the MapServer) or ask(layer id, bbox, where) its own reading
+//   (towns/boston.js: static tiles of the site),
 //   layers: [{ id, fields, code(attributes) → [MTVU code, priority (lower first), true for a parking area] or null }, …],
 //   junction: { layer, test(attributes) } the polygons of intersections,
 //   alleys: { layer, where, test(attributes), source, off } the alleys drawn as the street's crossings, or none,
@@ -243,7 +244,7 @@ export function alleyAreas(json, { test, source }) {
 export function planimetricMap(d) {
   const cached = memory(), asked = [], layer = (id) => d.layers.find((l) => l.id === id);
   const here = (bbox) => { const [x0, y0, x1, y1] = bbox.split(",").map(Number); return d.on() && inArea(d.area, (x0 + x1) / 2, (y0 + y1) / 2); };
-  const ask = (id, bbox, where = null) => cached(`${id} ${where} ${bbox}`, () => getJSON(`${d.service}/${id}/query?${new URLSearchParams({ ...envelope(bbox), ...(where && { where }), outFields: layer(id)?.fields || d.fields, returnGeometry: "true" })}`));
+  const ask = (id, bbox, where = null) => cached(`${id} ${where} ${bbox}`, () => d.ask ? d.ask(id, bbox, where) : getJSON(`${d.service}/${id}/query?${new URLSearchParams({ ...envelope(bbox), ...(where && { where }), outFields: layer(id)?.fields || d.fields, returnGeometry: "true" })}`));
   // The polygon of a layer at a point (a facade's, so within 1 m of its edge too) in the answers the click already has.
   const at = async (id, lat, lon) => {
     const kx = 111320 * Math.cos((lat * Math.PI) / 180), ky = 110574;

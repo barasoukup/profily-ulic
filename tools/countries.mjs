@@ -68,9 +68,12 @@ export const COUNTRIES = {
   lt: { iso: "LT", geofabrik: "lithuania", pages: false },
   // The USA (Bára 24. 11. 2026, phase 2 of the North America pilot): only the metro of Washington DC, one pack us_dc of
   // Geofabrik's District of Columbia with the parts of Maryland and Virginia in the metro's box (osm-tiles.yml: extracts
-  // joined by "+" are each cut to the box after "@" with osmium and merged; locally 86 MB), only on R2.
+  // joined by "+" are each cut to the box after "@" with osmium and merged; locally 86 MB), only on R2. Boston (Bára
+  // 26. 11. 2026): us_bos, Geofabrik's Massachusetts (312 MB of PBF) cut to the box of the metro's three counties
+  // (tools/build_staty.mjs METROS), only on R2. A further metro is a further part.
   us: { iso: "US", geofabrik: "north-america/us/district-of-columbia", pages: false, parts: {
-    us_dc: "north-america/us/district-of-columbia+north-america/us/maryland+north-america/us/virginia@-77.56,38.52,-76.64,39.37" } },
+    us_dc: "north-america/us/district-of-columbia+north-america/us/maryland+north-america/us/virginia@-77.56,38.52,-76.64,39.37",
+    us_bos: "north-america/us/massachusetts@-71.92,41.97,-70.62,42.76" } },
   // Canada (Bára 25. 11. 2026): only Toronto and the municipalities around it, one pack ca_on_toronto of Geofabrik's Ontario
   // (1 GB of PBF) cut to their box (locally 46 MB), only on R2.
   ca: { iso: "CA", geofabrik: "north-america/canada/ontario", pages: false, parts: { ca_on_toronto: "north-america/canada/ontario@-79.92,43.46,-78.98,44.03" } },

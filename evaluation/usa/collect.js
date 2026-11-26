@@ -20,7 +20,8 @@ const VARIANTS = {
   os0: { q: "off=otherstreet", off: ["otherstreet"] }, // the shared rules of the second review
   tt0: { q: "off=tunneltracks", off: ["tunneltracks"] },
   rt0: { q: "off=roadtracks", off: [] }, // Canada: without OSM's cycle tracks in the map's carriageway
-  osm: { q: "dc=0&toronto=0&orto=0&ai=0", off: [], load: true },
+  bos0: { q: "boston=0&cambridge=0", off: [] }, // Boston (evaluation/usa/boston): without the maps of Boston and Cambridge
+  osm: { q: "dc=0&toronto=0&boston=0&cambridge=0&orto=0&ai=0", off: [], load: true },
   old: { q: "off=ulicky,treepits,pocetpruhu", off: ["ulicky", "treepits", "pocetpruhu"] },
 };
 async function collectUs(name) {

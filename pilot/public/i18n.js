@@ -50,7 +50,9 @@ let DICT, HTML, CITY_TEXTS, ATTRIBUTION;
 const use = (texts) => { [DICT, HTML, CITY_TEXTS, ATTRIBUTION] = texts; };
 use(await load(lang).catch(() => ((lang = "cs"), CS)));
 // The city's texts (city.js) in the language: its server, data and credits as sentences take them; none in Czech.
-export const cityTexts = (id, like) => CITY_TEXTS[id] || CITY_TEXTS[like];
+// A town whose texts are another town's (Boston's metro, Boston's; city.js STATE_TOWNS).
+const TEXT_ALIAS = { bostonmetro: "boston" };
+export const cityTexts = (id, like) => CITY_TEXTS[id] || CITY_TEXTS[TEXT_ALIAS[id]] || CITY_TEXTS[like];
 // How the language writes numbers: a decimal comma everywhere but in English, Irish and Maltese (3,50 / 3.50); per cent
 // with a space ("44 %": Czech, Slovak, German DIN 5008, French, Spanish, Croatian, Slovenian, the Nordic and Baltic
 // languages but Latvian) or without ("44%": English, Irish, Maltese, Dutch, Polish, Italian, Portuguese, Romanian,

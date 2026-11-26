@@ -495,22 +495,26 @@ for (const c of Object.values(CITIES)) if (c.abroad && c.country) { c.art = c.id
 // Brno): by their boundaries (mesta-sk.json from ZBGIS, mesta-at.json from GISCO's LAU, mesta-us.json of DC, mesta-ca.json of Toronto), everything else of their
 // state's rest (texts, sources, orthophoto), only the illustrations their own where the state has a set of the town
 // (else the state's). Their sources keep their own territories (towns/slovensko.js, towns/austria.js AREAS).
-const LATE_ART = new Set(["washington", "toronto"]); // their states' sets come later (late.js)
+const LATE_ART = new Set(["washington", "boston", "bostonmetro", "toronto"]); // their states' sets come later (late.js)
 const stateTown = (id, state, view) => ({ ...CITIES[state], id, like: state, view, art: LATE_ART.has(id) || COUNTRIES[CITIES[state].country].art[id] ? id : state });
 export const STATE_TOWNS = {
   SK: ["bratislava", "kosice", "zilina", "bystrica", "presov", "nitra", "trnava", "trencin", "martin", "poprad", "piestany", "hlohovec", "zvolen"],
   AT: ["wien", "graz", "linz", "salzburg", "innsbruck"],
-  US: ["washington"],
+  // Boston (Bára 26. 11. 2026): the city (its acorn lamp, its surface map) before its metro (the MBTA's bus and tram,
+  // MassGIS's orthophoto, Boston's guidelines); mesta-us.json has both, in this order.
+  US: ["washington", "boston", "bostonmetro"],
   CA: ["toronto"],
 };
 const VIEW = { bratislava: [48.1440, 17.1100], kosice: [48.7190, 21.2580], zilina: [49.2230, 18.7400], bystrica: [48.7360, 19.1460], presov: [48.9980, 21.2400],
   nitra: [48.3120, 18.0870], trnava: [48.3774, 17.5883], trencin: [48.8945, 18.0444], martin: [49.0665, 18.9230], poprad: [49.0555, 20.2975],
   piestany: [48.5918, 17.8273], hlohovec: [48.4310, 17.8030], zvolen: [48.5762, 19.1371],
   wien: [48.2085, 16.3731], graz: [47.0707, 15.4395], linz: [48.3059, 14.2862], salzburg: [47.8, 13.045], innsbruck: [47.2654, 11.3927],
-  washington: [38.8977, -77.0365], toronto: [43.6535, -79.3839] };
+  washington: [38.8977, -77.0365], boston: [42.3603, -71.0578], bostonmetro: [42.3603, -71.0578], toronto: [43.6535, -79.3839] };
 for (const id of STATE_TOWNS.SK) CITIES[id] = stateTown(id, "slovensko", VIEW[id]);
 for (const id of STATE_TOWNS.AT) CITIES[id] = stateTown(id, "austria", VIEW[id]);
 for (const id of STATE_TOWNS.US) CITIES[id] = stateTown(id, "usa", VIEW[id]);
+// Boston's metro: its data and its rules of width (countries/US.js limitsBoston), not DC's (i18n.js TEXT_ALIAS: the metro's texts are the city's).
+for (const id of ["boston", "bostonmetro"]) Object.assign(CITIES[id], { dataShort: "ortofota MassGIS a OSM", rulesHead: "Šířky podle Boston Complete Streets Guidelines (2013), orientačně:" });
 for (const id of STATE_TOWNS.CA) CITIES[id] = stateTown(id, "canada", VIEW[id]);
 
 // Towns with no data of their own (the national DTM of ČÚZK, as "cesko"), only their own vehicles.
@@ -653,7 +657,7 @@ function americanCoast(lat, lon, dist) {
 // Where the app makes no profile (tools/build_staty.mjs closed_*; Bára 23. 11. 2026): the message to show, or null.
 const CLOSED = {
   closed_cy: () => t("Sever Kypru zatím nemáme: profily děláme jen na území, které spravuje Kyperská republika."),
-  closed_us: () => t("V USA zatím děláme profily jen ve Washingtonu a okolí (District of Columbia a sousední okresy Marylandu a Virginie)."),
+  closed_us: () => t("V USA zatím děláme profily jen v metropolích Washingtonu (District of Columbia a sousední okresy Marylandu a Virginie) a Bostonu (okresy Suffolk, Middlesex a Norfolk)."),
   closed_ca: () => t("V Kanadě zatím děláme profily jen v Torontu a okolí."),
   closed_it: () => t("V Itálii děláme profily jen tam, kde má otevřenou licenci ortofoto nebo mapa povrchů: v Jižním Tyrolsku, Lombardii, Turíně, Bologni a Modeně."),
 };
