@@ -220,12 +220,13 @@ Co rozhodne Bára, je označeno **(Bára)**.
 
 ## Nasazení a provoz
 
-- Balík OSM `be` (0,7 GB PBF) po prvním běhu workflow změřit, případně rozdělit pod 512 MB.
+- ~~Balík OSM `be` (0,7 GB PBF) po prvním běhu workflow změřit, případně rozdělit pod 512 MB.~~ 296 MB, stačí (26. 11. 2026).
 - Balíky `pl_sl` a `pl_ds` zasahují obdélníkem do Česka (jen dotazy navíc).
 - ~~Před nasazením NL, BE, LU, PL, FR, ES: workflow OSM tiles.~~ Hotovo 23. 11. 2026.
-- Před nasazením PT, MC, CY, MT, IT, EE, SI, FI, DK, LT: ručně spustit workflow OSM tiles se
-  `states: pt,mc,cy,mt,it_c,it_i,it_ne,it_no,it_s,ee,si,fi,dk,lt` a ověřit balíky na R2.
-- Logování: D1 potřebuje sloupec `country` a nový Worker (`logging/README.md`; hranice poloh teď pokrývají všechny státy, tabulky kontaktního formuláře), nasadit musí Bára.
+- ~~Před nasazením PT, MC, CY, MT, IT, EE, SI, FI, DK, LT: ručně spustit workflow OSM tiles se
+  `states: pt,mc,cy,mt,it_c,it_i,it_ne,it_no,it_s,ee,si,fi,dk,lt` a ověřit balíky na R2.~~ Hotovo 26. 11. 2026 (106 balíků,
+  9,1 GB; na R2 zůstává jen nejnovější verze).
+- ~~Logování: D1 potřebuje sloupec `country` a nový Worker (`logging/README.md`; hranice poloh teď pokrývají všechny státy, tabulky kontaktního formuláře), nasadit musí Bára.~~ Nasazeno 26. 11. 2026 (bez upozornění e-mailem na zprávy z formuláře).
 - ~~**Až budou dlaždice NL, BE, LU, PL, FR a ES na R2**: vrátit texty o nových státech.~~ Hotovo 23. 11. 2026: dlaždice všech 92 balíků jsou na R2 a v `index.json`, texty vrácené v `d6c8c6c`; oprava indexu (kódy o 3–4 písmenech) v `d412dda`.
 - **Proxy pro ortofota s klíčem (Bára 23. 11. 2026: uděláme, ale později):** Cloudflare Worker, který drží klíč
   a dlaždice ukládá do mezipaměti; Bára založí účet a Worker. Nejdřív Finsko: celostátní ortofoto MML (0,5 m, CC BY 4.0,
