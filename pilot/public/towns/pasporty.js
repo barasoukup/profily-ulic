@@ -9,7 +9,7 @@
 // (better without 33 : 8), Šumperk (4 : 4), Litoměřice (6 : 5), Prachatice (2 : 1) and Roudnice nad Labem (9 : 0),
 // their code in the history. Chotěboř won (4 : 1) but was left out too (Bára 26. 11. 2026): its layer sits on a
 // private account of an "ArcGIS Demo portál" organisation, not the town's (evaluation/licence/ZPRAVA.md). Šlapanice left out (Bára 26. 11. 2026) after
-// the blind A/B on new cuts, 12 : 12 (evaluation/pasporty-blind/ZPRAVA.md). Left out before: Mohelnice and Velké Meziříčí (an empty passport on 15. 11.),
+// the blind A/B on new cuts, 12 : 12 (evaluation/pasporty-blind/ZPRAVA.md), its credit too. Left out before: Mohelnice and Velké Meziříčí (an empty passport on 15. 11.),
 // Litoměřice's T-MAPY (asks to log in).
 // No licence is stated by any of them (as with the T-MAPY towns already used).
 import { query, envelope, asMtvu, asPassport, insideRings } from "../gis.js";
