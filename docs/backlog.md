@@ -150,8 +150,11 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Jih Evropy po Itálii **odložen** (Bára 23. 11. 2026): Balkán, Řecko, Slovinsko. Až se k nim vrátíme: Albánie (ortofoto
   v albánských souřadnicích, ověřit stupně), Chorvatsko (jen přes proxy, západ), ~~Slovinsko (služby GURS neodpovídaly)~~ (přidáno 23. 11. 2026 přes `ipi.eprostor.gov.si`);
   ostatní bez otevřeného ortofota (`docs/states-survey/c-vychod-balkan.md`).
-- Jihlava: pasport komunikací byl 16. 11. prázdný, ověřit (CLAUDE.md, Na 19. 11.).
-- Pasporty devíti českých měst: A/B po odstávce DMVS (`evaluation/PASPORTY-AB.md`).
+- ~~Jihlava: pasport komunikací byl 16. 11. prázdný, ověřit~~ (26. 11. 2026: zase plný, 13 323 úseků).
+- ~~Pasporty devíti českých měst: A/B po odstávce DMVS~~ (26. 11. 2026, `evaluation/PASPORTY-AB.md`: zůstaly Rožnov,
+  Chotěboř, Šlapanice, Kuřim; vyřazené Chomutov, Šumperk, Litoměřice, Prachatice, Roudnice).
+- Pasporty Rožnova a Šlapanic: vozovka pasportu přes dvory a sousední komunikace (20–27 m); ořezat na souvislý kus pod
+  osou? Úzká vozovka pasportu za chodníkem dělá z chodníku „dělicí pás“ (Chomutov, Šlapanice; `derive.js`).
 - Hlášení, která data IPR/ČÚZK potvrzují, bez fotky z ulice nerozhodnu (do seznamu připomínek pro IPR?):
   Strossmayerovo náměstí, jižní strana „nemá pruh pro auta“ (MTVU 701 3,5 m a úsek parkování TSK;
   `#rez=50.098778,14.433932,-83`); Libocká, „chodník V je užší, asi i jízdní pás“ (MTVU vozovka 4 m, zeleň, chodník 2 m;
@@ -160,8 +163,9 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Hospodářská půda (MTVU 100) pod nepojmenovanou služební cestou se kreslí jako „Zpevněná plocha“ 44 m
   (`types.js typeFromMtvu`: 100 → „plocha“); pojmenovaná cesta už jde na odhad (Devětsilová).
 - DTM po přechodu na JVF 1.5 (19. 11.): typy se čtou z kódu JVF (číselník z vyhl. 393/2020, `dmvs.js JVF`); kód, který
-  číselník nemá, se zahodí s varováním „neznámý typ“ v konzoli. Uložené řezy (`evaluation/replay`, srovnání DMVS) mají
-  ještě staré názvy typů: nahrát znovu, aby regrese pokryla i DTM.
+  číselník nemá, se zahodí s varováním „neznámý typ“ v konzoli. ~~Uložené řezy `evaluation/replay` nahrát znovu~~
+  (26. 11. 2026: `sample-cz.json`, 56 řezů DTM, nahrávka `rec-cz`). Srovnání DMVS (`evaluation/srovnani-dmvs`) má ještě
+  staré odpovědi.
 
 ## Státy a pravidla
 

@@ -54,6 +54,22 @@ async function streets(town, [lat0, lon0, Rt], want, classes = STREETS, named = 
   return out;
 }
 
+// The Czech towns asking the national DTM of ČÚZK (after JVF DTM 1.5, 19. 11. 2026): the regions' images and WFS,
+// a region of lines only (Středočeský), the passport towns and Jihlava's own map (26. 11. 2026).
+//   node evaluation/replay/sample.mjs cz   → sample-cz.json (sample.json stays)
+if (process.argv[2] === "cz") {
+  const cz = [{ town: "vysoke-myto", lat: 49.952092, lon: 16.157395, street: "Komenského", highway: "residential" }];
+  for (const [town, c, n] of [["vysoke-myto", [49.953, 16.16, 1000], 3], ["pardubice", [50.038, 15.779, 2000], 4], ["olomouc", [49.594, 17.251, 2000], 4],
+    ["liberec", [50.768, 15.056, 2000], 4], ["hradec", [50.21, 15.833, 2000], 4], ["budejovice", [48.974, 14.474, 2000], 4], ["zlin", [49.226, 17.667, 2000], 3],
+    ["karlovy-vary", [50.23, 12.871, 2000], 3], ["tabor", [49.414, 14.658, 1500], 3], ["prostejov", [49.472, 17.111, 1500], 3], ["kolin", [50.028, 15.2, 1500], 3],
+    ["mlada-boleslav", [50.411, 14.903, 1500], 3], ["jihlava", [49.396, 15.591, 1500], 3], ["chomutov", [50.46, 13.418, 1500], 3], ["sumperk", [49.965, 16.97, 1200], 3],
+    ["litomerice", [50.534, 14.131, 1200], 3], ["kurim", [49.2985, 16.531, 1000], 2]]) cz.push(...await streets(town, c, n));
+  cz.forEach((p, i) => (p.id = i + 1));
+  fs.writeFileSync(new URL("sample-cz.json", HERE), JSON.stringify(cz, null, 0).replace(/\},\{/g, "},\n{"));
+  console.log(cz.length, "řezů");
+  process.exit(0);
+}
+
 const all = [];
 // Slovakia: the checked streets of 16. 11. 2026, by town (Bratislava and the passport towns more).
 const SK_N = { bratislava: 45, kosice: 20, presov: 12, zilina: 12, "banska-bystrica": 12, nitra: 10, zvolen: 8, piestany: 8, trnava: 6, trencin: 6, martin: 6, poprad: 6 };
