@@ -9,7 +9,7 @@ import fs from "node:fs";
 export function osmIndex(listing, metas = []) {
   const by = {};
   for (const o of listing?.Contents || []) {
-    const name = o.Key.replace(/^osm\//, ""), m = /^([a-z]{2}(?:_[a-z]{2})?)-\d{4}-\d\d-\d\d(-[0-9a-f]+)?\.posm$/.exec(name);
+    const name = o.Key.replace(/^osm\//, ""), m = /^([a-z]{2}(?:_[a-z]{2,4})?)-\d{4}-\d\d-\d\d(-[0-9a-f]+)?\.posm$/.exec(name);
     if (m) (by[m[1]] ??= []).push({ key: o.Key, name, at: Date.parse(o.LastModified) });
   }
   const files = {}, remove = [];

@@ -46,7 +46,7 @@ test("písmo a Leaflet z vlastního webu, CSP bez Googlu a unpkg", () => {
   assert.match(html, /font-src 'self'/);
   for (const f of ["fonts/OFL.txt", "leaflet/LICENSE.txt", "leaflet/leaflet.css", "leaflet/images/layers.png"]) assert.ok(fs.existsSync(new URL(`../pilot/public/${f}`, import.meta.url)), f);
   for (const m of read("fonts/inter.css").matchAll(/url\(([^)]+)\)/g)) assert.ok(fs.existsSync(new URL(`../pilot/public/fonts/${m[1]}`, import.meta.url)), m[1]);
-  assert.match(html, /neukládáme IP adresy ani cookies/);
+  assert.match(html, /IP adresy neukládáme a cookies nepoužíváme/);
 });
 // The credits of an export: the region of the cut, ČÚZK with the year, the DMVS standing in, the orthophoto.
 test("zdroje exportu podle města a kraje řezu", async () => {

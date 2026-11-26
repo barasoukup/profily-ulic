@@ -13,4 +13,7 @@ export default {
   socialistLooks: true,
   // The author's name (about.js).
   author: "Bára Soukupová",
+  // The buildings of the estimate from the orthophoto and OSM where no surface map covers the cut: RÚIAN's first
+  // (gis.js ruianOutlines, app.js).
+  estimateBuildings: "ruian",
 };

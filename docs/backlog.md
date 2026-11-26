@@ -19,6 +19,13 @@ Co rozhodne Bára, je označeno **(Bára)**.
 
 - Francie (měření 22. 11., 25 řezů): v odhadu často chybí chodník (10×) a přebývá stání (8×); prověřit na řezech
   `evaluation/universal` (fr-*), zda jde o úzké chodníky u fasády nebo o zákonný odhad stání.
+- Chodník mezi obrubou a domem (hlášení 23. 11., regrese s domy z RÚIAN): stín domu přes chodník a stání (Spojovací)
+  nebo přes vozovku (U libušské sokolovny) se bere jako chodník či obruba, suchý hnědý trávník jako chodník (Kukelská),
+  podélná spára uprostřed vozovky jako obruba (Dářská). Pokusy `walkSatOn`, `walkYellow`, `walkMode`, `split6` znovu
+  změřené s RÚIAN: nic nevyhrálo všude. Spíš model (`ai-kerbs`, `ai-segmentation`) než další pravidla.
+- Silnice 230 u Mariánských Lázní (`#rez=50.037075,12.789854,37`): vozovka 6,5 m, ortofoto našlo jen jeden pruh 4,74 m
+  a krajnici 1,76 m (chybí středová čára?).
+- Poznámka pod nadpisem říká „domy z OSM“, i když jsou od 23. 11. v Česku z RÚIAN: nový text ve všech jazycích.
 
 - Sjednocení, zbývající kandidáti (`evaluation/sjednoceni/AUDIT.md`): `besideMax` (SK 15 m, jinde 25 m; A/B na Slovensku),
   `roadOnPath` (jen Praha; zkusit na DTM ČÚZK a mapách měst), `roadClassFromOsm` (CZ, SK; jen norma varování, výklad
@@ -140,6 +147,16 @@ Co rozhodne Bára, je označeno **(Bára)**.
   ostatní bez otevřeného ortofota (`docs/states-survey/c-vychod-balkan.md`).
 - Jihlava: pasport komunikací byl 16. 11. prázdný, ověřit (CLAUDE.md, Na 19. 11.).
 - Pasporty devíti českých měst: A/B po odstávce DMVS (`evaluation/PASPORTY-AB.md`).
+- Hlášení, která data IPR/ČÚZK potvrzují, bez fotky z ulice nerozhodnu (do seznamu připomínek pro IPR?):
+  Strossmayerovo náměstí, jižní strana „nemá pruh pro auta“ (MTVU 701 3,5 m a úsek parkování TSK;
+  `#rez=50.098778,14.433932,-83`); Libocká, „chodník V je užší, asi i jízdní pás“ (MTVU vozovka 4 m, zeleň, chodník 2 m;
+  `#rez=50.090199,14.324922,-14`). Dřív: V Zeleni, Poncarova.
+- Klánovická: stání z OSM (`parking=lane`) je teď podélné, ale široké 3,9 m podle hrubého polygonu OSM.
+- Hospodářská půda (MTVU 100) pod nepojmenovanou služební cestou se kreslí jako „Zpevněná plocha“ 44 m
+  (`types.js typeFromMtvu`: 100 → „plocha“); pojmenovaná cesta už jde na odhad (Devětsilová).
+- DTM po přechodu na JVF 1.5 (19. 11.): typy se čtou z kódu JVF (číselník z vyhl. 393/2020, `dmvs.js JVF`); kód, který
+  číselník nemá, se zahodí s varováním „neznámý typ“ v konzoli. Uložené řezy (`evaluation/replay`, srovnání DMVS) mají
+  ještě staré názvy typů: nahrát znovu, aby regrese pokryla i DTM.
 
 ## Státy a pravidla
 
@@ -162,11 +179,17 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Další státy vybírat podle otevřeného ortofota s CORS a mapy povrchů aspoň hlavního města. Průzkum 22. 11. 2026:
   `docs/states-survey/` (nejlépe Francie s Paříží, pak Španělsko, Švédsko, Kypr; Finsko a Dánsko jen s klíčem
   **(Bára)**; Slovinsko, pobaltské státy a Norsko zkusit znovu).
+- Domy: chata nebo jiná stavba bez počtu podlaží v RÚIAN dostane výchozí 2 NP (hlášení u silnice 506338718
+  v Královéhradeckém kraji: 1 NP a podkroví). Výchozí hodnota pro rekreační stavby (RÚIAN 8)? **(Bára)**
+- Podkroví z RÚIAN (23. 11.): rodinný dům a chata se 2+ podlažími mají poslední podlaží ve střeše (silnice 230). Ověřit
+  na víc domech.
 
 ## Hledání
 
 - Belgie a Lucembursko jen přes Photon; národní služby (Flandry geolocation, geoportail.lu) nezapojené.
 - Francie: Géoplateforme hledá i bez města; přednost blízko středu mapy je slabá (lat/lon jen naznačí).
+- Photon nabízí i místa v Nizozemsku, Belgii, Lucembursku, Polsku, Francii a Španělsku, kde zatím nejsou dlaždice OSM
+  (aplikace tam ulici nenajde). Omezit hledání na nasazené státy, než dlaždice budou?
 
 ## Překlady
 
@@ -199,8 +222,11 @@ Co rozhodne Bára, je označeno **(Bára)**.
 
 - Balík OSM `be` (0,7 GB PBF) po prvním běhu workflow změřit, případně rozdělit pod 512 MB.
 - Balíky `pl_sl` a `pl_ds` zasahují obdélníkem do Česka (jen dotazy navíc).
-- Před nasazením NL, BE, LU, PL, FR: sloučit větve do `main` a ručně spustit workflow OSM tiles se `states: nl,be,lu,pl,fr`.
-- Logování: D1 potřebuje sloupec `country` a nový Worker (`logging/README.md`; hranice poloh teď pokrývají všechny státy), nasadit musí Bára.
+- ~~Před nasazením NL, BE, LU, PL, FR, ES: workflow OSM tiles.~~ Hotovo 23. 11. 2026.
+- Před nasazením PT, MC, CY, MT, IT, EE, SI, FI, DK, LT: ručně spustit workflow OSM tiles se
+  `states: pt,mc,cy,mt,it_c,it_i,it_ne,it_no,it_s,ee,si,fi,dk,lt` a ověřit balíky na R2.
+- Logování: D1 potřebuje sloupec `country` a nový Worker (`logging/README.md`; hranice poloh teď pokrývají všechny státy, tabulky kontaktního formuláře), nasadit musí Bára.
+- ~~**Až budou dlaždice NL, BE, LU, PL, FR a ES na R2**: vrátit texty o nových státech.~~ Hotovo 23. 11. 2026: dlaždice všech 92 balíků jsou na R2 a v `index.json`, texty vrácené v `d6c8c6c`; oprava indexu (kódy o 3–4 písmenech) v `d412dda`.
 - **Proxy pro ortofota s klíčem (Bára 23. 11. 2026: uděláme, ale později):** Cloudflare Worker, který drží klíč
   a dlaždice ukládá do mezipaměti; Bára založí účet a Worker. Nejdřív Finsko: celostátní ortofoto MML (0,5 m, CC BY 4.0,
   klíč osobní, podmínky: ne pro velký provoz, klíč chránit; `evaluation/finland/ZDROJE.md`), pak pruhy z ortofota

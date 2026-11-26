@@ -207,3 +207,13 @@ test("kontaktní formulář na stránce: bez adresy Workera se nic neposílá", 
   assert.equal(await sendContact({ message: "x" }, { url: "https://w.example/contact", fetchFn: async () => new Response(null, { status: 429 }) }), "limit");
   assert.equal(await sendContact({ message: "x" }, { url: "https://w.example/contact", fetchFn: async () => { throw new Error("down"); } }), "off");
 });
+
+test("záznam řezu: poloha ve Španělsku, Francii, Belgii a v Amsterdamu se uloží, Indický oceán ne", async () => {
+  const db = fakeDb();
+  const at = async (lat, lon) => { await worker.fetch(post({ kind: "rez", city: "x", lat, lon, session: "s" }), env(db)); const r = db.rows.pop(); return [r[6], r[7]]; };
+  assert.deepEqual(await at(40.4168, -3.7038), [40.4168, -3.7038]); // Madrid
+  assert.deepEqual(await at(48.8566, 2.3522), [48.8566, 2.3522]); // Paris
+  assert.deepEqual(await at(52.3676, 4.9041), [52.3676, 4.9041]); // Amsterdam
+  assert.deepEqual(await at(28.1235, -15.4363), [28.1235, -15.4363]); // Las Palmas
+  assert.deepEqual(await at(0, 40), [null, null]); // Indian Ocean
+});

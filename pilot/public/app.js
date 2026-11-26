@@ -32,7 +32,7 @@ const NO_MAP = new URLSearchParams(location.search).get("mapa") === "0";
 import { deriveSigns, SIGNS, SIGN_CHOICES, signLabel, signFits, signFile, keepDrawable, drawable, MAX_PER_PART } from "./signs.js";
 import { loadSprites, loadSigns, layoutSigns, buildSvg, isHole, exportCredits, mountEditor, svgString, twoLines, totalWidth, setArt, getArt, buildingStyle, edgeInfo, underDepth, ROADWAY, nearestRoadway, BUILDING_STYLES, GABLE_LOOKS, OFFICE_TYPES as OFFICE_LIKE, turnLabel } from "./profile.js";
 import * as sources from "./sources.js";
-import { ruianBuilding } from "./gis.js";
+import { ruianBuilding, ruianOutlines, withBuildings } from "./gis.js";
 import { MAPY_KEY } from "./config.js";
 import { cleanProfile, cleanCut, retype } from "./validate.js";
 import { shares, surfaces } from "./shares.js";
@@ -320,7 +320,9 @@ const retryOnce = (layer, ms = 2500) => layer.on("tileerror", ({ tile }) => {
   const src = tile.src;
   setTimeout(() => { tile.src = `${src}${src.includes("?") ? "&" : "?"}retry=1`; }, ms);
 });
-const boundsOf = (rings) => { const pts = rings.flat(), xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]); return L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]); };
+// The box of a state's or region's rings ([lon, lat]); the rings stay with it, so that its credit shows only where the
+// view reaches the area itself, not just its box (Poland's box covers Prague: creditCities).
+const boundsOf = (rings) => { const pts = rings.flat(), xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]); const b = L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]); b.rings = rings; return b; };
 // Luxembourg first, Belgium's regions over it (each answers transparent or nothing outside itself; the hostile review:
 // a white tile of one hid its neighbour). Each region's layer asks only for tiles over that region
 // (regions-be.json, loaded once).
@@ -448,7 +450,7 @@ if (STATY?.germany) {
     },
   });
   kinds.ortho.push(new DeOrtho({ maxZoom: 21, minZoom: 12, attribution: tr("ortofoto © spolkové země Německa (GeoBasis-DE)"),
-    bounds: L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]) }));
+    bounds: Object.assign(L.latLngBounds([Math.min(...ys), Math.min(...xs)], [Math.max(...ys), Math.max(...xs)]), { rings: STATY.germany }) }));
 }
 // The towns (towns/<id>.js maps): their orthophoto, technical map and lines, each kept to the town.
 for (const [id, t] of Object.entries(TOWNS)) {
@@ -465,9 +467,18 @@ for (const [id, t] of Object.entries(TOWNS)) {
 const cityCredited = Object.values(kinds).flat().filter((l) => l.options?.bounds && l.options.attribution);
 for (const l of cityCredited) { l.options.cityAttribution = l.options.attribution; delete l.options.attribution; }
 const credited = new Set();
+// Does the view reach the area of these rings ([lon, lat]): a point of them in the view, or a corner or the middle of
+// the view inside them. Without rings (a city's box): yes.
+function reaches(rings, view) {
+  if (!rings?.length) return true;
+  const inside = (x, y) => { let c = false; for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; } return c; };
+  if (rings.some((r) => r.some(([x, y]) => view.contains([y, x])))) return true;
+  const c = view.getCenter();
+  return [view.getSouthWest(), view.getNorthEast(), view.getNorthWest(), view.getSouthEast(), c].some((p) => inside(p.lng, p.lat));
+}
 function creditCities() {
   const view = map.getBounds(), want = new Set();
-  for (const l of cityCredited) if (map.hasLayer(l) && L.latLngBounds(l.options.bounds).intersects(view)) want.add(l.options.cityAttribution);
+  for (const l of cityCredited) if (map.hasLayer(l) && L.latLngBounds(l.options.bounds).intersects(view) && reaches(l.options.bounds.rings, view)) want.add(l.options.cityAttribution);
   for (const a of credited) if (!want.has(a)) { map.attributionControl.removeAttribution(a); credited.delete(a); }
   for (const a of want) if (!credited.has(a)) { map.attributionControl.addAttribution(a); credited.add(a); }
 }
@@ -658,9 +669,17 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
         if (cut) { ai = (axis) => aiKerbs(cut, axis); aiSurf = aiSurface(cut); aiPark = aiParking(cut); }
       }
       // The map's runs where it has surfaces but none at the axis: its sidewalks and buildings bound the estimate.
-      const fb = orthoOsmPolys({ ai, aiSurf, osm, frame, dir, way: near.way, st: laneImg?.st, mapRuns: result.runs || [], edges: k.status === "fulfilled" ? k.value?.edges || [] : [], widths: k.status === "fulfilled" ? k.value?.widths || [] : [], areas: k.status === "fulfilled" ? k.value?.areas || [] : [], symbols: k.status === "fulfilled" ? k.value?.symbols || [] : [] });
+      // The houses from the state's register first, OSM's where it has none (Czechia: RÚIAN; countries/CZ.js
+      // estimateBuildings; Bára 23. 11. 2026: "RÚIAN by měl mít nejlepší data"). Regression against MTVU: more metres of
+      // the composition right in all four (Prague +13 and +12 m, Brno +2 and +18 m), the sidewalk metre by metre −1 pp
+      // (sidewalks drawn up to the found house over green, a parking lane or a wrong kerb: the estimate's, not RÚIAN's).
+      const houses = country.estimateBuildings === "ruian" && !ORTHO_P.off?.has("ruiandomy") ? await ruianOutlines(bbox).catch((err) => { console.warn("RÚIAN", err.message); return []; }) : [];
+      const fb = orthoOsmPolys({ ai, aiSurf, osm: withBuildings(osm, houses, "first"), frame, dir, way: near.way, st: laneImg?.st, mapRuns: result.runs || [], edges: k.status === "fulfilled" ? k.value?.edges || [] : [], widths: k.status === "fulfilled" ? k.value?.widths || [] : [], areas: k.status === "fulfilled" ? k.value?.areas || [] : [], symbols: k.status === "fulfilled" ? k.value?.symbols || [] : [] });
       if (fb) {
-        const again = deriveProfile({ ...args, polys: [fb[0], ...polys, ...fb.slice(1)] });
+        // A field or a forest of the map (100, 200) where the estimate finds houses and sidewalks is a map not yet
+        // redrawn (a new estate: Devětsilová in Prague, MTVU's farmland): it goes behind the estimate (?off=staramapa).
+        const stale = (p) => (p.code === 100 || p.code === 200) && !ORTHO_P.off?.has("staramapa");
+        const again = deriveProfile({ ...args, polys: [fb[0], ...polys.filter((p) => !stale(p)), ...fb.slice(1), ...polys.filter(stale)] });
         // A side without a house ends where orthoOsmPolys found (steps, a fence, the last thing of the street).
         if (!again.estimate) { result = trimToEnds(again, fb.ends); orthoOsm = fb; lastPolys = [fb[0], ...polys, ...fb.slice(1)]; lastEnds = fb.ends; }
       }
