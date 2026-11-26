@@ -1,5 +1,7 @@
 // The USA (Bára 24. 11. 2026, phase 2 of the North America pilot; evaluation/usa-dc/ZPRAVA.md, evaluation/usa/): the state
-// of a cut inside staty.json's "usa", the metro of Washington DC. Outside DC the estimate from OSM (and nothing else). In
+// of a cut inside staty.json's "usa", the metros of Washington DC, New York City (towns/newyork.js) and San Francisco (its
+// own map: towns/sanfrancisco.js, asked by sources.surfaces and podlaznost where it has the place). Outside the cities'
+// maps the estimate from OSM. In
 // DC (the District by its boundary, mesta-us.json, and 60 m beyond it for the streets along the line; AREAS.dc):
 // - DC Planimetrics 2023 (OCTO, maps2.dcgis.dc.gov DCGIS_DATA/Planimetrics_2023/MapServer, layers 10 Roads, 11 Sidewalks,
 //   1 Building Footprints; CORS for the origin asking; CC BY 4.0, "DC GIS / Office of the Chief Technology Officer") as
@@ -48,6 +50,8 @@ import { getJSON, envelope } from "../gis.js";
 import { inArea } from "../places.js";
 import { planimetricMap, planimetricCut, memory, carriageway, kerbStrip, carveTrack, trackPlace, isTrack, parallelsAt, islandsBeside, inRings, WALKED } from "./planimetrics.js";
 import { AREA as NYC_AREA, nycMap, nycPodlaznost } from "./newyork.js";
+// San Francisco (26. 11. 2026): its own surface map and houses (towns/sanfrancisco.js); the state's sources ask it where it has the place.
+import { AREAS as SF_AREAS, sfHere, sfSurfaces, sfPodlaznost } from "./sanfrancisco.js";
 
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_US?.[k] ?? null : new URLSearchParams(location.search).get(k));
 export const dcOn = () => param("dc") !== "0";
@@ -57,7 +61,7 @@ export const DC_SUBBLOCK = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS
 // The District by its boundary (mesta-us.json "washington", tools/build_towns_us.mjs: simplified to 20 m), the box only
 // a first test; 60 m beyond it, since Western, Eastern and Southern Avenue run along the line.
 // New York City (26. 11. 2026): towns/newyork.js.
-export const AREAS = { dc: { box: [-77.121, 38.79, -76.908, 38.997], town: "washington", near: 60 }, nyc: NYC_AREA };
+export const AREAS = { dc: { box: [-77.121, 38.79, -76.908, 38.997], town: "washington", near: 60 }, nyc: NYC_AREA, ...SF_AREAS };
 const ft = (x) => (Number(x) || 0) * 0.3048;
 const off = (name) => (param("off") || "").split(",").includes(name);
 const SUB_FIELDS = "TOTALTRAVELLANES,TOTALTRAVELLANESINBOUND,TOTALTRAVELLANESOUTBOUND,TOTALBIKELANES,TOTALBIKELANEWIDTH,BIKELANE_DUAL_PROTECTED,BIKELANE_DUAL_BUFFERED,TOTALPARKINGLANES,TOTALPARKINGLANEWIDTH,BIKELANE_CONVENTIONAL,BIKELANE_BUFFERED,BIKELANE_PROTECTED,ROADTYPE";
@@ -315,16 +319,16 @@ async function podlaznost(lat, lon) {
 
 export const sources = {
   osm: map.osm,
-  // The city's map whose area has the cut (DC's or New York's; elsewhere the estimate).
-  surfaces: (bbox, ...more) => (nycMap.here(bbox) ? nycMap : map).surfaces(bbox, ...more),
+  // The city's map whose area has the cut (DC's, New York's or San Francisco's; elsewhere the estimate).
+  surfaces: (bbox, ...more) => (sfHere(bbox) ? sfSurfaces(bbox, ...more) : (nycMap.here(bbox) ? nycMap : map).surfaces(bbox, ...more)),
   lines,
   parking: async () => ({ features: [] }),
-  podlaznost,
+  podlaznost: (lat, lon) => (inArea(SF_AREAS.sf, lon, lat) ? sfPodlaznost(lat, lon) : podlaznost(lat, lon)),
 };
 
 // No fallback to the DMVS (sources.js national).
 export const national = true;
 export const ortho = null;
 
-// The overview map of the About dialog (tools/build_coverage.mjs): DC's Planimetrics and New York's.
-export const SURFACE_MAPS = ["dc", "nyc"];
+// The overview map of the About dialog (tools/build_coverage.mjs): DC's Planimetrics, New York's and San Francisco's.
+export const SURFACE_MAPS = ["dc", "nyc", "sf"];

@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "Obě stání po obou stranách a 2 pruhy, jen drobné rozdíly šířek; ortofoto nerozliší."}
+{"n": 2, "verdict": "stejne", "jistota": "nizka", "why": "Stejné složení (stání po obou stranách, 2 pruhy), šířky nerozhodnu."}
+{"n": 3, "verdict": "stejne", "jistota": "nizka", "why": "Ortofoto ukazuje auta na obou stranách, oba profily mají stání jen na jedné; šířky nerozlišitelné."}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "Pravá část má 2 pruhy a úzké stání; Y má širší pruhy a stání 2 m, což odpovídá úzkému pásu u obruby."}
+{"n": 5, "verdict": "Y", "jistota": "stredni", "why": "Auta stojí po obou stranách, Y má stání na obou stranách, X jen na jedné."}
+{"n": 6, "verdict": "stejne", "jistota": "nizka", "why": "Stejné složení se stáním po obou stranách; rozdíl jen v rozdělení šířky."}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "Stejné složení, stání po obou stranách; šířky v rámci nejistoty."}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "Na fotkách stojí auta u obou obrub, Y má stání na obou stranách, X krajnice."}
+{"n": 9, "verdict": "stejne", "jistota": "nizka", "why": "Obě stejné složení, tramvajové koleje ani jeden nezachycuje; šířky podobné."}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "Křižovatka, podklady nestačí na rozlišení šířek; složení stejné."}

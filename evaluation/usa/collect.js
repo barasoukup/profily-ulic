@@ -15,6 +15,8 @@ const VARIANTS = {
   map0: { q: "toronto=0", off: [] }, // Canada (evaluation/canada): without the map of Toronto
   nyc0: { q: "nyc=0", off: [] }, // New York (evaluation/usa/nyc): without the city's map
   nh0: { q: "nychouse=0", off: [] }, // New York: the houses without the city's footprints
+  sf0: { q: "sf=0", off: [] }, // San Francisco (evaluation/usa/sf): without its map (and its curb and houses)
+  curb0: { q: "sfcurb=0", off: [] }, // San Francisco: the map without the digital curb
   ddot0: { q: "ddot=0", off: [] }, // Washington: the map without DDOT's inventory
   gaps0: { q: "off=mapgaps", off: [] }, // Toronto's rules one by one
   bays0: { q: "off=kerbbays", off: [] },
@@ -22,7 +24,7 @@ const VARIANTS = {
   os0: { q: "off=otherstreet", off: ["otherstreet"] }, // the shared rules of the second review
   tt0: { q: "off=tunneltracks", off: ["tunneltracks"] },
   rt0: { q: "off=roadtracks", off: [] }, // Canada: without OSM's cycle tracks in the map's carriageway
-  osm: { q: "dc=0&toronto=0&nyc=0&orto=0&ai=0", off: [], load: true },
+  osm: { q: "dc=0&toronto=0&nyc=0&sf=0&orto=0&ai=0", off: [], load: true },
   old: { q: "off=ulicky,treepits,pocetpruhu", off: ["ulicky", "treepits", "pocetpruhu"] },
 };
 async function collectUs(name) {

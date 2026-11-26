@@ -18,9 +18,9 @@ test("Kanada: Toronto a okolí, zbytek Kanady s hláškou, hranice s USA u Winds
   assert.equal(C.countryOfCity("toronto").code, "CA");
   // Windsor, Niagara-on-the-Lake's Queenston, Niagara Falls ON, Fort Erie, Sarnia, Hamilton, Montreal, Vancouver.
   for (const p of [[42.3185, -83.0395], [43.165, -79.053], [43.0896, -79.075], [42.905, -78.925], [42.975, -82.405], [43.2557, -79.8711], [45.5019, -73.5674], [49.2827, -123.1207]]) assert.match(C.closedAt(...p) || "", /Torontu/, `${p}`);
-  // The coasts: Halifax, Prince Rupert, Tofino; Juneau, Ketchikan, Sitka, Atlantic City (the Battery is New York's since 26. 11. 2026), the Ferry Building, Charleston. Not Nuevo Laredo, Tijuana, Matamoros, Juárez.
+  // The coasts: Halifax, Prince Rupert, Tofino; Juneau, Ketchikan, Sitka, Atlantic City, Charleston (the Battery is New York's and the Ferry Building San Francisco's since 26. 11. 2026). Not Nuevo Laredo, Tijuana, Matamoros, Juárez.
   for (const p of [[44.6488, -63.5752], [54.3150, -130.3209], [49.1530, -125.9066]]) assert.match(C.closedAt(...p) || "", /Torontu/, `${p}`);
-  for (const p of [[58.3019, -134.4197], [55.3422, -131.6461], [57.0531, -135.33], [39.355, -74.432], [37.7955, -122.3937], [32.7765, -79.9311]]) assert.match(C.closedAt(...p) || "", /Washingtonu/, `${p}`);
+  for (const p of [[58.3019, -134.4197], [55.3422, -131.6461], [57.0531, -135.33], [39.355, -74.432], [32.7765, -79.9311]]) assert.match(C.closedAt(...p) || "", /Washingtonu/, `${p}`);
   for (const p of [[27.4861, -99.507], [32.5149, -117.0382], [25.8690, -97.5027], [31.7300, -106.4850], [32.6245, -115.4523]]) assert.equal(C.closedAt(...p), null, `${p}`);
   // Detroit, Lewiston, Niagara Falls NY, Buffalo, Port Huron.
   for (const p of [[42.33, -83.044], [43.1726, -79.0354], [43.087, -79.06], [42.8864, -78.8784], [42.975, -82.425]]) assert.match(C.closedAt(...p) || "", /Washingtonu/, `${p}`);

@@ -595,7 +595,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   18 DCMR § 2405); bez řádku značek; bez paneláků; hledání Photon.
 - Ilustrace (větev north-america-art, sloučená 25. 11. 2026, `evaluation/north-america-art/`): severoamerické domy (`houses-america.js`,
   `house-looks-america.js northAmericaLook`), mobiliář `northamerica/`, autobus Metrobus v celém metru, Washington má svůj označník a glóbus do
-  5 m (`lamp-post-top`), bez tramvaje; domy v DC z CAMA (`?cama=0`). Toronto zapojené (stát `canada`), New York zapojený (26. 11.), Boston a San Francisco nakreslené, nezapojené.
+  5 m (`lamp-post-top`), bez tramvaje; domy v DC z CAMA (`?cama=0`). Toronto zapojené (stát `canada`), New York a San Francisco zapojené (26. 11.), Boston nakreslený, nezapojený.
 - Tři společné změny z pilotu (všechny státy, podoba z `estonia` 83734e7): ústí uličky je křižovatka (`?off=ulicky`, zapnuto), obousměrka se dělí od
   4,0 m, kde je počet pruhů známý a u vozovky je stání (`?off=pocetpruhu`, zapnuto), jamky stromů v chodníku jako chodník (**vypnuto**, `?treepits=1`:
   DC 2 : 2, české kontroly 0 : 1). Regrese Prahy a Brna beze změny, v Evropě z 120 náhodných řezů změněno 0.
@@ -611,6 +611,19 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   **31 : 23** (p 0,34), univerzálně 73 % s mapou, 70 % bez, 63 % jen OSM: **neprůkazné, zůstává zapnuté** (rozhodne Bára).
   Slabina: stání (mapa ho nerozliší, ortofoto ve stínu). Washington beze změny (10 z 10 řezů).
 - Před nasazením: workflow OSM tiles se `states: us` (postaví `us_dc` i `us_nyc`), licence NYCmaps a ortofota NYS (Bára).
+
+## San Francisco (větev na-sanfrancisco, 26. 11. 2026, nenasazené)
+- Další metro státu `usa`: City and County of San Francisco (TIGERweb 06075; `tools/build_staty.mjs` tabulka `METROS` `dc`, `nyc`,
+  `sf`, další metra jako řádky), hranice města v `mesta-us.json` (`tools/build_towns_us.mjs`); okolní okresy `closed_us`.
+  OSM balík `us_sf` (Geofabrik norcal oříznutý na město, 7,6 MB, jen R2; **workflow OSM tiles se `states: us`**).
+- Mapa povrchů `towns/sanfrancisco.js` (`?sf=0`) složená podél řezu (`planimetrics.js` s vlastním `runs`): uliční prostor
+  DataSF (2014) = chodník, mezi krajními obrubami SFMTA vozovka, budovy DataSF jen mimo uliční prostor (posun 1,4 m);
+  stání z digitální obruby SFMTA (`?sfcurb=0`), podlaží z výšek obrysů (`?sfhouse=0`). PDDL. Bez ortofota (otevřené není).
+- Čerstvé měření (`evaluation/usa/sf/ZPRAVA.md`, 60 řezů, zmrazený kód e9911c1, dva slepí posuzovatelé, snímky Esri jen k měření):
+  mapa : odhad **34 : 6**, univerzálně 71 % s mapou, 55 % bez; obruba 21 : 7. Obojí zapnuté. Šířka s mapou o 2,5 m širší než
+  u posuzovatelů (rozhodne Bára).
+- Normy: chodník podle SFMTA Sidewalk Widths, jinak jen NACTO, oranžově (`evaluation/usa/sf/NORMY.md`). Ilustrace Muni (autobus,
+  trolejbus, LRV4, označník); PCC a Path of Gold nezapojené.
 
 ## Společné pro státy (Bára 23. 11. 2026)
 - Sever Kypru a Itálie mimo otevřená ortofota (i se San Marinem a Vatikánem) profil nedostanou, aplikace to řekne

@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "Oba mají stejné složení, parkování po stranách a dva pruhy; rozdíl jen v šířkách, které podklady nerozliší."}
+{"n": 2, "verdict": "Y", "jistota": "nizka", "why": "Stejné složení, parkování po obou stranách; šířka stání 2,45 m a užších pruhů se zdá věrohodnější."}
+{"n": 3, "verdict": "X", "jistota": "stredni", "why": "Na fotkách je u obou okrajů stání a tři pruhy; Y stání nemá."}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "Na fotce jsou auta stojící u domů a v řezu stojí auto; Y stání obsahuje, X ne."}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "Ortofoto v řezu zachycuje křižovatku; fotky ukazují stání po obou stranách a dva pruhy, což mají oba."}
+{"n": 6, "verdict": "X", "jistota": "stredni", "why": "Auta stojí po obou stranách úzké ulice a zbývá jeden společný pruh; Y má stání jen na jedné straně."}
+{"n": 7, "verdict": "Y", "jistota": "stredni", "why": "Auta parkují u obou okrajů vozovky a je tu buspruh; X stání nemá."}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "Na straně A je šikmé/kolmé stání asi 5 m, X má jen podélné stání 2,45 m."}
+{"n": 9, "verdict": "stejne", "jistota": "nizka", "why": "Stejné složení se stáním po obou stranách a dvěma pruhy, celková šířka vozovky stejná."}
+{"n": 10, "verdict": "Y", "jistota": "stredni", "why": "Na fotkách i ortofotu jsou parkující auta po obou stranách, X místo stání kreslí krajnice."}

@@ -460,6 +460,19 @@ Normy NYC Street Design Manual jen oranžově (`evaluation/usa/nyc/NORMY.md`; `c
 město řezu), stání 3 m na směr jako ve Washingtonu. Ilustrace `newyork/`: autobus MTA, lampa (davit) od 6 m a označník,
 přístřešek a ostatní mobiliář severoamerický; Bishop's Crook zatím bez místa. Měření `evaluation/usa/nyc/ZPRAVA.md`.
 
+### USA: San Francisco (Bára 26. 11. 2026)
+
+Další metro státu `usa`: City and County of San Francisco (TIGERweb, `tools/build_staty.mjs` tabulka `METROS` `dc`, `nyc`, `sf`;
+hranice města v `mesta-us.json`, `tools/build_towns_us.mjs`), okolní okresy zůstávají `closed_us`. OSM balík `us_sf` (výřez
+Geofabriku `north-america/us/california/norcal` oříznutý na obdélník města, jen R2). Město nemá polygony vozovek čitelné
+z prohlížeče, proto **`towns/sanfrancisco.js`** skládá mapu povrchů podél řezu (`planimetrics.js` s vlastním `runs`):
+uliční prostor (DataSF Right of Way Polygons, 2014) = chodník, mezi dvěma krajními obrubami SFMTA (blockface curbs, vrstva 12)
+vozovka, dvojice obrub uvnitř = ostrůvek; budovy (DataSF Building Footprints) mimo uliční prostor (leží asi 1,4 m východně,
+mezera do 2 m k domu patří domu). Stání po stranách z digitální obruby SFMTA (Curb Zones, vrstva 56; `?sfcurb=0`), podlaží
+z výšky obrysu (`?sfhouse=0`). `?sf=0` vypne vše. Bez ortofota (otevřené pro SF není, NAIP je 0,6–1 m). Chodníky varují
+podle SFMTA Sidewalk Widths, jinak jen NACTO (`evaluation/usa/sf/NORMY.md`). Ilustrace Muni (`sanfrancisco/`: autobus,
+trolejbus, LRV4, označník). Měření `evaluation/usa/sf/ZPRAVA.md`.
+
 ### Kanada: Toronto (Bára 25. 11. 2026)
 
 Stát `canada` (CA), `countries/CA.js`, `towns/canada.js`; Toronto a obce kolem (StatCan), zbytek Kanady `closed_ca`. Mapa povrchů města

@@ -2,7 +2,8 @@
 // of usa.js, Bára 25. 11. 2026): the polygons of some layers read along the cut every 0.1 m (as Flanders' GRB,
 // towns/belgium.js) and handed on as MTVU-coded strips 2 m along the street. A city is a description (planimetricMap):
 //   id, area (places.js inArea), on() (its switch), service (the MapServer),
-//   layers: [{ id, fields, code(attributes) → [MTVU code, priority (lower first), true for a parking area] or null }, …],
+//   layers: [{ id, fields, where, code(attributes) → [MTVU code, priority (lower first), true for a parking area] or null,
+//     get(bbox) a layer of another service }, …], runs(answers, c) the runs put together by the city itself (else runsAlong),
 //   junction: { layer, test(attributes) } the polygons of intersections,
 //   alleys: { layer, where, test(attributes), source, off } the alleys drawn as the street's crossings, or none,
 //   prepare(runs, { tags, tracks(), cycleTracks() }) the city's own rules on the runs (islandsBeside, gapsBetweenRoads, kerbBays,
@@ -198,7 +199,8 @@ export function alongOf(way, c, street) {
 export function planimetricCut(d, answers, osmElements, bbox, tags = null, { way = null, extra } = {}) {
   const c = cutOfBox(bbox, way?.geometry ? [way] : osmElements);
   if (!c) return null;
-  const runs = runsAlong(d.layers.map((l, i) => [l.code, answers[i]]), c);
+  // (A city without polygons of its roadways puts the runs together itself: towns/sanfrancisco.js.)
+  const runs = d.runs ? d.runs(answers, c) : runsAlong(d.layers.map((l, i) => [l.code, answers[i]]), c);
   tags ||= c.tags;
   const street = [-c.dir[1], c.dir[0]], along = way ? alongOf(way, c, street) : true;
   d.prepare?.(runs, { tags, tracks: () => parallelsAt(osmElements, c, (el) => /^(tram|light_rail)$/.test(el.tags.railway)),
@@ -243,7 +245,8 @@ export function alleyAreas(json, { test, source }) {
 export function planimetricMap(d) {
   const cached = memory(), asked = [], layer = (id) => d.layers.find((l) => l.id === id);
   const here = (bbox) => { const [x0, y0, x1, y1] = bbox.split(",").map(Number); return d.on() && inArea(d.area, (x0 + x1) / 2, (y0 + y1) / 2); };
-  const ask = (id, bbox, where = null) => cached(`${id} ${where} ${bbox}`, () => getJSON(`${d.service}/${id}/query?${new URLSearchParams({ ...envelope(bbox), ...(where && { where }), outFields: layer(id)?.fields || d.fields, returnGeometry: "true" })}`));
+  // (A layer of another kind of service has its own get(bbox), answering as ArcGIS does.)
+  const ask = (id, bbox, where = null) => cached(`${id} ${where} ${bbox}`, () => layer(id)?.get ? layer(id).get(bbox) : getJSON(`${d.service}/${id}/query?${new URLSearchParams({ ...envelope(bbox), ...(where && { where }), outFields: layer(id)?.fields || d.fields, returnGeometry: "true" })}`));
   // The polygon of a layer at a point (a facade's, so within 1 m of its edge too) in the answers the click already has.
   const at = async (id, lat, lon) => {
     const kx = 111320 * Math.cos((lat * Math.PI) / 180), ky = 110574;
@@ -268,7 +271,7 @@ export function planimetricMap(d) {
     let own, o;
     const osmAsk = osmTiles(cy, cx, Math.max((x1 - x0) * 111320 * Math.cos((cy * Math.PI) / 180), (y1 - y0) * 110574) / 2);
     try {
-      const asks = d.layers.map((l) => { const a = ask(l.id, bbox); asked.unshift([bbox, a, l.id]); return a; });
+      const asks = d.layers.map((l) => { const a = ask(l.id, bbox, l.where || null); asked.unshift([bbox, a, l.id]); return a; });
       asked.length = Math.min(asked.length, 12);
       const [extra, osm, ...answers] = await Promise.all([d.extra ? d.extra(bbox) : null, osmAsk.catch(() => null), ...asks]);
       o = osm;

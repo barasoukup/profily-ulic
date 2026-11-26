@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "Vozovka asi 15 m se 4 pruhy a stáním po obou stranách; Y stání nemá."}
+{"n": 2, "verdict": "X", "jistota": "vysoka", "why": "Dvoupruhová silnice asi 8-9 m bez chodníku, kolem zeleň; Y má jediný pruh 2,75 m."}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "Úzká ulice se stáním po obou stranách a jedním průjezdným pruhem."}
+{"n": 4, "verdict": "X", "jistota": "nizka", "why": "Na ortofotu stojí auta podél jedné strany vozovky, X má stání, Y ne; strana stání nejistá."}
+{"n": 5, "verdict": "X", "jistota": "stredni", "why": "Dva jízdní pruhy se stáním po obou stranách, chodníky a zeleň u domů."}
+{"n": 6, "verdict": "X", "jistota": "nizka", "why": "Oba mají stejné složení, šířka vozovky kolem 12 m sedí lépe na X."}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "Pětipruhová široká vozovka se stáním po stranách; Y stání nemá."}
+{"n": 8, "verdict": "X", "jistota": "stredni", "why": "Několik pruhů na jedné straně, úzký střední pás, vpravo dva pruhy a cyklopruh s patníky; Y má široký střed 12 m."}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "Stání po obou stranách vozovky, širší vozovka kolem 12-18 m."}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "Obě složení 3+3 pruhy, dělicí čára, stání a chodník vpravo, shodné v rámci chyby."}

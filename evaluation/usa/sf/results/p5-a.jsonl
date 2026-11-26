@@ -1,0 +1,4 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "Stání na obou stranách, červený bus pruh a dva jízdní pruhy s dvojitou žlutou; Y stání nemá."}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "Úzká ulice s kolejemi a zaparkovanými auty po obou stranách; X nemá stání."}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "Fotky ukazují stání po obou stranách a tři pruhy; X stání nemá."}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "Dva jízdní pruhy se stáním po obou stranách, široký chodník vlevo; Y stání nemá a má zbytečně plochu."}

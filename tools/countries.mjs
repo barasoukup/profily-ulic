@@ -70,10 +70,12 @@ export const COUNTRIES = {
   // index.json). us_dc: Geofabrik's District of Columbia with the parts of Maryland and Virginia in the metro's box
   // (osm-tiles.yml: extracts joined by "+" are each cut to the box after "@" with osmium and merged; locally 86 MB).
   // us_nyc (26. 11. 2026): New York City, Geofabrik's New York (500 MB of PBF, in a folder of its own since Geofabrik moved
-  // the states) cut to the box of the five boroughs (locally 44 MB). Only on R2.
+  // the states) cut to the box of the five boroughs (locally 44 MB). us_sf (26. 11. 2026): San Francisco, Geofabrik's
+  // Northern California (660 MB of PBF) cut to the city's box and 1 km round it (locally 7.6 MB). Only on R2.
   us: { iso: "US", geofabrik: "north-america/us/district-of-columbia", pages: false, parts: {
     us_dc: "north-america/us/district-of-columbia+north-america/us/maryland+north-america/us/virginia@-77.56,38.52,-76.64,39.37",
-    us_nyc: "north-america/us/new-york/new-york@-74.30,40.45,-73.65,40.95" } },
+    us_nyc: "north-america/us/new-york/new-york@-74.30,40.45,-73.65,40.95",
+    us_sf: "north-america/us/california/norcal@-122.54,37.68,-122.34,37.84" } },
   // Canada (Bára 25. 11. 2026): only Toronto and the municipalities around it, one pack ca_on_toronto of Geofabrik's Ontario
   // (1 GB of PBF) cut to their box (locally 46 MB), only on R2.
   ca: { iso: "CA", geofabrik: "north-america/canada/ontario", pages: false, parts: { ca_on_toronto: "north-america/canada/ontario@-79.92,43.46,-78.98,44.03" } },

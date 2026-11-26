@@ -19,6 +19,29 @@ export const DC_ORTHO = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DA
 const TOKEN = (await fs.readFile(process.env.TOKEN || path.join(ROOT, "..", "streetview", "token.local"), "utf8")).trim();
 const angle = (a, b) => Math.abs(((a - b + 540) % 360) - 180);
 
+// A service's export of the box at w × h px; with EVAL_ORTHO_MAX (Esri World Imagery answers 500 above about 400 px, San
+// Francisco 26. 11. 2026) in pieces of at most that size, put together.
+async function exportImage(service, [x0, y0, x1, y1], w, h) {
+  const one = async (b, pw, ph) => {
+    const res = await fetch(`${service}${service.includes("?") ? "" : "?"}${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${pw},${ph}`, format: "png24", f: "image" })}`, { headers: { "User-Agent": "profily-ulic evaluation" } });
+    if (!res.ok) throw new Error(`ortofoto ${res.status}`);
+    return decodePng(Buffer.from(await res.arrayBuffer()));
+  };
+  const max = Number(process.env.EVAL_ORTHO_MAX) || Infinity, finest = Number(process.env.EVAL_ORTHO_FINEST) || 0;
+  // (Nor finer than EVAL_ORTHO_FINEST m of Web Mercator a pixel: Esri's 0.15; the picture is sampled from it as it is.)
+  if (finest && (x1 - x0) / w < finest) { w = Math.ceil((x1 - x0) / finest); h = Math.ceil((y1 - y0) / finest); }
+  if (w <= max && h <= max) return one([x0, y0, x1, y1], w, h);
+  const rgba = new Uint8Array(w * h * 4), sx = (x1 - x0) / w, sy = (y1 - y0) / h;
+  for (let j0 = 0; j0 < h; j0 += max) for (let i0 = 0; i0 < w; i0 += max) {
+    const pw = Math.min(max, w - i0), ph = Math.min(max, h - j0);
+    const part = await one([x0 + i0 * sx, y1 - (j0 + ph) * sy, x0 + (i0 + pw) * sx, y1 - j0 * sy], pw, ph);
+    for (let j = 0; j < ph; j++) for (let i = 0; i < pw; i++) {
+      const s = (Math.floor((j * part.height) / ph) * part.width + Math.floor((i * part.width) / pw)) * 4, o = ((j0 + j) * w + i0 + i) * 4;
+      rgba.set(part.rgba.subarray(s, s + 4), o);
+    }
+  }
+  return { width: w, height: h, rgba };
+}
 export async function orthoImage({ lat, lon, bearing, half = 30 }, out, { cut = true, service = DC_ORTHO } = {}) {
   const b = (bearing * Math.PI) / 180, dir = [Math.sin(b), Math.cos(b)], normal = [-Math.cos(b), Math.sin(b)];
   const kx = 111320 * Math.cos((lat * Math.PI) / 180), ky = 110574;
@@ -28,9 +51,7 @@ export async function orthoImage({ lat, lon, bearing, half = 30 }, out, { cut = 
   const x0 = Math.min(...corners.map((p) => p[0])), x1 = Math.max(...corners.map((p) => p[0]));
   const y0 = Math.min(...corners.map((p) => p[1])), y1 = Math.max(...corners.map((p) => p[1]));
   const k = Math.cos((lat * Math.PI) / 180), w = Math.round(((x1 - x0) * k) / RES), h = Math.round(((y1 - y0) * k) / RES);
-  const res = await fetch(`${service}${service.includes("?") ? "" : "?"}${new URLSearchParams({ bbox: [x0, y0, x1, y1].join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: "png24", f: "image" })}`, { headers: { "User-Agent": "profily-ulic evaluation" } });
-  if (!res.ok) throw new Error(`ortofoto ${res.status}`);
-  const img = await decodePng(Buffer.from(await res.arrayBuffer()));
+  const img = await exportImage(service, [x0, y0, x1, y1], w, h);
   const W = Math.round((2 * half) / RES), H = Math.round((2 * ALONG) / RES), px = new Uint8Array(W * H * 4);
   for (let j = 0; j < H; j++) for (let i = 0; i < W; i++) {
     const [mx, my] = merc(...ll(half - (i + 0.5) * RES, ALONG - (j + 0.5) * RES));

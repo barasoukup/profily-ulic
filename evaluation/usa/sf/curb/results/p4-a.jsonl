@@ -1,0 +1,9 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "V řezu je vozovka s autem a zaparkovanými vozy; Y ji nahrazuje chodníkem."}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "Na fotkách stojí auta u obou okrajů vozovky, X je vede jako krajnice."}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "Stání jen na straně A, na straně B chodník přímo u vozovky; X má stání na obou stranách."}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "Auta parkují na obou stranách úzké ulice, X má stání jen na jedné."}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "Stejné složení, v křižovatce rozdíl jen v šířkách."}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "Stání na obou stranách a červený bus pruh, X místo stání krajnice."}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "Totéž složení se sharrows, liší se šířky; řez v křižovatce."}
+{"n": 8, "verdict": "stejne", "jistota": "nizka", "why": "Stání na obou stranách a dva pruhy v obou, liší se jen šířky."}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "Zaparkovaná auta za plnou čárou s pásem, dvojitá žlutá uprostřed; Y zachycuje stání a pás."}

@@ -1,0 +1,9 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "dvě stání a jízdní pruh uprostřed; Y má uprostřed chodník, který tam není"}
+{"n": 2, "verdict": "Y", "jistota": "nizka", "why": "ortofoto je zastíněné, fotky ukazují vícepruhovou ulici se stáním po obou stranách"}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "stání jen na straně A, na straně B chodník s výsadbou bez stání"}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "úzká obytná ulice se stáním na obou stranách"}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "stejné složení, liší se jen šířky pruhů a stání"}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "stání po obou stranách, červený bus pruh a dva jízdní pruhy s dvojitou žlutou"}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "stejné složení, rozdíl jen v šířkách pruhů a stání"}
+{"n": 8, "verdict": "stejne", "jistota": "nizka", "why": "stejné složení se stáním po obou stranách, rozdíl jen v šířkách"}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "stání po obou stranách u okraje, dva pruhy s dvojitou žlutou; X stání vynechává"}

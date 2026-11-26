@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "vysoka", "why": "Zaparkovaná auta na obou stranách vozovky, dva jízdní pruhy; Y parkování nemá."}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "Široká vozovka se 3+3 pruhy, středový pás a parkování u okraje (B strana jisté); X parkování nemá."}
+{"n": 3, "verdict": "X", "jistota": "stredni", "why": "Parkování na obou stranách a tři pruhy na fotkách; Y parkování nemá."}
+{"n": 4, "verdict": "X", "jistota": "nizka", "why": "Úzká ulice pod estakádou, X aspoň obsahuje jízdní pruh; Y žádnou vozovku nemá."}
+{"n": 5, "verdict": "Y", "jistota": "vysoka", "why": "Parkování na obou stranách a dva pruhy mezi chodníky; X parkování vynechává."}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "Vozovka asi 10 m se středovou čarou, širší než v X, zeleň na straně A; parkování jen jednostranné, ale šířka sedí."}
+{"n": 7, "verdict": "Y", "jistota": "stredni", "why": "Parkování obou stran a dva pruhy; šířka vozovky (asi 11 m) sedí lépe u Y."}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "Chodník na A a parkování po obou stranách, zeleň je na straně B, ne na A jako v Y."}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "V ulici je vidět stání u okraje, které X nemá; úzká vozovka."}
+{"n": 10, "verdict": "X", "jistota": "nizka", "why": "Parkování po obou stranách a vozovka asi 12 m sedí s X; Y je užší."}

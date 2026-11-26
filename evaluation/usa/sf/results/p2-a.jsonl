@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "Dva pruhy, stání aspoň na jedné straně a chodníky; Y stání nemá, ale fotky ukazují stojící auta."}
+{"n": 2, "verdict": "Y", "jistota": "nizka", "why": "Široká vozovka bez parkování v obou; symetrické Y s okrajovými pásy a úzkými chodníky sedí lépe než 6,4 m chodník."}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "Stání po obou stranách a dva pruhy, vozovka kolem 12 m odpovídá Y."}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "Stání po obou stranách a široká vozovka s kolejemi odpovídá X; Y má na B nesmyslnou plochu."}
+{"n": 5, "verdict": "X", "jistota": "nizka", "why": "Fotky ukazují širokou vozovku se stáním; X má širší vozovku než Y."}
+{"n": 6, "verdict": "Y", "jistota": "nizka", "why": "Na straně A svah bez chodníku, vozovka asi 7 m; X má na A falešný chodník."}
+{"n": 7, "verdict": "Y", "jistota": "stredni", "why": "Stání po obou stranách a dva úzké pruhy, jak ukazují ortofoto i fotky."}
+{"n": 8, "verdict": "X", "jistota": "stredni", "why": "Stání po obou stranách ulice, Y stání vůbec nemá."}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "Vozovka široká asi 6,5 m bez zřejmého stání, Y je blíž šířkou."}
+{"n": 10, "verdict": "X", "jistota": "stredni", "why": "Stojící auta a stání; Y stání nemá."}

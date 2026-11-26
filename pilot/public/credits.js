@@ -117,7 +117,13 @@ export const SOURCE_CREDITS = {
     // Toronto's topographic mapping (towns/canada.js), with the statement its licence asks for.
     toronto: () => t("mapa povrchů: Contains information licensed under the Open Government Licence – Toronto."),
     // New York's planimetrics (towns/newyork.js).
-    nyc: () => t("mapa povrchů (NYC Planimetric Database 2022) © NYC Office of Technology and Innovation (NYC Open Data)") },
+    nyc: () => t("mapa povrchů (NYC Planimetric Database 2022) © NYC Office of Technology and Innovation (NYC Open Data)"),
+    // San Francisco's right of way, kerbs and buildings (towns/sanfrancisco.js; PDDL asks for no credit, the city is named).
+    sf: () => t("mapa povrchů (Right of Way, Curbs, Building Footprints) © City and County of San Francisco, DataSF a SFMTA (PDDL)") },
+  // San Francisco's digital curb (towns/sanfrancisco.js), where it placed the parking.
+  sfCurb: { true: () => t("stání (Digital Curb) © SFMTA, DataSF (PDDL)") },
+  // San Francisco's building heights, where they gave the floors.
+  sfHouse: { true: () => t("výšky domů © City and County of San Francisco, DataSF (PDDL)") },
   caHouse: { true: () => t("výšky domů © City of Toronto (Open Government Licence – Toronto)") },
   // DC's assessment tables, where they told of a house.
   usCama: { true: () => t("domy (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)") },

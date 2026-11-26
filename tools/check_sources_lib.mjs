@@ -25,6 +25,7 @@ export const POINTS = {
   zaragoza: { of: "spain", at: "41.650391, -0.877306" }, // Calle de Hermanos Ibarra
   toronto: { of: "canada", at: "43.658890, -79.416460" }, // Jersey Avenue, Toronto
   dc: { of: "usa", at: "38.932773, -77.036860" }, // Monroe Street NW, Washington
+  sf: { of: "usa", at: "37.760000, -122.414800" }, // Folsom Street, San Francisco
 };
 const latLon = (s) => s.split(",").map(Number);
 

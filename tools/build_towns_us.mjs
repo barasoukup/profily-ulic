@@ -5,12 +5,16 @@
 //     to about 20 m;
 //   newyork: New York City, its five boroughs (Bronx, Kings, New York, Queens, Richmond) from the Census Bureau's TIGERweb
 //     (State_County, layer Counties; public domain), merged to one outline before it is simplified to about 20 m (each
-//     county simplified alone would leave gaps along their common lines; 26. 11. 2026).
+//     county simplified alone would leave gaps along their common lines; 26. 11. 2026);
+//   sanfrancisco: the incorporated place of TIGERweb (GEOID 0667000, the same line as the City and County, with its water
+//     and the Farallon Islands; public domain; 26. 11. 2026).
 import fs from "node:fs";
 
 const UA = { headers: { "User-Agent": "profily-ulic" } };
 const DC = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Administrative_Other_Boundaries_WebMercator/MapServer/10/query";
 const TIGER = "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/1/query";
+// TIGERweb's incorporated places of the current vintage (layer 4; GEOID: state and place code).
+const PLACES = "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/4/query";
 async function rings(url, where, n = null, offset = "0.0002") {
   const q = new URLSearchParams({ where, outFields: "", returnGeometry: "true", outSR: "4326", geometryPrecision: "5", ...(offset && { maxAllowableOffset: offset }), f: "json" });
   const j = await (await fetch(`${url}?${q}`, UA)).json();
@@ -65,6 +69,7 @@ const TOWNS = {
   washington: () => rings(DC, "1=1"),
   newyork: async () => outline(await rings(TIGER, `GEOID IN (${NYC.map((g) => `'${g}'`).join(",")})`, NYC.length, null))
     .map((r) => simplify(r, 0.0002)).filter((r) => r.length >= 4),
+  sanfrancisco: () => rings(PLACES, "GEOID='0667000'"),
 };
 const out = {};
 for (const [id, make] of Object.entries(TOWNS)) {
