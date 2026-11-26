@@ -849,14 +849,14 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       : LANES_ORTHO && orthoHere ? tr("Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.")
       : tr("Obruby jsou podle OSM a domy z OSM, šířky ověřte.");
     const out = sources.outage({ surfaces: m, lines: k, parking: pk }, undefined, { fallback: orthoNote, orthoEstimate: country.orthoEstimate && orthoHere });
-    // A town's passport answered but not at the axis (Slovakia): the profile is still the estimate.
-    state.cut.note = out.note || (orthoOsm && city.abroad ? (country.orthoEstimate && orthoHere && !orthoNoKey ? " · odhad z ortofota a OSM" : " · jen odhad z OSM") : "");
     // Copenhagen's kerb lines or parking areas did not answer (towns/denmark.js dkFailed; the review of 24. 11. 2026: said
     // nothing before): the cut is made without them, said so.
     if ([k, pk].some((x) => x.status === "fulfilled" && x.value?.dkFailed)) {
       out.text = `${out.text ? out.text + " " : ""}${tr("Okraje vozovek nebo parkovací plochy Kodaně teď neodpověděly, profil je bez nich.")} ${tr("Zkuste kliknout znovu za chvíli.")}`;
       out.error = true;
     }
+    // A town's passport answered but not at the axis (Slovakia): the profile is still the estimate.
+    state.cut.note = out.note || (orthoOsm && city.abroad ? (country.orthoEstimate && orthoHere && !orthoNoKey ? " · odhad z ortofota a OSM" : " · jen odhad z OSM") : "");
     // The heading is the street only (Bára 16. 11. 2026); where the data come from is said under it (#profile-sub).
     $("#street-name").textContent = streetName(state.cut);
     const junctionNote = tr("Řez nejspíš vede křižovatkou. Posuňte ho tažením středu do úseku mezi křižovatkami.");
