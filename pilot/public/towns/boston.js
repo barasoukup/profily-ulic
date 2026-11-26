@@ -76,7 +76,7 @@ const roadCode = (t) => {
 const prepare = (runs, { tags, tracks, cycleTracks, osmAreas }) => {
   islandsBeside(runs);
   if (!off("mapgaps")) gapsBetweenRoads(runs, tracks());
-  kerbBays(runs);
+  if (!off("kerbbays")) kerbBays(runs);
   // (Off, ?outergaps=1 on: the gaps beyond the outer sidewalk by OSM and the orthophoto, planimetrics.js outerGaps; the blind
   // A/B of 52 new arterials did not show it better, 18 : 16, evaluation/usa/boston/outer/ZPRAVA.md.)
   if (param("outergaps") === "1") outerGaps(runs, osmAreas());

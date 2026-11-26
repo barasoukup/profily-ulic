@@ -132,3 +132,15 @@ test("Boston: mezery za vnějším chodníkem podle OSM (dům, parkoviště) a o
   const green = [rect(2, 9)];
   assert.equal(outerGapsByImage(green, [0, 1], img(14, 18)), 0);
 });
+
+test("Boston: ?off=kerbbays vypne stání z úzkých parkovišť u obruby jako v Torontu a New Yorku", async () => {
+  const { BOSTON_MAP } = await import("../pilot/public/towns/boston.js");
+  const runs = () => [{ s: -10, e: -6, code: 702 }, { s: -6, e: -3.5, code: 1003, lot: true }, { s: -3.5, e: 5, code: 701 }, { s: 5, e: 9, code: 702 }];
+  const ctx = { tags: { highway: "residential" }, tracks: () => [], cycleTracks: () => [], osmAreas: () => [] };
+  const on = runs(); BOSTON_MAP.prepare(on, ctx);
+  assert.equal(on[1].code, 704);
+  globalThis.PROFILY_US = { off: "kerbbays" };
+  const off = runs(); BOSTON_MAP.prepare(off, ctx);
+  delete globalThis.PROFILY_US;
+  assert.equal(off[1].code, 1003);
+});
