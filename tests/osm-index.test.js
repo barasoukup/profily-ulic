@@ -42,3 +42,16 @@ test("index dlaždic: každý balík z tools/countries.mjs se do indexu dostane 
   const { index } = osmIndex({ Contents });
   assert.deepEqual(Object.keys(index.files).sort(), PACKS.map((p) => p.code).sort());
 });
+
+// The hostile review of 26. 11. 2026: with one file a state kept, a bad new build must not delete the last good one.
+test("index dlaždic: nový soubor o víc než 30 % menší se nebere a starý se nemaže", () => {
+  const o = (name, at, Size) => ({ Key: `osm/${name}`, LastModified: at, Size });
+  const { index, remove, suspect } = osmIndex({ Contents: [
+    o("nl_ge-2026-11-30-aa.posm", "2026-11-30T10:00:00Z", 40e6), o("nl_ge-2026-11-23-bb.posm", "2026-11-23T10:00:00Z", 100e6),
+    o("cz-2026-11-30-cc.posm", "2026-11-30T10:00:00Z", 95e6), o("cz-2026-11-23-dd.posm", "2026-11-23T10:00:00Z", 100e6),
+  ] });
+  assert.equal(index.files.nl_ge, "nl_ge-2026-11-23-bb.posm");
+  assert.equal(index.files.cz, "cz-2026-11-30-cc.posm");
+  assert.deepEqual(remove, ["osm/cz-2026-11-23-dd.posm"]);
+  assert.deepEqual(suspect, ["nl_ge-2026-11-30-aa.posm"]);
+});

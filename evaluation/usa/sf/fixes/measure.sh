@@ -1,5 +1,5 @@
 #!/bin/sh
-# The A/B of San Francisco's fixes of 27. 11. 2026 (ZPRAVA.md): evaluation/usa/sf/fixes/measure.sh packages | score
+# The A/B of San Francisco's fixes of 26. 11. 2026 (ZPRAVA.md): evaluation/usa/sf/fixes/measure.sh packages | score
 # Profiles: evaluation/universal/data/sf-fixes.json (variants def and sfold = ?off=sfosmpark,axisroad). Esri World Imagery for
 # the judges as in ../measure.sh (not kept).
 cd "$(dirname "$0")" || exit 1

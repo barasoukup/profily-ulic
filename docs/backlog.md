@@ -95,7 +95,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
   „ortofota DGT (jen pevnina) a OSM“?
 - Kypr **(Bára)**: kredit ortofota v exportu bez roku („ortofoto © DLS Kypr“): doplnit „, 2019“ jako v patičce?
 - ~~Kypr: kredit budov DLS je v exportu u každého kyperského řezu; kredit britských značek se počítá ze Stavu, ne ze značek
-  přidaných v Návrhu~~ (27. 11. 2026: `cyDls` jen s domem z DLS, `exportSources` bere značky Stavu i Návrhu).
+  přidaných v Návrhu~~ (26. 11. 2026: `cyDls` jen s domem z DLS, `exportSources` bere značky Stavu i Návrhu).
 - ~~Kypr: `lanes-ortho.js` „cy“: napůl chybějící dlaždice (404 u Zelené linie) dávají jas 0 místo NaN (vyplnit NaN nebo
   hlídat podíl prázdna). Malta: WMS vrací chybu jako 200 `text/xml` (hlídat content-type, hlásit výpadek); podklad mapy
   jako JPEG místo PNG (`app.js`). Kypr i Malta: `streetmix.js` neposílá `leftHandTraffic`.~~ (26. 11. 2026: průhledný
@@ -171,7 +171,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - **USA (San Francisco, 26. 11. 2026, `evaluation/usa/sf`):** šířka uličního prostoru s mapou o medián 2,5 m větší než
   u posuzovatelů na snímku Esri (bez mapy 0,4 m): ověřit na místě, kdo má pravdu **(Bára)**; ~~šikmé stání: digitální obruba ho
   nepozná vždy (Indiana Street dostala podélné 2,45 m, OSM říká šikmé), zkusit brát orientaci z OSM `parking:*:orientation`~~
-  (27. 11. 2026, `evaluation/usa/sf/fixes`: A/B 30 nových řezů 12 : 11, **vypnuto, `?sfosmpark=1`**; značky OSM často neplatí
+  (26. 11. 2026, `evaluation/usa/sf/fixes`: A/B 30 nových řezů 12 : 11, **vypnuto, `?sfosmpark=1`**; značky OSM často neplatí
   pro místo řezu); ~~úzká vozovka, ve které po vykrojení stání nezůstane pruh (Lippard Avenue)~~ (osa ve vykrojeném stání,
   vozovku přechází jen chodník: `derive.js ownRoad`, `?axisroad=1`; mění 1 z 290 řezů pěti měst, nejde změřit, **vypnuto
   (Bára: zapnout bez měření?)**); tepny jen 8 : 4 (Fell Street, O'Shaughnessy
@@ -188,8 +188,8 @@ Co rozhodne Bára, je označeno **(Bára)**.
   v Marylandu a Virginii; Photon nabízí i místa mimo metro (hláška řekne proč, jako Itálie); česká jména `?off=ulicky`,
   `pocetpruhu` jsou sdílená s `estonia`. Strana stání RPP: význam kódů `RPPSIDE` by musel říct DDOT.
 - **USA (New York, 26. 11. 2026, `evaluation/usa/nyc`):** ~~licence: položky NYCmaps na ArcGIS Online mají „Limited to use
-  defined by OTI“~~ (Bára 27. 11. 2026: používat; tytéž vrstvy jsou na NYC Open Data bez omezení, Admin. Code § 23-502, s kreditem
-  zdroje a verze); ~~ortofoto NYS bez uvedené licence („available at no cost“)~~ (Bára 27. 11. 2026: používat s kreditem). **(Bára)** okolní okresy (Jersey City a Hudson County, Westchester, Nassau) jen s odhadem z OSM, nebo
+  defined by OTI“~~ (Bára 26. 11. 2026: používat; tytéž vrstvy jsou na NYC Open Data bez omezení, Admin. Code § 23-502, s kreditem
+  zdroje a verze); ~~ortofoto NYS bez uvedené licence („available at no cost“)~~ (Bára 26. 11. 2026: používat s kreditem). **(Bára)** okolní okresy (Jersey City a Hudson County, Westchester, Nassau) jen s odhadem z OSM, nebo
   ne (teď ne: bez mapy povrchů, okolí Washingtonu a Toronta jen 51 %). **(Bára)** stání: zákonná volná šířka v New Yorku nedoložená
   (34 RCNY § 4-08, FC 503 nepřečtené), platí 3 m aplikace. Ostatní: Bishop's Crook (`newyork/lamp-bishop-*`) nemá kde se kreslit
   (aplikace má jednu lampu nad ulicí, do 5 m sloupkovou); stání v New Yorku je skoro všude, mapa ho nemá (je to vozovka) a odhad
@@ -200,7 +200,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - **USA (Boston, 26. 11. 2026, `evaluation/usa/boston`):** **(Bára)** mapa Bostonu a Cambridge celkově neprůkazná (27 : 21),
   na tepnách prohrává 8 : 15: mezera mezi polygony za chodníkem je zeleň i tam, kde je parkoviště, náměstí nebo dům (Street Edges
   nemá parkoviště, budovy podkladové mapy nejsou úplné), široká mezera mezi vozovkami je dělicí pás (b-14, 21 m). ~~Zkusit: mezeru
-  uvnitř řezu za vnějším chodníkem posoudit ortofotem jako odhad~~ (27. 11. 2026, `evaluation/usa/boston/outer`: domy a parkoviště
+  uvnitř řezu za vnějším chodníkem posoudit ortofotem jako odhad~~ (26. 11. 2026, `evaluation/usa/boston/outer`: domy a parkoviště
   z OSM, zbytek ortofotem MassGIS, které je bez listí; A/B 52 nových tepen 18 : 16, **vypnuto, `?outergaps=1`**; **(Bára)** zkusit
   jen konec profilu u parkoviště (13 : 8) na dalším novém vzorku); dělicí pás 21 m (b-14) otevřený; parkoviště Bostonu (BTD
   MunicipalParkingLots jsou jen městská).
@@ -239,7 +239,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Belgie a Lucembursko jen přes Photon; národní služby (Flandry geolocation, geoportail.lu) nezapojené.
 - Francie: Géoplateforme hledá i bez města; přednost blízko středu mapy je slabá (lat/lon jen naznačí).
 - ~~Photon nabízí i místa v Nizozemsku, Belgii, Lucembursku, Polsku, Francii a Španělsku, kde zatím nejsou dlaždice OSM~~
-  (27. 11. 2026: dlaždice mají všechny státy; místa bez profilu, např. Itálie mimo ortofota a USA mimo metra, vyřazuje `closedAt`).
+  (26. 11. 2026: dlaždice mají všechny státy; místa bez profilu, např. Itálie mimo ortofota a USA mimo metra, vyřazuje `closedAt`).
 
 ## Překlady
 

@@ -604,7 +604,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 ## New York (větev na-newyork z canada, 26. 11. 2026, nenasazené)
 - Druhé metro státu `usa`: pět obvodů New Yorku (`tools/build_staty.mjs` tabulka `METROS` `dc`, `nyc` z TIGERweb; Boston a San
   Francisco se přidají řádkem), město `newyork` v `mesta-us.json` (`tools/build_towns_us.mjs`). New Jersey, Westchester a Nassau ne.
-- Mapa povrchů NYC Planimetric Database 2022 (NYC OTI, NYCmaps na ArcGIS Online; „Limited to use defined by OTI“ bez zveřejněných podmínek, Bára 27. 11. 2026:
+- Mapa povrchů NYC Planimetric Database 2022 (NYC OTI, NYCmaps na ArcGIS Online; „Limited to use defined by OTI“ bez zveřejněných podmínek, Bára 26. 11. 2026:
   používat, tatáž data jsou otevřená na NYC Open Data) přes `planimetrics.js` (`towns/newyork.js`,
   `?nyc=0`), domy z obrysů budov téže služby (`?nychouse=0`), ortofoto NYS 2024, normy Street Design Manual jen oranžově
   (`evaluation/usa/nyc/NORMY.md`; `rules.js` předává limitům město řezu), ilustrace `newyork/`. OSM balík `us_nyc` (jen R2).
@@ -625,7 +625,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   u posuzovatelů (rozhodne Bára).
 - Normy: chodník podle SFMTA Sidewalk Widths, jinak jen NACTO, oranžově (`evaluation/usa/sf/NORMY.md`). Ilustrace Muni (autobus,
   trolejbus, LRV4, označník); PCC a Path of Gold nezapojené.
-- Opravy 27. 11. (`evaluation/usa/sf/fixes/ZPRAVA.md`): orientace stání z OSM, kde obruba dá podélné (A/B 30 nových řezů 12 : 11,
+- Opravy 26. 11. (`evaluation/usa/sf/fixes/ZPRAVA.md`): orientace stání z OSM, kde obruba dá podélné (A/B 30 nových řezů 12 : 11,
   vypnuto, `?sfosmpark=1`); osa ve vykrojeném stání a vozovka, kterou přechází jen chodník (Lippard Avenue, `derive.js ownRoad`,
   1 z 290 řezů, vypnuto, `?axisroad=1`; Bára rozhodne, zda zapnout bez měření).
 
@@ -641,7 +641,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   parkovišti a náměstí). Washington 100 řezů beze změny, regrese beze změny.
 - Přegenerovat: `node tools/build_staty.mjs usa && node tools/build_towns_us.mjs && node tools/build_coverage.mjs`.
   Před nasazením workflow OSM tiles se `states: us` (nebo `us_bos`).
-- Mezery za vnějším chodníkem (27. 11., `evaluation/usa/boston/outer/ZPRAVA.md`, `planimetrics.js outerGaps`, `ortho-osm.js
+- Mezery za vnějším chodníkem (26. 11., `evaluation/usa/boston/outer/ZPRAVA.md`, `planimetrics.js outerGaps`, `ortho-osm.js
   outerGapsByImage`): domy a parkoviště z OSM, zbytek ortofotem (MassGIS je bez listí, zeleň podle žlutosti a sytosti). A/B 52
   nových tepen 18 : 16, **vypnuto**, `?outergaps=1`.
 

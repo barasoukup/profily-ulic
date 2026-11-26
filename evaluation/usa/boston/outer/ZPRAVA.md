@@ -1,4 +1,4 @@
-# Boston: mezery za vnějším chodníkem podle OSM a ortofota (27. 11. 2026)
+# Boston: mezery za vnějším chodníkem podle OSM a ortofota (26. 11. 2026)
 
 Oprava z backlogu (tepny prohrály v čerstvém měření 8 : 15, `../ZPRAVA.md`). **Výsledek: zlepšení se neprokázalo
 (18 : 16), oprava zůstává vypnutá, zapne ji `?outergaps=1`.**

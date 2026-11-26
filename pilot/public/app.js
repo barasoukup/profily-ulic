@@ -2421,7 +2421,7 @@ function logEdits() {
 }
 addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") logEdits(); });
 // The sources of an export: the cut's, and the British signs' licence also when the signs came only in the Design
-// (backlog 27. 11. 2026: it was counted from the Stav alone).
+// (backlog 26. 11. 2026: it was counted from the Stav alone).
 function exportSources() {
   const src = { ...(state.cut?.sources || {}) };
   const ogl = country.signs.ogl;

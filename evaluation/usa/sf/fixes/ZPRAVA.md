@@ -1,4 +1,4 @@
-# San Francisco: šikmé stání z OSM a osa ve vykrojeném stání (27. 11. 2026)
+# San Francisco: šikmé stání z OSM a osa ve vykrojeném stání (26. 11. 2026)
 
 Dvě opravy z backlogu (`../ZPRAVA.md`: Indiana Street s-21, Lippard Avenue s-36). **Výsledek: ani jedna se neprokázala,
 obě zůstávají vypnuté** (`?sfosmpark=1`, `?axisroad=1`).
