@@ -63,8 +63,10 @@ Co rozhodne Bára, je označeno **(Bára)**.
   s OSM `cycleway=track` vzniká „chodník s koly“ místo chodníku a cyklostezky (ge1, lex1); ulice v jedné úrovni
   (obruba jen na jedné straně) dál odhadem; bulváry se souběžnými cestami (mex2) hrubě.
 - Polsko: ortofoto GUGiK bez vlastního A/B (je v obou ramenech).
-- Paříž: u fasády často pruh „plocha“ 0,65 m (mezera mezi budovou z OSM a chodníkem Plan de voirie); A/B
-  `evaluation/france/ab/ZPRAVA.md`. Zkusit budovy z BD TOPO nebo `emprises-ilots-prives` místo OSM.
+- ~~Paříž: u fasády často pruh „plocha“ 0,65 m (mezera mezi budovou z OSM a chodníkem Plan de voirie)~~ (26. 11. 2026:
+  sdílené pravidlo proužku u fasády, `evaluation/facade-strip`; BD TOPO není blíž než OSM; soukromé bloky Plan de voirie
+  sedí na chodník do 0,2 m, ale slepé A/B jen 5 : 2, vypnuté `?ilots=1`, `evaluation/france/facade/ZPRAVA.md`). Zbývá:
+  ustoupená přízemí a předprostory (blok končí u chodníku, dům dál).
 - ~~Paříž: široká vozovka „pruh 4 m + krajnice“, ztracený buspruh, bulvár s promenádou~~ (23. 11. částečně:
   `evaluation/france/ab/bulvary/ZPRAVA.md`). Zbývá: krajnice u 10 z 26 bulvárů (široké vozovky bez čar na ortofotu IGN;
   zkusit pařížský PCRS 5 cm, jen soubory), řez v ústí boční ulice (Sébastopol) a na cyklostezce za koncem bulváru
@@ -139,7 +141,8 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Slovinsko, zbytky recenze 24. 11. 2026 (982927a): chybí poznámka v řezu, že model obrub nedostal ortofoto (`app.js`); A/B
   s ortofotem a bez něj; pravidlo podkroví (`?off=podkrovi`) na nových domech naslepo; čísla značek proti obrázkům pravidla
   26/2024; přesná pozemní hranice GURS; čtení středové čáry z `lanes` ≥ 2 a 3 m k plné čáře **(Bára)**.
-- Finsko, zbytky recenze 24. 11. 2026 (edfdd21): proužek „plocha“ do 1,5 m u fasády přičíst k chodníku (`besidePassport`);
+- Finsko, zbytky recenze 24. 11. 2026 (edfdd21): ~~proužek „plocha“ do 1,5 m u fasády přičíst k chodníku (`besidePassport`)~~
+  (26. 11. 2026: `ortho-osm.js facadeStrip` pro všechny mapy povrchů, slepé A/B 12 : 1, `evaluation/facade-strip`);
   obrázky prvního A/B v gitu; prodleva při psaní do hledání (`search.js`); Karesuando u Švédska (řešit se Švédskem);
   Ryhti má jen „07 veřejná budova“ (škola a kostel se nepoznají).
 - Dánsko, zbytky recenze 24. 11. 2026 (f55df4b): Bornholm bez vlastních vzhledů domů (chybí fotky); plocha stání kdekoli
@@ -152,8 +155,11 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - ~~Jihlava: pasport komunikací byl 16. 11. prázdný, ověřit~~ (26. 11. 2026: zase plný, 13 323 úseků).
 - ~~Pasporty devíti českých měst: A/B po odstávce DMVS~~ (26. 11. 2026, `evaluation/PASPORTY-AB.md`: zůstaly Rožnov,
   Chotěboř, Šlapanice, Kuřim, Chotěboř pak vyřazená kvůli licenci; vyřazené Chomutov, Šumperk, Litoměřice, Prachatice, Roudnice).
-- Pasporty Rožnova a Šlapanic: vozovka pasportu přes dvory a sousední komunikace (20–27 m); ořezat na souvislý kus pod
-  osou? Úzká vozovka pasportu za chodníkem dělá z chodníku „dělicí pás“ (Chomutov, Šlapanice; `derive.js`).
+- ~~Pasporty Rožnova a Šlapanic: vozovka pasportu přes dvory a sousední komunikace (20–27 m)~~ (26. 11. 2026: byla to
+  bílá plocha DTM bez typu a parcela silnice RÚIAN kolem úzké vozovky pasportu; `towns/overlay.js trimGuessedRoads`,
+  `?orez=0`, slepé A/B Rožnov 30 : 6, Šlapanice 13 : 3, kontroly 7 : 1, zapnuté, `evaluation/pasporty-orez`). Zbývá: široký polygon samotného
+  pasportu (Rožnov č. 59, 63), úzká vozovka pasportu za chodníkem dělá z chodníku „dělicí pás“ (Chomutov, Šlapanice;
+  `derive.js`). Kontroly Karviné: server `gis.karvina.cz` z Node často neodpověděl (fetch failed).
 - Hlášení, která data IPR/ČÚZK potvrzují, bez fotky z ulice nerozhodnu (do seznamu připomínek pro IPR?):
   Strossmayerovo náměstí, jižní strana „nemá pruh pro auta“ (MTVU 701 3,5 m a úsek parkování TSK;
   `#rez=50.098778,14.433932,-83`); Libocká, „chodník V je užší, asi i jízdní pás“ (MTVU vozovka 4 m, zeleň, chodník 2 m;
