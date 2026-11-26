@@ -1,0 +1,842 @@
+[
+ {
+  "id": "paris1",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.848043,
+  "lon": 2.303004
+ },
+ {
+  "id": "paris2",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.878556,
+  "lon": 2.370625
+ },
+ {
+  "id": "paris3",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.849932,
+  "lon": 2.325644
+ },
+ {
+  "id": "paris4",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.825197,
+  "lon": 2.321535
+ },
+ {
+  "id": "paris5",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.847272,
+  "lon": 2.338963
+ },
+ {
+  "id": "paris6",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.824532,
+  "lon": 2.322703
+ },
+ {
+  "id": "paris7",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.877533,
+  "lon": 2.315203
+ },
+ {
+  "id": "paris8",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.83454,
+  "lon": 2.382773
+ },
+ {
+  "id": "paris9",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.872029,
+  "lon": 2.329545
+ },
+ {
+  "id": "paris10",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.889156,
+  "lon": 2.341114
+ },
+ {
+  "id": "paris11",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.822862,
+  "lon": 2.355791
+ },
+ {
+  "id": "paris12",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.89018,
+  "lon": 2.360336
+ },
+ {
+  "id": "paris13",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.834464,
+  "lon": 2.384895
+ },
+ {
+  "id": "paris14",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.83895,
+  "lon": 2.344057
+ },
+ {
+  "id": "paris15",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.878936,
+  "lon": 2.338811
+ },
+ {
+  "id": "paris16",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.848815,
+  "lon": 2.340789
+ },
+ {
+  "id": "paris17",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.841539,
+  "lon": 2.343235
+ },
+ {
+  "id": "paris18",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.889045,
+  "lon": 2.346251
+ },
+ {
+  "id": "paris19",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.87264,
+  "lon": 2.382326
+ },
+ {
+  "id": "paris20",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.867913,
+  "lon": 2.315378
+ },
+ {
+  "id": "paris21",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.877677,
+  "lon": 2.386182
+ },
+ {
+  "id": "paris22",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.832742,
+  "lon": 2.343231
+ },
+ {
+  "id": "paris23",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.873991,
+  "lon": 2.2964
+ },
+ {
+  "id": "paris24",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.834304,
+  "lon": 2.316034
+ },
+ {
+  "id": "paris25",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.820813,
+  "lon": 2.349808
+ },
+ {
+  "id": "paris26",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.837787,
+  "lon": 2.344892
+ },
+ {
+  "id": "paris27",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.878244,
+  "lon": 2.376843
+ },
+ {
+  "id": "paris28",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.853812,
+  "lon": 2.346825
+ },
+ {
+  "id": "paris29",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.881909,
+  "lon": 2.38116
+ },
+ {
+  "id": "paris30",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.822686,
+  "lon": 2.351452
+ },
+ {
+  "id": "paris31",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.87473,
+  "lon": 2.331422
+ },
+ {
+  "id": "paris32",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.837327,
+  "lon": 2.315206
+ },
+ {
+  "id": "paris33",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.865179,
+  "lon": 2.325611
+ },
+ {
+  "id": "paris34",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.839593,
+  "lon": 2.319417
+ },
+ {
+  "id": "paris35",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.845008,
+  "lon": 2.390558
+ },
+ {
+  "id": "paris36",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.830813,
+  "lon": 2.351423
+ },
+ {
+  "id": "paris37",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.847272,
+  "lon": 2.366712
+ },
+ {
+  "id": "paris38",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.83473,
+  "lon": 2.373397
+ },
+ {
+  "id": "paris39",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.875677,
+  "lon": 2.322518
+ },
+ {
+  "id": "paris40",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.840873,
+  "lon": 2.368273
+ },
+ {
+  "id": "hkesku1",
+  "group": "target",
+  "place": "helsinki-keskusta",
+  "lat": 60.165617,
+  "lon": 24.931208
+ },
+ {
+  "id": "hkesku3",
+  "group": "target",
+  "place": "helsinki-keskusta",
+  "lat": 60.163381,
+  "lon": 24.939281
+ },
+ {
+  "id": "hkesku4",
+  "group": "target",
+  "place": "helsinki-keskusta",
+  "lat": 60.17217,
+  "lon": 24.934142
+ },
+ {
+  "id": "hkesku5",
+  "group": "target",
+  "place": "helsinki-keskusta",
+  "lat": 60.167259,
+  "lon": 24.939176
+ },
+ {
+  "id": "hkalli1",
+  "group": "target",
+  "place": "helsinki-kallio",
+  "lat": 60.185197,
+  "lon": 24.96116
+ },
+ {
+  "id": "hkalli2",
+  "group": "target",
+  "place": "helsinki-kallio",
+  "lat": 60.185479,
+  "lon": 24.954266
+ },
+ {
+  "id": "hkalli3",
+  "group": "target",
+  "place": "helsinki-kallio",
+  "lat": 60.189545,
+  "lon": 24.948817
+ },
+ {
+  "id": "hkalli4",
+  "group": "target",
+  "place": "helsinki-kallio",
+  "lat": 60.187352,
+  "lon": 24.954629
+ },
+ {
+  "id": "htoolo1",
+  "group": "target",
+  "place": "helsinki-toolo",
+  "lat": 60.179335,
+  "lon": 24.915661
+ },
+ {
+  "id": "htoolo2",
+  "group": "target",
+  "place": "helsinki-toolo",
+  "lat": 60.181317,
+  "lon": 24.910649
+ },
+ {
+  "id": "htoolo3",
+  "group": "target",
+  "place": "helsinki-toolo",
+  "lat": 60.182216,
+  "lon": 24.921309
+ },
+ {
+  "id": "htoolo4",
+  "group": "target",
+  "place": "helsinki-toolo",
+  "lat": 60.184353,
+  "lon": 24.929325
+ },
+ {
+  "id": "hmunkk1",
+  "group": "target",
+  "place": "helsinki-munkkiniemi",
+  "lat": 60.197066,
+  "lon": 24.88709
+ },
+ {
+  "id": "hmunkk2",
+  "group": "target",
+  "place": "helsinki-munkkiniemi",
+  "lat": 60.193212,
+  "lon": 24.877974
+ },
+ {
+  "id": "hmunkk3",
+  "group": "target",
+  "place": "helsinki-munkkiniemi",
+  "lat": 60.195846,
+  "lon": 24.86806
+ },
+ {
+  "id": "hmunkk4",
+  "group": "target",
+  "place": "helsinki-munkkiniemi",
+  "lat": 60.196339,
+  "lon": 24.88303
+ },
+ {
+  "id": "hlautt1",
+  "group": "target",
+  "place": "helsinki-lauttasaari",
+  "lat": 60.156833,
+  "lon": 24.869507
+ },
+ {
+  "id": "hlautt2",
+  "group": "target",
+  "place": "helsinki-lauttasaari",
+  "lat": 60.158041,
+  "lon": 24.887022
+ },
+ {
+  "id": "hlautt3",
+  "group": "target",
+  "place": "helsinki-lauttasaari",
+  "lat": 60.160065,
+  "lon": 24.884811
+ },
+ {
+  "id": "hlautt4",
+  "group": "target",
+  "place": "helsinki-lauttasaari",
+  "lat": 60.162837,
+  "lon": 24.878831
+ },
+ {
+  "id": "hkapyl1",
+  "group": "target",
+  "place": "helsinki-kapyla",
+  "lat": 60.218421,
+  "lon": 24.950374
+ },
+ {
+  "id": "hkapyl2",
+  "group": "target",
+  "place": "helsinki-kapyla",
+  "lat": 60.216567,
+  "lon": 24.961693
+ },
+ {
+  "id": "hkapyl3",
+  "group": "target",
+  "place": "helsinki-kapyla",
+  "lat": 60.218641,
+  "lon": 24.952084
+ },
+ {
+  "id": "hkapyl4",
+  "group": "target",
+  "place": "helsinki-kapyla",
+  "lat": 60.209729,
+  "lon": 24.945837
+ },
+ {
+  "id": "hhertt1",
+  "group": "target",
+  "place": "helsinki-herttoniemi",
+  "lat": 60.196592,
+  "lon": 25.043975
+ },
+ {
+  "id": "hhertt2",
+  "group": "target",
+  "place": "helsinki-herttoniemi",
+  "lat": 60.190178,
+  "lon": 25.035809
+ },
+ {
+  "id": "hhertt3",
+  "group": "target",
+  "place": "helsinki-herttoniemi",
+  "lat": 60.198031,
+  "lon": 25.031094
+ },
+ {
+  "id": "hhertt4",
+  "group": "target",
+  "place": "helsinki-herttoniemi",
+  "lat": 60.195124,
+  "lon": 25.032952
+ },
+ {
+  "id": "hmalmi1",
+  "group": "target",
+  "place": "helsinki-malmi",
+  "lat": 60.253491,
+  "lon": 25.010336
+ },
+ {
+  "id": "hmalmi2",
+  "group": "target",
+  "place": "helsinki-malmi",
+  "lat": 60.246471,
+  "lon": 25.003088
+ },
+ {
+  "id": "hmalmi3",
+  "group": "target",
+  "place": "helsinki-malmi",
+  "lat": 60.244833,
+  "lon": 25.013527
+ },
+ {
+  "id": "hmalmi4",
+  "group": "target",
+  "place": "helsinki-malmi",
+  "lat": 60.246688,
+  "lon": 25.011862
+ },
+ {
+  "id": "houlun1",
+  "group": "target",
+  "place": "helsinki-oulunkyla",
+  "lat": 60.227161,
+  "lon": 24.971286
+ },
+ {
+  "id": "houlun2",
+  "group": "target",
+  "place": "helsinki-oulunkyla",
+  "lat": 60.232097,
+  "lon": 24.95578
+ },
+ {
+  "id": "houlun3",
+  "group": "target",
+  "place": "helsinki-oulunkyla",
+  "lat": 60.228981,
+  "lon": 24.964801
+ },
+ {
+  "id": "houlun4",
+  "group": "target",
+  "place": "helsinki-oulunkyla",
+  "lat": 60.229286,
+  "lon": 24.963495
+ },
+ {
+  "id": "hvuosa1",
+  "group": "target",
+  "place": "helsinki-vuosaari",
+  "lat": 60.206042,
+  "lon": 25.132797
+ },
+ {
+  "id": "hvuosa2",
+  "group": "target",
+  "place": "helsinki-vuosaari",
+  "lat": 60.209602,
+  "lon": 25.144065
+ },
+ {
+  "id": "hvuosa3",
+  "group": "target",
+  "place": "helsinki-vuosaari",
+  "lat": 60.210994,
+  "lon": 25.149005
+ },
+ {
+  "id": "hvuosa4",
+  "group": "target",
+  "place": "helsinki-vuosaari",
+  "lat": 60.209508,
+  "lon": 25.139275
+ },
+ {
+  "id": "tallin1",
+  "group": "control",
+  "place": "tallinn",
+  "lat": 59.427429,
+  "lon": 24.722182
+ },
+ {
+  "id": "tallin2",
+  "group": "control",
+  "place": "tallinn",
+  "lat": 59.431386,
+  "lon": 24.756139
+ },
+ {
+  "id": "tallin3",
+  "group": "control",
+  "place": "tallinn",
+  "lat": 59.457247,
+  "lon": 24.751611
+ },
+ {
+  "id": "tallin4",
+  "group": "control",
+  "place": "tallinn",
+  "lat": 59.440203,
+  "lon": 24.750363
+ },
+ {
+  "id": "tallin5",
+  "group": "control",
+  "place": "tallinn",
+  "lat": 59.437926,
+  "lon": 24.771651
+ },
+ {
+  "id": "tallin6",
+  "group": "control",
+  "place": "tallinn",
+  "lat": 59.43199,
+  "lon": 24.775636
+ },
+ {
+  "id": "tallin7",
+  "group": "control",
+  "place": "tallinn",
+  "lat": 59.454164,
+  "lon": 24.767978
+ },
+ {
+  "id": "tallin8",
+  "group": "control",
+  "place": "tallinn",
+  "lat": 59.444435,
+  "lon": 24.738724
+ },
+ {
+  "id": "vilniu1",
+  "group": "control",
+  "place": "vilnius",
+  "lat": 54.686946,
+  "lon": 25.286669
+ },
+ {
+  "id": "vilniu2",
+  "group": "control",
+  "place": "vilnius",
+  "lat": 54.683245,
+  "lon": 25.247299
+ },
+ {
+  "id": "vilniu3",
+  "group": "control",
+  "place": "vilnius",
+  "lat": 54.678164,
+  "lon": 25.288888
+ },
+ {
+  "id": "vilniu4",
+  "group": "control",
+  "place": "vilnius",
+  "lat": 54.673137,
+  "lon": 25.253816
+ },
+ {
+  "id": "vilniu5",
+  "group": "control",
+  "place": "vilnius",
+  "lat": 54.696423,
+  "lon": 25.254989
+ },
+ {
+  "id": "vilniu6",
+  "group": "control",
+  "place": "vilnius",
+  "lat": 54.679432,
+  "lon": 25.27005
+ },
+ {
+  "id": "vilniu7",
+  "group": "control",
+  "place": "vilnius",
+  "lat": 54.685805,
+  "lon": 25.254974
+ },
+ {
+  "id": "vilniu8",
+  "group": "control",
+  "place": "vilnius",
+  "lat": 54.688916,
+  "lon": 25.296317
+ },
+ {
+  "id": "bratis1",
+  "group": "control",
+  "place": "bratislava",
+  "lat": 48.145544,
+  "lon": 17.103205
+ },
+ {
+  "id": "bratis2",
+  "group": "control",
+  "place": "bratislava",
+  "lat": 48.125221,
+  "lon": 17.105322
+ },
+ {
+  "id": "bratis3",
+  "group": "control",
+  "place": "bratislava",
+  "lat": 48.133847,
+  "lon": 17.081109
+ },
+ {
+  "id": "bratis4",
+  "group": "control",
+  "place": "bratislava",
+  "lat": 48.139759,
+  "lon": 17.116595
+ },
+ {
+  "id": "bratis5",
+  "group": "control",
+  "place": "bratislava",
+  "lat": 48.134149,
+  "lon": 17.098284
+ },
+ {
+  "id": "bratis6",
+  "group": "control",
+  "place": "bratislava",
+  "lat": 48.147247,
+  "lon": 17.110975
+ },
+ {
+  "id": "bratis7",
+  "group": "control",
+  "place": "bratislava",
+  "lat": 48.129454,
+  "lon": 17.095402
+ },
+ {
+  "id": "bratis8",
+  "group": "control",
+  "place": "bratislava",
+  "lat": 48.143027,
+  "lon": 17.140865
+ },
+ {
+  "id": "amster1",
+  "group": "control",
+  "place": "amsterdam",
+  "lat": 52.356054,
+  "lon": 4.898402
+ },
+ {
+  "id": "amster2",
+  "group": "control",
+  "place": "amsterdam",
+  "lat": 52.366051,
+  "lon": 4.865282
+ },
+ {
+  "id": "amster3",
+  "group": "control",
+  "place": "amsterdam",
+  "lat": 52.3642,
+  "lon": 4.893758
+ },
+ {
+  "id": "amster4",
+  "group": "control",
+  "place": "amsterdam",
+  "lat": 52.370366,
+  "lon": 4.919132
+ },
+ {
+  "id": "amster5",
+  "group": "control",
+  "place": "amsterdam",
+  "lat": 52.362669,
+  "lon": 4.884032
+ },
+ {
+  "id": "amster6",
+  "group": "control",
+  "place": "amsterdam",
+  "lat": 52.379235,
+  "lon": 4.892711
+ },
+ {
+  "id": "amster7",
+  "group": "control",
+  "place": "amsterdam",
+  "lat": 52.370162,
+  "lon": 4.914805
+ },
+ {
+  "id": "amster8",
+  "group": "control",
+  "place": "amsterdam",
+  "lat": 52.387896,
+  "lon": 4.88806
+ },
+ {
+  "id": "berlin1",
+  "group": "control",
+  "place": "berlin",
+  "lat": 52.53202,
+  "lon": 13.439458
+ },
+ {
+  "id": "berlin2",
+  "group": "control",
+  "place": "berlin",
+  "lat": 52.535528,
+  "lon": 13.356126
+ },
+ {
+  "id": "berlin3",
+  "group": "control",
+  "place": "berlin",
+  "lat": 52.489177,
+  "lon": 13.365107
+ },
+ {
+  "id": "berlin4",
+  "group": "control",
+  "place": "berlin",
+  "lat": 52.501749,
+  "lon": 13.413273
+ },
+ {
+  "id": "berlin5",
+  "group": "control",
+  "place": "berlin",
+  "lat": 52.513629,
+  "lon": 13.422864
+ },
+ {
+  "id": "berlin6",
+  "group": "control",
+  "place": "berlin",
+  "lat": 52.531676,
+  "lon": 13.361094
+ },
+ {
+  "id": "berlin7",
+  "group": "control",
+  "place": "berlin",
+  "lat": 52.526796,
+  "lon": 13.417587
+ },
+ {
+  "id": "berlin8",
+  "group": "control",
+  "place": "berlin",
+  "lat": 52.520218,
+  "lon": 13.401662
+ }
+]

@@ -1,0 +1,185 @@
+{
+ "paris17": [
+  {
+   "k": "f",
+   "year": 2025,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2021,
+   "pano": false
+  }
+ ],
+ "paris26": [
+  {
+   "k": "f",
+   "year": 2017,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2017,
+   "pano": false
+  }
+ ],
+ "hkalli1": [
+  {
+   "k": "f",
+   "year": 2025,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2024,
+   "pano": false
+  }
+ ],
+ "tallin2": [
+  {
+   "k": "f",
+   "year": 2023,
+   "pano": false
+  }
+ ],
+ "sparis2": [
+  {
+   "k": "f",
+   "year": 2021,
+   "pano": false
+  }
+ ],
+ "sparis34": [
+  {
+   "k": "f",
+   "year": 2024,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2015,
+   "pano": false
+  }
+ ],
+ "sparis39": [],
+ "sparis40": [
+  {
+   "k": "b",
+   "year": 2021,
+   "pano": false
+  }
+ ],
+ "sparis51": [
+  {
+   "k": "b",
+   "year": 2021,
+   "pano": false
+  }
+ ],
+ "sparis53": [
+  {
+   "k": "f",
+   "year": 2020,
+   "pano": false
+  }
+ ],
+ "sparis64": [],
+ "sparis65": [],
+ "sparis67": [],
+ "sparis74": [
+  {
+   "k": "f",
+   "year": 2019,
+   "pano": false
+  }
+ ],
+ "sparis77": [],
+ "sparis105": [],
+ "sparis109": [],
+ "sparis135": [],
+ "sparis154": [
+  {
+   "k": "f",
+   "year": 2018,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2018,
+   "pano": true
+  }
+ ],
+ "sparis158": [
+  {
+   "k": "f",
+   "year": 2017,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "sparis169": [],
+ "sparis174": [
+  {
+   "k": "b",
+   "year": 2019,
+   "pano": false
+  }
+ ],
+ "sparis175": [
+  {
+   "k": "f",
+   "year": 2020,
+   "pano": false
+  }
+ ],
+ "sparis178": [],
+ "sparis185": [
+  {
+   "k": "f",
+   "year": 2016,
+   "pano": false
+  }
+ ],
+ "sparis187": [],
+ "sparis199": [],
+ "shkesku1": [
+  {
+   "k": "f",
+   "year": 2024,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2024,
+   "pano": false
+  }
+ ],
+ "shkampp7": [
+  {
+   "k": "f",
+   "year": 2020,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2020,
+   "pano": false
+  }
+ ],
+ "shpasil4": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2025,
+   "pano": false
+  }
+ ]
+}

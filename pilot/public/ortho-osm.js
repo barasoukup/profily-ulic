@@ -1017,7 +1017,7 @@ export function besidePassport({ osm, frame, dir, way, st, edges = [], symbols =
   const symT = symbols.map((p) => { const [t, u] = tu(p.x, p.y); return { t, u, code: p.code }; }).filter((p) => Math.abs(p.u) < 15);
   const symbolAt = (a, b) => { const n = new Map(); for (const p of symT) if (p.t > a && p.t < b) n.set(p.code, (n.get(p.code) || 0) + 1); return n.size ? [...n].sort((x, y) => y[1] - x[1])[0][0] : null; };
   const bboxOf = (pts) => [Math.min(...pts.map((p) => p[0])), Math.min(...pts.map((p) => p[1])), Math.max(...pts.map((p) => p[0])), Math.max(...pts.map((p) => p[1]))];
-  const rect = (code, label, s, e) => { const ring = [xy(s, -ALONG), xy(e, -ALONG), xy(e, ALONG), xy(s, ALONG), xy(s, -ALONG)]; return { code, label, guess: true, orthoOsm: true, rings: [ring], bbox: bboxOf(ring) }; };
+  const rect = (code, label, s, e) => { const ring = [xy(s, -ALONG), xy(e, -ALONG), xy(e, ALONG), xy(s, ALONG), xy(s, -ALONG)]; return { code, label, guess: true, orthoOsm: true, rings: [ring], bbox: bboxOf(ring), span: [Math.min(s, e), Math.max(s, e)] }; };
   const LABEL = { 401: "zeleň (technická mapa)", 702: "chodník (technická mapa)", 1003: "zpevněná plocha (technická mapa)", 603: "dvůr (technická mapa)", 704: "parkoviště (technická mapa)" };
   // The national map's lawns and car parks (ZBGIS, towns/slovensko.js) say what a piece is where they cover its middle
   // (front gardens: their image is as green as the paving, 0.12–0.32 against 0.04–0.20).
@@ -1148,12 +1148,32 @@ export function besidePassport({ osm, frame, dir, way, st, edges = [], symbols =
         if (piece(s, e, sg < 0 ? e : s, !walked && !walkAt)) walked = true;
       }
     }
+    // A strip of paving up to FACADE_STRIP wide between a sidewalk and the house it ends at is the sidewalk's own (the
+    // house's outline drawn a little off the map's sidewalk: Rue des Tournelles in Paris 0.65 m, Helsinki's YLRE; Bára
+    // 26. 11. 2026, evaluation/facade-strip). ?off=fasada: as before.
+    if (!farEnd && !P.off?.has("fasada") && (to === house || to === o.facade[side]) && out.length > before) facadeStrip(out, before, to, sg, at);
     // The house found beside the cut only: its front across the cut, the profile ends at it.
     // With ?off=mapfill only where the surfaces have no house farther on (Tammitie in Helsinki: OSM's house beside the
     // cut stood nearer than the city's outline across it, the profile ran on past it as "neurčeno").
     if (!farEnd && out.length > before && to === o.facade[side] && (house === null || (!P.off?.has("mapfill") && sg * (house - to) > 0.3)) && o.facadeU[side] !== 0) out.push({ ...rect(601, "budova (OSM, vedle řezu)", ...(sg < 0 ? [to - HOUSE, to] : [to, to + HOUSE])), guess: false });
   }
   return out;
+}
+
+// The outermost piece of a side (out[before…], pushed from the street out) when it is paving no wider than FACADE_STRIP,
+// reaches the end `to` and has a sidewalk on its street side (the map's at(t) or the side's piece before it): it becomes
+// sidewalk (deriveProfile then joins it to its neighbour).
+const FACADE_STRIP = 1.5;
+export function facadeStrip(out, before, to, sg, at) {
+  const k = out.length - 1, p = out[k];
+  if (p.code !== 1003 || !p.span) return;
+  const [inner, outer] = sg < 0 ? [p.span[1], p.span[0]] : p.span;
+  if (Math.abs(outer - to) > 0.15 || Math.abs(outer - inner) > FACADE_STRIP + 0.01) return;
+  const prev = k > before ? out[k - 1] : null;
+  const walk = [702, 703].includes(at(inner - sg * 0.15)) || (prev?.code === 702 && prev.span && Math.abs(prev.span[sg < 0 ? 0 : 1] - inner) < 0.15);
+  if (!walk) return;
+  out[k] = { ...p, code: 702, label: "chodník u fasády (odhad)" };
+  if (P.dbg) P.dbg.facade = (P.dbg.facade || 0) + 1;
 }
 
 // The profile cut to the ends orthoOsmPolys found (polys.ends; t from the cut's centre, A below it, B above): parts
