@@ -2,7 +2,7 @@
 # profily-ulic-osm in Bára's account, served at data.streetspace.eu/osm), apart from the deploy of the site (Bára
 # 17. 11. 2026: more states will come). Each state is a job of its own (its own runner, disk and 6 h limit), all in
 # parallel; a state that fails keeps last week's file. Germany is built by its 16 Länder (tools/countries.mjs parts: de_by, de_nw …). The last job writes index.json from what R2 holds (the newest
-# file of each state) and deletes all but the two newest of each. Then the site's deploy runs (pages.yml), copying the
+# file of each state) and deletes all but the newest of each. Then the site's deploy runs (pages.yml), copying the
 # Czech and Slovak files onto Pages as a fallback. A new state: its line in tools/countries.mjs.
 # Runs weekly, by hand (optionally only some states) and when the tile scripts change on main.
 name: OSM tiles
@@ -126,7 +126,7 @@ jobs:
           aws s3 cp --endpoint-url "$ENDPOINT" site-osm/index.json "$R2/meta/${{ matrix.code }}.json" --content-type application/json
 
   # index.json from the files on R2: the newest of each state (by the upload time), so a state whose job failed keeps
-  # its previous file; then all but the two newest of each state go.
+  # its previous file; then all but the newest of each state go.
   index:
     needs: build
     if: always()

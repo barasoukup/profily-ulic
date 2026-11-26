@@ -1,16 +1,16 @@
-// The index of the OSM tiles on R2 (tools/osm_index.mjs): the newest file of each state, the two newest kept.
+// The index of the OSM tiles on R2 (tools/osm_index.mjs): the newest file of each state, the older ones deleted.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { osmIndex } from "../tools/osm_index.mjs";
 
-test("index dlaždic na R2: nejnovější soubor každého státu, dva nejnovější zůstávají", () => {
+test("index dlaždic na R2: nejnovější soubor každého státu, starší se mažou", () => {
   const o = (name, at) => ({ Key: `osm/${name}`, LastModified: at });
   const { index, remove } = osmIndex({ Contents: [
     o("cz-2026-11-16-aa.posm", "2026-11-16T10:00:00Z"), o("cz-2026-11-09-bb.posm", "2026-11-09T10:00:00Z"), o("cz-2026-11-02-cc.posm", "2026-11-02T10:00:00Z"),
     o("de-2026-11-09-dd.posm", "2026-11-09T12:00:00Z"), o("index.json", "2026-11-16T11:00:00Z"), o("cz-novy.posm", "2026-11-16T10:00:00Z"),
   ] });
   assert.deepEqual(index.files, { cz: "cz-2026-11-16-aa.posm", de: "de-2026-11-09-dd.posm" });
-  assert.deepEqual(remove, ["osm/cz-2026-11-02-cc.posm"]);
+  assert.deepEqual(remove, ["osm/cz-2026-11-09-bb.posm", "osm/cz-2026-11-02-cc.posm"]);
 });
 
 test("index dlaždic: německé země jako de_by, obdélník z meta souboru jen pro vybraný soubor", () => {

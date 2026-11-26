@@ -1,7 +1,8 @@
 // The index of the packed OSM tiles on R2 (.github/workflows/osm-tiles.yml): from the bucket's listing
 // (aws s3api list-objects-v2 --output json), the newest file of each state (<code>-<date>-<hash>.posm, by the upload
 // time) into index.json ({ files: { cz: …, sk: … }, attribution }, osmpack.js PackSet), and the files to delete (all
-// but the two newest of each state) into a list of keys.
+// but the newest of each state; Bára 26. 11. 2026: two copies of 106 packs would pass the 10 GB of R2's free tier)
+// into a list of keys.
 //   node tools/osm_index.mjs list.json index.json delete.txt [meta dir]
 import fs from "node:fs";
 
@@ -16,7 +17,7 @@ export function osmIndex(listing, metas = []) {
   for (const [code, list] of Object.entries(by).sort()) {
     list.sort((a, b) => b.at - a.at);
     files[code] = list[0].name;
-    remove.push(...list.slice(2).map((x) => x.key));
+    remove.push(...list.slice(1).map((x) => x.key));
   }
   const bbox = {};
   for (const m of metas) for (const [code, file] of Object.entries(m.files || {})) if (files[code] === file && m.bbox?.[code]) bbox[code] = m.bbox[code];
