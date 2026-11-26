@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "stredni", "why": "profily se liší jen šířkou trávníku mimo ulici; ulice se stáním po obou stranách je stejně zachycena"}
+{"n": 2, "verdict": "stejne", "jistota": "stredni", "why": "stejné složení, liší se jen šířka trávníku na straně A"}
+{"n": 3, "verdict": "X", "jistota": "vysoka", "why": "na straně A je budova (střecha), ne 34 m trávníku; X ji nevymýšlí, Y ano"}
+{"n": 4, "verdict": "stejne", "jistota": "nizka", "why": "shodné složení ulice, rozdíl jen v malých pruzích zeleně a ploše parkoviště"}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "shodné pořadí dílů, liší se jen šířka trávníku na A"}
+{"n": 6, "verdict": "stejne", "jistota": "stredni", "why": "rozdíl pouhých 0,5 m zeleně na straně B"}
+{"n": 7, "verdict": "stejne", "jistota": "stredni", "why": "shodné složení, liší se jen trávník na A o 0,7 m"}
+{"n": 8, "verdict": "X", "jistota": "stredni", "why": "na A stojí fasáda hned u chodníku, zeleň 1,3 m v Y tam není"}
+{"n": 9, "verdict": "stejne", "jistota": "nizka", "why": "obě odpovídají po okraj ulice; Y navíc jen trávník mimo ulici"}
+{"n": 10, "verdict": "stejne", "jistota": "stredni", "why": "rozdíl jen 0,5 m trávníku na A"}

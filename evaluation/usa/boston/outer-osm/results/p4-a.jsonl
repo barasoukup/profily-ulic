@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "stredni", "why": "Oba profily mají stejné složení bez parkování (na fotce stojí auta u obrub); liší se jen o 0,6 m zeleně u A."}
+{"n": 2, "verdict": "stejne", "jistota": "nizka", "why": "Složitá křižovatka s tramvají; oba profily mají totéž složení, liší se jen šířkou zeleně u A (1,3 m)."}
+{"n": 3, "verdict": "X", "jistota": "stredni", "why": "U A je fasáda/střecha hned u ulice, Y tam dává 33,9 m zeleně přes budovu; X má pás jen 1,5 m, zbytek (dva pruhy, chodníky) shodný."}
+{"n": 4, "verdict": "stejne", "jistota": "nizka", "why": "Stejné složení (chodník, 2 pruhy, stání, chodník, plocha parkoviště); rozdíl jen 0,7 m zeleně u A a 0,4 m u B."}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "Shodné složení (chodník, stání, 2 pruhy, cyklopruh); liší se jen šířkou zeleně u A (3,4 vs 5,1 m), ortofoto ji neurčuje."}
+{"n": 6, "verdict": "stejne", "jistota": "vysoka", "why": "Profily jsou prakticky totožné (rozdíl 0,5 m u zeleně na B)."}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "Křižovatka; oba profily mají totéž složení a liší se jen o 0,7 m zeleně u A, žádný nesedí přesně."}
+{"n": 8, "verdict": "X", "jistota": "stredni", "why": "U A fasáda stojí přímo za chodníkem, takže Y se zbytečnou zelení 1,3 m nesedí; ostatní stejné (chodník, stání, 2 pruhy, stání, chodník), celková šířka X odpovídá."}
+{"n": 9, "verdict": "stejne", "jistota": "stredni", "why": "Strana A nekončí fasádou (park/prázdná plocha), po okraj ulice jsou profily shodné; Y navíc zeleň přes park, což se nehodnotí."}
+{"n": 10, "verdict": "stejne", "jistota": "stredni", "why": "Stejné složení (chodník, cyklopruh, krajnice, 3 pruhy), rozdíl jen 0,5 m zeleně u A."}

@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "úzká ulice mezi fasádami s parkujícími auty; oba profily mají shodné jádro, liší se jen zelení na konci B, která v ortofotu není ani jednoznačně chybná"}
+{"n": 2, "verdict": "stejne", "jistota": "vysoka", "why": "profily se liší jen o 0,1-0,4 m zeleně; složení odpovídá (chodník, stání, vozovka, chodník)"}
+{"n": 3, "verdict": "stejne", "jistota": "stredni", "why": "stejné složení 3+3 pruhy s mediánem, liší se jen délka zeleně na konci B"}
+{"n": 4, "verdict": "X", "jistota": "nizka", "why": "na straně A je parkoviště (plocha) a pak úzký pás zeleně; X to zachycuje plochou 1,5 m, Y má jen zeleň"}
+{"n": 5, "verdict": "stejne", "jistota": "stredni", "why": "profily jsou shodné kromě zeleně 3,4 vs 3,7 m na straně A"}
+{"n": 6, "verdict": "stejne", "jistota": "stredni", "why": "po okraj ulice (chodník až chodník) jsou shodné; Y jen přidává dvorek na straně A, který se nehodnotí"}
+{"n": 7, "verdict": "X", "jistota": "nizka", "why": "chodník na straně A začíná asi 3-4 m od okraje; X (4,3 m zeleně) sedí o něco lépe než Y (5,8 m)"}
+{"n": 8, "verdict": "stejne", "jistota": "nizka", "why": "shodné složení, liší se jen zelení 1,1 vs 2,8 m mezi chodníkem a parkovištěm na straně B"}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "na straně A je hned chodník a fasáda, X přidává 12,6 m zeleně, která tam není; zbytek (tramvaj, vozovka, stání, chodník) je shodný"}
+{"n": 10, "verdict": "stejne", "jistota": "vysoka", "why": "profily se liší jen o 0,4 m zeleně na straně A"}

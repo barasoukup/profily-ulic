@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "nizka", "why": "Na straně A je za parkovištěm hnědý travnatý pás před chodníkem, Y ho má; jinak profily shodné (stání po obou stranách chybí oběma)."}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "Za chodníkem vpravo je tmavý pás stromů před parkovištěm, X ho má jako zelen 5.1, Y končí chodníkem."}
+{"n": 3, "verdict": "stejne", "why": "Profily se liší jen o 0,4 m zeleně na kraji; složení odpovídá (cihlový chodník, stání, pruh, cyklopruh, stání, chodník).", "jistota": "vysoka"}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "Vpravo za krajnicí je zvýšený pás cca 4 m a pak křoviny až k B; Y s chodníkem 3,9 a zelení to vystihuje lépe než úzký chodník 2,1 v X."}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "Rozdíl je jen 0,9 m zeleně na konci; oba profily s čtyřmi úzkými pruhy a obrovským chodníkem u křižovatky jsou stejně hrubé."}
+{"n": 6, "verdict": "stejne", "jistota": "stredni", "why": "Shodné složení (trávník, chodník, krajnice/stání, dva pruhy, chodník); liší se jen 1,1 m trávníku."}
+{"n": 7, "verdict": "stejne", "jistota": "vysoka", "why": "Profily se liší jen o 0,7 m zeleně na konci."}
+{"n": 8, "verdict": "stejne", "jistota": "stredni", "why": "Totéž složení a šířky, liší se jen délka trávníku na straně A (14,9 vs 12,9 m)."}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "Na straně A je hned za chodníkem budova (střecha), ne 13 m zeleně jako v X; zbytek shodný."}
+{"n": 10, "verdict": "stejne", "jistota": "stredni", "why": "Složení i šířky shodné, liší se jen koncová zeleň o 1,8 m."}

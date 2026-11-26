@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "stredni", "why": "Shodné složení a šířky, liší se jen o 1 m zeleně na okraji u B."}
+{"n": 2, "verdict": "stejne", "jistota": "nizka", "why": "Shodné složení, liší se jen zeleň před domy u B (5 vs 3,1 m)."}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "Y přidává pás zeleně za chodníkem u B, který je na ortofotu vidět."}
+{"n": 4, "verdict": "stejne", "jistota": "nizka", "why": "Totéž složení, rozdíly jen o 0,5 až 1 m zeleně na okrajích."}
+{"n": 5, "verdict": "stejne", "jistota": "stredni", "why": "Totéž složení, rozdíl 0,3 m zeleně u A."}
+{"n": 6, "verdict": "Y", "jistota": "nizka", "why": "Za chodníkem u B je parkoviště, ne 20 m zeleně; Y končí hned za chodníkem."}
+{"n": 7, "verdict": "stejne", "jistota": "stredni", "why": "Rozdíl jen 0,3 m zeleně u A."}
+{"n": 8, "verdict": "stejne", "jistota": "nizka", "why": "Totéž složení, rozdíl 1,8 m zeleně na konci."}
+{"n": 9, "verdict": "stejne", "jistota": "nizka", "why": "Totéž složení, rozdíl 0,7 m zeleně na konci."}
+{"n": 10, "verdict": "X", "jistota": "stredni", "why": "Y má na straně A 12,8 m zeleně, kde ortofoto ukazuje budovu a zpevněnou plochu; ulice začíná chodníkem."}

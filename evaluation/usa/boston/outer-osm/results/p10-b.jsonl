@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "stredni", "why": "Složení stejné, Y přesněji trefuje šířku k fasádě vpravo (asi 38 m) a okraj chodníku vlevo."}
+{"n": 2, "verdict": "stejne", "jistota": "nizka", "why": "Profily se liší jen 1,1 m zeleně na kraji, ortofoto to nerozliší."}
+{"n": 3, "verdict": "stejne", "jistota": "nizka", "why": "Liší se jen 2,1 m zeleně na A; složení u obou neodpovídá (vlevo trávník a dlažba)."}
+{"n": 4, "verdict": "X", "jistota": "nizka", "why": "Stejné složení, vozovka leží dál od A (asi 24 m), X se blíží více."}
+{"n": 5, "verdict": "Y", "jistota": "nizka", "why": "Stejné složení, vozovka začíná asi 19 m od A, Y je o 1,4 m blíž."}
+{"n": 6, "verdict": "stejne", "jistota": "nizka", "why": "Obě mají vozovku příliš blízko A a vpravo zeleň místo zpevněné plochy; rozdíl 3 m malý."}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "Stejné složení, rozdíl 0,6 m zeleně nelze změřit."}
+{"n": 8, "verdict": "stejne", "jistota": "nizka", "why": "Posun jen 0,6 m mezi plochou a zelení, jinak totožné."}
+{"n": 9, "verdict": "stejne", "jistota": "nizka", "why": "Liší se jen 1,2 m zeleně na konci B."}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "Liší se jen 0,5 m zeleně u A, složení stejné."}

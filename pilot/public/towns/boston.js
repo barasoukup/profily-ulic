@@ -97,8 +97,9 @@ const prepare = (runs, { tags, tracks, cycleTracks, osmAreas }) => {
   // (Off, ?outergaps=1 on: the gaps beyond the outer sidewalk by OSM and the orthophoto, planimetrics.js outerGaps; the blind
   // A/B of 52 new arterials did not show it better, 18 : 16, evaluation/usa/boston/outer/ZPRAVA.md.)
   if (param("outergaps") === "1") outerGaps(runs, osmAreas());
-  // (Off, ?outerosm=1 on: the same gaps filled with OSM's houses, lots and squares only, the orthophoto left out: the part
-  // that did better in that A/B, 13 : 8; evaluation/usa/boston/outer-osm/ZPRAVA.md.)
+  // (Off, ?outerosm=1 on: the same gaps filled with OSM's houses, lots and squares only, the orthophoto left out, the part
+  // that did better in that A/B, 13 : 8; the blind A/B of 102 changed new arterials 24 : 22, not shown better,
+  // evaluation/usa/boston/outer-osm/ZPRAVA.md.)
   else if (param("outerosm") === "1") outerGaps(runs, osmAreas(), { image: false });
   if (!WALKED.has(tags?.highway) && !off("roadtracks")) osmTracks(runs, cycleTracks());
 };

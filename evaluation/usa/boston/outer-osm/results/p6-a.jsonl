@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "Profily se liší jen pásem zeleně 4,7 m na straně B; ulice mezi fasádami je široká asi 24 m, delší X ji vyplňuje lépe."}
+{"n": 2, "verdict": "stejne", "jistota": "stredni", "why": "Stejné složení i pořadí, rozdíly jen v desetinách metru zeleně u okraje."}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "Stejné složení (3 pruhy, pás, 3 pruhy); zeleň za pravou vozovkou po plot měří asi 11 m, blíž 10,5 m."}
+{"n": 4, "verdict": "X", "jistota": "nizka", "why": "Vlevo za parkovištěm je úzký zelený pás a pak chodník; X má plochu + zeleň, Y jen zeleň. Jinak stejné."}
+{"n": 5, "verdict": "stejne", "jistota": "stredni", "why": "Profily se liší jen o 0,3 m zeleně na kraji A."}
+{"n": 6, "verdict": "Y", "jistota": "nizka", "why": "Vlevo od chodníku je předzahrádka asi 22 m k plotu a domům, Y ji zahrnuje, X ne; ostatní stejné."}
+{"n": 7, "verdict": "X", "jistota": "nizka", "why": "Zeleň před chodníkem na straně A měří asi 3,5 m, blíž X (4,3) než Y (5,8); jinak shodné složení s pásem a dvěma pruhy."}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "Vpravo za chodníkem se hned otevírá parkoviště, zelený pás je minimální; X (1,1 m) sedí lépe než Y (2,8 m)."}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "Vlevo je za vozovkou chodník a budova, žádná zeleň 12,6 m, kterou X přidává; zbytek identický."}
+{"n": 10, "verdict": "stejne", "jistota": "stredni", "why": "Totéž složení, jen o 0,4 m jiná zeleň u fasády A."}

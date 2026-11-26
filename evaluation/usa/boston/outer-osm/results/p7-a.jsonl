@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "Profily se liší jen o 0,4 m zeleně u A, obě sedí na fasády; rozdíl neměřitelný."}
+{"n": 2, "verdict": "Y", "jistota": "nizka", "why": "Zeleň u B 5,6 m končí přesně u fasády domu (asi 48 m), X je o metr kratší."}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "Strana B končí cihlovým chodníkem a fasádou asi 4 m za jízdním pruhem; X přidává 3,6 m zeleně, což je moc, Y 1,5 m sedí."}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "Mezi chodníkem a parkovištěm na straně A je úzký pás zeleně a pak zpevněná plocha parkoviště; Y je zahrnuje, X ne."}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "Les zakrývá okraje, rozdíl 1,2 m zeleně u B nelze ověřit; složení obou stejné."}
+{"n": 6, "verdict": "Y", "jistota": "nizka", "why": "Zelený pás mezi chodníkem a fasádou na B je asi 3 m, Y (3,9) je blíž než X (2,1)."}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "Liší se jen 0,3 m zeleně u A, nerozlišitelné."}
+{"n": 8, "verdict": "Y", "jistota": "nizka", "why": "Zeleň u A mezi chodníkem a domy s verandami je spíš kratší, Y (4,3) o trochu blíž než X (4,9)."}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "Chodník na B končí u fasády, X přidává 0,5 m zeleně do budovy."}
+{"n": 10, "verdict": "X", "jistota": "stredni", "why": "Na B za chodníkem je hřiště, ne ulice; Y přidává 28,9 m zeleně mimo okraj ulice, hodnotí se jen po okraj ulice."}

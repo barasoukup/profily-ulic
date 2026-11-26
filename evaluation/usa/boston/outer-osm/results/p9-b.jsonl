@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "Profily se liší jen o 0,7 m zeleně na začátku; složení shodné (cyklostezka, 2 pruhy, zelen, chodník), fotka nepoužitelná."}
+{"n": 2, "verdict": "stejne", "jistota": "stredni", "why": "Totéž složení (4 pruhy, stání, cyklostezky, chodníky), rozdíl jen 0,2-0,5 m zeleně na okrajích."}
+{"n": 3, "verdict": "X", "jistota": "stredni", "why": "Vpravo chodník/plaza sahá k fasádě, Y přidává 8 m zeleně za ni; střed s dělicím pásem a 2+2 pruhy shodný."}
+{"n": 4, "verdict": "stejne", "jistota": "nizka", "why": "Stejné složení se 4 pruhy; vlevo ulice nekončí fasádou, takže 12 m zeleně navíc v Y se nehodnotí."}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "Shodné složení, rozdíl jen 1,3 m zeleně vlevo; oba vynechávají stání vpravo a chodník vpravo."}
+{"n": 6, "verdict": "stejne", "jistota": "nizka", "why": "Shodné složení, jediný rozdíl 1,3 m zeleně vpravo u fasády."}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "Profily shodné kromě 0,4 m zeleně; řez vede složitou křižovatkou, fotka ukazuje jinou situaci."}
+{"n": 8, "verdict": "stejne", "jistota": "nizka", "why": "Shodné složení i šířky, liší se jen okrajová zeleň, která na ortofotu není vidět."}
+{"n": 9, "verdict": "stejne", "jistota": "stredni", "why": "Shodné složení vozovky; X má 15 m zeleně za chodníkem vpravo, kde ulice nekončí fasádou, takže se nehodnotí."}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "Shodné složení vozovky (obě podhodnocují počet pruhů); Y navíc 20 m zeleně za okrajem, kde je parkoviště, mimo hodnocenou ulici."}

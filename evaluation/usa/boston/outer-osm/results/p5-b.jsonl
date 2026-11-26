@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "stredni", "why": "Mezi parkovištěm vlevo a chodníkem je na ortofotu travnatý pás (asi 3-4 m), který má jen Y; zbytek stejný, 2 pruhy s dvojitou čárou sedí."}
+{"n": 2, "verdict": "X", "jistota": "nizka", "why": "Za posledním chodníkem u B je na ortofotu tmavý zelený pás se stromy před parkovištěm, ten má jen X; složení jinak shodné."}
+{"n": 3, "verdict": "stejne", "jistota": "vysoka", "why": "Profily se liší jen o 0,4 m zeleně na začátku."}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "Za posledním pruhem je chodník asi 4 m a za ním zeleň/pozemek (ortofoto, fotka f), což odpovídá Y, X má chodník jen 2,1 m a nic za ním."}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "Profily se liší jen o 0,9 m zeleně na konci; ortofoto je křižovatka s parkovištěm, nelze rozlišit."}
+{"n": 6, "verdict": "X", "jistota": "nizka", "why": "Složení shodné, X má trávník vlevo o 1 m širší a chodník tak sedí blíž skutečné poloze (asi 27 m)."}
+{"n": 7, "verdict": "stejne", "jistota": "stredni", "why": "Stejné složení i šířky, liší se jen o 0,7 m zeleně u B."}
+{"n": 8, "verdict": "stejne", "jistota": "nizka", "why": "Stejné složení (2+2 pruhy s dělicím pásem, cyklopruhy), liší se jen 2 m zeleně na začátku."}
+{"n": 9, "verdict": "X", "jistota": "nizka", "why": "Složení stejné, X má před chodníkem zeleň (pás stromů před fasádou na ortofotu) a chodník sedí blíže skutečné poloze než u Y, který začíná chodníkem v místě budovy."}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "Stejné složení odpovídající fotkám (2+2 pruhy, střední pás, zeleň, chodník), liší se jen 1,8 m zeleně na konci."}

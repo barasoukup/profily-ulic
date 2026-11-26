@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "Profily se liší jen o 0,7 m zeleně vlevo; složení stejné, fotka nepoužitelná."}
+{"n": 2, "verdict": "stejne", "jistota": "nizka", "why": "Stejné složení a 4 pruhy, rozdíl jen v okrajové zeleni 0,2 a 0,5 m."}
+{"n": 3, "verdict": "X", "jistota": "stredni", "why": "Y přidává 8 m zeleně vpravo za chodník, kde je už dlážděné náměstí a budova; jinak shodné."}
+{"n": 4, "verdict": "stejne", "jistota": "nizka", "why": "Čtyři pruhy, chodník a pás zeleně odpovídají v obou; Y jen přidává trávník vlevo, X končí zelení."}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "Totožné složení; rozdíl 1,3 m zeleně na kraji. Oba mají cyklopruhy, které na fotkách nevidím."}
+{"n": 6, "verdict": "Y", "jistota": "nizka", "why": "Vpravo za chodníkem je hned fasáda, X přidává 1,3 m zeleně navíc; jinak shodné."}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "Složení totožné, rozdíl jen 0,4 m zeleně vpravo."}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "Složení shodné (2 pruhy, pás, 4 pruhy); Y dává 3 m zeleně před chodník vlevo, kde je zpevněná plocha u budovy."}
+{"n": 9, "verdict": "X", "jistota": "nizka", "why": "Vpravo za chodníkem je zahrada s domem v dálce, X ji zahrnuje; složení jinak stejné (obě bez stání vpravo)."}
+{"n": 10, "verdict": "X", "jistota": "stredni", "why": "Y přidává 20 m zeleně vpravo, ale tam je parkoviště a budova, ne zeleň; jinak shodné."}

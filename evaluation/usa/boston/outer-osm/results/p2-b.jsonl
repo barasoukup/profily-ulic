@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "stredni", "why": "profily se liší jen o 1 m zeleně na straně B, složení shodné se skutečností (3+3 pruhy, střední pás, cyklopruhy)"}
+{"n": 2, "verdict": "stejne", "jistota": "stredni", "why": "jediný rozdíl 0,4 m zeleně u B, složení shodné"}
+{"n": 3, "verdict": "stejne", "jistota": "nizka", "why": "křižovatka, rozdíl jen v zeleni na okrajích, složení shodné"}
+{"n": 4, "verdict": "stejne", "jistota": "stredni", "why": "stejné složení se dvěma pruhy a dělicím pásem v každém směru, rozdíl jen 1,2 m zeleně u A"}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "rozdíl jen 0,6 m zeleně u A, jinak totožné"}
+{"n": 6, "verdict": "Y", "jistota": "nizka", "why": "X končí 1,8 m zeleně za fasádou na straně B, Y končí fasádou; jinak totožné"}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "Y má 13,5 m zeleně před chodníkem na straně A, kde je ale fasáda domů těsně u chodníku"}
+{"n": 8, "verdict": "stejne", "jistota": "nizka", "why": "liší se jen 1,8 m zeleně u A, u fasády je jen úzký pás"}
+{"n": 9, "verdict": "stejne", "jistota": "nizka", "why": "Y přidává 4,7 m zeleně za chodník u B, tam je trávník a parkoviště; jinak totožné"}
+{"n": 10, "verdict": "stejne", "jistota": "stredni", "why": "rozdíl jen 0,4 m zeleně u B, složení shodné"}

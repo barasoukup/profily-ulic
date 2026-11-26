@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "nizka", "why": "Stejné složení (parkování, 2 pruhy, parkování, chodník); Y má širší zeleň vlevo a celkově sedí blíž k fasádě vpravo."}
+{"n": 2, "verdict": "X", "jistota": "nizka", "why": "Stejné složení (cyklopásy, stání, 2 pruhy); chodník na straně A u fasády sedí v X o něco přesněji."}
+{"n": 3, "verdict": "stejne", "jistota": "nizka", "why": "Stejné složení a šířky; rozdíl je jen 2,1 m zeleně na straně A, podklady (rozmazaná fotka, stavba) ho nerozliší."}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "Stejné složení (3 + 2 pruhy, střední pás); u fasády vlevo je ve skutečnosti chodník bez široké zeleně, X má zeleně navíc 9 m, Y 6 m."}
+{"n": 5, "verdict": "X", "jistota": "nizka", "why": "Stejné složení; pruhy a chodník vlevo sedí v X blíž (zelený pás před domem asi 2 m, v Y 3 m)."}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "Na straně A je vozovka se stáním hned u obrubníku/budovy bez zeleného pásu; X tam má 3,4 m zeleně navíc."}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "Totožné složení (cyklopruh, 3 pruhy, střední pás, pruh, krajnice, cyklopruh, chodník), liší se jen o 0,6 m zeleně."}
+{"n": 8, "verdict": "stejne", "jistota": "nizka", "why": "Totožné složení a šířky, jen jiné dělení vnější plochy a zeleně na straně A (součet stejný)."}
+{"n": 9, "verdict": "X", "jistota": "nizka", "why": "Stejné složení (2 pruhy, chodník, trávník, stromy); celková šířka X dosáhne lépe k fasádě vpravo."}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "Stejné složení (stání, 2 pruhy, stání); rozdíl jen 0,5 m zeleně u fasády, na straně B chybí chodník v obou."}

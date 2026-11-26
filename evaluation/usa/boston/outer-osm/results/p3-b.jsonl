@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "stredni", "why": "Skladba stejna (chodnik, cyklopruhy, 2 pruhy); X pridava 20 m zeleni vlevo, kde je budova/dlazba, a zeleny pas vpravo u parkoviste."}
+{"n": 2, "verdict": "stejne", "jistota": "nizka", "why": "Profily se lisi jen o 0,8 m zeleni mimo ulici vlevo."}
+{"n": 3, "verdict": "stejne", "jistota": "nizka", "why": "Lisi se jen sirka praveho chodniku o 0,2 m."}
+{"n": 4, "verdict": "stejne", "jistota": "nizka", "why": "Totez slozeni, rozdil 0,4 m zeleni na okraji."}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "Totez slozeni, rozdil jen v sirce zeleni za chodniky (mimo ulici)."}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "Vpravo za vozovkou je parkoviste, ne 28,7 m zeleni jako v X; skladba jinak stejna."}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "Totez slozeni, rozdil 0,6 m zeleni na okraji."}
+{"n": 8, "verdict": "stejne", "jistota": "nizka", "why": "Totez slozeni; X ma navic uzky pas zeleni vlevo a vpravo, nerozhodne (vpravo je fasada)."}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "X pridava vlevo dalsi zelen/chodnik/zelen v miste budovy (29 m pred vozovkou), Y je blize skutecnemu chodniku u vozovky; zbytek stejny."}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "Totez slozeni, rozdil jen 0,3 m zeleni na okraji."}

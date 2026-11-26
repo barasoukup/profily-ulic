@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "Oba mají shodné složení, které neodpovídá (chybí podélné stání vlevo a plocha parkoviště); liší se jen o 1 m zeleně na konci."}
+{"n": 2, "verdict": "Y", "jistota": "nizka", "why": "Složení i šířky stejné (2 pruhy, krajnice, chodníky); za pravým chodníkem je domovní předzahrádka asi 3 m, takže Y (3,1 m) sedí o něco líp než 5 m."}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "Stejné složení; vpravo za chodníkem je pruh zeleně asi 2-5 m, který má jen Y. Oba mají cyklopruh, který je ve skutečnosti jen sharrow."}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "Složení shodné a správné (stání, cyklopruh, 3 pruhy, cyklopruh); Y má vlevo zeleň 3,7 m a vpravo 26,8 m blíž ortofotu, rozdíl minimální."}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "Totéž složení; oba vlevo místo parkování dávají cyklopruh, rozdíl jen 0,3 m zeleně."}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "Složení shodné (chodník, chráněné cyklopruhy, 2 pruhy); vpravo za chodníkem je jen úzký pás stromů a pak parkoviště, ne 20 m zeleně, takže Y s 2,8 m je lepší."}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "Prakticky shodné profily, Y jen přidává 0,3 m zeleně; vpravo za vozovkou je parkoviště, ani jeden to nezachytil."}
+{"n": 8, "verdict": "stejne", "jistota": "nizka", "why": "Profily shodné, liší se jen poslední zelení 3,8 vs 2 m; oba špatně pojímají křižovatku s boční ulicí."}
+{"n": 9, "verdict": "stejne", "jistota": "nizka", "why": "Stejné složení (chodník, krajnice, 2 pruhy, krajnice, chodník), liší se jen o 0,7 m zeleně u fasády."}
+{"n": 10, "verdict": "X", "jistota": "nizka", "why": "Oba mají stejný střed (stání, cyklopruh, 2 pruhy), ale Y přidává vlevo 12,8 m zeleně, kde je ve skutečnosti budova a zpevněná plocha; X je bez ní blíž."}

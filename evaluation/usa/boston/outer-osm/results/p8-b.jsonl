@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "Profily se liší jen o 0,6 m zeleně u budovy A, nerozhodnutelné z podkladů."}
+{"n": 2, "verdict": "X", "jistota": "nizka", "why": "Chodník na ortofotu navazuje přímo na fasádu A, zeleň 0,6 m navíc u Y tam není vidět."}
+{"n": 3, "verdict": "stejne", "jistota": "nizka", "why": "Rozdíl jen 0,7 m zeleně na kraji A, jinak shodné složení."}
+{"n": 4, "verdict": "stejne", "jistota": "nizka", "why": "Rozdíl 0,4 m zeleně u A, složení shodné."}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "Rozdíl 0,5 m zeleně, složení shodné."}
+{"n": 6, "verdict": "Y", "jistota": "nizka", "why": "Na straně B je za chodníkem krátký pás zeleně a pak dům, Y (1,3 m) sedí lépe než 3,9 m."}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "Liší se jen o 0,3 m zeleně na konci."}
+{"n": 8, "verdict": "stejne", "jistota": "nizka", "why": "Rozdíl 0,7 m zeleně na kraji B, složení shodné."}
+{"n": 9, "verdict": "X", "jistota": "nizka", "why": "Zelený pás mezi budovou A a vozovkou měří na ortofotu asi 8,5 m, blíž X (7,7) než Y (6,2)."}
+{"n": 10, "verdict": "X", "jistota": "stredni", "why": "Fasáda A leží hned u chodníku, zeleň 3,2 m navíc v Y by byla uvnitř budovy."}
