@@ -444,6 +444,19 @@ Normy DDOT (DEM 2023, Bicycle Facility Design Guide 2020) a NACTO jen oranžově
 směr (IFC 503.2.1, 18 DCMR § 2405), bez řádku značek, bez paneláků, severoamerické domy, mobiliář a autobus Metrobus
 (`northamerica/`, `washington/`; `evaluation/north-america-art/`). Hledání Photon v obdélníku metra. A/B a měření v `evaluation/usa/`.
 
+### USA: San Francisco (Bára 26. 11. 2026)
+
+Druhé metro státu `usa`: City and County of San Francisco (TIGERweb, `tools/build_staty.mjs` tabulka `METROS` = `dc`, `sf`;
+hranice města v `mesta-us.json`, `tools/build_towns_us.mjs`), okolní okresy zůstávají `closed_us`. OSM balík `us_sf` (výřez
+Geofabriku `north-america/us/california/norcal` oříznutý na obdélník města, jen R2). Město nemá polygony vozovek čitelné
+z prohlížeče, proto **`towns/sanfrancisco.js`** skládá mapu povrchů podél řezu (`planimetrics.js` s vlastním `runs`):
+uliční prostor (DataSF Right of Way Polygons, 2014) = chodník, mezi dvěma krajními obrubami SFMTA (blockface curbs, vrstva 12)
+vozovka, dvojice obrub uvnitř = ostrůvek; budovy (DataSF Building Footprints) mimo uliční prostor (leží asi 1,4 m východně,
+mezera do 2 m k domu patří domu). Stání po stranách z digitální obruby SFMTA (Curb Zones, vrstva 56; `?sfcurb=0`), podlaží
+z výšky obrysu (`?sfhouse=0`). `?sf=0` vypne vše. Bez ortofota (otevřené pro SF není, NAIP je 0,6–1 m). Chodníky varují
+podle SFMTA Sidewalk Widths, jinak jen NACTO (`evaluation/usa/sf/NORMY.md`). Ilustrace Muni (`sanfrancisco/`: autobus,
+trolejbus, LRV4, označník). Měření `evaluation/usa/sf/ZPRAVA.md`.
+
 ### Kanada: Toronto (Bára 25. 11. 2026)
 
 Stát `canada` (CA), `countries/CA.js`, `towns/canada.js`; Toronto a obce kolem (StatCan), zbytek Kanady `closed_ca`. Mapa povrchů města

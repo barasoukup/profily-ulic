@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "Úzká ulice se stáním po obou stranách a jedním pruhem; X a Y mají stejné složení, liší se jen šířkami."}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "Na fotce je pět jízdních pruhů bez stání u chodníků (rozlehlá křižovatka); X přidává stání."}
+{"n": 3, "verdict": "X", "jistota": "stredni", "why": "Úzká silnice mezi trávníky, bez stání; Y přidává parkování, které tam není."}
+{"n": 4, "verdict": "Y", "jistota": "vysoka", "why": "Dva pruhy a stání po obou stranách, chodníky; X má místo stání krajnice."}
+{"n": 5, "verdict": "X", "jistota": "stredni", "why": "Tramvajové koleje uprostřed a zaparkovaná auta po obou stranách; Y má místo stání jízdní pruhy."}
+{"n": 6, "verdict": "Y", "jistota": "vysoka", "why": "Dva jízdní pruhy a podélné stání po obou stranách; X nahrazuje stání krajnicemi."}
+{"n": 7, "verdict": "Y", "jistota": "nizka", "why": "Úzká ulice s auty stojícími jen na jedné straně a jedním širším pruhem; X dva pruhy bez stání."}
+{"n": 8, "verdict": "Y", "jistota": "nizka", "why": "Tři pruhy a zaparkovaná auta vlevo jistě; vpravo jsou stojany sdílených kol u obruby, X stání úplně vynechává."}
+{"n": 9, "verdict": "X", "jistota": "nizka", "why": "Široká třída s autobusovými pruhy a středním pásem; na straně A jsou vidět stání, X má stání na obou stranách."}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "Obě mají shodné složení (stání po obou stranách, dva pruhy), liší se jen málo šířkami."}

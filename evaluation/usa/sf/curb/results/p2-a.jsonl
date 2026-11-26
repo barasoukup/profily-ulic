@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "Úzká ulice, parkování po obou stranách, jeden jízdní pruh; X a Y mají stejnou šířku vozovky a liší se jen rozdělením."}
+{"n": 2, "verdict": "X", "jistota": "nizka", "why": "Široká vícepruhová ulice, na fotce parkování u levého okraje a asi 5 pruhů; Y parkování vynechává."}
+{"n": 3, "verdict": "X", "jistota": "stredni", "why": "Jeden pruh s krajnicemi mezi trávníky, bez parkování a chodníku; Y přidává neexistující parkování."}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "Dva pruhy s parkováním po obou stranách; X parkování nemá."}
+{"n": 5, "verdict": "X", "jistota": "nizka", "why": "Úzká ulice s parkováním po obou stranách a kolejemi uprostřed; Y má místo parkování další jízdní pruhy."}
+{"n": 6, "verdict": "Y", "jistota": "vysoka", "why": "Fotky ukazují parkující auta po obou stranách a dva pruhy se žlutou čarou; X místo toho kreslí krajnice."}
+{"n": 7, "verdict": "Y", "jistota": "nizka", "why": "Auta parkují podél jedné strany ulice, proto je Y s parkováním na jedné straně blíž než X bez něj; strana parkování ale nemusí sedět."}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "Tři pruhy, na fotkách parkující auta vlevo a řada stojanů sdílených kol u pravého obrubníku; X parkování vynechává."}
+{"n": 9, "verdict": "stejne", "jistota": "nizka", "why": "Široká ulice se středním pásem a červenými buspruhy; podklady nestačí k rozlišení krajnice a parkování na straně A."}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "Dva pruhy s parkováním po obou stranách, celková šířka stejná, liší se jen drobně."}

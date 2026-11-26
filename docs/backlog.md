@@ -169,6 +169,17 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - **Kanada (Toronto, `evaluation/canada`):** řez uprostřed The Queensway (t-48) mapu nenajde; podium s věží, komerční domy a řady se kreslí jako
   `baygable`; A/B výšek domů (`?torontohouse=0`); mapa je z 2021, cyklostezky z OSM u křižovatky ulic ukrajují i sousední (1 z 9); kosé a kolmé
   stání bez norem; předpisy obcí kolem Toronta.
+- **USA (San Francisco, 26. 11. 2026, `evaluation/usa/sf`):** šířka uličního prostoru s mapou o medián 2,5 m větší než
+  u posuzovatelů na snímku Esri (bez mapy 0,4 m): ověřit na místě, kdo má pravdu **(Bára)**; šikmé stání: digitální obruba ho
+  nepozná vždy (Indiana Street dostala podélné 2,45 m, OSM říká šikmé), zkusit brát orientaci z OSM `parking:*:orientation`;
+  úzká vozovka, ve které po vykrojení stání nezůstane pruh (Lippard Avenue); tepny jen 8 : 4 (Fell Street, O'Shaughnessy
+  Boulevard, Geary Boulevard); mapa chybí, kde uliční prostor nemá přes řez dvě obruby (3rd Street s tramvají uprostřed,
+  Great Highway, obslužné cesty); data uličního prostoru 2014 a obrysů budov 2010 (posun asi 1,4 m na východ, řešeno
+  pravidlem); podlaží z výšek obrysů neměřená; okolní okresy (San Mateo, Marin, Alameda) bez mapy povrchů zůstávají zavřené
+  **(Bára: přidat jako odhad z OSM jako předměstí Washingtonu?)**; PCC linky F a lampa Path of Gold nezapojené **(Bára:
+  PCC potřebuje tyčový sběrač místo pantografu, Path of Gold pravidlo jen pro Market Street)**; licence vrstvy obrub SFMTA
+  (`MapServer/12`) bez vlastních metadat **(Bára)**; San Francisco Fire Code § 503 (místní šířky) nečten; ortofoto pro
+  pruhy chybí (otevřené není).
 - **USA (Washington, recenze a čerstvé měření 25. 11. 2026, `evaluation/usa/fresh`):** uličky mezi domy: mezera mezi polygony se
   čte jako zeleň, i kde je zpevněný dvůr, a bere soukromé dvorky za uličkou; rampy a dálnice (3 řezy, 44 : 63 %); klik v ploše
   „Intersection“ se jen ohlásí, neposune; čísla tabulek DEM 2023 a BFDG ověřit a dát s čísly stran; předpis o stání

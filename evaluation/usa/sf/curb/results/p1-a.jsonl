@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "Stání po obou stranách a dva pruhy shodně; parkovací pás 2,0 m u X věrohodnější než úzké pruhy 2,87 m u Y"}
+{"n": 2, "verdict": "X", "jistota": "nizka", "why": "Složení stejné (stání obou stran, dva pruhy); šířky se nedají na ortofotu rozlišit, pruhy 2,7 m u Y jsou úzké"}
+{"n": 3, "verdict": "stejne", "jistota": "nizka", "why": "Skutečně stání po obou stranách, oba profily mají stání jen na jedné; shodné složení i celkem"}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "Vícepruhová silnice s dělicí čarou, vpravo stání; Y s pruhy 3,4 m a stáním 2 m sedí o něco lépe k měřítku"}
+{"n": 5, "verdict": "Y", "jistota": "stredni", "why": "Stání je na obou stranách ulice (fotky i ortofoto), X ho má jen na jedné"}
+{"n": 6, "verdict": "X", "jistota": "nizka", "why": "Stání obou stran a dva pruhy shodně; široká vozovka, stání 2,45 m přijatelnější"}
+{"n": 7, "verdict": "X", "jistota": "nizka", "why": "Složení stejné; rozdíl jen v šířkách, které nelze spolehlivě rozlišit"}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "Auta stojí na obou stranách vozovky (fotky), Y má stání na obou stranách, X krajnice"}
+{"n": 9, "verdict": "stejne", "jistota": "nizka", "why": "Stejné složení, v ulici je tramvajový pás, který nemá ani jeden; šířky nerozhodnutelné"}
+{"n": 10, "verdict": "X", "jistota": "nizka", "why": "Stejné složení; stání 2,45 m a užší pruhy odpovídají vozovce asi 12 m"}

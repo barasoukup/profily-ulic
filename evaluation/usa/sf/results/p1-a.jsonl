@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "nizka", "why": "Vozovka asi 15 m, čtyři pruhy s dvojitou žlutou uprostřed; X má pět pruhů, Y čtyři; stání na fotkách je, ale Y sedí počtem pruhů a šířkou."}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "Zahnutá silnice s trávou po stranách a obrubou; X má vozovku s krajnicemi a zelení, Y jen jeden úzký pruh."}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "Úzká ulice se stáním na obou stranách a jedním společným pruhem, domy těsně; Y sedí složením i šířkou."}
+{"n": 4, "verdict": "X", "jistota": "nizka", "why": "Vozovka asi 9 m s řadou zaparkovaných aut na jedné straně a jedním pruhem; X má stání, Y ne (strana stání je prohozená)."}
+{"n": 5, "verdict": "X", "jistota": "vysoka", "why": "Obytná ulice s dvěma pruhy a podélným stáním na obou stranách, chodníky se zelení; X sedí."}
+{"n": 6, "verdict": "Y", "jistota": "nizka", "why": "Vozovka asi 9 m se stáním a dvěma pruhy; Y je šířkou blíž, X vozovku nadhodnocuje."}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "Široká vozovka u křižovatky s asi pěti pruhy; stání je na fotce jen na jedné straně, ani X ani Y nesedí zcela."}
+{"n": 8, "verdict": "X", "jistota": "vysoka", "why": "Čtyři pruhy, střední pás, dva pruhy a chráněný cyklopruh u parku; X má správné složení, Y ne."}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "Boční ulice se stáním po obou stranách a dvěma pruhy; Y má stání, X ne."}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "Tři pruhy, dělicí čára, dva pruhy a stání u chodníku na straně B; oba profily mají totéž složení a podobné šířky."}

@@ -1,0 +1,4 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "Na ortofotu a fotkách je červený BUS pruh, jízdní pruhy a stání vedle; X má stání na obou stranách, Y stání nemá."}
+{"n": 2, "verdict": "nejde", "jistota": "nizka", "why": "Řez vede přes budovu a dvůr, fotka je 360 snímek bez čitelné ulice."}
+{"n": 3, "verdict": "nejde", "jistota": "nizka", "why": "Ortofoto je zakryté stromy a ukazuje parkoviště, ulice na něm není vidět; fotky neodpovídají."}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "Dva jízdní pruhy s dvojitou žlutou, stání na obou stranách a chodníky; Y stání vynechává a má nesmyslně široké chodníky."}

@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "vysoka", "why": "Úzká obytná ulice s parkováním po obou stranách, jeden společný pruh, malé chodníky a předzahrádky; X nemá parkování."}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "Dva jízdní pruhy mezi parkováním po obou stranách a široká vozovka kolem 12 m; Y má vozovku příliš úzkou."}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "Šikmé/kolmé stání u strany A vedle zeleného cyklopruhu, na straně B bez stání; ani jeden profil neodpovídá přesně, Y je blíž."}
+{"n": 4, "verdict": "X", "jistota": "nizka", "why": "Široký chodník u A, červené buspruhy, dělicí pás uprostřed, na straně B bus pruh, parkování a široký chodník."}
+{"n": 5, "verdict": "Y", "jistota": "nizka", "why": "Úzká ulice se sdílenými pruhy (piktokoridor), stání u strany A a úzké chodníky; X má široké chodníky bez stání."}
+{"n": 6, "verdict": "X", "jistota": "stredni", "why": "Jeden pruh mezi stáním po obou stranách a úzké chodníky se zelení; Y má nereálně široké chodníky."}
+{"n": 7, "verdict": "Y", "jistota": "nizka", "why": "Čtyřpruhová městská ulice s podélným stáním po obou stranách; X stání nemá."}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "Stání u strany A, dva jízdní pruhy se středovou čárou, na B úzký chodník a park; X nemá stání."}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "Tři jízdní pruhy s cyklopruhem a šířka vozovky kolem 12-14 m odpovídá Y; X má nereálné krajnice 6,5 m."}
+{"n": 10, "verdict": "Y", "jistota": "nizka", "why": "Dva pruhy se stáním po obou stranách, chodník u budovy na A a park bez chodníku na B."}

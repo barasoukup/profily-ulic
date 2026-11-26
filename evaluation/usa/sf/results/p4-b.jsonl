@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "vysoka", "why": "Úzká ulice s podélným stáním po obou stranách a jedním společným jízdním prostorem; X stání nemá."}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "Stání po obou stranách a dva pruhy; vozovka asi 12 m odpovídá X, Y je užší."}
+{"n": 3, "verdict": "stejne", "jistota": "nizka", "why": "Zelený cyklopruh a dva pruhy bez stání vpravo; ani X ani Y složení nesedí."}
+{"n": 4, "verdict": "X", "jistota": "nizka", "why": "Bulvár s červenými bus pruhy a středním pásem; vlevo stání nevidím, X ho tam nemá."}
+{"n": 5, "verdict": "Y", "jistota": "stredni", "why": "Fotky ukazují stání po obou stranách a dva pruhy, vozovka široká kolem 10 m; X stání nemá."}
+{"n": 6, "verdict": "X", "jistota": "stredni", "why": "Rezidenční ulice se stáním po obou stranách a vozovkou kolem 10-12 m; Y má vozovku jen 5,5 m."}
+{"n": 7, "verdict": "Y", "jistota": "nizka", "why": "Čtyři pruhy a stání po obou stranách podle fotek; ortofoto je ve stínu a nejasné."}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "Stání vlevo, dva pruhy, široká vozovka kolem 9 m, vpravo chodník; X stání nemá."}
+{"n": 9, "verdict": "X", "jistota": "nizka", "why": "Široká vozovka se stáním po stranách a tři pruhy, vpravo bez chodníku u parku; obě varianty nepřesné."}
+{"n": 10, "verdict": "Y", "jistota": "nizka", "why": "Dva pruhy, stání po stranách, vpravo bez chodníku u trávníku; Y sedí na pravý okraj."}

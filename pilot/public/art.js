@@ -42,6 +42,7 @@ export const GENERIC_VEHICLES = {
 
 // The vehicles of the North American cities (Toronto's in countries/CA.js, the others not covered yet; Bára 25. 11. 2026; evaluation/north-america-art/
 // vehicles): spread into the city's set of its state (countries/<ISO>.js art) when it is added, as TRAM and TROLLEY.
-// The second tram of San Francisco (sanfrancisco/pcc-*, the F line) has no place in a set yet.
+// The second tram of San Francisco (sanfrancisco/pcc-*, the F line) has no place in a set yet (a trolley pole: the app draws a pantograph).
+// San Francisco's set is in countries/US.js (26. 11. 2026).
 const BUS = { "bus-inbound": "bus-inbound", "bus-outbound": "bus-outbound" };
 export const NORTH_AMERICA_VEHICLES = { toronto: { ...TRAM, ...BUS }, newyork: BUS, boston: { ...TRAM, ...BUS }, sanfrancisco: { ...TRAM, ...TROLLEY, ...BUS } };
