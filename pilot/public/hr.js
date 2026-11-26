@@ -58,7 +58,7 @@ export const HR = {
   "pasportu komunikací města {town}, ZBGIS a OSM": "katastra prometnica grada {town}, ZBGIS-a i OSM-a",
   "z pasportu města": "iz katastra grada",
   "Data © státní a městské mapové služby a OpenStreetMap": "Podaci © državne i gradske kartografske službe i OpenStreetMap",
-  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· ilustracije Streetmix (CC BY-SA 4.0) i © Bára Soukupová · izvori, licencije i privatnost ·",
+  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· ilustracije Streetmix (CC BY-SA 4.0) i © Bara Soukup · izvori, licencije i privatnost ·",
   "Data {data}": "Podaci {data}",
   // ---------- app.js: map, loading, panorama ----------
   "Přiblížit": "Povećaj",
@@ -434,7 +434,7 @@ export const HR = {
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© doprinositelji OpenStreetMapa (ODbL)",
   "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) a Bára Soukupová (MIT) · obrázek CC BY-SA 4.0 · ":
-    "Ilustracije © Streetmix, streetmix.net (CC BY-SA 4.0) i Bára Soukupová (MIT) · slika CC BY-SA 4.0 · ",
+    "Ilustracije © Streetmix, streetmix.net (CC BY-SA 4.0) i Bara Soukup (MIT) · slika CC BY-SA 4.0 · ",
   "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) · obrázek CC BY-SA 4.0 · ": "Ilustracije © Streetmix, streetmix.net (CC BY-SA 4.0) · slika CC BY-SA 4.0 · ",
   "licence: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0": "licencije: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0",
 
@@ -1208,7 +1208,7 @@ export const HR_HTML = {
     © doprinositelji <a href="https://www.openstreetmap.org/copyright">OpenStreetMapa</a> (ODbL) ·
     ilustracije © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licencija
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
-    lokalne ilustracije i kôd © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
+    lokalne ilustracije i kôd © Bara Soukup (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Izvori i licencije</a> (na češkom) ·
     <a href="#kontakt" class="open-contact">kontakt</a><br>
     Spremamo presjeke (mjesto, smjer, doseg, ulicu, vrijeme), izmjene profila u ispravci podataka i u Prijedlogu (vrste i širine dijelova), klikove bez pronađene ulice (mjesto s točnošću od oko kilometar), korištene funkcije te prijave pogrešaka i poruke koje sami napišete (uz poruku i neobveznu e-adresu za odgovor, jezik stranice i državu presjeka; čuvamo ih dok ih ne izbrišemo); zapise jednog posjeta povezuje nasumičan broj jednog učitavanja stranice. IP adrese ne spremamo i ne koristimo kolačiće, postavke i posljednji profil ostaju samo u vašem pregledniku. Stranicu hostira GitHub Pages, zapis i pločice OSM-a Cloudflare. Karte i podaci

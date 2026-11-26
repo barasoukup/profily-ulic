@@ -58,7 +58,7 @@ export const ET = {
   "pasportu komunikací města {town}, ZBGIS a OSM": "{town} linna tänavaregistri, ZBGIS-i ja OSM-i",
   "z pasportu města": "linna registrist",
   "Data © státní a městské mapové služby a OpenStreetMap": "Andmed © riiklikud ja linnade kaarditeenused ning OpenStreetMap",
-  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· illustratsioonid Streetmix (CC BY-SA 4.0) ja © Bára Soukupová · allikad, litsentsid ja privaatsus ·",
+  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· illustratsioonid Streetmix (CC BY-SA 4.0) ja © Bara Soukup · allikad, litsentsid ja privaatsus ·",
   "Data {data}": "{data} andmed",
   // ---------- app.js: map, loading, panorama ----------
   "Přiblížit": "Suurenda",
@@ -426,7 +426,7 @@ export const ET = {
   "ortofoto © basemap.at (CC BY 4.0)": "ortofoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© OpenStreetMapi kaastöötajad (ODbL)",
-  "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) a Bára Soukupová (MIT) · obrázek CC BY-SA 4.0 · ": "Illustratsioonid © Streetmix, streetmix.net (CC BY-SA 4.0) ja Bára Soukupová (MIT) · pilt CC BY-SA 4.0 · ",
+  "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) a Bára Soukupová (MIT) · obrázek CC BY-SA 4.0 · ": "Illustratsioonid © Streetmix, streetmix.net (CC BY-SA 4.0) ja Bara Soukup (MIT) · pilt CC BY-SA 4.0 · ",
   "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) · obrázek CC BY-SA 4.0 · ": "Illustratsioonid © Streetmix, streetmix.net (CC BY-SA 4.0) · pilt CC BY-SA 4.0 · ",
   "licence: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0": "litsentsid: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0",
 
@@ -1184,7 +1184,7 @@ export const ET_HTML = {
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMapi</a> kaastöötajad (ODbL) ·
     illustratsioonid © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, litsents
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
-    kohalikud illustratsioonid ja kood © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
+    kohalikud illustratsioonid ja kood © Bara Soukup (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Allikad ja litsentsid</a> (tšehhi keeles) ·
     <a href="#kontakt" class="open-contact">kontakt</a><br>
     Salvestame lõiked (koht, suund, ulatus, tänav, aeg), profiili muudatused andmete parandamisel ja Kavandis (osade liigid ja laiused), klõpsud, millega tänavat ei leitud (koht umbes kilomeetri täpsusega), kasutatud funktsioonid ning veateated ja sõnumid, mille ise kirjutate (sõnumi puhul ka vabatahtlik e-posti aadress vastamiseks, lehe keel ja lõike riik; hoiame neid, kuni need kustutame); ühe külastuse kirjeid seob juhuslik number, mis kehtib ühe lehe laadimise kohta. IP-aadresse me ei salvesta ega kasuta küpsiseid; seaded ja viimane profiil jäävad ainult teie brauserisse. Lehte majutab GitHub Pages, logi ja OSM-i paane Cloudflare. Kaardid ja andmed

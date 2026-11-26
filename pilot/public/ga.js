@@ -59,7 +59,7 @@ export const GA = {
   "pasportu komunikací města {town}, ZBGIS a OSM": "fardal bóithre {town}, ZBGIS agus OSM",
   "z pasportu města": "ó fhardal na cathrach",
   "Data © státní a městské mapové služby a OpenStreetMap": "Sonraí © seirbhísí léarscáileanna stáit agus cathrach agus OpenStreetMap",
-  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· léaráidí Streetmix (CC BY-SA 4.0) agus © Bára Soukupová · foinsí, ceadúnais agus príobháideacht ·",
+  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· léaráidí Streetmix (CC BY-SA 4.0) agus © Bara Soukup · foinsí, ceadúnais agus príobháideacht ·",
   "Data {data}": "Sonraí as {data}",
   // ---------- app.js: map, loading, panorama ----------
   "Přiblížit": "Zúmáil isteach",
@@ -435,7 +435,7 @@ export const GA = {
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortafótagraf © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© rannpháirtithe OpenStreetMap (ODbL)",
   "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) a Bára Soukupová (MIT) · obrázek CC BY-SA 4.0 · ":
-    "Léaráidí © Streetmix, streetmix.net (CC BY-SA 4.0) agus Bára Soukupová (MIT) · íomhá CC BY-SA 4.0 · ",
+    "Léaráidí © Streetmix, streetmix.net (CC BY-SA 4.0) agus Bara Soukup (MIT) · íomhá CC BY-SA 4.0 · ",
   "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) · obrázek CC BY-SA 4.0 · ": "Léaráidí © Streetmix, streetmix.net (CC BY-SA 4.0) · íomhá CC BY-SA 4.0 · ",
   "licence: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0": "ceadúnais: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0",
 
@@ -1209,7 +1209,7 @@ export const GA_HTML = {
     © rannpháirtithe <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·
     léaráidí © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, ceadúnas
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
-    léaráidí áitiúla agus cód © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
+    léaráidí áitiúla agus cód © Bara Soukup (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">foinsí agus ceadúnais</a> (i Seicis) ·
     <a href="#kontakt" class="open-contact">teagmháil</a><br>
     Taifeadaimid gearrthaí (áit, treo, raon, sráid, am), athruithe ar an bpróifíl agus na sonraí á gceartú agus sa Dearadh (cineálacha agus leithid na gcodanna), cliceanna nár aimsíodh sráid leo (an áit go dtí thart ar chiliméadar), na feidhmeanna a úsáideadh, agus na tuairiscí earráide agus na teachtaireachtaí a scríobhann tú féin (le teachtaireacht, freisin an seoladh ríomhphoist roghnach le haghaidh freagra, teanga an leathanaigh agus tír an ghearrtha; coinnítear iad go scriosaimid iad); ceanglaíonn uimhir randamach d'ualach amháin den leathanach na taifid de chuairt amháin. Ní stórálaimid seoltaí IP agus ní úsáidimid fianáin; fanann na socruithe agus an phróifíl dheireanach i do bhrabhsálaí amháin. Óstálann GitHub Pages an leathanach, agus Cloudflare an taifeadadh agus leacáin OSM. Lódáiltear na léarscáileanna agus na sonraí

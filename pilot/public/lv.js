@@ -58,7 +58,7 @@ export const LV = {
   "pasportu komunikací města {town}, ZBGIS a OSM": "pilsētas {town} ielu reģistra, ZBGIS un OSM",
   "z pasportu města": "no pilsētas reģistra",
   "Data © státní a městské mapové služby a OpenStreetMap": "Dati © valsts un pilsētu karšu pakalpojumi un OpenStreetMap",
-  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· ilustrācijas Streetmix (CC BY-SA 4.0) un © Bára Soukupová · avoti, licences un privātums ·",
+  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· ilustrācijas Streetmix (CC BY-SA 4.0) un © Bara Soukup · avoti, licences un privātums ·",
   "Data {data}": "{data} dati",
   // ---------- app.js: map, loading, panorama ----------
   "Přiblížit": "Tuvināt",
@@ -434,7 +434,7 @@ export const LV = {
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© OpenStreetMap līdzautori (ODbL)",
   "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) a Bára Soukupová (MIT) · obrázek CC BY-SA 4.0 · ":
-    "Ilustrācijas © Streetmix, streetmix.net (CC BY-SA 4.0) un Bára Soukupová (MIT) · attēls CC BY-SA 4.0 · ",
+    "Ilustrācijas © Streetmix, streetmix.net (CC BY-SA 4.0) un Bara Soukup (MIT) · attēls CC BY-SA 4.0 · ",
   "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) · obrázek CC BY-SA 4.0 · ": "Ilustrācijas © Streetmix, streetmix.net (CC BY-SA 4.0) · attēls CC BY-SA 4.0 · ",
   "licence: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0": "licences: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0",
 
@@ -1208,7 +1208,7 @@ export const LV_HTML = {
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> līdzautori (ODbL) ·
     ilustrācijas © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licence
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
-    vietējās ilustrācijas un kods © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
+    vietējās ilustrācijas un kods © Bara Soukup (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Avoti un licences</a> (čehu valodā) ·
     <a href="#kontakt" class="open-contact">kontakti</a><br>
     Mēs saglabājam griezumus (vieta, virziens, aptvērums, iela, laiks), profila labojumus datu labošanā un Projektā (daļu veidi un platumi), klikšķus, kuros iela netika atrasta (vietu aptuveni kilometra precizitātē), izmantotās funkcijas, kā arī kļūdu ziņojumus un ziņas, ko rakstāt paši (ar ziņu arī neobligātu e-pasta adresi atbildei, lapas valodu un griezuma valsti; glabājam tos, līdz izdzēšam); viena apmeklējuma ierakstus savieno nejaušs viena lapas ielādes numurs. IP adreses neglabājam un sīkdatnes nelietojam, iestatījumi un pēdējais profils paliek tikai jūsu pārlūkprogrammā. Lapu mitina GitHub Pages, ierakstus un OSM flīzes – Cloudflare. Kartes un dati

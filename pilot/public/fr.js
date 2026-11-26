@@ -60,7 +60,7 @@ export const FR = {
   "pasportu komunikací města {town}, ZBGIS a OSM": "de l'inventaire de voirie de {town}, de ZBGIS et d'OSM",
   "z pasportu města": "de l'inventaire de la ville",
   "Data © státní a městské mapové služby a OpenStreetMap": "Données © services cartographiques nationaux et municipaux et OpenStreetMap",
-  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· illustrations Streetmix (CC BY-SA 4.0) et © Bára Soukupová · sources, licences et confidentialité ·",
+  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· illustrations Streetmix (CC BY-SA 4.0) et © Bara Soukup · sources, licences et confidentialité ·",
   "Data {data}": "Données {data}",
   // ---------- app.js: map, loading, panorama ----------
   "Přiblížit": "Zoom avant",
@@ -436,7 +436,7 @@ export const FR = {
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "orthophoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© contributeurs d'OpenStreetMap (ODbL)",
   "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) a Bára Soukupová (MIT) · obrázek CC BY-SA 4.0 · ":
-    "Illustrations © Streetmix, streetmix.net (CC BY-SA 4.0) et Bára Soukupová (MIT) · image CC BY-SA 4.0 · ",
+    "Illustrations © Streetmix, streetmix.net (CC BY-SA 4.0) et Bara Soukup (MIT) · image CC BY-SA 4.0 · ",
   "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) · obrázek CC BY-SA 4.0 · ": "Illustrations © Streetmix, streetmix.net (CC BY-SA 4.0) · image CC BY-SA 4.0 · ",
   "licence: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0": "licences : creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0",
 
@@ -1211,7 +1211,7 @@ export const FR_HTML = {
     © contributeurs d'<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·
     illustrations © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licence
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
-    illustrations locales et code © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
+    illustrations locales et code © Bara Soukup (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Sources et licences</a> (en tchèque) ·
     <a href="#kontakt" class="open-contact">contact</a><br>
     Nous enregistrons les coupes (lieu, direction, portée, rue, heure), les modifications du profil dans la correction des données et dans la Proposition (types et largeurs des parties), les clics sans rue trouvée (le lieu à environ un kilomètre près), les fonctions utilisées, ainsi que les signalements d'erreur et les messages que vous rédigez vous-même (avec un message, aussi l'adresse e-mail facultative pour une réponse, la langue de la page et le pays de la coupe ; conservés jusqu'à ce que nous les supprimions) ; les enregistrements d'une même visite sont reliés par un nombre aléatoire propre à un chargement de la page. Nous ne conservons pas les adresses IP et n'utilisons pas de cookies ; les réglages et le dernier profil restent uniquement dans votre navigateur. La page est hébergée par GitHub Pages, l'enregistrement et les tuiles OSM par Cloudflare. Les cartes et les données sont chargées directement depuis les serveurs de l'IPR, du ČÚZK, de l'ÚGKK SR (ZBGIS), des villes (aussi via ArcGIS Online), des régions, de basemap.at, des Länder allemands, de Berlin, de Hambourg, d'Aix-la-Chapelle, de swisstopo, de geodienste.ch, de PDOK, de 3D BAG, de Digitaal Vlaanderen, du SPW, de l'ACT Luxembourg, du GUGiK, de la ville de Cracovie, de l'IGN, de la ville de Paris, de l'IGN et du Catastro espagnols, de la ville de Saragosse, de la DGT, du DLS de Chypre, de la Planning Authority de Malte, de la province de Bolzano, des villes de Turin, Bologne et Modène, de la région Émilie-Romagne, de la région Lombardie (Regione Lombardia), du Maa- ja Ruumiamet estonien, de la ville de Tallinn, de l'administration géodésique slovène (GURS), des villes d'Helsinki, d'Espoo et de Turku, du SYKE finlandais (Ryhti), de la Klimadatastyrelsen danoise (Dataforsyningen), des villes de Copenhague (Københavns Kommune) et d'Aarhus, de la ville de Vilnius (Vilniaus planas), du géoportail lituanien (geoportal.lt, GRPK), de DC GIS (Washington), de DataSF et du SFMTA (San Francisco), de la Ville de New York (NYCmaps), de l'État de New York (NYS ITS), de la Ville de Toronto et d'OSM ; ces services voient votre adresse IP et le lieu que vous regardez. Le texte recherché est envoyé, selon le lieu, au ČÚZK, à l'ÚGKK SR, à la ville de Vienne, à komoot (Photon), à PDOK, au GUGiK, à l'IGN France, à CartoCiudad, au Maa- ja Ruumiamet (In-ADS), au GURS, au SYKE ou à la Klimadatastyrelsen (GSearch), et à komoot et à l'IGN s'y ajoute le centre de la carte. Le panorama de la rue est chargé après le clic depuis Mapy.com (Seznam.cz) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">confidentialité</a>, en tchèque).`,

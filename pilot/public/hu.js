@@ -61,7 +61,7 @@ export const HU = {
   "pasportu komunikací města {town}, ZBGIS a OSM": "{town} útnyilvántartása, a ZBGIS és az OSM",
   "z pasportu města": "a város nyilvántartásából",
   "Data © státní a městské mapové služby a OpenStreetMap": "Adatok © állami és városi térképszolgáltatások és OpenStreetMap",
-  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· illusztrációk: Streetmix (CC BY-SA 4.0) és © Bára Soukupová · források, licencek és adatvédelem ·",
+  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· illusztrációk: Streetmix (CC BY-SA 4.0) és © Bara Soukup · források, licencek és adatvédelem ·",
   "Data {data}": "Adatok: {data}",
   // ---------- app.js: map, loading, panorama ----------
   "Přiblížit": "Nagyítás",
@@ -429,7 +429,7 @@ export const HU = {
   "ortofoto © basemap.at (CC BY 4.0)": "ortofotó © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofotó © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© OpenStreetMap-közreműködők (ODbL)",
-  "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) a Bára Soukupová (MIT) · obrázek CC BY-SA 4.0 · ": "Illusztrációk © Streetmix, streetmix.net (CC BY-SA 4.0) és Bára Soukupová (MIT) · kép CC BY-SA 4.0 · ",
+  "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) a Bára Soukupová (MIT) · obrázek CC BY-SA 4.0 · ": "Illusztrációk © Streetmix, streetmix.net (CC BY-SA 4.0) és Bara Soukup (MIT) · kép CC BY-SA 4.0 · ",
   "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) · obrázek CC BY-SA 4.0 · ": "Illusztrációk © Streetmix, streetmix.net (CC BY-SA 4.0) · kép CC BY-SA 4.0 · ",
   "licence: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0": "licencek: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0",
 
@@ -1188,7 +1188,7 @@ export const HU_HTML = {
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-közreműködők (ODbL) ·
     illusztrációk © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licenc:
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
-    helyi illusztrációk és kód © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
+    helyi illusztrációk és kód © Bara Soukup (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Források és licencek</a> (csehül) ·
     <a href="#kontakt" class="open-contact">kapcsolat</a><br>
     Rögzítjük a metszeteket (hely, irány, hatótávolság, utca, idő), a profil módosításait az adatjavításban és a Tervben (a részek típusa és szélessége), a kattintásokat, ahol nem található utca (a helyet kb. egy kilométer pontossággal), a használt funkciókat, valamint az Ön által írt hibabejelentéseket és üzeneteket (üzenetnél a válaszhoz megadható e-mail-címet, az oldal nyelvét és a metszet országát is; addig őrizzük őket, amíg nem töröljük); egy látogatás rögzítéseit az oldal egyetlen betöltésének véletlen száma köti össze. IP-címeket nem tárolunk, sütiket nem használunk, a beállítások és az utolsó profil csak az Ön böngészőjében maradnak. Az oldalt a GitHub Pages üzemelteti, a rögzítést és az OSM-csempéket a Cloudflare. A térképek és az adatok

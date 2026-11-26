@@ -58,7 +58,7 @@ export const MT = {
   "pasportu komunikací města {town}, ZBGIS a OSM": "mill-inventarju tat-toroq ta' {town}, minn ZBGIS u minn OSM",
   "z pasportu města": "mill-inventarju tal-belt",
   "Data © státní a městské mapové služby a OpenStreetMap": "Data © servizzi tal-mapep statali u muniċipali u OpenStreetMap",
-  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· illustrazzjonijiet Streetmix (CC BY-SA 4.0) u © Bára Soukupová · sorsi, liċenzji u privatezza ·",
+  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· illustrazzjonijiet Streetmix (CC BY-SA 4.0) u © Bara Soukup · sorsi, liċenzji u privatezza ·",
   "Data {data}": "Data {data}",
   // ---------- app.js: map, loading, panorama ----------
   "Přiblížit": "Kabbar",
@@ -434,7 +434,7 @@ export const MT = {
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© kontributuri ta' OpenStreetMap (ODbL)",
   "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) a Bára Soukupová (MIT) · obrázek CC BY-SA 4.0 · ":
-    "Illustrazzjonijiet © Streetmix, streetmix.net (CC BY-SA 4.0) u Bára Soukupová (MIT) · stampa CC BY-SA 4.0 · ",
+    "Illustrazzjonijiet © Streetmix, streetmix.net (CC BY-SA 4.0) u Bara Soukup (MIT) · stampa CC BY-SA 4.0 · ",
   "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) · obrázek CC BY-SA 4.0 · ": "Illustrazzjonijiet © Streetmix, streetmix.net (CC BY-SA 4.0) · stampa CC BY-SA 4.0 · ",
   "licence: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0": "liċenzji: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0",
 
@@ -1209,7 +1209,7 @@ export const MT_HTML = {
     © kontributuri ta' <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·
     illustrazzjonijiet © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, liċenzja
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
-    illustrazzjonijiet lokali u kodiċi © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
+    illustrazzjonijiet lokali u kodiċi © Bara Soukup (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">sorsi u liċenzji</a> (biċ-Ċek) ·
     <a href="#kontakt" class="open-contact">kuntatt</a><br>
     Aħna nżommu l-qatgħat (post, direzzjoni, firxa, triq, ħin), il-bidliet fil-profil fil-korrezzjoni tad-data u fil-Proposta (tipi u wisgħat tal-partijiet), il-klikks fejn ma nstabet l-ebda triq (il-post b'eżattezza ta' madwar kilometru), il-funzjonijiet użati, ir-rapporti ta' żbalji u l-messaġġi li tikteb int stess (ma' messaġġ ukoll l-email mhux obbligatorja għat-tweġiba, il-lingwa tal-paġna u l-pajjiż tal-qatgħa; jinżammu sakemm inħassruhom); ir-rekords ta' żjara waħda huma konnessi b'numru każwali ta' tagħbija waħda tal-paġna. L-indirizzi IP ma nżommuhomx u ma nużawx cookies, is-settings u l-aħħar profil jibqgħu biss fil-browser tiegħek. Il-paġna hija ospitata minn GitHub Pages, ir-rekord u t-tilings ta' OSM minn Cloudflare. Il-mapep u d-data

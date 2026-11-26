@@ -58,7 +58,7 @@ export const EL = {
   "pasportu komunikací města {town}, ZBGIS a OSM": "του μητρώου οδών της πόλης {town}, του ZBGIS και του OSM",
   "z pasportu města": "από το μητρώο της πόλης",
   "Data © státní a městské mapové služby a OpenStreetMap": "Δεδομένα © κρατικές και δημοτικές υπηρεσίες χαρτών και OpenStreetMap",
-  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· εικονογραφήσεις Streetmix (CC BY-SA 4.0) και © Bára Soukupová · πηγές, άδειες και απόρρητο ·",
+  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· εικονογραφήσεις Streetmix (CC BY-SA 4.0) και © Bara Soukup · πηγές, άδειες και απόρρητο ·",
   "Data {data}": "Δεδομένα {data}",
   // ---------- app.js: map, loading, panorama ----------
   "Přiblížit": "Μεγέθυνση",
@@ -434,7 +434,7 @@ export const EL = {
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ορθοφωτογραφία © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© συνεισφέροντες του OpenStreetMap (ODbL)",
   "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) a Bára Soukupová (MIT) · obrázek CC BY-SA 4.0 · ":
-    "Εικονογραφήσεις © Streetmix, streetmix.net (CC BY-SA 4.0) και Bára Soukupová (MIT) · εικόνα CC BY-SA 4.0 · ",
+    "Εικονογραφήσεις © Streetmix, streetmix.net (CC BY-SA 4.0) και Bara Soukup (MIT) · εικόνα CC BY-SA 4.0 · ",
   "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) · obrázek CC BY-SA 4.0 · ": "Εικονογραφήσεις © Streetmix, streetmix.net (CC BY-SA 4.0) · εικόνα CC BY-SA 4.0 · ",
   "licence: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0": "άδειες: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0",
 
@@ -1209,7 +1209,7 @@ export const EL_HTML = {
     © συνεισφέροντες του <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·
     εικονογραφήσεις © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, άδεια
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
-    τοπικές εικονογραφήσεις και κώδικας © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
+    τοπικές εικονογραφήσεις και κώδικας © Bara Soukup (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Πηγές και άδειες</a> (στα τσεχικά) ·
     <a href="#kontakt" class="open-contact">επικοινωνία</a><br>
     Καταγράφουμε τις τομές (θέση, κατεύθυνση, εμβέλεια, οδός, ώρα), τις αλλαγές του προφίλ στη διόρθωση δεδομένων και στην Πρόταση (είδη και πλάτη των τμημάτων), τα κλικ χωρίς οδό (τη θέση με ακρίβεια περίπου ενός χιλιομέτρου), τις λειτουργίες που χρησιμοποιήθηκαν, τις αναφορές σφαλμάτων και τα μηνύματα που γράφετε εσείς (μαζί με ένα μήνυμα και το προαιρετικό e-mail για απάντηση, τη γλώσσα της σελίδας και τη χώρα της τομής· φυλάσσονται μέχρι να τα διαγράψουμε)· τις εγγραφές μιας επίσκεψης τις συνδέει ένας τυχαίος αριθμός μιας φόρτωσης της σελίδας. Δεν αποθηκεύουμε διευθύνσεις IP και δεν χρησιμοποιούμε cookies· οι ρυθμίσεις και το τελευταίο προφίλ μένουν μόνο στον περιηγητή σας. Τη σελίδα φιλοξενεί το GitHub Pages, την καταγραφή και τα πλακίδια OSM το Cloudflare. Οι χάρτες και τα δεδομένα

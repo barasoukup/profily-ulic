@@ -58,7 +58,7 @@ export const RO = {
   "pasportu komunikací města {town}, ZBGIS a OSM": "registrului străzilor din {town}, ZBGIS și OSM",
   "z pasportu města": "din registrul orașului",
   "Data © státní a městské mapové služby a OpenStreetMap": "Date © servicii cartografice naționale și municipale și OpenStreetMap",
-  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· ilustrații Streetmix (CC BY-SA 4.0) și © Bára Soukupová · surse, licențe și confidențialitate ·",
+  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· ilustrații Streetmix (CC BY-SA 4.0) și © Bara Soukup · surse, licențe și confidențialitate ·",
   "Data {data}": "Date {data}",
   // ---------- app.js: map, loading, panorama ----------
   "Přiblížit": "Mărire",
@@ -434,7 +434,7 @@ export const RO = {
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© contribuitorii OpenStreetMap (ODbL)",
   "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) a Bára Soukupová (MIT) · obrázek CC BY-SA 4.0 · ":
-    "Ilustrații © Streetmix, streetmix.net (CC BY-SA 4.0) și Bára Soukupová (MIT) · imagine CC BY-SA 4.0 · ",
+    "Ilustrații © Streetmix, streetmix.net (CC BY-SA 4.0) și Bara Soukup (MIT) · imagine CC BY-SA 4.0 · ",
   "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) · obrázek CC BY-SA 4.0 · ": "Ilustrații © Streetmix, streetmix.net (CC BY-SA 4.0) · imagine CC BY-SA 4.0 · ",
   "licence: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0": "licențe: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0",
 
@@ -1209,7 +1209,7 @@ export const RO_HTML = {
     © contribuitorii <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·
     ilustrații © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licență
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
-    ilustrații locale și cod © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
+    ilustrații locale și cod © Bara Soukup (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">surse și licențe</a> (în cehă) ·
     <a href="#kontakt" class="open-contact">contact</a><br>
     Înregistrăm secțiunile (locul, direcția, raza, strada, ora), modificările profilului din corectarea datelor și din Proiect (tipurile și lățimile părților), clicurile fără stradă găsită (locul cu o precizie de aproximativ un kilometru), funcțiile folosite, rapoartele de erori și mesajele pe care le scrieți dumneavoastră (la un mesaj și adresa de e-mail opțională pentru răspuns, limba paginii și țara secțiunii; păstrate până le ștergem); înregistrările unei vizite sunt legate printr-un număr aleatoriu al unei singure încărcări a paginii. Nu stocăm adrese IP și nu folosim cookie-uri; setările și ultimul profil rămân doar în browserul dumneavoastră. Pagina este găzduită de GitHub Pages, înregistrarea și dalele OSM de Cloudflare. Hărțile și datele

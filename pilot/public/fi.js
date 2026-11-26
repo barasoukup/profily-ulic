@@ -59,7 +59,7 @@ export const FI = {
   "pasportu komunikací města {town}, ZBGIS a OSM": "katurekisteri ({town}), ZBGIS ja OSM",
   "z pasportu města": "kaupungin rekisteristä",
   "Data © státní a městské mapové služby a OpenStreetMap": "Tiedot © valtion ja kaupunkien karttapalvelut ja OpenStreetMap",
-  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· kuvitus Streetmix (CC BY-SA 4.0) ja © Bára Soukupová · lähteet, lisenssit ja tietosuoja ·",
+  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· kuvitus Streetmix (CC BY-SA 4.0) ja © Bara Soukup · lähteet, lisenssit ja tietosuoja ·",
   "Data {data}": "Tiedot: {data}",
   // ---------- app.js: map, loading, panorama ----------
   "Přiblížit": "Lähennä",
@@ -435,7 +435,7 @@ export const FI = {
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortokuva © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© OpenStreetMapin tekijät (ODbL)",
   "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) a Bára Soukupová (MIT) · obrázek CC BY-SA 4.0 · ":
-    "Kuvitus © Streetmix, streetmix.net (CC BY-SA 4.0) ja Bára Soukupová (MIT) · kuva CC BY-SA 4.0 · ",
+    "Kuvitus © Streetmix, streetmix.net (CC BY-SA 4.0) ja Bara Soukup (MIT) · kuva CC BY-SA 4.0 · ",
   "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) · obrázek CC BY-SA 4.0 · ": "Kuvitus © Streetmix, streetmix.net (CC BY-SA 4.0) · kuva CC BY-SA 4.0 · ",
   "licence: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0": "lisenssit: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0",
 
@@ -1209,7 +1209,7 @@ export const FI_HTML = {
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMapin</a> tekijät (ODbL) ·
     kuvitus © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, lisenssi
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
-    paikallinen kuvitus ja koodi © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
+    paikallinen kuvitus ja koodi © Bara Soukup (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Lähteet ja lisenssit</a> (tšekiksi) ·
     <a href="#kontakt" class="open-contact">yhteystiedot</a><br>
     Tallennamme leikkaukset (paikka, suunta, ulottuvuus, katu, aika), profiilin muokkaukset tietojen korjauksessa ja Suunnitelmassa (osien tyypit ja leveydet), napsautukset, joista ei löytynyt katua (paikan noin kilometrin tarkkuudella), käytetyt toiminnot sekä itse kirjoittamasi virheilmoitukset ja viestit (viestin mukana myös vapaaehtoinen sähköpostiosoite vastausta varten, sivun kieli ja leikkauksen maa; säilytetään, kunnes poistamme ne); yhden vierailun tallenteet yhdistää yhden sivulatauksen satunnaisluku. IP-osoitteita emme tallenna emmekä käytä evästeitä, asetukset ja viimeisin profiili pysyvät vain selaimessasi. Sivun isännöi GitHub Pages, tallennuksen ja OSM-ruudut Cloudflare. Kartat ja tiedot

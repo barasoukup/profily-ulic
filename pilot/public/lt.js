@@ -58,7 +58,7 @@ export const LT = {
   "pasportu komunikací města {town}, ZBGIS a OSM": "{town} miesto gatvių inventorizacijos, ZBGIS ir OSM",
   "z pasportu města": "iš miesto inventorizacijos",
   "Data © státní a městské mapové služby a OpenStreetMap": "Duomenys © valstybinės ir miestų žemėlapių paslaugos ir OpenStreetMap",
-  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· iliustracijos Streetmix (CC BY-SA 4.0) ir © Bára Soukupová · šaltiniai, licencijos ir privatumas ·",
+  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· iliustracijos Streetmix (CC BY-SA 4.0) ir © Bara Soukup · šaltiniai, licencijos ir privatumas ·",
   "Data {data}": "{data} duomenys",
   // ---------- app.js: map, loading, panorama ----------
   "Přiblížit": "Artinti",
@@ -426,7 +426,7 @@ export const LT = {
   "ortofoto © basemap.at (CC BY 4.0)": "ortofoto © basemap.at (CC BY 4.0)",
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© OpenStreetMap bendradarbiai (ODbL)",
-  "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) a Bára Soukupová (MIT) · obrázek CC BY-SA 4.0 · ": "Iliustracijos © Streetmix, streetmix.net (CC BY-SA 4.0) ir Bára Soukupová (MIT) · paveikslėlis CC BY-SA 4.0 · ",
+  "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) a Bára Soukupová (MIT) · obrázek CC BY-SA 4.0 · ": "Iliustracijos © Streetmix, streetmix.net (CC BY-SA 4.0) ir Bara Soukup (MIT) · paveikslėlis CC BY-SA 4.0 · ",
   "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) · obrázek CC BY-SA 4.0 · ": "Iliustracijos © Streetmix, streetmix.net (CC BY-SA 4.0) · paveikslėlis CC BY-SA 4.0 · ",
   "licence: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0": "licencijos: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0",
 
@@ -1184,7 +1184,7 @@ export const LT_HTML = {
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> bendradarbiai (ODbL) ·
     iliustracijos © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licencija
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
-    vietinės iliustracijos ir programinis kodas © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
+    vietinės iliustracijos ir programinis kodas © Bara Soukup (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Šaltiniai ir licencijos</a> (čekų kalba) ·
     <a href="#kontakt" class="open-contact">kontaktai</a><br>
     Įrašome pjūvius (vietą, kryptį, aprėptį, gatvę, laiką), profilio pakeitimus duomenų taisyme ir Projekte (dalių rūšis ir pločius), spustelėjimus, kuriais gatvė nerasta (vietą maždaug kilometro tikslumu), naudotas funkcijas, jūsų pačių parašytus pranešimus apie klaidas ir žinutes (su žinute – ir neprivalomą el. pašto adresą atsakymui, puslapio kalbą ir pjūvio šalį; saugome, kol jų neištriname); vieno apsilankymo įrašus sieja atsitiktinis vieno puslapio įkėlimo numeris. IP adresų neišsaugome ir slapukų nenaudojame, nustatymai ir paskutinis profilis lieka tik jūsų naršyklėje. Puslapį talpina GitHub Pages, įrašus ir OSM plyteles – Cloudflare. Žemėlapiai ir duomenys

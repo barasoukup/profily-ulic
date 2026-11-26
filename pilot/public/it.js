@@ -61,7 +61,7 @@ export const IT = {
   "pasportu komunikací města {town}, ZBGIS a OSM": "del catasto stradale di {town}, di ZBGIS e di OSM",
   "z pasportu města": "dal catasto della città",
   "Data © státní a městské mapové služby a OpenStreetMap": "Dati © servizi cartografici statali e comunali e OpenStreetMap",
-  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· illustrazioni Streetmix (CC BY-SA 4.0) e © Bára Soukupová · fonti, licenze e privacy ·",
+  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· illustrazioni Streetmix (CC BY-SA 4.0) e © Bara Soukup · fonti, licenze e privacy ·",
   "Data {data}": "Dati {data}",
   // ---------- app.js: map, loading, panorama ----------
   "Přiblížit": "Ingrandisci",
@@ -437,7 +437,7 @@ export const IT = {
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© contributori di OpenStreetMap (ODbL)",
   "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) a Bára Soukupová (MIT) · obrázek CC BY-SA 4.0 · ":
-    "Illustrazioni © Streetmix, streetmix.net (CC BY-SA 4.0) e Bára Soukupová (MIT) · immagine CC BY-SA 4.0 · ",
+    "Illustrazioni © Streetmix, streetmix.net (CC BY-SA 4.0) e Bara Soukup (MIT) · immagine CC BY-SA 4.0 · ",
   "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) · obrázek CC BY-SA 4.0 · ": "Illustrazioni © Streetmix, streetmix.net (CC BY-SA 4.0) · immagine CC BY-SA 4.0 · ",
   "licence: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0": "licenze: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0",
 
@@ -1213,7 +1213,7 @@ export const IT_HTML = {
     © contributori di <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·
     illustrazioni © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licenza
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
-    illustrazioni locali e codice © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
+    illustrazioni locali e codice © Bara Soukup (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Fonti e licenze</a> (in ceco) ·
     <a href="#kontakt" class="open-contact">contatti</a><br>
     Registriamo i tagli (luogo, direzione, raggio, strada, ora), le modifiche del profilo nella correzione dei dati e nel Progetto (tipi e larghezze delle parti), i clic senza strada trovata (il luogo con una precisione di circa un chilometro), le funzioni usate, le segnalazioni di errore e i messaggi che scrivi tu (con un messaggio anche l'e-mail facoltativa per la risposta, la lingua della pagina e il paese del taglio; conservati finché non li cancelliamo); i record di una stessa visita sono collegati da un numero casuale di un singolo caricamento della pagina. Non memorizziamo indirizzi IP e non usiamo cookie; le impostazioni e l'ultimo profilo restano solo nel tuo browser. La pagina è ospitata da GitHub Pages, il registro e le tessere OSM da Cloudflare. Mappe e dati

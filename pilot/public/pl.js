@@ -59,7 +59,7 @@ export const PL = {
   "pasportu komunikací města {town}, ZBGIS a OSM": "ewidencji dróg miasta {town}, ZBGIS i OSM",
   "z pasportu města": "z ewidencji miasta",
   "Data © státní a městské mapové služby a OpenStreetMap": "Dane © państwowe i miejskie serwisy mapowe oraz OpenStreetMap",
-  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· ilustracje Streetmix (CC BY-SA 4.0) i © Bára Soukupová · źródła, licencje i prywatność ·",
+  "· ilustrace Streetmix (CC BY-SA 4.0) a © Bára Soukupová · zdroje, licence a soukromí ·": "· ilustracje Streetmix (CC BY-SA 4.0) i © Bara Soukup · źródła, licencje i prywatność ·",
   "Data {data}": "Dane {data}",
   // ---------- app.js: map, loading, panorama ----------
   "Přiblížit": "Przybliż",
@@ -435,7 +435,7 @@ export const PL = {
   "ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)": "ortofotomapa © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)",
   "© přispěvatelé OpenStreetMap (ODbL)": "© współtwórcy OpenStreetMap (ODbL)",
   "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) a Bára Soukupová (MIT) · obrázek CC BY-SA 4.0 · ":
-    "Ilustracje © Streetmix, streetmix.net (CC BY-SA 4.0) i Bára Soukupová (MIT) · obraz CC BY-SA 4.0 · ",
+    "Ilustracje © Streetmix, streetmix.net (CC BY-SA 4.0) i Bara Soukup (MIT) · obraz CC BY-SA 4.0 · ",
   "Ilustrace © Streetmix, streetmix.net (CC BY-SA 4.0) · obrázek CC BY-SA 4.0 · ": "Ilustracje © Streetmix, streetmix.net (CC BY-SA 4.0) · obraz CC BY-SA 4.0 · ",
   "licence: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0": "licencje: creativecommons.org/licenses/by/4.0, creativecommons.org/licenses/by-sa/4.0",
 
@@ -1209,7 +1209,7 @@ export const PL_HTML = {
     © współtwórcy <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (ODbL) ·
     ilustracje © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licencja
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
-    lokalne ilustracje i kod © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
+    lokalne ilustracje i kod © Bara Soukup (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Źródła i licencje</a> (po czesku) ·
     <a href="#kontakt" class="open-contact">kontakt</a><br>
     Zapisujemy przekroje (miejsce, kierunek, zasięg, ulica, czas), edycje profilu w poprawianiu danych i w Projekcie (rodzaje i szerokości części), kliknięcia bez znalezionej ulicy (miejsce z dokładnością do około kilometra), użyte funkcje, zgłoszenia błędów i wiadomości wpisane przez użytkowników (przy wiadomości także opcjonalny adres e-mail do odpowiedzi, język strony i kraj przekroju; przechowywane do czasu ich usunięcia); zapisy jednej wizyty łączy losowy numer jednego wczytania strony. Adresów IP nie zapisujemy i nie używamy plików cookie; ustawienia i ostatni profil pozostają tylko w przeglądarce użytkownika. Stronę hostuje GitHub Pages, zapis i kafelki OSM Cloudflare. Mapy i dane są wczytywane bezpośrednio z serwerów IPR, ČÚZK, ÚGKK SR (ZBGIS), miast (także przez ArcGIS Online), regionów, basemap.at, niemieckich krajów związkowych, Berlina, Hamburga, Akwizgranu, swisstopo, geodienste.ch, PDOK, 3D BAG, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK, miasta Krakowa, IGN, miasta Paryża, hiszpańskiego IGN i katastru, miasta Saragossy, DGT, DLS Cypr, maltańskiej Planning Authority, prowincji Bolzano, miast Turyn, Bolonia i Modena, regionu Emilia-Romania, regionu Lombardia (Regione Lombardia), estońskiego Maa- ja Ruumiamet, miasta Tallinna, słoweńskiego urzędu geodezji (GURS), miast Helsinki, Espoo i Turku, fińskiego SYKE (Ryhti), duńskiej Klimadatastyrelsen (Dataforsyningen), miast Kopenhaga (Københavns Kommune) i Aarhus, miasta Wilno (Vilniaus planas), litewskiego geoportalu (geoportal.lt, GRPK), DC GIS (Waszyngton), DataSF i SFMTA (San Francisco), miasta Nowy Jork (NYCmaps), stanu Nowy Jork (NYS ITS), miasta Toronto i OSM; widzą one adres IP użytkownika i miejsce, które ogląda. Wyszukiwany tekst jest wysyłany, zależnie od miejsca, do ČÚZK, ÚGKK SR, miasta Wiednia, komoot (Photon), PDOK, GUGiK, IGN France, CartoCiudad, Maa- ja Ruumiamet (In-ADS), GURS, SYKE lub Klimadatastyrelsen (GSearch); komoot i IGN dostają także środek mapy. Panoramę ulicy po kliknięciu wczytuje Mapy.com (Seznam.cz) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">prywatność</a>, po czesku).`,
