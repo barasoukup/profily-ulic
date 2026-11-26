@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "stredni", "why": "Úzká cesta pro 2 pruhy, vpravo zeleň po fasádu"}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "Vlevo vjezd/plocha, šířka vozovky 10 m"}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "Chodník vlevo kolem 2,6 m, vozovka 11 m široká"}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "Parkování po obou stranách, vozovka ~9 m"}
+{"n": 5, "verdict": "stejne", "jistota": "stredni", "why": "Čtyři pruhy kolem dvojité žluté, obě varianty shodné složením"}
+{"n": 6, "verdict": "X", "jistota": "nizka", "why": "Parkování jen vlevo, žádná auta vpravo"}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "Úzká cesta 5,5 m, Y má zbytečné krajnice po 3 m"}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "Vlevo parkoviště (plocha), ne zeleň"}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "Parkování na straně u parku a dva pruhy, vpravo úzký chodník a zelený pás"}
+{"n": 10, "verdict": "X", "jistota": "nizka", "why": "Vpravo park, vlevo dům s předzahrádkou, X má přesnější pruhy"}

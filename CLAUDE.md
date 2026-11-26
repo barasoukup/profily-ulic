@@ -595,11 +595,22 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   18 DCMR § 2405); bez řádku značek; bez paneláků; hledání Photon.
 - Ilustrace (větev north-america-art, sloučená 25. 11. 2026, `evaluation/north-america-art/`): severoamerické domy (`houses-america.js`,
   `house-looks-america.js northAmericaLook`), mobiliář `northamerica/`, autobus Metrobus v celém metru, Washington má svůj označník a glóbus do
-  5 m (`lamp-post-top`), bez tramvaje; domy v DC z CAMA (`?cama=0`). Toronto zapojené (stát `canada`), New York, Boston a San Francisco nakreslené, nezapojené.
+  5 m (`lamp-post-top`), bez tramvaje; domy v DC z CAMA (`?cama=0`). Toronto zapojené (stát `canada`), New York zapojený (26. 11.), Boston a San Francisco nakreslené, nezapojené.
 - Tři společné změny z pilotu (všechny státy, podoba z `estonia` 83734e7): ústí uličky je křižovatka (`?off=ulicky`, zapnuto), obousměrka se dělí od
   4,0 m, kde je počet pruhů známý a u vozovky je stání (`?off=pocetpruhu`, zapnuto), jamky stromů v chodníku jako chodník (**vypnuto**, `?treepits=1`:
   DC 2 : 2, české kontroly 0 : 1). Regrese Prahy a Brna beze změny, v Evropě z 120 náhodných řezů změněno 0.
 - Před nasazením: R2 balík `us_dc`, nový Worker logu (Bára).
+
+## New York (větev na-newyork z canada, 26. 11. 2026, nenasazené)
+- Druhé metro státu `usa`: pět obvodů New Yorku (`tools/build_staty.mjs` tabulka `METROS` `dc`, `nyc` z TIGERweb; Boston a San
+  Francisco se přidají řádkem), město `newyork` v `mesta-us.json` (`tools/build_towns_us.mjs`). New Jersey, Westchester a Nassau ne.
+- Mapa povrchů NYC Planimetric Database 2022 (NYC OTI, NYCmaps na ArcGIS Online) přes `planimetrics.js` (`towns/newyork.js`,
+  `?nyc=0`), domy z obrysů budov téže služby (`?nychouse=0`), ortofoto NYS 2024, normy Street Design Manual jen oranžově
+  (`evaluation/usa/nyc/NORMY.md`; `rules.js` předává limitům město řezu), ilustrace `newyork/`. OSM balík `us_nyc` (jen R2).
+- Čerstvé měření (`evaluation/usa/nyc/ZPRAVA.md`, 75 řezů, 50 podle délky sítě bez podmínky fotky): slepé A/B mapa : odhad
+  **31 : 23** (p 0,34), univerzálně 73 % s mapou, 70 % bez, 63 % jen OSM: **neprůkazné, zůstává zapnuté** (rozhodne Bára).
+  Slabina: stání (mapa ho nerozliší, ortofoto ve stínu). Washington beze změny (10 z 10 řezů).
+- Před nasazením: workflow OSM tiles se `states: us` (postaví `us_dc` i `us_nyc`), licence NYCmaps a ortofota NYS (Bára).
 
 ## Společné pro státy (Bára 23. 11. 2026)
 - Sever Kypru a Itálie mimo otevřená ortofota (i se San Marinem a Vatikánem) profil nedostanou, aplikace to řekne

@@ -444,6 +444,22 @@ Normy DDOT (DEM 2023, Bicycle Facility Design Guide 2020) a NACTO jen oranžově
 směr (IFC 503.2.1, 18 DCMR § 2405), bez řádku značek, bez paneláků, severoamerické domy, mobiliář a autobus Metrobus
 (`northamerica/`, `washington/`; `evaluation/north-america-art/`). Hledání Photon v obdélníku metra. A/B a měření v `evaluation/usa/`.
 
+### USA: New York (Bára 26. 11. 2026)
+
+Druhé metro státu `usa`: pět obvodů New Yorku (`staty-america.json` `usa` je od teď víc metr: `tools/build_staty.mjs` tabulka
+`METROS`, `dc` a `nyc`, okresy z TIGERweb; město `newyork` v `mesta-us.json` z `tools/build_towns_us.mjs`). Okolní okresy New
+Jersey, Westchester a Nassau nejsou (nemají mapu povrchů), zůstávají v `closed_us`. OSM balík `us_nyc` (výřez Geofabriku
+New York oříznutý na obdélník města, 44 MB, jen R2). V New Yorku (`towns/newyork.js`, zapojený přes `towns/usa.js`):
+- **mapa povrchů** NYC Planimetric Database 2022 (NYC OTI, organizace NYCmaps na ArcGIS Online, vrstvy Roadbed, Sidewalk,
+  Plaza, Median, Parking Lot a Building; CORS) společným adaptérem `towns/planimetrics.js`: malovaný ostrůvek je vozovka,
+  příjezd (driveway) a parkoviště jiná plocha, pás parkoviště u obruby stání (`?off=kerbbays`), ostrůvek bez vozovky na obou
+  stranách zeleň, cyklostezky OSM ve vozovce mapy (`?off=roadtracks`); `?nyc=0` vypne;
+- **domy** z obrysů budov téže služby (výška střechy → podlaží jako v Torontu, rok, garáž; žádný dotaz navíc, `?nychouse=0`);
+- **ortofoto** státu New York 2024 (NYS ITS, `orthos.its.ny.gov`, export ve Web Mercatoru; jen nad městem a 30 m za ním).
+Normy NYC Street Design Manual jen oranžově (`evaluation/usa/nyc/NORMY.md`; `countries/US.js limitsNYC`, `rules.js` předává
+město řezu), stání 3 m na směr jako ve Washingtonu. Ilustrace `newyork/`: autobus MTA, lampa (davit) od 6 m a označník,
+přístřešek a ostatní mobiliář severoamerický; Bishop's Crook zatím bez místa. Měření `evaluation/usa/nyc/ZPRAVA.md`.
+
 ### Kanada: Toronto (Bára 25. 11. 2026)
 
 Stát `canada` (CA), `countries/CA.js`, `towns/canada.js`; Toronto a obce kolem (StatCan), zbytek Kanady `closed_ca`. Mapa povrchů města

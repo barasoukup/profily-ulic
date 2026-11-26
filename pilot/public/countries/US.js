@@ -6,7 +6,7 @@
 import { t } from "../i18n.js";
 import { northAmericaLook, northAmericaDetails } from "../house-looks-america.js";
 import { LATE_BOUNDS } from "../late.js";
-import { northAmericaFurniture, ownArt } from "../art.js";
+import { northAmericaFurniture, ownArt, NORTH_AMERICA_VEHICLES } from "../art.js";
 import base, { CZ_CODE } from "./default.js";
 import { cycleTrackLimits } from "./cycletrack.js";
 
@@ -15,7 +15,8 @@ import { cycleTrackLimits } from "./cycletrack.js";
 // and the app reads existing streets (and the metro beyond DC), so orange only (Bára 24. 11. 2026: no invented values).
 // No tram belt: neither NACTO nor DC's Streetcar Design Criteria give one.
 const PARKED = (segs, i) => [segs[i - 1], segs[i + 1]].find((x) => x?.type === "parkovani");
-function limitsUS(s, segs = [], i = -1) {
+function limitsUS(s, segs = [], i = -1, place = null) {
+  if (place?.id === "newyork") return limitsNYC(s, segs, i);
   switch (s.type) {
     case "chodnik":
       return { min: 0, zaklad: 1.83, why: t("chodník: průchozí šířka nejméně 6 ft (1,83 m) v řídké obytné zástavbě, 8 ft (2,44 m) v husté, 10 ft (3,05 m) v centru (DDOT DEM 2023)") };
@@ -44,6 +45,27 @@ function limitsUS(s, segs = [], i = -1) {
   }
 }
 
+// New York City (26. 11. 2026, evaluation/usa/nyc/NORMY.md): NYC DOT's Street Design Manual (the online edition,
+// nycstreetdesign.info, Geometry: Lanes, Curb Bus Lane, Bike Lane Table), orange only as DC's. The manual gives no clear path
+// of the sidewalk (it refers to the ADA), no width of a turn lane nor of an angled or perpendicular stall: none.
+function limitsNYC(s, segs, i) {
+  switch (s.type) {
+    case "cyklopruh": case "ochranny_pruh":
+      return { min: 0, zaklad: 1.52, why: t("cyklopruh: obvykle 5–6 ft (1,52–1,83 m) (NYC Street Design Manual, Bike Lane Table)") };
+    case "cyklostezka":
+      return cycleTrackLimits(s, segs, i, { min: 0, zaklad: 1.22, why: t("jednosměrná chráněná cyklostezka: nejméně 4 ft (1,22 m) a nejméně 3 ft (0,91 m) odstupu (NYC Street Design Manual, Bike Lane Table)") },
+        { min: 0, zaklad: 2.44, why: t("obousměrná chráněná cyklostezka: nejméně 8 ft (2,44 m), 4 ft na směr (NYC Street Design Manual, Bike Lane Table)") });
+    case "bus": case "bus_cyklo":
+      return { min: 0, zaklad: 3.35, why: t("pruh pro autobusy u obruby: nejméně 11 ft (3,35 m) (NYC Street Design Manual, Curb Bus Lane)") };
+    case "pruh": case "pruh_piktokoridor":
+      return { min: 0, zaklad: 3.05, why: t("jízdní pruh: obvykle 10 ft (3,05 m), pro autobusy a nákladní auta 11–12 ft (NYC Street Design Manual, Lanes)") };
+    case "parkovani":
+      return s.orient === "kolme" || s.orient === "sikme" ? null : { min: 0, zaklad: 1.83, why: t("podélné stání: obvykle 8 ft (2,44 m), podle místa i jen 6 ft (1,83 m) (NYC Street Design Manual, Lanes)") };
+    default:
+      return null;
+  }
+}
+
 // The bus of the whole state is Metrobus (WMATA): the state is the metro of Washington alone and WMATA runs in its
 // suburbs too (Bára 25. 11. 2026); a further metro spreads its own buses (art.js NORTH_AMERICA_VEHICLES). No tram of its
 // own: the streetcar closed on 31. 3. 2026.
@@ -51,11 +73,15 @@ const usa = { ...northAmericaFurniture, "bus-inbound": "../washington/bus-inboun
 // In Washington its bus stop, also by the shelter, and its globe as the lamp up to 5 m (Boston's: "lamp-acorn-left").
 const washington = { ...usa, ...ownArt(["stop-post-left", "stop-post-right",
   "transit-shelter-01-left", "transit-shelter-01-right", "transit-shelter-green-left", "transit-shelter-green-right"]), "lamp-post-top": "lamp-globe-left" };
+// In New York (26. 11. 2026) MTA's bus, the city's davit lamp from 6 m and its bus stop (newyork/; evaluation/north-america-art/
+// furniture/ZDROJE.md); the shelter and the rest of North America's. The Bishop's Crook (lamp-bishop-*) has no place yet: the
+// app has one lamp over the street.
+const newyork = { ...northAmericaFurniture, ...NORTH_AMERICA_VEHICLES.newyork, ...ownArt(["lamp-modern-left", "lamp-modern-right", "stop-post-left", "stop-post-right"]) };
 
 export default {
   ...base,
   code: "US",
-  // The metro of Washington (staty.json "usa", the OSM pack us_dc).
+  // The metros of Washington and New York (staty-america.json "usa", the OSM packs us_dc and us_nyc).
   bounds: LATE_BOUNDS.US,
   // The International Fire Code 503.2.1 (adopted by DC with its supplement, 12 DCMR H): a fire apparatus access road
   // keeps 20 ft (6.10 m) unobstructed, about 3 m a direction; 18 DCMR 2405.2(g) forbids parking where less than 10 ft of
@@ -79,7 +105,7 @@ export default {
   orthoEstimate: true,
   besideMax: 25,
   panorama: false,
-  art: { usa, washington },
+  art: { usa, washington, newyork },
   // No panel estates drawn as the Czech ones (Bára's memory: the socialist looks only where they were built).
   socialistLooks: false,
   // The houses of North America (house-looks.js, docs/house-types-north-america.md; Bára 25. 11. 2026).

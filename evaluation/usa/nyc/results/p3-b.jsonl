@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "obě: parkování po stranách a jeden úzký pruh, stromořadí nejasné, rozdíly v šířkách drobné"}
+{"n": 2, "verdict": "stejne", "jistota": "nizka", "why": "jeden pruh mezi stojícími auty, široké chodníky; X má pruh 2,85, Y 3,5 s krajnicí, obojí vychází podobně"}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "pruh mezi parkováním je asi 5 m, což sedí s X (4,5+0,6); Y má pruh užší"}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "tři pruhy se žlutou osou, krajnice vlevo a plocha/chodník u rohu; X má čtyři stejné pruhy a krajnice po obou stranách"}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "ortofoto ve stínu, obě mají parkování po stranách a jeden široký pruh, nerozeznatelné"}
+{"n": 6, "verdict": "stejne", "jistota": "nizka", "why": "rozdělená ulice s pásem uprostřed a stáním/pruhem vlevo; ani jeden přesně neodpovídá"}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "dvě vozovky po dvou pruzích, X přidává krajnice, Y plochu, rozdíly se vyvažují"}
+{"n": 8, "verdict": "X", "jistota": "stredni", "why": "stojící auta jen na straně B a cyklopruh vlevo u dělicí plochy; Y má parkování i na straně A"}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "chodníky asi 3,4 a 4,1 m a stání po obou stranách sedí o něco lépe; X má pravý chodník úzký"}
+{"n": 10, "verdict": "Y", "jistota": "stredni", "why": "dvě třípruhové vozovky s dělicím pásem; vpravo krajnice a stezka za svodidly odpovídá fotce, X má vlevo krajnici 3,7 m v lese"}

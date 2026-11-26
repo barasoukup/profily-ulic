@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "Dva pruhy a stání po obou stranách u obou; Y navíc stromový pás na straně A, ale šířky téměř shodné."}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "Ortofoto ukazuje střední žlutou čáru a dva jízdní pruhy; X má jen jeden pruh."}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "Stejné složení, Y lépe sedí na úzké chodníky (asi 1,5 a 2 m) a šířky stání."}
+{"n": 4, "verdict": "Y", "jistota": "vysoka", "why": "Šest pruhů (3+3) se středním pásem; X má jen pět pruhů a zbytečné krajnice."}
+{"n": 5, "verdict": "X", "jistota": "stredni", "why": "Na straně A je pás zeleně se stromy a chodník před parkovištěm, které Y vynechává; vozovka asi 16,5 m."}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "Parkování i chodník na obou stranách vozovky, Y má chodník na straně B, X ho nemá."}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "Ortofoto ukazuje stání na obou stranách, ani jeden profil ho nemá; rozdíly jsou malé."}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "Široká zpevněná plocha asi 23 m odpovídá spíše X (21 m) než Y (11 m)."}
+{"n": 9, "verdict": "stejne", "jistota": "nizka", "why": "Prakticky shodné složení: chodník, stání, jeden pruh, stání, chodník."}
+{"n": 10, "verdict": "X", "jistota": "nizka", "why": "Tmavé ortofoto, vozovka asi 9,5 m se třemi pruhy; X je blíž šířkou, jistota malá."}

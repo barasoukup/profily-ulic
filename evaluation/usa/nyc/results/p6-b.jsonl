@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "nizka", "why": "Y má dělicí pás a obslužnou komunikaci u parkoviště na straně B, X tam má jen plochu."}
+{"n": 2, "verdict": "nejde", "jistota": "nizka", "why": "Ortofoto je v zástinu, bez fotky; oba profily mají shodné složení."}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "Stejné složení, Y lépe sedí na úzké chodníky a zeleň u domů."}
+{"n": 4, "verdict": "Y", "jistota": "vysoka", "why": "Y má cyklostezku, dva pruhy, dělicí ostrůvek a dva pruhy v druhém směru; X nemá střed ani cyklostezku."}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "Stání po obou stranách a jeden pruh u obou, rozdíly jen v chodnících a zeleni."}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "Dva jízdní pruhy (jeden na směr) s cyklopruhy a stání; X má čtyři pruhy."}
+{"n": 7, "verdict": "Y", "jistota": "stredni", "why": "Úzká obslužná cesta mezi domy, celková šířka asi 20 m sedí na Y."}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "Y začíná chodníkem, stáním a čtyřmi pruhy; X začíná pruhy bez chodníku a má dvě vozovky."}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "Dva pruhy, na straně A chodník, zeleň a krajnice, na B trávník; X má příliš široký chodník."}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "Stání po obou stranách, jeden pruh a chodníky u obou; šířky velmi podobné, ortofoto ve stínu."}

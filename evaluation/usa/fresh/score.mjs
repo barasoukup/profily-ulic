@@ -32,7 +32,7 @@ console.log(row("bez obslužných", out.filter((x) => x.kind !== "service")));
 for (const k of KINDS) console.log(row(k, out.filter((x) => x.kind === k)));
 // ---- the universal measurement
 const D = new URL("../../universal/data/", import.meta.url).href, A = { [`s ${WHO}`]: new Map(json(D + `${NAME}.json`).filter((r) => r.variant === "def").map((r) => [r.id, r])), "bez mapy": new Map(json(D + `${NAME}.json`).filter((r) => r.variant === OFF).map((r) => [r.id, r])), "jen OSM": new Map(json(D + `${NAME}-osm.json`).map((r) => [r.id, r])) };
-const J = [1, 2, 3].flatMap((k) => lines(`results/q${k}.jsonl`));
+const J = [1, 2, 3, 4, 5, 6].filter((k) => k <= 3 || fs.existsSync(here(`results/q${k}.jsonl`))).flatMap((k) => lines(`results/q${k}.jsonl`)); // (New York: four packages)
 const LANE = ["pruh", "bus", "tramvaj"], use = J.filter((j) => j.usable && Object.values(A).every((m) => m.get(j.id)?.parts?.length) && j.parts.some((p) => LANE.includes(String(p[0]).replace("?", ""))));
 console.log(`\n## Univerzální měření: ${use.length} z ${J.length} řezů (nepoužité: ${J.filter((j) => !use.includes(j)).map((j) => `${j.id}${j.usable ? "" : " není ulice"}`).join(", ") || "žádný"})\n`);
 const pct = (a, n) => `${Math.round((100 * a) / n)} %`, sc = {};

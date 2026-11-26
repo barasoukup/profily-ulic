@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "nizka", "why": "tři pruhy 3,1/3,45/3,15 odpovídají značení lépe, chodník 3 m vlevo; X má pruhy 4/3,45/2,85"}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "zelený střední pás asi 4 m jako dělicí pás; Y má 7 m plochy, která tam není"}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "Y zahrnuje i druhou vozovku za zeleným pásem, X končí první vozovkou"}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "široká plocha vlevo, chráněná cyklostezka, krajnice a vozovka se stáním vpravo; X má chodník jen 5 m"}
+{"n": 5, "verdict": "Y", "jistota": "stredni", "why": "úzká ulice se stáním po obou stranách a jedním pruhem mezi nimi; X má dva pruhy a krajnici"}
+{"n": 6, "verdict": "X", "jistota": "stredni", "why": "vlevo silnice, chodník, trávník, chodník, vpravo chodník a zeleň sedí; Y nemá žádný chodník"}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "dvě vozovky, střední pás asi 2 m; X nemá stání, Y nahradilo stání plochou, vyvažuje se"}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "čtyři pruhy a velká plocha vpravo, široká plocha vlevo; X má nesmyslné krajnice 11,55 m"}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "štěrková obslužná cesta je široká asi 6 m, X 5,8 m, Y jen 3 m"}
+{"n": 10, "verdict": "X", "jistota": "stredni", "why": "dva pruhy vlevo, zelený pás 6 m, pruh vpravo a chráněná cyklostezka, X je má; Y vlevo pruh nemá"}

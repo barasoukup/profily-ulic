@@ -3,8 +3,9 @@
 // (mesta-us.json, mesta-ca.json) and their modules (america.js: the states, their sources, the houses' looks and drawing).
 // The box of both lies west of every place of Europe the app has (the Azores end at 31.3° W).
 export const LATE_BOX = [-170, 14, -50, 84]; // [lon0, lat0, lon1, lat1]
-// The states' rough boxes (countries/US.js, CA.js bounds; validate.js, before they are loaded).
-export const LATE_BOUNDS = { US: [-77.6, 38.5, -76.6, 39.4], CA: [-79.95, 43.45, -78.95, 44.05] };
+// The states' rough boxes (countries/US.js, CA.js bounds; validate.js, before they are loaded): the USA's spans its metros
+// (Washington to New York).
+export const LATE_BOUNDS = { US: [-77.6, 38.5, -73.6, 41.0], CA: [-79.95, 43.45, -78.95, 44.05] };
 export const isLate = (lat, lon) => lon >= LATE_BOX[0] && lon <= LATE_BOX[2] && lat >= LATE_BOX[1] && lat <= LATE_BOX[3];
 const FILES = ["staty-america.json", "mesta-us.json", "mesta-ca.json"];
 let job = null, done = false;

@@ -3,12 +3,13 @@
 // "zaklad": narrower than the manual's basic (recommended) width.
 import { TYPES, HDV_UNDER, underSize } from "./types.js";
 import { t } from "./i18n.js";
-import { country } from "./city.js";
+import { country, city } from "./city.js";
 import { fmt } from "./norms.js";
 
 // The width a part should have, [minimum, basic] with the rule, or null where the state's rules give none: the state's
-// (countries/<ISO>.js limits; Czechia, after IPR's manual, everywhere else).
-const limits = (s, segs, i) => country.limits(s, segs, i);
+// (countries/<ISO>.js limits; Czechia, after IPR's manual, everywhere else). The city of the cut too: a state whose cities
+// have norms of their own (the USA: Washington's DDOT, New York's Street Design Manual).
+const limits = (s, segs, i) => country.limits(s, segs, i, city);
 
 // Tram parts that make a belt of their own: the reserved tram lane and the separate tram bed (not the tram in a
 // lane with cars).

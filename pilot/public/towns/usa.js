@@ -47,6 +47,7 @@
 import { getJSON, envelope } from "../gis.js";
 import { inArea } from "../places.js";
 import { planimetricMap, planimetricCut, memory, carriageway, kerbStrip, carveTrack, trackPlace, isTrack, parallelsAt, islandsBeside, inRings, WALKED } from "./planimetrics.js";
+import { AREA as NYC_AREA, nycMap, nycPodlaznost } from "./newyork.js";
 
 const param = (k) => (typeof location === "undefined" ? globalThis.PROFILY_US?.[k] ?? null : new URLSearchParams(location.search).get(k));
 export const dcOn = () => param("dc") !== "0";
@@ -55,7 +56,8 @@ export const DC_PLAN = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DAT
 export const DC_SUBBLOCK = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Transportation_WebMercator/MapServer/162";
 // The District by its boundary (mesta-us.json "washington", tools/build_towns_us.mjs: simplified to 20 m), the box only
 // a first test; 60 m beyond it, since Western, Eastern and Southern Avenue run along the line.
-export const AREAS = { dc: { box: [-77.121, 38.79, -76.908, 38.997], town: "washington", near: 60 } };
+// New York City (26. 11. 2026): towns/newyork.js.
+export const AREAS = { dc: { box: [-77.121, 38.79, -76.908, 38.997], town: "washington", near: 60 }, nyc: NYC_AREA };
 const ft = (x) => (Number(x) || 0) * 0.3048;
 const off = (name) => (param("off") || "").split(",").includes(name);
 const SUB_FIELDS = "TOTALTRAVELLANES,TOTALTRAVELLANESINBOUND,TOTALTRAVELLANESOUTBOUND,TOTALBIKELANES,TOTALBIKELANEWIDTH,BIKELANE_DUAL_PROTECTED,BIKELANE_DUAL_BUFFERED,TOTALPARKINGLANES,TOTALPARKINGLANEWIDTH,BIKELANE_CONVENTIONAL,BIKELANE_BUFFERED,BIKELANE_PROTECTED,ROADTYPE";
@@ -294,6 +296,8 @@ async function camaOf(points) {
 let batch = null, camaRest = 0;
 const houses = new Map();
 async function podlaznost(lat, lon) {
+  const nyc = await nycPodlaznost(lat, lon);
+  if (nyc) return nyc;
   if (!camaOn() || !inArea(AREAS.dc, lon, lat) || Date.now() < camaRest) return {};
   const key = `${lat.toFixed(6)},${lon.toFixed(6)}`;
   if (!houses.has(key)) {
@@ -311,7 +315,8 @@ async function podlaznost(lat, lon) {
 
 export const sources = {
   osm: map.osm,
-  surfaces: map.surfaces,
+  // The city's map whose area has the cut (DC's or New York's; elsewhere the estimate).
+  surfaces: (bbox, ...more) => (nycMap.here(bbox) ? nycMap : map).surfaces(bbox, ...more),
   lines,
   parking: async () => ({ features: [] }),
   podlaznost,
@@ -321,5 +326,5 @@ export const sources = {
 export const national = true;
 export const ortho = null;
 
-// The overview map of the About dialog (tools/build_coverage.mjs): DC's Planimetrics.
-export const SURFACE_MAPS = ["dc"];
+// The overview map of the About dialog (tools/build_coverage.mjs): DC's Planimetrics and New York's.
+export const SURFACE_MAPS = ["dc", "nyc"];
