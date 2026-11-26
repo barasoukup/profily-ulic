@@ -313,3 +313,36 @@ test("New York: náměstí a parkoviště jsou nepovinné vrstvy (výpadek jen t
     assert.deepEqual(await optionalAnswer(Promise.resolve({ features: [{}], exceededTransferLimit: true }), "x"), { features: [] });
   } finally { console.warn = warn; }
 });
+
+test("Hledání Photon v USA: jeden dotaz s obdélníkem jednoho metra (jmenovaného, pod středem mapy, jinak nejbližšího)", async () => {
+  const { findPhoton, metroBox, METROS } = await import("../pilot/public/search-photon.js");
+  const urls = [], getJSON = async (u) => { urls.push(new URL(u)); return { features: [] }; };
+  const box = (u) => u.searchParams.get("bbox").split(",").map(Number);
+  // The map in San Francisco: its box, not one from Washington to Boston.
+  await findPhoton("Folsom Street", getJSON, null, ["US"], [37.77, -122.42], () => false);
+  assert.deepEqual(box(urls[0]), METROS.US.sf.box);
+  // Philadelphia (no metro of the app): the nearest, New York; Baltimore: Washington.
+  assert.deepEqual(metroBox("US", [39.95, -75.16]), METROS.US.nyc.box);
+  assert.deepEqual(metroBox("US", [39.29, -76.61]), METROS.US.dc.box);
+  // A query naming another metro is asked there, from wherever the map is.
+  await findPhoton("Market Street, San Francisco", getJSON, null, ["US"], [38.9, -77.03], () => false);
+  assert.deepEqual(box(urls[1]), METROS.US.sf.box);
+  await findPhoton("Newbury Street Boston", getJSON, null, ["US"], [40.75, -73.99], () => false);
+  assert.deepEqual(box(urls[2]), METROS.US.boston.box);
+  // One query a search; Canada keeps its box (Toronto).
+  assert.equal(urls.length, 3);
+  assert.deepEqual(metroBox("CA", [43.65, -79.38]), [-79.95, 43.45, -78.95, 44.05]);
+  // The closed places of a box are dropped (New Jersey in New York's).
+  const { parsePhoton } = await import("../pilot/public/search-photon.js");
+  const f = (lon, lat, name) => ({ geometry: { coordinates: [lon, lat] }, properties: { countrycode: "US", osm_key: "highway", name, city: "x" } });
+  assert.deepEqual(parsePhoton({ features: [f(-74.07, 40.72, "Jersey Ave"), f(-73.99, 40.75, "W 34th St")] }, ["US"], (lat, lon) => lon < -74.03).map((x) => x.at.street), ["W 34th St"]);
+});
+
+test("Hledání Photon v USA: jméno ulice podle města (Washington Street, Boston Post Road) metro neurčuje", async () => {
+  const { metroBox, METROS } = await import("../pilot/public/search-photon.js");
+  assert.deepEqual(metroBox("US", [42.35, -71.06], "Washington Street"), METROS.US.boston.box);
+  assert.deepEqual(metroBox("US", [38.9, -77.03], "Washington Street, Boston"), METROS.US.boston.box);
+  assert.deepEqual(metroBox("US", [40.85, -73.86], "Boston Post Road"), METROS.US.nyc.box);
+  assert.deepEqual(metroBox("US", [40.75, -73.99], "Boston Rd, Bronx"), METROS.US.nyc.box);
+  assert.deepEqual(metroBox("US", [40.75, -73.99], "Mission St, SF"), METROS.US.sf.box);
+});
