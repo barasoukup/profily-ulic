@@ -625,6 +625,9 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   u posuzovatelů (rozhodne Bára).
 - Normy: chodník podle SFMTA Sidewalk Widths, jinak jen NACTO, oranžově (`evaluation/usa/sf/NORMY.md`). Ilustrace Muni (autobus,
   trolejbus, LRV4, označník); PCC a Path of Gold nezapojené.
+- Opravy 27. 11. (`evaluation/usa/sf/fixes/ZPRAVA.md`): orientace stání z OSM, kde obruba dá podélné (A/B 30 nových řezů 12 : 11,
+  vypnuto, `?sfosmpark=1`); osa ve vykrojeném stání a vozovka, kterou přechází jen chodník (Lippard Avenue, `derive.js ownRoad`,
+  1 z 290 řezů, vypnuto, `?axisroad=1`; Bára rozhodne, zda zapnout bez měření).
 
 ## Boston (větev na-boston, 26. 11. 2026, nenasazené)
 - Další metro státu `usa`: okresy Suffolk, Middlesex, Norfolk (`tools/build_staty.mjs METROS`, další metro = řádek), OSM balík

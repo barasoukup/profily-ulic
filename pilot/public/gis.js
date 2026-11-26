@@ -131,7 +131,7 @@ export function asMtvu(layers, labels) {
     for (const f of json?.features || []) {
       const v = typeof code === "function" ? code(f.attributes || {}) : code;
       const [c, guess] = Array.isArray(v) ? v : [v, false];
-      if (c && f.geometry?.rings) features.push({ attributes: { CTVUK_KOD: c, CTVUK_POPIS: labels[c] || "", ODHAD: guess ? 1 : 0, ...(f.attributes?.ANY_TRAM ? { ANY_TRAM: 1 } : {}), ...(f.attributes?.OUTER_GAP ? { OUTER_GAP: 1 } : {}) }, geometry: f.geometry });
+      if (c && f.geometry?.rings) features.push({ attributes: { CTVUK_KOD: c, CTVUK_POPIS: labels[c] || "", ODHAD: guess ? 1 : 0, ...(f.attributes?.ANY_TRAM ? { ANY_TRAM: 1 } : {}), ...(f.attributes?.OUTER_GAP ? { OUTER_GAP: 1 } : {}), ...(f.attributes?.ORIENT ? { ORIENT: f.attributes.ORIENT } : {}) }, geometry: f.geometry });
     }
   }
   return { features };

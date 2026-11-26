@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "vlevo šikmé/kolmé stání, dva pruhy s čárkovanou osou, vpravo podélné stání; X to sedí"}
+{"n": 2, "verdict": "Y", "jistota": "nizka", "why": "stání vlevo vypadá kolmé a vpravo šikmé, bez krajnic; Y sedí o něco lépe"}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "vpravo šikmé/kolmé stání a užší vozovka, dvoupruh Y je nejistý"}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "vlevo jasně šikmé stání, vpravo jen úzké stání; krajnice u X tam není"}
+{"n": 5, "verdict": "X", "jistota": "stredni", "why": "vlevo kolmé stání, uprostřed pruhy, vpravo podélná auta"}
+{"n": 6, "verdict": "stejne", "jistota": "nizka", "why": "úzká ulice s podélným stáním vlevo, oba profily příliš široké a vpravo stání není"}
+{"n": 7, "verdict": "Y", "jistota": "nizka", "why": "vlevo kolmě stojící auta, dva pruhy"}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "široká vozovka, stání s pruhem; X širší a lépe sedí"}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "auta vpravo stojí šikmo/kolmo, ne podélně; ortofoto zastíněné"}
+{"n": 10, "verdict": "nejde", "jistota": "nizka", "why": "křižovatka, ortofoto a fotka neukazují jasné složení"}

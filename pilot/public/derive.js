@@ -534,6 +534,7 @@ export function mtvuPolygons(json, frame) {
       anyTram: f.attributes.ANY_TRAM === 1,
       fromLines: f.attributes.Z_CAR === 1, // read from the DTM's lines (dmvs.js fromLines), its kind a guess
       passport: f.attributes.PASPORT === 1, // a town's passport (gis.js asPassport)
+      ...(f.attributes.ORIENT && { orient: f.attributes.ORIENT }), // a planimetric map's parking with its orientation (towns/sanfrancisco.js)
       outerGap: f.attributes.OUTER_GAP === 1, // a gap of a planimetric map beyond the outer sidewalk (towns/planimetrics.js outerGaps)
       rings,
       bbox: bboxOf(rings.flat()),
@@ -2204,7 +2205,11 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       // carriageway is not a sidewalk), as one lane both ways unless lanes are tagged.
       const transit = inside.length > 0 || minor.some((c) => c.way.tags.highway === "pedestrian" ||
         ["yes", "designated"].includes(c.way.tags.bus) || ["yes", "designated"].includes(c.way.tags.psv));
-      if (!here.length && minor.length && !transit && !cross.some((c) => c.way.id === way.id && inRun(c.t) && !MINOR.has(way.tags.highway))) {
+      // (The street's own: its axis crosses it, or, with ?axisroad=1 (ORTHO_P.axisroad), the axis fix above moved the axis
+      // onto it: Lippard Avenue in San Francisco, the axis in the parking lane the curb carved, the rest a footway's. Off:
+      // 1 of 290 cuts of five cities changes, too few to measure; evaluation/usa/sf/fixes/ZPRAVA.md.)
+      const ownRoad = cross.some((c) => c.way.id === way.id && inRun(c.t)) || (!!ORTHO_P.axisroad && inRun(axisT));
+      if (!here.length && minor.length && !transit && !(ownRoad && !MINOR.has(way.tags.highway))) {
         const foot = minor.some((c) => ["footway", "pedestrian", "path", "steps"].includes(c.way.tags.highway));
         // A cycle way (OSM highway=cycleway, or a path for bicycles) over the surface is a cycle track: a map that
         // draws it as a roadway (Bratislava's town map, Dunajská; Bára 16. 11. 2026) does not make it an access road.
@@ -2357,7 +2362,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       segs.push(...cycleTrack(r, cross, dir));
     } else {
       if (type === "chodnik") segs.push(...sidewalkUse(r, cross, way, axisT, dir));
-      else segs.push({ type, s: r.s, e: r.e, source: r.code === null ? "odhad" : "dtm" });
+      else segs.push({ type, s: r.s, e: r.e, source: r.code === null ? "odhad" : "dtm", ...(type === "parkovani" && r.orient && { orient: r.orient }) });
     }
   }
   // Tracks with no car lane beside them in their roadway, while the cars have lanes of their own

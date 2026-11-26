@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "Na straně A šikmé stání (~5 m), dva pruhy s přerušovanou čárou, na B podélné stání; odpovídá X."}
+{"n": 2, "verdict": "Y", "jistota": "nizka", "why": "Auta v ortofotu i na fotkách stojí šikmo/kolmo na obou stranách; Y má stání 4,9 na obou stranách."}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "Na straně B šikmé stání ~5 m, užší vozovka; X má šikmé stání na B, ale pruhy a stání na A nesedí přesně."}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "Na A šikmé stání (fotka i ortofoto), na B úzké podélné stání; odpovídá Y."}
+{"n": 5, "verdict": "X", "jistota": "stredni", "why": "Na A šikmé/kolmé stání, dva pruhy, na B podélně stojící auta; odpovídá X."}
+{"n": 6, "verdict": "X", "jistota": "nizka", "why": "Podélné stání na A, na B žádné šikmé stání (zeleň); X má na B podélné 2,45, Y šikmé 4,9."}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "Fotka ukazuje podélné stání na straně A, ne šikmé; X má podélné 2,45."}
+{"n": 8, "verdict": "stejne", "jistota": "nizka", "why": "Nejednoznačné rozložení stání a pruhů; ani jeden profil nesedí zřetelně lépe."}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "Fotka ukazuje dva pruhy s dvojitou žlutou a podélné stání na B, ne šikmé; odpovídá X."}
+{"n": 10, "verdict": "nejde", "jistota": "nizka", "why": "Řez leží v křižovatce s přechody, 360° fotka a ortofoto nedovolí složení spolehlivě určit."}

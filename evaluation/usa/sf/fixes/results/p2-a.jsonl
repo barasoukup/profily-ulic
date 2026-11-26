@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "Fotka: stání po obou stranách a dva jízdní pruhy s dvojitou čarou; X má stání na obou stranách, Y má na straně A jen 4,9 m stání."}
+{"n": 2, "verdict": "X", "jistota": "nizka", "why": "Křižovatka, složení stejné; jízdní pruhy kolem 3,4 m a stání na B vypadají spíš jako v X než širší stání a úzké pruhy v Y."}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "Auta jsou stojící podélně u obou krajů, ne kolmo; Y má podélné stání 2,45 na A i B a vozovku asi 13,5 m."}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "Fotka: na straně A šikmé/kolmé stání, dva pruhy se žlutou čarou a na B chodník bez stání; X má široké stání na A a užší pruhy."}
+{"n": 5, "verdict": "Y", "jistota": "nizka", "why": "Auta stojí podélně na obou stranách (ortofoto i fotka); X dává A stání 4,9 jako kolmé, Y podélné."}
+{"n": 6, "verdict": "X", "jistota": "stredni", "why": "Na straně A vidět šikmé stání a vedle něj jediný široký pruh bez stání na B; Y má dva pruhy a podélné stání."}
+{"n": 7, "verdict": "Y", "jistota": "nizka", "why": "Bez fotek; středová čára dělí užší pruhy a auta na straně B stojí v širším pásu stání (šikmo), což sedí na Y."}
+{"n": 8, "verdict": "Y", "jistota": "nizka", "why": "Auta na obou stranách stojí podélně, mezi autem a okrajem je krajnice; Y sedí v krajnici a podélném stání na B, X dává B kolmé stání."}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "Fotka i ortofoto: podélné stání na straně A a dva volné jízdní pruhy, žádné kolmé stání; X má stání 4,85."}
+{"n": 10, "verdict": "X", "jistota": "stredni", "why": "Fotka: dvojitá žlutá čára, tedy dva pruhy, stání na obou stranách; Y má tři pruhy."}

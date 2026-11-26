@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "nejde", "jistota": "nizka", "why": "úzká dlážděná plocha asi 8,5 m mezi zelení a chodníkem, stání a počet pruhů nelze z podkladů spolehlivě určit"}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "dva pruhy s kolejemi, vpravo šikmé stání (~4,8 m) odpovídá X; Y má jen podélné 2,4 m"}
+{"n": 3, "verdict": "X", "jistota": "stredni", "why": "vlevo je podélné stání u chodníku (X), ne šikmé 4,85 m jako v Y"}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "dva pruhy a podélné stání na obou stranách (auta svisle v ortu), X má vlevo kolmé stání, které tam není"}
+{"n": 5, "verdict": "nejde", "jistota": "nizka", "why": "široká vozovka se středovou čárou bez viditelně zaparkovaných aut, fotka z jiného místa ukazuje šikmé stání; neurčitelné"}
+{"n": 6, "verdict": "X", "jistota": "stredni", "why": "vlevo podélné stání u stromořadí a pak krajnice, dva pruhy a střední pás odpovídají X; Y má šikmé/kolmé stání vlevo"}
+{"n": 7, "verdict": "Y", "jistota": "nizka", "why": "vpravo auta stojí napříč (hloubka ~4–5 m), což odpovídá stání 4,9 m v Y"}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "podélné stání na obou stranách (auta svisle v ortu i na fotce), X má vpravo kolmé stání"}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "dva pruhy se žlutou čarou a podélné stání na obou stranách; X má vlevo kolmé stání, které není vidět"}
+{"n": 10, "verdict": "Y", "jistota": "nizka", "why": "dva pruhy bez kolmého stání, vpravo zpevněný okraj/krajnice; X má kolmé stání vlevo, které tam není"}

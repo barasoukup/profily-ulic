@@ -1,0 +1,722 @@
+[
+ {
+  "id": "sa-1",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "arterial",
+  "name": "Pennsylvania Avenue",
+  "highway": "secondary",
+  "wayId": 255170250,
+  "lat": 37.7574366,
+  "lon": -122.3931119,
+  "bearing": -4.6,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-2",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "collector",
+  "name": "Townsend Street",
+  "highway": "tertiary",
+  "wayId": 681699530,
+  "lat": 37.7813382,
+  "lon": -122.389642,
+  "bearing": 45.4,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-3",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Indiana Street",
+  "highway": "residential",
+  "wayId": 8918969,
+  "lat": 37.7569305,
+  "lon": -122.3910917,
+  "bearing": -4.4,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-4",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Clement Street",
+  "highway": "residential",
+  "wayId": 1482957052,
+  "lat": 37.7822553,
+  "lon": -122.4797652,
+  "bearing": 86.7,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-5",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Irving Street",
+  "highway": "residential",
+  "wayId": 1135619593,
+  "lat": 37.7622554,
+  "lon": -122.5069655,
+  "bearing": 86.9,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-6",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Irving Street",
+  "highway": "residential",
+  "wayId": 254968950,
+  "lat": 37.7634478,
+  "lon": -122.4799652,
+  "bearing": 86.9,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-7",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "collector",
+  "name": "Noriega Street",
+  "highway": "tertiary",
+  "wayId": 225806045,
+  "lat": 37.7539407,
+  "lon": -122.4833772,
+  "bearing": 86.8,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-8",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "collector",
+  "name": "Fillmore Street",
+  "highway": "tertiary",
+  "wayId": 8921221,
+  "lat": 37.8021175,
+  "lon": -122.4366053,
+  "bearing": -9.2,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-9",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "arterial",
+  "name": "Geary Boulevard",
+  "highway": "primary",
+  "wayId": 254297756,
+  "lat": 37.7805451,
+  "lon": -122.4749408,
+  "bearing": 86.8,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-10",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Lyon Street",
+  "highway": "residential",
+  "wayId": 737989361,
+  "lat": 37.7784318,
+  "lon": -122.443588,
+  "bearing": -9.5,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-11",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Minnesota Street",
+  "highway": "residential",
+  "wayId": 681490613,
+  "lat": 37.7625105,
+  "lon": -122.390658,
+  "bearing": -4.6,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-12",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Minnesota Street",
+  "highway": "residential",
+  "wayId": 8918643,
+  "lat": 37.758212,
+  "lon": -122.3902571,
+  "bearing": -1.5,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-13",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Spear Street",
+  "highway": "unclassified",
+  "wayId": 27397927,
+  "lat": 37.7881824,
+  "lon": -122.388678,
+  "bearing": -44.6,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-14",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "arterial",
+  "name": "Pennsylvania Avenue",
+  "highway": "secondary",
+  "wayId": 427282433,
+  "lat": 37.7608666,
+  "lon": -122.3934462,
+  "bearing": -3.8,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-15",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Cole Street",
+  "highway": "residential",
+  "wayId": 1115928896,
+  "lat": 37.7746058,
+  "lon": -122.4512556,
+  "bearing": -9.3,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-16",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "arterial",
+  "name": "Great Highway",
+  "highway": "secondary",
+  "wayId": 8917547,
+  "lat": 37.7627849,
+  "lon": -122.5096837,
+  "bearing": -5.6,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-17",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Thomas Avenue",
+  "highway": "residential",
+  "wayId": 675486701,
+  "lat": 37.7256117,
+  "lon": -122.3828292,
+  "bearing": -54.6,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-18",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Hudson Avenue",
+  "highway": "residential",
+  "wayId": 681158106,
+  "lat": 37.7388625,
+  "lon": -122.3861859,
+  "bearing": -54.5,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-19",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Willard Street",
+  "highway": "residential",
+  "wayId": 398994088,
+  "lat": 37.7660182,
+  "lon": -122.4545751,
+  "bearing": -9,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-20",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "arterial",
+  "name": "Pennsylvania Avenue",
+  "highway": "secondary",
+  "wayId": 677696224,
+  "lat": 37.7629033,
+  "lon": -122.3936323,
+  "bearing": -1.8,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-21",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Hillway Avenue",
+  "highway": "residential",
+  "wayId": 8919071,
+  "lat": 37.7640397,
+  "lon": -122.4567177,
+  "bearing": -2.6,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-22",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Innes Avenue",
+  "highway": "residential",
+  "wayId": 8919100,
+  "lat": 37.740225,
+  "lon": -122.3902497,
+  "bearing": -54.5,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-23",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "4th Avenue",
+  "highway": "residential",
+  "wayId": 1115676917,
+  "lat": 37.7628142,
+  "lon": -122.460872,
+  "bearing": -3.2,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-24",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "collector",
+  "name": "Lombard Street",
+  "highway": "tertiary",
+  "wayId": 198877615,
+  "lat": 37.8017042,
+  "lon": -122.4216989,
+  "bearing": 80.6,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-25",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Irving Street",
+  "highway": "residential",
+  "wayId": 27092627,
+  "lat": 37.7638528,
+  "lon": -122.4707966,
+  "bearing": 86.8,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-26",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "arterial",
+  "name": "Geary Boulevard",
+  "highway": "primary",
+  "wayId": 396950798,
+  "lat": 37.7804313,
+  "lon": -122.4774287,
+  "bearing": 86.6,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-27",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Clement Street",
+  "highway": "residential",
+  "wayId": 1541185855,
+  "lat": 37.7826515,
+  "lon": -122.4710409,
+  "bearing": 86.8,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-28",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Middle Drive West",
+  "highway": "unclassified",
+  "wayId": 852346685,
+  "lat": 37.7655961,
+  "lon": -122.4975238,
+  "bearing": 54,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-29",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Westbrook Court",
+  "highway": "residential",
+  "wayId": 676072627,
+  "lat": 37.734938,
+  "lon": -122.3818585,
+  "bearing": -83.8,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-30",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "El Camino del Mar",
+  "highway": "unclassified",
+  "wayId": 1132997775,
+  "lat": 37.7807335,
+  "lon": -122.5099351,
+  "bearing": -23.5,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-31",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "service",
+  "name": "",
+  "highway": "service",
+  "wayId": 564797692,
+  "lat": 37.7589464,
+  "lon": -122.46309,
+  "bearing": 84.2,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-32",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "collector",
+  "name": "Fulton Street",
+  "highway": "tertiary",
+  "wayId": 32121432,
+  "lat": 37.7761922,
+  "lon": -122.4434767,
+  "bearing": 80.9,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-33",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Vallejo Street",
+  "highway": "residential",
+  "wayId": 8916563,
+  "lat": 37.7992522,
+  "lon": -122.4034905,
+  "bearing": 81,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-34",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "collector",
+  "name": "McCoppin Street",
+  "highway": "tertiary",
+  "wayId": 8921779,
+  "lat": 37.7716556,
+  "lon": -122.4215852,
+  "bearing": 86.2,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-35",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Lawton Street",
+  "highway": "residential",
+  "wayId": 286265327,
+  "lat": 37.7570111,
+  "lon": -122.498607,
+  "bearing": 86.9,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-36",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "collector",
+  "name": "Illinois Street",
+  "highway": "tertiary",
+  "wayId": 255170247,
+  "lat": 37.7604166,
+  "lon": -122.3875708,
+  "bearing": -4.5,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-37",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Oakdale Avenue",
+  "highway": "residential",
+  "wayId": 28670706,
+  "lat": 37.7339287,
+  "lon": -122.3891726,
+  "bearing": -54.3,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-38",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Bluxome Street",
+  "highway": "residential",
+  "wayId": 7373736,
+  "lat": 37.7763538,
+  "lon": -122.3974965,
+  "bearing": 45.2,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-39",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Santiago Street",
+  "highway": "residential",
+  "wayId": 89802414,
+  "lat": 37.7447843,
+  "lon": -122.4788835,
+  "bearing": 86.8,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-40",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Santiago Street",
+  "highway": "residential",
+  "wayId": 89802414,
+  "lat": 37.744909,
+  "lon": -122.4760364,
+  "bearing": 86.9,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-41",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Bertha Lane",
+  "highway": "residential",
+  "wayId": 679905797,
+  "lat": 37.7334225,
+  "lon": -122.3812323,
+  "bearing": -42.6,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-42",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "arterial",
+  "name": "Pennsylvania Avenue",
+  "highway": "secondary",
+  "wayId": 451369866,
+  "lat": 37.7546455,
+  "lon": -122.3928479,
+  "bearing": -3.2,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-43",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Buena Vista Avenue East",
+  "highway": "residential",
+  "wayId": 8919191,
+  "lat": 37.7700832,
+  "lon": -122.4392856,
+  "bearing": -22.4,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-44",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Armstrong Avenue",
+  "highway": "residential",
+  "wayId": 679278124,
+  "lat": 37.7242742,
+  "lon": -122.3887995,
+  "bearing": -54.3,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ },
+ {
+  "id": "sa-45",
+  "country": "US",
+  "town": "sanfrancisco",
+  "kind": "local",
+  "name": "Minnesota Street",
+  "highway": "residential",
+  "wayId": 514673436,
+  "lat": 37.7638896,
+  "lon": -122.3907997,
+  "bearing": -4.9,
+  "variants": [
+   "def",
+   "sfold"
+  ]
+ }
+]

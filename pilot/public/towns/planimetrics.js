@@ -270,7 +270,7 @@ export function planimetricCut(d, answers, osmElements, bbox, tags = null, { way
   const junction = !!at && (at.features || []).some((f) => d.junction.test(f.attributes || {}) && f.geometry?.rings
     && inRings(f.geometry.rings.map((r) => r.map(([lon, lat]) => [(lon - c.lon0) * c.kx, (lat - c.lat0) * c.ky])), 0, 0));
   const back = ([x, y]) => [x / c.kx + c.lon0, y / c.ky + c.lat0];
-  const features = runs.map((r) => ({ attributes: { code: r.code, ...(r.outer && { OUTER_GAP: 1 }), ...(r.fromOsm && { FROM_OSM: 1 }) }, geometry: { rings: [[[r.s, -1], [r.e, -1], [r.e, 1], [r.s, 1], [r.s, -1]]
+  const features = runs.map((r) => ({ attributes: { code: r.code, ...(r.outer && { OUTER_GAP: 1 }), ...(r.fromOsm && { FROM_OSM: 1 }), ...(r.orient && { ORIENT: r.orient }) }, geometry: { rings: [[[r.s, -1], [r.e, -1], [r.e, 1], [r.s, 1], [r.s, -1]]
     .map(([t, u]) => back([c.dir[0] * t + street[0] * u, c.dir[1] * t + street[1] * u]))] } }));
   return { features, junction, ...more };
 }

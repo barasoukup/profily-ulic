@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "křižovatka; na fotkách souběžné stání po obou stranách a dva pruhy, X je souměrné"}
+{"n": 2, "verdict": "stejne", "jistota": "nizka", "why": "křižovatka, rozdíl jen v typu stání na straně B, nerozhodnutelné"}
+{"n": 3, "verdict": "X", "jistota": "stredni", "why": "na straně A šikmé/kolmé stání, na B podélné; piktokoridorové pruhy"}
+{"n": 4, "verdict": "X", "jistota": "vysoka", "why": "strmá ulice, na straně A kolmé stání a dva pruhy, žádná krajnice"}
+{"n": 5, "verdict": "Y", "jistota": "stredni", "why": "podélné stání po obou stranách a dva pruhy, kolmé stání na A tam není"}
+{"n": 6, "verdict": "X", "jistota": "stredni", "why": "na straně A šikmé stání, jedna široká vozovka; podélné stání na B"}
+{"n": 7, "verdict": "Y", "jistota": "nizka", "why": "bez fotek, v ortofotu široké šikmé/kolmé stání na straně B"}
+{"n": 8, "verdict": "X", "jistota": "stredni", "why": "na fotce b šikmé stání pickupů a dodávek na straně B, na A podélné"}
+{"n": 9, "verdict": "X", "jistota": "nizka", "why": "auta na straně A stojí šikmo, širší stání; dva pruhy bez krajnice"}
+{"n": 10, "verdict": "X", "jistota": "nizka", "why": "dvojitá žlutá uprostřed, dva pruhy, ne tři; asymetrie A širší než B"}

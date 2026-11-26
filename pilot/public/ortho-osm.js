@@ -106,7 +106,13 @@ function parkingSide(t, side) {
   }
   if (!["lane", "street_side", "half_on_kerb"].includes(kind)) return { kind, w: 0 };
   const full = or === "perpendicular" ? 5 : or === "diagonal" ? 4.5 : 2.0;
-  return { kind, w: kind === "half_on_kerb" ? full / 2 : full };
+  return { kind, w: kind === "half_on_kerb" ? full / 2 : full, or };
+}
+// The orientation of the parking OSM has on the carriageway at a side of the way ("left", "right"): "parallel",
+// "diagonal", "perpendicular", or null (none tagged, or on the kerb).
+export function parkingOrient(t, side) {
+  const p = parkingSide(t || {}, side);
+  return p.w && p.kind !== "half_on_kerb" && ["parallel", "diagonal", "perpendicular"].includes(p.or) ? p.or : null;
 }
 const cyclewaySide = (t, side) => { const v = t[`cycleway:${side}`] ?? t["cycleway:both"] ?? t.cycleway; return v === "lane" || v === "share_busway" ? 1.5 : 0; };
 // own: osmAlong's own. Returns { w, reach: { A, B } (from the axis), lanes, parking, sidewalk, sidewalkW, from }; side A

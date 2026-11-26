@@ -59,3 +59,18 @@ test("jízda vlevo (Kypr, Malta): směry podle pravidel otočené, data na svém
     assert.deepEqual(seg.map((x) => x.dir), [undefined, "forward", "backward", undefined], "rozdělení pruhu z ortofota");
   } finally { country.leftHand = was; }
 });
+
+test("osa ulice ve stání u obruby: s ?axisroad=1 je vozovka vedle, kterou přechází jen chodník, její (Lippard Avenue)", async () => {
+  const { P } = await import("../pilot/public/ortho-osm.js");
+  const frame = localFrame(37.73, -122.43);
+  const rect = (x0, x1, code) => ({ attributes: { CTVUK_KOD: code }, geometry: { rings: [[[x0, -60], [x1, -60], [x1, 60], [x0, 60], [x0, -60]].map(([x, y]) => frame.toLonLat(x, y))] } });
+  // Sidewalk, a parking lane under the axis (x 0), the roadway beside it with a footway's crossing over it, sidewalk.
+  const polys = mtvuPolygons({ features: [rect(-5, -2, 702), rect(-2, 0.5, 704), rect(0.5, 5.3, 701), rect(5.3, 8, 702)] }, frame);
+  const line = (x, tags, id) => ({ type: "way", id, tags, geometry: [frame.toLonLat(x, -100), frame.toLonLat(x, 100)].map(([lon, lat]) => ({ lat, lon })) });
+  const els = [line(-0.4, { highway: "residential", oneway: "yes" }, 1), line(3, { highway: "footway" }, 2)];
+  const types = () => deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys, osm: { elements: els }, frame, way: els[0], noParkGuess: true }).segments.map((s) => s.type);
+  assert.ok(!types().includes("pruh"));
+  P.axisroad = true;
+  assert.ok(types().includes("pruh"), types().join());
+  delete P.axisroad;
+});

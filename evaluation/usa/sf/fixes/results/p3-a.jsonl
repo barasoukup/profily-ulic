@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "nizka", "why": "úzká dvoupruhová ulice s podélným stáním po obou stranách; X s jedním pruhem a šikmým stáním nesedí"}
+{"n": 2, "verdict": "Y", "jistota": "nizka", "why": "na fotce podélné stání vpravo a široké pruhy; X má šikmé stání, které fotka nepotvrzuje"}
+{"n": 3, "verdict": "X", "jistota": "stredni", "why": "vlevo podélné stání a pruh, uprostřed šikmé stání mezi pruhy; Y má vlevo šikmé stání, které tam není"}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "podélné stání, vlevo šikmé stání (X) nevidět; široká vozovka se dvěma pruhy a krajnicí"}
+{"n": 5, "verdict": "X", "jistota": "stredni", "why": "fotka ukazuje šikmé stání vlevo a dva pruhy, vpravo bez stání; šířka vozovky odpovídá X"}
+{"n": 6, "verdict": "X", "jistota": "nizka", "why": "vlevo dva pruhy bez šikmého stání, X ho má jen jako úzký pás u obruby; Y má šikmé 4,9 m které tam nevidět"}
+{"n": 7, "verdict": "Y", "jistota": "stredni", "why": "auta vpravo stojí šikmo/kolmo (šířka asi 4,5 m), jedná se o šikmé stání; vozovka dva pruhy"}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "podélné stání na obou stranách (fotka i ortofoto), X má vpravo šikmé stání"}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "na fotce podélné stání vlevo, dvojitá žlutá osa, šikmé stání (X) nevidět"}
+{"n": 10, "verdict": "Y", "jistota": "nizka", "why": "vlevo žádné šikmé stání (zeleň/svah), dva pruhy s osou; Y je přijatelnější než šikmé stání v X"}
