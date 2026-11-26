@@ -183,7 +183,7 @@ export class Pack {
 // A read() for Pack over fetch with a Range header (timeout: ms for each request).
 export const rangeFetch = (url, timeout, f = (...a) => fetch(...a)) => async (start, end) => {
   const r = await f(url, { headers: { Range: `bytes=${start}-${end}` }, signal: timeout ? AbortSignal.timeout(timeout) : undefined });
-  if (r.status !== 206 && r.status !== 200) throw new Error(`dlaždice OSM ${r.status}`);
+  if (r.status !== 206 && r.status !== 200) { r.body?.cancel?.().catch(() => {}); throw Object.assign(new Error(`dlaždice OSM ${r.status}`), { status: r.status }); }
   let bytes = new Uint8Array(await r.arrayBuffer());
   if (r.status === 200) bytes = bytes.subarray(start, end + 1); // a server without Range: the whole file came
   return { bytes, etag: r.headers.get("ETag") || undefined };
@@ -227,7 +227,8 @@ export class PackSet {
     }
     if (!first) { this.at = 0; throw err; }
     const lists = [];
-    let answered = 0, failed = null;
+    // reread: the first place's index read again in this cut, at most once however many files fail (the hostile review).
+    let answered = 0, failed = null, reread = null;
     await Promise.all(Object.values(first).filter(holds).map(async (p) => {
       let fresh = false; // the index of the first place read again once
       for (let at = this.at; at < this.bases.length; at++) {
@@ -240,10 +241,14 @@ export class PackSet {
         } catch (e) {
           failed = e; console.warn("dlaždice OSM", p.code, this.bases[at], e.message);
           // Only the newest file of a state stays on R2 (Bára 26. 11. 2026): a page open over the weekly rebuild
-          // holds an index naming a deleted file. Read the index again; a new file of the state is tried at once.
-          if (at === this.at && !fresh) {
-            fresh = true; this.places.delete(this.bases[at]);
-            try { const next = (await this.open(at))[p.code]; if (next && next.file !== p.file) at--; } catch {}
+          // holds an index naming a deleted file. Read the index again; a new file of the state is tried at once. Only
+          // for a file that is gone (404), not a timeout or another error (the index would not have changed), and once a
+          // cut, also when two files fail (the hostile review of 26. 11. 2026).
+          if (at === this.at && !fresh && e.status === 404) {
+            fresh = true;
+            reread ??= (this.places.delete(this.bases[at]), this.open(at).catch(() => null));
+            const next = (await reread)?.[p.code];
+            if (next && next.file !== p.file) at--;
           }
         }
       }

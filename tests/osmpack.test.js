@@ -149,3 +149,36 @@ test("smazaný starý balík: stránka otevřená přes týdenní obnovu přečt
   index = { files: { at: "at-2.posm" } };
   assert.deepEqual(await old.tiles(["2884_10016"]), [decodeTile(text("2884_10016"))], "hned první řez najde nový soubor");
 });
+
+test("index se čte znovu jen po 404 souboru (ne po výpadku nebo timeoutu), v jednom řezu nejvýš jednou i při dvou smazaných balících", async () => {
+  const cz = packTiles(["2884_10016"], text).file, de = packTiles(["2885_10016"], text).file;
+  let index = { files: { cz: "cz-1.posm", de: "de-1.posm" } };
+  let files = { "cz-1.posm": cz, "de-1.posm": de }, down = false, indexReads = 0;
+  const f = async (url, opts) => {
+    const file = url.split("/")[1];
+    if (file === "index.json") { indexReads++; return Response.json(index); }
+    if (down) return new Response("", { status: 503 });
+    if (down === null) throw Object.assign(new Error("timeout"), { name: "TimeoutError" });
+    if (!files[file]) return new Response("", { status: 404 });
+    const [, s, e] = /bytes=(\d+)-(\d+)/.exec(opts.headers.Range).map(Number);
+    return new Response(files[file].subarray(s, e + 1), { status: 206, headers: { ETag: file } });
+  };
+  const warn = console.warn; console.warn = () => {};
+  try {
+    const both = [decodeTile(text("2884_10016")), decodeTile(text("2885_10016"))];
+    // Both files deleted by the weekly rebuild: the index once, both new files found.
+    const set = new PackSet(["r2"], { fetch: f });
+    await set.open(); indexReads = 0;
+    index = { files: { cz: "cz-2.posm", de: "de-2.posm" } }; files = { "cz-2.posm": cz, "de-2.posm": de };
+    assert.deepEqual(await set.tiles(["2884_10016", "2885_10016"]), both);
+    assert.equal(indexReads, 1, "index jednou");
+    // A server error or a timeout: the index not read again (the cut fails, the next one starts afresh).
+    for (const d of [true, null]) {
+      const s2 = new PackSet(["r2"], { fetch: f });
+      await s2.open(); indexReads = 0; down = d;
+      await assert.rejects(s2.tiles(["2884_10016", "2885_10016"]));
+      assert.equal(indexReads, 0, `po ${d ? "503" : "timeoutu"} bez nového indexu`);
+      down = false;
+    }
+  } finally { console.warn = warn; }
+});
