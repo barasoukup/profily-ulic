@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "Dvě řady parkování (auta na obou stranách ve fotce i ortofotu) a dva pruhy, X je má, Y parkuje jen na A."}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "Podélné stání jen na straně A, dva pruhy a krajnice; Y stání nemá a pruhy 4 m jsou příliš široké."}
+{"n": 3, "verdict": "stejne", "jistota": "nizka", "why": "Obě: chodník, dva pruhy bez stání, chodník; šířka vozovky kolem 8,5 m leží mezi 7,9 a 7,4, rozdíly v zeleni nerozhodují."}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "Začátek vozovky ve 35 m sedí s X, na straně B je obslužný pruh s parkujícími auty (X ho má jako pruh), Y ho nahrazuje ploškami a zelení."}
+{"n": 5, "verdict": "Y", "jistota": "nizka", "why": "Úzký chodník ke zdi domu na straně A (málo zeleně), parkování na obou stranách v obou; Y sedí lépe a vozovka je širší."}
+{"n": 6, "verdict": "Y", "jistota": "nizka", "why": "Celá komunikace měří asi 20 m a má tři pruhy na straně B plus oddělení od protisměrné části; X je příliš úzké."}
+{"n": 7, "verdict": "X", "jistota": "nizka", "why": "Stání na obou stranách a úzká vozovka sedí v obou, chodník na straně B kolem 2,5 m a fasáda hned za ním lépe odpovídá X než 5,7 m u Y."}
+{"n": 8, "verdict": "stejne", "jistota": "nizka", "why": "Křižovatka s přechody, řez nejasný, ani jeden profil se nedá jasně potvrdit."}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "Vozovka bez značení široká asi 7,5 m, tedy dva pruhy; chodník 1,8-2 m na A a zeleň/dvorek na B, X má jediný pruh 4,7 m a chodník na B, který tam není."}
+{"n": 10, "verdict": "X", "jistota": "stredni", "why": "Cyklopruh, tři pruhy, pás s cyklistickým značením a chodník, dál zeleň a diagonální silnice na B; Y končí chodníkem a vynechává pravý okraj."}

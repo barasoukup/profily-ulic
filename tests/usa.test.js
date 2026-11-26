@@ -37,7 +37,8 @@ test("USA: mezi okresy ani na hranici DC nejsou díry, staty.json nenese společ
   const C = await import("../pilot/public/city.js");
   const staty = STATY;
   const us = JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta-us.json", import.meta.url), "utf8"));
-  assert.ok(JSON.stringify(staty.usa).length < 60_000, `${JSON.stringify(staty.usa).length} B`);
+  // (Four metros since 26. 11. 2026: Washington, New York, San Francisco, Boston; about 60 kB.)
+  assert.ok(JSON.stringify(staty.usa).length < 75_000, `${JSON.stringify(staty.usa).length} B`);
   C.loadBounds(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta.json", import.meta.url), "utf8")));
   C.loadStates(staty);
   for (const [lon, lat] of us.washington[0]) for (const [dx, dy] of [[0, 0], [2e-4, 0], [-2e-4, 0], [0, 2e-4], [0, -2e-4]]) assert.equal(C.closedAt(lat + dy, lon + dx), null, `${lat},${lon}`);

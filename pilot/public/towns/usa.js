@@ -1,7 +1,8 @@
 // The USA (Bára 24. 11. 2026, phase 2 of the North America pilot; evaluation/usa-dc/ZPRAVA.md, evaluation/usa/): the state
-// of a cut inside staty.json's "usa", the metros of Washington DC, New York City (towns/newyork.js) and San Francisco (its
-// own map: towns/sanfrancisco.js, asked by sources.surfaces and podlaznost where it has the place). Outside the cities'
-// maps the estimate from OSM. In
+// of a cut inside staty.json's "usa", the metros of Washington DC, New York City (towns/newyork.js), San Francisco (its
+// own map: towns/sanfrancisco.js, asked by sources.surfaces and podlaznost where it has the place) and Boston (Bára
+// 26. 11. 2026: Boston's and Cambridge's surface maps in towns/boston.js, picked below by the place). Outside the cities'
+// maps the estimate from OSM (in Boston's metro with MassGIS's orthophoto). In
 // DC (the District by its boundary, mesta-us.json, and 60 m beyond it for the streets along the line; AREAS.dc):
 // - DC Planimetrics 2023 (OCTO, maps2.dcgis.dc.gov DCGIS_DATA/Planimetrics_2023/MapServer, layers 10 Roads, 11 Sidewalks,
 //   1 Building Footprints; CORS for the origin asking; CC BY 4.0, "DC GIS / Office of the Chief Technology Officer") as
@@ -48,6 +49,7 @@
 //   floors and its units are not on the lot: not asked.
 import { getJSON, envelope } from "../gis.js";
 import { inArea } from "../places.js";
+import { BOSTON_MAPS, bostonPodlaznost, AREAS as BOSTON_AREAS } from "./boston.js";
 import { planimetricMap, planimetricCut, memory, carriageway, kerbStrip, carveTrack, trackPlace, isTrack, parallelsAt, islandsBeside, inRings, WALKED } from "./planimetrics.js";
 import { AREA as NYC_AREA, nycMap, nycPodlaznost } from "./newyork.js";
 // San Francisco (26. 11. 2026): its own surface map and houses (towns/sanfrancisco.js); the state's sources ask it where it has the place.
@@ -317,18 +319,26 @@ async function podlaznost(lat, lon) {
   return houses.get(key);
 }
 
+// The map of the cut's place: DC's, else the one of Boston's metro (towns/boston.js) whose city holds the box's centre (inside
+// its boundary before the metres beyond it: Memorial Drive is Cambridge's, the Charles Boston's), else DC's (the estimate).
+const strictly = (m, bbox) => { const [x0, y0, x1, y1] = bbox.split(",").map(Number); return inArea({ ...BOSTON_AREAS[m === BOSTON_MAPS[0] ? "boston" : "cambridge"], near: 0 }, (x0 + x1) / 2, (y0 + y1) / 2); };
+const mapOf = (bbox) => (map.here(bbox) ? map : BOSTON_MAPS.find((m) => m.here(bbox) && strictly(m, bbox)) || BOSTON_MAPS.find((m) => m.here(bbox)) || map);
+const box = (lat, lon, r = 1) => { const dy = r / 110574, dx = r / (111320 * Math.cos((lat * Math.PI) / 180)); return [lon - dx, lat - dy, lon + dx, lat + dy].join(","); };
 export const sources = {
-  osm: map.osm,
-  // The city's map whose area has the cut (DC's, New York's or San Francisco's; elsewhere the estimate).
-  surfaces: (bbox, ...more) => (sfHere(bbox) ? sfSurfaces(bbox, ...more) : (nycMap.here(bbox) ? nycMap : map).surfaces(bbox, ...more)),
+  osm: (lat, lon, radius) => mapOf(box(lat, lon)).osm(lat, lon, radius),
+  // The city's map whose area has the cut (DC's, New York's, San Francisco's, Boston's or Cambridge's; elsewhere the estimate).
+  surfaces: (bbox, ...rest) => (sfHere(bbox) ? sfSurfaces(bbox, ...rest) : (nycMap.here(bbox) ? nycMap : mapOf(bbox)).surfaces(bbox, ...rest)),
   lines,
   parking: async () => ({ features: [] }),
-  podlaznost: (lat, lon) => (inArea(SF_AREAS.sf, lon, lat) ? sfPodlaznost(lat, lon) : podlaznost(lat, lon)),
+  // The houses: San Francisco's heights, New York's footprints and DC's CAMA (podlaznost above), else Boston's basemap.
+  podlaznost: async (lat, lon) => (inArea(SF_AREAS.sf, lon, lat) ? sfPodlaznost(lat, lon)
+    : inArea(AREAS.dc, lon, lat) || inArea(AREAS.nyc, lon, lat) ? podlaznost(lat, lon) : bostonPodlaznost(lat, lon)),
 };
 
 // No fallback to the DMVS (sources.js national).
 export const national = true;
 export const ortho = null;
 
-// The overview map of the About dialog (tools/build_coverage.mjs): DC's Planimetrics, New York's and San Francisco's.
-export const SURFACE_MAPS = ["dc", "nyc", "sf"];
+// The overview map of the About dialog (tools/build_coverage.mjs): DC's Planimetrics, New York's, San Francisco's and the
+// maps of Boston and Cambridge.
+export const SURFACE_MAPS = ["dc", "nyc", "sf", "boston", "cambridge"];

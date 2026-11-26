@@ -473,6 +473,23 @@ z výšky obrysu (`?sfhouse=0`). `?sf=0` vypne vše. Bez ortofota (otevřené pr
 podle SFMTA Sidewalk Widths, jinak jen NACTO (`evaluation/usa/sf/NORMY.md`). Ilustrace Muni (`sanfrancisco/`: autobus,
 trolejbus, LRV4, označník). Měření `evaluation/usa/sf/ZPRAVA.md`.
 
+### USA: Boston (Bára 26. 11. 2026)
+
+Další metro státu `usa`: okresy Suffolk, Middlesex a Norfolk (TIGERweb; `tools/build_staty.mjs` má metra v tabulce `METROS`,
+další metro = další řádek), OSM balík `us_bos` (Geofabrik Massachusetts oříznutý obdélníkem metra, jen R2). Města v
+`mesta-us.json`: `boston` (ilustrace: autobus a tramvaj MBTA, označník, lampa acorn do 5 m), `bostonmetro` (celé metro:
+autobus a tramvaj MBTA, ortofoto MassGIS, texty a normy Bostonu) a `cambridge` (jen území mapy povrchů).
+- **mapy povrchů** Bostonu (Street Edges, Sidewalk Inventory, budovy s počtem podlaží) a Cambridge (Roads, Sidewalks,
+  Driveways, Parking Lots, Buildings), obě PDDL, společným adaptérem `towns/planimetrics.js` (`towns/boston.js`). Vozovky
+  jsou v obou službách polygony přes celé město (5 MB na dotaz), proto se **jednou týdně při nasazení** stáhnou a rozřežou do
+  dlaždic `data/us-plan/<město>/` (`tools/build_planimetrics_us.mjs`, 0,005°, každý polygon oříznutý na dlaždici; Boston
+  711 dlaždic 35 MB, Cambridge 120 a 9 MB); při kliknutí žádný dotaz na město. Lokálně: `node tools/build_planimetrics_us.mjs`
+  (zapíše `pilot/data/us-plan`). Řez na hranici měst bere mapu města, ve kterém leží (Memorial Drive je Cambridge).
+  `?boston=0`, `?cambridge=0` vypnou, `?bostonhouse=0` vypne podlaží domů.
+- **ortofoto** MassGIS 2025 (15 cm, dlaždice z20, „No restrictions“) nad celým metrem: pruhy, obruby, podklad mapy (`lanes-ortho.js us-ma`).
+- normy Boston Complete Streets Guidelines 2013 jen oranžově (`evaluation/usa/boston/NORMY.md`), stání 3 m na směr jako DC.
+Měření `evaluation/usa/boston/ZPRAVA.md`.
+
 ### Kanada: Toronto (Bára 25. 11. 2026)
 
 Stát `canada` (CA), `countries/CA.js`, `towns/canada.js`; Toronto a obce kolem (StatCan), zbytek Kanady `closed_ca`. Mapa povrchů města

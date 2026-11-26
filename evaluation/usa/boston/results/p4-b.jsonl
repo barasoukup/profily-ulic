@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "stredni", "why": "Ulice o dvou pruzích se stáním po stranách a chodníky těsně u fasád; X končí 22 m zeleně tam, kde stojí budova."}
+{"n": 2, "verdict": "stejne", "jistota": "nizka", "why": "Skutečnost: chodník, vozovka s parkováním, pak široký trávník se stromy a chodník u vody; oba profily to zachytí jen zčásti."}
+{"n": 3, "verdict": "stejne", "jistota": "nizka", "why": "Úzká ulice se stáním po obou stranách, jedním pruhem a chodníky; obě verze mají správné složení, liší se jen okrajovými zelenými plochami."}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "Dělicí pás uprostřed, vpravo tři pruhy po cca 3 m a široký chodník; Y má pruhy 4 m a krajnice, které tam nejsou."}
+{"n": 5, "verdict": "X", "jistota": "nizka", "why": "Okružní prostor s parkem; X pokrývá celou šířku se silnicí a rozsáhlým středním prostorem, Y se omezuje na jednu stranu."}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "Dva jízdní pruhy se žlutou dvojitou čarou, vpravo obruba a zídka bez chodníku; X má vpravo chodník 1,1 m, který tam není."}
+{"n": 7, "verdict": "Y", "jistota": "vysoka", "why": "Parkoviště s kolmým stáním po obou stranách uličky a chodníky; X stání vůbec nemá."}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "Úzká ulice se dvěma pruhy, stáním vpravo a chodníky po stranách; X má vlevo příliš široký chodník a užší pruhy."}
+{"n": 9, "verdict": "Y", "jistota": "vysoka", "why": "Úzká ulice se stáním na obou stranách a jedním průjezdným pruhem mezi chodníky, šířky sedí."}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "Oba profily mají stejné složení se stáním a jedním širokým pruhem a liší se jen v zeleni a krajnici."}

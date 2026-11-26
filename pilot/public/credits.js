@@ -42,6 +42,7 @@ export const SOURCE_CREDITS = {
     // The USA: DC's orthophoto (lanes-ortho.js US_ORTHO).
     "us-dc": () => t("ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)"),
     "us-nyc": () => t("ortofoto © NYS ITS Geospatial Services, 2024"),
+    "us-ma": () => t("ortofoto © MassGIS (Bureau of Geographic Information), 2025"),
     "ca-tor": () => t("ortofoto © City of Toronto, 2025 (Open Government Licence – Toronto)"),
     // Denmark: GeoDanmark's spring orthophoto through Dataforsyningen, credited as its terms ask (evaluation/denmark/ZDROJE.md 1).
     dk: () => t("ortofoto: Indeholder data fra Styrelsen for Dataforsyning og Infrastruktur, Ortofoto forår, WMTS-tjeneste"),
@@ -119,11 +120,15 @@ export const SOURCE_CREDITS = {
     // New York's planimetrics (towns/newyork.js).
     nyc: () => t("mapa povrchů (NYC Planimetric Database 2022) © NYC Office of Technology and Innovation (NYC Open Data)"),
     // San Francisco's right of way, kerbs and buildings (towns/sanfrancisco.js; PDDL asks for no credit, the city is named).
-    sf: () => t("mapa povrchů (Right of Way, Curbs, Building Footprints) © City and County of San Francisco, DataSF a SFMTA (PDDL)") },
+    sf: () => t("mapa povrchů (Right of Way, Curbs, Building Footprints) © City and County of San Francisco, DataSF a SFMTA (PDDL)"),
+    // Boston's and Cambridge's (towns/boston.js), both under the PDDL (no credit asked, given).
+    boston: () => t("mapa povrchů (Street Edges, Sidewalk Inventory, budovy) © City of Boston (ODC PDDL)"),
+    cambridge: () => t("mapa povrchů © City of Cambridge GIS (ODC PDDL)") },
   // San Francisco's digital curb (towns/sanfrancisco.js), where it placed the parking.
   sfCurb: { true: () => t("stání (Digital Curb) © SFMTA, DataSF (PDDL)") },
   // San Francisco's building heights, where they gave the floors.
   sfHouse: { true: () => t("výšky domů © City and County of San Francisco, DataSF (PDDL)") },
+  usHouse: { boston: () => t("podlaží domů © City of Boston (ODC PDDL)") },
   caHouse: { true: () => t("výšky domů © City of Toronto (Open Government Licence – Toronto)") },
   // DC's assessment tables, where they told of a house.
   usCama: { true: () => t("domy (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)") },

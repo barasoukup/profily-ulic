@@ -105,11 +105,11 @@ async function swiss(iso) {
 }
 
 // The USA (Bára 24. 11. 2026, phase 2 of the North America pilot): only the metros the OSM packs hold (tools/countries.mjs),
-// a table so that further cities join as rows (26. 11. 2026), each a list of counties (GEOID: state and county FIPS) from
-// the Census Bureau's TIGERweb (State_County, layer Counties; works of the federal government, public domain), with their
-// holes (Fairfax County's ring has Fairfax city as a hole: the rings of one entry count by parity, so the city's own ring
-// makes it inside again): each metro merged to one outline on its own (their rings do not touch), then simplified to
-// about 10 m; the state "usa" is all of them.
+// a table so that further cities join as rows (26. 11. 2026), each a list of counties (and independent cities; GEOID: state
+// and county FIPS) from the Census Bureau's TIGERweb (State_County, layer Counties; works of the federal government, public
+// domain), with their holes (Fairfax County's ring has Fairfax city as a hole: the rings of one entry count by parity, so
+// the city's own ring makes it inside again): each metro merged to one outline on its own (their rings do not touch), then
+// simplified to about 10 m; the state "usa" is all of them.
 //   dc: the District, Montgomery and Prince George's in Maryland; Arlington, Fairfax County, Fairfax city, Falls Church
 //       and Alexandria in Virginia (the pack us_dc).
 //   nyc: New York City, its five boroughs (Bronx, Kings, New York, Queens, Richmond; the pack us_nyc, 26. 11. 2026). The
@@ -117,10 +117,14 @@ async function swiss(iso) {
 //   sf: San Francisco, the City and County (06075; its legal boundary with the water of the bay and the ocean to 3 nautical
 //       miles and the Farallon Islands; the pack us_sf, 26. 11. 2026). The counties around it (San Mateo, Marin, Alameda)
 //       have no surface map of the app, so they stay the closed USA (Bára decides).
+//   boston: Suffolk (Boston, Chelsea, Revere, Winthrop), Middlesex (Cambridge, Somerville, Newton …) and Norfolk
+//       (Brookline, Quincy …) in Massachusetts (the pack us_bos, Bára 26. 11. 2026; tools/build_towns_us.mjs takes the
+//       metro's ring from staty-america.json as "bostonmetro").
 const METROS = {
   dc: ["11001", "24031", "24033", "51013", "51059", "51600", "51610", "51510"],
   nyc: ["36005", "36047", "36061", "36081", "36085"],
   sf: ["06075"],
+  boston: ["25025", "25017", "25021"],
 };
 async function metro(ids) {
   const q = new URLSearchParams({ where: `GEOID IN (${ids.map((g) => `'${g}'`).join(",")})`, outFields: "GEOID", returnGeometry: "true", outSR: "4326", f: "json" });
@@ -254,7 +258,8 @@ const BUILD = {
   // Lithuania (24. 11. 2026): GISCO's LT, after Poland's exact PRG ring (by Suwałki and Sejny the Polish line first);
   // Latvia, Belarus and Kaliningrad stay abroad.
   lithuania: () => gisco("LT"),
-  // The USA (24. 11. 2026): the metros of METROS above (Washington DC, New York City, San Francisco); the rest of the USA is closed_us below.
+  // The USA (24. 11. 2026): the metros of METROS above (Washington DC, New York City, San Francisco, Boston); the rest of
+  // the USA is closed_us below.
   usa: () => usMetros(),
   // Canada (25. 11. 2026): Toronto and its surroundings (statcan above); the rest of Canada is closed_ca below.
   canada: async () => (await statcan(GTA)).map((r) => simplify(r, 0.0001)).filter((r) => r.length >= 4),
@@ -280,7 +285,7 @@ const BUILD = {
   closed_cy: () => gisco("CY"),
   // (GISCO's outer rings of Italy take in San Marino and the Vatican.)
   closed_it: () => gisco("IT"),
-  // The USA beyond its metros (24. 11. 2026: the OSM packs us_dc and us_nyc hold only the metros): GISCO's US, a message
+  // The USA beyond its metros (24. 11. 2026: the OSM packs us_dc, us_nyc, us_sf and us_bos hold only the metros): GISCO's US, a message
   // and not a border to cut by: to about 1 km, Alaska to 3 km without its small islands; along the land borders to 100 m
   // (at 1 km the quays of Windsor in Ontario and of Nuevo Laredo got the message of the USA).
   closed_us: async () => closedFar(await gisco("US"), US_BORDER),

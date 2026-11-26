@@ -595,7 +595,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   18 DCMR § 2405); bez řádku značek; bez paneláků; hledání Photon.
 - Ilustrace (větev north-america-art, sloučená 25. 11. 2026, `evaluation/north-america-art/`): severoamerické domy (`houses-america.js`,
   `house-looks-america.js northAmericaLook`), mobiliář `northamerica/`, autobus Metrobus v celém metru, Washington má svůj označník a glóbus do
-  5 m (`lamp-post-top`), bez tramvaje; domy v DC z CAMA (`?cama=0`). Toronto zapojené (stát `canada`), New York a San Francisco zapojené (26. 11.), Boston nakreslený, nezapojený.
+  5 m (`lamp-post-top`), bez tramvaje; domy v DC z CAMA (`?cama=0`). Toronto zapojené (stát `canada`), New York, San Francisco a Boston zapojené (26. 11.).
 - Tři společné změny z pilotu (všechny státy, podoba z `estonia` 83734e7): ústí uličky je křižovatka (`?off=ulicky`, zapnuto), obousměrka se dělí od
   4,0 m, kde je počet pruhů známý a u vozovky je stání (`?off=pocetpruhu`, zapnuto), jamky stromů v chodníku jako chodník (**vypnuto**, `?treepits=1`:
   DC 2 : 2, české kontroly 0 : 1). Regrese Prahy a Brna beze změny, v Evropě z 120 náhodných řezů změněno 0.
@@ -624,6 +624,19 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   u posuzovatelů (rozhodne Bára).
 - Normy: chodník podle SFMTA Sidewalk Widths, jinak jen NACTO, oranžově (`evaluation/usa/sf/NORMY.md`). Ilustrace Muni (autobus,
   trolejbus, LRV4, označník); PCC a Path of Gold nezapojené.
+
+## Boston (větev na-boston, 26. 11. 2026, nenasazené)
+- Další metro státu `usa`: okresy Suffolk, Middlesex, Norfolk (`tools/build_staty.mjs METROS`, další metro = řádek), OSM balík
+  `us_bos`; města `boston`, `bostonmetro` (celé metro: MBTA autobus a tramvaj, ortofoto MassGIS 2025, normy Boston Complete
+  Streets Guidelines 2013 jen oranžově) a `cambridge` (jen území mapy) v `mesta-us.json`; v Bostonu lampa acorn.
+- Mapy povrchů Bostonu (Street Edges, Sidewalk Inventory, budovy s podlažími) a Cambridge (PDDL), `towns/boston.js`: vozovky jsou
+  polygony přes celé město, proto statické dlaždice `data/us-plan` stavěné jednou týdně při nasazení
+  (`tools/build_planimetrics_us.mjs`, `pages.yml`), při kliknutí žádný dotaz; `?boston=0`, `?cambridge=0`, `?bostonhouse=0`.
+- Čerstvé měření 60 řezů (`evaluation/usa/boston/ZPRAVA.md`): A/B mapa : odhad 27 : 21 (p 0,47; místní 13 : 4, tepny 8 : 15),
+  univerzální 69 % s mapou, 68 % bez, 72 % jen OSM. Mapa zapnutá, **rozhodne Bára** (tepny: mezera mezi polygony je zeleň i na
+  parkovišti a náměstí). Washington 100 řezů beze změny, regrese beze změny.
+- Přegenerovat: `node tools/build_staty.mjs usa && node tools/build_towns_us.mjs && node tools/build_coverage.mjs`.
+  Před nasazením workflow OSM tiles se `states: us` (nebo `us_bos`).
 
 ## Společné pro státy (Bára 23. 11. 2026)
 - Sever Kypru a Itálie mimo otevřená ortofota (i se San Marinem a Vatikánem) profil nedostanou, aplikace to řekne

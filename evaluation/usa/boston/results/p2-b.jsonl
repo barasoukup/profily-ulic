@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "X zahrnuje střední pás 14 m a obslužnou vozovku mezi chodníky, Y končí před pásem a ten vynechává"}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "Za chodníkem na straně B je zpevněné parkoviště (plocha), X ho kreslí jako zeleň 21 m; vozovka se dvěma pruhy stejná"}
+{"n": 3, "verdict": "X", "jistota": "stredni", "why": "Vozovka je široká asi 13 m se stáním u B a auty u A; X má stání po obou stranách, Y nesmyslnou zeleň 5,5 m uvnitř ulice"}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "Y sedí na geometrii: tři pruhy, trávník 6 m, druhá vozovka se třemi pruhy 10 m, úzký pás, vozovka s dvojitou žlutou; X má pruhy a oddělení jinak"}
+{"n": 5, "verdict": "X", "jistota": "nizka", "why": "Na straně B je svah a zeleň u plotu, ne široký chodník; X dělí chodník a zeleň, Y dává 6,5 m chodníku"}
+{"n": 6, "verdict": "Y", "jistota": "vysoka", "why": "Ulice vede až k budovám: druhá vozovka má tři pruhy, chodník a pás stromů; X končí po dvou pruzích"}
+{"n": 7, "verdict": "X", "jistota": "nizka", "why": "Vpravo je pás trávy a chodník (plocha + stezka) a vlevo široká zpevněná plocha; Y zjednodušuje"}
+{"n": 8, "verdict": "stejne", "jistota": "nizka", "why": "Jednosměrná úzká ulice se stáním po obou stranách, oba profily mají stejné složení, Y má jen zbytečnou krajnici"}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "Na fotce jsou chodníky na obou stranách a stání na straně B; X nemá chodník a dává stání vlevo"}
+{"n": 10, "verdict": "X", "jistota": "nizka", "why": "Stejné složení se čtyřmi pruhy a stáním, X má realističtější šířky chodníků (asi 4 m)"}

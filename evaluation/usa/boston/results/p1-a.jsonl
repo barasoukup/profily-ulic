@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "Pravá vozovka je u řezu široká asi 15 m (víc pruhů), X má pět pruhů, Y jen dva s krajnicí a plochou; střední pás podobný."}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "Stání po obou stranách a dva běžné pruhy kolem 3,4 m odpovídají; Y má pruhy 2,55 m a zelený pás mezi chodníkem a stáním."}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "Na fotkách je u okraje stání, Y ho má na straně B, X žádné; plocha vs. zeleň na A nejistá."}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "Stání po obou stranách a stromy odpovídají fotce, Y má stání jen na jedné straně a pruhy 4,15 m."}
+{"n": 5, "verdict": "X", "jistota": "vysoka", "why": "X správně umisťuje rampu, mezeru a 3+3 pruhy s dělicím pásem podle ortofota; Y je posunuté o asi 10 m."}
+{"n": 6, "verdict": "X", "jistota": "nizka", "why": "Křižovatka s ostrůvkem: trávník s cestou u X sedí o něco líp než plocha u Y."}
+{"n": 7, "verdict": "Y", "jistota": "stredni", "why": "Na straně B je chodník a pak zpevněné plochy (parkoviště), X tam dává 22 m zeleně."}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "Chodník 3-4 m a zeleň před vozovkou i okraj vozovky s cyklopruhem sedí; X má 21 m zeleně a ploch a 9 m krajnice."}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "Vozovka s čtyřmi pruhy začíná kolem 19 m od A jako na ortofotu; Y ji dává už ve 4 m."}
+{"n": 10, "verdict": "X", "jistota": "nizka", "why": "V centru je na straně A zastavěná plocha, ne zeleň; X začíná vozovku blíž skutečné poloze."}

@@ -1,0 +1,3 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "Křižovatka s širokou vozovkou a velkou dlážděnou plochou; Y je příliš úzké a cyklostezky umisťuje jinam, X má širokou vozovku, pak chodník a zeleň."}
+{"n": 2, "verdict": "Y", "jistota": "nizka", "why": "Dva pruhy s parkováním po obou stranách a chodníky u obou okrajů s předzahrádkami/trávou; Y má zeleň i na straně A, X tam chodník bez zeleně."}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "Na straně A cesta od hřbitova, zelený pás se stromy a pak tři pruhy; Y má cestu a zeleň před vozovkou, X cestu přímo u vozovky."}

@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "vysoka", "why": "Vpravo je za parkováním chodník a pak budova, ne 22 m zeleně jako v X."}
+{"n": 2, "verdict": "stejne", "jistota": "nizka", "why": "Obě mají chodník a dva pruhy; ortofoto ukazuje široký trávník se stromy a stezku u vody, X má stromořadí, Y stezku, ani jedno nesedí celé."}
+{"n": 3, "verdict": "stejne", "jistota": "nizka", "why": "Obě mají parkování po obou stranách a jeden pruh; liší se jen zelení a chodníkem u okraje, šířky podobné."}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "Vpravo je široký chodník (asi 7 m) a tři pruhy, což X lépe vystihuje; Y má chodník jen 3 m a krajnice, které tam nejsou."}
+{"n": 5, "verdict": "X", "jistota": "nizka", "why": "Uprostřed je kruhový ostrůvek asi 16 m, který odpovídá dělicímu pásu 15,2 m v X; Y ho nemá."}
+{"n": 6, "verdict": "Y", "jistota": "nizka", "why": "Vozovka asi 12 m se dvěma pruhy a okrajem na obou stranách; vpravo je zeď a svah, chodník 1,1 m v X tam není."}
+{"n": 7, "verdict": "Y", "jistota": "vysoka", "why": "Parkoviště s kolmým stáním po obou stranách a uličkou uprostřed, chodníky i zeleň u budov sedí na Y."}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "Vlevo je před chodníkem pás zeleně u domů, vpravo parkování a chodník; X má vlevo chodník 4 m bez zeleně."}
+{"n": 9, "verdict": "Y", "jistota": "vysoka", "why": "Úzká ulice s parkováním po obou stranách a jedním pruhem mezi chodníky; X má jen jedno parkování a zeleň."}
+{"n": 10, "verdict": "X", "jistota": "nizka", "why": "Zeleň vlevo před chodníkem asi 5 m sedí na X, Y má 7,5 m; ostatní složení stejné."}

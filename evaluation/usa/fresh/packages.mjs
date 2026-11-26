@@ -33,7 +33,7 @@ async function photos(r) {
 }
 const ortho = async (r, half, out) => {
   const f = path.join(FOTO, `${r.id}-${half}-ortho.jpg`);
-  if (!(await fs.stat(f).catch(() => null))) { await orthoImage({ lat: r.lat, lon: r.lon, bearing: r.bearing, half }, f, process.env.EVAL_ORTHO ? { service: process.env.EVAL_ORTHO } : {}); await new Promise((q) => setTimeout(q, 500)); }
+  if (!(await fs.stat(f).catch(() => null))) { await orthoImage({ lat: r.lat, lon: r.lon, bearing: r.bearing, half }, f, process.env.EVAL_TILES ? { tiles: process.env.EVAL_TILES } : process.env.EVAL_ORTHO ? { service: process.env.EVAL_ORTHO } : {}); await new Promise((q) => setTimeout(q, 500)); }
   await fs.copyFile(f, out);
 };
 const fmt = (r) => r.parts.map(([t, w]) => `${t} ${w}`).join(" | "), differs = (a, b) => a.parts.length !== b.parts.length || a.parts.some(([t, w], i) => t !== b.parts[i][0] || Math.abs(w - b.parts[i][1]) >= 0.2);

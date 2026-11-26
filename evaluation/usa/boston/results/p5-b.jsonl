@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "nizka", "why": "Stejné složení; Y lépe sedí šířkou levé jízdní dráhy (~10 m), středního pásu (~5 m) a pravého chodníku (~5 m)."}
+{"n": 2, "verdict": "Y", "jistota": "nizka", "why": "Stejné složení; Y má širší chodníky, které odpovídají ortofotu (pravý chodník ~4 m)."}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "Vozovka je úzká (~7 m), což sedí na Y; vpravo je parkoviště mimo ulici, X má vozovku příliš širokou (10 m)."}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "Úzká ulice s parkováním a jedním pruhem; vpravo za chodníkem je budova, Y tam přidává 12,9 m plochy bez opory."}
+{"n": 5, "verdict": "Y", "jistota": "nizka", "why": "Úzká dvoupruhová ulice mezi budovami; X přidává zeleň 3,4 m vpravo, kterou podklady nevykazují (garáž, chodník)."}
+{"n": 6, "verdict": "stejne", "jistota": "nizka", "why": "X správně má stání vlevo, ale chybí mu levý chodník; Y má oba chodníky, ale chybí mu stání."}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "Shodné složení se stáním po obou stranách; rozdíly jen v šířce zeleně a vozovky, žádný jasně lepší."}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "Levá vozovka je široká víceproudá, X ji vystihuje dvěma pruhy a cyklopruhy, Y ji zredukoval na jediný pruh a plochu; ostrůvek vychází podobně."}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "Čtyřpruhá vozovka ~16 m vlevo sousedí s dlážděným pásem; X přidává dělicí pás 21 m, který by sahal do parkoviště mimo ulici."}
+{"n": 10, "verdict": "X", "jistota": "stredni", "why": "Dvě dvoupruhové vozovky s úzkým středem, vpravo pás zeleně, cyklostezka a chodník; Y vlevo doplňuje cyklostezky a plochu 10 m do lesa."}
