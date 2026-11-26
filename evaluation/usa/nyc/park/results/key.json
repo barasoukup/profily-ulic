@@ -1,0 +1,157 @@
+{
+ "1/1": {
+  "id": "np-23",
+  "X": "nycsigns",
+  "Y": "def"
+ },
+ "1/2": {
+  "id": "np-55",
+  "X": "def",
+  "Y": "nycsigns"
+ },
+ "1/3": {
+  "id": "np-59",
+  "X": "nycsigns",
+  "Y": "def"
+ },
+ "1/4": {
+  "id": "np-63",
+  "X": "def",
+  "Y": "nycsigns"
+ },
+ "1/5": {
+  "id": "np-65",
+  "X": "nycsigns",
+  "Y": "def"
+ },
+ "1/6": {
+  "id": "np-49",
+  "X": "nycsigns",
+  "Y": "def"
+ },
+ "1/7": {
+  "id": "np-7",
+  "X": "def",
+  "Y": "nycsigns"
+ },
+ "1/8": {
+  "id": "np-12",
+  "X": "nycsigns",
+  "Y": "def"
+ },
+ "1/9": {
+  "id": "np-27",
+  "X": "nycsigns",
+  "Y": "def"
+ },
+ "1/10": {
+  "id": "np-5",
+  "X": "nycsigns",
+  "Y": "def"
+ },
+ "2/1": {
+  "id": "np-82",
+  "X": "nycsigns",
+  "Y": "def"
+ },
+ "2/2": {
+  "id": "np-72",
+  "X": "def",
+  "Y": "nycsigns"
+ },
+ "2/3": {
+  "id": "np-53",
+  "X": "def",
+  "Y": "nycsigns"
+ },
+ "2/4": {
+  "id": "np-8",
+  "X": "def",
+  "Y": "nycsigns"
+ },
+ "2/5": {
+  "id": "np-32",
+  "X": "def",
+  "Y": "nycsigns"
+ },
+ "2/6": {
+  "id": "np-2",
+  "X": "nycsigns",
+  "Y": "def"
+ },
+ "2/7": {
+  "id": "np-35",
+  "X": "def",
+  "Y": "nycsigns"
+ },
+ "2/8": {
+  "id": "np-52",
+  "X": "def",
+  "Y": "nycsigns"
+ },
+ "2/9": {
+  "id": "np-89",
+  "X": "def",
+  "Y": "nycsigns"
+ },
+ "2/10": {
+  "id": "np-31",
+  "X": "def",
+  "Y": "nycsigns"
+ },
+ "3/1": {
+  "id": "np-61",
+  "X": "def",
+  "Y": "nycsigns"
+ },
+ "3/2": {
+  "id": "np-39",
+  "X": "nycsigns",
+  "Y": "def"
+ },
+ "3/3": {
+  "id": "np-44",
+  "X": "def",
+  "Y": "nycsigns"
+ },
+ "3/4": {
+  "id": "np-83",
+  "X": "def",
+  "Y": "nycsigns"
+ },
+ "3/5": {
+  "id": "np-10",
+  "X": "nycsigns",
+  "Y": "def"
+ },
+ "3/6": {
+  "id": "np-42",
+  "X": "nycsigns",
+  "Y": "def"
+ },
+ "3/7": {
+  "id": "np-13",
+  "X": "def",
+  "Y": "nycsigns"
+ },
+ "3/8": {
+  "id": "np-37",
+  "X": "def",
+  "Y": "nycsigns"
+ },
+ "3/9": {
+  "id": "np-81",
+  "X": "def",
+  "Y": "nycsigns"
+ },
+ "3/10": {
+  "id": "np-56",
+  "X": "nycsigns",
+  "Y": "def"
+ },
+ "4/1": {
+  "id": "np-86",
+  "X": "def",
+  "Y": "nycsigns"
+ }
+}

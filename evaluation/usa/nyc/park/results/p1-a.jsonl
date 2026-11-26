@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "stredni", "why": "Na pravé straně jsou v ortofotu i na fotce zaparkovaná auta u obruby, X má stání na obou stranách, Y vpravo jen pruh a krajnici."}
+{"n": 2, "verdict": "Y", "jistota": "vysoka", "why": "Zaparkovaná auta jsou na obou stranách dvoupruhové vozovky s dvojitou žlutou, Y má stání po obou stranách, X jen krajnice."}
+{"n": 3, "verdict": "X", "jistota": "stredni", "why": "Zaparkovaná auta stojí u levého chodníku, takže stání má být hned za chodníkem (X); piktokoridor a cyklopruh vpravo u dělicí čáry."}
+{"n": 4, "verdict": "X", "jistota": "nizka", "why": "Auta parkují u levého chodníku v okraji vozovky (X krajnice 2 m), Y navíc vkládá stání mezi pruhy a dělicí pás, kde žádné není."}
+{"n": 5, "verdict": "X", "jistota": "nizka", "why": "U levého okraje stojí autobus a auta (stání), vedle jízdní pruh s nápisem; X má stání a užší pruhy, Y bez stání."}
+{"n": 6, "verdict": "X", "jistota": "stredni", "why": "Úzká ulice s podélným stáním na obou stranách a jedním pruhem uprostřed; X je čisté složení, Y přidává nepravděpodobnou krajnici."}
+{"n": 7, "verdict": "stejne", "why": "Složení i pořadí dílů jsou shodné, liší se jen o desetiny metru ve stání a pruhu.", "jistota": "stredni"}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "Auta jsou zaparkovaná u obou chodníků a uprostřed je dvojitá žlutá; Y má stání vpravo, X místo něj krajnici."}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "Mezi budovami jsou auta zaparkovaná u obou chodníků a dva jízdní pruhy uprostřed; Y stání nemá a kreslí široké krajnice."}
+{"n": 10, "verdict": "Y", "jistota": "nizka", "why": "Vlevo od středního pásu jsou čtyři jízdní pruhy bez stání, u obruby spíš okraj vozovky; X vkládá stání k pásu, kde nemá být."}

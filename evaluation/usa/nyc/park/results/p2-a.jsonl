@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "Obě mají stání po obou stranách a jeden pojížděný pruh mezi nimi, celá vozovka 8,6 m; liší se jen rozdělením stání a pruhu o desetiny metru, ortofoto to nerozliší."}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "Na fotce stojí auta po obou stranách vozovky; Y má stání na obou stranách, X vpravo žádné a dva pruhy místo toho."}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "Zastíněná část je nejasná; fotka ukazuje chodník a hned vozovku bez stání, což sedí na X, Y vkládá stání po obou stranách úzkého pruhu 2,5 m."}
+{"n": 4, "verdict": "X", "jistota": "vysoka", "why": "Dálnice s dělicím pásem: vlevo krajnice a 3 stejné pruhy po cca 3,5 m; Y má na dálnici stání a nesmyslné rozdělení pruhů."}
+{"n": 5, "verdict": "stejne", "jistota": "vysoka", "why": "Stejné složení (chodník, stání, jeden pruh, stání, chodník) i shodná šířka vozovky 8,8 m; rozdíly jen v desetinách."}
+{"n": 6, "verdict": "Y", "jistota": "nizka", "why": "Červený BUS pruh a šipky pruhů v ortofotu sedí polohou i šířkou na Y (BUS pruh a 4 pruhy), X přidává stání a zužuje pruhy na 2,8 m."}
+{"n": 7, "verdict": "stejne", "jistota": "stredni", "why": "Obě mají shodné složení (stání, 2 pruhy, cyklopruh, stání); na fotce je ale dvousměrka s dvojitou žlutou a bez cyklopruhu, takže chybují stejně, šířky se liší jen o desetiny."}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "V ortofotu stojí auta u obruby vlevo i vpravo za bílou čarou, tedy stání na obou stranách jako Y; X má místo stání široké krajnice."}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "Tmavé ortofoto bez fotek; vlevo u obruby jsou náznaky vyznačeného stání a auto jede ve středu vozovky, takže spíš stání (Y) než krajnice (X)."}
+{"n": 10, "verdict": "X", "jistota": "stredni", "why": "Na ortofotu stojí auta podél levé obruby, což odpovídá stání v X; Y má vlevo jen krajnici a jinak se shodují."}

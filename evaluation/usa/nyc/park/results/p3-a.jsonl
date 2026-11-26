@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "Obě složení shodná (stání, jeden pruh, stání), liší se jen o 0,5 m mezi pruhem a stáním; ortofoto je ve stínu."}
+{"n": 2, "verdict": "X", "jistota": "nizka", "why": "Na straně A je v ortofotu i na fotkách podélné stání u tří pruhů; Y ho nahrazuje krajnicí. Žádný z profilů nemá červený cyklopruh."}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "Stejné složení, X vkládá nepravděpodobnou krajnici 0,7 m mezi pruh a cyklopruh; Y je jednodušší a odpovídá fotce."}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "V ortofotu je mezi stáním na straně A a jízdním pruhem volný pás, který má jen Y; X dává 2,7 m krajnice na druhou stranu."}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "Stejné složení a počet pruhů, liší se jen rozdělení šířek pruhů a krajnice na straně A."}
+{"n": 6, "verdict": "nejde", "jistota": "nizka", "why": "Ortofoto je tmavé, fotka je zjevně odjinud (Manhattan); stání ani cyklopruh nelze ověřit."}
+{"n": 7, "verdict": "X", "jistota": "nizka", "why": "V ortofotu stojí auto u obruby i na straně B, takže stání na obou stranách (X) je pravděpodobnější než krajnice v Y."}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "Na straně B jsou v ortofotu i na fotce zaparkovaná auta, což má jen Y; X dává na A jen krajnici bez stání a bez B stání."}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "V ortofotu stojí auta u obou okrajů vozovky; Y má stání na obou stranách, X jen na jedné."}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "Obě mají stání na obou stranách a jeden pruh s volným místem; rozdíl jen v rozložení šířek, podklady ho nerozliší."}

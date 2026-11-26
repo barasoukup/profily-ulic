@@ -611,6 +611,9 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Čerstvé měření (`evaluation/usa/nyc/ZPRAVA.md`, 75 řezů, 50 podle délky sítě bez podmínky fotky): slepé A/B mapa : odhad
   **31 : 23** (p 0,34), univerzálně 73 % s mapou, 70 % bez, 63 % jen OSM: **neprůkazné, zůstává zapnuté** (rozhodne Bára).
   Slabina: stání (mapa ho nerozliší, ortofoto ve stínu). Washington beze změny (10 z 10 řezů).
+- Stání (26. 11., `evaluation/usa/nyc/park/ZPRAVA.md`): stání z OSM sdílený kód do vozovky mapy dává, OSM ho v New Yorku nemá;
+  stání ze značek NYC DOT (Parking Regulation Locations and Signs, jeden dotaz SODA na kliknutí, `?nycsigns=1`): A/B 31 nových
+  řezů 17 : 8 (p 0,11), univerzálně 75 → 72 %, **vypnuto**.
 - Před nasazením: workflow OSM tiles se `states: us` (postaví `us_dc` i `us_nyc`), licence NYCmaps a ortofota NYS (Bára).
 
 ## San Francisco (větev na-sanfrancisco, 26. 11. 2026, nenasazené)
@@ -643,7 +646,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   Před nasazením workflow OSM tiles se `states: us` (nebo `us_bos`).
 - Mezery za vnějším chodníkem (26. 11., `evaluation/usa/boston/outer/ZPRAVA.md`, `planimetrics.js outerGaps`, `ortho-osm.js
   outerGapsByImage`): domy a parkoviště z OSM, zbytek ortofotem (MassGIS je bez listí, zeleň podle žlutosti a sytosti). A/B 52
-  nových tepen 18 : 16, **vypnuto**, `?outergaps=1`.
+  nových tepen 18 : 16, **vypnuto**, `?outergaps=1`. Jen domy a parkoviště z OSM bez ortofota (`?outerosm=1`,
+  `evaluation/usa/boston/outer-osm`): A/B 102 nových tepen 24 : 22, **vypnuto**.
 
 ## Společné pro státy (Bára 23. 11. 2026)
 - Sever Kypru a Itálie mimo otevřená ortofota (i se San Marinem a Vatikánem) profil nedostanou, aplikace to řekne

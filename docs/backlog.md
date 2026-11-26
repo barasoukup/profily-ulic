@@ -199,7 +199,10 @@ Co rozhodne Bára, je označeno **(Bára)**.
   ne (teď ne: bez mapy povrchů, okolí Washingtonu a Toronta jen 51 %). **(Bára)** stání: zákonná volná šířka v New Yorku nedoložená
   (34 RCNY § 4-08, FC 503 nepřečtené), platí 3 m aplikace. Ostatní: Bishop's Crook (`newyork/lamp-bishop-*`) nemá kde se kreslit
   (aplikace má jednu lampu nad ulicí, do 5 m sloupkovou); stání v New Yorku je skoro všude, mapa ho nemá (je to vozovka) a odhad
-  ho bere jen z aut na ortofotu, které má hluboké stíny mezi vysokými domy; pod nadzemním metrem (Queens Boulevard v Sunnyside,
+  ho bere jen z aut na ortofotu, které má hluboké stíny mezi vysokými domy (~~rozdělit vozovku podle OSM~~: sdílený kód to
+  dělá, OSM ale stání nemá, 0 ze 75 cest měření; **stání ze značek NYC DOT** `?nycsigns=1`, 26. 11. 2026,
+  `evaluation/usa/nyc/park`: A/B 31 nových řezů 17 : 8, p 0,11, univerzálně 75 → 72 %, **vypnuto**; zkusit na novém vzorku
+  bez dálnic a parkway a s „smí se stát“ před nejbližší značkou); pod nadzemním metrem (Queens Boulevard v Sunnyside,
   Roosevelt Avenue) mapa ulici pod středem řezu nenajde; inventář jízdních pruhů jako DDOT New York otevřeně nemá (DOT má
   „Street Design“ jen jako příručku); domy PLUTO (druh budovy) nezapojené, stačily obrysy budov s výškou a rokem.
 
@@ -207,8 +210,10 @@ Co rozhodne Bára, je označeno **(Bára)**.
   na tepnách prohrává 8 : 15: mezera mezi polygony za chodníkem je zeleň i tam, kde je parkoviště, náměstí nebo dům (Street Edges
   nemá parkoviště, budovy podkladové mapy nejsou úplné), široká mezera mezi vozovkami je dělicí pás (b-14, 21 m). ~~Zkusit: mezeru
   uvnitř řezu za vnějším chodníkem posoudit ortofotem jako odhad~~ (26. 11. 2026, `evaluation/usa/boston/outer`: domy a parkoviště
-  z OSM, zbytek ortofotem MassGIS, které je bez listí; A/B 52 nových tepen 18 : 16, **vypnuto, `?outergaps=1`**; **(Bára)** zkusit
-  jen konec profilu u parkoviště (13 : 8) na dalším novém vzorku); dělicí pás 21 m (b-14) otevřený; parkoviště Bostonu (BTD
+  z OSM, zbytek ortofotem MassGIS, které je bez listí; A/B 52 nových tepen 18 : 16, **vypnuto, `?outergaps=1`**); ~~zkusit
+  jen konec profilu u parkoviště nebo domu z OSM bez ortofota~~ (26. 11. 2026, `evaluation/usa/boston/outer-osm`: A/B 102
+  změněných nových tepen 24 : 22, p 0,88, **vypnuto, `?outerosm=1`**; konec u parkoviště 4 : 3, prodloužení přes dům z OSM
+  5 : 10); dělicí pás 21 m (b-14) otevřený; parkoviště Bostonu (BTD
   MunicipalParkingLots jsou jen městská).
   Nebo mapu jen pro místní ulice (nový vzorek). Ve všech variantách nejčastěji chybí stání (mapy ho nemají; BTD má značení
   `Cartegraph_BTD_readonly` LongMarkings a ParkingMeters, nezkoumáno). **(Bára)** licence Street Edges (PDDL z položky celé

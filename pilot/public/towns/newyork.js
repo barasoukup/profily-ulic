@@ -26,6 +26,7 @@
 //   (NYC Open Data nfid-uabd, SODA with CORS *; free of restrictions by Admin. Code § 23-502, the source named) say along
 //   which kerb cars may stand: the map's roadway is one polygon from kerb to kerb, OSM tags parking on few of the city's
 //   streets (0 of the measurement's 75 ways). One request a cut (the signs within the box, by their State Plane feet).
+//   Off: the blind A/B of 31 changed new cuts 17 : 8 (p 0.11), the universal measurement 75 → 72 %.
 import { inArea } from "../places.js";
 import { getJSON } from "../gis.js";
 import { planimetricMap, islandsBeside, kerbBays, osmTracks, memory, WALKED } from "./planimetrics.js";

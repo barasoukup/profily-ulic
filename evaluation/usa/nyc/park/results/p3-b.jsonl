@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "Obě: chodník, stání, jeden pruh, stání, chodník; liší se jen o desítky cm."}
+{"n": 2, "verdict": "X", "jistota": "nizka", "why": "Na straně A fotka ukazuje stání u obruby, Y tam dává krajnice."}
+{"n": 3, "verdict": "stejne", "jistota": "nizka", "why": "Stejné pořadí stání, pruh, cyklopruh, stání; liší se jen buffer cyklopruhu."}
+{"n": 4, "verdict": "stejne", "jistota": "nizka", "why": "Stejné pořadí dílů; krajnice versus buffer nejsou z podkladů rozlišitelné."}
+{"n": 5, "verdict": "X", "jistota": "nizka", "why": "Levá vozovka má širší okrajový pruh a čára dělí zhruba 5,5 + 3,6 m, blíž X."}
+{"n": 6, "verdict": "X", "jistota": "nizka", "why": "Cyklopruh je na ortofotu u okraje B, dva jízdní pruhy; Y ho dává mezi pruh a stání."}
+{"n": 7, "verdict": "X", "jistota": "stredni", "why": "Zaparkovaná auta jsou na obou stranách úzké ulice; Y má na straně B jen krajnici."}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "Stání jen na straně B (auta v ortofotu i na fotce), na A žádné; X stání nemá."}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "Auta stojí u obou okrajů úzké vozovky, takže stání po obou stranách a jeden široký pruh."}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "Ortofoto je zastíněné; pořadí dílů stejné, šířky nelze rozlišit."}

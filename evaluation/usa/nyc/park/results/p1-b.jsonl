@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "Ortofoto je u křižovatky nejasné; u pravého okraje ulice stojí auta u obruby, což odpovídá X (stání), Y ho nemá."}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "Dva jízdní pruhy se žlutou čarou a zaparkovaná auta u obou obrub; X má krajnice místo stání."}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "Zaparkované auto stojí u levé obruby a pruhy za ním; v Y je stání vložené mezi pruhy."}
+{"n": 4, "verdict": "X", "jistota": "nizka", "why": "Úzké stání 1,4 m těsně u šrafovaného středního pásu v Y nevidím; jinak jsou profily shodné."}
+{"n": 5, "verdict": "X", "jistota": "stredni", "why": "U levé obruby stojí auta a autobus, vpravo je jeden pruh se šipkami; X má stání, Y dva plné pruhy bez stání."}
+{"n": 6, "verdict": "stejne", "jistota": "nizka", "why": "Obě verze mají stání po obou stranách a jeden pruh uprostřed, liší se jen v detailu 0,45 m krajnice a šířce stání."}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "Řez vede složitým rohem křižovatky; profily se liší jen o desetiny metru a nic podklady nerozhodnou."}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "Dva pruhy se žlutou čarou uprostřed a zaparkovaná auta u obou obrub; X má vpravo místo stání krajnici."}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "Jednosměrná ulice s dvěma pruhy a zaparkovanými auty u obrub; Y má dvě široké krajnice místo stání."}
+{"n": 10, "verdict": "Y", "jistota": "stredni", "why": "Vlevo od středního pásu jsou čtyři pruhy hned u středního pásu, bez stání; X tam vkládá stání."}
