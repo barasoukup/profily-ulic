@@ -223,3 +223,12 @@ test("záznam řezu: poloha ve Španělsku, Francii, Belgii, v Amsterdamu i mimo
   // Any valid position since 25. 11. 2026 (Washington DC was dropped by the box of the European states).
   assert.deepEqual(await at(38.9, -77.03), [38.9, -77.03]); // Washington
 });
+
+// Bára 26. 11. 2026: in Czech (and Slovak) the author is "Bára Soukupová", whatever the state of the cut.
+test("O aplikaci: autorka česky a slovensky Bára Soukupová, jinak podle státu", async () => {
+  const { authorName } = await import("../pilot/public/about.js");
+  assert.equal(authorName("cs", "Bara Soukup"), "Bára Soukupová");
+  assert.equal(authorName("sk", "Bara Soukup"), "Bára Soukupová");
+  assert.equal(authorName("en", "Bara Soukup"), "Bara Soukup");
+  assert.equal(authorName("en", "Bára Soukupová"), "Bára Soukupová");
+});

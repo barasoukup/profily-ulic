@@ -38,11 +38,13 @@ async function showMap(el) {
 
 // The dialog: cut() gives the link of the current cut (or null), country() the state of the cut (its module,
 // countries/<ISO>.js: its code and the author's name as its credits give it), lang the page's.
+export const authorName = (lang, byCountry) => (lang === "cs" || lang === "sk" ? "Bára Soukupová" : byCountry);
 export function setupAbout({ $, cut, country, lang }) {
   const dlg = $("#about-dialog"), status = $("#contact-status"), send = $("#contact-send");
   const say = (text) => { status.textContent = text; };
   $("#menu-about").onclick = () => {
-    $("#about-author").textContent = t("Autorka: {name}", { name: country().author });
+    // In Czech and Slovak always "Bára Soukupová" (Bára 26. 11. 2026); otherwise the name the state's credits use.
+    $("#about-author").textContent = t("Autorka: {name}", { name: authorName(lang, country().author) });
     const link = cut();
     $("#contact-cut").disabled = !link;
     $("#contact-cut-row").hidden = !link;
