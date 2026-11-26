@@ -736,12 +736,12 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   Magdaleny), Slovensko jen při zájmu.
 
 ## Pasporty dalších měst (Bára 16. 11. 2026, A/B 26. 11. 2026)
-- Komunikace Rožnova p. R. a Kuřimi (`towns/pasporty.js`, hranice `pasporty.json`) nad DTM ČÚZK
+- Komunikace Rožnova p. R. (`towns/pasporty.js`, hranice `pasporty.json`) nad DTM ČÚZK
   ve „cesko“; pasport bez ploch v okolí nechá řez DTM. A/B po odstávce DMVS (`evaluation/PASPORTY-AB.md`, výsledky):
   vyřazené Chomutov (bez pasportu lépe 33 : 8), Šumperk (4 : 4), Litoměřice (6 : 5), zeleň Prachatic (2 : 1) a Roudnice
   (9 : 0); Chotěboř vyhrála (4 : 1), ale vyřazená kvůli licenci (vrstva na soukromém účtu „ArcGIS Demo portál“, ne
   města; Bára 26. 11. 2026); Šlapanice vyřazené po slepém A/B na nových řezech 12 : 12 (Bára 26. 11. 2026,
-  `evaluation/pasporty-blind/ZPRAVA.md`; i z kreditu); jména v `pasporty-names.js` zůstala kvůli kreditu uložených řezů. Nápad: vozovku pasportu ořezat na kus pod osou.
+  `evaluation/pasporty-blind/ZPRAVA.md`; i z kreditu), Kuřim (osy zimní údržby se šířkou) po témže A/B 14 : 16 (taky i z kreditu); jména v `pasporty-names.js` zůstala kvůli kreditu uložených řezů. Nápad: vozovku pasportu ořezat na kus pod osou.
 
 ## Po odstávce DMVS (ověřeno 26. 11. 2026)
 - DMVS i WFS krajů po přechodu na JVF DTM 1.5 fungují (Komenského ve Vysokém Mýtě, `tools/check_sources.mjs` česká

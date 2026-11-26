@@ -117,11 +117,11 @@ test("stát podle polohy řezu: Česko, Slovensko, Rakousko, Německo, cizina", 
 
 // The towns' passports (towns/pasporty.js): the page may ask their servers, a point takes its town.
 test("pasporty měst: CSP, město podle polohy, převod typů", async () => {
-  const { PASSPORT_HOSTS, passportAt, codes, widen } = await import("../pilot/public/towns/pasporty.js");
+  const { PASSPORT_HOSTS, passportAt, codes } = await import("../pilot/public/towns/pasporty.js");
   const connect = read("index.html").match(/connect-src [^;]*/)[0];
   for (const host of PASSPORT_HOSTS) assert.ok(connect.includes(host), host);
   assert.equal(await passportAt(18.1431, 49.4583), "roznov");
-  assert.equal(await passportAt(16.531, 49.2985), "kurim");
+  assert.equal(await passportAt(16.531, 49.2985), null, "Kuřim vyřazená (Bára 26. 11. 2026)");
   // Left out after the A/B test of 26. 11. 2026: Chomutov, Šumperk (and Litoměřice, Prachatice, Roudnice);
   // Chotěboř for its licence (a demo portal's account, Bára 26. 11. 2026).
   assert.equal(await passportAt(15.672, 49.7207), null);
@@ -131,9 +131,6 @@ test("pasporty měst: CSP, město podle polohy, převod typů", async () => {
   assert.equal(codes.roznov({ typ: "komunikace" }), 701);
   assert.equal(codes.roznov({ typ: "chodník" }), 702);
   assert.equal(codes.roznov({ typ: "schody" }), null);
-  // A line 4 m wide becomes a rectangle about 4 m across.
-  const r = widen({ features: [{ attributes: { "šířka": 4 }, geometry: { paths: [[[16.5, 49.3], [16.501, 49.3]]] } }] }, 701).features[0].geometry.rings[0];
-  assert.ok(Math.abs((r[0][1] - r[3][1]) * 110574 - 4) < 0.01);
 });
 
 // A passport that answers with nothing (as Jihlava's on 16. 11. 2026) leaves the box to the national DTM.

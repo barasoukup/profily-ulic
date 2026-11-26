@@ -722,10 +722,10 @@ Služby města (`gis.jihlava-city.cz`, CORS povolený):
 
 ### Pasporty dalších měst (16. 11. 2026)
 
-Ve zbytku Česka („cesko“) se v hranicích dvou obcí (`pilot/public/pasporty.json`, `node tools/build_pasporty.mjs`)
+Ve zbytku Česka („cesko“) se v hranicích jedné obce (`pilot/public/pasporty.json`, `node tools/build_pasporty.mjs`)
 berou plochy z pasportu města a jinde DTM ČÚZK (`towns/pasporty.js`, `towns/overlay.js overDmvs`): komunikace
-Rožnova pod Radhoštěm (T-MAPY PaKom) a Kuřimi (osy
-zimní údržby se šířkou převedené na plochy). Pasport, který v okolí řezu nic nemá, nechá řez technické mapě. Nejsou
+Rožnova pod Radhoštěm (T-MAPY PaKom); Šlapanice a Kuřim (osy zimní údržby se šířkou) vyřadila Bára 26. 11. 2026 po
+slepém A/B na nových řezech (12 : 12, 14 : 16), i z kreditu. Pasport, který v okolí řezu nic nemá, nechá řez technické mapě. Nejsou
 to samostatná města (texty, ilustrace a mapy zůstávají české obecné). Zdroje našlo vlákno o Slovensku, do aplikace
 šly před A/B testem; A/B 26. 11. 2026 (`evaluation/PASPORTY-AB.md`) nechal čtyři a vyřadil Chomutov, Šumperk,
 Litoměřice a zeleň Prachatic a Roudnice nad Labem (nevyhrály); Šlapanice po slepém A/B na nových řezech (12 : 12); Chotěboř vyřadila Bára kvůli licenci (vrstva na demo

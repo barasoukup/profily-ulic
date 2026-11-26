@@ -6,7 +6,7 @@
 // state.cut.sources (and, for the footer's short line, app.js cutData).
 // No import of city.js (it imports this).
 import { t } from "./i18n.js";
-import { PASSPORT_NAMES, GREEN_PASSPORTS, WINTER_PASSPORTS } from "./towns/pasporty-names.js";
+import { PASSPORT_NAMES, GREEN_PASSPORTS } from "./towns/pasporty-names.js";
 import { DE_ORTHO, TO_ORTHO_WHO } from "./lanes-ortho.js";
 
 // The cantons (and Liechtenstein, FL in the survey) by their code in Switzerland's cadastral survey (towns/switzerland.js).
@@ -15,7 +15,7 @@ export const CANTONS = ["AG", "AI", "AR", "BE", "BL", "BS", "FR", "GE", "GL", "G
 export const SOURCE_CREDITS = {
   // A Czech town's passport over the DTM (towns/pasporty.js).
   passport: Object.fromEntries(Object.keys(PASSPORT_NAMES).map((id) => [id, () => (GREEN_PASSPORTS.has(id)
-    ? t("pasport zeleně © {town}", { town: PASSPORT_NAMES[id] }) : WINTER_PASSPORTS.has(id) ? t("šířky komunikací ze zimní údržby © {town}", { town: PASSPORT_NAMES[id] })
+    ? t("pasport zeleně © {town}", { town: PASSPORT_NAMES[id] })
     : t("pasport komunikací © {town}", { town: PASSPORT_NAMES[id] }))])),
   // ČÚZK's orthophoto, where it was read (a tram bed, the lanes, the estimate's kerbs).
   ortho: { true: () => t("ortofoto © ČÚZK, 2025 (CC BY 4.0)") },
@@ -128,6 +128,7 @@ export const SOURCE_CREDITS = {
     cambridge: () => t("mapa povrchů © City of Cambridge GIS (ODC PDDL)") },
   // San Francisco's digital curb (towns/sanfrancisco.js), where it placed the parking.
   sfCurb: { true: () => t("stání (Digital Curb) © SFMTA, DataSF (PDDL)") },
+  nycSigns: { true: () => t("stání (Parking Regulation Locations and Signs) © NYC DOT, NYC Open Data") },
   // San Francisco's building heights, where they gave the floors.
   sfHouse: { true: () => t("výšky domů © City and County of San Francisco, DataSF (PDDL)") },
   usHouse: { boston: () => t("podlaží domů © City of Boston (ODC PDDL)") },

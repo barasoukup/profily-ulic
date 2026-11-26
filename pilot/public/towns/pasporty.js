@@ -3,24 +3,23 @@
 // tools/build_pasporty.mjs) takes the passport's surfaces and the national DTM of ČÚZK elsewhere, as the towns'
 // modules do (towns/overlay.js overDmvs); a passport with nothing in the box leaves the DTM alone (withPassports):
 //   roznov: T-MAPY PaKom WFS (ms:pk-pov), as Karviná;
-//   kurim: ArcGIS lines of winter maintenance with their width (0 roads, 1 sidewalks), made areas of that width.
 // The A/B test after the DMVS outage (26. 11. 2026, evaluation/PASPORTY-AB.md: the app with the passport against
 // the DTM alone, judged over the orthophoto) kept three (Rožnov, Šlapanice, Kuřim) and left out the five that did not win: Chomutov
 // (better without 33 : 8), Šumperk (4 : 4), Litoměřice (6 : 5), Prachatice (2 : 1) and Roudnice nad Labem (9 : 0),
 // their code in the history. Chotěboř won (4 : 1) but was left out too (Bára 26. 11. 2026): its layer sits on a
 // private account of an "ArcGIS Demo portál" organisation, not the town's (evaluation/licence/ZPRAVA.md). Šlapanice left out (Bára 26. 11. 2026) after
-// the blind A/B on new cuts, 12 : 12 (evaluation/pasporty-blind/ZPRAVA.md), its credit too. Left out before: Mohelnice and Velké Meziříčí (an empty passport on 15. 11.),
+// the blind A/B on new cuts, 12 : 12 (evaluation/pasporty-blind/ZPRAVA.md), its credit too; Kuřim (lines of winter maintenance with their widths) after the same blind A/B, 14 : 16. Left out before: Mohelnice and Velké Meziříčí (an empty passport on 15. 11.),
 // Litoměřice's T-MAPY (asks to log in).
 // No licence is stated by any of them (as with the T-MAPY towns already used).
-import { query, envelope, asMtvu, asPassport, insideRings } from "../gis.js";
+import { asMtvu, asPassport, insideRings } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { overDmvs, tmapyWfs } from "./overlay.js";
 export { PASSPORT_NAMES } from "./pasporty-names.js";
 
 // RÚIAN codes of the towns (tools/build_pasporty.mjs); their names in pasporty-names.js.
-export const PASSPORT_CODES = { roznov: 544841, kurim: 583251 };
+export const PASSPORT_CODES = { roznov: 544841 };
 // The hosts the page asks (index.html CSP, tests/city.test.js).
-export const PASSPORT_HOSTS = ["https://mapy.roznov.cz", "https://services6.arcgis.com"];
+export const PASSPORT_HOSTS = ["https://mapy.roznov.cz"];
 
 const none = () => ({ features: [] });
 // The kinds of each passport → MTVU codes (701 roadway, 702 sidewalk or park path, 703 cycle path, 704 parking,
@@ -30,35 +29,12 @@ const T_MAPY = {
   roznov: { base: "https://mapy.roznov.cz/services/mapserver/common/pakom",
     code: (a) => ({ chodník: WALK, cyklostezka: BIKE, komunikace: ROAD, ostatní: OTHER })[a.typ] ?? null },
 };
-const KURIM = "https://services6.arcgis.com/nSl4NxcJbmr0IlpX/arcgis/rest/services/zu/FeatureServer";
 export const codes = { roznov: T_MAPY.roznov.code };
 
-// Kuřim's lines (paths in WGS 84) as areas of their width (m): one rectangle a segment, its ends square.
-export function widen(json, code) {
-  const features = [];
-  for (const f of json.features || []) {
-    const w = Number(f.attributes?.["šířka"]);
-    if (!(w > 0) || !f.geometry?.paths) continue;
-    for (const path of f.geometry.paths) for (let i = 0; i + 1 < path.length; i++) {
-      const [x0, y0] = path[i], [x1, y1] = path[i + 1];
-      const kx = 111320 * Math.cos((y0 * Math.PI) / 180), ky = 110574;
-      const dx = (x1 - x0) * kx, dy = (y1 - y0) * ky, len = Math.hypot(dx, dy) || 1;
-      const ox = ((-dy / len) * w) / 2 / kx, oy = ((dx / len) * w) / 2 / ky;
-      features.push({ attributes: {}, geometry: { rings: [[[x0 + ox, y0 + oy], [x1 + ox, y1 + oy], [x1 - ox, y1 - oy], [x0 - ox, y0 - oy], [x0 + ox, y0 + oy]]] } });
-    }
-  }
-  return asMtvu([[{ features }, code]], MTVU_LABELS);
-}
-// The ArcGIS ones are kept in S-JTSK: asked in WGS 84 by the same transformation as IPR's and the towns' (1623).
-const arc = (url, fields, bbox) => query(`${url}/query`, { ...envelope(bbox), outFields: fields, datumTransformation: 1623 });
 
 // The passport's surfaces of a town in a box (MTVU features).
 export async function passport(id, bbox) {
   if (T_MAPY[id]) return asMtvu([[await tmapyWfs(T_MAPY[id].base, "ms:pk-pov", bbox, "typ,msGeometry"), T_MAPY[id].code]], MTVU_LABELS);
-  if (id === "kurim") {
-    const [road, walk] = await Promise.all([arc(`${KURIM}/0`, "šířka", bbox), arc(`${KURIM}/1`, "šířka", bbox)]);
-    return { features: [...widen(road, ROAD).features, ...widen(walk, WALK).features] };
-  }
   return none();
 }
 

@@ -93,7 +93,7 @@ test("uložený řez v Košicích, Grazu, Innsbrucku a Berlíně zůstane, dalek
 });
 test("uložený řez si nechá klíče zdrojů všech států, neznámé zahodí", () => {
   const c = cleanCut({ lat: 48.144, lon: 17.11, bearing: 0, sources: { skTown: "bratislava", skEdges: "bratislava-tm", skTm: true, zbgis: true, orthoCity: "sk", atTown: "wien", atSigns: "salzburg",
-    passport: "kurim", ortho: true, dmvs: true, region: "Kraj", skTown2: "x", orthoCity2: "y" } });
-  assert.deepEqual(c.sources, { region: "Kraj", dmvs: true, ortho: true, orthoCity: "sk", passport: "kurim", skTm: true, skTown: "bratislava", skEdges: "bratislava-tm", atSigns: "salzburg", atTown: "wien", zbgis: true });
+    passport: "roznov", ortho: true, dmvs: true, region: "Kraj", skTown2: "x", orthoCity2: "y" } });
+  assert.deepEqual(c.sources, { region: "Kraj", dmvs: true, ortho: true, orthoCity: "sk", passport: "roznov", skTm: true, skTown: "bratislava", skEdges: "bratislava-tm", atSigns: "salzburg", atTown: "wien", zbgis: true });
   assert.deepEqual(cleanCut({ lat: 48.144, lon: 17.11, bearing: 0, sources: { skTown: "nic", orthoCity: "xx", zbgis: 1 } }).sources, {});
 });
