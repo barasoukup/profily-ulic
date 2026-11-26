@@ -210,7 +210,8 @@ export async function locate(item, signal) {
 // services(): the search services of the state the map shows (countries/<ISO>.js search): "zbgis" (Slovak places are
 // then asked of ZBGIS along with RÚIAN), "photon" (Photon of komoot, Austria), "photon-de" (Photon, Germany), "photon-ch" (Photon, Switzerland and Liechtenstein), "pdok" (PDOK's Locatieserver, the Netherlands), "photon-be" (Photon, Belgium and Luxembourg), "uug" (GUGiK's UUG, Poland), "geopf" (IGN's Géoplateforme geocoder, France), "cartociudad" (CartoCiudad of IGN/CNIG, Spain), "photon-pt" (Photon, Portugal), "photon-mc" (Photon, Monaco), "photon-cy" (Photon, Cyprus), "photon-mt" (Photon, Malta), "photon-it" (Photon, Italy), "inads" (In-ADS of the Estonian Land and Spatial Development Board), "photon-si" (Photon, Slovenia), "gurs" (the house numbers of GURS, Slovenia), "photon-fi" (Photon, Finland), "ryhti" (the addresses of Ryhti, Finland), "gsearch" (GSearch of Dataforsyningen, Denmark, with the token), "photon-dk" (Photon, Denmark, without the token), "photon-lt" (Photon, Lithuania), "photon-us" (Photon, the metro of Washington DC), "photon-ca" (Photon, the metro of Toronto).
 // inVienna(): does the map show Vienna.
-export function mountSearch(map, { status, onPick, services = () => [], inVienna = () => false }) {
+// inCzechia: does the map show Czechia (RÚIAN asked first; elsewhere only when nothing else found anything).
+export function mountSearch(map, { status, onPick, services = () => [], inVienna = () => false, inCzechia = () => true }) {
   const L = globalThis.L;
   const el = L.DomUtil.create("div", "search leaflet-bar");
   el.innerHTML = `<input id="search-input" type="search" role="combobox" aria-autocomplete="list" aria-expanded="false"
@@ -270,7 +271,11 @@ export function mountSearch(map, { status, onPick, services = () => [], inVienna
       // RÚIAN, and ZBGIS where Slovakia is likely (with RÚIAN, or after it when it found nothing).
       const sk = () => findSk(text.trim(), getJSON, mine.signal).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání ZBGIS", err); return []; });
       const both = services().includes("zbgis") || looksSlovak(text);
-      const [cz, skNow] = await Promise.all([getJSON(suggestUrl(text.trim()), mine.signal).then(parseSuggestions, (err) => { if (both && err.name !== "AbortError") return []; throw err; }), both ? sk() : []]);
+      // RÚIAN first only where the map shows Czechia (Bára 26. 11. 2026: ČÚZK only for Czechia); elsewhere it is asked
+      // last, when the place's services found nothing (a Czech address typed in Paris), its failure no error.
+      const czHere = inCzechia();
+      const ruian = () => getJSON(suggestUrl(text.trim()), mine.signal).then(parseSuggestions, (err) => { if ((both || !czHere) && err.name !== "AbortError") return []; throw err; });
+      const [cz, skNow] = await Promise.all([czHere ? ruian() : [], both ? sk() : []]);
       // Vienna's address points where the map shows Vienna or the query names it (search-at.js).
       const at = inVienna() || looksViennese(text) ? await findAt(text.trim(), getJSON, mine.signal).catch((err) => { if (err.name === "AbortError") throw err; console.warn("hledání Vídeň", err); return []; }) : [];
       // The Netherlands: PDOK's Locatieserver (search-nl.js) where the map shows it, or a Dutch-looking query RÚIAN did not
@@ -313,7 +318,8 @@ export function mountSearch(map, { status, onPick, services = () => [], inVienna
       // GSearch failed (a token turned away: 401) or found nothing: Photon of komoot in Denmark (the review of 24. 11. 2026).
       const dkPhoton = services().includes("photon-dk") && gsearchReady() && !dk.length && !photon.length
         ? await findPhoton(text, getJSON, mine.signal, ["DK"], [map.getCenter().lat, map.getCenter().lng]).catch((err) => { if (err.name === "AbortError") throw err; return []; }) : [];
-      const found = rankResults([...dk, ...dkPhoton, ...fi, ...fiPhoton, ...si, ...siPhoton, ...ee, ...es, ...fr, ...pl, ...plPhoton, ...nl, ...at, ...photon, ...cz, ...(both || cz.length || nl.length || pl.length || fr.length || es.length || ee.length || si.length || siPhoton.length || fi.length || fiPhoton.length || dk.length || dkPhoton.length ? skNow : await sk())], text);
+      let found = rankResults([...dk, ...dkPhoton, ...fi, ...fiPhoton, ...si, ...siPhoton, ...ee, ...es, ...fr, ...pl, ...plPhoton, ...nl, ...at, ...photon, ...cz, ...(both || cz.length || nl.length || pl.length || fr.length || es.length || ee.length || si.length || siPhoton.length || fi.length || fiPhoton.length || dk.length || dkPhoton.length ? skNow : await sk())], text);
+      if (!czHere && !found.length) found = rankResults(await ruian(), text);
       cache.set(key, found);
       if (cache.size > 40) cache.delete(cache.keys().next().value);
       if (mine === ctrl && document.activeElement === input) show(found, t("Nic jsem nenašla."));

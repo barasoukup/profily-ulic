@@ -197,7 +197,7 @@ const BOXED = { fi: fiOrthoAt, us: usOrthoAt, ca: caOrthoAt };
 // orthophotos cover only some towns (Italy, Finland) by their boxes; the others everywhere (a blank photo is found out
 // when it comes). The question is the place's, not the state's (the review of 24. 11. 2026: in Lombardy the kerb model
 // was loaded and the note said "orthophoto" where there is none).
-export const orthoHereAt = (source, lon, lat) => source !== "none" && (source === "it" ? itOrthoAt(lon, lat).length > 0 : BOXED[source] ? BOXED[source](lon, lat).length > 0 : true);
+export const orthoHereAt = (source, lon, lat) => !!source && source !== "none" && (SOURCES[source] || ["de", "be", "pt", "es", "it", ...Object.keys(BOXED)].includes(source)) && (source === "it" ? itOrthoAt(lon, lat).length > 0 : BOXED[source] ? BOXED[source](lon, lat).length > 0 : true);
 // Denmark (Bára 23. 11. 2026): the spring orthophoto of GeoDanmark (Klimadatastyrelsen, "Ortofoto forår", 10–12.5 cm, a
 // new national mosaic each spring) as WMTS tiles in Web Mercator to level 20 (DFD_GoogleMapsCompatible, about 8 cm a pixel
 // in Copenhagen), CORS for the origin asking, free data with credit (evaluation/denmark/ZDROJE.md 1). Only with the app's
@@ -418,7 +418,8 @@ export async function laneImage(opts) {
     return siTries((timeout) => laneImageOf("si", { ...opts, fetchImpl, timeout }), opts.timeout ?? SI_RETRY.timeout * slow, SI_RETRY.budget * slow);
   }
   if (opts.source === "es" && !esKeys(...opts.frame.toLonLat(0, 0)).length) return null;
-  if (opts.source !== "de") return laneImageOf(SOURCES[opts.source] ? opts.source : "cuzk", opts);
+  // A source the app does not know: no image (not ČÚZK's, which covers only Czechia; Bára 26. 11. 2026).
+  if (opts.source !== "de") return SOURCES[opts.source] ? laneImageOf(opts.source, opts) : null;
   // Germany (countries/DE.js laneOrtho "de"): the Land's orthophoto, near a border the next Land's when the first has no
   // photo there, all within one timeout (the review of Germany).
   const tried = new Set(), start = Date.now(), budget = opts.timeout ?? TIMEOUT;
@@ -965,7 +966,7 @@ export async function orthoPatch({ source, lon, lat, half, px, timeout = TIMEOUT
     const img = await siTries((t) => patchOf("si", lon, lat, half, px, t, fetchImpl ?? siFetch), SI_RETRY.timeout, SI_RETRY.patchBudget);
     return img ? { source: "si", img } : null;
   }
-  const keys = source === "de" ? (await landsAt(lon, lat).catch(() => [])).map((l) => `de-${l}`) : source === "be" ? [...new Set([...(await beRegionsAt(lon, lat).catch(() => [])).map(beOrthoOf), "vl", "wal"])].map((r) => `be-${r}`) : source === "pt" ? ptKeys(lon, lat) : source === "es" ? esKeys(lon, lat) : source === "it" ? itOrthoAt(lon, lat) : BOXED[source] ? BOXED[source](lon, lat) : [SOURCES[source] ? source : "cuzk"];
+  const keys = source === "de" ? (await landsAt(lon, lat).catch(() => [])).map((l) => `de-${l}`) : source === "be" ? [...new Set([...(await beRegionsAt(lon, lat).catch(() => [])).map(beOrthoOf), "vl", "wal"])].map((r) => `be-${r}`) : source === "pt" ? ptKeys(lon, lat) : source === "es" ? esKeys(lon, lat) : source === "it" ? itOrthoAt(lon, lat) : BOXED[source] ? BOXED[source](lon, lat) : SOURCES[source] ? [source] : [];
   const seen = new Set(); // Berlin and Brandenburg: one service
   for (const key of keys) {
     const id = key.startsWith("de-") ? DE_ORTHO[key.slice(3)].wms : key;

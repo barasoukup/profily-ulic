@@ -44,6 +44,12 @@ Struktura je všude stejná: stát → město → zdroje (`docs/architecture-cou
   `parkGuess`), značky (`signs`), ortofoto (`bedOrtho`, `laneOrtho`), ilustrace měst státu (`art`, `artAt`), vzhled domů
   (`socialistLooks`), služby hledání (`search`), panorama, hlášky. `setCity` nastaví vedle `city` i `country` (modul státu);
   `city.country` zůstává kód ISO. Mimo `countries/` není žádná podmínka na stát.
+- **České jen v Česku** (Bára 26. 11. 2026: „ČÚZK jen Česko“): `default.js` (cizina) nemá žádné české zdroje ani
+  vlastnosti: ortofoto `laneOrtho: "none"`, bez panoramat Mapy.com, bez značek (jako USA a Kanada), poznámka o stání
+  bez českého paragrafu; to vše má `CZ.js`. Neznámý zdroj ortofota nic nečte (dřív spadl na ČÚZK). Vrstvy ČÚZK
+  (ortofoto, DMVS), ZBGIS a basemap.at v mapě (`app.js keptInside`) neptají dlaždice za hranicí státu (prstence
+  `staty.json`, ne jen obdélník) a kredit se ukáže, jen když výhled stát zasahuje; vrstvy měst mají prstence města.
+  Hledání se RÚIAN ptá napřed jen nad Českem, jinde až když místní služby nic nenašly. Hlídá `tests/cz-only.test.js`.
 - **Město** je záznam v `city.js` (a modul `towns/<město>.js`, má-li vlastní zdroje); co nemá svého (ortofoto, značky,
   normy), dědí od státu. Zbytek státu je město `cesko`, `slovensko`, `austria`, mimo státy `cizina` (`towns/cizina.js`).
   Slovenská a rakouská města a Washington (`city.js STATE_TOWNS`: Bratislava, Košice … Vídeň, Graz …) jsou města podle hranic
