@@ -99,7 +99,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - ~~Kypr: `lanes-ortho.js` „cy“: napůl chybějící dlaždice (404 u Zelené linie) dávají jas 0 místo NaN (vyplnit NaN nebo
   hlídat podíl prázdna). Malta: WMS vrací chybu jako 200 `text/xml` (hlídat content-type, hlásit výpadek); podklad mapy
   jako JPEG místo PNG (`app.js`). Kypr i Malta: `streetmix.js` neposílá `leftHandTraffic`.~~ (26. 11. 2026: průhledný
-  pixel = NaN, víc než polovina neznámá = žádný obraz, „cy“ v kontrole prázdna; XML místo obrazu = výpadek (`askImage`);
+  pixel = NaN, víc než polovina neznámá = žádný obraz, „cy“ v kontrole prázdna; XML místo obrazu = výpadek (`askImage`; od 26. 11. 2026 po nepřátelské recenzi „bez snímku“, viz níže);
   podklad Malty uvnitř JPEG, u pobřeží PNG jako Slovinsko; `leftHandTraffic` z `country.leftHand`; `tests/ortho-tiles.test.js`)
 - Kypr **(Bára)**: ~~chodník 2 / 2,5 m (doporučení)~~ (23. 11.: bez červené, oranžově podle třídy ulice); 3 m na směr vedle stání; jednosměrka: stát jen vlevo?; protisměrní
   cyklisté ~~bez tabulky~~ (23. 11.: bez značky); zóna 30 nekreslit; pěší zóna jako „povinná pěší cesta“. Sever ostrova jako samostatný stát
@@ -151,7 +151,7 @@ Co rozhodne Bára, je označeno **(Bára)**.
   ostatní bez otevřeného ortofota (`docs/states-survey/c-vychod-balkan.md`).
 - ~~Jihlava: pasport komunikací byl 16. 11. prázdný, ověřit~~ (26. 11. 2026: zase plný, 13 323 úseků).
 - ~~Pasporty devíti českých měst: A/B po odstávce DMVS~~ (26. 11. 2026, `evaluation/PASPORTY-AB.md`: zůstaly Rožnov,
-  Chotěboř, Šlapanice, Kuřim; vyřazené Chomutov, Šumperk, Litoměřice, Prachatice, Roudnice).
+  Chotěboř, Šlapanice, Kuřim, Chotěboř pak vyřazená kvůli licenci; vyřazené Chomutov, Šumperk, Litoměřice, Prachatice, Roudnice).
 - Pasporty Rožnova a Šlapanic: vozovka pasportu přes dvory a sousední komunikace (20–27 m); ořezat na souvislý kus pod
   osou? Úzká vozovka pasportu za chodníkem dělá z chodníku „dělicí pás“ (Chomutov, Šlapanice; `derive.js`).
 - Hlášení, která data IPR/ČÚZK potvrzují, bez fotky z ulice nerozhodnu (do seznamu připomínek pro IPR?):
@@ -294,6 +294,27 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - ~~Mapa Krakova: potřebuje písemný souhlas MSIP (ZPRAVA.md), rozhodnout o vypnutí~~ (Bára 26. 11. 2026: vypnutá, `?krakow=1`).
 - ~~Pasport Chotěboře na demo účtu~~ (Bára 26. 11. 2026: vyřazený).
 - Služby českých a slovenských měst (MTVU, UMPS, pasporty): licence nikde neuvedená, zeptat se měst (ZPRAVA.md, Koho se zeptat).
+
+## Nepřátelské recenze 26. 11. 2026 (větev canada)
+
+- ~~San Francisco: výpadek vrstvy obrub SFMTA (`MapServer/56`) tiše ztratil stání a nastoupil zákonný odhad (Folsom)~~
+  (26. 11. 2026: `sfCurbFailed` a hláška jako u DDOT, oříznutá odpověď je výpadek, `zonesAnswer`).
+- ~~Boston: `kerbBays` bez `?off=kerbbays`~~ (26. 11. 2026, jako Toronto a New York).
+- ~~New York: výpadek `Plaza_2022` nebo `Parking_Lot_2022` shodil celou mapu~~ (26. 11. 2026: nepovinné vrstvy, `optionalAnswer`;
+  50 řezů měření beze změny, `evaluation/usa/nyc/same.mjs`).
+- ~~Boston: chybějící `data/us-plan` na webu = tichý odhad; jedno selhané město shodilo obě; cache po selhání uložila starou
+  stavbu pod klíčem týdne~~ (26. 11. 2026: `about.json` města jako značka, `mapMissing` s hláškou; stavba po městech;
+  `actions/cache/save` jen po úplné stavbě, klíč `us-plan-v2`).
+- ~~Photon v USA: obdélník od Washingtonu po Boston, limit 20 spotřebovala Filadelfie a Baltimore, San Francisco jen se středem
+  mapy v něm~~ (26. 11. 2026: jeden dotaz s obdélníkem jednoho metra, `search-photon.js METROS`).
+- ~~Ortofoto `askImage`: XML výjimka WMS jako výpadek, regex pustil `image/svg+xml`, 30 opakování po 429 naráz, nezahozené tělo~~
+  (26. 11. 2026).
+- ~~`osmpack.js PackSet`: index znovu i po timeoutu, a pro každý selhaný balík zvlášť~~ (26. 11. 2026: jen po 404, nejvýš jednou za řez).
+- ~~Texty: Krakov v patičce bez „jen s ?krakow=1“; Chotěboř v PASPORTY-AB.md a `pasporty.js`; Kuřim jako „pasport komunikací“;
+  New York „(NYC Open Data)“, ač se čte z NYCmaps~~ (26. 11. 2026).
+- ~~San Francisco: varování chodníku pod 10 ft i v uličkách; citace „SFMTA, Sidewalk Widths 2014“~~ (26. 11. 2026: ulička
+  6 ft, jiná obslužná bez varování, citace Better Streets Plan v datech studie AECOM). Zbývá: průmyslové ulice (8 ft) aplikace
+  nepozná, dlaždice OSM nemají `landuse` (platí jim 10 ft).
 
 ## Nápady (Bára zatím nevybrala)
 
