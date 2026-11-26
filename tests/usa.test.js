@@ -300,6 +300,32 @@ test("New York: planimetrie podél řezu (malovaný ostrůvek je vozovka), domy 
   assert.ok(US.art.newyork["lamp-modern-left"] && US.art.newyork["bus-inbound"] === "bus-inbound");
 });
 
+test("New York: stání podle značek NYC DOT (?nycsigns=1): nejbližší značka strany do 40 m, OSM má přednost", async () => {
+  const N = await import("../pilot/public/towns/newyork.js");
+  // EPSG:2263 there and back (a sign of 3rd Avenue between East 85th and 86th Street).
+  const [lon, lat] = N.fromStatePlane(996877, 222815);
+  assert.ok(Math.abs(lon + 73.9544) < 2e-4 && Math.abs(lat - 40.7782) < 2e-4);
+  assert.deepEqual(N.toStatePlane(lon, lat).map(Math.round), [996877, 222815]);
+  assert.equal(N.streetKey("EAST    7 STREET"), N.streetKey("East 7th Street"));
+  assert.equal(N.signKind("NO PARKING (SANITATION BROOM SYMBOL) TUESDAY FRIDAY 11:30AM-1PM <->"), "allow");
+  assert.equal(N.signKind("2 HMP 9AM-7PM EXCEPT SUNDAY <->"), "allow");
+  assert.equal(N.signKind("NO STANDING MONDAY-FRIDAY 4PM-7PM <->"), "allow");
+  assert.equal(N.signKind("NO STANDING ANYTIME <->"), "never");
+  assert.equal(N.signKind("BUS STOP SIGN (BUS & HANDICAP SYMBOLS) NO STANDING <----->"), "never");
+  assert.equal(N.signKind("LOCAL MTA BUS ROUTE PANEL"), null);
+  // A street running north (the cut's dir east: the street is dir turned left), the way along it: west is its left.
+  const c = { lon0: lon, lat0: lat, kx: 111320 * Math.cos((lat * Math.PI) / 180), ky: 110574, dir: [1, 0] };
+  const at = (north, side, desc, street = "3 AVENUE") => ({ on_street: street, side_of_street: side, sign_description: desc, ...Object.fromEntries(N.toStatePlane(lon, lat + north / 110574).map((v, i) => [i ? "sign_y_coord" : "sign_x_coord", String(v)])) });
+  const signs = [at(10, "W", "NO STANDING ANYTIME <->"), at(5, "W", "2 HMP 9AM-7PM <->"), at(-20, "E", "NO STANDING ANYTIME -->"), at(60, "E", "2 HMP 9AM-7PM <->"), at(2, "E", "2 HMP 9AM-7PM <->", "EAST 86 STREET")];
+  assert.deepEqual(N.signTags(signs, c, { name: "3rd Avenue" }), { "parking:left": "lane", "parking:left:orientation": "parallel", "parking:right": "no" });
+  // The way against the street: the sides swap; OSM's own parking tag of a side stays; a way of another name: nothing.
+  assert.deepEqual(N.signTags(signs, c, { name: "3rd Avenue" }, false), { "parking:right": "lane", "parking:right:orientation": "parallel", "parking:left": "no" });
+  assert.deepEqual(N.signTags(signs, c, { name: "3rd Avenue", "parking:right": "lane" }), { "parking:left": "lane", "parking:left:orientation": "parallel" });
+  assert.deepEqual(N.signTags(signs, c, { name: "Lexington Avenue" }), {});
+  // Off by default: no request.
+  assert.equal(N.NYC_MAP.extra("-73.96,40.77,-73.95,40.78"), undefined);
+});
+
 test("New York: náměstí a parkoviště jsou nepovinné vrstvy (výpadek jen té vrstvy = bez ní), vozovka, chodník a ostrůvky povinné", async () => {
   const { NYC_MAP } = await import("../pilot/public/towns/newyork.js");
   const { optionalAnswer } = await import("../pilot/public/towns/planimetrics.js");

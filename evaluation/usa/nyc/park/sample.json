@@ -1,0 +1,1532 @@
+[
+ {
+  "id": "np-1",
+  "country": "US",
+  "town": "newyork",
+  "kind": "arterial",
+  "name": "Hylan Boulevard",
+  "highway": "primary",
+  "wayId": 260816037,
+  "lat": 40.55112,
+  "lon": -74.1348612,
+  "bearing": 53.9,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-2",
+  "country": "US",
+  "town": "newyork",
+  "kind": "arterial",
+  "name": "2nd Avenue",
+  "highway": "primary",
+  "wayId": 1030119884,
+  "lat": 40.7663415,
+  "lon": -73.9601566,
+  "bearing": 28.7,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-3",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "7th Avenue",
+  "highway": "residential",
+  "wayId": 1026997392,
+  "lat": 40.6394065,
+  "lon": -74.0090738,
+  "bearing": 38.6,
+  "photos": 1,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-4",
+  "country": "US",
+  "town": "newyork",
+  "kind": "service",
+  "name": "",
+  "highway": "service",
+  "wayId": 814431864,
+  "lat": 40.6190752,
+  "lon": -73.9170576,
+  "bearing": 85.4,
+  "photos": 4,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-5",
+  "country": "US",
+  "town": "newyork",
+  "kind": "arterial",
+  "name": "Flatbush Avenue Extension",
+  "highway": "primary",
+  "wayId": 420571180,
+  "lat": 40.6966525,
+  "lon": -73.9848321,
+  "bearing": -19.9,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-6",
+  "country": "US",
+  "town": "newyork",
+  "kind": "arterial",
+  "name": "Whitestone Expressway Service Road",
+  "highway": "secondary",
+  "wayId": 5700063,
+  "lat": 40.7704721,
+  "lon": -73.8356446,
+  "bearing": 50.2,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-7",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "42nd Avenue",
+  "highway": "residential",
+  "wayId": 5705542,
+  "lat": 40.7475827,
+  "lon": -73.8632719,
+  "bearing": 69.6,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-8",
+  "country": "US",
+  "town": "newyork",
+  "kind": "motorway",
+  "name": "Grand Central Parkway",
+  "highway": "motorway",
+  "wayId": 126070319,
+  "lat": 40.7198187,
+  "lon": -73.7856519,
+  "bearing": 78.2,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-9",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "Saint Marks Avenue",
+  "highway": "residential",
+  "wayId": 1032480828,
+  "lat": 40.6753779,
+  "lon": -73.9531771,
+  "bearing": -85.6,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-10",
+  "country": "US",
+  "town": "newyork",
+  "kind": "arterial",
+  "name": "Francis Lewis Boulevard",
+  "highway": "primary",
+  "wayId": 420335209,
+  "lat": 40.7765297,
+  "lon": -73.7997491,
+  "bearing": -34.1,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-11",
+  "country": "US",
+  "town": "newyork",
+  "kind": "arterial",
+  "name": "Pelham Parkway",
+  "highway": "primary",
+  "wayId": 696062322,
+  "lat": 40.8571324,
+  "lon": -73.8555856,
+  "bearing": 83.4,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-12",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "101st Avenue",
+  "highway": "residential",
+  "wayId": 1370902199,
+  "lat": 40.691228,
+  "lon": -73.8215078,
+  "bearing": 69.6,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-13",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "216th Street",
+  "highway": "residential",
+  "wayId": 844872705,
+  "lat": 40.7549959,
+  "lon": -73.7641932,
+  "bearing": -8,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-14",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "Perry Avenue",
+  "highway": "residential",
+  "wayId": 5705571,
+  "lat": 40.7252052,
+  "lon": -73.8983741,
+  "bearing": 53.7,
+  "photos": 4,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-15",
+  "country": "US",
+  "town": "newyork",
+  "kind": "arterial",
+  "name": "",
+  "highway": "secondary_link",
+  "wayId": 502414917,
+  "lat": 40.6542626,
+  "lon": -73.9791754,
+  "bearing": 72.5,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-16",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "35th Avenue",
+  "highway": "residential",
+  "wayId": 5709171,
+  "lat": 40.7502642,
+  "lon": -73.8992953,
+  "bearing": 83.6,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-17",
+  "country": "US",
+  "town": "newyork",
+  "kind": "motorway",
+  "name": "Van Wyck Expressway",
+  "highway": "motorway",
+  "wayId": 959999782,
+  "lat": 40.7378514,
+  "lon": -73.8366091,
+  "bearing": -5.5,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-18",
+  "country": "US",
+  "town": "newyork",
+  "kind": "arterial",
+  "name": "Richmond Avenue",
+  "highway": "primary",
+  "wayId": 420604747,
+  "lat": 40.6005445,
+  "lon": -74.1629865,
+  "bearing": -12,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-19",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "83rd Place",
+  "highway": "residential",
+  "wayId": 5708715,
+  "lat": 40.723846,
+  "lon": -73.8727342,
+  "bearing": -31.7,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-20",
+  "country": "US",
+  "town": "newyork",
+  "kind": "motorway",
+  "name": "Grand Central Parkway",
+  "highway": "motorway",
+  "wayId": 1135338758,
+  "lat": 40.7596391,
+  "lon": -73.8542581,
+  "bearing": -61.6,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-21",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "Edmore Avenue",
+  "highway": "residential",
+  "wayId": 5707429,
+  "lat": 40.7250188,
+  "lon": -73.7320954,
+  "bearing": 73.8,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-22",
+  "country": "US",
+  "town": "newyork",
+  "kind": "arterial",
+  "name": "138th Street",
+  "highway": "secondary",
+  "wayId": 5708245,
+  "lat": 40.7044016,
+  "lon": -73.8166165,
+  "bearing": -28.9,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-23",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "69th Avenue",
+  "highway": "residential",
+  "wayId": 5705701,
+  "lat": 40.7012805,
+  "lon": -73.9023838,
+  "bearing": 69.2,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-24",
+  "country": "US",
+  "town": "newyork",
+  "kind": "arterial",
+  "name": "Hylan Boulevard",
+  "highway": "primary",
+  "wayId": 421157034,
+  "lat": 40.5652283,
+  "lon": -74.1150517,
+  "bearing": 37.5,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-25",
+  "country": "US",
+  "town": "newyork",
+  "kind": "arterial",
+  "name": "Father Capodanno Boulevard",
+  "highway": "secondary",
+  "wayId": 420511761,
+  "lat": 40.5736695,
+  "lon": -74.0866121,
+  "bearing": 52.1,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-26",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "Malcolm X Boulevard",
+  "highway": "residential",
+  "wayId": 1140215368,
+  "lat": 40.6850215,
+  "lon": -73.9294744,
+  "bearing": -8.4,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-27",
+  "country": "US",
+  "town": "newyork",
+  "kind": "arterial",
+  "name": "East 45th Street",
+  "highway": "secondary",
+  "wayId": 458177130,
+  "lat": 40.7548154,
+  "lon": -73.9780526,
+  "bearing": -61.5,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-28",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "Arcade Avenue",
+  "highway": "residential",
+  "wayId": 5706179,
+  "lat": 40.7040802,
+  "lon": -73.7742041,
+  "bearing": 49.2,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-29",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "82nd Place",
+  "highway": "residential",
+  "wayId": 273382960,
+  "lat": 40.7194288,
+  "lon": -73.8713927,
+  "bearing": -31.4,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-30",
+  "country": "US",
+  "town": "newyork",
+  "kind": "arterial",
+  "name": "Central Park North",
+  "highway": "secondary",
+  "wayId": 68668549,
+  "lat": 40.7998443,
+  "lon": -73.9562569,
+  "bearing": -61,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-31",
+  "country": "US",
+  "town": "newyork",
+  "kind": "collector",
+  "name": "188th Street",
+  "highway": "tertiary",
+  "wayId": 624353465,
+  "lat": 40.7399493,
+  "lon": -73.7862451,
+  "bearing": -20,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-32",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "Noll Street",
+  "highway": "residential",
+  "wayId": 5676838,
+  "lat": 40.7037177,
+  "lon": -73.9303487,
+  "bearing": 37.5,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-33",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "Dean Street",
+  "highway": "residential",
+  "wayId": 227074769,
+  "lat": 40.6870384,
+  "lon": -73.989228,
+  "bearing": -62.9,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-34",
+  "country": "US",
+  "town": "newyork",
+  "kind": "arterial",
+  "name": "Woodhaven Boulevard",
+  "highway": "primary",
+  "wayId": 497160521,
+  "lat": 40.6953784,
+  "lon": -73.8526845,
+  "bearing": -8.8,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-35",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "Farragut Road",
+  "highway": "residential",
+  "wayId": 1555155244,
+  "lat": 40.6362269,
+  "lon": -73.9488086,
+  "bearing": 85.4,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-36",
+  "country": "US",
+  "town": "newyork",
+  "kind": "arterial",
+  "name": "McDonald Avenue",
+  "highway": "secondary",
+  "wayId": 230625734,
+  "lat": 40.612104,
+  "lon": -73.9736252,
+  "bearing": -8.2,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-37",
+  "country": "US",
+  "town": "newyork",
+  "kind": "collector",
+  "name": "Sutter Avenue",
+  "highway": "tertiary",
+  "wayId": 587079711,
+  "lat": 40.6733942,
+  "lon": -73.8677856,
+  "bearing": 79.5,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-38",
+  "country": "US",
+  "town": "newyork",
+  "kind": "motorway",
+  "name": "FDR Drive",
+  "highway": "motorway",
+  "wayId": 5671901,
+  "lat": 40.7772467,
+  "lon": -73.9426885,
+  "bearing": -13,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-39",
+  "country": "US",
+  "town": "newyork",
+  "kind": "arterial",
+  "name": "Pennsylvania Avenue",
+  "highway": "primary",
+  "wayId": 581518986,
+  "lat": 40.6458022,
+  "lon": -73.8794683,
+  "bearing": -40.4,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-40",
+  "country": "US",
+  "town": "newyork",
+  "kind": "motorway",
+  "name": "",
+  "highway": "motorway_link",
+  "wayId": 5669067,
+  "lat": 40.7986092,
+  "lon": -73.9292981,
+  "bearing": -4.8,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-41",
+  "country": "US",
+  "town": "newyork",
+  "kind": "motorway",
+  "name": "",
+  "highway": "motorway_link",
+  "wayId": 11875535,
+  "lat": 40.7423763,
+  "lon": -73.840145,
+  "bearing": 52.5,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-42",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "East 4th Street",
+  "highway": "residential",
+  "wayId": 5673093,
+  "lat": 40.7269154,
+  "lon": -73.9911461,
+  "bearing": -61,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-43",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "Cross Island Parkway",
+  "highway": "residential",
+  "wayId": 833173919,
+  "lat": 40.728706,
+  "lon": -73.723867,
+  "bearing": 9.3,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-44",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "Central Avenue",
+  "highway": "residential",
+  "wayId": 814334330,
+  "lat": 40.7010614,
+  "lon": -73.9303911,
+  "bearing": -53.3,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-45",
+  "country": "US",
+  "town": "newyork",
+  "kind": "motorway",
+  "name": "Belt Parkway",
+  "highway": "motorway",
+  "wayId": 958128047,
+  "lat": 40.5945835,
+  "lon": -73.9084696,
+  "bearing": 2.1,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-46",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "Aviation Road",
+  "highway": "unclassified",
+  "wayId": 1136371605,
+  "lat": 40.5884672,
+  "lon": -73.8937637,
+  "bearing": -40.3,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-47",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "Summit Street",
+  "highway": "residential",
+  "wayId": 46838353,
+  "lat": 40.682621,
+  "lon": -74.0048547,
+  "bearing": -70,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-48",
+  "country": "US",
+  "town": "newyork",
+  "kind": "motorway",
+  "name": "FDR Drive",
+  "highway": "motorway",
+  "wayId": 32959993,
+  "lat": 40.7794098,
+  "lon": -73.9435584,
+  "bearing": -19.4,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-49",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "Cauldwell Avenue",
+  "highway": "residential",
+  "wayId": 682822905,
+  "lat": 40.8263661,
+  "lon": -73.9055974,
+  "bearing": 16.8,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-50",
+  "country": "US",
+  "town": "newyork",
+  "kind": "service",
+  "name": "",
+  "highway": "service",
+  "wayId": 1026421907,
+  "lat": 40.6503395,
+  "lon": -73.8894291,
+  "bearing": 49.7,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-51",
+  "country": "US",
+  "town": "newyork",
+  "kind": "motorway",
+  "name": "",
+  "highway": "motorway_link",
+  "wayId": 702275867,
+  "lat": 40.741293,
+  "lon": -73.9522255,
+  "bearing": -79.7,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-52",
+  "country": "US",
+  "town": "newyork",
+  "kind": "arterial",
+  "name": "Bay Street",
+  "highway": "secondary",
+  "wayId": 46863851,
+  "lat": 40.672946,
+  "lon": -74.0071543,
+  "bearing": -69.9,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-53",
+  "country": "US",
+  "town": "newyork",
+  "kind": "arterial",
+  "name": "Atlantic Avenue",
+  "highway": "secondary",
+  "wayId": 541921355,
+  "lat": 40.6761132,
+  "lon": -73.9071855,
+  "bearing": -86.1,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-54",
+  "country": "US",
+  "town": "newyork",
+  "kind": "motorway",
+  "name": "",
+  "highway": "motorway_link",
+  "wayId": 46673620,
+  "lat": 40.8286415,
+  "lon": -73.8358419,
+  "bearing": 25,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-55",
+  "country": "US",
+  "town": "newyork",
+  "kind": "arterial",
+  "name": "Bushwick Avenue",
+  "highway": "secondary",
+  "wayId": 798224595,
+  "lat": 40.6949866,
+  "lon": -73.9280293,
+  "bearing": -54.5,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-56",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "Park Place",
+  "highway": "residential",
+  "wayId": 483704094,
+  "lat": 40.6760917,
+  "lon": -73.965872,
+  "bearing": -74.7,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-57",
+  "country": "US",
+  "town": "newyork",
+  "kind": "collector",
+  "name": "14th Avenue",
+  "highway": "tertiary",
+  "wayId": 1156893289,
+  "lat": 40.7862821,
+  "lon": -73.8361591,
+  "bearing": -86.9,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-58",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "260th Street",
+  "highway": "residential",
+  "wayId": 5704155,
+  "lat": 40.7431034,
+  "lon": -73.7104618,
+  "bearing": -15.8,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-59",
+  "country": "US",
+  "town": "newyork",
+  "kind": "arterial",
+  "name": "Fort Washington Avenue",
+  "highway": "secondary",
+  "wayId": 226007051,
+  "lat": 40.8510949,
+  "lon": -73.9382133,
+  "bearing": 16.2,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-60",
+  "country": "US",
+  "town": "newyork",
+  "kind": "collector",
+  "name": "69th Street",
+  "highway": "tertiary",
+  "wayId": 1516580737,
+  "lat": 40.7275312,
+  "lon": -73.895477,
+  "bearing": -3.7,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-61",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "Pople Avenue",
+  "highway": "residential",
+  "wayId": 562329380,
+  "lat": 40.7537616,
+  "lon": -73.8305592,
+  "bearing": 64.3,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-62",
+  "country": "US",
+  "town": "newyork",
+  "kind": "arterial",
+  "name": "Bainbridge Avenue",
+  "highway": "secondary",
+  "wayId": 586133513,
+  "lat": 40.8799164,
+  "lon": -73.8788772,
+  "bearing": 14.4,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-63",
+  "country": "US",
+  "town": "newyork",
+  "kind": "collector",
+  "name": "Maurice Avenue",
+  "highway": "tertiary",
+  "wayId": 5710533,
+  "lat": 40.7351645,
+  "lon": -73.8963921,
+  "bearing": 76.3,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-64",
+  "country": "US",
+  "town": "newyork",
+  "kind": "service",
+  "name": "",
+  "highway": "service",
+  "wayId": 927072891,
+  "lat": 40.7226554,
+  "lon": -73.7300313,
+  "bearing": -35,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-65",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "Cooke Court",
+  "highway": "residential",
+  "wayId": 5676499,
+  "lat": 40.6809958,
+  "lon": -73.9040634,
+  "bearing": -23.5,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-66",
+  "country": "US",
+  "town": "newyork",
+  "kind": "arterial",
+  "name": "Father Capodanno Boulevard",
+  "highway": "secondary",
+  "wayId": 443736902,
+  "lat": 40.5883379,
+  "lon": -74.0686794,
+  "bearing": 37.6,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-67",
+  "country": "US",
+  "town": "newyork",
+  "kind": "collector",
+  "name": "Prospect Avenue",
+  "highway": "tertiary",
+  "wayId": 1099415510,
+  "lat": 40.6594407,
+  "lon": -73.9827634,
+  "bearing": -51.7,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-68",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "142nd Avenue",
+  "highway": "residential",
+  "wayId": 5705303,
+  "lat": 40.6705736,
+  "lon": -73.765306,
+  "bearing": 85.1,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-69",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "175th Street",
+  "highway": "residential",
+  "wayId": 5701189,
+  "lat": 40.6969777,
+  "lon": -73.7786531,
+  "bearing": -29.2,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-70",
+  "country": "US",
+  "town": "newyork",
+  "kind": "motorway",
+  "name": "",
+  "highway": "motorway_link",
+  "wayId": 8119530,
+  "lat": 40.8469767,
+  "lon": -73.9307285,
+  "bearing": -6.2,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-71",
+  "country": "US",
+  "town": "newyork",
+  "kind": "motorway",
+  "name": "",
+  "highway": "motorway_link",
+  "wayId": 5710834,
+  "lat": 40.6315404,
+  "lon": -74.1460129,
+  "bearing": -24.4,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-72",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "Lincoln Place",
+  "highway": "residential",
+  "wayId": 274894222,
+  "lat": 40.6709772,
+  "lon": -73.9547588,
+  "bearing": -86.2,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-73",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "234th Place",
+  "highway": "residential",
+  "wayId": 5704306,
+  "lat": 40.6695015,
+  "lon": -73.7382998,
+  "bearing": 35.4,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-74",
+  "country": "US",
+  "town": "newyork",
+  "kind": "collector",
+  "name": "Hook Creek Boulevard",
+  "highway": "tertiary",
+  "wayId": 5707382,
+  "lat": 40.6690693,
+  "lon": -73.7289578,
+  "bearing": 15.5,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-75",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "111th Avenue",
+  "highway": "residential",
+  "wayId": 5709263,
+  "lat": 40.695449,
+  "lon": -73.7791802,
+  "bearing": 61,
+  "photos": 3,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-76",
+  "country": "US",
+  "town": "newyork",
+  "kind": "collector",
+  "name": "Clarke Avenue",
+  "highway": "tertiary",
+  "wayId": 443153499,
+  "lat": 40.5703949,
+  "lon": -74.1460452,
+  "bearing": -61.7,
+  "photos": 2,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-77",
+  "country": "US",
+  "town": "newyork",
+  "kind": "collector",
+  "name": "Kings Highway",
+  "highway": "tertiary",
+  "wayId": 1050160990,
+  "lat": 40.6411433,
+  "lon": -73.9255728,
+  "bearing": 8.1,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-78",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "148th Street",
+  "highway": "unclassified",
+  "wayId": 38657624,
+  "lat": 40.660475,
+  "lon": -73.7930441,
+  "bearing": 17.4,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-79",
+  "country": "US",
+  "town": "newyork",
+  "kind": "arterial",
+  "name": "Forest Avenue",
+  "highway": "secondary",
+  "wayId": 275267226,
+  "lat": 40.6268654,
+  "lon": -74.1268451,
+  "bearing": 79.9,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-80",
+  "country": "US",
+  "town": "newyork",
+  "kind": "motorway",
+  "name": "Throgs Neck Expressway",
+  "highway": "motorway",
+  "wayId": 1084322923,
+  "lat": 40.8333657,
+  "lon": -73.8222998,
+  "bearing": -32.9,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-81",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "Emerson Place",
+  "highway": "residential",
+  "wayId": 5679437,
+  "lat": 40.6964711,
+  "lon": -73.9627112,
+  "bearing": -8.4,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-82",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "29th Street",
+  "highway": "residential",
+  "wayId": 374480786,
+  "lat": 40.7775664,
+  "lon": -73.9108058,
+  "bearing": 43.1,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-83",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "Blake Avenue",
+  "highway": "residential",
+  "wayId": 845658097,
+  "lat": 40.6708183,
+  "lon": -73.874539,
+  "bearing": 79.1,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-84",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "East 74th Street",
+  "highway": "residential",
+  "wayId": 5670818,
+  "lat": 40.7730297,
+  "lon": -73.9643052,
+  "bearing": -61.1,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-85",
+  "country": "US",
+  "town": "newyork",
+  "kind": "motorway",
+  "name": "Belt Parkway",
+  "highway": "motorway",
+  "wayId": 201028266,
+  "lat": 40.6632657,
+  "lon": -73.8480166,
+  "bearing": 57.3,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-86",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "52nd Street",
+  "highway": "residential",
+  "wayId": 221568678,
+  "lat": 40.6442031,
+  "lon": -74.0118417,
+  "bearing": -51.6,
+  "photos": 1,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-87",
+  "country": "US",
+  "town": "newyork",
+  "kind": "local",
+  "name": "256th Street",
+  "highway": "residential",
+  "wayId": 5706087,
+  "lat": 40.7635405,
+  "lon": -73.7249273,
+  "bearing": -18,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-88",
+  "country": "US",
+  "town": "newyork",
+  "kind": "arterial",
+  "name": "Rockaway Boulevard",
+  "highway": "primary",
+  "wayId": 1240187035,
+  "lat": 40.6752732,
+  "lon": -73.8116003,
+  "bearing": -83.3,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-89",
+  "country": "US",
+  "town": "newyork",
+  "kind": "arterial",
+  "name": "East 53rd Street",
+  "highway": "secondary",
+  "wayId": 456409016,
+  "lat": 40.7572009,
+  "lon": -73.9681919,
+  "bearing": -61.2,
+  "photos": 1,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ },
+ {
+  "id": "np-90",
+  "country": "US",
+  "town": "newyork",
+  "kind": "motorway",
+  "name": "Staten Island Expressway",
+  "highway": "motorway",
+  "wayId": 658513437,
+  "lat": 40.6046916,
+  "lon": -74.0708291,
+  "bearing": -62.3,
+  "photos": 5,
+  "variants": [
+   "def",
+   "nycsigns"
+  ]
+ }
+]
