@@ -1,0 +1,1580 @@
+[
+ {
+  "id": "il9",
+  "group": "target",
+  "place": "paris",
+  "O": {
+   "name": "Rue de Saint-Pétersbourg",
+   "wayId": 1497503856,
+   "lat": 48.88199097325864,
+   "lon": 2.325794330454477,
+   "bearing": 27.87665972857896,
+   "span": {
+    "left": 7.32,
+    "right": 7.93
+   },
+   "sources": {
+    "frTown": "paris",
+    "parisParking": true,
+    "orthoCity": "fr"
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.85,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "bus_cyklo",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.95,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.45,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "N": {
+   "name": "Rue de Saint-Pétersbourg",
+   "wayId": 1497503856,
+   "lat": 48.88199097325864,
+   "lon": 2.325794330454477,
+   "bearing": 27.87665972857896,
+   "span": {
+    "left": 6.97,
+    "right": 7.93
+   },
+   "sources": {
+    "frTown": "paris",
+    "parisParking": true
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.5,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "bus_cyklo",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.95,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.45,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  }
+ },
+ {
+  "id": "il13",
+  "group": "target",
+  "place": "paris",
+  "O": {
+   "name": "Rue Clisson",
+   "wayId": 4039440,
+   "lat": 48.83155257609432,
+   "lon": 2.3666373515106724,
+   "bearing": 48.225824843239124,
+   "span": {
+    "left": 5.72,
+    "right": 5.73
+   },
+   "sources": {
+    "frTown": "paris",
+    "parisParking": true,
+    "orthoCity": "fr"
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.9,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     1.8,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.5,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "plocha",
+     2.25,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "volno",
+    "volno"
+   ]
+  },
+  "N": {
+   "name": "Rue Clisson",
+   "wayId": 4039440,
+   "lat": 48.83155257609432,
+   "lon": 2.3666373515106724,
+   "bearing": 48.225824843239124,
+   "span": {
+    "left": 6.07,
+    "right": 5.73
+   },
+   "sources": {
+    "frTown": "paris",
+    "parisParking": true,
+    "orthoCity": "fr"
+   },
+   "segments": [
+    [
+     "nezname",
+     0.35,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.9,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     1.8,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.5,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "plocha",
+     2.25,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  }
+ },
+ {
+  "id": "il21",
+  "group": "target",
+  "place": "paris",
+  "O": {
+   "name": "Rue de la Grange aux Belles",
+   "wayId": 310361822,
+   "lat": 48.87530345220981,
+   "lon": 2.367399723665792,
+   "bearing": 45.638476991964914,
+   "span": {
+    "left": 6.27,
+    "right": 6.44
+   },
+   "sources": {
+    "frTown": "paris",
+    "parisParking": true
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.4,
+     "pasport"
+    ],
+    [
+     "pruh",
+     2.35,
+     "osm"
+    ],
+    [
+     "cyklostezka",
+     1.75,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.85,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.37,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "plot"
+   ]
+  },
+  "N": {
+   "name": "Rue de la Grange aux Belles",
+   "wayId": 310361822,
+   "lat": 48.87530345220981,
+   "lon": 2.367399723665792,
+   "bearing": 45.638476991964914,
+   "span": {
+    "left": 6.27,
+    "right": 6.53
+   },
+   "sources": {
+    "frTown": "paris",
+    "parisParking": true
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.4,
+     "pasport"
+    ],
+    [
+     "pruh",
+     2.35,
+     "osm"
+    ],
+    [
+     "cyklostezka",
+     1.75,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.85,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.45,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  }
+ },
+ {
+  "id": "il24",
+  "group": "target",
+  "place": "paris",
+  "O": {
+   "name": "Rue Émile Durkheim",
+   "wayId": 4039729,
+   "lat": 48.83276405927084,
+   "lon": 2.378374706122204,
+   "bearing": 50.131936130843464,
+   "span": {
+    "left": 22,
+    "right": 8.33
+   },
+   "sources": {
+    "frTown": "paris",
+    "parisParking": true,
+    "orthoCity": "fr"
+   },
+   "segments": [
+    [
+     "plocha",
+     14.48,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     4.9,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4.2,
+     "osm"
+    ],
+    [
+     "parkovani",
+     1.8,
+     "osm"
+    ],
+    [
+     "chodnik",
+     0.55,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     1.5,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.9,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "volno",
+    "budova"
+   ]
+  },
+  "N": {
+   "name": "Rue Émile Durkheim",
+   "wayId": 4039729,
+   "lat": 48.83276405927084,
+   "lon": 2.378374706122204,
+   "bearing": 50.131936130843464,
+   "span": {
+    "left": 7.52,
+    "right": 8.33
+   },
+   "sources": {
+    "frTown": "paris",
+    "parisParking": true
+   },
+   "segments": [
+    [
+     "chodnik",
+     4.9,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4.2,
+     "osm"
+    ],
+    [
+     "parkovani",
+     1.8,
+     "osm"
+    ],
+    [
+     "chodnik",
+     0.55,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     1.5,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.9,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  }
+ },
+ {
+  "id": "il25",
+  "group": "target",
+  "place": "paris",
+  "O": {
+   "name": "Rue Villiot",
+   "wayId": 4915295,
+   "lat": 48.84108550074455,
+   "lon": 2.3744155884234703,
+   "bearing": 52.547721737605436,
+   "span": {
+    "left": 13.42,
+    "right": 16.98
+   },
+   "sources": {
+    "frTown": "paris",
+    "parisParking": true,
+    "orthoCity": "fr"
+   },
+   "segments": [
+    [
+     "chodnik_kola",
+     3.26,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     1.5,
+     "osm"
+    ],
+    [
+     "chodnik_kola",
+     5.14,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "parkovani",
+     1.8,
+     "osm"
+    ],
+    [
+     "stromorad",
+     1.46,
+     "osm"
+    ],
+    [
+     "chodnik",
+     4.09,
+     "pasport"
+    ],
+    [
+     "plocha",
+     6.95,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "N": {
+   "name": "Rue Villiot",
+   "wayId": 4915295,
+   "lat": 48.84108550074455,
+   "lon": 2.3744155884234703,
+   "bearing": 52.547721737605436,
+   "span": {
+    "left": 13.42,
+    "right": 10.03
+   },
+   "sources": {
+    "frTown": "paris",
+    "parisParking": true
+   },
+   "segments": [
+    [
+     "chodnik_kola",
+     3.26,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     1.5,
+     "osm"
+    ],
+    [
+     "chodnik_kola",
+     5.14,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "parkovani",
+     1.8,
+     "osm"
+    ],
+    [
+     "stromorad",
+     1.46,
+     "osm"
+    ],
+    [
+     "chodnik",
+     4.09,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  }
+ },
+ {
+  "id": "il28",
+  "group": "target",
+  "place": "paris",
+  "O": {
+   "name": "Rue Frémicourt",
+   "wayId": 15220512,
+   "lat": 48.84727676538124,
+   "lon": 2.2972755236102302,
+   "bearing": 77.87796352986064,
+   "span": {
+    "left": 10.12,
+    "right": 14.63
+   },
+   "sources": {
+    "frTown": "paris",
+    "parisParking": true,
+    "orthoCity": "fr"
+   },
+   "segments": [
+    [
+     "chodnik",
+     6.45,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.47,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.47,
+     "osm"
+    ],
+    [
+     "parkovani",
+     1.8,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     4.5,
+     "pasport"
+    ],
+    [
+     "zelen",
+     2.65,
+     "odhad"
+    ],
+    [
+     "plocha",
+     2.4,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "N": {
+   "name": "Rue Frémicourt",
+   "wayId": 15220512,
+   "lat": 48.84727676538124,
+   "lon": 2.2972755236102302,
+   "bearing": 77.87796352986064,
+   "span": {
+    "left": 10.12,
+    "right": 9.53
+   },
+   "sources": {
+    "frTown": "paris",
+    "parisParking": true
+   },
+   "segments": [
+    [
+     "chodnik",
+     6.45,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.47,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.47,
+     "osm"
+    ],
+    [
+     "parkovani",
+     1.8,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     4.45,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  }
+ },
+ {
+  "id": "il34",
+  "group": "target",
+  "place": "paris",
+  "O": {
+   "name": "Rue de l'Amiral Hamelin",
+   "wayId": 4293933,
+   "lat": 48.86679490107852,
+   "lon": 2.292270831948227,
+   "bearing": -13.339334758539998,
+   "span": {
+    "left": 22,
+    "right": 6.28
+   },
+   "sources": {
+    "frTown": "paris",
+    "parisParking": true,
+    "orthoCity": "fr"
+   },
+   "segments": [
+    [
+     "plocha",
+     15.48,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     5,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.45,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "volno",
+    "budova"
+   ]
+  },
+  "N": {
+   "name": "Rue de l'Amiral Hamelin",
+   "wayId": 4293933,
+   "lat": 48.86679490107852,
+   "lon": 2.292270831948227,
+   "bearing": -13.339334758539998,
+   "span": {
+    "left": 6.52,
+    "right": 6.28
+   },
+   "sources": {
+    "frTown": "paris",
+    "parisParking": true
+   },
+   "segments": [
+    [
+     "chodnik",
+     5,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.45,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  }
+ },
+ {
+  "id": "il39",
+  "group": "target",
+  "place": "paris",
+  "O": {
+   "name": "Rue de Châteaudun",
+   "wayId": 1289354984,
+   "lat": 48.87571874844655,
+   "lon": 2.3429465718983864,
+   "bearing": -75.98350961028952,
+   "span": {
+    "left": 25.23,
+    "right": 7.48
+   },
+   "sources": {
+    "frTown": "paris",
+    "parisParking": true,
+    "orthoCity": "fr"
+   },
+   "segments": [
+    [
+     "chodnik",
+     5.35,
+     "pasport"
+    ],
+    [
+     "krajnice",
+     4.98,
+     "odhad"
+    ],
+    [
+     "bus_cyklo",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     4.98,
+     "odhad"
+    ],
+    [
+     "cyklostezka",
+     1.5,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     3.9,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "N": {
+   "name": "Rue de Châteaudun",
+   "wayId": 1289354984,
+   "lat": 48.87571874844655,
+   "lon": 2.3429465718983864,
+   "bearing": -75.98350961028952,
+   "span": {
+    "left": 24.78,
+    "right": 7.48
+   },
+   "sources": {
+    "frTown": "paris",
+    "parisParking": true
+   },
+   "segments": [
+    [
+     "chodnik",
+     4.9,
+     "pasport"
+    ],
+    [
+     "krajnice",
+     4.98,
+     "odhad"
+    ],
+    [
+     "bus_cyklo",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     4.98,
+     "odhad"
+    ],
+    [
+     "cyklostezka",
+     1.5,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     3.9,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  }
+ },
+ {
+  "id": "il42",
+  "group": "target",
+  "place": "paris",
+  "O": {
+   "name": "Boulevard de Clichy",
+   "wayId": 1187263477,
+   "lat": 48.88226743933859,
+   "lon": 2.3377238669101836,
+   "bearing": -71.05309198134108,
+   "span": {
+    "left": 36.27,
+    "right": 22
+   },
+   "sources": {
+    "frTown": "paris",
+    "parisParking": true
+   },
+   "segments": [
+    [
+     "chodnik",
+     26.15,
+     "pasport"
+    ],
+    [
+     "krajnice",
+     9.63,
+     "odhad"
+    ],
+    [
+     "cyklostezka",
+     1,
+     "osm"
+    ],
+    [
+     "krajnice",
+     3.43,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     14.06,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "volno"
+   ]
+  },
+  "N": {
+   "name": "Boulevard de Clichy",
+   "wayId": 1187263477,
+   "lat": 48.88226743933859,
+   "lon": 2.3377238669101836,
+   "bearing": -71.05309198134108,
+   "span": {
+    "left": 36.27,
+    "right": 28.33
+   },
+   "sources": {
+    "frTown": "paris",
+    "parisParking": true
+   },
+   "segments": [
+    [
+     "chodnik",
+     26.15,
+     "pasport"
+    ],
+    [
+     "krajnice",
+     9.63,
+     "odhad"
+    ],
+    [
+     "cyklostezka",
+     1,
+     "osm"
+    ],
+    [
+     "krajnice",
+     5.05,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     15.68,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.1,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  }
+ },
+ {
+  "id": "il44",
+  "group": "target",
+  "place": "paris",
+  "O": {
+   "name": "Quai Saint-Bernard",
+   "wayId": 699904544,
+   "lat": 48.84917846091809,
+   "lon": 2.3574392604283307,
+   "bearing": -62.61394686467417,
+   "span": {
+    "left": 11.37,
+    "right": 22
+   },
+   "sources": {
+    "frTown": "paris",
+    "parisParking": true
+   },
+   "segments": [
+    [
+     "nezname",
+     0.35,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.69,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     1.5,
+     "osm"
+    ],
+    [
+     "chodnik",
+     0.76,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.36,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.36,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.36,
+     "osm"
+    ],
+    [
+     "bus_cyklo",
+     3.36,
+     "osm"
+    ],
+    [
+     "cyklostezka",
+     1.75,
+     "pasport"
+    ],
+    [
+     "cyklostezka",
+     1.75,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     2.5,
+     "pasport"
+    ],
+    [
+     "nezname",
+     3.2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     5.42,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "volno"
+   ]
+  },
+  "N": {
+   "name": "Quai Saint-Bernard",
+   "wayId": 699904544,
+   "lat": 48.84917846091809,
+   "lon": 2.3574392604283307,
+   "bearing": -62.61394686467417,
+   "span": {
+    "left": 11.02,
+    "right": 22
+   },
+   "sources": {
+    "frTown": "paris",
+    "parisParking": true
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.69,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     1.5,
+     "osm"
+    ],
+    [
+     "chodnik",
+     0.76,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.36,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.36,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.36,
+     "osm"
+    ],
+    [
+     "bus_cyklo",
+     3.36,
+     "osm"
+    ],
+    [
+     "cyklostezka",
+     1.75,
+     "pasport"
+    ],
+    [
+     "cyklostezka",
+     1.75,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     2.5,
+     "pasport"
+    ],
+    [
+     "nezname",
+     3.2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     5.42,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "volno"
+   ]
+  }
+ },
+ {
+  "id": "il48",
+  "group": "target",
+  "place": "paris",
+  "O": {
+   "name": "Rue Charles Lecocq",
+   "wayId": 12347717,
+   "lat": 48.8406369777061,
+   "lon": 2.294789245063994,
+   "bearing": -35.632347337297524,
+   "span": {
+    "left": 6.32,
+    "right": 7.58
+   },
+   "sources": {
+    "frTown": "paris",
+    "parisParking": true,
+    "orthoCity": "fr"
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.7,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     1.8,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.67,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.67,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.35,
+     "pasport"
+    ],
+    [
+     "plocha",
+     1.7,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  },
+  "N": {
+   "name": "Rue Charles Lecocq",
+   "wayId": 12347717,
+   "lat": 48.8406369777061,
+   "lon": 2.294789245063994,
+   "bearing": -35.632347337297524,
+   "span": {
+    "left": 5.97,
+    "right": 5.83
+   },
+   "sources": {
+    "frTown": "paris",
+    "parisParking": true
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.35,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     1.8,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.67,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.67,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.3,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "budova",
+    "budova"
+   ]
+  }
+ },
+ {
+  "id": "il52",
+  "group": "target",
+  "place": "paris",
+  "O": {
+   "name": "Boulevard Vincent Auriol",
+   "wayId": 35980519,
+   "lat": 48.83163868533905,
+   "lon": 2.3583201038243145,
+   "bearing": 64.1263478569609,
+   "span": {
+    "left": 20.78,
+    "right": 22.38
+   },
+   "sources": {
+    "frTown": "paris",
+    "parisParking": true,
+    "orthoCity": "fr"
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.87,
+     "osm"
+    ],
+    [
+     "parkovani",
+     1.18,
+     "osm"
+    ],
+    [
+     "plocha",
+     19.25,
+     "pasport"
+    ],
+    [
+     "pruh",
+     2.97,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.93,
+     "ortofoto"
+    ],
+    [
+     "plocha",
+     3.4,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     1.9,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.65,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "volno",
+    "volno"
+   ]
+  },
+  "N": {
+   "name": "Boulevard Vincent Auriol",
+   "wayId": 35980519,
+   "lat": 48.83163868533905,
+   "lon": 2.3583201038243145,
+   "bearing": 64.1263478569609,
+   "span": {
+    "left": 20.78,
+    "right": 30.18
+   },
+   "sources": {
+    "frTown": "paris",
+    "parisParking": true,
+    "orthoCity": "fr"
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.87,
+     "osm"
+    ],
+    [
+     "parkovani",
+     1.18,
+     "osm"
+    ],
+    [
+     "plocha",
+     19.25,
+     "pasport"
+    ],
+    [
+     "pruh",
+     2.97,
+     "ortofoto"
+    ],
+    [
+     "pruh",
+     3.93,
+     "ortofoto"
+    ],
+    [
+     "plocha",
+     3.4,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     1.9,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.65,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     1.75,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     6.05,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "volno",
+    "budova"
+   ]
+  }
+ },
+ {
+  "id": "il58",
+  "group": "target",
+  "place": "paris",
+  "O": {
+   "name": "Avenue Pierre Mendès France",
+   "wayId": 4039598,
+   "lat": 48.83951069889768,
+   "lon": 2.369424898666123,
+   "bearing": -29.13875710861979,
+   "span": {
+    "left": 22,
+    "right": 19.63
+   },
+   "sources": {
+    "frTown": "paris",
+    "parisParking": true,
+    "orthoCity": "fr"
+   },
+   "segments": [
+    [
+     "nastupiste",
+     6.88,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.65,
+     "pasport"
+    ],
+    [
+     "pruh",
+     2.58,
+     "osm"
+    ],
+    [
+     "bus_cyklo",
+     2.58,
+     "osm"
+    ],
+    [
+     "nastupiste",
+     8.15,
+     "osm"
+    ],
+    [
+     "stromorad",
+     1.67,
+     "osm"
+    ],
+    [
+     "plocha",
+     0.98,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     1.8,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.3,
+     "osm"
+    ],
+    [
+     "nastupiste",
+     7.2,
+     "osm"
+    ],
+    [
+     "chodnik",
+     5.85,
+     "odhad"
+    ]
+   ],
+   "edges": [
+    "volno",
+    "budova"
+   ]
+  },
+  "N": {
+   "name": "Avenue Pierre Mendès France",
+   "wayId": 4039598,
+   "lat": 48.83951069889768,
+   "lon": 2.369424898666123,
+   "bearing": -29.13875710861979,
+   "span": {
+    "left": 22,
+    "right": 18.83
+   },
+   "sources": {
+    "frTown": "paris",
+    "parisParking": true
+   },
+   "segments": [
+    [
+     "nastupiste",
+     6.88,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.65,
+     "pasport"
+    ],
+    [
+     "pruh",
+     2.58,
+     "osm"
+    ],
+    [
+     "bus_cyklo",
+     2.58,
+     "osm"
+    ],
+    [
+     "nastupiste",
+     8.15,
+     "osm"
+    ],
+    [
+     "stromorad",
+     1.67,
+     "osm"
+    ],
+    [
+     "plocha",
+     0.98,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     1.8,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.3,
+     "osm"
+    ],
+    [
+     "nastupiste",
+     7.2,
+     "osm"
+    ],
+    [
+     "chodnik",
+     5.05,
+     "pasport"
+    ]
+   ],
+   "edges": [
+    "volno",
+    "budova"
+   ]
+  }
+ }
+]

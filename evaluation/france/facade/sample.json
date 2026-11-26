@@ -1,0 +1,422 @@
+[
+ {
+  "id": "il1",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.883178,
+  "lon": 2.332542
+ },
+ {
+  "id": "il2",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.870382,
+  "lon": 2.346185
+ },
+ {
+  "id": "il4",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.888492,
+  "lon": 2.31696
+ },
+ {
+  "id": "il5",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.836983,
+  "lon": 2.362232
+ },
+ {
+  "id": "il6",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.832436,
+  "lon": 2.315777
+ },
+ {
+  "id": "il7",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.873709,
+  "lon": 2.334981
+ },
+ {
+  "id": "il8",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.851067,
+  "lon": 2.346876
+ },
+ {
+  "id": "il9",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.88192,
+  "lon": 2.325997
+ },
+ {
+  "id": "il10",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.875391,
+  "lon": 2.372475
+ },
+ {
+  "id": "il11",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.872215,
+  "lon": 2.300594
+ },
+ {
+  "id": "il12",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.868681,
+  "lon": 2.331499
+ },
+ {
+  "id": "il13",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.831496,
+  "lon": 2.3664
+ },
+ {
+  "id": "il14",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.863415,
+  "lon": 2.308197
+ },
+ {
+  "id": "il15",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.843857,
+  "lon": 2.358854
+ },
+ {
+  "id": "il16",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.889049,
+  "lon": 2.355905
+ },
+ {
+  "id": "il17",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.830838,
+  "lon": 2.318303
+ },
+ {
+  "id": "il18",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.847302,
+  "lon": 2.316818
+ },
+ {
+  "id": "il19",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.855933,
+  "lon": 2.340181
+ },
+ {
+  "id": "il20",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.838103,
+  "lon": 2.328862
+ },
+ {
+  "id": "il21",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.875397,
+  "lon": 2.367353
+ },
+ {
+  "id": "il22",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.890544,
+  "lon": 2.342894
+ },
+ {
+  "id": "il24",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.832767,
+  "lon": 2.378371
+ },
+ {
+  "id": "il25",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.840849,
+  "lon": 2.374689
+ },
+ {
+  "id": "il26",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.826374,
+  "lon": 2.360126
+ },
+ {
+  "id": "il27",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.849066,
+  "lon": 2.318238
+ },
+ {
+  "id": "il28",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.847138,
+  "lon": 2.297724
+ },
+ {
+  "id": "il29",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.888043,
+  "lon": 2.316822
+ },
+ {
+  "id": "il30",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.830856,
+  "lon": 2.316608
+ },
+ {
+  "id": "il31",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.867433,
+  "lon": 2.336811
+ },
+ {
+  "id": "il32",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.855392,
+  "lon": 2.383055
+ },
+ {
+  "id": "il33",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.863594,
+  "lon": 2.326334
+ },
+ {
+  "id": "il34",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.866734,
+  "lon": 2.291883
+ },
+ {
+  "id": "il35",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.826004,
+  "lon": 2.356328
+ },
+ {
+  "id": "il36",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.859717,
+  "lon": 2.381983
+ },
+ {
+  "id": "il37",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.874065,
+  "lon": 2.384114
+ },
+ {
+  "id": "il38",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.845351,
+  "lon": 2.386386
+ },
+ {
+  "id": "il39",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.87607,
+  "lon": 2.343079
+ },
+ {
+  "id": "il40",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.88597,
+  "lon": 2.313262
+ },
+ {
+  "id": "il41",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.873509,
+  "lon": 2.328538
+ },
+ {
+  "id": "il42",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.882638,
+  "lon": 2.337166
+ },
+ {
+  "id": "il43",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.859138,
+  "lon": 2.313969
+ },
+ {
+  "id": "il44",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.848992,
+  "lon": 2.357348
+ },
+ {
+  "id": "il46",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.865736,
+  "lon": 2.316753
+ },
+ {
+  "id": "il47",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.870939,
+  "lon": 2.388323
+ },
+ {
+  "id": "il48",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.84053,
+  "lon": 2.294564
+ },
+ {
+  "id": "il49",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.859834,
+  "lon": 2.315982
+ },
+ {
+  "id": "il50",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.826116,
+  "lon": 2.348991
+ },
+ {
+  "id": "il51",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.847191,
+  "lon": 2.301469
+ },
+ {
+  "id": "il52",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.830394,
+  "lon": 2.359231
+ },
+ {
+  "id": "il53",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.853002,
+  "lon": 2.361269
+ },
+ {
+  "id": "il55",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.827641,
+  "lon": 2.342917
+ },
+ {
+  "id": "il56",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.868701,
+  "lon": 2.382027
+ },
+ {
+  "id": "il57",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.871492,
+  "lon": 2.364491
+ },
+ {
+  "id": "il58",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.839551,
+  "lon": 2.369534
+ },
+ {
+  "id": "il59",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.848761,
+  "lon": 2.319179
+ },
+ {
+  "id": "il60",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.843857,
+  "lon": 2.348781
+ },
+ {
+  "id": "il61",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.83069,
+  "lon": 2.310135
+ },
+ {
+  "id": "il62",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.866909,
+  "lon": 2.316719
+ },
+ {
+  "id": "il63",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.831904,
+  "lon": 2.3035
+ },
+ {
+  "id": "il65",
+  "group": "target",
+  "place": "paris",
+  "lat": 48.861557,
+  "lon": 2.36296
+ }
+]

@@ -1,0 +1,15 @@
+{
+  "13": {"v": "X", "proc": "Okraj střechy na A je asi 26 m od středu; X (25,2) končí blíž než Y (24,8), rozdíl jen 0,45 m."},
+  "12": {"v": "Y", "proc": "Na B je za stromy v ortofotu chodník až k plotu (asi 30 m) a na fotce stání; X končí krajnicí uprostřed."},
+  "11": {"v": "X", "proc": "Roh domu na A je asi 6,1 m od středu; X s 0,35 m neurčeno dosahuje k fasádě, Y končí kousek před ní."},
+  "10": {"v": "X", "proc": "Paty fasády na A je až asi 7,3 m (tmavý pás u střechy); širší chodník X sedí lépe, obruba stejná."},
+  "9": {"v": "Y", "proc": "Na B je plocha 1,7 m v X už na střeše domu; na A začíná X dál pod střechou; Y odpovídá šířce mezi domy."},
+  "8": {"v": "stejně", "proc": "Liší se jen 0,35 m neurčeno u terasy s deštníky na A, nepodstatné."},
+  "7": {"v": "Y", "proc": "Plocha 15,5 m v X na A leží na střechách domů; Y končí u fasády."},
+  "6": {"v": "X", "proc": "Na B končí Y ve stínu 3 m před domem; podle fotky je mezi chodníkem a domem zábradlí a předprostor, X zeleň a plocha to zachycuje."},
+  "5": {"v": "stejně", "proc": "Rozdíl 0,08 m v chodníku na B."},
+  "4": {"v": "X", "proc": "Na B končí Y uprostřed vozovky křižovatky; X pokračuje chodníkem k budově asi 28 m od středu."},
+  "3": {"v": "Y", "proc": "Na B je okraj domu asi 14 m od středu, střecha nakloněná k ulici; X končí asi 4 m před ním, Y plochou přesahuje jen mírně."},
+  "2": {"v": "Y", "proc": "Plocha 14,5 m v X na A leží na střeše velké budovy; Y končí u fasády."},
+  "1": {"v": "nejde", "proc": "Na B se liší o 0,8 m chodníku, oba končí u tmavé čáry a co je za ní (plocha k domu) neumím rozhodnout."}
+}

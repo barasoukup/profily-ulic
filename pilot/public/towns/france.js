@@ -45,8 +45,22 @@ async function parisLayer(name, bbox) {
 export function parisFeatures(layers) {
   return { features: layers.flat().map((r) => ({ attributes: { code: parisCode(r) }, geometry: { rings: ringsOf(r.geo_shape?.geometry) } })).filter((f) => f.attributes.code && f.geometry.rings) };
 }
+// The Plan de voirie's private blocks (plan-de-voirie-emprises-ilots-prives, ODbL as the rest): where the public way
+// ends. Against the far edge of the map's sidewalk on 86 sides of Paris cuts (evaluation/france/facade/gap.mjs) a
+// block lies within 0.2 m on 71 and never 0.2–1.5 m off; OSM's houses within 0.2 m on 38, 0.2–1.5 m off on 15 (the
+// strip "plocha" at the facade, 0.65 m on Rue des Tournelles), BD TOPO's on 43 and 8 (farther than OSM's on 17, nearer
+// on 14). Drawn as houses after OSM's houses and the map's surfaces (OSM's outlines keep the arcades they draw, the
+// map's sidewalk wins where a block overlaps it), so the profile ends at the block's line. Off, ?ilots=1 turns them on:
+// the blind A/B on 13 changed cuts of 60 new ones, with the strip at the facade already joined to the sidewalk
+// (ortho-osm.js facadeStrip), was not conclusive (5 : 2 where both judges agree, each 5 : 2 and 6 : 4; Bára 26. 11. 2026,
+// evaluation/france/facade/ZPRAVA.md), and it asks one more request a cut.
+export const PARIS_BLOCKS = "plan-de-voirie-emprises-ilots-prives";
+export function parisBlocks(records) {
+  return records.map((r) => ringsOf(r.geo_shape?.geometry)).filter(Boolean).map((rings) => ({ attributes: { CTVUK_KOD: 601, CTVUK_POPIS: MTVU_LABELS[601], ODHAD: 0 }, geometry: { rings } }));
+}
 async function paris(bbox) {
-  return parisFeatures(await Promise.all(PARIS_LAYERS.map((l) => parisLayer(l, bbox))));
+  const [layers, blocks] = await Promise.all([Promise.all(PARIS_LAYERS.map((l) => parisLayer(l, bbox))), param("ilots") !== "1" ? [] : parisLayer(PARIS_BLOCKS, bbox)]);
+  return { ...parisFeatures(layers), blocks: parisBlocks(blocks) };
 }
 
 const inRings = (rings, x, y) => {
@@ -65,7 +79,7 @@ const townAt = (lon, lat) => Object.keys(FR_TOWNS).find((id) => param(id) !== "0
 // One request a box (a cut moved a little asks the same box again: the box rounded to about 10 m), at most 30 kept.
 const memo = new Map();
 function cached(id, bbox) {
-  const key = `${id} ${bbox.split(",").map((v) => (+v).toFixed(4)).join(",")}`;
+  const key = `${id}${param("ilots") === "1" ? "+" : ""} ${bbox.split(",").map((v) => (+v).toFixed(4)).join(",")}`;
   if (!memo.has(key)) {
     memo.set(key, FR_TOWNS[id](bbox).catch((err) => { memo.delete(key); throw err; }));
     if (memo.size > 30) memo.delete(memo.keys().next().value);
@@ -78,9 +92,11 @@ async function surfaces(bbox) {
   const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
   const id = townAt(cx, cy);
   if (!id) return { features: [], abroad: true };
-  let own;
+  let own, blocks;
   try {
-    own = asMtvu([[await cached(id, bbox), (a) => a.code]], MTVU_LABELS);
+    const got = await cached(id, bbox);
+    own = asMtvu([[got, (a) => a.code]], MTVU_LABELS);
+    blocks = got.blocks || [];
   } catch {
     return { features: [], abroad: true, frFailed: id };
   }
@@ -90,7 +106,7 @@ async function surfaces(bbox) {
   const at = own.features.some((f) => STREET.has(f.attributes.CTVUK_KOD) && around.some(([ox, oy]) => inRings(f.geometry.rings, cx + ox * mx, cy + oy * my)));
   if (!at) return { features: [], abroad: true };
   const o = await osmAreas(bbox);
-  return { features: [...o.buildings, ...asPassport(own).features, ...o.rest], frTown: id, passport: true };
+  return { features: [...o.buildings, ...asPassport(own).features, ...blocks, ...o.rest], frTown: id, passport: true };
 }
 
 // ---------- BD TOPO (IGN) ----------

@@ -1,0 +1,82 @@
+{
+ "il9": [
+  {
+   "k": "f",
+   "year": 2023,
+   "pano": false
+  }
+ ],
+ "il13": [],
+ "il21": [],
+ "il24": [],
+ "il25": [
+  {
+   "k": "f",
+   "year": 2018,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2018,
+   "pano": false
+  }
+ ],
+ "il28": [
+  {
+   "k": "f",
+   "year": 2022,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2020,
+   "pano": false
+  }
+ ],
+ "il34": [],
+ "il39": [
+  {
+   "k": "f",
+   "year": 2022,
+   "pano": true
+  },
+  {
+   "k": "b",
+   "year": 2022,
+   "pano": true
+  }
+ ],
+ "il42": [
+  {
+   "k": "f",
+   "year": 2026,
+   "pano": false
+  }
+ ],
+ "il44": [
+  {
+   "k": "f",
+   "year": 2020,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2017,
+   "pano": false
+  }
+ ],
+ "il48": [],
+ "il52": [
+  {
+   "k": "f",
+   "year": 2015,
+   "pano": false
+  },
+  {
+   "k": "b",
+   "year": 2017,
+   "pano": false
+  }
+ ],
+ "il58": []
+}

@@ -1,0 +1,690 @@
+[
+ {
+  "id": "pa1",
+  "side": "A",
+  "walkEnd": 12.05,
+  "osm": 3.2,
+  "bdtopo": 3.3,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa1",
+  "side": "B",
+  "walkEnd": 9.65,
+  "osm": 0.05,
+  "bdtopo": -0.35,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa2",
+  "side": "A",
+  "walkEnd": 6.1,
+  "osm": 0,
+  "bdtopo": 0.05,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa2",
+  "side": "B",
+  "walkEnd": 5.8,
+  "osm": 0.45,
+  "bdtopo": 0,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa3",
+  "side": "A",
+  "walkEnd": 5.15,
+  "osm": null,
+  "bdtopo": -0.75,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa3",
+  "side": "B",
+  "walkEnd": 37.15,
+  "osm": null,
+  "bdtopo": 0.15,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa5",
+  "side": "A",
+  "walkEnd": 5.1,
+  "osm": -0.2,
+  "bdtopo": 0.05,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa5",
+  "side": "B",
+  "walkEnd": 5.5,
+  "osm": -0.1,
+  "bdtopo": 0.2,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa7",
+  "side": "A",
+  "walkEnd": 3.8,
+  "osm": 0.15,
+  "bdtopo": 0.1,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa7",
+  "side": "B",
+  "walkEnd": 4,
+  "osm": 0,
+  "bdtopo": 0.05,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa9",
+  "side": "A",
+  "walkEnd": 5.2,
+  "osm": -0.5,
+  "bdtopo": -0.25,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa9",
+  "side": "B",
+  "walkEnd": 4.5,
+  "osm": 0.25,
+  "bdtopo": -1.15,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa10",
+  "side": "A",
+  "walkEnd": 19.95,
+  "osm": 9.6,
+  "bdtopo": 10.05,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa10",
+  "side": "B",
+  "walkEnd": 32.95,
+  "osm": 0.35,
+  "bdtopo": 0.05,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa11",
+  "side": "A",
+  "walkEnd": 6.45,
+  "osm": 0.4,
+  "bdtopo": -0.05,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa11",
+  "side": "B",
+  "walkEnd": 8.45,
+  "osm": 10.8,
+  "bdtopo": 11.15,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa12",
+  "side": "A",
+  "walkEnd": 3.95,
+  "osm": 0.2,
+  "bdtopo": 0,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa12",
+  "side": "B",
+  "walkEnd": 4.65,
+  "osm": 0.75,
+  "bdtopo": 0.6,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa13",
+  "side": "A",
+  "walkEnd": 5.05,
+  "osm": -0.05,
+  "bdtopo": 0.05,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa13",
+  "side": "B",
+  "walkEnd": 4.85,
+  "osm": -0.05,
+  "bdtopo": 0.1,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa15",
+  "side": "A",
+  "walkEnd": 15.2,
+  "osm": -3,
+  "bdtopo": -3,
+  "ilots": -3
+ },
+ {
+  "id": "pa15",
+  "side": "B",
+  "walkEnd": 15.2,
+  "osm": -3,
+  "bdtopo": -3,
+  "ilots": -3
+ },
+ {
+  "id": "pa16",
+  "side": "A",
+  "walkEnd": 5,
+  "osm": 0.05,
+  "bdtopo": -0.05,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa16",
+  "side": "B",
+  "walkEnd": 9.7,
+  "osm": 5.25,
+  "bdtopo": 6.35,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa18",
+  "side": "B",
+  "walkEnd": 23.45,
+  "osm": null,
+  "bdtopo": 1.4,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa19",
+  "side": "B",
+  "walkEnd": 15.05,
+  "osm": -0.2,
+  "bdtopo": -0.8,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa20",
+  "side": "A",
+  "walkEnd": 5.05,
+  "osm": 0.65,
+  "bdtopo": 0.15,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa20",
+  "side": "B",
+  "walkEnd": 40,
+  "osm": -3,
+  "bdtopo": -3,
+  "ilots": -3
+ },
+ {
+  "id": "pa21",
+  "side": "A",
+  "walkEnd": 5.75,
+  "osm": -0.2,
+  "bdtopo": 0,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa22",
+  "side": "A",
+  "walkEnd": 5.55,
+  "osm": -1.8,
+  "bdtopo": -0.25,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa22",
+  "side": "B",
+  "walkEnd": 2.35,
+  "osm": 5.05,
+  "bdtopo": 0.15,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa25",
+  "side": "A",
+  "walkEnd": 10.2,
+  "osm": -0.05,
+  "bdtopo": 0,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa25",
+  "side": "B",
+  "walkEnd": 9.9,
+  "osm": 0.2,
+  "bdtopo": -0.05,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa28",
+  "side": "A",
+  "walkEnd": 4.7,
+  "osm": -0.1,
+  "bdtopo": 0,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa28",
+  "side": "B",
+  "walkEnd": 5.05,
+  "osm": 0.25,
+  "bdtopo": 0.15,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa29",
+  "side": "B",
+  "walkEnd": 40,
+  "osm": null,
+  "bdtopo": null,
+  "ilots": null
+ },
+ {
+  "id": "pa30",
+  "side": "A",
+  "walkEnd": 4.05,
+  "osm": 0.2,
+  "bdtopo": 0.05,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa30",
+  "side": "B",
+  "walkEnd": 7.9,
+  "osm": 0.1,
+  "bdtopo": 0.05,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa32",
+  "side": "A",
+  "walkEnd": 5.35,
+  "osm": 0.2,
+  "bdtopo": 0,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa35",
+  "side": "B",
+  "walkEnd": 3.15,
+  "osm": 8.1,
+  "bdtopo": 3.5,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa36",
+  "side": "A",
+  "walkEnd": 7.55,
+  "osm": null,
+  "bdtopo": null,
+  "ilots": null
+ },
+ {
+  "id": "pa36",
+  "side": "B",
+  "walkEnd": 20.1,
+  "osm": -0.15,
+  "bdtopo": 0.2,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa37",
+  "side": "A",
+  "walkEnd": 5.05,
+  "osm": -0.05,
+  "bdtopo": 0.15,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa37",
+  "side": "B",
+  "walkEnd": 4.8,
+  "osm": 0.35,
+  "bdtopo": 1.45,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa38",
+  "side": "A",
+  "walkEnd": 6.05,
+  "osm": 0.4,
+  "bdtopo": 0,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa38",
+  "side": "B",
+  "walkEnd": 5.85,
+  "osm": 0.15,
+  "bdtopo": -0.05,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa39",
+  "side": "A",
+  "walkEnd": 13.2,
+  "osm": 0.05,
+  "bdtopo": -0.05,
+  "ilots": 0.05
+ },
+ {
+  "id": "pa39",
+  "side": "B",
+  "walkEnd": 40,
+  "osm": null,
+  "bdtopo": null,
+  "ilots": null
+ },
+ {
+  "id": "pa40",
+  "side": "A",
+  "walkEnd": 40,
+  "osm": -3,
+  "bdtopo": -3,
+  "ilots": -3
+ },
+ {
+  "id": "pa40",
+  "side": "B",
+  "walkEnd": 4,
+  "osm": 0.35,
+  "bdtopo": -0.7,
+  "ilots": 0.05
+ },
+ {
+  "id": "paris1",
+  "side": "A",
+  "walkEnd": 37.15,
+  "osm": 0,
+  "bdtopo": -0.8,
+  "ilots": 0.05
+ },
+ {
+  "id": "paris1",
+  "side": "B",
+  "walkEnd": 40,
+  "osm": null,
+  "bdtopo": null,
+  "ilots": null
+ },
+ {
+  "id": "paris2",
+  "side": "A",
+  "walkEnd": 40,
+  "osm": -3,
+  "bdtopo": -3,
+  "ilots": -3
+ },
+ {
+  "id": "paris3",
+  "side": "A",
+  "walkEnd": 5.25,
+  "osm": -0.1,
+  "bdtopo": 0.15,
+  "ilots": 0.05
+ },
+ {
+  "id": "paris7",
+  "side": "A",
+  "walkEnd": 7.55,
+  "osm": 0.35,
+  "bdtopo": -0.85,
+  "ilots": 0.05
+ },
+ {
+  "id": "paris7",
+  "side": "B",
+  "walkEnd": 7.2,
+  "osm": 0.2,
+  "bdtopo": 1,
+  "ilots": 0.05
+ },
+ {
+  "id": "paris9",
+  "side": "A",
+  "walkEnd": 30.4,
+  "osm": 0.2,
+  "bdtopo": 0.35,
+  "ilots": 0.05
+ },
+ {
+  "id": "paris9",
+  "side": "B",
+  "walkEnd": 6.75,
+  "osm": -0.2,
+  "bdtopo": 0.05,
+  "ilots": 0.05
+ },
+ {
+  "id": "paris15",
+  "side": "A",
+  "walkEnd": 4.85,
+  "osm": 0.1,
+  "bdtopo": 0.1,
+  "ilots": 0.05
+ },
+ {
+  "id": "paris15",
+  "side": "B",
+  "walkEnd": 4.7,
+  "osm": -0.05,
+  "bdtopo": -0.05,
+  "ilots": 0.05
+ },
+ {
+  "id": "paris16",
+  "side": "A",
+  "walkEnd": 7.9,
+  "osm": -0.1,
+  "bdtopo": 0,
+  "ilots": 0.05
+ },
+ {
+  "id": "paris16",
+  "side": "B",
+  "walkEnd": 6.85,
+  "osm": 2.95,
+  "bdtopo": 0.15,
+  "ilots": 0.05
+ },
+ {
+  "id": "paris19",
+  "side": "A",
+  "walkEnd": 5.45,
+  "osm": -0.4,
+  "bdtopo": 0.05,
+  "ilots": 0.05
+ },
+ {
+  "id": "paris19",
+  "side": "B",
+  "walkEnd": 7.2,
+  "osm": 0.1,
+  "bdtopo": 0.55,
+  "ilots": 0.05
+ },
+ {
+  "id": "paris21",
+  "side": "A",
+  "walkEnd": 9.8,
+  "osm": -1.5,
+  "bdtopo": 0.15,
+  "ilots": 0.05
+ },
+ {
+  "id": "paris21",
+  "side": "B",
+  "walkEnd": 6.05,
+  "osm": 0.05,
+  "bdtopo": -0.05,
+  "ilots": 0.05
+ },
+ {
+  "id": "paris23",
+  "side": "A",
+  "walkEnd": 40,
+  "osm": null,
+  "bdtopo": null,
+  "ilots": null
+ },
+ {
+  "id": "paris24",
+  "side": "A",
+  "walkEnd": 5,
+  "osm": 0.25,
+  "bdtopo": 0.05,
+  "ilots": 0.05
+ },
+ {
+  "id": "paris24",
+  "side": "B",
+  "walkEnd": 4.85,
+  "osm": 0.1,
+  "bdtopo": 0.1,
+  "ilots": 0.05
+ },
+ {
+  "id": "paris26",
+  "side": "A",
+  "walkEnd": 15.2,
+  "osm": -0.15,
+  "bdtopo": 0.05,
+  "ilots": 0.05
+ },
+ {
+  "id": "paris26",
+  "side": "B",
+  "walkEnd": 24.45,
+  "osm": 0.45,
+  "bdtopo": 0.1,
+  "ilots": 0.05
+ },
+ {
+  "id": "paris27",
+  "side": "A",
+  "walkEnd": 7.5,
+  "osm": 3.8,
+  "bdtopo": 3.55,
+  "ilots": 0.05
+ },
+ {
+  "id": "paris27",
+  "side": "B",
+  "walkEnd": 34.6,
+  "osm": 0.9,
+  "bdtopo": 1.3,
+  "ilots": 0.05
+ },
+ {
+  "id": "paris28",
+  "side": "A",
+  "walkEnd": 8.25,
+  "osm": 0.2,
+  "bdtopo": -0.15,
+  "ilots": 0.05
+ },
+ {
+  "id": "paris28",
+  "side": "B",
+  "walkEnd": 16.15,
+  "osm": null,
+  "bdtopo": null,
+  "ilots": null
+ },
+ {
+  "id": "paris29",
+  "side": "A",
+  "walkEnd": 10.1,
+  "osm": null,
+  "bdtopo": null,
+  "ilots": null
+ },
+ {
+  "id": "paris29",
+  "side": "B",
+  "walkEnd": 14,
+  "osm": 0,
+  "bdtopo": -0.4,
+  "ilots": 0.05
+ },
+ {
+  "id": "paris31",
+  "side": "A",
+  "walkEnd": 6.2,
+  "osm": -0.1,
+  "bdtopo": -0.05,
+  "ilots": 0.05
+ },
+ {
+  "id": "paris31",
+  "side": "B",
+  "walkEnd": 40,
+  "osm": -3,
+  "bdtopo": -3,
+  "ilots": -3
+ },
+ {
+  "id": "paris36",
+  "side": "B",
+  "walkEnd": 17.1,
+  "osm": null,
+  "bdtopo": null,
+  "ilots": 0
+ },
+ {
+  "id": "paris38",
+  "side": "A",
+  "walkEnd": 4.8,
+  "osm": null,
+  "bdtopo": 20.65,
+  "ilots": 0.05
+ },
+ {
+  "id": "paris38",
+  "side": "B",
+  "walkEnd": 8.15,
+  "osm": 0.3,
+  "bdtopo": -0.65,
+  "ilots": 0.05
+ },
+ {
+  "id": "paris39",
+  "side": "A",
+  "walkEnd": 6.05,
+  "osm": 0,
+  "bdtopo": 0.25,
+  "ilots": 0.05
+ },
+ {
+  "id": "paris39",
+  "side": "B",
+  "walkEnd": 40,
+  "osm": null,
+  "bdtopo": null,
+  "ilots": null
+ },
+ {
+  "id": "paris40",
+  "side": "A",
+  "walkEnd": 40,
+  "osm": -3,
+  "bdtopo": -3,
+  "ilots": -3
+ },
+ {
+  "id": "paris40",
+  "side": "B",
+  "walkEnd": 25.25,
+  "osm": 2.85,
+  "bdtopo": 5.95,
+  "ilots": 0.05
+ }
+]

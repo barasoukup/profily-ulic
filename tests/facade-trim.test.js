@@ -24,3 +24,12 @@ test("Proužek plochy do 1,5 m u fasády za chodníkem je chodník (facadeStrip)
   facadeStrip(out, 0, -4.8, -1, () => null);
   assert.equal(out[1].code, 702);
 });
+
+test("Paříž: soukromé bloky Plan de voirie jako domy (parisBlocks)", async () => {
+  const F = await import("../pilot/public/towns/france.js");
+  const sq = { geometry: { type: "Polygon", coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] } };
+  const got = F.parisBlocks([{ geo_shape: sq }, { geo_shape: null }]);
+  assert.equal(got.length, 1);
+  assert.equal(got[0].attributes.CTVUK_KOD, 601);
+  assert.equal(F.PARIS_BLOCKS, "plan-de-voirie-emprises-ilots-prives");
+});

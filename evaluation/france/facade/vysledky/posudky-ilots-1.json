@@ -1,0 +1,15 @@
+{
+  "1": {"v": "stejně", "proc": "Liší se jen konec na straně B o 0,8 m; oba končí zhruba u tmavé zídky/plotu, Y o kousek blíž."},
+  "2": {"v": "Y", "proc": "Na straně A je za chodníkem střecha velké budovy; X přidává 14,5 m zpevněné plochy přes dům, Y končí u fasády."},
+  "3": {"v": "Y", "proc": "Na straně B končí X asi 4 m před okrajem zástavby/terasy; Y doplňuje plochu mezi chodníkem a domem, přesahuje jen asi o 3 m. Nejisté (stín)."},
+  "4": {"v": "X", "proc": "Na straně B je u budovy chodník (fasáda asi 28 m od středu); Y končí krajnicí ve vozovce asi 6 m před domem."},
+  "5": {"v": "stejně", "proc": "Rozdíl 0,1 m v chodníku na straně B."},
+  "6": {"v": "X", "proc": "Na straně B je mezi chodníkem a ustoupeným přízemím zakřiveného domu pás se zábradlím a zelení (panorama); Y končí asi 3 m před domem."},
+  "7": {"v": "Y", "proc": "Na straně A je za chodníkem blok domů; X přidává 15,5 m zpevněné plochy uvnitř bloku, Y končí u fasády."},
+  "8": {"v": "stejně", "proc": "Liší se jen 0,35 m neurčeno na okraji u nábřeží/lodi na straně A."},
+  "9": {"v": "Y", "proc": "Y končí na obou stranách zhruba u fasád; X na straně B přidává 1,7 m plochy za líc domu a chodník na A má o 0,35 m širší."},
+  "10": {"v": "stejně", "proc": "Liší se jen chodník na straně A o 0,35 m, oba končí u fasády."},
+  "11": {"v": "stejně", "proc": "Liší se jen 0,35 m neurčeno u fasády na straně A."},
+  "12": {"v": "Y", "proc": "X na straně B končí krajnicí uprostřed ulice; Y pokračuje stáním a chodníkem až k domu asi 30 m od středu."},
+  "13": {"v": "stejně", "proc": "Liší se jen chodník na straně A o 0,45 m, oba končí u domu."}
+}
