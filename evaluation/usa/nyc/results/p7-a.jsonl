@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "Vozovka (2 pruhy kolem zlute cary, kraje s parkovanim) i chodniky vychazeji u obou stejne; X navic kresli sousedni parkoviste, Y konci u okraje ulice, ve slozeni se nelisi."}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "Uzka ulice se stanim po obou stranach a jednim jizdnim pasem uprostred (ortofoto); X ma stani z obou stran, Y ma dva pruhy a stani jen z jedne strany."}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "Vozovka se stanim po obou stranach a jednim uzkym pasem; Y dava dva pruhy 2,7 m a 17,5 m zelene tam, kde je za chodnikem fasada domu."}
+{"n": 4, "verdict": "stejne", "jistota": "nizka", "why": "Zastinena ulice mezi fasadami, stani po obou stranach a jeden pas; profily se lisi jen drobnostmi (zelen u fasady, krajnice), z ortofota nerozhodnu."}
+{"n": 5, "verdict": "Y", "jistota": "vysoka", "why": "Siroka trida: chodnik, stani, pruhy, tri odbocovaci pruhy se sipkami, stredni pas, dalsi pruhy; Y to ma v poradi, X je jen utrzek 20 m bez chodniku a stani."}
+{"n": 6, "verdict": "Y", "jistota": "nizka", "why": "Dva pruhy se stanim po obou stranach u obou stejne; vlevo konci ulice fasadou a X tam kresli 13 m plochy, Y jen zelen a chodnik, blize skutecnosti."}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "Jeden jizdni pas se stanim po obou stranach mezi fasadami; rozdily jen v sirce chodniku a zelene, zadny neni jasne blize."}
+{"n": 8, "verdict": "stejne", "jistota": "nizka", "why": "Stejne slozeni (chodnik, stani, jeden pas, stani, chodnik, zelen), rozdil jen o desetiny metru; nelze rozhodnout."}
+{"n": 9, "verdict": "X", "jistota": "nizka", "why": "Dvoudrahova dalnice se stredni zelenou mezerou; X ma 5+4 pruhy, krajnici a travnaty pas vpravo v souladu s ortofotem, Y ma 4+4 pruhy, posunute vpravo a bez krajnice vlevo."}
+{"n": 10, "verdict": "Y", "jistota": "stredni", "why": "Pod mostem velka komunikace s vice pruhy (4-5 vlevo, dalsi skupiny vpravo) a plaza vlevo; Y ma 5+3 pruhy v souladu s ortofotem, X jen 5 uzkych pruhu posunutych."}

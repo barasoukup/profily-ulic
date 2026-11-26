@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "nizka", "why": "Vozovka kolem 9,5 m, vlevo u cesty bez chodníku; Y má parkování vlevo a velkou zeleň vpravo"}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "Auta parkují po obou stranách s jedním širokým pruhem uprostřed; vpravo plocha"}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "Zahrádka za plotem a chodník kolem 3,5-4 m, parkování po obou stranách"}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "Odbočující ulice vlevo; hrubě podobné, Y jednodušší a bližší šířce vozovky"}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "Křižovatka, oba profily mají shodné složení a podobné šířky"}
+{"n": 6, "verdict": "Y", "jistota": "nizka", "why": "Dvě vozovky a pás s kolejemi/svodidly, vlevo 3 pruhy a široká krajnice, vpravo 2 pruhy"}
+{"n": 7, "verdict": "Y", "jistota": "stredni", "why": "Y zahrnuje i pravou servisní vozovku a parkování vlevo; X ji nahradil plochou"}
+{"n": 8, "verdict": "stejne", "jistota": "nizka", "why": "Dálnice se dvěma vozovkami a širokým středním pásem, oba profily podobné"}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "Chodníky 3-4 m, vozovka kolem 13,5 m s parkováním po obou stranách, 2 široké pruhy"}
+{"n": 10, "verdict": "Y", "jistota": "stredni", "why": "Vpravo velký park se stromy (zelen 14 m) a sloupek stromů, jen Y ho má"}

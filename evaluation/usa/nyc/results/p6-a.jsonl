@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "Široká ulice se stínem a červenými pruhy; ani jeden profil nemá cyklopruhy a oba jinde chybují, X lépe vlevo a vpravo plochu, Y šířku vozovky."}
+{"n": 2, "verdict": "stejne", "jistota": "nizka", "why": "Mezera mezi budovami je ve stínu a nic se nedá rozeznat; oba mají stejné složení a podobnou celkovou šířku 15 m."}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "Dva pruhy a stání po obou stranách, vlevo dvorky a chodník 2-3 m, vpravo chodník 2,4 m; Y sedí lépe než X s chodníkem 5,8 m."}
+{"n": 4, "verdict": "Y", "jistota": "vysoka", "why": "Cyklostezka s bolardy vlevo, dva pruhy, dělicí pás a dva pruhy vpravo; X nemá cyklostezku ani dělicí pás."}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "Úzká ulice se stáním po obou stranách a jedním pruhem, stromy ve stínu vlevo; profily se liší jen v drobnostech."}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "Dvě jízdní stopy s dvojitou žlutou, stání po stranách a jen náznak cyklopruhů; X má čtyři jízdní pruhy, které tam nejsou."}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "Zadní příjezdová cesta mezi domy, šířka cesty asi 4-5 m, oba profily ji zachycují podobně."}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "Čtyři jízdní pruhy se stáním vlevo a velký stín vlevo; X má osm pruhů, které tam nejsou."}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "Chodník u domů, pás trávy, pás podél vozovky a dva pruhy široké asi 4,4 m; vpravo zeleň bez chodníku, X má široký chodník 5,4 m."}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "Ulice se stáním po stranách a chodníky, oba profily mají shodné složení a téměř shodné šířky."}

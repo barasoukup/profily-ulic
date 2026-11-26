@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "Parkování vlevo, úzké chodníky; odchylky obou podobné"}
+{"n": 2, "verdict": "X", "jistota": "nizka", "why": "Parkování po obou stranách u úzké vozovky"}
+{"n": 3, "verdict": "stejne", "jistota": "nizka", "why": "Složení i šířky téměř shodné"}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "Jedna vozovka s parkováním a úzkými chodníky; X má dvě vozovky"}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "Křižovatka s kolejemi, oba profily nesedí"}
+{"n": 6, "verdict": "X", "jistota": "nizka", "why": "Pořadí odbočovací pruh, hrana, dva pruhy lépe"}
+{"n": 7, "verdict": "Y", "jistota": "vysoka", "why": "Obslužná dráha s parkováním, hlavní vozovka, pás, druhá obslužná dráha vpravo"}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "Dvě vozovky po 2 pruzích, šířky blíž"}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "Vozovka 13 m s parkováním po obou stranách, chodníky a zeleň sedí"}
+{"n": 10, "verdict": "Y", "jistota": "stredni", "why": "Vlevo chodník se stromy, vpravo park; šířka odpovídá"}

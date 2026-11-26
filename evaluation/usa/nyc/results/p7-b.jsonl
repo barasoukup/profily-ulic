@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "Širší levý chodník a pás stromů odpovídá ortofotu, Y ho zkracuje; dvoupruhová vozovka stejná"}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "Stání stojí na obou stranách vozovky; Y má stání jen na straně B"}
+{"n": 3, "verdict": "X", "jistota": "stredni", "why": "Stání na obou stranách a úzká vozovka; Y má vpravo 17 m zeleně, kde stojí dům"}
+{"n": 4, "verdict": "stejne", "jistota": "nizka", "why": "Obě mají stání po obou stranách a podobnou šířku; zeleň na okrajích nejde ověřit"}
+{"n": 5, "verdict": "Y", "jistota": "vysoka", "why": "Y má stání, tři pruhy se šipkami, středový pás a cyklopruh; X chybí chodník a levá strana"}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "Y sedí na šířku a polohu obrub, X má vlevo 13 m plochy tam, kde jsou domy"}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "Složení stejné a šířky téměř shodné"}
+{"n": 8, "verdict": "stejne", "jistota": "nizka", "why": "Obě mají stání po obou stranách a dvoupruhovou vozovku, rozdíly jen v zeleni a chodnících"}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "X má pět pruhů, krajnice a široký střední pás; Y má čtyři pruhy a 15 m zeleně uprostřed"}
+{"n": 10, "verdict": "Y", "jistota": "stredni", "why": "Y zachytí víc jízdních pruhů (asi 8) a dělicí pás; X jen pět pruhů a plochu"}

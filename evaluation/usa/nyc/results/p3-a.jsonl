@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "Obě varianty mají stejné složení (stání po stranách, jeden pruh, stromy), rozdíly v šířkách nejdou z ortofota rozhodnout."}
+{"n": 2, "verdict": "X", "jistota": "nizka", "why": "Chodníky kolem 5 m na obou stranách odpovídají ortofotu, Y má vpravo zeleň 3 m, kterou obraz nepotvrzuje."}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "Levý chodník 6,5 m sedí, vpravo je chodník s odhadem 6 m věrohodnější; stání po obou stranách u obou."}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "Vlevo roh s ostrůvkem a plochami, vpravo úzký chodník; Y má složení blíž, obě nejisté."}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "Ulice ve stínu, složení obou stejné, rozdíl nejde změřit."}
+{"n": 6, "verdict": "Y", "jistota": "nizka", "why": "Střední pás je široký (kolem 7 m), Y má širší dělicí pás a nemá krajnici 3 m vpravo; struktura obou jinak stejná."}
+{"n": 7, "verdict": "X", "jistota": "nizka", "why": "Vpravo chodník se stromy asi 6,5 m odpovídá X, dva pruhy a stání po stranách sedí u obou."}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "Pořadí stání vlevo (šrafa), cyklopruh, pruhy a stání vpravo s auty sedí na ortofoto; X má stání jen vpravo."}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "Chodník vpravo asi 3,5 m odpovídá Y; dva pruhy se stáním po stranách u obou."}
+{"n": 10, "verdict": "Y", "jistota": "stredni", "why": "Šest pruhů se středním pásem a cesta u vody vpravo; X cestu nemá a má široké krajnice."}

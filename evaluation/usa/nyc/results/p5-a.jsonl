@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "Obojí dvě stání a dva pruhy mezi chodníky, liší se jen krajní pás vlevo (plocha vs zeleň) a drobné šířky."}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "Vozovka je dvousměrná s dvojitou žlutou čarou a šířkou asi 12,5 m; Y má dva pruhy, X jen jeden pruh s širokými krajnicemi."}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "Vozovka s parkováním po obou stranách asi 12,7 m a úzké chodníky 1,6-1,8 m sedí lépe na Y."}
+{"n": 4, "verdict": "Y", "jistota": "vysoka", "why": "Dvě trojpruhové vozovky s úzkým středním pásem; X má vlevo jen dva pruhy a krajnice, které tam nejsou."}
+{"n": 5, "verdict": "X", "jistota": "nizka", "why": "Široká vozovka asi 16-17 m se dvěma pruhy a nevyznačenými okraji, vlevo parkoviště a pás zeleně; X to zachycuje lépe než Y."}
+{"n": 6, "verdict": "X", "jistota": "nizka", "why": "Vozovka asi 13 m se stáním po obou stranách; vpravo u hřbitova je jen travnatý pás bez dlážděného chodníku, takže chodník 3,6 m v Y je sporný."}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "Úzká ulice s jedním pruhem a stáním na obou stranách; oba profily mají stejné složení a podobné šířky."}
+{"n": 8, "verdict": "nejde", "jistota": "nizka", "why": "Řez končí uprostřed šikmo vedené silnice a parkoviště, oba profily jsou jedna plocha bez možnosti ověřit šířku."}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "Úzká ulice s parkováním oběma stranami, vozovka asi 10,5 m a chodníky kolem 2,5 m; Y šířkou vozovky o málo lépe."}
+{"n": 10, "verdict": "nejde", "jistota": "nizka", "why": "Ortofoto je tmavé a ve stínu, počet pruhů a okraje nejsou čitelné."}

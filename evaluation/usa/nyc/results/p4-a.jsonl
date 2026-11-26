@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "Chodník 2,2 m a tři pruhy vedle trávníku odpovídají ortofotu, Y má chodník širší."}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "Dva pruhy, střední pás kolem 4 m a dva pruhy se stáním vpravo, chodníky po stranách; Y má pás 7 m a širší pruhy."}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "Chodník 2,5 m, dvoupruhová vozovka s širokou krajnicí, zelený pás a druhá vozovka; X zelený pás vynechává."}
+{"n": 4, "verdict": "Y", "jistota": "stredni", "why": "Plocha parkoviště, chodník 5,7 m, cyklopruh, tři pruhy, stání a chodník sedí na ortofoto i v celkové šířce."}
+{"n": 5, "verdict": "Y", "jistota": "stredni", "why": "Úzká ulice se stáním na obou stranách a jedním pruhem; X má stání jen na jedné straně."}
+{"n": 6, "verdict": "X", "jistota": "stredni", "why": "Složení včetně levé vedlejší silnice, chodníků, stání a dvou pruhů odpovídá; Y chodníky vynechává."}
+{"n": 7, "verdict": "Y", "jistota": "stredni", "why": "Chodník, stání vlevo, dva pruhy, dělicí pás, dva pruhy, stání vpravo a chodník sedí na ortofoto."}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "Široké prostranství vpravo a více pruhů s cyklopruhem odpovídá Y; X má nevěrohodné krajnice 11,5 m."}
+{"n": 9, "verdict": "X", "jistota": "nizka", "why": "Zpevněná cesta asi 5,5 m v lese, Y s 3 m je úzké."}
+{"n": 10, "verdict": "X", "jistota": "stredni", "why": "Chodník, pruhy, střední pás 6 m, pruh, buffer, cyklostezka a chodník sedí na ortofoto; chybí jen stání vlevo."}
