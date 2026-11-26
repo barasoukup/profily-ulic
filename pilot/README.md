@@ -722,13 +722,13 @@ Služby města (`gis.jihlava-city.cz`, CORS povolený):
 
 ### Pasporty dalších měst (16. 11. 2026)
 
-Ve zbytku Česka („cesko“) se v hranicích tří obcí (`pilot/public/pasporty.json`, `node tools/build_pasporty.mjs`)
+Ve zbytku Česka („cesko“) se v hranicích dvou obcí (`pilot/public/pasporty.json`, `node tools/build_pasporty.mjs`)
 berou plochy z pasportu města a jinde DTM ČÚZK (`towns/pasporty.js`, `towns/overlay.js overDmvs`): komunikace
-Rožnova pod Radhoštěm (T-MAPY PaKom), Šlapanic (komunikace podle třídy, parkoviště) a Kuřimi (osy
+Rožnova pod Radhoštěm (T-MAPY PaKom) a Kuřimi (osy
 zimní údržby se šířkou převedené na plochy). Pasport, který v okolí řezu nic nemá, nechá řez technické mapě. Nejsou
 to samostatná města (texty, ilustrace a mapy zůstávají české obecné). Zdroje našlo vlákno o Slovensku, do aplikace
 šly před A/B testem; A/B 26. 11. 2026 (`evaluation/PASPORTY-AB.md`) nechal čtyři a vyřadil Chomutov, Šumperk,
-Litoměřice a zeleň Prachatic a Roudnice nad Labem (nevyhrály); Chotěboř vyřadila Bára kvůli licenci (vrstva na demo
+Litoměřice a zeleň Prachatic a Roudnice nad Labem (nevyhrály); Šlapanice po slepém A/B na nových řezech (12 : 12); Chotěboř vyřadila Bára kvůli licenci (vrstva na demo
 účtu, ne města; uložené řezy s nimi si kredit nechají,
 `pasporty-names.js`). Export uvádí „pasport komunikací © <město>“.
 Vynechané předtím: Mohelnice a Velké Meziříčí (prázdný pasport), T-MAPY Litoměřic (chce přihlášení). Části změřené na pasportu
