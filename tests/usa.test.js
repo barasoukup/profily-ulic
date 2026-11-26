@@ -274,3 +274,27 @@ test("DC: vypnutý inventář (?ddot=0) není výpadek, neodpovídající ano", 
   assert.equal(ask({ features: [] }, { ddot: false }).ddotFailed, undefined);
   assert.equal(ask(null, {}).ddotFailed, true);
 });
+
+test("New York: planimetrie podél řezu (malovaný ostrůvek je vozovka), domy z obrysů, normy Street Design Manual", async () => {
+  const N = await import("../pilot/public/towns/newyork.js");
+  const { planimetricCut } = await import("../pilot/public/towns/planimetrics.js");
+  const US = (await import("../pilot/public/countries/US.js")).default;
+  const LAT = 40.78, LON = -73.98, KX = 111320 * Math.cos((LAT * Math.PI) / 180), KY = 110574, ll = (x, y) => [LON + x / KX, LAT + y / KY];
+  const esri = (list) => ({ features: list.map(([a, x0, x1]) => ({ attributes: a, geometry: { rings: [[[x0, -50], [x1, -50], [x1, 50], [x0, 50], [x0, -50]].map(([x, y]) => ll(x, y))] } })) });
+  const way = { type: "way", id: 1, tags: { highway: "residential" }, geometry: [ll(0, -60), ll(0, 60)].map(([lon, lat]) => ({ lon, lat })) };
+  const bbox = [...ll(-30, -1), ...ll(30, 1)].map((v, i) => v + (i < 2 ? -4e-4 : 4e-4)).join(",");
+  // Building, sidewalk, plaza, median, roadbed, parking lot (the order of NYC_MAP.layers).
+  const cut = planimetricCut(N.NYC_MAP, [esri([[{ FEATURE_CODE: 2100 }, -30, -14], [{ FEATURE_CODE: 1001 }, 14, 30]]), esri([[{}, -14, -9], [{}, 9, 14]]), esri([]),
+    esri([[{ SUB_FEATURE_CODE: 360010 }, -1, 1]]), esri([[{ SUB_FEATURE_CODE: 350000 }, -9, 9]]), esri([])], [way], bbox, way.tags, { way });
+  assert.deepEqual(cut.features.map((f) => f.attributes.code), [401, 601, 702, 701, 702, 401]); // the painted median is roadway, a canopy no house
+  assert.equal(N.nycCode.roadbed({ SUB_FEATURE_CODE: 350030 })[0], 1003);
+  assert.equal(N.nycCode.median({ SUB_FEATURE_CODE: 360020 })[0], 9950);
+  assert.deepEqual(N.nycHouse({ FEATURE_CODE: 2100, HEIGHT_ROOF: 60, CONSTRUCTION_YEAR: 1926 }), { cornice: 5, roof: 0, total: 5, fromHeight: true, built: 1926, nycHouse: true });
+  assert.equal(N.nycHouse({ FEATURE_CODE: 5110, HEIGHT_ROOF: 10 }).garage, true);
+  assert.deepEqual(N.nycHouse({ FEATURE_CODE: 1002, HEIGHT_ROOF: 30 }), {});
+  // New York's norms in New York, DDOT's elsewhere in the state.
+  assert.match(US.limits({ type: "pruh", width: 3 }, [], -1, { id: "newyork" }).why, /NYC Street Design Manual/);
+  assert.match(US.limits({ type: "pruh", width: 3 }, [], -1, { id: "washington" }).why, /DDOT/);
+  assert.equal(US.limits({ type: "chodnik", width: 1 }, [], -1, { id: "newyork" }), null);
+  assert.ok(US.art.newyork["lamp-modern-left"] && US.art.newyork["bus-inbound"] === "bus-inbound");
+});
