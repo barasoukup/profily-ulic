@@ -59,7 +59,8 @@ ve frontě `polite.mjs` (16 GetFeatureInfo DMVS na řez), a řez se pak lišil p
 | prachatice | 55 | 11 | 2 | 1 | 6 | 2 | vyřadit |
 | roudnice | 54 | 11 | 9 | 0 | 2 | 0 | vyřadit |
 
-V aplikaci zůstávají Rožnov, Chotěboř, Šlapanice a Kuřim. Vyřazené jsou z `towns/pasporty.js` i z `pasporty.json`, jejich
+V aplikaci zůstávají Rožnov, Šlapanice a Kuřim (Chotěboř vyhrála, ale Bára ji 26. 11. 2026 vyřadila: vrstva leží na soukromém
+účtu organizace „ArcGIS Demo portál“, ne města, `evaluation/licence/ZPRAVA.md`). Vyřazené jsou z `towns/pasporty.js` i z `pasporty.json`, jejich
 servery z CSP (`gis.chomutov.cz`, `gis.sumperk.cz`, `services1.arcgis.com`). Jména zůstala v `pasporty-names.js`, aby
 uložený nebo exportovaný řez s jejich pasportem neztratil kredit.
 

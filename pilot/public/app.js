@@ -47,7 +47,7 @@ import { ensurePlace, isLate, onAmerica } from "./late.js";
 import { log, logOn, sendReport, shortProfile } from "./log.js";
 import { setupAbout } from "./about.js";
 import { createDataLayers, PLOCHY_PANE } from "./maplayers.js";
-import { PASSPORT_NAMES, GREEN_PASSPORTS } from "./towns/pasporty-names.js";
+import { PASSPORT_NAMES, GREEN_PASSPORTS, WINTER_PASSPORTS } from "./towns/pasporty-names.js";
 import { mountSearch } from "./search.js";
 // tr: t is a common name of a text or a type here.
 import { t as tr, num, pct, numField, readNum, lang, LANGS, setLang, translatePage, attribution } from "./i18n.js";
@@ -1226,6 +1226,7 @@ function cutData() {
   const id = state.cut?.sources?.passport;
   if (!PASSPORT_NAMES[id]) return city.dataShort;
   return GREEN_PASSPORTS.has(id) ? tr("pasportu zeleně města {town}, technické mapy ČÚZK a OSM", { town: PASSPORT_NAMES[id] })
+    : WINTER_PASSPORTS.has(id) ? tr("šířek komunikací ze zimní údržby města {town}, technické mapy ČÚZK a OSM", { town: PASSPORT_NAMES[id] })
     : tr("pasportu komunikací města {town}, technické mapy ČÚZK a OSM", { town: PASSPORT_NAMES[id] });
 }
 function draw() {

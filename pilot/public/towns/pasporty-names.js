@@ -5,3 +5,6 @@ export const PASSPORT_NAMES = { chomutov: "Chomutov", sumperk: "Šumperk", rozno
   chotebor: "Chotěboř", slapanice: "Šlapanice", kurim: "Kuřim", prachatice: "Prachatice", roudnice: "Roudnice nad Labem" };
 // The towns whose passport is of green only.
 export const GREEN_PASSPORTS = new Set(["prachatice", "roudnice"]);
+// The towns whose "passport" is the lines of winter maintenance with their widths, not a road passport (Kuřim: the
+// hostile review of 26. 11. 2026, the credit said a road passport).
+export const WINTER_PASSPORTS = new Set(["kurim"]);

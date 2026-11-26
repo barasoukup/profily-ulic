@@ -6,7 +6,7 @@
 // state.cut.sources (and, for the footer's short line, app.js cutData).
 // No import of city.js (it imports this).
 import { t } from "./i18n.js";
-import { PASSPORT_NAMES, GREEN_PASSPORTS } from "./towns/pasporty-names.js";
+import { PASSPORT_NAMES, GREEN_PASSPORTS, WINTER_PASSPORTS } from "./towns/pasporty-names.js";
 import { DE_ORTHO, TO_ORTHO_WHO } from "./lanes-ortho.js";
 
 // The cantons (and Liechtenstein, FL in the survey) by their code in Switzerland's cadastral survey (towns/switzerland.js).
@@ -15,7 +15,8 @@ export const CANTONS = ["AG", "AI", "AR", "BE", "BL", "BS", "FR", "GE", "GL", "G
 export const SOURCE_CREDITS = {
   // A Czech town's passport over the DTM (towns/pasporty.js).
   passport: Object.fromEntries(Object.keys(PASSPORT_NAMES).map((id) => [id, () => (GREEN_PASSPORTS.has(id)
-    ? t("pasport zeleně © {town}", { town: PASSPORT_NAMES[id] }) : t("pasport komunikací © {town}", { town: PASSPORT_NAMES[id] }))])),
+    ? t("pasport zeleně © {town}", { town: PASSPORT_NAMES[id] }) : WINTER_PASSPORTS.has(id) ? t("šířky komunikací ze zimní údržby © {town}", { town: PASSPORT_NAMES[id] })
+    : t("pasport komunikací © {town}", { town: PASSPORT_NAMES[id] }))])),
   // ČÚZK's orthophoto, where it was read (a tram bed, the lanes, the estimate's kerbs).
   ortho: { true: () => t("ortofoto © ČÚZK, 2025 (CC BY 4.0)") },
   // A city's or a state's own orthophoto (lanes-ortho.js).
@@ -119,7 +120,7 @@ export const SOURCE_CREDITS = {
     // Toronto's topographic mapping (towns/canada.js), with the statement its licence asks for.
     toronto: () => t("mapa povrchů: Contains information licensed under the Open Government Licence – Toronto."),
     // New York's planimetrics (towns/newyork.js).
-    nyc: () => t("mapa povrchů (NYC Planimetric Database 2022) © NYC Office of Technology and Innovation (NYC Open Data)"),
+    nyc: () => t("mapa povrchů (NYC Planimetric Database 2022) © NYC Office of Technology and Innovation (NYCmaps, NYC Open Data)"),
     // San Francisco's right of way, kerbs and buildings (towns/sanfrancisco.js; PDDL asks for no credit, the city is named).
     sf: () => t("mapa povrchů (Right of Way, Curbs, Building Footprints) © City and County of San Francisco, DataSF a SFMTA (PDDL)"),
     // Boston's and Cambridge's (towns/boston.js), both under the PDDL (no credit asked, given).
@@ -135,7 +136,7 @@ export const SOURCE_CREDITS = {
   usCama: { true: () => t("domy (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)") },
   usDdot: { true: () => t("pruhy a stání (Roadway SubBlock) © DDOT, DC GIS (CC BY 4.0)") },
   // New York's building footprints, where they told of a house (towns/newyork.js).
-  nycHouse: { true: () => t("budovy {who}", { who: "© NYC Office of Technology and Innovation (NYC Open Data)" }) },
+  nycHouse: { true: () => t("budovy {who}", { who: "© NYC Office of Technology and Innovation (NYCmaps, NYC Open Data)" }) },
   // Helsinki's register of public areas (towns/finland.js).
   fiTown: { helsinki: () => t("mapa povrchů (Yleisten alueiden rekisteri) © Helsingin kaupunki (CC BY 4.0)") },
   // The buildings of Helsinki's register or of Ryhti (towns/finland.js), where they told of a house.

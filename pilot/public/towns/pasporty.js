@@ -6,7 +6,7 @@
 //   slapanice: ArcGIS (1 Komunikace by class, 0 Parkoviště);
 //   kurim: ArcGIS lines of winter maintenance with their width (0 roads, 1 sidewalks), made areas of that width.
 // The A/B test after the DMVS outage (26. 11. 2026, evaluation/PASPORTY-AB.md: the app with the passport against
-// the DTM alone, judged over the orthophoto) kept these four and left out the five that did not win: Chomutov
+// the DTM alone, judged over the orthophoto) kept three (Rožnov, Šlapanice, Kuřim) and left out the five that did not win: Chomutov
 // (better without 33 : 8), Šumperk (4 : 4), Litoměřice (6 : 5), Prachatice (2 : 1) and Roudnice nad Labem (9 : 0),
 // their code in the history. Chotěboř won (4 : 1) but was left out too (Bára 26. 11. 2026): its layer sits on a
 // private account of an "ArcGIS Demo portál" organisation, not the town's (evaluation/licence/ZPRAVA.md). Left out before: Mohelnice and Velké Meziříčí (an empty passport on 15. 11.),

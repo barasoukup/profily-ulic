@@ -40,3 +40,11 @@ test("řez v moravských městech dostane své město", async () => {
   }
   C.setCity("praha");
 });
+
+test("kredity: Kuřim jsou šířky ze zimní údržby, ne pasport; New York z NYCmaps; Krakov v patičce jen s ?krakow=1", async () => {
+  const { SOURCE_CREDITS } = await import("../pilot/public/credits.js");
+  assert.equal(SOURCE_CREDITS.passport.kurim(), "šířky komunikací ze zimní údržby © Kuřim");
+  assert.equal(SOURCE_CREDITS.passport.slapanice(), "pasport komunikací © Šlapanice");
+  assert.match(SOURCE_CREDITS.cityMap.nyc(), /\(NYCmaps, NYC Open Data\)/);
+  assert.match(fs.readFileSync(new URL("../pilot/public/index.html", import.meta.url), "utf8"), /Gmina Miejska Kraków \(jen s \?krakow=1\)/);
+});
