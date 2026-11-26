@@ -226,3 +226,24 @@ test("ortofoto a OSM: samostatný chodník OSM přebije trávník ZBGIS až k do
   assert.ok(!orthoOsmPolys({ osm: { elements: [...els, walk] }, frame, dir, way: els[0], st: null, areas }).some((q) => q.label === "chodník (OSM)"));
   P.off = new Set();
 });
+
+test("ortofoto a OSM: ulice na mostě přes vodu OSM: voda pod mostem profil neukončí, ulice končí za chodníkem (?off=mostvoda dřív)", () => {
+  const river = { type: "area", id: 900, tags: { natural: "water", water: "river" }, geometry: [ll(-45, -40), ll(45, -40), ll(45, 40), ll(-45, 40), ll(-45, -40)] };
+  const bridgeWay = { type: "way", id: 1, tags: { highway: "secondary", bridge: "yes", layer: "1", sidewalk: "both" }, geometry: [ll(0, -60), ll(0, 60)] };
+  const els = { elements: [bridgeWay, river] };
+  const run = () => {
+    const polys = orthoOsmPolys({ osm: els, frame, dir, way: bridgeWay, st: image() });
+    return { polys, p: deriveProfile({ center: [0, 0], dir, half: 40, polys, osm: els, frame, way: bridgeWay }) };
+  };
+  const now = run();
+  const types = (r) => JSON.stringify(r.p.segments.map((s) => s.type));
+  assert.ok(!now.polys.some((q) => q.code === 501), JSON.stringify(now.polys.map((q) => q.code)));
+  assert.ok(!now.p.segments.some((s) => s.type === "voda"), types(now));
+  assert.ok(now.p.segments.some((s) => s.type === "chodnik"), types(now));
+  // The same street at ground level (a road along a mapped river) keeps the water.
+  const ground = { ...bridgeWay, tags: { highway: "secondary", sidewalk: "both" } };
+  assert.ok(orthoOsmPolys({ osm: { elements: [ground, river] }, frame, dir, way: ground, st: image() }).some((q) => q.code === 501));
+  P.off = new Set(["mostvoda"]);
+  assert.ok(run().polys.some((q) => q.code === 501));
+  P.off = new Set();
+});
