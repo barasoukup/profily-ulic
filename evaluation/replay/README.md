@@ -24,7 +24,10 @@ Co jde v Node, hlídá `tables.mjs`.
    států, normy států, vzhled domů, město a ilustrace bodu, `cleanCut`), porovnání `tables.mjs <A> <B>`.
 
 Vzorek `sample.json` (`sample.mjs`): 369 řezů na Slovensku, v Rakousku, v Praze, v Brně a za hranicemi. České řezy
-mimo Prahu a Brno (DMVS) až po odstávce DMVS (od 19. 11. 2026) jako `sample-cz.json`.
+mimo Prahu a Brno (DTM ČÚZK po přechodu na JVF DTM 1.5) jsou ve `sample-cz.json` (`node evaluation/replay/sample.mjs cz`,
+26. 11. 2026): 56 řezů, obrázky DMVS i WFS osmi krajů, Středočeský kraj jen z čar, Komenského ve Vysokém Mýtě,
+Jihlava a pasporty měst (i vyřazených, teď DTM). Nahrávka `?replay=record&run=rec-cz&sample=sample-cz&lang=cs&osm=balik`
+(asi 3 minuty), přehrání `&replay=play` stejně 56 z 56.
 
 Známá nahodilost: ikona značky, která se v běhu načítá poprvé, občas do exportu SVG nestihne (řez 5, Bratislava,
 rychlost 70). Rozdíl jen v `svg` jednoho řezu je proto potřeba ověřit opakovaným přehráním toho řezu (`&from=5&to=5`).

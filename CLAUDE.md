@@ -641,20 +641,18 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Nedělat: pokryvnost korunami a parametry stromů (Bára: moc složité). IPR Praha oslovit s připomínkami (nápad
   Magdaleny), Slovensko jen při zájmu.
 
-## Pasporty dalších měst (Bára 16. 11. 2026)
-- Komunikace Chomutova, Šumperka, Rožnova p. R., Litoměřic, Chotěboře, Šlapanic, Kuřimi a zeleň Prachatic a Roudnice
-  n. L. (`towns/pasporty.js`, hranice `pasporty.json`) nad DTM ČÚZK ve „cesko“. Nasazené před A/B (do 19. 11. odstávka
-  DMVS, „do 19. je to nic“); A/B po odstávce podle `evaluation/PASPORTY-AB.md`, co nevyhraje, vyřadit.
+## Pasporty dalších měst (Bára 16. 11. 2026, A/B 26. 11. 2026)
+- Komunikace Rožnova p. R., Chotěboře, Šlapanic a Kuřimi (`towns/pasporty.js`, hranice `pasporty.json`) nad DTM ČÚZK
+  ve „cesko“; pasport bez ploch v okolí nechá řez DTM. A/B po odstávce DMVS (`evaluation/PASPORTY-AB.md`, výsledky):
+  vyřazené Chomutov (bez pasportu lépe 33 : 8), Šumperk (4 : 4), Litoměřice (6 : 5), zeleň Prachatic (2 : 1) a Roudnice
+  (9 : 0); jména v `pasporty-names.js` zůstala kvůli kreditu uložených řezů. Nápad: vozovku pasportu ořezat na kus pod osou.
 
-## Na 19. 11. 2026 (po odstávce DMVS, Bára 16. 11. 2026)
-Odstávka IS DMVS a DTM krajů 12.–18. 11. (přechod na JVF DTM 1.5.0.2), plný provoz od 19. 11.
-1. Ověřit, že DMVS běží (WMS `dtm_zps_plochy_bar` vrací 200, ne „Plánovaná odstávka“), že ho aplikace po přechodu na
-   novou verzi JVF DTM umí číst (řez mimo naše města, např. Komenského ve Vysokém Mýtě; plochy, linie, typ plochy
-   v bodě, WFS krajů v `dtmwfs.js`) a `node tools/check_sources.mjs`.
-2. A/B pasportů devíti měst podle `evaluation/PASPORTY-AB.md` (aplikace s pasportem proti bez); co nevyhraje,
-   vyřadit z `towns/pasporty.js`.
-3. Jihlava: pasport komunikací (`ost/Pasporty` vrstvy 1, 2, 34, 111–115) byl 16. 11. prázdný. Je-li pořád, při
-   prázdném pasportu brát DTM ČÚZK a případně se zeptat města.
+## Po odstávce DMVS (ověřeno 26. 11. 2026)
+- DMVS i WFS krajů po přechodu na JVF DTM 1.5 fungují (Komenského ve Vysokém Mýtě, `tools/check_sources.mjs` česká
+  města ok). Jihomoravský kraj v obytných ulicích Kuřimi DTM nemá (odhad z OSM).
+- Jihlava: pasport komunikací je zase plný (26. 11. vrstva 112: 13 323 úseků), náhrada nebyla potřeba.
+- Záchranná síť má české řezy DTM: `evaluation/replay/sample-cz.json` (`node evaluation/replay/sample.mjs cz`), nahrávka
+  `rec-cz` (`evaluation/replay/README.md`).
 
 ## O aplikaci (Bára 24. 11. 2026, větev estonia, nenasazené)
 - Menu Soubor → „O aplikaci“ (`pilot/public/about.js`, dialog v `index.html`): text o aplikaci, autorka podle státu řezu

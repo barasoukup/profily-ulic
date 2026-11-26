@@ -46,7 +46,9 @@ const reply = (buf, status = 200) => ({
 });
 const missing = (status = 404) => reply(Buffer.from(""), status);
 // ČÚZK one request at a time with pauses (polite.mjs).
-const webFetch = politeFetch;
+// Without the app's timeouts: they would run out while the request waits its turn in the polite queue (DMVS
+// GetFeatureInfo, 16 a cut, 8 s), and a cut would then differ by the queue, not by its data.
+const webFetch = (url, opts) => politeFetch(url, opts?.signal ? { ...opts, signal: undefined } : opts);
 const memo = new Map();
 const DISK = path.join(DATA, "ab-cache");
 export const net = { requests: 0, reused: 0 };
