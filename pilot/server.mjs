@@ -234,6 +234,18 @@ const server = http.createServer(async (req, res) => {
       res.writeHead(200, { "Content-Type": TYPES[".json"] });
       return res.end(body);
     }
+    // ?osm=r2 on this server: the OSM packs of R2 through here (R2 sends CORS for streetspace.eu only, so the page
+    // cannot read them from localhost; Bára 26. 11. 2026: a click in Poland found nothing in the local sample pack).
+    // Only R2's osm/ folder, with the byte range asked.
+    if (url.pathname.startsWith("/r2osm/")) {
+      const name = url.pathname.slice(7);
+      if (!/^[a-z0-9_.-]+$/i.test(name)) throw Object.assign(new Error("forbidden"), { status: 400 });
+      const r = await fetch(`https://data.streetspace.eu/osm/${name}`, { headers: { ...(req.headers.range && { Range: req.headers.range }), "User-Agent": "profily-ulic" } });
+      const head = { "Content-Type": r.headers.get("content-type") || "application/octet-stream", "Cache-Control": "no-cache" };
+      for (const h of ["content-range", "etag", "content-length"]) if (r.headers.get(h)) head[h] = r.headers.get(h);
+      res.writeHead(r.status, head);
+      return res.end(Buffer.from(await r.arrayBuffer()));
+    }
     let rel;
     try {
       rel = url.pathname === "/" ? "index.html" : decodeURIComponent(url.pathname).replace(/^\/+/, "");

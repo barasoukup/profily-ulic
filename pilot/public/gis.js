@@ -77,7 +77,8 @@ export const OSM_PACK = (() => {
   const v = typeof location === "undefined" ? null : new URLSearchParams(location.search).get("osm");
   return v === "r2" || v === "balik" ? v : STATIC ? "web" : null;
 })();
-const PACK_AT = { web: [OSM_R2, "data/osm-pack"], r2: [OSM_R2, OSM_R2_DEV], balik: ["data/osm-pack"] }[OSM_PACK];
+// (?osm=r2 on the local server: R2 through the server, pilot/server.mjs /r2osm/, as R2 sends CORS for streetspace.eu only.)
+const PACK_AT = { web: [OSM_R2, "data/osm-pack"], r2: STATIC ? [OSM_R2, OSM_R2_DEV] : ["r2osm"], balik: ["data/osm-pack"] }[OSM_PACK];
 const packs = PACK_AT && new PackSet(PACK_AT, { timeout: TIMEOUT });
 
 // OSM elements around a point, from the tiles it touches, lines joined back across them (as the server's localOsm()).
