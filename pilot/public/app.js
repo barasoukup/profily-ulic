@@ -927,6 +927,11 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       out.text = `${out.text ? out.text + " " : ""}${tr("Inventář ulic Washingtonu (DDOT) teď neodpovídá: stání a počty pruhů jsou odhad.")} ${tr("Zkuste kliknout znovu za chvíli.")}`;
       out.error = true;
     }
+    // SFMTA's curb zones did not answer (towns/sanfrancisco.js): the kerbs without their parking, said so.
+    if (mv?.sfCurbFailed && !NO_MAP) {
+      out.text = `${out.text ? out.text + " " : ""}${tr("Pravidla stání u obrub San Franciska (SFMTA) teď neodpovídají: stání je odhad.")} ${tr("Zkuste kliknout znovu za chvíli.")}`;
+      out.error = true;
+    }
     // The map itself has an intersection at the cut's centre (towns/usa.js).
     if (mv?.junction && !NO_MAP) result.junction = true;
     // A town's passport answered but not at the axis (Slovakia): the profile is still the estimate.

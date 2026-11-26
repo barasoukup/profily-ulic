@@ -1085,6 +1085,7 @@ export const DE = {
   "podélné stání: 8 ft (2,44 m), v místní ulici 7 ft (2,13 m) (DDOT DEM 2023)": "Längsparken: 8 ft (2,44 m), in einer Wohnstraße 7 ft (2,13 m) (DDOT DEM 2023)",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Aplikace nechává {need}.": "Parken halb auf dem Gehweg aus OSM: auf der Fahrbahn bleibt {free}. Die Anwendung lässt {need}.",
   "Inventář ulic Washingtonu (DDOT) teď neodpovídá: stání a počty pruhů jsou odhad.": "Das Straßenverzeichnis von Washington (DDOT) antwortet gerade nicht: Parkstreifen und Zahl der Fahrstreifen sind geschätzt.",
+  "Pravidla stání u obrub San Franciska (SFMTA) teď neodpovídají: stání je odhad.": "Die Parkregeln an den Bordsteinen von San Francisco (SFMTA) antworten gerade nicht: Parkstreifen sind geschätzt.",
   "V USA zatím děláme profily jen ve Washingtonu a okolí (District of Columbia a sousední okresy Marylandu a Virginie), v New Yorku, v San Franciscu a v Bostonu a okolí (okresy Suffolk, Middlesex a Norfolk).": "In den USA erstellen wir Profile bisher nur in Washington und Umgebung (District of Columbia und angrenzende Countys von Maryland und Virginia), in New York, in San Francisco und in Boston und Umgebung (die Countys Suffolk, Middlesex und Norfolk).",
   "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)": "Luftbild © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)",
   "ortofoto © NYS ITS Geospatial Services, 2024": "Luftbild © NYS ITS Geospatial Services, 2024",

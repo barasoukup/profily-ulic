@@ -1087,6 +1087,7 @@ export const RO = {
   "podélné stání: 8 ft (2,44 m), v místní ulici 7 ft (2,13 m) (DDOT DEM 2023)": "parcare longitudinală: 8 ft (2,44 m), pe o stradă locală 7 ft (2,13 m) (DDOT DEM 2023)",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Aplikace nechává {need}.": "Parcare pe jumătate pe trotuar din OSM: pe carosabil rămân {free}. Aplicația lasă {need}.",
   "Inventář ulic Washingtonu (DDOT) teď neodpovídá: stání a počty pruhů jsou odhad.": "Inventarul străzilor din Washington (DDOT) nu răspunde acum: parcarea și numărul benzilor sunt estimate.",
+  "Pravidla stání u obrub San Franciska (SFMTA) teď neodpovídají: stání je odhad.": "Regulile de parcare de la bordurile din San Francisco (SFMTA) nu răspund acum: parcarea este estimată.",
   "V USA zatím děláme profily jen ve Washingtonu a okolí (District of Columbia a sousední okresy Marylandu a Virginie), v New Yorku, v San Franciscu a v Bostonu a okolí (okresy Suffolk, Middlesex a Norfolk).": "În SUA facem deocamdată profiluri doar în Washington și împrejurimi (Districtul Columbia și comitatele vecine din Maryland și Virginia), în New York, în San Francisco și în Boston și împrejurimi (comitatele Suffolk, Middlesex și Norfolk).",
   "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)": "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)",
   "ortofoto © NYS ITS Geospatial Services, 2024": "ortofoto © NYS ITS Geospatial Services, 2024",

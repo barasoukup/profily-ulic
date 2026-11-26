@@ -1087,6 +1087,7 @@ export const GA = {
   "podélné stání: 8 ft (2,44 m), v místní ulici 7 ft (2,13 m) (DDOT DEM 2023)": "páirceáil chomhthreomhar: 8 ft (2.44 m), i sráid áitiúil 7 ft (2.13 m) (DDOT DEM 2023)",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Aplikace nechává {need}.": "Páirceáil leath ar an gcosán de réir OSM: fanann {free} sa charrbhealach. Fágann an aip {need}.",
   "Inventář ulic Washingtonu (DDOT) teď neodpovídá: stání a počty pruhů jsou odhad.": "Níl fardal sráideanna Washington (DDOT) ag freagairt anois: meastachán is ea an pháirceáil agus líon na lánaí.",
+  "Pravidla stání u obrub San Franciska (SFMTA) teď neodpovídají: stání je odhad.": "Níl rialacha páirceála cholbha San Francisco (SFMTA) ag freagairt anois: meastachán is ea an pháirceáil.",
   "V USA zatím děláme profily jen ve Washingtonu a okolí (District of Columbia a sousední okresy Marylandu a Virginie), v New Yorku, v San Franciscu a v Bostonu a okolí (okresy Suffolk, Middlesex a Norfolk).": "I SAM ní dhéanaimid próifílí go fóill ach i Washington agus sa cheantar máguaird (Ceantar Columbia agus contaetha comharsanacha Maryland agus Virginia), i Nua-Eabhrac, i San Francisco agus i Boston agus sa cheantar máguaird (contaetha Suffolk, Middlesex agus Norfolk).",
   "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)": "ortafótagraf © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)",
   "ortofoto © NYS ITS Geospatial Services, 2024": "ortafótagraf © NYS ITS Geospatial Services, 2024",

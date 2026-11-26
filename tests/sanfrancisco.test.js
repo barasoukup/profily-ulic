@@ -85,3 +85,15 @@ test("San Francisco: šikmé a kolmé stání podle OSM, kde ho obruba nepozná;
   assert.deepEqual(parks(cut({ highway: "residential", "parking:lane:right": "perpendicular" })), ["-", "-"]);
   delete globalThis.PROFILY_US;
 });
+
+test("San Francisco: výpadek pravidel obrub (SFMTA 56) se hlásí, oříznutá odpověď je výpadek", async () => {
+  const { SF_MAP, zonesAnswer } = await import("../pilot/public/towns/sanfrancisco.js");
+  const { planimetricCut } = await import("../pilot/public/towns/planimetrics.js");
+  const row = poly([[-12, 13]]), bldg = poly([[-35, -13.4], [11.3, 28]]), kerbs = lines([[-7.2, { CBB_TYPE: "BLK" }], [8.7, { CBB_TYPE: "BLK" }]]);
+  const cut = (extra) => planimetricCut(SF_MAP, [bldg, row, kerbs], [way], BBOX, way.tags, { way, extra });
+  // null: the zones did not answer; undefined: ?sfcurb=0 (nothing said).
+  assert.equal(cut(null).sfCurbFailed, true);
+  assert.equal(cut(undefined).sfCurbFailed, undefined);
+  assert.throws(() => zonesAnswer({ features: [], exceededTransferLimit: true }), /exceededTransferLimit/);
+  assert.deepEqual(zonesAnswer({ features: [] }), { features: [] });
+});

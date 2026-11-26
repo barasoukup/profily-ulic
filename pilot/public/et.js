@@ -1062,6 +1062,7 @@ export const ET = {
   "podélné stání: 8 ft (2,44 m), v místní ulici 7 ft (2,13 m) (DDOT DEM 2023)": "rööbiti parkimine: 8 ft (2,44 m), kohalikus tänavas 7 ft (2,13 m) (DDOT DEM 2023)",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Aplikace nechává {need}.": "Poolenisti kõnniteel parkimine OSM-i järgi: sõiduteele jääb {free}. Rakendus jätab {need}.",
   "Inventář ulic Washingtonu (DDOT) teď neodpovídá: stání a počty pruhů jsou odhad.": "Washingtoni tänavate register (DDOT) praegu ei vasta: parkimine ja sõiduradade arv on hinnang.",
+  "Pravidla stání u obrub San Franciska (SFMTA) teď neodpovídají: stání je odhad.": "San Francisco äärekivide parkimisreeglid (SFMTA) praegu ei vasta: parkimine on hinnang.",
   "V USA zatím děláme profily jen ve Washingtonu a okolí (District of Columbia a sousední okresy Marylandu a Virginie), v New Yorku, v San Franciscu a v Bostonu a okolí (okresy Suffolk, Middlesex a Norfolk).": "USA-s teeme profiile praegu ainult Washingtonis ja selle ümbruses (Columbia ringkond ning Marylandi ja Virginia naabermaakonnad), New Yorgis, San Franciscos ning Bostonis ja selle ümbruses (Suffolki, Middlesexi ja Norfolki maakonnad).",
   "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)": "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)",
   "ortofoto © NYS ITS Geospatial Services, 2024": "ortofoto © NYS ITS Geospatial Services, 2024",

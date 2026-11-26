@@ -1085,6 +1085,7 @@ export const SK = {
   "podélné stání: 8 ft (2,44 m), v místní ulici 7 ft (2,13 m) (DDOT DEM 2023)": "pozdĺžne státie: 8 ft (2,44 m), v miestnej ulici 7 ft (2,13 m) (DDOT DEM 2023)",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Aplikace nechává {need}.": "Státie napoly na chodníku z OSM: vo vozovke zostáva {free}. Aplikácia necháva {need}.",
   "Inventář ulic Washingtonu (DDOT) teď neodpovídá: stání a počty pruhů jsou odhad.": "Inventár ulíc Washingtonu (DDOT) teraz neodpovedá: státie a počty pruhov sú odhad.",
+  "Pravidla stání u obrub San Franciska (SFMTA) teď neodpovídají: stání je odhad.": "Pravidlá státia pri obrubníkoch San Francisca (SFMTA) teraz neodpovedajú: státie je odhad.",
   "V USA zatím děláme profily jen ve Washingtonu a okolí (District of Columbia a sousední okresy Marylandu a Virginie), v New Yorku, v San Franciscu a v Bostonu a okolí (okresy Suffolk, Middlesex a Norfolk).": "V USA zatiaľ robíme profily len vo Washingtone a okolí (District of Columbia a susedné okresy Marylandu a Virginie), v New Yorku, v San Franciscu a v Bostone a okolí (okresy Suffolk, Middlesex a Norfolk).",
   "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)": "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)",
   "ortofoto © NYS ITS Geospatial Services, 2024": "ortofoto © NYS ITS Geospatial Services, 2024",

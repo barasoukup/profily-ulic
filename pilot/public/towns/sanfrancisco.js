@@ -15,7 +15,8 @@
 //   curb zones within 15 m of the cut allow parking (general, residential permit, accessible, car share, motorcycle,
 //   special permit, loading) gets a parking lane at the kerb (8 ft, 2.44 m; angled where the zone has more than one stall
 //   in 14 ft each, by its longest zone of cars: 16 ft, 4.88 m); a side whose zones allow none gets none, and the law's estimate is off where both sides have
-//   zones (noParkGuess). ?sfcurb=0 leaves it out.
+//   zones (noParkGuess). ?sfcurb=0 leaves it out. Zones that do not answer (or cut off by the limit): the map without them,
+//   said so (sfCurbFailed, app.js).
 // - the houses (podlaznost): the median height of the footprint under the facade (hgt_median_m, no request of its own) as
 //   floors by Toronto's rule (towns/canada.js floorsOf), which OSM's building:levels overrules. ?sfhouse=0 leaves it out.
 // ?sf=0 leaves the map out (the estimate from OSM). A map that does not answer: the estimate, said so (mapFailed "sf").
@@ -139,7 +140,9 @@ export function curbParking(runs, zones, c, osmOrient = () => null) {
 
 const cached = memory();
 const ZONE_FIELDS = "POLICY_CATEGORY,NUM_SPACES,LENGTH_FT,SIDE_OF_STREET";
-const curbZones = (bbox) => cached(bbox, () => getJSON(`${SFMTA}/56/query?${new URLSearchParams({ ...envelope(bbox), outFields: ZONE_FIELDS, returnGeometry: "true" })}`));
+// (An answer cut off by the service's limit would leave kerbs without their zones: as an outage.)
+export const zonesAnswer = (json) => { if (json?.exceededTransferLimit || json?.error) throw new Error("SFMTA 56: " + (json.error?.message || "exceededTransferLimit")); return json; };
+const curbZones = (bbox) => cached(bbox, () => getJSON(`${SFMTA}/56/query?${new URLSearchParams({ ...envelope(bbox), outFields: ZONE_FIELDS, returnGeometry: "true" })}`).then(zonesAnswer));
 
 export const SF_MAP = {
   id: "sf", area: AREAS.sf, on: sfOn, service: `${SFMTA}`, fields: "CBB_TYPE",
@@ -150,8 +153,10 @@ export const SF_MAP = {
   ],
   runs: sfRuns,
   extra: (bbox) => (sfCurbOn() ? curbZones(bbox).catch(() => null) : undefined),
+  // extra: the curb zones, null when they did not answer (said so, sfCurbFailed: the review of 26. 11. 2026, the parking
+  // was lost without a word and the law's estimate came instead), undefined with ?sfcurb=0.
   adjust: (runs, { c, extra, tags, wayAlong }) => {
-    if (!extra) return {};
+    if (!extra) return { ...(extra === null && { sfCurbFailed: true }) };
     // (The way's right is the cut's "hi" where it runs along the street: planimetrics.js alongOf.)
     const osmOrient = (s) => (param("sfosmpark") !== "1" ? null : parkingOrient(tags, (s === "hi") === wayAlong ? "right" : "left"));
     const { sides, known } = curbParking(runs, extra, c, osmOrient);

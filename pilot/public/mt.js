@@ -1087,6 +1087,7 @@ export const MT = {
   "podélné stání: 8 ft (2,44 m), v místní ulici 7 ft (2,13 m) (DDOT DEM 2023)": "parkeġġ parallel: 8 ft (2.44 m), fi triq lokali 7 ft (2.13 m) (DDOT DEM 2023)",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Aplikace nechává {need}.": "Parkeġġ nofsu fuq il-bankina skont OSM: fil-karreġġjata jibqa' {free}. L-applikazzjoni tħalli {need}.",
   "Inventář ulic Washingtonu (DDOT) teď neodpovídá: stání a počty pruhů jsou odhad.": "L-inventarju tat-toroq ta' Washington (DDOT) mhux qed iwieġeb issa: il-parkeġġ u l-għadd tal-karreġġjati huma stima.",
+  "Pravidla stání u obrub San Franciska (SFMTA) teď neodpovídají: stání je odhad.": "Ir-regoli tal-parkeġġ mal-bankini ta' San Francisco (SFMTA) mhumiex qed iwieġbu issa: il-parkeġġ huwa stima.",
   "V USA zatím děláme profily jen ve Washingtonu a okolí (District of Columbia a sousední okresy Marylandu a Virginie), v New Yorku, v San Franciscu a v Bostonu a okolí (okresy Suffolk, Middlesex a Norfolk).": "Fl-Istati Uniti sal-lum nagħmlu profili biss f'Washington u fil-madwar (id-Distrett ta' Columbia u l-kontej ġirien ta' Maryland u Virginia), f'New York, f'San Francisco u f'Boston u fil-madwar (il-kontej ta' Suffolk, Middlesex u Norfolk).",
   "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)": "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)",
   "ortofoto © NYS ITS Geospatial Services, 2024": "ortofoto © NYS ITS Geospatial Services, 2024",

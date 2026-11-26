@@ -1066,6 +1066,7 @@ export const HU = {
   "podélné stání: 8 ft (2,44 m), v místní ulici 7 ft (2,13 m) (DDOT DEM 2023)": "párhuzamos parkolás: 8 ft (2,44 m), lakóutcában 7 ft (2,13 m) (DDOT DEM 2023)",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Aplikace nechává {need}.": "Félig a járdán parkolás az OSM szerint: az úttesten {free} marad. Az alkalmazás {need} hagy.",
   "Inventář ulic Washingtonu (DDOT) teď neodpovídá: stání a počty pruhů jsou odhad.": "Washington utcanyilvántartása (DDOT) most nem válaszol: a parkolás és a sávok száma becslés.",
+  "Pravidla stání u obrub San Franciska (SFMTA) teď neodpovídají: stání je odhad.": "San Francisco szegélymenti parkolási szabályai (SFMTA) most nem válaszolnak: a parkolás becslés.",
   "V USA zatím děláme profily jen ve Washingtonu a okolí (District of Columbia a sousední okresy Marylandu a Virginie), v New Yorku, v San Franciscu a v Bostonu a okolí (okresy Suffolk, Middlesex a Norfolk).": "Az Egyesült Államokban egyelőre csak Washingtonban és környékén (a District of Columbia és Maryland, illetve Virginia szomszédos megyéi), New Yorkban, San Franciscóban, valamint Bostonban és környékén (Suffolk, Middlesex és Norfolk megye) készítünk profilokat.",
   "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)": "ortofotó © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)",
   "ortofoto © NYS ITS Geospatial Services, 2024": "ortofotó © NYS ITS Geospatial Services, 2024",

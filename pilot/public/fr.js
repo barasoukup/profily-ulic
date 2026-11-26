@@ -1089,6 +1089,7 @@ export const FR = {
   "podélné stání: 8 ft (2,44 m), v místní ulici 7 ft (2,13 m) (DDOT DEM 2023)": "stationnement longitudinal : 8 ft (2,44 m), dans une rue locale 7 ft (2,13 m) (DDOT DEM 2023)",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Aplikace nechává {need}.": "Stationnement à demi sur le trottoir d'après OSM : il reste {free} de chaussée. L'application laisse {need}.",
   "Inventář ulic Washingtonu (DDOT) teď neodpovídá: stání a počty pruhů jsou odhad.": "L'inventaire des rues de Washington (DDOT) ne répond pas : le stationnement et le nombre de voies sont une estimation.",
+  "Pravidla stání u obrub San Franciska (SFMTA) teď neodpovídají: stání je odhad.": "Les règles de stationnement le long des trottoirs de San Francisco (SFMTA) ne répondent pas : le stationnement est une estimation.",
   "V USA zatím děláme profily jen ve Washingtonu a okolí (District of Columbia a sousední okresy Marylandu a Virginie), v New Yorku, v San Franciscu a v Bostonu a okolí (okresy Suffolk, Middlesex a Norfolk).": "Aux États-Unis, nous ne faisons pour l'instant des profils qu'à Washington et dans sa région (le district de Columbia et les comtés voisins du Maryland et de la Virginie), à New York, à San Francisco et à Boston et dans sa région (les comtés de Suffolk, Middlesex et Norfolk).",
   "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)": "orthophoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)",
   "ortofoto © NYS ITS Geospatial Services, 2024": "orthophoto © NYS ITS Geospatial Services, 2024",

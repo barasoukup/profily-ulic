@@ -1086,6 +1086,7 @@ export const LV = {
   "podélné stání: 8 ft (2,44 m), v místní ulici 7 ft (2,13 m) (DDOT DEM 2023)": "paralēlās stāvvietas: 8 ft (2,44 m), vietējā ielā 7 ft (2,13 m) (DDOT DEM 2023)",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Aplikace nechává {need}.": "Stāvēšana daļēji uz ietves pēc OSM: brauktuvē paliek {free}. Lietotne atstāj {need}.",
   "Inventář ulic Washingtonu (DDOT) teď neodpovídá: stání a počty pruhů jsou odhad.": "Vašingtonas ielu reģistrs (DDOT) pašlaik neatbild: stāvēšana un joslu skaits ir aptuveni.",
+  "Pravidla stání u obrub San Franciska (SFMTA) teď neodpovídají: stání je odhad.": "Sanfrancisko stāvēšanas noteikumi pie apmalēm (SFMTA) pašlaik neatbild: stāvēšana ir aptuvena.",
   "V USA zatím děláme profily jen ve Washingtonu a okolí (District of Columbia a sousední okresy Marylandu a Virginie), v New Yorku, v San Franciscu a v Bostonu a okolí (okresy Suffolk, Middlesex a Norfolk).": "ASV profilus pagaidām veidojam tikai Vašingtonā un tās apkārtnē (Kolumbijas apgabals un blakus esošie Merilendas un Virdžīnijas apriņķi), Ņujorkā, Sanfrancisko, kā arī Bostonā un tās apkārtnē (Suffolk, Middlesex un Norfolk apriņķi).",
   "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)": "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)",
   "ortofoto © NYS ITS Geospatial Services, 2024": "ortofoto © NYS ITS Geospatial Services, 2024",

@@ -1087,6 +1087,7 @@ export const NL = {
   "podélné stání: 8 ft (2,44 m), v místní ulici 7 ft (2,13 m) (DDOT DEM 2023)": "langsparkeren: 8 ft (2,44 m), in een woonstraat 7 ft (2,13 m) (DDOT DEM 2023)",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Aplikace nechává {need}.": "Half op het trottoir parkeren volgens OSM: op de rijbaan blijft {free} over. De app laat {need}.",
   "Inventář ulic Washingtonu (DDOT) teď neodpovídá: stání a počty pruhů jsou odhad.": "De stratenlijst van Washington (DDOT) antwoordt nu niet: parkeren en het aantal rijstroken zijn een schatting.",
+  "Pravidla stání u obrub San Franciska (SFMTA) teď neodpovídají: stání je odhad.": "De parkeerregels langs de stoepranden van San Francisco (SFMTA) antwoorden nu niet: het parkeren is een schatting.",
   "V USA zatím děláme profily jen ve Washingtonu a okolí (District of Columbia a sousední okresy Marylandu a Virginie), v New Yorku, v San Franciscu a v Bostonu a okolí (okresy Suffolk, Middlesex a Norfolk).": "In de VS maken we voorlopig alleen profielen in Washington en omgeving (het District of Columbia en de aangrenzende county's van Maryland en Virginia), in New York, in San Francisco en in Boston en omgeving (de county's Suffolk, Middlesex en Norfolk).",
   "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)": "luchtfoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)",
   "ortofoto © NYS ITS Geospatial Services, 2024": "luchtfoto © NYS ITS Geospatial Services, 2024",

@@ -1087,6 +1087,7 @@ export const EL = {
   "podélné stání: 8 ft (2,44 m), v místní ulici 7 ft (2,13 m) (DDOT DEM 2023)": "παράλληλη στάθμευση: 8 ft (2,44 m), σε τοπικό δρόμο 7 ft (2,13 m) (DDOT DEM 2023)",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Aplikace nechává {need}.": "Στάθμευση μισή στο πεζοδρόμιο από το OSM: στο οδόστρωμα μένουν {free}. Η εφαρμογή αφήνει {need}.",
   "Inventář ulic Washingtonu (DDOT) teď neodpovídá: stání a počty pruhů jsou odhad.": "Το μητρώο οδών της Ουάσιγκτον (DDOT) δεν απαντά τώρα: η στάθμευση και ο αριθμός λωρίδων είναι εκτίμηση.",
+  "Pravidla stání u obrub San Franciska (SFMTA) teď neodpovídají: stání je odhad.": "Οι κανόνες στάθμευσης στα κράσπεδα του Σαν Φρανσίσκο (SFMTA) δεν απαντούν τώρα: η στάθμευση είναι εκτίμηση.",
   "V USA zatím děláme profily jen ve Washingtonu a okolí (District of Columbia a sousední okresy Marylandu a Virginie), v New Yorku, v San Franciscu a v Bostonu a okolí (okresy Suffolk, Middlesex a Norfolk).": "Στις ΗΠΑ προς το παρόν κάνουμε διατομές μόνο στην Ουάσιγκτον και την περιοχή της (Περιφέρεια της Κολούμπια και γειτονικές κομητείες του Μέριλαντ και της Βιρτζίνια), στη Νέα Υόρκη, στο Σαν Φρανσίσκο και στη Βοστώνη και την περιοχή της (κομητείες Σάφολκ, Μίντλσεξ και Νόρφολκ).",
   "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)": "ορθοφωτογραφία © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)",
   "ortofoto © NYS ITS Geospatial Services, 2024": "ορθοφωτογραφία © NYS ITS Geospatial Services, 2024",
