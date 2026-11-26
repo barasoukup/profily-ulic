@@ -1,0 +1,12 @@
+{"n": 1, "A": 0, "B": 0, "jistota": "stredni", "why": "most se svodidly, jen úzký okraj s obrubou, chodník není"}
+{"n": 2, "A": 0, "B": 0, "jistota": "stredni", "why": "most se svodidly, úzký betonový lem, žádný chodník"}
+{"n": 3, "A": 3.8, "B": 3.5, "jistota": "vysoka", "why": "široké chodníky na obou stranách mostu, zábradlí po okrajích"}
+{"n": 4, "A": null, "B": null, "jistota": "nizka", "why": "řez prochází staveništěm pod mostem, fotky z jiného mostu, chodník nelze určit"}
+{"n": 5, "A": 2.0, "B": 1.2, "jistota": "stredni", "why": "most přes řeku, chodník vlevo cca 2 m, vpravo užší u zábradlí"}
+{"n": 6, "A": 4.0, "B": 4.0, "jistota": "nizka", "why": "světlé pásy po obou stranách vozovky mostu, fotky z jiného místa, šířka odhad z ortofota"}
+{"n": 7, "A": 0, "B": 0, "jistota": "nizka", "why": "dálniční nadjezd, jen úzké okraje se zábradlím, chodník nevidět"}
+{"n": 8, "A": 3.3, "B": 4.4, "jistota": "stredni", "why": "chodníky na obou stranách městského mostu, vpravo širší"}
+{"n": 9, "A": 0, "B": 0, "jistota": "nizka", "why": "most nad potokem bez chodníků, jen úzké okraje, fotka je podjezd jinde"}
+{"n": 10, "A": 1.6, "B": 3.0, "jistota": "stredni", "why": "most v Bernu, vlevo úzký chodník za zábradlím, vpravo široký dlážděný"}
+{"n": 11, "A": 0, "B": 0, "jistota": "nizka", "why": "silniční most s betonovými svodidly, jen úzký lem, bez chodníku"}
+{"n": 12, "A": 3.4, "B": 3.0, "jistota": "stredni", "why": "široké světlé chodníky na obou stranách mostu, fotky ukazují jiný objekt"}

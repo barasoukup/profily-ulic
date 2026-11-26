@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "úzká vozovka cca 5,5-6 m mezi domy, oba profily mají podobné složení (jeden pruh, boční pás), rozdíly jsou v drobnostech"}
+{"n": 2, "verdict": "X", "jistota": "nizka", "why": "obslužná komunikace mezi trávníky; šířka vozovky 4,05 m odpovídá fotce a ortofotu lépe než 3,4 m"}
+{"n": 3, "verdict": "stejne", "jistota": "nizka", "why": "úzká neznačená komunikace u garáží cca 5 m; X dva pruhy 2,5, Y jeden 4,8, žádný zřetelně lepší"}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "chodník, podélné stání cca 2 m a pruh cca 4 m; celková šířka ulice odpovídá ortofotu lépe než X"}
+{"n": 5, "verdict": "Y", "jistota": "stredni", "why": "chodník, zeleň a stání vlevo a vozovka odpovídají ortofotu i fotce; X má 18 m chodníku a stání jen na straně B"}
+{"n": 6, "verdict": "stejne", "jistota": "nizka", "why": "široký dlážděný pás u pole s červeným cyklopásem; ani jeden profil nemá cyklostezku, X správně začíná zelení, Y má správnou šířku"}
+{"n": 7, "verdict": "X", "jistota": "nizka", "why": "úzká obslužná cesta; Y má vlevo 21 m plochy, ve skutečnosti je tam les a koleje"}
+{"n": 8, "verdict": "X", "jistota": "stredni", "why": "úzká ulice fasáda–fasáda cca 9 m s chodníkem a jedním pruhem; Y je 25 m široký s krajnicemi a stáním, které tam nejsou"}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "mezi chodníkem a vozovkou je trávník (Y ho má), dál zelený pás a plocha kolejiště; X dává chodník přímo k pruhu"}
+{"n": 10, "verdict": "X", "jistota": "stredni", "why": "na ortofotu stojí auta v podélném stání u vozovky (X má parkování), vpravo chodník; Y stání nemá"}

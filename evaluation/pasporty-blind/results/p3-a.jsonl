@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "vysoka", "why": "Štěrková polní cesta široká asi 4,5 m mezi poli; X ji nezná a dává jen zeleň."}
+{"n": 2, "verdict": "X", "jistota": "nizka", "why": "Chodník a zeleň se stromy vlevo, stání a vozovka kolem 6 m, chodník vpravo ve stínu; Y přidává druhé stání ve stínu, které nejde potvrdit."}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "Vlevo žlutá dlažba příjezdu a úzký zelený pás před vozovkou, vozovka asi 6 m; X zeleň vlevo nezná dlažbu."}
+{"n": 4, "verdict": "stejne", "why": "Profily se liší jen o 0,3 m na posledním dílu, stejné složení.", "jistota": "stredni"}
+{"n": 5, "verdict": "X", "jistota": "nizka", "why": "Dvoupruhová vozovka a vedle ní dlážděný pás (chodník) před zelení; Y chodník vynechává."}
+{"n": 6, "verdict": "X", "jistota": "nizka", "why": "Na fotce má levá strana úzký dlážděný chodník u obruby a pravá široký; X má chodník na obou stranách, Y vlevo jen zeleň."}
+{"n": 7, "verdict": "X", "jistota": "nizka", "why": "Vozovka asi 5,7 m a vpravo plocha po fasádu domu, profil X končí u průčelí; Y zasahuje za dům."}
+{"n": 8, "verdict": "Y", "jistota": "stredni", "why": "Štěrková ulice široká asi 4,5-5 m, po obou stranách zeleň (tráva, živý plot); X zeleň nemá."}
+{"n": 9, "verdict": "X", "jistota": "stredni", "why": "Od plotu dráhy přes zarostlou plochu, dvoupruhová vozovka 6,3 m, zelený pás a plocha k domu odpovídá; Y má vozovku 5 m a pak jen zeleň."}
+{"n": 10, "verdict": "Y", "jistota": "vysoka", "why": "Vlevo zeleň u fasády, vozovka 2 pruhy asi 7 m, vpravo světlý chodník 2,4 m; X má vlevo plochu a vpravo zeleň místo chodníku."}

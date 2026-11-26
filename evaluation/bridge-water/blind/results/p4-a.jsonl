@@ -1,0 +1,9 @@
+{"n": 1, "verdict": "Y", "jistota": "stredni", "why": "Most má na ortofotu i na fotce chodníky po obou stranách vozovky, X je nemá."}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "Uprostřed mostu je dělicí pás se svodidly a po stranách zpevněná plocha, ne voda; jinak profily shodné."}
+{"n": 3, "verdict": "stejne", "why": "Liší se jen o 0,25 m šířky levého chodníku, složení je stejné.", "jistota": "stredni"}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "Střední pás mezi směry je betonový dělicí pás, ne zeleň; na mostě není zeleň u chodníků."}
+{"n": 5, "verdict": "Y", "jistota": "nizka", "why": "Fotka ukazuje u vozovky obrubou oddělený zvýšený pás/chodník (strana A), který X nemá."}
+{"n": 6, "verdict": "X", "jistota": "vysoka", "why": "Mezi dvěma vozovkami mostů je voda, ne plocha; tři pruhy na každé straně sedí v obou."}
+{"n": 7, "verdict": "X", "jistota": "vysoka", "why": "Most s tramvají má chodníky po obou stranách (ortofoto i fotka), Y je nemá."}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "Vozovka 2,9 m s chodníkem na straně A sedí v obou; X navíc zachycuje zeleň/okraj na straně B."}
+{"n": 9, "verdict": "Y", "jistota": "stredni", "why": "Ortofoto ukazuje uprostřed vozovku s krajnicemi a po okrajích dvě lávky/cyklostezky nad vodou, X je nemá."}

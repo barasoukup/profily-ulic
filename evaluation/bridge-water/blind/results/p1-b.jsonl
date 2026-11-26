@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "stredni", "why": "most přes vodu ~8 m s vozovkou a chodníkem po straně; Y má plochu pro chodník a odpovídá šířce, X bez chodníku je užší"}
+{"n": 2, "verdict": "Y", "jistota": "nizka", "why": "most se dvěma pruhy a stezkami po stranách; X dává 'vodu' mezi pruh a stezku, na mostě je tam plocha/obrubník"}
+{"n": 3, "verdict": "stejne", "jistota": "stredni", "why": "úzká dlážděná ulice, chodník + vozovka + krajnice + chodník, shodné složení, rozdíly jen v desítkách cm"}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "na mostě je vpravo zpevněná plocha/římsa, ne voda; Y klade vodu pod mostovku"}
+{"n": 5, "verdict": "X", "jistota": "vysoka", "why": "most má po obou stranách chodníky, Y je vynechává"}
+{"n": 6, "verdict": "X", "jistota": "stredni", "why": "most s chodníky a cyklopruhem, voda 3,4 m v Y je na mostě chybná; X je o něco užší"}
+{"n": 7, "verdict": "X", "jistota": "vysoka", "why": "bulvár s trávníkovými pásy mezi vozovkami; Y dává do pásů vodu, což je nesmysl"}
+{"n": 8, "verdict": "stejne", "jistota": "nizka", "why": "profily téměř shodné (jen 0,2 m u chodníku), podklady o skutečném řezu nejednoznačné"}
+{"n": 9, "verdict": "Y", "jistota": "vysoka", "why": "most má chodníky po obou stranách, X vpravo vkládá vodu"}
+{"n": 10, "verdict": "Y", "jistota": "stredni", "why": "vozovka o 3 pruzích má na jedné straně zelený pás a na druhé chodník, jak ukazuje ortofoto"}

@@ -1,0 +1,12 @@
+{"n": 1, "A": null, "B": null, "jistota": "nizka", "why": "ortofoto je prázdné bílé, fotka jen 360° křižovatka bez možnosti měření"}
+{"n": 2, "A": null, "B": null, "jistota": "nizka", "why": "řez protíná rampy a zářez u podjezdu, ne klasický chodník; nelze rozumně změřit"}
+{"n": 3, "A": 2.7, "B": 3.0, "jistota": "nizka", "why": "dvě dřevěné lávky přes vodu po stranách vozovky, šířka paluby z ortofota"}
+{"n": 4, "A": 1.8, "B": 2.0, "jistota": "nizka", "why": "světlé pruhy po okrajích mostu u vozovky, ortofoto rozmazané"}
+{"n": 5, "A": 1.7, "B": 2.0, "jistota": "nizka", "why": "světlé okrajové pásy mostu vedle vozovky, vpravo chodník za obrubou na fotce"}
+{"n": 6, "A": 3.0, "B": 2.0, "jistota": "stredni", "why": "chodníky mostu mezi parapetem a obrubou; levý širší podle ortofota"}
+{"n": 7, "A": 2.0, "B": 2.2, "jistota": "stredni", "why": "chodníky po obou stranách mostu, vpravo se zábradlím a stínem"}
+{"n": 8, "A": 2.0, "B": 1.8, "jistota": "nizka", "why": "světlé okraje mostu, bez fotek, odhad z ortofota"}
+{"n": 9, "A": 1.5, "B": 1.5, "jistota": "stredni", "why": "úzké dlážděné chodníky podél domů, ortofoto i fotka z ulice"}
+{"n": 10, "A": 2.2, "B": 0, "jistota": "nizka", "why": "dlážděný chodník u zdi strana A, na B jen případně úzký pás; řez ve stínu"}
+{"n": 11, "A": 2.8, "B": 2.7, "jistota": "nizka", "why": "chodníky na mostě za svodidly, hranice podle ortofota"}
+{"n": 12, "A": 4.5, "B": 3.3, "jistota": "stredni", "why": "široký pás chodník + cyklo za svodidly mezi parapetem a vozovkou na zavěšeném mostě"}

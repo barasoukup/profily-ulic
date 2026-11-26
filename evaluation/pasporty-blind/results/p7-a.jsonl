@@ -1,0 +1,7 @@
+{"n": 1, "verdict": "stejne", "jistota": "nizka", "why": "Zpevněný dvůr mezi halami, bez jasných pruhů; X dělí na obslužnou a plochu, Y jedna plocha, nelze rozhodnout."}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "Dva pruhy a podélné stání vpravo od vozovky na ortofotu vidět, Y stání nemá a místo něj má chodník."}
+{"n": 3, "verdict": "Y", "jistota": "stredni", "why": "Úzká cesta 5 m je lemovaná živými ploty a zelení po obou stranách, což Y zachycuje, X nemá zeleň."}
+{"n": 4, "verdict": "stejne", "jistota": "nizka", "why": "Obě mají chodník, vozovku, stání a chodník, liší se jen krajními plochami a zelení o pár desítek centimetrů."}
+{"n": 5, "verdict": "Y", "jistota": "stredni", "why": "Úzká silnice 5,5 m se zelení kolem; X dává vlevo 20 m plochy místo trávy a vpravo chodník místo pásu zeleně."}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "Vpravo od silnice je travnatý pás, který má jen Y; jinak jsou profily podobné."}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "Oba mají dva pruhy a obě chybně posouvají vozovku; X vpravo přidává plochu místo stromů a trati, Y vlevo zeleň místo domů."}

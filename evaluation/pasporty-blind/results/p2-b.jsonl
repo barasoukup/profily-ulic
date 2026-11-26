@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "nizka", "why": "Úzká vozovka asi 5 m, vlevo úzký chodník a zeleň, vpravo zeleň; Y to skládá věrněji než X se 3,2 m chodníkem u vozovky."}
+{"n": 2, "verdict": "Y", "jistota": "nizka", "why": "V řezu je jen úzká polní cesta asi 3 m mezi zelení; X s 19 m plochy neodpovídá."}
+{"n": 3, "verdict": "X", "jistota": "nizka", "why": "Dvoupruhová vozovka asi 7 m bez viditelného chodníku, okraj zeleně; Y přidává 18 m plochy navíc."}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "Rozlehlá zpevněná plocha mezi halami a vpravo pás zeleně s výsadbou, což X zachycuje, Y jen jednolitá plocha."}
+{"n": 5, "verdict": "X", "jistota": "stredni", "why": "Dvoupruhová vozovka asi 5,4 m bez stání, vlevo úzký chodník a zeleň; Y má stání a jeden 4,2 m pruh."}
+{"n": 6, "verdict": "stejne", "jistota": "nizka", "why": "Obě mají zeleň, vozovku a zeleň; šířka vozovky asi 6,5 m leží mezi 5,35 a 7,2."}
+{"n": 7, "verdict": "stejne", "jistota": "stredni", "why": "Téměř shodné složení (chodník, zeleň, stání, dva pruhy, chodník) a velmi podobné šířky."}
+{"n": 8, "verdict": "X", "jistota": "nizka", "why": "Úzká silnice pod stromy s patrně dvěma pruhy a středovou čárou, krajnice nejsou zřetelné; X má dva pruhy."}
+{"n": 9, "verdict": "Y", "jistota": "nizka", "why": "Vozovka asi 7 m se stáním u pravého okraje; X s 8 a 10 m krajnice je nereálné, Y se aspoň blíží rozsahem."}
+{"n": 10, "verdict": "X", "jistota": "stredni", "why": "Na ortofotu stojí auta po obou stranách vozovky se dvěma pruhy a vpravo fasáda; Y stání nemá."}

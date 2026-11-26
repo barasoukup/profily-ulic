@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "Mezi budovou a skladem je asfaltová zpevněná ploch/obslužná cesta, X ji aspoň rozlišuje; Y je jen plocha."}
+{"n": 2, "verdict": "stejne", "jistota": "nizka", "why": "Úzká silnice (asi 6 m) mezi stromořadími, oba profily mají dva pruhy a zeleň, rozdíl v šířkách je nepatrný."}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "Vozovka v ortofotu má asi 6,1 m, což sedí na dva pruhy po 3,05 m; X je o půl metru užší."}
+{"n": 4, "verdict": "stejne", "jistota": "nizka", "why": "Vozovka asi 8 m bez značení u fasády vpravo; X má nesmyslně široké krajnice, Y vymyšlenou plochu vpravo za fasádou."}
+{"n": 5, "verdict": "X", "jistota": "nizka", "why": "Široká zpevněná dvorní plocha bez vozovky; X ji vystihuje jako plochu, Y přidává zeleň a obslužnou."}
+{"n": 6, "verdict": "X", "jistota": "nizka", "why": "Lesní cesta je jednopruhová nezpevněná stopa; X má jeden pruh se zelení, Y dva pruhy."}
+{"n": 7, "verdict": "stejne", "jistota": "nizka", "why": "Obě verze mají stejné složení (zeleň, krajnice, dva pruhy), liší se jen desetinami metru."}
+{"n": 8, "verdict": "stejne", "jistota": "nizka", "why": "Skutečná silnice s dvěma pruhy a čarami (asi 6,8 m) mezi poli; ani X (obslužná/plocha), ani Y (plocha/zeleň) ji nevystihuje."}
+{"n": 9, "verdict": "stejne", "jistota": "nizka", "why": "Velmi podobné profily zeleň, dva pruhy, zeleň; šířky se liší o desetiny metru."}
+{"n": 10, "verdict": "Y", "jistota": "nizka", "why": "Ortofoto je v lese tmavé, cesta s porostem po obou stranách; Y má zeleň na obou stranách pruhů, X jen na jedné."}

@@ -1,0 +1,7 @@
+{"n": 1, "verdict": "X", "jistota": "nizka", "why": "dvůr/zpevněná plocha s cestou vlevo; X má alespoň obslužnou komunikaci, Y jen plochu"}
+{"n": 2, "verdict": "X", "jistota": "stredni", "why": "na ortofotu je vidět kolmé/šikmé parkování u vozovky, X ho má, Y ne"}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "úzká silnička obklopená zelení a živými ploty, Y má zeleň po obou stranách"}
+{"n": 4, "verdict": "Y", "jistota": "nizka", "why": "na fotce je zelený pás s obrubou u chodníku a stání na jedné straně; Y má zeleň, X plochu"}
+{"n": 5, "verdict": "stejne", "jistota": "nizka", "why": "vozovka asi 5 m, X má jeden pruh a chodník vpravo (tam je tráva), Y dva pruhy s trávou; ani jeden přesný"}
+{"n": 6, "verdict": "Y", "jistota": "stredni", "why": "vpravo od úzké cesty je travnatý pás před plotem, Y ho má, X ne"}
+{"n": 7, "verdict": "X", "jistota": "nizka", "why": "vlevo zahrady a domy, vpravo les; X pokrývá obě strany plochou, Y má zeleň vlevo, kde jsou domy"}

@@ -1,0 +1,12 @@
+{"n": 1, "A": 3.5, "B": 3.0, "jistota": "stredni", "why": "most, chodnik za zabradlim po obou stranach, A siroky s cyklopruhem vedle"}
+{"n": 2, "A": 1.5, "B": 2.5, "jistota": "nizka", "why": "uzky most, svetle pasy u obrub; fotky nepomohou"}
+{"n": 3, "A": 3.3, "B": 3.2, "jistota": "vysoka", "why": "most, dlazdeny chodnik po obou stranach od zabradli k obrube, 33 a 32 px"}
+{"n": 4, "A": 3.0, "B": 3.0, "jistota": "nizka", "why": "A na okraji obrazku useknuto; B sedy chodnik vedle cervene cyklostezky"}
+{"n": 5, "A": 7.0, "B": 2.5, "jistota": "nizka", "why": "A siroka plocha s betonovou lavici/prvkem vedle cyklopruhu; B uzky pas u okraje mostu"}
+{"n": 6, "A": 6.0, "B": 4.5, "jistota": "nizka", "why": "svetle pasy u okraju mostu, A za zdi/zabradlim; fotka ukazuje B uzsi nez z ortofota"}
+{"n": 7, "A": 2.5, "B": 1.8, "jistota": "nizka", "why": "kamenny most, chodci po obou stranach vozovky u parapetu"}
+{"n": 8, "A": 0, "B": 2.3, "jistota": "stredni", "why": "na fotce b je chodnik za svodidlem jen na strane B, na A jen svodidlo a zabradli"}
+{"n": 9, "A": 0, "B": 0, "jistota": "stredni", "why": "dalnicni most, jen svodidlo/parapet bez chodniku"}
+{"n": 10, "A": 0, "B": 0, "jistota": "vysoka", "why": "venkovska silnice bez chodniku, travnata krajnice"}
+{"n": 11, "A": 2.0, "B": 2.3, "jistota": "stredni", "why": "ocelovy mostni chodnik po obou stranach vozovky s tramvaji, B siroky podle fotky"}
+{"n": 12, "A": 1.2, "B": 1.2, "jistota": "nizka", "why": "maly most s uzkymi svetlymi pasy u parapetu"}

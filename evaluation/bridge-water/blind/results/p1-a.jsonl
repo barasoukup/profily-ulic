@@ -1,0 +1,10 @@
+{"n": 1, "verdict": "Y", "jistota": "nizka", "why": "Most široký cca 8-9 m, Y se šířkou 9,1 m deskou lépe vyplní; X (6,6 m) je příliš úzký, chodníky chybí v obou"}
+{"n": 2, "verdict": "Y", "jistota": "stredni", "why": "Mostovka má jízdní pruhy a okraje, voda (X) na mostě být nemůže; Y místo vody plocha a rozdělená cyklostezka"}
+{"n": 3, "verdict": "Y", "jistota": "nizka", "why": "Stejné složení, ulice mezi fasádami asi 10 m, Y (9,7 m) je blíž než X (9,2 m)"}
+{"n": 4, "verdict": "X", "jistota": "stredni", "why": "Na mostovce je vpravo široký chodník/plocha, voda uvnitř mostu (Y) je chyba; X má plochu a cyklostezku"}
+{"n": 5, "verdict": "X", "jistota": "stredni", "why": "Na mostě jsou po obou stranách chodníky, které má jen X; pruhů je v obou stejně"}
+{"n": 6, "verdict": "X", "jistota": "nizka", "why": "Obě mají cyklopruhy při okraji (ve skutečnosti uprostřed), ale Y dává vodu 3,4 m na mostovku; X má chodníky po obou stranách"}
+{"n": 7, "verdict": "X", "jistota": "vysoka", "why": "Mezi vozovkami jsou zelené pásy, ne voda (Y); X má i obslužnou komunikaci a parkování vpravo"}
+{"n": 8, "verdict": "stejne", "jistota": "nizka", "why": "Stejné složení i téměř stejné šířky, podklady (staveniště, nadjezd) jsou nejasné"}
+{"n": 9, "verdict": "Y", "jistota": "vysoka", "why": "Most má vozovku se dvěma chodníky po stranách; X má vodu na mostě a chodník chybí"}
+{"n": 10, "verdict": "stejne", "jistota": "nizka", "why": "Mostovka je široká cca 34 m se dvěma vozovkami a pásem, ani X ani Y to nevystihují"}

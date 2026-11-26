@@ -1,0 +1,12 @@
+{"n": 1, "A": null, "B": null, "jistota": "nizka", "why": "ortofoto je prázdné bílé, fotka jen křižovatka bez měřítka"}
+{"n": 2, "A": null, "B": null, "jistota": "nizka", "why": "řez vede po hraně opěrné zdi a široké dlážděné plochy bez jasného vnějšího okraje, na B rampa a schody"}
+{"n": 3, "A": 2.5, "B": 3.5, "jistota": "nizka", "why": "dřevěné lávky přes vodu po obou stranách vozovky, odhad z růžových pruhů v ortofotu"}
+{"n": 4, "A": 0, "B": 0, "jistota": "stredni", "why": "vozovka na mostě bez chodníku, po stranách tmavý terén a zeleň"}
+{"n": 5, "A": 2.2, "B": 2.3, "jistota": "stredni", "why": "světlé pruhy chodníků po obou stranách mostu"}
+{"n": 6, "A": 3.3, "B": 2.3, "jistota": "stredni", "why": "chodníky na mostě mezi obrubou a zábradlím, vlevo část ve stínu"}
+{"n": 7, "A": 2.0, "B": 2.8, "jistota": "stredni", "why": "chodníky na mostě za zábradlím, B širší"}
+{"n": 8, "A": 2.0, "B": 2.0, "jistota": "nizka", "why": "úzké světlé pruhy po okrajích mostu, bez fotek"}
+{"n": 9, "A": 1.2, "B": 1.0, "jistota": "nizka", "why": "úzké dlážděné chodníky podél domů, na B část zasahuje stín a parcela"}
+{"n": 10, "A": 1.5, "B": 1.0, "jistota": "nizka", "why": "úzké chodníky u fasád v hluboké stínu, fotka patrně z jiného místa"}
+{"n": 11, "A": 4.0, "B": 3.0, "jistota": "stredni", "why": "široké chodníky na mostě za svodidly, ortofoto"}
+{"n": 12, "A": 4.4, "B": 3.3, "jistota": "stredni", "why": "chodník s cyklopásem na mostě po obou stranách, A širší"}
