@@ -604,7 +604,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 ## New York (větev na-newyork z canada, 26. 11. 2026, nenasazené)
 - Druhé metro státu `usa`: pět obvodů New Yorku (`tools/build_staty.mjs` tabulka `METROS` `dc`, `nyc` z TIGERweb; Boston a San
   Francisco se přidají řádkem), město `newyork` v `mesta-us.json` (`tools/build_towns_us.mjs`). New Jersey, Westchester a Nassau ne.
-- Mapa povrchů NYC Planimetric Database 2022 (NYC OTI, NYCmaps na ArcGIS Online) přes `planimetrics.js` (`towns/newyork.js`,
+- Mapa povrchů NYC Planimetric Database 2022 (NYC OTI, NYCmaps na ArcGIS Online; „Limited to use defined by OTI“ bez zveřejněných podmínek, Bára 27. 11. 2026:
+  používat, tatáž data jsou otevřená na NYC Open Data) přes `planimetrics.js` (`towns/newyork.js`,
   `?nyc=0`), domy z obrysů budov téže služby (`?nychouse=0`), ortofoto NYS 2024, normy Street Design Manual jen oranžově
   (`evaluation/usa/nyc/NORMY.md`; `rules.js` předává limitům město řezu), ilustrace `newyork/`. OSM balík `us_nyc` (jen R2).
 - Čerstvé měření (`evaluation/usa/nyc/ZPRAVA.md`, 75 řezů, 50 podle délky sítě bez podmínky fotky): slepé A/B mapa : odhad

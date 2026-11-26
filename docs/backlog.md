@@ -185,9 +185,9 @@ Co rozhodne Bára, je označeno **(Bára)**.
   „Intersection“ se jen ohlásí, neposune; čísla tabulek DEM 2023 a BFDG ověřit a dát s čísly stran; předpis o stání
   v Marylandu a Virginii; Photon nabízí i místa mimo metro (hláška řekne proč, jako Itálie); česká jména `?off=ulicky`,
   `pocetpruhu` jsou sdílená s `estonia`. Strana stání RPP: význam kódů `RPPSIDE` by musel říct DDOT.
-- **USA (New York, 26. 11. 2026, `evaluation/usa/nyc`):** **(Bára)** licence: položky NYCmaps na ArcGIS Online mají „Limited to use
-  defined by OTI“, tytéž vrstvy na NYC Open Data jsou bez omezení (Admin. Code § 23-502); ortofoto NYS bez uvedené licence
-  („available at no cost“). **(Bára)** okolní okresy (Jersey City a Hudson County, Westchester, Nassau) jen s odhadem z OSM, nebo
+- **USA (New York, 26. 11. 2026, `evaluation/usa/nyc`):** ~~licence: položky NYCmaps na ArcGIS Online mají „Limited to use
+  defined by OTI“~~ (Bára 27. 11. 2026: používat; tytéž vrstvy jsou na NYC Open Data bez omezení, Admin. Code § 23-502, s kreditem
+  zdroje a verze); ortofoto NYS bez uvedené licence („available at no cost“). **(Bára)** okolní okresy (Jersey City a Hudson County, Westchester, Nassau) jen s odhadem z OSM, nebo
   ne (teď ne: bez mapy povrchů, okolí Washingtonu a Toronta jen 51 %). **(Bára)** stání: zákonná volná šířka v New Yorku nedoložená
   (34 RCNY § 4-08, FC 503 nepřečtené), platí 3 m aplikace. Ostatní: Bishop's Crook (`newyork/lamp-bishop-*`) nemá kde se kreslit
   (aplikace má jednu lampu nad ulicí, do 5 m sloupkovou); stání v New Yorku je skoro všude, mapa ho nemá (je to vozovka) a odhad
