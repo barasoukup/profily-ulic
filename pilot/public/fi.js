@@ -571,15 +571,15 @@ export const FI = {
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} ei nyt vastaa, alueet ovat ČÚZK:n teknisestä kartasta.",
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "ČÚZK:n tekninen kartta ei nyt vastaa, poikkileikkaus on arvio OSM:stä.",
   "Mapa povrchů tu nic nevrátila, profil je odhad z OSM.": "Pintakartta ei palauttanut tästä mitään, poikkileikkaus on arvio OSM:stä.",
-  "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Reunakivet ja rakennukset ovat OSM:stä, tarkista leveydet.",
+  "Obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Reunakivet ovat OSM:stä, rakennusten lähde on {houses}; tarkista leveydet.",
   "Mapa povrchů tu ulici nemá.": "Pintakartassa ei ole tässä katua.",
   "{name} teď neodpovídá (server je přetížený).": "{name} ei nyt vastaa (palvelin on ylikuormittunut).",
   "{name} teď neodpovídá.": "{name} ei nyt vastaa.",
   "Technická mapa ČÚZK teď neodpovídá.": "ČÚZK:n tekninen kartta ei nyt vastaa.",
   "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "Teknisessä kartassa on tässä vain viivoja ilman alueita (maakunta ei toimita niitä).",
   "Mapa povrchů tu nic nevrátila.": "Pintakartta ei palauttanut tästä mitään.",
-  "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "Reunakivet on arvioitu ortokuvasta ja rakennukset ovat OSM:stä, tarkista leveydet.",
-  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Ortokuvasta ei ollut tässä apua: reunakivet ja rakennukset ovat OSM:stä, tarkista leveydet.",
+  "Obruby jsou odhadnuté z ortofota a domy z {houses}, šířky ověřte.": "Reunakivet on arvioitu ortokuvasta, rakennusten lähde on {houses}; tarkista leveydet.",
+  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Ortokuvasta ei ollut tässä apua: reunakivet ovat OSM:stä, rakennusten lähde on {houses}; tarkista leveydet.",
 
   // ---------- rainwater management (types.js water, HDV_UNDER) ----------
   "Vsakovací průleh": "Imeytyspainanne",

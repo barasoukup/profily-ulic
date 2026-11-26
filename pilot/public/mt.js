@@ -570,15 +570,15 @@ export const MT = {
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name}: m'hemmx tweġiba bħalissa, l-erji huma mill-mappa teknika tal-ČÚZK.",
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "Il-mappa teknika tal-ČÚZK mhix qed twieġeb bħalissa, il-profil huwa stima minn OSM.",
   "Mapa povrchů tu nic nevrátila, profil je odhad z OSM.": "Il-mappa tal-uċuħ ma tat xejn hawn, il-profil huwa stima minn OSM.",
-  "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Il-borduri u l-bini huma minn OSM, ivverifika l-wisgħat.",
+  "Obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Il-borduri huma minn OSM u l-bini minn {houses}, ivverifika l-wisgħat.",
   "Mapa povrchů tu ulici nemá.": "Il-mappa tal-uċuħ m'għandhiex hawn it-triq.",
   "{name} teď neodpovídá (server je přetížený).": "{name}: m'hemmx tweġiba bħalissa (is-server huwa mgħobbi żżejjed).",
   "{name} teď neodpovídá.": "{name}: m'hemmx tweġiba bħalissa.",
   "Technická mapa ČÚZK teď neodpovídá.": "Il-mappa teknika tal-ČÚZK mhix qed twieġeb bħalissa.",
   "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "Il-mappa teknika għandha biss linji mingħajr erji hawn (ir-reġjun ma jipprovdix erji).",
   "Mapa povrchů tu nic nevrátila.": "Il-mappa tal-uċuħ ma tat xejn hawn.",
-  "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "Il-borduri huma stmati mill-ortofoto u l-bini minn OSM, ivverifika l-wisgħat.",
-  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "L-ortofoto ma għenitx hawn: il-borduri u l-bini huma minn OSM, ivverifika l-wisgħat.",
+  "Obruby jsou odhadnuté z ortofota a domy z {houses}, šířky ověřte.": "Il-borduri huma stmati mill-ortofoto u l-bini minn {houses}, ivverifika l-wisgħat.",
+  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "L-ortofoto ma għenitx hawn: il-borduri huma minn OSM u l-bini minn {houses}, ivverifika l-wisgħat.",
 
   // ---------- rainwater management (types.js water, HDV_UNDER) ----------
   "Vsakovací průleh": "Kanal ta' infiltrazzjoni",

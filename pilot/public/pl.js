@@ -571,15 +571,15 @@ export const PL = {
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} obecnie nie odpowiada, powierzchnie pochodzą z mapy technicznej ČÚZK.",
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "Mapa techniczna ČÚZK obecnie nie odpowiada, profil jest szacunkiem z OSM.",
   "Mapa povrchů tu nic nevrátila, profil je odhad z OSM.": "Mapa powierzchni nic tu nie zwróciła, profil jest szacunkiem z OSM.",
-  "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Krawężniki i budynki pochodzą z OSM, sprawdź szerokości.",
+  "Obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Krawężniki pochodzą z OSM, budynki z {houses}, sprawdź szerokości.",
   "Mapa povrchů tu ulici nemá.": "Mapa powierzchni nie ma tu ulicy.",
   "{name} teď neodpovídá (server je přetížený).": "{name} obecnie nie odpowiada (serwer jest przeciążony).",
   "{name} teď neodpovídá.": "{name} obecnie nie odpowiada.",
   "Technická mapa ČÚZK teď neodpovídá.": "Mapa techniczna ČÚZK obecnie nie odpowiada.",
   "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "Mapa techniczna ma tu tylko linie bez powierzchni (region nie dostarcza do niej powierzchni).",
   "Mapa povrchů tu nic nevrátila.": "Mapa powierzchni nic tu nie zwróciła.",
-  "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "Krawężniki są oszacowane z ortofotomapy, budynki pochodzą z OSM, sprawdź szerokości.",
-  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Ortofotomapa tu nie pomogła: krawężniki i budynki pochodzą z OSM, sprawdź szerokości.",
+  "Obruby jsou odhadnuté z ortofota a domy z {houses}, šířky ověřte.": "Krawężniki są oszacowane z ortofotomapy, budynki pochodzą z {houses}, sprawdź szerokości.",
+  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Ortofotomapa tu nie pomogła: krawężniki pochodzą z OSM, budynki z {houses}, sprawdź szerokości.",
 
   // ---------- rainwater management (types.js water, HDV_UNDER) ----------
   "Vsakovací průleh": "Niecka chłonna",

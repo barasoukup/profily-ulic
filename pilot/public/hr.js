@@ -570,15 +570,15 @@ export const HR = {
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} trenutačno ne odgovara, površine su iz tehničke karte ČÚZK-a.",
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "Tehnička karta ČÚZK-a trenutačno ne odgovara, profil je procjena iz OSM-a.",
   "Mapa povrchů tu nic nevrátila, profil je odhad z OSM.": "Karta površina ovdje nije ništa vratila, profil je procjena iz OSM-a.",
-  "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Rubnjaci i zgrade su iz OSM-a, provjerite širine.",
+  "Obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Rubnjaci su iz OSM-a, zgrade iz podataka {houses}, provjerite širine.",
   "Mapa povrchů tu ulici nemá.": "Karta površina ovdje nema ulicu.",
   "{name} teď neodpovídá (server je přetížený).": "{name} trenutačno ne odgovara (poslužitelj je preopterećen).",
   "{name} teď neodpovídá.": "{name} trenutačno ne odgovara.",
   "Technická mapa ČÚZK teď neodpovídá.": "Tehnička karta ČÚZK-a trenutačno ne odgovara.",
   "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "Tehnička karta ovdje ima samo linije bez površina (regija ne isporučuje površine).",
   "Mapa povrchů tu nic nevrátila.": "Karta površina ovdje nije ništa vratila.",
-  "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "Rubnjaci su procijenjeni iz ortofota, zgrade su iz OSM-a, provjerite širine.",
-  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Ortofoto ovdje nije pomoglo: rubnjaci i zgrade su iz OSM-a, provjerite širine.",
+  "Obruby jsou odhadnuté z ortofota a domy z {houses}, šířky ověřte.": "Rubnjaci su procijenjeni iz ortofota, zgrade su iz podataka {houses}, provjerite širine.",
+  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Ortofoto ovdje nije pomoglo: rubnjaci su iz OSM-a, zgrade iz podataka {houses}, provjerite širine.",
 
   // ---------- rainwater management (types.js water, HDV_UNDER) ----------
   "Vsakovací průleh": "Upojna udubina",

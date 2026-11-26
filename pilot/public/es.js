@@ -570,15 +570,15 @@ export const ES = {
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} no responde ahora, las superficies son del mapa técnico del ČÚZK.",
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "El mapa técnico del ČÚZK no responde ahora, la sección es una estimación a partir de OSM.",
   "Mapa povrchů tu nic nevrátila, profil je odhad z OSM.": "El mapa de superficies no ha devuelto nada aquí, la sección es una estimación a partir de OSM.",
-  "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Los bordillos y los edificios son de OSM; compruebe los anchos.",
+  "Obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Los bordillos son de OSM y los edificios de {houses}; compruebe los anchos.",
   "Mapa povrchů tu ulici nemá.": "El mapa de superficies no tiene aquí la calle.",
   "{name} teď neodpovídá (server je přetížený).": "{name} no responde ahora (el servidor está sobrecargado).",
   "{name} teď neodpovídá.": "{name} no responde ahora.",
   "Technická mapa ČÚZK teď neodpovídá.": "El mapa técnico del ČÚZK no responde ahora.",
   "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "Aquí el mapa técnico solo tiene líneas sin superficies (la región no le aporta superficies).",
   "Mapa povrchů tu nic nevrátila.": "El mapa de superficies no ha devuelto nada aquí.",
-  "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "Los bordillos se estiman a partir de la ortofoto y los edificios son de OSM; compruebe los anchos.",
-  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Aquí la ortofoto no ha ayudado: los bordillos y los edificios son de OSM; compruebe los anchos.",
+  "Obruby jsou odhadnuté z ortofota a domy z {houses}, šířky ověřte.": "Los bordillos se estiman a partir de la ortofoto y los edificios son de {houses}; compruebe los anchos.",
+  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Aquí la ortofoto no ha ayudado: los bordillos son de OSM y los edificios de {houses}; compruebe los anchos.",
 
   // ---------- rainwater management (types.js water, HDV_UNDER) ----------
   "Vsakovací průleh": "Cuneta vegetada",

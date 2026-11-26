@@ -570,15 +570,15 @@ export const DA = {
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} svarer ikke lige nu, fladerne er fra ČÚZK's tekniske kort.",
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "ČÚZK's tekniske kort svarer ikke lige nu, profilet er et skøn ud fra OSM.",
   "Mapa povrchů tu nic nevrátila, profil je odhad z OSM.": "Fladekortet returnerede intet her, profilet er et skøn ud fra OSM.",
-  "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Kantsten og bygninger er fra OSM, kontrollér bredderne.",
+  "Obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Kantsten er fra OSM og bygninger fra {houses}, kontrollér bredderne.",
   "Mapa povrchů tu ulici nemá.": "Fladekortet har ikke gaden her.",
   "{name} teď neodpovídá (server je přetížený).": "{name} svarer ikke lige nu (serveren er overbelastet).",
   "{name} teď neodpovídá.": "{name} svarer ikke lige nu.",
   "Technická mapa ČÚZK teď neodpovídá.": "ČÚZK's tekniske kort svarer ikke lige nu.",
   "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "Det tekniske kort har kun linjer uden flader her (regionen leverer ingen flader).",
   "Mapa povrchů tu nic nevrátila.": "Fladekortet returnerede intet her.",
-  "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "Kantstenene er skønnet ud fra ortofoto og bygningerne er fra OSM, kontrollér bredderne.",
-  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Ortofotoet hjalp ikke her: kantsten og bygninger er fra OSM, kontrollér bredderne.",
+  "Obruby jsou odhadnuté z ortofota a domy z {houses}, šířky ověřte.": "Kantstenene er skønnet ud fra ortofoto og bygningerne er fra {houses}, kontrollér bredderne.",
+  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Ortofotoet hjalp ikke her: kantsten er fra OSM og bygninger fra {houses}, kontrollér bredderne.",
 
   // ---------- rainwater management (types.js water, HDV_UNDER) ----------
   "Vsakovací průleh": "Nedsivningstrug",

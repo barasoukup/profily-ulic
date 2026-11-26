@@ -573,15 +573,15 @@ export const IT = {
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} al momento non risponde, le superfici provengono dalla carta tecnica del ČÚZK.",
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "La carta tecnica del ČÚZK al momento non risponde, la sezione è una stima da OSM.",
   "Mapa povrchů tu nic nevrátila, profil je odhad z OSM.": "Qui la mappa delle superfici non ha restituito nulla, la sezione è una stima da OSM.",
-  "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Cordoli ed edifici provengono da OSM, verifica le larghezze.",
+  "Obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "I cordoli provengono da OSM, gli edifici da {houses}, verifica le larghezze.",
   "Mapa povrchů tu ulici nemá.": "Qui la mappa delle superfici non ha la strada.",
   "{name} teď neodpovídá (server je přetížený).": "{name} al momento non risponde (il server è sovraccarico).",
   "{name} teď neodpovídá.": "{name} al momento non risponde.",
   "Technická mapa ČÚZK teď neodpovídá.": "La carta tecnica del ČÚZK al momento non risponde.",
   "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "Qui la carta tecnica ha solo linee senza superfici (la regione non le fornisce).",
   "Mapa povrchů tu nic nevrátila.": "Qui la mappa delle superfici non ha restituito nulla.",
-  "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "I cordoli sono stimati dall'ortofoto, gli edifici provengono da OSM, verifica le larghezze.",
-  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Qui l'ortofoto non è servita: cordoli ed edifici provengono da OSM, verifica le larghezze.",
+  "Obruby jsou odhadnuté z ortofota a domy z {houses}, šířky ověřte.": "I cordoli sono stimati dall'ortofoto, gli edifici provengono da {houses}, verifica le larghezze.",
+  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Qui l'ortofoto non è servita: i cordoli provengono da OSM, gli edifici da {houses}, verifica le larghezze.",
 
   // ---------- rainwater management (types.js water, HDV_UNDER) ----------
   "Vsakovací průleh": "Fosso d'infiltrazione",

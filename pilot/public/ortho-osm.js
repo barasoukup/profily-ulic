@@ -49,7 +49,7 @@ export function osmAlong(elements, tu, wayId, half = 45) {
         // All the crossings, however far: a big block (a hotel 60 m deep, Drevená in Bratislava) has its far side
         // out of the window, and an odd count of crossings would lose the house.
         const xs = rings.flatMap((r) => crossT([...r, r[0]], Infinity, u).map((x) => x.t)).sort((a, b) => a - b);
-        for (let i = 0; i + 1 < xs.length; i += 2) { buildings.push({ s: xs[i], e: xs[i + 1], u }); hit = true; }
+        for (let i = 0; i + 1 < xs.length; i += 2) { buildings.push({ s: xs[i], e: xs[i + 1], u, from: el.from || "OSM" }); hit = true; }
       }
       if (hit) outlines.push({ rings, el });
       continue;
@@ -60,15 +60,20 @@ export function osmAlong(elements, tu, wayId, half = 45) {
       if (el.id === wayId) { if (!own || Math.abs(w.t) < Math.abs(own.t)) own = w; } else ways.push(w);
     }
   }
-  const facade = {}, facadeU = {};
+  // facadeFrom: the source of the house each facade belongs to (an element's own "from", RÚIAN or GRPK; else OSM).
+  const facade = {}, facadeU = {}, facadeFrom = {};
   if (own) for (const [side, sg] of [["A", -1], ["B", 1]]) {
     facade[side] = null;
     for (const u of BUILDING_U) {
-      const hits = buildings.filter((b) => b.u === u && (sg < 0 ? b.e < own.t : b.s > own.t)).map((b) => (sg < 0 ? b.e : b.s)).filter((x) => Math.abs(x - own.t) < 40);
-      if (hits.length) { facade[side] = hits.reduce((a, b) => (Math.abs(b - own.t) < Math.abs(a - own.t) ? b : a)); facadeU[side] = u; break; }
+      const hits = buildings.filter((b) => b.u === u && (sg < 0 ? b.e < own.t : b.s > own.t) && Math.abs((sg < 0 ? b.e : b.s) - own.t) < 40);
+      if (hits.length) {
+        const best = hits.reduce((a, b) => (Math.abs((sg < 0 ? b.e : b.s) - own.t) < Math.abs((sg < 0 ? a.e : a.s) - own.t) ? b : a));
+        facade[side] = sg < 0 ? best.e : best.s; facadeU[side] = u; facadeFrom[side] = best.from;
+        break;
+      }
     }
   }
-  return { own, buildings, ways, facade, facadeU, outlines, greens };
+  return { own, buildings, ways, facade, facadeU, facadeFrom, outlines, greens };
 }
 
 // The level of a way: its layer, or −1 in a tunnel and 1 on a bridge without one. Ways of another level than the
@@ -901,7 +906,30 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
   polys.kerbs = { A: k.A, B: k.B, why: k.why, ...(k2 && { pair: { A: k2.A, B: k2.B, why: k2.why } }) };
   // Whether the orthophoto decided anything (a kerb found on it); else the kerbs are OSM's (the status says so).
   polys.image = k.image;
+  // Where the houses come from (the note under the street's name, estimateNote): the facades' sources, else those of
+  // all the houses it read, else OSM.
+  polys.houses = houseSources(o);
   return polys;
+}
+
+// The sources of the estimate's houses (osmAlong): of the facades that end the sides, else of every house the cut
+// crosses; an element's "from" (gis.js ruianOutlines RÚIAN, towns/lithuania.js GRPK), else OSM. The state's own
+// register first, OSM last.
+export function houseSources(o) {
+  const facades = ["A", "B"].map((side) => o.facadeFrom?.[side]).filter(Boolean);
+  const all = facades.length ? facades : o.buildings.map((b) => b.from);
+  const set = [...new Set(all.length ? all : ["OSM"])];
+  return set.sort((a, b) => (a === "OSM") - (b === "OSM"));
+}
+
+// The note under the street's name for a profile of the estimate (app.js): where its kerbs and its houses come from.
+// fb: orthoOsmPolys' result; tried: an orthophoto was looked for here; tr: i18n.js t; list: the names joined in the
+// page's language (Intl.ListFormat), "{a} a {b}" by default. The source's name is not declined (Bára 17. 11. 2026).
+export function estimateNote(fb, tried, tr, list = (xs) => xs.join(" a ")) {
+  const houses = list(fb.houses?.length ? fb.houses : ["OSM"]);
+  return fb.image ? tr("Obruby jsou odhadnuté z ortofota a domy z {houses}, šířky ověřte.", { houses })
+    : tried ? tr("Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z {houses}, šířky ověřte.", { houses })
+    : tr("Obruby jsou podle OSM a domy z {houses}, šířky ověřte.", { houses });
 }
 
 // ---------- beyond a town's passport (Slovakia) ----------

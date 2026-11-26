@@ -594,15 +594,15 @@ export const DE = {
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} antwortet gerade nicht, die Flächen stammen aus der technischen Karte des ČÚZK.",
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "Die technische Karte des ČÚZK antwortet gerade nicht, der Querschnitt ist eine Schätzung aus OSM.",
   "Mapa povrchů tu nic nevrátila, profil je odhad z OSM.": "Die Flächenkarte hat hier nichts geliefert, der Querschnitt ist eine Schätzung aus OSM.",
-  "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Bordsteine und Gebäude stammen aus OSM, bitte prüfen Sie die Breiten.",
+  "Obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Bordsteine stammen aus OSM, Gebäude aus {houses}, bitte prüfen Sie die Breiten.",
   "Mapa povrchů tu ulici nemá.": "Die Flächenkarte hat hier keine Straße.",
   "{name} teď neodpovídá (server je přetížený).": "{name} antwortet gerade nicht (der Server ist überlastet).",
   "{name} teď neodpovídá.": "{name} antwortet gerade nicht.",
   "Technická mapa ČÚZK teď neodpovídá.": "Die technische Karte des ČÚZK antwortet gerade nicht.",
   "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "Die technische Karte hat hier nur Linien ohne Flächen (die Region liefert keine Flächen).",
   "Mapa povrchů tu nic nevrátila.": "Die Flächenkarte hat hier nichts geliefert.",
-  "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "Bordsteine sind aus dem Luftbild geschätzt, Gebäude stammen aus OSM, bitte prüfen Sie die Breiten.",
-  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Das Luftbild hat hier nicht geholfen: Bordsteine und Gebäude stammen aus OSM, bitte prüfen Sie die Breiten.",
+  "Obruby jsou odhadnuté z ortofota a domy z {houses}, šířky ověřte.": "Bordsteine sind aus dem Luftbild geschätzt, Gebäude stammen aus {houses}, bitte prüfen Sie die Breiten.",
+  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Das Luftbild hat hier nicht geholfen: Bordsteine stammen aus OSM, Gebäude aus {houses}, bitte prüfen Sie die Breiten.",
 
   // ---------- rainwater management (types.js water, HDV_UNDER) ----------
   "Vsakovací průleh": "Versickerungsmulde",

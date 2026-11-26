@@ -571,15 +571,15 @@ export const GA = {
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name}: gan freagra faoi láthair; is ó léarscáil theicniúil ČÚZK na dromchlaí.",
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "Níl léarscáil theicniúil ČÚZK ag freagairt faoi láthair; is meastachán ó OSM í an phróifíl.",
   "Mapa povrchů tu nic nevrátila, profil je odhad z OSM.": "Níor sholáthair an léarscáil dromchlaí aon rud anseo; is meastachán ó OSM í an phróifíl.",
-  "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Is ó OSM na colbhaí agus na foirgnimh; seiceáil na leithid.",
+  "Obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Is ó OSM na colbhaí agus is ó {houses} na foirgnimh; seiceáil na leithid.",
   "Mapa povrchů tu ulici nemá.": "Níl an tsráid ar an léarscáil dromchlaí anseo.",
   "{name} teď neodpovídá (server je přetížený).": "{name}: gan freagra faoi láthair (tá an freastalaí rólódáilte).",
   "{name} teď neodpovídá.": "{name}: gan freagra faoi láthair.",
   "Technická mapa ČÚZK teď neodpovídá.": "Níl léarscáil theicniúil ČÚZK ag freagairt faoi láthair.",
   "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "Níl ach línte gan dromchlaí ar an léarscáil theicniúil anseo (ní sholáthraíonn an réigiún dromchlaí).",
   "Mapa povrchů tu nic nevrátila.": "Níor sholáthair an léarscáil dromchlaí aon rud anseo.",
-  "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "Measadh na colbhaí ón ortafótagraf agus is ó OSM na foirgnimh; seiceáil na leithid.",
-  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Níor chabhraigh an t-ortafótagraf anseo: is ó OSM na colbhaí agus na foirgnimh; seiceáil na leithid.",
+  "Obruby jsou odhadnuté z ortofota a domy z {houses}, šířky ověřte.": "Measadh na colbhaí ón ortafótagraf agus is ó {houses} na foirgnimh; seiceáil na leithid.",
+  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Níor chabhraigh an t-ortafótagraf anseo: is ó OSM na colbhaí agus is ó {houses} na foirgnimh; seiceáil na leithid.",
 
   // ---------- rainwater management (types.js water, HDV_UNDER) ----------
   "Vsakovací průleh": "Clais insíothlaithe",

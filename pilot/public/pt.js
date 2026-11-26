@@ -570,15 +570,15 @@ export const PT = {
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} não responde de momento; as áreas vêm do mapa técnico do ČÚZK.",
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "O mapa técnico do ČÚZK não responde de momento; o perfil é uma estimativa a partir do OSM.",
   "Mapa povrchů tu nic nevrátila, profil je odhad z OSM.": "O mapa de superfícies não devolveu nada aqui; o perfil é uma estimativa a partir do OSM.",
-  "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Os lancis e os edifícios vêm do OSM; verifique as larguras.",
+  "Obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Os lancis vêm do OSM e os edifícios do {houses}; verifique as larguras.",
   "Mapa povrchů tu ulici nemá.": "O mapa de superfícies não tem aqui a rua.",
   "{name} teď neodpovídá (server je přetížený).": "{name} não responde de momento (servidor sobrecarregado).",
   "{name} teď neodpovídá.": "{name} não responde de momento.",
   "Technická mapa ČÚZK teď neodpovídá.": "O mapa técnico do ČÚZK não responde de momento.",
   "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "O mapa técnico tem aqui só linhas sem áreas (a região não fornece áreas).",
   "Mapa povrchů tu nic nevrátila.": "O mapa de superfícies não devolveu nada aqui.",
-  "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "Os lancis foram estimados a partir do ortofotomapa e os edifícios vêm do OSM; verifique as larguras.",
-  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "O ortofotomapa não ajudou aqui: os lancis e os edifícios vêm do OSM; verifique as larguras.",
+  "Obruby jsou odhadnuté z ortofota a domy z {houses}, šířky ověřte.": "Os lancis foram estimados a partir do ortofotomapa e os edifícios vêm do {houses}; verifique as larguras.",
+  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "O ortofotomapa não ajudou aqui: os lancis vêm do OSM e os edifícios do {houses}; verifique as larguras.",
 
   // ---------- rainwater management (types.js water, HDV_UNDER) ----------
   "Vsakovací průleh": "Vala de infiltração",

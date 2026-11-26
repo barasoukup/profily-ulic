@@ -216,7 +216,7 @@ export async function ruianOutlines(bbox) {
   const json = await query(RUIAN_SO, { ...envelope(bbox), outFields: "objectid", returnGeometry: "true" });
   return (json.features || []).filter((f) => f.geometry?.rings?.length).map((f, i) => {
     const [outer, ...holes] = f.geometry.rings.map((r) => r.map(([lon, lat]) => ({ lon, lat })));
-    return { type: "area", id: `ruian-${f.attributes?.objectid ?? i}`, tags: { building: "yes", source: "RÚIAN" }, geometry: outer, holes };
+    return { type: "area", id: `ruian-${f.attributes?.objectid ?? i}`, from: "RÚIAN", tags: { building: "yes", source: "RÚIAN" }, geometry: outer, holes };
   });
 }
 // OSM's elements with RÚIAN's buildings: "first" (the app) RÚIAN's outlines and OSM's buildings only where none of

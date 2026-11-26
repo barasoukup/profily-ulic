@@ -863,7 +863,10 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
       2 m kolem jeho čáry. `?off=osmwalk` vypne;
     - kde technická mapa má plochy, jen ne u osy, omezí obruby její chodníky a domy; obruby se nehledají u okraje
       pokrytí snímku a koruny nad osou nechají obruby podle OSM;
-    - všechno kromě domů je „odhad“ a hláška dodá „Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.“
+    - všechno kromě domů je „odhad“ a hláška dodá „Obruby jsou odhadnuté z ortofota a domy z RÚIAN, šířky ověřte.“
+      Zdroj domů je ten, ze kterého jsou fasády na koncích řezu (`ortho-osm.js houseSources`, prvek s `from`: RÚIAN
+      z `gis.js ruianOutlines`, GRPK z `towns/lithuania.js`), jinak OSM; dva zdroje spojí `Intl.ListFormat` jazyka
+      stránky („z RÚIAN a OSM“), jména se nesklánějí (26. 11. 2026).
       Přesnost proti MTVU (jednoduché řezy Prahy a Brna): obruba do 0,5 m u 39–50 % stran, do 1 m u 57–69 %. Samotné
       OSM má 26–34 % a 51–58 %. Ve vsích a v cizině bude nejspíš horší.
 11b. **Obruby vozovky z AI** (zapnuté od 19. 11. 2026, `?ai=0` vypne; Bára 18. 11. 2026, `public/ai-kerbs.js`, pilot a měření

@@ -4,7 +4,7 @@ import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO, CH_ORTHO, NL_ORTHO, BE_ORTHO, LU_ORTHO, PL_ORTHO, FR_ORTHO, ES_ORTHO, PT_ORTHO, PT_MAINLAND, ES_NOT_PNOA, CY_ORTHO, MT_ORTHO, IT_ORTHO, EE_ORTHO, SI_ORTHO, FI_ORTHO, DK_ORTHO, DE_ORTHO, deWmsUrl, landsAt, landAt, orthoHereAt } from "./lanes-ortho.js";
 import { dkToken } from "./keys.js";
 import { boxed as boxedPlace, within as withinPlace } from "./places.js";
-import { orthoOsmPolys, besidePassport, trimToEnds, P as ORTHO_P } from "./ortho-osm.js";
+import { orthoOsmPolys, besidePassport, trimToEnds, estimateNote, P as ORTHO_P } from "./ortho-osm.js";
 import { LOOKS as HOUSE_LOOKS } from "./house-looks.js";
 // The gabled house looks with the gable's outline (house-looks.js; Bára to approve it, 23. 11. 2026): ?stit=1.
 if (new URLSearchParams(location.search).get("stit") === "1") HOUSE_LOOKS.gables = true;
@@ -864,9 +864,9 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     const orthoNoKey = orthoDown && li.reason?.noKey;
     const orthoNote = orthoNoKey && (orthoOsm || result.estimate) ? tr("Ortofoto tu není k dispozici (aplikaci chybí přístupový klíč služby, nebo ho služba nepřijala): obruby jsou jen podle OSM, profil je hrubý odhad.")
       : orthoDown && (orthoOsm || result.estimate) ? tr("Ortofoto teď neodpovědělo: obruby jsou jen podle OSM, profil je hrubý odhad. Zkuste kliknout znovu za chvíli.")
-      : !orthoOsm ? "" : orthoOsm.image ? tr("Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.")
-      : LANES_ORTHO && orthoHere ? tr("Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.")
-      : tr("Obruby jsou podle OSM a domy z OSM, šířky ověřte.");
+      // The houses' source as the estimate used them: RÚIAN in Czechia, the GRPK with OSM in Lithuania, else OSM
+      // (ortho-osm.js houseSources; the backlog of 23. 11. 2026: it said OSM in Czechia too).
+      : !orthoOsm ? "" : estimateNote(orthoOsm, LANES_ORTHO && orthoHere, tr, (xs) => new Intl.ListFormat(lang, { type: "conjunction" }).format(xs));
     const out = sources.outage({ surfaces: m, lines: k, parking: pk }, undefined, { fallback: orthoNote, orthoEstimate: country.orthoEstimate && orthoHere });
     // Copenhagen's kerb lines or parking areas did not answer (towns/denmark.js dkFailed; the review of 24. 11. 2026: said
     // nothing before): the cut is made without them, said so.

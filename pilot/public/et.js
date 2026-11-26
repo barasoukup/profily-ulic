@@ -552,15 +552,15 @@ export const ET = {
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} praegu ei vasta, pinnad on ČÚZK-i tehniliselt kaardilt.",
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "ČÚZK-i tehniline kaart praegu ei vasta, profiil on hinnang OSM-i põhjal.",
   "Mapa povrchů tu nic nevrátila, profil je odhad z OSM.": "Pinnakatete kaardilt ei tulnud siin midagi, profiil on hinnang OSM-i põhjal.",
-  "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Äärekivid ja hooned on OSM-i järgi, kontrollige laiusi.",
+  "Obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Äärekivid on OSM-i järgi, hoonete allikas on {houses}; kontrollige laiusi.",
   "Mapa povrchů tu ulici nemá.": "Pinnakatete kaardil pole siin tänavat.",
   "{name} teď neodpovídá (server je přetížený).": "{name} praegu ei vasta (server on üle koormatud).",
   "{name} teď neodpovídá.": "{name} praegu ei vasta.",
   "Technická mapa ČÚZK teď neodpovídá.": "ČÚZK-i tehniline kaart praegu ei vasta.",
   "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "Tehnilisel kaardil on siin ainult jooned ilma pindadeta (maakond pindu ei esita).",
   "Mapa povrchů tu nic nevrátila.": "Pinnakatete kaardilt ei tulnud siin midagi.",
-  "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "Äärekivid on hinnatud ortofoto põhjal, hooned on OSM-ist; kontrollige laiusi.",
-  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Ortofoto ei aidanud siin: äärekivid ja hooned on OSM-i järgi, kontrollige laiusi.",
+  "Obruby jsou odhadnuté z ortofota a domy z {houses}, šířky ověřte.": "Äärekivid on hinnatud ortofoto põhjal, hoonete allikas on {houses}; kontrollige laiusi.",
+  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Ortofoto ei aidanud siin: äärekivid on OSM-i järgi, hoonete allikas on {houses}; kontrollige laiusi.",
 
   // ---------- rainwater management (types.js water, HDV_UNDER) ----------
   "Vsakovací průleh": "Immutusnõva",

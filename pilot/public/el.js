@@ -570,15 +570,15 @@ export const EL = {
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} δεν αποκρίνεται τώρα· οι επιφάνειες είναι από τον τεχνικό χάρτη του ČÚZK.",
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "Ο τεχνικός χάρτης του ČÚZK δεν αποκρίνεται τώρα· η διατομή είναι εκτίμηση από OSM.",
   "Mapa povrchů tu nic nevrátila, profil je odhad z OSM.": "Ο χάρτης επιφανειών δεν επέστρεψε τίποτα εδώ· η διατομή είναι εκτίμηση από OSM.",
-  "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Τα κράσπεδα και τα κτίρια είναι από το OSM· ελέγξτε τα πλάτη.",
+  "Obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Τα κράσπεδα είναι από το OSM και τα κτίρια από το {houses}· ελέγξτε τα πλάτη.",
   "Mapa povrchů tu ulici nemá.": "Ο χάρτης επιφανειών δεν έχει εδώ την οδό.",
   "{name} teď neodpovídá (server je přetížený).": "{name} δεν αποκρίνεται τώρα (ο διακομιστής είναι υπερφορτωμένος).",
   "{name} teď neodpovídá.": "{name} δεν αποκρίνεται τώρα.",
   "Technická mapa ČÚZK teď neodpovídá.": "Ο τεχνικός χάρτης του ČÚZK δεν αποκρίνεται τώρα.",
   "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "Ο τεχνικός χάρτης έχει εδώ μόνο γραμμές χωρίς επιφάνειες (η περιφέρεια δεν παρέχει επιφάνειες).",
   "Mapa povrchů tu nic nevrátila.": "Ο χάρτης επιφανειών δεν επέστρεψε τίποτα εδώ.",
-  "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "Τα κράσπεδα εκτιμήθηκαν από την ορθοφωτογραφία και τα κτίρια είναι από το OSM· ελέγξτε τα πλάτη.",
-  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Η ορθοφωτογραφία δεν βοήθησε εδώ: τα κράσπεδα και τα κτίρια είναι από το OSM· ελέγξτε τα πλάτη.",
+  "Obruby jsou odhadnuté z ortofota a domy z {houses}, šířky ověřte.": "Τα κράσπεδα εκτιμήθηκαν από την ορθοφωτογραφία και τα κτίρια είναι από το {houses}· ελέγξτε τα πλάτη.",
+  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Η ορθοφωτογραφία δεν βοήθησε εδώ: τα κράσπεδα είναι από το OSM και τα κτίρια από το {houses}· ελέγξτε τα πλάτη.",
 
   // ---------- rainwater management (types.js water, HDV_UNDER) ----------
   "Vsakovací průleh": "Τάφρος κατείσδυσης",
