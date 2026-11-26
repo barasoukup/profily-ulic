@@ -1167,6 +1167,7 @@ export const NL = {
   "Přiložit odkaz na tento řez": "Link naar dit profiel bijvoegen",
   "Odešle se jen to, co sem napíšete, jazyk stránky, stát řezu a případně odkaz na řez.": "Alleen wat u hier schrijft wordt verzonden, met de taal van de pagina, het land van de doorsnede en, als u die bijvoegt, de link naar de doorsnede.",
   "Autorka: {name}": "Auteur: {name}",
+  "Bára Soukupová": "Bara Soukup",
   "Odesílání zpráv tu zatím nejde.": "Berichten versturen kan hier nog niet.",
   "Napište prosím zprávu.": "Schrijf alstublieft een bericht.",
   "E-mail nevypadá správně.": "Het e-mailadres lijkt niet te kloppen.",

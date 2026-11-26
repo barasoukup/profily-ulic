@@ -1164,6 +1164,7 @@ export const EN = {
   "Přiložit odkaz na tento řez": "Attach the link to this cut",
   "Odešle se jen to, co sem napíšete, jazyk stránky, stát řezu a případně odkaz na řez.": "Only what you write here is sent, with the page's language, the cut's country and the link to the cut if you attach it.",
   "Autorka: {name}": "Author: {name}",
+  "Bára Soukupová": "Bara Soukup",
   "Odesílání zpráv tu zatím nejde.": "Messages cannot be sent from here yet.",
   "Napište prosím zprávu.": "Please write a message.",
   "E-mail nevypadá správně.": "The e-mail does not look right.",

@@ -224,11 +224,12 @@ test("záznam řezu: poloha ve Španělsku, Francii, Belgii, v Amsterdamu i mimo
   assert.deepEqual(await at(38.9, -77.03), [38.9, -77.03]); // Washington
 });
 
-// Bára 26. 11. 2026: in Czech (and Slovak) the author is "Bára Soukupová", whatever the state of the cut.
-test("O aplikaci: autorka česky a slovensky Bára Soukupová, jinak podle státu", async () => {
-  const { authorName } = await import("../pilot/public/about.js");
-  assert.equal(authorName("cs", "Bara Soukup"), "Bára Soukupová");
-  assert.equal(authorName("sk", "Bara Soukup"), "Bára Soukupová");
-  assert.equal(authorName("en", "Bara Soukup"), "Bara Soukup");
-  assert.equal(authorName("en", "Bára Soukupová"), "Bára Soukupová");
+
+// Bára 26. 11. 2026: in Czech and Slovak the author is "Bára Soukupová", in the other languages "Bara Soukup".
+test("O aplikaci: autorka česky a slovensky Bára Soukupová, jinde Bara Soukup", async () => {
+  const sk = (await import("../pilot/public/sk.js")).default ?? (await import("../pilot/public/sk.js"));
+  const en = (await import("../pilot/public/en.js")).default ?? (await import("../pilot/public/en.js"));
+  const pick = (m) => Object.values(m).find((v) => v && typeof v === "object" && "Bára Soukupová" in v)?.["Bára Soukupová"];
+  assert.equal(pick(sk), "Bára Soukupová");
+  assert.equal(pick(en), "Bara Soukup");
 });

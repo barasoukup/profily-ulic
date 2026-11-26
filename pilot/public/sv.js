@@ -1166,6 +1166,7 @@ export const SV = {
   "Přiložit odkaz na tento řez": "Bifoga länken till den här sektionen",
   "Odešle se jen to, co sem napíšete, jazyk stránky, stát řezu a případně odkaz na řez.": "Bara det du skriver här skickas, tillsammans med sidans språk, snittets land och länken till snittet om du bifogar den.",
   "Autorka: {name}": "Upphovsperson: {name}",
+  "Bára Soukupová": "Bara Soukup",
   "Odesílání zpráv tu zatím nejde.": "Det går ännu inte att skicka meddelanden härifrån.",
   "Napište prosím zprávu.": "Skriv ett meddelande.",
   "E-mail nevypadá správně.": "E-postadressen ser inte rätt ut.",

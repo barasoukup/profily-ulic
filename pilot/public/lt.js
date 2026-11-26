@@ -1142,6 +1142,7 @@ export const LT = {
   "Přiložit odkaz na tento řez": "Pridėti nuorodą į šį pjūvį",
   "Odešle se jen to, co sem napíšete, jazyk stránky, stát řezu a případně odkaz na řez.": "Siunčiama tik tai, ką čia parašote, kartu su puslapio kalba, pjūvio šalimi ir, jei pridedate, nuoroda į pjūvį.",
   "Autorka: {name}": "Autorė: {name}",
+  "Bára Soukupová": "Bara Soukup",
   "Odesílání zpráv tu zatím nejde.": "Iš čia žinučių kol kas siųsti negalima.",
   "Napište prosím zprávu.": "Parašykite žinutę.",
   "E-mail nevypadá správně.": "El. pašto adresas atrodo neteisingas.",

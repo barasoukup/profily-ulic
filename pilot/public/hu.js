@@ -1146,6 +1146,7 @@ export const HU = {
   "Přiložit odkaz na tento řez": "Hivatkozás csatolása erre a metszetre",
   "Odešle se jen to, co sem napíšete, jazyk stránky, stát řezu a případně odkaz na řez.": "Csak az kerül elküldésre, amit ide ír, továbbá az oldal nyelve, a metszet országa és – ha csatolja – a metszet hivatkozása.",
   "Autorka: {name}": "Szerző: {name}",
+  "Bára Soukupová": "Bara Soukup",
   "Odesílání zpráv tu zatím nejde.": "Innen még nem lehet üzenetet küldeni.",
   "Napište prosím zprávu.": "Kérjük, írjon üzenetet.",
   "E-mail nevypadá správně.": "Az e-mail-cím nem tűnik helyesnek.",

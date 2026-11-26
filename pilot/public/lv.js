@@ -1166,6 +1166,7 @@ export const LV = {
   "Přiložit odkaz na tento řez": "Pievienot saiti uz šo griezumu",
   "Odešle se jen to, co sem napíšete, jazyk stránky, stát řezu a případně odkaz na řez.": "Tiek nosūtīts tikai tas, ko šeit uzrakstāt, kopā ar lapas valodu, griezuma valsti un, ja pievienojat, saiti uz griezumu.",
   "Autorka: {name}": "Autore: {name}",
+  "Bára Soukupová": "Bara Soukup",
   "Odesílání zpráv tu zatím nejde.": "No šejienes ziņas vēl nevar nosūtīt.",
   "Napište prosím zprávu.": "Lūdzu, uzrakstiet ziņu.",
   "E-mail nevypadá správně.": "E-pasta adrese neizskatās pareiza.",

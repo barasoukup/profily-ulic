@@ -1167,6 +1167,7 @@ export const PT = {
   "Přiložit odkaz na tento řez": "Anexar a ligação para este perfil",
   "Odešle se jen to, co sem napíšete, jazyk stránky, stát řezu a případně odkaz na řez.": "É enviado apenas o que escrever aqui, com o idioma da página, o país do corte e, se o anexar, a ligação para o corte.",
   "Autorka: {name}": "Autora: {name}",
+  "Bára Soukupová": "Bara Soukup",
   "Odesílání zpráv tu zatím nejde.": "Ainda não é possível enviar mensagens a partir daqui.",
   "Napište prosím zprávu.": "Escreva uma mensagem, por favor.",
   "E-mail nevypadá správně.": "O e-mail não parece correto.",

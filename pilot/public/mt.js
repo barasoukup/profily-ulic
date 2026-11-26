@@ -1167,6 +1167,7 @@ export const MT = {
   "Přiložit odkaz na tento řez": "Ehmeż il-link għal din is-sezzjoni",
   "Odešle se jen to, co sem napíšete, jazyk stránky, stát řezu a případně odkaz na řez.": "Jintbagħat biss dak li tikteb hawn, flimkien mal-lingwa tal-paġna, il-pajjiż tal-qatgħa u l-link għall-qatgħa jekk tehmżu.",
   "Autorka: {name}": "Awtriċi: {name}",
+  "Bára Soukupová": "Bara Soukup",
   "Odesílání zpráv tu zatím nejde.": "Għadu ma jistax jintbagħat messaġġ minn hawn.",
   "Napište prosím zprávu.": "Jekk jogħġbok ikteb messaġġ.",
   "E-mail nevypadá správně.": "L-email ma tidhirx korretta.",

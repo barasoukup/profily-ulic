@@ -1167,6 +1167,7 @@ export const FI = {
   "Přiložit odkaz na tento řez": "Liitä linkki tähän leikkaukseen",
   "Odešle se jen to, co sem napíšete, jazyk stránky, stát řezu a případně odkaz na řez.": "Lähetetään vain se, mitä kirjoitat tähän, sekä sivun kieli, leikkauksen maa ja halutessasi linkki leikkaukseen.",
   "Autorka: {name}": "Tekijä: {name}",
+  "Bára Soukupová": "Bara Soukup",
   "Odesílání zpráv tu zatím nejde.": "Viestejä ei voi vielä lähettää täältä.",
   "Napište prosím zprávu.": "Kirjoita viesti.",
   "E-mail nevypadá správně.": "Sähköpostiosoite ei näytä oikealta.",

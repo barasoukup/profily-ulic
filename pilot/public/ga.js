@@ -1167,6 +1167,7 @@ export const GA = {
   "Přiložit odkaz na tento řez": "Ceangail an nasc chuig an ngearradh seo",
   "Odešle se jen to, co sem napíšete, jazyk stránky, stát řezu a případně odkaz na řez.": "Ní sheoltar ach a scríobhann tú anseo, mar aon le teanga an leathanaigh, tír an ghearrtha agus an nasc chuig an ngearradh má cheanglaíonn tú é.",
   "Autorka: {name}": "Údar: {name}",
+  "Bára Soukupová": "Bara Soukup",
   "Odesílání zpráv tu zatím nejde.": "Ní féidir teachtaireachtaí a sheoladh as seo fós.",
   "Napište prosím zprávu.": "Scríobh teachtaireacht, le do thoil.",
   "E-mail nevypadá správně.": "Ní cosúil go bhfuil an ríomhphost ceart.",

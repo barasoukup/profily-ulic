@@ -1142,6 +1142,7 @@ export const ET = {
   "Přiložit odkaz na tento řez": "Lisa link sellele lõikele",
   "Odešle se jen to, co sem napíšete, jazyk stránky, stát řezu a případně odkaz na řez.": "Saadetakse ainult see, mida siia kirjutate, koos lehe keele, lõike riigi ja lisamise korral lingiga lõikele.",
   "Autorka: {name}": "Autor: {name}",
+  "Bára Soukupová": "Bara Soukup",
   "Odesílání zpráv tu zatím nejde.": "Sõnumeid siit veel saata ei saa.",
   "Napište prosím zprávu.": "Palun kirjutage sõnum.",
   "E-mail nevypadá správně.": "E-posti aadress ei tundu õige.",

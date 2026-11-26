@@ -1165,6 +1165,7 @@ export const SK = {
   "Přiložit odkaz na tento řez": "Priložiť odkaz na tento rez",
   "Odešle se jen to, co sem napíšete, jazyk stránky, stát řezu a případně odkaz na řez.": "Odošle sa len to, čo sem napíšete, jazyk stránky, štát rezu a prípadne odkaz na rez.",
   "Autorka: {name}": "Autorka: {name}",
+  "Bára Soukupová": "Bára Soukupová",
   "Odesílání zpráv tu zatím nejde.": "Odosielanie správ tu zatiaľ nejde.",
   "Napište prosím zprávu.": "Napíšte, prosím, správu.",
   "E-mail nevypadá správně.": "E-mail nevyzerá správne.",

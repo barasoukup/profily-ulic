@@ -1166,6 +1166,7 @@ export const SL = {
   "Přiložit odkaz na tento řez": "Priloži povezavo na ta prerez",
   "Odešle se jen to, co sem napíšete, jazyk stránky, stát řezu a případně odkaz na řez.": "Pošlje se samo to, kar napišete tukaj, skupaj z jezikom strani, državo prereza in povezavo na prerez, če jo priložite.",
   "Autorka: {name}": "Avtorica: {name}",
+  "Bára Soukupová": "Bara Soukup",
   "Odesílání zpráv tu zatím nejde.": "Pošiljanje sporočil od tod še ni mogoče.",
   "Napište prosím zprávu.": "Prosimo, napišite sporočilo.",
   "E-mail nevypadá správně.": "E-poštni naslov ni videti pravilen.",

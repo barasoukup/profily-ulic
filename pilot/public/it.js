@@ -1171,6 +1171,7 @@ export const IT = {
   "Přiložit odkaz na tento řez": "Allega il link a questa sezione",
   "Odešle se jen to, co sem napíšete, jazyk stránky, stát řezu a případně odkaz na řez.": "Viene inviato solo ciò che scrivi qui, insieme alla lingua della pagina, al paese del taglio e, se lo alleghi, al link al taglio.",
   "Autorka: {name}": "Autrice: {name}",
+  "Bára Soukupová": "Bara Soukup",
   "Odesílání zpráv tu zatím nejde.": "Da qui non è ancora possibile inviare messaggi.",
   "Napište prosím zprávu.": "Scrivete un messaggio, per favore.",
   "E-mail nevypadá správně.": "L’indirizzo e-mail non sembra corretto.",

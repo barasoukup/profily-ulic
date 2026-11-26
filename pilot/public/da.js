@@ -1166,6 +1166,7 @@ export const DA = {
   "Přiložit odkaz na tento řez": "Vedhæft linket til dette snit",
   "Odešle se jen to, co sem napíšete, jazyk stránky, stát řezu a případně odkaz na řez.": "Kun det, du skriver her, sendes, sammen med sidens sprog, snittets land og linket til snittet, hvis du vedhæfter det.",
   "Autorka: {name}": "Forfatter: {name}",
+  "Bára Soukupová": "Bara Soukup",
   "Odesílání zpráv tu zatím nejde.": "Beskeder kan endnu ikke sendes herfra.",
   "Napište prosím zprávu.": "Skriv venligst en besked.",
   "E-mail nevypadá správně.": "E-mailen ser ikke rigtig ud.",

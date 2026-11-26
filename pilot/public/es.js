@@ -1168,6 +1168,7 @@ export const ES = {
   "Přiložit odkaz na tento řez": "Adjuntar el enlace a esta sección",
   "Odešle se jen to, co sem napíšete, jazyk stránky, stát řezu a případně odkaz na řez.": "Solo se envía lo que escriba aquí, junto con el idioma de la página, el país del corte y, si lo adjunta, el enlace al corte.",
   "Autorka: {name}": "Autora: {name}",
+  "Bára Soukupová": "Bara Soukup",
   "Odesílání zpráv tu zatím nejde.": "Todavía no se pueden enviar mensajes desde aquí.",
   "Napište prosím zprávu.": "Escriba un mensaje, por favor.",
   "E-mail nevypadá správně.": "El correo electrónico no parece correcto.",

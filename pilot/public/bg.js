@@ -1142,6 +1142,7 @@ export const BG = {
   "Přiložit odkaz na tento řez": "Прикачване на връзка към този профил",
   "Odešle se jen to, co sem napíšete, jazyk stránky, stát řezu a případně odkaz na řez.": "Изпраща се само това, което напишете тук, заедно с езика на страницата, държавата на разреза и връзката към разреза, ако я приложите.",
   "Autorka: {name}": "Автор: {name}",
+  "Bára Soukupová": "Bara Soukup",
   "Odesílání zpráv tu zatím nejde.": "Оттук все още не могат да се изпращат съобщения.",
   "Napište prosím zprávu.": "Моля, напишете съобщение.",
   "E-mail nevypadá správně.": "Имейлът не изглежда правилен.",

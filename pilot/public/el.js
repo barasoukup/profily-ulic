@@ -1167,6 +1167,7 @@ export const EL = {
   "Přiložit odkaz na tento řez": "Επισύναψη συνδέσμου σε αυτή τη διατομή",
   "Odešle se jen to, co sem napíšete, jazyk stránky, stát řezu a případně odkaz na řez.": "Αποστέλλεται μόνο ό,τι γράψετε εδώ, μαζί με τη γλώσσα της σελίδας, τη χώρα της τομής και τον σύνδεσμο της τομής, αν τον επισυνάψετε.",
   "Autorka: {name}": "Δημιουργός: {name}",
+  "Bára Soukupová": "Bara Soukup",
   "Odesílání zpráv tu zatím nejde.": "Η αποστολή μηνυμάτων από εδώ δεν είναι ακόμη δυνατή.",
   "Napište prosím zprávu.": "Γράψτε ένα μήνυμα.",
   "E-mail nevypadá správně.": "Το e-mail δεν φαίνεται σωστό.",

@@ -1167,6 +1167,7 @@ export const PL = {
   "Přiložit odkaz na tento řez": "Dołącz link do tego przekroju",
   "Odešle se jen to, co sem napíšete, jazyk stránky, stát řezu a případně odkaz na řez.": "Wysyłane jest tylko to, co tu napiszesz, wraz z językiem strony, krajem przekroju i linkiem do przekroju, jeśli go dołączysz.",
   "Autorka: {name}": "Autorka: {name}",
+  "Bára Soukupová": "Bara Soukup",
   "Odesílání zpráv tu zatím nejde.": "Wysyłanie wiadomości stąd nie jest jeszcze możliwe.",
   "Napište prosím zprávu.": "Napisz, proszę, wiadomość.",
   "E-mail nevypadá správně.": "Adres e-mail nie wygląda poprawnie.",

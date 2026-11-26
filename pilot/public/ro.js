@@ -1167,6 +1167,7 @@ export const RO = {
   "Přiložit odkaz na tento řez": "Atașați linkul către această secțiune",
   "Odešle se jen to, co sem napíšete, jazyk stránky, stát řezu a případně odkaz na řez.": "Se trimite doar ce scrieți aici, împreună cu limba paginii, țara secțiunii și, dacă îl atașați, linkul către secțiune.",
   "Autorka: {name}": "Autoare: {name}",
+  "Bára Soukupová": "Bara Soukup",
   "Odesílání zpráv tu zatím nejde.": "Deocamdată nu se pot trimite mesaje de aici.",
   "Napište prosím zprávu.": "Vă rugăm să scrieți un mesaj.",
   "E-mail nevypadá správně.": "Adresa de e-mail nu pare corectă.",

@@ -144,8 +144,6 @@ export default {
   ...base,
   code: "SK",
   bounds: [16.8, 47.7, 22.6, 49.7],
-  // The author's name (about.js).
-  author: "Bára Soukupová",
   halfKerbNote: lawNote("§ 23 ods. 1 zák. 8/2009 Z. z."),
   // The law's parking as everywhere (§ 23 ods. 1 zák. 8/2009 Z. z., 3 m per direction as Czechia's § 25 odst. 3). Off until
   // 25. 11. 2026: its losses were a fault of the shared code (ai-kerbs.js layLaw), without it Slovakia 6 : 7 on 148

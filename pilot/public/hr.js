@@ -1166,6 +1166,7 @@ export const HR = {
   "Přiložit odkaz na tento řez": "Priloži poveznicu na ovaj presjek",
   "Odešle se jen to, co sem napíšete, jazyk stránky, stát řezu a případně odkaz na řez.": "Šalje se samo ono što ovdje napišete, uz jezik stranice, državu presjeka i poveznicu na presjek ako je priložite.",
   "Autorka: {name}": "Autorica: {name}",
+  "Bára Soukupová": "Bara Soukup",
   "Odesílání zpráv tu zatím nejde.": "Slanje poruka ovdje još nije moguće.",
   "Napište prosím zprávu.": "Molimo napišite poruku.",
   "E-mail nevypadá správně.": "E-pošta ne izgleda ispravno.",
