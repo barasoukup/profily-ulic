@@ -157,6 +157,32 @@ export function savedStreet(osm, frame, id) {
   return { ...c, way, pts };
 }
 
+// A dragged cut follows its street onto the ways that continue it (Bára 26. 11. 2026: on Kraków's Kościuszki the cut
+// could not be dragged onto the bridge, a way of its own in OSM): the way it is on and the ways joined end to end with
+// it (the same point within JOIN_M), on and on up to CHAIN ways, minor ways only when the street is one; the nearest of
+// them to p. The street at a junction goes on as the way that comes nearest to the dragged point.
+const JOIN_M = 0.5, CHAIN = 12;
+export function dragAlong(osm, frame, way, p) {
+  const minorOk = MINOR.has(way.tags?.highway);
+  const ways = (osm?.elements || []).filter((el) => isStreet(el) && (minorOk || !MINOR.has(el.tags.highway) || el.id === way.id));
+  const ptsOf = new Map(ways.map((el) => [el.id, el.geometry.map((g) => frame.toXY(g.lon, g.lat))]));
+  if (!ptsOf.has(way.id)) ptsOf.set(way.id, way.geometry.map((g) => frame.toXY(g.lon, g.lat)));
+  const ends = (pts) => [pts[0], pts.at(-1)];
+  const joined = (a, b) => ends(a).some((x) => ends(b).some((y) => Math.hypot(x[0] - y[0], x[1] - y[1]) < JOIN_M));
+  const chain = [way], seen = new Set([way.id]);
+  for (let i = 0; i < chain.length && chain.length < CHAIN; i++) {
+    const at = ptsOf.get(chain[i].id);
+    for (const el of ways) if (!seen.has(el.id) && joined(at, ptsOf.get(el.id))) { seen.add(el.id); chain.push(el); if (chain.length >= CHAIN) break; }
+  }
+  let best = null;
+  for (const el of chain) {
+    const pts = ptsOf.get(el.id), c = snapToWay(pts, p);
+    const d = Math.hypot(c.point[0] - p[0], c.point[1] - p[1]);
+    if (!best || d < best.d - 1e-9) best = { ...c, d, way: el, pts };
+  }
+  return best;
+}
+
 export function snapToWay(wayPts, p) {
   return closestOnPolyline(wayPts, p);
 }

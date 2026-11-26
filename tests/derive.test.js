@@ -74,3 +74,19 @@ test("osa ulice ve stání u obruby: s ?axisroad=1 je vozovka vedle, kterou pře
   assert.ok(types().includes("pruh"), types().join());
   delete P.axisroad;
 });
+
+// Bára 26. 11. 2026: a dragged cut could not leave its OSM way (Kraków, Kościuszki onto the bridge, a way of its own).
+test("tažený řez pokračuje na navazující úsek ulice (most), ne na vzdálenou ulici", async () => {
+  const { dragAlong, localFrame } = await import("../pilot/public/derive.js");
+  const f = localFrame(50, 20);
+  const g = (pts) => pts.map(([x, y]) => { const [lon, lat] = f.toLonLat(x, y); return { lon, lat }; });
+  const way = (id, pts, tags = {}) => ({ type: "way", id, tags: { highway: "secondary", ...tags }, geometry: g(pts) });
+  const street = way(1, [[0, 0], [100, 0]]), bridge = way(2, [[100, 0], [200, 0]], { bridge: "yes" }), side = way(3, [[100, 0], [100, 100]], { highway: "residential" });
+  const far = way(4, [[0, 30], [300, 30]]), path = way(5, [[200, 0], [260, 0]], { highway: "footway" });
+  const osm = { elements: [street, bridge, side, far, path] };
+  assert.equal(dragAlong(osm, f, street, [150, 5]).way.id, 2, "na most");
+  assert.equal(dragAlong(osm, f, street, [50, 5]).way.id, 1, "zůstává na své ulici");
+  assert.equal(dragAlong(osm, f, street, [104, 60]).way.id, 3, "v křižovatce ta, ke které je bod nejblíž");
+  assert.equal(dragAlong(osm, f, street, [150, 26]).way.id, 2, "nepřeskočí na nespojenou ulici");
+  assert.equal(dragAlong(osm, f, street, [250, 1]).way.id, 2, "pěší cesta nepokračuje silnici");
+});

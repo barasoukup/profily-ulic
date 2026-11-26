@@ -1,5 +1,5 @@
 import { TYPES, SOURCES, DEFAULT_WIDTH, ITEMS, PARKING_USE, PARKING_POSITION, TRAM_BEDS, TURN_CHOICES, HDV_UNDER, UNDER_TYPES, PERMEABLE_TYPES, SURFACES, LAMP_HEIGHTS, underSize } from "./types.js";
-import { localFrame, nearestStreet, savedStreet, snapToWay, placeCut, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, splitTwoWayLane, capWideLanes, pedestrianZone, treePitsAsSidewalk, widenNarrowTrams, carveCycleways, carveTramTracks, lanesFromShoulders, trackAlongRoad, crossFromA, lawNeedFor, isOnewayTags, MAX_REACH } from "./derive.js";
+import { localFrame, nearestStreet, savedStreet, snapToWay, dragAlong, placeCut, centerOnStreet, mtvuPolygons, trackLines, techLines, esriPolygons, deriveProfile, splitTwoWayLane, capWideLanes, pedestrianZone, treePitsAsSidewalk, widenNarrowTrams, carveCycleways, carveTramTracks, lanesFromShoulders, trackAlongRoad, crossFromA, lawNeedFor, isOnewayTags, MAX_REACH } from "./derive.js";
 import { bedOrtho } from "./ortho.js";
 import { laneImage, applyLanes, SK_ORTHO, AT_ORTHO, CH_ORTHO, NL_ORTHO, BE_ORTHO, LU_ORTHO, PL_ORTHO, FR_ORTHO, ES_ORTHO, PT_ORTHO, PT_MAINLAND, ES_NOT_PNOA, CY_ORTHO, MT_ORTHO, IT_ORTHO, EE_ORTHO, SI_ORTHO, FI_ORTHO, US_ORTHO, CA_ORTHO, DK_ORTHO, DE_ORTHO, deWmsUrl, landsAt, landAt, orthoHereAt } from "./lanes-ortho.js";
 import { dkToken } from "./keys.js";
@@ -578,8 +578,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     let osm = keepWay && osmCache ? osmCache.osm : await sources.osm(lat, lon, 80);
     let near;
     if (keepWay && osmCache) {
-      const pts = osmCache.way.geometry.map((g) => frame.toXY(g.lon, g.lat));
-      near = { ...snapToWay(pts, [0, 0]), way: osmCache.way, pts };
+      // Along the street, onto the ways that continue it (a bridge is a way of its own; derive.js dragAlong).
+      near = dragAlong(osm, frame, osmCache.way, [0, 0]);
     } else {
       // The street the link names, if it is still there (derive.js savedStreet), else the nearest one.
       near = (wantWay && savedStreet(osm, frame, wantWay)) || nearestStreet(osm, frame, [0, 0], wantName);
@@ -1095,7 +1095,7 @@ centerMarker.on("drag", () => {
   let dir = [Math.sin(r), Math.cos(r)];
   if (osmCache?.way) {
     // Snap to the street as the drop will, so the preview matches the result.
-    const near = snapToWay(osmCache.way.geometry.map((g) => f.toXY(g.lon, g.lat)), [0, 0]);
+    const near = dragAlong(osmCache.osm, f, osmCache.way, [0, 0]);
     [lon, lat] = f.toLonLat(...near.point);
     dir = near.dir;
   }
