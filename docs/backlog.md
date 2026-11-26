@@ -6,8 +6,10 @@ Co rozhodne Bára, je označeno **(Bára)**.
 
 ## Odhad profilu (ortofoto a OSM, společný kód)
 
-- Most v odhadu jako voda: bez mapy povrchů řeže řez most podle vody pod ním (Most Kotlarski v Krakově,
-  `evaluation/poland/ab/`). Most z OSM (`bridge`) má mít přednost před vodou.
+- ~~Most v odhadu jako voda: bez mapy povrchů řeže řez most podle vody pod ním (Most Kotlarski v Krakově,
+  `evaluation/poland/ab/`). Most z OSM (`bridge`) má mít přednost před vodou.~~ Hotovo 26. 11. (`ortho-osm.js`,
+  `?off=mostvoda`; 27 mostů: lépe 18, hůř 0; regrese beze změny; `evaluation/bridge-water/ZPRAVA.md`). Zbývá: zeleň ze
+  snímku na mostě nad zelenou řekou (Turín) a mezera mezi dvěma oddělenými mosty (chybí plochy `man_made=bridge`).
 - Úzké ulice: jeden široký pruh a chybějící stání (Brusel Rue aux Choux 10,4 m, Rue du Vautour 6,6 m, Antverpy
   Koninginnestraat 5,4 m; stejně dřív Rakousko a Německo). Proč se u jednosměrky s jedním pruhem zákonné stání nepřidá,
   když místo je (`evaluation/universal/ZPRAVA.md`, Belgie).

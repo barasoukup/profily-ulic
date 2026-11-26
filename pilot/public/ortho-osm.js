@@ -605,7 +605,13 @@ export function orthoOsmPolys({ osm, frame, dir, way, st, mapRuns = [], edges = 
     polys.push({ code: f.attributes.CTVUK_KOD, label: f.attributes.CTVUK_POPIS, rings, bbox: bboxOf(rings[0]) });
     polys.areas++;
   }
+  // A street on a bridge (its own bridge tag, a level above the ground) lies over OSM's water and green, which are the
+  // ground under it: they do not end the profile there (Most Kotlarski in Kraków was cut as water between its
+  // carriageways and over its sidewalks); derive.js ends the street behind its outer sidewalk, as with surface maps.
+  // ?off=mostvoda: as before.
+  const overGround = levelOf(o.own.tags) > 0 && o.own.tags.bridge && o.own.tags.bridge !== "no" && !P.off?.has("mostvoda");
   for (const el of o.greens) {
+    if (overGround && Number(el.tags.layer || 0) < levelOf(o.own.tags) && (WATER(el.tags) || GREEN(el.tags))) continue;
     const rings = [el.geometry, ...(el.holes || [])].map((r) => r.map((g) => frame.toXY(g.lon, g.lat)));
     const [code, label] = GREEN(el.tags) ? [401, "zeleň (OSM)"] : ["allotments", "cemetery"].includes(el.tags.landuse) ? [300, "zahrady (OSM)"] : [501, "voda (OSM)"];
     polys.push({ code, label, guess: true, orthoOsm: true, rings, bbox: bboxOf(rings[0]) });
