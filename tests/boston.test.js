@@ -133,6 +133,23 @@ test("Boston: mezery za vnějším chodníkem podle OSM (dům, parkoviště) a o
   assert.equal(outerGapsByImage(green, [0, 1], img(14, 18)), 0);
 });
 
+test("Boston: ?outerosm=1 doplní mezery za chodníkem jen domy a parkovišti z OSM, ortofoto nic neposuzuje", async () => {
+  const { BOSTON_MAP } = await import("../pilot/public/towns/boston.js");
+  const runs = () => [{ s: -30, e: -10, code: 401, gap: true }, { s: -10, e: -8, code: 702 }, { s: -8, e: 8, code: 701 }, { s: 8, e: 10, code: 702 }, { s: 10, e: 30, code: 401, gap: true }];
+  const ctx = { tags: { highway: "primary" }, tracks: () => [], cycleTracks: () => [], osmAreas: () => [{ s: 12, e: 25, code: 1003 }] };
+  const plain = runs(); BOSTON_MAP.prepare(plain, ctx);
+  assert.deepEqual(plain.map((r) => r.code), [401, 702, 701, 702, 401]);
+  globalThis.PROFILY_US = { outerosm: "1" };
+  const on = runs(); BOSTON_MAP.prepare(on, ctx);
+  globalThis.PROFILY_US = { outergaps: "1" };
+  const both = runs(); BOSTON_MAP.prepare(both, ctx);
+  delete globalThis.PROFILY_US;
+  assert.deepEqual(on.map((r) => [r.code, +r.s.toFixed(1), +r.e.toFixed(1)]), [[401, -30, -10], [702, -10, -8], [701, -8, 8], [702, 8, 10], [401, 10, 12], [704, 12, 25], [401, 25, 30]]);
+  // (No gap is left for the orthophoto: OUTER_GAP only with ?outergaps=1.)
+  assert.ok(on.every((r) => !r.outer));
+  assert.ok(both.some((r) => r.outer));
+});
+
 test("Boston: ?off=kerbbays vypne stání z úzkých parkovišť u obruby jako v Torontu a New Yorku", async () => {
   const { BOSTON_MAP } = await import("../pilot/public/towns/boston.js");
   const runs = () => [{ s: -10, e: -6, code: 702 }, { s: -6, e: -3.5, code: 1003, lot: true }, { s: -3.5, e: 5, code: 701 }, { s: 5, e: 9, code: 702 }];

@@ -79,8 +79,9 @@ export function kerbBays(runs, max = 3.5) {
 // square 1003 (704 from OUTER_LOT, a lot beside the street) only beyond the first sidewalk out from the carriageway on each
 // side (a tree strip by the kerb stays the map's green). What stays of the gaps there is marked outer, for the
 // orthophoto to tell green from paving (ortho-osm.js outerGapsByImage). Runs changed in place. A city's prepare calls it
-// (Boston's only with ?outergaps=1: not shown better, evaluation/usa/boston/outer/ZPRAVA.md).
-export function outerGaps(runs, spans = []) {
+// (Boston's only with ?outergaps=1: not shown better, evaluation/usa/boston/outer/ZPRAVA.md). image: false leaves the
+// rest unmarked, OSM's houses and lots alone (?outerosm=1, evaluation/usa/boston/outer-osm/ZPRAVA.md).
+export function outerGaps(runs, spans = [], { image = true } = {}) {
   const at = carriageway(runs);
   if (!at) return runs;
   const gaps = [];
@@ -95,7 +96,7 @@ export function outerGaps(runs, spans = []) {
     const pieces = [], here = spans.filter((x) => outer || x.code === 601);
     for (let t = r.s; t < r.e - 1e-9; t += STEP) {
       const m = t + STEP / 2, hit = here.find((x) => x.s <= m && x.e >= m), code = hit ? hit.code : 401, last = pieces.at(-1);
-      if (last && last.code === code) last.e = Math.min(r.e, t + STEP); else pieces.push({ code, s: t, e: Math.min(r.e, t + STEP), ...(code === 401 ? { gap: true, ...(outer && { outer: true }) } : { fromOsm: true }) });
+      if (last && last.code === code) last.e = Math.min(r.e, t + STEP); else pieces.push({ code, s: t, e: Math.min(r.e, t + STEP), ...(code === 401 ? { gap: true, ...(outer && image && { outer: true }) } : { fromOsm: true }) });
     }
     // (A lot of OSM as wide as a wide lawn ends the profile as that did: derive.js stopAt.)
     for (const x of pieces) if (x.code === 1003 && x.e - x.s >= OUTER_LOT) x.code = 704;

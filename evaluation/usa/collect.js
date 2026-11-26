@@ -26,6 +26,8 @@ const VARIANTS = {
   rt0: { q: "off=roadtracks", off: [] }, // Canada: without OSM's cycle tracks in the map's carriageway
   bos0: { q: "boston=0&cambridge=0", off: [] }, // Boston (evaluation/usa/boston): without the maps of Boston and Cambridge
   og0: { q: "off=outergaps", off: [] }, // Boston (evaluation/usa/boston/outer): measured with the outer gaps on by default; now def is without them, ?outergaps=1 with
+  ogosm: { q: "outerosm=1", off: [] }, // Boston (evaluation/usa/boston/outer-osm): the outer gaps from OSM's houses and lots alone
+  nycsigns: { q: "nycsigns=1", off: [] }, // New York (evaluation/usa/nyc/park): parking by NYC DOT's signs
   sfold: { q: "off=sfosmpark,axisroad", off: ["axisroad"] }, // San Francisco (evaluation/usa/sf/fixes): measured with both fixes on by default; now ?sfosmpark=1&axisroad=1 turn them on
   osm: { q: "dc=0&toronto=0&nyc=0&sf=0&boston=0&cambridge=0&orto=0&ai=0", off: [], load: true },
   old: { q: "off=ulicky,treepits,pocetpruhu", off: ["ulicky", "treepits", "pocetpruhu"] },
