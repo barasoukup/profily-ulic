@@ -585,15 +585,15 @@ export const HR = {
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} trenutačno ne odgovara, površine su iz tehničke karte ČÚZK-a.",
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "Tehnička karta ČÚZK-a trenutačno ne odgovara, profil je procjena iz OSM-a.",
   "Mapa povrchů tu nic nevrátila, profil je odhad z OSM.": "Karta površina ovdje nije ništa vratila, profil je procjena iz OSM-a.",
-  "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Rubnjaci i zgrade su iz OSM-a, provjerite širine.",
+  "Obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Rubnjaci su iz OSM-a, zgrade iz podataka {houses}, provjerite širine.",
   "Mapa povrchů tu ulici nemá.": "Karta površina ovdje nema ulicu.",
   "{name} teď neodpovídá (server je přetížený).": "{name} trenutačno ne odgovara (poslužitelj je preopterećen).",
   "{name} teď neodpovídá.": "{name} trenutačno ne odgovara.",
   "Technická mapa ČÚZK teď neodpovídá.": "Tehnička karta ČÚZK-a trenutačno ne odgovara.",
   "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "Tehnička karta ovdje ima samo linije bez površina (regija ne isporučuje površine).",
   "Mapa povrchů tu nic nevrátila.": "Karta površina ovdje nije ništa vratila.",
-  "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "Rubnjaci su procijenjeni iz ortofota, zgrade su iz OSM-a, provjerite širine.",
-  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Ortofoto ovdje nije pomoglo: rubnjaci i zgrade su iz OSM-a, provjerite širine.",
+  "Obruby jsou odhadnuté z ortofota a domy z {houses}, šířky ověřte.": "Rubnjaci su procijenjeni iz ortofota, zgrade su iz podataka {houses}, provjerite širine.",
+  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Ortofoto ovdje nije pomoglo: rubnjaci su iz OSM-a, zgrade iz podataka {houses}, provjerite širine.",
 
   // ---------- rainwater management (types.js water, HDV_UNDER) ----------
   "Vsakovací průleh": "Upojna udubina",
@@ -632,7 +632,7 @@ export const HR = {
   "Obrázek PNG": "Slika PNG",
   "Vektor SVG": "Vektor SVG",
   "Soubor": "Datoteka",
-  "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka": "katastar prometnica © Hlavné mesto SR Bratislava i MČ Dúbravka",
+  "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka, © EUROSENSE SLOVAKIA, s.r.o.": "katastar prometnica © Hlavné mesto SR Bratislava i MČ Dúbravka, © EUROSENSE SLOVAKIA, s.r.o.",
   "pasport dopravy a zelene © mesto Prešov (CC BY 4.0)": "katastar prometnica i zelenila © mesto Prešov (CC BY 4.0)",
   "pasport komunikácií © mesto Žilina": "katastar prometnica © mesto Žilina",
   "pasport komunikácií © mesto Košice": "katastar prometnica © mesto Košice",
@@ -823,7 +823,7 @@ export const HR = {
   "Úřední vyměřování (geodienste.ch) teď neodpovídá, profil je odhad z ortofota a OSM.": "Službena katastarska izmjera (geodienste.ch) trenutačno ne odgovara, profil je procjena iz ortofota i OSM-a.",
   // The Netherlands (Bára 20. 11. 2026).
   "mapy povrchů BGT, ortofota PDOK a OSM": "karte površina BGT, ortofota PDOK-a i OSM-a",
-  "ortofoto © PDOK (Beeldmateriaal Nederland)": "ortofoto © PDOK (Beeldmateriaal Nederland)",
+  "ortofoto © Beeldmateriaal.nl (PDOK, CC BY 4.0)": "ortofoto © Beeldmateriaal.nl (PDOK, CC BY 4.0)",
   "mapa povrchů BGT © Kadaster a správci BGT (PDOK, CC0)": "karta površina BGT © Kadaster i upravitelji BGT-a (PDOK, CC0)",
   " · mapa povrchů BGT neodpověděla, odhad z ortofota a OSM": " · karta površina BGT nije odgovorila, procjena iz ortofota i OSM-a",
   "Mapa povrchů BGT (PDOK) teď neodpovídá, profil je odhad z ortofota a OSM.": "Karta površina BGT (PDOK) trenutačno ne odgovara, profil je procjena iz ortofota i OSM-a.",
@@ -836,21 +836,21 @@ export const HR = {
   "podélné stání: 2 × 6 m (ASVV 2012 podle obce Oost Gelre), v Amsterdamu 2,1–2,4 m": "uzdužno parkiranje: 2 × 6 m (ASVV 2012 prema općini Oost Gelre), u Amsterdamu 2,1–2,4 m",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Smí se jen u značky E8b (RVV 1990 čl. 10). Zákon šířku neuvádí, v praxi 3,5 m pro hasiče na jednosměrce a 4,5 m vozovky pro oba směry; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Parkiranje napola na nogostupu prema OSM-u: na kolniku ostaje {free}. Dopušteno je samo uz znak E8b (RVV 1990 čl. 10). Zakon ne navodi širinu, u praksi 3,5 m za vatrogasce u jednosmjernoj ulici i 4,5 m kolnika za oba smjera; aplikacija ostavlja prohodne prometne trake, dakle najmanje {need}.",
   "jednosměrka s cyklisty v protisměru: vozovka nejméně 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)": "jednosmjerna ulica s biciklistima u suprotnom smjeru: kolnik najmanje 3,5 m, osnovna 4 m (Amsterdam, Afwegingskader fietsstraten 2020)",
-  "Sítě © Gemeente Amsterdam a Waternet (CC BY).": "Mreže © Gemeente Amsterdam i Waternet (CC BY).",
+  "Sítě © Gemeente Amsterdam a Waternet (Creative Commons Naamsvermelding, verze neuvedena).": "Mreže © Gemeente Amsterdam i Waternet (Creative Commons Naamsvermelding, verzija nije navedena).",
   "kabel veřejného osvětlení": "kabel javne rasvjete",
   "parkovací místa © Gemeente Amsterdam": "parkirna mjesta © Gemeente Amsterdam",
   // Belgium and Luxembourg (Bára 20. 11. 2026).
-  "ortofoto © SPW (Service public de Wallonie)": "ortofoto © SPW (Service public de Wallonie)",
-  "ortofoto © Digitaal Vlaanderen": "ortofoto © Digitaal Vlaanderen",
-  "ortofoto © ACT Luxembourg (geoportail.lu)": "ortofoto © ACT Luxembourg (geoportail.lu)",
+  "ortofoto © SPW (Service public de Wallonie, CC BY 4.0)": "ortofoto © SPW (Service public de Wallonie, CC BY 4.0)",
+  "ortofoto: Bron: Luchtopnamen Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)": "ortofoto: Bron: Luchtopnamen Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)",
+  "ortofoto © ACT Luxembourg (geoportail.lu, CC0)": "ortofoto © ACT Luxembourg (geoportail.lu, CC0)",
   "čar mapy GRB, ortofota a OSM": "linija karte GRB, ortofota i OSM-a",
   "čar mapy PICC, ortofota a OSM": "linija karte PICC, ortofota i OSM-a",
-  "čáry GRB © Digitaal Vlaanderen": "linije GRB © Digitaal Vlaanderen",
+  "čáry GRB: Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)": "linije GRB: Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)",
   " · mapa povrchů GRB neodpověděla, odhad z ortofota a OSM": " · karta površina GRB nije odgovorila, procjena iz ortofota i OSM-a",
   "Mapa povrchů GRB (Digitaal Vlaanderen) teď neodpovídá, profil je odhad z ortofota a OSM.": "Karta površina GRB (Digitaal Vlaanderen) trenutačno ne odgovara, profil je procjena iz ortofota i OSM-a.",
   "mapy povrchů GRB, ortofota a OSM": "karte površina GRB, ortofota i OSM-a",
   "mapa povrchů (GRB): {who}": "karta površina (GRB): {who}",
-  "čáry PICC © SPW (Service public de Wallonie)": "linije PICC © SPW (Service public de Wallonie)",
+  "čáry PICC © SPW (Service public de Wallonie, CC BY 4.0)": "linije PICC © SPW (Service public de Wallonie, CC BY 4.0)",
   "chodník: volný průchod nejméně 1,5 m, základ 1,8 m (Flandry, Vademecum voetgangersvoorzieningen 2026; Valonsko 1,5 m; Brusel 2 m)": "nogostup: slobodna širina prolaza najmanje 1,5 m, osnovno 1,8 m (Flandrija, Vademecum voetgangersvoorzieningen 2026; Valonija 1,5 m; Bruxelles 2 m)",
   "společná stezka pro chodce a cyklisty (D10): jednosměrná 2 m, obousměrná 2,5 m, doporučeno 3 m (Valonsko, Guide cyclable)": "zajednička biciklističko-pješačka staza (D10): jednosmjerna 2 m, dvosmjerna 2,5 m, preporučeno 3 m (Valonija, Guide cyclable)",
   "stezka pro cyklisty jednosměrná: Flandry 2 m (Vademecum fietsvoorzieningen 2024), Valonsko nejméně 1,3 m (Guide cyclable); obousměrná Flandry 3 m, Valonsko 2,2–2,6 m": "jednosmjerna biciklistička staza: Flandrija 2 m (Vademecum fietsvoorzieningen 2024), Valonija najmanje 1,3 m (Guide cyclable); dvosmjerna Flandrija 3 m, Valonija 2,2–2,6 m",
@@ -1137,16 +1137,16 @@ export const HR = {
 export const HR_HTML = {
   footer: `Podaci: tehničke karte © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (te broj etaža i razvoj izgradnje, CC BY 4.0), statutarnih gradova Brno, Jihlava, Most, Opava i Plzeň
     i regija (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (i pretraživanje adresa), katastar i ortofoto © ČÚZK (CC BY 4.0) · ortofoto, zgrade i granice Slovačke © <a href="https://www.geoportal.sk">GKÚ Bratislava</a>, NLC (ZBGIS, CC BY 4.0), ulice i adrese Slovačke © MV SR ·
-    katastri prometnica © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), crteži karata © mestá Nitra, Piešťany, Hlohovec, tehnička karta © Hlavné mesto SR Bratislava ·
-    instalacije © IPR Praha, Gemeente Amsterdam i Waternet (CC BY), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, statutarni gradovi Karviná, Ostrava, grad Břeclav ·
+    katastri prometnica © Hlavné mesto SR Bratislava, MČ Dúbravka, EUROSENSE SLOVAKIA, s.r.o., mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), crteži karata © mestá Nitra, Piešťany, Hlohovec, tehnička karta © Hlavné mesto SR Bratislava ·
+    instalacije © IPR Praha, Gemeente Amsterdam i Waternet (Creative Commons Naamsvermelding, verzija nije navedena), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, statutarni gradovi Karviná, Ostrava, grad Břeclav ·
     Austrija: ortofoto © basemap.at (CC BY 4.0), Flächen-Mehrzweckkarte © Stadt Wien – data.wien.gv.at (CC BY 4.0), granica © EuroGeographics (GISCO), prometni znakovi Salzburga © Stadt Salzburg (CC BY 3.0 AT), pretraživanje Photon © komoot (podaci OSM-a) ·
     Njemačka: ortofoto saveznih zemalja © LGL-BW, Bayerische Vermessungsverwaltung, GeoBasis-DE/LGB, Landesamt GeoInformation Bremen, LGV Hamburg, HVBG, GeoBasis-DE/M-V, LGLN, GeoBasis-DE/NRW, GeoBasis-DE/LVermGeoRP, GeoBasis-DE/LVermGeo SH, GeoBasis-DE/LVGL-SL, GeoSN, GeoBasis-DE/LVermGeo ST, GDI-Th; <a href="https://www.govdata.de/dl-de/by-2-0">dl-de/by-2-0</a>, <a href="https://www.govdata.de/dl-de/zero-2-0">dl-de/zero-2-0</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, granica © EuroGeographics (GISCO), prometni znakovi Wikimedia Commons (službena djela), pretraživanje Photon © komoot (podaci OSM-a) ·
     Švicarska i Lihtenštajn: ortofoto SWISSIMAGE i granice © swisstopo, službena katastarska izmjera (Bodenbedeckung) © kantoni i Lihtenštajn putem <a href="https://geodienste.ch">geodienste.ch</a>, prometni znakovi Wikimedia Commons (službena djela, ASTRA), pretraživanje Photon © komoot (podaci OSM-a) ·
-    Nizozemska: karta površina BGT i zgrade BAG © Kadaster i upravitelji registara putem <a href="https://www.pdok.nl">PDOK</a> (CC0, Public Domain Mark), ortofoto © Beeldmateriaal Nederland (PDOK), visine zgrada <a href="https://3dbag.nl">3D BAG</a> © TU Delft i 3DGI (CC BY 4.0), granica © EuroGeographics (GISCO), prometni znakovi Wikimedia Commons (službena djela), pretraživanje PDOK Locatieserver ·
-    Belgija i Luksemburg: ortofoto i linije GRB © Digitaal Vlaanderen, ortofoto i linije PICC © SPW (Service public de Wallonie), ortofoto © ACT Luxembourg (geoportail.lu), granica © EuroGeographics (GISCO), prometni znakovi Wikimedia Commons (službena djela), pretraživanje Photon © komoot (podaci OSM-a) ·
-    Poljska: ortofoto i pretraživanje adresa © GUGiK (Geoportal.gov.pl, PRG), karta površina Krakova (MJO) © Gmina Miejska Kraków, granica © EuroGeographics (GISCO), prometni znakovi Wikimedia Commons (službena djela) ·
-    Francuska: ortofoto, zgrade (BD TOPO) i pretraživanje adresa © IGN (Géoplateforme, Licence Ouverte 2.0), karta površina Pariza (Plan de voirie) © Ville de Paris (ODbL), granica © EuroGeographics (GISCO), prometni znakovi Wikimedia Commons (službena djela) ·
-    Španjolska: ortofoto PNOA i pretraživanje adresa CartoCiudad © IGN (CC BY 4.0 scne.es), zgrade © Dirección General del Catastro, u Navarri Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), u Baskiji © Arabako, Bizkaiko i Gipuzkoako Foru Aldundia, karta površina Zaragoze © Ayuntamiento de Zaragoza (IDEZar), granica © EuroGeographics (GISCO), prometni znakovi Wikimedia Commons (službena djela) ·
+    Nizozemska: karta površina BGT i zgrade BAG © Kadaster i upravitelji podataka (bronhouders) putem <a href="https://www.pdok.nl">PDOK</a> (CC0, Public Domain Mark), ortofoto © Beeldmateriaal Nederland (PDOK, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>), visine zgrada <a href="https://3dbag.nl">3D BAG</a> © TU Delft i 3DGI (CC BY 4.0), granica © EuroGeographics (GISCO), prometni znakovi Wikimedia Commons (službena djela), pretraživanje PDOK Locatieserver, parkirna mjesta Amsterdama © Gemeente Amsterdam ·
+    Belgija i Luksemburg: ortofoto i linije GRB: izvor Digitaal Vlaanderen (<a href="https://www.vlaanderen.be/digitaal-vlaanderen/onze-oplossingen/open-data/voorwaarden-voor-het-hergebruik-van-overheidsinformatie/modellicentie-gratis-hergebruik">Modellicentie gratis hergebruik v1.0</a>), ortofoto i linije PICC © SPW (Service public de Wallonie, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>), ortofoto © ACT Luxembourg (geoportail.lu, CC0), granica © EuroGeographics (GISCO), prometni znakovi Wikimedia Commons (službena djela), pretraživanje Photon © komoot (podaci OSM-a) ·
+    Poljska: ortofoto i pretraživanje adresa © GUGiK (Geoportal.gov.pl, PRG), karta površina Krakova (MJO) © Gmina Miejska Kraków, granica © EuroGeographics (GISCO), prometni znakovi Wikimedia Commons (službena djela), pretraživanje Photon © komoot (podaci OSM-a) ·
+    Francuska: ortofoto, zgrade (BD TOPO) i pretraživanje adresa © <a href="https://geoservices.ign.fr">IGN France</a> (Géoplateforme, <a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/">Licence Ouverte 2.0</a>), karta površina Pariza (Plan de voirie) © <a href="https://opendata.paris.fr">Ville de Paris</a> (<a href="https://opendatacommons.org/licenses/odbl/">ODbL</a>), granica © EuroGeographics (GISCO), prometni znakovi Wikimedia Commons (službena djela) ·
+    Španjolska: ortofoto PNOA i pretraživanje adresa CartoCiudad © Instituto Geográfico Nacional de España (CC BY 4.0, scne.es), zgrade © Dirección General del Catastro, u Navarri Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), u Baskiji © Arabako, Bizkaiko i Gipuzkoako Foru Aldundia, karta površina Zaragoze © Ayuntamiento de Zaragoza (IDEZar), granica © EuroGeographics (GISCO), prometni znakovi Wikimedia Commons (službena djela) ·
     Portugal: ortofoto © DGT (Direção-Geral do Território), granica © EuroGeographics (GISCO), prometni znakovi Wikimedia Commons (službena djela; ponovno nacrtali Fry1989 pod CC BY-SA 3.0 i Gigillo83 pod CC BY-SA 4.0) ·
     Monako: ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0), granica © doprinositelji OpenStreetMapa, crteži francuskih prometnih znakova Wikimedia Commons ·
     Cipar: ortofoto 2019. © Department of Lands and Surveys (DLS; licenca nije navedena), zgrade © DLS (CC BY 4.0), granica © doprinositelji OpenStreetMapa, prometni znakovi Wikimedia Commons (britanski uzorci: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
@@ -1159,15 +1159,15 @@ export const HR_HTML = {
     Litva: karta površina Vilniusa (topografske površine 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas (licencija nije navedena; samo uz ?vilnius=1), obrisi zgrada GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0), granica © EuroGeographics (GISCO), prometni znakovi Wikimedia Commons (crteži Augustascija pod CC BY 4.0, tablice 846 i 853 Gigillo83 pod CC BY-SA 4.0), pretraživanje Photon © komoot (podaci OSM-a) ·
     SAD (Washington): karta površina (Planimetrics 2023), inventar ulica (Roadway SubBlock) i ortofoto 2025 © DC GIS, Office of the Chief Technology Officer i DDOT (CC BY 4.0), granica © U.S. Census Bureau (TIGERweb) i EuroGeographics (GISCO), pretraživanje Photon © komoot (podaci OSM-a) ·
         Kanada (Toronto): karta površina, visine zgrada i ortofoto 2025: Contains information licensed under the Open Government Licence – Toronto (<a href="https://open.toronto.ca/open-data-licence/">licenca</a>), granica © EuroGeographics (GISCO) (Adapted from Statistics Canada, Digital Boundary Files (census subdivisions), 2021. This does not constitute an endorsement by Statistics Canada of this product.), pretraživanje Photon © komoot (podaci OSM-a) ·
-    parkiranje © TSK hl. m. Prahy (CC BY 4.0), zabrane parkiranja, stabla i razredi ulica iz <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, gradovi Jihlava, Opava, Plzeň (CC0) ·
+    parkiranje © TSK hl. m. Prahy (CC BY 4.0), zabrane parkiranja, stabla i razredi ulica iz <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, gradovi Jihlava (CC BY-SA), Opava, Plzeň (CC0) ·
     © doprinositelji <a href="https://www.openstreetmap.org/copyright">OpenStreetMapa</a> (ODbL) ·
     ilustracije © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licencija
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
     lokalne ilustracije i kôd © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Izvori i licencije</a> (na češkom) ·
     <a href="#kontakt" class="open-contact">kontakt</a><br>
-    Spremamo samo presjeke (mjesto, smjer, ulicu, vrijeme), klikove bez pronađene ulice (mjesto s točnošću od oko kilometar), korištene funkcije te prijave pogrešaka i poruke koje sami napišete (uz poruku i neobveznu e-adresu za odgovor, jezik stranice i državu presjeka; čuvamo ih dok ih ne izbrišemo); nikakve IP adrese ni kolačiće. Karte i podaci
-    učitavaju se izravno s poslužitelja IPR-a, ČÚZK-a, gradova, regija, basemap.at, njemačkih saveznih zemalja, Berlina, Hamburga, Aachena, swisstopa, geodienste.ch, PDOK-a, 3D BAG-a, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK-a, grada Krakova, IGN-a, grada Pariza, španjolskog IGN-a i katastra, grada Zaragoze, DGT-a, DLS-a Cipra, malteške Uprave za prostorno planiranje, pokrajine Bolzano, gradova Torina, Bologne i Modene, regije Emilija-Romanja, regije Lombardija (Regione Lombardia), estonske agencije Maa- ja Ruumiamet, grada Tallinna, slovenske geodetske uprave (GURS), gradova Helsinkija, Espooa i Turkua, finskog SYKE-a (Ryhti), danske agencije Klimadatastyrelsen (Dataforsyningen), gradova Kopenhagena (Københavns Kommune) i Aarhusa, grada Vilniusa (Vilniaus planas), litavskog geoportala (geoportal.lt, GRPK), DC GIS-a (Washington), grada Toronta i OSM-a, a tekst pretraživanja i s komoota (Photon), PDOK-a, GUGiK-a, IGN-a, CartoCiudada, agencije Maa- ja Ruumiamet (In-ADS), GURS-a, SYKE-a i agencije Klimadatastyrelsen (GSearch) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">privatnost</a>, na češkom).`,
+    Spremamo presjeke (mjesto, smjer, doseg, ulicu, vrijeme), izmjene profila u ispravci podataka i u Prijedlogu (vrste i širine dijelova), klikove bez pronađene ulice (mjesto s točnošću od oko kilometar), korištene funkcije te prijave pogrešaka i poruke koje sami napišete (uz poruku i neobveznu e-adresu za odgovor, jezik stranice i državu presjeka; čuvamo ih dok ih ne izbrišemo); zapise jednog posjeta povezuje nasumičan broj jednog učitavanja stranice. IP adrese ne spremamo i ne koristimo kolačiće, postavke i posljednji profil ostaju samo u vašem pregledniku. Stranicu hostira GitHub Pages, zapis i pločice OSM-a Cloudflare. Karte i podaci
+    učitavaju se izravno s poslužitelja IPR-a, ČÚZK-a, ÚGKK SR-a (ZBGIS), gradova (i putem ArcGIS Online), regija, basemap.at, njemačkih saveznih zemalja, Berlina, Hamburga, Aachena, swisstopa, geodienste.ch, PDOK-a, 3D BAG-a, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK-a, grada Krakova, IGN-a, grada Pariza, španjolskog IGN-a i katastra, grada Zaragoze, DGT-a, DLS-a Cipra, malteške Uprave za prostorno planiranje, pokrajine Bolzano, gradova Torina, Bologne i Modene, regije Emilija-Romanja, regije Lombardija (Regione Lombardia), estonske agencije Maa- ja Ruumiamet, grada Tallinna, slovenske geodetske uprave (GURS), gradova Helsinkija, Espooa i Turkua, finskog SYKE-a (Ryhti), danske agencije Klimadatastyrelsen (Dataforsyningen), gradova Kopenhagena (Københavns Kommune) i Aarhusa, grada Vilniusa (Vilniaus planas), litavskog geoportala (geoportal.lt, GRPK), DC GIS-a (Washington), grada Toronta i OSM-a; oni vide vašu IP adresu i mjesto koje gledate. Tekst pretraživanja, ovisno o mjestu, šalje se ČÚZK-u, ÚGKK SR-u, gradu Beču, komootu (Photon), PDOK-u, GUGiK-u, IGN-u France, CartoCiudadu, agenciji Maa- ja Ruumiamet (In-ADS), GURS-u, SYKE-u ili agenciji Klimadatastyrelsen (GSearch); komoot i IGN dobivaju i središte karte. Panoramu ulice nakon klika učitava Mapy.com (Seznam.cz) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">privatnost</a>, na češkom).`,
 };
 
 // The city's texts (city.js) in Croatian, as the sentences take them: server in the genitive ("Poslužitelj grada
@@ -1225,9 +1225,9 @@ export const HR_CITY = {
   brno: own("Brno", "grada Brna", "Tehnička karta grada Brna", "grada Brna", "dionice s naplatom parkiranja (parkovanivbrne.cz)",
     "Podaci © Statutární město Brno (tehnička karta i MTVU; zgrade i biciklistička infrastruktura, data.brno.cz, CC BY 4.0, prilagođeno), parkiranje © parkovanivbrne.cz"),
   jihlava: own("Jihlavu", "grada Jihlave", "Katastar prometnica Jihlave", "grada Jihlave", "parkirna mjesta (grad Jihlava)",
-    `Podaci © Statutární město Jihlava (katastar prometnica, parkiranje, urbana oprema), RÚIAN i katastar © ČÚZK, 2026 (CC BY 4.0, prilagođeno)`),
+    `Podaci © Statutární město Jihlava (katastar prometnica, parkiranje CC BY-SA, urbana oprema), RÚIAN i katastar © ČÚZK, 2026 (CC BY 4.0, prilagođeno)`),
   most: own("Most", "grada Mosta", "Tehnička karta Mosta", "grada Mosta", TECH_PARKING,
-    `Podaci © Statutární město Most (karta objekata i tehnička karta, javna rasvjeta), ${RUIAN}`),
+    `Podaci © Statutární město Most (karta objekata i javna rasvjeta, CC BY-SA; tehnička karta), ${RUIAN}`),
   opava: own("Opavu", "grada Opave", "Namjenska karta Opave", "grada Opave", "parkirna mjesta (grad Opava)",
     `Podaci © Statutární město Opava (namjenska karta, parkiranje, stabla, klupe, stajališta), ${RUIAN}`),
   pardubice: {

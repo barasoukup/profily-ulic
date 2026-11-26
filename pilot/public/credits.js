@@ -24,9 +24,9 @@ export const SOURCE_CREDITS = {
     sk: () => t("ortofoto © GKÚ Bratislava, NLC (ZBGIS, CC BY 4.0)"), at: () => t("ortofoto © basemap.at (CC BY 4.0)"),
     at19: () => t("ortofoto © basemap.at (CC BY 4.0)"),
     ch: () => t("ortofoto SWISSIMAGE © swisstopo"),
-    nl: () => t("ortofoto © PDOK (Beeldmateriaal Nederland)"),
-    "be-vl": () => t("ortofoto © Digitaal Vlaanderen"), "be-wal": () => t("ortofoto © SPW (Service public de Wallonie)"),
-    lu: () => t("ortofoto © ACT Luxembourg (geoportail.lu)"),
+    nl: () => t("ortofoto © Beeldmateriaal.nl (PDOK, CC BY 4.0)"),
+    "be-vl": () => t("ortofoto: Bron: Luchtopnamen Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)"), "be-wal": () => t("ortofoto © SPW (Service public de Wallonie, CC BY 4.0)"),
+    lu: () => t("ortofoto © ACT Luxembourg (geoportail.lu, CC0)"),
     pl: () => t("ortofoto © GUGiK (Geoportal.gov.pl)"),
     fr: () => t("ortofoto © IGN (Géoplateforme)"),
     es: () => t("ortofoto PNOA © IGN (CC BY 4.0)"),
@@ -58,7 +58,7 @@ export const SOURCE_CREDITS = {
   skTm: { true: () => t("technická mapa © Hlavné mesto SR Bratislava") },
   // A Slovak town's passport where the cut took its surfaces (towns/slovensko.js SK_TOWNS).
   skTown: {
-    bratislava: () => t("pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka"), presov: () => t("pasport dopravy a zelene © mesto Prešov (CC BY 4.0)"),
+    bratislava: () => t("pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka, © EUROSENSE SLOVAKIA, s.r.o."), presov: () => t("pasport dopravy a zelene © mesto Prešov (CC BY 4.0)"),
     zilina: () => t("pasport komunikácií © mesto Žilina"), bystrica: () => t("pasport komunikácií © mesto Banská Bystrica"), kosice: () => t("pasport komunikácií © mesto Košice"),
     zvolen: () => t("komunikácie a spevnené plochy © mesto Zvolen"),
   },
@@ -67,7 +67,7 @@ export const SOURCE_CREDITS = {
     nitra: () => t("kresba © mesto Nitra"), piestany: () => t("kresba © mesto Piešťany"), zvolen: () => t("kresba © mesto Zvolen"), hlohovec: () => t("polohopis © mesto Hlohovec"),
     presov: () => t("hranice druhov pozemkov © mesto Prešov (CC BY 4.0)"), "bratislava-tm": () => t("technická mapa © Hlavné mesto SR Bratislava"),
     // Belgium's regions (towns/belgium.js).
-    grb: () => t("čáry GRB © Digitaal Vlaanderen"), picc: () => t("čáry PICC © SPW (Service public de Wallonie)"),
+    grb: () => t("čáry GRB: Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)"), picc: () => t("čáry PICC © SPW (Service public de Wallonie, CC BY 4.0)"),
     // Copenhagen's kerb lines (towns/denmark.js, on; ?kbhkant=0 leaves them out).
     "kbh-vejkant": () => t("okraje vozovek (GeoDanmark) © Københavns Kommune"),
   },
@@ -138,7 +138,7 @@ export const SOURCE_CREDITS = {
   // Bologna's Carta tecnica and Lombardy's DBT (towns/italy.js, towns/lombardy.js).
   itTown: { bologna: () => t("mapa povrchů (Carta tecnica comunale) © Comune di Bologna (CC BY 4.0)"), lombardia: () => t("mapa povrchů (Database Topografico) © Regione Lombardia (CC BY 4.0)") },
   // Flanders' road corridors WBN and their division WGO (towns/belgium.js), in the words the licence asks for.
-  beTown: { grb: () => t("mapa povrchů (GRB): {who}", { who: "Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Gratis Open Data Licentie Vlaanderen v1.02)" }) },
+  beTown: { grb: () => t("mapa povrchů (GRB): {who}", { who: "Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)" }) },
   nlBgt: { true: () => t("mapa povrchů BGT © Kadaster a správci BGT (PDOK, CC0)") },
   // Amsterdam's parking spaces (towns/netherlands.js).
   amsParking: { true: () => t("parkovací místa © Gemeente Amsterdam") },

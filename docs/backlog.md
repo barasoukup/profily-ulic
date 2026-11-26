@@ -6,8 +6,10 @@ Co rozhodne Bára, je označeno **(Bára)**.
 
 ## Odhad profilu (ortofoto a OSM, společný kód)
 
-- Most v odhadu jako voda: bez mapy povrchů řeže řez most podle vody pod ním (Most Kotlarski v Krakově,
-  `evaluation/poland/ab/`). Most z OSM (`bridge`) má mít přednost před vodou.
+- ~~Most v odhadu jako voda: bez mapy povrchů řeže řez most podle vody pod ním (Most Kotlarski v Krakově,
+  `evaluation/poland/ab/`). Most z OSM (`bridge`) má mít přednost před vodou.~~ Hotovo 26. 11. (`ortho-osm.js`,
+  `?off=mostvoda`; 27 mostů: lépe 18, hůř 0; regrese beze změny; `evaluation/bridge-water/ZPRAVA.md`). Zbývá: zeleň ze
+  snímku na mostě nad zelenou řekou (Turín) a mezera mezi dvěma oddělenými mosty (chybí plochy `man_made=bridge`).
 - Úzké ulice: jeden široký pruh a chybějící stání (Brusel Rue aux Choux 10,4 m, Rue du Vautour 6,6 m, Antverpy
   Koninginnestraat 5,4 m; stejně dřív Rakousko a Německo). Proč se u jednosměrky s jedním pruhem zákonné stání nepřidá,
   když místo je (`evaluation/universal/ZPRAVA.md`, Belgie).
@@ -19,12 +21,23 @@ Co rozhodne Bára, je označeno **(Bára)**.
 
 - Francie (měření 22. 11., 25 řezů): v odhadu často chybí chodník (10×) a přebývá stání (8×); prověřit na řezech
   `evaluation/universal` (fr-*), zda jde o úzké chodníky u fasády nebo o zákonný odhad stání.
+- Chodník mezi obrubou a domem (hlášení 23. 11., regrese s domy z RÚIAN): stín domu přes chodník a stání (Spojovací)
+  nebo přes vozovku (U libušské sokolovny) se bere jako chodník či obruba, suchý hnědý trávník jako chodník (Kukelská),
+  podélná spára uprostřed vozovky jako obruba (Dářská). Pokusy `walkSatOn`, `walkYellow`, `walkMode`, `split6` znovu
+  změřené s RÚIAN: nic nevyhrálo všude. Spíš model (`ai-kerbs`, `ai-segmentation`) než další pravidla.
+- Silnice 230 u Mariánských Lázní (`#rez=50.037075,12.789854,37`): vozovka 6,5 m, ortofoto našlo jen jeden pruh 4,74 m
+  a krajnici 1,76 m (chybí středová čára?).
+- ~~Poznámka pod nadpisem říká „domy z OSM“, i když jsou od 23. 11. v Česku z RÚIAN: nový text ve všech jazycích.~~
+  (26. 11. 2026: „domy z {houses}“ podle zdroje fasád, `ortho-osm.js houseSources`: RÚIAN, GRPK s OSM, jinak OSM)
 
 - Sjednocení, zbývající kandidáti (`evaluation/sjednoceni/AUDIT.md`): `besideMax` (SK 15 m, jinde 25 m; A/B na Slovensku),
   `roadOnPath` (jen Praha; zkusit na DTM ČÚZK a mapách měst), `roadClassFromOsm` (CZ, SK; jen norma varování, výklad
   **(Bára)**), `orthoEstimate` (jen text, totéž co `laneOrtho !== "none"`).
-- Pravidlo obslužných cest (`?off=obsluzne`) v Berlíně proti jeho mapě 10 : 12, jediné město, kde nepomáhá
-  (Vídeň 16 : 9, Amsterdam 11 : 4, Helsinky 13 : 7; `evaluation/sjednoceni/praha/ZPRAVA.md`).
+- **(Bára)** Kliky (`evaluation/kliky/ZPRAVA.md`): „nesplnitelné obslužné vynechat“ (mapy 32 : 13, naslepo 17 : 19; na obslužných cestách
+  9 : 2 a 7 : 2, změřit znovu), kliknutí do 2 m od osy obslužné cesty skončí na ulici do 10 m (`nearestStreet` přirážka),
+  konec cesty, kde ulice pokračuje, posouvá kliknutí o 12 m (bez něj 37 : 209 proti mapám).
+- ~~Pravidlo obslužných cest (`?off=obsluzne`) v Berlíně proti jeho mapě 10 : 12, jediné město, kde nepomáhá
+  (Vídeň 16 : 9, Amsterdam 11 : 4, Helsinky 13 : 7; `evaluation/sjednoceni/praha/ZPRAVA.md`).~~ (25. 11. 2026: znovu mapa 13 : 2, naslepo 6 : 8, zůstává zapnuté)
 - Zákonné stání po pruzích: ~~`layLaw` nebere `pruh_piktokoridor`, `markIslands` udělá z chodníku dělicí pás, jednosměrka na dva pruhy ztratí
   zákonný pruh~~ (25. 11. 2026, `mereni2/ZPRAVA.md`). Zbývá: **(Bára)** nechat `lawlanes` zapnuté (34 : 21, oficiálně 1 : 3)?
   **(Bára)** odhad stání na Slovensku (12 : 7); model pod stromy auta nevidí (Zaragoza); slabé čáry dělí pruhy i v
@@ -43,8 +56,8 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Nizozemsko: Nassauplein v Haagu (střední pás přes 16 m) dostane odhad místo BGT, vozovky jsou dál než 10 m.
 - Nizozemsko: parkovací místa Amsterdamu (`?amspark=1`): spojit jednotlivá místa do souvislých úseků (mezery do 1 m),
   způsob stání brát pro plochy BGT. Licence města neuvedena.
-- Krakov: A/B mapy povrchů slabé (lépe 7, hůř 6): zapnuto, **(Bára)** nechat? Přepustit A/B po vrácení „Ścieżky“
-  na chodník.
+- Krakov: A/B mapy povrchů slabé (lépe 7, hůř 6), od 26. 11. 2026 vypnuto (`?krakow=1`). Přepustit A/B po vrácení
+  „Ścieżky“ na chodník, kdyby přišel souhlas MSIP.
 - Belgie: A/B čar GRB a PICC slabé (lépe 4, hůř 2): zapnuto.
 - Flandry, plochy GRB (WBN + WGO, `evaluation/belgium/ab-wbn/ZPRAVA.md`, lépe 10, hůř 2): zóna za obrubou je jedna,
   s OSM `cycleway=track` vzniká „chodník s koly“ místo chodníku a cyklostezky (ge1, lex1); ulice v jedné úrovni
@@ -84,9 +97,11 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Kypr: kredit budov DLS je v exportu u každého kyperského řezu (i bez domu z DLS, britské základny); přesněji klíčem zdroje
   (`state.cut.sources`, když `podlaznost` vrátí dům). Kredit britských značek (OGL, `credits.js ukSigns`) se počítá ze Stavu,
   ne ze značek přidaných v Návrhu.
-- Kypr: `lanes-ortho.js` „cy“: napůl chybějící dlaždice (404 u Zelené linie) dávají jas 0 místo NaN (vyplnit NaN nebo
+- ~~Kypr: `lanes-ortho.js` „cy“: napůl chybějící dlaždice (404 u Zelené linie) dávají jas 0 místo NaN (vyplnit NaN nebo
   hlídat podíl prázdna). Malta: WMS vrací chybu jako 200 `text/xml` (hlídat content-type, hlásit výpadek); podklad mapy
-  jako JPEG místo PNG (`app.js`). Kypr i Malta: `streetmix.js` neposílá `leftHandTraffic`.
+  jako JPEG místo PNG (`app.js`). Kypr i Malta: `streetmix.js` neposílá `leftHandTraffic`.~~ (26. 11. 2026: průhledný
+  pixel = NaN, víc než polovina neznámá = žádný obraz, „cy“ v kontrole prázdna; XML místo obrazu = výpadek (`askImage`);
+  podklad Malty uvnitř JPEG, u pobřeží PNG jako Slovinsko; `leftHandTraffic` z `country.leftHand`; `tests/ortho-tiles.test.js`)
 - Kypr **(Bára)**: ~~chodník 2 / 2,5 m (doporučení)~~ (23. 11.: bez červené, oranžově podle třídy ulice); 3 m na směr vedle stání; jednosměrka: stát jen vlevo?; protisměrní
   cyklisté ~~bez tabulky~~ (23. 11.: bez značky); zóna 30 nekreslit; pěší zóna jako „povinná pěší cesta“. Sever ostrova jako samostatný stát
   (zatím nemáme). Měření: chybí chodník 9×, stání 5×.
@@ -120,8 +135,8 @@ Co rozhodne Bára, je označeno **(Bára)**.
   sítě GJI (3D trasy) na později.
 - Estonsko, zbytky recenze 24. 11. 2026 (129abaf): Sõpruse pst a Ehitajate tee s mapou Tallinnu dávají deset pruhů po 4 m
   (slabina mapy, A/B 10 : 4); dotazy na Tallinn podle obdélníku města, ne podle jeho hranice; nadpis „Šířky podle estonských
-  předpisů“ (`city.js`) není přesný; u odhadu stání chybí „orientačně“; `ee` chybí mezi ortofoty hlídanými na prázdný snímek
-  (`lanes-ortho.js`); dotaz městu na licenci neodeslán. Bod 6: univerzální měření je přepočítané, vzorek jen 12 řezů.
+  předpisů“ (`city.js`) není přesný; u odhadu stání chybí „orientačně“; ~~`ee` chybí mezi ortofoty hlídanými na prázdný snímek
+  (`lanes-ortho.js`)~~ (26. 11. 2026); dotaz městu na licenci neodeslán. Bod 6: univerzální měření je přepočítané, vzorek jen 12 řezů.
 - Slovinsko, zbytky recenze 24. 11. 2026 (982927a): chybí poznámka v řezu, že model obrub nedostal ortofoto (`app.js`); A/B
   s ortofotem a bez něj; pravidlo podkroví (`?off=podkrovi`) na nových domech naslepo; čísla značek proti obrázkům pravidla
   26/2024; přesná pozemní hranice GURS; čtení středové čáry z `lanes` ≥ 2 a 3 m k plné čáře **(Bára)**.
@@ -129,14 +144,28 @@ Co rozhodne Bára, je označeno **(Bára)**.
   obrázky prvního A/B v gitu; prodleva při psaní do hledání (`search.js`); Karesuando u Švédska (řešit se Švédskem);
   Ryhti má jen „07 veřejná budova“ (škola a kostel se nepoznají).
 - Dánsko, zbytky recenze 24. 11. 2026 (f55df4b): Bornholm bez vlastních vzhledů domů (chybí fotky); plocha stání kdekoli
-  v okolí vypne odhad stání na obou stranách, i ve Frederiksbergu (bod 14); dlaždice ortofota 400/429 nechávají černé díry
-  (`lanes-ortho.js`); kredit ortofota ověřit po 30. 11. na nové platformě; čára `Cykelsti langs vej` jako vnější hrana
+  v okolí vypne odhad stání na obou stranách, i ve Frederiksbergu (bod 14); ~~dlaždice ortofota 400/429 nechávají černé díry
+  (`lanes-ortho.js`)~~ (26. 11. 2026: díra je NaN, 429 se po pauze zeptá jednou znovu, `askImage`); kredit ortofota ověřit po 30. 11. na nové platformě; čára `Cykelsti langs vej` jako vnější hrana
   cyklostezky nezapojená (`ortho-osm.js`); A/B kodaňských vrstev nebylo slepé; titulek a kredit jeho obrázků.
 - Jih Evropy po Itálii **odložen** (Bára 23. 11. 2026): Balkán, Řecko, Slovinsko. Až se k nim vrátíme: Albánie (ortofoto
   v albánských souřadnicích, ověřit stupně), Chorvatsko (jen přes proxy, západ), ~~Slovinsko (služby GURS neodpovídaly)~~ (přidáno 23. 11. 2026 přes `ipi.eprostor.gov.si`);
   ostatní bez otevřeného ortofota (`docs/states-survey/c-vychod-balkan.md`).
-- Jihlava: pasport komunikací byl 16. 11. prázdný, ověřit (CLAUDE.md, Na 19. 11.).
-- Pasporty devíti českých měst: A/B po odstávce DMVS (`evaluation/PASPORTY-AB.md`).
+- ~~Jihlava: pasport komunikací byl 16. 11. prázdný, ověřit~~ (26. 11. 2026: zase plný, 13 323 úseků).
+- ~~Pasporty devíti českých měst: A/B po odstávce DMVS~~ (26. 11. 2026, `evaluation/PASPORTY-AB.md`: zůstaly Rožnov,
+  Chotěboř, Šlapanice, Kuřim; vyřazené Chomutov, Šumperk, Litoměřice, Prachatice, Roudnice).
+- Pasporty Rožnova a Šlapanic: vozovka pasportu přes dvory a sousední komunikace (20–27 m); ořezat na souvislý kus pod
+  osou? Úzká vozovka pasportu za chodníkem dělá z chodníku „dělicí pás“ (Chomutov, Šlapanice; `derive.js`).
+- Hlášení, která data IPR/ČÚZK potvrzují, bez fotky z ulice nerozhodnu (do seznamu připomínek pro IPR?):
+  Strossmayerovo náměstí, jižní strana „nemá pruh pro auta“ (MTVU 701 3,5 m a úsek parkování TSK;
+  `#rez=50.098778,14.433932,-83`); Libocká, „chodník V je užší, asi i jízdní pás“ (MTVU vozovka 4 m, zeleň, chodník 2 m;
+  `#rez=50.090199,14.324922,-14`). Dřív: V Zeleni, Poncarova.
+- Klánovická: stání z OSM (`parking=lane`) je teď podélné, ale široké 3,9 m podle hrubého polygonu OSM.
+- Hospodářská půda (MTVU 100) pod nepojmenovanou služební cestou se kreslí jako „Zpevněná plocha“ 44 m
+  (`types.js typeFromMtvu`: 100 → „plocha“); pojmenovaná cesta už jde na odhad (Devětsilová).
+- DTM po přechodu na JVF 1.5 (19. 11.): typy se čtou z kódu JVF (číselník z vyhl. 393/2020, `dmvs.js JVF`); kód, který
+  číselník nemá, se zahodí s varováním „neznámý typ“ v konzoli. ~~Uložené řezy `evaluation/replay` nahrát znovu~~
+  (26. 11. 2026: `sample-cz.json`, 56 řezů DTM, nahrávka `rec-cz`). Srovnání DMVS (`evaluation/srovnani-dmvs`) má ještě
+  staré odpovědi.
 - **Kanada (Toronto, `evaluation/canada`):** řez uprostřed The Queensway (t-48) mapu nenajde; podium s věží, komerční domy a řady se kreslí jako
   `baygable`; A/B výšek domů (`?torontohouse=0`); mapa je z 2021, cyklostezky z OSM u křižovatky ulic ukrajují i sousední (1 z 9); kosé a kolmé
   stání bez norem; předpisy obcí kolem Toronta.
@@ -167,11 +196,17 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Další státy vybírat podle otevřeného ortofota s CORS a mapy povrchů aspoň hlavního města. Průzkum 22. 11. 2026:
   `docs/states-survey/` (nejlépe Francie s Paříží, pak Španělsko, Švédsko, Kypr; Finsko a Dánsko jen s klíčem
   **(Bára)**; Slovinsko, pobaltské státy a Norsko zkusit znovu).
+- Domy: chata nebo jiná stavba bez počtu podlaží v RÚIAN dostane výchozí 2 NP (hlášení u silnice 506338718
+  v Královéhradeckém kraji: 1 NP a podkroví). Výchozí hodnota pro rekreační stavby (RÚIAN 8)? **(Bára)**
+- Podkroví z RÚIAN (23. 11.): rodinný dům a chata se 2+ podlažími mají poslední podlaží ve střeše (silnice 230). Ověřit
+  na víc domech.
 
 ## Hledání
 
 - Belgie a Lucembursko jen přes Photon; národní služby (Flandry geolocation, geoportail.lu) nezapojené.
 - Francie: Géoplateforme hledá i bez města; přednost blízko středu mapy je slabá (lat/lon jen naznačí).
+- Photon nabízí i místa v Nizozemsku, Belgii, Lucembursku, Polsku, Francii a Španělsku, kde zatím nejsou dlaždice OSM
+  (aplikace tam ulici nenajde). Omezit hledání na nasazené státy, než dlaždice budou?
 
 ## Překlady
 
@@ -202,10 +237,14 @@ Co rozhodne Bára, je označeno **(Bára)**.
 
 ## Nasazení a provoz
 
-- Balík OSM `be` (0,7 GB PBF) po prvním běhu workflow změřit, případně rozdělit pod 512 MB.
+- ~~Balík OSM `be` (0,7 GB PBF) po prvním běhu workflow změřit, případně rozdělit pod 512 MB.~~ 296 MB, stačí (26. 11. 2026).
 - Balíky `pl_sl` a `pl_ds` zasahují obdélníkem do Česka (jen dotazy navíc).
-- Před nasazením NL, BE, LU, PL, FR: sloučit větve do `main` a ručně spustit workflow OSM tiles se `states: nl,be,lu,pl,fr`.
-- Logování: D1 potřebuje sloupec `country` a nový Worker (`logging/README.md`; hranice poloh teď pokrývají všechny státy), nasadit musí Bára.
+- ~~Před nasazením NL, BE, LU, PL, FR, ES: workflow OSM tiles.~~ Hotovo 23. 11. 2026.
+- ~~Před nasazením PT, MC, CY, MT, IT, EE, SI, FI, DK, LT: ručně spustit workflow OSM tiles se
+  `states: pt,mc,cy,mt,it_c,it_i,it_ne,it_no,it_s,ee,si,fi,dk,lt` a ověřit balíky na R2.~~ Hotovo 26. 11. 2026 (106 balíků,
+  9,1 GB; na R2 zůstává jen nejnovější verze).
+- ~~Logování: D1 potřebuje sloupec `country` a nový Worker (`logging/README.md`; hranice poloh teď pokrývají všechny státy, tabulky kontaktního formuláře), nasadit musí Bára.~~ Nasazeno 26. 11. 2026 (bez upozornění e-mailem na zprávy z formuláře).
+- ~~**Až budou dlaždice NL, BE, LU, PL, FR a ES na R2**: vrátit texty o nových státech.~~ Hotovo 23. 11. 2026: dlaždice všech 92 balíků jsou na R2 a v `index.json`, texty vrácené v `d6c8c6c`; oprava indexu (kódy o 3–4 písmenech) v `d412dda`.
 - **Proxy pro ortofota s klíčem (Bára 23. 11. 2026: uděláme, ale později):** Cloudflare Worker, který drží klíč
   a dlaždice ukládá do mezipaměti; Bára založí účet a Worker. Nejdřív Finsko: celostátní ortofoto MML (0,5 m, CC BY 4.0,
   klíč osobní, podmínky: ne pro velký provoz, klíč chránit; `evaluation/finland/ZDROJE.md`), pak pruhy z ortofota
@@ -214,8 +253,12 @@ Co rozhodne Bára, je označeno **(Bára)**.
 
 ## Licence ke kontrole
 
-- Ortofoto PDOK (Nizozemsko), Flandry, Valonsko, ACT Lucembursko (ortho_latest), sítě Amsterdamu, mapa Krakova,
-  služby českých a slovenských měst (MTVU, UMPS, pasporty).
+- ~~Ortofoto PDOK (Nizozemsko), Flandry, Valonsko, ACT Lucembursko (ortho_latest)~~: licence ověřené a v kreditech
+  (`evaluation/licence/ZPRAVA.md`, kredity opravené 26. 11. 2026 ve větvi credits-fix, i GRB, Most, Jihlava, Dúbravka).
+- Sítě Amsterdamu: kredit sjednocený („Creative Commons Naamsvermelding, verze neuvedena“), zeptat se datapunt@amsterdam.nl na verzi.
+- ~~Mapa Krakova: potřebuje písemný souhlas MSIP (ZPRAVA.md), rozhodnout o vypnutí~~ (Bára 26. 11. 2026: vypnutá, `?krakow=1`).
+- ~~Pasport Chotěboře na demo účtu~~ (Bára 26. 11. 2026: vyřazený).
+- Služby českých a slovenských měst (MTVU, UMPS, pasporty): licence nikde neuvedená, zeptat se měst (ZPRAVA.md, Koho se zeptat).
 
 ## Nápady (Bára zatím nevybrala)
 

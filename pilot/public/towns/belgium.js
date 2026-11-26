@@ -12,7 +12,7 @@
 // Flanders' surfaces (Bára 24. 11. 2026): GRB's road corridor WBN (wegbaan, facade to facade) divided by those same
 // lines WGO into roadway, sidewalks (the zone of pedestrians and cyclists), side strips and verges along the cut, as
 // its surfaces where WBN lies under the cut's centre of a street with a kerb on both sides (as Vienna's FMZK), with
-// OSM's buildings, green and water around. Licence: Gratis Open Data Licentie Vlaanderen v1.02, "Bron: Grootschalig
+// OSM's buildings, green and water around. Licence: Modellicentie gratis hergebruik v1.0, "Bron: Grootschalig
 // Referentie Bestand Vlaanderen, Digitaal Vlaanderen". ?wbn=0 leaves it out (the A/B test, evaluation/belgium/ab-wbn/:
 // better 10, worse 2 of 25 cuts).
 import { osmTiles, getJSON, query, envelope, asMtvu } from "../gis.js";

@@ -2,7 +2,8 @@
 // a 7 m carriageway (dark) between lighter sidewalks, OSM houses 8 m from the axis on both sides.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { orthoOsmPolys, osmAlong, osmRoad, besidePassport, P } from "../pilot/public/ortho-osm.js";
+import { orthoOsmPolys, osmAlong, osmRoad, besidePassport, estimateNote, P } from "../pilot/public/ortho-osm.js";
+import { withBuildings } from "../pilot/public/gis.js";
 import { localFrame, deriveProfile } from "../pilot/public/derive.js";
 
 const frame = localFrame(50.08, 14.43), dir = [0, 1]; // the street runs north; t across it = −x (west is +t)
@@ -224,5 +225,52 @@ test("ortofoto a OSM: samostatný chodník OSM přebije trávník ZBGIS až k do
   assert.ok(sw.some(([a, b]) => a <= 5.6 && Math.abs(b - 8) < 0.1), JSON.stringify(sw));
   P.off = new Set(["osmwalk"]);
   assert.ok(!orthoOsmPolys({ osm: { elements: [...els, walk] }, frame, dir, way: els[0], st: null, areas }).some((q) => q.label === "chodník (OSM)"));
+  P.off = new Set();
+});
+
+// The note under the street's name names the houses' real source (the backlog of 23. 11. 2026: "domy z OSM" in
+// Czechia, where the estimate's houses are RÚIAN's since 23. 11.).
+test("ortofoto a OSM: poznámka říká RÚIAN u domů z RÚIAN a OSM ve státě bez vlastních domů", () => {
+  const cs = (text, vars = {}) => text.replace(/\{(\w+)\}/g, (_, k) => vars[k]);
+  // OSM only (a state without buildings of its own).
+  const plain = osm();
+  const a = orthoOsmPolys({ osm: plain, frame, dir, way: plain.elements[0], st: image() });
+  assert.deepEqual(a.houses, ["OSM"]);
+  assert.equal(estimateNote(a, true, cs), "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.");
+  // Czechia: RÚIAN's outlines first (gis.js withBuildings "first"), OSM's under them dropped.
+  const ruian = (x0, x1) => ({ ...house(x0, x1), id: `ruian-${x0}`, from: "RÚIAN", tags: { building: "yes", source: "RÚIAN" } });
+  const cz = withBuildings(plain, [ruian(8, 16), ruian(-16, -8)], "first");
+  const b = orthoOsmPolys({ osm: cz, frame, dir, way: plain.elements[0], st: image() });
+  assert.deepEqual(b.houses, ["RÚIAN"]);
+  assert.equal(estimateNote(b, true, cs), "Obruby jsou odhadnuté z ortofota a domy z RÚIAN, šířky ověřte.");
+  assert.equal(estimateNote({ ...b, image: false }, false, cs), "Obruby jsou podle OSM a domy z RÚIAN, šířky ověřte.");
+  // RÚIAN on one side, OSM's house on the other: both, the register first.
+  const mixed = withBuildings(plain, [ruian(8, 16)], "first");
+  const c = orthoOsmPolys({ osm: mixed, frame, dir, way: plain.elements[0], st: image() });
+  assert.deepEqual(c.houses, ["RÚIAN", "OSM"]);
+  assert.equal(estimateNote({ ...c, image: false }, true, cs), "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z RÚIAN a OSM, šířky ověřte.");
+  // A real OSM tag source=* says nothing of where the app took the house.
+  const tagged = { elements: plain.elements.map((el) => (el.tags.building ? { ...el, tags: { ...el.tags, source: "cuzk:km" } } : el)) };
+  assert.deepEqual(orthoOsmPolys({ osm: tagged, frame, dir, way: plain.elements[0], st: image() }).houses, ["OSM"]);
+});
+
+test("ortofoto a OSM: ulice na mostě přes vodu OSM: voda pod mostem profil neukončí, ulice končí za chodníkem (?off=mostvoda dřív)", () => {
+  const river = { type: "area", id: 900, tags: { natural: "water", water: "river" }, geometry: [ll(-45, -40), ll(45, -40), ll(45, 40), ll(-45, 40), ll(-45, -40)] };
+  const bridgeWay = { type: "way", id: 1, tags: { highway: "secondary", bridge: "yes", layer: "1", sidewalk: "both" }, geometry: [ll(0, -60), ll(0, 60)] };
+  const els = { elements: [bridgeWay, river] };
+  const run = () => {
+    const polys = orthoOsmPolys({ osm: els, frame, dir, way: bridgeWay, st: image() });
+    return { polys, p: deriveProfile({ center: [0, 0], dir, half: 40, polys, osm: els, frame, way: bridgeWay }) };
+  };
+  const now = run();
+  const types = (r) => JSON.stringify(r.p.segments.map((s) => s.type));
+  assert.ok(!now.polys.some((q) => q.code === 501), JSON.stringify(now.polys.map((q) => q.code)));
+  assert.ok(!now.p.segments.some((s) => s.type === "voda"), types(now));
+  assert.ok(now.p.segments.some((s) => s.type === "chodnik"), types(now));
+  // The same street at ground level (a road along a mapped river) keeps the water.
+  const ground = { ...bridgeWay, tags: { highway: "secondary", sidewalk: "both" } };
+  assert.ok(orthoOsmPolys({ osm: { elements: [ground, river] }, frame, dir, way: ground, st: image() }).some((q) => q.code === 501));
+  P.off = new Set(["mostvoda"]);
+  assert.ok(run().polys.some((q) => q.code === 501));
   P.off = new Set();
 });

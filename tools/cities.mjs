@@ -43,7 +43,7 @@ export const SITES = {
     parking: "parkovací místa města",
     img: ["https://gis.jihlava-city.cz"],
     connect: ["https://gis.jihlava-city.cz", "https://ags.cuzk.gov.cz"], // RÚIAN of ČÚZK for the houses
-    credits: `Data: © <a href="https://gis.jihlava-city.cz">Statutární město Jihlava</a> (pasport komunikací, parkování, technická mapa, stromy, lampy, zastávky, stojany na kola; ortofoto) ·
+    credits: `Data: © <a href="https://gis.jihlava-city.cz">Statutární město Jihlava</a> (pasport komunikací, parkování (CC BY-SA), technická mapa, stromy, lampy, zastávky, stojany na kola; ortofoto) ·
     budovy RÚIAN a katastr © ČÚZK (CC BY 4.0) ·
     ${OSM_CREDIT} ·
     ortofoto © ČÚZK (CC BY 4.0)`,
@@ -58,7 +58,7 @@ export const SITES = {
     parking: "parkoviště z technické mapy",
     img: ["https://mapy.mesto-most.cz"],
     connect: ["https://mapy.mesto-most.cz", "https://ags.cuzk.gov.cz"],
-    credits: `Data: © <a href="https://mapy.mesto-most.cz">Statutární město Most</a> (objektová mapa povrchové situace a stožáry veřejného osvětlení z otevřených dat; technická mapa: koleje, ploty, zdi, zábradlí, svodidla, stromy, lavičky) ·
+    credits: `Data: © <a href="https://mapy.mesto-most.cz">Statutární město Most</a> (objektová mapa povrchové situace a stožáry veřejného osvětlení z otevřených dat, CC BY-SA; technická mapa: koleje, ploty, zdi, zábradlí, svodidla, stromy, lavičky) ·
     ${RUIAN_CREDIT} ·
     ${OSM_CREDIT} ·
     ortofoto © ČÚZK (CC BY 4.0)`,

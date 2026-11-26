@@ -288,7 +288,9 @@ function alleyMouths(el, pts, frame) {
     .map(([s, e]) => ({ p: along((s + e) / 2), clear: CROSSING_CLEARANCE + (e - s) / 2 }));
 }
 
-export function awayFromJunctions(osm, frame, near) {
+// What a click on a street keeps away from (local metres): { p, clear, service, kind }: the mouths of alleys, other streets
+// and service ways that join, crossings, roundabouts and turning circles. Exported for evaluation/kliky.
+export function junctionHits(osm, frame, near) {
   const geom = near.way.geometry, pts = near.pts;
   const key = (g) => `${g.lat.toFixed(7)},${g.lon.toFixed(7)}`;
   const idx = new Map(geom.map((g, i) => [key(g), i]));
@@ -297,17 +299,17 @@ export function awayFromJunctions(osm, frame, near) {
   const alleys = !ORTHO_P.off?.has("ulicky"), services = !ORTHO_P.off?.has("obsluzne");
   for (const el of osm.elements || []) {
     if (alleys && isAlleyArea(el)) {
-      for (const hit of alleyMouths(el, pts, frame)) hits.push({ ...hit, service: true });
+      for (const hit of alleyMouths(el, pts, frame)) hits.push({ ...hit, service: true, kind: "alley" });
       continue;
     }
     if (el.id === near.way.id || !el.tags?.highway || !el.geometry) continue;
     if (el.type === "node" && ["turning_circle", "turning_loop"].includes(el.tags.highway)) {
-      hits.push({ p: frame.toXY(el.geometry[0].lon, el.geometry[0].lat), clear: LOOP_CLEARANCE });
+      hits.push({ p: frame.toXY(el.geometry[0].lon, el.geometry[0].lat), clear: LOOP_CLEARANCE, kind: "loop" });
       continue;
     }
     if (el.type !== "way") continue;
     if (el.tags.junction === "roundabout" || el.tags.junction === "circular") {
-      for (const g of el.geometry) hits.push({ p: frame.toXY(g.lon, g.lat), clear: LOOP_CLEARANCE });
+      for (const g of el.geometry) hits.push({ p: frame.toXY(g.lon, g.lat), clear: LOOP_CLEARANCE, kind: "loop" });
     }
     const crossing = el.tags.footway === "crossing" || el.tags.cycleway === "crossing";
     // A service road joins like a street (NOT_JUNCTION_SERVICE above), an alley always.
@@ -318,9 +320,14 @@ export function awayFromJunctions(osm, frame, near) {
       if (i === undefined) return;
       const endToEnd = (i === 0 || i === lastI) && (j === 0 || j === el.geometry.length - 1);
       if (!crossing && endToEnd && el.tags.name === near.way.tags.name) return; // the street goes on
-      hits.push({ p: pts[i], clear: crossing ? CROSSING_CLEARANCE : JUNCTION_CLEARANCE, service: sideService });
+      hits.push({ p: pts[i], clear: crossing ? CROSSING_CLEARANCE : JUNCTION_CLEARANCE, service: sideService, kind: crossing ? "crossing" : sideService ? "service" : "street" });
     });
   }
+  return hits;
+}
+
+export function awayFromJunctions(osm, frame, near) {
+  const pts = near.pts, hits = junctionHits(osm, frame, near);
   const lens = pts.slice(1).map((q, i) => Math.hypot(q[0] - pts[i][0], q[1] - pts[i][1]));
   const total = lens.reduce((a, b) => a + b, 0);
   const at = (d) => {
@@ -497,7 +504,10 @@ function osmParkingPolygons(osm, frame, way) {
     .filter((el) => el.type === "area" && el.tags?.amenity === "parking" && STREET_PARKING.has(el.tags.parking) && ownParking(el, osm, frame, way))
     .map((el) => {
       const rings = [el.geometry, ...(el.holes || [])].map((r) => r.map((g) => frame.toXY(g.lon, g.lat)));
-      return { code: OSM_PARKING, orient: ORIENT[el.tags.orientation], rings, bbox: bboxOf(rings[0]) };
+      // parking=lane is parking in the roadway, parallel unless OSM says otherwise: its area drawn roughly deep does not
+      // make it angled (Klánovická: a lane area 3.5 m deep read as angled parking; the orthophoto shows a parallel lane).
+      const orient = ORIENT[el.tags.orientation] || (el.tags.parking === "lane" ? "podelne" : undefined);
+      return { code: OSM_PARKING, orient, rings, bbox: bboxOf(rings[0]) };
     });
 }
 
@@ -796,6 +806,16 @@ const turnList = (v) => (v ? v.split("|").map((x) => [...new Set((x || "none").s
 // from the nearest OSM road axis, so both carriageways of a dual carriageway are right.
 // ctx.along: the run's own OSM way points the same way as the cut's street (its left = our left).
 // ctx.parked: sides ("L"/"R") already having a parking bay next to this run.
+// The tracks lie between the two one-way carriageways of a dual road (OSM axes on both sides of them, neither with
+// rails in it): { R, L } lanes of the carriageway below and above them, else null (splitRoadway).
+function dualBed(axes, trams) {
+  if (!axes?.length || axes.some((a) => a.tags?.embedded_rails)) return null;
+  const lo = Math.min(...trams), hi = Math.max(...trams), byId = (xs) => [...new Map(xs.map((a) => [a.id, a])).values()];
+  const below = byId(axes.filter((a) => a.t < lo)), above = byId(axes.filter((a) => a.t > hi));
+  if (!below.length || !above.length || ![...below, ...above].every((a) => a.oneway)) return null;
+  return { R: below.reduce((n, a) => n + a.lanes, 0), L: above.reduce((n, a) => n + a.lanes, 0) };
+}
+
 function splitRoadway(run, ctx) {
   const { tags, trams, dirAt, along, single, parked, sides } = ctx;
   let s = run.s, e = run.e;
@@ -910,6 +930,25 @@ function splitRoadway(run, ctx) {
     const narrow = !fitsBeside(mid) && tramLanes(s, e, trams, dirAt, TRAM_LANE_HALF);
     if (narrow && fitsBeside(narrow)) mid = narrow;
     if (fitsBeside(mid)) for (const x of mid) if (x.type === "tramvaj_v_pruhu") x.type = "tramvaj_pruh";
+  }
+  // Tracks between the two carriageways of a dual road, which OSM maps as two one-way ways with the rails apart
+  // (no embedded_rails), lie on a separate bed even where the map draws one roadway over all of it (Střelničná:
+  // MTVU's 24 m roadway, the photo shows two lanes each way and a ballast bed between; Bára 23. 11. 2026,
+  // ?off=dualbed). Each carriageway takes its OSM lanes (up to the lane cap), the rest between is the bed.
+  const sep = trams.length && !ORTHO_P.off?.has("dualbed") && dualBed(ctx.axes, trams);
+  if (sep) {
+    const cap = LANE_CAP_CLASS[ctx.roadClass] ?? LANE_CAP[tags.highway] ?? LANE_CAP_DEFAULT;
+    const lo = Math.min(...trams) - TRAM_HALF, hi = Math.max(...trams) + TRAM_HALF;
+    const wR = Math.min(lo - s, sep.R * cap), wL = Math.min(e - hi, sep.L * cap);
+    if (wR >= sep.R * CAR_MIN && wL >= sep.L * CAR_MIN) {
+      const src = trams.measured ? "dtm" : "osm";
+      const lanesOf = (a, b, n) => Array.from({ length: n }, (_, k) => ({ type: "pruh", s: a + (k * (b - a)) / n, e: a + ((k + 1) * (b - a)) / n, dir: dirAt(a + ((k + 0.5) * (b - a)) / n), source: src }));
+      const bs = s + wR, be = e - wL, bm = (bs + be) / 2;
+      mid = [...lanesOf(s, bs, sep.R),
+        { type: "tramvaj", s: bs, e: bm, dir: "forward", bed: "panely", bedSource: "odhad", source: "odhad" },
+        { type: "tramvaj", s: bm, e: be, dir: "backward", bed: "panely", bedSource: "odhad", source: "odhad" },
+        ...lanesOf(be, e, sep.L)];
+    }
   }
   if (!trams.length) {
     // One lane on a two-way street carries both directions (no arrow).
@@ -1952,7 +1991,10 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
   }
   // The technical map has no street surface where OSM draws a street (a new road, a field, a
   // gap in MTVU): the profile falls back to OSM and says so.
-  if (!MINOR.has(way.tags?.highway) && isUnpaved(runs[i0]?.code)) {
+  // A named service road counts too: a new estate's street is often mapped so (Devětsilová in Prague, MTVU still a
+  // field, Bára 23. 11. 2026); an unnamed one over a field is a farm drive.
+  const street = !MINOR.has(way.tags?.highway) || (way.tags?.highway === "service" && !!way.tags?.name);
+  if (street && isUnpaved(runs[i0]?.code)) {
     const code = runs[i0]?.code;
     return { ...estimateFromOsm(way), runs, notice: t("Mapa povrchů tu ulici nemá ({what}), profil je odhad z OSM.", { what: code === null || code === undefined ? t("žádná plocha") : `${t("plocha")} ${code} ${polys.find((p) => p.code === code)?.label || ""}`.trim() }) };
   }
@@ -2270,7 +2312,7 @@ export function deriveProfile({ center, dir, half, polys, osm, frame, way, track
       // A state without street classes of its own here (Austria): the OSM highway gives the group (countries/AT.js).
       const roadClass = classGroup(cls) ?? (country.roadClassFromOsm ? osmGroup(tags.highway) : null);
       roads.push({ s: r.s, e: r.e, tags });
-      segs.push(...splitRoadway(r, { guessPark, osmParkGive, tags, trams: inside, dirAt, lanesTotal, along: ownAxis ? (ownAxis.along !== (tags.oneway === "-1")) : true, single: new Set(axes.map((a) => a.id)).size === 1, parked, sides: sideTagsLR, kerbOpen, kerbBare, inZps, axesOneway: axes.every((a) => a.oneway), axisInside: here.length > 0, divided, roadClass }).map((x) => ({ ...x, mtvu: r.code,
+      segs.push(...splitRoadway(r, { guessPark, osmParkGive, tags, trams: inside, dirAt, lanesTotal, along: ownAxis ? (ownAxis.along !== (tags.oneway === "-1")) : true, single: new Set(axes.map((a) => a.id)).size === 1, parked, sides: sideTagsLR, kerbOpen, kerbBare, inZps, axesOneway: axes.every((a) => a.oneway), axes, axisInside: here.length > 0, divided, roadClass }).map((x) => ({ ...x, mtvu: r.code,
         // Bus lanes carry trolleybuses; so does the lane of a zone closed to cars but open to public transport
         // (třída Míru in Pardubice: motor_vehicle=delivery, psv=yes).
         trolley: trolley && (x.type === "bus" || x.type === "bus_cyklo" || (x.type === "pruh" && transitOnly(tags))),

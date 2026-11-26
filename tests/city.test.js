@@ -46,7 +46,7 @@ test("písmo a Leaflet z vlastního webu, CSP bez Googlu a unpkg", () => {
   assert.match(html, /font-src 'self'/);
   for (const f of ["fonts/OFL.txt", "leaflet/LICENSE.txt", "leaflet/leaflet.css", "leaflet/images/layers.png"]) assert.ok(fs.existsSync(new URL(`../pilot/public/${f}`, import.meta.url)), f);
   for (const m of read("fonts/inter.css").matchAll(/url\(([^)]+)\)/g)) assert.ok(fs.existsSync(new URL(`../pilot/public/fonts/${m[1]}`, import.meta.url)), m[1]);
-  assert.match(html, /neukládáme IP adresy ani cookies/);
+  assert.match(html, /IP adresy neukládáme a cookies nepoužíváme/);
 });
 // The credits of an export: the region of the cut, ČÚZK with the year, the DMVS standing in, the orthophoto.
 test("zdroje exportu podle města a kraje řezu", async () => {
@@ -116,15 +116,31 @@ test("pasporty měst: CSP, město podle polohy, převod typů", async () => {
   const { PASSPORT_HOSTS, passportAt, codes, widen } = await import("../pilot/public/towns/pasporty.js");
   const connect = read("index.html").match(/connect-src [^;]*/)[0];
   for (const host of PASSPORT_HOSTS) assert.ok(connect.includes(host), host);
-  assert.equal(await passportAt(13.4175, 50.4605), "chomutov");
-  assert.equal(await passportAt(16.9706, 49.9653), "sumperk");
+  assert.equal(await passportAt(18.1431, 49.4583), "roznov");
+  assert.equal(await passportAt(16.531, 49.2985), "kurim");
+  // Left out after the A/B test of 26. 11. 2026: Chomutov, Šumperk (and Litoměřice, Prachatice, Roudnice);
+  // Chotěboř for its licence (a demo portal's account, Bára 26. 11. 2026).
+  assert.equal(await passportAt(15.672, 49.7207), null);
+  assert.equal(await passportAt(13.4175, 50.4605), null);
+  assert.equal(await passportAt(16.9706, 49.9653), null);
   assert.equal(await passportAt(14.42, 50.088), null);
-  assert.equal(codes.chomutov({ typ: "MK IV.třídy (d)" }), 701);
-  assert.equal(codes.chomutov({ typ: "Chodník" }), 702);
-  assert.equal(codes.sumperk({ typ: "nástupiště" }), 702);
+  assert.equal(codes.roznov({ typ: "komunikace" }), 701);
+  assert.equal(codes.roznov({ typ: "chodník" }), 702);
+  assert.equal(codes.roznov({ typ: "schody" }), null);
   // A line 4 m wide becomes a rectangle about 4 m across.
   const r = widen({ features: [{ attributes: { "šířka": 4 }, geometry: { paths: [[[16.5, 49.3], [16.501, 49.3]]] } }] }, 701).features[0].geometry.rings[0];
   assert.ok(Math.abs((r[0][1] - r[3][1]) * 110574 - 4) < 0.01);
+});
+
+// A passport that answers with nothing (as Jihlava's on 16. 11. 2026) leaves the box to the national DTM.
+test("pasport bez ploch: plochy jen z technické mapy ČÚZK", async () => {
+  const { withPassports } = await import("../pilot/public/towns/pasporty.js");
+  const dtm = { features: [{ attributes: { CTVUK_KOD: 701 } }], region: "DTM" };
+  const native = globalThis.fetch;
+  globalThis.fetch = async () => new Response(JSON.stringify({ features: [] }));
+  try {
+    assert.deepEqual(await withPassports(async () => dtm)("16.530,49.298,16.532,49.299"), dtm);
+  } finally { globalThis.fetch = native; }
 });
 
 test("slovenská města podle hranic ze ZBGIS (mesta-sk.json): Šamorín ani Svätý Jur nejsou Bratislava", async () => {

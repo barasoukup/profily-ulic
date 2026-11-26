@@ -120,7 +120,7 @@ const CITIES = {
     artLabel: "Jihlavské ilustrace",
     artTitle: "Kreslit jihlavskými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "jihlava/trolejbus-inbound.svg",
-    credit: "data © Statutární město Jihlava (pasport komunikací, parkování, mobiliář), RÚIAN a katastr © ČÚZK, 2026 (CC BY 4.0, upraveno)",
+    credit: "data © Statutární město Jihlava (pasport komunikací, parkování CC BY-SA, mobiliář), RÚIAN a katastr © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0.7, estateKm: 1.6,
     example: "49.396100, 15.591200",
@@ -149,7 +149,7 @@ const CITIES = {
     artLabel: "Mostecké ilustrace",
     artTitle: "Kreslit mosteckými ilustracemi (vypnuto: ilustrace Streetmixu)",
     emptyImg: "most/tram-inbound.svg",
-    credit: "data © Statutární město Most (objektová a technická mapa, veřejné osvětlení), RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
+    credit: "data © Statutární město Most (objektová mapa a veřejné osvětlení, CC BY-SA; technická mapa), RÚIAN © ČÚZK, 2026 (CC BY 4.0, upraveno)",
     // Old inner town (pitched-roof tenements) within innerKm of the centre, estates from estateKm (profile.js).
     innerKm: 0, estateKm: 0.5,
     example: "50.503000, 13.636300",

@@ -14,7 +14,9 @@ test("kontrola zdrojů: každá mapa povrchů má bod, plochy se žádají jen t
   for (const p of PLAN) assert.ok(p.at, `${p.id}: ${p.key} nemá bod v POINTS`);
   for (const id of ["luxembourg", "cizina"]) assert.equal(PLAN.find((p) => p.id === id && p.full).surface, false, id);
   for (const id of ["praha", "brno", "cesko", "jihlava", "netherlands", "switzerland"]) assert.equal(PLAN.find((p) => p.id === id && p.full).surface, true, id);
-  for (const key of ["wien", "berlin", "krakow", "paris", "zaragoza"]) assert.ok(PLAN.find((p) => p.key === key)?.surface, key);
+  for (const key of ["wien", "berlin", "paris", "zaragoza"]) assert.ok(PLAN.find((p) => p.key === key)?.surface, key);
+  // Kraków's map is off (?krakow=1, Bára 26. 11. 2026): the check does not ask it.
+  assert.equal(PLAN.find((p) => p.key === "krakow"), undefined);
   // A new map without a point fails the check.
   assert.equal(plan({ ...C, TOWNS }, { ...POINTS, wien: undefined }).find((p) => p.key === "wien")?.at ?? null, null);
 });

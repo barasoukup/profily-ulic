@@ -390,7 +390,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Normy RMI 2022 (závazné), buspruh, stání a tramvaj z nezávazných WR-D. Stání odhadem jako LU (zákon šířku nemá).
   Paneláky ponechané (wielka płyta jako v Česku). **Před nasazením workflow OSM tiles se `states: pl`.**
 - A/B mapy Krakova po recenzi slabé (lépe 7, hůř 6; mosty a víceproudé ulice lépe, chodník napůl „chodník + stezka“
-  tam, kde OSM vede cyklostezku po chodníku); zapnutá, `?krakow=0`. Měření 21. 11.: složení 67 %, šířka do 2 m 32 %
+  tam, kde OSM vede cyklostezku po chodníku). Od 26. 11. 2026 **vypnutá**, zapne ji `?krakow=1` (Bára: pravidla města
+  chtějí písemný souhlas správce MSIP, `evaluation/licence/ZPRAVA.md`; na přehledové mapě není). Měření 21. 11.: složení 67 %, šířka do 2 m 32 %
   (22 řezů). Recenze `evaluation/poland/RECENZE.md`.
 
 ## Francie (větev france z poland, Bára 22. 11. 2026, nenasazené)
@@ -638,7 +639,7 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   `evaluation/mapfill-cz/ZPRAVA.md`.
 - Sjednocení výjimek (Bára 24. 11. 2026: co nejvíc sdíleně, výjimka jen s měřením nebo rozdílem zákona, norem a dat;
   `evaluation/sjednoceni/AUDIT.md`, `ZPRAVA.md`): `besidePassport` všude (i CZ), osy OSM, obslužné cesty a ústí uliček jako křižovatky
-  všude i v Praze (`city.fix` zrušené, `evaluation/sjednoceni/praha/ZPRAVA.md`; plocha uličky jen pro ulici, do které ústí, kliky `evaluation/kliky/ZPRAVA.md`), delší dosah dálnic a hlavních ulic jedním pravidlem dat řezu (`app.js widerSides`,
+  všude i v Praze (`city.fix` zrušené, `evaluation/sjednoceni/praha/ZPRAVA.md`; plocha uličky jen pro ulici, do které ústí, kliky `evaluation/kliky/ZPRAVA.md`: oprava naslepo 17 : 2, obslužné cesty zůstávají, limit posunu nezapnutý; po změně pravidel umístění `node evaluation/kliky/collect.mjs`), delší dosah dálnic a hlavních ulic jedním pravidlem dat řezu (`app.js widerSides`,
   příznaky `wideRoads`/`wideStreets` zrušené), oprava stání z modelu u zákonného pruhu (`?off=parkshare`). Zákonný odhad
   stání platí i na Slovensku (25. 11.: jeho prohry byly z chyby sdíleného kódu, zákonný pruh ležel ve vozovce dřív, než se měřily
   pruhy; teď pruhy napřed, `ai-kerbs.js lawKerbs`, `?off=lawlanes`, A/B oprava 13 : 6, SK se zákonem 6 : 7 a CZ 5 : 5,
@@ -690,20 +691,19 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Nedělat: pokryvnost korunami a parametry stromů (Bára: moc složité). IPR Praha oslovit s připomínkami (nápad
   Magdaleny), Slovensko jen při zájmu.
 
-## Pasporty dalších měst (Bára 16. 11. 2026)
-- Komunikace Chomutova, Šumperka, Rožnova p. R., Litoměřic, Chotěboře, Šlapanic, Kuřimi a zeleň Prachatic a Roudnice
-  n. L. (`towns/pasporty.js`, hranice `pasporty.json`) nad DTM ČÚZK ve „cesko“. Nasazené před A/B (do 19. 11. odstávka
-  DMVS, „do 19. je to nic“); A/B po odstávce podle `evaluation/PASPORTY-AB.md`, co nevyhraje, vyřadit.
+## Pasporty dalších měst (Bára 16. 11. 2026, A/B 26. 11. 2026)
+- Komunikace Rožnova p. R., Šlapanic a Kuřimi (`towns/pasporty.js`, hranice `pasporty.json`) nad DTM ČÚZK
+  ve „cesko“; pasport bez ploch v okolí nechá řez DTM. A/B po odstávce DMVS (`evaluation/PASPORTY-AB.md`, výsledky):
+  vyřazené Chomutov (bez pasportu lépe 33 : 8), Šumperk (4 : 4), Litoměřice (6 : 5), zeleň Prachatic (2 : 1) a Roudnice
+  (9 : 0); Chotěboř vyhrála (4 : 1), ale vyřazená kvůli licenci (vrstva na soukromém účtu „ArcGIS Demo portál“, ne
+  města; Bára 26. 11. 2026); jména v `pasporty-names.js` zůstala kvůli kreditu uložených řezů. Nápad: vozovku pasportu ořezat na kus pod osou.
 
-## Na 19. 11. 2026 (po odstávce DMVS, Bára 16. 11. 2026)
-Odstávka IS DMVS a DTM krajů 12.–18. 11. (přechod na JVF DTM 1.5.0.2), plný provoz od 19. 11.
-1. Ověřit, že DMVS běží (WMS `dtm_zps_plochy_bar` vrací 200, ne „Plánovaná odstávka“), že ho aplikace po přechodu na
-   novou verzi JVF DTM umí číst (řez mimo naše města, např. Komenského ve Vysokém Mýtě; plochy, linie, typ plochy
-   v bodě, WFS krajů v `dtmwfs.js`) a `node tools/check_sources.mjs`.
-2. A/B pasportů devíti měst podle `evaluation/PASPORTY-AB.md` (aplikace s pasportem proti bez); co nevyhraje,
-   vyřadit z `towns/pasporty.js`.
-3. Jihlava: pasport komunikací (`ost/Pasporty` vrstvy 1, 2, 34, 111–115) byl 16. 11. prázdný. Je-li pořád, při
-   prázdném pasportu brát DTM ČÚZK a případně se zeptat města.
+## Po odstávce DMVS (ověřeno 26. 11. 2026)
+- DMVS i WFS krajů po přechodu na JVF DTM 1.5 fungují (Komenského ve Vysokém Mýtě, `tools/check_sources.mjs` česká
+  města ok). Jihomoravský kraj v obytných ulicích Kuřimi DTM nemá (odhad z OSM).
+- Jihlava: pasport komunikací je zase plný (26. 11. vrstva 112: 13 323 úseků), náhrada nebyla potřeba.
+- Záchranná síť má české řezy DTM: `evaluation/replay/sample-cz.json` (`node evaluation/replay/sample.mjs cz`), nahrávka
+  `rec-cz` (`evaluation/replay/README.md`).
 
 ## O aplikaci (Bára 24. 11. 2026, větev estonia, nenasazené)
 - Menu Soubor → „O aplikaci“ (`pilot/public/about.js`, dialog v `index.html`): text o aplikaci, autorka podle státu řezu

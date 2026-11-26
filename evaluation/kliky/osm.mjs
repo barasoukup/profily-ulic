@@ -40,10 +40,10 @@ async function alleys(lat, lon, radius) {
   return (json.features || []).filter((f) => f.geometry?.rings?.length)
     .map((f, k) => ({ type: "area", id: -(k + 1), tags: { service: "alley", source: "DC Planimetrics" }, geometry: f.geometry.rings[0].map(([x, y]) => ({ lat: y, lon: x })) }));
 }
-export async function osmAt(lat, lon, radius = 80) {
+export async function osmAt(lat, lon, radius = 80, withAlleys = true) {
   const dLat = radius / 110574, dLon = radius / (111320 * Math.cos((lat * Math.PI) / 180)), names = [];
   for (let ix = Math.floor((lon - dLon) / TILE); ix <= Math.floor((lon + dLon) / TILE); ix++)
     for (let iy = Math.floor((lat - dLat) / TILE); iy <= Math.floor((lat + dLat) / TILE); iy++) names.push(`${ix}_${iy}`);
   const elements = mergePieces(await tiles(names));
-  return { elements: isDC(lat, lon) ? [...elements, ...await alleys(lat, lon, radius)] : elements };
+  return { elements: withAlleys && isDC(lat, lon) ? [...elements, ...await alleys(lat, lon, radius)] : elements };
 }

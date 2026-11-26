@@ -171,7 +171,8 @@ z ortofota a OSM.
 
 Stát `poland` (PL), `countries/PL.js`, `towns/poland.js`, `search-pl.js`; hranice GISCO (za Českem a Slovenskem). OSM po
 16 vojvodstvích (`pl_*`, jen R2). Ortofoto GUGiK (WMS HighResolution v Web Mercatoru, `lanes-ortho.js` zdroj `pl`).
-- **Mapa povrchů Krakova** (MJO: vozovky, náměstí, chodníky, cesty) tam, kde má u středu řezu vozovku (`?krakow=0`).
+- **Mapa povrchů Krakova** (MJO: vozovky, náměstí, chodníky, cesty) tam, kde má u středu řezu vozovku; jen s `?krakow=1`
+  (od 26. 11. 2026 vypnutá, chybí písemný souhlas správce MSIP).
   Celostátní BDOT10k a mapy okresů nejsou otevřeně s CORS; Varšava, Vratislav, Gdaňsk, Poznaň služby nemají.
 - **Normy** podle závazného nařízení RMI 2022 (Dz.U. 2022 poz. 1518), buspruh, stání a tramvaj podle nezávazných
   doporučení ministerstva WR-D (označeno). **Stání:** zákon volnou šířku nemá, odhad jako v Lucembursku, průjezdné pruhy
@@ -671,15 +672,16 @@ Služby města (`gis.jihlava-city.cz`, CORS povolený):
 
 ### Pasporty dalších měst (16. 11. 2026)
 
-Ve zbytku Česka („cesko“) se v hranicích devíti obcí (`pilot/public/pasporty.json`, `node tools/build_pasporty.mjs`)
+Ve zbytku Česka („cesko“) se v hranicích tří obcí (`pilot/public/pasporty.json`, `node tools/build_pasporty.mjs`)
 berou plochy z pasportu města a jinde DTM ČÚZK (`towns/pasporty.js`, `towns/overlay.js overDmvs`): komunikace
-Chomutova, Šumperka a Rožnova pod Radhoštěm (T-MAPY PaKom, typy, u Chomutova i třídy komunikací), Litoměřic (chodníky
-a úseky komunikací, 2018), Chotěboře (2016), Šlapanic (komunikace podle třídy, parkoviště) a Kuřimi (osy zimní údržby
-se šířkou převedené na plochy), zeleň Prachatic (02/2026: zeleň, cesty, hřiště, voda) a Roudnice nad Labem. Nejsou
+Rožnova pod Radhoštěm (T-MAPY PaKom), Šlapanic (komunikace podle třídy, parkoviště) a Kuřimi (osy
+zimní údržby se šířkou převedené na plochy). Pasport, který v okolí řezu nic nemá, nechá řez technické mapě. Nejsou
 to samostatná města (texty, ilustrace a mapy zůstávají české obecné). Zdroje našlo vlákno o Slovensku, do aplikace
-šly před A/B testem (Bára: během odstávky DMVS 12.–18. 11. je to lepší než odhad), test čeká na konec odstávky
-(`evaluation/PASPORTY-AB.md`); kde pasport nevyhraje, vyřadit. Export uvádí „pasport komunikací (zeleně) © <město>“.
-Vynechané: Mohelnice a Velké Meziříčí (prázdný pasport), T-MAPY Litoměřic (chce přihlášení). Části změřené na pasportu
+šly před A/B testem; A/B 26. 11. 2026 (`evaluation/PASPORTY-AB.md`) nechal čtyři a vyřadil Chomutov, Šumperk,
+Litoměřice a zeleň Prachatic a Roudnice nad Labem (nevyhrály); Chotěboř vyřadila Bára kvůli licenci (vrstva na demo
+účtu, ne města; uložené řezy s nimi si kredit nechají,
+`pasporty-names.js`). Export uvádí „pasport komunikací © <město>“.
+Vynechané předtím: Mohelnice a Velké Meziříčí (prázdný pasport), T-MAPY Litoměřic (chce přihlášení). Části změřené na pasportu
 (zde i v Karviné, Frýdku-Místku a Třebíči; `gis.js asPassport`) mají zdroj „z pasportu města“ (tyrkysová v legendě),
 jízdní pruhy dál „doplněno z OSM“ (vozovku do pruhů dělí OSM), a text ve Stavu jmenuje pasport města.
 
@@ -891,15 +893,27 @@ Připojená po srovnání s celostátní DTM ČÚZK nad ortofotem (`evaluation/<
       vozovce. Místo 0,4 m za plnou čarou je taky kandidát. Kde hrana není, platí šířka podle OSM;
     - **domy:** budovy OSM (čtené i ±1 a ±2 m podél ulice; dům jen vedle řezu se dokreslí přes řez). Mají přednost
       před zelenými plochami OSM (trávník, park, les), ty před chodníky; voda, zahrádky a hřbitovy profil ukončí.
+      Ulice na mostě (`bridge` a úroveň nad zemí) leží nad vodou a zelení OSM: ty se pod ní neberou a ulice končí
+      za krajním chodníkem jako u map povrchů (`evaluation/bridge-water/`, `?off=mostvoda` jako dřív).
       **Chodník** vede od obruby k domu, nejvýš 6 m. Zbytek, a s `sidewalk=no` celý prostor, je zeleň, kde je
       ortofoto převážně zelené (podíl ≥ 0,1), jinak plocha do 12 m, jinak tam profil končí. Bez domu je chodník jen
       podle OSM (`sidewalk*`, šířka `sidewalk:width` nebo 2,5 m) a za ním profil končí;
+    - **domy z RÚIAN** (Česko, `countries/CZ.js estimateBuildings`, Bára 23. 11. 2026: „RÚIAN by měl mít nejlepší
+      data“): budovy odhadu jsou z RÚIAN, z OSM jen tam, kde RÚIAN žádnou nemá (`gis.js withBuildings`; `?off=ruiandomy`).
+      Regrese proti MTVU (`RUIAN=first node evaluation/ortofoto-osm/regrese.mjs`): víc metrů správného složení ve všech
+      čtyřech (Praha +13 a +12 m, Brno +2 a +18 m), chodník po metrech −1 p. b. Domy z RÚIAN sedí na fasádu MTVU (do
+      0,25 m); horší strany kreslí chodník až k domu přes zeleň, stání nebo za špatnou obrubou (řezy 8, 74, 86, 87).
+      Pole a les mapy (100, 200) pod odhadem jdou za něj: mapa, která na místě nové zástavby kreslí pole, ještě není
+      překreslená (Devětsilová; `?off=staramapa`);
     - **samostatný chodník OSM** (`footway=sidewalk`) za obrubou a před domem je chodník i přes trávník ZBGIS nebo
       zeleň OSM (Bára 16. 11. 2026, Štúrova v Nitře): mezi čarami mapy města do 3 m od něj, ven k domu do 4 m, jinak
       2 m kolem jeho čáry. `?off=osmwalk` vypne;
     - kde technická mapa má plochy, jen ne u osy, omezí obruby její chodníky a domy; obruby se nehledají u okraje
       pokrytí snímku a koruny nad osou nechají obruby podle OSM;
-    - všechno kromě domů je „odhad“ a hláška dodá „Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.“
+    - všechno kromě domů je „odhad“ a hláška dodá „Obruby jsou odhadnuté z ortofota a domy z RÚIAN, šířky ověřte.“
+      Zdroj domů je ten, ze kterého jsou fasády na koncích řezu (`ortho-osm.js houseSources`, prvek s `from`: RÚIAN
+      z `gis.js ruianOutlines`, GRPK z `towns/lithuania.js`), jinak OSM; dva zdroje spojí `Intl.ListFormat` jazyka
+      stránky („z RÚIAN a OSM“), jména se nesklánějí (26. 11. 2026).
       Přesnost proti MTVU (jednoduché řezy Prahy a Brna): obruba do 0,5 m u 39–50 % stran, do 1 m u 57–69 %. Samotné
       OSM má 26–34 % a 51–58 %. Ve vsích a v cizině bude nejspíš horší.
 11b. **Obruby vozovky z AI** (zapnuté od 19. 11. 2026, `?ai=0` vypne; Bára 18. 11. 2026, `public/ai-kerbs.js`, pilot a měření

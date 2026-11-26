@@ -67,7 +67,7 @@ const NETS = [
   // street lighting (with their depth in cm), WFS of the city's data service (api.data.amsterdam.nl, CORS, "Creative
   // Commons, Naamsvermelding" in its catalogue). Its own loader: no ČÚZK ground model is asked. The box takes in
   // Amstelveen and Diemen too, whose networks the city does not have (no lines there).
-  { id: "amsterdam", box: [4.72, 52.27, 5.08, 52.43], credit: () => t("Sítě © Gemeente Amsterdam a Waternet (CC BY)."), load: amsterdamNets },
+  { id: "amsterdam", box: [4.72, 52.27, 5.08, 52.43], credit: () => t("Sítě © Gemeente Amsterdam a Waternet (Creative Commons Naamsvermelding, verze neuvedena)."), load: amsterdamNets },
 ];
 // Amsterdam's WFS (GeoJSON in WGS 84, lon, lat and for sewers the height): the lines as underground() takes them.
 const AMS_WFS = "https://api.data.amsterdam.nl/v1/wfs/leidingeninfrastructuur/v1";

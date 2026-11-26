@@ -38,3 +38,13 @@ test("tramvajové těleso v trávě jde do Streetmixu jako tramvaj na trávě, o
   assert.deepEqual(segs("trava").map((s) => s.variantString), ["outbound|grass", "inbound|grass"]);
   assert.deepEqual(segs("panely").map((s) => s.variantString), ["outbound|colored", "inbound|colored"]);
 });
+
+test("Kypr a Malta jezdí vlevo: export do Streetmixu to řekne (leftHandTraffic)", async () => {
+  const { setCity } = await import("../pilot/public/city.js");
+  try {
+    for (const [id, left] of [["cyprus", true], ["malta", true], ["praha", false], ["brno", false]]) {
+      setCity(id);
+      assert.equal(toStreetmix(profile, "T").data.street.leftHandTraffic, left, id);
+    }
+  } finally { setCity("praha"); }
+});

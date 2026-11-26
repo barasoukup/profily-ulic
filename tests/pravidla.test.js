@@ -442,3 +442,32 @@ test("chodník mezi dvěma vozovkami zůstane chodníkem, když se zákonné st�
   const again = derive({ noParkGuess: true, lawAt: at });
   assert.ok(!types(again).includes("delici") && !types(again).includes("parkovani"), types(again));
 });
+
+test("koleje mezi dvěma jednosměrnými vozovkami (OSM bez embedded_rails) jsou samostatné těleso, i když mapa kreslí jednu vozovku (Střelničná, 23. 11. 2026)", () => {
+  const rev = (x) => [ll(x, 60), ll(x, -60)];
+  const types = (tags) => {
+    const back = { type: "way", id: 2, tags: { highway: "secondary", oneway: "yes", lanes: "2", ...tags }, geometry: rev(7) };
+    const extra = [back, ...[-1.5, 1.5].map((x, i) => ({ type: "way", id: 100 + i, tags: { railway: "tram" }, geometry: line(x) }))];
+    return road(24, { highway: "secondary", oneway: "yes", lanes: "2", ...tags }, { axis: -7, extra }).segments.map((s) => s.type).filter((t) => t !== "chodnik" && t !== "budova");
+  };
+  assert.deepEqual(types({}), ["pruh", "pruh", "tramvaj", "tramvaj", "pruh", "pruh"]);
+  // Rails in the roadway (embedded_rails): the tracks stay in it.
+  assert.ok(!types({ embedded_rails: "tram" }).includes("tramvaj"));
+});
+
+test("OSM parking=lane bez orientace je podélné stání, ne šikmé podle hloubky plochy (Klánovická, 23. 11. 2026)", () => {
+  const area = (tags) => ({ type: "area", id: 9, tags: { amenity: "parking", parking: "lane", ...tags }, geometry: [ll(-3.25, -10), ll(0.25, -10), ll(0.25, 10), ll(-3.25, 10), ll(-3.25, -10)] });
+  // The axis beside the area (an area under the axis covers the carriageway and is left out).
+  const orient = (tags) => road(6.5, { lanes: "2" }, { axis: 2, extra: [area(tags)] }).segments.find((s) => s.type === "parkovani")?.orient;
+  assert.equal(orient({}), "podelne");
+  assert.equal(orient({ orientation: "diagonal" }), "sikme");
+});
+
+test("pojmenovaná služební cesta přes pole je ulice, kterou mapa povrchů nemá: odhad z OSM (Devětsilová, 23. 11. 2026)", () => {
+  const cut = (tags) => {
+    const way = { type: "way", id: 1, tags: { highway: "service", ...tags }, geometry: line(0) };
+    return deriveProfile({ center: [0, 0], dir: [0, 1], half: 40, polys: [rect(100, -40, 40)], osm: { elements: [way] }, frame, way, inZps: false });
+  };
+  assert.ok(cut({ name: "Devětsilová" }).estimate);
+  assert.ok(!cut({}).estimate, "nepojmenovaná polní cesta zůstává, jak ji mapa má");
+});

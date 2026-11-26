@@ -88,11 +88,11 @@ export default {
   freeLane: 3,
   halfKerbNote: (free, need) => t("Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. V Dánsku je stání na chodníku v obci zakázané (§ 28 odst. 3 zákona o silničním provozu), obec ho ale může místní úpravou povolit (§ 92); mimo obec smí vozidlo stát částí na chodníku. Zákon volnou šířku vozovky uvádí jen vedle plné čáry (3 m, § 29), aplikace nechává {need}.", { free, need }),
   parkGuess: true,
-  parkByCycleLane: true,
-  roadClassFromOsm: true,
   // A cycle track OSM tags on the road (derive.js trackAlongRoad) without a width of its own: the usual one-way track of
   // the handbook Tværprofiler i byer (2019), 2.25 m (the review of 24. 11. 2026, bod 2; evaluation/denmark/ab/STEZKY.md).
   trackWidth: 2.25,
+  parkByCycleLane: true,
+  roadClassFromOsm: true,
   limits: limitsDK,
   // The guide gives no width of a one-way street with cyclists both ways, nor of a tram belt (Odense's and Aarhus's
   // letbane: not found).

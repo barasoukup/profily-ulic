@@ -207,7 +207,7 @@ export class PackSet {
         const r = await this.f(`${base}/index.json`, { cache: "no-cache", signal: this.timeout ? AbortSignal.timeout(this.timeout) : undefined });
         if (!r.ok) throw new Error(`dlaždice OSM ${r.status}`);
         const { files, bbox = {} } = await r.json();
-        return Object.fromEntries(Object.entries(files).map(([code, file]) => [code, Object.assign(new Pack(rangeFetch(`${base}/${file}`, this.timeout, this.f)), { code, box: bbox[code] })]));
+        return Object.fromEntries(Object.entries(files).map(([code, file]) => [code, Object.assign(new Pack(rangeFetch(`${base}/${file}`, this.timeout, this.f)), { code, file, box: bbox[code] })]));
       })().catch((err) => { this.places.delete(base); throw err; }));
     }
     return this.places.get(base);
@@ -229,14 +229,23 @@ export class PackSet {
     const lists = [];
     let answered = 0, failed = null;
     await Promise.all(Object.values(first).filter(holds).map(async (p) => {
+      let fresh = false; // the index of the first place read again once
       for (let at = this.at; at < this.bases.length; at++) {
         try {
-          const pack = at === this.at ? p : (await this.open(at))[p.code];
+          const pack = at === this.at && !fresh ? p : (await this.open(at))[p.code];
           if (!pack) break; // the next place has no file of this state (Pages: only CZ and SK)
           lists.push(await pack.tiles(names));
           answered++;
           return;
-        } catch (e) { failed = e; console.warn("dlaždice OSM", p.code, this.bases[at], e.message); }
+        } catch (e) {
+          failed = e; console.warn("dlaždice OSM", p.code, this.bases[at], e.message);
+          // Only the newest file of a state stays on R2 (Bára 26. 11. 2026): a page open over the weekly rebuild
+          // holds an index naming a deleted file. Read the index again; a new file of the state is tried at once.
+          if (at === this.at && !fresh) {
+            fresh = true; this.places.delete(this.bases[at]);
+            try { const next = (await this.open(at))[p.code]; if (next && next.file !== p.file) at--; } catch {}
+          }
+        }
       }
     }));
     if (!answered && failed) { this.at = 0; this.places.clear(); throw failed; }

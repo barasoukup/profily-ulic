@@ -3,16 +3,18 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { localFrame, nearestStreet, placeCut } from "../pilot/public/derive.js";
+import { localFrame, nearestStreet, placeCut, snapToWay } from "../pilot/public/derive.js";
 import { P } from "../pilot/public/ortho-osm.js";
 
+// The length along a polyline to a point snapped on it.
+const along = (pts, at) => { let d = Math.hypot(at.point[0] - pts[at.index][0], at.point[1] - pts[at.index][1]); for (let i = 0; i < at.index; i++) d += Math.hypot(pts[i + 1][0] - pts[i][0], pts[i + 1][1] - pts[i][1]); return d; };
 const { scenes } = JSON.parse(fs.readFileSync(new URL("./placement-scenes.json", import.meta.url), "utf8"));
 const elements = (s) => s.elements.map(([t, id, tags, g]) => ({ type: { w: "way", a: "area", n: "node" }[t], id, tags, geometry: Array.from({ length: g.length / 2 }, (_, i) => ({ lon: g[2 * i] / 1e7, lat: g[2 * i + 1] / 1e7 })) }));
 for (const s of scenes) test(`klik ${s.id}: ${s.why}`, () => {
   const osm = { elements: elements(s) }, frame = localFrame(s.lat, s.lon), near = nearestStreet(osm, frame, [0, 0]);
   if (s.way) assert.equal(near.way.id, s.way);
-  // From the nearest point of the way, so a click beside the axis is not counted as a move.
-  const p = placeCut(osm, frame, near).point, moved = Math.hypot(p[0] - near.point[0], p[1] - near.point[1]);
+  // Along the way, so a click beside the axis and the middle of two carriageways are not counted as a move.
+  const p = placeCut(osm, frame, near).point, moved = Math.abs(along(near.pts, snapToWay(near.pts, p)) - along(near.pts, near));
   assert.ok(moved <= s.max, `posun ${moved.toFixed(1)} m, nejvýš ${s.max}`);
   if (s.min) assert.ok(moved >= s.min, `posun ${moved.toFixed(1)} m, aspoň ${s.min}`);
 });

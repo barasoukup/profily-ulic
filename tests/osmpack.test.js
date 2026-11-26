@@ -125,3 +125,27 @@ test("balík, který na R2 selže, se zkusí na Pages, i když soused s překryt
   const lists = await set.tiles(["2884_10016"]);
   assert.deepEqual(lists, [decodeTile(text("2884_10016"))], "český balík z Pages");
 });
+
+// Bára 26. 11. 2026: only the newest file of a state stays on R2, so a page open over the weekly rebuild holds an
+// index naming a deleted file. The failed cut reads the index again, the next cut finds the new file.
+test("smazaný starý balík: stránka otevřená přes týdenní obnovu přečte index znovu", async () => {
+  const cz = packTiles(["2884_10016"], text).file;
+  let index = { files: { at: "at-1.posm" } };
+  const files = { "at-1.posm": cz };
+  const f = async (url, opts) => {
+    const file = url.split("/")[1];
+    if (file === "index.json") return Response.json(index);
+    if (!files[file]) return new Response("", { status: 404 });
+    const [, s, e] = /bytes=(\d+)-(\d+)/.exec(opts.headers.Range).map(Number);
+    return new Response(files[file].subarray(s, e + 1), { status: 206, headers: { ETag: file } });
+  };
+  const set = new PackSet(["r2"], { fetch: f });
+  assert.deepEqual(await set.tiles(["2884_10016"]), [decodeTile(text("2884_10016"))]);
+  index = { files: { at: "at-2.posm" } }; files["at-2.posm"] = cz; delete files["at-1.posm"];
+  assert.deepEqual(await new PackSet(["r2"], { fetch: f }).tiles(["2884_10016"]), [decodeTile(text("2884_10016"))]);
+  index = { files: { at: "at-1.posm" } }; // the old index once more: the open page's view
+  const old = new PackSet(["r2"], { fetch: f });
+  await old.open();
+  index = { files: { at: "at-2.posm" } };
+  assert.deepEqual(await old.tiles(["2884_10016"]), [decodeTile(text("2884_10016"))], "hned první řez najde nový soubor");
+});

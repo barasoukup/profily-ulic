@@ -585,15 +585,15 @@ export const LV = {
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} pašlaik neatbild, laukumi ir no ČÚZK tehniskās kartes.",
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "ČÚZK tehniskā karte pašlaik neatbild, šķērsprofils ir aplēse pēc OSM.",
   "Mapa povrchů tu nic nevrátila, profil je odhad z OSM.": "Segumu karte šeit neko neatgrieza, šķērsprofils ir aplēse pēc OSM.",
-  "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Apmales un ēkas ir pēc OSM, lūdzu, pārbaudiet platumus.",
+  "Obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Apmales ir pēc OSM, ēkas no {houses}, lūdzu, pārbaudiet platumus.",
   "Mapa povrchů tu ulici nemá.": "Segumu kartē šeit ielas nav.",
   "{name} teď neodpovídá (server je přetížený).": "{name} pašlaik neatbild (serveris ir pārslogots).",
   "{name} teď neodpovídá.": "{name} pašlaik neatbild.",
   "Technická mapa ČÚZK teď neodpovídá.": "ČÚZK tehniskā karte pašlaik neatbild.",
   "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "Tehniskajā kartē šeit ir tikai līnijas bez laukumiem (apgabals laukumus nepiegādā).",
   "Mapa povrchů tu nic nevrátila.": "Segumu karte šeit neko neatgrieza.",
-  "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "Apmales ir aplēstas pēc ortofoto, ēkas ir no OSM, lūdzu, pārbaudiet platumus.",
-  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Ortofoto šeit nepalīdzēja: apmales un ēkas ir pēc OSM, lūdzu, pārbaudiet platumus.",
+  "Obruby jsou odhadnuté z ortofota a domy z {houses}, šířky ověřte.": "Apmales ir aplēstas pēc ortofoto, ēkas ir no {houses}, lūdzu, pārbaudiet platumus.",
+  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Ortofoto šeit nepalīdzēja: apmales ir pēc OSM, ēkas no {houses}, lūdzu, pārbaudiet platumus.",
 
   // ---------- rainwater management (types.js water, HDV_UNDER) ----------
   "Vsakovací průleh": "Infiltrācijas ievalka",
@@ -632,7 +632,7 @@ export const LV = {
   "Obrázek PNG": "PNG attēls",
   "Vektor SVG": "SVG (vektors)",
   "Soubor": "Fails",
-  "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka": "ielu reģistrs © Hlavné mesto SR Bratislava un MČ Dúbravka",
+  "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka, © EUROSENSE SLOVAKIA, s.r.o.": "ielu reģistrs © Hlavné mesto SR Bratislava un MČ Dúbravka, © EUROSENSE SLOVAKIA, s.r.o.",
   "pasport dopravy a zelene © mesto Prešov (CC BY 4.0)": "satiksmes un apstādījumu reģistrs © mesto Prešov (CC BY 4.0)",
   "pasport komunikácií © mesto Žilina": "ielu reģistrs © mesto Žilina",
   "pasport komunikácií © mesto Košice": "ielu reģistrs © mesto Košice",
@@ -823,7 +823,7 @@ export const LV = {
   "Příčné profily ulic v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku, v Lichtenštejnsku, v Nizozemsku, v Belgii, v Lucembursku, v Polsku, ve Francii, v Monaku, ve Španělsku, v Portugalsku, na Kypru, na Maltě, v částech Itálie, v Estonsku, ve Slovinsku, ve Finsku, v Dánsku, v Litvě, ve Washingtonu (USA) a v Torontu (Kanada) z map povrchů měst, ČÚZK a ZBGIS: od fasády k fasádě, upravitelné, s místními ilustracemi.": "Ielu šķērsprofili Čehijā, Slovākijā, Austrijā, Vācijā, Šveicē, Lihtenšteinā, Nīderlandē, Beļģijā, Luksemburgā, Polijā, Francijā, Monako, Spānijā, Portugālē, Kiprā, Maltā, Itālijas daļās, Igaunijā, Slovēnijā, Somijā, Dānijā, Lietuvā, Vašingtonā (ASV) un Toronto (Kanāda) no pilsētu, ČÚZK un ZBGIS segumu kartēm: no fasādes līdz fasādei, maināmi, ar vietējām ilustrācijām.",
   // The Netherlands (Bára 20. 11. 2026).
   "mapy povrchů BGT, ortofota PDOK a OSM": "segumu kartes BGT, PDOK ortofoto un OSM",
-  "ortofoto © PDOK (Beeldmateriaal Nederland)": "ortofoto © PDOK (Beeldmateriaal Nederland)",
+  "ortofoto © Beeldmateriaal.nl (PDOK, CC BY 4.0)": "ortofoto © Beeldmateriaal.nl (PDOK, CC BY 4.0)",
   "mapa povrchů BGT © Kadaster a správci BGT (PDOK, CC0)": "segumu karte BGT © Kadaster un BGT uzturētāji (PDOK, CC0)",
   " · mapa povrchů BGT neodpověděla, odhad z ortofota a OSM": " · segumu karte BGT neatbildēja, aprēķins pēc ortofoto un OSM",
   "Mapa povrchů BGT (PDOK) teď neodpovídá, profil je odhad z ortofota a OSM.": "Segumu karte BGT (PDOK) pašlaik neatbild, šķērsprofils ir aprēķins pēc ortofoto un OSM.",
@@ -836,21 +836,21 @@ export const LV = {
   "podélné stání: 2 × 6 m (ASVV 2012 podle obce Oost Gelre), v Amsterdamu 2,1–2,4 m": "paralēla stāvvieta: 2 × 6 m (ASVV 2012 pēc Oost Gelre pašvaldības), Amsterdamā 2,1–2,4 m",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Smí se jen u značky E8b (RVV 1990 čl. 10). Zákon šířku neuvádí, v praxi 3,5 m pro hasiče na jednosměrce a 4,5 m vozovky pro oba směry; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Stāvēšana daļēji uz ietves pēc OSM: brauktuvē paliek {free}. Atļauta tikai pie zīmes E8b (RVV 1990 10. pants). Likums platumu nenosaka, praksē 3,5 m ugunsdzēsējiem vienvirziena ielā un 4,5 m brauktuve abiem virzieniem; lietotne atstāj izbraucamas braukšanas joslas, tātad vismaz {need}.",
   "jednosměrka s cyklisty v protisměru: vozovka nejméně 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)": "vienvirziena iela ar riteņbraucējiem pretējā virzienā: brauktuve vismaz 3,5 m, pamatplatums 4 m (Amsterdama, Afwegingskader fietsstraten 2020)",
-  "Sítě © Gemeente Amsterdam a Waternet (CC BY).": "Tīkli © Gemeente Amsterdam un Waternet (CC BY).",
+  "Sítě © Gemeente Amsterdam a Waternet (Creative Commons Naamsvermelding, verze neuvedena).": "Tīkli © Gemeente Amsterdam un Waternet (Creative Commons Naamsvermelding, versija nav norādīta).",
   "kabel veřejného osvětlení": "ielu apgaismojuma kabelis",
   "parkovací místa © Gemeente Amsterdam": "stāvvietas © Gemeente Amsterdam",
   // Belgium and Luxembourg (Bára 20. 11. 2026).
-  "ortofoto © SPW (Service public de Wallonie)": "ortofoto © SPW (Service public de Wallonie)",
-  "ortofoto © Digitaal Vlaanderen": "ortofoto © Digitaal Vlaanderen",
-  "ortofoto © ACT Luxembourg (geoportail.lu)": "ortofoto © ACT Luxembourg (geoportail.lu)",
+  "ortofoto © SPW (Service public de Wallonie, CC BY 4.0)": "ortofoto © SPW (Service public de Wallonie, CC BY 4.0)",
+  "ortofoto: Bron: Luchtopnamen Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)": "ortofoto: Bron: Luchtopnamen Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)",
+  "ortofoto © ACT Luxembourg (geoportail.lu, CC0)": "ortofoto © ACT Luxembourg (geoportail.lu, CC0)",
   "čar mapy GRB, ortofota a OSM": "GRB kartes līnijas, ortofoto un OSM",
   "čar mapy PICC, ortofota a OSM": "PICC kartes līnijas, ortofoto un OSM",
-  "čáry GRB © Digitaal Vlaanderen": "GRB līnijas © Digitaal Vlaanderen",
+  "čáry GRB: Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)": "GRB līnijas: Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)",
   " · mapa povrchů GRB neodpověděla, odhad z ortofota a OSM": " · segumu karte GRB neatbildēja, aprēķins pēc ortofoto un OSM",
   "Mapa povrchů GRB (Digitaal Vlaanderen) teď neodpovídá, profil je odhad z ortofota a OSM.": "Segumu karte GRB (Digitaal Vlaanderen) pašlaik neatbild, šķērsprofils ir aprēķins pēc ortofoto un OSM.",
   "mapy povrchů GRB, ortofota a OSM": "segumu kartes GRB, ortofoto un OSM",
   "mapa povrchů (GRB): {who}": "segumu karte (GRB): {who}",
-  "čáry PICC © SPW (Service public de Wallonie)": "PICC līnijas © SPW (Service public de Wallonie)",
+  "čáry PICC © SPW (Service public de Wallonie, CC BY 4.0)": "PICC līnijas © SPW (Service public de Wallonie, CC BY 4.0)",
   "chodník: volný průchod nejméně 1,5 m, základ 1,8 m (Flandry, Vademecum voetgangersvoorzieningen 2026; Valonsko 1,5 m; Brusel 2 m)": "ietve: brīva pārejas daļa vismaz 1,5 m, pamatplatums 1,8 m (Flandrija, Vademecum voetgangersvoorzieningen 2026; Valonija 1,5 m; Brisele 2 m)",
   "společná stezka pro chodce a cyklisty (D10): jednosměrná 2 m, obousměrná 2,5 m, doporučeno 3 m (Valonsko, Guide cyclable)": "gājēju un velosipēdu ceļš (D10): vienvirziena 2 m, divvirzienu 2,5 m, ieteicams 3 m (Valonija, Guide cyclable)",
   "stezka pro cyklisty jednosměrná: Flandry 2 m (Vademecum fietsvoorzieningen 2024), Valonsko nejméně 1,3 m (Guide cyclable); obousměrná Flandry 3 m, Valonsko 2,2–2,6 m": "vienvirziena veloceliņš: Flandrija 2 m (Vademecum fietsvoorzieningen 2024), Valonija vismaz 1,3 m (Guide cyclable); divvirzienu Flandrija 3 m, Valonija 2,2–2,6 m",
@@ -1137,16 +1137,15 @@ export const LV = {
 export const LV_HTML = {
   footer: `Dati: tehniskās kartes © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (arī stāvu skaits un apbūves attīstība, CC BY 4.0), statutārās pilsētas Brno, Jihlava, Most, Opava un Plzeň
     un apgabali (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (arī adrešu meklēšana), kadastrs un ortofoto © ČÚZK (CC BY 4.0) · Slovākijas ortofoto, ēkas un robežas © <a href="https://www.geoportal.sk">GKÚ Bratislava</a>, NLC (ZBGIS, CC BY 4.0), Slovākijas ielas un adreses © MV SR ·
-    ielu reģistri © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), kartes zīmējumi © mestá Nitra, Piešťany, Hlohovec, tehniskā karte © Hlavné mesto SR Bratislava ·
-    pazemes komunikācijas © IPR Praha, Gemeente Amsterdam un Waternet (CC BY), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, statutārās pilsētas Karviná, Ostrava, pilsēta Břeclav ·
+    ielu reģistri © Hlavné mesto SR Bratislava, MČ Dúbravka, EUROSENSE SLOVAKIA, s.r.o., mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), kartes zīmējumi © mestá Nitra, Piešťany, Hlohovec, tehniskā karte © Hlavné mesto SR Bratislava ·
     Austrija: ortofoto © basemap.at (CC BY 4.0), segumu karte © Stadt Wien – data.wien.gv.at (CC BY 4.0), robeža © EuroGeographics (GISCO), Zalcburgas ceļa zīmes © Stadt Salzburg (CC BY 3.0 AT), meklēšana Photon © komoot (OSM dati) ·
     Vācija: federālo zemju ortofoto © LGL-BW, Bayerische Vermessungsverwaltung, GeoBasis-DE/LGB, Landesamt GeoInformation Bremen, LGV Hamburg, HVBG, GeoBasis-DE/M-V, LGLN, GeoBasis-DE/NRW, GeoBasis-DE/LVermGeoRP, GeoBasis-DE/LVermGeo SH, GeoBasis-DE/LVGL-SL, GeoSN, GeoBasis-DE/LVermGeo ST, GDI-Th; <a href="https://www.govdata.de/dl-de/by-2-0">dl-de/by-2-0</a>, <a href="https://www.govdata.de/dl-de/zero-2-0">dl-de/zero-2-0</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, robeža © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi), meklēšana Photon © komoot (OSM dati) ·
     Šveice un Lihtenšteina: ortofoto SWISSIMAGE un robežas © swisstopo, oficiālā kadastrālā uzmērīšana (Bodenbedeckung) © kantoni un Lihtenšteina, izmantojot <a href="https://geodienste.ch">geodienste.ch</a>, ceļa zīmes Wikimedia Commons (oficiāli darbi, ASTRA), meklēšana Photon © komoot (OSM dati) ·
-    Nīderlande: BGT segumu karte un BAG ēkas © Kadaster un reģistru uzturētāji, izmantojot <a href="https://www.pdok.nl">PDOK</a> (CC0, Public Domain Mark), ortofoto © Beeldmateriaal Nederland (PDOK), ēku augstumi <a href="https://3dbag.nl">3D BAG</a> © TU Delft un 3DGI (CC BY 4.0), robeža © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi), meklēšana PDOK Locatieserver ·
-    Beļģija un Luksemburga: ortofoto un GRB līnijas © Digitaal Vlaanderen, ortofoto un PICC līnijas © SPW (Service public de Wallonie), ortofoto © ACT Luxembourg (geoportail.lu), robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi), meklēšana Photon © komoot (OSM dati) ·
-    Polija: ortofoto un adrešu meklēšana © GUGiK (Geoportal.gov.pl, PRG), Krakovas segumu karte (MJO) © Gmina Miejska Kraków, robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi) ·
-    Francija: ortofoto, ēkas (BD TOPO) un adrešu meklēšana © IGN (Géoplateforme, Licence Ouverte 2.0), Parīzes segumu karte (Plan de voirie) © Ville de Paris (ODbL), robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi) ·
-    Spānija: ortofoto PNOA un adrešu meklēšana CartoCiudad © IGN (CC BY 4.0 scne.es), ēkas © Dirección General del Catastro, Navarrā Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), Basku zemē © Arabako, Bizkaiko un Gipuzkoako Foru Aldundia, Saragosas segumu karte © Ayuntamiento de Zaragoza (IDEZar), robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi) ·
+    Nīderlande: BGT segumu karte un BAG ēkas © Kadaster un datu uzturētāji (bronhouders), izmantojot <a href="https://www.pdok.nl">PDOK</a> (CC0, Public Domain Mark), ortofoto © Beeldmateriaal Nederland (PDOK, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>), ēku augstumi <a href="https://3dbag.nl">3D BAG</a> © TU Delft un 3DGI (CC BY 4.0), robeža © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi), meklēšana PDOK Locatieserver, Amsterdamas stāvvietas © Gemeente Amsterdam ·
+    Beļģija un Luksemburga: ortofoto un GRB līnijas: avots Digitaal Vlaanderen (<a href="https://www.vlaanderen.be/digitaal-vlaanderen/onze-oplossingen/open-data/voorwaarden-voor-het-hergebruik-van-overheidsinformatie/modellicentie-gratis-hergebruik">Modellicentie gratis hergebruik v1.0</a>), ortofoto un PICC līnijas © SPW (Service public de Wallonie, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>), ortofoto © ACT Luxembourg (geoportail.lu, CC0), robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi), meklēšana Photon © komoot (OSM dati) ·
+    Polija: ortofoto un adrešu meklēšana © GUGiK (Geoportal.gov.pl, PRG), Krakovas segumu karte (MJO) © Gmina Miejska Kraków, robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi), meklēšana Photon © komoot (OSM dati) ·
+    Francija: ortofoto, ēkas (BD TOPO) un adrešu meklēšana © <a href="https://geoservices.ign.fr">IGN France</a> (Géoplateforme, <a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/">Licence Ouverte 2.0</a>), Parīzes segumu karte (Plan de voirie) © <a href="https://opendata.paris.fr">Ville de Paris</a> (<a href="https://opendatacommons.org/licenses/odbl/">ODbL</a>), robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi) ·
+    Spānija: ortofoto PNOA un adrešu meklēšana CartoCiudad © Instituto Geográfico Nacional de España (CC BY 4.0, scne.es), ēkas © Dirección General del Catastro, Navarrā Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), Basku zemē © Arabako, Bizkaiko un Gipuzkoako Foru Aldundia, Saragosas segumu karte © Ayuntamiento de Zaragoza (IDEZar), robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi) ·
     Portugāle: ortofoto © DGT (Direção-Geral do Território), robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi; pārzīmējuši Fry1989, CC BY-SA 3.0, un Gigillo83, CC BY-SA 4.0) ·
     Monako: ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0), robežas © OpenStreetMap līdzautori, Francijas ceļa zīmju zīmējumi Wikimedia Commons ·
     Kipra: ortofoto 2019 © Department of Lands and Surveys (DLS; licence nav norādīta), ēkas © DLS (CC BY 4.0), robežas © OpenStreetMap līdzautori, ceļa zīmes Wikimedia Commons (britu paraugi: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
@@ -1157,17 +1156,18 @@ export const LV_HTML = {
     Somija: ortofoto © Helsingin kaupunki, kaupunkimittauspalvelut, Espoon kaupunki un Turun kaupunki (CC BY 4.0), segumu karte (Yleisten alueiden rekisteri) un ēkas © Helsingin kaupunki (CC BY 4.0), ēkas un adreses Ryhti © Suomen ympäristökeskus SYKE (CC BY 4.0), robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi), meklēšana Photon © komoot (OSM dati) ·
     Dānija: ortofoto „Indeholder data fra Styrelsen for Dataforsyning og Infrastruktur, Ortofoto forår, WMTS-tjeneste“ (<a href="https://dataforsyningen.dk/asset/PDF/rettigheder_vilkaar/Vilk%C3%A5r%20for%20brug%20af%20frie%20geografiske%20data.pdf">noteikumi</a>) un adrešu meklēšana GSearch © Klimadatastyrelsen, Kopenhāgenas brauktuves malas, stāvlaukumi un ēkas (GeoDanmark, BBR) © Københavns Kommune (licence nav norādīta), Orhūsas ēkas (BBR) © Aarhus Kommune (CC BY 4.0), robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (oficiāli darbi), meklēšana Photon © komoot (OSM dati) ·
     Lietuva: Viļņas segumu karte (topogrāfiskie laukumi 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas (licence nav norādīta; tikai ar ?vilnius=1), GRPK ēku kontūras © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0), robežas © EuroGeographics (GISCO), ceļa zīmes Wikimedia Commons (Augustasci zīmējumi ar CC BY 4.0, tabulas 846 un 853 – Gigillo83 ar CC BY-SA 4.0), meklēšana Photon © komoot (OSM dati) ·
+    pazemes komunikācijas © IPR Praha, Gemeente Amsterdam un Waternet (Creative Commons Naamsvermelding, versija nav norādīta), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, statutārās pilsētas Karviná, Ostrava, pilsēta Břeclav ·
     ASV (Washington): segumu karte (Planimetrics 2023), ielu inventārs (Roadway SubBlock) un ortofoto 2025 © DC GIS, Office of the Chief Technology Officer un DDOT (CC BY 4.0), robežas © U.S. Census Bureau (TIGERweb) un EuroGeographics (GISCO), meklēšana Photon © komoot (OSM dati) ·
     Kanāda (Toronto): segumu karte, ēku augstumi un ortofoto 2025: Contains information licensed under the Open Government Licence – Toronto (<a href="https://open.toronto.ca/open-data-licence/">licence</a>), robežas © EuroGeographics (GISCO) (Adapted from Statistics Canada, Digital Boundary Files (census subdivisions), 2021. This does not constitute an endorsement by Statistics Canada of this product.), meklēšana Photon © komoot (OSM dati) ·
-    stāvvietas © TSK hl. m. Prahy (CC BY 4.0), stāvēšanas aizliegumi, koki un ielu kategorijas no <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, pilsētas Jihlava, Opava, Plzeň (CC0) ·
+    stāvvietas © TSK hl. m. Prahy (CC BY 4.0), stāvēšanas aizliegumi, koki un ielu kategorijas no <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, pilsētas Jihlava (CC BY-SA), Opava, Plzeň (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> līdzautori (ODbL) ·
     ilustrācijas © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licence
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
     vietējās ilustrācijas un kods © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Avoti un licences</a> (čehu valodā) ·
     <a href="#kontakt" class="open-contact">kontakti</a><br>
-    Mēs saglabājam tikai griezumus (vieta, virziens, iela, laiks), klikšķus, kuros iela netika atrasta (vietu aptuveni kilometra precizitātē), izmantotās funkcijas, kā arī kļūdu ziņojumus un ziņas, ko rakstāt paši (ar ziņu arī neobligātu e-pasta adresi atbildei, lapas valodu un griezuma valsti; glabājam tos, līdz izdzēšam); nekādas IP adreses un sīkdatnes. Kartes un dati
-    tiek ielādēti tieši no IPR, ČÚZK, pilsētu, apgabalu, basemap.at, Vācijas federālo zemju, Berlīnes, Hamburgas, Āhenes, swisstopo, geodienste.ch, PDOK, 3D BAG, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK, Krakovas pilsētas, IGN, Parīzes pilsētas, Spānijas IGN un Catastro, Saragosas pilsētas, DGT, Kipras DLS, Maltas Planning Authority, Bolcāno provinces, Turīnas, Boloņas un Modenas pilsētu, Emīlijas-Romanjas reģiona, Lombardijas reģiona (Regione Lombardia), Igaunijas Maa- ja Ruumiamet, Tallinas pilsētas, Slovēnijas ģeodēzijas pārvaldes (GURS), Helsinku, Espo un Turku pilsētu, Somijas SYKE (Ryhti), Dānijas Klimadatastyrelsen (Dataforsyningen), Kopenhāgenas (Københavns Kommune) un Orhūsas pilsētu, Viļņas pilsētas (Vilniaus planas), Lietuvas ģeoportāla (geoportal.lt, GRPK), DC GIS (Washington), Toronto pilsētas un OSM serveriem, meklēšanas teksts arī no komoot (Photon), PDOK, GUGiK, IGN, CartoCiudad, Maa- ja Ruumiamet (In-ADS), GURS, SYKE un Klimadatastyrelsen (GSearch) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">privātums</a>, čehu valodā).`,
+    Mēs saglabājam griezumus (vieta, virziens, aptvērums, iela, laiks), profila labojumus datu labošanā un Projektā (daļu veidi un platumi), klikšķus, kuros iela netika atrasta (vietu aptuveni kilometra precizitātē), izmantotās funkcijas, kā arī kļūdu ziņojumus un ziņas, ko rakstāt paši (ar ziņu arī neobligātu e-pasta adresi atbildei, lapas valodu un griezuma valsti; glabājam tos, līdz izdzēšam); viena apmeklējuma ierakstus savieno nejaušs viena lapas ielādes numurs. IP adreses neglabājam un sīkdatnes nelietojam, iestatījumi un pēdējais profils paliek tikai jūsu pārlūkprogrammā. Lapu mitina GitHub Pages, ierakstus un OSM flīzes – Cloudflare. Kartes un dati
+    tiek ielādēti tieši no IPR, ČÚZK, ÚGKK SR (ZBGIS), pilsētu (arī izmantojot ArcGIS Online), apgabalu, basemap.at, Vācijas federālo zemju, Berlīnes, Hamburgas, Āhenes, swisstopo, geodienste.ch, PDOK, 3D BAG, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK, Krakovas pilsētas, IGN, Parīzes pilsētas, Spānijas IGN un Catastro, Saragosas pilsētas, DGT, Kipras DLS, Maltas Planning Authority, Bolcāno provinces, Turīnas, Boloņas un Modenas pilsētu, Emīlijas-Romanjas reģiona, Lombardijas reģiona (Regione Lombardia), Igaunijas Maa- ja Ruumiamet, Tallinas pilsētas, Slovēnijas ģeodēzijas pārvaldes (GURS), Helsinku, Espo un Turku pilsētu, Somijas SYKE (Ryhti), Dānijas Klimadatastyrelsen (Dataforsyningen), Kopenhāgenas (Københavns Kommune) un Orhūsas pilsētu, Viļņas pilsētas (Vilniaus planas), Lietuvas ģeoportāla (geoportal.lt, GRPK), DC GIS (Washington), Toronto pilsētas un OSM serveriem; tie redz jūsu IP adresi un vietu, uz kuru skatāties. Meklēšanas teksts atkarībā no vietas tiek nosūtīts ČÚZK, ÚGKK SR, Vīnes pilsētai, komoot (Photon), PDOK, GUGiK, IGN France, CartoCiudad, Maa- ja Ruumiamet (In-ADS), GURS, SYKE vai Klimadatastyrelsen (GSearch); komoot un IGN saņem arī kartes centru. Ielas panorāma pēc klikšķa tiek ielādēta no Mapy.com (Seznam.cz) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">privātums</a>, čehu valodā).`,
 };
 
 // The city's texts (city.js) in Latvian, as the sentences take them: server in the genitive before "serveris"
@@ -1223,9 +1223,9 @@ export const LV_CITY = {
   brno: own("Brno", "Brno pilsētas", "Brno pilsētas tehniskā karte", "Brno pilsētas", "maksas stāvvietu posmi (parkovanivbrne.cz)",
     "dati © Statutární město Brno (tehniskā karte un MTVU; ēkas un velo infrastruktūra, data.brno.cz, CC BY 4.0, apstrādāts), stāvvietas © parkovanivbrne.cz"),
   jihlava: own("Jihlava", "Jihlavas pilsētas", "Jihlavas ielu reģistrs", "Jihlavas pilsētas", "stāvvietas (Jihlavas pilsēta)",
-    `dati © Statutární město Jihlava (ielu reģistrs, stāvvietas, ielu aprīkojums), RÚIAN un kadastrs © ČÚZK, 2026 (CC BY 4.0, apstrādāts)`),
+    `dati © Statutární město Jihlava (ielu reģistrs, stāvvietas CC BY-SA, ielu aprīkojums), RÚIAN un kadastrs © ČÚZK, 2026 (CC BY 4.0, apstrādāts)`),
   most: own("Most", "Mostas pilsētas", "Mostas tehniskā karte", "Mostas pilsētas", TECH_PARKING,
-    `dati © Statutární město Most (objektu un tehniskā karte, ielu apgaismojums), ${RUIAN}`),
+    `dati © Statutární město Most (objektu karte un ielu apgaismojums, CC BY-SA; tehniskā karte), ${RUIAN}`),
   opava: own("Opava", "Opavas pilsētas", "Opavas tematiskā karte", "Opavas pilsētas", "stāvvietas (Opavas pilsēta)",
     `dati © Statutární město Opava (tematiskā karte, stāvvietas, koki, soli, pieturas), ${RUIAN}`),
   pardubice: {

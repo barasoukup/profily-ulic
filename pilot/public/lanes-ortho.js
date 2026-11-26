@@ -318,6 +318,23 @@ function blank(img) {
   }
   return empty > n * 0.5;
 }
+// One tile or image asked politely: a 429 (Denmark's Dataforsyningen under load) is asked once more after a pause
+// (Retry-After, at most 1 s), within the same signal. An error the server sends as 200 with XML or text instead of an
+// image (Malta's WMS: a ServiceExceptionReport, evaluation/malta/ZDROJE.md) is a server error: an answer of 502, so it
+// is told as an outage like the others (the review of Malta, the review of Denmark 26. 11. 2026).
+export const RETRY_429_MS = 500;
+export async function askImage(fetchImpl, url, init) {
+  let r = await fetchImpl(url, init);
+  if (r.status === 429) {
+    const after = Number(r.headers?.get?.("retry-after"));
+    await new Promise((ok) => setTimeout(ok, Number.isFinite(after) && after > 0 ? Math.min(after * 1000, 1000) : RETRY_429_MS));
+    if (init?.signal?.aborted) return r;
+    r = await fetchImpl(url, init);
+  }
+  const type = r.ok ? r.headers?.get?.("content-type") || "" : "";
+  if (/xml|^text\//i.test(type)) return new Response(null, { status: 502, statusText: "XML instead of an image" });
+  return r;
+}
 
 const median = (a) => { const b = a.filter((v) => !Number.isNaN(v)).sort((x, y) => x - y); return b.length ? b[b.length >> 1] : NaN; };
 
@@ -432,7 +449,7 @@ async function laneImageOf(key, { frame, dir, t0, t1, timeout = TIMEOUT, fetchIm
       // A server error on every tile is an outage (app.js says so), not an empty image; a key turned away on every
       // tile is no key (noKey).
       let down = 0, missing = 0, denied = 0;
-      for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) jobs.push(fetchImpl(tileUrlOf(src, tx, ty), { signal }).then(async (r) => { if (r.ok) g.drawImage(await createImageBitmap(await r.blob()), (tx - tx0) * tp, (ty - ty0) * tp, tp, tp); else if (r.status >= 500) down++; else if (src.key && (r.status === 401 || r.status === 403)) denied++; else missing++; }));
+      for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) jobs.push(askImage(fetchImpl, tileUrlOf(src, tx, ty), { signal }).then(async (r) => { if (r.ok) g.drawImage(await createImageBitmap(await r.blob()), (tx - tx0) * tp, (ty - ty0) * tp, tp, tp); else if (r.status >= 500) down++; else if (src.key && (r.status === 401 || r.status === 403)) denied++; else missing++; }));
       await Promise.all(jobs);
       if (jobs.length && down === jobs.length) throw Object.assign(new Error(`ortofoto ${down}× 5xx`), { outage: true });
       if (jobs.length && denied === jobs.length) throw Object.assign(new Error("ortofoto: klíč odmítnut"), { noKey: true });
@@ -440,7 +457,7 @@ async function laneImageOf(key, { frame, dir, t0, t1, timeout = TIMEOUT, fetchIm
       img = g.getImageData(0, 0, canvas.width, canvas.height);
       x0 = tx0 * size - Math.PI * R; x1 = (tx1 + 1) * size - Math.PI * R; y1 = Math.PI * R - ty0 * size; y0 = Math.PI * R - (ty1 + 1) * size;
     } else {
-      const r = await fetchImpl(src.url([x0, y0, x1, y1], w, h, decode ? "image/png" : undefined), { signal: AbortSignal.timeout(timeout) });
+      const r = await askImage(fetchImpl, src.url([x0, y0, x1, y1], w, h, decode ? "image/png" : undefined), { signal: AbortSignal.timeout(timeout) });
       if (!r.ok) { if (r.status >= 500) throw Object.assign(new Error(`ortofoto ${r.status}`), { outage: true }); return null; } // a server error: an outage
       if (decode) {
         const png = await decode(await r.arrayBuffer());
@@ -453,14 +470,19 @@ async function laneImageOf(key, { frame, dir, t0, t1, timeout = TIMEOUT, fetchIm
       }
     }
     // Outside a Land's coverage its WMS answers white (only the German sources).
-    if ((key.startsWith("de-") || key.startsWith("be-") || key.startsWith("pt-") || key === "mt" || key.startsWith("it-") || key.startsWith("fi-") || key === "dk") && blank(img)) return null;
+    // Estonia and Cyprus too (the reviews of 24. 11. 2026): Cyprus's missing tiles (404 by the Green Line) are left
+    // transparent on the canvas.
+    if ((key.startsWith("de-") || key.startsWith("be-") || key.startsWith("pt-") || key === "mt" || key.startsWith("it-") || key.startsWith("fi-") || key === "dk" || key === "ee" || key === "cy") && blank(img)) return null;
     // Resample on the grid of the cut.
+    let unknown = 0;
     const res = src.res, nt = Math.round((t1 - t0) / res), nu = Math.round((2 * ALONG) / res), L = new Float32Array(nt * nu), G = new Float32Array(nt * nu), Y = new Float32Array(nt * nu), D = new Float32Array(nt * nu), S = new Float32Array(nt * nu);
     for (let j = 0; j < nu; j++) for (let i = 0; i < nt; i++) {
       const [mx, my] = at(t0 + (i + 0.5) * res, ALONG - (j + 0.5) * res);
       const px = Math.floor(((mx - x0) / (x1 - x0)) * img.width), py = Math.floor(((y1 - my) / (y1 - y0)) * img.height);
-      if (px < 0 || py < 0 || px >= img.width || py >= img.height) { L[j * nt + i] = G[j * nt + i] = Y[j * nt + i] = D[j * nt + i] = S[j * nt + i] = NaN; continue; }
       const o = (py * img.width + px) * 4;
+      // Beyond the image, or a pixel with no photo (a tile that did not come, 404, 400 or 429, left transparent on the
+      // canvas; a transparent edge): not known (NaN), not black (the reviews of Cyprus and Denmark, 24. 11. 2026).
+      if (px < 0 || py < 0 || px >= img.width || py >= img.height || img.data[o + 3] === 0) { L[j * nt + i] = G[j * nt + i] = Y[j * nt + i] = D[j * nt + i] = S[j * nt + i] = NaN; unknown++; continue; }
       L[j * nt + i] = 0.299 * img.data[o] + 0.587 * img.data[o + 1] + 0.114 * img.data[o + 2];
       const [r, g, b] = [img.data[o], img.data[o + 1], img.data[o + 2]];
       G[j * nt + i] = g - (r + b) / 2;
@@ -468,6 +490,8 @@ async function laneImageOf(key, { frame, dir, t0, t1, timeout = TIMEOUT, fetchIm
       D[j * nt + i] = g - r;
       S[j * nt + i] = Math.max(r, g, b) - Math.min(r, g, b);
     }
+    // Mostly unknown (tiles missing over half the cut): no image, lanes are not read from blanks.
+    if (unknown > nt * nu * 0.5) return null;
     if (src.balance) balance(G, Y, D, S);
     return { source: key, st: { nt, nu, res, t0, L, G, Y, D, S, fine: key !== "cuzk" } };
   } catch (e) {
@@ -950,7 +974,7 @@ async function patchOf(key, lon, lat, half, px, timeout, fetchImpl = fetch) {
     const jobs = [];
     for (let ty = ty0; ty <= ty1; ty++) for (let tx = tx0; tx <= tx1; tx++) {
       const gx = tx * size - Math.PI * R, gy = Math.PI * R - ty * size;
-      jobs.push(fetch(tileUrlOf(src, tx, ty), { signal }).then(async (r) => {
+      jobs.push(askImage(fetch, tileUrlOf(src, tx, ty), { signal }).then(async (r) => {
         if (r.ok) g.drawImage(await createImageBitmap(await r.blob()), (gx - b[0]) * scale, (b[3] - gy) * scale, size * scale, size * scale);
         else if (r.status >= 500) down++; else missing++;
       }));
@@ -959,7 +983,7 @@ async function patchOf(key, lon, lat, half, px, timeout, fetchImpl = fetch) {
     if (jobs.length && down === jobs.length) throw Object.assign(new Error(`ortofoto ${down}× 5xx`), { outage: true });
     if (missing && src.fallback) return patchOf(src.fallback, lon, lat, half, px, timeout);
   } else {
-    const r = await fetchImpl(src.url(b, px, px), { signal });
+    const r = await askImage(fetchImpl, src.url(b, px, px), { signal });
     if (!r.ok) { if (r.status >= 500) throw Object.assign(new Error(`ortofoto ${r.status}`), { outage: true }); return null; }
     g.drawImage(await createImageBitmap(await r.blob()), 0, 0, px, px);
   }

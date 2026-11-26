@@ -73,3 +73,8 @@ jehož řez padne na OSM `highway=service` se `service=driveway`, `parking_aisle
 vynechá (neposouvá se). Obyčejná `highway=service` bez `service`, `residential`, `living_street` atd. zůstávají.
 Značku cesty řezu bere skóre z profilu aplikace (`service`) nebo z `vysledky/sluzebni-<iso>.json` (z balíku OSM státu
 podle `wayId` řezu; přeměření 24. 11. je má pro všechny státy, `collect24` v `collect.js`).
+
+## Umístění kliknutí (pro autora měření)
+
+Řezy měření se otevírají jako uložené, tedy bez pravidel křižovatek. Změnu pravidel umístění kontroluje zvlášť
+`evaluation/kliky` (`collect.mjs`, `report.mjs`, `tests/placement.test.js`; postup ve skillu `mereni-presnosti`).

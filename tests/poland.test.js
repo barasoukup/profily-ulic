@@ -4,15 +4,19 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 
-test("Polsko: mapa povrchů Krakova (druhy MJO na kódy MTVU), vypínač ?krakow=0", async () => {
+test("Polsko: mapa povrchů Krakova (druhy MJO na kódy MTVU), ve výchozím stavu vypnutá, zapne ?krakow=1", async () => {
   const P = await import("../pilot/public/towns/poland.js");
   assert.equal(P.krakowCode({ kod_nz: "Jezdnia (KTJZ01)" }), 701);
   assert.equal(P.krakowCode({ kod_nz: "Chodnik (KTCR02)" }), 702);
   assert.equal(P.krakowCode({ kod_nz: "Plac (KTPL01)" }), 1003);
   assert.equal(P.krakowCode({ kod_nz: "Krawężnik (KTKR01)" }), null);
   assert.equal(P.krakowCode({ kod_nz: "Ścieżka (KTCR04)" }), 702, "pěší a cyklistický pás: rozdělí ho OSM (Most Kotlarski: chodník a cyklopruh vedle sebe)");
-  globalThis.PROFILY_PL = { krakow: "0" };
-  try { assert.deepEqual(await P.sources.surfaces("19.936,50.060,19.939,50.062"), { features: [], abroad: true }); } finally { delete globalThis.PROFILY_PL; }
+  // Bára 26. 11. 2026: off until MSIP gives its written consent (evaluation/licence/ZPRAVA.md); no request without ?krakow=1.
+  const fetched = globalThis.fetch; let asked = 0;
+  globalThis.fetch = async () => { asked++; throw new Error("no network"); };
+  try { assert.deepEqual(await P.sources.surfaces("19.936,50.060,19.939,50.062"), { features: [], abroad: true }); } finally { globalThis.fetch = fetched; }
+  assert.equal(asked, 0, "bez ?krakow=1 žádný dotaz na MSIP");
+  assert.ok(!P.SURFACE_MAPS.includes("krakow"), "přehledová mapa Krakov jako mapu povrchů neukazuje");
   assert.deepEqual(await P.sources.surfaces("21.010,52.230,21.013,52.232"), { features: [], abroad: true }, "Varšava: bez mapy, bez dotazu");
 });
 

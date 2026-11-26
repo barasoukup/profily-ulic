@@ -212,3 +212,14 @@ test("kontaktní formulář na stránce: bez adresy Workera se nic neposílá", 
   assert.equal(await sendContact({ message: "x" }, { url: "https://w.example/contact", fetchFn: async () => new Response(null, { status: 429 }) }), "limit");
   assert.equal(await sendContact({ message: "x" }, { url: "https://w.example/contact", fetchFn: async () => { throw new Error("down"); } }), "off");
 });
+
+test("záznam řezu: poloha ve Španělsku, Francii, Belgii, v Amsterdamu i mimo Evropu se uloží (každá platná poloha)", async () => {
+  const db = fakeDb();
+  const at = async (lat, lon) => { await worker.fetch(post({ kind: "rez", city: "x", lat, lon, session: "s" }), env(db)); const r = db.rows.pop(); return [r[6], r[7]]; };
+  assert.deepEqual(await at(40.4168, -3.7038), [40.4168, -3.7038]); // Madrid
+  assert.deepEqual(await at(48.8566, 2.3522), [48.8566, 2.3522]); // Paris
+  assert.deepEqual(await at(52.3676, 4.9041), [52.3676, 4.9041]); // Amsterdam
+  assert.deepEqual(await at(28.1235, -15.4363), [28.1235, -15.4363]); // Las Palmas
+  // Any valid position since 25. 11. 2026 (Washington DC was dropped by the box of the European states).
+  assert.deepEqual(await at(38.9, -77.03), [38.9, -77.03]); // Washington
+});

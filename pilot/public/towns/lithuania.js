@@ -131,7 +131,7 @@ export function grpkAsOsm(houses, elements) {
     for (const [i, r] of (outers.length ? outers : h.geometry.rings.slice(0, 1)).entries()) {
       const c = centre(r);
       if (osm.some((o) => inRings(o, c[0], c[1]) || inRings([r], ...centre(o[0])))) continue;
-      out.push({ type: "area", id: -(k * 10 + i + 1), tags: { building: "yes", source: "GRPK" }, geometry: r.map(([lon, lat]) => ({ lat, lon })),
+      out.push({ type: "area", id: -(k * 10 + i + 1), from: "GRPK", tags: { building: "yes", source: "GRPK" }, geometry: r.map(([lon, lat]) => ({ lat, lon })),
         holes: holes.filter((q) => inRings([r], q[0][0], q[0][1])).map((q) => q.map(([lon, lat]) => ({ lat, lon }))) });
     }
   });

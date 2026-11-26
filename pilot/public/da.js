@@ -585,15 +585,15 @@ export const DA = {
   "{name} teď neodpovídá, plochy jsou z technické mapy ČÚZK.": "{name} svarer ikke lige nu, fladerne er fra ČÚZK's tekniske kort.",
   "Technická mapa ČÚZK teď neodpovídá, profil je odhad z OSM.": "ČÚZK's tekniske kort svarer ikke lige nu, profilet er et skøn ud fra OSM.",
   "Mapa povrchů tu nic nevrátila, profil je odhad z OSM.": "Fladekortet returnerede intet her, profilet er et skøn ud fra OSM.",
-  "Obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Kantsten og bygninger er fra OSM, kontrollér bredderne.",
+  "Obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Kantsten er fra OSM og bygninger fra {houses}, kontrollér bredderne.",
   "Mapa povrchů tu ulici nemá.": "Fladekortet har ikke gaden her.",
   "{name} teď neodpovídá (server je přetížený).": "{name} svarer ikke lige nu (serveren er overbelastet).",
   "{name} teď neodpovídá.": "{name} svarer ikke lige nu.",
   "Technická mapa ČÚZK teď neodpovídá.": "ČÚZK's tekniske kort svarer ikke lige nu.",
   "Technická mapa tu má jen čáry bez ploch (kraj plochy do ní nedodává).": "Det tekniske kort har kun linjer uden flader her (regionen leverer ingen flader).",
   "Mapa povrchů tu nic nevrátila.": "Fladekortet returnerede intet her.",
-  "Obruby jsou odhadnuté z ortofota a domy z OSM, šířky ověřte.": "Kantstenene er skønnet ud fra ortofoto og bygningerne er fra OSM, kontrollér bredderne.",
-  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z OSM, šířky ověřte.": "Ortofotoet hjalp ikke her: kantsten og bygninger er fra OSM, kontrollér bredderne.",
+  "Obruby jsou odhadnuté z ortofota a domy z {houses}, šířky ověřte.": "Kantstenene er skønnet ud fra ortofoto og bygningerne er fra {houses}, kontrollér bredderne.",
+  "Ortofoto tu nepomohlo: obruby jsou podle OSM a domy z {houses}, šířky ověřte.": "Ortofotoet hjalp ikke her: kantsten er fra OSM og bygninger fra {houses}, kontrollér bredderne.",
 
   // ---------- rainwater management (types.js water, HDV_UNDER) ----------
   "Vsakovací průleh": "Nedsivningstrug",
@@ -632,7 +632,7 @@ export const DA = {
   "Obrázek PNG": "PNG-billede",
   "Vektor SVG": "SVG (vektor)",
   "Soubor": "Fil",
-  "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka": "vejregister © Hlavné mesto SR Bratislava og MČ Dúbravka",
+  "pasport komunikácií © Hlavné mesto SR Bratislava a MČ Dúbravka, © EUROSENSE SLOVAKIA, s.r.o.": "vejregister © Hlavné mesto SR Bratislava og MČ Dúbravka, © EUROSENSE SLOVAKIA, s.r.o.",
   "pasport dopravy a zelene © mesto Prešov (CC BY 4.0)": "trafik- og grønregister © mesto Prešov (CC BY 4.0)",
   "pasport komunikácií © mesto Žilina": "vejregister © mesto Žilina",
   "pasport komunikácií © mesto Košice": "vejregister © mesto Košice",
@@ -823,7 +823,7 @@ export const DA = {
   "Úřední vyměřování (geodienste.ch) teď neodpovídá, profil je odhad z ortofota a OSM.": "Den officielle opmåling (geodienste.ch) svarer ikke lige nu, profilet er et skøn ud fra ortofoto og OSM.",
   // The Netherlands (Bára 20. 11. 2026).
   "mapy povrchů BGT, ortofota PDOK a OSM": "fladekortet BGT, ortofotoet fra PDOK og OSM",
-  "ortofoto © PDOK (Beeldmateriaal Nederland)": "ortofoto © PDOK (Beeldmateriaal Nederland)",
+  "ortofoto © Beeldmateriaal.nl (PDOK, CC BY 4.0)": "ortofoto © Beeldmateriaal.nl (PDOK, CC BY 4.0)",
   "mapa povrchů BGT © Kadaster a správci BGT (PDOK, CC0)": "fladekortet BGT © Kadaster og BGT's forvaltere (PDOK, CC0)",
   " · mapa povrchů BGT neodpověděla, odhad z ortofota a OSM": " · fladekortet BGT svarede ikke, skøn ud fra ortofoto og OSM",
   "Mapa povrchů BGT (PDOK) teď neodpovídá, profil je odhad z ortofota a OSM.": "Fladekortet BGT (PDOK) svarer ikke lige nu, profilet er et skøn ud fra ortofoto og OSM.",
@@ -836,21 +836,21 @@ export const DA = {
   "podélné stání: 2 × 6 m (ASVV 2012 podle obce Oost Gelre), v Amsterdamu 2,1–2,4 m": "længdeparkering: 2 × 6 m (ASVV 2012 ifølge kommunen Oost Gelre), i Amsterdam 2,1–2,4 m",
   "Stání napůl na chodníku z OSM: ve vozovce zůstává {free}. Smí se jen u značky E8b (RVV 1990 čl. 10). Zákon šířku neuvádí, v praxi 3,5 m pro hasiče na jednosměrce a 4,5 m vozovky pro oba směry; aplikace nechává průjezdné pruhy, tedy aspoň {need}.": "Parkering halvt på fortovet ifølge OSM: på kørebanen er der {free} tilbage. Kun tilladt ved skiltet E8b (RVV 1990 art. 10). Loven angiver ingen bredde, i praksis 3,5 m til brandvæsenet i en ensrettet gade og 4,5 m kørebane til begge retninger; appen holder vognbanerne fri, altså mindst {need}.",
   "jednosměrka s cyklisty v protisměru: vozovka nejméně 3,5 m, základ 4 m (Amsterdam, Afwegingskader fietsstraten 2020)": "ensrettet gade med cykling mod ensretningen: kørebane mindst 3,5 m, standard 4 m (Amsterdam, Afwegingskader fietsstraten 2020)",
-  "Sítě © Gemeente Amsterdam a Waternet (CC BY).": "Ledninger © Gemeente Amsterdam og Waternet (CC BY).",
+  "Sítě © Gemeente Amsterdam a Waternet (Creative Commons Naamsvermelding, verze neuvedena).": "Ledninger © Gemeente Amsterdam og Waternet (Creative Commons Naamsvermelding, version ikke angivet).",
   "kabel veřejného osvětlení": "gadebelysningskabel",
   "parkovací místa © Gemeente Amsterdam": "parkeringspladser © Gemeente Amsterdam",
   // Belgium and Luxembourg (Bára 20. 11. 2026).
-  "ortofoto © SPW (Service public de Wallonie)": "ortofoto © SPW (Service public de Wallonie)",
-  "ortofoto © Digitaal Vlaanderen": "ortofoto © Digitaal Vlaanderen",
-  "ortofoto © ACT Luxembourg (geoportail.lu)": "ortofoto © ACT Luxembourg (geoportail.lu)",
+  "ortofoto © SPW (Service public de Wallonie, CC BY 4.0)": "ortofoto © SPW (Service public de Wallonie, CC BY 4.0)",
+  "ortofoto: Bron: Luchtopnamen Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)": "ortofoto: Bron: Luchtopnamen Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)",
+  "ortofoto © ACT Luxembourg (geoportail.lu, CC0)": "ortofoto © ACT Luxembourg (geoportail.lu, CC0)",
   "čar mapy GRB, ortofota a OSM": "linjerne i kortet GRB, ortofoto og OSM",
   "čar mapy PICC, ortofota a OSM": "linjerne i kortet PICC, ortofoto og OSM",
-  "čáry GRB © Digitaal Vlaanderen": "GRB-linjer © Digitaal Vlaanderen",
+  "čáry GRB: Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)": "GRB-linjer: Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen (Modellicentie gratis hergebruik v1.0)",
   " · mapa povrchů GRB neodpověděla, odhad z ortofota a OSM": " · fladekortet GRB svarede ikke, skøn ud fra ortofoto og OSM",
   "Mapa povrchů GRB (Digitaal Vlaanderen) teď neodpovídá, profil je odhad z ortofota a OSM.": "Fladekortet GRB (Digitaal Vlaanderen) svarer ikke lige nu, profilet er et skøn ud fra ortofoto og OSM.",
   "mapy povrchů GRB, ortofota a OSM": "fladekortet GRB, ortofotoet og OSM",
   "mapa povrchů (GRB): {who}": "fladekort (GRB): {who}",
-  "čáry PICC © SPW (Service public de Wallonie)": "PICC-linjer © SPW (Service public de Wallonie)",
+  "čáry PICC © SPW (Service public de Wallonie, CC BY 4.0)": "PICC-linjer © SPW (Service public de Wallonie, CC BY 4.0)",
   "chodník: volný průchod nejméně 1,5 m, základ 1,8 m (Flandry, Vademecum voetgangersvoorzieningen 2026; Valonsko 1,5 m; Brusel 2 m)": "fortov: fri gangbredde mindst 1,5 m, standard 1,8 m (Flandern, Vademecum voetgangersvoorzieningen 2026; Vallonien 1,5 m; Bruxelles 2 m)",
   "společná stezka pro chodce a cyklisty (D10): jednosměrná 2 m, obousměrná 2,5 m, doporučeno 3 m (Valonsko, Guide cyclable)": "fællessti (D10): enkeltrettet 2 m, dobbeltrettet 2,5 m, anbefalet 3 m (Vallonien, Guide cyclable)",
   "stezka pro cyklisty jednosměrná: Flandry 2 m (Vademecum fietsvoorzieningen 2024), Valonsko nejméně 1,3 m (Guide cyclable); obousměrná Flandry 3 m, Valonsko 2,2–2,6 m": "enkeltrettet cykelsti: Flandern 2 m (Vademecum fietsvoorzieningen 2024), Vallonien mindst 1,3 m (Guide cyclable); dobbeltrettet Flandern 3 m, Vallonien 2,2–2,6 m",
@@ -1137,16 +1137,16 @@ export const DA = {
 export const DA_HTML = {
   footer: `Data: tekniske kort © <a href="https://www.geoportalpraha.cz">IPR Praha</a> (samt etageantal og bebyggelsens udvikling, CC BY 4.0), de statutære byer Brno, Jihlava, Most, Opava og Plzeň
     og regionerne (<a href="https://dmvs.cuzk.gov.cz">IS DMVS ČÚZK</a>) · RÚIAN (også adressesøgningen), matrikel og ortofoto © ČÚZK (CC BY 4.0) · ortofoto, bygninger og grænser i Slovakiet © <a href="https://www.geoportal.sk">GKÚ Bratislava</a>, NLC (ZBGIS, CC BY 4.0), gader og adresser i Slovakiet © MV SR ·
-    vejregistre © Hlavné mesto SR Bratislava, MČ Dúbravka, mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), korttegninger © mestá Nitra, Piešťany, Hlohovec, teknisk kort © Hlavné mesto SR Bratislava ·
-    ledninger © IPR Praha, Gemeente Amsterdam og Waternet (CC BY), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, de statutære byer Karviná, Ostrava, byen Břeclav ·
+    vejregistre © Hlavné mesto SR Bratislava, MČ Dúbravka, EUROSENSE SLOVAKIA, s.r.o., mesto Žilina, mesto Banská Bystrica, mesto Košice, mesto Prešov (CC BY 4.0), korttegninger © mestá Nitra, Piešťany, Hlohovec, teknisk kort © Hlavné mesto SR Bratislava ·
+    ledninger © IPR Praha, Gemeente Amsterdam og Waternet (Creative Commons Naamsvermelding, version ikke angivet), mestá Prešov (CC BY 4.0), Nitra, Košice, Piešťany, Olomoucký kraj, de statutære byer Karviná, Ostrava, byen Břeclav ·
     Østrig: ortofoto © basemap.at (CC BY 4.0), Flächen-Mehrzweckkarte © Stadt Wien – data.wien.gv.at (CC BY 4.0), grænse © EuroGeographics (GISCO), færdselstavler i Salzburg © Stadt Salzburg (CC BY 3.0 AT), søgning Photon © komoot (OSM-data) ·
     Tyskland: delstaternes ortofotos © LGL-BW, Bayerische Vermessungsverwaltung, GeoBasis-DE/LGB, Landesamt GeoInformation Bremen, LGV Hamburg, HVBG, GeoBasis-DE/M-V, LGLN, GeoBasis-DE/NRW, GeoBasis-DE/LVermGeoRP, GeoBasis-DE/LVermGeo SH, GeoBasis-DE/LVGL-SL, GeoSN, GeoBasis-DE/LVermGeo ST, GDI-Th; <a href="https://www.govdata.de/dl-de/by-2-0">dl-de/by-2-0</a>, <a href="https://www.govdata.de/dl-de/zero-2-0">dl-de/zero-2-0</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, grænse © EuroGeographics (GISCO), færdselstavler Wikimedia Commons (officielle værker), søgning Photon © komoot (OSM-data) ·
     Schweiz og Liechtenstein: ortofoto SWISSIMAGE og grænser © swisstopo, officiel opmåling (Bodenbedeckung) © kantonerne og Liechtenstein via <a href="https://geodienste.ch">geodienste.ch</a>, færdselstavler Wikimedia Commons (officielle værker, ASTRA), søgning Photon © komoot (OSM-data) ·
-    Holland: fladekortet BGT og BAG-bygninger © Kadaster og registrenes forvaltere via <a href="https://www.pdok.nl">PDOK</a> (CC0, Public Domain Mark), ortofoto © Beeldmateriaal Nederland (PDOK), bygningshøjder <a href="https://3dbag.nl">3D BAG</a> © TU Delft og 3DGI (CC BY 4.0), grænse © EuroGeographics (GISCO), færdselstavler Wikimedia Commons (officielle værker), søgning PDOK Locatieserver ·
-    Belgien og Luxembourg: ortofoto og GRB-linjer © Digitaal Vlaanderen, ortofoto og PICC-linjer © SPW (Service public de Wallonie), ortofoto © ACT Luxembourg (geoportail.lu), grænser © EuroGeographics (GISCO), færdselstavler Wikimedia Commons (officielle værker), søgning Photon © komoot (OSM-data) ·
-    Polen: ortofoto og adressesøgning © GUGiK (Geoportal.gov.pl, PRG), Krakóws fladekort (MJO) © Gmina Miejska Kraków, grænser © EuroGeographics (GISCO), færdselstavler Wikimedia Commons (officielle værker) ·
-    Frankrig: ortofoto, bygninger (BD TOPO) og adressesøgning © IGN (Géoplateforme, Licence Ouverte 2.0), Paris' fladekort (Plan de voirie) © Ville de Paris (ODbL), grænser © EuroGeographics (GISCO), færdselstavler Wikimedia Commons (officielle værker) ·
-    Spanien: ortofoto PNOA og adressesøgning CartoCiudad © IGN (CC BY 4.0 scne.es), bygninger © Dirección General del Catastro, i Navarra Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), i Baskerlandet © Arabako, Bizkaiko og Gipuzkoako Foru Aldundia, Zaragozas fladekort © Ayuntamiento de Zaragoza (IDEZar), grænser © EuroGeographics (GISCO), færdselstavler Wikimedia Commons (officielle værker) ·
+    Holland: fladekortet BGT og BAG-bygninger © Kadaster og dataforvaltere (bronhouders) via <a href="https://www.pdok.nl">PDOK</a> (CC0, Public Domain Mark), ortofoto © Beeldmateriaal Nederland (PDOK, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>), bygningshøjder <a href="https://3dbag.nl">3D BAG</a> © TU Delft og 3DGI (CC BY 4.0), grænse © EuroGeographics (GISCO), færdselstavler Wikimedia Commons (officielle værker), søgning PDOK Locatieserver, parkeringspladser i Amsterdam © Gemeente Amsterdam ·
+    Belgien og Luxembourg: ortofoto og GRB-linjer: kilde Digitaal Vlaanderen (<a href="https://www.vlaanderen.be/digitaal-vlaanderen/onze-oplossingen/open-data/voorwaarden-voor-het-hergebruik-van-overheidsinformatie/modellicentie-gratis-hergebruik">Modellicentie gratis hergebruik v1.0</a>), ortofoto og PICC-linjer © SPW (Service public de Wallonie, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>), ortofoto © ACT Luxembourg (geoportail.lu, CC0), grænser © EuroGeographics (GISCO), færdselstavler Wikimedia Commons (officielle værker), søgning Photon © komoot (OSM-data) ·
+    Polen: ortofoto og adressesøgning © GUGiK (Geoportal.gov.pl, PRG), Krakóws fladekort (MJO) © Gmina Miejska Kraków, grænser © EuroGeographics (GISCO), færdselstavler Wikimedia Commons (officielle værker), søgning Photon © komoot (OSM-data) ·
+    Frankrig: ortofoto, bygninger (BD TOPO) og adressesøgning © <a href="https://geoservices.ign.fr">IGN France</a> (Géoplateforme, <a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/">Licence Ouverte 2.0</a>), Paris' fladekort (Plan de voirie) © <a href="https://opendata.paris.fr">Ville de Paris</a> (<a href="https://opendatacommons.org/licenses/odbl/">ODbL</a>), grænser © EuroGeographics (GISCO), færdselstavler Wikimedia Commons (officielle værker) ·
+    Spanien: ortofoto PNOA og adressesøgning CartoCiudad © Instituto Geográfico Nacional de España (CC BY 4.0, scne.es), bygninger © Dirección General del Catastro, i Navarra Servicio proporcionado por el Gobierno de Navarra (CC BY 4.0), i Baskerlandet © Arabako, Bizkaiko og Gipuzkoako Foru Aldundia, Zaragozas fladekort © Ayuntamiento de Zaragoza (IDEZar), grænser © EuroGeographics (GISCO), færdselstavler Wikimedia Commons (officielle værker) ·
     Portugal: ortofoto © DGT (Direção-Geral do Território), grænser © EuroGeographics (GISCO), færdselstavler Wikimedia Commons (officielle værker; gentegning Fry1989 under CC BY-SA 3.0 og Gigillo83 under CC BY-SA 4.0) ·
     Monaco: ortofoto © IGN (Géoplateforme, Licence Ouverte 2.0), grænser © OpenStreetMap-bidragydere, tegninger af franske færdselstavler Wikimedia Commons ·
     Cypern: ortofoto 2019 © Department of Lands and Surveys (DLS; licens ikke angivet), bygninger © DLS (CC BY 4.0), grænser © OpenStreetMap-bidragydere, færdselstavler Wikimedia Commons (britiske forlæg: Contains public sector information licensed under the Open Government Licence v1.0, UK Department for Transport) ·
@@ -1159,15 +1159,15 @@ export const DA_HTML = {
     Litauen: Vilnius' fladekort (topografiske flader 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas (licens ikke angivet; kun med ?vilnius=1), GRPK's bygningsomrids © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0), grænser © EuroGeographics (GISCO), færdselstavler Wikimedia Commons (tegninger af Augustasci under CC BY 4.0, tavler 846 og 853 af Gigillo83 under CC BY-SA 4.0), søgning Photon © komoot (OSM-data) ·
     USA (Washington): fladekort (Planimetrics 2023), gadeinventar (Roadway SubBlock) og ortofoto 2025 © DC GIS, Office of the Chief Technology Officer og DDOT (CC BY 4.0), grænser © U.S. Census Bureau (TIGERweb) og EuroGeographics (GISCO), søgning Photon © komoot (OSM-data) ·
     Canada (Toronto): fladekort, bygningshøjder og ortofoto 2025: Contains information licensed under the Open Government Licence – Toronto (<a href="https://open.toronto.ca/open-data-licence/">licens</a>), grænser © EuroGeographics (GISCO) (Adapted from Statistics Canada, Digital Boundary Files (census subdivisions), 2021. This does not constitute an endorsement by Statistics Canada of this product.), søgning Photon © komoot (OSM-data) ·
-    parkering © TSK hl. m. Prahy (CC BY 4.0), parkeringsforbud, træer og vejklasser fra <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, byerne Jihlava, Opava, Plzeň (CC0) ·
+    parkering © TSK hl. m. Prahy (CC BY 4.0), parkeringsforbud, træer og vejklasser fra <a href="https://opendata.geoportalpraha.cz">Geoportál Praha</a> (CC BY 4.0), <a href="https://www.parkovanivbrne.cz">parkovanivbrne.cz</a>, byerne Jihlava (CC BY-SA), Opava, Plzeň (CC0) ·
     © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-bidragydere (ODbL) ·
     illustrationer © <a href="https://github.com/streetmix/streetmix/tree/main/packages/illustrations">Streetmix</a>, licens
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
     lokale illustrationer og kode © Bára Soukupová (<a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENSE">MIT</a>) ·
     <a href="https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md">Kilder og licenser</a> (på tjekkisk) ·
     <a href="#kontakt" class="open-contact">kontakt</a><br>
-    Vi gemmer kun snit (sted, retning, gade, tidspunkt), klik uden fundet gade (stedet med ca. en kilometers nøjagtighed), de anvendte funktioner samt de fejlindberetninger og beskeder, du selv skriver (ved en besked også den valgfri e-mail til svar, sidens sprog og snittets land; de opbevares, indtil vi sletter dem); ingen IP-adresser og ingen cookies. Kort og data
-    indlæses direkte fra serverne hos IPR, ČÚZK, byerne, regionerne, basemap.at, de tyske delstater, Berlin, Hamburg, Aachen, swisstopo, geodienste.ch, PDOK, 3D BAG, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK, Krakóws kommune, IGN, Paris' kommune, det spanske IGN og Catastro, Zaragozas kommune, DGT, DLS på Cypern, Malta Planning Authority, provinsen Bolzano, Torinos, Bolognas og Modenas kommuner, regionen Emilia-Romagna, regionen Lombardiet (Regione Lombardia), det estiske Maa- ja Ruumiamet, Tallinns kommune, den slovenske geodætiske styrelse (GURS), Helsinkis, Espoos og Turkus kommuner, det finske SYKE (Ryhti), den danske Klimadatastyrelsen (Dataforsyningen), Københavns Kommune og Aarhus Kommune, Vilnius' kommune (Vilniaus planas), den litauiske geoportal (geoportal.lt, GRPK), DC GIS (Washington), Torontos kommune og OSM, søgeteksten også hos komoot (Photon), PDOK, GUGiK, IGN, CartoCiudad, Maa- ja Ruumiamet (In-ADS), GURS, SYKE og Klimadatastyrelsen (GSearch) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">privatliv</a>, på tjekkisk).`,
+    Vi gemmer snit (sted, retning, rækkevidde, gade, tidspunkt), ændringer af profilet i datarettelsen og i Forslag (typer og bredder på delene), klik uden fundet gade (stedet med ca. en kilometers nøjagtighed), de anvendte funktioner, de fejlindberetninger og beskeder, du selv skriver (ved en besked også den valgfri e-mail til svar, sidens sprog og snittets land; de opbevares, indtil vi sletter dem); registreringerne fra ét besøg forbindes af et tilfældigt nummer for én indlæsning af siden. Vi gemmer ingen IP-adresser og bruger ingen cookies; indstillinger og den sidste profil forbliver kun i din browser. Siden hostes af GitHub Pages, logningen og OSM-felterne af Cloudflare. Kort og data
+    indlæses direkte fra serverne hos IPR, ČÚZK, ÚGKK SR (ZBGIS), byerne (også via ArcGIS Online), regionerne, basemap.at, de tyske delstater, Berlin, Hamburg, Aachen, swisstopo, geodienste.ch, PDOK, 3D BAG, Digitaal Vlaanderen, SPW, ACT Luxembourg, GUGiK, Krakóws kommune, IGN, Paris' kommune, det spanske IGN og Catastro, Zaragozas kommune, DGT, DLS på Cypern, Malta Planning Authority, provinsen Bolzano, Torinos, Bolognas og Modenas kommuner, regionen Emilia-Romagna, regionen Lombardiet (Regione Lombardia), det estiske Maa- ja Ruumiamet, Tallinns kommune, den slovenske geodætiske styrelse (GURS), Helsinkis, Espoos og Turkus kommuner, det finske SYKE (Ryhti), den danske Klimadatastyrelsen (Dataforsyningen), Københavns Kommune og Aarhus Kommune, Vilnius' kommune (Vilniaus planas), den litauiske geoportal (geoportal.lt, GRPK), DC GIS (Washington), Torontos kommune og OSM; de ser din IP-adresse og det sted, du kigger på. Søgeteksten sendes afhængigt af stedet til ČÚZK, ÚGKK SR, Wiens by, komoot (Photon), PDOK, GUGiK, IGN France, CartoCiudad, Maa- ja Ruumiamet (In-ADS), GURS, SYKE eller Klimadatastyrelsen (GSearch), og komoot og IGN får desuden kortets midtpunkt. Panoramaet fra gaden indlæses efter klik fra Mapy.com (Seznam.cz) (<a href="https://github.com/barasoukup/profily-ulic/blob/main/logging/README.md#soukromí">privatliv</a>, på tjekkisk).`,
 };
 
 // The city's texts (city.js) in Danish, as the sentences take them: server after "Serveren for …" ("Serveren for
@@ -1223,9 +1223,9 @@ export const DA_CITY = {
   brno: own("Brno", "byen Brno", "Brnos tekniske kort", "byen Brno", "strækninger med betalingsparkering (parkovanivbrne.cz)",
     "data © Statutární město Brno (teknisk kort og MTVU; bygninger og cykelinfrastruktur, data.brno.cz, CC BY 4.0, bearbejdet), parkering © parkovanivbrne.cz"),
   jihlava: own("Jihlava", "byen Jihlava", "Jihlavas vejregister", "byen Jihlava", "parkeringspladser (byen Jihlava)",
-    `data © Statutární město Jihlava (vejregister, parkering, byinventar), RÚIAN og matrikel © ČÚZK, 2026 (CC BY 4.0, bearbejdet)`),
+    `data © Statutární město Jihlava (vejregister, parkering CC BY-SA, byinventar), RÚIAN og matrikel © ČÚZK, 2026 (CC BY 4.0, bearbejdet)`),
   most: own("Most", "byen Most", "Mosts tekniske kort", "byen Most", TECH_PARKING,
-    `data © Statutární město Most (objektkort og teknisk kort, gadebelysning), ${RUIAN}`),
+    `data © Statutární město Most (objektkort og gadebelysning, CC BY-SA; teknisk kort), ${RUIAN}`),
   opava: own("Opava", "byen Opava", "Opavas temakort", "byen Opava", "parkeringspladser (byen Opava)",
     `data © Statutární město Opava (temakort, parkering, træer, bænke, stoppesteder), ${RUIAN}`),
   pardubice: {
