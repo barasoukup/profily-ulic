@@ -10,7 +10,8 @@
 //   node tools/build_planimetrics_us.mjs [outDir]   (default pilot/data/us-plan; served as data/us-plan/…)
 //   ONLY=boston node tools/build_planimetrics_us.mjs   (one city)
 // Output: <outDir>/<city>/<ix>_<iy>.json { <layer>: [[attributes…, ring, ring…]…] } (each ring flat integers: 1e-7 degrees
-// from the tile's south-west corner), <outDir>/about.json (the date, the counts). One request at a time, PAUSE ms apart.
+// from the tile's south-west corner), <outDir>/<city>/about.json (written last: the city is whole), <outDir>/about.json
+// (the date, the counts). One request at a time, PAUSE ms apart. A city that fails: the others are built, exit 1.
 import fs from "node:fs";
 import path from "node:path";
 
@@ -150,24 +151,42 @@ export function tileFeatures(features, fields, tiles, key, skip = () => false) {
   return n;
 }
 
-if (process.argv[1] && import.meta.url === new URL(`file://${path.resolve(process.argv[1])}`).href) {
-  const about = { built: new Date().toISOString().slice(0, 10), tile: TILE, cities: {} };
-  for (const [city, layers] of Object.entries(CITIES)) {
-    if (ONLY && !ONLY.has(city)) continue;
-    const tiles = new Map(), counts = {};
-    for (const [key, l] of Object.entries(layers)) {
-      const t0 = Date.now(), fs0 = await layer(l);
-      counts[key] = tileFeatures(fs0, l.fields, tiles, key, l.skip);
-      console.log(`${city} ${key}: ${fs0.length} features, ${((Date.now() - t0) / 1000).toFixed(1)} s`);
-    }
-    const dir = path.join(OUT, city);
-    fs.rmSync(dir, { recursive: true, force: true });
-    fs.mkdirSync(dir, { recursive: true });
-    let bytes = 0;
-    for (const [k, t] of tiles) { const s = JSON.stringify(t); bytes += s.length; fs.writeFileSync(path.join(dir, `${k}.json`), s); }
-    about.cities[city] = { tiles: tiles.size, bytes, features: counts };
-    console.log(`${city}: ${tiles.size} tiles, ${(bytes / 1e6).toFixed(1)} MB`);
+// One city's tiles into <out>/<city>/, its about.json last (towns/boston.js planPresent: without it the city's map is
+// missing from the site). A city that fails leaves its directory as it was and the others are built (the hostile review of
+// 26. 11. 2026: one failing city took both off the site).
+export async function buildCity(out, city, layers, read = layer) {
+  const tiles = new Map(), counts = {};
+  for (const [key, l] of Object.entries(layers)) {
+    const t0 = Date.now(), fs0 = await read(l);
+    counts[key] = tileFeatures(fs0, l.fields, tiles, key, l.skip);
+    console.log(`${city} ${key}: ${fs0.length} features, ${((Date.now() - t0) / 1000).toFixed(1)} s`);
   }
-  const f = path.join(OUT, "about.json"), old = fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, "utf8")) : {};
+  const dir = path.join(out, city);
+  fs.rmSync(dir, { recursive: true, force: true });
+  fs.mkdirSync(dir, { recursive: true });
+  let bytes = 0;
+  for (const [k, t] of tiles) { const s = JSON.stringify(t); bytes += s.length; fs.writeFileSync(path.join(dir, `${k}.json`), s); }
+  const about = { built: new Date().toISOString().slice(0, 10), tile: TILE, tiles: tiles.size, bytes, features: counts };
+  fs.writeFileSync(path.join(dir, "about.json"), JSON.stringify(about));
+  console.log(`${city}: ${tiles.size} tiles, ${(bytes / 1e6).toFixed(1)} MB`);
+  return about;
+}
+// All cities (or ONLY): { built: [city…], failed: [city…] }; <out>/about.json the date and the counts of those built.
+export async function buildAll(out, cities = CITIES, read = layer) {
+  const about = { built: new Date().toISOString().slice(0, 10), tile: TILE, cities: {} }, failed = [];
+  for (const [city, layers] of Object.entries(cities)) {
+    if (ONLY && !ONLY.has(city)) continue;
+    try { about.cities[city] = await buildCity(out, city, layers, read); } catch (err) { failed.push(city); console.error(`${city}: ${err.message}`); }
+  }
+  fs.mkdirSync(out, { recursive: true });
+  const f = path.join(out, "about.json"), old = fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, "utf8")) : {};
   fs.writeFileSync(f, JSON.stringify({ ...old, ...about, cities: { ...old.cities, ...about.cities } }));
+  return { built: Object.keys(about.cities), failed };
+}
+
+// Exit 0 when every city was built, 1 when one failed (the others are built all the same; pages.yml takes each city's
+// directory with its about.json and keeps the cache unsaved, so the next deploy tries again).
+if (process.argv[1] && import.meta.url === new URL(`file://${path.resolve(process.argv[1])}`).href) {
+  const { failed } = await buildAll(OUT);
+  if (failed.length) { console.error(`failed: ${failed.join(", ")}`); process.exitCode = 1; }
 }

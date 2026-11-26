@@ -158,27 +158,48 @@ jobs:
       # Boston's and Cambridge's surface maps (towns/boston.js, PDDL): their roadways are a few polygons of the whole city,
       # too big for a click, so cut once into small tiles (data/us-plan, about 45 MB) by tools/build_planimetrics_us.mjs.
       # Built at most once a week (the cache's key is the week; the cities' servers are asked about 120 times, one request
-      # at a time); when the download fails, the tiles of an earlier week; with neither, Boston's profiles estimate.
+      # at a time). Each city on its own: a city built takes the place of its earlier tiles, a city that failed keeps the
+      # tiles of an earlier week; with neither, its profiles estimate and say the map is missing (its about.json, the mark
+      # towns/boston.js looks for). The cache is saved only when every city was built: saved after a failure, the earlier
+      # week's tiles would stand under this week's key and the build would not be tried again until the next week (the
+      # hostile review of 26. 11. 2026). (v2: the tiles of before the marks are not taken.)
       - id: us-plan-week
         run: echo "week=$(date -u +%G-%V)" >> "$GITHUB_OUTPUT"
       - id: us-plan-cache
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
           path: data/us-plan-last
-          key: us-plan-${{ steps.us-plan-week.outputs.week }}
-          restore-keys: us-plan-
+          key: us-plan-v2-${{ steps.us-plan-week.outputs.week }}
+          restore-keys: us-plan-v2-
       - name: Boston surface maps
+        id: us-plan
         continue-on-error: true
         timeout-minutes: 30
         run: |
           if [ "${{ steps.us-plan-cache.outputs.cache-hit }}" != "true" ]; then
             if node tools/build_planimetrics_us.mjs site-us-plan; then
-              rm -rf data/us-plan-last && mkdir -p data/us-plan-last && cp -R site-us-plan/. data/us-plan-last/
+              echo "complete=true" >> "$GITHUB_OUTPUT"
             else
-              echo "::warning::the surface maps of Boston or Cambridge did not answer, using the tiles of an earlier deploy"
+              echo "::warning::the surface map of Boston or Cambridge did not answer, that city keeps the tiles of an earlier deploy"
             fi
+            mkdir -p data/us-plan-last
+            for d in site-us-plan/*/; do
+              c=$(basename "$d")
+              [ -f "$d/about.json" ] || continue
+              rm -rf "data/us-plan-last/$c" && cp -R "$d" "data/us-plan-last/$c"
+            done
+            [ -f site-us-plan/about.json ] && cp site-us-plan/about.json data/us-plan-last/about.json || true
           fi
-          if [ -d data/us-plan-last/boston ]; then rm -rf site-us-plan && cp -R data/us-plan-last site-us-plan; else echo "::warning::no surface maps of Boston, profiles there estimate"; fi
+          rm -rf site-us-plan
+          if [ -d data/us-plan-last ]; then cp -R data/us-plan-last site-us-plan; fi
+          for c in boston cambridge; do [ -f "site-us-plan/$c/about.json" ] || echo "::warning::no surface map of $c, profiles there estimate and say so"; done
+      - name: Save Boston surface maps
+        if: steps.us-plan.outputs.complete == 'true'
+        continue-on-error: true
+        uses: actions/cache/save@v4
+        with:
+          path: data/us-plan-last
+          key: us-plan-v2-${{ steps.us-plan-week.outputs.week }}
       - name: Assemble the site
         env:
           MAPY_KEY: ${{ secrets.MAPY_KEY }} # Mapy.com key for the street panorama; empty → a plain link instead

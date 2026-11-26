@@ -144,3 +144,29 @@ test("Boston: ?off=kerbbays vypne stání z úzkých parkovišť u obruby jako v
   delete globalThis.PROFILY_US;
   assert.equal(off[1].code, 1003);
 });
+
+test("Boston: bez značky about.json města mapa na webu chybí (mapFailed, mapMissing); stavba po městech, selhání jednoho nezastaví druhé", async () => {
+  const B = await import("../pilot/public/towns/boston.js");
+  const native = globalThis.fetch, asked = [];
+  globalThis.fetch = async (url) => { asked.push(String(url)); return new Response("{}", { status: /cambridge\/about/.test(url) ? 404 : 200 }); };
+  try {
+    await assert.doesNotReject(B.planPresent("boston"));
+    await assert.rejects(B.planPresent("cambridge"), (err) => err.missing === true);
+    // A missing mark is asked again on the next click (the site may be deployed meanwhile).
+    await assert.rejects(B.planPresent("cambridge"));
+    assert.equal(asked.filter((u) => /cambridge\/about/.test(u)).length, 2);
+    await assert.rejects(B.CAMBRIDGE_MAP.ask("r", "-71.11,42.37,-71.1,42.38"), (err) => err.missing === true);
+  } finally { globalThis.fetch = native; }
+  const T = await import("../tools/build_planimetrics_us.mjs");
+  const os = await import("node:os"), path = await import("node:path");
+  const out = fs.mkdtempSync(path.join(os.tmpdir(), "us-plan-"));
+  const ring = [[-71.0601, 42.3601], [-71.0599, 42.3601], [-71.0599, 42.3603], [-71.0601, 42.3603], [-71.0601, 42.3601]];
+  const read = async (l) => { if (l.url === "bad") throw new Error("503"); return [{ attributes: {}, geometry: { rings: [ring] } }]; };
+  const log = console.log, err = console.error; console.log = console.error = () => {};
+  let r;
+  try { r = await T.buildAll(out, { bad: { r: { url: "bad", fields: [] } }, good: { r: { url: "ok", fields: [] } } }, read); } finally { console.log = log; console.error = err; }
+  assert.deepEqual(r, { built: ["good"], failed: ["bad"] });
+  assert.ok(fs.existsSync(path.join(out, "good", "about.json")));
+  assert.ok(!fs.existsSync(path.join(out, "bad")));
+  fs.rmSync(out, { recursive: true, force: true });
+});

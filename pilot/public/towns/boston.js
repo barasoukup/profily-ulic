@@ -17,7 +17,8 @@
 // lots and the orthophoto (outerGaps) only with ?outergaps=1.
 // - The houses (podlaznost): Boston's buildings count their floors (part_floors), which stand for the house's floors
 //   (?bostonhouse=0: not).
-// A tile that does not come: the estimate, said so (mapFailed).
+// A tile that does not come: the estimate, said so (mapFailed); a city whose tiles are not on the site (no about.json of
+// its own): the same, said that the map is missing (mapMissing).
 import { inArea } from "../places.js";
 import { planimetricMap, gapsBetweenRoads, kerbBays, osmTracks, islandsBeside, outerGaps, WALKED } from "./planimetrics.js";
 
@@ -43,6 +44,21 @@ export function decodePlanTile(json, ix, iy, fields) {
     return { attributes, geometry: { rings } };
   });
 }
+// A city's tiles are there only with its about.json (written last by the build, tools/build_planimetrics_us.mjs): a tile
+// of 404 is an empty one, but without the mark the whole map is missing from the site (the build failed: the hostile review
+// of 26. 11. 2026, Boston estimated without a word), an error with missing (mapFailed and mapMissing, sources.js).
+const marks = new Map();
+export function planPresent(city) {
+  if (!marks.has(city)) {
+    const p = fetch(`data/us-plan/${city}/about.json`).then((r) => {
+      if (r.ok) return r.json();
+      throw Object.assign(new Error(`us-plan ${city} ${r.status}`), { missing: r.status === 404 });
+    });
+    p.catch(() => { if (marks.get(city) === p) marks.delete(city); });
+    marks.set(city, p);
+  }
+  return marks.get(city);
+}
 const tiles = new Map();
 function tile(city, ix, iy) {
   const k = `${city}/${ix}_${iy}`;
@@ -61,6 +77,7 @@ export const planAsk = (city) => async (layer, bbox) => {
   const keys = [];
   for (let ix = Math.floor(x0 / PLAN_TILE); ix <= Math.floor(x1 / PLAN_TILE); ix++)
     for (let iy = Math.floor(y0 / PLAN_TILE); iy <= Math.floor(y1 / PLAN_TILE); iy++) keys.push([ix, iy]);
+  await planPresent(city);
   const got = await Promise.all(keys.map(([ix, iy]) => tile(city, ix, iy)));
   got.forEach((t, k) => out.push(...decodePlanTile(t[layer], ...keys[k], PLAN_FIELDS[city][layer])));
   return { features: out };

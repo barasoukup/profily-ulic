@@ -340,8 +340,9 @@ export function planimetricMap(d) {
       // An answer cut off by the service's limit would draw a street with holes.
       if (answers.some((a) => a?.exceededTransferLimit)) throw new Error("exceededTransferLimit");
       own = o && planimetricCut(d, answers, o.elements, bbox, tags, { way, extra });
-    } catch {
-      return estimate({ mapFailed: d.id });
+    } catch (err) {
+      // (A map missing from the site, not out of service: towns/boston.js planPresent.)
+      return estimate({ mapFailed: d.id, ...(err?.missing && { mapMissing: true }) });
     }
     if (!o) await osmAsk; // OSM's tiles did not answer: not the map's outage
     if (!own) return estimate();
