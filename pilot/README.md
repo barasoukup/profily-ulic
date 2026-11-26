@@ -171,7 +171,8 @@ z ortofota a OSM.
 
 Stát `poland` (PL), `countries/PL.js`, `towns/poland.js`, `search-pl.js`; hranice GISCO (za Českem a Slovenskem). OSM po
 16 vojvodstvích (`pl_*`, jen R2). Ortofoto GUGiK (WMS HighResolution v Web Mercatoru, `lanes-ortho.js` zdroj `pl`).
-- **Mapa povrchů Krakova** (MJO: vozovky, náměstí, chodníky, cesty) tam, kde má u středu řezu vozovku (`?krakow=0`).
+- **Mapa povrchů Krakova** (MJO: vozovky, náměstí, chodníky, cesty) tam, kde má u středu řezu vozovku; jen s `?krakow=1`
+  (od 26. 11. 2026 vypnutá, chybí písemný souhlas správce MSIP).
   Celostátní BDOT10k a mapy okresů nejsou otevřeně s CORS; Varšava, Vratislav, Gdaňsk, Poznaň služby nemají.
 - **Normy** podle závazného nařízení RMI 2022 (Dz.U. 2022 poz. 1518), buspruh, stání a tramvaj podle nezávazných
   doporučení ministerstva WR-D (označeno). **Stání:** zákon volnou šířku nemá, odhad jako v Lucembursku, průjezdné pruhy
@@ -628,13 +629,14 @@ Služby města (`gis.jihlava-city.cz`, CORS povolený):
 
 ### Pasporty dalších měst (16. 11. 2026)
 
-Ve zbytku Česka („cesko“) se v hranicích čtyř obcí (`pilot/public/pasporty.json`, `node tools/build_pasporty.mjs`)
+Ve zbytku Česka („cesko“) se v hranicích tří obcí (`pilot/public/pasporty.json`, `node tools/build_pasporty.mjs`)
 berou plochy z pasportu města a jinde DTM ČÚZK (`towns/pasporty.js`, `towns/overlay.js overDmvs`): komunikace
-Rožnova pod Radhoštěm (T-MAPY PaKom), Chotěboře (2016), Šlapanic (komunikace podle třídy, parkoviště) a Kuřimi (osy
+Rožnova pod Radhoštěm (T-MAPY PaKom), Šlapanic (komunikace podle třídy, parkoviště) a Kuřimi (osy
 zimní údržby se šířkou převedené na plochy). Pasport, který v okolí řezu nic nemá, nechá řez technické mapě. Nejsou
 to samostatná města (texty, ilustrace a mapy zůstávají české obecné). Zdroje našlo vlákno o Slovensku, do aplikace
-šly před A/B testem; A/B 26. 11. 2026 (`evaluation/PASPORTY-AB.md`) nechal tyto čtyři a vyřadil Chomutov, Šumperk,
-Litoměřice a zeleň Prachatic a Roudnice nad Labem (nevyhrály; uložené řezy s nimi si kredit nechají,
+šly před A/B testem; A/B 26. 11. 2026 (`evaluation/PASPORTY-AB.md`) nechal čtyři a vyřadil Chomutov, Šumperk,
+Litoměřice a zeleň Prachatic a Roudnice nad Labem (nevyhrály); Chotěboř vyřadila Bára kvůli licenci (vrstva na demo
+účtu, ne města; uložené řezy s nimi si kredit nechají,
 `pasporty-names.js`). Export uvádí „pasport komunikací © <město>“.
 Vynechané předtím: Mohelnice a Velké Meziříčí (prázdný pasport), T-MAPY Litoměřic (chce přihlášení). Části změřené na pasportu
 (zde i v Karviné, Frýdku-Místku a Třebíči; `gis.js asPassport`) mají zdroj „z pasportu města“ (tyrkysová v legendě),

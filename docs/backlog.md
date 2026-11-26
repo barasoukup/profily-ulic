@@ -56,8 +56,8 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Nizozemsko: Nassauplein v Haagu (střední pás přes 16 m) dostane odhad místo BGT, vozovky jsou dál než 10 m.
 - Nizozemsko: parkovací místa Amsterdamu (`?amspark=1`): spojit jednotlivá místa do souvislých úseků (mezery do 1 m),
   způsob stání brát pro plochy BGT. Licence města neuvedena.
-- Krakov: A/B mapy povrchů slabé (lépe 7, hůř 6): zapnuto, **(Bára)** nechat? Přepustit A/B po vrácení „Ścieżky“
-  na chodník.
+- Krakov: A/B mapy povrchů slabé (lépe 7, hůř 6), od 26. 11. 2026 vypnuto (`?krakow=1`). Přepustit A/B po vrácení
+  „Ścieżky“ na chodník, kdyby přišel souhlas MSIP.
 - Belgie: A/B čar GRB a PICC slabé (lépe 4, hůř 2): zapnuto.
 - Flandry, plochy GRB (WBN + WGO, `evaluation/belgium/ab-wbn/ZPRAVA.md`, lépe 10, hůř 2): zóna za obrubou je jedna,
   s OSM `cycleway=track` vzniká „chodník s koly“ místo chodníku a cyklostezky (ge1, lex1); ulice v jedné úrovni
@@ -248,7 +248,8 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - ~~Ortofoto PDOK (Nizozemsko), Flandry, Valonsko, ACT Lucembursko (ortho_latest)~~: licence ověřené a v kreditech
   (`evaluation/licence/ZPRAVA.md`, kredity opravené 26. 11. 2026 ve větvi credits-fix, i GRB, Most, Jihlava, Dúbravka).
 - Sítě Amsterdamu: kredit sjednocený („Creative Commons Naamsvermelding, verze neuvedena“), zeptat se datapunt@amsterdam.nl na verzi.
-- Mapa Krakova: potřebuje písemný souhlas MSIP (ZPRAVA.md), rozhodnout o vypnutí.
+- ~~Mapa Krakova: potřebuje písemný souhlas MSIP (ZPRAVA.md), rozhodnout o vypnutí~~ (Bára 26. 11. 2026: vypnutá, `?krakow=1`).
+- ~~Pasport Chotěboře na demo účtu~~ (Bára 26. 11. 2026: vyřazený).
 - Služby českých a slovenských měst (MTVU, UMPS, pasporty): licence nikde neuvedená, zeptat se měst (ZPRAVA.md, Koho se zeptat).
 
 ## Nápady (Bára zatím nevybrala)

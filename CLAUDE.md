@@ -390,7 +390,8 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
 - Normy RMI 2022 (závazné), buspruh, stání a tramvaj z nezávazných WR-D. Stání odhadem jako LU (zákon šířku nemá).
   Paneláky ponechané (wielka płyta jako v Česku). **Před nasazením workflow OSM tiles se `states: pl`.**
 - A/B mapy Krakova po recenzi slabé (lépe 7, hůř 6; mosty a víceproudé ulice lépe, chodník napůl „chodník + stezka“
-  tam, kde OSM vede cyklostezku po chodníku); zapnutá, `?krakow=0`. Měření 21. 11.: složení 67 %, šířka do 2 m 32 %
+  tam, kde OSM vede cyklostezku po chodníku). Od 26. 11. 2026 **vypnutá**, zapne ji `?krakow=1` (Bára: pravidla města
+  chtějí písemný souhlas správce MSIP, `evaluation/licence/ZPRAVA.md`; na přehledové mapě není). Měření 21. 11.: složení 67 %, šířka do 2 m 32 %
   (22 řezů). Recenze `evaluation/poland/RECENZE.md`.
 
 ## Francie (větev france z poland, Bára 22. 11. 2026, nenasazené)
@@ -642,10 +643,11 @@ a exportovat (PNG, SVG, JSON). Lehká samostatná aplikace s ilustracemi Streetm
   Magdaleny), Slovensko jen při zájmu.
 
 ## Pasporty dalších měst (Bára 16. 11. 2026, A/B 26. 11. 2026)
-- Komunikace Rožnova p. R., Chotěboře, Šlapanic a Kuřimi (`towns/pasporty.js`, hranice `pasporty.json`) nad DTM ČÚZK
+- Komunikace Rožnova p. R., Šlapanic a Kuřimi (`towns/pasporty.js`, hranice `pasporty.json`) nad DTM ČÚZK
   ve „cesko“; pasport bez ploch v okolí nechá řez DTM. A/B po odstávce DMVS (`evaluation/PASPORTY-AB.md`, výsledky):
   vyřazené Chomutov (bez pasportu lépe 33 : 8), Šumperk (4 : 4), Litoměřice (6 : 5), zeleň Prachatic (2 : 1) a Roudnice
-  (9 : 0); jména v `pasporty-names.js` zůstala kvůli kreditu uložených řezů. Nápad: vozovku pasportu ořezat na kus pod osou.
+  (9 : 0); Chotěboř vyhrála (4 : 1), ale vyřazená kvůli licenci (vrstva na soukromém účtu „ArcGIS Demo portál“, ne
+  města; Bára 26. 11. 2026); jména v `pasporty-names.js` zůstala kvůli kreditu uložených řezů. Nápad: vozovku pasportu ořezat na kus pod osou.
 
 ## Po odstávce DMVS (ověřeno 26. 11. 2026)
 - DMVS i WFS krajů po přechodu na JVF DTM 1.5 fungují (Komenského ve Vysokém Mýtě, `tools/check_sources.mjs` česká

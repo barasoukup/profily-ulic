@@ -2,7 +2,9 @@
 // base maps are not served openly with CORS (evaluation/poland/ZDROJE.md): the profile is the estimate from OSM and
 // GUGiK's orthophoto (lanes-ortho.js "pl"), except where a city publishes its surfaces:
 // - Kraków: the city's base map MJO (msip.um.krakow.pl, ArcGIS, CORS for the origin asking): roadways (Jezdnia),
-//   squares (Plac), sidewalks (Chodnik), paths for cyclists and walkers (Ścieżka). ?krakow=0 leaves it out (the A/B test, evaluation/poland/ab/).
+//   squares (Plac), sidewalks (Chodnik), paths for cyclists and walkers (Ścieżka). Off unless ?krakow=1 (Bára 26. 11. 2026:
+//   the city's rules ask for the written consent of MSIP's administrator for continuous use in another system,
+//   evaluation/licence/ZPRAVA.md; the A/B test, evaluation/poland/ab/, runs with ?krakow=1).
 // As Germany's city maps: the city's surfaces with OSM's buildings before them and OSM's green and water after, only
 // where the city has a surface of the street at the cut's centre or near it; a city that does not answer: the
 // estimate, with a note.
@@ -40,7 +42,10 @@ const inRings = (rings, x, y) => {
 const STREET = new Set([701]);
 const NEAR = [[0, 0], ...[1.5, 4, 7].flatMap((r) => Array.from({ length: 8 }, (_, i) => [r * Math.cos((i * Math.PI) / 4), r * Math.sin((i * Math.PI) / 4)]))];
 export const PL_TOWNS = { krakow };
-const townAt = (lon, lat) => Object.keys(PL_TOWNS).find((id) => param(id) !== "0" && inArea(AREAS[id], lon, lat)) ?? null;
+// The towns asked only with ?<id>=1 (no consent to their use yet).
+export const OFF_BY_DEFAULT = new Set(["krakow"]);
+const townOn = (id) => (OFF_BY_DEFAULT.has(id) ? param(id) === "1" : param(id) !== "0");
+const townAt = (lon, lat) => Object.keys(PL_TOWNS).find((id) => townOn(id) && inArea(AREAS[id], lon, lat)) ?? null;
 
 async function surfaces(bbox) {
   const [x0, y0, x1, y1] = bbox.split(",").map(Number);
@@ -74,4 +79,4 @@ export const ortho = null;
 
 // The overview map of the About dialog (tools/build_coverage.mjs): where this module's own map of the street surfaces
 // answers: the towns' base maps (their AREAS).
-export const SURFACE_MAPS = Object.keys(PL_TOWNS);
+export const SURFACE_MAPS = Object.keys(PL_TOWNS).filter((id) => !OFF_BY_DEFAULT.has(id));

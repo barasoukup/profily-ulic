@@ -3,13 +3,13 @@
 // tools/build_pasporty.mjs) takes the passport's surfaces and the national DTM of ČÚZK elsewhere, as the towns'
 // modules do (towns/overlay.js overDmvs); a passport with nothing in the box leaves the DTM alone (withPassports):
 //   roznov: T-MAPY PaKom WFS (ms:pk-pov), as Karviná;
-//   chotebor: ArcGIS FeatureServer of the town (6 komunikace_p, 2016);
 //   slapanice: ArcGIS (1 Komunikace by class, 0 Parkoviště);
 //   kurim: ArcGIS lines of winter maintenance with their width (0 roads, 1 sidewalks), made areas of that width.
 // The A/B test after the DMVS outage (26. 11. 2026, evaluation/PASPORTY-AB.md: the app with the passport against
 // the DTM alone, judged over the orthophoto) kept these four and left out the five that did not win: Chomutov
 // (better without 33 : 8), Šumperk (4 : 4), Litoměřice (6 : 5), Prachatice (2 : 1) and Roudnice nad Labem (9 : 0),
-// their code in the history. Left out before: Mohelnice and Velké Meziříčí (an empty passport on 15. 11.),
+// their code in the history. Chotěboř won (4 : 1) but was left out too (Bára 26. 11. 2026): its layer sits on a
+// private account of an "ArcGIS Demo portál" organisation, not the town's (evaluation/licence/ZPRAVA.md). Left out before: Mohelnice and Velké Meziříčí (an empty passport on 15. 11.),
 // Litoměřice's T-MAPY (asks to log in).
 // No licence is stated by any of them (as with the T-MAPY towns already used).
 import { query, envelope, asMtvu, asPassport, insideRings } from "../gis.js";
@@ -18,9 +18,9 @@ import { overDmvs, tmapyWfs } from "./overlay.js";
 export { PASSPORT_NAMES } from "./pasporty-names.js";
 
 // RÚIAN codes of the towns (tools/build_pasporty.mjs); their names in pasporty-names.js.
-export const PASSPORT_CODES = { roznov: 544841, chotebor: 568759, slapanice: 583952, kurim: 583251 };
+export const PASSPORT_CODES = { roznov: 544841, slapanice: 583952, kurim: 583251 };
 // The hosts the page asks (index.html CSP, tests/city.test.js).
-export const PASSPORT_HOSTS = ["https://mapy.roznov.cz", "https://services.arcgis.com", "https://services5.arcgis.com", "https://services6.arcgis.com"];
+export const PASSPORT_HOSTS = ["https://mapy.roznov.cz", "https://services5.arcgis.com", "https://services6.arcgis.com"];
 
 const none = () => ({ features: [] });
 // The kinds of each passport → MTVU codes (701 roadway, 702 sidewalk or park path, 703 cycle path, 704 parking,
@@ -30,9 +30,6 @@ const T_MAPY = {
   roznov: { base: "https://mapy.roznov.cz/services/mapserver/common/pakom",
     code: (a) => ({ chodník: WALK, cyklostezka: BIKE, komunikace: ROAD, ostatní: OTHER })[a.typ] ?? null },
 };
-const CHOTEBOR = "https://services.arcgis.com/qiROLxpdxrEizyHD/arcgis/rest/services/Komunikace___Chot%C4%9Bbo%C5%99_WFL1/FeatureServer/6";
-const CH_TYP = { vozovka: ROAD, zivice: ROAD, kruhovy_objezd: ROAD, okruzni_kriz: ROAD, prejezd: ROAD, zel_prejezd: ROAD, sjezd: ROAD,
-  bus_zastavka: ROAD, obytzona: ROAD, parkoviste: PARK, chodnik: WALK };
 const SLAPANICE = "https://services5.arcgis.com/8F7J7ODVYrBts9AD/arcgis/rest/services/Pasport_komunikac%C3%AD_WFL1/FeatureServer";
 const KURIM = "https://services6.arcgis.com/nSl4NxcJbmr0IlpX/arcgis/rest/services/zu/FeatureServer";
 export const codes = { roznov: T_MAPY.roznov.code };
@@ -59,7 +56,6 @@ const arc = (url, fields, bbox) => query(`${url}/query`, { ...envelope(bbox), ou
 // The passport's surfaces of a town in a box (MTVU features).
 export async function passport(id, bbox) {
   if (T_MAPY[id]) return asMtvu([[await tmapyWfs(T_MAPY[id].base, "ms:pk-pov", bbox, "typ,msGeometry"), T_MAPY[id].code]], MTVU_LABELS);
-  if (id === "chotebor") return asMtvu([[await arc(CHOTEBOR, "TYP", bbox), (a) => CH_TYP[a.TYP] ?? null]], MTVU_LABELS);
   if (id === "slapanice") {
     const [road, park] = await Promise.all([arc(`${SLAPANICE}/1`, "TRIDA", bbox), arc(`${SLAPANICE}/0`, "FID", bbox)]);
     return asMtvu([[road, (a) => (/chodník/.test(a.TRIDA || "") ? WALK : ROAD)], [park, PARK]], MTVU_LABELS);

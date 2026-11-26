@@ -118,7 +118,9 @@ test("pasporty měst: CSP, město podle polohy, převod typů", async () => {
   for (const host of PASSPORT_HOSTS) assert.ok(connect.includes(host), host);
   assert.equal(await passportAt(18.1431, 49.4583), "roznov");
   assert.equal(await passportAt(16.531, 49.2985), "kurim");
-  // Left out after the A/B test of 26. 11. 2026: Chomutov, Šumperk (and Litoměřice, Prachatice, Roudnice).
+  // Left out after the A/B test of 26. 11. 2026: Chomutov, Šumperk (and Litoměřice, Prachatice, Roudnice);
+  // Chotěboř for its licence (a demo portal's account, Bára 26. 11. 2026).
+  assert.equal(await passportAt(15.672, 49.7207), null);
   assert.equal(await passportAt(13.4175, 50.4605), null);
   assert.equal(await passportAt(16.9706, 49.9653), null);
   assert.equal(await passportAt(14.42, 50.088), null);
