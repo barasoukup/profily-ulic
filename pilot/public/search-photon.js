@@ -9,11 +9,14 @@ const MAX = 15;
 // Switzerland and Liechtenstein (17. 11. 2026): their places in their own language (lang "default": Genève, Lugano,
 // not Genf, Lauis).
 const BOX = { AT: [9.53, 46.37, 17.16, 49.02], DE: [5.86, 47.27, 15.04, 55.06], CH: [5.95, 45.81, 10.5, 47.81], LI: [9.47, 47.04, 9.64, 47.28], BE: [2.5, 49.49, 6.41, 51.51], LU: [5.73, 49.44, 6.53, 50.19], PL: [14.1, 49.0, 24.2, 54.9], PT: [-31.3, 32.6, -6.18, 42.16], MC: [7.40, 43.72, 7.44, 43.76], CY: [32.2, 34.5, 34.65, 35.75], MT: [13.9, 35.5, 14.9, 36.35], IT: [6.6, 35.4, 18.6, 47.1], SI: [13.37, 45.42, 16.61, 46.88], FI: [19.08, 59.45, 31.59, 70.1], DK: [8.07, 54.55, 15.2, 57.76], LT: [20.93, 53.89, 26.84, 56.45], US: [-77.6, 38.5, -76.6, 39.4], CA: [-79.95, 43.45, -78.95, 44.05] };
-// The USA and Canada (24. and 25. 11. 2026): only the metros of Washington and Toronto (their boxes), the names as they are (English).
+// The USA and Canada (24. and 25. 11. 2026): only the metros of Washington, San Francisco and Toronto (their boxes), the names as they are (English).
 // Belgium and Luxembourg (20. 11. 2026): their places in their own languages too (Bruxelles / Brussel, Liège).
 const NATIVE = new Set(["CH", "LI", "BE", "LU", "PL", "PT", "MC", "CY", "MT", "IT", "SI", "FI", "DK", "LT", "US", "CA"]);
-const boxOf = (countries) => {
-  const b = countries.map((c) => BOX[c]);
+// A state's further metros (San Francisco, 26. 11. 2026): their box where the map's centre is in it, else the state's own.
+const METRO_BOX = { US: [[-122.54, 37.68, -122.34, 37.84]] };
+const inBox = (b, near) => !!near && near[1] >= b[0] && near[1] <= b[2] && near[0] >= b[1] && near[0] <= b[3];
+const boxOf = (countries, near = null) => {
+  const b = countries.map((c) => (METRO_BOX[c] || []).find((m) => inBox(m, near)) || BOX[c]);
   return [Math.min(...b.map((x) => x[0])), Math.min(...b.map((x) => x[1])), Math.max(...b.map((x) => x[2])), Math.max(...b.map((x) => x[3]))];
 };
 // A query that is likely German or Austrian (asked of Photon where the map shows neither and nothing else was found).
@@ -40,5 +43,5 @@ export function parsePhoton(json, countries = ["AT"], closed = null) {
 export async function findPhoton(text, getJSON, signal, countries = ["AT"], near = null, closed = closedAt) {
   const q = String(text || "").trim();
   if (q.length < 3 || !countries.length) return [];
-  return parsePhoton(await getJSON(`${PHOTON}?${new URLSearchParams({ q, limit: "20", lang: countries.every((c) => NATIVE.has(c)) ? "default" : "de", bbox: boxOf(countries).join(","), ...(near && { lat: near[0].toFixed(4), lon: near[1].toFixed(4) }) })}`, signal), countries, closed);
+  return parsePhoton(await getJSON(`${PHOTON}?${new URLSearchParams({ q, limit: "20", lang: countries.every((c) => NATIVE.has(c)) ? "default" : "de", bbox: boxOf(countries, near).join(","), ...(near && { lat: near[0].toFixed(4), lon: near[1].toFixed(4) }) })}`, signal), countries, closed);
 }

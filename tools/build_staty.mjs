@@ -110,13 +110,23 @@ async function swiss(iso) {
 // boundaries from the Census Bureau's TIGERweb (State_County, layer Counties; works of the federal government, public
 // domain), with their holes (Fairfax County's ring has Fairfax city as a hole: the rings of one entry count by parity,
 // so the city's own ring makes it inside again): merged to one outline, then simplified to about 10 m.
-const DC_METRO = ["11001", "24031", "24033", "51013", "51059", "51600", "51610", "51510"];
-async function dcMetro() {
-  const q = new URLSearchParams({ where: `GEOID IN (${DC_METRO.map((g) => `'${g}'`).join(",")})`, outFields: "GEOID", returnGeometry: "true", outSR: "4326", f: "json" });
+// The metros of the USA (26. 11. 2026: a table, so that further cities join as rows), each the counties (GEOID: state
+// and county FIPS) whose OSM its pack holds; each metro merged on its own (their rings do not touch), the state "usa" all of them:
+// - dc: Washington DC and its suburbs (the pack us_dc);
+// - sf: San Francisco, the City and County (06075; its legal boundary with the water of the bay and the ocean to 3 nautical
+//   miles and the Farallon Islands; the pack us_sf). The counties around it (San Mateo, Marin, Alameda) have no surface map
+//   of the app, so they stay the closed USA (Bára decides).
+const METROS = {
+  dc: ["11001", "24031", "24033", "51013", "51059", "51600", "51610", "51510"],
+  sf: ["06075"],
+};
+async function metro(geoids) {
+  const q = new URLSearchParams({ where: `GEOID IN (${geoids.map((g) => `'${g}'`).join(",")})`, outFields: "GEOID", returnGeometry: "true", outSR: "4326", f: "json" });
   const json = await (await fetch(`https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/1/query?${q}`, { headers: { "User-Agent": "profily-ulic" } })).json();
-  if ((json.features || []).length !== DC_METRO.length) throw new Error(`TIGERweb: ${json.features?.length} of ${DC_METRO.length} counties`);
+  if ((json.features || []).length !== geoids.length) throw new Error(`TIGERweb: ${json.features?.length} of ${geoids.length} counties`);
   return outline(json.features.flatMap((f) => f.geometry.rings)).map((r) => simplify(r, 0.0001)).filter((r) => r.length >= 4);
 }
+const usaMetros = async () => (await Promise.all(Object.values(METROS).map(metro))).flat();
 // Areas with common boundaries (the same vertices on both sides) merged to their outline before it is simplified: the
 // edges two of them share cancel out, so nothing stays along the common lines (each county simplified alone left gaps
 // there: Southern Avenue, the DC line, fell into closed_us; unsimplified it was 863 kB for every visitor).
@@ -242,8 +252,8 @@ const BUILD = {
   // Lithuania (24. 11. 2026): GISCO's LT, after Poland's exact PRG ring (by Suwałki and Sejny the Polish line first);
   // Latvia, Belarus and Kaliningrad stay abroad.
   lithuania: () => gisco("LT"),
-  // The USA (24. 11. 2026): the metro of Washington DC (dcMetro above); the rest of the USA is closed_us below.
-  usa: () => dcMetro(),
+  // The USA (24. 11. 2026): the metros of METROS above, Washington DC and San Francisco (26. 11.); the rest of the USA is closed_us below.
+  usa: () => usaMetros(),
   // Canada (25. 11. 2026): Toronto and its surroundings (statcan above); the rest of Canada is closed_ca below.
   canada: async () => (await statcan(GTA)).map((r) => simplify(r, 0.0001)).filter((r) => r.length >= 4),
   // Malta (23. 11. 2026): OSM's boundary with the territorial waters (one ring round the islands, no neighbour; GISCO's
