@@ -94,9 +94,8 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Portugalsko **(Bára)**: krátký popis dat „ortofota DGT a OSM“ neplatí na Madeiře a Azorech (jen OSM): nechat, nebo
   „ortofota DGT (jen pevnina) a OSM“?
 - Kypr **(Bára)**: kredit ortofota v exportu bez roku („ortofoto © DLS Kypr“): doplnit „, 2019“ jako v patičce?
-- Kypr: kredit budov DLS je v exportu u každého kyperského řezu (i bez domu z DLS, britské základny); přesněji klíčem zdroje
-  (`state.cut.sources`, když `podlaznost` vrátí dům). Kredit britských značek (OGL, `credits.js ukSigns`) se počítá ze Stavu,
-  ne ze značek přidaných v Návrhu.
+- ~~Kypr: kredit budov DLS je v exportu u každého kyperského řezu; kredit britských značek se počítá ze Stavu, ne ze značek
+  přidaných v Návrhu~~ (27. 11. 2026: `cyDls` jen s domem z DLS, `exportSources` bere značky Stavu i Návrhu).
 - ~~Kypr: `lanes-ortho.js` „cy“: napůl chybějící dlaždice (404 u Zelené linie) dávají jas 0 místo NaN (vyplnit NaN nebo
   hlídat podíl prázdna). Malta: WMS vrací chybu jako 200 `text/xml` (hlídat content-type, hlásit výpadek); podklad mapy
   jako JPEG místo PNG (`app.js`). Kypr i Malta: `streetmix.js` neposílá `leftHandTraffic`.~~ (26. 11. 2026: průhledný
@@ -233,8 +232,8 @@ Co rozhodne Bára, je označeno **(Bára)**.
 
 - Belgie a Lucembursko jen přes Photon; národní služby (Flandry geolocation, geoportail.lu) nezapojené.
 - Francie: Géoplateforme hledá i bez města; přednost blízko středu mapy je slabá (lat/lon jen naznačí).
-- Photon nabízí i místa v Nizozemsku, Belgii, Lucembursku, Polsku, Francii a Španělsku, kde zatím nejsou dlaždice OSM
-  (aplikace tam ulici nenajde). Omezit hledání na nasazené státy, než dlaždice budou?
+- ~~Photon nabízí i místa v Nizozemsku, Belgii, Lucembursku, Polsku, Francii a Španělsku, kde zatím nejsou dlaždice OSM~~
+  (27. 11. 2026: dlaždice mají všechny státy; místa bez profilu, např. Itálie mimo ortofota a USA mimo metra, vyřazuje `closedAt`).
 
 ## Překlady
 

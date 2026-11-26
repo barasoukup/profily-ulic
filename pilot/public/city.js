@@ -442,7 +442,7 @@ Object.assign(CITIES, {
     dataShort: "ortofota IGN a OSM", rulesHead: "Šířky podle francouzských předpisů a doporučení Cerema:" },
   // Cyprus (Bára 23. 11. 2026): the DLS orthophoto and buildings, OSM (towns/cyprus.js); traffic keeps left.
   cyprus: { ...abroad("cyprus", "CY", "Kypr", "na Kypru", "kyperské", [35.1, 33.4], "35.170000, 33.360000"),
-    dataShort: "ortofota DLS a OSM", credit: "budovy © Department of Lands and Surveys (DLS, CC BY 4.0)",
+    dataShort: "ortofota DLS a OSM", credit: "",
     rulesHead: "Šířky podle doporučení kyperského odboru veřejných prací (příručka pro městské ulice):" },
   // Italy (Bára 23. 11. 2026): only where an orthophoto has an open licence (Bolzano, Turin, Bologna, Modena); Bologna's
   // road areas (towns/italy.js).

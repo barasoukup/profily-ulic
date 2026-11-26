@@ -23,7 +23,8 @@ async function podlaznost(lat, lon) {
   const json = await getJSON(`${DLS_BUILDINGS}?${new URLSearchParams({ geometry: `${lon},${lat}`, geometryType: "esriGeometryPoint", inSR: "4326", distance: "1", units: "esriSRUnit_Meter",
     spatialRel: "esriSpatialRelIntersects", outFields: "B_TYPE,FLOOR_QTY,H_ROOF_A_1", returnGeometry: "false", f: "json" })}`);
   const f = (json?.features || []).sort((x, y) => (y.attributes.FLOOR_QTY || 0) - (x.attributes.FLOOR_QTY || 0))[0];
-  return f ? dlsBuilding(f.attributes) : {};
+  // dls: the credit only for a cut with a house of the DLS (credits.js cyDls; before, every Cypriot cut had it).
+  return f ? { ...dlsBuilding(f.attributes), dls: true } : {};
 }
 
 export const sources = {

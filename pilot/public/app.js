@@ -854,6 +854,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
         // The buildings of Copenhagen or Aarhus (towns/denmark.js).
         // The buildings of ETAK (towns/estonia.js).
         if (p.etak) state.cut.sources.eeEtak = true;
+        // The buildings of the DLS (towns/cyprus.js).
+        if (p.dls) state.cut.sources.cyDls = true;
         // (Toronto's heights only where they gave the floors or the garage, not under OSM's own count.)
         if (p.caHouse && (info.src === "ipr" || p.garage)) state.cut.sources.caHouse = true;
         // Washington's assessment tables that told of the house (towns/usa.js).
@@ -2415,9 +2417,17 @@ function logEdits() {
   if (state.navrhEdited) send("navrh", stav, shortProfile(state.navrh));
 }
 addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") logEdits(); });
+// The sources of an export: the cut's, and the British signs' licence also when the signs came only in the Design
+// (backlog 27. 11. 2026: it was counted from the Stav alone).
+function exportSources() {
+  const src = { ...(state.cut?.sources || {}) };
+  const ogl = country.signs.ogl;
+  if (ogl && [state.stav, state.navrh].some((p) => p?.segments?.some((s) => s.signs?.some((x) => ogl.has(country.signs.file(x, s)))))) src.ukSigns = true;
+  return src;
+}
 function exportSvgs() {
   const title = state.cut ? streetName(state.cut) : tr("Profil");
-  const credits = exportCredits(state.cut?.sources);
+  const credits = exportCredits(exportSources());
   if (state.mode === "porovnat" || !state.stav) {
     return [buildSvg(state.stav, { title: `${title} – ${tr("stav")}`, credits }), buildSvg(state.navrh, { title: `${title} – ${tr("návrh")}`, credits })];
   }
@@ -2459,7 +2469,7 @@ $("#btn-save").onclick = () => {
   if (!state.stav) return;
   log("ulozeni", cutLog());
   const data = { app: "streetdesign-pilot", version: 1, cut: state.cut, stav: state.stav, navrh: state.navrh, navrhEdited: state.navrhEdited,
-    zdroje: exportCredits(state.cut?.sources).join("\n"),
+    zdroje: exportCredits(exportSources()).join("\n"),
     licence: tr("Data podle zdrojů (CC BY 4.0, ODbL 1.0 a další, viz zdroje); profil s ilustracemi Streetmixu pod CC BY-SA 4.0. Zdroje a licence: https://github.com/barasoukup/profily-ulic/blob/main/LICENCE-A-ZDROJE.md") };
   download(`${fileBase()}.json`, new Blob([JSON.stringify(data, null, 2)], { type: "application/json" }));
 };

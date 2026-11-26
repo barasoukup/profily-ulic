@@ -65,6 +65,10 @@ test("zdroje exportu podle města a kraje řezu", async () => {
   assert.match(praha, /technická mapa © Středočeský kraj, IS DMVS ČÚZK/);
   assert.match(prahaArt, /Bára Soukupová \(MIT\)/);
   assert.doesNotMatch(creditLines(cityById("praha"))[0], /DMVS|ortofoto/);
+
+  // Cyprus: the DLS buildings only where a house of the DLS was drawn (backlog, 27. 11. 2026).
+  assert.doesNotMatch(creditLines(cityById("cyprus"), {})[0], /Department of Lands/);
+  assert.match(creditLines(cityById("cyprus"), { cyDls: true })[0], /budovy © Department of Lands and Surveys/);
 });
 test("bývalé stránky měst přesměrují i s řezem", () => {
   assert.match(redirectPage("brno"), /location\.replace\("\.\.\/\?mesto=brno" \+ location\.hash\)/);

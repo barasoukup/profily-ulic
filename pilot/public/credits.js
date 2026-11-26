@@ -113,6 +113,7 @@ export const SOURCE_CREDITS = {
   // Vilnius's topographic areas 1 : 500 (towns/lithuania.js).
   ltTown: { vilnius: () => t("mapa povrchů (topografické plochy 1 : 500) © Vilniaus miesto savivaldybė / Vilniaus planas") },
   ltGrpk: { true: () => t("budovy GRPK © Lietuvos Respublikos aplinkos ministerija (CC BY 4.0)") },
+  cyDls: { true: () => t("budovy © Department of Lands and Surveys (DLS, CC BY 4.0)") },
   // DC's Planimetrics and DDOT's inventory (towns/usa.js).
   cityMap: { dc: () => t("mapa povrchů (Planimetrics 2023) © DC GIS, Office of the Chief Technology Officer (CC BY 4.0)"),
     // Toronto's topographic mapping (towns/canada.js), with the statement its licence asks for.
