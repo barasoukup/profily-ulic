@@ -97,3 +97,23 @@ test("San Francisco: výpadek pravidel obrub (SFMTA 56) se hlásí, oříznutá 
   assert.throws(() => zonesAnswer({ features: [], exceededTransferLimit: true }), /exceededTransferLimit/);
   assert.deepEqual(zonesAnswer({ features: [] }), { features: [] });
 });
+
+test("San Francisco: chodník podle typu ulice (ulička 6 ft, jiná obslužná bez varování), citace Better Streets Plan v datech SFMTA", async () => {
+  const C = await import("../pilot/public/city.js");
+  C.loadBounds(read("mesta.json")); C.loadStates({ ...read("staty.json"), ...read("staty-america.json") }); C.loadTowns(read("mesta-us.json"));
+  const US = (await import("../pilot/public/countries/US.js")).default;
+  const sf = C.cityById("sanfrancisco"), walk = { type: "chodnik", width: 2 };
+  const street = US.limits(walk, [walk], 0, sf);
+  assert.equal(street.zaklad, 3.05);
+  assert.match(street.why, /Better Streets Plan.*Sidewalk Widths 2014.*AECOM.*SFMTA/);
+  const alley = US.limits(walk, [walk], 0, sf, { kind: "alley" });
+  assert.equal(alley.zaklad, 1.83);
+  assert.equal(US.limits(walk, [walk], 0, sf, { kind: "service" }), null);
+  // Through the rules of the Design: an alley's 2 m sidewalk is not narrower than its basic width.
+  C.setCity("sanfrancisco");
+  const { checkRules } = await import("../pilot/public/rules.js");
+  const p = { segments: [{ type: "chodnik", width: 2 }, { type: "pruh", width: 3 }, { type: "chodnik", width: 2 }] };
+  assert.equal(checkRules(p).filter((w) => w.why.includes("Better Streets")).length, 2);
+  assert.equal(checkRules(p, { kind: "alley" }).filter((w) => w.why.includes("Better Streets")).length, 0);
+  C.setCity("praha");
+});

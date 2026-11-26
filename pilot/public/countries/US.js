@@ -19,14 +19,19 @@ import { city } from "../city.js";
 // and the app reads existing streets (and the metro beyond DC), so orange only (Bára 24. 11. 2026: no invented values).
 // No tram belt: neither NACTO nor DC's Streetcar Design Criteria give one.
 const PARKED = (segs, i) => [segs[i - 1], segs[i + 1]].find((x) => x?.type === "parkovani");
-// San Francisco (26. 11. 2026, evaluation/usa/sf/NORMY.md): DDOT's manual is not its law. The sidewalks by the widths by street type of
-// SFMTA's Sidewalk Widths of 2014 (an AECOM study; the street types of the Better Streets Plan): the least 10 ft in neighbourhood residential
-// streets, 12 ft in most others, 6 ft in alleys, 8 ft in industrial ones); a bike lane beside parking and a bus lane by
-// NACTO as in DC; nothing else (no source of the city's own was read). Orange only.
-function limitsSF(s, segs, i) {
+// San Francisco (26. 11. 2026, evaluation/usa/sf/NORMY.md): DDOT's manual is not its law. The sidewalks by the minimums of
+// the Better Streets Plan's street types as SFMTA's dataset Sidewalk Widths of 2014 (DataSF 4g86-grxu, a study by AECOM)
+// gives them to each block: the least 10 ft in neighbourhood residential streets, 12 ft in most others, 6 ft in alleys,
+// 8 ft in industrial ones; a bike lane beside parking and a bus lane by NACTO as in DC; nothing else (no source of the
+// city's own was read). Orange only. The type of the street from OSM where the cut has it (street: state.cut, kind):
+// an alley (service=alley) by its 6 ft; another service road (a driveway, a parking aisle) has no number, so no warning.
+// Industrial streets are not told: OSM's tiles of the app have no landuse (they keep the 10 ft of the others).
+function limitsSF(s, segs, i, street = null) {
   switch (s.type) {
     case "chodnik":
-      return { min: 0, zaklad: 3.05, why: t("chodník: v San Franciscu podle typu ulice nejméně 10 ft (3,05 m) v místních obytných, 12 ft (3,66 m) ve většině ostatních, doporučeno 12–15 ft (SFMTA, Sidewalk Widths 2014)") };
+      if (street?.kind === "alley") return { min: 0, zaklad: 1.83, why: t("chodník v uličce: nejméně 6 ft (1,83 m), doporučeno 9 ft (2,74 m) (minima Better Streets Plan v datech Sidewalk Widths 2014, studie AECOM pro SFMTA)") };
+      if (street?.kind === "service") return null;
+      return { min: 0, zaklad: 3.05, why: t("chodník: v San Franciscu podle typu ulice nejméně 10 ft (3,05 m) v místních obytných, 12 ft (3,66 m) ve většině ostatních, doporučeno 12–15 ft (minima Better Streets Plan v datech Sidewalk Widths 2014, studie AECOM pro SFMTA)") };
     case "cyklopruh": case "ochranny_pruh":
       return PARKED(segs, i) ? { min: 0, zaklad: 1.52, why: t("cyklopruh vedle stání: nejméně 5 ft (1,52 m), od obruby nejméně 12 ft (3,66 m) včetně stání (NACTO Urban Bikeway Design Guide)") } : null;
     case "bus": case "bus_cyklo":
@@ -35,10 +40,10 @@ function limitsSF(s, segs, i) {
       return null;
   }
 }
-// The city by the place rules.js passes, else the city of the cut.
-function limitsUS(s, segs = [], i = -1, place = city) {
+// The city by the place rules.js passes, else the city of the cut; street: the cut's kind of street (rules.js checkRules).
+function limitsUS(s, segs = [], i = -1, place = city, street = null) {
   if (place?.id === "newyork") return limitsNYC(s, segs, i);
-  if (place?.id === "sanfrancisco") return limitsSF(s, segs, i);
+  if (place?.id === "sanfrancisco") return limitsSF(s, segs, i, street);
   if (BOSTON_TOWNS.has(place?.id)) return limitsBoston(s, segs, i);
   switch (s.type) {
     case "chodnik":

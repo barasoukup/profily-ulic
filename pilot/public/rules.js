@@ -9,7 +9,9 @@ import { fmt } from "./norms.js";
 // The width a part should have, [minimum, basic] with the rule, or null where the state's rules give none: the state's
 // (countries/<ISO>.js limits; Czechia, after IPR's manual, everywhere else). The city of the cut too: a state whose cities
 // have norms of their own (the USA: Washington's DDOT, New York's Street Design Manual).
-const limits = (s, segs, i) => country.limits(s, segs, i, city);
+// street: the cut's kind of street ({ kind: "alley" | "service" }, app.js streetKind), for a city whose norms go by it
+// (San Francisco).
+const limits = (s, segs, i, street) => country.limits(s, segs, i, city, street);
 
 // Tram parts that make a belt of their own: the reserved tram lane and the separate tram bed (not the tram in a
 // lane with cars).
@@ -20,11 +22,11 @@ const CONTRA_RUN = new Set(["pruh", "pruh_piktokoridor", "krajnice"]);
 const BIKE_LANE = new Set(["cyklopruh", "ochranny_pruh"]);
 
 // [{i, level, text}] for the parts of a profile that break the rules.
-export function checkRules(profile) {
+export function checkRules(profile, street = null) {
   const segs = profile.segments;
   const out = [];
   segs.forEach((s, i) => {
-    const l = limits(s, segs, i);
+    const l = limits(s, segs, i, street);
     if (!l) return;
     const label = TYPES[s.type]?.label || s.type;
     // short and why: the warning in two pieces for the list in Návrh (the short one bold, the rule after it).

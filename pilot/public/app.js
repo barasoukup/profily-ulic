@@ -825,7 +825,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
     // the same street, or a link) starts the design from the new Stav, as its widths would not add up (Bára).
     const dropped = !keepWay && state.navrhEdited;
     if (!keepWay) state.navrhEdited = false;
-    state.cut = { lat: clat, lon: clon, bearing: (Math.atan2(dir[0], dir[1]) * 180) / Math.PI, wayId: near.way.id, name, city: city.id, reach, span };
+    state.cut = { lat: clat, lon: clon, bearing: (Math.atan2(dir[0], dir[1]) * 180) / Math.PI, wayId: near.way.id, name, city: city.id, reach, span, ...(streetKind(near.way.tags) && { kind: streetKind(near.way.tags) }) };
     // What the export credits beyond the city's own data (city.js creditLines): the region of a national DTM,
     // the DMVS standing in for the city's map, the orthophoto of a tram bed.
     const mv = m.status === "fulfilled" ? m.value : null;
@@ -1135,6 +1135,8 @@ function current() {
 // The cut's street as shown: its name, or "ulice 123" in the page's language. The cut keeps the name of the data
 // only (empty for a street without one) and its note as the Czech text, so a saved cut reads in either language
 // and the log gets the same name whatever the visitor's language (Fable's review).
+// The kind of street the norms of a city may go by (rules.js; San Francisco's sidewalks): an alley, another service road.
+const streetKind = (tags) => (tags?.highway !== "service" ? null : tags.service === "alley" ? "alley" : "service");
 const streetName = (c) => c?.name || (c?.wayId ? tr("ulice {id}", { id: c.wayId }) : tr("Ulice"));
 
 // Stav is for looking at the street as it is; its data can be corrected only after "Opravit data"
@@ -1413,7 +1415,7 @@ function renderRuleCheck(p, box) {
   if (state.mode !== "navrh") { el.hidden = true; return; }
   // The widths by the manual, and (with the networks on) rainwater objects and new trees near a network: each under
   // its own head.
-  const nets = undergroundFor(), widths = checkRules(p), clashes = [...checkUnder(p, nets), ...checkTrees(p, state.stav, nets)];
+  const nets = undergroundFor(), widths = checkRules(p, state.cut), clashes = [...checkUnder(p, nets), ...checkTrees(p, state.stav, nets)];
   const found = [...widths, ...clashes];
   for (const f of found) box.querySelector(`g.seg[data-i="${f.i}"]`)?.classList.add(`warn-${f.level}`);
   if (!found.length) { el.hidden = true; el.replaceChildren(); return; }
