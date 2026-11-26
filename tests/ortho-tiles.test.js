@@ -65,11 +65,12 @@ test("Dánsko: dlaždice 400 je díra NaN, 429 se zeptá ještě jednou", async 
   } finally { K.setDkToken(""); }
 });
 
-test("Malta: chyba WMS jako 200 text/xml je výpadek, ne prázdný obraz", async () => {
+test("Malta: výjimka WMS jako 200 text/xml je bez snímku (trvalý stav mimo pokrytí), ne výpadek; 5xx je výpadek", async () => {
   const opts = optsAt("mt", 14.5146, 35.8989);
   const xml = '<?xml version="1.0"?><ServiceExceptionReport><ServiceException>Could not get any sources</ServiceException></ServiceExceptionReport>';
-  await assert.rejects(L.laneImage({ ...opts, fetchImpl: async () => new Response(xml, { status: 200, headers: { "content-type": "text/xml" } }) }), (e) => e.outage === true);
-  await assert.rejects(L.laneImage({ ...opts, fetchImpl: async () => new Response(xml, { status: 200, headers: { "content-type": "application/vnd.ogc.se_xml" } }) }), (e) => e.outage === true);
+  assert.equal(await L.laneImage({ ...opts, fetchImpl: async () => new Response(xml, { status: 200, headers: { "content-type": "text/xml" } }) }), null);
+  assert.equal(await L.laneImage({ ...opts, fetchImpl: async () => new Response(xml, { status: 200, headers: { "content-type": "application/vnd.ogc.se_xml" } }) }), null);
+  await assert.rejects(L.laneImage({ ...opts, fetchImpl: async () => new Response("", { status: 503 }) }), (e) => e.outage === true);
   // A real image still reads.
   const ok = await L.laneImage({ ...opts, fetchImpl: async () => grey() });
   assert.ok(ok && ok.source === "mt");
@@ -81,14 +82,33 @@ test("Estonsko: bílý snímek mimo pokrytí není ortofoto", async () => {
   assert.ok(await L.laneImage({ ...opts, fetchImpl: async () => grey() }));
 });
 
-test("askImage: 429 jednou znovu, XML jako chyba serveru, ostatní beze změny", async () => {
-  let n = 0;
-  const r = await L.askImage(async () => (++n === 1 ? new Response("", { status: 429 }) : grey()), "u", {});
-  assert.equal(r.status, 200);
-  assert.equal(n, 2);
-  n = 0;
-  assert.equal((await L.askImage(async () => { n++; return new Response("", { status: 429 }); }, "u", {})).status, 429);
-  assert.equal(n, 2, "only once more");
-  assert.equal((await L.askImage(async () => new Response("<x/>", { status: 200, headers: { "content-type": "text/xml; charset=utf-8" } }), "u", {})).status, 502);
+test("askImage: 429 jednou znovu po náhodné pauze 0,5–2 s (znovu 429 je výpadek), co není image/* je bez snímku, nepoužité tělo zahozené", async () => {
+  const [lo, hi] = L.RETRY_429_MS;
+  assert.deepEqual([lo, hi], [500, 2000]);
+  L.RETRY_429_MS[0] = 0; L.RETRY_429_MS[1] = 40;
+  try {
+    let n = 0;
+    const r = await L.askImage(async () => (++n === 1 ? new Response("", { status: 429 }) : grey()), "u", {});
+    assert.equal(r.status, 200);
+    assert.equal(n, 2);
+    n = 0;
+    assert.equal((await L.askImage(async () => { n++; return new Response("", { status: 429 }); }, "u", {})).status, 503, "an outage after the retry");
+    assert.equal(n, 2, "only once more");
+    // The pause is random within the range (not all tiles at once).
+    const t0 = Date.now();
+    await L.askImage(async () => (++n % 2 ? new Response("", { status: 429 }) : grey()), "u", {}, () => 1);
+    assert.ok(Date.now() - t0 >= 35);
+  } finally { L.RETRY_429_MS[0] = lo; L.RETRY_429_MS[1] = hi; }
+  for (const type of ["text/xml; charset=utf-8", "application/vnd.ogc.se_xml", "application/json", "text/html", "image/svg+xml"])
+    assert.equal((await L.askImage(async () => new Response("<x/>", { status: 200, headers: { "content-type": type } }), "u", {})).status, 404, type);
   assert.equal((await L.askImage(async () => new Response("", { status: 404 }), "u", {})).status, 404);
+  assert.equal((await L.askImage(async () => new Response("", { status: 502 }), "u", {})).status, 502);
+  assert.equal((await L.askImage(async () => grey(), "u", {})).status, 200);
+  // The body of an answer not used is cancelled.
+  let cancelled = 0;
+  const body = () => new ReadableStream({ start(c) { c.enqueue(new Uint8Array([60])); }, cancel() { cancelled++; } });
+  await L.askImage(async () => new Response(body(), { status: 200, headers: { "content-type": "text/xml" } }), "u", {});
+  await L.askImage(async () => new Response(body(), { status: 500 }), "u", {});
+  await new Promise((ok) => setTimeout(ok, 0));
+  assert.equal(cancelled, 2);
 });

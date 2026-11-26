@@ -328,21 +328,29 @@ function blank(img) {
   }
   return empty > n * 0.5;
 }
-// One tile or image asked politely: a 429 (Denmark's Dataforsyningen under load) is asked once more after a pause
-// (Retry-After, at most 1 s), within the same signal. An error the server sends as 200 with XML or text instead of an
-// image (Malta's WMS: a ServiceExceptionReport, evaluation/malta/ZDROJE.md) is a server error: an answer of 502, so it
-// is told as an outage like the others (the review of Malta, the review of Denmark 26. 11. 2026).
-export const RETRY_429_MS = 500;
-export async function askImage(fetchImpl, url, init) {
+// One tile or image asked politely: a 429 (Denmark's Dataforsyningen under load) is asked once more after a pause, within
+// the same signal: Retry-After where the server gives it (at most 2 s), else a random 0.5–2 s, so that the 30 tiles of a
+// cut that all got a 429 do not come back at once (the hostile review of 26. 11. 2026). A 429 again is an outage (503).
+// An answer of 200 that is not an image (not image/*: Malta's ServiceExceptionReport, evaluation/malta/ZDROJE.md; XML, text,
+// JSON, an SVG) is the WMS's own exception, mostly outside its coverage: a lasting state, so "no image" (404), not an outage
+// (the hostile review: it was told as one since the review of Malta). An outage stays a network error, a 5xx and a 429
+// after the retry. A body not used is cancelled.
+export const RETRY_429_MS = [500, 2000];
+const drop = (r) => r.body?.cancel?.().catch(() => {});
+export async function askImage(fetchImpl, url, init, random = Math.random) {
   let r = await fetchImpl(url, init);
   if (r.status === 429) {
-    const after = Number(r.headers?.get?.("retry-after"));
-    await new Promise((ok) => setTimeout(ok, Number.isFinite(after) && after > 0 ? Math.min(after * 1000, 1000) : RETRY_429_MS));
-    if (init?.signal?.aborted) return r;
+    drop(r);
+    const after = Number(r.headers?.get?.("retry-after")), [lo, hi] = RETRY_429_MS;
+    await new Promise((ok) => setTimeout(ok, Number.isFinite(after) && after > 0 ? Math.min(after * 1000, hi) : lo + random() * (hi - lo)));
+    if (init?.signal?.aborted) return new Response(null, { status: 429 });
     r = await fetchImpl(url, init);
+    if (r.status === 429) { drop(r); return new Response(null, { status: 503, statusText: "429 after a retry" }); }
   }
-  const type = r.ok ? r.headers?.get?.("content-type") || "" : "";
-  if (/xml|^text\//i.test(type)) return new Response(null, { status: 502, statusText: "XML instead of an image" });
+  if (!r.ok) { drop(r); return r; }
+  const type = r.headers?.get?.("content-type") || "";
+  if (type && !/^image\//i.test(type)) { drop(r); return new Response(null, { status: 404, statusText: "no image (the service's exception)" }); }
+  if (/svg/i.test(type)) { drop(r); return new Response(null, { status: 404, statusText: "no image (SVG)" }); }
   return r;
 }
 
