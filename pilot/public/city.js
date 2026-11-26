@@ -468,7 +468,7 @@ Object.assign(CITIES, {
   // The USA (Bára 24. 11. 2026, phase 2): only the metro of Washington DC; DC's Planimetrics and DDOT's inventory, DC's
   // orthophoto, OSM (towns/usa.js).
   usa: { ...abroad("usa", "US", "USA", "v USA", "americké", [38.9, -77.03], "38.897700, -77.036500"),
-    dataShort: "map DC a OSM", rulesHead: "Šířky podle DDOT (Design and Engineering Manual 2023) a NACTO, orientačně:" },
+    dataShort: "map měst a OSM", rulesHead: "Šířky podle DDOT (Design and Engineering Manual 2023), NYC Street Design Manual a NACTO, orientačně:" },
   // Canada (Bára 25. 11. 2026): only Toronto and its surroundings; Toronto's topographic mapping and orthophoto, OSM
   // (towns/canada.js).
   canada: { ...abroad("canada", "CA", "Kanada", "v Kanadě", "kanadské", [43.7, -79.4], "43.658890, -79.416460"),
@@ -495,19 +495,19 @@ for (const c of Object.values(CITIES)) if (c.abroad && c.country) { c.art = c.id
 // Brno): by their boundaries (mesta-sk.json from ZBGIS, mesta-at.json from GISCO's LAU, mesta-us.json of DC, mesta-ca.json of Toronto), everything else of their
 // state's rest (texts, sources, orthophoto), only the illustrations their own where the state has a set of the town
 // (else the state's). Their sources keep their own territories (towns/slovensko.js, towns/austria.js AREAS).
-const LATE_ART = new Set(["washington", "toronto"]); // their states' sets come later (late.js)
+const LATE_ART = new Set(["washington", "newyork", "toronto"]); // their states' sets come later (late.js)
 const stateTown = (id, state, view) => ({ ...CITIES[state], id, like: state, view, art: LATE_ART.has(id) || COUNTRIES[CITIES[state].country].art[id] ? id : state });
 export const STATE_TOWNS = {
   SK: ["bratislava", "kosice", "zilina", "bystrica", "presov", "nitra", "trnava", "trencin", "martin", "poprad", "piestany", "hlohovec", "zvolen"],
   AT: ["wien", "graz", "linz", "salzburg", "innsbruck"],
-  US: ["washington"],
+  US: ["washington", "newyork"],
   CA: ["toronto"],
 };
 const VIEW = { bratislava: [48.1440, 17.1100], kosice: [48.7190, 21.2580], zilina: [49.2230, 18.7400], bystrica: [48.7360, 19.1460], presov: [48.9980, 21.2400],
   nitra: [48.3120, 18.0870], trnava: [48.3774, 17.5883], trencin: [48.8945, 18.0444], martin: [49.0665, 18.9230], poprad: [49.0555, 20.2975],
   piestany: [48.5918, 17.8273], hlohovec: [48.4310, 17.8030], zvolen: [48.5762, 19.1371],
   wien: [48.2085, 16.3731], graz: [47.0707, 15.4395], linz: [48.3059, 14.2862], salzburg: [47.8, 13.045], innsbruck: [47.2654, 11.3927],
-  washington: [38.8977, -77.0365], toronto: [43.6535, -79.3839] };
+  washington: [38.8977, -77.0365], newyork: [40.758, -73.9855], toronto: [43.6535, -79.3839] };
 for (const id of STATE_TOWNS.SK) CITIES[id] = stateTown(id, "slovensko", VIEW[id]);
 for (const id of STATE_TOWNS.AT) CITIES[id] = stateTown(id, "austria", VIEW[id]);
 for (const id of STATE_TOWNS.US) CITIES[id] = stateTown(id, "usa", VIEW[id]);
@@ -653,7 +653,7 @@ function americanCoast(lat, lon, dist) {
 // Where the app makes no profile (tools/build_staty.mjs closed_*; Bára 23. 11. 2026): the message to show, or null.
 const CLOSED = {
   closed_cy: () => t("Sever Kypru zatím nemáme: profily děláme jen na území, které spravuje Kyperská republika."),
-  closed_us: () => t("V USA zatím děláme profily jen ve Washingtonu a okolí (District of Columbia a sousední okresy Marylandu a Virginie)."),
+  closed_us: () => t("V USA zatím děláme profily jen ve Washingtonu a okolí (District of Columbia a sousední okresy Marylandu a Virginie) a v New Yorku."),
   closed_ca: () => t("V Kanadě zatím děláme profily jen v Torontu a okolí."),
   closed_it: () => t("V Itálii děláme profily jen tam, kde má otevřenou licenci ortofoto nebo mapa povrchů: v Jižním Tyrolsku, Lombardii, Turíně, Bologni a Modeně."),
 };

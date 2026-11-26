@@ -18,8 +18,15 @@ test("USA: metro Washingtonu je stát usa, zbytek USA zavřený", async () => {
     assert.equal(C.cityAt(lat, lon), "usa", `${lat},${lon}`);
     assert.equal(C.closedAt(lat, lon), null);
   }
-  // New York, Baltimore, Richmond: the USA beyond the metro, a message and no profile.
-  for (const [lat, lon] of [[40.7128, -74.006], [39.2904, -76.6122], [37.5407, -77.436]]) {
+  // New York City (26. 11. 2026): the city of the state, its five boroughs (Manhattan, Queens, the Bronx, Staten Island, Brooklyn).
+  C.loadTowns(JSON.parse(fs.readFileSync(new URL("../pilot/public/mesta-us.json", import.meta.url), "utf8")));
+  for (const [lat, lon] of [[40.7128, -74.006], [40.7282, -73.7949], [40.8448, -73.8648], [40.5795, -74.1502], [40.6782, -73.9442]]) {
+    assert.equal(C.cityAt(lat, lon), "newyork", `${lat},${lon}`);
+    assert.equal(C.closedAt(lat, lon), null);
+  }
+  assert.equal(C.countryOfCity("newyork").code, "US");
+  // Baltimore, Richmond, Jersey City, Yonkers, Hempstead (Nassau): the USA beyond the metros, a message and no profile.
+  for (const [lat, lon] of [[39.2904, -76.6122], [37.5407, -77.436], [40.7178, -74.0431], [40.9312, -73.8988], [40.7062, -73.6187]]) {
     assert.equal(C.cityAt(lat, lon), "cizina", `${lat},${lon}`);
     assert.match(C.closedAt(lat, lon) || "", /Washingtonu/);
   }

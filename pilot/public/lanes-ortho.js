@@ -170,8 +170,13 @@ export const fiOrthoAt = (lon, lat) => Object.keys(FI_ORTHO).filter((k) => { con
 // metro (Maryland, Virginia) no orthophoto yet: the estimate from OSM.
 export const DC_ORTHO = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Ortho2025_WebMercator/MapServer";
 const agsExport = (service) => (b, w, h, format = "image/jpeg") => `${service}/export?${new URLSearchParams({ bbox: b.join(","), bboxSR: 3857, imageSR: 3857, size: `${w},${h}`, format: format === "image/png" ? "png32" : "jpg", ...(format === "image/png" && { transparent: "true" }), f: "image" })}`;
+// New York City (26. 11. 2026): the orthophoto of the State of New York of 2024 (NYS ITS Geospatial Services, the 2024 flight
+// over the five boroughs, 0.5 ft; a tile cache in Web Mercator to level 19, its export finer; CORS for the origin asking; "available
+// at no cost", no licence stated: gis.ny.gov), only inside the city (mesta-us.json) and 30 m beyond it.
+export const NYS_ORTHO = "https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer";
 export const US_ORTHO = {
   "us-dc": { box: [-77.12, 38.79, -76.909, 38.997], town: "washington", near: 60, res: 0.1, url: agsExport(DC_ORTHO), credit: "ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)" },
+  "us-nyc": { box: [-74.27, 40.47, -73.68, 40.93], town: "newyork", near: 30, res: 0.15, url: agsExport(NYS_ORTHO), credit: "ortofoto © NYS ITS Geospatial Services, 2024" },
 };
 // Canada (Bára 25. 11. 2026): the City of Toronto's orthophoto of the current year (cot_ortho; 2025, 8 cm, a tile cache in Web
 // Mercator to level 23; CORS for the origin asking; Open Government Licence – Toronto by the catalogue's "Web Map Services"),

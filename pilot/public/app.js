@@ -585,7 +585,7 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
       // A click with no street found is logged too (Bára: how many try outside the Czech Republic): only where, to
       // about a kilometre, and whether there were any OSM data there at all (outside the country there are none).
       if (!keepWay) log("bez_ulice", { detail: osm?.elements?.length ? "bez_ulice" : "bez_dat", city: city.id, country: city.country, lat: Math.round(lat * 100) / 100, lon: Math.round(lon * 100) / 100 });
-      return status(tr("Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko, Slovensko, Rakousko, Německo, Švýcarsko, Lichtenštejnsko, Nizozemsko, Belgii, Lucembursko, Polsko, Francii, Monako, Španělsko, Portugalsko, Kypr, Maltu, části Itálie, Estonsko, Slovinsko, Finsko, Dánsko, Litvu, okolí Washingtonu v USA a okolí Toronta v Kanadě)."), "error");
+      return status(tr("Tady jsem žádnou ulici nenašla. Zkuste kliknout přímo na silnici (data pokrývají Česko, Slovensko, Rakousko, Německo, Švýcarsko, Lichtenštejnsko, Nizozemsko, Belgii, Lucembursko, Polsko, Francii, Monako, Španělsko, Portugalsko, Kypr, Maltu, části Itálie, Estonsko, Slovinsko, Finsko, Dánsko, Litvu, okolí Washingtonu a New York v USA a okolí Toronta v Kanadě)."), "error");
     }
     // A street of two one-way carriageways is cut from its middle (e.g. the tram belt).
     if (keepWay && osmCache) near = centerOnStreet(osm, frame, near);
@@ -856,6 +856,8 @@ async function cutAt(lat, lon, keepWay = false, bearing = null, reach = null, wa
         if (p.caHouse && (info.src === "ipr" || p.garage)) state.cut.sources.caHouse = true;
         // Washington's assessment tables that told of the house (towns/usa.js).
         if (p.usCama) state.cut.sources.usCama = true;
+        // New York's building footprints, where they gave the floors, the year or the garage (towns/newyork.js).
+        if (p.nycHouse && (info.src === "ipr" || p.garage || p.built)) state.cut.sources.nycHouse = true;
         if (p.dkBuild) state.cut.sources.dkBuild = state.cut.sources.dkBuild && state.cut.sources.dkBuild !== p.dkBuild ? "both" : p.dkBuild;
         // What the building is for (ZBGIS, Slovakia), where OSM says no more than "a building".
         if (p.type && (!info.type || info.type === "yes")) info.type = p.type;
@@ -1185,6 +1187,7 @@ function cutData() {
   // DC's Planimetrics and DDOT's inventory (towns/usa.js).
   if (state.cut?.sources?.cityMap === "dc") return tr("mapy povrchů Washingtonu, inventáře DDOT, ortofota a OSM");
   if (state.cut?.sources?.cityMap === "toronto") return tr("mapy povrchů Toronta, ortofota a OSM");
+  if (state.cut?.sources?.cityMap === "nyc") return tr("mapy povrchů New Yorku, ortofota a OSM");
   if (state.cut?.sources?.itTown === "bologna") return tr("mapy povrchů Bologni, ortofota a OSM");
   // Lombardy's DBT (towns/lombardy.js).
   if (state.cut?.sources?.itTown === "lombardia") return tr("mapy povrchů Lombardie a OSM");
@@ -1235,7 +1238,7 @@ function draw() {
     box.innerHTML = `<div class="empty">
       <img src="${city.emptyImg}" alt="" width="96" height="126">
       <div><h1 class="empty-title">${tr("Příčný profil ulice")}</h1>
-      <ol><li>${tr("Klikněte v mapě na ulici kdekoli v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku, v Lichtenštejnsku, v Nizozemsku, v Belgii, v Lucembursku, v Polsku, ve Francii, v Monaku, ve Španělsku, v Portugalsku, na Kypru, na Maltě, v částech Itálie (Lombardie, Bolzano, Turín, Bologna, Modena), v Estonsku, ve Slovinsku, ve Finsku, v Dánsku, v Litvě, ve Washingtonu a okolí (USA) nebo v Torontu a okolí (Kanada).")}</li><li>${tr("Profil od fasády k fasádě se sestaví z mapy povrchů města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy povrchů Vídně a OSM, v Německu z ortofot spolkových zemí a OSM, ve Švýcarsku a v Lichtenštejnsku z úředního vyměřování, ortofota SWISSIMAGE a OSM, v Nizozemsku z mapy povrchů BGT, ortofota PDOK a OSM, v Belgii a v Lucembursku z ortofot, mapy povrchů a čar GRB Flander, čar mapy Valonska a OSM, v Polsku z ortofota GUGiK, mapy povrchů Krakova a OSM, ve Francii z ortofota IGN, mapy povrchů Paříže a OSM, v Monaku z ortofota IGN a OSM, ve Španělsku z ortofota PNOA, mapy povrchů Zaragozy a OSM, v Portugalsku z ortofot DGT a OSM, na Kypru z ortofota DLS a OSM, na Maltě z ortofota stavebního úřadu a OSM, v Itálii z mapy povrchů Lombardie (DBT), otevřených ortofot, mapy povrchů Bologni a OSM, v Estonsku z ortofota Maa- ja Ruumiamet a OSM, ve Slovinsku z ortofota GURS, katastru budov a OSM, ve Finsku z OSM, ortofot a mapy povrchů Helsinek a registrů budov, v Dánsku z ortofota GeoDanmark, OSM, okrajů vozovek, parkovacích ploch a budov Kodaně a budov Aarhusu, v Litvě z OSM a obrysů budov GRPK, ve Washingtonu z mapy povrchů a inventáře ulic DC, ortofota a OSM, v Torontu z mapy povrchů města, ortofota a OSM.")}</li>
+      <ol><li>${tr("Klikněte v mapě na ulici kdekoli v Česku, na Slovensku, v Rakousku, v Německu, ve Švýcarsku, v Lichtenštejnsku, v Nizozemsku, v Belgii, v Lucembursku, v Polsku, ve Francii, v Monaku, ve Španělsku, v Portugalsku, na Kypru, na Maltě, v částech Itálie (Lombardie, Bolzano, Turín, Bologna, Modena), v Estonsku, ve Slovinsku, ve Finsku, v Dánsku, v Litvě, ve Washingtonu a okolí a v New Yorku (USA) nebo v Torontu a okolí (Kanada).")}</li><li>${tr("Profil od fasády k fasádě se sestaví z mapy povrchů města nebo ČÚZK, RÚIAN a OSM, na Slovensku z pasportů měst, ZBGIS, ortofota a OSM, v Rakousku z ortofota, mapy povrchů Vídně a OSM, v Německu z ortofot spolkových zemí a OSM, ve Švýcarsku a v Lichtenštejnsku z úředního vyměřování, ortofota SWISSIMAGE a OSM, v Nizozemsku z mapy povrchů BGT, ortofota PDOK a OSM, v Belgii a v Lucembursku z ortofot, mapy povrchů a čar GRB Flander, čar mapy Valonska a OSM, v Polsku z ortofota GUGiK, mapy povrchů Krakova a OSM, ve Francii z ortofota IGN, mapy povrchů Paříže a OSM, v Monaku z ortofota IGN a OSM, ve Španělsku z ortofota PNOA, mapy povrchů Zaragozy a OSM, v Portugalsku z ortofot DGT a OSM, na Kypru z ortofota DLS a OSM, na Maltě z ortofota stavebního úřadu a OSM, v Itálii z mapy povrchů Lombardie (DBT), otevřených ortofot, mapy povrchů Bologni a OSM, v Estonsku z ortofota Maa- ja Ruumiamet a OSM, ve Slovinsku z ortofota GURS, katastru budov a OSM, ve Finsku z OSM, ortofot a mapy povrchů Helsinek a registrů budov, v Dánsku z ortofota GeoDanmark, OSM, okrajů vozovek, parkovacích ploch a budov Kodaně a budov Aarhusu, v Litvě z OSM a obrysů budov GRPK, ve Washingtonu z mapy povrchů a inventáře ulic DC, ortofota a OSM, v New Yorku z mapy povrchů města, ortofota a OSM, v Torontu z mapy povrchů města, ortofota a OSM.")}</li>
       <li>${tr("V režimu Návrh ho upravíte: táhněte hranice, klikněte na část, přidejte novou.")}</li></ol></div></div>`;
     $("#editor").replaceChildren();
     $("#palette").replaceChildren();

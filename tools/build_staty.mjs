@@ -104,19 +104,26 @@ async function swiss(iso) {
   return (g.type === "MultiPolygon" ? g.coordinates.flat() : g.coordinates).map((r) => simplify(r)).filter((r) => r.length >= 4);
 }
 
-// The USA (Bára 24. 11. 2026, phase 2 of the North America pilot): only the metro of Washington DC is covered, the
-// District and the counties and cities around it whose OSM the pack us_dc holds (tools/countries.mjs): Montgomery and
-// Prince George's in Maryland; Arlington, Fairfax County, Fairfax city, Falls Church and Alexandria in Virginia. Their
-// boundaries from the Census Bureau's TIGERweb (State_County, layer Counties; works of the federal government, public
-// domain), with their holes (Fairfax County's ring has Fairfax city as a hole: the rings of one entry count by parity,
-// so the city's own ring makes it inside again): merged to one outline, then simplified to about 10 m.
-const DC_METRO = ["11001", "24031", "24033", "51013", "51059", "51600", "51610", "51510"];
-async function dcMetro() {
-  const q = new URLSearchParams({ where: `GEOID IN (${DC_METRO.map((g) => `'${g}'`).join(",")})`, outFields: "GEOID", returnGeometry: "true", outSR: "4326", f: "json" });
+// The USA (Bára 24. 11. 2026, phase 2 of the North America pilot): only the metros the OSM packs hold (tools/countries.mjs),
+// each a list of counties (GEOID) from the Census Bureau's TIGERweb (State_County, layer Counties; works of the federal
+// government, public domain), with their holes (Fairfax County's ring has Fairfax city as a hole: the rings of one entry
+// count by parity, so the city's own ring makes it inside again): each metro merged to one outline, then simplified to
+// about 10 m. A further metro is a line here (Bára 26. 11. 2026: Boston and San Francisco alike).
+//   dc: the District, Montgomery and Prince George's in Maryland; Arlington, Fairfax County, Fairfax city, Falls Church
+//       and Alexandria in Virginia (the pack us_dc).
+//   nyc: New York City, its five boroughs (Bronx, Kings, New York, Queens, Richmond; the pack us_nyc, 26. 11. 2026). The
+//       counties of New Jersey, Westchester and Nassau around it are left out: no surface map of theirs.
+const METROS = {
+  dc: ["11001", "24031", "24033", "51013", "51059", "51600", "51610", "51510"],
+  nyc: ["36005", "36047", "36061", "36081", "36085"],
+};
+async function metro(ids) {
+  const q = new URLSearchParams({ where: `GEOID IN (${ids.map((g) => `'${g}'`).join(",")})`, outFields: "GEOID", returnGeometry: "true", outSR: "4326", f: "json" });
   const json = await (await fetch(`https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/1/query?${q}`, { headers: { "User-Agent": "profily-ulic" } })).json();
-  if ((json.features || []).length !== DC_METRO.length) throw new Error(`TIGERweb: ${json.features?.length} of ${DC_METRO.length} counties`);
+  if ((json.features || []).length !== ids.length) throw new Error(`TIGERweb: ${json.features?.length} of ${ids.length} counties`);
   return outline(json.features.flatMap((f) => f.geometry.rings)).map((r) => simplify(r, 0.0001)).filter((r) => r.length >= 4);
 }
+const usMetros = async () => (await Promise.all(Object.values(METROS).map(metro))).flat();
 // Areas with common boundaries (the same vertices on both sides) merged to their outline before it is simplified: the
 // edges two of them share cancel out, so nothing stays along the common lines (each county simplified alone left gaps
 // there: Southern Avenue, the DC line, fell into closed_us; unsimplified it was 863 kB for every visitor).
@@ -242,8 +249,8 @@ const BUILD = {
   // Lithuania (24. 11. 2026): GISCO's LT, after Poland's exact PRG ring (by Suwałki and Sejny the Polish line first);
   // Latvia, Belarus and Kaliningrad stay abroad.
   lithuania: () => gisco("LT"),
-  // The USA (24. 11. 2026): the metro of Washington DC (dcMetro above); the rest of the USA is closed_us below.
-  usa: () => dcMetro(),
+  // The USA (24. 11. 2026): the metros of METROS above (Washington DC, New York City); the rest of the USA is closed_us below.
+  usa: () => usMetros(),
   // Canada (25. 11. 2026): Toronto and its surroundings (statcan above); the rest of Canada is closed_ca below.
   canada: async () => (await statcan(GTA)).map((r) => simplify(r, 0.0001)).filter((r) => r.length >= 4),
   // Malta (23. 11. 2026): OSM's boundary with the territorial waters (one ring round the islands, no neighbour; GISCO's
@@ -268,7 +275,7 @@ const BUILD = {
   closed_cy: () => gisco("CY"),
   // (GISCO's outer rings of Italy take in San Marino and the Vatican.)
   closed_it: () => gisco("IT"),
-  // The USA beyond the metro of Washington (24. 11. 2026: the OSM pack us_dc holds only the metro): GISCO's US, a message
+  // The USA beyond its metros (24. 11. 2026: the OSM packs us_dc and us_nyc hold only the metros): GISCO's US, a message
   // and not a border to cut by: to about 1 km, Alaska to 3 km without its small islands; along the land borders to 100 m
   // (at 1 km the quays of Windsor in Ontario and of Nuevo Laredo got the message of the USA).
   closed_us: async () => closedFar(await gisco("US"), US_BORDER),

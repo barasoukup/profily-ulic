@@ -41,6 +41,7 @@ export const SOURCE_CREDITS = {
     "fi-tku": () => t("ortofoto © Turun kaupunki, 2022 (CC BY 4.0)"),
     // The USA: DC's orthophoto (lanes-ortho.js US_ORTHO).
     "us-dc": () => t("ortofoto © DC Office of the Chief Technology Officer, 2025 (CC BY 4.0)"),
+    "us-nyc": () => t("ortofoto © NYS ITS Geospatial Services, 2024"),
     "ca-tor": () => t("ortofoto © City of Toronto, 2025 (Open Government Licence – Toronto)"),
     // Denmark: GeoDanmark's spring orthophoto through Dataforsyningen, credited as its terms ask (evaluation/denmark/ZDROJE.md 1).
     dk: () => t("ortofoto: Indeholder data fra Styrelsen for Dataforsyning og Infrastruktur, Ortofoto forår, WMTS-tjeneste"),
@@ -114,11 +115,15 @@ export const SOURCE_CREDITS = {
   // DC's Planimetrics and DDOT's inventory (towns/usa.js).
   cityMap: { dc: () => t("mapa povrchů (Planimetrics 2023) © DC GIS, Office of the Chief Technology Officer (CC BY 4.0)"),
     // Toronto's topographic mapping (towns/canada.js), with the statement its licence asks for.
-    toronto: () => t("mapa povrchů: Contains information licensed under the Open Government Licence – Toronto.") },
+    toronto: () => t("mapa povrchů: Contains information licensed under the Open Government Licence – Toronto."),
+    // New York's planimetrics (towns/newyork.js).
+    nyc: () => t("mapa povrchů (NYC Planimetric Database 2022) © NYC Office of Technology and Innovation (NYC Open Data)") },
   caHouse: { true: () => t("výšky domů © City of Toronto (Open Government Licence – Toronto)") },
   // DC's assessment tables, where they told of a house.
   usCama: { true: () => t("domy (CAMA) © DC Office of Tax and Revenue, DC GIS (CC BY 4.0)") },
   usDdot: { true: () => t("pruhy a stání (Roadway SubBlock) © DDOT, DC GIS (CC BY 4.0)") },
+  // New York's building footprints, where they told of a house (towns/newyork.js).
+  nycHouse: { true: () => t("budovy {who}", { who: "© NYC Office of Technology and Innovation (NYC Open Data)" }) },
   // Helsinki's register of public areas (towns/finland.js).
   fiTown: { helsinki: () => t("mapa povrchů (Yleisten alueiden rekisteri) © Helsingin kaupunki (CC BY 4.0)") },
   // The buildings of Helsinki's register or of Ryhti (towns/finland.js), where they told of a house.
