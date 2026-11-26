@@ -392,10 +392,11 @@ if (STATY?.denmark && dkToken()) {
   const Dk = insideOnly([boxedPlace("DK", STATY.denmark)]);
   kinds.ortho.push(new Dk(DK_ORTHO("{z}", "{x}", "{y}"), { maxZoom: 21, maxNativeZoom: 20, attribution: tr("ortofoto: Indeholder data fra Styrelsen for Dataforsyning og Infrastruktur, Ortofoto forår, WMTS-tjeneste"), bounds: boundsOf(STATY.denmark) }));
 }
-// Malta: the Planning Authority's orthophoto of 2018 (in degrees: lanes-ortho.js MT_ORTHO), only over Malta.
+// Malta: the Planning Authority's orthophoto of 2018 (in degrees: lanes-ortho.js MT_ORTHO), only over Malta; a JPEG
+// inside the islands, a transparent PNG only on a tile across the coast (as Slovenia; the review of Malta).
 if (STATY?.malta) {
   const Mt = insideOnly([boxedPlace("MT", STATY.malta)]);
-  kinds.ortho.push(new Mt("", { bboxUrl: (b, w, h) => `${MT_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`, maxZoom: 21, attribution: tr("ortofoto © Planning Authority Malta (CC BY 4.0)"), bounds: boundsOf(STATY.malta) }));
+  kinds.ortho.push(new Mt("", { bboxUrl: (b, w, h, inside) => (inside ? MT_ORTHO(b, w, h) : `${MT_ORTHO(b, w, h, "image/png")}&TRANSPARENT=TRUE`), maxZoom: 21, attribution: tr("ortofoto © Planning Authority Malta (CC BY 4.0)"), bounds: boundsOf(STATY.malta) }));
 }
 // Monaco: IGN's orthophoto covers it too.
 if (STATY?.monaco) {

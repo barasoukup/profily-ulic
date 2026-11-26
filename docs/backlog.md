@@ -94,9 +94,11 @@ Co rozhodne Bára, je označeno **(Bára)**.
 - Kypr: kredit budov DLS je v exportu u každého kyperského řezu (i bez domu z DLS, britské základny); přesněji klíčem zdroje
   (`state.cut.sources`, když `podlaznost` vrátí dům). Kredit britských značek (OGL, `credits.js ukSigns`) se počítá ze Stavu,
   ne ze značek přidaných v Návrhu.
-- Kypr: `lanes-ortho.js` „cy“: napůl chybějící dlaždice (404 u Zelené linie) dávají jas 0 místo NaN (vyplnit NaN nebo
+- ~~Kypr: `lanes-ortho.js` „cy“: napůl chybějící dlaždice (404 u Zelené linie) dávají jas 0 místo NaN (vyplnit NaN nebo
   hlídat podíl prázdna). Malta: WMS vrací chybu jako 200 `text/xml` (hlídat content-type, hlásit výpadek); podklad mapy
-  jako JPEG místo PNG (`app.js`). Kypr i Malta: `streetmix.js` neposílá `leftHandTraffic`.
+  jako JPEG místo PNG (`app.js`). Kypr i Malta: `streetmix.js` neposílá `leftHandTraffic`.~~ (26. 11. 2026: průhledný
+  pixel = NaN, víc než polovina neznámá = žádný obraz, „cy“ v kontrole prázdna; XML místo obrazu = výpadek (`askImage`);
+  podklad Malty uvnitř JPEG, u pobřeží PNG jako Slovinsko; `leftHandTraffic` z `country.leftHand`; `tests/ortho-tiles.test.js`)
 - Kypr **(Bára)**: ~~chodník 2 / 2,5 m (doporučení)~~ (23. 11.: bez červené, oranžově podle třídy ulice); 3 m na směr vedle stání; jednosměrka: stát jen vlevo?; protisměrní
   cyklisté ~~bez tabulky~~ (23. 11.: bez značky); zóna 30 nekreslit; pěší zóna jako „povinná pěší cesta“. Sever ostrova jako samostatný stát
   (zatím nemáme). Měření: chybí chodník 9×, stání 5×.
@@ -130,8 +132,8 @@ Co rozhodne Bára, je označeno **(Bára)**.
   sítě GJI (3D trasy) na později.
 - Estonsko, zbytky recenze 24. 11. 2026 (129abaf): Sõpruse pst a Ehitajate tee s mapou Tallinnu dávají deset pruhů po 4 m
   (slabina mapy, A/B 10 : 4); dotazy na Tallinn podle obdélníku města, ne podle jeho hranice; nadpis „Šířky podle estonských
-  předpisů“ (`city.js`) není přesný; u odhadu stání chybí „orientačně“; `ee` chybí mezi ortofoty hlídanými na prázdný snímek
-  (`lanes-ortho.js`); dotaz městu na licenci neodeslán. Bod 6: univerzální měření je přepočítané, vzorek jen 12 řezů.
+  předpisů“ (`city.js`) není přesný; u odhadu stání chybí „orientačně“; ~~`ee` chybí mezi ortofoty hlídanými na prázdný snímek
+  (`lanes-ortho.js`)~~ (26. 11. 2026); dotaz městu na licenci neodeslán. Bod 6: univerzální měření je přepočítané, vzorek jen 12 řezů.
 - Slovinsko, zbytky recenze 24. 11. 2026 (982927a): chybí poznámka v řezu, že model obrub nedostal ortofoto (`app.js`); A/B
   s ortofotem a bez něj; pravidlo podkroví (`?off=podkrovi`) na nových domech naslepo; čísla značek proti obrázkům pravidla
   26/2024; přesná pozemní hranice GURS; čtení středové čáry z `lanes` ≥ 2 a 3 m k plné čáře **(Bára)**.
@@ -139,8 +141,8 @@ Co rozhodne Bára, je označeno **(Bára)**.
   obrázky prvního A/B v gitu; prodleva při psaní do hledání (`search.js`); Karesuando u Švédska (řešit se Švédskem);
   Ryhti má jen „07 veřejná budova“ (škola a kostel se nepoznají).
 - Dánsko, zbytky recenze 24. 11. 2026 (f55df4b): Bornholm bez vlastních vzhledů domů (chybí fotky); plocha stání kdekoli
-  v okolí vypne odhad stání na obou stranách, i ve Frederiksbergu (bod 14); dlaždice ortofota 400/429 nechávají černé díry
-  (`lanes-ortho.js`); kredit ortofota ověřit po 30. 11. na nové platformě; čára `Cykelsti langs vej` jako vnější hrana
+  v okolí vypne odhad stání na obou stranách, i ve Frederiksbergu (bod 14); ~~dlaždice ortofota 400/429 nechávají černé díry
+  (`lanes-ortho.js`)~~ (26. 11. 2026: díra je NaN, 429 se po pauze zeptá jednou znovu, `askImage`); kredit ortofota ověřit po 30. 11. na nové platformě; čára `Cykelsti langs vej` jako vnější hrana
   cyklostezky nezapojená (`ortho-osm.js`); A/B kodaňských vrstev nebylo slepé; titulek a kredit jeho obrázků.
 - Jih Evropy po Itálii **odložen** (Bára 23. 11. 2026): Balkán, Řecko, Slovinsko. Až se k nim vrátíme: Albánie (ortofoto
   v albánských souřadnicích, ověřit stupně), Chorvatsko (jen přes proxy, západ), ~~Slovinsko (služby GURS neodpovídaly)~~ (přidáno 23. 11. 2026 přes `ipi.eprostor.gov.si`);

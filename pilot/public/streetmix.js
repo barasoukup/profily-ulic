@@ -2,7 +2,7 @@
 // Streetmix segments are listed left to right like ours; "outbound" points away from the viewer
 // (our "forward"), "inbound" towards them.
 import { TYPES } from "./types.js";
-import { city, creditLines } from "./city.js";
+import { city, country, creditLines } from "./city.js";
 
 const SCHEMA_VERSION = 35;
 const CURB = 0.15; // sidewalk elevation (m)
@@ -105,6 +105,8 @@ export function toStreetmix(profile, name, src = {}) {
     showAnalytics: false,
     width,
     units: 0,
+    // The state's driving side (countries/<ISO>.js leftHand: Cyprus, Malta), so Streetmix draws the arrows that way.
+    leftHandTraffic: !!country.leftHand,
     location: null,
     userUpdated: true,
     skybox: "day",
