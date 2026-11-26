@@ -17,7 +17,8 @@
 //   Rules as the other maps: a median with no roadway on both sides is land (islandsBeside, as DC); a cycle track OSM has as
 //   a way of its own in the roadbed is cut out of it (osmTracks, as Toronto: the map of 2022 draws the protected lanes'
 //   kerbs of planters and parking as roadway; ?off=roadtracks). ?nyc=0 leaves the map out (the estimate from OSM and the
-//   orthophoto).
+//   orthophoto). Roadbed, Sidewalk and Median must answer (else the estimate, mapFailed "nyc"); Plaza and Parking Lot may
+//   not (the map without them, a note in the console).
 // - the houses (podlaznost): the building footprint under the facade (the request the cut has made already): its roof height
 //   (HEIGHT_ROOF, ft) as floors as Toronto's, its year (CONSTRUCTION_YEAR) and a garage. ?nychouse=0 leaves it out.
 // - the orthophoto of the State of New York (NYS ITS Geospatial Services, 2024, 0.5 ft; lanes-ortho.js US_ORTHO "us-nyc").
@@ -47,10 +48,11 @@ export const NYC_MAP = {
   layers: [
     { id: BUILDING, fields: "FEATURE_CODE,HEIGHT_ROOF,CONSTRUCTION_YEAR", code: nycCode.building },
     { id: "Sidewalk_2022/FeatureServer/22", code: nycCode.sidewalk },
-    { id: "Plaza_2022/FeatureServer/16", code: nycCode.sidewalk },
+    // (Plaza and Parking Lot are optional: one that does not answer leaves the map without it, planimetrics.js optionalAnswer.)
+    { id: "Plaza_2022/FeatureServer/16", code: nycCode.sidewalk, optional: true },
     { id: "Median_2022/FeatureServer/9", code: nycCode.median },
     { id: ROADBED, code: nycCode.roadbed },
-    { id: "Parking_Lot_2022/FeatureServer/13", code: nycCode.lot },
+    { id: "Parking_Lot_2022/FeatureServer/13", code: nycCode.lot, optional: true },
   ],
   junction: { layer: ROADBED, test: (a) => Number(a.SUB_FEATURE_CODE) === 350010 },
   prepare: (runs, { tags, cycleTracks }) => {

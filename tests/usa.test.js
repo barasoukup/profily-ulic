@@ -299,3 +299,17 @@ test("New York: planimetrie podél řezu (malovaný ostrůvek je vozovka), domy 
   assert.equal(US.limits({ type: "chodnik", width: 1 }, [], -1, { id: "newyork" }), null);
   assert.ok(US.art.newyork["lamp-modern-left"] && US.art.newyork["bus-inbound"] === "bus-inbound");
 });
+
+test("New York: náměstí a parkoviště jsou nepovinné vrstvy (výpadek jen té vrstvy = bez ní), vozovka, chodník a ostrůvky povinné", async () => {
+  const { NYC_MAP } = await import("../pilot/public/towns/newyork.js");
+  const { optionalAnswer } = await import("../pilot/public/towns/planimetrics.js");
+  const opt = NYC_MAP.layers.filter((l) => l.optional).map((l) => l.id.split("/")[0]);
+  assert.deepEqual(opt, ["Plaza_2022", "Parking_Lot_2022"]);
+  const warn = console.warn; console.warn = () => {};
+  try {
+    const full = { features: [{ attributes: {} }] };
+    assert.equal(await optionalAnswer(Promise.resolve(full), "x"), full);
+    assert.deepEqual(await optionalAnswer(Promise.reject(new Error("503")), "x"), { features: [] });
+    assert.deepEqual(await optionalAnswer(Promise.resolve({ features: [{}], exceededTransferLimit: true }), "x"), { features: [] });
+  } finally { console.warn = warn; }
+});

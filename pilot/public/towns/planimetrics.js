@@ -4,7 +4,7 @@
 //   id, area (places.js inArea), on() (its switch), service (the MapServer) or ask(layer id, bbox, where) its own reading
 //   (towns/boston.js: static tiles of the site),
 //   layers: [{ id, fields, where, code(attributes) → [MTVU code, priority (lower first), true for a parking area] or null,
-//     get(bbox) a layer of another service }, …], runs(answers, c) the runs put together by the city itself (else runsAlong),
+//     get(bbox) a layer of another service, optional: true a layer the map can do without (optionalAnswer) }, …], runs(answers, c) the runs put together by the city itself (else runsAlong),
 //   junction: { layer, test(attributes) } the polygons of intersections,
 //   alleys: { layer, where, test(attributes), source, off } the alleys drawn as the street's crossings, or none,
 //   prepare(runs, { tags, tracks(), cycleTracks() }) the city's own rules on the runs (islandsBeside, gapsBetweenRoads, kerbBays,
@@ -294,6 +294,13 @@ export function alleyAreas(json, { test, source }) {
     .flatMap((f, k) => f.geometry.rings.slice(0, 1).map((r) => ({ type: "area", id: -(k + 1), tags: { service: "alley", source }, geometry: r.map(([lon, lat]) => ({ lat, lon })) })));
 }
 
+// The answer of a layer the map can do without: none (no features) where it failed or came cut off by the limit.
+export const optionalAnswer = (ask, name) => ask.then((json) => {
+  if (!json?.exceededTransferLimit) return json;
+  console.warn("vrstva bez úplné odpovědi, řez bez ní:", name);
+  return { features: [] };
+}, (err) => { console.warn("vrstva neodpověděla, řez bez ní:", name, err?.message); return { features: [] }; });
+
 // The sources of a described city: ask(layer id, bbox), surfaces, osm (with its alleys) and the part of its area test.
 export function planimetricMap(d) {
   const cached = memory(), asked = [], layer = (id) => d.layers.find((l) => l.id === id);
@@ -324,7 +331,9 @@ export function planimetricMap(d) {
     let own, o;
     const osmAsk = osmTiles(cy, cx, Math.max((x1 - x0) * 111320 * Math.cos((cy * Math.PI) / 180), (y1 - y0) * 110574) / 2);
     try {
-      const asks = d.layers.map((l) => { const a = ask(l.id, bbox, l.where || null); asked.unshift([bbox, a, l.id]); return a; });
+      // (A layer marked optional that does not answer, or answers cut off, is left out, said in the console: New York's
+      // plazas and parking lots, the hostile review of 26. 11. 2026, took the whole map with them.)
+      const asks = d.layers.map((l) => { const a = ask(l.id, bbox, l.where || null); asked.unshift([bbox, a, l.id]); return l.optional ? optionalAnswer(a, `${d.id} ${l.id}`) : a; });
       asked.length = Math.min(asked.length, 12);
       const [extra, osm, ...answers] = await Promise.all([d.extra ? d.extra(bbox) : null, osmAsk.catch(() => null), ...asks]);
       o = osm;
