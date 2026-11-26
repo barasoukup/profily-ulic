@@ -322,6 +322,19 @@ Co rozhodne Bára, je označeno **(Bára)**.
   6 ft, jiná obslužná bez varování, citace Better Streets Plan v datech studie AECOM). Zbývá: průmyslové ulice (8 ft) aplikace
   nepozná, dlaždice OSM nemají `landuse` (platí jim 10 ft).
 
+## Po nasazení (Bára 26. 11. 2026, v tomto pořadí, každé zvlášť a bez jiných změn)
+- Přestavba překladů: klíče jako jména (ne české věty), věty skládané z kousků (výčty míst a kreditů přes
+  `Intl.ListFormat` a názvy míst), sloučit téměř shodné texty, tabulka pro lidi generovaná ze souborů (a opravy z ní zpět).
+  Záchranná síť: přehrávka `evaluation/replay` ve 4 jazycích stejná před a po.
+- Přejmenovat na logické anglické názvy: `pilot` → `app`, české názvy složek a souborů (`znacky/`, `evaluation/<česky>/`,
+  `ZPRAVA.md`, `navrhy-ilustraci`, `towns/slovensko.js`, id `cesko`/`slovensko`…); odkazy ve workflow, nástrojích, testech
+  a dokumentaci; uložené řezy a odkazy se staršími id musí dál fungovat.
+- Úklid `.claude/worktrees/` (47 kopií, 25 GB): data, na která se odkazuje (nahrávky, balíky, cache měření), přesunout do
+  git-ignorovaného `data/` hlavního repa, ověřit necommitnuté změny a sloučení větví (street-history a hungary zůstávají
+  stranou), pak smazat.
+- Hláška „Tady jsem žádnou ulici nenašla…“ bez dlouhého výčtu míst (pokrytí ukazuje mapa v okně O aplikaci); udělat už
+  při slučování před nasazením, pokud to jde.
+
 ## Nápady (Bára zatím nevybrala)
 
 - Srovnávat a přepínat normy různých států, aby byly vidět rozdíly přístupů (Bára 20. 11. 2026).
