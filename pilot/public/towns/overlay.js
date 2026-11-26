@@ -5,7 +5,7 @@
 // as dmvs.js does it inside a street the DTM has drawn: the profile ends at the houses and front gardens.
 // The RÚIAN requests are the ones dmvs.js has just made (the browser and the evaluation reuse them).
 // Used by towns/frydek-mistek.js, karvina.js, trebic.js.
-import { asMtvu, getJSON } from "../gis.js";
+import { asMtvu, getJSON, insideRings } from "../gis.js";
 import { MTVU_LABELS } from "../city.js";
 import { surfaces as dmvsSurfaces, ruianAreas } from "../dmvs.js";
 
@@ -22,10 +22,29 @@ const parcelCode = (a) => LAND_USE[a.zpusobyvyuzitipozemku] ?? LAND_KIND[a.druhp
 // a point lies in, so the passport wins over the DTM's drawing of the same road. under: the town's surfaces
 // that only fill what the DTM leaves open (a passport of green: its lawns may still lie over a road rebuilt
 // since, Karviná č. 56).
+//
+// Where the passport has the roadway under the cut's centre (the box's middle), the passport is the street: the
+// roadways the DTM only guesses around it are not (Bára 26. 11. 2026, evaluation/pasporty-orez; Rožnov č. 39, 43, 44,
+// 54, 63: 20–27 m of roadway over courtyards, driveways and the next road). A white area of the DTM's image whose
+// type was not asked (dmvs.js dtmAreas: a roadway by its colour) is left out; a road's parcel of RÚIAN that dmvs.js
+// made a roadway (the DTM's blank gap) is a verge, as dmvs.js has it outside such a gap. ?orez=0: as before.
+const opt = (k) => (typeof location === "undefined" ? globalThis.PROFILY_OPTS?.[k] ?? null : new URLSearchParams(location.search).get(k));
+export function trimGuessedRoads(own, dtm, bbox) {
+  if (opt("orez") === "0") return dtm;
+  const [x0, y0, x1, y1] = bbox.split(",").map(Number), cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
+  if (!own.features.some((f) => f.attributes?.CTVUK_KOD === 701 && f.geometry?.rings && insideRings(f.geometry.rings, cx, cy))) return dtm;
+  const features = [];
+  for (const f of dtm.features) {
+    const a = f.attributes || {};
+    if (!(a.ODHAD && a.CTVUK_KOD === 701) || a.LEVEL === 1) features.push(f);
+    else if (a.ROAD_PARCEL) features.push({ ...f, attributes: { ...a, CTVUK_KOD: 401, CTVUK_POPIS: MTVU_LABELS[401] } });
+  }
+  return { ...dtm, features };
+}
 export async function overDmvs(own, bbox, under = { features: [] }) {
   const d = await dmvsSurfaces(bbox, MTVU_LABELS).catch(() => ({ features: [] }));
   if (!own.features.length) return d;
-  if (d.features?.length) return { ...d, features: [...own.features, ...d.features, ...under.features] };
+  if (d.features?.length) { const t = trimGuessedRoads(own, d, bbox); return { ...t, features: [...own.features, ...t.features, ...under.features] }; }
   return withRuian({ features: [...own.features, ...under.features] }, bbox);
 }
 

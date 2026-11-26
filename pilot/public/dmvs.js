@@ -707,6 +707,8 @@ export async function surfaces(bbox, labels, opts = {}) {
   // then estimated from OSM (and says so).
   for (const f of fill.features) {
     if (f.attributes.ODHAD && f.attributes.CTVUK_KOD === 701 && !dtm.gap) Object.assign(f.attributes, { CTVUK_KOD: 401, CTVUK_POPIS: labels[401] });
+    // Marked so: a town's passport over the DTM decides whether it stays a roadway (towns/overlay.js overDmvs).
+    else if (f.attributes.ODHAD && f.attributes.CTVUK_KOD === 701) f.attributes.ROAD_PARCEL = 1;
   }
   // Where the DTM has nothing around the cut (local streets of regions that map only the main roads),
   // RÚIAN alone is no profile: none of it, so the profile is the admitted estimate from OSM (srovnani-dmvs:

@@ -1,0 +1,20 @@
+{
+"1": {"v": "Y", "proc": "jen úzká cesta v zahradě; X přidává stání, krajnice a plochu do zahrady na straně A"},
+"2": {"v": "Y", "proc": "za chodníkem na B je staveniště/písek; X tam vymýšlí další vozovku se stáním"},
+"3": {"v": "X", "proc": "jedna úzká vozovka mezi zahradami; Y přidává 17 m vozovky se stáním do zahrady na A"},
+"4": {"v": "stejně", "proc": "rozdíly do 0,1 m"},
+"5": {"v": "stejně", "proc": "rozdíl 0,03 m v pruzích"},
+"6": {"v": "Y", "proc": "úzká cesta asi 2,7 m; X má 19 m pruh přes vjezd a dům"},
+"7": {"v": "stejně", "proc": "rozdíly do 0,05 m"},
+"8": {"v": "stejně", "proc": "liší se jen 0,3 m zeleně na konci B"},
+"9": {"v": "stejně", "proc": "vozovka 7,2 proti 7,0 m a 0,4 m zeleně, na ortofotu nerozlišitelné"},
+"10": {"v": "nejde", "proc": "les, vozovka pod korunami není vidět"},
+"11": {"v": "Y", "proc": "asfalt má kolem 6 m, Y 5,9 m, X jen 5 m"},
+"12": {"v": "stejně", "proc": "liší se 0,35 m zeleně u vozovky, na ortofotu nerozhodnutelné"},
+"13": {"v": "nejde", "proc": "okraj vozovky v A pod stínem stromů, rozdíl 0,6 m nejde určit"},
+"14": {"v": "Y", "proc": "úzká cesta v trávě; X má 23 m obslužné přes louku"},
+"15": {"v": "Y", "proc": "vozovka asi 6 m vedle předzahrádek; X posouvá široké pruhy se stáním přes vjezdy domů na A"},
+"16": {"v": "stejně", "proc": "rozdíly do 0,1 m"},
+"17": {"v": "nejde", "proc": "nezpevněná hliněná ulice bez okrajů, rozdíl 0,4 m nerozhodnutelný"},
+"18": {"v": "X", "proc": "za chodníkem na B je trávník a dům; Y tam přidává druhou vozovku se stáním"}
+}

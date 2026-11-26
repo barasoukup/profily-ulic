@@ -1,0 +1,13835 @@
+[
+ {
+  "id": "kurim-old-1",
+  "place": "kurim",
+  "highway": "primary",
+  "O": {
+   "name": null,
+   "lat": 49.305210031224895,
+   "lon": 16.55499119556454,
+   "bearing": -13.670783209585414,
+   "span": {
+    "left": 16.57,
+    "right": 12.98
+   },
+   "segments": [
+    [
+     "zelen",
+     4.55,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.6,
+     "pasport"
+    ],
+    [
+     "zelen",
+     4.25,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.93,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.93,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.93,
+     "osm"
+    ],
+    [
+     "delici",
+     2.1,
+     "dtm"
+    ],
+    [
+     "pruh",
+     1.7,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.75,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.8,
+     "pasport"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.305210031224895,
+   "lon": 16.55499119556454,
+   "bearing": -13.670783209585414,
+   "span": {
+    "left": 16.57,
+    "right": 12.98
+   },
+   "segments": [
+    [
+     "zelen",
+     4.55,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.6,
+     "pasport"
+    ],
+    [
+     "zelen",
+     4.25,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.93,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.93,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.93,
+     "osm"
+    ],
+    [
+     "delici",
+     2.1,
+     "dtm"
+    ],
+    [
+     "pruh",
+     1.7,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.75,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.8,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-2",
+  "place": "kurim",
+  "highway": "primary",
+  "O": {
+   "name": null,
+   "lat": 49.300389998220226,
+   "lon": 16.5568309895562,
+   "bearing": -14.551869691835098,
+   "span": {
+    "left": 6.17,
+    "right": 5.93
+   },
+   "segments": [
+    [
+     "krajnice",
+     2.05,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.05,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.300389998220226,
+   "lon": 16.5568309895562,
+   "bearing": -14.551869691835098,
+   "span": {
+    "left": 6.17,
+    "right": 5.93
+   },
+   "segments": [
+    [
+     "krajnice",
+     2.05,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.05,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-3",
+  "place": "kurim",
+  "highway": "primary",
+  "O": {
+   "name": null,
+   "lat": 49.293575936277016,
+   "lon": 16.55975396549293,
+   "bearing": -16.22269663047047,
+   "span": {
+    "left": 8.22,
+    "right": 13.08
+   },
+   "segments": [
+    [
+     "zelen",
+     2.35,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     1.97,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.97,
+     "odhad"
+    ],
+    [
+     "zelen",
+     6.5,
+     "dtm"
+    ],
+    [
+     "zelen",
+     0.5,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.293575936277016,
+   "lon": 16.55975396549293,
+   "bearing": -16.22269663047047,
+   "span": {
+    "left": 8.22,
+    "right": 13.08
+   },
+   "segments": [
+    [
+     "zelen",
+     2.35,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     1.97,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.97,
+     "odhad"
+    ],
+    [
+     "zelen",
+     6.5,
+     "dtm"
+    ],
+    [
+     "zelen",
+     0.5,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-4",
+  "place": "kurim",
+  "highway": "primary",
+  "O": {
+   "name": null,
+   "lat": 49.31183301407177,
+   "lon": 16.55253608770159,
+   "bearing": -13.737245079822937,
+   "span": {
+    "left": 9.94,
+    "right": 11.03
+   },
+   "segments": [
+    [
+     "stromorad",
+     3,
+     "dtm"
+    ],
+    [
+     "zelen",
+     0.66,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     2.35,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.35,
+     "odhad"
+    ],
+    [
+     "zelen",
+     4,
+     "dtm"
+    ],
+    [
+     "zelen",
+     0.6,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.31183301407177,
+   "lon": 16.55253608770159,
+   "bearing": -13.737245079822937,
+   "span": {
+    "left": 9.94,
+    "right": 11.03
+   },
+   "segments": [
+    [
+     "stromorad",
+     3,
+     "dtm"
+    ],
+    [
+     "zelen",
+     0.66,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     2.35,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.35,
+     "odhad"
+    ],
+    [
+     "zelen",
+     4,
+     "dtm"
+    ],
+    [
+     "zelen",
+     0.6,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-5",
+  "place": "kurim",
+  "highway": "primary",
+  "O": {
+   "name": null,
+   "lat": 49.31961094677643,
+   "lon": 16.552514255867113,
+   "bearing": 17.587470322223265,
+   "span": {
+    "left": 6.17,
+    "right": 6.13
+   },
+   "segments": [
+    [
+     "krajnice",
+     2.15,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.15,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.31961094677643,
+   "lon": 16.552514255867113,
+   "bearing": 17.587470322223265,
+   "span": {
+    "left": 6.17,
+    "right": 6.13
+   },
+   "segments": [
+    [
+     "krajnice",
+     2.15,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.15,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-6",
+  "place": "kurim",
+  "highway": "primary",
+  "O": {
+   "name": null,
+   "lat": 49.308010008883,
+   "lon": 16.553956055786575,
+   "bearing": -13.635791259378664,
+   "span": {
+    "left": 11.42,
+    "right": 12.53
+   },
+   "segments": [
+    [
+     "stromorad",
+     3,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.2,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     2.07,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.07,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.58,
+     "dtm"
+    ],
+    [
+     "stromorad",
+     3,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.02,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.308010008883,
+   "lon": 16.553956055786575,
+   "bearing": -13.635791259378664,
+   "span": {
+    "left": 11.42,
+    "right": 12.53
+   },
+   "segments": [
+    [
+     "stromorad",
+     3,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.2,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     2.07,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.07,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.58,
+     "dtm"
+    ],
+    [
+     "stromorad",
+     3,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.02,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-7",
+  "place": "kurim",
+  "highway": "primary",
+  "O": {
+   "name": null,
+   "lat": 49.31476201902119,
+   "lon": 16.551465149303592,
+   "bearing": -10.985476041395353,
+   "span": {
+    "left": 6.77,
+    "right": 14.43
+   },
+   "segments": [
+    [
+     "krajnice",
+     2.75,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.75,
+     "odhad"
+    ],
+    [
+     "zelen",
+     5.35,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.35,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.31476201902119,
+   "lon": 16.551465149303592,
+   "bearing": -10.985476041395353,
+   "span": {
+    "left": 6.77,
+    "right": 14.43
+   },
+   "segments": [
+    [
+     "krajnice",
+     2.75,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.75,
+     "odhad"
+    ],
+    [
+     "zelen",
+     5.35,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.35,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-8",
+  "place": "kurim",
+  "highway": "primary",
+  "O": {
+   "name": null,
+   "lat": 49.296499010464956,
+   "lon": 16.558456056018215,
+   "bearing": -15.883198195539652,
+   "span": {
+    "left": 6.17,
+    "right": 6.13
+   },
+   "segments": [
+    [
+     "krajnice",
+     2.15,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.15,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.296499010464956,
+   "lon": 16.558456056018215,
+   "bearing": -15.883198195539652,
+   "span": {
+    "left": 6.17,
+    "right": 6.13
+   },
+   "segments": [
+    [
+     "krajnice",
+     2.15,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.15,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-9",
+  "place": "kurim",
+  "highway": "primary",
+  "O": {
+   "name": null,
+   "lat": 49.324579017042836,
+   "lon": 16.553928388780854,
+   "bearing": -3.8220652525399155,
+   "span": {
+    "left": 14.12,
+    "right": 10.28
+   },
+   "segments": [
+    [
+     "zelen",
+     2.25,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.99,
+     "dtm"
+    ],
+    [
+     "stromorad",
+     3,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.06,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     2.15,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.15,
+     "odhad"
+    ],
+    [
+     "zelen",
+     3.8,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.324579017042836,
+   "lon": 16.553928388780854,
+   "bearing": -3.8220652525399155,
+   "span": {
+    "left": 14.12,
+    "right": 10.28
+   },
+   "segments": [
+    [
+     "zelen",
+     2.25,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.99,
+     "dtm"
+    ],
+    [
+     "stromorad",
+     3,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.06,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     2.15,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.15,
+     "odhad"
+    ],
+    [
+     "zelen",
+     3.8,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-10",
+  "place": "kurim",
+  "highway": "secondary",
+  "O": {
+   "name": "Blanenská",
+   "lat": 49.3157918759301,
+   "lon": 16.546285091296706,
+   "bearing": -115.77721861496072,
+   "span": {
+    "left": 7.62,
+    "right": 11.28
+   },
+   "segments": [
+    [
+     "zelen",
+     4.35,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.25,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.55,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.95,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.05,
+     "pasport"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Blanenská",
+   "lat": 49.3157918759301,
+   "lon": 16.546285091296706,
+   "bearing": -115.77721861496072,
+   "span": {
+    "left": 7.62,
+    "right": 11.28
+   },
+   "segments": [
+    [
+     "zelen",
+     4.35,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.25,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.55,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.95,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.05,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-11",
+  "place": "kurim",
+  "highway": "secondary",
+  "O": {
+   "name": "Blanenská",
+   "lat": 49.31215077035446,
+   "lon": 16.539179287714113,
+   "bearing": -129.43039988162167,
+   "span": {
+    "left": 9.92,
+    "right": 12.63
+   },
+   "segments": [
+    [
+     "zelen",
+     3.95,
+     "dtm"
+    ],
+    [
+     "zelen",
+     0.45,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.9,
+     "odhad"
+    ],
+    [
+     "zelen",
+     4.4,
+     "dtm"
+    ],
+    [
+     "stezka_sdilena",
+     3.85,
+     "pasport"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Blanenská",
+   "lat": 49.31215077035446,
+   "lon": 16.539179287714113,
+   "bearing": -129.43039988162167,
+   "span": {
+    "left": 9.92,
+    "right": 12.63
+   },
+   "segments": [
+    [
+     "zelen",
+     3.95,
+     "dtm"
+    ],
+    [
+     "zelen",
+     0.45,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.9,
+     "odhad"
+    ],
+    [
+     "zelen",
+     4.4,
+     "dtm"
+    ],
+    [
+     "stezka_sdilena",
+     3.85,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-12",
+  "place": "kurim",
+  "highway": "secondary",
+  "O": {
+   "name": "Tyršova",
+   "lat": 49.298059942236364,
+   "lon": 16.535438994728185,
+   "bearing": -86.57106089432207,
+   "span": {
+    "left": 8.47,
+    "right": 9.63
+   },
+   "segments": [
+    [
+     "chodnik",
+     5.3,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.45,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.45,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2.25,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.4,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.25,
+     "pasport"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Tyršova",
+   "lat": 49.298059942236364,
+   "lon": 16.535438994728185,
+   "bearing": -86.57106089432207,
+   "span": {
+    "left": 8.47,
+    "right": 9.63
+   },
+   "segments": [
+    [
+     "chodnik",
+     5.3,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.45,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.45,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2.25,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.4,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.25,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-13",
+  "place": "kurim",
+  "highway": "secondary",
+  "O": {
+   "name": "Legionářská",
+   "lat": 49.306575946319015,
+   "lon": 16.53110620627586,
+   "bearing": -158.3737758912725,
+   "span": {
+    "left": 23.63,
+    "right": 25.58
+   },
+   "segments": [
+    [
+     "chodnik",
+     3.5,
+     "pasport"
+    ],
+    [
+     "zelen",
+     7.35,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.4,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2.6,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.9,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.9,
+     "osm"
+    ],
+    [
+     "zelen",
+     4.45,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     21.1,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Legionářská",
+   "lat": 49.306575946319015,
+   "lon": 16.53110620627586,
+   "bearing": -158.3737758912725,
+   "span": {
+    "left": 23.63,
+    "right": 25.58
+   },
+   "segments": [
+    [
+     "chodnik",
+     3.5,
+     "pasport"
+    ],
+    [
+     "zelen",
+     7.35,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.4,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2.6,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.9,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.9,
+     "osm"
+    ],
+    [
+     "zelen",
+     4.45,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     21.1,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-14",
+  "place": "kurim",
+  "highway": "secondary",
+  "O": {
+   "name": "Legionářská",
+   "lat": 49.301751042252164,
+   "lon": 16.53110069792395,
+   "bearing": -167.97205975027475,
+   "span": {
+    "left": 11.27,
+    "right": 7.08
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.2,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.15,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.1,
+     "dtm"
+    ],
+    [
+     "plocha",
+     0.9,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.02,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.02,
+     "osm"
+    ],
+    [
+     "zed",
+     0.75,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.2,
+     "pasport"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Legionářská",
+   "lat": 49.301751042252164,
+   "lon": 16.53110069792395,
+   "bearing": -167.97205975027475,
+   "span": {
+    "left": 11.27,
+    "right": 7.08
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.2,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.15,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.1,
+     "dtm"
+    ],
+    [
+     "plocha",
+     0.9,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.02,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.02,
+     "osm"
+    ],
+    [
+     "zed",
+     0.75,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.2,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-15",
+  "place": "kurim",
+  "highway": "secondary",
+  "O": {
+   "name": null,
+   "lat": 49.2995668117376,
+   "lon": 16.51931780271746,
+   "bearing": -55.4736462070211,
+   "span": {
+    "left": 8.47,
+    "right": 14.13
+   },
+   "segments": [
+    [
+     "zelen",
+     4.8,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.95,
+     "osm"
+    ],
+    [
+     "zelen",
+     1,
+     "dtm"
+    ],
+    [
+     "zelen",
+     3.4,
+     "dtm"
+    ],
+    [
+     "stromorad",
+     1.5,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     4,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.2995668117376,
+   "lon": 16.51931780271746,
+   "bearing": -55.4736462070211,
+   "span": {
+    "left": 8.47,
+    "right": 14.13
+   },
+   "segments": [
+    [
+     "zelen",
+     4.8,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.95,
+     "osm"
+    ],
+    [
+     "zelen",
+     1,
+     "dtm"
+    ],
+    [
+     "zelen",
+     3.4,
+     "dtm"
+    ],
+    [
+     "stromorad",
+     1.5,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     4,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-16",
+  "place": "kurim",
+  "highway": "secondary",
+  "O": {
+   "name": null,
+   "lat": 49.29564868374995,
+   "lon": 16.551787687204662,
+   "bearing": -57.00096642425299,
+   "span": {
+    "left": 8.52,
+    "right": 15.13
+   },
+   "segments": [
+    [
+     "zelen",
+     3.85,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     6.75,
+     "dtm"
+    ],
+    [
+     "plocha",
+     3.05,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.29564868374995,
+   "lon": 16.551787687204662,
+   "bearing": -57.00096642425299,
+   "span": {
+    "left": 8.52,
+    "right": 15.13
+   },
+   "segments": [
+    [
+     "zelen",
+     3.85,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     6.75,
+     "dtm"
+    ],
+    [
+     "plocha",
+     3.05,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-17",
+  "place": "kurim",
+  "highway": "secondary",
+  "O": {
+   "name": "Zámecká",
+   "lat": 49.29528266412469,
+   "lon": 16.523024862435058,
+   "bearing": 161.121438700228,
+   "span": {
+    "left": 12.92,
+    "right": 8.03
+   },
+   "segments": [
+    [
+     "zelen",
+     7.85,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.05,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.2,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.2,
+     "osm"
+    ],
+    [
+     "zelen",
+     4.65,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Zámecká",
+   "lat": 49.29528266412469,
+   "lon": 16.523024862435058,
+   "bearing": 161.121438700228,
+   "span": {
+    "left": 12.92,
+    "right": 8.03
+   },
+   "segments": [
+    [
+     "zelen",
+     7.85,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.05,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.2,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.2,
+     "osm"
+    ],
+    [
+     "zelen",
+     4.65,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-18",
+  "place": "kurim",
+  "highway": "secondary",
+  "O": {
+   "name": "Tišnovská",
+   "lat": 49.297196156189514,
+   "lon": 16.527291814445558,
+   "bearing": -127.95313644766821,
+   "span": {
+    "left": 6.17,
+    "right": 9.03
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.95,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.65,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.65,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2.75,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.2,
+     "pasport"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Tišnovská",
+   "lat": 49.297196156189514,
+   "lon": 16.527291814445558,
+   "bearing": -127.95313644766821,
+   "span": {
+    "left": 6.17,
+    "right": 9.03
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.95,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.65,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.65,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2.75,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.2,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-19",
+  "place": "kurim",
+  "highway": "secondary",
+  "O": {
+   "name": "Knínická",
+   "lat": 49.294142150181465,
+   "lon": 16.517124035730724,
+   "bearing": -81.12154548833338,
+   "span": {
+    "left": 9.42,
+    "right": 14.63
+   },
+   "segments": [
+    [
+     "zelen",
+     3.02,
+     "dtm"
+    ],
+    [
+     "stromorad",
+     3.18,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.12,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.12,
+     "osm"
+    ],
+    [
+     "zelen",
+     7.25,
+     "dtm"
+    ],
+    [
+     "cyklostezka",
+     2.18,
+     "dtm"
+    ],
+    [
+     "cyklostezka",
+     2.18,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Knínická",
+   "lat": 49.294142150181465,
+   "lon": 16.517124035730724,
+   "bearing": -81.12154548833338,
+   "span": {
+    "left": 9.42,
+    "right": 14.63
+   },
+   "segments": [
+    [
+     "zelen",
+     3.02,
+     "dtm"
+    ],
+    [
+     "stromorad",
+     3.18,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.12,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.12,
+     "osm"
+    ],
+    [
+     "zelen",
+     7.25,
+     "dtm"
+    ],
+    [
+     "cyklostezka",
+     2.18,
+     "dtm"
+    ],
+    [
+     "cyklostezka",
+     2.18,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-20",
+  "place": "kurim",
+  "highway": "secondary",
+  "O": {
+   "name": "Blanenská",
+   "lat": 49.31412830691949,
+   "lon": 16.542900623285227,
+   "bearing": -128.8534684507234,
+   "span": {
+    "left": 3.02,
+    "right": 22
+   },
+   "segments": [
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ],
+    [
+     "zelen",
+     5.1,
+     "dtm"
+    ],
+    [
+     "stezka_sdilena",
+     2.75,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.3,
+     "odhad"
+    ],
+    [
+     "plocha",
+     10.12,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Blanenská",
+   "lat": 49.31412830691949,
+   "lon": 16.542900623285227,
+   "bearing": -128.8534684507234,
+   "span": {
+    "left": 3.02,
+    "right": 22
+   },
+   "segments": [
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ],
+    [
+     "zelen",
+     5.1,
+     "dtm"
+    ],
+    [
+     "stezka_sdilena",
+     2.75,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.3,
+     "odhad"
+    ],
+    [
+     "plocha",
+     10.12,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-21",
+  "place": "kurim",
+  "highway": "secondary",
+  "O": {
+   "name": null,
+   "lat": 49.30119376965935,
+   "lon": 16.515753723125943,
+   "bearing": -51.72287421921849,
+   "span": {
+    "left": 9.42,
+    "right": 7.43
+   },
+   "segments": [
+    [
+     "zelen",
+     5.25,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.85,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.85,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.9,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.30119376965935,
+   "lon": 16.515753723125943,
+   "bearing": -51.72287421921849,
+   "span": {
+    "left": 9.42,
+    "right": 7.43
+   },
+   "segments": [
+    [
+     "zelen",
+     5.25,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.85,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.85,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.9,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-22",
+  "place": "kurim",
+  "highway": "secondary",
+  "O": {
+   "name": null,
+   "lat": 49.296834888875324,
+   "lon": 16.54793792815324,
+   "bearing": -66.99971751183583,
+   "span": {
+    "left": 9.97,
+    "right": 15.23
+   },
+   "segments": [
+    [
+     "zelen",
+     5.05,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     1.05,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.05,
+     "odhad"
+    ],
+    [
+     "delici",
+     0.7,
+     "dtm"
+    ],
+    [
+     "pruh",
+     0.8,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.6,
+     "dtm"
+    ],
+    [
+     "plocha",
+     0.6,
+     "dtm"
+    ],
+    [
+     "zelen",
+     5.35,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.296834888875324,
+   "lon": 16.54793792815324,
+   "bearing": -66.99971751183583,
+   "span": {
+    "left": 9.97,
+    "right": 15.23
+   },
+   "segments": [
+    [
+     "zelen",
+     5.05,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     1.05,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.05,
+     "odhad"
+    ],
+    [
+     "delici",
+     0.7,
+     "dtm"
+    ],
+    [
+     "pruh",
+     0.8,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.6,
+     "dtm"
+    ],
+    [
+     "plocha",
+     0.6,
+     "dtm"
+    ],
+    [
+     "zelen",
+     5.35,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-23",
+  "place": "kurim",
+  "highway": "secondary",
+  "O": {
+   "name": "Blanenská",
+   "lat": 49.309438853194244,
+   "lon": 16.533999188344847,
+   "bearing": -130.10054302894207,
+   "span": {
+    "left": 4.67,
+    "right": 22.98
+   },
+   "segments": [
+    [
+     "pruh",
+     3.75,
+     "osm"
+    ],
+    [
+     "delici",
+     1.85,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.3,
+     "osm"
+    ],
+    [
+     "plocha",
+     3.05,
+     "dtm"
+    ],
+    [
+     "stezka_sdilena",
+     4.6,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.05,
+     "dtm"
+    ],
+    [
+     "zed",
+     0.55,
+     "dtm"
+    ],
+    [
+     "zelen",
+     6,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.5,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Blanenská",
+   "lat": 49.309438853194244,
+   "lon": 16.533999188344847,
+   "bearing": -130.10054302894207,
+   "span": {
+    "left": 4.67,
+    "right": 22.98
+   },
+   "segments": [
+    [
+     "pruh",
+     3.75,
+     "osm"
+    ],
+    [
+     "delici",
+     1.85,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.3,
+     "osm"
+    ],
+    [
+     "plocha",
+     3.05,
+     "dtm"
+    ],
+    [
+     "stezka_sdilena",
+     4.6,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.05,
+     "dtm"
+    ],
+    [
+     "zed",
+     0.55,
+     "dtm"
+    ],
+    [
+     "zelen",
+     6,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.5,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-24",
+  "place": "kurim",
+  "highway": "tertiary",
+  "O": {
+   "name": null,
+   "lat": 49.28053698954306,
+   "lon": 16.525882839205494,
+   "bearing": -5.655071325947988,
+   "span": {
+    "left": 10.57,
+    "right": 3.73
+   },
+   "segments": [
+    [
+     "zelen",
+     7.6,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.28053698954306,
+   "lon": 16.525882839205494,
+   "bearing": -5.655071325947988,
+   "span": {
+    "left": 10.57,
+    "right": 3.73
+   },
+   "segments": [
+    [
+     "zelen",
+     7.6,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-25",
+  "place": "kurim",
+  "highway": "tertiary",
+  "O": {
+   "name": null,
+   "lat": 49.28780999940996,
+   "lon": 16.522197995268687,
+   "bearing": -10.753346145323293,
+   "span": {
+    "left": 10.12,
+    "right": 7.98
+   },
+   "segments": [
+    [
+     "zelen",
+     7,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.27,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.27,
+     "osm"
+    ],
+    [
+     "zelen",
+     4.55,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.28780999940996,
+   "lon": 16.522197995268687,
+   "bearing": -10.753346145323293,
+   "span": {
+    "left": 10.12,
+    "right": 7.98
+   },
+   "segments": [
+    [
+     "zelen",
+     7,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.27,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.27,
+     "osm"
+    ],
+    [
+     "zelen",
+     4.55,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-26",
+  "place": "kurim",
+  "highway": "tertiary",
+  "O": {
+   "name": null,
+   "lat": 49.285213011434905,
+   "lon": 16.52372005436611,
+   "bearing": -17.759645147165397,
+   "span": {
+    "left": 7.17,
+    "right": 3.93
+   },
+   "segments": [
+    [
+     "zelen",
+     5.2,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.285213011434905,
+   "lon": 16.52372005436611,
+   "bearing": -17.759645147165397,
+   "span": {
+    "left": 7.17,
+    "right": 3.93
+   },
+   "segments": [
+    [
+     "zelen",
+     5.2,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-27",
+  "place": "kurim",
+  "highway": "tertiary",
+  "O": {
+   "name": null,
+   "lat": 49.29108683298652,
+   "lon": 16.523879490059507,
+   "bearing": 27.430579843070245,
+   "span": {
+    "left": 6.47,
+    "right": 17.43
+   },
+   "segments": [
+    [
+     "zelen",
+     4.7,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     2.13,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.13,
+     "odhad"
+    ],
+    [
+     "zelen",
+     6.95,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.29108683298652,
+   "lon": 16.523879490059507,
+   "bearing": 27.430579843070245,
+   "span": {
+    "left": 6.47,
+    "right": 17.43
+   },
+   "segments": [
+    [
+     "zelen",
+     4.7,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     2.13,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.13,
+     "odhad"
+    ],
+    [
+     "zelen",
+     6.95,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-28",
+  "place": "kurim",
+  "highway": "residential",
+  "O": {
+   "name": "Na Samotě",
+   "lat": 49.31165702621052,
+   "lon": 16.529347942429204,
+   "bearing": 34.747266726182254,
+   "span": {
+    "left": 2.42,
+    "right": 22
+   },
+   "segments": [
+    [
+     "pruh",
+     4.05,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.45,
+     "odhad"
+    ],
+    [
+     "plocha",
+     19.92,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Na Samotě",
+   "lat": 49.31165702621052,
+   "lon": 16.529347942429204,
+   "bearing": 34.747266726182254,
+   "span": {
+    "left": 2.42,
+    "right": 22
+   },
+   "segments": [
+    [
+     "pruh",
+     4.05,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.45,
+     "odhad"
+    ],
+    [
+     "plocha",
+     19.92,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-29",
+  "place": "kurim",
+  "highway": "residential",
+  "O": {
+   "name": "Pod vinohrady",
+   "lat": 49.300433036479724,
+   "lon": 16.542013029662943,
+   "bearing": 118.09404346007366,
+   "span": {
+    "left": 2.57,
+    "right": 4.7
+   },
+   "segments": [
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "plocha",
+     1.27,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Pod vinohrady",
+   "lat": 49.300433036479724,
+   "lon": 16.542013029662943,
+   "bearing": 118.09404346007366,
+   "span": {
+    "left": 2.57,
+    "right": 4.7
+   },
+   "segments": [
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "plocha",
+     1.27,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-30",
+  "place": "kurim",
+  "highway": "residential",
+  "O": {
+   "name": "Dušínova",
+   "lat": 49.29558853026328,
+   "lon": 16.543216184363718,
+   "bearing": -77.1412048539285,
+   "span": {
+    "left": 9.82,
+    "right": 15.23
+   },
+   "segments": [
+    [
+     "plocha",
+     5,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.3,
+     "pasport"
+    ],
+    [
+     "pruh",
+     2.67,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.67,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.3,
+     "pasport"
+    ],
+    [
+     "zelen",
+     1,
+     "odhad"
+    ],
+    [
+     "plocha",
+     10.1,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Dušínova",
+   "lat": 49.29558853026328,
+   "lon": 16.543216184363718,
+   "bearing": -77.1412048539285,
+   "span": {
+    "left": 9.82,
+    "right": 15.23
+   },
+   "segments": [
+    [
+     "plocha",
+     5,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.3,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.35,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.5,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.3,
+     "pasport"
+    ],
+    [
+     "zelen",
+     1,
+     "odhad"
+    ],
+    [
+     "plocha",
+     10.1,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-31",
+  "place": "kurim",
+  "highway": "residential",
+  "O": {
+   "name": "Školní",
+   "lat": 49.3041571738594,
+   "lon": 16.52866994842941,
+   "bearing": 78.98149343548044,
+   "span": {
+    "left": 4.82,
+    "right": 9.48
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.3,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.5,
+     "osm"
+    ],
+    [
+     "zelen",
+     6,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Školní",
+   "lat": 49.3041571738594,
+   "lon": 16.52866994842941,
+   "bearing": 78.98149343548044,
+   "span": {
+    "left": 4.82,
+    "right": 9.48
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.3,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.5,
+     "osm"
+    ],
+    [
+     "zelen",
+     6,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-32",
+  "place": "kurim",
+  "highway": "residential",
+  "O": {
+   "name": "Husova",
+   "lat": 49.300103138259466,
+   "lon": 16.527438253847922,
+   "bearing": 140.31959566122518,
+   "span": {
+    "left": 3.82,
+    "right": 2.08
+   },
+   "segments": [
+    [
+     "nezname",
+     0.85,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.52,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.52,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Husova",
+   "lat": 49.300103138259466,
+   "lon": 16.527438253847922,
+   "bearing": 140.31959566122518,
+   "span": {
+    "left": 3.82,
+    "right": 2.08
+   },
+   "segments": [
+    [
+     "nezname",
+     0.85,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.52,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.52,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-33",
+  "place": "kurim",
+  "highway": "residential",
+  "O": {
+   "name": "Pazourková",
+   "lat": 49.30679617118073,
+   "lon": 16.54580816862095,
+   "bearing": 122.88637053680647,
+   "segments": [
+    [
+     "pruh",
+     3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Pazourková",
+   "lat": 49.30679617118073,
+   "lon": 16.54580816862095,
+   "bearing": 122.88637053680647,
+   "segments": [
+    [
+     "pruh",
+     3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-34",
+  "place": "kurim",
+  "highway": "residential",
+  "O": {
+   "name": "Komenského",
+   "lat": 49.30381298238094,
+   "lon": 16.53396811894345,
+   "bearing": -167.28397318854778,
+   "span": {
+    "left": 22,
+    "right": 4.23
+   },
+   "segments": [
+    [
+     "plocha",
+     16.37,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.15,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.5,
+     "pasport"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Komenského",
+   "lat": 49.30381298238094,
+   "lon": 16.53396811894345,
+   "bearing": -167.28397318854778,
+   "span": {
+    "left": 22,
+    "right": 4.23
+   },
+   "segments": [
+    [
+     "plocha",
+     16.37,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.15,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.5,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-35",
+  "place": "kurim",
+  "highway": "residential",
+  "O": {
+   "name": "Kpt. Jaroše",
+   "lat": 49.305948925938125,
+   "lon": 16.560075984433237,
+   "bearing": -82.14449905244275,
+   "span": {
+    "left": 7.52,
+    "right": 5.88
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.75,
+     "pasport"
+    ],
+    [
+     "zelen",
+     2.8,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.4,
+     "osm"
+    ],
+    [
+     "nezname",
+     1.7,
+     "odhad"
+    ],
+    [
+     "plocha",
+     2.75,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Kpt. Jaroše",
+   "lat": 49.305948925938125,
+   "lon": 16.560075984433237,
+   "bearing": -82.14449905244275,
+   "span": {
+    "left": 7.52,
+    "right": 5.88
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.75,
+     "pasport"
+    ],
+    [
+     "zelen",
+     3.15,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "nezname",
+     1.75,
+     "odhad"
+    ],
+    [
+     "plocha",
+     2.75,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-36",
+  "place": "kurim",
+  "highway": "residential",
+  "O": {
+   "name": "Na Samotě",
+   "lat": 49.314205000902916,
+   "lon": 16.53131902238737,
+   "bearing": -3.516524847988393,
+   "span": {
+    "left": 2.07,
+    "right": 7.58
+   },
+   "segments": [
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.8,
+     "odhad"
+    ],
+    [
+     "plocha",
+     3.85,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Na Samotě",
+   "lat": 49.314205000902916,
+   "lon": 16.53131902238737,
+   "bearing": -3.516524847988393,
+   "span": {
+    "left": 2.07,
+    "right": 7.58
+   },
+   "segments": [
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.8,
+     "odhad"
+    ],
+    [
+     "plocha",
+     3.85,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-37",
+  "place": "kurim",
+  "highway": "residential",
+  "O": {
+   "name": "Pod vinohrady",
+   "lat": 49.30131163388964,
+   "lon": 16.537990898988106,
+   "bearing": 100.26648547130839,
+   "span": {
+    "left": 2.72,
+    "right": 20.54
+   },
+   "segments": [
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.6,
+     "odhad"
+    ],
+    [
+     "plocha",
+     15.66,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Pod vinohrady",
+   "lat": 49.30131163388964,
+   "lon": 16.537990898988106,
+   "bearing": 100.26648547130839,
+   "span": {
+    "left": 2.72,
+    "right": 20.54
+   },
+   "segments": [
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.6,
+     "odhad"
+    ],
+    [
+     "plocha",
+     15.66,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-38",
+  "place": "kurim",
+  "highway": "residential",
+  "O": {
+   "name": "Hybešova",
+   "lat": 49.299719810574416,
+   "lon": 16.546081275933865,
+   "bearing": 46.27913883213536,
+   "span": {
+    "left": 22,
+    "right": 4.53
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     2.54,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.54,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     0.6,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.65,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Hybešova",
+   "lat": 49.299719810574416,
+   "lon": 16.546081275933865,
+   "bearing": 46.27913883213536,
+   "span": {
+    "left": 9.37,
+    "right": 4.53
+   },
+   "segments": [
+    [
+     "zelen",
+     5.45,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     0.6,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.12,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.12,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.6,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-39",
+  "place": "kurim",
+  "highway": "residential",
+  "O": {
+   "name": "Na Samotě",
+   "lat": 49.316395947969866,
+   "lon": 16.53503106389774,
+   "bearing": 51.13219628573103,
+   "span": {
+    "left": 5.87,
+    "right": 22
+   },
+   "segments": [
+    [
+     "nezname",
+     4,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.75,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "plocha",
+     18.13,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Na Samotě",
+   "lat": 49.316395947969866,
+   "lon": 16.53503106389774,
+   "bearing": 51.13219628573103,
+   "span": {
+    "left": 5.87,
+    "right": 22
+   },
+   "segments": [
+    [
+     "nezname",
+     4,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.75,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "plocha",
+     18.13,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-40",
+  "place": "kurim",
+  "highway": "residential",
+  "O": {
+   "name": "Jelínkových",
+   "lat": 49.302864040752695,
+   "lon": 16.524892208397933,
+   "bearing": -16.588229952078727,
+   "span": {
+    "left": 22,
+    "right": 3.53
+   },
+   "segments": [
+    [
+     "plocha",
+     18.32,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.6,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.6,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Jelínkových",
+   "lat": 49.302864040752695,
+   "lon": 16.524892208397933,
+   "bearing": -16.588229952078727,
+   "span": {
+    "left": 22,
+    "right": 3.53
+   },
+   "segments": [
+    [
+     "plocha",
+     18.12,
+     "dtm"
+    ],
+    [
+     "zelen",
+     0.4,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.5,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-41",
+  "place": "kurim",
+  "highway": "residential",
+  "O": {
+   "name": "Záhoří",
+   "lat": 49.30894569598565,
+   "lon": 16.53844601534007,
+   "bearing": 88.10306864927168,
+   "span": {
+    "left": 8.62,
+    "right": 3.33
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.97,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.97,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Záhoří",
+   "lat": 49.30894569598565,
+   "lon": 16.53844601534007,
+   "bearing": 88.10306864927168,
+   "span": {
+    "left": 8.62,
+    "right": 3.33
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.97,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.97,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-42",
+  "place": "kurim",
+  "highway": "residential",
+  "O": {
+   "name": "Na vyhlídce",
+   "lat": 49.30348893109392,
+   "lon": 16.540495251162277,
+   "bearing": 22.68137287989311,
+   "span": {
+    "left": 12.67,
+    "right": 6.03
+   },
+   "segments": [
+    [
+     "plocha",
+     7.6,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.45,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.6,
+     "osm"
+    ],
+    [
+     "zelen",
+     5.05,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Na vyhlídce",
+   "lat": 49.30348893109392,
+   "lon": 16.540495251162277,
+   "bearing": 22.68137287989311,
+   "span": {
+    "left": 12.67,
+    "right": 6.03
+   },
+   "segments": [
+    [
+     "plocha",
+     7.6,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.05,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "zelen",
+     5.05,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-43",
+  "place": "kurim",
+  "highway": "residential",
+  "O": {
+   "name": "U Vlečky",
+   "lat": 49.30797290066993,
+   "lon": 16.527522388045078,
+   "bearing": -158.69551645002832,
+   "span": {
+    "left": 2.47,
+    "right": 7.03
+   },
+   "segments": [
+    [
+     "pruh",
+     2.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.5,
+     "osm"
+    ],
+    [
+     "chodnik",
+     3.15,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.35,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "U Vlečky",
+   "lat": 49.30797290066993,
+   "lon": 16.527522388045078,
+   "bearing": -158.69551645002832,
+   "span": {
+    "left": 2.47,
+    "right": 7.03
+   },
+   "segments": [
+    [
+     "pruh",
+     2.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.5,
+     "osm"
+    ],
+    [
+     "chodnik",
+     3.15,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.35,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-44",
+  "place": "kurim",
+  "highway": "residential",
+  "O": {
+   "name": "Brněnská",
+   "lat": 49.29696241661478,
+   "lon": 16.53928284520448,
+   "bearing": 76.29098386443931,
+   "span": {
+    "left": 4.62,
+    "right": 10.93
+   },
+   "segments": [
+    [
+     "zelen",
+     0.4,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.9,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.45,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.7,
+     "odhad"
+    ],
+    [
+     "plocha",
+     5.1,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Brněnská",
+   "lat": 49.29696241661478,
+   "lon": 16.53928284520448,
+   "bearing": 76.29098386443931,
+   "span": {
+    "left": 4.62,
+    "right": 10.93
+   },
+   "segments": [
+    [
+     "zelen",
+     0.4,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.9,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.45,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.7,
+     "odhad"
+    ],
+    [
+     "plocha",
+     5.1,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-45",
+  "place": "kurim",
+  "highway": "residential",
+  "O": {
+   "name": "Dušínova",
+   "lat": 49.294012773801974,
+   "lon": 16.547857748801796,
+   "bearing": 126.09746641049674,
+   "span": {
+    "left": 22.03,
+    "right": 9.18
+   },
+   "segments": [
+    [
+     "plocha",
+     17.85,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.45,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.8,
+     "odhad"
+    ],
+    [
+     "plocha",
+     4.9,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Dušínova",
+   "lat": 49.294012773801974,
+   "lon": 16.547857748801796,
+   "bearing": 126.09746641049674,
+   "span": {
+    "left": 22.03,
+    "right": 9.18
+   },
+   "segments": [
+    [
+     "plocha",
+     17.85,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.45,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.8,
+     "odhad"
+    ],
+    [
+     "plocha",
+     4.9,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-46",
+  "place": "kurim",
+  "highway": "living_street",
+  "O": {
+   "name": "Řásnovka",
+   "lat": 49.29185932712693,
+   "lon": 16.54318466553545,
+   "bearing": 56.12518231182621,
+   "segments": [
+    [
+     "pruh",
+     3,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Řásnovka",
+   "lat": 49.29185932712693,
+   "lon": 16.54318466553545,
+   "bearing": 56.12518231182621,
+   "segments": [
+    [
+     "pruh",
+     3,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-47",
+  "place": "kurim",
+  "highway": "living_street",
+  "O": {
+   "name": "Podhoří",
+   "lat": 49.29706604259175,
+   "lon": 16.531472040618137,
+   "bearing": -57.9487274197279,
+   "span": {
+    "left": 4.57,
+    "right": 2.68
+   },
+   "segments": [
+    [
+     "plocha",
+     2.35,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.2,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.7,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Podhoří",
+   "lat": 49.29706604259175,
+   "lon": 16.531472040618137,
+   "bearing": -57.9487274197279,
+   "span": {
+    "left": 4.57,
+    "right": 2.68
+   },
+   "segments": [
+    [
+     "plocha",
+     2.35,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.2,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.7,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "kurim-old-48",
+  "place": "kurim",
+  "highway": "service",
+  "O": {
+   "name": "Na Golfu",
+   "lat": 49.27755711829954,
+   "lon": 16.52892998260457,
+   "bearing": 84.48353487907018,
+   "segments": [
+    [
+     "pruh",
+     3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Na Golfu",
+   "lat": 49.27755711829954,
+   "lon": 16.52892998260457,
+   "bearing": 84.48353487907018,
+   "segments": [
+    [
+     "pruh",
+     3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-1",
+  "place": "trebic",
+  "highway": "primary",
+  "O": {
+   "name": null,
+   "lat": 49.21535799435845,
+   "lon": 15.93835299923974,
+   "bearing": 95.06443701077991,
+   "span": {
+    "left": 7.62,
+    "right": 22
+   },
+   "segments": [
+    [
+     "zelen",
+     4.4,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.57,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.57,
+     "osm"
+    ],
+    [
+     "zelen",
+     4.65,
+     "dtm"
+    ],
+    [
+     "zelen",
+     6.65,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.95,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.82,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.21535799435845,
+   "lon": 15.93835299923974,
+   "bearing": 95.06443701077991,
+   "span": {
+    "left": 7.62,
+    "right": 22
+   },
+   "segments": [
+    [
+     "zelen",
+     4.4,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.57,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.57,
+     "osm"
+    ],
+    [
+     "zelen",
+     4.65,
+     "dtm"
+    ],
+    [
+     "zelen",
+     6.65,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.95,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.82,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-2",
+  "place": "trebic",
+  "highway": "primary",
+  "O": {
+   "name": null,
+   "lat": 49.2153158482304,
+   "lon": 15.915152973004925,
+   "bearing": 96.67162692267395,
+   "span": {
+    "left": 7.27,
+    "right": 4.28
+   },
+   "segments": [
+    [
+     "zelen",
+     3.15,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.2,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.2,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.2153158482304,
+   "lon": 15.915152973004925,
+   "bearing": 96.67162692267395,
+   "span": {
+    "left": 7.27,
+    "right": 4.28
+   },
+   "segments": [
+    [
+     "zelen",
+     3.15,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.2,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.2,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-3",
+  "place": "trebic",
+  "highway": "primary",
+  "O": {
+   "name": null,
+   "lat": 49.21185673087168,
+   "lon": 15.837205740821714,
+   "bearing": -57.6516185388647,
+   "span": {
+    "left": 6.67,
+    "right": 4.58
+   },
+   "segments": [
+    [
+     "zelen",
+     0.35,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.3,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.3,
+     "osm"
+    ],
+    [
+     "zelen",
+     2,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.21185673087168,
+   "lon": 15.837205740821714,
+   "bearing": -57.6516185388647,
+   "span": {
+    "left": 6.67,
+    "right": 4.58
+   },
+   "segments": [
+    [
+     "zelen",
+     0.35,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.3,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.3,
+     "osm"
+    ],
+    [
+     "zelen",
+     2,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-4",
+  "place": "trebic",
+  "highway": "primary",
+  "O": {
+   "name": "Pražská",
+   "lat": 49.21112053722144,
+   "lon": 15.864739483767996,
+   "bearing": -124.5089251293404,
+   "span": {
+    "left": 8.62,
+    "right": 10.98
+   },
+   "segments": [
+    [
+     "chodnik",
+     4.3,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.25,
+     "odhad"
+    ],
+    [
+     "zelen",
+     3.1,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.95,
+     "pasport"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Pražská",
+   "lat": 49.21112053722144,
+   "lon": 15.864739483767996,
+   "bearing": -124.5089251293404,
+   "span": {
+    "left": 8.62,
+    "right": 10.98
+   },
+   "segments": [
+    [
+     "chodnik",
+     4.3,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.25,
+     "odhad"
+    ],
+    [
+     "zelen",
+     3.1,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.95,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-5",
+  "place": "trebic",
+  "highway": "primary",
+  "O": {
+   "name": "Komenského nám.",
+   "lat": 49.21434954253865,
+   "lon": 15.878670945910828,
+   "bearing": 94.4462360720338,
+   "span": {
+    "left": 22.23,
+    "right": 19.53
+   },
+   "segments": [
+    [
+     "chodnik",
+     4,
+     "pasport"
+    ],
+    [
+     "zed",
+     0.6,
+     "dtm"
+    ],
+    [
+     "zelen",
+     7.9,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     3.05,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.25,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.25,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.25,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.25,
+     "osm"
+    ],
+    [
+     "chodnik",
+     3.05,
+     "pasport"
+    ],
+    [
+     "zelen",
+     4.2,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.05,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     3.15,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.3,
+     "odhad"
+    ],
+    [
+     "nezname",
+     0.45,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Komenského nám.",
+   "lat": 49.21434954253865,
+   "lon": 15.878670945910828,
+   "bearing": 94.4462360720338,
+   "span": {
+    "left": 22.23,
+    "right": 19.53
+   },
+   "segments": [
+    [
+     "chodnik",
+     4,
+     "pasport"
+    ],
+    [
+     "zed",
+     0.6,
+     "dtm"
+    ],
+    [
+     "zelen",
+     7.9,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     3.05,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.25,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.25,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.25,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.25,
+     "osm"
+    ],
+    [
+     "chodnik",
+     3.05,
+     "pasport"
+    ],
+    [
+     "zelen",
+     4.2,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.05,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     3.15,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.3,
+     "odhad"
+    ],
+    [
+     "nezname",
+     0.45,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-6",
+  "place": "trebic",
+  "highway": "primary",
+  "O": {
+   "name": null,
+   "lat": 49.208911588159225,
+   "lon": 15.849060061958827,
+   "bearing": -95.65092869045596,
+   "span": {
+    "left": 5.17,
+    "right": 7.93
+   },
+   "segments": [
+    [
+     "zelen",
+     0.45,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.6,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.3,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.208911588159225,
+   "lon": 15.849060061958827,
+   "bearing": -95.65092869045596,
+   "span": {
+    "left": 5.17,
+    "right": 7.93
+   },
+   "segments": [
+    [
+     "zelen",
+     0.45,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.6,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.3,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-7",
+  "place": "trebic",
+  "highway": "primary",
+  "O": {
+   "name": "Sportovní",
+   "lat": 49.213179801582186,
+   "lon": 15.898426177289986,
+   "bearing": 59.56041077269495,
+   "span": {
+    "left": 7.97,
+    "right": 21.18
+   },
+   "segments": [
+    [
+     "stezka_sdilena",
+     2.5,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4.28,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.28,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.28,
+     "osm"
+    ],
+    [
+     "zelen",
+     7.15,
+     "dtm"
+    ],
+    [
+     "zelen",
+     3.1,
+     "dtm"
+    ],
+    [
+     "zelen",
+     3.55,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Sportovní",
+   "lat": 49.213179801582186,
+   "lon": 15.898426177289986,
+   "bearing": 59.56041077269495,
+   "span": {
+    "left": 7.97,
+    "right": 21.18
+   },
+   "segments": [
+    [
+     "stezka_sdilena",
+     2.5,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4.28,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.28,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.28,
+     "osm"
+    ],
+    [
+     "zelen",
+     7.15,
+     "dtm"
+    ],
+    [
+     "zelen",
+     3.1,
+     "dtm"
+    ],
+    [
+     "zelen",
+     3.55,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-8",
+  "place": "trebic",
+  "highway": "primary",
+  "O": {
+   "name": "Sucheniova",
+   "lat": 49.21328460035323,
+   "lon": 15.869663357792954,
+   "bearing": -120.48865282908339,
+   "span": {
+    "left": 10.47,
+    "right": 22
+   },
+   "segments": [
+    [
+     "plocha",
+     0.9,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     3,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4.23,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.23,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.23,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.3,
+     "pasport"
+    ],
+    [
+     "plocha",
+     14.57,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Sucheniova",
+   "lat": 49.21328460035323,
+   "lon": 15.869663357792954,
+   "bearing": -120.48865282908339,
+   "span": {
+    "left": 10.47,
+    "right": 22
+   },
+   "segments": [
+    [
+     "plocha",
+     0.9,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     3,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4.23,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.23,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.23,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.3,
+     "pasport"
+    ],
+    [
+     "plocha",
+     14.57,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-9",
+  "place": "trebic",
+  "highway": "primary",
+  "O": {
+   "name": null,
+   "lat": 49.21497149798146,
+   "lon": 15.943520892676249,
+   "bearing": 98.00281965145554,
+   "span": {
+    "left": 6.67,
+    "right": 21.68
+   },
+   "segments": [
+    [
+     "zelen",
+     3.4,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "zelen",
+     5.8,
+     "dtm"
+    ],
+    [
+     "plocha",
+     4.65,
+     "dtm"
+    ],
+    [
+     "zelen",
+     4.1,
+     "dtm"
+    ],
+    [
+     "zelen",
+     3.7,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.21497149798146,
+   "lon": 15.943520892676249,
+   "bearing": 98.00281965145554,
+   "span": {
+    "left": 6.67,
+    "right": 21.68
+   },
+   "segments": [
+    [
+     "zelen",
+     3.4,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "zelen",
+     5.8,
+     "dtm"
+    ],
+    [
+     "plocha",
+     4.65,
+     "dtm"
+    ],
+    [
+     "zelen",
+     4.1,
+     "dtm"
+    ],
+    [
+     "zelen",
+     3.7,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-10",
+  "place": "trebic",
+  "highway": "primary",
+  "O": {
+   "name": null,
+   "lat": 49.215049359648326,
+   "lon": 15.9312390045319,
+   "bearing": 90.47478370745175,
+   "span": {
+    "left": 6.82,
+    "right": 7.73
+   },
+   "segments": [
+    [
+     "zelen",
+     3.65,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.42,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.42,
+     "osm"
+    ],
+    [
+     "zelen",
+     4.05,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.215049359648326,
+   "lon": 15.9312390045319,
+   "bearing": 90.47478370745175,
+   "span": {
+    "left": 6.82,
+    "right": 7.73
+   },
+   "segments": [
+    [
+     "zelen",
+     3.65,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.42,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.42,
+     "osm"
+    ],
+    [
+     "zelen",
+     4.05,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-11",
+  "place": "trebic",
+  "highway": "primary",
+  "O": {
+   "name": "Pražská",
+   "lat": 49.20994367321501,
+   "lon": 15.859785958297392,
+   "bearing": -85.20230423855736,
+   "span": {
+    "left": 22,
+    "right": 22
+   },
+   "segments": [
+    [
+     "plocha",
+     12.88,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.2,
+     "pasport"
+    ],
+    [
+     "zelen",
+     2.85,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.37,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.37,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.2,
+     "pasport"
+    ],
+    [
+     "plocha",
+     14.12,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Pražská",
+   "lat": 49.20994367321501,
+   "lon": 15.859785958297392,
+   "bearing": -85.20230423855736,
+   "span": {
+    "left": 22,
+    "right": 22
+   },
+   "segments": [
+    [
+     "plocha",
+     12.88,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.2,
+     "pasport"
+    ],
+    [
+     "zelen",
+     2.85,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.37,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.37,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.2,
+     "pasport"
+    ],
+    [
+     "plocha",
+     14.12,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-12",
+  "place": "trebic",
+  "highway": "primary",
+  "O": {
+   "name": "Sportovní",
+   "lat": 49.21154279310558,
+   "lon": 15.89236507335047,
+   "bearing": 76.87505539966588,
+   "span": {
+    "left": 17.17,
+    "right": 20.53
+   },
+   "segments": [
+    [
+     "nezname",
+     1.6,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.2,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.8,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.5,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     2.87,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.87,
+     "odhad"
+    ],
+    [
+     "zed",
+     0.65,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.8,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.2,
+     "pasport"
+    ],
+    [
+     "nezname",
+     3.6,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Sportovní",
+   "lat": 49.21154279310558,
+   "lon": 15.89236507335047,
+   "bearing": 76.87505539966588,
+   "span": {
+    "left": 17.17,
+    "right": 20.53
+   },
+   "segments": [
+    [
+     "nezname",
+     1.6,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.2,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.8,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.5,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     2.87,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.87,
+     "odhad"
+    ],
+    [
+     "zed",
+     0.65,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.8,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.2,
+     "pasport"
+    ],
+    [
+     "nezname",
+     3.6,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-13",
+  "place": "trebic",
+  "highway": "primary",
+  "O": {
+   "name": "Pražská",
+   "lat": 49.209770326679774,
+   "lon": 15.85417105182286,
+   "bearing": -84.04364616551246,
+   "span": {
+    "left": 12.02,
+    "right": 8.98
+   },
+   "segments": [
+    [
+     "zelen",
+     0.95,
+     "odhad"
+    ],
+    [
+     "zelen",
+     7.1,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.92,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.92,
+     "osm"
+    ],
+    [
+     "zelen",
+     5.1,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Pražská",
+   "lat": 49.209770326679774,
+   "lon": 15.85417105182286,
+   "bearing": -84.04364616551246,
+   "span": {
+    "left": 12.02,
+    "right": 8.98
+   },
+   "segments": [
+    [
+     "zelen",
+     0.95,
+     "odhad"
+    ],
+    [
+     "zelen",
+     7.1,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.92,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.92,
+     "osm"
+    ],
+    [
+     "zelen",
+     5.1,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-14",
+  "place": "trebic",
+  "highway": "primary",
+  "O": {
+   "name": null,
+   "lat": 49.21507066986703,
+   "lon": 15.925199972592239,
+   "bearing": 93.12505004596484,
+   "span": {
+    "left": 10.82,
+    "right": 14.68
+   },
+   "segments": [
+    [
+     "zelen",
+     4.1,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     3.02,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     3.02,
+     "odhad"
+    ],
+    [
+     "zelen",
+     6.95,
+     "dtm"
+    ],
+    [
+     "nezname",
+     0.4,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.21507066986703,
+   "lon": 15.925199972592239,
+   "bearing": 93.12505004596484,
+   "span": {
+    "left": 10.82,
+    "right": 14.68
+   },
+   "segments": [
+    [
+     "zelen",
+     4.1,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     3.02,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     3.02,
+     "odhad"
+    ],
+    [
+     "zelen",
+     6.95,
+     "dtm"
+    ],
+    [
+     "nezname",
+     0.4,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-15",
+  "place": "trebic",
+  "highway": "secondary",
+  "O": {
+   "name": "Koželužská",
+   "lat": 49.20511417017339,
+   "lon": 15.847791978683244,
+   "bearing": 85.28978965108796,
+   "span": {
+    "left": 11.67,
+    "right": 10.03
+   },
+   "segments": [
+    [
+     "zelen",
+     3.65,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2,
+     "pasport"
+    ],
+    [
+     "krajnice",
+     1.05,
+     "odhad"
+    ],
+    [
+     "pruh_piktokoridor",
+     4,
+     "osm"
+    ],
+    [
+     "pruh_piktokoridor",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.05,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     5.95,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Koželužská",
+   "lat": 49.20511417017339,
+   "lon": 15.847791978683244,
+   "bearing": 85.28978965108796,
+   "span": {
+    "left": 11.67,
+    "right": 10.03
+   },
+   "segments": [
+    [
+     "zelen",
+     3.65,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2,
+     "pasport"
+    ],
+    [
+     "krajnice",
+     1.05,
+     "odhad"
+    ],
+    [
+     "pruh_piktokoridor",
+     4,
+     "osm"
+    ],
+    [
+     "pruh_piktokoridor",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.05,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     5.95,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-16",
+  "place": "trebic",
+  "highway": "secondary",
+  "O": {
+   "name": null,
+   "lat": 49.24370098804805,
+   "lon": 15.842077974991051,
+   "bearing": -36.02217606230038,
+   "span": {
+    "left": 15.67,
+    "right": 8.53
+   },
+   "segments": [
+    [
+     "plocha",
+     6.8,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.05,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.5,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.05,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.05,
+     "osm"
+    ],
+    [
+     "zelen",
+     4,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.6,
+     "dtm"
+    ],
+    [
+     "plocha",
+     1.15,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.24370098804805,
+   "lon": 15.842077974991051,
+   "bearing": -36.02217606230038,
+   "span": {
+    "left": 15.67,
+    "right": 8.53
+   },
+   "segments": [
+    [
+     "plocha",
+     6.8,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.05,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.5,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.05,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.05,
+     "osm"
+    ],
+    [
+     "zelen",
+     4,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.6,
+     "dtm"
+    ],
+    [
+     "plocha",
+     1.15,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-17",
+  "place": "trebic",
+  "highway": "secondary",
+  "O": {
+   "name": "Račerovická",
+   "lat": 49.22145525737224,
+   "lon": 15.866423364544065,
+   "bearing": -47.03573053574415,
+   "span": {
+    "left": 22,
+    "right": 14.68
+   },
+   "segments": [
+    [
+     "obsluzna",
+     4.58,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     4.1,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     2.1,
+     "pasport"
+    ],
+    [
+     "zelen",
+     5.2,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.05,
+     "dtm"
+    ],
+    [
+     "plocha",
+     0.6,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.4,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.07,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.07,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.55,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.4,
+     "pasport"
+    ],
+    [
+     "zelen",
+     7.1,
+     "dtm"
+    ],
+    [
+     "voda",
+     0.45,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Račerovická",
+   "lat": 49.22145525737224,
+   "lon": 15.866423364544065,
+   "bearing": -47.03573053574415,
+   "span": {
+    "left": 22,
+    "right": 14.68
+   },
+   "segments": [
+    [
+     "obsluzna",
+     4.58,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     4.1,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     2.1,
+     "pasport"
+    ],
+    [
+     "zelen",
+     5.2,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.05,
+     "dtm"
+    ],
+    [
+     "plocha",
+     0.6,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.4,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.07,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.07,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.55,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.4,
+     "pasport"
+    ],
+    [
+     "zelen",
+     7.1,
+     "dtm"
+    ],
+    [
+     "voda",
+     0.45,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-18",
+  "place": "trebic",
+  "highway": "secondary",
+  "O": {
+   "name": null,
+   "lat": 49.24056097561368,
+   "lon": 15.896893306834594,
+   "bearing": -173.10547008180805,
+   "span": {
+    "left": 8.77,
+    "right": 18.98
+   },
+   "segments": [
+    [
+     "zelen",
+     2.8,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.9,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.85,
+     "pasport"
+    ],
+    [
+     "plocha",
+     1.7,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     8.1,
+     "dtm"
+    ],
+    [
+     "plocha",
+     3,
+     "dtm"
+    ],
+    [
+     "zed",
+     0.4,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.24056097561368,
+   "lon": 15.896893306834594,
+   "bearing": -173.10547008180805,
+   "span": {
+    "left": 8.77,
+    "right": 18.98
+   },
+   "segments": [
+    [
+     "zelen",
+     2.8,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.9,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.85,
+     "pasport"
+    ],
+    [
+     "plocha",
+     1.7,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     8.1,
+     "dtm"
+    ],
+    [
+     "plocha",
+     3,
+     "dtm"
+    ],
+    [
+     "zed",
+     0.4,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-19",
+  "place": "trebic",
+  "highway": "secondary",
+  "O": {
+   "name": "Račerovická",
+   "lat": 49.22983499652785,
+   "lon": 15.856337990407928,
+   "bearing": -28.83715156078705,
+   "span": {
+    "left": 7.12,
+    "right": 6.33
+   },
+   "segments": [
+    [
+     "zelen",
+     2,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.8,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.75,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Račerovická",
+   "lat": 49.22983499652785,
+   "lon": 15.856337990407928,
+   "bearing": -28.83715156078705,
+   "span": {
+    "left": 7.12,
+    "right": 6.33
+   },
+   "segments": [
+    [
+     "zelen",
+     2,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.8,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.75,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-20",
+  "place": "trebic",
+  "highway": "secondary",
+  "O": {
+   "name": null,
+   "lat": 49.18562999936203,
+   "lon": 15.889352174216526,
+   "bearing": -179.68114525361491,
+   "span": {
+    "left": 8.02,
+    "right": 9.73
+   },
+   "segments": [
+    [
+     "zelen",
+     2.5,
+     "dtm"
+    ],
+    [
+     "zelen",
+     3.2,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.55,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.55,
+     "osm"
+    ],
+    [
+     "chodnik",
+     4.95,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.18562999936203,
+   "lon": 15.889352174216526,
+   "bearing": -179.68114525361491,
+   "span": {
+    "left": 8.02,
+    "right": 9.73
+   },
+   "segments": [
+    [
+     "zelen",
+     2.5,
+     "dtm"
+    ],
+    [
+     "zelen",
+     3.2,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.55,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.55,
+     "osm"
+    ],
+    [
+     "chodnik",
+     4.95,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-21",
+  "place": "trebic",
+  "highway": "secondary",
+  "O": {
+   "name": "Račerovická",
+   "lat": 49.23402627933753,
+   "lon": 15.851526550828694,
+   "bearing": -37.647811003865975,
+   "span": {
+    "left": 6.77,
+    "right": 12.68
+   },
+   "segments": [
+    [
+     "zelen",
+     3.6,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.92,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.92,
+     "osm"
+    ],
+    [
+     "zelen",
+     6.05,
+     "dtm"
+    ],
+    [
+     "stezka_sdilena",
+     3.05,
+     "dtm"
+    ],
+    [
+     "zelen",
+     0.9,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Račerovická",
+   "lat": 49.23402627933753,
+   "lon": 15.851526550828694,
+   "bearing": -37.647811003865975,
+   "span": {
+    "left": 6.77,
+    "right": 12.68
+   },
+   "segments": [
+    [
+     "zelen",
+     3.6,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.92,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.92,
+     "osm"
+    ],
+    [
+     "zelen",
+     6.05,
+     "dtm"
+    ],
+    [
+     "stezka_sdilena",
+     3.05,
+     "dtm"
+    ],
+    [
+     "zelen",
+     0.9,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-22",
+  "place": "trebic",
+  "highway": "secondary",
+  "O": {
+   "name": null,
+   "lat": 49.234090007731545,
+   "lon": 15.897384049402278,
+   "bearing": -13.391167725460488,
+   "span": {
+    "left": 10.42,
+    "right": 4.88
+   },
+   "segments": [
+    [
+     "zelen",
+     3.85,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     1.72,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.72,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.234090007731545,
+   "lon": 15.897384049402278,
+   "bearing": -13.391167725460488,
+   "span": {
+    "left": 10.42,
+    "right": 4.88
+   },
+   "segments": [
+    [
+     "zelen",
+     3.85,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     1.72,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.72,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-23",
+  "place": "trebic",
+  "highway": "secondary",
+  "O": {
+   "name": "Koželužská",
+   "lat": 49.205578291918464,
+   "lon": 15.852363004581134,
+   "bearing": 90.59140169963317,
+   "span": {
+    "left": 22.58,
+    "right": 2.53
+   },
+   "segments": [
+    [
+     "zelen",
+     5.8,
+     "dtm"
+    ],
+    [
+     "zelen",
+     3.85,
+     "dtm"
+    ],
+    [
+     "zed",
+     0.95,
+     "dtm"
+    ],
+    [
+     "zelen",
+     5.25,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.55,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.85,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.85,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Koželužská",
+   "lat": 49.205578291918464,
+   "lon": 15.852363004581134,
+   "bearing": 90.59140169963317,
+   "span": {
+    "left": 22.58,
+    "right": 2.53
+   },
+   "segments": [
+    [
+     "zelen",
+     5.8,
+     "dtm"
+    ],
+    [
+     "zelen",
+     3.85,
+     "dtm"
+    ],
+    [
+     "zed",
+     0.95,
+     "dtm"
+    ],
+    [
+     "zelen",
+     5.25,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.55,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.85,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.85,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-24",
+  "place": "trebic",
+  "highway": "secondary",
+  "O": {
+   "name": "Brněnská",
+   "lat": 49.216757936703814,
+   "lon": 15.902599965498986,
+   "bearing": -70.28013723072134,
+   "span": {
+    "left": 15.97,
+    "right": 9.43
+   },
+   "segments": [
+    [
+     "zelen",
+     3,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.85,
+     "pasport"
+    ],
+    [
+     "plocha",
+     0.75,
+     "pasport"
+    ],
+    [
+     "zelen",
+     4.3,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.23,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.23,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.23,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.1,
+     "dtm"
+    ],
+    [
+     "nezname",
+     1.1,
+     "odhad"
+    ],
+    [
+     "plocha",
+     0.6,
+     "pasport"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Brněnská",
+   "lat": 49.216757936703814,
+   "lon": 15.902599965498986,
+   "bearing": -70.28013723072134,
+   "span": {
+    "left": 15.97,
+    "right": 9.43
+   },
+   "segments": [
+    [
+     "zelen",
+     3,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.85,
+     "pasport"
+    ],
+    [
+     "plocha",
+     0.75,
+     "pasport"
+    ],
+    [
+     "zelen",
+     4.3,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.23,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.23,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.23,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.1,
+     "dtm"
+    ],
+    [
+     "nezname",
+     1.1,
+     "odhad"
+    ],
+    [
+     "plocha",
+     0.6,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-25",
+  "place": "trebic",
+  "highway": "secondary",
+  "O": {
+   "name": null,
+   "lat": 49.249163883176486,
+   "lon": 15.90734714936208,
+   "bearing": 49.96248363824636,
+   "span": {
+    "left": 9.62,
+    "right": 14.73
+   },
+   "segments": [
+    [
+     "zelen",
+     4.55,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.9,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.8,
+     "dtm"
+    ],
+    [
+     "zelen",
+     7.1,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.249163883176486,
+   "lon": 15.90734714936208,
+   "bearing": 49.96248363824636,
+   "span": {
+    "left": 9.62,
+    "right": 14.73
+   },
+   "segments": [
+    [
+     "zelen",
+     4.55,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.9,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.8,
+     "dtm"
+    ],
+    [
+     "zelen",
+     7.1,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-26",
+  "place": "trebic",
+  "highway": "secondary",
+  "O": {
+   "name": null,
+   "lat": 49.243045048979866,
+   "lon": 15.899070874344893,
+   "bearing": -149.32927789837174,
+   "span": {
+    "left": 7.02,
+    "right": 9.23
+   },
+   "segments": [
+    [
+     "zelen",
+     1.4,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.35,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.9,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.9,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.243045048979866,
+   "lon": 15.899070874344893,
+   "bearing": -149.32927789837174,
+   "span": {
+    "left": 7.02,
+    "right": 9.23
+   },
+   "segments": [
+    [
+     "zelen",
+     1.4,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.35,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.9,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.9,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-27",
+  "place": "trebic",
+  "highway": "secondary",
+  "O": {
+   "name": null,
+   "lat": 49.18144600629836,
+   "lon": 15.889129878585203,
+   "bearing": -175.49281401579557,
+   "span": {
+    "left": 12.62,
+    "right": 8.23
+   },
+   "segments": [
+    [
+     "zelen",
+     3.75,
+     "dtm"
+    ],
+    [
+     "zelen",
+     5.75,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.9,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.9,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.55,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.18144600629836,
+   "lon": 15.889129878585203,
+   "bearing": -175.49281401579557,
+   "span": {
+    "left": 12.62,
+    "right": 8.23
+   },
+   "segments": [
+    [
+     "zelen",
+     3.75,
+     "dtm"
+    ],
+    [
+     "zelen",
+     5.75,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.9,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.9,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.55,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-28",
+  "place": "trebic",
+  "highway": "secondary",
+  "O": {
+   "name": "Koželužská",
+   "lat": 49.20694600478518,
+   "lon": 15.867543997442889,
+   "bearing": 70.63432555423122,
+   "span": {
+    "left": 3.12,
+    "right": 9.63
+   },
+   "segments": [
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "zelen",
+     6.05,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Koželužská",
+   "lat": 49.20694600478518,
+   "lon": 15.867543997442889,
+   "bearing": 70.63432555423122,
+   "span": {
+    "left": 3.12,
+    "right": 9.63
+   },
+   "segments": [
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "zelen",
+     6.05,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-29",
+  "place": "trebic",
+  "highway": "tertiary",
+  "O": {
+   "name": null,
+   "lat": 49.179247995318455,
+   "lon": 15.885930004057695,
+   "bearing": -119.70074581306035,
+   "span": {
+    "left": 6.12,
+    "right": 9.08
+   },
+   "segments": [
+    [
+     "chodnik",
+     5.5,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.67,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.67,
+     "osm"
+    ],
+    [
+     "chodnik",
+     4.35,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.179247995318455,
+   "lon": 15.885930004057695,
+   "bearing": -119.70074581306035,
+   "span": {
+    "left": 6.12,
+    "right": 9.08
+   },
+   "segments": [
+    [
+     "chodnik",
+     5.5,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.67,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.67,
+     "osm"
+    ],
+    [
+     "chodnik",
+     4.35,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-30",
+  "place": "trebic",
+  "highway": "tertiary",
+  "O": {
+   "name": "Míčova",
+   "lat": 49.22586888807283,
+   "lon": 15.888601511131798,
+   "bearing": -19.199315271149217,
+   "span": {
+    "left": 10.47,
+    "right": 6.23
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.15,
+     "pasport"
+    ],
+    [
+     "zelen",
+     1.4,
+     "odhad"
+    ],
+    [
+     "cyklopruh",
+     1.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.07,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.07,
+     "odhad"
+    ],
+    [
+     "cyklopruh",
+     1.5,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Míčova",
+   "lat": 49.22586888807283,
+   "lon": 15.888601511131798,
+   "bearing": -19.199315271149217,
+   "span": {
+    "left": 10.47,
+    "right": 6.23
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.15,
+     "pasport"
+    ],
+    [
+     "zelen",
+     1.5,
+     "odhad"
+    ],
+    [
+     "cyklopruh",
+     1.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.02,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.02,
+     "odhad"
+    ],
+    [
+     "cyklopruh",
+     1.5,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-31",
+  "place": "trebic",
+  "highway": "tertiary",
+  "O": {
+   "name": null,
+   "lat": 49.23294406273573,
+   "lon": 15.831248144795717,
+   "bearing": -33.38792978323665,
+   "span": {
+    "left": 9.57,
+    "right": 8.83
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.45,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.3,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.47,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.47,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.75,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.95,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.23294406273573,
+   "lon": 15.831248144795717,
+   "bearing": -33.38792978323665,
+   "span": {
+    "left": 9.57,
+    "right": 8.83
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.45,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.3,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.47,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.47,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.75,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.95,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-32",
+  "place": "trebic",
+  "highway": "tertiary",
+  "O": {
+   "name": null,
+   "lat": 49.2312291167901,
+   "lon": 15.891468940575669,
+   "bearing": 71.50488050445514,
+   "span": {
+    "left": 7.92,
+    "right": 7.63
+   },
+   "segments": [
+    [
+     "zelen",
+     0.95,
+     "dtm"
+    ],
+    [
+     "zelen",
+     4.7,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.9,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.2312291167901,
+   "lon": 15.891468940575669,
+   "bearing": 71.50488050445514,
+   "span": {
+    "left": 7.92,
+    "right": 7.63
+   },
+   "segments": [
+    [
+     "zelen",
+     0.95,
+     "dtm"
+    ],
+    [
+     "zelen",
+     4.7,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.9,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-33",
+  "place": "trebic",
+  "highway": "tertiary",
+  "O": {
+   "name": null,
+   "lat": 49.21673973734216,
+   "lon": 15.847024790346973,
+   "bearing": -62.305010533921006,
+   "span": {
+    "left": 5.07,
+    "right": 1.48
+   },
+   "segments": [
+    [
+     "zelen",
+     2.25,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.3,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.21673973734216,
+   "lon": 15.847024790346973,
+   "bearing": -62.305010533921006,
+   "span": {
+    "left": 5.07,
+    "right": 1.48
+   },
+   "segments": [
+    [
+     "zelen",
+     2.25,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.3,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-34",
+  "place": "trebic",
+  "highway": "tertiary",
+  "O": {
+   "name": null,
+   "lat": 49.26157204565912,
+   "lon": 15.879713061777773,
+   "bearing": 131.63543488309628,
+   "span": {
+    "left": 6.52,
+    "right": 6.48
+   },
+   "segments": [
+    [
+     "plocha",
+     0.65,
+     "dtm"
+    ],
+    [
+     "zelen",
+     3.4,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.67,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.67,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.6,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.26157204565912,
+   "lon": 15.879713061777773,
+   "bearing": 131.63543488309628,
+   "span": {
+    "left": 6.52,
+    "right": 6.48
+   },
+   "segments": [
+    [
+     "plocha",
+     0.65,
+     "dtm"
+    ],
+    [
+     "zelen",
+     3.4,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.67,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.67,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.6,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-35",
+  "place": "trebic",
+  "highway": "tertiary",
+  "O": {
+   "name": null,
+   "lat": 49.22770246210456,
+   "lon": 15.834467937763796,
+   "bearing": -95.0601559146086,
+   "span": {
+    "left": 3.62,
+    "right": 2.28
+   },
+   "segments": [
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.22770246210456,
+   "lon": 15.834467937763796,
+   "bearing": -95.0601559146086,
+   "span": {
+    "left": 3.62,
+    "right": 2.28
+   },
+   "segments": [
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-36",
+  "place": "trebic",
+  "highway": "tertiary",
+  "O": {
+   "name": "U Kuchyňky",
+   "lat": 49.223062930818315,
+   "lon": 15.87096454075236,
+   "bearing": 11.01063165298597,
+   "span": {
+    "left": 11.37,
+    "right": 11.38
+   },
+   "segments": [
+    [
+     "zed",
+     0.45,
+     "dtm"
+    ],
+    [
+     "zelen",
+     5.6,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.8,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4.37,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.37,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.05,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.85,
+     "dtm"
+    ],
+    [
+     "zelen",
+     3.25,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "U Kuchyňky",
+   "lat": 49.223062930818315,
+   "lon": 15.87096454075236,
+   "bearing": 11.01063165298597,
+   "span": {
+    "left": 11.37,
+    "right": 11.38
+   },
+   "segments": [
+    [
+     "zed",
+     0.45,
+     "dtm"
+    ],
+    [
+     "zelen",
+     5.6,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.8,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4.37,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.37,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.05,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.85,
+     "dtm"
+    ],
+    [
+     "zelen",
+     3.25,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-37",
+  "place": "trebic",
+  "highway": "tertiary",
+  "O": {
+   "name": "Cyrilometodějská",
+   "lat": 49.215132,
+   "lon": 15.891408,
+   "bearing": 51.586993335779255,
+   "span": {
+    "left": 12.07,
+    "right": 8.68
+   },
+   "segments": [
+    [
+     "nezname",
+     1.15,
+     "odhad"
+    ],
+    [
+     "plocha",
+     2.8,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.35,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.8,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4.17,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.17,
+     "osm"
+    ],
+    [
+     "chodnik",
+     4.3,
+     "pasport"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Cyrilometodějská",
+   "lat": 49.215132,
+   "lon": 15.891408,
+   "bearing": 51.586993335779255,
+   "span": {
+    "left": 12.07,
+    "right": 8.68
+   },
+   "segments": [
+    [
+     "nezname",
+     1.15,
+     "odhad"
+    ],
+    [
+     "plocha",
+     2.8,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.35,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.8,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4.17,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.17,
+     "osm"
+    ],
+    [
+     "chodnik",
+     4.3,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-38",
+  "place": "trebic",
+  "highway": "tertiary",
+  "O": {
+   "name": null,
+   "lat": 49.25524988205882,
+   "lon": 15.870987074098496,
+   "bearing": -112.43230611329344,
+   "span": {
+    "left": 9.37,
+    "right": 7.63
+   },
+   "segments": [
+    [
+     "plocha",
+     0.3,
+     "dtm"
+    ],
+    [
+     "zelen",
+     3.95,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.8,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.15,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.15,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.6,
+     "pasport"
+    ],
+    [
+     "zelen",
+     3.05,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.25524988205882,
+   "lon": 15.870987074098496,
+   "bearing": -112.43230611329344,
+   "span": {
+    "left": 9.37,
+    "right": 7.63
+   },
+   "segments": [
+    [
+     "plocha",
+     0.3,
+     "dtm"
+    ],
+    [
+     "zelen",
+     3.95,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.8,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.15,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.15,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.6,
+     "pasport"
+    ],
+    [
+     "zelen",
+     3.05,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-39",
+  "place": "trebic",
+  "highway": "tertiary",
+  "O": {
+   "name": null,
+   "lat": 49.22088397260848,
+   "lon": 15.919967188607671,
+   "bearing": 12.454689742004984,
+   "span": {
+    "left": 5.32,
+    "right": 5.98
+   },
+   "segments": [
+    [
+     "zelen",
+     2.4,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "zelen",
+     3,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.22088397260848,
+   "lon": 15.919967188607671,
+   "bearing": 12.454689742004984,
+   "span": {
+    "left": 5.32,
+    "right": 5.98
+   },
+   "segments": [
+    [
+     "zelen",
+     2.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.5,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.8,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-40",
+  "place": "trebic",
+  "highway": "tertiary",
+  "O": {
+   "name": "Budíkovická",
+   "lat": 49.22801424857346,
+   "lon": 15.872939355040494,
+   "bearing": 133.19970447664355,
+   "span": {
+    "left": 11.42,
+    "right": 8.38
+   },
+   "segments": [
+    [
+     "chodnik",
+     8.55,
+     "dtm"
+    ],
+    [
+     "pruh_piktokoridor",
+     3.35,
+     "osm"
+    ],
+    [
+     "pruh_piktokoridor",
+     3.35,
+     "osm"
+    ],
+    [
+     "zelen",
+     4.55,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Budíkovická",
+   "lat": 49.22801424857346,
+   "lon": 15.872939355040494,
+   "bearing": 133.19970447664355,
+   "span": {
+    "left": 11.42,
+    "right": 8.38
+   },
+   "segments": [
+    [
+     "chodnik",
+     8.55,
+     "dtm"
+    ],
+    [
+     "pruh_piktokoridor",
+     3.35,
+     "osm"
+    ],
+    [
+     "pruh_piktokoridor",
+     3.35,
+     "osm"
+    ],
+    [
+     "zelen",
+     4.55,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-41",
+  "place": "trebic",
+  "highway": "tertiary",
+  "O": {
+   "name": "Horácká",
+   "lat": 49.22436182337089,
+   "lon": 15.857614869376524,
+   "bearing": -64.06874889808567,
+   "span": {
+    "left": 7.87,
+    "right": 7.08
+   },
+   "segments": [
+    [
+     "zelen",
+     3.15,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.55,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.15,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.15,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.65,
+     "dtm"
+    ],
+    [
+     "zed",
+     1.15,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.15,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Horácká",
+   "lat": 49.22436182337089,
+   "lon": 15.857614869376524,
+   "bearing": -64.06874889808567,
+   "span": {
+    "left": 7.87,
+    "right": 7.08
+   },
+   "segments": [
+    [
+     "zelen",
+     3.15,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.55,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.15,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.15,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.65,
+     "dtm"
+    ],
+    [
+     "zed",
+     1.15,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.15,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-42",
+  "place": "trebic",
+  "highway": "tertiary",
+  "O": {
+   "name": null,
+   "lat": 49.252196923086714,
+   "lon": 15.86691539659583,
+   "bearing": -163.55760271543463,
+   "span": {
+    "left": 7.87,
+    "right": 6.18
+   },
+   "segments": [
+    [
+     "zelen",
+     2.2,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.8,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.32,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.32,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.4,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.252196923086714,
+   "lon": 15.86691539659583,
+   "bearing": -163.55760271543463,
+   "span": {
+    "left": 7.87,
+    "right": 6.18
+   },
+   "segments": [
+    [
+     "zelen",
+     2.2,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.8,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.32,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.32,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.4,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-43",
+  "place": "trebic",
+  "highway": "tertiary",
+  "O": {
+   "name": null,
+   "lat": 49.22650746151827,
+   "lon": 15.826969119543751,
+   "bearing": -80.33517402697916,
+   "span": {
+    "left": 3.87,
+    "right": 6.13
+   },
+   "segments": [
+    [
+     "pruh",
+     3.25,
+     "osm"
+    ],
+    [
+     "zelen",
+     6.75,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.22650746151827,
+   "lon": 15.826969119543751,
+   "bearing": -80.33517402697916,
+   "span": {
+    "left": 3.87,
+    "right": 6.13
+   },
+   "segments": [
+    [
+     "pruh",
+     3.25,
+     "osm"
+    ],
+    [
+     "zelen",
+     6.75,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-44",
+  "place": "trebic",
+  "highway": "tertiary",
+  "O": {
+   "name": null,
+   "lat": 49.22981668372191,
+   "lon": 15.886776086616166,
+   "bearing": 79.7935330893957,
+   "span": {
+    "left": 8.42,
+    "right": 22.73
+   },
+   "segments": [
+    [
+     "zelen",
+     5.35,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.27,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.27,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.7,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.85,
+     "dtm"
+    ],
+    [
+     "plocha",
+     16.7,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.22981668372191,
+   "lon": 15.886776086616166,
+   "bearing": 79.7935330893957,
+   "span": {
+    "left": 8.42,
+    "right": 22.73
+   },
+   "segments": [
+    [
+     "zelen",
+     5.35,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.27,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.27,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.7,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.85,
+     "dtm"
+    ],
+    [
+     "plocha",
+     16.7,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-45",
+  "place": "trebic",
+  "highway": "unclassified",
+  "O": {
+   "name": "Na Hrádku",
+   "lat": 49.21891572000192,
+   "lon": 15.877436893738304,
+   "bearing": 104.0123139639021,
+   "span": {
+    "left": 2.22,
+    "right": 3.93
+   },
+   "segments": [
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Na Hrádku",
+   "lat": 49.21891572000192,
+   "lon": 15.877436893738304,
+   "bearing": 104.0123139639021,
+   "span": {
+    "left": 2.22,
+    "right": 3.93
+   },
+   "segments": [
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-46",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "Dr. Suzy",
+   "lat": 49.218686920740836,
+   "lon": 15.863595801796155,
+   "bearing": -31.304578666736347,
+   "span": {
+    "left": 11.62,
+    "right": 11.48
+   },
+   "segments": [
+    [
+     "plocha",
+     4.95,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     3.65,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.22,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.22,
+     "osm"
+    ],
+    [
+     "chodnik",
+     3.55,
+     "pasport"
+    ],
+    [
+     "plocha",
+     4.5,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Dr. Suzy",
+   "lat": 49.218686920740836,
+   "lon": 15.863595801796155,
+   "bearing": -31.304578666736347,
+   "span": {
+    "left": 11.62,
+    "right": 11.48
+   },
+   "segments": [
+    [
+     "plocha",
+     4.95,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     3.65,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.22,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.22,
+     "osm"
+    ],
+    [
+     "chodnik",
+     3.55,
+     "pasport"
+    ],
+    [
+     "plocha",
+     4.5,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-47",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "Milady Horákové",
+   "lat": 49.22409308153149,
+   "lon": 15.87617120499103,
+   "bearing": 148.82992999355474,
+   "span": {
+    "left": 13.67,
+    "right": 10.23
+   },
+   "segments": [
+    [
+     "plocha",
+     1.65,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.1,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "plocha",
+     2.2,
+     "pasport"
+    ],
+    [
+     "zelen",
+     5.95,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Milady Horákové",
+   "lat": 49.22409308153149,
+   "lon": 15.87617120499103,
+   "bearing": 148.82992999355474,
+   "span": {
+    "left": 3.87,
+    "right": 10.23
+   },
+   "segments": [
+    [
+     "pruh",
+     2.97,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.97,
+     "osm"
+    ],
+    [
+     "plocha",
+     2.2,
+     "pasport"
+    ],
+    [
+     "zelen",
+     5.95,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-48",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "Nádražní",
+   "lat": 49.211597542531116,
+   "lon": 15.887281959543694,
+   "bearing": -86.67133983133537,
+   "span": {
+    "left": 22,
+    "right": 16.03
+   },
+   "segments": [
+    [
+     "plocha",
+     3.47,
+     "dtm"
+    ],
+    [
+     "nastupiste",
+     3.2,
+     "osm"
+    ],
+    [
+     "chodnik",
+     12.35,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.27,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.27,
+     "osm"
+    ],
+    [
+     "chodnik",
+     12.45,
+     "pasport"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Nádražní",
+   "lat": 49.211597542531116,
+   "lon": 15.887281959543694,
+   "bearing": -86.67133983133537,
+   "span": {
+    "left": 22,
+    "right": 16.03
+   },
+   "segments": [
+    [
+     "plocha",
+     3.47,
+     "dtm"
+    ],
+    [
+     "nastupiste",
+     3.2,
+     "osm"
+    ],
+    [
+     "chodnik",
+     12.35,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.27,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.27,
+     "osm"
+    ],
+    [
+     "chodnik",
+     12.45,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-49",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "Branka",
+   "lat": 49.21798399996026,
+   "lon": 15.891489007425252,
+   "bearing": -179.5337093455756,
+   "span": {
+    "left": 2.92,
+    "right": 11.93
+   },
+   "segments": [
+    [
+     "pruh",
+     3.45,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.45,
+     "osm"
+    ],
+    [
+     "plocha",
+     2,
+     "pasport"
+    ],
+    [
+     "zelen",
+     2.45,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     3.05,
+     "pasport"
+    ],
+    [
+     "zed",
+     0.45,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Branka",
+   "lat": 49.21798399996026,
+   "lon": 15.891489007425252,
+   "bearing": -179.5337093455756,
+   "span": {
+    "left": 2.92,
+    "right": 11.93
+   },
+   "segments": [
+    [
+     "pruh",
+     3.45,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.45,
+     "osm"
+    ],
+    [
+     "plocha",
+     2,
+     "pasport"
+    ],
+    [
+     "zelen",
+     2.45,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     3.05,
+     "pasport"
+    ],
+    [
+     "zed",
+     0.45,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-50",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "Nad Zámkem",
+   "lat": 49.21798497337544,
+   "lon": 15.86990089302133,
+   "bearing": -20.730096023882606,
+   "span": {
+    "left": 22,
+    "right": 22
+   },
+   "segments": [
+    [
+     "plocha",
+     9.37,
+     "dtm"
+    ],
+    [
+     "plocha",
+     4.75,
+     "dtm"
+    ],
+    [
+     "zelen",
+     5.3,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.2,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.31,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.31,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Nad Zámkem",
+   "lat": 49.21798497337544,
+   "lon": 15.86990089302133,
+   "bearing": -20.730096023882606,
+   "span": {
+    "left": 22,
+    "right": 6.38
+   },
+   "segments": [
+    [
+     "plocha",
+     9.37,
+     "dtm"
+    ],
+    [
+     "plocha",
+     4.75,
+     "dtm"
+    ],
+    [
+     "zelen",
+     5.3,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.2,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-51",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "Jana Habrdy",
+   "lat": 49.220033973910006,
+   "lon": 15.902677411850528,
+   "bearing": 5.502775653577128,
+   "span": {
+    "left": 10.87,
+    "right": 9.43
+   },
+   "segments": [
+    [
+     "chodnik",
+     8.2,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "chodnik",
+     6.2,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Jana Habrdy",
+   "lat": 49.220033973910006,
+   "lon": 15.902677411850528,
+   "bearing": 5.502775653577128,
+   "span": {
+    "left": 10.87,
+    "right": 9.43
+   },
+   "segments": [
+    [
+     "chodnik",
+     8.2,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "chodnik",
+     6.2,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-52",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "I. Olbrachta",
+   "lat": 49.223420901316594,
+   "lon": 15.880935944833313,
+   "bearing": -69.81808890694145,
+   "span": {
+    "left": 12.77,
+    "right": 11.88
+   },
+   "segments": [
+    [
+     "zelen",
+     6.1,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     4.25,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.77,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.77,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.9,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.85,
+     "pasport"
+    ]
+   ]
+  },
+  "N": {
+   "name": "I. Olbrachta",
+   "lat": 49.223420901316594,
+   "lon": 15.880935944833313,
+   "bearing": -69.81808890694145,
+   "span": {
+    "left": 12.77,
+    "right": 11.88
+   },
+   "segments": [
+    [
+     "zelen",
+     6.1,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     4.25,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.77,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.77,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.9,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.85,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-53",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "Bartošova",
+   "lat": 49.219878362508894,
+   "lon": 15.887557049183336,
+   "bearing": 104.75184455526393,
+   "span": {
+    "left": 5.27,
+    "right": 8.08
+   },
+   "segments": [
+    [
+     "zelen",
+     0.4,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.1,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.45,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.45,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.45,
+     "pasport"
+    ],
+    [
+     "plocha",
+     1.5,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Bartošova",
+   "lat": 49.219878362508894,
+   "lon": 15.887557049183336,
+   "bearing": 104.75184455526393,
+   "span": {
+    "left": 5.27,
+    "right": 8.08
+   },
+   "segments": [
+    [
+     "zelen",
+     0.4,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.1,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.45,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.45,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.45,
+     "pasport"
+    ],
+    [
+     "plocha",
+     1.5,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-54",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "Vltavínská",
+   "lat": 49.20516599717983,
+   "lon": 15.879611049343358,
+   "bearing": -175.0339496571843,
+   "span": {
+    "left": 6.47,
+    "right": 7.73
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.62,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.62,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.95,
+     "pasport"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Vltavínská",
+   "lat": 49.20516599717983,
+   "lon": 15.879611049343358,
+   "bearing": -175.0339496571843,
+   "span": {
+    "left": 6.47,
+    "right": 7.73
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.62,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.62,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.95,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-55",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "Novodvorská",
+   "lat": 49.21684534500702,
+   "lon": 15.896545824986992,
+   "bearing": 71.55203854171371,
+   "span": {
+    "left": 12.52,
+    "right": 4.93
+   },
+   "segments": [
+    [
+     "zelen",
+     4.3,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.2,
+     "pasport"
+    ],
+    [
+     "zelen",
+     2.25,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.9,
+     "osm"
+    ],
+    [
+     "plocha",
+     1.95,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.85,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Novodvorská",
+   "lat": 49.21684534500702,
+   "lon": 15.896545824986992,
+   "bearing": 71.55203854171371,
+   "span": {
+    "left": 12.52,
+    "right": 4.93
+   },
+   "segments": [
+    [
+     "zelen",
+     4.3,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.2,
+     "pasport"
+    ],
+    [
+     "zelen",
+     2.25,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.9,
+     "osm"
+    ],
+    [
+     "plocha",
+     1.95,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.85,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-56",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "Antonína Kaliny",
+   "lat": 49.20343281788546,
+   "lon": 15.875501937700722,
+   "bearing": -77.3185226050391,
+   "span": {
+    "left": 2.52,
+    "right": 9.98
+   },
+   "segments": [
+    [
+     "pruh",
+     2.97,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.97,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.1,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.45,
+     "odhad"
+    ],
+    [
+     "plocha",
+     4,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Antonína Kaliny",
+   "lat": 49.20343281788546,
+   "lon": 15.875501937700722,
+   "bearing": -77.3185226050391,
+   "span": {
+    "left": 2.52,
+    "right": 9.98
+   },
+   "segments": [
+    [
+     "pruh",
+     2.97,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.97,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.1,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.45,
+     "odhad"
+    ],
+    [
+     "plocha",
+     4,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-57",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "Maxima Gorkého",
+   "lat": 49.22014997963679,
+   "lon": 15.895903000502468,
+   "bearing": 89.07042903471908,
+   "span": {
+    "left": 12.22,
+    "right": 22
+   },
+   "segments": [
+    [
+     "plocha",
+     1.5,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     9.9,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "parkovani",
+     5.05,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     2,
+     "pasport"
+    ],
+    [
+     "plocha",
+     9.63,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Maxima Gorkého",
+   "lat": 49.22014997963679,
+   "lon": 15.895903000502468,
+   "bearing": 89.07042903471908,
+   "span": {
+    "left": 12.22,
+    "right": 22
+   },
+   "segments": [
+    [
+     "plocha",
+     1.5,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     9.9,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "parkovani",
+     5.05,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     2,
+     "pasport"
+    ],
+    [
+     "plocha",
+     9.63,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-58",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "Spojenců",
+   "lat": 49.20694921859358,
+   "lon": 15.856078790202487,
+   "bearing": -122.26297477590322,
+   "span": {
+    "left": 13.82,
+    "right": 2.93
+   },
+   "segments": [
+    [
+     "plocha",
+     3.75,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     2.25,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.25,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Spojenců",
+   "lat": 49.20694921859358,
+   "lon": 15.856078790202487,
+   "bearing": -122.26297477590322,
+   "span": {
+    "left": 1.52,
+    "right": 2.93
+   },
+   "segments": [
+    [
+     "pruh",
+     4.45,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-59",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "Zahradníčkova",
+   "lat": 49.207739526502586,
+   "lon": 15.885159945707851,
+   "bearing": 94.312863744528,
+   "span": {
+    "left": 9.62,
+    "right": 22
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.65,
+     "pasport"
+    ],
+    [
+     "zelen",
+     2.65,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.8,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.95,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.9,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.1,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.81,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.81,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Zahradníčkova",
+   "lat": 49.207739526502586,
+   "lon": 15.885159945707851,
+   "bearing": 94.312863744528,
+   "span": {
+    "left": 9.62,
+    "right": 10.38
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.65,
+     "pasport"
+    ],
+    [
+     "zelen",
+     2.65,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.8,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.95,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.9,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.1,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-60",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "Hartmannova",
+   "lat": 49.206066103881824,
+   "lon": 15.889377316365142,
+   "bearing": -26.529247886843493,
+   "span": {
+    "left": 9.17,
+    "right": 12.18
+   },
+   "segments": [
+    [
+     "parkovani",
+     5.3,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.85,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.1,
+     "pasport"
+    ],
+    [
+     "zelen",
+     7.2,
+     "dtm"
+    ],
+    [
+     "plocha",
+     0.9,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Hartmannova",
+   "lat": 49.206066103881824,
+   "lon": 15.889377316365142,
+   "bearing": -26.529247886843493,
+   "span": {
+    "left": 9.17,
+    "right": 12.18
+   },
+   "segments": [
+    [
+     "parkovani",
+     5.3,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.85,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.1,
+     "pasport"
+    ],
+    [
+     "zelen",
+     7.2,
+     "dtm"
+    ],
+    [
+     "plocha",
+     0.9,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-61",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "Za Plovárnou",
+   "lat": 49.212688028775695,
+   "lon": 15.860680989919576,
+   "bearing": -102.97372217219875,
+   "span": {
+    "left": 2.47,
+    "right": 4.58
+   },
+   "segments": [
+    [
+     "pruh",
+     4.55,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.5,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Za Plovárnou",
+   "lat": 49.212688028775695,
+   "lon": 15.860680989919576,
+   "bearing": -102.97372217219875,
+   "span": {
+    "left": 2.47,
+    "right": 4.58
+   },
+   "segments": [
+    [
+     "pruh",
+     4.55,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.5,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-62",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "Zdislavina",
+   "lat": 49.21706801885752,
+   "lon": 15.885380596633246,
+   "bearing": 4.066435795808676,
+   "span": {
+    "left": 2.77,
+    "right": 13.73
+   },
+   "segments": [
+    [
+     "plocha",
+     0.4,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     3.5,
+     "pasport"
+    ],
+    [
+     "zed",
+     0.55,
+     "dtm"
+    ],
+    [
+     "voda",
+     3.5,
+     "dtm"
+    ],
+    [
+     "zed",
+     0.6,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.58,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.58,
+     "osm"
+    ],
+    [
+     "plocha",
+     2.8,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Zdislavina",
+   "lat": 49.21706801885752,
+   "lon": 15.885380596633246,
+   "bearing": 4.066435795808676,
+   "span": {
+    "left": 2.77,
+    "right": 13.73
+   },
+   "segments": [
+    [
+     "plocha",
+     0.4,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     3.5,
+     "pasport"
+    ],
+    [
+     "zed",
+     0.55,
+     "dtm"
+    ],
+    [
+     "voda",
+     3.5,
+     "dtm"
+    ],
+    [
+     "zed",
+     0.6,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.58,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.58,
+     "osm"
+    ],
+    [
+     "plocha",
+     2.8,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-63",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "Hladíkova",
+   "lat": 49.20910911283048,
+   "lon": 15.876251055613752,
+   "bearing": -72.03824503092848,
+   "span": {
+    "left": 22,
+    "right": 22
+   },
+   "segments": [
+    [
+     "plocha",
+     9.37,
+     "dtm"
+    ],
+    [
+     "plocha",
+     3.05,
+     "dtm"
+    ],
+    [
+     "zed",
+     0.35,
+     "dtm"
+    ],
+    [
+     "plocha",
+     6.15,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.95,
+     "pasport"
+    ],
+    [
+     "zelen",
+     3.2,
+     "dtm"
+    ],
+    [
+     "plocha",
+     14.03,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Hladíkova",
+   "lat": 49.20910911283048,
+   "lon": 15.876251055613752,
+   "bearing": -72.03824503092848,
+   "span": {
+    "left": 22,
+    "right": 22
+   },
+   "segments": [
+    [
+     "plocha",
+     9.37,
+     "dtm"
+    ],
+    [
+     "plocha",
+     3.05,
+     "dtm"
+    ],
+    [
+     "zed",
+     0.35,
+     "dtm"
+    ],
+    [
+     "plocha",
+     6.15,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.95,
+     "pasport"
+    ],
+    [
+     "zelen",
+     3.2,
+     "dtm"
+    ],
+    [
+     "plocha",
+     14.03,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-64",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "Přibyslavická",
+   "lat": 49.221790298173566,
+   "lon": 15.860898880062761,
+   "bearing": 128.92462468980878,
+   "span": {
+    "left": 6.62,
+    "right": 12.18
+   },
+   "segments": [
+    [
+     "zelen",
+     1.6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.75,
+     "odhad"
+    ],
+    [
+     "plocha",
+     8.75,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Přibyslavická",
+   "lat": 49.221790298173566,
+   "lon": 15.860898880062761,
+   "bearing": 128.92462468980878,
+   "span": {
+    "left": 6.62,
+    "right": 12.18
+   },
+   "segments": [
+    [
+     "zelen",
+     1.6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.75,
+     "odhad"
+    ],
+    [
+     "plocha",
+     8.75,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-65",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "Za Plovárnou",
+   "lat": 49.21584154084395,
+   "lon": 15.865099986486113,
+   "bearing": 42.44296477564083,
+   "span": {
+    "left": 22,
+    "right": 5.33
+   },
+   "segments": [
+    [
+     "plocha",
+     15.42,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.9,
+     "dtm"
+    ],
+    [
+     "plocha",
+     0.75,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.1,
+     "pasport"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Za Plovárnou",
+   "lat": 49.21584154084395,
+   "lon": 15.865099986486113,
+   "bearing": 42.44296477564083,
+   "span": {
+    "left": 22,
+    "right": 5.33
+   },
+   "segments": [
+    [
+     "plocha",
+     15.42,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.9,
+     "dtm"
+    ],
+    [
+     "plocha",
+     0.75,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.1,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-66",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "Kmochova",
+   "lat": 49.22465376998262,
+   "lon": 15.866154196033019,
+   "bearing": 60.735593657869956,
+   "span": {
+    "left": 22.03,
+    "right": 6.43
+   },
+   "segments": [
+    [
+     "plocha",
+     16.65,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     3.35,
+     "pasport"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.7,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.85,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Kmochova",
+   "lat": 49.22465376998262,
+   "lon": 15.866154196033019,
+   "bearing": 60.735593657869956,
+   "span": {
+    "left": 22.03,
+    "right": 6.43
+   },
+   "segments": [
+    [
+     "plocha",
+     16.65,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     3.35,
+     "pasport"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.7,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.85,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-67",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "Průmyslová",
+   "lat": 49.20866118742547,
+   "lon": 15.896916856773647,
+   "bearing": 63.315432755402774,
+   "span": {
+    "left": 6.77,
+    "right": 22.03
+   },
+   "segments": [
+    [
+     "chodnik",
+     3.05,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.98,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.98,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.3,
+     "pasport"
+    ],
+    [
+     "zed",
+     0.55,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     3.35,
+     "odhad"
+    ],
+    [
+     "plocha",
+     3.15,
+     "dtm"
+    ],
+    [
+     "zelen",
+     3.45,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Průmyslová",
+   "lat": 49.20866118742547,
+   "lon": 15.896916856773647,
+   "bearing": 63.315432755402774,
+   "span": {
+    "left": 6.77,
+    "right": 22.03
+   },
+   "segments": [
+    [
+     "chodnik",
+     3.05,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.98,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.98,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.3,
+     "pasport"
+    ],
+    [
+     "zed",
+     0.55,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     3.35,
+     "odhad"
+    ],
+    [
+     "plocha",
+     3.15,
+     "dtm"
+    ],
+    [
+     "zelen",
+     3.45,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-68",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "Zborovská",
+   "lat": 49.21159178806759,
+   "lon": 15.87441498944953,
+   "bearing": -88.12477612215491,
+   "span": {
+    "left": 16.37,
+    "right": 5.73
+   },
+   "segments": [
+    [
+     "plocha",
+     14.35,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.55,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Zborovská",
+   "lat": 49.21159178806759,
+   "lon": 15.87441498944953,
+   "bearing": -88.12477612215491,
+   "span": {
+    "left": 16.37,
+    "right": 5.73
+   },
+   "segments": [
+    [
+     "plocha",
+     14.35,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.55,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-69",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "Březinova",
+   "lat": 49.209168270600365,
+   "lon": 15.889322055577418,
+   "bearing": -82.3068507993281,
+   "span": {
+    "left": 8.67,
+    "right": 12.03
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.2,
+     "pasport"
+    ],
+    [
+     "zelen",
+     1.6,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.95,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.9,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.05,
+     "pasport"
+    ],
+    [
+     "plocha",
+     3.05,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Březinova",
+   "lat": 49.209168270600365,
+   "lon": 15.889322055577418,
+   "bearing": -82.3068507993281,
+   "span": {
+    "left": 8.67,
+    "right": 12.03
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.2,
+     "pasport"
+    ],
+    [
+     "zelen",
+     1.6,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.95,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.9,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.05,
+     "pasport"
+    ],
+    [
+     "plocha",
+     3.05,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-70",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "Dukovanská",
+   "lat": 49.22227904408636,
+   "lon": 15.891270006042628,
+   "bearing": 95.14979407926843,
+   "span": {
+    "left": 12.92,
+    "right": 8.28
+   },
+   "segments": [
+    [
+     "zelen",
+     8.15,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.3,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "parkovani",
+     4.75,
+     "pasport"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Dukovanská",
+   "lat": 49.22227904408636,
+   "lon": 15.891270006042628,
+   "bearing": 95.14979407926843,
+   "span": {
+    "left": 12.92,
+    "right": 8.58
+   },
+   "segments": [
+    [
+     "zelen",
+     8.15,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.3,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "parkovani",
+     4.75,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.3,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-71",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "Manž. Curieových",
+   "lat": 49.226173920477216,
+   "lon": 15.893363968562364,
+   "bearing": 104.56997601905141,
+   "span": {
+    "left": 4.72,
+    "right": 22
+   },
+   "segments": [
+    [
+     "plocha",
+     0.65,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.85,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.5,
+     "dtm"
+    ],
+    [
+     "plocha",
+     16.27,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Manž. Curieových",
+   "lat": 49.226173920477216,
+   "lon": 15.893363968562364,
+   "bearing": 104.56997601905141,
+   "span": {
+    "left": 4.72,
+    "right": 22
+   },
+   "segments": [
+    [
+     "plocha",
+     0.65,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.85,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.5,
+     "dtm"
+    ],
+    [
+     "plocha",
+     16.27,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-72",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "U Obrázku",
+   "lat": 49.2258088833536,
+   "lon": 15.898972002338573,
+   "bearing": 89.24479768290766,
+   "span": {
+    "left": 6.92,
+    "right": 15.08
+   },
+   "segments": [
+    [
+     "zelen",
+     3.05,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.75,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.75,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.9,
+     "dtm"
+    ],
+    [
+     "chodnik_kola",
+     2.1,
+     "pasport"
+    ],
+    [
+     "zelen",
+     6.45,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "U Obrázku",
+   "lat": 49.2258088833536,
+   "lon": 15.898972002338573,
+   "bearing": 89.24479768290766,
+   "span": {
+    "left": 6.92,
+    "right": 15.08
+   },
+   "segments": [
+    [
+     "zelen",
+     3.05,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.75,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.75,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.9,
+     "dtm"
+    ],
+    [
+     "chodnik_kola",
+     2.1,
+     "pasport"
+    ],
+    [
+     "zelen",
+     6.45,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-73",
+  "place": "trebic",
+  "highway": "residential",
+  "O": {
+   "name": "Heliadova",
+   "lat": 49.21174599735209,
+   "lon": 15.880906029297451,
+   "bearing": 7.824811368438584,
+   "span": {
+    "left": 22.28,
+    "right": 7.53
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.25,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     2.45,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "zelen",
+     8,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.9,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.7,
+     "pasport"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Heliadova",
+   "lat": 49.21174599735209,
+   "lon": 15.880906029297451,
+   "bearing": 7.824811368438584,
+   "span": {
+    "left": 22.28,
+    "right": 7.53
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.25,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     2.45,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "zelen",
+     8,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.9,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.7,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-74",
+  "place": "trebic",
+  "highway": "service",
+  "O": {
+   "name": "Jihlava - Třebíč - Raabs",
+   "lat": 49.19416699994654,
+   "lon": 15.87837013746626,
+   "bearing": -179.96613183744418,
+   "span": {
+    "left": 4.37,
+    "right": 4.38
+   },
+   "segments": [
+    [
+     "zelen",
+     3.3,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     3.75,
+     "pasport"
+    ],
+    [
+     "zelen",
+     1.7,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Jihlava - Třebíč - Raabs",
+   "lat": 49.19416699994654,
+   "lon": 15.87837013746626,
+   "bearing": -179.96613183744418,
+   "span": {
+    "left": 4.37,
+    "right": 4.38
+   },
+   "segments": [
+    [
+     "zelen",
+     3.3,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     3.75,
+     "pasport"
+    ],
+    [
+     "zelen",
+     1.7,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-75",
+  "place": "trebic",
+  "highway": "service",
+  "O": {
+   "name": "Průmyslová",
+   "lat": 49.211116636841226,
+   "lon": 15.90185050289114,
+   "bearing": 144.1591396070141,
+   "span": {
+    "left": 22,
+    "right": 17.68
+   },
+   "segments": [
+    [
+     "pruh",
+     3.69,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.69,
+     "osm"
+    ],
+    [
+     "chodnik",
+     15.35,
+     "dtm"
+    ],
+    [
+     "zelen",
+     4.05,
+     "odhad"
+    ],
+    [
+     "plocha",
+     12.9,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Průmyslová",
+   "lat": 49.211116636841226,
+   "lon": 15.90185050289114,
+   "bearing": 144.1591396070141,
+   "span": {
+    "left": 22,
+    "right": 17.68
+   },
+   "segments": [
+    [
+     "pruh",
+     3.69,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.69,
+     "osm"
+    ],
+    [
+     "chodnik",
+     15.35,
+     "dtm"
+    ],
+    [
+     "zelen",
+     4.05,
+     "odhad"
+    ],
+    [
+     "plocha",
+     12.9,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-76",
+  "place": "trebic",
+  "highway": "service",
+  "O": {
+   "name": "ZK Poušov I.",
+   "lat": 49.218985741637425,
+   "lon": 15.85110879341791,
+   "bearing": 117.73477970688994,
+   "segments": [
+    [
+     "pruh",
+     3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "ZK Poušov I.",
+   "lat": 49.218985741637425,
+   "lon": 15.85110879341791,
+   "bearing": 117.73477970688994,
+   "segments": [
+    [
+     "pruh",
+     3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "trebic-old-77",
+  "place": "trebic",
+  "highway": "service",
+  "O": {
+   "name": "Na Nivkách",
+   "lat": 49.22809770521104,
+   "lon": 15.879204538591248,
+   "bearing": -44.179467722007196,
+   "span": {
+    "left": 4.17,
+    "right": 8.38
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.4,
+     "pasport"
+    ],
+    [
+     "obsluzna",
+     7.1,
+     "pasport"
+    ],
+    [
+     "plocha",
+     2.15,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     1.9,
+     "pasport"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Na Nivkách",
+   "lat": 49.22809770521104,
+   "lon": 15.879204538591248,
+   "bearing": -44.179467722007196,
+   "span": {
+    "left": 4.17,
+    "right": 8.38
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.4,
+     "pasport"
+    ],
+    [
+     "obsluzna",
+     7.1,
+     "pasport"
+    ],
+    [
+     "plocha",
+     2.15,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     1.9,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-1",
+  "place": "karvina",
+  "highway": "primary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-2",
+  "place": "karvina",
+  "highway": "primary",
+  "O": {
+   "name": null,
+   "lat": 49.82880902690962,
+   "lon": 18.56791336117685,
+   "bearing": -6.544646989615799,
+   "segments": [
+    [
+     "pruh",
+     3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.82880902690962,
+   "lon": 18.56791336117685,
+   "bearing": -6.544646989615799,
+   "segments": [
+    [
+     "pruh",
+     3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-3",
+  "place": "karvina",
+  "highway": "primary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-4",
+  "place": "karvina",
+  "highway": "primary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-5",
+  "place": "karvina",
+  "highway": "primary",
+  "O": {
+   "name": "Bohumínská",
+   "lat": 49.86872204062375,
+   "lon": 18.511828073263086,
+   "bearing": -40.51467021556891,
+   "span": {
+    "left": 17.12,
+    "right": 13.08
+   },
+   "segments": [
+    [
+     "zelen",
+     5.6,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.7,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     1.95,
+     "pasport"
+    ],
+    [
+     "pruh",
+     2.75,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.75,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.9,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.12,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.12,
+     "osm"
+    ],
+    [
+     "zelen",
+     5.7,
+     "dtm"
+    ],
+    [
+     "zelen",
+     0.6,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Bohumínská",
+   "lat": 49.86872204062375,
+   "lon": 18.511828073263086,
+   "bearing": -40.51467021556891,
+   "span": {
+    "left": 17.12,
+    "right": 13.08
+   },
+   "segments": [
+    [
+     "zelen",
+     5.6,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.7,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     1.95,
+     "pasport"
+    ],
+    [
+     "pruh",
+     2.75,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.75,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.9,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.12,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.12,
+     "osm"
+    ],
+    [
+     "zelen",
+     5.7,
+     "dtm"
+    ],
+    [
+     "zelen",
+     0.6,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-6",
+  "place": "karvina",
+  "highway": "primary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-7",
+  "place": "karvina",
+  "highway": "primary",
+  "O": {
+   "name": "Ostravská",
+   "lat": 49.833798603309226,
+   "lon": 18.47332813172054,
+   "bearing": 105.08267192420537,
+   "span": {
+    "left": 22,
+    "right": 20.78
+   },
+   "segments": [
+    [
+     "chodnik",
+     8.53,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     2.95,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "chodnik",
+     6.55,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.2,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.2,
+     "osm"
+    ],
+    [
+     "zelen",
+     5.35,
+     "dtm"
+    ],
+    [
+     "zelen",
+     3,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Ostravská",
+   "lat": 49.833798603309226,
+   "lon": 18.47332813172054,
+   "bearing": 105.08267192420537,
+   "span": {
+    "left": 22,
+    "right": 20.78
+   },
+   "segments": [
+    [
+     "chodnik",
+     8.53,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     2.95,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "chodnik",
+     6.55,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.2,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.2,
+     "osm"
+    ],
+    [
+     "zelen",
+     5.35,
+     "dtm"
+    ],
+    [
+     "zelen",
+     3,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-8",
+  "place": "karvina",
+  "highway": "primary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-9",
+  "place": "karvina",
+  "highway": "primary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-10",
+  "place": "karvina",
+  "highway": "primary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-11",
+  "place": "karvina",
+  "highway": "primary",
+  "O": {
+   "name": "Bohumínská",
+   "lat": 49.87115898904939,
+   "lon": 18.508156986285634,
+   "bearing": -50.902069852626596,
+   "span": {
+    "left": 9.77,
+    "right": 11.03
+   },
+   "segments": [
+    [
+     "zelen",
+     4.55,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.9,
+     "odhad"
+    ],
+    [
+     "zelen",
+     5.4,
+     "dtm"
+    ],
+    [
+     "zelen",
+     0.95,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Bohumínská",
+   "lat": 49.87115898904939,
+   "lon": 18.508156986285634,
+   "bearing": -50.902069852626596,
+   "span": {
+    "left": 9.77,
+    "right": 11.03
+   },
+   "segments": [
+    [
+     "zelen",
+     4.55,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.9,
+     "odhad"
+    ],
+    [
+     "zelen",
+     5.4,
+     "dtm"
+    ],
+    [
+     "zelen",
+     0.95,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-12",
+  "place": "karvina",
+  "highway": "primary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-13",
+  "place": "karvina",
+  "highway": "primary",
+  "O": {
+   "name": "Ostravská",
+   "lat": 49.85311417597372,
+   "lon": 18.531802796366527,
+   "bearing": 53.088858021779274,
+   "span": {
+    "left": 22,
+    "right": 22
+   },
+   "segments": [
+    [
+     "pruh",
+     2.79,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.79,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.79,
+     "osm"
+    ],
+    [
+     "delici",
+     5.35,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.05,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.05,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.05,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.05,
+     "osm"
+    ],
+    [
+     "chodnik",
+     14.07,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Ostravská",
+   "lat": 49.85311417597372,
+   "lon": 18.531802796366527,
+   "bearing": 53.088858021779274,
+   "span": {
+    "left": 22,
+    "right": 22
+   },
+   "segments": [
+    [
+     "pruh",
+     2.79,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.79,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.79,
+     "osm"
+    ],
+    [
+     "delici",
+     5.35,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.05,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.05,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.05,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.05,
+     "osm"
+    ],
+    [
+     "chodnik",
+     14.07,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-14",
+  "place": "karvina",
+  "highway": "primary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-15",
+  "place": "karvina",
+  "highway": "secondary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-16",
+  "place": "karvina",
+  "highway": "secondary",
+  "O": {
+   "name": "Rudé armády",
+   "lat": 49.86697783240278,
+   "lon": 18.54966764379163,
+   "bearing": 177.5737381047236,
+   "span": {
+    "left": 16.62,
+    "right": 17.13
+   },
+   "segments": [
+    [
+     "chodnik",
+     4.95,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     3,
+     "pasport"
+    ],
+    [
+     "zelen",
+     1.95,
+     "pasport"
+    ],
+    [
+     "krajnice",
+     1.6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "delici",
+     3.8,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.55,
+     "odhad"
+    ],
+    [
+     "zelen",
+     5.9,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     3,
+     "pasport"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Rudé armády",
+   "lat": 49.86697783240278,
+   "lon": 18.54966764379163,
+   "bearing": 177.5737381047236,
+   "span": {
+    "left": 16.62,
+    "right": 17.13
+   },
+   "segments": [
+    [
+     "chodnik",
+     4.95,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     3,
+     "pasport"
+    ],
+    [
+     "zelen",
+     1.95,
+     "pasport"
+    ],
+    [
+     "krajnice",
+     1.6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "delici",
+     3.8,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.55,
+     "odhad"
+    ],
+    [
+     "zelen",
+     5.9,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     3,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-17",
+  "place": "karvina",
+  "highway": "secondary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-18",
+  "place": "karvina",
+  "highway": "secondary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-19",
+  "place": "karvina",
+  "highway": "secondary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-20",
+  "place": "karvina",
+  "highway": "secondary",
+  "O": {
+   "name": "Borovského",
+   "lat": 49.85260000959773,
+   "lon": 18.580695007911757,
+   "bearing": 118.1504401419055,
+   "span": {
+    "left": 5.52,
+    "right": 6.05
+   },
+   "segments": [
+    [
+     "zelen",
+     0.95,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.65,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.22,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.22,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.6,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.92,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Borovského",
+   "lat": 49.85260000959773,
+   "lon": 18.580695007911757,
+   "bearing": 118.1504401419055,
+   "span": {
+    "left": 5.52,
+    "right": 6.05
+   },
+   "segments": [
+    [
+     "zelen",
+     0.95,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.65,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.22,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.22,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.6,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.92,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-21",
+  "place": "karvina",
+  "highway": "secondary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-22",
+  "place": "karvina",
+  "highway": "secondary",
+  "O": {
+   "name": null,
+   "lat": 49.81977304848294,
+   "lon": 18.471315182528972,
+   "bearing": -22.241018553619444,
+   "span": {
+    "left": 12.77,
+    "right": 21.48
+   },
+   "segments": [
+    [
+     "pruh",
+     2.85,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.85,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.85,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.85,
+     "osm"
+    ],
+    [
+     "delici",
+     2.6,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.86,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.86,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.86,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.86,
+     "osm"
+    ],
+    [
+     "zelen",
+     7.65,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.15,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.81977304848294,
+   "lon": 18.471315182528972,
+   "bearing": -22.241018553619444,
+   "span": {
+    "left": 12.77,
+    "right": 21.48
+   },
+   "segments": [
+    [
+     "pruh",
+     2.85,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.85,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.85,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.85,
+     "osm"
+    ],
+    [
+     "delici",
+     2.6,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.86,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.86,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.86,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.86,
+     "osm"
+    ],
+    [
+     "zelen",
+     7.65,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.15,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-23",
+  "place": "karvina",
+  "highway": "secondary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-24",
+  "place": "karvina",
+  "highway": "secondary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-25",
+  "place": "karvina",
+  "highway": "secondary",
+  "O": {
+   "name": "Borovského",
+   "lat": 49.854054628938,
+   "lon": 18.56628004272182,
+   "bearing": 85.72612310075901,
+   "span": {
+    "left": 2.77,
+    "right": 14.78
+   },
+   "segments": [
+    [
+     "pruh",
+     3.7,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.7,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.1,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     3,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.55,
+     "pasport"
+    ],
+    [
+     "cyklostezka",
+     1.75,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.75,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Borovského",
+   "lat": 49.854054628938,
+   "lon": 18.56628004272182,
+   "bearing": 85.72612310075901,
+   "span": {
+    "left": 2.77,
+    "right": 14.78
+   },
+   "segments": [
+    [
+     "pruh",
+     3.7,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.7,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.1,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     3,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.55,
+     "pasport"
+    ],
+    [
+     "cyklostezka",
+     1.75,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.75,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-26",
+  "place": "karvina",
+  "highway": "secondary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-27",
+  "place": "karvina",
+  "highway": "secondary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-28",
+  "place": "karvina",
+  "highway": "secondary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-29",
+  "place": "karvina",
+  "highway": "tertiary",
+  "O": {
+   "name": "tř. Těreškovové",
+   "lat": 49.8573112474535,
+   "lon": 18.55616449942374,
+   "bearing": -37.35804297435518,
+   "span": {
+    "left": 14.97,
+    "right": 14.83
+   },
+   "segments": [
+    [
+     "parkovani",
+     6,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     3.05,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     1.32,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.32,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     10.1,
+     "pasport"
+    ]
+   ]
+  },
+  "N": {
+   "name": "tř. Těreškovové",
+   "lat": 49.8573112474535,
+   "lon": 18.55616449942374,
+   "bearing": -37.35804297435518,
+   "span": {
+    "left": 14.97,
+    "right": 14.83
+   },
+   "segments": [
+    [
+     "parkovani",
+     6,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     3.05,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     1.32,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.32,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     10.1,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-30",
+  "place": "karvina",
+  "highway": "tertiary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-31",
+  "place": "karvina",
+  "highway": "tertiary",
+  "O": {
+   "name": "Žižkova",
+   "lat": 49.86441968797469,
+   "lon": 18.559325329675076,
+   "bearing": 55.56331399984017,
+   "span": {
+    "left": 31.38,
+    "right": 4.83
+   },
+   "segments": [
+    [
+     "zelen",
+     1.75,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     3,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     3.08,
+     "osm"
+    ],
+    [
+     "cyklostezka",
+     3.08,
+     "osm"
+    ],
+    [
+     "zelen",
+     16.4,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.45,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.45,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Žižkova",
+   "lat": 49.86441968797469,
+   "lon": 18.559325329675076,
+   "bearing": 55.56331399984017,
+   "span": {
+    "left": 31.38,
+    "right": 4.78
+   },
+   "segments": [
+    [
+     "zelen",
+     1.75,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     3,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     3.08,
+     "osm"
+    ],
+    [
+     "cyklostezka",
+     3.08,
+     "osm"
+    ],
+    [
+     "zelen",
+     16.4,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.42,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.42,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-32",
+  "place": "karvina",
+  "highway": "tertiary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-33",
+  "place": "karvina",
+  "highway": "tertiary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-34",
+  "place": "karvina",
+  "highway": "tertiary",
+  "O": {
+   "name": "tř. Osvobození",
+   "lat": 49.8689189415621,
+   "lon": 18.536220681733575,
+   "bearing": 164.20027370486554,
+   "span": {
+    "left": 20.28,
+    "right": 14.04
+   },
+   "segments": [
+    [
+     "plocha",
+     2,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.25,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     4.15,
+     "pasport"
+    ],
+    [
+     "zelen",
+     4.2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.9,
+     "pasport"
+    ],
+    [
+     "cyklopruh",
+     1.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.1,
+     "odhad"
+    ],
+    [
+     "cyklopruh",
+     1.5,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.35,
+     "pasport"
+    ],
+    [
+     "zelen",
+     1.24,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     3,
+     "pasport"
+    ],
+    [
+     "zelen",
+     2.13,
+     "pasport"
+    ]
+   ]
+  },
+  "N": {
+   "name": "tř. Osvobození",
+   "lat": 49.8689189415621,
+   "lon": 18.536220681733575,
+   "bearing": 164.20027370486554,
+   "span": {
+    "left": 20.28,
+    "right": 14.04
+   },
+   "segments": [
+    [
+     "plocha",
+     2,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.25,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     4.15,
+     "pasport"
+    ],
+    [
+     "zelen",
+     4.2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.9,
+     "pasport"
+    ],
+    [
+     "cyklopruh",
+     1.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.1,
+     "odhad"
+    ],
+    [
+     "cyklopruh",
+     1.5,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.35,
+     "pasport"
+    ],
+    [
+     "zelen",
+     1.24,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     3,
+     "pasport"
+    ],
+    [
+     "zelen",
+     2.13,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-35",
+  "place": "karvina",
+  "highway": "tertiary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-36",
+  "place": "karvina",
+  "highway": "tertiary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-37",
+  "place": "karvina",
+  "highway": "tertiary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-38",
+  "place": "karvina",
+  "highway": "tertiary",
+  "O": {
+   "name": "Stonavská",
+   "lat": 49.83168283330182,
+   "lon": 18.506489778602983,
+   "bearing": -49.223181245907156,
+   "span": {
+    "left": 4.22,
+    "right": 16.03
+   },
+   "segments": [
+    [
+     "pruh",
+     4.15,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.15,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.1,
+     "dtm"
+    ],
+    [
+     "zelen",
+     7.45,
+     "dtm"
+    ],
+    [
+     "nezname",
+     1.4,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Stonavská",
+   "lat": 49.83168283330182,
+   "lon": 18.506489778602983,
+   "bearing": -49.223181245907156,
+   "span": {
+    "left": 4.22,
+    "right": 16.03
+   },
+   "segments": [
+    [
+     "pruh",
+     4.15,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.15,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.1,
+     "dtm"
+    ],
+    [
+     "zelen",
+     7.45,
+     "dtm"
+    ],
+    [
+     "nezname",
+     1.4,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-39",
+  "place": "karvina",
+  "highway": "tertiary",
+  "O": {
+   "name": "Stonavská",
+   "lat": 49.83465493603827,
+   "lon": 18.503903608647658,
+   "bearing": -14.1276343941842,
+   "span": {
+    "left": 4.67,
+    "right": 5.58
+   },
+   "segments": [
+    [
+     "krajnice",
+     1.12,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.12,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Stonavská",
+   "lat": 49.83465493603827,
+   "lon": 18.503903608647658,
+   "bearing": -14.1276343941842,
+   "span": {
+    "left": 4.67,
+    "right": 5.58
+   },
+   "segments": [
+    [
+     "krajnice",
+     1.12,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.12,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-40",
+  "place": "karvina",
+  "highway": "tertiary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-41",
+  "place": "karvina",
+  "highway": "tertiary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-42",
+  "place": "karvina",
+  "highway": "tertiary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-43",
+  "place": "karvina",
+  "highway": "tertiary",
+  "O": {
+   "name": null,
+   "lat": 49.851369026097956,
+   "lon": 18.47678903989328,
+   "bearing": 134.77704219157837,
+   "span": {
+    "left": 14.72,
+    "right": 8.38
+   },
+   "segments": [
+    [
+     "zelen",
+     7.85,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     2.37,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.37,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.5,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.851369026097956,
+   "lon": 18.47678903989328,
+   "bearing": 134.77704219157837,
+   "span": {
+    "left": 14.72,
+    "right": 8.38
+   },
+   "segments": [
+    [
+     "zelen",
+     7.85,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     2.37,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.37,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.5,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-44",
+  "place": "karvina",
+  "highway": "tertiary",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-45",
+  "place": "karvina",
+  "highway": "unclassified",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-46",
+  "place": "karvina",
+  "highway": "unclassified",
+  "O": {
+   "name": "Olšiny",
+   "lat": 49.87205898168729,
+   "lon": 18.520853973802236,
+   "bearing": 132.86818688398196,
+   "span": {
+    "left": 2.23,
+    "right": 22
+   },
+   "segments": [
+    [
+     "zelen",
+     1.1,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     19.13,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Olšiny",
+   "lat": 49.87205898168729,
+   "lon": 18.520853973802236,
+   "bearing": 132.86818688398196,
+   "span": {
+    "left": 2.23,
+    "right": 2.58
+   },
+   "segments": [
+    [
+     "zelen",
+     1.1,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.7,
+     "osm"
+    ],
+    [
+     "zelen",
+     1,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-47",
+  "place": "karvina",
+  "highway": "unclassified",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-48",
+  "place": "karvina",
+  "highway": "unclassified",
+  "O": {
+   "name": "Paseky",
+   "lat": 49.79942099398688,
+   "lon": 18.569417206481855,
+   "bearing": -177.43399625726744,
+   "segments": [
+    [
+     "pruh",
+     3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Paseky",
+   "lat": 49.79942099398688,
+   "lon": 18.569417206481855,
+   "bearing": -177.43399625726744,
+   "segments": [
+    [
+     "pruh",
+     3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-49",
+  "place": "karvina",
+  "highway": "unclassified",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-50",
+  "place": "karvina",
+  "highway": "unclassified",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-51",
+  "place": "karvina",
+  "highway": "residential",
+  "O": {
+   "name": "Karola Śliwky",
+   "lat": 49.854939075331025,
+   "lon": 18.544824198969188,
+   "bearing": 149.74491012218354,
+   "span": {
+    "left": 8.32,
+    "right": 14.38
+   },
+   "segments": [
+    [
+     "chodnik",
+     3.5,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.9,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     0.35,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.4,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "chodnik",
+     6.65,
+     "pasport"
+    ],
+    [
+     "zelen",
+     4.75,
+     "pasport"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Karola Śliwky",
+   "lat": 49.854939075331025,
+   "lon": 18.544824198969188,
+   "bearing": 149.74491012218354,
+   "span": {
+    "left": 8.32,
+    "right": 14.38
+   },
+   "segments": [
+    [
+     "chodnik",
+     3.5,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.9,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     0.35,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.02,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.02,
+     "osm"
+    ],
+    [
+     "chodnik",
+     6.65,
+     "pasport"
+    ],
+    [
+     "zelen",
+     4.75,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-52",
+  "place": "karvina",
+  "highway": "residential",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-53",
+  "place": "karvina",
+  "highway": "residential",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-54",
+  "place": "karvina",
+  "highway": "residential",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-55",
+  "place": "karvina",
+  "highway": "residential",
+  "O": {
+   "name": "Božkova",
+   "lat": 49.845828141982096,
+   "lon": 18.556266153267078,
+   "bearing": -54.97736853774345,
+   "span": {
+    "left": 16.02,
+    "right": 5.73
+   },
+   "segments": [
+    [
+     "parkovani",
+     12.2,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.77,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.77,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2,
+     "pasport"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Božkova",
+   "lat": 49.845828141982096,
+   "lon": 18.556266153267078,
+   "bearing": -54.97736853774345,
+   "span": {
+    "left": 16.02,
+    "right": 5.73
+   },
+   "segments": [
+    [
+     "parkovani",
+     12.25,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.75,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.75,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-56",
+  "place": "karvina",
+  "highway": "residential",
+  "O": {
+   "name": "Březová",
+   "lat": 49.8490671472609,
+   "lon": 18.552397831599194,
+   "bearing": -126.5880604285902,
+   "span": {
+    "left": 12.37,
+    "right": 3.83
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.1,
+     "pasport"
+    ],
+    [
+     "zelen",
+     1.5,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     5.5,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     2.45,
+     "pasport"
+    ],
+    [
+     "pruh",
+     2.5,
+     "osm"
+    ],
+    [
+     "chodnik",
+     3.15,
+     "pasport"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Březová",
+   "lat": 49.8490671472609,
+   "lon": 18.552397831599194,
+   "bearing": -126.5880604285902,
+   "span": {
+    "left": 12.37,
+    "right": 3.83
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.1,
+     "pasport"
+    ],
+    [
+     "zelen",
+     1.5,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     5.5,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     2.45,
+     "pasport"
+    ],
+    [
+     "pruh",
+     2.5,
+     "osm"
+    ],
+    [
+     "chodnik",
+     3.15,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-57",
+  "place": "karvina",
+  "highway": "residential",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-58",
+  "place": "karvina",
+  "highway": "residential",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-59",
+  "place": "karvina",
+  "highway": "residential",
+  "O": {
+   "name": "Víta Nejedlého",
+   "lat": 49.85145488699628,
+   "lon": 18.55549877324805,
+   "bearing": -37.51498890838626,
+   "span": {
+    "left": 4.52,
+    "right": 10.88
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.3,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     3,
+     "dtm"
+    ],
+    [
+     "zelen",
+     5.1,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Víta Nejedlého",
+   "lat": 49.85145488699628,
+   "lon": 18.55549877324805,
+   "bearing": -37.51498890838626,
+   "span": {
+    "left": 4.52,
+    "right": 10.88
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.3,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     3,
+     "dtm"
+    ],
+    [
+     "zelen",
+     5.1,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-60",
+  "place": "karvina",
+  "highway": "residential",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-61",
+  "place": "karvina",
+  "highway": "residential",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-62",
+  "place": "karvina",
+  "highway": "residential",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-63",
+  "place": "karvina",
+  "highway": "residential",
+  "O": {
+   "name": "Sportovní",
+   "lat": 49.87343592762394,
+   "lon": 18.540971686191305,
+   "bearing": 160.43128353874368,
+   "segments": [
+    [
+     "pruh",
+     3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Sportovní",
+   "lat": 49.87343592762394,
+   "lon": 18.540971686191305,
+   "bearing": 160.43128353874368,
+   "segments": [
+    [
+     "pruh",
+     3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-64",
+  "place": "karvina",
+  "highway": "residential",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-65",
+  "place": "karvina",
+  "highway": "residential",
+  "O": {
+   "name": "Sokolovská",
+   "lat": 49.858520513118805,
+   "lon": 18.538868234680372,
+   "bearing": 72.62845566329835,
+   "span": {
+    "left": 12.72,
+    "right": 24.83
+   },
+   "segments": [
+    [
+     "zelen",
+     2.09,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     3,
+     "pasport"
+    ],
+    [
+     "zelen",
+     1.01,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     2.17,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     1.88,
+     "osm"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "stromorad",
+     1.84,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.11,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     3,
+     "pasport"
+    ],
+    [
+     "zelen",
+     7.81,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     3,
+     "pasport"
+    ],
+    [
+     "zelen",
+     3.64,
+     "pasport"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Sokolovská",
+   "lat": 49.858520513118805,
+   "lon": 18.538868234680372,
+   "bearing": 72.62845566329835,
+   "span": {
+    "left": 12.72,
+    "right": 24.83
+   },
+   "segments": [
+    [
+     "zelen",
+     2.09,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     3,
+     "pasport"
+    ],
+    [
+     "zelen",
+     1.01,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     2.17,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     1.88,
+     "osm"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "stromorad",
+     1.84,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.11,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     3,
+     "pasport"
+    ],
+    [
+     "zelen",
+     7.81,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     3,
+     "pasport"
+    ],
+    [
+     "zelen",
+     3.64,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-66",
+  "place": "karvina",
+  "highway": "residential",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-67",
+  "place": "karvina",
+  "highway": "residential",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-68",
+  "place": "karvina",
+  "highway": "residential",
+  "O": {
+   "name": "Sovinecká",
+   "lat": 49.851237793804074,
+   "lon": 18.501408724369234,
+   "bearing": 130.94856612931954,
+   "span": {
+    "left": 1.07,
+    "right": 3.68
+   },
+   "segments": [
+    [
+     "pruh",
+     4.75,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Sovinecká",
+   "lat": 49.851237793804074,
+   "lon": 18.501408724369234,
+   "bearing": 130.94856612931954,
+   "span": {
+    "left": 1.07,
+    "right": 3.68
+   },
+   "segments": [
+    [
+     "pruh",
+     4.75,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-69",
+  "place": "karvina",
+  "highway": "residential",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-70",
+  "place": "karvina",
+  "highway": "residential",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-71",
+  "place": "karvina",
+  "highway": "residential",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-72",
+  "place": "karvina",
+  "highway": "residential",
+  "O": {
+   "name": "Havlíčkova",
+   "lat": 49.830224227959256,
+   "lon": 18.477719773252506,
+   "bearing": -122.86062368103282,
+   "span": {
+    "left": 8.42,
+    "right": 2.68
+   },
+   "segments": [
+    [
+     "zelen",
+     5.55,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.77,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.77,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Havlíčkova",
+   "lat": 49.830224227959256,
+   "lon": 18.477719773252506,
+   "bearing": -122.86062368103282,
+   "span": {
+    "left": 8.42,
+    "right": 2.68
+   },
+   "segments": [
+    [
+     "zelen",
+     5.65,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.72,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.72,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-73",
+  "place": "karvina",
+  "highway": "residential",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-74",
+  "place": "karvina",
+  "highway": "residential",
+  "O": {
+   "name": "Akátová",
+   "lat": 49.84955098308108,
+   "lon": 18.546864024183478,
+   "bearing": -132.8574604599222,
+   "span": {
+    "left": 3.87,
+    "right": 2.23
+   },
+   "segments": [
+    [
+     "chodnik",
+     0.75,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.68,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.68,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Akátová",
+   "lat": 49.84955098308108,
+   "lon": 18.546864024183478,
+   "bearing": -132.8574604599222,
+   "span": {
+    "left": 3.87,
+    "right": 2.23
+   },
+   "segments": [
+    [
+     "chodnik",
+     0.75,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.68,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.68,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-75",
+  "place": "karvina",
+  "highway": "residential",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-76",
+  "place": "karvina",
+  "highway": "residential",
+  "O": {
+   "name": "Úzká",
+   "lat": 49.86359002035271,
+   "lon": 18.582287040066888,
+   "bearing": 141.94815665696535,
+   "segments": [
+    [
+     "pruh",
+     3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Úzká",
+   "lat": 49.86359002035271,
+   "lon": 18.582287040066888,
+   "bearing": 141.94815665696535,
+   "segments": [
+    [
+     "pruh",
+     3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-77",
+  "place": "karvina",
+  "highway": "residential",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-78",
+  "place": "karvina",
+  "highway": "residential",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-79",
+  "place": "karvina",
+  "highway": "living_street",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-80",
+  "place": "karvina",
+  "highway": "living_street",
+  "O": {
+   "name": "Masarykovo nám.",
+   "lat": 49.85487940925573,
+   "lon": 18.540466039780608,
+   "bearing": -54.07183878654077,
+   "span": {
+    "left": 5.27,
+    "right": 5.92
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.45,
+     "pasport"
+    ],
+    [
+     "pruh",
+     6.9,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.4,
+     "pasport"
+    ],
+    [
+     "zelen",
+     1.45,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Masarykovo nám.",
+   "lat": 49.85487940925573,
+   "lon": 18.540466039780608,
+   "bearing": -54.07183878654077,
+   "span": {
+    "left": 5.27,
+    "right": 5.92
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.45,
+     "pasport"
+    ],
+    [
+     "pruh",
+     6.9,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.4,
+     "pasport"
+    ],
+    [
+     "zelen",
+     1.45,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-81",
+  "place": "karvina",
+  "highway": "living_street",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-82",
+  "place": "karvina",
+  "highway": "pedestrian",
+  "O": {
+   "name": "Slovenská",
+   "lat": 49.86657525782022,
+   "lon": 18.55491993045308,
+   "bearing": -99.92877621439746,
+   "span": {
+    "left": 2.92,
+    "right": 1.98
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.45,
+     "osm"
+    ],
+    [
+     "cyklostezka",
+     2.45,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Slovenská",
+   "lat": 49.86657525782022,
+   "lon": 18.55491993045308,
+   "bearing": -99.92877621439746,
+   "span": {
+    "left": 2.92,
+    "right": 1.98
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.45,
+     "osm"
+    ],
+    [
+     "cyklostezka",
+     2.45,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-83",
+  "place": "karvina",
+  "highway": "service",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-84",
+  "place": "karvina",
+  "highway": "service",
+  "O": false,
+  "N": false
+ },
+ {
+  "id": "karvina-old-85",
+  "place": "karvina",
+  "highway": "service",
+  "O": {
+   "name": "U Olše",
+   "lat": 49.84068200509816,
+   "lon": 18.5389630148631,
+   "bearing": -27.847504997949226,
+   "span": {
+    "left": 1.57,
+    "right": 22
+   },
+   "segments": [
+    [
+     "zelen",
+     0.55,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     23.02,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "U Olše",
+   "lat": 49.84068200509816,
+   "lon": 18.5389630148631,
+   "bearing": -27.847504997949226,
+   "span": {
+    "left": 1.57,
+    "right": 1.53
+   },
+   "segments": [
+    [
+     "zelen",
+     0.55,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     2.55,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "karvina-old-86",
+  "place": "karvina",
+  "highway": "service",
+  "O": false,
+  "N": false
+ }
+]

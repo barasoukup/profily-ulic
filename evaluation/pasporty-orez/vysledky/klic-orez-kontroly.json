@@ -1,0 +1,92 @@
+{
+ "1": {
+  "id": "trebic-old-58",
+  "X": "O",
+  "Y": "N"
+ },
+ "2": {
+  "id": "trebic-old-50",
+  "X": "O",
+  "Y": "N"
+ },
+ "3": {
+  "id": "kurim-old-38",
+  "X": "N",
+  "Y": "O"
+ },
+ "4": {
+  "id": "trebic-old-30",
+  "X": "N",
+  "Y": "O"
+ },
+ "5": {
+  "id": "karvina-old-31",
+  "X": "O",
+  "Y": "N"
+ },
+ "6": {
+  "id": "karvina-old-46",
+  "X": "O",
+  "Y": "N"
+ },
+ "7": {
+  "id": "karvina-old-55",
+  "X": "O",
+  "Y": "N"
+ },
+ "8": {
+  "id": "trebic-old-70",
+  "X": "O",
+  "Y": "N"
+ },
+ "9": {
+  "id": "kurim-old-40",
+  "X": "O",
+  "Y": "N"
+ },
+ "10": {
+  "id": "karvina-old-72",
+  "X": "O",
+  "Y": "N"
+ },
+ "11": {
+  "id": "trebic-old-39",
+  "X": "N",
+  "Y": "O"
+ },
+ "12": {
+  "id": "kurim-old-30",
+  "X": "O",
+  "Y": "N"
+ },
+ "13": {
+  "id": "kurim-old-42",
+  "X": "N",
+  "Y": "O"
+ },
+ "14": {
+  "id": "karvina-old-85",
+  "X": "O",
+  "Y": "N"
+ },
+ "15": {
+  "id": "trebic-old-47",
+  "X": "O",
+  "Y": "N"
+ },
+ "16": {
+  "id": "karvina-old-51",
+  "X": "O",
+  "Y": "N"
+ },
+ "17": {
+  "id": "kurim-old-35",
+  "X": "O",
+  "Y": "N"
+ },
+ "18": {
+  "id": "trebic-old-59",
+  "X": "N",
+  "Y": "O"
+ }
+}

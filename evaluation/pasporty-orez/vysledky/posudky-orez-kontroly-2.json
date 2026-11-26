@@ -1,0 +1,20 @@
+{
+  "1": {"v": "Y", "proc": "štěrková cesta asi 4,5 m mezi stromy; X přidává vymyšlenou vozovku se stáním a krajnicemi přes zeleň"},
+  "2": {"v": "Y", "proc": "Y končí za chodníkem; X přidává za ním druhou vozovku se stáním přes nezpevněný pozemek, která tam není"},
+  "3": {"v": "X", "proc": "vozovka asi 7 m se zelení; Y přidává na straně A smyšlenou čtyřpruhovou vozovku se stáním přes zahrady a stromy"},
+  "4": {"v": "stejně", "proc": "složení shodné, rozdíl šířek do 0,1 m"},
+  "5": {"v": "stejně", "proc": "složení shodné, rozdíl šířek pruhů 3 cm"},
+  "6": {"v": "Y", "proc": "úzká silnička asi 3,5–4 m mezi trávou; X má absurdní pruh 19 m přes trávu a dům se stáním"},
+  "7": {"v": "stejně", "proc": "parkoviště, vozovka asi 7,5 m, chodník; rozdíly v cm"},
+  "8": {"v": "stejně", "proc": "liší se jen 0,3 m zeleně na konci"},
+  "9": {"v": "stejně", "proc": "obě mají vozovku asi 7 m a les jako plochu; rozdíl 0,2 m"},
+  "10": {"v": "nejde", "proc": "ulice zcela skrytá pod korunami, rozdíl 0,1 m nelze ověřit"},
+  "11": {"v": "Y", "proc": "vozovka na ortofotu asi 6 m (Y 5,9 m, X 5,0 m)"},
+  "12": {"v": "stejně", "proc": "složení shodné, rozdíl vozovky 0,3 m a tenký pás zeleně v rámci přesnosti"},
+  "13": {"v": "Y", "proc": "asfalt na řezu asi 4,5 m, Y 4,6 m blíž než X 4,0 m"},
+  "14": {"v": "Y", "proc": "pěšina asi 3 m v trávě; X ji protahuje na 23 m přes louku"},
+  "15": {"v": "Y", "proc": "vozovka asi 6 m (Y 5,9 m); X má 10 m vozovky se stáním a krajnicí, kde jsou předzahrádky a vjezdy"},
+  "16": {"v": "stejně", "proc": "složení shodné, rozdíl vozovky 0,1 m"},
+  "17": {"v": "stejně", "proc": "nezpevněná cesta, složení shodné, rozdíl 0,4 m v rozhraní pruh/zeleň nerozhodnutelný"},
+  "18": {"v": "X", "proc": "za chodníkem na straně B je tráva a domy; Y přidává smyšlenou druhou vozovku se stáním"}
+}

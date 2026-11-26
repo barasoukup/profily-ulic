@@ -25,6 +25,24 @@ test("Proužek plochy do 1,5 m u fasády za chodníkem je chodník (facadeStrip)
   assert.equal(out[1].code, 702);
 });
 
+test("Pasport: odhadnuté vozovky DTM kolem vozovky pasportu pod středem řezu (trimGuessedRoads), ?orez=0", async () => {
+  const { trimGuessedRoads } = await import("../pilot/public/towns/overlay.js");
+  const sq = (x0, x1) => ({ rings: [[[x0, -1], [x1, -1], [x1, 1], [x0, 1], [x0, -1]]] });
+  const own = { features: [{ attributes: { CTVUK_KOD: 701, PASPORT: 1 }, geometry: sq(-0.5, 0.5) }] };
+  const dtm = { region: "r", features: [
+    { attributes: { CTVUK_KOD: 701, ODHAD: 1 }, geometry: sq(-3, 3) },
+    { attributes: { CTVUK_KOD: 701, ODHAD: 1, ROAD_PARCEL: 1 }, geometry: sq(-5, 5) },
+    { attributes: { CTVUK_KOD: 701, ODHAD: 0 }, geometry: sq(5, 9) },
+    { attributes: { CTVUK_KOD: 401, ODHAD: 1 }, geometry: sq(-9, -5) },
+  ] };
+  const got = trimGuessedRoads(own, dtm, "-1,-1,1,1");
+  assert.equal(got.region, "r");
+  assert.deepEqual(got.features.map((f) => f.attributes.CTVUK_KOD), [401, 701, 401], "barva bez typu pryč, parcela silnice zeleň, změřená vozovka zůstává");
+  assert.equal(trimGuessedRoads(own, dtm, "4,-1,6,1"), dtm, "pasport nemá vozovku pod středem: beze změny");
+  globalThis.PROFILY_OPTS = { orez: "0" };
+  try { assert.equal(trimGuessedRoads(own, dtm, "-1,-1,1,1"), dtm); } finally { delete globalThis.PROFILY_OPTS; }
+});
+
 test("Paříž: soukromé bloky Plan de voirie jako domy (parisBlocks)", async () => {
   const F = await import("../pilot/public/towns/france.js");
   const sq = { geometry: { type: "Polygon", coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] } };

@@ -1,0 +1,2069 @@
+[
+ {
+  "id": "slapanice-1",
+  "place": "slapanice",
+  "highway": "residential",
+  "O": {
+   "name": "Hybešova",
+   "lat": 49.155966933028324,
+   "lon": 16.7272129914506,
+   "bearing": -22.94618170878323,
+   "span": {
+    "left": 7.87,
+    "right": 12.93
+   },
+   "segments": [
+    [
+     "zelen",
+     4.35,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.5,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.5,
+     "odhad"
+    ],
+    [
+     "plocha",
+     5.95,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Hybešova",
+   "lat": 49.155966933028324,
+   "lon": 16.7272129914506,
+   "bearing": -22.94618170878323,
+   "span": {
+    "left": 7.87,
+    "right": 12.93
+   },
+   "segments": [
+    [
+     "zelen",
+     4.35,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.32,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.32,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.85,
+     "odhad"
+    ],
+    [
+     "plocha",
+     5.95,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "slapanice-3",
+  "place": "slapanice",
+  "highway": "residential",
+  "O": {
+   "name": "Jiráskova",
+   "lat": 49.15944105164267,
+   "lon": 16.72672218719979,
+   "bearing": 157.26535738199578,
+   "span": {
+    "left": 7.92,
+    "right": 9.93
+   },
+   "segments": [
+    [
+     "plocha",
+     2.95,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.05,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.9,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.35,
+     "pasport"
+    ],
+    [
+     "plocha",
+     3.4,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Jiráskova",
+   "lat": 49.15944105164267,
+   "lon": 16.72672218719979,
+   "bearing": 157.26535738199578,
+   "span": {
+    "left": 7.92,
+    "right": 9.93
+   },
+   "segments": [
+    [
+     "plocha",
+     2.95,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.25,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.9,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.35,
+     "pasport"
+    ],
+    [
+     "plocha",
+     3.4,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "slapanice-5",
+  "place": "slapanice",
+  "highway": "residential",
+  "O": {
+   "name": "Vrchlického",
+   "lat": 49.15522936524795,
+   "lon": 16.72745422514283,
+   "bearing": -112.76088348773624,
+   "span": {
+    "left": 3.72,
+    "right": 8.78
+   },
+   "segments": [
+    [
+     "zelen",
+     1.2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.67,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.67,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.3,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.7,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1,
+     "pasport"
+    ],
+    [
+     "zelen",
+     1.2,
+     "odhad"
+    ],
+    [
+     "plocha",
+     1.75,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Vrchlického",
+   "lat": 49.15522936524795,
+   "lon": 16.72745422514283,
+   "bearing": -112.76088348773624,
+   "span": {
+    "left": 3.72,
+    "right": 8.78
+   },
+   "segments": [
+    [
+     "zelen",
+     1.95,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.6,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.3,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.7,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1,
+     "pasport"
+    ],
+    [
+     "zelen",
+     1.2,
+     "odhad"
+    ],
+    [
+     "plocha",
+     1.75,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "slapanice-8",
+  "place": "slapanice",
+  "highway": "unclassified",
+  "O": {
+   "name": "Pod Žurání",
+   "lat": 49.17440253632168,
+   "lon": 16.733316344342114,
+   "bearing": 42.97985338800426,
+   "span": {
+    "left": 22,
+    "right": 7.78
+   },
+   "segments": [
+    [
+     "plocha",
+     16.63,
+     "dtm"
+    ],
+    [
+     "zelen",
+     3.7,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.65,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.65,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.15,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Pod Žurání",
+   "lat": 49.17440253632168,
+   "lon": 16.733316344342114,
+   "bearing": 42.97985338800426,
+   "span": {
+    "left": 22,
+    "right": 7.78
+   },
+   "segments": [
+    [
+     "plocha",
+     16.63,
+     "dtm"
+    ],
+    [
+     "zelen",
+     3.7,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.27,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.27,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.9,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "slapanice-10",
+  "place": "slapanice",
+  "highway": "residential",
+  "O": {
+   "name": "Husova",
+   "lat": 49.15747990728289,
+   "lon": 16.726803064103585,
+   "bearing": -114.4753405359998,
+   "span": {
+    "left": 14.27,
+    "right": 9.78
+   },
+   "segments": [
+    [
+     "nezname",
+     6.9,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.7,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.75,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.65,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.65,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.7,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.65,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.45,
+     "pasport"
+    ],
+    [
+     "plocha",
+     3.6,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Husova",
+   "lat": 49.15747990728289,
+   "lon": 16.726803064103585,
+   "bearing": -114.4753405359998,
+   "span": {
+    "left": 14.27,
+    "right": 9.78
+   },
+   "segments": [
+    [
+     "nezname",
+     6.9,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.7,
+     "pasport"
+    ],
+    [
+     "zelen",
+     1.55,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.25,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.25,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.7,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.65,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.45,
+     "pasport"
+    ],
+    [
+     "plocha",
+     3.6,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "slapanice-14",
+  "place": "slapanice",
+  "highway": "residential",
+  "O": {
+   "name": "Seifertova",
+   "lat": 49.170966777823296,
+   "lon": 16.716642193357433,
+   "bearing": 60.19437263012873,
+   "span": {
+    "left": 22,
+    "right": 16.53
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     6.51,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     6.51,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     0.75,
+     "odhad"
+    ],
+    [
+     "plocha",
+     11.75,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Seifertova",
+   "lat": 49.170966777823296,
+   "lon": 16.716642193357433,
+   "bearing": 60.19437263012873,
+   "span": {
+    "left": 22,
+    "right": 16.53
+   },
+   "segments": [
+    [
+     "plocha",
+     18.88,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.7,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.45,
+     "osm"
+    ],
+    [
+     "chodnik",
+     0.75,
+     "odhad"
+    ],
+    [
+     "plocha",
+     11.75,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "slapanice-24",
+  "place": "slapanice",
+  "highway": "residential",
+  "O": {
+   "name": "Dlouhá",
+   "lat": 49.16301799092288,
+   "lon": 16.73126823083663,
+   "bearing": -176.58168118708198,
+   "span": {
+    "left": 9.12,
+    "right": 8.48
+   },
+   "segments": [
+    [
+     "pruh",
+     3.55,
+     "osm"
+    ],
+    [
+     "delici",
+     1.7,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.7,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.4,
+     "odhad"
+    ],
+    [
+     "plocha",
+     4.25,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Dlouhá",
+   "lat": 49.16301799092288,
+   "lon": 16.73126823083663,
+   "bearing": -176.58168118708198,
+   "span": {
+    "left": 8.57,
+    "right": 8.48
+   },
+   "segments": [
+    [
+     "zelen",
+     3,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.7,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.7,
+     "pasport"
+    ],
+    [
+     "zelen",
+     0.4,
+     "odhad"
+    ],
+    [
+     "plocha",
+     4.25,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "slapanice-26",
+  "place": "slapanice",
+  "highway": "residential",
+  "O": {
+   "name": "Kollárova",
+   "lat": 49.16920294641539,
+   "lon": 16.722363738642603,
+   "bearing": -17.30046255812697,
+   "span": {
+    "left": 5.82,
+    "right": 5.93
+   },
+   "segments": [
+    [
+     "zelen",
+     0.35,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.65,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.1,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.65,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Kollárova",
+   "lat": 49.16920294641539,
+   "lon": 16.722363738642603,
+   "bearing": -17.30046255812697,
+   "span": {
+    "left": 5.82,
+    "right": 5.93
+   },
+   "segments": [
+    [
+     "zelen",
+     0.35,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.65,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.75,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "slapanice-34",
+  "place": "slapanice",
+  "highway": "residential",
+  "O": {
+   "name": "Hřbitovní",
+   "lat": 49.17087065910433,
+   "lon": 16.728808597890943,
+   "bearing": 127.82611676025218,
+   "span": {
+    "left": 5.67,
+    "right": 5.28
+   },
+   "segments": [
+    [
+     "zelen",
+     1.75,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.55,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.55,
+     "osm"
+    ],
+    [
+     "zelen",
+     4.1,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Hřbitovní",
+   "lat": 49.17087065910433,
+   "lon": 16.728808597890943,
+   "bearing": 127.82611676025218,
+   "span": {
+    "left": 5.67,
+    "right": 5.28
+   },
+   "segments": [
+    [
+     "zelen",
+     1.75,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.5,
+     "osm"
+    ],
+    [
+     "zelen",
+     4.2,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "slapanice-36",
+  "place": "slapanice",
+  "highway": "residential",
+  "O": {
+   "name": "Komenského",
+   "lat": 49.166793171231525,
+   "lon": 16.72336704246457,
+   "bearing": 29.995786274801887,
+   "span": {
+    "left": 5.57,
+    "right": 7.43
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.45,
+     "pasport"
+    ],
+    [
+     "zelen",
+     1.25,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.9,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.4,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Komenského",
+   "lat": 49.166793171231525,
+   "lon": 16.72336704246457,
+   "bearing": 29.995786274801887,
+   "span": {
+    "left": 5.57,
+    "right": 7.43
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.25,
+     "pasport"
+    ],
+    [
+     "zelen",
+     1.45,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.95,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.85,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.5,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "slapanice-37",
+  "place": "slapanice",
+  "highway": "residential",
+  "O": {
+   "name": "Nerudova",
+   "lat": 49.16953049195293,
+   "lon": 16.719136728321477,
+   "bearing": -105.86056810277654,
+   "span": {
+    "left": 22,
+    "right": 21.93
+   },
+   "segments": [
+    [
+     "plocha",
+     2.68,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.7,
+     "pasport"
+    ],
+    [
+     "zelen",
+     3.9,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     6.13,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     6.13,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     5.75,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.4,
+     "pasport"
+    ],
+    [
+     "plocha",
+     3.25,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Nerudova",
+   "lat": 49.16953049195293,
+   "lon": 16.719136728321477,
+   "bearing": -105.86056810277654,
+   "span": {
+    "left": 22,
+    "right": 21.93
+   },
+   "segments": [
+    [
+     "plocha",
+     2.68,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.7,
+     "pasport"
+    ],
+    [
+     "zelen",
+     5.15,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     5.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     5.5,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     5.75,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.4,
+     "pasport"
+    ],
+    [
+     "plocha",
+     3.25,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "slapanice-42",
+  "place": "slapanice",
+  "highway": "residential",
+  "O": {
+   "name": "Tyršova",
+   "lat": 49.159678015432384,
+   "lon": 16.729297996518216,
+   "bearing": 81.55121289101356,
+   "span": {
+    "left": 4.87,
+    "right": 22
+   },
+   "segments": [
+    [
+     "zelen",
+     1.75,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.4,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4.7,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.7,
+     "odhad"
+    ],
+    [
+     "plocha",
+     15.33,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Tyršova",
+   "lat": 49.159678015432384,
+   "lon": 16.729297996518216,
+   "bearing": 81.55121289101356,
+   "span": {
+    "left": 4.87,
+    "right": 22
+   },
+   "segments": [
+    [
+     "zelen",
+     1.75,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.4,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4.1,
+     "osm"
+    ],
+    [
+     "zelen",
+     4.3,
+     "odhad"
+    ],
+    [
+     "plocha",
+     15.33,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "slapanice-44",
+  "place": "slapanice",
+  "highway": "residential",
+  "O": {
+   "name": "Sušilova",
+   "lat": 49.1670439090342,
+   "lon": 16.721513611281257,
+   "bearing": -19.570334007275115,
+   "span": {
+    "left": 22,
+    "right": 22
+   },
+   "segments": [
+    [
+     "chodnik",
+     18.33,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.45,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     19.22,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Sušilova",
+   "lat": 49.1670439090342,
+   "lon": 16.721513611281257,
+   "bearing": -19.570334007275115,
+   "span": {
+    "left": 22,
+    "right": 22
+   },
+   "segments": [
+    [
+     "chodnik",
+     18.33,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.35,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     19.32,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "slapanice-47",
+  "place": "slapanice",
+  "highway": "residential",
+  "O": {
+   "name": "Švehlova",
+   "lat": 49.160021021943145,
+   "lon": 16.72471035787146,
+   "bearing": -5.3208327582307025,
+   "span": {
+    "left": 3.57,
+    "right": 14.43
+   },
+   "segments": [
+    [
+     "zelen",
+     1.4,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "chodnik",
+     3.55,
+     "dtm"
+    ],
+    [
+     "zelen",
+     3.2,
+     "odhad"
+    ],
+    [
+     "plocha",
+     3.85,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Švehlova",
+   "lat": 49.160021021943145,
+   "lon": 16.72471035787146,
+   "bearing": -5.3208327582307025,
+   "span": {
+    "left": 3.57,
+    "right": 14.43
+   },
+   "segments": [
+    [
+     "zelen",
+     1.4,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.77,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.77,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.45,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     3.55,
+     "dtm"
+    ],
+    [
+     "zelen",
+     3.2,
+     "odhad"
+    ],
+    [
+     "plocha",
+     3.85,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "slapanice-48",
+  "place": "slapanice",
+  "highway": "residential",
+  "O": {
+   "name": "Štefanikova",
+   "lat": 49.1635599590369,
+   "lon": 16.725278641197356,
+   "bearing": 170.16150143804046,
+   "span": {
+    "left": 8.82,
+    "right": 22
+   },
+   "segments": [
+    [
+     "plocha",
+     4.35,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.12,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.12,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.75,
+     "pasport"
+    ],
+    [
+     "zelen",
+     2.25,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     14.73,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Štefanikova",
+   "lat": 49.1635599590369,
+   "lon": 16.725278641197356,
+   "bearing": 170.16150143804046,
+   "span": {
+    "left": 8.82,
+    "right": 22
+   },
+   "segments": [
+    [
+     "plocha",
+     4.35,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.05,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.85,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.85,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.75,
+     "pasport"
+    ],
+    [
+     "zelen",
+     2.25,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     14.73,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "slapanice-60",
+  "place": "slapanice",
+  "highway": "residential",
+  "O": {
+   "name": "Bedřichovická",
+   "lat": 49.171214013515964,
+   "lon": 16.725083499155254,
+   "bearing": -2.3557190277211433,
+   "span": {
+    "left": 5.22,
+    "right": 22
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.3,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     8.71,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     8.71,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Bedřichovická",
+   "lat": 49.171214013515964,
+   "lon": 16.725083499155254,
+   "bearing": -2.3557190277211433,
+   "span": {
+    "left": 5.22,
+    "right": 16.13
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.3,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.15,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.65,
+     "odhad"
+    ],
+    [
+     "plocha",
+     7.25,
+     "dtm"
+    ],
+    [
+     "zelen",
+     3.85,
+     "odhad"
+    ],
+    [
+     "plocha",
+     0.55,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.6,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "slapanice-64",
+  "place": "slapanice",
+  "highway": "residential",
+  "O": {
+   "name": "Wurmova",
+   "lat": 49.157187999063325,
+   "lon": 16.724564564871194,
+   "bearing": -0.18732864744730146,
+   "span": {
+    "left": 3.47,
+    "right": 5.78
+   },
+   "segments": [
+    [
+     "zelen",
+     0.95,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.77,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.77,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.75,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Wurmova",
+   "lat": 49.157187999063325,
+   "lon": 16.724564564871194,
+   "bearing": -0.18732864744730146,
+   "span": {
+    "left": 3.47,
+    "right": 5.78
+   },
+   "segments": [
+    [
+     "zelen",
+     0.95,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.52,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.52,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.65,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.6,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "slapanice-65",
+  "place": "slapanice",
+  "highway": "residential",
+  "O": {
+   "name": "Hřbitovní",
+   "lat": 49.172177202146436,
+   "lon": 16.72800705604163,
+   "bearing": -79.65876451639684,
+   "span": {
+    "left": 12.07,
+    "right": 14.93
+   },
+   "segments": [
+    [
+     "nezname",
+     5.55,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.75,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.67,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.67,
+     "osm"
+    ],
+    [
+     "zelen",
+     7.15,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Hřbitovní",
+   "lat": 49.172177202146436,
+   "lon": 16.72800705604163,
+   "bearing": -79.65876451639684,
+   "span": {
+    "left": 12.07,
+    "right": 14.93
+   },
+   "segments": [
+    [
+     "nezname",
+     5.55,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.45,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.45,
+     "osm"
+    ],
+    [
+     "zelen",
+     7.15,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "slapanice-69",
+  "place": "slapanice",
+  "highway": "residential",
+  "O": {
+   "name": "Seifertova",
+   "lat": 49.17131211406592,
+   "lon": 16.71559733215772,
+   "bearing": -27.552451865726663,
+   "span": {
+    "left": 2.47,
+    "right": 4.73
+   },
+   "segments": [
+    [
+     "pruh",
+     3.6,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.6,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Seifertova",
+   "lat": 49.17131211406592,
+   "lon": 16.71559733215772,
+   "bearing": -27.552451865726663,
+   "span": {
+    "left": 2.57,
+    "right": 4.68
+   },
+   "segments": [
+    [
+     "zelen",
+     0.95,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.15,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.15,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "slapanice-73",
+  "place": "slapanice",
+  "highway": "residential",
+  "O": {
+   "name": "Václavská",
+   "lat": 49.164151958177904,
+   "lon": 16.73474805625718,
+   "bearing": 48.474376962839045,
+   "span": {
+    "left": 9.72,
+    "right": 22
+   },
+   "segments": [
+    [
+     "plocha",
+     6,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.35,
+     "pasport"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     6.69,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     6.69,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Václavská",
+   "lat": 49.164151958177904,
+   "lon": 16.73474805625718,
+   "bearing": 48.474376962839045,
+   "span": {
+    "left": 9.72,
+    "right": 5.63
+   },
+   "segments": [
+    [
+     "plocha",
+     6,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.35,
+     "pasport"
+    ],
+    [
+     "pruh",
+     4.4,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.6,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "slapanice-82",
+  "place": "slapanice",
+  "highway": "residential",
+  "O": {
+   "name": "Dlouhá",
+   "lat": 49.164062997293485,
+   "lon": 16.731042983391404,
+   "bearing": 166.09638478921744,
+   "span": {
+    "left": 7.77,
+    "right": 6.23
+   },
+   "segments": [
+    [
+     "pruh",
+     2.25,
+     "osm"
+    ],
+    [
+     "delici",
+     1.65,
+     "pasport"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "delici",
+     1.65,
+     "pasport"
+    ],
+    [
+     "pruh",
+     2.05,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.5,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Dlouhá",
+   "lat": 49.164062997293485,
+   "lon": 16.731042983391404,
+   "bearing": 166.09638478921744,
+   "span": {
+    "left": 7.52,
+    "right": 6.23
+   },
+   "segments": [
+    [
+     "zelen",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.65,
+     "pasport"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.65,
+     "pasport"
+    ],
+    [
+     "zelen",
+     2.55,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "slapanice-87",
+  "place": "slapanice",
+  "highway": "residential",
+  "O": {
+   "name": "Komenského",
+   "lat": 49.16829733666786,
+   "lon": 16.725082784614905,
+   "bearing": 67.16309726811133,
+   "span": {
+    "left": 3.92,
+    "right": 4.18
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.5,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3.75,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.85,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Komenského",
+   "lat": 49.16829733666786,
+   "lon": 16.725082784614905,
+   "bearing": 67.16309726811133,
+   "span": {
+    "left": 3.92,
+    "right": 4.18
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.5,
+     "pasport"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.6,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "slapanice-90",
+  "place": "slapanice",
+  "highway": "residential",
+  "O": {
+   "name": "Bezručova",
+   "lat": 49.16788014026442,
+   "lon": 16.720161952321604,
+   "bearing": -102.61236376889748,
+   "span": {
+    "left": 14.27,
+    "right": 8.63
+   },
+   "segments": [
+    [
+     "plocha",
+     7.2,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.8,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.4,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.25,
+     "pasport"
+    ],
+    [
+     "plocha",
+     4.05,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Bezručova",
+   "lat": 49.16788014026442,
+   "lon": 16.720161952321604,
+   "bearing": -102.61236376889748,
+   "span": {
+    "left": 14.27,
+    "right": 8.63
+   },
+   "segments": [
+    [
+     "plocha",
+     7.2,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.9,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.7,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.25,
+     "pasport"
+    ],
+    [
+     "plocha",
+     4.05,
+     "dtm"
+    ]
+   ]
+  }
+ }
+]

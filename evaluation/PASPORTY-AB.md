@@ -93,3 +93,9 @@ chyba skládání (`derive.js`), ne jen pasportu.
 Náhradu není třeba dělat. Obecné pravidlo „pasport bez ploch nechá řez technické mapě“ (`withPassports`) má teď test
 (`tests/city.test.js`). Jihlavský modul ho nepoužívá: když jeho pasport zase zmlkne, profil bude odhad z OSM. Případně
 se zeptat města, proč byl pasport 16. 11. prázdný (nikoho jsme nekontaktovali).
+
+**Ořez kolem vozovky pasportu (26. 11. 2026):** vozovka 20–27 m v Rožnově a Šlapanicích nebyla z pasportu, ale z bílé
+plochy DTM bez typu a parcely silnice RÚIAN kolem úzké vozovky pasportu. `towns/overlay.js trimGuessedRoads` (`?orez=0`
+vypne) je vynechá, kde má pasport vozovku pod středem řezu. Slepé A/B na nových řezech: Rožnov 30 : 6, Šlapanice 13 : 3,
+kontroly (Kuřim, Třebíč, Karviná) 7 : 1; zapnuté. Podrobně `pasporty-orez/ZPRAVA.md`. Rozhodnutí o pasportech Šlapanic
+a Kuřimi jako celku na tom nezávisí.

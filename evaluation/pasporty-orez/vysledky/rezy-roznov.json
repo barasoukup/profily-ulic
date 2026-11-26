@@ -1,0 +1,10687 @@
+[
+ {
+  "id": "roznov-1",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Květinová",
+   "lat": 49.470569966483886,
+   "lon": 18.14476000987546,
+   "bearing": -100.91081852072764,
+   "span": {
+    "left": 3.06,
+    "right": 2.98
+   },
+   "segments": [
+    [
+     "zelen",
+     1.03,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.5,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Květinová",
+   "lat": 49.470569966483886,
+   "lon": 18.14476000987546,
+   "bearing": -100.91081852072764,
+   "span": {
+    "left": 3.06,
+    "right": 2.98
+   },
+   "segments": [
+    [
+     "zelen",
+     1.68,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.35,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-2",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "U trati",
+   "lat": 49.46061873342504,
+   "lon": 18.128933380357495,
+   "bearing": 88.85706278671262,
+   "span": {
+    "left": 5.92,
+    "right": 9.48
+   },
+   "segments": [
+    [
+     "nezname",
+     2.65,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.7,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.7,
+     "osm"
+    ],
+    [
+     "plocha",
+     5.35,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "U trati",
+   "lat": 49.46061873342504,
+   "lon": 18.128933380357495,
+   "bearing": 88.85706278671262,
+   "span": {
+    "left": 5.92,
+    "right": 9.48
+   },
+   "segments": [
+    [
+     "nezname",
+     2.65,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.7,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.7,
+     "osm"
+    ],
+    [
+     "plocha",
+     5.35,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-3",
+  "place": "roznov",
+  "highway": "tertiary",
+  "O": {
+   "name": "Videčská",
+   "lat": 49.45172209238898,
+   "lon": 18.129812635283802,
+   "bearing": -158.8408329513133,
+   "span": {
+    "left": 6.42,
+    "right": 7.83
+   },
+   "segments": [
+    [
+     "zelen",
+     2.9,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "zelen",
+     5.2,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Videčská",
+   "lat": 49.45172209238898,
+   "lon": 18.129812635283802,
+   "bearing": -158.8408329513133,
+   "span": {
+    "left": 6.42,
+    "right": 7.83
+   },
+   "segments": [
+    [
+     "zelen",
+     2.9,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "zelen",
+     5.2,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-4",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Slezská",
+   "lat": 49.465001989642566,
+   "lon": 18.147841937832183,
+   "bearing": 165.7142918739253,
+   "span": {
+    "left": 4.27,
+    "right": 3.58
+   },
+   "segments": [
+    [
+     "pruh",
+     3.92,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.92,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Slezská",
+   "lat": 49.465001989642566,
+   "lon": 18.147841937832183,
+   "bearing": 165.7142918739253,
+   "span": {
+    "left": 4.27,
+    "right": 3.58
+   },
+   "segments": [
+    [
+     "zelen",
+     0.65,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.12,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.12,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.95,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-5",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": null,
+   "lat": 49.447838092893356,
+   "lon": 18.17014073705012,
+   "bearing": -151.64249009700214,
+   "span": {
+    "left": 2.22,
+    "right": 5.03
+   },
+   "segments": [
+    [
+     "plocha",
+     0.5,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.35,
+     "osm"
+    ],
+    [
+     "plocha",
+     4.4,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.447838092893356,
+   "lon": 18.17014073705012,
+   "bearing": -151.64249009700214,
+   "span": {
+    "left": 2.22,
+    "right": 5.03
+   },
+   "segments": [
+    [
+     "plocha",
+     0.5,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.35,
+     "osm"
+    ],
+    [
+     "plocha",
+     4.4,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-6",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Okružní",
+   "lat": 49.47097698468763,
+   "lon": 18.14291599747532,
+   "bearing": 96.15647887836089,
+   "span": {
+    "left": 2.97,
+    "right": 1.63
+   },
+   "segments": [
+    [
+     "pruh",
+     4.6,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Okružní",
+   "lat": 49.47097698468763,
+   "lon": 18.14291599747532,
+   "bearing": 96.15647887836089,
+   "span": {
+    "left": 2.97,
+    "right": 1.63
+   },
+   "segments": [
+    [
+     "pruh",
+     4.6,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-7",
+  "place": "roznov",
+  "highway": "tertiary",
+  "O": {
+   "name": "Palackého",
+   "lat": 49.46287327198046,
+   "lon": 18.1523377169227,
+   "bearing": 55.7442715224257,
+   "span": {
+    "left": 3.52,
+    "right": 6.93
+   },
+   "segments": [
+    [
+     "pruh",
+     2.7,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.7,
+     "osm"
+    ],
+    [
+     "parkovani",
+     4.4,
+     "dtm"
+    ],
+    [
+     "zelen",
+     0.65,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Palackého",
+   "lat": 49.46287327198046,
+   "lon": 18.1523377169227,
+   "bearing": 55.7442715224257,
+   "span": {
+    "left": 3.52,
+    "right": 6.93
+   },
+   "segments": [
+    [
+     "pruh",
+     2.7,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.7,
+     "osm"
+    ],
+    [
+     "parkovani",
+     4.4,
+     "dtm"
+    ],
+    [
+     "zelen",
+     0.65,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-8",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Sladské",
+   "lat": 49.48140102176455,
+   "lon": 18.169103711494444,
+   "bearing": -173.42078860650068,
+   "span": {
+    "left": 2.72,
+    "right": 4.28
+   },
+   "segments": [
+    [
+     "pruh",
+     3.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.5,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Sladské",
+   "lat": 49.48140102176455,
+   "lon": 18.169103711494444,
+   "bearing": -173.42078860650068,
+   "span": {
+    "left": 2.72,
+    "right": 3.53
+   },
+   "segments": [
+    [
+     "pruh",
+     2.67,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.67,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.9,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-9",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Polanského",
+   "lat": 49.47176038031795,
+   "lon": 18.144621827737748,
+   "bearing": 73.49448265146016,
+   "span": {
+    "left": 4.23,
+    "right": 3.69
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.2,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.36,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.36,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Polanského",
+   "lat": 49.47176038031795,
+   "lon": 18.144621827737748,
+   "bearing": 73.49448265146016,
+   "span": {
+    "left": 4.23,
+    "right": 3.69
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.2,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.36,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.36,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-10",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Dolní Paseky",
+   "lat": 49.475493033012896,
+   "lon": 18.142413626537877,
+   "bearing": 7.695820416351595,
+   "span": {
+    "left": 2.72,
+    "right": 21.98
+   },
+   "segments": [
+    [
+     "pruh",
+     3.42,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.42,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.15,
+     "dtm"
+    ],
+    [
+     "zelen",
+     4.3,
+     "dtm"
+    ],
+    [
+     "voda",
+     7.65,
+     "dtm"
+    ],
+    [
+     "nezname",
+     3.75,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Dolní Paseky",
+   "lat": 49.475493033012896,
+   "lon": 18.142413626537877,
+   "bearing": 7.695820416351595,
+   "span": {
+    "left": 2.72,
+    "right": 21.98
+   },
+   "segments": [
+    [
+     "pruh",
+     3.42,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.42,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.15,
+     "dtm"
+    ],
+    [
+     "zelen",
+     4.3,
+     "dtm"
+    ],
+    [
+     "voda",
+     7.65,
+     "dtm"
+    ],
+    [
+     "nezname",
+     3.75,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-11",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Hážovice",
+   "lat": 49.448423824551135,
+   "lon": 18.167473647415683,
+   "bearing": 121.49368819884366,
+   "span": {
+    "left": 2.77,
+    "right": 2.58
+   },
+   "segments": [
+    [
+     "zelen",
+     0.95,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.15,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.25,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Hážovice",
+   "lat": 49.448423824551135,
+   "lon": 18.167473647415683,
+   "bearing": 121.49368819884366,
+   "span": {
+    "left": 2.77,
+    "right": 2.58
+   },
+   "segments": [
+    [
+     "zelen",
+     0.95,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.15,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.25,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-12",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Kročákova",
+   "lat": 49.48733311539353,
+   "lon": 18.168414151082974,
+   "bearing": -49.42752732915169,
+   "span": {
+    "left": 22,
+    "right": 9.28
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     5.26,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     5.26,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.85,
+     "odhad"
+    ],
+    [
+     "zelen",
+     6.9,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Kročákova",
+   "lat": 49.48733311539353,
+   "lon": 18.168414151082974,
+   "bearing": -49.42752732915169,
+   "span": {
+    "left": 1.52,
+    "right": 9.28
+   },
+   "segments": [
+    [
+     "pruh",
+     3.05,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.85,
+     "odhad"
+    ],
+    [
+     "zelen",
+     6.9,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-13",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Chodská",
+   "lat": 49.45874708056187,
+   "lon": 18.1347978547057,
+   "bearing": -139.72452835331364,
+   "span": {
+    "left": 4.12,
+    "right": 4.58
+   },
+   "segments": [
+    [
+     "zelen",
+     1.8,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.02,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.02,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.85,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Chodská",
+   "lat": 49.45874708056187,
+   "lon": 18.1347978547057,
+   "bearing": -139.72452835331364,
+   "span": {
+    "left": 4.12,
+    "right": 4.58
+   },
+   "segments": [
+    [
+     "zelen",
+     1.8,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.02,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.02,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.85,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-14",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": null,
+   "lat": 49.48004187862091,
+   "lon": 18.16971303571059,
+   "bearing": -100.89282406245385,
+   "span": {
+    "left": 1.07,
+    "right": 8.63
+   },
+   "segments": [
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "zelen",
+     6.7,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.48004187862091,
+   "lon": 18.16971303571059,
+   "bearing": -100.89282406245385,
+   "span": {
+    "left": 1.07,
+    "right": 8.63
+   },
+   "segments": [
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "zelen",
+     6.7,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-15",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": null,
+   "lat": 49.48511894848361,
+   "lon": 18.161234148772447,
+   "bearing": 27.89905304261069,
+   "span": {
+    "left": 1.97,
+    "right": 0.93
+   },
+   "segments": [
+    [
+     "pruh",
+     2.9,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.48511894848361,
+   "lon": 18.161234148772447,
+   "bearing": 27.89905304261069,
+   "span": {
+    "left": 1.97,
+    "right": 0.93
+   },
+   "segments": [
+    [
+     "pruh",
+     2.9,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-16",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Radhošťská",
+   "lat": 49.47533863409122,
+   "lon": 18.180182621875435,
+   "bearing": -138.0296100263646,
+   "span": {
+    "left": 2.72,
+    "right": 3.08
+   },
+   "segments": [
+    [
+     "pruh",
+     2.9,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.9,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Radhošťská",
+   "lat": 49.47533863409122,
+   "lon": 18.180182621875435,
+   "bearing": -138.0296100263646,
+   "span": {
+    "left": 2.72,
+    "right": 3.08
+   },
+   "segments": [
+    [
+     "pruh",
+     2.9,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.9,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-17",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Pod Kyčerou",
+   "lat": 49.489803223595395,
+   "lon": 18.167876275168744,
+   "bearing": 128.82732734004634,
+   "span": {
+    "left": 22,
+    "right": 2.78
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     6.89,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     6.89,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Pod Kyčerou",
+   "lat": 49.489803223595395,
+   "lon": 18.167876275168744,
+   "bearing": 128.82732734004634,
+   "span": {
+    "left": 1.47,
+    "right": 2.78
+   },
+   "segments": [
+    [
+     "zelen",
+     1,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.25,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-18",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Ve Včelíně",
+   "lat": 49.45421779003453,
+   "lon": 18.14021104526753,
+   "bearing": 81.96890479259451,
+   "span": {
+    "left": 40,
+    "right": -10.14
+   },
+   "segments": [
+    [
+     "chodnik",
+     15.72,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     14.14,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Ve Včelíně",
+   "lat": 49.45421779003453,
+   "lon": 18.14021104526753,
+   "bearing": 81.96890479259451,
+   "span": {
+    "left": 40,
+    "right": -10.14
+   },
+   "segments": [
+    [
+     "chodnik",
+     15.72,
+     "pasport"
+    ],
+    [
+     "chodnik",
+     14.14,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-19",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Pod Pindulu",
+   "lat": 49.490002200810785,
+   "lon": 18.17248716628192,
+   "bearing": -61.56374612648659,
+   "span": {
+    "left": 1.92,
+    "right": 2.33
+   },
+   "segments": [
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "nezname",
+     1.15,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Pod Pindulu",
+   "lat": 49.490002200810785,
+   "lon": 18.17248716628192,
+   "bearing": -61.56374612648659,
+   "span": {
+    "left": 1.92,
+    "right": 2.33
+   },
+   "segments": [
+    [
+     "pruh",
+     2.9,
+     "osm"
+    ],
+    [
+     "nezname",
+     1.35,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-20",
+  "place": "roznov",
+  "highway": "unclassified",
+  "O": {
+   "name": "Pod Pindulu",
+   "lat": 49.49597676684226,
+   "lon": 18.180840322280623,
+   "bearing": 47.891917513675104,
+   "span": {
+    "left": 2.62,
+    "right": 1.88
+   },
+   "segments": [
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Pod Pindulu",
+   "lat": 49.49597676684226,
+   "lon": 18.180840322280623,
+   "bearing": 47.891917513675104,
+   "span": {
+    "left": 2.62,
+    "right": 1.88
+   },
+   "segments": [
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-21",
+  "place": "roznov",
+  "highway": "service",
+  "O": {
+   "name": "Kulturní",
+   "lat": 49.46541703410386,
+   "lon": 18.136527005494052,
+   "bearing": 96.01703629228255,
+   "span": {
+    "left": 9.47,
+    "right": 9.83
+   },
+   "segments": [
+    [
+     "plocha",
+     1.55,
+     "dtm"
+    ],
+    [
+     "nezname",
+     6.2,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     9.35,
+     "pasport"
+    ],
+    [
+     "nezname",
+     2.2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Kulturní",
+   "lat": 49.46541703410386,
+   "lon": 18.136527005494052,
+   "bearing": 96.01703629228255,
+   "span": {
+    "left": 9.47,
+    "right": 9.83
+   },
+   "segments": [
+    [
+     "plocha",
+     1.55,
+     "dtm"
+    ],
+    [
+     "nezname",
+     6.2,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     9.35,
+     "pasport"
+    ],
+    [
+     "nezname",
+     2.2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-22",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Písečná",
+   "lat": 49.46768618394307,
+   "lon": 18.13687919532523,
+   "bearing": -55.21051060938465,
+   "span": {
+    "left": 4.17,
+    "right": 8.73
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.45,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.45,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Písečná",
+   "lat": 49.46768618394307,
+   "lon": 18.13687919532523,
+   "bearing": -55.21051060938465,
+   "span": {
+    "left": 4.17,
+    "right": 8.73
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.45,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.45,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-23",
+  "place": "roznov",
+  "highway": "unclassified",
+  "O": {
+   "name": "Pod Pindulu",
+   "lat": 49.49500091253781,
+   "lon": 18.17918912088917,
+   "bearing": 47.89248588830723,
+   "span": {
+    "left": 2.07,
+    "right": 2.33
+   },
+   "segments": [
+    [
+     "pruh",
+     4.4,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Pod Pindulu",
+   "lat": 49.49500091253781,
+   "lon": 18.17918912088917,
+   "bearing": 47.89248588830723,
+   "span": {
+    "left": 2.07,
+    "right": 1.93
+   },
+   "segments": [
+    [
+     "pruh",
+     4,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-24",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Hasičská",
+   "lat": 49.46105651099142,
+   "lon": 18.117582008276006,
+   "bearing": -0.8084926742962717,
+   "span": {
+    "left": 3.71,
+    "right": 3.03
+   },
+   "segments": [
+    [
+     "plocha",
+     0.73,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Hasičská",
+   "lat": 49.46105651099142,
+   "lon": 18.117582008276006,
+   "bearing": -0.8084926742962717,
+   "span": {
+    "left": 3.71,
+    "right": 3.03
+   },
+   "segments": [
+    [
+     "plocha",
+     0.73,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-25",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Letenská",
+   "lat": 49.46764102430052,
+   "lon": 18.145317109639954,
+   "bearing": 161.2855595817981,
+   "span": {
+    "left": 4.35,
+    "right": 22
+   },
+   "segments": [
+    [
+     "zelen",
+     1.17,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.75,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.65,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     3.89,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     3.89,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Letenská",
+   "lat": 49.46764102430052,
+   "lon": 18.145317109639954,
+   "bearing": 161.2855595817981,
+   "span": {
+    "left": 4.35,
+    "right": 3.63
+   },
+   "segments": [
+    [
+     "zelen",
+     1.62,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.3,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.05,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-26",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Koryčanské Paseky",
+   "lat": 49.46905031819958,
+   "lon": 18.127485092889753,
+   "bearing": -170.84324423001277,
+   "span": {
+    "left": 12.22,
+    "right": 2.93
+   },
+   "segments": [
+    [
+     "plocha",
+     5.2,
+     "dtm"
+    ],
+    [
+     "zelen",
+     4.85,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.55,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.55,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Koryčanské Paseky",
+   "lat": 49.46905031819958,
+   "lon": 18.127485092889753,
+   "bearing": -170.84324423001277,
+   "span": {
+    "left": 12.22,
+    "right": 2.93
+   },
+   "segments": [
+    [
+     "plocha",
+     5.2,
+     "dtm"
+    ],
+    [
+     "zelen",
+     4.85,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.55,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.55,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-27",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Jiřího Wolkera",
+   "lat": 49.459371212025445,
+   "lon": 18.14547282123274,
+   "bearing": -118.88674454140356,
+   "span": {
+    "left": 10.57,
+    "right": 2.66
+   },
+   "segments": [
+    [
+     "nezname",
+     5.85,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.45,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.3,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.63,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Jiřího Wolkera",
+   "lat": 49.459371212025445,
+   "lon": 18.14547282123274,
+   "bearing": -118.88674454140356,
+   "span": {
+    "left": 10.57,
+    "right": 2.66
+   },
+   "segments": [
+    [
+     "nezname",
+     5.85,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.45,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.3,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.63,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-28",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Nezdařilova",
+   "lat": 49.454986038632754,
+   "lon": 18.152962902355974,
+   "bearing": -148.84412356442053,
+   "span": {
+    "left": 22,
+    "right": 4.23
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     5.64,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     5.64,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.95,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Nezdařilova",
+   "lat": 49.454986038632754,
+   "lon": 18.152962902355974,
+   "bearing": -148.84412356442053,
+   "span": {
+    "left": 2.37,
+    "right": 4.23
+   },
+   "segments": [
+    [
+     "pruh",
+     4.65,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.95,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-29",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Koryčanské Paseky",
+   "lat": 49.46692380146368,
+   "lon": 18.127733946326646,
+   "bearing": 100.03068227331082,
+   "span": {
+    "left": 22,
+    "right": 16.48
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     7.89,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     7.89,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.25,
+     "odhad"
+    ],
+    [
+     "plocha",
+     11.95,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Koryčanské Paseky",
+   "lat": 49.46692380146368,
+   "lon": 18.127733946326646,
+   "bearing": 100.03068227331082,
+   "span": {
+    "left": 3.62,
+    "right": 16.48
+   },
+   "segments": [
+    [
+     "pruh",
+     3.25,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.9,
+     "odhad"
+    ],
+    [
+     "plocha",
+     11.95,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-30",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Nádražní",
+   "lat": 49.458314229008806,
+   "lon": 18.13954089312776,
+   "bearing": -48.28548630972752,
+   "span": {
+    "left": 22,
+    "right": 8.03
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     7.19,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     7.19,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "plocha",
+     2.65,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Nádražní",
+   "lat": 49.458314229008806,
+   "lon": 18.13954089312776,
+   "bearing": -48.28548630972752,
+   "span": {
+    "left": 22,
+    "right": 8.03
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     7.19,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     7.19,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "plocha",
+     2.65,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-31",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Karlova",
+   "lat": 49.46801307520928,
+   "lon": 18.164956092617697,
+   "bearing": 128.85823353481916,
+   "span": {
+    "left": 11.22,
+    "right": 3.1
+   },
+   "segments": [
+    [
+     "zelen",
+     8.05,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.77,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Karlova",
+   "lat": 49.46801307520928,
+   "lon": 18.164956092617697,
+   "bearing": 128.85823353481916,
+   "span": {
+    "left": 11.22,
+    "right": 3.1
+   },
+   "segments": [
+    [
+     "zelen",
+     8.05,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.77,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-32",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Moravská",
+   "lat": 49.464787449026815,
+   "lon": 18.12668993541057,
+   "bearing": -72.23138144781441,
+   "span": {
+    "left": 8.02,
+    "right": 14.93
+   },
+   "segments": [
+    [
+     "plocha",
+     0.35,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.47,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.47,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     7,
+     "dtm"
+    ],
+    [
+     "plocha",
+     4.65,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Moravská",
+   "lat": 49.464787449026815,
+   "lon": 18.12668993541057,
+   "bearing": -72.23138144781441,
+   "span": {
+    "left": 8.02,
+    "right": 14.93
+   },
+   "segments": [
+    [
+     "plocha",
+     3.9,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.7,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.85,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.85,
+     "osm"
+    ],
+    [
+     "zelen",
+     7,
+     "dtm"
+    ],
+    [
+     "plocha",
+     4.65,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-33",
+  "place": "roznov",
+  "highway": "tertiary",
+  "O": {
+   "name": null,
+   "lat": 49.446974048302344,
+   "lon": 18.175200093342674,
+   "bearing": 141.67033458879988,
+   "span": {
+    "left": 7.57,
+    "right": 9.03
+   },
+   "segments": [
+    [
+     "zelen",
+     1,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.4,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     2.6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.6,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.446974048302344,
+   "lon": 18.175200093342674,
+   "bearing": 141.67033458879988,
+   "span": {
+    "left": 7.57,
+    "right": 9.03
+   },
+   "segments": [
+    [
+     "zelen",
+     1,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.4,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     2.6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.6,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-34",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Za Hážovkou",
+   "lat": 49.4541209052525,
+   "lon": 18.15056101727245,
+   "bearing": -96.80349992833543,
+   "span": {
+    "left": 11.12,
+    "right": 3.13
+   },
+   "segments": [
+    [
+     "plocha",
+     8.95,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.25,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.05,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Za Hážovkou",
+   "lat": 49.4541209052525,
+   "lon": 18.15056101727245,
+   "bearing": -96.80349992833543,
+   "span": {
+    "left": 11.12,
+    "right": 3.13
+   },
+   "segments": [
+    [
+     "plocha",
+     8.95,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.25,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.05,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-35",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Lázeňská",
+   "lat": 49.45990336514891,
+   "lon": 18.142983634189175,
+   "bearing": 177.32392155564992,
+   "span": {
+    "left": 22,
+    "right": 22
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     8.04,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     8.04,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.85,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.3,
+     "pasport"
+    ],
+    [
+     "zelen",
+     5.85,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.92,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Lázeňská",
+   "lat": 49.45990336514891,
+   "lon": 18.142983634189175,
+   "bearing": 177.32392155564992,
+   "span": {
+    "left": 22,
+    "right": 22
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     8.04,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     8.04,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.85,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.3,
+     "pasport"
+    ],
+    [
+     "zelen",
+     5.85,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.92,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-36",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": null,
+   "lat": 49.46488690507538,
+   "lon": 18.135734998362746,
+   "bearing": -89.35342653863448,
+   "span": {
+    "left": 3.42,
+    "right": 13.28
+   },
+   "segments": [
+    [
+     "pruh",
+     3.62,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.62,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.35,
+     "odhad"
+    ],
+    [
+     "nezname",
+     5.1,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.46488690507538,
+   "lon": 18.135734998362746,
+   "bearing": -89.35342653863448,
+   "span": {
+    "left": 3.27,
+    "right": 13.28
+   },
+   "segments": [
+    [
+     "pruh",
+     3.55,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.55,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.35,
+     "odhad"
+    ],
+    [
+     "nezname",
+     5.1,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-37",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Nerudova",
+   "lat": 49.45868185788747,
+   "lon": 18.143523109803095,
+   "bearing": -145.5519707448942,
+   "span": {
+    "left": 3.97,
+    "right": 20.98
+   },
+   "segments": [
+    [
+     "pruh",
+     3.6,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.05,
+     "odhad"
+    ],
+    [
+     "plocha",
+     2.35,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     15.95,
+     "pasport"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Nerudova",
+   "lat": 49.45868185788747,
+   "lon": 18.143523109803095,
+   "bearing": -145.5519707448942,
+   "span": {
+    "left": 3.97,
+    "right": 20.98
+   },
+   "segments": [
+    [
+     "pruh",
+     3.6,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.05,
+     "odhad"
+    ],
+    [
+     "plocha",
+     2.35,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     15.95,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-38",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Dolní Dráhy",
+   "lat": 49.45705788291841,
+   "lon": 18.15473914552796,
+   "bearing": 50.87515401374069,
+   "span": {
+    "left": 3.22,
+    "right": 5.03
+   },
+   "segments": [
+    [
+     "zelen",
+     1.9,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.65,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.7,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Dolní Dráhy",
+   "lat": 49.45705788291841,
+   "lon": 18.15473914552796,
+   "bearing": 50.87515401374069,
+   "span": {
+    "left": 3.22,
+    "right": 5.03
+   },
+   "segments": [
+    [
+     "zelen",
+     1.9,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.65,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.7,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-39",
+  "place": "roznov",
+  "highway": "tertiary",
+  "O": {
+   "name": "Videčská",
+   "lat": 49.44838500312528,
+   "lon": 18.12816798528977,
+   "bearing": -162.0166292808675,
+   "span": {
+    "left": 7.22,
+    "right": 2.73
+   },
+   "segments": [
+    [
+     "zelen",
+     3.75,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Videčská",
+   "lat": 49.44838500312528,
+   "lon": 18.12816798528977,
+   "bearing": -162.0166292808675,
+   "span": {
+    "left": 7.22,
+    "right": 2.73
+   },
+   "segments": [
+    [
+     "zelen",
+     3.75,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-40",
+  "place": "roznov",
+  "highway": "service",
+  "O": {
+   "name": "Čs. armády",
+   "lat": 49.46274908086738,
+   "lon": 18.137312593786138,
+   "bearing": 100.48011484890306,
+   "span": {
+    "left": 12.72,
+    "right": 12.23
+   },
+   "segments": [
+    [
+     "zelen",
+     9.9,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     9.05,
+     "odhad"
+    ],
+    [
+     "zelen",
+     6,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Čs. armády",
+   "lat": 49.46274908086738,
+   "lon": 18.137312593786138,
+   "bearing": 100.48011484890306,
+   "span": {
+    "left": 12.72,
+    "right": 12.23
+   },
+   "segments": [
+    [
+     "zelen",
+     9.9,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     5.9,
+     "pasport"
+    ],
+    [
+     "zelen",
+     9.15,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-41",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Sladské",
+   "lat": 49.481094938891964,
+   "lon": 18.178500873911442,
+   "bearing": -36.53668769855516,
+   "span": {
+    "left": 21.13,
+    "right": 2.43
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     2.95,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.95,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.55,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.1,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Sladské",
+   "lat": 49.481094938891964,
+   "lon": 18.178500873911442,
+   "bearing": -36.53668769855516,
+   "span": {
+    "left": 21.13,
+    "right": 2.43
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     2.95,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.95,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.55,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.1,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-42",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": null,
+   "lat": 49.47458811119138,
+   "lon": 18.1676012013195,
+   "bearing": -40.17430396147409,
+   "span": {
+    "left": 5.37,
+    "right": 4.68
+   },
+   "segments": [
+    [
+     "zed",
+     0.45,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.5,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.4,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.47458811119138,
+   "lon": 18.1676012013195,
+   "bearing": -40.17430396147409,
+   "span": {
+    "left": 5.37,
+    "right": 4.68
+   },
+   "segments": [
+    [
+     "zed",
+     0.45,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.5,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.4,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-43",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Na Drahách",
+   "lat": 49.45581985616547,
+   "lon": 18.14457214584891,
+   "bearing": 56.43235469565546,
+   "span": {
+    "left": 12.67,
+    "right": 3.53
+   },
+   "segments": [
+    [
+     "zelen",
+     7.65,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2.15,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.2,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.2,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Na Drahách",
+   "lat": 49.45581985616547,
+   "lon": 18.14457214584891,
+   "bearing": 56.43235469565546,
+   "span": {
+    "left": 12.67,
+    "right": 3.53
+   },
+   "segments": [
+    [
+     "zelen",
+     7.65,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2.15,
+     "dtm"
+    ],
+    [
+     "zelen",
+     0.45,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.15,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.8,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-44",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "1. máje",
+   "lat": 49.46212907722974,
+   "lon": 18.13324386653995,
+   "bearing": -92.8551780267148,
+   "span": {
+    "left": 4.87,
+    "right": 7.73
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.7,
+     "odhad"
+    ],
+    [
+     "pruh_piktokoridor",
+     3.15,
+     "osm"
+    ],
+    [
+     "pruh_piktokoridor",
+     3.15,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.6,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "1. máje",
+   "lat": 49.46212907722974,
+   "lon": 18.13324386653995,
+   "bearing": -92.8551780267148,
+   "span": {
+    "left": 4.87,
+    "right": 7.73
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.7,
+     "odhad"
+    ],
+    [
+     "pruh_piktokoridor",
+     3.15,
+     "osm"
+    ],
+    [
+     "pruh_piktokoridor",
+     3.15,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.6,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-45",
+  "place": "roznov",
+  "highway": "unclassified",
+  "O": {
+   "name": null,
+   "lat": 49.45084016725226,
+   "lon": 18.171313798588375,
+   "bearing": 37.30686420994218,
+   "span": {
+    "left": 2.27,
+    "right": 10.23
+   },
+   "segments": [
+    [
+     "zelen",
+     1.3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.15,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.5,
+     "odhad"
+    ],
+    [
+     "zelen",
+     3.55,
+     "dtm"
+    ],
+    [
+     "zelen",
+     4,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.45084016725226,
+   "lon": 18.171313798588375,
+   "bearing": 37.30686420994218,
+   "span": {
+    "left": 2.27,
+    "right": 10.23
+   },
+   "segments": [
+    [
+     "zelen",
+     1.3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.15,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.5,
+     "odhad"
+    ],
+    [
+     "zelen",
+     3.55,
+     "dtm"
+    ],
+    [
+     "zelen",
+     4,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-46",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Jiřího Wolkera",
+   "lat": 49.460060862982445,
+   "lon": 18.147401113414755,
+   "bearing": -118.44182540031808,
+   "span": {
+    "left": 9.92,
+    "right": 2.53
+   },
+   "segments": [
+    [
+     "zelen",
+     4.15,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.65,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.3,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.35,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Jiřího Wolkera",
+   "lat": 49.460060862982445,
+   "lon": 18.147401113414755,
+   "bearing": -118.44182540031808,
+   "span": {
+    "left": 9.92,
+    "right": 2.53
+   },
+   "segments": [
+    [
+     "zelen",
+     4.15,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.65,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.55,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-47",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "U Kantorka",
+   "lat": 49.472937020644046,
+   "lon": 18.16136015670691,
+   "bearing": -11.385571164014092,
+   "span": {
+    "left": 4.44,
+    "right": 6.58
+   },
+   "segments": [
+    [
+     "zelen",
+     1.72,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.47,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.47,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.35,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "U Kantorka",
+   "lat": 49.472937020644046,
+   "lon": 18.16136015670691,
+   "bearing": -11.385571164014092,
+   "span": {
+    "left": 4.44,
+    "right": 6.58
+   },
+   "segments": [
+    [
+     "zelen",
+     1.72,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.47,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.47,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.35,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-48",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Habrová",
+   "lat": 49.472103970208614,
+   "lon": 18.142541983366115,
+   "bearing": 110.06577670220757,
+   "span": {
+    "left": 10.52,
+    "right": 2.08
+   },
+   "segments": [
+    [
+     "plocha",
+     1.85,
+     "dtm"
+    ],
+    [
+     "zelen",
+     4.25,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.8,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.8,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.9,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Habrová",
+   "lat": 49.472103970208614,
+   "lon": 18.142541983366115,
+   "bearing": 110.06577670220757,
+   "span": {
+    "left": 10.52,
+    "right": 2.08
+   },
+   "segments": [
+    [
+     "plocha",
+     1.85,
+     "dtm"
+    ],
+    [
+     "zelen",
+     4.25,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.8,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.8,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.9,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-49",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Tvarůžkova",
+   "lat": 49.454192499415036,
+   "lon": 18.14791626127268,
+   "bearing": 44.00274697524608,
+   "span": {
+    "left": 4.82,
+    "right": 22
+   },
+   "segments": [
+    [
+     "zelen",
+     1.05,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     6.39,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     6.39,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Tvarůžkova",
+   "lat": 49.454192499415036,
+   "lon": 18.14791626127268,
+   "bearing": 44.00274697524608,
+   "span": {
+    "left": 4.82,
+    "right": 22
+   },
+   "segments": [
+    [
+     "zelen",
+     1.1,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.95,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.5,
+     "odhad"
+    ],
+    [
+     "plocha",
+     20.27,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-50",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Láz",
+   "lat": 49.47462980564462,
+   "lon": 18.134076592885478,
+   "bearing": 26.616067606832218,
+   "span": {
+    "left": 4.97,
+    "right": 3.13
+   },
+   "segments": [
+    [
+     "zelen",
+     1.35,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.65,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Láz",
+   "lat": 49.47462980564462,
+   "lon": 18.134076592885478,
+   "bearing": 26.616067606832218,
+   "span": {
+    "left": 4.97,
+    "right": 3.13
+   },
+   "segments": [
+    [
+     "zelen",
+     1.35,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.65,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-51",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Na Vyhlídce",
+   "lat": 49.4523212232639,
+   "lon": 18.144878214688095,
+   "bearing": 122.18334279321883,
+   "span": {
+    "left": 10.02,
+    "right": 1.78
+   },
+   "segments": [
+    [
+     "zelen",
+     7.15,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.65,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Na Vyhlídce",
+   "lat": 49.4523212232639,
+   "lon": 18.144878214688095,
+   "bearing": 122.18334279321883,
+   "span": {
+    "left": 10.02,
+    "right": 1.78
+   },
+   "segments": [
+    [
+     "zelen",
+     7.15,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.65,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-52",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Pod Hrází",
+   "lat": 49.4642727200662,
+   "lon": 18.13515648390563,
+   "bearing": -91.48385685617973,
+   "span": {
+    "left": 14.32,
+    "right": 2.63
+   },
+   "segments": [
+    [
+     "obsluzna",
+     4.6,
+     "odhad"
+    ],
+    [
+     "zelen",
+     4.5,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.95,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.9,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Pod Hrází",
+   "lat": 49.4642727200662,
+   "lon": 18.13515648390563,
+   "bearing": -91.48385685617973,
+   "span": {
+    "left": 14.32,
+    "right": 2.63
+   },
+   "segments": [
+    [
+     "zelen",
+     0.65,
+     "dtm"
+    ],
+    [
+     "obsluzna",
+     3.5,
+     "pasport"
+    ],
+    [
+     "zelen",
+     4.95,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.95,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.9,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-53",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Sladské",
+   "lat": 49.47677892305821,
+   "lon": 18.169088540727618,
+   "bearing": 165.63491285209062,
+   "span": {
+    "left": 1.97,
+    "right": 1.68
+   },
+   "segments": [
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.3,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Sladské",
+   "lat": 49.47677892305821,
+   "lon": 18.169088540727618,
+   "bearing": 165.63491285209062,
+   "span": {
+    "left": 1.67,
+    "right": 1.68
+   },
+   "segments": [
+    [
+     "pruh",
+     3.05,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.3,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-54",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Dolní Paseky",
+   "lat": 49.48572398393557,
+   "lon": 18.139037743733578,
+   "bearing": -5.474950066323353,
+   "span": {
+    "left": 3.62,
+    "right": 1.43
+   },
+   "segments": [
+    [
+     "pruh",
+     2.52,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.52,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Dolní Paseky",
+   "lat": 49.48572398393557,
+   "lon": 18.139037743733578,
+   "bearing": -5.474950066323353,
+   "span": {
+    "left": 3.62,
+    "right": 1.43
+   },
+   "segments": [
+    [
+     "pruh",
+     2.52,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.52,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-55",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Pod Kozincem",
+   "lat": 49.46690764645864,
+   "lon": 18.150994811284946,
+   "bearing": -70.74873694198143,
+   "span": {
+    "left": 5.12,
+    "right": 4.73
+   },
+   "segments": [
+    [
+     "zelen",
+     2.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Pod Kozincem",
+   "lat": 49.46690764645864,
+   "lon": 18.150994811284946,
+   "bearing": -70.74873694198143,
+   "span": {
+    "left": 5.12,
+    "right": 4.73
+   },
+   "segments": [
+    [
+     "zelen",
+     2.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.85,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.85,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.65,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-56",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Bayerova",
+   "lat": 49.45728600482839,
+   "lon": 18.143683990408952,
+   "bearing": 37.57089793908731,
+   "span": {
+    "left": 7.72,
+    "right": 22
+   },
+   "segments": [
+    [
+     "plocha",
+     3,
+     "dtm"
+    ],
+    [
+     "zelen",
+     0.9,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     8.66,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     8.66,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Bayerova",
+   "lat": 49.45728600482839,
+   "lon": 18.143683990408952,
+   "bearing": 37.57089793908731,
+   "span": {
+    "left": 7.72,
+    "right": 22
+   },
+   "segments": [
+    [
+     "plocha",
+     3,
+     "dtm"
+    ],
+    [
+     "zelen",
+     0.9,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     8.66,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     8.66,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-57",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Slezská",
+   "lat": 49.46353542521164,
+   "lon": 18.145188736265318,
+   "bearing": -112.0890637654602,
+   "span": {
+    "left": 3.84,
+    "right": 22
+   },
+   "segments": [
+    [
+     "zelen",
+     1.21,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.62,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.62,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.45,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     3.46,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     3.46,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Slezská",
+   "lat": 49.46353542521164,
+   "lon": 18.145188736265318,
+   "bearing": -112.0890637654602,
+   "span": {
+    "left": 3.84,
+    "right": 4.13
+   },
+   "segments": [
+    [
+     "zelen",
+     1.21,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.62,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.62,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.5,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-58",
+  "place": "roznov",
+  "highway": "tertiary",
+  "O": {
+   "name": "Tylovice",
+   "lat": 49.452186635081354,
+   "lon": 18.157912995359414,
+   "bearing": 135.41416925566753,
+   "span": {
+    "left": 6.82,
+    "right": 5.48
+   },
+   "segments": [
+    [
+     "zelen",
+     1.05,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.5,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.45,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.45,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.3,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.55,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Tylovice",
+   "lat": 49.452186635081354,
+   "lon": 18.157912995359414,
+   "bearing": 135.41416925566753,
+   "span": {
+    "left": 6.82,
+    "right": 5.48
+   },
+   "segments": [
+    [
+     "zelen",
+     1.05,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.5,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.45,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.45,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.3,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.55,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-59",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Sladské",
+   "lat": 49.478557,
+   "lon": 18.169864000000004,
+   "bearing": -135.54443019572668,
+   "span": {
+    "left": 3.07,
+    "right": 22
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     6.04,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     6.04,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Sladské",
+   "lat": 49.478557,
+   "lon": 18.169864000000004,
+   "bearing": -135.54443019572668,
+   "span": {
+    "left": 3.07,
+    "right": 6.28
+   },
+   "segments": [
+    [
+     "pruh",
+     3.15,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.15,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.05,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-60",
+  "place": "roznov",
+  "highway": "unclassified",
+  "O": {
+   "name": null,
+   "lat": 49.448053946523174,
+   "lon": 18.119182831217234,
+   "bearing": -25.83044534326215,
+   "span": {
+    "left": 4.97,
+    "right": 3.98
+   },
+   "segments": [
+    [
+     "zelen",
+     3.4,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.77,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.77,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.448053946523174,
+   "lon": 18.119182831217234,
+   "bearing": -25.83044534326215,
+   "span": {
+    "left": 4.97,
+    "right": 2.58
+   },
+   "segments": [
+    [
+     "zelen",
+     3.85,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.7,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-61",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "V Mokrém",
+   "lat": 49.477980781283264,
+   "lon": 18.143556931963847,
+   "bearing": 35.59802847677884,
+   "span": {
+    "left": 2.82,
+    "right": 12.23
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.03,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.03,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "V Mokrém",
+   "lat": 49.477980781283264,
+   "lon": 18.143556931963847,
+   "bearing": 35.59802847677884,
+   "span": {
+    "left": 1.77,
+    "right": 2.43
+   },
+   "segments": [
+    [
+     "zelen",
+     0.3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.9,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-62",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Hážovice",
+   "lat": 49.44974520521811,
+   "lon": 18.16389705042799,
+   "bearing": -80.86337866603404,
+   "span": {
+    "left": 2.17,
+    "right": 2.78
+   },
+   "segments": [
+    [
+     "pruh",
+     4.45,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.5,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Hážovice",
+   "lat": 49.44974520521811,
+   "lon": 18.16389705042799,
+   "bearing": -80.86337866603404,
+   "span": {
+    "left": 2.42,
+    "right": 2.78
+   },
+   "segments": [
+    [
+     "zelen",
+     0.85,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.85,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.5,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-63",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Valašská",
+   "lat": 49.46608748205902,
+   "lon": 18.12578402260913,
+   "bearing": -88.24233793999029,
+   "span": {
+    "left": 6.57,
+    "right": 14.93
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.62,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.62,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "plocha",
+     4.35,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.15,
+     "odhad"
+    ],
+    [
+     "plocha",
+     3.75,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Valašská",
+   "lat": 49.46608748205902,
+   "lon": 18.12578402260913,
+   "bearing": -88.24233793999029,
+   "span": {
+    "left": 6.57,
+    "right": 14.93
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.62,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.62,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "plocha",
+     4.35,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.15,
+     "odhad"
+    ],
+    [
+     "plocha",
+     3.75,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-64",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": null,
+   "lat": 49.47440513189923,
+   "lon": 18.159694995966603,
+   "bearing": -91.14600095483328,
+   "span": {
+    "left": 2.07,
+    "right": 2.78
+   },
+   "segments": [
+    [
+     "pruh",
+     3.75,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.1,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.47440513189923,
+   "lon": 18.159694995966603,
+   "bearing": -91.14600095483328,
+   "span": {
+    "left": 2.07,
+    "right": 2.78
+   },
+   "segments": [
+    [
+     "pruh",
+     3.75,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.1,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-65",
+  "place": "roznov",
+  "highway": "unclassified",
+  "O": {
+   "name": "Pod Pindulu",
+   "lat": 49.49439284910166,
+   "lon": 18.17813422938717,
+   "bearing": 45.17157141876573,
+   "span": {
+    "left": 22,
+    "right": 22
+   },
+   "segments": [
+    [
+     "krajnice",
+     8.29,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     8.29,
+     "odhad"
+    ],
+    [
+     "zelen",
+     3.95,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     14.47,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Pod Pindulu",
+   "lat": 49.49439284910166,
+   "lon": 18.17813422938717,
+   "bearing": 45.17157141876573,
+   "span": {
+    "left": 1.52,
+    "right": 10.48
+   },
+   "segments": [
+    [
+     "pruh",
+     2.55,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.55,
+     "osm"
+    ],
+    [
+     "zelen",
+     4.1,
+     "odhad"
+    ],
+    [
+     "obsluzna",
+     2.8,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-66",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Putýrky",
+   "lat": 49.482927295953594,
+   "lon": 18.137439827464423,
+   "bearing": -110.87203780472794,
+   "span": {
+    "left": 2.57,
+    "right": 0.73
+   },
+   "segments": [
+    [
+     "pruh",
+     3.3,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Putýrky",
+   "lat": 49.482927295953594,
+   "lon": 18.137439827464423,
+   "bearing": -110.87203780472794,
+   "span": {
+    "left": 2.57,
+    "right": 0.73
+   },
+   "segments": [
+    [
+     "pruh",
+     3.3,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-67",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Láz",
+   "lat": 49.47575340853323,
+   "lon": 18.12969501245264,
+   "bearing": -88.85770358312307,
+   "span": {
+    "left": 4.87,
+    "right": 2.91
+   },
+   "segments": [
+    [
+     "plocha",
+     2.05,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.6,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.14,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Láz",
+   "lat": 49.47575340853323,
+   "lon": 18.12969501245264,
+   "bearing": -88.85770358312307,
+   "span": {
+    "left": 4.87,
+    "right": 2.91
+   },
+   "segments": [
+    [
+     "plocha",
+     2.2,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.49,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-68",
+  "place": "roznov",
+  "highway": "tertiary",
+  "O": {
+   "name": "Tylovice",
+   "lat": 49.453539154312026,
+   "lon": 18.154718166911852,
+   "bearing": 125.294184506657,
+   "span": {
+    "left": 6.57,
+    "right": 22
+   },
+   "segments": [
+    [
+     "nezname",
+     0.35,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.05,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.2,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.2,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.4,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.35,
+     "dtm"
+    ],
+    [
+     "voda",
+     5.15,
+     "dtm"
+    ],
+    [
+     "zelen",
+     4.1,
+     "dtm"
+    ],
+    [
+     "zelen",
+     5.2,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.57,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Tylovice",
+   "lat": 49.453539154312026,
+   "lon": 18.154718166911852,
+   "bearing": 125.294184506657,
+   "span": {
+    "left": 6.57,
+    "right": 22
+   },
+   "segments": [
+    [
+     "nezname",
+     0.35,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.05,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.2,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.2,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.4,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.35,
+     "dtm"
+    ],
+    [
+     "voda",
+     5.15,
+     "dtm"
+    ],
+    [
+     "zelen",
+     4.1,
+     "dtm"
+    ],
+    [
+     "zelen",
+     5.2,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.57,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-69",
+  "place": "roznov",
+  "highway": "unclassified",
+  "O": {
+   "name": null,
+   "lat": 49.44344015610706,
+   "lon": 18.13199995250361,
+   "bearing": -101.26369899324489,
+   "span": {
+    "left": 1.57,
+    "right": 2.93
+   },
+   "segments": [
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.44344015610706,
+   "lon": 18.13199995250361,
+   "bearing": -101.26369899324489,
+   "span": {
+    "left": 1.57,
+    "right": 2.93
+   },
+   "segments": [
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-70",
+  "place": "roznov",
+  "highway": "tertiary",
+  "O": {
+   "name": "Hážovice",
+   "lat": 49.44983931592471,
+   "lon": 18.165653265306375,
+   "bearing": 116.25498315603281,
+   "span": {
+    "left": 7.62,
+    "right": 4.43
+   },
+   "segments": [
+    [
+     "zelen",
+     1.25,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.35,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.22,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.22,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Hážovice",
+   "lat": 49.44983931592471,
+   "lon": 18.165653265306375,
+   "bearing": 116.25498315603281,
+   "span": {
+    "left": 7.62,
+    "right": 4.43
+   },
+   "segments": [
+    [
+     "zelen",
+     1.25,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     2.35,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.22,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.22,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-71",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Letenská",
+   "lat": 49.46298084697794,
+   "lon": 18.14418244089918,
+   "bearing": -152.0575212750829,
+   "span": {
+    "left": 16.52,
+    "right": 12.23
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     2.33,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.33,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.2,
+     "odhad"
+    ],
+    [
+     "plocha",
+     8.9,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Letenská",
+   "lat": 49.46298084697794,
+   "lon": 18.14418244089918,
+   "bearing": -152.0575212750829,
+   "span": {
+    "left": 4.97,
+    "right": 12.23
+   },
+   "segments": [
+    [
+     "zelen",
+     2.55,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.2,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.55,
+     "odhad"
+    ],
+    [
+     "plocha",
+     8.9,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-72",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "1. máje",
+   "lat": 49.46224899982592,
+   "lon": 18.131382979076626,
+   "bearing": 179.27152295709524,
+   "span": {
+    "left": 6.82,
+    "right": 5.58
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "plocha",
+     1.65,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "1. máje",
+   "lat": 49.46224899982592,
+   "lon": 18.131382979076626,
+   "bearing": 179.27152295709524,
+   "span": {
+    "left": 6.82,
+    "right": 5.58
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "plocha",
+     1.65,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-73",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Kulišťákova",
+   "lat": 49.45057696257449,
+   "lon": 18.15494896440052,
+   "bearing": 121.90458997532556,
+   "span": {
+    "left": 2.02,
+    "right": 2.18
+   },
+   "segments": [
+    [
+     "pruh",
+     3.3,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.9,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Kulišťákova",
+   "lat": 49.45057696257449,
+   "lon": 18.15494896440052,
+   "bearing": 121.90458997532556,
+   "span": {
+    "left": 2.02,
+    "right": 2.18
+   },
+   "segments": [
+    [
+     "pruh",
+     3.25,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.95,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-74",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": null,
+   "lat": 49.469100989409206,
+   "lon": 18.149635949186933,
+   "bearing": -17.670681346711916,
+   "span": {
+    "left": 22,
+    "right": 22
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     15.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     15.5,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.469100989409206,
+   "lon": 18.149635949186933,
+   "bearing": -17.670681346711916,
+   "span": {
+    "left": 2.73,
+    "right": 1.38
+   },
+   "segments": [
+    [
+     "zelen",
+     0.86,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.25,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-75",
+  "place": "roznov",
+  "highway": "tertiary",
+  "O": {
+   "name": "Videčská",
+   "lat": 49.45698397225944,
+   "lon": 18.135728040154376,
+   "bearing": -133.4482054423972,
+   "span": {
+    "left": 3.44,
+    "right": 7.73
+   },
+   "segments": [
+    [
+     "pruh",
+     3.48,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.48,
+     "osm"
+    ],
+    [
+     "zelen",
+     4.2,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Videčská",
+   "lat": 49.45698397225944,
+   "lon": 18.135728040154376,
+   "bearing": -133.4482054423972,
+   "span": {
+    "left": 3.44,
+    "right": 7.73
+   },
+   "segments": [
+    [
+     "pruh",
+     3.48,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.48,
+     "osm"
+    ],
+    [
+     "zelen",
+     4.2,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-76",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": null,
+   "lat": 49.45500796972582,
+   "lon": 18.13171699857196,
+   "bearing": 91.76813720739467,
+   "span": {
+    "left": 5.67,
+    "right": 8.98
+   },
+   "segments": [
+    [
+     "zelen",
+     2.8,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.6,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.6,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.85,
+     "dtm"
+    ],
+    [
+     "nezname",
+     3.8,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.45500796972582,
+   "lon": 18.13171699857196,
+   "bearing": 91.76813720739467,
+   "span": {
+    "left": 5.67,
+    "right": 8.98
+   },
+   "segments": [
+    [
+     "zelen",
+     2.8,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.6,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.6,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.85,
+     "dtm"
+    ],
+    [
+     "nezname",
+     3.8,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-77",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Pod Kozincem",
+   "lat": 49.46764974559131,
+   "lon": 18.14725552346658,
+   "bearing": 53.945028879090444,
+   "span": {
+    "left": 22,
+    "right": 8.49
+   },
+   "segments": [
+    [
+     "plocha",
+     10.38,
+     "dtm"
+    ],
+    [
+     "zelen",
+     0.55,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.9,
+     "osm"
+    ],
+    [
+     "zelen",
+     5.15,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.2,
+     "osm"
+    ],
+    [
+     "zelen",
+     6.31,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Pod Kozincem",
+   "lat": 49.46764974559131,
+   "lon": 18.14725552346658,
+   "bearing": 53.945028879090444,
+   "span": {
+    "left": 22,
+    "right": 8.49
+   },
+   "segments": [
+    [
+     "plocha",
+     10.38,
+     "dtm"
+    ],
+    [
+     "zelen",
+     0.55,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.9,
+     "osm"
+    ],
+    [
+     "zelen",
+     5.15,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.2,
+     "osm"
+    ],
+    [
+     "zelen",
+     6.31,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-78",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Tyršovo nábřeží",
+   "lat": 49.458930964675076,
+   "lon": 18.136818057759264,
+   "bearing": -136.93584301595274,
+   "span": {
+    "left": 21.83,
+    "right": 4.93
+   },
+   "segments": [
+    [
+     "zelen",
+     7.8,
+     "dtm"
+    ],
+    [
+     "cyklostezka",
+     3.05,
+     "pasport"
+    ],
+    [
+     "zelen",
+     1.53,
+     "dtm"
+    ],
+    [
+     "stromorad",
+     3,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.97,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.2,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.2,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Tyršovo nábřeží",
+   "lat": 49.458930964675076,
+   "lon": 18.136818057759264,
+   "bearing": -136.93584301595274,
+   "span": {
+    "left": 21.83,
+    "right": 4.83
+   },
+   "segments": [
+    [
+     "zelen",
+     7.8,
+     "dtm"
+    ],
+    [
+     "cyklostezka",
+     3.05,
+     "pasport"
+    ],
+    [
+     "zelen",
+     1.53,
+     "odhad"
+    ],
+    [
+     "stromorad",
+     3,
+     "odhad"
+    ],
+    [
+     "zelen",
+     3.22,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.02,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.02,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-79",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Na Pařeničkách",
+   "lat": 49.474371046122755,
+   "lon": 18.147202793277675,
+   "bearing": 18.832662646689027,
+   "span": {
+    "left": 7.92,
+    "right": 2.13
+   },
+   "segments": [
+    [
+     "chodnik",
+     5.75,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.3,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Na Pařeničkách",
+   "lat": 49.474371046122755,
+   "lon": 18.147202793277675,
+   "bearing": 18.832662646689027,
+   "span": {
+    "left": 7.92,
+    "right": 2.13
+   },
+   "segments": [
+    [
+     "chodnik",
+     5.75,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.3,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-80",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Beskydská",
+   "lat": 49.46615534377107,
+   "lon": 18.15057718280866,
+   "bearing": -70.81566660259918,
+   "span": {
+    "left": 3.87,
+    "right": 4.19
+   },
+   "segments": [
+    [
+     "zelen",
+     1.6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.52,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.52,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.42,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Beskydská",
+   "lat": 49.46615534377107,
+   "lon": 18.15057718280866,
+   "bearing": -70.81566660259918,
+   "span": {
+    "left": 3.87,
+    "right": 4.19
+   },
+   "segments": [
+    [
+     "zelen",
+     1.6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.85,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.62,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-81",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": null,
+   "lat": 49.461209998891434,
+   "lon": 18.11897800001435,
+   "bearing": 89.51463651927129,
+   "span": {
+    "left": 3.42,
+    "right": 2.48
+   },
+   "segments": [
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.461209998891434,
+   "lon": 18.11897800001435,
+   "bearing": 89.51463651927129,
+   "span": {
+    "left": 3.42,
+    "right": 2.48
+   },
+   "segments": [
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.95,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-82",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Pod Hrází",
+   "lat": 49.46350802987769,
+   "lon": 18.131660568992416,
+   "bearing": -173.9524492184771,
+   "span": {
+    "left": 2.75,
+    "right": 2.7
+   },
+   "segments": [
+    [
+     "plocha",
+     0.63,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.2,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.63,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Pod Hrází",
+   "lat": 49.46350802987769,
+   "lon": 18.131660568992416,
+   "bearing": -173.9524492184771,
+   "span": {
+    "left": 2.75,
+    "right": 2.7
+   },
+   "segments": [
+    [
+     "plocha",
+     0.63,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.2,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.63,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-83",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Zuberská",
+   "lat": 49.46136436260753,
+   "lon": 18.115754330407665,
+   "bearing": -1.8404592774742772,
+   "span": {
+    "left": 16.52,
+    "right": 22
+   },
+   "segments": [
+    [
+     "zelen",
+     0.6,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     12.46,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     12.46,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Zuberská",
+   "lat": 49.46136436260753,
+   "lon": 18.115754330407665,
+   "bearing": -1.8404592774742772,
+   "span": {
+    "left": 16.52,
+    "right": 27.83
+   },
+   "segments": [
+    [
+     "zelen",
+     12.35,
+     "dtm"
+    ],
+    [
+     "zelen",
+     0.75,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.1,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     5.78,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     5.78,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.3,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-84",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": null,
+   "lat": 49.43702498462762,
+   "lon": 18.13277373434089,
+   "bearing": -5.051134330874238,
+   "span": {
+    "left": 1.32,
+    "right": 39.58
+   },
+   "segments": [
+    [
+     "pruh",
+     3.6,
+     "osm"
+    ],
+    [
+     "zelen",
+     37.3,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.43702498462762,
+   "lon": 18.13277373434089,
+   "bearing": -5.051134330874238,
+   "span": {
+    "left": 1.32,
+    "right": 39.58
+   },
+   "segments": [
+    [
+     "pruh",
+     3.6,
+     "osm"
+    ],
+    [
+     "zelen",
+     37.3,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-85",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "5. května",
+   "lat": 49.466473007250855,
+   "lon": 18.139396533142886,
+   "bearing": -178.64017056644195,
+   "span": {
+    "left": 4.72,
+    "right": 18.08
+   },
+   "segments": [
+    [
+     "chodnik",
+     0.9,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.7,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.45,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     4.05,
+     "odhad"
+    ],
+    [
+     "zelen",
+     7.7,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "5. května",
+   "lat": 49.466473007250855,
+   "lon": 18.139396533142886,
+   "bearing": -178.64017056644195,
+   "span": {
+    "left": 4.72,
+    "right": 18.08
+   },
+   "segments": [
+    [
+     "chodnik",
+     0.95,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.6,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.05,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.45,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     4.05,
+     "odhad"
+    ],
+    [
+     "zelen",
+     7.7,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-86",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Pod lesem",
+   "lat": 49.46468526644369,
+   "lon": 18.11845798609682,
+   "bearing": 88.04457834295879,
+   "span": {
+    "left": 9.97,
+    "right": 5.28
+   },
+   "segments": [
+    [
+     "plocha",
+     5.55,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.85,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.85,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.45,
+     "odhad"
+    ],
+    [
+     "plocha",
+     3.55,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Pod lesem",
+   "lat": 49.46468526644369,
+   "lon": 18.11845798609682,
+   "bearing": 88.04457834295879,
+   "span": {
+    "left": 9.97,
+    "right": 5.28
+   },
+   "segments": [
+    [
+     "plocha",
+     5.55,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.85,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.85,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.45,
+     "odhad"
+    ],
+    [
+     "plocha",
+     3.55,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-87",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Frenštátská",
+   "lat": 49.469540056849354,
+   "lon": 18.160918379220018,
+   "bearing": 22.675060740550883,
+   "span": {
+    "left": 6.42,
+    "right": 4.08
+   },
+   "segments": [
+    [
+     "zelen",
+     0.8,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     0.95,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.45,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.55,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Frenštátská",
+   "lat": 49.469540056849354,
+   "lon": 18.160918379220018,
+   "bearing": 22.675060740550883,
+   "span": {
+    "left": 6.42,
+    "right": 4.08
+   },
+   "segments": [
+    [
+     "zelen",
+     0.8,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     0.95,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.45,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.55,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-88",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Tkalcovská",
+   "lat": 49.47006689460527,
+   "lon": 18.14177849120756,
+   "bearing": 18.157534192213213,
+   "span": {
+    "left": 2.52,
+    "right": 2.88
+   },
+   "segments": [
+    [
+     "zelen",
+     0.7,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.5,
+     "odhad"
+    ],
+    [
+     "plocha",
+     0.85,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Tkalcovská",
+   "lat": 49.47006689460527,
+   "lon": 18.14177849120756,
+   "bearing": 18.157534192213213,
+   "span": {
+    "left": 2.52,
+    "right": 2.88
+   },
+   "segments": [
+    [
+     "zelen",
+     0.7,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.5,
+     "odhad"
+    ],
+    [
+     "plocha",
+     0.85,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-89",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Láz",
+   "lat": 49.47649812220156,
+   "lon": 18.129329299020984,
+   "bearing": -31.994829050440003,
+   "span": {
+    "left": 1.17,
+    "right": 9.58
+   },
+   "segments": [
+    [
+     "pruh",
+     3.87,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.87,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Láz",
+   "lat": 49.47649812220156,
+   "lon": 18.129329299020984,
+   "bearing": -31.994829050440003,
+   "span": {
+    "left": 1.17,
+    "right": 9.58
+   },
+   "segments": [
+    [
+     "pruh",
+     3.87,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.87,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-90",
+  "place": "roznov",
+  "highway": "tertiary",
+  "O": {
+   "name": "Uhliska",
+   "lat": 49.44400100231779,
+   "lon": 18.137880964233165,
+   "bearing": 5.653819834119697,
+   "span": {
+    "left": 4.92,
+    "right": 6.28
+   },
+   "segments": [
+    [
+     "zelen",
+     2.35,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.7,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Uhliska",
+   "lat": 49.44400100231779,
+   "lon": 18.137880964233165,
+   "bearing": 5.653819834119697,
+   "span": {
+    "left": 4.92,
+    "right": 6.28
+   },
+   "segments": [
+    [
+     "zelen",
+     2.35,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.7,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-91",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": null,
+   "lat": 49.4754070368438,
+   "lon": 18.166400050159872,
+   "bearing": -48.312261415181176,
+   "span": {
+    "left": 2.62,
+    "right": 2.98
+   },
+   "segments": [
+    [
+     "plocha",
+     1.05,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.55,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.4754070368438,
+   "lon": 18.166400050159872,
+   "bearing": -48.312261415181176,
+   "span": {
+    "left": 2.62,
+    "right": 2.98
+   },
+   "segments": [
+    [
+     "plocha",
+     1.05,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4.55,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-92",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Bučiska",
+   "lat": 49.45769201635378,
+   "lon": 18.121843989383745,
+   "bearing": -113.01618566217633,
+   "span": {
+    "left": 22,
+    "right": 4.38
+   },
+   "segments": [
+    [
+     "plocha",
+     10.93,
+     "dtm"
+    ],
+    [
+     "nezname",
+     0.75,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.48,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.48,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.75,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Bučiska",
+   "lat": 49.45769201635378,
+   "lon": 18.121843989383745,
+   "bearing": -113.01618566217633,
+   "span": {
+    "left": 22,
+    "right": 4.38
+   },
+   "segments": [
+    [
+     "plocha",
+     10.93,
+     "dtm"
+    ],
+    [
+     "nezname",
+     0.75,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.48,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.48,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.75,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-93",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Lesní",
+   "lat": 49.46736586135471,
+   "lon": 18.154850528189208,
+   "bearing": 21.86068454634831,
+   "span": {
+    "left": 22,
+    "right": 2.88
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.74,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.74,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.1,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.15,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.15,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Lesní",
+   "lat": 49.46736586135471,
+   "lon": 18.154850528189208,
+   "bearing": 21.86068454634831,
+   "span": {
+    "left": 6.82,
+    "right": 2.88
+   },
+   "segments": [
+    [
+     "zelen",
+     1.3,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.1,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.7,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.8,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.8,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-94",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Školní",
+   "lat": 49.46380606924646,
+   "lon": 18.12982497082277,
+   "bearing": 74.58662779126307,
+   "span": {
+    "left": 22,
+    "right": 22
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     7.61,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     7.61,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     10.15,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.62,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Školní",
+   "lat": 49.46380606924646,
+   "lon": 18.12982497082277,
+   "bearing": 74.58662779126307,
+   "span": {
+    "left": 1.67,
+    "right": 22
+   },
+   "segments": [
+    [
+     "pruh",
+     3.4,
+     "osm"
+    ],
+    [
+     "chodnik",
+     10.15,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.62,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-95",
+  "place": "roznov",
+  "highway": "unclassified",
+  "O": {
+   "name": "Pod Pindulu",
+   "lat": 49.4918337042018,
+   "lon": 18.17378360666,
+   "bearing": 36.70866742038107,
+   "span": {
+    "left": 20.98,
+    "right": 0.38
+   },
+   "segments": [
+    [
+     "plocha",
+     12.3,
+     "dtm"
+    ],
+    [
+     "zelen",
+     5.2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.85,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Pod Pindulu",
+   "lat": 49.4918337042018,
+   "lon": 18.17378360666,
+   "bearing": 36.70866742038107,
+   "span": {
+    "left": 20.98,
+    "right": 0.38
+   },
+   "segments": [
+    [
+     "plocha",
+     12.3,
+     "dtm"
+    ],
+    [
+     "zelen",
+     5.2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.85,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-96",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Sladské",
+   "lat": 49.47890162014257,
+   "lon": 18.17095143821094,
+   "bearing": -127.0380495475341,
+   "span": {
+    "left": 11.57,
+    "right": 2.43
+   },
+   "segments": [
+    [
+     "zelen",
+     2.3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.47,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.47,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.75,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Sladské",
+   "lat": 49.47890162014257,
+   "lon": 18.17095143821094,
+   "bearing": -127.0380495475341,
+   "span": {
+    "left": 11.57,
+    "right": 2.43
+   },
+   "segments": [
+    [
+     "zelen",
+     2.3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.32,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.32,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.05,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-97",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Tvarůžkova",
+   "lat": 49.453071156670866,
+   "lon": 18.14651380273579,
+   "bearing": 30.84173317675872,
+   "span": {
+    "left": 22,
+    "right": 22
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     7.24,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     7.24,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.05,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     3.24,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     3.24,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Tvarůžkova",
+   "lat": 49.453071156670866,
+   "lon": 18.14651380273579,
+   "bearing": 30.84173317675872,
+   "span": {
+    "left": 3.87,
+    "right": 22
+   },
+   "segments": [
+    [
+     "pruh",
+     3.67,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.67,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.05,
+     "dtm"
+    ],
+    [
+     "krajnice",
+     3.24,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     3.24,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-98",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Radhošťská",
+   "lat": 49.47871320452526,
+   "lon": 18.184230578208357,
+   "bearing": -28.403003107995392,
+   "span": {
+    "left": 2.22,
+    "right": 2.33
+   },
+   "segments": [
+    [
+     "pruh",
+     4.55,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Radhošťská",
+   "lat": 49.47871320452526,
+   "lon": 18.184230578208357,
+   "bearing": -28.403003107995392,
+   "span": {
+    "left": 2.22,
+    "right": 2.33
+   },
+   "segments": [
+    [
+     "pruh",
+     4.55,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-99",
+  "place": "roznov",
+  "highway": "tertiary",
+  "O": {
+   "name": "Kramolišov",
+   "lat": 49.45468300094215,
+   "lon": 18.14481291271501,
+   "bearing": 0.9449170454113418,
+   "span": {
+    "left": 8.27,
+    "right": 10.88
+   },
+   "segments": [
+    [
+     "zelen",
+     5.85,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.42,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.42,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.55,
+     "dtm"
+    ],
+    [
+     "zelen",
+     4.9,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Kramolišov",
+   "lat": 49.45468300094215,
+   "lon": 18.14481291271501,
+   "bearing": 0.9449170454113418,
+   "span": {
+    "left": 8.27,
+    "right": 10.88
+   },
+   "segments": [
+    [
+     "zelen",
+     5.85,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.42,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.42,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.55,
+     "dtm"
+    ],
+    [
+     "zelen",
+     4.9,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-100",
+  "place": "roznov",
+  "highway": "service",
+  "O": {
+   "name": "Partyzánská",
+   "lat": 49.457557863641235,
+   "lon": 18.14525604548865,
+   "bearing": -102.31467846647114,
+   "span": {
+    "left": 1.92,
+    "right": 6.33
+   },
+   "segments": [
+    [
+     "obsluzna",
+     8.25,
+     "pasport"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Partyzánská",
+   "lat": 49.457557863641235,
+   "lon": 18.14525604548865,
+   "bearing": -102.31467846647114,
+   "span": {
+    "left": 1.92,
+    "right": 6.33
+   },
+   "segments": [
+    [
+     "obsluzna",
+     8.25,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-101",
+  "place": "roznov",
+  "highway": "tertiary",
+  "O": {
+   "name": "5. května",
+   "lat": 49.460501993802055,
+   "lon": 18.13745234016179,
+   "bearing": 1.594988127931295,
+   "span": {
+    "left": 12.82,
+    "right": 11.1
+   },
+   "segments": [
+    [
+     "chodnik",
+     4.45,
+     "odhad"
+    ],
+    [
+     "zelen",
+     3.1,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.51,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.51,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.51,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.51,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.51,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.83,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "5. května",
+   "lat": 49.460501993802055,
+   "lon": 18.13745234016179,
+   "bearing": 1.594988127931295,
+   "span": {
+    "left": 12.82,
+    "right": 11.1
+   },
+   "segments": [
+    [
+     "chodnik",
+     4.45,
+     "odhad"
+    ],
+    [
+     "zelen",
+     3.1,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.5,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.88,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-102",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": null,
+   "lat": 49.45048594529944,
+   "lon": 18.166769060162704,
+   "bearing": 45.11209003170154,
+   "span": {
+    "left": 7.07,
+    "right": 3.43
+   },
+   "segments": [
+    [
+     "zelen",
+     2.35,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.82,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.82,
+     "osm"
+    ],
+    [
+     "chodnik",
+     0.5,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.45048594529944,
+   "lon": 18.166769060162704,
+   "bearing": 45.11209003170154,
+   "span": {
+    "left": 7.07,
+    "right": 3.43
+   },
+   "segments": [
+    [
+     "zelen",
+     5.45,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.05,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.45,
+     "osm"
+    ],
+    [
+     "chodnik",
+     0.55,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-103",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Lipová",
+   "lat": 49.468960654431285,
+   "lon": 18.162124216388857,
+   "bearing": 129.40767506633492,
+   "span": {
+    "left": 2.82,
+    "right": 2.33
+   },
+   "segments": [
+    [
+     "zelen",
+     1.05,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.1,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Lipová",
+   "lat": 49.468960654431285,
+   "lon": 18.162124216388857,
+   "bearing": 129.40767506633492,
+   "span": {
+    "left": 2.82,
+    "right": 2.33
+   },
+   "segments": [
+    [
+     "zelen",
+     1.05,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.1,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-104",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": null,
+   "lat": 49.45334005677333,
+   "lon": 18.153191808535382,
+   "bearing": 24.374459387911863,
+   "span": {
+    "left": 23.03,
+    "right": 3.48
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     4.48,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     4.48,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.62,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.62,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.45334005677333,
+   "lon": 18.153191808535382,
+   "bearing": 24.374459387911863,
+   "span": {
+    "left": 3.77,
+    "right": 2.73
+   },
+   "segments": [
+    [
+     "zelen",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-105",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": null,
+   "lat": 49.46298712298246,
+   "lon": 18.118685998402203,
+   "bearing": -90.4870609356567,
+   "span": {
+    "left": 14.77,
+    "right": 19.53
+   },
+   "segments": [
+    [
+     "plocha",
+     10.8,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     4.3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     4.3,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "plocha",
+     1.9,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.46298712298246,
+   "lon": 18.118685998402203,
+   "bearing": -90.4870609356567,
+   "span": {
+    "left": 14.77,
+    "right": 19.53
+   },
+   "segments": [
+    [
+     "plocha",
+     10.8,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     4.3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     4.3,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "plocha",
+     1.9,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-106",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Jasanová",
+   "lat": 49.45368395986111,
+   "lon": 18.155851085774174,
+   "bearing": 35.56648554365209,
+   "span": {
+    "left": 3.32,
+    "right": 1.33
+   },
+   "segments": [
+    [
+     "pruh",
+     4.1,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.55,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Jasanová",
+   "lat": 49.45368395986111,
+   "lon": 18.155851085774174,
+   "bearing": 35.56648554365209,
+   "span": {
+    "left": 3.32,
+    "right": 1.33
+   },
+   "segments": [
+    [
+     "pruh",
+     4.1,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.55,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-107",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Sladské",
+   "lat": 49.471584901424364,
+   "lon": 18.16403109543748,
+   "bearing": 57.65054703733664,
+   "span": {
+    "left": 7.57,
+    "right": 3.28
+   },
+   "segments": [
+    [
+     "voda",
+     4.9,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.97,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.97,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Sladské",
+   "lat": 49.471584901424364,
+   "lon": 18.16403109543748,
+   "bearing": 57.65054703733664,
+   "span": {
+    "left": 7.57,
+    "right": 3.28
+   },
+   "segments": [
+    [
+     "voda",
+     4.9,
+     "dtm"
+    ],
+    [
+     "pruh",
+     2.97,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.97,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-108",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Na stráni",
+   "lat": 49.46019599073573,
+   "lon": 18.14923600236965,
+   "bearing": 80.49818717620352,
+   "span": {
+    "left": 3.37,
+    "right": 15.18
+   },
+   "segments": [
+    [
+     "pruh",
+     4.35,
+     "osm"
+    ],
+    [
+     "zelen",
+     14.2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Na stráni",
+   "lat": 49.46019599073573,
+   "lon": 18.14923600236965,
+   "bearing": 80.49818717620352,
+   "span": {
+    "left": 3.37,
+    "right": 15.18
+   },
+   "segments": [
+    [
+     "pruh",
+     4.35,
+     "osm"
+    ],
+    [
+     "zelen",
+     14.2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-109",
+  "place": "roznov",
+  "highway": "unclassified",
+  "O": {
+   "name": null,
+   "lat": 49.44653712018498,
+   "lon": 18.120303349934353,
+   "bearing": -27.686752132470403,
+   "span": {
+    "left": 22,
+    "right": 3.13
+   },
+   "segments": [
+    [
+     "chodnik",
+     20.57,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.55,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.44653712018498,
+   "lon": 18.120303349934353,
+   "bearing": -27.686752132470403,
+   "span": {
+    "left": 22,
+    "right": 3.13
+   },
+   "segments": [
+    [
+     "chodnik",
+     20.57,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.65,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.9,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-110",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": null,
+   "lat": 49.46422922210123,
+   "lon": 18.125171845427246,
+   "bearing": 65.51693256995698,
+   "span": {
+    "left": 11.57,
+    "right": 2.58
+   },
+   "segments": [
+    [
+     "zelen",
+     4.6,
+     "dtm"
+    ],
+    [
+     "obsluzna",
+     5.7,
+     "pasport"
+    ],
+    [
+     "zelen",
+     3.85,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.46422922210123,
+   "lon": 18.125171845427246,
+   "bearing": 65.51693256995698,
+   "span": {
+    "left": 11.57,
+    "right": 2.58
+   },
+   "segments": [
+    [
+     "zelen",
+     4.6,
+     "dtm"
+    ],
+    [
+     "obsluzna",
+     5.7,
+     "pasport"
+    ],
+    [
+     "zelen",
+     3.85,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-111",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Školní",
+   "lat": 49.46360054202451,
+   "lon": 18.128418451112136,
+   "bearing": 105.2003313465208,
+   "span": {
+    "left": 21.88,
+    "right": 23.23
+   },
+   "segments": [
+    [
+     "plocha",
+     19.45,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.85,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.55,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.45,
+     "odhad"
+    ],
+    [
+     "plocha",
+     7.55,
+     "dtm"
+    ],
+    [
+     "obsluzna",
+     12.25,
+     "pasport"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Školní",
+   "lat": 49.46360054202451,
+   "lon": 18.128418451112136,
+   "bearing": 105.2003313465208,
+   "span": {
+    "left": 22,
+    "right": 23.23
+   },
+   "segments": [
+    [
+     "plocha",
+     19.57,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.85,
+     "osm"
+    ],
+    [
+     "chodnik",
+     1.55,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.45,
+     "odhad"
+    ],
+    [
+     "plocha",
+     7.55,
+     "dtm"
+    ],
+    [
+     "obsluzna",
+     12.25,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-112",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Bučiska",
+   "lat": 49.457334701591,
+   "lon": 18.12377998024455,
+   "bearing": -87.5193291013984,
+   "span": {
+    "left": 17.62,
+    "right": 2.63
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     3.63,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     3.63,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Bučiska",
+   "lat": 49.457334701591,
+   "lon": 18.12377998024455,
+   "bearing": -87.5193291013984,
+   "span": {
+    "left": 1.47,
+    "right": 2.68
+   },
+   "segments": [
+    [
+     "pruh",
+     3.2,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.95,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-113",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Horní Dráhy",
+   "lat": 49.45324796937115,
+   "lon": 18.160877040336235,
+   "bearing": -130.75719613574117,
+   "span": {
+    "left": 3.47,
+    "right": 3.98
+   },
+   "segments": [
+    [
+     "zelen",
+     1.15,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.6,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.7,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Horní Dráhy",
+   "lat": 49.45324796937115,
+   "lon": 18.160877040336235,
+   "bearing": -130.75719613574117,
+   "span": {
+    "left": 3.47,
+    "right": 3.98
+   },
+   "segments": [
+    [
+     "zelen",
+     1.15,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.6,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.7,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-114",
+  "place": "roznov",
+  "highway": "tertiary",
+  "O": {
+   "name": "Tylovice",
+   "lat": 49.45556102122005,
+   "lon": 18.14825301696249,
+   "bearing": 117.61499921267384,
+   "span": {
+    "left": 4.82,
+    "right": 5.08
+   },
+   "segments": [
+    [
+     "zelen",
+     1,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.17,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.17,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.8,
+     "dtm"
+    ],
+    [
+     "nezname",
+     0.4,
+     "odhad"
+    ],
+    [
+     "plocha",
+     1.35,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Tylovice",
+   "lat": 49.45556102122005,
+   "lon": 18.14825301696249,
+   "bearing": 117.61499921267384,
+   "span": {
+    "left": 4.82,
+    "right": 5.08
+   },
+   "segments": [
+    [
+     "zelen",
+     1,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.17,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.17,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.8,
+     "dtm"
+    ],
+    [
+     "nezname",
+     0.4,
+     "odhad"
+    ],
+    [
+     "plocha",
+     1.35,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-115",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "5. května",
+   "lat": 49.46768045781934,
+   "lon": 18.139399241279843,
+   "bearing": 179.01791685498375,
+   "span": {
+    "left": 18.67,
+    "right": 4.43
+   },
+   "segments": [
+    [
+     "zelen",
+     12.25,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.85,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.4,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.4,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "5. května",
+   "lat": 49.46768045781934,
+   "lon": 18.139399241279843,
+   "bearing": 179.01791685498375,
+   "span": {
+    "left": 18.67,
+    "right": 4.43
+   },
+   "segments": [
+    [
+     "zelen",
+     12.25,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     1.85,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.4,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.4,
+     "osm"
+    ],
+    [
+     "chodnik",
+     2.2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-116",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "1. máje",
+   "lat": 49.46196194341122,
+   "lon": 18.121080629452468,
+   "bearing": -90.83608613923609,
+   "span": {
+    "left": 15.42,
+    "right": 4.63
+   },
+   "segments": [
+    [
+     "plocha",
+     5.9,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.35,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.1,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.1,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.6,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "1. máje",
+   "lat": 49.46196194341122,
+   "lon": 18.121080629452468,
+   "bearing": -90.83608613923609,
+   "span": {
+    "left": 15.42,
+    "right": 4.63
+   },
+   "segments": [
+    [
+     "plocha",
+     5.9,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.35,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.1,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.1,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.6,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-117",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": null,
+   "lat": 49.464691929296876,
+   "lon": 18.1386889859675,
+   "bearing": -82.60099682390702,
+   "span": {
+    "left": 6.67,
+    "right": 3.58
+   },
+   "segments": [
+    [
+     "pruh",
+     3.85,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.85,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.55,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.464691929296876,
+   "lon": 18.1386889859675,
+   "bearing": -82.60099682390702,
+   "span": {
+    "left": 6.07,
+    "right": 3.58
+   },
+   "segments": [
+    [
+     "pruh",
+     3.42,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.42,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.8,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-118",
+  "place": "roznov",
+  "highway": "tertiary",
+  "O": {
+   "name": "Palackého",
+   "lat": 49.46058826089,
+   "lon": 18.14529069709228,
+   "bearing": 67.48160854876168,
+   "span": {
+    "left": 5.17,
+    "right": 7.12
+   },
+   "segments": [
+    [
+     "krajnice",
+     2.15,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.15,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Palackého",
+   "lat": 49.46058826089,
+   "lon": 18.14529069709228,
+   "bearing": 67.48160854876168,
+   "span": {
+    "left": 5.17,
+    "right": 7.12
+   },
+   "segments": [
+    [
+     "krajnice",
+     2.15,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.15,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-119",
+  "place": "roznov",
+  "highway": "tertiary",
+  "O": {
+   "name": "Videčská",
+   "lat": 49.44954898843981,
+   "lon": 18.128736055678345,
+   "bearing": -162.39969657965952,
+   "span": {
+    "left": 3.32,
+    "right": 2.28
+   },
+   "segments": [
+    [
+     "pruh",
+     2.8,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.8,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Videčská",
+   "lat": 49.44954898843981,
+   "lon": 18.128736055678345,
+   "bearing": -162.39969657965952,
+   "span": {
+    "left": 3.32,
+    "right": 2.28
+   },
+   "segments": [
+    [
+     "pruh",
+     2.8,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.8,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-120",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "1. máje",
+   "lat": 49.4620245024581,
+   "lon": 18.12884900190189,
+   "bearing": -90.14331086731944,
+   "span": {
+    "left": 9.1,
+    "right": 22
+   },
+   "segments": [
+    [
+     "plocha",
+     2.28,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.05,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     7.39,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     7.39,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "1. máje",
+   "lat": 49.4620245024581,
+   "lon": 18.12884900190189,
+   "bearing": -90.14331086731944,
+   "span": {
+    "left": 9.1,
+    "right": 22
+   },
+   "segments": [
+    [
+     "plocha",
+     2.28,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.05,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.75,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.75,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     1.95,
+     "odhad"
+    ],
+    [
+     "plocha",
+     7.1,
+     "dtm"
+    ],
+    [
+     "obsluzna",
+     9.23,
+     "pasport"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-121",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Tyršovo nábřeží",
+   "lat": 49.45710349066796,
+   "lon": 18.13322108763658,
+   "bearing": -96.42431323574661,
+   "span": {
+    "left": 18.22,
+    "right": 4.58
+   },
+   "segments": [
+    [
+     "zelen",
+     7.25,
+     "dtm"
+    ],
+    [
+     "cyklostezka",
+     3.15,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     3.06,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.69,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.82,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.82,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Tyršovo nábřeží",
+   "lat": 49.45710349066796,
+   "lon": 18.13322108763658,
+   "bearing": -96.42431323574661,
+   "span": {
+    "left": 18.22,
+    "right": 4.58
+   },
+   "segments": [
+    [
+     "zelen",
+     7.25,
+     "dtm"
+    ],
+    [
+     "cyklostezka",
+     3.15,
+     "pasport"
+    ],
+    [
+     "stromorad",
+     3.06,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.14,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.6,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.6,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-122",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "V Mokrém",
+   "lat": 49.48189326129298,
+   "lon": 18.150694677147538,
+   "bearing": 51.055969168755446,
+   "span": {
+    "left": 2.17,
+    "right": 1.18
+   },
+   "segments": [
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "V Mokrém",
+   "lat": 49.48189326129298,
+   "lon": 18.150694677147538,
+   "bearing": 51.055969168755446,
+   "span": {
+    "left": 2.17,
+    "right": 1.18
+   },
+   "segments": [
+    [
+     "pruh",
+     3.35,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-123",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Dolní Paseky",
+   "lat": 49.484844103539935,
+   "lon": 18.139297433721428,
+   "bearing": -14.167456482971218,
+   "span": {
+    "left": 2.72,
+    "right": 1.53
+   },
+   "segments": [
+    [
+     "pruh",
+     4.25,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Dolní Paseky",
+   "lat": 49.484844103539935,
+   "lon": 18.139297433721428,
+   "bearing": -14.167456482971218,
+   "span": {
+    "left": 2.72,
+    "right": 1.53
+   },
+   "segments": [
+    [
+     "pruh",
+     4.25,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-124",
+  "place": "roznov",
+  "highway": "tertiary",
+  "O": {
+   "name": "Hážovice",
+   "lat": 49.44774670347574,
+   "lon": 18.172896822848376,
+   "bearing": 111.35711130679859,
+   "span": {
+    "left": 8.67,
+    "right": 4.08
+   },
+   "segments": [
+    [
+     "chodnik",
+     4.75,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.3,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.4,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Hážovice",
+   "lat": 49.44774670347574,
+   "lon": 18.172896822848376,
+   "bearing": 111.35711130679859,
+   "span": {
+    "left": 8.67,
+    "right": 4.08
+   },
+   "segments": [
+    [
+     "chodnik",
+     4.75,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.3,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.3,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.4,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-125",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Sluneční",
+   "lat": 49.45916088878237,
+   "lon": 18.154110086400653,
+   "bearing": 63.05310221890839,
+   "span": {
+    "left": 4.07,
+    "right": 1.98
+   },
+   "segments": [
+    [
+     "zelen",
+     1.1,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.95,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Sluneční",
+   "lat": 49.45916088878237,
+   "lon": 18.154110086400653,
+   "bearing": 63.05310221890839,
+   "span": {
+    "left": 4.07,
+    "right": 2.28
+   },
+   "segments": [
+    [
+     "zelen",
+     1.25,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.7,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.4,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-126",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Láz",
+   "lat": 49.473794415131636,
+   "lon": 18.141801920825404,
+   "bearing": -97.11182824069398,
+   "span": {
+    "left": 4.17,
+    "right": 2.58
+   },
+   "segments": [
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Láz",
+   "lat": 49.473794415131636,
+   "lon": 18.141801920825404,
+   "bearing": -97.11182824069398,
+   "span": {
+    "left": 4.17,
+    "right": 2.58
+   },
+   "segments": [
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.37,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-127",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Dolní Paseky",
+   "lat": 49.4864600000825,
+   "lon": 18.138995981628163,
+   "bearing": 0.3934010853377067,
+   "span": {
+    "left": 2.42,
+    "right": 12.63
+   },
+   "segments": [
+    [
+     "pruh",
+     3.25,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.25,
+     "osm"
+    ],
+    [
+     "zelen",
+     6.8,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.75,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Dolní Paseky",
+   "lat": 49.4864600000825,
+   "lon": 18.138995981628163,
+   "bearing": 0.3934010853377067,
+   "span": {
+    "left": 2.42,
+    "right": 12.63
+   },
+   "segments": [
+    [
+     "pruh",
+     3.25,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.25,
+     "osm"
+    ],
+    [
+     "zelen",
+     6.8,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.75,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-128",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Láň",
+   "lat": 49.45455765100358,
+   "lon": 18.13491007018798,
+   "bearing": 82.50204437743066,
+   "span": {
+    "left": 3.97,
+    "right": 8.84
+   },
+   "segments": [
+    [
+     "zelen",
+     1.4,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.32,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.32,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     2.77,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Láň",
+   "lat": 49.45455765100358,
+   "lon": 18.13491007018798,
+   "bearing": 82.50204437743066,
+   "span": {
+    "left": 3.97,
+    "right": 8.84
+   },
+   "segments": [
+    [
+     "zelen",
+     2.15,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.9,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.9,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.87,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-129",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Jasanová",
+   "lat": 49.45416730797594,
+   "lon": 18.1573464563025,
+   "bearing": 134.11668625573395,
+   "span": {
+    "left": 2.42,
+    "right": 22
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     5.71,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     5.71,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Jasanová",
+   "lat": 49.45416730797594,
+   "lon": 18.1573464563025,
+   "bearing": 134.11668625573395,
+   "span": {
+    "left": 2.07,
+    "right": 2.63
+   },
+   "segments": [
+    [
+     "pruh",
+     3,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.7,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-130",
+  "place": "roznov",
+  "highway": "tertiary",
+  "O": {
+   "name": "Hradišťko",
+   "lat": 49.465808143095344,
+   "lon": 18.141296592778446,
+   "bearing": 28.238690363291134,
+   "span": {
+    "left": 7.77,
+    "right": 6.07
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.45,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.65,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.75,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Hradišťko",
+   "lat": 49.465808143095344,
+   "lon": 18.141296592778446,
+   "bearing": 28.238690363291134,
+   "span": {
+    "left": 7.77,
+    "right": 6.07
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.45,
+     "dtm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "pruh",
+     4,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.65,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.75,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-131",
+  "place": "roznov",
+  "highway": "unclassified",
+  "O": {
+   "name": "Pod Pindulu",
+   "lat": 49.49269342753009,
+   "lon": 18.174934479307094,
+   "bearing": 51.46533782678975,
+   "span": {
+    "left": 3.67,
+    "right": 0.73
+   },
+   "segments": [
+    [
+     "pruh",
+     4.4,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Pod Pindulu",
+   "lat": 49.49269342753009,
+   "lon": 18.174934479307094,
+   "bearing": 51.46533782678975,
+   "span": {
+    "left": 3.67,
+    "right": 0.73
+   },
+   "segments": [
+    [
+     "pruh",
+     4.4,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-132",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Bučiska",
+   "lat": 49.45745233037875,
+   "lon": 18.12506285395731,
+   "bearing": -106.13379015165555,
+   "span": {
+    "left": 5.67,
+    "right": 2.88
+   },
+   "segments": [
+    [
+     "zelen",
+     2.05,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.25,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.25,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Bučiska",
+   "lat": 49.45745233037875,
+   "lon": 18.12506285395731,
+   "bearing": -106.13379015165555,
+   "span": {
+    "left": 5.67,
+    "right": 2.58
+   },
+   "segments": [
+    [
+     "zelen",
+     3.5,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.7,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.05,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-133",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Za Školou",
+   "lat": 49.47072489238566,
+   "lon": 18.13852531776147,
+   "bearing": -152.63120225108824,
+   "span": {
+    "left": 8.17,
+    "right": 5.78
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.35,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.25,
+     "dtm"
+    ],
+    [
+     "zed",
+     0.4,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.65,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.25,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.7,
+     "dtm"
+    ],
+    [
+     "zelen",
+     0.35,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Za Školou",
+   "lat": 49.47072489238566,
+   "lon": 18.13852531776147,
+   "bearing": -152.63120225108824,
+   "span": {
+    "left": 8.17,
+    "right": 5.78
+   },
+   "segments": [
+    [
+     "chodnik",
+     1.35,
+     "dtm"
+    ],
+    [
+     "zelen",
+     2.25,
+     "dtm"
+    ],
+    [
+     "zed",
+     0.4,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.65,
+     "dtm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.25,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     0.7,
+     "dtm"
+    ],
+    [
+     "zelen",
+     0.35,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-134",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Zuberská",
+   "lat": 49.4625038263005,
+   "lon": 18.113872672946886,
+   "bearing": -39.06543700551567,
+   "span": {
+    "left": 8.42,
+    "right": 6.83
+   },
+   "segments": [
+    [
+     "zelen",
+     5.2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.9,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Zuberská",
+   "lat": 49.4625038263005,
+   "lon": 18.113872672946886,
+   "bearing": -39.06543700551567,
+   "span": {
+    "left": 8.42,
+    "right": 6.83
+   },
+   "segments": [
+    [
+     "zelen",
+     5.2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.07,
+     "osm"
+    ],
+    [
+     "zelen",
+     3.9,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-135",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Obránců míru",
+   "lat": 49.4660539807665,
+   "lon": 18.148251883678938,
+   "bearing": 165.81734398482283,
+   "span": {
+    "left": 5.62,
+    "right": 4.48
+   },
+   "segments": [
+    [
+     "zelen",
+     2.6,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.75,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.75,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Obránců míru",
+   "lat": 49.4660539807665,
+   "lon": 18.148251883678938,
+   "bearing": 165.81734398482283,
+   "span": {
+    "left": 5.62,
+    "right": 4.48
+   },
+   "segments": [
+    [
+     "zelen",
+     2.65,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.55,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.55,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.35,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-136",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Slezská",
+   "lat": 49.466146882642064,
+   "lon": 18.153254080709807,
+   "bearing": -114.22607563426003,
+   "span": {
+    "left": 4.8,
+    "right": 4.93
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.03,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.9,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.9,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.9,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Slezská",
+   "lat": 49.466146882642064,
+   "lon": 18.153254080709807,
+   "bearing": -114.22607563426003,
+   "span": {
+    "left": 4.8,
+    "right": 4.93
+   },
+   "segments": [
+    [
+     "chodnik",
+     2.03,
+     "odhad"
+    ],
+    [
+     "pruh",
+     2.87,
+     "osm"
+    ],
+    [
+     "pruh",
+     2.87,
+     "osm"
+    ],
+    [
+     "zelen",
+     1.95,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-137",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Partyzánská",
+   "lat": 49.45840627995433,
+   "lon": 18.144502930683412,
+   "bearing": -13.492581332694064,
+   "span": {
+    "left": 14.02,
+    "right": 14.83
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     3.3,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     3.3,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.6,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.75,
+     "pasport"
+    ],
+    [
+     "nezname",
+     4.9,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Partyzánská",
+   "lat": 49.45840627995433,
+   "lon": 18.144502930683412,
+   "bearing": -13.492581332694064,
+   "span": {
+    "left": 14.02,
+    "right": 14.83
+   },
+   "segments": [
+    [
+     "nezname",
+     1.05,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     2.78,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2.78,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     2.6,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     1.75,
+     "pasport"
+    ],
+    [
+     "nezname",
+     4.9,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-138",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "V Mokrém",
+   "lat": 49.482984647177716,
+   "lon": 18.154484184471805,
+   "bearing": 71.1207890164973,
+   "span": {
+    "left": -2.53,
+    "right": 5.58
+   },
+   "segments": [
+    [
+     "pruh",
+     2.6,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.45,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "V Mokrém",
+   "lat": 49.482984647177716,
+   "lon": 18.154484184471805,
+   "bearing": 71.1207890164973,
+   "span": {
+    "left": -2.53,
+    "right": 5.58
+   },
+   "segments": [
+    [
+     "pruh",
+     2.6,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.45,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-139",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Lázeňská",
+   "lat": 49.461361999222675,
+   "lon": 18.142984071287504,
+   "bearing": 0.9546972428552071,
+   "span": {
+    "left": 15.97,
+    "right": 7.18
+   },
+   "segments": [
+    [
+     "obsluzna",
+     3.45,
+     "pasport"
+    ],
+    [
+     "zelen",
+     6.25,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.22,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.22,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Lázeňská",
+   "lat": 49.461361999222675,
+   "lon": 18.142984071287504,
+   "bearing": 0.9546972428552071,
+   "span": {
+    "left": 15.97,
+    "right": 7.18
+   },
+   "segments": [
+    [
+     "obsluzna",
+     3.45,
+     "pasport"
+    ],
+    [
+     "zelen",
+     6.25,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     1.22,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     1.22,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-140",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Sněžná",
+   "lat": 49.480393941886085,
+   "lon": 18.140839005148162,
+   "bearing": 86.68374450549241,
+   "span": {
+    "left": 2.57,
+    "right": 4.83
+   },
+   "segments": [
+    [
+     "zelen",
+     0.95,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.45,
+     "osm"
+    ],
+    [
+     "plocha",
+     2,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Sněžná",
+   "lat": 49.480393941886085,
+   "lon": 18.140839005148162,
+   "bearing": 86.68374450549241,
+   "span": {
+    "left": 2.57,
+    "right": 4.83
+   },
+   "segments": [
+    [
+     "zelen",
+     0.95,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.45,
+     "osm"
+    ],
+    [
+     "plocha",
+     2,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-141",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Sklářská",
+   "lat": 49.463946129087844,
+   "lon": 18.121539323360146,
+   "bearing": -145.6442726393805,
+   "span": {
+    "left": 3.57,
+    "right": 22
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     6.29,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     6.29,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Sklářská",
+   "lat": 49.463946129087844,
+   "lon": 18.121539323360146,
+   "bearing": -145.6442726393805,
+   "span": {
+    "left": 3.57,
+    "right": 3.53
+   },
+   "segments": [
+    [
+     "pruh",
+     3.27,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.27,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.55,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-142",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Sladské",
+   "lat": 49.477962015746,
+   "lon": 18.173593960184657,
+   "bearing": 31.156672026080088,
+   "span": {
+    "left": 1.87,
+    "right": 2.08
+   },
+   "segments": [
+    [
+     "pruh",
+     3.95,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Sladské",
+   "lat": 49.477962015746,
+   "lon": 18.173593960184657,
+   "bearing": 31.156672026080088,
+   "span": {
+    "left": 1.87,
+    "right": 2.08
+   },
+   "segments": [
+    [
+     "pruh",
+     3.95,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-143",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Svazarmovská",
+   "lat": 49.4653100263601,
+   "lon": 18.127599420996244,
+   "bearing": -39.785421122618786,
+   "span": {
+    "left": 2.67,
+    "right": 17.43
+   },
+   "segments": [
+    [
+     "zelen",
+     0.85,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.78,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.78,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     5.7,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Svazarmovská",
+   "lat": 49.4653100263601,
+   "lon": 18.127599420996244,
+   "bearing": -39.785421122618786,
+   "span": {
+    "left": 2.67,
+    "right": 17.43
+   },
+   "segments": [
+    [
+     "zelen",
+     0.85,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.68,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.68,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "zelen",
+     7.9,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-144",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Sladské",
+   "lat": 49.474791941214235,
+   "lon": 18.170665077161708,
+   "bearing": 49.34885275509478,
+   "span": {
+    "left": 1.67,
+    "right": 3.13
+   },
+   "segments": [
+    [
+     "zelen",
+     0.55,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.25,
+     "osm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Sladské",
+   "lat": 49.474791941214235,
+   "lon": 18.170665077161708,
+   "bearing": 49.34885275509478,
+   "span": {
+    "left": 1.67,
+    "right": 3.13
+   },
+   "segments": [
+    [
+     "zelen",
+     0.65,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.15,
+     "osm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-145",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "U Kantorka",
+   "lat": 49.47574702068602,
+   "lon": 18.162773927562544,
+   "bearing": 23.583682755662473,
+   "span": {
+    "left": 2.96,
+    "right": 2.63
+   },
+   "segments": [
+    [
+     "zelen",
+     0.83,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.15,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.6,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "U Kantorka",
+   "lat": 49.47574702068602,
+   "lon": 18.162773927562544,
+   "bearing": 23.583682755662473,
+   "span": {
+    "left": 2.96,
+    "right": 2.63
+   },
+   "segments": [
+    [
+     "zelen",
+     0.63,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     0.45,
+     "odhad"
+    ],
+    [
+     "pruh",
+     3.9,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.6,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-146",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": null,
+   "lat": 49.454531850326624,
+   "lon": 18.14925529234447,
+   "bearing": 38.03661942061036,
+   "span": {
+    "left": -23.83,
+    "right": 40
+   },
+   "segments": [
+    [
+     "pruh",
+     3.38,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.38,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.3,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     3.3,
+     "pasport"
+    ],
+    [
+     "zelen",
+     3.1,
+     "dtm"
+    ],
+    [
+     "voda",
+     2.72,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": null,
+   "lat": 49.454531850326624,
+   "lon": 18.14925529234447,
+   "bearing": 38.03661942061036,
+   "span": {
+    "left": -23.83,
+    "right": 40
+   },
+   "segments": [
+    [
+     "pruh",
+     3.38,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.38,
+     "osm"
+    ],
+    [
+     "zelen",
+     0.3,
+     "dtm"
+    ],
+    [
+     "chodnik",
+     3.3,
+     "pasport"
+    ],
+    [
+     "zelen",
+     3.1,
+     "dtm"
+    ],
+    [
+     "voda",
+     2.72,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-147",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Putýrky",
+   "lat": 49.48387598839973,
+   "lon": 18.13812879492235,
+   "bearing": 175.0570571273109,
+   "span": {
+    "left": 6.97,
+    "right": 3.88
+   },
+   "segments": [
+    [
+     "plocha",
+     4.55,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.4,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.9,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Putýrky",
+   "lat": 49.48387598839973,
+   "lon": 18.13812879492235,
+   "bearing": 175.0570571273109,
+   "span": {
+    "left": 6.97,
+    "right": 3.88
+   },
+   "segments": [
+    [
+     "plocha",
+     4.55,
+     "dtm"
+    ],
+    [
+     "pruh",
+     3.4,
+     "osm"
+    ],
+    [
+     "zelen",
+     2.9,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-148",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "1. máje",
+   "lat": 49.462011446651225,
+   "lon": 18.12715099398735,
+   "bearing": -90.50467339019741,
+   "span": {
+    "left": 8.63,
+    "right": 22
+   },
+   "segments": [
+    [
+     "plocha",
+     1.7,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.85,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "plocha",
+     10.07,
+     "dtm"
+    ]
+   ]
+  },
+  "N": {
+   "name": "1. máje",
+   "lat": 49.462011446651225,
+   "lon": 18.12715099398735,
+   "bearing": -90.50467339019741,
+   "span": {
+    "left": 8.63,
+    "right": 22
+   },
+   "segments": [
+    [
+     "plocha",
+     1.7,
+     "dtm"
+    ],
+    [
+     "zelen",
+     1.85,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     2,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     2,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "plocha",
+     10.07,
+     "dtm"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-149",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Pionýrská",
+   "lat": 49.45985332479618,
+   "lon": 18.14105315066834,
+   "bearing": 47.65410372196921,
+   "span": {
+    "left": 20.68,
+    "right": 5.78
+   },
+   "segments": [
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "krajnice",
+     6.4,
+     "odhad"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "pruh",
+     4.5,
+     "osm"
+    ],
+    [
+     "krajnice",
+     6.4,
+     "odhad"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ],
+    [
+     "chodnik",
+     0.65,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Pionýrská",
+   "lat": 49.45985332479618,
+   "lon": 18.14105315066834,
+   "bearing": 47.65410372196921,
+   "span": {
+    "left": 2.82,
+    "right": 5.78
+   },
+   "segments": [
+    [
+     "pruh",
+     3.97,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.97,
+     "osm"
+    ],
+    [
+     "chodnik",
+     0.65,
+     "odhad"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "roznov-150",
+  "place": "roznov",
+  "highway": "residential",
+  "O": {
+   "name": "Chodská",
+   "lat": 49.4578604141619,
+   "lon": 18.13059899582572,
+   "bearing": -63.34452537949971,
+   "span": {
+    "left": 3.02,
+    "right": 6.68
+   },
+   "segments": [
+    [
+     "pruh",
+     3.85,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.85,
+     "osm"
+    ],
+    [
+     "parkovani",
+     2,
+     "odhad"
+    ]
+   ]
+  },
+  "N": {
+   "name": "Chodská",
+   "lat": 49.4578604141619,
+   "lon": 18.13059899582572,
+   "bearing": -63.34452537949971,
+   "span": {
+    "left": 0.22,
+    "right": 6.68
+   },
+   "segments": [
+    [
+     "pruh",
+     3.45,
+     "osm"
+    ],
+    [
+     "pruh",
+     3.45,
+     "osm"
+    ]
+   ]
+  }
+ }
+]
